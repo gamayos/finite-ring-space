@@ -1,0 +1,422 @@
+{
+ "paper": "10-dim",
+ "title": "Dimensional Analysis in Finite Ring Continuum",
+ "doi": "https://doi.org/10.20944/preprints202605.0668.v1",
+ "generated": "13 September 2026",
+ "blocks": [
+  {
+   "letter": "A",
+   "title": "Inputs: imported, not derived here",
+   "rows": [
+    {
+     "label": "A1",
+     "predicate": "The framed substrate: the Subject shell $\\Fp(\\chron;0,1,\\gen)$ with $\\p=4\\kap+1$, the derived quarter-turn $\\It=-\\gen^{\\kap}$, the phase cycle $4\\kap=2\\pi=\\p-1$, the framed-complex labels; the Carrier $\\Car$ of cardinality $\\Om=4\\dS+1$ with its admissibility congruences; the realisation doctrine (a row stating what a physical term denotes, defended by its consequences and killed by its falsifier).",
+     "tag": "I",
+     "source": "\\citep{akhtman2025algebra,akhtman2026geometry,akhtman2025lorentzian,akhtman2026s13}",
+     "key": "p0001"
+    },
+    {
+     "label": "A2",
+     "predicate": "The holographic principle as the count: the capacity $\\dS$ is the de Sitter entropy, the finite number of physical states behind the observer's horizon, the one imported number of the paper.",
+     "tag": "I",
+     "source": "\\citep{Bekenstein1973,tHooft1993,Susskind1995,GibbonsHawking1977}",
+     "key": "p0002"
+    },
+    {
+     "label": "A3",
+     "predicate": "The shell Fourier structure: on $\\Fp^{\\Phi}$, $\\Phi=C_{\\p-1}$, the matrix $W_{jk}=\\gen^{jk}$, the normalized operator $F=\\It W$ with $F^{2}=J$, $F^{4}=I$, and the fractional family with its cardinal skeleton $\\{0,\\kap,2\\kap,3\\kap\\}$.",
+     "tag": "I",
+     "source": "\\citep{akhtman2026fourier}; Rem.~\\ref{rem:frft-import}",
+     "key": "p0003"
+    },
+    {
+     "label": "A4",
+     "predicate": "Classical dimensional analysis and the Planck units: the $\\Pi$-theorem, the free-abelian exponent group of $M$-$L$-$T$, Planck's construction of the natural units from $\\{c,\\hbar,G\\}$, and the observation that only dimensionless ratios of constants are measurable.",
+     "tag": "I",
+     "source": "\\citep{Buckingham1914,Bridgman1922,Barenblatt1996,Planck1899,DuffOkunVeneziano2002,Uzan2003}",
+     "key": "p0004"
+    },
+    {
+     "label": "A5",
+     "predicate": "The registrability hierarchy of the framework: coherent registration bounded at $\\sqrt\\p$, read on the exponent lattice as the coherence window $2\\sqrt\\kap=\\sqrt{\\p-1}$; the finite-field algebra of square classes and cyclic groups used throughout.",
+     "tag": "I",
+     "source": "\\citep{akhtman2026gravity,LidlNiederreiter1997}; Rem.~\\ref{rem:ladder}",
+     "key": "p0005"
+    },
+    {
+     "label": "A6",
+     "predicate": "The Unruh and Hawking temperature forms, $T_U=\\hbar a/2\\pi c\\,k_B$, as the shape the temperature domain closes on.",
+     "tag": "I",
+     "source": "\\citep{Unruh1976,Hawking1975}",
+     "key": "p0006"
+    }
+   ]
+  },
+  {
+   "letter": "B",
+   "title": "The registers and the labels",
+   "rows": [
+    {
+     "label": "B1",
+     "predicate": "The Carrier: the finite complete totality, a timeless torsor of $\\Om$ attribute-free points, its cardinality its only absolute characteristic, its reframings $x\\mapsto ax+b$ automorphisms; the Subject: a bounded observer, an embedded prime shell of capacity $\\kap$ with frame data $\\Fp(\\chron;0,1,\\gen)$, $\\p^{2}<\\Om$; the two definitions together the paper's reading of the holographic principle.",
+     "tag": "D",
+     "source": "Defs.~\\ref{def:carrier}, \\ref{def:subject}, Rem.~\\ref{rem:holographic}",
+     "key": "p0007"
+    },
+    {
+     "label": "B2",
+     "predicate": "The Object: an observed system registered relative to the Subject's frame, every entry a Subject residue, $(\\dt;\\,q,k,v)$ --- relative time, position, winding, rate.",
+     "tag": "D",
+     "source": "Def.~\\ref{def:object}",
+     "key": "p0008"
+    },
+    {
+     "label": "B3",
+     "predicate": "Units as scale assignments: the additive meridian action $(\\Fp,+)$ and the multiplicative phase action $\\Fpx$ are unit-free coordinate actions, a physical unit a scale assignment to a frame chart of them, a measure a coordinate reading relative to the assigned scale; a physical-interface reading is a coefficient with the domain label it is read in, the two periods typing the label exponents; a change of scale assignment leaves $\\card(\\Fp)=\\p$ and $\\card(\\Fpx)=\\p-1$ untouched.",
+     "tag": "D",
+     "source": "Defs.~\\ref{def:unit-free-actions}, \\ref{def:typed-reading}, Prop.~\\ref{prop:scale-cardinality}",
+     "key": "p0009"
+    },
+    {
+     "label": "B4",
+     "predicate": "The residue phase label $\\gen^{k}$ with the cardinal packet $1,\\gen^{\\kap},\\gen^{2\\kap},\\gen^{3\\kap}$; the framed-complex label space $\\mathcal C_\\p=\\Fp\\times\\Fp$ with its $\\p$-to-one evaluation; $\\It$ the finite shell quarter-turn label.",
+     "tag": "D",
+     "source": "Defs.~\\ref{def:phase-label}, \\ref{def:complex-label}, Prop.~\\ref{prop:quarter-turn-label}",
+     "key": "p0010"
+    }
+   ]
+  },
+  {
+   "letter": "C",
+   "title": "The modular domain algebra",
+   "rows": [
+    {
+     "label": "C1",
+     "predicate": "The two domain generators: $\\unitL$ attached to the additive meridian chart, anchored on the unit $1$; $\\unitT$ attached to the drive's phase chart, anchored on the chronon step; the origins carry no units. The modular labels $U_{r,s}=\\unitL^{r}\\unitT^{s}$ on $\\Dp=C_\\p\\times C_{\\p-1}$, the homogeneous quantity algebra $\\Ap=\\bigoplus\\Fp U_{r,s}$, the domain $\\domp(Q)$ of a homogeneous quantity.",
+     "tag": "D",
+     "source": "Defs.~\\ref{def:unit-domains}, \\ref{def:modular-labels}, \\ref{def:quantity-algebra}, \\ref{def:domain-of-quantity}",
+     "key": "p0011"
+    },
+    {
+     "label": "C2",
+     "predicate": "The modular unit-domain group and the grading: $\\{U_{r,s}\\}$ is a finite abelian group isomorphic to $\\Dp$ under $U_{r,s}U_{r',s'}=U_{r+r',s+s'}$, and $\\Ap$ is $\\Dp$-graded, $\\Ap^{(r,s)}\\Ap^{(r',s')}\\subseteq\\Ap^{(r+r',s+s')}$.",
+     "tag": "T",
+     "source": "Thms.~\\ref{thm:group}, \\ref{thm:graded}; \\src{dom.A}",
+     "key": "p0012"
+    },
+    {
+     "label": "C3",
+     "predicate": "Fibrewise addition and the neutral-domain criterion: a sum of homogeneous quantities is homogeneous exactly when its nonzero summands share a domain, the fibre components adding separately; a monomial $\\prod Q_j^{k_j}$ has domain $\\sum k_j(r_j,s_j)$ and is a neutral-domain invariant iff that sum is $(0,0)$ in $\\Dp$.",
+     "tag": "T",
+     "source": "Thms.~\\ref{thm:fibrewise}, \\ref{thm:neutral}; \\src{dom.A}",
+     "key": "p0013"
+    },
+    {
+     "label": "C4",
+     "predicate": "Admissible reframings: the triples $(a,m,\\eps)$ --- translation of the spatial origin, dilation of the unit, re-presentation of the drive $\\gen\\mapsto\\gen^{\\eps}$, $\\eps\\in\\Zp^{\\times}$ --- and the two actions they induce on labels.",
+     "tag": "D",
+     "source": "Def.~\\ref{def:reframing}",
+     "key": "p0014"
+    },
+    {
+     "label": "C5",
+     "predicate": "Window covariance: on a bounded window $|r|,|s|\\le H<2\\kap$ in the flag-free sector the labels are covariant under every admissible reframing; the bound is sharp (the label $(0,\\pi)$ is pushforward-invariant yet non-neutral); the naive character is ill-defined on the modular projection and the would-be temporal character fails composition ($5^{2}\\equiv1$ in $\\Z_{12}^{\\times}$); on the realized lattice the invariant labels are exactly $\\{0,2\\kap\\}$; the $\\sigma$-twisted action is equivariant by full sweep on $\\p=13$ and $229$; the flagged label $(0,0;1)$ moves under $\\eps=-1$.",
+     "tag": "T",
+     "source": "Thm.~\\ref{thm:covariance}; \\src{dom.E}, \\src{dom.F}, \\src{dom.G}, \\src{lift.L5}",
+     "key": "p0015"
+    },
+    {
+     "label": "C6",
+     "predicate": "What the action forces and what is declared: the time-exponent period $\\p-1$ is forced by the pushforward action of $\\Zp^{\\times}$, the space-exponent refinement to period $\\p$ is declared and carried by the transport theorem (D2); classical temporal unit change is nominal re-assignment within a fixed presentation, the chronon atomic.",
+     "tag": "T|D",
+     "source": "Rems.~\\ref{rem:periods}, \\ref{rem:atomicity}, Prop.~\\ref{prop:meridian-transport}",
+     "key": "p0016"
+    }
+   ]
+  },
+  {
+   "letter": "D",
+   "title": "The four domains and the unit flag",
+   "rows": [
+    {
+     "label": "D1",
+     "predicate": "Chart duality: $[f]=\\unitT^{-1}$; $\\delta_S:D\\mapsto D^{-1}$ is an involution of the domain group whose orbit on the generators is the four-domain structure (space, momentum, time, energy); $\\delta_C$ the second involution, carrying $\\unitL\\mapsto[p]$, $\\unitT\\mapsto\\unitE$.",
+     "tag": "T",
+     "source": "Def.~\\ref{def:frequency-domain}, Thm.~\\ref{thm:turn}; \\src{dom.F}",
+     "key": "p0017"
+    },
+    {
+     "label": "D2",
+     "predicate": "The internal flag: $\\Dp$ contains exactly one subgroup of order four, $\\langle\\unitT^{\\kap}\\rangle$, entirely in the time-exponent factor; $\\Iq:=\\unitT^{\\kap}$, $\\Iq^{4}=1$, $\\Iq^{2}=\\unitT^{\\pi}$; no flag of space ($\\Z_\\p$ has no element of order four); the two periods interfere, $(\\unitL\\unitT^{\\kap})^{\\p}=\\Iq$, on three shells.",
+     "tag": "T",
+     "source": "Thm.~\\ref{thm:domain-q4}, Cor.~\\ref{cor:no-space-flag}, Prop.~\\ref{prop:meridian-transport}; \\src{dom.A}, \\src{dom.G}",
+     "key": "p0018"
+    },
+    {
+     "label": "D3",
+     "predicate": "The lift: the flag records the quarter the chart duality forgets --- on charts the cardinal skeleton acts as $s\\bmod2$ ($F$ exchanges the conjugate charts, $J$ fixes them), on labels $s\\mapsto\\Iq^{s}$ is an isomorphism $\\Z_4\\to\\langle\\Iq\\rangle$ whose quotient by $\\{0,2\\kap\\}$ returns the chart action; on the Carrier $\\hbar^{2}=-1$, $\\hbar^{4}=1$, $\\hbar^{2}\\ne1$, the crossing quantum of order four, never two. Shells $(13,2)$, $(173,3)$; Carriers $233$, $2\\,408\\,561$.",
+     "tag": "T",
+     "source": "Prop.~\\ref{prop:lift}; \\src{lift.L1}, \\src{lift.L2}, \\src{lift.L3}, \\src{lift.L4}",
+     "key": "p0019"
+    },
+    {
+     "label": "D4",
+     "predicate": "The crossing degree: the full label $(r,s;j)$, $j\\in\\Z$ the signed number of register crossings, realized as $U_{r,\\,s+j\\kap}$ with the sector $j\\bmod4$.",
+     "tag": "D",
+     "source": "Def.~\\ref{def:crossing}",
+     "key": "p0020"
+    },
+    {
+     "label": "D5",
+     "predicate": "The unit flag: the Planck constants carry the flag, $[h]=\\unithbar=\\Iq$ --- the anchoring of the action quantum to the order-four flag, the realisation content of the paper. Falsifier: one empirically closed expression that adds an observer count to a unitful measure without the conversion quantum (an energy to a frequency, a momentum to a wavenumber).",
+     "tag": "R",
+     "source": "Prop.~\\ref{prop:h-domain}, \\S\\ref{sec:domains-flag}",
+     "key": "p0021"
+    },
+    {
+     "label": "D6",
+     "predicate": "The flagged readings over the counts: $\\unitE=[h][f]=\\Iq\\unitT^{-1}$, $[p]=\\unithbar[k]=\\Iq\\unitL^{-1}$, one quantity per pair, the flagged reading one capacity step above its count; $[S]=\\unitE\\unitT=\\Iq$ and every phase count neutral, $\\unitE\\unitT\\unithbar^{-1}=1$; the absolute unit is horizon-inaccessible (no monomial of a window $H\\ll\\kap$ expresses the flag) and becomes visible at $\\kap\\le H<2\\kap$.",
+     "tag": "T",
+     "source": "Props.~\\ref{prop:energy-domain}, \\ref{prop:action-domain}, Cor.~\\ref{cor:flag-horizon}, Rem.~\\ref{rem:saturation}; \\src{dom.A}",
+     "key": "p0022"
+    },
+    {
+     "label": "D7",
+     "predicate": "A unit of measure is a reciprocal relation between two count systems, counts of one frame per count of another; the unit flag is its domain form, the register crossing made algebraic; the Planck relation the unique interface introducing energy without a mass primitive. Falsifier: an absolute unit value registered by an embedded observer, or a unitful measure carrying no cross-frame reciprocal.",
+     "tag": "R",
+     "source": "Rems.~\\ref{rem:units-reciprocal}, \\ref{rem:classical-energy}",
+     "key": "p0023"
+    }
+   ]
+  },
+  {
+   "letter": "E",
+   "title": "The quartet and its Carrier instantiation",
+   "rows": [
+    {
+     "label": "E1",
+     "predicate": "The quartet: the primitive triple $\\{\\lP,\\tPl,\\hbar\\}$ --- the two anchored horizons, flag-free re-anchorings of the two primal charts, $[\\lP]=\\unitL$, $[\\tPl]=\\unitT$, and the crossing quantum --- with the dual horizons their crossed images, $\\pP=\\hbar/\\lP$, $\\EP=\\hbar/\\tPl$; the four horizons occupy the four domains, flag positions $(0,0,1,1)$; the pairing constants $c=\\lP/\\tPl=\\EP/\\pP$, $\\hbar=\\lP\\pP=\\tPl\\EP$, $|k_B|=\\pP\\tPl$, and $G$ the one datum not internal to the square. The fundamental units are the Carrier's horizons. Falsifiers: a fifth algebraically independent relation within the quartet lattice; a measured variation of the dimensionless ratios of the constants.",
+     "tag": "R",
+     "source": "Def.~\\ref{def:quartet}, Rem.~\\ref{cor:domain-complete}, Def.~\\ref{def:pairing}, \\S\\ref{sec:quartet}",
+     "key": "p0024"
+    },
+    {
+     "label": "E2",
+     "predicate": "One crossing, one action, and pairing closure: $\\lP\\pP=\\tPl\\EP=\\hbar$ (the two faces of $c$ and $\\hbar$ differ by the single relation $\\ell p=tE$); the cross-domain relations reduce to the two generators $c$, $\\hbar$, the mixed products their monomials, $|k_B|=\\hbar/c$ derived; the relation lattice over $\\{\\lP,\\tPl,\\hbar\\}$ has rank two and $k_B$, $\\lP\\EP$ add nothing; $4-1=3$ free scales in bijection with $\\{c,\\hbar,G\\}$, the classical arity derived.",
+     "tag": "T",
+     "source": "Rem.~\\ref{prop:action-identity}, Thm.~\\ref{thm:closure}, Cor.~\\ref{cor:dof}; \\src{dom.B}",
+     "key": "p0025"
+    },
+    {
+     "label": "E3",
+     "predicate": "The cancellation identity $|k_B|c=\\hbar$ at the unit face, $(\\pP\\tPl)(\\lP/\\tPl)=\\lP\\pP$; mass derived, $m_P=\\pP/c=\\EP/c^{2}$; the temperature horizon $\\Theta_P=\\EP/|k_B|$; the flag positions $(0,0,1,1)$ and the closure of every quartet relation on the flag component; no $\\hbar$ of space and time.",
+     "tag": "T",
+     "source": "Cors.~\\ref{cor:kbc}, \\ref{cor:derived}, Prop.~\\ref{prop:quartet-flags}, Rem.~\\ref{rem:two-moves}; \\src{dom.B}",
+     "key": "p0026"
+    },
+    {
+     "label": "E4",
+     "predicate": "The defining congruences, pair form: on the Carrier chart $2G+1\\equiv0$, $2c^{2}\\equiv1$, $\\hbar^{2}\\equiv-1$, $k_B^{2}\\equiv-2\\pmod\\Om$ determine the constants uniquely at pair level --- $G=2\\dS$ exact, the quadratics each with exactly two roots $\\{x,-x\\}$ (admissibility guarantees the residues: $\\Om\\equiv1\\bmod4$, $\\dS$ even for $2$, hence $-2$) --- and the linkage $\\{\\pm k_B\\}\\{\\pm c\\}=\\{\\pm\\hbar\\}$ is derived at pair level; the root pair of $-1$ is $\\{\\hbar,h\\}$ with $h=2\\pi\\hbar\\equiv-\\hbar$. Exhaustive on both Carriers.",
+     "tag": "T",
+     "source": "Thm.~\\ref{thm:pins}, Rem.~\\ref{rem:h-form}; \\src{dom.C}, \\src{dom.D}, \\src{dom.H}",
+     "key": "p0027"
+    },
+    {
+     "label": "E5",
+     "predicate": "Pair consequences and representative inertness: $G=-c^{2}$, $G^{2}\\equiv4^{-1}$, $\\hbar^{4}\\equiv1$, $(k_Bc)^{2}\\equiv-1$, and $\\hbar cG^{-1}$ lands in $\\{\\pm k_B\\}$; of the eight sign assignments exactly the four with $\\sigma_\\hbar=\\sigma_c\\sigma_k$ are admissible, a $(\\Z/2)^{2}$, every identity holding on each and the $\\hbar$-flip relabelling within $\\{\\hbar,h\\}$; what a bounded observer registers is exactly the pair-inert content.",
+     "tag": "T",
+     "source": "Cor.~\\ref{prop:faces-closure}, Rem.~\\ref{rem:registration}; \\src{dom.D}, \\src{dom.H}",
+     "key": "p0028"
+    },
+    {
+     "label": "E6",
+     "predicate": "The residue assignments: the unit face (the Planck chart, each horizon the unit of its domain; $c=1$, $\\hbar=1$ its labels) and the residue face (the square-root horizon band, $\\hbar^{2}=\\Om-1$, $k_B^{2}=\\Om-2$); the mass scale's two typed faces, the monomial $m_P^{2}=\\hbar c/G$ in $\\{\\pm k_B\\}$ and the horizon declaration $m_P^{2}\\,\\hat=\\,\\Om$, never composed.",
+     "tag": "D|R",
+     "source": "\\S\\ref{sec:instantiation} (the residue assignments)",
+     "key": "p0029"
+    },
+    {
+     "label": "E7",
+     "predicate": "The Carrier register is $\\Om$-hard: no bounded observer resolves the constants' residues; the selection of a member in each pair $\\{x,-x\\}$ is a resolved fact of the instantiated totality, knowable to no sub-capacity frame (the window ladder, G2); the absolute unit values are read at the totality and their unit-face magnitudes are their only registrable manifestation.",
+     "tag": "Ω",
+     "source": "\\S\\ref{sec:instantiation}, Rem.~\\ref{rem:h-form}",
+     "key": "p0030"
+    },
+    {
+     "label": "E8",
+     "predicate": "The two moves from the Subject's reading to the Carrier's: re-anchoring within the fibre (the unit and the chronon step traded for the substrate-fixed marks) and the register crossing (the flag); the two rows of the four-domain figure mix them differently.",
+     "tag": "D",
+     "source": "Rem.~\\ref{rem:two-moves}",
+     "key": "p0031"
+    },
+    {
+     "label": "E9",
+     "predicate": "The minimal admissible pair: under the programme's admissibility predicate ($\\p=4\\kap+1$ prime, $\\kap>1$; $\\Om=4\\dS+1$ prime, $\\dS$ even, $\\dS\\equiv1\\bmod3$; $\\p^{2}<\\Om$) the smallest instance is $(\\p,\\Om)=(13,233)$, by exhaustive scan, with the counterfactuals: dropping the mod-$3$ clause admits $(13,193)$, dropping $\\kap>1$ admits $(5,41)$, $\\kap=2$ gives the composite $9$.",
+     "tag": "T",
+     "source": "\\S\\ref{sec:instantiation}, App.~\\ref{app:primer}; \\src{dom.D}",
+     "key": "p0032"
+    }
+   ]
+  },
+  {
+   "letter": "F",
+   "title": "Mechanics, gravitation and temperature",
+   "rows": [
+    {
+     "label": "F1",
+     "predicate": "The speed domain $\\unitv=\\unitL\\unitT^{-1}$ and the capacity budget it is read against.",
+     "tag": "D",
+     "source": "Def.~\\ref{def:speed-domain}, \\S\\ref{sec:speed-c}",
+     "key": "p0033"
+    },
+    {
+     "label": "F2",
+     "predicate": "The mechanical and gravitational domains: $[m]=\\Iq\\unitL^{-2}\\unitT$; $[a]=\\unitL\\unitT^{-2}$, $[F]=\\Iq\\unitL^{-1}\\unitT^{-1}$, $[p]=\\Iq\\unitL^{-1}$, $[S]=\\Iq$, $[P]=\\Iq\\unitT^{-2}$, $[\\text{pressure}]=\\Iq\\unitL^{-3}\\unitT^{-1}$; $[G]=\\Iq^{-1}\\unitL^{5}\\unitT^{-3}$; the geometric conversions $[G\\hbar/c^{3}]=\\unitL^{2}$, $[Gm/c^{2}]=\\unitL$, $[Gm/c^{3}]=\\unitT$, $[G\\rho_m]=\\unitT^{-2}$; mass derived, not primitive.",
+     "tag": "T",
+     "source": "Props.~\\ref{prop:mass-domain}, \\ref{prop:mechanical-domains}, \\ref{prop:G-domain}, Cor.~\\ref{cor:geometric-domains}; \\src{dom.A}",
+     "key": "p0034"
+    },
+    {
+     "label": "F3",
+     "predicate": "Temperature carries the acceleration domain: $[\\Theta]=\\unitE[k_B]^{-1}=\\unitL\\unitT^{-2}=[a]$, flag-free; the Unruh combination $\\hbar a/c\\,k_B$ closes flag-free in the algebra; neither mass nor temperature is primitive, the classical $M$-$L$-$T$-plus-thermal system the torsion-free shadow of two generators plus the flag.",
+     "tag": "T",
+     "source": "Cor.~\\ref{cor:temperature}, Rem.~\\ref{rem:unruh}; \\src{dom.D}",
+     "key": "p0035"
+    },
+    {
+     "label": "F4",
+     "predicate": "Count-valued comparisons are flag-free: every ratio of two quantities of equal crossing degree ($F/a$, $Gm/r^{3}$, the phase exponent $[E][T]/[\\hbar]$) is a neutral or flag-free label, the flag entering unitful measures only.",
+     "tag": "T",
+     "source": "Exs.~\\ref{ex:phase-neutrality}, \\ref{ex:gravitational-frequency}, \\S\\ref{sec:mechanics-gravity}; \\src{dom.A}, \\src{dom.G}",
+     "key": "p0036"
+    }
+   ]
+  },
+  {
+   "letter": "G",
+   "title": "Periodicity, windows and the worked examples",
+   "rows": [
+    {
+     "label": "G1",
+     "predicate": "Local recovery: for an exponent horizon $H$ with $4\\kap>2H$ the modular labels distinguish every conventional pair $|r|,|s|\\le H$; the flagged sector is recovered through the crossing degree, $M^{u}L^{a}T^{b}\\mapsto(a-2u,\\,b+u;\\,u)$ injective and windowed-faithful.",
+     "tag": "T",
+     "source": "Thm.~\\ref{thm:local-recovery}, Cor.~\\ref{cor:recovery-crossings}; \\src{dom.A}, \\src{dom.D}",
+     "key": "p0037"
+    },
+    {
+     "label": "G2",
+     "predicate": "The window ladder: coherence $2\\sqrt\\kap$ below recovery $\\kap/2$ below flag inaccessibility $\\kap$ below covariance $2\\kap$, nested strictly for every $\\kap\\ge17$ and failing for the toy $\\kap=3$, all orderings by integer squares; the coherence identity $(2\\sqrt\\kap)^{2}=\\p-1$ and the totality closure $(2\\sqrt\\dS)^{2}=\\Om-1$.",
+     "tag": "T",
+     "source": "Rem.~\\ref{rem:ladder}; \\src{dom.G}",
+     "key": "p0038"
+    },
+    {
+     "label": "G3",
+     "predicate": "The worked examples: $\\kap=3$, $H=5$, $12>10$ so every pair in $[-5,5]^{2}$ is distinguished; kinetic energy $[m][v]^{2}=[E]$; $Q+Q^{2}$ inhomogeneous; the phase exponent neutral; flag arithmetic ($G\\hbar/c^{3}$ flag-free, $\\Iq^{2}=\\unitT^{\\pi}$); the Schwarzschild length $[Gm/c^{2}]=\\unitL$; the gravitational frequency $[Gm/r^{3}]=\\unitT^{-2}$.",
+     "tag": "T",
+     "source": "Exs.~\\ref{ex:kappa3}, \\ref{ex:kinetic}, \\ref{ex:squaring}, \\ref{ex:phase-neutrality}, \\ref{ex:flag-arithmetic}, \\ref{ex:schwarzschild}, \\ref{ex:gravitational-frequency}; \\src{dom.A}",
+     "key": "p0039"
+    }
+   ]
+  },
+  {
+   "letter": "V",
+   "title": "Machine verification (the validation package \\texttt{finite-ring-space/src/10-dimensions})",
+   "rows": [
+    {
+     "label": "V1",
+     "predicate": "The exact suite: eight layers, $200$ micro-checks --- A the shell datum and domain algebra on $\\F_{13}$ ($32$), B the quartet at the unit face ($30$), C the defining congruences on the laboratory Carrier ($13$), D both Carriers, faces, minimality, temperature ($50$), E covariance ($18$), F window bound, twisted action, dualities ($15$), G realized action, ladder, transport, pair canonicity ($15$), H the pair layer ($27$).",
+     "tag": "T",
+     "source": "\\src{verify\\_\\allowbreak domains}",
+     "key": "p0040"
+    },
+    {
+     "label": "V2",
+     "predicate": "The lift: L1--L5 on the shells $(13,2)$, $(173,3)$ and the Carriers $233$, $2\\,408\\,561$, $10$ micro-checks.",
+     "tag": "T",
+     "source": "\\src{check\\_lift}",
+     "key": "p0041"
+    },
+    {
+     "label": "V3",
+     "predicate": "The source gates: $105$ required tokens and verbatim bans on \\texttt{sections/*.tex} and \\texttt{mdpi.tex} --- markup residue, the $\\kap/\\chron/\\dt$ roles, the corpus blacklist, the constructive register, the required forms, the doctrine gates of rounds 02--06 --- run in the corpus tree, where the manuscript lives.",
+     "tag": "T",
+     "source": "\\src{check\\_gates}",
+     "key": "p0042"
+    },
+    {
+     "label": "V4",
+     "predicate": "The driver: two suites, one notebook run in the browser, $13$ family checks over $210$ exact micro-checks, a record per check written to \\texttt{results.json} keyed to these rows.",
+     "tag": "T",
+     "source": "\\src{run\\_all}; the notebook",
+     "key": "p0043"
+    }
+   ]
+  },
+  {
+   "letter": "O",
+   "title": "The open front",
+   "rows": [
+    {
+     "label": "O1",
+     "predicate": "The electromagnetic domain: charge and the electromagnetic units are not constructed in the two-generator-plus-flag system; whether they enter as a further flag, a further generator, or a monomial of the existing ones is the paper's stated deferral.",
+     "tag": "O",
+     "source": "\\S\\ref{sec:discussion}",
+     "key": "p0044"
+    }
+   ]
+  }
+ ],
+ "legend": [
+  {
+   "tag": "I",
+   "name": "Import",
+   "text": "A standard result, a corpus result, or a convention used here without reproof."
+  },
+  {
+   "tag": "D",
+   "name": "Definition",
+   "text": "A naming, a declared dictionary, or a set-up move, carrying no empirical content."
+  },
+  {
+   "tag": "T",
+   "name": "Theorem",
+   "text": "Derived within this paper from the rows above it, machine-verified in exact arithmetic by the named witness where a witness is named."
+  },
+  {
+   "tag": "R",
+   "name": "Realisation",
+   "text": "States what a physical term denotes on the substrate: constitutive, not interpretive, and carrying its falsifier."
+  },
+  {
+   "tag": "Ω",
+   "name": "$\\Om$-hard",
+   "text": "A value fixed by the totality, in no bounded observer's window; a demarcation of where the value is read, not an open item."
+  },
+  {
+   "tag": "O",
+   "name": "Open",
+   "text": "Genuinely unresolved."
+  }
+ ],
+ "master": {
+  "D7": [
+   "D7"
+  ],
+  "F3": [
+   "C12"
+  ],
+  "E9": [
+   "C13"
+  ],
+  "G2": [
+   "C13"
+  ],
+  "E4": [
+   "C8"
+  ],
+  "E5": [
+   "B10"
+  ]
+ }
+}

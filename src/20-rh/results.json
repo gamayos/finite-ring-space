@@ -57,7 +57,7 @@
   "id": "A9",
   "rows": "20:B7",
   "script": "a_shell",
-  "label": "c_13(n) = \u22121 for n \u2260 0",
+  "label": "c_13(n) \u2261 \u22121 (mod 53) for n \u2260 0: \u03a3_a \u03c9^{an} in F_53, \u03c9 of order 13",
   "ok": true,
   "detail": "",
   "kind": "EXACT"
@@ -66,10 +66,19 @@
   "id": "A7",
   "rows": "20:E1, 20:E12, 20:E13",
   "script": "a_shell",
-  "label": "F_13: mean v\u0304 = \u03c8(p\u22121)/(p\u22121) on the trivial mode, v \u2212 v\u0304\u00b71 on the nontrivial characters; S x^k = g^k x^k in F_p and S\u03c7_j = \u03c9^j \u03c7_j on \u2113\u00b2; Tr S^r = (p\u22121)[(p\u22121)|r]",
+  "label": "F_13: S x^k = g^k x^k on the power characters (integer arithmetic); Tr S^r = (p\u22121)[(p\u22121)|r]",
+  "ok": true,
+  "detail": "",
+  "kind": "EXACT"
+ },
+ {
+  "id": "A7b",
+  "rows": "20:E1, 20:E12, 20:E13",
+  "script": "a_shell",
+  "label": "\u2113\u00b2(F_13^\u00d7): mean v\u0304 = \u03c8(p\u22121)/(p\u22121) on the trivial mode, v \u2212 v\u0304\u00b71 on the nontrivial characters, orthonormal; S\u03c7_j = \u03c9^j \u03c7_j",
   "ok": true,
   "detail": "v\u0304 = 0.852492 (= log 27720/12 at p = 13)",
-  "kind": "EXACT"
+  "kind": "[approx]"
  },
  {
   "id": "A10",
@@ -138,7 +147,7 @@
   "id": "A9",
   "rows": "20:B7",
   "script": "a_shell",
-  "label": "c_17(n) = \u22121 for n \u2260 0",
+  "label": "c_17(n) \u2261 \u22121 (mod 103) for n \u2260 0: \u03a3_a \u03c9^{an} in F_103, \u03c9 of order 17",
   "ok": true,
   "detail": "",
   "kind": "EXACT"
@@ -147,10 +156,19 @@
   "id": "A7",
   "rows": "20:E1, 20:E12, 20:E13",
   "script": "a_shell",
-  "label": "F_17: mean v\u0304 = \u03c8(p\u22121)/(p\u22121) on the trivial mode, v \u2212 v\u0304\u00b71 on the nontrivial characters; S x^k = g^k x^k in F_p and S\u03c7_j = \u03c9^j \u03c7_j on \u2113\u00b2; Tr S^r = (p\u22121)[(p\u22121)|r]",
+  "label": "F_17: S x^k = g^k x^k on the power characters (integer arithmetic); Tr S^r = (p\u22121)[(p\u22121)|r]",
   "ok": true,
   "detail": "",
   "kind": "EXACT"
+ },
+ {
+  "id": "A7b",
+  "rows": "20:E1, 20:E12, 20:E13",
+  "script": "a_shell",
+  "label": "\u2113\u00b2(F_17^\u00d7): mean v\u0304 = \u03c8(p\u22121)/(p\u22121) on the trivial mode, v \u2212 v\u0304\u00b71 on the nontrivial characters, orthonormal; S\u03c7_j = \u03c9^j \u03c7_j",
+  "ok": true,
+  "detail": "",
+  "kind": "[approx]"
  },
  {
   "id": "A10",
@@ -219,7 +237,7 @@
   "id": "A9",
   "rows": "20:B7",
   "script": "a_shell",
-  "label": "c_29(n) = \u22121 for n \u2260 0",
+  "label": "c_29(n) \u2261 \u22121 (mod 59) for n \u2260 0: \u03a3_a \u03c9^{an} in F_59, \u03c9 of order 29",
   "ok": true,
   "detail": "",
   "kind": "EXACT"
@@ -228,10 +246,19 @@
   "id": "A7",
   "rows": "20:E1, 20:E12, 20:E13",
   "script": "a_shell",
-  "label": "F_29: mean v\u0304 = \u03c8(p\u22121)/(p\u22121) on the trivial mode, v \u2212 v\u0304\u00b71 on the nontrivial characters; S x^k = g^k x^k in F_p and S\u03c7_j = \u03c9^j \u03c7_j on \u2113\u00b2; Tr S^r = (p\u22121)[(p\u22121)|r]",
+  "label": "F_29: S x^k = g^k x^k on the power characters (integer arithmetic); Tr S^r = (p\u22121)[(p\u22121)|r]",
   "ok": true,
   "detail": "",
   "kind": "EXACT"
+ },
+ {
+  "id": "A7b",
+  "rows": "20:E1, 20:E12, 20:E13",
+  "script": "a_shell",
+  "label": "\u2113\u00b2(F_29^\u00d7): mean v\u0304 = \u03c8(p\u22121)/(p\u22121) on the trivial mode, v \u2212 v\u0304\u00b71 on the nontrivial characters, orthonormal; S\u03c7_j = \u03c9^j \u03c7_j",
+  "ok": true,
+  "detail": "",
+  "kind": "[approx]"
  },
  {
   "id": "A10",
@@ -300,7 +327,7 @@
   "id": "A9",
   "rows": "20:B7",
   "script": "a_shell",
-  "label": "c_37(n) = \u22121 for n \u2260 0",
+  "label": "c_37(n) \u2261 \u22121 (mod 149) for n \u2260 0: \u03a3_a \u03c9^{an} in F_149, \u03c9 of order 37",
   "ok": true,
   "detail": "",
   "kind": "EXACT"
@@ -309,10 +336,19 @@
   "id": "A7",
   "rows": "20:E1, 20:E12, 20:E13",
   "script": "a_shell",
-  "label": "F_37: mean v\u0304 = \u03c8(p\u22121)/(p\u22121) on the trivial mode, v \u2212 v\u0304\u00b71 on the nontrivial characters; S x^k = g^k x^k in F_p and S\u03c7_j = \u03c9^j \u03c7_j on \u2113\u00b2; Tr S^r = (p\u22121)[(p\u22121)|r]",
+  "label": "F_37: S x^k = g^k x^k on the power characters (integer arithmetic); Tr S^r = (p\u22121)[(p\u22121)|r]",
   "ok": true,
   "detail": "",
   "kind": "EXACT"
+ },
+ {
+  "id": "A7b",
+  "rows": "20:E1, 20:E12, 20:E13",
+  "script": "a_shell",
+  "label": "\u2113\u00b2(F_37^\u00d7): mean v\u0304 = \u03c8(p\u22121)/(p\u22121) on the trivial mode, v \u2212 v\u0304\u00b71 on the nontrivial characters, orthonormal; S\u03c7_j = \u03c9^j \u03c7_j",
+  "ok": true,
+  "detail": "",
+  "kind": "[approx]"
  },
  {
   "id": "A10",
@@ -381,7 +417,7 @@
   "id": "A9",
   "rows": "20:B7",
   "script": "a_shell",
-  "label": "c_41(n) = \u22121 for n \u2260 0",
+  "label": "c_41(n) \u2261 \u22121 (mod 83) for n \u2260 0: \u03a3_a \u03c9^{an} in F_83, \u03c9 of order 41",
   "ok": true,
   "detail": "",
   "kind": "EXACT"
@@ -390,10 +426,19 @@
   "id": "A7",
   "rows": "20:E1, 20:E12, 20:E13",
   "script": "a_shell",
-  "label": "F_41: mean v\u0304 = \u03c8(p\u22121)/(p\u22121) on the trivial mode, v \u2212 v\u0304\u00b71 on the nontrivial characters; S x^k = g^k x^k in F_p and S\u03c7_j = \u03c9^j \u03c7_j on \u2113\u00b2; Tr S^r = (p\u22121)[(p\u22121)|r]",
+  "label": "F_41: S x^k = g^k x^k on the power characters (integer arithmetic); Tr S^r = (p\u22121)[(p\u22121)|r]",
   "ok": true,
   "detail": "",
   "kind": "EXACT"
+ },
+ {
+  "id": "A7b",
+  "rows": "20:E1, 20:E12, 20:E13",
+  "script": "a_shell",
+  "label": "\u2113\u00b2(F_41^\u00d7): mean v\u0304 = \u03c8(p\u22121)/(p\u22121) on the trivial mode, v \u2212 v\u0304\u00b71 on the nontrivial characters, orthonormal; S\u03c7_j = \u03c9^j \u03c7_j",
+  "ok": true,
+  "detail": "",
+  "kind": "[approx]"
  },
  {
   "id": "A10",
@@ -498,10 +543,10 @@
   "id": "A8",
   "rows": "20:E9",
   "script": "a_shell",
-  "label": "any real multiset is the spectrum of a real-symmetric tridiagonal matrix (Lanczos on ten heights)",
+  "label": "any real multiset is the spectrum of a real-symmetric tridiagonal matrix (Lanczos on ten heights, floating point)",
   "ok": true,
   "detail": "max|eig(J) \u2212 height| = 1.8e-14",
-  "kind": "EXACT"
+  "kind": "[approx]"
  },
  {
   "id": "B1",
@@ -581,7 +626,7 @@
   "script": "c_primeside",
   "label": "Jacobi matrix of the corrected roots: real-symmetric tridiagonal; eig = roots to 1e-12; a, b as stated; heights to 3.4e-5",
   "ok": true,
-  "detail": "max|eig\u2212roots| = 7.1e-15; a[0..2] = 34.314, 31.021, 31.178; b[0] = 11.178",
+  "detail": "max|eig\u2212roots| = 1.4e-14; a[0..2] = 34.314, 31.021, 31.178; b[0] = 11.178",
   "kind": "[approx]"
  },
  {
@@ -636,6 +681,15 @@
   "label": "twisted secular condition, N = 10\u2076 comb, L never evaluated: six heights to mean error 8.6e-5",
   "ok": true,
   "detail": "roots 6.0211, 10.2439, 12.9882, 16.3427, 18.2921, 21.4507; mean error 8.60e-05, max 1.55e-04",
+  "kind": "[approx]"
+ },
+ {
+  "id": "C7c",
+  "rows": "20:E14, 20:E16",
+  "script": "c_chi",
+  "label": "\u03c7 mod 5 complex: Z_\u03c7 real on the line; the twisted count reads 1 \u2026 14 between the fifteen zeros below 40; the secular condition (N = 10\u2076 comb, brackets from the count alone, L never evaluated) recovers the fifteen heights to mean error 8.0e-5 (max 2.0e-4)",
+  "ok": true,
+  "detail": "|W| = 1.000000000000000, max|Im Z_\u03c7| = 2.8e-21; 15 zeros 6.1836 \u2026 37.2720; count at midpoints 1.000, 2.000, 3.000, 4.000, 5.000, 6.000, 7.000, 8.000, 9.000, 10.000, 11.000, 12.000, 13.000, 14.000; roots 6.1838, 8.4573, 12.6750 \u2026 37.2719; mean error 7.99e-05, max 2.02e-04",
   "kind": "[approx]"
  },
  {
@@ -723,9 +777,9 @@
   "id": "D4",
   "rows": "20:F1",
   "script": "d_classification",
-  "label": "frame-exact count on one shell: at p = 95, 1003, 4775 (T = 2\u03c0p) the depth-\u230a\u221ap\u230b comb, midway between consecutive zeros below the ceiling, rounds to the exact N(t) at every midpoint (max deviation 0.10, 0.21, 0.12); the 10\u2076 comb within 0.002",
+  "label": "frame-exact count on one shell: at p = 97, 1009, 4801 (T = 2\u03c0p) the depth-\u230a\u221ap\u230b comb, midway between consecutive zeros below the ceiling, rounds to the exact N(t) at every midpoint (max deviation 0.08, 0.11, 0.16); the 10\u2076 comb within 0.002",
   "ok": true,
-  "detail": "p=95 (depth 9, 8 midpoints): max dev 0.101 (10\u2076 comb 0.000); p=1003 (depth 31, 12 midpoints): max dev 0.207 (10\u2076 comb 0.002); p=4775 (depth 69, 15 midpoints): max dev 0.122 (10\u2076 comb 0.002)",
+  "detail": "p=97 (depth 9, 8 midpoints): max dev 0.079 (10\u2076 comb 0.000); p=1009 (depth 31, 12 midpoints): max dev 0.107 (10\u2076 comb 0.001); p=4801 (depth 69, 15 midpoints): max dev 0.164 (10\u2076 comb 0.002)",
   "kind": "[approx]"
  },
  {

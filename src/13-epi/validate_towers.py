@@ -4,12 +4,13 @@ Exact arithmetic only: integers and fractions.Fraction. No floats anywhere.
 External comparisons use the paper's own certified rational brackets."""
 from fractions import Fraction as F
 import math, sys
+from epicommon import chk, family, flush
 
-ok = True
+# Package form (2026-09): the paper's script as written, its micro-checks reported to the registry under the
+# families tow.E (e-tower), tow.P (π-tower), tow.C (Cayley), tow.O (orientation), tow.H (height run), tow.W (window
+# and pins); a failing micro-check prints and fails its family without stopping the run.
 def check(name, cond):
-    global ok
-    print(("PASS " if cond else "FAIL ") + name)
-    if not cond: ok = False
+    chk(name, cond)
 
 def subfact(n):
     d = [1, 0]
@@ -52,16 +53,19 @@ def primitive_root(p):
             return g
     raise ValueError
 
-for p in (13, 29):
+def run():
+  for p in (13, 29):
     kap = (p-1)//4
     g = primitive_root(p)
     i = pow(g, p-1-kap, p)              # i = g^{-kap}
+    family("tow", "W")
     check(f"p={p}: i^2 = -1", (i*i) % p == p-1)
     lam = i                              # label lift: canonical representative read as exponent
     eP = pow(g, lam, p)
     piA = (2*kap) % p
 
     # --- e-tower: q_m = ((mp)! + delta_m)/!(mp), shell reading = eP, external -> e ---
+    family("tow", "E")
     for m in (1, 2, 3):
         delta = centered(((-1)**m * eP) % p, p)
         num = math.factorial(m*p) + delta
@@ -76,6 +80,7 @@ for p in (13, 29):
               q > lo - width and q < hi + width)
 
     # --- pi-tower: (2*16^n + delta)/((2n+1) C(2n,n)^2), n = p^r ---
+    family("tow", "P")
     for r in (1, 2):
         n = p**r
         Cb = C(2*n, n)
@@ -94,6 +99,7 @@ for p in (13, 29):
             check(f"p={p} pi-tower r=1: member above v_n floor", v > F(2*4**n, (2*n+1)*Cb*Cb) - F(1))
 
     # --- Cayley identities, exhaustive where denominators are units ---
+    family("tow", "C")
     cnt = 0
     for x in range(p):
         for y in range(p):
@@ -114,6 +120,7 @@ for p in (13, 29):
     check(f"p={p} Cayley C(1)=i", ((1+i) * pow((1-i) % p, p-2, p)) % p == i)
 
     # --- orientation rule: u = 1 mod 4 preserves i, u = 3 mod 4 conjugates ---
+    family("tow", "O")
     for u in range(1, p-1):
         if math.gcd(u, p-1) != 1:
             continue
@@ -126,55 +133,71 @@ for p in (13, 29):
     check(f"p={p} orientation-transport rule exhaustive over units", True)
 
 
+  _run_tail()
+
 # --- two-level horizon law: minimal framed-rational heights ---
 def minheight(x, p):
     best = p
-    for b in range(1, best + 1):
-        a = (x * b) % p
-        a = a - p if a > p // 2 else a
+    for b in range(1, best+1):
+        a = (x*b) % p
+        a = a - p if a > p//2 else a
         h = max(abs(a), b)
-        if h < best:
-            best = h
-        if b > best:
-            break
+        if h < best: best = h
+        if b > best: break
     return best
 
 import math as _m
-
+# Full-population height run (round-02): all shells p == 1 (mod 4), p <= 8009;
+# smallest-primitive-root frame, H minimized over the two chirality units.
 def _sieve(N):
-    c = bytearray(N + 1)
-    for i in range(2, _m.isqrt(N) + 1):
-        if not c[i]: c[i*i::i] = b'\x01' * len(c[i*i::i])
-    return [i for i in range(3, N + 1) if not c[i]]
+    c = bytearray(N+1)
+    for i in range(2, _m.isqrt(N)+1):
+        if not c[i]: c[i*i::i] = b'\x01'*len(c[i*i::i])
+    return [i for i in range(3, N+1) if not c[i]]
+def _run_tail():
+  family("tow", "H")
+  hs = []
+  pin_ok = True; band_ok = True
+  for p in [q for q in _sieve(8009) if q % 4 == 1]:
+      kap = (p-1)//4
+      g = primitive_root(p)                      # iterates from 2: the smallest primitive root
+      e_neg = pow(g, pow(g, p-1-kap, p), p)      # exponential unit, oriented chirality  i = g^{-kap}
+      e_pos = pow(g, pow(g, kap, p), p)          # exponential unit, conjugate chirality i' = g^{+kap}
+      piA = (2*kap) % p
+      if not ((piA * (-2)) % p == 1 and minheight(piA, p) == 2): pin_ok = False
+      h = min(minheight(e_neg, p), minheight(e_pos, p))
+      if h > 2*_m.isqrt(p): band_ok = False
+      hs.append((p, h, _m.isqrt(p)))
+  check("pi_A = [-1/2] pinned at height 2 on all 500 shells p <= 8009", pin_ok and len(hs) == 500)
+  check("H(e_p) within the horizon band 2 sqrt(p) on every shell", band_ok)
+  small = sorted(p for p, h, s in hs if h <= 10)
+  exc2 = sorted(p for p, h, s in hs if h == 2)
+  ratios = sorted(h/s for p, h, s in hs)
+  med = (ratios[249] + ratios[250]) / 2
+  _MED[0] = med
+  check("small-height shells (H <= 10): exactly 68", len(small) == 68)
+  check("height-2 shells exactly {13, 1933, 4177, 5857}", exc2 == [13, 1933, 4177, 5857])
+  # growth reading (exact counts; the generic-growth interpretation is DFI-equidistribution [import])
+  print(f"height run: 500 shells, median H/sqrt(p) = {med:.3f}, H<=10: {len(small)}, height-2: {exc2}")
 
-hs = []
-pin_ok = True; band_ok = True
-for p in [q for q in _sieve(8009) if q % 4 == 1]:
-    kap = (p - 1) // 4
-    g = primitive_root(p)
-    e_neg = pow(g, pow(g, p-1-kap, p), p)
-    e_pos = pow(g, pow(g, kap, p), p)
-    piA = (2 * kap) % p
-    if not ((piA * (-2)) % p == 1 and minheight(piA, p) == 2): pin_ok = False
-    h = min(minheight(e_neg, p), minheight(e_pos, p))
-    if h > 2 * _m.isqrt(p): band_ok = False
-    hs.append((p, h, _m.isqrt(p)))
-check("pi_A = [-1/2] pinned at height 2 on all 500 shells p <= 8009", pin_ok and len(hs) == 500)
-check("H(e_p) within the horizon band 2 sqrt(p) on every shell", band_ok)
-small = sorted(p for p, h, s in hs if h <= 10)
-exc2 = sorted(p for p, h, s in hs if h == 2)
-ratios = sorted(h/s for p, h, s in hs)
-med = (ratios[249] + ratios[250]) / 2
-check("small-height shells (H <= 10): exactly 68", len(small) == 68)
-check("height-2 shells exactly {13, 1933, 4177, 5857}", exc2 == [13, 1933, 4177, 5857])
-print(f"height run: 500 shells, median H/sqrt(p) = {med:.3f}, H<=10: {len(small)}, height-2: {exc2}")
 
-for p in (13, 29, 101, 997, 8009):
-    s = _m.isqrt(p)
-    check(f"p={p}: wrap-free window (isqrt(p)^2 < p, sums below p)", s*s < p and 2*s < p)
-    kap = (p - 1) // 4
-    piA = (2 * kap) % p
-    check(f"p={p}: pinning relation 2*pi_A + 1 == 0 (the shell calibration)", (2*piA + 1) % p == 0)
+  # --- accessible window: wrap-free below sqrt(p); pinning relations; the half-turn tautology ---
+  family("tow", "W")
+  for p in (13, 29, 101, 997, 8009):
+      s = _m.isqrt(p)
+      check(f"p={p}: wrap-free window (isqrt(p)^2 < p, sums below p)", s*s < p and 2*s < p)
+      kap = (p-1)//4
+      piA = (2*kap) % p
+      check(f"p={p}: pinning relation 2*pi_A + 1 == 0 (the shell calibration)", (2*piA + 1) % p == 0)
+      g = primitive_root(p)
+      check(f"p={p}: half-turn tautology g^(2 kap) == -1 (the exact angular carrier of pi)", pow(g, 2*kap, p) == p - 1)
+      i = pow(g, p-1-kap, p)
+      check(f"p={p}: quarter-turn pin i^2 + 1 == 0", (i*i + 1) % p == 0)
+  flush("tow", order=list("EPCOHW"), details={"H": f"median H/sqrt(p) = {_MED[0]:.3f} (diagnostic)"})
 
-print("ALL PASS" if ok else "FAILURES PRESENT")
-sys.exit(0 if ok else 1)
+_MED = [0.0]
+
+if __name__ == "__main__":
+    import epicommon
+    run(); epicommon.summary(write=False)
+

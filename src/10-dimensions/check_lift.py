@@ -14,12 +14,17 @@ Checks, per shell (p, g) and per Carrier Om:
       (the diagram commutes; kernel of the forgetting = {id, J}).
   L4  Carrier face: hbar^2 = -1 (mod Om), hbar^4 = 1, hbar^2 != 1:
       the crossing quantum has order four, never two.
+  L5  invariance classification on the realized lattice (Theorem 5 preamble):
+      {u in Z_{p-1} : eps*u = u for every admissible eps} = {0, 2k} exactly;
+      witnesses (s,j) = (k,1) -> u = 2k invariant, (-k,1) -> u = 0 invariant,
+      (0,1) -> u = k not invariant, (0,2) -> u = 2k invariant.
 
 Instances: shell (13, 2) with the laboratory-scale shell (173, 3) as the
 second witness; Carriers 233 and 2408561 (the laboratory Carrier).
 """
 
 import sys
+from math import gcd
 
 def modmat_mul(A, B, p):
     n = len(A)
@@ -60,6 +65,17 @@ def check_shell(p, g):
 
     return l1, l2, l3
 
+def check_invariance(p):
+    n = p - 1
+    k = n // 4
+    units = [e for e in range(1, n) if gcd(e, n) == 1]
+    fixed = {u for u in range(n) if all((e * u) % n == u for e in units)}
+    classified = fixed == {0, 2 * k}
+    real = lambda s, j: (s + j * k) % n
+    witnesses = (real(k, 1) in fixed and real(-k, 1) in fixed
+                 and real(0, 1) not in fixed and real(0, 2) in fixed)
+    return classified and witnesses
+
 def check_carrier(Om):
     # hbar = a square root of -1 mod Om (exists since Om = 1 mod 4)
     hbar = None
@@ -72,21 +88,16 @@ def check_carrier(Om):
          and (pow(hbar, 2, Om) != 1)
     return l4
 
-def main():
-    results = []
+def run():
+    from dimcommon import chk, flush
     for (p, g) in [(13, 2), (173, 3)]:
         l1, l2, l3 = check_shell(p, g)
-        results += [("L1(p=%d)" % p, l1), ("L2(p=%d)" % p, l2),
-                    ("L3(p=%d)" % p, l3)]
+        chk("L1(p=%d)" % p, l1, "lift", "L1"); chk("L2(p=%d)" % p, l2, "lift", "L2")
+        chk("L3(p=%d)" % p, l3, "lift", "L3"); chk("L5(p=%d)" % p, check_invariance(p), "lift", "L5")
     for Om in [233, 2408561]:
-        results.append(("L4(Om=%d)" % Om, check_carrier(Om)))
-
-    ok = True
-    for name, passed in results:
-        print("[%s] %s" % ("PASS" if passed else "FAIL", name))
-        ok = ok and passed
-    print("%d/%d exact checks pass" % (sum(1 for _, x in results if x), len(results)))
-    sys.exit(0 if ok else 1)
+        chk("L4(Om=%d)" % Om, check_carrier(Om), "lift", "L4")
+    flush("lift", order=["L1", "L2", "L3", "L4", "L5"])
 
 if __name__ == "__main__":
-    main()
+    import dimcommon
+    run(); dimcommon.summary(write=False)

@@ -1,0 +1,457 @@
+{
+ "paper": "14-entr",
+ "title": "De Sitter Entropy Estimates over Finite Holographic Substrate",
+ "doi": "https://doi.org/10.20944/preprints202608.0310.v1",
+ "generated": "13 September 2026",
+ "blocks": [
+  {
+   "letter": "A",
+   "title": "Inputs: imported, not derived here",
+   "rows": [
+    {
+     "label": "A1",
+     "predicate": "The de Sitter entropy $\\dS$, the single quantitative import, fixing the cardinality exactly, $\\Om=4\\dS+1$.",
+     "tag": "I",
+     "source": "\\citep{akhtman2026gravity}",
+     "key": "p0001"
+    },
+    {
+     "label": "A2",
+     "predicate": "The Carrier congruences, relations certified by the realisations (the $c$-square $\\dS$ even, the triality centre $\\dS\\equiv1\\pmod3$, completeness $4\\dS+1$ prime); instantiated on the laboratory Carrier as host-decided values.",
+     "tag": "I",
+     "source": "\\citep{akhtman2026geometry}; \\src{est.F1}",
+     "key": "p0002"
+    },
+    {
+     "label": "A3",
+     "predicate": "The containment argument: the Carrier is the totality, so there is no ensemble for $\\dS$ to range over (the reductio, the audit of potential infinity, and finite incompleteness).",
+     "tag": "I",
+     "source": "\\citep{akhtman2025reductio}",
+     "key": "p0003"
+    },
+    {
+     "label": "A4",
+     "predicate": "Unit reciprocity: a unit is a reciprocal cross-frame relation, so registered durations are two-way and one-way durations are gauge.",
+     "tag": "I",
+     "source": "\\citep{akhtman2026dimensions}",
+     "key": "p0004"
+    },
+    {
+     "label": "A5",
+     "predicate": "The equatorial-horizon identification in the de Sitter chart \\apx: the static-patch horizon of a pole observer at colatitude $\\pi/2$.",
+     "tag": "I",
+     "source": "\\citep{gibbons1977}",
+     "key": "p0005"
+    },
+    {
+     "label": "A6",
+     "predicate": "Existence of the acceleration floor, the sub-floor amplitude regime, and the value form $a_0=cH/2\\pi$: the synchronisation-threshold derivation lives upstream, imported here in value form, with this paper adding only the register typing. Upstream: the $2\\pi$ is this paper's dictionary (B2) applied to the registered drive period; the threshold is the realisation tagged in the dark-sector paper (row B3) and the gravity paper (Prop.~afloor), with its discrete falsifier; the value is quoted at the channel-1 rate $H_0=67.4$, consistent with the octant to $0.1\\%$ (C8).",
+     "tag": "I",
+     "source": "\\citep{akhtman2026gravity}",
+     "key": "p0006"
+    },
+    {
+     "label": "A7",
+     "predicate": "Laboratory constants $\\lP$, $\\tP$, $c$ as unit conversions \\imp, a channel of their own.",
+     "tag": "I",
+     "source": "---",
+     "key": "p0007"
+    },
+    {
+     "label": "A8",
+     "predicate": "Observational data and the rival chart's identities \\lcdm, confrontation only: the Planck fit, the distance ladder, the RAR knee and its intermediate-redshift evolution, stellar ages (superseding release), the entropy budget.",
+     "tag": "I",
+     "source": "\\citep{planck2018,riess2022,freedman2021,mcgaugh2016,ciocan2026,valcin2026,vandenberg2013,egan2010}",
+     "key": "p0008"
+    }
+   ]
+  },
+  {
+   "letter": "B",
+   "title": "Realisations and conventions: mathematics as metrology",
+   "rows": [
+    {
+     "label": "B1",
+     "predicate": "The calibration faces: the observed $\\Lambda\\sim1/\\Om$ and $H\\sim\\Om^{-1/2}$ \\apx{} are the two chart faces of the import, carrying no evidential weight of their own.",
+     "tag": "R",
+     "source": "\\S\\ref{sec:import}",
+     "key": "p0009"
+    },
+    {
+     "label": "B2",
+     "predicate": "The angle--count dictionary: $2\\pi$ the full cycle, $h=2\\pi\\hbar$; every angular numeral is the chart face of a count ($\\pi/4\\leftrightarrow\\dS/2$ chronons).",
+     "tag": "D",
+     "source": "\\citep{akhtman2026dimensions}",
+     "key": "p0010"
+    },
+    {
+     "label": "B3",
+     "predicate": "Age as a totality datum: the measured age is the frame-invariant horizon depth, registered as a count in the Subject register; the datum is the supremum of closable depth --- the saturation clause: saturated by the totality's causal record, approached by material inventories. The registered depth is what the stellar-age ladder measures (channel 4); its $0.2\\%$ degeneracy with the rival chart's $t_0$ at the present chronon is a coincidence of charts (P2), not part of the identification.",
+     "tag": "R",
+     "source": "\\S\\ref{sec:notchannels}",
+     "key": "p0011"
+    },
+    {
+     "label": "B4",
+     "predicate": "The registered-rate role: the $H$ in the floor value is the observer's registered rate, the Subject-only-frame doctrine, giving $a_0(z)\\propto H(z)$ --- falsifiable physical content, graded a realisation.",
+     "tag": "R",
+     "source": "\\S\\ref{sec:open}",
+     "key": "p0012"
+    },
+    {
+     "label": "B5",
+     "predicate": "The circularity criterion: an estimate counts as a measurement only if its confrontation channel is disjoint from the channel that fitted the import; channel conflation and register conflation are one error class. Scoped to the metrology register; the explanation register is judged by zero-freedom derivation (\\S\\ref{sec:audit}).",
+     "tag": "D",
+     "source": "\\S\\ref{sec:audit}",
+     "key": "p0013"
+    },
+    {
+     "label": "B6",
+     "predicate": "The closure budget: the horizon depth of Lemma~\\ref{lem:octant}(i) is the total reciprocal-registration budget --- out and back draw on one quarter-sector count and the exchange must close within it. An FRC closure realisation, not an import of chart geometry; its continuum shadow \\apx{} is the causal diamond of the static patch. Member of $B_{\\mathrm{oct}}$; presently single-use (see the lemma remark).",
+     "tag": "R",
+     "source": "\\S\\ref{sec:octant}",
+     "key": "p0014"
+    },
+    {
+     "label": "B7",
+     "predicate": "The depth register rule: an instrument reads either a rate/curvature (a ratio of co-chained counts, the one-way gauge cancelling) or a depth (a registration whose count is the datum); the A4 halving binds depth registrations only, and no spatial instrument registers totality depth. The conversion of a spatial arc into temporal depth by $c$ is part of this rule --- the reciprocal unit relation, declared, not chart-derived (proper distance over $c$ is not automatically radar time in curved geometry). Classifies every table row; the classification could fail empirically, so the rule is graded a realisation.",
+     "tag": "R",
+     "source": "\\S\\ref{sec:registers}",
+     "key": "p0015"
+    },
+    {
+     "label": "B8",
+     "predicate": "The effective-fluid correspondence behind P4: the rival chart's continuity law $\\dot\\rho_\\Lambda+3H(\\rho_\\Lambda+p_\\Lambda)=0$ \\lcdm{} with $\\dot\\rho_\\Lambda=0$ gives $w=-1$; and the single-component clause --- the framework's dark sector is derived with no second dark-energy component available, so an observed $w_{\\mathrm{eff}}\\neq-1$ cannot be reassigned to an extra evolving fluid. The clause makes P4's falsifier total rather than escapable.",
+     "tag": "R",
+     "source": "\\S\\ref{sec:import}",
+     "key": "p0016"
+    },
+    {
+     "label": "B9",
+     "predicate": "The area law: the projected horizon area in Planck cells is the full phase cycle, $A=4\\dS$ \\apx{} at the horizon ($4\\pi n_A=4\\dS$, $n_A=(r_H/\\lP)^{2}$ \\apx); the Bekenstein--Hawking quarter $\\dS=A/4$ is the quarter-turn $Q_4$, the generative four of $\\Om=4\\dS+1$ and $\\p=4\\kap+1$; area is a Subject-projection property, the Carrier carrying none.",
+     "tag": "T|R",
+     "source": "\\S\\ref{sec:registers}; \\src{est.B9}",
+     "key": "p0017"
+    }
+   ]
+  },
+  {
+   "letter": "C",
+   "title": "Derived: theorems and consequences within this paper",
+   "rows": [
+    {
+     "label": "C1",
+     "predicate": "Two faces: a frame supplies one spatial and one temporal datum, so every instrument reading the size of the totality is one of exactly two faces, converted by $c$.",
+     "tag": "T",
+     "source": "\\S\\ref{sec:channels}; \\src{est.T1}",
+     "key": "p0018"
+    },
+    {
+     "label": "C2",
+     "predicate": "The non-channels: the constants correspondence carries no dimensional readout, the horizon-quarter closure is an internal consistency loop, the registered entropy budget is a floor eighteen orders below $\\dS$ \\apx.",
+     "tag": "T",
+     "source": "\\S\\ref{sec:notchannels}",
+     "key": "p0019"
+    },
+    {
+     "label": "C3",
+     "predicate": "The same-channel demotion: $t_0H_\\Lambda=\\tfrac23\\artanh\\sqrt{\\Omega_\\Lambda}$ \\lcdm{} depends on the one fitted parameter, so the $0.2\\%$ landing on $\\pi/4$ restates the fit (by B5).",
+     "tag": "T",
+     "source": "\\S\\ref{sec:audit}; \\src{est.A1}",
+     "key": "p0020"
+    },
+    {
+     "label": "C4",
+     "predicate": "The concordance: five evidence readings return $\\sqrt{\\dS}=(1.3\\text{--}1.8)\\times10^{61}$ \\apx, $\\pm17\\%$ half-range on the count face, factor $1.9$ on $\\dS$; the gauge reading 4a is displayed and excluded from every statistic.",
+     "tag": "T",
+     "source": "\\S\\ref{sec:channels}; \\src{est.T1}, \\src{est.C1}, \\src{est.C4}",
+     "key": "p0021"
+    },
+    {
+     "label": "C5",
+     "predicate": "The octant lemma: the measured age is $\\dS/2$ chronons, $(\\pi/4)\\,r_H/c$ in the chart \\apx; the halving and the sector are exact through the enumerated realisation set $B_{\\mathrm{oct}}=\\{$A4, A5, B2, B3, B6, B7$\\}$, the same class as the constants correspondence.",
+     "tag": "T|R",
+     "source": "Lem.~\\ref{lem:octant}; \\src{est.P2}, \\src{tri.A}",
+     "key": "p0022"
+    },
+    {
+     "label": "C6",
+     "predicate": "The octant sector: $\\mathbb{Z}_8\\subset C_{4\\dS}$ exists exactly when $\\dS$ is even, its character $\\zeta_8$ the residue the Tsirelson identity carries; the octant count $\\dS/2$ is an integer on every admissible Carrier.",
+     "tag": "T",
+     "source": "\\S\\ref{sec:registers}, \\citep{akhtman2026quantum}; \\src{est.F1}",
+     "key": "p0023"
+    },
+    {
+     "label": "C7",
+     "predicate": "The dark-energy output: $\\Omega_\\Lambda=\\tanh^{2}(3\\pi/8)=0.6837$ \\lcdm{} against the fitted $0.685\\pm0.007$, a $0.19\\sigma$ landing --- a zero-freedom derivation, not an independent measurement (two-register separation, \\S\\ref{sec:audit}).",
+     "tag": "T|R",
+     "source": "Lem.~\\ref{lem:octant}; \\src{est.A1}, \\src{est.C4}",
+     "key": "p0024"
+    },
+    {
+     "label": "C8",
+     "predicate": "The entailed-rate consistency: with the channel-1 $\\Lambda$ the age--rate locus returns the channel-1 $H_0$ (to $0.1\\%$), same-channel by the definition $\\Lambda=3\\Omega_\\Lambda H_0^{2}/c^{2}$, a corollary of C7 and not a prediction --- the floor value itself consumed as import (A6) under the role realisation (B4), not derived here; the two-cluster ratio is the chart identity $(H_{\\mathrm{rate}}/H_0)^2/\\Omega_\\Lambda$, displayed, not claimed.",
+     "tag": "T|R",
+     "source": "\\S\\ref{sec:open}; \\src{est.C2}, \\src{est.C3}, \\src{tri.A}",
+     "key": "p0025"
+    },
+    {
+     "label": "C9",
+     "predicate": "The registrable triangle \\apx: width $\\log_{10}(r_H/\\lP)=61.0$ dex --- the count face $\\sqrt{\\dS}$ in its chart dress $\\sqrt{\\dS/\\pi}$, the solid angle the declared transport; the thirteen-object diagonal, slope $3.03$ (intercept $1.00\\times10^{3}$ at the metre pivot); the constrained $k=3$ density $\\tilde\\rho=0.97\\times10^{3}\\,\\mathrm{kg/m^{3}}$; the Compton entry a consistency, the Schwarzschild exit the output, $1.8\\times10^{8}M_\\odot$ within the $(1.4\\text{--}2.8)\\times10^{8}$ sensitivity band; classified a consistency chart, not a channel.",
+     "tag": "T",
+     "source": "\\S\\ref{sec:wedge}; \\src{tri.A}, \\src{tri.D}, \\src{tri.W}, \\src{cap.A}",
+     "key": "p0026"
+    },
+    {
+     "label": "C10",
+     "predicate": "The capacity axis \\apx: holographic ring capacity $\\log_{10}\\kap_{q}$, zero at hydrogen ($\\kap_H=3$; $\\kap_{q}=2$ has no shell), one dex per chart dex, terminating at the count face $\\sqrt{\\dS}$ --- the triangle's own sixty dex; the one-gram horizontal lands on $N_A$ to $0.0035$ dex (the $1.008$\\,u offset), asserted before drawing.",
+     "tag": "T",
+     "source": "\\S\\ref{sec:wedge}; \\src{cap.K}",
+     "key": "p0027"
+    }
+   ]
+  },
+  {
+   "letter": "X",
+   "title": "Explicability dividends: the explanation register",
+   "rows": [
+    {
+     "label": "X1",
+     "predicate": "\\textbf{The cosmological-constant problem} dissolves: $\\Lambda$ is the curvature face of the one cardinality, not a vacuum energy, so there is no mode sum to cancel and the $10^{120}$-order discrepancy does not arise.",
+     "tag": "T",
+     "source": "\\S\\ref{sec:import}, \\citep{weinberg1989}",
+     "key": "p0028"
+    },
+    {
+     "label": "X2",
+     "predicate": "\\textbf{Milgrom's coincidence} $a_0\\approx cH_0/2\\pi$, on record since 1983, becomes a value with zero freedom: the $2\\pi$ is the fixed cycle convention, the reverse rebooking of $h=2\\pi\\hbar$, and the $H$ is the observer's registered rate.",
+     "tag": "T|R",
+     "source": "\\S\\ref{sec:open}, \\citep{milgrom1983}; \\src{est.L1}",
+     "key": "p0029"
+    },
+    {
+     "label": "X3",
+     "predicate": "\\textbf{The age coincidence} $t_0H_\\Lambda\\approx\\pi/4$ becomes the octant: $\\Omega_\\Lambda=\\tanh^{2}(3\\pi/8)=0.6837$ \\lcdm{} is an output of the realisation set, landing at $0.19\\sigma$ on the fitted $0.685\\pm0.007$ --- never an independent measurement of $\\dS$ (same-channel, X6), a zero-freedom derivation in full standing; the $(\\Lambda,H_0)$ entailment at the channel-1 $\\Lambda$ is this same landing read on $H_0$, not a further prediction.",
+     "tag": "T|R",
+     "source": "Lem.~\\ref{lem:octant}; \\src{est.A1}",
+     "key": "p0030"
+    },
+    {
+     "label": "X4",
+     "predicate": "\\textbf{The congruence $\\dS$ even} acquires a second physical face: it is the existence of the octant sector, hence the well-definedness of the measured age --- a structure of the Carrier's cycle lattice, certified by realisation and read as an observational condition, never an arithmetic property of the numeral.",
+     "tag": "T",
+     "source": "Lem.~\\ref{lem:octant}(iv)",
+     "key": "p0031"
+    },
+    {
+     "label": "X5",
+     "predicate": "\\textbf{The termination of the single-object sequence} is a consistency of the wall structure: the typical-density diagonal over-closes at $1.8\\times10^{8}M_\\odot$ \\apx{} (sensitivity band $(1.4\\text{--}2.8)\\times10^{8}$ across fit variants), so every heavier single object continuing the condensed-density sequence is necessarily wall-bound; the supermassive holes are that continuation, not an anomaly beyond it. Classified with the triangle: consistency, not derivation of an observed scale.",
+     "tag": "T",
+     "source": "\\S\\ref{sec:wedge}; \\src{tri.D}",
+     "key": "p0032"
+    },
+    {
+     "label": "X6",
+     "predicate": "\\textbf{The celebrated sub-percent age agreement} is judged: same-channel by the circularity criterion, a restatement of the fitted dark-energy fraction --- consistency, not evidence --- and the criterion locates exactly which confrontations do carry weight.",
+     "tag": "T",
+     "source": "\\S\\ref{sec:audit}; \\src{est.A1}",
+     "key": "p0033"
+    },
+    {
+     "label": "X7",
+     "predicate": "\\textbf{The universe-as-black-hole puzzle dissolves}: the Hubble radius sits on the black-hole line identically ($\\rho_{\\mathrm{BH}}(r_H)=\\rho_c$ \\lcdm), but the Schwarzschild reading consumes an exterior, and the containment argument (A3) makes an exterior incoherent --- the totality on its own horizon is the chart's closing point, not a hole in a background.",
+     "tag": "T",
+     "source": "\\S\\ref{sec:wedge}, \\citep{lineweaver2023}",
+     "key": "p0034"
+    },
+    {
+     "label": "X8",
+     "predicate": "\\textbf{The interior completions weighed}: black-hole cosmology keeps the same saturation identity by consuming a parent exterior and a singularity-replacing mechanism (torsion; exclusion pressure); the finite reading consumes neither: the containment argument (A3) closes the chart at $\\Om$, and no singularity is available over a finite totality. The registered record-depth bound separates the completions empirically (P2).",
+     "tag": "T",
+     "source": "\\S\\ref{sec:wedge}, \\citep{pathria1972,poplawski2016,gaztanaga2025}",
+     "key": "p0035"
+    }
+   ]
+  },
+  {
+   "letter": "P",
+   "title": "Falsifiable predictions: the exposures",
+   "rows": [
+    {
+     "label": "P1",
+     "predicate": "\\textbf{(Lead.)} The floor runs with the registered rate, $a_0(z)\\propto H(z)$, the role statement of the floor closure, against both a constant fundamental $a_0$ and feedback-emergent scaling. Status: the constant-floor branch is disfavoured in the framework's direction --- $a_0(z\\sim1)=(2.38\\pm0.10)\\times10^{-10}\\,\\mathrm{m/s^2}$, running \\citep{ciocan2026} --- while the fitted linear rate exceeds the $\\propto H(z)$ chord \\lcdm{} by ${\\sim}3\\sigma$ before intermediate-redshift selection and pressure-support systematics are weighed; the direct $A\\,H(z)/H_0$ fit to the binned relation is the decisive next test. Falsifier: a sharpened evolution measurement excluding the $\\propto H(z)$ form after those systematics close.",
+     "tag": "E",
+     "source": "\\S\\ref{sec:open}; \\src{est.P1}",
+     "key": "p0036"
+    },
+    {
+     "label": "P2",
+     "predicate": "The registered record depth is bounded by $(\\pi/4)\\,r_H/c=13.79$ Gyr \\apx{} (channel-1 anchor) at every observational frame chronon, against the $\\Lambda$CDM $t_0$ which grows with the chart's cosmic time. At the present chronon the two numerals are degenerate to $0.2\\%$ and separate at ${\\sim}7\\%$ per Gyr of chart time; the present discriminating content is structural rigidity --- the octant carries zero parameter freedom at fixed $\\Lambda$, the rival bound moves with its fit. Status \\citep{valcin2026}: oldest cluster population $0.5\\sigma$ below the bound (fit-independent, the carrying confrontation); the inferred cosmic age, a prior-dependent consistency, straddles the bound within $0.1\\sigma$ (central value $0.02$ Gyr above) --- the first place this prediction lives or dies as the age errors shrink. Falsifier: a single well-dated object older than the octant value, registered in any observational frame; fit-independent, and fatal only to the framework. The same bound discriminates against interior-bounce black-hole cosmology by construction, which carries time on both sides of its bounce, so the falsifier separates two published completions of the black-hole-line identity (\\S\\ref{sec:wedge}, X8).",
+     "tag": "E",
+     "source": "Lem.~\\ref{lem:octant}; \\src{est.P2}",
+     "key": "p0037"
+    },
+    {
+     "label": "P3",
+     "predicate": "The age--rate locus $t_{\\mathrm{age}}H_0=(\\pi/4)/\\tanh(3\\pi/8)=0.950$, exact for the realisation set. Read on the fit-independent stellar age ($13.61\\pm0.34$ Gyr): $H_0=68.2\\pm1.7$ km/s/Mpc \\apx, $0.5\\sigma$ from Planck, $0.65\\sigma$ from TRGB, $2.4\\sigma$ from the Cepheid ladder --- the framework favours the CMB/TRGB value at that significance, and forbids the $\\Omega_\\Lambda\\approx0.76$ by which the rival chart would accommodate the ladder value at the same age. Read on the channel-1 $\\Lambda$ it returns the channel-1 $H_0$ (to $0.1\\%$): a consistency, not a prediction (C8). Falsifier: a confirmed ladder $H_0$ with the stellar age standing ($t_\\star H_0\\ge1.0$ against $0.950$).",
+     "tag": "E",
+     "source": "\\S\\ref{sec:open}; \\src{est.P3}",
+     "key": "p0038"
+    },
+    {
+     "label": "P4",
+     "predicate": "\\textbf{(Lead; grade \\tT$\\,\\vert\\,$\\tR.)} The dark-energy equation of state is rigid: $\\Lambda$ is the curvature face of the fixed cardinality, so it is constant --- and its effective-fluid reading is $w=-1$ exactly, no running, at every chart time, with no $w_0w_a$ freedom. The fluid statement consumes the conservation-law correspondence and the single-component clause (row B8: $w\\equiv p/\\rho$ is the rival chart's dress of ``$\\Lambda$ constant,'' and no second dark component exists to absorb an observed drift), hence the realisation grade. Status: DESI-era combined fits prefer evolving dark energy at ${\\sim}3\\sigma$ (CMB+BAO) to $4.2\\sigma$ (with supernovae) \\citep{desi2025}, contested by independent reanalyses; the adverse face in plain view. A confirmed $w\\neq-1$ falsifies the $\\Lambda\\sim1/\\Om$ identification outright, and the octant numeral (P2) inherits the exposure through $\\Lambda$. Falsifier: confirmed evolution of $w$.",
+     "tag": "E",
+     "source": "\\S\\ref{sec:import}",
+     "key": "p0039"
+    }
+   ]
+  },
+  {
+   "letter": "V",
+   "title": "Machine verification",
+   "rows": [
+    {
+     "label": "V1",
+     "predicate": "The validation package \\texttt{finite-ring-space/src/14-entropy}: three blocks, \\src{estimate\\_S} ($12$ families, $52$ micro-checks: the exact faces and the area law on the laboratory Carrier, the instrument table, the concordances, the chart identity, the audit, the channel-1 consistency, the locus, the floor landing, the octant bound, the running floor), \\src{triangle} (\\texttt{make-wedge-2.py}: $4$ families, $19$) and \\src{capacity} (\\texttt{make-wedge-3.py}: $3$ families, $17$); $19$ families, $88$ micro-checks, each family naming the rows it witnesses; the notebook \\texttt{14-entropy-main.ipynb} executes them in the browser and the driver \\texttt{run\\_all.py} writes \\texttt{results.json}.",
+     "tag": "T",
+     "source": "App.~\\ref{sec:repro}; \\src{run\\_all}",
+     "key": "p0040"
+    },
+    {
+     "label": "V2",
+     "predicate": "The figures: the wall-channels figure (Figure~\\ref{fig:wall-channels}) and the registrable triangle with its capacity axis (Figure~\\ref{fig:wedge}) are drawn by the package after their identities pass, from the same inputs as the rows; the concordance figure (Figure~\\ref{fig:concordance}) has no in-tree generator (V3).",
+     "tag": "T",
+     "source": "App.~\\ref{sec:repro}; \\src{tri.F}, \\src{cap.F}",
+     "key": "p0041"
+    },
+    {
+     "label": "V3",
+     "predicate": "The discipline and its two kinds: exact claims are integer counts on the instantiated Carrier ($\\Om=2{,}408{,}561$), continuum numerals are labelled chart readings reproduced to the quoted precision and classified \\textsf{CHART} --- a pass says the numeral follows from its named inputs, never that the framework is measured; no fitted framework parameter and no random sampling anywhere. Open on the package: the concordance figure's generator; the exploratory simplex and shell scripts of August 2026 (\\texttt{check\\_simplex}, \\texttt{check\\_shell}, \\texttt{check\\_particles}) back the structural note of Section~\\ref{sec:wedge} and are not part of the run.",
+     "tag": "T",
+     "source": "App.~\\ref{sec:repro}",
+     "key": "p0042"
+    }
+   ]
+  },
+  {
+   "letter": "Z",
+   "title": "Horizon: the residue beyond the bounded observer",
+   "rows": [
+    {
+     "label": "Z1",
+     "predicate": "The numeral of $\\dS$: the prototypical $\\Om$-hard residue, measurable through its two faces, expressible from within by no observer; import its permanent status, this metrology the complete epistemic access to it.",
+     "tag": "Ω",
+     "source": "\\S\\ref{sec:open}",
+     "key": "p0043"
+    }
+   ]
+  },
+  {
+   "letter": "O",
+   "title": "The open front",
+   "rows": [
+    {
+     "label": "O1",
+     "predicate": "Capacity additive on the lock (conjecture): a phase-locked, typical-density composite demands $\\kap_{q}=\\sum\\kap_i=3N$ hydrogen units, the minimal window conserving total winding exactly \\citep{akhtman2026s13}; the C9 diagonal the validity locus, the capacity axis exact on it; off-line the law breaks with wall displacement (the bare proton: $1$ against $3$); the exchange rate open; the $10^{3}$\\,kg cap crossing recorded, not claimed.",
+     "tag": "O",
+     "source": "\\S\\ref{sec:wedge}",
+     "key": "p0044"
+    }
+   ]
+  }
+ ],
+ "legend": [
+  {
+   "tag": "I",
+   "name": "Import",
+   "text": "A standard result or measured datum imported without reproof."
+  },
+  {
+   "tag": "R",
+   "name": "Realisation",
+   "text": "The row states what a physical term denotes in the structure: constitutive, not interpretive, defended by the totality of its registered consequences and confronted through its declared exposures."
+  },
+  {
+   "tag": "D",
+   "name": "Definition",
+   "text": "A naming or set-up move, carrying no empirical content."
+  },
+  {
+   "tag": "T",
+   "name": "Theorem",
+   "text": "Derived within this paper from the rows above it; where a check identifier is named, its numerals are reproduced by the validation package."
+  },
+  {
+   "tag": "E",
+   "name": "Prediction",
+   "text": "A falsifiable consequence of the rows above, stated with its falsifier and its present confrontation; graded on the rows it consumes."
+  },
+  {
+   "tag": "O",
+   "name": "Open",
+   "text": "Genuinely unresolved; its cost stated, not consumed."
+  },
+  {
+   "tag": "Ω",
+   "name": "$\\Om$-hard",
+   "text": "Decided by the totality; not closeable by a bounded observer."
+  }
+ ],
+ "master": {
+  "A1": [
+   "A9"
+  ],
+  "A2": [
+   "A9"
+  ],
+  "C4": [
+   "L2"
+  ],
+  "B5": [
+   "L2"
+  ],
+  "Z1": [
+   "L2"
+  ],
+  "C5": [
+   "L3"
+  ],
+  "C7": [
+   "L3"
+  ],
+  "P2": [
+   "L3"
+  ],
+  "P3": [
+   "L3"
+  ],
+  "P4": [
+   "L3"
+  ],
+  "C9": [
+   "L4"
+  ],
+  "B9": [
+   "L5"
+  ],
+  "X8": [
+   "L6"
+  ],
+  "P1": [
+   "L7"
+  ],
+  "B4": [
+   "L7"
+  ],
+  "X2": [
+   "L1"
+  ],
+  "A6": [
+   "L1"
+  ],
+  "O1": [
+   "Y6"
+  ]
+ }
+}

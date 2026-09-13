@@ -13,7 +13,7 @@ md(f"""# 20-rh — validation package
 [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)]({COLAB})
 
 **Paper.** *Riemann Hypothesis over Finite Holographic Substrate* (Akhtman & Voether, 2026), `20-rh` of the FRC corpus.
-**Package.** `finite-ring-space/src/20-rh` — seven block scripts driven by this notebook, 88 checks. Every cell below names the labelled
+**Package.** `finite-ring-space/src/20-rh` — seven block scripts driven by this notebook, 94 checks (57 EXACT, 34 [approx], 3 [chart]). Every cell below names the labelled
 statements of the paper it checks (`Theorem`, `Proposition`, `Numerical Observation`, `Definition` — by their `\\label`
 as printed in the paper), lists the paper-local predicates as the block scripts register them, and gives the master-ledger
 row of the corpus they witness (`00:D11` the shell theorem, `00:D12` the classical hypothesis as a screen value).
@@ -28,7 +28,7 @@ phase from log Γ; the Riemann heights appear as validation markers only. The co
 zeta functions, as the paper says they do.
 
 **Run.** Cell by cell, or *Runtime → Run all*. Full depths take ≈ 6 min on Colab (the 8×10⁷ comb of block D is the
-largest object); set `FAST = True` in the second cell for reduced depths (≈ 2 min; the same 88 checks, the deep
+largest object); set `FAST = True` in the second cell for reduced depths (≈ 2 min; the same 94 checks, the deep
 tails of the depth scans shortened). The last cell writes `results.json` and fails loudly if any predicate fails.
 
 **Ledger.** The paper carries a predicate ledger (its Subsection "Predicate ledger": 68 rows in blocks A–F, V, Z, O, cited as `20:XN`). Each check below prints the ledger row(s) it witnesses in square brackets, and `results.json` records them; the ledger's source column cites these check ids in return. The two master-ledger rows of the corpus, `00:D11` and `00:D12`, are `20:E12` and `20:F1–F2`.""")
@@ -69,9 +69,10 @@ Shells p = 13, 17, 29, 37, 41 in full (every point of F_{p²}); p = 173 for A1, 
 | A4 | Proposition `critical` | the finite critical line: Tr z = 1 ⟺ z = 2⁻¹ + bη; \\|L_{1/2}\\| = p; N(z) = ¼ − νb²; 2⁻¹ = 2κ+1 = −π |
 | A5 | Theorem `agree` | the Klein four-group ⟨φ, ρ⟩ and its fixed loci F_p, L_{1/2}, {2⁻¹}; F_p ∩ L_{1/2} = {2⁻¹} |
 | A6 | §1.3 (the Subject register) | π = 2κ, 2π ≡ −1, i = g^{−κ}, i² ≡ −1, e = g^i on the odd representative, e^{iπ} ≡ −1 |
-| A7 | Theorem `hp` (i), (iii); Remark `parseval` | the constant mode carries the mean v̄ = ψ(p−1)/(p−1), the nontrivial characters carry v − v̄·1; S x^k = g^k x^k in F_p and S χ_j = ω^j χ_j on ℓ²(F_p^×); Tr S^r = (p−1)·[(p−1) \\| r] |
-| A8 | Theorem `hp` (iv), Definition `jacobi` | self-adjointness is free: any real multiset is the spectrum of a real-symmetric tridiagonal matrix |
-| A9 | Proposition `ground` | the Ramanujan sum c_p(n) = −1 for every n ≢ 0 (mod p) |
+| A7 | Theorem `hp` (iii), the F_p reading | S x^k = g^k x^k on the power characters, integer arithmetic; Tr S^r = (p−1)·[(p−1) \\| r] (EXACT) |
+| A7b | Theorem `hp` (i), (iii); Remark `parseval` | on ℓ²(F_p^×) the constant mode carries the mean v̄ = ψ(p−1)/(p−1), the nontrivial characters carry v − v̄·1, orthonormal; S χ_j = ω^j χ_j ([approx], floating point) |
+| A8 | Theorem `hp` (iv), Definition `jacobi` | self-adjointness is free: any real multiset is the spectrum of a real-symmetric tridiagonal matrix (Lanczos on ten heights; [approx], floating point) |
+| A9 | Proposition `ground` | the Ramanujan sum c_p(n) = Σ_a ω^{an} ≡ −1 for every n ≢ 0 (mod p), in F_q with q ≡ 1 (mod p) and ω of order p (EXACT) |
 | A10 | Definition `shells` (the shared quarter-turn core) | Q₄ ⊂ both cycles; on the pair (13, 233) the projection C_{Ω−1} → C_{p−1} does not exist (12 ∤ 232) |
 | A11 | Proposition `coincide` | frame coincidence below √p: residues, window products and primality agree between F_p and the Carrier chart F_Ω (Ω the least prime ≡ 1 mod 4 above p²), on the five shells and on 1009, 10009 |
 
@@ -123,15 +124,17 @@ Ledger rows: 20:E11 (C6), 20:E3 (C6b).""")
 code("import c_gue; c_gue.run(); show('fig_hilbert_polya')")
 
 md("""### Block C, continued — the χ-twisted comb  (`c_chi.py`, [approx])
-Proposition `chi` (real character case), Numerical Observation `chi`: χ = χ_{−4}, θ_χ(t) = Im log Γ(¾ + it/2) + (t/2) log(4/π),
-N_χ = θ_χ/π + S^χ_comb with no pole term; validation arm L(s, χ) = 4^{−s}[ζ(s, ¼) − ζ(s, ¾)] via Hurwitz zeta.
+Proposition `chi` (both cases), Numerical Observation `chi`: the real character χ = χ_{−4}, θ_χ(t) = Im log Γ(¾ + it/2) + (t/2) log(4/π),
+N_χ = θ_χ/π + S^χ_comb with no pole term; validation arm L(s, χ) = 4^{−s}[ζ(s, ¼) − ζ(s, ¾)] via Hurwitz zeta; then the complex character
+χ mod 5 with χ(2) = i, the count taken as a difference from height 0 and the root number's half-phase in the validation arm.
 
 | id | predicate |
 |---|---|
 | C7a | N_χ at the first six zeros of L(s, χ_{−4}) reads 0.4997, 1.4998, 2.4999, 3.4999, 4.4999, 5.4998; the completed L is real on the line |
 | C7b | the twisted secular condition with the N = 10⁶ comb, L never evaluated, recovers 6.0209, 10.2438, 12.9881, 16.3426, 18.2920, 21.4506 to mean error 8.6×10⁻⁵ |
+| C7c | the complex character χ mod 5, χ(2) = i (odd): the half-phase W(χ)^{−1/2}Λ(½+it, χ) is real on the line; the twisted count (1/π)[θ_χ(T) − θ_χ(0)] + (1/π) Im[Σ^χ_w(½+iT) − Σ^χ_w(½)], no pole term, reads 1 … 14 midway between the fifteen zeros below 40; its half-integer crossings, bracketed by the count alone, recover the fifteen heights 6.1836 … 37.2720 to mean error 8.0×10⁻⁵ (max 2.0×10⁻⁴), L never evaluated — ledger 20:E16 |
 
-Ledger rows: 20:E14–E15.""")
+Ledger rows: 20:E14–E16 (E16 by C7c).""")
 code("import c_chi; c_chi.run()")
 
 md("""## Block D — the classification and the Euler-product discriminator  (`d_classification.py`, [approx], master ledger **00:D12**)
@@ -150,7 +153,7 @@ N − N_crit = 0. Numerical Observation `dh`: the value is discriminating. The c
 | D2f | Proposition `combformula`, Numerical Observation `dh` | the pole-corrected ζ count at t = 1: 0.0051, 0.0032, 0.0022, 0.0016, 0.0015, 0.0013, 0.0012 at the same depths (exact 0), falling monotonically; t = 5, 10 within 4×10⁻⁴ from 10⁶ on |
 | D2g | Proposition `combformula`, Numerical Observation `dh` | the DH drift is the cut term of the off-line zero ρ₀: corrected by it the count reads 44.960 → 44.972 at 85.9 (raw 45.14 → 45.73; exact 45) and 43.035 → 43.022 at 85.3 (exact 43), monotone |
 | D3 | Proposition `combformula` | validation arm: Re(Σ_w − Π_N − log((s−1)/s)) → log \\|ζ(½+it)\\| (mpmath) at t = 1, 5, 10, 15, 30, the error falling with depth (0.0049 at t = 1, 8×10⁷) |
-| D4 | Theorem `turing` (frame-exact inputs) | on the shells p = 95, 1003, 4775 (T = 2πp) the raw count from the frame-exact comb of depth ⌊√p⌋ = 9, 31, 69 evaluated midway between consecutive zeros just below the ceiling, rounds to the exact N(t) (mpmath `nzeros`) at every midpoint: maximum deviation 0.10, 0.21, 0.12; the 10⁶ comb within 0.002 |
+| D4 | Theorem `turing` (frame-exact inputs) | on the shells p = 97, 1009, 4801 (primes ≡ 1 mod 4; T = 2πp) the raw count from the frame-exact comb of depth ⌊√p⌋ = 9, 31, 69 evaluated midway between consecutive zeros just below the ceiling (the test heights chosen with the validation arm), rounds to the exact N(t) (mpmath `nzeros`) at every midpoint: maximum deviation 0.08, 0.11, 0.16; the 10⁶ comb within 0.002 |
 
 Ledger rows: 20:F1 (D1, D4), 20:F3 (D2a, D2b), 20:F4 (D2c, D2d, D2g), 20:F5 (D2e, D2f), 20:F8 (D2f, D2g, D3).""")
 code("import d_classification; d_classification.run(); show('fig_dh')")

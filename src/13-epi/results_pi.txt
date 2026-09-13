@@ -45,7 +45,6 @@ p=13: legible w-scales in [13,169): 36/156 = 0.231 (prediction ((2t+1)/p)^2-ish 
 ========================================================================
 [5] ARCSIN(1/2) CHAIN WALL: T(p) and second order
 ========================================================================
-  T(3) != 0 !
 T(p) := sum_(k=0)^(m-1) C(2k,k)/((2k+1)16^k) == 0 (mod p) for all odd primes 5<=p<3000 (p=3 is the sole exception, T(3)=1): PASS (428 primes)
 second-order invariant T2(p) := (sigma/p) mod p, sigma the exact rational partial sum:
    p | T2 | E_(p-3) | q_p(2) | a (p=a^2+b^2) | T2/E | T2/q2
@@ -127,8 +126,8 @@ Leibniz wall U(p) := sum_(k=0)^(m-1) (-1)^k/(2k+1) mod p, ratio to E_(p-3):
 ========================================================================
 [6] ANGULAR EXACTNESS AND GAUSS SUM
 ========================================================================
-  p=    13: Gauss sum = 3.605551 + 4.44e-16 i;  sqrt(p) = 3.605551  (p==1 mod 4: exact +sqrt(p))
-  p=   101: Gauss sum = 10.049876 + -2.82e-15 i;  sqrt(p) = 10.049876  (p==1 mod 4: exact +sqrt(p))
-  p=  1009: Gauss sum = 31.764760 + -1.28e-15 i;  sqrt(p) = 31.764760  (p==1 mod 4: exact +sqrt(p))
-  p= 10007: Gauss sum = -0.000000 + 1.00e+02 i;  sqrt(p) = 100.034994  (p==1 mod 4: exact +sqrt(p))
+  p=    13: Gauss sum = 3.605551 + 5.00e-16 i;  sqrt(p) = 3.605551  (class: +sqrt(p) if p==1 mod 4, +i*sqrt(p) if p==3 mod 4)
+  p=   101: Gauss sum = 10.049876 + -2.35e-15 i;  sqrt(p) = 10.049876  (class: +sqrt(p) if p==1 mod 4, +i*sqrt(p) if p==3 mod 4)
+  p=  1009: Gauss sum = 31.764760 + 2.66e-14 i;  sqrt(p) = 31.764760  (class: +sqrt(p) if p==1 mod 4, +i*sqrt(p) if p==3 mod 4)
+  p= 10007: Gauss sum = -0.000000 + 1.00e+02 i;  sqrt(p) = 100.034994  (class: +sqrt(p) if p==1 mod 4, +i*sqrt(p) if p==3 mod 4)
 angle of -1 on the multiplicative circle: 2pi * (2t)/(4t) = pi exactly, every frame, both chiralities.

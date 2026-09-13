@@ -37,10 +37,10 @@ RESULTS = []
 # check witnesses. The ledger's source column cites these check ids in return.
 LEDGER = {
     "A1": "20:B4", "A2": "20:B5", "A3": "20:B6", "A4": "20:B8", "A5": "20:B9", "A6": "20:B10", "A7": "20:E1, 20:E12, 20:E13",
-    "A8": "20:E9", "A9": "20:B7", "A10": "20:B1", "A11": "20:B2",
+    "A7b": "20:E1, 20:E12, 20:E13", "A8": "20:E9", "A9": "20:B7", "A10": "20:B1", "A11": "20:B2",
     "B1": "20:D2", "B2": "20:D3", "B3": "20:B8", "B4": "20:D4",
     "C1": "20:E5", "C2": "20:E6", "C2b": "20:E6, 20:E8", "C2c": "20:E6", "C3": "20:E8", "C4": "20:E9", "C5": "20:E10", "C6": "20:E11", "C6b": "20:E3",
-    "C7a": "20:E14, 20:E15", "C7b": "20:E15",
+    "C7a": "20:E14, 20:E15", "C7b": "20:E15", "C7c": "20:E14, 20:E16",
     "D1": "20:F1", "D2a": "20:F3", "D2b": "20:F3", "D2c": "20:F4", "D2d": "20:F4", "D2e": "20:F5",
     "D2f": "20:F5, 20:F8", "D2g": "20:F4, 20:F8", "D3": "20:F8", "D4": "20:F1",
     "E1a": "20:C2", "E1b": "20:C2", "E1c": "20:C3", "E2a": "20:B11", "E2b": "20:B11", "E3": "20:C4", "E4": "20:C6",
@@ -181,6 +181,28 @@ def secular_roots(comb, windows, const=1.0, theta_fn=theta, corrected=False):
             f = lambda T: count_raw(comb, T, const, theta_fn) - (n - 0.5)
         roots.append(brentq(f, lo, hi, xtol=1e-12))
     return np.array(roots)
+
+def crossings(count_fn, lo, hi, step=0.1):
+    """Brackets of every half-integer crossing of a count on [lo, hi], from the count alone: (level, a, b, direction).
+    No reference height enters; the heights are compared only afterwards."""
+    ts = np.arange(lo, hi + 1e-9, step); v = np.asarray(count_fn(ts), float)
+    out = []
+    for i in range(len(ts) - 1):
+        for h in np.arange(math.floor(min(v[i], v[i + 1])) + 0.5, max(v[i], v[i + 1]), 1.0):
+            if (v[i] - h) * (v[i + 1] - h) < 0:
+                out.append((float(h), float(ts[i]), float(ts[i + 1]), int(np.sign(v[i + 1] - v[i]))))
+    return out
+
+def secular_roots_scan(comb, lo, hi, const=1.0, theta_fn=theta, corrected=False, step=0.1):
+    """The secular roots on [lo, hi] with brackets from the count itself (Obs. trace): every upward half-integer
+    crossing refined by Brent's method. Returns (roots, levels, extra) — extra lists any downward or repeated crossing."""
+    f = (lambda T: count_corrected(comb, T)) if corrected else (lambda T: count_raw(comb, T, const, theta_fn))
+    cr = crossings(f, lo, hi, step)
+    up = [(h, a, b) for h, a, b, d in cr if d > 0]
+    levels = [h for h, _, _ in up]
+    extra = [(h, a) for h, a, b, d in cr if d < 0] + [(h, a) for h, a, b in up if levels.count(h) > 1]
+    roots = np.array([brentq(lambda T: float(np.atleast_1d(f(T))[0]) - h, a, b, xtol=1e-12) for h, a, b in up])
+    return roots, levels, extra
 
 # ----------------------------------------------------------------------------- matrices
 def colleague_roots(comb, TA, TB, deg, corrected=False):

@@ -1,0 +1,344 @@
+[
+ {
+  "id": "e.R1",
+  "rows": "13:D3",
+  "script": "validate_e",
+  "label": "superexponential enclosure of the derangement chain ε_n = n!/!n: |ε_n − e| < 8/(n+1)! and the alternating enclosure ε_even < e < ε_odd for 2 ≤ n ≤ 60, against the chain's own certified bracket",
+  "ok": true,
+  "detail": "2 exact micro-checks",
+  "kind": "EXACT"
+ },
+ {
+  "id": "e.R2",
+  "rows": "13:D4, 13:I1",
+  "script": "validate_e",
+  "label": "binary64 readout: the IEEE-754 double nearest e is the correctly rounded ε_18 = 18!/!18 = 6402373705728000/2355301661033953, and n = 18 is minimal (ε_17 fails readout equality)",
+  "ok": true,
+  "detail": "4 exact micro-checks",
+  "kind": "EXACT"
+ },
+ {
+  "id": "e.R3",
+  "rows": "13:D4",
+  "script": "validate_e",
+  "label": "100-digit determination: n = 70 is the least n with 8/(n+1)! < 10⁻¹⁰⁰, and ε_70 agrees with the certified value of e in its first 101 significant characters",
+  "ok": true,
+  "detail": "2 exact micro-checks",
+  "kind": "EXACT"
+ },
+ {
+  "id": "e.R4",
+  "rows": "13:D5",
+  "script": "validate_e",
+  "label": "feasibility selection: the exact step counts of the derangement chain for 2⁻ᵏ precision, k = 24, 53, 333, are n = 11, 18, 70 (the paper's table; the compound-chain column is the chart-side estimate e·2^{k−1})",
+  "ok": true,
+  "detail": "3 exact micro-checks",
+  "kind": "EXACT"
+ },
+ {
+  "id": "e.W1",
+  "rows": "13:F1, 13:F2",
+  "script": "validate_e",
+  "label": "the wall of e on p ∈ {5, 13, 29, 101, 257, 1009, 10007}: Wilson reflection 1/k! ≡ −(−1)^k (p−1−k)! for every k < p; the wall identity !(p−1) ≡ K(p) with K(p) = Σ_{k<p} k! the left factorial; K(p) ≢ 0, so the terminal residue [ε_{p−1}] = −K(p)⁻¹ exists on every sample shell",
+  "ok": true,
+  "detail": "21 exact micro-checks",
+  "kind": "EXACT"
+ },
+ {
+  "id": "e.W2",
+  "rows": "13:F3",
+  "script": "validate_e",
+  "label": "antiperiodicity !(n+p) ≡ −!n (mod p) over a full period n < p on the seven sample shells; the blind set Z₀(p) = {n < p : !n ≡ 0} always contains 1 and never p−1 there",
+  "ok": true,
+  "detail": "14 exact micro-checks",
+  "kind": "EXACT"
+ },
+ {
+  "id": "e.W3",
+  "rows": "13:F4",
+  "script": "validate_e",
+  "label": "series duals at the wall for p ∈ {7, 13, 29, 101, 257, 1009}: Σ(−1)^k/k! ≡ −K(p), Σ 1/k! ≡ −A(p); the group law breaks, K(p)·A(p) ≡ 3, 0, 21, 28, 132, 258, never 1; the asymmetry at p = 13: A(13) ≡ 0, K(13) ≡ 10",
+  "ok": true,
+  "detail": "3 exact micro-checks",
+  "kind": "EXACT"
+ },
+ {
+  "id": "e.W4",
+  "rows": "13:F6",
+  "script": "validate_e",
+  "label": "the p = 13 picture: the residue line [ε_n]₁₃, n = 2 … 12, is 2, 3, 7, 11, 1, 6, blind, 2, 8, 10, 9 (blind at n = 8, !8 = 13·1141), terminating on the wall invariant 9 = −K(13)⁻¹, the reading of 6/5 and of 11/7",
+  "ok": true,
+  "detail": "3 exact micro-checks",
+  "kind": "EXACT"
+ },
+ {
+  "id": "e.S1",
+  "rows": "13:F5, 13:I1",
+  "script": "validate_e",
+  "label": "blind-scale statistics over the 501 primes in (1000, 5000): |Z₀(p)| distributes as 1¹⁶⁹ 2²⁰⁹ 3⁹² 4²² 5⁶ 6² 7¹, mean 1.996 (exact counts; the Poisson(1) reading of the excess is the paper's [approx] model, not a predicate)",
+  "ok": true,
+  "detail": "3 exact micro-checks",
+  "kind": "EXACT"
+ },
+ {
+  "id": "e.A1",
+  "rows": "13:H4, 13:I1",
+  "script": "validate_e",
+  "label": "radian calibration over p < 10⁶: 39 175 shells p ≡ 1 (mod 4); exactly 260 of them satisfy |θ − 1| < 0.01 for one chirality, θ = 2π λ(i)/(p−1), decided with π as a Machin bracket of width < 10⁻¹⁰⁰; the best six (p, λ(i)) are (778933, 123966), (497773, 79227), (962237, 153133), (261017, 41537), (345181, 54945), (891997, 141986) in that order",
+  "ok": true,
+  "detail": "4 exact micro-checks",
+  "kind": "EXACT"
+ },
+ {
+  "id": "e.N1",
+  "rows": "13:H5, 13:I1",
+  "script": "validate_e",
+  "label": "the null experiment over the 210 primes p ≡ 1 (mod 4), 5 < p < 3000: the index condition gcd(s, p−1) = gcd(λ(±i), p−1) linking the exponential unit to the wall residue −K(p)⁻¹ is solvable for exactly 94 primes (44.8 %, the gcd-coincidence rate); the Pearson correlation of the two angular addresses (≈ −0.10) is printed as the paper's [approx] reading",
+  "ok": true,
+  "detail": "2 exact micro-checks; Pearson correlation of the angular addresses -0.100 (the paper's [approx] reading)",
+  "kind": "EXACT"
+ },
+ {
+  "id": "pi.R1",
+  "rows": "13:E2, 13:C5",
+  "script": "validate_pi",
+  "label": "the Wallis pair v_n = 2·16ⁿ/((2n+1)C(2n,n)²), w_n = 16ⁿ/(n C(2n,n)²): v_n < π < w_n for n ≤ 300 against Machin brackets of width < 10⁻⁴²⁰, the exact width identity w_n − v_n = w_n/(2n+1), and strict monotonicity",
+  "ok": true,
+  "detail": "3 exact micro-checks",
+  "kind": "EXACT"
+ },
+ {
+  "id": "pi.R2",
+  "rows": "13:G8",
+  "script": "validate_pi",
+  "label": "the p = 13 picture: the residue line [w_n]₁₃, n = 1 … 6, is 4, 5, 10, 9, 6, 11",
+  "ok": true,
+  "detail": "1 exact micro-checks",
+  "kind": "EXACT"
+ },
+ {
+  "id": "pi.R3",
+  "rows": "13:E4, 13:I2",
+  "script": "validate_pi",
+  "label": "the Machin chain M_N: the IEEE-754 double nearest π is the correctly rounded M_10 and N = 10 is minimal; |M_N − π| < 17/((2N+3)5^{2N+3}) for 2 ≤ N ≤ 39; 100 decimal digits fixed at N = 71; the alternating pairing of the two arctangent series gives a certified two-sided enclosure at (12, 4) terms",
+  "ok": true,
+  "detail": "6 exact micro-checks",
+  "kind": "EXACT"
+ },
+ {
+  "id": "pi.R4",
+  "rows": "13:E3",
+  "script": "validate_pi",
+  "label": "the arcsin chain s_n = 3 Σ_{k≤n} C(2k,k)/((2k+1)16^k): the tail bound |π − s_n| < 4⁻ⁿ/(2n+3) for 1 ≤ n ≤ 120, against the Machin bracket",
+  "ok": true,
+  "detail": "1 exact micro-checks",
+  "kind": "EXACT"
+ },
+ {
+  "id": "pi.W1",
+  "rows": "13:G1, 13:G2, 13:I2",
+  "script": "validate_pi",
+  "label": "the legibility window on p ∈ {5, 13, 29, 101, 257, 1009, 10007}: p ∤ C(2n,n) for 1 ≤ n ≤ m = (p−1)/2 and p | C(2n,n) for m < n < p; the half-wall terminus [w_m] ≡ −2 = m⁻¹ = 4π_A; the lower chain blind exactly at the wall (2m+1 = p)",
+  "ok": true,
+  "detail": "28 exact micro-checks",
+  "kind": "EXACT"
+ },
+ {
+  "id": "pi.W2",
+  "rows": "13:G2",
+  "script": "validate_pi",
+  "label": "the wall residue −2 is universal: [w_m] ≡ −2 also for p ≡ 3 (mod 4), p ∈ {7, 23, 1031}",
+  "ok": true,
+  "detail": "1 exact micro-checks",
+  "kind": "EXACT"
+ },
+ {
+  "id": "pi.S1",
+  "rows": "13:G4",
+  "script": "validate_pi",
+  "label": "second order at the half wall for p ∈ {13, 29, 37, 41, 53, 101}: Morley's congruence (−1)^m C(p−1,m) ≡ 4^{p−1} (mod p³) and the formula w_m ≡ −2 + 2p(q_p(4) − 1) (mod p²)",
+  "ok": true,
+  "detail": "3 exact micro-checks",
+  "kind": "EXACT"
+ },
+ {
+  "id": "pi.S2",
+  "rows": "13:G4, 13:I2",
+  "script": "validate_pi",
+  "label": "the π-Wieferich search: 4^{p−1} ≡ 1 + p (mod p²) holds for exactly p ∈ {5, 45827} among the primes below 10⁶ (the normalised quotients' moments over p < 2·10⁴ are printed as the paper's [approx] reading)",
+  "ok": true,
+  "detail": "1 exact micro-checks",
+  "kind": "EXACT"
+ },
+ {
+  "id": "pi.L1",
+  "rows": "13:G5, 13:G8",
+  "script": "validate_pi",
+  "label": "Lucas revivals: [v_p] ≡ 8 for p ∈ {5, 7, 11, 13, 29, 37}; on p = 13, C(26,13) ≡ 2 = C(2,1)·C(0,0), C(28,14) ≡ 4 = C(2,1)² digitwise, and the two-digit revival scales number exactly (2κ)² = 36",
+  "ok": true,
+  "detail": "4 exact micro-checks",
+  "kind": "EXACT"
+ },
+ {
+  "id": "pi.V1",
+  "rows": "13:G6",
+  "script": "validate_pi",
+  "label": "first-order wall vanishing: σ_p = Σ_{k<m} C(2k,k)/((2k+1)16^k) ≡ 0 (mod p) for all 428 odd primes 5 ≤ p < 3000, with σ_3 = 1 the sole exception; the rational numerator of σ_p is divisible by p for 5 ≤ p < 200",
+  "ok": true,
+  "detail": "46 exact micro-checks",
+  "kind": "EXACT"
+ },
+ {
+  "id": "pi2.A1",
+  "rows": "13:G3",
+  "script": "validate_pi2",
+  "label": "Gauss's central-binomial congruence C(2κ,κ) ≡ 2a* (mod p), a* ≡ 1 (mod 4) the odd part of p = a² + b², for all 211 primes p ≡ 1 (mod 4) below 3000",
+  "ok": true,
+  "detail": "212 exact micro-checks",
+  "kind": "EXACT"
+ },
+ {
+  "id": "pi2.A2",
+  "rows": "13:G3, 13:I2",
+  "script": "validate_pi2",
+  "label": "the quarter-wall two-squares invariant [w_κ] = κ⁻¹(2a)⁻² = −(a²)⁻¹ = (b²)⁻¹ (mod p) for the same 211 primes; on p = 13 = 3² + 2², [w_3] = 10 = −(9)⁻¹",
+  "ok": true,
+  "detail": "212 exact micro-checks",
+  "kind": "EXACT"
+ },
+ {
+  "id": "pi2.B1",
+  "rows": "13:G7",
+  "script": "validate_pi2",
+  "label": "Sun's supercongruence σ_p ≡ 0 (mod p²) re-verified in exact rational arithmetic for all primes 5 ≤ p < 300",
+  "ok": true,
+  "detail": "60 exact micro-checks",
+  "kind": "EXACT"
+ },
+ {
+  "id": "pi2.B2",
+  "rows": "13:G7",
+  "script": "validate_pi2",
+  "label": "the third-order Bernoulli law σ_p/p² ≡ (−1)^{(p+1)/2} B_{p−3}/36 (mod p) for all sixty primes 5 ≤ p < 300, B_{p−3} from the exact Bernoulli recurrence",
+  "ok": true,
+  "detail": "61 exact micro-checks",
+  "kind": "EXACT"
+ },
+ {
+  "id": "pi2.C1",
+  "rows": "13:G6",
+  "script": "validate_pi2",
+  "label": "the binomial transfer C(2k,k) ≡ (−4)^k C(m,k) (mod p) for k < m on p ∈ {11, 13, 29, 37}",
+  "ok": true,
+  "detail": "1 exact micro-checks",
+  "kind": "EXACT"
+ },
+ {
+  "id": "pi2.C2",
+  "rows": "13:G6",
+  "script": "validate_pi2",
+  "label": "Lerch's congruence H_{(p−1)/2} ≡ −2 q_p(2) (mod p) for all primes 5 ≤ p < 500",
+  "ok": true,
+  "detail": "1 exact micro-checks",
+  "kind": "EXACT"
+ },
+ {
+  "id": "pi2.C3",
+  "rows": "13:G6",
+  "script": "validate_pi2",
+  "label": "the Wallis evaluation L_m = Σ_j C(m,j)(−1)^j/(2j+1) = 4^m (m!)²/(2m+1)! over Q for m ≤ 60",
+  "ok": true,
+  "detail": "1 exact micro-checks",
+  "kind": "EXACT"
+ },
+ {
+  "id": "pi2.C4",
+  "rows": "13:G6",
+  "script": "validate_pi2",
+  "label": "the key identity A_m + B_m = 2L_m over Q for m ≤ 60, with A = 2(F(½) − F(0)), B = 2(F(1) − F(½)), L = F(1) − F(0) for the formal antiderivative F of the expanded (1 − s²)^m — coefficient bookkeeping only",
+  "ok": true,
+  "detail": "1 exact micro-checks",
+  "kind": "EXACT"
+ },
+ {
+  "id": "pi2.D1",
+  "rows": "13:G7",
+  "script": "validate_pi2",
+  "label": "the blind-range Euler congruence Σ_{m<k<p} C(2k,k)/((2k+1)16^k) ≡ p E_{p−3}/3 (mod p²) for all primes 5 ≤ p < 80",
+  "ok": true,
+  "detail": "1 exact micro-checks",
+  "kind": "EXACT"
+ },
+ {
+  "id": "pi2.D2",
+  "rows": "13:G5",
+  "script": "validate_pi2",
+  "label": "the first revival to second order, v_p ≡ 8 + 16p(2q_p(2) − 1) (mod p²), for p ∈ {5, 7, 11, 13, 29, 37}",
+  "ok": true,
+  "detail": "1 exact micro-checks",
+  "kind": "EXACT"
+ },
+ {
+  "id": "tow.E",
+  "rows": "13:F7, 13:B3",
+  "script": "validate_towers",
+  "label": "the fixed-shell tower of e on p = 13 and 29, grades m ≤ 3: !(mp) ≡ (−1)^m, the shell reading [q_m] = e_p exactly, and q_m inside the certified window around e",
+  "ok": true,
+  "detail": "18 exact micro-checks",
+  "kind": "EXACT"
+ },
+ {
+  "id": "tow.P",
+  "rows": "13:G9, 13:B3",
+  "script": "validate_towers",
+  "label": "the fixed-shell tower of π on p = 13 and 29, n = p, p²: C(2n,n) ≡ 2, 16ⁿ ≡ 16, δ_p = ⟨−34⟩, the shell reading [π̂_{p,r}] = π_A exactly, and the r = 1 member inside the certified brackets",
+  "ok": true,
+  "detail": "20 exact micro-checks",
+  "kind": "EXACT"
+ },
+ {
+  "id": "tow.C",
+  "rows": "13:C3",
+  "script": "validate_towers",
+  "label": "the Cayley quarter-turn map C(x) = (1 + ix)/(1 − ix) on F_13 and F_29: C(0) = 1, C(1) = i, and the composition law C(x)C(y) = C((x+y)/(1−xy)) on every pair where the denominators are units",
+  "ok": true,
+  "detail": "6 exact micro-checks",
+  "kind": "EXACT"
+ },
+ {
+  "id": "tow.O",
+  "rows": "13:B2",
+  "script": "validate_towers",
+  "label": "orientation transport on F_13 and F_29, exhaustively over the units u of the exponent cycle: g' = g^u re-derives i' = i when u ≡ 1 (mod 4) and i' = −i when u ≡ 3 (mod 4)",
+  "ok": true,
+  "detail": "2 exact micro-checks",
+  "kind": "EXACT"
+ },
+ {
+  "id": "tow.H",
+  "rows": "13:J2, 13:J3",
+  "script": "validate_towers",
+  "label": "the height run over all 500 shells p ≡ 1 (mod 4), p ≤ 8009, in the smallest-primitive-root frame with H minimised over the two chiralities: π_A = [−1/2] pinned at height 2 on every shell; H(e_p) ≤ 2√p on every shell; exactly 68 shells with H ≤ 10; height 2 on exactly {13, 1933, 4177, 5857} (median H/√p ≈ 0.525 printed as the diagnostic)",
+  "ok": true,
+  "detail": "4 exact micro-checks; median H/sqrt(p) = 0.525 (diagnostic)",
+  "kind": "EXACT"
+ },
+ {
+  "id": "tow.W",
+  "rows": "13:J1, 13:J2, 13:G2, 13:H2, 13:I4",
+  "script": "validate_towers",
+  "label": "the wrap-free window and the calibration pin on p ∈ {13, 29, 101, 997, 8009}: ⌊√p⌋² < p and 2⌊√p⌋ < p; the pinning relation 2π_A + 1 ≡ 0; the half-turn tautology g^{2κ} = −1 for the smallest primitive root; the quarter-turn pin i² + 1 ≡ 0",
+  "ok": true,
+  "detail": "22 exact micro-checks",
+  "kind": "EXACT"
+ },
+ {
+  "id": "kur.K1",
+  "rows": "13:F2, 13:O1",
+  "script": "kurepa_wall",
+  "label": "Kurepa's wall in the derangement form for all 22 043 odd primes p < 2.5·10⁵ (kurepa_wall.c, one O(p) pass per prime in 128-bit modular arithmetic): !(p−1) ≡ K(p) (mod p) and K(p) ≢ 0 (mod p), zero failures of either condition",
+  "ok": true,
+  "detail": "3 exact micro-checks; kurepa_wall.c, N = 250000, 25 s",
+  "kind": "EXACT"
+ }
+]

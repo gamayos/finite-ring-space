@@ -12,13 +12,15 @@ Master ledger row 00:D11 (the shell theorem, 20-rh Thm. hp); paper ledger rows 2
   A5  Thm. agree        the Klein four-group ⟨φ, ρ⟩ and its fixed loci F_p, L_{1/2}, {2⁻¹}; F_p ∩ L_{1/2} = {2⁻¹}
   A6  §1.3 (register)   the Subject constants: π = 2κ, 2π ≡ −1, i = g^{−κ}, i² ≡ −1, e = g^i on the odd
                         representative, g^π ≡ −1, e^{iπ} ≡ −1  (F_13: g = 2, κ = 3, i = 5, e = 6)
-  A7  Thm. hp (i),(iii) the spectral content of v = Λ: constant mode carries the mean, nontrivial complex
-                        characters carry v − v̄·1 (Rem. parseval); the scale-shift has the modes as eigenvectors
-                        in both readings — S x^k = g^k x^k in F_p, S χ_j = ω^j χ_j on ℓ²(F_p^×) — and
-                        Tr S^r = (p−1)·[(p−1) | r] (§10.2: the shell's trace carries no prime data)
-  A8  Thm. hp (iv)      self-adjointness is free: any real multiset is the spectrum of a real-symmetric
-                        tridiagonal matrix (Def. jacobi), checked on the first ten heights
-  A9  Prop. ground      flat ground state: the Ramanujan sum c_p(n) = −1 for every n ≢ 0 (mod p)
+  A7  Thm. hp (iii)     EXACT: the scale-shift on the power characters, S x^k = g^k x^k in F_p, and its trace
+                        Tr S^r = (p−1)·[(p−1) | r] (§10.2: the shell's trace carries no prime data) — integer arithmetic
+  A7b Thm. hp (i),(iii) [approx]: the complex reading — the constant mode carries the mean v̄ = ψ(p−1)/(p−1),
+                        the nontrivial characters carry v − v̄·1 (Rem. parseval), the characters are orthonormal and
+                        S χ_j = ω^j χ_j on ℓ²(F_p^×) — floating-point roots of unity, tolerance 10⁻¹⁰
+  A8  Thm. hp (iv)      [approx]: self-adjointness is free: any real multiset is the spectrum of a real-symmetric
+                        tridiagonal matrix (Def. jacobi), checked on the first ten heights in floating point (10⁻¹¹)
+  A9  Prop. ground      EXACT: flat ground state, the Ramanujan sum c_p(n) = −1 for every n ≢ 0 (mod p), computed in
+                        F_q with a primitive p-th root of unity (q the least prime ≡ 1 mod p): Σ_{a=1}^{p−1} ω^{an} ≡ −1
   A10 Def. shells       the shared structure of two shells is the quarter-turn core Q₄ (4 | p−1, 4 | Ω−1);
                         on the laboratory pair (13, 233) the cycle projection C_{Ω−1} → C_{p−1} does not
                         exist (12 ∤ 232) — the negative check behind the round-02 chronon paragraph
@@ -27,8 +29,10 @@ Master ledger row 00:D11 (the shell theorem, 20-rh Thm. hp); paper ledger rows 2
                         Ω the least prime ≡ 1 (mod 4) above p²
 
 Shells: p = 13, 17, 29, 37, 41 in full (all p² points of F_{p²}); 173 for A1, A4, A6; 1009 and 10009 for A11.
+Kinds: A1–A7, A9–A11 are integer arithmetic (EXACT); A7b and A8 use floating-point roots of unity and eigenvalues ([approx]).
 """
 import math, cmath
+import sympy as sp
 import numpy as np
 from rhcommon import check, jacobi_from_points, HEIGHTS
 
@@ -118,9 +122,13 @@ def run():
               and fix_phi == {(a, 0) for a in range(p)} and fix_sig == set(line) and fix_rho == {(inv2, 0)}
               and fix_phi & fix_sig == {(inv2, 0)})
         check("A5", f"Klein four-group on F_{p}²: Fix φ = F_p, Fix σ = L_1/2, Fix ρ = {{2⁻¹}}, F_p ∩ L_1/2 = {{2⁻¹}}", ok)
-        # A9 flat ground state
-        cp = [round(sum(math.cos(2 * math.pi * a * n / p) for a in range(1, p))) for n in range(1, p)]
-        check("A9", f"c_{p}(n) = −1 for n ≠ 0", all(c == -1 for c in cp))
+        # A9 flat ground state, in exact arithmetic: a primitive p-th root of unity ω in F_q, q ≡ 1 (mod p) prime
+        q = p + 1
+        while not (q % p == 1 and sp.isprime(q)): q += p
+        gq = sp.primitive_root(q); om = pow(gq, (q - 1) // p, q)
+        assert pow(om, p, q) == 1 and om != 1
+        cp = [sum(pow(om, a * n, q) for a in range(1, p)) % q for n in range(1, p)]
+        check("A9", f"c_{p}(n) ≡ −1 (mod {q}) for n ≠ 0: Σ_a ω^{{an}} in F_{q}, ω of order {p}", all(c == q - 1 for c in cp))
         # A7 spectral content and the two readings of the characters
         lam = {}
         for n in range(1, p):
@@ -148,9 +156,9 @@ def run():
         ok_c = all(np.allclose(shifted(j), w ** j * chi[j]) for j in range(p - 1))
         tr = [sum(1 for x in range(1, p) if (pow(g, r, p) * x) % p == x) for r in range(1, p)]
         ok_tr = all(tr[r - 1] == ((p - 1) if r % (p - 1) == 0 else 0) for r in range(1, p))
-        check("A7", f"F_{p}: mean v̄ = ψ(p−1)/(p−1) on the trivial mode, v − v̄·1 on the nontrivial characters; "
-                    f"S x^k = g^k x^k in F_p and Sχ_j = ω^j χ_j on ℓ²; Tr S^r = (p−1)[(p−1)|r]",
-              ok_mean and ok_orth and ok_fp and ok_c and ok_tr, f"v̄ = {mean:.6f} (= log 27720/12 at p = 13)" if p == 13 else "")
+        check("A7", f"F_{p}: S x^k = g^k x^k on the power characters (integer arithmetic); Tr S^r = (p−1)[(p−1)|r]", ok_fp and ok_tr)
+        check("A7b", f"ℓ²(F_{p}^×): mean v̄ = ψ(p−1)/(p−1) on the trivial mode, v − v̄·1 on the nontrivial characters, orthonormal; Sχ_j = ω^j χ_j",
+              ok_mean and ok_orth and ok_c, f"v̄ = {mean:.6f} (= log 27720/12 at p = 13)" if p == 13 else "", kind="[approx]")
         # A10 the shared quarter-turn core; no cycle projection onto (13, 233)
         Om = 233
         q4 = {pow(i_, a, p) for a in range(4)}
@@ -161,7 +169,7 @@ def run():
         else:
             check("A10", f"Q₄ = {{1, i, −1, −i}} ⊂ F_{p}^×, 4 | p−1", ok)
     # A11 frame coincidence below the horizon (Prop. coincide): the Carrier chart Ω is the least prime ≡ 1 (mod 4) above p²
-    import sympy as sp
+
     for p in SHELLS + [1009, 10009]:
         Om = int(sp.nextprime(p * p))
         while Om % 4 != 1:
@@ -177,8 +185,8 @@ def run():
     J = jacobi_from_points(HEIGHTS[:10])
     ev = np.sort(np.linalg.eigvalsh(J))
     ok = np.allclose(J, J.T) and np.max(np.abs(np.triu(J, 2))) == 0 and np.max(np.abs(ev - HEIGHTS[:10])) < 1e-11
-    check("A8", "any real multiset is the spectrum of a real-symmetric tridiagonal matrix (Lanczos on ten heights)", ok,
-          f"max|eig(J) − height| = {np.max(np.abs(ev - HEIGHTS[:10])):.1e}")
+    check("A8", "any real multiset is the spectrum of a real-symmetric tridiagonal matrix (Lanczos on ten heights, floating point)", ok,
+          f"max|eig(J) − height| = {np.max(np.abs(ev - HEIGHTS[:10])):.1e}", kind="[approx]")
 
 if __name__ == "__main__":
     from rhcommon import summary

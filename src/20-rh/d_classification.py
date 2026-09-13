@@ -44,10 +44,11 @@ Paper-local predicates:
   D3  Prop. combformula  [approx]  the identity's validation arm: the corrected tapered sum Σ_w − Π_N − log((s−1)/s) against
                          log ζ(½ + it) (mpmath) at t = 1, 5, 10, 15, 30: the real-part error falls with depth at every height
                          (0.0049 at t = 1, depth 8×10⁷) and the imaginary part is the corrected count of D2f
-  D4  Thm. turing (frame-exact inputs)  [approx]  on the shells p = 95, 1003, 4775 (ceilings T = 2πp ≈ 597, 6302, 30001) the raw
-                         count from the frame-exact comb of depth ⌊√p⌋ = 9, 31, 69, evaluated midway between consecutive
-                         zeros just below the ceiling (zeros from Z(t) sign changes, the count from mpmath nzeros), rounds to
-                         the exact N(t) at every midpoint: maximum deviation 0.10, 0.21, 0.12; the 10⁶ comb within 0.002
+  D4  Thm. turing (frame-exact inputs)  [approx]  on the shells p = 97, 1009, 4801 (primes ≡ 1 mod 4; ceilings T = 2πp ≈ 609, 6340,
+                         30166) the raw count from the frame-exact comb of depth ⌊√p⌋ = 9, 31, 69, evaluated midway between
+                         consecutive zeros just below the ceiling (the test heights chosen with the validation arm: zeros from
+                         Z(t) sign changes, the count from mpmath nzeros), rounds to the exact N(t) at every midpoint: maximum
+                         deviation 0.08, 0.11, 0.16; the 10⁶ comb within 0.002
 
 The "ζ never evaluated" discipline does not bind the control arms (Hurwitz zeta functions are
 evaluated there). Figure: fig_dh.pdf. Master ledger: 00:D12.
@@ -320,7 +321,7 @@ def run():
           "; ".join(f"t={t}: " + " → ".join(f"{v:.4f}" for v in (e[0], e[len(e)//2], e[-1])) for t, e in re_err.items()), kind="[approx]")
     # ---------------- D4: the count from the frame-exact comb on one shell (Theorem turing)
     with Timer("frame-exact shells"):
-        shells = [95, 1003] + ([4775] if not FAST else [])
+        shells = [97, 1009] + ([4801] if not FAST else [])          # primes ≡ 1 (mod 4): admissible Subject shells
         dev_fe, dev_deep, npts = {}, {}, {}
         deep = Comb(10 ** 6)
         for p_sh in shells:
@@ -332,10 +333,10 @@ def run():
             v = count_raw(Comb(depth), mids); vd = count_raw(deep, mids)
             dev_fe[p_sh] = (float(np.max(np.abs(v - nz))), bool(np.all(np.round(v) == nz)))
             dev_deep[p_sh] = (float(np.max(np.abs(vd - nz))), bool(np.all(np.round(vd) == nz)))
-    stated = {95: 0.10, 1003: 0.21, 4775: 0.12}
+    stated = {97: 0.08, 1009: 0.11, 4801: 0.16}
     ok = (all(r for _, r in dev_fe.values()) and all(r for _, r in dev_deep.values())
           and all(abs(dev_fe[p_sh][0] - stated[p_sh]) < 0.02 for p_sh in shells) and max(d for d, _ in dev_deep.values()) < 0.004)
-    check("D4", "frame-exact count on one shell: at p = 95, 1003, 4775 (T = 2πp) the depth-⌊√p⌋ comb, midway between consecutive zeros below the ceiling, rounds to the exact N(t) at every midpoint (max deviation 0.10, 0.21, 0.12); the 10⁶ comb within 0.002", ok,
+    check("D4", "frame-exact count on one shell: at p = 97, 1009, 4801 (T = 2πp) the depth-⌊√p⌋ comb, midway between consecutive zeros below the ceiling, rounds to the exact N(t) at every midpoint (max deviation 0.08, 0.11, 0.16); the 10⁶ comb within 0.002", ok,
           "; ".join(f"p={p_sh} (depth {int(math.sqrt(p_sh))}, {npts[p_sh]} midpoints): max dev {dev_fe[p_sh][0]:.3f} (10⁶ comb {dev_deep[p_sh][0]:.3f})" for p_sh in shells), kind="[approx]")
     # ---------------- figure
     with Timer("window grid [84,87]"):

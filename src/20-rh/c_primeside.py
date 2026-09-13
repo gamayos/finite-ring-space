@@ -7,6 +7,8 @@ Paper-local predicates:
 
   C1  Obs. primespec  the scale-spectrum |Σ_N(γ)| of the tapered comb, N = 10⁶, peaks at the first six
                       heights (paper: 14.14, 21.02, 25.02, 30.40, 32.96, 37.57; the peak is the taper's, of width ~2π/log N)
+  (Root search: the brackets of every root are the half-integer crossings of the count itself on [10, 52], found by a
+   0.1 scan and refined by Brent's method; the reference heights enter only in the errors reported.)
   C2  Obs. trace      the raw secular condition Ñ_N(T) = n − ½ recovers the first ten heights: mean error
                       4.4×10⁻⁵, maximum 1.5×10⁻⁴ (at γ₁) at N = 10⁶; 3.6×10⁻⁴ at 10³; 6×10⁻⁵ at 10⁵
   C2b Obs. trace      the pole-corrected secular condition N̂_N(T) = n − ½ (Prop. combformula): mean error 3.4×10⁻⁵
@@ -28,7 +30,7 @@ import numpy as np
 import matplotlib
 matplotlib.use("Agg")
 import matplotlib.pyplot as plt
-from rhcommon import (check, Comb, count_raw, count_corrected, secular_roots, colleague_roots, jacobi_from_points,
+from rhcommon import (check, Comb, count_raw, count_corrected, secular_roots_scan, colleague_roots, jacobi_from_points,
                       HEIGHTS, nearest_errors, theta, FIGDIR, FAST, Timer)
 
 # the paper's stated numbers
@@ -36,8 +38,14 @@ PEAKS_STATED = [14.14, 21.02, 25.02, 30.40, 32.96, 37.57]
 A_STATED = [34.314, 31.021, 31.179, 31.763, 32.812, 36.227, 35.012, 37.157, 36.092, 37.564]
 B_STATED = [11.178, 10.431, 9.579, 8.263, 7.008, 8.415, 7.048, 4.093, 4.110]
 
-def windows(n_heights=10, half=0.5):
-    return [(n + 1, HEIGHTS[n] - half, HEIGHTS[n] + half) for n in range(n_heights)]
+LO, HI = 10.0, 52.0          # the shell window of Obs. trace/matrix; the ten roots are the crossings of ½ … 9½ found on it
+
+def roots_on_window(comb, corrected):
+    """Ten secular roots from the count alone (brackets by a 0.1 scan of the window, Brent refinement); the reference
+    heights enter only in the error reported afterwards. Fails loudly if the crossings are not exactly ½ … 9½, once each."""
+    roots, levels, extra = secular_roots_scan(comb, LO, HI, corrected=corrected)
+    assert levels == [k + 0.5 for k in range(10)] and not extra, f"crossings {levels}, extra {extra}"
+    return roots
 
 def additive_spectrum(U=15.0, M=2048, potential_scale=5.0):
     """H = −i d/du + V_comb on a periodic log-grid of length U (Prop. gauge)."""
@@ -79,7 +87,7 @@ def run():
     errs = {}
     for depth in ([10 ** 3, 10 ** 5, 10 ** 6] if not FAST else [10 ** 5, 10 ** 6]):
         c = comb if depth == N else Comb(depth)
-        roots = secular_roots(c, windows())
+        roots = roots_on_window(c, corrected=False)
         e = np.abs(roots - HEIGHTS[:10]); errs[depth] = (e.mean(), e.max())
     e6 = errs[10 ** 6]
     ok = abs(e6[0] - 4.4e-5) < 0.6e-5 and abs(e6[1] - 1.46e-4) < 0.15e-4 and (FAST or errs[10 ** 3][0] < 6e-4) and errs[10 ** 5][0] < 1e-4
@@ -91,7 +99,7 @@ def run():
     with Timer(f"secular roots, raw and corrected, to {deep[-1]:.0e}"):
         for depth in deep:
             c = comb if depth == N else Comb(depth)
-            er = np.abs(secular_roots(c, windows()) - HEIGHTS[:10]); ec = np.abs(secular_roots(c, windows(), corrected=True) - HEIGHTS[:10])
+            er = np.abs(roots_on_window(c, corrected=False) - HEIGHTS[:10]); ec = np.abs(roots_on_window(c, corrected=True) - HEIGHTS[:10])
             raw_e[depth] = (er.mean(), er.max(), er[0]); cor_e[depth] = (ec.mean(), ec.max(), ec[0])
             if depth != N: del c
     c6 = cor_e[10 ** 6]
@@ -104,7 +112,7 @@ def run():
           and abs(raw_e[10 ** 8][2] - 2.6e-4) < 0.3e-4 and raw_e[10 ** 8][2] > raw_e[10 ** 6][2])))
     check("C2c", "raw secular condition does not sharpen past 10⁷: mean 2.7e-5 at 10⁷, 4.2e-5 at 10⁸; γ₁ error 1.5e-4 (10⁶) → 2.6e-4 (10⁸): the pole term", ok,
           "; ".join(f"N={d:.0e}: mean {m:.2e} max {x:.2e} γ₁ {g:.2e}" for d, (m, x, g) in raw_e.items()), kind="[approx]")
-    roots6 = secular_roots(comb, windows(), corrected=True)
+    roots6 = roots_on_window(comb, corrected=True)
     # C4 Jacobi (of the corrected secular roots)
     J = jacobi_from_points(roots6)
     ev = np.sort(np.linalg.eigvalsh(J))

@@ -56,6 +56,20 @@
      "tag": "I",
      "source": "\\S\\ref{sec:physical}",
      "key": "p0007"
+    },
+    {
+     "label": "A8",
+     "predicate": "Explicit bounds on the Riemann--Siegel remainder: Gabcke's explicit error term, used by the verification of A6; with it the sign of $Z$ is certified wherever $|Z_M(t)|$ exceeds the bound (F1).",
+     "tag": "I",
+     "source": "\\citep{gabcke1979}; Thm.~\\ref{thm:turing}",
+     "key": "p0070"
+    },
+    {
+     "label": "A9",
+     "predicate": "The semiclassical phase-space cell $2\\pi$ of the Berry--Keating count [chart], imposed as the standard unit, not derived from the shell constants; the shell's own count uses no cell (E12(iii)).",
+     "tag": "I",
+     "source": "\\citep{berry1999}; Rem.~\\ref{prop:cutoff}",
+     "key": "p0071"
     }
    ]
   },
@@ -183,7 +197,7 @@
     },
     {
      "label": "C6",
-     "predicate": "Square-root cancellation: the maximal chart-mode correlation sits at the floor --- $0.08$ against $0.03$ at $p=1009$, $0.0087$ against $0.0032$ over the $5\\times10^{4}$ modes of $p\\approx10^{5}$ [approx]; the resonance in its window correlates $0.90$. The collision-robust large sieve that would prove $M(p)=O(p^{-1/2})$ is O7.",
+     "predicate": "Square-root cancellation: the maximal chart-mode correlation sits at the floor --- $0.08$ against $0.03$ at $p=1009$, $0.0087$ against $0.0032$ over the $5\\times10^{4}$ modes of $p\\approx10^{5}$ [approx]; the resonance in its window correlates $0.90$. The uniform bound $M(p)=O(p^{-1/2})$ over every shell is Z5.",
      "tag": "T",
      "source": "Obs.~\\ref{obs:flat}; \\src{E4}",
      "key": "p0024"
@@ -251,21 +265,21 @@
    "rows": [
     {
      "label": "E1",
-     "predicate": "The scale-evolution generator: on the shell the scale-shift $x\\mapsto\\gen^{\\,r}x$ is a unitary permutation of $\\Fx{p}$ with the complex characters as eigenvectors; in the idealisation [chart] its generator is $\\Hh=-i(x\\partial_x+\\half)$ with eigenstates $x^{-\\rho}$, $\\rho=\\half+i\\gamma$, the symmetrizing $\\half$ the half-turn of B8.",
+     "predicate": "The scale-evolution generator: on the shell the scale-shift $x\\mapsto\\gen^{\\,r}x$ is a unitary permutation of $\\Fx{p}$ with the complex characters as eigenvectors; in the idealisation [chart] its generator is $\\Hh=-i(x\\partial_x+\\half)$ with eigenstates $x^{-\\bar\\rho}$, $\\rho=\\half+i\\gamma$, the symmetrizing $\\half$ the half-turn of B8.",
      "tag": "T",
-     "source": "Prop.~\\ref{prop:H}; \\src{A7}",
+     "source": "Prop.~\\ref{prop:H}; \\src{A7}, \\src{A7b}",
      "key": "p0032"
     },
     {
      "label": "E2",
-     "predicate": "The Hilbert--P\\'olya target correspondence: the de-framing on the spectrum is $\\rho\\mapsto-i(\\rho-\\half)$, real on the nontrivial zeros iff the hypothesis; $\\sigma(\\Hh)=\\{-i(\\rho-\\half)\\}$ is the target, not a result; the exhibited operator is the Jacobi matrix $\\mathbf J_N$ (E9), its identification with a discretisation of $\\Hh$ open (O1).",
+     "predicate": "The Hilbert--P\\'olya target correspondence: the de-framing on the spectrum is $\\rho\\mapsto-i(\\rho-\\half)$, real on the nontrivial zeros iff the hypothesis; $\\sigma(\\Hh)=\\{-i(\\rho-\\half)\\}$ is the target, not a result; the exhibited operator is the Jacobi matrix $\\mathbf J_N$ (E9), its identification with a discretisation of $\\Hh$ the faithfulness clause (Z3).",
      "tag": "D",
      "source": "Def.~\\ref{cor:specmap}",
      "key": "p0033"
     },
     {
      "label": "E3",
-     "predicate": "Cutoff and semiclassical density: with the space quantum $1_\\Omega$ as lower cutoff the Berry--Keating phase-space count is the Riemann--von Mangoldt count, density the shell scale-depth of D2 [chart]; the cell normalisation $1_\\Omega^{2}\\sim2\\pi$ is imposed, not derived (O8).",
+     "predicate": "Cutoff and semiclassical density: with the space quantum $1_\\Omega$ as lower cutoff the Berry--Keating phase-space count is the Riemann--von Mangoldt count, density the shell scale-depth of D2 [chart]; the cell normalisation $1_\\Omega^{2}\\sim2\\pi$ is imposed [chart] (A9).",
      "tag": "D",
      "source": "Rem.~\\ref{prop:cutoff}; \\src{C6b}",
      "key": "p0034"
@@ -328,21 +342,21 @@
     },
     {
      "label": "E12",
-     "predicate": "\\textbf{The shell theorem.} On every shell, with no hypothesis: (i) the spectral content of $v$ is the constant mode carrying the mean with the nonterminal modes of the quarter-turn meridian; (ii) every mode lies on $\\Tr=1$, real part $2^{-1}=2\\kp+1=-\\pi$; (iii) the scale-shift has the modes as eigenvectors in both character readings, eigenphases $2\\pi j/(p-1)$ independent of $v$; (iv) the Jacobi matrix is real-symmetric with the secular roots as spectrum. No off-line mode; the same on every shell, the Carrier included; true of every vector, the Davenport--Heilbronn vector included. No intertwiner between (iii) and (iv) is exhibited (O1).",
+     "predicate": "\\textbf{The shell theorem.} On every shell, with no hypothesis: (i) the spectral content of $v$ is the constant mode carrying the mean with the nonterminal modes of the quarter-turn meridian; (ii) every mode lies on $\\Tr=1$, real part $2^{-1}=2\\kp+1=-\\pi$; (iii) the scale-shift has the modes as eigenvectors in both character readings, eigenphases $2\\pi j/(p-1)$ independent of $v$; (iv) the Jacobi matrix is real-symmetric with the secular roots as spectrum. No off-line mode; the same on every shell, the Carrier included; true of every vector, the Davenport--Heilbronn vector included. Any intertwiner between (iii) and (iv) is a relabelling of two finite real spectra (Z3).",
      "tag": "T",
-     "source": "Thm.~\\ref{thm:hp}; \\src{A1}--\\src{A9}",
+     "source": "Thm.~\\ref{thm:hp}; \\src{A1}--\\src{A9}, \\src{A7b}",
      "key": "p0043"
     },
     {
      "label": "E13",
      "predicate": "Shell-basis completeness is not a clause of E12: the $p-1$ complex characters are an orthonormal basis of $\\mathbb C^{\\Fx{p}}$ (finite Parseval), true of every vector, the trivial character carrying the mean $\\psi(p-1)/(p-1)$; the $\\F_p$-valued power characters are never orthonormal and do not expand $v$; completeness for the zero set of $\\zeta$ is D5, a different clause.",
      "tag": "D",
-     "source": "Rem.~\\ref{rem:parseval}; \\src{A7}",
+     "source": "Rem.~\\ref{rem:parseval}; \\src{A7b}",
      "key": "p0044"
     },
     {
      "label": "E14",
-     "predicate": "The $\\chi$-twist: for a real character the twisted vector is self-conjugate and the construction goes through verbatim; for a primitive complex character the half-phase of the root number and the matching $\\Gamma$-factor restore the self-dual structure --- stated, not computed (O4); the generalized hypothesis is the faithfulness of the twisted de-framing, on the same footing as D5.",
+     "predicate": "The $\\chi$-twist: for a real character the twisted vector is self-conjugate and the construction goes through verbatim; for a primitive complex character the half-phase of the root number and the matching $\\Gamma$-factor restore the self-dual structure --- computed and validated for the conductor-$5$ character (E16); the generalized hypothesis is the faithfulness of the twisted de-framing, on the same footing as D5.",
      "tag": "T",
      "source": "Prop.~\\ref{prop:chi}; \\src{C7a}",
      "key": "p0045"
@@ -353,6 +367,13 @@
      "tag": "T",
      "source": "Obs.~\\ref{obs:chi}; \\src{C7a}, \\src{C7b}",
      "key": "p0046"
+    },
+    {
+     "label": "E16",
+     "predicate": "Twisted-comb validation, the complex character of conductor $5$ ($\\chi(2)=i$, odd): the half-phase $W(\\chi)^{-1/2}\\Lambda(\\half+it,\\chi)$ is real on the line to $10^{-20}$; the twisted count $\\tfrac1\\pi[\\theta_\\chi(T)-\\theta_\\chi(0)]+\\tfrac1\\pi\\Im[\\Sigma^{\\chi}_w(\\half+iT)-\\Sigma^{\\chi}_w(\\half)]$ reads the exact integers $1,\\dots,14$ midway between the fifteen zeros below $40$; the twisted secular condition with the $N=10^{6}$ comb, brackets from the count alone, $L$ never evaluated, recovers the fifteen heights to mean error $8.0\\times10^{-5}$ (max $2.0\\times10^{-4}$) [approx]. Closes O4.",
+     "tag": "T",
+     "source": "Prop.~\\ref{prop:chi}, Obs.~\\ref{obs:chi}; \\src{C7c}",
+     "key": "p0072"
     }
    ]
   },
@@ -362,14 +383,14 @@
    "rows": [
     {
      "label": "F1",
-     "predicate": "\\textbf{Turing's count on the shell.} $C\\le N_{\\mathrm{crit}}\\le\\mathcal N$ (A4); the hypothesis below $T$ is $\\mathcal N(T)=N_{\\mathrm{crit}}(T)$, $C=\\mathcal N$ the practical certificate. The shell reads $\\mathcal N$ from the comb count (rounding valid only under a bound $\\varepsilon_N<\\half$: for the raw count none is depth-independent, F8; for the corrected count the bound is the zero side's, not supplied, O2; uncertified) and $C$ from the sign changes of the horizon main sum (certified only with an explicit remainder bound, not supplied; uncertified), inputs frame-exact by B2 and D1 --- the main sum to $\\sqrt{T/2\\pi}$, the comb to the window's depth $\\lfloor\\sqrt p\\rfloor$, which rounds the count at the shell's own ceiling ($p=95$, $1003$, $4775$; within $0.10$, $0.21$, $0.12$ midway between zeros [approx]), the exhibited precision using depths read on $p\\ge N^{2}$ (E7); the secular condition reads $\\mathcal N$, not $N_{\\mathrm{crit}}$. An off-line zero is a \\emph{phantom}: $\\mathcal N-N_{\\mathrm{crit}}>0$.",
+     "predicate": "\\textbf{Turing's count on the shell.} $C\\le N_{\\mathrm{crit}}\\le\\mathcal N$ (A4); the hypothesis below $T$ is $\\mathcal N(T)=N_{\\mathrm{crit}}(T)$, $C=\\mathcal N$ the practical certificate. The shell reads $\\mathcal N$ from the comb count (rounding valid only under a bound $\\varepsilon_N<\\half$: for the raw count none is depth-independent, F8; for the corrected count the depth-uniform bound is the value of Z4; per height the certificate is the classical one, A6 with A8) and $C$ from the sign changes of the horizon main sum (certified with the explicit remainder bound of A8, imported; the shell adds no certificate), inputs frame-exact by B2 and D1 --- the main sum to $\\sqrt{T/2\\pi}$, the comb to the window's depth $\\lfloor\\sqrt p\\rfloor$, which rounds the count at the shell's own ceiling on the sampled midpoints ($p=97$, $1009$, $4801$; within $0.08$, $0.11$, $0.16$ [approx]), the exhibited precision using depths read on $p\\ge N^{2}$ (E7); the secular condition reads $\\mathcal N$, not $N_{\\mathrm{crit}}$. An off-line zero is a \\emph{phantom}: $\\mathcal N-N_{\\mathrm{crit}}>0$.",
      "tag": "T",
      "source": "Thm.~\\ref{thm:turing}; \\src{D1}, \\src{D4}",
      "key": "p0047"
     },
     {
      "label": "F2",
-     "predicate": "\\textbf{The classical hypothesis is a screen value.} Under the holographic reading the identification is exhaustive: the hypothesis has no content beyond $\\mathcal N=N_{\\mathrm{crit}}$ at every height the Carrier's cycle carries. Per height the value is decidable, verified to $3\\times10^{12}$ (A6), the shell contributing consistency and no new certificate; above the coherence horizon read as a height it is $\\Omega$-hard (Z1); whether a bounded-height certificate exists the shell does not decide (O6), E12 holding for the Davenport--Heilbronn vector and so not using the Euler product.",
+     "predicate": "\\textbf{The classical hypothesis is a screen value.} Under the holographic reading the identification is exhaustive: the hypothesis has no content beyond $\\mathcal N=N_{\\mathrm{crit}}$ at every height the Carrier's cycle carries. Per height the value is decidable, verified to $3\\times10^{12}$ (A6), the shell contributing consistency and no new certificate; above the coherence horizon read as a height it is $\\Omega$-hard (Z1); a bounded-height certificate for the uniform value would decide inside an embedded window what the totality alone decides (Z1), E12 holding for the Davenport--Heilbronn vector and so not using the Euler product.",
      "tag": "T",
      "source": "Cor.~\\ref{cor:conditional}",
      "key": "p0048"
@@ -424,21 +445,21 @@
    "rows": [
     {
      "label": "V1",
-     "predicate": "Block A of the package: $56$ integer-exact checks of B1--B2, B4--B11, E1, E12--E13 on the shells $p=13,17,29,37,41$ in full ($p=173$ for the zero-slot, the critical line and the constants; $1009$ and $10009$ for the coincidence), including both character readings of E12(iii) and $\\Tr S^{r}=(p-1)\\,[(p-1)\\mid r]$.",
+     "predicate": "Block A of the package: $61$ checks of B1--B2, B4--B11, E1, E12--E13 on the shells $p=13,17,29,37,41$ in full ($p=173$ for the zero-slot, the critical line and the constants; $1009$ and $10009$ for the coincidence) --- $55$ integer-exact, including the $\\F_p$ reading of E12(iii), $\\Tr S^{r}=(p-1)\\,[(p-1)\\mid r]$ and the Ramanujan sums in $\\F_q$; $6$ [approx], the complex-character reading and the mean on the five shells and the floating-point Jacobi check.",
      "tag": "T",
      "source": "\\src{a\\_shell}",
      "key": "p0054"
     },
     {
      "label": "V2",
-     "predicate": "Blocks B--C: the dictionary (D2--D4), the prime side (E5--E6, E8--E10, the raw and the pole-corrected secular condition to depth $10^{8}$), the target statistics (E3, E11) and the twist (E15), $15$ checks against the stated figures to stated tolerances; the constructions import only the sieved comb and $\\log\\Gamma$, so ``$\\zeta$ never evaluated'' is enforced by the code's import structure.",
+     "predicate": "Blocks B--C: the dictionary (D2--D4), the prime side (E5--E6, E8--E10, the raw and the pole-corrected secular condition to depth $10^{8}$), the target statistics (E3, E11) and the twist (E15--E16), $16$ checks against the stated figures to stated tolerances; the constructions import only the sieved comb and $\\log\\Gamma$, so ``$\\zeta$ never evaluated'' is enforced by the code's import structure, and the secular roots are bracketed by the count itself.",
      "tag": "T",
      "source": "\\src{b\\_deframe}, \\src{c\\_*}",
      "key": "p0055"
     },
     {
      "label": "V3",
-     "predicate": "Block D: F1 at $T=15,30,50.3$ and on the shells $p=95,1003,4775$ at their own ceilings, the controls F3--F5, and the smoothed explicit formula F8 (the corrected $\\zeta$ and $f$ counts, the real part against $\\log|\\zeta|$), $10$ checks; the strip count is a winding-number computation of $\\Lambda_f$ and $\\Lambda(s,\\chi)$ around $29$ band rectangles $[-\\tfrac32,\\tfrac52]\\times[t_k,t_{k+1}]$, the off-line pair validated by $|f(s)|<10^{-6}$; the $\\zeta$ comb sieved to $8\\times10^{7}$.",
+     "predicate": "Block D: F1 at $T=15,30,50.3$ and on the shells $p=97,1009,4801$ at their own ceilings, the controls F3--F5, and the smoothed explicit formula F8 (the corrected $\\zeta$ and $f$ counts, the real part against $\\log|\\zeta|$), $10$ checks; the strip count is a winding-number computation of $\\Lambda_f$ and $\\Lambda(s,\\chi)$ around $29$ band rectangles $[-\\tfrac32,\\tfrac52]\\times[t_k,t_{k+1}]$, the off-line pair validated by $|f(s)|<10^{-6}$; the $\\zeta$ comb sieved to $8\\times10^{7}$.",
      "tag": "T",
      "source": "\\src{d\\_classification}",
      "key": "p0056"
@@ -452,7 +473,7 @@
     },
     {
      "label": "V5",
-     "predicate": "The driver: seven block scripts, one notebook run in the browser, $88$ checks ($58$ exact, $27$ [approx], $3$ [chart]), every numerical figure of the paper regenerated, a record per check written to \\src{results.json} keyed to these rows; the corpus witness of E12 is \\src{check\\_rh\\_shell}.",
+     "predicate": "The driver: seven block scripts, one notebook run in the browser, $94$ checks ($57$ exact, $34$ [approx], $3$ [chart]), every numerical figure of the paper regenerated, a record per check written to \\src{results.json} keyed to these rows; the corpus witness of E12 is \\src{check\\_rh\\_shell}.",
      "tag": "T",
      "source": "\\src{run\\_all}; the notebook",
      "key": "p0058"
@@ -465,9 +486,9 @@
    "rows": [
     {
      "label": "Z1",
-     "predicate": "The uniform value $\\mathcal N=N_{\\mathrm{crit}}$ over the Carrier's cycle, and the value at each height in $(2\\pi\\sqrt\\Omega,\\,2\\pi\\Omega]$: decided by the shell whose scale is that height, which is no embedded Subject ($p^{2}<\\Omega$ fails), in no embedded reader's window, host-decided on a hosted Carrier. The tag records where the value is read, not whether a proof exists (O6).",
+     "predicate": "The uniform value $\\mathcal N=N_{\\mathrm{crit}}$ over the Carrier's cycle, and the value at each height in $(2\\pi\\sqrt\\Omega,\\,2\\pi\\Omega]$: decided by the shell whose scale is that height, which is no embedded Subject ($p^{2}<\\Omega$ fails), in no embedded reader's window, host-decided on a hosted Carrier. The tag records where the value is read; a bounded-height certificate for the uniform value --- a proof of finite description --- would decide inside an embedded window what the totality alone decides, so the classification places none within an embedded reader's reach, and the positivity route (F6, \\S\\ref{sec:promotion}) names the host's uniform reading.",
      "tag": "Ω",
-     "source": "Cor.~\\ref{cor:conditional}, \\S\\ref{sub:hardcore}",
+     "source": "Cor.~\\ref{cor:conditional}, \\S\\ref{sub:hardcore}, \\S\\ref{sec:promotion}",
      "key": "p0059"
     },
     {
@@ -476,61 +497,27 @@
      "tag": "Ω",
      "source": "\\S\\ref{sub:constants}",
      "key": "p0060"
-    }
-   ]
-  },
-  {
-   "letter": "O",
-   "title": "The open front",
-   "rows": [
-    {
-     "label": "O1",
-     "predicate": "The intertwiner between the shell permutation of E12(iii) and the Jacobi matrix of E12(iv), equivalently the identification of $\\sigma(\\mathbf J_N)$ with a discretisation of $\\Hh$: the target correspondence of E2, and the prime-dependent trace functional whose trace formula would be the explicit formula.",
-     "tag": "O",
-     "source": "Def.~\\ref{cor:specmap}, \\S\\ref{subsec:status}",
-     "key": "p0061"
     },
     {
-     "label": "O2",
-     "predicate": "A rounding bound $|\\widehat{\\mathcal N}_N(T)-\\mathcal N(T)|\\le\\varepsilon_N(T)<\\half$ for the pole-corrected comb count, evaluation error included --- the zero side's smoothing error; for the raw count F8 shows that none is depth-independent.",
-     "tag": "O",
-     "source": "Thm.~\\ref{thm:turing}",
-     "key": "p0062"
+     "label": "Z3",
+     "predicate": "The target correspondence (E2): a self-adjoint realisation with the heights as spectrum exists at every shell (E9, E12(iv)), and any unitary between the shell's scale shift, with its eigenphases fixed by the cycle (E12(iii)), and the Jacobi matrix is a relabelling of two finite real spectra; what the identification of the Jacobi spectrum with a discretisation of $\\Hh$ asserts is that the exhibited heights are the zeros --- the faithfulness of D5, the value of Z1 in its uniform form.",
+     "tag": "Ω",
+     "source": "Def.~\\ref{cor:specmap}, Thm.~\\ref{thm:hp}, \\S\\ref{subsec:status}",
+     "key": "p0073"
     },
     {
-     "label": "O3",
-     "predicate": "An explicit bound $B_M(t)$ on the total error of the horizon main sum, certifying a sign change where $|Z_M(t)|>B_M(t)$; D3 gives the scale of the error, not the bound.",
-     "tag": "O",
-     "source": "Thm.~\\ref{thm:turing}",
-     "key": "p0063"
+     "label": "Z4",
+     "predicate": "The depth-uniform bound for the comb count: the corrected count's deviation from $\\mathcal N(T)$ is $\\tfrac1\\pi\\Im[J_N-A(s)-\\tfrac12G(s)]+\\tfrac1\\pi\\Im[A(s)-\\tfrac12G(s)]$, the first $O(L^{-1}\\log L)$ (F8), the second the principal value of the boundary function $G$ over every height of the line --- a functional of the totality's heights, read by no embedded Subject; per height the count is certified classically (A6, A8).",
+     "tag": "Ω",
+     "source": "Prop.~\\ref{prop:combformula}, Rem.~\\ref{rem:combsettle}, Thm.~\\ref{thm:turing}",
+     "key": "p0074"
     },
     {
-     "label": "O4",
-     "predicate": "The complex-character twist: the root-number half-phase and the matching $\\Gamma$-factor of E14 computed and validated as E15 validates the real case.",
-     "tag": "O",
-     "source": "Prop.~\\ref{prop:chi}",
-     "key": "p0064"
-    },
-    {
-     "label": "O6",
-     "predicate": "A bounded-height certificate for the uniform value: Weil positivity in a finite form --- an explicit test basis, the matrix of the explicit-formula functional on it, and the relation between the basis support and the height range certified; a finite compression certifies only itself until tail bounds extend it.",
-     "tag": "O",
-     "source": "\\S\\ref{sec:promotion}",
-     "key": "p0066"
-    },
-    {
-     "label": "O7",
-     "predicate": "The collision-robust large sieve: $M(p)=\\max_{j\\ne0}|\\langle\\mathbf 1_\\Pi,\\chi_j\\rangle|=O(p^{-1/2})$ up to slowly growing factors, the maximum brought to the Parseval floor of C5; of GRH-strength difficulty.",
-     "tag": "O",
-     "source": "\\S\\ref{sec:emergence}",
-     "key": "p0067"
-    },
-    {
-     "label": "O8",
-     "predicate": "A unit story for the cell normalisation $1_\\Omega^{2}\\sim2\\pi$ of E3, obtained from the shell constants rather than imposed; an open item of the corpus, recorded here where it is used.",
-     "tag": "O",
-     "source": "Rem.~\\ref{prop:cutoff}",
-     "key": "p0068"
+     "label": "Z5",
+     "predicate": "The uniform flatness bound over the shells, $M(p)=O(p^{-1/2})$ up to slowly growing factors for every Subject (C5--C6): the square-root cancellation the generalized hypothesis delivers for character sums over the primes, of its strength (\\S\\ref{sec:emergence}) --- the twisted uniform value (E14, F2), read by no embedded Subject; each shell's maximum is a finite computation (C6).",
+     "tag": "Ω",
+     "source": "\\S\\ref{sec:emergence}, Obs.~\\ref{obs:flat}",
+     "key": "p0075"
     }
    ]
   }
@@ -549,17 +536,12 @@
   {
    "tag": "T",
    "name": "Theorem",
-   "text": "Derived within this paper from the rows above it, or observed numerically and machine-verified by the named witness to the stated tolerance."
+   "text": "Derived within this paper from the rows above it, or an exact instance check in integer arithmetic; a row whose content is a numerical observation carries its figures as declared [approx]/[chart] and is a theorem in the weaker sense that the named witness reproduces them to the stated tolerance on the tested instances --- the closing paragraph lists the two grades separately."
   },
   {
    "tag": "Ω",
    "name": "$\\Omega$-hard",
    "text": "A value decided by the totality, in no embedded reader's window; a demarcation of where the value is read, not an open item."
-  },
-  {
-   "tag": "O",
-   "name": "Open",
-   "text": "Genuinely unresolved."
   }
  ],
  "master": {

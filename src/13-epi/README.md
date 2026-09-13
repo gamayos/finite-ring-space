@@ -1,23 +1,53 @@
-# 13-epi validation suite
+# 13-epi validation package
 
-Float-free discipline (paper-ready protocol, Step 8): an exact (T) claim is checked in integer or rational arithmetic; a continuum object may appear only as the declared object of study (the IEEE-754 readout itself) or as an [approx]-tagged statistical reading.
+Validation package of *Finite Field Realisation of the Classical Constants π and e* (Akhtman, 2026), `13-epi` of the
+FRC corpus. Five blocks, 38 family checks over ≈ 780 exact micro-checks, driven by `13-epi-main.ipynb` (Google Colab,
+*Runtime → Run all*, ≈ 45 s) or by `run_all.py`. Integers, residues and exact rationals throughout: the external
+targets e and π enter only as certified rational brackets of the paper's own chains (the subfactorial chain, the
+Machin chain), and the binary64 constants only as the objects of study of the readout theorems, compared exactly
+with correctly rounded framed rationals. No floating-point reference value of either constant decides a check.
 
-| script | class | status | claims backed |
+Every family check is one labelled claim of a script and names the row(s) of the paper's predicate ledger it
+witnesses (the paper's Section "Machine verification and predicate ledger", rows cited as `13:XN`; public copy
+`docs/13-epi/13-epi-ledger.html`); the ledger's source column cites the check ids in return. Master-ledger rows of
+the corpus reached through the paper rows: `00:B8`, `00:B9`, `00:C13`, `00:C14`, `00:B1`, and the open rows
+`00:T7`, `00:T8`, `00:T9`.
+
+[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/gamayos/finite-ring-space/blob/main/src/13-epi/13-epi-main.ipynb)
+
+## In-tree
+
+| script | families | micro-checks | claims backed |
 |---|---|---|---|
-| `validate_towers.py` | EXACT (int + Fraction only; brackets self-certified) | **63/63 PASS** (run 14 Jul 2026) | Prop. tower-e, Prop. tower-pi, Cayley identities (Def. cayley), orientation rule (Rem. orient), two-level horizon block (§10): pinning relation 2·pi_A+1 ≡ 0 and the H(pi_A)=2 pin on every shell; the full-population height run H(x)=min_{a≥1} max(a,\|⟨ax⟩\|), smallest-primitive-root frame, minimum over the two chiralities, for all 500 shells p ≡ 1 (mod 4), p ≤ 8009 — horizon band H ≤ 2√p, exactly 68 shells with H ≤ 10, height-2 set exactly {13, 1933, 4177, 5857} (median H/√p = 0.525, diagnostic); wrap-free accessible window |
-| `validate_e.py` | MIXED | full run recorded in `results_e.txt` (re-run 13 Jul 2026, byte-identical to the source run, zero failures) | Thms enclosure-e, readout-e, wall-e, antiperiod; Prop. duals; Exp. blind; Prop. calib; Exp. null |
-| `validate_pi.py` | MIXED | full run recorded in `results_pi.txt` (run 13 Jul 2026, zero failures) | Thms enclosure, readout-pi, window, halfwall, secondorder; Prop. lucas; the arcsin first-order vanishing scan (Thm vanish), 428 odd primes 5 ≤ p < 3000 with T(3)=1 the recorded sole exception; the p = 13 showcase residue line w_1..w_6 = 4, 5, 10, 9, 6, 11 |
-| `validate_pi2.py` | EXACT (int + Fraction only) | full run recorded in `results_pi2.txt` (run 13 Jul 2026, zero failures) | Thm quarter; Thm vanish proof ingredients (A+B=2L with the formal-antiderivative bookkeeping, m ≤ 60; Lerch to p < 500; binomial transfer); Thm super: the mod-p² supercongruence for 5 ≤ p < 300, the third-order Bernoulli law σ_p/p² ≡ (−1)^((p+1)/2)·B_(p−3)/36 (mod p) for all 60 primes 5 ≤ p < 300 with B_(p−3) from the exact Bernoulli recurrence, the blind-range Euler congruence for 5 ≤ p < 80 |
-| `kurepa_wall.c` | EXACT (`__int128` modular) | 22,043 primes < 2.5e5, zero failures (source run) | Thm wall-e (D-form + non-vanishing) |
+| `validate_e.py` | e.R1–R4, W1–W4, S1, A1, N1 | 61 | the derangement chain: enclosure with the sharper constant 8 (n ≤ 60), the binary64 readout ε_18 with ε_17 failing, the 100-digit determination at n = 70, the feasibility counts 11/18/70 (13:D3–D5); the wall of e on seven shells — Wilson reflection, !(p−1) ≡ K(p), K(p) ≢ 0, antiperiodicity, the series duals with the broken group law, the p = 13 residue line 2, 3, 7, 11, 1, 6, blind, 2, 8, 10, 9 (13:F1–F4, F6); the blind-set distribution over 501 primes (13:F5); the radian-calibration scan over the 39 175 shells p ≡ 1 (mod 4) below 10⁶ — 260 shells within 0.01, the best six — decided with π as a Machin bracket (13:H4); the null experiment, 94 of 210 (13:H5) |
+| `validate_pi.py` | pi.R1–R4, W1–W2, S1–S2, L1, V1 | 94 | the Wallis enclosure to n = 300 with the width identity, the p = 13 line 4, 5, 10, 9, 6, 11, the Machin readout M_10 with the bound and the 100-digit determination at N = 71, the Gregory brackets, the arcsin tail bound (13:E2–E4, G8); the legibility window and the −2 terminus on seven shells and for p ≡ 3 (mod 4) (13:G1, G2); Morley, the second-order formula, q_p(4) ≡ 2q_p(2), the π-Wieferich set {5, 45827} below 10⁶ (13:G4); the Lucas revivals with [v_p] ≡ 8 (13:G5); the first-order arcsin vanishing on 428 primes with σ_3 = 1 (13:G6) |
+| `validate_pi2.py` | pi2.A1–A2, B1–B2, C1–C4, D1–D2 | 551 | Gauss's congruence and the two-squares invariant on 211 primes (13:G3); Sun's supercongruence and the third-order Bernoulli law on sixty primes, the blind-range Euler congruence (13:G7); the proof ingredients of the first-order vanishing — binomial transfer, Lerch, the Wallis evaluation, A + B = 2L by formal-antiderivative bookkeeping (13:G6); the first revival to p² (13:G5) |
+| `validate_towers.py` | tow.E, P, C, O, H, W | 72 | the fixed-shell towers of e and π on p = 13, 29 (13:F7, G9, B3); the Cayley composition law exhaustively (13:C3); orientation transport over the units (13:B2); the height run over all 500 shells p ≤ 8009 — the calibration pin at height 2, the band H ≤ 2√p, 68 small-height shells, the height-2 set {13, 1933, 4177, 5857} (13:J2, J3); the wrap-free window, the pinning relation, the half-turn tautology, the quarter-turn pin (13:J1, J2, G2, H2, I4) |
+| `kurepa_wall.c` (via `kurepa_wall.py`) | kur.K1 | 3 | !(p−1) ≡ K(p) (mod p) and K(p) ≢ 0 (mod p) for all 22 043 odd primes p < 2.5·10⁵, one O(p) pass per prime in 128-bit modular arithmetic; compiled on the fly (a pure-Python pass to 2·10⁴ runs without a compiler and says so) (13:F2, O1) |
+| `epicommon.py` | — | — | the registry: micro-check collector, family aggregation, `LEDGER` (check → rows), `LABELS`, `results.json` |
 
-MIXED classification, catalogued:
-- `validate_e.py`: (a) the binary64 constant obtained as a Python float is the *object of study* of Thm readout-e (the readout), compared exactly against rationals — sanctioned; (b) a 500-digit Decimal reference for e is a controlled bounded-error reference — sanctioned, queued for re-basing on the chain's own certified brackets at the promotion pass; (c) the calibration scan and null-experiment statistics are [approx] by declaration in-paper.
-- `validate_pi.py`: same pattern (binary64 readout as object; high-precision reference for the enclosure comparisons; Wieferich search and quotient moments are exact congruence arithmetic).
+Run: `python3 run_all.py` (≈ 40 s; 30 s of it the C pass). Each block also runs alone (`python3 validate_pi.py`).
+Rebuild the notebook: `python3 make_notebook.py`. `results_e.txt`, `results_pi.txt`, `results_pi2.txt` are the
+recorded outputs of the memorandum runs (July 2026) and stay as the source record; the package run writes
+`results.json`.
 
-Revision history:
-- Round-01 (13 Jul 2026, `reviews/round-01/disposition.md`): `validate_pi.py` gained the p = 13 showcase residue-line check (erratum E1 was invisible to the suite) and the first-order-vanishing pass criterion now excludes the documented p = 3 exception instead of counting it as a failure; `validate_pi2.py` extended the mod-p² range 240 → 300, replaced the third-order scan with the Bernoulli-law check (exact Bernoulli recurrence), and extended the key-identity check to m ≤ 60 via the finite formal-antiderivative route; all three Python scripts now write their results files next to the script.
-- Round-02 (14 Jul 2026, `reviews/round-02/disposition.md`): `validate_towers.py` height block extended from an eleven-shell single-chirality sample to the full 500-shell population with the small-height count and the exceptional set asserted exactly; `validate_e.py` output unified to `results_e.txt`.
+## Provenance
 
-Provenance: `validate_e.py`, `validate_pi.py`, `validate_pi2.py`, `kurepa_wall.c` are the scripts of the source memoranda (`reports/epi-report-2/`, `reports/epi-report-3/`), renamed to the canonical suite form and amended per the revision history above; their recorded outputs ship alongside. `validate_towers.py` is new with the manuscript. Full-suite re-run gate before snapshot promotion.
+`validate_e.py`, `validate_pi.py`, `validate_pi2.py` are the scripts of the source memoranda, renamed to the suite
+form at the manuscript (round-01 and round-02 amendments of July 2026: the p = 13 showcase line, the p = 3 exception,
+the mod-p² range to 300, the Bernoulli law, the formal-antiderivative route to m ≤ 60, the unified results files);
+`validate_towers.py` is new with the manuscript (round-02: the full 500-shell height run); `kurepa_wall.c` is the
+memorandum's C pass. The package form (September 2026) keeps every computation as written and turns the scripts'
+PASS/FAIL lines and the paper's stated figures into registry predicates: a failing micro-check prints and fails its
+family without stopping the run. Two changes of substance: the radian-calibration scan now decides |θ − 1| < 0.01 and
+the ordering of the best shells in exact rational arithmetic with π as a Machin bracket of width < 10⁻¹⁰⁰ (the paper's
+stated protocol; the memorandum used `math.pi`), and the e-side p = 13 residue line, the arcsin tail bound and the
+universality of [v_p] ≡ 8 are added as predicates. The pattern hunts and Gauss sums of `validate_pi.py` and the
+Fermat-quotient moments are printed as the paper's [approx] diagnostics and decide nothing. The MIXED classification
+of the memorandum README therefore no longer applies: every family is EXACT.
 
-Run: `python3 validate_towers.py`; `python3 validate_e.py`; `python3 validate_pi.py`; `python3 validate_pi2.py`; `cc -O2 kurepa_wall.c -o kurepa_wall && ./kurepa_wall`.
+## Predicate ledger
+
+Rows A1–A7 imports; B1, B4, C1, C4, D1, E1, H1, J4 definitions (the two selector normalisations C1, C4 are the
+paper's two D moves); D2, H3 proof-only rows; O1–O3 the open walls (Kurepa's hypothesis, the π-Wieferich infinitude
+and the Bernoulli law beyond p < 300, the e–π dichotomy as theorem). Check → row: `epicommon.LEDGER`.

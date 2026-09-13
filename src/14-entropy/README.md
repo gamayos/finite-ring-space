@@ -1,36 +1,55 @@
-# 14-entropy validation suite
+# 14-entropy validation package
 
-Standalone: both scripts take no input and reference no path outside this
-directory. Exit status 0 iff all asserted checks pass.
+Validation package of *De Sitter Entropy Estimates over Finite Holographic Substrate* (Akhtman & Voether, 2026),
+`14-entr` of the FRC corpus. Three blocks, 19 family checks over 88 micro-checks, driven by `14-entropy-main.ipynb`
+(Google Colab, *Runtime → Run all*, ≈ 15 s) or by `run_all.py`. Python with matplotlib (the two triangle blocks draw
+the paper's figures into `out/`).
 
-Naming note: the registrable *triangle* (renamed from "wedge"; script and
-figure filenames retain the legacy `wedge` name).
+Two kinds of check are kept apart. **EXACT**: integer counts on the instantiated laboratory Carrier Ω = 2 408 561
+(the admissibility congruences, the quarter identity, the octant count) — a pass is a proof on that instance.
+**CHART**: a one-line computation on published [approx] or [ΛCDM] data (the instrument table, the concordances, the
+audit identities, the locus, the confrontations, the triangle's regression), reproduced to the precision the paper
+quotes — a pass says the paper's numeral follows from its named inputs; it is not a measurement of the framework.
+No fitted framework parameter and no random sampling enters anywhere.
 
-## Run
+Every family check is one labelled claim of a script and names the row(s) of the paper's predicate ledger it
+witnesses (the paper's Section "Claim status", subsection "Predicate ledger", 44 rows in blocks A, B, C, X, P, V, Z,
+O, cited as `14:XN`; public copy `docs/14-entropy/14-entropy-ledger.html`); the ledger's source column cites the
+check ids in return. Master-ledger rows of the corpus reached through the paper rows: `00:A9`, `00:L1`–`00:L7`,
+`00:Y6`.
 
-```
-python3 estimate_S.py                                    # channel/audit numerics
-cd ../figures && python3 ../validation/make-wedge-2.py   # triangle figures + asserts
-```
+[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/gamayos/finite-ring-space/blob/main/src/14-entropy/14-entropy-main.ipynb)
 
-Pin the commit (or archival DOI) at submission; the manuscript cites this
-directory as the reproduction of every quantitative claim.
+## In-tree
 
-| script | type | gate | verifies | deps |
-|---|---|---|---|---|
-| `estimate_S.py` | MIXED | asserts + [PASS] lines, exit 0 | **exact faces** (Ω=4S+1; S even; S≡1 mod 3; 4S+1 prime; octant count S/2 integral — integer counts on the toy Carrier Ω=2,408,561); **channel table** with per-row σ (stat+sys) from (Λ, H₀, a₀, t⋆=13.61±0.34 Valcin IV — one vintage everywhere); **concordance** over the 5 evidence rows, gauge 4a excluded (±17% half-range on √S, factor 1.9 on S) and the conventional channels alone (±14%, factor 1.7); **chart identity** S_Λ/S_rate=(H/H₀)²/Ω_Λ verified per row (the cluster split displays the Hubble tension; no framework content); **audit identity** t₀H_Λ=(2/3)artanh√Ω_Λ, π/4 inversion (Ω_Λ=0.6837, 0.19σ); **entailed rate** H₀=67.4±0.7 (independent-error approx ±0.65; full covariance not propagated), pulls Planck 0.1σ / TRGB 1.3σ / Cepheid 4.6σ; **stellar-age confrontation** at the declared vintage (population +0.5σ below the octant bound; prior-dependent inferred age −0.07σ, statistically consistent with the bound); **floor running** (Ciocan: constant floor disfavoured; endpoint 0.5σ; linear rate ~3σ heuristic, 95% bands symmetrised) | python3 stdlib |
-| `make-wedge-2.py` | MIXED | asserts + [PASS] lines, exit 0 | triangle figures (`registrable-wedge-plain-*`, `wall-channels-*`, written to cwd — run from `figures/`): audit identities asserted before drawing (octant/t_P identity; two-cluster display ratio 1.71 on the Valcin-IV rows; r_H split; width identity log₁₀(r_H/ℓ_P)=log₁₀√(S/π) exact; entailed rate 67.4); diagonal regression k=3.032 over the 13 mid-triangle objects (intercept 1.00×10³ at the metre pivot — density units only at k=3), constrained k=3 density ρ̃=0.97×10³ kg/m³, sensitivity k=3.007 (15 incl. wall residents); wall intersections (Compton entry 5.3×10⁻¹² m; over-closure exit 1.8×10⁸ M☉, sensitivity band (1.4–2.8)×10⁸ across the four fit variants); electron/Sgr A* wall residency <0.01 dex | python3 + matplotlib |
+| script | families | micro-checks | claims backed |
+|---|---|---|---|
+| `estimate_S.py` | est.F1, B9, T1, C1, C2, A1, C3, P3, C4, L1, P2, P1 | 52 | the exact faces and the area law on the laboratory Carrier (EXACT; 14:A2, C6, B9); the instrument table from the four public data (14:C1, C4); the two-face concordance ±17 %/factor 1.9 and the conventional ±14 %/1.7 (14:C4); the chart identity behind the two clusters (14:C8); the circularity audit and the octant inversion, 0.19σ (14:C3, C7, X3, X6); the channel-1 consistency 67.4 (14:C8); the age–rate locus 0.950 read on the stellar age, H₀ = 68.2 ± 1.7 with its three confrontations (14:P3); the one-face concordance ±7 %/±4 % and the r_H^Λ column (14:C4, C7); the floor landing 5.46 ± 1.1 (14:X2); the octant bound 13.79 Gyr against the stellar ages (14:C5, P2); the running floor against the intermediate-redshift measurement (14:P1) |
+| `triangle.py` | tri.A, D, W, F | 19 | `make-wedge-2.py` of the paper: the audit identities before drawing (14:C5, C8, C9); the thirteen-object regression k = 3.032, the constrained ρ̃ = 0.97 × 10³ kg/m³, the fifteen-object sensitivity, the over-closure exit 1.8 × 10⁸ M☉ within its band (14:C9, X5); the wall residents, the slope decomposition, the Compton entry (14:C9); the triangle and wall-channels figures written (14:V2) |
+| `capacity.py` | cap.A, K, F | 17 | `make-wedge-3.py` of the paper: the same identities re-asserted (14:C9); the pinned mass axis and the Avogadro landing to 0.0035 dex (14:C10); the capacity-axis figure written (14:V2) |
+| `entcommon.py` | — | — | the registry: micro-check collector, family aggregation, `LEDGER` (check → rows), `LABELS`, kinds, `results.json` |
 
-## Register conventions (in-script)
+Run: `python3 run_all.py`. Each block also runs alone (`python3 triangle.py`). Rebuild the notebook: `python3
+make_notebook.py`. The figures land in `out/` (gitignored): `registrable-wedge{,-plain,-capacity}.{png,pdf}`,
+`wall-channels.{png,pdf}`; the paper's `figures/` carries the dated copies.
 
-| tokens | site | register |
-|---|---|---|
-| `math.pi`, `math.sqrt` | `estimate_S.py`: `S_of`, channel rows, concordance | `[approx]` chart readings of published data; the exact face is the count S=(Ω−1)/4 |
-| `math.atanh`, `math.tanh` | audit + entailed-rate blocks | `[ΛCDM]` rival-chart identities, confrontation only |
-| float means/divisions | cluster display, confrontations | comparison chart on `[approx]`/`[ΛCDM]` row values |
+## Provenance
 
-## Retired
+`estimate_S.py` is the paper's script as written (round-01/02 amendments of July 2026; the T19 revision of
+2026-09-13 replacing the "entailed rate" block by the channel-1 consistency, the age–rate locus and the one-face
+concordance), wrapped in a `run()` whose asserts and [PASS] lines report to the registry; the instrument table, the
+r_H^Λ column, the audit numerals and the confrontations are additionally asserted at the paper's quoted precision.
+`triangle.py` and `capacity.py` are `make-wedge-2.py` and `make-wedge-3.py` of the paper (the capacity-ruler variant
+of 2026-08-15/26), renamed for import, their asserts routed to the registry and their figures written to `out/`; the
+wall-channels annotation reads "channel-1 rate 67.4" (the T19 wording) where the July figure read "entailed rate
+H₀ = 67.4 ± 0.7". The public copy had carried the pre-T19 `estimate_S.py` and `make-wedge-2.py` only; both are in
+`_to_delete/14-entropy-superseded/`. Not part of the run: the concordance figure (no in-tree generator) and the
+exploratory simplex/shell scripts of August 2026 in the corpus tree (`check_simplex`, `check_shell`,
+`check_particles`, `make-simplex`, `make-shell`), which back the structural note of the paper's Section 4 and are
+not cited by it.
 
-`s-estimate.py`, `make-wedge.py`, `make-wedge-1.py` (superseded generations,
-in `_to_delete/`). The concordance figure (`concordance-*.png`) currently has
-no in-tree generator — regenerate or recreate the generator before submission.
+## Predicate ledger
+
+Rows A1–A8 imports; B1, B3, B4, B6–B8 realisations, B2, B5 definitions, B9 composite; C1–C10 derived; X1–X8 the
+explicability dividends; P1–P4 the predictions with their falsifiers; V1–V3 the verification; Z1 the Ω-hard
+numeral; O1 the open lock conjecture. Check → row: `entcommon.LEDGER`.
