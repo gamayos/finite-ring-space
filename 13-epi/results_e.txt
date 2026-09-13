@@ -1,0 +1,55 @@
+========================================================================
+[1] METRIC EMERGENCE: the chain eps_n = n!/D_n
+========================================================================
+(a) |n!/D_n - e| < 8/(n+1)! for n=2..60 : PASS
+    alternating enclosure eps_even < e < eps_odd : PASS
+(b) minimal n with float(n!/D_n) == IEEE-double(e): n = 18
+    n!/D_n at n=18: 6402373705728000/2355301661033953
+    |eps_17 - e| = 1.096e-15,  half-ulp(e) = 2.220e-16
+(c) 100-digit precision reached at n = 70; leading agreement with e: 101 chars
+    e            = 2.7182818284590452353602874713526624977572470936999595749669676277240766303535475945713821785251664274274
+    70!/D_70     = 2.7182818284590452353602874713526624977572470936999595749669676277240766303535475945713821785251664274188
+(d) precision-cost comparison (steps n needed for 2^-k):
+    k= 24:  derangement chain n =  11   |   (1+1/n)^n chain n ~ 2.28e+07
+    k= 53:  derangement chain n =  18   |   (1+1/n)^n chain n ~ 1.22e+16
+    k=333:  derangement chain n =  70   |   (1+1/n)^n chain n ~ 2.38e+100
+
+========================================================================
+[2] FRAME-INTERNAL ARITHMETIC (per-prime structure)
+========================================================================
+     p | D_(p-1)==!p | antiperiod D_(n+p)==-D_n | wall residue k(e)= -(!p)^-1 | blind set Z0(p)
+     5 |   PASS      |          PASS           |           1                | [1] (|Z0|=1)
+    13 |   PASS      |          PASS           |           9                | [1, 8] (|Z0|=2)
+    29 |   PASS      |          PASS           |          17                | [1] (|Z0|=1)
+   101 |   PASS      |          PASS           |          31                | [1, 23] (|Z0|=2)
+   257 |   PASS      |          PASS           |         250                | [1] (|Z0|=1)
+  1009 |   PASS      |          PASS           |         248                | [1] (|Z0|=1)
+ 10007 |   PASS      |          PASS           |        2627                | [1, 5767] (|Z0|=2)
+
+Series duals at the wall:  S- := sum (-1)^k/k! == -!p ;  S+ := sum 1/k! == -A(p)
+  duals verified for p in [7,13,29,101,257,1009]: PASS
+  group-law breaking at the wall: (!p * A(p)) mod p = [(7, 3), (13, 0), (29, 21), (101, 28), (257, 132), (1009, 258)]  (would be == 1 if exp(1)exp(-1)=1 survived)
+
+Blind-scale statistics over 501 primes in (1000,5000):
+  |Z0(p)| distribution: {1: 169, 2: 209, 3: 92, 4: 22, 5: 6, 6: 2, 7: 1},  mean = 1.996
+  (n=1 is always blind since D_1=0; excess over 1 has mean 0.996, Poisson(1) predicts 1.000)
+
+========================================================================
+[3] ANGULAR UNIT e_t = g^{i_t}: radian calibration over p < 10^6
+========================================================================
+primes p==1 (mod 4) below 10^6: 39175
+frames with |theta_t - 1 rad| < 0.01: 260  (equidistribution predicts ~ 249 over both orientations)
+best radian-calibrated frames (p, i_t-label r, theta_t, |theta_t - 1|):
+  p= 778933  r= 123966  theta=0.999960651  delta=3.935e-05
+  p= 497773  r=  79227  theta=1.000052077  delta=5.208e-05
+  p= 962237  r= 153133  theta=0.999924151  delta=7.585e-05
+  p= 261017  r=  41537  theta=0.999879962  delta=1.200e-04
+  p= 345181  r=  54945  theta=1.000143742  delta=1.437e-04
+  p= 891997  r= 141986  theta=1.000143890  delta=1.439e-04
+
+========================================================================
+[4] NULL EXPERIMENT: pointwise g^{i_t} == k(e)-wall-residue?
+========================================================================
+p==1(4), 5<p<3000: some frame g with g^(i_t) == -(!p)^(-1) exists for 94/210 primes (44.8%)
+Pearson correlation between angular address of i_t and of the wall residue: -0.0996
+=> solvability is gcd-coincidence noise, no invariant identification; the two objects are distinct projections.

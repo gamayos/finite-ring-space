@@ -1,0 +1,527 @@
+[
+ {
+  "id": "A1",
+  "label": "zero-slot on F_13",
+  "ok": true,
+  "detail": "\u03a3x^k=0 for k=1..11; = -1 at k=12",
+  "kind": "EXACT"
+ },
+ {
+  "id": "A6",
+  "label": "Subject constants on F_13: \u03c0=2\u03ba, i=g^-\u03ba, e=g^i (odd rep.)",
+  "ok": true,
+  "detail": "g=2 \u03ba=3 \u03c0=6 i=5 e=6: 2\u03c0\u2261-1, i\u00b2\u2261-1, g^\u03c0\u2261-1, e^(i\u03c0)\u2261-1, 2\u207b\u00b9=2\u03ba+1=-\u03c0",
+  "kind": "EXACT"
+ },
+ {
+  "id": "A4",
+  "label": "finite critical line on F_13: Tr z = 1 \u27fa z = 2\u207b\u00b9 + b\u03b7, |L| = p, N = \u00bc \u2212 \u03bdb\u00b2",
+  "ok": true,
+  "detail": "\u03bd=2, 2\u207b\u00b9=7",
+  "kind": "EXACT"
+ },
+ {
+  "id": "A2",
+  "label": "\u03a6(k) = \u2212g^k bijects the nonterminal slots onto F_13^\u00d7 \\ {\u22121}",
+  "ok": true,
+  "detail": "|image| = 11 = p\u22122",
+  "kind": "EXACT"
+ },
+ {
+  "id": "A3",
+  "label": "F_13\u00b2: |U_(p+1)| = p+1, Frobenius = inversion on it, i Frobenius-fixed with N(i) = \u22121",
+  "ok": true,
+  "detail": "",
+  "kind": "EXACT"
+ },
+ {
+  "id": "A5",
+  "label": "Klein four-group on F_13\u00b2: Fix \u03c6 = F_p, Fix \u03c3 = L_1/2, Fix \u03c1 = {2\u207b\u00b9}, F_p \u2229 L_1/2 = {2\u207b\u00b9}",
+  "ok": true,
+  "detail": "",
+  "kind": "EXACT"
+ },
+ {
+  "id": "A9",
+  "label": "c_13(n) = \u22121 for n \u2260 0",
+  "ok": true,
+  "detail": "",
+  "kind": "EXACT"
+ },
+ {
+  "id": "A7",
+  "label": "F_13: mean v\u0304 = \u03c8(p\u22121)/(p\u22121) on the trivial mode, v \u2212 v\u0304\u00b71 on the nontrivial characters; S x^k = g^k x^k in F_p and S\u03c7_j = \u03c9^j \u03c7_j on \u2113\u00b2; Tr S^r = (p\u22121)[(p\u22121)|r]",
+  "ok": true,
+  "detail": "v\u0304 = 0.852492 (= log 27720/12 at p = 13)",
+  "kind": "EXACT"
+ },
+ {
+  "id": "A10",
+  "label": "Q\u2084 \u2282 both cycles; C_232 \u21a0 C_12 does not exist (12 \u2224 232) on the pair (13, 233)",
+  "ok": true,
+  "detail": "the shells share the core, not a clock",
+  "kind": "EXACT"
+ },
+ {
+  "id": "A1",
+  "label": "zero-slot on F_17",
+  "ok": true,
+  "detail": "\u03a3x^k=0 for k=1..15; = -1 at k=16",
+  "kind": "EXACT"
+ },
+ {
+  "id": "A6",
+  "label": "Subject constants on F_17: \u03c0=2\u03ba, i=g^-\u03ba, e=g^i (odd rep.)",
+  "ok": true,
+  "detail": "g=3 \u03ba=4 \u03c0=8 i=4 e=5: 2\u03c0\u2261-1, i\u00b2\u2261-1, g^\u03c0\u2261-1, e^(i\u03c0)\u2261-1, 2\u207b\u00b9=2\u03ba+1=-\u03c0",
+  "kind": "EXACT"
+ },
+ {
+  "id": "A4",
+  "label": "finite critical line on F_17: Tr z = 1 \u27fa z = 2\u207b\u00b9 + b\u03b7, |L| = p, N = \u00bc \u2212 \u03bdb\u00b2",
+  "ok": true,
+  "detail": "\u03bd=3, 2\u207b\u00b9=9",
+  "kind": "EXACT"
+ },
+ {
+  "id": "A2",
+  "label": "\u03a6(k) = \u2212g^k bijects the nonterminal slots onto F_17^\u00d7 \\ {\u22121}",
+  "ok": true,
+  "detail": "|image| = 15 = p\u22122",
+  "kind": "EXACT"
+ },
+ {
+  "id": "A3",
+  "label": "F_17\u00b2: |U_(p+1)| = p+1, Frobenius = inversion on it, i Frobenius-fixed with N(i) = \u22121",
+  "ok": true,
+  "detail": "",
+  "kind": "EXACT"
+ },
+ {
+  "id": "A5",
+  "label": "Klein four-group on F_17\u00b2: Fix \u03c6 = F_p, Fix \u03c3 = L_1/2, Fix \u03c1 = {2\u207b\u00b9}, F_p \u2229 L_1/2 = {2\u207b\u00b9}",
+  "ok": true,
+  "detail": "",
+  "kind": "EXACT"
+ },
+ {
+  "id": "A9",
+  "label": "c_17(n) = \u22121 for n \u2260 0",
+  "ok": true,
+  "detail": "",
+  "kind": "EXACT"
+ },
+ {
+  "id": "A7",
+  "label": "F_17: mean v\u0304 = \u03c8(p\u22121)/(p\u22121) on the trivial mode, v \u2212 v\u0304\u00b71 on the nontrivial characters; S x^k = g^k x^k in F_p and S\u03c7_j = \u03c9^j \u03c7_j on \u2113\u00b2; Tr S^r = (p\u22121)[(p\u22121)|r]",
+  "ok": true,
+  "detail": "",
+  "kind": "EXACT"
+ },
+ {
+  "id": "A10",
+  "label": "Q\u2084 = {1, i, \u22121, \u2212i} \u2282 F_17^\u00d7, 4 | p\u22121",
+  "ok": true,
+  "detail": "",
+  "kind": "EXACT"
+ },
+ {
+  "id": "A1",
+  "label": "zero-slot on F_29",
+  "ok": true,
+  "detail": "\u03a3x^k=0 for k=1..27; = -1 at k=28",
+  "kind": "EXACT"
+ },
+ {
+  "id": "A6",
+  "label": "Subject constants on F_29: \u03c0=2\u03ba, i=g^-\u03ba, e=g^i (odd rep.)",
+  "ok": true,
+  "detail": "g=2 \u03ba=7 \u03c0=14 i=17 e=21: 2\u03c0\u2261-1, i\u00b2\u2261-1, g^\u03c0\u2261-1, e^(i\u03c0)\u2261-1, 2\u207b\u00b9=2\u03ba+1=-\u03c0",
+  "kind": "EXACT"
+ },
+ {
+  "id": "A4",
+  "label": "finite critical line on F_29: Tr z = 1 \u27fa z = 2\u207b\u00b9 + b\u03b7, |L| = p, N = \u00bc \u2212 \u03bdb\u00b2",
+  "ok": true,
+  "detail": "\u03bd=2, 2\u207b\u00b9=15",
+  "kind": "EXACT"
+ },
+ {
+  "id": "A2",
+  "label": "\u03a6(k) = \u2212g^k bijects the nonterminal slots onto F_29^\u00d7 \\ {\u22121}",
+  "ok": true,
+  "detail": "|image| = 27 = p\u22122",
+  "kind": "EXACT"
+ },
+ {
+  "id": "A3",
+  "label": "F_29\u00b2: |U_(p+1)| = p+1, Frobenius = inversion on it, i Frobenius-fixed with N(i) = \u22121",
+  "ok": true,
+  "detail": "",
+  "kind": "EXACT"
+ },
+ {
+  "id": "A5",
+  "label": "Klein four-group on F_29\u00b2: Fix \u03c6 = F_p, Fix \u03c3 = L_1/2, Fix \u03c1 = {2\u207b\u00b9}, F_p \u2229 L_1/2 = {2\u207b\u00b9}",
+  "ok": true,
+  "detail": "",
+  "kind": "EXACT"
+ },
+ {
+  "id": "A9",
+  "label": "c_29(n) = \u22121 for n \u2260 0",
+  "ok": true,
+  "detail": "",
+  "kind": "EXACT"
+ },
+ {
+  "id": "A7",
+  "label": "F_29: mean v\u0304 = \u03c8(p\u22121)/(p\u22121) on the trivial mode, v \u2212 v\u0304\u00b71 on the nontrivial characters; S x^k = g^k x^k in F_p and S\u03c7_j = \u03c9^j \u03c7_j on \u2113\u00b2; Tr S^r = (p\u22121)[(p\u22121)|r]",
+  "ok": true,
+  "detail": "",
+  "kind": "EXACT"
+ },
+ {
+  "id": "A10",
+  "label": "Q\u2084 = {1, i, \u22121, \u2212i} \u2282 F_29^\u00d7, 4 | p\u22121",
+  "ok": true,
+  "detail": "",
+  "kind": "EXACT"
+ },
+ {
+  "id": "A1",
+  "label": "zero-slot on F_37",
+  "ok": true,
+  "detail": "\u03a3x^k=0 for k=1..35; = -1 at k=36",
+  "kind": "EXACT"
+ },
+ {
+  "id": "A6",
+  "label": "Subject constants on F_37: \u03c0=2\u03ba, i=g^-\u03ba, e=g^i (odd rep.)",
+  "ok": true,
+  "detail": "g=2 \u03ba=9 \u03c0=18 i=6 e=17: 2\u03c0\u2261-1, i\u00b2\u2261-1, g^\u03c0\u2261-1, e^(i\u03c0)\u2261-1, 2\u207b\u00b9=2\u03ba+1=-\u03c0",
+  "kind": "EXACT"
+ },
+ {
+  "id": "A4",
+  "label": "finite critical line on F_37: Tr z = 1 \u27fa z = 2\u207b\u00b9 + b\u03b7, |L| = p, N = \u00bc \u2212 \u03bdb\u00b2",
+  "ok": true,
+  "detail": "\u03bd=2, 2\u207b\u00b9=19",
+  "kind": "EXACT"
+ },
+ {
+  "id": "A2",
+  "label": "\u03a6(k) = \u2212g^k bijects the nonterminal slots onto F_37^\u00d7 \\ {\u22121}",
+  "ok": true,
+  "detail": "|image| = 35 = p\u22122",
+  "kind": "EXACT"
+ },
+ {
+  "id": "A3",
+  "label": "F_37\u00b2: |U_(p+1)| = p+1, Frobenius = inversion on it, i Frobenius-fixed with N(i) = \u22121",
+  "ok": true,
+  "detail": "",
+  "kind": "EXACT"
+ },
+ {
+  "id": "A5",
+  "label": "Klein four-group on F_37\u00b2: Fix \u03c6 = F_p, Fix \u03c3 = L_1/2, Fix \u03c1 = {2\u207b\u00b9}, F_p \u2229 L_1/2 = {2\u207b\u00b9}",
+  "ok": true,
+  "detail": "",
+  "kind": "EXACT"
+ },
+ {
+  "id": "A9",
+  "label": "c_37(n) = \u22121 for n \u2260 0",
+  "ok": true,
+  "detail": "",
+  "kind": "EXACT"
+ },
+ {
+  "id": "A7",
+  "label": "F_37: mean v\u0304 = \u03c8(p\u22121)/(p\u22121) on the trivial mode, v \u2212 v\u0304\u00b71 on the nontrivial characters; S x^k = g^k x^k in F_p and S\u03c7_j = \u03c9^j \u03c7_j on \u2113\u00b2; Tr S^r = (p\u22121)[(p\u22121)|r]",
+  "ok": true,
+  "detail": "",
+  "kind": "EXACT"
+ },
+ {
+  "id": "A10",
+  "label": "Q\u2084 = {1, i, \u22121, \u2212i} \u2282 F_37^\u00d7, 4 | p\u22121",
+  "ok": true,
+  "detail": "",
+  "kind": "EXACT"
+ },
+ {
+  "id": "A1",
+  "label": "zero-slot on F_41",
+  "ok": true,
+  "detail": "\u03a3x^k=0 for k=1..39; = -1 at k=40",
+  "kind": "EXACT"
+ },
+ {
+  "id": "A6",
+  "label": "Subject constants on F_41: \u03c0=2\u03ba, i=g^-\u03ba, e=g^i (odd rep.)",
+  "ok": true,
+  "detail": "g=6 \u03ba=10 \u03c0=20 i=9 e=19: 2\u03c0\u2261-1, i\u00b2\u2261-1, g^\u03c0\u2261-1, e^(i\u03c0)\u2261-1, 2\u207b\u00b9=2\u03ba+1=-\u03c0",
+  "kind": "EXACT"
+ },
+ {
+  "id": "A4",
+  "label": "finite critical line on F_41: Tr z = 1 \u27fa z = 2\u207b\u00b9 + b\u03b7, |L| = p, N = \u00bc \u2212 \u03bdb\u00b2",
+  "ok": true,
+  "detail": "\u03bd=3, 2\u207b\u00b9=21",
+  "kind": "EXACT"
+ },
+ {
+  "id": "A2",
+  "label": "\u03a6(k) = \u2212g^k bijects the nonterminal slots onto F_41^\u00d7 \\ {\u22121}",
+  "ok": true,
+  "detail": "|image| = 39 = p\u22122",
+  "kind": "EXACT"
+ },
+ {
+  "id": "A3",
+  "label": "F_41\u00b2: |U_(p+1)| = p+1, Frobenius = inversion on it, i Frobenius-fixed with N(i) = \u22121",
+  "ok": true,
+  "detail": "",
+  "kind": "EXACT"
+ },
+ {
+  "id": "A5",
+  "label": "Klein four-group on F_41\u00b2: Fix \u03c6 = F_p, Fix \u03c3 = L_1/2, Fix \u03c1 = {2\u207b\u00b9}, F_p \u2229 L_1/2 = {2\u207b\u00b9}",
+  "ok": true,
+  "detail": "",
+  "kind": "EXACT"
+ },
+ {
+  "id": "A9",
+  "label": "c_41(n) = \u22121 for n \u2260 0",
+  "ok": true,
+  "detail": "",
+  "kind": "EXACT"
+ },
+ {
+  "id": "A7",
+  "label": "F_41: mean v\u0304 = \u03c8(p\u22121)/(p\u22121) on the trivial mode, v \u2212 v\u0304\u00b71 on the nontrivial characters; S x^k = g^k x^k in F_p and S\u03c7_j = \u03c9^j \u03c7_j on \u2113\u00b2; Tr S^r = (p\u22121)[(p\u22121)|r]",
+  "ok": true,
+  "detail": "",
+  "kind": "EXACT"
+ },
+ {
+  "id": "A10",
+  "label": "Q\u2084 = {1, i, \u22121, \u2212i} \u2282 F_41^\u00d7, 4 | p\u22121",
+  "ok": true,
+  "detail": "",
+  "kind": "EXACT"
+ },
+ {
+  "id": "A1",
+  "label": "zero-slot on F_173",
+  "ok": true,
+  "detail": "\u03a3x^k=0 for k=1..171; = -1 at k=172",
+  "kind": "EXACT"
+ },
+ {
+  "id": "A6",
+  "label": "Subject constants on F_173: \u03c0=2\u03ba, i=g^-\u03ba, e=g^i (odd rep.)",
+  "ok": true,
+  "detail": "g=2 \u03ba=43 \u03c0=86 i=93 e=45: 2\u03c0\u2261-1, i\u00b2\u2261-1, g^\u03c0\u2261-1, e^(i\u03c0)\u2261-1, 2\u207b\u00b9=2\u03ba+1=-\u03c0",
+  "kind": "EXACT"
+ },
+ {
+  "id": "A4",
+  "label": "finite critical line on F_173: Tr z = 1 \u27fa z = 2\u207b\u00b9 + b\u03b7, |L| = p, N = \u00bc \u2212 \u03bdb\u00b2",
+  "ok": true,
+  "detail": "\u03bd=2, 2\u207b\u00b9=87",
+  "kind": "EXACT"
+ },
+ {
+  "id": "A8",
+  "label": "any real multiset is the spectrum of a real-symmetric tridiagonal matrix (Lanczos on ten heights)",
+  "ok": true,
+  "detail": "max|eig(J) \u2212 height| = 1.8e-14",
+  "kind": "EXACT"
+ },
+ {
+  "id": "B1",
+  "label": "smooth zero density at T = 2\u03c0p is (1/2\u03c0) log p",
+  "ok": true,
+  "detail": "p=50: 0.6226  p=500: 0.9891  p=5000: 1.3556  p=50000: 1.7220",
+  "kind": "[chart]"
+ },
+ {
+  "id": "B3",
+  "label": "de-framing limit (2\u03ba+1)/p \u2192 \u00bd from above",
+  "ok": true,
+  "detail": "13: 0.53846  53: 0.50943  101: 0.50495  409: 0.50122  1009: 0.50050  10009: 0.50005",
+  "kind": "[chart]"
+ },
+ {
+  "id": "B4",
+  "label": "the bare horizon-length main sum has one sign change per zero on [10,55], each within 0.5 of \u03b3_n",
+  "ok": true,
+  "detail": "11 sign changes for 11 zeros; max deviation 0.40 (1\u20132 terms only at these heights)",
+  "kind": "[approx]"
+ },
+ {
+  "id": "B2",
+  "label": "reconstruction residue \u221d p^{-1/4}: fitted log-log slope in [\u22120.40, \u22120.10]",
+  "ok": true,
+  "detail": "slope = -0.242",
+  "kind": "[approx]"
+ },
+ {
+  "id": "C1",
+  "label": "scale-spectrum peaks at the stated 14.14 \u2026 37.57 (within 0.015) and at \u03b3_1..\u03b3_6 (within 0.05, the taper's width); each peak \u2265 4\u00d7 the baseline",
+  "ok": true,
+  "detail": "peaks 14.15, 21.02, 25.03, 30.40, 32.97, 37.58; max |peak \u2212 \u03b3| 0.030; min peak/baseline 6.2",
+  "kind": "[approx]"
+ },
+ {
+  "id": "C2",
+  "label": "secular condition: ten heights to mean 4.4e-5, max 1.5e-4 at N = 10\u2076; sharpening with depth",
+  "ok": true,
+  "detail": "N=1e+03: mean 3.62e-04 max 7.58e-04; N=1e+05: mean 6.00e-05 max 1.67e-04; N=1e+06: mean 4.40e-05 max 1.46e-04",
+  "kind": "[approx]"
+ },
+ {
+  "id": "C4",
+  "label": "Jacobi matrix: real-symmetric tridiagonal; eig = secular roots to 1e-12; a, b as stated; heights to 4.4e-5",
+  "ok": true,
+  "detail": "max|eig\u2212roots| = 2.1e-14; a[0..2] = 34.314, 31.021, 31.178; b[0] = 11.178",
+  "kind": "[approx]"
+ },
+ {
+  "id": "C3",
+  "label": "colleague matrix on [10,52]: mean error 5.9e-5 at dim 520, \u22484.5e-5 by 620",
+  "ok": true,
+  "detail": "dim 180: 1.41e-02; dim 260: 3.62e-03; dim 340: 8.10e-04; dim 420: 2.83e-04; dim 520: 5.90e-05; dim 620: 4.49e-05",
+  "kind": "[approx]"
+ },
+ {
+  "id": "C5",
+  "label": "additive \u2212i d/du + V_comb has a uniform spectrum: spacing std 0.08 (0.11 of its mean) against 0.39 of the mean for the heights",
+  "ok": true,
+  "detail": "additive: std 0.078 on mean spacing 0.715 (ratio 0.109); heights: std 1.54 on mean 3.96 (ratio 0.389) \u2014 the paper's 0.08 is the absolute std, its 0.39 the ratio",
+  "kind": "[approx]"
+ },
+ {
+  "id": "C6",
+  "label": "unfolded spacings of the first 240 zeros: P(s<\u00bd) \u2248 0.05, variance \u2248 0.13 (repulsion; far from Poisson)",
+  "ok": true,
+  "detail": "P(s<\u00bd) = 0.050 (GUE 0.112, Poisson 0.393); var = 0.133 (GUE 0.178, Poisson 1)",
+  "kind": "[approx]"
+ },
+ {
+  "id": "C6b",
+  "label": "eigenvalue count N(T) within 1.5 of the Berry\u2013Keating smooth count on [10, \u03b3_240]",
+  "ok": true,
+  "detail": "max |N \u2212 N\u0304| = 0.91; mean = 0.30",
+  "kind": "[chart]"
+ },
+ {
+  "id": "C7a",
+  "label": "N_\u03c7 at the first six zeros of L(s, \u03c7_{\u22124}) reads 0.4997 \u2026 5.4998 (completed L real on the line)",
+  "ok": true,
+  "detail": "zeros 6.0209, 10.2438, 12.9881, 16.3426, 18.2920, 21.4506; N_\u03c7 0.4997, 1.4998, 2.4999, 3.4999, 4.4999, 5.4998; max|Im \u039b| = 1.1e-21",
+  "kind": "[approx]"
+ },
+ {
+  "id": "C7b",
+  "label": "twisted secular condition, N = 10\u2076 comb, L never evaluated: six heights to mean error 8.6e-5",
+  "ok": true,
+  "detail": "roots 6.0211, 10.2439, 12.9882, 16.3427, 18.2921, 21.4507; mean error 8.60e-05, max 1.55e-04",
+  "kind": "[approx]"
+ },
+ {
+  "id": "D1",
+  "label": "\u00d1_N rounds to N = 1, 3, 10 at T = 15, 30, 50.3; sign changes of the main sum Z_M give C = 1, 3, 10 = N",
+  "ok": true,
+  "detail": "raw 1.0003, 2.9944, 10.0037; C_M = [1, 3, 10]",
+  "kind": "[approx]"
+ },
+ {
+  "id": "D2a",
+  "label": "the completed \u039b_f(\u00bd + it) is real on the line to 10\u207b\u00b2\u2070",
+  "ok": true,
+  "detail": "max |Im \u039b_f| = 5.8e-23 over 25 heights",
+  "kind": "[approx]"
+ },
+ {
+  "id": "D2b",
+  "label": "argument principle on [0,87]: f: 45 strip zeros vs 43 on-line, deficit 2 only in the band of the off-line pair; L(s,\u03c7): 45 = 45, deficit 0 everywhere",
+  "ok": true,
+  "detail": "f: N = 45, C = 43, deficit by band [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2]; L(s,\u03c7): N = 45, C = 45; |f(s_off)| = 6.1e-11; |Z_f| dips to 0.357 at t = 85.70",
+  "kind": "[approx]"
+ },
+ {
+  "id": "D2c",
+  "label": "the secular condition on the \u039b_f comb returns two 'on-line' roots at the phantom height: 85.63/85.76 (10\u2075), 85.65/85.75 (4\u00d710\u2075)",
+  "ok": true,
+  "detail": "10\u2075: [85.635, 85.764] (no other crossing in [84,87]; count excursion 42.55\u201345.45); 4\u00d710\u2075: [85.651, 85.747], plus the swing of the unsettled count through the levels [42.5, 45.5] (excursion 42.35\u201345.65; crossing pairs at [85.35, 85.52, 85.88, 86.05])",
+  "kind": "[approx]"
+ },
+ {
+  "id": "D2d",
+  "label": "raw DH comb count drifts monotonically at t = 85.9 (45.14 \u2192 45.73) and reads 42.66 \u2026 42.73 at 85.3 (interior depths dip to 42.64); stable at 60.3 (28.005 \u00b1 0.002) and 84.0 (43.00 \u00b1 0.01)",
+  "ok": true,
+  "detail": "t=85.9: 45.135, 45.269, 45.413, 45.567, 45.729; t=85.3: 42.659, 42.640, 42.645, 42.676, 42.734; t=60.3: 28.005, 28.006, 28.006, 28.005, 28.004; t=84.0: 42.991, 42.995, 43.005, 43.008, 43.001",
+  "kind": "[approx]"
+ },
+ {
+  "id": "D2e",
+  "label": "\u03b6 comb at the pole: t = 1 reads +0.09, \u22120.26, +0.36, \u22120.08, \u22120.81, \u22121.42, \u22121.46 with depth (exact 0); t = 5, 10 within \u00b10.02, \u00b10.003; t = 15 within 2e-3 of 1; t = 30 3.04 \u2192 2.998; t = 50.3 within 1e-2 of 10",
+  "ok": true,
+  "detail": "t=1: +0.09, -0.26, +0.36, -0.08, -0.81, -1.42, -1.46; t=5: max|\u00b7| 0.018; t=10: 0.0024; t=15: max dev 1.7e-03; t=30: 3.042 \u2192 2.998; t=50.3: max dev 8.0e-03",
+  "kind": "[approx]"
+ },
+ {
+  "id": "E1a",
+  "label": "\u039b = \u03bc \u2217 log: \u2212\u03a3_{d|n} \u03bc(d) log d = \u039b(n), symbolic for n \u2264 300, floating point for n \u2264 5000",
+  "ok": true,
+  "detail": "symbolic ok; max float deviation 3.6e-15",
+  "kind": "EXACT"
+ },
+ {
+  "id": "E1b",
+  "label": "Hardy: R_L(n) \u2192 (\u03c6(n)/n) \u039b(n) on prime powers, \u2192 0 off them; intertwiner (n/\u03c6(n)) R \u2192 \u039b = log \u2113",
+  "ok": true,
+  "detail": "R(2) = 0.3469 vs \u00bd log 2 = 0.3466; R(9) = 0.7337 vs \u2154 log 3 = 0.7324; (13/12) R(13) = 2.5720 vs log 13 = 2.5649; max |R| off prime powers 0.002",
+  "kind": "[approx]"
+ },
+ {
+  "id": "E1c",
+  "label": "\u03a8_L(N) \u2192 \u03c8(N) on N \u2264 30: maximal deviation falls monotonically over L = 15, 60, 240",
+  "ok": true,
+  "detail": "max |\u03a8_L \u2212 \u03c8| = 3.564, 2.076, 0.326",
+  "kind": "[approx]"
+ },
+ {
+  "id": "E2a",
+  "label": "per-mode energy \u03bc\u00b2(q)/\u03c6(q) = 1, \u00bd, \u00bc, \u2159 at q = 2, 3, 5, 7; unique global maximum at the antipode q = 2 (q \u2264 2000)",
+  "ok": true,
+  "detail": "energies q=2: 1, q=3: 1/2, q=5: 1/4, q=7: 1/6, q=11: 1/10",
+  "kind": "EXACT"
+ },
+ {
+  "id": "E2b",
+  "label": "additive-transform band energy of the prime indicator (p = 10007) peaks at the antipode and follows 1/\u03c6(q): q = 2 > 3 > 5 > 7",
+  "ok": true,
+  "detail": "band energy (Parseval-normalised, \u00b13 bins) q=2: 1153 > q=3: 592 > q=5: 301 > q=7: 205; \u03c6(q)\u00b7E_q/E_2 = 1.03, 1.04, 1.06 (paper: 1220 > 640 > 323 > 214, normalisation unstated)",
+  "kind": "[approx]"
+ },
+ {
+  "id": "E3",
+  "label": "resolving threshold L*(H) exists for H = 6..50 and tracks the horizon: L* < 6H \u226a H\u00b2",
+  "ok": true,
+  "detail": "L*/H in [1.15, 3.35]; L*(12) = 17, L*(20) = 23, L*(50) = 154",
+  "kind": "[approx]"
+ },
+ {
+  "id": "E4",
+  "label": "max chart-mode correlation with the primes sits at the 1/\u221ap floor: 0.08 vs 0.03 (p = 1009), 0.0087 vs 0.0032 (p \u2248 10\u2075); resonance correlates 0.90",
+  "ok": true,
+  "detail": "p = 1009: max 0.077, floor 0.031; p = 100049: max 0.0087 over 50024 mode pairs, floor 0.0032; corr(1_\u03a0, R_80) on n \u2264 200 = 0.90",
+  "kind": "[approx]"
+ }
+]

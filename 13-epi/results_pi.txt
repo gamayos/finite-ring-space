@@ -1,0 +1,134 @@
+========================================================================
+[1] RADIAL CHAINS
+========================================================================
+(a) Wallis pair: v_n < pi < w_n for n=1..300: PASS; exact width identity w-v=w/(2n+1): PASS; strict monotonicity: PASS
+    example n=50: width = 3.1261e-02 ~ pi/101 = 3.1105e-02  (O(1/n) rate)
+    p=13 residue line [w_n]_13, n=1..6: [4, 5, 10, 9, 6, 11] PASS
+(b) Machin chain: minimal N with float(M_N) == IEEE-double(pi): N = 10
+    error bound |M_N - pi| < 17/((2N+3) 5^(2N+3)) for N=2..39: PASS
+    100-decimal-digit determination at N = 71
+    fQ-native certified enclosure at (12,4) terms: pi in (3.1415926535897931, 3.1415926535897931): PASS
+(c) precision-cost (terms n for 2^-k):
+    k= 24: Wallis/Leibniz ~ 1.7e+07   Machin ~ 4   arcsin(1/2) ~ 12   (e-chain reference: 11)
+    k= 53: Wallis/Leibniz ~ 9.0e+15   Machin ~ 10   arcsin(1/2) ~ 27   (e-chain reference: 18)
+    k=333: Wallis/Leibniz ~ 1.7e+100   Machin ~ 71   arcsin(1/2) ~ 167   (e-chain reference: 70)
+
+========================================================================
+[2] WALL ARITHMETIC (mod p)
+========================================================================
+     p | window [1,2t] all legible | (2t,p) all blind | k(w_wall) | v blind at wall (den=p)
+     5 |          PASS          |      PASS      |   -2      |  2*2t+1 = 5 = p: YES
+    13 |          PASS          |      PASS      |   -2      |  2*2t+1 = 13 = p: YES
+    29 |          PASS          |      PASS      |   -2      |  2*2t+1 = 29 = p: YES
+   101 |          PASS          |      PASS      |   -2      |  2*2t+1 = 101 = p: YES
+   257 |          PASS          |      PASS      |   -2      |  2*2t+1 = 257 = p: YES
+  1009 |          PASS          |      PASS      |   -2      |  2*2t+1 = 1009 = p: YES
+ 10007 |          PASS          |      PASS      |   -2      |  2*2t+1 = 10007 = p: YES
+universal wall residue -2 also for p == 3 (mod 4) [7, 23, 1031]: PASS
+
+========================================================================
+[3] SECOND ORDER: Morley, Fermat quotient, pi-Wieferich
+========================================================================
+Morley: (-1)^m C(p-1,m) == 4^(p-1) (mod p^3) for p in [13..101]: PASS
+Second-order wall formula W == -2 + 2p(q_p(4)-1) (mod p^2): PASS
+  (p, W mod p^2 as negative lift, q_p(4) mod p): [(13, -41, 6), (29, -785, 2), (37, -1297, 2), (41, -1355, 5)]
+pi-Wieferich primes (W == -2 mod p^2), p < 10^6: [5, 45827]  (heuristic expectation ~ sum 1/p ~ 2.39 ... over the range)
+q_p(4)/p over p<20000: mean 0.4941 (uniform: 0.5), variance 0.0832 (uniform: 0.0833)
+
+========================================================================
+[4] LUCAS REVIVALS AND SELF-SIMILARITY
+========================================================================
+p=13: C(26,13) mod 13 = 2 = C(2,1)*C(0,0); k(v_13) = 8 (predicted universal 8: PASS)
+p=13, n=14=(1,1)_13: C(28,14) mod 13 = 4 = C(2,1)^2 = 4 digitwise (Lucas): PASS
+p=13: legible w-scales in [13,169): 36/156 = 0.231 (prediction ((2t+1)/p)^2-ish = 0.290, minus n==0 mod p column)
+
+========================================================================
+[5] ARCSIN(1/2) CHAIN WALL: T(p) and second order
+========================================================================
+  T(3) != 0 !
+T(p) := sum_(k=0)^(m-1) C(2k,k)/((2k+1)16^k) == 0 (mod p) for all odd primes 5<=p<3000 (p=3 is the sole exception, T(3)=1): PASS (428 primes)
+second-order invariant T2(p) := (sigma/p) mod p, sigma the exact rational partial sum:
+   p | T2 | E_(p-3) | q_p(2) | a (p=a^2+b^2) | T2/E | T2/q2
+   5 |   0 |     4 |    3 |     (1, 2) |    0 |    0
+   7 |   0 |     5 |    2 |       None |    0 |    0
+  11 |   0 |    10 |    5 |       None |    0 |    0
+  13 |   0 |    10 |    3 |     (3, 2) |    0 |    0
+  17 |   0 |     8 |   13 |     (1, 4) |    0 |    0
+  19 |   0 |     7 |    3 |       None |    0 |    0
+  23 |   0 |    22 |   17 |       None |    0 |    0
+  29 |   0 |    26 |    1 |     (5, 2) |    0 |    0
+  31 |   0 |    22 |    6 |       None |    0 |    0
+  37 |   0 |    33 |    1 |     (1, 6) |    0 |    0
+  41 |   0 |    37 |   23 |     (5, 4) |    0 |    0
+  43 |   0 |     4 |   25 |       None |    0 |    0
+  47 |   0 |    14 |   44 |       None |    0 |    0
+  53 |   0 |     7 |   36 |     (7, 2) |    0 |    0
+  59 |   0 |    12 |    8 |       None |    0 |    0
+  61 |   0 |    45 |   36 |     (5, 6) |    0 |    0
+  67 |   0 |    25 |   10 |       None |    0 |    0
+  71 |   0 |    49 |    2 |       None |    0 |    0
+  73 |   0 |    48 |   56 |     (3, 8) |    0 |    0
+  79 |   0 |    75 |   19 |       None |    0 |    0
+  83 |   0 |    60 |   48 |       None |    0 |    0
+  89 |   0 |    33 |    6 |     (5, 8) |    0 |    0
+  97 |   0 |    55 |   57 |     (9, 4) |    0 |    0
+ 101 |   0 |    15 |   92 |    (1, 10) |    0 |    0
+ 103 |   0 |    57 |   59 |       None |    0 |    0
+ 107 |   0 |    89 |   13 |       None |    0 |    0
+ 109 |   0 |    86 |   67 |    (3, 10) |    0 |    0
+ 113 |   0 |    75 |   83 |     (7, 8) |    0 |    0
+ 127 |   0 |    69 |   18 |       None |    0 |    0
+ 131 |   0 |   129 |   17 |       None |    0 |    0
+ 137 |   0 |   131 |   53 |    (11, 4) |    0 |    0
+ 139 |   0 |    84 |   30 |       None |    0 |    0
+ 149 |   0 |     0 |   96 |    (7, 10) | None |    0
+ 151 |   0 |    37 |   56 |       None |    0 |    0
+ 157 |   0 |    74 |   82 |    (11, 6) |    0 |    0
+ 163 |   0 |    63 |   67 |       None |    0 |    0
+ 167 |   0 |    10 |   47 |       None |    0 |    0
+ 173 |   0 |   112 |    3 |    (13, 2) |    0 |    0
+ 179 |   0 |   158 |   50 |       None |    0 |    0
+ 181 |   0 |   143 |  148 |    (9, 10) |    0 |    0
+ 191 |   0 |    99 |   50 |       None |    0 |    0
+ 193 |   0 |    89 |  104 |    (7, 12) |    0 |    0
+ 197 |   0 |   127 |  175 |    (1, 14) |    0 |    0
+ 199 |   0 |   120 |  135 |       None |    0 |    0
+
+Leibniz wall U(p) := sum_(k=0)^(m-1) (-1)^k/(2k+1) mod p, ratio to E_(p-3):
+  p=  5: U=  4  E_(p-3)=   4  U/E=1
+  p=  7: U=  6  E_(p-3)=   5  U/E=4
+  p= 11: U=  3  E_(p-3)=  10  U/E=8
+  p= 13: U=  8  E_(p-3)=  10  U/E=6
+  p= 17: U= 15  E_(p-3)=   8  U/E=4
+  p= 19: U=  8  E_(p-3)=   7  U/E=12
+  p= 23: U=  3  E_(p-3)=  22  U/E=20
+  p= 29: U= 15  E_(p-3)=  26  U/E=24
+  p= 31: U= 28  E_(p-3)=  22  U/E=21
+  p= 37: U= 19  E_(p-3)=  33  U/E=23
+  p= 41: U= 32  E_(p-3)=  37  U/E=33
+  p= 43: U=  9  E_(p-3)=   4  U/E=13
+  p= 47: U= 25  E_(p-3)=  14  U/E=32
+  p= 53: U= 18  E_(p-3)=   7  U/E=48
+  p= 59: U= 55  E_(p-3)=  12  U/E=39
+  p= 61: U= 18  E_(p-3)=  45  U/E=37
+  p= 67: U= 62  E_(p-3)=  25  U/E=40
+  p= 71: U= 70  E_(p-3)=  49  U/E=42
+  p= 73: U= 28  E_(p-3)=  48  U/E=31
+  p= 79: U= 30  E_(p-3)=  75  U/E=32
+  p= 83: U= 59  E_(p-3)=  60  U/E=66
+  p= 89: U=  3  E_(p-3)=  33  U/E=81
+  p= 97: U= 77  E_(p-3)=  55  U/E=79
+  p=101: U= 46  E_(p-3)=  15  U/E=30
+  p=103: U= 22  E_(p-3)=  57  U/E=4
+  p=107: U= 47  E_(p-3)=  89  U/E=39
+  p=109: U= 88  E_(p-3)=  86  U/E=72
+  p=113: U= 98  E_(p-3)=  75  U/E=45
+
+========================================================================
+[6] ANGULAR EXACTNESS AND GAUSS SUM
+========================================================================
+  p=    13: Gauss sum = 3.605551 + 4.44e-16 i;  sqrt(p) = 3.605551  (p==1 mod 4: exact +sqrt(p))
+  p=   101: Gauss sum = 10.049876 + -2.82e-15 i;  sqrt(p) = 10.049876  (p==1 mod 4: exact +sqrt(p))
+  p=  1009: Gauss sum = 31.764760 + -1.28e-15 i;  sqrt(p) = 31.764760  (p==1 mod 4: exact +sqrt(p))
+  p= 10007: Gauss sum = -0.000000 + 1.00e+02 i;  sqrt(p) = 100.034994  (p==1 mod 4: exact +sqrt(p))
+angle of -1 on the multiplicative circle: 2pi * (2t)/(4t) = pi exactly, every frame, both chiralities.

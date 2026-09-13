@@ -1,0 +1,19 @@
+[A] QUARTER-WALL TWO-SQUARES INVARIANT, all p == 1 (mod 4), p < 3000
+  Gauss congruence C(2t,t) == 2a* (mod p): PASS (211 primes)
+  k(w_t) == -(a^2)^(-1) == (b^2)^(-1) (mod p): PASS
+  example p=13 = 3^2+2^2: k(w_3) = 10 = -(9)^(-1) = 10
+
+[B] ARCSIN CHAIN sigma_p := sum_(k=0)^((p-3)/2) C(2k,k)/((2k+1)16^k)
+  sigma == 0 (mod p^2) for all 5 <= p < 300: PASS
+  third-order Bernoulli law sigma/p^2 == (-1)^((p+1)/2) B_(p-3)/36 (mod p), 5<=p<300: PASS (60 primes)  [mod-p^3 reading of Sun Conj. 5.1 + Wolstenholme refinement]
+  p, sigma/p^2 mod p, law: [(5, 4, 4), (7, 3, 3), (11, 5, 5), (13, 6, 6), (17, 15, 15), (19, 2, 2), (23, 10, 10), (29, 21, 21)]
+
+[C] PROOF INGREDIENTS
+  C(2k,k) == (-4)^k binom(m,k) (mod p), k < m: PASS
+  Lerch: H_((p-1)/2) == -2 q_p(2) (mod p): PASS
+  L_m = sum binom(m,j)(-1)^j/(2j+1) = 4^m (m!)^2/(2m+1)!, m<=60: PASS
+  key identity A_m + B_m = 2 L_m over Q, via formal-antiderivative bookkeeping, m<=60: PASS
+
+[D] BLIND-RANGE AND REVIVAL REFINEMENTS
+  blind-range sum == p*E_(p-3)/3 (mod p^2), 5<=p<80: PASS  [known: van Hamme-Sun family]
+  first revival v_p == 8 + 16p(2q_p(2)-1) (mod p^2): PASS  [via Wolstenholme]
