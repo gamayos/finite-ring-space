@@ -35,6 +35,19 @@ Paper-local predicates:
                          −0.81, −1.42, −1.46 at depths 10⁴ … 8×10⁷; at t = 5 within ±0.02; at t = 10 within ±0.003;
                          at t = 15 within 2×10⁻³ of 1 at every depth; at t = 30 from 3.04 to 2.998; at 50.3 within
                          10⁻² of 10 (depths to 8×10⁵)
+  D2f Prop. combformula, Obs. dh  [approx]  the pole-corrected ζ count N̂_N at t = 1 reads 0.0051, 0.0032, 0.0022, 0.0016, 0.0015,
+                         0.0013, 0.0012 at the same depths (exact 0), falling monotonically; at t = 5 and 10 within 4×10⁻⁴ from
+                         10⁶ on, falling in magnitude; at 15, 30, 50.3 the correction is below 10⁻³ and raw and corrected agree
+  D2g Prop. combformula, Obs. dh  [approx]  the DH drift is the cut term of the off-line zero ρ₀: the count corrected by it reads
+                         44.960, 44.964, 44.967, 44.970, 44.972 at t = 85.9 (raw 45.14 … 45.73; exact 45) and 43.035 → 43.022
+                         at 85.3 (raw 42.66 … 42.73; exact 43), both monotone toward the exact count
+  D3  Prop. combformula  [approx]  the identity's validation arm: the corrected tapered sum Σ_w − Π_N − log((s−1)/s) against
+                         log ζ(½ + it) (mpmath) at t = 1, 5, 10, 15, 30: the real-part error falls with depth at every height
+                         (0.0049 at t = 1, depth 8×10⁷) and the imaginary part is the corrected count of D2f
+  D4  Thm. turing (frame-exact inputs)  [approx]  on the shells p = 95, 1003, 4775 (ceilings T = 2πp ≈ 597, 6302, 30001) the raw
+                         count from the frame-exact comb of depth ⌊√p⌋ = 9, 31, 69, evaluated midway between consecutive
+                         zeros just below the ceiling (zeros from Z(t) sign changes, the count from mpmath nzeros), rounds to
+                         the exact N(t) at every midpoint: maximum deviation 0.10, 0.21, 0.12; the 10⁶ comb within 0.002
 
 The "ζ never evaluated" discipline does not bind the control arms (Hurwitz zeta functions are
 evaluated there). Figure: fig_dh.pdf. Master ledger: 00:D12.
@@ -47,7 +60,7 @@ matplotlib.use("Agg")
 import matplotlib.pyplot as plt
 from scipy.optimize import brentq
 from scipy.special import loggamma
-from rhcommon import (check, Comb, von_mangoldt_support, count_raw, theta, HEIGHTS, FIGDIR, FAST, Timer)
+from rhcommon import (check, Comb, von_mangoldt_support, count_raw, count_corrected, pole_term, pole_count_term, theta, HEIGHTS, FIGDIR, FAST, Timer)
 
 mp.mp.dps = 20
 I = mp.mpc(0, 1)
@@ -152,6 +165,25 @@ def count_at_depths(n_all, lam_all, t, depths, theta_fn, const):
         terms = lam_all[m] / (np.sqrt(n_all[m]) * logn[m]) * w * np.sin(t * logn[m])
         out.append(float(theta_fn(t)) / math.pi + const - math.fsum(terms) / math.pi)
     return np.array(out)
+
+def corrected_at_depths(n_all, lam_all, t, depths):
+    """Pole-corrected ζ count N̂_N(t) at several depths from one support (Prop. combformula)."""
+    raw = count_at_depths(n_all, lam_all, t, depths, theta, 1.0)
+    return raw - np.array([pole_count_term(N, t) for N in depths])
+
+def zero_cut_term(N, t, rho0):
+    """The cut term of an off-line zero ρ₀ (β > ½) of a Dirichlet series in its tapered log-series at s = ½ + it:
+    Π^{(ρ₀)}_N(s) = ∫_0^L W(u/L) (e^{(ρ₀−s)u} − e^{(ρ₀−1−s)u}) du/u; the smoothed sum carries −Π^{(ρ₀)}_N and, as N → ∞,
+    Σ_w + Π^{(ρ₀)}_N → log f(s) + log((s−ρ₀+1)/(s−ρ₀)) (Prop. combformula, the zero case)."""
+    L = math.log(N); a = rho0 - mp.mpc(0.5, t); b = a - 1
+    f = lambda u: 0.5 * (1 + mp.cos(mp.pi * u / L)) * (mp.exp(a * u) - mp.exp(b * u)) / u
+    return mp.quad(f, mp.linspace(0, L, 40))
+
+def dh_corrected_at_depths(n_all, lam_all, t, depths):
+    """The DH comb count corrected by the cut term of ρ₀ (D2g)."""
+    s = mp.mpc(0.5, t); H0 = mp.log((s - RHO_OFF + 1) / (s - RHO_OFF))
+    raw = count_at_depths(n_all, lam_all, t, depths, theta_f, 0.0)
+    return raw + np.array([float(mp.im(zero_cut_term(N, t, RHO_OFF) - H0)) / math.pi for N in depths])
 
 def Z_main(t):
     """The horizon-length Riemann–Siegel main sum (Definition deframe), the de-framing side of Theorem turing."""
@@ -258,6 +290,53 @@ def run():
     check("D2e", "ζ comb at the pole: t = 1 reads +0.09, −0.26, +0.36, −0.08, −0.81, −1.42, −1.46 with depth (exact 0); t = 5, 10 within ±0.02, ±0.003; t = 15 within 2e-3 of 1; t = 30 3.04 → 2.998; t = 50.3 within 1e-2 of 10", ok,
           "t=1: " + ", ".join(f"{v:+.2f}" for v in z1) + "; t=5: max|·| " + f"{np.max(np.abs(z5)):.3f}" + "; t=10: " + f"{np.max(np.abs(z10)):.4f}"
           + "; t=15: max dev " + f"{np.max(np.abs(z15 - 1)):.1e}" + f"; t=30: {z30[0]:.3f} → {z30[-1]:.3f}; t=50.3: max dev {np.max(np.abs(z503 - 10)):.1e}", kind="[approx]")
+    # ---------------- D2f: the pole-corrected ζ count settles (Prop. combformula)
+    c1 = corrected_at_depths(n_all, lam_all, 1.0, DEPTHS_Z); c5 = corrected_at_depths(n_all, lam_all, 5.0, DEPTHS_Z); c10 = corrected_at_depths(n_all, lam_all, 10.0, DEPTHS_Z)
+    stated_c1 = [0.0051, 0.0032, 0.0022, 0.0016, 0.0015, 0.0013, 0.0012][:k]
+    i6 = DEPTHS_Z.index(10 ** 6)
+    ok = (np.allclose(c1, stated_c1, atol=0.0003) and np.all(np.diff(c1) < 0) and np.all(np.abs(c5[i6:]) < 4e-4) and np.all(np.abs(c10[i6:]) < 4e-4)
+          and np.all(np.diff(np.abs(c5)) < 0) and np.all(np.diff(np.abs(c10)) < 0))
+    check("D2f", "pole-corrected ζ count at t = 1: 0.0051, 0.0032, 0.0022, 0.0016, 0.0015, 0.0013, 0.0012 (exact 0), monotone; t = 5, 10 within 4e-4 from 10⁶ on, falling", ok,
+          "t=1: " + ", ".join(f"{v:+.4f}" for v in c1) + "; t=5: " + ", ".join(f"{v:+.5f}" for v in c5) + "; t=10: " + ", ".join(f"{v:+.5f}" for v in c10), kind="[approx]")
+    # ---------------- D2g: the DH drift is the off-line zero's cut term
+    with Timer("DH corrected counts"):
+        d859 = dh_corrected_at_depths(nf, lf, 85.9, DEPTHS_DH); d853 = dh_corrected_at_depths(nf, lf, 85.3, DEPTHS_DH)
+    ok = (np.allclose(d859, [44.960, 44.964, 44.967, 44.970, 44.972], atol=0.002) and np.all(np.diff(d859) > 0)
+          and np.allclose(d853, [43.035, 43.031, 43.028, 43.025, 43.022], atol=0.002) and np.all(np.diff(d853) < 0))
+    check("D2g", "DH count corrected by the cut term of ρ₀: 44.960 → 44.972 at 85.9 (raw 45.14 → 45.73; exact 45), 43.035 → 43.022 at 85.3 (exact 43), monotone toward the exact count", ok,
+          "t=85.9: " + ", ".join(f"{v:.4f}" for v in d859) + "; t=85.3: " + ", ".join(f"{v:.4f}" for v in d853), kind="[approx]")
+    # ---------------- D3: the identity against log ζ (validation arm: mpmath)
+    logn_all = np.log(n_all); re_err = {}
+    for t, Nc in ((1.0, 0), (5.0, 0), (10.0, 0), (15.0, 1), (30.0, 3)):
+        sc = mp.mpc(0.5, t); lz_re = float(mp.log(abs(mp.zeta(sc))))
+        errs = []
+        for N in DEPTHS_Z:
+            m = n_all <= N; L = math.log(N); w = 0.5 * (1 + np.cos(np.pi * logn_all[m] / L))
+            S = np.sum(lam_all[m] * w / (np.sqrt(n_all[m]) * logn_all[m]) * np.exp(-1j * t * logn_all[m]))
+            errs.append(abs((S - pole_term(N, t) - complex(mp.log((sc - 1) / sc))).real - lz_re))
+        re_err[t] = np.array(errs)
+    ok = all(np.all(np.diff(e) < 0) for e in re_err.values()) and re_err[1.0][-1] < (0.0052 if not FAST else 0.0065)
+    check("D3", "the identity's validation arm: Re(Σ_w − Π_N − log((s−1)/s)) → log|ζ(½+it)| at t = 1, 5, 10, 15, 30, the error falling with depth (0.0049 at t = 1, 8×10⁷)", ok,
+          "; ".join(f"t={t}: " + " → ".join(f"{v:.4f}" for v in (e[0], e[len(e)//2], e[-1])) for t, e in re_err.items()), kind="[approx]")
+    # ---------------- D4: the count from the frame-exact comb on one shell (Theorem turing)
+    with Timer("frame-exact shells"):
+        shells = [95, 1003] + ([4775] if not FAST else [])
+        dev_fe, dev_deep, npts = {}, {}, {}
+        deep = Comb(10 ** 6)
+        for p_sh in shells:
+            Tc = 2 * math.pi * p_sh; depth = int(math.floor(math.sqrt(p_sh)))
+            grid = np.arange(Tc - 12.0, Tc + 1e-9, 0.1); zv = np.array([float(mp.siegelz(t)) for t in grid])
+            zs = np.array([brentq(lambda t: float(mp.siegelz(t)), grid[i], grid[i + 1], xtol=1e-7)
+                           for i in range(len(grid) - 1) if zv[i] * zv[i + 1] < 0])
+            mids = 0.5 * (zs[1:] + zs[:-1]); nz = np.array([int(mp.nzeros(t)) for t in mids]); npts[p_sh] = len(mids)
+            v = count_raw(Comb(depth), mids); vd = count_raw(deep, mids)
+            dev_fe[p_sh] = (float(np.max(np.abs(v - nz))), bool(np.all(np.round(v) == nz)))
+            dev_deep[p_sh] = (float(np.max(np.abs(vd - nz))), bool(np.all(np.round(vd) == nz)))
+    stated = {95: 0.10, 1003: 0.21, 4775: 0.12}
+    ok = (all(r for _, r in dev_fe.values()) and all(r for _, r in dev_deep.values())
+          and all(abs(dev_fe[p_sh][0] - stated[p_sh]) < 0.02 for p_sh in shells) and max(d for d, _ in dev_deep.values()) < 0.004)
+    check("D4", "frame-exact count on one shell: at p = 95, 1003, 4775 (T = 2πp) the depth-⌊√p⌋ comb, midway between consecutive zeros below the ceiling, rounds to the exact N(t) at every midpoint (max deviation 0.10, 0.21, 0.12); the 10⁶ comb within 0.002", ok,
+          "; ".join(f"p={p_sh} (depth {int(math.sqrt(p_sh))}, {npts[p_sh]} midpoints): max dev {dev_fe[p_sh][0]:.3f} (10⁶ comb {dev_deep[p_sh][0]:.3f})" for p_sh in shells), kind="[approx]")
     # ---------------- figure
     with Timer("window grid [84,87]"):
         tw = np.arange(84.0, 87.0 + 1e-9, 0.005 if not FAST else 0.01)
@@ -294,10 +373,11 @@ def run():
     ax[2].axhline(45, color=crimson, lw=0.8, ls=":"); ax[2].axhline(43, color="#e59866", lw=0.8, ls=":")
     ax2 = ax[2].twinx()
     ax2.semilogx(DEPTHS_Z, z1, "^-", color="#10325f", label="ζ comb, t = 1 (exact 0)")
+    ax2.semilogx(DEPTHS_Z, c1, "^--", color="#1f6b4a", label="ζ comb, t = 1, pole-corrected")
     ax2.semilogx(DEPTHS_Z, z15, "v-", color="#5b9bd5", label="ζ comb, t = 15 (exact 1)")
     ax2.axhline(0, color="#10325f", lw=0.8, ls=":"); ax2.axhline(1, color="#5b9bd5", lw=0.8, ls=":")
     ax[2].set_xlabel("comb depth $N$"); ax[2].set_ylabel("raw DH count", color=crimson); ax2.set_ylabel("raw ζ count", color="#10325f")
-    ax[2].set_title("D2d/D2e: the raw count does not settle near a singularity", fontsize=10)
+    ax[2].set_title("D2d–D2f: the raw count near a singularity, and the pole-corrected count", fontsize=10)
     h1, l1 = ax[2].get_legend_handles_labels(); h2, l2 = ax2.get_legend_handles_labels(); ax[2].legend(h1 + h2, l1 + l2, fontsize=7.5, loc="upper center", bbox_to_anchor=(0.5, -0.17), ncol=2)
     plt.tight_layout(); plt.savefig(f"{FIGDIR}/fig_dh.pdf", bbox_inches="tight"); plt.savefig(f"{FIGDIR}/fig_dh.png", dpi=110, bbox_inches="tight"); plt.close()
     print(f"    wrote {FIGDIR}/fig_dh.pdf")

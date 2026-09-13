@@ -31,52 +31,52 @@ lab Carrier Om = 2,408,561, S = 602,140):
 Class: EXACT.
 """
 import sys
+from dcommon import chk, begin, flush
 
-checks = 0
-def chk(label, ok):
-    global checks
-    checks += 1
-    if not ok:
-        print(f"FAIL: {label}"); sys.exit(1)
+def run():
+    begin("lat")
 
-def inv(a, p): return pow(a % p, p - 2, p)
+    def inv(a, p): return pow(a % p, p - 2, p)
 
-CASES = [(13, 2), (17, 3), (2408561, 6)]          # (p, g); Carrier last
+    CASES = [(13, 2), (17, 3), (2408561, 6)]          # (p, g); Carrier last
 
-for p, g in CASES:
-    kap = (p - 1) // 4
-    pi = 2 * kap
-    # L1: ladder bounds and midpoint straddle
-    chk(f"L1 p={p} in-ladder", 1 <= kap + 1 <= pi)
-    chk(f"L1 p={p} past-half", kap + 1 == pi // 2 + 1 and pi % 2 == 0)
-    # L2: meridian shift by kappa is the quarter-turn
-    gk = pow(g, kap, p)
-    chk(f"L2 p={p} g^kappa = +-i", pow(gk, 2, p) == p - 1)
-    ray = [a % p for a in range(1, pi + 1)]        # prime meridian labels
-    chk(f"L2 p={p} ray*i = quarter-turn ray",
-        [(a * gk) % p for a in ray] == [(a * gk) % p for a in range(1, pi + 1)]
-        and (1 * gk) % p == gk)                    # unit -> quarter-turn seat
-    chk(f"L2 p={p} latitude shift 1 -> kappa+1", 1 + kap == kap + 1)
-    # L3: radius register
-    chk(f"L3 p={p} kappa = -1/4", kap % p == (p - inv(4, p)) % p)
-    chk(f"L3 p={p} energy radius = 3/4 = 1 - 1/4",
-        (kap + 1) % p == 3 * inv(4, p) % p == (1 - inv(4, p)) % p)
-    # L4: terminal latitude residue identities
-    inv2 = inv(2, p)
-    chk(f"L4 p={p} pi = -2^-1", pi % p == (p - inv2) % p)
-    chk(f"L4 p={p} pi = -c^2 seat", (p - pi) % p == inv2)  # -pi = 2^-1 = c^2
-    # L5: unit-norm circle count = p-1 = |phase cycle| (p = 1 mod 4)
-    if p < 100:
-        cnt = sum(1 for a in range(p) for b in range(p)
-                  if (a * a + b * b) % p == 1)
-        chk(f"L5 p={p} |norm-1 circle| = p-1", cnt == p - 1)
-    chk(f"L5 p={p} energy norm = 9/16",
-        pow(kap + 1, 2, p) == 9 * inv(16, p) % p)
+    for p, g in CASES:
+        kap = (p - 1) // 4
+        pi = 2 * kap
+        # L1: ladder bounds and midpoint straddle
+        chk(f"L1 p={p} in-ladder", 1 <= kap + 1 <= pi)
+        chk(f"L1 p={p} past-half", kap + 1 == pi // 2 + 1 and pi % 2 == 0)
+        # L2: meridian shift by kappa is the quarter-turn
+        gk = pow(g, kap, p)
+        chk(f"L2 p={p} g^kappa = +-i", pow(gk, 2, p) == p - 1)
+        ray = [a % p for a in range(1, pi + 1)]        # prime meridian labels
+        chk(f"L2 p={p} ray*i = quarter-turn ray",
+            [(a * gk) % p for a in ray] == [(a * gk) % p for a in range(1, pi + 1)]
+            and (1 * gk) % p == gk)                    # unit -> quarter-turn seat
+        chk(f"L2 p={p} latitude shift 1 -> kappa+1", 1 + kap == kap + 1)
+        # L3: radius register
+        chk(f"L3 p={p} kappa = -1/4", kap % p == (p - inv(4, p)) % p)
+        chk(f"L3 p={p} energy radius = 3/4 = 1 - 1/4",
+            (kap + 1) % p == 3 * inv(4, p) % p == (1 - inv(4, p)) % p)
+        # L4: terminal latitude residue identities
+        inv2 = inv(2, p)
+        chk(f"L4 p={p} pi = -2^-1", pi % p == (p - inv2) % p)
+        chk(f"L4 p={p} pi = -c^2 seat", (p - pi) % p == inv2)  # -pi = 2^-1 = c^2
+        # L5: unit-norm circle count = p-1 = |phase cycle| (p = 1 mod 4)
+        if p < 100:
+            cnt = sum(1 for a in range(p) for b in range(p)
+                      if (a * a + b * b) % p == 1)
+            chk(f"L5 p={p} |norm-1 circle| = p-1", cnt == p - 1)
+        chk(f"L5 p={p} energy norm = 9/16",
+            pow(kap + 1, 2, p) == 9 * inv(16, p) % p)
 
-# Carrier-register readings (B18 web)
-Om, S = 2408561, 602140
-chk("L4 Carrier 2S = G seat", (2 * S) % Om == 1204280)         # G = 2S
-chk("L4 Carrier -2S = c^2", (Om - 2 * S) % Om == (Om + 1) // 2)  # -pi = c^2
-chk("L3 Carrier S+1 = 3/4", (S + 1) % Om == 3 * inv(4, Om) % Om)
+    # Carrier-register readings (B18 web)
+    Om, S = 2408561, 602140
+    chk("L4 Carrier 2S = G seat", (2 * S) % Om == 1204280)         # G = 2S
+    chk("L4 Carrier -2S = c^2", (Om - 2 * S) % Om == (Om + 1) // 2)  # -pi = c^2
+    chk("L3 Carrier S+1 = 3/4", (S + 1) % Om == 3 * inv(4, Om) % Om)
+    flush("lat")
 
-print(f"{checks}/{checks} exact checks pass")
+if __name__ == "__main__":
+    import dcommon
+    run(); dcommon.summary(write=False)

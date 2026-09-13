@@ -11,10 +11,11 @@ md(f"""# 6-fourier — validation package
 [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)]({COLAB})
 
 **Paper.** *Scale-Shift and Fractional Fourier Transform as Rotations over Finite Holographic Substrate* (Akhtman, 2026), `6-fourier` of the FRC corpus.
-**Package.** `finite-ring-space/src/6-fourier` — five block scripts driven by this notebook, 36 checks. The paper carries no predicate
-ledger of its own, so every cell below names the labelled statements it decides by their `\\label` as printed in the paper (`Theorem`,
-`Lemma`, `Proposition`, `Remark`, `Corollary`, `Example`, the one `Conjecture`, Table `tab:checks`), and gives the master-ledger row of the
-corpus a check witnesses (`00:C2` scale-shift duality and the fractional Fourier cycle, `00:C14` the quarter-turn as the odd member of the
+**Package.** `finite-ring-space/src/6-fourier` — five block scripts driven by this notebook, 36 checks. Every cell below names the labelled
+statements of the paper it checks (`Theorem`, `Lemma`, `Proposition`, `Remark`, `Corollary`, `Example`, the one `Conjecture`, Table `tab:checks` — by
+their `\\label` as printed in the paper), lists the paper's ledger rows the block witnesses (the paper's Section "Machine verification and predicate
+ledger", rows cited as `6:XN`, 47 rows in blocks A–F, V, O; public copy at `docs/6-fourier/6-fourier-ledger.html`), and gives the master-ledger rows
+of the corpus reached through them (`00:C2` scale-shift duality and the fractional Fourier cycle, `00:C14` the quarter-turn as the odd member of the
 ±√−1 pair, `00:C7` the conjugate reframing on the transform layer). The package regenerates the paper's one numerical figure
 (`figures/entropy-cycle-f13`); the framed complex-plane rendering `f13-C` is a drawing, not a computation, and its generator is kept as is.
 
@@ -58,7 +59,9 @@ shell Fourier matrix W_{kj} = g^{jk} and its normalisation F = iW.
 | A3 | Remark `gt-covariance` | g' = g^u: the quarter-turn flips only on u ≡ 3 (mod 4); e' = g^{ui} ≠ e iff i(u−1) ≢ 0 (mod 4κ); p = 13, u = 5: e' = 2 ≠ 6 |
 | A4 | Lemma `W-square`, Proposition `F-cycle`, Table `tab:checks`; **00:C2** | W² = −J, (iW)² = J, (iW)⁴ = I on the six shells |
 | A5 | Remark `unitary-norm` | the square roots of 1/n ≡ −1 in F_p are exactly ±i: (cW)² = J iff c = ±i |
-| A6 | Lemma `JF-decomp` | WJ = JW, FJ = JF; dim V⁺ = 2κ+1, dim V⁻ = 2κ−1 |""")
+| A6 | Lemma `JF-decomp` | WJ = JW, FJ = JF; dim V⁺ = 2κ+1, dim V⁻ = 2κ−1 |
+
+Ledger rows witnessed: 6:B1–B3, 6:B5–B7 (block B of the paper; master 00:C14 through B2, 00:C2 through B5).""")
 code("import a_shell; a_shell.run()")
 
 md("""## Block B — the fractional family F^[s] = Σ_ℓ g^{−ℓs} Π_ℓ  (`b_fractional.py`, EXACT; **00:C2**, **00:C7**)
@@ -75,7 +78,9 @@ Definition `FRC-FrFT-def`: the projectors Π_ℓ = ¼ Σ_r i^{−ℓr} F^r and t
 | B7 | Theorem `multiplicity` | G = Σ g^{k²} = ε(1+i); the two patterns; ε(g⁻¹) = −ε(g); ε(g^u) = (κ/u) ε(g); classes equally populated; the 38 primitive frames of p ∈ {5,13,17,29,37} (and the 16 of p = 41); p = 5: (2,0,1,1) at g = 2, (1,1,2,0) at g = 3 |
 | B8 | Theorem `multiplicity` (proof) | G G* = −2, G² = 2i, Tr F = iG, Tr F² = 2, Tr F³ = iG*, m_ℓ ≡ ¼ Σ_r i^{−ℓr} Tr F^r (mod p) |
 | B9 | Remark `classification` | every exponent lift a_ℓ ≡ ℓ (mod 4) is additive with the cardinal skeleton; the chart g^5 at p = 29 (u² ≢ 1 mod 28) does not commute with F |
-| B10 | Remark `gt-covariance`; **00:C7** (transform layer) | the conjugate frame (g⁻¹, −i) keeps the operator relations, cardinal values, additivity and faithfulness; its multiplicity tuple is the other pattern; exactly F' = −F⁻¹ and Π'_ℓ = Π_{ℓ+2} |""")
+| B10 | Remark `gt-covariance`; **00:C7** (transform layer) | the conjugate frame (g⁻¹, −i) keeps the operator relations, cardinal values, additivity and faithfulness; its multiplicity tuple is the other pattern; exactly F' = −F⁻¹ and Π'_ℓ = Π_{ℓ+2} |
+
+Ledger rows witnessed: 6:C2–C9 (master 00:C2 through C3, 00:C7 through C9).""")
 code("import b_fractional; b_fractional.run()")
 
 md("""## Block C — representation domains and the coordinate-side zoom  (`c_domains.py`, EXACT; **00:C2**)
@@ -88,7 +93,9 @@ Definition `domain`: B_s = F^[s] B_0; Definition `scale-map`: S_r(x) = g^r x on 
 | C3 | Remark `ordered-bases` | F^[s+2κ] = F^[s] J: 4κ framed domains, exactly 2κ unordered measurement bases |
 | C4 | Proposition `meridian-scale`; **00:C2** | S_r(M_m) = M_{m+r} on every (m, r), as ordered lists |
 | C5 | Corollary `effective-step`, Remark `framed-rational` | consecutive entries of M_m differ by g^m; S_{r+(p−1)} = S_r |
-| C6 | Example `zoom-13`, Theorem `zoom`, Remark `two-layers` | the printed ladder M_0 … M_3 at steps 1, 2, 4, 8; the no-wrap window w g^r < p (w = π = 6) holds for r ≤ 1, the listing wraps from M_2 |""")
+| C6 | Example `zoom-13`, Theorem `zoom`, Remark `two-layers` | the printed ladder M_0 … M_3 at steps 1, 2, 4, 8; the no-wrap window w g^r < p (w = π = 6) holds for r ≤ 1, the listing wraps from M_2 |
+
+Ledger rows witnessed: 6:D1, 6:D2, 6:D4, 6:D5 (master 00:C2 through D4).""")
 code("import c_domains; c_domains.run()")
 
 md("""## Block D — the Weil dictionary and the operator-level comparison  (`d_weil.py`, EXACT)
@@ -102,7 +109,9 @@ The rotation R_s = [[c_s, −d_s], [d_s, c_s]] with z_s = g^{−s}; the exponent
 | D4 | Proposition `nogo` | σ has the 4κ simple eigenvalues F_p^×; F^[1] has at most four; ⟨σ⟩ and ⟨F^[1]⟩ not conjugate for κ ≥ 2 |
 | D5 | Proposition `charsector` | E_1 ≠ 0 for κ ≥ 2; F^[s] = g^{−s} on E_1; F^[s] T_v = T_v S_{−s}; R_s (1,−i)ᵀ = g^{−s} (1,−i)ᵀ |
 | D6 | Proposition `heisenberg`, eq. `conj-expansion` | F σ F⁻¹ = D_1, F D_1 F⁻¹ = σ⁻¹; F^r σ = σ_r F^r; F^[s] = Σ_r c_r(s) F^r with c_r(s) = ¼ Σ_ℓ (g^{rκ−s})^ℓ |
-| D7 | Conjecture `monomial` (the sweep) | F^[s] σ F^[s]⁻¹ monomial exactly at the four cardinal indices, non-monomial at all 112 intermediate indices of p ∈ {13, 17, 29, 37, 41} |""")
+| D7 | Conjecture `monomial` (the sweep) | F^[s] σ F^[s]⁻¹ monomial exactly at the four cardinal indices, non-monomial at all 112 intermediate indices of p ∈ {13, 17, 29, 37, 41} |
+
+Ledger rows witnessed: 6:E2, 6:E3, 6:E5–E7 (the sweep of E7 is the verified half of the open row 6:O1).""")
 code("import d_weil; d_weil.run()")
 
 md("""## Block E — the cyclotomic observer readout and the entropy cycle  (`e_entropy.py`, EXACT / [approx])
@@ -117,7 +126,9 @@ framed reduction ρ (X ↦ g, Y ↦ −i); on ℂⁿ the family is the canonical
 | E4 | Proposition `closedform` | the two-valued readout p_0 = 1 − (n−1)t_s/n, p_j = t_s/n, t_s = (2−ζ^{2s}−ζ^{−2s})/4 = sin²(πs/2κ); the closed-form H(s); strictly increasing on [0, κ]; period 2κ | [approx] |
 | E5 | §9 table, Figure `entropy13` | p = 13: H(s)/log n = 0, .44, .91, 1, .91, .44, … ; regenerates `figures/entropy-cycle-f13` | [approx] |
 | E6 | Remark `input-dep` | δ_1 at p = 13: H(1)/log n = 0.55 against 0.44; δ_j meets the odd projectors iff j ∉ {0, 2κ} | [approx] |
-| E7 | Definition `readout` (the Galois twist) | X ↦ ζ^u relabels the δ_0 curve by s ↦ us on every unit u; the cardinal values of every δ_j are twist-invariant | [approx] |""")
+| E7 | Definition `readout` (the Galois twist) | X ↦ ζ^u relabels the δ_0 curve by s ↦ us on every unit u; the cardinal values of every δ_j are twist-invariant; u = −1 relabels every δ_j; δ_1 at n = 12 under u = 5: 0.55 ↦ 0.44 | [approx] |
+
+Ledger rows witnessed: 6:F2–F7.""")
 code("import e_entropy; e_entropy.run(); show('entropy-cycle-f13')")
 
 md("""## Summary

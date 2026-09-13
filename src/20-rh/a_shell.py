@@ -1,7 +1,7 @@
 """
 a_shell.py — block A: the shell theorem and the exact shell arithmetic (EXACT, integer-pinned)
 =============================================================================================
-Master ledger row 00:D11 (the shell theorem, 20-rh Thm. hp). Paper-local predicates:
+Master ledger row 00:D11 (the shell theorem, 20-rh Thm. hp); paper ledger rows 20:B1–B11, 20:E1, 20:E9, 20:E12–E13. Package checks:
 
   A1  Thm. zeroslot     zero-slot: Σ_{x∈F_p^×} x^k = 0 for every nonterminal k, = −1 on the terminal slot
   A2  Thm. compl        slot complementarity: Φ(k) = −g^k bijects the nonterminal slots onto F_p^× \ {−1}
@@ -22,8 +22,11 @@ Master ledger row 00:D11 (the shell theorem, 20-rh Thm. hp). Paper-local predica
   A10 Def. shells       the shared structure of two shells is the quarter-turn core Q₄ (4 | p−1, 4 | Ω−1);
                         on the laboratory pair (13, 233) the cycle projection C_{Ω−1} → C_{p−1} does not
                         exist (12 ∤ 232) — the negative check behind the round-02 chronon paragraph
+  A11 Prop. coincide    frame coincidence below the horizon √p: residues, window products and primality
+                        (trial division inside the window) agree between F_p and the Carrier chart F_Ω,
+                        Ω the least prime ≡ 1 (mod 4) above p²
 
-Shells: p = 13, 17, 29, 37, 41 in full (all p² points of F_{p²}); 173 for A1, A4, A6.
+Shells: p = 13, 17, 29, 37, 41 in full (all p² points of F_{p²}); 173 for A1, A4, A6; 1009 and 10009 for A11.
 """
 import math, cmath
 import numpy as np
@@ -157,6 +160,19 @@ def run():
             check("A10", "Q₄ ⊂ both cycles; C_232 ↠ C_12 does not exist (12 ∤ 232) on the pair (13, 233)", ok, "the shells share the core, not a clock")
         else:
             check("A10", f"Q₄ = {{1, i, −1, −i}} ⊂ F_{p}^×, 4 | p−1", ok)
+    # A11 frame coincidence below the horizon (Prop. coincide): the Carrier chart Ω is the least prime ≡ 1 (mod 4) above p²
+    import sympy as sp
+    for p in SHELLS + [1009, 10009]:
+        Om = int(sp.nextprime(p * p))
+        while Om % 4 != 1:
+            Om = int(sp.nextprime(Om))
+        H = math.isqrt(p)
+        same = all(n % p == n % Om == n for n in range(1, H + 1))
+        prods = all((a * b) % p == (a * b) % Om == a * b for a in range(1, H + 1) for b in range(1, H + 1))
+        irreducible = {n for n in range(2, H + 1) if all(n % d for d in range(2, math.isqrt(n) + 1))}   # trial division inside the window
+        primes = {n for n in range(2, H + 1) if sp.isprime(n)}
+        check("A11", f"frame coincidence below √{p} = {H} on the pair ({p}, {Om}): residues, window products and primality agree", same and prods and irreducible == primes,
+              f"Π_p = {sorted(primes)}")
     # A8 self-adjointness is free
     J = jacobi_from_points(HEIGHTS[:10])
     ev = np.sort(np.linalg.eigvalsh(J))

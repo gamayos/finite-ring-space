@@ -16,10 +16,10 @@ chart mode against the prime indicator (Prop. flat, Obs. flat). Paper-local pred
                                     N ≤ 30 falls monotonically over L = 15, 60, 240
   E2a Obs. antipode  EXACT     per-mode energy μ²(q)/φ(q) on squarefree q: 1, ½, ¼, ⅙ at q = 2, 3, 5, 7, with its
                                     unique global maximum at the antipode q = 2 (all q ≤ 2000)
-  E2b Obs. antipode  [approx]  the additive-transform band energy of the prime indicator on Z/p, p ≈ 10⁴, peaks at
-                                    the antipode and follows 1/φ(q): q = 2 > 3 > 5 > 7. (The paper's absolute figures
-                                    1220 > 640 > 323 > 214 are reported against, not pinned: the text does not state
-                                    the vector normalisation and band width that produce them — see README.)
+  E2b Obs. antipode  [approx]  the additive-transform band energy of the prime indicator on Z/10007, Parseval-
+                                    normalised over the bins within three of each a/q, peaks at the antipode and
+                                    follows 1/φ(q): 1153 > 592 > 301 > 205 at q = 2, 3, 5, 7 (the paper's figures,
+                                    restated on 2026-09-13 from the unnormalised 1220 > 640 > 323 > 214)
   E3  Obs. horizon   [approx]  the resolving threshold L*(H) — the least bandwidth at which R_L separates every prime
                                     power in {2..H} from every non-prime-power — exists for H = 6..50 and tracks the
                                     horizon, L* < 6H, far below the field scale H²
@@ -152,10 +152,10 @@ def run():
                 e += sum(abs(F[k % p4]) ** 2 for k in range(int(math.floor(kc)) - 3, int(math.ceil(kc)) + 4))
         band[q] = e / norm2
     law = [band[q] * phi[q] / band[2] for q in (3, 5, 7)]
-    ok = band[2] > band[3] > band[5] > band[7] and all(0.85 < r < 1.25 for r in law)
-    check("E2b", "additive-transform band energy of the prime indicator (p = 10007) peaks at the antipode and follows 1/φ(q): q = 2 > 3 > 5 > 7", ok,
-          "band energy (Parseval-normalised, ±3 bins) " + " > ".join(f"q={q}: {band[q]:.0f}" for q in (2, 3, 5, 7)) + f"; φ(q)·E_q/E_2 = " + ", ".join(f"{r:.2f}" for r in law)
-          + " (paper: 1220 > 640 > 323 > 214, normalisation unstated)", kind="[approx]")
+    stated = {2: 1153, 3: 592, 5: 301, 7: 205}
+    ok = band[2] > band[3] > band[5] > band[7] and all(abs(band[q] - stated[q]) < 2 for q in stated) and all(0.85 < r < 1.25 for r in law)
+    check("E2b", "additive-transform band energy of the prime indicator on Z/10007 (Parseval-normalised, bins within 3 of a/q): 1153 > 592 > 301 > 205, the law 1/φ(q)", ok,
+          " > ".join(f"q={q}: {band[q]:.0f}" for q in (2, 3, 5, 7)) + f"; φ(q)·E_q/E_2 = " + ", ".join(f"{r:.2f}" for r in law), kind="[approx]")
     # ---------------- E3: the resolving threshold
     Hs = list(range(6, 51, 2)); Ls = []
     for H in Hs:

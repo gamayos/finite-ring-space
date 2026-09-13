@@ -1,7 +1,7 @@
 [
  {
   "id": "A1",
-  "rows": "\u00a73 shell data (eq:it-def, rem:capacity), tab:checks",
+  "rows": "6:B1",
   "script": "a_shell",
   "label": "p = 4\u03ba+1, g the smallest primitive root, i = \u2212g^\u03ba = g^{\u2212\u03ba}, i\u00b2 \u2261 \u22121, \u03c0 = 2\u03ba, 2\u03c0 \u2261 \u22121, g^\u03c0 \u2261 \u22121, \u2212\u03c0 \u2261 2\u207b\u00b9, e = g^i; Table tab:checks (\u03ba, g, i)",
   "ok": true,
@@ -10,7 +10,7 @@
  },
  {
   "id": "A2",
-  "rows": "\u00a73 Euler identity on the odd member; 00:C14",
+  "rows": "6:B2",
   "script": "a_shell",
   "label": "e^{i\u03c0} = g^{2\u03ba(i mod 2)} \u2261 \u22121 exactly on the odd quarter-turn; the conjugate reframing toggles it, one member of each pair carries it",
   "ok": true,
@@ -19,7 +19,7 @@
  },
  {
   "id": "A3",
-  "rows": "rem:gt-covariance",
+  "rows": "6:B3",
   "script": "a_shell",
   "label": "g' = g^u: the quarter-turn flips only on u \u2261 3 (mod 4); e' = g^{ui} \u2260 e iff i(u\u22121) \u2262 0 (mod 4\u03ba); at p = 13, u = 5: e' = 2 \u2260 6",
   "ok": true,
@@ -28,7 +28,7 @@
  },
  {
   "id": "A4",
-  "rows": "lem:W-square, prop:F-cycle, tab:checks; 00:C2",
+  "rows": "6:B5",
   "script": "a_shell",
   "label": "W\u00b2 = \u2212J, (iW)\u00b2 = J, (iW)\u2074 = I on the six shells of Table tab:checks",
   "ok": true,
@@ -37,7 +37,7 @@
  },
  {
   "id": "A5",
-  "rows": "rem:unitary-norm",
+  "rows": "6:B6",
   "script": "a_shell",
   "label": "the square roots of 1/n \u2261 \u22121 in F_p are exactly \u00b1i, the two unitary normalisations of W: (cW)\u00b2 = J iff c = \u00b1i",
   "ok": true,
@@ -46,7 +46,7 @@
  },
  {
   "id": "A6",
-  "rows": "lem:JF-decomp",
+  "rows": "6:B7",
   "script": "a_shell",
   "label": "WJ = JW, FJ = JF; dim V\u207a = 2\u03ba+1, dim V\u207b = 2\u03ba\u22121",
   "ok": true,
@@ -55,7 +55,7 @@
  },
  {
   "id": "B1",
-  "rows": "lem:projectors",
+  "rows": "6:C2",
   "script": "b_fractional",
   "label": "\u03a0_\u2113\u00b2 = \u03a0_\u2113, \u03a0_\u2113 \u03a0_m = 0, \u03a3 \u03a0_\u2113 = I, F \u03a0_\u2113 = i^\u2113 \u03a0_\u2113",
   "ok": true,
@@ -64,7 +64,7 @@
  },
  {
   "id": "B2",
-  "rows": "thm:FRC-FrFT (eq:additivity); 00:C2",
+  "rows": "6:C3",
   "script": "b_fractional",
   "label": "F^[s+r] = F^[s] F^[r] on every pair (s, r) of Z_{4\u03ba}",
   "ok": true,
@@ -73,7 +73,7 @@
  },
  {
   "id": "B3",
-  "rows": "thm:FRC-FrFT (eq:cardinal-FrFT); 00:C2",
+  "rows": "6:C3",
   "script": "b_fractional",
   "label": "F^[0] = I, F^[\u03ba] = F, F^[2\u03ba] = J, F^[3\u03ba] = F\u207b\u00b9, F^[4\u03ba] = I; (F^[1])^\u03ba = F",
   "ok": true,
@@ -82,7 +82,7 @@
  },
  {
   "id": "B4",
-  "rows": "thm:faithful",
+  "rows": "6:C4",
   "script": "b_fractional",
   "label": "s \u21a6 F^[s] is injective on Z_{4\u03ba}: the 4\u03ba members are pairwise distinct (p = 5 included)",
   "ok": true,
@@ -91,7 +91,7 @@
  },
  {
   "id": "B5",
-  "rows": "lem:multiplicity",
+  "rows": "6:C5",
   "script": "b_fractional",
   "label": "m_\u2113 = rank \u03a0_\u2113 = dim ker(F \u2212 i^\u2113 I); m_0+m_2 = 2\u03ba+1, m_1+m_3 = 2\u03ba\u22121; m_0, m_2 \u2265 1; m_1, m_3 \u2265 1 for \u03ba \u2265 2; p = 5: one odd projector vanishes",
   "ok": true,
@@ -100,7 +100,7 @@
  },
  {
   "id": "B6",
-  "rows": "rem:multiplicities",
+  "rows": "6:C6",
   "script": "b_fractional",
   "label": "p = 13: g = 2 gives (3,3,4,2), Tr F = 4; g = 6 gives (4,2,3,3), Tr F = 9; m \u21a6 um carries F(g) to F(g^{u\u00b2}) by a permutation",
   "ok": true,
@@ -109,7 +109,7 @@
  },
  {
   "id": "B7",
-  "rows": "thm:multiplicity",
+  "rows": "6:C7",
   "script": "b_fractional",
   "label": "G = \u03b5(1+i), the two patterns, \u03b5(g\u207b\u00b9) = \u2212\u03b5(g), \u03b5(g^u) = (\u03ba/u) \u03b5(g), classes equally populated; 38 frames of p \u2208 {5,\u2026,37} and 16 of p = 41; p = 5: (2,0,1,1) at g = 2, (1,1,2,0) at g = 3",
   "ok": true,
@@ -118,7 +118,7 @@
  },
  {
   "id": "B8",
-  "rows": "thm:multiplicity (proof: G G* = \u22122, G\u00b2 = 2i, the traces)",
+  "rows": "6:C7",
   "script": "b_fractional",
   "label": "G G* = \u22122, G\u00b2 = 2i, Tr F = iG, Tr F\u00b2 = 2, Tr F\u00b3 = iG*, m_\u2113 \u2261 \u00bc \u03a3_r i^{\u2212\u2113r} Tr F^r (mod p)",
   "ok": true,
@@ -127,7 +127,7 @@
  },
  {
   "id": "B9",
-  "rows": "rem:classification",
+  "rows": "6:C8",
   "script": "b_fractional",
   "label": "exponent lifts a_\u2113 \u2261 \u2113 (mod 4) are additive with the cardinal skeleton (p = 13); the chart g^5 at p = 29 (u\u00b2 \u2262 1 mod 28) does not commute with F",
   "ok": true,
@@ -136,7 +136,7 @@
  },
  {
   "id": "B10",
-  "rows": "rem:gt-covariance (registered objects invariant under the conjugate reframing); 00:C7",
+  "rows": "6:C9",
   "script": "b_fractional",
   "label": "the conjugate frame (g\u207b\u00b9, \u2212i) keeps the operator relations, cardinal values, additivity and faithfulness; its multiplicity tuple is the other pattern; F' = \u2212F\u207b\u00b9, \u03a0'_\u2113 = \u03a0_{\u2113+2}",
   "ok": true,
@@ -145,7 +145,7 @@
  },
  {
   "id": "C1",
-  "rows": "def:domain",
+  "rows": "6:D1",
   "script": "c_domains",
   "label": "every F^[s] has full rank 4\u03ba over F_p; the eigenvalues g^{\u2212\u2113s} are nonzero",
   "ok": true,
@@ -154,7 +154,7 @@
  },
  {
   "id": "C2",
-  "rows": "cor:distinct-domains",
+  "rows": "6:D2",
   "script": "c_domains",
   "label": "the 4\u03ba framed bases B_s = F^[s] B_0 are pairwise distinct",
   "ok": true,
@@ -163,7 +163,7 @@
  },
  {
   "id": "C3",
-  "rows": "rem:ordered-bases",
+  "rows": "6:D2",
   "script": "c_domains",
   "label": "F^[s+2\u03ba] = F^[s] J, so B_{s+2\u03ba} = B_s as unordered bases: 4\u03ba framed domains, exactly 2\u03ba measurement bases",
   "ok": true,
@@ -172,7 +172,7 @@
  },
  {
   "id": "C4",
-  "rows": "prop:meridian-scale; 00:C2",
+  "rows": "6:D4",
   "script": "c_domains",
   "label": "S_r(M_m) = M_{m+r} on every (m, r), as ordered lists",
   "ok": true,
@@ -181,7 +181,7 @@
  },
  {
   "id": "C5",
-  "rows": "cor:effective-step, rem:framed-rational (S_{r+(p\u22121)} = S_r)",
+  "rows": "6:D4",
   "script": "c_domains",
   "label": "consecutive entries of M_m differ by the effective step g^m; S_{r+(p\u22121)} = S_r",
   "ok": true,
@@ -190,7 +190,7 @@
  },
  {
   "id": "C6",
-  "rows": "ex:zoom-13, thm:zoom (the no-wrap window)",
+  "rows": "6:D5",
   "script": "c_domains",
   "label": "p = 13, g = 2: M_0\u2026M_3 = the printed ladder at steps 1, 2, 4, 8; the no-wrap window w\u00b7g^r < p with w = \u03c0 = 6 holds for r \u2264 1 and the listing wraps from M_2",
   "ok": true,
@@ -199,7 +199,7 @@
  },
  {
   "id": "D1",
-  "rows": "lem:Rs-rotation",
+  "rows": "6:E2",
   "script": "d_weil",
   "label": "c_s\u00b2 + d_s\u00b2 = 1, det R_s = 1: R_s \u2208 SO(2, F_p) for every s",
   "ok": true,
@@ -208,7 +208,7 @@
  },
  {
   "id": "D2",
-  "rows": "prop:rotation-isom",
+  "rows": "6:E2",
   "script": "d_weil",
   "label": "R_{s+r} = R_s R_r, s \u21a6 R_s injective, |SO(2, F_p)| = p\u22121 = 4\u03ba: an isomorphism",
   "ok": true,
@@ -217,7 +217,7 @@
  },
  {
   "id": "D3",
-  "rows": "thm:Weil-equivalence (the cardinal matrices), tab:checks",
+  "rows": "6:E3",
   "script": "d_weil",
   "label": "R_0 = I, R_\u03ba = [[0,\u22121],[1,0]] (Table tab:checks), R_{2\u03ba} = \u2212I, R_{3\u03ba} = w\u207b\u00b9; z_\u03ba = g^{\u2212\u03ba} = i",
   "ok": true,
@@ -226,7 +226,7 @@
  },
  {
   "id": "D4",
-  "rows": "prop:nogo",
+  "rows": "6:E5",
   "script": "d_weil",
   "label": "\u03c3 has the 4\u03ba simple eigenvalues F_p^\u00d7; F^[1] has at most four; for \u03ba \u2265 2 \u27e8\u03c3\u27e9 and \u27e8F^[1]\u27e9 are not conjugate",
   "ok": true,
@@ -235,7 +235,7 @@
  },
  {
   "id": "D5",
-  "rows": "prop:charsector",
+  "rows": "6:E6",
   "script": "d_weil",
   "label": "E_1 \u2260 0 for \u03ba \u2265 2; F^[s] = g^{\u2212s} on E_1; F^[s] T_v = T_v S_{\u2212s} on every x and s; R_s (1,\u2212i)\u1d40 = g^{\u2212s} (1,\u2212i)\u1d40",
   "ok": true,
@@ -244,7 +244,7 @@
  },
  {
   "id": "D6",
-  "rows": "prop:heisenberg",
+  "rows": "6:E7",
   "script": "d_weil",
   "label": "F \u03c3 F\u207b\u00b9 = D_1, F D_1 F\u207b\u00b9 = \u03c3\u207b\u00b9; F^r \u03c3 = \u03c3_r F^r with (\u03c3, D_1, \u03c3\u207b\u00b9, D_1\u207b\u00b9); F^[s] = \u03a3_r c_r(s) F^r, c_r(s) = \u00bc \u03a3_\u2113 (g^{r\u03ba\u2212s})^\u2113",
   "ok": true,
@@ -253,7 +253,7 @@
  },
  {
   "id": "D7",
-  "rows": "conj:monomial (the 112-index sweep)",
+  "rows": "6:E7",
   "script": "d_weil",
   "label": "F^[s] \u03c3 F^[s]\u207b\u00b9 is monomial exactly at the four cardinal indices and non-monomial at every one of the 112 intermediate indices of p \u2208 {13,17,29,37,41}",
   "ok": true,
@@ -262,7 +262,7 @@
  },
  {
   "id": "E1",
-  "rows": "def:readout (the reduction \u03c1, \u011c\u00b2 = 2nX^\u03ba)",
+  "rows": "6:F2",
   "script": "e_entropy",
   "label": "\u011c\u00b2 = 2n X^\u03ba modulo \u03a6_n(X) (exact integer arithmetic); under \u03c3_C: (\u03a3 \u03b6^{k\u00b2})\u00b2 = 2n i; under \u03c1: G\u00b2 = 2i in F_p",
   "ok": true,
@@ -271,7 +271,7 @@
  },
  {
   "id": "E2",
-  "rows": "prop:entropy (cardinal values)",
+  "rows": "6:F3",
   "script": "e_entropy",
   "label": "H(0) = H(2\u03ba) = 0, H(\u03ba) = H(3\u03ba) = log n for every \u03b4_j",
   "ok": true,
@@ -280,7 +280,7 @@
  },
  {
   "id": "E3",
-  "rows": "prop:entropy (mutually unbiased bases, Maassen\u2013Uffink, the comb)",
+  "rows": "6:F3",
   "script": "e_entropy",
   "label": "B_0, B_\u03ba mutually unbiased (overlaps 1/n); H_{B_0} + H_{B_\u03ba} \u2265 log n on random states, saturated by \u03b4_j; the comb (\u03b4_0+\u03b4_6)/\u221a2 at n = 12: log 2 + log 6 = log 12",
   "ok": true,
@@ -289,7 +289,7 @@
  },
  {
   "id": "E4",
-  "rows": "prop:closedform",
+  "rows": "6:F4",
   "script": "e_entropy",
   "label": "F^[s] \u03b4_0 has the two-valued readout p_0 = 1 \u2212 (n\u22121)t_s/n, p_j = t_s/n, t_s = (2\u2212\u03b6^{2s}\u2212\u03b6^{\u22122s})/4 = sin\u00b2(\u03c0s/2\u03ba); H(s) the closed form, strictly increasing on [0, \u03ba], period 2\u03ba, strictly intermediate off the cardinal indices",
   "ok": true,
@@ -298,7 +298,7 @@
  },
  {
   "id": "E5",
-  "rows": "\u00a79 table H(s)/log n, fig:entropy13",
+  "rows": "6:F5",
   "script": "e_entropy",
   "label": "p = 13: H(s)/log n = 0, .44, .91, 1, .91, .44, 0, .44, .91, 1, .91, .44 (fig:entropy13)",
   "ok": true,
@@ -307,7 +307,7 @@
  },
  {
   "id": "E6",
-  "rows": "rem:input-dep",
+  "rows": "6:F6",
   "script": "e_entropy",
   "label": "\u03b4_1 at p = 13: H(1)/log n = 0.55 against 0.44 for \u03b4_0; \u03b4_j meets the odd projectors exactly when j \u2209 {0, 2\u03ba}; \u03b4_{2\u03ba} reproduces the \u03b4_0 curve",
   "ok": true,
@@ -316,11 +316,11 @@
  },
  {
   "id": "E7",
-  "rows": "def:readout (the Galois twist relabels the intermediate curve)",
+  "rows": "6:F7",
   "script": "e_entropy",
-  "label": "X \u21a6 \u03b6^u relabels the \u03b4_0 curve by s \u21a6 us on every unit u; the cardinal values of every \u03b4_j are invariant under every twist",
+  "label": "X \u21a6 \u03b6^u relabels the \u03b4_0 curve by s \u21a6 us on every unit u; the cardinal values of every \u03b4_j are invariant under every twist; u = \u22121 relabels every \u03b4_j; \u03b4_1 at n = 12 under u = 5: H(1)/log n 0.55 \u21a6 0.44",
   "ok": true,
-  "detail": "54 twists over the six shells",
+  "detail": "54 twists over the six shells; \u03b4_1, u = 5: 0.4377",
   "kind": "[approx]"
  }
 ]

@@ -2,7 +2,8 @@
 run_all.py — the 20-rh validation package, end to end
 =====================================================
 Runs the five blocks in order, regenerates every numerical figure of the paper into figures/,
-writes results.json, and exits nonzero if any predicate check fails.
+writes results.json (each record carrying the paper's ledger row it witnesses), and exits nonzero if any
+check fails.
 
     python3 run_all.py            # full depths (≈ 6–8 min on a laptop; 8×10⁷ comb in block D)
     RH_FAST=1 python3 run_all.py  # reduced depths (≈ 3 min)

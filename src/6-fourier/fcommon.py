@@ -4,10 +4,10 @@ fcommon.py — shared primitives for the 6-fourier validation package
 "Scale-Shift and Fractional Fourier Transform as Rotations over Finite Holographic Substrate"
 (Akhtman, 2026), validation package of the FRC corpus (finite-ring-space/src/6-fourier).
 
-The paper carries no predicate ledger of its own; its machine-verified claims are the labelled
-statements of Sections 3–9 (Table `tab:checks`, the theorems, lemmas, propositions, remarks and the
-one conjecture). Each check names the paper `\\label`(s) it decides (LEDGER below) and, where a row of
-the corpus master ledger (00-ledger, rows cited as 00:XN) is witnessed, that row.
+Each check names the row(s) of the paper's predicate ledger it witnesses (LEDGER below; rows cited as
+6:XN), and the ledger's source column cites the check ids; the paper \\label(s) a check decides are in the
+block docstrings. Three master-ledger rows of the corpus (00:C2, 00:C14, 00:C7) are reached through the
+paper rows.
 
 Everything the block scripts share:
   * the frame datum of a shell: p = 4κ+1, the smallest primitive root g (the generators of
@@ -34,50 +34,19 @@ SHELLS = [p for p, _, _, _ in TABLE]
 # ----------------------------------------------------------------------------- registry
 RESULTS = []
 
-# Package check id -> the paper statement(s) decided (by \label) and the master-ledger row witnessed.
+# The paper's predicate ledger (6-fourier Section "Machine verification and predicate ledger", rows cited as
+# 6:XN): the row(s) each check witnesses. The ledger's source column cites these check ids in return. The
+# paper \label(s) each check decides are listed in the block scripts' docstrings.
 LEDGER = {
-    # block A — the frame datum and the shell Fourier operator
-    "A1": "§3 shell data (eq:it-def, rem:capacity), tab:checks",
-    "A2": "§3 Euler identity on the odd member; 00:C14",
-    "A3": "rem:gt-covariance",
-    "A4": "lem:W-square, prop:F-cycle, tab:checks; 00:C2",
-    "A5": "rem:unitary-norm",
-    "A6": "lem:JF-decomp",
-    # block B — the fractional family
-    "B1": "lem:projectors",
-    "B2": "thm:FRC-FrFT (eq:additivity); 00:C2",
-    "B3": "thm:FRC-FrFT (eq:cardinal-FrFT); 00:C2",
-    "B4": "thm:faithful",
-    "B5": "lem:multiplicity",
-    "B6": "rem:multiplicities",
-    "B7": "thm:multiplicity",
-    "B8": "thm:multiplicity (proof: G G* = −2, G² = 2i, the traces)",
-    "B9": "rem:classification",
-    "B10": "rem:gt-covariance (registered objects invariant under the conjugate reframing); 00:C7",
-    # block C — domains and the coordinate-side zoom
-    "C1": "def:domain",
-    "C2": "cor:distinct-domains",
-    "C3": "rem:ordered-bases",
-    "C4": "prop:meridian-scale; 00:C2",
-    "C5": "cor:effective-step, rem:framed-rational (S_{r+(p−1)} = S_r)",
-    "C6": "ex:zoom-13, thm:zoom (the no-wrap window)",
-    # block D — the Weil dictionary and the operator-level comparison
-    "D1": "lem:Rs-rotation",
-    "D2": "prop:rotation-isom",
-    "D3": "thm:Weil-equivalence (the cardinal matrices), tab:checks",
-    "D4": "prop:nogo",
-    "D5": "prop:charsector",
-    "D6": "prop:heisenberg",
-    "D7": "conj:monomial (the 112-index sweep)",
-    # block E — the cyclotomic observer readout
-    "E1": "def:readout (the reduction ρ, Ĝ² = 2nX^κ)",
-    "E2": "prop:entropy (cardinal values)",
-    "E3": "prop:entropy (mutually unbiased bases, Maassen–Uffink, the comb)",
-    "E4": "prop:closedform",
-    "E5": "§9 table H(s)/log n, fig:entropy13",
-    "E6": "rem:input-dep",
-    "E7": "def:readout (the Galois twist relabels the intermediate curve)",
+    "A1": "6:B1", "A2": "6:B2", "A3": "6:B3", "A4": "6:B5", "A5": "6:B6", "A6": "6:B7",
+    "B1": "6:C2", "B2": "6:C3", "B3": "6:C3", "B4": "6:C4", "B5": "6:C5", "B6": "6:C6", "B7": "6:C7", "B8": "6:C7",
+    "B9": "6:C8", "B10": "6:C9",
+    "C1": "6:D1", "C2": "6:D2", "C3": "6:D2", "C4": "6:D4", "C5": "6:D4", "C6": "6:D5",
+    "D1": "6:E2", "D2": "6:E2", "D3": "6:E3", "D4": "6:E5", "D5": "6:E6", "D6": "6:E7", "D7": "6:E7",
+    "E1": "6:F2", "E2": "6:F3", "E3": "6:F3", "E4": "6:F4", "E5": "6:F5", "E6": "6:F6", "E7": "6:F7",
 }
+# The master-ledger rows of the corpus witnessed through the paper rows: 00:C2 (6:B5, 6:C3, 6:D4),
+# 00:C14 (6:B2), 00:C7 on the transform layer (6:C9).
 
 def check(pid, label, ok, detail="", kind="EXACT"):
     """Record one predicate check. pid = package check id; LEDGER[pid] = the paper statement(s) decided."""

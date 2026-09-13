@@ -4,9 +4,10 @@ Validation package of *Scale-Shift and Fractional Fourier Transform as Rotations
 Substrate* (Akhtman, 2026), `6-fourier` of the FRC corpus. Five block scripts, 36 checks, one regenerated
 figure, driven by `6-fourier-main.ipynb` (Google Colab, *Runtime → Run all*, ≈ 10 s) or by `run_all.py`.
 
-The paper carries no predicate ledger; its machine-verified claims are the labelled statements of Sections
-3–9 and Table `tab:checks`. Every check names the `\label`(s) it decides, and the master-ledger row of the
-corpus it witnesses where one exists (`00:C2`, `00:C14`, `00:C7`).
+Every check names the row(s) of the paper's predicate ledger it witnesses (the paper's Section "Machine verification
+and predicate ledger", 47 rows in blocks A–F, V, O, cited as `6:XN`; public copy `docs/6-fourier/6-fourier-ledger.html`),
+and the ledger's source column cites the check ids in return; the paper `\label`(s) each check decides are in the block
+docstrings. Three master-ledger rows of the corpus are reached through the paper rows (`00:C2`, `00:C14`, `00:C7`).
 
 [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/gamayos/finite-ring-space/blob/main/src/6-fourier/6-fourier-main.ipynb)
 
@@ -41,13 +42,21 @@ and raises on any failure. Committed executed, with outputs.
 |---|---|---|
 | `figures/entropy-cycle-f13.pdf` (+ `.png`) | Fig. `entropy13` (§9, entropy on the meridian cycle) | E |
 
-## Master ledger
+## Predicate ledger
 
-| row | statement | witnessed by |
-|---|---|---|
-| `00:C2` (p0022) | scale-shift duality: dilation x ↦ gx is phase evolution of the frame; over the cycle it is the fractional Fourier transform, whose quarter-turn is the discrete Fourier transform | A4, B2, B3, C4 |
-| `00:C14` (p0034) | the quarter-turn is the odd member of the ±√−1 pair: e^{iπ} ≡ −1 exactly on the odd member, toggled by the conjugate chart | A2 |
-| `00:C7` (p0027) | orientation is derived: the joint flip (g, i) ↦ (g⁻¹, −i) preserves every registered count | B10 (the transform layer only: operator relations, cardinal values, faithfulness; the count-preservation of the other papers is not this package's) |
+| check | paper row | check | paper row | check | paper row |
+|---|---|---|---|---|---|
+| A1 | 6:B1 | B5 | 6:C5 | C6 | 6:D5 |
+| A2 | 6:B2 (00:C14) | B6 | 6:C6 | D1, D2 | 6:E2 |
+| A3 | 6:B3 | B7, B8 | 6:C7 | D3 | 6:E3 |
+| A4 | 6:B5 (00:C2) | B9 | 6:C8 | D4 | 6:E5 |
+| A5 | 6:B6 | B10 | 6:C9 (00:C7, transform layer) | D5 | 6:E6 |
+| A6 | 6:B7 | C1 | 6:D1 | D6, D7 | 6:E7 (the sweep of the open row 6:O1) |
+| B1 | 6:C2 | C2, C3 | 6:D2 | E1 | 6:F2 |
+| B2, B3 | 6:C3 (00:C2) | C4, C5 | 6:D4 (00:C2) | E2, E3 | 6:F3 |
+| B4 | 6:C4 | | | E4 … E7 | 6:F4 … 6:F7 |
+
+Rows B4, C1, D3, D6, E1, E4, F1 are definitions, A1–A7 imports, V1–V3 the verification rows, O1 the open conjecture.
 
 ## Superseded
 
@@ -57,11 +66,11 @@ multiplicity dichotomy extended to p = 41.
 
 ## Findings recorded
 
-- The Galois-twist sentence of Definition `readout` ("relabels the intermediate curve by s ↦ us while leaving the cardinal
-  values invariant") holds as stated for the localized input δ_0 (and δ_{2κ}) on every unit u, and for every input under
-  u = −1; for δ_j with j ∉ {0, 2κ} and u ≢ ±1 (mod n) the twisted curve is not the relabelled curve (at n = 12, δ_1,
-  u = 5: H(1)/log n moves from 0.55 to 0.44), while the cardinal values stay invariant. The sentence's scope is the δ_0
-  input of Proposition `closedform`; E7 checks it there.
+- The Galois-twist sentence of Definition `readout` in the published version ("relabels the intermediate curve by s ↦ us
+  while leaving the cardinal values invariant") holds for the localized input δ_0 (and δ_{2κ}) on every unit u, and for
+  every input under u = −1 (F^[s] is symmetric, so the curve of every δ_j is even in s); for δ_j with j ∉ {0, 2κ} and
+  u ≢ ±1 (mod n) the twisted curve is not the relabelled curve (at n = 12, δ_1, u = 5: H(1)/log n moves from 0.55 to
+  0.44), while the cardinal values stay invariant. The tree's sentence and ledger row F7 state this scope; E7 checks it.
 - The conjugate frame's family is not a scalar twist of the inverse family (F'^[s] ≠ g^{−2s} F^[−s] off the cardinal
   indices); the exact relations are F' = −F⁻¹ and Π'_ℓ = Π_{ℓ+2}, with the conjugate family the principal lift of its own
   frame (B10).

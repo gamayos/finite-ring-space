@@ -2,14 +2,18 @@
 rhcommon.py — shared primitives for the 20-rh validation package
 =================================================================
 "Riemann Hypothesis over Finite Holographic Substrate" (Akhtman & Voether, 2026),
-validation package of the FRC corpus (frc-numerics/20-rh).
+validation package of the FRC corpus (finite-ring-space/src/20-rh). Each check names the row(s) of the paper's predicate
+ledger it witnesses (LEDGER below; rows cited as 20:XN), and the ledger's source column cites the check ids.
 
 Everything the block scripts share:
   * the von Mangoldt comb Λ(n) (sieved) and its raised-cosine taper in log n;
   * the archimedean scale-phase θ(T) from log Γ (never from ζ);
-  * the raw comb count  Ñ_N(T) = θ(T)/π + 1 + S_comb(T)  (Theorem turing; Obs. trace);
-  * the secular roots (half-integer crossings of Ñ_N), the colleague matrix and the
-    comb-built Jacobi matrix (Obs. matrix, Def. jacobi);
+  * the raw comb count  Ñ_N(T) = θ(T)/π + 1 + S_comb(T)  (Theorem turing; Obs. trace) and the pole-corrected
+    count  N̂_N(T) = Ñ_N(T) − (1/π) Im[Π_N(½+iT) + log((s−1)/s)]  (Proposition combformula), Π_N the explicit
+    pole term of the smoothed explicit formula — the raw count carries it and has no limit in N, the corrected
+    count settles;
+  * the secular roots (half-integer crossings of N̂_N, or of Ñ_N for the raw reading), the colleague matrix
+    and the comb-built Jacobi matrix (Obs. matrix, Def. jacobi);
   * the first Riemann heights, used only as validation markers — never as inputs;
   * the PASS/FAIL registry that every block reports into (results.json).
 
@@ -29,11 +33,29 @@ os.makedirs(FIGDIR, exist_ok=True)
 # ----------------------------------------------------------------------------- registry
 RESULTS = []
 
+# The paper's predicate ledger (20-rh Subsection "Predicate ledger", rows cited as 20:XN): the row(s) each
+# check witnesses. The ledger's source column cites these check ids in return.
+LEDGER = {
+    "A1": "20:B4", "A2": "20:B5", "A3": "20:B6", "A4": "20:B8", "A5": "20:B9", "A6": "20:B10", "A7": "20:E1, 20:E12, 20:E13",
+    "A8": "20:E9", "A9": "20:B7", "A10": "20:B1", "A11": "20:B2",
+    "B1": "20:D2", "B2": "20:D3", "B3": "20:B8", "B4": "20:D4",
+    "C1": "20:E5", "C2": "20:E6", "C2b": "20:E6, 20:E8", "C2c": "20:E6", "C3": "20:E8", "C4": "20:E9", "C5": "20:E10", "C6": "20:E11", "C6b": "20:E3",
+    "C7a": "20:E14, 20:E15", "C7b": "20:E15",
+    "D1": "20:F1", "D2a": "20:F3", "D2b": "20:F3", "D2c": "20:F4", "D2d": "20:F4", "D2e": "20:F5",
+    "D2f": "20:F5, 20:F8", "D2g": "20:F4, 20:F8", "D3": "20:F8", "D4": "20:F1",
+    "E1a": "20:C2", "E1b": "20:C2", "E1c": "20:C3", "E2a": "20:B11", "E2b": "20:B11", "E3": "20:C4", "E4": "20:C6",
+}
+
 def check(pid, label, ok, detail="", kind="EXACT"):
-    """Record one predicate check. pid = paper-local predicate id (A1, C3, ...)."""
+    """Record one predicate check. pid = package check id (A1, C3, ...); LEDGER[pid] = the paper's ledger row(s)."""
     ok = bool(ok)
-    RESULTS.append({"id": pid, "label": label, "ok": ok, "detail": detail, "kind": kind})
-    print(f"  [{'PASS' if ok else 'FAIL'}] {pid:4s} {kind:7s} {label}" + (f"  --  {detail}" if detail else ""))
+    rows = LEDGER.get(pid, "")
+    import sys as _sys
+    script = _sys._getframe(1).f_globals.get("__name__", "")
+    if script == "__main__":
+        script = os.path.splitext(os.path.basename(_sys.argv[0]))[0]
+    RESULTS.append({"id": pid, "rows": rows, "script": script, "label": label, "ok": ok, "detail": detail, "kind": kind})
+    print(f"  [{'PASS' if ok else 'FAIL'}] {pid:4s} {kind:7s} [{rows}] {label}" + (f"  --  {detail}" if detail else ""))
     return ok
 
 def summary(write=True):
@@ -120,22 +142,55 @@ def count_raw(comb, T, const=1.0, theta_fn=theta):
     val = theta_fn(T) / math.pi + const + comb.S(T)
     return val if val.size > 1 else float(val[0])
 
-def secular_roots(comb, windows, const=1.0, theta_fn=theta):
-    """The secular roots: solutions of Ñ_N(T) = n − ½ in each (n, lo, hi) window (Obs. trace)."""
+# ----------------------------------------------------------------------------- the pole term (Prop. combformula)
+def pole_term(N, T):
+    """Π_N(½ + iT) = ∫_0^L W(u/L) (e^{(½−iT)u} − e^{−(½+iT)u}) du/u,  L = log N  — the pole's cut term of the smoothed
+    explicit formula for the tapered log-ζ series: Σ_{n≤N} Λ(n) W(log n/L) n^{−s}/log n = Π_N(s) + J_N(s), with
+    J_N(s) → log((s−1)ζ(s)/s). Written as ∫_0^L g(u) e^{−iTu} du, g(u) = W(u/L)·2 sinh(u/2)/u, and integrated with
+    QUADPACK's oscillatory weights. Returns the complex value. Its size is (π²/2) √N/(|½−iT| L)³ (1 + O(1/L)):
+    the raw count carries it and has no limit as N → ∞."""
+    from scipy.integrate import quad
+    L = math.log(N)
+    g = lambda u: (0.5 * (1.0 + math.cos(math.pi * u / L))) * (2.0 * math.sinh(0.5 * u) / u if u > 1e-12 else 1.0)
+    re = quad(g, 0.0, L, weight="cos", wvar=T, limit=1000)[0]
+    im = -quad(g, 0.0, L, weight="sin", wvar=T, limit=1000)[0]
+    return complex(re, im)
+
+def pole_count_term(N, T):
+    """(1/π) Im[Π_N(½+iT) + log((s−1)/s)] — the term the raw count carries beyond the exact count (Prop. combformula);
+    Im log((s−1)/s) = π − 2 arctan(2T)."""
+    return pole_term(N, T).imag / math.pi + 1.0 - (2.0 / math.pi) * math.atan(2.0 * T)
+
+_POLE_CACHE = {}
+def count_corrected(comb, T):
+    """N̂_N(T) = Ñ_N(T) − (1/π) Im[Π_N + log((s−1)/s)]: the pole-corrected comb count (Prop. combformula; Obs. trace).
+    For ζ only (const = 1, the archimedean phase θ); a Dirichlet L-function has no pole and no correction."""
+    T = np.atleast_1d(np.asarray(T, float))
+    corr = np.array([_POLE_CACHE.setdefault((comb.N, float(t)), pole_count_term(comb.N, float(t))) for t in T])
+    val = count_raw(comb, T) - corr
+    return val if val.size > 1 else float(val[0])
+
+def secular_roots(comb, windows, const=1.0, theta_fn=theta, corrected=False):
+    """The secular roots: solutions of N̂_N(T) = n − ½ (corrected=True) or Ñ_N(T) = n − ½ (raw) in each (n, lo, hi)
+    window (Obs. trace)."""
     roots = []
     for n, lo, hi in windows:
-        f = lambda T: count_raw(comb, T, const, theta_fn) - (n - 0.5)
+        if corrected:
+            f = lambda T: count_corrected(comb, T) - (n - 0.5)
+        else:
+            f = lambda T: count_raw(comb, T, const, theta_fn) - (n - 0.5)
         roots.append(brentq(f, lo, hi, xtol=1e-12))
     return np.array(roots)
 
 # ----------------------------------------------------------------------------- matrices
-def colleague_roots(comb, TA, TB, deg):
-    """Eigenvalues of the colleague matrix of the Chebyshev fit of Ξ(T) = cos(π Ñ_N(T)) on [TA, TB]
-    (Obs. matrix). Returns the real roots inside the window."""
+def colleague_roots(comb, TA, TB, deg, corrected=False):
+    """Eigenvalues of the colleague matrix of the Chebyshev fit of the secular determinant Ξ(T) = cos(π N̂_N(T))
+    (corrected=True; Obs. matrix) or cos(π Ñ_N(T)) (raw) on [TA, TB]. Returns the real roots inside the window."""
     from numpy.polynomial import chebyshev as Ch
     xs = np.cos(np.pi * (np.arange(deg + 1) + 0.5) / (deg + 1))
     T = 0.5 * (TB + TA) + 0.5 * (TB - TA) * xs
-    c = Ch.chebfit(xs, np.cos(math.pi * count_raw(comb, T)), deg)
+    cnt = count_corrected(comb, T) if corrected else count_raw(comb, T)
+    c = Ch.chebfit(xs, np.cos(math.pi * cnt), deg)
     n = len(c) - 1
     a = c[:-1] / c[-1]
     M = np.zeros((n, n)); M[0, 1] = 1.0

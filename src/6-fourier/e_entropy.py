@@ -21,8 +21,8 @@ enters here and only here; the kinds are marked.
   E6  rem:input-dep        δ_1 at p = 13: H(1)/log n = 0.55 against 0.44 for δ_0; δ_j meets Π_1, Π_3 exactly
                            when j ∉ {0, 2κ}; δ_{2κ} gives the δ_0 curve
   E7  def:readout          the Galois twist X ↦ ζ^u relabels the δ_0 curve by s ↦ us on every unit u and
-                           leaves the cardinal values of every δ_j invariant (the relabelling of the
-                           intermediate curve of δ_j, j ∉ {0, 2κ}, holds for u = −1 only — see README)
+                           leaves the cardinal values of every δ_j invariant; u = −1 relabels every δ_j;
+                           for j ∉ {0, 2κ} a twist u ≢ ±1 changes the curve (n = 12, δ_1, u = 5: 0.55 ↦ 0.44)
 
 Shells: n = 4, 12, 16, 28, 36, 40 (p = 5, 13, 17, 29, 37, 41).
 """
@@ -229,6 +229,7 @@ def run():
     for p in SHELLS:
         nn = p - 1; kk = nn // 4
         base = curves[p]
+        D1_, P1_, fr1 = dft_family(nn)
         for u in range(1, nn):
             if np.gcd(u, nn) != 1:
                 continue
@@ -239,8 +240,14 @@ def run():
                 e = delta(nn, j)
                 ok &= abs(entropy(fru(0) @ e)) < 1e-9 and abs(entropy(fru(2 * kk) @ e)) < 1e-9
                 ok &= abs(entropy(fru(kk) @ e) - np.log(nn)) < 1e-9 and abs(entropy(fru(3 * kk) @ e) - np.log(nn)) < 1e-9
-    check("E7", "X ↦ ζ^u relabels the δ_0 curve by s ↦ us on every unit u; the cardinal values of every δ_j are invariant under every twist",
-          ok, f"{n_units} twists over the six shells", kind="[approx]")
+                if u == nn - 1:                                                           # the conjugate twist relabels every input
+                    Hj = np.array([entropy(fr1(s) @ e) for s in range(nn)])
+                    ok &= np.allclose([entropy(fru(s) @ e) for s in range(nn)], Hj[(-np.arange(nn)) % nn], atol=1e-9)
+    D5, P5, fr5 = dft_family(12, 5)
+    h5 = entropy(fr5(1) @ delta(12, 1)) / np.log(12)
+    ok &= abs(round(h5, 2) - 0.44) < 1e-9 and abs(round(float(H1[1]), 2) - 0.55) < 1e-9     # δ_1, u = 5: 0.55 ↦ 0.44
+    check("E7", "X ↦ ζ^u relabels the δ_0 curve by s ↦ us on every unit u; the cardinal values of every δ_j are invariant under every twist; u = −1 relabels every δ_j; δ_1 at n = 12 under u = 5: H(1)/log n 0.55 ↦ 0.44",
+          ok, f"{n_units} twists over the six shells; δ_1, u = 5: {h5:.4f}", kind="[approx]")
 
 if __name__ == "__main__":
     import fcommon
