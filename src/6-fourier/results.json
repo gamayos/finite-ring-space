@@ -1,0 +1,326 @@
+[
+ {
+  "id": "A1",
+  "rows": "\u00a73 shell data (eq:it-def, rem:capacity), tab:checks",
+  "script": "a_shell",
+  "label": "p = 4\u03ba+1, g the smallest primitive root, i = \u2212g^\u03ba = g^{\u2212\u03ba}, i\u00b2 \u2261 \u22121, \u03c0 = 2\u03ba, 2\u03c0 \u2261 \u22121, g^\u03c0 \u2261 \u22121, \u2212\u03c0 \u2261 2\u207b\u00b9, e = g^i; Table tab:checks (\u03ba, g, i)",
+  "ok": true,
+  "detail": "F_5(\u03ba=1, g=2, i=3, e=3); F_13(\u03ba=3, g=2, i=5, e=6); F_17(\u03ba=4, g=3, i=4, e=13); F_29(\u03ba=7, g=2, i=17, e=21); F_37(\u03ba=9, g=2, i=6, e=27); F_41(\u03ba=10, g=6, i=9, e=19)",
+  "kind": "EXACT"
+ },
+ {
+  "id": "A2",
+  "rows": "\u00a73 Euler identity on the odd member; 00:C14",
+  "script": "a_shell",
+  "label": "e^{i\u03c0} = g^{2\u03ba(i mod 2)} \u2261 \u22121 exactly on the odd quarter-turn; the conjugate reframing toggles it, one member of each pair carries it",
+  "ok": true,
+  "detail": "54 primitive frames of p \u2208 [5, 13, 17, 29, 37, 41], 27 carry e^{i\u03c0} \u2261 \u22121 (one per conjugate pair); F_13(t;0,1,2): i = 5, e = 6, 6^{30} = 6^{6} \u2261 \u22121",
+  "kind": "EXACT"
+ },
+ {
+  "id": "A3",
+  "rows": "rem:gt-covariance",
+  "script": "a_shell",
+  "label": "g' = g^u: the quarter-turn flips only on u \u2261 3 (mod 4); e' = g^{ui} \u2260 e iff i(u\u22121) \u2262 0 (mod 4\u03ba); at p = 13, u = 5: e' = 2 \u2260 6",
+  "ok": true,
+  "detail": "every unit u of Z_{4\u03ba} on the six shells; F_13, g' = 2^5 = 6: i' = 5, e' = 6^5 = 2",
+  "kind": "EXACT"
+ },
+ {
+  "id": "A4",
+  "rows": "lem:W-square, prop:F-cycle, tab:checks; 00:C2",
+  "script": "a_shell",
+  "label": "W\u00b2 = \u2212J, (iW)\u00b2 = J, (iW)\u2074 = I on the six shells of Table tab:checks",
+  "ok": true,
+  "detail": "p=5: True,True,True; p=13: True,True,True; p=17: True,True,True; p=29: True,True,True; p=37: True,True,True; p=41: True,True,True",
+  "kind": "EXACT"
+ },
+ {
+  "id": "A5",
+  "rows": "rem:unitary-norm",
+  "script": "a_shell",
+  "label": "the square roots of 1/n \u2261 \u22121 in F_p are exactly \u00b1i, the two unitary normalisations of W: (cW)\u00b2 = J iff c = \u00b1i",
+  "ok": true,
+  "detail": "every c \u2208 F_p^\u00d7 tested on p \u2208 [5, 13, 17, 29, 37, 41]",
+  "kind": "EXACT"
+ },
+ {
+  "id": "A6",
+  "rows": "lem:JF-decomp",
+  "script": "a_shell",
+  "label": "WJ = JW, FJ = JF; dim V\u207a = 2\u03ba+1, dim V\u207b = 2\u03ba\u22121",
+  "ok": true,
+  "detail": "p=5: dim V\u207a=3, V\u207b=1; p=13: dim V\u207a=7, V\u207b=5; p=17: dim V\u207a=9, V\u207b=7; p=29: dim V\u207a=15, V\u207b=13; p=37: dim V\u207a=19, V\u207b=17; p=41: dim V\u207a=21, V\u207b=19",
+  "kind": "EXACT"
+ },
+ {
+  "id": "B1",
+  "rows": "lem:projectors",
+  "script": "b_fractional",
+  "label": "\u03a0_\u2113\u00b2 = \u03a0_\u2113, \u03a0_\u2113 \u03a0_m = 0, \u03a3 \u03a0_\u2113 = I, F \u03a0_\u2113 = i^\u2113 \u03a0_\u2113",
+  "ok": true,
+  "detail": "p \u2208 [5, 13, 17, 29, 37, 41]",
+  "kind": "EXACT"
+ },
+ {
+  "id": "B2",
+  "rows": "thm:FRC-FrFT (eq:additivity); 00:C2",
+  "script": "b_fractional",
+  "label": "F^[s+r] = F^[s] F^[r] on every pair (s, r) of Z_{4\u03ba}",
+  "ok": true,
+  "detail": "4096 pairs over p \u2208 [5, 13, 17, 29, 37, 41]",
+  "kind": "EXACT"
+ },
+ {
+  "id": "B3",
+  "rows": "thm:FRC-FrFT (eq:cardinal-FrFT); 00:C2",
+  "script": "b_fractional",
+  "label": "F^[0] = I, F^[\u03ba] = F, F^[2\u03ba] = J, F^[3\u03ba] = F\u207b\u00b9, F^[4\u03ba] = I; (F^[1])^\u03ba = F",
+  "ok": true,
+  "detail": "p \u2208 [5, 13, 17, 29, 37, 41]",
+  "kind": "EXACT"
+ },
+ {
+  "id": "B4",
+  "rows": "thm:faithful",
+  "script": "b_fractional",
+  "label": "s \u21a6 F^[s] is injective on Z_{4\u03ba}: the 4\u03ba members are pairwise distinct (p = 5 included)",
+  "ok": true,
+  "detail": "p \u2208 [5, 13, 17, 29, 37, 41]",
+  "kind": "EXACT"
+ },
+ {
+  "id": "B5",
+  "rows": "lem:multiplicity",
+  "script": "b_fractional",
+  "label": "m_\u2113 = rank \u03a0_\u2113 = dim ker(F \u2212 i^\u2113 I); m_0+m_2 = 2\u03ba+1, m_1+m_3 = 2\u03ba\u22121; m_0, m_2 \u2265 1; m_1, m_3 \u2265 1 for \u03ba \u2265 2; p = 5: one odd projector vanishes",
+  "ok": true,
+  "detail": "p=5: (2, 0, 1, 1); p=13: (3, 3, 4, 2); p=17: (4, 4, 5, 3); p=29: (7, 7, 8, 6); p=37: (9, 9, 10, 8); p=41: (10, 10, 11, 9)",
+  "kind": "EXACT"
+ },
+ {
+  "id": "B6",
+  "rows": "rem:multiplicities",
+  "script": "b_fractional",
+  "label": "p = 13: g = 2 gives (3,3,4,2), Tr F = 4; g = 6 gives (4,2,3,3), Tr F = 9; m \u21a6 um carries F(g) to F(g^{u\u00b2}) by a permutation",
+  "ok": true,
+  "detail": "54 relabellings over p \u2208 [5, 13, 17, 29, 37, 41]",
+  "kind": "EXACT"
+ },
+ {
+  "id": "B7",
+  "rows": "thm:multiplicity",
+  "script": "b_fractional",
+  "label": "G = \u03b5(1+i), the two patterns, \u03b5(g\u207b\u00b9) = \u2212\u03b5(g), \u03b5(g^u) = (\u03ba/u) \u03b5(g), classes equally populated; 38 frames of p \u2208 {5,\u2026,37} and 16 of p = 41; p = 5: (2,0,1,1) at g = 2, (1,1,2,0) at g = 3",
+  "ok": true,
+  "detail": "p=5: 2 frames, \u03b5=+1 on 1; p=13: 4 frames, \u03b5=+1 on 2; p=17: 8 frames, \u03b5=+1 on 4; p=29: 12 frames, \u03b5=+1 on 6; p=37: 12 frames, \u03b5=+1 on 6; p=41: 16 frames, \u03b5=+1 on 8",
+  "kind": "EXACT"
+ },
+ {
+  "id": "B8",
+  "rows": "thm:multiplicity (proof: G G* = \u22122, G\u00b2 = 2i, the traces)",
+  "script": "b_fractional",
+  "label": "G G* = \u22122, G\u00b2 = 2i, Tr F = iG, Tr F\u00b2 = 2, Tr F\u00b3 = iG*, m_\u2113 \u2261 \u00bc \u03a3_r i^{\u2212\u2113r} Tr F^r (mod p)",
+  "ok": true,
+  "detail": "every primitive frame of the six shells",
+  "kind": "EXACT"
+ },
+ {
+  "id": "B9",
+  "rows": "rem:classification",
+  "script": "b_fractional",
+  "label": "exponent lifts a_\u2113 \u2261 \u2113 (mod 4) are additive with the cardinal skeleton (p = 13); the chart g^5 at p = 29 (u\u00b2 \u2262 1 mod 28) does not commute with F",
+  "ok": true,
+  "detail": "non-commuting at p = 29, u = 5: True; all charts with u\u00b2 \u2262 1 (mod 4\u03ba) on the six shells non-commuting: True (28 charts)",
+  "kind": "EXACT"
+ },
+ {
+  "id": "B10",
+  "rows": "rem:gt-covariance (registered objects invariant under the conjugate reframing); 00:C7",
+  "script": "b_fractional",
+  "label": "the conjugate frame (g\u207b\u00b9, \u2212i) keeps the operator relations, cardinal values, additivity and faithfulness; its multiplicity tuple is the other pattern; F' = \u2212F\u207b\u00b9, \u03a0'_\u2113 = \u03a0_{\u2113+2}",
+  "ok": true,
+  "detail": "p=5: (2, 0, 1, 1) \u21a6 (1, 1, 2, 0); p=13: (3, 3, 4, 2) \u21a6 (4, 2, 3, 3); p=17: (4, 4, 5, 3) \u21a6 (5, 3, 4, 4); p=29: (7, 7, 8, 6) \u21a6 (8, 6, 7, 7); p=37: (9, 9, 10, 8) \u21a6 (10, 8, 9, 9); p=41: (10, 10, 11, 9) \u21a6 (11, 9, 10, 10)",
+  "kind": "EXACT"
+ },
+ {
+  "id": "C1",
+  "rows": "def:domain",
+  "script": "c_domains",
+  "label": "every F^[s] has full rank 4\u03ba over F_p; the eigenvalues g^{\u2212\u2113s} are nonzero",
+  "ok": true,
+  "detail": "p \u2208 [5, 13, 17, 29, 37, 41]",
+  "kind": "EXACT"
+ },
+ {
+  "id": "C2",
+  "rows": "cor:distinct-domains",
+  "script": "c_domains",
+  "label": "the 4\u03ba framed bases B_s = F^[s] B_0 are pairwise distinct",
+  "ok": true,
+  "detail": "p \u2208 [5, 13, 17, 29, 37, 41]",
+  "kind": "EXACT"
+ },
+ {
+  "id": "C3",
+  "rows": "rem:ordered-bases",
+  "script": "c_domains",
+  "label": "F^[s+2\u03ba] = F^[s] J, so B_{s+2\u03ba} = B_s as unordered bases: 4\u03ba framed domains, exactly 2\u03ba measurement bases",
+  "ok": true,
+  "detail": "p=5: 4 framed, 2 unordered; p=13: 12 framed, 6 unordered; p=17: 16 framed, 8 unordered; p=29: 28 framed, 14 unordered; p=37: 36 framed, 18 unordered; p=41: 40 framed, 20 unordered",
+  "kind": "EXACT"
+ },
+ {
+  "id": "C4",
+  "rows": "prop:meridian-scale; 00:C2",
+  "script": "c_domains",
+  "label": "S_r(M_m) = M_{m+r} on every (m, r), as ordered lists",
+  "ok": true,
+  "detail": "4096 pairs over p \u2208 [5, 13, 17, 29, 37, 41]",
+  "kind": "EXACT"
+ },
+ {
+  "id": "C5",
+  "rows": "cor:effective-step, rem:framed-rational (S_{r+(p\u22121)} = S_r)",
+  "script": "c_domains",
+  "label": "consecutive entries of M_m differ by the effective step g^m; S_{r+(p\u22121)} = S_r",
+  "ok": true,
+  "detail": "p \u2208 [5, 13, 17, 29, 37, 41]",
+  "kind": "EXACT"
+ },
+ {
+  "id": "C6",
+  "rows": "ex:zoom-13, thm:zoom (the no-wrap window)",
+  "script": "c_domains",
+  "label": "p = 13, g = 2: M_0\u2026M_3 = the printed ladder at steps 1, 2, 4, 8; the no-wrap window w\u00b7g^r < p with w = \u03c0 = 6 holds for r \u2264 1 and the listing wraps from M_2",
+  "ok": true,
+  "detail": "unwrapped meridians [0, 1], wrapping [2, 3]",
+  "kind": "EXACT"
+ },
+ {
+  "id": "D1",
+  "rows": "lem:Rs-rotation",
+  "script": "d_weil",
+  "label": "c_s\u00b2 + d_s\u00b2 = 1, det R_s = 1: R_s \u2208 SO(2, F_p) for every s",
+  "ok": true,
+  "detail": "p \u2208 [5, 13, 17, 29, 37, 41]",
+  "kind": "EXACT"
+ },
+ {
+  "id": "D2",
+  "rows": "prop:rotation-isom",
+  "script": "d_weil",
+  "label": "R_{s+r} = R_s R_r, s \u21a6 R_s injective, |SO(2, F_p)| = p\u22121 = 4\u03ba: an isomorphism",
+  "ok": true,
+  "detail": "p=5: |SO(2)|=4; p=13: |SO(2)|=12; p=17: |SO(2)|=16; p=29: |SO(2)|=28; p=37: |SO(2)|=36; p=41: |SO(2)|=40",
+  "kind": "EXACT"
+ },
+ {
+  "id": "D3",
+  "rows": "thm:Weil-equivalence (the cardinal matrices), tab:checks",
+  "script": "d_weil",
+  "label": "R_0 = I, R_\u03ba = [[0,\u22121],[1,0]] (Table tab:checks), R_{2\u03ba} = \u2212I, R_{3\u03ba} = w\u207b\u00b9; z_\u03ba = g^{\u2212\u03ba} = i",
+  "ok": true,
+  "detail": "p \u2208 [5, 13, 17, 29, 37, 41]",
+  "kind": "EXACT"
+ },
+ {
+  "id": "D4",
+  "rows": "prop:nogo",
+  "script": "d_weil",
+  "label": "\u03c3 has the 4\u03ba simple eigenvalues F_p^\u00d7; F^[1] has at most four; for \u03ba \u2265 2 \u27e8\u03c3\u27e9 and \u27e8F^[1]\u27e9 are not conjugate",
+  "ok": true,
+  "detail": "p=5: \u03c3 has 4 simple eigenvalues, F^[1] has 3; p=13: \u03c3 has 12 simple eigenvalues, F^[1] has 4; p=17: \u03c3 has 16 simple eigenvalues, F^[1] has 4; p=29: \u03c3 has 28 simple eigenvalues, F^[1] has 4; p=37: \u03c3 has 36 simple eigenvalues, F^[1] has 4; p=41: \u03c3 has 40 simple eigenvalues, F^[1] has 4",
+  "kind": "EXACT"
+ },
+ {
+  "id": "D5",
+  "rows": "prop:charsector",
+  "script": "d_weil",
+  "label": "E_1 \u2260 0 for \u03ba \u2265 2; F^[s] = g^{\u2212s} on E_1; F^[s] T_v = T_v S_{\u2212s} on every x and s; R_s (1,\u2212i)\u1d40 = g^{\u2212s} (1,\u2212i)\u1d40",
+  "ok": true,
+  "detail": "p=5: E_1 = 0 (\u03ba = 1); p=13: dim E_1 = 3; p=17: dim E_1 = 4; p=29: dim E_1 = 7; p=37: dim E_1 = 9; p=41: dim E_1 = 10",
+  "kind": "EXACT"
+ },
+ {
+  "id": "D6",
+  "rows": "prop:heisenberg",
+  "script": "d_weil",
+  "label": "F \u03c3 F\u207b\u00b9 = D_1, F D_1 F\u207b\u00b9 = \u03c3\u207b\u00b9; F^r \u03c3 = \u03c3_r F^r with (\u03c3, D_1, \u03c3\u207b\u00b9, D_1\u207b\u00b9); F^[s] = \u03a3_r c_r(s) F^r, c_r(s) = \u00bc \u03a3_\u2113 (g^{r\u03ba\u2212s})^\u2113",
+  "ok": true,
+  "detail": "p \u2208 [5, 13, 17, 29, 37, 41]",
+  "kind": "EXACT"
+ },
+ {
+  "id": "D7",
+  "rows": "conj:monomial (the 112-index sweep)",
+  "script": "d_weil",
+  "label": "F^[s] \u03c3 F^[s]\u207b\u00b9 is monomial exactly at the four cardinal indices and non-monomial at every one of the 112 intermediate indices of p \u2208 {13,17,29,37,41}",
+  "ok": true,
+  "detail": "p=5: monomial at [0, 1, 2, 3]; p=13: monomial at [0, 3, 6, 9]; p=17: monomial at [0, 4, 8, 12]; p=29: monomial at [0, 7, 14, 21]; p=37: monomial at [0, 9, 18, 27]; p=41: monomial at [0, 10, 20, 30]; 112 intermediate indices swept",
+  "kind": "EXACT"
+ },
+ {
+  "id": "E1",
+  "rows": "def:readout (the reduction \u03c1, \u011c\u00b2 = 2nX^\u03ba)",
+  "script": "e_entropy",
+  "label": "\u011c\u00b2 = 2n X^\u03ba modulo \u03a6_n(X) (exact integer arithmetic); under \u03c3_C: (\u03a3 \u03b6^{k\u00b2})\u00b2 = 2n i; under \u03c1: G\u00b2 = 2i in F_p",
+  "ok": true,
+  "detail": "n=4: deg \u03a6_n = 2; n=12: deg \u03a6_n = 4; n=16: deg \u03a6_n = 8; n=28: deg \u03a6_n = 12; n=36: deg \u03a6_n = 12; n=40: deg \u03a6_n = 16",
+  "kind": "EXACT"
+ },
+ {
+  "id": "E2",
+  "rows": "prop:entropy (cardinal values)",
+  "script": "e_entropy",
+  "label": "H(0) = H(2\u03ba) = 0, H(\u03ba) = H(3\u03ba) = log n for every \u03b4_j",
+  "ok": true,
+  "detail": "n \u2208 [4, 12, 16, 28, 36, 40]",
+  "kind": "[approx]"
+ },
+ {
+  "id": "E3",
+  "rows": "prop:entropy (mutually unbiased bases, Maassen\u2013Uffink, the comb)",
+  "script": "e_entropy",
+  "label": "B_0, B_\u03ba mutually unbiased (overlaps 1/n); H_{B_0} + H_{B_\u03ba} \u2265 log n on random states, saturated by \u03b4_j; the comb (\u03b4_0+\u03b4_6)/\u221a2 at n = 12: log 2 + log 6 = log 12",
+  "ok": true,
+  "detail": "comb: H_0 = 0.6931 = log 2, H_\u03ba = 1.7918 = log 6; 200 random states per shell",
+  "kind": "[approx]"
+ },
+ {
+  "id": "E4",
+  "rows": "prop:closedform",
+  "script": "e_entropy",
+  "label": "F^[s] \u03b4_0 has the two-valued readout p_0 = 1 \u2212 (n\u22121)t_s/n, p_j = t_s/n, t_s = (2\u2212\u03b6^{2s}\u2212\u03b6^{\u22122s})/4 = sin\u00b2(\u03c0s/2\u03ba); H(s) the closed form, strictly increasing on [0, \u03ba], period 2\u03ba, strictly intermediate off the cardinal indices",
+  "ok": true,
+  "detail": "n \u2208 [4, 12, 16, 28, 36, 40]",
+  "kind": "[approx]"
+ },
+ {
+  "id": "E5",
+  "rows": "\u00a79 table H(s)/log n, fig:entropy13",
+  "script": "e_entropy",
+  "label": "p = 13: H(s)/log n = 0, .44, .91, 1, .91, .44, 0, .44, .91, 1, .91, .44 (fig:entropy13)",
+  "ok": true,
+  "detail": "H/log n = 0.0000, 0.4378, 0.9134, 1.0000, 0.9134, 0.4378, 0.0000, 0.4378, 0.9134, 1.0000, 0.9134, 0.4378; wrote figures/entropy-cycle-f13.pdf/.png",
+  "kind": "[approx]"
+ },
+ {
+  "id": "E6",
+  "rows": "rem:input-dep",
+  "script": "e_entropy",
+  "label": "\u03b4_1 at p = 13: H(1)/log n = 0.55 against 0.44 for \u03b4_0; \u03b4_j meets the odd projectors exactly when j \u2209 {0, 2\u03ba}; \u03b4_{2\u03ba} reproduces the \u03b4_0 curve",
+  "ok": true,
+  "detail": "\u03b4_1: H(1)/log n = 0.5499; \u03b4_0: 0.4378",
+  "kind": "[approx]"
+ },
+ {
+  "id": "E7",
+  "rows": "def:readout (the Galois twist relabels the intermediate curve)",
+  "script": "e_entropy",
+  "label": "X \u21a6 \u03b6^u relabels the \u03b4_0 curve by s \u21a6 us on every unit u; the cardinal values of every \u03b4_j are invariant under every twist",
+  "ok": true,
+  "detail": "54 twists over the six shells",
+  "kind": "[approx]"
+ }
+]
