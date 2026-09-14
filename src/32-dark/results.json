@@ -23,7 +23,7 @@
   "script": "firstpassage_finite",
   "label": "the finite-cycle first-passage law at 60 digits: the single-step identity f(e^(−s)) = e^(−arccosh e^s); the reduction arccosh(e^s) = √(2s)(1 + s/6 + …) with rel.err/s → 1/6, carrier-exact to ~10⁻⁶¹ at s ~ Ω^(−1/2); the wrap correction of the killed walk on Z_N against the infinite line, O(e^(−(N−a) arccosh e^s))",
   "ok": true,
-  "detail": "3 checks, 12.1 s",
+  "detail": "3 checks, 12.3 s",
   "kind": "EXACT"
  },
  {
@@ -32,7 +32,7 @@
   "script": "meridian_walk",
   "label": "the meridian killed walk: the exact rational discriminant 1 − z² of the first-passage quadratic; the simulated escape probability against e^(−a√(2s)) (seeded); the assembled resolved fraction 1 − e^(−√x) with deep slope 1/2 (the RAR fit form); the mechanism figure",
   "ok": true,
-  "detail": "4 checks, 4.2 s",
+  "detail": "4 checks, 4.1 s",
   "kind": "SIM"
  },
  {
@@ -41,7 +41,7 @@
   "script": "deep_regime",
   "label": "the noisy Kuramoto (Adler) link dφ = (T − sin φ)dt + √(2D) dW, seeded: the mean response is Newtonian at every noise level (deep slopes 1.03 at D = 0.3 and 1.11 at D = 0.6, the boost constant to rising) — the √ law is registration, not force modification; deep.json and the figure",
   "ok": true,
-  "detail": "4 checks, 3.5 s",
+  "detail": "4 checks, 3.4 s",
   "kind": "SIM"
  },
  {
@@ -59,7 +59,7 @@
   "script": "interpolation",
   "label": "the interpolation from the rotation angle: deep slope 1/2 and Newtonian slope 1; the discriminant against the simple rational form, maximum 0.051 in g_obs/g_b at x = 5.2; the two pinning checks of B8 (a barrier κx^β gives deep slope 1 − β; the knee at 1/κ²); the chart angle sin²α = e^(−√x); the figure",
   "ok": true,
-  "detail": "5 checks, 0.3 s",
+  "detail": "5 checks, 0.5 s",
   "kind": "CHART"
  },
  {
@@ -77,7 +77,7 @@
   "script": "deep_mond",
   "label": "the two-chart Gauss law: a₀ = cH₀/2π = 1.042 × 10⁻¹⁰ at H₀ = 67.4; the RAR deep-regime slope 1/2 and the BTFR slope 1/4 (v⁴ = GMa₀, 5 × 10¹⁰ M⊙ → 162 km/s); the exponential-disk rotation curve flattening at the registered speed; the figure [approx]",
   "ok": true,
-  "detail": "6 checks, 0.5 s",
+  "detail": "6 checks, 0.7 s",
   "kind": "CHART"
  },
  {
@@ -113,7 +113,7 @@
   "script": "make_figures",
   "label": "the paper's two figures regenerated (fig_rar.pdf: the RAR with the rational alternative and the exponential-disk rotation curve; fig_mechanism.pdf: the first-passage collapse and the chart angle), written to figures/",
   "ok": true,
-  "detail": "2 checks, 3.8 s",
+  "detail": "2 checks, 4.3 s",
   "kind": "CHART"
  }
 ]

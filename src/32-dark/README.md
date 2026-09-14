@@ -12,7 +12,8 @@ N_eff, the prediction numerals. An exception, a nonzero exit or a failed predica
 named test of row B8 that the paper's Appendix A owed "once the binned data file is on the tree", is delivered here
 (`data/RAR.mrt`). Driven by `32-dark-main.ipynb` (Google Colab, *Runtime → Run all*, ≈ 30 s) or by `run_all.py`.
 Python 3.10+, numpy, mpmath, matplotlib; scipy for the exponential-disk curve. The scripts write their figures and
-`deep.json` into `out/`, the paper's two figures into `figures/` (both ignored by git).
+`deep.json` into `out/`, the paper's two figures into `figures/` (both ignored by git); the registry gives every saved
+figure a PNG sibling and the notebook shows the PNGs inline below each family's output (six figures).
 
 Every family names the row(s) of the paper's predicate ledger it witnesses (the paper's Appendix "Predicate ledger",
 49 rows in blocks A, B, C, X, P, V, Z, O, cited as `32:XN`; public copy `docs/32-dark/32-dark-ledger.html`); the ledger's

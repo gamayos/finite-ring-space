@@ -42,8 +42,8 @@ or a comparison with data (the interpolation, the RAR/BTFR, the SPARC scatter, t
 [approx] in the paper, verdict by stated tolerance.
 
 **Run.** Cell by cell, or *Runtime → Run all*; ≈ 30 s on Colab (numpy, mpmath, matplotlib, scipy are present there). The scripts
-write their figures and `deep.json` into `out/`, the paper's two figures into `figures/`. The last cell writes `results.json` and
-fails loudly if any family fails.""")
+write their figures and `deep.json` into `out/`, the paper's two figures into `figures/`; every figure a script saves gets a PNG
+sibling, shown inline below its family's output. The last cell writes `results.json` and fails loudly if any family fails.""")
 
 code(f"""# --- environment: clone the package if this notebook is not already running inside it (Colab). numpy, mpmath, matplotlib and scipy are present on Colab.
 import os

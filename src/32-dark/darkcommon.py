@@ -5,7 +5,7 @@ darkcommon.py — shared registry for the 32-dark validation package
 corpus (finite-ring-space/src/32-dark). The paper's twelve validation scripts and the figure script are kept as
 written — four print a verdict (flux_exact, born_exact, deep_regime_fp, rar_scatter), the rest print their values —
 and run here through one registry: a *family* is one script (identified as dark.<stem>, e.g. dark.interpolation), run
-in its own namespace inside out/ (its figures and deep.json land there, the paper's two figures in figures/), its
+in its own namespace inside out/ (its figures and deep.json land there, the paper's two figures in figures/; every saved figure gets a PNG sibling, shown inline in the notebook), its
 printed verdict lines captured; its micro-checks are those lines together with the registry's predicates (PRED
 below), which read the script's namespace and output and decide the manuscript's stated values explicitly — the
 exact Gauss law and the amplitude identity recomputed, the slopes 1.03/1.11 and the exact slope 1, the discriminant
@@ -88,6 +88,16 @@ def _out(name):
     """A file the script wrote into out/ (the scripts run with out/ as the working directory)."""
     return os.path.exists(os.path.join(HERE, "out", name))
 
+def _show_pngs(pngs):
+    """Inside a notebook, display the PNG copies of the figures a script saved; a no-op under plain python."""
+    try:
+        from IPython.display import display, Image
+        get_ipython()                                     # NameError outside IPython
+    except Exception:
+        return
+    for p in pngs:
+        display(Image(filename=p))
+
 
 
 # ----------------------------------------------------------------------------------------------------------------
@@ -124,14 +134,14 @@ def _pred_walk(ns, out):
     P = ns["escape_prob"](5, 0.02, seed=5 * 100 + 20); u = 5 * math.sqrt(0.04)
     chk(f"seeded walk a = 5, q = 0.02: P_escape = {P:.3f} against e^(−a√(2q)) = {math.exp(-u):.3f} within 0.03", abs(P - math.exp(-u)) < 0.03)
     chk(f"deep slope of g_obs = g_b/(1 − e^(−√x)) below x = 10⁻² is {ns['sl']:.3f} (→ 1/2)", abs(ns["sl"] - 0.5) < 0.03)
-    chk("the figure written (cons3_firstpassage.pdf)", _out("cons3_firstpassage.pdf"))
+    chk("the figure written (cons3_firstpassage.pdf, .png)", _out("cons3_firstpassage.pdf") and _out("cons3_firstpassage.png"))
 
 def _pred_deep(ns, out):
     o = ns["out"]
     chk(f"D = 0.3: deep slope {o[0.3]['slope']:.3f} (the paper's 1.03)", abs(o[0.3]["slope"] - 1.03) < 0.02)
     chk(f"D = 0.6: deep slope {o[0.6]['slope']:.3f} (the paper's 1.11)", abs(o[0.6]["slope"] - 1.11) < 0.02)
     chk("the boost g_eff/g_N is constant to rising at both D (no √ regime)", all(all(b2 >= b1 - 0.05 for b1, b2 in zip(o[D]["boost"], o[D]["boost"][1:])) for D in (0.3, 0.6)))
-    chk("deep.json written", _out("deep.json"))
+    chk("deep.json and the figure written (cons1_deepregime.pdf, .png)", _out("deep.json") and _out("cons1_deepregime.pdf") and _out("cons1_deepregime.png"))
 
 def _pred_deep_fp(ns, out):
     chk("the script's verdict: mean response Newtonian (slope 1 within 2 × 10⁻³) at D = 0.3 and 0.6, boost constant to rising", ns["ok"])
@@ -146,7 +156,7 @@ def _pred_interp(ns, out):
     chk("pinning check 1: a barrier κx^β gives deep slope 1 − β for β = 0.4, 0.5, 0.6", all(abs(np.polyfit(np.log(xd), np.log(xd * nu_gen(xd, 1.0, b)), 1)[0] - (1 - b)) < 0.02 for b in (0.4, 0.5, 0.6)))
     knees = re.findall(r"knee \(nu = nu_frc\(1\)\) at x = ([0-9.]+)\s+vs 1/kappa\^2 = ([0-9.]+)", out)
     chk(f"pinning check 2: the knee sits at 1/κ² for κ = 1, 0.93, 1.1 ({len(knees)} cases)", len(knees) == 3 and all(abs(float(a) - float(b)) < 0.01 for a, b in knees))
-    chk("the figure written (cons3_interpolation.pdf)", _out("cons3_interpolation.pdf"))
+    chk("the figure written (cons3_interpolation.pdf, .png)", _out("cons3_interpolation.pdf") and _out("cons3_interpolation.png"))
 
 def _pred_rar_shape(ns, out):
     chk(f"the script's own tally: {ns['fails']} failed checks", ns["fails"] == 0)
@@ -159,7 +169,7 @@ def _pred_deep_mond(ns, out):
     v = (ns["G"] * 5e10 * ns["Msun"] * ns["a0"]) ** 0.25 / 1000
     chk(f"v_flat(5 × 10¹⁰ M⊙) = {v:.0f} km/s (the paper's 162)", abs(v - 162) < 3)
     chk("the exponential-disk curve: the registered speed flattens (scipy present)", ns["have_disk"] and abs(ns["vo"][-50:].std()) < 0.05 * ns["vo"][-50:].mean())
-    chk("the figure written (cons2_rar_btfr.pdf)", _out("cons2_rar_btfr.pdf"))
+    chk("the figure written (cons2_rar_btfr.pdf, .png)", _out("cons2_rar_btfr.pdf") and _out("cons2_rar_btfr.png"))
 
 def _pred_cluster(ns, out):
     np = ns["np"]
@@ -190,8 +200,8 @@ def _pred_predictions(ns, out):
     chk(f"[approx] the coherence offset for σ_v/v = 0.5, 1: {[round(o, 3) for o in off]} dex (−0.05 to −0.15)", -0.16 < off[1] < off[0] < -0.04)
 
 def _pred_figures(ns, out):
-    chk("fig_rar.pdf regenerated in figures/", os.path.exists(os.path.join(HERE, "figures", "fig_rar.pdf")))
-    chk("fig_mechanism.pdf regenerated in figures/", os.path.exists(os.path.join(HERE, "figures", "fig_mechanism.pdf")))
+    chk("fig_rar.pdf (and .png) regenerated in figures/", all(os.path.exists(os.path.join(HERE, "figures", "fig_rar" + e)) for e in (".pdf", ".png")))
+    chk("fig_mechanism.pdf (and .png) regenerated in figures/", all(os.path.exists(os.path.join(HERE, "figures", "fig_mechanism" + e)) for e in (".pdf", ".png")))
 
 PRED = {
     "dark.flux_exact": _pred_flux, "dark.born_exact": _pred_born, "dark.firstpassage_finite": _pred_fp,
@@ -222,6 +232,16 @@ def run_block(fam):
     def _exit(code=0):
         raise _Exit(code)
     g = {"__name__": "__main__", "__file__": path, "print": _print, "__exit__": _exit}
+    pngs = []                                            # every figure a script saves gets a PNG sibling (shown inline in the notebook)
+    import matplotlib; matplotlib.use("Agg")
+    from matplotlib.figure import Figure
+    _savefig = Figure.savefig
+    def _savefig_png(fig, fname, *a, **kw):
+        _savefig(fig, fname, *a, **kw)
+        if isinstance(fname, (str, os.PathLike)):
+            png = os.path.splitext(os.fspath(fname))[0] + ".png"
+            _savefig(fig, png, dpi=130, bbox_inches="tight"); pngs.append(os.path.abspath(png))
+    Figure.savefig = _savefig_png
     _CUR[0] = fam
     n0 = len(MICRO)
     t0 = time.time(); code = 0; err = None
@@ -236,6 +256,9 @@ def run_block(fam):
         print("    EXCEPTION: " + err)
     finally:
         os.chdir(old)
+        Figure.savefig = _savefig
+        import matplotlib.pyplot as plt; plt.close("all")
+    _show_pngs(pngs)
     for i, v in enumerate(verdicts):                     # the script's own printed verdict lines
         MICRO.append((fam, f"verdict line {i + 1}", v))
     if err is None and fam in PRED:                      # the registry's predicates on the namespace and output
