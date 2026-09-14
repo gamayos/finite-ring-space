@@ -6,7 +6,7 @@
 # rotation-angle weighting gives the interpolation g_eff = g_bar/(1-exp(-sqrt(g_bar/a0))).
 import numpy as np
 c=2.998e8; G=6.674e-11; Msun=1.989e30; Mpc=3.0857e22; kpc=Mpc/1000
-H0=70*1000/Mpc; a0=c*H0/(2*np.pi)
+H0=67.4*1000/Mpc; a0=c*H0/(2*np.pi)   # H0 = 67.4 km/s/Mpc, the rate the octant lemma entails (14-entr); a0 = 1.042e-10
 print(f"a0 = c H0/2pi = {a0:.3e} m/s^2  (RAR fit 1.20e-10)")
 
 def g_eff(g_bar):                      # interpolation (deep slope 1/2, Newtonian limit)

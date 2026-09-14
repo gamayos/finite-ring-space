@@ -6,7 +6,7 @@
 # =====================================================================
 import numpy as np
 c=2.998e8; G=6.674e-11; Msun=1.989e30; AU=1.496e11; Mpc=3.086e22
-H0=70*1000/Mpc; a0=c*H0/(2*np.pi)
+H0=67.4*1000/Mpc; a0=c*H0/(2*np.pi)   # H0 = 67.4 km/s/Mpc, the rate the octant lemma entails (14-entr); a0 = 1.042e-10
 nu=lambda y:1.0/(1-np.exp(-np.sqrt(y)))
 Ez=lambda z,Om=0.3,OL=0.7:np.sqrt(Om*(1+z)**3+OL)
 def hr(t): print("\n"+"="*70+"\n"+t+"\n"+"="*70)
@@ -37,8 +37,9 @@ for x in (100,10,1,0.1,0.01):
     row=" ".join(f"{sig(x,r):6.3f}" for r in (0.05,0.10,0.20))
     print(f"  {x:>8.2f} |  {row}")
 print("  => tightest locus = cold (sv/v->0), high-acceleration (x->inf) disks (sigma->0);")
-print("     deep regime scatter rises to ~0.27 dex (x~0.01, sv/v=0.1): a SHARP test deep,")
-print("     where the intro's 0.11 dex is only the knee value.")
+print("     at sv/v = 0.1 the law reaches ~0.27 dex at x~0.01; SPARC at fixed a0 (rar_scatter.py, T25)")
+print("     gives an intrinsic 0.04 dex at the knee and 0.13 dex at x~0.02, bounding d_alpha <~ 3.5 deg:")
+print("     the identification d_alpha = arctan(sv/v) is conjecture Y2; the FORM (the rise) is the prediction.")
 
 # ---------------------------------------------------------------------
 # C. Wide binaries in the deep regime, WITH the Galactic external field.

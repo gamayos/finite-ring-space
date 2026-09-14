@@ -1,8 +1,10 @@
 #!/usr/bin/env python3
 # =====================================================================
-#  make_figures.py -- dark-sector figures.
+#  make_figures.py -- consolidated, de-duplicated dark-sector figures.
 #
-#  The figure set:
+#  Replaces the redundant 3-panel cons2_rar_btfr (RAR|BTFR|rotcurve) and
+#  the overlapping cons3_interpolation (RAR|angle).  The RAR appeared
+#  twice and the BTFR panel was "just a slope".  New, non-redundant set:
 #
 #   fig_rar.pdf        (phenomenology):  RAR (with the rational-alt knee
 #                       and both asymptotes)  |  exponential-disk rotation curve
@@ -18,7 +20,7 @@ plt.rcParams.update({'font.size':10,'axes.titlesize':10,'axes.labelsize':10,
                      'legend.fontsize':8,'xtick.labelsize':8.5,'ytick.labelsize':8.5})
 
 c=2.998e8; G=6.674e-11; Msun=1.989e30; kpc=3.086e19; Mpc=1000*kpc
-a0=c*(70*1000/Mpc)/(2*np.pi)
+a0=c*(67.4*1000/Mpc)/(2*np.pi)   # H0 = 67.4 km/s/Mpc, the rate the octant lemma entails (14-entr)
 nu     =lambda x:1.0/(1-np.exp(-np.sqrt(x)))          # derived = McGaugh RAR fit
 nu_rat =lambda x:0.5*(1+np.sqrt(1+4.0/x))             # 'simple' rational alt (same limits)
 alpha  =lambda x:np.arcsin(np.sqrt(np.exp(-np.sqrt(x))))

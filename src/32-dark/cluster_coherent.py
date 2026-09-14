@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 # =====================================================================
 #  cluster_coherent.py -- the cluster-core residual as coherent amplitude
-#  addition (Prop. `born'), NOT missing baryons.  Reduces D5(32-dark) to A.
+#  addition (Prop. `born'), NOT missing baryons.  The cluster-core residual: ledger row Y1 (conjecture), T25 2026-09-13.
 #
 #  The continuum framing ("observed core mass exceeds nu*M_bar by ~2, met
 #  by undetected baryons / census-limited") is a continuum import: it reads
@@ -87,7 +87,7 @@ print("     supplies the core factor and decays to 1 by ~Mpc as the components d
 print("     matching the observed core-confined residual with NO added matter (the residual")
 print("     closes to ~1 in the core for N_core set by the cluster's coherent substructure).")
 
-hr("VERDICT (D5 of 32-dark) -- falsifiable CONJECTURE, not a theorem")
+hr("VERDICT (Y1 of 32-dark) -- falsifiable CONJECTURE, not a theorem")
 print("""  REDUCED to one amplitude law (A), not 'missing baryons':
    * the amplitude adds the components through the coherence matrix C_ij,
      g_amp^2/a0 = sum g_i + 2 sum_{i<j} sqrt(g_i g_j) Re C_ij  [eq:cohsum].

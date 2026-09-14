@@ -1,0 +1,119 @@
+[
+ {
+  "id": "dark.flux_exact",
+  "rows": "32:C1, 32:X1",
+  "script": "flux_exact",
+  "label": "the discrete Gauss law of the synchronisation flux in exact rationals on the 5³ box: a unit point source gives unit flux through both enclosing surfaces, a source-free noise field gives zero, their superposition gives one — Newton's law as the high-acceleration reading",
+  "ok": true,
+  "detail": "4 checks, 0.1 s",
+  "kind": "EXACT"
+ },
+ {
+  "id": "dark.born_exact",
+  "rows": "32:C3, 32:C7",
+  "script": "born_exact",
+  "label": "amplitude = √count, exact in Z[i]: n aligned unit phasors have |Σ|² = n² (coherent, amplitude n) and the mean of |Σ|² over all sign patterns is n (incoherent, amplitude √n) for n up to 10 — the cross-term cancellation that forces the deep-regime square root",
+  "ok": true,
+  "detail": "3 checks, 0.0 s",
+  "kind": "EXACT"
+ },
+ {
+  "id": "dark.firstpassage_finite",
+  "rows": "32:B8, 32:C7",
+  "script": "firstpassage_finite",
+  "label": "the finite-cycle first-passage law at 60 digits: the single-step identity f(e^(−s)) = e^(−arccosh e^s); the reduction arccosh(e^s) = √(2s)(1 + s/6 + …) with rel.err/s → 1/6, carrier-exact to ~10⁻⁶¹ at s ~ Ω^(−1/2); the wrap correction of the killed walk on Z_N against the infinite line, O(e^(−(N−a) arccosh e^s))",
+  "ok": true,
+  "detail": "3 checks, 12.1 s",
+  "kind": "EXACT"
+ },
+ {
+  "id": "dark.meridian_walk",
+  "rows": "32:B8, 32:C6, 32:C7",
+  "script": "meridian_walk",
+  "label": "the meridian killed walk: the exact rational discriminant 1 − z² of the first-passage quadratic; the simulated escape probability against e^(−a√(2s)) (seeded); the assembled resolved fraction 1 − e^(−√x) with deep slope 1/2 (the RAR fit form); the mechanism figure",
+  "ok": true,
+  "detail": "4 checks, 4.2 s",
+  "kind": "SIM"
+ },
+ {
+  "id": "dark.deep_regime",
+  "rows": "32:C4",
+  "script": "deep_regime",
+  "label": "the noisy Kuramoto (Adler) link dφ = (T − sin φ)dt + √(2D) dW, seeded: the mean response is Newtonian at every noise level (deep slopes 1.03 at D = 0.3 and 1.11 at D = 0.6, the boost constant to rising) — the √ law is registration, not force modification; deep.json and the figure",
+  "ok": true,
+  "detail": "4 checks, 3.5 s",
+  "kind": "SIM"
+ },
+ {
+  "id": "dark.deep_regime_fp",
+  "rows": "32:C4",
+  "script": "deep_regime_fp",
+  "label": "the stationary Fokker–Planck solution of the same link: the small-tilt log-slope exactly 1 at D = 0.3 and 0.6 (within 2 × 10⁻³), the boost constant to rising; no √ regime in the mean force",
+  "ok": true,
+  "detail": "3 checks, 1.3 s",
+  "kind": "CHART"
+ },
+ {
+  "id": "dark.interpolation",
+  "rows": "32:B8, 32:C6, 32:X4",
+  "script": "interpolation",
+  "label": "the interpolation from the rotation angle: deep slope 1/2 and Newtonian slope 1; the discriminant against the simple rational form, maximum 0.051 in g_obs/g_b at x = 5.2; the two pinning checks of B8 (a barrier κx^β gives deep slope 1 − β; the knee at 1/κ²); the chart angle sin²α = e^(−√x); the figure",
+  "ok": true,
+  "detail": "5 checks, 0.3 s",
+  "kind": "CHART"
+ },
+ {
+  "id": "dark.rar_shape",
+  "rows": "32:B8, 32:C2, 32:C6",
+  "script": "rar_shape",
+  "label": "the named test of B8 against the binned radial acceleration relation (data/RAR.mrt, 0.2-dex bins, the bin scatter as uncertainty): the exponential form's free a₀ within 10 % of the RAR fit 1.20 × 10⁻¹⁰ and below the simple form in χ²; in the band 2 < x < 10 the departure from the exponential form is within the bin scatter in every bin and the rational form has the larger χ²; the floor cH₀/2π 5–25 % below the free fit (the paper's 13 %) [approx]",
+  "ok": true,
+  "detail": "7 checks, 0.0 s",
+  "kind": "CHART"
+ },
+ {
+  "id": "dark.deep_mond",
+  "rows": "32:C2, 32:C4, 32:C5, 32:X2, 32:X3",
+  "script": "deep_mond",
+  "label": "the two-chart Gauss law: a₀ = cH₀/2π = 1.042 × 10⁻¹⁰ at H₀ = 67.4; the RAR deep-regime slope 1/2 and the BTFR slope 1/4 (v⁴ = GMa₀, 5 × 10¹⁰ M⊙ → 162 km/s); the exponential-disk rotation curve flattening at the registered speed; the figure [approx]",
+  "ok": true,
+  "detail": "6 checks, 0.5 s",
+  "kind": "CHART"
+ },
+ {
+  "id": "dark.rar_scatter",
+  "rows": "32:C8, 32:P2, 32:X5, 32:O1, 32:O2",
+  "script": "rar_scatter",
+  "label": "the SPARC residual test at fixed a₀ = cH₀/2π: intrinsic scatter 0.038 dex overall, 0.04 at the knee, rising to ≈ 0.13 at x ≈ 0.02; the two-variable law bounding δα ≲ 3.5° (σ_v/v = 0.1–0.2 excluded, O2); no correlation of the within-galaxy scatter with 1/V_flat over 116 disks (ρ = −0.02); a gas–disk–bulge amplitude sum would boost the RAR by 0.14 dex (O1's within-galaxy constraint); ν(0.1) = 3.69 [approx, data]",
+  "ok": true,
+  "detail": "15 checks, 0.0 s",
+  "kind": "CHART"
+ },
+ {
+  "id": "dark.cluster_coherent",
+  "rows": "32:C10, 32:X7, 32:X8, 32:O1",
+  "script": "cluster_coherent",
+  "label": "the coherence-matrix amplitude law: N_eff = (Σ√g)²/Σg equals N for equal components and is suppressed by a dominant BCG (4:1:1 → 2.67); the core boost √N_eff with N_core = 6 (2.45) decaying to 1 by ~Mpc in the illustrative radial profile — the Bullet selection (C → 0) and the core addition (C → 1) in one law, the factor-two closure a conjecture (O1) [illustrative]",
+  "ok": true,
+  "detail": "4 checks, 0.0 s",
+  "kind": "CHART"
+ },
+ {
+  "id": "dark.predictions",
+  "rows": "32:P1, 32:P2, 32:P3, 32:P4",
+  "script": "predictions",
+  "label": "the falsifiable predictions computed: a₀(z) = cH(z)/2π with v_flat ∝ E(z)^(1/4) (+7 %, +15 %, +31 % at z = 0.5, 1, 2); the two-variable scatter law σ(x, σ_v/v) (0.27 dex at x = 0.01, σ_v/v = 0.1); the wide-binary velocity enhancement with the Galactic external field 1.8a₀ (√ν − 1 = 12–16 % at 10–40 kAU, the paper's 10–30 %); the pressure-supported coherence offset √w (−0.05 to −0.15 dex for σ_v/v = 0.5–1) [approx]",
+  "ok": true,
+  "detail": "4 checks, 0.0 s",
+  "kind": "CHART"
+ },
+ {
+  "id": "dark.make_figures",
+  "rows": "32:V2",
+  "script": "make_figures",
+  "label": "the paper's two figures regenerated (fig_rar.pdf: the RAR with the rational alternative and the exponential-disk rotation curve; fig_mechanism.pdf: the first-passage collapse and the chart angle), written to figures/",
+  "ok": true,
+  "detail": "2 checks, 3.8 s",
+  "kind": "CHART"
+ }
+]

@@ -1,105 +1,69 @@
-# Validation suite — *The Dark Sector over Finite Substrate*
+# 32-dark validation package
 
-**Repository:** <https://github.com/gamayos/frc-numerics/tree/main/32-dark>
+Validation package of *The Dark Sector over Finite Relational Substrate* (Akhtman, Geifman & Voether, 2026), `32-dark`
+of the FRC corpus. The paper's twelve validation scripts and its figure script as written, run through one registry
+(`darkcommon.py`): a family check is one script (`dark.<stem>`), its micro-checks the script's own verdict lines (four of
+the thirteen print one — `flux_exact`, `born_exact`, `deep_regime_fp`, `rar_scatter`; `rar_shape` prints one per check)
+together with the registry's predicates, which decide the stated values explicitly where a script prints without
+asserting: the exact Gauss law and the amplitude identity recomputed, the first-passage reduction with rel.err/s → 1/6,
+the slopes 1.03/1.11 and the exact slope 1, the 0.051 discriminant at x = 5.2 and the two pinning checks of B8, the RAR
+and BTFR slopes with the 162 km/s flat speed, the SPARC scatter 0.038 dex and the bound δα ≲ 3.5°, the cluster law's
+N_eff, the prediction numerals. An exception, a nonzero exit or a failed predicate fails the family. `rar_shape.py`, the
+named test of row B8 that the paper's Appendix A owed "once the binned data file is on the tree", is delivered here
+(`data/RAR.mrt`). Driven by `32-dark-main.ipynb` (Google Colab, *Runtime → Run all*, ≈ 30 s) or by `run_all.py`.
+Python 3.10+, numpy, mpmath, matplotlib; scipy for the exponential-disk curve. The scripts write their figures and
+`deep.json` into `out/`, the paper's two figures into `figures/` (both ignored by git).
 
-This folder holds the computational verification for the paper *The Dark Sector over a Finite
-Substrate* (`../main.tex`). Every quantitative and algebraic claim in the paper is checked by one of
-the scripts below, in **exact arithmetic** wherever the claim is exact (integer, finite-field,
-cyclotomic, or high-precision), and against the lattice Green's function or standard astrophysical
-constants where the claim is a continuum reading. The scripts are standalone, deterministic, and print
-a human-readable verdict; none takes input, and only `make_figures.py` writes files (the two figure
-PDFs).
+Every family names the row(s) of the paper's predicate ledger it witnesses (the paper's Appendix "Predicate ledger",
+49 rows in blocks A, B, C, X, P, V, Z, O, cited as `32:XN`; public copy `docs/32-dark/32-dark-ledger.html`); the ledger's
+source column cites the family ids in return. Master-ledger rows of the corpus sourced from this paper: `00:L1` (the
+floor a₀ = cH₀/2π and the RAR's barrier identification), `00:L7` (the running floor), `00:Z7` (the running's
+normalisation), `00:D3` (distance is decoherence), `00:N1` (the exclusion predictions), `00:N2` (parameter-freeness).
 
-The map below is the executable form of the paper's reproducibility appendix (Appendix A,
-`\ref{app:methods}`).
+Three kinds, recorded per family in `results.json`: **EXACT** — exact rationals, Z[i] or 60-digit identities, no
+tolerance in the verdict; **SIM** — a seeded stochastic simulation (the noisy link, the killed walk), verdict by stated
+tolerance; **CHART** — a continuum reading or a comparison with data (the interpolation, the RAR/BTFR, the SPARC scatter,
+the predictions, the cluster illustration), tagged [approx] in the paper, verdict by stated tolerance.
 
-## What is exact and what is a continuum confrontation
+[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/gamayos/finite-ring-space/blob/main/src/32-dark/32-dark-main.ipynb)
 
-The construction's discipline (Appendix A, and the scale-periodicity audit in
-`../reports/scale-periodicity/`) is that **every exact claim lives in finite-field, integer, or
-cyclotomic arithmetic**, and any continuum reading is a *labelled, profinitely controlled*
-approximation. The suite is split accordingly:
+## In-tree
 
-- **Exact cores** — the discrete Gauss law (`flux_exact`), the amplitude identity (`born_exact`), the
-  meridian first-passage discriminant and its finite-cycle transform (`meridian_walk`,
-  `firstpassage_finite`). No floating point where an identity is claimed.
-- **Labelled continuum confrontations** — the deep-regime law, the radial acceleration relation, the
-  rotation curve, the scatter, and the predictions (`deep_mond`, `interpolation`, `predictions`).
-  These compare the substrate readings to data or to the McGaugh fit, and are reported as such.
+| family | script | kind | claims backed (ledger rows) |
+|---|---|---|---|
+| `dark.flux_exact` | `flux_exact.py` | EXACT | the discrete Gauss law of the synchronisation flux in exact rationals on the 5³ box: unit source → unit flux through both enclosing surfaces, a source-free noise field → zero, the superposition → one — Newton as the high-acceleration reading (32:C1, X1) |
+| `dark.born_exact` | `born_exact.py` | EXACT | amplitude = √count in Z[i]: \|Σ\|² = n² coherent, ⟨\|Σ\|²⟩ = n over all sign patterns, n ≤ 10 — the cross-term cancellation forcing the deep-regime square root (32:C3, C7) |
+| `dark.firstpassage_finite` | `firstpassage_finite.py` | EXACT | the finite-cycle first-passage law at 60 digits: f(e^(−s)) = e^(−arccosh e^s); arccosh(e^s) = √(2s)(1 + s/6 + …), rel.err/s → 1/6; the wrap correction of the killed walk on Z_N (32:B8, C7) |
+| `dark.meridian_walk` | `meridian_walk.py` | SIM | the meridian killed walk: the exact first-passage quadratic; the seeded escape probability against e^(−a√(2s)); the resolved fraction 1 − e^(−√x) with deep slope 1/2 (32:B8, C6, C7) |
+| `dark.deep_regime` | `deep_regime.py` | SIM | the noisy Kuramoto (Adler) link simulated: deep slopes 1.03 (D = 0.3) and 1.11 (D = 0.6), the boost constant to rising — registration, not force modification (32:C4) |
+| `dark.deep_regime_fp` | `deep_regime_fp.py` | CHART | the stationary Fokker–Planck solution of the same link: the small-tilt log-slope exactly 1 at both D (within 2 × 10⁻³) (32:C4) |
+| `dark.interpolation` | `interpolation.py` | CHART | the interpolation from the rotation angle: deep slope 1/2, Newtonian slope 1; the 0.051 discriminant against the simple rational form at x = 5.2; the two pinning checks of B8; the chart angle (32:B8, C6, X4) |
+| `dark.rar_shape` | `rar_shape.py` | CHART | the named test of B8 against the binned SPARC relation: the exponential form's free a₀ within 10 % of the RAR fit and below the rational form in χ²; the band 2 < x < 10 within the bin scatter; the floor 13 % below the fit [approx] (32:B8, C2, C6) |
+| `dark.deep_mond` | `deep_mond.py` | CHART | the two-chart Gauss law: a₀ = cH₀/2π = 1.042 × 10⁻¹⁰; RAR slope 0.514, BTFR slope 0.250, v_flat(5 × 10¹⁰ M⊙) = 162 km/s; the exponential-disk curve flattening [approx] (32:C2, C4, C5, X2, X3) |
+| `dark.rar_scatter` | `rar_scatter.py` | CHART | the SPARC residual test at fixed a₀: intrinsic 0.038 dex, 0.04 at the knee rising to 0.13 at x ≈ 0.02; δα ≲ 3.5°; ρ = −0.01 over 116 disks; the 0.14-dex amplitude-sum boost; ν(0.1) = 3.7 [approx, data] (32:C8, P2, X5, O1, O2) |
+| `dark.cluster_coherent` | `cluster_coherent.py` | CHART | the coherence-matrix amplitude law N_eff = (Σ√g)²/Σg: N for equal components, 2.67 for 4:1:1; the core boost √6 decaying to 1 by ~Mpc [illustrative] (32:C10, X7, X8, O1) |
+| `dark.predictions` | `predictions.py` | CHART | the predictions computed: v_flat ∝ E(z)^(1/4) (+7, +15, +31 % at z = 0.5, 1, 2); the scatter law 0.27 dex at x = 0.01, σ_v/v = 0.1; the wide-binary velocity enhancement 12–16 % at 10–40 kAU with g_ext = 1.8a₀; the coherence offset −0.05 to −0.15 dex [approx] (32:P1–P4) |
+| `dark.make_figures` | `make_figures.py` | CHART | the paper's two figures regenerated into `figures/` (32:V2) |
+| — | `darkcommon.py` | — | the registry: the script runner, `PRED` (the predicates per family), `LEDGER` (family → rows), `LABELS`, `KIND`, `results.json` |
 
-The single residue the construction leaves to the totality (the cross-scale running of `a0`) is
-**Ω-hard** and is *not* computed here; its framed-rational certificate is in
-`../reports/omega-hard-certificate/`.
+Run: `python3 run_all.py`. Any script also runs alone as before (`python3 flux_exact.py`), printing its own report.
+Rebuild the notebook: `python3 make_notebook.py`.
 
-## Requirements
+## Provenance
 
-- Python 3.10+
-- `numpy`, `scipy`, `matplotlib`, `mpmath` (only some scripts need each — see the table)
-- `fractions` is from the standard library; no other dependencies, no network, no data files
+The scripts are the paper's `validation/` suite (June–September 2026), unchanged; `rar_shape.py` (September 2026) is
+new to both. The public copy had carried June versions of `cluster_coherent.py`, `deep_mond.py`, `interpolation.py`,
+`make_figures.py`, `predictions.py` and lacked `deep_regime_fp.py`, `rar_scatter.py` and `data/`; its README and the
+five old scripts are in `_to_delete/32-dark-superseded/` with the stale figure and json outputs. Registry-side findings
+recorded here, not repaired: `rar_scatter`'s check "knee bins (0.1 < x < 3) intrinsic within 0.03–0.05 dex" tests
+0.02–0.06 and the bin 0.1 < x < 0.3 gives 0.028 (the registry pins the paper's 0.04 to the bins 0.3 < x < 3, which give
+0.043 and 0.046); `cluster_coherent` rebinds its `Neff` function to a float in its second part (the registry recomputes
+the law); the wide-binary prediction is stated in the paper as a velocity enhancement of 10–30 % while the script
+prints the acceleration ratio ν = 1.24–1.35 (the registry checks √ν − 1 = 12–16 %).
 
-```bash
-pip install numpy scipy matplotlib mpmath
-```
+## Predicate ledger
 
-## Running
-
-Each script is run directly and prints its result:
-
-```bash
-python3 firstpassage_finite.py
-```
-
-To run the whole suite:
-
-```bash
-for f in *.py; do echo "=== $f ==="; python3 "$f"; done
-```
-
-All scripts exit 0 and complete in a few seconds, except `meridian_walk.py` and `cluster_coherent.py`
-(a few seconds of random-walk simulation) and `firstpassage_finite.py` (60-digit `mpmath`).
-
-## Script → claim map
-
-The "paper result" column refers to the labelled propositions, theorems, equations, and figures in
-`../main.tex`.
-
-| script | paper result | what it verifies | arithmetic | deps |
-|---|---|---|---|---|
-| `flux_exact.py` | **Prop. 1** (Newtonian limit) | the discrete Gauss law of the synchronisation flux on a `5³` box with Dirichlet boundary: a unit point source gives unit flux through every enclosing surface, a source-free field gives zero, and their superposition gives unit flux — Newton's law as the high-acceleration reading | exact rationals | `fractions` |
-| `deep_regime.py` | **§2**, Construction 1 (illustrative) | the noisy-Kuramoto (Adler) link `dφ=(T−sinφ)dt+√(2D)dW`: the mean dynamics is Newtonian-shaped; the framed-rational reading is a killed random walk on the phase cycle `C_{p−1}` | stochastic, labelled | `numpy`, `matplotlib` |
-| `born_exact.py` | **Prop. 2** (amplitude = √count) | in the quarter-turn core `ℤ[i]`: a coherent stack of `n` aligned phasors has amplitude `n`; an incoherent ensemble has RMS amplitude `√n` by cross-term cancellation `𝔼\|Σe^{iθ}\|²=n` | exact `ℤ[i]` | `fractions` |
-| `meridian_walk.py` | **Prop. 3** (first-passage) | the meridian phase performs a killed walk; non-registration is first passage across the Born-amplitude barrier; the single-step factor carries `√(1−z²)`, the `a`-level escape is `f(z)^a → e^{−a√(2s)}`, collapsing onto `e^{−√x}` | exact roots + simulation | `numpy`, `matplotlib`, `fractions` |
-| `firstpassage_finite.py` | **Prop. 3** (finite cycle), **eq. norm** | the exact single-step identity `f(e^{−s})=e^{−arccosh(eˢ)}`; the controlled reduction `arccosh(eˢ)=√(2s)(1+s/6+s²/120+…)` with **series error `O(s)`** and **lattice (integer-barrier) error `O(√s)`**; the finite-cycle wrap correction `O(e^{−(Ω−1−a)arccosh(eˢ)})` | exact, `mpmath` 60 dp | `mpmath` |
-| `interpolation.py` | **Thm. 1**, **eq. interp**, **§4** | the RAR shape assembled from the FrFT angle, the Born amplitude `√x`, the horizon detection `f=1−e^{−A}`, and flux conservation, equal to the McGaugh fit to machine precision; deep slope `→½`, Newtonian `→1`; the chart angle `α(x)` with `sin²α=e^{−√x}` | float, labelled | `numpy`, `matplotlib` |
-| `deep_mond.py` | **§3** (geometric mean, RAR, BTFR) | the two-chart Gauss law: position chart `g_eff=g_bar` (Newtonian), spectral chart `g_eff=√(g_bar a0)` (deep); the RAR, the baryonic Tully–Fisher slope `0.25`, and the exponential-disk rotation curve | float, labelled | `numpy`, `scipy` |
-| `cluster_coherent.py` | **§6.2**, **eq. cohsum/neff**, ledger **D5** | the coherence-matrix amplitude law `g_amp²/a0=Σg_i+2Σ√(g_ig_j)Re C_ij`; `N_eff=(Σ√g_i)²/Σg_i`; the Bullet selection (`C→0`) and the core addition (`C→1`) in one law; the factor-two core closure as a **falsifiable conjecture**, not a theorem | exact + illustrative | `numpy` |
-| `predictions.py` | **§7** (P1–P4) | the further falsifiable predictions: the `a0(z)=cH(z)/2π` knee and BTFR evolution `v_flat∝E(z)^{1/4}`; the two-variable scatter law `σ(x,σ_v/v)`; the wide-binary deep-regime enhancement with the vector Galactic EFE; the pressure-supported coherence offset `√w` | float, labelled | `numpy` |
-| `make_figures.py` | **Figs. 1–2** | regenerates `../figures/fig_rar.pdf` (RAR with the rational-alternative knee + exponential-disk rotation curve) and `../figures/fig_mechanism.pdf` (the meridian first-passage collapse + the chart angle) | float (plots) | `numpy`, `scipy`, `matplotlib` |
-
-## Representative expected output
-
-- `flux_exact.py` → "unit source: flux = 1 through every surface; source-free: 0; superposition: 1" (exact).
-- `born_exact.py` → coherent amplitude `n`, incoherent RMS amplitude `√n` (cross terms cancel).
-- `firstpassage_finite.py` → `f(e^{−s}) = e^{−arccosh(eˢ)}` to `60` digits; `rel.err/s → 1/6`; substrate `s∼Ω^{−1/2}` ⇒ reduction exact to `~10^{−62}`; wrap correction `~e^{−(N−a)arccosh}`.
-- `interpolation.py` → "derived interpolation == McGaugh RAR fit: True"; deep slope `→0.5`, Newtonian `→1.0`.
-- `deep_mond.py` → BTFR slope `0.25`; disk baryonic peak vs flat registered speed.
-- `cluster_coherent.py` → `N_eff=(Σ√g)²/Σg` (equal components `→N`, dominant BCG `→` suppressed); the residual a *falsifiable conjecture*, not a theorem.
-- `predictions.py` → `v_flat(z)/v_0 = E(z)^{1/4}` (`+15%` at `z=1`); deep-regime scatter `~0.27` dex; wide-binary `ν` with EFE `~1.1–1.3`.
-
-## Conventions and notes
-
-- **Exact where exact.** Claims marked *exact* in the paper are computed in integer, finite-field
-  (`𝔽_p`), cyclotomic (`ℚ(ζ_M)`, `ℤ[i]`), or arbitrary-precision (`mpmath`) arithmetic and verified as
-  identities, never by sampling.
-- **Labelled continuum readings.** The RAR, the BTFR, the rotation curve, the scatter, and the
-  predictions are degenerate-idealisation readings; these use standard constants
-  (`a0=cH0/2π`, `H0=70`) and are reported as confrontations, not exact claims.
-- **Determinism.** The two simulations (`meridian_walk`, `cluster_coherent`) use fixed seeds; results
-  are reproducible. No exact claim depends on a random step.
-- **Reduce-and-resolve, or reduce-and-prove-Ω-hard.** Every residue is either resolved by a finite
-  identity here (e.g. the cluster residual via the coherence matrix, `cluster_coherent.py`) or proved
-  Ω-hard in `../reports/omega-hard-certificate/` (the single cross-scale running). There is no third
-  category; "too small" or "missing mass" readings are continuum imports and are not used.
-- **Companion reports.** The scatter and external-field figures, the Bullet-cluster convergence map,
-  and the scale-periodicity audit live under `../reports/` (`scatter-efe/`, `cluster-lensing/`,
-  `scale-periodicity/`, `omega-hard-certificate/`).
+Rows A1–A7 imports; B1–B8 realisations; C1–C11 derived (C4, C6, C11 composite T|R; C10 composite D|T); X1–X11 the
+explanation register; P1–P6 the predictions (P1, P2, P3, P4, P6 formerly D1, D4, D7, D8, D3; P5, the coherence-state
+cluster gas, from the body's list); V1–V3 the verification; Z1 the Ω-hard residue, formerly D6; O1–O2 the conjectures,
+formerly Y1–Y2. Family → rows: `darkcommon.LEDGER`.
