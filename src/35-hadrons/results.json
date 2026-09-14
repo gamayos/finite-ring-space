@@ -1,0 +1,146 @@
+[
+ {
+  "id": "had.su3_singlet",
+  "rows": "35:B1, 35:C1, 35:X2",
+  "script": "su3_singlet",
+  "label": "colour SU(3,F_2) built exactly over F_4: order 216, centre the scalars {I, ωI, ω²I} ≅ Z_3; the colour-singlet rule is centre neutrality, triality 0 (mod 3) — the baryon qqq and the meson qq̄ colourless, the quark and the diquark confined; det = 1 on the group, so ε_abc is the invariant (Λ³3 = 1)",
+  "ok": true,
+  "detail": "4 checks, 0.7 s",
+  "kind": "EXACT"
+ },
+ {
+  "id": "had.carrier_residue",
+  "rows": "35:B5, 35:C15, 35:X1, 35:X3, 35:X7",
+  "script": "carrier_residue",
+  "label": "the baryon as the Carrier residue 1: no nonzero colour vector fixed by SU(3,F_2) (the fundamental carries no invariant line: a single quark has residue 0), det ≡ 1 (Λ³ = det the one-dimensional invariant), the colourless content of Λ^k(3) is (1,0,0,1) for k = 0…3 — the residue series photon 2, gluon 0, baryon 1; stability selects the minimal-wrap proton",
+  "ok": true,
+  "detail": "4 checks, 0.7 s",
+  "kind": "EXACT"
+ },
+ {
+  "id": "had.su3f_relations",
+  "rows": "35:C2, 35:C3, 35:P1, 35:P2, 35:X4, 35:X5",
+  "script": "su3f_relations",
+  "label": "Gell-Mann–Okubo 2N + 2Ξ − 3Λ − Σ = 0 and the decuplet second differences Δ − 2Σ* + Ξ* = Σ* − 2Ξ* + Ω = 0 as exact identities in the (M₀, a, b) / (α, β) bases (the scale and the breaking parameters cancel); PDG residual 0.57 % (octet), spacing spread 9.2 % with β = 146.8 MeV [approx]",
+  "ok": true,
+  "detail": "4 checks, 0.0 s",
+  "kind": "MIXED"
+ },
+ {
+  "id": "had.su3f_second_order",
+  "rows": "35:C11, 35:C12, 35:P8",
+  "script": "su3f_second_order",
+  "label": "the decuplet third-difference relation M_Δ − 3M_Σ* + 3M_Ξ* − M_Ω = 0 and the octet–decuplet hyperfine links M_Σ − M_Λ = ⅔[(M_Δ − M_N) − (M_Σ* − M_Σ)], M_Σ* − M_Σ = M_Ξ* − M_Ξ vanish identically in (M₀, d, A, r) (sympy); PDG third difference +6.0 MeV (0.36 %) [approx]",
+  "ok": true,
+  "detail": "4 checks, 0.9 s",
+  "kind": "MIXED"
+ },
+ {
+  "id": "had.hyperfine_charsum",
+  "rows": "35:C4, 35:C5, 35:C6, 35:P3, 35:X6",
+  "script": "hyperfine_charsum",
+  "label": "the colour factor of the singlet Σ λ_i·λ_j = −8 (−8/3 per pair) from C₂(3) = 4/3, C₂(1) = 0; the spin structure g_spin = ½S(S+1) − 9/8: octet −3/4, decuplet +3/4, separation 3/2; the combined colour × spin eigenvalues +2, −2; A_light = ⅔(M_Δ − M_N) = 195.4 MeV [approx]",
+  "ok": true,
+  "detail": "4 checks, 0.0 s",
+  "kind": "MIXED"
+ },
+ {
+  "id": "had.isospin_cottingham",
+  "rows": "35:C7, 35:C8, 35:C9, 35:P6, 35:X8, 35:X9, 35:X10",
+  "script": "isospin_cottingham",
+  "label": "Coleman–Glashow (n−p) + (Ξ⁻−Ξ⁰) − (Σ⁻−Σ⁺) = 0 as an exact one-body identity; M_n > M_p from the d−u seed against the charge-squared term (ΣQ² = 1 for p, 2/3 for n); M_Σ > M_Λ from the ud pair spin-1 vs spin-0 (S_u·S_d difference 1, the strange-to-pair term −1); PDG 0.79 %, n − p = 1.293 MeV, Σ⁰ − Λ = 77.0 MeV [approx]",
+  "ok": true,
+  "detail": "4 checks, 0.0 s",
+  "kind": "MIXED"
+ },
+ {
+  "id": "had.heavy_flavour",
+  "rows": "35:C10, 35:P7, 35:X11",
+  "script": "heavy_flavour",
+  "label": "heavy-quark spin decoupling: M(Λ_b) − M(Λ_c) = 3333.1 against M(B) − M(D) = 3414.8 MeV (−2.4 %); the 1/m_Q hyperfine ratio (Σ_c* − Σ_c)/(Σ* − Σ) = 0.339 ≈ m_s/m_c [approx]",
+  "ok": true,
+  "detail": "2 checks, 0.0 s",
+  "kind": "MIXED"
+ },
+ {
+  "id": "had.em_heavy_cmag",
+  "rows": "35:C13, 35:C14, 35:C21, 35:C22",
+  "script": "em_heavy_cmag",
+  "label": "the electromagnetic charge structure exact (p: ΣQ² = 1, ΣQ_iQ_j = 0; n: 2/3, −1/3; both differences 1/3), the magnitude α√σ × structure, no new residue; the heavy absolute masses m_Q + O(√σ); c_mag the adjoint plaquette sum (8 ⊂ 3⊗3̄, 8 ⊄ 3⊗3), leading β²/36 against the tension β/18",
+  "ok": true,
+  "detail": "4 checks, 0.0 s",
+  "kind": "MIXED"
+ },
+ {
+  "id": "had.absolute_masses",
+  "rows": "35:P10",
+  "script": "absolute_masses",
+  "label": "the absolute octet and decuplet from one scale and two ratios anchored to N, Λ, Δ (m_l = 361.8 MeV, m_s/m_l = 1.4885, v_ll/m_l = 0.540): five parameter-free predictions Σ, Ξ, Σ*, Ξ*, Ω all within 1.1 % of PDG [approx]",
+  "ok": true,
+  "detail": "3 checks, 0.0 s",
+  "kind": "MIXED"
+ },
+ {
+  "id": "had.vector_nonet",
+  "rows": "35:C18, 35:P9, 35:X12",
+  "script": "vector_nonet",
+  "label": "the meson as residue 1 (B = 0): the unitary contraction of 3⊗3̄ on SU(3,F_2) (order 216); the vector equal spacing 2M_K* − M_ρ − M_φ = 0 exact in the linear-strangeness basis; PDG −0.42 %, K* predicted 897.4 (0.42 %), ω = ρ (−0.95 %) [approx]",
+  "ok": true,
+  "detail": "4 checks, 0.7 s",
+  "kind": "MIXED"
+ },
+ {
+  "id": "had.subhorizon_resolution",
+  "rows": "35:C20, 35:C23, 35:X13",
+  "script": "subhorizon_resolution",
+  "label": "the Ω-stability discriminator: the colour rank N = 3 on every admissible shell (3 | Ω+1 for Ω = 53, 173, 389, 1373), the character-sum coefficients 1/18 and 1/36 Ω-free; the second-order residuals O(ε_s²) — GMO 27-plet 0.017, third difference 0.041 of the leading splitting — a convergent expansion; A_light/√σ sub-horizon",
+  "ok": true,
+  "detail": "3 checks, 0.0 s",
+  "kind": "MIXED"
+ },
+ {
+  "id": "had.confinement_completion",
+  "rows": "35:C16, 35:P11",
+  "script": "confinement_completion",
+  "label": "the single-scale reduction: λ_l = 0.822, m_s/m_l = 1.489, λ_hf = 0.444 at √σ = 440 MeV; M_Λ − M_N = m_s − m_l = 176.8 MeV exactly (the hyperfine cancels); the linear-potential tower on the finite grid (N = 4000) reproducing the Airy zeros 2.338, 4.088, 5.521, 6.787 [profinite approx]",
+  "ok": true,
+  "detail": "3 checks, 3.3 s",
+  "kind": "PROFINITE"
+ },
+ {
+  "id": "had.final_resolution",
+  "rows": "35:C16, 35:C20, 35:X13",
+  "script": "final_resolution",
+  "label": "the terminal classification: the two kinds of sub-horizon residue (closed-form framed-rational, profinite eigenvalue), the bound-state problem Ω-free (N = 3 on every shell, the character sums, the operator −u'' + xu), the level ratio ε₁/ε₀ = 1.7484; the tally six T rows and two Ω-hard (√σ, α), nothing open",
+  "ok": true,
+  "detail": "3 checks, 3.1 s",
+  "kind": "PROFINITE"
+ },
+ {
+  "id": "had.confinement_closure",
+  "rows": "35:C17",
+  "script": "confinement_closure",
+  "label": "the baryon scale as a finite eigenvalue: H_G = T_G^{1/2} + R_G (the matrix square root by finite eigendecomposition) across the grid tower N = 600…2200, E₀ = 2.2322 converged, E₁/E₀ = 1.4917; M_N = E₀√σ = 982 MeV against 938.9 (4.6 %); λ_l = 0.822, λ_hf = 0.444 the constituent decomposition of {M_N, M_Δ} [profinite approx]",
+  "ok": true,
+  "detail": "3 checks, 1.6 s",
+  "kind": "PROFINITE"
+ },
+ {
+  "id": "had.forward_eigenvalues",
+  "rows": "35:C17, 35:C19",
+  "script": "forward_eigenvalues",
+  "label": "the forward evaluation with no measured baryon mass: [EXACT] g_spin ∓3/4, the 3/2 lever, c₁ = β/18, c_adj = β²/36, the spin split inverted exactly; [profinite approx] |u'(0)|² = 1 (the Airy normalisation identity), E₀ = 2.2323, F_rel = 3.52; [approx] α_s(√σ) ≈ 1 by transmutation, the landings λ_hf = 0.442 and λ_l = 0.855 within 7 % of 0.444/0.822 — the script's ten checks",
+  "ok": true,
+  "detail": "14 checks, 5.6 s",
+  "kind": "PROFINITE"
+ },
+ {
+  "id": "had.make_figures",
+  "rows": "35:V2",
+  "script": "make_figures",
+  "label": "the paper's two figures regenerated into figures/ from the exact values of absolute_masses and vector_nonet (fig_spectrum.pdf: FRC vs PDG for the octet, decuplet and vector nonet; fig_strangeness.pdf: mass against strangeness, the two equal spacings)",
+  "ok": true,
+  "detail": "2 checks, 0.5 s",
+  "kind": "CHART"
+ }
+]

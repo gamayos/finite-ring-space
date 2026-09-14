@@ -264,7 +264,9 @@
    "master": [
     "N1"
    ],
-   "restated": [],
+   "restated": [
+    "35:P4"
+   ],
    "witnessed": true,
    "page": "27-fields/27-fields-ledger.html"
   },
@@ -491,6 +493,136 @@
    "restated": [],
    "witnessed": false,
    "page": "32-dark/32-dark-ledger.html"
+  },
+  {
+   "id": "35:P1",
+   "paper": "35-hadr",
+   "label": "P1",
+   "key": "p35051",
+   "tag": "E",
+   "predicate": "Gell-Mann--Okubo exact at leading order; PDG $0.57\\%$, the bounded $\\chi_3^2$ second order. Falsifier: a violation beyond the second-order insertion.",
+   "source": "C2; \\src{had.\\allowbreak su3f\\_\\allowbreak relations}",
+   "master": [],
+   "restated": [],
+   "witnessed": true,
+   "page": "35-hadrons/35-hadrons-ledger.html"
+  },
+  {
+   "id": "35:P2",
+   "paper": "35-hadr",
+   "label": "P2",
+   "key": "p35052",
+   "tag": "E",
+   "predicate": "Decuplet equal spacing exact; PDG $9.2\\%$ spread, $\\beta\\simeq146.8$ MeV, the same second order. Falsifier: a non-equal spacing beyond it.",
+   "source": "C3; \\src{had.\\allowbreak su3f\\_\\allowbreak relations}",
+   "master": [],
+   "restated": [],
+   "witnessed": true,
+   "page": "35-hadrons/35-hadrons-ledger.html"
+  },
+  {
+   "id": "35:P3",
+   "paper": "35-hadr",
+   "label": "P3",
+   "key": "p35053",
+   "tag": "E",
+   "predicate": "The hyperfine pattern $g_{\\mathrm{spin}}=\\half S(S+1)-\\tfrac98$, octet $-\\tfrac34$, decuplet $+\\tfrac34$, separation $\\tfrac32A_{\\mathrm{light}}$ with $A_{\\mathrm{light}}\\simeq195$ MeV. Falsifier: a spin splitting outside this pattern.",
+   "source": "C5; \\src{had.\\allowbreak hyperfine\\_\\allowbreak charsum}",
+   "master": [],
+   "restated": [],
+   "witnessed": true,
+   "page": "35-hadrons/35-hadrons-ledger.html"
+  },
+  {
+   "id": "35:P5",
+   "paper": "35-hadr",
+   "label": "P5",
+   "key": "p35055",
+   "tag": "E",
+   "predicate": "No exotic light multiplets beyond the $\\mathbf 8$ and $\\mathbf{10}$ at leading wrap order. Falsifier: a confirmed light baryon outside the $\\mathbf 8$ and $\\mathbf{10}$ at the wrap scale.",
+   "source": "C1",
+   "master": [],
+   "restated": [],
+   "witnessed": false,
+   "page": "35-hadrons/35-hadrons-ledger.html"
+  },
+  {
+   "id": "35:P6",
+   "paper": "35-hadr",
+   "label": "P6",
+   "key": "p35056",
+   "tag": "E",
+   "predicate": "Coleman--Glashow exact at one body; PDG $0.79\\%$, the residual the two-body electromagnetic term; the orderings $M_n>M_p$ and $M_\\Sigma>M_\\Lambda$ fixed. Falsifier: a Coleman--Glashow violation beyond the two-body term.",
+   "source": "C7, C8, C9; \\src{had.\\allowbreak isospin\\_\\allowbreak cottingham}",
+   "master": [],
+   "restated": [],
+   "witnessed": true,
+   "page": "35-hadrons/35-hadrons-ledger.html"
+  },
+  {
+   "id": "35:P7",
+   "paper": "35-hadr",
+   "label": "P7",
+   "key": "p35057",
+   "tag": "E",
+   "predicate": "Heavy-quark symmetry $M_{\\Lambda_b}-M_{\\Lambda_c}=M_B-M_D$ ($2.4\\%$) and the $1/m_Q$ hyperfine ratio $(M_{\\Sigma_c^{*}}-M_{\\Sigma_c})/(M_{\\Sigma^{*}}-M_{\\Sigma})\\simeq m_s/m_c$. Falsifier: a heavy-baryon spectrum off the spin-decoupled, $1/m_Q$-scaled pattern.",
+   "source": "C10; \\src{had.\\allowbreak heavy\\_\\allowbreak flavour}",
+   "master": [],
+   "restated": [],
+   "witnessed": true,
+   "page": "35-hadrons/35-hadrons-ledger.html"
+  },
+  {
+   "id": "35:P8",
+   "paper": "35-hadr",
+   "label": "P8",
+   "key": "p35058",
+   "tag": "E",
+   "predicate": "Second-order decuplet relation \\eqref{eq:thirddiff}, the vanishing third difference; PDG $6$ MeV ($0.36\\%$). Falsifier: a third difference beyond the few-MeV third-order scale.",
+   "source": "C11; \\src{had.\\allowbreak su3f\\_\\allowbreak second\\_\\allowbreak order}",
+   "master": [],
+   "restated": [],
+   "witnessed": true,
+   "page": "35-hadrons/35-hadrons-ledger.html"
+  },
+  {
+   "id": "35:P9",
+   "paper": "35-hadr",
+   "label": "P9",
+   "key": "p35059",
+   "tag": "E",
+   "predicate": "Vector-meson nonet equal spacing $2M_{K^{*}}=M_\\rho+M_\\phi$ (PDG $0.42\\%$) and ideal mixing $M_\\omega\\simeq M_\\rho$; $\\rho,\\phi$ anchor, $K^{*},\\omega$ predicted $<1\\%$; the pseudoscalars are Goldstone bosons (a distinct chiral mechanism). Falsifier: a vector nonet off the linear-strangeness pattern.",
+   "source": "Prop.~\\ref{prop:vector}; \\src{had.\\allowbreak vector\\_\\allowbreak nonet}",
+   "master": [],
+   "restated": [],
+   "witnessed": true,
+   "page": "35-hadrons/35-hadrons-ledger.html"
+  },
+  {
+   "id": "35:P10",
+   "paper": "35-hadr",
+   "label": "P10",
+   "key": "p35060",
+   "tag": "E",
+   "predicate": "Absolute octet$+$decuplet spectrum from the $\\Om$-hard scale $\\sig$ and three sub-horizon eigenvalues ($\\lambda_l$, $m_s/m_l$, $\\lambda_{\\mathrm{hf}}$, the two constituent ratios computed forward, C19): five parameter-free predictions within $1.1\\%$ (Table~\\ref{tab:absolute}). Falsifier: a predicted mass off beyond the traced second order.",
+   "source": "\\S\\ref{sec:absolute}; \\src{had.\\allowbreak absolute\\_\\allowbreak masses}",
+   "master": [],
+   "restated": [],
+   "witnessed": true,
+   "page": "35-hadrons/35-hadrons-ledger.html"
+  },
+  {
+   "id": "35:P11",
+   "paper": "35-hadr",
+   "label": "P11",
+   "key": "p35061",
+   "tag": "E",
+   "predicate": "The $\\Lambda$--$N$ gap is the strange constituent excess, $M_\\Lambda-M_N=m_s-m_l=176.8$ MeV, hyperfine- and scale-free \\eqref{eq:lamn}. Falsifier: a gap inconsistent with the strange seed and the $\\Xi,\\Sigma$ splittings.",
+   "source": "C16; \\src{had.\\allowbreak confinement\\_\\allowbreak completion}",
+   "master": [],
+   "restated": [],
+   "witnessed": true,
+   "page": "35-hadrons/35-hadrons-ledger.html"
   }
  ],
  "restated": {
@@ -501,6 +633,9 @@
   ],
   "27:P8": [
    "28:P1"
+  ],
+  "27:P4": [
+   "35:P4"
   ]
  }
 }

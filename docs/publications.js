@@ -400,14 +400,27 @@ const PUBLICATIONS = [
     ]
   },
   {
-    "key": "35-bar",
+    "key": "35-hadr",
     "n": 35,
-    "title": "Ground-State Light Hadron Spectroscopy",
+    "title": "Ground-State Light Hadron Spectroscopy over Finite Substrate",
     "status": {
       "kind": "preprint"
     },
     "doi": "https://doi.org/10.20944/preprints202506.1507.v2",
-    "doiLabel": "pp202506.1507.v2"
+    "doiLabel": "pp202506.1507.v2",
+    "ledger": "35-hadrons/35-hadrons-ledger.html",
+    "links": [
+      {
+        "href": "35-hadrons/35-hadrons-ledger.html",
+        "label": "ledger",
+        "title": "the paper's predicate ledger"
+      },
+      {
+        "href": "https://colab.research.google.com/github/gamayos/finite-ring-space/blob/main/src/35-hadrons/35-hadrons-main.ipynb",
+        "label": "notebook",
+        "title": "the validation notebook on Google Colab"
+      }
+    ]
   },
   {
     "key": "38-s13",

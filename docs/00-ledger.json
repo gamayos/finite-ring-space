@@ -1539,7 +1539,7 @@
    "key": "p00073",
    "tag": "T",
    "sources": [
-    "35-bar",
+    "35-hadr",
     "27-fld"
    ],
    "witness": "35:su3f_relations.py [mixed]",
@@ -1549,7 +1549,7 @@
      "key": "p00070"
     }
    ],
-   "statement": "\\textbf{Strong} (hadron spectrum): a baryon is the centre-neutral triality invariant $\\varepsilon_{abc}$ of $\\SU(3,\\F_2)$; the $\\SU(3)_F$ mass relations are exact scale-cancelling identities --- Gell-Mann--Okubo, decuplet equal spacing, Coleman--Glashow, the orderings $M_n{>}M_p$ and $M_\\Sigma{>}M_\\Lambda$, heavy-quark symmetry, the vector-nonet spacing; the decuplet--octet hyperfine is the colour-magnetic curvature invariant, $A_{\\mathrm{light}}{=}\\sqrt\\sigma\\,c_{\\mathrm{mag}}(\\beta)$ the spin-$2$ partner of the tension $c_1$ (I2). Formulas: 35-bar."
+   "statement": "\\textbf{Strong} (hadron spectrum): a baryon is the centre-neutral triality invariant $\\varepsilon_{abc}$ of $\\SU(3,\\F_2)$; the $\\SU(3)_F$ mass relations are exact scale-cancelling identities --- Gell-Mann--Okubo, decuplet equal spacing, Coleman--Glashow, the orderings $M_n{>}M_p$ and $M_\\Sigma{>}M_\\Lambda$, heavy-quark symmetry, the vector-nonet spacing; the decuplet--octet hyperfine is the colour-magnetic curvature invariant, $A_{\\mathrm{light}}{=}\\sqrt\\sigma\\,c_{\\mathrm{mag}}(\\beta)$ the spin-$2$ partner of the tension $c_1$ (I2). Formulas: 35-hadr."
   },
   {
    "label": "I6",
@@ -1558,7 +1558,7 @@
    "key": "p00074",
    "tag": "T",
    "sources": [
-    "35-bar",
+    "35-hadr",
     "27-fld",
     "33-fus"
    ],
@@ -1582,7 +1582,7 @@
    "key": "p00075",
    "tag": "T",
    "sources": [
-    "35-bar"
+    "35-hadr"
    ],
    "witness": "35:confinement_closure.py [approx]",
    "refs": [

@@ -2,7 +2,7 @@
 __pycache__/
 *.py[codz]
 *$py.class
-___to_delete/
+_to_delete/
 
 # C extensions
 *.so
