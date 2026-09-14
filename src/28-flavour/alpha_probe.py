@@ -43,7 +43,7 @@ ck("C.weinberg", abs(s2w_U-3/8)<2e-3, f"sin^2 theta_W -> 3/8 at unification (der
 ck("C.nearmiss", True, f"alpha_3 does NOT meet alpha_1,2 exactly: the ~13% three-coupling near-miss")
 
 print("\n"+"="*72); print("D. the bare-to-lab gap and the 'too strong' puzzle"); print("="*72)
-print(f"   gap to bridge: alpha^-1(0) - 4pi = {a0_inv - a_bare_inv:.1f} units")
+print(f"   gap to the 4pi anchor: alpha^-1(0) - 4pi = {a0_inv - a_bare_inv:.1f} units")
 print(f"   alpha_GUT^-1 = {aGUT_inv:.1f}  >>  4pi = {a_bare_inv:.1f}: the bare 1/4pi is STRONGER")
 print(f"   than the unified coupling, and SU(5) is asymptotically free (weakens going up),")
 print(f"   so 4pi is NOT reached by running the unified coupling up -> 1/4pi is a LATTICE/")

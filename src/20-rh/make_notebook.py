@@ -31,7 +31,7 @@ zeta functions, as the paper says they do.
 largest object); set `FAST = True` in the second cell for reduced depths (≈ 2 min; the same 94 checks, the deep
 tails of the depth scans shortened). The last cell writes `results.json` and fails loudly if any predicate fails.
 
-**Ledger.** The paper carries a predicate ledger (its Subsection "Predicate ledger": 68 rows in blocks A–F, V, Z, O, cited as `20:XN`). Each check below prints the ledger row(s) it witnesses in square brackets, and `results.json` records them; the ledger's source column cites these check ids in return. The two master-ledger rows of the corpus, `00:D11` and `00:D12`, are `20:E12` and `20:F1–F2`.""")
+**Ledger.** The paper carries a predicate ledger (its Subsection "Predicate ledger": 65 rows in blocks A–F, V, Z, cited as `20:XN`). Each check below prints the ledger row(s) it witnesses in square brackets, and `results.json` records them; the ledger's source column cites these check ids in return. The two master-ledger rows of the corpus, `00:D11` and `00:D12`, are `20:E12` and `20:F1–F2`.""")
 
 code("""# --- environment: clone the package if this notebook is not already running inside it (Colab), install the two
 # non-default dependencies. numpy, scipy, matplotlib are standard on Colab; mpmath and sympy are usually present too.
@@ -151,7 +151,7 @@ N − N_crit = 0. Numerical Observation `dh`: the value is discriminating. The c
 | D2d | Numerical Observation `dh` | the raw DH count at 85.9 drifts 45.14 → 45.73 over depths 5×10⁴ … 8×10⁵; 42.64 … 42.73 at 85.3; stable at 60.3 (28.005 ± 0.002) and 84.0 (43.00 ± 0.01) |
 | D2e | Numerical Observation `dh` | the ζ comb at the pole: t = 1 reads +0.09, −0.26, +0.36, −0.08, −0.81, −1.42, −1.46 at depths 10⁴ … 8×10⁷; t = 5, 10 within ±0.02, ±0.003; t = 15 within 2×10⁻³ of 1; t = 30 from 3.04 to 2.998; t = 50.3 within 10⁻² of 10 |
 | D2f | Proposition `combformula`, Numerical Observation `dh` | the pole-corrected ζ count at t = 1: 0.0051, 0.0032, 0.0022, 0.0016, 0.0015, 0.0013, 0.0012 at the same depths (exact 0), falling monotonically; t = 5, 10 within 4×10⁻⁴ from 10⁶ on |
-| D2g | Proposition `combformula`, Numerical Observation `dh` | the DH drift is the cut term of the off-line zero ρ₀: corrected by it the count reads 44.960 → 44.972 at 85.9 (raw 45.14 → 45.73; exact 45) and 43.035 → 43.022 at 85.3 (exact 43), monotone |
+| D2g | Remark `combsettle`, Numerical Observation `dh` | the DH drift is the zero term of the off-line zero ρ₀: corrected by it and its constant the count reads 44.960 → 44.972 at 85.9 (raw 45.14 → 45.73; exact 45) and 43.035 → 43.022 at 85.3 (exact 43), monotone |
 | D3 | Proposition `combformula` | validation arm: Re(Σ_w − Π_N − log((s−1)/s)) → log \\|ζ(½+it)\\| (mpmath) at t = 1, 5, 10, 15, 30, the error falling with depth (0.0049 at t = 1, 8×10⁷) |
 | D4 | Theorem `turing` (frame-exact inputs) | on the shells p = 97, 1009, 4801 (primes ≡ 1 mod 4; T = 2πp) the raw count from the frame-exact comb of depth ⌊√p⌋ = 9, 31, 69 evaluated midway between consecutive zeros just below the ceiling (the test heights chosen with the validation arm), rounds to the exact N(t) (mpmath `nzeros`) at every midpoint: maximum deviation 0.079, 0.107, 0.164 (within 0.08, 0.11, 0.17); the 10⁶ comb within 0.002 |
 
@@ -169,7 +169,7 @@ The units-chart side: Ramanujan sums as the standing waves of the additive merid
 | E2a | Numerical Observation `antipode` | per-mode energy μ²(q)/φ(q) = 1, ½, ¼, ⅙ at q = 2, 3, 5, 7; unique global maximum at the antipode q = 2 | EXACT |
 | E2b | Numerical Observation `antipode` | the additive-transform band energy of the prime indicator on Z/10007 (Parseval-normalised, bins within 3 of a/q) peaks at the antipode and follows 1/φ(q): 1153 > 592 > 301 > 205 | [approx] |
 | E3 | Numerical Observation `horizon` | the resolving threshold L*(H) exists for H = 6 … 50 and tracks the horizon: L* < 6H ≪ H² | [approx] |
-| E4 | Proposition `flat`, Numerical Observation `flat` | the maximal chart-mode correlation with the primes sits at the 1/√p floor: 0.08 vs 0.03 at p = 1009, 0.0087 vs 0.0032 over the 5×10⁴ modes of p ≈ 10⁵; the resonance correlates 0.90 | [approx] |
+| E4 | Proposition `flat`, Numerical Observation `flat` | the maximal chart-mode correlation with the primes is a small multiple of the 1/√(p−2) floor: 0.077 vs 0.0315 at p = 1009 (2.4×), 0.0087 vs 0.0032 over the modes of p = 100049 (2.7×); the resonance correlates 0.90 | [approx] |
 
 Ledger rows: 20:C2 (E1a, E1b), 20:C3 (E1c), 20:B11 (E2a, E2b), 20:C4 (E3), 20:C6 (E4).""")
 code("import e_resonance; e_resonance.run(); show('fig_obstruction'); show('fig_emergence_frc')")

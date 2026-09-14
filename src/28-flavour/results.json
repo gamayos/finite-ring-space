@@ -1,0 +1,146 @@
+[
+ {
+  "id": "flv.exact_core",
+  "rows": "28:C1, 28:C2, 28:C3, 28:C4, 28:C10, 28:Z1",
+  "script": "exact_core",
+  "label": "the float-free core, 25 verifications: the circulant Koide identities in Q(ω, √2) (Σλ = 3a, Σλ² = 3a² + 6|b|², Q = 1/3 + (2/3)ρ², ρ² = 1/2 ⇒ Q = 2/3, Hermitian √M with exact eigenvalues); the π/12 boundary as rational π with the electron amplitude vanishing; the cubic Gauss-sum reality and the π/3 quantisation of the drive-twisted overlap as integer identities in Z[Z/3 × Z/p] for p = 17, 29, 41, 53; the trimaximal magic matrix with maximal Jarlskog J = 1/(6√3) in Q(ω); Koide over framed rationals in F_{p²}/F_p (Q = 2/3 exact, the quarter-turn the rational N(b)/a² = 1/2) and the amplitude diagonal N(1 − i) = 2, N(1 − ω) = 3 as integers in F_p for p = 17, 53, 89",
+  "ok": true,
+  "detail": "26 checks, 5.4 s",
+  "kind": "EXACT"
+ },
+ {
+  "id": "flv.framed_koide",
+  "rows": "28:C2, 28:X1",
+  "script": "framed_koide",
+  "label": "the Koide identity natively over framed rationals (F_{p²}/F_p, Frobenius conjugation, no cyclotomics) on p = 17, 53, 89: the √-mass eigenvalues framed rationals in F_p, Q = 2/3 exactly, the '√2 amplitude' the rational N(b)/a² = 1/2, ω the finite cube root",
+  "ok": true,
+  "detail": "4 checks, 3.7 s",
+  "kind": "EXACT"
+ },
+ {
+  "id": "flv.tier_b",
+  "rows": "28:C2, 28:C6, 28:C8, 28:X3, 28:X5, 28:P1",
+  "script": "tier_b",
+  "label": "the Tier-A/B figures: the measured charged-lepton Q against 2/3 (6 × 10⁻⁶), the symbolic Σa = 3, Σa² = 3 + (3/2)r², Q(√2) = 2/3 for all δ and Q = 2/3 ⇔ r = √2; ρ = |â₁|/|â₀| = 1/√2 and the 45° democratic angle; the λ-power texture (down/lepton λ^{4,2,0}, up λ^{8,4,0}) and the Gatto V_us = √(m_d/m_s) (within 5 %); the Wolfenstein CKM powers; the Georgi–Jarlskog double ratio against N_c² = 9 (within 20 %) and b–τ; the lopsided M_e = M_dᵀ giving a large PMNS θ₂₃ with a small CKM θ₂₃, against a seeded hierarchical-seesaw control",
+  "ok": true,
+  "detail": "22 checks, 0.4 s",
+  "kind": "MIXED"
+ },
+ {
+  "id": "flv.m10",
+  "rows": "28:C1, 28:C2, 28:C3, 28:X7",
+  "script": "m10",
+  "label": "the winding kernel: the circulant √M Hermitian with eigenvalues a + 2|b| cos(δ + 2πk/3); Q = 1/3 + r²/6 symbolically and r = √2 ⇒ 2/3; δ_LO = 3π/4 − 2π/3 = π/12 with the electron massless at leading order and m_μ/m_τ = 0.072 against 0.060; the per-sector extraction (lepton r = √2 to 2 × 10⁻³, quark amplitudes above √2, r_u near √3); the physical δ off the π/12 grid; the parameter reduction",
+  "ok": true,
+  "detail": "15 checks, 0.1 s",
+  "kind": "MIXED"
+ },
+ {
+  "id": "flv.delta",
+  "rows": "28:C3, 28:C5, 28:Z1, 28:Z2",
+  "script": "delta",
+  "label": "the cross-sector phase lock δ_ℓ : δ_d : δ_u = 1 : 1/2 : 1/3 in the working scheme (medians over 20 000 seeded mass draws); the symmetric cubic overlap real on every p ≡ 5 (mod 12) below 170 and the drive-twisted overlap complex; small-shell phases quantised to multiples of π/3; δ_LO = π/12",
+  "ok": true,
+  "detail": "14 checks, 0.3 s",
+  "kind": "MIXED"
+ },
+ {
+  "id": "flv.revision_checks",
+  "rows": "28:C3, 28:C10, 28:C11b, 28:P2, 28:Z1",
+  "script": "revision_checks",
+  "label": "the revision identities: J = Im ω/9 = 1/(6√3) and J² = 1/108; δ_LO = 3/8 − 1/3 = 1/24 cycle; the signed-amplitude Koide = 2/3 at every δ for r = √2; the cube-invariant determinant ∏√m = a³(cos 3δ/√2 − 1/2) [exact]; 3δ₀ = Q (δ₀ = Q/3), the positive-root neutrino Koide values, the normal-branch preference (> 20×), the Q_u scheme spread [approx]",
+  "ok": true,
+  "detail": "12 checks, 0.8 s",
+  "kind": "MIXED"
+ },
+ {
+  "id": "flv.quark_amp",
+  "rows": "28:B4, 28:C4, 28:X2, 28:P2",
+  "script": "quark_amp",
+  "label": "the quark amplitudes: the Georgi–Jarlskog colour dressing shifts Q from 2/3 to 0.745 against the observed Q_d = 0.731; r_u = 1.759 against √3 (the cube-root colour diagonal, robust over the mass ranges); r² = N(1 − ζ_n) = 2, 3 as integers in F_p for p = 17, 53, 89; Q_u = 0.849 in the working scheme, 0.832 with the pole charm mass (the scheme band of 5/6)",
+  "ok": true,
+  "detail": "7 checks, 2.2 s",
+  "kind": "MIXED"
+ },
+ {
+  "id": "flv.up_doubling",
+  "rows": "28:B3, 28:C7, 28:X6",
+  "script": "up_doubling",
+  "label": "the up-sector doubling: the effective Froggatt–Nielsen powers (8, 4) up against (4, 2) down and lepton, up = 2 × down at the integer level; the 10·10 against 10·5̄ structural map with the 10-charge a = (4, 2, 0); the winding self-pair reading",
+  "ok": true,
+  "detail": "13 checks, 0.0 s",
+  "kind": "MIXED"
+ },
+ {
+  "id": "flv.spurion",
+  "rows": "28:C6, 28:X4, 28:Z1",
+  "script": "spurion",
+  "label": "the Cabibbo spurion: the down λ-powers from the role charges, the Gatto V_us = √(m_d/m_s) within 2 %, λ from the down circulant (δ₀/2, r_d) within 0.03, λ ≈ δ₀ ≈ 2/9 within 2 % [approx, data]",
+  "ok": true,
+  "detail": "7 checks, 0.0 s",
+  "kind": "APPROX"
+ },
+ {
+  "id": "flv.theta13",
+  "rows": "28:C9, 28:X9",
+  "script": "theta13",
+  "label": "the reactor angle as a leading-order estimate: sin θ₁₃ = sin θ_C/√2 = 0.159 against 0.149 (7 %), quark–lepton complementarity θ₁₂ + θ_C ≈ 45°, the fold onto δ₀/√2, sin θ₂₃ ≈ 1/√2 — four tolerances [approx, data]",
+  "ok": true,
+  "detail": "5 checks, 0.0 s",
+  "kind": "APPROX"
+ },
+ {
+  "id": "flv.neutrino",
+  "rows": "28:C11, 28:C11b, 28:P5, 28:P6, 28:X11",
+  "script": "neutrino",
+  "label": "the seesaw of circulants circulant (symbolic, float-free); the signed Q_ν = 2/3 solved with the two measured Δm² on both orderings — normal (m₁ = 0.36, 8.62, 50.15 meV, Σ = 59.1 meV) and inverted (Σ = 102.3 meV) — the boundary branch selecting normal; the m₁ = 0 floor 58.8 meV at NuFIT 6.0; Σm_ν stable across the Δm² 1σ; r_ν = √2 reachable by the seesaw [approx]",
+  "ok": true,
+  "detail": "15 checks, 5.8 s",
+  "kind": "MIXED"
+ },
+ {
+  "id": "flv.pmns_cp",
+  "rows": "28:C10, 28:P8, 28:X10",
+  "script": "pmns_cp",
+  "label": "the magic matrix trimaximal with maximal Jarlskog J = 1/(6√3) and the democratic column; over the TM2 family θ₂₃ = 45° ⇔ |δ_CP| = 90°; TM2 at the observed θ₁₃, θ₂₃ giving δ_CP ≈ −130° and sin²θ₁₂ ≈ 1/3 (numerical, numpy)",
+  "ok": true,
+  "detail": "9 checks, 22.5 s",
+  "kind": "APPROX"
+ },
+ {
+  "id": "flv.tm2_jointfit",
+  "rows": "28:C9, 28:C10, 28:P8",
+  "script": "tm2_jointfit",
+  "label": "the TM2 status: the trivial-singlet column protected (TM1 reducible), the exact-TM2 solar 0.341, the Cabibbo correction sweeping sin²θ₁₂ through 0.307, θ₁₃ = arcsin(sin θ_C/√2) ≈ 9.15°, the joint fit's parameter count (five for four observables, status not test), the TM2 relation against the direct PMNS evaluation, |δ_CP| = 130.4° at θ₂₃ = 49°, the band [50°, 156°] over the NuFIT 6.0 3σ range, the with-SK best fit as a live test (scipy)",
+  "ok": true,
+  "detail": "15 checks, 1.1 s",
+  "kind": "APPROX"
+ },
+ {
+  "id": "flv.scale_a",
+  "rows": "28:Z3",
+  "script": "scale_a",
+  "label": "the overall scale as transmutation: y_t = √2 m_t/v ≈ 1 (the forced trigger); the one-loop descent of the quartic λ to the scale-invariant point (crossing zero below M_P); the hierarchy v/M_P = e^(−38.4); the lepton scale a² ≈ 314 MeV ≈ y_τ v [approx, dimensional]",
+  "ok": true,
+  "detail": "4 checks, 2.8 s",
+  "kind": "APPROX"
+ },
+ {
+  "id": "flv.coupling_anchor",
+  "rows": "28:Z4",
+  "script": "coupling_anchor",
+  "label": "the coupling anchor: α_bare⁻¹ = 4π against the unified continuum α_GUT⁻¹ ≈ 40 (the lattice–continuum matching Δ ≈ 27, the bare coupling stronger); α₁ = α₂ at ≈ 10¹³ GeV with the α₃ near-miss below 20 %; the couplings run to M_P [approx]",
+  "ok": true,
+  "detail": "3 checks, 0.0 s",
+  "kind": "APPROX"
+ },
+ {
+  "id": "flv.alpha_probe",
+  "rows": "28:A2, 28:Z4",
+  "script": "alpha_probe",
+  "label": "the fine-structure ledger: α_bare⁻¹ = 4π exact; α_EM⁻¹ = α₂⁻¹ + α_Y⁻¹ at M_Z; sin²θ_W → 3/8 at α₁ = α₂ (the derived generation content's b₁, b₂); 4π stronger than α_GUT so the bare-to-lab connection is a matching; the EM/gravity hierarchy α (m_P/m_p)² ≈ 1.2 × 10³⁶ [approx]",
+  "ok": true,
+  "detail": "10 checks, 0.0 s",
+  "kind": "APPROX"
+ }
+]

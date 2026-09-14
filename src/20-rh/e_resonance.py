@@ -24,9 +24,9 @@ chart mode against the prime indicator (Prop. flat, Obs. flat). Paper-local pred
                                     power in {2..H} from every non-prime-power — exists for H = 6..50 and tracks the
                                     horizon, L* < 6H, far below the field scale H²
   E4  Obs. flat      [approx]  the maximal correlation of the prime indicator with a multiplicative-chart mode χ_j
-                                    sits at the 1/√p floor: 0.08 against 0.03 at p = 1009; 0.0087 against 0.0032 over
-                                    the 5×10⁴ modes of p ≈ 10⁵; by contrast the units-chart resonance correlates 0.90
-                                    with the primes in its window
+                                    is a small multiple of the 1/√(p−2) floor of Prop. flat: 0.077 against 0.0315 at
+                                    p = 1009 (2.4×); 0.0087 against 0.0032 over the modes of p = 100049 (2.7×); by
+                                    contrast the units-chart resonance correlates 0.90 with the primes in its window
 
 Figures: fig_obstruction.pdf (E3, E4), fig_emergence_frc.pdf (E1c beside the classical reconstruction of ψ from zeros).
 """
@@ -84,14 +84,14 @@ def dlog_table(p):
 
 def chart_mode_correlations(p):
     """|corr(1_Π, χ_j)| for every nontrivial multiplicative-chart mode χ_j(n) = ω^{j λ_p(n)} on F_p^×, by FFT
-    over the discrete logarithm; returns (max, floor 1/√(p−1), the array)."""
+    over the discrete logarithm; returns (max, the exact root-mean-square 1/√(p−2) of Prop. flat, the array)."""
     lam = dlog_table(p)
     ind = np.zeros(p); ind[sieve_primes(p - 1)] = 1.0
     u = np.zeros(p - 1); u[lam[1:]] = ind[1:]                # u[m] = 1_Π(g^m)
     u = u - u.mean()
     F = np.fft.fft(u)
     corr = np.abs(F[1:]) / (np.linalg.norm(u) * math.sqrt(p - 1))
-    return float(corr.max()), 1 / math.sqrt(p - 1), corr
+    return float(corr.max()), 1 / math.sqrt(p - 2), corr
 
 def pearson(a, b):
     a = a - a.mean(); b = b - b.mean()
@@ -174,14 +174,15 @@ def run():
         m5, f5, _ = chart_mode_correlations(p5)
     cum200 = resonance_table(80, 200, mu, phi)
     rn = np.arange(2, 201); res_corr = pearson(np.array([1.0 if sp.isprime(int(n)) else 0.0 for n in rn]), np.array([cum200[80, n] for n in rn]))
-    ok = abs(m1 - 0.08) < 0.015 and abs(f1 - 0.03) < 0.005 and abs(m5 - 0.0087) < 0.002 and abs(f5 - 0.0032) < 0.0003 and m5 / f5 < 4 and res_corr > 0.85
-    check("E4", "max chart-mode correlation with the primes sits at the 1/√p floor: 0.08 vs 0.03 (p = 1009), 0.0087 vs 0.0032 (p ≈ 10⁵); resonance correlates 0.90", ok,
-          f"p = 1009: max {m1:.3f}, floor {f1:.3f}; p = {p5}: max {m5:.4f} over {(p5 - 1) // 2} mode pairs, floor {f5:.4f}; corr(1_Π, R_80) on n ≤ 200 = {res_corr:.2f}", kind="[approx]")
+    ok = (abs(m1 - 0.077) < 0.005 and abs(f1 - 0.0315) < 0.0005 and abs(m1 / f1 - 2.43) < 0.03
+          and abs(m5 - 0.0087) < 0.0005 and abs(f5 - 0.0032) < 0.0001 and abs(m5 / f5 - 2.75) < 0.03 and res_corr > 0.85)
+    check("E4", "max chart-mode correlation with the primes is a small multiple of the 1/√(p−2) floor: 0.077 vs 0.0315 (p = 1009, 2.4×), 0.0087 vs 0.0032 (p = 100049, 2.7×); resonance correlates 0.90", ok,
+          f"p = 1009: max {m1:.4f}, floor {f1:.4f}, ratio {m1 / f1:.3f}; p = {p5}: max {m5:.4f} over {(p5 - 1) // 2} mode pairs, floor {f5:.4f}, ratio {m5 / f5:.3f}; corr(1_Π, R_80) on n ≤ 200 = {res_corr:.2f}", kind="[approx]")
     # ---------------- figures
     FIN, TEAL = "#3b34a8", "#1f9e8a"
     fig, ax = plt.subplots(1, 2, figsize=(12, 4.0))
     ax[0].plot(np.arange(1, len(corr1) // 2 + 1), corr1[:len(corr1) // 2], color=TEAL, lw=0.6)
-    ax[0].axhline(f1, color="#888", ls="--", lw=1, label=r"floor $1/\sqrt{p-1}$")
+    ax[0].axhline(f1, color="#888", ls="--", lw=1, label=r"floor $1/\sqrt{p-2}$")
     ax[0].axhline(res_corr, color=FIN, lw=1.8, label=f"units-chart resonance ({res_corr:.2f})")
     ax[0].set_ylim(0, 1); ax[0].set_xlabel("chart mode index $j$"); ax[0].set_ylabel(r"$|{\rm corr}(1_\Pi,\chi_j)|$")
     ax[0].set_title(f"E4: chart modes are blind to primality (p = 1009, max {m1:.3f})", fontsize=10); ax[0].legend(fontsize=8, loc="center right")

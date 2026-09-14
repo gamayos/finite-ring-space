@@ -2,7 +2,7 @@
  "paper": "6-four",
  "title": "Scale-Shift and FFT over Finite Holographic Substrate",
  "doi": "https://doi.org/10.20944/preprints202606.0127.v1",
- "generated": "13 September 2026",
+ "generated": "14 September 2026",
  "blocks": [
   {
    "letter": "A",
@@ -13,49 +13,49 @@
      "predicate": "The framed substrate: the Subject $\\Fp(\\chron;0,1,\\gen)$ with $\\p=4\\kap+1$, its register $\\pi=2\\kap$, $\\im=-\\gen^{\\kap}=\\gen^{-\\kap}$, $e=\\gen^{\\im}$; the frame-relative labels and the atlas of presentations $\\gen\\mapsto\\gen^{u}$; time as scale-dilation, the generator as the observer's own advance.",
      "tag": "I",
      "source": "\\citep{Akhtman2025Algebra,Akhtman2026Geometry,Akhtman2025Lorentzian}",
-     "key": "p0001"
+     "key": "p06001"
     },
     {
      "label": "A2",
      "predicate": "The Weil representation $\\omega_\\p$ of $\\SL(2,\\Fp)$ and its Schr\\\"odinger model, the finite Fourier transform representing the rotation $w$, the finite harmonic oscillator; the scalar convention $\\omega_\\p(w)^{2}=\\omega_\\p(-I)$, $\\omega_\\p(w)^{4}=I$.",
      "tag": "I",
      "source": "\\citep{Weil1964,GurevichHadani2006,GurevichHadaniSochen2008}",
-     "key": "p0002"
+     "key": "p06002"
     },
     {
      "label": "A3",
      "predicate": "The classical evaluation of the twisted quadratic Gauss sum for $4\\mid n$, $\\sum_k\\zeta_n^{uk^{2}}=\\bigl(\\tfrac{\\kap}{u}\\bigr)(1\\pm i)\\sqrt n$; the eigenvalue quartet of prime-modulus number-theoretic transforms; the multiplicity counts of the discrete Fourier eigenvalues.",
      "tag": "I",
      "source": "\\citep{BerndtEvansWilliams1998,Birtwistle1982,McClellanParks1972}",
-     "key": "p0003"
+     "key": "p06003"
     },
     {
      "label": "A4",
      "predicate": "The entropic uncertainty relation for a pair of bases, $H_{B}+H_{B'}\\ge-2\\log c$, $c$ the maximal overlap, $c=n^{-1/2}$ for mutually unbiased bases, saturated by basis-localized states.",
      "tag": "I",
      "source": "\\citep{Hirschman1957,BialynickiBirula1975,MaassenUffink1988,WehnerWinter2010}",
-     "key": "p0004"
+     "key": "p06004"
     },
     {
      "label": "A5",
      "predicate": "The framed-rational zoom: the grids $G_n$ and their $(\\p-1)$-periodicity $G_{n+(\\p-1)}=G_n$, the meridian shift $m\\mapsto m-1$ as the refinement step.",
      "tag": "I",
      "source": "\\citep[\\S4.3, Lemma~2]{Akhtman2025Algebra}",
-     "key": "p0005"
+     "key": "p06005"
     },
     {
      "label": "A6",
      "predicate": "The measurement layer: probabilities are structural weights of the cyclotomic stratum, the finite-field module carries no Born magnitude, and the readout is an observer-side declaration; the shell dynamics a bijection, entropy attaching to the readout.",
      "tag": "I",
      "source": "\\citep{Akhtman2026Quantum,Akhtman2025Lorentzian}",
-     "key": "p0006"
+     "key": "p06006"
     },
     {
      "label": "A7",
      "predicate": "The continuum fractional Fourier transform and the finite constructions the family is separated from: the eigenbasis and matrix-function transforms, the harmonic-oscillator propagator reading.",
      "tag": "I",
      "source": "\\citep{Namias1980,OzaktasBook2001,LimaCampello2012,PeiWenDing2011,LimaCampello2017}",
-     "key": "p0007"
+     "key": "p06007"
     }
    ]
   },
@@ -68,49 +68,49 @@
      "predicate": "Shell data, capacity-first: $\\kap$ primary, $\\p=4\\kap+1$, the meridian cycle $\\Phit=\\Z_{4\\kap}$, the oriented quarter-turn $\\im=-\\gen^{\\kap}$ (clockwise phase convention), $\\pi=2\\kap$, $e=\\gen^{\\im}$; the meridians $M_s=\\{a\\gen^{s}:a\\in I_\\p\\}$; the six shells of Table~\\ref{tab:checks} with their generators and quarter-turns.",
      "tag": "D",
      "source": "\\S\\ref{sec:shell-data}, \\eqref{eq:it-def}, \\eqref{eq:meridian-def}; \\src{A1}",
-     "key": "p0008"
+     "key": "p06008"
     },
     {
      "label": "B2",
      "predicate": "The Euler identity is a property of the chart class: $e^{\\im\\pi}=\\gen^{2\\kap(\\im\\bmod2)}\\equiv-1$ exactly when the quarter-turn residue is odd; the conjugate reframing $(\\gen,\\im)\\mapsto(\\gen^{-1},-\\im)$ toggles the parity, so one member of each conjugate pair carries it; on $\\F_{13}(\\chron;0,1,2)$, $\\im=5$ and $6^{6}=-1$. Every primitive frame of the six shells.",
      "tag": "T",
      "source": "\\S\\ref{sec:shell-data}; \\src{A2}",
-     "key": "p0009"
+     "key": "p06009"
     },
     {
      "label": "B3",
      "predicate": "Chart covariance: under $\\gen'=\\gen^{u}$, $u\\in\\Zp^{\\times}$, the quarter-turn name flips exactly on $u\\equiv3\\pmod4$ and the exponential-unit name moves already at $u\\equiv1\\pmod4$ whenever $\\im(u-1)\\not\\equiv0\\pmod{4\\kap}$ ($\\p=13$, $u=5$: $e'=2\\neq6$); the registered objects (C3, C4, C9, F3) are invariant.",
      "tag": "T",
      "source": "Rem.~\\ref{rem:gt-covariance}; \\src{A3}",
-     "key": "p0010"
+     "key": "p06010"
     },
     {
      "label": "B4",
      "predicate": "The shell Fourier matrix $\\Wt_{kj}=\\gen^{jk}$ on $\\Vt=\\Fp^{\\Phit}$, the reversal $J$, the normalized shell Fourier operator $\\Ft=\\im\\Wt$.",
      "tag": "D",
      "source": "\\eqref{eq:W-def}, \\eqref{eq:J-def}, \\eqref{eq:Ft-def}",
-     "key": "p0011"
+     "key": "p06011"
     },
     {
      "label": "B5",
      "predicate": "$\\Wt^{2}=-J$, $\\Ft^{2}=J$, $\\Ft^{4}=I$: the normalized operator generates the four-cycle, on the six shells of Table~\\ref{tab:checks}.",
      "tag": "T",
      "source": "Lem.~\\ref{lem:W-square}, Prop.~\\ref{prop:F-cycle}; \\src{A4}",
-     "key": "p0012"
+     "key": "p06012"
     },
     {
      "label": "B6",
      "predicate": "The normalization is the unitary constant read in the field: $1/n\\equiv-1$, its square roots in $\\Fp$ are exactly $\\pm\\im$, and $(c\\Wt)^{2}=J$ if and only if $c=\\pm\\im$.",
      "tag": "T",
      "source": "Rem.~\\ref{rem:unitary-norm}; \\src{A5}",
-     "key": "p0013"
+     "key": "p06013"
     },
     {
      "label": "B7",
      "predicate": "$\\Wt J=J\\Wt$, hence $\\Ft J=J\\Ft$; $\\Vt=V^{+}\\oplus V^{-}$ with $\\dim V^{+}=2\\kap+1$, $\\dim V^{-}=2\\kap-1$.",
      "tag": "T",
      "source": "Lem.~\\ref{lem:JF-decomp}; \\src{A6}",
-     "key": "p0014"
+     "key": "p06014"
     }
    ]
   },
@@ -123,63 +123,63 @@
      "predicate": "The projectors $\\Pi_\\ell=\\tfrac14\\sum_{r=0}^{3}\\im^{-\\ell r}\\Ft^{r}$ and the principal framed character lift $\\Ft^{[s]}=\\sum_\\ell\\gen^{-\\ell s}\\Pi_\\ell$, $s\\in\\Phit$: the refinement base is the inverse generator, $(\\gen^{-1})^{\\kap}=\\im$, each projector's character the $\\ell$-th power of the meridian phase $z_s=\\gen^{-s}$.",
      "tag": "D",
      "source": "\\eqref{eq:projector-def}, \\eqref{eq:FRC-FrFT-def}, Rem.~\\ref{rem:classification}",
-     "key": "p0015"
+     "key": "p06015"
     },
     {
      "label": "C2",
      "predicate": "$\\Pi_\\ell^{2}=\\Pi_\\ell$, $\\Pi_\\ell\\Pi_m=0$ for $\\ell\\neq m$, $\\sum_\\ell\\Pi_\\ell=I$, $\\Ft\\Pi_\\ell=\\im^{\\ell}\\Pi_\\ell$.",
      "tag": "T",
      "source": "Lem.~\\ref{lem:projectors}; \\src{B1}",
-     "key": "p0016"
+     "key": "p06016"
     },
     {
      "label": "C3",
      "predicate": "The exact finite-field FrFT: $s\\mapsto\\Ft^{[s]}$ is a representation of $\\Phit$, $\\Ft^{[s+r]}=\\Ft^{[s]}\\Ft^{[r]}$ on every pair of the six shells, with the cardinal values $\\Ft^{[0]}=I$, $\\Ft^{[\\kap]}=\\Ft$, $\\Ft^{[2\\kap]}=J$, $\\Ft^{[3\\kap]}=\\Ft^{-1}$, and $(\\Ft^{[1]})^{\\kap}=\\Ft$.",
      "tag": "T",
      "source": "Thm.~\\ref{thm:FRC-FrFT}; \\src{B2}, \\src{B3}",
-     "key": "p0017"
+     "key": "p06017"
     },
     {
      "label": "C4",
      "predicate": "Faithfulness: $s\\mapsto\\Ft^{[s]}$ is injective on $\\Z_{4\\kap}$ for every $\\kap\\ge1$; at $\\p=5$ the surviving odd projector carries the faithful character.",
      "tag": "T",
      "source": "Thm.~\\ref{thm:faithful}; \\src{B4}",
-     "key": "p0018"
+     "key": "p06018"
     },
     {
      "label": "C5",
      "predicate": "The multiplicities $m_\\ell=\\operatorname{rank}\\Pi_\\ell=\\dim\\ker(\\Ft-\\im^{\\ell}I)$: $m_0+m_2=2\\kap+1$, $m_1+m_3=2\\kap-1$; $m_0,m_2\\ge1$; $m_1,m_3\\ge1$ for $\\kap\\ge2$; at $\\p=5$ exactly one of $\\Pi_1,\\Pi_3$ vanishes.",
      "tag": "T",
      "source": "Lem.~\\ref{lem:multiplicity}; \\src{B5}",
-     "key": "p0019"
+     "key": "p06019"
     },
     {
      "label": "C6",
      "predicate": "Multiplicities are chart data: the vertex relabelling $m\\mapsto um$ carries $\\Ft(\\gen)$ to $\\Ft(\\gen^{u^{2}})$ by a coordinate permutation; at $\\p=13$ the frames $\\gen=2$ and $\\gen=6$ give $(3,3,4,2)$ and $(4,2,3,3)$, traces $4$ and $9$.",
      "tag": "T",
      "source": "Rem.~\\ref{rem:multiplicities}; \\src{B6}",
-     "key": "p0020"
+     "key": "p06020"
     },
     {
      "label": "C7",
      "predicate": "The multiplicity dichotomy: $G=\\sum_{k}\\gen^{k^{2}}=\\varepsilon(1+\\im)$; the tuple is $(\\kap,\\kap,\\kap+1,\\kap-1)$ for $\\varepsilon=+1$ and $(\\kap+1,\\kap-1,\\kap,\\kap)$ for $\\varepsilon=-1$; $\\varepsilon(\\gen^{-1})=-\\varepsilon(\\gen)$, $\\varepsilon(\\gen^{u})=\\bigl(\\tfrac{\\kap}{u}\\bigr)\\varepsilon(\\gen)$ for $u\\equiv1\\pmod4$, the two classes equally populated; the proof's identities $GG^{*}=-2$, $G^{2}=2\\im$, $\\operatorname{Tr}\\Ft=\\im G$, $\\operatorname{Tr}\\Ft^{2}=2$, $\\operatorname{Tr}\\Ft^{3}=\\im G^{*}$. Exact on the $38$ primitive frames of $\\p\\in\\{5,13,17,29,37\\}$ and the $16$ of $\\p=41$.",
      "tag": "T",
      "source": "Thm.~\\ref{thm:multiplicity}; \\src{B7}, \\src{B8}",
-     "key": "p0021"
+     "key": "p06021"
     },
     {
      "label": "C8",
      "predicate": "Classification: every exponent lift $a_\\ell\\equiv\\ell\\pmod4$ is additive with the same cardinal skeleton; a family canonical in the chart $\\gen^{u}$ with $u^{2}\\not\\equiv1\\pmod{4\\kap}$ does not commute with $\\Ft$ ($\\p=29$, $u=5$, and every such chart of the six shells); the principal lift is the unique power-tower member.",
      "tag": "T",
      "source": "Rem.~\\ref{rem:classification}; \\src{B9}",
-     "key": "p0022"
+     "key": "p06022"
     },
     {
      "label": "C9",
      "predicate": "The conjugate reframing $(\\gen,\\im)\\mapsto(\\gen^{-1},-\\im)$: exactly $\\Ft'=-\\Ft^{-1}$ and $\\Pi'_\\ell=\\Pi_{\\ell+2}$; the operator relations, cardinal values, additivity and faithfulness hold on the conjugate frame, and its multiplicity tuple is the other pattern of C7.",
      "tag": "T",
      "source": "Rem.~\\ref{rem:gt-covariance}, Thm.~\\ref{thm:multiplicity}; \\src{B10}",
-     "key": "p0023"
+     "key": "p06023"
     }
    ]
   },
@@ -192,42 +192,42 @@
      "predicate": "The meridional representation domain $D_s=(\\Vt,\\mathcal B_s)$, $\\mathcal B_s=\\Ft^{[s]}\\mathcal B_0$, every $\\Ft^{[s]}$ invertible; the cardinal domains spatial, spectral, parity, inverse-spectral.",
      "tag": "D",
      "source": "Def.~\\ref{def:domain}, Cor.~\\ref{cor:cardinal-domains}; \\src{C1}",
-     "key": "p0024"
+     "key": "p06024"
     },
     {
      "label": "D2",
      "predicate": "The $4\\kap$ framed domains are pairwise distinct; read as unordered measurement bases $B_{s+2\\kap}=B_s$, since $\\Ft^{[s+2\\kap]}=\\Ft^{[s]}J$ and $J$ permutes the standard basis, and the cycle carries exactly $2\\kap$ of them.",
      "tag": "T",
      "source": "Cor.~\\ref{cor:distinct-domains}, Rem.~\\ref{rem:ordered-bases}; \\src{C2}, \\src{C3}",
-     "key": "p0025"
+     "key": "p06025"
     },
     {
      "label": "D3",
      "predicate": "The meridian-step interval $I_\\p=\\{0,1,\\dots,\\pi\\}$, the meridian-scale map $S_r(x)=\\gen^{r}x$, and the local scale chart $\\gen\\mapsto\\lambda>1$ reading the effective step $\\gen^{m}$ as $\\lambda^{m}$ [chart].",
      "tag": "D",
      "source": "\\eqref{eq:Ip-zoom}, Def.~\\ref{def:scale-map}, Def.~\\ref{def:scale-chart}",
-     "key": "p0026"
+     "key": "p06026"
     },
     {
      "label": "D4",
      "predicate": "Meridian-scale covariance: $S_r(M_m)=M_{m+r}$ for every $(m,r)$, as ordered lists; consecutive entries of $M_m$ differ by the effective step $\\gen^{m}$; $S_{r+(\\p-1)}=S_r$, the periodicity of A5 in meridian form.",
      "tag": "T",
      "source": "Prop.~\\ref{prop:meridian-scale}, Cor.~\\ref{cor:effective-step}, Rem.~\\ref{rem:framed-rational}; \\src{C4}, \\src{C5}",
-     "key": "p0027"
+     "key": "p06027"
     },
     {
      "label": "D5",
      "predicate": "Meridian zoom [chart]: $M_m$ reads the meridian-coordinate vector at step $\\lambda^{\\tilde m}$, the forward shift zoom-out and the inverse shift zoom-in, the seam an aliasing return; at $\\p=13$, $\\gen=2$ the ladder $M_0,\\dots,M_3$ at steps $1,2,4,8$, unwrapped within $w\\gen^{r}<\\p$ ($w=\\pi=6$: $r\\le1$) and wrapping from $M_2$.",
      "tag": "T",
      "source": "Thm.~\\ref{thm:zoom}, Ex.~\\ref{ex:zoom-13}, Rem.~\\ref{rem:two-layers}; \\src{C6}",
-     "key": "p0028"
+     "key": "p06028"
     },
     {
      "label": "D6",
      "predicate": "Scope of the unification: the representation-side rotation and the coordinate-side scale shift act on carriers of different dimension and are not equal as operators; they share the index group $\\Phit$ and the cardinal labels, and the operator-level relation is E5--E7.",
      "tag": "D",
      "source": "Rem.~\\ref{rem:two-layers}",
-     "key": "p0029"
+     "key": "p06029"
     }
    ]
   },
@@ -240,49 +240,49 @@
      "predicate": "The Weil-side data: $z_s=\\gen^{-s}$, $c_s=(z_s+z_s^{-1})/2$, $d_s=(z_s-z_s^{-1})/(2\\im)$, the rotation $R_s$; the pulled-back family $\\operatorname{FrFT}^{\\rm Weil}_\\kap(s)=\\omega_\\p(R_s)$; cardinal Weil correspondence of two families.",
      "tag": "D",
      "source": "\\eqref{eq:zs-def}--\\eqref{eq:Rs-def}, \\eqref{eq:WeilFrFT-def}, Def.~\\ref{def:cardinal-equiv}",
-     "key": "p0030"
+     "key": "p06030"
     },
     {
      "label": "E2",
      "predicate": "$R_s\\in SO(2,\\Fp)$, and $s\\mapsto R_s$ is an isomorphism $\\Phit\\simeq SO(2,\\Fp)$ with $|SO(2,\\Fp)|=\\p-1=4\\kap$: the full rotation group of the $\\p^{2}$-point plane is the meridian cycle.",
      "tag": "T",
      "source": "Lem.~\\ref{lem:Rs-rotation}, Prop.~\\ref{prop:rotation-isom}; \\src{D1}, \\src{D2}",
-     "key": "p0031"
+     "key": "p06031"
     },
     {
      "label": "E3",
      "predicate": "The cardinal-skeleton dictionary $M_s\\leftrightarrow s\\leftrightarrow z_s\\leftrightarrow R_s$ with $R_0=I$, $R_\\kap=w$, $R_{2\\kap}=-I$, $R_{3\\kap}=w^{-1}$ (the $R_\\kap$ column of Table~\\ref{tab:checks}), $z_\\kap=\\im$; the FRC-native and Weil families stand in cardinal Weil correspondence, the Weil side by the normalization of A2.",
      "tag": "T",
      "source": "Thm.~\\ref{thm:Weil-equivalence}; \\src{D3}",
-     "key": "p0032"
+     "key": "p06032"
     },
     {
      "label": "E4",
      "predicate": "Scope and reading of the dictionary: agreement on the four cardinal indices only, the two families acting on spaces of different dimension over different coefficient rings; the holographic reading, the rotation symmetry of the $\\p^{2}$-point plane carried by a cycle of the size of its square root, the state side of dimension $\\p$.",
      "tag": "D",
      "source": "Rem.~\\ref{rem:dictionary-scope}, Rem.~\\ref{rem:holographic}",
-     "key": "p0033"
+     "key": "p06033"
     },
     {
      "label": "E5",
      "predicate": "Spectral obstruction: the exponent shift $\\sigma$ has the $4\\kap$ simple eigenvalues $\\Fpx$, every $\\Ft^{[s]}$ at most four; for $\\kap\\ge2$ the cyclic groups $\\langle\\sigma\\rangle$ and $\\langle\\Ft^{[1]}\\rangle$ are not conjugate.",
      "tag": "T",
      "source": "Prop.~\\ref{prop:nogo}; \\src{D4}",
-     "key": "p0034"
+     "key": "p06034"
     },
     {
      "label": "E6",
      "predicate": "Common character sector: on $E_1=\\operatorname{im}\\Pi_1\\neq0$ ($\\kap\\ge2$) $\\Ft^{[s]}=\\gen^{-s}I$, the intertwiner $\\Ft^{[s]}T_v=T_vS_{-s}$ on every $x\\in\\Fp$ and $s$, and $R_s(1,-\\im)^{\\mathsf T}=\\gen^{-s}(1,-\\im)^{\\mathsf T}$.",
      "tag": "T",
      "source": "Prop.~\\ref{prop:charsector}; \\src{D5}",
-     "key": "p0035"
+     "key": "p06035"
     },
     {
      "label": "E7",
      "predicate": "Cardinal Heisenberg covariance: $\\Ft\\sigma\\Ft^{-1}=D_1$, $\\Ft D_1\\Ft^{-1}=\\sigma^{-1}$; $\\Ft^{r}\\sigma=\\sigma_r\\Ft^{r}$ with $(\\sigma,D_1,\\sigma^{-1},D_1^{-1})$; the expansion \\eqref{eq:conj-expansion}; $\\Ft^{[s]}\\sigma\\Ft^{[s]-1}$ monomial exactly at the four cardinal indices and non-monomial at every one of the $112$ intermediate indices of $\\p\\in\\{13,17,29,37,41\\}$.",
      "tag": "T",
      "source": "Prop.~\\ref{prop:heisenberg}, \\S\\ref{sub:operator-comparison}; \\src{D6}, \\src{D7}",
-     "key": "p0036"
+     "key": "p06036"
     }
    ]
   },
@@ -295,49 +295,49 @@
      "predicate": "The readout algebra $A=\\Z[\\tfrac{1}{4n},X,Y,Y^{-1}]/(\\Phi_n(X),Y^{2}-n)$ with the continuum chart $\\sigma_\\C$ ($X\\mapsto\\zeta_n$, $Y\\mapsto+\\sqrt n$) and the framed reduction $\\rho$ ($X\\mapsto\\gen$, $Y\\mapsto-\\im$); the readout of a shell state as the Born vector of a selected lift, its Shannon entropy in nats, not thermodynamic.",
      "tag": "D",
      "source": "Def.~\\ref{def:readout}",
-     "key": "p0037"
+     "key": "p06037"
     },
     {
      "label": "F2",
      "predicate": "$\\widehat G^{2}=2n\\,X^{\\kap}$ in $A$, exact modulo $\\Phi_n(X)$; under $\\sigma_\\C$, $(\\sum_k\\zeta_n^{k^{2}})^{2}=2n\\,i$; under $\\rho$, $G^{2}=2\\im$, the reduction the proof of C7 uses.",
      "tag": "T",
      "source": "Def.~\\ref{def:readout}, Thm.~\\ref{thm:multiplicity}; \\src{E1}",
-     "key": "p0038"
+     "key": "p06038"
     },
     {
      "label": "F3",
      "predicate": "Entropic cardinal values $H(0)=H(2\\kap)=0$, $H(\\kap)=H(3\\kap)=\\log n$ for every site-localized input; $B_0$ and $B_\\kap$ mutually unbiased, $H_{B_0}+H_{B_\\kap}\\ge\\log n$ saturated by the localized states and by the comb $(\\delta_0+\\delta_6)/\\sqrt2$ at $n=12$, $\\log2+\\log6=\\log12$ [approx].",
      "tag": "T",
      "source": "Prop.~\\ref{prop:entropy}; \\src{E2}, \\src{E3}",
-     "key": "p0039"
+     "key": "p06039"
     },
     {
      "label": "F4",
      "predicate": "The closed form for $\\delta_0$: $p_0=1-\\tfrac{n-1}{n}t_s$, $p_{j\\neq0}=t_s/n$, $t_s=(2-\\zeta_n^{2s}-\\zeta_n^{-2s})/4$, read as $\\sin^{2}(\\pi s/2\\kap)$; $H(s)$ strictly increasing on $[0,\\kap]$, two oscillations per cycle, strictly intermediate off the cardinal indices [approx].",
      "tag": "T",
      "source": "Prop.~\\ref{prop:closedform}; \\src{E4}",
-     "key": "p0040"
+     "key": "p06040"
     },
     {
      "label": "F5",
      "predicate": "$\\p=13$: $H(s)/\\log n=0,\\,.44,\\,.91,\\,1,\\,.91,\\,.44$ over each half-cycle; Figure~\\ref{fig:entropy13} regenerated [approx].",
      "tag": "T",
      "source": "\\S\\ref{sec:entropy}; \\src{E5}",
-     "key": "p0041"
+     "key": "p06041"
     },
     {
      "label": "F6",
      "predicate": "Input dependence: $\\delta_1$ gives $H(1)/\\log n=0.55$ against $0.44$ for $\\delta_0$; $\\delta_j$ meets the odd projectors exactly for $j\\notin\\{0,2\\kap\\}$, and $\\delta_{2\\kap}$ reproduces the $\\delta_0$ curve [approx].",
      "tag": "T",
      "source": "Rem.~\\ref{rem:input-dep}; \\src{E6}",
-     "key": "p0042"
+     "key": "p06042"
     },
     {
      "label": "F7",
      "predicate": "The Galois twist $X\\mapsto\\zeta_n^{u}$ relabels the $\\delta_0$ curve by $s\\mapsto us$ for every unit $u$ and leaves the cardinal values of every $\\delta_j$ invariant; the conjugate twist $u=-1$ relabels the curve of every $\\delta_j$, while for $j\\notin\\{0,2\\kap\\}$ a twist $u\\not\\equiv\\pm1$ changes the intermediate curve ($n=12$, $\\delta_1$, $u=5$: $0.55\\mapsto0.44$ at $s=1$) [approx].",
      "tag": "T",
      "source": "Def.~\\ref{def:readout}; \\src{E7}",
-     "key": "p0043"
+     "key": "p06043"
     }
    ]
   },
@@ -350,21 +350,21 @@
      "predicate": "Blocks A--D of the package: $29$ integer-exact checks of B1--B3, B5--B7, C2--C9, D1--D2, D4--D5, E2--E3 and E5--E7 on the six shells of Table~\\ref{tab:checks}, every primitive frame where a statement ranges over frames ($54$), all $4096$ pairs for additivity and covariance, the $112$-index sweep.",
      "tag": "T",
      "source": "\\src{a\\_shell}, \\src{b\\_fractional}, \\src{c\\_domains}, \\src{d\\_weil}",
-     "key": "p0044"
+     "key": "p06044"
     },
     {
      "label": "V2",
      "predicate": "Block E: the readout on $\\C^{n}$, $n=4,12,16,28,36,40$: F2 exact in $\\Z[X]$, F3--F7 to $10^{-9}$, Figure~\\ref{fig:entropy13} regenerated.",
      "tag": "T",
      "source": "\\src{e\\_entropy}",
-     "key": "p0045"
+     "key": "p06045"
     },
     {
      "label": "V3",
      "predicate": "The driver: five block scripts, one notebook run in the browser, $36$ checks ($30$ exact, $6$ [approx]), a record per check written to \\texttt{results.json} keyed to these rows; the corpus master ledger's rows C2, C14 and, on the transform layer, C7 are witnessed by B5, C3, D4, by B2, and by C9.",
      "tag": "T",
      "source": "\\src{run\\_all}; the notebook",
-     "key": "p0046"
+     "key": "p06046"
     }
    ]
   },
@@ -377,7 +377,7 @@
      "predicate": "Cardinal exclusivity: for every $s\\notin\\{0,\\kap,2\\kap,3\\kap\\}$ the operator \\eqref{eq:conj-expansion} is not monomial --- sweep-verified on the $112$ intermediate indices of E7, the proof obstructed by the possible vanishing of sparse six-term Laurent polynomials on subgroup cosets.",
      "tag": "O",
      "source": "Conj.~\\ref{conj:monomial}",
-     "key": "p0047"
+     "key": "p06047"
     }
    ]
   }

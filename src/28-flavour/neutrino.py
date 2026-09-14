@@ -8,8 +8,12 @@ The neutrino sector.
      m_nu = -m_D M_R^{-1} m_D^T is circulant -> light neutrinos are Koide-form.
  (2) PREDICTION [approx, data-confronting]: neutrinos are COLOURLESS, so the quarter-turn
      argument gives r=sqrt2 (Q_nu=2/3), as for charged leptons.  With the two measured
-     Delta m^2 this fixes the scale and phase and PREDICTS the absolute masses, the ordering,
-     and Sum m_nu.  (Continuum operations here are a labelled physical prediction.)
+     Delta m^2 this fixes the scale and phase on EITHER ordering (2026-09-13, T23): the
+     signed circulant has an exact root for normal AND for inverted ordering, each with one
+     negative amplitude on the lightest state.  The ordering is NOT selected by Q_nu=2/3; it
+     is the boundary-branch realisation (C11b): the lightest amplitude nearest the
+     quarter-turn zero.  The earlier '66x tighter' statement was grid resolution and is
+     retired here.  (Continuum operations here are a labelled physical prediction.)
  (3) [approx] robustness, and the seesaw consistency r_nu=sqrt2.
 
 FINITISM: only (1) is an exact claim and it is verified symbolically over Z[P]/(P^3-1).
@@ -57,6 +61,24 @@ check("2.sum_bound", m.sum()*1e3 < 120,
       f"Sum m_nu = {m.sum()*1e3:.1f} meV < 120 meV cosmology bound (Planck/DESI)")
 check("2.splittings", abs((m[1]**2-m[0]**2)-dm21)/dm21<1e-3 and abs((m[2]**2-m[0]**2)-dm31)/dm31<1e-3,
       "both measured Delta m^2 reproduced (the two inputs that fix the 2 free params)")
+fN=np.array([1+s2*np.cos(d+2*np.pi*k/3) for k in range(3)])
+QsN=(fN**2).sum()/fN.sum()**2
+check("2.signedQ_NO", abs(QsN-2/3)<1e-9, f"signed Q_nu = {QsN:.12f} on the normal root (one negative amplitude)")
+
+# ---- inverted ordering: the same signed circulant, solved exactly (T23) ----
+dm32_IO=2.498e-3                                   # |Delta m^2_32|, inverted (NuFIT)
+def Rof_IO(delta):
+    h=masses_unit(delta); return (h[2]**2-h[1]**2)/(h[2]**2-h[0]**2)
+RsI=np.array([Rof_IO(x) for x in ds]); jI=np.where(np.diff(np.sign(RsI-dm21/dm32_IO)))[0]
+assert len(jI)>0, "no inverted-ordering root found"
+dI=ds[jI[0]]; hI=masses_unit(dI); MI=np.sqrt(dm32_IO/(hI[2]**2-hI[0]**2)); mI=MI*hI
+fI=np.array([1+s2*np.cos(dI+2*np.pi*k/3) for k in range(3)]); QsI=(fI**2).sum()/fI.sum()**2
+print(f"   INVERTED root: delta_nu={dI:.4f} rad; masses (meV): m3={mI[0]*1e3:.2f} m1={mI[1]*1e3:.2f} m2={mI[2]*1e3:.2f}; Sum = {mI.sum()*1e3:.1f} meV")
+check("2.inverted_exact", abs(QsI-2/3)<1e-9 and abs((mI[2]**2-mI[1]**2)-dm21)/dm21<1e-3,
+      f"the signed circulant also solves inverted ordering exactly (signed Q_nu={QsI:.12f}); ordering is NOT fixed by Q_nu=2/3")
+distN=abs(fN[np.argmin(np.abs(fN))]); distI=abs(fI[np.argmin(np.abs(fI))])
+check("2.boundary_branch", distN<distI,
+      f"boundary branch: lightest amplitude {-distN:.3f} (normal) vs {-distI:.3f} (inverted) from the quarter-turn zero -> normal selected by the branch realisation (C11b), not by Q_nu")
 
 print("\n"+"="*70); print("(3) [approx] robustness and seesaw consistency"); print("="*70)
 for a,b,tag in [(7.20e-5,2.490e-3,"low"),(7.64e-5,2.540e-3,"high")]:
@@ -64,6 +86,8 @@ for a,b,tag in [(7.20e-5,2.490e-3,"low"),(7.64e-5,2.540e-3,"high")]:
     hh=masses_unit(ds[j]); MM=np.sqrt(b/(hh[2]**2-hh[0]**2)); mm=MM*hh
     print(f"   Dm^2 {tag}: Sum m_nu = {mm.sum()*1e3:.1f} meV")
 check("3.robust", True, "Sum m_nu = 58.7-59.5 meV across Delta m^2 1sigma (stable)")
+floor=(np.sqrt(7.49e-5)+np.sqrt(2.513e-3))*1e3
+check("3.floor_nufit60", abs(floor-58.8)<0.15, f"m1=0 floor at NuFIT 6.0 central values = {floor:.1f} meV (common to every NO spectrum with m1=0)")
 # seesaw r_nu=sqrt2 achievable?
 def rval(mks):
     mks=np.abs(mks); sm=np.sqrt(mks); Q=mks.sum()/sm.sum()**2; return np.sqrt(max(6*Q-2,0))

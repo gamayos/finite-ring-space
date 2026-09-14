@@ -759,7 +759,7 @@
   "id": "D2g",
   "rows": "20:F4, 20:F8",
   "script": "d_classification",
-  "label": "DH count corrected by the cut term of \u03c1\u2080: 44.960 \u2192 44.972 at 85.9 (raw 45.14 \u2192 45.73; exact 45), 43.035 \u2192 43.022 at 85.3 (exact 43), monotone toward the exact count",
+  "label": "DH count corrected by the zero term of \u03c1\u2080 and its constant: 44.960 \u2192 44.972 at 85.9 (raw 45.14 \u2192 45.73; exact 45), 43.035 \u2192 43.022 at 85.3 (exact 43), monotone toward the exact count",
   "ok": true,
   "detail": "t=85.9: 44.9598, 44.9636, 44.9668, 44.9697, 44.9721; t=85.3: 43.0352, 43.0314, 43.0278, 43.0248, 43.0223",
   "kind": "[approx]"
@@ -840,9 +840,9 @@
   "id": "E4",
   "rows": "20:C6",
   "script": "e_resonance",
-  "label": "max chart-mode correlation with the primes sits at the 1/\u221ap floor: 0.08 vs 0.03 (p = 1009), 0.0087 vs 0.0032 (p \u2248 10\u2075); resonance correlates 0.90",
+  "label": "max chart-mode correlation with the primes is a small multiple of the 1/\u221a(p\u22122) floor: 0.077 vs 0.0315 (p = 1009, 2.4\u00d7), 0.0087 vs 0.0032 (p = 100049, 2.7\u00d7); resonance correlates 0.90",
   "ok": true,
-  "detail": "p = 1009: max 0.077, floor 0.031; p = 100049: max 0.0087 over 50024 mode pairs, floor 0.0032; corr(1_\u03a0, R_80) on n \u2264 200 = 0.90",
+  "detail": "p = 1009: max 0.0766, floor 0.0315, ratio 2.431; p = 100049: max 0.0087 over 50024 mode pairs, floor 0.0032, ratio 2.745; corr(1_\u03a0, R_80) on n \u2264 200 = 0.90",
   "kind": "[approx]"
  }
 ]

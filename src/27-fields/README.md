@@ -1,96 +1,83 @@
-# Validation suite — *Standard-Model Interactions over Finite Substrate*
+# 27-fields validation package
 
-**Repository:** <https://github.com/gamayos/frc-numerics/tree/main/27-fields>
+Validation package of *Standard-Model Interactions over Finite Relational Substrate* (Akhtman & Voether, 2026),
+`27-fld` of the FRC corpus. The paper's twenty-eight validation scripts as written, run through one registry
+(`fldcommon.py`): a family check is one script (`fld.<stem>`), its micro-checks the script's own PASS/FAIL lines
+together with the registry's predicates, which read the script's namespace and printed output and decide the
+manuscript's stated values explicitly — most of the scripts print their booleans and numbers without asserting them
+(they exit 0 whatever they compute), so the decision is made in `fldcommon.py`, in the open, one labelled predicate per
+stated value. An exception, a nonzero exit or a failed predicate fails the family. Driven by `27-fields-main.ipynb`
+(Google Colab, *Runtime → Run all*, ≈ 1.5 min) or by `run_all.py`. Python 3.10+, numpy, sympy.
 
-This folder holds the computational verification for *Standard-Model Interactions over Finite Substrate* (`../main.tex`). The scripts are standalone, deterministic, take no input, and print a human-readable verdict; all exit non-zero on any failed check.
+Every family names the row(s) of the paper's predicate ledger it witnesses (the paper's Section "Status", subsection
+"Predicate ledger", 48 rows in blocks A, B, C, X, P, V, Z, O, cited as `27:XN`; public copy
+`docs/27-fields/27-fields-ledger.html`); the ledger's source column cites the family ids in return; the paper's
+Appendix "Reproducibility map" is the per-script map. Master-ledger rows of the corpus reached through the paper rows:
+`00:B5`, `00:D2`, `00:D6`, `00:E1`, `00:E3`, `00:G1`, `00:H1`–`00:H3`, `00:I1`–`00:I4`, `00:J1`, `00:J4`, `00:K2`, `00:N1`,
+`00:Z5`, `00:Z8`.
 
-## Framed-rational discipline
+Three kinds — the paper's own classes (Appendix "Reproducibility map": exact 15, mixed 11, approx 2), recorded per
+family in `results.json`: **EXACT** — integer, F_p, F_{p²} or cyclotomic arithmetic throughout, a pass a proof on the
+tested instances; **MIXED** — an exact core with a labelled continuum-comparison layer ([approx] against published
+constants, or a continuum reading), the exact claim never resting on the float part; **APPROX** — a
+continuum-comparison or dimensional-transmutation reading by construction.
 
-Every script carries a one-line `# framed-rational status:` banner at the top, in one of three classes:
+[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/gamayos/finite-ring-space/blob/main/src/27-fields/27-fields-main.ipynb)
 
-- **EXACT** — every asserted check is performed in integer, modular `𝔽_p`, `𝔽_{p²}`, or cyclotomic arithmetic. No floating point enters an asserted claim (a `float()` may appear only to format an exact rational for display). Nothing exceeds the totality `Ω`.
-- **MIXED** — an exact framed-rational core, with continuum constructs (`exp`, `log`, trig, `√`, Haar integrals, measured data) confined to clearly-labelled `[approx]` / degenerate-idealisation comparisons (the Tier 2/3/5 correspondence and phenomenology, or comparison to PDG constants). The exact claim never depends on the float part.
-- **[APPROX]** — by construction a continuum / degenerate-idealisation comparison (the finite-window correspondence to compact Yang–Mills, or a dimensional-transmutation estimate). These are not exact framed-rational claims; they are the observer-chart reading.
+## In-tree
 
-This is the corpus rule: an exact claim lives in finite, finite-field, or cyclotomic arithmetic; the continuum enters only as an explicitly labelled profinite/degenerate-idealisation approximation, and no realized magnitude exceeds `Ω`.
+| family | script | kind | claims backed (ledger rows) |
+|---|---|---|---|
+| `fld.em1_prototype` | `em1_prototype.py` | MIXED | the finite U(1) prototype on Z/M (M = 12, 52, 156, 420): gauge invariance of flux, action, covariant difference; discrete Stokes; the Coulomb coefficient against 1/4π; like charges repel, gravity attracts (27:C2, C3, X2) |
+| `fld.enumerate_maxwell` | `enumerate_maxwell.py` | MIXED | uniqueness of the Maxwell operator: exact F_p corank 2 on L = 4, 5, 6, one relevant operator = the transverse projector, one irrelevant O(k⁴) artefact (27:C2, X3) |
+| `fld.audit_finitism` | `audit_finitism.py` | EXACT | the EM/O1 claims with no float: F(dλ) = 0 exhaustive, the L = 4 Green's function 257/7680, nullity 2 by integer rank, the Wilson action cyclotomic (27:C2, C3) |
+| `fld.o2_numbers` | `o2_numbers.py` | MIXED | 1/α_bare = 4π; the 10³⁶ hierarchy; the open gap 4π → 137 (27:C2) |
+| `fld.p2` | `p2.py` | MIXED | the order-one coefficient 1; the saturation profile's Coulomb coefficient, core r* and finite self-energy (27:C2) |
+| `fld.correspondence` | `correspondence.py` | APPROX | the finite gauge correspondence, blocks A–H (27:C1, C7) |
+| `fld.p3` | `p3.py` | EXACT | the SU(2,F₃) weak connection: order 24, exhaustive Wilson invariance, the doublet covariant, the drive breaking SU(2) (27:C4) |
+| `fld.ew1` | `ew1.py` | EXACT | breaking as drive–torus misalignment over F₁₃; ρ = 1; sin²θ_W = 3/8 for a complete generation (27:C4, C5, C6, X4, X5) |
+| `fld.weak_spectrum` | `weak_spectrum.py` | EXACT | the W, Z spectrum as the Hessian of S_ρ: photon kernel, ρ = 1 as det ≡ 0, cos²θ_W = 5/8; over Q, F₁₃, F₅ (27:C5, X3, X5) |
+| `fld.weak_current` | `weak_current.py` | MIXED | the V−A current (N against 0, q = 3, 5, 7, 13), the chiral projector, G_F = 1/(√2 v²) (27:C4, C6, X6) |
+| `fld.p4` | `p4.py` | EXACT | maximal parity violation from the Frobenius branch, exact in Z/(q+1) (27:C4, X6) |
+| `fld.p10` | `p10.py` | EXACT | chirality selection relative to the drive, convention-invariant (27:C10) |
+| `fld.v_scale` | `v_scale.py` | APPROX | the electroweak scale against the transmutation forms; the O1 numeral 2^(3/2) m_P e^(−(2π)²) = 247.2 GeV (27:O1, Z1) |
+| `fld.qcd` | `qcd.py` | MIXED | SU(3,2) enumerated over F₄ (216, centre Z₃); the strong-coupling string tension (27:C7, X7) |
+| `fld.p5` | `p5.py` | EXACT | the SU(3,F₄) gluon connection: exhaustive Wilson invariance, the self-coupling commutator, the triplet covariant (27:C7) |
+| `fld.string_tension` | `string_tension.py` | MIXED | c₁ as an exact character sum: S₃, 2T closed form, the SU(3) series β/18 + β²/216; σ > 0 (27:C7, X7) |
+| `fld.p6` | `p6.py` | MIXED | b₀ = 11 − (2/3)n_f exact; Λ_QCD by transmutation; (m_p/m_P)² = e^(−88) (27:X7, Z1) |
+| `fld.missing_rank` | `missing_rank.py` | EXACT | the rank tower; \|SU(3,5)\| = 378 000; dim Λ^even(C⁵) = 16 (27:C7, C8) |
+| `fld.generation` | `generation.py` | EXACT | the 16 = 1 ⊕ 5̄ ⊕ 10: charges, ΣY = ΣY³ = 0, 3/8 (27:C6, C8, X8) |
+| `fld.p8` | `p8.py` | EXACT | the spinorial unification argument; τ_p ∝ M_X⁴, 10⁴⁸ yr at the Planck scale (27:C9, P4, X8) |
+| `fld.p8b` | `p8b.py` | EXACT | the X, Y as the colour–isospin off-block: 24 − 12 = 12 (27:C9, X8) |
+| `fld.p9` | `p9.py` | EXACT | Frobenius orbit sizes 2, 3, 6 on F_{q^n} for q = 2, 3, 5 (27:C10) |
+| `fld.p9b` | `p9b.py` | EXACT | the 1 + 3 role split; the generation mass ordering (27:C10, X9, P1) |
+| `fld.p11` | `p11.py` | EXACT | Ω ≡ 5 (mod 12) as the CRT conjunction; Dirichlet density 1/4 (27:C11) |
+| `fld.p1` | `p1.py` | MIXED | one-loop running: 3/8 at α₁ = α₂ (≈ 10¹³ GeV); the α₃ near-miss (27:C6, P3) |
+| `fld.p7` | `p7.py` | MIXED | the seesaw scale, b–τ unification, the winding-overlap hierarchy (27:P5, Z1) |
+| `fld.koide` | `koide.py` | MIXED | the framed-rational Koide identity over five shells p ≡ 5 (mod 12); the measured Q against 2/3 (27:X10, P8) |
+| `fld.strongcp` | `strongcp.py` | EXACT | Hermitian mass matrices over F_{p²}/F_p have det ∈ F_p; [M_u, M_d] ≠ 0 — 20 checks (27:X11, P9) |
+| — | `fldcommon.py` | — | the registry: the script runner, `PRED` (the predicates per family), `LEDGER` (family → rows), `LABELS`, `KIND`, `results.json` |
+| — | `reports/` | — | the two derivation memos (`correspondence.pdf`, `string-tension.pdf`) |
 
-**Status.** All 28 scripts run and pass. The two scripts that carry an *exact* claim establish it directly in framed-rational arithmetic, with the continuum reading held as a labelled `[approx]`:
+Run: `python3 run_all.py`. Any script also runs alone as before (`python3 ew1.py`), printing its own report. Rebuild the
+notebook: `python3 make_notebook.py`.
 
-- `enumerate_maxwell.py` — the Maxwell-uniqueness **dimension** is the exact corank of the integer constraint Gram over `𝔽_p` (Gaussian elimination in a large prime field, balanced lift); the continuum dispersion-symbol reading that classifies the operator as the transverse projector is the labelled `[approx]` part, with its basis count cross-checked against the exact corank.
-- `p4.py` — the V−A character cancellation `Σ_τ ζ_N^{2δτ}` is the exact geometric-series value: `N` if `N∣2δ`, else exactly `0`, in integer arithmetic.
+## Provenance
 
-`audit_finitism.py` is the standing cross-check that the load-bearing EM / O1 claims rest on integer/cyclotomic arithmetic, with no float or continuum step.
+The scripts are the paper's `validation/` suite (June–August 2026), unchanged except one instance: `weak_spectrum.py`'s
+second finite-field example ran at (q, g, g′, v) = (5, 1, 2, 2), where g² + g′² = 5 ≡ 0 (mod 5) makes the Z massless
+too, against the script's own printed claim; it now runs at (5, 1, 1, 2). The public copy had carried the June–July
+versions of `o2_numbers.py`, `p7.py`, `v_scale.py`, `weak_spectrum.py`; its README is in
+`_to_delete/27-fields-superseded/`. Registry-side findings recorded here, not repaired: `correspondence.py` block G's
+last check is vacuous (`check(..., True)`), and its block A draws unseeded random pairs (the homomorphism identity holds
+for every pair, so the verdict is unaffected); `p6.py`'s one-loop Λ_QCD from the M_Z anchor is 87 MeV against its
+printed "observed ~200–300 MeV" (the registry decides the decade); `p8.py`'s printed band "1e44–1e47 yr" sits below its
+own Planck-scale value 1.0 × 10⁴⁸ yr (the registry decides the M_X⁴ scaling and row P4's bound 10⁴⁵ yr); the F_q mass
+matrices of `weak_spectrum.py` keep the imaginary cross term in the W₁W₂ block (the real part is taken over Q), which
+none of the checked statements touch.
 
-Class counts: **EXACT 15, MIXED 11, [APPROX] 2.**
+## Predicate ledger
 
-## Requirements
-
-- Python 3.10+
-- `numpy` and `sympy` (only some scripts need them — see the table)
-- no other dependencies; no network, no data files
-
-```bash
-pip install numpy sympy
-```
-
-## Running
-
-```bash
-python3 p1.py                                   # one script
-for f in *.py; do echo "=== $f ==="; python3 "$f"; done   # whole suite
-```
-
-All scripts exit 0 and complete in seconds.
-
-## Script → claim map
-
-"Paper result" refers to the labelled results in `../main.tex`. "Status" is the framed-rational class above.
-
-| script | status | paper result | what it verifies | arithmetic |
-|---|---|---|---|---|
-| `em1_prototype.py` | MIXED | EM ledger (Table); charge & Coulomb props | finite U(1): gauge-invariant plaquette flux and winding charge (**exact integers**); Coulomb coefficient vs the lattice Green's function and the EM-repels/gravity-attracts sign (`[approx]` continuum reading). The exact integer/cyclotomic form of these claims is in `audit_finitism.py`. | integer + lattice solve | numpy |
-| `enumerate_maxwell.py` | MIXED | O1 uniqueness theorem | the admissible adjacency-local gauge+hypercubic quadratic space is **dim 2** (exact `𝔽_p` corank of the constraint Gram); the continuum symbol splits it into one Maxwell transverse-projector operator + one irrelevant `O(k⁴)` artifact (`[approx]` dispersion reading) | exact `𝔽_p` rank (+`[approx]` symbol) | numpy, sympy |
-| `correspondence.py` | [APPROX] | Thm 4.x finite-window correspondence | the finite→compact correspondence (Thm `thm:corr`): abelian inclusion (A, exact), `q=3` `2T⊂SU(2)` embedding (B, exact), gauge invariance (D, exact), low-curvature Yang–Mills (C), window residue (E), area law (F), character lift (G), finite quadrature (H) — the C/E/F/G/H blocks are the continuum-comparison layer | exact (A,B,D) + continuum-comparison | numpy |
-| `o2_numbers.py` | MIXED | bare-coupling prop | the EM coupling as phase-channel capacity: the `α_bare = 1/4π` bookkeeping (the `4π` a labelled continuum-comparison constant) and the `10³⁶` EM/gravity hierarchy as a reading of `Ω` | rational + continuum-comparison | — |
-| `ew1.py` | EXACT | electroweak-breaking thm; ρ=1; Weinberg angle | drive/torus misalignment over `𝔽₁₃`: massless photon (drive-fixed Cartan), gapped `W±`, custodial `ρ=1`, `sin²θ_W = Tr(T₃²)/Tr(Q²) = 3/8` | exact (`𝔽₁₃`, rationals) | sympy |
-| `weak_spectrum.py` | EXACT | propagating mass step (Prop 6.6) — D5a | the propagating `W,Z` spectrum as the Hessian of `S_ρ` at the broken vacuum: photon = exact kernel, `ρ=1` as `det≡0`, `M_W²/M_Z²=cos²θ_W=5/8` | exact (`ℚ`, `𝔽₁₃`, `𝔽₅`) | sympy |
-| `weak_current.py` | MIXED | chiral V−A current & 4-fermion amplitude (Prop 6.2) — D5b | left coupling `N=q+1`, right `=Σ_τ ζ_N^{2δτ}=0` by orthogonality (exact, roots of unity); chiral projector `P_L=½(1−γ₅)`; the `G_F=1/(√2 v²)` comparison to the measured value is the `[approx]` part | exact cyclotomic + `[approx]` data | sympy |
-| `v_scale.py` | [APPROX] | electroweak scale `M_EW` (Thm 5.6) — D5c | dimensional-transmutation estimate `M_EW ~ m_P·exp(−4π²) ≈ 87 GeV` (gauge-boson scale; vev `v=246.2 GeV` up to couplings); the exact coefficient is the **Ω-hard** cross-scale β-function | float (dimensional estimate) | — |
-| `qcd.py` | MIXED | colour SU(3) & confinement props | QCD-2: `SU(3,𝔽_q)` Hermitian three-form, `|SU(3,2)|=216`, `Z₃` triality (**exact `𝔽₄`**); QCD-1: the strong-coupling string tension via Bessel/Boltzmann (`[approx]` compact-group reading) | exact (`𝔽₄`) + `[approx]` | numpy |
-| `string_tension.py` | MIXED | confinement area law (Prop `prop:corrarea`) | the single-plaquette coefficient `c₁` as the **exact** finite-group character sum (`c₁^{SU(3)}=β/18+β²/216+…`); `σ=−ln c₁` is the `[approx]` continuum string-tension reading | exact char sum + `[approx]` log | numpy |
-| `generation.py` | EXACT | the generation theorem | one generation as the spinor `16 = 1⊕5̄⊕10` of the rank-5 frame: traceless hypercharges, electric charges, `ΣY = ΣY³ = 0` anomaly cancellation | exact rationals | — |
-| `koide.py` | MIXED | Koide relation (`prop:koide`) | `Q=⅓+⅔ρ²` and `ρ²=½` (the self-dual `2⁻¹`) exact over `𝔽_p`, `p≡5 (mod 12)`; the measured-mass `Q=0.66666` comparison is the isolated `[approx]` block | exact `𝔽_p`/`𝔽_{p²}` + `[approx]` data | — |
-| `strongcp.py` | EXACT | strong-CP `θ̄=0` (`prop:strongcp`) | Hermitian quark mass matrices over `𝔽_{p²}/𝔽_p` have `det ∈ 𝔽_p` (so `arg det M_q=0`), while non-commuting up/down keep CKM free; `p≡5 (mod 12)` | exact `𝔽_{p²}` determinants | — |
-| `p1.py` | MIXED | running prop | `sin²θ_W=3/8` at `α₁=α₂` (exact rational at the meeting); the one-loop RG run to `M_Z` and `M_X` is the `[approx]` continuum running | exact rational + `[approx]` RG | — |
-| `p2.py` | MIXED | bare-coupling prop | the order-one coefficient is exactly 1 (channel unity, charge = action = phase quantum); the `4π` in `1/4π` is a labelled continuum-comparison constant | rational + continuum-comparison | — |
-| `p3.py` | EXACT | weak-connection prop | the cell-local `SU(2,𝔽₃)` connection: Wilson action gauge-invariant by plaquette-trace conjugation, exhaustive over the group; doublet covariant | exact (`𝔽₉`) | — |
-| `p4.py` | EXACT | parity-violation prop | maximal V−A: the drive-aligned branch sums to `N`, the Frobenius branch to `0` exactly (geometric-series character sum, integer-decidable) | exact (integer character sums) | — |
-| `p5.py` | EXACT | gluon-connection prop | the cell-local `SU(3,𝔽₄)` gluon connection: exact Wilson gauge invariance, self-coupling `U₁U₂U₁⁻¹U₂⁻¹≠I`, masslessness | exact (`𝔽₄` integers) | numpy |
-| `p6.py` | MIXED | asymptotic-freedom prop | `b₀=11−⅔n_f>0` (exact rational); `Λ_QCD = M_P exp(−2π/b₀α_s)` and `(m_p/M_P)²=exp(−88)` are the `[approx]` dimensional-transmutation reading | exact rational + `[approx]` | — |
-| `p7.py` | MIXED | mass prop | the Yukawa mechanism and the seesaw/`b–τ`/FN structure; the spectrum itself is the **Ω-hard** flavour residual, shown via an `[approx]` winding demo | mechanism + `[approx]` | — |
-| `p8.py` | EXACT | unification prop | the rank-5 frame and the `SU(5)/SO(10)` representation arithmetic (integer counting) | integer | — |
-| `p8b.py` | EXACT | unification prop (X,Y) | `dim SU(5) − dim(SM) = 24 − 12 = 12 =` the `3×2` off-block (colour–isospin reframings); `16` irreducible under `SO(10)` | integer | — |
-| `p9.py` | EXACT | Galois-conjugate prop | generations as Galois conjugates: orbit size = extension degree for `q = 2,3,5` | integer | — |
-| `p9b.py` | EXACT | three-generations prop | the closed role ladder's `1+3` split: counting = bosonic carrier, three generative roles = three generations; the mass ordering | integer | — |
-| `p10.py` | EXACT | chirality-selection prop | the orientation-flip `𝕚 ↦ −𝕚` invariance: absolute handedness is a relabelling with no frame-independent meaning | exact (integer) | — |
-| `p11.py` | EXACT | substrate-residue prop | `Ω ≡ 5 (mod 12)` as the CRT conjunction of `4∣Ω−1` and `3∣Ω+1`, Dirichlet density `1/4` | exact | sympy |
-| `missing_rank.py` | EXACT | colour-rank prop | the rank-tower `U(1),SU(2),SU(3)` forcing and the `PSU(3,5)` kinematics on the smallest admissible shell, by exact count | exact (integer) | — |
-| `audit_finitism.py` | EXACT | §Finitism | establishes the load-bearing EM/O1 claims with no random sampling, no FFT, no float, no transcendentals: gauge identity exhaustive, rank = 2, Wilson action cyclotomic, Green's function `= 257/7680` on the `L=4` `ℤ[i]` torus | exact (`ℤ, 𝔽_p, ℚ(ζ_M), ℤ[i]`) | numpy, sympy |
-
-## Representative expected output
-
-- `enumerate_maxwell.py` → `dim(T&L&C&G) = 2`, exact `𝔽_p` corank; one relevant Maxwell operator (projector match `~2×10⁻⁷`) + one irrelevant `O(k⁴)` artifact.
-- `ew1.py` → `sin²θ_W = 3/8`, `ρ = 1` exactly.
-- `weak_current.py` → left `= N=q+1`, right `= 0` exactly (`q=3,5,7,13`); `G_F` comparison `[approx]`.
-- `koide.py` → 5/5 framed-rational `𝔽_p` checks; measured `Q=0.66666` tagged `[approx]`.
-- `strongcp.py` → 20/20: Hermitian `det ∈ 𝔽_p` (`θ̄=0`), `[M_u,M_d]≠0` (CKM free).
-- `p4.py` → left `= N`, right `= 0` (exactly).
-- `audit_finitism.py` → action `= 1 − √2/2 = 1 − (ζ₈+ζ₈⁻¹)/2`, a cyclotomic number, not a float.
-
-## Conventions and notes
-
-- **Exact where exact.** Claims the paper marks exact are computed in integer, `𝔽_p`, `𝔽_{p²}`, or cyclotomic arithmetic and verified exhaustively over a basis or group, never by sampling. `audit_finitism.py` cross-checks that no exact claim depends on a float or continuum step.
-- **Continuum readings are labelled.** Coulomb `1/4πr`, the `4π`/`2π` geometric constants, the RG running, the dimensional-transmutation scales, the compact-group string tension, and comparisons to PDG constants are degenerate-idealisation `[approx]` readings (the finite-window correspondence and phenomenology), reported as such; the cross-scale running and the absolute scales are **Ω-hard**.
-- **Nothing exceeds Ω.** No realized magnitude exceeds the totality; super-`Ω` quantities, where they appear in the argument, are formal (controlled) counts, not computed values.
-- **Determinism.** No script's asserted result depends on randomness; results are reproducible bit-for-bit.
-- **Orientation.** The convention `𝕀 = g^{−π/2}` is used throughout (see `p10.py`); do not flip it.
+Rows A1–A6 imports; B1–B6 realisations; C1–C11 derived (C3, C5, C6, C8–C10 composite T|R); X1–X11 the explanation
+register; P1–P9 the predictions; V1–V3 the verification; Z1 the Ω-hard running and scales; O1 the electroweak-scale
+conjecture (formerly Y1; block O holds the open rows, as in the corpus). Family → rows: `fldcommon.LEDGER`.

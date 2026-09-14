@@ -50,7 +50,7 @@ gap = (1/alpha0) / inv_alpha_bare
 print(f"    gap in 1/alpha:  4pi = {inv_alpha_bare:.2f}  ->  137.04   (factor {gap:.2f} in alpha)")
 print(f"    sign:  alpha is larger in the UV (screening) -- CORRECT direction.")
 print(f"    magnitude check: SM RG running of 1/alpha_EM from M_P to 0 is ~ +30..50,")
-print(f"        NOT +124, so running ALONE cannot bridge 12.6 -> 137.")
+print(f"        NOT +124, so running ALONE cannot close 12.6 -> 137.")
 print(f"    => most of the gap is NOT running; it is the projection of the bare")
 print(f"       reframing-channel coupling onto the physical photon:")
 print(f"       (b) electroweak mixing  e = g' cos(theta_W)  [Weinberg angle = EW-1,")

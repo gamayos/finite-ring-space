@@ -72,7 +72,7 @@ val = F(K, psi)
 rep('U3: negative coefficient witnessed by its character state (F = %d < 0)' % val[0],
     val == (-16, 0))
 
-# U4: channel pinning: a kernel responds to exactly one character state
+# U4: channel fixing: a kernel responds to exactly one character state
 # (single-channel diagonal response, the covariance requirement) iff its
 # coefficient vector is a scaled unit vector c = c*e_r  (exhaustive)
 ok4 = True
@@ -85,7 +85,7 @@ for c in product(range(4), repeat=4):
     single = sum(1 for x in responses if x != 0) == 1
     unitvec = sum(1 for x in c if x != 0) == 1
     if single != unitvec: ok4 = False
-rep('U4: single-channel response iff scaled unit coefficient vector (channel pinning, exhaustive)', ok4)
+rep('U4: single-channel response iff scaled unit coefficient vector (channel fixing, exhaustive)', ok4)
 
 # U5: the fibre-norm counterexample (round-03): K(delta)=[delta=1] satisfies (a)-(d),
 # has c_r = 1/4 each (d^2 c = 4 realized, sum c = 1 realized, individual c NOT integer),
@@ -127,7 +127,7 @@ for c in range(1, 5):                       # nonzero multipliers: F(i psi_0) = 
 rep('U6b: linear exclusion complete: vanishing on nontrivial windings, and on the trivial '
     'winding F(i psi) = i F(psi) leaves the tally cone unless c = 0', ok)
 
-# U7: pure-winding pinning (round-05, R1 repair): the d^2 c_r tallies are pinned strictly
+# U7: pure-winding fixing (round-05, R1 repair): the d^2 c_r tallies are fixed strictly
 # in-sector: for every admissible kernel and every winding k, F(psi_k) = 16 c_{k mod 4}
 # (psi_k stationary, core-valued; the point-mass evaluation is nowhere needed), and
 # k mod 4 reaches every channel index. Exhaustive over the coefficient cube.
@@ -137,7 +137,7 @@ for c in product(range(4), repeat=4):
     for k in range(4):
         psi = [ipow(k*u) for u in range(4)]     # pure winding restricted to the fibre
         if F(K, psi) != (16*c[k % 4], 0): ok7 = False
-rep('U7: pure-winding pinning F(psi_k) = d^2 c_{k mod d}, every channel index reached (exhaustive, in-sector)', ok7)
+rep('U7: pure-winding fixing F(psi_k) = d^2 c_{k mod d}, every channel index reached (exhaustive, in-sector)', ok7)
 
 # U8 (round-06, F3): the spanning step that transfers drive-invariance from values to kernel.
 # The restricted windings on a fibre form the core DFT matrix, invertible over Q(i)

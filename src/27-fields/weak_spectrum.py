@@ -22,7 +22,7 @@
 #    C. the drive picture (Theorem 6.4): Ad_delta on sl_2 has eigenvalues
 #       {1, g^2, g^-2}; the unit eigenvalue is the propagating zero mode
 #       (massless photon, transfer-operator eigenvalue 1 = winding rate 0);
-#       g^{+-2} are the W^+- winding rates (mass = winding rate, bridge B6).
+#       g^{+-2} are the W^+- winding rates (mass = winding rate, realisation B6).
 # =====================================================================
 
 from fractions import Fraction as Fr
@@ -144,7 +144,7 @@ def weak_modq(q, gg, ggp, vv):
     M2=[[ (Xpc[a][0]*Xp[b][0]+Xpc[a][1]*Xp[b][1])%q for b in range(4)] for a in range(4)]
     return sp.Matrix([[sp.Integer(M2[a][b]) for b in range(4)] for a in range(4)]), iq
 
-for (q,gg,ggp,vv) in ((13,1,2,2),(5,1,2,2)):  # g^2+g'^2 = 5 != 0 mod q: Z genuinely massive
+for (q,gg,ggp,vv) in ((13,1,2,2),(5,1,1,2)):  # g^2+g'^2 != 0 mod q (5 over F_13, 2 over F_5): Z genuinely massive
     Mq, iq = weak_modq(q, gg=gg, ggp=ggp, vv=vv)
     Mq = Mq.applyfunc(lambda z: z % q)
     print(f"\n--- F_{q}  (g={gg}, g'={ggp}, v={vv}; i=sqrt(-1)={iq}) ---")
@@ -170,7 +170,7 @@ print("   + photon kernel -- is a finite-field identity for ANY couplings g,g'.)
 #    H,E,F has eigenvalues 1, g^2, g^-2.  Unit eigenvalue = drive-invariant
 #    = propagating zero mode = massless photon (transfer eigenvalue 1,
 #    winding rate 0).  g^{+-2} = the W^+- per-chronon winding = the mass
-#    (bridge B6: mass is winding rate).
+#    (realisation B6: mass is winding rate).
 # ---------------------------------------------------------------------
 hr("C. DRIVE / transfer-operator winding: Ad_delta eigenvalues over F_q")
 for q,gprim in ((13,2),(5,2)):
@@ -196,7 +196,7 @@ print("""CLOSED (exact, float-free, derived from the finite action):
   * custodial rho = 1  exactly, forced by the doublet (spinor) structure;
   * M_W^2/M_Z^2 = cos^2 thetaW = 5/8  once sin^2 thetaW = 3/8 (charge trace);
   * the drive (Thm 6.4) and the Higgs-stabiliser pictures compose to the same
-    spectrum; mass = transfer-operator winding rate (bridge B6).
+    spectrum; mass = transfer-operator winding rate (realisation B6).
 
 RESIDUE (a single number):
   * the overall scale v -- the Higgs-vacuum amplitude on the non-split cycle.

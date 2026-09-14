@@ -1,0 +1,480 @@
+{
+ "paper": "28-flav",
+ "title": "Fermion Flavour Sector over Finite Substrate",
+ "doi": "https://doi.org/10.20944/preprints202606.2124.v1",
+ "generated": "14 September 2026",
+ "blocks": [
+  {
+   "letter": "A",
+   "title": "Inputs: imported, not derived here",
+   "rows": [
+    {
+     "label": "A1",
+     "predicate": "Substrate arithmetic: $\\F_\\Om$, the multiplicative cycle, the Frobenius $C_3$ Galois orbit, the quarter-turn $Q_4$, the admissible residue $\\Om\\equiv5\\,(\\mathrm{mod}\\,12)$.",
+     "tag": "I",
+     "source": "\\cite{akhtman2026fields,akhtman2026pnp}",
+     "key": "p28001"
+    },
+    {
+     "label": "A2",
+     "predicate": "One generation as the $\\mathbf{16}$ of $\\SO(10)$: field content, hypercharges, charges, anomaly freedom, $\\sin^2\\theta_W=3/8$, and the massless-photon / confining-gluon residues.",
+     "tag": "I",
+     "source": "\\cite{akhtman2026fields}; \\src{flv.\\allowbreak alpha\\_\\allowbreak probe}",
+     "key": "p28002"
+    },
+    {
+     "label": "A3",
+     "predicate": "The Froggatt--Nielsen flavour mechanism and the Wolfenstein parametrisation.",
+     "tag": "I",
+     "source": "\\cite{froggattnielsen1979,wolfenstein1983}",
+     "key": "p28003"
+    },
+    {
+     "label": "A4",
+     "predicate": "The Gatto--Sartori--Tonin, Georgi--Jarlskog, and lopsided-$\\SU(5)$ textures.",
+     "tag": "I",
+     "source": "\\cite{gattosartoritonin1968,georgijarlskog1979,albrightbarr1998}",
+     "key": "p28004"
+    },
+    {
+     "label": "A5",
+     "predicate": "The seesaw mechanism and the renormalisation-group running.",
+     "tag": "I",
+     "source": "\\cite{minkowski1977}",
+     "key": "p28005"
+    },
+    {
+     "label": "A6",
+     "predicate": "Measured anchors: the two $\\Delta m^2$, $M_R$, the charged-lepton and quark masses, $V_{us}$ and the mixing angles; the Koide identity is P1's prediction, not an input.",
+     "tag": "I",
+     "source": "\\cite{koide1983,nufit60}",
+     "key": "p28006"
+    }
+   ]
+  },
+  {
+   "letter": "B",
+   "title": "Realisations: mathematics $\\to$ physics",
+   "rows": [
+    {
+     "label": "B1",
+     "predicate": "Matter is the circulant amplitude matrix $\\sqrt M$; a mass is the squared modulus of a generation amplitude (the Born square). Falsifier: a charged-lepton spectrum departing from the circulant Koide form at improved precision (present agreement $6\\times10^{-6}$).",
+     "tag": "R",
+     "source": "\\cite{akhtman2026quantum}",
+     "key": "p28007"
+    },
+    {
+     "label": "B2",
+     "predicate": "The three generations are the Frobenius $C_3$ Galois orbit: identical in every gauge number, differing only in mass. Falsifier: a fourth generation, or two generations differing in any gauge number.",
+     "tag": "R",
+     "source": "\\cite{akhtman2026fields}",
+     "key": "p28008"
+    },
+    {
+     "label": "B3",
+     "predicate": "The role depths $(0,1,2)$ of the closed ladder are the Froggatt--Nielsen flavour charges. Falsifier: a confirmed departure of the Wolfenstein hierarchy from the depth ladder $(0,1,2)$, e.g.\\ $V_{us}$ outside the band of the Gatto relation for every phase $\\varphi$.",
+     "tag": "R",
+     "source": "\\cite{akhtman2026pnp}; \\src{flv.\\allowbreak up\\_\\allowbreak doubling}",
+     "key": "p28009"
+    },
+    {
+     "label": "B4",
+     "predicate": "The colour excess of the quark amplitudes is the Georgi--Jarlskog Clebsch $\\Nc=3$; the squared amplitude is the cyclotomic norm $N(1-\\zeta_n)$. Falsifier: a quark-to-lepton amplitude ratio departing from the $\\Nc=3$ Clebsch at improved precision.",
+     "tag": "R",
+     "source": "\\cite{akhtman2026fields}; \\src{flv.\\allowbreak quark\\_\\allowbreak amp}",
+     "key": "p28010"
+    },
+    {
+     "label": "B5",
+     "predicate": "A colourless sector (charged leptons, neutrinos) carries the undressed quarter-turn amplitude $r=\\sqrt2$, i.e.\\ $Q=2/3$. Falsifier: $Q_\\ell\\neq2/3$ at improved charged-lepton precision; for neutrinos, inverted ordering, a degenerate spectrum, or $\\sum m_\\nu\\gtrsim120$\\,meV.",
+     "tag": "R",
+     "source": "\\cite{akhtman2026fields}",
+     "key": "p28011"
+    }
+   ]
+  },
+  {
+   "letter": "C",
+   "title": "Derived: theorems within this paper",
+   "rows": [
+    {
+     "label": "C1",
+     "predicate": "Generation universality $\\Rightarrow$ the amplitude matrix is a $C_3$-circulant $\\Rightarrow$ the Koide functional form.",
+     "tag": "T",
+     "source": "Prop.~\\ref{prop:circulant}; \\src{flv.\\allowbreak exact\\_\\allowbreak core}, \\src{flv.m10}",
+     "key": "p28012"
+    },
+    {
+     "label": "C2",
+     "predicate": "$Q=2/3\\Leftrightarrow r=\\sqrt2\\Leftrightarrow\\rho^2=\\tfrac12$ (the equivalence an identity); the value $\\rho^2=\\tfrac12$ is the realisation B5.",
+     "tag": "T|R",
+     "source": "\\S\\ref{sec:koide}; \\src{flv.\\allowbreak exact\\_\\allowbreak core}, \\src{flv.\\allowbreak framed\\_\\allowbreak koide}, \\src{flv.tier\\_b}, \\src{flv.m10}",
+     "key": "p28013"
+    },
+    {
+     "label": "C3",
+     "predicate": "The leading boundary phase is the framed-rational winding $\\delta_{\\mathrm{LO}}=\\tfrac38-\\tfrac13=\\tfrac1{24}$ cycle (split-torus boundary $\\tfrac38$ minus generation $\\tfrac13$; continuum $\\pi/12$ [approx]); massless lightest generation.",
+     "tag": "T",
+     "source": "Prop.~\\ref{prop:pi12}; \\src{flv.\\allowbreak exact\\_\\allowbreak core}, \\src{flv.m10}, \\src{flv.delta}, \\src{flv.\\allowbreak revision\\_\\allowbreak checks}",
+     "key": "p28014"
+    },
+    {
+     "label": "C4",
+     "predicate": "The squared amplitudes are the cyclotomic norms $r_\\ell^2=N(1-i)=2$, $r_u^2=N(1-\\omega)=3$ (on B5), hence $Q_\\ell=\\tfrac23$, $Q_u=\\tfrac56$ in framed arithmetic ($Q_u=0.849$ in the working scheme, band $0.83$--$0.89$); the down sector is the GJ-dressed intermediate.",
+     "tag": "T|R",
+     "source": "Rem.~\\ref{rem:23tori}; \\src{flv.\\allowbreak exact\\_\\allowbreak core}, \\src{flv.\\allowbreak quark\\_\\allowbreak amp}",
+     "key": "p28015"
+    },
+    {
+     "label": "C5",
+     "predicate": "The cross-sector phase lock $\\delta_\\ell:\\delta_d:\\delta_u=1:\\tfrac12:\\tfrac13$ in the $\\overline{\\mathrm{MS}}$ working scheme of Table~\\ref{tab:sectors} ($0.388$ for the up ratio with the pole charm mass).",
+     "tag": "T",
+     "source": "\\S\\ref{sec:winding}; \\src{flv.delta}",
+     "key": "p28016"
+    },
+    {
+     "label": "C6",
+     "predicate": "The Gatto Cabibbo relation $V_{us}=|\\sqrt{m_d/m_s}-e^{i\\varphi}\\sqrt{m_u/m_c}|$, the phase $\\varphi$ a kernel datum ($85^\\circ\\pm10^\\circ$ from the data).",
+     "tag": "T",
+     "source": "Prop.~\\ref{prop:gatto}; \\src{flv.tier\\_b}, \\src{flv.spurion}",
+     "key": "p28017"
+    },
+    {
+     "label": "C7",
+     "predicate": "Up-sector doubling $m^u_i\\sim(m^d_i)^2$ from the $\\mathbf{10}\\cdot\\mathbf{10}$ Yukawa.",
+     "tag": "T",
+     "source": "Prop.~\\ref{prop:doubling}; \\src{flv.\\allowbreak up\\_\\allowbreak doubling}",
+     "key": "p28018"
+    },
+    {
+     "label": "C8",
+     "predicate": "Lopsided $M_e=M_d^{\\mathsf T}$ splits CKM (small) from PMNS (large); the CKM angle values reduce to the winding kernel and the shared $\\sigma$.",
+     "tag": "T",
+     "source": "\\S\\ref{sec:mixing}; \\src{flv.tier\\_b}",
+     "key": "p28019"
+    },
+    {
+     "label": "C9",
+     "predicate": "The reactor angle at leading order, $\\sin\\theta_{13}=\\sin\\theta_C/\\sqrt2\\simeq\\delta_0/\\sqrt2$ (quark--lepton complementarity): $0.159$ against the measured $0.149$, $7\\%$, no correction derived.",
+     "tag": "T",
+     "source": "\\S\\ref{sec:cp}; \\src{flv.theta13}, \\src{flv.\\allowbreak tm2\\_\\allowbreak jointfit}",
+     "key": "p28020"
+    },
+    {
+     "label": "C10",
+     "predicate": "TM2 selected: the trivial $C_3$ character $(1,1,1)/\\sqrt3$ is the protected column, so $\\cos\\delta_{\\mathrm{CP}}$ is locked to $\\theta_{23}$ by \\eqref{eq:tm2}; the magic Jarlskog $J=1/(6\\sqrt3)$ is maximal CP, the sign fixed by the drive.",
+     "tag": "T",
+     "source": "\\S\\ref{sec:cp}; \\src{flv.\\allowbreak exact\\_\\allowbreak core}, \\src{flv.\\allowbreak revision\\_\\allowbreak checks}, \\src{flv.pmns\\_cp}, \\src{flv.\\allowbreak tm2\\_\\allowbreak jointfit}",
+     "key": "p28021"
+    },
+    {
+     "label": "C11",
+     "predicate": "Seesaw of circulants $\\Rightarrow$ Koide-form (theorem); with $M_R\\propto m_D$ ($\\overline{\\mathbf{126}}$ alignment, a realisation) the seesaw gives $m_\\nu=m_D^{\\mathsf T}$, $r_\\nu=\\sqrt2$ (transpose fixed point).",
+     "tag": "T|R",
+     "source": "Prop.~\\ref{prop:seesaw},\\,\\ref{prop:transpose}; \\src{flv.neutrino}",
+     "key": "p28022"
+    },
+    {
+     "label": "C11b",
+     "predicate": "Drive-invariant boundary branch: the lightest colourless neutrino sits at the quarter-turn zero (as the electron), selecting the normal near-$m_1{=}0$ branch; the signed $r_\\nu=\\sqrt2$ circulant solves both orderings exactly, so the branch is the sole ordering assumption. Falsifier: inverted ordering.",
+     "tag": "T|R",
+     "source": "\\S\\ref{sec:neutrino}; \\src{flv.\\allowbreak revision\\_\\allowbreak checks}, \\src{flv.neutrino}",
+     "key": "p28023"
+    },
+    {
+     "label": "C12",
+     "predicate": "The generation $\\mathbf{16}$ is the four-chart reflection algebra $\\Lambda^{\\bullet}(\\C^4)\\cong\\Lambda^{\\mathrm{even}}(\\C^5)$, the quarter-turn the fifth direction; projection anchored at $\\nu^c=\\Lambda^0$.",
+     "tag": "T",
+     "source": "Prop.~\\ref{prop:reflection}",
+     "key": "p28024"
+    }
+   ]
+  },
+  {
+   "letter": "X",
+   "title": "What the construction explains: the surplus over the flavour data",
+   "rows": [
+    {
+     "label": "X1",
+     "predicate": "\\textbf{The Koide ratio} is exactly $2/3$ given the quarter-turn realisation B5, the cube-root generation orbit bisected at the quarter-turn ($\\rho^2=2^{-1}$), an exact value rather than an unexplained empirical coincidence.",
+     "tag": "T",
+     "source": "Proposition~\\ref{prop:koide}; \\src{flv.\\allowbreak framed\\_\\allowbreak koide}",
+     "key": "p28025"
+    },
+    {
+     "label": "X2",
+     "predicate": "\\textbf{The up-quark Koide value} is $5/6$ in framed arithmetic ($0.849$ in the working scheme, $0.832$ with pole masses), the cube-root colour norm $r_u^2=N(1-\\omega)=3$ against the colourless $N(1-i)=2$, a ratio where the Standard Model carries no relation at all.",
+     "tag": "T",
+     "source": "Remark~\\ref{rem:23tori}; \\src{flv.\\allowbreak quark\\_\\allowbreak amp}",
+     "key": "p28026"
+    },
+    {
+     "label": "X3",
+     "predicate": "\\textbf{The flavour charges} are the role depths $(0,1,2)$ of the closed primitive-role ladder, derived as the three generative roles rather than assigned to fit the hierarchy.",
+     "tag": "T",
+     "source": "\\S\\ref{sec:texture}; \\src{flv.tier\\_b}",
+     "key": "p28027"
+    },
+    {
+     "label": "X4",
+     "predicate": "\\textbf{The Cabibbo angle} is the Gatto relation $V_{us}=|\\sqrt{m_d/m_s}-e^{i\\varphi}\\sqrt{m_u/m_c}|$ following from the role-depth texture, the leading term at $0.3\\%$ and the phase $\\varphi$ a kernel datum, so two otherwise-independent observables are tied rather than measured apart.",
+     "tag": "T",
+     "source": "Proposition~\\ref{prop:gatto}; \\src{flv.spurion}",
+     "key": "p28028"
+    },
+    {
+     "label": "X5",
+     "predicate": "\\textbf{The Georgi--Jarlskog factor} is the colour count $N_c=3$, the $B\\!-\\!L$ Clebsch of the $\\overline{\\mathbf{126}}$, not a texture coefficient inserted by hand; its double ratio $9$ against the measured $10.4\\pm0.5$ is the open $15\\%$ excess of the minimal Clebsch.",
+     "tag": "T",
+     "source": "\\S\\ref{sec:gj}; \\src{flv.tier\\_b}",
+     "key": "p28029"
+    },
+    {
+     "label": "X6",
+     "predicate": "\\textbf{The up-sector doubling} $m^u_i\\sim(m^d_i)^2$ is forced by the $\\mathbf{10}\\cdot\\mathbf{10}$ Yukawa, so the steeper up hierarchy is a consequence rather than a separate assumption.",
+     "tag": "T",
+     "source": "Proposition~\\ref{prop:doubling}; \\src{flv.\\allowbreak up\\_\\allowbreak doubling}",
+     "key": "p28030"
+    },
+    {
+     "label": "X7",
+     "predicate": "\\textbf{The electron's extreme lightness} is the quarter-turn boundary: the lightest generation sits where the winding amplitude vanishes, massless at leading order, rather than an anomalously small Yukawa tuned by hand.",
+     "tag": "T",
+     "source": "Proposition~\\ref{prop:pi12}; \\src{flv.m10}",
+     "key": "p28031"
+    },
+    {
+     "label": "X8",
+     "predicate": "\\textbf{The large-lepton, small-quark mixing split} is the lopsided $M_e=M_d^{\\mathsf T}$: one off-diagonal feeds the invisible right-handed quark rotation and, transposed, the visible left-handed lepton rotation, so the two mixing matrices are one structure rather than two unrelated ones.",
+     "tag": "T",
+     "source": "\\S\\ref{sec:mixing}",
+     "key": "p28032"
+    },
+    {
+     "label": "X9",
+     "predicate": "\\textbf{The reactor angle} is, at leading order, $\\sin\\theta_{13}=\\sin\\theta_C/\\sqrt2=0.159$, quark--lepton complementarity through the quarter-turn, $7\\%$ above the observed $0.149$ with no correction derived: a leading-order estimate of the mixing parameter, not a prediction.",
+     "tag": "T",
+     "source": "\\S\\ref{sec:cp}; \\src{flv.theta13}",
+     "key": "p28033"
+    },
+    {
+     "label": "X10",
+     "predicate": "\\textbf{Near-maximal leptonic CP} is the cube-root phase: $\\mathrm{Im}\\,\\omega=\\sqrt3/2$ gives the maximal Jarlskog $J=1/(6\\sqrt3)$, so the cubic reappears as CP violation rather than a free phase fitted to data.",
+     "tag": "T",
+     "source": "\\S\\ref{sec:cp}; \\src{flv.pmns\\_cp}",
+     "key": "p28034"
+    },
+    {
+     "label": "X11",
+     "predicate": "\\textbf{The neutrino spectrum} (a near-massless lightest state, $\\sum m_\\nu\\simeq59\\,$meV on the normal branch) follows from colourlessness fixing $Q_\\nu=2/3$, the transpose fixed point $M_R\\propto m_D$ and the boundary-branch realisation that selects the ordering, rather than three independent neutrino masses.",
+     "tag": "T",
+     "source": "Proposition~\\ref{prop:transpose}, \\S\\ref{sec:neutrino}; \\src{flv.neutrino}",
+     "key": "p28035"
+    }
+   ]
+  },
+  {
+   "letter": "P",
+   "title": "Falsifiable predictions (formerly D1--D8)",
+   "rows": [
+    {
+     "label": "P1",
+     "predicate": "Charged-lepton Koide $Q_\\ell=2/3$ exact on B5 (measured $0.666661\\pm0.000007$); $m_e=0.5106$ vs $0.5110$ MeV. Falsifier: a lepton-mass shift of $Q_\\ell$ off $2/3$ beyond the $\\tau$-mass tolerance.",
+     "tag": "E",
+     "source": "C2, B5; \\src{flv.tier\\_b}",
+     "key": "p28036"
+    },
+    {
+     "label": "P2",
+     "predicate": "Up-quark Koide $Q_u=5/6$ in framed arithmetic, $r_u^2=N(1-\\omega)=3$; continuum $0.849$ in the working scheme, $0.832$ with pole masses, band $0.83$--$0.89$. Falsifier: up/charm/top masses moving $Q_u$ outside the band in every standard scheme.",
+     "tag": "E",
+     "source": "C4; \\src{flv.\\allowbreak revision\\_\\allowbreak checks}, \\src{flv.\\allowbreak quark\\_\\allowbreak amp}",
+     "key": "p28037"
+    },
+    {
+     "label": "P3",
+     "predicate": "Cabibbo $V_{us}=|\\sqrt{m_d/m_s}-e^{i\\varphi}\\sqrt{m_u/m_c}|$: leading term $0.224^{+0.011}_{-0.004}$ vs $0.2243$ ($0.3\\%$), the up term $\\pm0.04$ with $\\varphi$ open. Falsifier: no $\\varphi$ satisfying the relation within the input band.",
+     "tag": "E",
+     "source": "C6",
+     "key": "p28038"
+    },
+    {
+     "label": "P5",
+     "predicate": "Normal neutrino ordering, from $Q_\\nu=2/3$, the two $\\Delta m^2$ and the boundary branch (C11b); the signed circulant solves both orderings. Falsifier: inverted ordering.",
+     "tag": "E",
+     "source": "\\S\\ref{sec:neutrino}; \\src{flv.neutrino}",
+     "key": "p28039"
+    },
+    {
+     "label": "P6",
+     "predicate": "Mass-sum floor $\\sum m_\\nu=58.7$ meV ($m_1{\\simeq}0$, $m_2{\\simeq}8.6$, $m_3{\\simeq}50$ meV; $58.8$ at NuFIT~6.0), the $m_1=0$ normal-ordering floor. Falsifier: a cosmological $\\sum m_\\nu<0.058$ eV.",
+     "tag": "E",
+     "source": "\\S\\ref{sec:neutrino}; \\src{flv.neutrino}",
+     "key": "p28040"
+    },
+    {
+     "label": "P7",
+     "predicate": "Effective Majorana mass $m_{\\beta\\beta}{\\simeq}1.5$--$3.7$ meV (NO, $m_1{\\simeq}0$, circulant phase). Falsifier: a $0\\nu\\beta\\beta$ signal at the inverted scale $15$--$50$ meV.",
+     "tag": "E",
+     "source": "C11",
+     "key": "p28041"
+    },
+    {
+     "label": "P8",
+     "predicate": "Leptonic CP locked to the octant by \\eqref{eq:tm2}: $\\delta_{\\mathrm{CP}}\\in(204^\\circ,310^\\circ)$ over the $3\\sigma$ $\\theta_{23}$ range, $\\pm124^\\circ$/$\\pm74^\\circ$ at the NuFIT~6.0 best fits, $\\sin\\delta_{\\mathrm{CP}}{<}0$, $J=1/(6\\sqrt3)$. Falsifier: CP-conserving $\\delta_{\\mathrm{CP}}$, $\\sin\\delta_{\\mathrm{CP}}{>}0$, or $(\\theta_{23},\\delta_{\\mathrm{CP}})$ off the relation.",
+     "tag": "E",
+     "source": "C10; \\src{flv.pmns\\_cp}, \\src{flv.\\allowbreak tm2\\_\\allowbreak jointfit}",
+     "key": "p28042"
+    }
+   ]
+  },
+  {
+   "letter": "V",
+   "title": "Machine verification",
+   "rows": [
+    {
+     "label": "V1",
+     "predicate": "The validation package \\texttt{finite-ring-space/src/28-flavour}: the sixteen scripts as written --- \\src{flv.\\allowbreak exact\\_\\allowbreak core}, \\src{flv.\\allowbreak framed\\_\\allowbreak koide}, \\src{flv.tier\\_b}, \\src{flv.m10}, \\src{flv.delta}, \\src{flv.\\allowbreak revision\\_\\allowbreak checks}, \\src{flv.\\allowbreak quark\\_\\allowbreak amp}, \\src{flv.\\allowbreak up\\_\\allowbreak doubling}, \\src{flv.spurion}, \\src{flv.theta13}, \\src{flv.neutrino}, \\src{flv.pmns\\_cp}, \\src{flv.\\allowbreak tm2\\_\\allowbreak jointfit}, \\src{flv.scale\\_a}, \\src{flv.\\allowbreak coupling\\_\\allowbreak anchor}, \\src{flv.\\allowbreak alpha\\_\\allowbreak probe} --- run through one registry, one family per script, its micro-checks the script's own verdict lines together with the registry's predicates on the script's namespace and output (four scripts print without asserting; every headline numeral is pinned by a labelled check in \\texttt{flvcommon.py}), each family naming the rows it witnesses; the notebook \\texttt{28-flavour-main.ipynb} executes them in the browser and the driver \\texttt{run\\_all.py} writes \\texttt{results.json}.",
+     "tag": "T",
+     "source": "Sec.~\\ref{sec:repro}; \\src{run\\_all}",
+     "key": "p28043"
+    },
+    {
+     "label": "V2",
+     "predicate": "The discipline, recorded per family as its class: \\textsf{EXACT} --- integer, $\\F_p$, $\\F_{p^2}$ or cyclotomic arithmetic throughout, no float in any asserted claim (\\src{flv.\\allowbreak exact\\_\\allowbreak core}, \\src{flv.\\allowbreak framed\\_\\allowbreak koide}, the load-bearing identities of the mass sector); \\textsf{MIXED} --- an own exact check for at least one claim, the continuum confined to labelled [approx] comparisons (seven families); \\textsf{APPROX} --- continuum or numerical by construction, a numerical reconfirmation of an identity proven exactly in \\src{flv.\\allowbreak exact\\_\\allowbreak core}, a comparison with measured data, or an $\\Om$-hard reading (seven families).",
+     "tag": "T",
+     "source": "Sec.~\\ref{sec:repro}, Sec.~\\ref{sec:finitism}",
+     "key": "p28044"
+    },
+    {
+     "label": "V3",
+     "predicate": "What the run does not decide: the $\\Om$-hard residues (Z1--Z4) enter only as labelled readings (the transmutation exponent, the coupling anchor, the one-loop fermion sum, $\\delta_0=Q/3$ as a confrontation); the joint mixing fit of \\src{flv.\\allowbreak tm2\\_\\allowbreak jointfit} is status, not a test (five parameters for four observables); the reactor angle is a leading-order estimate at $7\\,\\%$ (C9), not a prediction; the Georgi--Jarlskog double ratio is carried as the open $15\\,\\%$ excess; five of the scripts' own checks are statements, not decisions, and are recorded as such in the package README.",
+     "tag": "T",
+     "source": "Sec.~\\ref{sec:repro}",
+     "key": "p28045"
+    }
+   ]
+  },
+  {
+   "letter": "Z",
+   "title": "Residues: $\\Om$-hard (formerly D10--D13)",
+   "rows": [
+    {
+     "label": "Z1",
+     "predicate": "The lepton winding phase $\\delta_0$: the one $\\Om$-hard drive-orientation residue. Neither a geometric nor a profinite derivation fixes it, the drive-orientation Gauss sum equidistributing. Sub-horizon reading $\\delta_0=Q/3=2/9$ ($3\\delta_0=Q$); leading $\\delta_{\\mathrm{LO}}=\\tfrac38-\\tfrac13$ framed-rational (C3); phase residue carried by $\\mathrm{Re}(b^{3})$.",
+     "tag": "Ω",
+     "source": "\\S\\ref{sec:winding},\\,\\S\\ref{sec:status}; \\src{flv.\\allowbreak exact\\_\\allowbreak core}, \\src{flv.delta}, \\src{flv.\\allowbreak revision\\_\\allowbreak checks}, \\src{flv.spurion}",
+     "key": "p28046"
+    },
+    {
+     "label": "Z2",
+     "predicate": "The quark phases $\\delta_d=\\delta_0/2$, $\\delta_u=\\delta_0/3$ locked to $\\delta_0$ (C5); the neutrino phase $\\delta_\\nu\\simeq0.48$, which the seesaw resets, and the quark CP phase are independent $\\Om$-hard residues.",
+     "tag": "T|Ω",
+     "source": "C5,\\,C11; \\src{flv.delta}",
+     "key": "p28047"
+    },
+    {
+     "label": "Z3",
+     "predicate": "The absolute masses and the electroweak scale $v$: $\\Om$-hard, the matter face of the scale operator (master ledger Z6).",
+     "tag": "Ω",
+     "source": "\\cite{akhtman2026fields}; \\src{flv.scale\\_a}",
+     "key": "p28048"
+    },
+    {
+     "label": "Z4",
+     "predicate": "$\\alpha^{-1}(0)$: the electromagnetic face of the scale operator, $\\Om$-hard (master ledger Z8).",
+     "tag": "Ω",
+     "source": "App.~\\ref{app:status}, AL; \\src{flv.\\allowbreak coupling\\_\\allowbreak anchor}, \\src{flv.\\allowbreak alpha\\_\\allowbreak probe}",
+     "key": "p28049"
+    }
+   ]
+  }
+ ],
+ "legend": [
+  {
+   "tag": "I",
+   "name": "Import",
+   "text": "A standard result or measured datum used here without reproof."
+  },
+  {
+   "tag": "R",
+   "name": "Realisation",
+   "text": "A forced identification of a physical term with the substrate object it denotes: constitutive, not interpretive; defended by the totality of consequences registered under it; killed by the falsifier stated in its row."
+  },
+  {
+   "tag": "D",
+   "name": "Definition",
+   "text": "A naming or set-up move."
+  },
+  {
+   "tag": "T",
+   "name": "Theorem",
+   "text": "Derived within this paper from the rows above it; where a family identifier is named, its content is verified by the validation package."
+  },
+  {
+   "tag": "E",
+   "name": "Prediction",
+   "text": "A falsifiable consequence of the rows above, stated with its falsifier and its present confrontation; marked exact, neutrino, or mixing in its row."
+  },
+  {
+   "tag": "Ω",
+   "name": "$\\Om$-hard",
+   "text": "Decided by the totality; not closeable by a bounded observer."
+  }
+ ],
+ "master": {
+  "B1": [
+   "D2"
+  ],
+  "B2": [
+   "J4"
+  ],
+  "C2": [
+   "K2"
+  ],
+  "C4": [
+   "K3"
+  ],
+  "C6": [
+   "K1",
+   "K3"
+  ],
+  "C8": [
+   "K1"
+  ],
+  "C9": [
+   "K1"
+  ],
+  "C10": [
+   "K1",
+   "K3",
+   "C7"
+  ],
+  "C11": [
+   "K1"
+  ],
+  "C12": [
+   "J2",
+   "K4"
+  ],
+  "P1": [
+   "K2"
+  ],
+  "P2": [
+   "K3"
+  ],
+  "P6": [
+   "K3"
+  ],
+  "Z1": [
+   "K2"
+  ],
+  "Z3": [
+   "D8",
+   "Z6"
+  ],
+  "Z4": [
+   "Z8"
+  ]
+ }
+}

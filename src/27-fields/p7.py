@@ -2,7 +2,7 @@
 """
 P7: fermion masses and mixings -- what the substrate fixes, and what is open.
 
-(a) Mechanism: the Yukawa is the Higgs-mediated bridge between the drive-aligned
+(a) Mechanism: the Yukawa is the Higgs-mediated pairing of the drive-aligned
     (left, P4) and Frobenius-conjugate (right) branches; m = y v, v the spinor-frame
     misalignment (EW-1 Higgs).  The mass connects the two chiralities the weak force
     separates.

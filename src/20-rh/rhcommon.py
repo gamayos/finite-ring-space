@@ -144,9 +144,10 @@ def count_raw(comb, T, const=1.0, theta_fn=theta):
 
 # ----------------------------------------------------------------------------- the pole term (Prop. combformula)
 def pole_term(N, T):
-    """Π_N(½ + iT) = ∫_0^L W(u/L) (e^{(½−iT)u} − e^{−(½+iT)u}) du/u,  L = log N  — the pole's cut term of the smoothed
-    explicit formula for the tapered log-ζ series: Σ_{n≤N} Λ(n) W(log n/L) n^{−s}/log n = Π_N(s) + J_N(s), with
-    J_N(s) → log((s−1)ζ(s)/s). Written as ∫_0^L g(u) e^{−iTu} du, g(u) = W(u/L)·2 sinh(u/2)/u, and integrated with
+    """Π_N(½ + iT) = ∫_0^L W(u/L) (e^{(½−iT)u} − e^{−(½+iT)u}) du/u,  L = log N  — the pole term of the smoothed
+    explicit formula for the tapered log-ζ series, Σ_{n≤N} Λ(n) W(log n/L) n^{−s}/log n = Π_N(s) + J_N(s) (Prop.
+    combformula (i), under the hypothesis of no zero to the right of the line), with J_N(s) → log((s−1)ζ(s)/s) for
+    s not a zero (Prop. combformula (iv)). Written as ∫_0^L g(u) e^{−iTu} du, g(u) = W(u/L)·2 sinh(u/2)/u, and integrated with
     QUADPACK's oscillatory weights. Returns the complex value. Its size is (π²/2) √N/(|½−iT| L)³ (1 + O(1/L)):
     the raw count carries it and has no limit as N → ∞."""
     from scipy.integrate import quad

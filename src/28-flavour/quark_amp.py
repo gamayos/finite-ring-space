@@ -25,6 +25,8 @@ s2,s3=np.sqrt(2),np.sqrt(3)
 
 print("="*70); print("(0) the amplitudes"); print("="*70)
 Ql,rl=Qr([me,mmu,mtau]); Qd,rd=Qr([md,ms,mb]); Qu,ru=Qr([mu,mc,mt])
+Qu_pole,ru_pole=Qr([mu,1670.0,mt])   # pole charm mass (T23: the scheme band)
+print(f"   scheme (T23): Q_u = {Qu:.4f} in the working MSbar scheme (m_c(m_c)), {Qu_pole:.4f} with the pole charm mass; band 0.83-0.89; 5/6 = 0.8333 is the framed value")
 print(f"   leptons: Q={Ql:.4f} r={rl:.4f} (=sqrt2={s2:.4f})")
 print(f"   down   : Q={Qd:.4f} r={rd:.4f}   (excess r-sqrt2={rd-s2:.3f})")
 print(f"   up     : Q={Qu:.4f} r={ru:.4f}   (excess r-sqrt2={ru-s2:.3f})")

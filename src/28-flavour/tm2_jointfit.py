@@ -9,9 +9,15 @@ tm2_jointfit.py  --  status of the TM2 column lead.
   1  exact-TM2 solar value 1/(3 c13^2)=0.341 vs TM1 0.318 vs observed 0.307.
   2  the SAME Cabibbo 1-2 correction that fixes theta13 sweeps sin^2 th12 across 0.307
      => the exact-TM2 value is not a locked prediction; the solar 'tension' dissolves.
-  3  full joint fit: A (CP from charged leptons) FAILS theta23 (stuck first octant);
-     B (CP = neutrino cube-root phase delta_nu, TM2 preserved) fits all four at chi^2 ~ 0.
-     theta13 ~ theta_C/sqrt2 is the prediction in both.  [continuum/data, labelled approx]
+  3  full joint fit (status only, T23 2026-09-13): model B (CP = neutrino cube-root phase
+     delta_nu) has FIVE free parameters (a 2-3 angle and phase, a 1-2 phase, a 1-3 angle and
+     phase) for FOUR observables with theta_C imported, so chi^2 ~ 0 is guaranteed and carries
+     no test; theta13 is fitted in B, not predicted.  Model A's earlier 'fails theta23'
+     verdict depended on theta23 = 49 deg (NuFIT 5); NuFIT 6.0 with SK atmospheric data puts
+     theta23 at 43.3 deg, where A fits.  The TEST is the TM2 relation
+        cos(delta_CP) = cot(2 theta23) (1 - 2 s13^2) / (s13 sqrt(2 - 3 s13^2)),
+     checked in block 4 against the direct PMNS evaluation and the NuFIT 6.0 ranges.
+     [continuum/data, labelled approx]
 """
 import numpy as np
 from scipy.optimize import least_squares
@@ -23,7 +29,9 @@ sC=0.225; tC=np.arcsin(sC); r2,r3,r6=np.sqrt(2),np.sqrt(3),np.sqrt(6)
 w=np.exp(2j*np.pi/3)
 F=np.array([[1,1,1],[1,w,w**2],[1,w**2,w]])/r3
 TBM=np.array([[2/r6,1/r3,0],[-1/r6,1/r3,-1/r2],[-1/r6,1/r3,1/r2]],dtype=complex)
-OBS=dict(th13=8.60,th12=33.45,th23=49.0,dcp=-128.0); SIG=dict(th13=0.13,th12=0.75,th23=1.3,dcp=25.0)
+# NuFIT 6.0 (arXiv:2410.05380), normal ordering, without SK atmospheric data (with SK: th23=43.3, dcp=212)
+OBS=dict(th13=8.52,th12=33.68,th23=48.5,dcp=177.0); SIG=dict(th13=0.11,th12=0.72,th23=0.8,dcp=20.0)
+OBS_SK=dict(th13=8.56,th12=33.68,th23=43.3,dcp=212.0)
 
 # ---- 0: trivial singlet vs reducible doublet ----
 print("0  protected column: trivial C3 singlet (TM2) vs reducible doublet-sum (TM1)")
@@ -79,19 +87,37 @@ def best_fit(m,bnds):
     return obsv(m(b.x)),2*b.cost
 mA=lambda x:(U23(x[0],x[2])@U12(tC,x[1])).conj().T@TBM
 mB=lambda x:(U23(x[0],x[2])@U12(tC,x[1])).conj().T@(U13(x[3],x[4])@TBM)
-print("\n3  full joint fit (theta13 is a prediction, not fitted)")
+print("\n3  full joint fit (status: 5 parameters for 4 observables; theta13 fitted in B)")
 oA,cA=best_fit(mA,([0.3,-np.pi,-np.pi],[1.3,np.pi,np.pi]))
 oB,cB=best_fit(mB,([0.3,-np.pi,-np.pi,0,-np.pi],[1.3,np.pi,np.pi,0.6,np.pi]))
 print(f"   A (CP=charged leptons): th13={oA['th13']:.1f} th12={oA['th12']:.1f} th23={oA['th23']:.1f} dCP={oA['dcp']:.0f}  chi2={cA:.1f}")
 print(f"   B (CP=neutrino delta_nu): th13={oB['th13']:.1f} th12={oB['th12']:.1f} th23={oB['th23']:.1f} dCP={oB['dcp']:.0f}  chi2={cB:.2f}")
-check("Model A FAILS theta23 (stuck in first octant, < 45 deg)", oA['th23']<45.0)
-check("Model B (CP in neutrino delta_nu) fits all four at chi^2 ~ 0", cB<0.5)
-check("=> CP must reside in the neutrino sector (magic cube-root phase), not charged leptons",
-      oA['th23']<45.0 and cB<0.5)
+print("   parameter count: model A 3 parameters, model B 5 parameters, for 4 observables (theta_C imported):")
+print("   chi^2 ~ 0 in B is guaranteed and is not a test; the 'model A fails theta23' verdict is data-version dependent")
+print(f"   (NuFIT 6.0 with SK atmospheric data: theta23 = {OBS_SK['th23']} deg, first octant).")
+check("Model B (CP in neutrino delta_nu) reaches chi^2 ~ 0 with 5 parameters for 4 observables (no test)", cB<0.5)
+
+# ---- 4: the TM2 relation, the actual test ----
+print("\n4  the TM2 relation cos(dCP) = cot(2 th23) (1-2 s13^2)/(s13 sqrt(2-3 s13^2))")
+def tm2_cosd(th13,th23):
+    s13=np.sin(np.radians(th13)); return 1/np.tan(np.radians(2*th23))*(1-2*s13**2)/(s13*np.sqrt(2-3*s13**2))
+def tm2_direct(th13,th23):
+    s13=np.sin(np.radians(th13)); c13=np.cos(np.radians(th13)); s12=np.sqrt(1/(3*c13**2)); c12=np.sqrt(1-s12**2)
+    s23=np.sin(np.radians(th23)); c23=np.cos(np.radians(th23)); A=c12*c23; B=s12*s23*s13
+    return (A**2+B**2-1/3)/(2*A*B)          # |U_mu2|^2 = 1/3
+check("relation = direct PMNS evaluation at (8.57, 49)", abs(tm2_cosd(8.57,49.0)-tm2_direct(8.57,49.0))<1e-12)
+check("delta_CP = +-130 deg at theta23 = 49 deg (the paper's earlier number)", abs(np.degrees(np.arccos(tm2_cosd(8.57,49.0)))-130.4)<0.2)
+for t23 in (41.0,43.3,45.0,48.5,50.6):
+    c=tm2_cosd(8.57,t23); d=np.degrees(np.arccos(np.clip(c,-1,1)))
+    print(f"   theta23={t23:5.1f}: cos dCP={c:+.3f}  |dCP|={d:6.1f} deg")
+band=[np.degrees(np.arccos(np.clip(tm2_cosd(8.57,t),-1,1))) for t in np.linspace(41.0,50.6,200)]
+check("TM2 band over the NuFIT 6.0 3-sigma theta23 range is |dCP| in [50,156] deg", abs(min(band)-50)<2 and abs(max(band)-156)<2)
+check("with-SK best fit (43.3) gives cos dCP > 0 while data prefer cos dCP < 0 (212 deg): a live test", tm2_cosd(8.57,43.3)>0 and np.cos(np.radians(212))<0)
 
 print("\n"+"="*70)
 print(f"tm2_jointfit: {sum(PASS)}/{len(PASS)} structural checks pass; joint fit chi^2: A={cA:.0f}, B={cB:.2f}")
-print("VERDICT: TM2 = lead (consistent; trivial-singlet protected; theta13~thC/sqrt2 the")
-print("prediction; (th12,th23,dCP) realised via the neutrino delta_nu at chi^2~0; no solar tension).")
+print("VERDICT: TM2 = lead (trivial-singlet protected); the test is the cos(dCP)-theta23 relation,")
+print("band |dCP| in [50,156] deg over NuFIT 6.0; the joint fit (5 params / 4 obs) is status, not a test;")
+print("theta13 = thC/sqrt2 is a leading-order estimate 7% high, not a prediction.")
 print("="*70)
 assert all(PASS)

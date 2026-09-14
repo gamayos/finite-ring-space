@@ -57,7 +57,11 @@ check("1.robust_down",abs(np.median(rd)-0.5)<0.03,
       f"down/lepton median {np.median(rd):.3f} in [{np.percentile(rd,16):.3f},{np.percentile(rd,84):.3f}] (->1/2)")
 check("1.robust_up",abs(np.median(ru)-1/3)<0.03,
       f"up/lepton median {np.median(ru):.3f} in [{np.percentile(ru,16):.3f},{np.percentile(ru,84):.3f}] (->1/3)")
-check("1.reduce",True,"four sector phases reduce to ONE: delta_0 = delta_lepton (~2/9)")
+check("1.reduce",True,"four sector phases reduce to ONE: delta_0 = delta_lepton (~2/9 rad)")
+# scheme dependence (T23): the up ratio with the pole charm mass is not 1/3
+du_pole=circ_delta([2.16,1670.0,172570.0])
+print(f"   scheme note: with the pole charm mass 1.67 GeV, delta_up/delta_lepton = {du_pole/dl:.3f} (working MSbar scheme: {du/dl:.3f});")
+print(f"   the 1:1/2:1/3 lock is a statement in the MSbar working scheme (m_c(m_c)); Q_u=5/6 at pole masses is not simultaneously available.")
 
 print("\n"+"="*70); print("(2)/(3)  delta is a drive-orientation phase; small shells quantise it")
 print("="*70)

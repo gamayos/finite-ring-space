@@ -1,83 +1,67 @@
-# Validation suite — *Fermion Flavour Sector over Finite Relational Substrate*
+# 28-flavour validation package
 
-**Repository:** <https://github.com/gamayos/frc-numerics/tree/main/28-flavour>
+Validation package of *Fermion Flavour Sector over Finite Relational Substrate* (Akhtman & Voether, 2026), `28-flav`
+of the FRC corpus. The paper's sixteen validation scripts as written, run through one registry (`flvcommon.py`): a
+family check is one script (`flv.<stem>`), its micro-checks the script's own verdict lines (twelve of the sixteen print
+`[PASS]`/`[OK]`/`[EXACT]` lines and a pass count) together with the registry's predicates, which decide the stated values
+explicitly where a script prints without asserting (`framed_koide`, `theta13`, `scale_a`, `coupling_anchor`) and pin the
+headline numerals elsewhere (the pass counts, Q_ℓ − 2/3, Σm_ν on both orderings, the Cabibbo relation, the TM2 band).
+An exception, a nonzero exit or a failed predicate fails the family. Driven by `28-flavour-main.ipynb` (Google Colab,
+*Runtime → Run all*, ≈ 1 min) or by `run_all.py`. Python 3.10+, numpy, sympy; scipy for `tm2_jointfit`.
 
-This folder holds the computational verification for *The Fermion Sector over Finite Relational Substrate* (`../main.tex`). The scripts are standalone, deterministic, take no input, and print a human-readable verdict with a pass count; each is cited inline at the claim it backs in the paper's reproducibility paragraph (§Predictions and reproducibility).
+Every family names the row(s) of the paper's predicate ledger it witnesses (the paper's Appendix "Predicate ledger",
+49 rows in blocks A, B, C, X, P, V, Z, cited as `28:XN`; public copy `docs/28-flavour/28-flavour-ledger.html`); the
+ledger's source column cites the family ids in return. Master-ledger rows of the corpus reached through the paper rows:
+`00:K2`, `00:K3`, `00:K4`, `00:J2`, `00:J4`, `00:D2`, `00:D8`, `00:Z6`, `00:Z8`, `00:C7`, `00:B5`.
 
-## Framed-rational discipline
+Three kinds — the suite's own classes (EXACT 2, MIXED 7, APPROX 7), recorded per family in `results.json`: **EXACT** —
+integer, F_p, F_{p²} or cyclotomic arithmetic throughout, no float in any asserted claim; **MIXED** — the script carries
+its own exact check for at least one claim, the continuum confined to labelled [approx] comparisons; **APPROX** —
+continuum/numerical by construction: a numerical reconfirmation of an identity proven exactly in `exact_core`, a
+comparison with measured data, or an Ω-hard reading.
 
-Every script is classed by how its asserted checks are computed:
+[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/gamayos/finite-ring-space/blob/main/src/28-flavour/28-flavour-main.ipynb)
 
-- **EXACT** — every asserted check is performed in integer, modular `𝔽_p`, `𝔽_{p²}`, or cyclotomic (`ℚ(ω,√2)`, `ℤ[ℤ/3×ℤ/p]`) arithmetic. No floating point enters an asserted claim, and nothing exceeds the totality `Ω`. These carry the load-bearing exact identities of the mass sector.
-- **MIXED** — the script carries its own exact framed-rational check (integer, modular `𝔽_p`, or symbolic `sympy` identity) for at least one asserted claim, with continuum constructs (`exp`, `log`, trig, `√` as a real number, measured PDG masses, random-coefficient draws) confined to clearly-labelled `[approx]` comparisons. The exact claim never depends on the float part.
-- **[APPROX]** — by construction continuum/numerical, carrying no exact framed-rational claim of its own: a numerical reconfirmation (floating linear algebra or a fit) of an identity proven exactly in `exact_core.py`, a comparison to measured data, or a dimensional / `Ω`-hard reading (transmutation estimate, coupling anchor, fine-structure). The exact result such a script touches is established float-free elsewhere, so no exact claim depends on it.
+## In-tree
 
-This is the corpus rule: an exact claim lives in finite, finite-field, or cyclotomic arithmetic; the continuum enters only as an explicitly labelled profinite / degenerate-idealisation approximation, and no realized magnitude exceeds `Ω`.
+| family | script | kind | claims backed (ledger rows) |
+|---|---|---|---|
+| `flv.exact_core` | `exact_core.py` | EXACT | the float-free core, 25 verifications: the circulant Koide identities in Q(ω, √2), the π/12 boundary, the cubic Gauss sums as integer group-ring identities, the magic matrix's maximal Jarlskog, Koide over framed rationals and N(1 − ζ_n) = 2, 3 in F_p (28:C1, C2, C3, C4, C10, Z1) |
+| `flv.framed_koide` | `framed_koide.py` | EXACT | Q = 2/3 natively over framed rationals in F_{p²}/F_p on p = 17, 53, 89; the √2 amplitude the rational N(b)/a² = 1/2 (28:C2, X1) |
+| `flv.tier_b` | `tier_b.py` | MIXED | the Tier-A/B figures: Q_ℓ against 2/3, the symbolic Koide identities, ρ = 1/√2, the λ-texture and Gatto, the Georgi–Jarlskog double ratio, the lopsided split with its seesaw control (28:C2, C6, C8, X3, X5, P1) |
+| `flv.m10` | `m10.py` | MIXED | the winding kernel: the circulant √M and its eigenvalues, Q = 1/3 + r²/6, δ_LO = π/12 with the electron massless, the per-sector extraction (28:C1, C2, C3, X7) |
+| `flv.delta` | `delta.py` | MIXED | the phase lock 1 : 1/2 : 1/3 and its robustness, the Gauss-sum reality and π/3 quantisation on small shells (28:C3, C5, Z1, Z2) |
+| `flv.revision_checks` | `revision_checks.py` | MIXED | J = 1/(6√3), δ_LO = 1/24 cycle, the signed Koide, the cube invariant; 3δ₀ = Q, the branch preference, the Q_u schemes (28:C3, C10, C11b, P2, Z1) |
+| `flv.quark_amp` | `quark_amp.py` | MIXED | the colour dressing of the quark amplitudes: Q_d from GJ, r_u ≈ √3, N(1 − ζ_n) = 2, 3 in F_p, the Q_u scheme band (28:B4, C4, X2, P2) |
+| `flv.up_doubling` | `up_doubling.py` | MIXED | the up-sector doubling (8, 4) = 2 × (4, 2) from 10·10 against 10·5̄ (28:B3, C7, X6) |
+| `flv.spurion` | `spurion.py` | APPROX | the Cabibbo spurion: Gatto, λ from the down circulant, λ ≈ δ₀ ≈ 2/9 (28:C6, X4, Z1) |
+| `flv.theta13` | `theta13.py` | APPROX | θ₁₃ = θ_C/√2 as a leading-order estimate (7 %), quark–lepton complementarity, the fold onto δ₀/√2 (28:C9, X9) |
+| `flv.neutrino` | `neutrino.py` | MIXED | the seesaw of circulants; Q_ν = 2/3 on both orderings, the boundary branch, Σm_ν = 59.1 meV, the 58.8 meV floor (28:C11, C11b, P5, P6, X11) |
+| `flv.pmns_cp` | `pmns_cp.py` | APPROX | the magic matrix and maximal Jarlskog; θ₂₃ = 45° ⇔ \|δ_CP\| = 90° over TM2; δ_CP at the observed angles (28:C10, P8, X10) |
+| `flv.tm2_jointfit` | `tm2_jointfit.py` | APPROX | the TM2 status: the protected column, the solar accommodation, θ₁₃ ≈ 9.15°, the joint-fit parameter count, the cos δ_CP–θ₂₃ relation and its band (28:C9, C10, P8) |
+| `flv.scale_a` | `scale_a.py` | APPROX | the overall scale as transmutation: y_t ≈ 1, the quartic's descent, v/M_P = e^(−38.4), a² ≈ y_τ v (28:Z3) |
+| `flv.coupling_anchor` | `coupling_anchor.py` | APPROX | the bare 1/4π against the unified continuum coupling: the matching offset, the near-miss (28:Z4) |
+| `flv.alpha_probe` | `alpha_probe.py` | APPROX | the α ledger: the 4π anchor, the electroweak decomposition, 3/8 at unification, the one-loop fermion sum (≈ 100, not 137), the 10³⁶ hierarchy (28:A2, Z4) |
+| — | `flvcommon.py` | — | the registry: the script runner, `PRED` (the predicates per family), `LEDGER` (family → rows), `LABELS`, `KIND`, `results.json` |
 
-**Status.** All 16 scripts run and pass. The two **EXACT** scripts establish every load-bearing identity of the mass sector directly in framed-rational arithmetic, with the continuum reading held as a labelled `[approx]`:
+Run: `python3 run_all.py`. Any script also runs alone as before (`python3 exact_core.py`), printing its own report.
+Rebuild the notebook: `python3 make_notebook.py`.
 
-- `exact_core.py` — the float-free core (25/25): the Koide identity natively over framed rationals in `𝔽_{p²}/𝔽_p` (the quarter-turn the rational `N(b)/a² = 1/2`, `Q = 2/3` exact on three shells); the amplitude diagonal `r² = N(1−ζ_n) = 2, 3` as integers in `𝔽_p`; the `π/12` boundary as an exact rational multiple of `π`; the Gauss-sum reality and `π/3`-quantisation as integer identities in the group ring `ℤ[ℤ/3×ℤ/p]`; the trimaximal magic matrix with maximal Jarlskog `J = Im ω/9 = √3/18 = 1/(6√3)` in `ℚ(ω)` (so `J² = 1/108`).
-- `framed_koide.py` — the Koide and circulant facts natively over framed rationals: the "`√2` amplitude" is the framed rational `N(b)/a² = 1/2` and `ω` is the finite cube root, not a continuum complex number.
+## Provenance
 
-The seven **MIXED** scripts each carry an own exact check (symbolic `sympy` identities in `m10`, `tier_b`, `neutrino`, `revision_checks`; finite-field `𝔽_p` arithmetic in `delta`; cyclotomic norms in `quark_amp`; integer pattern in `up_doubling`), with the continuum confined to labelled comparisons. The seven **[APPROX]** scripts carry no exact arithmetic of their own: they numerically reconfirm `exact_core` identities (`pmns_cp`, `tm2_jointfit`) or compare to measured data / read an `Ω`-hard scale (`theta13`, `spurion`, `scale_a`, `coupling_anchor`, `alpha_probe`).
+The scripts are the paper's `validation/` suite (June–August 2026), unchanged. The public copy had carried the July
+versions of `alpha_probe.py`, `delta.py`, `neutrino.py`, `quark_amp.py`, `tm2_jointfit.py` (before the T23 scheme-band
+and both-orderings revisions); its README is in `_to_delete/28-flavour-superseded/` with the five old scripts.
+Registry-side findings recorded here, not repaired: five of the scripts' own checks are vacuous (`check(…, True)`:
+`delta` 1.reduce and 4.count, `neutrino` 1.koide_form and 3.robust, `alpha_probe` C.nearmiss — statements, not
+decisions; the registry's predicates decide their content where a number is stated); `tm2_jointfit`'s joint fit draws
+unseeded random starts (its χ² ≈ 0 verdict is insensitive to them); `tier_b`'s Georgi–Jarlskog check passes within
+20 % (the paper carries the 15 % excess as open, and the registry pins it to 10–20 %). One paper numeral corrected
+against its cited script: row AL5 of the paper's Appendix B said the one-loop fermion sum from 4π "gives ≈ 90"; the
+script adds ≈ 87 to 4π, giving ≈ 100 (the registry pins both).
 
-Class counts: **EXACT 2, MIXED 7, [APPROX] 7.**
+## Predicate ledger
 
-## Requirements
-
-- Python 3.10+
-- `numpy`, `sympy`; `scipy` only for `tm2_jointfit.py` (the joint mixing fit)
-- no other dependencies; no network, no data files
-
-```bash
-pip install numpy sympy scipy
-```
-
-## Running
-
-```bash
-python3 exact_core.py                                  # one script
-for f in *.py; do echo "=== $f ==="; python3 "$f"; done  # whole suite
-```
-
-All scripts exit 0 and complete in seconds.
-
-## Script → claim map
-
-"Paper result" refers to the labelled results in `../main.tex`. "Class" is the framed-rational class above.
-
-| script | class | pass | paper result | what it verifies | deps |
-|---|---|---|---|---|---|
-| `exact_core.py` | EXACT | 25/25 | §Finitism; Koide, amplitudes, boundary, Gauss sums | the float-free core: Koide over `𝔽_{p²}/𝔽_p`, `r²=N(1−ζ_n)=2,3` as integers, `π/12` rational-`π` boundary, Gauss-sum reality and `π/3`-quantisation as integer group-ring identities, maximal Jarlskog in `ℚ(ω)` | sympy |
-| `framed_koide.py` | EXACT | float-free | Koide form (Prop circulant) | the `√2` amplitude as the framed rational `N(b)/a²=1/2`; `ω` the finite cube root | — |
-| `tier_b.py` | MIXED | 17/17 | Tier-A/B figures (Table status) | Koide identities and figures, the `λ`-power and Gatto checks, the Georgi–Jarlskog double ratio, the lopsided/seesaw mixing comparison | numpy, sympy |
-| `m10.py` | MIXED | 12/12 | winding kernel (Props circulant, pi12) | the circulant construction and eigenvalue identity, symbolic `Q=⅓+r²/6` and `r=√2`, the `π/12` boundary and LO spectrum, the per-sector extraction | numpy |
-| `delta.py` | MIXED | 10/10 | cross-sector lock (§winding) | the phase lock `δ_ℓ:δ_d:δ_u=1:½:⅓` and its robustness, the reality of the symmetric cubic overlap and its drive-breaking, the `π/3`-quantisation of small-shell phases | numpy |
-| `neutrino.py` | MIXED | 7/7 | seesaw, `Q_ν=2/3`, `Σm_ν` (§neutrino) | the seesaw-of-circulants identity float-free; `Q_ν=2/3` the signed (Takagi) amplitude invariant, with the normal-ordering branch from the drive-invariant quarter-turn boundary (labelled `[approx]`) | sympy |
-| `pmns_cp.py` | [APPROX] | 6/6 | leptonic CP (§cp) | numerical (numpy) reconfirmation of the trimaximal magic matrix and maximal Jarlskog (proven exactly in `exact_core`); the TM2 `δ_CP` at the observed angles | numpy |
-| `tm2_jointfit.py` | [APPROX] | 9/9 | TM2 realisation (§cp) | numerical: the trivial-singlet protection and character decomposition (numpy), the dissolved solar tension, and the joint fit at `χ²≈0` with the CP in `δ_ν`; the exact trimaximal / Jarlskog identities live in `exact_core` | numpy, scipy |
-| `quark_amp.py` | MIXED | 6/6 | quark amplitudes (Rem. 23-tori) | the Georgi–Jarlskog down dressing `Q→0.745`, the up `r_u≈√3`, the `n`-fold cyclotomic-norm diagonal; exact `r_u²=3`, the continuum `Q_u` scheme spread `0.83–0.89` bracketing `5/6` (on-shell `0.832`) labelled `[approx]` | numpy |
-| `revision_checks.py` | MIXED | 9/9 | neutrino / quark / CP / phase-residue revisions | EXACT: Jarlskog `J=Im ω/9=1/(6√3)`, `δ_LO=3/8−1/3=1/24`, signed-amplitude Koide `=2/3`, the cube-invariant determinant identity (`Re b³`); `[approx]`: `3δ₀=Q` (`δ₀=Q/3`), the positive-root neutrino values and the `66×` normal-branch preference, the `Q_u` scheme spread | numpy, sympy |
-| `up_doubling.py` | MIXED | 11/11 | up-sector doubling (Prop doubling) | the `(4,2)/(4,2)/(8,4)` pattern with up `=2×` down, the `10·10` derivation (structural integer; PDG data labelled `[approx]`) | — |
-| `spurion.py` | [APPROX] | 4/4 | Cabibbo spurion (Prop gatto) | data comparison (float): the Gatto relation `V_us=√(m_d/m_s)`, `λ` from the down circulant, `λ≈δ_0≈2/9` | numpy |
-| `theta13.py` | [APPROX] | 4/4 | reactor angle (§cp) | data comparison (float): `θ_13≈θ_C/√2`, the quark–lepton complementarity sum rule `θ_12+θ_C≈45°`, the fold onto `δ_0/√2` | numpy |
-| `scale_a.py` | [APPROX] | — | overall scale (§stability) | the forced `y_t≈1`, the descent of `λ` to the scale-invariant point, the transmutation exponent `v/M_P=e^{−38}` (dimensional estimate; the exact coefficient is `Ω`-hard) | numpy |
-| `coupling_anchor.py` | [APPROX] | — | coupling anchor (§stability) | the gauge couplings descending from the bare `1/4π` at the substrate; the lattice→continuum matching | numpy |
-| `alpha_probe.py` | [APPROX] | 6/6 | `α` ledger (App. AL) | the fine-structure faces table; `ln(M_P/H_0)=140.3=½lnΩ` (cutoff = coherence horizon); the bare `4π` framed-exact, the digit `Ω`-hard | numpy |
-
-## Companion analyses (in `../reports/`)
-
-- `../reports/delta-kernel/` — the phase-residue closure: `δ_LO = 3/8 − 1/3 = 1/24` framed-rational, the cube-invariant `Re(b³)`, and the result that neither a geometric (quarter-turn) nor a profinite derivation fixes `δ₀` (the drive-orientation Gauss sum equidistributes), so `δ₀` is `Ω`-hard with sub-horizon reading `Q/3 = 2/9`. Scripts `delta_push`, `last_step`, `route1`, `route2` (`*_20260628.py`).
-- `../reports/review-response/` — the referee triage notes and their reproduction scripts (`review_check`, `round2_check`, `round3_check`), separating framed objects from labelled continuum comparisons. The asserted versions of these checks are folded into `revision_checks.py` here.
-
-## Finitism audit
-
-`../reports/finitism-audit/` is the standing cross-check that every load-bearing **EXACT** claim rests on integer / finite-field / cyclotomic arithmetic with no float or continuum step, and that the **MIXED** / **[APPROX]** continuum operations are labelled comparisons on which no exact claim depends.
-
-A continuum-free re-audit of the whole suite confirms:
-
-- **Float-free proof layer.** `framed_koide.py` is token-free; `exact_core.py`'s only floating-point token is the `int(n**0.5)` trial-division bound inside `isprime`, which sets a loop ceiling and stands behind no asserted claim (replaceable by `math.isqrt` for literal purity). Together they carry every load-bearing exact identity of the mass sector.
-- **No exact claim depends on a float.** Each **MIXED** script proves at least one asserted claim in its own exact arithmetic (`sympy` symbolic identities, `𝔽_p` finite-field Gauss sums, cyclotomic norms, or integer pattern equalities), with floats confined to labelled `[approx]` comparisons. The **[APPROX]** scripts carry no exact arithmetic of their own; they numerically reconfirm identities already proven float-free in `exact_core`, or compare to measured data, or read an `Ω`-hard scale.
-- **No super-`Ω` magnitude.** No script raises any quantity to an `Ω`-, `p`-, or `P`-scaled power; no realized magnitude exceeds the totality `Ω`.
-
-This README is kept in sync with the audit and with the in-paper reproducibility map.
+Rows A1–A6 imports; B1–B5 realisations; C1–C12 (with C11b) derived (C2, C4, C11, C11b composite T|R); X1–X11 the
+explanation register; P1–P8 (no P4) the predictions, formerly D1–D8; V1–V3 the verification; Z1–Z4 the Ω-hard
+residues, formerly D10–D13. Family → rows: `flvcommon.LEDGER`.

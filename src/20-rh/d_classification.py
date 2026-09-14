@@ -38,7 +38,7 @@ Paper-local predicates:
   D2f Prop. combformula, Obs. dh  [approx]  the pole-corrected ζ count N̂_N at t = 1 reads 0.0051, 0.0032, 0.0022, 0.0016, 0.0015,
                          0.0013, 0.0012 at the same depths (exact 0), falling monotonically; at t = 5 and 10 within 4×10⁻⁴ from
                          10⁶ on, falling in magnitude; at 15, 30, 50.3 the correction is below 10⁻³ and raw and corrected agree
-  D2g Prop. combformula, Obs. dh  [approx]  the DH drift is the cut term of the off-line zero ρ₀: the count corrected by it reads
+  D2g Rem. combsettle, Obs. dh    [approx]  the DH drift is the zero term of the off-line zero ρ₀: the count corrected by it and its constant reads
                          44.960, 44.964, 44.967, 44.970, 44.972 at t = 85.9 (raw 45.14 … 45.73; exact 45) and 43.035 → 43.022
                          at 85.3 (raw 42.66 … 42.73; exact 43), both monotone toward the exact count
   D3  Prop. combformula  [approx]  the identity's validation arm: the corrected tapered sum Σ_w − Π_N − log((s−1)/s) against
@@ -173,15 +173,21 @@ def corrected_at_depths(n_all, lam_all, t, depths):
     return raw - np.array([pole_count_term(N, t) for N in depths])
 
 def zero_cut_term(N, t, rho0):
-    """The cut term of an off-line zero ρ₀ (β > ½) of a Dirichlet series in its tapered log-series at s = ½ + it:
-    Π^{(ρ₀)}_N(s) = ∫_0^L W(u/L) (e^{(ρ₀−s)u} − e^{(ρ₀−1−s)u}) du/u; the smoothed sum carries −Π^{(ρ₀)}_N and, as N → ∞,
-    Σ_w + Π^{(ρ₀)}_N → log f(s) + log((s−ρ₀+1)/(s−ρ₀)) (Prop. combformula, the zero case)."""
+    """The zero term of one fixed zero ρ₀ = β₀ + iγ₀ to the right of the line (½ < β₀ < 3/2) at s = ½ + it
+    (Remark combsettle): Π^{(ρ₀)}_N(s) = ∫_0^L W(u/L) (e^{(ρ₀−s)u} − e^{(ρ₀−1−s)u}) du/u, L = log N. The image of the
+    regulariser h_{ρ₀}(w) = log((w−ρ₀)/(w−ρ₀+1)) under the window inversion of Prop. combformula (i) is −Π^{(ρ₀)}_N,
+    the term the zero contributes to the smoothed sum. The routine evaluates this one integral at depth N and
+    asserts nothing about a limit N → ∞: the paper does not extend the identity of Prop. combformula to a series
+    with infinitely many zeros to the right of the line. The Davenport–Heilbronn correction
+    N̂_{f,N} = Ñ_{f,N} + Im[Π^{(ρ₀)}_N(s) + h_{ρ₀}(s)]/π (dh_corrected_at_depths, D2g) is validated over the depths
+    listed there."""
     L = math.log(N); a = rho0 - mp.mpc(0.5, t); b = a - 1
     f = lambda u: 0.5 * (1 + mp.cos(mp.pi * u / L)) * (mp.exp(a * u) - mp.exp(b * u)) / u
     return mp.quad(f, mp.linspace(0, L, 40))
 
 def dh_corrected_at_depths(n_all, lam_all, t, depths):
-    """The DH comb count corrected by the cut term of ρ₀ (D2g)."""
+    """The DH comb count corrected by the zero term of ρ₀ and its constant (D2g; Remark combsettle):
+    N̂_{f,N} = Ñ_{f,N} + Im[Π^{(ρ₀)}_N(s) + h_{ρ₀}(s)]/π, with h_{ρ₀}(s) = −H0 below."""
     s = mp.mpc(0.5, t); H0 = mp.log((s - RHO_OFF + 1) / (s - RHO_OFF))
     raw = count_at_depths(n_all, lam_all, t, depths, theta_f, 0.0)
     return raw + np.array([float(mp.im(zero_cut_term(N, t, RHO_OFF) - H0)) / math.pi for N in depths])
@@ -299,12 +305,12 @@ def run():
           and np.all(np.diff(np.abs(c5)) < 0) and np.all(np.diff(np.abs(c10)) < 0))
     check("D2f", "pole-corrected ζ count at t = 1: 0.0051, 0.0032, 0.0022, 0.0016, 0.0015, 0.0013, 0.0012 (exact 0), monotone; t = 5, 10 within 4e-4 from 10⁶ on, falling", ok,
           "t=1: " + ", ".join(f"{v:+.4f}" for v in c1) + "; t=5: " + ", ".join(f"{v:+.5f}" for v in c5) + "; t=10: " + ", ".join(f"{v:+.5f}" for v in c10), kind="[approx]")
-    # ---------------- D2g: the DH drift is the off-line zero's cut term
+    # ---------------- D2g: the DH drift is the zero term of the off-line zero (Remark combsettle)
     with Timer("DH corrected counts"):
         d859 = dh_corrected_at_depths(nf, lf, 85.9, DEPTHS_DH); d853 = dh_corrected_at_depths(nf, lf, 85.3, DEPTHS_DH)
     ok = (np.allclose(d859, [44.960, 44.964, 44.967, 44.970, 44.972], atol=0.002) and np.all(np.diff(d859) > 0)
           and np.allclose(d853, [43.035, 43.031, 43.028, 43.025, 43.022], atol=0.002) and np.all(np.diff(d853) < 0))
-    check("D2g", "DH count corrected by the cut term of ρ₀: 44.960 → 44.972 at 85.9 (raw 45.14 → 45.73; exact 45), 43.035 → 43.022 at 85.3 (exact 43), monotone toward the exact count", ok,
+    check("D2g", "DH count corrected by the zero term of ρ₀ and its constant: 44.960 → 44.972 at 85.9 (raw 45.14 → 45.73; exact 45), 43.035 → 43.022 at 85.3 (exact 43), monotone toward the exact count", ok,
           "t=85.9: " + ", ".join(f"{v:.4f}" for v in d859) + "; t=85.3: " + ", ".join(f"{v:.4f}" for v in d853), kind="[approx]")
     # ---------------- D3: the identity against log ζ (validation arm: mpmath)
     logn_all = np.log(n_all); re_err = {}

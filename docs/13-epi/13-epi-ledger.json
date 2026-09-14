@@ -2,7 +2,7 @@
  "paper": "13-epi",
  "title": "Finite Field Realisation of π and e",
  "doi": "https://doi.org/10.20944/preprints202607.1141.v1",
- "generated": "13 September 2026",
+ "generated": "14 September 2026",
  "blocks": [
   {
    "letter": "A",
@@ -13,49 +13,49 @@
      "predicate": "The framed shell $\\Fp(\\tau;0,1,\\gen)$ of capacity $\\kap$, $\\p=4\\kap+1$, with its phase cycle $\\PhiP\\cong C_{\\p-1}$, the oriented quarter-turn $\\im=\\gen^{-\\kap}$ and the conjugate chirality; the framed rationals $\\fQ$ with the shell reading $\\rep{\\cdot}$; the finitist position that the discrete register is primary.",
      "tag": "I",
      "source": "\\cite{akhtman2025algebra,akhtman2026geometry,akhtman2026infinity,zeilberger2004real}",
-     "key": "p0001"
+     "key": "p13001"
     },
     {
      "label": "A2",
      "predicate": "Transcendence and irrationality of the classical values: Hermite for $\\eR$, Lindemann for $\\piR$, Niven's irrationality proof --- statements about the continuum register, used here only in Lemma~\\ref{lem:norad}.",
      "tag": "I",
      "source": "\\cite{hermite1873exponentielle,lindemann1882zahl,niven1947simple}",
-     "key": "p0002"
+     "key": "p13002"
     },
     {
      "label": "A3",
      "predicate": "The classical prime congruences: Wilson, Fermat, Kummer's carry criterion, Lucas, Wolstenholme, Morley, Lerch, and Gauss's central-binomial congruence $\\Cb{\\kap}\\equiv2a\\pmod\\p$ with its normalisation.",
      "tag": "I",
      "source": "\\cite{kummer1852reciprocity,lucas1878theorie,wolstenholme1862properties,morley1895note,lerch1905fermat,gauss1828theoria,berndt1998gauss}",
-     "key": "p0003"
+     "key": "p13003"
     },
     {
      "label": "A4",
      "predicate": "Kurepa's left factorial $\\Ku{\\p}=\\sum_{k<\\p}k!$ and his hypothesis $\\p\\nmid\\Ku{\\p}$, open since 1971, computationally confirmed for $\\p<2^{40}$; the Mijajlovi\\'c--\\v Sami congruence $\\Ku{n}\\equiv(-1)^{n-1}\\dr{(n-1)}\\pmod n$.",
      "tag": "I",
      "source": "\\cite{kurepa1971left,guy2004unsolved,andrejic2016searching,andrejic2021improved,petojevic2023new}",
-     "key": "p0004"
+     "key": "p13004"
     },
     {
      "label": "A5",
      "predicate": "Sun's supercongruences for the arcsin chain: $\\sigma_\\p\\equiv0\\pmod{\\p^{2}}$ (his (1.4)), the blind-range Euler congruence (his (1.5)) of the van Hamme--Sun family, his Conjecture 5.1; the Wolstenholme refinement $H_{\\p-1}\\equiv-\\p^{2}B_{\\p-3}/3\\pmod{\\p^{3}}$.",
      "tag": "I",
      "source": "\\cite{sun2011central,vanhamme1997conjectures,glaisher1900residues,sun2000bernoulli}",
-     "key": "p0005"
+     "key": "p13005"
     },
     {
      "label": "A6",
      "predicate": "The external comparison objects: Wallis' product and the squeeze that identifies the limit of the Wallis pair, the Gregory series, the Gaussian-integer factorisation behind the Machin identity, Stirling's growth estimate, the Wieferich condition; the IEEE-754 readout $\\ro$ (correct rounding to $k$ bits) as the bounded register's retention.",
      "tag": "I",
      "source": "\\cite{wallis1656arithmetica,wieferich1909fermat}; \\S\\ref{sec:setting}, ``The readout map''",
-     "key": "p0006"
+     "key": "p13006"
     },
     {
      "label": "A7",
      "predicate": "Equidistribution of $\\lambda(\\im)/\\p$ over the primes $\\p\\equiv1\\pmod4$ (Duke--Friedlander--Iwaniec), the sole import behind the cross-shell existence of calibrated shells and the generic-growth reading of the heights.",
      "tag": "I",
      "source": "\\cite{duke1995equidistribution}",
-     "key": "p0007"
+     "key": "p13007"
     }
    ]
   },
@@ -68,28 +68,28 @@
      "predicate": "The typed constants: the exact half-period $\\piP=2\\kap$ with $\\gen^{\\piP}=-1$, its affine representative $\\piA=(2\\kap)\\cdot1\\in\\Fp$, and the classical value $\\piR$ \\chart; the oriented quarter-turn $\\im=\\gen^{-\\kap}$, the exponential unit $\\eP=\\gen^{\\lambda(\\im)}$ with $\\lambda$ the label lift (frame data), and $\\eR$ \\chart. On $\\p=13$, $\\gen=2$: $\\piA=6$, $\\im=5$, $\\eP=6$.",
      "tag": "D",
      "source": "\\S\\ref{sec:setting}, ``The typed constants''; Fig.~\\ref{fig:framed-shell}",
-     "key": "p0008"
+     "key": "p13008"
     },
     {
      "label": "B2",
      "predicate": "Orientation transport: under $\\gen'=\\gen^{u}$, $\\gcd(u,\\p-1)=1$, the re-derived quarter-turn is $\\im'=\\im$ exactly when $u\\equiv1\\pmod4$ and $\\im'=-\\im$ (the conjugate chart) when $u\\equiv3\\pmod4$; there is no third case, and every chirality-sensitive statement holds for the other chirality under $\\im\\mapsto-\\im$.",
      "tag": "T",
      "source": "Rem.~\\ref{rem:orient}; \\src{tow.O}",
-     "key": "p0009"
+     "key": "p13009"
     },
     {
      "label": "B3",
      "predicate": "The coincidence that forces the typing: at $\\p=13$ the field element $6$ is at once $\\eP$, $\\piA$ and the reading of $-1/2$, while $\\eR\\ne\\piR$; no map from a bare residue to a real number exists, and the external comparison takes the structural role as part of its input --- roles, not residues, carry external meaning. Witnessed by the two towers reading the same element $6$ as $\\eP$ and as $\\piA$.",
      "tag": "T",
      "source": "\\S\\ref{sec:setting}, ``The coincidence''; \\src{tow.E}, \\src{tow.P}",
-     "key": "p0010"
+     "key": "p13010"
     },
     {
      "label": "B4",
      "predicate": "Chains and their two lives: a chain is a sequence in $\\fQ$ given by explicit integer formulas, with an external metric life read against $\\R$ \\chart{} and an internal residue life read through $\\rep{\\cdot}$; no third life --- the shell carries no completion of $\\fQ$, and the continuum enters only as the chart. This is the statement of record superseding the framed-real construction of \\cite{akhtman2025algebra}, \\S4.4.",
      "tag": "D",
      "source": "\\S\\ref{sec:setting}, ``Framed rationals and the shell reading''; Fig.~\\ref{fig:framed-rationals}",
-     "key": "p0011"
+     "key": "p13011"
     }
    ]
   },
@@ -102,35 +102,35 @@
      "predicate": "The registration quotient: at grade $n$ the observer forgets phase labels and cycle type, tallies all reversible relabellings of $n$ marks with unit weight, and retains only the coincidence predicate. The first of the paper's two \\tD{} moves; not implied by cyclicity (the cyclic shifts alone give $n-1$ fixed-point-free relabellings).",
      "tag": "D",
      "source": "Principle~\\ref{prin:registration}",
-     "key": "p0012"
+     "key": "p13012"
     },
     {
      "label": "C2",
      "predicate": "The derangement selector: the registration statistics are generated by the rencontres polynomial $P_n(X)=n!\\sum_{k\\le n}(X-1)^{k}/k!$ (an exact double-counting identity), the normalised kernel $Z_n$ has $Z_n(1)=1$, $Z_n(0)=\\dr{n}/n!$, and the unit registration ratio $R_n=n!/\\dr{n}$ is forced; relative to the declared completion of $Z_n$ to $e^{X-1}$ the external value of the chain is uniquely $\\eR$.",
      "tag": "T",
      "source": "Prop.~\\ref{prop:selector-e}",
-     "key": "p0013"
+     "key": "p13013"
     },
     {
      "label": "C3",
      "predicate": "The Cayley quarter-turn map $C(x)=(1+\\im x)/(1-\\im x)$ on $\\Fp$ (denominators units): $C(0)=1$, $C(1)=\\im$, and $C(x)C(y)=C\\bigl((x+y)/(1-xy)\\bigr)$, the rational composition law being the half-angle form of phase composition; shell arithmetic only.",
      "tag": "T",
      "source": "Def.~\\ref{def:cayley}; \\src{tow.C}",
-     "key": "p0014"
+     "key": "p13014"
     },
     {
      "label": "C4",
      "predicate": "The Cayley--Gregory normalisation: the external comparison of $\\oplus$ is the additive chart $A$ with $A'(0)=1$, and $\\piR:=4A(1)$; given the normalisation the chart is unique \\chart, $A(X)=\\sum(-1)^{k}X^{2k+1}/(2k+1)$, and the normalisation is underivable (no nontrivial homomorphism of a finite cyclic group into $(\\R,+)$; $cA$ satisfies the same law). The second and last \\tD{} move.",
      "tag": "D",
      "source": "Principle~\\ref{prin:gregory}",
-     "key": "p0015"
+     "key": "p13015"
     },
     {
      "label": "C5",
      "predicate": "The joint-return tally: with $C_n=\\Cb{n}$ the returning $\\pm1$ histories of length $2n$ in one direction, the paired histories in the directions $1$ and $\\im$ number $16^{n}$ and the joint returns $C_n^{2}$, and $\\piR=\\lim16^{n}/(nC_n^{2})$ by the Wallis bounds (E2).",
      "tag": "T",
      "source": "Prop.~\\ref{prop:selector-pi}; \\src{pi.R1}",
-     "key": "p0016"
+     "key": "p13016"
     }
    ]
   },
@@ -143,35 +143,35 @@
      "predicate": "The derangement chain $\\varepsilon_n=n!/\\dr{n}\\in\\fQ$, $n\\ge2$, with $\\dr{n}$ the subfactorial; the reciprocal chain has denominator $n!$, the product-of-units form of $\\fQ$ whenever $n<\\p$, so the chain is native to the framed rationals with no completion presupposed.",
      "tag": "D",
      "source": "Def.~\\ref{def:chain-e}",
-     "key": "p0017"
+     "key": "p13017"
     },
     {
      "label": "D2",
      "predicate": "The tail form: $\\dr{n}=n!/\\eR+(-1)^{n}\\delta_n$ with $\\delta_n\\in(1/(n+2),1/(n+1))$, so $\\dr{n}$ is the nearest integer to $n!/\\eR$.",
      "tag": "T",
      "source": "Lem.~\\ref{lem:tail}",
-     "key": "p0018"
+     "key": "p13018"
     },
     {
      "label": "D3",
      "predicate": "Superexponential enclosure: $|\\varepsilon_n-\\eR|\\le\\eR(\\eR+1)/(n+1)!<10.2/(n+1)!$ with $\\operatorname{sign}(\\varepsilon_n-\\eR)=(-1)^{n+1}$, hence $\\varepsilon_{2m}<\\eR<\\varepsilon_{2m+1}$, a nested sequence of $\\fQ$-native intervals; the sharper constant $8$ for $2\\le n\\le60$.",
      "tag": "T",
      "source": "Thm.~\\ref{thm:enclosure-e}; \\src{e.R1}",
-     "key": "p0019"
+     "key": "p13019"
     },
     {
      "label": "D4",
      "predicate": "Horizon determination of the readout: $\\ro(\\varepsilon_n)=\\ro(\\eR)$ for $n\\ge n_0(k)=\\Theta(k/\\log k)$; the binary64 constant for $e$ is the readout of $\\varepsilon_{18}=18!/\\dr{18}=6402373705728000/2355301661033953$ and $n=18$ is minimal ($\\varepsilon_{17}$ fails readout equality, $|\\varepsilon_{17}-\\eR|=1.10\\times10^{-15}$ above the half-ulp); the first $100$ significant digits of $\\eR$ are those of $\\varepsilon_{70}$; every floating-point value of $e$ is a plateau readout.",
      "tag": "T",
      "source": "Thm.~\\ref{thm:readout-e}; \\src{e.R2}, \\src{e.R3}",
-     "key": "p0020"
+     "key": "p13020"
     },
     {
      "label": "D5",
      "predicate": "Feasibility selection: the compound chain $(1+1/n)^{n}$ costs $n\\asymp2^{k}$ steps for $k$ bits against $n_0(k)=\\Theta(k/\\log k)$ for the derangement chain ($n=11,18,70$ at $k=24,53,333$); within a horizon $H$ the compound chain realises $O(\\log H)$ bits and the factorial chain $\\Theta(H\\log H)$; under the feasibility principle the derangement representation is the canonical finite definition of $e$.",
      "tag": "T",
      "source": "Prop.~\\ref{prop:feasibility-e}; \\src{e.R4}",
-     "key": "p0021"
+     "key": "p13021"
     }
    ]
   },
@@ -184,35 +184,35 @@
      "predicate": "The Wallis pair $v_n=2\\cdot16^{n}/((2n+1)\\Cb{n}^{2})$, $w_n=16^{n}/(n\\Cb{n}^{2})$ in $\\fQ$: ratios of counting statistics ($\\Cb{n}$ the balanced binary words of length $2n$, $16^{n}$ the unrestricted four-letter words), $v_n$ the doubled Wallis partial product, $w_n$ the joint-return tally of C5.",
      "tag": "D",
      "source": "Def.~\\ref{def:wallis}",
-     "key": "p0022"
+     "key": "p13022"
     },
     {
      "label": "E2",
      "predicate": "Two-sided monotone enclosure: $v_n$ strictly increasing, $w_n$ strictly decreasing, $v_n<\\piR<w_n$, and the exact width identity $w_n-v_n=w_n/(2n+1)$, certifying $\\approx\\log_2n$ bits by nested $\\fQ$-intervals; the identification of the common limit with $\\piR$ is the Wallis import (A6); verified for $n\\le300$ against Machin brackets of width below $10^{-420}$.",
      "tag": "T",
      "source": "Thm.~\\ref{thm:enclosure}; \\src{pi.R1}",
-     "key": "p0023"
+     "key": "p13023"
     },
     {
      "label": "E3",
      "predicate": "The arcsin chain $s_n=3\\sum_{k\\le n}\\Cb{k}/((2k+1)16^{k})\\in\\fQ$ with external completion $\\piR=6\\arcsin\\frac12$ \\chart{} and tail bound $|\\piR-s_n|<4^{-n}/(2n+3)$ for $n\\ge1$: geometric rate from the same combinatorial atoms as the Wallis pair.",
      "tag": "T",
      "source": "Def.~\\ref{def:arcsin}; \\src{pi.R4}",
-     "key": "p0024"
+     "key": "p13024"
     },
     {
      "label": "E4",
      "predicate": "Horizon determination for $\\pi$: the Machin chain $M_N\\in\\fQ$ has $|M_N-\\piR|<17/((2N+3)5^{2N+3})$; the binary64 constant $884279719003555/281474976710656$ is the readout of $M_{10}$ with $N=10$ minimal; the first $100$ decimal digits are fixed by $M_{71}$; alternating pairing of the two arctangent series gives certified two-sided $\\fQ$-enclosures at every truncation, the Gregory brackets $4S_{2m+1}<\\piR<4S_{2m}$ of width $4/(4m+3)$ the base case.",
      "tag": "T",
      "source": "Thm.~\\ref{thm:readout-pi}; \\src{pi.R3}",
-     "key": "p0025"
+     "key": "p13025"
     },
     {
      "label": "E5",
      "predicate": "The feasibility hierarchy: among $\\fQ$-native constructors of $\\pi$ the best known rate is geometric, $\\Theta(k)$ steps (Machin, arcsin), against $\\Theta(k/\\log k)$ for the derangement chain of $e$; the circle count and the Leibniz/Wallis chains sit at $2^{k}$; the AGM is not $\\fQ$-native. Whether a factorial-rate integer-ratio chain for $\\pi$ exists is O3.",
      "tag": "T",
      "source": "Prop.~\\ref{prop:feas-pi}; \\src{pi.R3}, \\src{e.R4}",
-     "key": "p0026"
+     "key": "p13026"
     }
    ]
   },
@@ -225,49 +225,49 @@
      "predicate": "Wilson reflection: for an odd prime $\\p$ and $0\\le k\\le\\p-1$, $1/k!\\equiv-(-1)^{k}(\\p-1-k)!\\pmod\\p$.",
      "tag": "T",
      "source": "Lem.~\\ref{lem:wilson}; \\src{e.W1}",
-     "key": "p0027"
+     "key": "p13027"
     },
     {
      "label": "F2",
      "predicate": "The wall identity and the terminal residue of $e$: $\\dr{(\\p-1)}\\equiv\\Ku{\\p}\\pmod\\p$ (the odd-prime case of the Mijajlovi\\'c--\\v Sami congruence, A4), hence $\\rep{\\varepsilon_{\\p-1}}=-(\\Ku{\\p})^{-1}$ whenever $\\p\\nmid\\Ku{\\p}$; existence of the terminal link on a shell is equivalent to $\\p\\nmid\\Ku{\\p}$, universal existence to Kurepa's hypothesis (O1); re-verified in the derangement form for all $22{,}043$ odd primes $\\p<2.5\\times10^{5}$ with zero failures of either condition. Beyond the wall $n!\\equiv0$: $n=\\p-1$ is the factorial horizon.",
      "tag": "T",
      "source": "Thm.~\\ref{thm:wall-e}; \\src{e.W1}, \\src{kur.K1}",
-     "key": "p0028"
+     "key": "p13028"
     },
     {
      "label": "F3",
      "predicate": "Antiperiodicity: $\\dr{(n+\\p)}\\equiv-\\dr{n}\\pmod\\p$ for every odd prime and every $n\\ge0$, so $\\dr{n}\\bmod\\p$ depends on $n\\bmod2\\p$; the blind set $Z_0(\\p)=\\{n<\\p:\\dr{n}\\equiv0\\}$ always contains $1$, and Kurepa's hypothesis is $\\p-1\\notin Z_0(\\p)$ for every $\\p$.",
      "tag": "T",
      "source": "Thm.~\\ref{thm:antiperiod}; \\src{e.W2}",
-     "key": "p0029"
+     "key": "p13029"
     },
     {
      "label": "F4",
      "predicate": "Series duals at the wall: $\\sum_{k<\\p}(-1)^{k}/k!\\equiv-\\Ku{\\p}$ and $\\sum_{k<\\p}1/k!\\equiv-A(\\p)$, $A(\\p)$ the alternating factorial sum; the group law $\\exp(1)\\exp(-1)=1$ does not survive, $\\Ku{\\p}A(\\p)\\equiv3,0,21,28,132,258$ at $\\p=7,13,29,101,257,1009$; on $\\p=13$ the direct series residue vanishes ($A(13)\\equiv0$) while the derangement side survives ($\\Ku{13}\\equiv10$) --- a second ground for the canonicity of D5.",
      "tag": "T",
      "source": "Prop.~\\ref{prop:duals}, Rem.~\\ref{rem:asym}; \\src{e.W3}",
-     "key": "p0030"
+     "key": "p13030"
     },
     {
      "label": "F5",
      "predicate": "Blind-scale statistics: over the $501$ primes in $(1000,5000)$ the sizes $|Z_0(\\p)|$ distribute as $1^{(169)},2^{(209)},3^{(92)},4^{(22)},5^{(6)},6^{(2)},7^{(1)}$, mean $1.996$, the excess over the forced $n=1$ matching Poisson$(1)$ \\apx; blind scales never obstruct the plateau of D4 (advance at most $|Z_0(\\p)|$ steps past $n_0$). The counts are exact; the Poisson reading is the model they match.",
      "tag": "T",
      "source": "Exp.~\\ref{exp:blind}; \\src{e.S1}",
-     "key": "p0031"
+     "key": "p13031"
     },
     {
      "label": "F6",
      "predicate": "The $\\p=13$ picture: the residue line $\\rep{\\varepsilon_n}$, $n=2,\\dots,12$, is $2,3,7,11,1,6,\\text{blind},2,8,10,9$ --- blind at $n=8$ ($\\dr{8}=14833=13\\cdot1141$) and terminating on $\\rep{\\varepsilon_{12}}=-(\\Ku{13})^{-1}=9$, the common reading of $6/5$ and $11/7$ --- while the metric row freezes onto $2.71828\\ldots$ by $n\\approx9$: the thesis in miniature.",
      "tag": "T",
      "source": "\\S\\ref{sec:wall-e}, ``The $\\p=13$ picture''; \\src{e.W4}",
-     "key": "p0032"
+     "key": "p13032"
     },
     {
      "label": "F7",
      "predicate": "The fixed-shell tower of $e$: with $\\delta_m=\\ctr{(-1)^{m}\\eP}$ and $q_m=((m\\p)!+\\delta_m)/\\dr{(m\\p)}$, $\\rep{q_m}=\\eP$ exactly at every grade (since $(m\\p)!\\equiv0$ and $\\dr{(m\\p)}\\equiv(-1)^{m}$ by F3) while $q_m\\to\\eR$ with the certificate $|q_m-\\eR|<(m\\p)!/(\\dr{(m\\p)}\\dr{(m\\p+1)})+2\\kap/\\dr{(m\\p)}$; on $\\p=13$, $q_2$ differs from $\\eR$ by $3.98\\times10^{-26}$ and every member reads $6$. Compatibility, not selection.",
      "tag": "T",
      "source": "Prop.~\\ref{prop:tower-e}; \\src{tow.E}",
-     "key": "p0033"
+     "key": "p13033"
     }
    ]
   },
@@ -280,63 +280,63 @@
      "predicate": "The legibility window: with $m=(\\p-1)/2$, $\\p\\nmid\\Cb{n}$ for $1\\le n\\le m$ and $\\p\\mid\\Cb{n}$ for $m<n<\\p$ (Kummer, A3): the residue line of the Wallis chain is defined on exactly $[1,m]$, blind-free below the wall and totally blind on $(m,\\p)$; on a frame shell the last legible scale $n=2\\kap$ is the angular address of $-1$.",
      "tag": "T",
      "source": "Thm.~\\ref{thm:window}; \\src{pi.W1}",
-     "key": "p0034"
+     "key": "p13034"
     },
     {
      "label": "G2",
      "predicate": "The half-wall terminus, the calibration face: $\\rep{w_m}=m^{-1}=\\piA^{-1}=4\\piA\\equiv-2$ for every odd prime, the return statistics trivialising at the wall ($16^{m}\\equiv1$, $\\Cb{m}^{2}\\equiv1$) and exposing the naked inverse scale; the identities are the calibration web of $2\\piA\\equiv-1$, and $\\rep{w_{\\piA}}\\piA\\equiv1\\iff(4\\kap)^{2}\\equiv1$; the lower chain is blind at the wall and nowhere below.",
      "tag": "T",
      "source": "Thm.~\\ref{thm:halfwall}; \\src{pi.W1}, \\src{pi.W2}, \\src{tow.W}",
-     "key": "p0035"
+     "key": "p13035"
     },
     {
      "label": "G3",
      "predicate": "The quarter-wall two-squares invariant: for $\\p\\equiv1\\pmod4$, $\\p=a^{2}+b^{2}$ with $a$ odd, $a\\equiv1\\pmod4$, at the quarter scale $n=\\kap$ (the address of $\\im$) $\\rep{w_\\kap}=\\kap^{-1}(2a)^{-2}=-(a^{2})^{-1}=(b^{2})^{-1}$, by Gauss's congruence (A3) with $\\kap\\equiv-4^{-1}$; the invariant exists precisely under the frame condition; verified for all $211$ primes $\\p\\equiv1\\pmod4$ below $3000$.",
      "tag": "T",
      "source": "Thm.~\\ref{thm:quarter}; \\src{pi2.A1}, \\src{pi2.A2}",
-     "key": "p0036"
+     "key": "p13036"
     },
     {
      "label": "G4",
      "predicate": "Second order at the half wall: $w_m\\equiv-2+2\\p(q_\\p(4)-1)\\pmod{\\p^{2}}$ with $q_\\p(4)\\equiv2q_\\p(2)$, exact to $\\p^{3}$ through Morley (A3); the universal $-2$ persists to $\\p^{2}$ exactly for the $\\pi$-Wieferich primes $4^{\\p-1}\\equiv1+\\p\\pmod{\\p^{2}}$, which below $10^{6}$ are exactly $5$ and $45827$ (heuristic expectation $\\sum1/\\p\\approx2.4$); the normalised quotients equidistribute empirically \\apx.",
      "tag": "T",
      "source": "Thm.~\\ref{thm:secondorder}; \\src{pi.S1}, \\src{pi.S2}",
-     "key": "p0037"
+     "key": "p13037"
     },
     {
      "label": "G5",
      "predicate": "Lucas revivals and self-similarity: beyond the wall $n\\ge\\p$ is legible for $w$ precisely when every base-$\\p$ digit of $n$ is at most $m$ and $\\p\\nmid n$ (on $\\p=13$ the two-digit revivals number $(2\\kap)^{2}=36$); on revival scales $\\Cb{n}$ factorises digitwise (Lucas, A3); at the first revival $\\rep{v_\\p}\\equiv8$ universally and $v_\\p\\equiv8+16\\p(2q_\\p(2)-1)\\pmod{\\p^{2}}$ by Wolstenholme.",
      "tag": "T",
      "source": "Prop.~\\ref{prop:lucas}; \\src{pi.L1}, \\src{pi2.D2}",
-     "key": "p0038"
+     "key": "p13038"
     },
     {
      "label": "G6",
      "predicate": "First-order wall vanishing of the arcsin chain: $\\sigma_\\p=\\sum_{k<m}\\Cb{k}/((2k+1)16^{k})\\equiv0\\pmod\\p$ for every prime $\\p\\ge5$, $\\sigma_3=1$ the sole exception; proved entirely in finite arithmetic through the key identity $A+B=2L$ (coefficient bookkeeping of the formal antiderivative of $(1-s^{2})^{m}$), Wilson reflection, Lerch's congruence and the binomial transfer $\\Cb{k}\\equiv(-4)^{k}\\binom mk$. Verified for all $428$ odd primes $5\\le\\p<3000$; the ingredients for $m\\le60$, $\\p<500$.",
      "tag": "T",
      "source": "Thm.~\\ref{thm:vanish}, eq.~\\eqref{eq:key}; \\src{pi.V1}, \\src{pi2.C1}, \\src{pi2.C2}, \\src{pi2.C3}, \\src{pi2.C4}",
-     "key": "p0039"
+     "key": "p13039"
     },
     {
      "label": "G7",
      "predicate": "Second and third order at the arcsin wall: $\\sigma_\\p\\equiv0\\pmod{\\p^{2}}$ is Sun's theorem (A5), re-verified for $5\\le\\p<300$; the blind-range sum $\\sum_{m<k<\\p}\\Cb{k}/((2k+1)16^{k})\\equiv\\p E_{\\p-3}/3\\pmod{\\p^{2}}$ (A5), re-verified for $5\\le\\p<80$; at third order $\\sigma_\\p/\\p^{2}\\equiv(-1)^{(\\p+1)/2}B_{\\p-3}/36\\pmod\\p$ for all sixty primes $5\\le\\p<300$, the mod-$\\p^{3}$ reading of Sun's Conjecture 5.1 with the Wolstenholme refinement, conjectural beyond the range (O2): Wolstenholme-trivial at orders $\\p,\\p^{2}$, Bernoulli at $\\p^{3}$, the Euler content beyond the wall.",
      "tag": "I|T",
      "source": "Thm.~\\ref{thm:super}, Rem.~\\ref{rem:hierarchy}; \\src{pi2.B1}, \\src{pi2.B2}, \\src{pi2.D1}",
-     "key": "p0040"
+     "key": "p13040"
     },
     {
      "label": "G8",
      "predicate": "The $\\p=13$ picture for $\\pi$: $\\kap=3$, wall at $n=6$; the residue line $\\rep{w_n}$, $n=1,\\dots,6$, is $4,5,10,9,6,11$ with $\\rep{w_6}=11\\equiv-2$ the calibration face and $\\rep{w_3}=10\\equiv-(3^{2})^{-1}$ encoding $13=3^{2}+2^{2}$; empty blind set below the wall, total blindness for $n=7,\\dots,12$, first revival $\\rep{v_{13}}=8$.",
      "tag": "T",
      "source": "\\S\\ref{sec:wall-pi}, ``The $\\p=13$ picture''; \\src{pi.R2}, \\src{pi.L1}, \\src{pi2.A2}",
-     "key": "p0041"
+     "key": "p13041"
     },
     {
      "label": "G9",
      "predicate": "The fixed-shell tower of $\\pi$: for $n=\\p^{r}$, with $\\delta_\\p=\\ctr{\\piA B_n-A_n}=\\ctr{-34}$, the member $\\widehat\\pi_{\\p,r}=(2\\cdot16^{\\p^{r}}+\\delta_\\p)/((2\\p^{r}+1)\\Cb{\\p^{r}}^{2})$ reads $\\rep{\\widehat\\pi_{\\p,r}}=\\piA$ exactly for every $r$ (Lucas and Fermat give $\\Cb{n}\\equiv2$, $16^{n}\\equiv16$, $B_n\\equiv4$) while converging externally to $\\piR$; on $\\p=13$, $\\delta_{13}=5$.",
      "tag": "T",
      "source": "Prop.~\\ref{prop:tower-pi}; \\src{tow.P}",
-     "key": "p0042"
+     "key": "p13042"
     }
    ]
   },
@@ -349,35 +349,35 @@
      "predicate": "The frame character $\\chi(\\gen^{n})=\\exp(2\\piR\\imR\\,n/(\\p-1))$ \\chart, the canonical external dictionary sending $\\gen$ to $\\zeta_{\\p-1}$; the comparison map, never used to derive either constant.",
      "tag": "D",
      "source": "\\S\\ref{sec:angular}",
-     "key": "p0043"
+     "key": "p13043"
     },
     {
      "label": "H2",
      "predicate": "The exact angular carrier of $\\pi$: $\\chi(-1)=e^{\\imR\\piR}$ exactly in every shell, for every generator and either chirality, since $-1=\\gen^{(\\p-1)/2}$ sits at arc fraction one half --- Euler's identity as the half-turn tautology $\\gen^{2\\kap}=-1$ under the dictionary, with no calibration and no error term.",
      "tag": "T",
      "source": "Thm.~\\ref{thm:exact-pi}; \\src{tow.W}",
-     "key": "p0044"
+     "key": "p13044"
     },
     {
      "label": "H3",
      "predicate": "Exact calibration of $e$ is impossible: with $\\theta=2\\piR\\lambda(\\im)/(\\p-1)$ the frame angle of $\\eP$, $\\theta\\ne1$ in every shell ($\\theta=1$ would make $\\piR$ rational, A2); $\\chi(\\eP)$ is a root of unity while $e^{\\imR}$ is not, so the identification is intrinsically horizon-limited.",
      "tag": "T",
      "source": "Lem.~\\ref{lem:norad}",
-     "key": "p0045"
+     "key": "p13045"
     },
     {
      "label": "H4",
      "predicate": "Calibrated shells at every precision: by A7, $\\varepsilon$-calibrated shells ($|\\theta-1|<\\varepsilon$ for one chirality) exist for every $\\varepsilon>0$ with relative density $2\\varepsilon/\\piR$, and $\\chi(\\eP)\\to e^{\\imR}$ along them; data for $\\p<10^{6}$ ($39{,}175$ primes $\\equiv1\\bmod4$): $260$ shells within $0.01$ against $\\approx249$ predicted, the best six led by $(\\p,\\lambda(\\im))=(778933,123966)$ at $|\\theta-1|=3.9\\times10^{-5}$, consistent with the nearest-hit prediction $\\approx8.0\\times10^{-5}$ \\apx; the calibration inequalities decided as rational inequalities with $\\piR$ bracketed by the Machin chain.",
      "tag": "I|T",
      "source": "Prop.~\\ref{prop:calib}; \\src{e.A1}",
-     "key": "p0046"
+     "key": "p13046"
     },
     {
      "label": "H5",
      "predicate": "The null experiment: whether $\\gen^{\\lambda(\\im)}\\equiv-(\\Ku{\\p})^{-1}$ for some primitive root of either chirality is the index condition $\\gcd(s,\\p-1)=\\gcd(\\lambda(\\pm\\im),\\p-1)$; over the $210$ primes $\\p\\equiv1\\pmod4$, $5<\\p<3000$, it is solvable for $94$ ($44.8\\%$, the gcd-coincidence rate), the correlation of the two angular addresses $-0.10$ at deviation $\\approx0.07$ \\apx: no invariant pointwise identification of the angular and radial carriers of $e$; the naive reading of $\\eP$ as the number $2.71828\\ldots$ is refuted.",
      "tag": "T",
      "source": "Exp.~\\ref{exp:null}; \\src{e.N1}",
-     "key": "p0047"
+     "key": "p13047"
     }
    ]
   },
@@ -390,28 +390,28 @@
      "predicate": "Emergence of the classical $e$: (i) in every shell with $\\p>n_0+|Z_0(\\p)|+1$ a non-blind scale in $[n_0,n_0+|Z_0(\\p)|]$ reads out $\\ro(\\eR)$, at binary64 exactly $18!/\\dr{18}$; (ii) the frame-internal continuation is the antiperiodic residue line with blind set $Z_0(\\p)$ and terminal invariant $-(\\Ku{\\p})^{-1}$, collapsed by the readout to one dyadic rational; (iii) $\\chi(\\eP)\\to e^{\\imR}$ along calibrated shells, exact calibration impossible, no pointwise link between the carriers. Composed from D4, F2, F3, F5, H3--H5.",
      "tag": "T",
      "source": "Thm.~\\ref{thm:main-e}; \\src{e.R2}, \\src{e.S1}, \\src{e.A1}, \\src{e.N1}",
-     "key": "p0048"
+     "key": "p13048"
     },
     {
      "label": "I2",
      "predicate": "Emergence of the classical $\\pi$: (i) the plateau readout of $\\fQ$-native chains, at binary64 exactly $M_{10}$, the Wallis pair certifying two-sided enclosures at every scale; (ii) the residue line on $[1,2\\kap]$ with the quarter-wall invariant $-(a^{2})^{-1}$, the half-wall terminus $-2$, the second-order Fermat quotient with $\\pi$-Wieferich set $\\{5,45827\\}$, Morley exactness at $\\p^{3}$, total blindness beyond the address of $-1$, Lucas revivals, the arcsin wall vanishing to $\\p^{2}$ with the Bernoulli third order and the Euler content displaced beyond the wall; (iii) $\\chi(-1)=e^{\\imR\\piR}$ exactly. Composed from E2, E4, G1--G7, H2.",
      "tag": "T",
      "source": "Thm.~\\ref{thm:main-pi}; \\src{pi.R3}, \\src{pi.W1}, \\src{pi.S2}, \\src{pi2.A2}",
-     "key": "p0049"
+     "key": "p13049"
     },
     {
      "label": "I3",
      "predicate": "The duality: $\\pi$ is angular-exact and wall-trivial (tautological carrier, terminus the calibration face $-2$, Fermat quotient one order down, two-squares quarter invariant, empty blind set below the wall, geometric $\\fQ$-rate, the series law split Bernoulli/Euler across the wall) and $e$ angular-approximate and wall-wild (calibration impossible, terminus the open Kurepa quantity, no quarter invariant, Poisson blind set, factorial $\\fQ$-rate, the group law broken at the wall); each constant exact on the axis where the other is approximate: $\\pi$ a structural, $e$ a statistical constant of the finite frame.",
      "tag": "T",
      "source": "\\S\\ref{sec:duality}, ``The duality''",
-     "key": "p0050"
+     "key": "p13050"
     },
     {
      "label": "I4",
      "predicate": "CRT stability: under the composite lift to $q=\\prod\\p_i$ the half-wall invariant of $\\pi$ glues to $-2$ modulo every $q$, since $2\\piA\\equiv-1$ holds in every fibre, while the terminal content of $e$, $(-(\\Ku{\\p_i})^{-1})_i$, varies fibrewise. The two selectors resolve the $\\p=13$ coincidence: the same residue $6$ reaches $\\piR$ through C4 and $\\eR$ through C1.",
      "tag": "T",
      "source": "Cor.~\\ref{cor:crt}; \\src{tow.W}",
-     "key": "p0051"
+     "key": "p13051"
     }
    ]
   },
@@ -424,42 +424,42 @@
      "predicate": "The wrap-free window: an entity of the shell is $\\p$-hard when it lies beyond the observer's horizon $\\sqrt\\p$; the accessible smalls are the natural counts below $\\sqrt\\p$, where sums and products of two accessible counts do not wrap, so primality, parity and order are wrap-invariant there and only there.",
      "tag": "T",
      "source": "\\S\\ref{sec:consequences}, ``What transcendence is''; \\src{tow.W}",
-     "key": "p0052"
+     "key": "p13052"
     },
     {
      "label": "J2",
      "predicate": "Calibration pinning: the half-period satisfies the height-two relation $2\\piA+1\\equiv0$, the shell calibration $\\p=4\\kap+1$ itself, so the observer holds an exact short certificate of an entity it never accesses as a tally; the same pinning covers the quarter-turn ($\\im^{2}+1\\equiv0$) and the residue web of G2; the pin holds on every one of the $500$ shells $\\p\\le8009$ with $H(\\piA)=2$.",
      "tag": "T",
      "source": "\\S\\ref{sec:consequences}; \\src{tow.H}, \\src{tow.W}",
-     "key": "p0053"
+     "key": "p13053"
     },
     {
      "label": "J3",
      "predicate": "The height run: with $H(x)=\\min_{a\\ge1}\\max(a,|\\ctr{ax}|)$ in the smallest-primitive-root frame, minimised over the two chiralities, over the $500$ shells $\\p\\equiv1\\pmod4$, $\\p\\le8009$: $H(\\eP)\\le2\\sqrt\\p$ on every shell (the horizon band), median $H(\\eP)=0.525\\sqrt\\p$ \\apx, exactly $68$ shells with $H\\le10$, and the pin value $2$ on exactly $\\{13,1933,4177,5857\\}$; for $\\eP$ every candidate bounded-height relation fails in almost all shells (the generic-growth reading is A7).",
      "tag": "T",
      "source": "\\S\\ref{sec:consequences}; \\src{tow.H}",
-     "key": "p0054"
+     "key": "p13054"
     },
     {
      "label": "J4",
      "predicate": "A framed transcendental is a $\\p$-hard role with no bounded-height defining relation holding across shells; the chart shadow of a $\\p$-hard role splits by its certificate --- a role pinned by a bounded-height relation has an exact algebraic shadow ($\\im^{2}=-1$ giving $\\imR$), while the half-arc and unit-registration roles, fixed by normalisations (C1, C4) with no such relation, have the transcendental shadows $\\piR$, $\\eR$. Neither external meaning, hardness nor accessibility rides on a residue symbol; roles carry all three.",
      "tag": "D",
      "source": "\\S\\ref{sec:consequences}",
-     "key": "p0055"
+     "key": "p13055"
     },
     {
      "label": "J5",
      "predicate": "Universality and the duality as corollary: $\\p$-hardness is self-similar, every shell finding its own half-period and drive name beyond its own horizon, so the chart shadows agree across all observers; $\\pi$'s seat is calibration-pinned with a height-two certificate and its arc role normalisation-fixed, $e$ has neither a pinned seat nor a cross-shell certificate and its role is generator-dependent --- structural against statistical is the certification split (I3). The sporadic small-height shells of J3 are the certificate-level face of I4.",
      "tag": "T",
      "source": "\\S\\ref{sec:consequences}; \\src{tow.H}",
-     "key": "p0056"
+     "key": "p13056"
     },
     {
      "label": "J6",
      "predicate": "Two constants, two walls: both attach their full-resolution shell content to sparse-prime problems (Kurepa non-vanishing for $e$, a prescribed Fermat quotient of Wieferich type for $\\pi$); for each shell the bounded observer holds an exact finite certificate and holds no uniform certificate across all shells --- per-instance decidability without a uniform bound, the characteristic shape of statements at the arithmetic horizon; no claim that either hypothesis is thereby decided.",
      "tag": "T",
      "source": "\\S\\ref{sec:consequences}, ``Two constants, two celebrated walls''; \\src{kur.K1}, \\src{pi.S2}",
-     "key": "p0057"
+     "key": "p13057"
     }
    ]
   },
@@ -472,21 +472,21 @@
      "predicate": "The package \\texttt{finite-ring-space/src/13-epi}: the five blocks \\src{validate\\_e} ($11$ families, $61$ micro-checks), \\src{validate\\_pi} ($10$, $94$), \\src{validate\\_pi2} ($10$, $551$), \\src{validate\\_towers} ($6$, $72$), \\src{kurepa\\_wall} ($1$ family over $22{,}043$ primes), $38$ families and $781$ micro-checks, each family naming the rows it witnesses; the notebook \\texttt{13-epi-main.ipynb} executes them in the browser and the driver \\texttt{run\\_all.py} writes \\texttt{results.json}.",
      "tag": "T",
      "source": "\\S\\ref{app:verif}; \\src{run\\_all}",
-     "key": "p0058"
+     "key": "p13058"
     },
     {
      "label": "V2",
      "predicate": "The exactness discipline: integers, residues and exact rationals throughout; $\\eR$ and $\\piR$ enter only as the certified brackets of D3 and E4 (the Machin bracket of width below $10^{-100}$ deciding the calibration inequalities of H4), the binary64 constants only as the objects of study of D4 and E4; the statistical readings of F5, G4, H5, J3 and the Gauss sums are printed as \\apx{} diagnostics and decide nothing.",
      "tag": "T",
      "source": "\\S\\ref{app:verif}",
-     "key": "p0059"
+     "key": "p13059"
     },
     {
      "label": "V3",
      "predicate": "Provenance: the four Python scripts and the C pass are the memorandum scripts as written (round-01 and round-02 amendments recorded in the package), wrapped to report to one registry; the recorded memorandum outputs \\texttt{results\\_*.txt} remain in the package as the source record.",
      "tag": "T",
      "source": "\\S\\ref{app:verif}",
-     "key": "p0060"
+     "key": "p13060"
     }
    ]
   },
@@ -499,21 +499,21 @@
      "predicate": "Kurepa's hypothesis, $\\p\\nmid\\Ku{\\p}$ for every odd prime: universal existence of the terminal residue $-(\\Ku{\\p})^{-1}$ of $e$ (F2); literature-verified for $\\p<2^{40}$, re-verified here in the derangement form for $\\p<2.5\\times10^{5}$. With it the equidistribution of the subfactorial residue line (the Poisson law of F5 as a theorem) and the joint equidistribution of the quarter-turn and wall-residue indices (the null result of H5 as a theorem).",
      "tag": "O",
      "source": "Thm.~\\ref{thm:wall-e}; \\src{kur.K1}, \\src{e.S1}, \\src{e.N1}",
-     "key": "p0061"
+     "key": "p13061"
     },
     {
      "label": "O2",
      "predicate": "The walls of $\\pi$ beyond the verified ranges: infinitude of the $\\pi$-Wieferich set $4^{\\p-1}\\equiv1+\\p\\pmod{\\p^{2}}$ (exactly $\\{5,45827\\}$ below $10^{6}$); the third-order Bernoulli law of G7 for all $\\p\\ge5$, the mod-$\\p^{3}$ reading of Sun's Conjecture 5.1 (verified $5\\le\\p<300$).",
      "tag": "O",
      "source": "Thms.~\\ref{thm:secondorder}, \\ref{thm:super}; \\src{pi.S2}, \\src{pi2.B2}",
-     "key": "p0062"
+     "key": "p13062"
     },
     {
      "label": "O3",
      "predicate": "The $e$--$\\pi$ dichotomy as theorem: whether $\\pi$ admits a factorial-rate integer-ratio chain (nonexistence makes the feasibility split of E5 exact); the radian-calibration rate $\\delta(X)=\\min_{\\p\\le X}|\\theta-1|$ against the equidistribution prediction of H4; the joint equidistribution of the frame invariants $(\\Ku{\\p}/\\p,\\ q_\\p(4)/\\p,\\ a/\\sqrt\\p)$ of the two constants.",
      "tag": "O",
      "source": "Prop.~\\ref{prop:feas-pi}, Prop.~\\ref{prop:calib}",
-     "key": "p0063"
+     "key": "p13063"
     }
    ]
   }
