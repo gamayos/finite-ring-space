@@ -155,6 +155,14 @@ footer code { font-family: var(--mono); font-size: .95em; }
   td.title { font-size: .95rem; }
 }
 
+/* ---- home page (added by tools/site_build.py) ---- */
+.home { line-height: 1.6; }
+.home h2 { font-family: var(--serif); font-size: 1.45rem; font-weight: 600; margin: 0.2rem 0 0.8rem; letter-spacing: -.01em; }
+.home h3 { font-size: 1rem; font-weight: 600; margin: 1.8rem 0 0.4rem; }
+.home p { margin: 0 0 0.9rem; }
+.home figure.hero { margin: 1.4rem auto 1.8rem; max-width: 800px; }
+.home figure.hero video { display: block; width: 100%; max-width: 800px; height: auto; border-radius: 6px; background: #0d0d0f; }
+.home figure.hero figcaption { font-size: .84rem; color: var(--ink-soft); margin-top: .55rem; line-height: 1.45; }
 /* ---- ledger pages (added by tools/site_build.py) ---- */
 /* every link on every page takes the accent token (light and dark) except the tab bar and the title links of the
    publications list; the stylesheet above colours only nav, .sub and DOI links, and a page has no <main> wrapper
@@ -198,3 +206,5 @@ p.note { color: var(--ink-soft); font-size: 0.9rem; margin: 0 0 1rem; }
 td.links a { display: inline-block; margin-right: 0.35rem; font-size: 0.8rem; }
 a.ledgerlink { color: inherit; text-decoration: none; border-bottom: 1px solid var(--rule); }
 a.ledgerlink:hover { border-bottom-color: var(--ink); }
+.wrap a.badgelink, .wrap a.badgelink:visited { text-decoration: none; border-bottom: none; }
+.wrap a.badgelink:hover .badge { filter: brightness(0.92); }

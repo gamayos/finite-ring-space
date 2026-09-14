@@ -8,6 +8,10 @@ function initLedger(root) {
   var tally = root.querySelector(".tally"), q = root.querySelector("input[type=search]"), count = root.querySelector(".count"), empty = root.querySelector(".empty");
   var active = "all", query = "";
   var NAMES = {G:"ground", P:"pillar", T:"theorem", D:"definition", R:"realisation", I:"import", E:"prediction", "Ω":"Ω-hard", O:"open"};
+  if (window.LEDGER_TAGS === "bypaper") {          /* the predictions page: the tally counts sources, not tags */
+    NAMES = {};
+    rows.forEach(function (r) { var t = r.dataset.tag; if (!NAMES[t]) NAMES[t] = (t === "00" ? "master" : t); });
+  }
   function tagsOf(r) { return r.dataset.tag.split("|"); }
   function build() {
     var counts = {all: rows.length};
@@ -17,7 +21,7 @@ function initLedger(root) {
       if (!counts[d[0]]) return;
       var b = document.createElement("button"); b.type = "button";
       b.setAttribute("aria-pressed", String(active === d[0]));
-      b.innerHTML = '<span class="dot t-' + (d[0] === "Ω" ? "om" : d[0].toLowerCase()) + '"></span>' + d[1] + ' <span class="n">' + counts[d[0]] + "</span>";
+      b.innerHTML = '<span class="dot t-' + (window.LEDGER_TAGS === "bypaper" && d[0] !== "all" ? "e" : (d[0] === "Ω" ? "om" : d[0].toLowerCase())) + '"></span>' + d[1] + ' <span class="n">' + counts[d[0]] + "</span>";
       b.addEventListener("click", function () { active = (active === d[0] && d[0] !== "all") ? "all" : d[0]; build(); render(); });
       tally.appendChild(b);
     });

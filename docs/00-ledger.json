@@ -26,7 +26,6 @@
   "D": "definition — a naming or set-up move, no empirical content",
   "R": "realisation — what a physical term denotes in the substrate; forced (A10), each row stating the falsifier that kills it. Replaces the retired tag `B` (bridge), 2026-09-11",
   "I": "import — a standard result or measured datum, used without reproof",
-  "E": "empirical prediction — a claim about what observation will show; derived, awaiting the world",
   "Ω": "Ω-hard — a value in no embedded reader's window, not closeable by a bounded observer; host-decided on any laboratory Carrier; never applied to a relation (notation convention 6, 2026-09-11)",
   "O": "open — genuinely unresolved"
  },
@@ -62,7 +61,7 @@
      "key": "p00007"
     }
    ],
-   "statement": "Infinity is incoherent in both forms, as an ontological posit. The actual: no coherent model is exhibited --- the theory of the completed totality forbids its own totality as an object ($V$ is not a set), its antinomies (Cantor, Burali-Forti, Russell) are fenced by restricted comprehension, never resolved, and its consistency is unprovable from within (G\\\"odel II) and purchasable from without only by a larger infinite posit; the classical reductio (5-red, with the four-class catalogue in its appendix: every pathology vanishes with the Axiom of Infinity). The potential: the undeclared \\emph{freshness} posit, never registered --- idleness and the truthmaker audit (29-fin). The successor act is innocent and wraps (A7); the schema over finite instances is retained. Not claimed: a derivation of $0=1$ in ZFC. Argument: \\S\\ref{frcl:foundation}."
+   "statement": "Infinity is incoherent in both forms, as an ontological posit. The actual: no coherent model is exhibited --- the theory of the completed totality forbids its own totality as an object ($V$ is not a set), its antinomies (Cantor, Burali-Forti, Russell) are fenced by restricted comprehension, never resolved, and its consistency is unprovable from within (G\\\"odel II) and purchasable from without only by a larger infinite posit; the classical reductio (5-red, with the four-class catalogue in its appendix: every pathology vanishes with the Axiom of Infinity). The potential: the undeclared \\emph{freshness} posit, never registered --- idleness and the truthmaker audit (29-fin). The successor act is innocent and wraps (A7); the schema over finite instances is retained. Not claimed: a derivation of $0=1$ in ZFC. Argument: the reductio (5-red, the four-class catalogue and Prop.~9) and the truthmaker audit with the idleness theorem (29-fin); the incompleteness face independently in 25-göd."
   },
   {
    "label": "A3",
@@ -101,7 +100,7 @@
      "key": "p00003"
     }
    ],
-   "statement": "\\textbf{P1: the totality is finite and complete} --- finite by A2, complete by A3; forced, not assumed: by G and P2 a distinction with no registered residue is no distinction (A10), and the infinite is distinguished from the large finite by no registered residue (idleness), so finiteness is the audit's verdict, not a premise; the neutral route's one premise (Det) discharged (\\S\\ref{frcl:foundation})."
+   "statement": "\\textbf{P1: the totality is finite and complete} --- finite by A2, complete by A3; forced, not assumed: by G and P2 a distinction with no registered residue is no distinction (A10), and the infinite is distinguished from the large finite by no registered residue (idleness), so finiteness is the audit's verdict, not a premise; the neutral route's one premise (Det) discharged by elimination (29-fin), effective determinacy characterising the finite structures (5-red Prop.~9; independently 25-göd)."
   },
   {
    "label": "A5",
@@ -1866,38 +1865,6 @@
     }
    ],
    "statement": "\\textbf{The interior completions weighed}: black-hole cosmology keeps the black-hole-line identity by consuming a parent exterior and a singularity-replacing mechanism (torsion; exclusion pressure); the finite reading consumes neither --- no outside (A3), no singularity over a finite totality. The octant cap (L3) separates the two completions empirically: an interior bounce carries time on both sides."
-  },
-  {
-   "label": "L7",
-   "name": "The running floor: the shape a₀(z) ∝ H(z)",
-   "block": "L",
-   "key": "p00133",
-   "tag": "E",
-   "sources": [
-    "14-entr",
-    "21-grav",
-    "32-dark"
-   ],
-   "witness": null,
-   "refs": [
-    {
-     "label": "D5",
-     "key": "p00046"
-    },
-    {
-     "label": "L1",
-     "key": "p00084"
-    },
-    {
-     "label": "L3",
-     "key": "p00086"
-    },
-    {
-     "label": "Z7",
-     "key": "p00115"
-    }
-   ],
-   "statement": "\\textbf{The running floor}: the acceleration floor tracks the drive rate, $a_0(z)\\propto H(z)$ --- a relation, $\\Om$-blind, consuming no numeral of the Carrier, derived from the synchronisation floor $a_0=cH/2\\pi$ (L1) under the gravity realisation (D5). Staked as the lead falsifiable prediction of 14-entr, 21-grav and 32-dark: the knee shifts and the Tully--Fisher zero-point evolves as $E(z)^{1/4}$. Falsifier: a floor constant in redshift, or one that tracks anything other than $H(z)$. The absolute normalisation is Z7's value; this row carries the shape alone."
   },
   {
    "label": "M1",

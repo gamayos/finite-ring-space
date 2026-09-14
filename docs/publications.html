@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-HNE3RMJ5L1"></script>
+<script> window.dataLayer = window.dataLayer || []; function gtag(){dataLayer.push(arguments);} gtag('js', new Date()); gtag('config', 'G-HNE3RMJ5L1'); </script>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="author" content="Yosef Akhtman">
+<title>Publications — FRC Ledger</title>
+<meta name="description" content="Publication status of the Finite Ring Cosmology corpus: manuscripts, preprints, venue history.">
+<link rel="icon" href="frc-logo-fav.png">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="wrap">
+
+  <header>
+    <h1>Finite Ring Cosmology</h1>
+    <p class="sub">Theoretical framework for reinterpretation of Mathematics, Physics and Cosmology over a finite holographic substrate whose cardinality is fixed by the de Sitter entropy — one succession of arguments from a single ground through three forced pillars to finite arithmetic, open problems of mathematics, and the physics of the Standard Model. Every claim tagged, sourced and, where it admits a finite check, machine-verified.</p>
+    <nav><a href="index.html">Home</a><a href="publications.html" aria-current="page">Publications</a><a href="00-ledger.html">Ledger</a><a href="predictions.html">Predictions</a><a href="explicability.html">Explicability</a></nav>
+  </header>
+
+  <p class="note">The papers, preprints and essays of the corpus, each linked to its predicate ledger and validation package where these exist.</p>
+
+  <div class="tally" id="tally"></div>
+
+  <div class="tools">
+    <input type="search" id="q" placeholder="Search title, key, or venue…" autocomplete="off" spellcheck="false">
+    <span class="count" id="count"></span>
+  </div>
+
+  <table>
+    <thead>
+      <tr>
+        <th data-sort="n"      style="width:7rem">Key <span class="car"></span></th>
+        <th data-sort="title">Title <span class="car"></span></th>
+        <th data-sort="status" style="width:9rem">Status <span class="car"></span></th>
+        <th style="width:8rem">Package</th>
+      </tr>
+    </thead>
+    <tbody id="rows"></tbody>
+  </table>
+  <div class="empty" id="empty" hidden>Nothing matches that filter.</div>
+
+  <section class="legend">
+    <h2>Reading the status column</h2>
+    <dl>
+      <dt>Published</dt><dd>Accepted and out at the named journal.</dd>
+      <dt>Preprint</dt><dd>Posted with a DOI.</dd>
+      <dt>Essay</dt><dd>Public writing, not a manuscript.</dd>
+    </dl>
+  </section>
+
+  <section class="legend">
+    <h2>Reading the package column</h2>
+    <dl>
+      <dt>ledger</dt><dd>The paper's predicate ledger: every claim tagged, sourced and, where it admits a finite check, witnessed by a script.</dd>
+      <dt>notebook</dt><dd>The validation notebook, opened directly on Google Colab: the paper's scripts run in the browser, the ledger rows they witness named.</dd>
+      <dt>lab</dt><dd>An interactive rendering of the paper's construction.</dd>
+    </dl>
+  </section>
+
+  <footer>
+    <p>Generated from the corpus map. The title and the status open the publication (the journal article, the preprint, the essay); the package column links the paper's public predicate ledger, its validation notebook on Colab and its laboratory page where these exist. Last updated <span id="gen"></span>.
+    Venue abbreviations are expanded on hover where unambiguous.</p>
+  </footer>
+
+</div>
+
+<script src="publications.js"></script>
+<script>
+(function () {
+  "use strict";
+
+  var KINDS = [
+    { k: "published", label: "Published" },
+    { k: "preprint",  label: "Preprint" },
+    { k: "essay",     label: "Essay" }
+  ];
+  var ORDER = {};
+  KINDS.forEach(function (d, i) { ORDER[d.k] = i; });
+
+  var active = "all", query = "", sortKey = "n", sortDir = 1;
+
+  var el = {
+    tally: document.getElementById("tally"),
+    rows:  document.getElementById("rows"),
+    empty: document.getElementById("empty"),
+    count: document.getElementById("count"),
+    q:     document.getElementById("q")
+  };
+  document.getElementById("gen").textContent = (typeof GENERATED === "string") ? GENERATED : "—";
+
+  function venueName(tok) { return (VENUES && VENUES[tok]) || ""; }
+
+  function statusText(s) {
+    if (!s) return "";
+    var L = KINDS.filter(function (d) { return d.k === s.kind; })[0];
+    var name = L ? L.label : s.kind;
+    return s.venue ? name + ", " + s.venue : name;
+  }
+
+  function badge(s) {
+    var b = document.createElement("span");
+    b.className = "badge " + s.kind;
+    var L = KINDS.filter(function (d) { return d.k === s.kind; })[0];
+    b.textContent = s.venue ? s.venue : (L ? L.label : s.kind);
+    var full = venueName(s.venue);
+    b.title = (L ? L.label : s.kind) + (full ? " — " + full : (s.venue ? " — " + s.venue : ""));
+    return b;
+  }
+
+  function histText(p) {
+    return (p.history || []).map(function (h) {
+      return h.venue + (h.note ? " (" + h.note + ")" : "");
+    }).join(", ");
+  }
+
+  function haystack(p) {
+    return [p.key, p.title, statusText(p.status), venueName(p.status && p.status.venue),
+            histText(p), p.note || ""].join(" ").toLowerCase();
+  }
+
+  function matches(p) {
+    if (active !== "all" && p.status.kind !== active) return false;
+    if (query && haystack(p).indexOf(query) === -1) return false;
+    return true;
+  }
+
+  function sortVal(p) {
+    switch (sortKey) {
+      case "n":      return p.n;
+      case "title":  return p.title.toLowerCase();
+      case "doi":    return p.doi ? p.doiLabel.toLowerCase() : "￿";
+      case "status": return String(ORDER[p.status.kind]).padStart(2, "0") + (p.status.venue || "");
+      case "hist":   return -((p.history || []).length);
+      default:       return p.n;
+    }
+  }
+
+  function buildTally() {
+    var counts = { all: PUBLICATIONS.length };
+    PUBLICATIONS.forEach(function (p) {
+      counts[p.status.kind] = (counts[p.status.kind] || 0) + 1;
+    });
+    var defs = [{ k: "all", label: "All" }].concat(KINDS);
+    el.tally.innerHTML = "";
+    defs.forEach(function (d) {
+      if (!counts[d.k]) return;
+      var b = document.createElement("button");
+      b.type = "button";
+      b.setAttribute("aria-pressed", String(active === d.k));
+      b.dataset.kind = d.k;
+      b.innerHTML = '<span class="dot ' + d.k + '"></span>' + d.label +
+                    ' <span class="n">' + counts[d.k] + "</span>";
+      b.addEventListener("click", function () {
+        active = (active === d.k && d.k !== "all") ? "all" : d.k;
+        buildTally(); render();
+      });
+      el.tally.appendChild(b);
+    });
+  }
+
+  function render() {
+    var list = PUBLICATIONS.filter(matches).sort(function (a, b) {
+      var x = sortVal(a), y = sortVal(b);
+      if (x < y) return -1 * sortDir;
+      if (x > y) return  1 * sortDir;
+      return a.n - b.n;
+    });
+
+    el.rows.innerHTML = "";
+    list.forEach(function (p) {
+      var tr = document.createElement("tr");
+
+      var key = document.createElement("td");
+      key.className = "key"; key.textContent = p.key;
+      tr.appendChild(key);
+
+      var title = document.createElement("td");
+      title.className = "title";
+      if (p.doi) {
+        var tl = document.createElement("a"); tl.className = "ledgerlink"; tl.href = p.doi; tl.rel = "noopener"; tl.target = "_blank"; tl.title = "open the publication (" + p.doiLabel + ")";
+        tl.textContent = p.title; title.appendChild(tl);
+      } else {
+        title.appendChild(document.createTextNode(p.title));
+      }
+      tr.appendChild(title);
+
+
+      var st = document.createElement("td");
+      st.className = "status";
+      if (p.doi) {
+        var ba = document.createElement("a"); ba.className = "badgelink"; ba.href = p.doi; ba.rel = "noopener"; ba.target = "_blank";
+        ba.appendChild(badge(p.status)); st.appendChild(ba);
+      } else {
+        st.appendChild(badge(p.status));
+      }
+      tr.appendChild(st);
+
+      var lk = document.createElement("td");
+      lk.className = "links";
+      (p.links || []).forEach(function (L) {
+        var a = document.createElement("a"); a.href = L.href; a.textContent = L.label; a.title = L.title || L.label;
+        if (L.href.indexOf("http") === 0) { a.rel = "noopener"; a.target = "_blank"; }
+        lk.appendChild(a);
+      });
+      tr.appendChild(lk);
+
+      tr.id = "pub-" + p.key;
+      el.rows.appendChild(tr);
+    });
+
+    el.empty.hidden = list.length > 0;
+    el.count.textContent = list.length + " of " + PUBLICATIONS.length;
+  }
+
+  Array.prototype.forEach.call(document.querySelectorAll("thead th"), function (th) {
+    th.addEventListener("click", function () {
+      var k = th.dataset.sort;
+      if (sortKey === k) { sortDir = -sortDir; } else { sortKey = k; sortDir = 1; }
+      Array.prototype.forEach.call(document.querySelectorAll("thead th .car"), function (c) { c.textContent = ""; });
+      th.querySelector(".car").textContent = sortDir === 1 ? "▲" : "▼";
+      render();
+    });
+  });
+
+  el.q.addEventListener("input", function () {
+    query = el.q.value.trim().toLowerCase();
+    render();
+  });
+
+  buildTally();
+  render();
+})();
+</script>
+</body>
+</html>

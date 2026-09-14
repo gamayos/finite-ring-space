@@ -1,0 +1,506 @@
+{
+ "generated": "14 September 2026",
+ "rows": [
+  {
+   "id": "00:L7",
+   "paper": "00",
+   "label": "L7",
+   "key": "p00133",
+   "tag": "E",
+   "predicate": "\\textbf{The running floor}: the acceleration floor tracks the drive rate, $a_0(z)\\propto H(z)$ --- a relation, $\\Om$-blind, consuming no numeral of the Carrier, derived from the synchronisation floor $a_0=cH/2\\pi$ (L1) under the gravity realisation (D5). Staked as the lead falsifiable prediction of 14-entr, 21-grav and 32-dark: the knee shifts and the Tully--Fisher zero-point evolves as $E(z)^{1/4}$. Falsifier: a floor constant in redshift, or one that tracks anything other than $H(z)$. The absolute normalisation is Z7's value; this row carries the shape alone.",
+   "source": "14-entr, 21-grav, 32-dark",
+   "master": [],
+   "restated": [
+    "14:P1",
+    "21:P5",
+    "32:P1"
+   ],
+   "witnessed": false,
+   "page": "00-ledger.html"
+  },
+  {
+   "id": "14:P2",
+   "paper": "14-entr",
+   "label": "P2",
+   "key": "p14037",
+   "tag": "E",
+   "predicate": "The registered record depth is bounded by $(\\pi/4)\\,r_H/c=13.79$ Gyr \\apx{} (channel-1 anchor) at every observational frame chronon, against the $\\Lambda$CDM $t_0$ which grows with the chart's cosmic time. At the present chronon the two numerals are degenerate to $0.2\\%$ and separate at ${\\sim}7\\%$ per Gyr of chart time; the present discriminating content is structural rigidity --- the octant carries zero parameter freedom at fixed $\\Lambda$, the rival bound moves with its fit. Status \\citep{valcin2026}: oldest cluster population $0.5\\sigma$ below the bound (fit-independent, the carrying confrontation); the inferred cosmic age, a prior-dependent consistency, straddles the bound within $0.1\\sigma$ (central value $0.02$ Gyr above) --- the first place this prediction lives or dies as the age errors shrink. Falsifier: a single well-dated object older than the octant value, registered in any observational frame; fit-independent, and fatal only to the framework. The same bound discriminates against interior-bounce black-hole cosmology by construction, which carries time on both sides of its bounce, so the falsifier separates two published completions of the black-hole-line identity (\\S\\ref{sec:wedge}, X8).",
+   "source": "Lem.~\\ref{lem:octant}; \\src{est.P2}",
+   "master": [
+    "L3"
+   ],
+   "restated": [],
+   "witnessed": true,
+   "page": "14-entropy/14-entropy-ledger.html"
+  },
+  {
+   "id": "14:P3",
+   "paper": "14-entr",
+   "label": "P3",
+   "key": "p14038",
+   "tag": "E",
+   "predicate": "The age--rate locus $t_{\\mathrm{age}}H_0=(\\pi/4)/\\tanh(3\\pi/8)=0.950$, exact for the realisation set. Read on the fit-independent stellar age ($13.61\\pm0.34$ Gyr): $H_0=68.2\\pm1.7$ km/s/Mpc \\apx, $0.5\\sigma$ from Planck, $0.65\\sigma$ from TRGB, $2.4\\sigma$ from the Cepheid ladder --- the framework favours the CMB/TRGB value at that significance, and forbids the $\\Omega_\\Lambda\\approx0.76$ by which the rival chart would accommodate the ladder value at the same age. Read on the channel-1 $\\Lambda$ it returns the channel-1 $H_0$ (to $0.1\\%$): a consistency, not a prediction (C8). Falsifier: a confirmed ladder $H_0$ with the stellar age standing ($t_\\star H_0\\ge1.0$ against $0.950$).",
+   "source": "\\S\\ref{sec:open}; \\src{est.P3}",
+   "master": [
+    "L3"
+   ],
+   "restated": [],
+   "witnessed": true,
+   "page": "14-entropy/14-entropy-ledger.html"
+  },
+  {
+   "id": "14:P4",
+   "paper": "14-entr",
+   "label": "P4",
+   "key": "p14039",
+   "tag": "E",
+   "predicate": "\\textbf{(Lead; grade \\tT$\\,\\vert\\,$\\tR.)} The dark-energy equation of state is rigid: $\\Lambda$ is the curvature face of the fixed cardinality, so it is constant --- and its effective-fluid reading is $w=-1$ exactly, no running, at every chart time, with no $w_0w_a$ freedom. The fluid statement consumes the conservation-law correspondence and the single-component clause (row B8: $w\\equiv p/\\rho$ is the rival chart's dress of ``$\\Lambda$ constant,'' and no second dark component exists to absorb an observed drift), hence the realisation grade. Status: DESI-era combined fits prefer evolving dark energy at ${\\sim}3\\sigma$ (CMB+BAO) to $4.2\\sigma$ (with supernovae) \\citep{desi2025}, contested by independent reanalyses; the adverse face in plain view. A confirmed $w\\neq-1$ falsifies the $\\Lambda\\sim1/\\Om$ identification outright, and the octant numeral (P2) inherits the exposure through $\\Lambda$. Falsifier: confirmed evolution of $w$.",
+   "source": "\\S\\ref{sec:import}",
+   "master": [
+    "L3"
+   ],
+   "restated": [],
+   "witnessed": false,
+   "page": "14-entropy/14-entropy-ledger.html"
+  },
+  {
+   "id": "21:P1",
+   "paper": "21-grav",
+   "label": "P1",
+   "key": "p21049",
+   "tag": "E",
+   "predicate": "Strong-field signatures at or outside the photon sphere: shadow $+4.6\\%$, ringdown $-4.4\\%$, ISCO frequency $-6.9\\%$ with accretion efficiency $5.48\\%$ (against $5.72\\%$): one origin, jointly falsifiable, conditional on Theorem~\\ref{thm:branch}'s inputs alone.",
+   "source": "\\S\\ref{sub:strongdata}, Prop.~\\ref{prop:shadow},~\\ref{prop:isco}; \\src{grav.strongfield}",
+   "master": [],
+   "restated": [],
+   "witnessed": true,
+   "page": "21-gravity/21-gravity-ledger.html"
+  },
+  {
+   "id": "21:P2",
+   "paper": "21-grav",
+   "label": "P2",
+   "key": "p21051",
+   "tag": "E",
+   "predicate": "Preferred-frame effects at $O(10^{-61})$: the drive's in-principle signature, far below current $10^{-5}$ bounds.",
+   "source": "Prop.~\\ref{prop:dragging}",
+   "master": [],
+   "restated": [],
+   "witnessed": false,
+   "page": "21-gravity/21-gravity-ledger.html"
+  },
+  {
+   "id": "21:P3",
+   "paper": "21-grav",
+   "label": "P3",
+   "key": "p21052",
+   "tag": "E",
+   "predicate": "The weak-acceleration floor $a_0=cH_0/2\\pi=1.04\\times10^{-10}\\,\\mathrm{m\\,s^{-2}}$ at the entailed $H_0=67.4$ \\cite{entropy}, against the fitted $1.20\\pm0.24\\times10^{-10}$: $13\\%$ low, $0.7\\sigma$ of the systematic-dominated error, no free parameter; the $2\\pi$ the dictionary's full cycle [\\textsf{D}], the one-cycle-per-period threshold the realisation [\\textsf{R}] with its discrete falsifier.",
+   "source": "Prop.~\\ref{prop:afloor}; \\src{grav.rar}",
+   "master": [
+    "L1"
+   ],
+   "restated": [],
+   "witnessed": true,
+   "page": "21-gravity/21-gravity-ledger.html"
+  },
+  {
+   "id": "21:P4",
+   "paper": "21-grav",
+   "label": "P4",
+   "key": "p21053",
+   "tag": "E",
+   "predicate": "The radial acceleration relation, $g_{\\mathrm{obs}}=g_N/(1-e^{-\\sqrt{g_N/a_0}})$, no fitted function beyond the declared barrier identification (C19), the form the data selected across the four observed acceleration decades, its approach to Newton the discriminant ($0.05$ at $g_N\\approx5a_0$ against the simple rational interpolant); the deep limit gives the baryonic Tully--Fisher relation $v^4=GMa_0$.",
+   "source": "Prop.~\\ref{prop:crossover}; \\src{grav.deepregime}",
+   "master": [],
+   "restated": [],
+   "witnessed": true,
+   "page": "21-gravity/21-gravity-ledger.html"
+  },
+  {
+   "id": "21:P6",
+   "paper": "21-grav",
+   "label": "P6",
+   "key": "p21055",
+   "tag": "E",
+   "predicate": "The 2PN periastron excess $\\delta\\dot\\omega/\\dot\\omega\\approx1.5\\times10^{-6}$ for PSR~J0737$-$3039, today degenerate with the mass refit; decisive either way once an independent observable fixes $M_{\\mathrm{tot}}$ at $10^{-6}$. Independent of the coherent-fraction falsifier of \\citep{quantum}; the ledger carries both.",
+   "source": "\\S\\ref{sub:2pn}; \\src{grav.2pn}",
+   "master": [],
+   "restated": [],
+   "witnessed": true,
+   "page": "21-gravity/21-gravity-ledger.html"
+  },
+  {
+   "id": "21:P7",
+   "paper": "21-grav",
+   "label": "P7",
+   "key": "p21050",
+   "tag": "E",
+   "predicate": "Floor-surface signatures: no prompt echoes (the round-trip delay to $r_f$ carrying $e^{2u(r_f)}=\\Omega$) and no evaporation bursts; conditional on the fold-transition programme (C12, C24; the no-prompt-echo criterion a theorem at dev scale); a reported echo detection at the stated precision falsifies the construction.",
+   "source": "\\S\\ref{sub:strongdata}, Rem.~\\ref{rem:exponential},~\\ref{rem:hawking}; \\src{grav.strongfield}, \\src{grav.fold\\_echo}",
+   "master": [],
+   "restated": [],
+   "witnessed": true,
+   "page": "21-gravity/21-gravity-ledger.html"
+  },
+  {
+   "id": "22:P1",
+   "paper": "22-qm",
+   "label": "P1",
+   "key": "p22052",
+   "tag": "E",
+   "predicate": "Gravitationally induced entanglement at exactly the Newtonian rate, $V^2+C^2=1$ on the pure channel: equal force but unequal entanglement --- a source gravitates by its full mass while the systematic conditional phase, the calibrated discriminator, is carried by the coherent sectors alone, the fully incoherent channel separable at generic (nondegenerate) geometry. The one dated forward prediction.",
+   "source": "Rem.~\\ref{rem:bmvpred}; \\src{qm.bmv}",
+   "master": [],
+   "restated": [],
+   "witnessed": true,
+   "page": "22-quantum/22-quantum-ledger.html"
+  },
+  {
+   "id": "22:P2",
+   "paper": "22-qm",
+   "label": "P2",
+   "key": "p22053",
+   "tag": "E",
+   "predicate": "Third-order interference exactly zero at every accessible scale, any wrap quantised to a multiple of $\\Omega$: a single confirmed small $I_3\\neq0$ falsifies outright.",
+   "source": "Cor.~\\ref{cor:sorkin}, Rem.~\\ref{rem:horizon}; \\src{qm.sorkin}",
+   "master": [],
+   "restated": [],
+   "witnessed": true,
+   "page": "22-quantum/22-quantum-ledger.html"
+  },
+  {
+   "id": "22:P3",
+   "paper": "22-qm",
+   "label": "P3",
+   "key": "p22054",
+   "tag": "E",
+   "predicate": "The Tsirelson value $S=2\\sqrt2$ exact and the network behaviour of complex (not real) quantum theory: vacuum dispersion, $S\\neq2\\sqrt2$, or non-quantum network behaviour each falsify.",
+   "source": "Thm.~\\ref{thm:tsirelson},~\\ref{thm:table}; \\src{qm.composite}, \\src{qm.renou}",
+   "master": [],
+   "restated": [],
+   "witnessed": true,
+   "page": "22-quantum/22-quantum-ledger.html"
+  },
+  {
+   "id": "22:P4",
+   "paper": "22-qm",
+   "label": "P4",
+   "key": "p22055",
+   "tag": "E",
+   "predicate": "No vacuum dispersion at any sub-horizon order (the finite double cover accumulates nothing): the gamma-ray-burst time-of-flight bounds leave the framework untouched.",
+   "source": "Rem.~\\ref{rem:doublecover}; \\src{qm.dispersion}",
+   "master": [],
+   "restated": [],
+   "witnessed": true,
+   "page": "22-quantum/22-quantum-ledger.html"
+  },
+  {
+   "id": "22:P5",
+   "paper": "22-qm",
+   "label": "P5",
+   "key": "p22056",
+   "tag": "E",
+   "predicate": "Quantum computation succeeds as standard quantum mechanics prescribes at every accessible depth; the first deviation, if any, is quantised at the unit-core ceiling $k^*=404$ ($202$ for $\\sqrt\\Omega$), not gradual.",
+   "source": "Prop.~\\ref{prop:granularity}; \\src{qm.granularity}",
+   "master": [],
+   "restated": [],
+   "witnessed": true,
+   "page": "22-quantum/22-quantum-ledger.html"
+  },
+  {
+   "id": "27:P1",
+   "paper": "27-fld",
+   "label": "P1",
+   "key": "p27035",
+   "tag": "E",
+   "predicate": "\\textbf{No fourth generation and no fifth interaction} \\emph{[forced]}. The role ladder closes, the fifth step returns to counting, and the Carrier is the entire substrate, so a fourth chiral family and a fifth fundamental force are forbidden, not merely absent (Tier~4). \\emph{Falsifier:} any fourth-generation fermion, or any new fundamental interaction.",
+   "source": "Prop.~\\ref{prop:threegen}; \\src{fld.p9b}",
+   "master": [
+    "N1"
+   ],
+   "restated": [],
+   "witnessed": true,
+   "page": "27-fields/27-fields-ledger.html"
+  },
+  {
+   "id": "27:P2",
+   "paper": "27-fld",
+   "label": "P2",
+   "key": "p27036",
+   "tag": "E",
+   "predicate": "\\textbf{A desert to the substrate scale} \\emph{[forced]}. The gauge group is exactly $\\SU(3)\\times\\SU(2)\\times\\U(1)$ until the substrate resolves the colour--isospin split; no new gauge boson, vector-like fermion, or extra scalar lies between the electroweak and substrate ($\\sim10^{16}$--$10^{19}\\,$GeV) scales. \\emph{Falsifier:} a $Z'$, $W'$, leptoquark, second Higgs doublet, or compositeness signature at the LHC or a future collider. This is the sharpest divergence from supersymmetry, extra dimensions, and composite-Higgs scenarios.",
+   "source": "Prop.~\\ref{prop:unify}",
+   "master": [
+    "N1"
+   ],
+   "restated": [],
+   "witnessed": false,
+   "page": "27-fields/27-fields-ledger.html"
+  },
+  {
+   "id": "27:P3",
+   "paper": "27-fld",
+   "label": "P3",
+   "key": "p27037",
+   "tag": "E",
+   "predicate": "\\textbf{No TeV supersymmetry} \\emph{[forced]}. The ${\\sim}13\\%$ three-coupling near-miss is closed by the $X,Y$ completion at the substrate scale, with the running carried by purely Standard-Model content; there are no superpartners enforcing exact low-scale unification. \\emph{Falsifier:} discovery of superpartners, or evidence that unification demands TeV-scale thresholds.",
+   "source": "Prop.~\\ref{prop:running}; \\src{fld.p1}",
+   "master": [
+    "N1"
+   ],
+   "restated": [],
+   "witnessed": true,
+   "page": "27-fields/27-fields-ledger.html"
+  },
+  {
+   "id": "27:P4",
+   "paper": "27-fld",
+   "label": "P4",
+   "key": "p27038",
+   "tag": "E",
+   "predicate": "\\textbf{The proton is effectively stable, $\\tau_p\\gtrsim10^{45}\\,$yr} \\emph{[forced]}. The $X,Y$ leptoquarks acquire mass at the substrate scale, not at $\\sim10^{16}\\,$GeV, so $\\tau_p\\sim M_X^4/(\\al_{\\mathrm{GUT}}^2 m_p^5)$ reaches $10^{45}$--$10^{47}\\,$yr for $M_X$ near the Planck scale, orders beyond the $\\sim10^{36}\\,$yr of supersymmetric $\\SO(10)$ and the $\\sim10^{35}\\,$yr reach of Hyper-Kamiokande. \\emph{Falsifier:} observation of $p\\to e^+\\pi^0$ near $10^{34}$--$10^{35}\\,$yr in Hyper-Kamiokande, DUNE, or JUNO, against the current bound \\cite{superk2017}. The programme predicts these searches find nothing.",
+   "source": "Prop.~\\ref{prop:unify}; \\src{fld.p8}",
+   "master": [
+    "N1"
+   ],
+   "restated": [],
+   "witnessed": true,
+   "page": "27-fields/27-fields-ledger.html"
+  },
+  {
+   "id": "27:P5",
+   "paper": "27-fld",
+   "label": "P5",
+   "key": "p27039",
+   "tag": "E",
+   "predicate": "\\textbf{Majorana neutrinos, heavy singlets, no light sterile neutrino} \\emph{[sector]}. The $\\nu^c$ is the gauge-singlet $\\Lam^0$ of the generation, so it takes a Majorana mass at unification and drives the seesaw, the three right-handed states sitting at $\\sim10^{14}$--$10^{15}\\,$GeV. \\emph{Falsifier:} a confirmed eV-scale sterile neutrino, or evidence that the light neutrinos are Dirac. This diverges from Dirac-neutrino and sterile-neutrino interpretations and is consistent with $N_{\\mathrm{eff}}=3$.",
+   "source": "Thm.~\\ref{thm:gen}, Prop.~\\ref{prop:mass}; \\src{fld.p7}",
+   "master": [],
+   "restated": [],
+   "witnessed": true,
+   "page": "27-fields/27-fields-ledger.html"
+  },
+  {
+   "id": "27:P6",
+   "paper": "27-fld",
+   "label": "P6",
+   "key": "p27040",
+   "tag": "E",
+   "predicate": "\\textbf{No new particle of dark matter} \\emph{[sector]}. The matter content is exactly one Standard-Model generation, triplicated, with heavy $\\nu^c$; the construction contains no weakly-interacting massive particle and no axion. \\emph{Falsifier:} a positive signal in a direct-detection (LZ, XENONnT) or axion (ADMX) experiment. Dark matter, if not a Standard-Model state, must then reside in the gravitational/substrate sector, a residual burden of the programme.",
+   "source": "Thm.~\\ref{thm:gen}",
+   "master": [
+    "N1"
+   ],
+   "restated": [],
+   "witnessed": false,
+   "page": "27-fields/27-fields-ledger.html"
+  },
+  {
+   "id": "27:P7",
+   "paper": "27-fld",
+   "label": "P7",
+   "key": "p27041",
+   "tag": "E",
+   "predicate": "\\textbf{No new-physics contribution to the muon anomaly} \\emph{[sector]}. With no states beyond the Standard Model, $(g-2)_\\mu$ must be accounted for by Standard-Model (notably hadronic) contributions. \\emph{Falsifier:} a robustly established beyond-Standard-Model excess; the current lattice and experimental trend toward the Standard-Model value favours this prediction.",
+   "source": "Thm.~\\ref{thm:gen}",
+   "master": [
+    "N1"
+   ],
+   "restated": [],
+   "witnessed": false,
+   "page": "27-fields/27-fields-ledger.html"
+  },
+  {
+   "id": "27:P8",
+   "paper": "27-fld",
+   "label": "P8",
+   "key": "p27042",
+   "tag": "E",
+   "predicate": "\\textbf{The charged-lepton Koide relation is exactly $2/3$} \\emph{[structural, $T\\mid\\Omega$]}. The empirical identity $(m_e+m_\\mu+m_\\tau)/(\\sqrt{m_e}+\\sqrt{m_\\mu}+\\sqrt{m_\\tau})^2=2/3$, which the Standard Model does not explain and which holds to one part in $10^{5}$, is the cube-root generation orbit at the self-dual value $\\rho^2=2^{-1}$: $Q=\\tfrac13+\\tfrac23\\rho^2$ is exact and $\\rho^2=2^{-1}\\in\\F_\\Omega$ is the quarter-turn ($4\\mid\\Omega-1$) self-dual amplitude on the cubic ($3\\mid\\Omega+1$) plane. The functional form and the self-dual value are derived; the selection of the charged-lepton mass vector onto that orientation is the $\\Omega$-hard flavour residual (the carrier-scale winding phase, Z1), not derived here. \\emph{Falsifier:} a charged-lepton mass measurement displacing $Q$ from $2/3$ beyond the per-mille winding-phase corrections.",
+   "source": "Prop.~\\ref{prop:koide}; \\src{fld.koide}",
+   "master": [
+    "K2"
+   ],
+   "restated": [
+    "28:P1"
+   ],
+   "witnessed": true,
+   "page": "27-fields/27-fields-ledger.html"
+  },
+  {
+   "id": "27:P9",
+   "paper": "27-fld",
+   "label": "P9",
+   "key": "p27043",
+   "tag": "E",
+   "predicate": "\\textbf{Vanishing strong-CP angle without an axion} \\emph{[structural, $T\\mid R$]}. The QCD vacuum angle vanishes on the substrate, $\\bar\\theta=0$ with no axion: the colour action carries no topological term and colour is drive-invariant, so the bare $\\theta=0$, and the Hermitian quark mass matrices have real determinant, so $\\arg\\det M_q=0$, while the Cabibbo--Kobayashi--Maskawa phase sits in the up--down misalignment. \\emph{Falsifier:} a neutron electric dipole moment above the QCD floor, or a discovered axion.",
+   "source": "Prop.~\\ref{prop:strongcp}; \\src{fld.strongcp}",
+   "master": [
+    "I4"
+   ],
+   "restated": [],
+   "witnessed": true,
+   "page": "27-fields/27-fields-ledger.html"
+  },
+  {
+   "id": "28:P2",
+   "paper": "28-flav",
+   "label": "P2",
+   "key": "p28037",
+   "tag": "E",
+   "predicate": "Up-quark Koide $Q_u=5/6$ in framed arithmetic, $r_u^2=N(1-\\omega)=3$; continuum $0.849$ in the working scheme, $0.832$ with pole masses, band $0.83$--$0.89$. Falsifier: up/charm/top masses moving $Q_u$ outside the band in every standard scheme.",
+   "source": "C4; \\src{flv.\\allowbreak revision\\_\\allowbreak checks}, \\src{flv.\\allowbreak quark\\_\\allowbreak amp}",
+   "master": [
+    "K3"
+   ],
+   "restated": [],
+   "witnessed": true,
+   "page": "28-flavour/28-flavour-ledger.html"
+  },
+  {
+   "id": "28:P3",
+   "paper": "28-flav",
+   "label": "P3",
+   "key": "p28038",
+   "tag": "E",
+   "predicate": "Cabibbo $V_{us}=|\\sqrt{m_d/m_s}-e^{i\\varphi}\\sqrt{m_u/m_c}|$: leading term $0.224^{+0.011}_{-0.004}$ vs $0.2243$ ($0.3\\%$), the up term $\\pm0.04$ with $\\varphi$ open. Falsifier: no $\\varphi$ satisfying the relation within the input band.",
+   "source": "C6",
+   "master": [],
+   "restated": [],
+   "witnessed": false,
+   "page": "28-flavour/28-flavour-ledger.html"
+  },
+  {
+   "id": "28:P5",
+   "paper": "28-flav",
+   "label": "P5",
+   "key": "p28039",
+   "tag": "E",
+   "predicate": "Normal neutrino ordering, from $Q_\\nu=2/3$, the two $\\Delta m^2$ and the boundary branch (C11b); the signed circulant solves both orderings. Falsifier: inverted ordering.",
+   "source": "\\S\\ref{sec:neutrino}; \\src{flv.neutrino}",
+   "master": [],
+   "restated": [],
+   "witnessed": true,
+   "page": "28-flavour/28-flavour-ledger.html"
+  },
+  {
+   "id": "28:P6",
+   "paper": "28-flav",
+   "label": "P6",
+   "key": "p28040",
+   "tag": "E",
+   "predicate": "Mass-sum floor $\\sum m_\\nu=58.7$ meV ($m_1{\\simeq}0$, $m_2{\\simeq}8.6$, $m_3{\\simeq}50$ meV; $58.8$ at NuFIT~6.0), the $m_1=0$ normal-ordering floor. Falsifier: a cosmological $\\sum m_\\nu<0.058$ eV.",
+   "source": "\\S\\ref{sec:neutrino}; \\src{flv.neutrino}",
+   "master": [
+    "K3"
+   ],
+   "restated": [],
+   "witnessed": true,
+   "page": "28-flavour/28-flavour-ledger.html"
+  },
+  {
+   "id": "28:P7",
+   "paper": "28-flav",
+   "label": "P7",
+   "key": "p28041",
+   "tag": "E",
+   "predicate": "Effective Majorana mass $m_{\\beta\\beta}{\\simeq}1.5$--$3.7$ meV (NO, $m_1{\\simeq}0$, circulant phase). Falsifier: a $0\\nu\\beta\\beta$ signal at the inverted scale $15$--$50$ meV.",
+   "source": "C11",
+   "master": [],
+   "restated": [],
+   "witnessed": false,
+   "page": "28-flavour/28-flavour-ledger.html"
+  },
+  {
+   "id": "28:P8",
+   "paper": "28-flav",
+   "label": "P8",
+   "key": "p28042",
+   "tag": "E",
+   "predicate": "Leptonic CP locked to the octant by \\eqref{eq:tm2}: $\\delta_{\\mathrm{CP}}\\in(204^\\circ,310^\\circ)$ over the $3\\sigma$ $\\theta_{23}$ range, $\\pm124^\\circ$/$\\pm74^\\circ$ at the NuFIT~6.0 best fits, $\\sin\\delta_{\\mathrm{CP}}{<}0$, $J=1/(6\\sqrt3)$. Falsifier: CP-conserving $\\delta_{\\mathrm{CP}}$, $\\sin\\delta_{\\mathrm{CP}}{>}0$, or $(\\theta_{23},\\delta_{\\mathrm{CP}})$ off the relation.",
+   "source": "C10; \\src{flv.pmns\\_cp}, \\src{flv.\\allowbreak tm2\\_\\allowbreak jointfit}",
+   "master": [],
+   "restated": [],
+   "witnessed": true,
+   "page": "28-flavour/28-flavour-ledger.html"
+  },
+  {
+   "id": "32:P2",
+   "paper": "32-dark",
+   "label": "P2",
+   "key": "p32039",
+   "tag": "E",
+   "predicate": "The scatter is the two-variable form $\\sigma=(2\\tan\\alpha/\\ln10)\\,\\delta\\alpha$, vanishing for cold high-$x$ systems and rising as $x^{-1/4}$; SPARC at fixed $\\az$: intrinsic $0.038$\\,dex overall, $0.04$ at the knee, $0.13$ at $x\\simeq0.02$, bounding $\\delta\\alpha\\lesssim3.5^{\\circ}$. Falsifier: a deep-regime intrinsic scatter that does not rise, or a measured collective spread the scatter does not track.",
+   "source": "\\S\\ref{sub:scatterderiv}, \\S\\ref{sec:predictions}; \\src{dark.\\allowbreak rar\\_\\allowbreak scatter}, \\src{dark.\\allowbreak predictions}",
+   "master": [],
+   "restated": [],
+   "witnessed": true,
+   "page": "32-dark/32-dark-ledger.html"
+  },
+  {
+   "id": "32:P3",
+   "paper": "32-dark",
+   "label": "P3",
+   "key": "p32040",
+   "tag": "E",
+   "predicate": "Wide binaries ($\\gtrsim10$\\,kAU) follow $\\gb/(1-e^{-\\sqrt{x}})$ with the global $\\az$ and the vector Galactic field $\\gext\\simeq1.8\\az$: a $10$--$30\\%$ velocity enhancement ($12$--$16\\%$ at $10$--$40$\\,kAU on the collinear estimate), the exponential knee distinct from Newtonian and rational forms. Falsifier: Newtonian wide-binary motion, or a knee of the wrong shape.",
+   "source": "\\S\\ref{sec:predictions}; \\src{dark.\\allowbreak predictions}",
+   "master": [],
+   "restated": [],
+   "witnessed": true,
+   "page": "32-dark/32-dark-ledger.html"
+  },
+  {
+   "id": "32:P4",
+   "paper": "32-dark",
+   "label": "P4",
+   "key": "p32041",
+   "tag": "E",
+   "predicate": "Pressure-supported systems (ellipticals, dSphs, UDGs) lie below the cold-disk relation by the coherence factor $\\sqrt{w}$, $w=1/(1+(\\sigma_v/v)^{2})$, by $0.05$--$0.15$\\,dex for $\\sigma_v/v=0.5$--$1$, correlating with $\\sigma_v/v$. Falsifier: pressure-supported systems on the cold-disk relation.",
+   "source": "\\S\\ref{sec:predictions}; \\src{dark.\\allowbreak predictions}",
+   "master": [],
+   "restated": [],
+   "witnessed": true,
+   "page": "32-dark/32-dark-ledger.html"
+  },
+  {
+   "id": "32:P5",
+   "paper": "32-dark",
+   "label": "P5",
+   "key": "p32042",
+   "tag": "E",
+   "predicate": "Coherence-state cluster gas: the X-ray gas gravitates only when bulk-coherent, contributing in a relaxed cluster ($C_{ij}\\to1$) and dropping out of a merger ($C_{ij}\\to0$), the lensing displacement growing with the shock Mach number; the quantitative core residual of the same law is the conjecture O1. Falsifier: a merger lensing peak tracking the shocked gas, or no relaxed-versus-merging difference.",
+   "source": "Eq.~\\eqref{eq:cohsum}, \\S\\ref{sec:predictions}",
+   "master": [],
+   "restated": [],
+   "witnessed": false,
+   "page": "32-dark/32-dark-ledger.html"
+  },
+  {
+   "id": "32:P6",
+   "paper": "32-dark",
+   "label": "P6",
+   "key": "p32043",
+   "tag": "E",
+   "predicate": "A global, isotropic scale and no dark substructure: the floor is the global drive rate, identical in every direction and environment once the external-field correction is made; no new dark-matter state and no dark subhaloes, so stream perturbations and the satellite abundance trace baryons alone. Falsifier: a directional or density dependence of $\\az$ beyond the external-field effect, or stream gaps and substructure lensing with no baryonic counterpart.",
+   "source": "B1, B3; \\S\\ref{sec:predictions}",
+   "master": [
+    "N1"
+   ],
+   "restated": [],
+   "witnessed": false,
+   "page": "32-dark/32-dark-ledger.html"
+  }
+ ],
+ "restated": {
+  "00:L7": [
+   "14:P1",
+   "21:P5",
+   "32:P1"
+  ],
+  "27:P8": [
+   "28:P1"
+  ]
+ }
+}
