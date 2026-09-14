@@ -1,0 +1,546 @@
+{
+ "paper": "22-qm",
+ "title": "Quantum Observation over Finite Substrate",
+ "doi": "https://doi.org/10.20944/preprints202606.1160.v2",
+ "generated": "14 September 2026",
+ "blocks": [
+  {
+   "letter": "A",
+   "title": "Inputs: imported, not derived here",
+   "rows": [
+    {
+     "label": "A1",
+     "predicate": "The framed shell $\\F_{\\p}$, $\\p=4\\kap+1$: the frame datum, the phase cycle $\\Phi\\simeq C_{4\\kap}$, the quarter-turn core $\\Qf$ with $\\It=\\gen^{-\\kap}$, and the drive (the frame generator's scale action, one step per chronon in the observer's frame).",
+     "tag": "I",
+     "source": "\\citep{akhtman2025algebra}",
+     "key": "p22001"
+    },
+    {
+     "label": "A2",
+     "predicate": "The Lorentzian split: the quadratic extension $\\F_{\\p^2}$, the Frobenius involution, the norm-one boost cycle of order $\\p+1$, and the spinor double cover (the Dirac layer).",
+     "tag": "I",
+     "source": "\\citep{akhtman2026dirac,lidl1997}; \\src{qm.dispersion}",
+     "key": "p22002"
+    },
+    {
+     "label": "A3",
+     "predicate": "The fractional Fourier rotation exchanging the coordinate and momentum charts on one cycle, with the chart conventions and the derived orientation.",
+     "tag": "I",
+     "source": "\\citep{akhtman2026fourier}",
+     "key": "p22003"
+    },
+    {
+     "label": "A4",
+     "predicate": "The mass and capacity readings: mass is winding rate, rest energy is phase advance per chronon ($E=hf$ an identity), the unit channel capacity $\\varkappa=1$ in the place of $\\hbar$; distance is decoherence; the Newtonian potential.",
+     "tag": "I",
+     "source": "\\citep{akhtman2026gravity}",
+     "key": "p22004"
+    },
+    {
+     "label": "A5",
+     "predicate": "The window discipline, committed: the coherence horizon $\\sqrt\\Omega$, the decidability horizon $\\Omega^{1/4}$, and the committed cardinality $\\Omega\\sim10^{122}$ --- declared inputs of the programme, their cost recorded in the $\\Omega$ ledger.",
+     "tag": "Ω",
+     "source": "\\S\\ref{sec:omegaledger}, Tab.~\\ref{tab:omega}; \\src{qm.omega}",
+     "key": "p22005"
+    },
+    {
+     "label": "A6",
+     "predicate": "The finiteness of the substrate: a finite ring, with the continuum recovered only as a degenerate large-cardinality limit.",
+     "tag": "I",
+     "source": "\\citep{akhtman2025algebra}",
+     "key": "p22006"
+    },
+    {
+     "label": "A7",
+     "predicate": "Imported mathematics used without reproof: cyclotomic rings $\\Z[\\zeta_d]$ and finite character orthogonality, the finite uncertainty principle, and the Kochen--Specker theorem.",
+     "tag": "I",
+     "source": "\\citep{donoho1989,tao2005,kochen1967}",
+     "key": "p22007"
+    },
+    {
+     "label": "A8",
+     "predicate": "Comparison results and experiments used for confrontation only: the Sorkin interference hierarchy and triple-slit bounds, the real-versus-complex network discrimination, the gravitational-entanglement proposals, the gamma-ray-burst dispersion bounds, and prior finite-field quantum theories.",
+     "tag": "I",
+     "source": "\\citep{sorkin1994,sinha2010,renou2021,bose2017,marletto2017,vasileiou2013,schumacher2012}",
+     "key": "p22008"
+    }
+   ]
+  },
+  {
+   "letter": "B",
+   "title": "Realisations: mathematics $\\to$ physics (the forced identifications, each with its falsifier)",
+   "rows": [
+    {
+     "label": "B1",
+     "predicate": "The wave function is phase: a pure state is a winding (character) of the Object cycle, and the chart point and the wave share one finite arithmetic domain. Falsifier: a confirmed third-order interference $I_3\\neq0$ (P2).",
+     "tag": "R",
+     "source": "\\S\\ref{sec:wavefunction}, Lem.~\\ref{lem:powermaps}",
+     "key": "p22009"
+    },
+    {
+     "label": "B2",
+     "predicate": "Energy is the winding index: the drive generator is the Hamiltonian, the index $k$ sits in the place of $E$, and $U^{-t}$ is the finite $e^{-\\mathrm{i}Et/\\hbar}$. Falsifier: a stationary state whose registered frequency is not its winding index ($E=hf$ failing), or vacuum dispersion (P4).",
+     "tag": "R",
+     "source": "Prop.~\\ref{prop:stationary}, Rem.~\\ref{rem:energy}",
+     "key": "p22010"
+    },
+    {
+     "label": "B3",
+     "predicate": "The amplitude is Object-to-Subject projection: observation is the Subject's quotient of the Object cycle by the shared core, and the amplitude is the Hermitian projection onto the transported pointer wave. Falsifier: an outcome frequency not quadratic in the projected amplitude (the counting Born rule C10 failing).",
+     "tag": "R",
+     "source": "\\S\\ref{sec:observation}, Def.~\\ref{def:measvectors}",
+     "key": "p22011"
+    },
+    {
+     "label": "B4",
+     "predicate": "Probability is a coincidence count, kept in the Subject's ledger $\\led=\\Z[\\zeta_d]$ ($\\Z[\\It]$ for the generic core): the tally of phase agreements, not a field of the substrate. Falsifier: an outcome frequency over a complete joint recurrence that is not an exact tally ratio.",
+     "tag": "R",
+     "source": "Def.~\\ref{def:ledger}, Prop.~\\ref{prop:paircount}",
+     "key": "p22012"
+    },
+    {
+     "label": "B5",
+     "predicate": "Composition is conservation, and composite states are kept on the product ledger: the reading Subject's one drive conserves the relative offset of a pair, a synchronised orbit is a Bell state, a composite is a drive-confined synchronised orbit (offset-diagonal preparation declared, Prop.~\\ref{prop:unequal}(iii)), and the Subject's bookkeeping of joint tallies is the rank-$n_An_B$ product ledger (Definition~\\ref{def:compositeledger}) --- the declared composition rule, its lcm-join alternative visible and rejected, the ledger composing states while the carrier constrains dynamics. Falsifier: $S\\neq2\\sqrt2$, or network behaviour outside Theorem~\\ref{thm:table} (P3).",
+     "tag": "R",
+     "source": "Prop.~\\ref{prop:offset}, Def.~\\ref{def:composite}",
+     "key": "p22013"
+    },
+    {
+     "label": "B6",
+     "predicate": "Collapse is re-metrisation: a registration restricts the Subject's relational chart to a fibre and nothing else, since distance is decoherence. Falsifier: a post-registration state other than the L\\\"uders restriction, or spontaneous collapse (C20).",
+     "tag": "R",
+     "source": "Rem.~\\ref{rem:collapse}",
+     "key": "p22014"
+    },
+    {
+     "label": "B7",
+     "predicate": "Measurement settings are relational repositionings of the analyser along the carrier, $u\\mapsto \\gen^{-j}u$: shifts of the Object offset $\\dt$. Falsifier: a setting dependence of the CHSH correlator not expressible as an offset shift.",
+     "tag": "R",
+     "source": "Def.~\\ref{def:chshsettings}",
+     "key": "p22015"
+    },
+    {
+     "label": "B8",
+     "predicate": "Gravity is an entangling channel by \\emph{reciprocal synchronisation}, the declared interaction identification: the conserved offset turns the gravity paper's phase synchronisation into the conditional phase, and spread pairs imprint which-branch data on the source (row C21). Falsifier: gravitationally induced entanglement off the Newtonian rate, or force not by full mass (P1); $\\eta\\neq0$ (C22).",
+     "tag": "R",
+     "source": "\\S\\ref{sec:gravchannel}, Prop.~\\ref{prop:bmvmech}, Prop.~\\ref{prop:fcoh}",
+     "key": "p22016"
+    }
+   ]
+  },
+  {
+   "letter": "C",
+   "title": "Derived: theorems and consequences within this paper",
+   "rows": [
+    {
+     "label": "C1",
+     "predicate": "Characters are power maps $\\psi_k(u)=u^k$, pairwise distinct: the wave function is the cycle read through a winding index.",
+     "tag": "T",
+     "source": "Lem.~\\ref{lem:powermaps}; \\src{qm.validate}",
+     "key": "p22017"
+    },
+    {
+     "label": "C2",
+     "predicate": "Stationary states are the winding modes: the drive's eigenvalues are distinct and a winding acquires a global phase of weight $k$ per chronon.",
+     "tag": "T",
+     "source": "Prop.~\\ref{prop:stationary}; \\src{qm.validate}",
+     "key": "p22018"
+    },
+    {
+     "label": "C3",
+     "predicate": "The measurement vectors are a forced orthogonal basis: orthogonality $d\\,\\delta\\delta$, resolution of identity, and Parseval are character theory, and the pointer basis is einselected by the algebra of the frames.",
+     "tag": "T",
+     "source": "Prop.~\\ref{prop:basis}; \\src{qm.validate}",
+     "key": "p22019"
+    },
+    {
+     "label": "C4",
+     "predicate": "The selection rule: a pointer channel couples to an Object mode only when their core phases agree, $r\\equiv k\\pmod d$.",
+     "tag": "T",
+     "source": "Prop.~\\ref{prop:selection}; \\src{qm.validate}",
+     "key": "p22020"
+    },
+    {
+     "label": "C5",
+     "predicate": "The L\\\"uders update is projection, $\\Pi^2=d\\,\\Pi$, so an immediately repeated measurement returns the same outcome.",
+     "tag": "T",
+     "source": "Prop.~\\ref{prop:lueders}; \\src{qm.validate}",
+     "key": "p22021"
+    },
+    {
+     "label": "C6",
+     "predicate": "Conjugation is cycle inversion, forced in each setting: Frobenius on the boost cycle, exponent negation on the phase cycle, complex conjugation on the ledger --- each its setting's only candidate.",
+     "tag": "T",
+     "source": "Lem.~\\ref{lem:involution}, Prop.~\\ref{prop:reduction},~\\ref{prop:paircount}, \\citep{akhtman2026dirac}",
+     "key": "p22022"
+    },
+    {
+     "label": "C7",
+     "predicate": "Squared amplitudes are coincidence counts (the pair-count identity), realized tallies on $\\Z[\\It]$ for stationary core-valued states of definite drive eigenvalue; a distinct-eigenvalue superposition registers the integral drive-frequency count; for a pure winding the weights are $d^2[r\\equiv k]$.",
+     "tag": "T",
+     "source": "Prop.~\\ref{prop:paircount}, Lem.~\\ref{lem:registered}; \\src{qm.validate}, \\src{qm.decoherence}",
+     "key": "p22023"
+    },
+    {
+     "label": "C8",
+     "predicate": "Sorkin nullity: $I_k=0$ for every $k\\ge3$, exactly, on every channel and outcome, with $I_2$ generically nonzero.",
+     "tag": "T",
+     "source": "Cor.~\\ref{cor:sorkin}; \\src{qm.sorkin}",
+     "key": "p22024"
+    },
+    {
+     "label": "C9",
+     "predicate": "Reduction: the Carrier-chart amplitude is the mod-$\\Omega$ shadow of the ledger ($\\zeta\\mapsto v$), exact as algebra and silent about magnitude.",
+     "tag": "T",
+     "source": "Prop.~\\ref{prop:reduction}; \\src{qm.validate}",
+     "key": "p22025"
+    },
+    {
+     "label": "C10",
+     "predicate": "The counting Born rule on sub-horizon states over the universal core $\\Qf$: the weight is the unique window lift of its shadow and the probability a framed-rational ratio of coincidence counts, the frequency along the drive completed in finitely many chronons; the two probability strata and their $\\Qf$ coincidence; on a single Object the theorem's weights are uniform over the fibres (Remark~\\ref{rem:borndomain}), every non-uniform statistic passing through C11.",
+     "tag": "T",
+     "source": "Thm.~\\ref{thm:born}, Prop.~\\ref{prop:strata}, Def.~\\ref{def:registered}, Rem.~\\ref{rem:ergodic}; \\src{qm.stratum}",
+     "key": "p22026"
+    },
+    {
+     "label": "C11",
+     "predicate": "The engineered-core readout: registered frequencies are framed rationals reading the two-way structural weight through Definition~\\ref{def:readout}; two reductions are proved (the conjugate-pair trace tally and the setting-ensemble Parseval tally, Remark~\\ref{rem:strata}), and the stratum-sampling clause --- a fixed-setting protocol samples one stratum of the drive-presented ensemble --- is the residual realisation content.",
+     "tag": "T|R",
+     "source": "Prop.~\\ref{prop:strata}, Rem.~\\ref{rem:strata}; \\src{qm.stratum}",
+     "key": "p22027"
+    },
+    {
+     "label": "C12",
+     "predicate": "Uniqueness of the pair tally on the stationary core-valued $\\Qf$ sector: tally-valued, fibre-additive, drive-invariant, two-way registration functionals form the $d^2c$-realized character cone, the degree itself forced (Lemma~\\ref{lem:degree}); channel selectivity picks the Born ray.",
+     "tag": "T",
+     "source": "Prop.~\\ref{prop:gleason}; \\src{qm.gleason}",
+     "key": "p22028"
+    },
+    {
+     "label": "C13",
+     "predicate": "Complex amplitudes are forced: the generic shared core of two framed shells is $\\Qf$, so the minimal ledger is $\\Z[\\It]$; shells of cardinality $\\equiv3\\pmod4$ (arising from no capacity) give a real-amplitude theory.",
+     "tag": "T",
+     "source": "Prop.~\\ref{prop:gaussian}",
+     "key": "p22029"
+    },
+    {
+     "label": "C14",
+     "predicate": "The granularity ceiling: the representable coherent-splitting depth is the largest $k$ with $d\\,T(k)<\\Omega$, $T(k)=2^{k+[k\\text{ odd}]}$ the minimal tally norm, and resolution finer than $1/\\Omega$ lies outside the derived Born regime.",
+     "tag": "T",
+     "source": "Prop.~\\ref{prop:granularity}; \\src{qm.granularity}",
+     "key": "p22030"
+    },
+    {
+     "label": "C15",
+     "predicate": "The composite ledger and the conserved offset: synchronised orbits are the Bell states, the $m$-body locked cluster carries the offset as a conserved, drive-confined label (its ensemble diagonality a declared preparation clause).",
+     "tag": "T",
+     "source": "Prop.~\\ref{prop:offset}, Lem.~\\ref{lem:mbody}; \\src{qm.composite}, \\src{qm.\\allowbreak synchronisation}",
+     "key": "p22031"
+    },
+    {
+     "label": "C16",
+     "predicate": "Qubits from doublets: the forced readout is $\\sigma_x$ through the relation $v^{\\,8}=-1$.",
+     "tag": "T",
+     "source": "Prop.~\\ref{prop:doublet},~\\ref{prop:sigmax}; \\src{qm.composite}",
+     "key": "p22032"
+    },
+    {
+     "label": "C17",
+     "predicate": "Exact Tsirelson saturation: the singlet law $E(\\Delta)=\\cos(\\pi\\Delta/40)$, $S=2(\\zeta_8+\\zeta_8^{-1})$, $S^2=8$, the exhaustive $80^3$ sweep never exceeding it; no-signalling and the composite reduction commute.",
+     "tag": "T",
+     "source": "Thm.~\\ref{thm:tsirelson}, Prop.~\\ref{prop:boundary}; \\src{qm.composite}",
+     "key": "p22033"
+    },
+    {
+     "label": "C18",
+     "predicate": "The network table is the complex-quantum table, and the Bell-state measurement is the offset readout.",
+     "tag": "T",
+     "source": "Prop.~\\ref{prop:bsm}, Thm.~\\ref{thm:table}; \\src{qm.renou}",
+     "key": "p22034"
+    },
+    {
+     "label": "C19",
+     "predicate": "The gravitational channel entangles exactly, $C^2=\\sin^2(\\varphi/2)$, with the pure-channel complementarity $V^2+C^2=1$.",
+     "tag": "T",
+     "source": "Prop.~\\ref{prop:bmvmech}; \\src{qm.bmv}",
+     "key": "p22035"
+    },
+    {
+     "label": "C20",
+     "predicate": "No spontaneous collapse; the dilation floor dephases with an exact revival $V(n)=1$.",
+     "tag": "T",
+     "source": "Prop.~\\ref{prop:nocollapse},~\\ref{prop:dilation}; \\src{qm.decoherence}",
+     "key": "p22036"
+    },
+    {
+     "label": "C21",
+     "predicate": "The coherent-fraction channel: force by full masses, entanglement by coherent fractions; the declared identification is reciprocal synchronisation, and the fully incoherent channel is separable at generic (nondegenerate) geometry.",
+     "tag": "T|R",
+     "source": "Prop.~\\ref{prop:fcoh}; \\src{qm.gravfraction}",
+     "key": "p22037"
+    },
+    {
+     "label": "C22",
+     "predicate": "The two scaling laws and the exact equivalence-principle null: coherent $m^2$ against incoherent $m$, $\\eta=0$.",
+     "tag": "T",
+     "source": "Prop.~\\ref{prop:scaling}; \\src{qm.equivalence}",
+     "key": "p22038"
+    },
+    {
+     "label": "C23",
+     "predicate": "Inter-Subject consistency: two distinct Subjects reading one Object agree on the shared core $\\Qf$ , order-independent joint refinement, the same core character by the selection rule, and order-independence on the shared cell.",
+     "tag": "T",
+     "source": "Prop.~\\ref{prop:intersubject}; \\src{qm.intersubject}",
+     "key": "p22039"
+    },
+    {
+     "label": "C24",
+     "predicate": "Carrier-chart classicality: to the host of a hosted Carrier every observation is total absorption (for the physical Carrier, a limit no reader instantiates); quantumness is the subgroup index $[\\PhiO:\\core]>1$, and classicality is the divisibility of the observer's frame --- one outcome per fixed channel, with the channel index still carrying the winding information (absorption is not the absence of information transfer).",
+     "tag": "T",
+     "source": "Cor.~\\ref{cor:carrier}; \\src{qm.validate}",
+     "key": "p22040"
+    },
+    {
+     "label": "C25",
+     "predicate": "The measurement problem dissolved: Kochen--Specker poses no separate threat because values exist only as Subject-relative quotient phases, carried together with the Tsirelson strength $2\\sqrt2$.",
+     "tag": "T|R",
+     "source": "\\S\\ref{sec:dividends}",
+     "key": "p22041"
+    },
+    {
+     "label": "C26",
+     "predicate": "The unequal-cycle composite gate: joint recurrence $T'=\\operatorname{lcm}_j(n_j/\\gcd(s_j,n_j))$, conserved data the quotient $A/\\langle s\\rangle$ (unit-winding pair: the gcd cycle, generically $\\Qf$), and the counting Born rule verbatim with $T'$ as the recurrence; all orbit-nontrivial characters cancel.",
+     "tag": "T",
+     "source": "Prop.~\\ref{prop:unequal}; \\src{qm.composite}",
+     "key": "p22042"
+    },
+    {
+     "label": "C27",
+     "predicate": "Quarter-turn transport: the ambient quarter-turn aliases onto an embedded label iff $\\kap\\equiv\\pm\\kap_n\\pmod n$, the capacity residue mod~$4$ the coarsest invariant; the constants web is read per register (Remark~\\ref{rem:conceptual}).",
+     "tag": "T",
+     "source": "Lem.~\\ref{lem:transport}, \\citep{akhtman2026gravity}; \\src{qm.transport}",
+     "key": "p22043"
+    }
+   ]
+  },
+  {
+   "letter": "X",
+   "title": "What the construction explains: the explanation register",
+   "rows": [
+    {
+     "label": "X1",
+     "predicate": "\\textbf{The Born rule} is a coincidence count, the unique window lift of its carrier shadow, not a postulated quadratic functional --- on its stationary domain, where the weights are uniform over the fibres; non-uniform statistics are read through the engineered-core readout (C11).",
+     "tag": "T",
+     "source": "Prop.~\\ref{prop:paircount}, Thm.~\\ref{thm:born}, Rem.~\\ref{rem:borndomain}",
+     "key": "p22044"
+    },
+    {
+     "label": "X2",
+     "predicate": "\\textbf{The complexity of amplitudes} is the arithmetic of the shared quarter-turn core, the canonical complex sector $\\Z[\\It]$; a shell without the internal quarter-turn gives a real-amplitude theory instead.",
+     "tag": "T",
+     "source": "Prop.~\\ref{prop:gaussian}",
+     "key": "p22045"
+    },
+    {
+     "label": "X3",
+     "predicate": "\\textbf{The preferred basis} is the Subject's own phase anatomy, einselected by the algebra of the frames rather than by a model of the environment.",
+     "tag": "T",
+     "source": "Prop.~\\ref{prop:basis}",
+     "key": "p22046"
+    },
+    {
+     "label": "X4",
+     "predicate": "\\textbf{The dynamical measurement problem} dissolves: collapse is the re-metrisation of a relational chart, no disturbance propagates, and distinct Subjects never disagree on what they share.",
+     "tag": "T",
+     "source": "Rem.~\\ref{rem:collapse}, Prop.~\\ref{prop:intersubject}; \\src{qm.intersubject}",
+     "key": "p22047"
+    },
+    {
+     "label": "X5",
+     "predicate": "\\textbf{The classical limit} has a mechanism, containment, the divisibility of the observer's frame, exact arithmetic rather than an appeal to a limit.",
+     "tag": "T",
+     "source": "\\S\\ref{sec:regimes}",
+     "key": "p22048"
+    },
+    {
+     "label": "X6",
+     "predicate": "\\textbf{Native probability over a finite substrate}: the unordered-field obstruction is cleared by keeping counts in the observer's ledger: a finite-relational provenance theorem for the Born calculus, in which the substrate determines the tally ring, the measurement family, and the readout (calibrated against the counting and cyclotomic precedents in Section~\\ref{sec:discussion}).",
+     "tag": "T",
+     "source": "\\S\\ref{sec:ledger}",
+     "key": "p22049"
+    },
+    {
+     "label": "X7",
+     "predicate": "\\textbf{The Tsirelson boundary} is attained as a ring identity, $S=2(\\zeta_8+\\zeta_8^{-1})=2\\sqrt2$, so a relational finite substrate carries full quantum correlation strength, not merely quantum vocabulary.",
+     "tag": "T",
+     "source": "Thm.~\\ref{thm:tsirelson}; \\src{qm.composite}",
+     "key": "p22050"
+    },
+    {
+     "label": "X8",
+     "predicate": "\\textbf{Higher-order interference} is forbidden exactly: the Sorkin hierarchy is zero with a forbidden neighbourhood, not a small number to be measured down.",
+     "tag": "T",
+     "source": "Cor.~\\ref{cor:sorkin}, Rem.~\\ref{rem:horizon}; \\src{qm.sorkin}",
+     "key": "p22051"
+    }
+   ]
+  },
+  {
+   "letter": "P",
+   "title": "Falsifiable predictions: the exposures",
+   "rows": [
+    {
+     "label": "P1",
+     "predicate": "Gravitationally induced entanglement at exactly the Newtonian rate, $V^2+C^2=1$ on the pure channel: equal force but unequal entanglement --- a source gravitates by its full mass while the systematic conditional phase, the calibrated discriminator, is carried by the coherent sectors alone, the fully incoherent channel separable at generic (nondegenerate) geometry. The one dated forward prediction.",
+     "tag": "E",
+     "source": "Rem.~\\ref{rem:bmvpred}; \\src{qm.bmv}",
+     "key": "p22052"
+    },
+    {
+     "label": "P2",
+     "predicate": "Third-order interference exactly zero at every accessible scale, any wrap quantised to a multiple of $\\Omega$: a single confirmed small $I_3\\neq0$ falsifies outright.",
+     "tag": "E",
+     "source": "Cor.~\\ref{cor:sorkin}, Rem.~\\ref{rem:horizon}; \\src{qm.sorkin}",
+     "key": "p22053"
+    },
+    {
+     "label": "P3",
+     "predicate": "The Tsirelson value $S=2\\sqrt2$ exact and the network behaviour of complex (not real) quantum theory: vacuum dispersion, $S\\neq2\\sqrt2$, or non-quantum network behaviour each falsify.",
+     "tag": "E",
+     "source": "Thm.~\\ref{thm:tsirelson},~\\ref{thm:table}; \\src{qm.composite}, \\src{qm.renou}",
+     "key": "p22054"
+    },
+    {
+     "label": "P4",
+     "predicate": "No vacuum dispersion at any sub-horizon order (the finite double cover accumulates nothing): the gamma-ray-burst time-of-flight bounds leave the framework untouched.",
+     "tag": "E",
+     "source": "Rem.~\\ref{rem:doublecover}; \\src{qm.dispersion}",
+     "key": "p22055"
+    },
+    {
+     "label": "P5",
+     "predicate": "Quantum computation succeeds as standard quantum mechanics prescribes at every accessible depth; the first deviation, if any, is quantised at the unit-core ceiling $k^*=404$ ($202$ for $\\sqrt\\Omega$), not gradual.",
+     "tag": "E",
+     "source": "Prop.~\\ref{prop:granularity}; \\src{qm.granularity}",
+     "key": "p22056"
+    }
+   ]
+  },
+  {
+   "letter": "V",
+   "title": "Machine verification",
+   "rows": [
+    {
+     "label": "V1",
+     "predicate": "The validation package \\texttt{finite-ring-space/src/22-quantum}: the seventeen suites as written --- \\src{qm.validate}, \\src{qm.sorkin}, \\src{qm.dispersion}, \\src{qm.composite}, \\src{qm.\\allowbreak synchronisation}, \\src{qm.renou}, \\src{qm.bmv}, \\src{qm.decoherence}, \\src{qm.equivalence}, \\src{qm.granularity}, \\src{qm.stratum}, \\src{qm.gravfraction}, \\src{qm.gleason}, \\src{qm.emulation}, \\src{qm.omega}, \\src{qm.intersubject}, \\src{qm.transport} --- run through one registry, a family per suite, its micro-checks the suite's $187$ labelled checks, each family naming the rows it witnesses (Appendix~\\ref{app:map} the check-level map); the notebook \\texttt{22-quantum-main.ipynb} executes them in the browser and the driver \\texttt{run\\_all.py} writes \\texttt{results.json}.",
+     "tag": "T",
+     "source": "Reproducibility; \\src{run\\_all}",
+     "key": "p22057"
+    },
+    {
+     "label": "V2",
+     "predicate": "The discipline, recorded per family as its kind: \\textsf{EXACT} --- modular integers, Gaussian integers, cyclotomic rings ($\\Z[x]/\\Phi_n$) and exact rationals, exhaustive where the domain is finite, deterministic (fixed test states; the one random draw, the sampled $\\sqrt m$ illustration of \\src{qm.equivalence}, decides nothing); \\textsf{NUM} --- floating point as the numeric image of exact references (\\src{qm.emulation}, agreement to $10^{-12}$). Sixteen families \\textsf{EXACT}, one \\textsf{NUM}.",
+     "tag": "T",
+     "source": "Reproducibility",
+     "key": "p22058"
+    },
+    {
+     "label": "V3",
+     "predicate": "The hardware compilations and experiment cards: the $I_3\\otimes\\mathrm{QFT}_4^\\dagger$ ($12$-level) and $I_2\\otimes\\mathrm{QFT}_8^\\dagger$ ($16$-level) unitaries equal the forced bases, the selection rules, the uniform-outcome and three-outcome interference laws and the $\\sigma_x$ doublet law at $\\pi/40$ hold on them, the gate decomposition H--CS--H--SWAP; the two cards of Appendix~\\ref{app:cards} are emitted by the run.",
+     "tag": "T",
+     "source": "App.~\\ref{app:cards}; \\src{qm.emulation}",
+     "key": "p22059"
+    }
+   ]
+  },
+  {
+   "letter": "Z",
+   "title": "Horizon: the residues beyond the bounded observer",
+   "rows": [
+    {
+     "label": "Z1",
+     "predicate": "The coherence horizon: the Born rule is exact within $\\sqrt\\Omega$ and a frame artefact beyond it, the same boundary as the programme's decidability window and the gravity locality horizon $m_P=\\sqrt\\Omega$.",
+     "tag": "Ω",
+     "source": "Rem.~\\ref{rem:horizon}, \\citep{akhtman2026gravity}",
+     "key": "p22060"
+    },
+    {
+     "label": "Z2",
+     "predicate": "The committed $\\Omega$ anchor and the binding floor: the carrier scale is fixed by the verified Riemann height through $\\Omega^{1/4}$, and a single off-line zero below $\\Omega^{1/4}$ falsifies from a desk.",
+     "tag": "Ω",
+     "source": "\\S\\ref{sec:omegaledger}, Tab.~\\ref{tab:omega}; \\src{qm.omega}",
+     "key": "p22061"
+    }
+   ]
+  }
+ ],
+ "legend": [
+  {
+   "tag": "I",
+   "name": "Import",
+   "text": "A standard result or measured datum imported without reproof."
+  },
+  {
+   "tag": "R",
+   "name": "Realisation",
+   "text": "A forced identification of a physical term with the substrate object it denotes: constitutive, not interpretive; defended by its registered consequences; killed by the falsifier stated in its row."
+  },
+  {
+   "tag": "D",
+   "name": "Definition",
+   "text": "A naming or set-up move, carrying no empirical content."
+  },
+  {
+   "tag": "T",
+   "name": "Theorem",
+   "text": "Derived within this paper from the rows above it; where a family identifier is named, its content is verified by the validation package in exact arithmetic."
+  },
+  {
+   "tag": "E",
+   "name": "Prediction",
+   "text": "A falsifiable consequence of the rows above, stated with its falsifier and its present confrontation; graded on the rows it consumes."
+  },
+  {
+   "tag": "Ω",
+   "name": "$\\Omega$-hard",
+   "text": "Decided by the totality; not closeable by a bounded observer."
+  }
+ ],
+ "master": {
+  "A1": [
+   "C4",
+   "C9"
+  ],
+  "B1": [
+   "D4"
+  ],
+  "B2": [
+   "D1",
+   "Y5"
+  ],
+  "B6": [
+   "D3"
+  ],
+  "C10": [
+   "C10",
+   "F1"
+  ],
+  "C11": [
+   "C10",
+   "D10"
+  ],
+  "C12": [
+   "C11",
+   "F1"
+  ],
+  "C15": [
+   "F2"
+  ],
+  "C21": [
+   "F3"
+  ],
+  "Z1": [
+   "B8"
+  ]
+ }
+}

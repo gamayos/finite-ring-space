@@ -7,11 +7,11 @@ cells = []
 def md(s): cells.append({"cell_type": "markdown", "metadata": {}, "source": s})
 def code(s): cells.append({"cell_type": "code", "metadata": {}, "execution_count": None, "outputs": [], "source": s})
 
-md(f"""# 6-fourier — validation package
-[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)]({COLAB})
+md(f"""[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)]({COLAB})
 
-**Paper.** *Scale-Shift and Fractional Fourier Transform as Rotations over Finite Holographic Substrate* (Akhtman, 2026), `6-fourier` of the FRC corpus.
-**Package.** `finite-ring-space/src/6-fourier` — five block scripts driven by this notebook, 36 checks. Every cell below names the labelled
+## Finite Ring Cosmology: Scale-Shift and Fractional Fourier Transform as Rotations over Finite Holographic Substrate (Akhtman, 2026)
+
+**Validation Package.** `finite-ring-space/src/6-fourier` — five block scripts driven by this notebook, 36 checks. Every cell below names the labelled
 statements of the paper it checks (`Theorem`, `Lemma`, `Proposition`, `Remark`, `Corollary`, `Example`, the one `Conjecture`, Table `tab:checks` — by
 their `\\label` as printed in the paper), lists the paper's ledger rows the block witnesses (the paper's Section "Machine verification and predicate
 ledger", rows cited as `6:XN`, 47 rows in blocks A–F, V, O; public copy at `docs/6-fourier/6-fourier-ledger.html`), and gives the master-ledger rows

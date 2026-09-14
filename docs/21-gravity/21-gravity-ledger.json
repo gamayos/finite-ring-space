@@ -1,0 +1,554 @@
+{
+ "paper": "21-grav",
+ "title": "Gravitation as Phase Synchronisation",
+ "doi": "https://doi.org/10.20944/preprints202606.1018.v2",
+ "generated": "14 September 2026",
+ "blocks": [
+  {
+   "letter": "A",
+   "title": "Inputs: imported, not derived here",
+   "rows": [
+    {
+     "label": "A1",
+     "predicate": "The finite substrate: the torsor Carrier, coordinatized by a frame as $\\F_\\Omega$, its cardinality the Carrier identity $\\Omega=4S+1$ with the measured $S\\sim10^{122}$ (Planck units) locating the coherence horizon, with the phase cycle $C_{\\Omega-1}$, the quarter-turn core $Q_4$, the drive (time is scale-dilation, each Subject's own), the coherence horizon $\\sqrt\\Omega$, and the resolution floor $1/\\sqrt\\Omega$.",
+     "tag": "I",
+     "source": "\\citep{algebra,lorentzian,frcrh}",
+     "key": "p21001"
+    },
+    {
+     "label": "A2",
+     "predicate": "The three frame freedoms: the frame space is a torsor under $\\mathrm{SL}_2(\\F_\\Omega)$, the spatial chart three-dimensional per frame, its continuum shadow the $3$-sphere.",
+     "tag": "I",
+     "source": "\\citep[\\S9.6]{frcrh}",
+     "key": "p21002"
+    },
+    {
+     "label": "A3",
+     "predicate": "The quadratic extension $K$, the Frobenius involution, the Lorentzian norm form, and the boost cycle (the Dirac layer).",
+     "tag": "I",
+     "source": "\\citep{lorentzian}",
+     "key": "p21003"
+    },
+    {
+     "label": "A4",
+     "predicate": "Composite coherence: a bound cluster is one synchronised drive orbit (offset confinement, the $m$-body synchronisation lemma), coupling with coefficient $m$ against an incoherent $O(\\sqrt m)$.",
+     "tag": "I",
+     "source": "\\citep{quantum}",
+     "key": "p21004"
+    },
+    {
+     "label": "A5",
+     "predicate": "Lattice potential theory and the discrete harmonic Green's function, with Coulomb asymptotics $1/4\\pi r$.",
+     "tag": "I",
+     "source": "\\citep{duffin,lawler}",
+     "key": "p21005"
+    },
+    {
+     "label": "A6",
+     "predicate": "The Kuramoto relaxation equation for coupled phase oscillators (the mathematical form of the drift dynamics).",
+     "tag": "I",
+     "source": "\\citep{kuramoto,strogatz,pantaleone}",
+     "key": "p21006"
+    },
+    {
+     "label": "A7",
+     "predicate": "The continuum uniqueness of the Fierz--Pauli stiffness and Deser's energy--momentum self-coupling bootstrap, used as imported templates.",
+     "tag": "I",
+     "source": "\\citep{fierz,deser}",
+     "key": "p21007"
+    },
+    {
+     "label": "A8",
+     "predicate": "Measured quantities used for comparison only: the GRAVITY mass--distance and EHT shadow for Sgr~A$^*$, the SPARC acceleration scale, the classical-test values, and $H_0$.",
+     "tag": "I",
+     "source": "measured \\citep{gravity,eht,mcgaugh,will}",
+     "key": "p21008"
+    },
+    {
+     "label": "A9",
+     "predicate": "The minimal-instance results consumed: the two-face count of the drift (angular $\\kap/S$, temporal $\\kap/(2S)$, ratio $2$ the double cover), the registration dictionary $p_{\\mathrm{sl}}=3(S/\\kap)\\,r_g$ with the forcing $2\\gamma-\\beta=1$, and the mass--energy channel $C_{\\p-1}\\cap C_{2(\\p+1)}=Q_4$.",
+     "tag": "I",
+     "source": "\\citep{s13}",
+     "key": "p21009"
+    }
+   ]
+  },
+  {
+   "letter": "B",
+   "title": "Realisations: mathematics as physics (the constitutive moves)",
+   "rows": [
+    {
+     "label": "B1",
+     "predicate": "Gravity is the relaxation of forced frame drift: a field has no proper ideals, so every embedded massive shell is non-ideal and its frame drifts; reducing the mutual drift (raising coherence) is identically motion toward smaller separation.",
+     "tag": "R",
+     "source": "\\S\\ref{sec:intro},\\,\\ref{sec:premises}",
+     "key": "p21010"
+    },
+    {
+     "label": "B2",
+     "predicate": "Mass is winding rate: the per-cell rate identification, one $Q_4$ datum in the channel $C_{\\p-1}\\cap C_{2(\\p+1)}=Q_4$, tested against its falsifier at the instance \\cite{s13}; $E=mc^2=hf$ an identity; the composite coefficient $m$ is derived (C1), not constitutive.",
+     "tag": "R",
+     "source": "Def.~\\ref{def:mass},~\\ref{pre:mass}",
+     "key": "p21011"
+    },
+    {
+     "label": "B3",
+     "predicate": "Distance is decoherence, counted in the relational steps of the observer's chart.",
+     "tag": "R",
+     "source": "Def.~\\ref{pre:dist}",
+     "key": "p21012"
+    },
+    {
+     "label": "B4",
+     "predicate": "Channel unity: the clock tick (temporal correlation) and the decoherence count (spatial correlation) are two readings of one capacity.",
+     "tag": "R",
+     "source": "Lem.~\\ref{pre:unity}",
+     "key": "p21013"
+    },
+    {
+     "label": "B5",
+     "predicate": "The single realisation: the objects we weigh are coherent composites.",
+     "tag": "R",
+     "source": "\\S\\ref{sec:premises}",
+     "key": "p21014"
+    },
+    {
+     "label": "B6",
+     "predicate": "A cell-local change of frame data is the gauge symmetry, its compensating connection the field; the source's conservation is that gauge invariance.",
+     "tag": "R",
+     "source": "Prop.~\\ref{prop:gaugeact}",
+     "key": "p21015"
+    }
+   ]
+  },
+  {
+   "letter": "C",
+   "title": "Derived: theorems and consequences within this paper",
+   "rows": [
+    {
+     "label": "C1",
+     "predicate": "The linearised dynamics is the gradient flow of a coherence free energy --- its current derived from the pair tally conditional on channel unity (Lemma~\\ref{lem:pairtally}) --- and a locked cluster of cardinality $m$ couples with coefficient exactly $m$.",
+     "tag": "T",
+     "source": "Lem.~\\ref{lem:gradient},~\\ref{lem:additivity},~\\ref{lem:pairtally}; \\src{grav.newton}",
+     "key": "p21016"
+    },
+    {
+     "label": "C2",
+     "predicate": "Newton's law $F=-Gm_1m_2/r^2$ with $G=1/4\\pi\\varkappa$ [chart] (register value $G=2S$): the $r^{-2}$ from harmonicity in the three frame freedoms, the product $m_1m_2$ from coherent additivity.",
+     "tag": "T",
+     "source": "Thm.~\\ref{thm:newton}, Lem.~\\ref{lem:green}; \\src{grav.newton}",
+     "key": "p21017"
+    },
+    {
+     "label": "C3",
+     "predicate": "Universal attraction from the single arrow of the drive (a repulsive charge would need a time-reversed, Frobenius-branch clock).",
+     "tag": "T",
+     "source": "Prop.~\\ref{prop:universal}",
+     "key": "p21018"
+    },
+    {
+     "label": "C4",
+     "predicate": "The equivalence principle as an identity; the bias field is clock rate, giving the redshift $\\Delta f/f=Gm/rc^2$; the turnaround radius against the Hubble drive.",
+     "tag": "T",
+     "source": "Cor.~\\ref{cor:equiv}--\\ref{cor:turnaround}; \\src{grav.rar}",
+     "key": "p21019"
+    },
+    {
+     "label": "C5",
+     "predicate": "The magnitude $G=\\hbar c/m_P^2$, frame-covariant (a relativity principle for scale); gravity's weakness is cardinality dilution.",
+     "tag": "T",
+     "source": "\\S\\ref{sub:G}; \\src{grav.orderone}",
+     "key": "p21020"
+    },
+    {
+     "label": "C6",
+     "predicate": "The conserved dust-tensor source as the Frobenius-symmetric square on the mass shell (cardinality conservation and torsor equivariance).",
+     "tag": "T",
+     "source": "Prop.~\\ref{prop:source}",
+     "key": "p21021"
+    },
+    {
+     "label": "C7",
+     "predicate": "Channel unity forces the spatial bias to equal the temporal one, $\\gamma=1$, restoring the full light deflection $4Gm/c^2b$.",
+     "tag": "T",
+     "source": "Lem.~\\ref{lem:isopair}, Prop.~\\ref{prop:bending}; \\src{grav.ppn}, \\src{grav.counting}",
+     "key": "p21022"
+    },
+    {
+     "label": "C8",
+     "predicate": "The exponential isotropic metric by multiplicative composition, with $\\beta=\\gamma=1$: deflection, Shapiro delay, and perihelion at their observed values.",
+     "tag": "T",
+     "source": "Lem.~\\ref{lem:multiplicative}, Prop.~\\ref{prop:ppn}; \\src{grav.ppn}, \\src{grav.2pn}",
+     "key": "p21023"
+    },
+    {
+     "label": "C9",
+     "predicate": "The discrete Fierz--Pauli functional, exactly gauge-invariant and the unique adjacency-local stiffness on the shell (the spin-one case is unique-Maxwell).",
+     "tag": "T",
+     "source": "Prop.~\\ref{prop:uniqueness}; \\src{grav.fp\\_gauge}, \\src{grav.fierz\\_pauli}",
+     "key": "p21024"
+    },
+    {
+     "label": "C10",
+     "predicate": "No preferred-frame leakage: the Lense--Thirring precession at its observed value, with $\\alpha_1,\\alpha_2=O(1/\\sqrt\\Omega)$.",
+     "tag": "T",
+     "source": "Prop.~\\ref{prop:dragging}; \\src{grav.rotating}",
+     "key": "p21025"
+    },
+    {
+     "label": "C11",
+     "predicate": "The nonlinear completion forced: the exact cut-flux law (transfer antisymmetry) plus the winding grading forbid independent static self-sourcing, the clock-comparison cocycle makes the exponential reading unique (exactly the character $\\gen^{-\\Delta n}$, $e^{-u}$ its observer lift), and Deser's bootstrap does not apply because what gravitates is winding rate.",
+     "tag": "T",
+     "source": "Thm.~\\ref{thm:branch}; \\src{grav.branch}",
+     "key": "p21026"
+    },
+    {
+     "label": "C12",
+     "predicate": "The exact saturating static profile and its slip core at $r_*=\\sqrt{Gm}$: horizonless, operationally black at $r_f=r_s/\\ln\\Omega$ --- the exact statement the cut form, $4\\pi r^{2}$ its [chart] reading; the $r_f$-anchored claims conditional on the fold-transition programme.",
+     "tag": "T",
+     "source": "Prop.~\\ref{prop:exactprofile},~\\ref{prop:operational}; \\src{grav.ppn}, \\src{grav.strongfield}",
+     "key": "p21027"
+    },
+    {
+     "label": "C13",
+     "predicate": "Area-law entropy $S=c_S'A_f/\\ell_P^2$: the $\\tfrac14$ the $Q_4$ gauge quotient counted on the shell ($S/A=\\kap/\\p $ exactly), the Carrier identity $S=(\\Omega-1)/4$ at the coherence-horizon shell the same quarter (a consistency, not a closure); the count identified with the coordinate area at the operational cut (fold-conditional, the identification a realisation with the capacity prediction as its falsifier); an exact merger area law $\\Delta A=2M_1M_2$ on the count face of the mass; a phase-slip (Hawking-scaling) emission suppressed below one quantum per Hubble time.",
+     "tag": "T|R",
+     "source": "Prop.~\\ref{prop:area}; \\src{grav.strongfield}, \\src{grav.orderone}",
+     "key": "p21028"
+    },
+    {
+     "label": "C14",
+     "predicate": "Dark energy as the curvature of the finite chart, $\\Lambda\\sim1/\\Omega$ (the fine-tuning problem unasked), and the CMB large-angle anomaly as the wrapped-chart signature.",
+     "tag": "T|R",
+     "source": "\\S\\ref{sub:explicability}",
+     "key": "p21029"
+    },
+    {
+     "label": "C15",
+     "predicate": "The radiative sector: the quarter-turn conjugate momentum makes the dynamics a wave equation: two helicity-$\\pm2$ gravitons at speed $c$, quadrupole radiation; gauge leaves two polarisations.",
+     "tag": "T|R",
+     "source": "Prop.~\\ref{prop:wave},~\\ref{prop:graviton}; \\src{grav.radiative}",
+     "key": "p21030"
+    },
+    {
+     "label": "C16",
+     "predicate": "The order-one constants are determined: $c_S'=\\tfrac14$ (the $Q_4$ gauge quotient, counted on an instantiated shell and carried by the Carrier identity), the floor's $2\\pi$ the full cycle of the angle--count dictionary [\\textsf{D}], its threshold the realisation [\\textsf{R}], the recurring constant the solid angle $4\\pi$, reducing in the Carrier register to the calibration congruence $(4S)^{2}\\equiv1$ (one residue relation).",
+     "tag": "T|R",
+     "source": "Prop.~\\ref{prop:area},~\\ref{prop:afloor}; \\src{grav.orderone}",
+     "key": "p21031"
+    },
+    {
+     "label": "C17",
+     "predicate": "The rotating solution as the gravitomagnetic (quarter-turn) dual: frame-dragging $=$ Lense--Thirring, horizonless, shadow split at $O(a)$; the ergoregion is an $O(a^2)$ feature of the rapid-rotation residue.",
+     "tag": "T|R",
+     "source": "Prop.~\\ref{prop:rotating}; \\src{grav.rotating}",
+     "key": "p21032"
+    },
+    {
+     "label": "C18",
+     "predicate": "The primordial spectrum is structural: $n_s=1$ as the scale-dilation fixed point, the red tilt an asymptotic conjecture with committed protocol ($-\\pi^{2}/\\ln\\Omega$, the angle structural, the linearity condition named), the wrapped chart fixing the low large-angle power.",
+     "tag": "T|R",
+     "source": "Prop.~\\ref{prop:primordial}; \\src{grav.primordial}",
+     "key": "p21033"
+    },
+    {
+     "label": "C19",
+     "predicate": "The registration crossover made exact: the killed walk is the noise sector, first passage the masking event, the window attribution the framed-rational tally ratio $g_N/f$, and the orbital response now derived (Theorem~\\ref{thm:twoshift} with the registered-inertia identity); the remaining declared content is the masking-barrier identification (barrier $=$ coincidence amplitude $\\sqrt x$) and the corpus's unified sampling clause, shared with \\citep{quantum}.",
+     "tag": "T|R",
+     "source": "Prop.~\\ref{prop:crossover}; \\citep{quantum}; \\src{grav.deepregime}, \\src{grav.deepregime\\_\\allowbreak orbit}, \\src{grav.fluxnoise}",
+     "key": "p21034"
+    },
+    {
+     "label": "C20",
+     "predicate": "The two-shift update law: kick (finite Fourier shift by the source character) composed with metaplectic transport gives $\\Delta^{2}_{\\tau}q=-\\nabla u$ with $m$ cancelling --- registered inertia and the equivalence principle inside one derived law.",
+     "tag": "T",
+     "source": "Thm.~\\ref{thm:twoshift}; \\src{grav.inertia}, \\src{grav.deepregime\\_\\allowbreak orbit}",
+     "key": "p21035"
+    },
+    {
+     "label": "C21",
+     "predicate": "The defect chain: relative-cycle defect with exact recurrence; the compression identity (relaxation $=$ unresolved leakage, recurrence retained); the pair-tally current (sine derived, conditional on channel unity); binding bookkeeping decided --- substrate winding sources the field, the defect registered-side, $\\eta_{\\mathrm{Nordtvedt}}=0$.",
+     "tag": "T",
+     "source": "Lem.~\\ref{lem:relcycle}, Prop.~\\ref{prop:compression}, Lem.~\\ref{lem:pairtally}; \\src{grav.defect}, \\src{grav.counting}, \\src{grav.binding}",
+     "key": "p21036"
+    },
+    {
+     "label": "C22",
+     "predicate": "Induced relaxation, chart-relative form: given the registered adjacency chart with unit capacity, the weak-defect short-memory reading of $K_{\\mathrm S}=P_{\\mathrm S}U_{\\mathrm C}P_{\\mathrm S}$ is the gradient flow of the coherence free energy with the pair-tally current --- proof by composition of the defect pillars, the forced leading contraction, and the return chains.",
+     "tag": "T",
+     "source": "Thm.~\\ref{thm:indrelax}; \\src{grav.defect}",
+     "key": "p21037"
+    },
+    {
+     "label": "C23",
+     "predicate": "The 1PN equivalence lemma: through first post-Newtonian order the two-body metric coefficients coincide with general relativity's isotropic form on the superposed potential, cross term included, so the Einstein--Infeld--Hoffmann sector is shared exactly.",
+     "tag": "T",
+     "source": "\\S\\ref{sub:2pn}; \\src{grav.1pn\\_eih}, \\src{grav.binding}",
+     "key": "p21038"
+    },
+    {
+     "label": "C24",
+     "predicate": "The fold-return floor identity at dev scale: the period-averaged exterior return through the fold, $\\overline{P_{\\mathrm{ext}}F\\,U_{\\mathrm C}^{\\,n}F^{-1}P_{\\mathrm{ext}}}$, equals the uniform floor operator exactly --- no stationary exterior structure above $1/N_I$; the no-prompt-echo criterion verified at toy scale.",
+     "tag": "T",
+     "source": "Rem.~\\ref{rem:exponential}; \\src{grav.fold\\_echo}",
+     "key": "p21039"
+    },
+    {
+     "label": "C25",
+     "predicate": "The PPN triangle closed by two routes: channel unity gives $\\gamma=1$ (C7), the instance cover forces $2\\gamma-\\beta=1$ (A9), jointly $\\beta=1$ --- Proposition~\\ref{prop:ppn} reached independently, the deviation $\\tfrac23(2\\gamma-\\beta-1)$ its falsifier.",
+     "tag": "T",
+     "source": "Rem.~\\ref{rem:cover}; \\citep{s13}",
+     "key": "p21040"
+    }
+   ]
+  },
+  {
+   "letter": "X",
+   "title": "What the construction explains: the explanation register",
+   "rows": [
+    {
+     "label": "X1",
+     "predicate": "\\textbf{The cosmological-constant magnitude.} $\\Lambda\\sim1/\\Omega$ in Planck units is the curvature of the closed chart, the totality datum, not a vacuum energy requiring cancellation across $122$ orders. The fine-tuning problem is not solved but unasked.",
+     "tag": "T|R",
+     "source": "\\S\\ref{sec:intro}",
+     "key": "p21041"
+    },
+    {
+     "label": "X2",
+     "predicate": "\\textbf{No dark-matter particle.} The radial acceleration relation is a registration crossover of the resolution floor, not evidence for undetected mass: galactic dynamics require no dark sector beyond the floor already fixed by $\\Omega$.",
+     "tag": "T|R",
+     "source": "Prop.~\\ref{prop:crossover},~\\ref{prop:afloor}; \\src{grav.deepregime}",
+     "key": "p21042"
+    },
+    {
+     "label": "X3",
+     "predicate": "\\textbf{No horizons, no singularities, no information loss.} Collapse ends in a horizonless body, operationally black at $r_f$ (conditional on the fold-transition programme, C12), with an exact saturating interior profile --- and information conservation is a theorem citation, not an absence claim: interior data live in offset sectors the drive confines exactly \\citep{quantum}: the theory never forfeits predictivity.",
+     "tag": "T|R",
+     "source": "Prop.~\\ref{prop:operational},~\\ref{prop:exactprofile}",
+     "key": "p21043"
+    },
+    {
+     "label": "X4",
+     "predicate": "\\textbf{Misner's standing objection dissolves.} The exponential metric is derived, not posited as a self-coupled field equation, so the field-equation pathology Misner identified in exponential-metric gravity does not arise here.",
+     "tag": "T",
+     "source": "Rem.~\\ref{rem:exponential}",
+     "key": "p21044"
+    },
+    {
+     "label": "X5",
+     "predicate": "\\textbf{No graviton quantisation problem.} The radiative field is collective phase synchronisation, not a propagating fundamental quantum: there is no separate field left over to quantise.",
+     "tag": "T|R",
+     "source": "\\S\\ref{sub:radiative}",
+     "key": "p21045"
+    },
+    {
+     "label": "X6",
+     "predicate": "\\textbf{The large-angle microwave anomaly.} The anomalously low large-angle correlation ($p\\sim1\\%$ \\cite{schwarz}) is the signature of the wrapped chart: super-horizon modes are identified, not populated, truncating correlations beyond the horizon scale. This consonance is a number, the primordial spectrum being structural, not transported.",
+     "tag": "T|R",
+     "source": "Prop.~\\ref{prop:primordial}; \\src{grav.primordial}",
+     "key": "p21046"
+    },
+    {
+     "label": "X7",
+     "predicate": "\\textbf{The equivalence principle} is an identity, not a postulate.",
+     "tag": "T",
+     "source": "Cor.~\\ref{cor:equiv}",
+     "key": "p21047"
+    },
+    {
+     "label": "X8",
+     "predicate": "\\textbf{The weakness of gravity} is cardinality dilution, not a hierarchy to be tuned.",
+     "tag": "T",
+     "source": "\\S\\ref{sub:G}",
+     "key": "p21048"
+    }
+   ]
+  },
+  {
+   "letter": "P",
+   "title": "Falsifiable predictions: the exposures",
+   "rows": [
+    {
+     "label": "P1",
+     "predicate": "Strong-field signatures at or outside the photon sphere: shadow $+4.6\\%$, ringdown $-4.4\\%$, ISCO frequency $-6.9\\%$ with accretion efficiency $5.48\\%$ (against $5.72\\%$): one origin, jointly falsifiable, conditional on Theorem~\\ref{thm:branch}'s inputs alone.",
+     "tag": "E",
+     "source": "\\S\\ref{sub:strongdata}, Prop.~\\ref{prop:shadow},~\\ref{prop:isco}; \\src{grav.strongfield}",
+     "key": "p21049"
+    },
+    {
+     "label": "P7",
+     "predicate": "Floor-surface signatures: no prompt echoes (the round-trip delay to $r_f$ carrying $e^{2u(r_f)}=\\Omega$) and no evaporation bursts; conditional on the fold-transition programme (C12, C24; the no-prompt-echo criterion a theorem at dev scale); a reported echo detection at the stated precision falsifies the construction.",
+     "tag": "E",
+     "source": "\\S\\ref{sub:strongdata}, Rem.~\\ref{rem:exponential},~\\ref{rem:hawking}; \\src{grav.strongfield}, \\src{grav.fold\\_echo}",
+     "key": "p21050"
+    },
+    {
+     "label": "P2",
+     "predicate": "Preferred-frame effects at $O(10^{-61})$: the drive's in-principle signature, far below current $10^{-5}$ bounds.",
+     "tag": "E",
+     "source": "Prop.~\\ref{prop:dragging}",
+     "key": "p21051"
+    },
+    {
+     "label": "P3",
+     "predicate": "The weak-acceleration floor $a_0=cH_0/2\\pi=1.04\\times10^{-10}\\,\\mathrm{m\\,s^{-2}}$ at the entailed $H_0=67.4$ \\cite{entropy}, against the fitted $1.20\\pm0.24\\times10^{-10}$: $13\\%$ low, $0.7\\sigma$ of the systematic-dominated error, no free parameter; the $2\\pi$ the dictionary's full cycle [\\textsf{D}], the one-cycle-per-period threshold the realisation [\\textsf{R}] with its discrete falsifier.",
+     "tag": "E",
+     "source": "Prop.~\\ref{prop:afloor}; \\src{grav.rar}",
+     "key": "p21052"
+    },
+    {
+     "label": "P4",
+     "predicate": "The radial acceleration relation, $g_{\\mathrm{obs}}=g_N/(1-e^{-\\sqrt{g_N/a_0}})$, no fitted function beyond the declared barrier identification (C19), the form the data selected across the four observed acceleration decades, its approach to Newton the discriminant ($0.05$ at $g_N\\approx5a_0$ against the simple rational interpolant); the deep limit gives the baryonic Tully--Fisher relation $v^4=GMa_0$.",
+     "tag": "E",
+     "source": "Prop.~\\ref{prop:crossover}; \\src{grav.deepregime}",
+     "key": "p21053"
+    },
+    {
+     "label": "P5",
+     "predicate": "The floor tracks the expansion, $a_0(z)\\propto H(z)$ (BTFR zero-point $\\propto E(z)^{1/4}$); high-$z$ rotation curves decisive.",
+     "tag": "E",
+     "source": "\\S\\ref{sub:rar}, \\citep{dark}",
+     "key": "p21054"
+    },
+    {
+     "label": "P6",
+     "predicate": "The 2PN periastron excess $\\delta\\dot\\omega/\\dot\\omega\\approx1.5\\times10^{-6}$ for PSR~J0737$-$3039, today degenerate with the mass refit; decisive either way once an independent observable fixes $M_{\\mathrm{tot}}$ at $10^{-6}$. Independent of the coherent-fraction falsifier of \\citep{quantum}; the ledger carries both.",
+     "tag": "E",
+     "source": "\\S\\ref{sub:2pn}; \\src{grav.2pn}",
+     "key": "p21055"
+    }
+   ]
+  },
+  {
+   "letter": "V",
+   "title": "Machine verification",
+   "rows": [
+    {
+     "label": "V1",
+     "predicate": "The validation package \\texttt{finite-ring-space/src/21-gravity}: the paper's twenty-one scripts as written, run through one registry as twenty-one families --- the twelve of the original suite (\\src{grav.newton}, \\src{grav.ppn}, \\src{grav.strongfield}, \\src{grav.fp\\_gauge}, \\src{grav.branch}, \\src{grav.fluxnoise}, \\src{grav.rar}, \\src{grav.deepregime}, \\src{grav.radiative}, \\src{grav.orderone}, \\src{grav.rotating}, \\src{grav.primordial}), the eight of the revision rounds (\\src{grav.2pn}, \\src{grav.1pn\\_eih}, \\src{grav.binding}, \\src{grav.counting}, \\src{grav.defect}, \\src{grav.inertia}, \\src{grav.deepregime\\_\\allowbreak orbit}, \\src{grav.fold\\_echo}) and the uniqueness proof (\\src{grav.fierz\\_pauli}) --- each family the script's verdict over its labelled checks and printed PASS/FAIL lines, each naming the rows it witnesses; the notebook \\texttt{21-gravity-main.ipynb} executes them in the browser and the driver \\texttt{run\\_all.py} writes \\texttt{results.json}.",
+     "tag": "T",
+     "source": "Reproducibility; \\src{run\\_all}",
+     "key": "p21056"
+    },
+    {
+     "label": "V2",
+     "predicate": "The kinds, recorded per family: \\textsf{EXACT} --- decidable identities over finite fields, cyclotomic extensions, exact rationals, or symbolic identities with no tolerance in the verdict (fourteen families); \\textsf{CHART} --- a continuum reading (a limit, a series coefficient, a numerical extremum) or a comparison with measured data, tagged [approx]/[data] in the script, verdict by stated tolerance (\\src{grav.newton}, \\src{grav.strongfield}, \\src{grav.branch}, \\src{grav.rar}, \\src{grav.rotating}); \\textsf{SIM} --- the seeded Kuramoto simulation of \\src{grav.fluxnoise}, verdict by stated tolerance on time averages. The figures are regenerated by the package's \\texttt{make\\_fig\\_*.py} outside the run.",
+     "tag": "T",
+     "source": "Reproducibility",
+     "key": "p21057"
+    },
+    {
+     "label": "V3",
+     "predicate": "What the run does not carry, stated: the comparable-mass $2$PN $\\nu$-sector reduction (the failed first route is not shipped, per the corpus discipline; the $1$PN sector closed by \\src{grav.1pn\\_eih}, the test-particle sector by \\src{grav.2pn}); the imports and realisations of blocks A and B, which the suite consumes and does not check; the $\\Omega$-hard residue Z1, absent by construction.",
+     "tag": "T",
+     "source": "Reproducibility; \\S\\ref{sub:2pn}",
+     "key": "p21058"
+    }
+   ]
+  },
+  {
+   "letter": "Z",
+   "title": "Horizon: the residue beyond the bounded observer",
+   "rows": [
+    {
+     "label": "Z1",
+     "predicate": "The cross-scale running of $a_0$, the ratio $(\\Omega-1)/d$: reduces to the factorisation of $\\Omega-1$, the rate face of the Riemann scale operator.",
+     "tag": "Ω",
+     "source": "\\S\\ref{sub:rar}, \\citep{frcrh,dark}",
+     "key": "p21059"
+    }
+   ]
+  }
+ ],
+ "legend": [
+  {
+   "tag": "I",
+   "name": "Import",
+   "text": "A standard result or measured datum imported without reproof."
+  },
+  {
+   "tag": "R",
+   "name": "Realisation",
+   "text": "The row states what a physical term denotes in the substrate: constitutive, not interpretive, defended by the totality of its registered consequences."
+  },
+  {
+   "tag": "D",
+   "name": "Definition",
+   "text": "A naming or set-up move, carrying no empirical content."
+  },
+  {
+   "tag": "T",
+   "name": "Theorem",
+   "text": "Derived within this paper from the rows above it; where a family identifier is named, its content is reproduced by the validation package."
+  },
+  {
+   "tag": "E",
+   "name": "Prediction",
+   "text": "A falsifiable consequence of the rows above, stated with its falsifier and its present confrontation; graded on the rows it consumes."
+  },
+  {
+   "tag": "Ω",
+   "name": "$\\Omega$-hard",
+   "text": "Decided by the totality; not closeable by a bounded observer."
+  }
+ ],
+ "master": {
+  "A1": [
+   "A9",
+   "D1"
+  ],
+  "B3": [
+   "D3"
+  ],
+  "B6": [
+   "D5"
+  ],
+  "C2": [
+   "E3"
+  ],
+  "C5": [
+   "B7"
+  ],
+  "C9": [
+   "E1"
+  ],
+  "C11": [
+   "E4"
+  ],
+  "C12": [
+   "E5"
+  ],
+  "C13": [
+   "E6",
+   "E7",
+   "T6"
+  ],
+  "C17": [
+   "T5"
+  ],
+  "C18": [
+   "T2"
+  ],
+  "C19": [
+   "L1"
+  ],
+  "P3": [
+   "L1"
+  ],
+  "C22": [
+   "T1"
+  ],
+  "C23": [
+   "T4"
+  ],
+  "C24": [
+   "T3"
+  ],
+  "P5": [
+   "L7"
+  ],
+  "Z1": [
+   "Z7"
+  ]
+ }
+}

@@ -1,6 +1,6 @@
 """The order-one normalisations are determined, not free (ledger D6). Exact where it counts.
 
-Three constants the body had left open are each pinned:
+Three constants the body had left open are each fixed:
   c_S' (the area-law/entropy coefficient) = 1/4, the Bekenstein-Hawking value, fixed by the
        de Sitter closure: the SAME area law applied to the cosmological horizon (radius sqrt(Omega))
        must reproduce the de Sitter entropy that defines the cardinality.
@@ -28,7 +28,7 @@ cS_dS = F(1,4)
 if cS_dS*4 != 1: ok=False
 print(f"    de Sitter closure  c_S' * 4 pi Omega = pi Omega  =>  c_S' = {cS_dS}")
 if cS_op != cS_dS: ok=False
-print(f"    both give c_S' = 1/4: pinned, and it reproduces Bekenstein-Hawking-Gibbons-Hawking.")
+print(f"    both give c_S' = 1/4: fixed, and it reproduces Bekenstein-Hawking-Gibbons-Hawking.")
 
 # ---- 2. the solid angle 4 pi recurs ----
 print("\n[2] the recurring geometric constant is the solid angle 4 pi:")
@@ -46,5 +46,21 @@ print("    within ~10% of the fitted 1.20e-10; the 2 pi is the cycle period, not
 # ---- 4. radiation constant from the spin-2 structure ----
 print("\n[4] radiation constant = the spin-two quadrupole factor (D5), L = (G/5 c^5)<Q'''^2>,")
 print("    fixed by the radiative sector; the Hawking-temperature 2 pi is the same cycle period.")
+
+# ---- 5. Carrier-register reduction (M2/B17/B18): exact, integers only ----
+print("\n[5] Carrier register: the order-one sector reduces to the calibration congruence 4S = -1.")
+Om = 2408561; S = (Om - 1) // 4
+assert S == 602140
+ok &= pow(4 * S, 2, Om) == 1                          # (4S)^2 = 1  (M2)
+ok &= (2 * S) % Om == pow((2 * 4 * S) % Om, Om - 2, Om)  # Gauss count: (2*4S)^{-1} = 2S, G = 2S
+ok &= ((2 * S) + (2 * S + 1)) % Om == 0               # G = -c^2  (c^2 = 2S+1 = 2^{-1})
+ok &= ((2 * S + 1) * 2) % Om == 1                     # c^2 = 2^{-1}
+hbar = 18688
+ok &= pow(hbar, 2, Om) == Om - 1                      # hbar^2 = -1, hbar = 2*sqrt(S) in that role
+for q in (13, 17, 29, 157):                           # shell form: G_p = pi_p on every shell
+    Sq = (q * q - 1) // 4
+    ok &= (2 * Sq) % q == ((q - 1) // 2) % q          # 2S(p) = pi_p (mod p)
+    assert Sq == (q * q - 1) // 4                     # exact closure S(p) = (p^2-1)/4
+print("    (4S)^2=1, G=2S=(2*4S)^{-1}, G=-c^2, c^2=2^{-1}, hbar^2=-1, G_p=pi_p on 4 shells: exact.")
 
 print("\nPASS" if ok else "\nFAIL", "- order-one normalisations determined (D6)")

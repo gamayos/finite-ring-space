@@ -777,7 +777,7 @@
   "id": "D4",
   "rows": "20:F1",
   "script": "d_classification",
-  "label": "frame-exact count on one shell: at p = 97, 1009, 4801 (T = 2\u03c0p) the depth-\u230a\u221ap\u230b comb, midway between consecutive zeros below the ceiling, rounds to the exact N(t) at every midpoint (max deviation 0.08, 0.11, 0.16); the 10\u2076 comb within 0.002",
+  "label": "frame-exact count on one shell: at p = 97, 1009, 4801 (T = 2\u03c0p) the depth-\u230a\u221ap\u230b comb, midway between consecutive zeros below the ceiling, rounds to the exact N(t) at every midpoint (max deviation 0.079, 0.107, 0.164 \u2014 within 0.08, 0.11, 0.17); the 10\u2076 comb within 0.002",
   "ok": true,
   "detail": "p=97 (depth 9, 8 midpoints): max dev 0.079 (10\u2076 comb 0.000); p=1009 (depth 31, 12 midpoints): max dev 0.107 (10\u2076 comb 0.001); p=4801 (depth 69, 15 midpoints): max dev 0.164 (10\u2076 comb 0.002)",
   "kind": "[approx]"

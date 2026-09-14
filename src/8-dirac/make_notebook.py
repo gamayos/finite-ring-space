@@ -20,11 +20,11 @@ BLOCKS = [
     ("o9_signature_counts", "o9", "Signature as a square-class dichotomy", "Remark `signature-record`: the zero counts of the Euclidean and the Q_ν forms on every symmetry-complete shell p < 60, the collapse of the class over K."),
 ]
 
-md(f"""# 8-dirac — validation package
-[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)]({COLAB})
+md(f"""[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)]({COLAB})
 
-**Paper.** *Schrödinger and Dirac Dynamics over Finite Substrate* (Akhtman, 2026), `8-dirac` of the FRC corpus.
-**Package.** `finite-ring-space/src/{PKG}` — eight block scripts driven by this notebook, {len(dcommon.LABELS)} family checks aggregating
+## Schrödinger and Dirac Dynamics over Finite Substrate (Akhtman, 2026)
+
+**Validation Package.** `finite-ring-space/src/{PKG}` — eight block scripts driven by this notebook, {len(dcommon.LABELS)} family checks aggregating
 3 848 exact micro-checks. Every script is exact integer arithmetic over F_p and K = F_p[w]/(w² − ν): no floats, no random sampling.
 A family check is the labelled claim of a script's docstring (Z1, C3, P5, O1a, X7, L2, …), identified as `<script>.<family>`; each names
 the row(s) of the paper's predicate ledger it witnesses (the paper's Section "Machine verification and predicate ledger", rows cited as

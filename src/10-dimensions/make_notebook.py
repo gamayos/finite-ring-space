@@ -14,11 +14,11 @@ BLOCKS = [
     ("check_lift", "lift", "The lift", "Proposition `lift`: the flag records the fractional-Fourier quarter the chart duality forgets — the operator four-cycle, the chart shadow, the record map, the Carrier face of order four, and the invariance classification, on the shells (13, 2) and (173, 3) and the Carriers 233 and 2 408 561."),
 ]
 
-md(f"""# 10-dimensions — validation package
-[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)]({COLAB})
+md(f"""[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)]({COLAB})
 
-**Paper.** *Dimensional Analysis over Finite Holographic Substrate* (Akhtman, 2026), `10-dim` of the FRC corpus.
-**Package.** `finite-ring-space/src/{PKG}` — two exact suites driven by this notebook, {len(dcommon.LABELS)} family checks aggregating
+## Dimensional Analysis over Finite Holographic Substrate (Akhtman, 2026)
+
+**Validation Package.** `finite-ring-space/src/{PKG}` — two exact suites driven by this notebook, {len(dcommon.LABELS)} family checks aggregating
 210 exact micro-checks (integers, residues, exact rationals; no floats, no random sampling). A family check is a layer of
 `verify_domains.py` (A–H) or a claim of `check_lift.py` (L1–L5), identified as `<script>.<family>`; each names the row(s) of the paper's
 predicate ledger it witnesses (the paper's Section "Machine verification and predicate ledger", rows cited as `10:XN`; public copy at

@@ -1,21 +1,34 @@
-"""Run the full validation suite and report a PASS/FAIL summary."""
-import subprocess, sys, pathlib
+"""
+run_all.py — the 21-gravity validation package, end to end
+===========================================================
+Runs the twenty-one scripts of the suite through the registry (gravcommon), writes results.json — one record per
+family, carrying the paper's ledger row(s) it witnesses — and exits nonzero if any family fails. Python 3.10+ with
+numpy and sympy (mpmath); ≈ 1 minute (validate_branch's nonlinear solves and validate_fluxnoise's simulation dominate).
 
-scripts = ["validate_newton.py", "validate_ppn.py", "validate_strongfield.py",
-           "validate_fp_gauge.py", "validate_branch.py", "validate_fluxnoise.py", "validate_rar.py",
-           "validate_deepregime.py", "validate_radiative.py", "validate_orderone.py", "validate_rotating.py", "validate_primordial.py"]
-here = pathlib.Path(__file__).parent
-results = {}
-for s in scripts:
-    print(f"\n=== {s} ===")
-    p = subprocess.run([sys.executable, str(here/s)], capture_output=True, text=True)
-    print(p.stdout, end="")
-    if p.stderr.strip():
-        print(p.stderr, end="", file=sys.stderr)
-    results[s] = "PASS" in p.stdout.splitlines()[-1] if p.stdout else False
-print("\n" + "="*46)
-npass = sum(results.values())
-for s, r in results.items():
-    print(f"  {'PASS' if r else 'FAIL'}  {s}")
-print(f"SUMMARY: {npass}/{len(scripts)} suites passed.")
-sys.exit(0 if npass == len(scripts) else 1)
+    python3 run_all.py
+
+Families (one per script; the twelve of the paper's original suite first, then the eight of the round-01/02
+revisions, then the uniqueness proof):
+    newton ppn strongfield fp_gauge branch fluxnoise rar deepregime radiative orderone rotating primordial
+    2pn 1pn_eih binding counting defect inertia deepregime_orbit fold_echo
+    fierz_pauli
+"""
+import sys, time
+import gravcommon
+
+FAMILIES = ["grav." + s for s in [
+    "newton", "ppn", "strongfield", "fp_gauge", "branch", "fluxnoise", "rar", "deepregime", "radiative", "orderone", "rotating", "primordial",
+    "2pn", "1pn_eih", "binding", "counting", "defect", "inertia", "deepregime_orbit", "fold_echo",
+    "fierz_pauli"]]
+
+def main():
+    t0 = time.time()
+    for fam in FAMILIES:
+        print(f"\n— {gravcommon.script_of(fam)}.py")
+        gravcommon.run_block(fam)
+    ok = gravcommon.summary(write=True)
+    print(f"{len(gravcommon.RESULTS)} families, {len(gravcommon.MICRO)} micro-checks, {time.time() - t0:.0f} s; results.json written")
+    sys.exit(0 if ok else 1)
+
+if __name__ == "__main__":
+    main()

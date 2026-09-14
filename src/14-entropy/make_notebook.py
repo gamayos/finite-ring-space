@@ -15,11 +15,11 @@ BLOCKS = [
     ("capacity", "cap", "The capacity axis", "`make-wedge-3.py` of the paper: the same identities re-asserted, the pinned mass axis and the Avogadro landing of the holographic-ring-capacity axis; writes the capacity-axis triangle (the paper's Figure 4) to `out/`."),
 ]
 
-md(f"""# 14-entropy — validation package
-[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)]({COLAB})
+md(f"""[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)]({COLAB})
 
-**Paper.** *De Sitter Entropy Estimates over Finite Holographic Substrate* (Akhtman & Voether, 2026), `14-entr` of the FRC corpus.
-**Package.** `finite-ring-space/src/{PKG}` — three blocks driven by this notebook, {len(ecommon.LABELS)} family checks aggregating
+## De Sitter Entropy Estimates over Finite Holographic Substrate (Akhtman & Voether, 2026)
+
+**Validation Package.** `finite-ring-space/src/{PKG}` — three blocks driven by this notebook, {len(ecommon.LABELS)} family checks aggregating
 88 micro-checks. A family check is one labelled claim of a script, identified as `<script>.<family>`; each names the row(s) of the
 paper's predicate ledger it witnesses (the paper's Section "Claim status", subsection "Predicate ledger", rows cited as `14:XN`;
 public copy at `docs/14-entropy/14-entropy-ledger.html`), and the ledger's source column cites the check ids in return.

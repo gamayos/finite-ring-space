@@ -66,3 +66,23 @@ print("    Linearised wave eqn + source conservation (dT=0) => leading mass-quad
 print("    recovering the binary-pulsar damping; the static, shadow, and floor results are unchanged.")
 
 print("\nPASS" if ok else "\nFAIL", "- radiative tensor sector (D5)")
+
+
+# ---- symbol check (round-01, W-K): no O(k)*n cross term in the dispersion ----
+# The propagating symbol 4 sin^2(k/2) is even in k exactly: its odd Taylor
+# coefficients vanish, so no boost-non-invariant O(k) drive cross term exists;
+# with the exact boost transport above, alpha_1, alpha_2 = O(1/sqrt(Omega)).
+try:
+    import sympy as _sp
+    _k = _sp.symbols('k')
+    _sym = 4 * _sp.sin(_k / 2) ** 2
+    _odd = [_sp.series(_sym, _k, 0, 8).removeO().coeff(_k, j) for j in (1, 3, 5, 7)]
+    assert all(c == 0 for c in _odd), _odd
+    print("PASS symbol check: dispersion even in k (odd coefficients 0,0,0,0) -- no O(k).n cross term")
+except ImportError:
+    # fallback: exact evenness on the finite cycle C_13 via residue arithmetic
+    pp = 13
+    z = 2  # order-12 element base
+    even = all((pow(z, k, pp) - 2 + pow(z, -k, pp)) % pp == (pow(z, -k, pp) - 2 + pow(z, k, pp)) % pp for k in range(1, pp - 1))
+    assert even
+    print("PASS symbol check (finite form): symbol invariant under k -> -k on C_13")

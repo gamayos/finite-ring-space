@@ -17,11 +17,11 @@ BLOCKS = [
     ("kurepa_wall", "kur", "The Kurepa wall to 2.5·10⁵", "`kurepa_wall.c`, compiled here: one O(p) pass per prime in 128-bit modular arithmetic checking !(p−1) ≡ K(p) (mod p) and K(p) ≢ 0 (mod p) for all 22 043 odd primes p < 2.5·10⁵ (≈ 30 s)."),
 ]
 
-md(f"""# 13-epi — validation package
-[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)]({COLAB})
+md(f"""[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)]({COLAB})
 
-**Paper.** *Finite Field Realisation of the Classical Constants π and e* (Akhtman, 2026), `13-epi` of the FRC corpus.
-**Package.** `finite-ring-space/src/{PKG}` — five blocks driven by this notebook, {len(ecommon.LABELS)} family checks aggregating
+## Finite Field Realisation of the Classical Constants π and e (Akhtman, 2026)
+
+**Validation Package.** `finite-ring-space/src/{PKG}` — five blocks driven by this notebook, {len(ecommon.LABELS)} family checks aggregating
 ≈ 780 exact micro-checks (integers, residues, exact rationals; the external targets e and π enter only as certified rational
 brackets of the paper's own chains, the binary64 constants only as the objects of study of the readout theorems). A family
 check is one labelled claim of a script, identified as `<script>.<family>`; each names the row(s) of the paper's predicate

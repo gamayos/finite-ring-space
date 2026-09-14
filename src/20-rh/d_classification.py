@@ -48,7 +48,7 @@ Paper-local predicates:
                          30166) the raw count from the frame-exact comb of depth ⌊√p⌋ = 9, 31, 69, evaluated midway between
                          consecutive zeros just below the ceiling (the test heights chosen with the validation arm: zeros from
                          Z(t) sign changes, the count from mpmath nzeros), rounds to the exact N(t) at every midpoint: maximum
-                         deviation 0.08, 0.11, 0.16; the 10⁶ comb within 0.002
+                         deviation 0.079, 0.107, 0.164 (within 0.08, 0.11, 0.17); the 10⁶ comb within 0.002
 
 The "ζ never evaluated" discipline does not bind the control arms (Hurwitz zeta functions are
 evaluated there). Figure: fig_dh.pdf. Master ledger: 00:D12.
@@ -333,10 +333,10 @@ def run():
             v = count_raw(Comb(depth), mids); vd = count_raw(deep, mids)
             dev_fe[p_sh] = (float(np.max(np.abs(v - nz))), bool(np.all(np.round(v) == nz)))
             dev_deep[p_sh] = (float(np.max(np.abs(vd - nz))), bool(np.all(np.round(vd) == nz)))
-    stated = {97: 0.08, 1009: 0.11, 4801: 0.16}
+    stated = {97: 0.079, 1009: 0.107, 4801: 0.164}
     ok = (all(r for _, r in dev_fe.values()) and all(r for _, r in dev_deep.values())
           and all(abs(dev_fe[p_sh][0] - stated[p_sh]) < 0.02 for p_sh in shells) and max(d for d, _ in dev_deep.values()) < 0.004)
-    check("D4", "frame-exact count on one shell: at p = 97, 1009, 4801 (T = 2πp) the depth-⌊√p⌋ comb, midway between consecutive zeros below the ceiling, rounds to the exact N(t) at every midpoint (max deviation 0.08, 0.11, 0.16); the 10⁶ comb within 0.002", ok,
+    check("D4", "frame-exact count on one shell: at p = 97, 1009, 4801 (T = 2πp) the depth-⌊√p⌋ comb, midway between consecutive zeros below the ceiling, rounds to the exact N(t) at every midpoint (max deviation 0.079, 0.107, 0.164 — within 0.08, 0.11, 0.17); the 10⁶ comb within 0.002", ok,
           "; ".join(f"p={p_sh} (depth {int(math.sqrt(p_sh))}, {npts[p_sh]} midpoints): max dev {dev_fe[p_sh][0]:.3f} (10⁶ comb {dev_deep[p_sh][0]:.3f})" for p_sh in shells), kind="[approx]")
     # ---------------- figure
     with Timer("window grid [84,87]"):

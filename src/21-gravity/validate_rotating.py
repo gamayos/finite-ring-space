@@ -43,4 +43,34 @@ print("    Kerr-magnitude => low-spin Sgr A* the clean target. The rotating back
 print("\n[4] slip core r_*=sqrt(r_g l_P) = the scale half-turn; inside it the description is the conjugate")
 print("    (spectral) chart, the chart of D4 (registration) and D5 (conjugate momentum): the hand-over is Q4.")
 
+
+# 5. order-a^2 ergosurface: g_tt = -e^{-2u} + omega^2 rho^2 e^{2u} = 0  =>  e^{-4u} = 4 a^2 sin^2θ / r^4
+#    equatorial (sinθ=1): e^{-4/r} = 4 a^2 / r^4. Horizonless object: NO horizon inside; only floor r_f.
+print("\n[5] order-a^2 ergosurface (equatorial), horizonless object [approx; e = framed-transcendental]:")
+def ergo_eq(a):
+    f = lambda r: math.exp(-4.0/r) - 4*a*a/r**4
+    prev=None; roots=[]
+    r=0.05
+    while r < 8.0:
+        v=f(r)
+        if prev is not None and prev[1]*v < 0:
+            lo,hi=prev[0],r
+            for _ in range(100):
+                mid=0.5*(lo+hi)
+                if f(lo)*f(mid)<=0: hi=mid
+                else: lo=mid
+            roots.append(0.5*(lo+hi))
+        prev=(r,v); r+=0.001
+    return max(roots) if roots else float('nan')
+rf = 2.0/(122*math.log(10))
+prev_rE=0.0
+for a in (0.1,0.3,0.5,0.7,0.9,0.99,1.0):
+    rE=ergo_eq(a)
+    # ergosurface grows with spin, and sits far outside the operational floor for any appreciable spin
+    if not (rE>prev_rE and rE>rf): ok=False
+    print(f"    a/M={a:4.2f}: r_E={rE:6.4f} M  (> floor r_f={rf:.4f} M; monotone in a: {rE>prev_rE})")
+    prev_rE=rE
+print(f"    no event horizon inside r_E (redshift -> Omega^(-1/2) only at r_f): ergoregion without horizon => superradiance/ergo-instability, a Kerr-distinct signature.")
+print(f"    a->0: r_E -> floor (no rotation, no ergoregion), NOT merging with a 2M horizon as in Kerr.")
+
 print("\nPASS" if ok else "\nFAIL", "- rotating solution (D7): gravitomagnetic = quarter-turn dual, horizonless, slip-core hand-over")
