@@ -2,7 +2,7 @@
  "paper": "14-entr",
  "title": "De Sitter Entropy Estimates over Finite Holographic Substrate",
  "doi": "https://doi.org/10.20944/preprints202608.0310.v1",
- "generated": "14 September 2026",
+ "generated": "15 September 2026",
  "blocks": [
   {
    "letter": "A",
@@ -327,7 +327,7 @@
     },
     {
      "label": "V3",
-     "predicate": "The discipline and its two kinds: exact claims are integer counts on the instantiated Carrier ($\\Om=2{,}408{,}561$), continuum numerals are labelled chart readings reproduced to the quoted precision and classified \\textsf{CHART} --- a pass says the numeral follows from its named inputs, never that the framework is measured; no fitted framework parameter and no random sampling anywhere. Open on the package: the concordance figure's generator; the exploratory simplex and shell scripts of August 2026 (\\texttt{check\\_simplex}, \\texttt{check\\_shell}, \\texttt{check\\_particles}) back the structural note of Section~\\ref{sec:wedge} and are not part of the run.",
+     "predicate": "The discipline and its two kinds: exact claims are integer counts on the instantiated Carrier ($\\Om=2{,}408{,}561$), continuum numerals are labelled chart readings reproduced to the quoted precision and classified \\textsf{CHART} --- a pass says the numeral follows from its named inputs, never that the framework is measured; no fitted framework parameter and no random sampling anywhere. Open on the package: the concordance figure's generator; the exploratory simplex and shell scripts of August 2026 (\\texttt{check\\_simplex}, \\texttt{check\\_shell}, \\texttt{check\\_particles}, \\texttt{make-simplex}, \\texttt{make-shell}, now in \\texttt{validation/archive/}) back the structural note of Section~\\ref{sec:wedge} and are not part of the run.",
      "tag": "T",
      "source": "App.~\\ref{sec:repro}",
      "key": "p14042"

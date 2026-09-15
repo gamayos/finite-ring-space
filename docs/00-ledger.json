@@ -1,5 +1,5 @@
 {
- "generated": "14 September 2026",
+ "generated": "15 September 2026",
  "blocks": {
   "A": "Foundation: from existence to the finite carrier",
   "B": "The Carrier: the substrate structure",
@@ -2099,9 +2099,9 @@
    "tag": "O",
    "sources": [
     "98-lab",
-    "38-s13 (C8)"
+    "38-s13 (O4/C8/C10/C11)"
    ],
-   "witness": "38:check_o1.js",
+   "witness": "38:check_o1.js, 38:check_s13.js",
    "refs": [
     {
      "label": "C15",
@@ -2126,9 +2126,13 @@
     {
      "label": "E4",
      "key": "p00055"
+    },
+    {
+     "label": "L1",
+     "key": "p00084"
     }
    ],
-   "statement": "\\textbf{Apsidal precession, the gravitational face}: the mechanism is theorem (C15--C18); the dictionary $p_{\\mathrm{sl}}=3(\\dS /\\kap )\\,r_{g}$ is now derived (38:C8): the pair's two leak faces $\\kap /\\dS$, $\\kap /2\\dS$ (ratio $2$, the double cover, C16) match apsidal fraction and clock deficit iff $2\\gamma -\\beta =1$ (E4); at $\\kap =3$, $p_{\\mathrm{sl}}=\\dS\\,r_{g}$ (D3). Residual: the empirical P1 bank (21-grav); internal extension C21."
+   "statement": "\\textbf{Apsidal precession, the gravitational face}: the mechanism is theorem (C15--C18); the dictionary $p_{\\mathrm{sl}}=3(\\dS /\\kap )\\,r_{g}$ is the open conjecture 38:O4 (2026-09-14, formerly 38:C9 R): the pair's two leak faces $\\kap /\\dS$, $\\kap /2\\dS$ (ratio $2$, the double cover, C16) match apsidal fraction and clock deficit iff $2\\gamma -\\beta =1$ (E4, 38:C8, derived), a combination measured to $10^{-4}$ and so selecting no metric the data have not (the Brans--Dicke exclusion withdrawn); at $\\kap =3$, $p_{\\mathrm{sl}}=\\dS\\,r_{g}$ (D3). Exposure: no Subject the physical Carrier hosts registers an observed precession through the dictionary (Mercury's $8\\times10^{-8}$ per revolution needs $\\p^{2}\\approx10^{231}\\gg\\Om$). Resolved part: the rate the dictionary reads is $\\kap$-free per chronon, $(\\kap/\\dS)/(\\p-1)=1/(\\Om-1)$ (38:C10, T), and is the registration floor $a_0=cH_0/2\\pi$, one cycle per drive period (38:C11, R; L1) --- the pair's gravitational face is the floor, hosted at every scale; the residue is the orbital product (the shell period). Residual: the empirical P1 bank (21-grav); internal extension C21."
   },
   {
    "label": "Y3",
@@ -2180,7 +2184,7 @@
    "sources": [
     "98-lab",
     "22-qm",
-    "38-s13 (C8)"
+    "38-s13 (O4)"
    ],
    "witness": "00:check_y5.js",
    "refs": [
@@ -2201,7 +2205,7 @@
      "key": "p00104"
     }
    ],
-   "statement": "\\textbf{Energy is winding, mass is dilation}: energy is registered phase advance ($E=hf$, D2); mass is a frame's dilation rate in its harness, on the norm-one torus $C_{\\p +1}$ alone (C20, the Dirac mass channel); rest energy its shadow; GR time dilation, literal. The mechanism is theorem (C20); the registration dictionary is derived (Y2, 38:C8); residual: the empirical P1 bank (C21)."
+   "statement": "\\textbf{Energy is winding, mass is dilation}: energy is registered phase advance ($E=hf$, D2); mass is a frame's dilation rate in its harness, on the norm-one torus $C_{\\p +1}$ alone (C20, the Dirac mass channel); rest energy its shadow; GR time dilation, literal. The mechanism is theorem (C20); the registration dictionary is the open conjecture 38:O4, its per-chronon rate the floor (Y2, 38:C10--C11); residual: the empirical P1 bank (C21)."
   },
   {
    "label": "Y6",

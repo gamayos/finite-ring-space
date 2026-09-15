@@ -1,0 +1,472 @@
+{
+ "paper": "38-s13",
+ "title": "Exact Quantum Dynamics on (13,233)",
+ "doi": "https://doi.org/10.20944/preprints202608.0390.v1",
+ "generated": "15 September 2026",
+ "blocks": [
+  {
+   "letter": "A",
+   "title": "The pair: the instance arithmetic",
+   "rows": [
+    {
+     "label": "A1",
+     "predicate": "The pair: $\\p=13$, $\\kap=3$, $\\Om=233$, $\\dS=58$; $\\gen=2$, $i=5=-\\gen^{\\kap}$.",
+     "tag": "T",
+     "source": "\\src{s13.\\allowbreak check\\_s13}",
+     "key": "p38001"
+    },
+    {
+     "label": "A2",
+     "predicate": "The tower identity: $C_{12}=C_{4}\\times C_{3}$, $\\gen=3\\cdot5=2$; unit exponents exactly at $\\kap=3$; general form $4a-\\kap b\\equiv1\\pmod{4\\kap}$, solvable for every odd $\\kap$ (Theorem~\\ref{th:channel} inside the Subject).",
+     "tag": "T",
+     "source": "\\src{s13.\\allowbreak check\\_s13}",
+     "key": "p38002"
+    },
+    {
+     "label": "A3",
+     "predicate": "The channel at the instance: $\\gcd(12,14)=2$, $\\gcd(12,28)=4$; $N(i)=-1$ (Theorem~\\ref{th:channel}).",
+     "tag": "T",
+     "source": "\\src{s13.\\allowbreak check\\_s13}",
+     "key": "p38003"
+    },
+    {
+     "label": "A4",
+     "predicate": "The Carrier quarter roots, arithmetic: $78^{58}=89=h$, $h^{2}=-1$, $\\hbar=144$, $\\hbar h=1$, $\\hbar+h=\\Om$; octant $\\zeta_{8}=97$, $\\zeta_{8}^{2}=h$.",
+     "tag": "T",
+     "source": "\\src{s13.\\allowbreak check\\_s13}, \\src{s13.\\allowbreak check\\_phi}",
+     "key": "p38004"
+    },
+    {
+     "label": "A5",
+     "predicate": "The naming $\\{\\hbar,h\\}$ and the constant loci of Fig.~\\ref{fig:rings}: the registration reading of \\cite{geometry,dimensions}; consumed once, by the registration orientation $\\iota:i\\mapsto\\hbar$ (Proposition~\\ref{th:register}); proofs consume A4 alone.",
+     "tag": "R",
+     "source": "Fig.~\\ref{fig:rings}",
+     "key": "p38005"
+    },
+    {
+     "label": "A6",
+     "predicate": "The FRC algebra half \\cite{algebra}: $\\tfrac12=7$, $-\\tfrac12=6$; the seam between rows $6$ and $7$.",
+     "tag": "T",
+     "source": "\\src{s13.\\allowbreak check\\_s13}",
+     "key": "p38006"
+    },
+    {
+     "label": "A7",
+     "predicate": "The frame counts: $2184=156\\times14$; $\\SL_{2}$ obstructs at $-1$ (Theorem~\\ref{th:hopf}).",
+     "tag": "T",
+     "source": "\\src{s13.\\allowbreak check\\_s13}, \\src{s13.\\allowbreak verify-hopf}",
+     "key": "p38007"
+    },
+    {
+     "label": "A8",
+     "predicate": "The resolvable spectrum (Proposition~\\ref{th:window}): symmetric heights, window $|\\hat k|\\le\\kap\\Leftrightarrow4|\\hat k|<\\p$, energy the magnitude with the sign as orientation, pairwise-exact conservation below capacity; instance window $\\{0,\\pm1,\\pm2,\\pm3\\}$.",
+     "tag": "T",
+     "source": "\\src{s13.\\allowbreak check\\_s13}",
+     "key": "p38008"
+    }
+   ]
+  },
+  {
+   "letter": "B",
+   "title": "The sky: the drawn observable",
+   "rows": [
+    {
+     "label": "B1",
+     "predicate": "The node field: $72=3\\times2\\times12$; retarded labels, one chronon of lookback per row.",
+     "tag": "T",
+     "source": "\\src{s13.\\allowbreak verify-sky}",
+     "key": "p38009"
+    },
+    {
+     "label": "B2",
+     "predicate": "The radial ladder: shells at $R\\sin(2a\\pi/13)$; capacity $4a<\\p\\Leftrightarrow a\\le\\kap$.",
+     "tag": "T",
+     "source": "\\src{s13.\\allowbreak verify-sky}",
+     "key": "p38010"
+    },
+    {
+     "label": "B3",
+     "predicate": "The mounting: $\\times3=\\gen^{4}$, $120^{\\circ}=8$ steps, quarter-blind.",
+     "tag": "T",
+     "source": "\\src{s13.\\allowbreak verify-sky}",
+     "key": "p38011"
+    },
+    {
+     "label": "B4",
+     "predicate": "The sky chronon: $\\chron\\bmod24$, the fibre product of $C_{12}$ and $C_{8}$ over $C_{4}$; antipodal at $+12$, closed at $+24$.",
+     "tag": "T",
+     "source": "\\src{s13.\\allowbreak verify-render}",
+     "key": "p38012"
+    },
+    {
+     "label": "B5",
+     "predicate": "The recurrence data: $696=\\dS\\cdot12$, spinor $1392$ [proxy-chart]; the pair registers only the monotone dephasing.",
+     "tag": "T",
+     "source": "\\src{s13.\\allowbreak verify-233}",
+     "key": "p38013"
+    },
+    {
+     "label": "B6",
+     "predicate": "The Hopf representation: node-on-fiber exact; foliation depth $=$ rung ladder (Reading~\\ref{th:holography}).",
+     "tag": "T",
+     "source": "\\src{s13.\\allowbreak verify-render}",
+     "key": "p38014"
+    },
+    {
+     "label": "B7",
+     "predicate": "The frame leak: halved tick $\\pi/232$; $\\pi/2$ at the quarter station; continuous wrap on $C_{464}$ (Theorems~\\ref{th:flip}, \\ref{th:precession}).",
+     "tag": "T",
+     "source": "\\src{s13.\\allowbreak verify-render}",
+     "key": "p38015"
+    }
+   ]
+  },
+  {
+   "letter": "C",
+   "title": "The flow",
+   "rows": [
+    {
+     "label": "C1",
+     "predicate": "One retarded flow law: $\\varphi(k)=-(b_{C}-k)\\pi/116$; the Subject draws the gauge-free curl (Theorem~\\ref{th:precession}).",
+     "tag": "T",
+     "source": "\\src{s13.\\allowbreak verify-render}",
+     "key": "p38016"
+    },
+    {
+     "label": "C2",
+     "predicate": "One retarded flow across the three representations (its Dirac reading with D10, D11); the toggle switches fibers only.",
+     "tag": "T",
+     "source": "\\src{s13.\\allowbreak verify-render}",
+     "key": "p38017"
+    },
+    {
+     "label": "C3",
+     "predicate": "Ownership: the origin never dressed; rays anchor at the Observer at every clock state.",
+     "tag": "T",
+     "source": "\\src{s13.\\allowbreak verify-render}",
+     "key": "p38018"
+    },
+    {
+     "label": "C4",
+     "predicate": "The half-turn exact: odd chart, point reflection; the rim kiss (Theorem~\\ref{th:channel}).",
+     "tag": "T",
+     "source": "\\src{s13.\\allowbreak verify-render}",
+     "key": "p38019"
+    },
+    {
+     "label": "C5",
+     "predicate": "The $C_{4}$ stations: parity image at $b_{C}=116+k$, home at $b_{C}=k$, gauge-free.",
+     "tag": "T",
+     "source": "\\src{s13.\\allowbreak verify-render}",
+     "key": "p38020"
+    },
+    {
+     "label": "C6",
+     "predicate": "The dilation instance $3/58$; the $(53,13)$ kill test (Theorems~\\ref{th:precession}, \\ref{th:channel}).",
+     "tag": "T",
+     "source": "\\src{s13.\\allowbreak check\\_s13}",
+     "key": "p38021"
+    },
+    {
+     "label": "C7",
+     "predicate": "The two faces of the leak: angular $\\kap/\\dS$ (the curl), temporal $\\kap/(2\\dS)$ (the ring, on $C_{464}$); ratio exactly $2$, the double cover.",
+     "tag": "T",
+     "source": "\\src{s13.\\allowbreak check\\_o1}",
+     "key": "p38022"
+    },
+    {
+     "label": "C8",
+     "predicate": "The face-ratio identity, orbit-free (both sides' scales cancel): the pair's two faces (C7) have ratio exactly $2$ (\\tT); matched against the declared comparison chart, the parametrised isotropic metric (\\tD, [approx: continuum chart]), the identity forces $2\\gamma-\\beta=1$, a combination measured to $10^{-4}$ (Cassini, lunar laser ranging) and so discriminating no metric the data have not already selected; Brans--Dicke's $2\\gamma-\\beta-1=-2/(2+\\omega)$ is the same fact read in one family.",
+     "tag": "D|T",
+     "source": "\\src{s13.\\allowbreak check\\_o1}, \\src{s13.\\allowbreak o1\\_gr\\_chart}",
+     "key": "p38023"
+    },
+    {
+     "label": "C10",
+     "predicate": "The per-chronon leak rate: $(\\kap/\\dS)/(\\p-1)=1/(4\\dS)=1/(\\Om-1)$ exactly, $\\kap$-free --- one chart tick per chronon (the temporal face on the cover $1/(2(\\Om-1))$); at the instance $(3/58)/12=1/232$, at $(5,233)$ $(1/58)/4=1/232$. The per-revolution fraction $\\kap/\\dS$ (C7) is this rate times the shell period $\\p-1$.",
+     "tag": "T",
+     "source": "\\src{s13.\\allowbreak check\\_s13}",
+     "key": "p38044"
+    },
+    {
+     "label": "C11",
+     "predicate": "The floor reading: the leak completes one cycle per drive period $\\Om-1$ chronons $=2\\pi/H_{0}$ (the T16 dictionary of 21-grav), so its cyclic rate is $H_{0}/2\\pi$ and its acceleration face $cH_{0}/2\\pi=a_{0}$, the synchronisation floor (32-dark B3, master L1; at the instance $a_{0}=c/(\\Om-1)$, 37-sim). The pair's gravitational face is the registration floor, $\\kap$-free, hosted at every scale; the apsidal reading (C7, Reading~\\ref{rd:apse}) is the same leak on one shell's cycle. Falsifier: L1's, a measured floor off $cH_{0}/2\\pi$.",
+     "tag": "R",
+     "source": "\\S\\ref{sec:reality}",
+     "key": "p38045"
+    }
+   ]
+  },
+  {
+   "letter": "D",
+   "title": "The light cone: the meridians and the covering",
+   "rows": [
+    {
+     "label": "D1",
+     "predicate": "The capacity stations: $4d<13$ selects $\\{1,2,3,10,11,12\\}$; threading exact, all $232$ states.",
+     "tag": "T",
+     "source": "\\src{s13.\\allowbreak verify-render}",
+     "key": "p38025"
+    },
+    {
+     "label": "D2",
+     "predicate": "The step law $\\tfrac{11\\pi}{12}+\\tfrac{\\pi}{13}+\\tfrac{\\pi}{232}$ and the leak $\\pi/156-\\pi/232$ on the space trace: exact rationals of the chart angle (\\tT), the angle itself the declared chart unit (\\tD).",
+     "tag": "D|T",
+     "source": "\\src{s13.\\allowbreak check\\_s13}",
+     "key": "p38026"
+    },
+    {
+     "label": "D3",
+     "predicate": "The scale-tower circuit: the period at the FRC algebra half (\\tT); the radius $R\\lvert\\sin(2a\\pi/13)\\rvert$ the declared drawing chart (\\tD, [approx]).",
+     "tag": "D|T",
+     "source": "\\src{s13.\\allowbreak verify-render}",
+     "key": "p38027"
+    },
+    {
+     "label": "D4",
+     "predicate": "The photon travels scales: absorption is the completed decoherence cascade; nothing crosses the Observer.",
+     "tag": "R",
+     "source": "\\src{s13.\\allowbreak verify-render}",
+     "key": "p38028"
+    },
+    {
+     "label": "D5",
+     "predicate": "Four rays realise the four quarter classes (Theorem~\\ref{th:channel}), each a fiber geodesic to the quarter fold $a=13/4$.",
+     "tag": "T",
+     "source": "\\src{s13.\\allowbreak verify-render}",
+     "key": "p38029"
+    },
+    {
+     "label": "D6",
+     "predicate": "The momentum dual $M_{3}$ at winding $5$: stations, tent shells, $C_{26}$ fold; framed-rational passages $13/5$, $52/5$.",
+     "tag": "T",
+     "source": "\\src{s13.\\allowbreak check\\_s13}",
+     "key": "p38030"
+    },
+    {
+     "label": "D7",
+     "predicate": "The covering: $144$ slots cover $72/72$; multiplicity $1$ odd $/$ $3$ even; $144=36+108$.",
+     "tag": "T",
+     "source": "\\src{s13.\\allowbreak check\\_s13}",
+     "key": "p38031"
+    },
+    {
+     "label": "D8",
+     "predicate": "The half-cell ramification: $t_{1/2}=13/(2m)$; $M_{0}$'s at the origin.",
+     "tag": "T",
+     "source": "\\src{s13.\\allowbreak check\\_s13}",
+     "key": "p38032"
+    },
+    {
+     "label": "D9",
+     "predicate": "The horizon fold fusions: $5\\cdot39\\equiv-13\\ (104)$; eight ends, four points; $E\\leftrightarrow B$.",
+     "tag": "T",
+     "source": "\\src{s13.\\allowbreak check\\_s13}",
+     "key": "p38033"
+    },
+    {
+     "label": "D10",
+     "predicate": "The quadrature reading: $M_{0}/M_{3}$ the two quadratures of $F=E+iB$ \\cite{dirac}.",
+     "tag": "R",
+     "source": "\\src{s13.\\allowbreak verify-render}",
+     "key": "p38034"
+    },
+    {
+     "label": "D11",
+     "predicate": "The headline realisation: $i\\hbar\\,\\partial_t\\psi=\\hat H\\psi\\ \\rightleftharpoons\\ \\psi_{\\chron+1}=\\gen\\psi_{\\chron}=i(3\\psi_{\\chron})$.",
+     "tag": "R",
+     "source": "\\src{s13.\\allowbreak verify-space}, \\src{s13.\\allowbreak verify-f13}",
+     "key": "p38035"
+    },
+    {
+     "label": "D12",
+     "predicate": "The covering parity theorem, closed at every shell (Theorem~\\ref{th:covering}, Lemma~\\ref{lem:parity}): $\\mu\\in\\{1,3\\}$ by the odd four-sum; decider the row parity and position by the eight-case table; completeness a corollary; the carrier the sheet parity: even rows $\\gen$-divisible (thrice), odd rows the half-cell obstruction of D8 (once).",
+     "tag": "T",
+     "source": "\\src{s13.\\allowbreak check\\_o2}",
+     "key": "p38036"
+    },
+    {
+     "label": "D13",
+     "predicate": "The family law: the one meridian law generalized (\\texttt{baseMW}; $M_{0}$, $M_{3}$ its windings $1$, $5$), the covering arithmetic fully certified; the drawn pair is the family's representative, a drawn ten-sibling layer retracted as washing the sky.",
+     "tag": "T",
+     "source": "\\src{s13.\\allowbreak check\\_o3}",
+     "key": "p38037"
+    }
+   ]
+  },
+  {
+   "letter": "X",
+   "title": "What the construction explains",
+   "rows": [
+    {
+     "label": "X1",
+     "predicate": "\\textbf{The weakness of gravity} is the $1/\\dS$ suppression of the frame leak: one chart tick per chronon, $1/(4\\dS)$ of the cycle --- $1/232$ at the instance, of order $10^{-122}$ at physical capacity; the denominator that makes the world look continuous makes gravity look weak (\\S\\ref{sec:reality}).",
+     "tag": "R",
+     "source": "\\S\\ref{sec:reality}",
+     "key": "p38046"
+    },
+    {
+     "label": "X2",
+     "predicate": "\\textbf{The continuum is the large-capacity look}: what changes with capacity is resolution, not structure; the instance stands to the physical pair as exact instantiation, every structural theorem holding verbatim at $\\dS\\approx10^{122}$ by the $\\Om$-blindness license (\\S\\ref{sec:proves}).",
+     "tag": "R",
+     "source": "\\S\\ref{sec:reality}",
+     "key": "p38047"
+    },
+    {
+     "label": "X3",
+     "predicate": "\\textbf{The acceleration floor $a_{0}=cH_{0}/2\\pi$ is the drive seen in the chart}: the leak's cyclic rate is the drive's own, one cycle per drive period $\\Om-1$ chronons $=2\\pi/H_{0}$, and its acceleration face is the floor (C10, C11); at the instance $a_{0}=c/(\\Om-1)$.",
+     "tag": "R",
+     "source": "\\src{s13.\\allowbreak check\\_s13}",
+     "key": "p38048"
+    }
+   ]
+  },
+  {
+   "letter": "P",
+   "title": "Predictions and falsifiers",
+   "rows": [
+    {
+     "label": "P1",
+     "predicate": "The registration floor $a_{0}=cH_{0}/2\\pi$, read from the pair's $\\kap$-free per-chronon leak rate (C11): parameter-free, tracking $H(z)$. Falsifier: a measured floor off $cH_{0}/2\\pi$ beyond the $H_{0}$ uncertainty, or one not tracking $H(z)$ (\\S\\ref{sec:predictions}, item 5; the dark sector's L1).",
+     "tag": "E",
+     "source": "\\S\\ref{sec:predictions}",
+     "key": "p38049"
+    }
+   ]
+  },
+  {
+   "letter": "V",
+   "title": "Machine verification",
+   "rows": [
+    {
+     "label": "V1",
+     "predicate": "The laboratory's six suites, $192$ checks, all passing (\\S\\ref{sec:repro}), run from \\texttt{docs/38-s13} by the package registry: \\src{s13.\\allowbreak verify-233} ($84$), \\src{s13.\\allowbreak verify-sky} ($28$), \\src{s13.\\allowbreak verify-space} ($25$), \\src{s13.\\allowbreak verify-f13} ($25$), \\src{s13.\\allowbreak verify-hopf} ($10$), \\src{s13.\\allowbreak verify-render} ($20$).",
+     "tag": "T",
+     "source": "the six \\texttt{s13.verify-*}",
+     "key": "p38038"
+    },
+    {
+     "label": "V2",
+     "predicate": "The exactness boundary: exact incidence/ordering/winding/anchoring/flow; connecting curves the declared chart, each constant [approx].",
+     "tag": "D",
+     "source": "\\src{s13.\\allowbreak verify-render}",
+     "key": "p38039"
+    },
+    {
+     "label": "V3",
+     "predicate": "The in-tree audit: \\src{check\\_s13.js}, $58$ checks, re-derives every arithmetic identity of blocks A--D and the registration fibre product.",
+     "tag": "T",
+     "source": "\\src{s13.\\allowbreak check\\_s13}",
+     "key": "p38040"
+    },
+    {
+     "label": "V4",
+     "predicate": "The dictionary audit: \\src{check\\_o1.js} ($10$, exact) and \\src{o1\\_gr\\_chart.py} ($10$ identities, symbolic rationals [approx: continuum chart]).",
+     "tag": "T",
+     "source": "\\src{s13.\\allowbreak check\\_o1}, \\src{s13.\\allowbreak o1\\_gr\\_chart}",
+     "key": "p38041"
+    },
+    {
+     "label": "V5",
+     "predicate": "The multiplicity audit: \\src{check\\_o2.js}, $11$ checks, exact, including the eight-case parity table of Lemma~\\ref{lem:parity} at $\\p=5,13,17,29$; the decider sweep $\\Om$-blind at $\\p=5,17,29$, the home instance excluded from the blindness sweep by design.",
+     "tag": "T",
+     "source": "\\src{s13.\\allowbreak check\\_o2}",
+     "key": "p38042"
+    },
+    {
+     "label": "V6",
+     "predicate": "The family audit: \\src{check\\_o3.js}, $7$ checks, exact (the winding-$1/5$ identity, the $144$-slot containment, the covering multiset, the passages, the ramification).",
+     "tag": "T",
+     "source": "\\src{s13.\\allowbreak check\\_o3}",
+     "key": "p38043"
+    }
+   ]
+  },
+  {
+   "letter": "O",
+   "title": "Open: the conjecture stated ahead of derivation (formerly C9)",
+   "rows": [
+    {
+     "label": "O4",
+     "predicate": "The gravitational dictionary $p_{\\mathrm{sl}}=3(\\dS/\\kap)r_{g}$ (Statement~\\ref{th:floors}), stated as a conjecture: one equation, its face ratio $2$ definitional on the pair side and circular-orbit-specific on the metric side, a one-point registration per $(\\kap,\\dS)$. Exposure: at the physical pair the dictionary hosts no observed precession --- Mercury's apsidal fraction $8.0\\times10^{-8}$ per revolution needs $\\kap/\\dS\\approx8\\times10^{-8}$, $\\kap\\approx8\\times10^{114}$, $\\p^{2}\\approx10^{231}\\gg\\Om\\approx4\\times10^{122}$, so no Subject the physical Carrier hosts registers it. Falsifier: strong-field confirmation on a hosted pair, or a derivation of the orbit and mass dependence that fixes the dictionary's coefficient. Resolution route: the rate the dictionary reads is $\\kap$-free per chronon (C10) and is the registration floor $a_{0}=cH_{0}/2\\pi$ (C11), hosted at every scale; what remains open is the orbital product, the shell period the dictionary multiplies the rate by.",
+     "tag": "O",
+     "source": "\\src{s13.\\allowbreak check\\_o1}",
+     "key": "p38024"
+    }
+   ]
+  }
+ ],
+ "legend": [
+  {
+   "tag": "T",
+   "name": "Theorem",
+   "text": "Derived and machine-verified in exact arithmetic by the named witness."
+  },
+  {
+   "tag": "D",
+   "name": "Definition",
+   "text": "A naming or declared chart convention, carrying no empirical content."
+  },
+  {
+   "tag": "R",
+   "name": "Realisation",
+   "text": "The row states what a physical term denotes in the substrate: constitutive, not interpretive, defended by the totality of its registered consequences."
+  },
+  {
+   "tag": "E",
+   "name": "Prediction",
+   "text": "A falsifiable statement with its falsifier, stated as a consequence of the rows above it."
+  },
+  {
+   "tag": "O",
+   "name": "Open (conjecture)",
+   "text": "Stated ahead of derivation, carrying its exposure and its falsifier; a derivation re-homes the row."
+  },
+  {
+   "tag": "D|T",
+   "name": "Definition with its theorem",
+   "text": "A declared chart (a comparison metric, a drawing angle or radius) together with the exact statement carried on it; the parts are separately citable."
+  }
+ ],
+ "master": {
+  "A4": [
+   "C17"
+  ],
+  "A7": [
+   "C19",
+   "Y3"
+  ],
+  "B6": [
+   "Y3"
+  ],
+  "A8": [
+   "Y6"
+  ],
+  "C6": [
+   "C18"
+  ],
+  "C7": [
+   "Y2"
+  ],
+  "C8": [
+   "Y2"
+  ],
+  "C10": [
+   "Y2"
+  ],
+  "C11": [
+   "Y2",
+   "L1"
+  ],
+  "O4": [
+   "Y2",
+   "Y5"
+  ],
+  "X3": [
+   "L1"
+  ],
+  "P1": [
+   "L1"
+  ]
+ }
+}

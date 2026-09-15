@@ -1,5 +1,5 @@
 {
- "generated": "14 September 2026",
+ "generated": "15 September 2026",
  "rows": [
   {
    "id": "14:X3",
@@ -186,7 +186,9 @@
    "predicate": "\\textbf{The weakness of gravity} is cardinality dilution, not a hierarchy to be tuned.",
    "source": "\\S\\ref{sub:G}",
    "master": [],
-   "restated": [],
+   "restated": [
+    "38:X1"
+   ],
    "witnessed": false,
    "page": "21-gravity/21-gravity-ledger.html"
   },
@@ -592,7 +594,8 @@
    "source": "Eq.~\\eqref{eq:a0}; \\src{dark.deep\\_mond}",
    "master": [],
    "restated": [
-    "14:X2"
+    "14:X2",
+    "38:X3"
    ],
    "witnessed": true,
    "page": "32-dark/32-dark-ledger.html"
@@ -856,6 +859,19 @@
    "restated": [],
    "witnessed": true,
    "page": "35-hadrons/35-hadrons-ledger.html"
+  },
+  {
+   "id": "38:X2",
+   "paper": "38-s13",
+   "label": "X2",
+   "key": "p38047",
+   "tag": "R",
+   "predicate": "\\textbf{The continuum is the large-capacity look}: what changes with capacity is resolution, not structure; the instance stands to the physical pair as exact instantiation, every structural theorem holding verbatim at $\\dS\\approx10^{122}$ by the $\\Om$-blindness license (\\S\\ref{sec:proves}).",
+   "source": "\\S\\ref{sec:reality}",
+   "master": [],
+   "restated": [],
+   "witnessed": false,
+   "page": "38-s13/38-s13-ledger.html"
   }
  ],
  "restated": {
@@ -870,7 +886,11 @@
    "28:X1"
   ],
   "32:X2": [
-   "14:X2"
+   "14:X2",
+   "38:X3"
+  ],
+  "21:X8": [
+   "38:X1"
   ]
  }
 }

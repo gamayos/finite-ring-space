@@ -45,6 +45,7 @@ ok('t24: lcm(12,8) = 24; 232 = 8*29', 12*8/gcd(12,8) === 24 && 8*29 === 232);
 ok('C4 stations: 116 = (Om-1)/2; quarter station bC = S = 58: 58*pi/116 = pi/2', 116 === 232/2 && 58*2 === 116);
 // dilation / precession instance
 ok('apsidal fraction kappa/S = 3/58 = 12/232 = (p-1)/(Om-1)', 3*232 === 58*12);
+ok('per-chronon leak rate (kappa/S)/(p-1) = 1/(Om-1) = 1/(4S), kappa-free: (3/58)/12 = 1/232 at (13,233), (1/58)/4 = 1/232 at (5,233)', 3*232 === 58*12 && 1*232 === 58*4 && 4*58 === 232);
 // (53,13) kill test in Carrier 157
 ok('Om = 157 = 4*39+1', 157 === 4*39+1);
 ok('v_O = 5^13 = 22 on F157', powm(5,13,157) === 22);

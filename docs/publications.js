@@ -431,7 +431,18 @@ const PUBLICATIONS = [
     },
     "doi": "https://doi.org/10.20944/preprints202608.0390.v1",
     "doiLabel": "pp202608.0390.v1",
+    "ledger": "38-s13/38-s13-ledger.html",
     "links": [
+      {
+        "href": "38-s13/38-s13-ledger.html",
+        "label": "ledger",
+        "title": "the paper's predicate ledger"
+      },
+      {
+        "href": "https://colab.research.google.com/github/gamayos/finite-ring-space/blob/main/src/38-s13/38-s13-main.ipynb",
+        "label": "notebook",
+        "title": "the validation notebook on Google Colab"
+      },
       {
         "href": "38-s13/",
         "label": "lab",
@@ -521,4 +532,4 @@ const PUBLICATIONS = [
   }
 ];
 
-const GENERATED = "14 September 2026";
+const GENERATED = "15 September 2026";
