@@ -2,7 +2,7 @@
  "paper": "14-entr",
  "title": "De Sitter Entropy Estimates over Finite Holographic Substrate",
  "doi": "https://doi.org/10.20944/preprints202608.0310.v1",
- "generated": "15 September 2026",
+ "generated": "16 September 2026",
  "blocks": [
   {
    "letter": "A",
@@ -176,7 +176,7 @@
     },
     {
      "label": "C6",
-     "predicate": "The octant sector: $\\mathbb{Z}_8\\subset C_{4\\dS}$ exists exactly when $\\dS$ is even, its character $\\zeta_8$ the residue the Tsirelson identity carries; the octant count $\\dS/2$ is an integer on every admissible Carrier.",
+     "predicate": "The octant sector: $C_{8}\\subset C_{4\\dS}$ exists exactly when $\\dS$ is even, its character $\\zeta_8$ the residue the Tsirelson identity carries; the octant count $\\dS/2$ is an integer on every admissible Carrier.",
      "tag": "T",
      "source": "\\S\\ref{sec:registers}, \\citep{akhtman2026quantum}; \\src{est.F1}",
      "key": "p14023"
@@ -197,7 +197,7 @@
     },
     {
      "label": "C9",
-     "predicate": "The registrable triangle \\apx: width $\\log_{10}(r_H/\\lP)=61.0$ dex --- the count face $\\sqrt{\\dS}$ in its chart dress $\\sqrt{\\dS/\\pi}$, the solid angle the declared transport; the thirteen-object diagonal, slope $3.03$ (intercept $1.00\\times10^{3}$ at the metre pivot); the constrained $k=3$ density $\\tilde\\rho=0.97\\times10^{3}\\,\\mathrm{kg/m^{3}}$; the Compton entry a consistency, the Schwarzschild exit the output, $1.8\\times10^{8}M_\\odot$ within the $(1.4\\text{--}2.8)\\times10^{8}$ sensitivity band; classified a consistency chart, not a channel.",
+     "predicate": "The registrable triangle \\apx: width $\\log_{10}(r_H/\\lP)=61.0$ dex --- the count face $\\sqrt{\\dS}$ in its chart dress $\\sqrt{\\dS/\\pi}$, the solid angle the declared transport; the thirteen-object diagonal, slope $3.03$ (intercept $1.00\\times10^{3}$ at the metre pivot); the constrained $k=3$ cubic coefficient $\\tilde c=m/R^{3}=0.97\\times10^{3}\\,\\mathrm{kg\\,m^{-3}}$ (not a density: a sphere's is $0.62$ dex lower); the Compton entry returns its input, the Schwarzschild exit is the chart's one derived quantity, the over-closure bound $1.8\\times10^{8}M_\\odot$ within the $(1.4\\text{--}2.8)\\times10^{8}$ sensitivity band --- a bound, no observed scale predicted (X5); classified a consistency chart, not a channel.",
      "tag": "T",
      "source": "\\S\\ref{sec:wedge}; \\src{tri.A}, \\src{tri.D}, \\src{tri.W}, \\src{cap.A}",
      "key": "p14026"
@@ -245,7 +245,7 @@
     },
     {
      "label": "X5",
-     "predicate": "\\textbf{The termination of the single-object sequence} is a consistency of the wall structure: the typical-density diagonal over-closes at $1.8\\times10^{8}M_\\odot$ \\apx{} (sensitivity band $(1.4\\text{--}2.8)\\times10^{8}$ across fit variants), so every heavier single object continuing the condensed-density sequence is necessarily wall-bound; the supermassive holes are that continuation, not an anomaly beyond it. Classified with the triangle: consistency, not derivation of an observed scale.",
+     "predicate": "\\textbf{The termination of the single-object sequence} is a consistency of the wall structure, the exit of C9 read as a bound: the typical-density diagonal over-closes at $1.8\\times10^{8}M_\\odot$ \\apx{} (sensitivity band $(1.4\\text{--}2.8)\\times10^{8}$ across fit variants), so every heavier single object continuing the condensed-density sequence is necessarily wall-bound; the supermassive holes are that continuation, not an anomaly beyond it. Classified with the triangle: consistency, not derivation of an observed scale.",
      "tag": "T",
      "source": "\\S\\ref{sec:wedge}; \\src{tri.D}",
      "key": "p14032"
@@ -353,7 +353,7 @@
    "rows": [
     {
      "label": "O1",
-     "predicate": "Capacity additive on the lock (conjecture): a phase-locked, typical-density composite demands $\\kap_{q}=\\sum\\kap_i=3N$ hydrogen units, the minimal window conserving total winding exactly \\citep{akhtman2026s13}; the C9 diagonal the validity locus, the capacity axis exact on it; off-line the law breaks with wall displacement (the bare proton: $1$ against $3$); the exchange rate open; the $10^{3}$\\,kg cap crossing recorded, not claimed.",
+     "predicate": "Capacity additive on the lock (conjecture): a phase-locked, typical-density composite demands $\\kap_{q}=\\sum\\kap_i=3N$ hydrogen units, the minimal window conserving total winding exactly \\citep{akhtman2026s13}; the C9 diagonal the validity locus, the capacity axis exact on it; off-line the law breaks with wall displacement (the bare proton: $1$ against $3$); the exchange rate open; the $7\\times10^{3}$\\,kg cap ($\\dS^{1/4}$ hydrogen units) recorded, not claimed.",
      "tag": "O",
      "source": "\\S\\ref{sec:wedge}",
      "key": "p14044"

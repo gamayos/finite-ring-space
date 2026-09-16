@@ -55,9 +55,9 @@
   <section class="legend">
     <h2>Reading the package column</h2>
     <dl>
-      <dt>ledger</dt><dd>The paper's predicate ledger: every claim tagged, sourced and, where it admits a finite check, witnessed by a script.</dd>
-      <dt>notebook</dt><dd>The validation notebook, opened directly on Google Colab: the paper's scripts run in the browser, the ledger rows they witness named.</dd>
-      <dt>lab</dt><dd>An interactive rendering of the paper's construction.</dd>
+      <dt><span class="ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 6.5l1.5 1.5L8 5.5"/><path d="M11 6.5h9"/><path d="M4 12.5l1.5 1.5L8 11.5"/><path d="M11 12.5h9"/><path d="M4 18.5l1.5 1.5L8 17.5"/><path d="M11 18.5h9"/></svg></span> ledger</dt><dd>The paper's predicate ledger: every claim tagged, sourced and, where it admits a finite check, witnessed by a script.</dd>
+      <dt><span class="ico"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="3" width="16" height="18" rx="2"/><path d="M8 3v18"/><path d="M12.5 9.5l4 2.5-4 2.5z"/></svg></span> notebook</dt><dd>The validation notebook, opened directly on Google Colab: the paper's scripts run in the browser, the ledger rows they witness named.</dd>
+      <dt><span class="ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9.5 3h5M10 3v6l-5.5 9.5A1.5 1.5 0 0 0 5.8 21h12.4a1.5 1.5 0 0 0 1.3-2.5L14 9V3"/><path d="M7.5 16h9"/></svg></span> lab</dt><dd>An interactive rendering of the paper's construction.</dd>
     </dl>
   </section>
 
@@ -83,6 +83,7 @@
 
   var active = "all", query = "", sortKey = "n", sortDir = 1;
 
+  var PKG_ICONS = {"ledger": "<svg viewBox=\"0 0 24 24\" aria-hidden=\"true\"><path d=\"M4 6.5l1.5 1.5L8 5.5\"/><path d=\"M11 6.5h9\"/><path d=\"M4 12.5l1.5 1.5L8 11.5\"/><path d=\"M11 12.5h9\"/><path d=\"M4 18.5l1.5 1.5L8 17.5\"/><path d=\"M11 18.5h9\"/></svg>", "notebook": "<svg viewBox=\"0 0 24 24\" aria-hidden=\"true\"><rect x=\"4\" y=\"3\" width=\"16\" height=\"18\" rx=\"2\"/><path d=\"M8 3v18\"/><path d=\"M12.5 9.5l4 2.5-4 2.5z\"/></svg>", "lab": "<svg viewBox=\"0 0 24 24\" aria-hidden=\"true\"><path d=\"M9.5 3h5M10 3v6l-5.5 9.5A1.5 1.5 0 0 0 5.8 21h12.4a1.5 1.5 0 0 0 1.3-2.5L14 9V3\"/><path d=\"M7.5 16h9\"/></svg>"};
   var el = {
     tally: document.getElementById("tally"),
     rows:  document.getElementById("rows"),
@@ -202,7 +203,9 @@
       var lk = document.createElement("td");
       lk.className = "links";
       (p.links || []).forEach(function (L) {
-        var a = document.createElement("a"); a.href = L.href; a.textContent = L.label; a.title = L.title || L.label;
+        var a = document.createElement("a"); a.href = L.href; a.title = L.title || L.label;
+        if (PKG_ICONS[L.label]) { a.className = "ico"; a.innerHTML = PKG_ICONS[L.label]; a.setAttribute("aria-label", L.label); }
+        else { a.textContent = L.label; }
         if (L.href.indexOf("http") === 0) { a.rel = "noopener"; a.target = "_blank"; }
         lk.appendChild(a);
       });

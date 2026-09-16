@@ -51,7 +51,20 @@ const PUBLICATIONS = [
       "venue": "Axioms"
     },
     "doi": "https://doi.org/10.3390/axioms14080636",
-    "doiLabel": "axioms14080636"
+    "doiLabel": "axioms14080636",
+    "ledger": "1-algebra/1-algebra-ledger.html",
+    "links": [
+      {
+        "href": "1-algebra/1-algebra-ledger.html",
+        "label": "ledger",
+        "title": "the paper's predicate ledger"
+      },
+      {
+        "href": "https://colab.research.google.com/github/gamayos/finite-ring-space/blob/main/src/1-algebra/1-algebra-main.ipynb",
+        "label": "notebook",
+        "title": "the validation notebook on Google Colab"
+      }
+    ]
   },
   {
     "key": "2-geom",
@@ -532,4 +545,4 @@ const PUBLICATIONS = [
   }
 ];
 
-const GENERATED = "15 September 2026";
+const GENERATED = "16 September 2026";

@@ -204,7 +204,39 @@ header.paper { margin-bottom: 1rem; }
 header.paper + main > section.prose:first-child { margin-top: 0; }
 p.note { color: var(--ink-soft); font-size: 0.9rem; margin: 0 0 1rem; }
 td.links a { display: inline-block; margin-right: 0.35rem; font-size: 0.8rem; }
+/* the Package column's glyphs: a 26 px hit area, the ink-soft colour, the accent on hover; the legend shows each beside its word */
+.wrap td.links a.ico, .wrap td.links a.ico:visited { display: inline-flex; align-items: center; justify-content: center; width: 26px; height: 26px; margin-right: 0.2rem; border-bottom: none; border-radius: 5px; color: var(--ink-soft); vertical-align: middle; }
+.wrap td.links a.ico:hover { background: var(--rule-soft); color: var(--accent); }
+.ico svg { width: 17px; height: 17px; stroke: currentColor; fill: none; stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round; display: block; }
+.legend dt .ico { display: inline-block; vertical-align: -4px; margin-right: 0.15rem; color: var(--ink-soft); }
 a.ledgerlink { color: inherit; text-decoration: none; border-bottom: 1px solid var(--rule); }
 a.ledgerlink:hover { border-bottom-color: var(--ink); }
 .wrap a.badgelink, .wrap a.badgelink:visited { text-decoration: none; border-bottom: none; }
 .wrap a.badgelink:hover .badge { filter: brightness(0.92); }
+/* ---- phones (added by tools/site_build.py): the tables stack, one row a card, so the layout viewport stays the device
+   width and the type stays the Home page's 15px instead of the browser zooming out to fit a 700 px table ---- */
+html { -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
+mjx-container { max-width: 100%; overflow-x: auto; overflow-y: hidden; }
+@media (max-width: 720px) {
+  .wrap table { display: block; width: 100%; }
+  .wrap table thead { display: none; }
+  .wrap table tbody { display: block; width: 100%; }
+  .wrap table tr { display: grid; grid-template-columns: minmax(0, 1fr) auto; column-gap: .6rem; padding: .6rem 0; }
+  .wrap table td { padding: 0; min-width: 0; overflow-wrap: anywhere; }
+  table.ledger tr { grid-template-areas: "lab status" "pred pred" "src src"; }
+  table.ledger tr.blockhead { display: block; padding: 0; }
+  table.ledger tr.blockhead td { padding: .5rem .6rem; }
+  table.ledger td.lab { grid-area: lab; white-space: normal; padding-bottom: .25rem; }
+  table.ledger td.lab .key { display: inline; margin-left: .45rem; }
+  table.ledger td.status { grid-area: status; text-align: right; }
+  table.ledger td.pred { grid-area: pred; }
+  table.ledger td.src { grid-area: src; padding-top: .35rem; }
+  table:not(.ledger) tr { grid-template-areas: "key status" "title title" "links links"; }
+  td.key { grid-area: key; white-space: normal; }
+  table:not(.ledger) td.status { grid-area: status; text-align: right; }
+  td.title { grid-area: title; padding: .2rem 0; }
+  td.links { grid-area: links; }
+  td.doi { white-space: normal; }
+  .empty { padding: 1.5rem 0; }
+  nav { flex-wrap: wrap; gap: .4rem .9rem; }
+}

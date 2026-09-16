@@ -1,0 +1,275 @@
+{
+ "paper": "1-alg",
+ "title": "Relativistic Algebra over Finite Ring Continuum",
+ "doi": "https://doi.org/10.3390/axioms14080636",
+ "generated": "16 September 2026",
+ "blocks": [
+  {
+   "letter": "A",
+   "title": "Inputs",
+   "rows": [
+    {
+     "label": "A1",
+     "predicate": "Finite-field algebra: $\\Fpx$ is cyclic of order $\\p-1$ with primitive roots; $\\gen^{\\p-1}=1$; $-1$ is a square in $\\Fp$ iff $\\p\\equiv1\\pmod4$ (Euler's criterion); the affine maps $x\\mapsto a+bx$, $b\\neq0$, are the bijections preserving the field structure up to relabelling.",
+     "tag": "I",
+     "source": "\\cite{burton2010elementary,dummit2004abstract}",
+     "key": "p01001"
+    },
+    {
+     "label": "A2",
+     "predicate": "The sign of the quarter-turn exponent: the oriented quarter-turn is $\\im=\\gen^{-\\kap}=-\\gen^{\\kap}$, the exponent negative by pullback covariance (00:C7); the positive-exponent reading is the conjugate chart. Declared here, derived in the corpus.",
+     "tag": "I",
+     "source": "00:C7",
+     "key": "p01002"
+    }
+   ]
+  },
+  {
+   "letter": "B",
+   "title": "The shell and its frame",
+   "rows": [
+    {
+     "label": "B1",
+     "predicate": "The shell, capacity-first: $\\kap$ primary, $\\p=4\\kap+1$ prime; the Subject's frame $(\\tau;0,1,\\gen)$ with $\\gen$ a primitive root and the drive $x\\mapsto\\gen x$; the cycle $\\Phi_\\p\\cong C_{\\p-1}$; $\\im:=-\\gen^{\\kap}$ (A2), $-1=\\gen^{2\\kap}$. Replaces ``radius $\\chron$'' and ``$\\Fp(0,1)$''.",
+     "tag": "D",
+     "source": "Def.~\\ref{def:field}, Section~\\ref{sec:framing}; \\texttt{revision}",
+     "key": "p01003"
+    },
+    {
+     "label": "B2",
+     "predicate": "Symmetry completeness (Thm.~\\ref{thm:symmetric-completeness} restated): the fourth roots of unity form the unique order-four subgroup $Q_4=\\{1,\\im,-1,-\\im\\}$; under the Klein four-group $\\langle x\\mapsto-x,\\,x\\mapsto x^{-1}\\rangle$, $Q_4$ is the union of the two size-two orbits $\\{\\pm1\\}$, $\\{\\pm\\im\\}$, and $\\Fpx\\setminus Q_4$ splits into exactly $\\kap-1$ orbits of size four. For $\\p\\equiv3\\pmod4$ no $\\im$ exists.",
+     "tag": "T",
+     "source": "\\src{A1}; \\texttt{lean P01.B2}",
+     "key": "p01004"
+    },
+    {
+     "label": "B3",
+     "predicate": "The oriented quarter-turn: $\\im=-\\gen^{\\kap}$ satisfies $\\im^{2}=-1$ for every primitive root $\\gen$; the two square roots of $-1$ are $\\{-\\gen^{\\kap},\\gen^{\\kap}\\}$, so the drive fixes which is $\\im$. On $\\F_{13}$, $\\gen=2$: $\\im=5$.",
+     "tag": "T",
+     "source": "\\src{A2}; \\texttt{lean P01.B3}",
+     "key": "p01005"
+    },
+    {
+     "label": "B4",
+     "predicate": "Affine reframing (Def.~\\ref{def:framed-field} corrected, Lemma~\\ref{lem:affine-invariance}): $\\varphi_{a,b}(x)=a+bx$, $b\\neq0$, is a ring isomorphism $(\\Fp,+,\\cdot)\\to(\\Fp,\\oplus,\\otimes)$ with origin $a$ and unit $a+b$ (not $b$); every polynomial identity is frame-covariant.",
+     "tag": "T",
+     "source": "\\src{A3}; \\texttt{lean P01.B4}",
+     "key": "p01006"
+    },
+    {
+     "label": "B5",
+     "predicate": "Origin and unit are observer data (affine gauge); the generator $\\gen$ is the Subject's drive, not gauge; the observer's window is the naturals below $\\sqrt\\p$ (00:B8). Replaces ``$H\\ll\\It=\\sqrt{\\p-1}$'' (Section~\\ref{sec:unification}).",
+     "tag": "D",
+     "source": "00:A8, 00:C1; \\texttt{revision}",
+     "key": "p01007"
+    }
+   ]
+  },
+  {
+   "letter": "C",
+   "title": "Arithmetic symmetries and the orbital complex",
+   "rows": [
+    {
+     "label": "C1",
+     "predicate": "The four symmetries as maps of the shell: the successor $C_1:k\\mapsto k+1$; translations $T_a$, $a\\in\\Fp$, the cycle $C_\\p$; scalings $S_m$, $m\\in\\Fpx$, the cycle $C_{\\p-1}$; power maps $P_\\varepsilon:x\\mapsto x^{\\varepsilon}$, $\\varepsilon\\in C_{\\p-1}$, bijective iff $\\gcd(\\varepsilon,\\p-1)=1$.",
+     "tag": "D",
+     "source": "Section~\\ref{sec:sphere}, (\\ref{eq:counting})--(\\ref{eq:powering})",
+     "key": "p01008"
+    },
+    {
+     "label": "C2",
+     "predicate": "The frame group (Prop.~\\ref{prop:frame-group}): $\\langle T_a,S_m\\rangle$ is the affine group of order $\\p(\\p-1)$, acting simply transitively on the frames $(a,b)$, $b\\neq0$; the set of frames is a torsor under it (00:C5, 00:Y3).",
+     "tag": "T",
+     "source": "\\texttt{manuscript}; \\src{A4}",
+     "key": "p01009"
+    },
+    {
+     "label": "C3",
+     "predicate": "Meridians and latitudes (Def.~\\ref{def:orbit-sphere}): $M_n(a)=a\\gen^{n}$, $a\\in\\Fp$, the ordered list of the shell with step $\\gen^{n}$; $L_a(m)=a\\gen^{m}$, $m\\in C_{\\p-1}$, $a\\neq0$, the multiplicative cycle from $a$; the orbital complex $\\Sp$ with vertex set $\\{(n,\\pm a)\\}\\cup\\{0\\}$. The $2$-sphere reading is 2-geometry's~\\cite{akhtman2025geometry}.",
+     "tag": "D",
+     "source": "Def.~\\ref{def:orbit-sphere}",
+     "key": "p01010"
+    },
+    {
+     "label": "C4",
+     "predicate": "Involutions and counts (Def.~\\ref{def:orbit-sphere}\\,(a)--(c)): $M_n(a)=M_{n+2\\kap}(-a)$ and $L_a(m)=L_{-a}(m+2\\kap)$ since $\\gen^{2\\kap}=-1$; $\\p-1$ distinct meridian lists in $2\\kap$ great circles; $2\\kap$ latitude pairs; one-sided vertex count $(\\p-1)^{2}/2+1$, the double cover $(\\p-1)^{2}$ (00:B11).",
+     "tag": "T",
+     "source": "\\src{A5}; \\texttt{lean P01.C4}",
+     "key": "p01011"
+    }
+   ]
+  },
+  {
+   "letter": "D",
+   "title": "Framed numbers",
+   "rows": [
+    {
+     "label": "D1",
+     "predicate": "Framed integers (Def.~\\ref{def:integers} restated): the window $W_H=\\{z\\in\\Z:|z|\\le H\\}$, $2H<\\p$, embedded by $z\\mapsto z\\bmod\\p$; sign, order and magnitude are the window's; sums read back for $4H<\\p$, products for $2H^{2}<\\p$ --- the corpus window $\\sqrt\\p$ (00:B1).",
+     "tag": "D",
+     "source": "Def.~\\ref{def:integers}; \\texttt{revision}",
+     "key": "p01012"
+    },
+    {
+     "label": "D2",
+     "predicate": "The window law: $z\\mapsto z\\bmod\\p$ is injective on $W_H$ when $2H<\\p$; for $x,y\\in W_H$ the residue of $x\\pm y$ reads back the integer when $4H<\\p$, and that of $xy$ when $2H^{2}<\\p$ (the same injectivity on the windows $2H$ and $H^{2}$).",
+     "tag": "T",
+     "source": "\\src{B1}; \\texttt{lean P01.D2}",
+     "key": "p01013"
+    },
+    {
+     "label": "D3",
+     "predicate": "Framed rationals (Def.~\\ref{def:rationals} restated): $a/b$ with $a,b\\in W_H$, $b\\not\\equiv0$, of value $ab^{-1}\\in\\Fp$; the scale grid $[x,n]:=x\\gen^{-n}$, $x\\in\\{0,\\dots,\\p-1\\}$, $n\\in C_{\\p-1}$; $G_n$ the ordered list $(x\\gen^{-n})_x$, the meridian $M_{-n}$ of C3.",
+     "tag": "D",
+     "source": "Def.~\\ref{def:rationals}; 6:B1",
+     "key": "p01014"
+    },
+    {
+     "label": "D4",
+     "predicate": "Scale-periodicity (Lemma~\\ref{thm:scale-periodicity}, restated in the field): $S_n(x)=x\\gen^{-n}$ satisfies $S_{n+(\\p-1)}=S_n$; the grids $G_n$ are $(\\p-1)$-periodic as ordered lists; the zoom $[x,n]\\mapsto[x,n+1]$ has order $\\p-1$. As lists of rationals $x/\\gen^{n}$ ($\\gen$ lifted to $\\Z$) the grids are not periodic: the periodicity is a relation of the field.",
+     "tag": "T",
+     "source": "\\src{B2}; \\texttt{lean P01.D4}; 6:D4",
+     "key": "p01015"
+    },
+    {
+     "label": "D5",
+     "predicate": "The chart of the grid [chart] (Prop.~\\ref{prop:r-rationals}, Thm.~\\ref{thm:approx} replaced): with $\\gen$ lifted to an integer $\\ge2$, every real $r$ with $|r|\\le H\\gen^{-n}$ lies within $1/(2\\gen^{n})$ of some $x/\\gen^{n}$, $x\\in W_H$: resolution and range trade off at fixed window. Every real to every precision is unavailable: at $(13,2)$ no point of step $\\le1/8$ lies within $1/16$ of $33/10$.",
+     "tag": "T",
+     "source": "\\texttt{revision}; \\src{B3}; \\texttt{lean P01.D5} (obstruction)",
+     "key": "p01016"
+    },
+    {
+     "label": "D6",
+     "predicate": "The continuum as chart (Def.~\\ref{def:reals}, Props.~\\ref{prop:total-bounded}--\\ref{prop:compactness}, Cor.~\\ref{cor:knowability} retired): the framed real line is the reading of the nested grids against $\\R$, a labelled idealisation entered nowhere as an object (00:B1); no completion, compactness or ``complete continuum'' is claimed.",
+     "tag": "D",
+     "source": "00:B1; \\texttt{revision}",
+     "key": "p01017"
+    }
+   ]
+  },
+  {
+   "letter": "E",
+   "title": "The complex chart",
+   "rows": [
+    {
+     "label": "E1",
+     "predicate": "The framed complex chart (Def.~\\ref{def:complex} restated): the pair $(a,b)\\in W_H^{2}$ read as $a+b\\im\\in\\Fp$; the quarter-turn acts on the shell as the rotation $x\\mapsto\\im x$ of order four; the chart is the plane picture of $Q_4$ acting on the shell, not an extension of $\\Fp$.",
+     "tag": "D",
+     "source": "Def.~\\ref{def:complex}; \\texttt{revision}",
+     "key": "p01018"
+    },
+    {
+     "label": "E2",
+     "predicate": "The extension by $X^{2}+1$ is trivial (Prop.~\\ref{prop:Cp-field} reversed): on the shell $\\Fp[X]/(X^{2}+1)\\cong\\Fp\\times\\Fp$ has zero divisors, $(X+\\im)(X-\\im)=0$, so it is not a field; $\\Fp[X]/(X^{2}+1)$ is a field exactly when $\\p\\equiv3\\pmod4$; the quadratic extension of the shell is $\\Fp[\\eta]$, $\\eta^{2}=\\nu$ a non-square (8-dirac B6).",
+     "tag": "T",
+     "source": "\\src{B4}; \\texttt{lean P01.E2}",
+     "key": "p01019"
+    }
+   ]
+  },
+  {
+   "letter": "F",
+   "title": "The horizon",
+   "rows": [
+    {
+     "label": "F1",
+     "predicate": "No element of additive order two (Thm.~\\ref{thm:no-south-pole}): $2s=0$ forces $s=0$; the antipode of the origin on the additive cycle is not a residue; it sits between $2\\kap=(\\p-1)/2$ and $2\\kap+1=(\\p+1)/2=2^{-1}$ (20-rh B8).",
+     "tag": "T",
+     "source": "\\src{B5}; \\texttt{lean P01.F1}",
+     "key": "p01020"
+    },
+    {
+     "label": "F2",
+     "predicate": "The antipode named $\\infty$: the horizon of the observer at $0$ (00:Y3), the compactification point of the framed line [chart]; its reading as classical infinity is the chart, not a residue.",
+     "tag": "D",
+     "source": "Section~\\ref{sec:infinity}; 00:Y3",
+     "key": "p01021"
+    }
+   ]
+  },
+  {
+   "letter": "V",
+   "title": "Machine verification",
+   "rows": [
+    {
+     "label": "V1",
+     "predicate": "The package \\texttt{src/1-algebra}, two block scripts, eleven checks, one notebook: \\src{a\\_shell}, A1--A5 (the orbit census on seven shells with controls, the quarter-turn on every primitive root, all $428$ frames of $\\F_{13}$, $\\F_{17}$, the frame group, the involutions and counts); \\src{b\\_numbers}, B1--B6 (the window law, the grids, the chart obstruction, the zero divisors, Thm.~\\ref{thm:no-south-pole}, Lemma~\\ref{lem:euclid-bound} refuted). Ten \\textsf{EXACT}, one \\textsf{CHART}.",
+     "tag": "T",
+     "source": "\\src{run\\_all}; the notebook",
+     "key": "p01022"
+    },
+    {
+     "label": "V2",
+     "predicate": "\\texttt{reports/lean/Algebra.lean} (the corpus tree), Lean~4.34, Mathlib 15~Sep~2026: fourteen theorems for every finite field of cardinality $4\\kap+1$ --- B3, B4, D4, F1 complete; B2, C4, D2, E2 with a counting or converse clause outstanding; the $\\F_{13}$ instance of B3; Lemma~\\ref{lem:euclid-bound} refuted by \\texttt{decide}, the obstruction to Thm.~\\ref{thm:approx} proved over $\\Q$. Axioms: \\texttt{propext}, \\texttt{Classical.choice}, \\texttt{Quot.sound} only.",
+     "tag": "T",
+     "source": "\\texttt{lean P01}",
+     "key": "p01023"
+    }
+   ]
+  },
+  {
+   "letter": "O",
+   "title": "Open",
+   "rows": [
+    {
+     "label": "O1",
+     "predicate": "The conjecture of the conclusion: the finite substrate supports polynomial equation solving, limit-like approximation and $\\varepsilon$-approximation of continuous symmetries. Stated without proof; the transform layer (6-fourier) and the Cayley steps (8-dirac) discharge parts of it; the general statement remains open.",
+     "tag": "O",
+     "source": "Conclusions",
+     "key": "p01024"
+    }
+   ]
+  }
+ ],
+ "legend": [
+  {
+   "tag": "I",
+   "name": "Import",
+   "text": "A standard result used without reproof."
+  },
+  {
+   "tag": "D",
+   "name": "Definition",
+   "text": "A naming or declared convention, carrying no empirical content."
+  },
+  {
+   "tag": "T",
+   "name": "Theorem",
+   "text": "Derived, and machine-verified in exact arithmetic by the named witness."
+  },
+  {
+   "tag": "O",
+   "name": "Open",
+   "text": "Genuinely unresolved."
+  }
+ ],
+ "master": {
+  "B1": [
+   "C1"
+  ],
+  "B3": [
+   "C7"
+  ],
+  "B4": [
+   "A8"
+  ],
+  "B5": [
+   "B8"
+  ],
+  "C2": [
+   "Y3"
+  ],
+  "C4": [
+   "B11"
+  ],
+  "D3": [
+   "B1"
+  ],
+  "D4": [
+   "C2"
+  ],
+  "F2": [
+   "Y3"
+  ]
+ }
+}

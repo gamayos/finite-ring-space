@@ -1,5 +1,5 @@
 {
- "generated": "15 September 2026",
+ "generated": "16 September 2026",
  "rows": [
   {
    "id": "14:X3",
@@ -33,7 +33,7 @@
    "label": "X5",
    "key": "p14032",
    "tag": "T",
-   "predicate": "\\textbf{The termination of the single-object sequence} is a consistency of the wall structure: the typical-density diagonal over-closes at $1.8\\times10^{8}M_\\odot$ \\apx{} (sensitivity band $(1.4\\text{--}2.8)\\times10^{8}$ across fit variants), so every heavier single object continuing the condensed-density sequence is necessarily wall-bound; the supermassive holes are that continuation, not an anomaly beyond it. Classified with the triangle: consistency, not derivation of an observed scale.",
+   "predicate": "\\textbf{The termination of the single-object sequence} is a consistency of the wall structure, the exit of C9 read as a bound: the typical-density diagonal over-closes at $1.8\\times10^{8}M_\\odot$ \\apx{} (sensitivity band $(1.4\\text{--}2.8)\\times10^{8}$ across fit variants), so every heavier single object continuing the condensed-density sequence is necessarily wall-bound; the supermassive holes are that continuation, not an anomaly beyond it. Classified with the triangle: consistency, not derivation of an observed scale.",
    "source": "\\S\\ref{sec:wedge}; \\src{tri.D}",
    "master": [],
    "restated": [],
