@@ -1,0 +1,68 @@
+name: lean
+
+# The witness of record for the ledger's Lean rows.  Every push to lean/ rebuilds the project against
+# the pinned Mathlib, replays the compiled environment through the kernel (leanchecker), audits the
+# axioms under the strict rule (only propext, Classical.choice, Quot.sound — sorryAx, native_decide and
+# any home-rolled axiom fail), checks the committed axioms.log and the web copies, and compiles the
+# web copies as single files.  The weekly job builds against Mathlib master so a toolchain or Mathlib
+# change that breaks the modules is a scheduled failure, not a surprise for a reader; it never moves
+# the pin.
+
+on:
+  push:
+    paths: ["lean/**", ".github/workflows/lean.yml"]
+  pull_request:
+    paths: ["lean/**", ".github/workflows/lean.yml"]
+  workflow_dispatch:
+  schedule:
+    - cron: "0 6 * * 1"
+
+jobs:
+  build:
+    name: build · kernel replay · axioms gate · web copies
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: leanprover/lean-action@v1
+        env:
+          LEAN_NUM_THREADS: "1"          # leanchecker loads the full Mathlib environment per module
+        with:
+          lake-package-directory: lean
+          use-mathlib-cache: "true"
+          leanchecker: "true"
+          leanchecker-args: "FrcLedger"
+          axiom-audit: "true"
+          axiom-audit-root: "FRC"
+          axiom-audit-allow: "propext,Classical.choice,Quot.sound"
+      - name: axioms.log current (one line per declaration, rendered on the ledger pages)
+        working-directory: lean
+        run: |
+          ~/.elan/bin/lake env python3 check_axioms.py
+          git diff --exit-code axioms.log || { echo "axioms.log changed: run check_axioms.py locally and commit it"; exit 1; }
+      - name: web copies current
+        working-directory: lean
+        run: python3 make_web.py --check
+      - name: web copies compile as single files
+        working-directory: lean
+        run: for f in web/*.lean; do echo "== $f"; ~/.elan/bin/lake env lean "$f"; done
+
+  drift:
+    name: weekly build against Mathlib master (informational)
+    if: github.event_name == 'schedule' || github.event_name == 'workflow_dispatch'
+    runs-on: ubuntu-latest
+    continue-on-error: true
+    steps:
+      - uses: actions/checkout@v4
+      - name: move the pin to Mathlib master in a scratch copy
+        run: |
+          cp -r lean lean-drift && cd lean-drift
+          curl -sSf https://raw.githubusercontent.com/leanprover/elan/master/elan-init.sh | sh -s -- -y --default-toolchain none
+          ~/.elan/bin/lake update mathlib
+          cp .lake/packages/mathlib/lean-toolchain lean-toolchain
+      - uses: leanprover/lean-action@v1
+        with:
+          lake-package-directory: lean-drift
+          use-mathlib-cache: "true"
+      - name: web copies compile on master
+        working-directory: lean-drift
+        run: for f in web/*.lean; do echo "== $f"; ~/.elan/bin/lake env lean "$f"; done

@@ -1,0 +1,8 @@
+{
+  "name": "frcledger (Lean 4 + Mathlib)",
+  "image": "mcr.microsoft.com/devcontainers/base:debian",
+  "hostRequirements": { "cpus": 4, "memory": "16gb", "storage": "32gb" },
+  "customizations": { "vscode": { "extensions": ["leanprover.lean4"] } },
+  "postCreateCommand": "bash .devcontainer/setup.sh",
+  "workspaceFolder": "/workspaces/finite-ring-space/lean"
+}
