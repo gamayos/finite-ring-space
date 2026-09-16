@@ -189,6 +189,25 @@ table.ledger tr.target td { background: var(--sub-bg); }
 .dot.t-om { background: var(--rev); } .dot.t-o { background: var(--rej); } .dot.t-g, .dot.t-p { background: var(--ink); } .dot.t-e { background: var(--pre); } .dot.t-all { background: var(--ink-faint); }
 .dot.ok { background: var(--pub); } .dot.fail { background: var(--rej); }
 .wit.ok { color: var(--pub); } .wit.fail { color: var(--rej); }
+/* ---- Lean witnesses (added by tools/site_build.py): the declaration name, its axioms dot, the live link ---- */
+.wrap a.lean.ico, .wrap a.lean.ico:visited { display: inline-flex; align-items: center; justify-content: center; width: 22px; height: 22px; margin: 0 .05rem; border-bottom: none; border-radius: 5px; color: var(--ink-soft); vertical-align: middle; }
+.wrap a.lean.ico:hover { background: var(--rule-soft); color: var(--accent); }
+.wrap a.lean.ico svg { width: 15px; height: 15px; }
+img.leanico { width: 16px; height: 16px; display: block; filter: invert(.78); }          /* a light glyph on transparency: darkened on the light theme */
+img.leanico.ok, img.leanico.fail { filter: none; }                                      /* the coloured versions carry the status: green within the allowlist, red outside */
+pre.lean img.leanico { width: 12px; height: 12px; display: inline-block; vertical-align: -2px; margin-right: .4em; }
+@media (prefers-color-scheme: dark) { img.leanico { filter: none; opacity: .85; } }
+.wrap a.lean.ico.live { width: auto; padding: 0 4px 0 3px; }
+.wrap a.lean.ico .play, .legend .ico .play { font-size: .55rem; margin-left: 2px; line-height: 1; }
+.legend .ico img.leanico { display: inline-block; vertical-align: -3px; }
+.legend.lean dt { white-space: nowrap; }
+.ax { display: inline-block; margin: 0 .3rem 0 .15rem; font-size: .62rem; line-height: 1; vertical-align: .1em; }
+.ax.ok { color: var(--pub); } .ax.bad { color: var(--rej); }
+.lean.missing { color: var(--rej); font-family: var(--mono); font-size: .78rem; text-decoration: line-through; }
+pre.lean { font-family: var(--mono); font-size: .8rem; line-height: 1.45; overflow-x: auto; padding: .6rem .8rem 0; margin: 1rem 0; border: 1px solid var(--rule-soft); border-radius: 6px; background: var(--pre-bg, transparent); }
+pre.lean .ln { display: block; white-space: pre; } pre.lean .ln:target { background: color-mix(in srgb, var(--accent) 14%, transparent); }
+pre.lean .lno, .wrap pre.lean a.lno, .wrap pre.lean a.lno:visited { display: inline-block; width: 3.2em; text-align: right; margin-right: 1em; color: var(--ink-faint); border: 0; font-size: .72rem; user-select: none; }
+.wrap pre.lean a.gh, .wrap pre.lean a.gh:visited { border: 0; margin-right: .35em; font-size: .72rem; color: var(--ink-soft); }
 .checks, .master, .refs { margin-top: 0.25rem; }
 .kind { color: var(--ink-faint); font-size: 0.85em; }
 .sf { font-family: ui-sans-serif, system-ui, sans-serif; }

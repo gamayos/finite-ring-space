@@ -30,7 +30,7 @@
     "L3"
    ],
    "restated": [],
-   "witnessed": true,
+   "witnessed": false,
    "page": "14-entropy/14-entropy-ledger.html"
   },
   {
@@ -45,7 +45,7 @@
     "L3"
    ],
    "restated": [],
-   "witnessed": true,
+   "witnessed": false,
    "page": "14-entropy/14-entropy-ledger.html"
   },
   {
@@ -73,7 +73,7 @@
    "source": "\\S\\ref{sub:strongdata}, Prop.~\\ref{prop:shadow},~\\ref{prop:isco}; \\src{grav.strongfield}",
    "master": [],
    "restated": [],
-   "witnessed": true,
+   "witnessed": false,
    "page": "21-gravity/21-gravity-ledger.html"
   },
   {
@@ -103,7 +103,7 @@
    "restated": [
     "38:P1"
    ],
-   "witnessed": true,
+   "witnessed": false,
    "page": "21-gravity/21-gravity-ledger.html"
   },
   {
@@ -116,7 +116,7 @@
    "source": "Prop.~\\ref{prop:crossover}; \\src{grav.deepregime}",
    "master": [],
    "restated": [],
-   "witnessed": true,
+   "witnessed": false,
    "page": "21-gravity/21-gravity-ledger.html"
   },
   {
@@ -129,7 +129,7 @@
    "source": "\\S\\ref{sub:2pn}; \\src{grav.2pn}",
    "master": [],
    "restated": [],
-   "witnessed": true,
+   "witnessed": false,
    "page": "21-gravity/21-gravity-ledger.html"
   },
   {
@@ -142,7 +142,7 @@
    "source": "\\S\\ref{sub:strongdata}, Rem.~\\ref{rem:exponential},~\\ref{rem:hawking}; \\src{grav.strongfield}, \\src{grav.fold\\_echo}",
    "master": [],
    "restated": [],
-   "witnessed": true,
+   "witnessed": false,
    "page": "21-gravity/21-gravity-ledger.html"
   },
   {
@@ -155,7 +155,7 @@
    "source": "Rem.~\\ref{rem:bmvpred}; \\src{qm.bmv}",
    "master": [],
    "restated": [],
-   "witnessed": true,
+   "witnessed": false,
    "page": "22-quantum/22-quantum-ledger.html"
   },
   {
@@ -168,7 +168,7 @@
    "source": "Cor.~\\ref{cor:sorkin}, Rem.~\\ref{rem:horizon}; \\src{qm.sorkin}",
    "master": [],
    "restated": [],
-   "witnessed": true,
+   "witnessed": false,
    "page": "22-quantum/22-quantum-ledger.html"
   },
   {
@@ -181,7 +181,7 @@
    "source": "Thm.~\\ref{thm:tsirelson},~\\ref{thm:table}; \\src{qm.composite}, \\src{qm.renou}",
    "master": [],
    "restated": [],
-   "witnessed": true,
+   "witnessed": false,
    "page": "22-quantum/22-quantum-ledger.html"
   },
   {
@@ -194,7 +194,7 @@
    "source": "Rem.~\\ref{rem:doublecover}; \\src{qm.dispersion}",
    "master": [],
    "restated": [],
-   "witnessed": true,
+   "witnessed": false,
    "page": "22-quantum/22-quantum-ledger.html"
   },
   {
@@ -207,7 +207,7 @@
    "source": "Prop.~\\ref{prop:granularity}; \\src{qm.granularity}",
    "master": [],
    "restated": [],
-   "witnessed": true,
+   "witnessed": false,
    "page": "22-quantum/22-quantum-ledger.html"
   },
   {
@@ -222,7 +222,7 @@
     "N1"
    ],
    "restated": [],
-   "witnessed": true,
+   "witnessed": false,
    "page": "27-fields/27-fields-ledger.html"
   },
   {
@@ -252,7 +252,7 @@
     "N1"
    ],
    "restated": [],
-   "witnessed": true,
+   "witnessed": false,
    "page": "27-fields/27-fields-ledger.html"
   },
   {
@@ -269,7 +269,7 @@
    "restated": [
     "35:P4"
    ],
-   "witnessed": true,
+   "witnessed": false,
    "page": "27-fields/27-fields-ledger.html"
   },
   {
@@ -282,7 +282,7 @@
    "source": "Thm.~\\ref{thm:gen}, Prop.~\\ref{prop:mass}; \\src{fld.p7}",
    "master": [],
    "restated": [],
-   "witnessed": true,
+   "witnessed": false,
    "page": "27-fields/27-fields-ledger.html"
   },
   {
@@ -329,7 +329,7 @@
    "restated": [
     "28:P1"
    ],
-   "witnessed": true,
+   "witnessed": false,
    "page": "27-fields/27-fields-ledger.html"
   },
   {
@@ -344,7 +344,7 @@
     "I4"
    ],
    "restated": [],
-   "witnessed": true,
+   "witnessed": false,
    "page": "27-fields/27-fields-ledger.html"
   },
   {
@@ -359,7 +359,7 @@
     "K3"
    ],
    "restated": [],
-   "witnessed": true,
+   "witnessed": false,
    "page": "28-flavour/28-flavour-ledger.html"
   },
   {
@@ -385,7 +385,7 @@
    "source": "\\S\\ref{sec:neutrino}; \\src{flv.neutrino}",
    "master": [],
    "restated": [],
-   "witnessed": true,
+   "witnessed": false,
    "page": "28-flavour/28-flavour-ledger.html"
   },
   {
@@ -400,7 +400,7 @@
     "K3"
    ],
    "restated": [],
-   "witnessed": true,
+   "witnessed": false,
    "page": "28-flavour/28-flavour-ledger.html"
   },
   {
@@ -426,7 +426,7 @@
    "source": "C10; \\src{flv.pmns\\_cp}, \\src{flv.\\allowbreak tm2\\_\\allowbreak jointfit}",
    "master": [],
    "restated": [],
-   "witnessed": true,
+   "witnessed": false,
    "page": "28-flavour/28-flavour-ledger.html"
   },
   {
@@ -439,7 +439,7 @@
    "source": "\\S\\ref{sub:scatterderiv}, \\S\\ref{sec:predictions}; \\src{dark.\\allowbreak rar\\_\\allowbreak scatter}, \\src{dark.\\allowbreak predictions}",
    "master": [],
    "restated": [],
-   "witnessed": true,
+   "witnessed": false,
    "page": "32-dark/32-dark-ledger.html"
   },
   {
@@ -452,7 +452,7 @@
    "source": "\\S\\ref{sec:predictions}; \\src{dark.\\allowbreak predictions}",
    "master": [],
    "restated": [],
-   "witnessed": true,
+   "witnessed": false,
    "page": "32-dark/32-dark-ledger.html"
   },
   {
@@ -465,7 +465,7 @@
    "source": "\\S\\ref{sec:predictions}; \\src{dark.\\allowbreak predictions}",
    "master": [],
    "restated": [],
-   "witnessed": true,
+   "witnessed": false,
    "page": "32-dark/32-dark-ledger.html"
   },
   {
@@ -506,7 +506,7 @@
    "source": "C2; \\src{had.\\allowbreak su3f\\_\\allowbreak relations}",
    "master": [],
    "restated": [],
-   "witnessed": true,
+   "witnessed": false,
    "page": "35-hadrons/35-hadrons-ledger.html"
   },
   {
@@ -519,7 +519,7 @@
    "source": "C3; \\src{had.\\allowbreak su3f\\_\\allowbreak relations}",
    "master": [],
    "restated": [],
-   "witnessed": true,
+   "witnessed": false,
    "page": "35-hadrons/35-hadrons-ledger.html"
   },
   {
@@ -532,7 +532,7 @@
    "source": "C5; \\src{had.\\allowbreak hyperfine\\_\\allowbreak charsum}",
    "master": [],
    "restated": [],
-   "witnessed": true,
+   "witnessed": false,
    "page": "35-hadrons/35-hadrons-ledger.html"
   },
   {
@@ -558,7 +558,7 @@
    "source": "C7, C8, C9; \\src{had.\\allowbreak isospin\\_\\allowbreak cottingham}",
    "master": [],
    "restated": [],
-   "witnessed": true,
+   "witnessed": false,
    "page": "35-hadrons/35-hadrons-ledger.html"
   },
   {
@@ -571,7 +571,7 @@
    "source": "C10; \\src{had.\\allowbreak heavy\\_\\allowbreak flavour}",
    "master": [],
    "restated": [],
-   "witnessed": true,
+   "witnessed": false,
    "page": "35-hadrons/35-hadrons-ledger.html"
   },
   {
@@ -584,7 +584,7 @@
    "source": "C11; \\src{had.\\allowbreak su3f\\_\\allowbreak second\\_\\allowbreak order}",
    "master": [],
    "restated": [],
-   "witnessed": true,
+   "witnessed": false,
    "page": "35-hadrons/35-hadrons-ledger.html"
   },
   {
@@ -597,7 +597,7 @@
    "source": "Prop.~\\ref{prop:vector}; \\src{had.\\allowbreak vector\\_\\allowbreak nonet}",
    "master": [],
    "restated": [],
-   "witnessed": true,
+   "witnessed": false,
    "page": "35-hadrons/35-hadrons-ledger.html"
   },
   {
@@ -610,7 +610,7 @@
    "source": "\\S\\ref{sec:absolute}; \\src{had.\\allowbreak absolute\\_\\allowbreak masses}",
    "master": [],
    "restated": [],
-   "witnessed": true,
+   "witnessed": false,
    "page": "35-hadrons/35-hadrons-ledger.html"
   },
   {
@@ -623,7 +623,7 @@
    "source": "C16; \\src{had.\\allowbreak confinement\\_\\allowbreak completion}",
    "master": [],
    "restated": [],
-   "witnessed": true,
+   "witnessed": false,
    "page": "35-hadrons/35-hadrons-ledger.html"
   }
  ],
