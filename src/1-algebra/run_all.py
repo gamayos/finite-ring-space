@@ -1,18 +1,19 @@
 """
 run_all.py — the 1-algebra validation package, end to end
 =========================================================
-Runs the two blocks in order, writes results.json (each record carrying the paper's ledger row it decides),
+Runs the three blocks in order, writes results.json (each record carrying the paper's ledger row it decides),
 and exits nonzero if any check fails.
 
     python3 run_all.py            # ≈ 10 s on a laptop; python ≥ 3.8, standard library only
 
 Blocks:  A  a_shell.py     the shell, its frame and the orbital complex        EXACT   (1:B2–B4, C2, C4)
          B  b_numbers.py   the framed numbers, the charts and the horizon       EXACT / CHART (1:D2, D4, D5, E2, F1, V1)
+         C  c_conjecture.py the conjecture of the conclusion, clause by clause    EXACT / CHART (1:G1–G5)
 """
 import sys, time
 import algcommon
 
-BLOCKS = ["a_shell", "b_numbers"]
+BLOCKS = ["a_shell", "b_numbers", "c_conjecture"]
 
 def main():
     t0 = time.time()

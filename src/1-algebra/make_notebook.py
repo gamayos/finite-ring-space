@@ -13,7 +13,7 @@ md(f"""[![Open In Colab](https://colab.research.google.com/assets/colab-badge.sv
 
 ## Relativistic Algebra over Finite Ring Continuum (Akhtman, Axioms 2025, 14, 636)
 
-**Validation Package.** `finite-ring-space/src/{PKG}` — two block scripts, eleven checks, standard library only,
+**Validation Package.** `finite-ring-space/src/{PKG}` — three block scripts, sixteen checks, standard library only,
 added with the paper's predicate ledger (Appendix A, 16 September 2026). Each check names the row of the paper's
 ledger it witnesses (rows cited as `1:XN`; public copy at `docs/{PKG}/{PKG}-ledger.html`), and the ledger's source
 column cites the check ids in return. Block A decides the shell and its frame: symmetry completeness (the Klein
@@ -22,12 +22,17 @@ unit `a + b` (`1:B4`), the frame group `Aff(F_p)` of order `p(p−1)` (`1:C2`) a
 orbital complex (`1:C4`). Block B decides the framed numbers: the window law (`1:D2`), scale-periodicity in the field
 and its failure in `Q` (`1:D4`), the chart of the grid and the obstruction to the published Theorem 2 (`1:D5`), the
 zero divisors of `F_p[X]/(X²+1)` (`1:E2`), the absence of an element of additive order two (`1:F1`), and the
-refutation of the published Lemma 3 (`1:V1`).
+refutation of the published Lemma 3 (`1:V1`). Block C decides the conclusion's conjecture clause by clause:
+the root test `gcd(f, X^p − X)` (`1:G1`), the tower of shells resolving every real (`1:G2`), the circle net and its
+group-law defect (`1:G3`), and the covering radii of the finite rotation groups — no finite subgroup of `SO(3)` is an
+ε-net below ε₀ ≈ 44.5° (`1:G4`) — and the window resolves it anyway: the normalised framed quaternions `W_H⁴` are a
+`2·arcsin(1/H)`-net with exact composition on the shell `p > 8H²` (`1:G5`).
 
 **Kinds** — `EXACT`: integer arithmetic in `F_p` or exact rationals, no float behind any claim; `CHART`: a [chart]
-row decided in exact rationals (B3).
+row decided in exact rationals (B3, C2) or, for the reading of the circle and of `SO(3)` against the reals, in floats
+with the closed forms checked (C3, C4).
 
-**Run.** Cell by cell, or *Runtime → Run all*; ≈ 10 s. The last cell writes `results.json` and fails loudly if any
+**Run.** Cell by cell, or *Runtime → Run all*; ≈ 45 s. The last cell writes `results.json` and fails loudly if any
 check fails.""")
 
 code(f"""# --- environment: clone the package if this notebook is not already running inside it (Colab).
@@ -57,6 +62,12 @@ The window law swept over every `H` on `p ∈ {13, 17, 29}`; scale-periodicity i
 range–resolution trade-off of the chart and the obstruction to the published Theorem 2 at `(13, 2)`, `r = 33/10`; zero divisors
 of `F_p[X]/(X²+1)` on the shell against the fields at `p ≡ 3 (mod 4)`; `2s = 0 ⇒ s = 0`; the Euclidean counterexamples.""")
 code("""import b_numbers; importlib.reload(b_numbers); b_numbers.run()""")
+
+md("""## Block C — the conjecture of the conclusion, clause by clause
+The root test on every monic polynomial of degree ≤ 3 over `F_13` and `F_17`; the tower of shells reaching `π`, `e`, `√2`,
+`33/10`, `1/3` to `10⁻⁸`; the circle net and its group-law defect on every shell; the covering radii of the tetrahedral,
+octahedral and icosahedral groups in `SO(3)` (`π/2`, `≈62.8°`, `ε₀ = arccos((3√5−1)/8) ≈ 44.48°`) against their closed forms; the window quaternions' net and their exact composition on `F_73`.""")
+code("""import c_conjecture; importlib.reload(c_conjecture); c_conjecture.run()""")
 
 md("""## Summary
 Writes `results.json` (one record per check: id, the ledger row witnessed, script, kind, claim, PASS/FAIL, detail) and raises if any check failed.""")

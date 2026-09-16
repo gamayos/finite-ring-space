@@ -21,6 +21,13 @@
      "tag": "I",
      "source": "00:C7",
      "key": "p01002"
+    },
+    {
+     "label": "A3",
+     "predicate": "The finite subgroups of $SO(3)$: cyclic, dihedral, tetrahedral ($12$), octahedral ($24$), icosahedral ($60$) --- Klein's classification; the binary icosahedral group as the $600$-cell's vertices. Imported for G4.",
+     "tag": "I",
+     "source": "\\citep{klein1884ikosaeder,coxeter1973regular}",
+     "key": "p01025"
     }
    ]
   },
@@ -188,19 +195,60 @@
    ]
   },
   {
+   "letter": "G",
+   "title": "The conjecture of the conclusion",
+   "rows": [
+    {
+     "label": "G1",
+     "predicate": "Solving in the substrate (first clause): $f\\in\\Fp[X]$ has a root in $\\Fp$ iff $f$ and $X^{\\p}-X=\\prod_{a}(X-a)$ are not coprime; the gcd counts the distinct roots and Cantor--Zassenhaus splitting finds them, exactly. An equation without a root in $\\Fp$ is recognised, not extended (E2).",
+     "tag": "T",
+     "source": "\\src{C1}; \\lean{Algebra.root\\_iff\\_not\\_coprime}",
+     "key": "p01026"
+    },
+    {
+     "label": "G2",
+     "predicate": "Limit-like approximation (second clause), across the tower: for every real $r$ and $\\varepsilon>0$ some shell $\\p=4\\kap+1$ carries a framed rational $x/2^{n}$, $|x|\\le2\\kap$, within $\\varepsilon$ of $r$ (primes $\\equiv1\\pmod4$ beyond every bound). One shell resolves to D5's bound; the limit is the tower, not a completion.",
+     "tag": "T",
+     "source": "\\src{C2}; \\lean{Algebra.tower\\_density}",
+     "key": "p01027"
+    },
+    {
+     "label": "G3",
+     "predicate": "Continuous symmetry, the abelian case (third clause): $\\Fpx\\simeq C_{\\p-1}\\simeq SO(2,\\Fp)$ (6:E2) is a $\\pi/(\\p-1)$-net of $U(1)$ under $k\\mapsto e^{2\\pi\\im k/(\\p-1)}$; the rounding $k(\\theta)=\\lfloor(\\p-1)\\theta/2\\pi+\\tfrac12\\rfloor$ has angle and chord error $\\le\\pi/(\\p-1)$ and group-law defect at most one step.",
+     "tag": "T",
+     "source": "\\src{C3}; \\lean{Algebra.circle\\_net, Algebra.group\\_law\\_defect}; 6:E2",
+     "key": "p01028"
+    },
+    {
+     "label": "G4",
+     "predicate": "Continuous symmetry, the non-abelian obstruction: no finite subgroup of $SO(3)$ is an $\\varepsilon$-net for $\\varepsilon<\\varepsilon_0=\\arccos\\big((3\\sqrt5-1)/8\\big)\\approx44.5^\\circ$, the covering radius of the icosahedral group (A3); the tetrahedral, cyclic and dihedral groups have radius $\\ge\\pi/2$, the octahedral $\\approx62.8^\\circ$. Finite subgroups cannot approximate $SO(3)$; the window does (G5).",
+     "tag": "T",
+     "source": "\\src{C4}; A3",
+     "key": "p01029"
+    },
+    {
+     "label": "G5",
+     "predicate": "Continuous symmetry, the non-abelian case resolved by the window: the framed quaternions $W_H^{4}$, read in a shell $\\p>8H^{2}$, compose exactly (products land in $W_{4H^{2}}$); normalised, they are an $\\varepsilon$-net of $SO(3)$ with $\\varepsilon\\le2\\arcsin(1/H)$ (round $Hs$ to the lattice). At $H=3$, $\\p=73$: $38.9^\\circ<\\varepsilon_0$, finer than any finite subgroup; measured $30.0^\\circ$.",
+     "tag": "T",
+     "source": "\\texttt{revision}; \\src{C5}",
+     "key": "p01030"
+    }
+   ]
+  },
+  {
    "letter": "V",
    "title": "Machine verification",
    "rows": [
     {
      "label": "V1",
-     "predicate": "The package \\texttt{src/1-algebra}, two block scripts, eleven checks, one notebook: \\src{a\\_shell}, A1--A5 (the orbit census on seven shells with controls, the quarter-turn on every primitive root, all $428$ frames of $\\F_{13}$, $\\F_{17}$, the frame group, the involutions and counts); \\src{b\\_numbers}, B1--B6 (the window law, the grids, the chart obstruction, the zero divisors, Thm.~\\ref{thm:no-south-pole}, Lemma~\\ref{lem:euclid-bound} refuted). Ten \\textsf{EXACT}, one \\textsf{CHART}.",
+     "predicate": "The package \\texttt{src/1-algebra}, three block scripts, sixteen checks, one notebook: \\src{a\\_shell}, A1--A5 (orbit census on seven shells with controls, every primitive root, all $428$ frames of $\\F_{13}$, $\\F_{17}$, the frame group); \\src{b\\_numbers}, B1--B6 (window law, grids, chart obstruction, zero divisors, Thm.~\\ref{thm:no-south-pole}, Lemma~\\ref{lem:euclid-bound} refuted); \\src{c\\_conjecture}, C1--C5 (root test, tower, circle net, covering radii, the window net). Eleven \\textsf{EXACT}, five \\textsf{CHART}.",
      "tag": "T",
      "source": "\\src{run\\_all}; the notebook",
      "key": "p01022"
     },
     {
      "label": "V2",
-     "predicate": "\\texttt{lean/FrcLedger/Algebra.lean} (\\texttt{finite-ring-space}; Lean~4.34, Mathlib 15~Sep~2026; kernel-checked by CI on every push): fourteen theorems for every finite field of cardinality $4\\kap+1$ --- B3, B4, D4, F1 complete; B2, C4, D2, E2 with a counting or converse clause outstanding; the $\\F_{13}$ instance of B3; Lemma~\\ref{lem:euclid-bound} refuted by \\texttt{decide}; the obstruction to Thm.~\\ref{thm:approx} proved over $\\Q$. Axioms: \\texttt{propext}, \\texttt{Classical.choice}, \\texttt{Quot.sound} only.",
+     "predicate": "\\texttt{lean/FrcLedger/Algebra.lean} (\\texttt{finite-ring-space}; Lean~4.34, Mathlib 15~Sep~2026; kernel-checked by CI on every push): eighteen theorems --- B3, B4, D4, F1 for every shell, G1 over $\\Fp$, G2--G3 over $\\R$, complete; B2, C4, D2, E2 with a counting or converse clause outstanding; B3 on $\\F_{13}$; Lemma~\\ref{lem:euclid-bound} refuted by \\texttt{decide}; Thm.~\\ref{thm:approx}'s obstruction over $\\Q$. Axioms: \\texttt{propext}, \\texttt{Classical.choice}, \\texttt{Quot.sound} only.",
      "tag": "T",
      "source": "\\lean{Algebra}",
      "key": "p01023"
@@ -213,9 +261,9 @@
    "rows": [
     {
      "label": "O1",
-     "predicate": "The conjecture of the conclusion: the finite substrate supports polynomial equation solving, limit-like approximation and $\\varepsilon$-approximation of continuous symmetries. Stated without proof; the transform layer (6-fourier) and the Cayley steps (8-dirac) discharge parts of it; the general statement remains open.",
+     "predicate": "The conjecture of the conclusion, what remains after G1--G5: the Lie-algebra layer --- one-parameter subgroups and their generators inside the window, where iterating a window rotation $m$ times consumes range as $H^{2m}$; whether the Cayley step of 8-dirac (8:C4) supplies exact one-parameter subgroups of the window net on every shell is open.",
      "tag": "O",
-     "source": "Conclusions",
+     "source": "Conclusions; 8:C4",
      "key": "p01024"
     }
    ]
@@ -276,7 +324,7 @@
   "B2": [
    {
     "name": "FRC.Algebra.quarter_turn_exists",
-    "line": 27,
+    "line": 29,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -287,7 +335,7 @@
    },
    {
     "name": "FRC.Algebra.klein_orbit_four",
-    "line": 46,
+    "line": 48,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -298,7 +346,7 @@
    },
    {
     "name": "FRC.Algebra.card_fourth_roots",
-    "line": 64,
+    "line": 66,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -311,7 +359,7 @@
   "B3": [
    {
     "name": "FRC.Algebra.quarter_turn",
-    "line": 85,
+    "line": 87,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -322,7 +370,7 @@
    },
    {
     "name": "FRC.Algebra.s13_quarter_turn",
-    "line": 194,
+    "line": 196,
     "axioms": [
      "Quot.sound",
      "propext"
@@ -334,7 +382,7 @@
   "B4": [
    {
     "name": "FRC.Algebra.affine_frame",
-    "line": 95,
+    "line": 97,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -347,7 +395,7 @@
   "C4": [
    {
     "name": "FRC.Algebra.meridian_involution",
-    "line": 121,
+    "line": 123,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -360,7 +408,7 @@
   "D2": [
    {
     "name": "FRC.Algebra.framed_integer_window",
-    "line": 131,
+    "line": 133,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -373,7 +421,7 @@
   "D4": [
    {
     "name": "FRC.Algebra.scale_periodic",
-    "line": 144,
+    "line": 146,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -386,7 +434,7 @@
   "D5": [
    {
     "name": "FRC.Algebra.approx_theorem_refuted",
-    "line": 211,
+    "line": 213,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -399,7 +447,7 @@
   "E2": [
    {
     "name": "FRC.Algebra.complex_chart_zero_divisor",
-    "line": 151,
+    "line": 153,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -412,7 +460,7 @@
   "F1": [
    {
     "name": "FRC.Algebra.no_south_pole",
-    "line": 186,
+    "line": 188,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -420,6 +468,56 @@
     ],
     "ok": true,
     "doc": "1:F1 (Theorem 3): `2s = 0 ⇒ s = 0` in a field of characteristic `≠ 2`: the additive cycle has no element of order two; the antipode of the origin is not a residue."
+   }
+  ],
+  "G1": [
+   {
+    "name": "FRC.Algebra.root_iff_not_coprime",
+    "line": 229,
+    "axioms": [
+     "Classical.choice",
+     "Quot.sound",
+     "propext"
+    ],
+    "ok": true,
+    "doc": "1:G1 (the conjecture's first clause, solving): `f ∈ F_p[X]` has a root in `F_p` iff `f` and `X^p − X = ∏_a (X − a)` are not coprime — the root test is a gcd, exact in the substrate."
+   }
+  ],
+  "G2": [
+   {
+    "name": "FRC.Algebra.tower_density",
+    "line": 260,
+    "axioms": [
+     "Classical.choice",
+     "Quot.sound",
+     "propext"
+    ],
+    "ok": true,
+    "doc": "1:G2 (second clause, limit-like approximation): the tower of shells resolves every real — for every `r` and `ε > 0` some shell `p = 4κ + 1` carries a framed rational `x / 2^n`, `|x| ≤ 2κ`, within `ε` of `r` (Dirichlet for primes `≡ 1 (mod 4)`, `Nat.exists_prime_gt_modEq_one`)."
+   }
+  ],
+  "G3": [
+   {
+    "name": "FRC.Algebra.circle_net",
+    "line": 282,
+    "axioms": [
+     "Classical.choice",
+     "Quot.sound",
+     "propext"
+    ],
+    "ok": true,
+    "doc": "1:G3 (third clause, the abelian case): the rounding `k(θ) = round(Nθ/2π)` puts `2πk/N` within `π/N` of `θ` — `C_N ≅ F_p^×` (`N = p − 1`) is a `π/N`-net of `U(1)`."
+   },
+   {
+    "name": "FRC.Algebra.group_law_defect",
+    "line": 295,
+    "axioms": [
+     "Classical.choice",
+     "Quot.sound",
+     "propext"
+    ],
+    "ok": true,
+    "doc": "1:G3 (third clause): the group-law defect of the rounding is at most one step."
    }
   ]
  }

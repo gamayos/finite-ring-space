@@ -7,7 +7,9 @@ import FrcLedger.Fourier
 Rows of the paper's predicate ledger (Appendix A of `1-algebra-axioms`, keys `p01001`–`p01024`), stated as the
 revised paper states them (the corrections of `reports/1-algebra-evaluation-20260916.md` applied).
 Every universal statement is over an arbitrary finite field `F` with `Fintype.card F = 4κ + 1`
-(the shell); the window law is on `ZMod p`; instance checks and refutations are decided.
+(the shell); the window law is on `ZMod p`; instance checks and refutations are decided. The section
+`conjecture` decides the conclusion's conjecture clause by clause (rows G1–G3; G4, the `SO(3)` obstruction,
+is numerical and imported).
 Every docstring opens with the ledger row(s) the declaration decides (`1:B2`); theorem numbers are the published paper's
 (Axioms 2025, 14, 636).
 -/
@@ -217,5 +219,101 @@ theorem approx_theorem_refuted :
   have hx' : (x : ℚ) ≤ 12 := by exact_mod_cast (by omega : x ≤ 12)
   rw [div_le_iff₀ (by positivity)]
   nlinarith
+
+section conjecture
+
+open Real
+
+/-- 1:G1 (the conjecture's first clause, solving): `f ∈ F_p[X]` has a root in `F_p` iff `f` and
+`X^p − X = ∏_a (X − a)` are not coprime — the root test is a gcd, exact in the substrate. -/
+theorem root_iff_not_coprime (p : ℕ) [hp : Fact p.Prime] (f : (ZMod p)[X]) :
+    (∃ a : ZMod p, f.eval a = 0) ↔ ¬ IsCoprime f (X ^ p - X) := by
+  constructor
+  · rintro ⟨a, ha⟩ hcop
+    have h1 : (X - C a) ∣ f := dvd_iff_isRoot.mpr ha
+    have h2 : (X - C a) ∣ (X ^ p - X : (ZMod p)[X]) := by
+      rw [dvd_iff_isRoot]
+      simp [IsRoot, ZMod.pow_card]
+    exact (not_isUnit_X_sub_C a) (hcop.isUnit_of_dvd' h1 h2)
+  · intro h
+    by_contra hno
+    push Not at hno
+    apply h
+    have hprod : (X ^ p - X : (ZMod p)[X]) = ∏ a : ZMod p, (X - C a) := by
+      have hroots : (X ^ p - X : (ZMod p)[X]).roots = Finset.univ.val := by
+        have := FiniteField.roots_X_pow_card_sub_X (ZMod p); rwa [ZMod.card] at this
+      have hmon : (X ^ p - X : (ZMod p)[X]).Monic := by
+        apply monic_X_pow_sub
+        simpa using hp.out.one_lt
+      have hdeg : (X ^ p - X : (ZMod p)[X]).natDegree = p := FiniteField.X_pow_card_sub_X_natDegree_eq (ZMod p) hp.out.one_lt
+      have := (prod_multiset_X_sub_C_of_monic_of_roots_card_eq hmon (by rw [hroots, hdeg]; simp)).symm
+      rw [this, hroots]
+      rfl
+    rw [hprod]
+    refine IsCoprime.prod_right fun a _ => ?_
+    have hirr : Irreducible (X - C a : (ZMod p)[X]) := irreducible_X_sub_C a
+    exact (hirr.coprime_iff_not_dvd.mpr (fun hd => hno a (dvd_iff_isRoot.mp hd))).symm
+
+/-- 1:G2 (second clause, limit-like approximation): the tower of shells resolves every real — for every
+`r` and `ε > 0` some shell `p = 4κ + 1` carries a framed rational `x / 2^n`, `|x| ≤ 2κ`, within `ε` of `r`
+(Dirichlet for primes `≡ 1 (mod 4)`, `Nat.exists_prime_gt_modEq_one`). -/
+theorem tower_density (r ε : ℝ) (hε : 0 < ε) :
+    ∃ p κ n : ℕ, ∃ x : ℤ, p.Prime ∧ p = 4 * κ + 1 ∧ |x| ≤ 2 * κ ∧ |r - x / 2 ^ n| < ε := by
+  obtain ⟨n, hn⟩ := exists_pow_lt_of_lt_one hε (by norm_num : (1 / 2 : ℝ) < 1)
+  set x : ℤ := round (r * 2 ^ n) with hx
+  obtain ⟨p, hp, hgt, hmod⟩ := Nat.exists_prime_gt_modEq_one (2 * x.natAbs + 1) (by norm_num : (4 : ℕ) ≠ 0)
+  have hmod' : p % 4 = 1 := by
+    have := hmod; unfold Nat.ModEq at this; simpa using this
+  refine ⟨p, p / 4, n, x, hp, ?_, ?_, ?_⟩
+  · have := Nat.div_add_mod p 4; omega
+  · have h1 : x.natAbs < 2 * (p / 4) := by omega
+    have h2 : (|x| : ℤ) = x.natAbs := (Int.natCast_natAbs x).symm
+    rw [h2]; exact_mod_cast h1.le
+  · have hr : |r * 2 ^ n - x| ≤ 1 / 2 := abs_sub_round (r * 2 ^ n)
+    have h2n : (0 : ℝ) < 2 ^ n := by positivity
+    have : r - x / 2 ^ n = (r * 2 ^ n - x) / 2 ^ n := by field_simp
+    rw [this, abs_div, abs_of_pos h2n]
+    calc |r * 2 ^ n - x| / 2 ^ n ≤ (1 / 2) / 2 ^ n := by gcongr
+      _ = (1 / 2) ^ n / 2 := by rw [one_div_pow]; ring
+      _ < ε := by linarith
+
+/-- 1:G3 (third clause, the abelian case): the rounding `k(θ) = round(Nθ/2π)` puts `2πk/N` within `π/N`
+of `θ` — `C_N ≅ F_p^×` (`N = p − 1`) is a `π/N`-net of `U(1)`. -/
+theorem circle_net (N : ℕ) (hN : 0 < N) (θ : ℝ) :
+    |θ - 2 * π * (round (N * θ / (2 * π)) : ℝ) / N| ≤ π / N := by
+  have hπ : (0 : ℝ) < π := pi_pos
+  have hN' : (0 : ℝ) < N := by exact_mod_cast hN
+  set t := N * θ / (2 * π) with ht
+  have hθ : θ = 2 * π * t / N := by rw [ht]; field_simp
+  have hr : |t - round t| ≤ 1 / 2 := abs_sub_round t
+  have : θ - 2 * π * (round t : ℝ) / N = (2 * π / N) * (t - round t) := by rw [hθ]; field_simp
+  rw [this, abs_mul, abs_of_pos (by positivity : (0 : ℝ) < 2 * π / N)]
+  calc 2 * π / N * |t - round t| ≤ 2 * π / N * (1 / 2) := by gcongr
+    _ = π / N := by ring
+
+/-- 1:G3 (third clause): the group-law defect of the rounding is at most one step. -/
+theorem group_law_defect (N : ℕ) (θ₁ θ₂ : ℝ) :
+    |round (N * θ₁ / (2 * π)) + round (N * θ₂ / (2 * π)) - round (N * (θ₁ + θ₂) / (2 * π))| ≤ 1 := by
+  set t₁ := N * θ₁ / (2 * π) with ht₁
+  set t₂ := N * θ₂ / (2 * π) with ht₂
+  have hsum : N * (θ₁ + θ₂) / (2 * π) = (t₁ - round t₁) + (t₂ - round t₂) + ((round t₁ + round t₂ : ℤ) : ℝ) := by
+    rw [ht₁, ht₂]; push_cast; ring
+  rw [hsum, round_add_intCast]
+  have h1 : |t₁ - round t₁| ≤ 1 / 2 := abs_sub_round t₁
+  have h2 : |t₂ - round t₂| ≤ 1 / 2 := abs_sub_round t₂
+  set z := (t₁ - round t₁) + (t₂ - round t₂) with hz
+  have hz1 : |z| ≤ 1 := by rw [hz]; calc |_| ≤ |t₁ - round t₁| + |t₂ - round t₂| := abs_add_le _ _
+    _ ≤ 1 := by linarith
+  have hrz : |z - round z| ≤ 1 / 2 := abs_sub_round z
+  have hlt : (|round z| : ℝ) < 2 := by
+    have : |(round z : ℝ)| ≤ |z| + |z - round z| := by
+      calc |(round z : ℝ)| = |z - (z - round z)| := by ring_nf
+        _ ≤ |z| + |z - round z| := abs_sub _ _
+    linarith
+  have hlt' : |round z| < 2 := by exact_mod_cast hlt
+  have hz' : round t₁ + round t₂ - (round z + (round t₁ + round t₂)) = -round z := by ring
+  rw [hz', abs_neg]; omega
+
+end conjecture
 
 end FRC.Algebra
