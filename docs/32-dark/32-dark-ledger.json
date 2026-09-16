@@ -381,7 +381,7 @@
    "rows": [
     {
      "label": "O1",
-     "predicate": "The cluster-core residual as the coherent amplitude addition \\eqref{eq:cohsum} over the core's separately virialised composites, $\\sqrt{N_{\\mathrm{eff}}}$ over the smooth boost, the one law that also gives the Bullet selection. Exposure: the coherence criterion (which concentrations are composites) is not derived; the radial acceleration relation forces $N_{\\mathrm{eff}}=1$ within a galaxy (a gas--disk--bulge amplitude sum would boost it by $0.14$\\,dex, \\src{dark.\\allowbreak rar\\_\\allowbreak scatter}); $N_{\\mathrm{eff}}$ is uncomputed ($\\simeq1$ for a single dominant galaxy, $4$ for four comparable, $20$ for twenty), and the residual's samples are relaxed clusters, so $N_{\\mathrm{eff}}\\simeq4$ is required in relaxed cores. Deciding computation: $N_{\\mathrm{eff}}$ from the core galaxy populations of \\citet{sanders2003,pointecouteau2005}.",
+     "predicate": "The cluster-core residual as the coherent amplitude addition \\eqref{eq:cohsum} over the core's separately virialised composites, $\\sqrt{N_{\\mathrm{eff}}}$ over the smooth boost, the law that also gives the Bullet selection. Exposure: the coherence criterion is not derived; the radial acceleration relation forces $N_{\\mathrm{eff}}=1$ within a galaxy (\\src{dark.\\allowbreak rar\\_\\allowbreak scatter}), while the relaxed-core residual requires $N_{\\mathrm{eff}}\\simeq4$, uncomputed (\\S\\ref{sub:clustermag}). Deciding computation: $N_{\\mathrm{eff}}$ from the core galaxy populations of \\citet{sanders2003,pointecouteau2005}.",
      "tag": "O",
      "source": "\\S\\ref{sub:clustermag}; \\src{dark.\\allowbreak cluster\\_\\allowbreak coherent}",
      "key": "p32048"

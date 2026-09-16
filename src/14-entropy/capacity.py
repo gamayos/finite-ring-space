@@ -198,16 +198,16 @@ def run():
     band = sorted(exit_of(k, b) for k, b in
                   ((k_fit, b_fit), (k_full, b_full), (k_c13, b_c13), (k_c15, b_c15)))
     chk("over-closure band (1.4-2.8)e8", band[0] > 1.3e8 and band[-1] < 2.9e8)
-    print(f"[PASS] constrained k=3: rho~ = {10 ** b_c13:.2e} kg/m^3; over-closure band"
+    print(f"[PASS] constrained k=3: c~ = m/R^3 = {10 ** b_c13:.2e} kg/m^3 (a cubic coefficient, not a density); over-closure band"
           f" ({band[0]:.2e} .. {band[-1]:.2e}) Msun across the four fit variants")
     chk("electron on the Compton wall to < 0.01 dex", abs(pos["electron"][1] - (log10(hbar / c) - pos["electron"][0])) < 0.01)
     chk("Sgr A* on the Schwarzschild wall to < 0.01 dex", abs(pos["Sgr A*"][1] - (pos["Sgr A*"][0] - log10(2 * G / c**2))) < 0.01)
     mean_c = sum(pos[m][1] - 3 * pos[m][0] for m in FIT) / len(FIT)
     drift = k_fit - 3.0                       # slope = 3 + d c / d logR identically
     span = max(pos[m][0] for m in FIT) - min(pos[m][0] for m in FIT)
-    chk("slope decomposition: mean c = 2.99 (water), drift 0.61 dex over the baseline", abs(mean_c - 2.99) < 0.02 and abs(drift * span - 0.61) < 0.02)
+    chk("slope decomposition: mean c = 2.99, drift 0.61 dex over the baseline", abs(mean_c - 2.99) < 0.02 and abs(drift * span - 0.61) < 0.02)
     print(f"[PASS] slope decomposition: k = 3 + dc/dlogR, drift {drift:+.4f} "
-          f"({drift * span:.2f} dex over {span:.1f} dex), mean c = {mean_c:.2f} (water)")
+          f"({drift * span:.2f} dex over {span:.1f} dex), mean c = {mean_c:.2f}")
     print(f"[PASS] diagonal: k = {k_fit:.4f} (13 mid-wedge), intercept "
           f"{10 ** b_fit:.2e} at the metre pivot (density units only at k = 3); "
           f"sensitivity k = {k_full:.4f} (15 incl. walls)")
@@ -219,8 +219,8 @@ def run():
 
     ax.plot([x_lo, x_hi], [b_fit + k_fit * x_lo, b_fit + k_fit * x_hi],
             color="0.62", lw=0.9, ls=(0, (1, 2.6)), zorder=2)
-    ax.text(-1.6, 12.5, r"typical objects: $m=\tilde\rho R^{3}$,"
-            r"  $\tilde\rho\approx10^{3}\,$kg$\,$m$^{-3}$",
+    ax.text(-1.6, 12.5, r"typical objects: $m=\tilde c\,R^{3}$,"
+            r"  $\tilde c\approx10^{3}\,$kg$\,$m$^{-3}$",
             rotation=71.6, ha="center", va="center", fontsize=7.5, color="0.5")
 
     for name, R, m, off, ha in objs:

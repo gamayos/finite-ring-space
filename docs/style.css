@@ -196,7 +196,7 @@ table.ledger tr.target td { background: var(--sub-bg); }
 .cite { font-size: 0.85em; } .ref { border-bottom: 1px dotted var(--rule); cursor: help; } .ref.off { color: var(--ink-faint); }
 section.prose { margin: 1rem 0; line-height: 1.55; } section.prose.closing { border-top: 1px solid var(--rule); padding-top: 1rem; }
 p.hist { font-size: 0.85rem; color: var(--ink-soft); }
-section.abstract { font-size: 0.95rem; line-height: 1.5; color: var(--ink-soft); margin: 0.6rem 0 0; max-width: 62rem; }
+section.abstract { font-size: 0.95rem; line-height: 1.5; color: var(--ink-soft); margin: 0.6rem 0 0; }   /* full width of .wrap, like the table below it */
 section.abstract p.meta { margin: 0.55rem 0 0; }
 .wrap a.colab, .wrap a.colab:visited, .wrap a.colab:hover { border-bottom: none; text-decoration: none; display: inline-block; line-height: 0; vertical-align: middle; }
 .wrap img.colab { height: 20px; display: block; }

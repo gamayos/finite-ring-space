@@ -120,7 +120,7 @@
   "id": "tri.D",
   "rows": "14:C9, 14:X5",
   "script": "triangle",
-  "label": "the diagonal: ordinary least squares over the thirteen mid-triangle objects gives k = 3.032 with intercept 1.00 × 10³ at the metre pivot; the constrained k = 3 fit ρ̃ = 0.97 × 10³ kg/m³; the fifteen-object sensitivity k = 3.007; the Schwarzschild exit 1.8 × 10⁸ M☉ within the (1.4–2.8) × 10⁸ band across the four fit variants [approx]",
+  "label": "the diagonal: ordinary least squares over the thirteen mid-triangle objects gives k = 3.032 with intercept 1.00 × 10³ at the metre pivot; the constrained k = 3 cubic coefficient c̃ = m/R³ = 0.97 × 10³ kg/m³ (not a density: a sphere's is 0.62 dex lower); the fifteen-object sensitivity k = 3.007; the Schwarzschild exit 1.8 × 10⁸ M☉ within the (1.4–2.8) × 10⁸ band across the four fit variants [approx]",
   "ok": true,
   "detail": "6 micro-checks",
   "kind": "CHART"
@@ -129,7 +129,7 @@
   "id": "tri.W",
   "rows": "14:C9",
   "script": "triangle",
-  "label": "the wall residents and the slope decomposition: the electron on the Compton wall and Sgr A* on the Schwarzschild wall to < 0.01 dex; k = 3 + dc/d log R with mean c = 2.99 (water) and drift 0.61 dex over the 19-decade baseline; the Compton entry 5.3 × 10⁻¹² m [approx]",
+  "label": "the wall residents and the slope decomposition: the electron on the Compton wall and Sgr A* on the Schwarzschild wall to < 0.01 dex; k = 3 + dc/d log R with mean c = 2.99 and drift 0.61 dex over the 19-decade baseline; the Compton entry 5.3 × 10⁻¹² m [approx]",
   "ok": true,
   "detail": "5 micro-checks",
   "kind": "CHART"
