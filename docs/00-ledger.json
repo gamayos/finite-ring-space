@@ -549,7 +549,7 @@
    "sources": [
     "6-four"
    ],
-   "witness": null,
+   "witness": "6:b_fractional.py",
    "refs": [],
    "statement": "Scale-shift duality: dilation $x\\mapsto gx$ is phase evolution of the frame, advancing $t$; over the cycle it is the fractional Fourier transform, whose quarter-turn $Q_4$ is the discrete Fourier transform."
   },
@@ -726,11 +726,11 @@
      "key": "p00051"
     }
    ],
-   "statement": "\\textbf{Two strata of probability}: a registered probability is a framed rational (a ratio of realized tallies); a structural weight is an element of the parity-even cyclotomic subring. The strata coincide exactly on the stationary core-valued $Q_4$ sector; two proved reductions connect them, and the residual realisation content is the stratum-sampling clause (D10). Witnesses and readout: 22-qm."
+   "statement": "\\textbf{Two strata of probability}: a registered probability is a framed rational (a ratio of realized tallies); a structural weight is an element of the parity-even cyclotomic subring. The strata coincide exactly on the stationary core-valued $Q_4$ sector; two proved reductions connect them, and the residual realisation content is the stratum-sampling clause (D10); on a single Object the theorem's weights are uniform over the fibres (22-qm Rem.~borndomain), non-uniform statistics arriving through the engineered-core readout. Witnesses and readout: 22-qm."
   },
   {
    "label": "C11",
-   "name": "Pair-tally uniqueness (the finite Gleason statement)",
+   "name": "Pair-tally uniqueness",
    "block": "C",
    "key": "p00031",
    "tag": "T",
@@ -739,7 +739,7 @@
    ],
    "witness": "22:gleason.py",
    "refs": [],
-   "statement": "\\textbf{Pair-tally uniqueness (the finite Gleason statement)}: on the stationary core-valued $Q_4$ sector, tally-valued, fibre-additive, drive-invariant, parity-even registration functionals form the character cone fixed by the pure windings; adding channel-selectivity (assumed, not derived) picks the Born ray. The minimal degree is forced; proof shape: 22-qm."
+   "statement": "\\textbf{Pair-tally uniqueness} (22-qm Prop.~gleason, the uniqueness of the pair tally on the stationary $Q_4$ sector): on the stationary core-valued $Q_4$ sector, tally-valued, fibre-additive, drive-invariant, parity-even registration functionals form the character cone fixed by the pure windings; adding channel-selectivity (assumed, not derived) picks the Born ray. The minimal degree is forced; proof shape: 22-qm."
   },
   {
    "label": "C12",
@@ -789,7 +789,7 @@
     "13-epi",
     "2-geom"
    ],
-   "witness": "13:validate_pi2.py",
+   "witness": "13:validate_pi2.py, 6:a_shell.py",
    "refs": [
     {
      "label": "C7",
@@ -1197,9 +1197,9 @@
     "22-qm",
     "21-grav"
    ],
-   "witness": null,
+   "witness": "22:stratum.py",
    "refs": [],
-   "statement": "\\textbf{The unified sampling clause}: a registration protocol samples one stratum of a drive-presented ensemble; over complete joint recurrences the counts are forced exact tallies (enumeration-verified at $B=2,3$ on $\\Omega=641$), on incomplete batches the largest-remainder gauge --- the one sampling identification shared by the quantum readout and the gravity registration crossover. Falsifier: outcome tallies over a complete joint recurrence that are not exact ratios, or a fixed-setting protocol sampling more than one stratum."
+   "statement": "\\textbf{The unified sampling clause}: a registration protocol samples one stratum of a drive-presented ensemble; over complete joint recurrences the counts are forced exact tallies (the two algebraic reductions of 22-qm Rem.~strata; the readout grid and the allocation at $B=81$ verified), on incomplete batches the largest-remainder gauge --- the one sampling identification shared by the quantum readout and the gravity registration crossover. Falsifier: outcome tallies over a complete joint recurrence that are not exact ratios, or a fixed-setting protocol sampling more than one stratum."
   },
   {
    "label": "D11",
@@ -1441,7 +1441,7 @@
     "22-qm",
     "37-sim"
    ],
-   "witness": null,
+   "witness": "37:horizon_thermo.py",
    "refs": [
     {
      "label": "E5",
@@ -1456,7 +1456,7 @@
      "key": "p00076"
     }
    ],
-   "statement": "\\textbf{Gravity} (horizon triple), instantiated: the record is the registered distinguishable-state count, $S=(A/4)(1-1/\\p )$ (F1); the temperature has two exact faces --- the registration rate $T=(\\p +1)/\\p ^2$, the slip rate every thermometer reads (E5), and the response $T_{\\mathrm{resp}}=(dS/dM)^{-1}=1/\\p $ at the spinor half-period $M=(\\p +1)/2$ (J1) --- splitting by $(1+1/\\p )$, each with its Smarr relation; verified $8/8$ shells."
+   "statement": "\\textbf{Gravity} (horizon triple), instantiated: the record is the registered distinguishable-state count, $S=(A/4)(1-1/\\p )$ (F1); the temperature has two exact faces --- the registration rate $T=(\\p +1)/\\p ^2$, the slip rate every thermometer reads (E5), and the response $T_{\\mathrm{resp}}=(dS/dM)^{-1}=1/\\p $ at the spinor half-period $M_{1/2}=(\\p +1)/2$, the rate face of the mass, the count face the cardinality (J1) --- splitting by $(1+1/\\p )$, each with its Smarr relation; verified $8/8$ shells."
   },
   {
    "label": "E8",
@@ -1549,7 +1549,7 @@
      "key": "p00031"
     }
    ],
-   "statement": "Quantum mechanics: the Born weighting on the Subject's ledger --- one declared identification (registration data are sample pairs) plus counting theorems, the pair form unique on the stationary core-valued $Q_4$ sector (C11), the two probability strata and their readout (C10); the amplitude is complex (not real/quaternionic) by $Q_4$; the CHSH/Tsirelson $\\sqrt2$ is the quarter-turn, parity-even (C8)."
+   "statement": "Quantum mechanics: the Born weighting on the Subject's ledger --- one declared identification (registration data are sample pairs) plus counting theorems, the pair form unique on the stationary core-valued $Q_4$ sector (C11), the two probability strata and their readout (C10); the amplitude is complex, not real, by $Q_4$ ($\\Om\\equiv3\\pmod4$ would give a real theory, 22-qm C13); the CHSH/Tsirelson $\\sqrt2$ is the quarter-turn, parity-even (C8)."
   },
   {
    "label": "F2",
@@ -1604,7 +1604,7 @@
      "key": "p00034"
     }
    ],
-   "statement": "\\textbf{The wavefunction folds on $x=i^{\\,r}\\gen^{\\,s}$}: the Object cycle decomposes by the $Q_4$ quotient --- the class $r$ the registrable phase (C14), the coset rung $s$ the outcome index (capacity, C13). Fibres are the cosets $q_\\alpha\\cdot\\mathrm{core}$, pointer channels the core characters, the amplitude the coherent fibre sum: observation resolves cosets, never points within one. Division-unique everywhere; product iff $\\kap$ odd."
+   "statement": "\\textbf{The wavefunction folds on $x=i^{\\,r}\\gen^{\\,s}$}: the Object cycle decomposes by the $Q_4$ quotient --- the class $r$ the registrable phase (C14), the coset rung $s$ the outcome index (capacity, C13); the fold notation, division-unique everywhere, a product iff $\\kap$ odd, is 37-sim's. Fibres are the cosets $q_\\alpha\\cdot\\mathrm{core}$, pointer channels the core characters, the amplitude the coherent fibre sum (22-qm Def.~measvectors): observation resolves cosets, never points within one."
   },
   {
    "label": "F5",
@@ -1641,7 +1641,7 @@
      "key": "p00062"
     }
    ],
-   "statement": "\\textbf{The binding lift}: a pair fuses iff cycles coprime, windings unit (swept); else the F2 offsets stay superselected --- the deuteron, $(4,4)$, spectrumless. Fusion carries the half-driven offsets onto the F4 rungs; pointer channels forced (absorbed class gauge, torus core disjoint), Born lands with exact dephasing ($1+\\omega+\\omega^{2}=0$, $T'=516$). Energies $E_{s}=s\\,h/3$, stations $\\{0,58,116\\}$; cores odd$(\\q-1)$: hydrogen $(4,3)\\to C_{12}$, $\\kap_{O}=3$, ground first."
+   "statement": "\\textbf{The binding lift}: a pair fuses iff cycles coprime, windings unit (swept); else the F2 offsets stay drive-confined (22-qm B5, C15) --- the deuteron, $(4,4)$, spectrumless. Fusion carries the half-driven offsets onto the F4 rungs; pointer channels forced (absorbed class gauge, torus core disjoint), Born lands with exact dephasing ($1+\\omega+\\omega^{2}=0$, $T'=516$). Energies $E_{s}=s\\,h/3$, stations $\\{0,58,116\\}$; cores odd$(\\q-1)$: hydrogen $(4,3)\\to C_{12}$, $\\kap_{O}=3$, ground first."
   },
   {
    "label": "G1",
@@ -1653,7 +1653,7 @@
     "27-fld",
     "28-flav"
    ],
-   "witness": null,
+   "witness": "27:em1_prototype.py, 27:enumerate_maxwell.py, 27:o2_numbers.py, 27:audit_finitism.py",
    "refs": [
     {
      "label": "D2",
@@ -1710,14 +1710,14 @@
    "sources": [
     "27-fld"
    ],
-   "witness": null,
+   "witness": "27:v_scale.py",
    "refs": [
     {
      "label": "I3",
      "key": "p00071"
     }
    ],
-   "statement": "\\textbf{Weak} (scale): the lone scale $=$ the non-split saturation scale, dimensional transmutation $M_{\\mathrm{EW}}=m_P e^{-4\\pi^2}\\approx87$~GeV ($b_0=2$), the vev $v=M_{\\mathrm{EW}}\\times{}$gauge factor, its coefficient the cross-scale $\\beta$-function; $\\Om$-hard, as $\\Lambda_{\\mathrm{QCD}}$ (I3). Value tagged: the absolute scale $v$ (equivalently $M_{\\mathrm{EW}}$), in no embedded reader's window --- the failing computation is the cross-scale $\\beta$-function summed over the $\\Om$-hard masses (Z6). Relation, $\\Om$-blind: the transmutation form $M=m_P e^{-c/b}$. The numeral $\\approx87$~GeV with $b_0=2$ is a [chart] evaluation, not certified content."
+   "statement": "\\textbf{Weak} (scale): the lone scale $=$ the non-split saturation scale, dimensional transmutation $v=m_P e^{-c}$, the exponent $c$ the cross-scale $\\beta$-function of the non-split channel and not the $\\mathrm{SU}(2)$ gauge coefficient ($b_2=19/6$ gives $10^{8}$~GeV; the gauge coupling's own infrared scale is $10^{-24}$~GeV); $\\Om$-hard, as $\\Lambda_{\\mathrm{QCD}}$ (I3). Value tagged: the absolute scale $v$, in no embedded reader's window --- the failing computation is the cross-scale $\\beta$-function summed over the $\\Om$-hard masses (Z6). Relation, $\\Om$-blind: the transmutation form. The closed form $m_P e^{-(2\\pi)^2}=87$~GeV is the 't~Hooft half-charge weight of $\\mathrm{SU}(2)/\\Z_2$ at channel unity, $v/\\sqrt2$ twice it to $0.38\\%$: the open conjecture 27:O1, not certified content."
   },
   {
    "label": "I1",
@@ -1843,9 +1843,9 @@
     "27-fld",
     "28-flav"
    ],
-   "witness": null,
+   "witness": "27:generation.py",
    "refs": [],
-   "statement": "\\textbf{One generation} (content): $=$ the spinor $\\mathbf{16}$ of the rank-five frame $\\C^3\\oplus\\C^2$ --- all gauge reps, hypercharges, charges, anomaly-free, $\\nu_R$ --- recovered in the compact theory via the correspondence."
+   "statement": "\\textbf{One generation} (content): $=$ the spinor $\\mathbf{16}$ of the rank-five frame $\\C^3\\oplus\\C^2$ --- all gauge reps, hypercharges, charges, anomaly-free, $\\nu_R$ --- recovered in the compact theory via the correspondence: the imported $\\mathrm{SO}(10)$ template evaluated on the realisation (27-fld B5)."
   },
   {
    "label": "J2",
@@ -1927,7 +1927,7 @@
      "key": "p00114"
     }
    ],
-   "statement": "\\textbf{Flavour} (structure): the seesaw scale, $b$--$\\tau$ unification, and the role-ladder mass ordering are derived; the observed spectrum is the projection of the one $\\mathbf{16}$. The CKM and PMNS angles and phases reduce to the role-depth texture, the lopsided $\\sigma$, the trimaximal $C_3$ column, and quark--lepton complementarity, leaving the $\\Om$-hard drive-orientation phases $\\{\\delta_0,\\delta_\\nu\\}$ (Z6); the seesaw fixes $Q_\\nu{=}2/3$."
+   "statement": "\\textbf{Flavour} (structure): the seesaw scale, $b$--$\\tau$ unification, and the role-ladder mass ordering are derived; the observed spectrum is the projection of the one $\\mathbf{16}$. The CKM and PMNS angles and phases reduce to the role-depth texture, the lopsided $\\sigma$, the trimaximal $C_3$ column, and quark--lepton complementarity (the leading-order $\\theta_{13}=\\theta_C/\\sqrt2$, $7\\%$ high, an estimate, 28-flav C9), leaving the $\\Om$-hard drive-orientation phases $\\{\\delta_0,\\delta_\\nu,\\delta_{\\mathrm{CP}}\\}$ (Z6); the seesaw fixes $Q_\\nu{=}2/3$."
   },
   {
    "label": "K2",
@@ -1946,7 +1946,7 @@
      "key": "p00027"
     }
    ],
-   "statement": "\\textbf{Flavour} (Koide): the charged-lepton ratio $Q=2/3$ is the cube-root generation orbit at the self-dual quarter-turn, $Q=\\tfrac13+\\tfrac23\\rho^2$ exact at $\\rho^2=2^{-1}$; the winding-phase selection onto that orientation is bedrock, $\\Om$-hard in magnitude, its $\\Z_2$ sign the derived drive orientation (C7); the sub-horizon reading is $\\delta_0=Q/3=2/9$."
+   "statement": "\\textbf{Flavour} (Koide): the charged-lepton ratio $Q=2/3$ is the cube-root generation orbit at the self-dual quarter-turn, $Q=\\tfrac13+\\tfrac23\\rho^2$ exact, the value $\\rho^2=2^{-1}$ the quarter-turn realisation (28-flav B5; falsifier: $Q_\\ell$ off $\\tfrac23$ beyond the $\\tau$-mass tolerance $\\pm7\\times10^{-6}$); the winding-phase selection onto that orientation is bedrock, $\\Om$-hard in magnitude, its $\\Z_2$ sign the derived drive orientation (C7); the sub-horizon reading is $\\delta_0=Q/3=2/9$ (radians)."
   },
   {
    "label": "K3",
@@ -1958,7 +1958,7 @@
     "27-fld",
     "28-flav"
    ],
-   "witness": null,
+   "witness": "28:neutrino.py, 28:tm2_jointfit.py",
    "refs": [
     {
      "label": "G1",
@@ -1969,7 +1969,7 @@
      "key": "p00069"
     }
    ],
-   "statement": "\\textbf{Flavour} (targets): the sharp ratios are derived structure --- Koide $2/3$, Georgi--Jarlskog $\\Nc$, the squared amplitudes the split/non-split norms $N(1{-}i){=}2$, $N(1{-}\\omega){=}3$ (G1, I1), trimaximal $|F_{jk}|^2{=}\\tfrac13$, maximal Jarlskog $J^2{=}\\tfrac1{108}$, the $\\lambda$-texture from role depths --- locked by $\\delta_\\ell{:}\\delta_d{:}\\delta_u=1{:}\\tfrac12{:}\\tfrac13$ to one $\\Om$-hard phase $\\delta_0\\simeq2/9$; $m_1{=}0$ at LO makes $\\sum m_\\nu\\sim59$ meV parameter-free."
+   "statement": "\\textbf{Flavour} (targets): the sharp ratios are derived structure --- Koide $2/3$, the factor $3$ of Georgi--Jarlskog (the double ratio $10.4\\pm0.5$ against $9$ an open $15\\%$ tension, 28-flav GU2), the squared amplitudes the split/non-split norms $N(1{-}i){=}2$, $N(1{-}\\omega){=}3$ on the realisation B5 (G1, I1), trimaximal $|F_{jk}|^2{=}\\tfrac13$, maximal Jarlskog $J^2{=}\\tfrac1{108}$, the $\\lambda$-texture from role depths --- the charged sectors locked by $\\delta_\\ell{:}\\delta_d{:}\\delta_u=1{:}\\tfrac12{:}\\tfrac13$ to $\\delta_0$ (the $\\overline{\\mathrm{MS}}$ working scheme), the neutrino phase $\\delta_\\nu$ and the quark CP phase two further $\\Om$-hard phases; the $m_1{=}0$ floor, $\\sum m_\\nu=58.8$ meV at NuFIT 6.0, on the boundary-branch realisation (28-flav C11b)."
   },
   {
    "label": "K4",
@@ -2169,14 +2169,14 @@
     "27-fld",
     "32-dark"
    ],
-   "witness": null,
+   "witness": "27:missing_rank.py",
    "refs": [
     {
      "label": "I6",
      "key": "p00074"
     }
    ],
-   "statement": "\\textbf{Exclusion predictions}: no fourth generation, no fifth force, an empty desert, no TeV supersymmetry, no new dark-matter particle, the proton effectively stable ($\\tau_p\\gtrsim10^{45}$ yr, the $X,Y$ leptoquarks at the substrate scale; the minimal colour-neutral wrap with no channel toward a smaller residue, I6), and no beyond-SM $(g{-}2)_\\mu$ --- entailed by the closed ladder and the Carrier being the whole substrate."
+   "statement": "\\textbf{Exclusion predictions}: no fourth generation, no fifth force, an empty desert, no TeV supersymmetry, no new dark-matter particle, the proton effectively stable ($\\tau_p\\gtrsim10^{45}$ yr, the $X,Y$ leptoquarks at the substrate scale; the minimal colour-neutral wrap with no channel toward a smaller residue, I6), and no beyond-SM $(g{-}2)_\\mu$ --- entailed by the closed ladder (the rank tower, $\\dim\\Lambda^{\\mathrm{even}}\\C^5=16$) given the role-to-matter realisation (27-fld B6, C10) and the Carrier being the whole substrate."
   },
   {
    "label": "N2",
@@ -2191,14 +2191,14 @@
     "37-sim",
     "12-prim"
    ],
-   "witness": null,
+   "witness": "21:validate_orderone.py",
    "refs": [
     {
      "label": "C1",
      "key": "p00021"
     }
    ],
-   "statement": "\\textbf{Parameter-freeness}: every order-one constant reduces to two geometric numbers, the solid angle $4\\pi$ ($G$, $\\alpha_{\\mathrm{bare}}$, the $\\tfrac14$ law) and the cycle $2\\pi$ ($a_0$, horizon temperatures), both [chart] constants in the Subject's labels (C1); in the Carrier register the calibration congruence $4\\dS\\equiv-1$ fixes them alone ($G=2\\dS$). The chart relations ($G=1/4\\pi\\varkappa$, $G=\\hbar c/m_P^2$) hold in the chart; no exact-arithmetic formula equates a chart constant to a residue."
+   "statement": "\\textbf{Parameter-freeness}: every order-one constant reduces to two geometric numbers, the solid angle $4\\pi$ ($G$, $\\alpha_{\\mathrm{bare}}$, the $\\tfrac14$ law) and the cycle $2\\pi$ ($a_0$, horizon temperatures), both [chart] constants in the Subject's labels (C1); in the Carrier register the calibration congruence $4\\dS\\equiv-1$ fixes them alone ($G=2\\dS$), the congruence being the realisation. The chart relations ($G=1/4\\pi\\varkappa$, $G=\\hbar c/m_P^2$) hold in the chart; no exact-arithmetic formula equates a chart constant to a residue."
   },
   {
    "label": "N3",

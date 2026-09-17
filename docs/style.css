@@ -163,6 +163,13 @@ footer code { font-family: var(--mono); font-size: .95em; }
 .home figure.hero { margin: 1.4rem auto 1.8rem; max-width: 800px; }
 .home figure.hero video { display: block; width: 100%; max-width: 800px; height: auto; border-radius: 6px; background: #0d0d0f; }
 .home figure.hero figcaption { font-size: .84rem; color: var(--ink-soft); margin-top: .55rem; line-height: 1.45; }
+.home figure.fig { margin: 1.4rem auto 1.2rem; max-width: 860px; }
+.home figure.fig img { display: block; width: 100%; height: auto; border-radius: 6px; background: #fff; }
+.home figure.fig figcaption { font-size: .84rem; color: var(--ink-soft); margin-top: .55rem; line-height: 1.45; }
+.home ol.refs { font-size: .86rem; color: var(--ink-soft); line-height: 1.5; padding-left: 2.2rem; margin: 0 0 1rem; }
+.home ol.refs li { margin-bottom: .3rem; }
+.home ol.refs li:target { background: color-mix(in srgb, var(--accent) 10%, transparent); border-radius: 4px; }
+.home a[href^="#ref-"] { border-bottom: none; font-size: .85em; vertical-align: 1px; }
 /* ---- ledger pages (added by tools/site_build.py) ---- */
 /* every link on every page takes the accent token (light and dark) except the tab bar and the title links of the
    publications list; the stylesheet above colours only nav, .sub and DOI links, and a page has no <main> wrapper
