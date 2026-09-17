@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-HNE3RMJ5L1"></script>
+<script> window.dataLayer = window.dataLayer || []; function gtag(){dataLayer.push(arguments);} gtag('js', new Date()); gtag('config', 'G-HNE3RMJ5L1'); </script>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Causality.lean — FrcLedger</title>
+<meta name="description" content="The Lean module FrcLedger/Causality of the FRC predicate ledgers, rendered with an anchor per declaration">
+<meta name="author" content="Yosef Akhtman">
+<link rel="icon" href="../frc-logo-fav.png">
+<link rel="stylesheet" href="../style.css?v=b6fb279a">
+
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <h1>Causality.lean — FrcLedger</h1>
+    
+    <nav><a href="../index.html">Home</a><a href="../publications.html">Publications</a><a href="../00-ledger.html">Ledger</a><a href="../predictions.html">Predictions</a><a href="../explicability.html">Explicability</a></nav>
+  </header>
+<main id="ledger-main"><section class="prose"><p>The Lean module <code>lean/FrcLedger/Causality.lean</code> of the paper <a href="../3-causality/3-causality-ledger.html">3-lor</a> (on Mathlib): 10 theorems (0 definitions): 0 with no axioms (green), 4 at tier 1 (teal: <code>propext</code>, <code>Quot.sound</code>), 6 at tier 2 (amber: <code>Classical.choice</code>), 0 red; the plain glyph marks a definition. Each declaration is anchored; the ledger rows cite them by name. <a href="https://live.lean-lang.org/#project=mathlib-stable&url=https://raw.githubusercontent.com/gamayos/finite-ring-space/main/lean/web/Causality.lean" target="_blank" rel="noopener">▶ open in the Lean web editor</a> · <a href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcLedger/Causality.lean" target="_blank" rel="noopener">on GitHub</a> · <a href="https://github.com/gamayos/finite-ring-space/blob/main/lean/axioms.log" target="_blank" rel="noopener">axioms.log</a> · <a href="https://github.com/gamayos/finite-ring-space/actions/workflows/lean.yml" target="_blank" rel="noopener">CI</a>.</p></section><pre class="lean"><span class="ln" id="L1"><a class="lno" href="#L1">1</a>import Mathlib</span>
+<span class="ln" id="L2"><a class="lno" href="#L2">2</a>import FrcLedger.Fourier</span>
+<span class="ln" id="L3"><a class="lno" href="#L3">3</a></span>
+<span class="ln" id="L4"><a class="lno" href="#L4">4</a>/-!</span>
+<span class="ln" id="L5"><a class="lno" href="#L5">5</a># 3-causality — the Euclidean–Lorentzian dichotomy, Mathlib witnesses</span>
+<span class="ln" id="L6"><a class="lno" href="#L6">6</a></span>
+<span class="ln" id="L7"><a class="lno" href="#L7">7</a>Rows of the predicate ledger of *Euclidean–Lorentzian Dichotomy and Algebraic Causality in Finite Ring Continuum*</span>
+<span class="ln" id="L8"><a class="lno" href="#L8">8</a>(Entropy 2025, 27, 1098; tree `3-causality-20260510`), stated as the revision states them, over an arbitrary finite</span>
+<span class="ln" id="L9"><a class="lno" href="#L9">9</a>field `F` with `card F ≢ 3 (mod 4)` (so `−1` is a square, the shells `p = 4κ + 1` among them).  Classical</span>
+<span class="ln" id="L10"><a class="lno" href="#L10">10</a>(tier 2) on Mathlib&#x27;s hierarchy; the same rows are proved with no axioms in `FrcCore/Causality.lean`.</span>
+<span class="ln" id="L11"><a class="lno" href="#L11">11</a>-/</span>
+<span class="ln" id="L12"><a class="lno" href="#L12">12</a></span>
+<span class="ln" id="L13"><a class="lno" href="#L13">13</a>namespace FRC.Causality</span>
+<span class="ln" id="L14"><a class="lno" href="#L14">14</a></span>
+<span class="ln" id="L15"><a class="lno" href="#L15">15</a>variable {F : Type*} [Field F]</span>
+<span class="ln" id="L16"><a class="lno" href="#L16">16</a></span>
+<span class="ln" id="L17"><a class="lno" href="#L17">17</a>/-- 3:B2 (Thm. nonexistence, first clause): `c² = ν` makes `ν` a square, so a nonsquare `ν` has no root. -/</span>
+<span class="ln decl" id="FRC.Causality.no_causal_root"><a class="lno" href="#FRC.Causality.no_causal_root">18</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcLedger/Causality.lean#L18" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small t1" src="lean-t1.png" alt="" title="tier 1: Quot.sound, propext">theorem no_causal_root (ν c : F) (h : ¬IsSquare ν) : c ^ 2 ≠ ν := fun e =&gt; h ⟨c, by rw [← e, sq]⟩</span>
+<span class="ln" id="L19"><a class="lno" href="#L19">19</a></span>
+<span class="ln" id="L20"><a class="lno" href="#L20">20</a>/-- 3:B2 (the consequence): when `−1` is a square (`card F ≢ 3 mod 4`) so is `−c²`, and every coefficient of</span>
+<span class="ln" id="L21"><a class="lno" href="#L21">21</a>`−c² t² + x² + y² + z²` lies in the class of squares — a Euclidean form for every `c ≠ 0`. -/</span>
+<span class="ln decl" id="FRC.Causality.neg_sq_is_square"><a class="lno" href="#FRC.Causality.neg_sq_is_square">22</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcLedger/Causality.lean#L22" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small t2" src="lean-t2.png" alt="" title="tier 2, classical: Classical.choice, Quot.sound, propext">theorem neg_sq_is_square [Fintype F] (hF : Fintype.card F % 4 ≠ 3) (c : F) : IsSquare (-(c ^ 2)) := by</span>
+<span class="ln" id="L23"><a class="lno" href="#L23">23</a>  obtain ⟨i, hi⟩ := FiniteField.isSquare_neg_one_iff.mpr hF</span>
+<span class="ln" id="L24"><a class="lno" href="#L24">24</a>  exact ⟨i * c, by rw [show -(c ^ 2) = (-1) * c ^ 2 by ring, hi]; ring⟩</span>
+<span class="ln" id="L25"><a class="lno" href="#L25">25</a></span>
+<span class="ln" id="L26"><a class="lno" href="#L26">26</a>/-- 3:B3 (Lemma absorption, repaired): coefficients `a_i = w_i² a_0` are absorbed by `x_i ↦ w_i x_i`. -/</span>
+<span class="ln decl" id="FRC.Causality.absorb"><a class="lno" href="#FRC.Causality.absorb">27</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcLedger/Causality.lean#L27" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small t1" src="lean-t1.png" alt="" title="tier 1: Quot.sound, propext">theorem absorb (a0 a1 a2 a3 w1 w2 w3 x0 x1 x2 x3 : F) (h1 : w1 ^ 2 * a0 = a1) (h2 : w2 ^ 2 * a0 = a2)</span>
+<span class="ln" id="L28"><a class="lno" href="#L28">28</a>    (h3 : w3 ^ 2 * a0 = a3) :</span>
+<span class="ln" id="L29"><a class="lno" href="#L29">29</a>    a0 * x0 ^ 2 + a1 * x1 ^ 2 + a2 * x2 ^ 2 + a3 * x3 ^ 2 =</span>
+<span class="ln" id="L30"><a class="lno" href="#L30">30</a>    a0 * (x0 ^ 2 + (w1 * x1) ^ 2 + (w2 * x2) ^ 2 + (w3 * x3) ^ 2) := by</span>
+<span class="ln" id="L31"><a class="lno" href="#L31">31</a>  rw [← h1, ← h2, ← h3]; ring</span>
+<span class="ln" id="L32"><a class="lno" href="#L32">32</a></span>
+<span class="ln" id="L33"><a class="lno" href="#L33">33</a>/-- 3:B5: `x² − ν t²` is anisotropic for a nonsquare `ν`. -/</span>
+<span class="ln decl" id="FRC.Causality.aniso_tx"><a class="lno" href="#FRC.Causality.aniso_tx">34</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcLedger/Causality.lean#L34" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small t2" src="lean-t2.png" alt="" title="tier 2, classical: Classical.choice, Quot.sound, propext">theorem aniso_tx (ν t x : F) (hν : ¬IsSquare ν) (e : x ^ 2 = ν * t ^ 2) : t = 0 ∧ x = 0 := by</span>
+<span class="ln" id="L35"><a class="lno" href="#L35">35</a>  by_cases ht : t = 0</span>
+<span class="ln" id="L36"><a class="lno" href="#L36">36</a>  · subst ht; simp at e; exact ⟨rfl, e⟩</span>
+<span class="ln" id="L37"><a class="lno" href="#L37">37</a>  · exact absurd ⟨x / t, by field_simp; linear_combination (-1 : F) * e⟩ hν</span>
+<span class="ln" id="L38"><a class="lno" href="#L38">38</a></span>
+<span class="ln" id="L39"><a class="lno" href="#L39">39</a>/-- 3:C2 (the finite Lorentz boost): `Λ(γ, b) = !![γ, b; νb, γ]` with `γ² − νb² = 1` preserves `x² − ν t²`. -/</span>
+<span class="ln decl" id="FRC.Causality.boost_preserves"><a class="lno" href="#FRC.Causality.boost_preserves">40</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcLedger/Causality.lean#L40" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small t1" src="lean-t1.png" alt="" title="tier 1: Quot.sound, propext">theorem boost_preserves (ν γ b t x : F) (h : γ ^ 2 - ν * b ^ 2 = 1) :</span>
+<span class="ln" id="L41"><a class="lno" href="#L41">41</a>    (γ * x + ν * b * t) ^ 2 - ν * (γ * t + b * x) ^ 2 = x ^ 2 - ν * t ^ 2 := by</span>
+<span class="ln" id="L42"><a class="lno" href="#L42">42</a>  linear_combination (x ^ 2 - ν * t ^ 2) * h</span>
+<span class="ln" id="L43"><a class="lno" href="#L43">43</a></span>
+<span class="ln" id="L44"><a class="lno" href="#L44">44</a>/-- 3:C2: the boosts compose as the norm-one elements of `F(√ν)` multiply. -/</span>
+<span class="ln decl" id="FRC.Causality.boost_comp"><a class="lno" href="#FRC.Causality.boost_comp">45</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcLedger/Causality.lean#L45" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small t2" src="lean-t2.png" alt="" title="tier 2, classical: Classical.choice, Quot.sound, propext">theorem boost_comp (ν γ1 b1 γ2 b2 : F) :</span>
+<span class="ln" id="L46"><a class="lno" href="#L46">46</a>    !![γ1, b1; ν * b1, γ1] * !![γ2, b2; ν * b2, γ2] =</span>
+<span class="ln" id="L47"><a class="lno" href="#L47">47</a>    !![γ1 * γ2 + ν * (b1 * b2), γ1 * b2 + b1 * γ2; ν * (γ1 * b2 + b1 * γ2), γ1 * γ2 + ν * (b1 * b2)] := by</span>
+<span class="ln" id="L48"><a class="lno" href="#L48">48</a>  ext i j; fin_cases i &lt;;&gt; fin_cases j &lt;;&gt; simp [Matrix.mul_apply, Fin.sum_univ_two] &lt;;&gt; ring</span>
+<span class="ln" id="L49"><a class="lno" href="#L49">49</a></span>
+<span class="ln" id="L50"><a class="lno" href="#L50">50</a>/-- 3:C2: `Λ(γ, b)` is orthogonal for the Gram matrix `diag(−ν, 1)` of `Q_ν`: `Λᵀ G Λ = G`. -/</span>
+<span class="ln decl" id="FRC.Causality.boost_orthogonal"><a class="lno" href="#FRC.Causality.boost_orthogonal">51</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcLedger/Causality.lean#L51" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small t2" src="lean-t2.png" alt="" title="tier 2, classical: Classical.choice, Quot.sound, propext">theorem boost_orthogonal (ν γ b : F) (h : γ ^ 2 - ν * b ^ 2 = 1) :</span>
+<span class="ln" id="L52"><a class="lno" href="#L52">52</a>    (!![γ, b; ν * b, γ]).transpose * !![-ν, 0; 0, 1] * !![γ, b; ν * b, γ] = !![-ν, 0; 0, 1] := by</span>
+<span class="ln" id="L53"><a class="lno" href="#L53">53</a>  ext i j; fin_cases i &lt;;&gt; fin_cases j &lt;;&gt; simp [Matrix.mul_apply, Fin.sum_univ_two] &lt;;&gt;</span>
+<span class="ln" id="L54"><a class="lno" href="#L54">54</a>    first | ring1 | linear_combination (-ν) * h | linear_combination h</span>
+<span class="ln" id="L55"><a class="lno" href="#L55">55</a></span>
+<span class="ln" id="L56"><a class="lno" href="#L56">56</a>/-- 3:C3: `γ ≠ 0` on every boost of the Lorentzian plane (`γ = 0` would make `ν = (i/b)²`). -/</span>
+<span class="ln decl" id="FRC.Causality.gamma_ne_zero"><a class="lno" href="#FRC.Causality.gamma_ne_zero">57</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcLedger/Causality.lean#L57" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small t2" src="lean-t2.png" alt="" title="tier 2, classical: Classical.choice, Quot.sound, propext">theorem gamma_ne_zero [Fintype F] (hF : Fintype.card F % 4 ≠ 3) (ν γ b : F) (hν : ¬IsSquare ν)</span>
+<span class="ln" id="L58"><a class="lno" href="#L58">58</a>    (h : γ ^ 2 - ν * b ^ 2 = 1) : γ ≠ 0 := by</span>
+<span class="ln" id="L59"><a class="lno" href="#L59">59</a>  rintro rfl</span>
+<span class="ln" id="L60"><a class="lno" href="#L60">60</a>  obtain ⟨i, hi⟩ := FiniteField.isSquare_neg_one_iff.mpr hF</span>
+<span class="ln" id="L61"><a class="lno" href="#L61">61</a>  have hb : b ≠ 0 := by rintro rfl; simp at h</span>
+<span class="ln" id="L62"><a class="lno" href="#L62">62</a>  have hνb : ν * b ^ 2 = -1 := by linear_combination -h</span>
+<span class="ln" id="L63"><a class="lno" href="#L63">63</a>  exact hν ⟨i / b, by field_simp; linear_combination hνb + hi⟩</span>
+<span class="ln" id="L64"><a class="lno" href="#L64">64</a></span>
+<span class="ln" id="L65"><a class="lno" href="#L65">65</a>/-- 3:C3: the velocity `v = −νb/γ` satisfies `γ² (ν − v²) = ν` — `γ = 1/√(1 − β²)` with `β² = v²/ν`. -/</span>
+<span class="ln decl" id="FRC.Causality.gamma_velocity"><a class="lno" href="#FRC.Causality.gamma_velocity">66</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcLedger/Causality.lean#L66" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small t1" src="lean-t1.png" alt="" title="tier 1: Quot.sound, propext">theorem gamma_velocity (ν γ b v : F) (h : γ ^ 2 - ν * b ^ 2 = 1) (hv : v * γ = -(ν * b)) :</span>
+<span class="ln" id="L67"><a class="lno" href="#L67">67</a>    γ ^ 2 * (ν - v ^ 2) = ν := by</span>
+<span class="ln" id="L68"><a class="lno" href="#L68">68</a>  linear_combination ν * h - (v * γ - ν * b) * hv</span>
+<span class="ln" id="L69"><a class="lno" href="#L69">69</a></span>
+<span class="ln" id="L70"><a class="lno" href="#L70">70</a>/-- 3:C3 (Einstein&#x27;s addition law, exact): `v₁₂ (ν + v₁v₂) = ν (v₁ + v₂)`. -/</span>
+<span class="ln decl" id="FRC.Causality.velocity_addition"><a class="lno" href="#FRC.Causality.velocity_addition">71</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcLedger/Causality.lean#L71" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small t2" src="lean-t2.png" alt="" title="tier 2, classical: Classical.choice, Quot.sound, propext">theorem velocity_addition (ν γ1 b1 γ2 b2 v1 v2 v12 : F) (hγ : γ1 * γ2 ≠ 0)</span>
+<span class="ln" id="L72"><a class="lno" href="#L72">72</a>    (hv1 : v1 * γ1 = -(ν * b1)) (hv2 : v2 * γ2 = -(ν * b2))</span>
+<span class="ln" id="L73"><a class="lno" href="#L73">73</a>    (hv12 : v12 * (γ1 * γ2 + ν * (b1 * b2)) = -(ν * (γ1 * b2 + b1 * γ2))) :</span>
+<span class="ln" id="L74"><a class="lno" href="#L74">74</a>    v12 * (ν + v1 * v2) = ν * (v1 + v2) := by</span>
+<span class="ln" id="L75"><a class="lno" href="#L75">75</a>  have : γ1 * γ2 * (v12 * (ν + v1 * v2) - ν * (v1 + v2)) = 0 := by</span>
+<span class="ln" id="L76"><a class="lno" href="#L76">76</a>    linear_combination ν * hv12 + (-v12 * ν * b2 - ν * γ2 + v12 * (v2 * γ2 + ν * b2)) * hv1 +</span>
+<span class="ln" id="L77"><a class="lno" href="#L77">77</a>      (-v12 * ν * b1 - ν * γ1) * hv2</span>
+<span class="ln" id="L78"><a class="lno" href="#L78">78</a>  rcases mul_eq_zero.mp this with h | h</span>
+<span class="ln" id="L79"><a class="lno" href="#L79">79</a>  · exact absurd h hγ</span>
+<span class="ln" id="L80"><a class="lno" href="#L80">80</a>  · exact sub_eq_zero.mp h</span>
+<span class="ln" id="L81"><a class="lno" href="#L81">81</a></span>
+<span class="ln" id="L82"><a class="lno" href="#L82">82</a>end FRC.Causality</span>
+<span class="ln" id="L83"><a class="lno" href="#L83">83</a></span>
+</pre></main>
+</div>
+</body>
+</html>

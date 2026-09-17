@@ -99,7 +99,20 @@ const PUBLICATIONS = [
       "venue": "Entropy"
     },
     "doi": "https://doi.org/10.3390/e27111098",
-    "doiLabel": "e27111098"
+    "doiLabel": "e27111098",
+    "ledger": "3-causality/3-causality-ledger.html",
+    "links": [
+      {
+        "href": "3-causality/3-causality-ledger.html",
+        "label": "ledger",
+        "title": "the paper's predicate ledger"
+      },
+      {
+        "href": "https://colab.research.google.com/github/gamayos/finite-ring-space/blob/main/src/3-causality/3-causality-main.ipynb",
+        "label": "notebook",
+        "title": "the validation notebook on Google Colab"
+      }
+    ]
   },
   {
     "key": "4-rep",

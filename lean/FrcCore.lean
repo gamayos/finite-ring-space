@@ -7,6 +7,7 @@ import FrcCore.Sum
 import FrcCore.Algebra
 import FrcCore.Poly
 import FrcCore.Quaternion
+import FrcCore.Causality
 import FrcCore.Geometry
 import FrcCore.Complex
 import FrcCore.Instances

@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-HNE3RMJ5L1"></script>
+<script> window.dataLayer = window.dataLayer || []; function gtag(){dataLayer.push(arguments);} gtag('js', new Date()); gtag('config', 'G-HNE3RMJ5L1'); </script>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Causality.lean — FrcCore</title>
+<meta name="description" content="The Lean module FrcCore/Causality of the FRC predicate ledgers, rendered with an anchor per declaration">
+<meta name="author" content="Yosef Akhtman">
+<link rel="icon" href="../../frc-logo-fav.png">
+<link rel="stylesheet" href="../../style.css">
+
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <h1>Causality.lean — FrcCore</h1>
+    
+    <nav><a href="../../index.html">Home</a><a href="../../publications.html">Publications</a><a href="../../00-ledger.html">Ledger</a><a href="../../predictions.html">Predictions</a><a href="../../explicability.html">Explicability</a></nav>
+  </header>
+<main id="ledger-main"><section class="prose"><p>The core module <code>lean/FrcCore/Causality.lean</code> — the substrate from first principles, no Mathlib, no axioms (the modules in order: <a href="Nat.html">Nat</a>, <a href="Pigeonhole.html">Pigeonhole</a>, <a href="Shell.html">Shell</a>, <a href="Frame.html">Frame</a>, <a href="Orbit.html">Orbit</a>, <a href="Sum.html">Sum</a>, <a href="Algebra.html">Algebra</a>, <a href="Poly.html">Poly</a>, <a href="Quaternion.html">Quaternion</a>, <a href="Causality.html">Causality</a>, <a href="Geometry.html">Geometry</a>, <a href="Complex.html">Complex</a>, <a href="Instances.html">Instances</a>): 24 theorems (7 definitions): 24 with no axioms (green), 0 at tier 1 (teal: <code>propext</code>, <code>Quot.sound</code>), 0 at tier 2 (amber: <code>Classical.choice</code>), 0 red; the plain glyph marks a definition. Each declaration is anchored; the ledger rows cite them by name. <a href="https://live.lean-lang.org/#project=lean-v4.34.0&url=https://raw.githubusercontent.com/gamayos/finite-ring-space/main/lean/web/FrcCore.lean" target="_blank" rel="noopener">▶ open in the Lean web editor</a> · <a href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcCore/Causality.lean" target="_blank" rel="noopener">on GitHub</a> · <a href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcCore/axioms.log" target="_blank" rel="noopener">axioms.log</a> · <a href="https://github.com/gamayos/finite-ring-space/actions/workflows/lean.yml" target="_blank" rel="noopener">CI</a>.</p></section><pre class="lean"><span class="ln" id="L1"><a class="lno" href="#L1">1</a>import FrcCore.Orbit</span>
+<span class="ln" id="L2"><a class="lno" href="#L2">2</a></span>
+<span class="ln" id="L3"><a class="lno" href="#L3">3</a>/-!</span>
+<span class="ln" id="L4"><a class="lno" href="#L4">4</a># FrcCore.Causality — the Euclidean–Lorentzian dichotomy on the shell (3-causality)</span>
+<span class="ln" id="L5"><a class="lno" href="#L5">5</a></span>
+<span class="ln" id="L6"><a class="lno" href="#L6">6</a>The square classes of the shell, the diagonal form `Q_ν = −ν t² + x² + y² + z²`, and the boosts of its `(t, x)`</span>
+<span class="ln" id="L7"><a class="lno" href="#L7">7</a>plane, from first principles.  3:B2: a nonsquare `ν` has no root, and with `c ≠ 0` the coefficient `−c²` is a square</span>
+<span class="ln" id="L8"><a class="lno" href="#L8">8</a>(`−1 = i²`).  3:B3: the absorption of a common square class by rescaling.  3:B5: `x² − ν t²` is anisotropic for a</span>
+<span class="ln" id="L9"><a class="lno" href="#L9">9</a>nonsquare `ν` (the Witt kernel of the Lorentzian form), while `y² + z²` and `x² − w² t²` are hyperbolic planes.</span>
+<span class="ln" id="L10"><a class="lno" href="#L10">10</a>3:C2, C3: the boost `Λ(γ, b) = [[γ, b], [νb, γ]]` with `γ² − νb² = 1` preserves `x² − ν t²` (the norm of `K = F_p(√ν)`</span>
+<span class="ln" id="L11"><a class="lno" href="#L11">11</a>is multiplicative), boosts compose as norm-one elements multiply, `γ` is never zero, and the velocities</span>
+<span class="ln" id="L12"><a class="lno" href="#L12">12</a>`v = −νb/γ` obey the Einstein addition law exactly.  The counts — the null cone `p³ − p² + p` on the Lorentzian form,</span>
+<span class="ln" id="L13"><a class="lno" href="#L13">13</a>`p³ + p² − p` on the Euclidean one, `p + 1` boosts — are decided by the kernel on `𝔽₅`, `𝔽₁₃`, `𝔽₁₇`.  No axioms.</span>
+<span class="ln" id="L14"><a class="lno" href="#L14">14</a>-/</span>
+<span class="ln" id="L15"><a class="lno" href="#L15">15</a></span>
+<span class="ln" id="L16"><a class="lno" href="#L16">16</a>namespace FRC</span>
+<span class="ln" id="L17"><a class="lno" href="#L17">17</a>namespace Shell</span>
+<span class="ln" id="L18"><a class="lno" href="#L18">18</a>namespace Frame</span>
+<span class="ln" id="L19"><a class="lno" href="#L19">19</a></span>
+<span class="ln" id="L20"><a class="lno" href="#L20">20</a>variable {p : Nat} [Pos p] {κ : Nat} {g : Shell p}</span>
+<span class="ln" id="L21"><a class="lno" href="#L21">21</a></span>
+<span class="ln" id="L22"><a class="lno" href="#L22">22</a>/-- `x` is a square: `x = y·y` for some residue `y`. -/</span>
+<span class="ln decl" id="FRC.Shell.Frame.IsSquare"><a class="lno" href="#FRC.Shell.Frame.IsSquare">23</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcCore/Causality.lean#L23" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small" src="../lean.png" alt="" title="a definition: no proof, no axioms">def IsSquare (x : Shell p) : Prop := ∃ y : Shell p, y * y = x</span>
+<span class="ln" id="L24"><a class="lno" href="#L24">24</a></span>
+<span class="ln" id="L25"><a class="lno" href="#L25">25</a>/-- 3:B2 (Thm. nonexistence, first clause) — `c² = ν` makes `ν` a square, so a nonsquare `ν` has no root `c`. -/</span>
+<span class="ln decl" id="FRC.Shell.Frame.no_causal_root"><a class="lno" href="#FRC.Shell.Frame.no_causal_root">26</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcCore/Causality.lean#L26" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small ok" src="../lean-ok.png" alt="" title="no axioms">theorem no_causal_root {ν : Shell p} (h : ¬IsSquare ν) (c : Shell p) : c * c ≠ ν := fun e =&gt; h ⟨c, e⟩</span>
+<span class="ln" id="L27"><a class="lno" href="#L27">27</a></span>
+<span class="ln decl" id="FRC.Shell.Frame.mul_mul_mul_comm"><a class="lno" href="#FRC.Shell.Frame.mul_mul_mul_comm">28</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcCore/Causality.lean#L28" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small ok" src="../lean-ok.png" alt="" title="no axioms">theorem mul_mul_mul_comm (a b c d : Shell p) : (a * b) * (c * d) = (a * c) * (b * d) := by</span>
+<span class="ln" id="L29"><a class="lno" href="#L29">29</a>  rw [mul_assoc, mul_left_comm b, ← mul_assoc]</span>
+<span class="ln" id="L30"><a class="lno" href="#L30">30</a></span>
+<span class="ln decl" id="FRC.Shell.Frame.sq_mul"><a class="lno" href="#FRC.Shell.Frame.sq_mul">31</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcCore/Causality.lean#L31" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small ok" src="../lean-ok.png" alt="" title="no axioms">theorem sq_mul (a b : Shell p) : (a * b) * (a * b) = (a * a) * (b * b) := mul_mul_mul_comm a b a b</span>
+<span class="ln" id="L32"><a class="lno" href="#L32">32</a></span>
+<span class="ln" id="L33"><a class="lno" href="#L33">33</a>/-- 3:B2 (Thm. nonexistence, the consequence) — `−c²` is a square on every shell: `−c² = (i·c)²` with `i² = −1`;</span>
+<span class="ln" id="L34"><a class="lno" href="#L34">34</a>so with `c ≠ 0` every coefficient of `−c² t² + x² + y² + z²` is a square and the form is Euclidean. -/</span>
+<span class="ln decl" id="FRC.Shell.Frame.neg_sq_is_square"><a class="lno" href="#FRC.Shell.Frame.neg_sq_is_square">35</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcCore/Causality.lean#L35" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small ok" src="../lean-ok.png" alt="" title="no axioms">theorem neg_sq_is_square (F : Frame p κ g) (c : Shell p) : IsSquare (-(c * c)) :=</span>
+<span class="ln" id="L36"><a class="lno" href="#L36">36</a>  ⟨quarterTurn g κ * c, by rw [sq_mul, F.quarter_turn_sq, neg_one_mul]⟩</span>
+<span class="ln" id="L37"><a class="lno" href="#L37">37</a></span>
+<span class="ln" id="L38"><a class="lno" href="#L38">38</a>/-- 3:B2 — `−1` itself is a square (`i²`): the paper&#x27;s hypothesis `p ≡ 1 (mod 4)` in the shell&#x27;s own terms. -/</span>
+<span class="ln decl" id="FRC.Shell.Frame.neg_one_is_square"><a class="lno" href="#FRC.Shell.Frame.neg_one_is_square">39</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcCore/Causality.lean#L39" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small ok" src="../lean-ok.png" alt="" title="no axioms">theorem neg_one_is_square (F : Frame p κ g) : IsSquare (-1 : Shell p) := ⟨quarterTurn g κ, F.quarter_turn_sq⟩</span>
+<span class="ln" id="L40"><a class="lno" href="#L40">40</a></span>
+<span class="ln" id="L41"><a class="lno" href="#L41">41</a>/-- 3:B3 (Lemma absorption, repaired) — if `a_i = w_i² a_0` for `i = 1, 2, 3` then</span>
+<span class="ln" id="L42"><a class="lno" href="#L42">42</a>`a_0 x_0² + a_1 x_1² + a_2 x_2² + a_3 x_3² = a_0 (x_0² + (w_1 x_1)² + (w_2 x_2)² + (w_3 x_3)²)`: a common square</span>
+<span class="ln" id="L43"><a class="lno" href="#L43">43</a>class is absorbed by the rescaling `x_i ↦ w_i x_i`, with no square root of `a_0` itself required. -/</span>
+<span class="ln decl" id="FRC.Shell.Frame.absorb"><a class="lno" href="#FRC.Shell.Frame.absorb">44</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcCore/Causality.lean#L44" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small ok" src="../lean-ok.png" alt="" title="no axioms">theorem absorb (a0 a1 a2 a3 w1 w2 w3 x0 x1 x2 x3 : Shell p) (h1 : w1 * w1 * a0 = a1) (h2 : w2 * w2 * a0 = a2)</span>
+<span class="ln" id="L45"><a class="lno" href="#L45">45</a>    (h3 : w3 * w3 * a0 = a3) :</span>
+<span class="ln" id="L46"><a class="lno" href="#L46">46</a>    a0 * (x0 * x0) + a1 * (x1 * x1) + a2 * (x2 * x2) + a3 * (x3 * x3) =</span>
+<span class="ln" id="L47"><a class="lno" href="#L47">47</a>    a0 * (x0 * x0 + (w1 * x1) * (w1 * x1) + (w2 * x2) * (w2 * x2) + (w3 * x3) * (w3 * x3)) := by</span>
+<span class="ln" id="L48"><a class="lno" href="#L48">48</a>  rw [← h1, ← h2, ← h3, sq_mul w1 x1, sq_mul w2 x2, sq_mul w3 x3, left_distrib, left_distrib, left_distrib,</span>
+<span class="ln" id="L49"><a class="lno" href="#L49">49</a>    mul_left_comm a0 (w1 * w1), mul_left_comm a0 (w2 * w2), mul_left_comm a0 (w3 * w3),</span>
+<span class="ln" id="L50"><a class="lno" href="#L50">50</a>    mul_assoc (w1 * w1), mul_assoc (w2 * w2), mul_assoc (w3 * w3)]</span>
+<span class="ln" id="L51"><a class="lno" href="#L51">51</a></span>
+<span class="ln" id="L52"><a class="lno" href="#L52">52</a>/-! ### The binary form `x² − ν t²`, the norm of `K = F_p(√ν)` -/</span>
+<span class="ln" id="L53"><a class="lno" href="#L53">53</a></span>
+<span class="ln" id="L54"><a class="lno" href="#L54">54</a>/-- The `(t, x)`-plane form `Q₂(t, x) = x² − ν t²`, the norm `N(x + t√ν)`. -/</span>
+<span class="ln decl" id="FRC.Shell.Frame.Q2"><a class="lno" href="#FRC.Shell.Frame.Q2">55</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcCore/Causality.lean#L55" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small" src="../lean.png" alt="" title="a definition: no proof, no axioms">def Q2 (ν t x : Shell p) : Shell p := x * x + -(ν * (t * t))</span>
+<span class="ln" id="L56"><a class="lno" href="#L56">56</a></span>
+<span class="ln" id="L57"><a class="lno" href="#L57">57</a>/-- 3:B5 — the plane `x² − ν t²` is anisotropic when `ν` is a nonsquare: `x² = ν t²` forces `t = x = 0`</span>
+<span class="ln" id="L58"><a class="lno" href="#L58">58</a>(else `ν = (x/t)²`).  This is the Witt kernel of the Lorentzian form, its index one. -/</span>
+<span class="ln decl" id="FRC.Shell.Frame.aniso_tx"><a class="lno" href="#FRC.Shell.Frame.aniso_tx">59</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcCore/Causality.lean#L59" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small ok" src="../lean-ok.png" alt="" title="no axioms">theorem aniso_tx (F : Frame p κ g) {ν : Shell p} (h : ¬IsSquare ν) {t x : Shell p} (e : x * x = ν * (t * t)) :</span>
+<span class="ln" id="L60"><a class="lno" href="#L60">60</a>    t = 0 ∧ x = 0 := by</span>
+<span class="ln" id="L61"><a class="lno" href="#L61">61</a>  match Shell.instDecidableEq t 0 with</span>
+<span class="ln" id="L62"><a class="lno" href="#L62">62</a>  | .isTrue ht =&gt;</span>
+<span class="ln" id="L63"><a class="lno" href="#L63">63</a>    refine ⟨ht, ?_⟩</span>
+<span class="ln" id="L64"><a class="lno" href="#L64">64</a>    rw [ht, mul_zero, mul_zero] at e</span>
+<span class="ln" id="L65"><a class="lno" href="#L65">65</a>    match F.mul_eq_zero e with</span>
+<span class="ln" id="L66"><a class="lno" href="#L66">66</a>    | .inl hx =&gt; exact hx</span>
+<span class="ln" id="L67"><a class="lno" href="#L67">67</a>    | .inr hx =&gt; exact hx</span>
+<span class="ln" id="L68"><a class="lno" href="#L68">68</a>  | .isFalse ht =&gt;</span>
+<span class="ln" id="L69"><a class="lno" href="#L69">69</a>    match F.exists_inv ht with</span>
+<span class="ln" id="L70"><a class="lno" href="#L70">70</a>    | ⟨s, hs⟩ =&gt;</span>
+<span class="ln" id="L71"><a class="lno" href="#L71">71</a>      exact absurd ⟨x * s, by</span>
+<span class="ln" id="L72"><a class="lno" href="#L72">72</a>        calc (x * s) * (x * s) = (x * x) * (s * s) := sq_mul x s</span>
+<span class="ln" id="L73"><a class="lno" href="#L73">73</a>          _ = ν * ((t * t) * (s * s)) := by rw [e, mul_assoc]</span>
+<span class="ln" id="L74"><a class="lno" href="#L74">74</a>          _ = ν * ((t * s) * (t * s)) := by rw [sq_mul t s]</span>
+<span class="ln" id="L75"><a class="lno" href="#L75">75</a>          _ = ν := by rw [hs, one_mul, mul_one]⟩ h</span>
+<span class="ln" id="L76"><a class="lno" href="#L76">76</a></span>
+<span class="ln" id="L77"><a class="lno" href="#L77">77</a>/-- 3:B5 — the `(y, z)`-plane `y² + z²` is hyperbolic on every shell: `(1, i)` is null. -/</span>
+<span class="ln decl" id="FRC.Shell.Frame.null_yz"><a class="lno" href="#FRC.Shell.Frame.null_yz">78</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcCore/Causality.lean#L78" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small ok" src="../lean-ok.png" alt="" title="no axioms">theorem null_yz (F : Frame p κ g) : (1 : Shell p) * 1 + quarterTurn g κ * quarterTurn g κ = 0 := by</span>
+<span class="ln" id="L79"><a class="lno" href="#L79">79</a>  rw [F.quarter_turn_sq, one_mul, add_neg]</span>
+<span class="ln" id="L80"><a class="lno" href="#L80">80</a></span>
+<span class="ln" id="L81"><a class="lno" href="#L81">81</a>/-- 3:B5 — for a square `ν = w²` the `(t, x)`-plane is hyperbolic too: `(1, w)` is null; the form is then</span>
+<span class="ln" id="L82"><a class="lno" href="#L82">82</a>`H ⊥ H`, Witt index two — the Euclidean type. -/</span>
+<span class="ln decl" id="FRC.Shell.Frame.null_tx_of_square"><a class="lno" href="#FRC.Shell.Frame.null_tx_of_square">83</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcCore/Causality.lean#L83" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small ok" src="../lean-ok.png" alt="" title="no axioms">theorem null_tx_of_square (w : Shell p) : Q2 (w * w) 1 w = 0 := by</span>
+<span class="ln" id="L84"><a class="lno" href="#L84">84</a>  unfold Q2; rw [mul_one, mul_one, add_neg]</span>
+<span class="ln" id="L85"><a class="lno" href="#L85">85</a></span>
+<span class="ln" id="L86"><a class="lno" href="#L86">86</a>/-! ### The boosts -/</span>
+<span class="ln" id="L87"><a class="lno" href="#L87">87</a></span>
+<span class="ln decl" id="FRC.Shell.Frame.sq_add"><a class="lno" href="#FRC.Shell.Frame.sq_add">88</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcCore/Causality.lean#L88" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small ok" src="../lean-ok.png" alt="" title="no axioms">theorem sq_add (u v : Shell p) : (u + v) * (u + v) = u * u + (u * v + u * v) + v * v := by</span>
+<span class="ln" id="L89"><a class="lno" href="#L89">89</a>  rw [right_distrib, left_distrib, left_distrib, mul_comm v u, ← add_assoc, add_assoc (u * u)]</span>
+<span class="ln" id="L90"><a class="lno" href="#L90">90</a></span>
+<span class="ln decl" id="FRC.Shell.Frame.regroup"><a class="lno" href="#FRC.Shell.Frame.regroup">91</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcCore/Causality.lean#L91" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small ok" src="../lean-ok.png" alt="" title="no axioms">theorem regroup (P R S T X : Shell p) : P + (X + X) + R + (S + -(X + X) + T) = P + S + T + R := by</span>
+<span class="ln" id="L92"><a class="lno" href="#L92">92</a>  rw [add_add_add_comm, add_assoc P, add_left_comm (X + X), add_neg, add_zero, add_comm R T, ← add_assoc]</span>
+<span class="ln" id="L93"><a class="lno" href="#L93">93</a></span>
+<span class="ln" id="L94"><a class="lno" href="#L94">94</a>/-- The norm is multiplicative: `N((a + b√ν)(c + d√ν)) = N(a + b√ν) N(c + d√ν)`, i.e.</span>
+<span class="ln" id="L95"><a class="lno" href="#L95">95</a>`(ac + νbd)² − ν(ad + bc)² = (a² − νb²)(c² − νd²)` — the identity behind every boost. -/</span>
+<span class="ln decl" id="FRC.Shell.Frame.norm_mul"><a class="lno" href="#FRC.Shell.Frame.norm_mul">96</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcCore/Causality.lean#L96" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small ok" src="../lean-ok.png" alt="" title="no axioms">theorem norm_mul (ν a b c d : Shell p) :</span>
+<span class="ln" id="L97"><a class="lno" href="#L97">97</a>    Q2 ν (a * d + b * c) (a * c + ν * (b * d)) = (a * a + -(ν * (b * b))) * (c * c + -(ν * (d * d))) := by</span>
+<span class="ln" id="L98"><a class="lno" href="#L98">98</a>  unfold Q2</span>
+<span class="ln" id="L99"><a class="lno" href="#L99">99</a>  have cross : (a * c) * (b * d) = (a * d) * (b * c) := by</span>
+<span class="ln" id="L100"><a class="lno" href="#L100">100</a>    rw [mul_assoc, mul_left_comm c, ← mul_assoc, mul_assoc a d, mul_left_comm d, ← mul_assoc a b (d * c), mul_comm d c]</span>
+<span class="ln" id="L101"><a class="lno" href="#L101">101</a>  have e1 : (a * c + ν * (b * d)) * (a * c + ν * (b * d)) =</span>
+<span class="ln" id="L102"><a class="lno" href="#L102">102</a>      (a * c) * (a * c) + (ν * ((a * c) * (b * d)) + ν * ((a * c) * (b * d))) + (ν * ν) * ((b * d) * (b * d)) := by</span>
+<span class="ln" id="L103"><a class="lno" href="#L103">103</a>    rw [sq_add, mul_left_comm (a * c) ν (b * d), sq_mul ν (b * d)]</span>
+<span class="ln" id="L104"><a class="lno" href="#L104">104</a>  have e2 : -(ν * ((a * d + b * c) * (a * d + b * c))) =</span>
+<span class="ln" id="L105"><a class="lno" href="#L105">105</a>      -(ν * ((a * d) * (a * d))) + -(ν * ((a * d) * (b * c)) + ν * ((a * d) * (b * c))) + -(ν * ((b * c) * (b * c))) := by</span>
+<span class="ln" id="L106"><a class="lno" href="#L106">106</a>    rw [sq_add, left_distrib, left_distrib, left_distrib, neg_add_rev, neg_add_rev]</span>
+<span class="ln" id="L107"><a class="lno" href="#L107">107</a>  rw [e1, e2, cross, regroup]</span>
+<span class="ln" id="L108"><a class="lno" href="#L108">108</a>  rw [right_distrib, left_distrib, left_distrib, ← mul_neg, ← neg_mul, neg_mul_neg, ← add_assoc,</span>
+<span class="ln" id="L109"><a class="lno" href="#L109">109</a>    ← sq_mul a c, mul_left_comm (a * a) ν (d * d), ← sq_mul a d, mul_assoc ν (b * b) (c * c), ← sq_mul b c,</span>
+<span class="ln" id="L110"><a class="lno" href="#L110">110</a>    mul_assoc ν (b * b) (ν * (d * d)), mul_left_comm (b * b) ν (d * d), ← mul_assoc ν ν, ← sq_mul b d]</span>
+<span class="ln" id="L111"><a class="lno" href="#L111">111</a></span>
+<span class="ln" id="L112"><a class="lno" href="#L112">112</a>/-- The boost `Λ(γ, b)` of `(t, x)`: `t ↦ γ t + b x`, `x ↦ γ x + ν b t` (multiplication by `γ + b√ν` in `K`). -/</span>
+<span class="ln decl" id="FRC.Shell.Frame.boostT"><a class="lno" href="#FRC.Shell.Frame.boostT">113</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcCore/Causality.lean#L113" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small" src="../lean.png" alt="" title="a definition: no proof, no axioms">def boostT (ν γ b t x : Shell p) : Shell p := γ * t + b * x</span>
+<span class="ln decl" id="FRC.Shell.Frame.boostX"><a class="lno" href="#FRC.Shell.Frame.boostX">114</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcCore/Causality.lean#L114" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small" src="../lean.png" alt="" title="a definition: no proof, no axioms">def boostX (ν γ b t x : Shell p) : Shell p := γ * x + ν * (b * t)</span>
+<span class="ln" id="L115"><a class="lno" href="#L115">115</a></span>
+<span class="ln" id="L116"><a class="lno" href="#L116">116</a>/-- 3:C2 (the finite Lorentz boost) — with `γ² − νb² = 1`, `Λ(γ, b)` preserves `x² − ν t²` exactly, on every shell. -/</span>
+<span class="ln decl" id="FRC.Shell.Frame.boost_preserves"><a class="lno" href="#FRC.Shell.Frame.boost_preserves">117</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcCore/Causality.lean#L117" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small ok" src="../lean-ok.png" alt="" title="no axioms">theorem boost_preserves {ν γ b : Shell p} (h : γ * γ + -(ν * (b * b)) = 1) (t x : Shell p) :</span>
+<span class="ln" id="L118"><a class="lno" href="#L118">118</a>    Q2 ν (boostT ν γ b t x) (boostX ν γ b t x) = Q2 ν t x := by</span>
+<span class="ln" id="L119"><a class="lno" href="#L119">119</a>  unfold boostT boostX</span>
+<span class="ln" id="L120"><a class="lno" href="#L120">120</a>  have := norm_mul ν γ b x t</span>
+<span class="ln" id="L121"><a class="lno" href="#L121">121</a>  unfold Q2 at this ⊢</span>
+<span class="ln" id="L122"><a class="lno" href="#L122">122</a>  rw [this, h, one_mul]</span>
+<span class="ln" id="L123"><a class="lno" href="#L123">123</a></span>
+<span class="ln" id="L124"><a class="lno" href="#L124">124</a>/-- 3:C2 — boosts compose as their parameters multiply in `K`:</span>
+<span class="ln" id="L125"><a class="lno" href="#L125">125</a>`Λ(γ₁, b₁) Λ(γ₂, b₂) = Λ(γ₁γ₂ + νb₁b₂, γ₁b₂ + b₁γ₂)`, the `t`-row. -/</span>
+<span class="ln decl" id="FRC.Shell.Frame.boost_comp_t"><a class="lno" href="#FRC.Shell.Frame.boost_comp_t">126</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcCore/Causality.lean#L126" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small ok" src="../lean-ok.png" alt="" title="no axioms">theorem boost_comp_t (ν γ1 b1 γ2 b2 t x : Shell p) :</span>
+<span class="ln" id="L127"><a class="lno" href="#L127">127</a>    boostT ν γ1 b1 (boostT ν γ2 b2 t x) (boostX ν γ2 b2 t x) =</span>
+<span class="ln" id="L128"><a class="lno" href="#L128">128</a>    boostT ν (γ1 * γ2 + ν * (b1 * b2)) (γ1 * b2 + b1 * γ2) t x := by</span>
+<span class="ln" id="L129"><a class="lno" href="#L129">129</a>  unfold boostT boostX</span>
+<span class="ln" id="L130"><a class="lno" href="#L130">130</a>  rw [left_distrib, left_distrib, right_distrib, right_distrib, ← mul_assoc γ1 γ2 t, ← mul_assoc γ1 b2 x,</span>
+<span class="ln" id="L131"><a class="lno" href="#L131">131</a>    ← mul_assoc b1 γ2 x, mul_left_comm b1 ν (b2 * t), ← mul_assoc b1 b2 t, ← mul_assoc ν (b1 * b2) t,</span>
+<span class="ln" id="L132"><a class="lno" href="#L132">132</a>    add_comm (b1 * γ2 * x) (ν * (b1 * b2) * t), add_add_add_comm]</span>
+<span class="ln" id="L133"><a class="lno" href="#L133">133</a></span>
+<span class="ln" id="L134"><a class="lno" href="#L134">134</a>/-- 3:C2 — the composition, the `x`-row. -/</span>
+<span class="ln decl" id="FRC.Shell.Frame.boost_comp_x"><a class="lno" href="#FRC.Shell.Frame.boost_comp_x">135</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcCore/Causality.lean#L135" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small ok" src="../lean-ok.png" alt="" title="no axioms">theorem boost_comp_x (ν γ1 b1 γ2 b2 t x : Shell p) :</span>
+<span class="ln" id="L136"><a class="lno" href="#L136">136</a>    boostX ν γ1 b1 (boostT ν γ2 b2 t x) (boostX ν γ2 b2 t x) =</span>
+<span class="ln" id="L137"><a class="lno" href="#L137">137</a>    boostX ν (γ1 * γ2 + ν * (b1 * b2)) (γ1 * b2 + b1 * γ2) t x := by</span>
+<span class="ln" id="L138"><a class="lno" href="#L138">138</a>  unfold boostT boostX</span>
+<span class="ln" id="L139"><a class="lno" href="#L139">139</a>  rw [left_distrib, left_distrib, left_distrib, right_distrib, right_distrib, left_distrib,</span>
+<span class="ln" id="L140"><a class="lno" href="#L140">140</a>    ← mul_assoc γ1 γ2 x, mul_left_comm γ1 ν (b2 * t), ← mul_assoc γ1 b2 t, ← mul_assoc b1 γ2 t,</span>
+<span class="ln" id="L141"><a class="lno" href="#L141">141</a>    ← mul_assoc b1 b2 x, ← mul_assoc ν (b1 * b2) x,</span>
+<span class="ln" id="L142"><a class="lno" href="#L142">142</a>    add_comm (ν * (b1 * γ2 * t)) (ν * (b1 * b2) * x), add_add_add_comm]</span>
+<span class="ln" id="L143"><a class="lno" href="#L143">143</a></span>
+<span class="ln" id="L144"><a class="lno" href="#L144">144</a>/-- 3:C2 — the norm-one elements form a group: `N(z₁z₂) = N(z₁)N(z₂) = 1`. -/</span>
+<span class="ln decl" id="FRC.Shell.Frame.norm_one_mul"><a class="lno" href="#FRC.Shell.Frame.norm_one_mul">145</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcCore/Causality.lean#L145" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small ok" src="../lean-ok.png" alt="" title="no axioms">theorem norm_one_mul {ν γ1 b1 γ2 b2 : Shell p} (h1 : γ1 * γ1 + -(ν * (b1 * b1)) = 1)</span>
+<span class="ln" id="L146"><a class="lno" href="#L146">146</a>    (h2 : γ2 * γ2 + -(ν * (b2 * b2)) = 1) :</span>
+<span class="ln" id="L147"><a class="lno" href="#L147">147</a>    (γ1 * γ2 + ν * (b1 * b2)) * (γ1 * γ2 + ν * (b1 * b2)) +</span>
+<span class="ln" id="L148"><a class="lno" href="#L148">148</a>      -(ν * ((γ1 * b2 + b1 * γ2) * (γ1 * b2 + b1 * γ2))) = 1 := by</span>
+<span class="ln" id="L149"><a class="lno" href="#L149">149</a>  have := norm_mul ν γ1 b1 γ2 b2</span>
+<span class="ln" id="L150"><a class="lno" href="#L150">150</a>  unfold Q2 at this</span>
+<span class="ln" id="L151"><a class="lno" href="#L151">151</a>  rw [this, h1, h2, one_mul]</span>
+<span class="ln" id="L152"><a class="lno" href="#L152">152</a></span>
+<span class="ln" id="L153"><a class="lno" href="#L153">153</a>/-- 3:C3 — `γ ≠ 0` on every boost of the Lorentzian plane: `γ = 0` would give `ν b² = −1`, i.e.</span>
+<span class="ln" id="L154"><a class="lno" href="#L154">154</a>`ν = (i/b)²`, a square. -/</span>
+<span class="ln decl" id="FRC.Shell.Frame.gamma_ne_zero"><a class="lno" href="#FRC.Shell.Frame.gamma_ne_zero">155</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcCore/Causality.lean#L155" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small ok" src="../lean-ok.png" alt="" title="no axioms">theorem gamma_ne_zero (F : Frame p κ g) {ν γ b : Shell p} (hν : ¬IsSquare ν) (h : γ * γ + -(ν * (b * b)) = 1) :</span>
+<span class="ln" id="L156"><a class="lno" href="#L156">156</a>    γ ≠ 0 := fun hγ =&gt; by</span>
+<span class="ln" id="L157"><a class="lno" href="#L157">157</a>  rw [hγ, mul_zero, zero_add] at h</span>
+<span class="ln" id="L158"><a class="lno" href="#L158">158</a>  have hb : b ≠ 0 := fun hb =&gt; by</span>
+<span class="ln" id="L159"><a class="lno" href="#L159">159</a>    rw [hb, mul_zero, mul_zero, neg_zero] at h</span>
+<span class="ln" id="L160"><a class="lno" href="#L160">160</a>    exact F.one_ne_zero h.symm</span>
+<span class="ln" id="L161"><a class="lno" href="#L161">161</a>  have hνb : ν * (b * b) = -1 := by rw [← neg_neg (ν * (b * b)), h]</span>
+<span class="ln" id="L162"><a class="lno" href="#L162">162</a>  match F.exists_inv hb with</span>
+<span class="ln" id="L163"><a class="lno" href="#L163">163</a>  | ⟨s, hs⟩ =&gt;</span>
+<span class="ln" id="L164"><a class="lno" href="#L164">164</a>    exact hν ⟨quarterTurn g κ * s, by</span>
+<span class="ln" id="L165"><a class="lno" href="#L165">165</a>      calc quarterTurn g κ * s * (quarterTurn g κ * s) = (quarterTurn g κ * quarterTurn g κ) * (s * s) := sq_mul _ _</span>
+<span class="ln" id="L166"><a class="lno" href="#L166">166</a>        _ = -1 * (s * s) := by rw [F.quarter_turn_sq]</span>
+<span class="ln" id="L167"><a class="lno" href="#L167">167</a>        _ = (ν * (b * b)) * (s * s) := by rw [hνb]</span>
+<span class="ln" id="L168"><a class="lno" href="#L168">168</a>        _ = ν * ((b * s) * (b * s)) := by rw [mul_assoc, sq_mul b s]</span>
+<span class="ln" id="L169"><a class="lno" href="#L169">169</a>        _ = ν := by rw [hs, one_mul, mul_one]⟩</span>
+<span class="ln" id="L170"><a class="lno" href="#L170">170</a></span>
+<span class="ln" id="L171"><a class="lno" href="#L171">171</a>/-- 3:C3 — the velocity of the boost, `v = −νb/γ` (`vγ = −νb`), satisfies `γ² (ν − v²) = ν`: the finite form of</span>
+<span class="ln" id="L172"><a class="lno" href="#L172">172</a>`γ = 1/√(1 − β²)` with `β² = v²/ν`. -/</span>
+<span class="ln decl" id="FRC.Shell.Frame.gamma_velocity"><a class="lno" href="#FRC.Shell.Frame.gamma_velocity">173</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcCore/Causality.lean#L173" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small ok" src="../lean-ok.png" alt="" title="no axioms">theorem gamma_velocity {ν γ b v : Shell p} (hz : γ * γ + -(ν * (b * b)) = 1) (hv : v * γ = -(ν * b)) :</span>
+<span class="ln" id="L174"><a class="lno" href="#L174">174</a>    γ * γ * (ν + -(v * v)) = ν := by</span>
+<span class="ln" id="L175"><a class="lno" href="#L175">175</a>  calc γ * γ * (ν + -(v * v)) = γ * γ * ν + -((v * γ) * (v * γ)) := by</span>
+<span class="ln" id="L176"><a class="lno" href="#L176">176</a>        rw [left_distrib, ← mul_neg, sq_mul v γ, mul_comm (v * v)]</span>
+<span class="ln" id="L177"><a class="lno" href="#L177">177</a>    _ = ν * (γ * γ) + -(ν * (ν * (b * b))) := by</span>
+<span class="ln" id="L178"><a class="lno" href="#L178">178</a>        rw [hv, neg_mul_neg, sq_mul ν b, mul_assoc ν ν (b * b), mul_comm (γ * γ) ν]</span>
+<span class="ln" id="L179"><a class="lno" href="#L179">179</a>    _ = ν * (γ * γ + -(ν * (b * b))) := by rw [left_distrib, ← mul_neg]</span>
+<span class="ln" id="L180"><a class="lno" href="#L180">180</a>    _ = ν := by rw [hz, mul_one]</span>
+<span class="ln" id="L181"><a class="lno" href="#L181">181</a></span>
+<span class="ln" id="L182"><a class="lno" href="#L182">182</a>/-- 3:C3 (the velocity addition law) — for boosts with velocities `v₁, v₂` (`v_i γ_i = −ν b_i`) and the composed</span>
+<span class="ln" id="L183"><a class="lno" href="#L183">183</a>boost&#x27;s velocity `v₁₂`, `v₁₂ (ν + v₁v₂) = ν (v₁ + v₂)`: Einstein&#x27;s law `v₁₂ = (v₁ + v₂)/(1 + v₁v₂/ν)`, exact. -/</span>
+<span class="ln decl" id="FRC.Shell.Frame.velocity_addition"><a class="lno" href="#FRC.Shell.Frame.velocity_addition">184</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcCore/Causality.lean#L184" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small ok" src="../lean-ok.png" alt="" title="no axioms">theorem velocity_addition (F : Frame p κ g) {ν γ1 b1 γ2 b2 v1 v2 v12 : Shell p} (hν : ¬IsSquare ν)</span>
+<span class="ln" id="L185"><a class="lno" href="#L185">185</a>    (hz1 : γ1 * γ1 + -(ν * (b1 * b1)) = 1) (hz2 : γ2 * γ2 + -(ν * (b2 * b2)) = 1)</span>
+<span class="ln" id="L186"><a class="lno" href="#L186">186</a>    (hv1 : v1 * γ1 = -(ν * b1)) (hv2 : v2 * γ2 = -(ν * b2))</span>
+<span class="ln" id="L187"><a class="lno" href="#L187">187</a>    (hv12 : v12 * (γ1 * γ2 + ν * (b1 * b2)) = -(ν * (γ1 * b2 + b1 * γ2))) :</span>
+<span class="ln" id="L188"><a class="lno" href="#L188">188</a>    v12 * (ν + v1 * v2) = ν * (v1 + v2) := by</span>
+<span class="ln" id="L189"><a class="lno" href="#L189">189</a>  have hγ : γ1 * γ2 ≠ 0 := F.mul_ne_zero (gamma_ne_zero F hν hz1) (gamma_ne_zero F hν hz2)</span>
+<span class="ln" id="L190"><a class="lno" href="#L190">190</a>  apply F.mul_left_cancel hγ</span>
+<span class="ln" id="L191"><a class="lno" href="#L191">191</a>  calc γ1 * γ2 * (v12 * (ν + v1 * v2)) = v12 * (γ1 * γ2 * ν + (v1 * γ1) * (v2 * γ2)) := by</span>
+<span class="ln" id="L192"><a class="lno" href="#L192">192</a>        rw [mul_left_comm (γ1 * γ2) v12, left_distrib, mul_mul_mul_comm γ1 γ2 v1 v2, mul_comm γ1 v1, mul_comm γ2 v2]</span>
+<span class="ln" id="L193"><a class="lno" href="#L193">193</a>    _ = v12 * (ν * (γ1 * γ2 + ν * (b1 * b2))) := by</span>
+<span class="ln" id="L194"><a class="lno" href="#L194">194</a>        rw [hv1, hv2, neg_mul_neg, mul_mul_mul_comm ν b1 ν b2, mul_assoc ν ν (b1 * b2), mul_comm (γ1 * γ2) ν,</span>
+<span class="ln" id="L195"><a class="lno" href="#L195">195</a>          ← left_distrib]</span>
+<span class="ln" id="L196"><a class="lno" href="#L196">196</a>    _ = ν * (v12 * (γ1 * γ2 + ν * (b1 * b2))) := mul_left_comm _ _ _</span>
+<span class="ln" id="L197"><a class="lno" href="#L197">197</a>    _ = -(ν * (ν * (γ1 * b2 + b1 * γ2))) := by rw [hv12, ← mul_neg]</span>
+<span class="ln" id="L198"><a class="lno" href="#L198">198</a>    _ = ν * (-(γ2 * (ν * b1)) + -(γ1 * (ν * b2))) := by</span>
+<span class="ln" id="L199"><a class="lno" href="#L199">199</a>        rw [mul_left_comm γ2 ν b1, mul_left_comm γ1 ν b2, ← neg_add_rev, ← left_distrib, mul_comm γ2 b1, ← mul_neg,</span>
+<span class="ln" id="L200"><a class="lno" href="#L200">200</a>          add_comm (b1 * γ2) (γ1 * b2)]</span>
+<span class="ln" id="L201"><a class="lno" href="#L201">201</a>    _ = ν * (γ2 * (v1 * γ1) + γ1 * (v2 * γ2)) := by rw [hv1, hv2, ← mul_neg, ← mul_neg]</span>
+<span class="ln" id="L202"><a class="lno" href="#L202">202</a>    _ = γ1 * γ2 * (ν * (v1 + v2)) := by</span>
+<span class="ln" id="L203"><a class="lno" href="#L203">203</a>        rw [mul_left_comm (γ1 * γ2) ν]</span>
+<span class="ln" id="L204"><a class="lno" href="#L204">204</a>        refine congrArg (ν * ·) ?_</span>
+<span class="ln" id="L205"><a class="lno" href="#L205">205</a>        rw [left_distrib, mul_comm v1 γ1, mul_comm v2 γ2, ← mul_assoc γ2 γ1 v1, mul_comm γ2 γ1, ← mul_assoc γ1 γ2 v2]</span>
+<span class="ln" id="L206"><a class="lno" href="#L206">206</a></span>
+<span class="ln" id="L207"><a class="lno" href="#L207">207</a>/-! ### The counts, decided by the kernel -/</span>
+<span class="ln" id="L208"><a class="lno" href="#L208">208</a></span>
+<span class="ln" id="L209"><a class="lno" href="#L209">209</a>/-- `Σ_{i&lt;n} f i` on naturals. -/</span>
+<span class="ln decl" id="FRC.Shell.Frame.sumTo"><a class="lno" href="#FRC.Shell.Frame.sumTo">210</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcCore/Causality.lean#L210" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small" src="../lean.png" alt="" title="a definition: no proof, no axioms">def sumTo (f : Nat → Nat) : Nat → Nat</span>
+<span class="ln" id="L211"><a class="lno" href="#L211">211</a>  | 0 =&gt; 0</span>
+<span class="ln" id="L212"><a class="lno" href="#L212">212</a>  | n + 1 =&gt; sumTo f n + f n</span>
+<span class="ln" id="L213"><a class="lno" href="#L213">213</a></span>
+<span class="ln" id="L214"><a class="lno" href="#L214">214</a>/-- The number of `(t, x, y, z) ∈ [0, p)⁴` with `−ν t² + x² + y² + z² ≡ 0 (mod p)`. -/</span>
+<span class="ln decl" id="FRC.Shell.Frame.nullCount"><a class="lno" href="#FRC.Shell.Frame.nullCount">215</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcCore/Causality.lean#L215" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small" src="../lean.png" alt="" title="a definition: no proof, no axioms">def nullCount (p ν : Nat) : Nat :=</span>
+<span class="ln" id="L216"><a class="lno" href="#L216">216</a>  sumTo (fun t =&gt; sumTo (fun x =&gt; sumTo (fun y =&gt; sumTo (fun z =&gt;</span>
+<span class="ln" id="L217"><a class="lno" href="#L217">217</a>    if (x * x + y * y + z * z + (p - ν) * (t * t)) % p = 0 then 1 else 0) p) p) p) p</span>
+<span class="ln" id="L218"><a class="lno" href="#L218">218</a></span>
+<span class="ln" id="L219"><a class="lno" href="#L219">219</a>/-- The number of `(γ, b) ∈ [0, p)²` with `γ² − ν b² ≡ 1 (mod p)`: the boosts. -/</span>
+<span class="ln decl" id="FRC.Shell.Frame.normOneCount"><a class="lno" href="#FRC.Shell.Frame.normOneCount">220</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcCore/Causality.lean#L220" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small" src="../lean.png" alt="" title="a definition: no proof, no axioms">def normOneCount (p ν : Nat) : Nat :=</span>
+<span class="ln" id="L221"><a class="lno" href="#L221">221</a>  sumTo (fun γ =&gt; sumTo (fun b =&gt; if (γ * γ + (p - ν) * (b * b)) % p = 1 then 1 else 0) p) p</span>
+<span class="ln" id="L222"><a class="lno" href="#L222">222</a></span>
+<span class="ln" id="L223"><a class="lno" href="#L223">223</a>/-- 3:B4, 3:D1 [value] — the null cone of `Q_2` on `𝔽₁₃` has `2041 = 13³ − 13² + 13` points: the elliptic type. -/</span>
+<span class="ln decl" id="FRC.Shell.Frame.null13"><a class="lno" href="#FRC.Shell.Frame.null13">224</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcCore/Causality.lean#L224" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small ok" src="../lean-ok.png" alt="" title="no axioms">theorem null13 : nullCount 13 2 = 2041 := by decide +kernel</span>
+<span class="ln" id="L225"><a class="lno" href="#L225">225</a>/-- 3:B4 [value] — the Euclidean form (`ν = 1`) on `𝔽₁₃` has `2353 = 13³ + 13² − 13` zeros: the hyperbolic type. -/</span>
+<span class="ln decl" id="FRC.Shell.Frame.euclid13"><a class="lno" href="#FRC.Shell.Frame.euclid13">226</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcCore/Causality.lean#L226" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small ok" src="../lean-ok.png" alt="" title="no axioms">theorem euclid13 : nullCount 13 1 = 2353 := by decide +kernel</span>
+<span class="ln" id="L227"><a class="lno" href="#L227">227</a>/-- 3:B4 [value] — `𝔽₅`, `ν = 2`: `105 = 5³ − 5² + 5` null points; `ν = 1`: `145`. -/</span>
+<span class="ln decl" id="FRC.Shell.Frame.null5"><a class="lno" href="#FRC.Shell.Frame.null5">228</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcCore/Causality.lean#L228" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small ok" src="../lean-ok.png" alt="" title="no axioms">theorem null5 : nullCount 5 2 = 105 ∧ nullCount 5 1 = 145 := by decide +kernel</span>
+<span class="ln" id="L229"><a class="lno" href="#L229">229</a>/-- 3:B4 [value] — `𝔽₁₇`, `ν = 3`: `4641 = 17³ − 17² + 17` null points. -/</span>
+<span class="ln decl" id="FRC.Shell.Frame.null17"><a class="lno" href="#FRC.Shell.Frame.null17">230</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcCore/Causality.lean#L230" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small ok" src="../lean-ok.png" alt="" title="no axioms">theorem null17 : nullCount 17 3 = 4641 := by decide +kernel</span>
+<span class="ln" id="L231"><a class="lno" href="#L231">231</a>/-- 3:C2, 3:D1 [value] — the boosts number `p + 1`: `6`, `14`, `18`, `30` on `𝔽₅`, `𝔽₁₃`, `𝔽₁₇`, `𝔽₂₉`. -/</span>
+<span class="ln decl" id="FRC.Shell.Frame.normOne_values"><a class="lno" href="#FRC.Shell.Frame.normOne_values">232</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcCore/Causality.lean#L232" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small ok" src="../lean-ok.png" alt="" title="no axioms">theorem normOne_values : normOneCount 5 2 = 6 ∧ normOneCount 13 2 = 14 ∧ normOneCount 17 3 = 18 ∧</span>
+<span class="ln" id="L233"><a class="lno" href="#L233">233</a>    normOneCount 29 2 = 30 := by decide +kernel</span>
+<span class="ln" id="L234"><a class="lno" href="#L234">234</a></span>
+<span class="ln" id="L235"><a class="lno" href="#L235">235</a>end Frame</span>
+<span class="ln" id="L236"><a class="lno" href="#L236">236</a>end Shell</span>
+<span class="ln" id="L237"><a class="lno" href="#L237">237</a>end FRC</span>
+<span class="ln" id="L238"><a class="lno" href="#L238">238</a></span>
+</pre></main>
+</div>
+</body>
+</html>

@@ -52,7 +52,7 @@
     },
     {
      "label": "A7",
-     "predicate": "The frame counts: $2184=156\\times14$; $\\SL_{2}$ obstructs at $-1$ (Theorem~\\ref{th:hopf}).",
+     "predicate": "The frame counts: $2184=156\\times14=14\\times13\\times12$; $\\PGL_{2}=\\mathrm{SO}_{3}(\\F_{13})$, the norm-one sphere $\\SL_{2}$ its spin cover of $\\mathrm{PSL}_{2}$ ($1092$); $\\SL_{2}$ obstructs at $-1$ (Theorem~\\ref{th:hopf}).",
      "tag": "T",
      "source": "\\src{s13.\\allowbreak check\\_s13}, \\src{s13.\\allowbreak verify-hopf}",
      "key": "p38007"
@@ -63,6 +63,13 @@
      "tag": "T",
      "source": "\\src{s13.\\allowbreak check\\_s13}",
      "key": "p38008"
+    },
+    {
+     "label": "A9",
+     "predicate": "The two fibrations and the frame triple (Theorem~\\ref{th:holography}): $G\\cong\\Prj^{1}\\times\\F_\\p\\times C_{\\p-1}$ for every odd $\\p$, $14\\times13\\times12$; non-split fibres $C_{\\p+1}$ over $\\p(\\p-1)=156$ with the cone-chart section, split fibres $C_{\\p-1}$ over $\\p(\\p+1)=182$ without; the unit $i$ is split at every $\\p=4\\kap+1$.",
+     "tag": "T",
+     "source": "\\src{s13.\\allowbreak verify-hopf}, \\src{s13.\\allowbreak check\\_fibrations}",
+     "key": "p38050"
     }
    ]
   },
@@ -107,8 +114,8 @@
     },
     {
      "label": "B6",
-     "predicate": "The Hopf representation: node-on-fiber exact; foliation depth $=$ rung ladder (Reading~\\ref{th:holography}).",
-     "tag": "T",
+     "predicate": "The Hopf representation: node-on-fiber exact; foliation depth $=$ rung ladder; the drawn leaves are the continuum foliation by the unit $i$, the chart face of the count of A9, distinguishing neither fibration [chart].",
+     "tag": "D|T",
      "source": "\\src{s13.\\allowbreak verify-render}",
      "key": "p38014"
     },
@@ -313,6 +320,13 @@
      "key": "p38047"
     },
     {
+     "label": "X4",
+     "predicate": "\\textbf{The shell is holographic}: a Subject's frame datum is one projective direction, one shell cell, one drive phase (Theorem~\\ref{th:holography}, Reading~\\ref{th:holography-reading}); the bulk frame is boundary data with nothing left over. Falsifier: a registered distinction between two frames sharing the triple.",
+     "tag": "R",
+     "source": "\\src{s13.\\allowbreak verify-hopf}",
+     "key": "p38051"
+    },
+    {
      "label": "X3",
      "predicate": "\\textbf{The acceleration floor $a_{0}=cH_{0}/2\\pi$ is the drive seen in the chart}: the leak's cyclic rate is the drive's own, one cycle per drive period $\\Om-1$ chronons $=2\\pi/H_{0}$, and its acceleration face is the floor (C10, C11); at the instance $a_{0}=c/(\\Om-1)$.",
      "tag": "R",
@@ -340,7 +354,7 @@
    "rows": [
     {
      "label": "V1",
-     "predicate": "The laboratory's six suites, $192$ checks, all passing (\\S\\ref{sec:repro}), run from \\texttt{docs/38-s13} by the package registry: \\src{s13.\\allowbreak verify-233} ($84$), \\src{s13.\\allowbreak verify-sky} ($28$), \\src{s13.\\allowbreak verify-space} ($25$), \\src{s13.\\allowbreak verify-f13} ($25$), \\src{s13.\\allowbreak verify-hopf} ($10$), \\src{s13.\\allowbreak verify-render} ($20$).",
+     "predicate": "The laboratory's six suites, $208$ checks, all passing (\\S\\ref{sec:repro}), run from \\texttt{docs/38-s13} by the package registry: \\src{s13.\\allowbreak verify-233} ($84$), \\src{s13.\\allowbreak verify-sky} ($28$), \\src{s13.\\allowbreak verify-space} ($25$), \\src{s13.\\allowbreak verify-f13} ($25$), \\src{s13.\\allowbreak verify-hopf} ($10$), \\src{s13.\\allowbreak verify-render} ($20$).",
      "tag": "T",
      "source": "the six \\texttt{s13.verify-*}",
      "key": "p38038"

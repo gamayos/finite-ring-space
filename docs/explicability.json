@@ -872,6 +872,19 @@
    "restated": [],
    "witnessed": false,
    "page": "38-s13/38-s13-ledger.html"
+  },
+  {
+   "id": "38:X4",
+   "paper": "38-s13",
+   "label": "X4",
+   "key": "p38051",
+   "tag": "R",
+   "predicate": "\\textbf{The shell is holographic}: a Subject's frame datum is one projective direction, one shell cell, one drive phase (Theorem~\\ref{th:holography}, Reading~\\ref{th:holography-reading}); the bulk frame is boundary data with nothing left over. Falsifier: a registered distinction between two frames sharing the triple.",
+   "source": "\\src{s13.\\allowbreak verify-hopf}",
+   "master": [],
+   "restated": [],
+   "witnessed": false,
+   "page": "38-s13/38-s13-ledger.html"
   }
  ],
  "restated": {

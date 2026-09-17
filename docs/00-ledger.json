@@ -622,7 +622,7 @@
      "key": "p00053"
     }
    ],
-   "statement": "\\textbf{One frame group, three sectors}: gravity's $(3{+}1)$ tensor, the Riemann observer geometry, and the quantum spinor structure are three readings of $\\mathrm{SL}_2(\\F_\\Om)$ --- its three tori the scale-time, translation, and boost freedoms, its order $(\\Om{-}1)\\Om(\\Om{+}1)$ the observer variety (continuum shadow the de Sitter $S^3$, E2), its spinor double cover the Clifford layer (D4). Falsifier: a registered space-time, observer, or spinor freedom outside the three tori of $\\mathrm{SL}_2(\\F_\\Om)$ --- a fifth force or an extra dimension."
+   "statement": "\\textbf{One frame group, three sectors}: gravity's $(3{+}1)$ tensor, the Riemann observer geometry, and the quantum spinor structure are three readings of $\\mathrm{SL}_2(\\F_\\Om)$ --- its three tori the scale-time, translation, and boost freedoms, its order $(\\Om{-}1)\\Om(\\Om{+}1)$ the observer variety --- the norm-one quaternion sphere is $\\mathrm{SL}_2$ itself, the spin cover of the rotation group $\\mathrm{PGL}_2\\cong\\mathrm{SO}_3$ that carries the cone chart (C22); continuum shadow the de Sitter $S^3$ (Y7) --- its spinor double cover the Clifford layer (D4). Falsifier: a registered space-time, observer, or spinor freedom outside the three tori of $\\mathrm{SL}_2(\\F_\\Om)$ --- a fifth force or an extra dimension."
   },
   {
    "label": "C7",
@@ -891,7 +891,7 @@
    ],
    "witness": "38:check_s13.js",
    "refs": [],
-   "statement": "\\textbf{The Hopf section}: in the observable frame group $\\mathrm{PGL}_2$ the boost torus $C_{\\p +1}$ is fixed-point-free on $\\mathbb{P}^1$ and meets the Borel trivially, so every frame factors uniquely as (cone-chart event)$\\times$(boost): the cone chart is a global section of the finite Hopf fibration, $\\p (\\p -1)$ fibres of $\\p +1$; the spin cover $\\mathrm{SL}_2$ obstructs at $-1$."
+   "statement": "\\textbf{The Hopf section}: in the observable frame group $\\mathrm{PGL}_2$ the boost torus $C_{\\p +1}$ is fixed-point-free on $\\mathbb{P}^1$ and meets the Borel trivially, so every frame factors uniquely as (cone-chart event)$\\times$(boost): the cone chart is a global section of the non-split fibration (C22), $\\p (\\p -1)$ fibres of $\\p +1$; the spin cover $\\mathrm{SL}_2$ obstructs at $-1$."
   },
   {
    "label": "C20",
@@ -933,6 +933,28 @@
     }
    ],
    "statement": "\\textbf{The dilation rigidity theorem}: static clock comparison is a register character $\\gen^{-\\Delta n}$; characters are rigid, so the strong-field dilation law is the unique exponential reading, zero coefficient freedom; the PPN temporal form admits no register character (transitivity defect exactly $4ab$); the cover halves the angle at every tick (C20)."
+  },
+  {
+   "label": "C22",
+   "name": "The frame variety and its two fibrations",
+   "block": "C",
+   "key": "p00136",
+   "tag": "T",
+   "sources": [
+    "98-lab"
+   ],
+   "witness": "38:verify-hopf.js, 00:check_c22.py",
+   "refs": [
+    {
+     "label": "C6",
+     "key": "p00026"
+    },
+    {
+     "label": "C19",
+     "key": "p00039"
+    }
+   ],
+   "statement": "\\textbf{The frame variety and its two fibrations}: $\\mathrm{PGL}_2(\\F_\\p)\\cong\\mathrm{SO}_3(\\F_\\p)$; the norm-one sphere is $\\mathrm{SL}_2$, its spin cover (C6). For every odd $\\p$, $G\\cong\\mathbb{P}^1\\times\\F_\\p\\times C_{\\p -1}$: one direction, one shell cell, one drive phase. Two fibrations share the count: non-split $C_{\\p +1}$ over $\\p (\\p -1)$ with the cone-chart section (C19); split $C_{\\p -1}$ over $\\p (\\p +1)$ without (40-hyper B2). Decides Y4."
   },
   {
    "label": "D1",
@@ -2151,29 +2173,7 @@
      "key": "p00039"
     }
    ],
-   "statement": "\\textbf{Observation is the Hopf section}: the Subject observes the past light cone, retarded one chronon per space quantum; the cone chart is the affine group, $\\p (\\p -1)$ cells, the Borel of $\\mathrm{PGL}_2$ and a global section of its Hopf fibration (C19); the boosts $C_{\\p +1}$ change the observer; the horizon is the origin's antipode $\\p /2$, the continuum $\\infty$."
-  },
-  {
-   "label": "Y4",
-   "name": "The shell is holographic",
-   "block": "Y",
-   "key": "p00106",
-   "tag": "O",
-   "sources": [
-    "98-lab"
-   ],
-   "witness": null,
-   "refs": [
-    {
-     "label": "C6",
-     "key": "p00026"
-    },
-    {
-     "label": "C19",
-     "key": "p00039"
-    }
-   ],
-   "statement": "\\textbf{The shell is holographic}: by C19 every frame of the observable variety is one shell-trace event times one projective cell direction, $156\\times 14$, nothing left over. Conjectured reading: the variety is the combinatorial $S^3$ (C6), the quotient base its finite $2$-sphere, the $C_{\\p +1}$ cosets its Hopf circles, the shell its unique boundary chart."
+   "statement": "\\textbf{Observation is the Hopf section}: the Subject observes the past light cone, retarded one chronon per space quantum; the cone chart is the affine group, $\\p (\\p -1)$ cells, the Borel of $\\mathrm{PGL}_2$ and a global section of its non-split fibration (C19, C22); the boosts $C_{\\p +1}$ change the observer; the horizon is the origin's antipode $\\p /2$, the continuum $\\infty$."
   },
   {
    "label": "Y5",
@@ -2232,7 +2232,7 @@
    ],
    "witness": null,
    "refs": [],
-   "statement": "The spatial universe is the $3$-sphere $S^3$: the observer's frame space is a torsor under $\\mathrm{SL}_2(\\F_\\Om)$, closed and simply connected, whose cycle-closure selects the compact unit-quaternion form; uniqueness by the imported Poincar\\'e--Perelman theorem, the de Sitter spatial section fixing $\\Om\\sim10^{122}$. Fenced in 20-rh (\\S7.6, 2026-09-12): recorded to mark the direction, contributing nothing to the paper's theorem, classification or realisation; the choice of the compact real form by cycle closure is the step owed a derivation. Re-homed from E2 (T) on the T12 revision."
+   "statement": "The spatial universe is the $3$-sphere $S^3$: the observer's frame space is a torsor under $\\mathrm{SL}_2(\\F_\\Om)$, closed and simply connected, whose cycle-closure selects the compact unit-quaternion form; uniqueness by the imported Poincar\\'e--Perelman theorem, the de Sitter spatial section fixing $\\Om\\sim10^{122}$. Fenced in 20-rh (\\S7.6, 2026-09-12): recorded to mark the direction, contributing nothing to the paper's theorem, classification or realisation; the choice of the compact real form by cycle closure is the step owed a derivation; on every Subject shell the norm-one sphere is $\\mathrm{SL}_2$ and the frame variety with the cone chart its rotation group (C22). Re-homed from E2 (T) on the T12 revision."
   },
   {
    "label": "Z1",

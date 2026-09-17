@@ -1,0 +1,575 @@
+{
+ "paper": "3-lor",
+ "title": "Euclidean–Lorentzian Dichotomy and Algebraic Causality in Finite Ring Continuum",
+ "doi": "https://doi.org/10.3390/e27111098",
+ "generated": "17 September 2026",
+ "blocks": [
+  {
+   "letter": "A",
+   "title": "Inputs",
+   "rows": [
+    {
+     "label": "A1",
+     "predicate": "Finite-field algebra: $\\Fpx$ is cyclic of order $\\p-1$ with two square classes $S=(\\Fpx)^{2}$ and $N=\\Fpx\\setminus S$ of $(\\p-1)/2$ each; $-1\\in S$ for $\\p\\equiv1\\pmod4$; $X^{2}-\\nu$ is irreducible for $\\nu\\in N$ and $\\Fpq=\\Fp(\\sqrt\\nu)$; every element of $\\Fp$ is a square in $\\Fpq$.",
+     "tag": "I",
+     "source": "\\cite{LidlNiederreiter1997}; 1:A1",
+     "key": "p03001"
+    },
+    {
+     "label": "A2",
+     "predicate": "Quadratic forms over finite fields of odd characteristic: nondegenerate forms are classified by dimension and discriminant, isotropic in dimension three and more; in dimension four the hyperbolic type (discriminant a square, Witt index two, $q^{3}+q^{2}-q$ zeros, $|O_{4}^{+}(q)|=2q^{2}(q^{2}-1)^{2}$) and the elliptic type (discriminant a nonsquare, Witt index one, $q^{3}-q^{2}+q$ zeros, $|O_{4}^{-}(q)|=2q^{2}(q^{4}-1)$); Witt's theorem.",
+     "tag": "I",
+     "source": "\\cite{Lam2005,Taylor1992Geometry,Grove2002Classical}",
+     "key": "p03002"
+    },
+    {
+     "label": "A3",
+     "predicate": "The framed substrate: the shell $\\p=4\\chron+1$ with frame $(\\chron;0,1,\\g)$ and quarter-turn $i=-\\g^{\\chron}$ (1:B2, B3); the square class as drive-step parity, the drive $\\g$ a nonsquare on every shell, $\\nu=\\g$ canonical (8:B3, B5; 00:C8); the boost cycle as the non-split torus (8:D5; 22:A2).",
+     "tag": "I",
+     "source": "\\cite{akhtman2025algebra}; 8:B3; 00:C3",
+     "key": "p03003"
+    },
+    {
+     "label": "A4",
+     "predicate": "The continuum comparison: Minkowski's form $-c^{2}t^{2}+x^{2}+y^{2}+z^{2}$ of signature $(1,3)$ and Witt index one over $\\R$, its Lorentz group $O(1,3)$; the ordering of $\\R$ that finite fields lack.",
+     "tag": "I",
+     "source": "\\cite{HawkingEllis1973}",
+     "key": "p03004"
+    }
+   ]
+  },
+  {
+   "letter": "B",
+   "title": "Square classes and the signature",
+   "rows": [
+    {
+     "label": "B1",
+     "predicate": "The shell $\\Fp$, $\\p=4\\chron+1$, with its classes $S$, $N$; the diagonal form $Q_{\\nu}(t,x,y,z)=-\\nu t^{2}+x^{2}+y^{2}+z^{2}$, $\\nu\\in\\Fpx$, a form over $\\Fp$: \\emph{Euclidean} when $\\nu\\in S$ (all coefficients in one class), \\emph{Lorentzian} when $\\nu\\in N$; $Q_{\\nu}$ depends on $\\nu$ only through its class ($\\nu\\mapsto\\nu w^{2}$ is $t\\mapsto wt$); $\\nu=\\g$ canonical.",
+     "tag": "D",
+     "source": "Eq.~\\eqref{eq:Q_nu}; 8:B2; \\src{A3}",
+     "key": "p03005"
+    },
+    {
+     "label": "B2",
+     "predicate": "Nonexistence of a causal square root: no $c\\in\\Fp$ has $c^{2}=\\nu$ for $\\nu\\in N$; for $c\\in\\Fpx$ every coefficient of $-c^{2}t^{2}+x^{2}+y^{2}+z^{2}$ is a square ($-1=i^{2}$), the form Euclidean with $\\p^{3}+\\p^{2}-\\p$ zeros; $c=0$ gives a degenerate form, so the theorem's ``any $c$'' reads $c\\neq0$.",
+     "tag": "T",
+     "source": "Thm.~\\ref{thm:nonexistence}; \\src{A1}, \\src{A4}; \\lean{Causality.no\\_causal\\_root, Causality.neg\\_sq\\_is\\_square, FRC.Shell.Frame.no\\_causal\\_root, FRC.Shell.Frame.neg\\_sq\\_is\\_square}",
+     "key": "p03006"
+    },
+    {
+     "label": "B3",
+     "predicate": "Square-class absorption, the proof repaired: if $a_{i}/a_{0}\\in S$ for all $i$ then $Q\\simeq a_{0}\\sum Y_{i}^{2}$ by $Y_{i}=w_{i}X_{i}$, $w_{i}^{2}=a_{i}/a_{0}$; the printed $u_{0}$ with $u_{0}^{2}=a_{0}$ need not exist ($a_{0}\\in N$) and $-a_{i}$ is again a nonsquare; no root of $a_{0}$ is needed.",
+     "tag": "T",
+     "source": "Lemma~\\ref{lem:square-class-absorption}; \\texttt{revision}; \\src{A2}; \\lean{Causality.absorb, FRC.Shell.Frame.absorb}",
+     "key": "p03007"
+    },
+    {
+     "label": "B4",
+     "predicate": "The dichotomy lives on the shell: $\\operatorname{disc}Q_{\\nu}\\equiv\\nu$ (as $-1\\in S$); for $\\nu\\in N$ the form is elliptic, Witt index one, with $\\p^{3}-\\p^{2}+\\p$ null points; for $\\nu\\in S$ hyperbolic, Witt index two, $\\p^{3}+\\p^{2}-\\p$; every $\\nu$ on $\\p\\le41$ ($2041$ and $2353$ at $13$; 8:B7).",
+     "tag": "T",
+     "source": "\\texttt{revision}; \\src{B1}; \\lean{FRC.Shell.Frame.null13, FRC.Shell.Frame.euclid13, FRC.Shell.Frame.null5, FRC.Shell.Frame.null17}",
+     "key": "p03008"
+    },
+    {
+     "label": "B5",
+     "predicate": "The Witt decomposition: for $\\nu\\in N$ the plane $x^{2}-\\nu t^{2}$ (the norm of $\\Fpq$) is anisotropic and $y^{2}+z^{2}=(y+iz)(y-iz)$ hyperbolic, so $Q_{\\nu}=H\\perp\\langle1,-\\nu\\rangle$, index one; for $\\nu=w^{2}$ the $(t,x)$-plane is hyperbolic too, $H\\perp H$. Over $\\Fpq$, $\\nu=c^{2}$ and $Q_{\\nu}\\simeq\\sum X_{i}^{2}$: hyperbolic ($16\\,225$ zeros at $q=25$); the extension dissolves the split.",
+     "tag": "T",
+     "source": "Cor.~\\ref{cor:min-ext} corrected; \\texttt{revision}; \\src{B2}, \\src{B5}; \\lean{Causality.aniso\\_tx, FRC.Shell.Frame.aniso\\_tx, FRC.Shell.Frame.null\\_yz, FRC.Shell.Frame.null\\_tx\\_of\\_square}",
+     "key": "p03009"
+    },
+    {
+     "label": "B6",
+     "predicate": "The finite Lorentz group of the shell: $O(Q_{\\nu},\\Fp)=O_{4}^{-}(\\p)$ of order $2\\p^{2}(\\p^{4}-1)$ ($31\\,200$, $9\\,653\\,280$, $48\\,274\\,560$ at $5$, $13$, $17$, by frame counting); the Euclidean group $O_{4}^{+}(\\p)$ of order $2\\p^{2}(\\p^{2}-1)^{2}$; over $\\Fpq$, $O(Q_{\\nu},\\Fpq)=O_{4}^{+}(\\p^{2})$ ($486\\,720\\,000$ at $\\p=5$) --- ``split type of Witt index one'' is not a type.",
+     "tag": "T",
+     "source": "\\texttt{revision}; \\src{B3}, \\src{B2}",
+     "key": "p03010"
+    },
+    {
+     "label": "B7",
+     "predicate": "The causal classes: the null cone $\\{Q_{\\nu}=0\\}$ ($\\p^{3}-\\p^{2}+\\p$ points) and the two classes of non-null vectors by the square class of $Q_{\\nu}(v)$, $(\\p-1)(\\p^{3}+\\p)/2$ each, partition $\\Fp^{4}$ and are invariant under $O(Q_{\\nu},\\Fp)$ and under rescaling: the shell's null, timelike and spacelike separation ($\\p=5$, $13$ exhaustive).",
+     "tag": "T",
+     "source": "\\texttt{revision}; \\src{B4}",
+     "key": "p03011"
+    }
+   ]
+  },
+  {
+   "letter": "C",
+   "title": "The Lorentz transform",
+   "rows": [
+    {
+     "label": "C1",
+     "predicate": "The boost datum, restated: $K=\\Fpq=\\Fp(\\sqrt\\nu)$ with the Frobenius conjugation and the norm $N(\\gamma+b\\sqrt\\nu)=\\gamma^{2}-\\nu b^{2}$; the boost $\\Lambda(\\gamma,b)=\\bigl(\\begin{smallmatrix}\\gamma&b\\\\ \\nu b&\\gamma\\end{smallmatrix}\\bigr)$ for $N=1$; the rapidity parameter is a norm-one element of $K^{\\times}$, not $\\g^{\\Delta m}\\in\\Fpx$ (8:D4).",
+     "tag": "D",
+     "source": "Section~\\ref{sec:lorentz}; \\texttt{revision}; 8:D4",
+     "key": "p03012"
+    },
+    {
+     "label": "C2",
+     "predicate": "$\\Lambda(\\gamma,b)$ preserves $-\\nu t^{2}+x^{2}$ exactly and $\\Lambda(z_{1})\\Lambda(z_{2})=\\Lambda(z_{1}z_{2})$: the boosts are the norm-one cycle $N^{1}\\simeq C_{\\p+1}$, the non-split torus, and exhaust $SO(Q_{\\nu},\\Fp)$ in dimension $1{+}1$ ($6$, $14$, $18$ at $5$, $13$, $17$); with $\\nu\\in S$ the same construction is the split torus $C_{\\p-1}$ --- the two tori are the two signatures (00:C3).",
+     "tag": "T",
+     "source": "Section~\\ref{sec:lorentz}; \\texttt{revision}; \\src{C1}, \\src{C2}; \\lean{Causality.boost\\_preserves, Causality.boost\\_comp, Causality.boost\\_orthogonal, FRC.Shell.Frame.boost\\_preserves, FRC.Shell.Frame.boost\\_comp\\_t, FRC.Shell.Frame.boost\\_comp\\_x, FRC.Shell.Frame.norm\\_one\\_mul, FRC.Shell.Frame.normOne\\_values}",
+     "key": "p03013"
+    },
+    {
+     "label": "C3",
+     "predicate": "Velocity: $\\gamma\\neq0$ on every boost; $v=-\\nu b/\\gamma\\in\\Fp$; $\\gamma^{2}(\\nu-v^{2})=\\nu$, the finite $\\gamma=1/\\sqrt{1-\\beta^{2}}$ with $\\beta^{2}=v^{2}/\\nu$ ($\\beta$ itself is no shell quantity, 8:B8); Einstein's law $v_{12}=(v_{1}+v_{2})/(1+v_{1}v_{2}/\\nu)$ exact, the denominator never zero; $v$ is two-to-one on $N^{1}$.",
+     "tag": "T",
+     "source": "Section~\\ref{sec:lorentz}; \\src{C3}; \\lean{Causality.gamma\\_ne\\_zero, Causality.gamma\\_velocity, Causality.velocity\\_addition, FRC.Shell.Frame.gamma\\_ne\\_zero, FRC.Shell.Frame.gamma\\_velocity, FRC.Shell.Frame.velocity\\_addition}",
+     "key": "p03014"
+    },
+    {
+     "label": "C4",
+     "predicate": "Dimension $1{+}3$: the $x$-boost $\\Lambda\\oplus I_{2}$ lies in $O(Q_{\\nu},\\Fp)$; with $O(3,\\Fp)$ on $(x,y,z)$, of order $2\\p(\\p^{2}-1)$, the $x$-boosts generate $O(Q_{\\nu},\\F_{5})=O_{4}^{-}(5)$ ($31\\,200$ elements by closure); the printed ``$O(1,3;\\Fpq)$'' is $O_{4}^{+}(\\p^{2})$, the Euclidean group of the extension (B6).",
+     "tag": "T",
+     "source": "\\texttt{revision}; \\src{C5}",
+     "key": "p03015"
+    },
+    {
+     "label": "C5",
+     "predicate": "The printed boost $\\Lambda(u)$, $u=\\g^{\\Delta m}$: $\\gamma=(u+u^{-1})/2\\in\\Fp$ but $a=(u-u^{-1})/(2c)\\in c\\Fp$, outside $\\Fp$ for $u\\neq\\pm1$; it preserves $Q_{\\nu}$ over $K$, where $Q_{\\nu}$ is Euclidean; the $\\p-1$ matrices form the split torus of $SO(Q_{\\nu},K)$, not the boost group of the shell ($13$, $17$ exhaustive).",
+     "tag": "T",
+     "source": "\\texttt{revision}; \\src{C4}",
+     "key": "p03016"
+    }
+   ]
+  },
+  {
+   "letter": "D",
+   "title": "The worked shell",
+   "rows": [
+    {
+     "label": "D1",
+     "predicate": "$\\F_{13}$ [value]: $S=\\{1,3,4,9,10,12\\}$, $N=\\{2,5,6,7,8,11\\}$; $\\nu=2=\\g$; $X^{2}-2$ irreducible, $c=\\sqrt2\\in K\\setminus\\F_{13}$; $2041$ null points of $Q_{2}$ on the shell, $4\\,855\\,201$ over $K$; $14$ boosts $(\\gamma,b)$ with the $7$ velocities $\\{0,2,3,6,7,10,11\\}$; the printed $\\Lambda(2)$ has $a=-5/(2c)\\notin\\F_{13}$.",
+     "tag": "T",
+     "source": "Section~\\ref{sec:quadratic}; \\src{D1}, \\src{D2}; \\lean{FRC.Shell.Frame.null13, FRC.Shell.Frame.normOne\\_values}",
+     "key": "p03017"
+    }
+   ]
+  },
+  {
+   "letter": "E",
+   "title": "The causal reading",
+   "rows": [
+    {
+     "label": "E1",
+     "predicate": "Causality is algebraic and lives on the shell: the time axis is the coordinate carrying the nonsquare class ($\\nu=\\g$), the null cone and the two non-null classes its invariant separation (B7), the boosts the non-split torus (C2); $\\Fpq$ is where $c=\\sqrt\\nu$ is written and where the dichotomy collapses (B5); ``one shell out'' is withdrawn. Falsifier: a registered one-way velocity (8:B8).",
+     "tag": "R",
+     "source": "Section~\\ref{sec:outlook}; \\texttt{revision}; 00:C3",
+     "key": "p03018"
+    },
+    {
+     "label": "E2",
+     "predicate": "Local correspondence [chart]: integer points with $|Q_{\\nu}|<\\p$ satisfy $Q_{\\nu}=0$ in $\\Z$ iff on the shell (the window law, 1:D2); the asymptotic claim of Remark~\\ref{rem:local-correspondence} --- density and equidistribution of the shell's null points against the real cone --- is not proved and stands as O1.",
+     "tag": "D",
+     "source": "Rem.~\\ref{rem:local-correspondence}; 1:D2",
+     "key": "p03019"
+    }
+   ]
+  },
+  {
+   "letter": "V",
+   "title": "Machine verification",
+   "rows": [
+    {
+     "label": "V1",
+     "predicate": "The package \\texttt{src/3-causality} (\\texttt{finite-ring-space}; $16$ checks, exact, standard library only): \\src{a\\_classes} A1--A4 (classes, absorption, the canonical $\\nu$), \\src{b\\_signature} B1--B5 (zero counts, the extension, group orders by frame counting, the causal classes, the Witt planes), \\src{c\\_boost} C1--C5 (the norm-one cycle, velocities, the printed boost, $O_{4}^{-}(5)$ by closure), \\src{d\\_example} D1--D2.",
+     "tag": "T",
+     "source": "\\src{run\\_all}; the notebook",
+     "key": "p03020"
+    },
+    {
+     "label": "V2",
+     "predicate": "\\texttt{lean/FrcLedger/Causality.lean} (Mathlib; classical, tier~2): ten declarations --- B2, B3, B5, C2, C3 for every field in which $-1$ is a square. \\texttt{lean/FrcCore/Causality.lean} (no Mathlib, \\emph{no axioms}, tier~0): B2, B3, B5, C2, C3 for every shell by computation and induction; the counts of B4, C2, D1 decided by the kernel on $\\F_{5}$, $\\F_{13}$, $\\F_{17}$, $\\F_{29}$.",
+     "tag": "T",
+     "source": "\\lean{Causality, FRC.Shell.Frame.boost\\_preserves}",
+     "key": "p03021"
+    }
+   ]
+  },
+  {
+   "letter": "O",
+   "title": "Open",
+   "rows": [
+    {
+     "label": "O1",
+     "predicate": "The large-$\\p$ correspondence of Remark~\\ref{rem:local-correspondence}: whether the window points of the shell's null cone approach the real light cone with density and equidistribution as $\\p\\to\\infty$; named by the paper as future work, not claimed, no witness.",
+     "tag": "O",
+     "source": "Rem.~\\ref{rem:local-correspondence}",
+     "key": "p03022"
+    }
+   ]
+  }
+ ],
+ "legend": [
+  {
+   "tag": "I",
+   "name": "Import",
+   "text": "A standard result, or a corpus result, used without reproof."
+  },
+  {
+   "tag": "D",
+   "name": "Definition",
+   "text": "A naming or declared convention, carrying no empirical content."
+  },
+  {
+   "tag": "T",
+   "name": "Theorem",
+   "text": "Derived, and machine-verified in exact arithmetic by the named witness."
+  },
+  {
+   "tag": "R",
+   "name": "Realisation",
+   "text": "States what a physical term denotes in the substrate: constitutive, not interpretive, and carrying its falsifier."
+  },
+  {
+   "tag": "O",
+   "name": "Open",
+   "text": "Genuinely unresolved."
+  }
+ ],
+ "master": {
+  "B4": [
+   "C3"
+  ],
+  "C2": [
+   "C3"
+  ],
+  "E1": [
+   "C3"
+  ]
+ },
+ "lean": {
+  "B2": [
+   {
+    "name": "FRC.Causality.no_causal_root",
+    "module": "FrcLedger/Causality",
+    "line": 18,
+    "axioms": [
+     "Quot.sound",
+     "propext"
+    ],
+    "tier": 1,
+    "ok": true,
+    "doc": "3:B2 (Thm. nonexistence, first clause): `c² = ν` makes `ν` a square, so a nonsquare `ν` has no root."
+   },
+   {
+    "name": "FRC.Causality.neg_sq_is_square",
+    "module": "FrcLedger/Causality",
+    "line": 22,
+    "axioms": [
+     "Classical.choice",
+     "Quot.sound",
+     "propext"
+    ],
+    "tier": 2,
+    "ok": true,
+    "doc": "3:B2 (the consequence): when `−1` is a square (`card F ≢ 3 mod 4`) so is `−c²`, and every coefficient of `−c² t² + x² + y² + z²` lies in the class of squares — a Euclidean form for every `c ≠ 0`."
+   },
+   {
+    "name": "FRC.Shell.Frame.no_causal_root",
+    "module": "FrcCore/Causality",
+    "line": 26,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "3:B2 (Thm. nonexistence, first clause) — `c² = ν` makes `ν` a square, so a nonsquare `ν` has no root `c`."
+   },
+   {
+    "name": "FRC.Shell.Frame.neg_sq_is_square",
+    "module": "FrcCore/Causality",
+    "line": 35,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "3:B2 (Thm. nonexistence, the consequence) — `−c²` is a square on every shell: `−c² = (i·c)²` with `i² = −1`; so with `c ≠ 0` every coefficient of `−c² t² + x² + y² + z²` is a square and the form is Euclidean."
+   }
+  ],
+  "B3": [
+   {
+    "name": "FRC.Causality.absorb",
+    "module": "FrcLedger/Causality",
+    "line": 27,
+    "axioms": [
+     "Quot.sound",
+     "propext"
+    ],
+    "tier": 1,
+    "ok": true,
+    "doc": "3:B3 (Lemma absorption, repaired): coefficients `a_i = w_i² a_0` are absorbed by `x_i ↦ w_i x_i`."
+   },
+   {
+    "name": "FRC.Shell.Frame.absorb",
+    "module": "FrcCore/Causality",
+    "line": 44,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "3:B3 (Lemma absorption, repaired) — if `a_i = w_i² a_0` for `i = 1, 2, 3` then `a_0 x_0² + a_1 x_1² + a_2 x_2² + a_3 x_3² = a_0 (x_0² + (w_1 x_1)² + (w_2 x_2)² + (w_3 x_3)²)`: a common square class is absorbed by the rescaling `x_i ↦ w_i x_i`, with no square root of `a_0` itself required."
+   }
+  ],
+  "B4": [
+   {
+    "name": "FRC.Shell.Frame.null13",
+    "module": "FrcCore/Causality",
+    "line": 224,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "3:B4, 3:D1 [value] — the null cone of `Q_2` on `𝔽₁₃` has `2041 = 13³ − 13² + 13` points: the elliptic type."
+   },
+   {
+    "name": "FRC.Shell.Frame.euclid13",
+    "module": "FrcCore/Causality",
+    "line": 226,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "3:B4 [value] — the Euclidean form (`ν = 1`) on `𝔽₁₃` has `2353 = 13³ + 13² − 13` zeros: the hyperbolic type."
+   },
+   {
+    "name": "FRC.Shell.Frame.null5",
+    "module": "FrcCore/Causality",
+    "line": 228,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "3:B4 [value] — `𝔽₅`, `ν = 2`: `105 = 5³ − 5² + 5` null points; `ν = 1`: `145`."
+   },
+   {
+    "name": "FRC.Shell.Frame.null17",
+    "module": "FrcCore/Causality",
+    "line": 230,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "3:B4 [value] — `𝔽₁₇`, `ν = 3`: `4641 = 17³ − 17² + 17` null points."
+   }
+  ],
+  "B5": [
+   {
+    "name": "FRC.Causality.aniso_tx",
+    "module": "FrcLedger/Causality",
+    "line": 34,
+    "axioms": [
+     "Classical.choice",
+     "Quot.sound",
+     "propext"
+    ],
+    "tier": 2,
+    "ok": true,
+    "doc": "3:B5: `x² − ν t²` is anisotropic for a nonsquare `ν`."
+   },
+   {
+    "name": "FRC.Shell.Frame.aniso_tx",
+    "module": "FrcCore/Causality",
+    "line": 59,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "3:B5 — the plane `x² − ν t²` is anisotropic when `ν` is a nonsquare: `x² = ν t²` forces `t = x = 0` (else `ν = (x/t)²`). This is the Witt kernel of the Lorentzian form, its index one."
+   },
+   {
+    "name": "FRC.Shell.Frame.null_yz",
+    "module": "FrcCore/Causality",
+    "line": 78,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "3:B5 — the `(y, z)`-plane `y² + z²` is hyperbolic on every shell: `(1, i)` is null."
+   },
+   {
+    "name": "FRC.Shell.Frame.null_tx_of_square",
+    "module": "FrcCore/Causality",
+    "line": 83,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "3:B5 — for a square `ν = w²` the `(t, x)`-plane is hyperbolic too: `(1, w)` is null; the form is then `H ⊥ H`, Witt index two — the Euclidean type."
+   }
+  ],
+  "C2": [
+   {
+    "name": "FRC.Causality.boost_preserves",
+    "module": "FrcLedger/Causality",
+    "line": 40,
+    "axioms": [
+     "Quot.sound",
+     "propext"
+    ],
+    "tier": 1,
+    "ok": true,
+    "doc": "3:C2 (the finite Lorentz boost): `Λ(γ, b) = !![γ, b; νb, γ]` with `γ² − νb² = 1` preserves `x² − ν t²`."
+   },
+   {
+    "name": "FRC.Causality.boost_comp",
+    "module": "FrcLedger/Causality",
+    "line": 45,
+    "axioms": [
+     "Classical.choice",
+     "Quot.sound",
+     "propext"
+    ],
+    "tier": 2,
+    "ok": true,
+    "doc": "3:C2: the boosts compose as the norm-one elements of `F(√ν)` multiply."
+   },
+   {
+    "name": "FRC.Causality.boost_orthogonal",
+    "module": "FrcLedger/Causality",
+    "line": 51,
+    "axioms": [
+     "Classical.choice",
+     "Quot.sound",
+     "propext"
+    ],
+    "tier": 2,
+    "ok": true,
+    "doc": "3:C2: `Λ(γ, b)` is orthogonal for the Gram matrix `diag(−ν, 1)` of `Q_ν`: `Λᵀ G Λ = G`."
+   },
+   {
+    "name": "FRC.Shell.Frame.boost_preserves",
+    "module": "FrcCore/Causality",
+    "line": 117,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "3:C2 (the finite Lorentz boost) — with `γ² − νb² = 1`, `Λ(γ, b)` preserves `x² − ν t²` exactly, on every shell."
+   },
+   {
+    "name": "FRC.Shell.Frame.boost_comp_t",
+    "module": "FrcCore/Causality",
+    "line": 126,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "3:C2 — boosts compose as their parameters multiply in `K`: `Λ(γ₁, b₁) Λ(γ₂, b₂) = Λ(γ₁γ₂ + νb₁b₂, γ₁b₂ + b₁γ₂)`, the `t`-row."
+   },
+   {
+    "name": "FRC.Shell.Frame.boost_comp_x",
+    "module": "FrcCore/Causality",
+    "line": 135,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "3:C2 — the composition, the `x`-row."
+   },
+   {
+    "name": "FRC.Shell.Frame.norm_one_mul",
+    "module": "FrcCore/Causality",
+    "line": 145,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "3:C2 — the norm-one elements form a group: `N(z₁z₂) = N(z₁)N(z₂) = 1`."
+   },
+   {
+    "name": "FRC.Shell.Frame.normOne_values",
+    "module": "FrcCore/Causality",
+    "line": 232,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "3:C2, 3:D1 [value] — the boosts number `p + 1`: `6`, `14`, `18`, `30` on `𝔽₅`, `𝔽₁₃`, `𝔽₁₇`, `𝔽₂₉`."
+   }
+  ],
+  "C3": [
+   {
+    "name": "FRC.Causality.gamma_ne_zero",
+    "module": "FrcLedger/Causality",
+    "line": 57,
+    "axioms": [
+     "Classical.choice",
+     "Quot.sound",
+     "propext"
+    ],
+    "tier": 2,
+    "ok": true,
+    "doc": "3:C3: `γ ≠ 0` on every boost of the Lorentzian plane (`γ = 0` would make `ν = (i/b)²`)."
+   },
+   {
+    "name": "FRC.Causality.gamma_velocity",
+    "module": "FrcLedger/Causality",
+    "line": 66,
+    "axioms": [
+     "Quot.sound",
+     "propext"
+    ],
+    "tier": 1,
+    "ok": true,
+    "doc": "3:C3: the velocity `v = −νb/γ` satisfies `γ² (ν − v²) = ν` — `γ = 1/√(1 − β²)` with `β² = v²/ν`."
+   },
+   {
+    "name": "FRC.Causality.velocity_addition",
+    "module": "FrcLedger/Causality",
+    "line": 71,
+    "axioms": [
+     "Classical.choice",
+     "Quot.sound",
+     "propext"
+    ],
+    "tier": 2,
+    "ok": true,
+    "doc": "3:C3 (Einstein's addition law, exact): `v₁₂ (ν + v₁v₂) = ν (v₁ + v₂)`."
+   },
+   {
+    "name": "FRC.Shell.Frame.gamma_ne_zero",
+    "module": "FrcCore/Causality",
+    "line": 155,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "3:C3 — `γ ≠ 0` on every boost of the Lorentzian plane: `γ = 0` would give `ν b² = −1`, i.e. `ν = (i/b)²`, a square."
+   },
+   {
+    "name": "FRC.Shell.Frame.gamma_velocity",
+    "module": "FrcCore/Causality",
+    "line": 173,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "3:C3 — the velocity of the boost, `v = −νb/γ` (`vγ = −νb`), satisfies `γ² (ν − v²) = ν`: the finite form of `γ = 1/√(1 − β²)` with `β² = v²/ν`."
+   },
+   {
+    "name": "FRC.Shell.Frame.velocity_addition",
+    "module": "FrcCore/Causality",
+    "line": 184,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "3:C3 (the velocity addition law) — for boosts with velocities `v₁, v₂` (`v_i γ_i = −ν b_i`) and the composed boost's velocity `v₁₂`, `v₁₂ (ν + v₁v₂) = ν (v₁ + v₂)`: Einstein's law `v₁₂ = (v₁ + v₂)/(1 + v₁v₂/ν)`, exact."
+   }
+  ],
+  "D1": [
+   {
+    "name": "FRC.Shell.Frame.null13",
+    "module": "FrcCore/Causality",
+    "line": 224,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "3:B4, 3:D1 [value] — the null cone of `Q_2` on `𝔽₁₃` has `2041 = 13³ − 13² + 13` points: the elliptic type."
+   },
+   {
+    "name": "FRC.Shell.Frame.normOne_values",
+    "module": "FrcCore/Causality",
+    "line": 232,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "3:C2, 3:D1 [value] — the boosts number `p + 1`: `6`, `14`, `18`, `30` on `𝔽₅`, `𝔽₁₃`, `𝔽₁₇`, `𝔽₂₉`."
+   }
+  ],
+  "V2": [
+   {
+    "name": "FRC.Shell.Frame.boost_preserves",
+    "module": "FrcCore/Causality",
+    "line": 117,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "3:C2 (the finite Lorentz boost) — with `γ² − νb² = 1`, `Λ(γ, b)` preserves `x² − ν t²` exactly, on every shell."
+   }
+  ]
+ }
+}
