@@ -11,7 +11,8 @@ including the division algorithm from the definition of `Nat.mod`.
 Modules (in dependency order): `Nat` (arithmetic, the division algorithm), `Pigeonhole` (lists without
 repetition), `Shell` (the ring), `Frame` (the datum: generation by the pigeonhole, half-period, quarter-turn,
 orientation classes, Euler identity), `Orbit` (the generator orbit, Fermat), `Sum` (finite sums, the principal
-root, the Fourier inversion, the polynomial reading and covariance, the four-cycle, `V = V⁺ ⊕ V⁻`), `Algebra`
+root, the Fourier inversion, the polynomial reading and covariance, the four-cycle, `V = V⁺ ⊕ V⁻`), `Meridian`
+(6-fourier: the meridian ladder as lists, the scale-shift as re-indexing and its effective step, the zoom ladder of `𝔽₁₃` by `decide`), `Algebra`
 (1-algebra rows: the Klein orbits and their count, the frame group, the window and its read-backs),
 `Poly` (polynomials as coefficient sequences: evaluation, synthetic division, the root bound, the root
 criterion of 1:G1), `Quaternion` (the signed window and the framed quaternions of 1:G5), `Causality` (the square classes, the

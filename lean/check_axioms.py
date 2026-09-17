@@ -18,7 +18,7 @@ ROOT = Path(__file__).resolve().parent
 ALLOWED = {"propext", "Classical.choice", "Quot.sound"}
 DECL = re.compile(r"^(?:@\[[^\]]*\]\s*)?(?:private\s+|protected\s+)?(theorem|lemma|def|abbrev)\s+([\w.']+)", re.M)
 NS = re.compile(r"^(namespace|end)\s+([\w.]+)\s*$", re.M)
-LINE = re.compile(r"^'([^']+)' (?:depends on axioms: \[([^\]]*)\]|does not depend on any axioms)")
+LINE = re.compile(r"^'(.+)' (?:depends on axioms: \[([^\]]*)\]|does not depend on any axioms)")   # greedy: names may end in a prime
 
 def declarations(path):
     """Fully qualified theorem names of one module, in source order."""

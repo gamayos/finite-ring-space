@@ -1,6 +1,6 @@
 {
  "paper": "6-four",
- "title": "Scale-Shift and FFT over Finite Holographic Substrate",
+ "title": "Scale-Shift and Fractional Fourier Transform as Rotations over Finite Holographic Substrate",
  "doi": "https://doi.org/10.20944/preprints202606.0127.v1",
  "generated": "17 September 2026",
  "blocks": [
@@ -129,28 +129,28 @@
      "label": "C2",
      "predicate": "$\\Pi_\\ell^{2}=\\Pi_\\ell$, $\\Pi_\\ell\\Pi_m=0$ for $\\ell\\neq m$, $\\sum_\\ell\\Pi_\\ell=I$, $\\Ft\\Pi_\\ell=\\im^{\\ell}\\Pi_\\ell$.",
      "tag": "T",
-     "source": "Lem.~\\ref{lem:projectors}; \\src{B1}",
+     "source": "Lem.~\\ref{lem:projectors}; \\src{B1}; \\lean{Fourier.shell\\_proj, Fourier.proj\\_mul\\_proj, Fourier.sum\\_proj}",
      "key": "p06016"
     },
     {
      "label": "C3",
      "predicate": "The exact finite-field FrFT: $s\\mapsto\\Ft^{[s]}$ is a representation of $\\Phit$, $\\Ft^{[s+r]}=\\Ft^{[s]}\\Ft^{[r]}$ on every pair of the six shells, with the cardinal values $\\Ft^{[0]}=I$, $\\Ft^{[\\kap]}=\\Ft$, $\\Ft^{[2\\kap]}=J$, $\\Ft^{[3\\kap]}=\\Ft^{-1}$, and $(\\Ft^{[1]})^{\\kap}=\\Ft$.",
      "tag": "T",
-     "source": "Thm.~\\ref{thm:FRC-FrFT}; \\src{B2}, \\src{B3}",
+     "source": "Thm.~\\ref{thm:FRC-FrFT}; \\src{B2}, \\src{B3}; \\lean{Fourier.shell\\_frft\\_add, Fourier.shell\\_frft\\_cardinal, Fourier.shell\\_frft\\_values}",
      "key": "p06017"
     },
     {
      "label": "C4",
      "predicate": "Faithfulness: $s\\mapsto\\Ft^{[s]}$ is injective on $\\Z_{4\\kap}$ for every $\\kap\\ge1$; at $\\p=5$ the surviving odd projector carries the faithful character.",
      "tag": "T",
-     "source": "Thm.~\\ref{thm:faithful}; \\src{B4}",
+     "source": "Thm.~\\ref{thm:faithful}; \\src{B4}; \\lean{Fourier.shell\\_frft\\_injective}",
      "key": "p06018"
     },
     {
      "label": "C5",
      "predicate": "The multiplicities $m_\\ell=\\operatorname{rank}\\Pi_\\ell=\\dim\\ker(\\Ft-\\im^{\\ell}I)$: $m_0+m_2=2\\kap+1$, $m_1+m_3=2\\kap-1$; $m_0,m_2\\ge1$; $m_1,m_3\\ge1$ for $\\kap\\ge2$; at $\\p=5$ exactly one of $\\Pi_1,\\Pi_3$ vanishes.",
      "tag": "T",
-     "source": "Lem.~\\ref{lem:multiplicity}; \\src{B5}",
+     "source": "Lem.~\\ref{lem:multiplicity}; \\src{B5}; \\lean{Fourier.shell\\_odd\\_proj\\_ne\\_zero, Fourier.shell\\_even\\_proj\\_ne\\_zero, Fourier.shell\\_multiplicity\\_sums}",
      "key": "p06019"
     },
     {
@@ -164,21 +164,21 @@
      "label": "C7",
      "predicate": "The multiplicity dichotomy: $G=\\sum_{k}\\gen^{k^{2}}=\\varepsilon(1+\\im)$; the tuple is $(\\kap,\\kap,\\kap+1,\\kap-1)$ for $\\varepsilon=+1$ and $(\\kap+1,\\kap-1,\\kap,\\kap)$ for $\\varepsilon=-1$; $\\varepsilon(\\gen^{-1})=-\\varepsilon(\\gen)$, $\\varepsilon(\\gen^{u})=\\bigl(\\tfrac{\\kap}{u}\\bigr)\\varepsilon(\\gen)$ for $u\\equiv1\\pmod4$, the two classes equally populated; the proof's identities $GG^{*}=-2$, $G^{2}=2\\im$, $\\operatorname{Tr}\\Ft=\\im G$, $\\operatorname{Tr}\\Ft^{2}=2$, $\\operatorname{Tr}\\Ft^{3}=\\im G^{*}$. Exact on the $38$ primitive frames of $\\p\\in\\{5,13,17,29,37\\}$ and the $16$ of $\\p=41$.",
      "tag": "T",
-     "source": "Thm.~\\ref{thm:multiplicity}; \\src{B7}, \\src{B8}",
+     "source": "Thm.~\\ref{thm:multiplicity}; \\src{B7}, \\src{B8}; \\lean{Fourier.gauss\\_mul\\_gauss\\_inv, Fourier.gauss\\_inv\\_of\\_sign, Fourier.shell\\_multiplicity\\_tuple}",
      "key": "p06021"
     },
     {
      "label": "C8",
      "predicate": "Classification: every exponent lift $a_\\ell\\equiv\\ell\\pmod4$ is additive with the same cardinal skeleton; a family canonical in the chart $\\gen^{u}$ with $u^{2}\\not\\equiv1\\pmod{4\\kap}$ does not commute with $\\Ft$ ($\\p=29$, $u=5$, and every such chart of the six shells); the principal lift is the unique power-tower member.",
      "tag": "T",
-     "source": "Rem.~\\ref{rem:classification}; \\src{B9}",
+     "source": "Rem.~\\ref{rem:classification}; \\src{B9}; \\lean{Fourier.shell\\_frftLift}",
      "key": "p06022"
     },
     {
      "label": "C9",
      "predicate": "The conjugate reframing $(\\gen,\\im)\\mapsto(\\gen^{-1},-\\im)$: exactly $\\Ft'=-\\Ft^{-1}$ and $\\Pi'_\\ell=\\Pi_{\\ell+2}$; the operator relations, cardinal values, additivity and faithfulness hold on the conjugate frame, and its multiplicity tuple is the other pattern of C7.",
      "tag": "T",
-     "source": "Rem.~\\ref{rem:gt-covariance}, Thm.~\\ref{thm:multiplicity}; \\src{B10}",
+     "source": "Rem.~\\ref{rem:gt-covariance}, Thm.~\\ref{thm:multiplicity}; \\src{B10}; \\lean{Fourier.shell\\_conj}",
      "key": "p06023"
     }
    ]
@@ -198,7 +198,7 @@
      "label": "D2",
      "predicate": "The $4\\kap$ framed domains are pairwise distinct; read as unordered measurement bases $B_{s+2\\kap}=B_s$, since $\\Ft^{[s+2\\kap]}=\\Ft^{[s]}J$ and $J$ permutes the standard basis, and the cycle carries exactly $2\\kap$ of them.",
      "tag": "T",
-     "source": "Cor.~\\ref{cor:distinct-domains}, Rem.~\\ref{rem:ordered-bases}; \\src{C2}, \\src{C3}",
+     "source": "Cor.~\\ref{cor:distinct-domains}, Rem.~\\ref{rem:ordered-bases}; \\src{C2}, \\src{C3}; \\lean{Fourier.shell\\_frft\\_injective, Fourier.shell\\_frft\\_add\\_two\\_kappa, Fourier.mul\\_J\\_apply}",
      "key": "p06025"
     },
     {
@@ -212,14 +212,14 @@
      "label": "D4",
      "predicate": "Meridian-scale covariance: $S_r(M_m)=M_{m+r}$ for every $(m,r)$, as ordered lists; consecutive entries of $M_m$ differ by the effective step $\\gen^{m}$; $S_{r+(\\p-1)}=S_r$, the periodicity of A5 in meridian form.",
      "tag": "T",
-     "source": "Prop.~\\ref{prop:meridian-scale}, Cor.~\\ref{cor:effective-step}, Rem.~\\ref{rem:framed-rational}; \\src{C4}, \\src{C5}",
+     "source": "Prop.~\\ref{prop:meridian-scale}, Cor.~\\ref{cor:effective-step}, Rem.~\\ref{rem:framed-rational}; \\src{C4}, \\src{C5}; \\lean{FRC.Shell.meridian\\_scale, FRC.Shell.meridian\\_step, FRC.Shell.scale\\_periodic}",
      "key": "p06027"
     },
     {
      "label": "D5",
      "predicate": "Meridian zoom [chart]: $M_m$ reads the meridian-coordinate vector at step $\\lambda^{\\tilde m}$, the forward shift zoom-out and the inverse shift zoom-in, the seam an aliasing return; at $\\p=13$, $\\gen=2$ the ladder $M_0,\\dots,M_3$ at steps $1,2,4,8$, unwrapped within $w\\gen^{r}<\\p$ ($w=\\pi=6$: $r\\le1$) and wrapping from $M_2$.",
      "tag": "T",
-     "source": "Thm.~\\ref{thm:zoom}, Ex.~\\ref{ex:zoom-13}, Rem.~\\ref{rem:two-layers}; \\src{C6}",
+     "source": "Thm.~\\ref{thm:zoom}, Ex.~\\ref{ex:zoom-13}, Rem.~\\ref{rem:two-layers}; \\src{C6}; \\lean{FRC.Shell.ladder13}",
      "key": "p06028"
     },
     {
@@ -246,14 +246,14 @@
      "label": "E2",
      "predicate": "$R_s\\in SO(2,\\Fp)$, and $s\\mapsto R_s$ is an isomorphism $\\Phit\\simeq SO(2,\\Fp)$ with $|SO(2,\\Fp)|=\\p-1=4\\kap$: the full rotation group of the $\\p^{2}$-point plane is the meridian cycle.",
      "tag": "T",
-     "source": "Lem.~\\ref{lem:Rs-rotation}, Prop.~\\ref{prop:rotation-isom}; \\src{D1}, \\src{D2}",
+     "source": "Lem.~\\ref{lem:Rs-rotation}, Prop.~\\ref{prop:rotation-isom}; \\src{D1}, \\src{D2}; \\lean{Fourier.circle, Fourier.rot\\_mul, Fourier.unitsEquivCircle, Fourier.card\\_circle}",
      "key": "p06031"
     },
     {
      "label": "E3",
      "predicate": "The cardinal-skeleton dictionary $M_s\\leftrightarrow s\\leftrightarrow z_s\\leftrightarrow R_s$ with $R_0=I$, $R_\\kap=w$, $R_{2\\kap}=-I$, $R_{3\\kap}=w^{-1}$ (the $R_\\kap$ column of Table~\\ref{tab:checks}), $z_\\kap=\\im$; the FRC-native and Weil families stand in cardinal Weil correspondence, the Weil side by the normalization of A2.",
      "tag": "T",
-     "source": "Thm.~\\ref{thm:Weil-equivalence}; \\src{D3}",
+     "source": "Thm.~\\ref{thm:Weil-equivalence}; \\src{D3}; \\lean{Fourier.rot\\_cardinal}",
      "key": "p06032"
     },
     {
@@ -267,21 +267,21 @@
      "label": "E5",
      "predicate": "Spectral obstruction: the exponent shift $\\sigma$ has the $4\\kap$ simple eigenvalues $\\Fpx$, every $\\Ft^{[s]}$ at most four; for $\\kap\\ge2$ the cyclic groups $\\langle\\sigma\\rangle$ and $\\langle\\Ft^{[1]}\\rangle$ are not conjugate.",
      "tag": "T",
-     "source": "Prop.~\\ref{prop:nogo}; \\src{D4}",
+     "source": "Prop.~\\ref{prop:nogo}; \\src{D4}; \\lean{Fourier.shell\\_spectral\\_obstruction}",
      "key": "p06034"
     },
     {
      "label": "E6",
      "predicate": "Common character sector: on $E_1=\\operatorname{im}\\Pi_1\\neq0$ ($\\kap\\ge2$) $\\Ft^{[s]}=\\gen^{-s}I$, the intertwiner $\\Ft^{[s]}T_v=T_vS_{-s}$ on every $x\\in\\Fp$ and $s$, and $R_s(1,-\\im)^{\\mathsf T}=\\gen^{-s}(1,-\\im)^{\\mathsf T}$.",
      "tag": "T",
-     "source": "Prop.~\\ref{prop:charsector}; \\src{D5}",
+     "source": "Prop.~\\ref{prop:charsector}; \\src{D5}; \\lean{Fourier.frft\\_mul\\_proj\\_one, Fourier.rot\\_eigenline}",
      "key": "p06035"
     },
     {
      "label": "E7",
      "predicate": "Cardinal Heisenberg covariance: $\\Ft\\sigma\\Ft^{-1}=D_1$, $\\Ft D_1\\Ft^{-1}=\\sigma^{-1}$; $\\Ft^{r}\\sigma=\\sigma_r\\Ft^{r}$ with $(\\sigma,D_1,\\sigma^{-1},D_1^{-1})$; the expansion \\eqref{eq:conj-expansion}; $\\Ft^{[s]}\\sigma\\Ft^{[s]-1}$ monomial exactly at the four cardinal indices and non-monomial at every one of the $112$ intermediate indices of $\\p\\in\\{13,17,29,37,41\\}$.",
      "tag": "T",
-     "source": "Prop.~\\ref{prop:heisenberg}, \\S\\ref{sub:operator-comparison}; \\src{D6}, \\src{D7}",
+     "source": "Prop.~\\ref{prop:heisenberg}, \\S\\ref{sub:operator-comparison}; \\src{D6}, \\src{D7}; \\lean{Fourier.shell\\_heisenberg}",
      "key": "p06036"
     }
    ]
@@ -368,9 +368,9 @@
     },
     {
      "label": "V4",
-     "predicate": "Lean, two libraries: \\texttt{lean/FrcLedger/Fourier.lean} (Mathlib; classical, tier~2) proves B5 and B7's commutation for every shell; \\texttt{lean/FrcCore} (no Mathlib, \\emph{no axioms}) proves B2, B3, B5, B6 and B7 --- the commutation entrywise and the decomposition $V=V^{+}\\oplus V^{-}$ with its dimensions as coordinate counts --- for every shell by computation and induction alone, kernel-checked on every push.",
+     "predicate": "Lean, two libraries: \\texttt{lean/FrcLedger/Fourier.lean} (Mathlib; classical, tier~2) proves B5, B7, C2--C5, C8, C9, D2, E2, E3, E5--E7 for every shell and C7's in-field half; \\texttt{lean/FrcCore} (no Mathlib, \\emph{no axioms}) proves B2, B3, B5--B7, D4, D5 for every shell by computation and induction alone, kernel-checked on every push.",
      "tag": "T",
-     "source": "\\lean{Fourier, FRC.Shell.Frame.F\\_sq}",
+     "source": "\\lean{Fourier, FRC.Shell.Frame.F\\_sq, FRC.Shell.meridian\\_scale}",
      "key": "p06048"
     }
    ]
@@ -455,7 +455,7 @@
    {
     "name": "FRC.Fourier.shell_relations",
     "module": "FrcLedger/Fourier",
-    "line": 147,
+    "line": 169,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -508,7 +508,7 @@
    {
     "name": "FRC.Fourier.shell_relations",
     "module": "FrcLedger/Fourier",
-    "line": 147,
+    "line": 169,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -564,6 +564,423 @@
     "doc": "6:B7 — an antisymmetric vector is determined by its `2κ − 1` coordinates `v 1, …, v (2κ − 1)`."
    }
   ],
+  "C2": [
+   {
+    "name": "FRC.Fourier.shell_proj",
+    "module": "FrcLedger/Fourier",
+    "line": 1127,
+    "axioms": [
+     "Classical.choice",
+     "Quot.sound",
+     "propext"
+    ],
+    "tier": 2,
+    "ok": true,
+    "doc": "6:C2 — on every shell: `F Π_ℓ = i^ℓ Π_ℓ`, `Π_ℓ Π_m = [ℓ = m] Π_ℓ`, `Σ_ℓ Π_ℓ = 1`."
+   },
+   {
+    "name": "FRC.Fourier.proj_mul_proj",
+    "module": "FrcLedger/Fourier",
+    "line": 293,
+    "axioms": [
+     "Classical.choice",
+     "Quot.sound",
+     "propext"
+    ],
+    "tier": 2,
+    "ok": true,
+    "doc": "6:C2 — the projectors are pairwise orthogonal idempotents: `Π_ℓ Π_m = [ℓ = m] Π_ℓ`."
+   },
+   {
+    "name": "FRC.Fourier.sum_proj",
+    "module": "FrcLedger/Fourier",
+    "line": 329,
+    "axioms": [
+     "Classical.choice",
+     "Quot.sound",
+     "propext"
+    ],
+    "tier": 2,
+    "ok": true,
+    "doc": "6:C2 — the projectors sum to the identity."
+   }
+  ],
+  "C3": [
+   {
+    "name": "FRC.Fourier.shell_frft_add",
+    "module": "FrcLedger/Fourier",
+    "line": 1137,
+    "axioms": [
+     "Classical.choice",
+     "Quot.sound",
+     "propext"
+    ],
+    "tier": 2,
+    "ok": true,
+    "doc": "6:C3 — additivity on every shell: `F^{[s+r]} = F^{[s]} F^{[r]}`, a representation of `ZMod (4κ)`."
+   },
+   {
+    "name": "FRC.Fourier.shell_frft_cardinal",
+    "module": "FrcLedger/Fourier",
+    "line": 1144,
+    "axioms": [
+     "Classical.choice",
+     "Quot.sound",
+     "propext"
+    ],
+    "tier": 2,
+    "ok": true,
+    "doc": "6:C3 — the cardinal values on every shell: `F^{[mκ]} = F^m`, so `F^{[0]} = 1`, `F^{[κ]} = F`, `F^{[2κ]} = J`, `F^{[3κ]} = F³ = F⁻¹`, `F^{[4κ]} = 1`."
+   },
+   {
+    "name": "FRC.Fourier.shell_frft_values",
+    "module": "FrcLedger/Fourier",
+    "line": 1150,
+    "axioms": [
+     "Classical.choice",
+     "Quot.sound",
+     "propext"
+    ],
+    "tier": 2,
+    "ok": true,
+    "doc": "6:C3 — `F^{[κ]} = F`, `F^{[2κ]} = J`, and the exact `κ`-th root `(F^{[1]})^κ = F`."
+   }
+  ],
+  "C4": [
+   {
+    "name": "FRC.Fourier.shell_frft_injective",
+    "module": "FrcLedger/Fourier",
+    "line": 1387,
+    "axioms": [
+     "Classical.choice",
+     "Quot.sound",
+     "propext"
+    ],
+    "tier": 2,
+    "ok": true,
+    "doc": "6:C4, 6:D2 — faithfulness on every shell: `s ↦ F^{[s]}` is injective on `ZMod (4κ)`, so the `4κ` fractional domains are distinct. For `κ ≥ 2` the odd projector `Π_1` is nonzero (C5); for `κ = 1` one of `Π_1`, `Π_3` is, and both indices are coprime to `4`."
+   }
+  ],
+  "C5": [
+   {
+    "name": "FRC.Fourier.shell_odd_proj_ne_zero",
+    "module": "FrcLedger/Fourier",
+    "line": 1329,
+    "axioms": [
+     "Classical.choice",
+     "Quot.sound",
+     "propext"
+    ],
+    "tier": 2,
+    "ok": true,
+    "doc": "6:C5 — `Π_1 ≠ 0` and `Π_3 ≠ 0` for `κ ≥ 2`: otherwise `e_1 − e_{−1}` would be an eigenvector of `F`."
+   },
+   {
+    "name": "FRC.Fourier.shell_even_proj_ne_zero",
+    "module": "FrcLedger/Fourier",
+    "line": 1365,
+    "axioms": [
+     "Classical.choice",
+     "Quot.sound",
+     "propext"
+    ],
+    "tier": 2,
+    "ok": true,
+    "doc": "6:C5 — `Π_0 ≠ 0` and `Π_2 ≠ 0` for every `κ ≥ 1`: otherwise `e_0` would be an eigenvector of `F`."
+   },
+   {
+    "name": "FRC.Fourier.shell_multiplicity_sums",
+    "module": "FrcLedger/Fourier",
+    "line": 1636,
+    "axioms": [
+     "Classical.choice",
+     "Quot.sound",
+     "propext"
+    ],
+    "tier": 2,
+    "ok": true,
+    "doc": "6:C5 — the multiplicity sums on the prime shell: `m_0 + m_2 = 2κ + 1` and `m_1 + m_3 = 2κ − 1`, with `m_ℓ = rank Π_ℓ`: the even and odd projector sums are the parity idempotents `(1 ± J)/2`, of traces `2κ + 1` and `2κ − 1`."
+   }
+  ],
+  "C7": [
+   {
+    "name": "FRC.Fourier.gauss_mul_gauss_inv",
+    "module": "FrcLedger/Fourier",
+    "line": 827,
+    "axioms": [
+     "Classical.choice",
+     "Quot.sound",
+     "propext"
+    ],
+    "tier": 2,
+    "ok": true,
+    "doc": "6:C7 — `G G* = −2` in the field: `Σ_{k,l} g^{k²−l²} = Σ_d g^{d²} Σ_l g^{2ld}`, the inner geometric sum vanishing unless `2d = 0`, i.e. `d ∈ {0, 2κ}`, where it is `n ≡ −1`."
+   },
+   {
+    "name": "FRC.Fourier.gauss_inv_of_sign",
+    "module": "FrcLedger/Fourier",
+    "line": 888,
+    "axioms": [
+     "Classical.choice",
+     "Quot.sound",
+     "propext"
+    ],
+    "tier": 2,
+    "ok": true,
+    "doc": "6:C7 — the conjugate frame's sign: with `G = ε(1 + i)`, `ε = ±1`, the conjugate Gauss sum is `G* = G(g⁻¹) = −ε(1 + i')` for the conjugate quarter-turn `i' = −i`, so `ε(g⁻¹) = −ε(g)`."
+   },
+   {
+    "name": "FRC.Fourier.shell_multiplicity_tuple",
+    "module": "FrcLedger/Fourier",
+    "line": 1665,
+    "axioms": [
+     "Classical.choice",
+     "Quot.sound",
+     "propext"
+    ],
+    "tier": 2,
+    "ok": true,
+    "doc": "6:C7 — the multiplicity tuple on the prime shell, as natural numbers: with `G = ε(1 + i)` (the classical evaluation, import A3), `(m_0, m_1, m_2, m_3) = (κ, κ, κ+1, κ−1)` for `ε = 1` and `(κ+1, κ−1, κ, κ)` for `ε = −1`."
+   }
+  ],
+  "C8": [
+   {
+    "name": "FRC.Fourier.shell_frftLift",
+    "module": "FrcLedger/Fourier",
+    "line": 1166,
+    "axioms": [
+     "Classical.choice",
+     "Quot.sound",
+     "propext"
+    ],
+    "tier": 2,
+    "ok": true,
+    "doc": "6:C8 — every exponent lift `a_ℓ ≡ ℓ (mod 4)` gives an additive family with the cardinal skeleton of the principal one, on every shell."
+   }
+  ],
+  "C9": [
+   {
+    "name": "FRC.Fourier.shell_conj",
+    "module": "FrcLedger/Fourier",
+    "line": 1177,
+    "axioms": [
+     "Classical.choice",
+     "Quot.sound",
+     "propext"
+    ],
+    "tier": 2,
+    "ok": true,
+    "doc": "6:C9 — the conjugate frame `(g⁻¹, −i)`: its transform is `F' = −F³ = −F⁻¹` (since `W(g⁻¹) = W J`), and its projectors are the shifted ones, `Π'_ℓ = Π_{ℓ+2}`."
+   }
+  ],
+  "D2": [
+   {
+    "name": "FRC.Fourier.shell_frft_injective",
+    "module": "FrcLedger/Fourier",
+    "line": 1387,
+    "axioms": [
+     "Classical.choice",
+     "Quot.sound",
+     "propext"
+    ],
+    "tier": 2,
+    "ok": true,
+    "doc": "6:C4, 6:D2 — faithfulness on every shell: `s ↦ F^{[s]}` is injective on `ZMod (4κ)`, so the `4κ` fractional domains are distinct. For `κ ≥ 2` the odd projector `Π_1` is nonzero (C5); for `κ = 1` one of `Π_1`, `Π_3` is, and both indices are coprime to `4`."
+   },
+   {
+    "name": "FRC.Fourier.shell_frft_add_two_kappa",
+    "module": "FrcLedger/Fourier",
+    "line": 1193,
+    "axioms": [
+     "Classical.choice",
+     "Quot.sound",
+     "propext"
+    ],
+    "tier": 2,
+    "ok": true,
+    "doc": "6:D2 — `F^{[s+2κ]} = F^{[s]} J`: the framed domains `s` and `s + 2κ` differ by the parity involution, which permutes the standard basis (`mul_J_apply`), so they are one unordered measurement basis."
+   },
+   {
+    "name": "FRC.Fourier.mul_J_apply",
+    "module": "FrcLedger/Fourier",
+    "line": 74,
+    "axioms": [
+     "Classical.choice",
+     "Quot.sound",
+     "propext"
+    ],
+    "tier": 2,
+    "ok": true,
+    "doc": "6:D2 — `J` is a permutation matrix: `(M J) k j = M k (−j)`, so `M J` has the columns of `M`, reindexed by the parity involution `j ↦ −j`."
+   }
+  ],
+  "D4": [
+   {
+    "name": "FRC.Shell.meridian_scale",
+    "module": "FrcCore/Meridian",
+    "line": 34,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "6:D4 — meridian-scale covariance: `S_r(M_m) = M_{m+r}` as ordered lists, for every `m, r`."
+   },
+   {
+    "name": "FRC.Shell.meridian_step",
+    "module": "FrcCore/Meridian",
+    "line": 46,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "6:D4 — the effective step: consecutive entries of `M_m` differ by `g^m`, `(a + 1) g^m = a g^m + g^m`."
+   },
+   {
+    "name": "FRC.Shell.scale_periodic",
+    "module": "FrcCore/Meridian",
+    "line": 52,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "6:D4 — `S_{r + (p−1)} = S_r`: the meridian-scale map is `(p − 1)`-periodic in `r` (the periodicity of the framed-rational zoom, A5)."
+   }
+  ],
+  "D5": [
+   {
+    "name": "FRC.Shell.ladder13",
+    "module": "FrcCore/Meridian",
+    "line": 60,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "6:D5 — the `p = 13`, `g = 2`, `κ = 3` ladder: `M_0, M_1, M_2, M_3` at the effective steps `1, 2, 4, 8`; `M_0` and `M_1` are unwrapped (`π g^r = 6 g^r < 13` for `r ≤ 1`), `M_2` wraps (`6 · 4 = 24 ≥ 13`: its entries `0, 4, 8, 12, 3, 7, 11` return through the seam)."
+   }
+  ],
+  "E2": [
+   {
+    "name": "FRC.Fourier.circle",
+    "module": "FrcLedger/Fourier",
+    "line": 636,
+    "axioms": [
+     "Classical.choice",
+     "Quot.sound",
+     "propext"
+    ],
+    "tier": 2,
+    "ok": true,
+    "doc": "6:E2 — `R_s ∈ SO(2)`: `c² + d² = 1` for `z ≠ 0`, so `det R_s = 1` and `R_sᵀ R_s = 1`."
+   },
+   {
+    "name": "FRC.Fourier.rot_mul",
+    "module": "FrcLedger/Fourier",
+    "line": 675,
+    "axioms": [
+     "Classical.choice",
+     "Quot.sound",
+     "propext"
+    ],
+    "tier": 2,
+    "ok": true,
+    "doc": "6:E2 — `s ↦ R_s` is a homomorphism of the meridian cycle: `R_{s+r} = R_s R_r` reads `rot (z w) = rot z * rot w` for `z = g^{−s}`, `w = g^{−r}`."
+   },
+   {
+    "name": "FRC.Fourier.unitsEquivCircle",
+    "module": "FrcLedger/Fourier",
+    "line": 720,
+    "axioms": [
+     "Classical.choice",
+     "Quot.sound",
+     "propext"
+    ],
+    "tier": 2,
+    "ok": true,
+    "doc": "6:E2 — the circle is the unit group: `u ↦ (c_u, d_u)` with inverse `(c, d) ↦ c + i d`, so `SO(2, K) ≃ K^×` when `K` has a quarter-turn."
+   },
+   {
+    "name": "FRC.Fourier.card_circle",
+    "module": "FrcLedger/Fourier",
+    "line": 748,
+    "axioms": [
+     "Classical.choice",
+     "Quot.sound",
+     "propext"
+    ],
+    "tier": 2,
+    "ok": true,
+    "doc": "6:E2 — `|SO(2, K)| = |K| − 1` for a finite field with a quarter-turn: the rotation group of the `p²`-point plane has `p − 1 = 4κ` elements, the size of the meridian cycle."
+   }
+  ],
+  "E3": [
+   {
+    "name": "FRC.Fourier.rot_cardinal",
+    "module": "FrcLedger/Fourier",
+    "line": 684,
+    "axioms": [
+     "Classical.choice",
+     "Quot.sound",
+     "propext"
+    ],
+    "tier": 2,
+    "ok": true,
+    "doc": "6:E3 — the cardinal values: `R_0 = 1` (`z = 1`), `R_κ = w = [[0, −1], [1, 0]]` (`z = i`), `R_{2κ} = −1` (`z = −1`), `R_{3κ} = w⁻¹` (`z = −i`)."
+   }
+  ],
+  "E5": [
+   {
+    "name": "FRC.Fourier.shell_spectral_obstruction",
+    "module": "FrcLedger/Fourier",
+    "line": 1206,
+    "axioms": [
+     "Classical.choice",
+     "Quot.sound",
+     "propext"
+    ],
+    "tier": 2,
+    "ok": true,
+    "doc": "6:E5 — the spectral obstruction: the shift has every unit of `𝔽_p` as an eigenvalue (eigenvector `(a^j)_j`), the family at most four; for `κ ≥ 2` no invertible `T` conjugates `σ` to `F^{[s]}`."
+   }
+  ],
+  "E6": [
+   {
+    "name": "FRC.Fourier.frft_mul_proj_one",
+    "module": "FrcLedger/Fourier",
+    "line": 538,
+    "axioms": [
+     "Classical.choice",
+     "Quot.sound",
+     "propext"
+    ],
+    "tier": 2,
+    "ok": true,
+    "doc": "6:E6 — the character sector: on `im Π_1` the family acts by the meridian character, `F^{[s]} Π_1 = z^{s} Π_1`; the intertwiner `F^{[s]} (x Π_1 v) = Π_1 ((z^s x) v)` is linearity."
+   },
+   {
+    "name": "FRC.Fourier.rot_eigenline",
+    "module": "FrcLedger/Fourier",
+    "line": 703,
+    "axioms": [
+     "Classical.choice",
+     "Quot.sound",
+     "propext"
+    ],
+    "tier": 2,
+    "ok": true,
+    "doc": "6:E6 — the eigenline: `R_s (1, −i)ᵀ = z (1, −i)ᵀ`, the same character `z = g^{−s}` (Prop. charsector)."
+   }
+  ],
+  "E7": [
+   {
+    "name": "FRC.Fourier.shell_heisenberg",
+    "module": "FrcLedger/Fourier",
+    "line": 1198,
+    "axioms": [
+     "Classical.choice",
+     "Quot.sound",
+     "propext"
+    ],
+    "tier": 2,
+    "ok": true,
+    "doc": "6:E7 — on every shell: `F σ = D_1 F` and `F D_1 = σ⁻¹ F`, with `σ σ⁻¹ = 1`."
+   }
+  ],
   "V4": [
    {
     "name": "FRC.Shell.Frame.F_sq",
@@ -573,6 +990,15 @@
     "tier": 0,
     "ok": true,
     "doc": "6:B5, 6:B7 (`F² = J`, entrywise): the quarter-turn transform squares to the reversal."
+   },
+   {
+    "name": "FRC.Shell.meridian_scale",
+    "module": "FrcCore/Meridian",
+    "line": 34,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "6:D4 — meridian-scale covariance: `S_r(M_m) = M_{m+r}` as ordered lists, for every `m, r`."
    }
   ]
  }

@@ -164,7 +164,7 @@ const PUBLICATIONS = [
   {
     "key": "6-four",
     "n": 6,
-    "title": "Scale-Shift and FFT over Finite Holographic Substrate",
+    "title": "Scale-Shift and Fractional Fourier Transform as Rotations over Finite Holographic Substrate",
     "status": {
       "kind": "preprint"
     },

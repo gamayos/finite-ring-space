@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-HNE3RMJ5L1"></script>
+<script> window.dataLayer = window.dataLayer || []; function gtag(){dataLayer.push(arguments);} gtag('js', new Date()); gtag('config', 'G-HNE3RMJ5L1'); </script>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Meridian.lean — FrcCore</title>
+<meta name="description" content="The Lean module FrcCore/Meridian of the FRC predicate ledgers, rendered with an anchor per declaration">
+<meta name="author" content="Yosef Akhtman">
+<link rel="icon" href="../../frc-logo-fav.png">
+<link rel="stylesheet" href="../../style.css">
+
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <h1>Meridian.lean — FrcCore</h1>
+    
+    <nav><a href="../../index.html">Home</a><a href="../../publications.html">Publications</a><a href="../../00-ledger.html">Ledger</a><a href="../../predictions.html">Predictions</a><a href="../../explicability.html">Explicability</a></nav>
+  </header>
+<main id="ledger-main"><section class="prose"><p>The core module <code>lean/FrcCore/Meridian.lean</code> — the substrate from first principles, no Mathlib, no axioms (the modules in order: <a href="Nat.html">Nat</a>, <a href="Pigeonhole.html">Pigeonhole</a>, <a href="Shell.html">Shell</a>, <a href="Frame.html">Frame</a>, <a href="Orbit.html">Orbit</a>, <a href="Sum.html">Sum</a>, <a href="Meridian.html">Meridian</a>, <a href="Algebra.html">Algebra</a>, <a href="Poly.html">Poly</a>, <a href="Quaternion.html">Quaternion</a>, <a href="Causality.html">Causality</a>, <a href="Representation.html">Representation</a>, <a href="Reductio.html">Reductio</a>, <a href="Geometry.html">Geometry</a>, <a href="Complex.html">Complex</a>, <a href="Instances.html">Instances</a>): 6 theorems (2 definitions): 6 with no axioms (green), 0 at tier 1 (teal: <code>propext</code>, <code>Quot.sound</code>), 0 at tier 2 (amber: <code>Classical.choice</code>), 0 red; the small plain glyph marks a definition (no proof, no axioms; on the ledger pages the plain glyph is instead a module cited as a whole). Each declaration is anchored; the ledger rows cite them by name. <a href="https://live.lean-lang.org/#project=lean-v4.34.0&url=https://raw.githubusercontent.com/gamayos/finite-ring-space/main/lean/web/FrcCore.lean" target="_blank" rel="noopener">▶ open in the Lean web editor</a> · <a href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcCore/Meridian.lean" target="_blank" rel="noopener">on GitHub</a> · <a href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcCore/axioms.log" target="_blank" rel="noopener">axioms.log</a> · <a href="https://github.com/gamayos/finite-ring-space/actions/workflows/lean.yml" target="_blank" rel="noopener">CI</a>.</p></section><pre class="lean"><span class="ln" id="L1"><a class="lno" href="#L1">1</a>import FrcCore.Frame</span>
+<span class="ln" id="L2"><a class="lno" href="#L2">2</a></span>
+<span class="ln" id="L3"><a class="lno" href="#L3">3</a>/-!</span>
+<span class="ln" id="L4"><a class="lno" href="#L4">4</a># 6-fourier — the meridians and the meridian-scale map (rows D4, D5), no axioms</span>
+<span class="ln" id="L5"><a class="lno" href="#L5">5</a></span>
+<span class="ln" id="L6"><a class="lno" href="#L6">6</a>The meridian `M_m = (a g^m)_{a = 0..π}`, `π = 2κ`, as an ordered list of `2κ + 1` entries, and the</span>
+<span class="ln" id="L7"><a class="lno" href="#L7">7</a>meridian-scale map `S_r(x) = g^r x`: `S_r(M_m) = M_{m+r}` as ordered lists, consecutive entries of `M_m`</span>
+<span class="ln" id="L8"><a class="lno" href="#L8">8</a>differ by the effective step `g^m`, and `S_{r + (p−1)} = S_r` (the `(p−1)`-periodicity of the framed-rational</span>
+<span class="ln" id="L9"><a class="lno" href="#L9">9</a>zoom). The `p = 13`, `g = 2` ladder `M_0, …, M_3` at steps `1, 2, 4, 8`, decided by computation: unwrapped</span>
+<span class="ln" id="L10"><a class="lno" href="#L10">10</a>while `π g^r &lt; p` (`r ≤ 1`), wrapping from `M_2`.</span>
+<span class="ln" id="L11"><a class="lno" href="#L11">11</a>-/</span>
+<span class="ln" id="L12"><a class="lno" href="#L12">12</a></span>
+<span class="ln" id="L13"><a class="lno" href="#L13">13</a>namespace FRC.Shell</span>
+<span class="ln" id="L14"><a class="lno" href="#L14">14</a></span>
+<span class="ln" id="L15"><a class="lno" href="#L15">15</a>variable {p : Nat} [Pos p]</span>
+<span class="ln" id="L16"><a class="lno" href="#L16">16</a></span>
+<span class="ln" id="L17"><a class="lno" href="#L17">17</a>/-- 6:D3 — the meridian `M_m = (0, g^m, 2g^m, …, π g^m)`, `π = 2κ`, as an ordered list. -/</span>
+<span class="ln decl" id="FRC.Shell.meridian"><a class="lno" href="#FRC.Shell.meridian">18</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcCore/Meridian.lean#L18" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small" src="../lean.png" alt="" title="a definition: no proof, no axioms">def meridian (g : Shell p) (κ m : Nat) : List (Shell p) :=</span>
+<span class="ln" id="L19"><a class="lno" href="#L19">19</a>  (List.range (2 * κ + 1)).map (fun a =&gt; ofNat a * g ^ m)</span>
+<span class="ln" id="L20"><a class="lno" href="#L20">20</a></span>
+<span class="ln" id="L21"><a class="lno" href="#L21">21</a>/-- 6:D3 — the meridian-scale map `S_r(x) = g^r x`. -/</span>
+<span class="ln decl" id="FRC.Shell.scale"><a class="lno" href="#FRC.Shell.scale">22</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcCore/Meridian.lean#L22" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small" src="../lean.png" alt="" title="a definition: no proof, no axioms">def scale (g : Shell p) (r : Nat) (x : Shell p) : Shell p := g ^ r * x</span>
+<span class="ln" id="L23"><a class="lno" href="#L23">23</a></span>
+<span class="ln" id="L24"><a class="lno" href="#L24">24</a>/-- The scale map on a list of multiples, entry by entry: `g^r (a g^m) = a g^{m+r}`. -/</span>
+<span class="ln decl" id="FRC.Shell.map_scale_aux"><a class="lno" href="#FRC.Shell.map_scale_aux">25</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcCore/Meridian.lean#L25" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small ok" src="../lean-ok.png" alt="" title="no axioms">theorem map_scale_aux (g : Shell p) (m r : Nat) : ∀ l : List Nat,</span>
+<span class="ln" id="L26"><a class="lno" href="#L26">26</a>    (l.map (fun a =&gt; ofNat a * g ^ m)).map (scale g r) = l.map (fun a =&gt; ofNat a * g ^ (m + r))</span>
+<span class="ln" id="L27"><a class="lno" href="#L27">27</a>  | [] =&gt; rfl</span>
+<span class="ln" id="L28"><a class="lno" href="#L28">28</a>  | a :: l =&gt; by</span>
+<span class="ln" id="L29"><a class="lno" href="#L29">29</a>    rw [List.map_cons, List.map_cons, List.map_cons, map_scale_aux g m r l]</span>
+<span class="ln" id="L30"><a class="lno" href="#L30">30</a>    show scale g r (ofNat a * g ^ m) :: _ = (ofNat a * g ^ (m + r)) :: _</span>
+<span class="ln" id="L31"><a class="lno" href="#L31">31</a>    rw [scale, pow_add, mul_left_comm, mul_comm (g ^ m)]</span>
+<span class="ln" id="L32"><a class="lno" href="#L32">32</a></span>
+<span class="ln" id="L33"><a class="lno" href="#L33">33</a>/-- 6:D4 — meridian-scale covariance: `S_r(M_m) = M_{m+r}` as ordered lists, for every `m, r`. -/</span>
+<span class="ln decl" id="FRC.Shell.meridian_scale"><a class="lno" href="#FRC.Shell.meridian_scale">34</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcCore/Meridian.lean#L34" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small ok" src="../lean-ok.png" alt="" title="no axioms">theorem meridian_scale (g : Shell p) (κ m r : Nat) :</span>
+<span class="ln" id="L35"><a class="lno" href="#L35">35</a>    (meridian g κ m).map (scale g r) = meridian g κ (m + r) :=</span>
+<span class="ln" id="L36"><a class="lno" href="#L36">36</a>  map_scale_aux g m r (List.range (2 * κ + 1))</span>
+<span class="ln" id="L37"><a class="lno" href="#L37">37</a></span>
+<span class="ln" id="L38"><a class="lno" href="#L38">38</a>/-- `ofNat (a + 1) = ofNat a + 1` in the shell. -/</span>
+<span class="ln decl" id="FRC.Shell.ofNat_succ"><a class="lno" href="#FRC.Shell.ofNat_succ">39</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcCore/Meridian.lean#L39" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small ok" src="../lean-ok.png" alt="" title="no axioms">theorem ofNat_succ (a : Nat) : (ofNat (a + 1) : Shell p) = ofNat a + 1 := by</span>
+<span class="ln" id="L40"><a class="lno" href="#L40">40</a>  apply ext</span>
+<span class="ln" id="L41"><a class="lno" href="#L41">41</a>  rw [val_add, val_ofNat, val_ofNat, val_one]</span>
+<span class="ln" id="L42"><a class="lno" href="#L42">42</a>  exact Nat.add_mod a 1 p hp</span>
+<span class="ln" id="L43"><a class="lno" href="#L43">43</a></span>
+<span class="ln" id="L44"><a class="lno" href="#L44">44</a>/-- 6:D4 — the effective step: consecutive entries of `M_m` differ by `g^m`,</span>
+<span class="ln" id="L45"><a class="lno" href="#L45">45</a>`(a + 1) g^m = a g^m + g^m`. -/</span>
+<span class="ln decl" id="FRC.Shell.meridian_step"><a class="lno" href="#FRC.Shell.meridian_step">46</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcCore/Meridian.lean#L46" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small ok" src="../lean-ok.png" alt="" title="no axioms">theorem meridian_step (g : Shell p) (m a : Nat) :</span>
+<span class="ln" id="L47"><a class="lno" href="#L47">47</a>    (ofNat (a + 1) : Shell p) * g ^ m = ofNat a * g ^ m + g ^ m := by</span>
+<span class="ln" id="L48"><a class="lno" href="#L48">48</a>  rw [ofNat_succ, right_distrib, one_mul]</span>
+<span class="ln" id="L49"><a class="lno" href="#L49">49</a></span>
+<span class="ln" id="L50"><a class="lno" href="#L50">50</a>/-- 6:D4 — `S_{r + (p−1)} = S_r`: the meridian-scale map is `(p − 1)`-periodic in `r` (the periodicity of the</span>
+<span class="ln" id="L51"><a class="lno" href="#L51">51</a>framed-rational zoom, A5). -/</span>
+<span class="ln decl" id="FRC.Shell.scale_periodic"><a class="lno" href="#FRC.Shell.scale_periodic">52</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcCore/Meridian.lean#L52" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small ok" src="../lean-ok.png" alt="" title="no axioms">theorem scale_periodic {κ : Nat} {g : Shell p} (F : Frame p κ g) (r : Nat) (x : Shell p) :</span>
+<span class="ln" id="L53"><a class="lno" href="#L53">53</a>    scale g (r + (p - 1)) x = scale g r x := by</span>
+<span class="ln" id="L54"><a class="lno" href="#L54">54</a>  unfold scale</span>
+<span class="ln" id="L55"><a class="lno" href="#L55">55</a>  rw [pow_add, F.pow_n, mul_one]</span>
+<span class="ln" id="L56"><a class="lno" href="#L56">56</a></span>
+<span class="ln" id="L57"><a class="lno" href="#L57">57</a>/-- 6:D5 — the `p = 13`, `g = 2`, `κ = 3` ladder: `M_0, M_1, M_2, M_3` at the effective steps `1, 2, 4, 8`;</span>
+<span class="ln" id="L58"><a class="lno" href="#L58">58</a>`M_0` and `M_1` are unwrapped (`π g^r = 6 g^r &lt; 13` for `r ≤ 1`), `M_2` wraps (`6 · 4 = 24 ≥ 13`: its entries</span>
+<span class="ln" id="L59"><a class="lno" href="#L59">59</a>`0, 4, 8, 12, 3, 7, 11` return through the seam). -/</span>
+<span class="ln decl" id="FRC.Shell.ladder13"><a class="lno" href="#FRC.Shell.ladder13">60</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcCore/Meridian.lean#L60" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small ok" src="../lean-ok.png" alt="" title="no axioms">theorem ladder13 :</span>
+<span class="ln" id="L61"><a class="lno" href="#L61">61</a>    meridian (2 : Shell 13) 3 0 = [0, 1, 2, 3, 4, 5, 6] ∧</span>
+<span class="ln" id="L62"><a class="lno" href="#L62">62</a>    meridian (2 : Shell 13) 3 1 = [0, 2, 4, 6, 8, 10, 12] ∧</span>
+<span class="ln" id="L63"><a class="lno" href="#L63">63</a>    meridian (2 : Shell 13) 3 2 = [0, 4, 8, 12, 3, 7, 11] ∧</span>
+<span class="ln" id="L64"><a class="lno" href="#L64">64</a>    meridian (2 : Shell 13) 3 3 = [0, 8, 3, 11, 6, 1, 9] ∧</span>
+<span class="ln" id="L65"><a class="lno" href="#L65">65</a>    (6 * 2 ^ 1 &lt; 13) ∧ ¬ (6 * 2 ^ 2 &lt; 13) := by</span>
+<span class="ln" id="L66"><a class="lno" href="#L66">66</a>  decide</span>
+<span class="ln" id="L67"><a class="lno" href="#L67">67</a></span>
+<span class="ln" id="L68"><a class="lno" href="#L68">68</a>end FRC.Shell</span>
+<span class="ln" id="L69"><a class="lno" href="#L69">69</a></span>
+</pre></main>
+</div>
+</body>
+</html>

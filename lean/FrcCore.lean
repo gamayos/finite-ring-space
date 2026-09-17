@@ -4,6 +4,7 @@ import FrcCore.Shell
 import FrcCore.Frame
 import FrcCore.Orbit
 import FrcCore.Sum
+import FrcCore.Meridian
 import FrcCore.Algebra
 import FrcCore.Poly
 import FrcCore.Quaternion

@@ -217,6 +217,14 @@
 'FRC.Shell.Frame.antisymm_extend' does not depend on any axioms
 'FRC.Shell.Frame.symm_antisymm_decomp' does not depend on any axioms
 'FRC.Shell.Frame.symm_antisymm_unique' does not depend on any axioms
+'FRC.Shell.meridian' does not depend on any axioms
+'FRC.Shell.scale' does not depend on any axioms
+'FRC.Shell.map_scale_aux' does not depend on any axioms
+'FRC.Shell.meridian_scale' does not depend on any axioms
+'FRC.Shell.ofNat_succ' does not depend on any axioms
+'FRC.Shell.meridian_step' does not depend on any axioms
+'FRC.Shell.scale_periodic' does not depend on any axioms
+'FRC.Shell.ladder13' does not depend on any axioms
 'FRC.Shell.Frame.klein_orbit_four' does not depend on any axioms
 'FRC.Shell.Frame.scale_periodic' does not depend on any axioms
 'FRC.Shell.Frame.affineMul' does not depend on any axioms
