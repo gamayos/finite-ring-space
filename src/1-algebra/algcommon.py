@@ -31,7 +31,7 @@ RESULTS = []
 # The paper's predicate ledger (Appendix A, rows cited as 1:XN): the row(s) each check witnesses.
 LEDGER = {
     "A1": "1:B2", "A2": "1:B3", "A3": "1:B4", "A4": "1:C2", "A5": "1:C4",
-    "B1": "1:D2", "B2": "1:D4", "B3": "1:D5", "B4": "1:E2", "B5": "1:F1", "B6": "1:V1",
+    "B1": "1:D2", "B2": "1:D4", "B3": "1:D6", "B4": "1:E2", "B5": "1:F1", "B6": "1:V1",
     "C1": "1:G1", "C2": "1:G2", "C3": "1:G3", "C4": "1:G4", "C5": "1:G5",
 }
 

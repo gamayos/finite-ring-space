@@ -64,11 +64,11 @@
  },
  {
   "id": "B3",
-  "rows": "1:D5",
+  "rows": "1:D6",
   "script": "b_numbers",
-  "label": "|r| \u2264 H g^{\u2212n} \u21d2 some x/g\u207f, x \u2208 W_H, within 1/(2g\u207f); the obstruction at (13, 2): no point of step \u2264 1/8 within 1/16 of r = 33/10",
+  "label": "|r| \u2264 H g^{\u2212n} \u21d2 some x/g\u207f, x \u2208 W_H, within 1/(2g\u207f); at (13, 2) no point of step \u2264 1/8 within 1/16 of r = 33/10: range and resolution trade off at fixed window",
   "ok": true,
-  "detail": "trade-off on 648 sampled reals at (13,2), H=12; obstruction: no x/2^n (n \u2265 3, x < 13) within 1/16 of 33/10, best 7/2 at error 1/5",
+  "detail": "trade-off on 648 sampled reals at (13,2), H=12; range: no x/2^n (n \u2265 3, x < 13) within 1/16 of 33/10, best 7/2 at error 1/5",
   "kind": "CHART"
  },
  {

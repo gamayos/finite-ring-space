@@ -239,9 +239,9 @@
 <span class="ln" id="L217"><a class="lno" href="#L217">217</a>    euclidSteps 40 55 34 = 7 ∧ Nat.log 2 59 + 1 = 6 := by</span>
 <span class="ln" id="L218"><a class="lno" href="#L218">218</a>  decide</span>
 <span class="ln" id="L219"><a class="lno" href="#L219">219</a></span>
-<span class="ln" id="L220"><a class="lno" href="#L220">220</a>/-- 1:D5, the obstruction at `p = 13`, `g = 2`: every grid point</span>
+<span class="ln" id="L220"><a class="lno" href="#L220">220</a>/-- 1:D6 (Theorem approx, the range at `p = 13`, `g = 2`): every grid point</span>
 <span class="ln" id="L221"><a class="lno" href="#L221">221</a>`x/2^n` with `0 ≤ x &lt; 13` and `n ≥ 3` is `≤ 3/2`, so no grid point at resolution `1/8` lies</span>
-<span class="ln" id="L222"><a class="lno" href="#L222">222</a>within `1/16` of `33/10` (an instance of the range obstruction). -/</span>
+<span class="ln" id="L222"><a class="lno" href="#L222">222</a>within `1/16` of `33/10`: range and resolution trade off at fixed window. -/</span>
 <span class="ln decl" id="FRC.Algebra.approx_obstruction"><a class="lno" href="#FRC.Algebra.approx_obstruction">223</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcLedger/Algebra.lean#L223" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small t2" src="lean-t2.png" alt="" title="tier 2, classical: Classical.choice, Quot.sound, propext">theorem approx_obstruction :</span>
 <span class="ln" id="L224"><a class="lno" href="#L224">224</a>    ∀ n : ℕ, 3 ≤ n → ∀ x : ℕ, x &lt; 13 → ((x : ℚ) / 2 ^ n) ≤ 3 / 2 := by</span>
 <span class="ln" id="L225"><a class="lno" href="#L225">225</a>  intro n hn x hx</span>

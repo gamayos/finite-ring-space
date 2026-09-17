@@ -139,13 +139,6 @@
      "key": "p01015"
     },
     {
-     "label": "D5",
-     "predicate": "The chart of the grid [chart] (Prop.~\\ref{prop:r-rationals}, Thm.~\\ref{thm:approx}): with $\\gen$ lifted to an integer $\\ge2$, every real $r$ with $|r|\\le H\\gen^{-n}$ lies within $1/(2\\gen^{n})$ of some $x/\\gen^{n}$, $x\\in W_H$: resolution and range trade off at fixed window. Every real to every precision is unavailable: at $(13,2)$ no point of step $\\le1/8$ lies within $1/16$ of $33/10$.",
-     "tag": "T",
-     "source": "\\src{B3}; \\lean{Algebra.approx\\_obstruction, FRC.Shell.Frame.approx\\_obstruction} (obstruction)",
-     "key": "p01016"
-    },
-    {
      "label": "D6",
      "predicate": "The continuum as chart (Def.~\\ref{def:reals}, Props.~\\ref{prop:total-bounded}--\\ref{prop:compactness}, Cor.~\\ref{cor:knowability}): the framed real line is the reading of the nested grids against $\\R$, a labelled idealisation entered nowhere as an object (00:B1); no completion, compactness or ``complete continuum'' is claimed.",
      "tag": "D",
@@ -241,7 +234,7 @@
    "rows": [
     {
      "label": "V1",
-     "predicate": "The package \\texttt{src/1-algebra}, three block scripts, sixteen checks, one notebook: \\src{a\\_shell}, A1--A5 (orbit census on seven shells with controls, every primitive root, all $428$ frames of $\\F_{13}$, $\\F_{17}$, the frame group); \\src{b\\_numbers}, B1--B6 (window law, grids, chart obstruction, zero divisors, Thm.~\\ref{thm:no-south-pole}, Lemma~\\ref{lem:euclid-bound}'s step count); \\src{c\\_conjecture}, C1--C5 (root test, tower, circle net, covering radii, the window net). Eleven \\textsf{EXACT}, five \\textsf{CHART}.",
+     "predicate": "The package \\texttt{src/1-algebra}, three block scripts, sixteen checks, one notebook: \\src{a\\_shell}, A1--A5 (orbit census on seven shells with controls, every primitive root, all $428$ frames of $\\F_{13}$, $\\F_{17}$, the frame group); \\src{b\\_numbers}, B1--B6 (window law, grids, the chart of the grid, zero divisors, Thm.~\\ref{thm:no-south-pole}, Lemma~\\ref{lem:euclid-bound}'s step count); \\src{c\\_conjecture}, C1--C5 (root test, tower, circle net, covering radii, the window net). Eleven \\textsf{EXACT}, five \\textsf{CHART}.",
      "tag": "T",
      "source": "\\src{run\\_all}; the notebook",
      "key": "p01022"
@@ -255,7 +248,7 @@
     },
     {
      "label": "V3",
-     "predicate": "\\texttt{lean/FrcCore} (no Mathlib, \\emph{no axioms}: every declaration prints ``does not depend on any axioms''): residues with representatives; the frame $(\\chron;0,1,\\gen)$, the drive primitive and generating (decidable, by the pigeonhole); the division algorithm from \\texttt{Nat.mod}'s definition; polynomials as coefficient sequences; B2, B3, B4, C2, C4, D2, D4, D5, E2, F1, G1's criterion, G5's finitary clause, every shell, by computation and induction.",
+     "predicate": "\\texttt{lean/FrcCore} (no Mathlib, \\emph{no axioms}: every declaration prints ``does not depend on any axioms''): residues with representatives; the frame $(\\chron;0,1,\\gen)$, the drive primitive and generating (decidable, by the pigeonhole); the division algorithm from \\texttt{Nat.mod}'s definition; polynomials as coefficient sequences; B2, B3, B4, C2, C4, D2, D4, E2, F1, G1's criterion, G5's finitary clause, every shell, by computation and induction.",
      "tag": "T",
      "source": "\\lean{FRC.Shell.Frame.half\\_period, FRC.Shell.Poly.Frame.root\\_iff\\_common\\_factor}",
      "key": "p01031"
@@ -609,30 +602,6 @@
     "tier": 0,
     "ok": true,
     "doc": "1:D4 (Lemma 2 of 1-algebra, scale periodicity) — the residue grid repeats with the period `p − 1` of the drive: `g^{n + (p−1)} = g^n`, hence `x·g^{n + (p−1)} = x·g^n` for every `x`."
-   }
-  ],
-  "D5": [
-   {
-    "name": "FRC.Algebra.approx_obstruction",
-    "module": "FrcLedger/Algebra",
-    "line": 223,
-    "axioms": [
-     "Classical.choice",
-     "Quot.sound",
-     "propext"
-    ],
-    "tier": 2,
-    "ok": true,
-    "doc": "1:D5, the obstruction at `p = 13`, `g = 2`: every grid point `x/2^n` with `0 ≤ x < 13` and `n ≥ 3` is `≤ 3/2`, so no grid point at resolution `1/8` lies within `1/16` of `33/10` (an instance of the range obstruction)."
-   },
-   {
-    "name": "FRC.Shell.Frame.approx_obstruction",
-    "module": "FrcCore/Algebra",
-    "line": 164,
-    "axioms": [],
-    "tier": 0,
-    "ok": true,
-    "doc": "1:D5, the range obstruction at `p = 13`, `g = 2`: every grid point `x / 2^n` with `x < 13` and `n ≥ 3` is at most `3/2` — as the integer statement `2x ≤ 3·2^n`."
    }
   ],
   "E2": [

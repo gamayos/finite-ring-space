@@ -397,9 +397,9 @@ theorem euclid_step_count :
     euclidSteps 40 55 34 = 7 ∧ Nat.log 2 59 + 1 = 6 := by
   decide
 
-/-- 1:D5, the obstruction at `p = 13`, `g = 2`: every grid point
+/-- 1:D6 (Theorem approx, the range at `p = 13`, `g = 2`): every grid point
 `x/2^n` with `0 ≤ x < 13` and `n ≥ 3` is `≤ 3/2`, so no grid point at resolution `1/8` lies
-within `1/16` of `33/10` (an instance of the range obstruction). -/
+within `1/16` of `33/10`: range and resolution trade off at fixed window. -/
 theorem approx_obstruction :
     ∀ n : ℕ, 3 ≤ n → ∀ x : ℕ, x < 13 → ((x : ℚ) / 2 ^ n) ≤ 3 / 2 := by
   intro n hn x hx

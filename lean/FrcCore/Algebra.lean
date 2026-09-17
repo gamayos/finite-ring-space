@@ -5,7 +5,7 @@ import FrcCore.Sum
 
 1:B2 (the quarter-turn exists; the fourth roots of unity are exactly `{1, i, −1, −i}`; the Klein orbits
 `{x, −x, x⁻¹, −x⁻¹}` have four elements off them), 1:B4 (the affine unit), 1:C4 (the meridian involution),
-1:D2 (the window law), 1:D4 (scale periodicity), 1:D5 (the range obstruction at `(13, 2)`), 1:E2 (the complex
+1:D2 (the window law), 1:D4 (scale periodicity), 1:D6 (Theorem approx's range at `(13, 2)`), 1:E2 (the complex
 chart has a zero divisor), 1:F1 (no south pole). No axioms.
 -/
 
@@ -159,7 +159,7 @@ theorem complex_chart_zero_divisor (F : Frame p κ g) :
   show (quarterTurn g κ * -(quarterTurn g κ) + -(1 * 1), quarterTurn g κ * 1 + 1 * -(quarterTurn g κ)) = (0, 0)
   rw [← mul_neg, F.quarter_turn_sq, neg_neg, one_mul, add_neg, mul_one, one_mul, add_neg]
 
-/-- 1:D5, the range obstruction at `p = 13`, `g = 2`: every grid point
+/-- 1:D6 (Theorem approx, the range at `p = 13`, `g = 2`): every grid point
 `x / 2^n` with `x < 13` and `n ≥ 3` is at most `3/2` — as the integer statement `2x ≤ 3·2^n`. -/
 theorem approx_obstruction (n x : Nat) (hn : 3 ≤ n) (hx : x < 13) : 2 * x ≤ 3 * 2 ^ n := by
   have h8 : 2 ^ 3 ≤ 2 ^ n := Nat.pow_le_pow_right (Nat.zero_lt_succ 1) hn
