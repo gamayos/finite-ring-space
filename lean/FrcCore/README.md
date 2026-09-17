@@ -16,7 +16,8 @@ root, the Fourier inversion, the polynomial reading and covariance, the four-cyc
 `Poly` (polynomials as coefficient sequences: evaluation, synthetic division, the root bound, the root
 criterion of 1:G1), `Quaternion` (the signed window and the framed quaternions of 1:G5), `Causality` (the square classes, the
 anisotropic and hyperbolic planes of the Lorentzian form, the norm-one boosts and the velocity law of 3-causality), `Representation`
-(4-rep: adequacy, the transition and the lifts pointwise with bijections as data, the two-prime Gödel code, the character chart's constant norm), `Geometry`
+(4-rep: adequacy, the transition and the lifts pointwise with bijections as data, the two-prime Gödel code, the character chart's constant norm), `Reductio`
+(5-red: a Δ₀ language with its standard and frame evaluators and the bounded-stability schema with computed bound, the migration counts, iteration on a finite state space — repetition, eventual periodicity, the horizon separation — the least-element choice and its periodicity), `Geometry`
 (2-geometry rows: the counts, the fixed-shell bound, adjacency and label covariance), `Complex` (the orbital
 shell coded as a cell complex, closedness and the automorphism census decided by the kernel), `Instances`
 (𝔽₁₃, 𝔽₁₇, 𝔽₂₉ by `decide`). `../web/FrcCore.lean` is the same library in one file for live.lean-lang.org — it needs no

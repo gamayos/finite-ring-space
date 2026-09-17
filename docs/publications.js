@@ -146,7 +146,20 @@ const PUBLICATIONS = [
       "kind": "preprint"
     },
     "doi": "https://doi.org/10.20944/preprints202508.1744.v1",
-    "doiLabel": "pp202508.1744.v1"
+    "doiLabel": "pp202508.1744.v1",
+    "ledger": "5-reductio/5-reductio-ledger.html",
+    "links": [
+      {
+        "href": "5-reductio/5-reductio-ledger.html",
+        "label": "ledger",
+        "title": "the paper's predicate ledger"
+      },
+      {
+        "href": "https://colab.research.google.com/github/gamayos/finite-ring-space/blob/main/src/5-reductio/5-reductio-main.ipynb",
+        "label": "notebook",
+        "title": "the validation notebook on Google Colab"
+      }
+    ]
   },
   {
     "key": "6-four",

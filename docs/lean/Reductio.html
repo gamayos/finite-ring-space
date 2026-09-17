@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-HNE3RMJ5L1"></script>
+<script> window.dataLayer = window.dataLayer || []; function gtag(){dataLayer.push(arguments);} gtag('js', new Date()); gtag('config', 'G-HNE3RMJ5L1'); </script>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Reductio.lean — FrcLedger</title>
+<meta name="description" content="The Lean module FrcLedger/Reductio of the FRC predicate ledgers, rendered with an anchor per declaration">
+<meta name="author" content="Yosef Akhtman">
+<link rel="icon" href="../frc-logo-fav.png">
+<link rel="stylesheet" href="../style.css?v=b6fb279a">
+
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <h1>Reductio.lean — FrcLedger</h1>
+    
+    <nav><a href="../index.html">Home</a><a href="../publications.html">Publications</a><a href="../00-ledger.html">Ledger</a><a href="../predictions.html">Predictions</a><a href="../explicability.html">Explicability</a></nav>
+  </header>
+<main id="ledger-main"><section class="prose"><p>The Lean module <code>lean/FrcLedger/Reductio.lean</code> of the paper <a href="../5-reductio/5-reductio-ledger.html">5-red</a> (on Mathlib): 14 theorems (3 definitions): 5 with no axioms (green), 0 at tier 1 (teal: <code>propext</code>, <code>Quot.sound</code>), 9 at tier 2 (amber: <code>Classical.choice</code>), 0 red; the plain glyph marks a definition. Each declaration is anchored; the ledger rows cite them by name. <a href="https://live.lean-lang.org/#project=mathlib-stable&url=https://raw.githubusercontent.com/gamayos/finite-ring-space/main/lean/web/Reductio.lean" target="_blank" rel="noopener">▶ open in the Lean web editor</a> · <a href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcLedger/Reductio.lean" target="_blank" rel="noopener">on GitHub</a> · <a href="https://github.com/gamayos/finite-ring-space/blob/main/lean/axioms.log" target="_blank" rel="noopener">axioms.log</a> · <a href="https://github.com/gamayos/finite-ring-space/actions/workflows/lean.yml" target="_blank" rel="noopener">CI</a>.</p></section><pre class="lean"><span class="ln" id="L1"><a class="lno" href="#L1">1</a>import Mathlib</span>
+<span class="ln" id="L2"><a class="lno" href="#L2">2</a></span>
+<span class="ln" id="L3"><a class="lno" href="#L3">3</a>/-!</span>
+<span class="ln" id="L4"><a class="lno" href="#L4">4</a># 5-red — paradoxes of infinity as reductio: the ledger rows in Lean (2026-09-17)</span>
+<span class="ln" id="L5"><a class="lno" href="#L5">5</a></span>
+<span class="ln" id="L6"><a class="lno" href="#L6">6</a>Rows of the predicate ledger of *Paradoxes of Infinity as Reductio ad Absurdum* (tree `5-reductio-20260706`).</span>
+<span class="ln" id="L7"><a class="lno" href="#L7">7</a>The finite exit&#x27;s properties for any finite structure in any language (the complete theory is complete, and</span>
+<span class="ln" id="L8"><a class="lno" href="#L8">8</a>truth is decided by evaluation); the infinitude of every structure with an injective successor missing zero</span>
+<span class="ln" id="L9"><a class="lno" href="#L9">9</a>(no finite frame interprets `Q`); Cantor&#x27;s theorem; the counting of the migration propositions and the vanishing</span>
+<span class="ln" id="L10"><a class="lno" href="#L10">10</a>certified fraction; definable and periodic choice; the equivariant section criterion on an orbit; the</span>
+<span class="ln" id="L11"><a class="lno" href="#L11">11</a>obstruction on `𝔽₅`; the finite disappearance of the choice paradoxes; Dedekind&#x27;s embedding.  Classical (tier 2)</span>
+<span class="ln" id="L12"><a class="lno" href="#L12">12</a>on Mathlib&#x27;s hierarchy; the finite content is proved with no axioms in `FrcCore/Reductio.lean`.</span>
+<span class="ln" id="L13"><a class="lno" href="#L13">13</a>-/</span>
+<span class="ln" id="L14"><a class="lno" href="#L14">14</a></span>
+<span class="ln" id="L15"><a class="lno" href="#L15">15</a>open FirstOrder FirstOrder.Language</span>
+<span class="ln" id="L16"><a class="lno" href="#L16">16</a></span>
+<span class="ln" id="L17"><a class="lno" href="#L17">17</a>namespace FRC.Reductio</span>
+<span class="ln" id="L18"><a class="lno" href="#L18">18</a></span>
+<span class="ln" id="L19"><a class="lno" href="#L19">19</a>section frames</span>
+<span class="ln" id="L20"><a class="lno" href="#L20">20</a></span>
+<span class="ln" id="L21"><a class="lno" href="#L21">21</a>variable {L : Language} {M : Type*} [L.Structure M]</span>
+<span class="ln" id="L22"><a class="lno" href="#L22">22</a></span>
+<span class="ln" id="L23"><a class="lno" href="#L23">23</a>/-- 5:B5, 5:B3 (Proposition frame-complete, completeness): the theory of any structure — a finite frame `W_N` among</span>
+<span class="ln" id="L24"><a class="lno" href="#L24">24</a>them — is complete: every sentence or its negation is in it. -/</span>
+<span class="ln decl" id="FRC.Reductio.theory_complete"><a class="lno" href="#FRC.Reductio.theory_complete">25</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcLedger/Reductio.lean#L25" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small t2" src="lean-t2.png" alt="" title="tier 2, classical: Classical.choice, Quot.sound, propext">theorem theory_complete [Nonempty M] : (L.completeTheory M).IsComplete := completeTheory.isComplete L M</span>
+<span class="ln" id="L26"><a class="lno" href="#L26">26</a></span>
+<span class="ln" id="L27"><a class="lno" href="#L27">27</a>/-- 5:B5 (decidability): in a finite structure with decidable relations, the truth of every bounded formula is</span>
+<span class="ln" id="L28"><a class="lno" href="#L28">28</a>decided by evaluation — the quantifiers range over the finitely many elements. -/</span>
+<span class="ln decl" id="FRC.Reductio.decRealize"><a class="lno" href="#FRC.Reductio.decRealize">29</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcLedger/Reductio.lean#L29" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small" src="lean.png" alt="" title="a definition: no proof, no axioms">def decRealize {α : Type*} [Fintype M] [DecidableEq M]</span>
+<span class="ln" id="L30"><a class="lno" href="#L30">30</a>    (hR : ∀ (n : ℕ) (R : L.Relations n) (x : Fin n → M), Decidable (Structure.RelMap R x)) :</span>
+<span class="ln" id="L31"><a class="lno" href="#L31">31</a>    ∀ {n : ℕ} (φ : L.BoundedFormula α n) (v : α → M) (xs : Fin n → M), Decidable (φ.Realize v xs)</span>
+<span class="ln" id="L32"><a class="lno" href="#L32">32</a>  | _, .falsum, _, _ =&gt; isFalse id</span>
+<span class="ln" id="L33"><a class="lno" href="#L33">33</a>  | _, .equal t₁ t₂, v, xs =&gt;</span>
+<span class="ln" id="L34"><a class="lno" href="#L34">34</a>    decidable_of_iff (t₁.realize (Sum.elim v xs) = t₂.realize (Sum.elim v xs)) Iff.rfl</span>
+<span class="ln" id="L35"><a class="lno" href="#L35">35</a>  | _, .rel R ts, v, xs =&gt;</span>
+<span class="ln" id="L36"><a class="lno" href="#L36">36</a>    haveI := hR _ R fun i =&gt; (ts i).realize (Sum.elim v xs)</span>
+<span class="ln" id="L37"><a class="lno" href="#L37">37</a>    decidable_of_iff (Structure.RelMap R fun i =&gt; (ts i).realize (Sum.elim v xs)) Iff.rfl</span>
+<span class="ln" id="L38"><a class="lno" href="#L38">38</a>  | _, .imp f₁ f₂, v, xs =&gt;</span>
+<span class="ln" id="L39"><a class="lno" href="#L39">39</a>    haveI := decRealize hR f₁ v xs</span>
+<span class="ln" id="L40"><a class="lno" href="#L40">40</a>    haveI := decRealize hR f₂ v xs</span>
+<span class="ln" id="L41"><a class="lno" href="#L41">41</a>    decidable_of_iff (f₁.Realize v xs → f₂.Realize v xs) Iff.rfl</span>
+<span class="ln" id="L42"><a class="lno" href="#L42">42</a>  | _, .all f, v, xs =&gt;</span>
+<span class="ln" id="L43"><a class="lno" href="#L43">43</a>    haveI : ∀ x : M, Decidable (f.Realize v (Fin.snoc xs x)) := fun x =&gt; decRealize hR f v (Fin.snoc xs x)</span>
+<span class="ln" id="L44"><a class="lno" href="#L44">44</a>    decidable_of_iff (∀ x : M, f.Realize v (Fin.snoc xs x)) Iff.rfl</span>
+<span class="ln" id="L45"><a class="lno" href="#L45">45</a></span>
+<span class="ln" id="L46"><a class="lno" href="#L46">46</a>/-- 5:B5 (Proposition frame-complete, decidability): membership in the theory of a finite structure is decided</span>
+<span class="ln" id="L47"><a class="lno" href="#L47">47</a>by evaluating the sentence. -/</span>
+<span class="ln decl" id="FRC.Reductio.decTheory"><a class="lno" href="#FRC.Reductio.decTheory">48</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcLedger/Reductio.lean#L48" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small" src="lean.png" alt="" title="a definition: no proof, no axioms">@[instance_reducible] def decTheory [Fintype M] [DecidableEq M]</span>
+<span class="ln" id="L49"><a class="lno" href="#L49">49</a>    (hR : ∀ (n : ℕ) (R : L.Relations n) (x : Fin n → M), Decidable (Structure.RelMap R x)) :</span>
+<span class="ln" id="L50"><a class="lno" href="#L50">50</a>    DecidablePred (· ∈ L.completeTheory M) := fun φ =&gt;</span>
+<span class="ln" id="L51"><a class="lno" href="#L51">51</a>  haveI := decRealize hR (α := Empty) φ default default</span>
+<span class="ln" id="L52"><a class="lno" href="#L52">52</a>  decidable_of_iff (BoundedFormula.Realize φ default default) Iff.rfl</span>
+<span class="ln" id="L53"><a class="lno" href="#L53">53</a></span>
+<span class="ln" id="L54"><a class="lno" href="#L54">54</a>/-- 5:B3 (Theorem witnessed, exit 2 — `Th(W_N)` does not interpret `Q`): a structure with an injective</span>
+<span class="ln" id="L55"><a class="lno" href="#L55">55</a>successor that never reaches zero is infinite; every model of `Q` is such a structure, and a finite frame&#x27;s</span>
+<span class="ln" id="L56"><a class="lno" href="#L56">56</a>definable quotients are finite. -/</span>
+<span class="ln decl" id="FRC.Reductio.infinite_of_succ"><a class="lno" href="#FRC.Reductio.infinite_of_succ">57</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcLedger/Reductio.lean#L57" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small t2" src="lean-t2.png" alt="" title="tier 2, classical: Classical.choice, Quot.sound, propext">theorem infinite_of_succ {A : Type*} (S : A → A) (z : A) (hinj : Function.Injective S) (hz : ∀ x, S x ≠ z) :</span>
+<span class="ln" id="L58"><a class="lno" href="#L58">58</a>    Infinite A := by</span>
+<span class="ln" id="L59"><a class="lno" href="#L59">59</a>  by_contra hfin</span>
+<span class="ln" id="L60"><a class="lno" href="#L60">60</a>  have : Finite A := not_infinite_iff_finite.mp hfin</span>
+<span class="ln" id="L61"><a class="lno" href="#L61">61</a>  obtain ⟨x, hx⟩ := Finite.injective_iff_surjective.mp hinj z</span>
+<span class="ln" id="L62"><a class="lno" href="#L62">62</a>  exact hz x hx</span>
+<span class="ln" id="L63"><a class="lno" href="#L63">63</a></span>
+<span class="ln" id="L64"><a class="lno" href="#L64">64</a>end frames</span>
+<span class="ln" id="L65"><a class="lno" href="#L65">65</a></span>
+<span class="ln" id="L66"><a class="lno" href="#L66">66</a>section diagonal</span>
+<span class="ln" id="L67"><a class="lno" href="#L67">67</a></span>
+<span class="ln" id="L68"><a class="lno" href="#L68">68</a>/-- 5:D3 (Remark cantor-diagonal): Cantor&#x27;s theorem is an external diagonal — no map from a set onto its power</span>
+<span class="ln" id="L69"><a class="lno" href="#L69">69</a>set, in every finite frame as `n &lt; 2^n`. -/</span>
+<span class="ln decl" id="FRC.Reductio.cantor"><a class="lno" href="#FRC.Reductio.cantor">70</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcLedger/Reductio.lean#L70" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small ok" src="lean-ok.png" alt="" title="no axioms">theorem cantor (α : Type*) (f : α → Set α) : ¬ Function.Surjective f := Function.cantor_surjective f</span>
+<span class="ln" id="L71"><a class="lno" href="#L71">71</a></span>
+<span class="ln" id="L72"><a class="lno" href="#L72">72</a>/-- 5:D3: on the frame, `n &lt; 2^n`. -/</span>
+<span class="ln decl" id="FRC.Reductio.cantor_finite"><a class="lno" href="#FRC.Reductio.cantor_finite">73</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcLedger/Reductio.lean#L73" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small ok" src="lean-ok.png" alt="" title="no axioms">theorem cantor_finite (n : ℕ) : n &lt; 2 ^ n := Nat.lt_two_pow_self</span>
+<span class="ln" id="L74"><a class="lno" href="#L74">74</a></span>
+<span class="ln" id="L75"><a class="lno" href="#L75">75</a>end diagonal</span>
+<span class="ln" id="L76"><a class="lno" href="#L76">76</a></span>
+<span class="ln" id="L77"><a class="lno" href="#L77">77</a>section migration</span>
+<span class="ln" id="L78"><a class="lno" href="#L78">78</a></span>
+<span class="ln" id="L79"><a class="lno" href="#L79">79</a>/-- 5:C2 (Proposition mirror, the count): fewer than `s^(K+1)` strings of length at most `K` exist over an</span>
+<span class="ln" id="L80"><a class="lno" href="#L80">80</a>alphabet of `s ≥ 2` letters. -/</span>
+<span class="ln decl" id="FRC.Reductio.records_lt"><a class="lno" href="#FRC.Reductio.records_lt">81</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcLedger/Reductio.lean#L81" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small ok" src="lean-ok.png" alt="" title="no axioms">theorem records_lt (s K : ℕ) (hs : 2 ≤ s) : ∑ i ∈ Finset.range (K + 1), s ^ i &lt; s ^ (K + 1) :=</span>
+<span class="ln" id="L82"><a class="lno" href="#L82">82</a>  Nat.geomSum_lt hs fun _ hk =&gt; Finset.mem_range.mp hk</span>
+<span class="ln" id="L83"><a class="lno" href="#L83">83</a></span>
+<span class="ln" id="L84"><a class="lno" href="#L84">84</a>/-- 5:C2 (Proposition mirror): a part with fewer distinguishable records than the frame has elements admits no</span>
+<span class="ln" id="L85"><a class="lno" href="#L85">85</a>injective representation of the frame&#x27;s domain. -/</span>
+<span class="ln decl" id="FRC.Reductio.no_mirror"><a class="lno" href="#FRC.Reductio.no_mirror">86</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcLedger/Reductio.lean#L86" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small ok" src="lean-ok.png" alt="" title="no axioms">theorem no_mirror {A R : Type*} [Fintype A] [Fintype R] (h : Fintype.card R &lt; Fintype.card A) (f : A → R) :</span>
+<span class="ln" id="L87"><a class="lno" href="#L87">87</a>    ¬ Function.Injective f := fun hf =&gt; absurd (Fintype.card_le_of_injective f hf) (not_le.mpr h)</span>
+<span class="ln" id="L88"><a class="lno" href="#L88">88</a></span>
+<span class="ln" id="L89"><a class="lno" href="#L89">89</a>open Filter Topology in</span>
+<span class="ln" id="L90"><a class="lno" href="#L90">90</a>/-- 5:C3 (Proposition fraction): the certified fraction `s^(K+1) / ⌊c^L/2⌋` of a bounded agent tends to zero as</span>
+<span class="ln" id="L91"><a class="lno" href="#L91">91</a>the cohort length `L` grows, for any capacity and any `c &gt; 1`. -/</span>
+<span class="ln decl" id="FRC.Reductio.certified_fraction_tendsto"><a class="lno" href="#FRC.Reductio.certified_fraction_tendsto">92</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcLedger/Reductio.lean#L92" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small t2" src="lean-t2.png" alt="" title="tier 2, classical: Classical.choice, Quot.sound, propext">theorem certified_fraction_tendsto (A c : ℝ) (hc : 1 &lt; c) :</span>
+<span class="ln" id="L93"><a class="lno" href="#L93">93</a>    Tendsto (fun L : ℕ =&gt; A / c ^ L) atTop (𝓝 0) :=</span>
+<span class="ln" id="L94"><a class="lno" href="#L94">94</a>  tendsto_const_nhds.div_atTop (tendsto_pow_atTop_atTop_of_one_lt hc)</span>
+<span class="ln" id="L95"><a class="lno" href="#L95">95</a></span>
+<span class="ln" id="L96"><a class="lno" href="#L96">96</a>end migration</span>
+<span class="ln" id="L97"><a class="lno" href="#L97">97</a></span>
+<span class="ln" id="L98"><a class="lno" href="#L98">98</a>section choice</span>
+<span class="ln" id="L99"><a class="lno" href="#L99">99</a></span>
+<span class="ln" id="L100"><a class="lno" href="#L100">100</a>variable {U : Type*} [LinearOrder U]</span>
+<span class="ln" id="L101"><a class="lno" href="#L101">101</a></span>
+<span class="ln" id="L102"><a class="lno" href="#L102">102</a>/-- 5:E1 (Proposition finite-choice): on a finite universe with a canonical order, `ch(A) = min A` is a member of</span>
+<span class="ln" id="L103"><a class="lno" href="#L103">103</a>every nonempty `A` — choice is a definable theorem, not a postulate. -/</span>
+<span class="ln decl" id="FRC.Reductio.finite_choice"><a class="lno" href="#FRC.Reductio.finite_choice">104</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcLedger/Reductio.lean#L104" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small t2" src="lean-t2.png" alt="" title="tier 2, classical: Classical.choice, Quot.sound, propext">theorem finite_choice (A : Finset U) (hA : A.Nonempty) : A.min&#x27; hA ∈ A := Finset.min&#x27;_mem A hA</span>
+<span class="ln" id="L105"><a class="lno" href="#L105">105</a></span>
+<span class="ln" id="L106"><a class="lno" href="#L106">106</a>/-- 5:E2 (Lemma periodic-equality): for an equality-periodic family `A (i + N) = A i` the choice `min A i` is</span>
+<span class="ln" id="L107"><a class="lno" href="#L107">107</a>periodic with the same period. -/</span>
+<span class="ln decl" id="FRC.Reductio.periodic_choice"><a class="lno" href="#FRC.Reductio.periodic_choice">108</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcLedger/Reductio.lean#L108" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small t2" src="lean-t2.png" alt="" title="tier 2, classical: Classical.choice, Quot.sound, propext">theorem periodic_choice (A : ℤ → Finset U) (N : ℤ) (hN : ∀ i, A (i + N) = A i) (i : ℤ) :</span>
+<span class="ln" id="L109"><a class="lno" href="#L109">109</a>    (A (i + N)).min = (A i).min := by rw [hN]</span>
+<span class="ln" id="L110"><a class="lno" href="#L110">110</a></span>
+<span class="ln" id="L111"><a class="lno" href="#L111">111</a>variable {G I A : Type*} [Group G] [MulAction G I] [MulAction G A]</span>
+<span class="ln" id="L112"><a class="lno" href="#L112">112</a></span>
+<span class="ln" id="L113"><a class="lno" href="#L113">113</a>/-- 5:E3 (Theorem equivariant-choice, one orbit): for a `G`-family `π : A → I` over a transitive `G`-set `I`, an</span>
+<span class="ln" id="L114"><a class="lno" href="#L114">114</a>equivariant section exists iff the stabiliser of a base point `i₀` fixes some point of its fibre. -/</span>
+<span class="ln decl" id="FRC.Reductio.equivariant_section_iff"><a class="lno" href="#FRC.Reductio.equivariant_section_iff">115</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcLedger/Reductio.lean#L115" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small t2" src="lean-t2.png" alt="" title="tier 2, classical: Classical.choice, propext">theorem equivariant_section_iff [MulAction.IsPretransitive G I] (π : A → I)</span>
+<span class="ln" id="L116"><a class="lno" href="#L116">116</a>    (hπ : ∀ (g : G) (a : A), π (g • a) = g • π a) (i₀ : I) :</span>
+<span class="ln" id="L117"><a class="lno" href="#L117">117</a>    (∃ s : I → A, (∀ i, π (s i) = i) ∧ ∀ (g : G) (i : I), s (g • i) = g • s i) ↔</span>
+<span class="ln" id="L118"><a class="lno" href="#L118">118</a>      ∃ a, π a = i₀ ∧ ∀ g ∈ MulAction.stabilizer G i₀, g • a = a := by</span>
+<span class="ln" id="L119"><a class="lno" href="#L119">119</a>  constructor</span>
+<span class="ln" id="L120"><a class="lno" href="#L120">120</a>  · rintro ⟨s, hs, heq⟩</span>
+<span class="ln" id="L121"><a class="lno" href="#L121">121</a>    refine ⟨s i₀, hs i₀, fun g hg =&gt; ?_⟩</span>
+<span class="ln" id="L122"><a class="lno" href="#L122">122</a>    rw [← heq, MulAction.mem_stabilizer_iff.mp hg]</span>
+<span class="ln" id="L123"><a class="lno" href="#L123">123</a>  · rintro ⟨a, ha, hfix⟩</span>
+<span class="ln" id="L124"><a class="lno" href="#L124">124</a>    classical</span>
+<span class="ln" id="L125"><a class="lno" href="#L125">125</a>    choose g hg using fun i =&gt; MulAction.exists_smul_eq G i₀ i</span>
+<span class="ln" id="L126"><a class="lno" href="#L126">126</a>    -- `s i := g i • a`, where `g i • i₀ = i`; independence of the choice is the stabiliser condition</span>
+<span class="ln" id="L127"><a class="lno" href="#L127">127</a>    have key : ∀ (h : G) (i : I), h • i₀ = i → h • a = g i • a := by</span>
+<span class="ln" id="L128"><a class="lno" href="#L128">128</a>      intro h i hi</span>
+<span class="ln" id="L129"><a class="lno" href="#L129">129</a>      have hst : (g i)⁻¹ * h ∈ MulAction.stabilizer G i₀ := by</span>
+<span class="ln" id="L130"><a class="lno" href="#L130">130</a>        rw [MulAction.mem_stabilizer_iff, mul_smul, hi]</span>
+<span class="ln" id="L131"><a class="lno" href="#L131">131</a>        have e := inv_smul_smul (g i) i₀</span>
+<span class="ln" id="L132"><a class="lno" href="#L132">132</a>        rw [hg i] at e</span>
+<span class="ln" id="L133"><a class="lno" href="#L133">133</a>        exact e</span>
+<span class="ln" id="L134"><a class="lno" href="#L134">134</a>      have := hfix _ hst</span>
+<span class="ln" id="L135"><a class="lno" href="#L135">135</a>      rw [mul_smul] at this</span>
+<span class="ln" id="L136"><a class="lno" href="#L136">136</a>      calc h • a = g i • (g i)⁻¹ • h • a := (smul_inv_smul _ _).symm</span>
+<span class="ln" id="L137"><a class="lno" href="#L137">137</a>        _ = g i • a := by rw [this]</span>
+<span class="ln" id="L138"><a class="lno" href="#L138">138</a>    refine ⟨fun i =&gt; g i • a, fun i =&gt; ?_, fun h i =&gt; ?_⟩</span>
+<span class="ln" id="L139"><a class="lno" href="#L139">139</a>    · rw [hπ, ha, hg]</span>
+<span class="ln" id="L140"><a class="lno" href="#L140">140</a>    · show g (h • i) • a = h • (g i • a)</span>
+<span class="ln" id="L141"><a class="lno" href="#L141">141</a>      rw [← mul_smul]</span>
+<span class="ln" id="L142"><a class="lno" href="#L142">142</a>      exact (key (h * g i) (h • i) (by rw [mul_smul, hg])).symm</span>
+<span class="ln" id="L143"><a class="lno" href="#L143">143</a></span>
+<span class="ln" id="L144"><a class="lno" href="#L144">144</a>/-- 5:E4 (Example basis-obstruction): on the line over `𝔽₅` the involution `v ↦ −v` fixes no basis — `−v ≠ v`</span>
+<span class="ln" id="L145"><a class="lno" href="#L145">145</a>for every `v ≠ 0` — while over `𝔽₂` it fixes `1`: the obstruction is arithmetic. -/</span>
+<span class="ln decl" id="FRC.Reductio.obstruction_five"><a class="lno" href="#FRC.Reductio.obstruction_five">146</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcLedger/Reductio.lean#L146" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small ok" src="lean-ok.png" alt="" title="no axioms">theorem obstruction_five : (∀ v : ZMod 5, v ≠ 0 → -v ≠ v) ∧ (-(1 : ZMod 2) = 1) := by decide</span>
+<span class="ln" id="L147"><a class="lno" href="#L147">147</a></span>
+<span class="ln" id="L148"><a class="lno" href="#L148">148</a>/-- 5:E8 (Banach–Tarski disappears): a finite nonempty set cannot be doubled — there is no injection</span>
+<span class="ln" id="L149"><a class="lno" href="#L149">149</a>`X ⊕ X ↪ X`, so no decomposition reassembles two copies of `X` from pieces of `X`. -/</span>
+<span class="ln decl" id="FRC.Reductio.no_doubling"><a class="lno" href="#FRC.Reductio.no_doubling">150</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcLedger/Reductio.lean#L150" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small t2" src="lean-t2.png" alt="" title="tier 2, classical: Classical.choice, Quot.sound, propext">theorem no_doubling {X : Type*} [Fintype X] [Nonempty X] : IsEmpty (X ⊕ X ↪ X) := by</span>
+<span class="ln" id="L151"><a class="lno" href="#L151">151</a>  constructor</span>
+<span class="ln" id="L152"><a class="lno" href="#L152">152</a>  intro f</span>
+<span class="ln" id="L153"><a class="lno" href="#L153">153</a>  have h := Fintype.card_le_of_embedding f</span>
+<span class="ln" id="L154"><a class="lno" href="#L154">154</a>  rw [Fintype.card_sum] at h</span>
+<span class="ln" id="L155"><a class="lno" href="#L155">155</a>  have : 0 &lt; Fintype.card X := Fintype.card_pos</span>
+<span class="ln" id="L156"><a class="lno" href="#L156">156</a>  omega</span>
+<span class="ln" id="L157"><a class="lno" href="#L157">157</a></span>
+<span class="ln" id="L158"><a class="lno" href="#L158">158</a>/-- 5:E8 (ultrafilters): on a finite set every ultrafilter is principal. -/</span>
+<span class="ln decl" id="FRC.Reductio.ultrafilter_principal"><a class="lno" href="#FRC.Reductio.ultrafilter_principal">159</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcLedger/Reductio.lean#L159" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small t2" src="lean-t2.png" alt="" title="tier 2, classical: Classical.choice, Quot.sound, propext">theorem ultrafilter_principal {X : Type*} [Finite X] (f : Ultrafilter X) : ∃ a, f = pure a :=</span>
+<span class="ln" id="L160"><a class="lno" href="#L160">160</a>  Ultrafilter.eq_pure_of_finite f</span>
+<span class="ln" id="L161"><a class="lno" href="#L161">161</a></span>
+<span class="ln" id="L162"><a class="lno" href="#L162">162</a>end choice</span>
+<span class="ln" id="L163"><a class="lno" href="#L163">163</a></span>
+<span class="ln" id="L164"><a class="lno" href="#L164">164</a>section determinacy</span>
+<span class="ln" id="L165"><a class="lno" href="#L165">165</a></span>
+<span class="ln" id="L166"><a class="lno" href="#L166">166</a>/-- 5:D8 (Proposition finiteness, the finite direction): over a finite domain a second-order quantifier over all</span>
+<span class="ln" id="L167"><a class="lno" href="#L167">167</a>subsets is a finite conjunction — decided by exhaustive evaluation. -/</span>
+<span class="ln decl" id="FRC.Reductio.decideAllSubsets"><a class="lno" href="#FRC.Reductio.decideAllSubsets">168</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcLedger/Reductio.lean#L168" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small" src="lean.png" alt="" title="a definition: no proof, no axioms">def decideAllSubsets {M : Type*} [Fintype M] [DecidableEq M] (P : Finset M → Prop) [DecidablePred P] :</span>
+<span class="ln" id="L169"><a class="lno" href="#L169">169</a>    Decidable (∀ S : Finset M, P S) := Fintype.decidableForallFintype</span>
+<span class="ln" id="L170"><a class="lno" href="#L170">170</a></span>
+<span class="ln" id="L171"><a class="lno" href="#L171">171</a>/-- 5:D8 (the infinite direction, its first step): an infinite domain carries a copy of `ℕ` — Dedekind&#x27;s</span>
+<span class="ln" id="L172"><a class="lno" href="#L172">172</a>embedding, from which the reduction of true second-order arithmetic proceeds. -/</span>
+<span class="ln decl" id="FRC.Reductio.nat_embeds"><a class="lno" href="#FRC.Reductio.nat_embeds">173</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcLedger/Reductio.lean#L173" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small t2" src="lean-t2.png" alt="" title="tier 2, classical: Classical.choice, Quot.sound, propext">theorem nat_embeds {M : Type*} [Infinite M] : Nonempty (ℕ ↪ M) := ⟨Infinite.natEmbedding M⟩</span>
+<span class="ln" id="L174"><a class="lno" href="#L174">174</a></span>
+<span class="ln" id="L175"><a class="lno" href="#L175">175</a>end determinacy</span>
+<span class="ln" id="L176"><a class="lno" href="#L176">176</a></span>
+<span class="ln" id="L177"><a class="lno" href="#L177">177</a>end FRC.Reductio</span>
+<span class="ln" id="L178"><a class="lno" href="#L178">178</a></span>
+</pre></main>
+</div>
+</body>
+</html>

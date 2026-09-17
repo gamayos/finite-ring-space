@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """check_axioms.py — the axioms gate for the ledger's Lean witnesses (strict rule).
 
-1. Collects every `theorem`/`lemma` declared in FrcLedger/*.lean (namespace-aware) and writes
+1. Collects every `theorem`/`lemma`/`def`/`abbrev` declared in FrcLedger/*.lean (namespace-aware) and writes
    Axioms.lean: one `#print axioms` per declaration.
 2. Runs `lake env lean Axioms.lean`, writes the output to axioms.log (one line per declaration).
 3. Fails unless every declaration depends on a subset of {propext, Classical.choice, Quot.sound}.
@@ -16,14 +16,14 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent
 ALLOWED = {"propext", "Classical.choice", "Quot.sound"}
-DECL = re.compile(r"^(?:@\[[^\]]*\]\s*)?(?:private\s+|protected\s+)?(theorem|lemma)\s+([\w.']+)", re.M)
+DECL = re.compile(r"^(?:@\[[^\]]*\]\s*)?(?:private\s+|protected\s+)?(theorem|lemma|def|abbrev)\s+([\w.']+)", re.M)
 NS = re.compile(r"^(namespace|end)\s+([\w.]+)\s*$", re.M)
 LINE = re.compile(r"^'([^']+)' (?:depends on axioms: \[([^\]]*)\]|does not depend on any axioms)")
 
 def declarations(path):
     """Fully qualified theorem names of one module, in source order."""
     out, stack = [], []
-    for m in re.finditer(r"^(namespace|end)\s+([\w.]+)\s*$|^(?:@\[[^\]]*\]\s*)?(?:private\s+|protected\s+)?(theorem|lemma)\s+([\w.']+)", path.read_text(encoding="utf-8"), re.M):
+    for m in re.finditer(r"^(namespace|end)\s+([\w.]+)\s*$|^(?:@\[[^\]]*\]\s*)?(?:private\s+|protected\s+)?(theorem|lemma|def|abbrev)\s+([\w.']+)", path.read_text(encoding="utf-8"), re.M):
         if m.group(1) == "namespace": stack.append(m.group(2))
         elif m.group(1) == "end":
             if stack and stack[-1] == m.group(2): stack.pop()
