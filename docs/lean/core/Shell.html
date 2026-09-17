@@ -239,12 +239,12 @@
 <span class="ln" id="L217"><a class="lno" href="#L217">217</a>    rw [pow_succ, ih]</span>
 <span class="ln" id="L218"><a class="lno" href="#L218">218</a>    exact match Nat.decEq (n % 2) 0 with</span>
 <span class="ln" id="L219"><a class="lno" href="#L219">219</a>      | .isTrue h =&gt; by</span>
-<span class="ln" id="L220"><a class="lno" href="#L220">220</a>          rw [if_pos h, one_mul]</span>
+<span class="ln" id="L220"><a class="lno" href="#L220">220</a>          rw [ite_eq_left h, one_mul]</span>
 <span class="ln" id="L221"><a class="lno" href="#L221">221</a>          have : (n + 1) % 2 = 1 := by</span>
 <span class="ln" id="L222"><a class="lno" href="#L222">222</a>            rw [← FRC.Nat.mod_add_mod _ _ _ (Nat.zero_lt_succ 1), h]</span>
-<span class="ln" id="L223"><a class="lno" href="#L223">223</a>          rw [if_neg (by rw [this]; exact fun e =&gt; Nat.noConfusion e)]</span>
+<span class="ln" id="L223"><a class="lno" href="#L223">223</a>          rw [ite_eq_right (by rw [this]; exact fun e =&gt; Nat.noConfusion e)]</span>
 <span class="ln" id="L224"><a class="lno" href="#L224">224</a>      | .isFalse h =&gt; by</span>
-<span class="ln" id="L225"><a class="lno" href="#L225">225</a>          rw [if_neg h, neg_mul_neg, one_mul]</span>
+<span class="ln" id="L225"><a class="lno" href="#L225">225</a>          rw [ite_eq_right h, neg_mul_neg, one_mul]</span>
 <span class="ln" id="L226"><a class="lno" href="#L226">226</a>          have h1 : n % 2 = 1 := by</span>
 <span class="ln" id="L227"><a class="lno" href="#L227">227</a>            have := Nat.mod_lt n (Nat.zero_lt_succ 1)</span>
 <span class="ln" id="L228"><a class="lno" href="#L228">228</a>            exact match n % 2, this, h with</span>
@@ -253,7 +253,7 @@
 <span class="ln" id="L231"><a class="lno" href="#L231">231</a>              | k + 2, hk, _ =&gt; absurd hk (Nat.not_lt_of_le (Nat.le_add_left 2 k))</span>
 <span class="ln" id="L232"><a class="lno" href="#L232">232</a>          have : (n + 1) % 2 = 0 := by</span>
 <span class="ln" id="L233"><a class="lno" href="#L233">233</a>            rw [← FRC.Nat.mod_add_mod _ _ _ (Nat.zero_lt_succ 1), h1]</span>
-<span class="ln" id="L234"><a class="lno" href="#L234">234</a>          rw [if_pos this]</span>
+<span class="ln" id="L234"><a class="lno" href="#L234">234</a>          rw [ite_eq_left this]</span>
 <span class="ln" id="L235"><a class="lno" href="#L235">235</a></span>
 <span class="ln" id="L236"><a class="lno" href="#L236">236</a>end ops</span>
 <span class="ln" id="L237"><a class="lno" href="#L237">237</a></span>

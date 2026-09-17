@@ -295,11 +295,11 @@ theorem root_bound (F : Frame p κ g) : ∀ (n : Nat) (f : Poly p), Bound f n �
 theorem xpx_bound : Bound (xpx : Poly p) p := by
   intro i hi
   show (if i = p then 1 else if i = 1 then -1 else 0 : Shell p) = 0
-  rw [if_neg (Nat.ne_of_gt hi), if_neg (fun e => absurd hi (by rw [e]; exact Nat.not_lt_of_le (Pos.pos : 0 < p)))]
+  rw [ite_eq_right (Nat.ne_of_gt hi), ite_eq_right (fun e => absurd hi (by rw [e]; exact Nat.not_lt_of_le (Pos.pos : 0 < p)))]
 
 theorem xpx_p : (xpx : Poly p) p = 1 := by
   show (if p = p then 1 else if p = 1 then -1 else 0 : Shell p) = 1
-  rw [if_pos rfl]
+  rw [ite_eq_left rfl]
 
 /-- `X^p − X` vanishes everywhere: Fermat. -/
 theorem eval_xpx (F : Frame p κ g) (a : Shell p) : eval (xpx : Poly p) p a = 0 := by
@@ -312,11 +312,11 @@ theorem eval_xpx (F : Frame p κ g) (a : Shell p) : eval (xpx : Poly p) p a = 0 
   have hp1 : p ≠ 1 := fun h => absurd (h ▸ h2 : 2 ≤ 1) (Nat.not_le_of_lt (Nat.lt_succ_self 1))
   have t0 : (xpx : Poly p) 0 * a ^ 0 = 0 := by
     show (if 0 = p then 1 else if 0 = 1 then -1 else 0 : Shell p) * a ^ 0 = 0
-    rw [if_neg (fun h => by have := (Pos.pos : 0 < p); rw [← h] at this; exact Nat.lt_irrefl 0 this),
-      if_neg (fun h => FRC.Nat.succ_ne_zero 0 h.symm), zero_mul]
+    rw [ite_eq_right (fun h => by have := (Pos.pos : 0 < p); rw [← h] at this; exact Nat.lt_irrefl 0 this),
+      ite_eq_right (fun h => FRC.Nat.succ_ne_zero 0 h.symm), zero_mul]
   have t1 : (xpx : Poly p) 1 * a ^ 1 = -a := by
     show (if 1 = p then 1 else if 1 = 1 then -1 else 0 : Shell p) * a ^ 1 = -a
-    rw [if_neg (fun h => hp1 h.symm), if_pos rfl, pow_one, neg_one_mul]
+    rw [ite_eq_right (fun h => hp1 h.symm), ite_eq_left rfl, pow_one, neg_one_mul]
   have t2 : sumRange (fun t => (xpx : Poly p) (2 + t) * a ^ (2 + t)) (p - 1) = a ^ p := by
     have hl : p - 2 < p - 1 := by
       have e : p = (p - 2) + 2 := (FRC.Nat.sub_add_cancel h2).symm
@@ -324,10 +324,10 @@ theorem eval_xpx (F : Frame p κ g) (a : Shell p) : eval (xpx : Poly p) p a = 0 
       exact Nat.lt_succ_self (p - 2)
     rw [sum_eq_single hl (fun t _ ht => by
       show (if 2 + t = p then 1 else if 2 + t = 1 then -1 else 0 : Shell p) * a ^ (2 + t) = 0
-      rw [if_neg (fun h => ht (by rw [← h, Nat.add_comm, FRC.Nat.add_sub_cancel])),
-        if_neg (fun h => FRC.Nat.succ_ne_zero t (Nat.succ.inj (by rw [Nat.add_comm] at h; exact h))), zero_mul])]
+      rw [ite_eq_right (fun h => ht (by rw [← h, Nat.add_comm, FRC.Nat.add_sub_cancel])),
+        ite_eq_right (fun h => FRC.Nat.succ_ne_zero t (Nat.succ.inj (by rw [Nat.add_comm] at h; exact h))), zero_mul])]
     show (if 2 + (p - 2) = p then 1 else if 2 + (p - 2) = 1 then -1 else 0 : Shell p) * a ^ (2 + (p - 2)) = a ^ p
-    rw [FRC.Nat.add_sub_of_le h2, if_pos rfl, one_mul]
+    rw [FRC.Nat.add_sub_of_le h2, ite_eq_left rfl, one_mul]
   show (xpx : Poly p) 0 * a ^ 0 + (xpx : Poly p) 1 * a ^ 1 + sumRange (fun t => (xpx : Poly p) (2 + t) * a ^ (2 + t)) (p - 1) = 0
   rw [t0, t1, t2, zero_add, F.fermat, neg_add]
 

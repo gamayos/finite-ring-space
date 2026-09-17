@@ -332,7 +332,7 @@
    {
     "name": "FRC.Algebra.quarter_turn_exists",
     "module": "FrcLedger/Algebra",
-    "line": 29,
+    "line": 30,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -345,7 +345,7 @@
    {
     "name": "FRC.Algebra.klein_orbit_four",
     "module": "FrcLedger/Algebra",
-    "line": 48,
+    "line": 51,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -358,7 +358,7 @@
    {
     "name": "FRC.Algebra.card_fourth_roots",
     "module": "FrcLedger/Algebra",
-    "line": 66,
+    "line": 70,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -427,7 +427,7 @@
    {
     "name": "FRC.Algebra.quarter_turn",
     "module": "FrcLedger/Algebra",
-    "line": 87,
+    "line": 92,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -440,7 +440,7 @@
    {
     "name": "FRC.Algebra.s13_quarter_turn",
     "module": "FrcLedger/Algebra",
-    "line": 196,
+    "line": 206,
     "axioms": [
      "Quot.sound",
      "propext"
@@ -472,7 +472,7 @@
    {
     "name": "FRC.Algebra.affine_frame",
     "module": "FrcLedger/Algebra",
-    "line": 97,
+    "line": 103,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -516,7 +516,7 @@
    {
     "name": "FRC.Algebra.meridian_involution",
     "module": "FrcLedger/Algebra",
-    "line": 123,
+    "line": 130,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -540,7 +540,7 @@
    {
     "name": "FRC.Algebra.framed_integer_window",
     "module": "FrcLedger/Algebra",
-    "line": 133,
+    "line": 140,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -591,7 +591,7 @@
    {
     "name": "FRC.Algebra.scale_periodic",
     "module": "FrcLedger/Algebra",
-    "line": 146,
+    "line": 154,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -615,7 +615,7 @@
    {
     "name": "FRC.Algebra.approx_obstruction",
     "module": "FrcLedger/Algebra",
-    "line": 213,
+    "line": 223,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -639,7 +639,7 @@
    {
     "name": "FRC.Algebra.complex_chart_zero_divisor",
     "module": "FrcLedger/Algebra",
-    "line": 153,
+    "line": 162,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -663,7 +663,7 @@
    {
     "name": "FRC.Algebra.no_south_pole",
     "module": "FrcLedger/Algebra",
-    "line": 188,
+    "line": 198,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -687,7 +687,7 @@
    {
     "name": "FRC.Algebra.root_iff_not_coprime",
     "module": "FrcLedger/Algebra",
-    "line": 229,
+    "line": 239,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -729,7 +729,7 @@
    {
     "name": "FRC.Algebra.tower_density",
     "module": "FrcLedger/Algebra",
-    "line": 260,
+    "line": 270,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -744,7 +744,7 @@
    {
     "name": "FRC.Algebra.circle_net",
     "module": "FrcLedger/Algebra",
-    "line": 282,
+    "line": 292,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -757,7 +757,7 @@
    {
     "name": "FRC.Algebra.group_law_defect",
     "module": "FrcLedger/Algebra",
-    "line": 295,
+    "line": 305,
     "axioms": [
      "Classical.choice",
      "Quot.sound",

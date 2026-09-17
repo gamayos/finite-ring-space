@@ -217,12 +217,12 @@ theorem neg_one_pow (n : Nat) : (-1 : Shell p) ^ n = if n % 2 = 0 then 1 else -1
     rw [pow_succ, ih]
     exact match Nat.decEq (n % 2) 0 with
       | .isTrue h => by
-          rw [if_pos h, one_mul]
+          rw [ite_eq_left h, one_mul]
           have : (n + 1) % 2 = 1 := by
             rw [← FRC.Nat.mod_add_mod _ _ _ (Nat.zero_lt_succ 1), h]
-          rw [if_neg (by rw [this]; exact fun e => Nat.noConfusion e)]
+          rw [ite_eq_right (by rw [this]; exact fun e => Nat.noConfusion e)]
       | .isFalse h => by
-          rw [if_neg h, neg_mul_neg, one_mul]
+          rw [ite_eq_right h, neg_mul_neg, one_mul]
           have h1 : n % 2 = 1 := by
             have := Nat.mod_lt n (Nat.zero_lt_succ 1)
             exact match n % 2, this, h with
@@ -231,7 +231,7 @@ theorem neg_one_pow (n : Nat) : (-1 : Shell p) ^ n = if n % 2 = 0 then 1 else -1
               | k + 2, hk, _ => absurd hk (Nat.not_lt_of_le (Nat.le_add_left 2 k))
           have : (n + 1) % 2 = 0 := by
             rw [← FRC.Nat.mod_add_mod _ _ _ (Nat.zero_lt_succ 1), h1]
-          rw [if_pos this]
+          rw [ite_eq_left this]
 
 end ops
 

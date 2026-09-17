@@ -20,6 +20,7 @@ open Matrix Finset
 
 variable {K : Type*} [Field K] {n : ℕ} [NeZero n]
 
+omit [NeZero n] in
 /-- The geometric sum of an `n`-th root of unity `ζ ≠ 1` over `Fin n` vanishes. -/
 lemma sum_pow_eq_zero_of_ne_one {ζ : K} (hζn : ζ ^ n = 1) (hζ : ζ ≠ 1) :
     ∑ j : Fin n, ζ ^ (j : ℕ) = 0 := by
@@ -34,7 +35,9 @@ def W (g : K) : Matrix (Fin n) (Fin n) K := fun k j => g ^ ((j : ℕ) * (k : ℕ
 /-- The reversal `J k l = [l = −k]`. -/
 def J : Matrix (Fin n) (Fin n) K := fun k l => if l = -k then 1 else 0
 
+omit [NeZero n] in
 lemma W_apply (g : K) (k j : Fin n) : (W g : Matrix (Fin n) (Fin n) K) k j = g ^ ((j : ℕ) * (k : ℕ)) := rfl
+omit [NeZero n] in
 lemma J_apply (k l : Fin n) : (J : Matrix (Fin n) (Fin n) K) k l = if l = -k then 1 else 0 := rfl
 
 /-- `g^((-j).val) = (g^(j.val))⁻¹` for an `n`-th root of unity `g`. -/
@@ -51,6 +54,7 @@ lemma pow_neg_val {g : K} (hg : g ^ n = 1) (j : Fin n) :
   obtain ⟨c, hc⟩ := hdvd
   rw [hc, pow_mul, hg, one_pow]
 
+omit [NeZero n] in
 /-- `J² = 1`. -/
 theorem J_sq : (J : Matrix (Fin n) (Fin n) K) ^ 2 = 1 := by
   ext k l
@@ -150,7 +154,7 @@ theorem shell_relations (κ : ℕ) (hκ : Fintype.card F = 4 * κ + 1) (g : F)
     ((-(g ^ κ)) • W g : Matrix (Fin (Fintype.card F - 1)) (Fin (Fintype.card F - 1)) F) ^ 2 = J ∧
     ((-(g ^ κ)) • W g : Matrix (Fin (Fintype.card F - 1)) (Fin (Fintype.card F - 1)) F) ^ 4 = 1 ∧
     (W g : Matrix (Fin (Fintype.card F - 1)) (Fin (Fintype.card F - 1)) F) * J = J * W g := by
-  haveI : NeZero (Fintype.card F - 1) := ⟨by have := Fintype.one_lt_card (α := F); omega⟩
+  have : NeZero (Fintype.card F - 1) := ⟨by have := Fintype.one_lt_card (α := F); omega⟩
   have hW : (W g : Matrix (Fin (Fintype.card F - 1)) (Fin (Fintype.card F - 1)) F) ^ 2 = -J := by
     rw [W_sq g hg, natCast_card_pred_eq_neg_one, neg_one_smul]
   have hi := quarter_turn_sq κ hκ g hg

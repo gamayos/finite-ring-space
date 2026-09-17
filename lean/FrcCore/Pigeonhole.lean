@@ -40,9 +40,9 @@ theorem length_erase_of_mem {v : Nat} : ∀ {l : List Nat}, mem v l → (erase v
   | a :: l, h => by
     show (if a = v then l else a :: erase v l).length + 1 = l.length + 1
     exact match Nat.decEq a v with
-      | isTrue e => by rw [if_pos e]
+      | isTrue e => by rw [ite_eq_left e]
       | isFalse e => by
-          rw [if_neg e]
+          rw [ite_eq_right e]
           show (erase v l).length + 1 + 1 = l.length + 1
           have hm : mem v l := match h with
             | Or.inl h' => absurd h'.symm e
@@ -55,10 +55,10 @@ theorem mem_of_mem_erase {w v : Nat} : ∀ {l : List Nat}, mem w (erase v l) →
     show w = a ∨ mem w l
     exact match Nat.decEq a v with
       | isTrue e => by
-          rw [show erase v (a :: l) = l from if_pos e] at h
+          rw [show erase v (a :: l) = l from ite_eq_left e] at h
           exact Or.inr h
       | isFalse e => by
-          rw [show erase v (a :: l) = a :: erase v l from if_neg e] at h
+          rw [show erase v (a :: l) = a :: erase v l from ite_eq_right e] at h
           exact match h with
             | Or.inl h' => Or.inl h'
             | Or.inr h' => Or.inr (mem_of_mem_erase h')
@@ -68,12 +68,12 @@ theorem mem_erase_of_ne {w v : Nat} (hwv : w ≠ v) : ∀ {l : List Nat}, mem w 
   | a :: l, h => by
     exact match Nat.decEq a v with
       | isTrue e => by
-          rw [show erase v (a :: l) = l from if_pos e]
+          rw [show erase v (a :: l) = l from ite_eq_left e]
           exact match h with
             | Or.inl h' => absurd (h'.trans e) hwv
             | Or.inr h' => h'
       | isFalse e => by
-          rw [show erase v (a :: l) = a :: erase v l from if_neg e]
+          rw [show erase v (a :: l) = a :: erase v l from ite_eq_right e]
           exact match h with
             | Or.inl h' => Or.inl h'
             | Or.inr h' => Or.inr (mem_erase_of_ne hwv h')
@@ -82,9 +82,9 @@ theorem nodup_erase (v : Nat) : ∀ {l : List Nat}, NoDup l → NoDup (erase v l
   | [], _ => trivial
   | a :: l, ⟨ha, hl⟩ => by
     exact match Nat.decEq a v with
-      | isTrue e => by rw [show erase v (a :: l) = l from if_pos e]; exact hl
+      | isTrue e => by rw [show erase v (a :: l) = l from ite_eq_left e]; exact hl
       | isFalse e => by
-          rw [show erase v (a :: l) = a :: erase v l from if_neg e]
+          rw [show erase v (a :: l) = a :: erase v l from ite_eq_right e]
           exact ⟨fun h => ha (mem_of_mem_erase h), nodup_erase v hl⟩
 
 theorem not_mem_erase_self (v : Nat) : ∀ {l : List Nat}, NoDup l → ¬ mem v (erase v l)
@@ -92,10 +92,10 @@ theorem not_mem_erase_self (v : Nat) : ∀ {l : List Nat}, NoDup l → ¬ mem v 
   | a :: l, ⟨ha, hl⟩, h => by
     exact match Nat.decEq a v with
       | isTrue e => by
-          rw [show erase v (a :: l) = l from if_pos e] at h
+          rw [show erase v (a :: l) = l from ite_eq_left e] at h
           exact ha (e ▸ h)
       | isFalse e => by
-          rw [show erase v (a :: l) = a :: erase v l from if_neg e] at h
+          rw [show erase v (a :: l) = a :: erase v l from ite_eq_right e] at h
           exact match h with
             | Or.inl h' => e h'.symm
             | Or.inr h' => not_mem_erase_self v hl h'

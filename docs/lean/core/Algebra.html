@@ -446,7 +446,7 @@
 <span class="ln" id="L424"><a class="lno" href="#L424">424</a>  | zero =&gt; rfl</span>
 <span class="ln" id="L425"><a class="lno" href="#L425">425</a>  | succ n ih =&gt;</span>
 <span class="ln" id="L426"><a class="lno" href="#L426">426</a>    show natCount (fun x =&gt; x ≠ 0) (n + 1) + (if n + 1 ≠ 0 then 1 else 0) = n + 1</span>
-<span class="ln" id="L427"><a class="lno" href="#L427">427</a>    rw [ih, if_pos (Nat.succ_ne_zero n)]</span>
+<span class="ln" id="L427"><a class="lno" href="#L427">427</a>    rw [ih, ite_eq_left (Nat.succ_ne_zero n)]</span>
 <span class="ln" id="L428"><a class="lno" href="#L428">428</a></span>
 <span class="ln" id="L429"><a class="lno" href="#L429">429</a>/-- 1:C2, the order — the frames `(a, b)`, `b ≠ 0`, number `p·(p − 1)`: `p` choices of the origin, `p − 1`</span>
 <span class="ln" id="L430"><a class="lno" href="#L430">430</a>of the unit. -/</span>
@@ -455,7 +455,7 @@
 <span class="ln" id="L433"><a class="lno" href="#L433">433</a>  have h1 : ∀ n, natCount (fun _ =&gt; True) n = n := fun n =&gt; by</span>
 <span class="ln" id="L434"><a class="lno" href="#L434">434</a>    induction n with</span>
 <span class="ln" id="L435"><a class="lno" href="#L435">435</a>    | zero =&gt; rfl</span>
-<span class="ln" id="L436"><a class="lno" href="#L436">436</a>    | succ n ih =&gt; show natCount (fun _ =&gt; True) n + (if True then 1 else 0) = n + 1; rw [ih, if_pos trivial]</span>
+<span class="ln" id="L436"><a class="lno" href="#L436">436</a>    | succ n ih =&gt; show natCount (fun _ =&gt; True) n + (if True then 1 else 0) = n + 1; rw [ih, ite_eq_left trivial]</span>
 <span class="ln" id="L437"><a class="lno" href="#L437">437</a>  have hp : p = (p - 1) + 1 := (FRC.Nat.sub_add_cancel Pos.pos).symm</span>
 <span class="ln" id="L438"><a class="lno" href="#L438">438</a>  rw [h1]</span>
 <span class="ln" id="L439"><a class="lno" href="#L439">439</a>  have h2 : natCount (fun b =&gt; b ≠ 0) p = p - 1 := by</span>

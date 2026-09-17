@@ -424,7 +424,7 @@ theorem natCount_ne_zero (n : Nat) : natCount (fun x => x ≠ 0) (n + 1) = n := 
   | zero => rfl
   | succ n ih =>
     show natCount (fun x => x ≠ 0) (n + 1) + (if n + 1 ≠ 0 then 1 else 0) = n + 1
-    rw [ih, if_pos (Nat.succ_ne_zero n)]
+    rw [ih, ite_eq_left (Nat.succ_ne_zero n)]
 
 /-- 1:C2, the order — the frames `(a, b)`, `b ≠ 0`, number `p·(p − 1)`: `p` choices of the origin, `p − 1`
 of the unit. -/
@@ -433,7 +433,7 @@ theorem frame_count (_F : Frame p κ g) :
   have h1 : ∀ n, natCount (fun _ => True) n = n := fun n => by
     induction n with
     | zero => rfl
-    | succ n ih => show natCount (fun _ => True) n + (if True then 1 else 0) = n + 1; rw [ih, if_pos trivial]
+    | succ n ih => show natCount (fun _ => True) n + (if True then 1 else 0) = n + 1; rw [ih, ite_eq_left trivial]
   have hp : p = (p - 1) + 1 := (FRC.Nat.sub_add_cancel Pos.pos).symm
   rw [h1]
   have h2 : natCount (fun b => b ≠ 0) p = p - 1 := by

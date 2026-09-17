@@ -5,7 +5,7 @@ No Mathlib, no `simp`, no `omega`: every theorem here is checked by `#print axio
 axiom at all. Lean's own core library proves most of these with `propext` for convenience (see
 `reports/lean-axioms-probe-20260917/core_probe.log`); they are re-derived here by induction from the
 axiom-free primitives (`Nat.rec`, `Nat.add_comm`, `Nat.mul_comm`, `Nat.left_distrib`, `Nat.mod_lt`,
-`Nat.le.dest`, `if_pos`, `if_neg`, `Decidable.em`).
+`Nat.le.dest`, `ite_eq_left`, `ite_eq_right`, `Decidable.em`).
 
 The division algorithm is obtained from the definition of `Nat.mod` in `Init.Prelude` (the wrapper
 around `Nat.modCore`, itself a fuel recursion): `mod_eq_of_lt`, `mod_eq_sub_mod`, `mod_spec`
@@ -119,40 +119,40 @@ theorem modCore_go_fuel {y : Nat} (hy : 0 < y) : ∀ (f1 f2 x : Nat) (h1 : x < f
       show (if h : y ≤ x then Nat.modCore.go y hy f1 (x - y) _ else x)
           = (if h : y ≤ x then Nat.modCore.go y hy f2 (x - y) _ else x)
       exact match Nat.decLe y x with
-        | .isTrue h => by rw [dif_pos h, dif_pos h]; exact ih f2 (x - y) _ _
-        | .isFalse h => by rw [dif_neg h, dif_neg h]
+        | .isTrue h => by rw [dite_eq_left h, dite_eq_left h]; exact ih f2 (x - y) _ _
+        | .isFalse h => by rw [dite_eq_right h, dite_eq_right h]
 
 theorem modCore_eq' (x y : Nat) (hy : 0 < y) :
     Nat.modCore x y = if y ≤ x then Nat.modCore (x - y) y else x := by
   unfold Nat.modCore
-  rw [dif_pos hy]
+  rw [dite_eq_left hy]
   show (if h : y ≤ x then Nat.modCore.go y hy x (x - y) _ else x) = _
   exact match Nat.decLe y x with
     | .isTrue h => by
-        rw [dif_pos h, if_pos h, dif_pos hy]
+        rw [dite_eq_left h, ite_eq_left h, dite_eq_left hy]
         exact modCore_go_fuel hy x (x - y + 1) (x - y) _ _
-    | .isFalse h => by rw [dif_neg h, if_neg h]
+    | .isFalse h => by rw [dite_eq_right h, ite_eq_right h]
 
 theorem modCore_eq_mod' (n m : Nat) (hm : 0 < m) : Nat.modCore n m = n % m := by
   cases n with
   | zero =>
     show Nat.modCore 0 m = 0
-    rw [modCore_eq' 0 m hm, if_neg (Nat.not_le_of_lt hm)]
+    rw [modCore_eq' 0 m hm, ite_eq_right (Nat.not_le_of_lt hm)]
   | succ n =>
     show Nat.modCore (n + 1) m = ite (m ≤ n + 1) (Nat.modCore (n + 1) m) (n + 1)
     exact match Nat.decLe m (n + 1) with
-      | .isTrue h => by rw [if_pos h]
-      | .isFalse h => by rw [if_neg h, modCore_eq' _ _ hm, if_neg h]
+      | .isTrue h => by rw [ite_eq_left h]
+      | .isFalse h => by rw [ite_eq_right h, modCore_eq' _ _ hm, ite_eq_right h]
 
 theorem mod_eq_of_lt {x y : Nat} (h : x < y) : x % y = x := by
   cases x with
   | zero => rfl
   | succ n =>
     show ite (y ≤ n + 1) (Nat.modCore (n + 1) y) (n + 1) = n + 1
-    rw [if_neg (Nat.not_le_of_lt h)]
+    rw [ite_eq_right (Nat.not_le_of_lt h)]
 
 theorem mod_eq_sub_mod {x y : Nat} (hy : 0 < y) (h : y ≤ x) : x % y = (x - y) % y := by
-  rw [← modCore_eq_mod' x y hy, modCore_eq' x y hy, if_pos h, modCore_eq_mod' _ _ hy]
+  rw [← modCore_eq_mod' x y hy, modCore_eq' x y hy, ite_eq_left h, modCore_eq_mod' _ _ hy]
 
 /-- The division algorithm: `x = p·q + x % p` for some `q`. -/
 theorem mod_spec (p : Nat) (hp : 0 < p) : ∀ x : Nat, ∃ q, x = p * q + x % p := by

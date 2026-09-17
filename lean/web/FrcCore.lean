@@ -10,7 +10,7 @@ No Mathlib, no `simp`, no `omega`: every theorem here is checked by `#print axio
 axiom at all. Lean's own core library proves most of these with `propext` for convenience (see
 `reports/lean-axioms-probe-20260917/core_probe.log`); they are re-derived here by induction from the
 axiom-free primitives (`Nat.rec`, `Nat.add_comm`, `Nat.mul_comm`, `Nat.left_distrib`, `Nat.mod_lt`,
-`Nat.le.dest`, `if_pos`, `if_neg`, `Decidable.em`).
+`Nat.le.dest`, `ite_eq_left`, `ite_eq_right`, `Decidable.em`).
 
 The division algorithm is obtained from the definition of `Nat.mod` in `Init.Prelude` (the wrapper
 around `Nat.modCore`, itself a fuel recursion): `mod_eq_of_lt`, `mod_eq_sub_mod`, `mod_spec`
@@ -124,40 +124,40 @@ theorem modCore_go_fuel {y : Nat} (hy : 0 < y) : ∀ (f1 f2 x : Nat) (h1 : x < f
       show (if h : y ≤ x then Nat.modCore.go y hy f1 (x - y) _ else x)
           = (if h : y ≤ x then Nat.modCore.go y hy f2 (x - y) _ else x)
       exact match Nat.decLe y x with
-        | .isTrue h => by rw [dif_pos h, dif_pos h]; exact ih f2 (x - y) _ _
-        | .isFalse h => by rw [dif_neg h, dif_neg h]
+        | .isTrue h => by rw [dite_eq_left h, dite_eq_left h]; exact ih f2 (x - y) _ _
+        | .isFalse h => by rw [dite_eq_right h, dite_eq_right h]
 
 theorem modCore_eq' (x y : Nat) (hy : 0 < y) :
     Nat.modCore x y = if y ≤ x then Nat.modCore (x - y) y else x := by
   unfold Nat.modCore
-  rw [dif_pos hy]
+  rw [dite_eq_left hy]
   show (if h : y ≤ x then Nat.modCore.go y hy x (x - y) _ else x) = _
   exact match Nat.decLe y x with
     | .isTrue h => by
-        rw [dif_pos h, if_pos h, dif_pos hy]
+        rw [dite_eq_left h, ite_eq_left h, dite_eq_left hy]
         exact modCore_go_fuel hy x (x - y + 1) (x - y) _ _
-    | .isFalse h => by rw [dif_neg h, if_neg h]
+    | .isFalse h => by rw [dite_eq_right h, ite_eq_right h]
 
 theorem modCore_eq_mod' (n m : Nat) (hm : 0 < m) : Nat.modCore n m = n % m := by
   cases n with
   | zero =>
     show Nat.modCore 0 m = 0
-    rw [modCore_eq' 0 m hm, if_neg (Nat.not_le_of_lt hm)]
+    rw [modCore_eq' 0 m hm, ite_eq_right (Nat.not_le_of_lt hm)]
   | succ n =>
     show Nat.modCore (n + 1) m = ite (m ≤ n + 1) (Nat.modCore (n + 1) m) (n + 1)
     exact match Nat.decLe m (n + 1) with
-      | .isTrue h => by rw [if_pos h]
-      | .isFalse h => by rw [if_neg h, modCore_eq' _ _ hm, if_neg h]
+      | .isTrue h => by rw [ite_eq_left h]
+      | .isFalse h => by rw [ite_eq_right h, modCore_eq' _ _ hm, ite_eq_right h]
 
 theorem mod_eq_of_lt {x y : Nat} (h : x < y) : x % y = x := by
   cases x with
   | zero => rfl
   | succ n =>
     show ite (y ≤ n + 1) (Nat.modCore (n + 1) y) (n + 1) = n + 1
-    rw [if_neg (Nat.not_le_of_lt h)]
+    rw [ite_eq_right (Nat.not_le_of_lt h)]
 
 theorem mod_eq_sub_mod {x y : Nat} (hy : 0 < y) (h : y ≤ x) : x % y = (x - y) % y := by
-  rw [← modCore_eq_mod' x y hy, modCore_eq' x y hy, if_pos h, modCore_eq_mod' _ _ hy]
+  rw [← modCore_eq_mod' x y hy, modCore_eq' x y hy, ite_eq_left h, modCore_eq_mod' _ _ hy]
 
 /-- The division algorithm: `x = p·q + x % p` for some `q`. -/
 theorem mod_spec (p : Nat) (hp : 0 < p) : ∀ x : Nat, ∃ q, x = p * q + x % p := by
@@ -308,9 +308,9 @@ theorem length_erase_of_mem {v : Nat} : ∀ {l : List Nat}, mem v l → (erase v
   | a :: l, h => by
     show (if a = v then l else a :: erase v l).length + 1 = l.length + 1
     exact match Nat.decEq a v with
-      | isTrue e => by rw [if_pos e]
+      | isTrue e => by rw [ite_eq_left e]
       | isFalse e => by
-          rw [if_neg e]
+          rw [ite_eq_right e]
           show (erase v l).length + 1 + 1 = l.length + 1
           have hm : mem v l := match h with
             | Or.inl h' => absurd h'.symm e
@@ -323,10 +323,10 @@ theorem mem_of_mem_erase {w v : Nat} : ∀ {l : List Nat}, mem w (erase v l) →
     show w = a ∨ mem w l
     exact match Nat.decEq a v with
       | isTrue e => by
-          rw [show erase v (a :: l) = l from if_pos e] at h
+          rw [show erase v (a :: l) = l from ite_eq_left e] at h
           exact Or.inr h
       | isFalse e => by
-          rw [show erase v (a :: l) = a :: erase v l from if_neg e] at h
+          rw [show erase v (a :: l) = a :: erase v l from ite_eq_right e] at h
           exact match h with
             | Or.inl h' => Or.inl h'
             | Or.inr h' => Or.inr (mem_of_mem_erase h')
@@ -336,12 +336,12 @@ theorem mem_erase_of_ne {w v : Nat} (hwv : w ≠ v) : ∀ {l : List Nat}, mem w 
   | a :: l, h => by
     exact match Nat.decEq a v with
       | isTrue e => by
-          rw [show erase v (a :: l) = l from if_pos e]
+          rw [show erase v (a :: l) = l from ite_eq_left e]
           exact match h with
             | Or.inl h' => absurd (h'.trans e) hwv
             | Or.inr h' => h'
       | isFalse e => by
-          rw [show erase v (a :: l) = a :: erase v l from if_neg e]
+          rw [show erase v (a :: l) = a :: erase v l from ite_eq_right e]
           exact match h with
             | Or.inl h' => Or.inl h'
             | Or.inr h' => Or.inr (mem_erase_of_ne hwv h')
@@ -350,9 +350,9 @@ theorem nodup_erase (v : Nat) : ∀ {l : List Nat}, NoDup l → NoDup (erase v l
   | [], _ => trivial
   | a :: l, ⟨ha, hl⟩ => by
     exact match Nat.decEq a v with
-      | isTrue e => by rw [show erase v (a :: l) = l from if_pos e]; exact hl
+      | isTrue e => by rw [show erase v (a :: l) = l from ite_eq_left e]; exact hl
       | isFalse e => by
-          rw [show erase v (a :: l) = a :: erase v l from if_neg e]
+          rw [show erase v (a :: l) = a :: erase v l from ite_eq_right e]
           exact ⟨fun h => ha (mem_of_mem_erase h), nodup_erase v hl⟩
 
 theorem not_mem_erase_self (v : Nat) : ∀ {l : List Nat}, NoDup l → ¬ mem v (erase v l)
@@ -360,10 +360,10 @@ theorem not_mem_erase_self (v : Nat) : ∀ {l : List Nat}, NoDup l → ¬ mem v 
   | a :: l, ⟨ha, hl⟩, h => by
     exact match Nat.decEq a v with
       | isTrue e => by
-          rw [show erase v (a :: l) = l from if_pos e] at h
+          rw [show erase v (a :: l) = l from ite_eq_left e] at h
           exact ha (e ▸ h)
       | isFalse e => by
-          rw [show erase v (a :: l) = a :: erase v l from if_neg e] at h
+          rw [show erase v (a :: l) = a :: erase v l from ite_eq_right e] at h
           exact match h with
             | Or.inl h' => e h'.symm
             | Or.inr h' => not_mem_erase_self v hl h'
@@ -660,12 +660,12 @@ theorem neg_one_pow (n : Nat) : (-1 : Shell p) ^ n = if n % 2 = 0 then 1 else -1
     rw [pow_succ, ih]
     exact match Nat.decEq (n % 2) 0 with
       | .isTrue h => by
-          rw [if_pos h, one_mul]
+          rw [ite_eq_left h, one_mul]
           have : (n + 1) % 2 = 1 := by
             rw [← FRC.Nat.mod_add_mod _ _ _ (Nat.zero_lt_succ 1), h]
-          rw [if_neg (by rw [this]; exact fun e => Nat.noConfusion e)]
+          rw [ite_eq_right (by rw [this]; exact fun e => Nat.noConfusion e)]
       | .isFalse h => by
-          rw [if_neg h, neg_mul_neg, one_mul]
+          rw [ite_eq_right h, neg_mul_neg, one_mul]
           have h1 : n % 2 = 1 := by
             have := Nat.mod_lt n (Nat.zero_lt_succ 1)
             exact match n % 2, this, h with
@@ -674,7 +674,7 @@ theorem neg_one_pow (n : Nat) : (-1 : Shell p) ^ n = if n % 2 = 0 then 1 else -1
               | k + 2, hk, _ => absurd hk (Nat.not_lt_of_le (Nat.le_add_left 2 k))
           have : (n + 1) % 2 = 0 := by
             rw [← FRC.Nat.mod_add_mod _ _ _ (Nat.zero_lt_succ 1), h1]
-          rw [if_pos this]
+          rw [ite_eq_left this]
 
 end ops
 
@@ -1293,13 +1293,13 @@ theorem dft_inverse (F : Frame p κ g) {k j : Nat} (hk : k < p - 1) (hj : j < p 
   rw [hsum]
   exact match Nat.decEq k j with
     | .isTrue e => by
-        rw [if_pos e]
+        rw [ite_eq_left e]
         have h1 : g ^ (k + (p - 1 - j)) = 1 := (F.pow_shift_eq_one_iff hk hj).2 e
         have : sumRange (fun l => (g ^ (k + (p - 1 - j))) ^ l) (p - 1) = ofNat (p - 1) * 1 := by
           rw [← sum_const]; apply sum_congr; intro l _; rw [h1, one_pow]
         rw [this, F.ofNat_n, mul_one, neg_neg]
     | .isFalse e => by
-        rw [if_neg e]
+        rw [ite_eq_right e]
         have h1 : g ^ (k + (p - 1 - j)) ≠ 1 := fun h => e ((F.pow_shift_eq_one_iff hk hj).1 h)
         rw [F.geom_sum_eq_zero _ (by rw [pow_mul_comm, F.pow_n, one_pow]) h1, neg_zero]
 
@@ -1319,13 +1319,13 @@ theorem W_sq (F : Frame p κ g) (k j : Nat) :
   rw [hsum]
   exact match Nat.decEq ((k + j) % (p - 1)) 0 with
     | .isTrue e => by
-        rw [if_pos e]
+        rw [ite_eq_left e]
         have h1 : g ^ (k + j) = 1 := F.pow_eq_one_of_mod e
         have : sumRange (fun l => (g ^ (k + j)) ^ l) (p - 1) = ofNat (p - 1) * 1 := by
           rw [← sum_const]; apply sum_congr; intro l _; rw [h1, one_pow]
         rw [this, F.ofNat_n, mul_one]
     | .isFalse e => by
-        rw [if_neg e, neg_zero]
+        rw [ite_eq_right e, neg_zero]
         exact F.geom_sum_eq_zero _ (by rw [pow_mul_comm, F.pow_n, one_pow]) (fun h => e (F.mod_eq_zero_of_pow_eq_one h))
 
 /-! ### The reversal, the Fourier matrix `W`, the quarter-turn transform `F = i·W` (6:B5, B7) -/
@@ -1409,8 +1409,8 @@ theorem J_eq {n k l : Nat} (hk : k < n) (hl : l < n) :
     (J n k l : Shell p) = (if l = rev n k then (1 : Shell p) else 0) := by
   unfold J
   exact match Nat.decEq l (rev n k) with
-    | isTrue e => by rw [if_pos e, if_pos ((add_mod_eq_zero_iff hk hl).2 e)]
-    | isFalse e => by rw [if_neg e, if_neg (fun h => e ((add_mod_eq_zero_iff hk hl).1 h))]
+    | isTrue e => by rw [ite_eq_left e, ite_eq_left ((add_mod_eq_zero_iff hk hl).2 e)]
+    | isFalse e => by rw [ite_eq_right e, ite_eq_right (fun h => e ((add_mod_eq_zero_iff hk hl).1 h))]
 
 /-- 6:B5 (`W² = −J`, entrywise), in the matrix notation. -/
 theorem W_sq' (F : Frame p κ g) (k j : Nat) :
@@ -1421,11 +1421,11 @@ theorem J_sq (F : Frame p κ g) {k j : Nat} (hk : k < p - 1) (hj : j < p - 1) :
     sumRange (fun l => (J (p - 1) k l : Shell p) * J (p - 1) l j) (p - 1) = (if k = j then (1 : Shell p) else 0) := by
   have hn := F.n_pos
   have hr : rev (p - 1) k < p - 1 := rev_lt hn k
-  rw [sum_eq_single hr (fun l hl hne => by rw [J_eq hk hl, if_neg hne, zero_mul])]
-  rw [J_eq hk hr, if_pos rfl, one_mul, J_eq hr hj, rev_rev hk]
+  rw [sum_eq_single hr (fun l hl hne => by rw [J_eq hk hl, ite_eq_right hne, zero_mul])]
+  rw [J_eq hk hr, ite_eq_left rfl, one_mul, J_eq hr hj, rev_rev hk]
   exact match Nat.decEq k j with
-    | isTrue e => by rw [if_pos e, if_pos e.symm]
-    | isFalse e => by rw [if_neg e, if_neg (fun h => e h.symm)]
+    | isTrue e => by rw [ite_eq_left e, ite_eq_left e.symm]
+    | isFalse e => by rw [ite_eq_right e, ite_eq_right (fun h => e h.symm)]
 
 /-- 6:B5, 6:B7 (`F² = J`, entrywise): the quarter-turn transform squares to the reversal. -/
 theorem F_sq (F : Frame p κ g) (k j : Nat) :
@@ -1447,9 +1447,9 @@ theorem W_J_comm (F : Frame p κ g) {k j : Nat} (hk : k < p - 1) (hj : j < p - 1
   have hrj : rev (p - 1) j < p - 1 := rev_lt hn j
   have hrk : rev (p - 1) k < p - 1 := rev_lt hn k
   rw [sum_eq_single hrj (fun l hl hne => by
-        rw [J_eq hl hj, if_neg (fun e => hne (by rw [e, rev_rev hl])), mul_zero])]
-  rw [sum_eq_single hrk (fun l hl hne => by rw [J_eq hk hl, if_neg hne, zero_mul])]
-  rw [J_eq hrj hj, if_pos (rev_rev hj).symm, mul_one, J_eq hk hrk, if_pos rfl, one_mul]
+        rw [J_eq hl hj, ite_eq_right (fun e => hne (by rw [e, rev_rev hl])), mul_zero])]
+  rw [sum_eq_single hrk (fun l hl hne => by rw [J_eq hk hl, ite_eq_right hne, zero_mul])]
+  rw [J_eq hrj hj, ite_eq_left (rev_rev hj).symm, mul_one, J_eq hk hrk, ite_eq_left rfl, one_mul]
   unfold W
   -- both are the inverse of g^{jk}
   apply inv_unique (y := g ^ (j * k))
@@ -1488,9 +1488,9 @@ theorem sumList_erase (F : Nat → Shell p) {v : Nat} : ∀ {l : List Nat}, Pige
   | [], h => absurd h id
   | a :: l, h => by
     exact match Nat.decEq a v with
-      | isTrue e => by rw [show Pigeonhole.erase v (a :: l) = l from if_pos e, e]; rfl
+      | isTrue e => by rw [show Pigeonhole.erase v (a :: l) = l from ite_eq_left e, e]; rfl
       | isFalse e => by
-          rw [show Pigeonhole.erase v (a :: l) = a :: Pigeonhole.erase v l from if_neg e]
+          rw [show Pigeonhole.erase v (a :: l) = a :: Pigeonhole.erase v l from ite_eq_right e]
           have hm : Pigeonhole.mem v l := match h with
             | Or.inl h' => absurd h'.symm e
             | Or.inr h' => h'
@@ -1621,14 +1621,14 @@ theorem symm_extend (F : Frame p κ g) (c : Nat → Shell p) :
     ∃ v : Nat → Shell p, Symm (p - 1) v ∧ ∀ k, k ≤ 2 * κ → v k = c k := by
   refine ⟨fun k => if k ≤ 2 * κ then c k else c (rev (p - 1) k), ?_, fun k hk => by
     show (if k ≤ 2 * κ then c k else c (rev (p - 1) k)) = c k
-    rw [if_pos hk]⟩
+    rw [ite_eq_left hk]⟩
   intro k hk
   show (if rev (p - 1) k ≤ 2 * κ then c (rev (p - 1) k) else c (rev (p - 1) (rev (p - 1) k)))
       = (if k ≤ 2 * κ then c k else c (rev (p - 1) k))
   rw [rev_rev hk]
   exact match Nat.decLe k (2 * κ), Nat.decLe (rev (p - 1) k) (2 * κ) with
     | isTrue h1, isTrue h2 => by
-        rw [if_pos h1, if_pos h2]
+        rw [ite_eq_left h1, ite_eq_left h2]
         -- both k and n − k are ≤ 2κ: k = 0 (rev 0 = 0) or k = 2κ (rev = 2κ)
         exact match Nat.decEq k 0 with
           | isTrue e => by rw [e, rev_zero _ F.n_pos]
@@ -1640,10 +1640,10 @@ theorem symm_extend (F : Frame p κ g) (c : Nat → Shell p) :
               rw [← F.four_kappa] at h3
               have hk2 : k = 2 * κ := Nat.le_antisymm h1 (FRC.Nat.le_of_add_le_add_left h3)
               rw [hk2, ← F.four_kappa, FRC.Nat.add_sub_cancel]
-    | isTrue h1, isFalse h2 => by rw [if_pos h1, if_neg h2]
-    | isFalse h1, isTrue h2 => by rw [if_neg h1, if_pos h2]
+    | isTrue h1, isFalse h2 => by rw [ite_eq_left h1, ite_eq_right h2]
+    | isFalse h1, isTrue h2 => by rw [ite_eq_right h1, ite_eq_left h2]
     | isFalse h1, isFalse h2 => by
-        rw [if_neg h1, if_neg h2]
+        rw [ite_eq_right h1, ite_eq_right h2]
         -- impossible: k > 2κ and n − k > 2κ would give n > 4κ
         exact absurd (by
           have hk0 : 0 < k := Nat.lt_of_lt_of_le (Nat.zero_lt_succ _) (Nat.lt_of_not_le h1)
@@ -1697,13 +1697,13 @@ theorem antisymm_extend (F : Frame p κ g) (c : Nat → Shell p) :
   refine ⟨fun k => if k = 0 then 0 else if k = 2 * κ then 0 else if k < 2 * κ then c k else -(c (rev (p - 1) k)),
     ?_, fun k hk0 hk2 => by
       show (if k = 0 then 0 else if k = 2 * κ then 0 else if k < 2 * κ then c k else -(c (rev (p - 1) k))) = c k
-      rw [if_neg (Nat.ne_of_gt hk0), if_neg (Nat.ne_of_lt hk2), if_pos hk2]⟩
+      rw [ite_eq_right (Nat.ne_of_gt hk0), ite_eq_right (Nat.ne_of_lt hk2), ite_eq_left hk2]⟩
   intro k hk
   have hn := F.n_pos
   show (if rev (p - 1) k = 0 then 0 else if rev (p - 1) k = 2 * κ then 0 else if rev (p - 1) k < 2 * κ then c (rev (p - 1) k) else -(c (rev (p - 1) (rev (p - 1) k))))
       = -(if k = 0 then 0 else if k = 2 * κ then 0 else if k < 2 * κ then c k else -(c (rev (p - 1) k)))
   match Nat.decEq k 0 with
-  | isTrue e => rw [e, rev_zero _ hn, if_pos rfl, if_pos rfl, neg_zero]
+  | isTrue e => rw [e, rev_zero _ hn, ite_eq_left rfl, ite_eq_left rfl, neg_zero]
   | isFalse e0 =>
     have hk0 := Nat.pos_of_ne_zero e0
     have hrk : rev (p - 1) k = p - 1 - k := rev_eq_sub hk hk0
@@ -1715,13 +1715,13 @@ theorem antisymm_extend (F : Frame p κ g) (c : Nat → Shell p) :
     match Nat.decEq k (2 * κ) with
     | isTrue e =>
       have : rev (p - 1) k = 2 * κ := by rw [hrk, e, ← F.four_kappa, FRC.Nat.add_sub_cancel]
-      rw [if_neg hr0, if_pos this, if_neg e0, if_pos e, neg_zero]
+      rw [ite_eq_right hr0, ite_eq_left this, ite_eq_right e0, ite_eq_left e, neg_zero]
     | isFalse e2 =>
       have hr2 : rev (p - 1) k ≠ 2 * κ := fun h => e2 (by
         have := rev_rev hk
         rw [h] at this
         rw [← this, rev_eq_sub F.two_kappa_lt F.two_kappa_pos, ← F.four_kappa, FRC.Nat.add_sub_cancel])
-      rw [if_neg hr0, if_neg hr2, if_neg e0, if_neg e2]
+      rw [ite_eq_right hr0, ite_eq_right hr2, ite_eq_right e0, ite_eq_right e2]
       match Nat.lt_or_ge k (2 * κ) with
       | Or.inl hlt =>
         have hge : ¬ rev (p - 1) k < 2 * κ := fun h => by
@@ -1729,7 +1729,7 @@ theorem antisymm_extend (F : Frame p κ g) (c : Nat → Shell p) :
           have := Nat.add_lt_add h hlt
           rw [FRC.Nat.sub_add_cancel (Nat.le_of_lt hk), F.four_kappa] at this
           exact Nat.lt_irrefl _ this
-        rw [if_neg hge, if_pos hlt, rev_rev hk]
+        rw [ite_eq_right hge, ite_eq_left hlt, rev_rev hk]
       | Or.inr hge =>
         have hlt' : ¬ k < 2 * κ := Nat.not_lt_of_le hge
         have hgt : 2 * κ < k := Nat.lt_of_le_of_ne hge (fun e => e2 e.symm)
@@ -1738,7 +1738,7 @@ theorem antisymm_extend (F : Frame p κ g) (c : Nat → Shell p) :
           refine Nat.lt_of_add_lt_add_right (n := k) ?_
           rw [FRC.Nat.sub_add_cancel (Nat.le_of_lt hk), ← F.four_kappa]
           exact Nat.add_lt_add_left hgt _
-        rw [if_pos hr, if_neg hlt', neg_neg]
+        rw [ite_eq_left hr, ite_eq_right hlt', neg_neg]
 
 /-- 6:B7 — the decomposition `V = V⁺ ⊕ V⁻`: with `h = 2⁻¹`, `v = v⁺ + v⁻` where `v⁺ k = h(v k + v (rev k))`
 is symmetric and `v⁻ k = h(v k − v (rev k))` antisymmetric; the decomposition is unique. -/
@@ -2203,7 +2203,7 @@ theorem natCount_ne_zero (n : Nat) : natCount (fun x => x ≠ 0) (n + 1) = n := 
   | zero => rfl
   | succ n ih =>
     show natCount (fun x => x ≠ 0) (n + 1) + (if n + 1 ≠ 0 then 1 else 0) = n + 1
-    rw [ih, if_pos (Nat.succ_ne_zero n)]
+    rw [ih, ite_eq_left (Nat.succ_ne_zero n)]
 
 /-- 1:C2, the order — the frames `(a, b)`, `b ≠ 0`, number `p·(p − 1)`: `p` choices of the origin, `p − 1`
 of the unit. -/
@@ -2212,7 +2212,7 @@ theorem frame_count (_F : Frame p κ g) :
   have h1 : ∀ n, natCount (fun _ => True) n = n := fun n => by
     induction n with
     | zero => rfl
-    | succ n ih => show natCount (fun _ => True) n + (if True then 1 else 0) = n + 1; rw [ih, if_pos trivial]
+    | succ n ih => show natCount (fun _ => True) n + (if True then 1 else 0) = n + 1; rw [ih, ite_eq_left trivial]
   have hp : p = (p - 1) + 1 := (FRC.Nat.sub_add_cancel Pos.pos).symm
   rw [h1]
   have h2 : natCount (fun b => b ≠ 0) p = p - 1 := by
@@ -2521,11 +2521,11 @@ theorem root_bound (F : Frame p κ g) : ∀ (n : Nat) (f : Poly p), Bound f n �
 theorem xpx_bound : Bound (xpx : Poly p) p := by
   intro i hi
   show (if i = p then 1 else if i = 1 then -1 else 0 : Shell p) = 0
-  rw [if_neg (Nat.ne_of_gt hi), if_neg (fun e => absurd hi (by rw [e]; exact Nat.not_lt_of_le (Pos.pos : 0 < p)))]
+  rw [ite_eq_right (Nat.ne_of_gt hi), ite_eq_right (fun e => absurd hi (by rw [e]; exact Nat.not_lt_of_le (Pos.pos : 0 < p)))]
 
 theorem xpx_p : (xpx : Poly p) p = 1 := by
   show (if p = p then 1 else if p = 1 then -1 else 0 : Shell p) = 1
-  rw [if_pos rfl]
+  rw [ite_eq_left rfl]
 
 /-- `X^p − X` vanishes everywhere: Fermat. -/
 theorem eval_xpx (F : Frame p κ g) (a : Shell p) : eval (xpx : Poly p) p a = 0 := by
@@ -2538,11 +2538,11 @@ theorem eval_xpx (F : Frame p κ g) (a : Shell p) : eval (xpx : Poly p) p a = 0 
   have hp1 : p ≠ 1 := fun h => absurd (h ▸ h2 : 2 ≤ 1) (Nat.not_le_of_lt (Nat.lt_succ_self 1))
   have t0 : (xpx : Poly p) 0 * a ^ 0 = 0 := by
     show (if 0 = p then 1 else if 0 = 1 then -1 else 0 : Shell p) * a ^ 0 = 0
-    rw [if_neg (fun h => by have := (Pos.pos : 0 < p); rw [← h] at this; exact Nat.lt_irrefl 0 this),
-      if_neg (fun h => FRC.Nat.succ_ne_zero 0 h.symm), zero_mul]
+    rw [ite_eq_right (fun h => by have := (Pos.pos : 0 < p); rw [← h] at this; exact Nat.lt_irrefl 0 this),
+      ite_eq_right (fun h => FRC.Nat.succ_ne_zero 0 h.symm), zero_mul]
   have t1 : (xpx : Poly p) 1 * a ^ 1 = -a := by
     show (if 1 = p then 1 else if 1 = 1 then -1 else 0 : Shell p) * a ^ 1 = -a
-    rw [if_neg (fun h => hp1 h.symm), if_pos rfl, pow_one, neg_one_mul]
+    rw [ite_eq_right (fun h => hp1 h.symm), ite_eq_left rfl, pow_one, neg_one_mul]
   have t2 : sumRange (fun t => (xpx : Poly p) (2 + t) * a ^ (2 + t)) (p - 1) = a ^ p := by
     have hl : p - 2 < p - 1 := by
       have e : p = (p - 2) + 2 := (FRC.Nat.sub_add_cancel h2).symm
@@ -2550,10 +2550,10 @@ theorem eval_xpx (F : Frame p κ g) (a : Shell p) : eval (xpx : Poly p) p a = 0 
       exact Nat.lt_succ_self (p - 2)
     rw [sum_eq_single hl (fun t _ ht => by
       show (if 2 + t = p then 1 else if 2 + t = 1 then -1 else 0 : Shell p) * a ^ (2 + t) = 0
-      rw [if_neg (fun h => ht (by rw [← h, Nat.add_comm, FRC.Nat.add_sub_cancel])),
-        if_neg (fun h => FRC.Nat.succ_ne_zero t (Nat.succ.inj (by rw [Nat.add_comm] at h; exact h))), zero_mul])]
+      rw [ite_eq_right (fun h => ht (by rw [← h, Nat.add_comm, FRC.Nat.add_sub_cancel])),
+        ite_eq_right (fun h => FRC.Nat.succ_ne_zero t (Nat.succ.inj (by rw [Nat.add_comm] at h; exact h))), zero_mul])]
     show (if 2 + (p - 2) = p then 1 else if 2 + (p - 2) = 1 then -1 else 0 : Shell p) * a ^ (2 + (p - 2)) = a ^ p
-    rw [FRC.Nat.add_sub_of_le h2, if_pos rfl, one_mul]
+    rw [FRC.Nat.add_sub_of_le h2, ite_eq_left rfl, one_mul]
   show (xpx : Poly p) 0 * a ^ 0 + (xpx : Poly p) 1 * a ^ 1 + sumRange (fun t => (xpx : Poly p) (2 + t) * a ^ (2 + t)) (p - 1) = 0
   rw [t0, t1, t2, zero_add, F.fermat, neg_add]
 
@@ -2994,7 +2994,7 @@ theorem norm_mul (ν a b c d : Shell p) :
     mul_assoc ν (b * b) (ν * (d * d)), mul_left_comm (b * b) ν (d * d), ← mul_assoc ν ν, ← sq_mul b d]
 
 /-- The boost `Λ(γ, b)` of `(t, x)`: `t ↦ γ t + b x`, `x ↦ γ x + ν b t` (multiplication by `γ + b√ν` in `K`). -/
-def boostT (ν γ b t x : Shell p) : Shell p := γ * t + b * x
+def boostT (_ν γ b t x : Shell p) : Shell p := γ * t + b * x
 def boostX (ν γ b t x : Shell p) : Shell p := γ * x + ν * (b * t)
 
 /-- 3:C2 (the finite Lorentz boost) — with `γ² − νb² = 1`, `Λ(γ, b)` preserves `x² − ν t²` exactly, on every shell. -/

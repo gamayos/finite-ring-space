@@ -89,7 +89,7 @@
 <span class="ln" id="L67"><a class="lno" href="#L67">67</a>    IsPrimitiveRoot h (Fintype.card F - 1) ↔</span>
 <span class="ln" id="L68"><a class="lno" href="#L68">68</a>      ∃ u, u &lt; Fintype.card F - 1 ∧ Nat.Coprime u (Fintype.card F - 1) ∧ h = g ^ u := by</span>
 <span class="ln" id="L69"><a class="lno" href="#L69">69</a>  have hn : 0 &lt; Fintype.card F - 1 := by have := Fintype.one_lt_card (α := F); omega</span>
-<span class="ln" id="L70"><a class="lno" href="#L70">70</a>  haveI : NeZero (Fintype.card F - 1) := ⟨by omega⟩</span>
+<span class="ln" id="L70"><a class="lno" href="#L70">70</a>  have : NeZero (Fintype.card F - 1) := ⟨by omega⟩</span>
 <span class="ln" id="L71"><a class="lno" href="#L71">71</a>  constructor</span>
 <span class="ln" id="L72"><a class="lno" href="#L72">72</a>  · intro hh</span>
 <span class="ln" id="L73"><a class="lno" href="#L73">73</a>    obtain ⟨u, hu, rfl⟩ := hg.eq_pow_of_pow_eq_one hh.pow_eq_one</span>
@@ -131,10 +131,10 @@
 <span class="ln" id="L109"><a class="lno" href="#L109">109</a>    rw [Matrix.neg_apply, Matrix.mul_apply]</span>
 <span class="ln" id="L110"><a class="lno" href="#L110">110</a>    simp only [FRC.Fourier.W_apply, FRC.Fourier.J_apply, mul_ite, mul_one, mul_zero]</span>
 <span class="ln" id="L111"><a class="lno" href="#L111">111</a>    rw [Finset.sum_eq_single (-j)]</span>
-<span class="ln" id="L112"><a class="lno" href="#L112">112</a>    · rw [if_pos (by rw [neg_neg]), pow_mul, FRC.Fourier.pow_neg_val hg.pow_eq_one j, inv_pow,</span>
+<span class="ln" id="L112"><a class="lno" href="#L112">112</a>    · rw [ite_eq_left (by rw [neg_neg]), pow_mul, FRC.Fourier.pow_neg_val hg.pow_eq_one j, inv_pow,</span>
 <span class="ln" id="L113"><a class="lno" href="#L113">113</a>        ← pow_mul]</span>
 <span class="ln" id="L114"><a class="lno" href="#L114">114</a>    · intro x _ hx</span>
-<span class="ln" id="L115"><a class="lno" href="#L115">115</a>      rw [if_neg (fun h =&gt; hx (by rw [h, neg_neg]))]</span>
+<span class="ln" id="L115"><a class="lno" href="#L115">115</a>      rw [ite_eq_right (fun h =&gt; hx (by rw [h, neg_neg]))]</span>
 <span class="ln" id="L116"><a class="lno" href="#L116">116</a>    · intro h; exact absurd (Finset.mem_univ _) h</span>
 <span class="ln" id="L117"><a class="lno" href="#L117">117</a></span>
 <span class="ln" id="L118"><a class="lno" href="#L118">118</a>end shell</span>

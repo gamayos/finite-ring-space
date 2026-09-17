@@ -62,9 +62,9 @@
 <span class="ln" id="L40"><a class="lno" href="#L40">40</a>  | a :: l, h =&gt; by</span>
 <span class="ln" id="L41"><a class="lno" href="#L41">41</a>    show (if a = v then l else a :: erase v l).length + 1 = l.length + 1</span>
 <span class="ln" id="L42"><a class="lno" href="#L42">42</a>    exact match Nat.decEq a v with</span>
-<span class="ln" id="L43"><a class="lno" href="#L43">43</a>      | isTrue e =&gt; by rw [if_pos e]</span>
+<span class="ln" id="L43"><a class="lno" href="#L43">43</a>      | isTrue e =&gt; by rw [ite_eq_left e]</span>
 <span class="ln" id="L44"><a class="lno" href="#L44">44</a>      | isFalse e =&gt; by</span>
-<span class="ln" id="L45"><a class="lno" href="#L45">45</a>          rw [if_neg e]</span>
+<span class="ln" id="L45"><a class="lno" href="#L45">45</a>          rw [ite_eq_right e]</span>
 <span class="ln" id="L46"><a class="lno" href="#L46">46</a>          show (erase v l).length + 1 + 1 = l.length + 1</span>
 <span class="ln" id="L47"><a class="lno" href="#L47">47</a>          have hm : mem v l := match h with</span>
 <span class="ln" id="L48"><a class="lno" href="#L48">48</a>            | Or.inl h&#x27; =&gt; absurd h&#x27;.symm e</span>
@@ -77,10 +77,10 @@
 <span class="ln" id="L55"><a class="lno" href="#L55">55</a>    show w = a ∨ mem w l</span>
 <span class="ln" id="L56"><a class="lno" href="#L56">56</a>    exact match Nat.decEq a v with</span>
 <span class="ln" id="L57"><a class="lno" href="#L57">57</a>      | isTrue e =&gt; by</span>
-<span class="ln" id="L58"><a class="lno" href="#L58">58</a>          rw [show erase v (a :: l) = l from if_pos e] at h</span>
+<span class="ln" id="L58"><a class="lno" href="#L58">58</a>          rw [show erase v (a :: l) = l from ite_eq_left e] at h</span>
 <span class="ln" id="L59"><a class="lno" href="#L59">59</a>          exact Or.inr h</span>
 <span class="ln" id="L60"><a class="lno" href="#L60">60</a>      | isFalse e =&gt; by</span>
-<span class="ln" id="L61"><a class="lno" href="#L61">61</a>          rw [show erase v (a :: l) = a :: erase v l from if_neg e] at h</span>
+<span class="ln" id="L61"><a class="lno" href="#L61">61</a>          rw [show erase v (a :: l) = a :: erase v l from ite_eq_right e] at h</span>
 <span class="ln" id="L62"><a class="lno" href="#L62">62</a>          exact match h with</span>
 <span class="ln" id="L63"><a class="lno" href="#L63">63</a>            | Or.inl h&#x27; =&gt; Or.inl h&#x27;</span>
 <span class="ln" id="L64"><a class="lno" href="#L64">64</a>            | Or.inr h&#x27; =&gt; Or.inr (mem_of_mem_erase h&#x27;)</span>
@@ -90,12 +90,12 @@
 <span class="ln" id="L68"><a class="lno" href="#L68">68</a>  | a :: l, h =&gt; by</span>
 <span class="ln" id="L69"><a class="lno" href="#L69">69</a>    exact match Nat.decEq a v with</span>
 <span class="ln" id="L70"><a class="lno" href="#L70">70</a>      | isTrue e =&gt; by</span>
-<span class="ln" id="L71"><a class="lno" href="#L71">71</a>          rw [show erase v (a :: l) = l from if_pos e]</span>
+<span class="ln" id="L71"><a class="lno" href="#L71">71</a>          rw [show erase v (a :: l) = l from ite_eq_left e]</span>
 <span class="ln" id="L72"><a class="lno" href="#L72">72</a>          exact match h with</span>
 <span class="ln" id="L73"><a class="lno" href="#L73">73</a>            | Or.inl h&#x27; =&gt; absurd (h&#x27;.trans e) hwv</span>
 <span class="ln" id="L74"><a class="lno" href="#L74">74</a>            | Or.inr h&#x27; =&gt; h&#x27;</span>
 <span class="ln" id="L75"><a class="lno" href="#L75">75</a>      | isFalse e =&gt; by</span>
-<span class="ln" id="L76"><a class="lno" href="#L76">76</a>          rw [show erase v (a :: l) = a :: erase v l from if_neg e]</span>
+<span class="ln" id="L76"><a class="lno" href="#L76">76</a>          rw [show erase v (a :: l) = a :: erase v l from ite_eq_right e]</span>
 <span class="ln" id="L77"><a class="lno" href="#L77">77</a>          exact match h with</span>
 <span class="ln" id="L78"><a class="lno" href="#L78">78</a>            | Or.inl h&#x27; =&gt; Or.inl h&#x27;</span>
 <span class="ln" id="L79"><a class="lno" href="#L79">79</a>            | Or.inr h&#x27; =&gt; Or.inr (mem_erase_of_ne hwv h&#x27;)</span>
@@ -104,9 +104,9 @@
 <span class="ln" id="L82"><a class="lno" href="#L82">82</a>  | [], _ =&gt; trivial</span>
 <span class="ln" id="L83"><a class="lno" href="#L83">83</a>  | a :: l, ⟨ha, hl⟩ =&gt; by</span>
 <span class="ln" id="L84"><a class="lno" href="#L84">84</a>    exact match Nat.decEq a v with</span>
-<span class="ln" id="L85"><a class="lno" href="#L85">85</a>      | isTrue e =&gt; by rw [show erase v (a :: l) = l from if_pos e]; exact hl</span>
+<span class="ln" id="L85"><a class="lno" href="#L85">85</a>      | isTrue e =&gt; by rw [show erase v (a :: l) = l from ite_eq_left e]; exact hl</span>
 <span class="ln" id="L86"><a class="lno" href="#L86">86</a>      | isFalse e =&gt; by</span>
-<span class="ln" id="L87"><a class="lno" href="#L87">87</a>          rw [show erase v (a :: l) = a :: erase v l from if_neg e]</span>
+<span class="ln" id="L87"><a class="lno" href="#L87">87</a>          rw [show erase v (a :: l) = a :: erase v l from ite_eq_right e]</span>
 <span class="ln" id="L88"><a class="lno" href="#L88">88</a>          exact ⟨fun h =&gt; ha (mem_of_mem_erase h), nodup_erase v hl⟩</span>
 <span class="ln" id="L89"><a class="lno" href="#L89">89</a></span>
 <span class="ln decl" id="FRC.Pigeonhole.not_mem_erase_self"><a class="lno" href="#FRC.Pigeonhole.not_mem_erase_self">90</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcCore/Pigeonhole.lean#L90" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small ok" src="../lean-ok.png" alt="" title="no axioms">theorem not_mem_erase_self (v : Nat) : ∀ {l : List Nat}, NoDup l → ¬ mem v (erase v l)</span>
@@ -114,10 +114,10 @@
 <span class="ln" id="L92"><a class="lno" href="#L92">92</a>  | a :: l, ⟨ha, hl⟩, h =&gt; by</span>
 <span class="ln" id="L93"><a class="lno" href="#L93">93</a>    exact match Nat.decEq a v with</span>
 <span class="ln" id="L94"><a class="lno" href="#L94">94</a>      | isTrue e =&gt; by</span>
-<span class="ln" id="L95"><a class="lno" href="#L95">95</a>          rw [show erase v (a :: l) = l from if_pos e] at h</span>
+<span class="ln" id="L95"><a class="lno" href="#L95">95</a>          rw [show erase v (a :: l) = l from ite_eq_left e] at h</span>
 <span class="ln" id="L96"><a class="lno" href="#L96">96</a>          exact ha (e ▸ h)</span>
 <span class="ln" id="L97"><a class="lno" href="#L97">97</a>      | isFalse e =&gt; by</span>
-<span class="ln" id="L98"><a class="lno" href="#L98">98</a>          rw [show erase v (a :: l) = a :: erase v l from if_neg e] at h</span>
+<span class="ln" id="L98"><a class="lno" href="#L98">98</a>          rw [show erase v (a :: l) = a :: erase v l from ite_eq_right e] at h</span>
 <span class="ln" id="L99"><a class="lno" href="#L99">99</a>          exact match h with</span>
 <span class="ln" id="L100"><a class="lno" href="#L100">100</a>            | Or.inl h&#x27; =&gt; e h&#x27;.symm</span>
 <span class="ln" id="L101"><a class="lno" href="#L101">101</a>            | Or.inr h&#x27; =&gt; not_mem_erase_self v hl h&#x27;</span>

@@ -194,13 +194,13 @@
 <span class="ln" id="L172"><a class="lno" href="#L172">172</a>  rw [hsum]</span>
 <span class="ln" id="L173"><a class="lno" href="#L173">173</a>  exact match Nat.decEq k j with</span>
 <span class="ln" id="L174"><a class="lno" href="#L174">174</a>    | .isTrue e =&gt; by</span>
-<span class="ln" id="L175"><a class="lno" href="#L175">175</a>        rw [if_pos e]</span>
+<span class="ln" id="L175"><a class="lno" href="#L175">175</a>        rw [ite_eq_left e]</span>
 <span class="ln" id="L176"><a class="lno" href="#L176">176</a>        have h1 : g ^ (k + (p - 1 - j)) = 1 := (F.pow_shift_eq_one_iff hk hj).2 e</span>
 <span class="ln" id="L177"><a class="lno" href="#L177">177</a>        have : sumRange (fun l =&gt; (g ^ (k + (p - 1 - j))) ^ l) (p - 1) = ofNat (p - 1) * 1 := by</span>
 <span class="ln" id="L178"><a class="lno" href="#L178">178</a>          rw [← sum_const]; apply sum_congr; intro l _; rw [h1, one_pow]</span>
 <span class="ln" id="L179"><a class="lno" href="#L179">179</a>        rw [this, F.ofNat_n, mul_one, neg_neg]</span>
 <span class="ln" id="L180"><a class="lno" href="#L180">180</a>    | .isFalse e =&gt; by</span>
-<span class="ln" id="L181"><a class="lno" href="#L181">181</a>        rw [if_neg e]</span>
+<span class="ln" id="L181"><a class="lno" href="#L181">181</a>        rw [ite_eq_right e]</span>
 <span class="ln" id="L182"><a class="lno" href="#L182">182</a>        have h1 : g ^ (k + (p - 1 - j)) ≠ 1 := fun h =&gt; e ((F.pow_shift_eq_one_iff hk hj).1 h)</span>
 <span class="ln" id="L183"><a class="lno" href="#L183">183</a>        rw [F.geom_sum_eq_zero _ (by rw [pow_mul_comm, F.pow_n, one_pow]) h1, neg_zero]</span>
 <span class="ln" id="L184"><a class="lno" href="#L184">184</a></span>
@@ -220,13 +220,13 @@
 <span class="ln" id="L198"><a class="lno" href="#L198">198</a>  rw [hsum]</span>
 <span class="ln" id="L199"><a class="lno" href="#L199">199</a>  exact match Nat.decEq ((k + j) % (p - 1)) 0 with</span>
 <span class="ln" id="L200"><a class="lno" href="#L200">200</a>    | .isTrue e =&gt; by</span>
-<span class="ln" id="L201"><a class="lno" href="#L201">201</a>        rw [if_pos e]</span>
+<span class="ln" id="L201"><a class="lno" href="#L201">201</a>        rw [ite_eq_left e]</span>
 <span class="ln" id="L202"><a class="lno" href="#L202">202</a>        have h1 : g ^ (k + j) = 1 := F.pow_eq_one_of_mod e</span>
 <span class="ln" id="L203"><a class="lno" href="#L203">203</a>        have : sumRange (fun l =&gt; (g ^ (k + j)) ^ l) (p - 1) = ofNat (p - 1) * 1 := by</span>
 <span class="ln" id="L204"><a class="lno" href="#L204">204</a>          rw [← sum_const]; apply sum_congr; intro l _; rw [h1, one_pow]</span>
 <span class="ln" id="L205"><a class="lno" href="#L205">205</a>        rw [this, F.ofNat_n, mul_one]</span>
 <span class="ln" id="L206"><a class="lno" href="#L206">206</a>    | .isFalse e =&gt; by</span>
-<span class="ln" id="L207"><a class="lno" href="#L207">207</a>        rw [if_neg e, neg_zero]</span>
+<span class="ln" id="L207"><a class="lno" href="#L207">207</a>        rw [ite_eq_right e, neg_zero]</span>
 <span class="ln" id="L208"><a class="lno" href="#L208">208</a>        exact F.geom_sum_eq_zero _ (by rw [pow_mul_comm, F.pow_n, one_pow]) (fun h =&gt; e (F.mod_eq_zero_of_pow_eq_one h))</span>
 <span class="ln" id="L209"><a class="lno" href="#L209">209</a></span>
 <span class="ln" id="L210"><a class="lno" href="#L210">210</a>/-! ### The reversal, the Fourier matrix `W`, the quarter-turn transform `F = i·W` (6:B5, B7) -/</span>
@@ -310,8 +310,8 @@
 <span class="ln" id="L288"><a class="lno" href="#L288">288</a>    (J n k l : Shell p) = (if l = rev n k then (1 : Shell p) else 0) := by</span>
 <span class="ln" id="L289"><a class="lno" href="#L289">289</a>  unfold J</span>
 <span class="ln" id="L290"><a class="lno" href="#L290">290</a>  exact match Nat.decEq l (rev n k) with</span>
-<span class="ln" id="L291"><a class="lno" href="#L291">291</a>    | isTrue e =&gt; by rw [if_pos e, if_pos ((add_mod_eq_zero_iff hk hl).2 e)]</span>
-<span class="ln" id="L292"><a class="lno" href="#L292">292</a>    | isFalse e =&gt; by rw [if_neg e, if_neg (fun h =&gt; e ((add_mod_eq_zero_iff hk hl).1 h))]</span>
+<span class="ln" id="L291"><a class="lno" href="#L291">291</a>    | isTrue e =&gt; by rw [ite_eq_left e, ite_eq_left ((add_mod_eq_zero_iff hk hl).2 e)]</span>
+<span class="ln" id="L292"><a class="lno" href="#L292">292</a>    | isFalse e =&gt; by rw [ite_eq_right e, ite_eq_right (fun h =&gt; e ((add_mod_eq_zero_iff hk hl).1 h))]</span>
 <span class="ln" id="L293"><a class="lno" href="#L293">293</a></span>
 <span class="ln" id="L294"><a class="lno" href="#L294">294</a>/-- 6:B5 (`W² = −J`, entrywise), in the matrix notation. -/</span>
 <span class="ln decl" id="FRC.Shell.Frame.W_sq'"><a class="lno" href="#FRC.Shell.Frame.W_sq'">295</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcCore/Sum.lean#L295" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small ok" src="../lean-ok.png" alt="" title="no axioms">theorem W_sq&#x27; (F : Frame p κ g) (k j : Nat) :</span>
@@ -322,11 +322,11 @@
 <span class="ln" id="L300"><a class="lno" href="#L300">300</a>    sumRange (fun l =&gt; (J (p - 1) k l : Shell p) * J (p - 1) l j) (p - 1) = (if k = j then (1 : Shell p) else 0) := by</span>
 <span class="ln" id="L301"><a class="lno" href="#L301">301</a>  have hn := F.n_pos</span>
 <span class="ln" id="L302"><a class="lno" href="#L302">302</a>  have hr : rev (p - 1) k &lt; p - 1 := rev_lt hn k</span>
-<span class="ln" id="L303"><a class="lno" href="#L303">303</a>  rw [sum_eq_single hr (fun l hl hne =&gt; by rw [J_eq hk hl, if_neg hne, zero_mul])]</span>
-<span class="ln" id="L304"><a class="lno" href="#L304">304</a>  rw [J_eq hk hr, if_pos rfl, one_mul, J_eq hr hj, rev_rev hk]</span>
+<span class="ln" id="L303"><a class="lno" href="#L303">303</a>  rw [sum_eq_single hr (fun l hl hne =&gt; by rw [J_eq hk hl, ite_eq_right hne, zero_mul])]</span>
+<span class="ln" id="L304"><a class="lno" href="#L304">304</a>  rw [J_eq hk hr, ite_eq_left rfl, one_mul, J_eq hr hj, rev_rev hk]</span>
 <span class="ln" id="L305"><a class="lno" href="#L305">305</a>  exact match Nat.decEq k j with</span>
-<span class="ln" id="L306"><a class="lno" href="#L306">306</a>    | isTrue e =&gt; by rw [if_pos e, if_pos e.symm]</span>
-<span class="ln" id="L307"><a class="lno" href="#L307">307</a>    | isFalse e =&gt; by rw [if_neg e, if_neg (fun h =&gt; e h.symm)]</span>
+<span class="ln" id="L306"><a class="lno" href="#L306">306</a>    | isTrue e =&gt; by rw [ite_eq_left e, ite_eq_left e.symm]</span>
+<span class="ln" id="L307"><a class="lno" href="#L307">307</a>    | isFalse e =&gt; by rw [ite_eq_right e, ite_eq_right (fun h =&gt; e h.symm)]</span>
 <span class="ln" id="L308"><a class="lno" href="#L308">308</a></span>
 <span class="ln" id="L309"><a class="lno" href="#L309">309</a>/-- 6:B5, 6:B7 (`F² = J`, entrywise): the quarter-turn transform squares to the reversal. -/</span>
 <span class="ln decl" id="FRC.Shell.Frame.F_sq"><a class="lno" href="#FRC.Shell.Frame.F_sq">310</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcCore/Sum.lean#L310" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small ok" src="../lean-ok.png" alt="" title="no axioms">theorem F_sq (F : Frame p κ g) (k j : Nat) :</span>
@@ -348,9 +348,9 @@
 <span class="ln" id="L326"><a class="lno" href="#L326">326</a>  have hrj : rev (p - 1) j &lt; p - 1 := rev_lt hn j</span>
 <span class="ln" id="L327"><a class="lno" href="#L327">327</a>  have hrk : rev (p - 1) k &lt; p - 1 := rev_lt hn k</span>
 <span class="ln" id="L328"><a class="lno" href="#L328">328</a>  rw [sum_eq_single hrj (fun l hl hne =&gt; by</span>
-<span class="ln" id="L329"><a class="lno" href="#L329">329</a>        rw [J_eq hl hj, if_neg (fun e =&gt; hne (by rw [e, rev_rev hl])), mul_zero])]</span>
-<span class="ln" id="L330"><a class="lno" href="#L330">330</a>  rw [sum_eq_single hrk (fun l hl hne =&gt; by rw [J_eq hk hl, if_neg hne, zero_mul])]</span>
-<span class="ln" id="L331"><a class="lno" href="#L331">331</a>  rw [J_eq hrj hj, if_pos (rev_rev hj).symm, mul_one, J_eq hk hrk, if_pos rfl, one_mul]</span>
+<span class="ln" id="L329"><a class="lno" href="#L329">329</a>        rw [J_eq hl hj, ite_eq_right (fun e =&gt; hne (by rw [e, rev_rev hl])), mul_zero])]</span>
+<span class="ln" id="L330"><a class="lno" href="#L330">330</a>  rw [sum_eq_single hrk (fun l hl hne =&gt; by rw [J_eq hk hl, ite_eq_right hne, zero_mul])]</span>
+<span class="ln" id="L331"><a class="lno" href="#L331">331</a>  rw [J_eq hrj hj, ite_eq_left (rev_rev hj).symm, mul_one, J_eq hk hrk, ite_eq_left rfl, one_mul]</span>
 <span class="ln" id="L332"><a class="lno" href="#L332">332</a>  unfold W</span>
 <span class="ln" id="L333"><a class="lno" href="#L333">333</a>  -- both are the inverse of g^{jk}</span>
 <span class="ln" id="L334"><a class="lno" href="#L334">334</a>  apply inv_unique (y := g ^ (j * k))</span>
@@ -389,9 +389,9 @@
 <span class="ln" id="L367"><a class="lno" href="#L367">367</a>  | [], h =&gt; absurd h id</span>
 <span class="ln" id="L368"><a class="lno" href="#L368">368</a>  | a :: l, h =&gt; by</span>
 <span class="ln" id="L369"><a class="lno" href="#L369">369</a>    exact match Nat.decEq a v with</span>
-<span class="ln" id="L370"><a class="lno" href="#L370">370</a>      | isTrue e =&gt; by rw [show Pigeonhole.erase v (a :: l) = l from if_pos e, e]; rfl</span>
+<span class="ln" id="L370"><a class="lno" href="#L370">370</a>      | isTrue e =&gt; by rw [show Pigeonhole.erase v (a :: l) = l from ite_eq_left e, e]; rfl</span>
 <span class="ln" id="L371"><a class="lno" href="#L371">371</a>      | isFalse e =&gt; by</span>
-<span class="ln" id="L372"><a class="lno" href="#L372">372</a>          rw [show Pigeonhole.erase v (a :: l) = a :: Pigeonhole.erase v l from if_neg e]</span>
+<span class="ln" id="L372"><a class="lno" href="#L372">372</a>          rw [show Pigeonhole.erase v (a :: l) = a :: Pigeonhole.erase v l from ite_eq_right e]</span>
 <span class="ln" id="L373"><a class="lno" href="#L373">373</a>          have hm : Pigeonhole.mem v l := match h with</span>
 <span class="ln" id="L374"><a class="lno" href="#L374">374</a>            | Or.inl h&#x27; =&gt; absurd h&#x27;.symm e</span>
 <span class="ln" id="L375"><a class="lno" href="#L375">375</a>            | Or.inr h&#x27; =&gt; h&#x27;</span>
@@ -522,14 +522,14 @@
 <span class="ln" id="L500"><a class="lno" href="#L500">500</a>    ∃ v : Nat → Shell p, Symm (p - 1) v ∧ ∀ k, k ≤ 2 * κ → v k = c k := by</span>
 <span class="ln" id="L501"><a class="lno" href="#L501">501</a>  refine ⟨fun k =&gt; if k ≤ 2 * κ then c k else c (rev (p - 1) k), ?_, fun k hk =&gt; by</span>
 <span class="ln" id="L502"><a class="lno" href="#L502">502</a>    show (if k ≤ 2 * κ then c k else c (rev (p - 1) k)) = c k</span>
-<span class="ln" id="L503"><a class="lno" href="#L503">503</a>    rw [if_pos hk]⟩</span>
+<span class="ln" id="L503"><a class="lno" href="#L503">503</a>    rw [ite_eq_left hk]⟩</span>
 <span class="ln" id="L504"><a class="lno" href="#L504">504</a>  intro k hk</span>
 <span class="ln" id="L505"><a class="lno" href="#L505">505</a>  show (if rev (p - 1) k ≤ 2 * κ then c (rev (p - 1) k) else c (rev (p - 1) (rev (p - 1) k)))</span>
 <span class="ln" id="L506"><a class="lno" href="#L506">506</a>      = (if k ≤ 2 * κ then c k else c (rev (p - 1) k))</span>
 <span class="ln" id="L507"><a class="lno" href="#L507">507</a>  rw [rev_rev hk]</span>
 <span class="ln" id="L508"><a class="lno" href="#L508">508</a>  exact match Nat.decLe k (2 * κ), Nat.decLe (rev (p - 1) k) (2 * κ) with</span>
 <span class="ln" id="L509"><a class="lno" href="#L509">509</a>    | isTrue h1, isTrue h2 =&gt; by</span>
-<span class="ln" id="L510"><a class="lno" href="#L510">510</a>        rw [if_pos h1, if_pos h2]</span>
+<span class="ln" id="L510"><a class="lno" href="#L510">510</a>        rw [ite_eq_left h1, ite_eq_left h2]</span>
 <span class="ln" id="L511"><a class="lno" href="#L511">511</a>        -- both k and n − k are ≤ 2κ: k = 0 (rev 0 = 0) or k = 2κ (rev = 2κ)</span>
 <span class="ln" id="L512"><a class="lno" href="#L512">512</a>        exact match Nat.decEq k 0 with</span>
 <span class="ln" id="L513"><a class="lno" href="#L513">513</a>          | isTrue e =&gt; by rw [e, rev_zero _ F.n_pos]</span>
@@ -541,10 +541,10 @@
 <span class="ln" id="L519"><a class="lno" href="#L519">519</a>              rw [← F.four_kappa] at h3</span>
 <span class="ln" id="L520"><a class="lno" href="#L520">520</a>              have hk2 : k = 2 * κ := Nat.le_antisymm h1 (FRC.Nat.le_of_add_le_add_left h3)</span>
 <span class="ln" id="L521"><a class="lno" href="#L521">521</a>              rw [hk2, ← F.four_kappa, FRC.Nat.add_sub_cancel]</span>
-<span class="ln" id="L522"><a class="lno" href="#L522">522</a>    | isTrue h1, isFalse h2 =&gt; by rw [if_pos h1, if_neg h2]</span>
-<span class="ln" id="L523"><a class="lno" href="#L523">523</a>    | isFalse h1, isTrue h2 =&gt; by rw [if_neg h1, if_pos h2]</span>
+<span class="ln" id="L522"><a class="lno" href="#L522">522</a>    | isTrue h1, isFalse h2 =&gt; by rw [ite_eq_left h1, ite_eq_right h2]</span>
+<span class="ln" id="L523"><a class="lno" href="#L523">523</a>    | isFalse h1, isTrue h2 =&gt; by rw [ite_eq_right h1, ite_eq_left h2]</span>
 <span class="ln" id="L524"><a class="lno" href="#L524">524</a>    | isFalse h1, isFalse h2 =&gt; by</span>
-<span class="ln" id="L525"><a class="lno" href="#L525">525</a>        rw [if_neg h1, if_neg h2]</span>
+<span class="ln" id="L525"><a class="lno" href="#L525">525</a>        rw [ite_eq_right h1, ite_eq_right h2]</span>
 <span class="ln" id="L526"><a class="lno" href="#L526">526</a>        -- impossible: k &gt; 2κ and n − k &gt; 2κ would give n &gt; 4κ</span>
 <span class="ln" id="L527"><a class="lno" href="#L527">527</a>        exact absurd (by</span>
 <span class="ln" id="L528"><a class="lno" href="#L528">528</a>          have hk0 : 0 &lt; k := Nat.lt_of_lt_of_le (Nat.zero_lt_succ _) (Nat.lt_of_not_le h1)</span>
@@ -598,13 +598,13 @@
 <span class="ln" id="L576"><a class="lno" href="#L576">576</a>  refine ⟨fun k =&gt; if k = 0 then 0 else if k = 2 * κ then 0 else if k &lt; 2 * κ then c k else -(c (rev (p - 1) k)),</span>
 <span class="ln" id="L577"><a class="lno" href="#L577">577</a>    ?_, fun k hk0 hk2 =&gt; by</span>
 <span class="ln" id="L578"><a class="lno" href="#L578">578</a>      show (if k = 0 then 0 else if k = 2 * κ then 0 else if k &lt; 2 * κ then c k else -(c (rev (p - 1) k))) = c k</span>
-<span class="ln" id="L579"><a class="lno" href="#L579">579</a>      rw [if_neg (Nat.ne_of_gt hk0), if_neg (Nat.ne_of_lt hk2), if_pos hk2]⟩</span>
+<span class="ln" id="L579"><a class="lno" href="#L579">579</a>      rw [ite_eq_right (Nat.ne_of_gt hk0), ite_eq_right (Nat.ne_of_lt hk2), ite_eq_left hk2]⟩</span>
 <span class="ln" id="L580"><a class="lno" href="#L580">580</a>  intro k hk</span>
 <span class="ln" id="L581"><a class="lno" href="#L581">581</a>  have hn := F.n_pos</span>
 <span class="ln" id="L582"><a class="lno" href="#L582">582</a>  show (if rev (p - 1) k = 0 then 0 else if rev (p - 1) k = 2 * κ then 0 else if rev (p - 1) k &lt; 2 * κ then c (rev (p - 1) k) else -(c (rev (p - 1) (rev (p - 1) k))))</span>
 <span class="ln" id="L583"><a class="lno" href="#L583">583</a>      = -(if k = 0 then 0 else if k = 2 * κ then 0 else if k &lt; 2 * κ then c k else -(c (rev (p - 1) k)))</span>
 <span class="ln" id="L584"><a class="lno" href="#L584">584</a>  match Nat.decEq k 0 with</span>
-<span class="ln" id="L585"><a class="lno" href="#L585">585</a>  | isTrue e =&gt; rw [e, rev_zero _ hn, if_pos rfl, if_pos rfl, neg_zero]</span>
+<span class="ln" id="L585"><a class="lno" href="#L585">585</a>  | isTrue e =&gt; rw [e, rev_zero _ hn, ite_eq_left rfl, ite_eq_left rfl, neg_zero]</span>
 <span class="ln" id="L586"><a class="lno" href="#L586">586</a>  | isFalse e0 =&gt;</span>
 <span class="ln" id="L587"><a class="lno" href="#L587">587</a>    have hk0 := Nat.pos_of_ne_zero e0</span>
 <span class="ln" id="L588"><a class="lno" href="#L588">588</a>    have hrk : rev (p - 1) k = p - 1 - k := rev_eq_sub hk hk0</span>
@@ -616,13 +616,13 @@
 <span class="ln" id="L594"><a class="lno" href="#L594">594</a>    match Nat.decEq k (2 * κ) with</span>
 <span class="ln" id="L595"><a class="lno" href="#L595">595</a>    | isTrue e =&gt;</span>
 <span class="ln" id="L596"><a class="lno" href="#L596">596</a>      have : rev (p - 1) k = 2 * κ := by rw [hrk, e, ← F.four_kappa, FRC.Nat.add_sub_cancel]</span>
-<span class="ln" id="L597"><a class="lno" href="#L597">597</a>      rw [if_neg hr0, if_pos this, if_neg e0, if_pos e, neg_zero]</span>
+<span class="ln" id="L597"><a class="lno" href="#L597">597</a>      rw [ite_eq_right hr0, ite_eq_left this, ite_eq_right e0, ite_eq_left e, neg_zero]</span>
 <span class="ln" id="L598"><a class="lno" href="#L598">598</a>    | isFalse e2 =&gt;</span>
 <span class="ln" id="L599"><a class="lno" href="#L599">599</a>      have hr2 : rev (p - 1) k ≠ 2 * κ := fun h =&gt; e2 (by</span>
 <span class="ln" id="L600"><a class="lno" href="#L600">600</a>        have := rev_rev hk</span>
 <span class="ln" id="L601"><a class="lno" href="#L601">601</a>        rw [h] at this</span>
 <span class="ln" id="L602"><a class="lno" href="#L602">602</a>        rw [← this, rev_eq_sub F.two_kappa_lt F.two_kappa_pos, ← F.four_kappa, FRC.Nat.add_sub_cancel])</span>
-<span class="ln" id="L603"><a class="lno" href="#L603">603</a>      rw [if_neg hr0, if_neg hr2, if_neg e0, if_neg e2]</span>
+<span class="ln" id="L603"><a class="lno" href="#L603">603</a>      rw [ite_eq_right hr0, ite_eq_right hr2, ite_eq_right e0, ite_eq_right e2]</span>
 <span class="ln" id="L604"><a class="lno" href="#L604">604</a>      match Nat.lt_or_ge k (2 * κ) with</span>
 <span class="ln" id="L605"><a class="lno" href="#L605">605</a>      | Or.inl hlt =&gt;</span>
 <span class="ln" id="L606"><a class="lno" href="#L606">606</a>        have hge : ¬ rev (p - 1) k &lt; 2 * κ := fun h =&gt; by</span>
@@ -630,7 +630,7 @@
 <span class="ln" id="L608"><a class="lno" href="#L608">608</a>          have := Nat.add_lt_add h hlt</span>
 <span class="ln" id="L609"><a class="lno" href="#L609">609</a>          rw [FRC.Nat.sub_add_cancel (Nat.le_of_lt hk), F.four_kappa] at this</span>
 <span class="ln" id="L610"><a class="lno" href="#L610">610</a>          exact Nat.lt_irrefl _ this</span>
-<span class="ln" id="L611"><a class="lno" href="#L611">611</a>        rw [if_neg hge, if_pos hlt, rev_rev hk]</span>
+<span class="ln" id="L611"><a class="lno" href="#L611">611</a>        rw [ite_eq_right hge, ite_eq_left hlt, rev_rev hk]</span>
 <span class="ln" id="L612"><a class="lno" href="#L612">612</a>      | Or.inr hge =&gt;</span>
 <span class="ln" id="L613"><a class="lno" href="#L613">613</a>        have hlt&#x27; : ¬ k &lt; 2 * κ := Nat.not_lt_of_le hge</span>
 <span class="ln" id="L614"><a class="lno" href="#L614">614</a>        have hgt : 2 * κ &lt; k := Nat.lt_of_le_of_ne hge (fun e =&gt; e2 e.symm)</span>
@@ -639,7 +639,7 @@
 <span class="ln" id="L617"><a class="lno" href="#L617">617</a>          refine Nat.lt_of_add_lt_add_right (n := k) ?_</span>
 <span class="ln" id="L618"><a class="lno" href="#L618">618</a>          rw [FRC.Nat.sub_add_cancel (Nat.le_of_lt hk), ← F.four_kappa]</span>
 <span class="ln" id="L619"><a class="lno" href="#L619">619</a>          exact Nat.add_lt_add_left hgt _</span>
-<span class="ln" id="L620"><a class="lno" href="#L620">620</a>        rw [if_pos hr, if_neg hlt&#x27;, neg_neg]</span>
+<span class="ln" id="L620"><a class="lno" href="#L620">620</a>        rw [ite_eq_left hr, ite_eq_right hlt&#x27;, neg_neg]</span>
 <span class="ln" id="L621"><a class="lno" href="#L621">621</a></span>
 <span class="ln" id="L622"><a class="lno" href="#L622">622</a>/-- 6:B7 — the decomposition `V = V⁺ ⊕ V⁻`: with `h = 2⁻¹`, `v = v⁺ + v⁻` where `v⁺ k = h(v k + v (rev k))`</span>
 <span class="ln" id="L623"><a class="lno" href="#L623">623</a>is symmetric and `v⁻ k = h(v k − v (rev k))` antisymmetric; the decomposition is unique. -/</span>

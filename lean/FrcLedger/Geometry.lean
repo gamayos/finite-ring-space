@@ -67,7 +67,7 @@ theorem generator_orbit (g : F) (hg : IsPrimitiveRoot g (Fintype.card F - 1)) (h
     IsPrimitiveRoot h (Fintype.card F - 1) ↔
       ∃ u, u < Fintype.card F - 1 ∧ Nat.Coprime u (Fintype.card F - 1) ∧ h = g ^ u := by
   have hn : 0 < Fintype.card F - 1 := by have := Fintype.one_lt_card (α := F); omega
-  haveI : NeZero (Fintype.card F - 1) := ⟨by omega⟩
+  have : NeZero (Fintype.card F - 1) := ⟨by omega⟩
   constructor
   · intro hh
     obtain ⟨u, hu, rfl⟩ := hg.eq_pow_of_pow_eq_one hh.pow_eq_one
@@ -109,10 +109,10 @@ theorem dft_inverse (κ : ℕ) (hκ : Fintype.card F = 4 * κ + 1) (g : F)
     rw [Matrix.neg_apply, Matrix.mul_apply]
     simp only [FRC.Fourier.W_apply, FRC.Fourier.J_apply, mul_ite, mul_one, mul_zero]
     rw [Finset.sum_eq_single (-j)]
-    · rw [if_pos (by rw [neg_neg]), pow_mul, FRC.Fourier.pow_neg_val hg.pow_eq_one j, inv_pow,
+    · rw [ite_eq_left (by rw [neg_neg]), pow_mul, FRC.Fourier.pow_neg_val hg.pow_eq_one j, inv_pow,
         ← pow_mul]
     · intro x _ hx
-      rw [if_neg (fun h => hx (by rw [h, neg_neg]))]
+      rw [ite_eq_right (fun h => hx (by rw [h, neg_neg]))]
     · intro h; exact absurd (Finset.mem_univ _) h
 
 end shell

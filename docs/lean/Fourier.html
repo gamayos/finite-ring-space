@@ -39,161 +39,165 @@
 <span class="ln" id="L17"><a class="lno" href="#L17">17</a></span>
 <span class="ln" id="L18"><a class="lno" href="#L18">18</a>variable {K : Type*} [Field K] {n : ℕ} [NeZero n]</span>
 <span class="ln" id="L19"><a class="lno" href="#L19">19</a></span>
-<span class="ln" id="L20"><a class="lno" href="#L20">20</a>/-- The geometric sum of an `n`-th root of unity `ζ ≠ 1` over `Fin n` vanishes. -/</span>
-<span class="ln decl" id="FRC.Fourier.sum_pow_eq_zero_of_ne_one"><a class="lno" href="#FRC.Fourier.sum_pow_eq_zero_of_ne_one">21</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcLedger/Fourier.lean#L21" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small t2" src="lean-t2.png" alt="" title="tier 2, classical: Classical.choice, Quot.sound, propext">lemma sum_pow_eq_zero_of_ne_one {ζ : K} (hζn : ζ ^ n = 1) (hζ : ζ ≠ 1) :</span>
-<span class="ln" id="L22"><a class="lno" href="#L22">22</a>    ∑ j : Fin n, ζ ^ (j : ℕ) = 0 := by</span>
-<span class="ln" id="L23"><a class="lno" href="#L23">23</a>  have h := geom_sum_mul ζ n</span>
-<span class="ln" id="L24"><a class="lno" href="#L24">24</a>  rw [hζn, sub_self] at h</span>
-<span class="ln" id="L25"><a class="lno" href="#L25">25</a>  rw [Fin.sum_univ_eq_sum_range (fun j =&gt; ζ ^ j) n]</span>
-<span class="ln" id="L26"><a class="lno" href="#L26">26</a>  exact (mul_eq_zero.1 h).resolve_right (sub_ne_zero.2 hζ)</span>
-<span class="ln" id="L27"><a class="lno" href="#L27">27</a></span>
-<span class="ln" id="L28"><a class="lno" href="#L28">28</a>/-- The shell Fourier matrix, `W k j = g^(j·k)`. -/</span>
-<span class="ln decl" id="FRC.Fourier.W"><a class="lno" href="#FRC.Fourier.W">29</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcLedger/Fourier.lean#L29" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small" src="lean.png" alt="" title="a definition: no proof, no axioms">def W (g : K) : Matrix (Fin n) (Fin n) K := fun k j =&gt; g ^ ((j : ℕ) * (k : ℕ))</span>
-<span class="ln" id="L30"><a class="lno" href="#L30">30</a></span>
-<span class="ln" id="L31"><a class="lno" href="#L31">31</a>/-- The reversal `J k l = [l = −k]`. -/</span>
-<span class="ln decl" id="FRC.Fourier.J"><a class="lno" href="#FRC.Fourier.J">32</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcLedger/Fourier.lean#L32" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small" src="lean.png" alt="" title="a definition: no proof, no axioms">def J : Matrix (Fin n) (Fin n) K := fun k l =&gt; if l = -k then 1 else 0</span>
-<span class="ln" id="L33"><a class="lno" href="#L33">33</a></span>
-<span class="ln decl" id="FRC.Fourier.W_apply"><a class="lno" href="#FRC.Fourier.W_apply">34</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcLedger/Fourier.lean#L34" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small t1" src="lean-t1.png" alt="" title="tier 1: Quot.sound, propext">lemma W_apply (g : K) (k j : Fin n) : (W g : Matrix (Fin n) (Fin n) K) k j = g ^ ((j : ℕ) * (k : ℕ)) := rfl</span>
-<span class="ln decl" id="FRC.Fourier.J_apply"><a class="lno" href="#FRC.Fourier.J_apply">35</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcLedger/Fourier.lean#L35" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small t1" src="lean-t1.png" alt="" title="tier 1: Quot.sound, propext">lemma J_apply (k l : Fin n) : (J : Matrix (Fin n) (Fin n) K) k l = if l = -k then 1 else 0 := rfl</span>
-<span class="ln" id="L36"><a class="lno" href="#L36">36</a></span>
-<span class="ln" id="L37"><a class="lno" href="#L37">37</a>/-- `g^((-j).val) = (g^(j.val))⁻¹` for an `n`-th root of unity `g`. -/</span>
-<span class="ln decl" id="FRC.Fourier.pow_neg_val"><a class="lno" href="#FRC.Fourier.pow_neg_val">38</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcLedger/Fourier.lean#L38" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small t2" src="lean-t2.png" alt="" title="tier 2, classical: Classical.choice, Quot.sound, propext">lemma pow_neg_val {g : K} (hg : g ^ n = 1) (j : Fin n) :</span>
-<span class="ln" id="L39"><a class="lno" href="#L39">39</a>    g ^ ((-j : Fin n) : ℕ) = (g ^ (j : ℕ))⁻¹ := by</span>
-<span class="ln" id="L40"><a class="lno" href="#L40">40</a>  have hne : g ≠ 0 := by rintro rfl; simp [NeZero.ne n] at hg</span>
-<span class="ln" id="L41"><a class="lno" href="#L41">41</a>  apply eq_inv_of_mul_eq_one_left</span>
-<span class="ln" id="L42"><a class="lno" href="#L42">42</a>  rw [← pow_add]</span>
-<span class="ln" id="L43"><a class="lno" href="#L43">43</a>  have hdvd : n ∣ ((-j : Fin n) : ℕ) + (j : ℕ) := by</span>
-<span class="ln" id="L44"><a class="lno" href="#L44">44</a>    have h : (-j : Fin n) + j = 0 := neg_add_cancel j</span>
-<span class="ln" id="L45"><a class="lno" href="#L45">45</a>    have := congrArg Fin.val h</span>
-<span class="ln" id="L46"><a class="lno" href="#L46">46</a>    rw [Fin.val_add, Fin.val_zero] at this</span>
-<span class="ln" id="L47"><a class="lno" href="#L47">47</a>    exact Nat.dvd_of_mod_eq_zero this</span>
-<span class="ln" id="L48"><a class="lno" href="#L48">48</a>  obtain ⟨c, hc⟩ := hdvd</span>
-<span class="ln" id="L49"><a class="lno" href="#L49">49</a>  rw [hc, pow_mul, hg, one_pow]</span>
-<span class="ln" id="L50"><a class="lno" href="#L50">50</a></span>
-<span class="ln" id="L51"><a class="lno" href="#L51">51</a>/-- `J² = 1`. -/</span>
-<span class="ln decl" id="FRC.Fourier.J_sq"><a class="lno" href="#FRC.Fourier.J_sq">52</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcLedger/Fourier.lean#L52" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small t2" src="lean-t2.png" alt="" title="tier 2, classical: Classical.choice, Quot.sound, propext">theorem J_sq : (J : Matrix (Fin n) (Fin n) K) ^ 2 = 1 := by</span>
-<span class="ln" id="L53"><a class="lno" href="#L53">53</a>  ext k l</span>
-<span class="ln" id="L54"><a class="lno" href="#L54">54</a>  rw [sq, Matrix.mul_apply, Matrix.one_apply]</span>
-<span class="ln" id="L55"><a class="lno" href="#L55">55</a>  simp only [J_apply, mul_ite, mul_one, mul_zero]</span>
-<span class="ln" id="L56"><a class="lno" href="#L56">56</a>  rw [Finset.sum_eq_single (-k)]</span>
-<span class="ln" id="L57"><a class="lno" href="#L57">57</a>  · simp [neg_neg, eq_comm]</span>
-<span class="ln" id="L58"><a class="lno" href="#L58">58</a>  · intro x _ hx; simp [hx]</span>
-<span class="ln" id="L59"><a class="lno" href="#L59">59</a>  · intro h; exact absurd (Finset.mem_univ _) h</span>
-<span class="ln" id="L60"><a class="lno" href="#L60">60</a></span>
-<span class="ln" id="L61"><a class="lno" href="#L61">61</a>/-- `W² = n • J` for any primitive `n`-th root of unity `g` (the general identity). -/</span>
-<span class="ln decl" id="FRC.Fourier.W_sq"><a class="lno" href="#FRC.Fourier.W_sq">62</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcLedger/Fourier.lean#L62" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small t2" src="lean-t2.png" alt="" title="tier 2, classical: Classical.choice, Quot.sound, propext">theorem W_sq (g : K) (hg : IsPrimitiveRoot g n) :</span>
-<span class="ln" id="L63"><a class="lno" href="#L63">63</a>    (W g : Matrix (Fin n) (Fin n) K) ^ 2 = (n : K) • J := by</span>
-<span class="ln" id="L64"><a class="lno" href="#L64">64</a>  ext k l</span>
-<span class="ln" id="L65"><a class="lno" href="#L65">65</a>  rw [sq, Matrix.mul_apply, Matrix.smul_apply, J_apply]</span>
-<span class="ln" id="L66"><a class="lno" href="#L66">66</a>  simp only [W_apply]</span>
-<span class="ln" id="L67"><a class="lno" href="#L67">67</a>  have hrw : ∀ j : Fin n, g ^ ((j : ℕ) * (k : ℕ)) * g ^ ((l : ℕ) * (j : ℕ))</span>
-<span class="ln" id="L68"><a class="lno" href="#L68">68</a>      = (g ^ ((k : ℕ) + (l : ℕ))) ^ (j : ℕ) := by</span>
-<span class="ln" id="L69"><a class="lno" href="#L69">69</a>    intro j; rw [← pow_add, ← pow_mul]; congr 1; ring</span>
-<span class="ln" id="L70"><a class="lno" href="#L70">70</a>  simp_rw [hrw]</span>
-<span class="ln" id="L71"><a class="lno" href="#L71">71</a>  have hdvd_iff : n ∣ (k : ℕ) + (l : ℕ) ↔ l = -k := by</span>
-<span class="ln" id="L72"><a class="lno" href="#L72">72</a>    constructor</span>
-<span class="ln" id="L73"><a class="lno" href="#L73">73</a>    · intro hd</span>
-<span class="ln" id="L74"><a class="lno" href="#L74">74</a>      rw [eq_neg_iff_add_eq_zero, add_comm]</span>
-<span class="ln" id="L75"><a class="lno" href="#L75">75</a>      apply Fin.ext</span>
-<span class="ln" id="L76"><a class="lno" href="#L76">76</a>      rw [Fin.val_add, Fin.val_zero]</span>
-<span class="ln" id="L77"><a class="lno" href="#L77">77</a>      exact Nat.mod_eq_zero_of_dvd hd</span>
-<span class="ln" id="L78"><a class="lno" href="#L78">78</a>    · intro hl</span>
-<span class="ln" id="L79"><a class="lno" href="#L79">79</a>      have h : k + l = 0 := by rw [hl, add_neg_cancel]</span>
-<span class="ln" id="L80"><a class="lno" href="#L80">80</a>      have := congrArg Fin.val h</span>
-<span class="ln" id="L81"><a class="lno" href="#L81">81</a>      rw [Fin.val_add, Fin.val_zero] at this</span>
-<span class="ln" id="L82"><a class="lno" href="#L82">82</a>      exact Nat.dvd_of_mod_eq_zero this</span>
-<span class="ln" id="L83"><a class="lno" href="#L83">83</a>  by_cases hkl : l = -k</span>
-<span class="ln" id="L84"><a class="lno" href="#L84">84</a>  · obtain ⟨c, hc⟩ := hdvd_iff.2 hkl</span>
-<span class="ln" id="L85"><a class="lno" href="#L85">85</a>    rw [hc, pow_mul, hg.pow_eq_one, one_pow]</span>
-<span class="ln" id="L86"><a class="lno" href="#L86">86</a>    simp [hkl]</span>
-<span class="ln" id="L87"><a class="lno" href="#L87">87</a>  · have hne : g ^ ((k : ℕ) + (l : ℕ)) ≠ 1 := by</span>
-<span class="ln" id="L88"><a class="lno" href="#L88">88</a>      intro h1</span>
-<span class="ln" id="L89"><a class="lno" href="#L89">89</a>      exact hkl (hdvd_iff.1 (hg.dvd_of_pow_eq_one _ h1))</span>
-<span class="ln" id="L90"><a class="lno" href="#L90">90</a>    have hpow : (g ^ ((k : ℕ) + (l : ℕ))) ^ n = 1 := by</span>
-<span class="ln" id="L91"><a class="lno" href="#L91">91</a>      rw [← pow_mul, mul_comm, pow_mul, hg.pow_eq_one, one_pow]</span>
-<span class="ln" id="L92"><a class="lno" href="#L92">92</a>    rw [sum_pow_eq_zero_of_ne_one hpow hne]</span>
-<span class="ln" id="L93"><a class="lno" href="#L93">93</a>    simp [hkl]</span>
-<span class="ln" id="L94"><a class="lno" href="#L94">94</a></span>
-<span class="ln" id="L95"><a class="lno" href="#L95">95</a>/-- `W J = J W` for any `n`-th root of unity `g`. -/</span>
-<span class="ln decl" id="FRC.Fourier.W_mul_J_comm"><a class="lno" href="#FRC.Fourier.W_mul_J_comm">96</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcLedger/Fourier.lean#L96" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small t2" src="lean-t2.png" alt="" title="tier 2, classical: Classical.choice, Quot.sound, propext">theorem W_mul_J_comm (g : K) (hg : g ^ n = 1) :</span>
-<span class="ln" id="L97"><a class="lno" href="#L97">97</a>    (W g : Matrix (Fin n) (Fin n) K) * J = J * W g := by</span>
-<span class="ln" id="L98"><a class="lno" href="#L98">98</a>  ext k l</span>
-<span class="ln" id="L99"><a class="lno" href="#L99">99</a>  rw [Matrix.mul_apply, Matrix.mul_apply]</span>
-<span class="ln" id="L100"><a class="lno" href="#L100">100</a>  simp only [W_apply, J_apply, mul_ite, ite_mul, mul_one, mul_zero, one_mul, zero_mul]</span>
-<span class="ln" id="L101"><a class="lno" href="#L101">101</a>  rw [Finset.sum_eq_single (-l), Finset.sum_eq_single (-k)]</span>
-<span class="ln" id="L102"><a class="lno" href="#L102">102</a>  · simp only [neg_neg, ite_true]</span>
-<span class="ln" id="L103"><a class="lno" href="#L103">103</a>    -- g^((-l)·k) = g^(l·(-k))</span>
-<span class="ln" id="L104"><a class="lno" href="#L104">104</a>    have hl : (g ^ (l : ℕ)) ^ n = 1 := by rw [← pow_mul, mul_comm, pow_mul, hg, one_pow]</span>
-<span class="ln" id="L105"><a class="lno" href="#L105">105</a>    rw [pow_mul, pow_mul, pow_neg_val hg l, inv_pow, pow_neg_val hl k]</span>
-<span class="ln" id="L106"><a class="lno" href="#L106">106</a>  · intro x _ hx; simp [hx]</span>
-<span class="ln" id="L107"><a class="lno" href="#L107">107</a>  · intro h; exact absurd (Finset.mem_univ _) h</span>
-<span class="ln" id="L108"><a class="lno" href="#L108">108</a>  · intro x _ hx</span>
-<span class="ln" id="L109"><a class="lno" href="#L109">109</a>    have : l ≠ -x := fun h =&gt; hx (by rw [h, neg_neg])</span>
-<span class="ln" id="L110"><a class="lno" href="#L110">110</a>    simp [this]</span>
+<span class="ln" id="L20"><a class="lno" href="#L20">20</a>omit [NeZero n] in</span>
+<span class="ln" id="L21"><a class="lno" href="#L21">21</a>/-- The geometric sum of an `n`-th root of unity `ζ ≠ 1` over `Fin n` vanishes. -/</span>
+<span class="ln decl" id="FRC.Fourier.sum_pow_eq_zero_of_ne_one"><a class="lno" href="#FRC.Fourier.sum_pow_eq_zero_of_ne_one">22</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcLedger/Fourier.lean#L22" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small t2" src="lean-t2.png" alt="" title="tier 2, classical: Classical.choice, Quot.sound, propext">lemma sum_pow_eq_zero_of_ne_one {ζ : K} (hζn : ζ ^ n = 1) (hζ : ζ ≠ 1) :</span>
+<span class="ln" id="L23"><a class="lno" href="#L23">23</a>    ∑ j : Fin n, ζ ^ (j : ℕ) = 0 := by</span>
+<span class="ln" id="L24"><a class="lno" href="#L24">24</a>  have h := geom_sum_mul ζ n</span>
+<span class="ln" id="L25"><a class="lno" href="#L25">25</a>  rw [hζn, sub_self] at h</span>
+<span class="ln" id="L26"><a class="lno" href="#L26">26</a>  rw [Fin.sum_univ_eq_sum_range (fun j =&gt; ζ ^ j) n]</span>
+<span class="ln" id="L27"><a class="lno" href="#L27">27</a>  exact (mul_eq_zero.1 h).resolve_right (sub_ne_zero.2 hζ)</span>
+<span class="ln" id="L28"><a class="lno" href="#L28">28</a></span>
+<span class="ln" id="L29"><a class="lno" href="#L29">29</a>/-- The shell Fourier matrix, `W k j = g^(j·k)`. -/</span>
+<span class="ln decl" id="FRC.Fourier.W"><a class="lno" href="#FRC.Fourier.W">30</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcLedger/Fourier.lean#L30" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small" src="lean.png" alt="" title="a definition: no proof, no axioms">def W (g : K) : Matrix (Fin n) (Fin n) K := fun k j =&gt; g ^ ((j : ℕ) * (k : ℕ))</span>
+<span class="ln" id="L31"><a class="lno" href="#L31">31</a></span>
+<span class="ln" id="L32"><a class="lno" href="#L32">32</a>/-- The reversal `J k l = [l = −k]`. -/</span>
+<span class="ln decl" id="FRC.Fourier.J"><a class="lno" href="#FRC.Fourier.J">33</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcLedger/Fourier.lean#L33" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small" src="lean.png" alt="" title="a definition: no proof, no axioms">def J : Matrix (Fin n) (Fin n) K := fun k l =&gt; if l = -k then 1 else 0</span>
+<span class="ln" id="L34"><a class="lno" href="#L34">34</a></span>
+<span class="ln" id="L35"><a class="lno" href="#L35">35</a>omit [NeZero n] in</span>
+<span class="ln decl" id="FRC.Fourier.W_apply"><a class="lno" href="#FRC.Fourier.W_apply">36</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcLedger/Fourier.lean#L36" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small t1" src="lean-t1.png" alt="" title="tier 1: Quot.sound, propext">lemma W_apply (g : K) (k j : Fin n) : (W g : Matrix (Fin n) (Fin n) K) k j = g ^ ((j : ℕ) * (k : ℕ)) := rfl</span>
+<span class="ln" id="L37"><a class="lno" href="#L37">37</a>omit [NeZero n] in</span>
+<span class="ln decl" id="FRC.Fourier.J_apply"><a class="lno" href="#FRC.Fourier.J_apply">38</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcLedger/Fourier.lean#L38" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small t1" src="lean-t1.png" alt="" title="tier 1: Quot.sound, propext">lemma J_apply (k l : Fin n) : (J : Matrix (Fin n) (Fin n) K) k l = if l = -k then 1 else 0 := rfl</span>
+<span class="ln" id="L39"><a class="lno" href="#L39">39</a></span>
+<span class="ln" id="L40"><a class="lno" href="#L40">40</a>/-- `g^((-j).val) = (g^(j.val))⁻¹` for an `n`-th root of unity `g`. -/</span>
+<span class="ln decl" id="FRC.Fourier.pow_neg_val"><a class="lno" href="#FRC.Fourier.pow_neg_val">41</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcLedger/Fourier.lean#L41" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small t2" src="lean-t2.png" alt="" title="tier 2, classical: Classical.choice, Quot.sound, propext">lemma pow_neg_val {g : K} (hg : g ^ n = 1) (j : Fin n) :</span>
+<span class="ln" id="L42"><a class="lno" href="#L42">42</a>    g ^ ((-j : Fin n) : ℕ) = (g ^ (j : ℕ))⁻¹ := by</span>
+<span class="ln" id="L43"><a class="lno" href="#L43">43</a>  have hne : g ≠ 0 := by rintro rfl; simp [NeZero.ne n] at hg</span>
+<span class="ln" id="L44"><a class="lno" href="#L44">44</a>  apply eq_inv_of_mul_eq_one_left</span>
+<span class="ln" id="L45"><a class="lno" href="#L45">45</a>  rw [← pow_add]</span>
+<span class="ln" id="L46"><a class="lno" href="#L46">46</a>  have hdvd : n ∣ ((-j : Fin n) : ℕ) + (j : ℕ) := by</span>
+<span class="ln" id="L47"><a class="lno" href="#L47">47</a>    have h : (-j : Fin n) + j = 0 := neg_add_cancel j</span>
+<span class="ln" id="L48"><a class="lno" href="#L48">48</a>    have := congrArg Fin.val h</span>
+<span class="ln" id="L49"><a class="lno" href="#L49">49</a>    rw [Fin.val_add, Fin.val_zero] at this</span>
+<span class="ln" id="L50"><a class="lno" href="#L50">50</a>    exact Nat.dvd_of_mod_eq_zero this</span>
+<span class="ln" id="L51"><a class="lno" href="#L51">51</a>  obtain ⟨c, hc⟩ := hdvd</span>
+<span class="ln" id="L52"><a class="lno" href="#L52">52</a>  rw [hc, pow_mul, hg, one_pow]</span>
+<span class="ln" id="L53"><a class="lno" href="#L53">53</a></span>
+<span class="ln" id="L54"><a class="lno" href="#L54">54</a>omit [NeZero n] in</span>
+<span class="ln" id="L55"><a class="lno" href="#L55">55</a>/-- `J² = 1`. -/</span>
+<span class="ln decl" id="FRC.Fourier.J_sq"><a class="lno" href="#FRC.Fourier.J_sq">56</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcLedger/Fourier.lean#L56" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small t2" src="lean-t2.png" alt="" title="tier 2, classical: Classical.choice, Quot.sound, propext">theorem J_sq : (J : Matrix (Fin n) (Fin n) K) ^ 2 = 1 := by</span>
+<span class="ln" id="L57"><a class="lno" href="#L57">57</a>  ext k l</span>
+<span class="ln" id="L58"><a class="lno" href="#L58">58</a>  rw [sq, Matrix.mul_apply, Matrix.one_apply]</span>
+<span class="ln" id="L59"><a class="lno" href="#L59">59</a>  simp only [J_apply, mul_ite, mul_one, mul_zero]</span>
+<span class="ln" id="L60"><a class="lno" href="#L60">60</a>  rw [Finset.sum_eq_single (-k)]</span>
+<span class="ln" id="L61"><a class="lno" href="#L61">61</a>  · simp [neg_neg, eq_comm]</span>
+<span class="ln" id="L62"><a class="lno" href="#L62">62</a>  · intro x _ hx; simp [hx]</span>
+<span class="ln" id="L63"><a class="lno" href="#L63">63</a>  · intro h; exact absurd (Finset.mem_univ _) h</span>
+<span class="ln" id="L64"><a class="lno" href="#L64">64</a></span>
+<span class="ln" id="L65"><a class="lno" href="#L65">65</a>/-- `W² = n • J` for any primitive `n`-th root of unity `g` (the general identity). -/</span>
+<span class="ln decl" id="FRC.Fourier.W_sq"><a class="lno" href="#FRC.Fourier.W_sq">66</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcLedger/Fourier.lean#L66" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small t2" src="lean-t2.png" alt="" title="tier 2, classical: Classical.choice, Quot.sound, propext">theorem W_sq (g : K) (hg : IsPrimitiveRoot g n) :</span>
+<span class="ln" id="L67"><a class="lno" href="#L67">67</a>    (W g : Matrix (Fin n) (Fin n) K) ^ 2 = (n : K) • J := by</span>
+<span class="ln" id="L68"><a class="lno" href="#L68">68</a>  ext k l</span>
+<span class="ln" id="L69"><a class="lno" href="#L69">69</a>  rw [sq, Matrix.mul_apply, Matrix.smul_apply, J_apply]</span>
+<span class="ln" id="L70"><a class="lno" href="#L70">70</a>  simp only [W_apply]</span>
+<span class="ln" id="L71"><a class="lno" href="#L71">71</a>  have hrw : ∀ j : Fin n, g ^ ((j : ℕ) * (k : ℕ)) * g ^ ((l : ℕ) * (j : ℕ))</span>
+<span class="ln" id="L72"><a class="lno" href="#L72">72</a>      = (g ^ ((k : ℕ) + (l : ℕ))) ^ (j : ℕ) := by</span>
+<span class="ln" id="L73"><a class="lno" href="#L73">73</a>    intro j; rw [← pow_add, ← pow_mul]; congr 1; ring</span>
+<span class="ln" id="L74"><a class="lno" href="#L74">74</a>  simp_rw [hrw]</span>
+<span class="ln" id="L75"><a class="lno" href="#L75">75</a>  have hdvd_iff : n ∣ (k : ℕ) + (l : ℕ) ↔ l = -k := by</span>
+<span class="ln" id="L76"><a class="lno" href="#L76">76</a>    constructor</span>
+<span class="ln" id="L77"><a class="lno" href="#L77">77</a>    · intro hd</span>
+<span class="ln" id="L78"><a class="lno" href="#L78">78</a>      rw [eq_neg_iff_add_eq_zero, add_comm]</span>
+<span class="ln" id="L79"><a class="lno" href="#L79">79</a>      apply Fin.ext</span>
+<span class="ln" id="L80"><a class="lno" href="#L80">80</a>      rw [Fin.val_add, Fin.val_zero]</span>
+<span class="ln" id="L81"><a class="lno" href="#L81">81</a>      exact Nat.mod_eq_zero_of_dvd hd</span>
+<span class="ln" id="L82"><a class="lno" href="#L82">82</a>    · intro hl</span>
+<span class="ln" id="L83"><a class="lno" href="#L83">83</a>      have h : k + l = 0 := by rw [hl, add_neg_cancel]</span>
+<span class="ln" id="L84"><a class="lno" href="#L84">84</a>      have := congrArg Fin.val h</span>
+<span class="ln" id="L85"><a class="lno" href="#L85">85</a>      rw [Fin.val_add, Fin.val_zero] at this</span>
+<span class="ln" id="L86"><a class="lno" href="#L86">86</a>      exact Nat.dvd_of_mod_eq_zero this</span>
+<span class="ln" id="L87"><a class="lno" href="#L87">87</a>  by_cases hkl : l = -k</span>
+<span class="ln" id="L88"><a class="lno" href="#L88">88</a>  · obtain ⟨c, hc⟩ := hdvd_iff.2 hkl</span>
+<span class="ln" id="L89"><a class="lno" href="#L89">89</a>    rw [hc, pow_mul, hg.pow_eq_one, one_pow]</span>
+<span class="ln" id="L90"><a class="lno" href="#L90">90</a>    simp [hkl]</span>
+<span class="ln" id="L91"><a class="lno" href="#L91">91</a>  · have hne : g ^ ((k : ℕ) + (l : ℕ)) ≠ 1 := by</span>
+<span class="ln" id="L92"><a class="lno" href="#L92">92</a>      intro h1</span>
+<span class="ln" id="L93"><a class="lno" href="#L93">93</a>      exact hkl (hdvd_iff.1 (hg.dvd_of_pow_eq_one _ h1))</span>
+<span class="ln" id="L94"><a class="lno" href="#L94">94</a>    have hpow : (g ^ ((k : ℕ) + (l : ℕ))) ^ n = 1 := by</span>
+<span class="ln" id="L95"><a class="lno" href="#L95">95</a>      rw [← pow_mul, mul_comm, pow_mul, hg.pow_eq_one, one_pow]</span>
+<span class="ln" id="L96"><a class="lno" href="#L96">96</a>    rw [sum_pow_eq_zero_of_ne_one hpow hne]</span>
+<span class="ln" id="L97"><a class="lno" href="#L97">97</a>    simp [hkl]</span>
+<span class="ln" id="L98"><a class="lno" href="#L98">98</a></span>
+<span class="ln" id="L99"><a class="lno" href="#L99">99</a>/-- `W J = J W` for any `n`-th root of unity `g`. -/</span>
+<span class="ln decl" id="FRC.Fourier.W_mul_J_comm"><a class="lno" href="#FRC.Fourier.W_mul_J_comm">100</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcLedger/Fourier.lean#L100" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small t2" src="lean-t2.png" alt="" title="tier 2, classical: Classical.choice, Quot.sound, propext">theorem W_mul_J_comm (g : K) (hg : g ^ n = 1) :</span>
+<span class="ln" id="L101"><a class="lno" href="#L101">101</a>    (W g : Matrix (Fin n) (Fin n) K) * J = J * W g := by</span>
+<span class="ln" id="L102"><a class="lno" href="#L102">102</a>  ext k l</span>
+<span class="ln" id="L103"><a class="lno" href="#L103">103</a>  rw [Matrix.mul_apply, Matrix.mul_apply]</span>
+<span class="ln" id="L104"><a class="lno" href="#L104">104</a>  simp only [W_apply, J_apply, mul_ite, ite_mul, mul_one, mul_zero, one_mul, zero_mul]</span>
+<span class="ln" id="L105"><a class="lno" href="#L105">105</a>  rw [Finset.sum_eq_single (-l), Finset.sum_eq_single (-k)]</span>
+<span class="ln" id="L106"><a class="lno" href="#L106">106</a>  · simp only [neg_neg, ite_true]</span>
+<span class="ln" id="L107"><a class="lno" href="#L107">107</a>    -- g^((-l)·k) = g^(l·(-k))</span>
+<span class="ln" id="L108"><a class="lno" href="#L108">108</a>    have hl : (g ^ (l : ℕ)) ^ n = 1 := by rw [← pow_mul, mul_comm, pow_mul, hg, one_pow]</span>
+<span class="ln" id="L109"><a class="lno" href="#L109">109</a>    rw [pow_mul, pow_mul, pow_neg_val hg l, inv_pow, pow_neg_val hl k]</span>
+<span class="ln" id="L110"><a class="lno" href="#L110">110</a>  · intro x _ hx; simp [hx]</span>
 <span class="ln" id="L111"><a class="lno" href="#L111">111</a>  · intro h; exact absurd (Finset.mem_univ _) h</span>
-<span class="ln" id="L112"><a class="lno" href="#L112">112</a></span>
-<span class="ln" id="L113"><a class="lno" href="#L113">113</a>/-! ## The shell: a field with `p = 4κ + 1` elements, `g` a primitive root, `i = −g^κ` -/</span>
-<span class="ln" id="L114"><a class="lno" href="#L114">114</a></span>
-<span class="ln" id="L115"><a class="lno" href="#L115">115</a>section shell</span>
+<span class="ln" id="L112"><a class="lno" href="#L112">112</a>  · intro x _ hx</span>
+<span class="ln" id="L113"><a class="lno" href="#L113">113</a>    have : l ≠ -x := fun h =&gt; hx (by rw [h, neg_neg])</span>
+<span class="ln" id="L114"><a class="lno" href="#L114">114</a>    simp [this]</span>
+<span class="ln" id="L115"><a class="lno" href="#L115">115</a>  · intro h; exact absurd (Finset.mem_univ _) h</span>
 <span class="ln" id="L116"><a class="lno" href="#L116">116</a></span>
-<span class="ln" id="L117"><a class="lno" href="#L117">117</a>variable {F : Type*} [Field F] [Fintype F]</span>
+<span class="ln" id="L117"><a class="lno" href="#L117">117</a>/-! ## The shell: a field with `p = 4κ + 1` elements, `g` a primitive root, `i = −g^κ` -/</span>
 <span class="ln" id="L118"><a class="lno" href="#L118">118</a></span>
-<span class="ln" id="L119"><a class="lno" href="#L119">119</a>/-- `(card F − 1 : ℕ) = −1` in a finite field `F`. -/</span>
-<span class="ln decl" id="FRC.Fourier.natCast_card_pred_eq_neg_one"><a class="lno" href="#FRC.Fourier.natCast_card_pred_eq_neg_one">120</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcLedger/Fourier.lean#L120" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small t2" src="lean-t2.png" alt="" title="tier 2, classical: Classical.choice, Quot.sound, propext">lemma natCast_card_pred_eq_neg_one : ((Fintype.card F - 1 : ℕ) : F) = -1 := by</span>
-<span class="ln" id="L121"><a class="lno" href="#L121">121</a>  have h2 : 1 ≤ Fintype.card F := Fintype.card_pos</span>
-<span class="ln" id="L122"><a class="lno" href="#L122">122</a>  rw [Nat.cast_sub h2, FiniteField.cast_card_eq_zero, Nat.cast_one, zero_sub]</span>
-<span class="ln" id="L123"><a class="lno" href="#L123">123</a></span>
-<span class="ln" id="L124"><a class="lno" href="#L124">124</a>/-- The quarter-turn `i = −g^κ` squares to `−1` (`g^{2κ}` is a primitive square root of unity). -/</span>
-<span class="ln decl" id="FRC.Fourier.quarter_turn_sq"><a class="lno" href="#FRC.Fourier.quarter_turn_sq">125</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcLedger/Fourier.lean#L125" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small t2" src="lean-t2.png" alt="" title="tier 2, classical: Classical.choice, Quot.sound, propext">lemma quarter_turn_sq (κ : ℕ) (hκ : Fintype.card F = 4 * κ + 1) (g : F)</span>
-<span class="ln" id="L126"><a class="lno" href="#L126">126</a>    (hg : IsPrimitiveRoot g (Fintype.card F - 1)) :</span>
-<span class="ln" id="L127"><a class="lno" href="#L127">127</a>    (-(g ^ κ)) ^ 2 = -1 := by</span>
-<span class="ln" id="L128"><a class="lno" href="#L128">128</a>  have hκ&#x27; : Fintype.card F - 1 = 4 * κ := by omega</span>
-<span class="ln" id="L129"><a class="lno" href="#L129">129</a>  have hκpos : κ ≠ 0 := by</span>
-<span class="ln" id="L130"><a class="lno" href="#L130">130</a>    intro h; subst h; have := Fintype.one_lt_card (α := F); omega</span>
-<span class="ln" id="L131"><a class="lno" href="#L131">131</a>  have hsq : (-(g ^ κ)) ^ 2 = g ^ (2 * κ) := by ring</span>
-<span class="ln" id="L132"><a class="lno" href="#L132">132</a>  rw [hsq]</span>
-<span class="ln" id="L133"><a class="lno" href="#L133">133</a>  have h2 : IsPrimitiveRoot (g ^ (2 * κ)) 2 := by</span>
-<span class="ln" id="L134"><a class="lno" href="#L134">134</a>    have hd : 2 * κ ∣ Fintype.card F - 1 := by rw [hκ&#x27;]; exact ⟨2, by ring⟩</span>
-<span class="ln" id="L135"><a class="lno" href="#L135">135</a>    have := hg.pow_of_dvd (show 2 * κ ≠ 0 by omega) hd</span>
-<span class="ln" id="L136"><a class="lno" href="#L136">136</a>    have hq : (Fintype.card F - 1) / (2 * κ) = 2 := by</span>
-<span class="ln" id="L137"><a class="lno" href="#L137">137</a>      rw [hκ&#x27;, show 4 * κ = 2 * κ * 2 by ring]; exact Nat.mul_div_cancel_left _ (by omega)</span>
-<span class="ln" id="L138"><a class="lno" href="#L138">138</a>    rwa [hq] at this</span>
-<span class="ln" id="L139"><a class="lno" href="#L139">139</a>  exact h2.eq_neg_one_of_two_right</span>
-<span class="ln" id="L140"><a class="lno" href="#L140">140</a></span>
-<span class="ln" id="L141"><a class="lno" href="#L141">141</a>/-- 6:B5, 6:B7 — every shell: on a field with `p = 4κ + 1` elements, `n = p − 1`,</span>
-<span class="ln" id="L142"><a class="lno" href="#L142">142</a>`g` a primitive root and `F = i • W`: `W² = −J`, `F² = J`, `F⁴ = 1`, `W J = J W`. -/</span>
-<span class="ln decl" id="FRC.Fourier.shell_relations"><a class="lno" href="#FRC.Fourier.shell_relations">143</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcLedger/Fourier.lean#L143" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small t2" src="lean-t2.png" alt="" title="tier 2, classical: Classical.choice, Quot.sound, propext">theorem shell_relations (κ : ℕ) (hκ : Fintype.card F = 4 * κ + 1) (g : F)</span>
-<span class="ln" id="L144"><a class="lno" href="#L144">144</a>    (hg : IsPrimitiveRoot g (Fintype.card F - 1)) :</span>
-<span class="ln" id="L145"><a class="lno" href="#L145">145</a>    haveI : NeZero (Fintype.card F - 1) := ⟨by have := Fintype.one_lt_card (α := F); omega⟩</span>
-<span class="ln" id="L146"><a class="lno" href="#L146">146</a>    (W g : Matrix (Fin (Fintype.card F - 1)) (Fin (Fintype.card F - 1)) F) ^ 2 = -J ∧</span>
-<span class="ln" id="L147"><a class="lno" href="#L147">147</a>    ((-(g ^ κ)) • W g : Matrix (Fin (Fintype.card F - 1)) (Fin (Fintype.card F - 1)) F) ^ 2 = J ∧</span>
-<span class="ln" id="L148"><a class="lno" href="#L148">148</a>    ((-(g ^ κ)) • W g : Matrix (Fin (Fintype.card F - 1)) (Fin (Fintype.card F - 1)) F) ^ 4 = 1 ∧</span>
-<span class="ln" id="L149"><a class="lno" href="#L149">149</a>    (W g : Matrix (Fin (Fintype.card F - 1)) (Fin (Fintype.card F - 1)) F) * J = J * W g := by</span>
-<span class="ln" id="L150"><a class="lno" href="#L150">150</a>  haveI : NeZero (Fintype.card F - 1) := ⟨by have := Fintype.one_lt_card (α := F); omega⟩</span>
-<span class="ln" id="L151"><a class="lno" href="#L151">151</a>  have hW : (W g : Matrix (Fin (Fintype.card F - 1)) (Fin (Fintype.card F - 1)) F) ^ 2 = -J := by</span>
-<span class="ln" id="L152"><a class="lno" href="#L152">152</a>    rw [W_sq g hg, natCast_card_pred_eq_neg_one, neg_one_smul]</span>
-<span class="ln" id="L153"><a class="lno" href="#L153">153</a>  have hi := quarter_turn_sq κ hκ g hg</span>
-<span class="ln" id="L154"><a class="lno" href="#L154">154</a>  have hF : ((-(g ^ κ)) • W g : Matrix (Fin (Fintype.card F - 1)) (Fin (Fintype.card F - 1)) F) ^ 2</span>
-<span class="ln" id="L155"><a class="lno" href="#L155">155</a>      = J := by</span>
-<span class="ln" id="L156"><a class="lno" href="#L156">156</a>    rw [smul_pow, hW, hi, neg_one_smul, neg_neg]</span>
-<span class="ln" id="L157"><a class="lno" href="#L157">157</a>  refine ⟨hW, hF, ?_, W_mul_J_comm g hg.pow_eq_one⟩</span>
-<span class="ln" id="L158"><a class="lno" href="#L158">158</a>  rw [show (4 : ℕ) = 2 * 2 by norm_num, pow_mul, hF, J_sq]</span>
-<span class="ln" id="L159"><a class="lno" href="#L159">159</a></span>
-<span class="ln" id="L160"><a class="lno" href="#L160">160</a>/-- 6:B5, 6:B7 on the prime shell `𝔽_p = ZMod p`, an instance: the relations hold there for every prime</span>
-<span class="ln" id="L161"><a class="lno" href="#L161">161</a>`p = 4κ + 1` and primitive root `g`. -/</span>
-<span class="ln decl" id="FRC.Fourier.shell_relations_zmod"><a class="lno" href="#FRC.Fourier.shell_relations_zmod">162</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcLedger/Fourier.lean#L162" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small t2" src="lean-t2.png" alt="" title="tier 2, classical: Classical.choice, Quot.sound, propext">theorem shell_relations_zmod (p κ : ℕ) [hp : Fact (Nat.Prime p)] (hκ : p = 4 * κ + 1)</span>
-<span class="ln" id="L163"><a class="lno" href="#L163">163</a>    (g : ZMod p) (hg : IsPrimitiveRoot g (p - 1)) :</span>
-<span class="ln" id="L164"><a class="lno" href="#L164">164</a>    haveI : NeZero (Fintype.card (ZMod p) - 1) :=</span>
-<span class="ln" id="L165"><a class="lno" href="#L165">165</a>      ⟨by have := Fintype.one_lt_card (α := ZMod p); omega⟩</span>
-<span class="ln" id="L166"><a class="lno" href="#L166">166</a>    ((-(g ^ κ)) • W g : Matrix (Fin (Fintype.card (ZMod p) - 1))</span>
-<span class="ln" id="L167"><a class="lno" href="#L167">167</a>      (Fin (Fintype.card (ZMod p) - 1)) (ZMod p)) ^ 2 = J := by</span>
-<span class="ln" id="L168"><a class="lno" href="#L168">168</a>  have hc : Fintype.card (ZMod p) = p := ZMod.card p</span>
-<span class="ln" id="L169"><a class="lno" href="#L169">169</a>  exact (shell_relations κ (by rw [hc, hκ]) g (by rw [hc]; exact hg)).2.1</span>
-<span class="ln" id="L170"><a class="lno" href="#L170">170</a></span>
-<span class="ln" id="L171"><a class="lno" href="#L171">171</a>end shell</span>
-<span class="ln" id="L172"><a class="lno" href="#L172">172</a></span>
-<span class="ln" id="L173"><a class="lno" href="#L173">173</a>end FRC.Fourier</span>
+<span class="ln" id="L119"><a class="lno" href="#L119">119</a>section shell</span>
+<span class="ln" id="L120"><a class="lno" href="#L120">120</a></span>
+<span class="ln" id="L121"><a class="lno" href="#L121">121</a>variable {F : Type*} [Field F] [Fintype F]</span>
+<span class="ln" id="L122"><a class="lno" href="#L122">122</a></span>
+<span class="ln" id="L123"><a class="lno" href="#L123">123</a>/-- `(card F − 1 : ℕ) = −1` in a finite field `F`. -/</span>
+<span class="ln decl" id="FRC.Fourier.natCast_card_pred_eq_neg_one"><a class="lno" href="#FRC.Fourier.natCast_card_pred_eq_neg_one">124</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcLedger/Fourier.lean#L124" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small t2" src="lean-t2.png" alt="" title="tier 2, classical: Classical.choice, Quot.sound, propext">lemma natCast_card_pred_eq_neg_one : ((Fintype.card F - 1 : ℕ) : F) = -1 := by</span>
+<span class="ln" id="L125"><a class="lno" href="#L125">125</a>  have h2 : 1 ≤ Fintype.card F := Fintype.card_pos</span>
+<span class="ln" id="L126"><a class="lno" href="#L126">126</a>  rw [Nat.cast_sub h2, FiniteField.cast_card_eq_zero, Nat.cast_one, zero_sub]</span>
+<span class="ln" id="L127"><a class="lno" href="#L127">127</a></span>
+<span class="ln" id="L128"><a class="lno" href="#L128">128</a>/-- The quarter-turn `i = −g^κ` squares to `−1` (`g^{2κ}` is a primitive square root of unity). -/</span>
+<span class="ln decl" id="FRC.Fourier.quarter_turn_sq"><a class="lno" href="#FRC.Fourier.quarter_turn_sq">129</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcLedger/Fourier.lean#L129" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small t2" src="lean-t2.png" alt="" title="tier 2, classical: Classical.choice, Quot.sound, propext">lemma quarter_turn_sq (κ : ℕ) (hκ : Fintype.card F = 4 * κ + 1) (g : F)</span>
+<span class="ln" id="L130"><a class="lno" href="#L130">130</a>    (hg : IsPrimitiveRoot g (Fintype.card F - 1)) :</span>
+<span class="ln" id="L131"><a class="lno" href="#L131">131</a>    (-(g ^ κ)) ^ 2 = -1 := by</span>
+<span class="ln" id="L132"><a class="lno" href="#L132">132</a>  have hκ&#x27; : Fintype.card F - 1 = 4 * κ := by omega</span>
+<span class="ln" id="L133"><a class="lno" href="#L133">133</a>  have hκpos : κ ≠ 0 := by</span>
+<span class="ln" id="L134"><a class="lno" href="#L134">134</a>    intro h; subst h; have := Fintype.one_lt_card (α := F); omega</span>
+<span class="ln" id="L135"><a class="lno" href="#L135">135</a>  have hsq : (-(g ^ κ)) ^ 2 = g ^ (2 * κ) := by ring</span>
+<span class="ln" id="L136"><a class="lno" href="#L136">136</a>  rw [hsq]</span>
+<span class="ln" id="L137"><a class="lno" href="#L137">137</a>  have h2 : IsPrimitiveRoot (g ^ (2 * κ)) 2 := by</span>
+<span class="ln" id="L138"><a class="lno" href="#L138">138</a>    have hd : 2 * κ ∣ Fintype.card F - 1 := by rw [hκ&#x27;]; exact ⟨2, by ring⟩</span>
+<span class="ln" id="L139"><a class="lno" href="#L139">139</a>    have := hg.pow_of_dvd (show 2 * κ ≠ 0 by omega) hd</span>
+<span class="ln" id="L140"><a class="lno" href="#L140">140</a>    have hq : (Fintype.card F - 1) / (2 * κ) = 2 := by</span>
+<span class="ln" id="L141"><a class="lno" href="#L141">141</a>      rw [hκ&#x27;, show 4 * κ = 2 * κ * 2 by ring]; exact Nat.mul_div_cancel_left _ (by omega)</span>
+<span class="ln" id="L142"><a class="lno" href="#L142">142</a>    rwa [hq] at this</span>
+<span class="ln" id="L143"><a class="lno" href="#L143">143</a>  exact h2.eq_neg_one_of_two_right</span>
+<span class="ln" id="L144"><a class="lno" href="#L144">144</a></span>
+<span class="ln" id="L145"><a class="lno" href="#L145">145</a>/-- 6:B5, 6:B7 — every shell: on a field with `p = 4κ + 1` elements, `n = p − 1`,</span>
+<span class="ln" id="L146"><a class="lno" href="#L146">146</a>`g` a primitive root and `F = i • W`: `W² = −J`, `F² = J`, `F⁴ = 1`, `W J = J W`. -/</span>
+<span class="ln decl" id="FRC.Fourier.shell_relations"><a class="lno" href="#FRC.Fourier.shell_relations">147</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcLedger/Fourier.lean#L147" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small t2" src="lean-t2.png" alt="" title="tier 2, classical: Classical.choice, Quot.sound, propext">theorem shell_relations (κ : ℕ) (hκ : Fintype.card F = 4 * κ + 1) (g : F)</span>
+<span class="ln" id="L148"><a class="lno" href="#L148">148</a>    (hg : IsPrimitiveRoot g (Fintype.card F - 1)) :</span>
+<span class="ln" id="L149"><a class="lno" href="#L149">149</a>    haveI : NeZero (Fintype.card F - 1) := ⟨by have := Fintype.one_lt_card (α := F); omega⟩</span>
+<span class="ln" id="L150"><a class="lno" href="#L150">150</a>    (W g : Matrix (Fin (Fintype.card F - 1)) (Fin (Fintype.card F - 1)) F) ^ 2 = -J ∧</span>
+<span class="ln" id="L151"><a class="lno" href="#L151">151</a>    ((-(g ^ κ)) • W g : Matrix (Fin (Fintype.card F - 1)) (Fin (Fintype.card F - 1)) F) ^ 2 = J ∧</span>
+<span class="ln" id="L152"><a class="lno" href="#L152">152</a>    ((-(g ^ κ)) • W g : Matrix (Fin (Fintype.card F - 1)) (Fin (Fintype.card F - 1)) F) ^ 4 = 1 ∧</span>
+<span class="ln" id="L153"><a class="lno" href="#L153">153</a>    (W g : Matrix (Fin (Fintype.card F - 1)) (Fin (Fintype.card F - 1)) F) * J = J * W g := by</span>
+<span class="ln" id="L154"><a class="lno" href="#L154">154</a>  have : NeZero (Fintype.card F - 1) := ⟨by have := Fintype.one_lt_card (α := F); omega⟩</span>
+<span class="ln" id="L155"><a class="lno" href="#L155">155</a>  have hW : (W g : Matrix (Fin (Fintype.card F - 1)) (Fin (Fintype.card F - 1)) F) ^ 2 = -J := by</span>
+<span class="ln" id="L156"><a class="lno" href="#L156">156</a>    rw [W_sq g hg, natCast_card_pred_eq_neg_one, neg_one_smul]</span>
+<span class="ln" id="L157"><a class="lno" href="#L157">157</a>  have hi := quarter_turn_sq κ hκ g hg</span>
+<span class="ln" id="L158"><a class="lno" href="#L158">158</a>  have hF : ((-(g ^ κ)) • W g : Matrix (Fin (Fintype.card F - 1)) (Fin (Fintype.card F - 1)) F) ^ 2</span>
+<span class="ln" id="L159"><a class="lno" href="#L159">159</a>      = J := by</span>
+<span class="ln" id="L160"><a class="lno" href="#L160">160</a>    rw [smul_pow, hW, hi, neg_one_smul, neg_neg]</span>
+<span class="ln" id="L161"><a class="lno" href="#L161">161</a>  refine ⟨hW, hF, ?_, W_mul_J_comm g hg.pow_eq_one⟩</span>
+<span class="ln" id="L162"><a class="lno" href="#L162">162</a>  rw [show (4 : ℕ) = 2 * 2 by norm_num, pow_mul, hF, J_sq]</span>
+<span class="ln" id="L163"><a class="lno" href="#L163">163</a></span>
+<span class="ln" id="L164"><a class="lno" href="#L164">164</a>/-- 6:B5, 6:B7 on the prime shell `𝔽_p = ZMod p`, an instance: the relations hold there for every prime</span>
+<span class="ln" id="L165"><a class="lno" href="#L165">165</a>`p = 4κ + 1` and primitive root `g`. -/</span>
+<span class="ln decl" id="FRC.Fourier.shell_relations_zmod"><a class="lno" href="#FRC.Fourier.shell_relations_zmod">166</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcLedger/Fourier.lean#L166" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small t2" src="lean-t2.png" alt="" title="tier 2, classical: Classical.choice, Quot.sound, propext">theorem shell_relations_zmod (p κ : ℕ) [hp : Fact (Nat.Prime p)] (hκ : p = 4 * κ + 1)</span>
+<span class="ln" id="L167"><a class="lno" href="#L167">167</a>    (g : ZMod p) (hg : IsPrimitiveRoot g (p - 1)) :</span>
+<span class="ln" id="L168"><a class="lno" href="#L168">168</a>    haveI : NeZero (Fintype.card (ZMod p) - 1) :=</span>
+<span class="ln" id="L169"><a class="lno" href="#L169">169</a>      ⟨by have := Fintype.one_lt_card (α := ZMod p); omega⟩</span>
+<span class="ln" id="L170"><a class="lno" href="#L170">170</a>    ((-(g ^ κ)) • W g : Matrix (Fin (Fintype.card (ZMod p) - 1))</span>
+<span class="ln" id="L171"><a class="lno" href="#L171">171</a>      (Fin (Fintype.card (ZMod p) - 1)) (ZMod p)) ^ 2 = J := by</span>
+<span class="ln" id="L172"><a class="lno" href="#L172">172</a>  have hc : Fintype.card (ZMod p) = p := ZMod.card p</span>
+<span class="ln" id="L173"><a class="lno" href="#L173">173</a>  exact (shell_relations κ (by rw [hc, hκ]) g (by rw [hc]; exact hg)).2.1</span>
 <span class="ln" id="L174"><a class="lno" href="#L174">174</a></span>
+<span class="ln" id="L175"><a class="lno" href="#L175">175</a>end shell</span>
+<span class="ln" id="L176"><a class="lno" href="#L176">176</a></span>
+<span class="ln" id="L177"><a class="lno" href="#L177">177</a>end FRC.Fourier</span>
+<span class="ln" id="L178"><a class="lno" href="#L178">178</a></span>
 </pre></main>
 </div>
 </body>

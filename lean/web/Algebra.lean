@@ -20,6 +20,7 @@ open Matrix Finset
 
 variable {K : Type*} [Field K] {n : ℕ} [NeZero n]
 
+omit [NeZero n] in
 /-- The geometric sum of an `n`-th root of unity `ζ ≠ 1` over `Fin n` vanishes. -/
 lemma sum_pow_eq_zero_of_ne_one {ζ : K} (hζn : ζ ^ n = 1) (hζ : ζ ≠ 1) :
     ∑ j : Fin n, ζ ^ (j : ℕ) = 0 := by
@@ -34,7 +35,9 @@ def W (g : K) : Matrix (Fin n) (Fin n) K := fun k j => g ^ ((j : ℕ) * (k : ℕ
 /-- The reversal `J k l = [l = −k]`. -/
 def J : Matrix (Fin n) (Fin n) K := fun k l => if l = -k then 1 else 0
 
+omit [NeZero n] in
 lemma W_apply (g : K) (k j : Fin n) : (W g : Matrix (Fin n) (Fin n) K) k j = g ^ ((j : ℕ) * (k : ℕ)) := rfl
+omit [NeZero n] in
 lemma J_apply (k l : Fin n) : (J : Matrix (Fin n) (Fin n) K) k l = if l = -k then 1 else 0 := rfl
 
 /-- `g^((-j).val) = (g^(j.val))⁻¹` for an `n`-th root of unity `g`. -/
@@ -51,6 +54,7 @@ lemma pow_neg_val {g : K} (hg : g ^ n = 1) (j : Fin n) :
   obtain ⟨c, hc⟩ := hdvd
   rw [hc, pow_mul, hg, one_pow]
 
+omit [NeZero n] in
 /-- `J² = 1`. -/
 theorem J_sq : (J : Matrix (Fin n) (Fin n) K) ^ 2 = 1 := by
   ext k l
@@ -150,7 +154,7 @@ theorem shell_relations (κ : ℕ) (hκ : Fintype.card F = 4 * κ + 1) (g : F)
     ((-(g ^ κ)) • W g : Matrix (Fin (Fintype.card F - 1)) (Fin (Fintype.card F - 1)) F) ^ 2 = J ∧
     ((-(g ^ κ)) • W g : Matrix (Fin (Fintype.card F - 1)) (Fin (Fintype.card F - 1)) F) ^ 4 = 1 ∧
     (W g : Matrix (Fin (Fintype.card F - 1)) (Fin (Fintype.card F - 1)) F) * J = J * W g := by
-  haveI : NeZero (Fintype.card F - 1) := ⟨by have := Fintype.one_lt_card (α := F); omega⟩
+  have : NeZero (Fintype.card F - 1) := ⟨by have := Fintype.one_lt_card (α := F); omega⟩
   have hW : (W g : Matrix (Fin (Fintype.card F - 1)) (Fin (Fintype.card F - 1)) F) ^ 2 = -J := by
     rw [W_sq g hg, natCast_card_pred_eq_neg_one, neg_one_smul]
   have hi := quarter_turn_sq κ hκ g hg
@@ -200,6 +204,7 @@ variable {F : Type*} [Field F] [Fintype F] [DecidableEq F]
 
 /-! ## Block B — the shell -/
 
+omit [DecidableEq F] in
 /-- 1:B2 (Theorem 1, existence clause): on the shell `card F = 4κ+1` a quarter-turn `u` with
 `u² = −1` exists. Mathlib: `FiniteField.isSquare_neg_one_iff`. -/
 theorem quarter_turn_exists (κ : ℕ) (hκ : Fintype.card F = 4 * κ + 1) :
@@ -209,6 +214,7 @@ theorem quarter_turn_exists (κ : ℕ) (hκ : Fintype.card F = 4 * κ + 1) :
   obtain ⟨u, hu⟩ := h
   exact ⟨u, by rw [sq, ← hu]⟩
 
+omit [DecidableEq F] in
 /-- Helper: the shell has odd cardinality, so `2 ≠ 0` in `F`. -/
 theorem two_ne_zero_shell (κ : ℕ) (hκ : Fintype.card F = 4 * κ + 1) : (2 : F) ≠ 0 := by
   intro h2
@@ -218,6 +224,7 @@ theorem two_ne_zero_shell (κ : ℕ) (hκ : Fintype.card F = 4 * κ + 1) : (2 : 
   have := FiniteField.even_card_of_char_two hchar
   omega
 
+omit [Fintype F] [DecidableEq F] in
 /-- 1:B2 (Theorem 1, orbit clause), 2:D7: for a unit `x` with `x² ≠ 1` and `x² ≠ −1` the four
 elements `x, −x, x⁻¹, −x⁻¹` of the Klein-four orbit are pairwise distinct (any field of
 characteristic `≠ 2`); the structural set `{1, i, −1, −i}` is exactly the complement. -/
@@ -237,6 +244,7 @@ theorem klein_orbit_four (hchar : (2 : F) ≠ 0) (x : F) (hx : x ≠ 0) (h1 : x 
   · intro h; have : (2 : F) * x⁻¹ = 0 := by linear_combination h
     exact inv_ne_zero hx ((mul_eq_zero.1 this).resolve_left hchar)
 
+omit [DecidableEq F] in
 /-- 1:B2 (Theorem 1, the structural set): the fourth roots of unity number exactly `4` on the
 shell. Mathlib: `IsPrimitiveRoot.card_rootsOfUnity`. -/
 theorem card_fourth_roots (κ : ℕ) (hκ : Fintype.card F = 4 * κ + 1) :
@@ -258,6 +266,7 @@ theorem card_fourth_roots (κ : ℕ) (hκ : Fintype.card F = 4 * κ + 1) :
       rw [← hu, this]; ring
   exact hu4.card_rootsOfUnity
 
+omit [DecidableEq F] in
 /-- 1:B3 (convention 4, the oriented quarter-turn): `i := −g^κ` satisfies `i² = −1`; and
 `g^(2κ) = −1`, the involution behind Definition 5. From `FrcLedger.Fourier`. -/
 theorem quarter_turn (κ : ℕ) (hκ : Fintype.card F = 4 * κ + 1) (g : F)
@@ -267,6 +276,7 @@ theorem quarter_turn (κ : ℕ) (hκ : Fintype.card F = 4 * κ + 1) (g : F)
   refine ⟨h, ?_⟩
   rw [← h]; ring
 
+omit [Fintype F] [DecidableEq F] in
 /-- 1:B4 (Definition 2, Lemma 1): in the affine frame `(a, b)`, `φ x = a + b x`
 carries `+` and `·` to `⊕` and `⊗`, is a bijection, and the multiplicative unit of the
 relabelled field is `a + b`; `b` is the unit only when `a = 0`. -/
@@ -295,6 +305,7 @@ theorem affine_frame (a b : F) (hb : b ≠ 0) :
     have hab : a * b = 0 := by linear_combination -h
     exact ha ((mul_eq_zero.1 hab).resolve_right hb)
 
+omit [DecidableEq F] in
 /-- 1:C4 (Definition 5 (a)): the meridian involution `(−a)·g^(n + 2κ) = a·g^n`. -/
 theorem meridian_involution (κ : ℕ) (hκ : Fintype.card F = 4 * κ + 1) (g : F)
     (hg : IsPrimitiveRoot g (Fintype.card F - 1)) (a : F) (n : ℕ) :
@@ -316,6 +327,7 @@ theorem framed_integer_window (p : ℕ) [NeZero p] (H : ℕ) (hH : 2 * H < p) (x
   have := Int.eq_zero_of_abs_lt_dvd hd hlt
   omega
 
+omit [DecidableEq F] in
 /-- 1:D4 (Lemma 2 restated in the field — scale-periodicity): the scale map
 `S n x = x · g^(−n)` on the shell is `(card F − 1)`-periodic in `n`: the residue grids
 `G_n = S_n(0..p−1)` coincide as ordered lists. -/
@@ -323,6 +335,7 @@ theorem scale_periodic (g : F) (hg : IsPrimitiveRoot g (Fintype.card F - 1)) (n 
     x * (g ^ (n + (Fintype.card F - 1)))⁻¹ = x * (g ^ n)⁻¹ := by
   rw [pow_add, hg.pow_eq_one, mul_one]
 
+omit [Fintype F] [DecidableEq F] in
 /-- 1:E2 (Proposition 5 reversed): adjoining a root of `X² + 1` to a field that already
 contains one gives zero divisors — `F[X]/(X²+1)` is not a field on the shell. With `u² = −1`,
 `(X + u)(X − u) = 0` in the quotient while both factors are nonzero. -/
@@ -359,6 +372,7 @@ theorem complex_chart_zero_divisor (u : F) (hu : u ^ 2 = -1) :
       rw [← map_pow, hu, map_neg, map_one]
     linear_combination hroot - hu'
 
+omit [Fintype F] [DecidableEq F] in
 /-- 1:F1 (Theorem 3): `2s = 0 ⇒ s = 0` in a field of characteristic `≠ 2`: the additive cycle
 has no element of order two; the antipode of the origin is not a residue. -/
 theorem no_south_pole (hchar : (2 : F) ≠ 0) (s : F) (h : 2 * s = 0) : s = 0 :=

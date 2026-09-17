@@ -455,7 +455,7 @@
    {
     "name": "FRC.Fourier.shell_relations",
     "module": "FrcLedger/Fourier",
-    "line": 143,
+    "line": 147,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -508,7 +508,7 @@
    {
     "name": "FRC.Fourier.shell_relations",
     "module": "FrcLedger/Fourier",
-    "line": 143,
+    "line": 147,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
