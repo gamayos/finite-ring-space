@@ -132,6 +132,13 @@
      "tag": "T|R",
      "source": "\\S\\ref{sec:registers}; \\src{est.B9}",
      "key": "p14017"
+    },
+    {
+     "label": "B10",
+     "predicate": "The capacity axis counts hydrogen units (one gram at $N_A$ to $0.003$ dex \\apx): a definition, not a registered shell. The least register window resolving the total winding of $N$ units is $3N$, a theorem about the observing Subject (00:F7); a phase-locked composite of like units is an aggregate, never one shell (00:F6; a shell of capacity $3N$ exists only when $12N+1$ is prime, none at $N=2$); the largest shell any Subject registers whole is the nesting bound $\\mathsf{q}<\\Om^{1/4}$, $N<(\\Om^{1/4}-1)/12$ units, $8\\times10^{2}$\\,kg at $\\dS=3.3\\times10^{122}$ \\apx{} ($\\dS^{1/4}$ units overcounts by $12$); everything heavier an aggregate of locks; the proton's $1$ against $3$ compares a tower label with a chart count. Formerly the conjecture O1 (key kept).",
+     "tag": "D",
+     "source": "\\S\\ref{sec:wedge}; 00:F7, 00:F6",
+     "key": "p14044"
     }
    ]
   },
@@ -279,7 +286,7 @@
    "rows": [
     {
      "label": "P1",
-     "predicate": "\\textbf{(Lead.)} The floor runs with the registered rate, $a_0(z)\\propto H(z)$, the role statement of the floor closure, against both a constant fundamental $a_0$ and feedback-emergent scaling. Status: the constant-floor branch is disfavoured in the framework's direction --- $a_0(z\\sim1)=(2.38\\pm0.10)\\times10^{-10}\\,\\mathrm{m/s^2}$, running \\citep{ciocan2026} --- while the fitted linear rate exceeds the $\\propto H(z)$ chord \\lcdm{} by ${\\sim}3\\sigma$ before intermediate-redshift selection and pressure-support systematics are weighed; the direct $A\\,H(z)/H_0$ fit to the binned relation is the decisive next test. Falsifier: a sharpened evolution measurement excluding the $\\propto H(z)$ form after those systematics close.",
+     "predicate": "\\textbf{(Lead.)} The floor runs with the registered rate, $a_0(z)\\propto H(z)$, the role statement of the floor closure, against both a constant fundamental $a_0$ and feedback-emergent scaling. Status: the constant-floor branch is excluded --- four redshift bins rising from $1.99$ to $2.71\\times10^{-10}\\,\\mathrm{m/s^2}$ over $z=0.50$--$1.28$ \\citep{ciocan2026}, $\\Delta\\chi^2=23$ against $A\\,H(z)/H_0$ \\lcdm{} --- and the running form fits the bins at free amplitude ($A=1.39\\pm0.03$, $\\chi^2=5.5/3$); the binned rate sits on the $\\propto H(z)$ chord while the authors' global linear fit runs above it, so the shape waits on the likelihood refit of the resolved tracks, and the amplitude's $0.12$\\,dex excess over $cH_0/2\\pi$ lies inside the $0.2$\\,dex gas systematic. Falsifier: a likelihood refit or a wider-redshift sample excluding the $\\propto H(z)$ form after the baryonic-mass and pressure-support systematics close.",
      "tag": "E",
      "source": "\\S\\ref{sec:open}; \\src{est.P1}",
      "key": "p14036"
@@ -344,19 +351,6 @@
      "tag": "Ω",
      "source": "\\S\\ref{sec:open}",
      "key": "p14043"
-    }
-   ]
-  },
-  {
-   "letter": "O",
-   "title": "The open front",
-   "rows": [
-    {
-     "label": "O1",
-     "predicate": "Capacity additive on the lock (conjecture): a phase-locked, typical-density composite demands $\\kap_{q}=\\sum\\kap_i=3N$ hydrogen units, the minimal window conserving total winding exactly \\citep{akhtman2026s13}; the C9 diagonal the validity locus, the capacity axis exact on it; off-line the law breaks with wall displacement (the bare proton: $1$ against $3$); the exchange rate open; the $7\\times10^{3}$\\,kg cap ($\\dS^{1/4}$ hydrogen units) recorded, not claimed.",
-     "tag": "O",
-     "source": "\\S\\ref{sec:wedge}",
-     "key": "p14044"
     }
    ]
   }
@@ -450,8 +444,8 @@
   "A6": [
    "L1"
   ],
-  "O1": [
-   "Y6"
+  "B10": [
+   "F7"
   ]
  },
  "lean": {}

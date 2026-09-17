@@ -56,6 +56,13 @@
      "tag": "I",
      "source": "\\cite{duke1995equidistribution}",
      "key": "p13007"
+    },
+    {
+     "label": "A8",
+     "predicate": "Sun's Conjecture 5.1, $\\sigma_\\p\\equiv(-1)^{(\\p-1)/2}\\bigl(H_{\\p-1}/12+3\\p^{4}B_{\\p-5}/160\\bigr)\\pmod{\\p^{5}}$ for $\\p>5$, is Theorem~5, (44), of Hessami Pilehrood, Hessami Pilehrood and Tauraso (2012); with Glaisher's $H_{\\p-1}\\equiv-\\p^{2}B_{\\p-3}/3\\pmod{\\p^{3}}$ it gives the third-order Bernoulli law of G7 for every $\\p\\ge5$.",
+     "tag": "I",
+     "source": "\\cite{hpt2012,glaisher1900residues}",
+     "key": "p13064"
     }
    ]
   },
@@ -209,7 +216,7 @@
     },
     {
      "label": "E5",
-     "predicate": "The feasibility hierarchy: among $\\fQ$-native constructors of $\\pi$ the best known rate is geometric, $\\Theta(k)$ steps (Machin, arcsin), against $\\Theta(k/\\log k)$ for the derangement chain of $e$; the circle count and the Leibniz/Wallis chains sit at $2^{k}$; the AGM is not $\\fQ$-native. Whether a factorial-rate integer-ratio chain for $\\pi$ exists is O3.",
+     "predicate": "The feasibility hierarchy: among $\\fQ$-native constructors of $\\pi$ the best known rate is geometric, $\\Theta(k)$ steps (Machin, arcsin), against $\\Theta(k/\\log k)$ for the derangement chain of $e$; the circle count and the Leibniz/Wallis chains sit at $2^{k}$; the AGM is not $\\fQ$-native. A factorial-rate chain exists for every real by rounding (and for $\\pi$ by rounding the Machin chain), so the split is by kind of chain --- E-partial sums ($e$) against G-partial sums ($\\pi$), master C26; whether $\\pi$ has an E-partial-sum chain with rational coefficients is O3.",
      "tag": "T",
      "source": "Prop.~\\ref{prop:feas-pi}; \\src{pi.R3}, \\src{e.R4}",
      "key": "p13026"
@@ -229,7 +236,7 @@
     },
     {
      "label": "F2",
-     "predicate": "The wall identity and the terminal residue of $e$: $\\dr{(\\p-1)}\\equiv\\Ku{\\p}\\pmod\\p$ (the odd-prime case of the Mijajlovi\\'c--\\v Sami congruence, A4), hence $\\rep{\\varepsilon_{\\p-1}}=-(\\Ku{\\p})^{-1}$ whenever $\\p\\nmid\\Ku{\\p}$; existence of the terminal link on a shell is equivalent to $\\p\\nmid\\Ku{\\p}$, universal existence to Kurepa's hypothesis (O1); re-verified in the derangement form for all $22{,}043$ odd primes $\\p<2.5\\times10^{5}$ with zero failures of either condition. Beyond the wall $n!\\equiv0$: $n=\\p-1$ is the factorial horizon.",
+     "predicate": "The wall identity and the terminal residue of $e$: $\\dr{(\\p-1)}\\equiv\\Ku{\\p}\\pmod\\p$ (the odd-prime case of the Mijajlovi\\'c--\\v Sami congruence, A4), hence $\\rep{\\varepsilon_{\\p-1}}=-(\\Ku{\\p})^{-1}$ whenever $\\p\\nmid\\Ku{\\p}$; existence of the terminal link on a shell is equivalent to $\\p\\nmid\\Ku{\\p}$, universal existence to Kurepa's hypothesis (O1); re-verified in the derangement form for all $121{,}126$ odd primes $\\p<1.6\\times10^{6}$ with zero failures of either condition. Beyond the wall $n!\\equiv0$: $n=\\p-1$ is the factorial horizon.",
      "tag": "T",
      "source": "Thm.~\\ref{thm:wall-e}; \\src{e.W1}, \\src{kur.K1}",
      "key": "p13028"
@@ -250,7 +257,7 @@
     },
     {
      "label": "F5",
-     "predicate": "Blind-scale statistics: over the $501$ primes in $(1000,5000)$ the sizes $|Z_0(\\p)|$ distribute as $1^{(169)},2^{(209)},3^{(92)},4^{(22)},5^{(6)},6^{(2)},7^{(1)}$, mean $1.996$, the excess over the forced $n=1$ matching Poisson$(1)$ \\apx; blind scales never obstruct the plateau of D4 (advance at most $|Z_0(\\p)|$ steps past $n_0$). The counts are exact; the Poisson reading is the model they match.",
+     "predicate": "Blind-scale statistics: over the $501$ primes in $(1000,5000)$ the sizes $|Z_0(\\p)|$ distribute as $1^{(169)},2^{(209)},3^{(92)},4^{(22)},5^{(6)},6^{(2)},7^{(1)}$, mean $1.996$, the excess over the forced $n=1$ matching Poisson$(1)$ \\apx{} (the model: $\\dr{n}\\bmod\\p$ uniform for $2\\le n\\le\\p-2$, the wall excluded; extended to the $1593$ primes in $(5000,20000)$: $1^{(597)},2^{(569)},3^{(299)},4^{(108)},5^{(17)},6^{(3)}$, mean $1.988$); blind scales never obstruct the plateau of D4 (advance at most $|Z_0(\\p)|$ steps past $n_0$). The counts are exact; the Poisson reading is the model they match.",
      "tag": "T",
      "source": "Exp.~\\ref{exp:blind}; \\src{e.S1}",
      "key": "p13031"
@@ -319,7 +326,7 @@
     },
     {
      "label": "G7",
-     "predicate": "Second and third order at the arcsin wall: $\\sigma_\\p\\equiv0\\pmod{\\p^{2}}$ is Sun's theorem (A5), re-verified for $5\\le\\p<300$; the blind-range sum $\\sum_{m<k<\\p}\\Cb{k}/((2k+1)16^{k})\\equiv\\p E_{\\p-3}/3\\pmod{\\p^{2}}$ (A5), re-verified for $5\\le\\p<80$; at third order $\\sigma_\\p/\\p^{2}\\equiv(-1)^{(\\p+1)/2}B_{\\p-3}/36\\pmod\\p$ for all sixty primes $5\\le\\p<300$, the mod-$\\p^{3}$ reading of Sun's Conjecture 5.1 with the Wolstenholme refinement, conjectural beyond the range (O2): Wolstenholme-trivial at orders $\\p,\\p^{2}$, Bernoulli at $\\p^{3}$, the Euler content beyond the wall.",
+     "predicate": "Second and third order at the arcsin wall: $\\sigma_\\p\\equiv0\\pmod{\\p^{2}}$ is Sun's theorem (A5), re-verified for $5\\le\\p<300$; the blind-range sum $\\sum_{m<k<\\p}\\Cb{k}/((2k+1)16^{k})\\equiv\\p E_{\\p-3}/3\\pmod{\\p^{2}}$ (A5), re-verified for $5\\le\\p<80$; at third order $\\sigma_\\p/\\p^{2}\\equiv(-1)^{(\\p+1)/2}B_{\\p-3}/36\\pmod\\p$ for all sixty primes $5\\le\\p<300$, the mod-$\\p^{3}$ reading of Sun's Conjecture 5.1 with the Wolstenholme refinement, a theorem for every $\\p\\ge5$ (A8): Wolstenholme-trivial at orders $\\p,\\p^{2}$, Bernoulli at $\\p^{3}$, the Euler content beyond the wall.",
      "tag": "I|T",
      "source": "Thm.~\\ref{thm:super}, Rem.~\\ref{rem:hierarchy}; \\src{pi2.B1}, \\src{pi2.B2}, \\src{pi2.D1}",
      "key": "p13040"
@@ -367,14 +374,14 @@
     },
     {
      "label": "H4",
-     "predicate": "Calibrated shells at every precision: by A7, $\\varepsilon$-calibrated shells ($|\\theta-1|<\\varepsilon$ for one chirality) exist for every $\\varepsilon>0$ with relative density $2\\varepsilon/\\piR$, and $\\chi(\\eP)\\to e^{\\imR}$ along them; data for $\\p<10^{6}$ ($39{,}175$ primes $\\equiv1\\bmod4$): $260$ shells within $0.01$ against $\\approx249$ predicted, the best six led by $(\\p,\\lambda(\\im))=(778933,123966)$ at $|\\theta-1|=3.9\\times10^{-5}$, consistent with the nearest-hit prediction $\\approx8.0\\times10^{-5}$ \\apx; the calibration inequalities decided as rational inequalities with $\\piR$ bracketed by the Machin chain.",
+     "predicate": "Calibrated shells at every precision: by A7, $\\varepsilon$-calibrated shells ($|\\theta-1|<\\varepsilon$ for one chirality) exist for every $\\varepsilon>0$ with relative density $2\\varepsilon/\\piR$, and $\\chi(\\eP)\\to e^{\\imR}$ along them; data for $\\p<10^{6}$ ($39{,}175$ primes $\\equiv1\\bmod4$): $260$ shells within $0.01$ against $\\approx249$ predicted, the best six led by $(\\p,\\lambda(\\im))=(778933,123966)$ at $|\\theta-1|=3.9\\times10^{-5}$, consistent with the nearest-hit prediction $\\piR/(2N)\\approx4.0\\times10^{-5}$ \\apx{} (exact minima $3.93\\times10^{-5}$ at $10^{6}$, $6.34\\times10^{-6}$ at $2\\times10^{6}$, $4.53\\times10^{-6}$ at $4\\times10^{6}$); the calibration inequalities decided as rational inequalities with $\\piR$ bracketed by the Machin chain.",
      "tag": "I|T",
      "source": "Prop.~\\ref{prop:calib}; \\src{e.A1}",
      "key": "p13046"
     },
     {
      "label": "H5",
-     "predicate": "The null experiment: whether $\\gen^{\\lambda(\\im)}\\equiv-(\\Ku{\\p})^{-1}$ for some primitive root of either chirality is the index condition $\\gcd(s,\\p-1)=\\gcd(\\lambda(\\pm\\im),\\p-1)$; over the $210$ primes $\\p\\equiv1\\pmod4$, $5<\\p<3000$, it is solvable for $94$ ($44.8\\%$, the gcd-coincidence rate), the correlation of the two angular addresses $-0.10$ at deviation $\\approx0.07$ \\apx: no invariant pointwise identification of the angular and radial carriers of $e$; the naive reading of $\\eP$ as the number $2.71828\\ldots$ is refuted.",
+     "predicate": "The null experiment: whether $\\gen^{\\lambda(\\im)}\\equiv-(\\Ku{\\p})^{-1}$ for some primitive root of either chirality is the index condition $\\gcd(s,\\p-1)=\\gcd(\\lambda(\\pm\\im),\\p-1)$; over the $210$ primes $\\p\\equiv1\\pmod4$, $5<\\p<3000$, it is solvable for $94$ ($44.8\\%$, against $96.0\\pm6.6$ expected under independence), the correlation of the two angular addresses $-0.10$ at deviation $\\approx0.07$ \\apx: no invariant pointwise identification of the angular and radial carriers of $e$; the naive reading of $\\eP$ as the number $2.71828\\ldots$ is refuted.",
      "tag": "T",
      "source": "Exp.~\\ref{exp:null}; \\src{e.N1}",
      "key": "p13047"
@@ -496,21 +503,21 @@
    "rows": [
     {
      "label": "O1",
-     "predicate": "Kurepa's hypothesis, $\\p\\nmid\\Ku{\\p}$ for every odd prime: universal existence of the terminal residue $-(\\Ku{\\p})^{-1}$ of $e$ (F2); literature-verified for $\\p<2^{40}$, re-verified here in the derangement form for $\\p<2.5\\times10^{5}$. With it the equidistribution of the subfactorial residue line (the Poisson law of F5 as a theorem) and the joint equidistribution of the quarter-turn and wall-residue indices (the null result of H5 as a theorem).",
+     "predicate": "Kurepa's hypothesis, $\\p\\nmid\\Ku{\\p}$ for every odd prime, equivalently $\\p\\nmid\\dr{(\\p-1)}$ (F2) and $B_{\\p-1}\\not\\equiv1\\pmod\\p$: universal existence of the terminal residue $-(\\Ku{\\p})^{-1}$ of $e$. Open since 1971; the one claimed proof (Barsky--Benzaghou 2004, Thm.~3) withdrawn by its authors (2011); no counterexample for $\\p<2^{40}$; re-verified here with the wall identity for all $121{,}126$ odd primes $\\p<1.6\\times10^{6}$. Decided by no shell (each decides its own value: $\\Ku{13}\\equiv10$, $\\Ku{233}\\equiv69$, $\\Ku{30089}\\equiv5260$), by no finite search (F5's uniform model at the wall expects $\\sum_{\\p\\le X}1/\\p\\approx\\ln\\ln X-0.24$ counterexamples \\apx, so the model is scoped to $n\\le\\p-2$) and by no relation of this paper. Beside it, two limit laws over the infinite family of shells, decided by nothing finite: $|Z_0(\\p)|-1\\to\\mathrm{Poisson}(1)$ (F5) and the independence of the quarter-turn index and the gcd class of the wall-residue index (H5; $94$ of $210$ against $96.0\\pm6.6$ \\apx). Master T7, obstructed 2026-09-17.",
      "tag": "O",
      "source": "Thm.~\\ref{thm:wall-e}; \\src{kur.K1}, \\src{e.S1}, \\src{e.N1}",
      "key": "p13061"
     },
     {
      "label": "O2",
-     "predicate": "The walls of $\\pi$ beyond the verified ranges: infinitude of the $\\pi$-Wieferich set $4^{\\p-1}\\equiv1+\\p\\pmod{\\p^{2}}$ (exactly $\\{5,45827\\}$ below $10^{6}$); the third-order Bernoulli law of G7 for all $\\p\\ge5$, the mod-$\\p^{3}$ reading of Sun's Conjecture 5.1 (verified $5\\le\\p<300$).",
+     "predicate": "The wall of $\\pi$ beyond the verified range: infinitude of the $\\pi$-Wieferich set $4^{\\p-1}\\equiv1+\\p\\pmod{\\p^{2}}$ --- exactly $\\{5,45827\\}$ below $2^{32}$ ($203{,}280{,}221$ primes; $45827\\equiv3\\pmod4$, so $\\p=5$ is the only Subject shell in it); a prescribed-value Fermat-quotient set of the Wieferich family, decided by no shell, by no finite search and by no relation of this paper (master T8, obstructed 2026-09-17). The third-order Bernoulli law of G7 is closed by A8.",
      "tag": "O",
-     "source": "Thms.~\\ref{thm:secondorder}, \\ref{thm:super}; \\src{pi.S2}, \\src{pi2.B2}",
+     "source": "Thm.~\\ref{thm:secondorder}; \\src{pi.S2}",
      "key": "p13062"
     },
     {
      "label": "O3",
-     "predicate": "The $e$--$\\pi$ dichotomy as theorem: whether $\\pi$ admits a factorial-rate integer-ratio chain (nonexistence makes the feasibility split of E5 exact); the radian-calibration rate $\\delta(X)=\\min_{\\p\\le X}|\\theta-1|$ against the equidistribution prediction of H4; the joint equidistribution of the frame invariants $(\\Ku{\\p}/\\p,\\ q_\\p(4)/\\p,\\ a/\\sqrt\\p)$ of the two constants.",
+     "predicate": "The $e$--$\\pi$ dichotomy as theorem. (a) A factorial-rate chain exists for every real by rounding ($\\mathrm{round}(n!\\,x)/n!$; for $\\pi$ also by rounding the Machin chain), so the clause as first stated is decided and the split of E5 is by kind of chain (E- against G-partial sums, master C26); open is whether $\\piR$ is a value of an E-function with rational coefficients at a rational point --- $\\piR\\in\\mathcal G$ is a theorem, $\\operatorname{Frac}\\mathcal E\\cap\\operatorname{Frac}\\mathcal G=\\overline{\\Q}$ (Fischler--Rivoal 2016) would decide it negatively, and no theorem decides it; decided by no shell ($\\piA=2\\kap$; $\\Fp$ carries no rate) and by no finite computation. (b) $\\delta(X)=\\min_{\\p\\le X}|\\theta-1|$: exact to $X=4\\times10^{6}$ (H4); $\\delta\\to0$ is A7; its order $\\piR/(2N(X))$ is the uniform model's reading \\apx, bounded below only by the irrationality measure of $\\piR$ ($\\mu\\le7.1033$, Zeilberger--Zudilin 2020) \\import, decided by no finite computation. (c) The joint law of $(\\Ku{\\p}/\\p,\\ q_\\p(4)/\\p,\\ \\varphi/\\piR)$, $\\p=a^{2}+b^{2}$, $\\varphi=\\arg(a+b\\imR)$ ($a/\\sqrt\\p=\\cos\\varphi$ follows the arcsine law): $\\varphi/\\piR$ equidistributes (Hecke) \\import; $q_\\p(4)/\\p$ equidistributes in the base at fixed $\\p$ (Heath-Brown), nothing in $\\p$; $\\Ku{\\p}/\\p$ is O1's; the $4783$ shells $\\p<10^{5}$ consistent with independence ($4\\times4\\times4$ chi-square $59.6$ on $63$ df \\apx). Master T9, obstructed 2026-09-17.",
      "tag": "O",
      "source": "Prop.~\\ref{prop:feas-pi}, Prop.~\\ref{prop:calib}",
      "key": "p13063"
@@ -563,14 +570,11 @@
   "B4": [
    "B1"
   ],
-  "O1": [
-   "T7"
-  ],
   "O2": [
-   "T8"
+   "C24"
   ],
   "O3": [
-   "T9"
+   "C26"
   ]
  },
  "lean": {}

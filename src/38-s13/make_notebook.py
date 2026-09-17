@@ -36,7 +36,7 @@ laboratory's 208) and the lines the paper's rows rest on: the quarter roots ħ =
 parity; the winding family. Each family names the row(s) of the paper's predicate ledger it witnesses (the paper's
 subsection "Predicate ledger", rows cited as `38:XN`; public copy at `docs/{PKG}/{PKG}-ledger.html`), and the ledger's
 source column cites the family ids in return. Master-ledger rows of the corpus sourced from this paper: `00:C16`–`00:C19`,
-`00:C22`, `00:C25`, `00:D13`, `00:D14`, `00:E8`, `00:E9`, `00:Y6`.
+`00:C22`, `00:C25`, `00:D13`, `00:D14`, `00:E8`, `00:E9`, `00:F7`.
 
 **Kinds** — two, recorded per family. `EXACT`: integer arithmetic (node, python int), no float behind any claim.
 `SYMBOLIC`: exact rationals in sympy over a declared continuum comparison chart ([approx]).

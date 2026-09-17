@@ -10,8 +10,7 @@ with correctly rounded framed rationals. No floating-point reference value of ei
 Every family check is one labelled claim of a script and names the row(s) of the paper's predicate ledger it
 witnesses (the paper's Section "Machine verification and predicate ledger", rows cited as `13:XN`; public copy
 `docs/13-epi/13-epi-ledger.html`); the ledger's source column cites the check ids in return. Master-ledger rows of
-the corpus reached through the paper rows: `00:B8`, `00:B9`, `00:C13`, `00:C14`, `00:B1`, and the open rows
-`00:T7`, `00:T8`, `00:T9`.
+the corpus reached through the paper rows: `00:B8`, `00:B9`, `00:C13`, `00:C14`, `00:B1`, `00:C24`, `00:C26` (the former T7–T9 withdrawn 17 Sep 2026; O1–O3 open in the paper).
 
 [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/gamayos/finite-ring-space/blob/main/src/13-epi/13-epi-main.ipynb)
 

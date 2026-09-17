@@ -261,12 +261,12 @@ print("P9 THE ONE PAYOFF: phi present -> the Fibonacci recursion closes in-regis
       "the quadratic extension (52 | 468 at 233; 1716 = 2(Om+1) at 857).")
 
 # =====================================================================
-# P10  Y6 constraint: a phase-locked N-hydrogen lock needs 12N+1 prime.
+# P10  F7 constraint (the additive window, formerly Y6): a phase-locked N-hydrogen lock needs 12N+1 prime.
 # =====================================================================
 hosts = [N for N in range(1, 13) if is_prime(12 * N + 1)]
 blocked = [N for N in range(1, 13) if not is_prime(12 * N + 1)]
 assert 2 in blocked and (12 * 2 + 1) == 25 == 5 * 5
-print(f"P10 Y6 CONSTRAINT: kap_O = 3N gives q = 12N+1, which must be prime to carry a "
+print(f"P10 F7 CONSTRAINT (formerly Y6): kap_O = 3N gives q = 12N+1, which must be prime to carry a "
       f"shell. Registrable N in 1..12: {hosts}. Blocked: {blocked} "
       f"(N=2 gives q=25=5^2, so a two-hydrogen lock has NO shell). "
       "The additivity law lands on a shell only at those N.")

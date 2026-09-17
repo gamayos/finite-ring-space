@@ -13,7 +13,7 @@ A check of the registry is a *family* of micro-checks — one labelled claim of 
 kur.K1, …) — and names the row(s) of the paper's predicate ledger it witnesses (LEDGER; rows cited as 13:XN). The
 ledger's source column cites these check ids in return. Master-ledger rows reached through the paper rows:
 00:B8 (13:J1, 13:J3), 00:B9 (13:J4, 13:J5), 00:C13 (13:J3), 00:C14 (13:B2, 13:H2), 00:B1 (13:B4),
-00:T7 (13:O1), 00:T8 (13:O2), 00:T9 (13:O3).
+00:C24 (13:O2's closed clause, the third-order wall) and 00:C26 (13:O3, the four chains as E- and G-partial sums); 13:O1–O3 stay the paper's open rows, their master rows T7–T9 withdrawn 17 Sep 2026 (obstruction records in reports/daily-push).
 """
 import os, json, sys
 from collections import OrderedDict

@@ -24,8 +24,8 @@ md(f"""[![Open In Colab](https://colab.research.google.com/assets/colab-badge.sv
 paper's predicate ledger it witnesses (the paper's Section "Claim status", subsection "Predicate ledger", rows cited as `14:XN`;
 public copy at `docs/14-entropy/14-entropy-ledger.html`), and the ledger's source column cites the check ids in return.
 Master-ledger rows of the corpus reached through the paper rows: `00:A9` (scale, the sole import), `00:L1`–`00:L7` (cosmology,
-the metrology, the octant lemma, the triangle, the area law, the interior completions, the running floor), `00:Y6` (capacity
-additive on the lock).
+the metrology, the octant lemma, the triangle, the area law, the interior completions, the running floor), `00:F7` (the additive
+window, formerly Y6).
 
 **Kinds.** `EXACT`: integer counts on the instantiated Carrier (the congruences, the quarter identity, the octant count) — a pass is a
 proof on that instance. `CHART`: a one-line computation on published [approx] or [ΛCDM] data, reproduced to the precision the paper

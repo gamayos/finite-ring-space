@@ -13,7 +13,7 @@ A check of the registry is a *family* of micro-checks — one labelled claim of 
 and names the row(s) of the paper's predicate ledger it witnesses (LEDGER; rows cited as 14:XN). The ledger's source
 column cites these check ids in return. Master-ledger rows reached through the paper rows: 00:A9 (14:A1, 14:A2),
 00:L2 (14:C4, 14:B5, 14:Z1), 00:L3 (14:C5, 14:C7, 14:P2, 14:P3, 14:P4), 00:L4 (14:C9), 00:L5 (14:B9), 00:L6 (14:X8),
-00:L7 (14:P1, 14:B4), 00:L1 (14:X2, 14:A6), 00:Y6 (14:O1).
+00:L7 (14:P1, 14:B4), 00:L1 (14:X2, 14:A6), 00:F7 (the additive window, 14:B10; formerly Y6).
 """
 import os, json, sys
 from collections import OrderedDict

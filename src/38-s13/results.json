@@ -6,7 +6,7 @@
   "file": "src/38-s13/check_s13.js",
   "label": "the in-tree audit, 58 integer checks: the pair (13, 233), κ = 3, S = 58, g = 2, i = 5; the tower identity C₁₂ = C₄ × C₃ with its general form 4a − κb ≡ 1 (mod 4κ); the channel gcds and N(i) = −1; the Carrier quarter roots 78⁵⁸ = 89 = h, ħ = 144, ħh = 1, ħ + h = Ω; the algebra half ½ = 7; the frame counts 2184 = 156 × 14; the resolvable window; the dilation instance 3/58 = 12/232 = (p−1)/(Ω−1) and the per-chronon rate (κ/S)/(p−1) = 1/(Ω−1) at (13,233) and (5,233); the (53,13) kill test in Carrier 157; the meridian stations, the covering 144 = 36 + 108, the ramification 13/(2m), the fusion 5·39 ≡ −13 (104); the registration fibre product |R| = 696",
   "ok": true,
-  "detail": "58 script checks, 63 predicates, 0.0 s",
+  "detail": "58 script checks, 63 predicates, 0.2 s",
   "kind": "EXACT"
  },
  {
@@ -36,7 +36,7 @@
   "file": "src/38-s13/o1_gr_chart.py",
   "label": "the continuum comparison chart for the face-ratio identity (C8) and the dictionary (C12), 10 sympy identities [approx: continuum chart]: the parametrised isotropic metric's apsidal coefficient 2 − β + 2γ and clock-deficit coefficient 3/2 (PPN-free), the ratio deviation (2/3)(2γ − β − 1), the dictionary match p_sl = 3(S/κ) r_g, the angular face 3r_g/p_sl = κ/S automatically; Brans–Dicke's combination −2/(2+ω) with the ω → ∞ limit",
   "ok": true,
-  "detail": "10 script checks, 12 predicates, 2.5 s",
+  "detail": "10 script checks, 12 predicates, 2.6 s",
   "kind": "SYMBOLIC"
  },
  {
@@ -126,7 +126,7 @@
   "file": "docs/38-s13/verify-render.js",
   "label": "the laboratory's rendering suite, 20 checks on the production rendering itself: the sky chronon τ mod 24, the Hopf representation node-on-fiber, the frame leak at the halved tick π/232, the one retarded flow law φ(k) = −(b_C − k)π/116, ownership, the half-turn and the C₄ stations, the capacity stations, the scale-tower circuit, the four rays, the quadrature pair",
   "ok": true,
-  "detail": "20 script checks, 21 predicates, 33.3 s",
+  "detail": "20 script checks, 21 predicates, 33.6 s",
   "kind": "EXACT"
  }
 ]

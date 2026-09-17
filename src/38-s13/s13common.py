@@ -19,7 +19,7 @@ Kinds: EXACT — integer arithmetic (node BigInt/Number, python int), no float b
 rationals in sympy over a declared continuum chart ([approx: continuum comparison], o1_gr_chart).
 
 Master-ledger rows of the corpus sourced from this paper: 00:C16–C19 (the Carrier quarter-turn mechanism),
-00:C22 (the frame variety and its two fibrations: 38:A7, A9, X4), 00:C25 and 00:D13 (the horizon as antipode, observation as the Hopf section), 00:E8, E9 (gravity — the apsidal bound and the laboratory dictionary: 38:C7, C8, C10--C13), 00:D14 (mass is dilation), 00:Y6 (38:A8).
+00:C22 (the frame variety and its two fibrations: 38:A7, A9, X4), 00:C25 and 00:D13 (the horizon as antipode, observation as the Hopf section), 00:E8, E9 (gravity — the apsidal bound and the laboratory dictionary: 38:C7, C8, C10--C13), 00:D14 (mass is dilation), 00:F7 (the additive window, 38:A8).
 """
 import json, os, re, subprocess, sys, time
 
