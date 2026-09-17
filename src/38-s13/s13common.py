@@ -19,7 +19,7 @@ Kinds: EXACT — integer arithmetic (node BigInt/Number, python int), no float b
 rationals in sympy over a declared continuum chart ([approx: continuum comparison], o1_gr_chart).
 
 Master-ledger rows of the corpus sourced from this paper: 00:C16–C19 (the Carrier quarter-turn mechanism),
-00:Y2 (the gravitational face: 38:C7, C8, C10, C11, O4), 00:Y3 (the Hopf section), 00:Y5, 00:Y6 (38:A8).
+00:E8, E9 (gravity — the apsidal bound and the laboratory dictionary: 38:C7, C8, C10--C13), 00:Y3 (the Hopf section), 00:Y5, 00:Y6 (38:A8).
 """
 import json, os, re, subprocess, sys, time
 
@@ -30,7 +30,7 @@ LAB = os.path.normpath(os.path.join(HERE, "..", "..", "docs", "38-s13"))    # th
 
 LEDGER = {
     "s13.check_s13":    "38:A1, 38:A2, 38:A3, 38:A4, 38:A6, 38:A7, 38:A8, 38:C6, 38:C10, 38:D2, 38:D6, 38:D7, 38:D8, 38:D9, 38:V3",
-    "s13.check_o1":     "38:C7, 38:C8, 38:V4, 38:O4",
+    "s13.check_o1":     "38:C7, 38:C8, 38:C12, 38:V4",
     "s13.o1_gr_chart":  "38:C8, 38:V4",
     "s13.check_o2":     "38:D12, 38:V5",
     "s13.check_o3":     "38:D13, 38:V6",
@@ -56,7 +56,7 @@ COUNT = {"s13.check_s13": 58, "s13.check_o1": 10, "s13.o1_gr_chart": 10, "s13.ch
 LABELS = {
     "s13.check_s13": "the in-tree audit, 58 integer checks: the pair (13, 233), κ = 3, S = 58, g = 2, i = 5; the tower identity C₁₂ = C₄ × C₃ with its general form 4a − κb ≡ 1 (mod 4κ); the channel gcds and N(i) = −1; the Carrier quarter roots 78⁵⁸ = 89 = h, ħ = 144, ħh = 1, ħ + h = Ω; the algebra half ½ = 7; the frame counts 2184 = 156 × 14; the resolvable window; the dilation instance 3/58 = 12/232 = (p−1)/(Ω−1) and the per-chronon rate (κ/S)/(p−1) = 1/(Ω−1) at (13,233) and (5,233); the (53,13) kill test in Carrier 157; the meridian stations, the covering 144 = 36 + 108, the ramification 13/(2m), the fusion 5·39 ≡ −13 (104); the registration fibre product |R| = 696",
     "s13.check_o1": "the dictionary audit, 10 exact-rational checks: the two faces of the leak (angular κ/S, temporal κ/(2S)), ratio exactly 2, the double cover; the closure structure 696/1392 and the half event; the dictionary p_sl = 3(S/κ) r_g and its capacity reading p_sl = S r_g at κ = 3; the p = 53 regression (modulus 157); face ratio 2 ⟺ 2γ − β = 1 over the half-integer PPN lattice",
-    "s13.o1_gr_chart": "the continuum comparison chart for the face-ratio identity (C8) and the dictionary (O4), 10 sympy identities [approx: continuum chart]: the parametrised isotropic metric's apsidal coefficient 2 − β + 2γ and clock-deficit coefficient 3/2 (PPN-free), the ratio deviation (2/3)(2γ − β − 1), the dictionary match p_sl = 3(S/κ) r_g, the angular face 3r_g/p_sl = κ/S automatically; Brans–Dicke's combination −2/(2+ω) with the ω → ∞ limit",
+    "s13.o1_gr_chart": "the continuum comparison chart for the face-ratio identity (C8) and the dictionary (C12), 10 sympy identities [approx: continuum chart]: the parametrised isotropic metric's apsidal coefficient 2 − β + 2γ and clock-deficit coefficient 3/2 (PPN-free), the ratio deviation (2/3)(2γ − β − 1), the dictionary match p_sl = 3(S/κ) r_g, the angular face 3r_g/p_sl = κ/S automatically; Brans–Dicke's combination −2/(2+ω) with the ω → ∞ limit",
     "s13.check_o2": "the multiplicity audit, 11 exact checks: the covering parity theorem (D12) — the reflection identity at p = 5, 13, 17, 29, μ ∈ {1, 3} by the row-parity decider, the shell-parity position law, the 72/72 direct/echo balance, the per-node candidate identities, the shell-1 closed form; the decider Ω-blind at p = 5, 17, 29",
     "s13.check_o3": "the family audit, 7 exact checks: the winding-1/5 identity with the M₀/M₃ station tables, the 144-slot containment in the drawn observable sector, the covering multiset with parity multiplicities, the axis passages 13j/m (drawn iff m ≥ 4), the ramification 13/(2m) in the observable sector",
     "s13.check_phi": "the golden-ratio audit of the quarter roots (A4), 10 integer checks: h = 13/8 ≡ 89 and ħ = 8/13 ≡ 144 on F₂₃₃ (the Fibonacci convergents F₇/F₆), φ present iff 5 is a square (absent at 233, present at 30089), the Pisano closure in-register or in the quadratic extension, the Y6 lock constraint κ_O = 3N ⇒ q = 12N + 1 prime (registrable N = 1, 3, 5, 6, 8, 9)",

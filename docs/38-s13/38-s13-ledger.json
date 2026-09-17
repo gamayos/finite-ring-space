@@ -201,6 +201,20 @@
      "tag": "R",
      "source": "\\S\\ref{sec:reality}",
      "key": "p38045"
+    },
+    {
+     "label": "C12",
+     "predicate": "The laboratory dictionary: on a hosted pair $p_{\\mathrm{sl}}=3(\\dS/\\kap)\\,r_{g}$ (Statement~\\ref{th:floors}) is one relation, homogeneous of degree $0$, between two chart lengths, fixing their ratio $3\\dS/\\kap$ ($58$ at the instance, $174$ at $(5,233)$) and consuming no chart datum: a definition of the chart's $r_{g}$ per $(\\kap,\\dS)$, host-decided, under which $3\\,r_{g}/p_{\\mathrm{sl}}=\\kap/\\dS$ is C7's identity; no hosted pair confirms or refutes it (master E9).",
+     "tag": "D",
+     "source": "\\src{s13.\\allowbreak check\\_o1}",
+     "key": "p38052"
+    },
+    {
+     "label": "C13",
+     "predicate": "The apsidal bound: a nested Subject registers $\\kap/\\dS=(\\p-1)/(\\Om-1)<1/(\\sqrt\\Om+1)$, the nesting condition $\\p^{2}<\\Om$ itself; on the physical Carrier no Subject registers an observed precession (Mercury's $8.0\\times10^{-8}$ per revolution sits $54$ orders above the bound $10^{-61}$ [approx]), and the pair reads per orbit of period $T$ the floor $TH_{0}/2\\pi$ (C10, C11; \\S\\ref{sec:reality}). Formerly the conjecture O4 (key p38024, retired); master E8.",
+     "tag": "T",
+     "source": "master \\src{check\\_e8}",
+     "key": "p38053"
     }
    ]
   },
@@ -393,19 +407,6 @@
      "tag": "T",
      "source": "\\src{s13.\\allowbreak check\\_o3}",
      "key": "p38043"
-    }
-   ]
-  },
-  {
-   "letter": "O",
-   "title": "Open: the conjecture stated ahead of derivation (formerly C9)",
-   "rows": [
-    {
-     "label": "O4",
-     "predicate": "The gravitational dictionary $p_{\\mathrm{sl}}=3(\\dS/\\kap)r_{g}$ (Statement~\\ref{th:floors}), a conjecture: one equation, its face ratio $2$ definitional on the pair side and circular-orbit-specific on the metric side, one registration per $(\\kap,\\dS)$. Exposure: no Subject the physical Carrier hosts registers an observed precession through it (Mercury's $8.0\\times10^{-8}$ per revolution needs $\\p^{2}\\approx10^{231}\\gg\\Om$; \\S\\ref{sec:reality}). Resolution route: the rate it reads is $\\kap$-free per chronon and is the floor (C10, C11); open is the orbital product, the shell period. Falsifier: strong-field confirmation on a hosted pair, or a derivation of the orbit and mass dependence fixing the coefficient.",
-     "tag": "O",
-     "source": "\\src{s13.\\allowbreak check\\_o1}",
-     "key": "p38024"
     }
    ]
   }
