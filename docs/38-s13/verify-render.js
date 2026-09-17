@@ -357,7 +357,7 @@ ok('the interpolated mode: midpoint geometry is the exact average of '+
    interpP.mid < 1e-9 && interpP.hand < 1e-9 && interpP.clsOK &&
    Lh === L0 && D0 === pos(recs.spc));
 
-// 15. the frame dilation (00:Y5), the pure fiber flow in the
+// 15. the frame dilation (00:D14), the pure fiber flow in the
 // sheet-fair chart. Stations exact and gauge-free: at the half the
 // pattern is the congruent parity image, wF = -w to machine
 // precision at full scale; home at the cycle; at the quarter the

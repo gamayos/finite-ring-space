@@ -233,7 +233,7 @@ const eqPH = (u, v) => u[0] === v[0] && u[1] === v[1];
      [...Array(12).keys()].every(j =>
        BE(1, j + 1) + BE(-1, j + 1) === 13));
   // the trace and the closure
-  ok('the trace realizes the cone chart (00:Y3): per drive circuit '+
+  ok('the trace realizes the cone chart (00:D13): per drive circuit '+
      '12 x 12 + 12 = 156 = p(p - 1) direct events, one per element of '+
      'the Borel; the covers are coprime, gcd(13, 24) = 1, and the '+
      'closed circuit carries twice the Borel count of images: 24 x 13 '+
@@ -289,7 +289,7 @@ const eqPH = (u, v) => u[0] === v[0] && u[1] === v[1];
   // drive cycle, checked as sets. The origin stabilizer -- the pure
   // drive, the observer's clock -- completes the group. The 48 per
   // shell counts the 24 simultaneous images with their two spinor
-  // lifts; the affine realization itself is per drive circuit (00:Y3)
+  // lifts; the affine realization itself is per drive circuit (00:D13)
   let six = true, comp2 = true;
   for (let c = 1; c < P; c++){
     const ex = new Set();
@@ -309,7 +309,7 @@ const eqPH = (u, v) => u[0] === v[0] && u[1] === v[1];
      '{tau, tau + 2} the cells sweep 2 x 72 = 144 = the affine '+
      'translation count, and the origin stabilizer, the pure drive, is '+
      'the observer\'s own clock, 12 null events: 144 + 12 = 156 = '+
-     'p(p - 1) (00:Y3), the bijection (c, e) -> [x -> g^e x + c]; the '+
+     'p(p - 1) (00:D13), the bijection (c, e) -> [x -> g^e x + c]; the '+
      '48 per shell counts the 24 images at tau with the 24 at tau + 2 '+
      '-- base events; the spinor lifts live on the 312 cover alone',
      six && comp2 && 2 * 72 + 12 === P * (P - 1) &&

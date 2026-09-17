@@ -2,14 +2,14 @@
 s13common.py — shared registry for the 38-s13 validation package
 ================================================================
 "Exact Quantum Dynamics on the Minimal (13,233) Holographic Substrate" (Akhtman & Voether, 2026), validation package
-of the FRC corpus (finite-ring-space/src/38-s13). Twelve families, each one script run as its own process, its
+of the FRC corpus (finite-ring-space/src/38-s13). Thirteen families, each one script run as its own process, its
 printed verdict lines captured: the six in-tree audits kept here (check_s13.js, check_o1.js, check_o2.js,
 check_o3.js — node, integer-exact; o1_gr_chart.py — sympy, the continuum comparison chart; check_phi.py — the
-golden-ratio audit of the Carrier quarter roots) and the laboratory's six suites, which live with the laboratory at
+golden-ratio audit of the Carrier quarter roots; check_fibrations.py — the two fibrations of the frame variety, from the Y4 push of 2026-09-17) and the laboratory's six suites, which live with the laboratory at
 finite-ring-space/docs/38-s13 (verify-233, verify-sky, verify-space, verify-f13, verify-hopf, verify-render — node)
 and are run from there, one source. A family is identified as s13.<stem>; its micro-checks are the script's own
-PASS/FAIL lines together with the registry's predicates (PRED), which pin the stated totals (58, 10, 10, 11, 7, 10;
-84, 28, 25, 25, 10, 20 — 192 laboratory checks) and the lines the paper's rows rest on: the pair constants, the
+PASS/FAIL lines together with the registry's predicates (PRED), which pin the stated totals (58, 10, 10, 11, 7, 10, 30;
+84, 28, 25, 25, 26, 20 — 208 laboratory checks) and the lines the paper's rows rest on: the pair constants, the
 quarter roots hbar = 144, h = 89, the apsidal fraction 3/58 = (p-1)/(Om-1), the per-chronon leak rate 1/232 at both
 (13,233) and (5,233), the face ratio 2 <=> 2*gamma - beta = 1, the covering parity, the winding family. A nonzero exit,
 a FAIL line or a failed predicate fails the family. Each family names the row(s) of the paper's predicate ledger it
@@ -19,7 +19,7 @@ Kinds: EXACT — integer arithmetic (node BigInt/Number, python int), no float b
 rationals in sympy over a declared continuum chart ([approx: continuum comparison], o1_gr_chart).
 
 Master-ledger rows of the corpus sourced from this paper: 00:C16–C19 (the Carrier quarter-turn mechanism),
-00:E8, E9 (gravity — the apsidal bound and the laboratory dictionary: 38:C7, C8, C10--C13), 00:Y3 (the Hopf section), 00:Y5, 00:Y6 (38:A8).
+00:C22 (the frame variety and its two fibrations: 38:A7, A9, X4), 00:C25 and 00:D13 (the horizon as antipode, observation as the Hopf section), 00:E8, E9 (gravity — the apsidal bound and the laboratory dictionary: 38:C7, C8, C10--C13), 00:D14 (mass is dilation), 00:Y6 (38:A8).
 """
 import json, os, re, subprocess, sys, time
 
@@ -39,19 +39,21 @@ LEDGER = {
     "s13.verify-sky":   "38:B1, 38:B2, 38:B3, 38:V1",
     "s13.verify-space": "38:D11, 38:V1",
     "s13.verify-f13":   "38:D11, 38:V1",
-    "s13.verify-hopf":  "38:A7, 38:V1",
+    "s13.verify-hopf":  "38:A7, 38:A9, 38:X4, 38:V1",
+    "s13.check_fibrations": "38:A9, 38:X4",
     "s13.verify-render":"38:B4, 38:B6, 38:B7, 38:C1, 38:C2, 38:C3, 38:C4, 38:C5, 38:D1, 38:D3, 38:D4, 38:D5, 38:D10, 38:V1, 38:V2",
 }
 FILE = {                      # family -> the script it runs, relative to the repository root
     "s13.check_s13": "src/38-s13/check_s13.js", "s13.check_o1": "src/38-s13/check_o1.js",
     "s13.o1_gr_chart": "src/38-s13/o1_gr_chart.py", "s13.check_o2": "src/38-s13/check_o2.js",
     "s13.check_o3": "src/38-s13/check_o3.js", "s13.check_phi": "src/38-s13/check_phi.py",
+    "s13.check_fibrations": "src/38-s13/check_fibrations.py",
     **{f"s13.verify-{s}": f"docs/38-s13/verify-{s}.js" for s in ("233", "sky", "space", "f13", "hopf", "render")},
 }
 KIND = {f: "EXACT" for f in LEDGER}
 KIND["s13.o1_gr_chart"] = "SYMBOLIC"
 COUNT = {"s13.check_s13": 58, "s13.check_o1": 10, "s13.o1_gr_chart": 10, "s13.check_o2": 11, "s13.check_o3": 7, "s13.check_phi": 10,
-         "s13.verify-233": 84, "s13.verify-sky": 28, "s13.verify-space": 25, "s13.verify-f13": 25, "s13.verify-hopf": 10, "s13.verify-render": 20}
+         "s13.verify-233": 84, "s13.verify-sky": 28, "s13.verify-space": 25, "s13.verify-f13": 25, "s13.verify-hopf": 26, "s13.verify-render": 20, "s13.check_fibrations": 30}
 
 LABELS = {
     "s13.check_s13": "the in-tree audit, 58 integer checks: the pair (13, 233), κ = 3, S = 58, g = 2, i = 5; the tower identity C₁₂ = C₄ × C₃ with its general form 4a − κb ≡ 1 (mod 4κ); the channel gcds and N(i) = −1; the Carrier quarter roots 78⁵⁸ = 89 = h, ħ = 144, ħh = 1, ħ + h = Ω; the algebra half ½ = 7; the frame counts 2184 = 156 × 14; the resolvable window; the dilation instance 3/58 = 12/232 = (p−1)/(Ω−1) and the per-chronon rate (κ/S)/(p−1) = 1/(Ω−1) at (13,233) and (5,233); the (53,13) kill test in Carrier 157; the meridian stations, the covering 144 = 36 + 108, the ramification 13/(2m), the fusion 5·39 ≡ −13 (104); the registration fibre product |R| = 696",
@@ -64,7 +66,8 @@ LABELS = {
     "s13.verify-sky": "the laboratory's sky suite, 28 checks: the node field 72 = 3 × 2 × 12 with retarded labels, the fibered covers, the radial ladder R sin(2aπ/13) with capacity 4a < 13, the mounting ×3 = g⁴, the central product isomorphism φ(a, b) = 13a + 12b mod 312",
     "s13.verify-space": "the laboratory's register suite, 25 checks: the register and cone arithmetic, the winding spectrum H_wind, the curl algebra δ_k = 78^k with δ₅₈ = h, the Schrödinger dictionary ψ_{τ+1} = g ψ_τ",
     "s13.verify-f13": "the laboratory's shell-operator suite, 25 checks: H⁷ = 0, ord(U) = 13, U exactly unitary on F₁₃",
-    "s13.verify-hopf": "the laboratory's Hopf suite, 10 checks: the finite Hopf fibration, the frame counts 2184 = 156 × 14, SL₂ obstructing at −1, Ω-blind at p = 5",
+    "s13.verify-hopf": "the laboratory's Hopf suite, 26 checks: the non-split fibration by the boost torus with the frame counts 2184 = 156 × 14, SL₂ obstructing at −1; the norm-one sphere ↔ SL₂ (norm = det), the involution counts, the adjoint action PGL₂ → SO₃, the two 2-sphere counts, the centralisers and orbits of the boost axis and of the unit i, the split circle inside the Borel, the bijection G ≅ P¹ × B; Ω-blind at p = 5",
+    "s13.check_fibrations": "the two torus fibrations of the frame variety (A9, master C22), 30 exact checks at p = 5, 13, 17: the split fibration by the drive torus C_{p−1} over the unit 2-sphere (p(p+1) points) and the non-split fibration by the boost torus C_{p+1} over the nonsquare-radius 2-sphere (p(p−1) points), the same count p(p²−1); the frame triple G ≅ P¹ × F_p × C_{p−1}; the boundary clause",
     "s13.verify-render": "the laboratory's rendering suite, 20 checks on the production rendering itself: the sky chronon τ mod 24, the Hopf representation node-on-fiber, the frame leak at the halved tick π/232, the one retarded flow law φ(k) = −(b_C − k)π/116, ownership, the half-turn and the C₄ stations, the capacity stations, the scale-tower circuit, the four rays, the quadrature pair",
 }
 

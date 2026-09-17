@@ -17,7 +17,7 @@ H_kin = 2I - T - T^{-1} of verify-f13 -- and the curl algebra:
 delta_k = 78^k a homomorphism on the declared C232 chart, landing
 on the cardinals, delta_58 = h),
 `verify-f13.js` (25 checks: the shell operator core of [2] -- H^7 =
-0, ord(U) = 13, U exactly unitary), `verify-hopf.js` (10 checks: the finite Hopf fibration -- the free
+0, ord(U) = 13, U exactly unitary), `verify-hopf.js` (26 checks: the finite Hopf fibration -- the free
 boost action, the unique factorization, the global section, the
 horizon-circle fiber coordinate, at p = 13 and Omega-blind at p = 5,
 with the SL2 spin contrast and the Cayley station theorem: phi
@@ -87,9 +87,9 @@ complete double-helix fiber -- twelve cells by two routes on one
 smooth closed loop through both poles, the sign of -1 distributed
 over the orbit; consecutive fibers one rung apart, x3 = g^4, mounted
 120 degrees apart about the main axis; 3 x 48 + 12 = 156 = p(p-1),
-the totality of the observable (00:Y3).
+the totality of the observable (00:D13).
 
-## The Hopf representation (00:C19, 00:Y3, 00:Y4)
+## The Hopf representation (00:C19, 00:D13, 00:C22)
 
 The sky panel carries a representation toggle with three modes:
 Drive orbits / Light cone / Hopf fibers. The three representations
@@ -113,7 +113,8 @@ three cyclic sectors of the frame group as the three fiber layers
 over one node set. The chart: the guard
 projection (center at w0 = 1.1 outside S3) maps the whole S3 onto
 the ball whose silhouette is the horizon sphere, so the sky ball is
-a chart of the whole S3 (00:Y4). The chart is two-sheeted -- the
+a chart of the whole S3 -- the norm-one sphere, which is SL2, the
+spin cover of the observable variety PGL2 = SO3 (00:C22). The chart is two-sheeted -- the
 ray through a sky point meets S3 twice -- and the node's spinor
 sheet selects the preimage. Each node lifts to its S3 preimage and
 carries the exact Hopf circle through it, the leaf of the global
@@ -125,8 +126,14 @@ makes the leaves rotate rigidly with the nodes (coherence residual
 one event lift to three nested leaves, the inner rung riding the
 horizon-circle level (|z2| = 0.14 at the equator), the mid rung at
 0.69, the outer rung deep at 0.86 -- the radial ladder of the sky
-read as the depth of the S3 foliation, the holographic statement of
-00:Y4 made visible. The fiber layer is kept bare and rides the
+read as the depth of the S3 foliation, the holographic reading (paper
+row X4; master 00:C22) drawn in the chart. The drawn leaves are the
+orbits of left multiplication by the unit i: their finite counterpart,
+the circle x^2+y^2 = 1, is the drive torus C_{p-1} (12 points at p = 13,
+the split fibration), while the fibres of the Hopf-section theorem
+(00:C19) are the boost torus C_{p+1} (14); the drawing is the chart
+face of the count p(p^2-1) and does not decide between the two
+(paper Theorem 11, verify-hopf.js checks 11-26). The fiber layer is kept bare and rides the
 helix guide style at half strength (the leaves are denser than the
 loops): guide grey #8a877f, each leaf split at the two antipodal
 roots of its homogeneous depth numerator into one front arc (alpha
@@ -138,7 +145,7 @@ A per-fiber color coding, if ever wanted, keys on the address: the
 two routes of one cell share a hue -- the echo pair (00:C7) -- as
 a selective-highlight mode, not a full palette. The nodes are the section of the finite fibration PGL2/C14
 (00:C19); motion along a fiber is a boost, it changes the observer,
-and is unobservable -- observation is the Hopf section (00:Y3). The
+and is unobservable -- observation is the Hopf section (00:D13). The
 13 marks on the outer fibers are the C14 boost points, the node the
 fourteenth: the fiber coordinate runs over the projective line, the
 thirteen cells plus the horizon class [1:0] -- the frame's own
@@ -161,17 +168,17 @@ identical; the combinatorics is carried by verify-hopf.js. The
 guard chart is the labelled approximation; the silhouette radius
 206 clears the outer shell (node radius 200.5) with margin.
 
-## The frame dilation (00:Y5)
+## The frame dilation (00:D14)
 
 The leak per chronon is an element of the frame group, and by C19
 it factors uniquely into a Borel part and a boost part. The Borel
 part is the azimuthal drift the panels already draw. The boost part
 is motion along the Hopf fiber: the frame dilation, the mass phase
-of 00:Y5 -- the boost torus is the Dirac layer's exclusive mass
-channel [2], and the mass sector's standard-model interaction face
+of 00:D14 -- the sign on the boost base, the quarter on its spinor
+cover (00:C20) [2], and the mass sector's standard-model interaction face
 is [5]. The observability is relational, per the quotient
 structure: a pure boost is
-unobservable at the quotient (00:Y3), so the COMMON fiber flow is gauge and draws
+unobservable at the quotient (00:D13), so the COMMON fiber flow is gauge and draws
 only in the harness view, as the Carrier-referenced chart
 realization anchored at the exact C4 stations. The Subject's
 observable is the relative fiber displacement between base points
@@ -186,7 +193,7 @@ Delta_k = chart(delta_k) = k pi/116 (the curl-algebra check in
 verify-space). The Subject view draws this
 static, integer-exact, gauge-free curl: the gravitational face of
 the Objectless lab, gravitation as phase synchronisation [4], the
-apsidal reading of 00:Y2. The curl is drawn as the difference it
+apsidal reading of 00:E8/E9. The curl is drawn as the difference it
 is: a faint cyan arc along each outer node's leaf from the
 unflowed base to the curled bead, in both representations -- the
 frozen precession field, growing with lookback. Time-VARYING
@@ -231,9 +238,10 @@ The visibility profiles follow the flowed positions, in sync with
 the guide loops' front/back passes. The clock bead rides
 the axis leaf: the Subject's own dilation. The rung-ladder
 exchange stays as the discrete arithmetic face of the same
-inversion; with the exact per-tick boost step (which C14 element,
-via the octant bridge) it is the open derivation that would also
-promote 00:Y5 -- now closed (00:Y5, theorem). The winding cycle
+inversion; the exact per-tick boost step is the class the Carrier's
+drive induces on the spinor cover, 4 gcd(S, 2 kappa + 1) = 4 at the
+instance, a host-decided value (00:D14); no C14 element carries the
+quarter (00:C20). The winding cycle
 meets the boost torus in the sign alone (gcd(232, 14) = 2) and its
 spinor cover in exactly the quarter core Q4 (gcd(232, 28) = 4;
 universally gcd(p-1, 2(p+1)) = 4 for every p = 4kappa+1): the
@@ -349,11 +357,11 @@ cosmological S the recurrence outruns
 every Subject year and C18's winding is
 read as the arrow of time.
 
-## The observable meridian M0 (00:Y3, 00:Y5)
+## The observable meridian M0 (00:D13, 00:D14)
 
 The meridian is a light-cone object, exactly as everything the sky
 draws: cell a of the additive line is registered at lookback a,
-radial step a -- the sky is the past light cone (00:Y3), each
+radial step a -- the sky is the past light cone (00:D13), each
 latitude step one chronon deep, the labels retarded (render check
 3). The capacity bound resolves exactly kappa radial steps within
 the observational horizon (4a < p iff a <= kappa = 3), and these

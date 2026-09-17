@@ -1,6 +1,6 @@
 // Exact verification for 1-phase-6 on the minimal non-trivial pair (13, 233).
 // 1-phase-1 = the 1-phase episode plus the Carrier quarter-turn mechanism
-// (00:C15, 00:C17, 00:C18; face 00:Y2): the flip x h, the 6/29 precession, the
+// (00:C15, 00:C17, 00:C18; face 00:E8): the flip x h, the 6/29 precession, the
 // double cover, and the perihelion trace. Supersedes the 3-phase folder.
 // Subject F13 (kappa = 3), Carrier F233 (S = 58), fold per 00:F4.
 'use strict';
@@ -531,7 +531,7 @@ ok('fold hand residues: i^tau = 1, 5, 12, 8', [0,1,2,3].every(t =>
      'mass-ratio reading of D2; the trivial pair concurs at 1/10',
      (P - 1) * S === (OM - 1) * 3 && gcd(3, S) === 1 &&
      4 * 10 === 40 * 1 && gcd(1, 10) === 1);
-  // the mass--energy channel (00:Y5, closed): the winding cycle meets the
+  // the mass--energy channel (00:D14, closed): the winding cycle meets the
   // boost torus in the sign alone, its spinor cover in exactly the quarter
   // core Q4 -- gcd(p-1, 2(p+1)) = 4 for every p = 4 kappa + 1 -- and the
   // quarter is spinorial: i^2 = -1 gives N(i) = -1, the sheet crossing
@@ -541,7 +541,7 @@ ok('fold hand residues: i^tau = 1, 5, 12, 8', [0,1,2,3].every(t =>
     let univ = true;
     for (let k = 1; k <= 10000; k++)
       if (gcd(4*k, 4*(2*k + 1)) !== 4 || gcd(4*k, 4*k + 2) !== 2) univ = false;
-    ok('the mass--energy channel (00:Y5): gcd(p-1, p+1) = 2 and '+
+    ok('the mass--energy channel (00:D14): gcd(p-1, p+1) = 2 and '+
        'gcd(p-1, 2(p+1)) = 4 for every p = 4 kappa + 1 (kappa <= 1e4) -- '+
        'the sign on the base, the quarter core Q4 on the spinor cover; '+
        'here gcd(232, 14) = 2, gcd(232, 28) = 4',

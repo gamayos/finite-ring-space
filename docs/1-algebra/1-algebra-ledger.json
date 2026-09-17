@@ -85,7 +85,7 @@
     },
     {
      "label": "C2",
-     "predicate": "The frame group (Prop.~\\ref{prop:frame-group}): $\\langle T_a,S_m\\rangle$ is the affine group of order $\\p(\\p-1)$, acting simply transitively on the frames $(a,b)$, $b\\neq0$; the set of frames is a torsor under it (00:C5, 00:Y3).",
+     "predicate": "The frame group (Prop.~\\ref{prop:frame-group}): $\\langle T_a,S_m\\rangle$ is the affine group of order $\\p(\\p-1)$, acting simply transitively on the frames $(a,b)$, $b\\neq0$; the set of frames is a torsor under it (00:C5, 00:D13).",
      "tag": "T",
      "source": "\\texttt{manuscript}; \\src{A4}; \\lean{FRC.Shell.Frame.Affine.simply\\_transitive, FRC.Shell.Frame.frame\\_count}",
      "key": "p01009"
@@ -180,9 +180,9 @@
     },
     {
      "label": "F2",
-     "predicate": "The antipode named $\\infty$: the horizon of the observer at $0$ (00:Y3), the compactification point of the framed line [chart]; its reading as classical infinity is the chart, not a residue.",
+     "predicate": "The antipode named $\\infty$: the horizon of the observer at $0$ (00:C25, 00:D13), the compactification point of the framed line [chart]; its reading as classical infinity is the chart, not a residue.",
      "tag": "D",
-     "source": "Section~\\ref{sec:infinity}; 00:Y3",
+     "source": "Section~\\ref{sec:infinity}; 00:C25, 00:D13",
      "key": "p01021"
     }
    ]
@@ -305,7 +305,7 @@
    "B8"
   ],
   "C2": [
-   "Y3"
+   "D13"
   ],
   "C4": [
    "B11"
@@ -317,7 +317,8 @@
    "C2"
   ],
   "F2": [
-   "Y3"
+   "C25",
+   "D13"
   ]
  },
  "lean": {

@@ -881,7 +881,10 @@
    "tag": "T",
    "predicate": "\\textbf{The shell is holographic}: a Subject's frame datum is one projective direction, one shell cell, one drive phase, and the bulk frame is that boundary datum with nothing left over (Theorem~\\ref{th:holography}; the realisation reading and its falsifier, Reading~\\ref{th:holography-reading}).",
    "source": "\\src{s13.\\allowbreak verify-hopf}, \\src{s13.\\allowbreak check\\_fibrations}",
-   "master": [],
+   "master": [
+    "C22",
+    "D13"
+   ],
    "restated": [],
    "witnessed": false,
    "page": "38-s13/38-s13-ledger.html"
