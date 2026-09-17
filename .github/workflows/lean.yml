@@ -4,7 +4,7 @@ name: lean
 # the pinned Mathlib, replays the compiled environment through the kernel (leanchecker), audits the
 # axioms under the strict rule (only propext, Classical.choice, Quot.sound — sorryAx, native_decide and
 # any home-rolled axiom fail), checks the committed axioms.log and the web copies, and compiles the
-# web copies as single files.  The weekly job builds against Mathlib master so a toolchain or Mathlib
+# web copies as single files; the core (lean/FrcCore, no Mathlib) is built and audited for zero axioms.  The weekly job builds against Mathlib master so a toolchain or Mathlib
 # change that breaks the modules is a scheduled failure, not a surprise for a reader; it never moves
 # the pin.
 
@@ -39,12 +39,20 @@ jobs:
         run: |
           ~/.elan/bin/lake env python3 check_axioms.py
           git diff --exit-code axioms.log || { echo "axioms.log changed: run check_axioms.py locally and commit it"; exit 1; }
+      - name: the core builds and proves with no axioms (FrcCore, no Mathlib)
+        working-directory: lean
+        run: |
+          ~/.elan/bin/lake build FrcCore
+          ~/.elan/bin/lake env python3 check_core_axioms.py
+          git diff --exit-code FrcCore/axioms.log || { echo "FrcCore/axioms.log changed: run check_core_axioms.py locally and commit it"; exit 1; }
       - name: web copies current
         working-directory: lean
         run: python3 make_web.py --check
-      - name: web copies compile as single files
+      - name: web copies compile as single files (the core with bare lean, no Mathlib)
         working-directory: lean
-        run: for f in web/*.lean; do echo "== $f"; ~/.elan/bin/lake env lean "$f"; done
+        run: |
+          for f in web/*.lean; do echo "== $f"; ~/.elan/bin/lake env lean "$f"; done
+          ~/.elan/bin/lean web/FrcCore.lean
 
   drift:
     name: weekly build against Mathlib master (informational)

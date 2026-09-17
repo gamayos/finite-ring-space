@@ -194,7 +194,7 @@ table.ledger tr.target td { background: var(--sub-bg); }
 .wrap a.lean.ico:hover { background: var(--rule-soft); color: var(--accent); }
 .wrap a.lean.ico svg { width: 15px; height: 15px; }
 img.leanico { width: 16px; height: 16px; display: block; filter: invert(.78); }          /* a light glyph on transparency: darkened on the light theme */
-img.leanico.ok, img.leanico.fail { filter: none; }                                      /* the coloured versions carry the status: green within the allowlist, red outside */
+img.leanico.ok, img.leanico.t1, img.leanico.t2, img.leanico.fail { filter: none; }      /* the coloured versions carry the tier: green none, teal extensionality, amber classical, red */
 pre.lean img.leanico { width: 12px; height: 12px; display: inline-block; vertical-align: -2px; margin-right: .4em; }
 @media (prefers-color-scheme: dark) { img.leanico { filter: none; opacity: .85; } }
 .wrap a.lean.ico.live { width: auto; padding: 0 4px 0 3px; }
@@ -223,6 +223,13 @@ header.paper { margin-bottom: 1rem; }
 header.paper + main > section.prose:first-child { margin-top: 0; }
 p.note { color: var(--ink-soft); font-size: 0.9rem; margin: 0 0 1rem; }
 td.links a { display: inline-block; margin-right: 0.35rem; font-size: 0.8rem; }
+/* the (i) after a column header: links to the legend below the table */
+.wrap thead th a.info, .wrap thead th a.info:visited { display: inline-block; vertical-align: middle; position: relative; top: -1px; margin-left: 0.15rem; border-bottom: none; color: var(--ink-faint); line-height: 0; }
+.wrap thead th a.info:hover { color: var(--accent); }
+thead th a.info svg { width: 12px; height: 12px; stroke: currentColor; fill: none; stroke-width: 1.7; stroke-linecap: round; display: block; }
+.empty + .legend { margin-top: 2rem; padding-top: 1.25rem; border-top: 1px solid var(--rule); }
+.legend + .legend { margin-top: 1.25rem; }
+section.legend:target { scroll-margin-top: 1rem; }
 /* the Package column's glyphs: a 26 px hit area, the ink-soft colour, the accent on hover; the legend shows each beside its word */
 .wrap td.links a.ico, .wrap td.links a.ico:visited { display: inline-flex; align-items: center; justify-content: center; width: 26px; height: 26px; margin-right: 0.2rem; border-bottom: none; border-radius: 5px; color: var(--ink-soft); vertical-align: middle; }
 .wrap td.links a.ico:hover { background: var(--rule-soft); color: var(--accent); }

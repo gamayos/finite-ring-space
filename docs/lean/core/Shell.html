@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-HNE3RMJ5L1"></script>
+<script> window.dataLayer = window.dataLayer || []; function gtag(){dataLayer.push(arguments);} gtag('js', new Date()); gtag('config', 'G-HNE3RMJ5L1'); </script>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Shell.lean — FrcCore</title>
+<meta name="description" content="The Lean module FrcCore/Shell of the FRC predicate ledgers, rendered with an anchor per declaration">
+<meta name="author" content="Yosef Akhtman">
+<link rel="icon" href="../../frc-logo-fav.png">
+<link rel="stylesheet" href="../../style.css">
+
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <h1>Shell.lean — FrcCore</h1>
+    
+    <nav><a href="../../index.html">Home</a><a href="../../publications.html">Publications</a><a href="../../00-ledger.html">Ledger</a><a href="../../predictions.html">Predictions</a><a href="../../explicability.html">Explicability</a></nav>
+  </header>
+<main id="ledger-main"><section class="prose"><p>The core module <code>lean/FrcCore/Shell.lean</code> — the substrate from first principles, no Mathlib, no axioms (the modules in order: <a href="Nat.html">Nat</a>, <a href="Shell.html">Shell</a>, <a href="Frame.html">Frame</a>, <a href="Sum.html">Sum</a>, <a href="Algebra.html">Algebra</a>, <a href="Geometry.html">Geometry</a>, <a href="Instances.html">Instances</a>): 51 theorems (2 definitions): 51 with no axioms (green), 0 at tier 1 (teal: <code>propext</code>, <code>Quot.sound</code>), 0 at tier 2 (amber: <code>Classical.choice</code>), 0 red; the plain glyph marks a definition. Each declaration is anchored; the ledger rows cite them by name. <a href="https://live.lean-lang.org/#project=lean-v4.34.0&url=https://raw.githubusercontent.com/gamayos/finite-ring-space/main/lean/web/FrcCore.lean" target="_blank" rel="noopener">▶ open in the Lean web editor</a> · <a href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcCore/Shell.lean" target="_blank" rel="noopener">on GitHub</a> · <a href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcCore/axioms.log" target="_blank" rel="noopener">axioms.log</a> · <a href="https://github.com/gamayos/finite-ring-space/actions/workflows/lean.yml" target="_blank" rel="noopener">CI</a> (all in a new tab).</p></section><pre class="lean"><span class="ln" id="L1"><a class="lno" href="#L1">1</a>import FrcCore.Nat</span>
+<span class="ln" id="L2"><a class="lno" href="#L2">2</a></span>
+<span class="ln" id="L3"><a class="lno" href="#L3">3</a>/-!</span>
+<span class="ln" id="L4"><a class="lno" href="#L4">4</a># FrcCore.Shell — the residues of a shell, from first principles</span>
+<span class="ln" id="L5"><a class="lno" href="#L5">5</a></span>
+<span class="ln" id="L6"><a class="lno" href="#L6">6</a>`Shell p` is the set of residues mod `p`, carried by their canonical representatives `val &lt; p` — no</span>
+<span class="ln" id="L7"><a class="lno" href="#L7">7</a>quotient type, so no `Quot.sound`; every identity below is an identity of representatives, decided by</span>
+<span class="ln" id="L8"><a class="lno" href="#L8">8</a>`Nat` arithmetic. The operations reduce by `%`, so `decide` computes on any concrete shell through the</span>
+<span class="ln" id="L9"><a class="lno" href="#L9">9</a>kernel&#x27;s accelerated `Nat` arithmetic, and every theorem is checked to depend on no axiom.</span>
+<span class="ln" id="L10"><a class="lno" href="#L10">10</a></span>
+<span class="ln" id="L11"><a class="lno" href="#L11">11</a>The ring laws are derived from `FrcCore.Nat`&#x27;s division algorithm (`mod_unique`); negation is</span>
+<span class="ln" id="L12"><a class="lno" href="#L12">12</a>characterised by `add_neg : a + -a = 0`, and everything about `-` follows from the uniqueness of</span>
+<span class="ln" id="L13"><a class="lno" href="#L13">13</a>additive inverses (`neg_unique`), never from `Nat` subtraction.</span>
+<span class="ln" id="L14"><a class="lno" href="#L14">14</a>-/</span>
+<span class="ln" id="L15"><a class="lno" href="#L15">15</a></span>
+<span class="ln" id="L16"><a class="lno" href="#L16">16</a>namespace FRC</span>
+<span class="ln" id="L17"><a class="lno" href="#L17">17</a></span>
+<span class="ln" id="L18"><a class="lno" href="#L18">18</a>/-- A residue mod `p`: its representative and the bound. -/</span>
+<span class="ln" id="L19"><a class="lno" href="#L19">19</a>structure Shell (p : Nat) where</span>
+<span class="ln" id="L20"><a class="lno" href="#L20">20</a>  val : Nat</span>
+<span class="ln" id="L21"><a class="lno" href="#L21">21</a>  lt : val &lt; p</span>
+<span class="ln" id="L22"><a class="lno" href="#L22">22</a></span>
+<span class="ln" id="L23"><a class="lno" href="#L23">23</a>/-- `Pos p`: the modulus is positive. Instances for literals `n + 1` are found automatically. -/</span>
+<span class="ln" id="L24"><a class="lno" href="#L24">24</a>class Pos (p : Nat) : Prop where</span>
+<span class="ln" id="L25"><a class="lno" href="#L25">25</a>  pos : 0 &lt; p</span>
+<span class="ln" id="L26"><a class="lno" href="#L26">26</a></span>
+<span class="ln" id="L27"><a class="lno" href="#L27">27</a>instance (n : Nat) : Pos (n + 1) := ⟨Nat.zero_lt_succ n⟩</span>
+<span class="ln" id="L28"><a class="lno" href="#L28">28</a></span>
+<span class="ln" id="L29"><a class="lno" href="#L29">29</a>namespace Shell</span>
+<span class="ln" id="L30"><a class="lno" href="#L30">30</a></span>
+<span class="ln" id="L31"><a class="lno" href="#L31">31</a>variable {p : Nat}</span>
+<span class="ln" id="L32"><a class="lno" href="#L32">32</a></span>
+<span class="ln decl" id="FRC.Shell.ext"><a class="lno" href="#FRC.Shell.ext">33</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcCore/Shell.lean#L33" title="this line on GitHub (new tab)" target="_blank" rel="noopener">⧉</a><img class="leanico small ok" src="../lean-ok.png" alt="" title="axioms: none — tier 0, no axioms">theorem ext {a b : Shell p} (h : a.val = b.val) : a = b := by</span>
+<span class="ln" id="L34"><a class="lno" href="#L34">34</a>  cases a; cases b; cases h; rfl</span>
+<span class="ln" id="L35"><a class="lno" href="#L35">35</a></span>
+<span class="ln decl" id="FRC.Shell.val_injective"><a class="lno" href="#FRC.Shell.val_injective">36</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcCore/Shell.lean#L36" title="this line on GitHub (new tab)" target="_blank" rel="noopener">⧉</a><img class="leanico small ok" src="../lean-ok.png" alt="" title="axioms: none — tier 0, no axioms">theorem val_injective {a b : Shell p} (h : a = b) : a.val = b.val := by cases h; rfl</span>
+<span class="ln" id="L37"><a class="lno" href="#L37">37</a></span>
+<span class="ln" id="L38"><a class="lno" href="#L38">38</a>instance : DecidableEq (Shell p) := fun a b =&gt;</span>
+<span class="ln" id="L39"><a class="lno" href="#L39">39</a>  if h : a.val = b.val then isTrue (ext h) else isFalse (fun e =&gt; h (val_injective e))</span>
+<span class="ln" id="L40"><a class="lno" href="#L40">40</a></span>
+<span class="ln" id="L41"><a class="lno" href="#L41">41</a>section ops</span>
+<span class="ln" id="L42"><a class="lno" href="#L42">42</a>variable [Pos p]</span>
+<span class="ln" id="L43"><a class="lno" href="#L43">43</a></span>
+<span class="ln" id="L44"><a class="lno" href="#L44">44</a>/-- The residue of a natural number. -/</span>
+<span class="ln decl" id="FRC.Shell.ofNat"><a class="lno" href="#FRC.Shell.ofNat">45</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcCore/Shell.lean#L45" title="this line on GitHub (new tab)" target="_blank" rel="noopener">⧉</a><img class="leanico small" src="../lean.png" alt="" title="a definition: no proof, no axioms">def ofNat (n : Nat) : Shell p := ⟨n % p, Nat.mod_lt n Pos.pos⟩</span>
+<span class="ln" id="L46"><a class="lno" href="#L46">46</a></span>
+<span class="ln" id="L47"><a class="lno" href="#L47">47</a>instance (n : Nat) : OfNat (Shell p) n := ⟨ofNat n⟩</span>
+<span class="ln" id="L48"><a class="lno" href="#L48">48</a>instance : Add (Shell p) := ⟨fun a b =&gt; ofNat (a.val + b.val)⟩</span>
+<span class="ln" id="L49"><a class="lno" href="#L49">49</a>instance : Mul (Shell p) := ⟨fun a b =&gt; ofNat (a.val * b.val)⟩</span>
+<span class="ln" id="L50"><a class="lno" href="#L50">50</a>instance : Neg (Shell p) := ⟨fun a =&gt; ofNat (p - a.val)⟩</span>
+<span class="ln" id="L51"><a class="lno" href="#L51">51</a></span>
+<span class="ln" id="L52"><a class="lno" href="#L52">52</a>/-- Powers by structural recursion (`a ^ 0 = 1`, `a ^ (n+1) = a ^ n * a`). -/</span>
+<span class="ln decl" id="FRC.Shell.pow"><a class="lno" href="#FRC.Shell.pow">53</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcCore/Shell.lean#L53" title="this line on GitHub (new tab)" target="_blank" rel="noopener">⧉</a><img class="leanico small" src="../lean.png" alt="" title="a definition: no proof, no axioms">def pow (a : Shell p) : Nat → Shell p</span>
+<span class="ln" id="L54"><a class="lno" href="#L54">54</a>  | 0 =&gt; 1</span>
+<span class="ln" id="L55"><a class="lno" href="#L55">55</a>  | n + 1 =&gt; pow a n * a</span>
+<span class="ln" id="L56"><a class="lno" href="#L56">56</a></span>
+<span class="ln" id="L57"><a class="lno" href="#L57">57</a>instance : Pow (Shell p) Nat := ⟨pow⟩</span>
+<span class="ln" id="L58"><a class="lno" href="#L58">58</a></span>
+<span class="ln decl" id="FRC.Shell.hp"><a class="lno" href="#FRC.Shell.hp">59</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcCore/Shell.lean#L59" title="this line on GitHub (new tab)" target="_blank" rel="noopener">⧉</a><img class="leanico small ok" src="../lean-ok.png" alt="" title="axioms: none — tier 0, no axioms">theorem hp : 0 &lt; p := Pos.pos</span>
+<span class="ln" id="L60"><a class="lno" href="#L60">60</a></span>
+<span class="ln decl" id="FRC.Shell.val_ofNat"><a class="lno" href="#FRC.Shell.val_ofNat">61</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcCore/Shell.lean#L61" title="this line on GitHub (new tab)" target="_blank" rel="noopener">⧉</a><img class="leanico small ok" src="../lean-ok.png" alt="" title="axioms: none — tier 0, no axioms">@[simp] theorem val_ofNat (n : Nat) : (ofNat n : Shell p).val = n % p := rfl</span>
+<span class="ln decl" id="FRC.Shell.val_add"><a class="lno" href="#FRC.Shell.val_add">62</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcCore/Shell.lean#L62" title="this line on GitHub (new tab)" target="_blank" rel="noopener">⧉</a><img class="leanico small ok" src="../lean-ok.png" alt="" title="axioms: none — tier 0, no axioms">theorem val_add (a b : Shell p) : (a + b).val = (a.val + b.val) % p := rfl</span>
+<span class="ln decl" id="FRC.Shell.val_mul"><a class="lno" href="#FRC.Shell.val_mul">63</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcCore/Shell.lean#L63" title="this line on GitHub (new tab)" target="_blank" rel="noopener">⧉</a><img class="leanico small ok" src="../lean-ok.png" alt="" title="axioms: none — tier 0, no axioms">theorem val_mul (a b : Shell p) : (a * b).val = (a.val * b.val) % p := rfl</span>
+<span class="ln decl" id="FRC.Shell.val_neg"><a class="lno" href="#FRC.Shell.val_neg">64</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcCore/Shell.lean#L64" title="this line on GitHub (new tab)" target="_blank" rel="noopener">⧉</a><img class="leanico small ok" src="../lean-ok.png" alt="" title="axioms: none — tier 0, no axioms">theorem val_neg (a : Shell p) : (-a).val = (p - a.val) % p := rfl</span>
+<span class="ln decl" id="FRC.Shell.val_lit"><a class="lno" href="#FRC.Shell.val_lit">65</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcCore/Shell.lean#L65" title="this line on GitHub (new tab)" target="_blank" rel="noopener">⧉</a><img class="leanico small ok" src="../lean-ok.png" alt="" title="axioms: none — tier 0, no axioms">theorem val_lit (n : Nat) : (OfNat.ofNat n : Shell p).val = n % p := rfl</span>
+<span class="ln decl" id="FRC.Shell.val_zero"><a class="lno" href="#FRC.Shell.val_zero">66</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcCore/Shell.lean#L66" title="this line on GitHub (new tab)" target="_blank" rel="noopener">⧉</a><img class="leanico small ok" src="../lean-ok.png" alt="" title="axioms: none — tier 0, no axioms">theorem val_zero : (0 : Shell p).val = 0 := rfl</span>
+<span class="ln decl" id="FRC.Shell.val_one"><a class="lno" href="#FRC.Shell.val_one">67</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcCore/Shell.lean#L67" title="this line on GitHub (new tab)" target="_blank" rel="noopener">⧉</a><img class="leanico small ok" src="../lean-ok.png" alt="" title="axioms: none — tier 0, no axioms">theorem val_one : (1 : Shell p).val = 1 % p := rfl</span>
+<span class="ln decl" id="FRC.Shell.pow_zero"><a class="lno" href="#FRC.Shell.pow_zero">68</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcCore/Shell.lean#L68" title="this line on GitHub (new tab)" target="_blank" rel="noopener">⧉</a><img class="leanico small ok" src="../lean-ok.png" alt="" title="axioms: none — tier 0, no axioms">theorem pow_zero (a : Shell p) : a ^ 0 = 1 := rfl</span>
+<span class="ln decl" id="FRC.Shell.pow_succ"><a class="lno" href="#FRC.Shell.pow_succ">69</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcCore/Shell.lean#L69" title="this line on GitHub (new tab)" target="_blank" rel="noopener">⧉</a><img class="leanico small ok" src="../lean-ok.png" alt="" title="axioms: none — tier 0, no axioms">theorem pow_succ (a : Shell p) (n : Nat) : a ^ (n + 1) = a ^ n * a := rfl</span>
+<span class="ln" id="L70"><a class="lno" href="#L70">70</a></span>
+<span class="ln decl" id="FRC.Shell.ofNat_val"><a class="lno" href="#FRC.Shell.ofNat_val">71</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcCore/Shell.lean#L71" title="this line on GitHub (new tab)" target="_blank" rel="noopener">⧉</a><img class="leanico small ok" src="../lean-ok.png" alt="" title="axioms: none — tier 0, no axioms">theorem ofNat_val (a : Shell p) : ofNat a.val = a :=</span>
+<span class="ln" id="L72"><a class="lno" href="#L72">72</a>  ext (FRC.Nat.mod_eq_of_lt a.lt)</span>
+<span class="ln" id="L73"><a class="lno" href="#L73">73</a></span>
+<span class="ln decl" id="FRC.Shell.ofNat_mod"><a class="lno" href="#FRC.Shell.ofNat_mod">74</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcCore/Shell.lean#L74" title="this line on GitHub (new tab)" target="_blank" rel="noopener">⧉</a><img class="leanico small ok" src="../lean-ok.png" alt="" title="axioms: none — tier 0, no axioms">theorem ofNat_mod (n : Nat) : (ofNat (n % p) : Shell p) = ofNat n :=</span>
+<span class="ln" id="L75"><a class="lno" href="#L75">75</a>  ext (FRC.Nat.mod_mod n p hp)</span>
+<span class="ln" id="L76"><a class="lno" href="#L76">76</a></span>
+<span class="ln" id="L77"><a class="lno" href="#L77">77</a>/-! ### The additive laws -/</span>
+<span class="ln" id="L78"><a class="lno" href="#L78">78</a></span>
+<span class="ln decl" id="FRC.Shell.add_comm"><a class="lno" href="#FRC.Shell.add_comm">79</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcCore/Shell.lean#L79" title="this line on GitHub (new tab)" target="_blank" rel="noopener">⧉</a><img class="leanico small ok" src="../lean-ok.png" alt="" title="axioms: none — tier 0, no axioms">theorem add_comm (a b : Shell p) : a + b = b + a :=</span>
+<span class="ln" id="L80"><a class="lno" href="#L80">80</a>  ext (by rw [val_add, val_add, Nat.add_comm])</span>
+<span class="ln" id="L81"><a class="lno" href="#L81">81</a></span>
+<span class="ln decl" id="FRC.Shell.add_assoc"><a class="lno" href="#FRC.Shell.add_assoc">82</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcCore/Shell.lean#L82" title="this line on GitHub (new tab)" target="_blank" rel="noopener">⧉</a><img class="leanico small ok" src="../lean-ok.png" alt="" title="axioms: none — tier 0, no axioms">theorem add_assoc (a b c : Shell p) : a + b + c = a + (b + c) :=</span>
+<span class="ln" id="L83"><a class="lno" href="#L83">83</a>  ext (by</span>
+<span class="ln" id="L84"><a class="lno" href="#L84">84</a>    rw [val_add, val_add, val_add, val_add, FRC.Nat.mod_add_mod _ _ _ hp, FRC.Nat.add_mod_mod _ _ _ hp,</span>
+<span class="ln" id="L85"><a class="lno" href="#L85">85</a>      Nat.add_assoc])</span>
+<span class="ln" id="L86"><a class="lno" href="#L86">86</a></span>
+<span class="ln decl" id="FRC.Shell.zero_add"><a class="lno" href="#FRC.Shell.zero_add">87</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcCore/Shell.lean#L87" title="this line on GitHub (new tab)" target="_blank" rel="noopener">⧉</a><img class="leanico small ok" src="../lean-ok.png" alt="" title="axioms: none — tier 0, no axioms">theorem zero_add (a : Shell p) : 0 + a = a :=</span>
+<span class="ln" id="L88"><a class="lno" href="#L88">88</a>  ext (by rw [val_add, val_zero, Nat.zero_add]; exact FRC.Nat.mod_eq_of_lt a.lt)</span>
+<span class="ln" id="L89"><a class="lno" href="#L89">89</a></span>
+<span class="ln decl" id="FRC.Shell.add_zero"><a class="lno" href="#FRC.Shell.add_zero">90</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcCore/Shell.lean#L90" title="this line on GitHub (new tab)" target="_blank" rel="noopener">⧉</a><img class="leanico small ok" src="../lean-ok.png" alt="" title="axioms: none — tier 0, no axioms">theorem add_zero (a : Shell p) : a + 0 = a := by rw [add_comm]; exact zero_add a</span>
+<span class="ln" id="L91"><a class="lno" href="#L91">91</a></span>
+<span class="ln decl" id="FRC.Shell.add_left_comm"><a class="lno" href="#FRC.Shell.add_left_comm">92</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcCore/Shell.lean#L92" title="this line on GitHub (new tab)" target="_blank" rel="noopener">⧉</a><img class="leanico small ok" src="../lean-ok.png" alt="" title="axioms: none — tier 0, no axioms">theorem add_left_comm (a b c : Shell p) : a + (b + c) = b + (a + c) := by</span>
+<span class="ln" id="L93"><a class="lno" href="#L93">93</a>  rw [← add_assoc, add_comm a b, add_assoc]</span>
+<span class="ln" id="L94"><a class="lno" href="#L94">94</a></span>
+<span class="ln decl" id="FRC.Shell.add_add_add_comm"><a class="lno" href="#FRC.Shell.add_add_add_comm">95</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcCore/Shell.lean#L95" title="this line on GitHub (new tab)" target="_blank" rel="noopener">⧉</a><img class="leanico small ok" src="../lean-ok.png" alt="" title="axioms: none — tier 0, no axioms">theorem add_add_add_comm (a b c d : Shell p) : a + b + (c + d) = a + c + (b + d) := by</span>
+<span class="ln" id="L96"><a class="lno" href="#L96">96</a>  rw [add_assoc, add_assoc, add_left_comm b]</span>
+<span class="ln" id="L97"><a class="lno" href="#L97">97</a></span>
+<span class="ln" id="L98"><a class="lno" href="#L98">98</a>/-! ### The multiplicative laws -/</span>
+<span class="ln" id="L99"><a class="lno" href="#L99">99</a></span>
+<span class="ln decl" id="FRC.Shell.mul_comm"><a class="lno" href="#FRC.Shell.mul_comm">100</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcCore/Shell.lean#L100" title="this line on GitHub (new tab)" target="_blank" rel="noopener">⧉</a><img class="leanico small ok" src="../lean-ok.png" alt="" title="axioms: none — tier 0, no axioms">theorem mul_comm (a b : Shell p) : a * b = b * a :=</span>
+<span class="ln" id="L101"><a class="lno" href="#L101">101</a>  ext (by rw [val_mul, val_mul, Nat.mul_comm])</span>
+<span class="ln" id="L102"><a class="lno" href="#L102">102</a></span>
+<span class="ln decl" id="FRC.Shell.mul_assoc"><a class="lno" href="#FRC.Shell.mul_assoc">103</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcCore/Shell.lean#L103" title="this line on GitHub (new tab)" target="_blank" rel="noopener">⧉</a><img class="leanico small ok" src="../lean-ok.png" alt="" title="axioms: none — tier 0, no axioms">theorem mul_assoc (a b c : Shell p) : a * b * c = a * (b * c) :=</span>
+<span class="ln" id="L104"><a class="lno" href="#L104">104</a>  ext (by</span>
+<span class="ln" id="L105"><a class="lno" href="#L105">105</a>    rw [val_mul, val_mul, val_mul, val_mul, FRC.Nat.mod_mul_mod _ _ _ hp, FRC.Nat.mul_mod_mod _ _ _ hp,</span>
+<span class="ln" id="L106"><a class="lno" href="#L106">106</a>      FRC.Nat.mul_assoc])</span>
+<span class="ln" id="L107"><a class="lno" href="#L107">107</a></span>
+<span class="ln decl" id="FRC.Shell.one_mul"><a class="lno" href="#FRC.Shell.one_mul">108</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcCore/Shell.lean#L108" title="this line on GitHub (new tab)" target="_blank" rel="noopener">⧉</a><img class="leanico small ok" src="../lean-ok.png" alt="" title="axioms: none — tier 0, no axioms">theorem one_mul (a : Shell p) : 1 * a = a :=</span>
+<span class="ln" id="L109"><a class="lno" href="#L109">109</a>  ext (by rw [val_mul, val_one, FRC.Nat.mod_mul_mod _ _ _ hp, Nat.one_mul]; exact FRC.Nat.mod_eq_of_lt a.lt)</span>
+<span class="ln" id="L110"><a class="lno" href="#L110">110</a></span>
+<span class="ln decl" id="FRC.Shell.mul_one"><a class="lno" href="#FRC.Shell.mul_one">111</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcCore/Shell.lean#L111" title="this line on GitHub (new tab)" target="_blank" rel="noopener">⧉</a><img class="leanico small ok" src="../lean-ok.png" alt="" title="axioms: none — tier 0, no axioms">theorem mul_one (a : Shell p) : a * 1 = a := by rw [mul_comm]; exact one_mul a</span>
+<span class="ln" id="L112"><a class="lno" href="#L112">112</a></span>
+<span class="ln decl" id="FRC.Shell.zero_mul"><a class="lno" href="#FRC.Shell.zero_mul">113</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcCore/Shell.lean#L113" title="this line on GitHub (new tab)" target="_blank" rel="noopener">⧉</a><img class="leanico small ok" src="../lean-ok.png" alt="" title="axioms: none — tier 0, no axioms">theorem zero_mul (a : Shell p) : 0 * a = 0 :=</span>
+<span class="ln" id="L114"><a class="lno" href="#L114">114</a>  ext (by rw [val_mul, val_zero, Nat.zero_mul]; rfl)</span>
+<span class="ln" id="L115"><a class="lno" href="#L115">115</a></span>
+<span class="ln decl" id="FRC.Shell.mul_zero"><a class="lno" href="#FRC.Shell.mul_zero">116</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcCore/Shell.lean#L116" title="this line on GitHub (new tab)" target="_blank" rel="noopener">⧉</a><img class="leanico small ok" src="../lean-ok.png" alt="" title="axioms: none — tier 0, no axioms">theorem mul_zero (a : Shell p) : a * 0 = 0 := by rw [mul_comm]; exact zero_mul a</span>
+<span class="ln" id="L117"><a class="lno" href="#L117">117</a></span>
+<span class="ln decl" id="FRC.Shell.mul_left_comm"><a class="lno" href="#FRC.Shell.mul_left_comm">118</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcCore/Shell.lean#L118" title="this line on GitHub (new tab)" target="_blank" rel="noopener">⧉</a><img class="leanico small ok" src="../lean-ok.png" alt="" title="axioms: none — tier 0, no axioms">theorem mul_left_comm (a b c : Shell p) : a * (b * c) = b * (a * c) := by</span>
+<span class="ln" id="L119"><a class="lno" href="#L119">119</a>  rw [← mul_assoc, mul_comm a b, mul_assoc]</span>
+<span class="ln" id="L120"><a class="lno" href="#L120">120</a></span>
+<span class="ln decl" id="FRC.Shell.left_distrib"><a class="lno" href="#FRC.Shell.left_distrib">121</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcCore/Shell.lean#L121" title="this line on GitHub (new tab)" target="_blank" rel="noopener">⧉</a><img class="leanico small ok" src="../lean-ok.png" alt="" title="axioms: none — tier 0, no axioms">theorem left_distrib (a b c : Shell p) : a * (b + c) = a * b + a * c :=</span>
+<span class="ln" id="L122"><a class="lno" href="#L122">122</a>  ext (by</span>
+<span class="ln" id="L123"><a class="lno" href="#L123">123</a>    rw [val_mul, val_add, val_add, val_mul, val_mul, FRC.Nat.mul_mod_mod _ _ _ hp,</span>
+<span class="ln" id="L124"><a class="lno" href="#L124">124</a>      FRC.Nat.add_mod _ _ _ hp, FRC.Nat.mod_mod _ _ hp, FRC.Nat.mod_mod _ _ hp, ← FRC.Nat.add_mod _ _ _ hp,</span>
+<span class="ln" id="L125"><a class="lno" href="#L125">125</a>      Nat.left_distrib])</span>
+<span class="ln" id="L126"><a class="lno" href="#L126">126</a></span>
+<span class="ln decl" id="FRC.Shell.right_distrib"><a class="lno" href="#FRC.Shell.right_distrib">127</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcCore/Shell.lean#L127" title="this line on GitHub (new tab)" target="_blank" rel="noopener">⧉</a><img class="leanico small ok" src="../lean-ok.png" alt="" title="axioms: none — tier 0, no axioms">theorem right_distrib (a b c : Shell p) : (a + b) * c = a * c + b * c := by</span>
+<span class="ln" id="L128"><a class="lno" href="#L128">128</a>  rw [mul_comm, left_distrib, mul_comm c a, mul_comm c b]</span>
+<span class="ln" id="L129"><a class="lno" href="#L129">129</a></span>
+<span class="ln" id="L130"><a class="lno" href="#L130">130</a>/-! ### Negation, characterised by `add_neg` -/</span>
+<span class="ln" id="L131"><a class="lno" href="#L131">131</a></span>
+<span class="ln decl" id="FRC.Shell.add_neg"><a class="lno" href="#FRC.Shell.add_neg">132</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcCore/Shell.lean#L132" title="this line on GitHub (new tab)" target="_blank" rel="noopener">⧉</a><img class="leanico small ok" src="../lean-ok.png" alt="" title="axioms: none — tier 0, no axioms">theorem add_neg (a : Shell p) : a + -a = 0 :=</span>
+<span class="ln" id="L133"><a class="lno" href="#L133">133</a>  ext (by</span>
+<span class="ln" id="L134"><a class="lno" href="#L134">134</a>    rw [val_add, val_neg, FRC.Nat.add_mod_mod _ _ _ hp, FRC.Nat.add_sub_of_le (Nat.le_of_lt a.lt),</span>
+<span class="ln" id="L135"><a class="lno" href="#L135">135</a>      FRC.Nat.mod_self p hp]; rfl)</span>
+<span class="ln" id="L136"><a class="lno" href="#L136">136</a></span>
+<span class="ln decl" id="FRC.Shell.neg_add"><a class="lno" href="#FRC.Shell.neg_add">137</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcCore/Shell.lean#L137" title="this line on GitHub (new tab)" target="_blank" rel="noopener">⧉</a><img class="leanico small ok" src="../lean-ok.png" alt="" title="axioms: none — tier 0, no axioms">theorem neg_add (a : Shell p) : -a + a = 0 := by rw [add_comm]; exact add_neg a</span>
+<span class="ln" id="L138"><a class="lno" href="#L138">138</a></span>
+<span class="ln" id="L139"><a class="lno" href="#L139">139</a>/-- Additive inverses are unique. -/</span>
+<span class="ln decl" id="FRC.Shell.neg_unique"><a class="lno" href="#FRC.Shell.neg_unique">140</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcCore/Shell.lean#L140" title="this line on GitHub (new tab)" target="_blank" rel="noopener">⧉</a><img class="leanico small ok" src="../lean-ok.png" alt="" title="axioms: none — tier 0, no axioms">theorem neg_unique {a x y : Shell p} (hx : a + x = 0) (hy : a + y = 0) : x = y := by</span>
+<span class="ln" id="L141"><a class="lno" href="#L141">141</a>  calc x = x + 0 := (add_zero x).symm</span>
+<span class="ln" id="L142"><a class="lno" href="#L142">142</a>    _ = x + (a + y) := by rw [hy]</span>
+<span class="ln" id="L143"><a class="lno" href="#L143">143</a>    _ = (x + a) + y := (add_assoc _ _ _).symm</span>
+<span class="ln" id="L144"><a class="lno" href="#L144">144</a>    _ = (a + x) + y := by rw [add_comm x a]</span>
+<span class="ln" id="L145"><a class="lno" href="#L145">145</a>    _ = 0 + y := by rw [hx]</span>
+<span class="ln" id="L146"><a class="lno" href="#L146">146</a>    _ = y := zero_add y</span>
+<span class="ln" id="L147"><a class="lno" href="#L147">147</a></span>
+<span class="ln decl" id="FRC.Shell.neg_eq_of_add_eq_zero"><a class="lno" href="#FRC.Shell.neg_eq_of_add_eq_zero">148</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcCore/Shell.lean#L148" title="this line on GitHub (new tab)" target="_blank" rel="noopener">⧉</a><img class="leanico small ok" src="../lean-ok.png" alt="" title="axioms: none — tier 0, no axioms">theorem neg_eq_of_add_eq_zero {a b : Shell p} (h : a + b = 0) : -a = b :=</span>
+<span class="ln" id="L149"><a class="lno" href="#L149">149</a>  neg_unique (add_neg a) h</span>
+<span class="ln" id="L150"><a class="lno" href="#L150">150</a></span>
+<span class="ln decl" id="FRC.Shell.neg_neg"><a class="lno" href="#FRC.Shell.neg_neg">151</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcCore/Shell.lean#L151" title="this line on GitHub (new tab)" target="_blank" rel="noopener">⧉</a><img class="leanico small ok" src="../lean-ok.png" alt="" title="axioms: none — tier 0, no axioms">theorem neg_neg (a : Shell p) : - -a = a :=</span>
+<span class="ln" id="L152"><a class="lno" href="#L152">152</a>  neg_eq_of_add_eq_zero (neg_add a)</span>
+<span class="ln" id="L153"><a class="lno" href="#L153">153</a></span>
+<span class="ln decl" id="FRC.Shell.neg_zero"><a class="lno" href="#FRC.Shell.neg_zero">154</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcCore/Shell.lean#L154" title="this line on GitHub (new tab)" target="_blank" rel="noopener">⧉</a><img class="leanico small ok" src="../lean-ok.png" alt="" title="axioms: none — tier 0, no axioms">theorem neg_zero : (-0 : Shell p) = 0 :=</span>
+<span class="ln" id="L155"><a class="lno" href="#L155">155</a>  neg_eq_of_add_eq_zero (add_zero 0)</span>
+<span class="ln" id="L156"><a class="lno" href="#L156">156</a></span>
+<span class="ln decl" id="FRC.Shell.neg_mul"><a class="lno" href="#FRC.Shell.neg_mul">157</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcCore/Shell.lean#L157" title="this line on GitHub (new tab)" target="_blank" rel="noopener">⧉</a><img class="leanico small ok" src="../lean-ok.png" alt="" title="axioms: none — tier 0, no axioms">theorem neg_mul (a b : Shell p) : -(a * b) = -a * b :=</span>
+<span class="ln" id="L158"><a class="lno" href="#L158">158</a>  neg_eq_of_add_eq_zero (by rw [← right_distrib, add_neg, zero_mul])</span>
+<span class="ln" id="L159"><a class="lno" href="#L159">159</a></span>
+<span class="ln decl" id="FRC.Shell.mul_neg"><a class="lno" href="#FRC.Shell.mul_neg">160</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcCore/Shell.lean#L160" title="this line on GitHub (new tab)" target="_blank" rel="noopener">⧉</a><img class="leanico small ok" src="../lean-ok.png" alt="" title="axioms: none — tier 0, no axioms">theorem mul_neg (a b : Shell p) : -(a * b) = a * -b := by</span>
+<span class="ln" id="L161"><a class="lno" href="#L161">161</a>  rw [mul_comm, neg_mul, mul_comm]</span>
+<span class="ln" id="L162"><a class="lno" href="#L162">162</a></span>
+<span class="ln decl" id="FRC.Shell.neg_mul_neg"><a class="lno" href="#FRC.Shell.neg_mul_neg">163</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcCore/Shell.lean#L163" title="this line on GitHub (new tab)" target="_blank" rel="noopener">⧉</a><img class="leanico small ok" src="../lean-ok.png" alt="" title="axioms: none — tier 0, no axioms">theorem neg_mul_neg (a b : Shell p) : -a * -b = a * b := by</span>
+<span class="ln" id="L164"><a class="lno" href="#L164">164</a>  rw [← neg_mul, ← mul_neg, neg_neg]</span>
+<span class="ln" id="L165"><a class="lno" href="#L165">165</a></span>
+<span class="ln decl" id="FRC.Shell.neg_add_rev"><a class="lno" href="#FRC.Shell.neg_add_rev">166</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcCore/Shell.lean#L166" title="this line on GitHub (new tab)" target="_blank" rel="noopener">⧉</a><img class="leanico small ok" src="../lean-ok.png" alt="" title="axioms: none — tier 0, no axioms">theorem neg_add_rev (a b : Shell p) : -(a + b) = -a + -b :=</span>
+<span class="ln" id="L167"><a class="lno" href="#L167">167</a>  neg_eq_of_add_eq_zero (by</span>
+<span class="ln" id="L168"><a class="lno" href="#L168">168</a>    rw [add_assoc, add_left_comm b, ← add_assoc, add_neg, zero_add, add_neg])</span>
+<span class="ln" id="L169"><a class="lno" href="#L169">169</a></span>
+<span class="ln decl" id="FRC.Shell.add_right_cancel"><a class="lno" href="#FRC.Shell.add_right_cancel">170</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcCore/Shell.lean#L170" title="this line on GitHub (new tab)" target="_blank" rel="noopener">⧉</a><img class="leanico small ok" src="../lean-ok.png" alt="" title="axioms: none — tier 0, no axioms">theorem add_right_cancel {a b c : Shell p} (h : a + c = b + c) : a = b := by</span>
+<span class="ln" id="L171"><a class="lno" href="#L171">171</a>  have : a + c + -c = b + c + -c := by rw [h]</span>
+<span class="ln" id="L172"><a class="lno" href="#L172">172</a>  rw [add_assoc, add_neg, add_zero, add_assoc, add_neg, add_zero] at this</span>
+<span class="ln" id="L173"><a class="lno" href="#L173">173</a>  exact this</span>
+<span class="ln" id="L174"><a class="lno" href="#L174">174</a></span>
+<span class="ln decl" id="FRC.Shell.eq_neg_of_add_eq_zero"><a class="lno" href="#FRC.Shell.eq_neg_of_add_eq_zero">175</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcCore/Shell.lean#L175" title="this line on GitHub (new tab)" target="_blank" rel="noopener">⧉</a><img class="leanico small ok" src="../lean-ok.png" alt="" title="axioms: none — tier 0, no axioms">theorem eq_neg_of_add_eq_zero {a b : Shell p} (h : a + b = 0) : a = -b := by</span>
+<span class="ln" id="L176"><a class="lno" href="#L176">176</a>  rw [← neg_neg a, neg_eq_of_add_eq_zero h]</span>
+<span class="ln" id="L177"><a class="lno" href="#L177">177</a></span>
+<span class="ln decl" id="FRC.Shell.neg_one_mul"><a class="lno" href="#FRC.Shell.neg_one_mul">178</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcCore/Shell.lean#L178" title="this line on GitHub (new tab)" target="_blank" rel="noopener">⧉</a><img class="leanico small ok" src="../lean-ok.png" alt="" title="axioms: none — tier 0, no axioms">theorem neg_one_mul (a : Shell p) : -1 * a = -a := by rw [← neg_mul, one_mul]</span>
+<span class="ln" id="L179"><a class="lno" href="#L179">179</a></span>
+<span class="ln" id="L180"><a class="lno" href="#L180">180</a>/-! ### Powers -/</span>
+<span class="ln" id="L181"><a class="lno" href="#L181">181</a></span>
+<span class="ln decl" id="FRC.Shell.pow_one"><a class="lno" href="#FRC.Shell.pow_one">182</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcCore/Shell.lean#L182" title="this line on GitHub (new tab)" target="_blank" rel="noopener">⧉</a><img class="leanico small ok" src="../lean-ok.png" alt="" title="axioms: none — tier 0, no axioms">theorem pow_one (a : Shell p) : a ^ 1 = a := by rw [pow_succ, pow_zero, one_mul]</span>
+<span class="ln" id="L183"><a class="lno" href="#L183">183</a></span>
+<span class="ln decl" id="FRC.Shell.one_pow"><a class="lno" href="#FRC.Shell.one_pow">184</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcCore/Shell.lean#L184" title="this line on GitHub (new tab)" target="_blank" rel="noopener">⧉</a><img class="leanico small ok" src="../lean-ok.png" alt="" title="axioms: none — tier 0, no axioms">theorem one_pow (n : Nat) : (1 : Shell p) ^ n = 1 := by</span>
+<span class="ln" id="L185"><a class="lno" href="#L185">185</a>  induction n with</span>
+<span class="ln" id="L186"><a class="lno" href="#L186">186</a>  | zero =&gt; rfl</span>
+<span class="ln" id="L187"><a class="lno" href="#L187">187</a>  | succ n ih =&gt; rw [pow_succ, ih, mul_one]</span>
+<span class="ln" id="L188"><a class="lno" href="#L188">188</a></span>
+<span class="ln decl" id="FRC.Shell.pow_add"><a class="lno" href="#FRC.Shell.pow_add">189</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcCore/Shell.lean#L189" title="this line on GitHub (new tab)" target="_blank" rel="noopener">⧉</a><img class="leanico small ok" src="../lean-ok.png" alt="" title="axioms: none — tier 0, no axioms">theorem pow_add (a : Shell p) (m n : Nat) : a ^ (m + n) = a ^ m * a ^ n := by</span>
+<span class="ln" id="L190"><a class="lno" href="#L190">190</a>  induction n with</span>
+<span class="ln" id="L191"><a class="lno" href="#L191">191</a>  | zero =&gt; rw [Nat.add_zero, pow_zero, mul_one]</span>
+<span class="ln" id="L192"><a class="lno" href="#L192">192</a>  | succ n ih =&gt; rw [Nat.add_succ, pow_succ, ih, pow_succ, mul_assoc]</span>
+<span class="ln" id="L193"><a class="lno" href="#L193">193</a></span>
+<span class="ln decl" id="FRC.Shell.pow_mul"><a class="lno" href="#FRC.Shell.pow_mul">194</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcCore/Shell.lean#L194" title="this line on GitHub (new tab)" target="_blank" rel="noopener">⧉</a><img class="leanico small ok" src="../lean-ok.png" alt="" title="axioms: none — tier 0, no axioms">theorem pow_mul (a : Shell p) (m n : Nat) : a ^ (m * n) = (a ^ m) ^ n := by</span>
+<span class="ln" id="L195"><a class="lno" href="#L195">195</a>  induction n with</span>
+<span class="ln" id="L196"><a class="lno" href="#L196">196</a>  | zero =&gt; rw [Nat.mul_zero, pow_zero, pow_zero]</span>
+<span class="ln" id="L197"><a class="lno" href="#L197">197</a>  | succ n ih =&gt; rw [Nat.mul_succ, pow_add, ih, pow_succ]</span>
+<span class="ln" id="L198"><a class="lno" href="#L198">198</a></span>
+<span class="ln decl" id="FRC.Shell.pow_mul_comm"><a class="lno" href="#FRC.Shell.pow_mul_comm">199</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcCore/Shell.lean#L199" title="this line on GitHub (new tab)" target="_blank" rel="noopener">⧉</a><img class="leanico small ok" src="../lean-ok.png" alt="" title="axioms: none — tier 0, no axioms">theorem pow_mul_comm (a : Shell p) (m n : Nat) : (a ^ m) ^ n = (a ^ n) ^ m := by</span>
+<span class="ln" id="L200"><a class="lno" href="#L200">200</a>  rw [← pow_mul, Nat.mul_comm, pow_mul]</span>
+<span class="ln" id="L201"><a class="lno" href="#L201">201</a></span>
+<span class="ln decl" id="FRC.Shell.mul_pow"><a class="lno" href="#FRC.Shell.mul_pow">202</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcCore/Shell.lean#L202" title="this line on GitHub (new tab)" target="_blank" rel="noopener">⧉</a><img class="leanico small ok" src="../lean-ok.png" alt="" title="axioms: none — tier 0, no axioms">theorem mul_pow (a b : Shell p) (n : Nat) : (a * b) ^ n = a ^ n * b ^ n := by</span>
+<span class="ln" id="L203"><a class="lno" href="#L203">203</a>  induction n with</span>
+<span class="ln" id="L204"><a class="lno" href="#L204">204</a>  | zero =&gt; rw [pow_zero, pow_zero, pow_zero, mul_one]</span>
+<span class="ln" id="L205"><a class="lno" href="#L205">205</a>  | succ n ih =&gt;</span>
+<span class="ln" id="L206"><a class="lno" href="#L206">206</a>    rw [pow_succ, pow_succ, pow_succ, ih, mul_assoc, mul_assoc, mul_left_comm (b ^ n) a b]</span>
+<span class="ln" id="L207"><a class="lno" href="#L207">207</a></span>
+<span class="ln decl" id="FRC.Shell.pow_two"><a class="lno" href="#FRC.Shell.pow_two">208</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcCore/Shell.lean#L208" title="this line on GitHub (new tab)" target="_blank" rel="noopener">⧉</a><img class="leanico small ok" src="../lean-ok.png" alt="" title="axioms: none — tier 0, no axioms">theorem pow_two (a : Shell p) : a ^ 2 = a * a := by rw [pow_succ, pow_one]</span>
+<span class="ln" id="L209"><a class="lno" href="#L209">209</a></span>
+<span class="ln decl" id="FRC.Shell.neg_pow_two"><a class="lno" href="#FRC.Shell.neg_pow_two">210</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcCore/Shell.lean#L210" title="this line on GitHub (new tab)" target="_blank" rel="noopener">⧉</a><img class="leanico small ok" src="../lean-ok.png" alt="" title="axioms: none — tier 0, no axioms">theorem neg_pow_two (a : Shell p) : (-a) ^ 2 = a ^ 2 := by rw [pow_two, pow_two, neg_mul_neg]</span>
+<span class="ln" id="L211"><a class="lno" href="#L211">211</a></span>
+<span class="ln" id="L212"><a class="lno" href="#L212">212</a>/-- `(-1)^n` by the parity of `n`. -/</span>
+<span class="ln decl" id="FRC.Shell.neg_one_pow"><a class="lno" href="#FRC.Shell.neg_one_pow">213</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcCore/Shell.lean#L213" title="this line on GitHub (new tab)" target="_blank" rel="noopener">⧉</a><img class="leanico small ok" src="../lean-ok.png" alt="" title="axioms: none — tier 0, no axioms">theorem neg_one_pow (n : Nat) : (-1 : Shell p) ^ n = if n % 2 = 0 then 1 else -1 := by</span>
+<span class="ln" id="L214"><a class="lno" href="#L214">214</a>  induction n with</span>
+<span class="ln" id="L215"><a class="lno" href="#L215">215</a>  | zero =&gt; rfl</span>
+<span class="ln" id="L216"><a class="lno" href="#L216">216</a>  | succ n ih =&gt;</span>
+<span class="ln" id="L217"><a class="lno" href="#L217">217</a>    rw [pow_succ, ih]</span>
+<span class="ln" id="L218"><a class="lno" href="#L218">218</a>    exact match Nat.decEq (n % 2) 0 with</span>
+<span class="ln" id="L219"><a class="lno" href="#L219">219</a>      | .isTrue h =&gt; by</span>
+<span class="ln" id="L220"><a class="lno" href="#L220">220</a>          rw [if_pos h, one_mul]</span>
+<span class="ln" id="L221"><a class="lno" href="#L221">221</a>          have : (n + 1) % 2 = 1 := by</span>
+<span class="ln" id="L222"><a class="lno" href="#L222">222</a>            rw [← FRC.Nat.mod_add_mod _ _ _ (Nat.zero_lt_succ 1), h]</span>
+<span class="ln" id="L223"><a class="lno" href="#L223">223</a>          rw [if_neg (by rw [this]; exact fun e =&gt; Nat.noConfusion e)]</span>
+<span class="ln" id="L224"><a class="lno" href="#L224">224</a>      | .isFalse h =&gt; by</span>
+<span class="ln" id="L225"><a class="lno" href="#L225">225</a>          rw [if_neg h, neg_mul_neg, one_mul]</span>
+<span class="ln" id="L226"><a class="lno" href="#L226">226</a>          have h1 : n % 2 = 1 := by</span>
+<span class="ln" id="L227"><a class="lno" href="#L227">227</a>            have := Nat.mod_lt n (Nat.zero_lt_succ 1)</span>
+<span class="ln" id="L228"><a class="lno" href="#L228">228</a>            exact match n % 2, this, h with</span>
+<span class="ln" id="L229"><a class="lno" href="#L229">229</a>              | 0, _, h =&gt; absurd rfl h</span>
+<span class="ln" id="L230"><a class="lno" href="#L230">230</a>              | 1, _, _ =&gt; rfl</span>
+<span class="ln" id="L231"><a class="lno" href="#L231">231</a>              | k + 2, hk, _ =&gt; absurd hk (Nat.not_lt_of_le (Nat.le_add_left 2 k))</span>
+<span class="ln" id="L232"><a class="lno" href="#L232">232</a>          have : (n + 1) % 2 = 0 := by</span>
+<span class="ln" id="L233"><a class="lno" href="#L233">233</a>            rw [← FRC.Nat.mod_add_mod _ _ _ (Nat.zero_lt_succ 1), h1]</span>
+<span class="ln" id="L234"><a class="lno" href="#L234">234</a>          rw [if_pos this]</span>
+<span class="ln" id="L235"><a class="lno" href="#L235">235</a></span>
+<span class="ln" id="L236"><a class="lno" href="#L236">236</a>end ops</span>
+<span class="ln" id="L237"><a class="lno" href="#L237">237</a></span>
+<span class="ln" id="L238"><a class="lno" href="#L238">238</a>end Shell</span>
+<span class="ln" id="L239"><a class="lno" href="#L239">239</a>end FRC</span>
+<span class="ln" id="L240"><a class="lno" href="#L240">240</a></span>
+</pre></main>
+</div>
+</body>
+</html>

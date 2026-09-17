@@ -1,5 +1,6 @@
 .lake/
 Axioms.lean
+CoreAxioms.lean
 *.olean
 *.ilean
 !axioms.log

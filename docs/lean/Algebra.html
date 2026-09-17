@@ -6,21 +6,21 @@
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-HNE3RMJ5L1"></script>
 <script> window.dataLayer = window.dataLayer || []; function gtag(){dataLayer.push(arguments);} gtag('js', new Date()); gtag('config', 'G-HNE3RMJ5L1'); </script>
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Algebra.lean — the Lean witnesses of 1-alg</title>
-<meta name="description" content="The Lean module Algebra of the FRC predicate ledgers, rendered with an anchor per declaration">
+<title>Algebra.lean — FrcLedger</title>
+<meta name="description" content="The Lean module FrcLedger/Algebra of the FRC predicate ledgers, rendered with an anchor per declaration">
 <meta name="author" content="Yosef Akhtman">
 <link rel="icon" href="../frc-logo-fav.png">
-<link rel="stylesheet" href="../style.css?v=487c5a7f">
+<link rel="stylesheet" href="../style.css?v=6ff22539">
 
 </head>
 <body>
 <div class="wrap">
   <header>
-    <h1>Algebra.lean — the Lean witnesses of 1-alg</h1>
+    <h1>Algebra.lean — FrcLedger</h1>
     
     <nav><a href="../index.html">Home</a><a href="../publications.html">Publications</a><a href="../00-ledger.html">Ledger</a><a href="../predictions.html">Predictions</a><a href="../explicability.html">Explicability</a></nav>
   </header>
-<main id="ledger-main"><section class="prose"><p>The Lean module <code>lean/FrcLedger/Algebra.lean</code> of the paper <a href="../1-algebra/1-algebra-ledger.html">1-alg</a>: 18 theorems (1 definitions), 18 with proofs that depend only on <code>propext</code>, <code>Classical.choice</code>, <code>Quot.sound</code> (the green glyph; red marks anything else, the plain glyph a definition). Each declaration is anchored; the ledger rows cite them by name. <a href="https://live.lean-lang.org/#project=mathlib-stable&url=https://raw.githubusercontent.com/gamayos/finite-ring-space/main/lean/web/Algebra.lean" target="_blank" rel="noopener">▶ open in the Lean web editor</a> · <a href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcLedger/Algebra.lean" target="_blank" rel="noopener">on GitHub</a> · <a href="https://github.com/gamayos/finite-ring-space/blob/main/lean/axioms.log" target="_blank" rel="noopener">axioms.log</a> · <a href="https://github.com/gamayos/finite-ring-space/actions/workflows/lean.yml" target="_blank" rel="noopener">CI</a> (all in a new tab).</p></section><pre class="lean"><span class="ln" id="L1"><a class="lno" href="#L1">1</a>import Mathlib</span>
+<main id="ledger-main"><section class="prose"><p>The Lean module <code>lean/FrcLedger/Algebra.lean</code> of the paper <a href="../1-algebra/1-algebra-ledger.html">1-alg</a> (on Mathlib): 18 theorems (1 definitions): 1 with no axioms (green), 1 at tier 1 (teal: <code>propext</code>, <code>Quot.sound</code>), 16 at tier 2 (amber: <code>Classical.choice</code>), 0 red; the plain glyph marks a definition. Each declaration is anchored; the ledger rows cite them by name. <a href="https://live.lean-lang.org/#project=mathlib-stable&url=https://raw.githubusercontent.com/gamayos/finite-ring-space/main/lean/web/Algebra.lean" target="_blank" rel="noopener">▶ open in the Lean web editor</a> · <a href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcLedger/Algebra.lean" target="_blank" rel="noopener">on GitHub</a> · <a href="https://github.com/gamayos/finite-ring-space/blob/main/lean/axioms.log" target="_blank" rel="noopener">axioms.log</a> · <a href="https://github.com/gamayos/finite-ring-space/actions/workflows/lean.yml" target="_blank" rel="noopener">CI</a> (all in a new tab).</p></section><pre class="lean"><span class="ln" id="L1"><a class="lno" href="#L1">1</a>import Mathlib</span>
 <span class="ln" id="L2"><a class="lno" href="#L2">2</a>import FrcLedger.Fourier</span>
 <span class="ln" id="L3"><a class="lno" href="#L3">3</a></span>
 <span class="ln" id="L4"><a class="lno" href="#L4">4</a>/-!</span>
@@ -48,7 +48,7 @@
 <span class="ln" id="L26"><a class="lno" href="#L26">26</a></span>
 <span class="ln" id="L27"><a class="lno" href="#L27">27</a>/-- 1:B2 (Theorem 1, existence clause): on the shell `card F = 4κ+1` a quarter-turn `u` with</span>
 <span class="ln" id="L28"><a class="lno" href="#L28">28</a>`u² = −1` exists. Mathlib: `FiniteField.isSquare_neg_one_iff`. -/</span>
-<span class="ln decl" id="FRC.Algebra.quarter_turn_exists"><a class="lno" href="#FRC.Algebra.quarter_turn_exists">29</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcLedger/Algebra.lean#L29" title="this line on GitHub (new tab)" target="_blank" rel="noopener">⧉</a><img class="leanico small ok" src="lean-ok.png" alt="" title="axioms: Classical.choice, Quot.sound, propext">theorem quarter_turn_exists (κ : ℕ) (hκ : Fintype.card F = 4 * κ + 1) :</span>
+<span class="ln decl" id="FRC.Algebra.quarter_turn_exists"><a class="lno" href="#FRC.Algebra.quarter_turn_exists">29</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcLedger/Algebra.lean#L29" title="this line on GitHub (new tab)" target="_blank" rel="noopener">⧉</a><img class="leanico small t2" src="lean-t2.png" alt="" title="axioms: Classical.choice, Quot.sound, propext — tier 2, classical">theorem quarter_turn_exists (κ : ℕ) (hκ : Fintype.card F = 4 * κ + 1) :</span>
 <span class="ln" id="L30"><a class="lno" href="#L30">30</a>    ∃ u : F, u ^ 2 = -1 := by</span>
 <span class="ln" id="L31"><a class="lno" href="#L31">31</a>  have h : IsSquare (-1 : F) := by</span>
 <span class="ln" id="L32"><a class="lno" href="#L32">32</a>    rw [FiniteField.isSquare_neg_one_iff, hκ]; omega</span>
@@ -56,7 +56,7 @@
 <span class="ln" id="L34"><a class="lno" href="#L34">34</a>  exact ⟨u, by rw [sq, ← hu]⟩</span>
 <span class="ln" id="L35"><a class="lno" href="#L35">35</a></span>
 <span class="ln" id="L36"><a class="lno" href="#L36">36</a>/-- Helper: the shell has odd cardinality, so `2 ≠ 0` in `F`. -/</span>
-<span class="ln decl" id="FRC.Algebra.two_ne_zero_shell"><a class="lno" href="#FRC.Algebra.two_ne_zero_shell">37</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcLedger/Algebra.lean#L37" title="this line on GitHub (new tab)" target="_blank" rel="noopener">⧉</a><img class="leanico small ok" src="lean-ok.png" alt="" title="axioms: Classical.choice, Quot.sound, propext">theorem two_ne_zero_shell (κ : ℕ) (hκ : Fintype.card F = 4 * κ + 1) : (2 : F) ≠ 0 := by</span>
+<span class="ln decl" id="FRC.Algebra.two_ne_zero_shell"><a class="lno" href="#FRC.Algebra.two_ne_zero_shell">37</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcLedger/Algebra.lean#L37" title="this line on GitHub (new tab)" target="_blank" rel="noopener">⧉</a><img class="leanico small t2" src="lean-t2.png" alt="" title="axioms: Classical.choice, Quot.sound, propext — tier 2, classical">theorem two_ne_zero_shell (κ : ℕ) (hκ : Fintype.card F = 4 * κ + 1) : (2 : F) ≠ 0 := by</span>
 <span class="ln" id="L38"><a class="lno" href="#L38">38</a>  intro h2</span>
 <span class="ln" id="L39"><a class="lno" href="#L39">39</a>  have hdvd : ringChar F ∣ 2 := (ringChar.spec F 2).1 (by exact_mod_cast h2)</span>
 <span class="ln" id="L40"><a class="lno" href="#L40">40</a>  have hchar : ringChar F = 2 :=</span>
@@ -67,7 +67,7 @@
 <span class="ln" id="L45"><a class="lno" href="#L45">45</a>/-- 1:B2 (Theorem 1, orbit clause): for a unit `x` with `x² ≠ 1` and `x² ≠ −1` the four</span>
 <span class="ln" id="L46"><a class="lno" href="#L46">46</a>elements `x, −x, x⁻¹, −x⁻¹` of the Klein-four orbit are pairwise distinct (any field of</span>
 <span class="ln" id="L47"><a class="lno" href="#L47">47</a>characteristic `≠ 2`); the structural set `{1, i, −1, −i}` is exactly the complement. -/</span>
-<span class="ln decl" id="FRC.Algebra.klein_orbit_four"><a class="lno" href="#FRC.Algebra.klein_orbit_four">48</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcLedger/Algebra.lean#L48" title="this line on GitHub (new tab)" target="_blank" rel="noopener">⧉</a><img class="leanico small ok" src="lean-ok.png" alt="" title="axioms: Classical.choice, Quot.sound, propext">theorem klein_orbit_four (hchar : (2 : F) ≠ 0) (x : F) (hx : x ≠ 0) (h1 : x ^ 2 ≠ 1)</span>
+<span class="ln decl" id="FRC.Algebra.klein_orbit_four"><a class="lno" href="#FRC.Algebra.klein_orbit_four">48</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcLedger/Algebra.lean#L48" title="this line on GitHub (new tab)" target="_blank" rel="noopener">⧉</a><img class="leanico small t2" src="lean-t2.png" alt="" title="axioms: Classical.choice, Quot.sound, propext — tier 2, classical">theorem klein_orbit_four (hchar : (2 : F) ≠ 0) (x : F) (hx : x ≠ 0) (h1 : x ^ 2 ≠ 1)</span>
 <span class="ln" id="L49"><a class="lno" href="#L49">49</a>    (hi : x ^ 2 ≠ -1) :</span>
 <span class="ln" id="L50"><a class="lno" href="#L50">50</a>    x ≠ -x ∧ x ≠ x⁻¹ ∧ x ≠ -x⁻¹ ∧ -x ≠ x⁻¹ ∧ -x ≠ -x⁻¹ ∧ x⁻¹ ≠ -x⁻¹ := by</span>
 <span class="ln" id="L51"><a class="lno" href="#L51">51</a>  refine ⟨?_, ?_, ?_, ?_, ?_, ?_⟩</span>
@@ -85,7 +85,7 @@
 <span class="ln" id="L63"><a class="lno" href="#L63">63</a></span>
 <span class="ln" id="L64"><a class="lno" href="#L64">64</a>/-- 1:B2 (Theorem 1, the structural set): the fourth roots of unity number exactly `4` on the</span>
 <span class="ln" id="L65"><a class="lno" href="#L65">65</a>shell. Mathlib: `IsPrimitiveRoot.card_rootsOfUnity`. -/</span>
-<span class="ln decl" id="FRC.Algebra.card_fourth_roots"><a class="lno" href="#FRC.Algebra.card_fourth_roots">66</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcLedger/Algebra.lean#L66" title="this line on GitHub (new tab)" target="_blank" rel="noopener">⧉</a><img class="leanico small ok" src="lean-ok.png" alt="" title="axioms: Classical.choice, Quot.sound, propext">theorem card_fourth_roots (κ : ℕ) (hκ : Fintype.card F = 4 * κ + 1) :</span>
+<span class="ln decl" id="FRC.Algebra.card_fourth_roots"><a class="lno" href="#FRC.Algebra.card_fourth_roots">66</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcLedger/Algebra.lean#L66" title="this line on GitHub (new tab)" target="_blank" rel="noopener">⧉</a><img class="leanico small t2" src="lean-t2.png" alt="" title="axioms: Classical.choice, Quot.sound, propext — tier 2, classical">theorem card_fourth_roots (κ : ℕ) (hκ : Fintype.card F = 4 * κ + 1) :</span>
 <span class="ln" id="L67"><a class="lno" href="#L67">67</a>    Nat.card (rootsOfUnity 4 F) = 4 := by</span>
 <span class="ln" id="L68"><a class="lno" href="#L68">68</a>  obtain ⟨u, hu⟩ := quarter_turn_exists κ hκ</span>
 <span class="ln" id="L69"><a class="lno" href="#L69">69</a>  have h2 := two_ne_zero_shell κ hκ</span>
@@ -106,7 +106,7 @@
 <span class="ln" id="L84"><a class="lno" href="#L84">84</a></span>
 <span class="ln" id="L85"><a class="lno" href="#L85">85</a>/-- 1:B3 (convention 4, the oriented quarter-turn): `i := −g^κ` satisfies `i² = −1`; and</span>
 <span class="ln" id="L86"><a class="lno" href="#L86">86</a>`g^(2κ) = −1`, the involution behind Definition 5. From `FrcLedger.Fourier`. -/</span>
-<span class="ln decl" id="FRC.Algebra.quarter_turn"><a class="lno" href="#FRC.Algebra.quarter_turn">87</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcLedger/Algebra.lean#L87" title="this line on GitHub (new tab)" target="_blank" rel="noopener">⧉</a><img class="leanico small ok" src="lean-ok.png" alt="" title="axioms: Classical.choice, Quot.sound, propext">theorem quarter_turn (κ : ℕ) (hκ : Fintype.card F = 4 * κ + 1) (g : F)</span>
+<span class="ln decl" id="FRC.Algebra.quarter_turn"><a class="lno" href="#FRC.Algebra.quarter_turn">87</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcLedger/Algebra.lean#L87" title="this line on GitHub (new tab)" target="_blank" rel="noopener">⧉</a><img class="leanico small t2" src="lean-t2.png" alt="" title="axioms: Classical.choice, Quot.sound, propext — tier 2, classical">theorem quarter_turn (κ : ℕ) (hκ : Fintype.card F = 4 * κ + 1) (g : F)</span>
 <span class="ln" id="L88"><a class="lno" href="#L88">88</a>    (hg : IsPrimitiveRoot g (Fintype.card F - 1)) :</span>
 <span class="ln" id="L89"><a class="lno" href="#L89">89</a>    (-(g ^ κ)) ^ 2 = -1 ∧ g ^ (2 * κ) = -1 := by</span>
 <span class="ln" id="L90"><a class="lno" href="#L90">90</a>  have h := FRC.Fourier.quarter_turn_sq κ hκ g hg</span>
@@ -116,7 +116,7 @@
 <span class="ln" id="L94"><a class="lno" href="#L94">94</a>/-- 1:B4 (Definition 2 corrected, Lemma 1): in the affine frame `(a, b)`, `φ x = a + b x`</span>
 <span class="ln" id="L95"><a class="lno" href="#L95">95</a>carries `+` and `·` to `⊕` and `⊗`, is a bijection, and the multiplicative unit of the</span>
 <span class="ln" id="L96"><a class="lno" href="#L96">96</a>relabelled field is `a + b`; `b` is the unit only when `a = 0`. -/</span>
-<span class="ln decl" id="FRC.Algebra.affine_frame"><a class="lno" href="#FRC.Algebra.affine_frame">97</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcLedger/Algebra.lean#L97" title="this line on GitHub (new tab)" target="_blank" rel="noopener">⧉</a><img class="leanico small ok" src="lean-ok.png" alt="" title="axioms: Classical.choice, Quot.sound, propext">theorem affine_frame (a b : F) (hb : b ≠ 0) :</span>
+<span class="ln decl" id="FRC.Algebra.affine_frame"><a class="lno" href="#FRC.Algebra.affine_frame">97</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcLedger/Algebra.lean#L97" title="this line on GitHub (new tab)" target="_blank" rel="noopener">⧉</a><img class="leanico small t2" src="lean-t2.png" alt="" title="axioms: Classical.choice, Quot.sound, propext — tier 2, classical">theorem affine_frame (a b : F) (hb : b ≠ 0) :</span>
 <span class="ln" id="L98"><a class="lno" href="#L98">98</a>    let φ : F → F := fun x =&gt; a + b * x</span>
 <span class="ln" id="L99"><a class="lno" href="#L99">99</a>    let oplus : F → F → F := fun x y =&gt; a + b * ((x - a) / b + (y - a) / b)</span>
 <span class="ln" id="L100"><a class="lno" href="#L100">100</a>    let otimes : F → F → F := fun x y =&gt; a + b * ((x - a) / b * ((y - a) / b))</span>
@@ -142,7 +142,7 @@
 <span class="ln" id="L120"><a class="lno" href="#L120">120</a>    exact ha ((mul_eq_zero.1 hab).resolve_right hb)</span>
 <span class="ln" id="L121"><a class="lno" href="#L121">121</a></span>
 <span class="ln" id="L122"><a class="lno" href="#L122">122</a>/-- 1:C4 (Definition 5 (a)): the meridian involution `(−a)·g^(n + 2κ) = a·g^n`. -/</span>
-<span class="ln decl" id="FRC.Algebra.meridian_involution"><a class="lno" href="#FRC.Algebra.meridian_involution">123</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcLedger/Algebra.lean#L123" title="this line on GitHub (new tab)" target="_blank" rel="noopener">⧉</a><img class="leanico small ok" src="lean-ok.png" alt="" title="axioms: Classical.choice, Quot.sound, propext">theorem meridian_involution (κ : ℕ) (hκ : Fintype.card F = 4 * κ + 1) (g : F)</span>
+<span class="ln decl" id="FRC.Algebra.meridian_involution"><a class="lno" href="#FRC.Algebra.meridian_involution">123</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcLedger/Algebra.lean#L123" title="this line on GitHub (new tab)" target="_blank" rel="noopener">⧉</a><img class="leanico small t2" src="lean-t2.png" alt="" title="axioms: Classical.choice, Quot.sound, propext — tier 2, classical">theorem meridian_involution (κ : ℕ) (hκ : Fintype.card F = 4 * κ + 1) (g : F)</span>
 <span class="ln" id="L124"><a class="lno" href="#L124">124</a>    (hg : IsPrimitiveRoot g (Fintype.card F - 1)) (a : F) (n : ℕ) :</span>
 <span class="ln" id="L125"><a class="lno" href="#L125">125</a>    (-a) * g ^ (n + 2 * κ) = a * g ^ n := by</span>
 <span class="ln" id="L126"><a class="lno" href="#L126">126</a>  rw [pow_add, (quarter_turn κ hκ g hg).2]; ring</span>
@@ -152,7 +152,7 @@
 <span class="ln" id="L130"><a class="lno" href="#L130">130</a>/-- 1:D2 (Definition 6 made precise): the framed-integer window. Integers of absolute value</span>
 <span class="ln" id="L131"><a class="lno" href="#L131">131</a>`≤ H` with `2H &lt; card F` have distinct residues: the cast `ℤ → ZMod p` is injective on the</span>
 <span class="ln" id="L132"><a class="lno" href="#L132">132</a>window. Stated on `ZMod p`. -/</span>
-<span class="ln decl" id="FRC.Algebra.framed_integer_window"><a class="lno" href="#FRC.Algebra.framed_integer_window">133</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcLedger/Algebra.lean#L133" title="this line on GitHub (new tab)" target="_blank" rel="noopener">⧉</a><img class="leanico small ok" src="lean-ok.png" alt="" title="axioms: Classical.choice, Quot.sound, propext">theorem framed_integer_window (p : ℕ) [NeZero p] (H : ℕ) (hH : 2 * H &lt; p) (x y : ℤ)</span>
+<span class="ln decl" id="FRC.Algebra.framed_integer_window"><a class="lno" href="#FRC.Algebra.framed_integer_window">133</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcLedger/Algebra.lean#L133" title="this line on GitHub (new tab)" target="_blank" rel="noopener">⧉</a><img class="leanico small t2" src="lean-t2.png" alt="" title="axioms: Classical.choice, Quot.sound, propext — tier 2, classical">theorem framed_integer_window (p : ℕ) [NeZero p] (H : ℕ) (hH : 2 * H &lt; p) (x y : ℤ)</span>
 <span class="ln" id="L134"><a class="lno" href="#L134">134</a>    (hx : |x| ≤ H) (hy : |y| ≤ H) (h : (x : ZMod p) = (y : ZMod p)) : x = y := by</span>
 <span class="ln" id="L135"><a class="lno" href="#L135">135</a>  have hd : (p : ℤ) ∣ x - y := (ZMod.intCast_eq_intCast_iff_dvd_sub y x p).1 h.symm</span>
 <span class="ln" id="L136"><a class="lno" href="#L136">136</a>  have hlt : |x - y| &lt; (p : ℤ) := by</span>
@@ -165,14 +165,14 @@
 <span class="ln" id="L143"><a class="lno" href="#L143">143</a>/-- 1:D4 (Lemma 2 restated in the field — scale-periodicity): the scale map</span>
 <span class="ln" id="L144"><a class="lno" href="#L144">144</a>`S n x = x · g^(−n)` on the shell is `(card F − 1)`-periodic in `n`: the residue grids</span>
 <span class="ln" id="L145"><a class="lno" href="#L145">145</a>`G_n = S_n(0..p−1)` coincide as ordered lists. -/</span>
-<span class="ln decl" id="FRC.Algebra.scale_periodic"><a class="lno" href="#FRC.Algebra.scale_periodic">146</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcLedger/Algebra.lean#L146" title="this line on GitHub (new tab)" target="_blank" rel="noopener">⧉</a><img class="leanico small ok" src="lean-ok.png" alt="" title="axioms: Classical.choice, Quot.sound, propext">theorem scale_periodic (g : F) (hg : IsPrimitiveRoot g (Fintype.card F - 1)) (n : ℕ) (x : F) :</span>
+<span class="ln decl" id="FRC.Algebra.scale_periodic"><a class="lno" href="#FRC.Algebra.scale_periodic">146</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcLedger/Algebra.lean#L146" title="this line on GitHub (new tab)" target="_blank" rel="noopener">⧉</a><img class="leanico small t2" src="lean-t2.png" alt="" title="axioms: Classical.choice, Quot.sound, propext — tier 2, classical">theorem scale_periodic (g : F) (hg : IsPrimitiveRoot g (Fintype.card F - 1)) (n : ℕ) (x : F) :</span>
 <span class="ln" id="L147"><a class="lno" href="#L147">147</a>    x * (g ^ (n + (Fintype.card F - 1)))⁻¹ = x * (g ^ n)⁻¹ := by</span>
 <span class="ln" id="L148"><a class="lno" href="#L148">148</a>  rw [pow_add, hg.pow_eq_one, mul_one]</span>
 <span class="ln" id="L149"><a class="lno" href="#L149">149</a></span>
 <span class="ln" id="L150"><a class="lno" href="#L150">150</a>/-- 1:E2 (Proposition 5 reversed): adjoining a root of `X² + 1` to a field that already</span>
 <span class="ln" id="L151"><a class="lno" href="#L151">151</a>contains one gives zero divisors — `F[X]/(X²+1)` is not a field on the shell. With `u² = −1`,</span>
 <span class="ln" id="L152"><a class="lno" href="#L152">152</a>`(X + u)(X − u) = 0` in the quotient while both factors are nonzero. -/</span>
-<span class="ln decl" id="FRC.Algebra.complex_chart_zero_divisor"><a class="lno" href="#FRC.Algebra.complex_chart_zero_divisor">153</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcLedger/Algebra.lean#L153" title="this line on GitHub (new tab)" target="_blank" rel="noopener">⧉</a><img class="leanico small ok" src="lean-ok.png" alt="" title="axioms: Classical.choice, Quot.sound, propext">theorem complex_chart_zero_divisor (u : F) (hu : u ^ 2 = -1) :</span>
+<span class="ln decl" id="FRC.Algebra.complex_chart_zero_divisor"><a class="lno" href="#FRC.Algebra.complex_chart_zero_divisor">153</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcLedger/Algebra.lean#L153" title="this line on GitHub (new tab)" target="_blank" rel="noopener">⧉</a><img class="leanico small t2" src="lean-t2.png" alt="" title="axioms: Classical.choice, Quot.sound, propext — tier 2, classical">theorem complex_chart_zero_divisor (u : F) (hu : u ^ 2 = -1) :</span>
 <span class="ln" id="L154"><a class="lno" href="#L154">154</a>    let R := AdjoinRoot ((X : F[X]) ^ 2 + 1)</span>
 <span class="ln" id="L155"><a class="lno" href="#L155">155</a>    ∃ α β : R, α ≠ 0 ∧ β ≠ 0 ∧ α * β = 0 := by</span>
 <span class="ln" id="L156"><a class="lno" href="#L156">156</a>  intro R</span>
@@ -207,7 +207,7 @@
 <span class="ln" id="L185"><a class="lno" href="#L185">185</a></span>
 <span class="ln" id="L186"><a class="lno" href="#L186">186</a>/-- 1:F1 (Theorem 3): `2s = 0 ⇒ s = 0` in a field of characteristic `≠ 2`: the additive cycle</span>
 <span class="ln" id="L187"><a class="lno" href="#L187">187</a>has no element of order two; the antipode of the origin is not a residue. -/</span>
-<span class="ln decl" id="FRC.Algebra.no_south_pole"><a class="lno" href="#FRC.Algebra.no_south_pole">188</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcLedger/Algebra.lean#L188" title="this line on GitHub (new tab)" target="_blank" rel="noopener">⧉</a><img class="leanico small ok" src="lean-ok.png" alt="" title="axioms: Classical.choice, Quot.sound, propext">theorem no_south_pole (hchar : (2 : F) ≠ 0) (s : F) (h : 2 * s = 0) : s = 0 :=</span>
+<span class="ln decl" id="FRC.Algebra.no_south_pole"><a class="lno" href="#FRC.Algebra.no_south_pole">188</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcLedger/Algebra.lean#L188" title="this line on GitHub (new tab)" target="_blank" rel="noopener">⧉</a><img class="leanico small t2" src="lean-t2.png" alt="" title="axioms: Classical.choice, Quot.sound, propext — tier 2, classical">theorem no_south_pole (hchar : (2 : F) ≠ 0) (s : F) (h : 2 * s = 0) : s = 0 :=</span>
 <span class="ln" id="L189"><a class="lno" href="#L189">189</a>  (mul_eq_zero.1 h).resolve_left hchar</span>
 <span class="ln" id="L190"><a class="lno" href="#L190">190</a></span>
 <span class="ln" id="L191"><a class="lno" href="#L191">191</a>end shell</span>
@@ -215,7 +215,7 @@
 <span class="ln" id="L193"><a class="lno" href="#L193">193</a>/-! ## Instance rows on the prime shell `ZMod p` -/</span>
 <span class="ln" id="L194"><a class="lno" href="#L194">194</a></span>
 <span class="ln" id="L195"><a class="lno" href="#L195">195</a>/-- 1:B3 on `𝔽₁₃`: `g = 2`, `i = −2³ = 5`, `5² = −1`. -/</span>
-<span class="ln decl" id="FRC.Algebra.s13_quarter_turn"><a class="lno" href="#FRC.Algebra.s13_quarter_turn">196</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcLedger/Algebra.lean#L196" title="this line on GitHub (new tab)" target="_blank" rel="noopener">⧉</a><img class="leanico small ok" src="lean-ok.png" alt="" title="axioms: Quot.sound, propext">theorem s13_quarter_turn : (-(2 : ZMod 13) ^ 3) = 5 ∧ (5 : ZMod 13) ^ 2 = -1 := by decide</span>
+<span class="ln decl" id="FRC.Algebra.s13_quarter_turn"><a class="lno" href="#FRC.Algebra.s13_quarter_turn">196</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcLedger/Algebra.lean#L196" title="this line on GitHub (new tab)" target="_blank" rel="noopener">⧉</a><img class="leanico small t1" src="lean-t1.png" alt="" title="axioms: Quot.sound, propext — tier 1, extensionality only">theorem s13_quarter_turn : (-(2 : ZMod 13) ^ 3) = 5 ∧ (5 : ZMod 13) ^ 2 = -1 := by decide</span>
 <span class="ln" id="L197"><a class="lno" href="#L197">197</a></span>
 <span class="ln" id="L198"><a class="lno" href="#L198">198</a>/-- 1:V1 Lemma 3 refuted: the number of non-zero remainders of the Euclidean algorithm on</span>
 <span class="ln" id="L199"><a class="lno" href="#L199">199</a>`(987, 610)` is `13`, while `⌊log₂ 1009⌋ + 1 = 10`. The claimed bound fails at `p = 1009`</span>
@@ -224,7 +224,7 @@
 <span class="ln" id="L202"><a class="lno" href="#L202">202</a>  | 0, _, _ =&gt; 0</span>
 <span class="ln" id="L203"><a class="lno" href="#L203">203</a>  | fuel + 1, a, b =&gt; if b = 0 then 0 else (if a % b = 0 then 0 else 1) + euclidSteps fuel b (a % b)</span>
 <span class="ln" id="L204"><a class="lno" href="#L204">204</a></span>
-<span class="ln decl" id="FRC.Algebra.euclid_bound_refuted"><a class="lno" href="#FRC.Algebra.euclid_bound_refuted">205</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcLedger/Algebra.lean#L205" title="this line on GitHub (new tab)" target="_blank" rel="noopener">⧉</a><img class="leanico small ok" src="lean-ok.png" alt="" title="axioms: none">theorem euclid_bound_refuted :</span>
+<span class="ln decl" id="FRC.Algebra.euclid_bound_refuted"><a class="lno" href="#FRC.Algebra.euclid_bound_refuted">205</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcLedger/Algebra.lean#L205" title="this line on GitHub (new tab)" target="_blank" rel="noopener">⧉</a><img class="leanico small ok" src="lean-ok.png" alt="" title="axioms: none — tier 0, no axioms">theorem euclid_bound_refuted :</span>
 <span class="ln" id="L206"><a class="lno" href="#L206">206</a>    euclidSteps 40 987 610 = 13 ∧ Nat.log 2 1009 + 1 = 10 ∧</span>
 <span class="ln" id="L207"><a class="lno" href="#L207">207</a>    euclidSteps 40 55 34 = 7 ∧ Nat.log 2 59 + 1 = 6 := by</span>
 <span class="ln" id="L208"><a class="lno" href="#L208">208</a>  decide</span>
@@ -232,7 +232,7 @@
 <span class="ln" id="L210"><a class="lno" href="#L210">210</a>/-- 1:D5, the obstruction (Theorem 2 refuted) at `p = 13`, `g = 2`: every grid point</span>
 <span class="ln" id="L211"><a class="lno" href="#L211">211</a>`x/2^n` with `0 ≤ x &lt; 13` and `n ≥ 3` is `≤ 3/2`, so no grid point at resolution `1/8` lies</span>
 <span class="ln" id="L212"><a class="lno" href="#L212">212</a>within `1/16` of `33/10`. (Instance of the range obstruction; the theorem is false as stated.) -/</span>
-<span class="ln decl" id="FRC.Algebra.approx_theorem_refuted"><a class="lno" href="#FRC.Algebra.approx_theorem_refuted">213</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcLedger/Algebra.lean#L213" title="this line on GitHub (new tab)" target="_blank" rel="noopener">⧉</a><img class="leanico small ok" src="lean-ok.png" alt="" title="axioms: Classical.choice, Quot.sound, propext">theorem approx_theorem_refuted :</span>
+<span class="ln decl" id="FRC.Algebra.approx_theorem_refuted"><a class="lno" href="#FRC.Algebra.approx_theorem_refuted">213</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcLedger/Algebra.lean#L213" title="this line on GitHub (new tab)" target="_blank" rel="noopener">⧉</a><img class="leanico small t2" src="lean-t2.png" alt="" title="axioms: Classical.choice, Quot.sound, propext — tier 2, classical">theorem approx_theorem_refuted :</span>
 <span class="ln" id="L214"><a class="lno" href="#L214">214</a>    ∀ n : ℕ, 3 ≤ n → ∀ x : ℕ, x &lt; 13 → ((x : ℚ) / 2 ^ n) ≤ 3 / 2 := by</span>
 <span class="ln" id="L215"><a class="lno" href="#L215">215</a>  intro n hn x hx</span>
 <span class="ln" id="L216"><a class="lno" href="#L216">216</a>  have h2 : (8 : ℚ) ≤ 2 ^ n := by</span>
@@ -248,7 +248,7 @@
 <span class="ln" id="L226"><a class="lno" href="#L226">226</a></span>
 <span class="ln" id="L227"><a class="lno" href="#L227">227</a>/-- 1:G1 (the conjecture&#x27;s first clause, solving): `f ∈ F_p[X]` has a root in `F_p` iff `f` and</span>
 <span class="ln" id="L228"><a class="lno" href="#L228">228</a>`X^p − X = ∏_a (X − a)` are not coprime — the root test is a gcd, exact in the substrate. -/</span>
-<span class="ln decl" id="FRC.Algebra.root_iff_not_coprime"><a class="lno" href="#FRC.Algebra.root_iff_not_coprime">229</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcLedger/Algebra.lean#L229" title="this line on GitHub (new tab)" target="_blank" rel="noopener">⧉</a><img class="leanico small ok" src="lean-ok.png" alt="" title="axioms: Classical.choice, Quot.sound, propext">theorem root_iff_not_coprime (p : ℕ) [hp : Fact p.Prime] (f : (ZMod p)[X]) :</span>
+<span class="ln decl" id="FRC.Algebra.root_iff_not_coprime"><a class="lno" href="#FRC.Algebra.root_iff_not_coprime">229</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcLedger/Algebra.lean#L229" title="this line on GitHub (new tab)" target="_blank" rel="noopener">⧉</a><img class="leanico small t2" src="lean-t2.png" alt="" title="axioms: Classical.choice, Quot.sound, propext — tier 2, classical">theorem root_iff_not_coprime (p : ℕ) [hp : Fact p.Prime] (f : (ZMod p)[X]) :</span>
 <span class="ln" id="L230"><a class="lno" href="#L230">230</a>    (∃ a : ZMod p, f.eval a = 0) ↔ ¬ IsCoprime f (X ^ p - X) := by</span>
 <span class="ln" id="L231"><a class="lno" href="#L231">231</a>  constructor</span>
 <span class="ln" id="L232"><a class="lno" href="#L232">232</a>  · rintro ⟨a, ha⟩ hcop</span>
@@ -279,7 +279,7 @@
 <span class="ln" id="L257"><a class="lno" href="#L257">257</a>/-- 1:G2 (second clause, limit-like approximation): the tower of shells resolves every real — for every</span>
 <span class="ln" id="L258"><a class="lno" href="#L258">258</a>`r` and `ε &gt; 0` some shell `p = 4κ + 1` carries a framed rational `x / 2^n`, `|x| ≤ 2κ`, within `ε` of `r`</span>
 <span class="ln" id="L259"><a class="lno" href="#L259">259</a>(Dirichlet for primes `≡ 1 (mod 4)`, `Nat.exists_prime_gt_modEq_one`). -/</span>
-<span class="ln decl" id="FRC.Algebra.tower_density"><a class="lno" href="#FRC.Algebra.tower_density">260</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcLedger/Algebra.lean#L260" title="this line on GitHub (new tab)" target="_blank" rel="noopener">⧉</a><img class="leanico small ok" src="lean-ok.png" alt="" title="axioms: Classical.choice, Quot.sound, propext">theorem tower_density (r ε : ℝ) (hε : 0 &lt; ε) :</span>
+<span class="ln decl" id="FRC.Algebra.tower_density"><a class="lno" href="#FRC.Algebra.tower_density">260</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcLedger/Algebra.lean#L260" title="this line on GitHub (new tab)" target="_blank" rel="noopener">⧉</a><img class="leanico small t2" src="lean-t2.png" alt="" title="axioms: Classical.choice, Quot.sound, propext — tier 2, classical">theorem tower_density (r ε : ℝ) (hε : 0 &lt; ε) :</span>
 <span class="ln" id="L261"><a class="lno" href="#L261">261</a>    ∃ p κ n : ℕ, ∃ x : ℤ, p.Prime ∧ p = 4 * κ + 1 ∧ |x| ≤ 2 * κ ∧ |r - x / 2 ^ n| &lt; ε := by</span>
 <span class="ln" id="L262"><a class="lno" href="#L262">262</a>  obtain ⟨n, hn⟩ := exists_pow_lt_of_lt_one hε (by norm_num : (1 / 2 : ℝ) &lt; 1)</span>
 <span class="ln" id="L263"><a class="lno" href="#L263">263</a>  set x : ℤ := round (r * 2 ^ n) with hx</span>
@@ -301,7 +301,7 @@
 <span class="ln" id="L279"><a class="lno" href="#L279">279</a></span>
 <span class="ln" id="L280"><a class="lno" href="#L280">280</a>/-- 1:G3 (third clause, the abelian case): the rounding `k(θ) = round(Nθ/2π)` puts `2πk/N` within `π/N`</span>
 <span class="ln" id="L281"><a class="lno" href="#L281">281</a>of `θ` — `C_N ≅ F_p^×` (`N = p − 1`) is a `π/N`-net of `U(1)`. -/</span>
-<span class="ln decl" id="FRC.Algebra.circle_net"><a class="lno" href="#FRC.Algebra.circle_net">282</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcLedger/Algebra.lean#L282" title="this line on GitHub (new tab)" target="_blank" rel="noopener">⧉</a><img class="leanico small ok" src="lean-ok.png" alt="" title="axioms: Classical.choice, Quot.sound, propext">theorem circle_net (N : ℕ) (hN : 0 &lt; N) (θ : ℝ) :</span>
+<span class="ln decl" id="FRC.Algebra.circle_net"><a class="lno" href="#FRC.Algebra.circle_net">282</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcLedger/Algebra.lean#L282" title="this line on GitHub (new tab)" target="_blank" rel="noopener">⧉</a><img class="leanico small t2" src="lean-t2.png" alt="" title="axioms: Classical.choice, Quot.sound, propext — tier 2, classical">theorem circle_net (N : ℕ) (hN : 0 &lt; N) (θ : ℝ) :</span>
 <span class="ln" id="L283"><a class="lno" href="#L283">283</a>    |θ - 2 * π * (round (N * θ / (2 * π)) : ℝ) / N| ≤ π / N := by</span>
 <span class="ln" id="L284"><a class="lno" href="#L284">284</a>  have hπ : (0 : ℝ) &lt; π := pi_pos</span>
 <span class="ln" id="L285"><a class="lno" href="#L285">285</a>  have hN&#x27; : (0 : ℝ) &lt; N := by exact_mod_cast hN</span>
@@ -314,7 +314,7 @@
 <span class="ln" id="L292"><a class="lno" href="#L292">292</a>    _ = π / N := by ring</span>
 <span class="ln" id="L293"><a class="lno" href="#L293">293</a></span>
 <span class="ln" id="L294"><a class="lno" href="#L294">294</a>/-- 1:G3 (third clause): the group-law defect of the rounding is at most one step. -/</span>
-<span class="ln decl" id="FRC.Algebra.group_law_defect"><a class="lno" href="#FRC.Algebra.group_law_defect">295</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcLedger/Algebra.lean#L295" title="this line on GitHub (new tab)" target="_blank" rel="noopener">⧉</a><img class="leanico small ok" src="lean-ok.png" alt="" title="axioms: Classical.choice, Quot.sound, propext">theorem group_law_defect (N : ℕ) (θ₁ θ₂ : ℝ) :</span>
+<span class="ln decl" id="FRC.Algebra.group_law_defect"><a class="lno" href="#FRC.Algebra.group_law_defect">295</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcLedger/Algebra.lean#L295" title="this line on GitHub (new tab)" target="_blank" rel="noopener">⧉</a><img class="leanico small t2" src="lean-t2.png" alt="" title="axioms: Classical.choice, Quot.sound, propext — tier 2, classical">theorem group_law_defect (N : ℕ) (θ₁ θ₂ : ℝ) :</span>
 <span class="ln" id="L296"><a class="lno" href="#L296">296</a>    |round (N * θ₁ / (2 * π)) + round (N * θ₂ / (2 * π)) - round (N * (θ₁ + θ₂) / (2 * π))| ≤ 1 := by</span>
 <span class="ln" id="L297"><a class="lno" href="#L297">297</a>  set t₁ := N * θ₁ / (2 * π) with ht₁</span>
 <span class="ln" id="L298"><a class="lno" href="#L298">298</a>  set t₂ := N * θ₂ / (2 * π) with ht₂</span>

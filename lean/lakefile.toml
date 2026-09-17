@@ -1,5 +1,5 @@
 name = "frcledger"
-defaultTargets = ["FrcLedger"]
+defaultTargets = ["FrcLedger", "FrcCore"]
 
 [[require]]
 name = "mathlib"
@@ -7,3 +7,6 @@ scope = "leanprover-community"
 
 [[lean_lib]]
 name = "FrcLedger"
+
+[[lean_lib]]
+name = "FrcCore"          # the substrate from first principles: imports nothing, proves with no axioms (check_core_axioms.py)

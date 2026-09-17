@@ -53,6 +53,13 @@ def main():
             sys.exit(f"lake env lean Axioms.lean failed:\n{r.stderr[-2000:]}")
     n, bad = gate((ROOT / "axioms.log").read_text(encoding="utf-8"))
     print(f"axioms.log: {n} declarations checked against {sorted(ALLOWED)}")
+    tiers = {0: 0, 1: 0, 2: 0}
+    for line in (ROOT / "axioms.log").read_text(encoding="utf-8").splitlines():
+        m = re.match(r"^'(.+)' (?:depends on axioms: \[([^\]]*)\]|does not depend on any axioms)", line.strip())
+        if not m: continue
+        ax = {a.strip() for a in (m.group(2) or "").split(",") if a.strip()}
+        tiers[0 if not ax else 1 if ax <= {"propext", "Quot.sound"} else 2] += 1
+    print(f"tiers: {tiers[0]} with no axioms (tier 0), {tiers[1]} extensionality only (tier 1), {tiers[2]} classical (tier 2); the zero-axiom library is FrcCore (check_core_axioms.py)")
     for name, extra in bad: print(f"  FAIL {name}: {', '.join(extra)}")
     if bad: sys.exit(1)
     if n == 0: sys.exit("no declarations found")

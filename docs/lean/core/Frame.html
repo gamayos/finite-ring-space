@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-HNE3RMJ5L1"></script>
+<script> window.dataLayer = window.dataLayer || []; function gtag(){dataLayer.push(arguments);} gtag('js', new Date()); gtag('config', 'G-HNE3RMJ5L1'); </script>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Frame.lean — FrcCore</title>
+<meta name="description" content="The Lean module FrcCore/Frame of the FRC predicate ledgers, rendered with an anchor per declaration">
+<meta name="author" content="Yosef Akhtman">
+<link rel="icon" href="../../frc-logo-fav.png">
+<link rel="stylesheet" href="../../style.css">
+
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <h1>Frame.lean — FrcCore</h1>
+    
+    <nav><a href="../../index.html">Home</a><a href="../../publications.html">Publications</a><a href="../../00-ledger.html">Ledger</a><a href="../../predictions.html">Predictions</a><a href="../../explicability.html">Explicability</a></nav>
+  </header>
+<main id="ledger-main"><section class="prose"><p>The core module <code>lean/FrcCore/Frame.lean</code> — the substrate from first principles, no Mathlib, no axioms (the modules in order: <a href="Nat.html">Nat</a>, <a href="Shell.html">Shell</a>, <a href="Frame.html">Frame</a>, <a href="Sum.html">Sum</a>, <a href="Algebra.html">Algebra</a>, <a href="Geometry.html">Geometry</a>, <a href="Instances.html">Instances</a>): 27 theorems (5 definitions): 27 with no axioms (green), 0 at tier 1 (teal: <code>propext</code>, <code>Quot.sound</code>), 0 at tier 2 (amber: <code>Classical.choice</code>), 0 red; the plain glyph marks a definition. Each declaration is anchored; the ledger rows cite them by name. <a href="https://live.lean-lang.org/#project=lean-v4.34.0&url=https://raw.githubusercontent.com/gamayos/finite-ring-space/main/lean/web/FrcCore.lean" target="_blank" rel="noopener">▶ open in the Lean web editor</a> · <a href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcCore/Frame.lean" target="_blank" rel="noopener">on GitHub</a> · <a href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcCore/axioms.log" target="_blank" rel="noopener">axioms.log</a> · <a href="https://github.com/gamayos/finite-ring-space/actions/workflows/lean.yml" target="_blank" rel="noopener">CI</a> (all in a new tab).</p></section><pre class="lean"><span class="ln" id="L1"><a class="lno" href="#L1">1</a>import FrcCore.Shell</span>
+<span class="ln" id="L2"><a class="lno" href="#L2">2</a></span>
+<span class="ln" id="L3"><a class="lno" href="#L3">3</a>/-!</span>
+<span class="ln" id="L4"><a class="lno" href="#L4">4</a># FrcCore.Frame — the frame `(τ; 0, 1, g)` and the Euclidean datum, from first principles</span>
+<span class="ln" id="L5"><a class="lno" href="#L5">5</a></span>
+<span class="ln" id="L6"><a class="lno" href="#L6">6</a>The shell of capacity `κ` has modulus `p = 4κ + 1`; its frame carries the drive `g` (00:A8, 00:C1).</span>
+<span class="ln" id="L7"><a class="lno" href="#L7">7</a>Two decidable predicates state what the frame&#x27;s generator does: `IsPrimitive g n` (no positive power</span>
+<span class="ln" id="L8"><a class="lno" href="#L8">8</a>below `n` is `1`) and `Generates g n` (every nonzero residue is a power of `g`). Together they are the</span>
+<span class="ln" id="L9"><a class="lno" href="#L9">9</a>statement &quot;`g` is a primitive root of the prime field `𝔽_p`&quot;; on a concrete shell both are certified by</span>
+<span class="ln" id="L10"><a class="lno" href="#L10">10</a>`decide`; the classical equivalence with &quot;`p` is prime&quot; is a theorem for later (`FrcCore.Prime`), not a</span>
+<span class="ln" id="L11"><a class="lno" href="#L11">11</a>hypothesis used here.</span>
+<span class="ln" id="L12"><a class="lno" href="#L12">12</a></span>
+<span class="ln" id="L13"><a class="lno" href="#L13">13</a>From these two facts alone: inverses (`exists_inv`), no zero divisors (`mul_eq_zero`), the square roots</span>
+<span class="ln" id="L14"><a class="lno" href="#L14">14</a>of one (`sq_eq_one`), the half-period `g^{2κ} = −1` (2:D1, 00:C1), the quarter-turn `i = −g^κ` with</span>
+<span class="ln" id="L15"><a class="lno" href="#L15">15</a>`i² = −1` (1:B3, 2:D2), its orientation classes under `g ↦ g^u` (2:D5), and the Euler identity</span>
+<span class="ln" id="L16"><a class="lno" href="#L16">16</a>`(g^i)^{i·2κ} = (−1)^i` (2:D6, 00:C14). No axioms.</span>
+<span class="ln" id="L17"><a class="lno" href="#L17">17</a>-/</span>
+<span class="ln" id="L18"><a class="lno" href="#L18">18</a></span>
+<span class="ln" id="L19"><a class="lno" href="#L19">19</a>namespace FRC</span>
+<span class="ln" id="L20"><a class="lno" href="#L20">20</a>namespace Shell</span>
+<span class="ln" id="L21"><a class="lno" href="#L21">21</a></span>
+<span class="ln" id="L22"><a class="lno" href="#L22">22</a>variable {p : Nat} [Pos p]</span>
+<span class="ln" id="L23"><a class="lno" href="#L23">23</a></span>
+<span class="ln" id="L24"><a class="lno" href="#L24">24</a>/-- 00:A8 — the drive generator is primitive of order `n`: `g^n = 1` and `g^l ≠ 1` for `0 &lt; l &lt; n`. -/</span>
+<span class="ln decl" id="FRC.Shell.IsPrimitive"><a class="lno" href="#FRC.Shell.IsPrimitive">25</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcCore/Frame.lean#L25" title="this line on GitHub (new tab)" target="_blank" rel="noopener">⧉</a><img class="leanico small" src="../lean.png" alt="" title="a definition: no proof, no axioms">def IsPrimitive (g : Shell p) (n : Nat) : Prop :=</span>
+<span class="ln" id="L26"><a class="lno" href="#L26">26</a>  g ^ n = 1 ∧ ∀ l, l &lt; n → 0 &lt; l → g ^ l ≠ 1</span>
+<span class="ln" id="L27"><a class="lno" href="#L27">27</a></span>
+<span class="ln" id="L28"><a class="lno" href="#L28">28</a>instance (g : Shell p) (n : Nat) : Decidable (IsPrimitive g n) := by</span>
+<span class="ln" id="L29"><a class="lno" href="#L29">29</a>  unfold IsPrimitive; exact inferInstance</span>
+<span class="ln" id="L30"><a class="lno" href="#L30">30</a></span>
+<span class="ln" id="L31"><a class="lno" href="#L31">31</a>/-- 00:A8 — the drive generates the shell: every nonzero residue `v &lt; p` is `g^m` for some `m &lt; n`. -/</span>
+<span class="ln decl" id="FRC.Shell.Generates"><a class="lno" href="#FRC.Shell.Generates">32</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcCore/Frame.lean#L32" title="this line on GitHub (new tab)" target="_blank" rel="noopener">⧉</a><img class="leanico small" src="../lean.png" alt="" title="a definition: no proof, no axioms">def Generates (g : Shell p) (n : Nat) : Prop :=</span>
+<span class="ln" id="L33"><a class="lno" href="#L33">33</a>  ∀ v, v &lt; p → 0 &lt; v → ∃ m, m &lt; n ∧ (g ^ m).val = v</span>
+<span class="ln" id="L34"><a class="lno" href="#L34">34</a></span>
+<span class="ln" id="L35"><a class="lno" href="#L35">35</a>/-- Bounded existence `∃ m &lt; n, P m`, decided by search — Lean&#x27;s own `Nat.decidableExistsLT` carries</span>
+<span class="ln" id="L36"><a class="lno" href="#L36">36</a>`propext` and `Quot.sound`; this one carries nothing. -/</span>
+<span class="ln decl" id="FRC.Shell.decExistsLT"><a class="lno" href="#FRC.Shell.decExistsLT">37</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcCore/Frame.lean#L37" title="this line on GitHub (new tab)" target="_blank" rel="noopener">⧉</a><img class="leanico small" src="../lean.png" alt="" title="a definition: no proof, no axioms">def decExistsLT (P : Nat → Prop) [DecidablePred P] : (n : Nat) → Decidable (∃ m, m &lt; n ∧ P m)</span>
+<span class="ln" id="L38"><a class="lno" href="#L38">38</a>  | 0 =&gt; isFalse (fun ⟨m, hm, _⟩ =&gt; Nat.not_lt_zero m hm)</span>
+<span class="ln" id="L39"><a class="lno" href="#L39">39</a>  | n + 1 =&gt;</span>
+<span class="ln" id="L40"><a class="lno" href="#L40">40</a>    match decExistsLT P n with</span>
+<span class="ln" id="L41"><a class="lno" href="#L41">41</a>    | isTrue h =&gt; isTrue (match h with | ⟨m, hm, hp⟩ =&gt; ⟨m, Nat.lt_succ_of_lt hm, hp⟩)</span>
+<span class="ln" id="L42"><a class="lno" href="#L42">42</a>    | isFalse hno =&gt;</span>
+<span class="ln" id="L43"><a class="lno" href="#L43">43</a>      if h : P n then isTrue ⟨n, Nat.lt_succ_self n, h⟩</span>
+<span class="ln" id="L44"><a class="lno" href="#L44">44</a>      else isFalse (fun ⟨m, hm, hp⟩ =&gt;</span>
+<span class="ln" id="L45"><a class="lno" href="#L45">45</a>        match Nat.lt_or_ge m n with</span>
+<span class="ln" id="L46"><a class="lno" href="#L46">46</a>        | .inl hlt =&gt; hno ⟨m, hlt, hp⟩</span>
+<span class="ln" id="L47"><a class="lno" href="#L47">47</a>        | .inr hge =&gt; h ((Nat.le_antisymm (Nat.le_of_lt_succ hm) hge) ▸ hp))</span>
+<span class="ln" id="L48"><a class="lno" href="#L48">48</a></span>
+<span class="ln" id="L49"><a class="lno" href="#L49">49</a>instance (g : Shell p) (n : Nat) : Decidable (Generates g n) := by</span>
+<span class="ln" id="L50"><a class="lno" href="#L50">50</a>  unfold Generates</span>
+<span class="ln" id="L51"><a class="lno" href="#L51">51</a>  have : ∀ v, Decidable (∃ m, m &lt; n ∧ (g ^ m).val = v) := fun v =&gt; decExistsLT (fun m =&gt; (g ^ m).val = v) n</span>
+<span class="ln" id="L52"><a class="lno" href="#L52">52</a>  exact inferInstance</span>
+<span class="ln" id="L53"><a class="lno" href="#L53">53</a></span>
+<span class="ln" id="L54"><a class="lno" href="#L54">54</a>/-- 00:C1 — the frame `(τ; 0, 1, g)` on the shell of capacity `κ`: `p = 4κ + 1`, `κ` positive, and the</span>
+<span class="ln" id="L55"><a class="lno" href="#L55">55</a>drive `g` a primitive generator of the `p − 1` nonzero residues. -/</span>
+<span class="ln" id="L56"><a class="lno" href="#L56">56</a>structure Frame (p : Nat) [Pos p] (κ : Nat) (g : Shell p) : Prop where</span>
+<span class="ln" id="L57"><a class="lno" href="#L57">57</a>  cap : p = 4 * κ + 1</span>
+<span class="ln" id="L58"><a class="lno" href="#L58">58</a>  cap_pos : 0 &lt; κ</span>
+<span class="ln" id="L59"><a class="lno" href="#L59">59</a>  prim : IsPrimitive g (p - 1)</span>
+<span class="ln" id="L60"><a class="lno" href="#L60">60</a>  gen : Generates g (p - 1)</span>
+<span class="ln" id="L61"><a class="lno" href="#L61">61</a></span>
+<span class="ln" id="L62"><a class="lno" href="#L62">62</a>namespace Frame</span>
+<span class="ln" id="L63"><a class="lno" href="#L63">63</a>variable {κ : Nat} {g : Shell p}</span>
+<span class="ln" id="L64"><a class="lno" href="#L64">64</a></span>
+<span class="ln decl" id="FRC.Shell.Frame.n_eq"><a class="lno" href="#FRC.Shell.Frame.n_eq">65</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcCore/Frame.lean#L65" title="this line on GitHub (new tab)" target="_blank" rel="noopener">⧉</a><img class="leanico small ok" src="../lean-ok.png" alt="" title="axioms: none — tier 0, no axioms">theorem n_eq (F : Frame p κ g) : p - 1 = 4 * κ := by rw [F.cap]; rfl</span>
+<span class="ln" id="L66"><a class="lno" href="#L66">66</a></span>
+<span class="ln decl" id="FRC.Shell.Frame.n_pos"><a class="lno" href="#FRC.Shell.Frame.n_pos">67</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcCore/Frame.lean#L67" title="this line on GitHub (new tab)" target="_blank" rel="noopener">⧉</a><img class="leanico small ok" src="../lean-ok.png" alt="" title="axioms: none — tier 0, no axioms">theorem n_pos (F : Frame p κ g) : 0 &lt; p - 1 := by</span>
+<span class="ln" id="L68"><a class="lno" href="#L68">68</a>  rw [F.n_eq]; exact Nat.mul_pos (Nat.zero_lt_succ 3) F.cap_pos</span>
+<span class="ln" id="L69"><a class="lno" href="#L69">69</a></span>
+<span class="ln decl" id="FRC.Shell.Frame.one_lt_p"><a class="lno" href="#FRC.Shell.Frame.one_lt_p">70</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcCore/Frame.lean#L70" title="this line on GitHub (new tab)" target="_blank" rel="noopener">⧉</a><img class="leanico small ok" src="../lean-ok.png" alt="" title="axioms: none — tier 0, no axioms">theorem one_lt_p (F : Frame p κ g) : 1 &lt; p := by</span>
+<span class="ln" id="L71"><a class="lno" href="#L71">71</a>  rw [F.cap]; exact Nat.succ_lt_succ (Nat.mul_pos (Nat.zero_lt_succ 3) F.cap_pos)</span>
+<span class="ln" id="L72"><a class="lno" href="#L72">72</a></span>
+<span class="ln decl" id="FRC.Shell.Frame.one_ne_zero"><a class="lno" href="#FRC.Shell.Frame.one_ne_zero">73</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcCore/Frame.lean#L73" title="this line on GitHub (new tab)" target="_blank" rel="noopener">⧉</a><img class="leanico small ok" src="../lean-ok.png" alt="" title="axioms: none — tier 0, no axioms">theorem one_ne_zero (F : Frame p κ g) : (1 : Shell p) ≠ 0 := fun h =&gt; by</span>
+<span class="ln" id="L74"><a class="lno" href="#L74">74</a>  have := val_injective h</span>
+<span class="ln" id="L75"><a class="lno" href="#L75">75</a>  rw [val_one, val_zero, FRC.Nat.mod_eq_of_lt F.one_lt_p] at this</span>
+<span class="ln" id="L76"><a class="lno" href="#L76">76</a>  exact Nat.noConfusion this</span>
+<span class="ln" id="L77"><a class="lno" href="#L77">77</a></span>
+<span class="ln decl" id="FRC.Shell.Frame.pow_n"><a class="lno" href="#FRC.Shell.Frame.pow_n">78</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcCore/Frame.lean#L78" title="this line on GitHub (new tab)" target="_blank" rel="noopener">⧉</a><img class="leanico small ok" src="../lean-ok.png" alt="" title="axioms: none — tier 0, no axioms">theorem pow_n (F : Frame p κ g) : g ^ (p - 1) = 1 := F.prim.1</span>
+<span class="ln" id="L79"><a class="lno" href="#L79">79</a></span>
+<span class="ln" id="L80"><a class="lno" href="#L80">80</a>/-- Powers of the drive are periodic with period `p − 1`. -/</span>
+<span class="ln decl" id="FRC.Shell.Frame.pow_mod"><a class="lno" href="#FRC.Shell.Frame.pow_mod">81</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcCore/Frame.lean#L81" title="this line on GitHub (new tab)" target="_blank" rel="noopener">⧉</a><img class="leanico small ok" src="../lean-ok.png" alt="" title="axioms: none — tier 0, no axioms">theorem pow_mod (F : Frame p κ g) (l : Nat) : g ^ l = g ^ (l % (p - 1)) := by</span>
+<span class="ln" id="L82"><a class="lno" href="#L82">82</a>  match FRC.Nat.mod_spec (p - 1) F.n_pos l with</span>
+<span class="ln" id="L83"><a class="lno" href="#L83">83</a>  | ⟨q, hq⟩ =&gt;</span>
+<span class="ln" id="L84"><a class="lno" href="#L84">84</a>    calc g ^ l = g ^ ((p - 1) * q + l % (p - 1)) := by rw [← hq]</span>
+<span class="ln" id="L85"><a class="lno" href="#L85">85</a>      _ = (g ^ (p - 1)) ^ q * g ^ (l % (p - 1)) := by rw [pow_add, pow_mul]</span>
+<span class="ln" id="L86"><a class="lno" href="#L86">86</a>      _ = g ^ (l % (p - 1)) := by rw [F.pow_n, one_pow, one_mul]</span>
+<span class="ln" id="L87"><a class="lno" href="#L87">87</a></span>
+<span class="ln decl" id="FRC.Shell.Frame.pow_eq_one_of_mod"><a class="lno" href="#FRC.Shell.Frame.pow_eq_one_of_mod">88</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcCore/Frame.lean#L88" title="this line on GitHub (new tab)" target="_blank" rel="noopener">⧉</a><img class="leanico small ok" src="../lean-ok.png" alt="" title="axioms: none — tier 0, no axioms">theorem pow_eq_one_of_mod (F : Frame p κ g) {l : Nat} (h : l % (p - 1) = 0) : g ^ l = 1 := by</span>
+<span class="ln" id="L89"><a class="lno" href="#L89">89</a>  rw [F.pow_mod, h, pow_zero]</span>
+<span class="ln" id="L90"><a class="lno" href="#L90">90</a></span>
+<span class="ln decl" id="FRC.Shell.Frame.mod_eq_zero_of_pow_eq_one"><a class="lno" href="#FRC.Shell.Frame.mod_eq_zero_of_pow_eq_one">91</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcCore/Frame.lean#L91" title="this line on GitHub (new tab)" target="_blank" rel="noopener">⧉</a><img class="leanico small ok" src="../lean-ok.png" alt="" title="axioms: none — tier 0, no axioms">theorem mod_eq_zero_of_pow_eq_one (F : Frame p κ g) {l : Nat} (h : g ^ l = 1) : l % (p - 1) = 0 := by</span>
+<span class="ln" id="L92"><a class="lno" href="#L92">92</a>  rw [F.pow_mod] at h</span>
+<span class="ln" id="L93"><a class="lno" href="#L93">93</a>  exact match Nat.decEq (l % (p - 1)) 0 with</span>
+<span class="ln" id="L94"><a class="lno" href="#L94">94</a>    | .isTrue h0 =&gt; h0</span>
+<span class="ln" id="L95"><a class="lno" href="#L95">95</a>    | .isFalse h0 =&gt; absurd h (F.prim.2 _ (Nat.mod_lt l F.n_pos) (Nat.pos_of_ne_zero h0))</span>
+<span class="ln" id="L96"><a class="lno" href="#L96">96</a></span>
+<span class="ln decl" id="FRC.Shell.Frame.pow_inj"><a class="lno" href="#FRC.Shell.Frame.pow_inj">97</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcCore/Frame.lean#L97" title="this line on GitHub (new tab)" target="_blank" rel="noopener">⧉</a><img class="leanico small ok" src="../lean-ok.png" alt="" title="axioms: none — tier 0, no axioms">theorem pow_inj (F : Frame p κ g) {i j : Nat} (hi : i &lt; p - 1) (hj : j &lt; p - 1) (h : g ^ i = g ^ j) :</span>
+<span class="ln" id="L98"><a class="lno" href="#L98">98</a>    i = j := by</span>
+<span class="ln" id="L99"><a class="lno" href="#L99">99</a>  have key : ∀ {i j : Nat}, i ≤ j → j &lt; p - 1 → g ^ i = g ^ j → i = j := by</span>
+<span class="ln" id="L100"><a class="lno" href="#L100">100</a>    intro i j hij hj h</span>
+<span class="ln" id="L101"><a class="lno" href="#L101">101</a>    have hji : j - i &lt; p - 1 := Nat.lt_of_le_of_lt (Nat.sub_le j i) hj</span>
+<span class="ln" id="L102"><a class="lno" href="#L102">102</a>    have e : g ^ j = g ^ i * g ^ (j - i) := by rw [← pow_add, FRC.Nat.add_sub_of_le hij]</span>
+<span class="ln" id="L103"><a class="lno" href="#L103">103</a>    have hinv : g ^ i * g ^ (p - 1 - i) = 1 := by</span>
+<span class="ln" id="L104"><a class="lno" href="#L104">104</a>      rw [← pow_add, FRC.Nat.add_sub_of_le (Nat.le_of_lt (Nat.lt_of_le_of_lt hij hj)), F.pow_n]</span>
+<span class="ln" id="L105"><a class="lno" href="#L105">105</a>    have h1 : g ^ (j - i) = 1 := by</span>
+<span class="ln" id="L106"><a class="lno" href="#L106">106</a>      calc g ^ (j - i) = 1 * g ^ (j - i) := (one_mul _).symm</span>
+<span class="ln" id="L107"><a class="lno" href="#L107">107</a>        _ = g ^ (p - 1 - i) * g ^ i * g ^ (j - i) := by rw [mul_comm (g ^ (p - 1 - i)), hinv]</span>
+<span class="ln" id="L108"><a class="lno" href="#L108">108</a>        _ = g ^ (p - 1 - i) * g ^ j := by rw [mul_assoc, ← e]</span>
+<span class="ln" id="L109"><a class="lno" href="#L109">109</a>        _ = g ^ (p - 1 - i) * g ^ i := by rw [h]</span>
+<span class="ln" id="L110"><a class="lno" href="#L110">110</a>        _ = 1 := by rw [mul_comm, hinv]</span>
+<span class="ln" id="L111"><a class="lno" href="#L111">111</a>    have h2 := F.mod_eq_zero_of_pow_eq_one h1</span>
+<span class="ln" id="L112"><a class="lno" href="#L112">112</a>    rw [FRC.Nat.mod_eq_of_lt hji] at h2</span>
+<span class="ln" id="L113"><a class="lno" href="#L113">113</a>    have : j = i + (j - i) := (FRC.Nat.add_sub_of_le hij).symm</span>
+<span class="ln" id="L114"><a class="lno" href="#L114">114</a>    rw [h2, Nat.add_zero] at this</span>
+<span class="ln" id="L115"><a class="lno" href="#L115">115</a>    exact this.symm</span>
+<span class="ln" id="L116"><a class="lno" href="#L116">116</a>  exact match Nat.lt_or_ge i j with</span>
+<span class="ln" id="L117"><a class="lno" href="#L117">117</a>    | .inl hlt =&gt; key (Nat.le_of_lt hlt) hj h</span>
+<span class="ln" id="L118"><a class="lno" href="#L118">118</a>    | .inr hge =&gt; (key hge hi h.symm).symm</span>
+<span class="ln" id="L119"><a class="lno" href="#L119">119</a></span>
+<span class="ln" id="L120"><a class="lno" href="#L120">120</a>/-- Every nonzero residue is a power of the drive (the `Generates` clause, on residues). -/</span>
+<span class="ln decl" id="FRC.Shell.Frame.eq_pow_of_ne_zero"><a class="lno" href="#FRC.Shell.Frame.eq_pow_of_ne_zero">121</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcCore/Frame.lean#L121" title="this line on GitHub (new tab)" target="_blank" rel="noopener">⧉</a><img class="leanico small ok" src="../lean-ok.png" alt="" title="axioms: none — tier 0, no axioms">theorem eq_pow_of_ne_zero (F : Frame p κ g) {x : Shell p} (hx : x ≠ 0) :</span>
+<span class="ln" id="L122"><a class="lno" href="#L122">122</a>    ∃ m, m &lt; p - 1 ∧ g ^ m = x := by</span>
+<span class="ln" id="L123"><a class="lno" href="#L123">123</a>  have hv : 0 &lt; x.val := Nat.pos_of_ne_zero (fun h =&gt; hx (ext h))</span>
+<span class="ln" id="L124"><a class="lno" href="#L124">124</a>  match F.gen x.val x.lt hv with</span>
+<span class="ln" id="L125"><a class="lno" href="#L125">125</a>  | ⟨m, hm, e⟩ =&gt; exact ⟨m, hm, ext e⟩</span>
+<span class="ln" id="L126"><a class="lno" href="#L126">126</a></span>
+<span class="ln decl" id="FRC.Shell.Frame.exists_inv"><a class="lno" href="#FRC.Shell.Frame.exists_inv">127</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcCore/Frame.lean#L127" title="this line on GitHub (new tab)" target="_blank" rel="noopener">⧉</a><img class="leanico small ok" src="../lean-ok.png" alt="" title="axioms: none — tier 0, no axioms">theorem exists_inv (F : Frame p κ g) {x : Shell p} (hx : x ≠ 0) : ∃ y, x * y = 1 := by</span>
+<span class="ln" id="L128"><a class="lno" href="#L128">128</a>  match F.eq_pow_of_ne_zero hx with</span>
+<span class="ln" id="L129"><a class="lno" href="#L129">129</a>  | ⟨m, hm, e⟩ =&gt;</span>
+<span class="ln" id="L130"><a class="lno" href="#L130">130</a>    refine ⟨g ^ (p - 1 - m), ?_⟩</span>
+<span class="ln" id="L131"><a class="lno" href="#L131">131</a>    rw [← e, ← pow_add, FRC.Nat.add_sub_of_le (Nat.le_of_lt hm), F.pow_n]</span>
+<span class="ln" id="L132"><a class="lno" href="#L132">132</a></span>
+<span class="ln decl" id="FRC.Shell.Frame.mul_eq_zero"><a class="lno" href="#FRC.Shell.Frame.mul_eq_zero">133</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcCore/Frame.lean#L133" title="this line on GitHub (new tab)" target="_blank" rel="noopener">⧉</a><img class="leanico small ok" src="../lean-ok.png" alt="" title="axioms: none — tier 0, no axioms">theorem mul_eq_zero (F : Frame p κ g) {a b : Shell p} (h : a * b = 0) : a = 0 ∨ b = 0 :=</span>
+<span class="ln" id="L134"><a class="lno" href="#L134">134</a>  match Shell.instDecidableEq a 0 with</span>
+<span class="ln" id="L135"><a class="lno" href="#L135">135</a>  | .isTrue ha =&gt; .inl ha</span>
+<span class="ln" id="L136"><a class="lno" href="#L136">136</a>  | .isFalse ha =&gt; .inr (by</span>
+<span class="ln" id="L137"><a class="lno" href="#L137">137</a>      match F.exists_inv ha with</span>
+<span class="ln" id="L138"><a class="lno" href="#L138">138</a>      | ⟨y, hy⟩ =&gt;</span>
+<span class="ln" id="L139"><a class="lno" href="#L139">139</a>        calc b = 1 * b := (one_mul b).symm</span>
+<span class="ln" id="L140"><a class="lno" href="#L140">140</a>          _ = y * a * b := by rw [mul_comm y a, hy]</span>
+<span class="ln" id="L141"><a class="lno" href="#L141">141</a>          _ = y * (a * b) := mul_assoc _ _ _</span>
+<span class="ln" id="L142"><a class="lno" href="#L142">142</a>          _ = 0 := by rw [h, mul_zero])</span>
+<span class="ln" id="L143"><a class="lno" href="#L143">143</a></span>
+<span class="ln decl" id="FRC.Shell.Frame.mul_ne_zero"><a class="lno" href="#FRC.Shell.Frame.mul_ne_zero">144</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcCore/Frame.lean#L144" title="this line on GitHub (new tab)" target="_blank" rel="noopener">⧉</a><img class="leanico small ok" src="../lean-ok.png" alt="" title="axioms: none — tier 0, no axioms">theorem mul_ne_zero (F : Frame p κ g) {a b : Shell p} (ha : a ≠ 0) (hb : b ≠ 0) : a * b ≠ 0 :=</span>
+<span class="ln" id="L145"><a class="lno" href="#L145">145</a>  fun h =&gt; match F.mul_eq_zero h with</span>
+<span class="ln" id="L146"><a class="lno" href="#L146">146</a>    | .inl e =&gt; ha e</span>
+<span class="ln" id="L147"><a class="lno" href="#L147">147</a>    | .inr e =&gt; hb e</span>
+<span class="ln" id="L148"><a class="lno" href="#L148">148</a></span>
+<span class="ln decl" id="FRC.Shell.Frame.g_ne_zero"><a class="lno" href="#FRC.Shell.Frame.g_ne_zero">149</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcCore/Frame.lean#L149" title="this line on GitHub (new tab)" target="_blank" rel="noopener">⧉</a><img class="leanico small ok" src="../lean-ok.png" alt="" title="axioms: none — tier 0, no axioms">theorem g_ne_zero (F : Frame p κ g) : g ≠ 0 := fun h0 =&gt; by</span>
+<span class="ln" id="L150"><a class="lno" href="#L150">150</a>  have hn := F.pow_n</span>
+<span class="ln" id="L151"><a class="lno" href="#L151">151</a>  have : p - 1 = (p - 2) + 1 := by</span>
+<span class="ln" id="L152"><a class="lno" href="#L152">152</a>    have := F.one_lt_p</span>
+<span class="ln" id="L153"><a class="lno" href="#L153">153</a>    match p, this with</span>
+<span class="ln" id="L154"><a class="lno" href="#L154">154</a>    | k + 2, _ =&gt; rfl</span>
+<span class="ln" id="L155"><a class="lno" href="#L155">155</a>  rw [this, pow_succ, h0, mul_zero] at hn</span>
+<span class="ln" id="L156"><a class="lno" href="#L156">156</a>  exact F.one_ne_zero hn.symm</span>
+<span class="ln" id="L157"><a class="lno" href="#L157">157</a></span>
+<span class="ln decl" id="FRC.Shell.Frame.pow_ne_zero"><a class="lno" href="#FRC.Shell.Frame.pow_ne_zero">158</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcCore/Frame.lean#L158" title="this line on GitHub (new tab)" target="_blank" rel="noopener">⧉</a><img class="leanico small ok" src="../lean-ok.png" alt="" title="axioms: none — tier 0, no axioms">theorem pow_ne_zero (F : Frame p κ g) (n : Nat) : g ^ n ≠ 0 := by</span>
+<span class="ln" id="L159"><a class="lno" href="#L159">159</a>  induction n with</span>
+<span class="ln" id="L160"><a class="lno" href="#L160">160</a>  | zero =&gt; exact F.one_ne_zero</span>
+<span class="ln" id="L161"><a class="lno" href="#L161">161</a>  | succ n ih =&gt; rw [pow_succ]; exact F.mul_ne_zero ih F.g_ne_zero</span>
+<span class="ln" id="L162"><a class="lno" href="#L162">162</a></span>
+<span class="ln" id="L163"><a class="lno" href="#L163">163</a>/-- Cancellation: `a * b = a * c` with `a ≠ 0` gives `b = c`. -/</span>
+<span class="ln decl" id="FRC.Shell.Frame.mul_left_cancel"><a class="lno" href="#FRC.Shell.Frame.mul_left_cancel">164</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcCore/Frame.lean#L164" title="this line on GitHub (new tab)" target="_blank" rel="noopener">⧉</a><img class="leanico small ok" src="../lean-ok.png" alt="" title="axioms: none — tier 0, no axioms">theorem mul_left_cancel (F : Frame p κ g) {a b c : Shell p} (ha : a ≠ 0) (h : a * b = a * c) : b = c := by</span>
+<span class="ln" id="L165"><a class="lno" href="#L165">165</a>  have : a * (b + -c) = 0 := by rw [left_distrib, ← mul_neg, h, add_neg]</span>
+<span class="ln" id="L166"><a class="lno" href="#L166">166</a>  match F.mul_eq_zero this with</span>
+<span class="ln" id="L167"><a class="lno" href="#L167">167</a>  | .inl e =&gt; exact absurd e ha</span>
+<span class="ln" id="L168"><a class="lno" href="#L168">168</a>  | .inr e =&gt;</span>
+<span class="ln" id="L169"><a class="lno" href="#L169">169</a>    calc b = b + 0 := (add_zero b).symm</span>
+<span class="ln" id="L170"><a class="lno" href="#L170">170</a>      _ = b + (-c + c) := by rw [neg_add]</span>
+<span class="ln" id="L171"><a class="lno" href="#L171">171</a>      _ = (b + -c) + c := (add_assoc _ _ _).symm</span>
+<span class="ln" id="L172"><a class="lno" href="#L172">172</a>      _ = c := by rw [e, zero_add]</span>
+<span class="ln" id="L173"><a class="lno" href="#L173">173</a></span>
+<span class="ln" id="L174"><a class="lno" href="#L174">174</a>/-- The square roots of one are `±1`. -/</span>
+<span class="ln decl" id="FRC.Shell.Frame.sq_eq_one"><a class="lno" href="#FRC.Shell.Frame.sq_eq_one">175</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcCore/Frame.lean#L175" title="this line on GitHub (new tab)" target="_blank" rel="noopener">⧉</a><img class="leanico small ok" src="../lean-ok.png" alt="" title="axioms: none — tier 0, no axioms">theorem sq_eq_one (F : Frame p κ g) {x : Shell p} (h : x * x = 1) : x = 1 ∨ x = -1 := by</span>
+<span class="ln" id="L176"><a class="lno" href="#L176">176</a>  have e : (x + -1) * (x + 1) = 0 := by</span>
+<span class="ln" id="L177"><a class="lno" href="#L177">177</a>    rw [right_distrib, left_distrib, left_distrib, h, mul_one, neg_one_mul, neg_one_mul]</span>
+<span class="ln" id="L178"><a class="lno" href="#L178">178</a>    rw [add_assoc, ← add_assoc x (-x), add_neg, zero_add, add_neg]</span>
+<span class="ln" id="L179"><a class="lno" href="#L179">179</a>  match F.mul_eq_zero e with</span>
+<span class="ln" id="L180"><a class="lno" href="#L180">180</a>  | .inl e1 =&gt; exact .inl (by</span>
+<span class="ln" id="L181"><a class="lno" href="#L181">181</a>      calc x = x + 0 := (add_zero x).symm</span>
+<span class="ln" id="L182"><a class="lno" href="#L182">182</a>        _ = x + (-1 + 1) := by rw [neg_add]</span>
+<span class="ln" id="L183"><a class="lno" href="#L183">183</a>        _ = (x + -1) + 1 := (add_assoc _ _ _).symm</span>
+<span class="ln" id="L184"><a class="lno" href="#L184">184</a>        _ = 1 := by rw [e1, zero_add])</span>
+<span class="ln" id="L185"><a class="lno" href="#L185">185</a>  | .inr e2 =&gt; exact .inr (eq_neg_of_add_eq_zero e2)</span>
+<span class="ln" id="L186"><a class="lno" href="#L186">186</a></span>
+<span class="ln" id="L187"><a class="lno" href="#L187">187</a>/-! ### The Euclidean datum (00:C1) -/</span>
+<span class="ln" id="L188"><a class="lno" href="#L188">188</a></span>
+<span class="ln" id="L189"><a class="lno" href="#L189">189</a>/-- The half-period `π = 2κ`. -/</span>
+<span class="ln decl" id="FRC.Shell.Frame.halfPeriod"><a class="lno" href="#FRC.Shell.Frame.halfPeriod">190</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcCore/Frame.lean#L190" title="this line on GitHub (new tab)" target="_blank" rel="noopener">⧉</a><img class="leanico small" src="../lean.png" alt="" title="a definition: no proof, no axioms">def halfPeriod (κ : Nat) : Nat := 2 * κ</span>
+<span class="ln" id="L191"><a class="lno" href="#L191">191</a></span>
+<span class="ln" id="L192"><a class="lno" href="#L192">192</a>/-- The oriented quarter-turn `i = −g^κ` (00:C7). -/</span>
+<span class="ln decl" id="FRC.Shell.Frame.quarterTurn"><a class="lno" href="#FRC.Shell.Frame.quarterTurn">193</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcCore/Frame.lean#L193" title="this line on GitHub (new tab)" target="_blank" rel="noopener">⧉</a><img class="leanico small" src="../lean.png" alt="" title="a definition: no proof, no axioms">def quarterTurn (g : Shell p) (κ : Nat) : Shell p := -(g ^ κ)</span>
+<span class="ln" id="L194"><a class="lno" href="#L194">194</a></span>
+<span class="ln decl" id="FRC.Shell.Frame.two_kappa_lt"><a class="lno" href="#FRC.Shell.Frame.two_kappa_lt">195</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcCore/Frame.lean#L195" title="this line on GitHub (new tab)" target="_blank" rel="noopener">⧉</a><img class="leanico small ok" src="../lean-ok.png" alt="" title="axioms: none — tier 0, no axioms">theorem two_kappa_lt (F : Frame p κ g) : 2 * κ &lt; p - 1 := by</span>
+<span class="ln" id="L196"><a class="lno" href="#L196">196</a>  rw [F.n_eq]; exact FRC.Nat.mul_lt_mul_of_lt_of_pos (Nat.succ_lt_succ (Nat.succ_lt_succ (Nat.zero_lt_succ 1))) F.cap_pos</span>
+<span class="ln" id="L197"><a class="lno" href="#L197">197</a></span>
+<span class="ln decl" id="FRC.Shell.Frame.two_kappa_pos"><a class="lno" href="#FRC.Shell.Frame.two_kappa_pos">198</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcCore/Frame.lean#L198" title="this line on GitHub (new tab)" target="_blank" rel="noopener">⧉</a><img class="leanico small ok" src="../lean-ok.png" alt="" title="axioms: none — tier 0, no axioms">theorem two_kappa_pos (F : Frame p κ g) : 0 &lt; 2 * κ := Nat.mul_pos (Nat.zero_lt_succ 1) F.cap_pos</span>
+<span class="ln" id="L199"><a class="lno" href="#L199">199</a></span>
+<span class="ln decl" id="FRC.Shell.Frame.four_kappa"><a class="lno" href="#FRC.Shell.Frame.four_kappa">200</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcCore/Frame.lean#L200" title="this line on GitHub (new tab)" target="_blank" rel="noopener">⧉</a><img class="leanico small ok" src="../lean-ok.png" alt="" title="axioms: none — tier 0, no axioms">theorem four_kappa (F : Frame p κ g) : 2 * κ + 2 * κ = p - 1 := by</span>
+<span class="ln" id="L201"><a class="lno" href="#L201">201</a>  rw [F.n_eq]</span>
+<span class="ln" id="L202"><a class="lno" href="#L202">202</a>  show 2 * κ + 2 * κ = 2 * 2 * κ</span>
+<span class="ln" id="L203"><a class="lno" href="#L203">203</a>  rw [FRC.Nat.mul_assoc, ← Nat.two_mul (2 * κ)]</span>
+<span class="ln" id="L204"><a class="lno" href="#L204">204</a></span>
+<span class="ln" id="L205"><a class="lno" href="#L205">205</a>/-- 2:D1, 00:C1 — the half-period: `g^{2κ} = −1` for the drive of every frame. -/</span>
+<span class="ln decl" id="FRC.Shell.Frame.half_period"><a class="lno" href="#FRC.Shell.Frame.half_period">206</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcCore/Frame.lean#L206" title="this line on GitHub (new tab)" target="_blank" rel="noopener">⧉</a><img class="leanico small ok" src="../lean-ok.png" alt="" title="axioms: none — tier 0, no axioms">theorem half_period (F : Frame p κ g) : g ^ (2 * κ) = -1 := by</span>
+<span class="ln" id="L207"><a class="lno" href="#L207">207</a>  have hsq : g ^ (2 * κ) * g ^ (2 * κ) = 1 := by rw [← pow_add, F.four_kappa, F.pow_n]</span>
+<span class="ln" id="L208"><a class="lno" href="#L208">208</a>  match F.sq_eq_one hsq with</span>
+<span class="ln" id="L209"><a class="lno" href="#L209">209</a>  | .inr e =&gt; exact e</span>
+<span class="ln" id="L210"><a class="lno" href="#L210">210</a>  | .inl e =&gt; exact absurd e (F.prim.2 (2 * κ) F.two_kappa_lt F.two_kappa_pos)</span>
+<span class="ln" id="L211"><a class="lno" href="#L211">211</a></span>
+<span class="ln" id="L212"><a class="lno" href="#L212">212</a>/-- 1:B3, 2:D2 — the quarter-turn `i = −g^κ` squares to `−1`. -/</span>
+<span class="ln decl" id="FRC.Shell.Frame.quarter_turn_sq"><a class="lno" href="#FRC.Shell.Frame.quarter_turn_sq">213</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcCore/Frame.lean#L213" title="this line on GitHub (new tab)" target="_blank" rel="noopener">⧉</a><img class="leanico small ok" src="../lean-ok.png" alt="" title="axioms: none — tier 0, no axioms">theorem quarter_turn_sq (F : Frame p κ g) : quarterTurn g κ * quarterTurn g κ = -1 := by</span>
+<span class="ln" id="L214"><a class="lno" href="#L214">214</a>  unfold quarterTurn</span>
+<span class="ln" id="L215"><a class="lno" href="#L215">215</a>  rw [neg_mul_neg, ← pow_add, ← Nat.two_mul, F.half_period]</span>
+<span class="ln" id="L216"><a class="lno" href="#L216">216</a></span>
+<span class="ln" id="L217"><a class="lno" href="#L217">217</a>/-- 2:D2 — `g^κ` has order four: `(g^κ)^2 = −1` and `(g^κ)^4 = 1`. -/</span>
+<span class="ln decl" id="FRC.Shell.Frame.quarter_turn_order"><a class="lno" href="#FRC.Shell.Frame.quarter_turn_order">218</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcCore/Frame.lean#L218" title="this line on GitHub (new tab)" target="_blank" rel="noopener">⧉</a><img class="leanico small ok" src="../lean-ok.png" alt="" title="axioms: none — tier 0, no axioms">theorem quarter_turn_order (F : Frame p κ g) : (g ^ κ) ^ 2 = -1 ∧ (g ^ κ) ^ 4 = 1 := by</span>
+<span class="ln" id="L219"><a class="lno" href="#L219">219</a>  have h2 : (g ^ κ) ^ 2 = -1 := by rw [← pow_mul, Nat.mul_comm, F.half_period]</span>
+<span class="ln" id="L220"><a class="lno" href="#L220">220</a>  refine ⟨h2, ?_⟩</span>
+<span class="ln" id="L221"><a class="lno" href="#L221">221</a>  show (g ^ κ) ^ (2 * 2) = 1</span>
+<span class="ln" id="L222"><a class="lno" href="#L222">222</a>  rw [pow_mul, h2, neg_pow_two, one_pow]</span>
+<span class="ln" id="L223"><a class="lno" href="#L223">223</a></span>
+<span class="ln" id="L224"><a class="lno" href="#L224">224</a>/-- 2:D5 — the orientation classes: for `g&#x27; = g^u`, the quarter-turn `−g&#x27;^κ` is `−g^κ` when</span>
+<span class="ln" id="L225"><a class="lno" href="#L225">225</a>`u ≡ 1 (mod 4)` and `−(−g^κ)` when `u ≡ 3 (mod 4)`. -/</span>
+<span class="ln decl" id="FRC.Shell.Frame.orientation_class"><a class="lno" href="#FRC.Shell.Frame.orientation_class">226</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcCore/Frame.lean#L226" title="this line on GitHub (new tab)" target="_blank" rel="noopener">⧉</a><img class="leanico small ok" src="../lean-ok.png" alt="" title="axioms: none — tier 0, no axioms">theorem orientation_class (F : Frame p κ g) (u : Nat) :</span>
+<span class="ln" id="L227"><a class="lno" href="#L227">227</a>    (u % 4 = 1 → -((g ^ u) ^ κ) = -(g ^ κ)) ∧ (u % 4 = 3 → -((g ^ u) ^ κ) = -(-(g ^ κ))) := by</span>
+<span class="ln" id="L228"><a class="lno" href="#L228">228</a>  have h4 : (g ^ κ) ^ 4 = 1 := (F.quarter_turn_order).2</span>
+<span class="ln" id="L229"><a class="lno" href="#L229">229</a>  have h2 : (g ^ κ) ^ 2 = -1 := (F.quarter_turn_order).1</span>
+<span class="ln" id="L230"><a class="lno" href="#L230">230</a>  have key : (g ^ u) ^ κ = (g ^ κ) ^ u := pow_mul_comm g u κ</span>
+<span class="ln" id="L231"><a class="lno" href="#L231">231</a>  have hu : (g ^ κ) ^ u = (g ^ κ) ^ (u % 4) := by</span>
+<span class="ln" id="L232"><a class="lno" href="#L232">232</a>    match FRC.Nat.mod_spec 4 (Nat.zero_lt_succ 3) u with</span>
+<span class="ln" id="L233"><a class="lno" href="#L233">233</a>    | ⟨q, hq⟩ =&gt;</span>
+<span class="ln" id="L234"><a class="lno" href="#L234">234</a>      calc (g ^ κ) ^ u = (g ^ κ) ^ (4 * q + u % 4) := by rw [← hq]</span>
+<span class="ln" id="L235"><a class="lno" href="#L235">235</a>        _ = ((g ^ κ) ^ 4) ^ q * (g ^ κ) ^ (u % 4) := by rw [pow_add, pow_mul]</span>
+<span class="ln" id="L236"><a class="lno" href="#L236">236</a>        _ = (g ^ κ) ^ (u % 4) := by rw [h4, one_pow, one_mul]</span>
+<span class="ln" id="L237"><a class="lno" href="#L237">237</a>  constructor</span>
+<span class="ln" id="L238"><a class="lno" href="#L238">238</a>  · intro h1; rw [key, hu, h1, pow_one]</span>
+<span class="ln" id="L239"><a class="lno" href="#L239">239</a>  · intro h3</span>
+<span class="ln" id="L240"><a class="lno" href="#L240">240</a>    rw [key, hu, h3]</span>
+<span class="ln" id="L241"><a class="lno" href="#L241">241</a>    show -((g ^ κ) ^ (2 + 1)) = -(-(g ^ κ))</span>
+<span class="ln" id="L242"><a class="lno" href="#L242">242</a>    rw [pow_add, h2, pow_one, neg_one_mul]</span>
+<span class="ln" id="L243"><a class="lno" href="#L243">243</a></span>
+<span class="ln decl" id="FRC.Shell.Frame.sq_mod_two"><a class="lno" href="#FRC.Shell.Frame.sq_mod_two">244</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcCore/Frame.lean#L244" title="this line on GitHub (new tab)" target="_blank" rel="noopener">⧉</a><img class="leanico small ok" src="../lean-ok.png" alt="" title="axioms: none — tier 0, no axioms">theorem sq_mod_two (i : Nat) : (i * i) % 2 = i % 2 := by</span>
+<span class="ln" id="L245"><a class="lno" href="#L245">245</a>  rw [FRC.Nat.mul_mod i i 2 (Nat.zero_lt_succ 1)]</span>
+<span class="ln" id="L246"><a class="lno" href="#L246">246</a>  have := Nat.mod_lt i (Nat.zero_lt_succ 1)</span>
+<span class="ln" id="L247"><a class="lno" href="#L247">247</a>  match i % 2, this with</span>
+<span class="ln" id="L248"><a class="lno" href="#L248">248</a>  | 0, _ =&gt; rfl</span>
+<span class="ln" id="L249"><a class="lno" href="#L249">249</a>  | 1, _ =&gt; rfl</span>
+<span class="ln" id="L250"><a class="lno" href="#L250">250</a>  | k + 2, hk =&gt; exact absurd hk (Nat.not_lt_of_le (Nat.le_add_left 2 k))</span>
+<span class="ln" id="L251"><a class="lno" href="#L251">251</a></span>
+<span class="ln" id="L252"><a class="lno" href="#L252">252</a>/-- 2:D6, 00:C14 — the Euler identity on the shell: with `e = g^i` and `π = 2κ`,</span>
+<span class="ln" id="L253"><a class="lno" href="#L253">253</a>`(g^i)^{i·2κ} = (−1)^i` for every natural reading `i` of the quarter-turn — `−1` exactly when `i` is odd. -/</span>
+<span class="ln decl" id="FRC.Shell.Frame.euler_identity"><a class="lno" href="#FRC.Shell.Frame.euler_identity">254</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcCore/Frame.lean#L254" title="this line on GitHub (new tab)" target="_blank" rel="noopener">⧉</a><img class="leanico small ok" src="../lean-ok.png" alt="" title="axioms: none — tier 0, no axioms">theorem euler_identity (F : Frame p κ g) (i : Nat) :</span>
+<span class="ln" id="L255"><a class="lno" href="#L255">255</a>    (g ^ i) ^ (i * (2 * κ)) = if i % 2 = 0 then 1 else -1 := by</span>
+<span class="ln" id="L256"><a class="lno" href="#L256">256</a>  have e1 : (g ^ i) ^ (i * (2 * κ)) = (g ^ (2 * κ)) ^ (i * i) := by</span>
+<span class="ln" id="L257"><a class="lno" href="#L257">257</a>    rw [← pow_mul, ← pow_mul]</span>
+<span class="ln" id="L258"><a class="lno" href="#L258">258</a>    show g ^ (i * (i * (2 * κ))) = g ^ (2 * κ * (i * i))</span>
+<span class="ln" id="L259"><a class="lno" href="#L259">259</a>    rw [← FRC.Nat.mul_assoc, Nat.mul_comm (i * i)]</span>
+<span class="ln" id="L260"><a class="lno" href="#L260">260</a>  rw [e1, F.half_period, neg_one_pow, sq_mod_two]</span>
+<span class="ln" id="L261"><a class="lno" href="#L261">261</a></span>
+<span class="ln" id="L262"><a class="lno" href="#L262">262</a>/-- 00:C1 — the web closes: `2π ≡ −1` on every shell (`4κ = p − 1`). -/</span>
+<span class="ln decl" id="FRC.Shell.Frame.two_pi"><a class="lno" href="#FRC.Shell.Frame.two_pi">263</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcCore/Frame.lean#L263" title="this line on GitHub (new tab)" target="_blank" rel="noopener">⧉</a><img class="leanico small ok" src="../lean-ok.png" alt="" title="axioms: none — tier 0, no axioms">theorem two_pi (F : Frame p κ g) : (ofNat (2 * halfPeriod κ) : Shell p) = -1 := by</span>
+<span class="ln" id="L264"><a class="lno" href="#L264">264</a>  apply ext</span>
+<span class="ln" id="L265"><a class="lno" href="#L265">265</a>  rw [val_ofNat, val_neg, val_one, FRC.Nat.mod_eq_of_lt F.one_lt_p]</span>
+<span class="ln" id="L266"><a class="lno" href="#L266">266</a>  unfold halfPeriod</span>
+<span class="ln" id="L267"><a class="lno" href="#L267">267</a>  rw [← FRC.Nat.mul_assoc]</span>
+<span class="ln" id="L268"><a class="lno" href="#L268">268</a>  show (4 * κ) % p = (p - 1) % p</span>
+<span class="ln" id="L269"><a class="lno" href="#L269">269</a>  rw [F.n_eq]</span>
+<span class="ln" id="L270"><a class="lno" href="#L270">270</a></span>
+<span class="ln" id="L271"><a class="lno" href="#L271">271</a>end Frame</span>
+<span class="ln" id="L272"><a class="lno" href="#L272">272</a>end Shell</span>
+<span class="ln" id="L273"><a class="lno" href="#L273">273</a>end FRC</span>
+<span class="ln" id="L274"><a class="lno" href="#L274">274</a></span>
+</pre></main>
+</div>
+</body>
+</html>
