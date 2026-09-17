@@ -187,6 +187,10 @@
 'FRC.Shell.Frame.affineMul' does not depend on any axioms
 'FRC.Shell.Frame.affine_frame_unit' does not depend on any axioms
 'FRC.Shell.Frame.window_injective' does not depend on any axioms
+'FRC.Shell.Frame.ofNat_add' does not depend on any axioms
+'FRC.Shell.Frame.ofNat_mul' does not depend on any axioms
+'FRC.Shell.Frame.window_add_readback' does not depend on any axioms
+'FRC.Shell.Frame.window_mul_readback' does not depend on any axioms
 'FRC.Shell.Frame.window_signed' does not depend on any axioms
 'FRC.Shell.Frame.quarter_turn_exists' does not depend on any axioms
 'FRC.Shell.Frame.fourth_roots' does not depend on any axioms

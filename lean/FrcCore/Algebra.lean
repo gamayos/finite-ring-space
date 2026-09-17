@@ -87,6 +87,26 @@ theorem window_injective {H x y : Nat} (hH : 2 * H < p) (hx : x ≤ H) (hy : y �
   rw [val_ofNat, val_ofNat, FRC.Nat.mod_eq_of_lt hxp, FRC.Nat.mod_eq_of_lt hyp] at this
   exact this
 
+theorem ofNat_add (x y : Nat) : (ofNat x : Shell p) + ofNat y = ofNat (x + y) :=
+  ext (by rw [val_add, val_ofNat, val_ofNat, val_ofNat, FRC.Nat.mod_add_mod _ _ _ hp, FRC.Nat.add_mod_mod _ _ _ hp])
+
+theorem ofNat_mul (x y : Nat) : (ofNat x : Shell p) * ofNat y = ofNat (x * y) :=
+  ext (by rw [val_mul, val_ofNat, val_ofNat, val_ofNat, FRC.Nat.mod_mul_mod _ _ _ hp, FRC.Nat.mul_mod_mod _ _ _ hp])
+
+/-- 1:D2, the read-back of sums: for `x, y ≤ H` and `4H < p`, the residue of `x + y` determines the integer
+`x + y` among the integers `z ≤ 2H`. -/
+theorem window_add_readback {H x y z : Nat} (hH : 2 * (2 * H) < p) (hx : x ≤ H) (hy : y ≤ H) (hz : z ≤ 2 * H)
+    (h : (ofNat x : Shell p) + ofNat y = ofNat z) : x + y = z := by
+  rw [ofNat_add] at h
+  exact window_injective hH (by rw [Nat.two_mul]; exact Nat.add_le_add hx hy) hz h
+
+/-- 1:D2, the read-back of products: for `x, y ≤ H` and `2H² < p`, the residue of `x·y` determines the integer
+`x·y` among the integers `z ≤ H²`. -/
+theorem window_mul_readback {H x y z : Nat} (hH : 2 * (H * H) < p) (hx : x ≤ H) (hy : y ≤ H) (hz : z ≤ H * H)
+    (h : (ofNat x : Shell p) * ofNat y = ofNat z) : x * y = z := by
+  rw [ofNat_mul] at h
+  exact window_injective hH (Nat.mul_le_mul hx hy) hz h
+
 /-- 1:D2, the signed window: `x` and `−y` (`x, y ≤ H`, `2H < p`) read as the same residue only when both
 are zero — the window's positive and negative halves do not overlap. -/
 theorem window_signed {H x y : Nat} (hH : 2 * H < p) (hx : x ≤ H) (hy : y ≤ H)

@@ -121,7 +121,7 @@
      "label": "D2",
      "predicate": "The window law: $z\\mapsto z\\bmod\\p$ is injective on $W_H$ when $2H<\\p$; for $x,y\\in W_H$ the residue of $x\\pm y$ reads back the integer when $4H<\\p$, and that of $xy$ when $2H^{2}<\\p$ (the same injectivity on the windows $2H$ and $H^{2}$).",
      "tag": "T",
-     "source": "\\src{B1}; \\lean{Algebra.framed\\_integer\\_window, FRC.Shell.Frame.window\\_injective, FRC.Shell.Frame.window\\_signed}",
+     "source": "\\src{B1}; \\lean{Algebra.framed\\_integer\\_window, FRC.Shell.Frame.window\\_injective, FRC.Shell.Frame.window\\_signed, FRC.Shell.Frame.window\\_add\\_readback, FRC.Shell.Frame.window\\_mul\\_readback}",
      "key": "p01013"
     },
     {
@@ -255,7 +255,7 @@
     },
     {
      "label": "V3",
-     "predicate": "\\texttt{lean/FrcCore} (no Mathlib, \\emph{no axioms}: every declaration prints ``does not depend on any axioms''): residues with representatives, the frame $(\\chron;0,1,\\gen)$ with the drive primitive (decidable; \\texttt{decide} on $\\F_{13}$, $\\F_{17}$, $\\F_{29}$) and generating by the pigeonhole, the division algorithm from the definition of \\texttt{Nat.mod}; B2, B3, B4, C4, D2, D4, D5, E2, F1, G1's Fermat clause, for every shell by computation and induction.",
+     "predicate": "\\texttt{lean/FrcCore} (no Mathlib, \\emph{no axioms}: every declaration prints ``does not depend on any axioms''): residues with representatives, the frame $(\\chron;0,1,\\gen)$ with the drive primitive (decidable; \\texttt{decide} on $\\F_{13}$, $\\F_{17}$, $\\F_{29}$), generating by the pigeonhole; the division algorithm from the definition of \\texttt{Nat.mod}; B2, B3, B4, C4, D2, D4, D5, E2, F1, G1's Fermat clause, every shell, by computation and induction.",
      "tag": "T",
      "source": "\\lean{FRC.Shell.Frame.half\\_period, FRC.Shell.frame13}",
      "key": "p01031"
@@ -371,7 +371,7 @@
    {
     "name": "FRC.Shell.Frame.quarter_turn_exists",
     "module": "FrcCore/Algebra",
-    "line": 112,
+    "line": 132,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -380,7 +380,7 @@
    {
     "name": "FRC.Shell.Frame.fourth_roots",
     "module": "FrcCore/Algebra",
-    "line": 116,
+    "line": 136,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -491,7 +491,7 @@
    {
     "name": "FRC.Shell.Frame.meridian_involution",
     "module": "FrcCore/Algebra",
-    "line": 148,
+    "line": 168,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -524,11 +524,29 @@
    {
     "name": "FRC.Shell.Frame.window_signed",
     "module": "FrcCore/Algebra",
-    "line": 92,
+    "line": 112,
     "axioms": [],
     "tier": 0,
     "ok": true,
     "doc": "1:D2, the signed window: `x` and `−y` (`x, y ≤ H`, `2H < p`) read as the same residue only when both are zero — the window's positive and negative halves do not overlap."
+   },
+   {
+    "name": "FRC.Shell.Frame.window_add_readback",
+    "module": "FrcCore/Algebra",
+    "line": 98,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "1:D2, the read-back of sums: for `x, y ≤ H` and `4H < p`, the residue of `x + y` determines the integer `x + y` among the integers `z ≤ 2H`."
+   },
+   {
+    "name": "FRC.Shell.Frame.window_mul_readback",
+    "module": "FrcCore/Algebra",
+    "line": 105,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "1:D2, the read-back of products: for `x, y ≤ H` and `2H² < p`, the residue of `x·y` determines the integer `x·y` among the integers `z ≤ H²`."
    }
   ],
   "D4": [
@@ -572,7 +590,7 @@
    {
     "name": "FRC.Shell.Frame.approx_theorem_refuted",
     "module": "FrcCore/Algebra",
-    "line": 176,
+    "line": 196,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -596,7 +614,7 @@
    {
     "name": "FRC.Shell.Frame.complex_chart_zero_divisor",
     "module": "FrcCore/Algebra",
-    "line": 166,
+    "line": 186,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -620,7 +638,7 @@
    {
     "name": "FRC.Shell.Frame.no_south_pole",
     "module": "FrcCore/Algebra",
-    "line": 154,
+    "line": 174,
     "axioms": [],
     "tier": 0,
     "ok": true,
