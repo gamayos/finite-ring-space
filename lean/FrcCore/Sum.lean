@@ -64,6 +64,25 @@ theorem sum_const (c : Shell p) (n : Nat) : sumRange (fun _ => c) n = ofNat n * 
       rw [val_ofNat, val_add, val_ofNat, val_one, FRC.Nat.mod_add_mod _ _ _ hp, FRC.Nat.add_mod_mod _ _ _ hp])
     rw [this, right_distrib, one_mul]
 
+theorem sum_zero {f : Nat → Shell p} (n : Nat) (h : ∀ l, l < n → f l = 0) : sumRange f n = 0 := by
+  induction n with
+  | zero => rfl
+  | succ n ih => rw [sumRange_succ, ih (fun l hl => h l (Nat.lt_succ_of_lt hl)), h n (Nat.lt_succ_self n), add_zero]
+
+/-- A sum with a single nonzero term. -/
+theorem sum_eq_single {f : Nat → Shell p} {l₀ : Nat} : ∀ {n : Nat}, l₀ < n → (∀ l, l < n → l ≠ l₀ → f l = 0) →
+    sumRange f n = f l₀
+  | 0, h, _ => absurd h (Nat.not_lt_zero _)
+  | n + 1, hl₀, h => by
+    rw [sumRange_succ]
+    exact match Nat.decEq l₀ n with
+      | isTrue e => by
+          rw [sum_zero n (fun l hl => h l (Nat.lt_succ_of_lt hl) (fun e' => absurd hl (by rw [e', e]; exact Nat.lt_irrefl n))),
+            zero_add, e]
+      | isFalse e => by
+          rw [sum_eq_single (Nat.lt_of_le_of_ne (Nat.le_of_lt_succ hl₀) (fun e' => e e')) (fun l hl hne => h l (Nat.lt_succ_of_lt hl) hne),
+            h n (Nat.lt_succ_self n) (fun e' => e e'.symm), add_zero]
+
 /-- The telescoping geometric sum: `(Σ_{l<n} x^l)·(x − 1) = x^n − 1`. -/
 theorem geom_sum_mul (x : Shell p) (n : Nat) :
     sumRange (fun l => x ^ l) n * (x + -1) = x ^ n + -1 := by
@@ -90,6 +109,7 @@ theorem geom_sum_eq_zero (F : Frame p κ g) {x : Shell p} (n : Nat) (hn : x ^ n 
         _ = (x + -1) + 1 := (add_assoc _ _ _).symm
         _ = 1 := by rw [e, zero_add]) hx
 
+/-- 6:B6 — the normalization constant read in the field: `n = p − 1 ≡ −1`. -/
 theorem ofNat_n (F : Frame p κ g) : (ofNat (p - 1) : Shell p) = -1 := by
   apply ext
   rw [val_ofNat, val_neg, val_one, FRC.Nat.mod_eq_of_lt F.one_lt_p,
@@ -185,6 +205,136 @@ theorem W_sq (F : Frame p κ g) (k j : Nat) :
     | .isFalse e => by
         rw [if_neg e, neg_zero]
         exact F.geom_sum_eq_zero _ (by rw [pow_mul_comm, F.pow_n, one_pow]) (fun h => e (F.mod_eq_zero_of_pow_eq_one h))
+
+/-! ### The reversal, the Fourier matrix `W`, the quarter-turn transform `F = i·W` (6:B5, B7) -/
+
+/-- The reversal `rev n k = (n − k) % n`: the index `l` with `(k + l) % n = 0`. -/
+def rev (n k : Nat) : Nat := (n - k) % n
+
+theorem rev_lt {n : Nat} (hn : 0 < n) (k : Nat) : rev n k < n := Nat.mod_lt _ hn
+
+theorem rev_zero (n : Nat) (hn : 0 < n) : rev n 0 = 0 := by
+  unfold rev; rw [Nat.sub_zero]; exact FRC.Nat.mod_self n hn
+
+theorem rev_of_pos {n k : Nat} (hk : k < n) (hk0 : 0 < k) : rev n k = n - k := by
+  unfold rev; exact FRC.Nat.mod_eq_of_lt (Nat.sub_lt (Nat.lt_of_lt_of_le hk0 (Nat.le_of_lt hk)) hk0)
+
+theorem rev_add_mod {n k : Nat} (hk : k < n) : (rev n k + k) % n = 0 := by
+  have hn : 0 < n := Nat.lt_of_le_of_lt (Nat.zero_le k) hk
+  exact match Nat.decEq k 0 with
+    | isTrue e => by rw [e, rev_zero n hn]; rfl
+    | isFalse e => by
+        rw [rev_of_pos hk (Nat.pos_of_ne_zero e), FRC.Nat.sub_add_cancel (Nat.le_of_lt hk)]
+        exact FRC.Nat.mod_self n hn
+
+theorem rev_rev {n k : Nat} (hk : k < n) : rev n (rev n k) = k := by
+  have hn : 0 < n := Nat.lt_of_le_of_lt (Nat.zero_le k) hk
+  exact match Nat.decEq k 0 with
+    | isTrue e => by rw [e, rev_zero n hn, rev_zero n hn]
+    | isFalse e => by
+        have hk0 := Nat.pos_of_ne_zero e
+        rw [rev_of_pos hk hk0]
+        have hnk : n - k < n := Nat.sub_lt (Nat.lt_of_lt_of_le hk0 (Nat.le_of_lt hk)) hk0
+        have hnk0 : 0 < n - k := by
+          refine Nat.lt_of_add_lt_add_right (n := k) ?_
+          rw [Nat.zero_add, FRC.Nat.sub_add_cancel (Nat.le_of_lt hk)]; exact hk
+        rw [rev_of_pos hnk hnk0]
+        calc n - (n - k) = (n - k + k) - (n - k) := by rw [FRC.Nat.sub_add_cancel (Nat.le_of_lt hk)]
+          _ = k := FRC.Nat.add_sub_cancel_left _ _
+
+/-- `(k + l) % n = 0` exactly when `l` is the reversal of `k` (`k, l < n`). -/
+theorem add_mod_eq_zero_iff {n k l : Nat} (hk : k < n) (hl : l < n) : (k + l) % n = 0 ↔ l = rev n k := by
+  have hn : 0 < n := Nat.lt_of_le_of_lt (Nat.zero_le k) hk
+  constructor
+  · intro h
+    exact match Nat.decEq k 0 with
+      | isTrue e => by
+          rw [e, Nat.zero_add, FRC.Nat.mod_eq_of_lt hl] at h
+          rw [e, rev_zero n hn, h]
+      | isFalse e => by
+          have hk0 := Nat.pos_of_ne_zero e
+          rw [rev_of_pos hk hk0]
+          exact match Nat.lt_or_ge l (n - k) with
+            | Or.inl hlt => by
+                have : k + l < n := by
+                  have := Nat.add_lt_add_left hlt k
+                  rw [FRC.Nat.add_sub_of_le (Nat.le_of_lt hk)] at this; exact this
+                rw [FRC.Nat.mod_eq_of_lt this] at h
+                exact absurd h (Nat.ne_of_gt (Nat.lt_of_lt_of_le hk0 (Nat.le_add_right k l)))
+            | Or.inr hge => by
+                have e1 : k + l = n * 1 + (l - (n - k)) := by
+                  rw [Nat.mul_one]
+                  calc k + l = k + ((n - k) + (l - (n - k))) := by rw [FRC.Nat.add_sub_of_le hge]
+                    _ = (k + (n - k)) + (l - (n - k)) := (Nat.add_assoc _ _ _).symm
+                    _ = n + (l - (n - k)) := by rw [FRC.Nat.add_sub_of_le (Nat.le_of_lt hk)]
+                rw [e1, FRC.Nat.add_mul_mod_self_left _ _ _ hn,
+                  FRC.Nat.mod_eq_of_lt (Nat.lt_of_le_of_lt (Nat.sub_le _ _) hl)] at h
+                have := FRC.Nat.add_sub_of_le hge
+                rw [h, Nat.add_zero] at this
+                exact this.symm
+  · intro e; rw [e, Nat.add_comm]; exact rev_add_mod hk
+
+/-- The shell Fourier matrix, `W k j = g^{jk}` (6:B5's convention). -/
+def W (g : Shell p) (k j : Nat) : Shell p := g ^ (j * k)
+
+/-- The reversal matrix `J k j = [(k + j) % n = 0]`. -/
+def J (n k j : Nat) : Shell p := if (k + j) % n = 0 then 1 else 0
+
+/-- The quarter-turn transform `F = i·W`, `i = −g^κ`. -/
+def Fmat (g : Shell p) (κ k j : Nat) : Shell p := quarterTurn g κ * W g k j
+
+theorem J_eq {n k l : Nat} (hk : k < n) (hl : l < n) :
+    (J n k l : Shell p) = (if l = rev n k then (1 : Shell p) else 0) := by
+  unfold J
+  exact match Nat.decEq l (rev n k) with
+    | isTrue e => by rw [if_pos e, if_pos ((add_mod_eq_zero_iff hk hl).2 e)]
+    | isFalse e => by rw [if_neg e, if_neg (fun h => e ((add_mod_eq_zero_iff hk hl).1 h))]
+
+/-- 6:B5 (`W² = −J`, entrywise), in the matrix notation. -/
+theorem W_sq' (F : Frame p κ g) (k j : Nat) :
+    sumRange (fun l => W g k l * W g l j) (p - 1) = -(J (p - 1) k j) := F.W_sq k j
+
+/-- 6:B5, 6:B7 (`J² = 1`, entrywise): the reversal is an involution, so `F⁴ = J² = 1`. -/
+theorem J_sq (F : Frame p κ g) {k j : Nat} (hk : k < p - 1) (hj : j < p - 1) :
+    sumRange (fun l => (J (p - 1) k l : Shell p) * J (p - 1) l j) (p - 1) = (if k = j then (1 : Shell p) else 0) := by
+  have hn := F.n_pos
+  have hr : rev (p - 1) k < p - 1 := rev_lt hn k
+  rw [sum_eq_single hr (fun l hl hne => by rw [J_eq hk hl, if_neg hne, zero_mul])]
+  rw [J_eq hk hr, if_pos rfl, one_mul, J_eq hr hj, rev_rev hk]
+  exact match Nat.decEq k j with
+    | isTrue e => by rw [if_pos e, if_pos e.symm]
+    | isFalse e => by rw [if_neg e, if_neg (fun h => e h.symm)]
+
+/-- 6:B5, 6:B7 (`F² = J`, entrywise): the quarter-turn transform squares to the reversal. -/
+theorem F_sq (F : Frame p κ g) (k j : Nat) :
+    sumRange (fun l => Fmat g κ k l * Fmat g κ l j) (p - 1) = J (p - 1) k j := by
+  have e : ∀ l, Fmat g κ k l * Fmat g κ l j = (quarterTurn g κ * quarterTurn g κ) * (W g k l * W g l j) := by
+    intro l; unfold Fmat
+    rw [mul_assoc, mul_left_comm (W g k l), ← mul_assoc]
+  rw [sum_congr _ (fun l _ => e l), sum_mul_left, F.W_sq' k j, F.quarter_turn_sq, ← neg_mul, one_mul, neg_neg]
+
+theorem inv_unique {x x' y : Shell p} (h : x * y = 1) (h' : x' * y = 1) : x = x' := by
+  calc x = x * (x' * y) := by rw [h', mul_one]
+    _ = x' * (x * y) := mul_left_comm _ _ _
+    _ = x' := by rw [h, mul_one]
+
+/-- 6:B7 (`W J = J W`, entrywise). -/
+theorem W_J_comm (F : Frame p κ g) {k j : Nat} (hk : k < p - 1) (hj : j < p - 1) :
+    sumRange (fun l => W g k l * J (p - 1) l j) (p - 1) = sumRange (fun l => J (p - 1) k l * W g l j) (p - 1) := by
+  have hn := F.n_pos
+  have hrj : rev (p - 1) j < p - 1 := rev_lt hn j
+  have hrk : rev (p - 1) k < p - 1 := rev_lt hn k
+  rw [sum_eq_single hrj (fun l hl hne => by
+        rw [J_eq hl hj, if_neg (fun e => hne (by rw [e, rev_rev hl])), mul_zero])]
+  rw [sum_eq_single hrk (fun l hl hne => by rw [J_eq hk hl, if_neg hne, zero_mul])]
+  rw [J_eq hrj hj, if_pos (rev_rev hj).symm, mul_one, J_eq hk hrk, if_pos rfl, one_mul]
+  unfold W
+  -- both are the inverse of g^{jk}
+  apply inv_unique (y := g ^ (j * k))
+  · rw [← pow_add, ← FRC.Nat.add_mul, F.pow_mod, ← FRC.Nat.mod_mul_mod _ _ _ hn, rev_add_mod hj, Nat.zero_mul,
+      FRC.Nat.zero_mod, pow_zero]
+  · rw [← pow_add, ← Nat.left_distrib, F.pow_mod, ← FRC.Nat.mul_mod_mod _ _ _ hn, rev_add_mod hk, Nat.mul_zero,
+      FRC.Nat.zero_mod, pow_zero]
 
 end Frame
 

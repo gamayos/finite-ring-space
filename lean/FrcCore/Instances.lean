@@ -1,4 +1,4 @@
-import FrcCore.Frame
+import FrcCore.Orbit
 
 /-!
 # FrcCore.Instances — concrete shells, decided by computation
@@ -10,8 +10,11 @@ accelerated `Nat` operations) and the proof term is `of_decide_eq_true rfl`. No 
 namespace FRC
 namespace Shell
 
-/-- 00:C1 on `𝔽₁₃`: the frame `(τ; 0, 1, 2)` of capacity `3` — `2` is a primitive generator. -/
-theorem frame13 : Frame 13 3 (2 : Shell 13) := ⟨rfl, Nat.zero_lt_succ 2, by decide, by decide⟩
+/-- 00:C1 on `𝔽₁₃`: the frame `(τ; 0, 1, 2)` of capacity `3` — `2` is primitive (decided). -/
+theorem frame13 : Frame 13 3 (2 : Shell 13) := ⟨rfl, Nat.zero_lt_succ 2, by decide⟩
+
+/-- 00:A8 on `𝔽₁₃`: the drive generates — checked directly, and proved for every frame by `Frame.generates`. -/
+theorem generates13 : Generates (2 : Shell 13) 12 := by decide
 
 /-- 1:B3, 2:D3 [value] — on `𝔽₁₃(τ; 0, 1, 2)`: `i = −2³ = 5`, `i² = −1`, `−i = 8`, `π = 6`, `2^6 = −1`,
 `e = 2^5 = 6`. -/
@@ -23,8 +26,8 @@ theorem s13_datum :
 theorem s13_euler : ((2 : Shell 13) ^ 5) ^ (5 * 6) = -1 := by decide
 
 /-- 00:C1 on `𝔽₁₇`: two frames, `g = 3` and `g = 6`. -/
-theorem frame17a : Frame 17 4 (3 : Shell 17) := ⟨rfl, Nat.zero_lt_succ 3, by decide, by decide⟩
-theorem frame17b : Frame 17 4 (6 : Shell 17) := ⟨rfl, Nat.zero_lt_succ 3, by decide, by decide⟩
+theorem frame17a : Frame 17 4 (3 : Shell 17) := ⟨rfl, Nat.zero_lt_succ 3, by decide⟩
+theorem frame17b : Frame 17 4 (6 : Shell 17) := ⟨rfl, Nat.zero_lt_succ 3, by decide⟩
 
 set_option maxRecDepth 20000 in
 /-- 2:D6 [value], 00:C14 — on `𝔽₁₇` the frame `g = 3` reads `i = 4` (even: `e^{iπ} = +1`) and the frame
@@ -35,7 +38,7 @@ theorem s17_orientation :
     (3 : Shell 17) ^ 15 = 6 := by decide
 
 /-- 00:C1 on `𝔽₂₉`: the frame `(τ; 0, 1, 2)`, capacity `7`. -/
-theorem frame29 : Frame 29 7 (2 : Shell 29) := ⟨rfl, Nat.zero_lt_succ 6, by decide, by decide⟩
+theorem frame29 : Frame 29 7 (2 : Shell 29) := ⟨rfl, Nat.zero_lt_succ 6, by decide⟩
 
 /-- 1:B2 [value] — on `𝔽₁₃` the fourth roots of unity are `{1, 5, 12, 8}`, and every other nonzero
 residue has four distinct companions `{x, −x, x⁻¹, −x⁻¹}`: the two Klein orbits `{2, 11, 7, 6}` and
@@ -43,6 +46,12 @@ residue has four distinct companions `{x, −x, x⁻¹, −x⁻¹}`: the two Kle
 theorem s13_klein :
     (∀ x : Fin 13, (x.val = 1 ∨ x.val = 5 ∨ x.val = 12 ∨ x.val = 8) ↔ (ofNat x.val : Shell 13) ^ 4 = 1) ∧
     (2 : Shell 13) * 7 = 1 ∧ (3 : Shell 13) * 9 = 1 := by decide
+
+/-- 2:B3 [value] — on `𝔽₁₃` the generators are `2^u` with `u ∈ {1, 5, 7, 11}` (the units mod `12`): `6 = 2^5`
+is primitive, `4 = 2^2` is not; `5, 7, 11` are invertible mod `12`, `2` is not. -/
+theorem s13_orbit :
+    Coprime 5 12 ∧ Coprime 7 12 ∧ Coprime 11 12 ∧ ¬ Coprime 2 12 ∧
+    IsPrimitive (6 : Shell 13) 12 ∧ ¬ IsPrimitive (4 : Shell 13) 12 ∧ (2 : Shell 13) ^ 5 = 6 := by decide
 
 end Shell
 end FRC

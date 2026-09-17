@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-HNE3RMJ5L1"></script>
+<script> window.dataLayer = window.dataLayer || []; function gtag(){dataLayer.push(arguments);} gtag('js', new Date()); gtag('config', 'G-HNE3RMJ5L1'); </script>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Orbit.lean — FrcCore</title>
+<meta name="description" content="The Lean module FrcCore/Orbit of the FRC predicate ledgers, rendered with an anchor per declaration">
+<meta name="author" content="Yosef Akhtman">
+<link rel="icon" href="../../frc-logo-fav.png">
+<link rel="stylesheet" href="../../style.css">
+
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <h1>Orbit.lean — FrcCore</h1>
+    
+    <nav><a href="../../index.html">Home</a><a href="../../publications.html">Publications</a><a href="../../00-ledger.html">Ledger</a><a href="../../predictions.html">Predictions</a><a href="../../explicability.html">Explicability</a></nav>
+  </header>
+<main id="ledger-main"><section class="prose"><p>The core module <code>lean/FrcCore/Orbit.lean</code> — the substrate from first principles, no Mathlib, no axioms (the modules in order: <a href="Nat.html">Nat</a>, <a href="Pigeonhole.html">Pigeonhole</a>, <a href="Shell.html">Shell</a>, <a href="Frame.html">Frame</a>, <a href="Orbit.html">Orbit</a>, <a href="Sum.html">Sum</a>, <a href="Algebra.html">Algebra</a>, <a href="Geometry.html">Geometry</a>, <a href="Instances.html">Instances</a>): 4 theorems (1 definitions): 4 with no axioms (green), 0 at tier 1 (teal: <code>propext</code>, <code>Quot.sound</code>), 0 at tier 2 (amber: <code>Classical.choice</code>), 0 red; the plain glyph marks a definition. Each declaration is anchored; the ledger rows cite them by name. <a href="https://live.lean-lang.org/#project=lean-v4.34.0&url=https://raw.githubusercontent.com/gamayos/finite-ring-space/main/lean/web/FrcCore.lean" target="_blank" rel="noopener">▶ open in the Lean web editor</a> · <a href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcCore/Orbit.lean" target="_blank" rel="noopener">on GitHub</a> · <a href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcCore/axioms.log" target="_blank" rel="noopener">axioms.log</a> · <a href="https://github.com/gamayos/finite-ring-space/actions/workflows/lean.yml" target="_blank" rel="noopener">CI</a> (all in a new tab).</p></section><pre class="lean"><span class="ln" id="L1"><a class="lno" href="#L1">1</a>import FrcCore.Frame</span>
+<span class="ln" id="L2"><a class="lno" href="#L2">2</a></span>
+<span class="ln" id="L3"><a class="lno" href="#L3">3</a>/-!</span>
+<span class="ln" id="L4"><a class="lno" href="#L4">4</a># FrcCore.Orbit — the generators form one orbit (2:B3; 1-algebra&#x27;s torsor of primitive roots)</span>
+<span class="ln" id="L5"><a class="lno" href="#L5">5</a></span>
+<span class="ln" id="L6"><a class="lno" href="#L6">6</a>`Coprime u n` is taken in its invertible form — some `a &lt; n` has `a·u ≡ 1 (mod n)` — which is decidable by</span>
+<span class="ln" id="L7"><a class="lno" href="#L7">7</a>search and, for `n ≥ 1`, the same as `gcd(u, n) = 1` (Bezout); it is what every proof uses. Theorem:</span>
+<span class="ln" id="L8"><a class="lno" href="#L8">8</a>`h` is primitive of order `n = p − 1` exactly when `h = g^u` with `u &lt; n` coprime to `n`. No axioms.</span>
+<span class="ln" id="L9"><a class="lno" href="#L9">9</a>-/</span>
+<span class="ln" id="L10"><a class="lno" href="#L10">10</a></span>
+<span class="ln" id="L11"><a class="lno" href="#L11">11</a>namespace FRC</span>
+<span class="ln" id="L12"><a class="lno" href="#L12">12</a>namespace Shell</span>
+<span class="ln" id="L13"><a class="lno" href="#L13">13</a></span>
+<span class="ln" id="L14"><a class="lno" href="#L14">14</a>/-- `u` is invertible mod `n`: some `a &lt; n` has `a·u % n = 1`. -/</span>
+<span class="ln decl" id="FRC.Shell.Coprime"><a class="lno" href="#FRC.Shell.Coprime">15</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcCore/Orbit.lean#L15" title="this line on GitHub (new tab)" target="_blank" rel="noopener">⧉</a><img class="leanico small" src="../lean.png" alt="" title="a definition: no proof, no axioms">def Coprime (u n : Nat) : Prop := ∃ a, a &lt; n ∧ (a * u) % n = 1</span>
+<span class="ln" id="L16"><a class="lno" href="#L16">16</a></span>
+<span class="ln" id="L17"><a class="lno" href="#L17">17</a>instance (u n : Nat) : Decidable (Coprime u n) := decExistsLT (fun a =&gt; (a * u) % n = 1) n</span>
+<span class="ln" id="L18"><a class="lno" href="#L18">18</a></span>
+<span class="ln" id="L19"><a class="lno" href="#L19">19</a>namespace Frame</span>
+<span class="ln" id="L20"><a class="lno" href="#L20">20</a>variable {p : Nat} [Pos p] {κ : Nat} {g : Shell p}</span>
+<span class="ln" id="L21"><a class="lno" href="#L21">21</a></span>
+<span class="ln" id="L22"><a class="lno" href="#L22">22</a>/-- A power of the drive with an invertible exponent is again primitive. -/</span>
+<span class="ln decl" id="FRC.Shell.Frame.primitive_pow_of_coprime"><a class="lno" href="#FRC.Shell.Frame.primitive_pow_of_coprime">23</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcCore/Orbit.lean#L23" title="this line on GitHub (new tab)" target="_blank" rel="noopener">⧉</a><img class="leanico small ok" src="../lean-ok.png" alt="" title="axioms: none — tier 0, no axioms">theorem primitive_pow_of_coprime (F : Frame p κ g) {u : Nat} (hu : Coprime u (p - 1)) :</span>
+<span class="ln" id="L24"><a class="lno" href="#L24">24</a>    IsPrimitive (g ^ u) (p - 1) := by</span>
+<span class="ln" id="L25"><a class="lno" href="#L25">25</a>  have hn := F.n_pos</span>
+<span class="ln" id="L26"><a class="lno" href="#L26">26</a>  match hu with</span>
+<span class="ln" id="L27"><a class="lno" href="#L27">27</a>  | ⟨a, _, ha⟩ =&gt;</span>
+<span class="ln" id="L28"><a class="lno" href="#L28">28</a>    refine ⟨by rw [pow_mul_comm, F.pow_n, one_pow], ?_⟩</span>
+<span class="ln" id="L29"><a class="lno" href="#L29">29</a>    intro l hl hl0 hpow</span>
+<span class="ln" id="L30"><a class="lno" href="#L30">30</a>    -- (g^u)^l = 1 gives (u·l) % n = 0; with a·u = n·q + 1, g^l = g^{l·a·u} = ((g^u)^l)^a = 1</span>
+<span class="ln" id="L31"><a class="lno" href="#L31">31</a>    have h1 : (u * l) % (p - 1) = 0 := F.mod_eq_zero_of_pow_eq_one (by rw [pow_mul]; exact hpow)</span>
+<span class="ln" id="L32"><a class="lno" href="#L32">32</a>    match FRC.Nat.mod_spec (p - 1) hn (a * u) with</span>
+<span class="ln" id="L33"><a class="lno" href="#L33">33</a>    | ⟨q, hq⟩ =&gt;</span>
+<span class="ln" id="L34"><a class="lno" href="#L34">34</a>      rw [ha] at hq</span>
+<span class="ln" id="L35"><a class="lno" href="#L35">35</a>      have e : l * (a * u) = (p - 1) * (q * l) + l := by</span>
+<span class="ln" id="L36"><a class="lno" href="#L36">36</a>        rw [hq, Nat.left_distrib, Nat.mul_one, FRC.Nat.mul_left_comm, Nat.mul_comm l q]</span>
+<span class="ln" id="L37"><a class="lno" href="#L37">37</a>      have h2 : g ^ (l * (a * u)) = 1 := by</span>
+<span class="ln" id="L38"><a class="lno" href="#L38">38</a>        rw [show l * (a * u) = (u * l) * a by rw [Nat.mul_comm u l, FRC.Nat.mul_assoc, Nat.mul_comm a u]]</span>
+<span class="ln" id="L39"><a class="lno" href="#L39">39</a>        rw [pow_mul, F.pow_eq_one_of_mod h1, one_pow]</span>
+<span class="ln" id="L40"><a class="lno" href="#L40">40</a>      rw [e, pow_add, pow_mul, F.pow_n, one_pow, one_mul] at h2</span>
+<span class="ln" id="L41"><a class="lno" href="#L41">41</a>      have := F.mod_eq_zero_of_pow_eq_one h2</span>
+<span class="ln" id="L42"><a class="lno" href="#L42">42</a>      rw [FRC.Nat.mod_eq_of_lt hl] at this</span>
+<span class="ln" id="L43"><a class="lno" href="#L43">43</a>      exact Nat.lt_irrefl 0 (this ▸ hl0)</span>
+<span class="ln" id="L44"><a class="lno" href="#L44">44</a></span>
+<span class="ln" id="L45"><a class="lno" href="#L45">45</a>/-- The frame of another primitive drive on the same shell. -/</span>
+<span class="ln decl" id="FRC.Shell.Frame.of_primitive"><a class="lno" href="#FRC.Shell.Frame.of_primitive">46</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcCore/Orbit.lean#L46" title="this line on GitHub (new tab)" target="_blank" rel="noopener">⧉</a><img class="leanico small ok" src="../lean-ok.png" alt="" title="axioms: none — tier 0, no axioms">theorem of_primitive (F : Frame p κ g) {h : Shell p} (hh : IsPrimitive h (p - 1)) : Frame p κ h :=</span>
+<span class="ln" id="L47"><a class="lno" href="#L47">47</a>  ⟨F.cap, F.cap_pos, hh⟩</span>
+<span class="ln" id="L48"><a class="lno" href="#L48">48</a></span>
+<span class="ln" id="L49"><a class="lno" href="#L49">49</a>/-- 2:B3 (Props. 2.7, 4.5), 1-algebra&#x27;s torsor — the primitive generators form one orbit: `h` is primitive</span>
+<span class="ln" id="L50"><a class="lno" href="#L50">50</a>of order `p − 1` exactly when `h = g^u` for some `u &lt; p − 1` coprime to `p − 1`. -/</span>
+<span class="ln decl" id="FRC.Shell.Frame.generator_orbit"><a class="lno" href="#FRC.Shell.Frame.generator_orbit">51</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcCore/Orbit.lean#L51" title="this line on GitHub (new tab)" target="_blank" rel="noopener">⧉</a><img class="leanico small ok" src="../lean-ok.png" alt="" title="axioms: none — tier 0, no axioms">theorem generator_orbit (F : Frame p κ g) (h : Shell p) :</span>
+<span class="ln" id="L52"><a class="lno" href="#L52">52</a>    IsPrimitive h (p - 1) ↔ ∃ u, u &lt; p - 1 ∧ Coprime u (p - 1) ∧ h = g ^ u := by</span>
+<span class="ln" id="L53"><a class="lno" href="#L53">53</a>  have hn := F.n_pos</span>
+<span class="ln" id="L54"><a class="lno" href="#L54">54</a>  constructor</span>
+<span class="ln" id="L55"><a class="lno" href="#L55">55</a>  · intro hh</span>
+<span class="ln" id="L56"><a class="lno" href="#L56">56</a>    have Fh : Frame p κ h := F.of_primitive hh</span>
+<span class="ln" id="L57"><a class="lno" href="#L57">57</a>    have hh0 : h ≠ 0 := Fh.g_ne_zero</span>
+<span class="ln" id="L58"><a class="lno" href="#L58">58</a>    match F.eq_pow_of_ne_zero hh0 with</span>
+<span class="ln" id="L59"><a class="lno" href="#L59">59</a>    | ⟨u, hu, e⟩ =&gt;</span>
+<span class="ln" id="L60"><a class="lno" href="#L60">60</a>      refine ⟨u, hu, ?_, e.symm⟩</span>
+<span class="ln" id="L61"><a class="lno" href="#L61">61</a>      -- g is a power of h: g = h^v; then g^{u v} = g, so u·v ≡ 1 (mod n)</span>
+<span class="ln" id="L62"><a class="lno" href="#L62">62</a>      match Fh.eq_pow_of_ne_zero F.g_ne_zero with</span>
+<span class="ln" id="L63"><a class="lno" href="#L63">63</a>      | ⟨v, hv, ev⟩ =&gt;</span>
+<span class="ln" id="L64"><a class="lno" href="#L64">64</a>        refine ⟨v, hv, ?_⟩</span>
+<span class="ln" id="L65"><a class="lno" href="#L65">65</a>        have e1 : g ^ (v * u) = g ^ 1 := by</span>
+<span class="ln" id="L66"><a class="lno" href="#L66">66</a>          rw [pow_one, Nat.mul_comm v u, pow_mul, e, ev]</span>
+<span class="ln" id="L67"><a class="lno" href="#L67">67</a>        have h1n : 1 &lt; p - 1 := by</span>
+<span class="ln" id="L68"><a class="lno" href="#L68">68</a>          rw [F.n_eq]; exact Nat.lt_of_lt_of_le (by decide : 1 &lt; 4 * 1) (Nat.mul_le_mul_left 4 F.cap_pos)</span>
+<span class="ln" id="L69"><a class="lno" href="#L69">69</a>        have := F.pow_inj (Nat.mod_lt _ hn) h1n (by rw [← F.pow_mod, e1])</span>
+<span class="ln" id="L70"><a class="lno" href="#L70">70</a>        exact this</span>
+<span class="ln" id="L71"><a class="lno" href="#L71">71</a>  · intro ⟨u, _, hu, e⟩</span>
+<span class="ln" id="L72"><a class="lno" href="#L72">72</a>    rw [e]; exact F.primitive_pow_of_coprime hu</span>
+<span class="ln" id="L73"><a class="lno" href="#L73">73</a></span>
+<span class="ln" id="L74"><a class="lno" href="#L74">74</a>/-- 1:G1, the finitary core (Fermat): every residue satisfies `x^p = x` — the polynomial `X^p − X` vanishes on</span>
+<span class="ln" id="L75"><a class="lno" href="#L75">75</a>the whole shell, which is what the root test of 1:G1 rests on. -/</span>
+<span class="ln decl" id="FRC.Shell.Frame.fermat"><a class="lno" href="#FRC.Shell.Frame.fermat">76</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcCore/Orbit.lean#L76" title="this line on GitHub (new tab)" target="_blank" rel="noopener">⧉</a><img class="leanico small ok" src="../lean-ok.png" alt="" title="axioms: none — tier 0, no axioms">theorem fermat (F : Frame p κ g) (x : Shell p) : x ^ p = x := by</span>
+<span class="ln" id="L77"><a class="lno" href="#L77">77</a>  have hp1 : x ^ p = x ^ (p - 1) * x :=</span>
+<span class="ln" id="L78"><a class="lno" href="#L78">78</a>    congrArg (fun k =&gt; x ^ k) (FRC.Nat.sub_add_cancel Pos.pos).symm</span>
+<span class="ln" id="L79"><a class="lno" href="#L79">79</a>  rw [hp1]</span>
+<span class="ln" id="L80"><a class="lno" href="#L80">80</a>  exact match Shell.instDecidableEq x 0 with</span>
+<span class="ln" id="L81"><a class="lno" href="#L81">81</a>    | isTrue e =&gt; by rw [e, mul_zero]</span>
+<span class="ln" id="L82"><a class="lno" href="#L82">82</a>    | isFalse e =&gt; by</span>
+<span class="ln" id="L83"><a class="lno" href="#L83">83</a>        match F.eq_pow_of_ne_zero e with</span>
+<span class="ln" id="L84"><a class="lno" href="#L84">84</a>        | ⟨m, _, em⟩ =&gt; rw [← em, pow_mul_comm, F.pow_n, one_pow, one_mul]</span>
+<span class="ln" id="L85"><a class="lno" href="#L85">85</a></span>
+<span class="ln" id="L86"><a class="lno" href="#L86">86</a>end Frame</span>
+<span class="ln" id="L87"><a class="lno" href="#L87">87</a>end Shell</span>
+<span class="ln" id="L88"><a class="lno" href="#L88">88</a>end FRC</span>
+<span class="ln" id="L89"><a class="lno" href="#L89">89</a></span>
+</pre></main>
+</div>
+</body>
+</html>

@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-HNE3RMJ5L1"></script>
+<script> window.dataLayer = window.dataLayer || []; function gtag(){dataLayer.push(arguments);} gtag('js', new Date()); gtag('config', 'G-HNE3RMJ5L1'); </script>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Pigeonhole.lean — FrcCore</title>
+<meta name="description" content="The Lean module FrcCore/Pigeonhole of the FRC predicate ledgers, rendered with an anchor per declaration">
+<meta name="author" content="Yosef Akhtman">
+<link rel="icon" href="../../frc-logo-fav.png">
+<link rel="stylesheet" href="../../style.css">
+
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <h1>Pigeonhole.lean — FrcCore</h1>
+    
+    <nav><a href="../../index.html">Home</a><a href="../../publications.html">Publications</a><a href="../../00-ledger.html">Ledger</a><a href="../../predictions.html">Predictions</a><a href="../../explicability.html">Explicability</a></nav>
+  </header>
+<main id="ledger-main"><section class="prose"><p>The core module <code>lean/FrcCore/Pigeonhole.lean</code> — the substrate from first principles, no Mathlib, no axioms (the modules in order: <a href="Nat.html">Nat</a>, <a href="Pigeonhole.html">Pigeonhole</a>, <a href="Shell.html">Shell</a>, <a href="Frame.html">Frame</a>, <a href="Orbit.html">Orbit</a>, <a href="Sum.html">Sum</a>, <a href="Algebra.html">Algebra</a>, <a href="Geometry.html">Geometry</a>, <a href="Instances.html">Instances</a>): 7 theorems (4 definitions): 7 with no axioms (green), 0 at tier 1 (teal: <code>propext</code>, <code>Quot.sound</code>), 0 at tier 2 (amber: <code>Classical.choice</code>), 0 red; the plain glyph marks a definition. Each declaration is anchored; the ledger rows cite them by name. <a href="https://live.lean-lang.org/#project=lean-v4.34.0&url=https://raw.githubusercontent.com/gamayos/finite-ring-space/main/lean/web/FrcCore.lean" target="_blank" rel="noopener">▶ open in the Lean web editor</a> · <a href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcCore/Pigeonhole.lean" target="_blank" rel="noopener">on GitHub</a> · <a href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcCore/axioms.log" target="_blank" rel="noopener">axioms.log</a> · <a href="https://github.com/gamayos/finite-ring-space/actions/workflows/lean.yml" target="_blank" rel="noopener">CI</a> (all in a new tab).</p></section><pre class="lean"><span class="ln" id="L1"><a class="lno" href="#L1">1</a>import FrcCore.Nat</span>
+<span class="ln" id="L2"><a class="lno" href="#L2">2</a></span>
+<span class="ln" id="L3"><a class="lno" href="#L3">3</a>/-!</span>
+<span class="ln" id="L4"><a class="lno" href="#L4">4</a># FrcCore.Pigeonhole — a list of `n` distinct numbers in `[1, n]` is all of `[1, n]`</span>
+<span class="ln" id="L5"><a class="lno" href="#L5">5</a></span>
+<span class="ln" id="L6"><a class="lno" href="#L6">6</a>The counting fact behind &quot;the drive generates&quot;: its `p − 1` powers are distinct nonzero residues, and there</span>
+<span class="ln" id="L7"><a class="lno" href="#L7">7</a>are only `p − 1` of those. Lists of naturals with their own membership, no-duplicates and erase (Lean&#x27;s</span>
+<span class="ln" id="L8"><a class="lno" href="#L8">8</a>`List` lemmas carry `propext`); everything by induction. No axioms.</span>
+<span class="ln" id="L9"><a class="lno" href="#L9">9</a>-/</span>
+<span class="ln" id="L10"><a class="lno" href="#L10">10</a></span>
+<span class="ln" id="L11"><a class="lno" href="#L11">11</a>namespace FRC</span>
+<span class="ln" id="L12"><a class="lno" href="#L12">12</a>namespace Pigeonhole</span>
+<span class="ln" id="L13"><a class="lno" href="#L13">13</a></span>
+<span class="ln" id="L14"><a class="lno" href="#L14">14</a>/-- Membership, by recursion (decidable). -/</span>
+<span class="ln decl" id="FRC.Pigeonhole.mem"><a class="lno" href="#FRC.Pigeonhole.mem">15</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcCore/Pigeonhole.lean#L15" title="this line on GitHub (new tab)" target="_blank" rel="noopener">⧉</a><img class="leanico small" src="../lean.png" alt="" title="a definition: no proof, no axioms">def mem (v : Nat) : List Nat → Prop</span>
+<span class="ln" id="L16"><a class="lno" href="#L16">16</a>  | [] =&gt; False</span>
+<span class="ln" id="L17"><a class="lno" href="#L17">17</a>  | a :: l =&gt; v = a ∨ mem v l</span>
+<span class="ln" id="L18"><a class="lno" href="#L18">18</a></span>
+<span class="ln decl" id="FRC.Pigeonhole.decMem"><a class="lno" href="#FRC.Pigeonhole.decMem">19</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcCore/Pigeonhole.lean#L19" title="this line on GitHub (new tab)" target="_blank" rel="noopener">⧉</a><img class="leanico small" src="../lean.png" alt="" title="a definition: no proof, no axioms">def decMem (v : Nat) : (l : List Nat) → Decidable (mem v l)</span>
+<span class="ln" id="L20"><a class="lno" href="#L20">20</a>  | [] =&gt; isFalse id</span>
+<span class="ln" id="L21"><a class="lno" href="#L21">21</a>  | a :: l =&gt; match Nat.decEq v a, decMem v l with</span>
+<span class="ln" id="L22"><a class="lno" href="#L22">22</a>    | isTrue h, _ =&gt; isTrue (Or.inl h)</span>
+<span class="ln" id="L23"><a class="lno" href="#L23">23</a>    | isFalse _, isTrue h&#x27; =&gt; isTrue (Or.inr h&#x27;)</span>
+<span class="ln" id="L24"><a class="lno" href="#L24">24</a>    | isFalse h, isFalse h&#x27; =&gt; isFalse (fun e =&gt; match e with | Or.inl e =&gt; h e | Or.inr e =&gt; h&#x27; e)</span>
+<span class="ln" id="L25"><a class="lno" href="#L25">25</a></span>
+<span class="ln" id="L26"><a class="lno" href="#L26">26</a>instance (v : Nat) (l : List Nat) : Decidable (mem v l) := decMem v l</span>
+<span class="ln" id="L27"><a class="lno" href="#L27">27</a></span>
+<span class="ln" id="L28"><a class="lno" href="#L28">28</a>/-- No duplicates, by recursion. -/</span>
+<span class="ln decl" id="FRC.Pigeonhole.NoDup"><a class="lno" href="#FRC.Pigeonhole.NoDup">29</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcCore/Pigeonhole.lean#L29" title="this line on GitHub (new tab)" target="_blank" rel="noopener">⧉</a><img class="leanico small" src="../lean.png" alt="" title="a definition: no proof, no axioms">def NoDup : List Nat → Prop</span>
+<span class="ln" id="L30"><a class="lno" href="#L30">30</a>  | [] =&gt; True</span>
+<span class="ln" id="L31"><a class="lno" href="#L31">31</a>  | a :: l =&gt; ¬ mem a l ∧ NoDup l</span>
+<span class="ln" id="L32"><a class="lno" href="#L32">32</a></span>
+<span class="ln" id="L33"><a class="lno" href="#L33">33</a>/-- Remove the first occurrence of `v`. -/</span>
+<span class="ln decl" id="FRC.Pigeonhole.erase"><a class="lno" href="#FRC.Pigeonhole.erase">34</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcCore/Pigeonhole.lean#L34" title="this line on GitHub (new tab)" target="_blank" rel="noopener">⧉</a><img class="leanico small" src="../lean.png" alt="" title="a definition: no proof, no axioms">def erase (v : Nat) : List Nat → List Nat</span>
+<span class="ln" id="L35"><a class="lno" href="#L35">35</a>  | [] =&gt; []</span>
+<span class="ln" id="L36"><a class="lno" href="#L36">36</a>  | a :: l =&gt; if a = v then l else a :: erase v l</span>
+<span class="ln" id="L37"><a class="lno" href="#L37">37</a></span>
+<span class="ln decl" id="FRC.Pigeonhole.length_erase_of_mem"><a class="lno" href="#FRC.Pigeonhole.length_erase_of_mem">38</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcCore/Pigeonhole.lean#L38" title="this line on GitHub (new tab)" target="_blank" rel="noopener">⧉</a><img class="leanico small ok" src="../lean-ok.png" alt="" title="axioms: none — tier 0, no axioms">theorem length_erase_of_mem {v : Nat} : ∀ {l : List Nat}, mem v l → (erase v l).length + 1 = l.length</span>
+<span class="ln" id="L39"><a class="lno" href="#L39">39</a>  | [], h =&gt; absurd h id</span>
+<span class="ln" id="L40"><a class="lno" href="#L40">40</a>  | a :: l, h =&gt; by</span>
+<span class="ln" id="L41"><a class="lno" href="#L41">41</a>    show (if a = v then l else a :: erase v l).length + 1 = l.length + 1</span>
+<span class="ln" id="L42"><a class="lno" href="#L42">42</a>    exact match Nat.decEq a v with</span>
+<span class="ln" id="L43"><a class="lno" href="#L43">43</a>      | isTrue e =&gt; by rw [if_pos e]</span>
+<span class="ln" id="L44"><a class="lno" href="#L44">44</a>      | isFalse e =&gt; by</span>
+<span class="ln" id="L45"><a class="lno" href="#L45">45</a>          rw [if_neg e]</span>
+<span class="ln" id="L46"><a class="lno" href="#L46">46</a>          show (erase v l).length + 1 + 1 = l.length + 1</span>
+<span class="ln" id="L47"><a class="lno" href="#L47">47</a>          have hm : mem v l := match h with</span>
+<span class="ln" id="L48"><a class="lno" href="#L48">48</a>            | Or.inl h&#x27; =&gt; absurd h&#x27;.symm e</span>
+<span class="ln" id="L49"><a class="lno" href="#L49">49</a>            | Or.inr h&#x27; =&gt; h&#x27;</span>
+<span class="ln" id="L50"><a class="lno" href="#L50">50</a>          rw [length_erase_of_mem hm]</span>
+<span class="ln" id="L51"><a class="lno" href="#L51">51</a></span>
+<span class="ln decl" id="FRC.Pigeonhole.mem_of_mem_erase"><a class="lno" href="#FRC.Pigeonhole.mem_of_mem_erase">52</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcCore/Pigeonhole.lean#L52" title="this line on GitHub (new tab)" target="_blank" rel="noopener">⧉</a><img class="leanico small ok" src="../lean-ok.png" alt="" title="axioms: none — tier 0, no axioms">theorem mem_of_mem_erase {w v : Nat} : ∀ {l : List Nat}, mem w (erase v l) → mem w l</span>
+<span class="ln" id="L53"><a class="lno" href="#L53">53</a>  | [], h =&gt; absurd h id</span>
+<span class="ln" id="L54"><a class="lno" href="#L54">54</a>  | a :: l, h =&gt; by</span>
+<span class="ln" id="L55"><a class="lno" href="#L55">55</a>    show w = a ∨ mem w l</span>
+<span class="ln" id="L56"><a class="lno" href="#L56">56</a>    exact match Nat.decEq a v with</span>
+<span class="ln" id="L57"><a class="lno" href="#L57">57</a>      | isTrue e =&gt; by</span>
+<span class="ln" id="L58"><a class="lno" href="#L58">58</a>          rw [show erase v (a :: l) = l from if_pos e] at h</span>
+<span class="ln" id="L59"><a class="lno" href="#L59">59</a>          exact Or.inr h</span>
+<span class="ln" id="L60"><a class="lno" href="#L60">60</a>      | isFalse e =&gt; by</span>
+<span class="ln" id="L61"><a class="lno" href="#L61">61</a>          rw [show erase v (a :: l) = a :: erase v l from if_neg e] at h</span>
+<span class="ln" id="L62"><a class="lno" href="#L62">62</a>          exact match h with</span>
+<span class="ln" id="L63"><a class="lno" href="#L63">63</a>            | Or.inl h&#x27; =&gt; Or.inl h&#x27;</span>
+<span class="ln" id="L64"><a class="lno" href="#L64">64</a>            | Or.inr h&#x27; =&gt; Or.inr (mem_of_mem_erase h&#x27;)</span>
+<span class="ln" id="L65"><a class="lno" href="#L65">65</a></span>
+<span class="ln decl" id="FRC.Pigeonhole.mem_erase_of_ne"><a class="lno" href="#FRC.Pigeonhole.mem_erase_of_ne">66</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcCore/Pigeonhole.lean#L66" title="this line on GitHub (new tab)" target="_blank" rel="noopener">⧉</a><img class="leanico small ok" src="../lean-ok.png" alt="" title="axioms: none — tier 0, no axioms">theorem mem_erase_of_ne {w v : Nat} (hwv : w ≠ v) : ∀ {l : List Nat}, mem w l → mem w (erase v l)</span>
+<span class="ln" id="L67"><a class="lno" href="#L67">67</a>  | [], h =&gt; absurd h id</span>
+<span class="ln" id="L68"><a class="lno" href="#L68">68</a>  | a :: l, h =&gt; by</span>
+<span class="ln" id="L69"><a class="lno" href="#L69">69</a>    exact match Nat.decEq a v with</span>
+<span class="ln" id="L70"><a class="lno" href="#L70">70</a>      | isTrue e =&gt; by</span>
+<span class="ln" id="L71"><a class="lno" href="#L71">71</a>          rw [show erase v (a :: l) = l from if_pos e]</span>
+<span class="ln" id="L72"><a class="lno" href="#L72">72</a>          exact match h with</span>
+<span class="ln" id="L73"><a class="lno" href="#L73">73</a>            | Or.inl h&#x27; =&gt; absurd (h&#x27;.trans e) hwv</span>
+<span class="ln" id="L74"><a class="lno" href="#L74">74</a>            | Or.inr h&#x27; =&gt; h&#x27;</span>
+<span class="ln" id="L75"><a class="lno" href="#L75">75</a>      | isFalse e =&gt; by</span>
+<span class="ln" id="L76"><a class="lno" href="#L76">76</a>          rw [show erase v (a :: l) = a :: erase v l from if_neg e]</span>
+<span class="ln" id="L77"><a class="lno" href="#L77">77</a>          exact match h with</span>
+<span class="ln" id="L78"><a class="lno" href="#L78">78</a>            | Or.inl h&#x27; =&gt; Or.inl h&#x27;</span>
+<span class="ln" id="L79"><a class="lno" href="#L79">79</a>            | Or.inr h&#x27; =&gt; Or.inr (mem_erase_of_ne hwv h&#x27;)</span>
+<span class="ln" id="L80"><a class="lno" href="#L80">80</a></span>
+<span class="ln decl" id="FRC.Pigeonhole.nodup_erase"><a class="lno" href="#FRC.Pigeonhole.nodup_erase">81</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcCore/Pigeonhole.lean#L81" title="this line on GitHub (new tab)" target="_blank" rel="noopener">⧉</a><img class="leanico small ok" src="../lean-ok.png" alt="" title="axioms: none — tier 0, no axioms">theorem nodup_erase (v : Nat) : ∀ {l : List Nat}, NoDup l → NoDup (erase v l)</span>
+<span class="ln" id="L82"><a class="lno" href="#L82">82</a>  | [], _ =&gt; trivial</span>
+<span class="ln" id="L83"><a class="lno" href="#L83">83</a>  | a :: l, ⟨ha, hl⟩ =&gt; by</span>
+<span class="ln" id="L84"><a class="lno" href="#L84">84</a>    exact match Nat.decEq a v with</span>
+<span class="ln" id="L85"><a class="lno" href="#L85">85</a>      | isTrue e =&gt; by rw [show erase v (a :: l) = l from if_pos e]; exact hl</span>
+<span class="ln" id="L86"><a class="lno" href="#L86">86</a>      | isFalse e =&gt; by</span>
+<span class="ln" id="L87"><a class="lno" href="#L87">87</a>          rw [show erase v (a :: l) = a :: erase v l from if_neg e]</span>
+<span class="ln" id="L88"><a class="lno" href="#L88">88</a>          exact ⟨fun h =&gt; ha (mem_of_mem_erase h), nodup_erase v hl⟩</span>
+<span class="ln" id="L89"><a class="lno" href="#L89">89</a></span>
+<span class="ln decl" id="FRC.Pigeonhole.not_mem_erase_self"><a class="lno" href="#FRC.Pigeonhole.not_mem_erase_self">90</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcCore/Pigeonhole.lean#L90" title="this line on GitHub (new tab)" target="_blank" rel="noopener">⧉</a><img class="leanico small ok" src="../lean-ok.png" alt="" title="axioms: none — tier 0, no axioms">theorem not_mem_erase_self (v : Nat) : ∀ {l : List Nat}, NoDup l → ¬ mem v (erase v l)</span>
+<span class="ln" id="L91"><a class="lno" href="#L91">91</a>  | [], _, h =&gt; h</span>
+<span class="ln" id="L92"><a class="lno" href="#L92">92</a>  | a :: l, ⟨ha, hl⟩, h =&gt; by</span>
+<span class="ln" id="L93"><a class="lno" href="#L93">93</a>    exact match Nat.decEq a v with</span>
+<span class="ln" id="L94"><a class="lno" href="#L94">94</a>      | isTrue e =&gt; by</span>
+<span class="ln" id="L95"><a class="lno" href="#L95">95</a>          rw [show erase v (a :: l) = l from if_pos e] at h</span>
+<span class="ln" id="L96"><a class="lno" href="#L96">96</a>          exact ha (e ▸ h)</span>
+<span class="ln" id="L97"><a class="lno" href="#L97">97</a>      | isFalse e =&gt; by</span>
+<span class="ln" id="L98"><a class="lno" href="#L98">98</a>          rw [show erase v (a :: l) = a :: erase v l from if_neg e] at h</span>
+<span class="ln" id="L99"><a class="lno" href="#L99">99</a>          exact match h with</span>
+<span class="ln" id="L100"><a class="lno" href="#L100">100</a>            | Or.inl h&#x27; =&gt; e h&#x27;.symm</span>
+<span class="ln" id="L101"><a class="lno" href="#L101">101</a>            | Or.inr h&#x27; =&gt; not_mem_erase_self v hl h&#x27;</span>
+<span class="ln" id="L102"><a class="lno" href="#L102">102</a></span>
+<span class="ln" id="L103"><a class="lno" href="#L103">103</a>/-- The bound: a list of distinct numbers in `[1, n]` has at most `n` entries. -/</span>
+<span class="ln decl" id="FRC.Pigeonhole.length_le_of_nodup"><a class="lno" href="#FRC.Pigeonhole.length_le_of_nodup">104</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcCore/Pigeonhole.lean#L104" title="this line on GitHub (new tab)" target="_blank" rel="noopener">⧉</a><img class="leanico small ok" src="../lean-ok.png" alt="" title="axioms: none — tier 0, no axioms">theorem length_le_of_nodup : ∀ (n : Nat) (l : List Nat), NoDup l → (∀ e, mem e l → 1 ≤ e ∧ e ≤ n) →</span>
+<span class="ln" id="L105"><a class="lno" href="#L105">105</a>    l.length ≤ n</span>
+<span class="ln" id="L106"><a class="lno" href="#L106">106</a>  | 0, [], _, _ =&gt; Nat.le_refl 0</span>
+<span class="ln" id="L107"><a class="lno" href="#L107">107</a>  | 0, a :: l, _, hb =&gt; absurd (hb a (Or.inl rfl)) (fun ⟨h1, h0⟩ =&gt; Nat.lt_irrefl 0 (Nat.lt_of_lt_of_le h1 h0))</span>
+<span class="ln" id="L108"><a class="lno" href="#L108">108</a>  | n + 1, l, hnd, hb =&gt;</span>
+<span class="ln" id="L109"><a class="lno" href="#L109">109</a>    match (inferInstance : Decidable (mem (n + 1) l)) with</span>
+<span class="ln" id="L110"><a class="lno" href="#L110">110</a>    | isTrue hm =&gt;</span>
+<span class="ln" id="L111"><a class="lno" href="#L111">111</a>      have h1 : (erase (n + 1) l).length ≤ n :=</span>
+<span class="ln" id="L112"><a class="lno" href="#L112">112</a>        length_le_of_nodup n (erase (n + 1) l) (nodup_erase _ hnd) (fun e he =&gt;</span>
+<span class="ln" id="L113"><a class="lno" href="#L113">113</a>          have hb&#x27; := hb e (mem_of_mem_erase he)</span>
+<span class="ln" id="L114"><a class="lno" href="#L114">114</a>          ⟨hb&#x27;.1, match Nat.lt_or_ge e (n + 1) with</span>
+<span class="ln" id="L115"><a class="lno" href="#L115">115</a>            | Or.inl hlt =&gt; Nat.le_of_lt_succ hlt</span>
+<span class="ln" id="L116"><a class="lno" href="#L116">116</a>            | Or.inr hge =&gt;</span>
+<span class="ln" id="L117"><a class="lno" href="#L117">117</a>              have : e = n + 1 := Nat.le_antisymm hb&#x27;.2 hge</span>
+<span class="ln" id="L118"><a class="lno" href="#L118">118</a>              absurd (this ▸ he) (not_mem_erase_self (n + 1) hnd)⟩)</span>
+<span class="ln" id="L119"><a class="lno" href="#L119">119</a>      by rw [← length_erase_of_mem hm]; exact Nat.succ_le_succ h1</span>
+<span class="ln" id="L120"><a class="lno" href="#L120">120</a>    | isFalse hm =&gt;</span>
+<span class="ln" id="L121"><a class="lno" href="#L121">121</a>      Nat.le_succ_of_le (length_le_of_nodup n l hnd (fun e he =&gt;</span>
+<span class="ln" id="L122"><a class="lno" href="#L122">122</a>        have hb&#x27; := hb e he</span>
+<span class="ln" id="L123"><a class="lno" href="#L123">123</a>        ⟨hb&#x27;.1, match Nat.lt_or_ge e (n + 1) with</span>
+<span class="ln" id="L124"><a class="lno" href="#L124">124</a>          | Or.inl hlt =&gt; Nat.le_of_lt_succ hlt</span>
+<span class="ln" id="L125"><a class="lno" href="#L125">125</a>          | Or.inr hge =&gt; absurd he ((Nat.le_antisymm hb&#x27;.2 hge) ▸ hm)⟩))</span>
+<span class="ln" id="L126"><a class="lno" href="#L126">126</a></span>
+<span class="ln" id="L127"><a class="lno" href="#L127">127</a>/-- The pigeonhole: `n` distinct numbers in `[1, n]` are all of them. -/</span>
+<span class="ln decl" id="FRC.Pigeonhole.mem_of_nodup_of_length"><a class="lno" href="#FRC.Pigeonhole.mem_of_nodup_of_length">128</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcCore/Pigeonhole.lean#L128" title="this line on GitHub (new tab)" target="_blank" rel="noopener">⧉</a><img class="leanico small ok" src="../lean-ok.png" alt="" title="axioms: none — tier 0, no axioms">theorem mem_of_nodup_of_length (n : Nat) (l : List Nat) (hnd : NoDup l) (hb : ∀ e, mem e l → 1 ≤ e ∧ e ≤ n)</span>
+<span class="ln" id="L129"><a class="lno" href="#L129">129</a>    (hlen : l.length = n) (v : Nat) (hv1 : 1 ≤ v) (hvn : v ≤ n) : mem v l :=</span>
+<span class="ln" id="L130"><a class="lno" href="#L130">130</a>  match decMem v l with</span>
+<span class="ln" id="L131"><a class="lno" href="#L131">131</a>  | isTrue h =&gt; h</span>
+<span class="ln" id="L132"><a class="lno" href="#L132">132</a>  | isFalse h =&gt;</span>
+<span class="ln" id="L133"><a class="lno" href="#L133">133</a>    have hnd&#x27; : NoDup (v :: l) := ⟨h, hnd⟩</span>
+<span class="ln" id="L134"><a class="lno" href="#L134">134</a>    have hb&#x27; : ∀ e, mem e (v :: l) → 1 ≤ e ∧ e ≤ n := fun e he =&gt; match he with</span>
+<span class="ln" id="L135"><a class="lno" href="#L135">135</a>      | Or.inl e&#x27; =&gt; e&#x27; ▸ ⟨hv1, hvn⟩</span>
+<span class="ln" id="L136"><a class="lno" href="#L136">136</a>      | Or.inr e&#x27; =&gt; hb e e&#x27;</span>
+<span class="ln" id="L137"><a class="lno" href="#L137">137</a>    have := length_le_of_nodup n (v :: l) hnd&#x27; hb&#x27;</span>
+<span class="ln" id="L138"><a class="lno" href="#L138">138</a>    absurd (hlen ▸ this : n + 1 ≤ n) (Nat.not_succ_le_self n)</span>
+<span class="ln" id="L139"><a class="lno" href="#L139">139</a></span>
+<span class="ln" id="L140"><a class="lno" href="#L140">140</a>end Pigeonhole</span>
+<span class="ln" id="L141"><a class="lno" href="#L141">141</a>end FRC</span>
+<span class="ln" id="L142"><a class="lno" href="#L142">142</a></span>
+</pre></main>
+</div>
+</body>
+</html>

@@ -10,7 +10,7 @@ import re, subprocess, sys
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent
-MODULES = ["Nat", "Shell", "Frame", "Sum", "Algebra", "Geometry", "Instances"]
+MODULES = ["Nat", "Pigeonhole", "Shell", "Frame", "Orbit", "Sum", "Algebra", "Geometry", "Instances"]
 
 def declarations(path):
     stack, out = [], []

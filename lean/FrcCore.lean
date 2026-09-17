@@ -1,6 +1,8 @@
 import FrcCore.Nat
+import FrcCore.Pigeonhole
 import FrcCore.Shell
 import FrcCore.Frame
+import FrcCore.Orbit
 import FrcCore.Sum
 import FrcCore.Algebra
 import FrcCore.Geometry

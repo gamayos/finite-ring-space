@@ -3,8 +3,10 @@ import FrcCore.Frame
 /-!
 # FrcCore.Algebra — 1-algebra rows on the core
 
-1:B2 (the Klein orbits `{x, −x, x⁻¹, −x⁻¹}` have four elements off the fourth roots of unity) and
-1:D4 (scale periodicity of the residue grid, `g^{n + (p−1)} = g^n`). No axioms.
+1:B2 (the quarter-turn exists; the fourth roots of unity are exactly `{1, i, −1, −i}`; the Klein orbits
+`{x, −x, x⁻¹, −x⁻¹}` have four elements off them), 1:B4 (the affine unit), 1:C4 (the meridian involution),
+1:D2 (the window law), 1:D4 (scale periodicity), 1:D5 (the range obstruction at `(13, 2)`), 1:E2 (the complex
+chart has a zero divisor), 1:F1 (no south pole). No axioms.
 -/
 
 namespace FRC
@@ -105,6 +107,77 @@ theorem window_signed {H x y : Nat} (hH : 2 * H < p) (hx : x ≤ H) (hy : y ≤ 
     have : p = x + y := by rw [hv, FRC.Nat.sub_add_cancel (Nat.le_of_lt hyp)]
     have hle : x + y ≤ 2 * H := by rw [Nat.two_mul]; exact Nat.add_le_add hx hy
     exact absurd (Nat.lt_of_le_of_lt (this ▸ hle) hH) (Nat.lt_irrefl p)
+
+/-- 1:B2 (Theorem 1, existence clause) — a quarter-turn `u` with `u² = −1` exists on every shell. -/
+theorem quarter_turn_exists (F : Frame p κ g) : ∃ u : Shell p, u * u = -1 :=
+  ⟨quarterTurn g κ, F.quarter_turn_sq⟩
+
+/-- 1:B2 (Theorem 1, the structural set) — the fourth roots of unity are exactly `1, −1, i, −i`. -/
+theorem fourth_roots (F : Frame p κ g) (x : Shell p) :
+    x ^ 4 = 1 ↔ x = 1 ∨ x = -1 ∨ x = quarterTurn g κ ∨ x = -(quarterTurn g κ) := by
+  have h4 : x ^ 4 = (x * x) * (x * x) := by
+    rw [show (4 : Nat) = 2 * 2 from rfl, pow_mul, pow_two, pow_two]
+  have hi := F.quarter_turn_sq
+  constructor
+  · intro h
+    rw [h4] at h
+    match F.sq_eq_one h with
+    | .inl e => match F.sq_eq_one e with
+      | .inl e1 => exact .inl e1
+      | .inr e1 => exact .inr (.inl e1)
+    | .inr e =>
+      -- x² = −1 = i²: (x + −i)(x + i) = 0
+      have e2 : (x + -(quarterTurn g κ)) * (x + quarterTurn g κ) = 0 := by
+        rw [right_distrib, left_distrib, left_distrib, e, ← neg_mul, ← neg_mul, hi, neg_neg, mul_comm (quarterTurn g κ) x]
+        rw [add_assoc, ← add_assoc (x * quarterTurn g κ), add_neg, zero_add, neg_add]
+      match F.mul_eq_zero e2 with
+      | .inl e3 => exact .inr (.inr (.inl (by
+          calc x = x + 0 := (add_zero x).symm
+            _ = x + (-(quarterTurn g κ) + quarterTurn g κ) := by rw [neg_add]
+            _ = (x + -(quarterTurn g κ)) + quarterTurn g κ := (add_assoc _ _ _).symm
+            _ = quarterTurn g κ := by rw [e3, zero_add])))
+      | .inr e3 => exact .inr (.inr (.inr (eq_neg_of_add_eq_zero e3)))
+  · intro h
+    match h with
+    | .inl e => rw [e, one_pow]
+    | .inr (.inl e) => rw [h4, e, neg_mul_neg, one_mul, one_mul]
+    | .inr (.inr (.inl e)) => rw [h4, e, hi, neg_mul_neg, one_mul]
+    | .inr (.inr (.inr e)) => rw [h4, e, neg_mul_neg, hi, neg_mul_neg, one_mul]
+
+/-- 1:C4 (Definition 5 (a)) — the meridian involution: `(−a)·g^{n + 2κ} = a·g^n`. -/
+theorem meridian_involution (F : Frame p κ g) (a : Shell p) (n : Nat) :
+    -a * g ^ (n + 2 * κ) = a * g ^ n := by
+  rw [pow_add, F.half_period, mul_comm (g ^ n), ← mul_assoc, neg_mul_neg, mul_one]
+
+/-- 1:F1 (Theorem 3) — `2s = 0 ⇒ s = 0`: the additive cycle has no element of order two; the antipode of
+the origin is not a residue. -/
+theorem no_south_pole (F : Frame p κ g) (s : Shell p) (h : (2 : Shell p) * s = 0) : s = 0 :=
+  match F.mul_eq_zero h with
+  | .inl e => absurd e F.two_ne_zero
+  | .inr e => e
+
+/-- The complex chart: pairs `(a, b)` read as `a + b·X` with `X² = −1`, multiplied as
+`(a, b)(c, d) = (ac − bd, ad + bc)`. -/
+def cmul (x y : Shell p × Shell p) : Shell p × Shell p :=
+  (x.1 * y.1 + -(x.2 * y.2), x.1 * y.2 + x.2 * y.1)
+
+/-- 1:E2 (Proposition 5 reversed) — on a shell that already has a square root of `−1` the complex chart is
+not a field: `(i, 1)·(−i, 1) = (0, 0)` with both factors nonzero (`X + i` and `X − i` are zero divisors). -/
+theorem complex_chart_zero_divisor (F : Frame p κ g) :
+    cmul (quarterTurn g κ, (1 : Shell p)) (-(quarterTurn g κ), 1) = (0, 0) ∧
+    (quarterTurn g κ, (1 : Shell p)) ≠ (0, 0) ∧ (-(quarterTurn g κ), (1 : Shell p)) ≠ (0, 0) := by
+  refine ⟨?_, fun h => F.one_ne_zero (congrArg Prod.snd h), fun h => F.one_ne_zero (congrArg Prod.snd h)⟩
+  unfold cmul
+  show (quarterTurn g κ * -(quarterTurn g κ) + -(1 * 1), quarterTurn g κ * 1 + 1 * -(quarterTurn g κ)) = (0, 0)
+  rw [← mul_neg, F.quarter_turn_sq, neg_neg, one_mul, add_neg, mul_one, one_mul, add_neg]
+
+/-- 1:D5, the range obstruction (Theorem 2 of 1-algebra refuted) at `p = 13`, `g = 2`: every grid point
+`x / 2^n` with `x < 13` and `n ≥ 3` is at most `3/2` — as the integer statement `2x ≤ 3·2^n`. -/
+theorem approx_theorem_refuted (n x : Nat) (hn : 3 ≤ n) (hx : x < 13) : 2 * x ≤ 3 * 2 ^ n := by
+  have h8 : 2 ^ 3 ≤ 2 ^ n := Nat.pow_le_pow_right (Nat.zero_lt_succ 1) hn
+  have h1 : 2 * x ≤ 2 * 12 := Nat.mul_le_mul_left 2 (Nat.le_of_lt_succ hx)
+  have h2 : 3 * 2 ^ 3 ≤ 3 * 2 ^ n := Nat.mul_le_mul_left 3 h8
+  exact Nat.le_trans h1 h2
 
 end Frame
 end Shell

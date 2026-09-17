@@ -74,14 +74,14 @@
      "label": "B2",
      "predicate": "The Euler identity is a property of the chart class: $e^{\\im\\pi}=\\gen^{2\\kap(\\im\\bmod2)}\\equiv-1$ exactly when the quarter-turn residue is odd; the conjugate reframing $(\\gen,\\im)\\mapsto(\\gen^{-1},-\\im)$ toggles the parity, so one member of each conjugate pair carries it; on $\\F_{13}(\\chron;0,1,2)$, $\\im=5$ and $6^{6}=-1$. Every primitive frame of the six shells.",
      "tag": "T",
-     "source": "\\S\\ref{sec:shell-data}; \\src{A2}",
+     "source": "\\S\\ref{sec:shell-data}; \\src{A2}; \\lean{FRC.Shell.Frame.euler\\_identity}",
      "key": "p06009"
     },
     {
      "label": "B3",
      "predicate": "Chart covariance: under $\\gen'=\\gen^{u}$, $u\\in\\Zp^{\\times}$, the quarter-turn name flips exactly on $u\\equiv3\\pmod4$ and the exponential-unit name moves already at $u\\equiv1\\pmod4$ whenever $\\im(u-1)\\not\\equiv0\\pmod{4\\kap}$ ($\\p=13$, $u=5$: $e'=2\\neq6$); the registered objects (C3, C4, C9, F3) are invariant.",
      "tag": "T",
-     "source": "Rem.~\\ref{rem:gt-covariance}; \\src{A3}",
+     "source": "Rem.~\\ref{rem:gt-covariance}; \\src{A3}; \\lean{FRC.Shell.Frame.orientation\\_class}",
      "key": "p06010"
     },
     {
@@ -95,21 +95,21 @@
      "label": "B5",
      "predicate": "$\\Wt^{2}=-J$, $\\Ft^{2}=J$, $\\Ft^{4}=I$: the normalized operator generates the four-cycle, on the six shells of Table~\\ref{tab:checks}.",
      "tag": "T",
-     "source": "Lem.~\\ref{lem:W-square}, Prop.~\\ref{prop:F-cycle}; \\src{A4}",
+     "source": "Lem.~\\ref{lem:W-square}, Prop.~\\ref{prop:F-cycle}; \\src{A4}; \\lean{Fourier.shell\\_relations, FRC.Shell.Frame.W\\_sq', FRC.Shell.Frame.F\\_sq, FRC.Shell.Frame.J\\_sq}",
      "key": "p06012"
     },
     {
      "label": "B6",
      "predicate": "The normalization is the unitary constant read in the field: $1/n\\equiv-1$, its square roots in $\\Fp$ are exactly $\\pm\\im$, and $(c\\Wt)^{2}=J$ if and only if $c=\\pm\\im$.",
      "tag": "T",
-     "source": "Rem.~\\ref{rem:unitary-norm}; \\src{A5}",
+     "source": "Rem.~\\ref{rem:unitary-norm}; \\src{A5}; \\lean{FRC.Shell.Frame.ofNat\\_n}",
      "key": "p06013"
     },
     {
      "label": "B7",
      "predicate": "$\\Wt J=J\\Wt$, hence $\\Ft J=J\\Ft$; $\\Vt=V^{+}\\oplus V^{-}$ with $\\dim V^{+}=2\\kap+1$, $\\dim V^{-}=2\\kap-1$.",
      "tag": "T",
-     "source": "Lem.~\\ref{lem:JF-decomp}; \\src{A6}",
+     "source": "Lem.~\\ref{lem:JF-decomp}; \\src{A6}; \\lean{Fourier.shell\\_relations, FRC.Shell.Frame.W\\_J\\_comm}",
      "key": "p06014"
     }
    ]
@@ -365,6 +365,13 @@
      "tag": "T",
      "source": "\\src{run\\_all}; the notebook",
      "key": "p06046"
+    },
+    {
+     "label": "V4",
+     "predicate": "Lean, two libraries: \\texttt{lean/FrcLedger/Fourier.lean} (Mathlib; classical, tier~2) proves B5 and B7's commutation for every shell; \\texttt{lean/FrcCore} (no Mathlib, \\emph{no axioms}) proves B2, B3, B5, B6 and B7's commutation entrywise for every shell by computation and induction alone, kernel-checked on every push.",
+     "tag": "T",
+     "source": "\\lean{Fourier, FRC.Shell.Frame.F\\_sq}",
+     "key": "p06048"
     }
    ]
   },
@@ -421,5 +428,116 @@
    "C7"
   ]
  },
- "lean": {}
+ "lean": {
+  "B2": [
+   {
+    "name": "FRC.Shell.Frame.euler_identity",
+    "module": "FrcCore/Frame",
+    "line": 297,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "2:D6, 6:B2, 00:C14 — the Euler identity on the shell: with `e = g^i` and `π = 2κ`, `(g^i)^{i·2κ} = (−1)^i` for every natural reading `i` of the quarter-turn — `−1` exactly when `i` is odd."
+   }
+  ],
+  "B3": [
+   {
+    "name": "FRC.Shell.Frame.orientation_class",
+    "module": "FrcCore/Frame",
+    "line": 269,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "2:D5, 6:B3 — the orientation classes: for `g' = g^u`, the quarter-turn `−g'^κ` is `−g^κ` when `u ≡ 1 (mod 4)` and `−(−g^κ)` when `u ≡ 3 (mod 4)`."
+   }
+  ],
+  "B5": [
+   {
+    "name": "FRC.Fourier.shell_relations",
+    "module": "FrcLedger/Fourier",
+    "line": 143,
+    "axioms": [
+     "Classical.choice",
+     "Quot.sound",
+     "propext"
+    ],
+    "tier": 2,
+    "ok": true,
+    "doc": "6:B5, 6:B7 — every shell: on a field with `p = 4κ + 1` elements, `n = p − 1`, `g` a primitive root and `F = i • W`: `W² = −J`, `F² = J`, `F⁴ = 1`, `W J = J W`."
+   },
+   {
+    "name": "FRC.Shell.Frame.W_sq'",
+    "module": "FrcCore/Sum",
+    "line": 294,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "6:B5 (`W² = −J`, entrywise), in the matrix notation."
+   },
+   {
+    "name": "FRC.Shell.Frame.F_sq",
+    "module": "FrcCore/Sum",
+    "line": 309,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "6:B5, 6:B7 (`F² = J`, entrywise): the quarter-turn transform squares to the reversal."
+   },
+   {
+    "name": "FRC.Shell.Frame.J_sq",
+    "module": "FrcCore/Sum",
+    "line": 298,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "6:B5, 6:B7 (`J² = 1`, entrywise): the reversal is an involution, so `F⁴ = J² = 1`."
+   }
+  ],
+  "B6": [
+   {
+    "name": "FRC.Shell.Frame.ofNat_n",
+    "module": "FrcCore/Sum",
+    "line": 113,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "6:B6 — the normalization constant read in the field: `n = p − 1 ≡ −1`."
+   }
+  ],
+  "B7": [
+   {
+    "name": "FRC.Fourier.shell_relations",
+    "module": "FrcLedger/Fourier",
+    "line": 143,
+    "axioms": [
+     "Classical.choice",
+     "Quot.sound",
+     "propext"
+    ],
+    "tier": 2,
+    "ok": true,
+    "doc": "6:B5, 6:B7 — every shell: on a field with `p = 4κ + 1` elements, `n = p − 1`, `g` a primitive root and `F = i • W`: `W² = −J`, `F² = J`, `F⁴ = 1`, `W J = J W`."
+   },
+   {
+    "name": "FRC.Shell.Frame.W_J_comm",
+    "module": "FrcCore/Sum",
+    "line": 322,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "6:B7 (`W J = J W`, entrywise)."
+   }
+  ],
+  "V4": [
+   {
+    "name": "FRC.Shell.Frame.F_sq",
+    "module": "FrcCore/Sum",
+    "line": 309,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "6:B5, 6:B7 (`F² = J`, entrywise): the quarter-turn transform squares to the reversal."
+   }
+  ]
+ }
 }

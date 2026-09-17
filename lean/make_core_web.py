@@ -3,10 +3,10 @@
 import sys
 from pathlib import Path
 ROOT = Path(__file__).resolve().parent
-ORDER = ["Nat", "Shell", "Frame", "Sum", "Algebra", "Geometry", "Instances"]
+ORDER = ["Nat", "Pigeonhole", "Shell", "Frame", "Orbit", "Sum", "Algebra", "Geometry", "Instances"]
 out = ["/-! FrcCore — the FRC substrate from first principles, one file for the live instance (no Mathlib,\n"
-       "no axioms). Generated from FrcCore/*.lean in the order Nat, Shell, Frame, Sum, Algebra, Geometry,\n"
-       "Instances by make_core_web.py; the modules' own headers follow. Check any declaration with `#print axioms`. -/\n"]
+       "no axioms). Generated from FrcCore/*.lean in the order Nat, Pigeonhole, Shell, Frame, Orbit, Sum,\n"
+       "Algebra, Geometry, Instances by make_core_web.py; the modules' own headers follow. Check any declaration with `#print axioms`. -/\n"]
 for m in ORDER:
     src = (ROOT / "FrcCore" / f"{m}.lean").read_text(encoding="utf-8")
     body = "\n".join(l for l in src.splitlines() if not l.startswith("import "))

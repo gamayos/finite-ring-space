@@ -1,16 +1,17 @@
 import FrcCore.Shell
+import FrcCore.Pigeonhole
 
 /-!
 # FrcCore.Frame — the frame `(τ; 0, 1, g)` and the Euclidean datum, from first principles
 
 The shell of capacity `κ` has modulus `p = 4κ + 1`; its frame carries the drive `g` (00:A8, 00:C1).
-Two decidable predicates state what the frame's generator does: `IsPrimitive g n` (no positive power
-below `n` is `1`) and `Generates g n` (every nonzero residue is a power of `g`). Together they are the
-statement "`g` is a primitive root of the prime field `𝔽_p`"; on a concrete shell both are certified by
-`decide`; the classical equivalence with "`p` is prime" is a theorem for later (`FrcCore.Prime`), not a
-hypothesis used here.
+One decidable predicate states what the frame's generator is: `IsPrimitive g n` (`g^n = 1`, no positive
+power below `n` is `1`). That `g` then *generates* — every nonzero residue is a power of `g`
+(`Generates g n`, also decidable) — is proved by the pigeonhole (`FrcCore.Pigeonhole`): the `n` powers are
+distinct nonzero residues and there are `n` of those. Primality of `p` is neither assumed nor used; the
+classical equivalence ("a primitive root of order `p − 1` exists iff `p` is prime") is a theorem for later.
 
-From these two facts alone: inverses (`exists_inv`), no zero divisors (`mul_eq_zero`), the square roots
+From primitivity alone: inverses (`exists_inv`), no zero divisors (`mul_eq_zero`), the square roots
 of one (`sq_eq_one`), the half-period `g^{2κ} = −1` (2:D1, 00:C1), the quarter-turn `i = −g^κ` with
 `i² = −1` (1:B3, 2:D2), its orientation classes under `g ↦ g^u` (2:D5), and the Euler identity
 `(g^i)^{i·2κ} = (−1)^i` (2:D6, 00:C14). No axioms.
@@ -57,7 +58,6 @@ structure Frame (p : Nat) [Pos p] (κ : Nat) (g : Shell p) : Prop where
   cap : p = 4 * κ + 1
   cap_pos : 0 < κ
   prim : IsPrimitive g (p - 1)
-  gen : Generates g (p - 1)
 
 namespace Frame
 variable {κ : Nat} {g : Shell p}
@@ -117,11 +117,68 @@ theorem pow_inj (F : Frame p κ g) {i j : Nat} (hi : i < p - 1) (hj : j < p - 1)
     | .inl hlt => key (Nat.le_of_lt hlt) hj h
     | .inr hge => (key hge hi h.symm).symm
 
-/-- Every nonzero residue is a power of the drive (the `Generates` clause, on residues). -/
+theorem g_ne_zero (F : Frame p κ g) : g ≠ 0 := fun h0 => by
+  have hn := F.pow_n
+  have : p - 1 = (p - 2) + 1 := by
+    have := F.one_lt_p
+    match p, this with
+    | k + 2, _ => rfl
+  rw [this, pow_succ, h0, mul_zero] at hn
+  exact F.one_ne_zero hn.symm
+
+/-- No power of the drive is zero: `g^m · g^{(n−1)m} = g^{nm} = 1`. -/
+theorem pow_ne_zero (F : Frame p κ g) (m : Nat) : g ^ m ≠ 0 := fun h0 => by
+  have hn := F.n_pos
+  have e : m + (p - 1 - 1) * m = (p - 1) * m := by
+    calc m + (p - 1 - 1) * m = 1 * m + (p - 1 - 1) * m := by rw [Nat.one_mul]
+      _ = (1 + (p - 1 - 1)) * m := (FRC.Nat.add_mul _ _ _).symm
+      _ = (p - 1) * m := by rw [FRC.Nat.add_sub_of_le hn]
+  have : g ^ m * g ^ ((p - 1 - 1) * m) = 1 := by
+    rw [← pow_add, e, pow_mul, F.pow_n, one_pow]
+  rw [h0, zero_mul] at this
+  exact F.one_ne_zero this.symm
+
+/-- The representatives of `g^0, …, g^{n−1}`, as a list (latest first). -/
+def powList (g : Shell p) : Nat → List Nat
+  | 0 => []
+  | m + 1 => (g ^ m).val :: powList g m
+
+theorem powList_length (g : Shell p) (n : Nat) : (powList g n).length = n := by
+  induction n with
+  | zero => rfl
+  | succ n ih => show (powList g n).length + 1 = n + 1; rw [ih]
+
+theorem mem_powList {g : Shell p} {v : Nat} : ∀ {n : Nat}, Pigeonhole.mem v (powList g n) → ∃ m, m < n ∧ (g ^ m).val = v
+  | 0, h => absurd h id
+  | n + 1, h => match h with
+    | Or.inl e => ⟨n, Nat.lt_succ_self n, e.symm⟩
+    | Or.inr h' => match mem_powList h' with
+      | ⟨m, hm, e⟩ => ⟨m, Nat.lt_succ_of_lt hm, e⟩
+
+theorem powList_nodup (F : Frame p κ g) : ∀ {n : Nat}, n ≤ p - 1 → Pigeonhole.NoDup (powList g n)
+  | 0, _ => trivial
+  | n + 1, hn => ⟨fun h => match mem_powList h with
+      | ⟨m, hm, e⟩ =>
+        have : m = n := F.pow_inj (Nat.lt_trans hm hn) hn (ext e)
+        Nat.lt_irrefl n (this ▸ hm),
+    powList_nodup F (Nat.le_of_lt hn)⟩
+
+/-- 00:A8 — the drive generates: every nonzero residue is a power `g^m`, `m < p − 1` (the pigeonhole). -/
+theorem generates (F : Frame p κ g) : Generates g (p - 1) := by
+  intro v hv hv0
+  have hb : ∀ e, Pigeonhole.mem e (powList g (p - 1)) → 1 ≤ e ∧ e ≤ p - 1 := fun e he =>
+    match mem_powList he with
+    | ⟨m, _, hm⟩ =>
+      ⟨Nat.pos_of_ne_zero (fun h0 => F.pow_ne_zero m (ext (by rw [hm, h0]; rfl))),
+       by rw [← hm]; exact Nat.le_of_lt_succ (Nat.lt_of_lt_of_le (g ^ m).lt (Nat.le_of_eq (FRC.Nat.sub_add_cancel Pos.pos).symm))⟩
+  exact mem_powList (Pigeonhole.mem_of_nodup_of_length (p - 1) (powList g (p - 1)) (F.powList_nodup (Nat.le_refl _))
+    hb (powList_length g (p - 1)) v hv0 (Nat.le_of_lt_succ (Nat.lt_of_lt_of_le hv (Nat.le_of_eq (FRC.Nat.sub_add_cancel Pos.pos).symm))))
+
+/-- Every nonzero residue is a power of the drive, on residues. -/
 theorem eq_pow_of_ne_zero (F : Frame p κ g) {x : Shell p} (hx : x ≠ 0) :
     ∃ m, m < p - 1 ∧ g ^ m = x := by
   have hv : 0 < x.val := Nat.pos_of_ne_zero (fun h => hx (ext h))
-  match F.gen x.val x.lt hv with
+  match F.generates x.val x.lt hv with
   | ⟨m, hm, e⟩ => exact ⟨m, hm, ext e⟩
 
 theorem exists_inv (F : Frame p κ g) {x : Shell p} (hx : x ≠ 0) : ∃ y, x * y = 1 := by
@@ -145,20 +202,6 @@ theorem mul_ne_zero (F : Frame p κ g) {a b : Shell p} (ha : a ≠ 0) (hb : b �
   fun h => match F.mul_eq_zero h with
     | .inl e => ha e
     | .inr e => hb e
-
-theorem g_ne_zero (F : Frame p κ g) : g ≠ 0 := fun h0 => by
-  have hn := F.pow_n
-  have : p - 1 = (p - 2) + 1 := by
-    have := F.one_lt_p
-    match p, this with
-    | k + 2, _ => rfl
-  rw [this, pow_succ, h0, mul_zero] at hn
-  exact F.one_ne_zero hn.symm
-
-theorem pow_ne_zero (F : Frame p κ g) (n : Nat) : g ^ n ≠ 0 := by
-  induction n with
-  | zero => exact F.one_ne_zero
-  | succ n ih => rw [pow_succ]; exact F.mul_ne_zero ih F.g_ne_zero
 
 /-- Cancellation: `a * b = a * c` with `a ≠ 0` gives `b = c`. -/
 theorem mul_left_cancel (F : Frame p κ g) {a b c : Shell p} (ha : a ≠ 0) (h : a * b = a * c) : b = c := by
@@ -221,7 +264,7 @@ theorem quarter_turn_order (F : Frame p κ g) : (g ^ κ) ^ 2 = -1 ∧ (g ^ κ) ^
   show (g ^ κ) ^ (2 * 2) = 1
   rw [pow_mul, h2, neg_pow_two, one_pow]
 
-/-- 2:D5 — the orientation classes: for `g' = g^u`, the quarter-turn `−g'^κ` is `−g^κ` when
+/-- 2:D5, 6:B3 — the orientation classes: for `g' = g^u`, the quarter-turn `−g'^κ` is `−g^κ` when
 `u ≡ 1 (mod 4)` and `−(−g^κ)` when `u ≡ 3 (mod 4)`. -/
 theorem orientation_class (F : Frame p κ g) (u : Nat) :
     (u % 4 = 1 → -((g ^ u) ^ κ) = -(g ^ κ)) ∧ (u % 4 = 3 → -((g ^ u) ^ κ) = -(-(g ^ κ))) := by
@@ -249,7 +292,7 @@ theorem sq_mod_two (i : Nat) : (i * i) % 2 = i % 2 := by
   | 1, _ => rfl
   | k + 2, hk => exact absurd hk (Nat.not_lt_of_le (Nat.le_add_left 2 k))
 
-/-- 2:D6, 00:C14 — the Euler identity on the shell: with `e = g^i` and `π = 2κ`,
+/-- 2:D6, 6:B2, 00:C14 — the Euler identity on the shell: with `e = g^i` and `π = 2κ`,
 `(g^i)^{i·2κ} = (−1)^i` for every natural reading `i` of the quarter-turn — `−1` exactly when `i` is odd. -/
 theorem euler_identity (F : Frame p κ g) (i : Nat) :
     (g ^ i) ^ (i * (2 * κ)) = if i % 2 = 0 then 1 else -1 := by
