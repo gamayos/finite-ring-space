@@ -14,6 +14,7 @@ and the paper's frame. Instance rows and refutations are decided by `decide` in 
 | `FrcLedger/Algebra.lean` | 1-algebra | B2, B3, B4, C4, D2, D4, D5, E2, F1, G1–G3, V1 | `quarter_turn_exists`, `klein_orbit_four`, `card_fourth_roots`, `quarter_turn`, `affine_frame`, `meridian_involution`, `framed_integer_window`, `scale_periodic`, `complex_chart_zero_divisor`, `no_south_pole`, `s13_quarter_turn`, `euclid_step_count`, `approx_obstruction`, `root_iff_not_coprime`, `tower_density`, `circle_net`, `group_law_defect` |
 | `FrcLedger/Geometry.lean` | 2-geometry | B3, C2, D1, D2, D5, D6, E3, F1, F3 | `half_period`, `quarter_turn_order`, `orientation_class`, `euler_identity`, `generator_orbit`, `principal_root`, `dft_inverse`, `euler_characteristic`, `fixed_shell_bound`, `fixed_shell_bound_lt_one`, `fixed_shell_gap`, `fixed_shell_gap_rat` |
 | `FrcLedger/Causality.lean` | 3-causality | B2, B3, B5, C2, C3 | `no_causal_root`, `neg_sq_is_square`, `absorb`, `aniso_tx`, `boost_preserves`, `boost_comp`, `boost_orthogonal`, `gamma_ne_zero`, `gamma_velocity`, `velocity_addition` |
+| `FrcLedger/Representation.lean` | 4-rep | B3–B6, C1–C4, E1, E3 | `Adequate`, `adequate_inj`, `transition_exists`, `transition_unique`, `embeds_in_shell`, `canonical_iota`, `chart_injective`, `transition_images`, `lift`, `consistency`, `sphere_of_equivariant`, `godel_injective`, `mod_injective`, `godel_instance` |
 
 Every theorem's docstring opens with the row it decides (`/-- 1:B2 … -/`); the ledger's source column names the
 theorem back (`\lean{Algebra.no_south_pole}`); `axioms.log` records, for every declaration, the axioms its proof
@@ -49,6 +50,7 @@ algorithm from the definition of `Nat.mod`.
 | `FrcCore/Poly.lean` | 1:G1 | polynomials as coefficient sequences: `eval_mul`, `quot_linear_spec` (synthetic division), `root_bound`, `root_iff_common_factor` |
 | `FrcCore/Quaternion.lean` | 1:G5 | the signed window and the framed quaternions: `read_mul`, `quaternion_window` |
 | `FrcCore/Causality.lean` | 3:B2, B3, B5, C2, C3; B4, D1 [value] | the square classes and the Lorentzian plane: `no_causal_root`, `neg_sq_is_square`, `absorb`, `aniso_tx`, `norm_mul`, `boost_preserves`, `boost_comp_t`, `boost_comp_x`, `gamma_velocity`, `velocity_addition`; `null13`, `normOne_values` by `decide +kernel` |
+| `FrcCore/Representation.lean` | 4:B3–B6, C1–C4, E1, E3 | bijections as data, adequacy through the observation map: `adequate_inj`, `transition_spec`, `transitionBij`, `transition_unique`, `iota_inj`, `canonical_chart`, `chart_inj`, `transition_graph`, `lift_g`, `lift_unique`, `consistency`; `godel2_inj`, `mod_injective`; `Shell.charChart_shift`, `Shell.charChart_norm` |
 | `FrcCore/Geometry.lean` | 2:B4, C2, C4, E3 | `euler_characteristic`, `fixed_shell_bound`, `fixed_shell_gap`, `rho_adj_iff`, `label_covariance` |
 | `FrcCore/Complex.lean` | 2:B4, C2, C3 [value] | the orbital shell coded: `closed`, `cellular`; `closed5`, `closed13`, `closed17`, `open13`, `census13`, `counts13` by `decide +kernel` |
 | `FrcCore/Instances.lean` | 1:B2, B3; 2:B3, D3, D6 [value] | `frame13`, `frame17a`, `frame17b`, `frame29`, `s13_datum`, `s13_euler`, `s17_orientation`, `s13_klein`, `s13_orbit` — all by `decide` |
@@ -68,6 +70,7 @@ toolchain pinned here), with the module as one self-contained file (`web/<module
 - Fourier: `https://live.lean-lang.org/#project=mathlib-stable&url=https://raw.githubusercontent.com/gamayos/finite-ring-space/main/lean/web/Fourier.lean`
 - Geometry: `https://live.lean-lang.org/#project=mathlib-stable&url=https://raw.githubusercontent.com/gamayos/finite-ring-space/main/lean/web/Geometry.lean`
 - Causality: `https://live.lean-lang.org/#project=mathlib-stable&url=https://raw.githubusercontent.com/gamayos/finite-ring-space/main/lean/web/Causality.lean`
+- Representation: `https://live.lean-lang.org/#project=mathlib-stable&url=https://raw.githubusercontent.com/gamayos/finite-ring-space/main/lean/web/Representation.lean`
 
 **In VS Code, in the browser** — "Code ▸ Codespaces ▸ Create codespace" on the repository, or open the
 `.devcontainer` in any devcontainer host: the setup script installs the toolchain and Mathlib's cache (minutes),

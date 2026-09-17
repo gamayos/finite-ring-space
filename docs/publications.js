@@ -123,7 +123,20 @@ const PUBLICATIONS = [
       "venue": "Entropy"
     },
     "doi": "https://doi.org/10.3390/e28010040",
-    "doiLabel": "e28010040"
+    "doiLabel": "e28010040",
+    "ledger": "4-representation/4-representation-ledger.html",
+    "links": [
+      {
+        "href": "4-representation/4-representation-ledger.html",
+        "label": "ledger",
+        "title": "the paper's predicate ledger"
+      },
+      {
+        "href": "https://colab.research.google.com/github/gamayos/finite-ring-space/blob/main/src/4-representation/4-representation-main.ipynb",
+        "label": "notebook",
+        "title": "the validation notebook on Google Colab"
+      }
+    ]
   },
   {
     "key": "5-red",

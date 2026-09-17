@@ -1,0 +1,612 @@
+{
+ "paper": "4-rep",
+ "title": "Universal Latent Representation in FRC",
+ "doi": "https://doi.org/10.3390/e28010040",
+ "generated": "17 September 2026",
+ "blocks": [
+  {
+   "letter": "A",
+   "title": "Inputs",
+   "rows": [
+    {
+     "label": "A1",
+     "predicate": "Finite sets and maps: a map between finite sets of equal cardinality is injective exactly when it is bijective; a set of cardinality at most $|U|$ injects into $U$; unique factorisation in $\\Z$ (the Gödel code).",
+     "tag": "I",
+     "source": "standard; \\cite{Godel1931,Smullyan1991GodelIncompleteness}",
+     "key": "p04001"
+    },
+    {
+     "label": "A2",
+     "predicate": "Sufficiency: minimal sufficient statistics are unique up to bijection; invoked as motivation only --- no probability enters, the operative notion is set-theoretic (B3).",
+     "tag": "I",
+     "source": "\\cite{LehmannScheffe1950,Keener2010}",
+     "key": "p04002"
+    },
+    {
+     "label": "A3",
+     "predicate": "The corpus: the shell $\\Fp$, $\\p=4\\chron+1$, with its frame and quarter-turn (1:B2, B3); its frames $x\\mapsto a+bx$ (1:C2; 00:C1); the Carrier and its readings as incomplete projections (00:A8, A6); finiteness and counting by return (00:A4, A7); $4\\mid\\p-1$ from the two involutions (00:B3); consolidation as frame maps, innovation as the extension $\\Fpq$ where $\\sqrt\\nu$ is written (3:B5).",
+     "tag": "I",
+     "source": "\\cite{Akhtman2025Axioms,Akhtman2025Entropy,Akhtman2025Being}",
+     "key": "p04003"
+    },
+    {
+     "label": "A4",
+     "predicate": "The empirical record: cross-modal alignment and unsupervised translation between independently trained embeddings; grokking; emergence, transfer under shared structure, latent knowledge, interpolation of arbitrary labels; hyperspherical embeddings; floating point as a finite subset of $\\R$; sphere packing.",
+     "tag": "I",
+     "source": "\\cite{Radford2021,Jha2025UGE,Power2022Grokking,Wei2022Emergent,Hernandez2022ScalingTransfer,Burns2022LatentKnowledge,Zhang2017Rethinking,Chen2020SimCLR,Gao2021SimCSE,Ethayarajh2019,Wang2020Uniformity,Goldberg1991WhatEvery,ConwaySloane1999SpherePacking}",
+     "key": "p04004"
+    }
+   ]
+  },
+  {
+   "letter": "B",
+   "title": "The latent domain and adequacy",
+   "rows": [
+    {
+     "label": "B1",
+     "predicate": "The latent domain: a finite set $\\mathcal Z\\subset\\mathcal U_t=\\Fp$, the complete relational domain a model reconstructs from its data; the shell is the ambient set and a reading of it is a projection (00:A6).",
+     "tag": "D",
+     "source": "Def.~\\ref{def:latent}; Section~\\ref{sec:framework}",
+     "key": "p04005"
+    },
+    {
+     "label": "B2",
+     "predicate": "Observation maps: $g_m:\\mathcal Z\\to\\mathcal X_m$ deterministic, one per modality, carrying its resolution; no stochastic model and no conditional independence is assumed; every cross-modal relation factors through $\\mathcal Z$.",
+     "tag": "D",
+     "source": "Eq.~\\eqref{eq:obsmap}; Eq.~\\eqref{eq:obsmapBackground}",
+     "key": "p04006"
+    },
+    {
+     "label": "B3",
+     "predicate": "Adequacy: $E_m:\\mathcal X_m\\to W_m$ is adequate when $E_m\\circ g_m=\\varphi_m$ is a bijection $\\mathcal Z\\to W_m$; minimality, $W_m=\\varphi_m(\\mathcal Z)$, is part of the bijection, so the minimal adequate representation of Section~\\ref{sec:background} and Definition~\\ref{def:adequate} are one notion.",
+     "tag": "D",
+     "source": "Def.~\\ref{def:adequate}",
+     "key": "p04007"
+    },
+    {
+     "label": "B4",
+     "predicate": "Adequacy makes the observation map injective on the latent domain: $g_m(z)=g_m(z')$ forces $z=z'$; $\\mathcal Z$ is the domain modality $m$ resolves completely.",
+     "tag": "T",
+     "source": "Section~\\ref{sec:framework}; \\src{A1}; \\lean{Representation.adequate\\_inj, FRC.Representation.adequate\\_inj}",
+     "key": "p04008"
+    },
+    {
+     "label": "B5",
+     "predicate": "Uniqueness up to bijection: for adequate $E_1$, $E_2$ of one $g$, $\\psi=\\varphi_2\\circ\\varphi_1^{-1}:W_1\\to W_2$ is a bijection with $E_2\\circ g=\\psi\\circ E_1\\circ g$ --- $E_2=\\psi\\circ E_1$ on $g(\\mathcal Z)$, on all of $\\mathcal X$ when $\\mathcal X=g(\\mathcal Z)$; $\\psi$ is the unique map with this property.",
+     "tag": "T",
+     "source": "Lemma~\\ref{lem:uniq_min_adequate}; Lemma~\\ref{lem:minimalUniqueBackground}; \\src{A2}, \\src{A3}; \\lean{Representation.transition\\_exists, Representation.transition\\_unique, FRC.Representation.transition\\_spec, FRC.Representation.transitionBij, FRC.Representation.transition\\_unique}",
+     "key": "p04009"
+    },
+    {
+     "label": "B6",
+     "predicate": "The embedding into the shell: $|W_m|=|\\mathcal Z|\\le\\p$, so an injection $\\iota_m:W_m\\hookrightarrow\\mathcal U_t$ exists --- the one place finiteness enters; canonically $\\iota_m=\\varphi_m^{-1}$ followed by the inclusion; $\\psi_m:=\\iota_m\\circ\\varphi_m:\\mathcal Z\\hookrightarrow\\mathcal U_t$ is modality $m$'s chart of $\\mathcal Z$.",
+     "tag": "T",
+     "source": "Section~\\ref{sec:framework}; \\src{B1}; \\lean{Representation.embeds\\_in\\_shell, Representation.canonical\\_iota, FRC.Representation.iota\\_inj}",
+     "key": "p04010"
+    }
+   ]
+  },
+  {
+   "letter": "C",
+   "title": "The Universal Subspace Theorem",
+   "rows": [
+    {
+     "label": "C1",
+     "predicate": "Theorem~\\ref{thm:UST} (i), (ii): every chart $\\psi_m$ is injective, and $\\Psi_{m\\to n}:=\\psi_n\\circ\\psi_m^{-1}:\\psi_m(\\mathcal Z)\\to\\psi_n(\\mathcal Z)$ is a well-defined bijection, with $\\Psi_{n\\to k}\\circ\\Psi_{m\\to n}=\\Psi_{m\\to k}$ and $\\Psi_{m\\to m}$ the identity.",
+     "tag": "T",
+     "source": "Thm.~\\ref{thm:UST}; \\src{A4}, \\src{B3}; \\lean{Representation.chart\\_injective, Representation.transition\\_images, FRC.Representation.chart\\_inj, FRC.Representation.transition\\_graph}",
+     "key": "p04011"
+    },
+    {
+     "label": "C2",
+     "predicate": "Theorem~\\ref{thm:UST} (iii): with $\\iota_m=\\varphi_m^{-1}$ every chart is the inclusion $\\mathcal Z\\hookrightarrow\\mathcal U_t$ and $\\psi(\\mathcal Z)=\\mathcal Z$; canonical structurally (unique once $\\mathcal Z$ is fixed), not algorithmically; ``subspace'' means subset.",
+     "tag": "T",
+     "source": "Thm.~\\ref{thm:UST}; \\src{A4}; \\lean{Representation.canonical\\_iota, FRC.Representation.canonical\\_chart}",
+     "key": "p04012"
+    },
+    {
+     "label": "C3",
+     "predicate": "The canonical lift $L_m:=\\varphi_m^{-1}\\circ E_m:\\mathcal X_m\\to\\mathcal Z$ satisfies $L_m\\circ g_m=\\mathrm{id}_{\\mathcal Z}$, and $L_m(x)$ is the unique $z$ with $E_m(x)=\\varphi_m(z)$.",
+     "tag": "T",
+     "source": "Cor.~\\ref{cor:canonicalLift}; \\src{A5}, \\src{B3}; \\lean{Representation.lift, FRC.Representation.lift\\_g, FRC.Representation.lift\\_unique}",
+     "key": "p04013"
+    },
+    {
+     "label": "C4",
+     "predicate": "Cross-modal consistency: $\\psi\\circ L_m\\circ g_m=\\psi\\circ L_n\\circ g_n=\\psi$ --- observations of one latent state lift to one point --- and $\\iota_m(W_m)=\\iota_n(W_n)=\\psi(\\mathcal Z)=\\mathcal Z$.",
+     "tag": "T",
+     "source": "Cor.~\\ref{cor:coordChange}; \\src{A5}; \\lean{Representation.consistency, FRC.Representation.consistency}",
+     "key": "p04014"
+    },
+    {
+     "label": "C5",
+     "predicate": "Charts of the shell itself: for $\\mathcal Z=\\Fp$ the charts respecting the arithmetic are the frames $x\\mapsto a+bx$ (1:C2), $\\p(\\p-1)$ of them, and $\\Psi_{m\\to n}$ between two frames is the one affine map carrying the first to the second (simply transitive) --- the corpus's coordinate systems are the paper's charts.",
+     "tag": "T",
+     "source": "Section~\\ref{sec:framework}; \\src{B2}; \\lean{FRC.Shell.Frame.Affine.simply\\_transitive, FRC.Shell.Frame.frame\\_count}",
+     "key": "p04015"
+    }
+   ]
+  },
+  {
+   "letter": "D",
+   "title": "The reading",
+   "rows": [
+    {
+     "label": "D1",
+     "predicate": "Foundational embeddings are adequate representations of one finite latent domain: cross-modal alignment, transferability and semantic coherence are the bijections $\\Psi_{m\\to n}$ (C1), consequences of the shared domain, not of architecture; the empirical record (A4) is their registered consequence. Falsifier: two adequate embeddings of one domain with no bijective translation on the resolved states.",
+     "tag": "R",
+     "source": "Section~\\ref{sec:UST}; Section~\\ref{subsec:frcAlignment}; 00:A10",
+     "key": "p04016"
+    },
+    {
+     "label": "D2",
+     "predicate": "Scope and limits: the theorem uses the finiteness of $\\mathcal Z$ alone, no algebraic or geometric property of $\\mathcal U_t$; the shell as host is the ontology's claim (A3); optimisation decides when a representation is recovered, not which; non-stationary or weakly factorisable data may admit none; coordinate alignment may be intractable; nonlinearity as expansion and depth as shell complexity are analogies (O1).",
+     "tag": "D",
+     "source": "Section~\\ref{sec:introduction}; Section~\\ref{sec:discussion}; Interp.~\\ref{interp:nonlinear}, \\ref{interp:complexity}",
+     "key": "p04017"
+    }
+   ]
+  },
+  {
+   "letter": "E",
+   "title": "Finite ring geometry of embeddings",
+   "rows": [
+    {
+     "label": "E1",
+     "predicate": "The hypersphere [chart]: a Euclidean chart $\\mathrm{Emb}:\\mathcal Z\\to\\R^{d}$ equivariant for a symmetry acting transitively on $\\mathcal Z$ and orthogonally on $\\R^{d}$ has constant norm --- $\\mathrm{Emb}(\\mathcal Z)\\subset S^{d-1}$. The shell's character chart $z\\mapsto(\\cos2\\pi kz/\\p,\\sin2\\pi kz/\\p)_{k}$ is such a chart under translation, $\\|\\mathrm{Emb}(z)\\|^{2}=\\p-1$; in the shell's arithmetic $\\sum_{k}\\g^{kz}\\g^{k(n-z)}=n$ for every $z$.",
+     "tag": "T",
+     "source": "Section~\\ref{sec:hypersphere}; \\src{C1}, \\src{C2}; \\lean{Representation.sphere\\_of\\_equivariant, FRC.Representation.Shell.charChart\\_shift, FRC.Representation.Shell.charChart\\_norm}",
+     "key": "p04018"
+    },
+    {
+     "label": "E2",
+     "predicate": "Quantisation [chart]: a digital embedding has coordinates in a finite $\\mathcal Q\\subset\\R$; at step $\\Delta$ the distinguishable points on a sphere of radius $R$ number $N(R)\\sim C_d(R/\\Delta)^{d-1}$ (grid counts fit exponent $d-1$ at $d=2,3$); at fixed $d$, $\\Delta$ the capacity grows with $R$.",
+     "tag": "I",
+     "source": "Section~\\ref{subsec:quantization}; \\cite{Goldberg1991WhatEvery,IEEE754Standard,ConwaySloane1999SpherePacking}; \\src{C3}",
+     "key": "p04019"
+    },
+    {
+     "label": "E3",
+     "predicate": "Gödel collapse: for distinct primes $p_1,\\dots,p_d$ the code $G(x)=\\prod p_i^{x_i}$ is injective on $\\N^{d}$ (unique factorisation), and $G\\bmod q$ stays injective on a finite set once $q$ exceeds its maximum; instance $d=3$, $x_i\\le4$, primes $2,3,5$: $125$ codes, maximum $810\\,000$, $q=810\\,013$; signed coordinates are shifted first.",
+     "tag": "T",
+     "source": "Section~\\ref{subsec:godel}; \\src{C4}, \\src{C5}; \\lean{Representation.godel\\_injective, Representation.mod\\_injective, Representation.godel\\_instance, FRC.Representation.godel2\\_inj, FRC.Representation.mod\\_injective}",
+     "key": "p04020"
+    },
+    {
+     "label": "E4",
+     "predicate": "The reading of Section~\\ref{sec:hypersphere}: the sphere is the continuous shadow of the shell --- uniform radius the absence of intrinsic attributes, direction the relational content; the coordinate count is a representational artefact, every quantised vector one element of one field (E3); the radius reads the resolved domain's size; Gödel codes establish representability only, not geometry or training.",
+     "tag": "D",
+     "source": "Section~\\ref{sec:hypersphere}; 00:A10",
+     "key": "p04021"
+    }
+   ]
+  },
+  {
+   "letter": "V",
+   "title": "Machine verification",
+   "rows": [
+    {
+     "label": "V1",
+     "predicate": "The package \\texttt{src/4-representation} (\\texttt{finite-ring-space}; $13$ checks, $11$ exact and $2$ chart, standard library only): \\src{a\\_adequacy} A1--A5 (every finite model with $|\\mathcal Z|\\le3$, $|\\mathcal X|\\le4$: adequacy, the transition and its uniqueness, Theorem~\\ref{thm:UST}, the lifts), \\src{b\\_shell} B1--B3 (the host shell, the frames as charts, the $\\F_{13}$ instance), \\src{c\\_geometry} C1--C5 (the character chart, the quantisation count, the Gödel code).",
+     "tag": "T",
+     "source": "\\src{run\\_all}; the notebook",
+     "key": "p04022"
+    },
+    {
+     "label": "V2",
+     "predicate": "\\texttt{lean/FrcLedger/Representation.lean} (Mathlib; classical, tier~2): fourteen declarations --- B3--B6, C1--C4 for arbitrary types, E1 for a transitive isometric action, E3 by unique factorisation. \\texttt{lean/FrcCore/Representation.lean} (no Mathlib, \\emph{no axioms}, tier~0): B3--B6, C1--C4 pointwise, with bijections as data; E3 on two primes; E1 in the shell's arithmetic; C5 by the frame group (1:C2).",
+     "tag": "T",
+     "source": "\\lean{Representation, FRC.Representation.transition\\_spec}",
+     "key": "p04023"
+    }
+   ]
+  },
+  {
+   "letter": "O",
+   "title": "Open",
+   "rows": [
+    {
+     "label": "O1",
+     "predicate": "Depth and the shell hierarchy: whether nonlinear layers correspond to innovation steps $\\mathcal U_t\\hookrightarrow\\mathcal U_{t+1}$ and depth to arithmetic complexity (Interpretations~\\ref{interp:nonlinear}, \\ref{interp:complexity}) as a theorem; named as future work (iii), not claimed.",
+     "tag": "O",
+     "source": "Section~\\ref{sec:conclusion}",
+     "key": "p04024"
+    },
+    {
+     "label": "O2",
+     "predicate": "Learning objectives as approximations of adequacy (contrastive, masked prediction), algorithms for the projection maps $g_m$, and a general algebraic account of multimodal learning; named as future work (i), (ii), (iv), not claimed.",
+     "tag": "O",
+     "source": "Section~\\ref{sec:conclusion}",
+     "key": "p04025"
+    }
+   ]
+  }
+ ],
+ "legend": [
+  {
+   "tag": "I",
+   "name": "Import",
+   "text": "A standard result, or a corpus result, used without reproof."
+  },
+  {
+   "tag": "D",
+   "name": "Definition",
+   "text": "A naming or declared convention, carrying no empirical content."
+  },
+  {
+   "tag": "T",
+   "name": "Theorem",
+   "text": "Derived, and machine-verified in exact arithmetic by the named witness."
+  },
+  {
+   "tag": "R",
+   "name": "Realisation",
+   "text": "States what a physical term denotes in the substrate: constitutive, not interpretive, and carrying its falsifier."
+  },
+  {
+   "tag": "O",
+   "name": "Open",
+   "text": "Genuinely unresolved."
+  }
+ ],
+ "master": {
+  "A3": [
+   "A4",
+   "A7",
+   "A8"
+  ],
+  "B1": [
+   "A6"
+  ],
+  "C5": [
+   "C1"
+  ],
+  "D1": [
+   "A10"
+  ],
+  "E4": [
+   "A10"
+  ]
+ },
+ "lean": {
+  "B4": [
+   {
+    "name": "FRC.Representation.adequate_inj",
+    "module": "FrcLedger/Representation",
+    "line": 25,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "4:B4: adequacy makes the observation map injective on the latent domain."
+   },
+   {
+    "name": "FRC.Representation.adequate_inj",
+    "module": "FrcCore/Representation",
+    "line": 35,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "4:B4 — adequacy makes the observation map injective on the latent domain: `g z₁ = g z₂ → z₁ = z₂`."
+   }
+  ],
+  "B5": [
+   {
+    "name": "FRC.Representation.transition_exists",
+    "module": "FrcLedger/Representation",
+    "line": 29,
+    "axioms": [
+     "Classical.choice",
+     "Quot.sound"
+    ],
+    "tier": 2,
+    "ok": true,
+    "doc": "4:B5 (Lemma 2): two adequate representations of one observation map are related by the bijection `ψ = φ₂ ∘ φ₁⁻¹ : W₁ ≃ W₂` on the resolved observations, `E₂ ∘ g = ψ ∘ E₁ ∘ g`."
+   },
+   {
+    "name": "FRC.Representation.transition_unique",
+    "module": "FrcLedger/Representation",
+    "line": 37,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "4:B5 (the uniqueness clause): a map with that property is determined by it, since `E₁ ∘ g` is onto `W₁`."
+   },
+   {
+    "name": "FRC.Representation.transition_spec",
+    "module": "FrcCore/Representation",
+    "line": 45,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "4:B5 — `E₂ ∘ g = ψ ∘ E₁ ∘ g` pointwise."
+   },
+   {
+    "name": "FRC.Representation.transitionBij",
+    "module": "FrcCore/Representation",
+    "line": 50,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "4:B5 — the transition is a bijection `W₁ → W₂`: its inverse is `φ₁ ∘ φ₂⁻¹`."
+   },
+   {
+    "name": "FRC.Representation.transition_unique",
+    "module": "FrcCore/Representation",
+    "line": 58,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "4:B5 (the uniqueness clause) — any `ψ'` with `E₂ (g z) = ψ' (E₁ (g z))` for every `z` agrees with the transition on all of `W₁`, because `E₁ ∘ g` is onto `W₁`."
+   }
+  ],
+  "B6": [
+   {
+    "name": "FRC.Representation.embeds_in_shell",
+    "module": "FrcLedger/Representation",
+    "line": 45,
+    "axioms": [
+     "Classical.choice",
+     "Quot.sound",
+     "propext"
+    ],
+    "tier": 2,
+    "ok": true,
+    "doc": "4:B6: a representation space of the cardinality of the latent domain embeds injectively in the shell — the one place where finiteness enters."
+   },
+   {
+    "name": "FRC.Representation.canonical_iota",
+    "module": "FrcLedger/Representation",
+    "line": 50,
+    "axioms": [
+     "Classical.choice",
+     "Quot.sound"
+    ],
+    "tier": 2,
+    "ok": true,
+    "doc": "4:B6, 4:C2 (Theorem 1 (iii), the canonical choice): with `incl : Z → U` the inclusion of the latent domain and `φ = E ∘ g`, the embedding `ι := incl ∘ φ⁻¹` is injective and `ι ∘ φ = incl` — the chart `ψ_m` is the inclusion."
+   },
+   {
+    "name": "FRC.Representation.iota_inj",
+    "module": "FrcCore/Representation",
+    "line": 68,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "4:B6 — `ι` is injective when the inclusion is."
+   }
+  ],
+  "C1": [
+   {
+    "name": "FRC.Representation.chart_injective",
+    "module": "FrcLedger/Representation",
+    "line": 59,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "4:C1 (Theorem 1 (i)): the chart `ψ_m = ι_m ∘ φ_m` is injective for every injective `ι_m`."
+   },
+   {
+    "name": "FRC.Representation.transition_images",
+    "module": "FrcLedger/Representation",
+    "line": 64,
+    "axioms": [
+     "Classical.choice",
+     "Quot.sound",
+     "propext"
+    ],
+    "tier": 2,
+    "ok": true,
+    "doc": "4:C1 (Theorem 1 (ii)): the transition `Ψ_{m→n} = ψ_n ∘ ψ_m⁻¹` is a bijection between the images, carrying `ψ_m z` to `ψ_n z`."
+   },
+   {
+    "name": "FRC.Representation.chart_inj",
+    "module": "FrcCore/Representation",
+    "line": 78,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "4:C1 (Theorem 1 (i)) — the chart `ψ = ι ∘ E ∘ g` is injective for any injective `ι`."
+   },
+   {
+    "name": "FRC.Representation.transition_graph",
+    "module": "FrcCore/Representation",
+    "line": 86,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "4:C1 (Theorem 1 (ii)) — the transition `Ψ_{m→n} = ψ_n ∘ ψ_m⁻¹` is well defined and bijective between the images: two latent states have the same `ψ_m`-image exactly when they have the same `ψ_n`-image, so the pairs `(ψ_m z, ψ_n z)` are the graph of a bijection `ψ_m(Z) → ψ_n(Z)`."
+   }
+  ],
+  "C2": [
+   {
+    "name": "FRC.Representation.canonical_iota",
+    "module": "FrcLedger/Representation",
+    "line": 50,
+    "axioms": [
+     "Classical.choice",
+     "Quot.sound"
+    ],
+    "tier": 2,
+    "ok": true,
+    "doc": "4:B6, 4:C2 (Theorem 1 (iii), the canonical choice): with `incl : Z → U` the inclusion of the latent domain and `φ = E ∘ g`, the embedding `ι := incl ∘ φ⁻¹` is injective and `ι ∘ φ = incl` — the chart `ψ_m` is the inclusion."
+   },
+   {
+    "name": "FRC.Representation.canonical_chart",
+    "module": "FrcCore/Representation",
+    "line": 73,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "4:C2 (Theorem 1 (iii)) — in the canonical parametrisation every chart is the inclusion: `ι (E (g z)) = incl z`."
+   }
+  ],
+  "C3": [
+   {
+    "name": "FRC.Representation.lift",
+    "module": "FrcLedger/Representation",
+    "line": 73,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "4:C3 (Corollary 1): the lift `L = φ⁻¹ ∘ E : X → Z` recovers the latent state, `L ∘ g = id`, and `L x` is the unique `z` with `E x = φ z`."
+   },
+   {
+    "name": "FRC.Representation.lift_g",
+    "module": "FrcCore/Representation",
+    "line": 94,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "4:C3 — the lift recovers the latent state, `L (g z) = z`."
+   },
+   {
+    "name": "FRC.Representation.lift_unique",
+    "module": "FrcCore/Representation",
+    "line": 98,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "4:C3 — `L x` is the unique `z` with `E x = φ z`."
+   }
+  ],
+  "C4": [
+   {
+    "name": "FRC.Representation.consistency",
+    "module": "FrcLedger/Representation",
+    "line": 83,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "4:C4 (Corollary 2): the lifts of two modalities' observations of one latent state agree, so the canonical charts `ψ ∘ L_m ∘ g_m` and `ψ ∘ L_n ∘ g_n` both equal `ψ`."
+   },
+   {
+    "name": "FRC.Representation.consistency",
+    "module": "FrcCore/Representation",
+    "line": 106,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "4:C4 (Corollary 2) — cross-modal consistency: the lifts of two modalities' observations of one latent state agree, `L_m (g_m z) = L_n (g_n z)`, hence so do their canonical charts `ψ ∘ L_m ∘ g_m = ψ = ψ ∘ L_n ∘ g_n`."
+   }
+  ],
+  "C5": [
+   {
+    "name": "FRC.Shell.Frame.Affine.simply_transitive",
+    "module": "FrcCore/Algebra",
+    "line": 390,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "1:C2, 4:C5 (the frame group), simple transitivity — for frames `(a, b)` and `(c, d)` (`b, d ≠ 0`) there is exactly one affine map carrying the first to the second: `φ (a, b) := (φ.apply a, φ.b · b)`."
+   },
+   {
+    "name": "FRC.Shell.Frame.frame_count",
+    "module": "FrcCore/Algebra",
+    "line": 431,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "1:C2, 4:C5, the order — the frames `(a, b)`, `b ≠ 0`, number `p·(p − 1)`: `p` choices of the origin, `p − 1` of the unit."
+   }
+  ],
+  "E1": [
+   {
+    "name": "FRC.Representation.sphere_of_equivariant",
+    "module": "FrcLedger/Representation",
+    "line": 97,
+    "axioms": [
+     "Classical.choice",
+     "Quot.sound",
+     "propext"
+    ],
+    "tier": 2,
+    "ok": true,
+    "doc": "4:E1 (the hypersphere): a Euclidean chart `emb : Z → E` equivariant for a symmetry that acts transitively on the domain and by linear isometries on the space has constant norm — its image lies on one sphere about the origin."
+   },
+   {
+    "name": "FRC.Representation.Shell.charChart_shift",
+    "module": "FrcCore/Representation",
+    "line": 179,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "4:E1 (equivariance) — translation by `a` multiplies coordinate `k` by `g^{ka}`: the shell's translations act on the chart coordinatewise, as the rotations act on the Fourier embedding."
+   },
+   {
+    "name": "FRC.Representation.Shell.charChart_norm",
+    "module": "FrcCore/Representation",
+    "line": 184,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "4:E1 (constant norm) — the conjugate norm `Σ_{k<n} g^{kz} g^{k(n−z)}` of the chart equals `n = p − 1` for every `z ≤ n`: every point of the chart lies on one sphere, exactly."
+   }
+  ],
+  "E3": [
+   {
+    "name": "FRC.Representation.godel_injective",
+    "module": "FrcLedger/Representation",
+    "line": 108,
+    "axioms": [
+     "Classical.choice",
+     "Quot.sound",
+     "propext"
+    ],
+    "tier": 2,
+    "ok": true,
+    "doc": "4:E3 (Gödel encoding): over distinct primes `p₁, …, p_d` the code `x ↦ ∏ pᵢ^{xᵢ}` is injective on `ℕ^d` — unique factorisation."
+   },
+   {
+    "name": "FRC.Representation.mod_injective",
+    "module": "FrcLedger/Representation",
+    "line": 127,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "4:E3 (the reduction into one field): an injective integer code with values below `q` stays injective modulo `q`."
+   },
+   {
+    "name": "FRC.Representation.godel_instance",
+    "module": "FrcLedger/Representation",
+    "line": 135,
+    "axioms": [
+     "Classical.choice",
+     "Quot.sound",
+     "propext"
+    ],
+    "tier": 2,
+    "ok": true,
+    "doc": "4:E3 (the instance of the package): with `d = 3`, exponents `≤ 4` and the primes `2, 3, 5`, the code is at most `2⁴3⁴5⁴ = 810 000`, and `q = 810 013` is the least prime above it."
+   },
+   {
+    "name": "FRC.Representation.godel2_inj",
+    "module": "FrcCore/Representation",
+    "line": 140,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "4:E3 (Gödel encoding, two primes) — `2^a 3^b = 2^c 3^d` forces `a = c` and `b = d`: the code is injective, by parity and cancellation; the general case over `d` distinct primes is `FrcLedger.Representation.godel_injective`."
+   },
+   {
+    "name": "FRC.Representation.mod_injective",
+    "module": "FrcCore/Representation",
+    "line": 161,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "4:E3 (the reduction into the shell) — an injective integer code with values below `q` stays injective modulo `q`: `f a % q = f b % q` forces `f a = f b`."
+   }
+  ],
+  "V2": [
+   {
+    "name": "FRC.Representation.transition_spec",
+    "module": "FrcCore/Representation",
+    "line": 45,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "4:B5 — `E₂ ∘ g = ψ ∘ E₁ ∘ g` pointwise."
+   }
+  ]
+ }
+}

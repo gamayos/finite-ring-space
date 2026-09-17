@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-HNE3RMJ5L1"></script>
+<script> window.dataLayer = window.dataLayer || []; function gtag(){dataLayer.push(arguments);} gtag('js', new Date()); gtag('config', 'G-HNE3RMJ5L1'); </script>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Representation.lean — FrcCore</title>
+<meta name="description" content="The Lean module FrcCore/Representation of the FRC predicate ledgers, rendered with an anchor per declaration">
+<meta name="author" content="Yosef Akhtman">
+<link rel="icon" href="../../frc-logo-fav.png">
+<link rel="stylesheet" href="../../style.css">
+
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <h1>Representation.lean — FrcCore</h1>
+    
+    <nav><a href="../../index.html">Home</a><a href="../../publications.html">Publications</a><a href="../../00-ledger.html">Ledger</a><a href="../../predictions.html">Predictions</a><a href="../../explicability.html">Explicability</a></nav>
+  </header>
+<main id="ledger-main"><section class="prose"><p>The core module <code>lean/FrcCore/Representation.lean</code> — the substrate from first principles, no Mathlib, no axioms (the modules in order: <a href="Nat.html">Nat</a>, <a href="Pigeonhole.html">Pigeonhole</a>, <a href="Shell.html">Shell</a>, <a href="Frame.html">Frame</a>, <a href="Orbit.html">Orbit</a>, <a href="Sum.html">Sum</a>, <a href="Algebra.html">Algebra</a>, <a href="Poly.html">Poly</a>, <a href="Quaternion.html">Quaternion</a>, <a href="Causality.html">Causality</a>, <a href="Representation.html">Representation</a>, <a href="Geometry.html">Geometry</a>, <a href="Complex.html">Complex</a>, <a href="Instances.html">Instances</a>): 17 theorems (7 definitions): 17 with no axioms (green), 0 at tier 1 (teal: <code>propext</code>, <code>Quot.sound</code>), 0 at tier 2 (amber: <code>Classical.choice</code>), 0 red; the plain glyph marks a definition. Each declaration is anchored; the ledger rows cite them by name. <a href="https://live.lean-lang.org/#project=lean-v4.34.0&url=https://raw.githubusercontent.com/gamayos/finite-ring-space/main/lean/web/FrcCore.lean" target="_blank" rel="noopener">▶ open in the Lean web editor</a> · <a href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcCore/Representation.lean" target="_blank" rel="noopener">on GitHub</a> · <a href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcCore/axioms.log" target="_blank" rel="noopener">axioms.log</a> · <a href="https://github.com/gamayos/finite-ring-space/actions/workflows/lean.yml" target="_blank" rel="noopener">CI</a>.</p></section><pre class="lean"><span class="ln" id="L1"><a class="lno" href="#L1">1</a>import FrcCore.Nat</span>
+<span class="ln" id="L2"><a class="lno" href="#L2">2</a>import FrcCore.Shell</span>
+<span class="ln" id="L3"><a class="lno" href="#L3">3</a>import FrcCore.Frame</span>
+<span class="ln" id="L4"><a class="lno" href="#L4">4</a>import FrcCore.Sum</span>
+<span class="ln" id="L5"><a class="lno" href="#L5">5</a></span>
+<span class="ln" id="L6"><a class="lno" href="#L6">6</a>/-!</span>
+<span class="ln" id="L7"><a class="lno" href="#L7">7</a># 4-rep — universal latent representation: the ledger rows with no axioms</span>
+<span class="ln" id="L8"><a class="lno" href="#L8">8</a></span>
+<span class="ln" id="L9"><a class="lno" href="#L9">9</a>Rows of the predicate ledger of *Universal Latent Representation in Finite Ring Continuum* (Entropy 2026, 28, 40;</span>
+<span class="ln" id="L10"><a class="lno" href="#L10">10</a>tree `4-deepfrc-20251217`).  The representation rows are set theory over arbitrary types: a bijection is carried as</span>
+<span class="ln" id="L11"><a class="lno" href="#L11">11</a>data (`Bij`: the map, its inverse, the two inverse laws), adequacy as a bijection through the observation map, and</span>
+<span class="ln" id="L12"><a class="lno" href="#L12">12</a>every statement is pointwise, so neither function extensionality nor choice is used.  The Gödel row is decided on</span>
+<span class="ln" id="L13"><a class="lno" href="#L13">13</a>two primes by induction, the hypersphere row in the shell&#x27;s own arithmetic (the character chart has constant</span>
+<span class="ln" id="L14"><a class="lno" href="#L14">14</a>conjugate norm).  Every declaration prints &quot;does not depend on any axioms&quot;.</span>
+<span class="ln" id="L15"><a class="lno" href="#L15">15</a>-/</span>
+<span class="ln" id="L16"><a class="lno" href="#L16">16</a></span>
+<span class="ln" id="L17"><a class="lno" href="#L17">17</a>namespace FRC.Representation</span>
+<span class="ln" id="L18"><a class="lno" href="#L18">18</a></span>
+<span class="ln" id="L19"><a class="lno" href="#L19">19</a>/-- A bijection as data: the map, an inverse, and the two inverse laws. -/</span>
+<span class="ln decl" id="FRC.Representation.Bij"><a class="lno" href="#FRC.Representation.Bij">20</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcCore/Representation.lean#L20" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small" src="../lean.png" alt="" title="a definition: no proof, no axioms">structure Bij (Z W : Type) where</span>
+<span class="ln" id="L21"><a class="lno" href="#L21">21</a>  toFun : Z → W</span>
+<span class="ln" id="L22"><a class="lno" href="#L22">22</a>  inv : W → Z</span>
+<span class="ln" id="L23"><a class="lno" href="#L23">23</a>  left : ∀ z, inv (toFun z) = z</span>
+<span class="ln" id="L24"><a class="lno" href="#L24">24</a>  right : ∀ w, toFun (inv w) = w</span>
+<span class="ln" id="L25"><a class="lno" href="#L25">25</a></span>
+<span class="ln" id="L26"><a class="lno" href="#L26">26</a>/-- 4:B3 (Definition 2) — `E : X → W` is adequate for the observation map `g : Z → X` when `E ∘ g` is a</span>
+<span class="ln" id="L27"><a class="lno" href="#L27">27</a>bijection `φ : Z → W` (carried as data), `E (g z) = φ z`. -/</span>
+<span class="ln decl" id="FRC.Representation.Adequate"><a class="lno" href="#FRC.Representation.Adequate">28</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcCore/Representation.lean#L28" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small" src="../lean.png" alt="" title="a definition: no proof, no axioms">structure Adequate {Z X W : Type} (g : Z → X) (E : X → W) where</span>
+<span class="ln" id="L29"><a class="lno" href="#L29">29</a>  φ : Bij Z W</span>
+<span class="ln" id="L30"><a class="lno" href="#L30">30</a>  eq : ∀ z, E (g z) = φ.toFun z</span>
+<span class="ln" id="L31"><a class="lno" href="#L31">31</a></span>
+<span class="ln" id="L32"><a class="lno" href="#L32">32</a>variable {Z X W W₁ W₂ U : Type}</span>
+<span class="ln" id="L33"><a class="lno" href="#L33">33</a></span>
+<span class="ln" id="L34"><a class="lno" href="#L34">34</a>/-- 4:B4 — adequacy makes the observation map injective on the latent domain: `g z₁ = g z₂ → z₁ = z₂`. -/</span>
+<span class="ln decl" id="FRC.Representation.adequate_inj"><a class="lno" href="#FRC.Representation.adequate_inj">35</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcCore/Representation.lean#L35" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small ok" src="../lean-ok.png" alt="" title="no axioms">theorem adequate_inj {g : Z → X} {E : X → W} (A : Adequate g E) {z₁ z₂ : Z} (h : g z₁ = g z₂) : z₁ = z₂ := by</span>
+<span class="ln" id="L36"><a class="lno" href="#L36">36</a>  have e : A.φ.toFun z₁ = A.φ.toFun z₂ := by rw [← A.eq, ← A.eq, h]</span>
+<span class="ln" id="L37"><a class="lno" href="#L37">37</a>  rw [← A.φ.left z₁, ← A.φ.left z₂, e]</span>
+<span class="ln" id="L38"><a class="lno" href="#L38">38</a></span>
+<span class="ln" id="L39"><a class="lno" href="#L39">39</a>/-- 4:B5 (Lemma 2) — the transition `ψ = φ₂ ∘ φ₁⁻¹` between two adequate representations of one observation map:</span>
+<span class="ln" id="L40"><a class="lno" href="#L40">40</a>`E₂ (g z) = ψ (E₁ (g z))` for every latent state. -/</span>
+<span class="ln decl" id="FRC.Representation.transition"><a class="lno" href="#FRC.Representation.transition">41</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcCore/Representation.lean#L41" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small" src="../lean.png" alt="" title="a definition: no proof, no axioms">def transition {g : Z → X} {E₁ : X → W₁} {E₂ : X → W₂} (A₁ : Adequate g E₁) (A₂ : Adequate g E₂) : W₁ → W₂ :=</span>
+<span class="ln" id="L42"><a class="lno" href="#L42">42</a>  fun w =&gt; A₂.φ.toFun (A₁.φ.inv w)</span>
+<span class="ln" id="L43"><a class="lno" href="#L43">43</a></span>
+<span class="ln" id="L44"><a class="lno" href="#L44">44</a>/-- 4:B5 — `E₂ ∘ g = ψ ∘ E₁ ∘ g` pointwise. -/</span>
+<span class="ln decl" id="FRC.Representation.transition_spec"><a class="lno" href="#FRC.Representation.transition_spec">45</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcCore/Representation.lean#L45" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small ok" src="../lean-ok.png" alt="" title="no axioms">theorem transition_spec {g : Z → X} {E₁ : X → W₁} {E₂ : X → W₂} (A₁ : Adequate g E₁) (A₂ : Adequate g E₂) (z : Z) :</span>
+<span class="ln" id="L46"><a class="lno" href="#L46">46</a>    E₂ (g z) = transition A₁ A₂ (E₁ (g z)) := by</span>
+<span class="ln" id="L47"><a class="lno" href="#L47">47</a>  unfold transition; rw [A₁.eq, A₁.φ.left, A₂.eq]</span>
+<span class="ln" id="L48"><a class="lno" href="#L48">48</a></span>
+<span class="ln" id="L49"><a class="lno" href="#L49">49</a>/-- 4:B5 — the transition is a bijection `W₁ → W₂`: its inverse is `φ₁ ∘ φ₂⁻¹`. -/</span>
+<span class="ln decl" id="FRC.Representation.transitionBij"><a class="lno" href="#FRC.Representation.transitionBij">50</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcCore/Representation.lean#L50" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small" src="../lean.png" alt="" title="a definition: no proof, no axioms">def transitionBij {g : Z → X} {E₁ : X → W₁} {E₂ : X → W₂} (A₁ : Adequate g E₁) (A₂ : Adequate g E₂) : Bij W₁ W₂ where</span>
+<span class="ln" id="L51"><a class="lno" href="#L51">51</a>  toFun := transition A₁ A₂</span>
+<span class="ln" id="L52"><a class="lno" href="#L52">52</a>  inv := fun w =&gt; A₁.φ.toFun (A₂.φ.inv w)</span>
+<span class="ln" id="L53"><a class="lno" href="#L53">53</a>  left := fun w =&gt; by show A₁.φ.toFun (A₂.φ.inv (A₂.φ.toFun (A₁.φ.inv w))) = w; rw [A₂.φ.left, A₁.φ.right]</span>
+<span class="ln" id="L54"><a class="lno" href="#L54">54</a>  right := fun w =&gt; by show A₂.φ.toFun (A₁.φ.inv (A₁.φ.toFun (A₂.φ.inv w))) = w; rw [A₁.φ.left, A₂.φ.right]</span>
+<span class="ln" id="L55"><a class="lno" href="#L55">55</a></span>
+<span class="ln" id="L56"><a class="lno" href="#L56">56</a>/-- 4:B5 (the uniqueness clause) — any `ψ&#x27;` with `E₂ (g z) = ψ&#x27; (E₁ (g z))` for every `z` agrees with the</span>
+<span class="ln" id="L57"><a class="lno" href="#L57">57</a>transition on all of `W₁`, because `E₁ ∘ g` is onto `W₁`. -/</span>
+<span class="ln decl" id="FRC.Representation.transition_unique"><a class="lno" href="#FRC.Representation.transition_unique">58</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcCore/Representation.lean#L58" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small ok" src="../lean-ok.png" alt="" title="no axioms">theorem transition_unique {g : Z → X} {E₁ : X → W₁} {E₂ : X → W₂} (A₁ : Adequate g E₁) (A₂ : Adequate g E₂)</span>
+<span class="ln" id="L59"><a class="lno" href="#L59">59</a>    (ψ&#x27; : W₁ → W₂) (h : ∀ z, E₂ (g z) = ψ&#x27; (E₁ (g z))) (w : W₁) : ψ&#x27; w = transition A₁ A₂ w := by</span>
+<span class="ln" id="L60"><a class="lno" href="#L60">60</a>  rw [← A₁.φ.right w, ← A₁.eq, ← h]; exact transition_spec A₁ A₂ _</span>
+<span class="ln" id="L61"><a class="lno" href="#L61">61</a></span>
+<span class="ln" id="L62"><a class="lno" href="#L62">62</a>/-- 4:B6, 4:C2 (the canonical embedding into the shell) — with `incl : Z → U` the inclusion of the latent domain,</span>
+<span class="ln" id="L63"><a class="lno" href="#L63">63</a>`ι := incl ∘ φ⁻¹ : W → U` is injective when `incl` is, and `ι (E (g z)) = incl z`: the chart `ψ = ι ∘ φ` is the</span>
+<span class="ln" id="L64"><a class="lno" href="#L64">64</a>inclusion itself. -/</span>
+<span class="ln decl" id="FRC.Representation.iota"><a class="lno" href="#FRC.Representation.iota">65</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcCore/Representation.lean#L65" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small" src="../lean.png" alt="" title="a definition: no proof, no axioms">def iota {g : Z → X} {E : X → W} (A : Adequate g E) (incl : Z → U) : W → U := fun w =&gt; incl (A.φ.inv w)</span>
+<span class="ln" id="L66"><a class="lno" href="#L66">66</a></span>
+<span class="ln" id="L67"><a class="lno" href="#L67">67</a>/-- 4:B6 — `ι` is injective when the inclusion is. -/</span>
+<span class="ln decl" id="FRC.Representation.iota_inj"><a class="lno" href="#FRC.Representation.iota_inj">68</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcCore/Representation.lean#L68" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small ok" src="../lean-ok.png" alt="" title="no axioms">theorem iota_inj {g : Z → X} {E : X → W} (A : Adequate g E) {incl : Z → U}</span>
+<span class="ln" id="L69"><a class="lno" href="#L69">69</a>    (hincl : ∀ z₁ z₂, incl z₁ = incl z₂ → z₁ = z₂) {w₁ w₂ : W} (h : iota A incl w₁ = iota A incl w₂) : w₁ = w₂ := by</span>
+<span class="ln" id="L70"><a class="lno" href="#L70">70</a>  rw [← A.φ.right w₁, ← A.φ.right w₂, hincl _ _ h]</span>
+<span class="ln" id="L71"><a class="lno" href="#L71">71</a></span>
+<span class="ln" id="L72"><a class="lno" href="#L72">72</a>/-- 4:C2 (Theorem 1 (iii)) — in the canonical parametrisation every chart is the inclusion: `ι (E (g z)) = incl z`. -/</span>
+<span class="ln decl" id="FRC.Representation.canonical_chart"><a class="lno" href="#FRC.Representation.canonical_chart">73</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcCore/Representation.lean#L73" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small ok" src="../lean-ok.png" alt="" title="no axioms">theorem canonical_chart {g : Z → X} {E : X → W} (A : Adequate g E) (incl : Z → U) (z : Z) :</span>
+<span class="ln" id="L74"><a class="lno" href="#L74">74</a>    iota A incl (E (g z)) = incl z := by</span>
+<span class="ln" id="L75"><a class="lno" href="#L75">75</a>  unfold iota; rw [A.eq, A.φ.left]</span>
+<span class="ln" id="L76"><a class="lno" href="#L76">76</a></span>
+<span class="ln" id="L77"><a class="lno" href="#L77">77</a>/-- 4:C1 (Theorem 1 (i)) — the chart `ψ = ι ∘ E ∘ g` is injective for any injective `ι`. -/</span>
+<span class="ln decl" id="FRC.Representation.chart_inj"><a class="lno" href="#FRC.Representation.chart_inj">78</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcCore/Representation.lean#L78" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small ok" src="../lean-ok.png" alt="" title="no axioms">theorem chart_inj {g : Z → X} {E : X → W} (A : Adequate g E) {ι : W → U} (hι : ∀ w₁ w₂, ι w₁ = ι w₂ → w₁ = w₂)</span>
+<span class="ln" id="L79"><a class="lno" href="#L79">79</a>    {z₁ z₂ : Z} (h : ι (E (g z₁)) = ι (E (g z₂))) : z₁ = z₂ := by</span>
+<span class="ln" id="L80"><a class="lno" href="#L80">80</a>  have e : A.φ.toFun z₁ = A.φ.toFun z₂ := by rw [← A.eq, ← A.eq]; exact hι _ _ h</span>
+<span class="ln" id="L81"><a class="lno" href="#L81">81</a>  rw [← A.φ.left z₁, ← A.φ.left z₂, e]</span>
+<span class="ln" id="L82"><a class="lno" href="#L82">82</a></span>
+<span class="ln" id="L83"><a class="lno" href="#L83">83</a>/-- 4:C1 (Theorem 1 (ii)) — the transition `Ψ_{m→n} = ψ_n ∘ ψ_m⁻¹` is well defined and bijective between the images:</span>
+<span class="ln" id="L84"><a class="lno" href="#L84">84</a>two latent states have the same `ψ_m`-image exactly when they have the same `ψ_n`-image, so the pairs</span>
+<span class="ln" id="L85"><a class="lno" href="#L85">85</a>`(ψ_m z, ψ_n z)` are the graph of a bijection `ψ_m(Z) → ψ_n(Z)`. -/</span>
+<span class="ln decl" id="FRC.Representation.transition_graph"><a class="lno" href="#FRC.Representation.transition_graph">86</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcCore/Representation.lean#L86" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small ok" src="../lean-ok.png" alt="" title="no axioms">theorem transition_graph {ψm ψn : Z → U} (hm : ∀ z₁ z₂, ψm z₁ = ψm z₂ → z₁ = z₂)</span>
+<span class="ln" id="L87"><a class="lno" href="#L87">87</a>    (hn : ∀ z₁ z₂, ψn z₁ = ψn z₂ → z₁ = z₂) (z₁ z₂ : Z) : ψm z₁ = ψm z₂ ↔ ψn z₁ = ψn z₂ :=</span>
+<span class="ln" id="L88"><a class="lno" href="#L88">88</a>  ⟨fun h =&gt; by rw [hm _ _ h], fun h =&gt; by rw [hn _ _ h]⟩</span>
+<span class="ln" id="L89"><a class="lno" href="#L89">89</a></span>
+<span class="ln" id="L90"><a class="lno" href="#L90">90</a>/-- 4:C3 (Corollary 1) — the latent lift `L := φ⁻¹ ∘ E : X → Z`. -/</span>
+<span class="ln decl" id="FRC.Representation.lift"><a class="lno" href="#FRC.Representation.lift">91</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcCore/Representation.lean#L91" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small" src="../lean.png" alt="" title="a definition: no proof, no axioms">def lift {g : Z → X} {E : X → W} (A : Adequate g E) : X → Z := fun x =&gt; A.φ.inv (E x)</span>
+<span class="ln" id="L92"><a class="lno" href="#L92">92</a></span>
+<span class="ln" id="L93"><a class="lno" href="#L93">93</a>/-- 4:C3 — the lift recovers the latent state, `L (g z) = z`. -/</span>
+<span class="ln decl" id="FRC.Representation.lift_g"><a class="lno" href="#FRC.Representation.lift_g">94</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcCore/Representation.lean#L94" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small ok" src="../lean-ok.png" alt="" title="no axioms">theorem lift_g {g : Z → X} {E : X → W} (A : Adequate g E) (z : Z) : lift A (g z) = z := by</span>
+<span class="ln" id="L95"><a class="lno" href="#L95">95</a>  unfold lift; rw [A.eq, A.φ.left]</span>
+<span class="ln" id="L96"><a class="lno" href="#L96">96</a></span>
+<span class="ln" id="L97"><a class="lno" href="#L97">97</a>/-- 4:C3 — `L x` is the unique `z` with `E x = φ z`. -/</span>
+<span class="ln decl" id="FRC.Representation.lift_unique"><a class="lno" href="#FRC.Representation.lift_unique">98</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcCore/Representation.lean#L98" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small ok" src="../lean-ok.png" alt="" title="no axioms">theorem lift_unique {g : Z → X} {E : X → W} (A : Adequate g E) (x : X) (z : Z) :</span>
+<span class="ln" id="L99"><a class="lno" href="#L99">99</a>    E x = A.φ.toFun z ↔ lift A x = z := by</span>
+<span class="ln" id="L100"><a class="lno" href="#L100">100</a>  constructor</span>
+<span class="ln" id="L101"><a class="lno" href="#L101">101</a>  · intro h; unfold lift; rw [h, A.φ.left]</span>
+<span class="ln" id="L102"><a class="lno" href="#L102">102</a>  · intro h; unfold lift at h; rw [← h, A.φ.right]</span>
+<span class="ln" id="L103"><a class="lno" href="#L103">103</a></span>
+<span class="ln" id="L104"><a class="lno" href="#L104">104</a>/-- 4:C4 (Corollary 2) — cross-modal consistency: the lifts of two modalities&#x27; observations of one latent state</span>
+<span class="ln" id="L105"><a class="lno" href="#L105">105</a>agree, `L_m (g_m z) = L_n (g_n z)`, hence so do their canonical charts `ψ ∘ L_m ∘ g_m = ψ = ψ ∘ L_n ∘ g_n`. -/</span>
+<span class="ln decl" id="FRC.Representation.consistency"><a class="lno" href="#FRC.Representation.consistency">106</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcCore/Representation.lean#L106" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small ok" src="../lean-ok.png" alt="" title="no axioms">theorem consistency {Xm Xn Wm Wn : Type} {gm : Z → Xm} {gn : Z → Xn} {Em : Xm → Wm} {En : Xn → Wn}</span>
+<span class="ln" id="L107"><a class="lno" href="#L107">107</a>    (Am : Adequate gm Em) (An : Adequate gn En) (incl : Z → U) (z : Z) :</span>
+<span class="ln" id="L108"><a class="lno" href="#L108">108</a>    lift Am (gm z) = lift An (gn z) ∧ incl (lift Am (gm z)) = incl z := by</span>
+<span class="ln" id="L109"><a class="lno" href="#L109">109</a>  rw [lift_g, lift_g]; exact ⟨rfl, rfl⟩</span>
+<span class="ln" id="L110"><a class="lno" href="#L110">110</a></span>
+<span class="ln" id="L111"><a class="lno" href="#L111">111</a>/-! ### 4:E3 — Gödel collapse into one residue, the two-prime instance -/</span>
+<span class="ln" id="L112"><a class="lno" href="#L112">112</a></span>
+<span class="ln decl" id="FRC.Representation.three_pow_mod_two"><a class="lno" href="#FRC.Representation.three_pow_mod_two">113</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcCore/Representation.lean#L113" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small ok" src="../lean-ok.png" alt="" title="no axioms">theorem three_pow_mod_two : ∀ b : Nat, 3 ^ b % 2 = 1</span>
+<span class="ln" id="L114"><a class="lno" href="#L114">114</a>  | 0 =&gt; rfl</span>
+<span class="ln" id="L115"><a class="lno" href="#L115">115</a>  | b + 1 =&gt; by</span>
+<span class="ln" id="L116"><a class="lno" href="#L116">116</a>      rw [Nat.pow_succ, FRC.Nat.mul_mod _ _ 2 (Nat.zero_lt_succ 1), three_pow_mod_two b]</span>
+<span class="ln" id="L117"><a class="lno" href="#L117">117</a></span>
+<span class="ln decl" id="FRC.Representation.two_mul_mod_two"><a class="lno" href="#FRC.Representation.two_mul_mod_two">118</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcCore/Representation.lean#L118" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small ok" src="../lean-ok.png" alt="" title="no axioms">theorem two_mul_mod_two (x : Nat) : 2 * x % 2 = 0 := by</span>
+<span class="ln" id="L119"><a class="lno" href="#L119">119</a>  rw [FRC.Nat.mul_mod_left&#x27; 2 x 2 (Nat.zero_lt_succ 1)]</span>
+<span class="ln" id="L120"><a class="lno" href="#L120">120</a>  show 0 * x % 2 = 0</span>
+<span class="ln" id="L121"><a class="lno" href="#L121">121</a>  rw [Nat.zero_mul]</span>
+<span class="ln" id="L122"><a class="lno" href="#L122">122</a></span>
+<span class="ln decl" id="FRC.Representation.three_pow_inj"><a class="lno" href="#FRC.Representation.three_pow_inj">123</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcCore/Representation.lean#L123" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small ok" src="../lean-ok.png" alt="" title="no axioms">theorem three_pow_inj : ∀ b d : Nat, 3 ^ b = 3 ^ d → b = d</span>
+<span class="ln" id="L124"><a class="lno" href="#L124">124</a>  | 0, 0, _ =&gt; rfl</span>
+<span class="ln" id="L125"><a class="lno" href="#L125">125</a>  | 0, d + 1, h =&gt; by</span>
+<span class="ln" id="L126"><a class="lno" href="#L126">126</a>      have h1 : 1 * 3 ≤ 3 ^ d * 3 := Nat.mul_le_mul_right 3 (Nat.pow_pos (Nat.zero_lt_succ 2))</span>
+<span class="ln" id="L127"><a class="lno" href="#L127">127</a>      have h&#x27; : 1 = 3 ^ d * 3 := h</span>
+<span class="ln" id="L128"><a class="lno" href="#L128">128</a>      rw [← h&#x27;] at h1</span>
+<span class="ln" id="L129"><a class="lno" href="#L129">129</a>      exact absurd h1 (by decide)</span>
+<span class="ln" id="L130"><a class="lno" href="#L130">130</a>  | b + 1, 0, h =&gt; by</span>
+<span class="ln" id="L131"><a class="lno" href="#L131">131</a>      have h1 : 1 * 3 ≤ 3 ^ b * 3 := Nat.mul_le_mul_right 3 (Nat.pow_pos (Nat.zero_lt_succ 2))</span>
+<span class="ln" id="L132"><a class="lno" href="#L132">132</a>      have h&#x27; : 3 ^ b * 3 = 1 := h</span>
+<span class="ln" id="L133"><a class="lno" href="#L133">133</a>      rw [h&#x27;] at h1</span>
+<span class="ln" id="L134"><a class="lno" href="#L134">134</a>      exact absurd h1 (by decide)</span>
+<span class="ln" id="L135"><a class="lno" href="#L135">135</a>  | b + 1, d + 1, h =&gt;</span>
+<span class="ln" id="L136"><a class="lno" href="#L136">136</a>      congrArg Nat.succ (three_pow_inj b d (Nat.eq_of_mul_eq_mul_right (Nat.zero_lt_succ 2) h))</span>
+<span class="ln" id="L137"><a class="lno" href="#L137">137</a></span>
+<span class="ln" id="L138"><a class="lno" href="#L138">138</a>/-- 4:E3 (Gödel encoding, two primes) — `2^a 3^b = 2^c 3^d` forces `a = c` and `b = d`: the code is injective, by</span>
+<span class="ln" id="L139"><a class="lno" href="#L139">139</a>parity and cancellation; the general case over `d` distinct primes is `FrcLedger.Representation.godel_injective`. -/</span>
+<span class="ln decl" id="FRC.Representation.godel2_inj"><a class="lno" href="#FRC.Representation.godel2_inj">140</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcCore/Representation.lean#L140" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small ok" src="../lean-ok.png" alt="" title="no axioms">theorem godel2_inj : ∀ a c b d : Nat, 2 ^ a * 3 ^ b = 2 ^ c * 3 ^ d → a = c ∧ b = d</span>
+<span class="ln" id="L141"><a class="lno" href="#L141">141</a>  | 0, 0, b, d, h =&gt; ⟨rfl, three_pow_inj b d (by rw [Nat.pow_zero, Nat.one_mul, Nat.one_mul] at h; exact h)⟩</span>
+<span class="ln" id="L142"><a class="lno" href="#L142">142</a>  | 0, c + 1, b, d, h =&gt; by</span>
+<span class="ln" id="L143"><a class="lno" href="#L143">143</a>      have hl : 2 ^ 0 * 3 ^ b % 2 = 1 := by rw [Nat.pow_zero, Nat.one_mul]; exact three_pow_mod_two b</span>
+<span class="ln" id="L144"><a class="lno" href="#L144">144</a>      have hr : 2 ^ (c + 1) * 3 ^ d % 2 = 0 := by</span>
+<span class="ln" id="L145"><a class="lno" href="#L145">145</a>        rw [Nat.pow_succ, FRC.Nat.mul_assoc, FRC.Nat.mul_left_comm]; exact two_mul_mod_two _</span>
+<span class="ln" id="L146"><a class="lno" href="#L146">146</a>      rw [h] at hl; rw [hl] at hr; exact absurd hr (by decide)</span>
+<span class="ln" id="L147"><a class="lno" href="#L147">147</a>  | a + 1, 0, b, d, h =&gt; by</span>
+<span class="ln" id="L148"><a class="lno" href="#L148">148</a>      have hr : 2 ^ 0 * 3 ^ d % 2 = 1 := by rw [Nat.pow_zero, Nat.one_mul]; exact three_pow_mod_two d</span>
+<span class="ln" id="L149"><a class="lno" href="#L149">149</a>      have hl : 2 ^ (a + 1) * 3 ^ b % 2 = 0 := by</span>
+<span class="ln" id="L150"><a class="lno" href="#L150">150</a>        rw [Nat.pow_succ, FRC.Nat.mul_assoc, FRC.Nat.mul_left_comm]; exact two_mul_mod_two _</span>
+<span class="ln" id="L151"><a class="lno" href="#L151">151</a>      rw [h] at hl; rw [hl] at hr; exact absurd hr (by decide)</span>
+<span class="ln" id="L152"><a class="lno" href="#L152">152</a>  | a + 1, c + 1, b, d, h =&gt; by</span>
+<span class="ln" id="L153"><a class="lno" href="#L153">153</a>      have h&#x27; : 2 * (2 ^ a * 3 ^ b) = 2 * (2 ^ c * 3 ^ d) := by</span>
+<span class="ln" id="L154"><a class="lno" href="#L154">154</a>        rw [← FRC.Nat.mul_left_comm, ← FRC.Nat.mul_assoc, ← Nat.pow_succ, h, Nat.pow_succ, FRC.Nat.mul_assoc,</span>
+<span class="ln" id="L155"><a class="lno" href="#L155">155</a>          FRC.Nat.mul_left_comm]</span>
+<span class="ln" id="L156"><a class="lno" href="#L156">156</a>      have ih := godel2_inj a c b d (Nat.eq_of_mul_eq_mul_left (Nat.zero_lt_succ 1) h&#x27;)</span>
+<span class="ln" id="L157"><a class="lno" href="#L157">157</a>      exact ⟨congrArg Nat.succ ih.1, ih.2⟩</span>
+<span class="ln" id="L158"><a class="lno" href="#L158">158</a></span>
+<span class="ln" id="L159"><a class="lno" href="#L159">159</a>/-- 4:E3 (the reduction into the shell) — an injective integer code with values below `q` stays injective</span>
+<span class="ln" id="L160"><a class="lno" href="#L160">160</a>modulo `q`: `f a % q = f b % q` forces `f a = f b`. -/</span>
+<span class="ln decl" id="FRC.Representation.mod_injective"><a class="lno" href="#FRC.Representation.mod_injective">161</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcCore/Representation.lean#L161" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small ok" src="../lean-ok.png" alt="" title="no axioms">theorem mod_injective {α : Type} (f : α → Nat) (q : Nat) (hq : ∀ a, f a &lt; q) {a b : α}</span>
+<span class="ln" id="L162"><a class="lno" href="#L162">162</a>    (h : f a % q = f b % q) : f a = f b := by</span>
+<span class="ln" id="L163"><a class="lno" href="#L163">163</a>  rw [FRC.Nat.mod_eq_of_lt (hq a), FRC.Nat.mod_eq_of_lt (hq b)] at h; exact h</span>
+<span class="ln" id="L164"><a class="lno" href="#L164">164</a></span>
+<span class="ln" id="L165"><a class="lno" href="#L165">165</a>/-! ### 4:E1 — the hypersphere in the shell&#x27;s own arithmetic -/</span>
+<span class="ln" id="L166"><a class="lno" href="#L166">166</a></span>
+<span class="ln" id="L167"><a class="lno" href="#L167">167</a>namespace Shell</span>
+<span class="ln" id="L168"><a class="lno" href="#L168">168</a></span>
+<span class="ln" id="L169"><a class="lno" href="#L169">169</a>open FRC.Shell</span>
+<span class="ln" id="L170"><a class="lno" href="#L170">170</a></span>
+<span class="ln" id="L171"><a class="lno" href="#L171">171</a>variable {p : Nat} [Pos p]</span>
+<span class="ln" id="L172"><a class="lno" href="#L172">172</a></span>
+<span class="ln" id="L173"><a class="lno" href="#L173">173</a>/-- 4:E1 — the character chart of the shell, `z ↦ (g^{kz})_{k}`: the finite shadow of the Fourier embedding</span>
+<span class="ln" id="L174"><a class="lno" href="#L174">174</a>`z ↦ (cos 2πkz/p, sin 2πkz/p)_k`. -/</span>
+<span class="ln decl" id="FRC.Representation.Shell.charChart"><a class="lno" href="#FRC.Representation.Shell.charChart">175</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcCore/Representation.lean#L175" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small" src="../lean.png" alt="" title="a definition: no proof, no axioms">def charChart (g : Shell p) (z k : Nat) : Shell p := g ^ (k * z)</span>
+<span class="ln" id="L176"><a class="lno" href="#L176">176</a></span>
+<span class="ln" id="L177"><a class="lno" href="#L177">177</a>/-- 4:E1 (equivariance) — translation by `a` multiplies coordinate `k` by `g^{ka}`: the shell&#x27;s translations act on</span>
+<span class="ln" id="L178"><a class="lno" href="#L178">178</a>the chart coordinatewise, as the rotations act on the Fourier embedding. -/</span>
+<span class="ln decl" id="FRC.Representation.Shell.charChart_shift"><a class="lno" href="#FRC.Representation.Shell.charChart_shift">179</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcCore/Representation.lean#L179" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small ok" src="../lean-ok.png" alt="" title="no axioms">theorem charChart_shift (g : Shell p) (z a k : Nat) : charChart g (z + a) k = g ^ (k * a) * charChart g z k := by</span>
+<span class="ln" id="L180"><a class="lno" href="#L180">180</a>  unfold charChart; rw [Nat.mul_add, pow_add, mul_comm]</span>
+<span class="ln" id="L181"><a class="lno" href="#L181">181</a></span>
+<span class="ln" id="L182"><a class="lno" href="#L182">182</a>/-- 4:E1 (constant norm) — the conjugate norm `Σ_{k&lt;n} g^{kz} g^{k(n−z)}` of the chart equals `n = p − 1` for every</span>
+<span class="ln" id="L183"><a class="lno" href="#L183">183</a>`z ≤ n`: every point of the chart lies on one sphere, exactly. -/</span>
+<span class="ln decl" id="FRC.Representation.Shell.charChart_norm"><a class="lno" href="#FRC.Representation.Shell.charChart_norm">184</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcCore/Representation.lean#L184" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small ok" src="../lean-ok.png" alt="" title="no axioms">theorem charChart_norm {κ : Nat} {g : Shell p} (F : Frame p κ g) (z : Nat) (hz : z ≤ p - 1) :</span>
+<span class="ln" id="L185"><a class="lno" href="#L185">185</a>    sumRange (fun k =&gt; charChart g z k * charChart g (p - 1 - z) k) (p - 1) = ofNat (p - 1) := by</span>
+<span class="ln" id="L186"><a class="lno" href="#L186">186</a>  have e : ∀ k, k &lt; p - 1 → charChart g z k * charChart g (p - 1 - z) k = (fun _ =&gt; (1 : Shell p)) k := by</span>
+<span class="ln" id="L187"><a class="lno" href="#L187">187</a>    intro k _</span>
+<span class="ln" id="L188"><a class="lno" href="#L188">188</a>    show g ^ (k * z) * g ^ (k * (p - 1 - z)) = 1</span>
+<span class="ln" id="L189"><a class="lno" href="#L189">189</a>    rw [← pow_add, ← Nat.mul_add, FRC.Nat.add_sub_of_le hz, Nat.mul_comm, pow_mul, F.pow_n, one_pow]</span>
+<span class="ln" id="L190"><a class="lno" href="#L190">190</a>  rw [sum_congr (p - 1) e, sum_const, mul_one]</span>
+<span class="ln" id="L191"><a class="lno" href="#L191">191</a></span>
+<span class="ln" id="L192"><a class="lno" href="#L192">192</a>end Shell</span>
+<span class="ln" id="L193"><a class="lno" href="#L193">193</a></span>
+<span class="ln" id="L194"><a class="lno" href="#L194">194</a>end FRC.Representation</span>
+<span class="ln" id="L195"><a class="lno" href="#L195">195</a></span>
+</pre></main>
+</div>
+</body>
+</html>

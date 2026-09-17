@@ -49,3 +49,16 @@
 'FRC.Geometry.fixed_shell_gap_rat' depends on axioms: [propext, Classical.choice, Quot.sound]
 'FRC.Geometry.fixed_shell_bound' depends on axioms: [propext, Classical.choice, Quot.sound]
 'FRC.Geometry.fixed_shell_bound_lt_one' depends on axioms: [propext, Classical.choice, Quot.sound]
+'FRC.Representation.adequate_inj' does not depend on any axioms
+'FRC.Representation.transition_exists' depends on axioms: [Classical.choice, Quot.sound]
+'FRC.Representation.transition_unique' depends on axioms: [Quot.sound]
+'FRC.Representation.embeds_in_shell' depends on axioms: [propext, Classical.choice, Quot.sound]
+'FRC.Representation.canonical_iota' depends on axioms: [Classical.choice, Quot.sound]
+'FRC.Representation.chart_injective' does not depend on any axioms
+'FRC.Representation.transition_images' depends on axioms: [propext, Classical.choice, Quot.sound]
+'FRC.Representation.lift' depends on axioms: [Classical.choice, Quot.sound]
+'FRC.Representation.consistency' depends on axioms: [Classical.choice, Quot.sound]
+'FRC.Representation.sphere_of_equivariant' depends on axioms: [propext, Classical.choice, Quot.sound]
+'FRC.Representation.godel_injective' depends on axioms: [propext, Classical.choice, Quot.sound]
+'FRC.Representation.mod_injective' depends on axioms: [propext]
+'FRC.Representation.godel_instance' depends on axioms: [propext, Classical.choice, Quot.sound]

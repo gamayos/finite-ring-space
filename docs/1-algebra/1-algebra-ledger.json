@@ -500,7 +500,7 @@
     "axioms": [],
     "tier": 0,
     "ok": true,
-    "doc": "1:C2 (Prop. of the frame group), simple transitivity — for frames `(a, b)` and `(c, d)` (`b, d ≠ 0`) there is exactly one affine map carrying the first to the second: `φ (a, b) := (φ.apply a, φ.b · b)`."
+    "doc": "1:C2, 4:C5 (the frame group), simple transitivity — for frames `(a, b)` and `(c, d)` (`b, d ≠ 0`) there is exactly one affine map carrying the first to the second: `φ (a, b) := (φ.apply a, φ.b · b)`."
    },
    {
     "name": "FRC.Shell.Frame.frame_count",
@@ -509,7 +509,7 @@
     "axioms": [],
     "tier": 0,
     "ok": true,
-    "doc": "1:C2, the order — the frames `(a, b)`, `b ≠ 0`, number `p·(p − 1)`: `p` choices of the origin, `p − 1` of the unit."
+    "doc": "1:C2, 4:C5, the order — the frames `(a, b)`, `b ≠ 0`, number `p·(p − 1)`: `p` choices of the origin, `p − 1` of the unit."
    }
   ],
   "C4": [

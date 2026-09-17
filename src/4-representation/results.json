@@ -1,0 +1,119 @@
+[
+ {
+  "id": "A1",
+  "rows": "4:B4",
+  "script": "a_adequacy",
+  "label": "adequacy (E o g bijective Z -> W) forces g injective; adequate E number |Z|! |W|^(|X|-|Z|) for injective g, 0 otherwise",
+  "ok": true,
+  "detail": "123 observation maps over 7 model sizes; |Z|=1,|X|=1: 1 maps g; |Z|=1,|X|=2: 2 maps g; |Z|=2,|X|=2: 4 maps g",
+  "kind": "EXACT"
+ },
+ {
+  "id": "A2",
+  "rows": "4:B5",
+  "script": "a_adequacy",
+  "label": "psi = phi_2 o phi_1^-1 is the unique bijection W1 -> W2 with E2 o g = psi o E1 o g; E2 = psi o E1 on all of X only when X = g(Z)",
+  "ok": true,
+  "detail": "8096 pairs of adequate representations; off g(Z) the equation fails in 5232 of 7872 pairs with X != g(Z)",
+  "kind": "EXACT"
+ },
+ {
+  "id": "A3",
+  "rows": "4:B5",
+  "script": "a_adequacy",
+  "label": "Lemma 1 as images: psi(E1(X)) = E2(X) = W2 for every pair of adequate representations",
+  "ok": true,
+  "detail": "7872 pairs",
+  "kind": "EXACT"
+ },
+ {
+  "id": "A4",
+  "rows": "4:C1, 4:C2",
+  "script": "a_adequacy",
+  "label": "Theorem 1: psi_m = iota_m o phi_m injective for every injective iota_m; Psi_{m->n} a bijection of the images with inverse Psi_{n->m}; iota_m = phi_m^-1 makes every chart the inclusion of Z",
+  "ok": true,
+  "detail": "Z of size 3 in F_5, two modalities, 3600 pairs of embeddings (60 x 60)",
+  "kind": "EXACT"
+ },
+ {
+  "id": "A5",
+  "rows": "4:C3, 4:C4",
+  "script": "a_adequacy",
+  "label": "Corollary 1: L_m = phi_m^-1 o E_m inverts g_m and L_m x is the unique z with E_m x = phi_m z; Corollary 2: L_m(g_m z) = L_n(g_n z), psi o L_m o g_m = psi",
+  "ok": true,
+  "detail": "the F_5 instance; the observation c (not in g_1(Z)) lifts to the state its code names",
+  "kind": "EXACT"
+ },
+ {
+  "id": "B1",
+  "rows": "4:B6",
+  "script": "b_shell",
+  "label": "|W_m| = |Z| <= p: the representation space embeds in the shell; the least hosting shell of N states is the least prime p = 4k+1 >= N; the canonical iota_m = phi_m^-1 exhibited on F_13",
+  "ok": true,
+  "detail": "N=13->13, 14->17, 30->37, 42->53, 54->61; Z of size 7 in F_13, three modalities with codes in Z^2, Z^3, Z^5",
+  "kind": "EXACT"
+ },
+ {
+  "id": "B2",
+  "rows": "4:C5",
+  "script": "b_shell",
+  "label": "the arithmetic charts of the shell are its p(p-1) affine frames; Psi_{m->n} between two frames is one invertible affine map (simply transitive)",
+  "ok": true,
+  "detail": "p=5: 20 frames; p=13: 156 frames; p=17: 272 frames",
+  "kind": "EXACT"
+ },
+ {
+  "id": "B3",
+  "rows": "4:C1, 4:C3",
+  "script": "b_shell",
+  "label": "the F_13 instance: canonical charts are the inclusion; for random embeddings the transitions compose, Psi_{n->k} o Psi_{m->n} = Psi_{m->k}; the three lifts recover every latent state",
+  "ok": true,
+  "detail": "50 random triples of embeddings W_m -> F_13; 27 observations lifted",
+  "kind": "EXACT"
+ },
+ {
+  "id": "C1",
+  "rows": "4:E1",
+  "script": "c_geometry",
+  "label": "the character chart z -> (cos 2 pi k z/p, sin 2 pi k z/p)_k has |Emb(z)|^2 = p-1 for every z and is translation-equivariant (block rotations); a random chart is not on a sphere",
+  "ok": true,
+  "detail": "p=5: |Emb|^2 = 4; p=13: |Emb|^2 = 12; p=17: |Emb|^2 = 16; p=29: |Emb|^2 = 28; random control: norm spread 9.3",
+  "kind": "CHART"
+ },
+ {
+  "id": "C2",
+  "rows": "4:E1",
+  "script": "c_geometry",
+  "label": "sum_k g^(kz) g^(k(n-z)) = n = p-1 in F_p for every z <= n and every generator; translation multiplies coordinate k by g^(ka)",
+  "ok": true,
+  "detail": "p=5: 2 generators; p=13: 4 generators; p=17: 8 generators; p=29: 12 generators",
+  "kind": "EXACT"
+ },
+ {
+  "id": "C3",
+  "rows": "4:E2",
+  "script": "c_geometry",
+  "label": "grid points within Delta/2 of the sphere of radius R number ~ (R/Delta)^(d-1): least-squares exponents within 0.15 of d-1 at d = 2, 3",
+  "ok": true,
+  "detail": "d=2: R = 10..100, counts 56..640, slope 1.05; d=3: R = 5..40, counts 350..20234, slope 1.96",
+  "kind": "CHART"
+ },
+ {
+  "id": "C4",
+  "rows": "4:E3",
+  "script": "c_geometry",
+  "label": "G(x) = 2^a 3^b 5^c is injective on {0..4}^3 (125 codes, max 810000); mod q = 810013 (the least prime above the maximum) injective by the bound; below it the bound gives nothing: mod 101 there are collisions",
+  "ok": true,
+  "detail": "collisions below the maximum: {101: 41, 1009: 0, 10007: 0, 100003: 0} (none at 1009, 10007, 100003 is the accident of these residues, not the bound)",
+  "kind": "EXACT"
+ },
+ {
+  "id": "C5",
+  "rows": "4:E3",
+  "script": "c_geometry",
+  "label": "2^a 3^b injective on a, b <= 20 (441 codes); signed coordinates in {-2..2}^3 coded after the shift +2: 125 distinct codes, the same maximum",
+  "ok": true,
+  "detail": "",
+  "kind": "EXACT"
+ }
+]

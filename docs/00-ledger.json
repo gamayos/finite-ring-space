@@ -17,7 +17,8 @@
   "N": "Synthesis: exclusions and parameter-freeness",
   "T": "Tasks: the development roadmap (stated surfaces, proofs or executions outstanding)",
   "Y": "Conjectures (stated ahead of derivation; promotion re-homes a row in its thematic block)",
-  "Z": "The horizon (the limits of the bounded observer)"
+  "Z": "The horizon (the limits of the bounded observer)",
+  "W": "Withdrawn (tag X): obstructed, refuted, corrected — internal, never public"
  },
  "tags": {
   "G": "ground — the single given that conditions the discourse",
@@ -27,7 +28,8 @@
   "R": "realisation — what a physical term denotes in the substrate; forced (A10), each row stating the falsifier that kills it. Replaces the retired tag `B` (bridge), 2026-09-11",
   "I": "import — a standard result or measured datum, used without reproof",
   "Ω": "Ω-hard — a value in no embedded reader's window, not closeable by a bounded observer; host-decided on any laboratory Carrier; never applied to a relation (notation convention 6, 2026-09-11)",
-  "O": "open — genuinely unresolved"
+  "O": "open — genuinely unresolved",
+  "X": "withdrawn — obstructed, refuted or corrected; internal only, never public (rule above)"
  },
  "rows": [
   {
@@ -982,6 +984,19 @@
     }
    ],
    "statement": "\\textbf{The spatial chart is the 3-sphere} (declared): the frame torsor $\\mathrm{SL}_2(\\F_\\Om)$ (C6) carries one form on every shell --- $\\mathrm{SU}_2(\\F_{\\p^2}/\\F_\\p)=\\mathrm{SL}_2(\\F_\\p)$ for the Hermitian form $wJ$, $w^{\\p}=-w$ --- with the three element types of $\\mathrm{SL}_2(\\mathbb{R})$, of which $SU(2)$ has one, all of finite order, and the sphere $x^2+y^2+z^2+w^2=1$ and $ad-bc=1$ one quadric of $\\p^3-\\p$ points through the quarter-turn: the compact real form is no datum of the finite structure and cycle closure selects nothing (proved 2026-09-17). $SU(2)=S^3$ is declared the continuum chart of the frame torsor [chart]; given it, the spinor sign gives $S^3$ rather than $SO(3)$ (C22), uniqueness is Poincar\\'e--Perelman [import], and the global de Sitter slicing has $S^3$ sections [import], the chart fixing $\\Om\\sim10^{122}$. Formerly Y7 (O), re-homed from E2 on T12."
+  },
+  {
+   "label": "C24",
+   "name": "The third-order wall of π",
+   "block": "C",
+   "key": "p00138",
+   "tag": "I",
+   "sources": [
+    "13-epi"
+   ],
+   "witness": "13:validate_pi2.py, 00:check_t8.py",
+   "refs": [],
+   "statement": "\\textbf{The third-order wall of $\\pi$}: for every prime $\\p\\ge5$, $\\sigma_\\p=\\sum_{k<(\\p-1)/2}\\binom{2k}{k}/((2k+1)16^{k})$ satisfies $\\sigma_\\p\\equiv0\\ (\\mathrm{mod}\\ \\p^{2})$ (Sun, JNT \\textbf{131} (2011), (1.4)) and $\\sigma_\\p/\\p^{2}\\equiv(-1)^{(\\p+1)/2}B_{\\p-3}/36\\ (\\mathrm{mod}\\ \\p)$: Sun's Conjecture 5.1, $\\sigma_\\p\\equiv(-1)^{(\\p-1)/2}(H_{\\p-1}/12+3\\p^{4}B_{\\p-5}/160)\\ (\\mathrm{mod}\\ \\p^{5})$ for $\\p>5$, proved by Hessami Pilehrood, Hessami Pilehrood and Tauraso (Int.\\ J.\\ Number Theory \\textbf{8} (2012), Thm.\\ 5 (44)), reduced mod $\\p^{3}$ with Glaisher's $H_{\\p-1}\\equiv-\\p^{2}B_{\\p-3}/3\\ (\\mathrm{mod}\\ \\p^{3})$; $\\p=5$ direct. Re-verified for all primes below $10^{4}$ (2026-09-17). Formerly clause (ii) of T8."
   },
   {
    "label": "D1",
@@ -2115,19 +2130,6 @@
    "statement": "The constants-sector walls of $e$: universal existence of the terminal shell residue $-K(\\p)^{-1}$ of the subfactorial chain ($K(\\p)=\\sum_{k<\\p}k!$, Kurepa's hypothesis; literature-verified $\\p<2^{40}$, re-verified in subfactorial form $\\p<2.5\\times10^{5}$); equidistribution of the subfactorial residue line (the blind-set Poisson law); joint equidistribution of the quarter-turn and wall-residue indices (informational disjointness of the angular and radial carriers of $e$, null-experiment supported)."
   },
   {
-   "label": "T8",
-   "name": "The constants-sector walls of π",
-   "block": "T",
-   "key": "p00101",
-   "tag": "O",
-   "sources": [
-    "13-epi"
-   ],
-   "witness": "13:validate_pi2.py",
-   "refs": [],
-   "statement": "The constants-sector walls of $\\pi$: infinitude of the $\\pi$-Wieferich set $4^{\\p-1}\\equiv1+\\p\\ (\\mathrm{mod}\\ \\p^{2})$ (exactly $\\{5,\\,45827\\}$ below $10^{6}$); the third-order Bernoulli law $\\sigma_\\p/\\p^{2}\\equiv(-1)^{(\\p+1)/2}B_{\\p-3}/36\\ (\\mathrm{mod}\\ \\p)$, the mod-$\\p^{3}$ reading of Sun's Conjecture 5.1 (open), verified $5\\le\\p<300$. The supercongruence $\\sigma_\\p\\equiv0\\ (\\mathrm{mod}\\ \\p^{2})$ is Sun's theorem (JNT \\textbf{131} (2011)), imported."
-  },
-  {
    "label": "T9",
    "name": "The e--π dichotomy as theorem",
    "block": "T",
@@ -2474,6 +2476,229 @@
    "witness": null,
    "refs": [],
    "statement": "\\textbf{No compression}: quotational self-reference is unwritable over the finite totality (mention cost; per-symbol at every scale, arbitrary codings beyond a structure constant) --- the classical diagonal consumes exponential quotation-compression, infinity acting as the no-wrap idealisation; at the physical scale the compression threshold $t(\\M)\\approx1.6\\times10^{125}$ symbols lies above the totality's registrable-state count $\\sim10^{122}$, so no embedded reader reaches either side of the sub-threshold window (25-göd Rem. window); correspondingly, bounded-fragment truth is definable at polynomial overhead (the Tarski reversal)."
+  },
+  {
+   "label": "W1",
+   "name": "The variety is the combinatorial S3 (refuted)",
+   "block": "W",
+   "key": "p00106",
+   "tag": "X",
+   "sources": [
+    "98-lab"
+   ],
+   "witness": "00:check_c22.py",
+   "refs": [
+    {
+     "label": "C22",
+     "key": "p00136"
+    }
+   ],
+   "statement": "[refuted 2026-09-17; from O, was Y4 \"The shell is holographic\"] \"Conjectured reading: the variety is the combinatorial $S^3$ (C6), the quotient base its finite $2$-sphere, the $C_{\\p +1}$ cosets its Hopf circles, the shell its unique boundary chart.\" Reason: the observable variety with the cone-chart section is $\\mathrm{PGL}_2\\cong\\mathrm{SO}_3(\\F_\\p)$, not the norm-one sphere $\\mathrm{SL}_2$ (one involution against $\\p^2$); \"unique boundary chart\" has no exact content on a closed $S^3$. Replaced by C22. Record: reports/daily-push/y4-push-20260917.md."
+  },
+  {
+   "label": "W2",
+   "name": "Cycle-closure selects the compact real form (obstructed)",
+   "block": "W",
+   "key": "p00137",
+   "tag": "X",
+   "sources": [
+    "20-rh"
+   ],
+   "witness": "00:check_c23.py",
+   "refs": [
+    {
+     "label": "C23",
+     "key": "p00053"
+    }
+   ],
+   "statement": "[obstructed 2026-09-17; from O, was the owed step of Y7 \"The spatial universe is the 3-sphere\"] \"the observer's frame space is a torsor under $\\mathrm{SL}_2(\\F_\\Om)$, closed and simply connected, whose cycle-closure selects the compact unit-quaternion form; … the choice of the compact real form by cycle closure is the step owed a derivation.\" Reason: the finite field carries one form ($\\mathrm{SU}_2(\\F_{\\p^2}/\\F_\\p)=\\mathrm{SL}_2(\\F_\\p)$), the element types are $\\mathrm{SL}_2(\\mathbb{R})$'s, the sphere and the frame quadric are one quadric; no structure of the framework selects a real form. Replaced by C23 (the chart declared). Record: reports/daily-push/y7-push-20260917.md."
+  },
+  {
+   "label": "W3",
+   "name": "Infinitude of the π-Wieferich set (obstructed)",
+   "block": "W",
+   "key": "p00101",
+   "tag": "X",
+   "sources": [
+    "13-epi"
+   ],
+   "witness": null,
+   "refs": [
+    {
+     "label": "C24",
+     "key": "p00138"
+    }
+   ],
+   "statement": "[obstructed 2026-09-17; from O, was clause (i) of T8 \"The constants-sector walls of π\"] \"infinitude of the $\\pi$-Wieferich set $4^{\\p-1}\\equiv1+\\p\\ (\\mathrm{mod}\\ \\p^{2})$ (exactly $\\{5,\\,45827\\}$ below $10^{6}$)\". Reason: equivalent to $2^{\\p}\\equiv2+\\p\\ (\\mathrm{mod}\\ \\p^{2})$, $q_\\p(2)\\equiv1/2$, the infinitude of a prescribed-value Fermat-quotient set (Wieferich family, open for every value); decided by no shell, by no finite search (exactly $\\{5,45827\\}$ below $2^{32}$, 203\\,280\\,221 primes; $45827\\equiv3$ mod 4, so $\\p=5$ is the only Subject shell), and by no relation the framework holds (each re-expresses $q_\\p(2)$ without fixing it). Lives on as 13-epi O2. Record: reports/daily-push/t8-push-20260917.md."
+  },
+  {
+   "label": "W4",
+   "name": "The proxy frame and the totality's own frame of reference (corrected)",
+   "block": "W",
+   "key": "p00139",
+   "tag": "X",
+   "sources": [
+    "20-rh",
+    "22-qm",
+    "12-prim",
+    "37-sim"
+   ],
+   "witness": null,
+   "refs": [
+    {
+     "label": "B9",
+     "key": "p00019"
+    }
+   ],
+   "statement": "[corrected 2026-09-11; from published prose (20-rh, 22-quantum, the primer, 37-sim)] \"the proxy frame\", \"the totality's own frame of reference\" — a reader for the Carrier's own values. Reason: a totality has no reader and a toy has a host; the phrases name nothing (notation convention 6; decision record reports/decision-record-relation-value-chart-20260911.md, T14). Replaced by the host (convention 6) and, for the limiting reader, the host of a laboratory Carrier."
+  },
+  {
+   "label": "W5",
+   "name": "Conditional on finitude, the Riemann Hypothesis holds (corrected)",
+   "block": "W",
+   "key": "p00140",
+   "tag": "X",
+   "sources": [
+    "20-rh"
+   ],
+   "witness": null,
+   "refs": [
+    {
+     "label": "D11",
+     "key": "p00134"
+    },
+    {
+     "label": "D12",
+     "key": "p00135"
+    }
+   ],
+   "statement": "[corrected 2026-09-12; from T (20-rh, the conditional-proof corollary), T12] \"conditional on finitude RH holds; the totality decides it\". Reason: the leak of the reconstruction is the Riemann--Siegel remainder, not the completeness deficit, and a value no reader holds is not thereby decided; never derive a classical theorem from an $\\Om$-hard tag. Replaced by D11 (the shell theorem) and D12 (the screen value, both readings uncertified). Record: 20-rh review rounds 02--03, reports/20-rh-round-0[5-8]-*.md."
+  },
+  {
+   "label": "W6",
+   "name": "Complete for the prime vector by finite Parseval (corrected)",
+   "block": "W",
+   "key": "p00141",
+   "tag": "X",
+   "sources": [
+    "20-rh"
+   ],
+   "witness": "00:check_rh_shell.py",
+   "refs": [
+    {
+     "label": "D11",
+     "key": "p00134"
+    }
+   ],
+   "statement": "[corrected 2026-09-12; from T (20-rh), T12] \"the on-line spectrum is complete for the prime vector by finite Parseval\". Reason: the nonterminal modes omit the mean and expand no real vector. Replaced by D11 (i), which places the mean. Record: 20-rh round-02."
+  },
+  {
+   "label": "W7",
+   "name": "Both sides of the explicit formula computed from the primes alone (corrected)",
+   "block": "W",
+   "key": "p00142",
+   "tag": "X",
+   "sources": [
+    "20-rh"
+   ],
+   "witness": "00:check_rh_shell.py",
+   "refs": [
+    {
+     "label": "D12",
+     "key": "p00135"
+    }
+   ],
+   "statement": "[corrected 2026-09-12; from T (20-rh), T12] \"both sides computed from the primes alone\". Reason: the secular roots read $N$, not $N_{\\mathrm{crit}}$ — on the Davenport--Heilbronn comb they land on the phantom. Replaced by D12 (the two counts from the two sides, both readings uncertified). Record: 20-rh rounds 02--03."
+  },
+  {
+   "label": "W8",
+   "name": "The comb-built Jacobi matrix is the dilation generator (corrected)",
+   "block": "W",
+   "key": "p00143",
+   "tag": "X",
+   "sources": [
+    "20-rh"
+   ],
+   "witness": null,
+   "refs": [
+    {
+     "label": "D11",
+     "key": "p00134"
+    }
+   ],
+   "statement": "[corrected 2026-09-12; from T (20-rh), T12] \"the Jacobi matrix identified with the dilation generator $\\hat H=-i(x\\partial_x+\\tfrac12)$\". Reason: the identification is a target, not a result (the Hilbert--P\\'olya correspondence); the shell's own trace carries no prime data. Replaced by D11 (the matrix as the shell theorem's object; the generator as its target). Record: 20-rh round-02."
+  },
+  {
+   "label": "W9",
+   "name": "The projection C(Ω−1) ↠ C(p−1) (corrected)",
+   "block": "W",
+   "key": "p00144",
+   "tag": "X",
+   "sources": [
+    "20-rh"
+   ],
+   "witness": "38:check_s13.js",
+   "refs": [
+    {
+     "label": "C15",
+     "key": "p00035"
+    }
+   ],
+   "statement": "[corrected 2026-09-12; from T (20-rh notation)] \"the Carrier cycle projects onto the Subject cycle, $C_{\\Om-1}\\twoheadrightarrow C_{\\p-1}$\". Reason: false on $(13,233)$ ($232\\not\\equiv0$ mod $12$) and on 37-sim's Carrier; the shared structure is $Q_4$ (C15, the fibre product). Replaced by C15. Record: reports/revision-20260911.md (T12, notation pass)."
+  },
+  {
+   "label": "W10",
+   "name": "The face-ratio identity excludes Brans–Dicke (corrected)",
+   "block": "W",
+   "key": "p00145",
+   "tag": "X",
+   "sources": [
+    "38-s13 (C8)"
+   ],
+   "witness": "38:check_s13.js",
+   "refs": [
+    {
+     "label": "E4",
+     "key": "p00055"
+    }
+   ],
+   "statement": "[corrected 2026-09-14; from R (38-s13 C9), T30] \"the coefficient identity $2\\gamma-\\beta=1$ excludes Brans--Dicke theory\". Reason: the combination is measured to $10^{-4}$ already (Cassini, lunar laser ranging), so the identity adds no discrimination to the data's own; the deviation $-4/(3(2+\\omega))$ is the data's exclusion, not the construction's. Replaced by 38-s13 C8 (the identity) and O4 (the dictionary, open). Record: reports/t30-execution-20260914.md."
+  },
+  {
+   "label": "W11",
+   "name": "The δ-Lagrangian shortcut for the comparable-mass 2PN sector (corrected)",
+   "block": "W",
+   "key": "p00146",
+   "tag": "X",
+   "sources": [
+    "21-grav"
+   ],
+   "witness": "21:validate_1pn_eih.py",
+   "refs": [
+    {
+     "label": "T4",
+     "key": "p00097"
+    }
+   ],
+   "statement": "[corrected 2026-06; from a draft derivation (21-gravity)] \"a $\\delta$-Lagrangian shortcut yields the comparable-mass 2PN $\\nu$-sector\". Reason: failed its test-particle gate and was discarded; the matched-invariant two-body treatment (T4) is the route. Replaced by nothing yet (T4 open). Record: 21-gravity reports (the 2PN blueprint)."
+  },
+  {
+   "label": "W12",
+   "name": "The framed reals are a complete continuum (corrected)",
+   "block": "W",
+   "key": "p00147",
+   "tag": "X",
+   "sources": [
+    "1-alg"
+   ],
+   "witness": null,
+   "refs": [
+    {
+     "label": "B1",
+     "key": "p00011"
+    }
+   ],
+   "statement": "[corrected 2026; from published prose (1-algebra 2025, \"framed reals as a complete continuum\"; every real to every precision)] Reason: refuted by 1-algebra Thm.\\ approx / row D5 (Lean \\texttt{approx\\_obstruction}: at $(13,2)$ no point of step $\\le1/8$ lies within $1/16$ of $33/10$; resolution and range trade off at fixed window); the continuum enters only as a labelled chart (1-algebra D6, B1). Replaced by 1:D5 (the chart theorem, public, tag T) and 1:D6. Record: revision T11 (1-algebra §4.4--4.5 superseded by 13-epi), the two-lives doctrine."
   }
  ]
 }

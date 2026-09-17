@@ -307,31 +307,31 @@
    "rows": [
     {
      "label": "X1",
-     "predicate": "\\textbf{The weakness of gravity} is the $1/\\dS$ suppression of the frame leak: one chart tick per chronon, $1/(4\\dS)$ of the cycle --- $1/232$ at the instance, of order $10^{-122}$ at physical capacity; the denominator that makes the world look continuous makes gravity look weak (\\S\\ref{sec:reality}).",
-     "tag": "R",
-     "source": "\\S\\ref{sec:reality}",
+     "predicate": "\\textbf{The weakness of gravity} is the $1/\\dS$ suppression of the frame leak: one chart tick per chronon, $1/(4\\dS)$ of the cycle --- $1/232$ at the instance, of order $10^{-122}$ at physical capacity; the denominator that makes the world look continuous makes gravity look weak (C10, \\S\\ref{sec:reality}).",
+     "tag": "T",
+     "source": "\\src{s13.\\allowbreak check\\_s13} (C10)",
      "key": "p38046"
     },
     {
      "label": "X2",
-     "predicate": "\\textbf{The continuum is the large-capacity look}: what changes with capacity is resolution, not structure; the instance stands to the physical pair as exact instantiation, every structural theorem holding verbatim at $\\dS\\approx10^{122}$ by the $\\Om$-blindness license (\\S\\ref{sec:proves}).",
-     "tag": "R",
-     "source": "\\S\\ref{sec:reality}",
+     "predicate": "\\textbf{The continuum is the large-capacity look}: what changes with capacity is resolution, not structure; the instance stands to the physical pair as exact instantiation, every structural theorem holding verbatim at $\\dS\\approx10^{122}$ by the $\\Om$-blindness license (\\S\\ref{sec:proves}): the theorems of \\S\\ref{sec:theorems} consume no numeral of $\\dS$ or $\\kap$.",
+     "tag": "T",
+     "source": "\\S\\ref{sec:theorems}, \\S\\ref{sec:proves}",
      "key": "p38047"
     },
     {
-     "label": "X4",
-     "predicate": "\\textbf{The shell is holographic}: a Subject's frame datum is one projective direction, one shell cell, one drive phase (Theorem~\\ref{th:holography}, Reading~\\ref{th:holography-reading}); the bulk frame is boundary data with nothing left over. Falsifier: a registered distinction between two frames sharing the triple.",
-     "tag": "R",
-     "source": "\\src{s13.\\allowbreak verify-hopf}",
-     "key": "p38051"
+     "label": "X3",
+     "predicate": "\\textbf{The acceleration floor $a_{0}=cH_{0}/2\\pi$ is the drive seen in the chart}: the leak's cyclic rate is the drive's own, one cycle per drive period $\\Om-1$ chronons $=2\\pi/H_{0}$, and its acceleration face is the floor (C10, the theorem; C11, the declared realisation); at the instance $a_{0}=c/(\\Om-1)$.",
+     "tag": "T|R",
+     "source": "\\src{s13.\\allowbreak check\\_s13} (C10, C11)",
+     "key": "p38048"
     },
     {
-     "label": "X3",
-     "predicate": "\\textbf{The acceleration floor $a_{0}=cH_{0}/2\\pi$ is the drive seen in the chart}: the leak's cyclic rate is the drive's own, one cycle per drive period $\\Om-1$ chronons $=2\\pi/H_{0}$, and its acceleration face is the floor (C10, C11); at the instance $a_{0}=c/(\\Om-1)$.",
-     "tag": "R",
-     "source": "\\src{s13.\\allowbreak check\\_s13}",
-     "key": "p38048"
+     "label": "X4",
+     "predicate": "\\textbf{The shell is holographic}: a Subject's frame datum is one projective direction, one shell cell, one drive phase, and the bulk frame is that boundary datum with nothing left over (Theorem~\\ref{th:holography}; the realisation reading and its falsifier, Reading~\\ref{th:holography-reading}).",
+     "tag": "T",
+     "source": "\\src{s13.\\allowbreak verify-hopf}, \\src{s13.\\allowbreak check\\_fibrations}",
+     "key": "p38051"
     }
    ]
   },
