@@ -91,7 +91,7 @@ const PUBLICATIONS = [
     ]
   },
   {
-    "key": "3-lor",
+    "key": "3-caus",
     "n": 3,
     "title": "Euclidean–Lorentzian Dichotomy and Algebraic Causality in Finite Ring Continuum",
     "status": {

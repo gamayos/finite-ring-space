@@ -560,7 +560,7 @@
    "key": "p00023",
    "tag": "T",
    "sources": [
-    "3-lor",
+    "3-caus",
     "8-dirac"
    ],
    "witness": null,
@@ -618,11 +618,11 @@
      "key": "p00045"
     },
     {
-     "label": "Y7",
+     "label": "C23",
      "key": "p00053"
     }
    ],
-   "statement": "\\textbf{One frame group, three sectors}: gravity's $(3{+}1)$ tensor, the Riemann observer geometry, and the quantum spinor structure are three readings of $\\mathrm{SL}_2(\\F_\\Om)$ --- its three tori the scale-time, translation, and boost freedoms, its order $(\\Om{-}1)\\Om(\\Om{+}1)$ the observer variety --- the norm-one quaternion sphere is $\\mathrm{SL}_2$ itself, the spin cover of the rotation group $\\mathrm{PGL}_2\\cong\\mathrm{SO}_3$ that carries the cone chart (C22); continuum shadow the de Sitter $S^3$ (Y7) --- its spinor double cover the Clifford layer (D4). Falsifier: a registered space-time, observer, or spinor freedom outside the three tori of $\\mathrm{SL}_2(\\F_\\Om)$ --- a fifth force or an extra dimension."
+   "statement": "\\textbf{One frame group, three sectors}: gravity's $(3{+}1)$ tensor, the Riemann observer geometry, and the quantum spinor structure are three readings of $\\mathrm{SL}_2(\\F_\\Om)$ --- its three tori the scale-time, translation, and boost freedoms, its order $(\\Om{-}1)\\Om(\\Om{+}1)$ the observer variety --- the norm-one quaternion sphere is $\\mathrm{SL}_2$ itself, the spin cover of the rotation group $\\mathrm{PGL}_2\\cong\\mathrm{SO}_3$ that carries the cone chart (C22); continuum shadow the de Sitter $S^3$, a declared chart (C23) --- its spinor double cover the Clifford layer (D4). Falsifier: a registered space-time, observer, or spinor freedom outside the three tori of $\\mathrm{SL}_2(\\F_\\Om)$ --- a fifth force or an extra dimension."
   },
   {
    "label": "C7",
@@ -668,7 +668,7 @@
    "tag": "T",
    "sources": [
     "8-dirac",
-    "3-lor",
+    "3-caus",
     "10-dim",
     "22-qm"
    ],
@@ -955,6 +955,33 @@
     }
    ],
    "statement": "\\textbf{The frame variety and its two fibrations}: $\\mathrm{PGL}_2(\\F_\\p)\\cong\\mathrm{SO}_3(\\F_\\p)$; the norm-one sphere is $\\mathrm{SL}_2$, its spin cover (C6). For every odd $\\p$, $G\\cong\\mathbb{P}^1\\times\\F_\\p\\times C_{\\p -1}$: one direction, one shell cell, one drive phase. Two fibrations share the count: non-split $C_{\\p +1}$ over $\\p (\\p -1)$ with the cone-chart section (C19); split $C_{\\p -1}$ over $\\p (\\p +1)$ without (40-hyper B2). Decides Y4."
+  },
+  {
+   "label": "C23",
+   "name": "The spatial chart is the 3-sphere (declared)",
+   "block": "C",
+   "key": "p00053",
+   "tag": "D",
+   "sources": [
+    "20-rh",
+    "98-lab"
+   ],
+   "witness": "00:check_c23.py",
+   "refs": [
+    {
+     "label": "C3",
+     "key": "p00023"
+    },
+    {
+     "label": "C6",
+     "key": "p00026"
+    },
+    {
+     "label": "C22",
+     "key": "p00136"
+    }
+   ],
+   "statement": "\\textbf{The spatial chart is the 3-sphere} (declared): the frame torsor $\\mathrm{SL}_2(\\F_\\Om)$ (C6) carries one form on every shell --- $\\mathrm{SU}_2(\\F_{\\p^2}/\\F_\\p)=\\mathrm{SL}_2(\\F_\\p)$ for the Hermitian form $wJ$, $w^{\\p}=-w$ --- with the three element types of $\\mathrm{SL}_2(\\mathbb{R})$, of which $SU(2)$ has one, all of finite order, and the sphere $x^2+y^2+z^2+w^2=1$ and $ad-bc=1$ one quadric of $\\p^3-\\p$ points through the quarter-turn: the compact real form is no datum of the finite structure and cycle closure selects nothing (proved 2026-09-17). $SU(2)=S^3$ is declared the continuum chart of the frame torsor [chart]; given it, the spinor sign gives $S^3$ rather than $SO(3)$ (C22), uniqueness is Poincar\\'e--Perelman [import], and the global de Sitter slicing has $S^3$ sections [import], the chart fixing $\\Om\\sim10^{122}$. Formerly Y7 (O), re-homed from E2 on T12."
   },
   {
    "label": "D1",
@@ -1463,7 +1490,7 @@
    "key": "p00066",
    "tag": "T",
    "sources": [
-    "3-lor",
+    "3-caus",
     "27-fld"
    ],
    "witness": "27:p3.py",
@@ -2220,19 +2247,6 @@
    "witness": "38:check_s13.js",
    "refs": [],
    "statement": "\\textbf{Capacity is additive on the lock} (conjecture): a phase-locked, typical-density composite has $\\kap_O=\\sum\\kap_i=3N$ in hydrogen units --- the minimal window registering total winding exactly (38:A8's wrap clause); the 14-entr typical-object diagonal is the validity locus; off-line the law breaks with wall displacement (proton: $1$ against $3$, sign passed); exchange rate open; the $\\Om^{1/4}$ cap crosses the diagonal near $10^{3}$\\,kg."
-  },
-  {
-   "label": "Y7",
-   "name": "The spatial universe is the 3-sphere S3 (conjecture)",
-   "block": "Y",
-   "key": "p00053",
-   "tag": "O",
-   "sources": [
-    "20-rh"
-   ],
-   "witness": null,
-   "refs": [],
-   "statement": "The spatial universe is the $3$-sphere $S^3$: the observer's frame space is a torsor under $\\mathrm{SL}_2(\\F_\\Om)$, closed and simply connected, whose cycle-closure selects the compact unit-quaternion form; uniqueness by the imported Poincar\\'e--Perelman theorem, the de Sitter spatial section fixing $\\Om\\sim10^{122}$. Fenced in 20-rh (\\S7.6, 2026-09-12): recorded to mark the direction, contributing nothing to the paper's theorem, classification or realisation; the choice of the compact real form by cycle closure is the step owed a derivation; on every Subject shell the norm-one sphere is $\\mathrm{SL}_2$ and the frame variety with the cone chart its rotation group (C22). Re-homed from E2 (T) on the T12 revision."
   },
   {
    "label": "Z1",
