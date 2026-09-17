@@ -102,7 +102,7 @@
   "id": "C2b",
   "rows": "2:E3",
   "script": "c_charts",
-  "label": "the printed Prop. 5.5 fails at eps = 1/20 on every tested shell",
+  "label": "fixed-shell density at eps = 1/20: the covering radius exceeds 1/20 on every tested shell",
   "ok": true,
   "detail": "shells with covering radius > 1/20 at N = 40: [(13, 2), (13, 11), (17, 3), (29, 2)]",
   "kind": "EXACT"

@@ -51,44 +51,44 @@
     },
     {
      "label": "B2",
-     "predicate": "Nonexistence of a causal square root: no $c\\in\\Fp$ has $c^{2}=\\nu$ for $\\nu\\in N$; for $c\\in\\Fpx$ every coefficient of $-c^{2}t^{2}+x^{2}+y^{2}+z^{2}$ is a square ($-1=i^{2}$), the form Euclidean with $\\p^{3}+\\p^{2}-\\p$ zeros; $c=0$ gives a degenerate form, so the theorem's ``any $c$'' reads $c\\neq0$.",
+     "predicate": "Nonexistence of a causal square root: no $c\\in\\Fp$ has $c^{2}=\\nu$ for $\\nu\\in N$; for $c\\in\\Fpx$ every coefficient of $-c^{2}t^{2}+x^{2}+y^{2}+z^{2}$ is a square ($-1=i^{2}$), the form Euclidean with $\\p^{3}+\\p^{2}-\\p$ zeros; $c=0$ gives a degenerate form.",
      "tag": "T",
      "source": "Thm.~\\ref{thm:nonexistence}; \\src{A1}, \\src{A4}; \\lean{Causality.no\\_causal\\_root, Causality.neg\\_sq\\_is\\_square, FRC.Shell.Frame.no\\_causal\\_root, FRC.Shell.Frame.neg\\_sq\\_is\\_square}",
      "key": "p03006"
     },
     {
      "label": "B3",
-     "predicate": "Square-class absorption, the proof repaired: if $a_{i}/a_{0}\\in S$ for all $i$ then $Q\\simeq a_{0}\\sum Y_{i}^{2}$ by $Y_{i}=w_{i}X_{i}$, $w_{i}^{2}=a_{i}/a_{0}$; the printed $u_{0}$ with $u_{0}^{2}=a_{0}$ need not exist ($a_{0}\\in N$) and $-a_{i}$ is again a nonsquare; no root of $a_{0}$ is needed.",
+     "predicate": "Square-class absorption: if $a_{i}/a_{0}\\in S$ for all $i$ then $Q\\simeq a_{0}\\sum Y_{i}^{2}$ by $Y_{i}=w_{i}X_{i}$, $w_{i}^{2}=a_{i}/a_{0}$; no root of $a_{0}$ is needed, and none exists for $a_{0}\\in N$ ($-a_{0}$ is a nonsquare with it).",
      "tag": "T",
-     "source": "Lemma~\\ref{lem:square-class-absorption}; \\texttt{revision}; \\src{A2}; \\lean{Causality.absorb, FRC.Shell.Frame.absorb}",
+     "source": "Lemma~\\ref{lem:square-class-absorption}; \\src{A2}; \\lean{Causality.absorb, FRC.Shell.Frame.absorb}",
      "key": "p03007"
     },
     {
      "label": "B4",
      "predicate": "The dichotomy lives on the shell: $\\operatorname{disc}Q_{\\nu}\\equiv\\nu$ (as $-1\\in S$); for $\\nu\\in N$ the form is elliptic, Witt index one, with $\\p^{3}-\\p^{2}+\\p$ null points; for $\\nu\\in S$ hyperbolic, Witt index two, $\\p^{3}+\\p^{2}-\\p$; every $\\nu$ on $\\p\\le41$ ($2041$ and $2353$ at $13$; 8:B7).",
      "tag": "T",
-     "source": "\\texttt{revision}; \\src{B1}; \\lean{FRC.Shell.Frame.null13, FRC.Shell.Frame.euclid13, FRC.Shell.Frame.null5, FRC.Shell.Frame.null17}",
+     "source": "Section~\\ref{sec:quadratic}; \\src{B1}; \\lean{FRC.Shell.Frame.null13, FRC.Shell.Frame.euclid13, FRC.Shell.Frame.null5, FRC.Shell.Frame.null17}",
      "key": "p03008"
     },
     {
      "label": "B5",
      "predicate": "The Witt decomposition: for $\\nu\\in N$ the plane $x^{2}-\\nu t^{2}$ (the norm of $\\Fpq$) is anisotropic and $y^{2}+z^{2}=(y+iz)(y-iz)$ hyperbolic, so $Q_{\\nu}=H\\perp\\langle1,-\\nu\\rangle$, index one; for $\\nu=w^{2}$ the $(t,x)$-plane is hyperbolic too, $H\\perp H$. Over $\\Fpq$, $\\nu=c^{2}$ and $Q_{\\nu}\\simeq\\sum X_{i}^{2}$: hyperbolic ($16\\,225$ zeros at $q=25$); the extension dissolves the split.",
      "tag": "T",
-     "source": "Cor.~\\ref{cor:min-ext} corrected; \\texttt{revision}; \\src{B2}, \\src{B5}; \\lean{Causality.aniso\\_tx, FRC.Shell.Frame.aniso\\_tx, FRC.Shell.Frame.null\\_yz, FRC.Shell.Frame.null\\_tx\\_of\\_square}",
+     "source": "Cor.~\\ref{cor:min-ext}; \\src{B2}, \\src{B5}; \\lean{Causality.aniso\\_tx, FRC.Shell.Frame.aniso\\_tx, FRC.Shell.Frame.null\\_yz, FRC.Shell.Frame.null\\_tx\\_of\\_square}",
      "key": "p03009"
     },
     {
      "label": "B6",
-     "predicate": "The finite Lorentz group of the shell: $O(Q_{\\nu},\\Fp)=O_{4}^{-}(\\p)$ of order $2\\p^{2}(\\p^{4}-1)$ ($31\\,200$, $9\\,653\\,280$, $48\\,274\\,560$ at $5$, $13$, $17$, by frame counting); the Euclidean group $O_{4}^{+}(\\p)$ of order $2\\p^{2}(\\p^{2}-1)^{2}$; over $\\Fpq$, $O(Q_{\\nu},\\Fpq)=O_{4}^{+}(\\p^{2})$ ($486\\,720\\,000$ at $\\p=5$) --- ``split type of Witt index one'' is not a type.",
+     "predicate": "The finite Lorentz group of the shell: $O(Q_{\\nu},\\Fp)=O_{4}^{-}(\\p)$ of order $2\\p^{2}(\\p^{4}-1)$ ($31\\,200$, $9\\,653\\,280$, $48\\,274\\,560$ at $5$, $13$, $17$, by frame counting); the Euclidean group $O_{4}^{+}(\\p)$ of order $2\\p^{2}(\\p^{2}-1)^{2}$; over $\\Fpq$, $O(Q_{\\nu},\\Fpq)=O_{4}^{+}(\\p^{2})$ ($486\\,720\\,000$ at $\\p=5$): split type means Witt index two.",
      "tag": "T",
-     "source": "\\texttt{revision}; \\src{B3}, \\src{B2}",
+     "source": "Section~\\ref{sec:outlook}; \\src{B3}, \\src{B2}",
      "key": "p03010"
     },
     {
      "label": "B7",
      "predicate": "The causal classes: the null cone $\\{Q_{\\nu}=0\\}$ ($\\p^{3}-\\p^{2}+\\p$ points) and the two classes of non-null vectors by the square class of $Q_{\\nu}(v)$, $(\\p-1)(\\p^{3}+\\p)/2$ each, partition $\\Fp^{4}$ and are invariant under $O(Q_{\\nu},\\Fp)$ and under rescaling: the shell's null, timelike and spacelike separation ($\\p=5$, $13$ exhaustive).",
      "tag": "T",
-     "source": "\\texttt{revision}; \\src{B4}",
+     "source": "Section~\\ref{sec:outlook}; \\src{B4}",
      "key": "p03011"
     }
    ]
@@ -99,16 +99,16 @@
    "rows": [
     {
      "label": "C1",
-     "predicate": "The boost datum, restated: $K=\\Fpq=\\Fp(\\sqrt\\nu)$ with the Frobenius conjugation and the norm $N(\\gamma+b\\sqrt\\nu)=\\gamma^{2}-\\nu b^{2}$; the boost $\\Lambda(\\gamma,b)=\\bigl(\\begin{smallmatrix}\\gamma&b\\\\ \\nu b&\\gamma\\end{smallmatrix}\\bigr)$ for $N=1$; the rapidity parameter is a norm-one element of $K^{\\times}$, not $\\g^{\\Delta m}\\in\\Fpx$ (8:D4).",
+     "predicate": "The boost datum: $K=\\Fpq=\\Fp(\\sqrt\\nu)$ with the Frobenius conjugation and the norm $N(\\gamma+b\\sqrt\\nu)=\\gamma^{2}-\\nu b^{2}$; the boost $\\Lambda(\\gamma,b)=\\bigl(\\begin{smallmatrix}\\gamma&b\\\\ \\nu b&\\gamma\\end{smallmatrix}\\bigr)$ for $N=1$; the rapidity parameter is a norm-one element of $K^{\\times}$ (8:D4; C5 for $\\g^{\\Delta m}$).",
      "tag": "D",
-     "source": "Section~\\ref{sec:lorentz}; \\texttt{revision}; 8:D4",
+     "source": "Section~\\ref{sec:lorentz}; 8:D4",
      "key": "p03012"
     },
     {
      "label": "C2",
      "predicate": "$\\Lambda(\\gamma,b)$ preserves $-\\nu t^{2}+x^{2}$ exactly and $\\Lambda(z_{1})\\Lambda(z_{2})=\\Lambda(z_{1}z_{2})$: the boosts are the norm-one cycle $N^{1}\\simeq C_{\\p+1}$, the non-split torus, and exhaust $SO(Q_{\\nu},\\Fp)$ in dimension $1{+}1$ ($6$, $14$, $18$ at $5$, $13$, $17$); with $\\nu\\in S$ the same construction is the split torus $C_{\\p-1}$ --- the two tori are the two signatures (00:C3).",
      "tag": "T",
-     "source": "Section~\\ref{sec:lorentz}; \\texttt{revision}; \\src{C1}, \\src{C2}; \\lean{Causality.boost\\_preserves, Causality.boost\\_comp, Causality.boost\\_orthogonal, FRC.Shell.Frame.boost\\_preserves, FRC.Shell.Frame.boost\\_comp\\_t, FRC.Shell.Frame.boost\\_comp\\_x, FRC.Shell.Frame.norm\\_one\\_mul, FRC.Shell.Frame.normOne\\_values}",
+     "source": "Section~\\ref{sec:lorentz}; \\src{C1}, \\src{C2}; \\lean{Causality.boost\\_preserves, Causality.boost\\_comp, Causality.boost\\_orthogonal, FRC.Shell.Frame.boost\\_preserves, FRC.Shell.Frame.boost\\_comp\\_t, FRC.Shell.Frame.boost\\_comp\\_x, FRC.Shell.Frame.norm\\_one\\_mul, FRC.Shell.Frame.normOne\\_values}",
      "key": "p03013"
     },
     {
@@ -120,16 +120,16 @@
     },
     {
      "label": "C4",
-     "predicate": "Dimension $1{+}3$: the $x$-boost $\\Lambda\\oplus I_{2}$ lies in $O(Q_{\\nu},\\Fp)$; with $O(3,\\Fp)$ on $(x,y,z)$, of order $2\\p(\\p^{2}-1)$, the $x$-boosts generate $O(Q_{\\nu},\\F_{5})=O_{4}^{-}(5)$ ($31\\,200$ elements by closure); the printed ``$O(1,3;\\Fpq)$'' is $O_{4}^{+}(\\p^{2})$, the Euclidean group of the extension (B6).",
+     "predicate": "Dimension $1{+}3$: the $x$-boost $\\Lambda\\oplus I_{2}$ lies in $O(Q_{\\nu},\\Fp)$; with $O(3,\\Fp)$ on $(x,y,z)$, of order $2\\p(\\p^{2}-1)$, the $x$-boosts generate $O(Q_{\\nu},\\F_{5})=O_{4}^{-}(5)$ ($31\\,200$ elements by closure); over the extension the group is $O_{4}^{+}(\\p^{2})$, the Euclidean one (B6).",
      "tag": "T",
-     "source": "\\texttt{revision}; \\src{C5}",
+     "source": "Section~\\ref{sec:lorentz}; \\src{C5}",
      "key": "p03015"
     },
     {
      "label": "C5",
-     "predicate": "The printed boost $\\Lambda(u)$, $u=\\g^{\\Delta m}$: $\\gamma=(u+u^{-1})/2\\in\\Fp$ but $a=(u-u^{-1})/(2c)\\in c\\Fp$, outside $\\Fp$ for $u\\neq\\pm1$; it preserves $Q_{\\nu}$ over $K$, where $Q_{\\nu}$ is Euclidean; the $\\p-1$ matrices form the split torus of $SO(Q_{\\nu},K)$, not the boost group of the shell ($13$, $17$ exhaustive).",
+     "predicate": "The family $\\Lambda(u)$, $u=\\g^{\\Delta m}\\in\\Fpx$: $\\gamma=(u+u^{-1})/2\\in\\Fp$ but $a=(u-u^{-1})/(2c)\\in c\\Fp$, outside $\\Fp$ for $u\\neq\\pm1$; it preserves $Q_{\\nu}$ over $K$, where $Q_{\\nu}$ is Euclidean; the $\\p-1$ matrices form the split torus of $SO(Q_{\\nu},K)$ --- the extension's rotations, not the shell's boosts ($13$, $17$ exhaustive).",
      "tag": "T",
-     "source": "\\texttt{revision}; \\src{C4}",
+     "source": "Section~\\ref{sec:lorentz}; \\src{C4}",
      "key": "p03016"
     }
    ]
@@ -140,7 +140,7 @@
    "rows": [
     {
      "label": "D1",
-     "predicate": "$\\F_{13}$ [value]: $S=\\{1,3,4,9,10,12\\}$, $N=\\{2,5,6,7,8,11\\}$; $\\nu=2=\\g$; $X^{2}-2$ irreducible, $c=\\sqrt2\\in K\\setminus\\F_{13}$; $2041$ null points of $Q_{2}$ on the shell, $4\\,855\\,201$ over $K$; $14$ boosts $(\\gamma,b)$ with the $7$ velocities $\\{0,2,3,6,7,10,11\\}$; the printed $\\Lambda(2)$ has $a=-5/(2c)\\notin\\F_{13}$.",
+     "predicate": "$\\F_{13}$ [value]: $S=\\{1,3,4,9,10,12\\}$, $N=\\{2,5,6,7,8,11\\}$; $\\nu=2=\\g$; $X^{2}-2$ irreducible, $c=\\sqrt2\\in K\\setminus\\F_{13}$; $2041$ null points of $Q_{2}$ on the shell, $4\\,855\\,201$ over $K$; $14$ boosts $(\\gamma,b)$ with the $7$ velocities $\\{0,2,3,6,7,10,11\\}$; $\\Lambda(u)$ at $u=2$ has $a=-5/(2c)\\notin\\F_{13}$.",
      "tag": "T",
      "source": "Section~\\ref{sec:quadratic}; \\src{D1}, \\src{D2}; \\lean{FRC.Shell.Frame.null13, FRC.Shell.Frame.normOne\\_values}",
      "key": "p03017"
@@ -153,9 +153,9 @@
    "rows": [
     {
      "label": "E1",
-     "predicate": "Causality is algebraic and lives on the shell: the time axis is the coordinate carrying the nonsquare class ($\\nu=\\g$), the null cone and the two non-null classes its invariant separation (B7), the boosts the non-split torus (C2); $\\Fpq$ is where $c=\\sqrt\\nu$ is written and where the dichotomy collapses (B5); ``one shell out'' is withdrawn. Falsifier: a registered one-way velocity (8:B8).",
+     "predicate": "Causality is algebraic and lives on the shell: the time axis is the coordinate carrying the nonsquare class ($\\nu=\\g$), the null cone and the two non-null classes its invariant separation (B7), the boosts the non-split torus (C2); $\\Fpq$ is where $c=\\sqrt\\nu$ is written and where the dichotomy collapses (B5). Falsifier: a registered one-way velocity (8:B8).",
      "tag": "R",
-     "source": "Section~\\ref{sec:outlook}; \\texttt{revision}; 00:C3",
+     "source": "Section~\\ref{sec:outlook}; 00:C3",
      "key": "p03018"
     },
     {
@@ -173,7 +173,7 @@
    "rows": [
     {
      "label": "V1",
-     "predicate": "The package \\texttt{src/3-causality} (\\texttt{finite-ring-space}; $16$ checks, exact, standard library only): \\src{a\\_classes} A1--A4 (classes, absorption, the canonical $\\nu$), \\src{b\\_signature} B1--B5 (zero counts, the extension, group orders by frame counting, the causal classes, the Witt planes), \\src{c\\_boost} C1--C5 (the norm-one cycle, velocities, the printed boost, $O_{4}^{-}(5)$ by closure), \\src{d\\_example} D1--D2.",
+     "predicate": "The package \\texttt{src/3-causality} (\\texttt{finite-ring-space}; $16$ checks, exact, standard library only): \\src{a\\_classes} A1--A4 (classes, absorption, the canonical $\\nu$), \\src{b\\_signature} B1--B5 (zero counts, the extension, group orders by frame counting, the causal classes, the Witt planes), \\src{c\\_boost} C1--C5 (the norm-one cycle, velocities, the $\\g^{\\Delta m}$ family, $O_{4}^{-}(5)$ by closure), \\src{d\\_example} D1--D2.",
      "tag": "T",
      "source": "\\src{run\\_all}; the notebook",
      "key": "p03020"
@@ -296,7 +296,7 @@
     ],
     "tier": 1,
     "ok": true,
-    "doc": "3:B3 (Lemma absorption, repaired): coefficients `a_i = w_i² a_0` are absorbed by `x_i ↦ w_i x_i`."
+    "doc": "3:B3 (Lemma absorption): coefficients `a_i = w_i² a_0` are absorbed by `x_i ↦ w_i x_i`."
    },
    {
     "name": "FRC.Shell.Frame.absorb",
@@ -305,7 +305,7 @@
     "axioms": [],
     "tier": 0,
     "ok": true,
-    "doc": "3:B3 (Lemma absorption, repaired) — if `a_i = w_i² a_0` for `i = 1, 2, 3` then `a_0 x_0² + a_1 x_1² + a_2 x_2² + a_3 x_3² = a_0 (x_0² + (w_1 x_1)² + (w_2 x_2)² + (w_3 x_3)²)`: a common square class is absorbed by the rescaling `x_i ↦ w_i x_i`, with no square root of `a_0` itself required."
+    "doc": "3:B3 (Lemma absorption) — if `a_i = w_i² a_0` for `i = 1, 2, 3` then `a_0 x_0² + a_1 x_1² + a_2 x_2² + a_3 x_3² = a_0 (x_0² + (w_1 x_1)² + (w_2 x_2)² + (w_3 x_3)²)`: a common square class is absorbed by the rescaling `x_i ↦ w_i x_i`, with no square root of `a_0` itself required."
    }
   ],
   "B4": [

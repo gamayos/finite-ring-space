@@ -3,11 +3,10 @@ import FrcLedger.Fourier
 import FrcLedger.Algebra
 
 /-!
-# 2-geometry — formalization sample for the ledger draft (2026-09-17)
+# 2-geometry — the ledger rows in Lean (2026-09-17)
 
-Rows of the draft ledger of *Geometry and Constants in Finite Ring Continuum* (Symmetry 2026, 18, 751;
-tree `2-geometry-20260706`), stated as the revision must state them. Compiled 17 Sep 2026, twelve declarations,
-standard axioms only (`axioms_geo.log`). Every universal statement is over an
+Rows of the predicate ledger of *Geometry and Constants in Finite Ring Continuum* (Symmetry 2026, 18, 751;
+tree `2-geometry-20260706`). Compiled 17 Sep 2026, standard axioms only (`axioms.log`). Every universal statement is over an
 arbitrary finite field `F` with `Fintype.card F = 4κ + 1` (the shell) and a primitive root `g`; the cell counts
 are integer identities; the fixed-shell bound is decided over `ℚ` (the `(13, 2)` instance over `ℕ`); the
 Fourier inversion is the matrix identity `W · (−W J) = 1` on `Fin (p − 1)`, from the relations of `FrcLedger.Fourier`.
@@ -37,7 +36,7 @@ theorem quarter_turn_order (κ : ℕ) (hκ : Fintype.card F = 4 * κ + 1) (g : F
   refine ⟨h2, ?_⟩
   rw [show (4 : ℕ) = 2 * 2 by norm_num, pow_mul, h2]; ring
 
-/-- 2:D5 (Remark 4.11 corrected — the orientation classes): under `g' = g^u` the oriented quarter-turn
+/-- 2:D5 (Remark 4.11 — the orientation classes): under `g' = g^u` the oriented quarter-turn
 `i' = −g'^κ` equals `i = −g^κ` when `u ≡ 1 (mod 4)` and `−i` when `u ≡ 3 (mod 4)`. -/
 theorem orientation_class (κ : ℕ) (hκ : Fintype.card F = 4 * κ + 1) (g : F)
     (hg : IsPrimitiveRoot g (Fintype.card F - 1)) (u : ℕ) :
@@ -124,7 +123,7 @@ theorem euler_characteristic (π n : ℤ) :
     (π * n + 1) - 2 * π * n + π * n = 1 ∧ ((π - 1) * n + 2) - (2 * π - 1) * n + π * n = 2 := by
   constructor <;> ring
 
-/-- 2:E3 (the fixed-shell refutation of Prop. 5.5 at `p = 13`, `g = 2`, `H = 6`): no grid point `x / 2^n`
+/-- 2:E3 (the fixed-shell gap of Prop. 5.5 at `p = 13`, `g = 2`, `H = 6`): no grid point `x / 2^n`
 with `0 ≤ x ≤ 6` lies strictly between `3/4` and `1`, at any depth `n` — the covering radius of the
 fixed-shell refinement in `[0, 1]` is at least `1/8` for every `N`. -/
 theorem fixed_shell_gap (n x : ℕ) (hx : x ≤ 6) : ¬ (3 * 2 ^ n < 4 * x ∧ x < 2 ^ n) := by

@@ -20,9 +20,9 @@ column cites the check ids in return. Block A decides the shell and its frame: s
 orbits and the structural set, `1:B2`), the oriented quarter-turn `i = −g^κ` (`1:B3`), the affine frame with its
 unit `a + b` (`1:B4`), the frame group `Aff(F_p)` of order `p(p−1)` (`1:C2`) and the involutions and counts of the
 orbital complex (`1:C4`). Block B decides the framed numbers: the window law (`1:D2`), scale-periodicity in the field
-and its failure in `Q` (`1:D4`), the chart of the grid and the obstruction to the published Theorem 2 (`1:D5`), the
+and its failure in `Q` (`1:D4`), the chart of the grid and its obstruction at `(13, 2)` (`1:D5`), the
 zero divisors of `F_p[X]/(X²+1)` (`1:E2`), the absence of an element of additive order two (`1:F1`), and the
-refutation of the published Lemma 3 (`1:V1`). Block C decides the conclusion's conjecture clause by clause:
+Euclidean step count against `⌊log₂ p⌋+1` (`1:V1`). Block C decides the conclusion's conjecture clause by clause:
 the root test `gcd(f, X^p − X)` (`1:G1`), the tower of shells resolving every real (`1:G2`), the circle net and its
 group-law defect (`1:G3`), and the covering radii of the finite rotation groups — no finite subgroup of `SO(3)` is an
 ε-net below ε₀ ≈ 44.5° (`1:G4`) — and the window resolves it anyway: the normalised framed quaternions `W_H⁴` are a
@@ -59,7 +59,7 @@ code("""import a_shell; importlib.reload(a_shell); a_shell.run()""")
 
 md("""## Block B — the framed numbers, the charts and the horizon
 The window law swept over every `H` on `p ∈ {13, 17, 29}`; scale-periodicity in the field against the rational grids; the
-range–resolution trade-off of the chart and the obstruction to the published Theorem 2 at `(13, 2)`, `r = 33/10`; zero divisors
+range–resolution trade-off of the chart and the obstruction of the chart at `(13, 2)`, `r = 33/10`; zero divisors
 of `F_p[X]/(X²+1)` on the shell against the fields at `p ≡ 3 (mod 4)`; `2s = 0 ⇒ s = 0`; the Euclidean counterexamples.""")
 code("""import b_numbers; importlib.reload(b_numbers); b_numbers.run()""")
 

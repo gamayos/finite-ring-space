@@ -26,7 +26,7 @@ Run: `python3 run_all.py` (python ≥ 3.8, no third-party packages; ≈ 3 s). Ea
 | `B3` | `b_shell.py` | EXACT | ρ_u : m ↦ um is cellular iff u = ±1; the dihedral maps are; meridian reversal is a map of the completion only | `2:B4`, `2:C4` |
 | `C1` | `c_charts.py` | CHART | base-grid covering radius 0.360 at p = 13 within the bound √2 π/(p−1) = 0.370 | `2:E2` |
 | `C2` | `c_charts.py` | EXACT | the fixed-shell scale grid's covering radius in [0, 1] is ≥ ½ min(g^−m, 1 − 2κ g^−(m+1)) at every depth (exact rationals; six frames) | `2:E3` |
-| `C2b` | `c_charts.py` | EXACT | the printed fixed-shell density claim fails at ε = 1/20 on every tested shell | `2:E3` |
+| `C2b` | `c_charts.py` | EXACT | fixed-shell density at ε = 1/20: the covering radius exceeds 1/20 on every tested shell | `2:E3` |
 | `C3` | `c_charts.py` | CHART | the tower p = 13 … 4093 (g = 2) resolves every target within 1/2048; the single shell (13, 2) does not | `2:E4` |
 | `D1` | `d_fourier.py` | EXACT | g is a principal n-th root of unity, n^−1 = −1 | `2:F1` |
 | `D2` | `d_fourier.py` | EXACT | W^−1 = −(g^−jk) on (13, 2), (13, 11), (17, 3), (29, 2) | `2:F3` |

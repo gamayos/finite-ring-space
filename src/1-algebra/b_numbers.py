@@ -10,12 +10,12 @@ Paper statements decided (Sections 4–5; ledger rows 1:D2, 1:D4, 1:D5, 1:E2, 1:
                                    grids (x/g^n) with g lifted to Z are not
   B3  prop:r-rationals, thm:approx the chart of the grid [chart]: every r with |r| ≤ H g^{−n} lies within 1/(2gⁿ)
       (1:D5)                       of some x/gⁿ, x ∈ W_H (exact rationals); at (13, 2) no grid point of step ≤ 1/8
-                                   lies within 1/16 of 33/10 — the obstruction to Theorem 2 as published
+                                   lies within 1/16 of 33/10 — the obstruction of the chart
   B4  prop:Cp-field (1:E2)         F_p[X]/(X²+1) has zero divisors on the shell ((u+X)(u−X) = 0, factors nonzero);
                                    X²+1 has no root, hence the quotient is a field, exactly for p ≡ 3 (mod 4)
   B5  thm:no-south-pole (1:F1)     2s = 0 ⇒ s = 0 on every odd prime; 2·(2κ+1) = 1: the half-turn 2⁻¹ = 2κ+1
-  B6  (1:V1)                       Lemma 3 as published (k ≤ ⌊log₂ p⌋+1 non-zero Euclidean remainders) is false:
-                                   p = 59 (55, 34) needs 7 > 6; p = 1009 (987, 610) needs 13 > 10; first failure 59
+  B6  (1:V1)                       the Euclidean step count against the bound k ≤ ⌊log₂ p⌋+1 (lem:euclid-bound):
+                                   p = 59 (55, 34) needs 7 > 6; p = 1009 (987, 610) needs 13 > 10; first excess at 59
 """
 from fractions import Fraction
 from algcommon import check, SHELLS, CONTROLS, primitive_roots, kappa, sqrt_neg_one, is_prime
@@ -48,7 +48,7 @@ def run():
     check("B2", "G_n = (x g^{−n})_x is (p−1)-periodic in the field, with exact period p−1; the rational grids x/gⁿ are not periodic",
           ok, "; ".join(det))
 
-    # B3 — the chart of the grid: the trade-off holds, the published Theorem 2 fails
+    # B3 — the chart of the grid: the trade-off holds, with the obstruction at (13, 2)
     ok, det = True, []
     p, g, H = 13, 2, 12
     for n in range(0, 8):
@@ -63,7 +63,7 @@ def run():
     best = min((abs(Fraction(x, g ** n) - r), x, n) for n in range(13) for x in range(p))
     ok &= (best[1:] == (7, 1) and best[0] == Fraction(1, 5))
     det.append(f"trade-off on {8*81} sampled reals at (13,2), H=12; obstruction: no x/2^n (n ≥ 3, x < 13) within 1/16 of 33/10, best 7/2 at error 1/5")
-    check("B3", "|r| ≤ H g^{−n} ⇒ some x/gⁿ, x ∈ W_H, within 1/(2gⁿ); Theorem 2 as published fails at (13, 2), r = 33/10, k = 3",
+    check("B3", "|r| ≤ H g^{−n} ⇒ some x/gⁿ, x ∈ W_H, within 1/(2gⁿ); the obstruction at (13, 2): no point of step ≤ 1/8 within 1/16 of r = 33/10",
           ok, "; ".join(det), kind="CHART")
 
     # B4 — the complex chart is not an extension: zero divisors iff −1 is a square
@@ -91,7 +91,7 @@ def run():
             ok &= ((2 * (2 * k + 1)) % p == 1) and (2 * k + 1 == (p + 1) // 2)
     check("B5", "2s = 0 ⇒ s = 0 for every odd prime < 200; on the shell 2⁻¹ = 2κ+1 = (p+1)/2, the residue past the antipode", ok, "primes 3..199")
 
-    # B6 — Lemma 3 as published is false (recorded under V1; no row carries the lemma)
+    # B6 — the Euclidean step count against the bound ⌊log₂ p⌋+1 (recorded under V1)
     def steps(a, b):
         k = 0
         while b:
@@ -106,8 +106,8 @@ def run():
         if worst > p.bit_length():
             first = p; break
     ok = (steps(55, 34) == 7 and (59).bit_length() == 6 and steps(987, 610) == 13 and (1009).bit_length() == 10 and first == 59)
-    ok &= (fib[3] == 3 and fib[3] < 2 ** 2)                               # F_4 = 3 < 2^{4−2}: the proof's inequality fails
-    check("B6", "Lemma 3 (published) refuted: (55,34) needs 7 > ⌊log₂59⌋+1 = 6; (987,610) needs 13 > 10; first failure p = 59; F_4 = 3 < 4",
+    ok &= (fib[3] == 3 and fib[3] < 2 ** 2)                               # F_4 = 3 < 2^{4−2}: the Fibonacci bound 2^{k−2} does not hold at k = 4
+    check("B6", "the Euclidean step count against ⌊log₂p⌋+1: (55,34) needs 7 > ⌊log₂59⌋+1 = 6; (987,610) needs 13 > 10; first excess at p = 59; F_4 = 3 < 4",
           ok, "a ≥ b convention, consecutive Fibonacci pairs below p")
 
 if __name__ == "__main__":

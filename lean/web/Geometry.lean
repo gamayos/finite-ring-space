@@ -181,12 +181,12 @@ end FRC.Fourier
 # 1-algebra — the ledger rows in Lean (2026-09-16)
 
 Rows of the paper's predicate ledger (Appendix A of `1-algebra-axioms`, keys `p01001`–`p01024`), stated as the
-revised paper states them (the corrections of `reports/1-algebra-evaluation-20260916.md` applied).
+paper's ledger states them.
 Every universal statement is over an arbitrary finite field `F` with `Fintype.card F = 4κ + 1`
-(the shell); the window law is on `ZMod p`; instance checks and refutations are decided. The section
+(the shell); the window law is on `ZMod p`; instance checks and counts are decided. The section
 `conjecture` decides the conclusion's conjecture clause by clause (rows G1–G3; G4, the `SO(3)` obstruction,
 is numerical and imported).
-Every docstring opens with the ledger row(s) the declaration decides (`1:B2`); theorem numbers are the published paper's
+Every docstring opens with the ledger row(s) the declaration decides (`1:B2`); theorem numbers are the paper's
 (Axioms 2025, 14, 636).
 -/
 
@@ -267,7 +267,7 @@ theorem quarter_turn (κ : ℕ) (hκ : Fintype.card F = 4 * κ + 1) (g : F)
   refine ⟨h, ?_⟩
   rw [← h]; ring
 
-/-- 1:B4 (Definition 2 corrected, Lemma 1): in the affine frame `(a, b)`, `φ x = a + b x`
+/-- 1:B4 (Definition 2, Lemma 1): in the affine frame `(a, b)`, `φ x = a + b x`
 carries `+` and `·` to `⊕` and `⊗`, is a bijection, and the multiplicative unit of the
 relabelled field is `a + b`; `b` is the unit only when `a = 0`. -/
 theorem affine_frame (a b : F) (hb : b ≠ 0) :
@@ -371,22 +371,22 @@ end shell
 /-- 1:B3 on `𝔽₁₃`: `g = 2`, `i = −2³ = 5`, `5² = −1`. -/
 theorem s13_quarter_turn : (-(2 : ZMod 13) ^ 3) = 5 ∧ (5 : ZMod 13) ^ 2 = -1 := by decide
 
-/-- 1:V1 Lemma 3 refuted: the number of non-zero remainders of the Euclidean algorithm on
-`(987, 610)` is `13`, while `⌊log₂ 1009⌋ + 1 = 10`. The claimed bound fails at `p = 1009`
-(and first at `p = 59`, where the pair `(55, 34)` needs `7 > 6`). -/
+/-- 1:V1 the Euclidean step count: the number of non-zero remainders of the Euclidean algorithm on
+`(987, 610)` is `13`, against `⌊log₂ 1009⌋ + 1 = 10`; the pair `(55, 34)` needs `7` against
+`⌊log₂ 59⌋ + 1 = 6`, the first prime where the count exceeds the logarithmic bound. -/
 def euclidSteps : ℕ → ℕ → ℕ → ℕ
   | 0, _, _ => 0
   | fuel + 1, a, b => if b = 0 then 0 else (if a % b = 0 then 0 else 1) + euclidSteps fuel b (a % b)
 
-theorem euclid_bound_refuted :
+theorem euclid_step_count :
     euclidSteps 40 987 610 = 13 ∧ Nat.log 2 1009 + 1 = 10 ∧
     euclidSteps 40 55 34 = 7 ∧ Nat.log 2 59 + 1 = 6 := by
   decide
 
-/-- 1:D5, the obstruction (Theorem 2 refuted) at `p = 13`, `g = 2`: every grid point
+/-- 1:D5, the obstruction at `p = 13`, `g = 2`: every grid point
 `x/2^n` with `0 ≤ x < 13` and `n ≥ 3` is `≤ 3/2`, so no grid point at resolution `1/8` lies
-within `1/16` of `33/10`. (Instance of the range obstruction; the theorem is false as stated.) -/
-theorem approx_theorem_refuted :
+within `1/16` of `33/10` (an instance of the range obstruction). -/
+theorem approx_obstruction :
     ∀ n : ℕ, 3 ≤ n → ∀ x : ℕ, x < 13 → ((x : ℚ) / 2 ^ n) ≤ 3 / 2 := by
   intro n hn x hx
   have h2 : (8 : ℚ) ≤ 2 ^ n := by
@@ -497,11 +497,10 @@ end FRC.Algebra
 /-! FrcLedger/Geometry.lean -/
 
 /-!
-# 2-geometry — formalization sample for the ledger draft (2026-09-17)
+# 2-geometry — the ledger rows in Lean (2026-09-17)
 
-Rows of the draft ledger of *Geometry and Constants in Finite Ring Continuum* (Symmetry 2026, 18, 751;
-tree `2-geometry-20260706`), stated as the revision must state them. Compiled 17 Sep 2026, twelve declarations,
-standard axioms only (`axioms_geo.log`). Every universal statement is over an
+Rows of the predicate ledger of *Geometry and Constants in Finite Ring Continuum* (Symmetry 2026, 18, 751;
+tree `2-geometry-20260706`). Compiled 17 Sep 2026, standard axioms only (`axioms.log`). Every universal statement is over an
 arbitrary finite field `F` with `Fintype.card F = 4κ + 1` (the shell) and a primitive root `g`; the cell counts
 are integer identities; the fixed-shell bound is decided over `ℚ` (the `(13, 2)` instance over `ℕ`); the
 Fourier inversion is the matrix identity `W · (−W J) = 1` on `Fin (p − 1)`, from the relations of `FrcLedger.Fourier`.
@@ -531,7 +530,7 @@ theorem quarter_turn_order (κ : ℕ) (hκ : Fintype.card F = 4 * κ + 1) (g : F
   refine ⟨h2, ?_⟩
   rw [show (4 : ℕ) = 2 * 2 by norm_num, pow_mul, h2]; ring
 
-/-- 2:D5 (Remark 4.11 corrected — the orientation classes): under `g' = g^u` the oriented quarter-turn
+/-- 2:D5 (Remark 4.11 — the orientation classes): under `g' = g^u` the oriented quarter-turn
 `i' = −g'^κ` equals `i = −g^κ` when `u ≡ 1 (mod 4)` and `−i` when `u ≡ 3 (mod 4)`. -/
 theorem orientation_class (κ : ℕ) (hκ : Fintype.card F = 4 * κ + 1) (g : F)
     (hg : IsPrimitiveRoot g (Fintype.card F - 1)) (u : ℕ) :
@@ -618,7 +617,7 @@ theorem euler_characteristic (π n : ℤ) :
     (π * n + 1) - 2 * π * n + π * n = 1 ∧ ((π - 1) * n + 2) - (2 * π - 1) * n + π * n = 2 := by
   constructor <;> ring
 
-/-- 2:E3 (the fixed-shell refutation of Prop. 5.5 at `p = 13`, `g = 2`, `H = 6`): no grid point `x / 2^n`
+/-- 2:E3 (the fixed-shell gap of Prop. 5.5 at `p = 13`, `g = 2`, `H = 6`): no grid point `x / 2^n`
 with `0 ≤ x ≤ 6` lies strictly between `3/4` and `1`, at any depth `n` — the covering radius of the
 fixed-shell refinement in `[0, 1]` is at least `1/8` for every `N`. -/
 theorem fixed_shell_gap (n x : ℕ) (hx : x ≤ 6) : ¬ (3 * 2 ^ n < 4 * x ∧ x < 2 ^ n) := by

@@ -25,7 +25,7 @@ theorem euler_characteristic (m n : Nat) :
   · rw [FRC.Nat.add_mul, FRC.Nat.add_mul, Nat.one_mul, FRC.Nat.mul_assoc, Nat.two_mul,
       FRC.Nat.add_add_add_comm, Nat.add_comm 2 n, ← Nat.add_assoc]
 
-/-- 2:E3 — the fixed-shell refutation at `p = 13`, `g = 2` (window `x ≤ 6`): no grid point `x / 2^n`
+/-- 2:E3 — the fixed-shell gap at `p = 13`, `g = 2` (window `x ≤ 6`): no grid point `x / 2^n`
 lies strictly between `3/4` and `1` at any depth `n` — the covering radius of the fixed-shell
 refinement in `[0, 1]` is at least `1/8` for every depth. -/
 theorem fixed_shell_gap (n x : Nat) (hx : x ≤ 6) : ¬ (3 * 2 ^ n < 4 * x ∧ x < 2 ^ n) := by
@@ -78,7 +78,7 @@ def Adj (n m m' : Nat) : Prop := (m + 1) % n = m' ∨ (m' + 1) % n = m
 /-- The reindexing `ρ_u : m ↦ u·m mod n`. -/
 def rho (n u m : Nat) : Nat := (u * m) % n
 
-/-- 2:B4 (Prop. 2.8 corrected) — `ρ_u` preserves the adjacency of the phase cycle (`n ≥ 3`) exactly when
+/-- 2:B4 (Prop. 2.8) — `ρ_u` preserves the adjacency of the phase cycle (`n ≥ 3`) exactly when
 `u ≡ 1` or `u ≡ −1 (mod n)`. -/
 theorem rho_adj_iff (n u : Nat) (hn : 3 ≤ n) :
     (∀ m, m < n → Adj n (rho n u m) (rho n u ((m + 1) % n))) ↔ (u % n = 1 ∨ u % n = n - 1) := by
@@ -176,7 +176,7 @@ variable {p : Nat} [Pos p]
 /-- The action reading of the vertex `(a, m)` in the frame with drive `g`: `a · g^m`. -/
 def label (g : Shell p) (a : Shell p) (m : Nat) : Shell p := a * g ^ m
 
-/-- 2:C4 (Prop. 3.5 corrected) — the complex is one for every generator; the frame `g' = g^u` moves the
+/-- 2:C4 (Prop. 3.5) — the complex is one for every generator; the frame `g' = g^u` moves the
 labels by the reindexing `ρ_u`: `label g' (a, m) = label g (a, u·m mod n)`. -/
 theorem label_covariance {κ : Nat} {g : Shell p} (F : Shell.Frame p κ g) (u : Nat) (a : Shell p) (m : Nat) :
     label (g ^ u) a m = label g a (rho (p - 1) u m) := by

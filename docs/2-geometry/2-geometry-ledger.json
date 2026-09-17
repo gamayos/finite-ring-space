@@ -31,7 +31,7 @@
     },
     {
      "label": "A4",
-     "predicate": "The framed-rational charts of 1-algebra as revised: on one shell the scale grids $x/\\gen^{n}$, $|x|\\le2\\kap$, trade range for resolution (1:D5); across shells the tower resolves every real (1:G2). The published 1-algebra Theorem~2 (fixed-frame density) is retired.",
+     "predicate": "The framed-rational charts of 1-algebra: on one shell the scale grids $x/\\gen^{n}$, $|x|\\le2\\kap$, trade range for resolution (1:D5); across shells the tower resolves every real (1:G2).",
      "tag": "I",
      "source": "1:D5; 1:G2",
      "key": "p02004"
@@ -51,9 +51,9 @@
     },
     {
      "label": "B2",
-     "predicate": "The frame $\\Fp(\\chron;0,1,\\gen)$: origin, unit, and the Subject's drive generator $\\gen$, a primitive generator of $\\Fpx$; $\\chron$ the chronon (the current text writes $t$; the revision writes $\\chron$, 00:C1, convention~3).",
+     "predicate": "The frame $\\Fp(\\chron;0,1,\\gen)$: origin, unit, and the Subject's drive generator $\\gen$, a primitive generator of $\\Fpx$; $\\chron$ the chronon (00:C1, convention~3).",
      "tag": "D",
-     "source": "Def.~\\ref{def:extended-frame}; \\texttt{revision}",
+     "source": "Def.~\\ref{def:extended-frame}; 00:C1",
      "key": "p02006"
     },
     {
@@ -65,9 +65,9 @@
     },
     {
      "label": "B4",
-     "predicate": "Cellular automorphisms of the index grid: $m\\mapsto\\pm m+c$, the dihedral group of the phase cycle; on the completion also meridian reversal $a\\mapsto\\pi-a$, exchanging the poles. The reindexing $\\rho_{u}\\colon m\\mapsto um$ preserves latitude adjacency only for $u\\equiv\\pm1\\pmod{\\p-1}$; $\\sigma$ is not a map of $\\Sp$ ($\\north$ one vertex, $L_{\\pi}$ has $\\p-1$). Prop.~\\ref{prop:phase-frame-change} corrected; decided on $\\p\\le29$.",
+     "predicate": "Cellular automorphisms of the index grid: $m\\mapsto\\pm m+c$, the dihedral group of the phase cycle; on the completion also meridian reversal $a\\mapsto\\pi-a$, exchanging the poles. The reindexing $\\rho_{u}\\colon m\\mapsto um$ preserves latitude adjacency only for $u\\equiv\\pm1\\pmod{\\p-1}$; $\\sigma$ is not a map of $\\Sp$ ($\\north$ one vertex, $L_{\\pi}$ has $\\p-1$); decided on $\\p\\le29$.",
      "tag": "T",
-     "source": "\\texttt{revision}; \\src{B3}; \\lean{FRC.Geometry.rho\\_adj\\_iff, FRC.Complex.census13}",
+     "source": "Prop.~\\ref{prop:phase-frame-change}; \\src{B3}; \\lean{FRC.Geometry.rho\\_adj\\_iff, FRC.Complex.census13}",
      "key": "p02008"
     }
    ]
@@ -99,9 +99,9 @@
     },
     {
      "label": "C4",
-     "predicate": "Frame covariance restated: $\\Sp$ is one complex for every generator --- the index grid $I_{\\p}\\times\\Phi_{\\p}$ with its step relations; the frame $\\gen'=\\gen^{u}$ moves the field labels, $a\\gen^{m}\\mapsto a\\gen^{um}$, by the automorphism $\\rho_{u}$ of $\\Phi_{\\p}$, not the cells. The map $\\varphi_{u}$ of Prop.~\\ref{prop:shell-covariance} is cellular only for $u\\equiv\\pm1$ (Prop.~\\ref{prop:shell-covariance} corrected).",
+     "predicate": "Frame covariance: $\\Sp$ is one complex for every generator --- the index grid $I_{\\p}\\times\\Phi_{\\p}$ with its step relations; the frame $\\gen'=\\gen^{u}$ moves the field labels, $a\\gen^{m}\\mapsto a\\gen^{um}$, by the automorphism $\\rho_{u}$ of $\\Phi_{\\p}$, not the cells. The map $\\varphi_{u}$ of Prop.~\\ref{prop:shell-covariance} is cellular only for $u\\equiv\\pm1$.",
      "tag": "T",
-     "source": "\\texttt{revision}; \\src{B3}; \\lean{FRC.Geometry.label\\_covariance, FRC.Complex.census13}",
+     "source": "Prop.~\\ref{prop:shell-covariance}; \\src{B3}; \\lean{FRC.Geometry.label\\_covariance, FRC.Complex.census13}",
      "key": "p02012"
     }
    ]
@@ -140,16 +140,16 @@
     },
     {
      "label": "D5",
-     "predicate": "Orientation classes: for $\\gen'=\\gen^{u}$, $\\It'=-\\gen'^{\\kap}$ equals $\\It$ when $u\\equiv1\\pmod4$ and $-\\It$ when $u\\equiv3\\pmod4$; the oriented quarter-turn is frame-covariant within one class of generators, not under every generator change (Rem.~\\ref{rem:frame-transport} corrected).",
+     "predicate": "Orientation classes: for $\\gen'=\\gen^{u}$, $\\It'=-\\gen'^{\\kap}$ equals $\\It$ when $u\\equiv1\\pmod4$ and $-\\It$ when $u\\equiv3\\pmod4$; the oriented quarter-turn is frame-covariant within one class of generators, not under every generator change.",
      "tag": "T",
-     "source": "\\texttt{revision}; \\src{A3}; \\lean{Geometry.orientation\\_class, FRC.Shell.Frame.orientation\\_class}",
+     "source": "Rem.~\\ref{rem:frame-transport}; \\src{A3}; \\lean{Geometry.orientation\\_class, FRC.Shell.Frame.orientation\\_class}",
      "key": "p02017"
     },
     {
      "label": "D6",
      "predicate": "The Euler identity on the shell: $\\eu^{\\It\\pi}=\\gen^{2\\kap\\It^{2}}=(-1)^{\\It}$, equal to $-1$ exactly when the representative of $\\It$ is odd (00:C14); the oriented frames of a shell are those with $-\\gen^{\\kap}$ odd --- on $\\F_{13}$, $\\gen=2$ ($\\It=5$) is one, on $\\F_{17}$, $\\gen=3$ ($\\It=4$) is not.",
      "tag": "T",
-     "source": "\\texttt{revision}; 00:C14; \\src{A4}; \\lean{Geometry.euler\\_identity, FRC.Shell.Frame.euler\\_identity, FRC.Shell.s17\\_orientation}",
+     "source": "Section~\\ref{sec:structural-data}; 00:C14; \\src{A4}; \\lean{Geometry.euler\\_identity, FRC.Shell.Frame.euler\\_identity, FRC.Shell.s17\\_orientation}",
      "key": "p02018"
     },
     {
@@ -161,9 +161,9 @@
     },
     {
      "label": "D8",
-     "predicate": "Euclidean conjugation $C_{\\gen}\\colon(a,b)\\mapsto(a,-b)$ is an involution of the coordinate pairs $\\Fp^{2}$; on the shell $a+b\\It$ is a field element and the pair map $\\Fp^{2}\\to\\Fp$ is $\\p$-to-one (1:E2), so $C_{\\gen}$ is a chart-level involution, not a field automorphism (Prop.~\\ref{rem:euclidean-conjugation} restated).",
+     "predicate": "Euclidean conjugation $C_{\\gen}\\colon(a,b)\\mapsto(a,-b)$ is an involution of the coordinate pairs $\\Fp^{2}$; on the shell $a+b\\It$ is a field element and the pair map $\\Fp^{2}\\to\\Fp$ is $\\p$-to-one (1:E2), so $C_{\\gen}$ is a chart-level involution, not a field automorphism.",
      "tag": "D",
-     "source": "\\texttt{revision}; 1:E2; \\src{A6}",
+     "source": "Prop.~\\ref{rem:euclidean-conjugation}; 1:E2; \\src{A6}",
      "key": "p02020"
     }
    ]
@@ -188,16 +188,16 @@
     },
     {
      "label": "E3",
-     "predicate": "Fixed-shell refinement is bounded: with $m=\\lfloor\\log_{\\gen}(2\\kap+1)\\rfloor$ no point $x/\\gen^{n}$, $|x|\\le2\\kap$, lies in $(\\max(1-\\gen^{-m},2\\kap\\gen^{-m-1}),1)$ at any depth, so the covering radius of the scale grid in $[0,1]$ is $\\ge\\tfrac12\\min(\\gen^{-m},1-2\\kap\\gen^{-m-1})$ for every $N$: $1/8$ at $(13,2)$, $5/22$ at $(13,11)$. Prop.~\\ref{prop:fixed-shell-density} and Thm.~\\ref{thm:operational-precision} are false as stated.",
+     "predicate": "Fixed-shell refinement is bounded: with $m=\\lfloor\\log_{\\gen}(2\\kap+1)\\rfloor$ no point $x/\\gen^{n}$, $|x|\\le2\\kap$, lies in $(\\max(1-\\gen^{-m},2\\kap\\gen^{-m-1}),1)$ at any depth, so the covering radius of the scale grid in $[0,1]$ is $\\ge\\tfrac12\\min(\\gen^{-m},1-2\\kap\\gen^{-m-1})$ for every $N$: $1/8$ at $(13,2)$, $5/22$ at $(13,11)$.",
      "tag": "T",
-     "source": "\\texttt{revision}; \\src{C2}; \\lean{Geometry.fixed\\_shell\\_bound, FRC.Geometry.fixed\\_shell\\_bound, FRC.Geometry.fixed\\_shell\\_gap}",
+     "source": "Section~\\ref{sec:precision}; \\src{C2}; \\lean{Geometry.fixed\\_shell\\_bound, FRC.Geometry.fixed\\_shell\\_bound, FRC.Geometry.fixed\\_shell\\_gap}",
      "key": "p02023"
     },
     {
      "label": "E4",
-     "predicate": "Finite precision across the tower [chart]: for every $L$-bounded observable family, $\\varepsilon>0$ and configuration on $(S^{2})^{r}$ some shell $\\p$ carries grid points within $\\varepsilon$ (1:G2 with the path bound of E2); on one shell the precision is bounded by E3 (Thm.~\\ref{thm:operational-precision} restated).",
+     "predicate": "Finite precision across the tower [chart]: for every $L$-bounded observable family, $\\varepsilon>0$ and configuration on $(S^{2})^{r}$ some shell $\\p$ carries grid points within $\\varepsilon$ (1:G2 with the path bound of E2); on one shell the precision is bounded by E3.",
      "tag": "T",
-     "source": "\\texttt{revision}; 1:G2; \\src{C3}",
+     "source": "Thm.~\\ref{thm:operational-precision}; 1:G2; \\src{C3}",
      "key": "p02024"
     }
    ]
@@ -329,7 +329,7 @@
    {
     "name": "FRC.Geometry.generator_orbit",
     "module": "FrcLedger/Geometry",
-    "line": 67,
+    "line": 66,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -366,7 +366,7 @@
     "axioms": [],
     "tier": 0,
     "ok": true,
-    "doc": "2:B4 (Prop. 2.8 corrected) — `ρ_u` preserves the adjacency of the phase cycle (`n ≥ 3`) exactly when `u ≡ 1` or `u ≡ −1 (mod n)`."
+    "doc": "2:B4 (Prop. 2.8) — `ρ_u` preserves the adjacency of the phase cycle (`n ≥ 3`) exactly when `u ≡ 1` or `u ≡ −1 (mod n)`."
    },
    {
     "name": "FRC.Complex.census13",
@@ -382,7 +382,7 @@
    {
     "name": "FRC.Geometry.euler_characteristic",
     "module": "FrcLedger/Geometry",
-    "line": 123,
+    "line": 122,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -453,7 +453,7 @@
     "axioms": [],
     "tier": 0,
     "ok": true,
-    "doc": "2:C4 (Prop. 3.5 corrected) — the complex is one for every generator; the frame `g' = g^u` moves the labels by the reindexing `ρ_u`: `label g' (a, m) = label g (a, u·m mod n)`."
+    "doc": "2:C4 (Prop. 3.5) — the complex is one for every generator; the frame `g' = g^u` moves the labels by the reindexing `ρ_u`: `label g' (a, m) = label g (a, u·m mod n)`."
    },
    {
     "name": "FRC.Complex.census13",
@@ -469,7 +469,7 @@
    {
     "name": "FRC.Geometry.half_period",
     "module": "FrcLedger/Geometry",
-    "line": 25,
+    "line": 24,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -493,7 +493,7 @@
    {
     "name": "FRC.Geometry.quarter_turn_order",
     "module": "FrcLedger/Geometry",
-    "line": 32,
+    "line": 31,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -528,7 +528,7 @@
    {
     "name": "FRC.Geometry.orientation_class",
     "module": "FrcLedger/Geometry",
-    "line": 42,
+    "line": 41,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -536,7 +536,7 @@
     ],
     "tier": 2,
     "ok": true,
-    "doc": "2:D5 (Remark 4.11 corrected — the orientation classes): under `g' = g^u` the oriented quarter-turn `i' = −g'^κ` equals `i = −g^κ` when `u ≡ 1 (mod 4)` and `−i` when `u ≡ 3 (mod 4)`."
+    "doc": "2:D5 (Remark 4.11 — the orientation classes): under `g' = g^u` the oriented quarter-turn `i' = −g'^κ` equals `i = −g^κ` when `u ≡ 1 (mod 4)` and `−i` when `u ≡ 3 (mod 4)`."
    },
    {
     "name": "FRC.Shell.Frame.orientation_class",
@@ -552,7 +552,7 @@
    {
     "name": "FRC.Geometry.euler_identity",
     "module": "FrcLedger/Geometry",
-    "line": 56,
+    "line": 55,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -627,7 +627,7 @@
    {
     "name": "FRC.Geometry.fixed_shell_bound",
     "module": "FrcLedger/Geometry",
-    "line": 156,
+    "line": 155,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -649,14 +649,14 @@
     "axioms": [],
     "tier": 0,
     "ok": true,
-    "doc": "2:E3 — the fixed-shell refutation at `p = 13`, `g = 2` (window `x ≤ 6`): no grid point `x / 2^n` lies strictly between `3/4` and `1` at any depth `n` — the covering radius of the fixed-shell refinement in `[0, 1]` is at least `1/8` for every depth."
+    "doc": "2:E3 — the fixed-shell gap at `p = 13`, `g = 2` (window `x ≤ 6`): no grid point `x / 2^n` lies strictly between `3/4` and `1` at any depth `n` — the covering radius of the fixed-shell refinement in `[0, 1]` is at least `1/8` for every depth."
    }
   ],
   "F1": [
    {
     "name": "FRC.Geometry.principal_root",
     "module": "FrcLedger/Geometry",
-    "line": 81,
+    "line": 80,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -680,7 +680,7 @@
    {
     "name": "FRC.Geometry.dft_inverse",
     "module": "FrcLedger/Geometry",
-    "line": 96,
+    "line": 95,
     "axioms": [
      "Classical.choice",
      "Quot.sound",

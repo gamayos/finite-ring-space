@@ -27,7 +27,7 @@
 <span class="ln" id="L5"><a class="lno" href="#L5">5</a># 3-causality — the Euclidean–Lorentzian dichotomy, Mathlib witnesses</span>
 <span class="ln" id="L6"><a class="lno" href="#L6">6</a></span>
 <span class="ln" id="L7"><a class="lno" href="#L7">7</a>Rows of the predicate ledger of *Euclidean–Lorentzian Dichotomy and Algebraic Causality in Finite Ring Continuum*</span>
-<span class="ln" id="L8"><a class="lno" href="#L8">8</a>(Entropy 2025, 27, 1098; tree `3-causality-20260510`), stated as the revision states them, over an arbitrary finite</span>
+<span class="ln" id="L8"><a class="lno" href="#L8">8</a>(Entropy 2025, 27, 1098; tree `3-causality-20260510`), over an arbitrary finite</span>
 <span class="ln" id="L9"><a class="lno" href="#L9">9</a>field `F` with `card F ≢ 3 (mod 4)` (so `−1` is a square, the shells `p = 4κ + 1` among them).  Classical</span>
 <span class="ln" id="L10"><a class="lno" href="#L10">10</a>(tier 2) on Mathlib&#x27;s hierarchy; the same rows are proved with no axioms in `FrcCore/Causality.lean`.</span>
 <span class="ln" id="L11"><a class="lno" href="#L11">11</a>-/</span>
@@ -45,7 +45,7 @@
 <span class="ln" id="L23"><a class="lno" href="#L23">23</a>  obtain ⟨i, hi⟩ := FiniteField.isSquare_neg_one_iff.mpr hF</span>
 <span class="ln" id="L24"><a class="lno" href="#L24">24</a>  exact ⟨i * c, by rw [show -(c ^ 2) = (-1) * c ^ 2 by ring, hi]; ring⟩</span>
 <span class="ln" id="L25"><a class="lno" href="#L25">25</a></span>
-<span class="ln" id="L26"><a class="lno" href="#L26">26</a>/-- 3:B3 (Lemma absorption, repaired): coefficients `a_i = w_i² a_0` are absorbed by `x_i ↦ w_i x_i`. -/</span>
+<span class="ln" id="L26"><a class="lno" href="#L26">26</a>/-- 3:B3 (Lemma absorption): coefficients `a_i = w_i² a_0` are absorbed by `x_i ↦ w_i x_i`. -/</span>
 <span class="ln decl" id="FRC.Causality.absorb"><a class="lno" href="#FRC.Causality.absorb">27</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcLedger/Causality.lean#L27" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small t1" src="lean-t1.png" alt="" title="tier 1: Quot.sound, propext">theorem absorb (a0 a1 a2 a3 w1 w2 w3 x0 x1 x2 x3 : F) (h1 : w1 ^ 2 * a0 = a1) (h2 : w2 ^ 2 * a0 = a2)</span>
 <span class="ln" id="L28"><a class="lno" href="#L28">28</a>    (h3 : w3 ^ 2 * a0 = a3) :</span>
 <span class="ln" id="L29"><a class="lno" href="#L29">29</a>    a0 * x0 ^ 2 + a1 * x1 ^ 2 + a2 * x2 ^ 2 + a3 * x3 ^ 2 =</span>

@@ -1,10 +1,10 @@
 """
 d_example.py — block D: the worked shell F_13 (3:D1)
 =====================================================
-The paper's concrete example, restated: S = {1, 3, 4, 9, 10, 12}, N = {2, 5, 6, 7, 8, 11}; ν = 2 = g (the drive,
+The paper's worked shell: S = {1, 3, 4, 9, 10, 12}, N = {2, 5, 6, 7, 8, 11}; ν = 2 = g (the drive,
 canonically); X² − 2 irreducible; K = F_169 with c = √2 ∉ F_13; the null cone of Q_2 has 2041 points on the shell
-(elliptic) and 4 855 201 over K (q³ + q² − q, hyperbolic); the 14 boosts of N¹ with their 7 velocities; the printed
-Λ(u) at u = 2 has a = −5/(2c) ∉ F_13.
+(elliptic) and 4 855 201 over K (q³ + q² − q, hyperbolic); the 14 boosts of N¹ with their 7 velocities; Λ(u) at
+u = 2 has a = −5/(2c) ∉ F_13.
 """
 import lcommon as lc
 

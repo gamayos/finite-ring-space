@@ -37,14 +37,14 @@
    "rows": [
     {
      "label": "B1",
-     "predicate": "The shell, capacity-first: $\\kap$ primary, $\\p=4\\kap+1$ prime; the Subject's frame $(\\tau;0,1,\\gen)$ with $\\gen$ a primitive root and the drive $x\\mapsto\\gen x$; the cycle $\\Phi_\\p\\cong C_{\\p-1}$; $\\im:=-\\gen^{\\kap}$ (A2), $-1=\\gen^{2\\kap}$. Replaces ``radius $\\chron$'' and ``$\\Fp(0,1)$''.",
+     "predicate": "The shell, capacity-first: $\\kap$ primary, $\\p=4\\kap+1$ prime; the Subject's frame $(\\tau;0,1,\\gen)$ with $\\gen$ a primitive root and the drive $x\\mapsto\\gen x$; the cycle $\\Phi_\\p\\cong C_{\\p-1}$; $\\im:=-\\gen^{\\kap}$ (A2), $-1=\\gen^{2\\kap}$.",
      "tag": "D",
-     "source": "Def.~\\ref{def:field}, Section~\\ref{sec:framing}; \\texttt{revision}",
+     "source": "Def.~\\ref{def:field}, Section~\\ref{sec:framing}",
      "key": "p01003"
     },
     {
      "label": "B2",
-     "predicate": "Symmetry completeness (Thm.~\\ref{thm:symmetric-completeness} restated): the fourth roots of unity form the unique order-four subgroup $Q_4=\\{1,\\im,-1,-\\im\\}$; under the Klein four-group $\\langle x\\mapsto-x,\\,x\\mapsto x^{-1}\\rangle$, $Q_4$ is the union of the two size-two orbits $\\{\\pm1\\}$, $\\{\\pm\\im\\}$, and $\\Fpx\\setminus Q_4$ splits into exactly $\\kap-1$ orbits of size four. For $\\p\\equiv3\\pmod4$ no $\\im$ exists.",
+     "predicate": "Symmetry completeness (Thm.~\\ref{thm:symmetric-completeness}): the fourth roots of unity form the unique order-four subgroup $Q_4=\\{1,\\im,-1,-\\im\\}$; under the Klein four-group $\\langle x\\mapsto-x,\\,x\\mapsto x^{-1}\\rangle$, $Q_4$ is the union of the two size-two orbits $\\{\\pm1\\}$, $\\{\\pm\\im\\}$, and $\\Fpx\\setminus Q_4$ splits into exactly $\\kap-1$ orbits of size four. For $\\p\\equiv3\\pmod4$ no $\\im$ exists.",
      "tag": "T",
      "source": "\\src{A1}; \\lean{Algebra.quarter\\_turn\\_exists, Algebra.klein\\_orbit\\_four, Algebra.card\\_fourth\\_roots, FRC.Shell.Frame.quarter\\_turn\\_exists, FRC.Shell.Frame.fourth\\_roots, FRC.Shell.Frame.klein\\_orbit\\_four, FRC.Shell.Frame.orbit\\_rep, FRC.Shell.Frame.orbit\\_rep\\_unique, FRC.Shell.s13\\_klein}",
      "key": "p01004"
@@ -58,16 +58,16 @@
     },
     {
      "label": "B4",
-     "predicate": "Affine reframing (Def.~\\ref{def:framed-field} corrected, Lemma~\\ref{lem:affine-invariance}): $\\varphi_{a,b}(x)=a+bx$, $b\\neq0$, is a ring isomorphism $(\\Fp,+,\\cdot)\\to(\\Fp,\\oplus,\\otimes)$ with origin $a$ and unit $a+b$ (not $b$); every polynomial identity is frame-covariant.",
+     "predicate": "Affine reframing (Def.~\\ref{def:framed-field}, Lemma~\\ref{lem:affine-invariance}): $\\varphi_{a,b}(x)=a+bx$, $b\\neq0$, is a ring isomorphism $(\\Fp,+,\\cdot)\\to(\\Fp,\\oplus,\\otimes)$ with origin $a$ and unit $a+b$; every polynomial identity is frame-covariant.",
      "tag": "T",
      "source": "\\src{A3}; \\lean{Algebra.affine\\_frame, FRC.Shell.Frame.affine\\_frame\\_unit}",
      "key": "p01006"
     },
     {
      "label": "B5",
-     "predicate": "Origin and unit are observer data (affine gauge); the generator $\\gen$ is the Subject's drive, not gauge; the observer's window is the naturals below $\\sqrt\\p$ (00:B8). Replaces ``$H\\ll\\It=\\sqrt{\\p-1}$'' (Section~\\ref{sec:unification}).",
+     "predicate": "Origin and unit are observer data (affine gauge); the generator $\\gen$ is the Subject's drive, not gauge; the observer's window is the naturals below $\\sqrt\\p$ (00:B8).",
      "tag": "D",
-     "source": "00:A8, 00:C1; \\texttt{revision}",
+     "source": "Section~\\ref{sec:unification}; 00:A8, 00:C1",
      "key": "p01007"
     }
    ]
@@ -112,9 +112,9 @@
    "rows": [
     {
      "label": "D1",
-     "predicate": "Framed integers (Def.~\\ref{def:integers} restated): the window $W_H=\\{z\\in\\Z:|z|\\le H\\}$, $2H<\\p$, embedded by $z\\mapsto z\\bmod\\p$; sign, order and magnitude are the window's; sums read back for $4H<\\p$, products for $2H^{2}<\\p$ --- the corpus window $\\sqrt\\p$ (00:B1).",
+     "predicate": "Framed integers (Def.~\\ref{def:integers}): the window $W_H=\\{z\\in\\Z:|z|\\le H\\}$, $2H<\\p$, embedded by $z\\mapsto z\\bmod\\p$; sign, order and magnitude are the window's; sums read back for $4H<\\p$, products for $2H^{2}<\\p$ --- the corpus window $\\sqrt\\p$ (00:B1).",
      "tag": "D",
-     "source": "Def.~\\ref{def:integers}; \\texttt{revision}",
+     "source": "Def.~\\ref{def:integers}; 00:B1",
      "key": "p01012"
     },
     {
@@ -126,30 +126,30 @@
     },
     {
      "label": "D3",
-     "predicate": "Framed rationals (Def.~\\ref{def:rationals} restated): $a/b$ with $a,b\\in W_H$, $b\\not\\equiv0$, of value $ab^{-1}\\in\\Fp$; the scale grid $[x,n]:=x\\gen^{-n}$, $x\\in\\{0,\\dots,\\p-1\\}$, $n\\in C_{\\p-1}$; $G_n$ the ordered list $(x\\gen^{-n})_x$, the meridian $M_{-n}$ of C3.",
+     "predicate": "Framed rationals (Def.~\\ref{def:rationals}): $a/b$ with $a,b\\in W_H$, $b\\not\\equiv0$, of value $ab^{-1}\\in\\Fp$; the scale grid $[x,n]:=x\\gen^{-n}$, $x\\in\\{0,\\dots,\\p-1\\}$, $n\\in C_{\\p-1}$; $G_n$ the ordered list $(x\\gen^{-n})_x$, the meridian $M_{-n}$ of C3.",
      "tag": "D",
      "source": "Def.~\\ref{def:rationals}; 6:B1",
      "key": "p01014"
     },
     {
      "label": "D4",
-     "predicate": "Scale-periodicity (Lemma~\\ref{thm:scale-periodicity}, restated in the field): $S_n(x)=x\\gen^{-n}$ satisfies $S_{n+(\\p-1)}=S_n$; the grids $G_n$ are $(\\p-1)$-periodic as ordered lists; the zoom $[x,n]\\mapsto[x,n+1]$ has order $\\p-1$. As lists of rationals $x/\\gen^{n}$ ($\\gen$ lifted to $\\Z$) the grids are not periodic: the periodicity is a relation of the field.",
+     "predicate": "Scale-periodicity (Lemma~\\ref{thm:scale-periodicity}, in the field): $S_n(x)=x\\gen^{-n}$ satisfies $S_{n+(\\p-1)}=S_n$; the grids $G_n$ are $(\\p-1)$-periodic as ordered lists; the zoom $[x,n]\\mapsto[x,n+1]$ has order $\\p-1$. As lists of rationals $x/\\gen^{n}$ ($\\gen$ lifted to $\\Z$) the grids are not periodic: the periodicity is a relation of the field.",
      "tag": "T",
      "source": "\\src{B2}; \\lean{Algebra.scale\\_periodic, FRC.Shell.Frame.scale\\_periodic}; 6:D4",
      "key": "p01015"
     },
     {
      "label": "D5",
-     "predicate": "The chart of the grid [chart] (Prop.~\\ref{prop:r-rationals}, Thm.~\\ref{thm:approx} replaced): with $\\gen$ lifted to an integer $\\ge2$, every real $r$ with $|r|\\le H\\gen^{-n}$ lies within $1/(2\\gen^{n})$ of some $x/\\gen^{n}$, $x\\in W_H$: resolution and range trade off at fixed window. Every real to every precision is unavailable: at $(13,2)$ no point of step $\\le1/8$ lies within $1/16$ of $33/10$.",
+     "predicate": "The chart of the grid [chart] (Prop.~\\ref{prop:r-rationals}, Thm.~\\ref{thm:approx}): with $\\gen$ lifted to an integer $\\ge2$, every real $r$ with $|r|\\le H\\gen^{-n}$ lies within $1/(2\\gen^{n})$ of some $x/\\gen^{n}$, $x\\in W_H$: resolution and range trade off at fixed window. Every real to every precision is unavailable: at $(13,2)$ no point of step $\\le1/8$ lies within $1/16$ of $33/10$.",
      "tag": "T",
-     "source": "\\texttt{revision}; \\src{B3}; \\lean{Algebra.approx\\_theorem\\_refuted, FRC.Shell.Frame.approx\\_theorem\\_refuted} (obstruction)",
+     "source": "\\src{B3}; \\lean{Algebra.approx\\_obstruction, FRC.Shell.Frame.approx\\_obstruction} (obstruction)",
      "key": "p01016"
     },
     {
      "label": "D6",
-     "predicate": "The continuum as chart (Def.~\\ref{def:reals}, Props.~\\ref{prop:total-bounded}--\\ref{prop:compactness}, Cor.~\\ref{cor:knowability} retired): the framed real line is the reading of the nested grids against $\\R$, a labelled idealisation entered nowhere as an object (00:B1); no completion, compactness or ``complete continuum'' is claimed.",
+     "predicate": "The continuum as chart (Def.~\\ref{def:reals}, Props.~\\ref{prop:total-bounded}--\\ref{prop:compactness}, Cor.~\\ref{cor:knowability}): the framed real line is the reading of the nested grids against $\\R$, a labelled idealisation entered nowhere as an object (00:B1); no completion, compactness or ``complete continuum'' is claimed.",
      "tag": "D",
-     "source": "00:B1; \\texttt{revision}",
+     "source": "Section~\\ref{sec:reals}; 00:B1",
      "key": "p01017"
     }
    ]
@@ -160,9 +160,9 @@
    "rows": [
     {
      "label": "E1",
-     "predicate": "The framed complex chart (Def.~\\ref{def:complex} restated): the pair $(a,b)\\in W_H^{2}$ read as $a+b\\im\\in\\Fp$; the quarter-turn acts on the shell as the rotation $x\\mapsto\\im x$ of order four; the chart is the plane picture of $Q_4$ acting on the shell, not an extension of $\\Fp$.",
+     "predicate": "The framed complex chart (Def.~\\ref{def:complex}): the pair $(a,b)\\in W_H^{2}$ read as $a+b\\im\\in\\Fp$; the quarter-turn acts on the shell as the rotation $x\\mapsto\\im x$ of order four; the chart is the plane picture of $Q_4$ acting on the shell, not an extension of $\\Fp$.",
      "tag": "D",
-     "source": "Def.~\\ref{def:complex}; \\texttt{revision}",
+     "source": "Def.~\\ref{def:complex}",
      "key": "p01018"
     },
     {
@@ -230,7 +230,7 @@
      "label": "G5",
      "predicate": "Continuous symmetry, the non-abelian case resolved by the window: the framed quaternions $W_H^{4}$, read in a shell $\\p>8H^{2}$, compose exactly (products land in $W_{4H^{2}}$); normalised, they are an $\\varepsilon$-net of $SO(3)$ with $\\varepsilon\\le2\\arcsin(1/H)$ (round $Hs$ to the lattice). At $H=3$, $\\p=73$: $38.9^\\circ<\\varepsilon_0$, finer than any finite subgroup; measured $30.0^\\circ$.",
      "tag": "T",
-     "source": "\\texttt{revision}; \\src{C5}; \\lean{FRC.Shell.Frame.quaternion\\_window, FRC.Shell.Frame.read\\_mul}",
+     "source": "Section~\\ref{sec:conclusion}; \\src{C5}; \\lean{FRC.Shell.Frame.quaternion\\_window, FRC.Shell.Frame.read\\_mul}",
      "key": "p01030"
     }
    ]
@@ -241,14 +241,14 @@
    "rows": [
     {
      "label": "V1",
-     "predicate": "The package \\texttt{src/1-algebra}, three block scripts, sixteen checks, one notebook: \\src{a\\_shell}, A1--A5 (orbit census on seven shells with controls, every primitive root, all $428$ frames of $\\F_{13}$, $\\F_{17}$, the frame group); \\src{b\\_numbers}, B1--B6 (window law, grids, chart obstruction, zero divisors, Thm.~\\ref{thm:no-south-pole}, Lemma~\\ref{lem:euclid-bound} refuted); \\src{c\\_conjecture}, C1--C5 (root test, tower, circle net, covering radii, the window net). Eleven \\textsf{EXACT}, five \\textsf{CHART}.",
+     "predicate": "The package \\texttt{src/1-algebra}, three block scripts, sixteen checks, one notebook: \\src{a\\_shell}, A1--A5 (orbit census on seven shells with controls, every primitive root, all $428$ frames of $\\F_{13}$, $\\F_{17}$, the frame group); \\src{b\\_numbers}, B1--B6 (window law, grids, chart obstruction, zero divisors, Thm.~\\ref{thm:no-south-pole}, Lemma~\\ref{lem:euclid-bound}'s step count); \\src{c\\_conjecture}, C1--C5 (root test, tower, circle net, covering radii, the window net). Eleven \\textsf{EXACT}, five \\textsf{CHART}.",
      "tag": "T",
      "source": "\\src{run\\_all}; the notebook",
      "key": "p01022"
     },
     {
      "label": "V2",
-     "predicate": "\\texttt{lean/FrcLedger/Algebra.lean} (\\texttt{finite-ring-space}; Lean~4.34, Mathlib 15~Sep~2026; kernel-checked by CI on every push): eighteen theorems --- B3, B4, D4, F1 for every shell, G1 over $\\Fp$, G2--G3 over $\\R$, complete; B2, C4, D2, E2 with a clause outstanding; B3 on $\\F_{13}$; Lemma~\\ref{lem:euclid-bound} refuted by \\texttt{decide}. Classical (tier~2): on Mathlib's hierarchy every proof reaches \\texttt{Classical.choice}; correct theorems, not the finitist witness (V3).",
+     "predicate": "\\texttt{lean/FrcLedger/Algebra.lean} (\\texttt{finite-ring-space}; Lean~4.34, Mathlib 15~Sep~2026; kernel-checked by CI on every push): eighteen theorems --- B3, B4, D4, F1 for every shell, G1 over $\\Fp$, G2--G3 over $\\R$, complete; B2, C4, D2, E2 with a clause outstanding; B3 on $\\F_{13}$; Lemma~\\ref{lem:euclid-bound}'s step count by \\texttt{decide}. Classical (tier~2): on Mathlib's hierarchy every proof reaches \\texttt{Classical.choice}; correct theorems, not the finitist witness (V3).",
      "tag": "T",
      "source": "\\lean{Algebra}",
      "key": "p01023"
@@ -480,7 +480,7 @@
     ],
     "tier": 2,
     "ok": true,
-    "doc": "1:B4 (Definition 2 corrected, Lemma 1): in the affine frame `(a, b)`, `φ x = a + b x` carries `+` and `·` to `⊕` and `⊗`, is a bijection, and the multiplicative unit of the relabelled field is `a + b`; `b` is the unit only when `a = 0`."
+    "doc": "1:B4 (Definition 2, Lemma 1): in the affine frame `(a, b)`, `φ x = a + b x` carries `+` and `·` to `⊕` and `⊗`, is a bijection, and the multiplicative unit of the relabelled field is `a + b`; `b` is the unit only when `a = 0`."
    },
    {
     "name": "FRC.Shell.Frame.affine_frame_unit",
@@ -489,7 +489,7 @@
     "axioms": [],
     "tier": 0,
     "ok": true,
-    "doc": "1:B4 (Definition 2 of 1-algebra, corrected) — in the affine frame `(a, b)` the multiplicative unit is `a + b`, not `b`: `(a + b) ⊗ z = z` for every `z`."
+    "doc": "1:B4 (Definition 2 of 1-algebra) — in the affine frame `(a, b)` the multiplicative unit is `a + b`, not `b`: `(a + b) ⊗ z = z` for every `z`."
    }
   ],
   "C2": [
@@ -613,7 +613,7 @@
   ],
   "D5": [
    {
-    "name": "FRC.Algebra.approx_theorem_refuted",
+    "name": "FRC.Algebra.approx_obstruction",
     "module": "FrcLedger/Algebra",
     "line": 213,
     "axioms": [
@@ -623,16 +623,16 @@
     ],
     "tier": 2,
     "ok": true,
-    "doc": "1:D5, the obstruction (Theorem 2 refuted) at `p = 13`, `g = 2`: every grid point `x/2^n` with `0 ≤ x < 13` and `n ≥ 3` is `≤ 3/2`, so no grid point at resolution `1/8` lies within `1/16` of `33/10`. (Instance of the range obstruction; the theorem is false as stated.)"
+    "doc": "1:D5, the obstruction at `p = 13`, `g = 2`: every grid point `x/2^n` with `0 ≤ x < 13` and `n ≥ 3` is `≤ 3/2`, so no grid point at resolution `1/8` lies within `1/16` of `33/10` (an instance of the range obstruction)."
    },
    {
-    "name": "FRC.Shell.Frame.approx_theorem_refuted",
+    "name": "FRC.Shell.Frame.approx_obstruction",
     "module": "FrcCore/Algebra",
     "line": 164,
     "axioms": [],
     "tier": 0,
     "ok": true,
-    "doc": "1:D5, the range obstruction (Theorem 2 of 1-algebra refuted) at `p = 13`, `g = 2`: every grid point `x / 2^n` with `x < 13` and `n ≥ 3` is at most `3/2` — as the integer statement `2x ≤ 3·2^n`."
+    "doc": "1:D5, the range obstruction at `p = 13`, `g = 2`: every grid point `x / 2^n` with `x < 13` and `n ≥ 3` is at most `3/2` — as the integer statement `2x ≤ 3·2^n`."
    }
   ],
   "E2": [

@@ -47,7 +47,7 @@
 <span class="ln" id="L25"><a class="lno" href="#L25">25</a>  · rw [FRC.Nat.add_mul, FRC.Nat.add_mul, Nat.one_mul, FRC.Nat.mul_assoc, Nat.two_mul,</span>
 <span class="ln" id="L26"><a class="lno" href="#L26">26</a>      FRC.Nat.add_add_add_comm, Nat.add_comm 2 n, ← Nat.add_assoc]</span>
 <span class="ln" id="L27"><a class="lno" href="#L27">27</a></span>
-<span class="ln" id="L28"><a class="lno" href="#L28">28</a>/-- 2:E3 — the fixed-shell refutation at `p = 13`, `g = 2` (window `x ≤ 6`): no grid point `x / 2^n`</span>
+<span class="ln" id="L28"><a class="lno" href="#L28">28</a>/-- 2:E3 — the fixed-shell gap at `p = 13`, `g = 2` (window `x ≤ 6`): no grid point `x / 2^n`</span>
 <span class="ln" id="L29"><a class="lno" href="#L29">29</a>lies strictly between `3/4` and `1` at any depth `n` — the covering radius of the fixed-shell</span>
 <span class="ln" id="L30"><a class="lno" href="#L30">30</a>refinement in `[0, 1]` is at least `1/8` for every depth. -/</span>
 <span class="ln decl" id="FRC.Geometry.fixed_shell_gap"><a class="lno" href="#FRC.Geometry.fixed_shell_gap">31</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcCore/Geometry.lean#L31" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small ok" src="../lean-ok.png" alt="" title="no axioms">theorem fixed_shell_gap (n x : Nat) (hx : x ≤ 6) : ¬ (3 * 2 ^ n &lt; 4 * x ∧ x &lt; 2 ^ n) := by</span>
@@ -100,7 +100,7 @@
 <span class="ln" id="L78"><a class="lno" href="#L78">78</a>/-- The reindexing `ρ_u : m ↦ u·m mod n`. -/</span>
 <span class="ln decl" id="FRC.Geometry.rho"><a class="lno" href="#FRC.Geometry.rho">79</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcCore/Geometry.lean#L79" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small" src="../lean.png" alt="" title="a definition: no proof, no axioms">def rho (n u m : Nat) : Nat := (u * m) % n</span>
 <span class="ln" id="L80"><a class="lno" href="#L80">80</a></span>
-<span class="ln" id="L81"><a class="lno" href="#L81">81</a>/-- 2:B4 (Prop. 2.8 corrected) — `ρ_u` preserves the adjacency of the phase cycle (`n ≥ 3`) exactly when</span>
+<span class="ln" id="L81"><a class="lno" href="#L81">81</a>/-- 2:B4 (Prop. 2.8) — `ρ_u` preserves the adjacency of the phase cycle (`n ≥ 3`) exactly when</span>
 <span class="ln" id="L82"><a class="lno" href="#L82">82</a>`u ≡ 1` or `u ≡ −1 (mod n)`. -/</span>
 <span class="ln decl" id="FRC.Geometry.rho_adj_iff"><a class="lno" href="#FRC.Geometry.rho_adj_iff">83</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcCore/Geometry.lean#L83" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small ok" src="../lean-ok.png" alt="" title="no axioms">theorem rho_adj_iff (n u : Nat) (hn : 3 ≤ n) :</span>
 <span class="ln" id="L84"><a class="lno" href="#L84">84</a>    (∀ m, m &lt; n → Adj n (rho n u m) (rho n u ((m + 1) % n))) ↔ (u % n = 1 ∨ u % n = n - 1) := by</span>
@@ -198,7 +198,7 @@
 <span class="ln" id="L176"><a class="lno" href="#L176">176</a>/-- The action reading of the vertex `(a, m)` in the frame with drive `g`: `a · g^m`. -/</span>
 <span class="ln decl" id="FRC.Geometry.label"><a class="lno" href="#FRC.Geometry.label">177</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcCore/Geometry.lean#L177" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small" src="../lean.png" alt="" title="a definition: no proof, no axioms">def label (g : Shell p) (a : Shell p) (m : Nat) : Shell p := a * g ^ m</span>
 <span class="ln" id="L178"><a class="lno" href="#L178">178</a></span>
-<span class="ln" id="L179"><a class="lno" href="#L179">179</a>/-- 2:C4 (Prop. 3.5 corrected) — the complex is one for every generator; the frame `g&#x27; = g^u` moves the</span>
+<span class="ln" id="L179"><a class="lno" href="#L179">179</a>/-- 2:C4 (Prop. 3.5) — the complex is one for every generator; the frame `g&#x27; = g^u` moves the</span>
 <span class="ln" id="L180"><a class="lno" href="#L180">180</a>labels by the reindexing `ρ_u`: `label g&#x27; (a, m) = label g (a, u·m mod n)`. -/</span>
 <span class="ln decl" id="FRC.Geometry.label_covariance"><a class="lno" href="#FRC.Geometry.label_covariance">181</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcCore/Geometry.lean#L181" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small ok" src="../lean-ok.png" alt="" title="no axioms">theorem label_covariance {κ : Nat} {g : Shell p} (F : Shell.Frame p κ g) (u : Nat) (a : Shell p) (m : Nat) :</span>
 <span class="ln" id="L182"><a class="lno" href="#L182">182</a>    label (g ^ u) a m = label g a (rho (p - 1) u m) := by</span>

@@ -3,7 +3,7 @@ a_classes.py — block A: the square classes and the nonexistence theorem (3:B1,
 ======================================================================================
 Section 2 of the paper: the two square classes of F_p^x with −1 a square (p ≡ 1 mod 4); no c ∈ F_p has c² = ν for a
 nonsquare ν, and for c ≠ 0 every coefficient of −c²t² + x² + y² + z² is a square (thm:nonexistence, with c ≠ 0
-made explicit — c = 0 gives a degenerate form); the absorption lemma with its repaired proof
+made explicit — c = 0 gives a degenerate form); the absorption lemma by rescaling, no root of a_0 needed
 (lem:square-class-absorption); the class of ν as the datum, canonically ν = g (8:B2, B3).
 """
 import lcommon as lc
@@ -20,7 +20,7 @@ def run():
     lc.check("A1", "F_p^x splits into two classes of (p-1)/2; -1, c^2 and -c^2 are squares (c != 0); no c with c^2 in N", ok, "; ".join(det[:3]))
 
     # A2 the absorption lemma: coefficients in one class => Q = a_0 sum (w_i X_i)^2 with w_i^2 = a_i/a_0;
-    #    the printed proof's u_0 (u_0^2 = a_0) fails for a_0 in N and -a_i stays in N (3:B3)
+    #    no root of a_0 is used: a_0 in N has none, and -a_i stays in N (3:B3)
     ok = True; det = []
     for p, k in lc.SHELLS[:3]:
         S, N = lc.squares(p), lc.nonsquares(p)
@@ -34,10 +34,10 @@ def run():
                             a = (a0, a1, a2, a3); inv0 = pow(a0, -1, p)
                             ws = [sq.get(ai * inv0 % p) for ai in a]
                             ok &= all(w is not None for w in ws) and all((a0 * w * w) % p == ai for w, ai in zip(ws, a))
-        # the printed proof: u_0 with u_0^2 = a_0 exists only for a_0 in S; -a_i for a_i in N is in N again
+        # u_0 with u_0^2 = a_0 exists only for a_0 in S; -a_i for a_i in N is in N again
         ok &= all(nu not in sq for nu in N) and all((-nu) % p in N for nu in N)
         det.append(f"p={p}: {len(S)**4 + len(N)**4} one-class coefficient tuples absorbed")
-    lc.check("A2", "one square class => Q equivalent to a_0 (sum of squares) by w_i^2 = a_i/a_0; the printed sqrt(a_0) step fails on N", ok, "; ".join(det))
+    lc.check("A2", "one square class => Q equivalent to a_0 (sum of squares) by w_i^2 = a_i/a_0; no root of a_0 exists for a_0 in N, and -a_i stays in N", ok, "; ".join(det))
 
     # A3 the class is the datum: g is a nonsquare for every primitive root; Q_nu depends on nu only through its class,
     #    Q_{nu w^2}(t, x, y, z) = Q_nu(w t, x, y, z) (3:B1)

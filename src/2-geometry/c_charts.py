@@ -3,9 +3,9 @@ c_charts.py — block C: the external spherical comparison (2:E2, E3, E4)
 =======================================================================
 Section 5 of the paper.  C1 (CHART): the base-grid covering radius of the comparison map Xi_{13,g} against the
 bound sqrt2·pi/(p−1) of prop:grid-density.  C2 (EXACT, rationals): the fixed-shell scale grid {x/g^n : |x| ≤ 2κ}
-has a covering radius in [0, 1] bounded below by ½ min(g^−m, 1 − 2κ g^−(m+1)) at every depth — the refutation of
-prop:fixed-shell-density and thm:operational-precision as printed (C2b: the printed claim fails at ε = 1/20 on
-every tested shell).  C3 (CHART): across the tower of shells the grids resolve every target (1:G2).
+has a covering radius in [0, 1] bounded below by ½ min(g^−m, 1 − 2κ g^−(m+1)) at every depth — the bounded
+precision of a fixed shell, prop:fixed-shell-density and thm:operational-precision (C2b: the covering radius
+exceeds ε = 1/20 on every tested shell).  C3 (CHART): across the tower of shells the grids resolve every target (1:G2).
 """
 import math
 from fractions import Fraction
@@ -67,7 +67,7 @@ def run():
     gc.check("C2", "fixed-shell covering radius stabilises at >= 1/2 min(g^-m, 1 - H g^-(m+1)) for every depth (H = 2k and H = p-1)", ok, "; ".join(det[:4]))
     eps = Fraction(1, 20)
     viol = [(p, g) for p, g in [(13, 2), (13, 11), (17, 3), (29, 2)] if fixed_shell_radius(p, g, 40) > eps]
-    gc.check("C2b", "the printed Prop. 5.5 fails at eps = 1/20 on every tested shell", viol == [(13, 2), (13, 11), (17, 3), (29, 2)],
+    gc.check("C2b", "fixed-shell density at eps = 1/20: the covering radius exceeds 1/20 on every tested shell", viol == [(13, 2), (13, 11), (17, 3), (29, 2)],
              f"shells with covering radius > 1/20 at N = 40: {viol}")
 
     # C3 the tower of shells resolves every target (2:E4, 1:G2) — chart

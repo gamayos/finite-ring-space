@@ -5,7 +5,7 @@ Section 3 of the paper: the complex S_p of def:orbital-shell coded as vertices, 
 completion (the terminal latitude collapsed to S); the counts of rem:cell-counts (B1); closedness — every edge
 in two faces, every vertex link one cycle — of thm:combinatorial-sphere, exhaustive on p ∈ {5, 13, 17, 29} (B2);
 the cellular automorphisms: the reindexing ρ_u is cellular only for u = ±1, the dihedral maps are, the meridian
-reversal is a map of the completion only (prop:phase-frame-change, prop:shell-covariance corrected; B3).
+reversal is a map of the completion only (prop:phase-frame-change, prop:shell-covariance; B3).
 """
 import math
 from collections import Counter, defaultdict

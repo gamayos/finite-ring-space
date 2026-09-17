@@ -15,14 +15,14 @@ zeros for a nonsquare `ν` (the elliptic, Witt-index-one class, the Lorentzian o
 (hyperbolic, Witt index two), with the isometry groups `O₄⁻(p)` and `O₄⁺(p)` of the orders the classification
 predicts, by frame counting; over `K = F_{p²}` every element of `F_p` is a square and the form is hyperbolic — the
 extension is where the dichotomy collapses. The boosts of the shell are the norm-one cycle of order `p + 1`; the
-printed parametrisation `u = g^{Δm}` lives over `K`.
+family `u = g^{Δm}` is the split torus over `K`.
 
 Run: `python3 run_all.py` (python ≥ 3.8, no third-party packages; ≈ 5 s). Each block also runs on its own.
 
 | id | script | kind | claim | ledger row |
 |---|---|---|---|---|
 | `A1` | `a_classes.py` | EXACT | two square classes of (p−1)/2; −1, c², −c² squares (c ≠ 0); no c with c² a nonsquare — p ∈ {5, 13, 17, 29, 37, 41} | `3:B2` |
-| `A2` | `a_classes.py` | EXACT | one square class ⇒ Q ≅ a₀·(sum of squares) by w_i² = a_i/a₀, all one-class coefficient tuples at 5, 13, 17; the printed √a₀ step fails on nonsquares | `3:B3` |
+| `A2` | `a_classes.py` | EXACT | one square class ⇒ Q ≅ a₀·(sum of squares) by w_i² = a_i/a₀, all one-class coefficient tuples at 5, 13, 17; no root of a₀ exists for a₀ a nonsquare | `3:B3` |
 | `A3` | `a_classes.py` | EXACT | every primitive root is a nonsquare (ν = g canonical); Q_ν depends on ν only through its class | `3:B1` |
 | `A4` | `a_classes.py` | EXACT | −c²t² + x² + y² + z² (c ≠ 0) has p³ + p² − p zeros (hyperbolic); c = 0 is degenerate | `3:B2` |
 | `B1` | `b_signature.py` | EXACT | Q_ν has p³ − p² + p zeros (ν nonsquare) and p³ + p² − p (ν square), every ν, p ≤ 41 | `3:B4` |
@@ -33,7 +33,7 @@ Run: `python3 run_all.py` (python ≥ 3.8, no third-party packages; ≈ 5 s). Ea
 | `C1` | `c_boost.py` | EXACT | the boosts Λ(γ, b), γ² − νb² = 1, form the norm-one cycle of order p + 1, cyclic; each preserves Q_ν; Λ(z₁)Λ(z₂) = Λ(z₁z₂) | `3:C2` |
 | `C2` | `c_boost.py` | EXACT | SO(Q_ν, F_p) in 1+1 dimensions has p + 1 elements (ν nonsquare), p − 1 (ν square), all of the boost shape — exhaustive over the 2×2 matrices | `3:C2` |
 | `C3` | `c_boost.py` | EXACT | γ ≠ 0; v = −νb/γ; γ²(ν − v²) = ν; v₁₂ = (v₁ + v₂)/(1 + v₁v₂/ν) exactly, denominator never zero | `3:C3` |
-| `C4` | `c_boost.py` | EXACT | the printed Λ(u), u = g^{Δm}: a ∈ c·F_p, not in F_p for u ≠ ±1; preserves Q_ν over K; p − 1 matrices, the split torus | `3:C5` |
+| `C4` | `c_boost.py` | EXACT | the family Λ(u), u = g^{Δm} ∈ F_p^×: a ∈ c·F_p, not in F_p for u ≠ ±1; preserves Q_ν over K; p − 1 matrices, the split torus | `3:C5` |
 | `C5` | `c_boost.py` | EXACT | at p = 5 the x-boosts and O(3, F_p) (order 240) generate O(Q_ν, F_5) = O₄⁻(5) of order 31 200 | `3:C4` |
 | `D1` | `d_example.py` | EXACT | F₁₃: the classes, ν = 2 = g, X² − 2 irreducible, c = √2 ∉ F₁₃, 2041 null points, 14 boosts, 7 velocities | `3:D1` |
 | `D2` | `d_example.py` | EXACT | the null cone of Q₂ on F₁₃ counted vector by vector: 2041 = 13³ − 13² + 13 | `3:D1` |

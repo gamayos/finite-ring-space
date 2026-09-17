@@ -21,7 +21,7 @@ identity on the shell (`2:D6`), the negation–inversion orbits (`2:D7`) and the
 decides the orbital shell: the cell counts (`2:C2`), the closedness of the spherical completion by exhaustive incidence
 (`2:C3`), and the cellular automorphisms — the reindexing `ρ_u` only for `u = ±1`, the dihedral maps, the meridian
 reversal on the completion only (`2:B4`, `2:C4`). Block C decides the external comparison: the base-grid bound
-(`2:E2`), the bounded refinement of a fixed shell that retires the printed density claim (`2:E3`), and the tower
+(`2:E2`), the bounded refinement of a fixed shell (`2:E3`), and the tower
 (`2:E4`). Block D decides the Fourier duality: the principal root (`2:F1`), the inversion (`2:F3`), the polynomial
 reading (`2:F4`), the covariance (`2:F5`) and the external transport (`2:F6`).
 
@@ -59,8 +59,8 @@ every vertex link one cycle), and the census of the cellular maps.""")
 code("""import b_shell; importlib.reload(b_shell); b_shell.run()""")
 
 md("""## Block C — the external spherical comparison
-The base-grid covering radius at `p = 13` (chart); the bounded refinement of a fixed shell in exact rationals, with the printed
-claim's failure at `ε = 1/20`; the tower of shells (chart).""")
+The base-grid covering radius at `p = 13` (chart); the bounded refinement of a fixed shell in exact rationals, with the
+covering radius above `ε = 1/20`; the tower of shells (chart).""")
 code("""import c_charts; importlib.reload(c_charts); c_charts.run()""")
 
 md("""## Block D — Fourier duality on the phase cycle

@@ -1,13 +1,13 @@
 """
 c_boost.py — block C: the finite Lorentz boosts (3:C1–C5)
 =========================================================
-Section 3 of the paper, corrected.  The boosts of Q_ν(t, x) = −ν t² + x² over the shell are Λ(γ, b) = [[γ, b], [νb, γ]]
+Section 3 of the paper.  The boosts of Q_ν(t, x) = −ν t² + x² over the shell are Λ(γ, b) = [[γ, b], [νb, γ]]
 with γ² − νb² = 1: the norm-one group N¹ of K = F_p(√ν), cyclic of order p + 1 (the non-split torus; 8:D5), with
 Λ(z₁)Λ(z₂) = Λ(z₁z₂) (C1); the whole of SO(Q_ν, F_p) in dimension 2, by exhaustion (C2).  The velocity v = −νb/γ is a
 shell quantity (γ ≠ 0 always), γ²(ν − v²) = ν, and the velocities compose by v₁₂ = (v₁+v₂)/(1 + v₁v₂/ν) exactly, the
-denominator never zero (C3).  The printed parametrisation u = g^{Δm} ∈ F_p^x gives a = (u − u⁻¹)/(2c) outside F_p
-for u ≠ ±1: a matrix over K, preserving Q_ν over K where Q_ν is Euclidean — the split torus of order p − 1, not a
-boost of the shell (C4).  In 1+3 dimensions the x-boosts with O(3, F_p) generate O(Q_ν, F_5) = O_4^−(5), order
+denominator never zero (C3).  The family Λ(u), u = g^{Δm} ∈ F_p^x, has a = (u − u⁻¹)/(2c) outside F_p
+for u ≠ ±1: a matrix over K, preserving Q_ν over K where Q_ν is Euclidean — the split torus of order p − 1, the
+extension's rotations (C4).  In 1+3 dimensions the x-boosts with O(3, F_p) generate O(Q_ν, F_5) = O_4^−(5), order
 31 200 (C5).
 """
 import lcommon as lc
@@ -94,7 +94,7 @@ def run():
         det.append(f"p={p}: {(p + 1) // 2} velocities")
     lc.check("C3", "gamma != 0 on every boost; v = -nu b/gamma; gamma^2 (nu - v^2) = nu; v12 = (v1 + v2)/(1 + v1 v2/nu) exactly, denominator never zero", ok, "; ".join(det[:3]))
 
-    # C4 the printed Lambda(u), u = g^{Delta m} in F_p^x: entries in K \ F_p, preserves Q_nu over K, the split torus of order p-1 (3:C5)
+    # C4 the family Lambda(u), u = g^{Delta m} in F_p^x: entries in K \ F_p, preserves Q_nu over K, the split torus of order p-1 (3:C5)
     ok = True; det = []
     for p in (13, 17):
         nu = lc.nonsquares(p)[0]; K = lc.Ext(p, nu); g = lc.generators(p)[0]; c = (0, 1); c_inv = K.inv(c)
@@ -114,7 +114,7 @@ def run():
             seen.add((gam, a))
         ok &= len(seen) == p - 1
         det.append(f"p={p}: {len(seen)} matrices Lambda(u), a in c.F_p, a not in F_p for u != +-1")
-    lc.check("C4", "the printed Lambda(u), u = g^dm: gamma in F_p but a in c.F_p (not in F_p for u != +-1); preserves Q_nu over K; p-1 matrices, the split torus", ok, "; ".join(det))
+    lc.check("C4", "the family Lambda(u), u = g^dm in F_p^x: gamma in F_p but a in c.F_p (not in F_p for u != +-1); preserves Q_nu over K; p-1 matrices, the split torus", ok, "; ".join(det))
 
     # C5 1+3: the x-boosts with O(3, F_5) generate O(Q_nu, F_5) = O_4^-(5) of order 31200; O(3, F_5) has order 240 (3:C4)
     p = 5; nu = lc.nonsquares(p)[0]; K = lc.Ext(p, nu); N1 = K.norm_one()

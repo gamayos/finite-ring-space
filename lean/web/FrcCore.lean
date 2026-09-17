@@ -1823,7 +1823,7 @@ theorem scale_periodic (F : Frame p κ g) (x : Shell p) (n : Nat) :
 `x ⊗ z := a + b·((x − a)/b)·((z − a)/b)`, written with `y` the inverse of `b`. -/
 def affineMul (a b y x z : Shell p) : Shell p := a + b * ((x + -a) * y) * ((z + -a) * y)
 
-/-- 1:B4 (Definition 2 of 1-algebra, corrected) — in the affine frame `(a, b)` the multiplicative unit
+/-- 1:B4 (Definition 2 of 1-algebra) — in the affine frame `(a, b)` the multiplicative unit
 is `a + b`, not `b`: `(a + b) ⊗ z = z` for every `z`. -/
 theorem affine_frame_unit {a b y : Shell p} (hby : b * y = 1) (z : Shell p) :
     affineMul a b y (a + b) z = z := by
@@ -1938,9 +1938,9 @@ theorem complex_chart_zero_divisor (F : Frame p κ g) :
   show (quarterTurn g κ * -(quarterTurn g κ) + -(1 * 1), quarterTurn g κ * 1 + 1 * -(quarterTurn g κ)) = (0, 0)
   rw [← mul_neg, F.quarter_turn_sq, neg_neg, one_mul, add_neg, mul_one, one_mul, add_neg]
 
-/-- 1:D5, the range obstruction (Theorem 2 of 1-algebra refuted) at `p = 13`, `g = 2`: every grid point
+/-- 1:D5, the range obstruction at `p = 13`, `g = 2`: every grid point
 `x / 2^n` with `x < 13` and `n ≥ 3` is at most `3/2` — as the integer statement `2x ≤ 3·2^n`. -/
-theorem approx_theorem_refuted (n x : Nat) (hn : 3 ≤ n) (hx : x < 13) : 2 * x ≤ 3 * 2 ^ n := by
+theorem approx_obstruction (n x : Nat) (hn : 3 ≤ n) (hx : x < 13) : 2 * x ≤ 3 * 2 ^ n := by
   have h8 : 2 ^ 3 ≤ 2 ^ n := Nat.pow_le_pow_right (Nat.zero_lt_succ 1) hn
   have h1 : 2 * x ≤ 2 * 12 := Nat.mul_le_mul_left 2 (Nat.le_of_lt_succ hx)
   have h2 : 3 * 2 ^ 3 ≤ 3 * 2 ^ n := Nat.mul_le_mul_left 3 h8
@@ -2922,7 +2922,7 @@ theorem neg_sq_is_square (F : Frame p κ g) (c : Shell p) : IsSquare (-(c * c)) 
 /-- 3:B2 — `−1` itself is a square (`i²`): the paper's hypothesis `p ≡ 1 (mod 4)` in the shell's own terms. -/
 theorem neg_one_is_square (F : Frame p κ g) : IsSquare (-1 : Shell p) := ⟨quarterTurn g κ, F.quarter_turn_sq⟩
 
-/-- 3:B3 (Lemma absorption, repaired) — if `a_i = w_i² a_0` for `i = 1, 2, 3` then
+/-- 3:B3 (Lemma absorption) — if `a_i = w_i² a_0` for `i = 1, 2, 3` then
 `a_0 x_0² + a_1 x_1² + a_2 x_2² + a_3 x_3² = a_0 (x_0² + (w_1 x_1)² + (w_2 x_2)² + (w_3 x_3)²)`: a common square
 class is absorbed by the rescaling `x_i ↦ w_i x_i`, with no square root of `a_0` itself required. -/
 theorem absorb (a0 a1 a2 a3 w1 w2 w3 x0 x1 x2 x3 : Shell p) (h1 : w1 * w1 * a0 = a1) (h2 : w2 * w2 * a0 = a2)
@@ -3146,7 +3146,7 @@ theorem euler_characteristic (m n : Nat) :
   · rw [FRC.Nat.add_mul, FRC.Nat.add_mul, Nat.one_mul, FRC.Nat.mul_assoc, Nat.two_mul,
       FRC.Nat.add_add_add_comm, Nat.add_comm 2 n, ← Nat.add_assoc]
 
-/-- 2:E3 — the fixed-shell refutation at `p = 13`, `g = 2` (window `x ≤ 6`): no grid point `x / 2^n`
+/-- 2:E3 — the fixed-shell gap at `p = 13`, `g = 2` (window `x ≤ 6`): no grid point `x / 2^n`
 lies strictly between `3/4` and `1` at any depth `n` — the covering radius of the fixed-shell
 refinement in `[0, 1]` is at least `1/8` for every depth. -/
 theorem fixed_shell_gap (n x : Nat) (hx : x ≤ 6) : ¬ (3 * 2 ^ n < 4 * x ∧ x < 2 ^ n) := by
@@ -3199,7 +3199,7 @@ def Adj (n m m' : Nat) : Prop := (m + 1) % n = m' ∨ (m' + 1) % n = m
 /-- The reindexing `ρ_u : m ↦ u·m mod n`. -/
 def rho (n u m : Nat) : Nat := (u * m) % n
 
-/-- 2:B4 (Prop. 2.8 corrected) — `ρ_u` preserves the adjacency of the phase cycle (`n ≥ 3`) exactly when
+/-- 2:B4 (Prop. 2.8) — `ρ_u` preserves the adjacency of the phase cycle (`n ≥ 3`) exactly when
 `u ≡ 1` or `u ≡ −1 (mod n)`. -/
 theorem rho_adj_iff (n u : Nat) (hn : 3 ≤ n) :
     (∀ m, m < n → Adj n (rho n u m) (rho n u ((m + 1) % n))) ↔ (u % n = 1 ∨ u % n = n - 1) := by
@@ -3297,7 +3297,7 @@ variable {p : Nat} [Pos p]
 /-- The action reading of the vertex `(a, m)` in the frame with drive `g`: `a · g^m`. -/
 def label (g : Shell p) (a : Shell p) (m : Nat) : Shell p := a * g ^ m
 
-/-- 2:C4 (Prop. 3.5 corrected) — the complex is one for every generator; the frame `g' = g^u` moves the
+/-- 2:C4 (Prop. 3.5) — the complex is one for every generator; the frame `g' = g^u` moves the
 labels by the reindexing `ρ_u`: `label g' (a, m) = label g (a, u·m mod n)`. -/
 theorem label_covariance {κ : Nat} {g : Shell p} (F : Shell.Frame p κ g) (u : Nat) (a : Shell p) (m : Nat) :
     label (g ^ u) a m = label g a (rho (p - 1) u m) := by

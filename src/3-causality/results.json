@@ -12,7 +12,7 @@
   "id": "A2",
   "rows": "3:B3",
   "script": "a_classes",
-  "label": "one square class => Q equivalent to a_0 (sum of squares) by w_i^2 = a_i/a_0; the printed sqrt(a_0) step fails on N",
+  "label": "one square class => Q equivalent to a_0 (sum of squares) by w_i^2 = a_i/a_0; no root of a_0 exists for a_0 in N, and -a_i stays in N",
   "ok": true,
   "detail": "p=5: 32 one-class coefficient tuples absorbed; p=13: 2592 one-class coefficient tuples absorbed; p=17: 8192 one-class coefficient tuples absorbed",
   "kind": "EXACT"
@@ -111,7 +111,7 @@
   "id": "C4",
   "rows": "3:C5",
   "script": "c_boost",
-  "label": "the printed Lambda(u), u = g^dm: gamma in F_p but a in c.F_p (not in F_p for u != +-1); preserves Q_nu over K; p-1 matrices, the split torus",
+  "label": "the family Lambda(u), u = g^dm in F_p^x: gamma in F_p but a in c.F_p (not in F_p for u != +-1); preserves Q_nu over K; p-1 matrices, the split torus",
   "ok": true,
   "detail": "p=13: 12 matrices Lambda(u), a in c.F_p, a not in F_p for u != +-1; p=17: 16 matrices Lambda(u), a in c.F_p, a not in F_p for u != +-1",
   "kind": "EXACT"

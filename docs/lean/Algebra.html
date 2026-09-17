@@ -27,12 +27,12 @@
 <span class="ln" id="L5"><a class="lno" href="#L5">5</a># 1-algebra — the ledger rows in Lean (2026-09-16)</span>
 <span class="ln" id="L6"><a class="lno" href="#L6">6</a></span>
 <span class="ln" id="L7"><a class="lno" href="#L7">7</a>Rows of the paper&#x27;s predicate ledger (Appendix A of `1-algebra-axioms`, keys `p01001`–`p01024`), stated as the</span>
-<span class="ln" id="L8"><a class="lno" href="#L8">8</a>revised paper states them (the corrections of `reports/1-algebra-evaluation-20260916.md` applied).</span>
+<span class="ln" id="L8"><a class="lno" href="#L8">8</a>paper&#x27;s ledger states them.</span>
 <span class="ln" id="L9"><a class="lno" href="#L9">9</a>Every universal statement is over an arbitrary finite field `F` with `Fintype.card F = 4κ + 1`</span>
-<span class="ln" id="L10"><a class="lno" href="#L10">10</a>(the shell); the window law is on `ZMod p`; instance checks and refutations are decided. The section</span>
+<span class="ln" id="L10"><a class="lno" href="#L10">10</a>(the shell); the window law is on `ZMod p`; instance checks and counts are decided. The section</span>
 <span class="ln" id="L11"><a class="lno" href="#L11">11</a>`conjecture` decides the conclusion&#x27;s conjecture clause by clause (rows G1–G3; G4, the `SO(3)` obstruction,</span>
 <span class="ln" id="L12"><a class="lno" href="#L12">12</a>is numerical and imported).</span>
-<span class="ln" id="L13"><a class="lno" href="#L13">13</a>Every docstring opens with the ledger row(s) the declaration decides (`1:B2`); theorem numbers are the published paper&#x27;s</span>
+<span class="ln" id="L13"><a class="lno" href="#L13">13</a>Every docstring opens with the ledger row(s) the declaration decides (`1:B2`); theorem numbers are the paper&#x27;s</span>
 <span class="ln" id="L14"><a class="lno" href="#L14">14</a>(Axioms 2025, 14, 636).</span>
 <span class="ln" id="L15"><a class="lno" href="#L15">15</a>-/</span>
 <span class="ln" id="L16"><a class="lno" href="#L16">16</a></span>
@@ -113,7 +113,7 @@
 <span class="ln" id="L91"><a class="lno" href="#L91">91</a>  refine ⟨h, ?_⟩</span>
 <span class="ln" id="L92"><a class="lno" href="#L92">92</a>  rw [← h]; ring</span>
 <span class="ln" id="L93"><a class="lno" href="#L93">93</a></span>
-<span class="ln" id="L94"><a class="lno" href="#L94">94</a>/-- 1:B4 (Definition 2 corrected, Lemma 1): in the affine frame `(a, b)`, `φ x = a + b x`</span>
+<span class="ln" id="L94"><a class="lno" href="#L94">94</a>/-- 1:B4 (Definition 2, Lemma 1): in the affine frame `(a, b)`, `φ x = a + b x`</span>
 <span class="ln" id="L95"><a class="lno" href="#L95">95</a>carries `+` and `·` to `⊕` and `⊗`, is a bijection, and the multiplicative unit of the</span>
 <span class="ln" id="L96"><a class="lno" href="#L96">96</a>relabelled field is `a + b`; `b` is the unit only when `a = 0`. -/</span>
 <span class="ln decl" id="FRC.Algebra.affine_frame"><a class="lno" href="#FRC.Algebra.affine_frame">97</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcLedger/Algebra.lean#L97" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small t2" src="lean-t2.png" alt="" title="tier 2, classical: Classical.choice, Quot.sound, propext">theorem affine_frame (a b : F) (hb : b ≠ 0) :</span>
@@ -217,22 +217,22 @@
 <span class="ln" id="L195"><a class="lno" href="#L195">195</a>/-- 1:B3 on `𝔽₁₃`: `g = 2`, `i = −2³ = 5`, `5² = −1`. -/</span>
 <span class="ln decl" id="FRC.Algebra.s13_quarter_turn"><a class="lno" href="#FRC.Algebra.s13_quarter_turn">196</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcLedger/Algebra.lean#L196" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small t1" src="lean-t1.png" alt="" title="tier 1: Quot.sound, propext">theorem s13_quarter_turn : (-(2 : ZMod 13) ^ 3) = 5 ∧ (5 : ZMod 13) ^ 2 = -1 := by decide</span>
 <span class="ln" id="L197"><a class="lno" href="#L197">197</a></span>
-<span class="ln" id="L198"><a class="lno" href="#L198">198</a>/-- 1:V1 Lemma 3 refuted: the number of non-zero remainders of the Euclidean algorithm on</span>
-<span class="ln" id="L199"><a class="lno" href="#L199">199</a>`(987, 610)` is `13`, while `⌊log₂ 1009⌋ + 1 = 10`. The claimed bound fails at `p = 1009`</span>
-<span class="ln" id="L200"><a class="lno" href="#L200">200</a>(and first at `p = 59`, where the pair `(55, 34)` needs `7 &gt; 6`). -/</span>
+<span class="ln" id="L198"><a class="lno" href="#L198">198</a>/-- 1:V1 the Euclidean step count: the number of non-zero remainders of the Euclidean algorithm on</span>
+<span class="ln" id="L199"><a class="lno" href="#L199">199</a>`(987, 610)` is `13`, against `⌊log₂ 1009⌋ + 1 = 10`; the pair `(55, 34)` needs `7` against</span>
+<span class="ln" id="L200"><a class="lno" href="#L200">200</a>`⌊log₂ 59⌋ + 1 = 6`, the first prime where the count exceeds the logarithmic bound. -/</span>
 <span class="ln decl" id="FRC.Algebra.euclidSteps"><a class="lno" href="#FRC.Algebra.euclidSteps">201</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcLedger/Algebra.lean#L201" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small" src="lean.png" alt="" title="a definition: no proof, no axioms">def euclidSteps : ℕ → ℕ → ℕ → ℕ</span>
 <span class="ln" id="L202"><a class="lno" href="#L202">202</a>  | 0, _, _ =&gt; 0</span>
 <span class="ln" id="L203"><a class="lno" href="#L203">203</a>  | fuel + 1, a, b =&gt; if b = 0 then 0 else (if a % b = 0 then 0 else 1) + euclidSteps fuel b (a % b)</span>
 <span class="ln" id="L204"><a class="lno" href="#L204">204</a></span>
-<span class="ln decl" id="FRC.Algebra.euclid_bound_refuted"><a class="lno" href="#FRC.Algebra.euclid_bound_refuted">205</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcLedger/Algebra.lean#L205" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small ok" src="lean-ok.png" alt="" title="no axioms">theorem euclid_bound_refuted :</span>
+<span class="ln decl" id="FRC.Algebra.euclid_step_count"><a class="lno" href="#FRC.Algebra.euclid_step_count">205</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcLedger/Algebra.lean#L205" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small ok" src="lean-ok.png" alt="" title="no axioms">theorem euclid_step_count :</span>
 <span class="ln" id="L206"><a class="lno" href="#L206">206</a>    euclidSteps 40 987 610 = 13 ∧ Nat.log 2 1009 + 1 = 10 ∧</span>
 <span class="ln" id="L207"><a class="lno" href="#L207">207</a>    euclidSteps 40 55 34 = 7 ∧ Nat.log 2 59 + 1 = 6 := by</span>
 <span class="ln" id="L208"><a class="lno" href="#L208">208</a>  decide</span>
 <span class="ln" id="L209"><a class="lno" href="#L209">209</a></span>
-<span class="ln" id="L210"><a class="lno" href="#L210">210</a>/-- 1:D5, the obstruction (Theorem 2 refuted) at `p = 13`, `g = 2`: every grid point</span>
+<span class="ln" id="L210"><a class="lno" href="#L210">210</a>/-- 1:D5, the obstruction at `p = 13`, `g = 2`: every grid point</span>
 <span class="ln" id="L211"><a class="lno" href="#L211">211</a>`x/2^n` with `0 ≤ x &lt; 13` and `n ≥ 3` is `≤ 3/2`, so no grid point at resolution `1/8` lies</span>
-<span class="ln" id="L212"><a class="lno" href="#L212">212</a>within `1/16` of `33/10`. (Instance of the range obstruction; the theorem is false as stated.) -/</span>
-<span class="ln decl" id="FRC.Algebra.approx_theorem_refuted"><a class="lno" href="#FRC.Algebra.approx_theorem_refuted">213</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcLedger/Algebra.lean#L213" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small t2" src="lean-t2.png" alt="" title="tier 2, classical: Classical.choice, Quot.sound, propext">theorem approx_theorem_refuted :</span>
+<span class="ln" id="L212"><a class="lno" href="#L212">212</a>within `1/16` of `33/10` (an instance of the range obstruction). -/</span>
+<span class="ln decl" id="FRC.Algebra.approx_obstruction"><a class="lno" href="#FRC.Algebra.approx_obstruction">213</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcLedger/Algebra.lean#L213" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small t2" src="lean-t2.png" alt="" title="tier 2, classical: Classical.choice, Quot.sound, propext">theorem approx_obstruction :</span>
 <span class="ln" id="L214"><a class="lno" href="#L214">214</a>    ∀ n : ℕ, 3 ≤ n → ∀ x : ℕ, x &lt; 13 → ((x : ℚ) / 2 ^ n) ≤ 3 / 2 := by</span>
 <span class="ln" id="L215"><a class="lno" href="#L215">215</a>  intro n hn x hx</span>
 <span class="ln" id="L216"><a class="lno" href="#L216">216</a>  have h2 : (8 : ℚ) ≤ 2 ^ n := by</span>

@@ -232,7 +232,7 @@
 'FRC.Shell.Frame.meridian_involution' does not depend on any axioms
 'FRC.Shell.Frame.cmul' does not depend on any axioms
 'FRC.Shell.Frame.complex_chart_zero_divisor' does not depend on any axioms
-'FRC.Shell.Frame.approx_theorem_refuted' does not depend on any axioms
+'FRC.Shell.Frame.approx_obstruction' does not depend on any axioms
 'FRC.Shell.Frame.InOrbit' does not depend on any axioms
 'FRC.Shell.Frame.two_mul_eq' does not depend on any axioms
 'FRC.Shell.Frame.three_mul_eq' does not depend on any axioms

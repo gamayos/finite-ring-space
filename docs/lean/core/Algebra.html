@@ -66,7 +66,7 @@
 <span class="ln" id="L44"><a class="lno" href="#L44">44</a>`x ⊗ z := a + b·((x − a)/b)·((z − a)/b)`, written with `y` the inverse of `b`. -/</span>
 <span class="ln decl" id="FRC.Shell.Frame.affineMul"><a class="lno" href="#FRC.Shell.Frame.affineMul">45</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcCore/Algebra.lean#L45" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small" src="../lean.png" alt="" title="a definition: no proof, no axioms">def affineMul (a b y x z : Shell p) : Shell p := a + b * ((x + -a) * y) * ((z + -a) * y)</span>
 <span class="ln" id="L46"><a class="lno" href="#L46">46</a></span>
-<span class="ln" id="L47"><a class="lno" href="#L47">47</a>/-- 1:B4 (Definition 2 of 1-algebra, corrected) — in the affine frame `(a, b)` the multiplicative unit</span>
+<span class="ln" id="L47"><a class="lno" href="#L47">47</a>/-- 1:B4 (Definition 2 of 1-algebra) — in the affine frame `(a, b)` the multiplicative unit</span>
 <span class="ln" id="L48"><a class="lno" href="#L48">48</a>is `a + b`, not `b`: `(a + b) ⊗ z = z` for every `z`. -/</span>
 <span class="ln decl" id="FRC.Shell.Frame.affine_frame_unit"><a class="lno" href="#FRC.Shell.Frame.affine_frame_unit">49</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcCore/Algebra.lean#L49" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small ok" src="../lean-ok.png" alt="" title="no axioms">theorem affine_frame_unit {a b y : Shell p} (hby : b * y = 1) (z : Shell p) :</span>
 <span class="ln" id="L50"><a class="lno" href="#L50">50</a>    affineMul a b y (a + b) z = z := by</span>
@@ -181,9 +181,9 @@
 <span class="ln" id="L159"><a class="lno" href="#L159">159</a>  show (quarterTurn g κ * -(quarterTurn g κ) + -(1 * 1), quarterTurn g κ * 1 + 1 * -(quarterTurn g κ)) = (0, 0)</span>
 <span class="ln" id="L160"><a class="lno" href="#L160">160</a>  rw [← mul_neg, F.quarter_turn_sq, neg_neg, one_mul, add_neg, mul_one, one_mul, add_neg]</span>
 <span class="ln" id="L161"><a class="lno" href="#L161">161</a></span>
-<span class="ln" id="L162"><a class="lno" href="#L162">162</a>/-- 1:D5, the range obstruction (Theorem 2 of 1-algebra refuted) at `p = 13`, `g = 2`: every grid point</span>
+<span class="ln" id="L162"><a class="lno" href="#L162">162</a>/-- 1:D5, the range obstruction at `p = 13`, `g = 2`: every grid point</span>
 <span class="ln" id="L163"><a class="lno" href="#L163">163</a>`x / 2^n` with `x &lt; 13` and `n ≥ 3` is at most `3/2` — as the integer statement `2x ≤ 3·2^n`. -/</span>
-<span class="ln decl" id="FRC.Shell.Frame.approx_theorem_refuted"><a class="lno" href="#FRC.Shell.Frame.approx_theorem_refuted">164</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcCore/Algebra.lean#L164" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small ok" src="../lean-ok.png" alt="" title="no axioms">theorem approx_theorem_refuted (n x : Nat) (hn : 3 ≤ n) (hx : x &lt; 13) : 2 * x ≤ 3 * 2 ^ n := by</span>
+<span class="ln decl" id="FRC.Shell.Frame.approx_obstruction"><a class="lno" href="#FRC.Shell.Frame.approx_obstruction">164</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcCore/Algebra.lean#L164" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small ok" src="../lean-ok.png" alt="" title="no axioms">theorem approx_obstruction (n x : Nat) (hn : 3 ≤ n) (hx : x &lt; 13) : 2 * x ≤ 3 * 2 ^ n := by</span>
 <span class="ln" id="L165"><a class="lno" href="#L165">165</a>  have h8 : 2 ^ 3 ≤ 2 ^ n := Nat.pow_le_pow_right (Nat.zero_lt_succ 1) hn</span>
 <span class="ln" id="L166"><a class="lno" href="#L166">166</a>  have h1 : 2 * x ≤ 2 * 12 := Nat.mul_le_mul_left 2 (Nat.le_of_lt_succ hx)</span>
 <span class="ln" id="L167"><a class="lno" href="#L167">167</a>  have h2 : 3 * 2 ^ 3 ≤ 3 * 2 ^ n := Nat.mul_le_mul_left 3 h8</span>

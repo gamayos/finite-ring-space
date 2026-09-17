@@ -10,8 +10,8 @@
 'FRC.Algebra.complex_chart_zero_divisor' depends on axioms: [propext, Classical.choice, Quot.sound]
 'FRC.Algebra.no_south_pole' depends on axioms: [propext, Classical.choice, Quot.sound]
 'FRC.Algebra.s13_quarter_turn' depends on axioms: [propext, Quot.sound]
-'FRC.Algebra.euclid_bound_refuted' does not depend on any axioms
-'FRC.Algebra.approx_theorem_refuted' depends on axioms: [propext, Classical.choice, Quot.sound]
+'FRC.Algebra.euclid_step_count' does not depend on any axioms
+'FRC.Algebra.approx_obstruction' depends on axioms: [propext, Classical.choice, Quot.sound]
 'FRC.Algebra.root_iff_not_coprime' depends on axioms: [propext, Classical.choice, Quot.sound]
 'FRC.Algebra.tower_density' depends on axioms: [propext, Classical.choice, Quot.sound]
 'FRC.Algebra.circle_net' depends on axioms: [propext, Classical.choice, Quot.sound]

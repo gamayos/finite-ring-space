@@ -181,7 +181,7 @@ end FRC.Fourier
 # 3-causality — the Euclidean–Lorentzian dichotomy, Mathlib witnesses
 
 Rows of the predicate ledger of *Euclidean–Lorentzian Dichotomy and Algebraic Causality in Finite Ring Continuum*
-(Entropy 2025, 27, 1098; tree `3-causality-20260510`), stated as the revision states them, over an arbitrary finite
+(Entropy 2025, 27, 1098; tree `3-causality-20260510`), over an arbitrary finite
 field `F` with `card F ≢ 3 (mod 4)` (so `−1` is a square, the shells `p = 4κ + 1` among them).  Classical
 (tier 2) on Mathlib's hierarchy; the same rows are proved with no axioms in `FrcCore/Causality.lean`.
 -/
@@ -199,7 +199,7 @@ theorem neg_sq_is_square [Fintype F] (hF : Fintype.card F % 4 ≠ 3) (c : F) : I
   obtain ⟨i, hi⟩ := FiniteField.isSquare_neg_one_iff.mpr hF
   exact ⟨i * c, by rw [show -(c ^ 2) = (-1) * c ^ 2 by ring, hi]; ring⟩
 
-/-- 3:B3 (Lemma absorption, repaired): coefficients `a_i = w_i² a_0` are absorbed by `x_i ↦ w_i x_i`. -/
+/-- 3:B3 (Lemma absorption): coefficients `a_i = w_i² a_0` are absorbed by `x_i ↦ w_i x_i`. -/
 theorem absorb (a0 a1 a2 a3 w1 w2 w3 x0 x1 x2 x3 : F) (h1 : w1 ^ 2 * a0 = a1) (h2 : w2 ^ 2 * a0 = a2)
     (h3 : w3 ^ 2 * a0 = a3) :
     a0 * x0 ^ 2 + a1 * x1 ^ 2 + a2 * x2 ^ 2 + a3 * x3 ^ 2 =
