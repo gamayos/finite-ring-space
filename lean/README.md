@@ -11,7 +11,8 @@ and the paper's frame. Instance rows and refutations are decided by `decide` in 
 | module | paper | rows | theorems |
 |---|---|---|---|
 | `FrcLedger/Fourier.lean` | 6-fourier | B5, B7 (master C2) | `W_sq`, `J_sq`, `W_mul_J_comm`, `quarter_turn_sq`, `shell_relations`, `shell_relations_zmod` |
-| `FrcLedger/Algebra.lean` | 1-algebra | B2, B3, B4, C4, D2, D4, D5, E2, F1, V1 | `quarter_turn_exists`, `klein_orbit_four`, `card_fourth_roots`, `quarter_turn`, `affine_frame`, `meridian_involution`, `framed_integer_window`, `scale_periodic`, `complex_chart_zero_divisor`, `no_south_pole`, `s13_quarter_turn`, `euclid_bound_refuted`, `approx_theorem_refuted` |
+| `FrcLedger/Algebra.lean` | 1-algebra | B2, B3, B4, C4, D2, D4, D5, E2, F1, G1–G3, V1 | `quarter_turn_exists`, `klein_orbit_four`, `card_fourth_roots`, `quarter_turn`, `affine_frame`, `meridian_involution`, `framed_integer_window`, `scale_periodic`, `complex_chart_zero_divisor`, `no_south_pole`, `s13_quarter_turn`, `euclid_bound_refuted`, `approx_theorem_refuted`, `root_iff_not_coprime`, `tower_density`, `circle_net`, `group_law_defect` |
+| `FrcLedger/Geometry.lean` | 2-geometry | B3, C2, D1, D2, D5, D6, E3, F1, F3 | `half_period`, `quarter_turn_order`, `orientation_class`, `euler_identity`, `generator_orbit`, `principal_root`, `dft_inverse`, `euler_characteristic`, `fixed_shell_bound`, `fixed_shell_bound_lt_one`, `fixed_shell_gap`, `fixed_shell_gap_rat` |
 
 Every theorem's docstring opens with the row it decides (`/-- 1:B2 … -/`); the ledger's source column names the
 theorem back (`\lean{Algebra.no_south_pole}`); `axioms.log` records, for every declaration, the axioms its proof
@@ -37,13 +38,18 @@ algorithm from the definition of `Nat.mod`.
 
 | core module | rows | declarations |
 |---|---|---|
-| `FrcCore/Nat.lean` | — | the arithmetic: cancellation, `mul_assoc`, the `%`-laws, `mod_spec`, `mod_unique`, powers |
+| `FrcCore/Nat.lean` | — | the arithmetic: cancellation, `mul_assoc`, the `%`-laws, `mod_spec`, `mod_unique`, subtraction, powers |
+| `FrcCore/Pigeonhole.lean` | — | `NoDup`, `erase`, the pigeonhole on `[0, n)` and `[1, n]` |
 | `FrcCore/Shell.lean` | — | the ring `Shell p`: the laws, negation by `add_neg`, powers, `neg_one_pow` |
-| `FrcCore/Frame.lean` | 00:A8, 00:C1, 00:C7, 00:C14; 1:B3; 2:D1, D2, D5, D6 | `IsPrimitive`, `Generates`, `Frame`, `pow_inj`, `exists_inv`, `mul_eq_zero`, `sq_eq_one`, `half_period`, `quarter_turn_sq`, `quarter_turn_order`, `orientation_class`, `euler_identity`, `two_pi` |
-| `FrcCore/Sum.lean` | 2:F1, 2:F3; 6:B5 | `sumRange`, `geom_sum_mul`, `principal_root`, `dft_inverse`, `W_sq` |
-| `FrcCore/Algebra.lean` | 1:B2, B4, D2, D4 | `klein_orbit_four`, `affine_frame_unit`, `window_injective`, `window_signed`, `scale_periodic` |
-| `FrcCore/Geometry.lean` | 2:C2, E3 | `euler_characteristic`, `fixed_shell_gap` |
-| `FrcCore/Instances.lean` | 1:B2, B3; 2:D3, D6 [value] | `frame13`, `frame17a`, `frame17b`, `frame29`, `s13_datum`, `s13_euler`, `s17_orientation`, `s13_klein` — all by `decide` |
+| `FrcCore/Frame.lean` | 00:A8, 00:C1, 00:C7, 00:C14; 1:B3, F1; 2:D1, D2, D5, D6 | `IsPrimitive`, `Generates`, `Frame`, `generates` (the pigeonhole), `pow_inj`, `exists_inv`, `mul_eq_zero`, `sq_eq_one`, `half_period`, `quarter_turn_sq`, `quarter_turn_order`, `orientation_class`, `euler_identity`, `two_pi`, `no_south_pole` |
+| `FrcCore/Orbit.lean` | 1:G1; 2:B3 | `generator_orbit`, `fermat` |
+| `FrcCore/Sum.lean` | 2:F1, F3, F4, F5; 6:B5, B6, B7 | `sumRange`, `geom_sum_mul`, `principal_root`, `dft_inverse`, `W_sq`, `J_sq`, `F_sq`, `W_J_comm`, `sum_perm`, `dft_eq_polyEval`, `dft_covariance`, the `V = V⁺ ⊕ V⁻` decomposition |
+| `FrcCore/Algebra.lean` | 1:B2, B4, C2, C4, D2, D4, D5, E2; 2:D7 | `klein_orbit_four`, `orbit_rep`, `orbit_rep_unique`, `affine_frame_unit`, `Affine.simply_transitive`, `frame_count`, `meridian_involution`, `window_injective`, `window_signed`, the read-backs, `scale_periodic`, `approx_theorem_refuted`, `complex_chart_zero_divisor` |
+| `FrcCore/Poly.lean` | 1:G1 | polynomials as coefficient sequences: `eval_mul`, `quot_linear_spec` (synthetic division), `root_bound`, `root_iff_common_factor` |
+| `FrcCore/Quaternion.lean` | 1:G5 | the signed window and the framed quaternions: `read_mul`, `quaternion_window` |
+| `FrcCore/Geometry.lean` | 2:B4, C2, C4, E3 | `euler_characteristic`, `fixed_shell_bound`, `fixed_shell_gap`, `rho_adj_iff`, `label_covariance` |
+| `FrcCore/Complex.lean` | 2:B4, C2, C3 [value] | the orbital shell coded: `closed`, `cellular`; `closed5`, `closed13`, `closed17`, `open13`, `census13`, `counts13` by `decide +kernel` |
+| `FrcCore/Instances.lean` | 1:B2, B3; 2:B3, D3, D6 [value] | `frame13`, `frame17a`, `frame17b`, `frame29`, `s13_datum`, `s13_euler`, `s17_orientation`, `s13_klein`, `s13_orbit` — all by `decide` |
 
 The core in one file for the web editor, on plain Lean 4.34.0 (no Mathlib to load, seconds to elaborate):
 `https://live.lean-lang.org/#project=lean-v4.34.0&url=https://raw.githubusercontent.com/gamayos/finite-ring-space/main/lean/web/FrcCore.lean`
@@ -58,6 +64,7 @@ toolchain pinned here), with the module as one self-contained file (`web/<module
 
 - Algebra: `https://live.lean-lang.org/#project=mathlib-stable&url=https://raw.githubusercontent.com/gamayos/finite-ring-space/main/lean/web/Algebra.lean`
 - Fourier: `https://live.lean-lang.org/#project=mathlib-stable&url=https://raw.githubusercontent.com/gamayos/finite-ring-space/main/lean/web/Fourier.lean`
+- Geometry: `https://live.lean-lang.org/#project=mathlib-stable&url=https://raw.githubusercontent.com/gamayos/finite-ring-space/main/lean/web/Geometry.lean`
 
 **In VS Code, in the browser** — "Code ▸ Codespaces ▸ Create codespace" on the repository, or open the
 `.devcontainer` in any devcontainer host: the setup script installs the toolchain and Mathlib's cache (minutes),

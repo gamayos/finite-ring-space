@@ -137,5 +137,38 @@ theorem mem_of_nodup_of_length (n : Nat) (l : List Nat) (hnd : NoDup l) (hb : �
     have := length_le_of_nodup n (v :: l) hnd' hb'
     absurd (hlen ▸ this : n + 1 ≤ n) (Nat.not_succ_le_self n)
 
+/-- The same with the range `[0, n)`: a list of distinct numbers below `n` has at most `n` entries. -/
+theorem length_le_of_nodup_lt : ∀ (n : Nat) (l : List Nat), NoDup l → (∀ e, mem e l → e < n) → l.length ≤ n
+  | 0, [], _, _ => Nat.le_refl 0
+  | 0, a :: l, _, hb => absurd (hb a (Or.inl rfl)) (Nat.not_lt_zero a)
+  | n + 1, l, hnd, hb =>
+    match decMem n l with
+    | isTrue hm =>
+      have h1 : (erase n l).length ≤ n :=
+        length_le_of_nodup_lt n (erase n l) (nodup_erase _ hnd) (fun e he =>
+          match Nat.lt_or_ge e n with
+          | Or.inl hlt => hlt
+          | Or.inr hge =>
+            have : e = n := Nat.le_antisymm (Nat.le_of_lt_succ (hb e (mem_of_mem_erase he))) hge
+            absurd (this ▸ he) (not_mem_erase_self n hnd))
+      by rw [← length_erase_of_mem hm]; exact Nat.succ_le_succ h1
+    | isFalse hm =>
+      Nat.le_succ_of_le (length_le_of_nodup_lt n l hnd (fun e he =>
+        match Nat.lt_or_ge e n with
+        | Or.inl hlt => hlt
+        | Or.inr hge => absurd he ((Nat.le_antisymm (Nat.le_of_lt_succ (hb e he)) hge) ▸ hm)))
+
+/-- `n` distinct numbers below `n` are all of them. -/
+theorem mem_of_nodup_of_length_lt (n : Nat) (l : List Nat) (hnd : NoDup l) (hb : ∀ e, mem e l → e < n)
+    (hlen : l.length = n) (v : Nat) (hv : v < n) : mem v l :=
+  match decMem v l with
+  | isTrue h => h
+  | isFalse h =>
+    have hb' : ∀ e, mem e (v :: l) → e < n := fun e he => match he with
+      | Or.inl e' => e' ▸ hv
+      | Or.inr e' => hb e e'
+    have := length_le_of_nodup_lt n (v :: l) ⟨h, hnd⟩ hb'
+    absurd (hlen ▸ this : n + 1 ≤ n) (Nat.not_succ_le_self n)
+
 end Pigeonhole
 end FRC

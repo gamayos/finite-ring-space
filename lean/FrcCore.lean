@@ -5,5 +5,8 @@ import FrcCore.Frame
 import FrcCore.Orbit
 import FrcCore.Sum
 import FrcCore.Algebra
+import FrcCore.Poly
+import FrcCore.Quaternion
 import FrcCore.Geometry
+import FrcCore.Complex
 import FrcCore.Instances

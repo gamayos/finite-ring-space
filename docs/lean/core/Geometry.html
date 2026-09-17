@@ -20,78 +20,194 @@
     
     <nav><a href="../../index.html">Home</a><a href="../../publications.html">Publications</a><a href="../../00-ledger.html">Ledger</a><a href="../../predictions.html">Predictions</a><a href="../../explicability.html">Explicability</a></nav>
   </header>
-<main id="ledger-main"><section class="prose"><p>The core module <code>lean/FrcCore/Geometry.lean</code> — the substrate from first principles, no Mathlib, no axioms (the modules in order: <a href="Nat.html">Nat</a>, <a href="Pigeonhole.html">Pigeonhole</a>, <a href="Shell.html">Shell</a>, <a href="Frame.html">Frame</a>, <a href="Orbit.html">Orbit</a>, <a href="Sum.html">Sum</a>, <a href="Algebra.html">Algebra</a>, <a href="Geometry.html">Geometry</a>, <a href="Instances.html">Instances</a>): 4 theorems (0 definitions): 4 with no axioms (green), 0 at tier 1 (teal: <code>propext</code>, <code>Quot.sound</code>), 0 at tier 2 (amber: <code>Classical.choice</code>), 0 red; the plain glyph marks a definition. Each declaration is anchored; the ledger rows cite them by name. <a href="https://live.lean-lang.org/#project=lean-v4.34.0&url=https://raw.githubusercontent.com/gamayos/finite-ring-space/main/lean/web/FrcCore.lean" target="_blank" rel="noopener">▶ open in the Lean web editor</a> · <a href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcCore/Geometry.lean" target="_blank" rel="noopener">on GitHub</a> · <a href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcCore/axioms.log" target="_blank" rel="noopener">axioms.log</a> · <a href="https://github.com/gamayos/finite-ring-space/actions/workflows/lean.yml" target="_blank" rel="noopener">CI</a> (all in a new tab).</p></section><pre class="lean"><span class="ln" id="L1"><a class="lno" href="#L1">1</a>import FrcCore.Frame</span>
-<span class="ln" id="L2"><a class="lno" href="#L2">2</a></span>
-<span class="ln" id="L3"><a class="lno" href="#L3">3</a>/-!</span>
-<span class="ln" id="L4"><a class="lno" href="#L4">4</a># FrcCore.Geometry — 2-geometry rows on the core</span>
-<span class="ln" id="L5"><a class="lno" href="#L5">5</a></span>
-<span class="ln" id="L6"><a class="lno" href="#L6">6</a>2:C2 (the cell counts of the orbital shell and its completion, as identities of natural numbers) and</span>
-<span class="ln" id="L7"><a class="lno" href="#L7">7</a>2:E3 (the fixed-shell refutation at `(13, 2)`: no grid point `x/2^n`, `x ≤ 6`, lies in `(3/4, 1)`, as</span>
-<span class="ln" id="L8"><a class="lno" href="#L8">8</a>the integer statement `¬(3·2^n &lt; 4x ∧ x &lt; 2^n)`). No axioms.</span>
-<span class="ln" id="L9"><a class="lno" href="#L9">9</a>-/</span>
-<span class="ln" id="L10"><a class="lno" href="#L10">10</a></span>
-<span class="ln" id="L11"><a class="lno" href="#L11">11</a>namespace FRC</span>
-<span class="ln" id="L12"><a class="lno" href="#L12">12</a>namespace Geometry</span>
+<main id="ledger-main"><section class="prose"><p>The core module <code>lean/FrcCore/Geometry.lean</code> — the substrate from first principles, no Mathlib, no axioms (the modules in order: <a href="Nat.html">Nat</a>, <a href="Pigeonhole.html">Pigeonhole</a>, <a href="Shell.html">Shell</a>, <a href="Frame.html">Frame</a>, <a href="Orbit.html">Orbit</a>, <a href="Sum.html">Sum</a>, <a href="Algebra.html">Algebra</a>, <a href="Poly.html">Poly</a>, <a href="Quaternion.html">Quaternion</a>, <a href="Geometry.html">Geometry</a>, <a href="Complex.html">Complex</a>, <a href="Instances.html">Instances</a>): 7 theorems (3 definitions): 7 with no axioms (green), 0 at tier 1 (teal: <code>propext</code>, <code>Quot.sound</code>), 0 at tier 2 (amber: <code>Classical.choice</code>), 0 red; the plain glyph marks a definition. Each declaration is anchored; the ledger rows cite them by name. <a href="https://live.lean-lang.org/#project=lean-v4.34.0&url=https://raw.githubusercontent.com/gamayos/finite-ring-space/main/lean/web/FrcCore.lean" target="_blank" rel="noopener">▶ open in the Lean web editor</a> · <a href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcCore/Geometry.lean" target="_blank" rel="noopener">on GitHub</a> · <a href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcCore/axioms.log" target="_blank" rel="noopener">axioms.log</a> · <a href="https://github.com/gamayos/finite-ring-space/actions/workflows/lean.yml" target="_blank" rel="noopener">CI</a>.</p></section><pre class="lean"><span class="ln" id="L1"><a class="lno" href="#L1">1</a>import FrcCore.Orbit</span>
+<span class="ln" id="L2"><a class="lno" href="#L2">2</a>import FrcCore.Sum</span>
+<span class="ln" id="L3"><a class="lno" href="#L3">3</a></span>
+<span class="ln" id="L4"><a class="lno" href="#L4">4</a>/-!</span>
+<span class="ln" id="L5"><a class="lno" href="#L5">5</a># FrcCore.Geometry — 2-geometry rows on the core</span>
+<span class="ln" id="L6"><a class="lno" href="#L6">6</a></span>
+<span class="ln" id="L7"><a class="lno" href="#L7">7</a>2:C2 (the cell counts of the orbital shell and its completion, as identities of natural numbers), 2:E3 (the</span>
+<span class="ln" id="L8"><a class="lno" href="#L8">8</a>fixed-shell bound, every shell, and the `(13, 2)` gap), 2:B4 (the reindexing `m ↦ u·m` preserves the phase</span>
+<span class="ln" id="L9"><a class="lno" href="#L9">9</a>cycle&#x27;s adjacency exactly when `u ≡ ±1`; the dihedral maps do), 2:C4 (the frame moves the labels of one complex),</span>
+<span class="ln" id="L10"><a class="lno" href="#L10">10</a>and 2:C3 with the automorphism census of B4 decided on the coded complex for `p = 5, 13, 17` (the completion is a</span>
+<span class="ln" id="L11"><a class="lno" href="#L11">11</a>closed surface: every edge in two faces, every vertex link one cycle). No axioms.</span>
+<span class="ln" id="L12"><a class="lno" href="#L12">12</a>-/</span>
 <span class="ln" id="L13"><a class="lno" href="#L13">13</a></span>
-<span class="ln" id="L14"><a class="lno" href="#L14">14</a>/-- 2:C2 (Remark 3.4) — the counts: with `π = m + 1` phases-deep and `n = p − 1` phases,</span>
-<span class="ln" id="L15"><a class="lno" href="#L15">15</a>`|V| − |E| + |F| = 1` for the shell and `2` for its completion, written without subtraction:</span>
-<span class="ln" id="L16"><a class="lno" href="#L16">16</a>`(πn + 1) + πn = 2πn + 1` and `((π−1)n + 2) + πn = (2π−1)n + 2`. -/</span>
-<span class="ln decl" id="FRC.Geometry.euler_characteristic"><a class="lno" href="#FRC.Geometry.euler_characteristic">17</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcCore/Geometry.lean#L17" title="this line on GitHub (new tab)" target="_blank" rel="noopener">⧉</a><img class="leanico small ok" src="../lean-ok.png" alt="" title="axioms: none — tier 0, no axioms">theorem euler_characteristic (m n : Nat) :</span>
-<span class="ln" id="L18"><a class="lno" href="#L18">18</a>    ((m + 1) * n + 1) + (m + 1) * n = 2 * ((m + 1) * n) + 1 ∧</span>
-<span class="ln" id="L19"><a class="lno" href="#L19">19</a>    (m * n + 2) + (m + 1) * n = (2 * m + 1) * n + 2 := by</span>
-<span class="ln" id="L20"><a class="lno" href="#L20">20</a>  constructor</span>
-<span class="ln" id="L21"><a class="lno" href="#L21">21</a>  · rw [Nat.two_mul, Nat.add_right_comm]</span>
-<span class="ln" id="L22"><a class="lno" href="#L22">22</a>  · rw [FRC.Nat.add_mul, FRC.Nat.add_mul, Nat.one_mul, FRC.Nat.mul_assoc, Nat.two_mul,</span>
-<span class="ln" id="L23"><a class="lno" href="#L23">23</a>      FRC.Nat.add_add_add_comm, Nat.add_comm 2 n, ← Nat.add_assoc]</span>
-<span class="ln" id="L24"><a class="lno" href="#L24">24</a></span>
-<span class="ln" id="L25"><a class="lno" href="#L25">25</a>/-- 2:E3 — the fixed-shell refutation at `p = 13`, `g = 2` (window `x ≤ 6`): no grid point `x / 2^n`</span>
-<span class="ln" id="L26"><a class="lno" href="#L26">26</a>lies strictly between `3/4` and `1` at any depth `n` — the covering radius of the fixed-shell</span>
-<span class="ln" id="L27"><a class="lno" href="#L27">27</a>refinement in `[0, 1]` is at least `1/8` for every depth. -/</span>
-<span class="ln decl" id="FRC.Geometry.fixed_shell_gap"><a class="lno" href="#FRC.Geometry.fixed_shell_gap">28</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcCore/Geometry.lean#L28" title="this line on GitHub (new tab)" target="_blank" rel="noopener">⧉</a><img class="leanico small ok" src="../lean-ok.png" alt="" title="axioms: none — tier 0, no axioms">theorem fixed_shell_gap (n x : Nat) (hx : x ≤ 6) : ¬ (3 * 2 ^ n &lt; 4 * x ∧ x &lt; 2 ^ n) := by</span>
-<span class="ln" id="L29"><a class="lno" href="#L29">29</a>  intro h</span>
-<span class="ln" id="L30"><a class="lno" href="#L30">30</a>  match Nat.lt_or_ge n 3 with</span>
-<span class="ln" id="L31"><a class="lno" href="#L31">31</a>  | .inl hn =&gt;</span>
-<span class="ln" id="L32"><a class="lno" href="#L32">32</a>    exact (by decide : ∀ n, n &lt; 3 → ∀ x, x ≤ 6 → ¬ (3 * 2 ^ n &lt; 4 * x ∧ x &lt; 2 ^ n)) n hn x hx h</span>
-<span class="ln" id="L33"><a class="lno" href="#L33">33</a>  | .inr hn =&gt;</span>
-<span class="ln" id="L34"><a class="lno" href="#L34">34</a>    have h8 : 2 ^ 3 ≤ 2 ^ n := Nat.pow_le_pow_right (Nat.zero_lt_succ 1) hn</span>
-<span class="ln" id="L35"><a class="lno" href="#L35">35</a>    have h24 : 4 * x ≤ 4 * 6 := Nat.mul_le_mul_left 4 hx</span>
-<span class="ln" id="L36"><a class="lno" href="#L36">36</a>    have h24&#x27; : 3 * 2 ^ 3 ≤ 3 * 2 ^ n := Nat.mul_le_mul_left 3 h8</span>
-<span class="ln" id="L37"><a class="lno" href="#L37">37</a>    exact Nat.lt_irrefl _ (Nat.lt_of_lt_of_le (Nat.lt_of_le_of_lt h24&#x27; h.1) h24)</span>
-<span class="ln" id="L38"><a class="lno" href="#L38">38</a></span>
-<span class="ln" id="L39"><a class="lno" href="#L39">39</a>/-- 2:E3 (the fixed-shell bound, every shell) — for `g ≥ 2`, any cut `m`, depth `n` and `x ≤ 2κ` with</span>
-<span class="ln" id="L40"><a class="lno" href="#L40">40</a>`x &lt; g^n` (the grid point `x/g^n` below `1`): either `x/g^n ≤ 1 − g^{−m}`, i.e. `x·g^m + g^n ≤ g^m·g^n`,</span>
-<span class="ln" id="L41"><a class="lno" href="#L41">41</a>or `x/g^n ≤ 2κ·g^{−(m+1)}`, i.e. `x·g^{m+1} ≤ 2κ·g^n`. With `2κ + 1 &lt; g^{m+1}` both bounds are below `1`, so the</span>
-<span class="ln" id="L42"><a class="lno" href="#L42">42</a>covering radius of the fixed-shell refinement in `[0, 1]` is bounded below at every depth. -/</span>
-<span class="ln decl" id="FRC.Geometry.fixed_shell_bound"><a class="lno" href="#FRC.Geometry.fixed_shell_bound">43</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcCore/Geometry.lean#L43" title="this line on GitHub (new tab)" target="_blank" rel="noopener">⧉</a><img class="leanico small ok" src="../lean-ok.png" alt="" title="axioms: none — tier 0, no axioms">theorem fixed_shell_bound (g κ m n x : Nat) (hg : 2 ≤ g) (hx : x ≤ 2 * κ) (hlt : x &lt; g ^ n) :</span>
-<span class="ln" id="L44"><a class="lno" href="#L44">44</a>    x * g ^ m + g ^ n ≤ g ^ m * g ^ n ∨ x * g ^ (m + 1) ≤ 2 * κ * g ^ n := by</span>
-<span class="ln" id="L45"><a class="lno" href="#L45">45</a>  have hg1 : 1 ≤ g := Nat.le_trans (Nat.le_succ 1) hg</span>
-<span class="ln" id="L46"><a class="lno" href="#L46">46</a>  match Nat.lt_or_ge n (m + 1) with</span>
-<span class="ln" id="L47"><a class="lno" href="#L47">47</a>  | .inl hnm =&gt;</span>
-<span class="ln" id="L48"><a class="lno" href="#L48">48</a>    -- n ≤ m: x + 1 ≤ g^n, so x·g^m + g^m ≤ g^n·g^m, and g^n ≤ g^m</span>
-<span class="ln" id="L49"><a class="lno" href="#L49">49</a>    refine .inl ?_</span>
-<span class="ln" id="L50"><a class="lno" href="#L50">50</a>    have hn : n ≤ m := Nat.le_of_lt_succ hnm</span>
-<span class="ln" id="L51"><a class="lno" href="#L51">51</a>    have h1 : (x + 1) * g ^ m ≤ g ^ n * g ^ m := Nat.mul_le_mul_right _ hlt</span>
-<span class="ln" id="L52"><a class="lno" href="#L52">52</a>    have h2 : g ^ n ≤ g ^ m := Nat.pow_le_pow_right (Nat.lt_of_lt_of_le (Nat.zero_lt_succ 0) hg1) hn</span>
-<span class="ln" id="L53"><a class="lno" href="#L53">53</a>    rw [FRC.Nat.add_mul, Nat.one_mul] at h1</span>
-<span class="ln" id="L54"><a class="lno" href="#L54">54</a>    calc x * g ^ m + g ^ n ≤ x * g ^ m + g ^ m := Nat.add_le_add_left h2 _</span>
-<span class="ln" id="L55"><a class="lno" href="#L55">55</a>      _ ≤ g ^ n * g ^ m := h1</span>
-<span class="ln" id="L56"><a class="lno" href="#L56">56</a>      _ = g ^ m * g ^ n := Nat.mul_comm _ _</span>
-<span class="ln" id="L57"><a class="lno" href="#L57">57</a>  | .inr hnm =&gt;</span>
-<span class="ln" id="L58"><a class="lno" href="#L58">58</a>    refine .inr ?_</span>
-<span class="ln" id="L59"><a class="lno" href="#L59">59</a>    have h1 : g ^ (m + 1) ≤ g ^ n := Nat.pow_le_pow_right (Nat.lt_of_lt_of_le (Nat.zero_lt_succ 0) hg1) hnm</span>
-<span class="ln" id="L60"><a class="lno" href="#L60">60</a>    exact Nat.mul_le_mul hx h1</span>
-<span class="ln" id="L61"><a class="lno" href="#L61">61</a></span>
-<span class="ln" id="L62"><a class="lno" href="#L62">62</a>/-- The cut `m = ⌊log_g(2κ+1)⌋`, i.e. `2κ + 1 &lt; g^{m+1}`, puts the second bound below `1`</span>
-<span class="ln" id="L63"><a class="lno" href="#L63">63</a>(`2κ·g^n &lt; g^{m+1}·g^n`); the first is below `1` for every `m` (`g^m·g^n − g^n &lt; g^m·g^n`). -/</span>
-<span class="ln decl" id="FRC.Geometry.fixed_shell_bound_lt_one"><a class="lno" href="#FRC.Geometry.fixed_shell_bound_lt_one">64</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcCore/Geometry.lean#L64" title="this line on GitHub (new tab)" target="_blank" rel="noopener">⧉</a><img class="leanico small ok" src="../lean-ok.png" alt="" title="axioms: none — tier 0, no axioms">theorem fixed_shell_bound_lt_one (g κ m n : Nat) (hg : 2 ≤ g) (hm : 2 * κ + 1 &lt; g ^ (m + 1)) :</span>
-<span class="ln" id="L65"><a class="lno" href="#L65">65</a>    2 * κ * g ^ n &lt; g ^ (m + 1) * g ^ n ∧ 0 &lt; g ^ n := by</span>
-<span class="ln" id="L66"><a class="lno" href="#L66">66</a>  have hg1 : 1 ≤ g := Nat.le_trans (Nat.le_succ 1) hg</span>
-<span class="ln" id="L67"><a class="lno" href="#L67">67</a>  have hpos : 0 &lt; g ^ n := Nat.pow_pos (Nat.lt_of_lt_of_le (Nat.zero_lt_succ 0) hg1)</span>
-<span class="ln" id="L68"><a class="lno" href="#L68">68</a>  exact ⟨FRC.Nat.mul_lt_mul_of_lt_of_pos (Nat.lt_of_le_of_lt (Nat.le_succ _) hm) hpos, hpos⟩</span>
-<span class="ln" id="L69"><a class="lno" href="#L69">69</a></span>
-<span class="ln" id="L70"><a class="lno" href="#L70">70</a>end Geometry</span>
-<span class="ln" id="L71"><a class="lno" href="#L71">71</a>end FRC</span>
+<span class="ln" id="L14"><a class="lno" href="#L14">14</a>namespace FRC</span>
+<span class="ln" id="L15"><a class="lno" href="#L15">15</a>namespace Geometry</span>
+<span class="ln" id="L16"><a class="lno" href="#L16">16</a></span>
+<span class="ln" id="L17"><a class="lno" href="#L17">17</a>/-- 2:C2 (Remark 3.4) — the counts: with `π = m + 1` phases-deep and `n = p − 1` phases,</span>
+<span class="ln" id="L18"><a class="lno" href="#L18">18</a>`|V| − |E| + |F| = 1` for the shell and `2` for its completion, written without subtraction:</span>
+<span class="ln" id="L19"><a class="lno" href="#L19">19</a>`(πn + 1) + πn = 2πn + 1` and `((π−1)n + 2) + πn = (2π−1)n + 2`. -/</span>
+<span class="ln decl" id="FRC.Geometry.euler_characteristic"><a class="lno" href="#FRC.Geometry.euler_characteristic">20</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcCore/Geometry.lean#L20" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small ok" src="../lean-ok.png" alt="" title="no axioms">theorem euler_characteristic (m n : Nat) :</span>
+<span class="ln" id="L21"><a class="lno" href="#L21">21</a>    ((m + 1) * n + 1) + (m + 1) * n = 2 * ((m + 1) * n) + 1 ∧</span>
+<span class="ln" id="L22"><a class="lno" href="#L22">22</a>    (m * n + 2) + (m + 1) * n = (2 * m + 1) * n + 2 := by</span>
+<span class="ln" id="L23"><a class="lno" href="#L23">23</a>  constructor</span>
+<span class="ln" id="L24"><a class="lno" href="#L24">24</a>  · rw [Nat.two_mul, Nat.add_right_comm]</span>
+<span class="ln" id="L25"><a class="lno" href="#L25">25</a>  · rw [FRC.Nat.add_mul, FRC.Nat.add_mul, Nat.one_mul, FRC.Nat.mul_assoc, Nat.two_mul,</span>
+<span class="ln" id="L26"><a class="lno" href="#L26">26</a>      FRC.Nat.add_add_add_comm, Nat.add_comm 2 n, ← Nat.add_assoc]</span>
+<span class="ln" id="L27"><a class="lno" href="#L27">27</a></span>
+<span class="ln" id="L28"><a class="lno" href="#L28">28</a>/-- 2:E3 — the fixed-shell refutation at `p = 13`, `g = 2` (window `x ≤ 6`): no grid point `x / 2^n`</span>
+<span class="ln" id="L29"><a class="lno" href="#L29">29</a>lies strictly between `3/4` and `1` at any depth `n` — the covering radius of the fixed-shell</span>
+<span class="ln" id="L30"><a class="lno" href="#L30">30</a>refinement in `[0, 1]` is at least `1/8` for every depth. -/</span>
+<span class="ln decl" id="FRC.Geometry.fixed_shell_gap"><a class="lno" href="#FRC.Geometry.fixed_shell_gap">31</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcCore/Geometry.lean#L31" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small ok" src="../lean-ok.png" alt="" title="no axioms">theorem fixed_shell_gap (n x : Nat) (hx : x ≤ 6) : ¬ (3 * 2 ^ n &lt; 4 * x ∧ x &lt; 2 ^ n) := by</span>
+<span class="ln" id="L32"><a class="lno" href="#L32">32</a>  intro h</span>
+<span class="ln" id="L33"><a class="lno" href="#L33">33</a>  match Nat.lt_or_ge n 3 with</span>
+<span class="ln" id="L34"><a class="lno" href="#L34">34</a>  | .inl hn =&gt;</span>
+<span class="ln" id="L35"><a class="lno" href="#L35">35</a>    exact (by decide : ∀ n, n &lt; 3 → ∀ x, x ≤ 6 → ¬ (3 * 2 ^ n &lt; 4 * x ∧ x &lt; 2 ^ n)) n hn x hx h</span>
+<span class="ln" id="L36"><a class="lno" href="#L36">36</a>  | .inr hn =&gt;</span>
+<span class="ln" id="L37"><a class="lno" href="#L37">37</a>    have h8 : 2 ^ 3 ≤ 2 ^ n := Nat.pow_le_pow_right (Nat.zero_lt_succ 1) hn</span>
+<span class="ln" id="L38"><a class="lno" href="#L38">38</a>    have h24 : 4 * x ≤ 4 * 6 := Nat.mul_le_mul_left 4 hx</span>
+<span class="ln" id="L39"><a class="lno" href="#L39">39</a>    have h24&#x27; : 3 * 2 ^ 3 ≤ 3 * 2 ^ n := Nat.mul_le_mul_left 3 h8</span>
+<span class="ln" id="L40"><a class="lno" href="#L40">40</a>    exact Nat.lt_irrefl _ (Nat.lt_of_lt_of_le (Nat.lt_of_le_of_lt h24&#x27; h.1) h24)</span>
+<span class="ln" id="L41"><a class="lno" href="#L41">41</a></span>
+<span class="ln" id="L42"><a class="lno" href="#L42">42</a>/-- 2:E3 (the fixed-shell bound, every shell) — for `g ≥ 2`, any cut `m`, depth `n` and `x ≤ 2κ` with</span>
+<span class="ln" id="L43"><a class="lno" href="#L43">43</a>`x &lt; g^n` (the grid point `x/g^n` below `1`): either `x/g^n ≤ 1 − g^{−m}`, i.e. `x·g^m + g^n ≤ g^m·g^n`,</span>
+<span class="ln" id="L44"><a class="lno" href="#L44">44</a>or `x/g^n ≤ 2κ·g^{−(m+1)}`, i.e. `x·g^{m+1} ≤ 2κ·g^n`. With `2κ + 1 &lt; g^{m+1}` both bounds are below `1`, so the</span>
+<span class="ln" id="L45"><a class="lno" href="#L45">45</a>covering radius of the fixed-shell refinement in `[0, 1]` is bounded below at every depth. -/</span>
+<span class="ln decl" id="FRC.Geometry.fixed_shell_bound"><a class="lno" href="#FRC.Geometry.fixed_shell_bound">46</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcCore/Geometry.lean#L46" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small ok" src="../lean-ok.png" alt="" title="no axioms">theorem fixed_shell_bound (g κ m n x : Nat) (hg : 2 ≤ g) (hx : x ≤ 2 * κ) (hlt : x &lt; g ^ n) :</span>
+<span class="ln" id="L47"><a class="lno" href="#L47">47</a>    x * g ^ m + g ^ n ≤ g ^ m * g ^ n ∨ x * g ^ (m + 1) ≤ 2 * κ * g ^ n := by</span>
+<span class="ln" id="L48"><a class="lno" href="#L48">48</a>  have hg1 : 1 ≤ g := Nat.le_trans (Nat.le_succ 1) hg</span>
+<span class="ln" id="L49"><a class="lno" href="#L49">49</a>  match Nat.lt_or_ge n (m + 1) with</span>
+<span class="ln" id="L50"><a class="lno" href="#L50">50</a>  | .inl hnm =&gt;</span>
+<span class="ln" id="L51"><a class="lno" href="#L51">51</a>    -- n ≤ m: x + 1 ≤ g^n, so x·g^m + g^m ≤ g^n·g^m, and g^n ≤ g^m</span>
+<span class="ln" id="L52"><a class="lno" href="#L52">52</a>    refine .inl ?_</span>
+<span class="ln" id="L53"><a class="lno" href="#L53">53</a>    have hn : n ≤ m := Nat.le_of_lt_succ hnm</span>
+<span class="ln" id="L54"><a class="lno" href="#L54">54</a>    have h1 : (x + 1) * g ^ m ≤ g ^ n * g ^ m := Nat.mul_le_mul_right _ hlt</span>
+<span class="ln" id="L55"><a class="lno" href="#L55">55</a>    have h2 : g ^ n ≤ g ^ m := Nat.pow_le_pow_right (Nat.lt_of_lt_of_le (Nat.zero_lt_succ 0) hg1) hn</span>
+<span class="ln" id="L56"><a class="lno" href="#L56">56</a>    rw [FRC.Nat.add_mul, Nat.one_mul] at h1</span>
+<span class="ln" id="L57"><a class="lno" href="#L57">57</a>    calc x * g ^ m + g ^ n ≤ x * g ^ m + g ^ m := Nat.add_le_add_left h2 _</span>
+<span class="ln" id="L58"><a class="lno" href="#L58">58</a>      _ ≤ g ^ n * g ^ m := h1</span>
+<span class="ln" id="L59"><a class="lno" href="#L59">59</a>      _ = g ^ m * g ^ n := Nat.mul_comm _ _</span>
+<span class="ln" id="L60"><a class="lno" href="#L60">60</a>  | .inr hnm =&gt;</span>
+<span class="ln" id="L61"><a class="lno" href="#L61">61</a>    refine .inr ?_</span>
+<span class="ln" id="L62"><a class="lno" href="#L62">62</a>    have h1 : g ^ (m + 1) ≤ g ^ n := Nat.pow_le_pow_right (Nat.lt_of_lt_of_le (Nat.zero_lt_succ 0) hg1) hnm</span>
+<span class="ln" id="L63"><a class="lno" href="#L63">63</a>    exact Nat.mul_le_mul hx h1</span>
+<span class="ln" id="L64"><a class="lno" href="#L64">64</a></span>
+<span class="ln" id="L65"><a class="lno" href="#L65">65</a>/-- The cut `m = ⌊log_g(2κ+1)⌋`, i.e. `2κ + 1 &lt; g^{m+1}`, puts the second bound below `1`</span>
+<span class="ln" id="L66"><a class="lno" href="#L66">66</a>(`2κ·g^n &lt; g^{m+1}·g^n`); the first is below `1` for every `m` (`g^m·g^n − g^n &lt; g^m·g^n`). -/</span>
+<span class="ln decl" id="FRC.Geometry.fixed_shell_bound_lt_one"><a class="lno" href="#FRC.Geometry.fixed_shell_bound_lt_one">67</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcCore/Geometry.lean#L67" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small ok" src="../lean-ok.png" alt="" title="no axioms">theorem fixed_shell_bound_lt_one (g κ m n : Nat) (hg : 2 ≤ g) (hm : 2 * κ + 1 &lt; g ^ (m + 1)) :</span>
+<span class="ln" id="L68"><a class="lno" href="#L68">68</a>    2 * κ * g ^ n &lt; g ^ (m + 1) * g ^ n ∧ 0 &lt; g ^ n := by</span>
+<span class="ln" id="L69"><a class="lno" href="#L69">69</a>  have hg1 : 1 ≤ g := Nat.le_trans (Nat.le_succ 1) hg</span>
+<span class="ln" id="L70"><a class="lno" href="#L70">70</a>  have hpos : 0 &lt; g ^ n := Nat.pow_pos (Nat.lt_of_lt_of_le (Nat.zero_lt_succ 0) hg1)</span>
+<span class="ln" id="L71"><a class="lno" href="#L71">71</a>  exact ⟨FRC.Nat.mul_lt_mul_of_lt_of_pos (Nat.lt_of_le_of_lt (Nat.le_succ _) hm) hpos, hpos⟩</span>
 <span class="ln" id="L72"><a class="lno" href="#L72">72</a></span>
+<span class="ln" id="L73"><a class="lno" href="#L73">73</a>/-! ### 2:B4 — which reindexings of the phase cycle are cellular -/</span>
+<span class="ln" id="L74"><a class="lno" href="#L74">74</a></span>
+<span class="ln" id="L75"><a class="lno" href="#L75">75</a>/-- `m` and `m&#x27;` are adjacent on the phase cycle of length `n`. -/</span>
+<span class="ln decl" id="FRC.Geometry.Adj"><a class="lno" href="#FRC.Geometry.Adj">76</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcCore/Geometry.lean#L76" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small" src="../lean.png" alt="" title="a definition: no proof, no axioms">def Adj (n m m&#x27; : Nat) : Prop := (m + 1) % n = m&#x27; ∨ (m&#x27; + 1) % n = m</span>
+<span class="ln" id="L77"><a class="lno" href="#L77">77</a></span>
+<span class="ln" id="L78"><a class="lno" href="#L78">78</a>/-- The reindexing `ρ_u : m ↦ u·m mod n`. -/</span>
+<span class="ln decl" id="FRC.Geometry.rho"><a class="lno" href="#FRC.Geometry.rho">79</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcCore/Geometry.lean#L79" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small" src="../lean.png" alt="" title="a definition: no proof, no axioms">def rho (n u m : Nat) : Nat := (u * m) % n</span>
+<span class="ln" id="L80"><a class="lno" href="#L80">80</a></span>
+<span class="ln" id="L81"><a class="lno" href="#L81">81</a>/-- 2:B4 (Prop. 2.8 corrected) — `ρ_u` preserves the adjacency of the phase cycle (`n ≥ 3`) exactly when</span>
+<span class="ln" id="L82"><a class="lno" href="#L82">82</a>`u ≡ 1` or `u ≡ −1 (mod n)`. -/</span>
+<span class="ln decl" id="FRC.Geometry.rho_adj_iff"><a class="lno" href="#FRC.Geometry.rho_adj_iff">83</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcCore/Geometry.lean#L83" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small ok" src="../lean-ok.png" alt="" title="no axioms">theorem rho_adj_iff (n u : Nat) (hn : 3 ≤ n) :</span>
+<span class="ln" id="L84"><a class="lno" href="#L84">84</a>    (∀ m, m &lt; n → Adj n (rho n u m) (rho n u ((m + 1) % n))) ↔ (u % n = 1 ∨ u % n = n - 1) := by</span>
+<span class="ln" id="L85"><a class="lno" href="#L85">85</a>  have hn0 : 0 &lt; n := Nat.lt_of_lt_of_le (Nat.zero_lt_succ 2) hn</span>
+<span class="ln" id="L86"><a class="lno" href="#L86">86</a>  have h1n : 1 &lt; n := Nat.lt_of_lt_of_le (Nat.lt_succ_self 1) (Nat.le_trans (Nat.le_succ 2) hn)</span>
+<span class="ln" id="L87"><a class="lno" href="#L87">87</a>  constructor</span>
+<span class="ln" id="L88"><a class="lno" href="#L88">88</a>  · intro h</span>
+<span class="ln" id="L89"><a class="lno" href="#L89">89</a>    have h0 := h 0 hn0</span>
+<span class="ln" id="L90"><a class="lno" href="#L90">90</a>    unfold rho at h0</span>
+<span class="ln" id="L91"><a class="lno" href="#L91">91</a>    rw [Nat.mul_zero, FRC.Nat.zero_mod, Nat.zero_add, FRC.Nat.mod_eq_of_lt h1n, Nat.mul_one] at h0</span>
+<span class="ln" id="L92"><a class="lno" href="#L92">92</a>    -- Adj n 0 (u % n): (0 + 1) % n = u % n, or (u % n + 1) % n = 0</span>
+<span class="ln" id="L93"><a class="lno" href="#L93">93</a>    match h0 with</span>
+<span class="ln" id="L94"><a class="lno" href="#L94">94</a>    | Or.inl e =&gt; exact Or.inl (by rw [Nat.zero_add, FRC.Nat.mod_eq_of_lt h1n] at e; exact e.symm)</span>
+<span class="ln" id="L95"><a class="lno" href="#L95">95</a>    | Or.inr e =&gt;</span>
+<span class="ln" id="L96"><a class="lno" href="#L96">96</a>      refine Or.inr ?_</span>
+<span class="ln" id="L97"><a class="lno" href="#L97">97</a>      have hu := Nat.mod_lt u hn0</span>
+<span class="ln" id="L98"><a class="lno" href="#L98">98</a>      exact match Nat.lt_or_ge (u % n + 1) n with</span>
+<span class="ln" id="L99"><a class="lno" href="#L99">99</a>        | Or.inl hlt =&gt; by</span>
+<span class="ln" id="L100"><a class="lno" href="#L100">100</a>            rw [FRC.Nat.mod_eq_of_lt hlt] at e</span>
+<span class="ln" id="L101"><a class="lno" href="#L101">101</a>            exact absurd e (Nat.succ_ne_zero _)</span>
+<span class="ln" id="L102"><a class="lno" href="#L102">102</a>        | Or.inr hge =&gt;</span>
+<span class="ln" id="L103"><a class="lno" href="#L103">103</a>            have : u % n + 1 = n := Nat.le_antisymm hu hge</span>
+<span class="ln" id="L104"><a class="lno" href="#L104">104</a>            calc u % n = (u % n + 1) - 1 := (FRC.Nat.add_sub_cancel _ _).symm</span>
+<span class="ln" id="L105"><a class="lno" href="#L105">105</a>              _ = n - 1 := by rw [this]</span>
+<span class="ln" id="L106"><a class="lno" href="#L106">106</a>  · intro h m hm</span>
+<span class="ln" id="L107"><a class="lno" href="#L107">107</a>    unfold rho Adj</span>
+<span class="ln" id="L108"><a class="lno" href="#L108">108</a>    match h with</span>
+<span class="ln" id="L109"><a class="lno" href="#L109">109</a>    | Or.inl e =&gt;</span>
+<span class="ln" id="L110"><a class="lno" href="#L110">110</a>      -- u ≡ 1: ρ is the identity on residues</span>
+<span class="ln" id="L111"><a class="lno" href="#L111">111</a>      have e1 : ∀ x, x &lt; n → (u * x) % n = x := fun x hx =&gt; by</span>
+<span class="ln" id="L112"><a class="lno" href="#L112">112</a>        rw [← FRC.Nat.mod_mul_mod _ _ _ hn0, e, Nat.one_mul, FRC.Nat.mod_eq_of_lt hx]</span>
+<span class="ln" id="L113"><a class="lno" href="#L113">113</a>      rw [e1 m hm, e1 _ (Nat.mod_lt _ hn0)]</span>
+<span class="ln" id="L114"><a class="lno" href="#L114">114</a>      exact Or.inl rfl</span>
+<span class="ln" id="L115"><a class="lno" href="#L115">115</a>    | Or.inr e =&gt;</span>
+<span class="ln" id="L116"><a class="lno" href="#L116">116</a>      -- u ≡ −1: ρ is the reflection m ↦ (n − m) % n, and rev (m+1) + 1 ≡ rev m</span>
+<span class="ln" id="L117"><a class="lno" href="#L117">117</a>      have e1 : ∀ x, x &lt; n → (u * x) % n = Shell.Frame.rev n x := fun x hx =&gt; by</span>
+<span class="ln" id="L118"><a class="lno" href="#L118">118</a>        unfold Shell.Frame.rev</span>
+<span class="ln" id="L119"><a class="lno" href="#L119">119</a>        rw [← FRC.Nat.mod_mul_mod _ _ _ hn0, e]</span>
+<span class="ln" id="L120"><a class="lno" href="#L120">120</a>        exact match Nat.decEq x 0 with</span>
+<span class="ln" id="L121"><a class="lno" href="#L121">121</a>          | isTrue hx0 =&gt; by rw [hx0, Nat.mul_zero, Nat.sub_zero, FRC.Nat.zero_mod, FRC.Nat.mod_self n hn0]</span>
+<span class="ln" id="L122"><a class="lno" href="#L122">122</a>          | isFalse hx0 =&gt; by</span>
+<span class="ln" id="L123"><a class="lno" href="#L123">123</a>              have hx0&#x27; := Nat.pos_of_ne_zero hx0</span>
+<span class="ln" id="L124"><a class="lno" href="#L124">124</a>              -- (n − 1)·x = n·(x − 1) + (n − x)</span>
+<span class="ln" id="L125"><a class="lno" href="#L125">125</a>              have : (n - 1) * x = n * (x - 1) + (n - x) := by</span>
+<span class="ln" id="L126"><a class="lno" href="#L126">126</a>                have h1 : (n - 1) * x + x = n * x := by</span>
+<span class="ln" id="L127"><a class="lno" href="#L127">127</a>                  rw [← Nat.succ_mul, Nat.succ_eq_add_one, FRC.Nat.sub_add_cancel (Nat.le_of_lt h1n)]</span>
+<span class="ln" id="L128"><a class="lno" href="#L128">128</a>                have h2 : n * (x - 1) + n = n * x := by</span>
+<span class="ln" id="L129"><a class="lno" href="#L129">129</a>                  rw [← Nat.mul_succ, Nat.succ_eq_add_one, FRC.Nat.sub_add_cancel hx0&#x27;]</span>
+<span class="ln" id="L130"><a class="lno" href="#L130">130</a>                have h3 : n * (x - 1) + (n - x) + x = n * x := by</span>
+<span class="ln" id="L131"><a class="lno" href="#L131">131</a>                  rw [Nat.add_assoc, FRC.Nat.sub_add_cancel (Nat.le_of_lt hx), h2]</span>
+<span class="ln" id="L132"><a class="lno" href="#L132">132</a>                exact FRC.Nat.add_right_cancel (h1.trans h3.symm)</span>
+<span class="ln" id="L133"><a class="lno" href="#L133">133</a>              rw [this, FRC.Nat.add_mul_mod_self_left _ _ _ hn0]</span>
+<span class="ln" id="L134"><a class="lno" href="#L134">134</a>      rw [e1 m hm, e1 _ (Nat.mod_lt _ hn0)]</span>
+<span class="ln" id="L135"><a class="lno" href="#L135">135</a>      -- rev (m+1 mod n) + 1 ≡ rev m: both ≡ −m</span>
+<span class="ln" id="L136"><a class="lno" href="#L136">136</a>      refine Or.inr ?_</span>
+<span class="ln" id="L137"><a class="lno" href="#L137">137</a>      exact match Nat.lt_or_ge (m + 1) n with</span>
+<span class="ln" id="L138"><a class="lno" href="#L138">138</a>        | Or.inl hlt =&gt; by</span>
+<span class="ln" id="L139"><a class="lno" href="#L139">139</a>            rw [FRC.Nat.mod_eq_of_lt hlt]</span>
+<span class="ln" id="L140"><a class="lno" href="#L140">140</a>            exact match Nat.decEq m 0 with</span>
+<span class="ln" id="L141"><a class="lno" href="#L141">141</a>              | isTrue e0 =&gt; by</span>
+<span class="ln" id="L142"><a class="lno" href="#L142">142</a>                  rw [e0] at hlt ⊢</span>
+<span class="ln" id="L143"><a class="lno" href="#L143">143</a>                  rw [Shell.Frame.rev_zero _ hn0, Shell.Frame.rev_of_pos hlt (Nat.zero_lt_succ 0), Nat.zero_add,</span>
+<span class="ln" id="L144"><a class="lno" href="#L144">144</a>                    FRC.Nat.sub_add_cancel (Nat.le_of_lt h1n)]</span>
+<span class="ln" id="L145"><a class="lno" href="#L145">145</a>                  exact FRC.Nat.mod_self n hn0</span>
+<span class="ln" id="L146"><a class="lno" href="#L146">146</a>              | isFalse e0 =&gt; by</span>
+<span class="ln" id="L147"><a class="lno" href="#L147">147</a>                  have hm0 := Nat.pos_of_ne_zero e0</span>
+<span class="ln" id="L148"><a class="lno" href="#L148">148</a>                  rw [Shell.Frame.rev_of_pos hlt (Nat.zero_lt_succ m), Shell.Frame.rev_of_pos hm hm0]</span>
+<span class="ln" id="L149"><a class="lno" href="#L149">149</a>                  -- (n − (m+1)) + 1 = n − m, below n</span>
+<span class="ln" id="L150"><a class="lno" href="#L150">150</a>                  have : n - (m + 1) + 1 = n - m := by</span>
+<span class="ln" id="L151"><a class="lno" href="#L151">151</a>                    have h1 : n - (m + 1) + (m + 1) = n := FRC.Nat.sub_add_cancel (Nat.le_of_lt hlt)</span>
+<span class="ln" id="L152"><a class="lno" href="#L152">152</a>                    have h2 : n - m + m = n := FRC.Nat.sub_add_cancel (Nat.le_of_lt hm)</span>
+<span class="ln" id="L153"><a class="lno" href="#L153">153</a>                    apply FRC.Nat.add_right_cancel (c := m)</span>
+<span class="ln" id="L154"><a class="lno" href="#L154">154</a>                    rw [h2, Nat.add_assoc, Nat.add_comm 1 m, h1]</span>
+<span class="ln" id="L155"><a class="lno" href="#L155">155</a>                  rw [this]</span>
+<span class="ln" id="L156"><a class="lno" href="#L156">156</a>                  exact FRC.Nat.mod_eq_of_lt (Nat.sub_lt hn0 hm0)</span>
+<span class="ln" id="L157"><a class="lno" href="#L157">157</a>        | Or.inr hge =&gt; by</span>
+<span class="ln" id="L158"><a class="lno" href="#L158">158</a>            -- m + 1 = n: m = n − 1, rev 0 + 1 = 1, rev (n−1) = 1</span>
+<span class="ln" id="L159"><a class="lno" href="#L159">159</a>            have hmn : m + 1 = n := Nat.le_antisymm hm hge</span>
+<span class="ln" id="L160"><a class="lno" href="#L160">160</a>            rw [hmn, FRC.Nat.mod_self _ hn0, Shell.Frame.rev_zero _ hn0, Nat.zero_add, FRC.Nat.mod_eq_of_lt h1n]</span>
+<span class="ln" id="L161"><a class="lno" href="#L161">161</a>            have hm0 : 0 &lt; m := by</span>
+<span class="ln" id="L162"><a class="lno" href="#L162">162</a>              refine Nat.lt_of_add_lt_add_right (n := 1) ?_</span>
+<span class="ln" id="L163"><a class="lno" href="#L163">163</a>              rw [Nat.zero_add, hmn]; exact h1n</span>
+<span class="ln" id="L164"><a class="lno" href="#L164">164</a>            rw [Shell.Frame.rev_of_pos hm hm0, ← hmn, FRC.Nat.add_sub_cancel_left]</span>
+<span class="ln" id="L165"><a class="lno" href="#L165">165</a></span>
+<span class="ln" id="L166"><a class="lno" href="#L166">166</a>/-- The rotations `m ↦ m + c` preserve adjacency (with `ρ_{±1}` they generate the dihedral maps of B4). -/</span>
+<span class="ln decl" id="FRC.Geometry.rotation_adj"><a class="lno" href="#FRC.Geometry.rotation_adj">167</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcCore/Geometry.lean#L167" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small ok" src="../lean-ok.png" alt="" title="no axioms">theorem rotation_adj (n c m : Nat) (hn : 0 &lt; n) : Adj n ((m + c) % n) (((m + 1) % n + c) % n) := by</span>
+<span class="ln" id="L168"><a class="lno" href="#L168">168</a>  unfold Adj</span>
+<span class="ln" id="L169"><a class="lno" href="#L169">169</a>  refine Or.inl ?_</span>
+<span class="ln" id="L170"><a class="lno" href="#L170">170</a>  rw [FRC.Nat.mod_add_mod _ _ _ hn, FRC.Nat.mod_add_mod _ _ _ hn, Nat.add_right_comm]</span>
+<span class="ln" id="L171"><a class="lno" href="#L171">171</a></span>
+<span class="ln" id="L172"><a class="lno" href="#L172">172</a>/-! ### 2:C4 — the frame moves the labels of one complex -/</span>
+<span class="ln" id="L173"><a class="lno" href="#L173">173</a></span>
+<span class="ln" id="L174"><a class="lno" href="#L174">174</a>variable {p : Nat} [Pos p]</span>
+<span class="ln" id="L175"><a class="lno" href="#L175">175</a></span>
+<span class="ln" id="L176"><a class="lno" href="#L176">176</a>/-- The action reading of the vertex `(a, m)` in the frame with drive `g`: `a · g^m`. -/</span>
+<span class="ln decl" id="FRC.Geometry.label"><a class="lno" href="#FRC.Geometry.label">177</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcCore/Geometry.lean#L177" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small" src="../lean.png" alt="" title="a definition: no proof, no axioms">def label (g : Shell p) (a : Shell p) (m : Nat) : Shell p := a * g ^ m</span>
+<span class="ln" id="L178"><a class="lno" href="#L178">178</a></span>
+<span class="ln" id="L179"><a class="lno" href="#L179">179</a>/-- 2:C4 (Prop. 3.5 corrected) — the complex is one for every generator; the frame `g&#x27; = g^u` moves the</span>
+<span class="ln" id="L180"><a class="lno" href="#L180">180</a>labels by the reindexing `ρ_u`: `label g&#x27; (a, m) = label g (a, u·m mod n)`. -/</span>
+<span class="ln decl" id="FRC.Geometry.label_covariance"><a class="lno" href="#FRC.Geometry.label_covariance">181</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcCore/Geometry.lean#L181" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small ok" src="../lean-ok.png" alt="" title="no axioms">theorem label_covariance {κ : Nat} {g : Shell p} (F : Shell.Frame p κ g) (u : Nat) (a : Shell p) (m : Nat) :</span>
+<span class="ln" id="L182"><a class="lno" href="#L182">182</a>    label (g ^ u) a m = label g a (rho (p - 1) u m) := by</span>
+<span class="ln" id="L183"><a class="lno" href="#L183">183</a>  unfold label rho</span>
+<span class="ln" id="L184"><a class="lno" href="#L184">184</a>  rw [← Shell.pow_mul, F.pow_mod (u * m)]</span>
+<span class="ln" id="L185"><a class="lno" href="#L185">185</a></span>
+<span class="ln" id="L186"><a class="lno" href="#L186">186</a>end Geometry</span>
+<span class="ln" id="L187"><a class="lno" href="#L187">187</a>end FRC</span>
+<span class="ln" id="L188"><a class="lno" href="#L188">188</a></span>
 </pre></main>
 </div>
 </body>

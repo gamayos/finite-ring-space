@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-HNE3RMJ5L1"></script>
+<script> window.dataLayer = window.dataLayer || []; function gtag(){dataLayer.push(arguments);} gtag('js', new Date()); gtag('config', 'G-HNE3RMJ5L1'); </script>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Complex.lean — FrcCore</title>
+<meta name="description" content="The Lean module FrcCore/Complex of the FRC predicate ledgers, rendered with an anchor per declaration">
+<meta name="author" content="Yosef Akhtman">
+<link rel="icon" href="../../frc-logo-fav.png">
+<link rel="stylesheet" href="../../style.css">
+
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <h1>Complex.lean — FrcCore</h1>
+    
+    <nav><a href="../../index.html">Home</a><a href="../../publications.html">Publications</a><a href="../../00-ledger.html">Ledger</a><a href="../../predictions.html">Predictions</a><a href="../../explicability.html">Explicability</a></nav>
+  </header>
+<main id="ledger-main"><section class="prose"><p>The core module <code>lean/FrcCore/Complex.lean</code> — the substrate from first principles, no Mathlib, no axioms (the modules in order: <a href="Nat.html">Nat</a>, <a href="Pigeonhole.html">Pigeonhole</a>, <a href="Shell.html">Shell</a>, <a href="Frame.html">Frame</a>, <a href="Orbit.html">Orbit</a>, <a href="Sum.html">Sum</a>, <a href="Algebra.html">Algebra</a>, <a href="Poly.html">Poly</a>, <a href="Quaternion.html">Quaternion</a>, <a href="Geometry.html">Geometry</a>, <a href="Complex.html">Complex</a>, <a href="Instances.html">Instances</a>): 6 theorems (19 definitions): 6 with no axioms (green), 0 at tier 1 (teal: <code>propext</code>, <code>Quot.sound</code>), 0 at tier 2 (amber: <code>Classical.choice</code>), 0 red; the plain glyph marks a definition. Each declaration is anchored; the ledger rows cite them by name. <a href="https://live.lean-lang.org/#project=lean-v4.34.0&url=https://raw.githubusercontent.com/gamayos/finite-ring-space/main/lean/web/FrcCore.lean" target="_blank" rel="noopener">▶ open in the Lean web editor</a> · <a href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcCore/Complex.lean" target="_blank" rel="noopener">on GitHub</a> · <a href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcCore/axioms.log" target="_blank" rel="noopener">axioms.log</a> · <a href="https://github.com/gamayos/finite-ring-space/actions/workflows/lean.yml" target="_blank" rel="noopener">CI</a>.</p></section><pre class="lean"><span class="ln" id="L1"><a class="lno" href="#L1">1</a>import FrcCore.Geometry</span>
+<span class="ln" id="L2"><a class="lno" href="#L2">2</a></span>
+<span class="ln" id="L3"><a class="lno" href="#L3">3</a>/-!</span>
+<span class="ln" id="L4"><a class="lno" href="#L4">4</a># FrcCore.Complex — the orbital shell and its spherical completion, coded and decided</span>
+<span class="ln" id="L5"><a class="lno" href="#L5">5</a></span>
+<span class="ln" id="L6"><a class="lno" href="#L6">6</a>The completion of the orbital shell `S_p` (Def. 3.1 of 2-geometry) as a finite cell complex on vertex codes:</span>
+<span class="ln" id="L7"><a class="lno" href="#L7">7</a>`N = 0`, the interior vertices `(a, m)` for `1 ≤ a ≤ π − 1`, `m &lt; n`, and `S`; the faces as cyclic vertex lists</span>
+<span class="ln" id="L8"><a class="lno" href="#L8">8</a>(north triangles, quadrilaterals, south triangles); the edges as the faces&#x27; sides. `closed p` checks that every</span>
+<span class="ln" id="L9"><a class="lno" href="#L9">9</a>edge lies in exactly two faces and that every vertex link is a single cycle (2:C3, the exhaustive incidence of</span>
+<span class="ln" id="L10"><a class="lno" href="#L10">10</a>the ledger); `cellular p u` checks whether the reindexing `ρ_u` carries faces to faces (2:B4); `poleExchange`</span>
+<span class="ln" id="L11"><a class="lno" href="#L11">11</a>checks the meridian reversal on the completion. Everything is a computation the kernel evaluates by `decide`.</span>
+<span class="ln" id="L12"><a class="lno" href="#L12">12</a>No axioms.</span>
+<span class="ln" id="L13"><a class="lno" href="#L13">13</a>-/</span>
+<span class="ln" id="L14"><a class="lno" href="#L14">14</a></span>
+<span class="ln" id="L15"><a class="lno" href="#L15">15</a>namespace FRC</span>
+<span class="ln" id="L16"><a class="lno" href="#L16">16</a>namespace Complex</span>
+<span class="ln" id="L17"><a class="lno" href="#L17">17</a></span>
+<span class="ln" id="L18"><a class="lno" href="#L18">18</a>/-- The vertex code of `(a, m)` on the shell with `n` phases: `1 + (a − 1)·n + m`. -/</span>
+<span class="ln decl" id="FRC.Complex.vtx"><a class="lno" href="#FRC.Complex.vtx">19</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcCore/Complex.lean#L19" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small" src="../lean.png" alt="" title="a definition: no proof, no axioms">def vtx (n a m : Nat) : Nat := 1 + (a - 1) * n + m % n</span>
+<span class="ln" id="L20"><a class="lno" href="#L20">20</a></span>
+<span class="ln" id="L21"><a class="lno" href="#L21">21</a>/-- The south pole: the vertex after the last interior latitude `a = π − 1`. -/</span>
+<span class="ln decl" id="FRC.Complex.south"><a class="lno" href="#FRC.Complex.south">22</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcCore/Complex.lean#L22" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small" src="../lean.png" alt="" title="a definition: no proof, no axioms">def south (n pi : Nat) : Nat := 1 + (pi - 1) * n</span>
+<span class="ln" id="L23"><a class="lno" href="#L23">23</a></span>
+<span class="ln" id="L24"><a class="lno" href="#L24">24</a>/-- The faces of the completion, as vertex lists. -/</span>
+<span class="ln decl" id="FRC.Complex.faces"><a class="lno" href="#FRC.Complex.faces">25</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcCore/Complex.lean#L25" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small" src="../lean.png" alt="" title="a definition: no proof, no axioms">def faces (n pi : Nat) : List (List Nat) :=</span>
+<span class="ln" id="L26"><a class="lno" href="#L26">26</a>  let north := (List.range n).map fun m =&gt; [0, vtx n 1 m, vtx n 1 (m + 1)]</span>
+<span class="ln" id="L27"><a class="lno" href="#L27">27</a>  let quads := ((List.range (pi - 2)).map fun a&#x27; =&gt; (List.range n).map fun m =&gt;</span>
+<span class="ln" id="L28"><a class="lno" href="#L28">28</a>      [vtx n (a&#x27; + 1) m, vtx n (a&#x27; + 2) m, vtx n (a&#x27; + 2) (m + 1), vtx n (a&#x27; + 1) (m + 1)]).foldr (· ++ ·) []</span>
+<span class="ln" id="L29"><a class="lno" href="#L29">29</a>  let souths := (List.range n).map fun m =&gt; [vtx n (pi - 1) m, south n pi, vtx n (pi - 1) (m + 1)]</span>
+<span class="ln" id="L30"><a class="lno" href="#L30">30</a>  north ++ quads ++ souths</span>
+<span class="ln" id="L31"><a class="lno" href="#L31">31</a></span>
+<span class="ln" id="L32"><a class="lno" href="#L32">32</a>/-- The sides of a face, as unordered pairs `(min, max)`. -/</span>
+<span class="ln decl" id="FRC.Complex.sides"><a class="lno" href="#FRC.Complex.sides">33</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcCore/Complex.lean#L33" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small" src="../lean.png" alt="" title="a definition: no proof, no axioms">def sides : List Nat → List (Nat × Nat)</span>
+<span class="ln" id="L34"><a class="lno" href="#L34">34</a>  | [] =&gt; []</span>
+<span class="ln" id="L35"><a class="lno" href="#L35">35</a>  | f@(v :: _) =&gt;</span>
+<span class="ln" id="L36"><a class="lno" href="#L36">36</a>    let rec go : List Nat → List (Nat × Nat)</span>
+<span class="ln" id="L37"><a class="lno" href="#L37">37</a>      | [] =&gt; []</span>
+<span class="ln" id="L38"><a class="lno" href="#L38">38</a>      | [w] =&gt; [(min w v, max w v)]</span>
+<span class="ln" id="L39"><a class="lno" href="#L39">39</a>      | w :: (w&#x27; :: rest) =&gt; (min w w&#x27;, max w w&#x27;) :: go (w&#x27; :: rest)</span>
+<span class="ln" id="L40"><a class="lno" href="#L40">40</a>    go f</span>
+<span class="ln" id="L41"><a class="lno" href="#L41">41</a></span>
+<span class="ln decl" id="FRC.Complex.vertexCount"><a class="lno" href="#FRC.Complex.vertexCount">42</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcCore/Complex.lean#L42" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small" src="../lean.png" alt="" title="a definition: no proof, no axioms">def vertexCount (n pi : Nat) : Nat := south n pi + 1</span>
+<span class="ln" id="L43"><a class="lno" href="#L43">43</a></span>
+<span class="ln" id="L44"><a class="lno" href="#L44">44</a>/-- A face with its sides computed once: `(vertices, sides)`. -/</span>
+<span class="ln" id="L45"><a class="lno" href="#L45">45</a>abbrev Face := List Nat × List (Nat × Nat)</span>
+<span class="ln" id="L46"><a class="lno" href="#L46">46</a></span>
+<span class="ln decl" id="FRC.Complex.withSides"><a class="lno" href="#FRC.Complex.withSides">47</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcCore/Complex.lean#L47" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small" src="../lean.png" alt="" title="a definition: no proof, no axioms">def withSides (fs : List (List Nat)) : List Face := fs.map fun f =&gt; (f, sides f)</span>
+<span class="ln" id="L48"><a class="lno" href="#L48">48</a></span>
+<span class="ln" id="L49"><a class="lno" href="#L49">49</a>/-- Two faces are adjacent around `v` when they share a side through `v`. -/</span>
+<span class="ln decl" id="FRC.Complex.adjacentAt"><a class="lno" href="#FRC.Complex.adjacentAt">50</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcCore/Complex.lean#L50" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small" src="../lean.png" alt="" title="a definition: no proof, no axioms">def adjacentAt (v : Nat) (f f&#x27; : Face) : Bool :=</span>
+<span class="ln" id="L51"><a class="lno" href="#L51">51</a>  f.2.any fun s =&gt; (s.1 == v || s.2 == v) &amp;&amp; f&#x27;.2.contains s</span>
+<span class="ln" id="L52"><a class="lno" href="#L52">52</a></span>
+<span class="ln" id="L53"><a class="lno" href="#L53">53</a>/-- The neighbours of `cur` around `v` other than `prev` (and `cur` itself). -/</span>
+<span class="ln decl" id="FRC.Complex.nextFaces"><a class="lno" href="#FRC.Complex.nextFaces">54</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcCore/Complex.lean#L54" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small" src="../lean.png" alt="" title="a definition: no proof, no axioms">def nextFaces (v : Nat) (L : List Face) (prev cur : Face) : List Face :=</span>
+<span class="ln" id="L55"><a class="lno" href="#L55">55</a>  L.filter fun f&#x27; =&gt; !(f&#x27;.1 == cur.1) &amp;&amp; !(f&#x27;.1 == prev.1) &amp;&amp; adjacentAt v cur f&#x27;</span>
+<span class="ln" id="L56"><a class="lno" href="#L56">56</a></span>
+<span class="ln" id="L57"><a class="lno" href="#L57">57</a>/-- Walk the link from `f0` along `cur`, never turning back, for `fuel` steps; the number of steps taken until</span>
+<span class="ln" id="L58"><a class="lno" href="#L58">58</a>`f0` is reached again (`fuel` if never). -/</span>
+<span class="ln decl" id="FRC.Complex.walk"><a class="lno" href="#FRC.Complex.walk">59</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcCore/Complex.lean#L59" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small" src="../lean.png" alt="" title="a definition: no proof, no axioms">def walk (v : Nat) (L : List Face) (f0 : Face) : Nat → Face → Face → Nat → Nat</span>
+<span class="ln" id="L60"><a class="lno" href="#L60">60</a>  | 0, _, _, k =&gt; k</span>
+<span class="ln" id="L61"><a class="lno" href="#L61">61</a>  | fuel + 1, prev, cur, k =&gt;</span>
+<span class="ln" id="L62"><a class="lno" href="#L62">62</a>    match nextFaces v L prev cur with</span>
+<span class="ln" id="L63"><a class="lno" href="#L63">63</a>    | f&#x27; :: [] =&gt; if f&#x27;.1 == f0.1 then k + 1 else walk v L f0 fuel cur f&#x27; (k + 1)</span>
+<span class="ln" id="L64"><a class="lno" href="#L64">64</a>    | [] =&gt; fuel + k + 1</span>
+<span class="ln" id="L65"><a class="lno" href="#L65">65</a>    | _ :: _ :: _ =&gt; fuel + k + 1</span>
+<span class="ln" id="L66"><a class="lno" href="#L66">66</a></span>
+<span class="ln" id="L67"><a class="lno" href="#L67">67</a>/-- The link of `v` is a single cycle: every face around `v` has exactly two neighbours there, and the walk from</span>
+<span class="ln" id="L68"><a class="lno" href="#L68">68</a>the first face returns to it after exactly `|L|` steps. -/</span>
+<span class="ln decl" id="FRC.Complex.linkIsCycle"><a class="lno" href="#FRC.Complex.linkIsCycle">69</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcCore/Complex.lean#L69" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small" src="../lean.png" alt="" title="a definition: no proof, no axioms">def linkIsCycle (fs : List Face) (v : Nat) : Bool :=</span>
+<span class="ln" id="L70"><a class="lno" href="#L70">70</a>  let L := fs.filter fun f =&gt; f.1.contains v</span>
+<span class="ln" id="L71"><a class="lno" href="#L71">71</a>  match L with</span>
+<span class="ln" id="L72"><a class="lno" href="#L72">72</a>  | [] =&gt; false</span>
+<span class="ln" id="L73"><a class="lno" href="#L73">73</a>  | f0 :: _ =&gt;</span>
+<span class="ln" id="L74"><a class="lno" href="#L74">74</a>    L.all (fun f =&gt; (L.filter (fun f&#x27; =&gt; !(f&#x27;.1 == f.1) &amp;&amp; adjacentAt v f f&#x27;)).length == 2) &amp;&amp;</span>
+<span class="ln" id="L75"><a class="lno" href="#L75">75</a>    (match nextFaces v L f0 f0 with</span>
+<span class="ln" id="L76"><a class="lno" href="#L76">76</a>     | f1 :: _ =&gt; walk v L f0 L.length f0 f1 1 == L.length</span>
+<span class="ln" id="L77"><a class="lno" href="#L77">77</a>     | [] =&gt; false)</span>
+<span class="ln" id="L78"><a class="lno" href="#L78">78</a></span>
+<span class="ln" id="L79"><a class="lno" href="#L79">79</a>/-- The number of occurrences of `s` in `E`. -/</span>
+<span class="ln decl" id="FRC.Complex.count"><a class="lno" href="#FRC.Complex.count">80</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcCore/Complex.lean#L80" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small" src="../lean.png" alt="" title="a definition: no proof, no axioms">def count (s : Nat × Nat) : List (Nat × Nat) → Nat</span>
+<span class="ln" id="L81"><a class="lno" href="#L81">81</a>  | [] =&gt; 0</span>
+<span class="ln" id="L82"><a class="lno" href="#L82">82</a>  | e :: E =&gt; (if e == s then 1 else 0) + count s E</span>
+<span class="ln" id="L83"><a class="lno" href="#L83">83</a></span>
+<span class="ln" id="L84"><a class="lno" href="#L84">84</a>/-- Every side of every face lies in exactly two faces: the sides are bucketed by their smaller vertex and each</span>
+<span class="ln" id="L85"><a class="lno" href="#L85">85</a>side occurs exactly twice in its bucket. -/</span>
+<span class="ln decl" id="FRC.Complex.edgesInTwoFaces"><a class="lno" href="#FRC.Complex.edgesInTwoFaces">86</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcCore/Complex.lean#L86" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small" src="../lean.png" alt="" title="a definition: no proof, no axioms">def edgesInTwoFaces (fs : List (List Nat)) : Bool :=</span>
+<span class="ln" id="L87"><a class="lno" href="#L87">87</a>  let E := (withSides fs).foldr (fun f acc =&gt; f.2 ++ acc) []</span>
+<span class="ln" id="L88"><a class="lno" href="#L88">88</a>  let V := fs.foldr (fun f acc =&gt; f.foldr (fun w acc&#x27; =&gt; if acc&#x27;.contains w then acc&#x27; else w :: acc&#x27;) acc) []</span>
+<span class="ln" id="L89"><a class="lno" href="#L89">89</a>  V.all fun v =&gt;</span>
+<span class="ln" id="L90"><a class="lno" href="#L90">90</a>    let B := E.filter fun s =&gt; s.1 == v</span>
+<span class="ln" id="L91"><a class="lno" href="#L91">91</a>    B.all fun s =&gt; count s B == 2</span>
+<span class="ln" id="L92"><a class="lno" href="#L92">92</a></span>
+<span class="ln" id="L93"><a class="lno" href="#L93">93</a>/-- 2:C3, the exhaustive incidence: the completion is a closed surface. -/</span>
+<span class="ln decl" id="FRC.Complex.closed"><a class="lno" href="#FRC.Complex.closed">94</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcCore/Complex.lean#L94" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small" src="../lean.png" alt="" title="a definition: no proof, no axioms">def closed (p : Nat) : Bool :=</span>
+<span class="ln" id="L95"><a class="lno" href="#L95">95</a>  let n := p - 1</span>
+<span class="ln" id="L96"><a class="lno" href="#L96">96</a>  let pi := n / 2</span>
+<span class="ln" id="L97"><a class="lno" href="#L97">97</a>  let fs := faces n pi</span>
+<span class="ln" id="L98"><a class="lno" href="#L98">98</a>  edgesInTwoFaces fs &amp;&amp; (List.range (vertexCount n pi)).all fun v =&gt; linkIsCycle (withSides fs) v</span>
+<span class="ln" id="L99"><a class="lno" href="#L99">99</a></span>
+<span class="ln" id="L100"><a class="lno" href="#L100">100</a>/-- The reindexing `ρ_u` on vertex codes: `(a, m) ↦ (a, u·m mod n)`, the poles fixed. -/</span>
+<span class="ln decl" id="FRC.Complex.rhoV"><a class="lno" href="#FRC.Complex.rhoV">101</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcCore/Complex.lean#L101" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small" src="../lean.png" alt="" title="a definition: no proof, no axioms">def rhoV (n pi u : Nat) (v : Nat) : Nat :=</span>
+<span class="ln" id="L102"><a class="lno" href="#L102">102</a>  if v == 0 then 0 else if v == south n pi then v else</span>
+<span class="ln" id="L103"><a class="lno" href="#L103">103</a>    let a := (v - 1) / n + 1</span>
+<span class="ln" id="L104"><a class="lno" href="#L104">104</a>    let m := (v - 1) % n</span>
+<span class="ln" id="L105"><a class="lno" href="#L105">105</a>    vtx n a (u * m)</span>
+<span class="ln" id="L106"><a class="lno" href="#L106">106</a></span>
+<span class="ln" id="L107"><a class="lno" href="#L107">107</a>/-- The meridian reversal on the completion: `N ↔ S`, `(a, m) ↦ (π − a, m)`. -/</span>
+<span class="ln decl" id="FRC.Complex.sigmaV"><a class="lno" href="#FRC.Complex.sigmaV">108</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcCore/Complex.lean#L108" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small" src="../lean.png" alt="" title="a definition: no proof, no axioms">def sigmaV (n pi : Nat) (v : Nat) : Nat :=</span>
+<span class="ln" id="L109"><a class="lno" href="#L109">109</a>  if v == 0 then south n pi else if v == south n pi then 0 else</span>
+<span class="ln" id="L110"><a class="lno" href="#L110">110</a>    let a := (v - 1) / n + 1</span>
+<span class="ln" id="L111"><a class="lno" href="#L111">111</a>    let m := (v - 1) % n</span>
+<span class="ln" id="L112"><a class="lno" href="#L112">112</a>    vtx n (pi - a) m</span>
+<span class="ln" id="L113"><a class="lno" href="#L113">113</a></span>
+<span class="ln" id="L114"><a class="lno" href="#L114">114</a>/-- A vertex map is cellular when it carries every face onto a face (as vertex sets). -/</span>
+<span class="ln decl" id="FRC.Complex.cellularMap"><a class="lno" href="#FRC.Complex.cellularMap">115</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcCore/Complex.lean#L115" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small" src="../lean.png" alt="" title="a definition: no proof, no axioms">def cellularMap (fs : List (List Nat)) (φ : Nat → Nat) : Bool :=</span>
+<span class="ln" id="L116"><a class="lno" href="#L116">116</a>  fs.all fun f =&gt; fs.any fun f&#x27; =&gt; (f.map φ).all (fun w =&gt; f&#x27;.contains w) &amp;&amp; f&#x27;.all (fun w =&gt; (f.map φ).contains w)</span>
+<span class="ln" id="L117"><a class="lno" href="#L117">117</a></span>
+<span class="ln" id="L118"><a class="lno" href="#L118">118</a>/-- 2:B4 — whether `ρ_u` is a cellular automorphism of the completion. -/</span>
+<span class="ln decl" id="FRC.Complex.cellular"><a class="lno" href="#FRC.Complex.cellular">119</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcCore/Complex.lean#L119" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small" src="../lean.png" alt="" title="a definition: no proof, no axioms">def cellular (p u : Nat) : Bool :=</span>
+<span class="ln" id="L120"><a class="lno" href="#L120">120</a>  let n := p - 1</span>
+<span class="ln" id="L121"><a class="lno" href="#L121">121</a>  let pi := n / 2</span>
+<span class="ln" id="L122"><a class="lno" href="#L122">122</a>  cellularMap (faces n pi) (rhoV n pi u)</span>
+<span class="ln" id="L123"><a class="lno" href="#L123">123</a></span>
+<span class="ln" id="L124"><a class="lno" href="#L124">124</a>/-- 2:B4 — whether the pole exchange is cellular on the completion. -/</span>
+<span class="ln decl" id="FRC.Complex.poleExchange"><a class="lno" href="#FRC.Complex.poleExchange">125</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcCore/Complex.lean#L125" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small" src="../lean.png" alt="" title="a definition: no proof, no axioms">def poleExchange (p : Nat) : Bool :=</span>
+<span class="ln" id="L126"><a class="lno" href="#L126">126</a>  let n := p - 1</span>
+<span class="ln" id="L127"><a class="lno" href="#L127">127</a>  let pi := n / 2</span>
+<span class="ln" id="L128"><a class="lno" href="#L128">128</a>  cellularMap (faces n pi) (sigmaV n pi)</span>
+<span class="ln" id="L129"><a class="lno" href="#L129">129</a></span>
+<span class="ln" id="L130"><a class="lno" href="#L130">130</a>/-- 2:C2 [value] — the counts on `𝔽₁₃`: `62` vertices, `72` faces of the completion. -/</span>
+<span class="ln decl" id="FRC.Complex.counts13"><a class="lno" href="#FRC.Complex.counts13">131</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcCore/Complex.lean#L131" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small ok" src="../lean-ok.png" alt="" title="no axioms">theorem counts13 : vertexCount 12 6 = 62 ∧ (faces 12 6).length = 72 := by decide +kernel</span>
+<span class="ln" id="L132"><a class="lno" href="#L132">132</a></span>
+<span class="ln" id="L133"><a class="lno" href="#L133">133</a>/-- 2:C3 [value] — the completion is a closed surface on `𝔽₅`, by exhaustive incidence. -/</span>
+<span class="ln decl" id="FRC.Complex.closed5"><a class="lno" href="#FRC.Complex.closed5">134</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcCore/Complex.lean#L134" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small ok" src="../lean-ok.png" alt="" title="no axioms">theorem closed5 : closed 5 = true := by decide +kernel</span>
+<span class="ln" id="L135"><a class="lno" href="#L135">135</a>/-- 2:C3 [value] — the completion is a closed surface on `𝔽₁₃` (62 vertices, 72 faces). -/</span>
+<span class="ln decl" id="FRC.Complex.closed13"><a class="lno" href="#FRC.Complex.closed13">136</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcCore/Complex.lean#L136" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small ok" src="../lean-ok.png" alt="" title="no axioms">theorem closed13 : closed 13 = true := by decide +kernel</span>
+<span class="ln" id="L137"><a class="lno" href="#L137">137</a>/-- 2:C3 [value] — the completion is a closed surface on `𝔽₁₇` (114 vertices, 128 faces); the kernel decides</span>
+<span class="ln" id="L138"><a class="lno" href="#L138">138</a>it in a few seconds. -/</span>
+<span class="ln decl" id="FRC.Complex.closed17"><a class="lno" href="#FRC.Complex.closed17">139</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcCore/Complex.lean#L139" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small ok" src="../lean-ok.png" alt="" title="no axioms">theorem closed17 : closed 17 = true := by decide +kernel</span>
+<span class="ln" id="L140"><a class="lno" href="#L140">140</a></span>
+<span class="ln" id="L141"><a class="lno" href="#L141">141</a></span>
+<span class="ln" id="L142"><a class="lno" href="#L142">142</a>/-- The orbital shell before the collapse: the terminal latitude `a = π` kept, so the last ring of quadrilaterals</span>
+<span class="ln" id="L143"><a class="lno" href="#L143">143</a>ends on it and nothing closes over it. -/</span>
+<span class="ln decl" id="FRC.Complex.facesOpen"><a class="lno" href="#FRC.Complex.facesOpen">144</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcCore/Complex.lean#L144" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small" src="../lean.png" alt="" title="a definition: no proof, no axioms">def facesOpen (n pi : Nat) : List (List Nat) :=</span>
+<span class="ln" id="L145"><a class="lno" href="#L145">145</a>  let north := (List.range n).map fun m =&gt; [0, vtx n 1 m, vtx n 1 (m + 1)]</span>
+<span class="ln" id="L146"><a class="lno" href="#L146">146</a>  let quads := ((List.range (pi - 1)).map fun a&#x27; =&gt; (List.range n).map fun m =&gt;</span>
+<span class="ln" id="L147"><a class="lno" href="#L147">147</a>      [vtx n (a&#x27; + 1) m, vtx n (a&#x27; + 2) m, vtx n (a&#x27; + 2) (m + 1), vtx n (a&#x27; + 1) (m + 1)]).foldr (· ++ ·) []</span>
+<span class="ln" id="L148"><a class="lno" href="#L148">148</a>  north ++ quads</span>
+<span class="ln" id="L149"><a class="lno" href="#L149">149</a></span>
+<span class="ln" id="L150"><a class="lno" href="#L150">150</a>/-- 2:C3, 2:B4 [value] — the shell itself is not closed (its terminal latitude is a boundary: those sides lie in</span>
+<span class="ln" id="L151"><a class="lno" href="#L151">151</a>one face only), so the meridian reversal has nothing to act on before the collapse. -/</span>
+<span class="ln decl" id="FRC.Complex.open13"><a class="lno" href="#FRC.Complex.open13">152</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcCore/Complex.lean#L152" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small ok" src="../lean-ok.png" alt="" title="no axioms">theorem open13 : edgesInTwoFaces (facesOpen 12 6) = false ∧ (facesOpen 12 6).length = 72 := by decide +kernel</span>
+<span class="ln" id="L153"><a class="lno" href="#L153">153</a></span>
+<span class="ln" id="L154"><a class="lno" href="#L154">154</a>/-- 2:B4, 2:C4 [value] — on `𝔽₁₃` (`n = 12`) the reindexing `ρ_u` is cellular exactly for `u ∈ {1, 11}` among the</span>
+<span class="ln" id="L155"><a class="lno" href="#L155">155</a>units `{1, 5, 7, 11}`, and the pole exchange is cellular on the completion. -/</span>
+<span class="ln decl" id="FRC.Complex.census13"><a class="lno" href="#FRC.Complex.census13">156</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcCore/Complex.lean#L156" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small ok" src="../lean-ok.png" alt="" title="no axioms">theorem census13 :</span>
+<span class="ln" id="L157"><a class="lno" href="#L157">157</a>    cellular 13 1 = true ∧ cellular 13 5 = false ∧ cellular 13 7 = false ∧ cellular 13 11 = true ∧</span>
+<span class="ln" id="L158"><a class="lno" href="#L158">158</a>    poleExchange 13 = true := by decide +kernel</span>
+<span class="ln" id="L159"><a class="lno" href="#L159">159</a></span>
+<span class="ln" id="L160"><a class="lno" href="#L160">160</a>end Complex</span>
+<span class="ln" id="L161"><a class="lno" href="#L161">161</a>end FRC</span>
+<span class="ln" id="L162"><a class="lno" href="#L162">162</a></span>
+</pre></main>
+</div>
+</body>
+</html>

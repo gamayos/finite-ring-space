@@ -109,7 +109,7 @@
      "label": "B7",
      "predicate": "$\\Wt J=J\\Wt$, hence $\\Ft J=J\\Ft$; $\\Vt=V^{+}\\oplus V^{-}$ with $\\dim V^{+}=2\\kap+1$, $\\dim V^{-}=2\\kap-1$.",
      "tag": "T",
-     "source": "Lem.~\\ref{lem:JF-decomp}; \\src{A6}; \\lean{Fourier.shell\\_relations, FRC.Shell.Frame.W\\_J\\_comm}",
+     "source": "Lem.~\\ref{lem:JF-decomp}; \\src{A6}; \\lean{Fourier.shell\\_relations, FRC.Shell.Frame.W\\_J\\_comm, FRC.Shell.Frame.symm\\_antisymm\\_decomp, FRC.Shell.Frame.symm\\_antisymm\\_unique, FRC.Shell.Frame.symm\\_determined, FRC.Shell.Frame.antisymm\\_determined}",
      "key": "p06014"
     }
    ]
@@ -368,7 +368,7 @@
     },
     {
      "label": "V4",
-     "predicate": "Lean, two libraries: \\texttt{lean/FrcLedger/Fourier.lean} (Mathlib; classical, tier~2) proves B5 and B7's commutation for every shell; \\texttt{lean/FrcCore} (no Mathlib, \\emph{no axioms}) proves B2, B3, B5, B6 and B7's commutation entrywise for every shell by computation and induction alone, kernel-checked on every push.",
+     "predicate": "Lean, two libraries: \\texttt{lean/FrcLedger/Fourier.lean} (Mathlib; classical, tier~2) proves B5 and B7's commutation for every shell; \\texttt{lean/FrcCore} (no Mathlib, \\emph{no axioms}) proves B2, B3, B5, B6 and B7 --- the commutation entrywise and the decomposition $V=V^{+}\\oplus V^{-}$ with its dimensions as coordinate counts --- for every shell by computation and induction alone, kernel-checked on every push.",
      "tag": "T",
      "source": "\\lean{Fourier, FRC.Shell.Frame.F\\_sq}",
      "key": "p06048"
@@ -468,7 +468,7 @@
    {
     "name": "FRC.Shell.Frame.W_sq'",
     "module": "FrcCore/Sum",
-    "line": 294,
+    "line": 295,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -477,7 +477,7 @@
    {
     "name": "FRC.Shell.Frame.F_sq",
     "module": "FrcCore/Sum",
-    "line": 309,
+    "line": 310,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -486,7 +486,7 @@
    {
     "name": "FRC.Shell.Frame.J_sq",
     "module": "FrcCore/Sum",
-    "line": 298,
+    "line": 299,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -497,7 +497,7 @@
    {
     "name": "FRC.Shell.Frame.ofNat_n",
     "module": "FrcCore/Sum",
-    "line": 113,
+    "line": 114,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -521,18 +521,54 @@
    {
     "name": "FRC.Shell.Frame.W_J_comm",
     "module": "FrcCore/Sum",
-    "line": 322,
+    "line": 323,
     "axioms": [],
     "tier": 0,
     "ok": true,
     "doc": "6:B7 (`W J = J W`, entrywise)."
+   },
+   {
+    "name": "FRC.Shell.Frame.symm_antisymm_decomp",
+    "module": "FrcCore/Sum",
+    "line": 624,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "6:B7 — the decomposition `V = V⁺ ⊕ V⁻`: with `h = 2⁻¹`, `v = v⁺ + v⁻` where `v⁺ k = h(v k + v (rev k))` is symmetric and `v⁻ k = h(v k − v (rev k))` antisymmetric; the decomposition is unique."
+   },
+   {
+    "name": "FRC.Shell.Frame.symm_antisymm_unique",
+    "module": "FrcCore/Sum",
+    "line": 639,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "6:B7 — the decomposition is unique: a vector that is both symmetric and antisymmetric is zero, so the symmetric and antisymmetric parts of `v` are determined."
+   },
+   {
+    "name": "FRC.Shell.Frame.symm_determined",
+    "module": "FrcCore/Sum",
+    "line": 481,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "6:B7 — a symmetric vector is determined by its `2κ + 1` coordinates `v 0, …, v (2κ)`."
+   },
+   {
+    "name": "FRC.Shell.Frame.antisymm_determined",
+    "module": "FrcCore/Sum",
+    "line": 546,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "6:B7 — an antisymmetric vector is determined by its `2κ − 1` coordinates `v 1, …, v (2κ − 1)`."
    }
   ],
   "V4": [
    {
     "name": "FRC.Shell.Frame.F_sq",
     "module": "FrcCore/Sum",
-    "line": 309,
+    "line": 310,
     "axioms": [],
     "tier": 0,
     "ok": true,

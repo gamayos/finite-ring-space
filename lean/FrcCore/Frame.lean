@@ -311,6 +311,40 @@ theorem two_pi (F : Frame p κ g) : (ofNat (2 * halfPeriod κ) : Shell p) = -1 :
   show (4 * κ) % p = (p - 1) % p
   rw [F.n_eq]
 
+/-! ### Two is invertible on every shell -/
+
+theorem two_lt_p (F : Frame p κ g) : 2 < p := by
+  rw [F.cap]
+  have h : 4 * 1 ≤ 4 * κ := Nat.mul_le_mul_left 4 F.cap_pos
+  exact Nat.lt_of_lt_of_le (by decide : 2 < 4 * 1 + 1) (Nat.succ_le_succ h)
+
+theorem two_ne_zero (F : Frame p κ g) : (2 : Shell p) ≠ 0 := fun h => by
+  have := val_injective h
+  rw [val_lit, val_zero, FRC.Nat.mod_eq_of_lt F.two_lt_p] at this
+  exact Nat.noConfusion this
+
+theorem two_eq_one_add_one : (2 : Shell p) = 1 + 1 :=
+  ext (by rw [val_add, val_one, val_lit, FRC.Nat.mod_add_mod _ _ _ hp, FRC.Nat.add_mod_mod _ _ _ hp])
+
+theorem two_mul' (x : Shell p) : (2 : Shell p) * x = x + x := by
+  rw [two_eq_one_add_one, right_distrib, one_mul]
+
+theorem eq_zero_of_eq_neg (F : Frame p κ g) {x : Shell p} (h : x = -x) : x = 0 := by
+  have h2 : (2 : Shell p) * x = 0 := by
+    rw [two_mul']
+    calc x + x = x + -x := by rw [← h]
+      _ = 0 := add_neg x
+  match F.mul_eq_zero h2 with
+  | .inl e => exact absurd e F.two_ne_zero
+  | .inr e => exact e
+
+/-- 1:F1 (Theorem 3) — `2s = 0 ⇒ s = 0`: the additive cycle has no element of order two; the antipode of
+the origin is not a residue. -/
+theorem no_south_pole (F : Frame p κ g) (s : Shell p) (h : (2 : Shell p) * s = 0) : s = 0 :=
+  match F.mul_eq_zero h with
+  | .inl e => absurd e F.two_ne_zero
+  | .inr e => e
+
 end Frame
 end Shell
 end FRC

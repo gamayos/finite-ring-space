@@ -40,6 +40,14 @@ theorem sub_add_cancel {n m : Nat} (h : m ≤ n) : n - m + m = n := by
   match Nat.le.dest h with
   | ⟨k, hk⟩ => rw [← hk, add_sub_cancel_left, Nat.add_comm]
 
+theorem sub_add_self_eq_zero (m : Nat) : ∀ k, m - (m + k) = 0
+  | 0 => Nat.sub_self m
+  | k + 1 => by show Nat.pred (m - (m + k)) = 0; rw [sub_add_self_eq_zero m k]; rfl
+
+theorem sub_eq_zero_of_le {m n : Nat} (h : m ≤ n) : m - n = 0 :=
+  match Nat.le.dest h with
+  | ⟨k, hk⟩ => by rw [← hk]; exact sub_add_self_eq_zero m k
+
 theorem add_sub_of_le {n m : Nat} (h : m ≤ n) : m + (n - m) = n := by
   rw [Nat.add_comm]; exact sub_add_cancel h
 
@@ -47,6 +55,26 @@ theorem sub_lt_of_lt_add {x y z : Nat} (h : x < y + z) (hy : y ≤ x) : x - y < 
   refine Nat.lt_of_add_lt_add_right (n := y) ?_
   rw [sub_add_cancel hy, Nat.add_comm z y]
   exact h
+
+theorem le_of_add_le_add_left {a b c : Nat} (h : a + b ≤ a + c) : b ≤ c := by
+  induction a with
+  | zero => rw [Nat.zero_add, Nat.zero_add] at h; exact h
+  | succ a ih => apply ih; rw [Nat.succ_add, Nat.succ_add] at h; exact Nat.le_of_succ_le_succ h
+
+theorem le_of_add_le_add_right {a b c : Nat} (h : b + a ≤ c + a) : b ≤ c :=
+  le_of_add_le_add_left (a := a) (by rw [Nat.add_comm a b, Nat.add_comm a c]; exact h)
+
+theorem sub_le_of_le_add {a b c : Nat} (h : a ≤ c + b) : a - b ≤ c := by
+  have := Nat.sub_le_sub_right h b
+  rw [add_sub_cancel] at this; exact this
+
+theorem le_add_of_sub_le {a b c : Nat} (hb : b ≤ a) (h : a - b ≤ c) : a ≤ c + b := by
+  have := Nat.add_le_add_right h b
+  rw [sub_add_cancel hb] at this; exact this
+
+theorem le_sub_of_add_le {a b c : Nat} (h : c + b ≤ a) : c ≤ a - b := by
+  have := Nat.sub_le_sub_right h b
+  rw [add_sub_cancel] at this; exact this
 
 theorem succ_ne_zero (n : Nat) : n + 1 ≠ 0 := fun h => Nat.noConfusion h
 

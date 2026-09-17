@@ -20,349 +20,664 @@
     
     <nav><a href="../../index.html">Home</a><a href="../../publications.html">Publications</a><a href="../../00-ledger.html">Ledger</a><a href="../../predictions.html">Predictions</a><a href="../../explicability.html">Explicability</a></nav>
   </header>
-<main id="ledger-main"><section class="prose"><p>The core module <code>lean/FrcCore/Sum.lean</code> — the substrate from first principles, no Mathlib, no axioms (the modules in order: <a href="Nat.html">Nat</a>, <a href="Pigeonhole.html">Pigeonhole</a>, <a href="Shell.html">Shell</a>, <a href="Frame.html">Frame</a>, <a href="Orbit.html">Orbit</a>, <a href="Sum.html">Sum</a>, <a href="Algebra.html">Algebra</a>, <a href="Geometry.html">Geometry</a>, <a href="Instances.html">Instances</a>): 30 theorems (5 definitions): 30 with no axioms (green), 0 at tier 1 (teal: <code>propext</code>, <code>Quot.sound</code>), 0 at tier 2 (amber: <code>Classical.choice</code>), 0 red; the plain glyph marks a definition. Each declaration is anchored; the ledger rows cite them by name. <a href="https://live.lean-lang.org/#project=lean-v4.34.0&url=https://raw.githubusercontent.com/gamayos/finite-ring-space/main/lean/web/FrcCore.lean" target="_blank" rel="noopener">▶ open in the Lean web editor</a> · <a href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcCore/Sum.lean" target="_blank" rel="noopener">on GitHub</a> · <a href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcCore/axioms.log" target="_blank" rel="noopener">axioms.log</a> · <a href="https://github.com/gamayos/finite-ring-space/actions/workflows/lean.yml" target="_blank" rel="noopener">CI</a> (all in a new tab).</p></section><pre class="lean"><span class="ln" id="L1"><a class="lno" href="#L1">1</a>import FrcCore.Frame</span>
-<span class="ln" id="L2"><a class="lno" href="#L2">2</a></span>
-<span class="ln" id="L3"><a class="lno" href="#L3">3</a>/-!</span>
-<span class="ln" id="L4"><a class="lno" href="#L4">4</a># FrcCore.Sum — finite sums on the shell, the geometric sum, the Fourier inversion</span>
-<span class="ln" id="L5"><a class="lno" href="#L5">5</a></span>
-<span class="ln" id="L6"><a class="lno" href="#L6">6</a>Sums over `l &lt; n` are defined by structural recursion (`sumRange f (n+1) = sumRange f n + f n`): no</span>
-<span class="ln" id="L7"><a class="lno" href="#L7">7</a>`Finset`, no quotient, no function extensionality — a congruence lemma (`sum_congr`) replaces `funext`.</span>
-<span class="ln" id="L8"><a class="lno" href="#L8">8</a>The geometric sum gives the principal-root identity (2:F1, Prop. 6.1 of 2-geometry) and the entrywise</span>
-<span class="ln" id="L9"><a class="lno" href="#L9">9</a>inversion of the shell Fourier matrix `W k j = g^{jk}`: `Σ_l W k l · (−g^{−lj}) = [k = j]` (2:F3,</span>
-<span class="ln" id="L10"><a class="lno" href="#L10">10</a>Prop. 6.3; 6:B5 in matrix form). No axioms.</span>
-<span class="ln" id="L11"><a class="lno" href="#L11">11</a>-/</span>
-<span class="ln" id="L12"><a class="lno" href="#L12">12</a></span>
-<span class="ln" id="L13"><a class="lno" href="#L13">13</a>namespace FRC</span>
-<span class="ln" id="L14"><a class="lno" href="#L14">14</a>namespace Shell</span>
-<span class="ln" id="L15"><a class="lno" href="#L15">15</a></span>
-<span class="ln" id="L16"><a class="lno" href="#L16">16</a>variable {p : Nat} [Pos p]</span>
-<span class="ln" id="L17"><a class="lno" href="#L17">17</a></span>
-<span class="ln" id="L18"><a class="lno" href="#L18">18</a>/-- `sumRange f n = f 0 + f 1 + ⋯ + f (n−1)`. -/</span>
-<span class="ln decl" id="FRC.Shell.sumRange"><a class="lno" href="#FRC.Shell.sumRange">19</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcCore/Sum.lean#L19" title="this line on GitHub (new tab)" target="_blank" rel="noopener">⧉</a><img class="leanico small" src="../lean.png" alt="" title="a definition: no proof, no axioms">def sumRange (f : Nat → Shell p) : Nat → Shell p</span>
-<span class="ln" id="L20"><a class="lno" href="#L20">20</a>  | 0 =&gt; 0</span>
-<span class="ln" id="L21"><a class="lno" href="#L21">21</a>  | n + 1 =&gt; sumRange f n + f n</span>
-<span class="ln" id="L22"><a class="lno" href="#L22">22</a></span>
-<span class="ln decl" id="FRC.Shell.sumRange_zero"><a class="lno" href="#FRC.Shell.sumRange_zero">23</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcCore/Sum.lean#L23" title="this line on GitHub (new tab)" target="_blank" rel="noopener">⧉</a><img class="leanico small ok" src="../lean-ok.png" alt="" title="axioms: none — tier 0, no axioms">theorem sumRange_zero (f : Nat → Shell p) : sumRange f 0 = 0 := rfl</span>
-<span class="ln decl" id="FRC.Shell.sumRange_succ"><a class="lno" href="#FRC.Shell.sumRange_succ">24</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcCore/Sum.lean#L24" title="this line on GitHub (new tab)" target="_blank" rel="noopener">⧉</a><img class="leanico small ok" src="../lean-ok.png" alt="" title="axioms: none — tier 0, no axioms">theorem sumRange_succ (f : Nat → Shell p) (n : Nat) : sumRange f (n + 1) = sumRange f n + f n := rfl</span>
-<span class="ln" id="L25"><a class="lno" href="#L25">25</a></span>
-<span class="ln decl" id="FRC.Shell.sum_congr"><a class="lno" href="#FRC.Shell.sum_congr">26</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcCore/Sum.lean#L26" title="this line on GitHub (new tab)" target="_blank" rel="noopener">⧉</a><img class="leanico small ok" src="../lean-ok.png" alt="" title="axioms: none — tier 0, no axioms">theorem sum_congr {f h : Nat → Shell p} (n : Nat) (e : ∀ l, l &lt; n → f l = h l) :</span>
-<span class="ln" id="L27"><a class="lno" href="#L27">27</a>    sumRange f n = sumRange h n := by</span>
-<span class="ln" id="L28"><a class="lno" href="#L28">28</a>  induction n with</span>
-<span class="ln" id="L29"><a class="lno" href="#L29">29</a>  | zero =&gt; rfl</span>
-<span class="ln" id="L30"><a class="lno" href="#L30">30</a>  | succ n ih =&gt;</span>
-<span class="ln" id="L31"><a class="lno" href="#L31">31</a>    rw [sumRange_succ, sumRange_succ, ih (fun l hl =&gt; e l (Nat.lt_succ_of_lt hl)),</span>
-<span class="ln" id="L32"><a class="lno" href="#L32">32</a>      e n (Nat.lt_succ_self n)]</span>
-<span class="ln" id="L33"><a class="lno" href="#L33">33</a></span>
-<span class="ln decl" id="FRC.Shell.sum_add"><a class="lno" href="#FRC.Shell.sum_add">34</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcCore/Sum.lean#L34" title="this line on GitHub (new tab)" target="_blank" rel="noopener">⧉</a><img class="leanico small ok" src="../lean-ok.png" alt="" title="axioms: none — tier 0, no axioms">theorem sum_add (f h : Nat → Shell p) (n : Nat) :</span>
-<span class="ln" id="L35"><a class="lno" href="#L35">35</a>    sumRange (fun l =&gt; f l + h l) n = sumRange f n + sumRange h n := by</span>
-<span class="ln" id="L36"><a class="lno" href="#L36">36</a>  induction n with</span>
-<span class="ln" id="L37"><a class="lno" href="#L37">37</a>  | zero =&gt; rw [sumRange_zero, sumRange_zero, sumRange_zero, add_zero]</span>
-<span class="ln" id="L38"><a class="lno" href="#L38">38</a>  | succ n ih =&gt;</span>
-<span class="ln" id="L39"><a class="lno" href="#L39">39</a>    rw [sumRange_succ, sumRange_succ, sumRange_succ, ih, add_add_add_comm]</span>
-<span class="ln" id="L40"><a class="lno" href="#L40">40</a></span>
-<span class="ln decl" id="FRC.Shell.sum_mul_right"><a class="lno" href="#FRC.Shell.sum_mul_right">41</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcCore/Sum.lean#L41" title="this line on GitHub (new tab)" target="_blank" rel="noopener">⧉</a><img class="leanico small ok" src="../lean-ok.png" alt="" title="axioms: none — tier 0, no axioms">theorem sum_mul_right (f : Nat → Shell p) (c : Shell p) (n : Nat) :</span>
-<span class="ln" id="L42"><a class="lno" href="#L42">42</a>    sumRange (fun l =&gt; f l * c) n = sumRange f n * c := by</span>
-<span class="ln" id="L43"><a class="lno" href="#L43">43</a>  induction n with</span>
-<span class="ln" id="L44"><a class="lno" href="#L44">44</a>  | zero =&gt; rw [sumRange_zero, sumRange_zero, zero_mul]</span>
-<span class="ln" id="L45"><a class="lno" href="#L45">45</a>  | succ n ih =&gt; rw [sumRange_succ, sumRange_succ, ih, right_distrib]</span>
-<span class="ln" id="L46"><a class="lno" href="#L46">46</a></span>
-<span class="ln decl" id="FRC.Shell.sum_mul_left"><a class="lno" href="#FRC.Shell.sum_mul_left">47</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcCore/Sum.lean#L47" title="this line on GitHub (new tab)" target="_blank" rel="noopener">⧉</a><img class="leanico small ok" src="../lean-ok.png" alt="" title="axioms: none — tier 0, no axioms">theorem sum_mul_left (f : Nat → Shell p) (c : Shell p) (n : Nat) :</span>
-<span class="ln" id="L48"><a class="lno" href="#L48">48</a>    sumRange (fun l =&gt; c * f l) n = c * sumRange f n := by</span>
-<span class="ln" id="L49"><a class="lno" href="#L49">49</a>  induction n with</span>
-<span class="ln" id="L50"><a class="lno" href="#L50">50</a>  | zero =&gt; rw [sumRange_zero, sumRange_zero, mul_zero]</span>
-<span class="ln" id="L51"><a class="lno" href="#L51">51</a>  | succ n ih =&gt; rw [sumRange_succ, sumRange_succ, ih, left_distrib]</span>
-<span class="ln" id="L52"><a class="lno" href="#L52">52</a></span>
-<span class="ln decl" id="FRC.Shell.sum_neg"><a class="lno" href="#FRC.Shell.sum_neg">53</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcCore/Sum.lean#L53" title="this line on GitHub (new tab)" target="_blank" rel="noopener">⧉</a><img class="leanico small ok" src="../lean-ok.png" alt="" title="axioms: none — tier 0, no axioms">theorem sum_neg (f : Nat → Shell p) (n : Nat) : sumRange (fun l =&gt; -(f l)) n = -(sumRange f n) := by</span>
-<span class="ln" id="L54"><a class="lno" href="#L54">54</a>  induction n with</span>
-<span class="ln" id="L55"><a class="lno" href="#L55">55</a>  | zero =&gt; rw [sumRange_zero, sumRange_zero, neg_zero]</span>
-<span class="ln" id="L56"><a class="lno" href="#L56">56</a>  | succ n ih =&gt; rw [sumRange_succ, sumRange_succ, ih, neg_add_rev]</span>
-<span class="ln" id="L57"><a class="lno" href="#L57">57</a></span>
-<span class="ln decl" id="FRC.Shell.sum_const"><a class="lno" href="#FRC.Shell.sum_const">58</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcCore/Sum.lean#L58" title="this line on GitHub (new tab)" target="_blank" rel="noopener">⧉</a><img class="leanico small ok" src="../lean-ok.png" alt="" title="axioms: none — tier 0, no axioms">theorem sum_const (c : Shell p) (n : Nat) : sumRange (fun _ =&gt; c) n = ofNat n * c := by</span>
-<span class="ln" id="L59"><a class="lno" href="#L59">59</a>  induction n with</span>
-<span class="ln" id="L60"><a class="lno" href="#L60">60</a>  | zero =&gt; rw [sumRange_zero]; exact (zero_mul c).symm</span>
-<span class="ln" id="L61"><a class="lno" href="#L61">61</a>  | succ n ih =&gt;</span>
-<span class="ln" id="L62"><a class="lno" href="#L62">62</a>    rw [sumRange_succ, ih]</span>
-<span class="ln" id="L63"><a class="lno" href="#L63">63</a>    have : (ofNat (n + 1) : Shell p) = ofNat n + 1 := ext (by</span>
-<span class="ln" id="L64"><a class="lno" href="#L64">64</a>      rw [val_ofNat, val_add, val_ofNat, val_one, FRC.Nat.mod_add_mod _ _ _ hp, FRC.Nat.add_mod_mod _ _ _ hp])</span>
-<span class="ln" id="L65"><a class="lno" href="#L65">65</a>    rw [this, right_distrib, one_mul]</span>
-<span class="ln" id="L66"><a class="lno" href="#L66">66</a></span>
-<span class="ln decl" id="FRC.Shell.sum_zero"><a class="lno" href="#FRC.Shell.sum_zero">67</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcCore/Sum.lean#L67" title="this line on GitHub (new tab)" target="_blank" rel="noopener">⧉</a><img class="leanico small ok" src="../lean-ok.png" alt="" title="axioms: none — tier 0, no axioms">theorem sum_zero {f : Nat → Shell p} (n : Nat) (h : ∀ l, l &lt; n → f l = 0) : sumRange f n = 0 := by</span>
-<span class="ln" id="L68"><a class="lno" href="#L68">68</a>  induction n with</span>
-<span class="ln" id="L69"><a class="lno" href="#L69">69</a>  | zero =&gt; rfl</span>
-<span class="ln" id="L70"><a class="lno" href="#L70">70</a>  | succ n ih =&gt; rw [sumRange_succ, ih (fun l hl =&gt; h l (Nat.lt_succ_of_lt hl)), h n (Nat.lt_succ_self n), add_zero]</span>
-<span class="ln" id="L71"><a class="lno" href="#L71">71</a></span>
-<span class="ln" id="L72"><a class="lno" href="#L72">72</a>/-- A sum with a single nonzero term. -/</span>
-<span class="ln decl" id="FRC.Shell.sum_eq_single"><a class="lno" href="#FRC.Shell.sum_eq_single">73</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcCore/Sum.lean#L73" title="this line on GitHub (new tab)" target="_blank" rel="noopener">⧉</a><img class="leanico small ok" src="../lean-ok.png" alt="" title="axioms: none — tier 0, no axioms">theorem sum_eq_single {f : Nat → Shell p} {l₀ : Nat} : ∀ {n : Nat}, l₀ &lt; n → (∀ l, l &lt; n → l ≠ l₀ → f l = 0) →</span>
-<span class="ln" id="L74"><a class="lno" href="#L74">74</a>    sumRange f n = f l₀</span>
-<span class="ln" id="L75"><a class="lno" href="#L75">75</a>  | 0, h, _ =&gt; absurd h (Nat.not_lt_zero _)</span>
-<span class="ln" id="L76"><a class="lno" href="#L76">76</a>  | n + 1, hl₀, h =&gt; by</span>
-<span class="ln" id="L77"><a class="lno" href="#L77">77</a>    rw [sumRange_succ]</span>
-<span class="ln" id="L78"><a class="lno" href="#L78">78</a>    exact match Nat.decEq l₀ n with</span>
-<span class="ln" id="L79"><a class="lno" href="#L79">79</a>      | isTrue e =&gt; by</span>
-<span class="ln" id="L80"><a class="lno" href="#L80">80</a>          rw [sum_zero n (fun l hl =&gt; h l (Nat.lt_succ_of_lt hl) (fun e&#x27; =&gt; absurd hl (by rw [e&#x27;, e]; exact Nat.lt_irrefl n))),</span>
-<span class="ln" id="L81"><a class="lno" href="#L81">81</a>            zero_add, e]</span>
-<span class="ln" id="L82"><a class="lno" href="#L82">82</a>      | isFalse e =&gt; by</span>
-<span class="ln" id="L83"><a class="lno" href="#L83">83</a>          rw [sum_eq_single (Nat.lt_of_le_of_ne (Nat.le_of_lt_succ hl₀) (fun e&#x27; =&gt; e e&#x27;)) (fun l hl hne =&gt; h l (Nat.lt_succ_of_lt hl) hne),</span>
-<span class="ln" id="L84"><a class="lno" href="#L84">84</a>            h n (Nat.lt_succ_self n) (fun e&#x27; =&gt; e e&#x27;.symm), add_zero]</span>
-<span class="ln" id="L85"><a class="lno" href="#L85">85</a></span>
-<span class="ln" id="L86"><a class="lno" href="#L86">86</a>/-- The telescoping geometric sum: `(Σ_{l&lt;n} x^l)·(x − 1) = x^n − 1`. -/</span>
-<span class="ln decl" id="FRC.Shell.geom_sum_mul"><a class="lno" href="#FRC.Shell.geom_sum_mul">87</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcCore/Sum.lean#L87" title="this line on GitHub (new tab)" target="_blank" rel="noopener">⧉</a><img class="leanico small ok" src="../lean-ok.png" alt="" title="axioms: none — tier 0, no axioms">theorem geom_sum_mul (x : Shell p) (n : Nat) :</span>
-<span class="ln" id="L88"><a class="lno" href="#L88">88</a>    sumRange (fun l =&gt; x ^ l) n * (x + -1) = x ^ n + -1 := by</span>
-<span class="ln" id="L89"><a class="lno" href="#L89">89</a>  induction n with</span>
-<span class="ln" id="L90"><a class="lno" href="#L90">90</a>  | zero =&gt; rw [sumRange_zero, zero_mul, pow_zero, add_neg]</span>
-<span class="ln" id="L91"><a class="lno" href="#L91">91</a>  | succ n ih =&gt;</span>
-<span class="ln" id="L92"><a class="lno" href="#L92">92</a>    rw [sumRange_succ, right_distrib, ih, left_distrib, ← mul_neg, mul_one, ← pow_succ]</span>
-<span class="ln" id="L93"><a class="lno" href="#L93">93</a>    rw [add_add_add_comm, add_comm (x ^ n) (x ^ (n + 1)), add_comm (-1) (-(x ^ n)), add_assoc,</span>
-<span class="ln" id="L94"><a class="lno" href="#L94">94</a>      ← add_assoc (x ^ n), add_neg, zero_add]</span>
-<span class="ln" id="L95"><a class="lno" href="#L95">95</a></span>
-<span class="ln" id="L96"><a class="lno" href="#L96">96</a>namespace Frame</span>
-<span class="ln" id="L97"><a class="lno" href="#L97">97</a>variable {κ : Nat} {g : Shell p}</span>
-<span class="ln" id="L98"><a class="lno" href="#L98">98</a></span>
-<span class="ln" id="L99"><a class="lno" href="#L99">99</a>/-- `Σ_{l&lt;n} x^l = 0` when `x^n = 1` and `x ≠ 1` (the field has no zero divisors). -/</span>
-<span class="ln decl" id="FRC.Shell.Frame.geom_sum_eq_zero"><a class="lno" href="#FRC.Shell.Frame.geom_sum_eq_zero">100</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcCore/Sum.lean#L100" title="this line on GitHub (new tab)" target="_blank" rel="noopener">⧉</a><img class="leanico small ok" src="../lean-ok.png" alt="" title="axioms: none — tier 0, no axioms">theorem geom_sum_eq_zero (F : Frame p κ g) {x : Shell p} (n : Nat) (hn : x ^ n = 1) (hx : x ≠ 1) :</span>
-<span class="ln" id="L101"><a class="lno" href="#L101">101</a>    sumRange (fun l =&gt; x ^ l) n = 0 := by</span>
-<span class="ln" id="L102"><a class="lno" href="#L102">102</a>  have h := geom_sum_mul x n</span>
-<span class="ln" id="L103"><a class="lno" href="#L103">103</a>  rw [hn, add_neg] at h</span>
-<span class="ln" id="L104"><a class="lno" href="#L104">104</a>  match F.mul_eq_zero h with</span>
-<span class="ln" id="L105"><a class="lno" href="#L105">105</a>  | .inl e =&gt; exact e</span>
-<span class="ln" id="L106"><a class="lno" href="#L106">106</a>  | .inr e =&gt; exact absurd (by</span>
-<span class="ln" id="L107"><a class="lno" href="#L107">107</a>      calc x = x + 0 := (add_zero x).symm</span>
-<span class="ln" id="L108"><a class="lno" href="#L108">108</a>        _ = x + (-1 + 1) := by rw [neg_add]</span>
-<span class="ln" id="L109"><a class="lno" href="#L109">109</a>        _ = (x + -1) + 1 := (add_assoc _ _ _).symm</span>
-<span class="ln" id="L110"><a class="lno" href="#L110">110</a>        _ = 1 := by rw [e, zero_add]) hx</span>
-<span class="ln" id="L111"><a class="lno" href="#L111">111</a></span>
-<span class="ln" id="L112"><a class="lno" href="#L112">112</a>/-- 6:B6 — the normalization constant read in the field: `n = p − 1 ≡ −1`. -/</span>
-<span class="ln decl" id="FRC.Shell.Frame.ofNat_n"><a class="lno" href="#FRC.Shell.Frame.ofNat_n">113</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcCore/Sum.lean#L113" title="this line on GitHub (new tab)" target="_blank" rel="noopener">⧉</a><img class="leanico small ok" src="../lean-ok.png" alt="" title="axioms: none — tier 0, no axioms">theorem ofNat_n (F : Frame p κ g) : (ofNat (p - 1) : Shell p) = -1 := by</span>
-<span class="ln" id="L114"><a class="lno" href="#L114">114</a>  apply ext</span>
-<span class="ln" id="L115"><a class="lno" href="#L115">115</a>  rw [val_ofNat, val_neg, val_one, FRC.Nat.mod_eq_of_lt F.one_lt_p,</span>
-<span class="ln" id="L116"><a class="lno" href="#L116">116</a>    FRC.Nat.mod_eq_of_lt (Nat.sub_lt Pos.pos (Nat.zero_lt_succ 0))]</span>
-<span class="ln" id="L117"><a class="lno" href="#L117">117</a></span>
-<span class="ln" id="L118"><a class="lno" href="#L118">118</a>/-- 2:F1 (Prop. 6.1) — `g` is a principal root of unity: `g^n = 1`, `Σ_{j&lt;n} (g^k)^j = 0` for</span>
-<span class="ln" id="L119"><a class="lno" href="#L119">119</a>`0 &lt; k &lt; n`, and `n = p − 1` reads as `−1` in the shell. -/</span>
-<span class="ln decl" id="FRC.Shell.Frame.principal_root"><a class="lno" href="#FRC.Shell.Frame.principal_root">120</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcCore/Sum.lean#L120" title="this line on GitHub (new tab)" target="_blank" rel="noopener">⧉</a><img class="leanico small ok" src="../lean-ok.png" alt="" title="axioms: none — tier 0, no axioms">theorem principal_root (F : Frame p κ g) (k : Nat) (hk0 : 0 &lt; k) (hk : k &lt; p - 1) :</span>
-<span class="ln" id="L121"><a class="lno" href="#L121">121</a>    g ^ (p - 1) = 1 ∧ sumRange (fun j =&gt; (g ^ k) ^ j) (p - 1) = 0 ∧ (ofNat (p - 1) : Shell p) = -1 := by</span>
-<span class="ln" id="L122"><a class="lno" href="#L122">122</a>  refine ⟨F.pow_n, ?_, F.ofNat_n⟩</span>
-<span class="ln" id="L123"><a class="lno" href="#L123">123</a>  apply F.geom_sum_eq_zero</span>
-<span class="ln" id="L124"><a class="lno" href="#L124">124</a>  · rw [pow_mul_comm, F.pow_n, one_pow]</span>
-<span class="ln" id="L125"><a class="lno" href="#L125">125</a>  · exact F.prim.2 k hk hk0</span>
-<span class="ln" id="L126"><a class="lno" href="#L126">126</a></span>
-<span class="ln" id="L127"><a class="lno" href="#L127">127</a>/-- `g^{k + (n − j)} = 1` exactly when `k = j`, for `k, j &lt; n`. -/</span>
-<span class="ln decl" id="FRC.Shell.Frame.pow_shift_eq_one_iff"><a class="lno" href="#FRC.Shell.Frame.pow_shift_eq_one_iff">128</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcCore/Sum.lean#L128" title="this line on GitHub (new tab)" target="_blank" rel="noopener">⧉</a><img class="leanico small ok" src="../lean-ok.png" alt="" title="axioms: none — tier 0, no axioms">theorem pow_shift_eq_one_iff (F : Frame p κ g) {k j : Nat} (hk : k &lt; p - 1) (hj : j &lt; p - 1) :</span>
-<span class="ln" id="L129"><a class="lno" href="#L129">129</a>    g ^ (k + (p - 1 - j)) = 1 ↔ k = j := by</span>
-<span class="ln" id="L130"><a class="lno" href="#L130">130</a>  have hn := F.n_pos</span>
-<span class="ln" id="L131"><a class="lno" href="#L131">131</a>  have hjn : p - 1 - j + j = p - 1 := FRC.Nat.sub_add_cancel (Nat.le_of_lt hj)</span>
-<span class="ln" id="L132"><a class="lno" href="#L132">132</a>  constructor</span>
-<span class="ln" id="L133"><a class="lno" href="#L133">133</a>  · intro h</span>
-<span class="ln" id="L134"><a class="lno" href="#L134">134</a>    have hm := F.mod_eq_zero_of_pow_eq_one h</span>
-<span class="ln" id="L135"><a class="lno" href="#L135">135</a>    match Nat.lt_or_ge k j with</span>
-<span class="ln" id="L136"><a class="lno" href="#L136">136</a>    | .inl hlt =&gt;</span>
-<span class="ln" id="L137"><a class="lno" href="#L137">137</a>      have hlt&#x27; : k + (p - 1 - j) &lt; p - 1 := by</span>
-<span class="ln" id="L138"><a class="lno" href="#L138">138</a>        have := Nat.add_lt_add_right hlt (p - 1 - j)</span>
-<span class="ln" id="L139"><a class="lno" href="#L139">139</a>        rw [Nat.add_comm j, hjn] at this</span>
-<span class="ln" id="L140"><a class="lno" href="#L140">140</a>        exact this</span>
-<span class="ln" id="L141"><a class="lno" href="#L141">141</a>      rw [FRC.Nat.mod_eq_of_lt hlt&#x27;] at hm</span>
-<span class="ln" id="L142"><a class="lno" href="#L142">142</a>      have hpos : 0 &lt; p - 1 - j := by</span>
-<span class="ln" id="L143"><a class="lno" href="#L143">143</a>        refine Nat.lt_of_add_lt_add_right (n := j) ?_</span>
-<span class="ln" id="L144"><a class="lno" href="#L144">144</a>        rw [Nat.zero_add, hjn]; exact hj</span>
-<span class="ln" id="L145"><a class="lno" href="#L145">145</a>      exact absurd hm (Nat.ne_of_gt (Nat.lt_of_lt_of_le hpos (Nat.le_add_left _ _)))</span>
-<span class="ln" id="L146"><a class="lno" href="#L146">146</a>    | .inr hge =&gt;</span>
-<span class="ln" id="L147"><a class="lno" href="#L147">147</a>      have e : k + (p - 1 - j) = (p - 1) * 1 + (k - j) := by</span>
-<span class="ln" id="L148"><a class="lno" href="#L148">148</a>        rw [Nat.mul_one]</span>
-<span class="ln" id="L149"><a class="lno" href="#L149">149</a>        calc k + (p - 1 - j) = (j + (k - j)) + (p - 1 - j) := by rw [FRC.Nat.add_sub_of_le hge]</span>
-<span class="ln" id="L150"><a class="lno" href="#L150">150</a>          _ = (p - 1 - j + j) + (k - j) := by</span>
-<span class="ln" id="L151"><a class="lno" href="#L151">151</a>              rw [Nat.add_comm j (k - j), Nat.add_assoc, Nat.add_comm (k - j), Nat.add_comm j (p - 1 - j)]</span>
-<span class="ln" id="L152"><a class="lno" href="#L152">152</a>          _ = p - 1 + (k - j) := by rw [hjn]</span>
-<span class="ln" id="L153"><a class="lno" href="#L153">153</a>      rw [e, FRC.Nat.add_mul_mod_self_left _ _ _ hn,</span>
-<span class="ln" id="L154"><a class="lno" href="#L154">154</a>        FRC.Nat.mod_eq_of_lt (Nat.lt_of_le_of_lt (Nat.sub_le k j) hk)] at hm</span>
-<span class="ln" id="L155"><a class="lno" href="#L155">155</a>      have := FRC.Nat.add_sub_of_le hge</span>
-<span class="ln" id="L156"><a class="lno" href="#L156">156</a>      rw [hm, Nat.add_zero] at this</span>
-<span class="ln" id="L157"><a class="lno" href="#L157">157</a>      exact this.symm</span>
-<span class="ln" id="L158"><a class="lno" href="#L158">158</a>  · intro e</span>
-<span class="ln" id="L159"><a class="lno" href="#L159">159</a>    rw [e, FRC.Nat.add_sub_of_le (Nat.le_of_lt hj), F.pow_n]</span>
-<span class="ln" id="L160"><a class="lno" href="#L160">160</a></span>
-<span class="ln" id="L161"><a class="lno" href="#L161">161</a>/-- 2:F3 (Prop. 6.3), 6:B5 — the inversion of the shell Fourier matrix, entrywise: with</span>
-<span class="ln" id="L162"><a class="lno" href="#L162">162</a>`W k j = g^{jk}` and `W&#x27; l j = −g^{(n−j)l}` (`= −g^{−lj}`), `Σ_{l&lt;n} W k l · W&#x27; l j = [k = j]`. -/</span>
-<span class="ln decl" id="FRC.Shell.Frame.dft_inverse"><a class="lno" href="#FRC.Shell.Frame.dft_inverse">163</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcCore/Sum.lean#L163" title="this line on GitHub (new tab)" target="_blank" rel="noopener">⧉</a><img class="leanico small ok" src="../lean-ok.png" alt="" title="axioms: none — tier 0, no axioms">theorem dft_inverse (F : Frame p κ g) {k j : Nat} (hk : k &lt; p - 1) (hj : j &lt; p - 1) :</span>
-<span class="ln" id="L164"><a class="lno" href="#L164">164</a>    sumRange (fun l =&gt; g ^ (l * k) * -(g ^ ((p - 1 - j) * l))) (p - 1) = if k = j then 1 else 0 := by</span>
-<span class="ln" id="L165"><a class="lno" href="#L165">165</a>  have hsum : sumRange (fun l =&gt; g ^ (l * k) * -(g ^ ((p - 1 - j) * l))) (p - 1)</span>
-<span class="ln" id="L166"><a class="lno" href="#L166">166</a>      = -(sumRange (fun l =&gt; (g ^ (k + (p - 1 - j))) ^ l) (p - 1)) := by</span>
-<span class="ln" id="L167"><a class="lno" href="#L167">167</a>    rw [← sum_neg]</span>
-<span class="ln" id="L168"><a class="lno" href="#L168">168</a>    apply sum_congr</span>
-<span class="ln" id="L169"><a class="lno" href="#L169">169</a>    intro l _</span>
-<span class="ln" id="L170"><a class="lno" href="#L170">170</a>    rw [← mul_neg, ← pow_add, ← pow_mul, Nat.mul_comm l k, ← FRC.Nat.add_mul]</span>
-<span class="ln" id="L171"><a class="lno" href="#L171">171</a>  rw [hsum]</span>
-<span class="ln" id="L172"><a class="lno" href="#L172">172</a>  exact match Nat.decEq k j with</span>
-<span class="ln" id="L173"><a class="lno" href="#L173">173</a>    | .isTrue e =&gt; by</span>
-<span class="ln" id="L174"><a class="lno" href="#L174">174</a>        rw [if_pos e]</span>
-<span class="ln" id="L175"><a class="lno" href="#L175">175</a>        have h1 : g ^ (k + (p - 1 - j)) = 1 := (F.pow_shift_eq_one_iff hk hj).2 e</span>
-<span class="ln" id="L176"><a class="lno" href="#L176">176</a>        have : sumRange (fun l =&gt; (g ^ (k + (p - 1 - j))) ^ l) (p - 1) = ofNat (p - 1) * 1 := by</span>
-<span class="ln" id="L177"><a class="lno" href="#L177">177</a>          rw [← sum_const]; apply sum_congr; intro l _; rw [h1, one_pow]</span>
-<span class="ln" id="L178"><a class="lno" href="#L178">178</a>        rw [this, F.ofNat_n, mul_one, neg_neg]</span>
-<span class="ln" id="L179"><a class="lno" href="#L179">179</a>    | .isFalse e =&gt; by</span>
-<span class="ln" id="L180"><a class="lno" href="#L180">180</a>        rw [if_neg e]</span>
-<span class="ln" id="L181"><a class="lno" href="#L181">181</a>        have h1 : g ^ (k + (p - 1 - j)) ≠ 1 := fun h =&gt; e ((F.pow_shift_eq_one_iff hk hj).1 h)</span>
-<span class="ln" id="L182"><a class="lno" href="#L182">182</a>        rw [F.geom_sum_eq_zero _ (by rw [pow_mul_comm, F.pow_n, one_pow]) h1, neg_zero]</span>
-<span class="ln" id="L183"><a class="lno" href="#L183">183</a></span>
-<span class="ln" id="L184"><a class="lno" href="#L184">184</a>/-- `g^{k + j} = 1` exactly when `(k + j) % n = 0`, i.e. `j` is the reversal `−k` of `k` (`k, j &lt; n`). -/</span>
-<span class="ln decl" id="FRC.Shell.Frame.pow_add_eq_one_iff"><a class="lno" href="#FRC.Shell.Frame.pow_add_eq_one_iff">185</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcCore/Sum.lean#L185" title="this line on GitHub (new tab)" target="_blank" rel="noopener">⧉</a><img class="leanico small ok" src="../lean-ok.png" alt="" title="axioms: none — tier 0, no axioms">theorem pow_add_eq_one_iff (F : Frame p κ g) (k j : Nat) : g ^ (k + j) = 1 ↔ (k + j) % (p - 1) = 0 :=</span>
-<span class="ln" id="L186"><a class="lno" href="#L186">186</a>  ⟨F.mod_eq_zero_of_pow_eq_one, F.pow_eq_one_of_mod⟩</span>
-<span class="ln" id="L187"><a class="lno" href="#L187">187</a></span>
-<span class="ln" id="L188"><a class="lno" href="#L188">188</a>/-- 6:B5 (the shell Fourier matrix squares to the reversal, entrywise): with `W k j = g^{jk}` and</span>
-<span class="ln" id="L189"><a class="lno" href="#L189">189</a>`J k j = [(k + j) % n = 0]`, `Σ_{l&lt;n} W k l · W l j = −J k j` on every shell (`n = p − 1 ≡ −1`). -/</span>
-<span class="ln decl" id="FRC.Shell.Frame.W_sq"><a class="lno" href="#FRC.Shell.Frame.W_sq">190</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcCore/Sum.lean#L190" title="this line on GitHub (new tab)" target="_blank" rel="noopener">⧉</a><img class="leanico small ok" src="../lean-ok.png" alt="" title="axioms: none — tier 0, no axioms">theorem W_sq (F : Frame p κ g) (k j : Nat) :</span>
-<span class="ln" id="L191"><a class="lno" href="#L191">191</a>    sumRange (fun l =&gt; g ^ (l * k) * g ^ (j * l)) (p - 1)</span>
-<span class="ln" id="L192"><a class="lno" href="#L192">192</a>      = -(if (k + j) % (p - 1) = 0 then 1 else 0) := by</span>
-<span class="ln" id="L193"><a class="lno" href="#L193">193</a>  have hsum : sumRange (fun l =&gt; g ^ (l * k) * g ^ (j * l)) (p - 1)</span>
-<span class="ln" id="L194"><a class="lno" href="#L194">194</a>      = sumRange (fun l =&gt; (g ^ (k + j)) ^ l) (p - 1) := by</span>
-<span class="ln" id="L195"><a class="lno" href="#L195">195</a>    apply sum_congr; intro l _</span>
-<span class="ln" id="L196"><a class="lno" href="#L196">196</a>    rw [← pow_add, ← pow_mul, Nat.mul_comm l k, ← FRC.Nat.add_mul]</span>
-<span class="ln" id="L197"><a class="lno" href="#L197">197</a>  rw [hsum]</span>
-<span class="ln" id="L198"><a class="lno" href="#L198">198</a>  exact match Nat.decEq ((k + j) % (p - 1)) 0 with</span>
-<span class="ln" id="L199"><a class="lno" href="#L199">199</a>    | .isTrue e =&gt; by</span>
-<span class="ln" id="L200"><a class="lno" href="#L200">200</a>        rw [if_pos e]</span>
-<span class="ln" id="L201"><a class="lno" href="#L201">201</a>        have h1 : g ^ (k + j) = 1 := F.pow_eq_one_of_mod e</span>
-<span class="ln" id="L202"><a class="lno" href="#L202">202</a>        have : sumRange (fun l =&gt; (g ^ (k + j)) ^ l) (p - 1) = ofNat (p - 1) * 1 := by</span>
-<span class="ln" id="L203"><a class="lno" href="#L203">203</a>          rw [← sum_const]; apply sum_congr; intro l _; rw [h1, one_pow]</span>
-<span class="ln" id="L204"><a class="lno" href="#L204">204</a>        rw [this, F.ofNat_n, mul_one]</span>
-<span class="ln" id="L205"><a class="lno" href="#L205">205</a>    | .isFalse e =&gt; by</span>
-<span class="ln" id="L206"><a class="lno" href="#L206">206</a>        rw [if_neg e, neg_zero]</span>
-<span class="ln" id="L207"><a class="lno" href="#L207">207</a>        exact F.geom_sum_eq_zero _ (by rw [pow_mul_comm, F.pow_n, one_pow]) (fun h =&gt; e (F.mod_eq_zero_of_pow_eq_one h))</span>
-<span class="ln" id="L208"><a class="lno" href="#L208">208</a></span>
-<span class="ln" id="L209"><a class="lno" href="#L209">209</a>/-! ### The reversal, the Fourier matrix `W`, the quarter-turn transform `F = i·W` (6:B5, B7) -/</span>
-<span class="ln" id="L210"><a class="lno" href="#L210">210</a></span>
-<span class="ln" id="L211"><a class="lno" href="#L211">211</a>/-- The reversal `rev n k = (n − k) % n`: the index `l` with `(k + l) % n = 0`. -/</span>
-<span class="ln decl" id="FRC.Shell.Frame.rev"><a class="lno" href="#FRC.Shell.Frame.rev">212</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcCore/Sum.lean#L212" title="this line on GitHub (new tab)" target="_blank" rel="noopener">⧉</a><img class="leanico small" src="../lean.png" alt="" title="a definition: no proof, no axioms">def rev (n k : Nat) : Nat := (n - k) % n</span>
-<span class="ln" id="L213"><a class="lno" href="#L213">213</a></span>
-<span class="ln decl" id="FRC.Shell.Frame.rev_lt"><a class="lno" href="#FRC.Shell.Frame.rev_lt">214</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcCore/Sum.lean#L214" title="this line on GitHub (new tab)" target="_blank" rel="noopener">⧉</a><img class="leanico small ok" src="../lean-ok.png" alt="" title="axioms: none — tier 0, no axioms">theorem rev_lt {n : Nat} (hn : 0 &lt; n) (k : Nat) : rev n k &lt; n := Nat.mod_lt _ hn</span>
-<span class="ln" id="L215"><a class="lno" href="#L215">215</a></span>
-<span class="ln decl" id="FRC.Shell.Frame.rev_zero"><a class="lno" href="#FRC.Shell.Frame.rev_zero">216</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcCore/Sum.lean#L216" title="this line on GitHub (new tab)" target="_blank" rel="noopener">⧉</a><img class="leanico small ok" src="../lean-ok.png" alt="" title="axioms: none — tier 0, no axioms">theorem rev_zero (n : Nat) (hn : 0 &lt; n) : rev n 0 = 0 := by</span>
-<span class="ln" id="L217"><a class="lno" href="#L217">217</a>  unfold rev; rw [Nat.sub_zero]; exact FRC.Nat.mod_self n hn</span>
-<span class="ln" id="L218"><a class="lno" href="#L218">218</a></span>
-<span class="ln decl" id="FRC.Shell.Frame.rev_of_pos"><a class="lno" href="#FRC.Shell.Frame.rev_of_pos">219</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcCore/Sum.lean#L219" title="this line on GitHub (new tab)" target="_blank" rel="noopener">⧉</a><img class="leanico small ok" src="../lean-ok.png" alt="" title="axioms: none — tier 0, no axioms">theorem rev_of_pos {n k : Nat} (hk : k &lt; n) (hk0 : 0 &lt; k) : rev n k = n - k := by</span>
-<span class="ln" id="L220"><a class="lno" href="#L220">220</a>  unfold rev; exact FRC.Nat.mod_eq_of_lt (Nat.sub_lt (Nat.lt_of_lt_of_le hk0 (Nat.le_of_lt hk)) hk0)</span>
-<span class="ln" id="L221"><a class="lno" href="#L221">221</a></span>
-<span class="ln decl" id="FRC.Shell.Frame.rev_add_mod"><a class="lno" href="#FRC.Shell.Frame.rev_add_mod">222</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcCore/Sum.lean#L222" title="this line on GitHub (new tab)" target="_blank" rel="noopener">⧉</a><img class="leanico small ok" src="../lean-ok.png" alt="" title="axioms: none — tier 0, no axioms">theorem rev_add_mod {n k : Nat} (hk : k &lt; n) : (rev n k + k) % n = 0 := by</span>
-<span class="ln" id="L223"><a class="lno" href="#L223">223</a>  have hn : 0 &lt; n := Nat.lt_of_le_of_lt (Nat.zero_le k) hk</span>
-<span class="ln" id="L224"><a class="lno" href="#L224">224</a>  exact match Nat.decEq k 0 with</span>
-<span class="ln" id="L225"><a class="lno" href="#L225">225</a>    | isTrue e =&gt; by rw [e, rev_zero n hn]; rfl</span>
-<span class="ln" id="L226"><a class="lno" href="#L226">226</a>    | isFalse e =&gt; by</span>
-<span class="ln" id="L227"><a class="lno" href="#L227">227</a>        rw [rev_of_pos hk (Nat.pos_of_ne_zero e), FRC.Nat.sub_add_cancel (Nat.le_of_lt hk)]</span>
-<span class="ln" id="L228"><a class="lno" href="#L228">228</a>        exact FRC.Nat.mod_self n hn</span>
-<span class="ln" id="L229"><a class="lno" href="#L229">229</a></span>
-<span class="ln decl" id="FRC.Shell.Frame.rev_rev"><a class="lno" href="#FRC.Shell.Frame.rev_rev">230</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcCore/Sum.lean#L230" title="this line on GitHub (new tab)" target="_blank" rel="noopener">⧉</a><img class="leanico small ok" src="../lean-ok.png" alt="" title="axioms: none — tier 0, no axioms">theorem rev_rev {n k : Nat} (hk : k &lt; n) : rev n (rev n k) = k := by</span>
-<span class="ln" id="L231"><a class="lno" href="#L231">231</a>  have hn : 0 &lt; n := Nat.lt_of_le_of_lt (Nat.zero_le k) hk</span>
-<span class="ln" id="L232"><a class="lno" href="#L232">232</a>  exact match Nat.decEq k 0 with</span>
-<span class="ln" id="L233"><a class="lno" href="#L233">233</a>    | isTrue e =&gt; by rw [e, rev_zero n hn, rev_zero n hn]</span>
-<span class="ln" id="L234"><a class="lno" href="#L234">234</a>    | isFalse e =&gt; by</span>
-<span class="ln" id="L235"><a class="lno" href="#L235">235</a>        have hk0 := Nat.pos_of_ne_zero e</span>
-<span class="ln" id="L236"><a class="lno" href="#L236">236</a>        rw [rev_of_pos hk hk0]</span>
-<span class="ln" id="L237"><a class="lno" href="#L237">237</a>        have hnk : n - k &lt; n := Nat.sub_lt (Nat.lt_of_lt_of_le hk0 (Nat.le_of_lt hk)) hk0</span>
-<span class="ln" id="L238"><a class="lno" href="#L238">238</a>        have hnk0 : 0 &lt; n - k := by</span>
-<span class="ln" id="L239"><a class="lno" href="#L239">239</a>          refine Nat.lt_of_add_lt_add_right (n := k) ?_</span>
-<span class="ln" id="L240"><a class="lno" href="#L240">240</a>          rw [Nat.zero_add, FRC.Nat.sub_add_cancel (Nat.le_of_lt hk)]; exact hk</span>
-<span class="ln" id="L241"><a class="lno" href="#L241">241</a>        rw [rev_of_pos hnk hnk0]</span>
-<span class="ln" id="L242"><a class="lno" href="#L242">242</a>        calc n - (n - k) = (n - k + k) - (n - k) := by rw [FRC.Nat.sub_add_cancel (Nat.le_of_lt hk)]</span>
-<span class="ln" id="L243"><a class="lno" href="#L243">243</a>          _ = k := FRC.Nat.add_sub_cancel_left _ _</span>
-<span class="ln" id="L244"><a class="lno" href="#L244">244</a></span>
-<span class="ln" id="L245"><a class="lno" href="#L245">245</a>/-- `(k + l) % n = 0` exactly when `l` is the reversal of `k` (`k, l &lt; n`). -/</span>
-<span class="ln decl" id="FRC.Shell.Frame.add_mod_eq_zero_iff"><a class="lno" href="#FRC.Shell.Frame.add_mod_eq_zero_iff">246</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcCore/Sum.lean#L246" title="this line on GitHub (new tab)" target="_blank" rel="noopener">⧉</a><img class="leanico small ok" src="../lean-ok.png" alt="" title="axioms: none — tier 0, no axioms">theorem add_mod_eq_zero_iff {n k l : Nat} (hk : k &lt; n) (hl : l &lt; n) : (k + l) % n = 0 ↔ l = rev n k := by</span>
-<span class="ln" id="L247"><a class="lno" href="#L247">247</a>  have hn : 0 &lt; n := Nat.lt_of_le_of_lt (Nat.zero_le k) hk</span>
-<span class="ln" id="L248"><a class="lno" href="#L248">248</a>  constructor</span>
-<span class="ln" id="L249"><a class="lno" href="#L249">249</a>  · intro h</span>
-<span class="ln" id="L250"><a class="lno" href="#L250">250</a>    exact match Nat.decEq k 0 with</span>
-<span class="ln" id="L251"><a class="lno" href="#L251">251</a>      | isTrue e =&gt; by</span>
-<span class="ln" id="L252"><a class="lno" href="#L252">252</a>          rw [e, Nat.zero_add, FRC.Nat.mod_eq_of_lt hl] at h</span>
-<span class="ln" id="L253"><a class="lno" href="#L253">253</a>          rw [e, rev_zero n hn, h]</span>
-<span class="ln" id="L254"><a class="lno" href="#L254">254</a>      | isFalse e =&gt; by</span>
-<span class="ln" id="L255"><a class="lno" href="#L255">255</a>          have hk0 := Nat.pos_of_ne_zero e</span>
-<span class="ln" id="L256"><a class="lno" href="#L256">256</a>          rw [rev_of_pos hk hk0]</span>
-<span class="ln" id="L257"><a class="lno" href="#L257">257</a>          exact match Nat.lt_or_ge l (n - k) with</span>
-<span class="ln" id="L258"><a class="lno" href="#L258">258</a>            | Or.inl hlt =&gt; by</span>
-<span class="ln" id="L259"><a class="lno" href="#L259">259</a>                have : k + l &lt; n := by</span>
-<span class="ln" id="L260"><a class="lno" href="#L260">260</a>                  have := Nat.add_lt_add_left hlt k</span>
-<span class="ln" id="L261"><a class="lno" href="#L261">261</a>                  rw [FRC.Nat.add_sub_of_le (Nat.le_of_lt hk)] at this; exact this</span>
-<span class="ln" id="L262"><a class="lno" href="#L262">262</a>                rw [FRC.Nat.mod_eq_of_lt this] at h</span>
-<span class="ln" id="L263"><a class="lno" href="#L263">263</a>                exact absurd h (Nat.ne_of_gt (Nat.lt_of_lt_of_le hk0 (Nat.le_add_right k l)))</span>
-<span class="ln" id="L264"><a class="lno" href="#L264">264</a>            | Or.inr hge =&gt; by</span>
-<span class="ln" id="L265"><a class="lno" href="#L265">265</a>                have e1 : k + l = n * 1 + (l - (n - k)) := by</span>
-<span class="ln" id="L266"><a class="lno" href="#L266">266</a>                  rw [Nat.mul_one]</span>
-<span class="ln" id="L267"><a class="lno" href="#L267">267</a>                  calc k + l = k + ((n - k) + (l - (n - k))) := by rw [FRC.Nat.add_sub_of_le hge]</span>
-<span class="ln" id="L268"><a class="lno" href="#L268">268</a>                    _ = (k + (n - k)) + (l - (n - k)) := (Nat.add_assoc _ _ _).symm</span>
-<span class="ln" id="L269"><a class="lno" href="#L269">269</a>                    _ = n + (l - (n - k)) := by rw [FRC.Nat.add_sub_of_le (Nat.le_of_lt hk)]</span>
-<span class="ln" id="L270"><a class="lno" href="#L270">270</a>                rw [e1, FRC.Nat.add_mul_mod_self_left _ _ _ hn,</span>
-<span class="ln" id="L271"><a class="lno" href="#L271">271</a>                  FRC.Nat.mod_eq_of_lt (Nat.lt_of_le_of_lt (Nat.sub_le _ _) hl)] at h</span>
-<span class="ln" id="L272"><a class="lno" href="#L272">272</a>                have := FRC.Nat.add_sub_of_le hge</span>
-<span class="ln" id="L273"><a class="lno" href="#L273">273</a>                rw [h, Nat.add_zero] at this</span>
-<span class="ln" id="L274"><a class="lno" href="#L274">274</a>                exact this.symm</span>
-<span class="ln" id="L275"><a class="lno" href="#L275">275</a>  · intro e; rw [e, Nat.add_comm]; exact rev_add_mod hk</span>
-<span class="ln" id="L276"><a class="lno" href="#L276">276</a></span>
-<span class="ln" id="L277"><a class="lno" href="#L277">277</a>/-- The shell Fourier matrix, `W k j = g^{jk}` (6:B5&#x27;s convention). -/</span>
-<span class="ln decl" id="FRC.Shell.Frame.W"><a class="lno" href="#FRC.Shell.Frame.W">278</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcCore/Sum.lean#L278" title="this line on GitHub (new tab)" target="_blank" rel="noopener">⧉</a><img class="leanico small" src="../lean.png" alt="" title="a definition: no proof, no axioms">def W (g : Shell p) (k j : Nat) : Shell p := g ^ (j * k)</span>
-<span class="ln" id="L279"><a class="lno" href="#L279">279</a></span>
-<span class="ln" id="L280"><a class="lno" href="#L280">280</a>/-- The reversal matrix `J k j = [(k + j) % n = 0]`. -/</span>
-<span class="ln decl" id="FRC.Shell.Frame.J"><a class="lno" href="#FRC.Shell.Frame.J">281</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcCore/Sum.lean#L281" title="this line on GitHub (new tab)" target="_blank" rel="noopener">⧉</a><img class="leanico small" src="../lean.png" alt="" title="a definition: no proof, no axioms">def J (n k j : Nat) : Shell p := if (k + j) % n = 0 then 1 else 0</span>
-<span class="ln" id="L282"><a class="lno" href="#L282">282</a></span>
-<span class="ln" id="L283"><a class="lno" href="#L283">283</a>/-- The quarter-turn transform `F = i·W`, `i = −g^κ`. -/</span>
-<span class="ln decl" id="FRC.Shell.Frame.Fmat"><a class="lno" href="#FRC.Shell.Frame.Fmat">284</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcCore/Sum.lean#L284" title="this line on GitHub (new tab)" target="_blank" rel="noopener">⧉</a><img class="leanico small" src="../lean.png" alt="" title="a definition: no proof, no axioms">def Fmat (g : Shell p) (κ k j : Nat) : Shell p := quarterTurn g κ * W g k j</span>
-<span class="ln" id="L285"><a class="lno" href="#L285">285</a></span>
-<span class="ln decl" id="FRC.Shell.Frame.J_eq"><a class="lno" href="#FRC.Shell.Frame.J_eq">286</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcCore/Sum.lean#L286" title="this line on GitHub (new tab)" target="_blank" rel="noopener">⧉</a><img class="leanico small ok" src="../lean-ok.png" alt="" title="axioms: none — tier 0, no axioms">theorem J_eq {n k l : Nat} (hk : k &lt; n) (hl : l &lt; n) :</span>
-<span class="ln" id="L287"><a class="lno" href="#L287">287</a>    (J n k l : Shell p) = (if l = rev n k then (1 : Shell p) else 0) := by</span>
-<span class="ln" id="L288"><a class="lno" href="#L288">288</a>  unfold J</span>
-<span class="ln" id="L289"><a class="lno" href="#L289">289</a>  exact match Nat.decEq l (rev n k) with</span>
-<span class="ln" id="L290"><a class="lno" href="#L290">290</a>    | isTrue e =&gt; by rw [if_pos e, if_pos ((add_mod_eq_zero_iff hk hl).2 e)]</span>
-<span class="ln" id="L291"><a class="lno" href="#L291">291</a>    | isFalse e =&gt; by rw [if_neg e, if_neg (fun h =&gt; e ((add_mod_eq_zero_iff hk hl).1 h))]</span>
-<span class="ln" id="L292"><a class="lno" href="#L292">292</a></span>
-<span class="ln" id="L293"><a class="lno" href="#L293">293</a>/-- 6:B5 (`W² = −J`, entrywise), in the matrix notation. -/</span>
-<span class="ln decl" id="FRC.Shell.Frame.W_sq'"><a class="lno" href="#FRC.Shell.Frame.W_sq'">294</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcCore/Sum.lean#L294" title="this line on GitHub (new tab)" target="_blank" rel="noopener">⧉</a><img class="leanico small ok" src="../lean-ok.png" alt="" title="axioms: none — tier 0, no axioms">theorem W_sq&#x27; (F : Frame p κ g) (k j : Nat) :</span>
-<span class="ln" id="L295"><a class="lno" href="#L295">295</a>    sumRange (fun l =&gt; W g k l * W g l j) (p - 1) = -(J (p - 1) k j) := F.W_sq k j</span>
-<span class="ln" id="L296"><a class="lno" href="#L296">296</a></span>
-<span class="ln" id="L297"><a class="lno" href="#L297">297</a>/-- 6:B5, 6:B7 (`J² = 1`, entrywise): the reversal is an involution, so `F⁴ = J² = 1`. -/</span>
-<span class="ln decl" id="FRC.Shell.Frame.J_sq"><a class="lno" href="#FRC.Shell.Frame.J_sq">298</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcCore/Sum.lean#L298" title="this line on GitHub (new tab)" target="_blank" rel="noopener">⧉</a><img class="leanico small ok" src="../lean-ok.png" alt="" title="axioms: none — tier 0, no axioms">theorem J_sq (F : Frame p κ g) {k j : Nat} (hk : k &lt; p - 1) (hj : j &lt; p - 1) :</span>
-<span class="ln" id="L299"><a class="lno" href="#L299">299</a>    sumRange (fun l =&gt; (J (p - 1) k l : Shell p) * J (p - 1) l j) (p - 1) = (if k = j then (1 : Shell p) else 0) := by</span>
-<span class="ln" id="L300"><a class="lno" href="#L300">300</a>  have hn := F.n_pos</span>
-<span class="ln" id="L301"><a class="lno" href="#L301">301</a>  have hr : rev (p - 1) k &lt; p - 1 := rev_lt hn k</span>
-<span class="ln" id="L302"><a class="lno" href="#L302">302</a>  rw [sum_eq_single hr (fun l hl hne =&gt; by rw [J_eq hk hl, if_neg hne, zero_mul])]</span>
-<span class="ln" id="L303"><a class="lno" href="#L303">303</a>  rw [J_eq hk hr, if_pos rfl, one_mul, J_eq hr hj, rev_rev hk]</span>
-<span class="ln" id="L304"><a class="lno" href="#L304">304</a>  exact match Nat.decEq k j with</span>
-<span class="ln" id="L305"><a class="lno" href="#L305">305</a>    | isTrue e =&gt; by rw [if_pos e, if_pos e.symm]</span>
-<span class="ln" id="L306"><a class="lno" href="#L306">306</a>    | isFalse e =&gt; by rw [if_neg e, if_neg (fun h =&gt; e h.symm)]</span>
-<span class="ln" id="L307"><a class="lno" href="#L307">307</a></span>
-<span class="ln" id="L308"><a class="lno" href="#L308">308</a>/-- 6:B5, 6:B7 (`F² = J`, entrywise): the quarter-turn transform squares to the reversal. -/</span>
-<span class="ln decl" id="FRC.Shell.Frame.F_sq"><a class="lno" href="#FRC.Shell.Frame.F_sq">309</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcCore/Sum.lean#L309" title="this line on GitHub (new tab)" target="_blank" rel="noopener">⧉</a><img class="leanico small ok" src="../lean-ok.png" alt="" title="axioms: none — tier 0, no axioms">theorem F_sq (F : Frame p κ g) (k j : Nat) :</span>
-<span class="ln" id="L310"><a class="lno" href="#L310">310</a>    sumRange (fun l =&gt; Fmat g κ k l * Fmat g κ l j) (p - 1) = J (p - 1) k j := by</span>
-<span class="ln" id="L311"><a class="lno" href="#L311">311</a>  have e : ∀ l, Fmat g κ k l * Fmat g κ l j = (quarterTurn g κ * quarterTurn g κ) * (W g k l * W g l j) := by</span>
-<span class="ln" id="L312"><a class="lno" href="#L312">312</a>    intro l; unfold Fmat</span>
-<span class="ln" id="L313"><a class="lno" href="#L313">313</a>    rw [mul_assoc, mul_left_comm (W g k l), ← mul_assoc]</span>
-<span class="ln" id="L314"><a class="lno" href="#L314">314</a>  rw [sum_congr _ (fun l _ =&gt; e l), sum_mul_left, F.W_sq&#x27; k j, F.quarter_turn_sq, ← neg_mul, one_mul, neg_neg]</span>
-<span class="ln" id="L315"><a class="lno" href="#L315">315</a></span>
-<span class="ln decl" id="FRC.Shell.Frame.inv_unique"><a class="lno" href="#FRC.Shell.Frame.inv_unique">316</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcCore/Sum.lean#L316" title="this line on GitHub (new tab)" target="_blank" rel="noopener">⧉</a><img class="leanico small ok" src="../lean-ok.png" alt="" title="axioms: none — tier 0, no axioms">theorem inv_unique {x x&#x27; y : Shell p} (h : x * y = 1) (h&#x27; : x&#x27; * y = 1) : x = x&#x27; := by</span>
-<span class="ln" id="L317"><a class="lno" href="#L317">317</a>  calc x = x * (x&#x27; * y) := by rw [h&#x27;, mul_one]</span>
-<span class="ln" id="L318"><a class="lno" href="#L318">318</a>    _ = x&#x27; * (x * y) := mul_left_comm _ _ _</span>
-<span class="ln" id="L319"><a class="lno" href="#L319">319</a>    _ = x&#x27; := by rw [h, mul_one]</span>
-<span class="ln" id="L320"><a class="lno" href="#L320">320</a></span>
-<span class="ln" id="L321"><a class="lno" href="#L321">321</a>/-- 6:B7 (`W J = J W`, entrywise). -/</span>
-<span class="ln decl" id="FRC.Shell.Frame.W_J_comm"><a class="lno" href="#FRC.Shell.Frame.W_J_comm">322</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcCore/Sum.lean#L322" title="this line on GitHub (new tab)" target="_blank" rel="noopener">⧉</a><img class="leanico small ok" src="../lean-ok.png" alt="" title="axioms: none — tier 0, no axioms">theorem W_J_comm (F : Frame p κ g) {k j : Nat} (hk : k &lt; p - 1) (hj : j &lt; p - 1) :</span>
-<span class="ln" id="L323"><a class="lno" href="#L323">323</a>    sumRange (fun l =&gt; W g k l * J (p - 1) l j) (p - 1) = sumRange (fun l =&gt; J (p - 1) k l * W g l j) (p - 1) := by</span>
-<span class="ln" id="L324"><a class="lno" href="#L324">324</a>  have hn := F.n_pos</span>
-<span class="ln" id="L325"><a class="lno" href="#L325">325</a>  have hrj : rev (p - 1) j &lt; p - 1 := rev_lt hn j</span>
-<span class="ln" id="L326"><a class="lno" href="#L326">326</a>  have hrk : rev (p - 1) k &lt; p - 1 := rev_lt hn k</span>
-<span class="ln" id="L327"><a class="lno" href="#L327">327</a>  rw [sum_eq_single hrj (fun l hl hne =&gt; by</span>
-<span class="ln" id="L328"><a class="lno" href="#L328">328</a>        rw [J_eq hl hj, if_neg (fun e =&gt; hne (by rw [e, rev_rev hl])), mul_zero])]</span>
-<span class="ln" id="L329"><a class="lno" href="#L329">329</a>  rw [sum_eq_single hrk (fun l hl hne =&gt; by rw [J_eq hk hl, if_neg hne, zero_mul])]</span>
-<span class="ln" id="L330"><a class="lno" href="#L330">330</a>  rw [J_eq hrj hj, if_pos (rev_rev hj).symm, mul_one, J_eq hk hrk, if_pos rfl, one_mul]</span>
-<span class="ln" id="L331"><a class="lno" href="#L331">331</a>  unfold W</span>
-<span class="ln" id="L332"><a class="lno" href="#L332">332</a>  -- both are the inverse of g^{jk}</span>
-<span class="ln" id="L333"><a class="lno" href="#L333">333</a>  apply inv_unique (y := g ^ (j * k))</span>
-<span class="ln" id="L334"><a class="lno" href="#L334">334</a>  · rw [← pow_add, ← FRC.Nat.add_mul, F.pow_mod, ← FRC.Nat.mod_mul_mod _ _ _ hn, rev_add_mod hj, Nat.zero_mul,</span>
-<span class="ln" id="L335"><a class="lno" href="#L335">335</a>      FRC.Nat.zero_mod, pow_zero]</span>
-<span class="ln" id="L336"><a class="lno" href="#L336">336</a>  · rw [← pow_add, ← Nat.left_distrib, F.pow_mod, ← FRC.Nat.mul_mod_mod _ _ _ hn, rev_add_mod hk, Nat.mul_zero,</span>
-<span class="ln" id="L337"><a class="lno" href="#L337">337</a>      FRC.Nat.zero_mod, pow_zero]</span>
-<span class="ln" id="L338"><a class="lno" href="#L338">338</a></span>
-<span class="ln" id="L339"><a class="lno" href="#L339">339</a>end Frame</span>
-<span class="ln" id="L340"><a class="lno" href="#L340">340</a></span>
-<span class="ln" id="L341"><a class="lno" href="#L341">341</a>end Shell</span>
-<span class="ln" id="L342"><a class="lno" href="#L342">342</a>end FRC</span>
+<main id="ledger-main"><section class="prose"><p>The core module <code>lean/FrcCore/Sum.lean</code> — the substrate from first principles, no Mathlib, no axioms (the modules in order: <a href="Nat.html">Nat</a>, <a href="Pigeonhole.html">Pigeonhole</a>, <a href="Shell.html">Shell</a>, <a href="Frame.html">Frame</a>, <a href="Orbit.html">Orbit</a>, <a href="Sum.html">Sum</a>, <a href="Algebra.html">Algebra</a>, <a href="Poly.html">Poly</a>, <a href="Quaternion.html">Quaternion</a>, <a href="Geometry.html">Geometry</a>, <a href="Complex.html">Complex</a>, <a href="Instances.html">Instances</a>): 48 theorems (12 definitions): 48 with no axioms (green), 0 at tier 1 (teal: <code>propext</code>, <code>Quot.sound</code>), 0 at tier 2 (amber: <code>Classical.choice</code>), 0 red; the plain glyph marks a definition. Each declaration is anchored; the ledger rows cite them by name. <a href="https://live.lean-lang.org/#project=lean-v4.34.0&url=https://raw.githubusercontent.com/gamayos/finite-ring-space/main/lean/web/FrcCore.lean" target="_blank" rel="noopener">▶ open in the Lean web editor</a> · <a href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcCore/Sum.lean" target="_blank" rel="noopener">on GitHub</a> · <a href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcCore/axioms.log" target="_blank" rel="noopener">axioms.log</a> · <a href="https://github.com/gamayos/finite-ring-space/actions/workflows/lean.yml" target="_blank" rel="noopener">CI</a>.</p></section><pre class="lean"><span class="ln" id="L1"><a class="lno" href="#L1">1</a>import FrcCore.Frame</span>
+<span class="ln" id="L2"><a class="lno" href="#L2">2</a>import FrcCore.Orbit</span>
+<span class="ln" id="L3"><a class="lno" href="#L3">3</a></span>
+<span class="ln" id="L4"><a class="lno" href="#L4">4</a>/-!</span>
+<span class="ln" id="L5"><a class="lno" href="#L5">5</a># FrcCore.Sum — finite sums on the shell, the geometric sum, the Fourier inversion</span>
+<span class="ln" id="L6"><a class="lno" href="#L6">6</a></span>
+<span class="ln" id="L7"><a class="lno" href="#L7">7</a>Sums over `l &lt; n` are defined by structural recursion (`sumRange f (n+1) = sumRange f n + f n`): no</span>
+<span class="ln" id="L8"><a class="lno" href="#L8">8</a>`Finset`, no quotient, no function extensionality — a congruence lemma (`sum_congr`) replaces `funext`.</span>
+<span class="ln" id="L9"><a class="lno" href="#L9">9</a>The geometric sum gives the principal-root identity (2:F1, Prop. 6.1 of 2-geometry) and the entrywise</span>
+<span class="ln" id="L10"><a class="lno" href="#L10">10</a>inversion of the shell Fourier matrix `W k j = g^{jk}`: `Σ_l W k l · (−g^{−lj}) = [k = j]` (2:F3,</span>
+<span class="ln" id="L11"><a class="lno" href="#L11">11</a>Prop. 6.3; 6:B5 in matrix form). No axioms.</span>
+<span class="ln" id="L12"><a class="lno" href="#L12">12</a>-/</span>
+<span class="ln" id="L13"><a class="lno" href="#L13">13</a></span>
+<span class="ln" id="L14"><a class="lno" href="#L14">14</a>namespace FRC</span>
+<span class="ln" id="L15"><a class="lno" href="#L15">15</a>namespace Shell</span>
+<span class="ln" id="L16"><a class="lno" href="#L16">16</a></span>
+<span class="ln" id="L17"><a class="lno" href="#L17">17</a>variable {p : Nat} [Pos p]</span>
+<span class="ln" id="L18"><a class="lno" href="#L18">18</a></span>
+<span class="ln" id="L19"><a class="lno" href="#L19">19</a>/-- `sumRange f n = f 0 + f 1 + ⋯ + f (n−1)`. -/</span>
+<span class="ln decl" id="FRC.Shell.sumRange"><a class="lno" href="#FRC.Shell.sumRange">20</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcCore/Sum.lean#L20" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small" src="../lean.png" alt="" title="a definition: no proof, no axioms">def sumRange (f : Nat → Shell p) : Nat → Shell p</span>
+<span class="ln" id="L21"><a class="lno" href="#L21">21</a>  | 0 =&gt; 0</span>
+<span class="ln" id="L22"><a class="lno" href="#L22">22</a>  | n + 1 =&gt; sumRange f n + f n</span>
+<span class="ln" id="L23"><a class="lno" href="#L23">23</a></span>
+<span class="ln decl" id="FRC.Shell.sumRange_zero"><a class="lno" href="#FRC.Shell.sumRange_zero">24</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcCore/Sum.lean#L24" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small ok" src="../lean-ok.png" alt="" title="no axioms">theorem sumRange_zero (f : Nat → Shell p) : sumRange f 0 = 0 := rfl</span>
+<span class="ln decl" id="FRC.Shell.sumRange_succ"><a class="lno" href="#FRC.Shell.sumRange_succ">25</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcCore/Sum.lean#L25" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small ok" src="../lean-ok.png" alt="" title="no axioms">theorem sumRange_succ (f : Nat → Shell p) (n : Nat) : sumRange f (n + 1) = sumRange f n + f n := rfl</span>
+<span class="ln" id="L26"><a class="lno" href="#L26">26</a></span>
+<span class="ln decl" id="FRC.Shell.sum_congr"><a class="lno" href="#FRC.Shell.sum_congr">27</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcCore/Sum.lean#L27" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small ok" src="../lean-ok.png" alt="" title="no axioms">theorem sum_congr {f h : Nat → Shell p} (n : Nat) (e : ∀ l, l &lt; n → f l = h l) :</span>
+<span class="ln" id="L28"><a class="lno" href="#L28">28</a>    sumRange f n = sumRange h n := by</span>
+<span class="ln" id="L29"><a class="lno" href="#L29">29</a>  induction n with</span>
+<span class="ln" id="L30"><a class="lno" href="#L30">30</a>  | zero =&gt; rfl</span>
+<span class="ln" id="L31"><a class="lno" href="#L31">31</a>  | succ n ih =&gt;</span>
+<span class="ln" id="L32"><a class="lno" href="#L32">32</a>    rw [sumRange_succ, sumRange_succ, ih (fun l hl =&gt; e l (Nat.lt_succ_of_lt hl)),</span>
+<span class="ln" id="L33"><a class="lno" href="#L33">33</a>      e n (Nat.lt_succ_self n)]</span>
+<span class="ln" id="L34"><a class="lno" href="#L34">34</a></span>
+<span class="ln decl" id="FRC.Shell.sum_add"><a class="lno" href="#FRC.Shell.sum_add">35</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcCore/Sum.lean#L35" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small ok" src="../lean-ok.png" alt="" title="no axioms">theorem sum_add (f h : Nat → Shell p) (n : Nat) :</span>
+<span class="ln" id="L36"><a class="lno" href="#L36">36</a>    sumRange (fun l =&gt; f l + h l) n = sumRange f n + sumRange h n := by</span>
+<span class="ln" id="L37"><a class="lno" href="#L37">37</a>  induction n with</span>
+<span class="ln" id="L38"><a class="lno" href="#L38">38</a>  | zero =&gt; rw [sumRange_zero, sumRange_zero, sumRange_zero, add_zero]</span>
+<span class="ln" id="L39"><a class="lno" href="#L39">39</a>  | succ n ih =&gt;</span>
+<span class="ln" id="L40"><a class="lno" href="#L40">40</a>    rw [sumRange_succ, sumRange_succ, sumRange_succ, ih, add_add_add_comm]</span>
+<span class="ln" id="L41"><a class="lno" href="#L41">41</a></span>
+<span class="ln decl" id="FRC.Shell.sum_mul_right"><a class="lno" href="#FRC.Shell.sum_mul_right">42</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcCore/Sum.lean#L42" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small ok" src="../lean-ok.png" alt="" title="no axioms">theorem sum_mul_right (f : Nat → Shell p) (c : Shell p) (n : Nat) :</span>
+<span class="ln" id="L43"><a class="lno" href="#L43">43</a>    sumRange (fun l =&gt; f l * c) n = sumRange f n * c := by</span>
+<span class="ln" id="L44"><a class="lno" href="#L44">44</a>  induction n with</span>
+<span class="ln" id="L45"><a class="lno" href="#L45">45</a>  | zero =&gt; rw [sumRange_zero, sumRange_zero, zero_mul]</span>
+<span class="ln" id="L46"><a class="lno" href="#L46">46</a>  | succ n ih =&gt; rw [sumRange_succ, sumRange_succ, ih, right_distrib]</span>
+<span class="ln" id="L47"><a class="lno" href="#L47">47</a></span>
+<span class="ln decl" id="FRC.Shell.sum_mul_left"><a class="lno" href="#FRC.Shell.sum_mul_left">48</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcCore/Sum.lean#L48" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small ok" src="../lean-ok.png" alt="" title="no axioms">theorem sum_mul_left (f : Nat → Shell p) (c : Shell p) (n : Nat) :</span>
+<span class="ln" id="L49"><a class="lno" href="#L49">49</a>    sumRange (fun l =&gt; c * f l) n = c * sumRange f n := by</span>
+<span class="ln" id="L50"><a class="lno" href="#L50">50</a>  induction n with</span>
+<span class="ln" id="L51"><a class="lno" href="#L51">51</a>  | zero =&gt; rw [sumRange_zero, sumRange_zero, mul_zero]</span>
+<span class="ln" id="L52"><a class="lno" href="#L52">52</a>  | succ n ih =&gt; rw [sumRange_succ, sumRange_succ, ih, left_distrib]</span>
+<span class="ln" id="L53"><a class="lno" href="#L53">53</a></span>
+<span class="ln decl" id="FRC.Shell.sum_neg"><a class="lno" href="#FRC.Shell.sum_neg">54</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcCore/Sum.lean#L54" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small ok" src="../lean-ok.png" alt="" title="no axioms">theorem sum_neg (f : Nat → Shell p) (n : Nat) : sumRange (fun l =&gt; -(f l)) n = -(sumRange f n) := by</span>
+<span class="ln" id="L55"><a class="lno" href="#L55">55</a>  induction n with</span>
+<span class="ln" id="L56"><a class="lno" href="#L56">56</a>  | zero =&gt; rw [sumRange_zero, sumRange_zero, neg_zero]</span>
+<span class="ln" id="L57"><a class="lno" href="#L57">57</a>  | succ n ih =&gt; rw [sumRange_succ, sumRange_succ, ih, neg_add_rev]</span>
+<span class="ln" id="L58"><a class="lno" href="#L58">58</a></span>
+<span class="ln decl" id="FRC.Shell.sum_const"><a class="lno" href="#FRC.Shell.sum_const">59</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcCore/Sum.lean#L59" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small ok" src="../lean-ok.png" alt="" title="no axioms">theorem sum_const (c : Shell p) (n : Nat) : sumRange (fun _ =&gt; c) n = ofNat n * c := by</span>
+<span class="ln" id="L60"><a class="lno" href="#L60">60</a>  induction n with</span>
+<span class="ln" id="L61"><a class="lno" href="#L61">61</a>  | zero =&gt; rw [sumRange_zero]; exact (zero_mul c).symm</span>
+<span class="ln" id="L62"><a class="lno" href="#L62">62</a>  | succ n ih =&gt;</span>
+<span class="ln" id="L63"><a class="lno" href="#L63">63</a>    rw [sumRange_succ, ih]</span>
+<span class="ln" id="L64"><a class="lno" href="#L64">64</a>    have : (ofNat (n + 1) : Shell p) = ofNat n + 1 := ext (by</span>
+<span class="ln" id="L65"><a class="lno" href="#L65">65</a>      rw [val_ofNat, val_add, val_ofNat, val_one, FRC.Nat.mod_add_mod _ _ _ hp, FRC.Nat.add_mod_mod _ _ _ hp])</span>
+<span class="ln" id="L66"><a class="lno" href="#L66">66</a>    rw [this, right_distrib, one_mul]</span>
+<span class="ln" id="L67"><a class="lno" href="#L67">67</a></span>
+<span class="ln decl" id="FRC.Shell.sum_zero"><a class="lno" href="#FRC.Shell.sum_zero">68</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcCore/Sum.lean#L68" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small ok" src="../lean-ok.png" alt="" title="no axioms">theorem sum_zero {f : Nat → Shell p} (n : Nat) (h : ∀ l, l &lt; n → f l = 0) : sumRange f n = 0 := by</span>
+<span class="ln" id="L69"><a class="lno" href="#L69">69</a>  induction n with</span>
+<span class="ln" id="L70"><a class="lno" href="#L70">70</a>  | zero =&gt; rfl</span>
+<span class="ln" id="L71"><a class="lno" href="#L71">71</a>  | succ n ih =&gt; rw [sumRange_succ, ih (fun l hl =&gt; h l (Nat.lt_succ_of_lt hl)), h n (Nat.lt_succ_self n), add_zero]</span>
+<span class="ln" id="L72"><a class="lno" href="#L72">72</a></span>
+<span class="ln" id="L73"><a class="lno" href="#L73">73</a>/-- A sum with a single nonzero term. -/</span>
+<span class="ln decl" id="FRC.Shell.sum_eq_single"><a class="lno" href="#FRC.Shell.sum_eq_single">74</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcCore/Sum.lean#L74" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small ok" src="../lean-ok.png" alt="" title="no axioms">theorem sum_eq_single {f : Nat → Shell p} {l₀ : Nat} : ∀ {n : Nat}, l₀ &lt; n → (∀ l, l &lt; n → l ≠ l₀ → f l = 0) →</span>
+<span class="ln" id="L75"><a class="lno" href="#L75">75</a>    sumRange f n = f l₀</span>
+<span class="ln" id="L76"><a class="lno" href="#L76">76</a>  | 0, h, _ =&gt; absurd h (Nat.not_lt_zero _)</span>
+<span class="ln" id="L77"><a class="lno" href="#L77">77</a>  | n + 1, hl₀, h =&gt; by</span>
+<span class="ln" id="L78"><a class="lno" href="#L78">78</a>    rw [sumRange_succ]</span>
+<span class="ln" id="L79"><a class="lno" href="#L79">79</a>    exact match Nat.decEq l₀ n with</span>
+<span class="ln" id="L80"><a class="lno" href="#L80">80</a>      | isTrue e =&gt; by</span>
+<span class="ln" id="L81"><a class="lno" href="#L81">81</a>          rw [sum_zero n (fun l hl =&gt; h l (Nat.lt_succ_of_lt hl) (fun e&#x27; =&gt; absurd hl (by rw [e&#x27;, e]; exact Nat.lt_irrefl n))),</span>
+<span class="ln" id="L82"><a class="lno" href="#L82">82</a>            zero_add, e]</span>
+<span class="ln" id="L83"><a class="lno" href="#L83">83</a>      | isFalse e =&gt; by</span>
+<span class="ln" id="L84"><a class="lno" href="#L84">84</a>          rw [sum_eq_single (Nat.lt_of_le_of_ne (Nat.le_of_lt_succ hl₀) (fun e&#x27; =&gt; e e&#x27;)) (fun l hl hne =&gt; h l (Nat.lt_succ_of_lt hl) hne),</span>
+<span class="ln" id="L85"><a class="lno" href="#L85">85</a>            h n (Nat.lt_succ_self n) (fun e&#x27; =&gt; e e&#x27;.symm), add_zero]</span>
+<span class="ln" id="L86"><a class="lno" href="#L86">86</a></span>
+<span class="ln" id="L87"><a class="lno" href="#L87">87</a>/-- The telescoping geometric sum: `(Σ_{l&lt;n} x^l)·(x − 1) = x^n − 1`. -/</span>
+<span class="ln decl" id="FRC.Shell.geom_sum_mul"><a class="lno" href="#FRC.Shell.geom_sum_mul">88</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcCore/Sum.lean#L88" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small ok" src="../lean-ok.png" alt="" title="no axioms">theorem geom_sum_mul (x : Shell p) (n : Nat) :</span>
+<span class="ln" id="L89"><a class="lno" href="#L89">89</a>    sumRange (fun l =&gt; x ^ l) n * (x + -1) = x ^ n + -1 := by</span>
+<span class="ln" id="L90"><a class="lno" href="#L90">90</a>  induction n with</span>
+<span class="ln" id="L91"><a class="lno" href="#L91">91</a>  | zero =&gt; rw [sumRange_zero, zero_mul, pow_zero, add_neg]</span>
+<span class="ln" id="L92"><a class="lno" href="#L92">92</a>  | succ n ih =&gt;</span>
+<span class="ln" id="L93"><a class="lno" href="#L93">93</a>    rw [sumRange_succ, right_distrib, ih, left_distrib, ← mul_neg, mul_one, ← pow_succ]</span>
+<span class="ln" id="L94"><a class="lno" href="#L94">94</a>    rw [add_add_add_comm, add_comm (x ^ n) (x ^ (n + 1)), add_comm (-1) (-(x ^ n)), add_assoc,</span>
+<span class="ln" id="L95"><a class="lno" href="#L95">95</a>      ← add_assoc (x ^ n), add_neg, zero_add]</span>
+<span class="ln" id="L96"><a class="lno" href="#L96">96</a></span>
+<span class="ln" id="L97"><a class="lno" href="#L97">97</a>namespace Frame</span>
+<span class="ln" id="L98"><a class="lno" href="#L98">98</a>variable {κ : Nat} {g : Shell p}</span>
+<span class="ln" id="L99"><a class="lno" href="#L99">99</a></span>
+<span class="ln" id="L100"><a class="lno" href="#L100">100</a>/-- `Σ_{l&lt;n} x^l = 0` when `x^n = 1` and `x ≠ 1` (the field has no zero divisors). -/</span>
+<span class="ln decl" id="FRC.Shell.Frame.geom_sum_eq_zero"><a class="lno" href="#FRC.Shell.Frame.geom_sum_eq_zero">101</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcCore/Sum.lean#L101" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small ok" src="../lean-ok.png" alt="" title="no axioms">theorem geom_sum_eq_zero (F : Frame p κ g) {x : Shell p} (n : Nat) (hn : x ^ n = 1) (hx : x ≠ 1) :</span>
+<span class="ln" id="L102"><a class="lno" href="#L102">102</a>    sumRange (fun l =&gt; x ^ l) n = 0 := by</span>
+<span class="ln" id="L103"><a class="lno" href="#L103">103</a>  have h := geom_sum_mul x n</span>
+<span class="ln" id="L104"><a class="lno" href="#L104">104</a>  rw [hn, add_neg] at h</span>
+<span class="ln" id="L105"><a class="lno" href="#L105">105</a>  match F.mul_eq_zero h with</span>
+<span class="ln" id="L106"><a class="lno" href="#L106">106</a>  | .inl e =&gt; exact e</span>
+<span class="ln" id="L107"><a class="lno" href="#L107">107</a>  | .inr e =&gt; exact absurd (by</span>
+<span class="ln" id="L108"><a class="lno" href="#L108">108</a>      calc x = x + 0 := (add_zero x).symm</span>
+<span class="ln" id="L109"><a class="lno" href="#L109">109</a>        _ = x + (-1 + 1) := by rw [neg_add]</span>
+<span class="ln" id="L110"><a class="lno" href="#L110">110</a>        _ = (x + -1) + 1 := (add_assoc _ _ _).symm</span>
+<span class="ln" id="L111"><a class="lno" href="#L111">111</a>        _ = 1 := by rw [e, zero_add]) hx</span>
+<span class="ln" id="L112"><a class="lno" href="#L112">112</a></span>
+<span class="ln" id="L113"><a class="lno" href="#L113">113</a>/-- 6:B6 — the normalization constant read in the field: `n = p − 1 ≡ −1`. -/</span>
+<span class="ln decl" id="FRC.Shell.Frame.ofNat_n"><a class="lno" href="#FRC.Shell.Frame.ofNat_n">114</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcCore/Sum.lean#L114" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small ok" src="../lean-ok.png" alt="" title="no axioms">theorem ofNat_n (F : Frame p κ g) : (ofNat (p - 1) : Shell p) = -1 := by</span>
+<span class="ln" id="L115"><a class="lno" href="#L115">115</a>  apply ext</span>
+<span class="ln" id="L116"><a class="lno" href="#L116">116</a>  rw [val_ofNat, val_neg, val_one, FRC.Nat.mod_eq_of_lt F.one_lt_p,</span>
+<span class="ln" id="L117"><a class="lno" href="#L117">117</a>    FRC.Nat.mod_eq_of_lt (Nat.sub_lt Pos.pos (Nat.zero_lt_succ 0))]</span>
+<span class="ln" id="L118"><a class="lno" href="#L118">118</a></span>
+<span class="ln" id="L119"><a class="lno" href="#L119">119</a>/-- 2:F1 (Prop. 6.1) — `g` is a principal root of unity: `g^n = 1`, `Σ_{j&lt;n} (g^k)^j = 0` for</span>
+<span class="ln" id="L120"><a class="lno" href="#L120">120</a>`0 &lt; k &lt; n`, and `n = p − 1` reads as `−1` in the shell. -/</span>
+<span class="ln decl" id="FRC.Shell.Frame.principal_root"><a class="lno" href="#FRC.Shell.Frame.principal_root">121</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcCore/Sum.lean#L121" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small ok" src="../lean-ok.png" alt="" title="no axioms">theorem principal_root (F : Frame p κ g) (k : Nat) (hk0 : 0 &lt; k) (hk : k &lt; p - 1) :</span>
+<span class="ln" id="L122"><a class="lno" href="#L122">122</a>    g ^ (p - 1) = 1 ∧ sumRange (fun j =&gt; (g ^ k) ^ j) (p - 1) = 0 ∧ (ofNat (p - 1) : Shell p) = -1 := by</span>
+<span class="ln" id="L123"><a class="lno" href="#L123">123</a>  refine ⟨F.pow_n, ?_, F.ofNat_n⟩</span>
+<span class="ln" id="L124"><a class="lno" href="#L124">124</a>  apply F.geom_sum_eq_zero</span>
+<span class="ln" id="L125"><a class="lno" href="#L125">125</a>  · rw [pow_mul_comm, F.pow_n, one_pow]</span>
+<span class="ln" id="L126"><a class="lno" href="#L126">126</a>  · exact F.prim.2 k hk hk0</span>
+<span class="ln" id="L127"><a class="lno" href="#L127">127</a></span>
+<span class="ln" id="L128"><a class="lno" href="#L128">128</a>/-- `g^{k + (n − j)} = 1` exactly when `k = j`, for `k, j &lt; n`. -/</span>
+<span class="ln decl" id="FRC.Shell.Frame.pow_shift_eq_one_iff"><a class="lno" href="#FRC.Shell.Frame.pow_shift_eq_one_iff">129</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcCore/Sum.lean#L129" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small ok" src="../lean-ok.png" alt="" title="no axioms">theorem pow_shift_eq_one_iff (F : Frame p κ g) {k j : Nat} (hk : k &lt; p - 1) (hj : j &lt; p - 1) :</span>
+<span class="ln" id="L130"><a class="lno" href="#L130">130</a>    g ^ (k + (p - 1 - j)) = 1 ↔ k = j := by</span>
+<span class="ln" id="L131"><a class="lno" href="#L131">131</a>  have hn := F.n_pos</span>
+<span class="ln" id="L132"><a class="lno" href="#L132">132</a>  have hjn : p - 1 - j + j = p - 1 := FRC.Nat.sub_add_cancel (Nat.le_of_lt hj)</span>
+<span class="ln" id="L133"><a class="lno" href="#L133">133</a>  constructor</span>
+<span class="ln" id="L134"><a class="lno" href="#L134">134</a>  · intro h</span>
+<span class="ln" id="L135"><a class="lno" href="#L135">135</a>    have hm := F.mod_eq_zero_of_pow_eq_one h</span>
+<span class="ln" id="L136"><a class="lno" href="#L136">136</a>    match Nat.lt_or_ge k j with</span>
+<span class="ln" id="L137"><a class="lno" href="#L137">137</a>    | .inl hlt =&gt;</span>
+<span class="ln" id="L138"><a class="lno" href="#L138">138</a>      have hlt&#x27; : k + (p - 1 - j) &lt; p - 1 := by</span>
+<span class="ln" id="L139"><a class="lno" href="#L139">139</a>        have := Nat.add_lt_add_right hlt (p - 1 - j)</span>
+<span class="ln" id="L140"><a class="lno" href="#L140">140</a>        rw [Nat.add_comm j, hjn] at this</span>
+<span class="ln" id="L141"><a class="lno" href="#L141">141</a>        exact this</span>
+<span class="ln" id="L142"><a class="lno" href="#L142">142</a>      rw [FRC.Nat.mod_eq_of_lt hlt&#x27;] at hm</span>
+<span class="ln" id="L143"><a class="lno" href="#L143">143</a>      have hpos : 0 &lt; p - 1 - j := by</span>
+<span class="ln" id="L144"><a class="lno" href="#L144">144</a>        refine Nat.lt_of_add_lt_add_right (n := j) ?_</span>
+<span class="ln" id="L145"><a class="lno" href="#L145">145</a>        rw [Nat.zero_add, hjn]; exact hj</span>
+<span class="ln" id="L146"><a class="lno" href="#L146">146</a>      exact absurd hm (Nat.ne_of_gt (Nat.lt_of_lt_of_le hpos (Nat.le_add_left _ _)))</span>
+<span class="ln" id="L147"><a class="lno" href="#L147">147</a>    | .inr hge =&gt;</span>
+<span class="ln" id="L148"><a class="lno" href="#L148">148</a>      have e : k + (p - 1 - j) = (p - 1) * 1 + (k - j) := by</span>
+<span class="ln" id="L149"><a class="lno" href="#L149">149</a>        rw [Nat.mul_one]</span>
+<span class="ln" id="L150"><a class="lno" href="#L150">150</a>        calc k + (p - 1 - j) = (j + (k - j)) + (p - 1 - j) := by rw [FRC.Nat.add_sub_of_le hge]</span>
+<span class="ln" id="L151"><a class="lno" href="#L151">151</a>          _ = (p - 1 - j + j) + (k - j) := by</span>
+<span class="ln" id="L152"><a class="lno" href="#L152">152</a>              rw [Nat.add_comm j (k - j), Nat.add_assoc, Nat.add_comm (k - j), Nat.add_comm j (p - 1 - j)]</span>
+<span class="ln" id="L153"><a class="lno" href="#L153">153</a>          _ = p - 1 + (k - j) := by rw [hjn]</span>
+<span class="ln" id="L154"><a class="lno" href="#L154">154</a>      rw [e, FRC.Nat.add_mul_mod_self_left _ _ _ hn,</span>
+<span class="ln" id="L155"><a class="lno" href="#L155">155</a>        FRC.Nat.mod_eq_of_lt (Nat.lt_of_le_of_lt (Nat.sub_le k j) hk)] at hm</span>
+<span class="ln" id="L156"><a class="lno" href="#L156">156</a>      have := FRC.Nat.add_sub_of_le hge</span>
+<span class="ln" id="L157"><a class="lno" href="#L157">157</a>      rw [hm, Nat.add_zero] at this</span>
+<span class="ln" id="L158"><a class="lno" href="#L158">158</a>      exact this.symm</span>
+<span class="ln" id="L159"><a class="lno" href="#L159">159</a>  · intro e</span>
+<span class="ln" id="L160"><a class="lno" href="#L160">160</a>    rw [e, FRC.Nat.add_sub_of_le (Nat.le_of_lt hj), F.pow_n]</span>
+<span class="ln" id="L161"><a class="lno" href="#L161">161</a></span>
+<span class="ln" id="L162"><a class="lno" href="#L162">162</a>/-- 2:F3 (Prop. 6.3), 6:B5 — the inversion of the shell Fourier matrix, entrywise: with</span>
+<span class="ln" id="L163"><a class="lno" href="#L163">163</a>`W k j = g^{jk}` and `W&#x27; l j = −g^{(n−j)l}` (`= −g^{−lj}`), `Σ_{l&lt;n} W k l · W&#x27; l j = [k = j]`. -/</span>
+<span class="ln decl" id="FRC.Shell.Frame.dft_inverse"><a class="lno" href="#FRC.Shell.Frame.dft_inverse">164</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcCore/Sum.lean#L164" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small ok" src="../lean-ok.png" alt="" title="no axioms">theorem dft_inverse (F : Frame p κ g) {k j : Nat} (hk : k &lt; p - 1) (hj : j &lt; p - 1) :</span>
+<span class="ln" id="L165"><a class="lno" href="#L165">165</a>    sumRange (fun l =&gt; g ^ (l * k) * -(g ^ ((p - 1 - j) * l))) (p - 1) = if k = j then 1 else 0 := by</span>
+<span class="ln" id="L166"><a class="lno" href="#L166">166</a>  have hsum : sumRange (fun l =&gt; g ^ (l * k) * -(g ^ ((p - 1 - j) * l))) (p - 1)</span>
+<span class="ln" id="L167"><a class="lno" href="#L167">167</a>      = -(sumRange (fun l =&gt; (g ^ (k + (p - 1 - j))) ^ l) (p - 1)) := by</span>
+<span class="ln" id="L168"><a class="lno" href="#L168">168</a>    rw [← sum_neg]</span>
+<span class="ln" id="L169"><a class="lno" href="#L169">169</a>    apply sum_congr</span>
+<span class="ln" id="L170"><a class="lno" href="#L170">170</a>    intro l _</span>
+<span class="ln" id="L171"><a class="lno" href="#L171">171</a>    rw [← mul_neg, ← pow_add, ← pow_mul, Nat.mul_comm l k, ← FRC.Nat.add_mul]</span>
+<span class="ln" id="L172"><a class="lno" href="#L172">172</a>  rw [hsum]</span>
+<span class="ln" id="L173"><a class="lno" href="#L173">173</a>  exact match Nat.decEq k j with</span>
+<span class="ln" id="L174"><a class="lno" href="#L174">174</a>    | .isTrue e =&gt; by</span>
+<span class="ln" id="L175"><a class="lno" href="#L175">175</a>        rw [if_pos e]</span>
+<span class="ln" id="L176"><a class="lno" href="#L176">176</a>        have h1 : g ^ (k + (p - 1 - j)) = 1 := (F.pow_shift_eq_one_iff hk hj).2 e</span>
+<span class="ln" id="L177"><a class="lno" href="#L177">177</a>        have : sumRange (fun l =&gt; (g ^ (k + (p - 1 - j))) ^ l) (p - 1) = ofNat (p - 1) * 1 := by</span>
+<span class="ln" id="L178"><a class="lno" href="#L178">178</a>          rw [← sum_const]; apply sum_congr; intro l _; rw [h1, one_pow]</span>
+<span class="ln" id="L179"><a class="lno" href="#L179">179</a>        rw [this, F.ofNat_n, mul_one, neg_neg]</span>
+<span class="ln" id="L180"><a class="lno" href="#L180">180</a>    | .isFalse e =&gt; by</span>
+<span class="ln" id="L181"><a class="lno" href="#L181">181</a>        rw [if_neg e]</span>
+<span class="ln" id="L182"><a class="lno" href="#L182">182</a>        have h1 : g ^ (k + (p - 1 - j)) ≠ 1 := fun h =&gt; e ((F.pow_shift_eq_one_iff hk hj).1 h)</span>
+<span class="ln" id="L183"><a class="lno" href="#L183">183</a>        rw [F.geom_sum_eq_zero _ (by rw [pow_mul_comm, F.pow_n, one_pow]) h1, neg_zero]</span>
+<span class="ln" id="L184"><a class="lno" href="#L184">184</a></span>
+<span class="ln" id="L185"><a class="lno" href="#L185">185</a>/-- `g^{k + j} = 1` exactly when `(k + j) % n = 0`, i.e. `j` is the reversal `−k` of `k` (`k, j &lt; n`). -/</span>
+<span class="ln decl" id="FRC.Shell.Frame.pow_add_eq_one_iff"><a class="lno" href="#FRC.Shell.Frame.pow_add_eq_one_iff">186</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcCore/Sum.lean#L186" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small ok" src="../lean-ok.png" alt="" title="no axioms">theorem pow_add_eq_one_iff (F : Frame p κ g) (k j : Nat) : g ^ (k + j) = 1 ↔ (k + j) % (p - 1) = 0 :=</span>
+<span class="ln" id="L187"><a class="lno" href="#L187">187</a>  ⟨F.mod_eq_zero_of_pow_eq_one, F.pow_eq_one_of_mod⟩</span>
+<span class="ln" id="L188"><a class="lno" href="#L188">188</a></span>
+<span class="ln" id="L189"><a class="lno" href="#L189">189</a>/-- 6:B5 (the shell Fourier matrix squares to the reversal, entrywise): with `W k j = g^{jk}` and</span>
+<span class="ln" id="L190"><a class="lno" href="#L190">190</a>`J k j = [(k + j) % n = 0]`, `Σ_{l&lt;n} W k l · W l j = −J k j` on every shell (`n = p − 1 ≡ −1`). -/</span>
+<span class="ln decl" id="FRC.Shell.Frame.W_sq"><a class="lno" href="#FRC.Shell.Frame.W_sq">191</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcCore/Sum.lean#L191" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small ok" src="../lean-ok.png" alt="" title="no axioms">theorem W_sq (F : Frame p κ g) (k j : Nat) :</span>
+<span class="ln" id="L192"><a class="lno" href="#L192">192</a>    sumRange (fun l =&gt; g ^ (l * k) * g ^ (j * l)) (p - 1)</span>
+<span class="ln" id="L193"><a class="lno" href="#L193">193</a>      = -(if (k + j) % (p - 1) = 0 then 1 else 0) := by</span>
+<span class="ln" id="L194"><a class="lno" href="#L194">194</a>  have hsum : sumRange (fun l =&gt; g ^ (l * k) * g ^ (j * l)) (p - 1)</span>
+<span class="ln" id="L195"><a class="lno" href="#L195">195</a>      = sumRange (fun l =&gt; (g ^ (k + j)) ^ l) (p - 1) := by</span>
+<span class="ln" id="L196"><a class="lno" href="#L196">196</a>    apply sum_congr; intro l _</span>
+<span class="ln" id="L197"><a class="lno" href="#L197">197</a>    rw [← pow_add, ← pow_mul, Nat.mul_comm l k, ← FRC.Nat.add_mul]</span>
+<span class="ln" id="L198"><a class="lno" href="#L198">198</a>  rw [hsum]</span>
+<span class="ln" id="L199"><a class="lno" href="#L199">199</a>  exact match Nat.decEq ((k + j) % (p - 1)) 0 with</span>
+<span class="ln" id="L200"><a class="lno" href="#L200">200</a>    | .isTrue e =&gt; by</span>
+<span class="ln" id="L201"><a class="lno" href="#L201">201</a>        rw [if_pos e]</span>
+<span class="ln" id="L202"><a class="lno" href="#L202">202</a>        have h1 : g ^ (k + j) = 1 := F.pow_eq_one_of_mod e</span>
+<span class="ln" id="L203"><a class="lno" href="#L203">203</a>        have : sumRange (fun l =&gt; (g ^ (k + j)) ^ l) (p - 1) = ofNat (p - 1) * 1 := by</span>
+<span class="ln" id="L204"><a class="lno" href="#L204">204</a>          rw [← sum_const]; apply sum_congr; intro l _; rw [h1, one_pow]</span>
+<span class="ln" id="L205"><a class="lno" href="#L205">205</a>        rw [this, F.ofNat_n, mul_one]</span>
+<span class="ln" id="L206"><a class="lno" href="#L206">206</a>    | .isFalse e =&gt; by</span>
+<span class="ln" id="L207"><a class="lno" href="#L207">207</a>        rw [if_neg e, neg_zero]</span>
+<span class="ln" id="L208"><a class="lno" href="#L208">208</a>        exact F.geom_sum_eq_zero _ (by rw [pow_mul_comm, F.pow_n, one_pow]) (fun h =&gt; e (F.mod_eq_zero_of_pow_eq_one h))</span>
+<span class="ln" id="L209"><a class="lno" href="#L209">209</a></span>
+<span class="ln" id="L210"><a class="lno" href="#L210">210</a>/-! ### The reversal, the Fourier matrix `W`, the quarter-turn transform `F = i·W` (6:B5, B7) -/</span>
+<span class="ln" id="L211"><a class="lno" href="#L211">211</a></span>
+<span class="ln" id="L212"><a class="lno" href="#L212">212</a>/-- The reversal `rev n k = (n − k) % n`: the index `l` with `(k + l) % n = 0`. -/</span>
+<span class="ln decl" id="FRC.Shell.Frame.rev"><a class="lno" href="#FRC.Shell.Frame.rev">213</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcCore/Sum.lean#L213" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small" src="../lean.png" alt="" title="a definition: no proof, no axioms">def rev (n k : Nat) : Nat := (n - k) % n</span>
+<span class="ln" id="L214"><a class="lno" href="#L214">214</a></span>
+<span class="ln decl" id="FRC.Shell.Frame.rev_lt"><a class="lno" href="#FRC.Shell.Frame.rev_lt">215</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcCore/Sum.lean#L215" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small ok" src="../lean-ok.png" alt="" title="no axioms">theorem rev_lt {n : Nat} (hn : 0 &lt; n) (k : Nat) : rev n k &lt; n := Nat.mod_lt _ hn</span>
+<span class="ln" id="L216"><a class="lno" href="#L216">216</a></span>
+<span class="ln decl" id="FRC.Shell.Frame.rev_zero"><a class="lno" href="#FRC.Shell.Frame.rev_zero">217</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcCore/Sum.lean#L217" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small ok" src="../lean-ok.png" alt="" title="no axioms">theorem rev_zero (n : Nat) (hn : 0 &lt; n) : rev n 0 = 0 := by</span>
+<span class="ln" id="L218"><a class="lno" href="#L218">218</a>  unfold rev; rw [Nat.sub_zero]; exact FRC.Nat.mod_self n hn</span>
+<span class="ln" id="L219"><a class="lno" href="#L219">219</a></span>
+<span class="ln decl" id="FRC.Shell.Frame.rev_of_pos"><a class="lno" href="#FRC.Shell.Frame.rev_of_pos">220</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcCore/Sum.lean#L220" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small ok" src="../lean-ok.png" alt="" title="no axioms">theorem rev_of_pos {n k : Nat} (hk : k &lt; n) (hk0 : 0 &lt; k) : rev n k = n - k := by</span>
+<span class="ln" id="L221"><a class="lno" href="#L221">221</a>  unfold rev; exact FRC.Nat.mod_eq_of_lt (Nat.sub_lt (Nat.lt_of_lt_of_le hk0 (Nat.le_of_lt hk)) hk0)</span>
+<span class="ln" id="L222"><a class="lno" href="#L222">222</a></span>
+<span class="ln decl" id="FRC.Shell.Frame.rev_add_mod"><a class="lno" href="#FRC.Shell.Frame.rev_add_mod">223</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcCore/Sum.lean#L223" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small ok" src="../lean-ok.png" alt="" title="no axioms">theorem rev_add_mod {n k : Nat} (hk : k &lt; n) : (rev n k + k) % n = 0 := by</span>
+<span class="ln" id="L224"><a class="lno" href="#L224">224</a>  have hn : 0 &lt; n := Nat.lt_of_le_of_lt (Nat.zero_le k) hk</span>
+<span class="ln" id="L225"><a class="lno" href="#L225">225</a>  exact match Nat.decEq k 0 with</span>
+<span class="ln" id="L226"><a class="lno" href="#L226">226</a>    | isTrue e =&gt; by rw [e, rev_zero n hn]; rfl</span>
+<span class="ln" id="L227"><a class="lno" href="#L227">227</a>    | isFalse e =&gt; by</span>
+<span class="ln" id="L228"><a class="lno" href="#L228">228</a>        rw [rev_of_pos hk (Nat.pos_of_ne_zero e), FRC.Nat.sub_add_cancel (Nat.le_of_lt hk)]</span>
+<span class="ln" id="L229"><a class="lno" href="#L229">229</a>        exact FRC.Nat.mod_self n hn</span>
+<span class="ln" id="L230"><a class="lno" href="#L230">230</a></span>
+<span class="ln decl" id="FRC.Shell.Frame.rev_rev"><a class="lno" href="#FRC.Shell.Frame.rev_rev">231</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcCore/Sum.lean#L231" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small ok" src="../lean-ok.png" alt="" title="no axioms">theorem rev_rev {n k : Nat} (hk : k &lt; n) : rev n (rev n k) = k := by</span>
+<span class="ln" id="L232"><a class="lno" href="#L232">232</a>  have hn : 0 &lt; n := Nat.lt_of_le_of_lt (Nat.zero_le k) hk</span>
+<span class="ln" id="L233"><a class="lno" href="#L233">233</a>  exact match Nat.decEq k 0 with</span>
+<span class="ln" id="L234"><a class="lno" href="#L234">234</a>    | isTrue e =&gt; by rw [e, rev_zero n hn, rev_zero n hn]</span>
+<span class="ln" id="L235"><a class="lno" href="#L235">235</a>    | isFalse e =&gt; by</span>
+<span class="ln" id="L236"><a class="lno" href="#L236">236</a>        have hk0 := Nat.pos_of_ne_zero e</span>
+<span class="ln" id="L237"><a class="lno" href="#L237">237</a>        rw [rev_of_pos hk hk0]</span>
+<span class="ln" id="L238"><a class="lno" href="#L238">238</a>        have hnk : n - k &lt; n := Nat.sub_lt (Nat.lt_of_lt_of_le hk0 (Nat.le_of_lt hk)) hk0</span>
+<span class="ln" id="L239"><a class="lno" href="#L239">239</a>        have hnk0 : 0 &lt; n - k := by</span>
+<span class="ln" id="L240"><a class="lno" href="#L240">240</a>          refine Nat.lt_of_add_lt_add_right (n := k) ?_</span>
+<span class="ln" id="L241"><a class="lno" href="#L241">241</a>          rw [Nat.zero_add, FRC.Nat.sub_add_cancel (Nat.le_of_lt hk)]; exact hk</span>
+<span class="ln" id="L242"><a class="lno" href="#L242">242</a>        rw [rev_of_pos hnk hnk0]</span>
+<span class="ln" id="L243"><a class="lno" href="#L243">243</a>        calc n - (n - k) = (n - k + k) - (n - k) := by rw [FRC.Nat.sub_add_cancel (Nat.le_of_lt hk)]</span>
+<span class="ln" id="L244"><a class="lno" href="#L244">244</a>          _ = k := FRC.Nat.add_sub_cancel_left _ _</span>
+<span class="ln" id="L245"><a class="lno" href="#L245">245</a></span>
+<span class="ln" id="L246"><a class="lno" href="#L246">246</a>/-- `(k + l) % n = 0` exactly when `l` is the reversal of `k` (`k, l &lt; n`). -/</span>
+<span class="ln decl" id="FRC.Shell.Frame.add_mod_eq_zero_iff"><a class="lno" href="#FRC.Shell.Frame.add_mod_eq_zero_iff">247</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcCore/Sum.lean#L247" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small ok" src="../lean-ok.png" alt="" title="no axioms">theorem add_mod_eq_zero_iff {n k l : Nat} (hk : k &lt; n) (hl : l &lt; n) : (k + l) % n = 0 ↔ l = rev n k := by</span>
+<span class="ln" id="L248"><a class="lno" href="#L248">248</a>  have hn : 0 &lt; n := Nat.lt_of_le_of_lt (Nat.zero_le k) hk</span>
+<span class="ln" id="L249"><a class="lno" href="#L249">249</a>  constructor</span>
+<span class="ln" id="L250"><a class="lno" href="#L250">250</a>  · intro h</span>
+<span class="ln" id="L251"><a class="lno" href="#L251">251</a>    exact match Nat.decEq k 0 with</span>
+<span class="ln" id="L252"><a class="lno" href="#L252">252</a>      | isTrue e =&gt; by</span>
+<span class="ln" id="L253"><a class="lno" href="#L253">253</a>          rw [e, Nat.zero_add, FRC.Nat.mod_eq_of_lt hl] at h</span>
+<span class="ln" id="L254"><a class="lno" href="#L254">254</a>          rw [e, rev_zero n hn, h]</span>
+<span class="ln" id="L255"><a class="lno" href="#L255">255</a>      | isFalse e =&gt; by</span>
+<span class="ln" id="L256"><a class="lno" href="#L256">256</a>          have hk0 := Nat.pos_of_ne_zero e</span>
+<span class="ln" id="L257"><a class="lno" href="#L257">257</a>          rw [rev_of_pos hk hk0]</span>
+<span class="ln" id="L258"><a class="lno" href="#L258">258</a>          exact match Nat.lt_or_ge l (n - k) with</span>
+<span class="ln" id="L259"><a class="lno" href="#L259">259</a>            | Or.inl hlt =&gt; by</span>
+<span class="ln" id="L260"><a class="lno" href="#L260">260</a>                have : k + l &lt; n := by</span>
+<span class="ln" id="L261"><a class="lno" href="#L261">261</a>                  have := Nat.add_lt_add_left hlt k</span>
+<span class="ln" id="L262"><a class="lno" href="#L262">262</a>                  rw [FRC.Nat.add_sub_of_le (Nat.le_of_lt hk)] at this; exact this</span>
+<span class="ln" id="L263"><a class="lno" href="#L263">263</a>                rw [FRC.Nat.mod_eq_of_lt this] at h</span>
+<span class="ln" id="L264"><a class="lno" href="#L264">264</a>                exact absurd h (Nat.ne_of_gt (Nat.lt_of_lt_of_le hk0 (Nat.le_add_right k l)))</span>
+<span class="ln" id="L265"><a class="lno" href="#L265">265</a>            | Or.inr hge =&gt; by</span>
+<span class="ln" id="L266"><a class="lno" href="#L266">266</a>                have e1 : k + l = n * 1 + (l - (n - k)) := by</span>
+<span class="ln" id="L267"><a class="lno" href="#L267">267</a>                  rw [Nat.mul_one]</span>
+<span class="ln" id="L268"><a class="lno" href="#L268">268</a>                  calc k + l = k + ((n - k) + (l - (n - k))) := by rw [FRC.Nat.add_sub_of_le hge]</span>
+<span class="ln" id="L269"><a class="lno" href="#L269">269</a>                    _ = (k + (n - k)) + (l - (n - k)) := (Nat.add_assoc _ _ _).symm</span>
+<span class="ln" id="L270"><a class="lno" href="#L270">270</a>                    _ = n + (l - (n - k)) := by rw [FRC.Nat.add_sub_of_le (Nat.le_of_lt hk)]</span>
+<span class="ln" id="L271"><a class="lno" href="#L271">271</a>                rw [e1, FRC.Nat.add_mul_mod_self_left _ _ _ hn,</span>
+<span class="ln" id="L272"><a class="lno" href="#L272">272</a>                  FRC.Nat.mod_eq_of_lt (Nat.lt_of_le_of_lt (Nat.sub_le _ _) hl)] at h</span>
+<span class="ln" id="L273"><a class="lno" href="#L273">273</a>                have := FRC.Nat.add_sub_of_le hge</span>
+<span class="ln" id="L274"><a class="lno" href="#L274">274</a>                rw [h, Nat.add_zero] at this</span>
+<span class="ln" id="L275"><a class="lno" href="#L275">275</a>                exact this.symm</span>
+<span class="ln" id="L276"><a class="lno" href="#L276">276</a>  · intro e; rw [e, Nat.add_comm]; exact rev_add_mod hk</span>
+<span class="ln" id="L277"><a class="lno" href="#L277">277</a></span>
+<span class="ln" id="L278"><a class="lno" href="#L278">278</a>/-- The shell Fourier matrix, `W k j = g^{jk}` (6:B5&#x27;s convention). -/</span>
+<span class="ln decl" id="FRC.Shell.Frame.W"><a class="lno" href="#FRC.Shell.Frame.W">279</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcCore/Sum.lean#L279" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small" src="../lean.png" alt="" title="a definition: no proof, no axioms">def W (g : Shell p) (k j : Nat) : Shell p := g ^ (j * k)</span>
+<span class="ln" id="L280"><a class="lno" href="#L280">280</a></span>
+<span class="ln" id="L281"><a class="lno" href="#L281">281</a>/-- The reversal matrix `J k j = [(k + j) % n = 0]`. -/</span>
+<span class="ln decl" id="FRC.Shell.Frame.J"><a class="lno" href="#FRC.Shell.Frame.J">282</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcCore/Sum.lean#L282" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small" src="../lean.png" alt="" title="a definition: no proof, no axioms">def J (n k j : Nat) : Shell p := if (k + j) % n = 0 then 1 else 0</span>
+<span class="ln" id="L283"><a class="lno" href="#L283">283</a></span>
+<span class="ln" id="L284"><a class="lno" href="#L284">284</a>/-- The quarter-turn transform `F = i·W`, `i = −g^κ`. -/</span>
+<span class="ln decl" id="FRC.Shell.Frame.Fmat"><a class="lno" href="#FRC.Shell.Frame.Fmat">285</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcCore/Sum.lean#L285" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small" src="../lean.png" alt="" title="a definition: no proof, no axioms">def Fmat (g : Shell p) (κ k j : Nat) : Shell p := quarterTurn g κ * W g k j</span>
+<span class="ln" id="L286"><a class="lno" href="#L286">286</a></span>
+<span class="ln decl" id="FRC.Shell.Frame.J_eq"><a class="lno" href="#FRC.Shell.Frame.J_eq">287</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcCore/Sum.lean#L287" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small ok" src="../lean-ok.png" alt="" title="no axioms">theorem J_eq {n k l : Nat} (hk : k &lt; n) (hl : l &lt; n) :</span>
+<span class="ln" id="L288"><a class="lno" href="#L288">288</a>    (J n k l : Shell p) = (if l = rev n k then (1 : Shell p) else 0) := by</span>
+<span class="ln" id="L289"><a class="lno" href="#L289">289</a>  unfold J</span>
+<span class="ln" id="L290"><a class="lno" href="#L290">290</a>  exact match Nat.decEq l (rev n k) with</span>
+<span class="ln" id="L291"><a class="lno" href="#L291">291</a>    | isTrue e =&gt; by rw [if_pos e, if_pos ((add_mod_eq_zero_iff hk hl).2 e)]</span>
+<span class="ln" id="L292"><a class="lno" href="#L292">292</a>    | isFalse e =&gt; by rw [if_neg e, if_neg (fun h =&gt; e ((add_mod_eq_zero_iff hk hl).1 h))]</span>
+<span class="ln" id="L293"><a class="lno" href="#L293">293</a></span>
+<span class="ln" id="L294"><a class="lno" href="#L294">294</a>/-- 6:B5 (`W² = −J`, entrywise), in the matrix notation. -/</span>
+<span class="ln decl" id="FRC.Shell.Frame.W_sq'"><a class="lno" href="#FRC.Shell.Frame.W_sq'">295</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcCore/Sum.lean#L295" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small ok" src="../lean-ok.png" alt="" title="no axioms">theorem W_sq&#x27; (F : Frame p κ g) (k j : Nat) :</span>
+<span class="ln" id="L296"><a class="lno" href="#L296">296</a>    sumRange (fun l =&gt; W g k l * W g l j) (p - 1) = -(J (p - 1) k j) := F.W_sq k j</span>
+<span class="ln" id="L297"><a class="lno" href="#L297">297</a></span>
+<span class="ln" id="L298"><a class="lno" href="#L298">298</a>/-- 6:B5, 6:B7 (`J² = 1`, entrywise): the reversal is an involution, so `F⁴ = J² = 1`. -/</span>
+<span class="ln decl" id="FRC.Shell.Frame.J_sq"><a class="lno" href="#FRC.Shell.Frame.J_sq">299</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcCore/Sum.lean#L299" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small ok" src="../lean-ok.png" alt="" title="no axioms">theorem J_sq (F : Frame p κ g) {k j : Nat} (hk : k &lt; p - 1) (hj : j &lt; p - 1) :</span>
+<span class="ln" id="L300"><a class="lno" href="#L300">300</a>    sumRange (fun l =&gt; (J (p - 1) k l : Shell p) * J (p - 1) l j) (p - 1) = (if k = j then (1 : Shell p) else 0) := by</span>
+<span class="ln" id="L301"><a class="lno" href="#L301">301</a>  have hn := F.n_pos</span>
+<span class="ln" id="L302"><a class="lno" href="#L302">302</a>  have hr : rev (p - 1) k &lt; p - 1 := rev_lt hn k</span>
+<span class="ln" id="L303"><a class="lno" href="#L303">303</a>  rw [sum_eq_single hr (fun l hl hne =&gt; by rw [J_eq hk hl, if_neg hne, zero_mul])]</span>
+<span class="ln" id="L304"><a class="lno" href="#L304">304</a>  rw [J_eq hk hr, if_pos rfl, one_mul, J_eq hr hj, rev_rev hk]</span>
+<span class="ln" id="L305"><a class="lno" href="#L305">305</a>  exact match Nat.decEq k j with</span>
+<span class="ln" id="L306"><a class="lno" href="#L306">306</a>    | isTrue e =&gt; by rw [if_pos e, if_pos e.symm]</span>
+<span class="ln" id="L307"><a class="lno" href="#L307">307</a>    | isFalse e =&gt; by rw [if_neg e, if_neg (fun h =&gt; e h.symm)]</span>
+<span class="ln" id="L308"><a class="lno" href="#L308">308</a></span>
+<span class="ln" id="L309"><a class="lno" href="#L309">309</a>/-- 6:B5, 6:B7 (`F² = J`, entrywise): the quarter-turn transform squares to the reversal. -/</span>
+<span class="ln decl" id="FRC.Shell.Frame.F_sq"><a class="lno" href="#FRC.Shell.Frame.F_sq">310</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcCore/Sum.lean#L310" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small ok" src="../lean-ok.png" alt="" title="no axioms">theorem F_sq (F : Frame p κ g) (k j : Nat) :</span>
+<span class="ln" id="L311"><a class="lno" href="#L311">311</a>    sumRange (fun l =&gt; Fmat g κ k l * Fmat g κ l j) (p - 1) = J (p - 1) k j := by</span>
+<span class="ln" id="L312"><a class="lno" href="#L312">312</a>  have e : ∀ l, Fmat g κ k l * Fmat g κ l j = (quarterTurn g κ * quarterTurn g κ) * (W g k l * W g l j) := by</span>
+<span class="ln" id="L313"><a class="lno" href="#L313">313</a>    intro l; unfold Fmat</span>
+<span class="ln" id="L314"><a class="lno" href="#L314">314</a>    rw [mul_assoc, mul_left_comm (W g k l), ← mul_assoc]</span>
+<span class="ln" id="L315"><a class="lno" href="#L315">315</a>  rw [sum_congr _ (fun l _ =&gt; e l), sum_mul_left, F.W_sq&#x27; k j, F.quarter_turn_sq, ← neg_mul, one_mul, neg_neg]</span>
+<span class="ln" id="L316"><a class="lno" href="#L316">316</a></span>
+<span class="ln decl" id="FRC.Shell.Frame.inv_unique"><a class="lno" href="#FRC.Shell.Frame.inv_unique">317</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcCore/Sum.lean#L317" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small ok" src="../lean-ok.png" alt="" title="no axioms">theorem inv_unique {x x&#x27; y : Shell p} (h : x * y = 1) (h&#x27; : x&#x27; * y = 1) : x = x&#x27; := by</span>
+<span class="ln" id="L318"><a class="lno" href="#L318">318</a>  calc x = x * (x&#x27; * y) := by rw [h&#x27;, mul_one]</span>
+<span class="ln" id="L319"><a class="lno" href="#L319">319</a>    _ = x&#x27; * (x * y) := mul_left_comm _ _ _</span>
+<span class="ln" id="L320"><a class="lno" href="#L320">320</a>    _ = x&#x27; := by rw [h, mul_one]</span>
+<span class="ln" id="L321"><a class="lno" href="#L321">321</a></span>
+<span class="ln" id="L322"><a class="lno" href="#L322">322</a>/-- 6:B7 (`W J = J W`, entrywise). -/</span>
+<span class="ln decl" id="FRC.Shell.Frame.W_J_comm"><a class="lno" href="#FRC.Shell.Frame.W_J_comm">323</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcCore/Sum.lean#L323" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small ok" src="../lean-ok.png" alt="" title="no axioms">theorem W_J_comm (F : Frame p κ g) {k j : Nat} (hk : k &lt; p - 1) (hj : j &lt; p - 1) :</span>
+<span class="ln" id="L324"><a class="lno" href="#L324">324</a>    sumRange (fun l =&gt; W g k l * J (p - 1) l j) (p - 1) = sumRange (fun l =&gt; J (p - 1) k l * W g l j) (p - 1) := by</span>
+<span class="ln" id="L325"><a class="lno" href="#L325">325</a>  have hn := F.n_pos</span>
+<span class="ln" id="L326"><a class="lno" href="#L326">326</a>  have hrj : rev (p - 1) j &lt; p - 1 := rev_lt hn j</span>
+<span class="ln" id="L327"><a class="lno" href="#L327">327</a>  have hrk : rev (p - 1) k &lt; p - 1 := rev_lt hn k</span>
+<span class="ln" id="L328"><a class="lno" href="#L328">328</a>  rw [sum_eq_single hrj (fun l hl hne =&gt; by</span>
+<span class="ln" id="L329"><a class="lno" href="#L329">329</a>        rw [J_eq hl hj, if_neg (fun e =&gt; hne (by rw [e, rev_rev hl])), mul_zero])]</span>
+<span class="ln" id="L330"><a class="lno" href="#L330">330</a>  rw [sum_eq_single hrk (fun l hl hne =&gt; by rw [J_eq hk hl, if_neg hne, zero_mul])]</span>
+<span class="ln" id="L331"><a class="lno" href="#L331">331</a>  rw [J_eq hrj hj, if_pos (rev_rev hj).symm, mul_one, J_eq hk hrk, if_pos rfl, one_mul]</span>
+<span class="ln" id="L332"><a class="lno" href="#L332">332</a>  unfold W</span>
+<span class="ln" id="L333"><a class="lno" href="#L333">333</a>  -- both are the inverse of g^{jk}</span>
+<span class="ln" id="L334"><a class="lno" href="#L334">334</a>  apply inv_unique (y := g ^ (j * k))</span>
+<span class="ln" id="L335"><a class="lno" href="#L335">335</a>  · rw [← pow_add, ← FRC.Nat.add_mul, F.pow_mod, ← FRC.Nat.mod_mul_mod _ _ _ hn, rev_add_mod hj, Nat.zero_mul,</span>
+<span class="ln" id="L336"><a class="lno" href="#L336">336</a>      FRC.Nat.zero_mod, pow_zero]</span>
+<span class="ln" id="L337"><a class="lno" href="#L337">337</a>  · rw [← pow_add, ← Nat.left_distrib, F.pow_mod, ← FRC.Nat.mul_mod_mod _ _ _ hn, rev_add_mod hk, Nat.mul_zero,</span>
+<span class="ln" id="L338"><a class="lno" href="#L338">338</a>      FRC.Nat.zero_mod, pow_zero]</span>
+<span class="ln" id="L339"><a class="lno" href="#L339">339</a></span>
+<span class="ln" id="L340"><a class="lno" href="#L340">340</a>/-! ### Sums over lists, permutation invariance (the reindexing `j ↦ u·j` of 2:F5) -/</span>
+<span class="ln" id="L341"><a class="lno" href="#L341">341</a></span>
+<span class="ln" id="L342"><a class="lno" href="#L342">342</a>end Frame</span>
 <span class="ln" id="L343"><a class="lno" href="#L343">343</a></span>
+<span class="ln" id="L344"><a class="lno" href="#L344">344</a>/-- The sum of `F` over a list of indices. -/</span>
+<span class="ln decl" id="FRC.Shell.sumList"><a class="lno" href="#FRC.Shell.sumList">345</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcCore/Sum.lean#L345" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small" src="../lean.png" alt="" title="a definition: no proof, no axioms">def sumList (F : Nat → Shell p) : List Nat → Shell p</span>
+<span class="ln" id="L346"><a class="lno" href="#L346">346</a>  | [] =&gt; 0</span>
+<span class="ln" id="L347"><a class="lno" href="#L347">347</a>  | a :: l =&gt; F a + sumList F l</span>
+<span class="ln" id="L348"><a class="lno" href="#L348">348</a></span>
+<span class="ln" id="L349"><a class="lno" href="#L349">349</a>/-- `[n−1, …, 0]`. -/</span>
+<span class="ln decl" id="FRC.Shell.listRange"><a class="lno" href="#FRC.Shell.listRange">350</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcCore/Sum.lean#L350" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small" src="../lean.png" alt="" title="a definition: no proof, no axioms">def listRange : Nat → List Nat</span>
+<span class="ln" id="L351"><a class="lno" href="#L351">351</a>  | 0 =&gt; []</span>
+<span class="ln" id="L352"><a class="lno" href="#L352">352</a>  | n + 1 =&gt; n :: listRange n</span>
+<span class="ln" id="L353"><a class="lno" href="#L353">353</a></span>
+<span class="ln" id="L354"><a class="lno" href="#L354">354</a>/-- `[σ (n−1), …, σ 0]`. -/</span>
+<span class="ln decl" id="FRC.Shell.imageList"><a class="lno" href="#FRC.Shell.imageList">355</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcCore/Sum.lean#L355" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small" src="../lean.png" alt="" title="a definition: no proof, no axioms">def imageList (σ : Nat → Nat) : Nat → List Nat</span>
+<span class="ln" id="L356"><a class="lno" href="#L356">356</a>  | 0 =&gt; []</span>
+<span class="ln" id="L357"><a class="lno" href="#L357">357</a>  | n + 1 =&gt; σ n :: imageList σ n</span>
+<span class="ln" id="L358"><a class="lno" href="#L358">358</a></span>
+<span class="ln decl" id="FRC.Shell.sumList_imageList"><a class="lno" href="#FRC.Shell.sumList_imageList">359</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcCore/Sum.lean#L359" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small ok" src="../lean-ok.png" alt="" title="no axioms">theorem sumList_imageList (F : Nat → Shell p) (σ : Nat → Nat) (n : Nat) :</span>
+<span class="ln" id="L360"><a class="lno" href="#L360">360</a>    sumList F (imageList σ n) = sumRange (fun j =&gt; F (σ j)) n := by</span>
+<span class="ln" id="L361"><a class="lno" href="#L361">361</a>  induction n with</span>
+<span class="ln" id="L362"><a class="lno" href="#L362">362</a>  | zero =&gt; rfl</span>
+<span class="ln" id="L363"><a class="lno" href="#L363">363</a>  | succ n ih =&gt; show F (σ n) + sumList F (imageList σ n) = sumRange (fun j =&gt; F (σ j)) n + F (σ n); rw [ih, add_comm]</span>
+<span class="ln" id="L364"><a class="lno" href="#L364">364</a></span>
+<span class="ln decl" id="FRC.Shell.sumList_erase"><a class="lno" href="#FRC.Shell.sumList_erase">365</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcCore/Sum.lean#L365" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small ok" src="../lean-ok.png" alt="" title="no axioms">theorem sumList_erase (F : Nat → Shell p) {v : Nat} : ∀ {l : List Nat}, Pigeonhole.mem v l →</span>
+<span class="ln" id="L366"><a class="lno" href="#L366">366</a>    sumList F l = F v + sumList F (Pigeonhole.erase v l)</span>
+<span class="ln" id="L367"><a class="lno" href="#L367">367</a>  | [], h =&gt; absurd h id</span>
+<span class="ln" id="L368"><a class="lno" href="#L368">368</a>  | a :: l, h =&gt; by</span>
+<span class="ln" id="L369"><a class="lno" href="#L369">369</a>    exact match Nat.decEq a v with</span>
+<span class="ln" id="L370"><a class="lno" href="#L370">370</a>      | isTrue e =&gt; by rw [show Pigeonhole.erase v (a :: l) = l from if_pos e, e]; rfl</span>
+<span class="ln" id="L371"><a class="lno" href="#L371">371</a>      | isFalse e =&gt; by</span>
+<span class="ln" id="L372"><a class="lno" href="#L372">372</a>          rw [show Pigeonhole.erase v (a :: l) = a :: Pigeonhole.erase v l from if_neg e]</span>
+<span class="ln" id="L373"><a class="lno" href="#L373">373</a>          have hm : Pigeonhole.mem v l := match h with</span>
+<span class="ln" id="L374"><a class="lno" href="#L374">374</a>            | Or.inl h&#x27; =&gt; absurd h&#x27;.symm e</span>
+<span class="ln" id="L375"><a class="lno" href="#L375">375</a>            | Or.inr h&#x27; =&gt; h&#x27;</span>
+<span class="ln" id="L376"><a class="lno" href="#L376">376</a>          show F a + sumList F l = F v + (F a + sumList F (Pigeonhole.erase v l))</span>
+<span class="ln" id="L377"><a class="lno" href="#L377">377</a>          rw [sumList_erase F hm, add_left_comm]</span>
+<span class="ln" id="L378"><a class="lno" href="#L378">378</a></span>
+<span class="ln decl" id="FRC.Shell.imageList_length"><a class="lno" href="#FRC.Shell.imageList_length">379</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcCore/Sum.lean#L379" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small ok" src="../lean-ok.png" alt="" title="no axioms">theorem imageList_length (σ : Nat → Nat) (n : Nat) : (imageList σ n).length = n := by</span>
+<span class="ln" id="L380"><a class="lno" href="#L380">380</a>  induction n with</span>
+<span class="ln" id="L381"><a class="lno" href="#L381">381</a>  | zero =&gt; rfl</span>
+<span class="ln" id="L382"><a class="lno" href="#L382">382</a>  | succ n ih =&gt; show (imageList σ n).length + 1 = n + 1; rw [ih]</span>
+<span class="ln" id="L383"><a class="lno" href="#L383">383</a></span>
+<span class="ln decl" id="FRC.Shell.mem_imageList"><a class="lno" href="#FRC.Shell.mem_imageList">384</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcCore/Sum.lean#L384" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small ok" src="../lean-ok.png" alt="" title="no axioms">theorem mem_imageList {σ : Nat → Nat} {v : Nat} : ∀ {n : Nat}, Pigeonhole.mem v (imageList σ n) → ∃ j, j &lt; n ∧ σ j = v</span>
+<span class="ln" id="L385"><a class="lno" href="#L385">385</a>  | 0, h =&gt; absurd h id</span>
+<span class="ln" id="L386"><a class="lno" href="#L386">386</a>  | n + 1, h =&gt; match h with</span>
+<span class="ln" id="L387"><a class="lno" href="#L387">387</a>    | Or.inl e =&gt; ⟨n, Nat.lt_succ_self n, e.symm⟩</span>
+<span class="ln" id="L388"><a class="lno" href="#L388">388</a>    | Or.inr h&#x27; =&gt; match mem_imageList h&#x27; with</span>
+<span class="ln" id="L389"><a class="lno" href="#L389">389</a>      | ⟨j, hj, e⟩ =&gt; ⟨j, Nat.lt_succ_of_lt hj, e⟩</span>
+<span class="ln" id="L390"><a class="lno" href="#L390">390</a></span>
+<span class="ln decl" id="FRC.Shell.imageList_nodup"><a class="lno" href="#FRC.Shell.imageList_nodup">391</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcCore/Sum.lean#L391" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small ok" src="../lean-ok.png" alt="" title="no axioms">theorem imageList_nodup {σ : Nat → Nat} {n : Nat} (hinj : ∀ i j, i &lt; n → j &lt; n → σ i = σ j → i = j) :</span>
+<span class="ln" id="L392"><a class="lno" href="#L392">392</a>    ∀ {m : Nat}, m ≤ n → Pigeonhole.NoDup (imageList σ m)</span>
+<span class="ln" id="L393"><a class="lno" href="#L393">393</a>  | 0, _ =&gt; trivial</span>
+<span class="ln" id="L394"><a class="lno" href="#L394">394</a>  | m + 1, hm =&gt; ⟨fun h =&gt; match mem_imageList h with</span>
+<span class="ln" id="L395"><a class="lno" href="#L395">395</a>      | ⟨j, hj, e⟩ =&gt; Nat.lt_irrefl j (hinj j m (Nat.lt_of_lt_of_le hj (Nat.le_of_lt hm)) hm e ▸ hj),</span>
+<span class="ln" id="L396"><a class="lno" href="#L396">396</a>    imageList_nodup hinj (Nat.le_of_lt hm)⟩</span>
+<span class="ln" id="L397"><a class="lno" href="#L397">397</a></span>
+<span class="ln" id="L398"><a class="lno" href="#L398">398</a>/-- A sum over any list of `n` distinct indices below `n` is the sum over `0, …, n−1`. -/</span>
+<span class="ln decl" id="FRC.Shell.sumList_eq_sumRange"><a class="lno" href="#FRC.Shell.sumList_eq_sumRange">399</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcCore/Sum.lean#L399" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small ok" src="../lean-ok.png" alt="" title="no axioms">theorem sumList_eq_sumRange (F : Nat → Shell p) : ∀ (n : Nat) (l : List Nat), Pigeonhole.NoDup l →</span>
+<span class="ln" id="L400"><a class="lno" href="#L400">400</a>    (∀ e, Pigeonhole.mem e l → e &lt; n) → l.length = n → sumList F l = sumRange F n</span>
+<span class="ln" id="L401"><a class="lno" href="#L401">401</a>  | 0, [], _, _, _ =&gt; rfl</span>
+<span class="ln" id="L402"><a class="lno" href="#L402">402</a>  | 0, a :: l, _, hb, _ =&gt; absurd (hb a (Or.inl rfl)) (Nat.not_lt_zero a)</span>
+<span class="ln" id="L403"><a class="lno" href="#L403">403</a>  | n + 1, l, hnd, hb, hlen =&gt; by</span>
+<span class="ln" id="L404"><a class="lno" href="#L404">404</a>    have hm : Pigeonhole.mem n l := Pigeonhole.mem_of_nodup_of_length_lt (n + 1) l hnd hb hlen n (Nat.lt_succ_self n)</span>
+<span class="ln" id="L405"><a class="lno" href="#L405">405</a>    rw [sumList_erase F hm, sumRange_succ, add_comm]</span>
+<span class="ln" id="L406"><a class="lno" href="#L406">406</a>    have hb&#x27; : ∀ e, Pigeonhole.mem e (Pigeonhole.erase n l) → e &lt; n := fun e he =&gt;</span>
+<span class="ln" id="L407"><a class="lno" href="#L407">407</a>      match Nat.lt_or_ge e n with</span>
+<span class="ln" id="L408"><a class="lno" href="#L408">408</a>      | Or.inl hlt =&gt; hlt</span>
+<span class="ln" id="L409"><a class="lno" href="#L409">409</a>      | Or.inr hge =&gt;</span>
+<span class="ln" id="L410"><a class="lno" href="#L410">410</a>        have : e = n := Nat.le_antisymm (Nat.le_of_lt_succ (hb e (Pigeonhole.mem_of_mem_erase he))) hge</span>
+<span class="ln" id="L411"><a class="lno" href="#L411">411</a>        absurd (this ▸ he) (Pigeonhole.not_mem_erase_self n hnd)</span>
+<span class="ln" id="L412"><a class="lno" href="#L412">412</a>    have hlen&#x27; : (Pigeonhole.erase n l).length = n := by</span>
+<span class="ln" id="L413"><a class="lno" href="#L413">413</a>      have := Pigeonhole.length_erase_of_mem hm; rw [hlen] at this; exact Nat.succ.inj this</span>
+<span class="ln" id="L414"><a class="lno" href="#L414">414</a>    rw [sumList_eq_sumRange F n (Pigeonhole.erase n l) (Pigeonhole.nodup_erase n hnd) hb&#x27; hlen&#x27;]</span>
+<span class="ln" id="L415"><a class="lno" href="#L415">415</a></span>
+<span class="ln" id="L416"><a class="lno" href="#L416">416</a>/-- Permutation invariance: for `σ` injective on `[0, n)` with values below `n`,</span>
+<span class="ln" id="L417"><a class="lno" href="#L417">417</a>`Σ_{j&lt;n} F (σ j) = Σ_{l&lt;n} F l`. -/</span>
+<span class="ln decl" id="FRC.Shell.sum_perm"><a class="lno" href="#FRC.Shell.sum_perm">418</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcCore/Sum.lean#L418" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small ok" src="../lean-ok.png" alt="" title="no axioms">theorem sum_perm (F : Nat → Shell p) (σ : Nat → Nat) (n : Nat) (hlt : ∀ j, j &lt; n → σ j &lt; n)</span>
+<span class="ln" id="L419"><a class="lno" href="#L419">419</a>    (hinj : ∀ i j, i &lt; n → j &lt; n → σ i = σ j → i = j) :</span>
+<span class="ln" id="L420"><a class="lno" href="#L420">420</a>    sumRange (fun j =&gt; F (σ j)) n = sumRange F n := by</span>
+<span class="ln" id="L421"><a class="lno" href="#L421">421</a>  rw [← sumList_imageList]</span>
+<span class="ln" id="L422"><a class="lno" href="#L422">422</a>  exact sumList_eq_sumRange F n (imageList σ n) (imageList_nodup hinj (Nat.le_refl n))</span>
+<span class="ln" id="L423"><a class="lno" href="#L423">423</a>    (fun e he =&gt; match mem_imageList he with | ⟨j, hj, e&#x27;⟩ =&gt; e&#x27; ▸ hlt j hj) (imageList_length σ n)</span>
+<span class="ln" id="L424"><a class="lno" href="#L424">424</a></span>
+<span class="ln" id="L425"><a class="lno" href="#L425">425</a>namespace Frame</span>
+<span class="ln" id="L426"><a class="lno" href="#L426">426</a>variable {κ : Nat} {g : Shell p}</span>
+<span class="ln" id="L427"><a class="lno" href="#L427">427</a></span>
+<span class="ln" id="L428"><a class="lno" href="#L428">428</a>/-- The shell Fourier transform of `v` at `k`: `Σ_{j&lt;n} v_j g^{jk}`. -/</span>
+<span class="ln decl" id="FRC.Shell.Frame.dft"><a class="lno" href="#FRC.Shell.Frame.dft">429</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcCore/Sum.lean#L429" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small" src="../lean.png" alt="" title="a definition: no proof, no axioms">def dft (g : Shell p) (n : Nat) (v : Nat → Shell p) (k : Nat) : Shell p := sumRange (fun j =&gt; v j * g ^ (j * k)) n</span>
+<span class="ln" id="L430"><a class="lno" href="#L430">430</a></span>
+<span class="ln" id="L431"><a class="lno" href="#L431">431</a>/-- The polynomial `P_v(x) = Σ_{j&lt;n} v_j x^j`. -/</span>
+<span class="ln decl" id="FRC.Shell.Frame.polyEval"><a class="lno" href="#FRC.Shell.Frame.polyEval">432</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcCore/Sum.lean#L432" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small" src="../lean.png" alt="" title="a definition: no proof, no axioms">def polyEval (n : Nat) (v : Nat → Shell p) (x : Shell p) : Shell p := sumRange (fun j =&gt; v j * x ^ j) n</span>
+<span class="ln" id="L433"><a class="lno" href="#L433">433</a></span>
+<span class="ln" id="L434"><a class="lno" href="#L434">434</a>/-- 2:F4 (Prop. 6.5) — the polynomial reading: `F_g(v)_k = P_v(g^k)`. -/</span>
+<span class="ln decl" id="FRC.Shell.Frame.dft_eq_polyEval"><a class="lno" href="#FRC.Shell.Frame.dft_eq_polyEval">435</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcCore/Sum.lean#L435" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small ok" src="../lean-ok.png" alt="" title="no axioms">theorem dft_eq_polyEval (g : Shell p) (n : Nat) (v : Nat → Shell p) (k : Nat) :</span>
+<span class="ln" id="L436"><a class="lno" href="#L436">436</a>    dft g n v k = polyEval n v (g ^ k) := by</span>
+<span class="ln" id="L437"><a class="lno" href="#L437">437</a>  unfold dft polyEval</span>
+<span class="ln" id="L438"><a class="lno" href="#L438">438</a>  apply sum_congr; intro j _</span>
+<span class="ln" id="L439"><a class="lno" href="#L439">439</a>  rw [Nat.mul_comm j k, pow_mul]</span>
+<span class="ln" id="L440"><a class="lno" href="#L440">440</a></span>
+<span class="ln" id="L441"><a class="lno" href="#L441">441</a>/-- The reindexing `j ↦ u·j mod n` is injective on `[0, n)` when `u` is invertible mod `n`. -/</span>
+<span class="ln decl" id="FRC.Shell.Frame.mul_mod_inj"><a class="lno" href="#FRC.Shell.Frame.mul_mod_inj">442</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcCore/Sum.lean#L442" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small ok" src="../lean-ok.png" alt="" title="no axioms">theorem mul_mod_inj (F : Frame p κ g) {u : Nat} (hu : Coprime u (p - 1)) {i j : Nat} (hi : i &lt; p - 1) (hj : j &lt; p - 1)</span>
+<span class="ln" id="L443"><a class="lno" href="#L443">443</a>    (h : (u * i) % (p - 1) = (u * j) % (p - 1)) : i = j := by</span>
+<span class="ln" id="L444"><a class="lno" href="#L444">444</a>  have hn := F.n_pos</span>
+<span class="ln" id="L445"><a class="lno" href="#L445">445</a>  match hu with</span>
+<span class="ln" id="L446"><a class="lno" href="#L446">446</a>  | ⟨a, _, ha⟩ =&gt;</span>
+<span class="ln" id="L447"><a class="lno" href="#L447">447</a>    have key : ∀ i, i &lt; p - 1 → (a * (u * i)) % (p - 1) = i := by</span>
+<span class="ln" id="L448"><a class="lno" href="#L448">448</a>      intro i hi</span>
+<span class="ln" id="L449"><a class="lno" href="#L449">449</a>      match FRC.Nat.mod_spec (p - 1) hn (a * u) with</span>
+<span class="ln" id="L450"><a class="lno" href="#L450">450</a>      | ⟨q, hq⟩ =&gt;</span>
+<span class="ln" id="L451"><a class="lno" href="#L451">451</a>        rw [ha] at hq</span>
+<span class="ln" id="L452"><a class="lno" href="#L452">452</a>        rw [← FRC.Nat.mul_assoc, hq, FRC.Nat.add_mul, Nat.one_mul, FRC.Nat.mul_assoc,</span>
+<span class="ln" id="L453"><a class="lno" href="#L453">453</a>          FRC.Nat.add_mul_mod_self_left _ _ _ hn, FRC.Nat.mod_eq_of_lt hi]</span>
+<span class="ln" id="L454"><a class="lno" href="#L454">454</a>    rw [← key i hi, ← key j hj, ← FRC.Nat.mul_mod_mod _ _ _ hn, h, FRC.Nat.mul_mod_mod _ _ _ hn]</span>
+<span class="ln" id="L455"><a class="lno" href="#L455">455</a></span>
+<span class="ln" id="L456"><a class="lno" href="#L456">456</a>/-- 2:F5 (Prop. 6.7) — covariance under generator change: for `g&#x27; = g^u` (`u` invertible mod `n`) and</span>
+<span class="ln" id="L457"><a class="lno" href="#L457">457</a>`v&#x27;_j = v_{u·j mod n}`, `F_{g&#x27;}(v&#x27;)_k = F_g(v)_k`. -/</span>
+<span class="ln decl" id="FRC.Shell.Frame.dft_covariance"><a class="lno" href="#FRC.Shell.Frame.dft_covariance">458</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcCore/Sum.lean#L458" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small ok" src="../lean-ok.png" alt="" title="no axioms">theorem dft_covariance (F : Frame p κ g) {u : Nat} (hu : Coprime u (p - 1)) (v : Nat → Shell p) (k : Nat) :</span>
+<span class="ln" id="L459"><a class="lno" href="#L459">459</a>    dft (g ^ u) (p - 1) (fun j =&gt; v ((u * j) % (p - 1))) k = dft g (p - 1) v k := by</span>
+<span class="ln" id="L460"><a class="lno" href="#L460">460</a>  have hn := F.n_pos</span>
+<span class="ln" id="L461"><a class="lno" href="#L461">461</a>  unfold dft</span>
+<span class="ln" id="L462"><a class="lno" href="#L462">462</a>  have e : ∀ j, v ((u * j) % (p - 1)) * (g ^ u) ^ (j * k) = v ((u * j) % (p - 1)) * g ^ (((u * j) % (p - 1)) * k) := by</span>
+<span class="ln" id="L463"><a class="lno" href="#L463">463</a>    intro j</span>
+<span class="ln" id="L464"><a class="lno" href="#L464">464</a>    rw [← pow_mul, F.pow_mod (u * (j * k)), F.pow_mod (((u * j) % (p - 1)) * k), FRC.Nat.mod_mul_mod _ _ _ hn,</span>
+<span class="ln" id="L465"><a class="lno" href="#L465">465</a>      ← FRC.Nat.mul_assoc]</span>
+<span class="ln" id="L466"><a class="lno" href="#L466">466</a>  rw [sum_congr _ (fun j _ =&gt; e j)]</span>
+<span class="ln" id="L467"><a class="lno" href="#L467">467</a>  exact sum_perm (fun l =&gt; v l * g ^ (l * k)) (fun j =&gt; (u * j) % (p - 1)) (p - 1)</span>
+<span class="ln" id="L468"><a class="lno" href="#L468">468</a>    (fun j _ =&gt; Nat.mod_lt _ hn) (fun i j hi hj h =&gt; F.mul_mod_inj hu hi hj h)</span>
+<span class="ln" id="L469"><a class="lno" href="#L469">469</a></span>
+<span class="ln" id="L470"><a class="lno" href="#L470">470</a>/-! ### 6:B7 — the eigenspaces of the reversal: `V = V⁺ ⊕ V⁻`, `dim V⁺ = 2κ + 1`, `dim V⁻ = 2κ − 1` -/</span>
+<span class="ln" id="L471"><a class="lno" href="#L471">471</a></span>
+<span class="ln" id="L472"><a class="lno" href="#L472">472</a>/-- `v` is symmetric under the reversal: `v (rev k) = v k` for `k &lt; n`. -/</span>
+<span class="ln decl" id="FRC.Shell.Frame.Symm"><a class="lno" href="#FRC.Shell.Frame.Symm">473</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcCore/Sum.lean#L473" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small" src="../lean.png" alt="" title="a definition: no proof, no axioms">def Symm (n : Nat) (v : Nat → Shell p) : Prop := ∀ k, k &lt; n → v (rev n k) = v k</span>
+<span class="ln" id="L474"><a class="lno" href="#L474">474</a></span>
+<span class="ln" id="L475"><a class="lno" href="#L475">475</a>/-- `v` is antisymmetric under the reversal: `v (rev k) = −v k` for `k &lt; n`. -/</span>
+<span class="ln decl" id="FRC.Shell.Frame.Antisymm"><a class="lno" href="#FRC.Shell.Frame.Antisymm">476</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcCore/Sum.lean#L476" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small" src="../lean.png" alt="" title="a definition: no proof, no axioms">def Antisymm (n : Nat) (v : Nat → Shell p) : Prop := ∀ k, k &lt; n → v (rev n k) = -(v k)</span>
+<span class="ln" id="L477"><a class="lno" href="#L477">477</a></span>
+<span class="ln decl" id="FRC.Shell.Frame.rev_eq_sub"><a class="lno" href="#FRC.Shell.Frame.rev_eq_sub">478</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcCore/Sum.lean#L478" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small ok" src="../lean-ok.png" alt="" title="no axioms">theorem rev_eq_sub {n k : Nat} (hk : k &lt; n) (hk0 : 0 &lt; k) : rev n k = n - k := rev_of_pos hk hk0</span>
+<span class="ln" id="L479"><a class="lno" href="#L479">479</a></span>
+<span class="ln" id="L480"><a class="lno" href="#L480">480</a>/-- 6:B7 — a symmetric vector is determined by its `2κ + 1` coordinates `v 0, …, v (2κ)`. -/</span>
+<span class="ln decl" id="FRC.Shell.Frame.symm_determined"><a class="lno" href="#FRC.Shell.Frame.symm_determined">481</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcCore/Sum.lean#L481" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small ok" src="../lean-ok.png" alt="" title="no axioms">theorem symm_determined (F : Frame p κ g) {v w : Nat → Shell p} (hv : Symm (p - 1) v) (hw : Symm (p - 1) w)</span>
+<span class="ln" id="L482"><a class="lno" href="#L482">482</a>    (h : ∀ k, k ≤ 2 * κ → v k = w k) : ∀ k, k &lt; p - 1 → v k = w k := by</span>
+<span class="ln" id="L483"><a class="lno" href="#L483">483</a>  intro k hk</span>
+<span class="ln" id="L484"><a class="lno" href="#L484">484</a>  exact match Nat.lt_or_ge k (2 * κ + 1) with</span>
+<span class="ln" id="L485"><a class="lno" href="#L485">485</a>    | Or.inl hlt =&gt; h k (Nat.le_of_lt_succ hlt)</span>
+<span class="ln" id="L486"><a class="lno" href="#L486">486</a>    | Or.inr hge =&gt;</span>
+<span class="ln" id="L487"><a class="lno" href="#L487">487</a>      -- k &gt; 2κ: rev k = n − k ≤ 2κ − 1</span>
+<span class="ln" id="L488"><a class="lno" href="#L488">488</a>      have hk0 : 0 &lt; k := Nat.lt_of_lt_of_le (Nat.zero_lt_succ _) hge</span>
+<span class="ln" id="L489"><a class="lno" href="#L489">489</a>      have hr : rev (p - 1) k ≤ 2 * κ := by</span>
+<span class="ln" id="L490"><a class="lno" href="#L490">490</a>        rw [rev_eq_sub hk hk0]</span>
+<span class="ln" id="L491"><a class="lno" href="#L491">491</a>        apply FRC.Nat.sub_le_of_le_add</span>
+<span class="ln" id="L492"><a class="lno" href="#L492">492</a>        rw [← F.four_kappa]</span>
+<span class="ln" id="L493"><a class="lno" href="#L493">493</a>        exact Nat.add_le_add_left (Nat.le_of_lt hge) _</span>
+<span class="ln" id="L494"><a class="lno" href="#L494">494</a>      calc v k = v (rev (p - 1) k) := (hv k hk).symm</span>
+<span class="ln" id="L495"><a class="lno" href="#L495">495</a>        _ = w (rev (p - 1) k) := h _ hr</span>
+<span class="ln" id="L496"><a class="lno" href="#L496">496</a>        _ = w k := hw k hk</span>
+<span class="ln" id="L497"><a class="lno" href="#L497">497</a></span>
+<span class="ln" id="L498"><a class="lno" href="#L498">498</a>/-- 6:B7 — every assignment of the `2κ + 1` coordinates extends to a symmetric vector. -/</span>
+<span class="ln decl" id="FRC.Shell.Frame.symm_extend"><a class="lno" href="#FRC.Shell.Frame.symm_extend">499</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcCore/Sum.lean#L499" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small ok" src="../lean-ok.png" alt="" title="no axioms">theorem symm_extend (F : Frame p κ g) (c : Nat → Shell p) :</span>
+<span class="ln" id="L500"><a class="lno" href="#L500">500</a>    ∃ v : Nat → Shell p, Symm (p - 1) v ∧ ∀ k, k ≤ 2 * κ → v k = c k := by</span>
+<span class="ln" id="L501"><a class="lno" href="#L501">501</a>  refine ⟨fun k =&gt; if k ≤ 2 * κ then c k else c (rev (p - 1) k), ?_, fun k hk =&gt; by</span>
+<span class="ln" id="L502"><a class="lno" href="#L502">502</a>    show (if k ≤ 2 * κ then c k else c (rev (p - 1) k)) = c k</span>
+<span class="ln" id="L503"><a class="lno" href="#L503">503</a>    rw [if_pos hk]⟩</span>
+<span class="ln" id="L504"><a class="lno" href="#L504">504</a>  intro k hk</span>
+<span class="ln" id="L505"><a class="lno" href="#L505">505</a>  show (if rev (p - 1) k ≤ 2 * κ then c (rev (p - 1) k) else c (rev (p - 1) (rev (p - 1) k)))</span>
+<span class="ln" id="L506"><a class="lno" href="#L506">506</a>      = (if k ≤ 2 * κ then c k else c (rev (p - 1) k))</span>
+<span class="ln" id="L507"><a class="lno" href="#L507">507</a>  rw [rev_rev hk]</span>
+<span class="ln" id="L508"><a class="lno" href="#L508">508</a>  exact match Nat.decLe k (2 * κ), Nat.decLe (rev (p - 1) k) (2 * κ) with</span>
+<span class="ln" id="L509"><a class="lno" href="#L509">509</a>    | isTrue h1, isTrue h2 =&gt; by</span>
+<span class="ln" id="L510"><a class="lno" href="#L510">510</a>        rw [if_pos h1, if_pos h2]</span>
+<span class="ln" id="L511"><a class="lno" href="#L511">511</a>        -- both k and n − k are ≤ 2κ: k = 0 (rev 0 = 0) or k = 2κ (rev = 2κ)</span>
+<span class="ln" id="L512"><a class="lno" href="#L512">512</a>        exact match Nat.decEq k 0 with</span>
+<span class="ln" id="L513"><a class="lno" href="#L513">513</a>          | isTrue e =&gt; by rw [e, rev_zero _ F.n_pos]</span>
+<span class="ln" id="L514"><a class="lno" href="#L514">514</a>          | isFalse e =&gt; by</span>
+<span class="ln" id="L515"><a class="lno" href="#L515">515</a>              have hk0 := Nat.pos_of_ne_zero e</span>
+<span class="ln" id="L516"><a class="lno" href="#L516">516</a>              rw [rev_eq_sub hk hk0] at h2 ⊢</span>
+<span class="ln" id="L517"><a class="lno" href="#L517">517</a>              -- n − k ≤ 2κ and k ≤ 2κ force k = 2κ</span>
+<span class="ln" id="L518"><a class="lno" href="#L518">518</a>              have h3 : p - 1 ≤ 2 * κ + k := FRC.Nat.le_add_of_sub_le (Nat.le_of_lt hk) h2</span>
+<span class="ln" id="L519"><a class="lno" href="#L519">519</a>              rw [← F.four_kappa] at h3</span>
+<span class="ln" id="L520"><a class="lno" href="#L520">520</a>              have hk2 : k = 2 * κ := Nat.le_antisymm h1 (FRC.Nat.le_of_add_le_add_left h3)</span>
+<span class="ln" id="L521"><a class="lno" href="#L521">521</a>              rw [hk2, ← F.four_kappa, FRC.Nat.add_sub_cancel]</span>
+<span class="ln" id="L522"><a class="lno" href="#L522">522</a>    | isTrue h1, isFalse h2 =&gt; by rw [if_pos h1, if_neg h2]</span>
+<span class="ln" id="L523"><a class="lno" href="#L523">523</a>    | isFalse h1, isTrue h2 =&gt; by rw [if_neg h1, if_pos h2]</span>
+<span class="ln" id="L524"><a class="lno" href="#L524">524</a>    | isFalse h1, isFalse h2 =&gt; by</span>
+<span class="ln" id="L525"><a class="lno" href="#L525">525</a>        rw [if_neg h1, if_neg h2]</span>
+<span class="ln" id="L526"><a class="lno" href="#L526">526</a>        -- impossible: k &gt; 2κ and n − k &gt; 2κ would give n &gt; 4κ</span>
+<span class="ln" id="L527"><a class="lno" href="#L527">527</a>        exact absurd (by</span>
+<span class="ln" id="L528"><a class="lno" href="#L528">528</a>          have hk0 : 0 &lt; k := Nat.lt_of_lt_of_le (Nat.zero_lt_succ _) (Nat.lt_of_not_le h1)</span>
+<span class="ln" id="L529"><a class="lno" href="#L529">529</a>          rw [rev_eq_sub hk hk0] at h2</span>
+<span class="ln" id="L530"><a class="lno" href="#L530">530</a>          have a1 := Nat.lt_of_not_le h1</span>
+<span class="ln" id="L531"><a class="lno" href="#L531">531</a>          have a2 := Nat.lt_of_not_le h2</span>
+<span class="ln" id="L532"><a class="lno" href="#L532">532</a>          have := Nat.add_lt_add a1 a2</span>
+<span class="ln" id="L533"><a class="lno" href="#L533">533</a>          rw [FRC.Nat.add_sub_of_le (Nat.le_of_lt hk), F.four_kappa] at this</span>
+<span class="ln" id="L534"><a class="lno" href="#L534">534</a>          exact this) (Nat.lt_irrefl _)</span>
+<span class="ln" id="L535"><a class="lno" href="#L535">535</a></span>
+<span class="ln" id="L536"><a class="lno" href="#L536">536</a>/-- 6:B7 — an antisymmetric vector vanishes at the two fixed points of the reversal, `0` and `2κ`. -/</span>
+<span class="ln decl" id="FRC.Shell.Frame.antisymm_fixed"><a class="lno" href="#FRC.Shell.Frame.antisymm_fixed">537</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcCore/Sum.lean#L537" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small ok" src="../lean-ok.png" alt="" title="no axioms">theorem antisymm_fixed (F : Frame p κ g) {v : Nat → Shell p} (hv : Antisymm (p - 1) v) :</span>
+<span class="ln" id="L538"><a class="lno" href="#L538">538</a>    v 0 = 0 ∧ v (2 * κ) = 0 := by</span>
+<span class="ln" id="L539"><a class="lno" href="#L539">539</a>  have hn := F.n_pos</span>
+<span class="ln" id="L540"><a class="lno" href="#L540">540</a>  have h0 : v 0 = -(v 0) := by rw [← hv 0 hn, rev_zero _ hn]</span>
+<span class="ln" id="L541"><a class="lno" href="#L541">541</a>  have h2 : v (2 * κ) = -(v (2 * κ)) := by</span>
+<span class="ln" id="L542"><a class="lno" href="#L542">542</a>    rw [← hv (2 * κ) F.two_kappa_lt, rev_eq_sub F.two_kappa_lt F.two_kappa_pos, ← F.four_kappa, FRC.Nat.add_sub_cancel]</span>
+<span class="ln" id="L543"><a class="lno" href="#L543">543</a>  exact ⟨F.eq_zero_of_eq_neg h0, F.eq_zero_of_eq_neg h2⟩</span>
+<span class="ln" id="L544"><a class="lno" href="#L544">544</a></span>
+<span class="ln" id="L545"><a class="lno" href="#L545">545</a>/-- 6:B7 — an antisymmetric vector is determined by its `2κ − 1` coordinates `v 1, …, v (2κ − 1)`. -/</span>
+<span class="ln decl" id="FRC.Shell.Frame.antisymm_determined"><a class="lno" href="#FRC.Shell.Frame.antisymm_determined">546</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcCore/Sum.lean#L546" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small ok" src="../lean-ok.png" alt="" title="no axioms">theorem antisymm_determined (F : Frame p κ g) {v w : Nat → Shell p} (hv : Antisymm (p - 1) v)</span>
+<span class="ln" id="L547"><a class="lno" href="#L547">547</a>    (hw : Antisymm (p - 1) w) (h : ∀ k, 0 &lt; k → k &lt; 2 * κ → v k = w k) : ∀ k, k &lt; p - 1 → v k = w k := by</span>
+<span class="ln" id="L548"><a class="lno" href="#L548">548</a>  intro k hk</span>
+<span class="ln" id="L549"><a class="lno" href="#L549">549</a>  exact match Nat.decEq k 0 with</span>
+<span class="ln" id="L550"><a class="lno" href="#L550">550</a>    | isTrue e =&gt; by rw [e, (F.antisymm_fixed hv).1, (F.antisymm_fixed hw).1]</span>
+<span class="ln" id="L551"><a class="lno" href="#L551">551</a>    | isFalse e0 =&gt; match Nat.decEq k (2 * κ) with</span>
+<span class="ln" id="L552"><a class="lno" href="#L552">552</a>      | isTrue e =&gt; by rw [e, (F.antisymm_fixed hv).2, (F.antisymm_fixed hw).2]</span>
+<span class="ln" id="L553"><a class="lno" href="#L553">553</a>      | isFalse e2 =&gt; match Nat.lt_or_ge k (2 * κ) with</span>
+<span class="ln" id="L554"><a class="lno" href="#L554">554</a>        | Or.inl hlt =&gt; h k (Nat.pos_of_ne_zero e0) hlt</span>
+<span class="ln" id="L555"><a class="lno" href="#L555">555</a>        | Or.inr hge =&gt;</span>
+<span class="ln" id="L556"><a class="lno" href="#L556">556</a>          have hgt : 2 * κ &lt; k := Nat.lt_of_le_of_ne hge (fun e =&gt; e2 e.symm)</span>
+<span class="ln" id="L557"><a class="lno" href="#L557">557</a>          have hk0 : 0 &lt; k := Nat.lt_of_lt_of_le F.two_kappa_pos hge</span>
+<span class="ln" id="L558"><a class="lno" href="#L558">558</a>          have hr1 : 0 &lt; rev (p - 1) k := by</span>
+<span class="ln" id="L559"><a class="lno" href="#L559">559</a>            rw [rev_eq_sub hk hk0]</span>
+<span class="ln" id="L560"><a class="lno" href="#L560">560</a>            refine Nat.lt_of_add_lt_add_right (n := k) ?_</span>
+<span class="ln" id="L561"><a class="lno" href="#L561">561</a>            rw [Nat.zero_add, FRC.Nat.sub_add_cancel (Nat.le_of_lt hk)]; exact hk</span>
+<span class="ln" id="L562"><a class="lno" href="#L562">562</a>          have hr2 : rev (p - 1) k &lt; 2 * κ := by</span>
+<span class="ln" id="L563"><a class="lno" href="#L563">563</a>            rw [rev_eq_sub hk hk0]</span>
+<span class="ln" id="L564"><a class="lno" href="#L564">564</a>            refine Nat.lt_of_add_lt_add_right (n := k) ?_</span>
+<span class="ln" id="L565"><a class="lno" href="#L565">565</a>            rw [FRC.Nat.sub_add_cancel (Nat.le_of_lt hk), ← F.four_kappa]</span>
+<span class="ln" id="L566"><a class="lno" href="#L566">566</a>            exact Nat.add_lt_add_left hgt _</span>
+<span class="ln" id="L567"><a class="lno" href="#L567">567</a>          calc v k = -(-(v k)) := (neg_neg _).symm</span>
+<span class="ln" id="L568"><a class="lno" href="#L568">568</a>            _ = -(v (rev (p - 1) k)) := by rw [hv k hk]</span>
+<span class="ln" id="L569"><a class="lno" href="#L569">569</a>            _ = -(w (rev (p - 1) k)) := by rw [h _ hr1 hr2]</span>
+<span class="ln" id="L570"><a class="lno" href="#L570">570</a>            _ = -(-(w k)) := by rw [hw k hk]</span>
+<span class="ln" id="L571"><a class="lno" href="#L571">571</a>            _ = w k := neg_neg _</span>
+<span class="ln" id="L572"><a class="lno" href="#L572">572</a></span>
+<span class="ln" id="L573"><a class="lno" href="#L573">573</a>/-- 6:B7 — every assignment of the `2κ − 1` inner coordinates extends to an antisymmetric vector. -/</span>
+<span class="ln decl" id="FRC.Shell.Frame.antisymm_extend"><a class="lno" href="#FRC.Shell.Frame.antisymm_extend">574</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcCore/Sum.lean#L574" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small ok" src="../lean-ok.png" alt="" title="no axioms">theorem antisymm_extend (F : Frame p κ g) (c : Nat → Shell p) :</span>
+<span class="ln" id="L575"><a class="lno" href="#L575">575</a>    ∃ v : Nat → Shell p, Antisymm (p - 1) v ∧ ∀ k, 0 &lt; k → k &lt; 2 * κ → v k = c k := by</span>
+<span class="ln" id="L576"><a class="lno" href="#L576">576</a>  refine ⟨fun k =&gt; if k = 0 then 0 else if k = 2 * κ then 0 else if k &lt; 2 * κ then c k else -(c (rev (p - 1) k)),</span>
+<span class="ln" id="L577"><a class="lno" href="#L577">577</a>    ?_, fun k hk0 hk2 =&gt; by</span>
+<span class="ln" id="L578"><a class="lno" href="#L578">578</a>      show (if k = 0 then 0 else if k = 2 * κ then 0 else if k &lt; 2 * κ then c k else -(c (rev (p - 1) k))) = c k</span>
+<span class="ln" id="L579"><a class="lno" href="#L579">579</a>      rw [if_neg (Nat.ne_of_gt hk0), if_neg (Nat.ne_of_lt hk2), if_pos hk2]⟩</span>
+<span class="ln" id="L580"><a class="lno" href="#L580">580</a>  intro k hk</span>
+<span class="ln" id="L581"><a class="lno" href="#L581">581</a>  have hn := F.n_pos</span>
+<span class="ln" id="L582"><a class="lno" href="#L582">582</a>  show (if rev (p - 1) k = 0 then 0 else if rev (p - 1) k = 2 * κ then 0 else if rev (p - 1) k &lt; 2 * κ then c (rev (p - 1) k) else -(c (rev (p - 1) (rev (p - 1) k))))</span>
+<span class="ln" id="L583"><a class="lno" href="#L583">583</a>      = -(if k = 0 then 0 else if k = 2 * κ then 0 else if k &lt; 2 * κ then c k else -(c (rev (p - 1) k)))</span>
+<span class="ln" id="L584"><a class="lno" href="#L584">584</a>  match Nat.decEq k 0 with</span>
+<span class="ln" id="L585"><a class="lno" href="#L585">585</a>  | isTrue e =&gt; rw [e, rev_zero _ hn, if_pos rfl, if_pos rfl, neg_zero]</span>
+<span class="ln" id="L586"><a class="lno" href="#L586">586</a>  | isFalse e0 =&gt;</span>
+<span class="ln" id="L587"><a class="lno" href="#L587">587</a>    have hk0 := Nat.pos_of_ne_zero e0</span>
+<span class="ln" id="L588"><a class="lno" href="#L588">588</a>    have hrk : rev (p - 1) k = p - 1 - k := rev_eq_sub hk hk0</span>
+<span class="ln" id="L589"><a class="lno" href="#L589">589</a>    have hr0 : rev (p - 1) k ≠ 0 := fun h =&gt; by</span>
+<span class="ln" id="L590"><a class="lno" href="#L590">590</a>      rw [hrk] at h</span>
+<span class="ln" id="L591"><a class="lno" href="#L591">591</a>      have := FRC.Nat.sub_add_cancel (Nat.le_of_lt hk)</span>
+<span class="ln" id="L592"><a class="lno" href="#L592">592</a>      rw [h, Nat.zero_add] at this</span>
+<span class="ln" id="L593"><a class="lno" href="#L593">593</a>      exact Nat.lt_irrefl _ (this ▸ hk)</span>
+<span class="ln" id="L594"><a class="lno" href="#L594">594</a>    match Nat.decEq k (2 * κ) with</span>
+<span class="ln" id="L595"><a class="lno" href="#L595">595</a>    | isTrue e =&gt;</span>
+<span class="ln" id="L596"><a class="lno" href="#L596">596</a>      have : rev (p - 1) k = 2 * κ := by rw [hrk, e, ← F.four_kappa, FRC.Nat.add_sub_cancel]</span>
+<span class="ln" id="L597"><a class="lno" href="#L597">597</a>      rw [if_neg hr0, if_pos this, if_neg e0, if_pos e, neg_zero]</span>
+<span class="ln" id="L598"><a class="lno" href="#L598">598</a>    | isFalse e2 =&gt;</span>
+<span class="ln" id="L599"><a class="lno" href="#L599">599</a>      have hr2 : rev (p - 1) k ≠ 2 * κ := fun h =&gt; e2 (by</span>
+<span class="ln" id="L600"><a class="lno" href="#L600">600</a>        have := rev_rev hk</span>
+<span class="ln" id="L601"><a class="lno" href="#L601">601</a>        rw [h] at this</span>
+<span class="ln" id="L602"><a class="lno" href="#L602">602</a>        rw [← this, rev_eq_sub F.two_kappa_lt F.two_kappa_pos, ← F.four_kappa, FRC.Nat.add_sub_cancel])</span>
+<span class="ln" id="L603"><a class="lno" href="#L603">603</a>      rw [if_neg hr0, if_neg hr2, if_neg e0, if_neg e2]</span>
+<span class="ln" id="L604"><a class="lno" href="#L604">604</a>      match Nat.lt_or_ge k (2 * κ) with</span>
+<span class="ln" id="L605"><a class="lno" href="#L605">605</a>      | Or.inl hlt =&gt;</span>
+<span class="ln" id="L606"><a class="lno" href="#L606">606</a>        have hge : ¬ rev (p - 1) k &lt; 2 * κ := fun h =&gt; by</span>
+<span class="ln" id="L607"><a class="lno" href="#L607">607</a>          rw [hrk] at h</span>
+<span class="ln" id="L608"><a class="lno" href="#L608">608</a>          have := Nat.add_lt_add h hlt</span>
+<span class="ln" id="L609"><a class="lno" href="#L609">609</a>          rw [FRC.Nat.sub_add_cancel (Nat.le_of_lt hk), F.four_kappa] at this</span>
+<span class="ln" id="L610"><a class="lno" href="#L610">610</a>          exact Nat.lt_irrefl _ this</span>
+<span class="ln" id="L611"><a class="lno" href="#L611">611</a>        rw [if_neg hge, if_pos hlt, rev_rev hk]</span>
+<span class="ln" id="L612"><a class="lno" href="#L612">612</a>      | Or.inr hge =&gt;</span>
+<span class="ln" id="L613"><a class="lno" href="#L613">613</a>        have hlt&#x27; : ¬ k &lt; 2 * κ := Nat.not_lt_of_le hge</span>
+<span class="ln" id="L614"><a class="lno" href="#L614">614</a>        have hgt : 2 * κ &lt; k := Nat.lt_of_le_of_ne hge (fun e =&gt; e2 e.symm)</span>
+<span class="ln" id="L615"><a class="lno" href="#L615">615</a>        have hr : rev (p - 1) k &lt; 2 * κ := by</span>
+<span class="ln" id="L616"><a class="lno" href="#L616">616</a>          rw [hrk]</span>
+<span class="ln" id="L617"><a class="lno" href="#L617">617</a>          refine Nat.lt_of_add_lt_add_right (n := k) ?_</span>
+<span class="ln" id="L618"><a class="lno" href="#L618">618</a>          rw [FRC.Nat.sub_add_cancel (Nat.le_of_lt hk), ← F.four_kappa]</span>
+<span class="ln" id="L619"><a class="lno" href="#L619">619</a>          exact Nat.add_lt_add_left hgt _</span>
+<span class="ln" id="L620"><a class="lno" href="#L620">620</a>        rw [if_pos hr, if_neg hlt&#x27;, neg_neg]</span>
+<span class="ln" id="L621"><a class="lno" href="#L621">621</a></span>
+<span class="ln" id="L622"><a class="lno" href="#L622">622</a>/-- 6:B7 — the decomposition `V = V⁺ ⊕ V⁻`: with `h = 2⁻¹`, `v = v⁺ + v⁻` where `v⁺ k = h(v k + v (rev k))`</span>
+<span class="ln" id="L623"><a class="lno" href="#L623">623</a>is symmetric and `v⁻ k = h(v k − v (rev k))` antisymmetric; the decomposition is unique. -/</span>
+<span class="ln decl" id="FRC.Shell.Frame.symm_antisymm_decomp"><a class="lno" href="#FRC.Shell.Frame.symm_antisymm_decomp">624</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcCore/Sum.lean#L624" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small ok" src="../lean-ok.png" alt="" title="no axioms">theorem symm_antisymm_decomp (F : Frame p κ g) (v : Nat → Shell p) :</span>
+<span class="ln" id="L625"><a class="lno" href="#L625">625</a>    ∃ vp vm : Nat → Shell p, Symm (p - 1) vp ∧ Antisymm (p - 1) vm ∧ ∀ k, k &lt; p - 1 → v k = vp k + vm k := by</span>
+<span class="ln" id="L626"><a class="lno" href="#L626">626</a>  match F.exists_inv F.two_ne_zero with</span>
+<span class="ln" id="L627"><a class="lno" href="#L627">627</a>  | ⟨h, hh⟩ =&gt;</span>
+<span class="ln" id="L628"><a class="lno" href="#L628">628</a>    refine ⟨fun k =&gt; h * (v k + v (rev (p - 1) k)), fun k =&gt; h * (v k + -(v (rev (p - 1) k))), ?_, ?_, ?_⟩</span>
+<span class="ln" id="L629"><a class="lno" href="#L629">629</a>    · intro k hk; show h * (v (rev (p - 1) k) + v (rev (p - 1) (rev (p - 1) k))) = h * (v k + v (rev (p - 1) k))</span>
+<span class="ln" id="L630"><a class="lno" href="#L630">630</a>      rw [rev_rev hk, add_comm]</span>
+<span class="ln" id="L631"><a class="lno" href="#L631">631</a>    · intro k hk; show h * (v (rev (p - 1) k) + -(v (rev (p - 1) (rev (p - 1) k)))) = -(h * (v k + -(v (rev (p - 1) k))))</span>
+<span class="ln" id="L632"><a class="lno" href="#L632">632</a>      rw [rev_rev hk, mul_neg, neg_add_rev, neg_neg, add_comm]</span>
+<span class="ln" id="L633"><a class="lno" href="#L633">633</a>    · intro k _</span>
+<span class="ln" id="L634"><a class="lno" href="#L634">634</a>      show v k = h * (v k + v (rev (p - 1) k)) + h * (v k + -(v (rev (p - 1) k)))</span>
+<span class="ln" id="L635"><a class="lno" href="#L635">635</a>      rw [← left_distrib, add_add_add_comm, add_neg, add_zero, ← two_mul&#x27;, ← mul_assoc, mul_comm h, hh, one_mul]</span>
+<span class="ln" id="L636"><a class="lno" href="#L636">636</a></span>
+<span class="ln" id="L637"><a class="lno" href="#L637">637</a>/-- 6:B7 — the decomposition is unique: a vector that is both symmetric and antisymmetric is zero, so the</span>
+<span class="ln" id="L638"><a class="lno" href="#L638">638</a>symmetric and antisymmetric parts of `v` are determined. -/</span>
+<span class="ln decl" id="FRC.Shell.Frame.symm_antisymm_unique"><a class="lno" href="#FRC.Shell.Frame.symm_antisymm_unique">639</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcCore/Sum.lean#L639" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small ok" src="../lean-ok.png" alt="" title="no axioms">theorem symm_antisymm_unique (F : Frame p κ g) {a b : Nat → Shell p} (ha : Symm (p - 1) a) (hb : Antisymm (p - 1) b)</span>
+<span class="ln" id="L640"><a class="lno" href="#L640">640</a>    (h : ∀ k, k &lt; p - 1 → a k + b k = 0) : ∀ k, k &lt; p - 1 → a k = 0 ∧ b k = 0 := by</span>
+<span class="ln" id="L641"><a class="lno" href="#L641">641</a>  intro k hk</span>
+<span class="ln" id="L642"><a class="lno" href="#L642">642</a>  have h1 := h k hk</span>
+<span class="ln" id="L643"><a class="lno" href="#L643">643</a>  have h2 := h (rev (p - 1) k) (rev_lt F.n_pos k)</span>
+<span class="ln" id="L644"><a class="lno" href="#L644">644</a>  rw [ha k hk, hb k hk] at h2</span>
+<span class="ln" id="L645"><a class="lno" href="#L645">645</a>  -- a k + b k = 0 and a k − b k = 0 give 2 a k = 0</span>
+<span class="ln" id="L646"><a class="lno" href="#L646">646</a>  have ha0 : a k = 0 := F.no_south_pole _ (by</span>
+<span class="ln" id="L647"><a class="lno" href="#L647">647</a>    rw [two_mul&#x27;]</span>
+<span class="ln" id="L648"><a class="lno" href="#L648">648</a>    calc a k + a k = (a k + b k) + (a k + -(b k)) := by</span>
+<span class="ln" id="L649"><a class="lno" href="#L649">649</a>          rw [add_add_add_comm, add_neg, add_zero]</span>
+<span class="ln" id="L650"><a class="lno" href="#L650">650</a>      _ = 0 := by rw [h1, h2, add_zero])</span>
+<span class="ln" id="L651"><a class="lno" href="#L651">651</a>  refine ⟨ha0, ?_⟩</span>
+<span class="ln" id="L652"><a class="lno" href="#L652">652</a>  rw [ha0, zero_add] at h1; exact h1</span>
+<span class="ln" id="L653"><a class="lno" href="#L653">653</a></span>
+<span class="ln" id="L654"><a class="lno" href="#L654">654</a>end Frame</span>
+<span class="ln" id="L655"><a class="lno" href="#L655">655</a></span>
+<span class="ln" id="L656"><a class="lno" href="#L656">656</a>end Shell</span>
+<span class="ln" id="L657"><a class="lno" href="#L657">657</a>end FRC</span>
+<span class="ln" id="L658"><a class="lno" href="#L658">658</a></span>
 </pre></main>
 </div>
 </body>

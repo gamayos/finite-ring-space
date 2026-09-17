@@ -218,7 +218,7 @@ theorem two_ne_zero_shell (κ : ℕ) (hκ : Fintype.card F = 4 * κ + 1) : (2 : 
   have := FiniteField.even_card_of_char_two hchar
   omega
 
-/-- 1:B2 (Theorem 1, orbit clause): for a unit `x` with `x² ≠ 1` and `x² ≠ −1` the four
+/-- 1:B2 (Theorem 1, orbit clause), 2:D7: for a unit `x` with `x² ≠ 1` and `x² ≠ −1` the four
 elements `x, −x, x⁻¹, −x⁻¹` of the Klein-four orbit are pairwise distinct (any field of
 characteristic `≠ 2`); the structural set `{1, i, −1, −i}` is exactly the complement. -/
 theorem klein_orbit_four (hchar : (2 : F) ≠ 0) (x : F) (hx : x ≠ 0) (h1 : x ^ 2 ≠ 1)

@@ -8,10 +8,16 @@ certified by `decide` on concrete shells); sums are structural recursions; matri
 entrywise. Lean's own `Nat` lemmas that carry `propext` are re-derived by induction in `FrcCore/Nat.lean`,
 including the division algorithm from the definition of `Nat.mod`.
 
-Modules (in dependency order): `Nat` (arithmetic), `Shell` (the ring), `Frame` (the datum: half-period,
-quarter-turn, orientation classes, Euler identity), `Sum` (geometric sums, principal root, the Fourier
-inversion), `Algebra` (1-algebra rows), `Geometry` (2-geometry rows), `Instances` (𝔽₁₃, 𝔽₁₇, 𝔽₂₉ by
-`decide`). `../web/FrcCore.lean` is the same library in one file for live.lean-lang.org — it needs no
+Modules (in dependency order): `Nat` (arithmetic, the division algorithm), `Pigeonhole` (lists without
+repetition), `Shell` (the ring), `Frame` (the datum: generation by the pigeonhole, half-period, quarter-turn,
+orientation classes, Euler identity), `Orbit` (the generator orbit, Fermat), `Sum` (finite sums, the principal
+root, the Fourier inversion, the polynomial reading and covariance, the four-cycle, `V = V⁺ ⊕ V⁻`), `Algebra`
+(1-algebra rows: the Klein orbits and their count, the frame group, the window and its read-backs),
+`Poly` (polynomials as coefficient sequences: evaluation, synthetic division, the root bound, the root
+criterion of 1:G1), `Quaternion` (the signed window and the framed quaternions of 1:G5), `Geometry`
+(2-geometry rows: the counts, the fixed-shell bound, adjacency and label covariance), `Complex` (the orbital
+shell coded as a cell complex, closedness and the automorphism census decided by the kernel), `Instances`
+(𝔽₁₃, 𝔽₁₇, 𝔽₂₉ by `decide`). `../web/FrcCore.lean` is the same library in one file for live.lean-lang.org — it needs no
 Mathlib and compiles in two seconds under any Lean 4.34 project.
 
 Build: `lake build` (toolchain `leanprover/lean4:v4.34.0`, no dependencies). Gate (from `lean/`): `python3 check_core_axioms.py`.

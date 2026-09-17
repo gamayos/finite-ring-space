@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-HNE3RMJ5L1"></script>
+<script> window.dataLayer = window.dataLayer || []; function gtag(){dataLayer.push(arguments);} gtag('js', new Date()); gtag('config', 'G-HNE3RMJ5L1'); </script>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Quaternion.lean — FrcCore</title>
+<meta name="description" content="The Lean module FrcCore/Quaternion of the FRC predicate ledgers, rendered with an anchor per declaration">
+<meta name="author" content="Yosef Akhtman">
+<link rel="icon" href="../../frc-logo-fav.png">
+<link rel="stylesheet" href="../../style.css">
+
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <h1>Quaternion.lean — FrcCore</h1>
+    
+    <nav><a href="../../index.html">Home</a><a href="../../publications.html">Publications</a><a href="../../00-ledger.html">Ledger</a><a href="../../predictions.html">Predictions</a><a href="../../explicability.html">Explicability</a></nav>
+  </header>
+<main id="ledger-main"><section class="prose"><p>The core module <code>lean/FrcCore/Quaternion.lean</code> — the substrate from first principles, no Mathlib, no axioms (the modules in order: <a href="Nat.html">Nat</a>, <a href="Pigeonhole.html">Pigeonhole</a>, <a href="Shell.html">Shell</a>, <a href="Frame.html">Frame</a>, <a href="Orbit.html">Orbit</a>, <a href="Sum.html">Sum</a>, <a href="Algebra.html">Algebra</a>, <a href="Poly.html">Poly</a>, <a href="Quaternion.html">Quaternion</a>, <a href="Geometry.html">Geometry</a>, <a href="Complex.html">Complex</a>, <a href="Instances.html">Instances</a>): 15 theorems (11 definitions): 15 with no axioms (green), 0 at tier 1 (teal: <code>propext</code>, <code>Quot.sound</code>), 0 at tier 2 (amber: <code>Classical.choice</code>), 0 red; the plain glyph marks a definition. Each declaration is anchored; the ledger rows cite them by name. <a href="https://live.lean-lang.org/#project=lean-v4.34.0&url=https://raw.githubusercontent.com/gamayos/finite-ring-space/main/lean/web/FrcCore.lean" target="_blank" rel="noopener">▶ open in the Lean web editor</a> · <a href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcCore/Quaternion.lean" target="_blank" rel="noopener">on GitHub</a> · <a href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcCore/axioms.log" target="_blank" rel="noopener">axioms.log</a> · <a href="https://github.com/gamayos/finite-ring-space/actions/workflows/lean.yml" target="_blank" rel="noopener">CI</a>.</p></section><pre class="lean"><span class="ln" id="L1"><a class="lno" href="#L1">1</a>import FrcCore.Algebra</span>
+<span class="ln" id="L2"><a class="lno" href="#L2">2</a></span>
+<span class="ln" id="L3"><a class="lno" href="#L3">3</a>/-!</span>
+<span class="ln" id="L4"><a class="lno" href="#L4">4</a># FrcCore.Quaternion — the framed quaternions and the window (1:G5, the finitary clause)</span>
+<span class="ln" id="L5"><a class="lno" href="#L5">5</a></span>
+<span class="ln" id="L6"><a class="lno" href="#L6">6</a>A signed window integer is a pair of naturals `(u, v)` read as `u − v` in the shell (no `Int`: the core&#x27;s</span>
+<span class="ln" id="L7"><a class="lno" href="#L7">7</a>integers are the shell&#x27;s own readings).  A framed quaternion is four such pairs; the Hamilton product is</span>
+<span class="ln" id="L8"><a class="lno" href="#L8">8</a>computed on the pairs, and `read_mul` says the product of the readings is the reading of the product — the</span>
+<span class="ln" id="L9"><a class="lno" href="#L9">9</a>composition is exact.  `quaternion_window` adds the bounds: with coordinates in the window `H` and a shell</span>
+<span class="ln" id="L10"><a class="lno" href="#L10">10</a>`p &gt; 8H²`, the product&#x27;s coordinates lie in the window `4H²`, and the shell reading determines the integer</span>
+<span class="ln" id="L11"><a class="lno" href="#L11">11</a>product among the window&#x27;s quaternions.  No axioms.</span>
+<span class="ln" id="L12"><a class="lno" href="#L12">12</a>-/</span>
+<span class="ln" id="L13"><a class="lno" href="#L13">13</a></span>
+<span class="ln" id="L14"><a class="lno" href="#L14">14</a>namespace FRC</span>
+<span class="ln" id="L15"><a class="lno" href="#L15">15</a>namespace Shell</span>
+<span class="ln" id="L16"><a class="lno" href="#L16">16</a>namespace Frame</span>
+<span class="ln" id="L17"><a class="lno" href="#L17">17</a></span>
+<span class="ln" id="L18"><a class="lno" href="#L18">18</a>variable {p : Nat} [Pos p]</span>
+<span class="ln" id="L19"><a class="lno" href="#L19">19</a></span>
+<span class="ln" id="L20"><a class="lno" href="#L20">20</a>/-- A signed window integer: `(u, v)` stands for `u − v`. -/</span>
+<span class="ln" id="L21"><a class="lno" href="#L21">21</a>abbrev SInt := Nat × Nat</span>
+<span class="ln" id="L22"><a class="lno" href="#L22">22</a></span>
+<span class="ln decl" id="FRC.Shell.Frame.sread"><a class="lno" href="#FRC.Shell.Frame.sread">23</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcCore/Quaternion.lean#L23" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small" src="../lean.png" alt="" title="a definition: no proof, no axioms">def sread (x : SInt) : Shell p := ofNat x.1 + -(ofNat x.2)</span>
+<span class="ln decl" id="FRC.Shell.Frame.sadd"><a class="lno" href="#FRC.Shell.Frame.sadd">24</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcCore/Quaternion.lean#L24" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small" src="../lean.png" alt="" title="a definition: no proof, no axioms">def sadd (x y : SInt) : SInt := (x.1 + y.1, x.2 + y.2)</span>
+<span class="ln decl" id="FRC.Shell.Frame.sneg"><a class="lno" href="#FRC.Shell.Frame.sneg">25</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcCore/Quaternion.lean#L25" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small" src="../lean.png" alt="" title="a definition: no proof, no axioms">def sneg (x : SInt) : SInt := (x.2, x.1)</span>
+<span class="ln decl" id="FRC.Shell.Frame.smul"><a class="lno" href="#FRC.Shell.Frame.smul">26</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcCore/Quaternion.lean#L26" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small" src="../lean.png" alt="" title="a definition: no proof, no axioms">def smul (x y : SInt) : SInt := (x.1 * y.1 + x.2 * y.2, x.1 * y.2 + x.2 * y.1)</span>
+<span class="ln" id="L27"><a class="lno" href="#L27">27</a>/-- The canonical pair of the same value: one component zero. -/</span>
+<span class="ln decl" id="FRC.Shell.Frame.snorm"><a class="lno" href="#FRC.Shell.Frame.snorm">28</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcCore/Quaternion.lean#L28" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small" src="../lean.png" alt="" title="a definition: no proof, no axioms">def snorm (x : SInt) : SInt := (x.1 - x.2, x.2 - x.1)</span>
+<span class="ln" id="L29"><a class="lno" href="#L29">29</a></span>
+<span class="ln decl" id="FRC.Shell.Frame.prod_ext"><a class="lno" href="#FRC.Shell.Frame.prod_ext">30</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcCore/Quaternion.lean#L30" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small ok" src="../lean-ok.png" alt="" title="no axioms">theorem prod_ext {x y : SInt} (h1 : x.1 = y.1) (h2 : x.2 = y.2) : x = y :=</span>
+<span class="ln" id="L31"><a class="lno" href="#L31">31</a>  match x, y, h1, h2 with</span>
+<span class="ln" id="L32"><a class="lno" href="#L32">32</a>  | (_, _), (_, _), h1, h2 =&gt; by cases h1; cases h2; rfl</span>
+<span class="ln" id="L33"><a class="lno" href="#L33">33</a></span>
+<span class="ln decl" id="FRC.Shell.Frame.sread_add"><a class="lno" href="#FRC.Shell.Frame.sread_add">34</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcCore/Quaternion.lean#L34" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small ok" src="../lean-ok.png" alt="" title="no axioms">theorem sread_add (x y : SInt) : (sread (sadd x y) : Shell p) = sread x + sread y := by</span>
+<span class="ln" id="L35"><a class="lno" href="#L35">35</a>  unfold sread sadd</span>
+<span class="ln" id="L36"><a class="lno" href="#L36">36</a>  show ofNat (x.1 + y.1) + -(ofNat (x.2 + y.2)) = ofNat x.1 + -(ofNat x.2) + (ofNat y.1 + -(ofNat y.2))</span>
+<span class="ln" id="L37"><a class="lno" href="#L37">37</a>  rw [← ofNat_add, ← ofNat_add, neg_add_rev, add_assoc, add_assoc, ← add_assoc (-(ofNat x.2)),</span>
+<span class="ln" id="L38"><a class="lno" href="#L38">38</a>    add_comm (-(ofNat x.2)) (ofNat y.1), add_assoc]</span>
+<span class="ln" id="L39"><a class="lno" href="#L39">39</a></span>
+<span class="ln decl" id="FRC.Shell.Frame.sread_neg"><a class="lno" href="#FRC.Shell.Frame.sread_neg">40</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcCore/Quaternion.lean#L40" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small ok" src="../lean-ok.png" alt="" title="no axioms">theorem sread_neg (x : SInt) : (sread (sneg x) : Shell p) = -(sread x) := by</span>
+<span class="ln" id="L41"><a class="lno" href="#L41">41</a>  unfold sread sneg</span>
+<span class="ln" id="L42"><a class="lno" href="#L42">42</a>  show ofNat x.2 + -(ofNat x.1) = -(ofNat x.1 + -(ofNat x.2))</span>
+<span class="ln" id="L43"><a class="lno" href="#L43">43</a>  rw [neg_add_rev, neg_neg, add_comm]</span>
+<span class="ln" id="L44"><a class="lno" href="#L44">44</a></span>
+<span class="ln decl" id="FRC.Shell.Frame.sread_mul"><a class="lno" href="#FRC.Shell.Frame.sread_mul">45</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcCore/Quaternion.lean#L45" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small ok" src="../lean-ok.png" alt="" title="no axioms">theorem sread_mul (x y : SInt) : (sread (smul x y) : Shell p) = sread x * sread y := by</span>
+<span class="ln" id="L46"><a class="lno" href="#L46">46</a>  unfold sread smul</span>
+<span class="ln" id="L47"><a class="lno" href="#L47">47</a>  show ofNat (x.1 * y.1 + x.2 * y.2) + -(ofNat (x.1 * y.2 + x.2 * y.1)) =</span>
+<span class="ln" id="L48"><a class="lno" href="#L48">48</a>    (ofNat x.1 + -(ofNat x.2)) * (ofNat y.1 + -(ofNat y.2))</span>
+<span class="ln" id="L49"><a class="lno" href="#L49">49</a>  rw [right_distrib, left_distrib, left_distrib, ← mul_neg, ← neg_mul, neg_mul_neg, ← ofNat_add, ← ofNat_add,</span>
+<span class="ln" id="L50"><a class="lno" href="#L50">50</a>    ← ofNat_mul, ← ofNat_mul, ← ofNat_mul, ← ofNat_mul, neg_add_rev]</span>
+<span class="ln" id="L51"><a class="lno" href="#L51">51</a>  -- a + d + (-b + -c) = a + -b + (-c + d)</span>
+<span class="ln" id="L52"><a class="lno" href="#L52">52</a>  rw [add_assoc, add_assoc]</span>
+<span class="ln" id="L53"><a class="lno" href="#L53">53</a>  refine congrArg (ofNat x.1 * ofNat y.1 + ·) ?_</span>
+<span class="ln" id="L54"><a class="lno" href="#L54">54</a>  rw [← add_assoc, add_comm (ofNat x.2 * ofNat y.2), add_assoc, add_comm (ofNat x.2 * ofNat y.2)]</span>
+<span class="ln" id="L55"><a class="lno" href="#L55">55</a></span>
+<span class="ln decl" id="FRC.Shell.Frame.sread_norm"><a class="lno" href="#FRC.Shell.Frame.sread_norm">56</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcCore/Quaternion.lean#L56" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small ok" src="../lean-ok.png" alt="" title="no axioms">theorem sread_norm (x : SInt) : (sread (snorm x) : Shell p) = sread x := by</span>
+<span class="ln" id="L57"><a class="lno" href="#L57">57</a>  unfold sread snorm</span>
+<span class="ln" id="L58"><a class="lno" href="#L58">58</a>  match Nat.decLe x.2 x.1 with</span>
+<span class="ln" id="L59"><a class="lno" href="#L59">59</a>  | .isTrue h =&gt;</span>
+<span class="ln" id="L60"><a class="lno" href="#L60">60</a>    have e : x.2 - x.1 = 0 := FRC.Nat.sub_eq_zero_of_le h</span>
+<span class="ln" id="L61"><a class="lno" href="#L61">61</a>    show ofNat (x.1 - x.2) + -(ofNat (x.2 - x.1)) = ofNat x.1 + -(ofNat x.2)</span>
+<span class="ln" id="L62"><a class="lno" href="#L62">62</a>    rw [e]</span>
+<span class="ln" id="L63"><a class="lno" href="#L63">63</a>    have e0 : (ofNat 0 : Shell p) = 0 := rfl</span>
+<span class="ln" id="L64"><a class="lno" href="#L64">64</a>    rw [e0, neg_zero, add_zero]</span>
+<span class="ln" id="L65"><a class="lno" href="#L65">65</a>    have e1 : x.1 = (x.1 - x.2) + x.2 := (FRC.Nat.sub_add_cancel h).symm</span>
+<span class="ln" id="L66"><a class="lno" href="#L66">66</a>    calc ofNat (x.1 - x.2) = ofNat (x.1 - x.2) + 0 := (add_zero _).symm</span>
+<span class="ln" id="L67"><a class="lno" href="#L67">67</a>      _ = ofNat (x.1 - x.2) + (ofNat x.2 + -(ofNat x.2)) := by rw [add_neg]</span>
+<span class="ln" id="L68"><a class="lno" href="#L68">68</a>      _ = ofNat (x.1 - x.2 + x.2) + -(ofNat x.2) := by rw [← add_assoc, ofNat_add]</span>
+<span class="ln" id="L69"><a class="lno" href="#L69">69</a>      _ = ofNat x.1 + -(ofNat x.2) := by rw [← e1]</span>
+<span class="ln" id="L70"><a class="lno" href="#L70">70</a>  | .isFalse h =&gt;</span>
+<span class="ln" id="L71"><a class="lno" href="#L71">71</a>    have h&#x27; : x.1 ≤ x.2 := Nat.le_of_lt (Nat.lt_of_not_le h)</span>
+<span class="ln" id="L72"><a class="lno" href="#L72">72</a>    have e : x.1 - x.2 = 0 := FRC.Nat.sub_eq_zero_of_le h&#x27;</span>
+<span class="ln" id="L73"><a class="lno" href="#L73">73</a>    show ofNat (x.1 - x.2) + -(ofNat (x.2 - x.1)) = ofNat x.1 + -(ofNat x.2)</span>
+<span class="ln" id="L74"><a class="lno" href="#L74">74</a>    rw [e]</span>
+<span class="ln" id="L75"><a class="lno" href="#L75">75</a>    have e0 : (ofNat 0 : Shell p) = 0 := rfl</span>
+<span class="ln" id="L76"><a class="lno" href="#L76">76</a>    rw [e0, zero_add]</span>
+<span class="ln" id="L77"><a class="lno" href="#L77">77</a>    have e1 : x.2 = (x.2 - x.1) + x.1 := (FRC.Nat.sub_add_cancel h&#x27;).symm</span>
+<span class="ln" id="L78"><a class="lno" href="#L78">78</a>    calc (-(ofNat (x.2 - x.1)) : Shell p) = (0 : Shell p) + -(ofNat (x.2 - x.1)) := (zero_add _).symm</span>
+<span class="ln" id="L79"><a class="lno" href="#L79">79</a>      _ = (ofNat x.1 + -(ofNat x.1)) + -(ofNat (x.2 - x.1)) := by rw [add_neg]</span>
+<span class="ln" id="L80"><a class="lno" href="#L80">80</a>      _ = ofNat x.1 + -((ofNat (x.2 - x.1) : Shell p) + ofNat x.1) := by</span>
+<span class="ln" id="L81"><a class="lno" href="#L81">81</a>          rw [add_assoc, neg_add_rev, add_comm (-(ofNat x.1))]</span>
+<span class="ln" id="L82"><a class="lno" href="#L82">82</a>      _ = ofNat x.1 + -(ofNat x.2) := by rw [ofNat_add, ← e1]</span>
+<span class="ln" id="L83"><a class="lno" href="#L83">83</a></span>
+<span class="ln" id="L84"><a class="lno" href="#L84">84</a>/-- The window bound: both components at most `H`, one of them zero. -/</span>
+<span class="ln decl" id="FRC.Shell.Frame.SBound"><a class="lno" href="#FRC.Shell.Frame.SBound">85</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcCore/Quaternion.lean#L85" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small" src="../lean.png" alt="" title="a definition: no proof, no axioms">def SBound (H : Nat) (x : SInt) : Prop := x.1 ≤ H ∧ x.2 ≤ H ∧ (x.1 = 0 ∨ x.2 = 0)</span>
+<span class="ln" id="L86"><a class="lno" href="#L86">86</a></span>
+<span class="ln decl" id="FRC.Shell.Frame.sneg_bound"><a class="lno" href="#FRC.Shell.Frame.sneg_bound">87</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcCore/Quaternion.lean#L87" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small ok" src="../lean-ok.png" alt="" title="no axioms">theorem sneg_bound {H : Nat} {x : SInt} (h : SBound H x) : SBound H (sneg x) :=</span>
+<span class="ln" id="L88"><a class="lno" href="#L88">88</a>  ⟨h.2.1, h.1, match h.2.2 with | Or.inl e =&gt; Or.inr e | Or.inr e =&gt; Or.inl e⟩</span>
+<span class="ln" id="L89"><a class="lno" href="#L89">89</a></span>
+<span class="ln decl" id="FRC.Shell.Frame.smul_bound"><a class="lno" href="#FRC.Shell.Frame.smul_bound">90</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcCore/Quaternion.lean#L90" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small ok" src="../lean-ok.png" alt="" title="no axioms">theorem smul_bound {H : Nat} {x y : SInt} (hx : SBound H x) (hy : SBound H y) : SBound (H * H) (smul x y) := by</span>
+<span class="ln" id="L91"><a class="lno" href="#L91">91</a>  unfold smul</span>
+<span class="ln" id="L92"><a class="lno" href="#L92">92</a>  have b11 := Nat.mul_le_mul hx.1 hy.1</span>
+<span class="ln" id="L93"><a class="lno" href="#L93">93</a>  have b22 := Nat.mul_le_mul hx.2.1 hy.2.1</span>
+<span class="ln" id="L94"><a class="lno" href="#L94">94</a>  have b12 := Nat.mul_le_mul hx.1 hy.2.1</span>
+<span class="ln" id="L95"><a class="lno" href="#L95">95</a>  have b21 := Nat.mul_le_mul hx.2.1 hy.1</span>
+<span class="ln" id="L96"><a class="lno" href="#L96">96</a>  match hx.2.2, hy.2.2 with</span>
+<span class="ln" id="L97"><a class="lno" href="#L97">97</a>  | Or.inl e, Or.inl f =&gt;</span>
+<span class="ln" id="L98"><a class="lno" href="#L98">98</a>    refine ⟨?_, ?_, Or.inr ?_⟩</span>
+<span class="ln" id="L99"><a class="lno" href="#L99">99</a>    · show x.1 * y.1 + x.2 * y.2 ≤ H * H</span>
+<span class="ln" id="L100"><a class="lno" href="#L100">100</a>      rw [e, Nat.zero_mul, Nat.zero_add]; exact b22</span>
+<span class="ln" id="L101"><a class="lno" href="#L101">101</a>    · show x.1 * y.2 + x.2 * y.1 ≤ H * H</span>
+<span class="ln" id="L102"><a class="lno" href="#L102">102</a>      rw [e, f, Nat.zero_mul, Nat.mul_zero]; exact Nat.zero_le _</span>
+<span class="ln" id="L103"><a class="lno" href="#L103">103</a>    · show x.1 * y.2 + x.2 * y.1 = 0</span>
+<span class="ln" id="L104"><a class="lno" href="#L104">104</a>      rw [e, f, Nat.zero_mul, Nat.mul_zero]</span>
+<span class="ln" id="L105"><a class="lno" href="#L105">105</a>  | Or.inl e, Or.inr f =&gt;</span>
+<span class="ln" id="L106"><a class="lno" href="#L106">106</a>    refine ⟨?_, ?_, Or.inl ?_⟩</span>
+<span class="ln" id="L107"><a class="lno" href="#L107">107</a>    · show x.1 * y.1 + x.2 * y.2 ≤ H * H</span>
+<span class="ln" id="L108"><a class="lno" href="#L108">108</a>      rw [e, f, Nat.zero_mul, Nat.mul_zero]; exact Nat.zero_le _</span>
+<span class="ln" id="L109"><a class="lno" href="#L109">109</a>    · show x.1 * y.2 + x.2 * y.1 ≤ H * H</span>
+<span class="ln" id="L110"><a class="lno" href="#L110">110</a>      rw [e, Nat.zero_mul, Nat.zero_add]; exact b21</span>
+<span class="ln" id="L111"><a class="lno" href="#L111">111</a>    · show x.1 * y.1 + x.2 * y.2 = 0</span>
+<span class="ln" id="L112"><a class="lno" href="#L112">112</a>      rw [e, f, Nat.zero_mul, Nat.mul_zero]</span>
+<span class="ln" id="L113"><a class="lno" href="#L113">113</a>  | Or.inr e, Or.inl f =&gt;</span>
+<span class="ln" id="L114"><a class="lno" href="#L114">114</a>    refine ⟨?_, ?_, Or.inl ?_⟩</span>
+<span class="ln" id="L115"><a class="lno" href="#L115">115</a>    · show x.1 * y.1 + x.2 * y.2 ≤ H * H</span>
+<span class="ln" id="L116"><a class="lno" href="#L116">116</a>      rw [e, f, Nat.mul_zero, Nat.zero_mul]; exact Nat.zero_le _</span>
+<span class="ln" id="L117"><a class="lno" href="#L117">117</a>    · show x.1 * y.2 + x.2 * y.1 ≤ H * H</span>
+<span class="ln" id="L118"><a class="lno" href="#L118">118</a>      rw [e, Nat.zero_mul, Nat.add_zero]; exact b12</span>
+<span class="ln" id="L119"><a class="lno" href="#L119">119</a>    · show x.1 * y.1 + x.2 * y.2 = 0</span>
+<span class="ln" id="L120"><a class="lno" href="#L120">120</a>      rw [e, f, Nat.mul_zero, Nat.zero_mul]</span>
+<span class="ln" id="L121"><a class="lno" href="#L121">121</a>  | Or.inr e, Or.inr f =&gt;</span>
+<span class="ln" id="L122"><a class="lno" href="#L122">122</a>    refine ⟨?_, ?_, Or.inr ?_⟩</span>
+<span class="ln" id="L123"><a class="lno" href="#L123">123</a>    · show x.1 * y.1 + x.2 * y.2 ≤ H * H</span>
+<span class="ln" id="L124"><a class="lno" href="#L124">124</a>      rw [e, Nat.zero_mul, Nat.add_zero]; exact b11</span>
+<span class="ln" id="L125"><a class="lno" href="#L125">125</a>    · show x.1 * y.2 + x.2 * y.1 ≤ H * H</span>
+<span class="ln" id="L126"><a class="lno" href="#L126">126</a>      rw [e, f, Nat.mul_zero, Nat.zero_mul]; exact Nat.zero_le _</span>
+<span class="ln" id="L127"><a class="lno" href="#L127">127</a>    · show x.1 * y.2 + x.2 * y.1 = 0</span>
+<span class="ln" id="L128"><a class="lno" href="#L128">128</a>      rw [e, f, Nat.mul_zero, Nat.zero_mul]</span>
+<span class="ln" id="L129"><a class="lno" href="#L129">129</a></span>
+<span class="ln" id="L130"><a class="lno" href="#L130">130</a>/-- Four window terms of size `M` add to a pair with both components at most `4M`. -/</span>
+<span class="ln decl" id="FRC.Shell.Frame.sum4_bound"><a class="lno" href="#FRC.Shell.Frame.sum4_bound">131</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcCore/Quaternion.lean#L131" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small ok" src="../lean-ok.png" alt="" title="no axioms">theorem sum4_bound {M : Nat} {t1 t2 t3 t4 : SInt} (h1 : SBound M t1) (h2 : SBound M t2) (h3 : SBound M t3)</span>
+<span class="ln" id="L132"><a class="lno" href="#L132">132</a>    (h4 : SBound M t4) :</span>
+<span class="ln" id="L133"><a class="lno" href="#L133">133</a>    (sadd (sadd t1 t2) (sadd t3 t4)).1 ≤ 4 * M ∧ (sadd (sadd t1 t2) (sadd t3 t4)).2 ≤ 4 * M := by</span>
+<span class="ln" id="L134"><a class="lno" href="#L134">134</a>  unfold sadd</span>
+<span class="ln" id="L135"><a class="lno" href="#L135">135</a>  rw [four_mul_eq, Nat.add_assoc (M + M) M M]</span>
+<span class="ln" id="L136"><a class="lno" href="#L136">136</a>  exact ⟨Nat.add_le_add (Nat.add_le_add h1.1 h2.1) (Nat.add_le_add h3.1 h4.1),</span>
+<span class="ln" id="L137"><a class="lno" href="#L137">137</a>    Nat.add_le_add (Nat.add_le_add h1.2.1 h2.2.1) (Nat.add_le_add h3.2.1 h4.2.1)⟩</span>
+<span class="ln" id="L138"><a class="lno" href="#L138">138</a></span>
+<span class="ln decl" id="FRC.Shell.Frame.snorm_bound"><a class="lno" href="#FRC.Shell.Frame.snorm_bound">139</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcCore/Quaternion.lean#L139" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small ok" src="../lean-ok.png" alt="" title="no axioms">theorem snorm_bound {M : Nat} {x : SInt} (h1 : x.1 ≤ M) (h2 : x.2 ≤ M) : SBound M (snorm x) := by</span>
+<span class="ln" id="L140"><a class="lno" href="#L140">140</a>  unfold snorm</span>
+<span class="ln" id="L141"><a class="lno" href="#L141">141</a>  refine ⟨Nat.le_trans (Nat.sub_le _ _) h1, Nat.le_trans (Nat.sub_le _ _) h2, ?_⟩</span>
+<span class="ln" id="L142"><a class="lno" href="#L142">142</a>  match Nat.decLe x.2 x.1 with</span>
+<span class="ln" id="L143"><a class="lno" href="#L143">143</a>  | .isTrue h =&gt; exact Or.inr (FRC.Nat.sub_eq_zero_of_le h)</span>
+<span class="ln" id="L144"><a class="lno" href="#L144">144</a>  | .isFalse h =&gt; exact Or.inl (FRC.Nat.sub_eq_zero_of_le (Nat.le_of_lt (Nat.lt_of_not_le h)))</span>
+<span class="ln" id="L145"><a class="lno" href="#L145">145</a></span>
+<span class="ln" id="L146"><a class="lno" href="#L146">146</a>/-- The signed window law: two canonical pairs of size `M`, `2M &lt; p`, with the same reading are equal. -/</span>
+<span class="ln decl" id="FRC.Shell.Frame.sread_inj"><a class="lno" href="#FRC.Shell.Frame.sread_inj">147</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcCore/Quaternion.lean#L147" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small ok" src="../lean-ok.png" alt="" title="no axioms">theorem sread_inj {M : Nat} (hM : 2 * M &lt; p) {x y : SInt} (hx : SBound M x) (hy : SBound M y)</span>
+<span class="ln" id="L148"><a class="lno" href="#L148">148</a>    (h : (sread x : Shell p) = sread y) : x = y := by</span>
+<span class="ln" id="L149"><a class="lno" href="#L149">149</a>  unfold sread at h</span>
+<span class="ln" id="L150"><a class="lno" href="#L150">150</a>  have h&#x27; : (ofNat (x.1 + y.2) : Shell p) = ofNat (y.1 + x.2) := by</span>
+<span class="ln" id="L151"><a class="lno" href="#L151">151</a>    rw [← ofNat_add, ← ofNat_add]</span>
+<span class="ln" id="L152"><a class="lno" href="#L152">152</a>    calc ofNat x.1 + ofNat y.2 = ofNat x.1 + -(ofNat x.2) + (ofNat x.2 + ofNat y.2) := by</span>
+<span class="ln" id="L153"><a class="lno" href="#L153">153</a>          rw [add_assoc, ← add_assoc (-(ofNat x.2)), neg_add, zero_add]</span>
+<span class="ln" id="L154"><a class="lno" href="#L154">154</a>      _ = ofNat y.1 + -(ofNat y.2) + (ofNat x.2 + ofNat y.2) := by rw [h]</span>
+<span class="ln" id="L155"><a class="lno" href="#L155">155</a>      _ = ofNat y.1 + ofNat x.2 := by</span>
+<span class="ln" id="L156"><a class="lno" href="#L156">156</a>          rw [add_assoc, add_comm (ofNat x.2), ← add_assoc (-(ofNat y.2)), neg_add, zero_add]</span>
+<span class="ln" id="L157"><a class="lno" href="#L157">157</a>  have hv := val_injective h&#x27;</span>
+<span class="ln" id="L158"><a class="lno" href="#L158">158</a>  rw [val_ofNat, val_ofNat] at hv</span>
+<span class="ln" id="L159"><a class="lno" href="#L159">159</a>  have l1 : x.1 + y.2 &lt; p := Nat.lt_of_le_of_lt (Nat.add_le_add hx.1 hy.2.1) (Nat.two_mul M ▸ hM)</span>
+<span class="ln" id="L160"><a class="lno" href="#L160">160</a>  have l2 : y.1 + x.2 &lt; p := Nat.lt_of_le_of_lt (Nat.add_le_add hy.1 hx.2.1) (Nat.two_mul M ▸ hM)</span>
+<span class="ln" id="L161"><a class="lno" href="#L161">161</a>  rw [FRC.Nat.mod_eq_of_lt l1, FRC.Nat.mod_eq_of_lt l2] at hv</span>
+<span class="ln" id="L162"><a class="lno" href="#L162">162</a>  -- hv : x.1 + y.2 = y.1 + x.2</span>
+<span class="ln" id="L163"><a class="lno" href="#L163">163</a>  match hx.2.2, hy.2.2 with</span>
+<span class="ln" id="L164"><a class="lno" href="#L164">164</a>  | Or.inl e, Or.inl f =&gt;</span>
+<span class="ln" id="L165"><a class="lno" href="#L165">165</a>    rw [e, f, Nat.zero_add, Nat.zero_add] at hv</span>
+<span class="ln" id="L166"><a class="lno" href="#L166">166</a>    exact prod_ext (e.trans f.symm) hv.symm</span>
+<span class="ln" id="L167"><a class="lno" href="#L167">167</a>  | Or.inl e, Or.inr f =&gt;</span>
+<span class="ln" id="L168"><a class="lno" href="#L168">168</a>    rw [e, f, Nat.zero_add] at hv</span>
+<span class="ln" id="L169"><a class="lno" href="#L169">169</a>    -- hv : 0 = y.1 + x.2</span>
+<span class="ln" id="L170"><a class="lno" href="#L170">170</a>    have hy1 : y.1 = 0 := Nat.eq_zero_of_add_eq_zero_right hv.symm</span>
+<span class="ln" id="L171"><a class="lno" href="#L171">171</a>    have hx2 : x.2 = 0 := Nat.eq_zero_of_add_eq_zero_left hv.symm</span>
+<span class="ln" id="L172"><a class="lno" href="#L172">172</a>    exact prod_ext (e.trans hy1.symm) (hx2.trans f.symm)</span>
+<span class="ln" id="L173"><a class="lno" href="#L173">173</a>  | Or.inr e, Or.inl f =&gt;</span>
+<span class="ln" id="L174"><a class="lno" href="#L174">174</a>    rw [e, f, Nat.zero_add] at hv</span>
+<span class="ln" id="L175"><a class="lno" href="#L175">175</a>    -- hv : x.1 + y.2 = 0</span>
+<span class="ln" id="L176"><a class="lno" href="#L176">176</a>    have hx1 : x.1 = 0 := Nat.eq_zero_of_add_eq_zero_right hv</span>
+<span class="ln" id="L177"><a class="lno" href="#L177">177</a>    have hy2 : y.2 = 0 := Nat.eq_zero_of_add_eq_zero_left hv</span>
+<span class="ln" id="L178"><a class="lno" href="#L178">178</a>    exact prod_ext (hx1.trans f.symm) (e.trans hy2.symm)</span>
+<span class="ln" id="L179"><a class="lno" href="#L179">179</a>  | Or.inr e, Or.inr f =&gt;</span>
+<span class="ln" id="L180"><a class="lno" href="#L180">180</a>    rw [e, f, Nat.add_zero, Nat.add_zero] at hv</span>
+<span class="ln" id="L181"><a class="lno" href="#L181">181</a>    exact prod_ext hv (e.trans f.symm)</span>
+<span class="ln" id="L182"><a class="lno" href="#L182">182</a></span>
+<span class="ln" id="L183"><a class="lno" href="#L183">183</a>/-- A framed quaternion with signed window coordinates. -/</span>
+<span class="ln" id="L184"><a class="lno" href="#L184">184</a>structure IQuat where</span>
+<span class="ln" id="L185"><a class="lno" href="#L185">185</a>  a : SInt</span>
+<span class="ln" id="L186"><a class="lno" href="#L186">186</a>  b : SInt</span>
+<span class="ln" id="L187"><a class="lno" href="#L187">187</a>  c : SInt</span>
+<span class="ln" id="L188"><a class="lno" href="#L188">188</a>  d : SInt</span>
+<span class="ln" id="L189"><a class="lno" href="#L189">189</a></span>
+<span class="ln" id="L190"><a class="lno" href="#L190">190</a>/-- A quaternion over the shell. -/</span>
+<span class="ln" id="L191"><a class="lno" href="#L191">191</a>structure Quat (p : Nat) [Pos p] where</span>
+<span class="ln" id="L192"><a class="lno" href="#L192">192</a>  a : Shell p</span>
+<span class="ln" id="L193"><a class="lno" href="#L193">193</a>  b : Shell p</span>
+<span class="ln" id="L194"><a class="lno" href="#L194">194</a>  c : Shell p</span>
+<span class="ln" id="L195"><a class="lno" href="#L195">195</a>  d : Shell p</span>
+<span class="ln" id="L196"><a class="lno" href="#L196">196</a></span>
+<span class="ln" id="L197"><a class="lno" href="#L197">197</a>/-- The Hamilton product on the shell. -/</span>
+<span class="ln decl" id="FRC.Shell.Frame.Quat.mul"><a class="lno" href="#FRC.Shell.Frame.Quat.mul">198</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcCore/Quaternion.lean#L198" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small" src="../lean.png" alt="" title="a definition: no proof, no axioms">def Quat.mul (q r : Quat p) : Quat p :=</span>
+<span class="ln" id="L199"><a class="lno" href="#L199">199</a>  ⟨(q.a * r.a + -(q.b * r.b)) + (-(q.c * r.c) + -(q.d * r.d)),</span>
+<span class="ln" id="L200"><a class="lno" href="#L200">200</a>   (q.a * r.b + q.b * r.a) + (q.c * r.d + -(q.d * r.c)),</span>
+<span class="ln" id="L201"><a class="lno" href="#L201">201</a>   (q.a * r.c + -(q.b * r.d)) + (q.c * r.a + q.d * r.b),</span>
+<span class="ln" id="L202"><a class="lno" href="#L202">202</a>   (q.a * r.d + q.b * r.c) + (-(q.c * r.b) + q.d * r.a)⟩</span>
+<span class="ln" id="L203"><a class="lno" href="#L203">203</a></span>
+<span class="ln" id="L204"><a class="lno" href="#L204">204</a>/-- The Hamilton product on the window pairs, the same formula. -/</span>
+<span class="ln decl" id="FRC.Shell.Frame.IQuat.mul"><a class="lno" href="#FRC.Shell.Frame.IQuat.mul">205</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcCore/Quaternion.lean#L205" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small" src="../lean.png" alt="" title="a definition: no proof, no axioms">def IQuat.mul (q r : IQuat) : IQuat :=</span>
+<span class="ln" id="L206"><a class="lno" href="#L206">206</a>  ⟨sadd (sadd (smul q.a r.a) (sneg (smul q.b r.b))) (sadd (sneg (smul q.c r.c)) (sneg (smul q.d r.d))),</span>
+<span class="ln" id="L207"><a class="lno" href="#L207">207</a>   sadd (sadd (smul q.a r.b) (smul q.b r.a)) (sadd (smul q.c r.d) (sneg (smul q.d r.c))),</span>
+<span class="ln" id="L208"><a class="lno" href="#L208">208</a>   sadd (sadd (smul q.a r.c) (sneg (smul q.b r.d))) (sadd (smul q.c r.a) (smul q.d r.b)),</span>
+<span class="ln" id="L209"><a class="lno" href="#L209">209</a>   sadd (sadd (smul q.a r.d) (smul q.b r.c)) (sadd (sneg (smul q.c r.b)) (smul q.d r.a))⟩</span>
+<span class="ln" id="L210"><a class="lno" href="#L210">210</a></span>
+<span class="ln decl" id="FRC.Shell.Frame.IQuat.read"><a class="lno" href="#FRC.Shell.Frame.IQuat.read">211</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcCore/Quaternion.lean#L211" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small" src="../lean.png" alt="" title="a definition: no proof, no axioms">def IQuat.read (q : IQuat) : Quat p := ⟨sread q.a, sread q.b, sread q.c, sread q.d⟩</span>
+<span class="ln decl" id="FRC.Shell.Frame.IQuat.norm"><a class="lno" href="#FRC.Shell.Frame.IQuat.norm">212</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcCore/Quaternion.lean#L212" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small" src="../lean.png" alt="" title="a definition: no proof, no axioms">def IQuat.norm (q : IQuat) : IQuat := ⟨snorm q.a, snorm q.b, snorm q.c, snorm q.d⟩</span>
+<span class="ln decl" id="FRC.Shell.Frame.QBound"><a class="lno" href="#FRC.Shell.Frame.QBound">213</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcCore/Quaternion.lean#L213" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small" src="../lean.png" alt="" title="a definition: no proof, no axioms">def QBound (H : Nat) (q : IQuat) : Prop := SBound H q.a ∧ SBound H q.b ∧ SBound H q.c ∧ SBound H q.d</span>
+<span class="ln" id="L214"><a class="lno" href="#L214">214</a></span>
+<span class="ln decl" id="FRC.Shell.Frame.IQuat.ext'"><a class="lno" href="#FRC.Shell.Frame.IQuat.ext'">215</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcCore/Quaternion.lean#L215" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small ok" src="../lean-ok.png" alt="" title="no axioms">theorem IQuat.ext&#x27; {q r : IQuat} (ha : q.a = r.a) (hb : q.b = r.b) (hc : q.c = r.c) (hd : q.d = r.d) : q = r := by</span>
+<span class="ln" id="L216"><a class="lno" href="#L216">216</a>  cases q; cases r; cases ha; cases hb; cases hc; cases hd; rfl</span>
+<span class="ln" id="L217"><a class="lno" href="#L217">217</a></span>
+<span class="ln" id="L218"><a class="lno" href="#L218">218</a>/-- 1:G5, exact composition — the reading of the integer product is the product of the readings. -/</span>
+<span class="ln decl" id="FRC.Shell.Frame.read_mul"><a class="lno" href="#FRC.Shell.Frame.read_mul">219</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcCore/Quaternion.lean#L219" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small ok" src="../lean-ok.png" alt="" title="no axioms">theorem read_mul (q r : IQuat) : ((IQuat.mul q r).read : Quat p) = Quat.mul q.read r.read := by</span>
+<span class="ln" id="L220"><a class="lno" href="#L220">220</a>  unfold IQuat.mul IQuat.read Quat.mul</span>
+<span class="ln" id="L221"><a class="lno" href="#L221">221</a>  rw [sread_add, sread_add, sread_add, sread_add, sread_add, sread_add, sread_add, sread_add, sread_add,</span>
+<span class="ln" id="L222"><a class="lno" href="#L222">222</a>    sread_add, sread_add, sread_add, sread_neg, sread_neg, sread_neg, sread_neg, sread_neg, sread_neg,</span>
+<span class="ln" id="L223"><a class="lno" href="#L223">223</a>    sread_mul, sread_mul, sread_mul, sread_mul, sread_mul, sread_mul, sread_mul, sread_mul, sread_mul,</span>
+<span class="ln" id="L224"><a class="lno" href="#L224">224</a>    sread_mul, sread_mul, sread_mul, sread_mul, sread_mul, sread_mul, sread_mul]</span>
+<span class="ln" id="L225"><a class="lno" href="#L225">225</a></span>
+<span class="ln decl" id="FRC.Shell.Frame.read_norm"><a class="lno" href="#FRC.Shell.Frame.read_norm">226</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcCore/Quaternion.lean#L226" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small ok" src="../lean-ok.png" alt="" title="no axioms">theorem read_norm (q : IQuat) : (q.norm.read : Quat p) = q.read := by</span>
+<span class="ln" id="L227"><a class="lno" href="#L227">227</a>  unfold IQuat.norm IQuat.read</span>
+<span class="ln" id="L228"><a class="lno" href="#L228">228</a>  rw [sread_norm, sread_norm, sread_norm, sread_norm]</span>
+<span class="ln" id="L229"><a class="lno" href="#L229">229</a></span>
+<span class="ln decl" id="FRC.Shell.Frame.norm_bound"><a class="lno" href="#FRC.Shell.Frame.norm_bound">230</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcCore/Quaternion.lean#L230" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small ok" src="../lean-ok.png" alt="" title="no axioms">theorem norm_bound {H : Nat} {q r : IQuat} (hq : QBound H q) (hr : QBound H r) :</span>
+<span class="ln" id="L231"><a class="lno" href="#L231">231</a>    QBound (4 * (H * H)) (IQuat.mul q r).norm := by</span>
+<span class="ln" id="L232"><a class="lno" href="#L232">232</a>  have m := fun {x y : SInt} (hx : SBound H x) (hy : SBound H y) =&gt; smul_bound hx hy</span>
+<span class="ln" id="L233"><a class="lno" href="#L233">233</a>  refine ⟨?_, ?_, ?_, ?_⟩</span>
+<span class="ln" id="L234"><a class="lno" href="#L234">234</a>  · have := sum4_bound (m hq.1 hr.1) (sneg_bound (m hq.2.1 hr.2.1)) (sneg_bound (m hq.2.2.1 hr.2.2.1))</span>
+<span class="ln" id="L235"><a class="lno" href="#L235">235</a>      (sneg_bound (m hq.2.2.2 hr.2.2.2))</span>
+<span class="ln" id="L236"><a class="lno" href="#L236">236</a>    exact snorm_bound this.1 this.2</span>
+<span class="ln" id="L237"><a class="lno" href="#L237">237</a>  · have := sum4_bound (m hq.1 hr.2.1) (m hq.2.1 hr.1) (m hq.2.2.1 hr.2.2.2) (sneg_bound (m hq.2.2.2 hr.2.2.1))</span>
+<span class="ln" id="L238"><a class="lno" href="#L238">238</a>    exact snorm_bound this.1 this.2</span>
+<span class="ln" id="L239"><a class="lno" href="#L239">239</a>  · have := sum4_bound (m hq.1 hr.2.2.1) (sneg_bound (m hq.2.1 hr.2.2.2)) (m hq.2.2.1 hr.1) (m hq.2.2.2 hr.2.1)</span>
+<span class="ln" id="L240"><a class="lno" href="#L240">240</a>    exact snorm_bound this.1 this.2</span>
+<span class="ln" id="L241"><a class="lno" href="#L241">241</a>  · have := sum4_bound (m hq.1 hr.2.2.2) (m hq.2.1 hr.2.2.1) (sneg_bound (m hq.2.2.1 hr.2.1)) (m hq.2.2.2 hr.1)</span>
+<span class="ln" id="L242"><a class="lno" href="#L242">242</a>    exact snorm_bound this.1 this.2</span>
+<span class="ln" id="L243"><a class="lno" href="#L243">243</a></span>
+<span class="ln" id="L244"><a class="lno" href="#L244">244</a>/-- 1:G5, the finitary clause — framed quaternions with window coordinates `≤ H`, read in a shell `p &gt; 8H²`,</span>
+<span class="ln" id="L245"><a class="lno" href="#L245">245</a>compose exactly: the product of the readings is the reading of the integer product; that product&#x27;s</span>
+<span class="ln" id="L246"><a class="lno" href="#L246">246</a>coordinates lie in the window `4H²`; and the reading determines it among the window&#x27;s quaternions. -/</span>
+<span class="ln decl" id="FRC.Shell.Frame.quaternion_window"><a class="lno" href="#FRC.Shell.Frame.quaternion_window">247</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcCore/Quaternion.lean#L247" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small ok" src="../lean-ok.png" alt="" title="no axioms">theorem quaternion_window {H : Nat} (hH : 8 * (H * H) &lt; p) {q r : IQuat} (hq : QBound H q) (hr : QBound H r) :</span>
+<span class="ln" id="L248"><a class="lno" href="#L248">248</a>    ((IQuat.mul q r).read : Quat p) = Quat.mul q.read r.read ∧</span>
+<span class="ln" id="L249"><a class="lno" href="#L249">249</a>    QBound (4 * (H * H)) (IQuat.mul q r).norm ∧</span>
+<span class="ln" id="L250"><a class="lno" href="#L250">250</a>    ∀ s : IQuat, QBound (4 * (H * H)) s → (s.read : Quat p) = (IQuat.mul q r).read → s = (IQuat.mul q r).norm := by</span>
+<span class="ln" id="L251"><a class="lno" href="#L251">251</a>  refine ⟨read_mul q r, norm_bound hq hr, ?_⟩</span>
+<span class="ln" id="L252"><a class="lno" href="#L252">252</a>  intro s hs he</span>
+<span class="ln" id="L253"><a class="lno" href="#L253">253</a>  have hn := norm_bound hq hr</span>
+<span class="ln" id="L254"><a class="lno" href="#L254">254</a>  have hM : 2 * (4 * (H * H)) &lt; p := by rw [← Nat.mul_assoc]; exact hH</span>
+<span class="ln" id="L255"><a class="lno" href="#L255">255</a>  rw [← read_norm (IQuat.mul q r)] at he</span>
+<span class="ln" id="L256"><a class="lno" href="#L256">256</a>  unfold IQuat.read at he</span>
+<span class="ln" id="L257"><a class="lno" href="#L257">257</a>  exact IQuat.ext&#x27; (sread_inj hM hs.1 hn.1 (congrArg Quat.a he)) (sread_inj hM hs.2.1 hn.2.1 (congrArg Quat.b he))</span>
+<span class="ln" id="L258"><a class="lno" href="#L258">258</a>    (sread_inj hM hs.2.2.1 hn.2.2.1 (congrArg Quat.c he)) (sread_inj hM hs.2.2.2 hn.2.2.2 (congrArg Quat.d he))</span>
+<span class="ln" id="L259"><a class="lno" href="#L259">259</a></span>
+<span class="ln" id="L260"><a class="lno" href="#L260">260</a>end Frame</span>
+<span class="ln" id="L261"><a class="lno" href="#L261">261</a>end Shell</span>
+<span class="ln" id="L262"><a class="lno" href="#L262">262</a>end FRC</span>
+<span class="ln" id="L263"><a class="lno" href="#L263">263</a></span>
+</pre></main>
+</div>
+</body>
+</html>

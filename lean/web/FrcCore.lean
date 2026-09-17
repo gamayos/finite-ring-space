@@ -45,6 +45,14 @@ theorem sub_add_cancel {n m : Nat} (h : m ≤ n) : n - m + m = n := by
   match Nat.le.dest h with
   | ⟨k, hk⟩ => rw [← hk, add_sub_cancel_left, Nat.add_comm]
 
+theorem sub_add_self_eq_zero (m : Nat) : ∀ k, m - (m + k) = 0
+  | 0 => Nat.sub_self m
+  | k + 1 => by show Nat.pred (m - (m + k)) = 0; rw [sub_add_self_eq_zero m k]; rfl
+
+theorem sub_eq_zero_of_le {m n : Nat} (h : m ≤ n) : m - n = 0 :=
+  match Nat.le.dest h with
+  | ⟨k, hk⟩ => by rw [← hk]; exact sub_add_self_eq_zero m k
+
 theorem add_sub_of_le {n m : Nat} (h : m ≤ n) : m + (n - m) = n := by
   rw [Nat.add_comm]; exact sub_add_cancel h
 
@@ -52,6 +60,26 @@ theorem sub_lt_of_lt_add {x y z : Nat} (h : x < y + z) (hy : y ≤ x) : x - y < 
   refine Nat.lt_of_add_lt_add_right (n := y) ?_
   rw [sub_add_cancel hy, Nat.add_comm z y]
   exact h
+
+theorem le_of_add_le_add_left {a b c : Nat} (h : a + b ≤ a + c) : b ≤ c := by
+  induction a with
+  | zero => rw [Nat.zero_add, Nat.zero_add] at h; exact h
+  | succ a ih => apply ih; rw [Nat.succ_add, Nat.succ_add] at h; exact Nat.le_of_succ_le_succ h
+
+theorem le_of_add_le_add_right {a b c : Nat} (h : b + a ≤ c + a) : b ≤ c :=
+  le_of_add_le_add_left (a := a) (by rw [Nat.add_comm a b, Nat.add_comm a c]; exact h)
+
+theorem sub_le_of_le_add {a b c : Nat} (h : a ≤ c + b) : a - b ≤ c := by
+  have := Nat.sub_le_sub_right h b
+  rw [add_sub_cancel] at this; exact this
+
+theorem le_add_of_sub_le {a b c : Nat} (hb : b ≤ a) (h : a - b ≤ c) : a ≤ c + b := by
+  have := Nat.add_le_add_right h b
+  rw [sub_add_cancel hb] at this; exact this
+
+theorem le_sub_of_add_le {a b c : Nat} (h : c + b ≤ a) : c ≤ a - b := by
+  have := Nat.sub_le_sub_right h b
+  rw [add_sub_cancel] at this; exact this
 
 theorem succ_ne_zero (n : Nat) : n + 1 ≠ 0 := fun h => Nat.noConfusion h
 
@@ -375,6 +403,39 @@ theorem mem_of_nodup_of_length (n : Nat) (l : List Nat) (hnd : NoDup l) (hb : �
       | Or.inl e' => e' ▸ ⟨hv1, hvn⟩
       | Or.inr e' => hb e e'
     have := length_le_of_nodup n (v :: l) hnd' hb'
+    absurd (hlen ▸ this : n + 1 ≤ n) (Nat.not_succ_le_self n)
+
+/-- The same with the range `[0, n)`: a list of distinct numbers below `n` has at most `n` entries. -/
+theorem length_le_of_nodup_lt : ∀ (n : Nat) (l : List Nat), NoDup l → (∀ e, mem e l → e < n) → l.length ≤ n
+  | 0, [], _, _ => Nat.le_refl 0
+  | 0, a :: l, _, hb => absurd (hb a (Or.inl rfl)) (Nat.not_lt_zero a)
+  | n + 1, l, hnd, hb =>
+    match decMem n l with
+    | isTrue hm =>
+      have h1 : (erase n l).length ≤ n :=
+        length_le_of_nodup_lt n (erase n l) (nodup_erase _ hnd) (fun e he =>
+          match Nat.lt_or_ge e n with
+          | Or.inl hlt => hlt
+          | Or.inr hge =>
+            have : e = n := Nat.le_antisymm (Nat.le_of_lt_succ (hb e (mem_of_mem_erase he))) hge
+            absurd (this ▸ he) (not_mem_erase_self n hnd))
+      by rw [← length_erase_of_mem hm]; exact Nat.succ_le_succ h1
+    | isFalse hm =>
+      Nat.le_succ_of_le (length_le_of_nodup_lt n l hnd (fun e he =>
+        match Nat.lt_or_ge e n with
+        | Or.inl hlt => hlt
+        | Or.inr hge => absurd he ((Nat.le_antisymm (Nat.le_of_lt_succ (hb e he)) hge) ▸ hm)))
+
+/-- `n` distinct numbers below `n` are all of them. -/
+theorem mem_of_nodup_of_length_lt (n : Nat) (l : List Nat) (hnd : NoDup l) (hb : ∀ e, mem e l → e < n)
+    (hlen : l.length = n) (v : Nat) (hv : v < n) : mem v l :=
+  match decMem v l with
+  | isTrue h => h
+  | isFalse h =>
+    have hb' : ∀ e, mem e (v :: l) → e < n := fun e he => match he with
+      | Or.inl e' => e' ▸ hv
+      | Or.inr e' => hb e e'
+    have := length_le_of_nodup_lt n (v :: l) ⟨h, hnd⟩ hb'
     absurd (hlen ▸ this : n + 1 ≤ n) (Nat.not_succ_le_self n)
 
 end Pigeonhole
@@ -932,6 +993,40 @@ theorem two_pi (F : Frame p κ g) : (ofNat (2 * halfPeriod κ) : Shell p) = -1 :
   show (4 * κ) % p = (p - 1) % p
   rw [F.n_eq]
 
+/-! ### Two is invertible on every shell -/
+
+theorem two_lt_p (F : Frame p κ g) : 2 < p := by
+  rw [F.cap]
+  have h : 4 * 1 ≤ 4 * κ := Nat.mul_le_mul_left 4 F.cap_pos
+  exact Nat.lt_of_lt_of_le (by decide : 2 < 4 * 1 + 1) (Nat.succ_le_succ h)
+
+theorem two_ne_zero (F : Frame p κ g) : (2 : Shell p) ≠ 0 := fun h => by
+  have := val_injective h
+  rw [val_lit, val_zero, FRC.Nat.mod_eq_of_lt F.two_lt_p] at this
+  exact Nat.noConfusion this
+
+theorem two_eq_one_add_one : (2 : Shell p) = 1 + 1 :=
+  ext (by rw [val_add, val_one, val_lit, FRC.Nat.mod_add_mod _ _ _ hp, FRC.Nat.add_mod_mod _ _ _ hp])
+
+theorem two_mul' (x : Shell p) : (2 : Shell p) * x = x + x := by
+  rw [two_eq_one_add_one, right_distrib, one_mul]
+
+theorem eq_zero_of_eq_neg (F : Frame p κ g) {x : Shell p} (h : x = -x) : x = 0 := by
+  have h2 : (2 : Shell p) * x = 0 := by
+    rw [two_mul']
+    calc x + x = x + -x := by rw [← h]
+      _ = 0 := add_neg x
+  match F.mul_eq_zero h2 with
+  | .inl e => exact absurd e F.two_ne_zero
+  | .inr e => exact e
+
+/-- 1:F1 (Theorem 3) — `2s = 0 ⇒ s = 0`: the additive cycle has no element of order two; the antipode of
+the origin is not a residue. -/
+theorem no_south_pole (F : Frame p κ g) (s : Shell p) (h : (2 : Shell p) * s = 0) : s = 0 :=
+  match F.mul_eq_zero h with
+  | .inl e => absurd e F.two_ne_zero
+  | .inr e => e
+
 end Frame
 end Shell
 end FRC
@@ -1363,6 +1458,320 @@ theorem W_J_comm (F : Frame p κ g) {k j : Nat} (hk : k < p - 1) (hj : j < p - 1
   · rw [← pow_add, ← Nat.left_distrib, F.pow_mod, ← FRC.Nat.mul_mod_mod _ _ _ hn, rev_add_mod hk, Nat.mul_zero,
       FRC.Nat.zero_mod, pow_zero]
 
+/-! ### Sums over lists, permutation invariance (the reindexing `j ↦ u·j` of 2:F5) -/
+
+end Frame
+
+/-- The sum of `F` over a list of indices. -/
+def sumList (F : Nat → Shell p) : List Nat → Shell p
+  | [] => 0
+  | a :: l => F a + sumList F l
+
+/-- `[n−1, …, 0]`. -/
+def listRange : Nat → List Nat
+  | 0 => []
+  | n + 1 => n :: listRange n
+
+/-- `[σ (n−1), …, σ 0]`. -/
+def imageList (σ : Nat → Nat) : Nat → List Nat
+  | 0 => []
+  | n + 1 => σ n :: imageList σ n
+
+theorem sumList_imageList (F : Nat → Shell p) (σ : Nat → Nat) (n : Nat) :
+    sumList F (imageList σ n) = sumRange (fun j => F (σ j)) n := by
+  induction n with
+  | zero => rfl
+  | succ n ih => show F (σ n) + sumList F (imageList σ n) = sumRange (fun j => F (σ j)) n + F (σ n); rw [ih, add_comm]
+
+theorem sumList_erase (F : Nat → Shell p) {v : Nat} : ∀ {l : List Nat}, Pigeonhole.mem v l →
+    sumList F l = F v + sumList F (Pigeonhole.erase v l)
+  | [], h => absurd h id
+  | a :: l, h => by
+    exact match Nat.decEq a v with
+      | isTrue e => by rw [show Pigeonhole.erase v (a :: l) = l from if_pos e, e]; rfl
+      | isFalse e => by
+          rw [show Pigeonhole.erase v (a :: l) = a :: Pigeonhole.erase v l from if_neg e]
+          have hm : Pigeonhole.mem v l := match h with
+            | Or.inl h' => absurd h'.symm e
+            | Or.inr h' => h'
+          show F a + sumList F l = F v + (F a + sumList F (Pigeonhole.erase v l))
+          rw [sumList_erase F hm, add_left_comm]
+
+theorem imageList_length (σ : Nat → Nat) (n : Nat) : (imageList σ n).length = n := by
+  induction n with
+  | zero => rfl
+  | succ n ih => show (imageList σ n).length + 1 = n + 1; rw [ih]
+
+theorem mem_imageList {σ : Nat → Nat} {v : Nat} : ∀ {n : Nat}, Pigeonhole.mem v (imageList σ n) → ∃ j, j < n ∧ σ j = v
+  | 0, h => absurd h id
+  | n + 1, h => match h with
+    | Or.inl e => ⟨n, Nat.lt_succ_self n, e.symm⟩
+    | Or.inr h' => match mem_imageList h' with
+      | ⟨j, hj, e⟩ => ⟨j, Nat.lt_succ_of_lt hj, e⟩
+
+theorem imageList_nodup {σ : Nat → Nat} {n : Nat} (hinj : ∀ i j, i < n → j < n → σ i = σ j → i = j) :
+    ∀ {m : Nat}, m ≤ n → Pigeonhole.NoDup (imageList σ m)
+  | 0, _ => trivial
+  | m + 1, hm => ⟨fun h => match mem_imageList h with
+      | ⟨j, hj, e⟩ => Nat.lt_irrefl j (hinj j m (Nat.lt_of_lt_of_le hj (Nat.le_of_lt hm)) hm e ▸ hj),
+    imageList_nodup hinj (Nat.le_of_lt hm)⟩
+
+/-- A sum over any list of `n` distinct indices below `n` is the sum over `0, …, n−1`. -/
+theorem sumList_eq_sumRange (F : Nat → Shell p) : ∀ (n : Nat) (l : List Nat), Pigeonhole.NoDup l →
+    (∀ e, Pigeonhole.mem e l → e < n) → l.length = n → sumList F l = sumRange F n
+  | 0, [], _, _, _ => rfl
+  | 0, a :: l, _, hb, _ => absurd (hb a (Or.inl rfl)) (Nat.not_lt_zero a)
+  | n + 1, l, hnd, hb, hlen => by
+    have hm : Pigeonhole.mem n l := Pigeonhole.mem_of_nodup_of_length_lt (n + 1) l hnd hb hlen n (Nat.lt_succ_self n)
+    rw [sumList_erase F hm, sumRange_succ, add_comm]
+    have hb' : ∀ e, Pigeonhole.mem e (Pigeonhole.erase n l) → e < n := fun e he =>
+      match Nat.lt_or_ge e n with
+      | Or.inl hlt => hlt
+      | Or.inr hge =>
+        have : e = n := Nat.le_antisymm (Nat.le_of_lt_succ (hb e (Pigeonhole.mem_of_mem_erase he))) hge
+        absurd (this ▸ he) (Pigeonhole.not_mem_erase_self n hnd)
+    have hlen' : (Pigeonhole.erase n l).length = n := by
+      have := Pigeonhole.length_erase_of_mem hm; rw [hlen] at this; exact Nat.succ.inj this
+    rw [sumList_eq_sumRange F n (Pigeonhole.erase n l) (Pigeonhole.nodup_erase n hnd) hb' hlen']
+
+/-- Permutation invariance: for `σ` injective on `[0, n)` with values below `n`,
+`Σ_{j<n} F (σ j) = Σ_{l<n} F l`. -/
+theorem sum_perm (F : Nat → Shell p) (σ : Nat → Nat) (n : Nat) (hlt : ∀ j, j < n → σ j < n)
+    (hinj : ∀ i j, i < n → j < n → σ i = σ j → i = j) :
+    sumRange (fun j => F (σ j)) n = sumRange F n := by
+  rw [← sumList_imageList]
+  exact sumList_eq_sumRange F n (imageList σ n) (imageList_nodup hinj (Nat.le_refl n))
+    (fun e he => match mem_imageList he with | ⟨j, hj, e'⟩ => e' ▸ hlt j hj) (imageList_length σ n)
+
+namespace Frame
+variable {κ : Nat} {g : Shell p}
+
+/-- The shell Fourier transform of `v` at `k`: `Σ_{j<n} v_j g^{jk}`. -/
+def dft (g : Shell p) (n : Nat) (v : Nat → Shell p) (k : Nat) : Shell p := sumRange (fun j => v j * g ^ (j * k)) n
+
+/-- The polynomial `P_v(x) = Σ_{j<n} v_j x^j`. -/
+def polyEval (n : Nat) (v : Nat → Shell p) (x : Shell p) : Shell p := sumRange (fun j => v j * x ^ j) n
+
+/-- 2:F4 (Prop. 6.5) — the polynomial reading: `F_g(v)_k = P_v(g^k)`. -/
+theorem dft_eq_polyEval (g : Shell p) (n : Nat) (v : Nat → Shell p) (k : Nat) :
+    dft g n v k = polyEval n v (g ^ k) := by
+  unfold dft polyEval
+  apply sum_congr; intro j _
+  rw [Nat.mul_comm j k, pow_mul]
+
+/-- The reindexing `j ↦ u·j mod n` is injective on `[0, n)` when `u` is invertible mod `n`. -/
+theorem mul_mod_inj (F : Frame p κ g) {u : Nat} (hu : Coprime u (p - 1)) {i j : Nat} (hi : i < p - 1) (hj : j < p - 1)
+    (h : (u * i) % (p - 1) = (u * j) % (p - 1)) : i = j := by
+  have hn := F.n_pos
+  match hu with
+  | ⟨a, _, ha⟩ =>
+    have key : ∀ i, i < p - 1 → (a * (u * i)) % (p - 1) = i := by
+      intro i hi
+      match FRC.Nat.mod_spec (p - 1) hn (a * u) with
+      | ⟨q, hq⟩ =>
+        rw [ha] at hq
+        rw [← FRC.Nat.mul_assoc, hq, FRC.Nat.add_mul, Nat.one_mul, FRC.Nat.mul_assoc,
+          FRC.Nat.add_mul_mod_self_left _ _ _ hn, FRC.Nat.mod_eq_of_lt hi]
+    rw [← key i hi, ← key j hj, ← FRC.Nat.mul_mod_mod _ _ _ hn, h, FRC.Nat.mul_mod_mod _ _ _ hn]
+
+/-- 2:F5 (Prop. 6.7) — covariance under generator change: for `g' = g^u` (`u` invertible mod `n`) and
+`v'_j = v_{u·j mod n}`, `F_{g'}(v')_k = F_g(v)_k`. -/
+theorem dft_covariance (F : Frame p κ g) {u : Nat} (hu : Coprime u (p - 1)) (v : Nat → Shell p) (k : Nat) :
+    dft (g ^ u) (p - 1) (fun j => v ((u * j) % (p - 1))) k = dft g (p - 1) v k := by
+  have hn := F.n_pos
+  unfold dft
+  have e : ∀ j, v ((u * j) % (p - 1)) * (g ^ u) ^ (j * k) = v ((u * j) % (p - 1)) * g ^ (((u * j) % (p - 1)) * k) := by
+    intro j
+    rw [← pow_mul, F.pow_mod (u * (j * k)), F.pow_mod (((u * j) % (p - 1)) * k), FRC.Nat.mod_mul_mod _ _ _ hn,
+      ← FRC.Nat.mul_assoc]
+  rw [sum_congr _ (fun j _ => e j)]
+  exact sum_perm (fun l => v l * g ^ (l * k)) (fun j => (u * j) % (p - 1)) (p - 1)
+    (fun j _ => Nat.mod_lt _ hn) (fun i j hi hj h => F.mul_mod_inj hu hi hj h)
+
+/-! ### 6:B7 — the eigenspaces of the reversal: `V = V⁺ ⊕ V⁻`, `dim V⁺ = 2κ + 1`, `dim V⁻ = 2κ − 1` -/
+
+/-- `v` is symmetric under the reversal: `v (rev k) = v k` for `k < n`. -/
+def Symm (n : Nat) (v : Nat → Shell p) : Prop := ∀ k, k < n → v (rev n k) = v k
+
+/-- `v` is antisymmetric under the reversal: `v (rev k) = −v k` for `k < n`. -/
+def Antisymm (n : Nat) (v : Nat → Shell p) : Prop := ∀ k, k < n → v (rev n k) = -(v k)
+
+theorem rev_eq_sub {n k : Nat} (hk : k < n) (hk0 : 0 < k) : rev n k = n - k := rev_of_pos hk hk0
+
+/-- 6:B7 — a symmetric vector is determined by its `2κ + 1` coordinates `v 0, …, v (2κ)`. -/
+theorem symm_determined (F : Frame p κ g) {v w : Nat → Shell p} (hv : Symm (p - 1) v) (hw : Symm (p - 1) w)
+    (h : ∀ k, k ≤ 2 * κ → v k = w k) : ∀ k, k < p - 1 → v k = w k := by
+  intro k hk
+  exact match Nat.lt_or_ge k (2 * κ + 1) with
+    | Or.inl hlt => h k (Nat.le_of_lt_succ hlt)
+    | Or.inr hge =>
+      -- k > 2κ: rev k = n − k ≤ 2κ − 1
+      have hk0 : 0 < k := Nat.lt_of_lt_of_le (Nat.zero_lt_succ _) hge
+      have hr : rev (p - 1) k ≤ 2 * κ := by
+        rw [rev_eq_sub hk hk0]
+        apply FRC.Nat.sub_le_of_le_add
+        rw [← F.four_kappa]
+        exact Nat.add_le_add_left (Nat.le_of_lt hge) _
+      calc v k = v (rev (p - 1) k) := (hv k hk).symm
+        _ = w (rev (p - 1) k) := h _ hr
+        _ = w k := hw k hk
+
+/-- 6:B7 — every assignment of the `2κ + 1` coordinates extends to a symmetric vector. -/
+theorem symm_extend (F : Frame p κ g) (c : Nat → Shell p) :
+    ∃ v : Nat → Shell p, Symm (p - 1) v ∧ ∀ k, k ≤ 2 * κ → v k = c k := by
+  refine ⟨fun k => if k ≤ 2 * κ then c k else c (rev (p - 1) k), ?_, fun k hk => by
+    show (if k ≤ 2 * κ then c k else c (rev (p - 1) k)) = c k
+    rw [if_pos hk]⟩
+  intro k hk
+  show (if rev (p - 1) k ≤ 2 * κ then c (rev (p - 1) k) else c (rev (p - 1) (rev (p - 1) k)))
+      = (if k ≤ 2 * κ then c k else c (rev (p - 1) k))
+  rw [rev_rev hk]
+  exact match Nat.decLe k (2 * κ), Nat.decLe (rev (p - 1) k) (2 * κ) with
+    | isTrue h1, isTrue h2 => by
+        rw [if_pos h1, if_pos h2]
+        -- both k and n − k are ≤ 2κ: k = 0 (rev 0 = 0) or k = 2κ (rev = 2κ)
+        exact match Nat.decEq k 0 with
+          | isTrue e => by rw [e, rev_zero _ F.n_pos]
+          | isFalse e => by
+              have hk0 := Nat.pos_of_ne_zero e
+              rw [rev_eq_sub hk hk0] at h2 ⊢
+              -- n − k ≤ 2κ and k ≤ 2κ force k = 2κ
+              have h3 : p - 1 ≤ 2 * κ + k := FRC.Nat.le_add_of_sub_le (Nat.le_of_lt hk) h2
+              rw [← F.four_kappa] at h3
+              have hk2 : k = 2 * κ := Nat.le_antisymm h1 (FRC.Nat.le_of_add_le_add_left h3)
+              rw [hk2, ← F.four_kappa, FRC.Nat.add_sub_cancel]
+    | isTrue h1, isFalse h2 => by rw [if_pos h1, if_neg h2]
+    | isFalse h1, isTrue h2 => by rw [if_neg h1, if_pos h2]
+    | isFalse h1, isFalse h2 => by
+        rw [if_neg h1, if_neg h2]
+        -- impossible: k > 2κ and n − k > 2κ would give n > 4κ
+        exact absurd (by
+          have hk0 : 0 < k := Nat.lt_of_lt_of_le (Nat.zero_lt_succ _) (Nat.lt_of_not_le h1)
+          rw [rev_eq_sub hk hk0] at h2
+          have a1 := Nat.lt_of_not_le h1
+          have a2 := Nat.lt_of_not_le h2
+          have := Nat.add_lt_add a1 a2
+          rw [FRC.Nat.add_sub_of_le (Nat.le_of_lt hk), F.four_kappa] at this
+          exact this) (Nat.lt_irrefl _)
+
+/-- 6:B7 — an antisymmetric vector vanishes at the two fixed points of the reversal, `0` and `2κ`. -/
+theorem antisymm_fixed (F : Frame p κ g) {v : Nat → Shell p} (hv : Antisymm (p - 1) v) :
+    v 0 = 0 ∧ v (2 * κ) = 0 := by
+  have hn := F.n_pos
+  have h0 : v 0 = -(v 0) := by rw [← hv 0 hn, rev_zero _ hn]
+  have h2 : v (2 * κ) = -(v (2 * κ)) := by
+    rw [← hv (2 * κ) F.two_kappa_lt, rev_eq_sub F.two_kappa_lt F.two_kappa_pos, ← F.four_kappa, FRC.Nat.add_sub_cancel]
+  exact ⟨F.eq_zero_of_eq_neg h0, F.eq_zero_of_eq_neg h2⟩
+
+/-- 6:B7 — an antisymmetric vector is determined by its `2κ − 1` coordinates `v 1, …, v (2κ − 1)`. -/
+theorem antisymm_determined (F : Frame p κ g) {v w : Nat → Shell p} (hv : Antisymm (p - 1) v)
+    (hw : Antisymm (p - 1) w) (h : ∀ k, 0 < k → k < 2 * κ → v k = w k) : ∀ k, k < p - 1 → v k = w k := by
+  intro k hk
+  exact match Nat.decEq k 0 with
+    | isTrue e => by rw [e, (F.antisymm_fixed hv).1, (F.antisymm_fixed hw).1]
+    | isFalse e0 => match Nat.decEq k (2 * κ) with
+      | isTrue e => by rw [e, (F.antisymm_fixed hv).2, (F.antisymm_fixed hw).2]
+      | isFalse e2 => match Nat.lt_or_ge k (2 * κ) with
+        | Or.inl hlt => h k (Nat.pos_of_ne_zero e0) hlt
+        | Or.inr hge =>
+          have hgt : 2 * κ < k := Nat.lt_of_le_of_ne hge (fun e => e2 e.symm)
+          have hk0 : 0 < k := Nat.lt_of_lt_of_le F.two_kappa_pos hge
+          have hr1 : 0 < rev (p - 1) k := by
+            rw [rev_eq_sub hk hk0]
+            refine Nat.lt_of_add_lt_add_right (n := k) ?_
+            rw [Nat.zero_add, FRC.Nat.sub_add_cancel (Nat.le_of_lt hk)]; exact hk
+          have hr2 : rev (p - 1) k < 2 * κ := by
+            rw [rev_eq_sub hk hk0]
+            refine Nat.lt_of_add_lt_add_right (n := k) ?_
+            rw [FRC.Nat.sub_add_cancel (Nat.le_of_lt hk), ← F.four_kappa]
+            exact Nat.add_lt_add_left hgt _
+          calc v k = -(-(v k)) := (neg_neg _).symm
+            _ = -(v (rev (p - 1) k)) := by rw [hv k hk]
+            _ = -(w (rev (p - 1) k)) := by rw [h _ hr1 hr2]
+            _ = -(-(w k)) := by rw [hw k hk]
+            _ = w k := neg_neg _
+
+/-- 6:B7 — every assignment of the `2κ − 1` inner coordinates extends to an antisymmetric vector. -/
+theorem antisymm_extend (F : Frame p κ g) (c : Nat → Shell p) :
+    ∃ v : Nat → Shell p, Antisymm (p - 1) v ∧ ∀ k, 0 < k → k < 2 * κ → v k = c k := by
+  refine ⟨fun k => if k = 0 then 0 else if k = 2 * κ then 0 else if k < 2 * κ then c k else -(c (rev (p - 1) k)),
+    ?_, fun k hk0 hk2 => by
+      show (if k = 0 then 0 else if k = 2 * κ then 0 else if k < 2 * κ then c k else -(c (rev (p - 1) k))) = c k
+      rw [if_neg (Nat.ne_of_gt hk0), if_neg (Nat.ne_of_lt hk2), if_pos hk2]⟩
+  intro k hk
+  have hn := F.n_pos
+  show (if rev (p - 1) k = 0 then 0 else if rev (p - 1) k = 2 * κ then 0 else if rev (p - 1) k < 2 * κ then c (rev (p - 1) k) else -(c (rev (p - 1) (rev (p - 1) k))))
+      = -(if k = 0 then 0 else if k = 2 * κ then 0 else if k < 2 * κ then c k else -(c (rev (p - 1) k)))
+  match Nat.decEq k 0 with
+  | isTrue e => rw [e, rev_zero _ hn, if_pos rfl, if_pos rfl, neg_zero]
+  | isFalse e0 =>
+    have hk0 := Nat.pos_of_ne_zero e0
+    have hrk : rev (p - 1) k = p - 1 - k := rev_eq_sub hk hk0
+    have hr0 : rev (p - 1) k ≠ 0 := fun h => by
+      rw [hrk] at h
+      have := FRC.Nat.sub_add_cancel (Nat.le_of_lt hk)
+      rw [h, Nat.zero_add] at this
+      exact Nat.lt_irrefl _ (this ▸ hk)
+    match Nat.decEq k (2 * κ) with
+    | isTrue e =>
+      have : rev (p - 1) k = 2 * κ := by rw [hrk, e, ← F.four_kappa, FRC.Nat.add_sub_cancel]
+      rw [if_neg hr0, if_pos this, if_neg e0, if_pos e, neg_zero]
+    | isFalse e2 =>
+      have hr2 : rev (p - 1) k ≠ 2 * κ := fun h => e2 (by
+        have := rev_rev hk
+        rw [h] at this
+        rw [← this, rev_eq_sub F.two_kappa_lt F.two_kappa_pos, ← F.four_kappa, FRC.Nat.add_sub_cancel])
+      rw [if_neg hr0, if_neg hr2, if_neg e0, if_neg e2]
+      match Nat.lt_or_ge k (2 * κ) with
+      | Or.inl hlt =>
+        have hge : ¬ rev (p - 1) k < 2 * κ := fun h => by
+          rw [hrk] at h
+          have := Nat.add_lt_add h hlt
+          rw [FRC.Nat.sub_add_cancel (Nat.le_of_lt hk), F.four_kappa] at this
+          exact Nat.lt_irrefl _ this
+        rw [if_neg hge, if_pos hlt, rev_rev hk]
+      | Or.inr hge =>
+        have hlt' : ¬ k < 2 * κ := Nat.not_lt_of_le hge
+        have hgt : 2 * κ < k := Nat.lt_of_le_of_ne hge (fun e => e2 e.symm)
+        have hr : rev (p - 1) k < 2 * κ := by
+          rw [hrk]
+          refine Nat.lt_of_add_lt_add_right (n := k) ?_
+          rw [FRC.Nat.sub_add_cancel (Nat.le_of_lt hk), ← F.four_kappa]
+          exact Nat.add_lt_add_left hgt _
+        rw [if_pos hr, if_neg hlt', neg_neg]
+
+/-- 6:B7 — the decomposition `V = V⁺ ⊕ V⁻`: with `h = 2⁻¹`, `v = v⁺ + v⁻` where `v⁺ k = h(v k + v (rev k))`
+is symmetric and `v⁻ k = h(v k − v (rev k))` antisymmetric; the decomposition is unique. -/
+theorem symm_antisymm_decomp (F : Frame p κ g) (v : Nat → Shell p) :
+    ∃ vp vm : Nat → Shell p, Symm (p - 1) vp ∧ Antisymm (p - 1) vm ∧ ∀ k, k < p - 1 → v k = vp k + vm k := by
+  match F.exists_inv F.two_ne_zero with
+  | ⟨h, hh⟩ =>
+    refine ⟨fun k => h * (v k + v (rev (p - 1) k)), fun k => h * (v k + -(v (rev (p - 1) k))), ?_, ?_, ?_⟩
+    · intro k hk; show h * (v (rev (p - 1) k) + v (rev (p - 1) (rev (p - 1) k))) = h * (v k + v (rev (p - 1) k))
+      rw [rev_rev hk, add_comm]
+    · intro k hk; show h * (v (rev (p - 1) k) + -(v (rev (p - 1) (rev (p - 1) k)))) = -(h * (v k + -(v (rev (p - 1) k))))
+      rw [rev_rev hk, mul_neg, neg_add_rev, neg_neg, add_comm]
+    · intro k _
+      show v k = h * (v k + v (rev (p - 1) k)) + h * (v k + -(v (rev (p - 1) k)))
+      rw [← left_distrib, add_add_add_comm, add_neg, add_zero, ← two_mul', ← mul_assoc, mul_comm h, hh, one_mul]
+
+/-- 6:B7 — the decomposition is unique: a vector that is both symmetric and antisymmetric is zero, so the
+symmetric and antisymmetric parts of `v` are determined. -/
+theorem symm_antisymm_unique (F : Frame p κ g) {a b : Nat → Shell p} (ha : Symm (p - 1) a) (hb : Antisymm (p - 1) b)
+    (h : ∀ k, k < p - 1 → a k + b k = 0) : ∀ k, k < p - 1 → a k = 0 ∧ b k = 0 := by
+  intro k hk
+  have h1 := h k hk
+  have h2 := h (rev (p - 1) k) (rev_lt F.n_pos k)
+  rw [ha k hk, hb k hk] at h2
+  -- a k + b k = 0 and a k − b k = 0 give 2 a k = 0
+  have ha0 : a k = 0 := F.no_south_pole _ (by
+    rw [two_mul']
+    calc a k + a k = (a k + b k) + (a k + -(b k)) := by
+          rw [add_add_add_comm, add_neg, add_zero]
+      _ = 0 := by rw [h1, h2, add_zero])
+  refine ⟨ha0, ?_⟩
+  rw [ha0, zero_add] at h1; exact h1
+
 end Frame
 
 end Shell
@@ -1385,32 +1794,7 @@ namespace Frame
 
 variable {p : Nat} [Pos p] {κ : Nat} {g : Shell p}
 
-theorem two_lt_p (F : Frame p κ g) : 2 < p := by
-  rw [F.cap]
-  have h : 4 * 1 ≤ 4 * κ := Nat.mul_le_mul_left 4 F.cap_pos
-  exact Nat.lt_of_lt_of_le (by decide : 2 < 4 * 1 + 1) (Nat.succ_le_succ h)
-
-theorem two_ne_zero (F : Frame p κ g) : (2 : Shell p) ≠ 0 := fun h => by
-  have := val_injective h
-  rw [val_lit, val_zero, FRC.Nat.mod_eq_of_lt F.two_lt_p] at this
-  exact Nat.noConfusion this
-
-theorem two_eq_one_add_one : (2 : Shell p) = 1 + 1 :=
-  ext (by rw [val_add, val_one, val_lit, FRC.Nat.mod_add_mod _ _ _ hp, FRC.Nat.add_mod_mod _ _ _ hp])
-
-theorem two_mul' (x : Shell p) : (2 : Shell p) * x = x + x := by
-  rw [two_eq_one_add_one, right_distrib, one_mul]
-
-theorem eq_zero_of_eq_neg (F : Frame p κ g) {x : Shell p} (h : x = -x) : x = 0 := by
-  have h2 : (2 : Shell p) * x = 0 := by
-    rw [two_mul']
-    calc x + x = x + -x := by rw [← h]
-      _ = 0 := add_neg x
-  match F.mul_eq_zero h2 with
-  | .inl e => exact absurd e F.two_ne_zero
-  | .inr e => exact e
-
-/-- 1:B2 (Theorem 1 of 1-algebra) — off the fourth roots of unity, `x`, `−x`, `x⁻¹`, `−x⁻¹` are four
+/-- 1:B2 (Theorem 1 of 1-algebra), 2:D7 — off the fourth roots of unity, `x`, `−x`, `x⁻¹`, `−x⁻¹` are four
 distinct residues (`y` stands for the inverse: `x·y = 1`). -/
 theorem klein_orbit_four (F : Frame p κ g) {x y : Shell p} (hxy : x * y = 1) (h4 : x ^ 4 ≠ 1) :
     x ≠ -x ∧ x ≠ y ∧ x ≠ -y ∧ -x ≠ y ∧ -x ≠ -y ∧ y ≠ -y := by
@@ -1539,13 +1923,6 @@ theorem meridian_involution (F : Frame p κ g) (a : Shell p) (n : Nat) :
     -a * g ^ (n + 2 * κ) = a * g ^ n := by
   rw [pow_add, F.half_period, mul_comm (g ^ n), ← mul_assoc, neg_mul_neg, mul_one]
 
-/-- 1:F1 (Theorem 3) — `2s = 0 ⇒ s = 0`: the additive cycle has no element of order two; the antipode of
-the origin is not a residue. -/
-theorem no_south_pole (F : Frame p κ g) (s : Shell p) (h : (2 : Shell p) * s = 0) : s = 0 :=
-  match F.mul_eq_zero h with
-  | .inl e => absurd e F.two_ne_zero
-  | .inr e => e
-
 /-- The complex chart: pairs `(a, b)` read as `a + b·X` with `X² = −1`, multiplied as
 `(a, b)(c, d) = (ac − bd, ad + bc)`. -/
 def cmul (x y : Shell p × Shell p) : Shell p × Shell p :=
@@ -1569,6 +1946,938 @@ theorem approx_theorem_refuted (n x : Nat) (hn : 3 ≤ n) (hx : x < 13) : 2 * x 
   have h2 : 3 * 2 ^ 3 ≤ 3 * 2 ^ n := Nat.mul_le_mul_left 3 h8
   exact Nat.le_trans h1 h2
 
+/-! ### 1:B2, the count: the Klein orbits off `Q₄` are exactly `κ − 1`, represented by `g^r`, `1 ≤ r < κ` -/
+
+/-- `y` lies in the Klein orbit of `x`: `y ∈ {x, −x, x⁻¹, −x⁻¹}` (the inverse written as `x·y = 1`). -/
+def InOrbit (x y : Shell p) : Prop := y = x ∨ y = -x ∨ x * y = 1 ∨ x * -y = 1
+
+theorem two_mul_eq (κ : Nat) : 2 * κ = κ + κ := Nat.two_mul κ
+theorem three_mul_eq (κ : Nat) : 3 * κ = κ + κ + κ := by rw [Nat.succ_mul, Nat.two_mul]
+theorem four_mul_eq (κ : Nat) : 4 * κ = κ + κ + κ + κ := by rw [Nat.succ_mul, three_mul_eq]
+
+/-- The exponent `m` of `x = g^m` reduced to its orbit representative in `[1, κ)`. -/
+theorem orbit_rep_of_exp (F : Frame p κ g) {m : Nat} (hm : m < p - 1) (h0 : m ≠ 0) (h1 : m ≠ κ)
+    (h2 : m ≠ 2 * κ) (h3 : m ≠ 3 * κ) :
+    ∃ r, 1 ≤ r ∧ r < κ ∧ InOrbit (g ^ r) (g ^ m) := by
+  have hn := F.n_eq
+  have hπ := F.half_period
+  rw [hn, four_mul_eq] at hm
+  rw [two_mul_eq] at h2 hπ
+  rw [three_mul_eq] at h3
+  match Nat.lt_or_ge m κ with
+  | Or.inl hlt => exact ⟨m, Nat.pos_of_ne_zero h0, hlt, Or.inl rfl⟩
+  | Or.inr hge1 => match Nat.lt_or_ge m (κ + κ) with
+    | Or.inl hlt =>
+      -- κ < m < 2κ: r = 2κ − m, and g^m · (−g^r) = −g^{2κ} = 1
+      have hgt : κ < m := Nat.lt_of_le_of_ne hge1 (fun e => h1 e.symm)
+      refine ⟨κ + κ - m, ?_, ?_, Or.inr (Or.inr (Or.inr ?_))⟩
+      · refine Nat.lt_of_add_lt_add_right (n := m) ?_
+        rw [Nat.zero_add, FRC.Nat.sub_add_cancel (Nat.le_of_lt hlt)]; exact hlt
+      · refine Nat.lt_of_add_lt_add_right (n := m) ?_
+        rw [FRC.Nat.sub_add_cancel (Nat.le_of_lt hlt)]; exact Nat.add_lt_add_left hgt κ
+      · rw [← mul_neg, ← pow_add, FRC.Nat.sub_add_cancel (Nat.le_of_lt hlt), hπ, neg_neg]
+    | Or.inr hge2 => match Nat.lt_or_ge m (κ + κ + κ) with
+      | Or.inl hlt =>
+        -- 2κ < m < 3κ: r = m − 2κ, and g^m = −g^r
+        have hgt : κ + κ < m := Nat.lt_of_le_of_ne hge2 (fun e => h2 e.symm)
+        refine ⟨m - (κ + κ), ?_, ?_, Or.inr (Or.inl ?_)⟩
+        · refine Nat.lt_of_add_lt_add_right (n := κ + κ) ?_
+          rw [Nat.zero_add, FRC.Nat.sub_add_cancel hge2]; exact hgt
+        · refine Nat.lt_of_add_lt_add_right (n := κ + κ) ?_
+          rw [FRC.Nat.sub_add_cancel hge2, Nat.add_comm κ (κ + κ)]; exact hlt
+        · have : m = κ + κ + (m - (κ + κ)) := (FRC.Nat.add_sub_of_le hge2).symm
+          rw [this, pow_add, hπ, neg_one_mul, FRC.Nat.add_sub_cancel_left]
+      | Or.inr hge3 =>
+        -- 3κ < m < 4κ: r = 4κ − m, and g^m · g^r = g^{4κ} = 1
+        have hgt : κ + κ + κ < m := Nat.lt_of_le_of_ne hge3 (fun e => h3 e.symm)
+        refine ⟨κ + κ + κ + κ - m, ?_, ?_, Or.inr (Or.inr (Or.inl ?_))⟩
+        · refine Nat.lt_of_add_lt_add_right (n := m) ?_
+          rw [Nat.zero_add, FRC.Nat.sub_add_cancel (Nat.le_of_lt hm)]; exact hm
+        · refine Nat.lt_of_add_lt_add_right (n := m) ?_
+          rw [FRC.Nat.sub_add_cancel (Nat.le_of_lt hm), Nat.add_comm κ m]
+          exact Nat.add_lt_add_right hgt κ
+        · rw [← pow_add, FRC.Nat.sub_add_cancel (Nat.le_of_lt hm), ← four_mul_eq, ← hn, F.pow_n]
+
+/-- Off the fourth roots of unity, `x = g^m` has `m ∉ {0, κ, 2κ, 3κ}`. -/
+theorem exp_not_fourth (F : Frame p κ g) {m : Nat} (h4 : (g ^ m) ^ 4 ≠ 1) :
+    m ≠ 0 ∧ m ≠ κ ∧ m ≠ 2 * κ ∧ m ≠ 3 * κ := by
+  have hi := (F.quarter_turn_order).2
+  refine ⟨fun e => h4 (by rw [e, pow_zero, one_pow]), fun e => h4 (by rw [e, hi]), fun e => h4 ?_, fun e => h4 ?_⟩
+  · rw [e, Nat.mul_comm 2 κ, pow_mul, ← pow_mul, show (2 : Nat) * 4 = 4 * 2 from rfl, pow_mul, hi, one_pow]
+  · rw [e, Nat.mul_comm 3 κ, pow_mul, ← pow_mul, show (3 : Nat) * 4 = 4 * 3 from rfl, pow_mul, hi, one_pow]
+
+/-- 1:B2 (Theorem 1, the count, existence), 2:D7 — every residue off `Q₄` lies in the Klein orbit of some `g^r`
+with `1 ≤ r < κ`. -/
+theorem orbit_rep (F : Frame p κ g) {x : Shell p} (hx : x ≠ 0) (h4 : x ^ 4 ≠ 1) :
+    ∃ r, 1 ≤ r ∧ r < κ ∧ InOrbit (g ^ r) x := by
+  match F.eq_pow_of_ne_zero hx with
+  | ⟨m, hm, e⟩ =>
+    rw [← e] at h4 ⊢
+    match F.exp_not_fourth h4 with
+    | ⟨h0, h1, h2, h3⟩ => exact F.orbit_rep_of_exp hm h0 h1 h2 h3
+
+theorem neg_mul_of_mul_neg {a b : Shell p} (e : a * -b = 1) : -a * b = 1 := by
+  rw [← neg_mul, mul_neg]; exact e
+
+/-- The orbit relation is symmetric. -/
+theorem inOrbit_symm {a b : Shell p} (h : InOrbit a b) : InOrbit b a :=
+  match h with
+  | Or.inl e => Or.inl e.symm
+  | Or.inr (Or.inl e) => Or.inr (Or.inl (by rw [e, neg_neg]))
+  | Or.inr (Or.inr (Or.inl e)) => Or.inr (Or.inr (Or.inl (by rw [mul_comm]; exact e)))
+  | Or.inr (Or.inr (Or.inr e)) => Or.inr (Or.inr (Or.inr (by rw [← mul_neg, mul_comm, mul_neg]; exact e)))
+
+theorem neg_eq_neg {a b : Shell p} (h : -a = -b) : a = b := by rw [← neg_neg a, h, neg_neg]
+
+/-- The orbit relation is transitive. -/
+theorem inOrbit_trans {a b c : Shell p} (h1 : InOrbit a b) (h2 : InOrbit b c) : InOrbit a c := by
+  have hab : b = a ∨ b = -a ∨ a * b = 1 ∨ a * -b = 1 := h1
+  have hbc : c = b ∨ c = -b ∨ b * c = 1 ∨ b * -c = 1 := h2
+  unfold InOrbit
+  match hab, hbc with
+  | Or.inl e, h => exact e ▸ h
+  | Or.inr (Or.inl e), Or.inl e' => exact Or.inr (Or.inl (e' ▸ e))
+  | Or.inr (Or.inl e), Or.inr (Or.inl e') => exact Or.inl (by rw [e', e, neg_neg])
+  | Or.inr (Or.inl e), Or.inr (Or.inr (Or.inl e')) => exact Or.inr (Or.inr (Or.inr (by rw [← mul_neg, neg_mul, ← e]; exact e')))
+  | Or.inr (Or.inl e), Or.inr (Or.inr (Or.inr e')) => exact Or.inr (Or.inr (Or.inl (by rw [← neg_mul_neg, ← e]; exact e')))
+  | Or.inr (Or.inr (Or.inl e)), Or.inl e' => exact Or.inr (Or.inr (Or.inl (e' ▸ e)))
+  | Or.inr (Or.inr (Or.inl e)), Or.inr (Or.inl e') => exact Or.inr (Or.inr (Or.inr (by rw [e', neg_neg]; exact e)))
+  | Or.inr (Or.inr (Or.inl e)), Or.inr (Or.inr (Or.inl e')) =>
+    exact Or.inl (inv_unique (x := c) (x' := a) (y := b) (by rw [mul_comm]; exact e') e)
+  | Or.inr (Or.inr (Or.inl e)), Or.inr (Or.inr (Or.inr e')) =>
+    exact Or.inr (Or.inl (by
+      have := inv_unique (x := -c) (x' := a) (y := b) (by rw [mul_comm]; exact e') e
+      rw [← this, neg_neg]))
+  | Or.inr (Or.inr (Or.inr e)), Or.inl e' => exact Or.inr (Or.inr (Or.inr (e' ▸ e)))
+  | Or.inr (Or.inr (Or.inr e)), Or.inr (Or.inl e') => exact Or.inr (Or.inr (Or.inl (by rw [e']; exact e)))
+  | Or.inr (Or.inr (Or.inr e)), Or.inr (Or.inr (Or.inl e')) =>
+    exact Or.inr (Or.inl (inv_unique (x := -a) (x' := c) (y := b) (neg_mul_of_mul_neg e) (by rw [mul_comm]; exact e')).symm)
+  | Or.inr (Or.inr (Or.inr e)), Or.inr (Or.inr (Or.inr e')) =>
+    exact Or.inl (neg_eq_neg (inv_unique (x := -a) (x' := -c) (y := b) (neg_mul_of_mul_neg e) (by rw [mul_comm]; exact e'))).symm
+
+/-- The exponents of the orbit of `g^r`: `g^s ∈ orbit(g^r)`, `s < n`, forces `s ∈ {r, r + 2κ, 4κ − r, 2κ − r}`
+(for `1 ≤ r < κ`). -/
+theorem orbit_exponent (F : Frame p κ g) {r s : Nat} (hr1 : 1 ≤ r) (hrκ : r < κ) (hs : s < p - 1)
+    (h : InOrbit (g ^ r) (g ^ s)) : s = r ∨ s = r + (κ + κ) ∨ s = κ + κ + κ + κ - r ∨ s = κ + κ - r := by
+  have hn := F.n_eq
+  have hπ := F.half_period
+  rw [two_mul_eq] at hπ
+  rw [hn, four_mul_eq] at hs
+  have hr2 : r < κ + κ := Nat.lt_of_lt_of_le hrκ (Nat.le_add_right κ κ)
+  have hr4 : r < κ + κ + κ + κ := Nat.lt_of_lt_of_le hr2 (Nat.le_trans (Nat.le_add_right _ κ) (Nat.le_add_right _ κ))
+  have hpow_inj : ∀ {i j : Nat}, i < κ + κ + κ + κ → j < κ + κ + κ + κ → g ^ i = g ^ j → i = j :=
+    fun hi hj e => F.pow_inj (by rw [hn, four_mul_eq]; exact hi) (by rw [hn, four_mul_eq]; exact hj) e
+  have hpn : g ^ (κ + κ + κ + κ) = 1 := by rw [← four_mul_eq, ← hn]; exact F.pow_n
+  match h with
+  | Or.inl e => exact Or.inl (hpow_inj hs hr4 e)
+  | Or.inr (Or.inl e) =>
+    have e' : g ^ s = g ^ (r + (κ + κ)) := by rw [e, pow_add, hπ, mul_comm, neg_one_mul]
+    have hlt : r + (κ + κ) < κ + κ + κ + κ := by
+      rw [show κ + κ + κ + κ = (κ + κ) + (κ + κ) by rw [Nat.add_assoc]]
+      exact Nat.add_lt_add_right hr2 _
+    exact Or.inr (Or.inl (hpow_inj hs hlt e'))
+  | Or.inr (Or.inr (Or.inl e)) =>
+    have hlt : κ + κ + κ + κ - r < κ + κ + κ + κ := Nat.sub_lt (Nat.lt_of_lt_of_le (Nat.zero_lt_succ 0) (Nat.le_trans hr1 (Nat.le_of_lt hr4))) hr1
+    have e2 : g ^ r * g ^ (κ + κ + κ + κ - r) = 1 := by rw [← pow_add, FRC.Nat.add_sub_of_le (Nat.le_of_lt hr4), hpn]
+    have e' : g ^ s = g ^ (κ + κ + κ + κ - r) := F.mul_left_cancel (F.pow_ne_zero r) (e.trans e2.symm)
+    exact Or.inr (Or.inr (Or.inl (hpow_inj hs hlt e')))
+  | Or.inr (Or.inr (Or.inr e)) =>
+    have hlt : κ + κ - r < κ + κ + κ + κ := Nat.lt_of_le_of_lt (Nat.sub_le _ _)
+      (Nat.lt_of_lt_of_le (Nat.lt_add_of_pos_right F.cap_pos) (Nat.le_add_right _ κ))
+    have e2 : g ^ r * -(g ^ (κ + κ - r)) = 1 := by
+      rw [← mul_neg, ← pow_add, FRC.Nat.add_sub_of_le (Nat.le_of_lt hr2), hπ, neg_neg]
+    have e' : -(g ^ s) = -(g ^ (κ + κ - r)) := F.mul_left_cancel (F.pow_ne_zero r) (e.trans e2.symm)
+    exact Or.inr (Or.inr (Or.inr (hpow_inj hs hlt (neg_eq_neg e'))))
+
+/-- 1:B2 (Theorem 1, the count, uniqueness), 2:D7 — two representatives `g^r`, `g^{r'}` with `1 ≤ r, r' < κ` whose
+orbits meet are the same: the Klein orbits off `Q₄` are exactly `κ − 1`, one for each `r ∈ [1, κ)`. -/
+theorem orbit_rep_unique (F : Frame p κ g) {r r' : Nat} (hr1 : 1 ≤ r) (hrκ : r < κ) (_hr1' : 1 ≤ r')
+    (hrκ' : r' < κ) {x : Shell p} (hx : InOrbit (g ^ r) x) (hx' : InOrbit (g ^ r') x) : r = r' := by
+  have hn := F.n_eq
+  have hr' : r' < p - 1 := by
+    rw [hn, four_mul_eq]
+    exact Nat.lt_of_lt_of_le hrκ' (Nat.le_trans (Nat.le_add_right κ κ) (Nat.le_trans (Nat.le_add_right _ κ) (Nat.le_add_right _ κ)))
+  have h := inOrbit_trans hx (inOrbit_symm hx')
+  match F.orbit_exponent hr1 hrκ hr' h with
+  | Or.inl e => exact e.symm
+  | Or.inr (Or.inl e) =>
+    exact absurd hrκ' (Nat.not_lt_of_le (by rw [e]; exact Nat.le_trans (Nat.le_add_right κ κ) (Nat.le_add_left _ r)))
+  | Or.inr (Or.inr (Or.inl e)) =>
+    -- 4κ − r > κ since r < κ
+    have : κ ≤ κ + κ + κ + κ - r := by
+      apply FRC.Nat.le_sub_of_add_le
+      rw [Nat.add_assoc, Nat.add_assoc]
+      exact Nat.add_le_add_left (Nat.le_trans (Nat.le_of_lt hrκ) (Nat.le_add_right κ _)) κ
+    exact absurd hrκ' (Nat.not_lt_of_le (e ▸ this))
+  | Or.inr (Or.inr (Or.inr e)) =>
+    -- 2κ − r > κ since r < κ
+    have : κ ≤ κ + κ - r := by
+      apply FRC.Nat.le_sub_of_add_le
+      exact Nat.add_le_add_left (Nat.le_of_lt hrκ) κ
+    exact absurd hrκ' (Nat.not_lt_of_le (e ▸ this))
+
+/-! ### 1:C2 — the frame group: the affine maps `x ↦ a + b·x`, `b ≠ 0`, act simply transitively on the frames -/
+
+/-- An affine map of the shell, `x ↦ a + b·x` with `b ≠ 0`. -/
+structure Affine (p : Nat) [Pos p] where
+  a : Shell p
+  b : Shell p
+  hb : b ≠ 0
+
+namespace Affine
+
+def apply (φ : Affine p) (x : Shell p) : Shell p := φ.a + φ.b * x
+
+theorem ext' {φ ψ : Affine p} (ha : φ.a = ψ.a) (hb : φ.b = ψ.b) : φ = ψ := by
+  cases φ; cases ψ; cases ha; cases hb; rfl
+
+/-- The identity `x ↦ 0 + 1·x`. -/
+def one (F : Frame p κ g) : Affine p := ⟨0, 1, F.one_ne_zero⟩
+
+/-- Composition: `(a, b) ∘ (c, d) = (a + b·c, b·d)`. -/
+def comp (F : Frame p κ g) (φ ψ : Affine p) : Affine p := ⟨φ.a + φ.b * ψ.a, φ.b * ψ.b, F.mul_ne_zero φ.hb ψ.hb⟩
+
+theorem comp_apply (F : Frame p κ g) (φ ψ : Affine p) (x : Shell p) :
+    (comp F φ ψ).apply x = φ.apply (ψ.apply x) := by
+  unfold comp apply
+  show φ.a + φ.b * ψ.a + φ.b * ψ.b * x = φ.a + φ.b * (ψ.a + ψ.b * x)
+  rw [left_distrib, add_assoc, mul_assoc]
+
+theorem one_apply (F : Frame p κ g) (x : Shell p) : (one F).apply x = x := by
+  unfold one apply; show 0 + 1 * x = x; rw [one_mul, zero_add]
+
+theorem comp_assoc (F : Frame p κ g) (φ ψ χ : Affine p) : comp F (comp F φ ψ) χ = comp F φ (comp F ψ χ) :=
+  ext' (by show φ.a + φ.b * ψ.a + φ.b * ψ.b * χ.a = φ.a + φ.b * (ψ.a + ψ.b * χ.a); rw [left_distrib, add_assoc, mul_assoc])
+    (by show φ.b * ψ.b * χ.b = φ.b * (ψ.b * χ.b); exact mul_assoc _ _ _)
+
+/-- The inverse of `(a, b)`: `(−a·b⁻¹, b⁻¹)`, with `y` the inverse of `b`. -/
+def inv (F : Frame p κ g) (φ : Affine p) (y : Shell p) (hy : φ.b * y = 1) : Affine p :=
+  ⟨-(φ.a * y), y, fun h => F.one_ne_zero (by rw [← hy, h, mul_zero])⟩
+
+theorem comp_inv (F : Frame p κ g) (φ : Affine p) (y : Shell p) (hy : φ.b * y = 1) :
+    comp F φ (inv F φ y hy) = one F :=
+  ext' (by
+      show φ.a + φ.b * -(φ.a * y) = 0
+      calc φ.a + φ.b * -(φ.a * y) = φ.a + -(φ.b * (φ.a * y)) := by rw [← mul_neg]
+        _ = φ.a + -(φ.a * (φ.b * y)) := by rw [mul_left_comm]
+        _ = φ.a + -φ.a := by rw [hy, mul_one]
+        _ = 0 := add_neg _)
+    (by show φ.b * y = 1; exact hy)
+
+/-- 1:C2 (Prop. of the frame group), simple transitivity — for frames `(a, b)` and `(c, d)` (`b, d ≠ 0`) there
+is exactly one affine map carrying the first to the second: `φ (a, b) := (φ.apply a, φ.b · b)`. -/
+theorem simply_transitive (F : Frame p κ g) (a b c d : Shell p) (hb : b ≠ 0) (hd : d ≠ 0) :
+    (∃ φ : Affine p, φ.apply a = c ∧ φ.b * b = d) ∧
+    (∀ φ ψ : Affine p, φ.apply a = c → φ.b * b = d → ψ.apply a = c → ψ.b * b = d → φ = ψ) := by
+  match F.exists_inv hb with
+  | ⟨y, hy⟩ =>
+    constructor
+    · refine ⟨⟨c + -(d * y * a), d * y, ?_⟩, ?_, ?_⟩
+      · exact F.mul_ne_zero hd (fun h => F.one_ne_zero (by rw [← hy, h, mul_zero]))
+      · show c + -(d * y * a) + d * y * a = c
+        rw [add_assoc, neg_add, add_zero]
+      · show d * y * b = d
+        rw [mul_assoc, mul_comm y b, hy, mul_one]
+    · intro φ ψ h1 h2 h3 h4
+      have eb : φ.b = ψ.b := by
+        calc φ.b = φ.b * (b * y) := by rw [hy, mul_one]
+          _ = (φ.b * b) * y := (mul_assoc _ _ _).symm
+          _ = (ψ.b * b) * y := by rw [h2, h4]
+          _ = ψ.b := by rw [mul_assoc, hy, mul_one]
+      have ea : φ.a = ψ.a := by
+        have e1 : φ.a + φ.b * a = c := h1
+        have e2 : ψ.a + ψ.b * a = c := h3
+        rw [← eb] at e2
+        exact add_right_cancel (e1.trans e2.symm)
+      exact ext' ea eb
+
+end Affine
+
+/-- The number of `x < n` with `P x`, as a sum of `0`s and `1`s. -/
+def natCount (P : Nat → Prop) [DecidablePred P] : Nat → Nat
+  | 0 => 0
+  | n + 1 => natCount P n + if P n then 1 else 0
+
+theorem natCount_ne_zero (n : Nat) : natCount (fun x => x ≠ 0) (n + 1) = n := by
+  induction n with
+  | zero => rfl
+  | succ n ih =>
+    show natCount (fun x => x ≠ 0) (n + 1) + (if n + 1 ≠ 0 then 1 else 0) = n + 1
+    rw [ih, if_pos (Nat.succ_ne_zero n)]
+
+/-- 1:C2, the order — the frames `(a, b)`, `b ≠ 0`, number `p·(p − 1)`: `p` choices of the origin, `p − 1`
+of the unit. -/
+theorem frame_count (_F : Frame p κ g) :
+    natCount (fun _ => True) p * natCount (fun b => b ≠ 0) p = p * (p - 1) := by
+  have h1 : ∀ n, natCount (fun _ => True) n = n := fun n => by
+    induction n with
+    | zero => rfl
+    | succ n ih => show natCount (fun _ => True) n + (if True then 1 else 0) = n + 1; rw [ih, if_pos trivial]
+  have hp : p = (p - 1) + 1 := (FRC.Nat.sub_add_cancel Pos.pos).symm
+  rw [h1]
+  have h2 : natCount (fun b => b ≠ 0) p = p - 1 := by
+    have := natCount_ne_zero (p - 1)
+    rw [← hp] at this; exact this
+  rw [h2]
+
+end Frame
+end Shell
+end FRC
+
+/-! inlined: FrcCore/Poly.lean -/
+
+/-!
+# FrcCore.Poly — polynomials over the shell and the root criterion (1:G1)
+
+A polynomial is its coefficient sequence `Nat → Shell p` with a degree bound (`Bound f n`: the coefficients
+beyond `n` vanish); equality is coefficientwise, so no function extensionality is needed.  The Cauchy
+product, evaluation as a finite sum, the evaluation homomorphism (`eval_mul`, by a triangular reindexing of
+sums), synthetic division by `X − a` at a root (`quot_linear_spec`), the root bound (a polynomial of degree
+`n` vanishing at `n + 1` distinct points is zero, `root_bound`), and 1:G1's criterion: `f` has a root iff `f`
+and `X^p − X` share a factor of positive degree (`root_iff_common_factor`).  The reverse direction is
+constructive — the root is found by deciding `∃ i < p, d(i) = 0`.  No axioms.
+-/
+
+namespace FRC
+namespace Shell
+
+variable {p : Nat} [Pos p]
+
+theorem sum_split (f : Nat → Shell p) (n k : Nat) :
+    sumRange f (n + k) = sumRange f n + sumRange (fun t => f (n + t)) k := by
+  induction k with
+  | zero => rw [Nat.add_zero, sumRange_zero, add_zero]
+  | succ k ih =>
+    show sumRange f (n + k + 1) = _
+    rw [sumRange_succ, sumRange_succ, ih, add_assoc]
+
+/-- The triangular reindexing `Σ_{l<N} Σ_{j≤l} F j (l − j) = Σ_{j<N} Σ_{k<N−j} F j k`. -/
+theorem sum_triangle (F : Nat → Nat → Shell p) (N : Nat) :
+    sumRange (fun l => sumRange (fun j => F j (l - j)) (l + 1)) N =
+    sumRange (fun j => sumRange (fun k => F j k) (N - j)) N := by
+  induction N with
+  | zero => rfl
+  | succ N ih =>
+    rw [sumRange_succ, ih, sumRange_succ (fun j => sumRange (fun k => F j k) (N + 1 - j)) N]
+    have h1 : sumRange (fun j => sumRange (fun k => F j k) (N + 1 - j)) N =
+        sumRange (fun j => sumRange (fun k => F j k) (N - j) + F j (N - j)) N := by
+      apply sum_congr
+      intro j hj
+      show sumRange (fun k => F j k) (N + 1 - j) = sumRange (fun k => F j k) (N - j) + F j (N - j)
+      have e : N + 1 - j = (N - j) + 1 := by
+        have := FRC.Nat.add_sub_of_le (Nat.le_of_lt hj)
+        -- this : j + (N - j) = N
+        calc N + 1 - j = j + (N - j) + 1 - j := by rw [this]
+          _ = (N - j) + 1 + j - j := by rw [Nat.add_comm j (N - j), Nat.add_right_comm (N - j) j 1]
+          _ = (N - j) + 1 := FRC.Nat.add_sub_cancel _ _
+      rw [e, sumRange_succ]
+    rw [h1, sum_add]
+    have e2 : N + 1 - N = 1 := FRC.Nat.add_sub_cancel_left N 1
+    rw [e2, sumRange_succ (fun k => F N k) 0, sumRange_zero, zero_add,
+      sumRange_succ (fun j => F j (N - j)) N, Nat.sub_self, add_assoc]
+
+/-- A polynomial as its coefficient sequence. -/
+abbrev Poly (p : Nat) [Pos p] := Nat → Shell p
+
+namespace Poly
+
+/-- `f` has degree at most `n`: the coefficients beyond `n` vanish. -/
+def Bound (f : Poly p) (n : Nat) : Prop := ∀ i, n < i → f i = 0
+
+/-- The Cauchy product `(f·g) i = Σ_{j ≤ i} f j · g (i − j)`. -/
+def mul (f g : Poly p) : Poly p := fun i => sumRange (fun j => f j * g (i - j)) (i + 1)
+
+/-- `f(a)` summed to the bound `n`: `Σ_{i ≤ n} f i · a^i`. -/
+def eval (f : Poly p) (n : Nat) (a : Shell p) : Shell p := sumRange (fun i => f i * a ^ i) (n + 1)
+
+/-- `X − a`. -/
+def linear (a : Shell p) : Poly p
+  | 0 => -a
+  | 1 => 1
+  | _ + 2 => 0
+
+/-- `X^p − X`. -/
+def xpx : Poly p := fun i => if i = p then 1 else if i = 1 then -1 else 0
+
+theorem eval_congr {f h : Poly p} (e : ∀ i, f i = h i) (n : Nat) (a : Shell p) : eval f n a = eval h n a :=
+  sum_congr (n + 1) (fun i _ => by show f i * a ^ i = h i * a ^ i; rw [e i])
+
+theorem eval_bound {f : Poly p} {n N : Nat} (hf : Bound f n) (hN : n ≤ N) (a : Shell p) :
+    eval f N a = eval f n a := by
+  unfold eval
+  have e : N + 1 = (n + 1) + (N - n) := by
+    rw [Nat.add_right_comm, FRC.Nat.add_sub_of_le hN]
+  rw [e, sum_split, sum_zero (N - n) (fun t _ => by
+    show f (n + 1 + t) * a ^ (n + 1 + t) = 0
+    rw [hf _ (Nat.lt_of_lt_of_le (Nat.lt_succ_self n) (Nat.le_add_right (n + 1) t)), zero_mul]), add_zero]
+
+theorem mul_bound {d q : Poly p} {m k : Nat} (hd : Bound d m) (hq : Bound q k) : Bound (mul d q) (m + k) := by
+  intro i hi
+  apply sum_zero
+  intro j hj
+  show d j * q (i - j) = 0
+  match Nat.decLe j m with
+  | .isTrue hjm =>
+    have : k < i - j := by
+      apply FRC.Nat.le_sub_of_add_le
+      -- k + 1 + j ≤ i  from  m + k < i and j ≤ m
+      show k + 1 + j ≤ i
+      calc k + 1 + j ≤ k + 1 + m := Nat.add_le_add_left hjm _
+        _ = m + k + 1 := by rw [Nat.add_comm (k + 1) m, Nat.add_assoc]
+        _ ≤ i := hi
+    rw [hq _ this, mul_zero]
+  | .isFalse hjm => rw [hd j (Nat.lt_of_not_le hjm), zero_mul]
+
+/-- The evaluation is multiplicative: `(f·g)(a) = f(a)·g(a)`, with the bounds added. -/
+theorem eval_mul {f g : Poly p} {n m : Nat} (hf : Bound f n) (hg : Bound g m) (a : Shell p) :
+    eval (mul f g) (n + m) a = eval f n a * eval g m a := by
+  unfold eval mul
+  have h1 : sumRange (fun l => sumRange (fun j => f j * g (l - j)) (l + 1) * a ^ l) (n + m + 1) =
+      sumRange (fun l => sumRange (fun j => f j * a ^ j * (g (l - j) * a ^ (l - j))) (l + 1)) (n + m + 1) := by
+    apply sum_congr
+    intro l _
+    show sumRange (fun j => f j * g (l - j)) (l + 1) * a ^ l =
+      sumRange (fun j => f j * a ^ j * (g (l - j) * a ^ (l - j))) (l + 1)
+    rw [← sum_mul_right]
+    apply sum_congr
+    intro j hj
+    show f j * g (l - j) * a ^ l = f j * a ^ j * (g (l - j) * a ^ (l - j))
+    have : a ^ l = a ^ j * a ^ (l - j) := by rw [← pow_add, FRC.Nat.add_sub_of_le (Nat.le_of_lt_succ hj)]
+    rw [this, mul_assoc, mul_assoc, mul_left_comm (g (l - j))]
+  rw [h1, sum_triangle (fun j k => f j * a ^ j * (g k * a ^ k)) (n + m + 1)]
+  have h2 : sumRange (fun j => sumRange (fun k => f j * a ^ j * (g k * a ^ k)) (n + m + 1 - j)) (n + m + 1) =
+      sumRange (fun j => f j * a ^ j * sumRange (fun i => g i * a ^ i) (m + 1)) (n + m + 1) := by
+    apply sum_congr
+    intro j hj
+    show sumRange (fun k => f j * a ^ j * (g k * a ^ k)) (n + m + 1 - j) =
+      f j * a ^ j * sumRange (fun i => g i * a ^ i) (m + 1)
+    rw [sum_mul_left]
+    match Nat.decLe j n with
+    | .isTrue hjn =>
+      have e : n + m + 1 - j = (n + m - j) + 1 := by
+        have := FRC.Nat.add_sub_of_le (Nat.le_trans hjn (Nat.le_add_right n m))
+        calc n + m + 1 - j = j + (n + m - j) + 1 - j := by rw [this]
+          _ = (n + m - j) + 1 + j - j := by rw [Nat.add_comm j (n + m - j), Nat.add_right_comm (n + m - j) j 1]
+          _ = (n + m - j) + 1 := FRC.Nat.add_sub_cancel _ _
+      rw [e]
+      have hm : m ≤ n + m - j := by
+        apply FRC.Nat.le_sub_of_add_le
+        rw [Nat.add_comm n m]; exact Nat.add_le_add_left hjn m
+      exact congrArg (f j * a ^ j * ·) (eval_bound hg hm a)
+    | .isFalse hjn =>
+      rw [hf j (Nat.lt_of_not_le hjn), zero_mul, zero_mul, zero_mul]
+  rw [h2, sum_mul_right]
+  exact congrArg (· * sumRange (fun i => g i * a ^ i) (m + 1)) (eval_bound hf (Nat.le_add_right n m) a)
+
+theorem linear_bound (a : Shell p) : Bound (linear a) 1 := by
+  intro i hi
+  match i, hi with
+  | _ + 2, _ => rfl
+
+theorem mul_linear_zero (a : Shell p) (q : Poly p) : mul (linear a) q 0 = -(a * q 0) := by
+  show sumRange (fun j => linear a j * q (0 - j)) 1 = _
+  rw [sumRange_succ, sumRange_zero, zero_add]
+  show -a * q 0 = -(a * q 0)
+  exact (neg_mul a (q 0)).symm
+
+theorem mul_linear_succ (a : Shell p) (q : Poly p) (i : Nat) :
+    mul (linear a) q (i + 1) = q i + -(a * q (i + 1)) := by
+  show sumRange (fun j => linear a j * q (i + 1 - j)) (i + 1 + 1) = _
+  have e : i + 1 + 1 = 2 + i := Nat.add_comm i 2
+  rw [e, sum_split, sum_zero i (fun t _ => by
+    show linear a (2 + t) * q (i + 1 - (2 + t)) = 0
+    rw [Nat.add_comm 2 t]
+    show (0 : Shell p) * _ = 0
+    exact zero_mul _), add_zero, sumRange_succ, sumRange_succ, sumRange_zero, zero_add]
+  show -a * q (i + 1) + 1 * q i = q i + -(a * q (i + 1))
+  rw [← neg_mul, one_mul, add_comm]
+
+/-- The quotient of `f` (bound `n`) by `X − a`: `q i = Σ_{t < n − i} f (i + 1 + t) · a^t`. -/
+def quotLinear (f : Poly p) (n : Nat) (a : Shell p) : Poly p :=
+  fun i => sumRange (fun t => f (i + 1 + t) * a ^ t) (n - i)
+
+/-- Synthetic division: at a root `a` of `f`, `f = (X − a)·q` with `q` of degree one less. -/
+theorem quot_linear_spec {f : Poly p} {n : Nat} (hf : Bound f n) {a : Shell p} (ha : eval f n a = 0) :
+    Bound (quotLinear f n a) (n - 1) ∧ ∀ i, f i = mul (linear a) (quotLinear f n a) i := by
+  constructor
+  · intro i hi
+    have hni : n ≤ i := by
+      match n, hi with
+      | 0, _ => exact Nat.zero_le i
+      | n' + 1, hi => exact Nat.succ_le_of_lt hi
+    show sumRange (fun t => f (i + 1 + t) * a ^ t) (n - i) = 0
+    rw [FRC.Nat.sub_eq_zero_of_le hni]
+    rfl
+  · intro i
+    match i with
+    | 0 =>
+      rw [mul_linear_zero]
+      -- f 0 + a · q 0 = f(a) = 0
+      have e1 : n + 1 = 1 + n := Nat.add_comm n 1
+      unfold eval at ha
+      rw [e1, sum_split, sumRange_succ, sumRange_zero, zero_add] at ha
+      have ha' : f 0 * a ^ 0 + sumRange (fun t => f (1 + t) * a ^ (1 + t)) n = 0 := ha
+      rw [pow_zero, mul_one] at ha'
+      have h2 : sumRange (fun t => f (1 + t) * a ^ (1 + t)) n = a * quotLinear f n a 0 := by
+        show _ = a * sumRange (fun t => f (0 + 1 + t) * a ^ t) (n - 0)
+        rw [← sum_mul_left]
+        apply sum_congr
+        intro t _
+        show f (1 + t) * a ^ (1 + t) = a * (f (0 + 1 + t) * a ^ t)
+        rw [pow_add, pow_one, mul_left_comm]
+      rw [h2] at ha'
+      exact eq_neg_of_add_eq_zero ha'
+    | i + 1 =>
+      rw [mul_linear_succ]
+      match Nat.decLt i n with
+      | .isTrue hin =>
+        -- n − i = (n − (i + 1)) + 1
+        have hk := FRC.Nat.add_sub_of_le (Nat.succ_le_of_lt hin)
+        -- hk : i + 1 + (n - (i + 1)) = n
+        have e : n - i = (n - (i + 1)) + 1 := by
+          calc n - i = i + 1 + (n - (i + 1)) - i := by rw [hk]
+            _ = i + ((n - (i + 1)) + 1) - i := by rw [Nat.add_assoc, Nat.add_comm 1]
+            _ = (n - (i + 1)) + 1 := FRC.Nat.add_sub_cancel_left _ _
+        show f (i + 1) = sumRange (fun t => f (i + 1 + t) * a ^ t) (n - i) +
+          -(a * sumRange (fun t => f (i + 1 + 1 + t) * a ^ t) (n - (i + 1)))
+        rw [e, Nat.add_comm (n - (i + 1)) 1, sum_split, sumRange_succ, sumRange_zero, zero_add]
+        show f (i + 1) = f (i + 1 + 0) * a ^ 0 + sumRange (fun t => f (i + 1 + (1 + t)) * a ^ (1 + t)) (n - (i + 1)) +
+          -(a * sumRange (fun t => f (i + 1 + 1 + t) * a ^ t) (n - (i + 1)))
+        have h3 : sumRange (fun t => f (i + 1 + (1 + t)) * a ^ (1 + t)) (n - (i + 1)) =
+            a * sumRange (fun t => f (i + 1 + 1 + t) * a ^ t) (n - (i + 1)) := by
+          rw [← sum_mul_left]
+          apply sum_congr
+          intro t _
+          show f (i + 1 + (1 + t)) * a ^ (1 + t) = a * (f (i + 1 + 1 + t) * a ^ t)
+          rw [← Nat.add_assoc, pow_add, pow_one, mul_left_comm]
+        rw [h3, Nat.add_zero, pow_zero, mul_one, add_assoc, add_neg, add_zero]
+      | .isFalse hin =>
+        have hni : n ≤ i := Nat.le_of_not_lt hin
+        have z1 : n - i = 0 := FRC.Nat.sub_eq_zero_of_le hni
+        have z2 : n - (i + 1) = 0 := FRC.Nat.sub_eq_zero_of_le (Nat.le_succ_of_le hni)
+        show f (i + 1) = sumRange (fun t => f (i + 1 + t) * a ^ t) (n - i) +
+          -(a * sumRange (fun t => f (i + 1 + 1 + t) * a ^ t) (n - (i + 1)))
+        rw [z1, z2, sumRange_zero, sumRange_zero, mul_zero, neg_zero, add_zero]
+        exact hf _ (Nat.lt_succ_of_le hni)
+
+theorem eval_linear (a b : Shell p) : eval (linear a) 1 b = b + -a := by
+  show sumRange (fun i => linear a i * b ^ i) 2 = _
+  rw [sumRange_succ, sumRange_succ, sumRange_zero, zero_add]
+  show -a * b ^ 0 + 1 * b ^ 1 = b + -a
+  rw [pow_zero, mul_one, pow_one, one_mul, add_comm]
+
+theorem eval_mul_linear {q : Poly p} {n : Nat} (hq : Bound q n) (a b : Shell p) :
+    eval (mul (linear a) q) (n + 1) b = (b + -a) * eval q n b := by
+  rw [Nat.add_comm n 1, eval_mul (linear_bound a) hq, eval_linear]
+
+namespace Frame
+variable {κ : Nat} {g : Shell p}
+
+/-- 1:G1, the root bound — a polynomial of degree at most `n` that vanishes at `n + 1` distinct points is
+zero: the distinct roots are counted by the degree. -/
+theorem root_bound (F : Frame p κ g) : ∀ (n : Nat) (f : Poly p), Bound f n → ∀ (r : Nat → Shell p),
+    (∀ i j, i ≤ n → j ≤ n → r i = r j → i = j) → (∀ i, i ≤ n → eval f n (r i) = 0) → ∀ i, f i = 0 := by
+  intro n
+  induction n with
+  | zero =>
+    intro f hf r _ hroot i
+    have h0 := hroot 0 (Nat.le_refl 0)
+    unfold eval at h0
+    rw [sumRange_succ, sumRange_zero, zero_add] at h0
+    have h0' : f 0 * r 0 ^ 0 = 0 := h0
+    rw [pow_zero, mul_one] at h0'
+    match i with
+    | 0 => exact h0'
+    | i + 1 => exact hf _ (Nat.zero_lt_succ i)
+  | succ n ih =>
+    intro f hf r hinj hroot
+    have ha := hroot 0 (Nat.zero_le _)
+    have spec := quot_linear_spec hf ha
+    have hq : Bound (quotLinear f (n + 1) (r 0)) n := spec.1
+    have hf' : ∀ b, eval f (n + 1) b = (b + -(r 0)) * eval (quotLinear f (n + 1) (r 0)) n b := fun b => by
+      rw [eval_congr spec.2, eval_mul_linear hq]
+    have hz : ∀ i, quotLinear f (n + 1) (r 0) i = 0 := by
+      apply ih _ hq (fun k => r (k + 1))
+      · intro i j hi hj e
+        exact Nat.succ.inj (hinj (i + 1) (j + 1) (Nat.succ_le_succ hi) (Nat.succ_le_succ hj) e)
+      · intro k hk
+        have h := hroot (k + 1) (Nat.succ_le_succ hk)
+        rw [hf'] at h
+        match F.mul_eq_zero h with
+        | .inl e =>
+          have : r (k + 1) = r 0 := by
+            calc r (k + 1) = r (k + 1) + 0 := (add_zero _).symm
+              _ = r (k + 1) + (-(r 0) + r 0) := by rw [neg_add]
+              _ = (r (k + 1) + -(r 0)) + r 0 := (add_assoc _ _ _).symm
+              _ = r 0 := by rw [e, zero_add]
+          exact absurd (hinj (k + 1) 0 (Nat.succ_le_succ hk) (Nat.zero_le _) this) (FRC.Nat.succ_ne_zero k)
+        | .inr e => exact e
+    intro i
+    rw [spec.2 i]
+    match i with
+    | 0 => rw [mul_linear_zero, hz, mul_zero, neg_zero]
+    | i + 1 => rw [mul_linear_succ, hz, hz, mul_zero, neg_zero, add_zero]
+
+theorem xpx_bound : Bound (xpx : Poly p) p := by
+  intro i hi
+  show (if i = p then 1 else if i = 1 then -1 else 0 : Shell p) = 0
+  rw [if_neg (Nat.ne_of_gt hi), if_neg (fun e => absurd hi (by rw [e]; exact Nat.not_lt_of_le (Pos.pos : 0 < p)))]
+
+theorem xpx_p : (xpx : Poly p) p = 1 := by
+  show (if p = p then 1 else if p = 1 then -1 else 0 : Shell p) = 1
+  rw [if_pos rfl]
+
+/-- `X^p − X` vanishes everywhere: Fermat. -/
+theorem eval_xpx (F : Frame p κ g) (a : Shell p) : eval (xpx : Poly p) p a = 0 := by
+  have h2 : 2 ≤ p := Nat.le_of_lt F.two_lt_p
+  have e : p + 1 = 2 + (p - 1) := by
+    calc p + 1 = 1 + (p - 1) + 1 := by rw [FRC.Nat.add_sub_of_le Pos.pos]
+      _ = 2 + (p - 1) := by rw [Nat.add_right_comm]
+  unfold eval
+  rw [e, sum_split, sumRange_succ, sumRange_succ, sumRange_zero, zero_add]
+  have hp1 : p ≠ 1 := fun h => absurd (h ▸ h2 : 2 ≤ 1) (Nat.not_le_of_lt (Nat.lt_succ_self 1))
+  have t0 : (xpx : Poly p) 0 * a ^ 0 = 0 := by
+    show (if 0 = p then 1 else if 0 = 1 then -1 else 0 : Shell p) * a ^ 0 = 0
+    rw [if_neg (fun h => by have := (Pos.pos : 0 < p); rw [← h] at this; exact Nat.lt_irrefl 0 this),
+      if_neg (fun h => FRC.Nat.succ_ne_zero 0 h.symm), zero_mul]
+  have t1 : (xpx : Poly p) 1 * a ^ 1 = -a := by
+    show (if 1 = p then 1 else if 1 = 1 then -1 else 0 : Shell p) * a ^ 1 = -a
+    rw [if_neg (fun h => hp1 h.symm), if_pos rfl, pow_one, neg_one_mul]
+  have t2 : sumRange (fun t => (xpx : Poly p) (2 + t) * a ^ (2 + t)) (p - 1) = a ^ p := by
+    have hl : p - 2 < p - 1 := by
+      have e : p = (p - 2) + 2 := (FRC.Nat.sub_add_cancel h2).symm
+      rw [e]
+      exact Nat.lt_succ_self (p - 2)
+    rw [sum_eq_single hl (fun t _ ht => by
+      show (if 2 + t = p then 1 else if 2 + t = 1 then -1 else 0 : Shell p) * a ^ (2 + t) = 0
+      rw [if_neg (fun h => ht (by rw [← h, Nat.add_comm, FRC.Nat.add_sub_cancel])),
+        if_neg (fun h => FRC.Nat.succ_ne_zero t (Nat.succ.inj (by rw [Nat.add_comm] at h; exact h))), zero_mul])]
+    show (if 2 + (p - 2) = p then 1 else if 2 + (p - 2) = 1 then -1 else 0 : Shell p) * a ^ (2 + (p - 2)) = a ^ p
+    rw [FRC.Nat.add_sub_of_le h2, if_pos rfl, one_mul]
+  show (xpx : Poly p) 0 * a ^ 0 + (xpx : Poly p) 1 * a ^ 1 + sumRange (fun t => (xpx : Poly p) (2 + t) * a ^ (2 + t)) (p - 1) = 0
+  rw [t0, t1, t2, zero_add, F.fermat, neg_add]
+
+/-- A common factor of positive degree `m`: `d` with `d m ≠ 0` dividing both, with cofactors of the
+complementary degrees. -/
+def CommonFactor (f : Poly p) (n : Nat) (h : Poly p) (k : Nat) : Prop :=
+  ∃ (d : Poly p) (m : Nat) (q1 q2 : Poly p), 1 ≤ m ∧ Bound d m ∧ d m ≠ 0 ∧ Bound q1 (n - m) ∧
+    Bound q2 (k - m) ∧ (∀ i, f i = mul d q1 i) ∧ (∀ i, h i = mul d q2 i)
+
+theorem ofNat_inj_lt {i j : Nat} (hi : i < p) (hj : j < p) (h : (ofNat i : Shell p) = ofNat j) : i = j := by
+  have := val_injective h
+  rw [val_ofNat, val_ofNat, FRC.Nat.mod_eq_of_lt hi, FRC.Nat.mod_eq_of_lt hj] at this
+  exact this
+
+/-- 1:G1, the root criterion — `f` has a root in the shell iff `f` and `X^p − X` share a factor of positive
+degree.  Forward: the factor is `X − a` (synthetic division, Fermat).  Backward: a common factor `d` of
+degree `m ≥ 1` with no root would force its cofactor in `X^p − X`, of degree `p − m < p`, to vanish at
+all `p` residues, hence to be zero (`root_bound`), against `X^p − X ≠ 0`; the root of `d` is found by
+deciding `∃ i < p, d(i) = 0`. -/
+theorem root_iff_common_factor (F : Frame p κ g) {f : Poly p} {n : Nat} (hf : Bound f n) :
+    (∃ a, eval f n a = 0) ↔ CommonFactor f n (xpx : Poly p) p := by
+  constructor
+  · intro ⟨a, ha⟩
+    have s1 := quot_linear_spec hf ha
+    have s2 := quot_linear_spec (xpx_bound (p := p)) (eval_xpx F a)
+    exact ⟨linear a, 1, quotLinear f n a, quotLinear xpx p a, Nat.le_refl 1, linear_bound a, F.one_ne_zero,
+      s1.1, s2.1, s1.2, s2.2⟩
+  · intro ⟨d, m, q1, q2, hm, hd, hdm, hq1, hq2, e1, e2⟩
+    -- every residue is a root of `d · q2`
+    have hprod : ∀ a, eval d m a * eval q2 (p - m) a = 0 := fun a => by
+      rw [← eval_mul hd hq2, ← eval_bound (mul_bound hd hq2) (Nat.add_le_add_left (Nat.sub_le p m) m) a,
+        ← eval_congr e2, eval_bound xpx_bound (Nat.le_add_left p m), eval_xpx F]
+    have : ∀ v, Decidable (∃ i, i < p ∧ eval d m (ofNat i) = v) :=
+      fun v => decExistsLT (fun i => eval d m (ofNat i) = v) p
+    match this 0 with
+    | .isTrue ⟨i, _, hi⟩ =>
+      refine ⟨ofNat i, ?_⟩
+      rw [← eval_bound hf (Nat.le_add_right n m), eval_congr e1,
+        eval_bound (mul_bound hd hq1) (by rw [Nat.add_comm n m]; exact Nat.add_le_add_left (Nat.sub_le n m) m),
+        eval_mul hd hq1, hi, zero_mul]
+    | .isFalse hno =>
+      -- `q2` vanishes at the `p − m + 1 ≤ p` residues `0, …, p − m`, so it is zero
+      have hk : p - m < p := Nat.sub_lt Pos.pos hm
+      have hz : ∀ i, q2 i = 0 := by
+        apply root_bound F (p - m) q2 hq2 (fun i => ofNat i)
+        · intro i j hi hj e
+          exact ofNat_inj_lt (Nat.lt_of_le_of_lt hi hk) (Nat.lt_of_le_of_lt hj hk) e
+        · intro i hi
+          match F.mul_eq_zero (hprod (ofNat i)) with
+          | .inl e => exact absurd ⟨i, Nat.lt_of_le_of_lt hi hk, e⟩ hno
+          | .inr e => exact e
+      have : (xpx : Poly p) p = 0 := by
+        rw [e2 p]
+        apply sum_zero
+        intro j _
+        show d j * q2 (p - j) = 0
+        rw [hz, mul_zero]
+      rw [xpx_p] at this
+      exact absurd this F.one_ne_zero
+
+end Frame
+end Poly
+end Shell
+end FRC
+
+/-! inlined: FrcCore/Quaternion.lean -/
+
+/-!
+# FrcCore.Quaternion — the framed quaternions and the window (1:G5, the finitary clause)
+
+A signed window integer is a pair of naturals `(u, v)` read as `u − v` in the shell (no `Int`: the core's
+integers are the shell's own readings).  A framed quaternion is four such pairs; the Hamilton product is
+computed on the pairs, and `read_mul` says the product of the readings is the reading of the product — the
+composition is exact.  `quaternion_window` adds the bounds: with coordinates in the window `H` and a shell
+`p > 8H²`, the product's coordinates lie in the window `4H²`, and the shell reading determines the integer
+product among the window's quaternions.  No axioms.
+-/
+
+namespace FRC
+namespace Shell
+namespace Frame
+
+variable {p : Nat} [Pos p]
+
+/-- A signed window integer: `(u, v)` stands for `u − v`. -/
+abbrev SInt := Nat × Nat
+
+def sread (x : SInt) : Shell p := ofNat x.1 + -(ofNat x.2)
+def sadd (x y : SInt) : SInt := (x.1 + y.1, x.2 + y.2)
+def sneg (x : SInt) : SInt := (x.2, x.1)
+def smul (x y : SInt) : SInt := (x.1 * y.1 + x.2 * y.2, x.1 * y.2 + x.2 * y.1)
+/-- The canonical pair of the same value: one component zero. -/
+def snorm (x : SInt) : SInt := (x.1 - x.2, x.2 - x.1)
+
+theorem prod_ext {x y : SInt} (h1 : x.1 = y.1) (h2 : x.2 = y.2) : x = y :=
+  match x, y, h1, h2 with
+  | (_, _), (_, _), h1, h2 => by cases h1; cases h2; rfl
+
+theorem sread_add (x y : SInt) : (sread (sadd x y) : Shell p) = sread x + sread y := by
+  unfold sread sadd
+  show ofNat (x.1 + y.1) + -(ofNat (x.2 + y.2)) = ofNat x.1 + -(ofNat x.2) + (ofNat y.1 + -(ofNat y.2))
+  rw [← ofNat_add, ← ofNat_add, neg_add_rev, add_assoc, add_assoc, ← add_assoc (-(ofNat x.2)),
+    add_comm (-(ofNat x.2)) (ofNat y.1), add_assoc]
+
+theorem sread_neg (x : SInt) : (sread (sneg x) : Shell p) = -(sread x) := by
+  unfold sread sneg
+  show ofNat x.2 + -(ofNat x.1) = -(ofNat x.1 + -(ofNat x.2))
+  rw [neg_add_rev, neg_neg, add_comm]
+
+theorem sread_mul (x y : SInt) : (sread (smul x y) : Shell p) = sread x * sread y := by
+  unfold sread smul
+  show ofNat (x.1 * y.1 + x.2 * y.2) + -(ofNat (x.1 * y.2 + x.2 * y.1)) =
+    (ofNat x.1 + -(ofNat x.2)) * (ofNat y.1 + -(ofNat y.2))
+  rw [right_distrib, left_distrib, left_distrib, ← mul_neg, ← neg_mul, neg_mul_neg, ← ofNat_add, ← ofNat_add,
+    ← ofNat_mul, ← ofNat_mul, ← ofNat_mul, ← ofNat_mul, neg_add_rev]
+  -- a + d + (-b + -c) = a + -b + (-c + d)
+  rw [add_assoc, add_assoc]
+  refine congrArg (ofNat x.1 * ofNat y.1 + ·) ?_
+  rw [← add_assoc, add_comm (ofNat x.2 * ofNat y.2), add_assoc, add_comm (ofNat x.2 * ofNat y.2)]
+
+theorem sread_norm (x : SInt) : (sread (snorm x) : Shell p) = sread x := by
+  unfold sread snorm
+  match Nat.decLe x.2 x.1 with
+  | .isTrue h =>
+    have e : x.2 - x.1 = 0 := FRC.Nat.sub_eq_zero_of_le h
+    show ofNat (x.1 - x.2) + -(ofNat (x.2 - x.1)) = ofNat x.1 + -(ofNat x.2)
+    rw [e]
+    have e0 : (ofNat 0 : Shell p) = 0 := rfl
+    rw [e0, neg_zero, add_zero]
+    have e1 : x.1 = (x.1 - x.2) + x.2 := (FRC.Nat.sub_add_cancel h).symm
+    calc ofNat (x.1 - x.2) = ofNat (x.1 - x.2) + 0 := (add_zero _).symm
+      _ = ofNat (x.1 - x.2) + (ofNat x.2 + -(ofNat x.2)) := by rw [add_neg]
+      _ = ofNat (x.1 - x.2 + x.2) + -(ofNat x.2) := by rw [← add_assoc, ofNat_add]
+      _ = ofNat x.1 + -(ofNat x.2) := by rw [← e1]
+  | .isFalse h =>
+    have h' : x.1 ≤ x.2 := Nat.le_of_lt (Nat.lt_of_not_le h)
+    have e : x.1 - x.2 = 0 := FRC.Nat.sub_eq_zero_of_le h'
+    show ofNat (x.1 - x.2) + -(ofNat (x.2 - x.1)) = ofNat x.1 + -(ofNat x.2)
+    rw [e]
+    have e0 : (ofNat 0 : Shell p) = 0 := rfl
+    rw [e0, zero_add]
+    have e1 : x.2 = (x.2 - x.1) + x.1 := (FRC.Nat.sub_add_cancel h').symm
+    calc (-(ofNat (x.2 - x.1)) : Shell p) = (0 : Shell p) + -(ofNat (x.2 - x.1)) := (zero_add _).symm
+      _ = (ofNat x.1 + -(ofNat x.1)) + -(ofNat (x.2 - x.1)) := by rw [add_neg]
+      _ = ofNat x.1 + -((ofNat (x.2 - x.1) : Shell p) + ofNat x.1) := by
+          rw [add_assoc, neg_add_rev, add_comm (-(ofNat x.1))]
+      _ = ofNat x.1 + -(ofNat x.2) := by rw [ofNat_add, ← e1]
+
+/-- The window bound: both components at most `H`, one of them zero. -/
+def SBound (H : Nat) (x : SInt) : Prop := x.1 ≤ H ∧ x.2 ≤ H ∧ (x.1 = 0 ∨ x.2 = 0)
+
+theorem sneg_bound {H : Nat} {x : SInt} (h : SBound H x) : SBound H (sneg x) :=
+  ⟨h.2.1, h.1, match h.2.2 with | Or.inl e => Or.inr e | Or.inr e => Or.inl e⟩
+
+theorem smul_bound {H : Nat} {x y : SInt} (hx : SBound H x) (hy : SBound H y) : SBound (H * H) (smul x y) := by
+  unfold smul
+  have b11 := Nat.mul_le_mul hx.1 hy.1
+  have b22 := Nat.mul_le_mul hx.2.1 hy.2.1
+  have b12 := Nat.mul_le_mul hx.1 hy.2.1
+  have b21 := Nat.mul_le_mul hx.2.1 hy.1
+  match hx.2.2, hy.2.2 with
+  | Or.inl e, Or.inl f =>
+    refine ⟨?_, ?_, Or.inr ?_⟩
+    · show x.1 * y.1 + x.2 * y.2 ≤ H * H
+      rw [e, Nat.zero_mul, Nat.zero_add]; exact b22
+    · show x.1 * y.2 + x.2 * y.1 ≤ H * H
+      rw [e, f, Nat.zero_mul, Nat.mul_zero]; exact Nat.zero_le _
+    · show x.1 * y.2 + x.2 * y.1 = 0
+      rw [e, f, Nat.zero_mul, Nat.mul_zero]
+  | Or.inl e, Or.inr f =>
+    refine ⟨?_, ?_, Or.inl ?_⟩
+    · show x.1 * y.1 + x.2 * y.2 ≤ H * H
+      rw [e, f, Nat.zero_mul, Nat.mul_zero]; exact Nat.zero_le _
+    · show x.1 * y.2 + x.2 * y.1 ≤ H * H
+      rw [e, Nat.zero_mul, Nat.zero_add]; exact b21
+    · show x.1 * y.1 + x.2 * y.2 = 0
+      rw [e, f, Nat.zero_mul, Nat.mul_zero]
+  | Or.inr e, Or.inl f =>
+    refine ⟨?_, ?_, Or.inl ?_⟩
+    · show x.1 * y.1 + x.2 * y.2 ≤ H * H
+      rw [e, f, Nat.mul_zero, Nat.zero_mul]; exact Nat.zero_le _
+    · show x.1 * y.2 + x.2 * y.1 ≤ H * H
+      rw [e, Nat.zero_mul, Nat.add_zero]; exact b12
+    · show x.1 * y.1 + x.2 * y.2 = 0
+      rw [e, f, Nat.mul_zero, Nat.zero_mul]
+  | Or.inr e, Or.inr f =>
+    refine ⟨?_, ?_, Or.inr ?_⟩
+    · show x.1 * y.1 + x.2 * y.2 ≤ H * H
+      rw [e, Nat.zero_mul, Nat.add_zero]; exact b11
+    · show x.1 * y.2 + x.2 * y.1 ≤ H * H
+      rw [e, f, Nat.mul_zero, Nat.zero_mul]; exact Nat.zero_le _
+    · show x.1 * y.2 + x.2 * y.1 = 0
+      rw [e, f, Nat.mul_zero, Nat.zero_mul]
+
+/-- Four window terms of size `M` add to a pair with both components at most `4M`. -/
+theorem sum4_bound {M : Nat} {t1 t2 t3 t4 : SInt} (h1 : SBound M t1) (h2 : SBound M t2) (h3 : SBound M t3)
+    (h4 : SBound M t4) :
+    (sadd (sadd t1 t2) (sadd t3 t4)).1 ≤ 4 * M ∧ (sadd (sadd t1 t2) (sadd t3 t4)).2 ≤ 4 * M := by
+  unfold sadd
+  rw [four_mul_eq, Nat.add_assoc (M + M) M M]
+  exact ⟨Nat.add_le_add (Nat.add_le_add h1.1 h2.1) (Nat.add_le_add h3.1 h4.1),
+    Nat.add_le_add (Nat.add_le_add h1.2.1 h2.2.1) (Nat.add_le_add h3.2.1 h4.2.1)⟩
+
+theorem snorm_bound {M : Nat} {x : SInt} (h1 : x.1 ≤ M) (h2 : x.2 ≤ M) : SBound M (snorm x) := by
+  unfold snorm
+  refine ⟨Nat.le_trans (Nat.sub_le _ _) h1, Nat.le_trans (Nat.sub_le _ _) h2, ?_⟩
+  match Nat.decLe x.2 x.1 with
+  | .isTrue h => exact Or.inr (FRC.Nat.sub_eq_zero_of_le h)
+  | .isFalse h => exact Or.inl (FRC.Nat.sub_eq_zero_of_le (Nat.le_of_lt (Nat.lt_of_not_le h)))
+
+/-- The signed window law: two canonical pairs of size `M`, `2M < p`, with the same reading are equal. -/
+theorem sread_inj {M : Nat} (hM : 2 * M < p) {x y : SInt} (hx : SBound M x) (hy : SBound M y)
+    (h : (sread x : Shell p) = sread y) : x = y := by
+  unfold sread at h
+  have h' : (ofNat (x.1 + y.2) : Shell p) = ofNat (y.1 + x.2) := by
+    rw [← ofNat_add, ← ofNat_add]
+    calc ofNat x.1 + ofNat y.2 = ofNat x.1 + -(ofNat x.2) + (ofNat x.2 + ofNat y.2) := by
+          rw [add_assoc, ← add_assoc (-(ofNat x.2)), neg_add, zero_add]
+      _ = ofNat y.1 + -(ofNat y.2) + (ofNat x.2 + ofNat y.2) := by rw [h]
+      _ = ofNat y.1 + ofNat x.2 := by
+          rw [add_assoc, add_comm (ofNat x.2), ← add_assoc (-(ofNat y.2)), neg_add, zero_add]
+  have hv := val_injective h'
+  rw [val_ofNat, val_ofNat] at hv
+  have l1 : x.1 + y.2 < p := Nat.lt_of_le_of_lt (Nat.add_le_add hx.1 hy.2.1) (Nat.two_mul M ▸ hM)
+  have l2 : y.1 + x.2 < p := Nat.lt_of_le_of_lt (Nat.add_le_add hy.1 hx.2.1) (Nat.two_mul M ▸ hM)
+  rw [FRC.Nat.mod_eq_of_lt l1, FRC.Nat.mod_eq_of_lt l2] at hv
+  -- hv : x.1 + y.2 = y.1 + x.2
+  match hx.2.2, hy.2.2 with
+  | Or.inl e, Or.inl f =>
+    rw [e, f, Nat.zero_add, Nat.zero_add] at hv
+    exact prod_ext (e.trans f.symm) hv.symm
+  | Or.inl e, Or.inr f =>
+    rw [e, f, Nat.zero_add] at hv
+    -- hv : 0 = y.1 + x.2
+    have hy1 : y.1 = 0 := Nat.eq_zero_of_add_eq_zero_right hv.symm
+    have hx2 : x.2 = 0 := Nat.eq_zero_of_add_eq_zero_left hv.symm
+    exact prod_ext (e.trans hy1.symm) (hx2.trans f.symm)
+  | Or.inr e, Or.inl f =>
+    rw [e, f, Nat.zero_add] at hv
+    -- hv : x.1 + y.2 = 0
+    have hx1 : x.1 = 0 := Nat.eq_zero_of_add_eq_zero_right hv
+    have hy2 : y.2 = 0 := Nat.eq_zero_of_add_eq_zero_left hv
+    exact prod_ext (hx1.trans f.symm) (e.trans hy2.symm)
+  | Or.inr e, Or.inr f =>
+    rw [e, f, Nat.add_zero, Nat.add_zero] at hv
+    exact prod_ext hv (e.trans f.symm)
+
+/-- A framed quaternion with signed window coordinates. -/
+structure IQuat where
+  a : SInt
+  b : SInt
+  c : SInt
+  d : SInt
+
+/-- A quaternion over the shell. -/
+structure Quat (p : Nat) [Pos p] where
+  a : Shell p
+  b : Shell p
+  c : Shell p
+  d : Shell p
+
+/-- The Hamilton product on the shell. -/
+def Quat.mul (q r : Quat p) : Quat p :=
+  ⟨(q.a * r.a + -(q.b * r.b)) + (-(q.c * r.c) + -(q.d * r.d)),
+   (q.a * r.b + q.b * r.a) + (q.c * r.d + -(q.d * r.c)),
+   (q.a * r.c + -(q.b * r.d)) + (q.c * r.a + q.d * r.b),
+   (q.a * r.d + q.b * r.c) + (-(q.c * r.b) + q.d * r.a)⟩
+
+/-- The Hamilton product on the window pairs, the same formula. -/
+def IQuat.mul (q r : IQuat) : IQuat :=
+  ⟨sadd (sadd (smul q.a r.a) (sneg (smul q.b r.b))) (sadd (sneg (smul q.c r.c)) (sneg (smul q.d r.d))),
+   sadd (sadd (smul q.a r.b) (smul q.b r.a)) (sadd (smul q.c r.d) (sneg (smul q.d r.c))),
+   sadd (sadd (smul q.a r.c) (sneg (smul q.b r.d))) (sadd (smul q.c r.a) (smul q.d r.b)),
+   sadd (sadd (smul q.a r.d) (smul q.b r.c)) (sadd (sneg (smul q.c r.b)) (smul q.d r.a))⟩
+
+def IQuat.read (q : IQuat) : Quat p := ⟨sread q.a, sread q.b, sread q.c, sread q.d⟩
+def IQuat.norm (q : IQuat) : IQuat := ⟨snorm q.a, snorm q.b, snorm q.c, snorm q.d⟩
+def QBound (H : Nat) (q : IQuat) : Prop := SBound H q.a ∧ SBound H q.b ∧ SBound H q.c ∧ SBound H q.d
+
+theorem IQuat.ext' {q r : IQuat} (ha : q.a = r.a) (hb : q.b = r.b) (hc : q.c = r.c) (hd : q.d = r.d) : q = r := by
+  cases q; cases r; cases ha; cases hb; cases hc; cases hd; rfl
+
+/-- 1:G5, exact composition — the reading of the integer product is the product of the readings. -/
+theorem read_mul (q r : IQuat) : ((IQuat.mul q r).read : Quat p) = Quat.mul q.read r.read := by
+  unfold IQuat.mul IQuat.read Quat.mul
+  rw [sread_add, sread_add, sread_add, sread_add, sread_add, sread_add, sread_add, sread_add, sread_add,
+    sread_add, sread_add, sread_add, sread_neg, sread_neg, sread_neg, sread_neg, sread_neg, sread_neg,
+    sread_mul, sread_mul, sread_mul, sread_mul, sread_mul, sread_mul, sread_mul, sread_mul, sread_mul,
+    sread_mul, sread_mul, sread_mul, sread_mul, sread_mul, sread_mul, sread_mul]
+
+theorem read_norm (q : IQuat) : (q.norm.read : Quat p) = q.read := by
+  unfold IQuat.norm IQuat.read
+  rw [sread_norm, sread_norm, sread_norm, sread_norm]
+
+theorem norm_bound {H : Nat} {q r : IQuat} (hq : QBound H q) (hr : QBound H r) :
+    QBound (4 * (H * H)) (IQuat.mul q r).norm := by
+  have m := fun {x y : SInt} (hx : SBound H x) (hy : SBound H y) => smul_bound hx hy
+  refine ⟨?_, ?_, ?_, ?_⟩
+  · have := sum4_bound (m hq.1 hr.1) (sneg_bound (m hq.2.1 hr.2.1)) (sneg_bound (m hq.2.2.1 hr.2.2.1))
+      (sneg_bound (m hq.2.2.2 hr.2.2.2))
+    exact snorm_bound this.1 this.2
+  · have := sum4_bound (m hq.1 hr.2.1) (m hq.2.1 hr.1) (m hq.2.2.1 hr.2.2.2) (sneg_bound (m hq.2.2.2 hr.2.2.1))
+    exact snorm_bound this.1 this.2
+  · have := sum4_bound (m hq.1 hr.2.2.1) (sneg_bound (m hq.2.1 hr.2.2.2)) (m hq.2.2.1 hr.1) (m hq.2.2.2 hr.2.1)
+    exact snorm_bound this.1 this.2
+  · have := sum4_bound (m hq.1 hr.2.2.2) (m hq.2.1 hr.2.2.1) (sneg_bound (m hq.2.2.1 hr.2.1)) (m hq.2.2.2 hr.1)
+    exact snorm_bound this.1 this.2
+
+/-- 1:G5, the finitary clause — framed quaternions with window coordinates `≤ H`, read in a shell `p > 8H²`,
+compose exactly: the product of the readings is the reading of the integer product; that product's
+coordinates lie in the window `4H²`; and the reading determines it among the window's quaternions. -/
+theorem quaternion_window {H : Nat} (hH : 8 * (H * H) < p) {q r : IQuat} (hq : QBound H q) (hr : QBound H r) :
+    ((IQuat.mul q r).read : Quat p) = Quat.mul q.read r.read ∧
+    QBound (4 * (H * H)) (IQuat.mul q r).norm ∧
+    ∀ s : IQuat, QBound (4 * (H * H)) s → (s.read : Quat p) = (IQuat.mul q r).read → s = (IQuat.mul q r).norm := by
+  refine ⟨read_mul q r, norm_bound hq hr, ?_⟩
+  intro s hs he
+  have hn := norm_bound hq hr
+  have hM : 2 * (4 * (H * H)) < p := by rw [← Nat.mul_assoc]; exact hH
+  rw [← read_norm (IQuat.mul q r)] at he
+  unfold IQuat.read at he
+  exact IQuat.ext' (sread_inj hM hs.1 hn.1 (congrArg Quat.a he)) (sread_inj hM hs.2.1 hn.2.1 (congrArg Quat.b he))
+    (sread_inj hM hs.2.2.1 hn.2.2.1 (congrArg Quat.c he)) (sread_inj hM hs.2.2.2 hn.2.2.2 (congrArg Quat.d he))
+
 end Frame
 end Shell
 end FRC
@@ -1578,9 +2887,11 @@ end FRC
 /-!
 # FrcCore.Geometry — 2-geometry rows on the core
 
-2:C2 (the cell counts of the orbital shell and its completion, as identities of natural numbers) and
-2:E3 (the fixed-shell refutation at `(13, 2)`: no grid point `x/2^n`, `x ≤ 6`, lies in `(3/4, 1)`, as
-the integer statement `¬(3·2^n < 4x ∧ x < 2^n)`). No axioms.
+2:C2 (the cell counts of the orbital shell and its completion, as identities of natural numbers), 2:E3 (the
+fixed-shell bound, every shell, and the `(13, 2)` gap), 2:B4 (the reindexing `m ↦ u·m` preserves the phase
+cycle's adjacency exactly when `u ≡ ±1`; the dihedral maps do), 2:C4 (the frame moves the labels of one complex),
+and 2:C3 with the automorphism census of B4 decided on the coded complex for `p = 5, 13, 17` (the completion is a
+closed surface: every edge in two faces, every vertex link one cycle). No axioms.
 -/
 
 namespace FRC
@@ -1642,7 +2953,282 @@ theorem fixed_shell_bound_lt_one (g κ m n : Nat) (hg : 2 ≤ g) (hm : 2 * κ + 
   have hpos : 0 < g ^ n := Nat.pow_pos (Nat.lt_of_lt_of_le (Nat.zero_lt_succ 0) hg1)
   exact ⟨FRC.Nat.mul_lt_mul_of_lt_of_pos (Nat.lt_of_le_of_lt (Nat.le_succ _) hm) hpos, hpos⟩
 
+/-! ### 2:B4 — which reindexings of the phase cycle are cellular -/
+
+/-- `m` and `m'` are adjacent on the phase cycle of length `n`. -/
+def Adj (n m m' : Nat) : Prop := (m + 1) % n = m' ∨ (m' + 1) % n = m
+
+/-- The reindexing `ρ_u : m ↦ u·m mod n`. -/
+def rho (n u m : Nat) : Nat := (u * m) % n
+
+/-- 2:B4 (Prop. 2.8 corrected) — `ρ_u` preserves the adjacency of the phase cycle (`n ≥ 3`) exactly when
+`u ≡ 1` or `u ≡ −1 (mod n)`. -/
+theorem rho_adj_iff (n u : Nat) (hn : 3 ≤ n) :
+    (∀ m, m < n → Adj n (rho n u m) (rho n u ((m + 1) % n))) ↔ (u % n = 1 ∨ u % n = n - 1) := by
+  have hn0 : 0 < n := Nat.lt_of_lt_of_le (Nat.zero_lt_succ 2) hn
+  have h1n : 1 < n := Nat.lt_of_lt_of_le (Nat.lt_succ_self 1) (Nat.le_trans (Nat.le_succ 2) hn)
+  constructor
+  · intro h
+    have h0 := h 0 hn0
+    unfold rho at h0
+    rw [Nat.mul_zero, FRC.Nat.zero_mod, Nat.zero_add, FRC.Nat.mod_eq_of_lt h1n, Nat.mul_one] at h0
+    -- Adj n 0 (u % n): (0 + 1) % n = u % n, or (u % n + 1) % n = 0
+    match h0 with
+    | Or.inl e => exact Or.inl (by rw [Nat.zero_add, FRC.Nat.mod_eq_of_lt h1n] at e; exact e.symm)
+    | Or.inr e =>
+      refine Or.inr ?_
+      have hu := Nat.mod_lt u hn0
+      exact match Nat.lt_or_ge (u % n + 1) n with
+        | Or.inl hlt => by
+            rw [FRC.Nat.mod_eq_of_lt hlt] at e
+            exact absurd e (Nat.succ_ne_zero _)
+        | Or.inr hge =>
+            have : u % n + 1 = n := Nat.le_antisymm hu hge
+            calc u % n = (u % n + 1) - 1 := (FRC.Nat.add_sub_cancel _ _).symm
+              _ = n - 1 := by rw [this]
+  · intro h m hm
+    unfold rho Adj
+    match h with
+    | Or.inl e =>
+      -- u ≡ 1: ρ is the identity on residues
+      have e1 : ∀ x, x < n → (u * x) % n = x := fun x hx => by
+        rw [← FRC.Nat.mod_mul_mod _ _ _ hn0, e, Nat.one_mul, FRC.Nat.mod_eq_of_lt hx]
+      rw [e1 m hm, e1 _ (Nat.mod_lt _ hn0)]
+      exact Or.inl rfl
+    | Or.inr e =>
+      -- u ≡ −1: ρ is the reflection m ↦ (n − m) % n, and rev (m+1) + 1 ≡ rev m
+      have e1 : ∀ x, x < n → (u * x) % n = Shell.Frame.rev n x := fun x hx => by
+        unfold Shell.Frame.rev
+        rw [← FRC.Nat.mod_mul_mod _ _ _ hn0, e]
+        exact match Nat.decEq x 0 with
+          | isTrue hx0 => by rw [hx0, Nat.mul_zero, Nat.sub_zero, FRC.Nat.zero_mod, FRC.Nat.mod_self n hn0]
+          | isFalse hx0 => by
+              have hx0' := Nat.pos_of_ne_zero hx0
+              -- (n − 1)·x = n·(x − 1) + (n − x)
+              have : (n - 1) * x = n * (x - 1) + (n - x) := by
+                have h1 : (n - 1) * x + x = n * x := by
+                  rw [← Nat.succ_mul, Nat.succ_eq_add_one, FRC.Nat.sub_add_cancel (Nat.le_of_lt h1n)]
+                have h2 : n * (x - 1) + n = n * x := by
+                  rw [← Nat.mul_succ, Nat.succ_eq_add_one, FRC.Nat.sub_add_cancel hx0']
+                have h3 : n * (x - 1) + (n - x) + x = n * x := by
+                  rw [Nat.add_assoc, FRC.Nat.sub_add_cancel (Nat.le_of_lt hx), h2]
+                exact FRC.Nat.add_right_cancel (h1.trans h3.symm)
+              rw [this, FRC.Nat.add_mul_mod_self_left _ _ _ hn0]
+      rw [e1 m hm, e1 _ (Nat.mod_lt _ hn0)]
+      -- rev (m+1 mod n) + 1 ≡ rev m: both ≡ −m
+      refine Or.inr ?_
+      exact match Nat.lt_or_ge (m + 1) n with
+        | Or.inl hlt => by
+            rw [FRC.Nat.mod_eq_of_lt hlt]
+            exact match Nat.decEq m 0 with
+              | isTrue e0 => by
+                  rw [e0] at hlt ⊢
+                  rw [Shell.Frame.rev_zero _ hn0, Shell.Frame.rev_of_pos hlt (Nat.zero_lt_succ 0), Nat.zero_add,
+                    FRC.Nat.sub_add_cancel (Nat.le_of_lt h1n)]
+                  exact FRC.Nat.mod_self n hn0
+              | isFalse e0 => by
+                  have hm0 := Nat.pos_of_ne_zero e0
+                  rw [Shell.Frame.rev_of_pos hlt (Nat.zero_lt_succ m), Shell.Frame.rev_of_pos hm hm0]
+                  -- (n − (m+1)) + 1 = n − m, below n
+                  have : n - (m + 1) + 1 = n - m := by
+                    have h1 : n - (m + 1) + (m + 1) = n := FRC.Nat.sub_add_cancel (Nat.le_of_lt hlt)
+                    have h2 : n - m + m = n := FRC.Nat.sub_add_cancel (Nat.le_of_lt hm)
+                    apply FRC.Nat.add_right_cancel (c := m)
+                    rw [h2, Nat.add_assoc, Nat.add_comm 1 m, h1]
+                  rw [this]
+                  exact FRC.Nat.mod_eq_of_lt (Nat.sub_lt hn0 hm0)
+        | Or.inr hge => by
+            -- m + 1 = n: m = n − 1, rev 0 + 1 = 1, rev (n−1) = 1
+            have hmn : m + 1 = n := Nat.le_antisymm hm hge
+            rw [hmn, FRC.Nat.mod_self _ hn0, Shell.Frame.rev_zero _ hn0, Nat.zero_add, FRC.Nat.mod_eq_of_lt h1n]
+            have hm0 : 0 < m := by
+              refine Nat.lt_of_add_lt_add_right (n := 1) ?_
+              rw [Nat.zero_add, hmn]; exact h1n
+            rw [Shell.Frame.rev_of_pos hm hm0, ← hmn, FRC.Nat.add_sub_cancel_left]
+
+/-- The rotations `m ↦ m + c` preserve adjacency (with `ρ_{±1}` they generate the dihedral maps of B4). -/
+theorem rotation_adj (n c m : Nat) (hn : 0 < n) : Adj n ((m + c) % n) (((m + 1) % n + c) % n) := by
+  unfold Adj
+  refine Or.inl ?_
+  rw [FRC.Nat.mod_add_mod _ _ _ hn, FRC.Nat.mod_add_mod _ _ _ hn, Nat.add_right_comm]
+
+/-! ### 2:C4 — the frame moves the labels of one complex -/
+
+variable {p : Nat} [Pos p]
+
+/-- The action reading of the vertex `(a, m)` in the frame with drive `g`: `a · g^m`. -/
+def label (g : Shell p) (a : Shell p) (m : Nat) : Shell p := a * g ^ m
+
+/-- 2:C4 (Prop. 3.5 corrected) — the complex is one for every generator; the frame `g' = g^u` moves the
+labels by the reindexing `ρ_u`: `label g' (a, m) = label g (a, u·m mod n)`. -/
+theorem label_covariance {κ : Nat} {g : Shell p} (F : Shell.Frame p κ g) (u : Nat) (a : Shell p) (m : Nat) :
+    label (g ^ u) a m = label g a (rho (p - 1) u m) := by
+  unfold label rho
+  rw [← Shell.pow_mul, F.pow_mod (u * m)]
+
 end Geometry
+end FRC
+
+/-! inlined: FrcCore/Complex.lean -/
+
+/-!
+# FrcCore.Complex — the orbital shell and its spherical completion, coded and decided
+
+The completion of the orbital shell `S_p` (Def. 3.1 of 2-geometry) as a finite cell complex on vertex codes:
+`N = 0`, the interior vertices `(a, m)` for `1 ≤ a ≤ π − 1`, `m < n`, and `S`; the faces as cyclic vertex lists
+(north triangles, quadrilaterals, south triangles); the edges as the faces' sides. `closed p` checks that every
+edge lies in exactly two faces and that every vertex link is a single cycle (2:C3, the exhaustive incidence of
+the ledger); `cellular p u` checks whether the reindexing `ρ_u` carries faces to faces (2:B4); `poleExchange`
+checks the meridian reversal on the completion. Everything is a computation the kernel evaluates by `decide`.
+No axioms.
+-/
+
+namespace FRC
+namespace Complex
+
+/-- The vertex code of `(a, m)` on the shell with `n` phases: `1 + (a − 1)·n + m`. -/
+def vtx (n a m : Nat) : Nat := 1 + (a - 1) * n + m % n
+
+/-- The south pole: the vertex after the last interior latitude `a = π − 1`. -/
+def south (n pi : Nat) : Nat := 1 + (pi - 1) * n
+
+/-- The faces of the completion, as vertex lists. -/
+def faces (n pi : Nat) : List (List Nat) :=
+  let north := (List.range n).map fun m => [0, vtx n 1 m, vtx n 1 (m + 1)]
+  let quads := ((List.range (pi - 2)).map fun a' => (List.range n).map fun m =>
+      [vtx n (a' + 1) m, vtx n (a' + 2) m, vtx n (a' + 2) (m + 1), vtx n (a' + 1) (m + 1)]).foldr (· ++ ·) []
+  let souths := (List.range n).map fun m => [vtx n (pi - 1) m, south n pi, vtx n (pi - 1) (m + 1)]
+  north ++ quads ++ souths
+
+/-- The sides of a face, as unordered pairs `(min, max)`. -/
+def sides : List Nat → List (Nat × Nat)
+  | [] => []
+  | f@(v :: _) =>
+    let rec go : List Nat → List (Nat × Nat)
+      | [] => []
+      | [w] => [(min w v, max w v)]
+      | w :: (w' :: rest) => (min w w', max w w') :: go (w' :: rest)
+    go f
+
+def vertexCount (n pi : Nat) : Nat := south n pi + 1
+
+/-- A face with its sides computed once: `(vertices, sides)`. -/
+abbrev Face := List Nat × List (Nat × Nat)
+
+def withSides (fs : List (List Nat)) : List Face := fs.map fun f => (f, sides f)
+
+/-- Two faces are adjacent around `v` when they share a side through `v`. -/
+def adjacentAt (v : Nat) (f f' : Face) : Bool :=
+  f.2.any fun s => (s.1 == v || s.2 == v) && f'.2.contains s
+
+/-- The neighbours of `cur` around `v` other than `prev` (and `cur` itself). -/
+def nextFaces (v : Nat) (L : List Face) (prev cur : Face) : List Face :=
+  L.filter fun f' => !(f'.1 == cur.1) && !(f'.1 == prev.1) && adjacentAt v cur f'
+
+/-- Walk the link from `f0` along `cur`, never turning back, for `fuel` steps; the number of steps taken until
+`f0` is reached again (`fuel` if never). -/
+def walk (v : Nat) (L : List Face) (f0 : Face) : Nat → Face → Face → Nat → Nat
+  | 0, _, _, k => k
+  | fuel + 1, prev, cur, k =>
+    match nextFaces v L prev cur with
+    | f' :: [] => if f'.1 == f0.1 then k + 1 else walk v L f0 fuel cur f' (k + 1)
+    | [] => fuel + k + 1
+    | _ :: _ :: _ => fuel + k + 1
+
+/-- The link of `v` is a single cycle: every face around `v` has exactly two neighbours there, and the walk from
+the first face returns to it after exactly `|L|` steps. -/
+def linkIsCycle (fs : List Face) (v : Nat) : Bool :=
+  let L := fs.filter fun f => f.1.contains v
+  match L with
+  | [] => false
+  | f0 :: _ =>
+    L.all (fun f => (L.filter (fun f' => !(f'.1 == f.1) && adjacentAt v f f')).length == 2) &&
+    (match nextFaces v L f0 f0 with
+     | f1 :: _ => walk v L f0 L.length f0 f1 1 == L.length
+     | [] => false)
+
+/-- The number of occurrences of `s` in `E`. -/
+def count (s : Nat × Nat) : List (Nat × Nat) → Nat
+  | [] => 0
+  | e :: E => (if e == s then 1 else 0) + count s E
+
+/-- Every side of every face lies in exactly two faces: the sides are bucketed by their smaller vertex and each
+side occurs exactly twice in its bucket. -/
+def edgesInTwoFaces (fs : List (List Nat)) : Bool :=
+  let E := (withSides fs).foldr (fun f acc => f.2 ++ acc) []
+  let V := fs.foldr (fun f acc => f.foldr (fun w acc' => if acc'.contains w then acc' else w :: acc') acc) []
+  V.all fun v =>
+    let B := E.filter fun s => s.1 == v
+    B.all fun s => count s B == 2
+
+/-- 2:C3, the exhaustive incidence: the completion is a closed surface. -/
+def closed (p : Nat) : Bool :=
+  let n := p - 1
+  let pi := n / 2
+  let fs := faces n pi
+  edgesInTwoFaces fs && (List.range (vertexCount n pi)).all fun v => linkIsCycle (withSides fs) v
+
+/-- The reindexing `ρ_u` on vertex codes: `(a, m) ↦ (a, u·m mod n)`, the poles fixed. -/
+def rhoV (n pi u : Nat) (v : Nat) : Nat :=
+  if v == 0 then 0 else if v == south n pi then v else
+    let a := (v - 1) / n + 1
+    let m := (v - 1) % n
+    vtx n a (u * m)
+
+/-- The meridian reversal on the completion: `N ↔ S`, `(a, m) ↦ (π − a, m)`. -/
+def sigmaV (n pi : Nat) (v : Nat) : Nat :=
+  if v == 0 then south n pi else if v == south n pi then 0 else
+    let a := (v - 1) / n + 1
+    let m := (v - 1) % n
+    vtx n (pi - a) m
+
+/-- A vertex map is cellular when it carries every face onto a face (as vertex sets). -/
+def cellularMap (fs : List (List Nat)) (φ : Nat → Nat) : Bool :=
+  fs.all fun f => fs.any fun f' => (f.map φ).all (fun w => f'.contains w) && f'.all (fun w => (f.map φ).contains w)
+
+/-- 2:B4 — whether `ρ_u` is a cellular automorphism of the completion. -/
+def cellular (p u : Nat) : Bool :=
+  let n := p - 1
+  let pi := n / 2
+  cellularMap (faces n pi) (rhoV n pi u)
+
+/-- 2:B4 — whether the pole exchange is cellular on the completion. -/
+def poleExchange (p : Nat) : Bool :=
+  let n := p - 1
+  let pi := n / 2
+  cellularMap (faces n pi) (sigmaV n pi)
+
+/-- 2:C2 [value] — the counts on `𝔽₁₃`: `62` vertices, `72` faces of the completion. -/
+theorem counts13 : vertexCount 12 6 = 62 ∧ (faces 12 6).length = 72 := by decide +kernel
+
+/-- 2:C3 [value] — the completion is a closed surface on `𝔽₅`, by exhaustive incidence. -/
+theorem closed5 : closed 5 = true := by decide +kernel
+/-- 2:C3 [value] — the completion is a closed surface on `𝔽₁₃` (62 vertices, 72 faces). -/
+theorem closed13 : closed 13 = true := by decide +kernel
+/-- 2:C3 [value] — the completion is a closed surface on `𝔽₁₇` (114 vertices, 128 faces); the kernel decides
+it in a few seconds. -/
+theorem closed17 : closed 17 = true := by decide +kernel
+
+
+/-- The orbital shell before the collapse: the terminal latitude `a = π` kept, so the last ring of quadrilaterals
+ends on it and nothing closes over it. -/
+def facesOpen (n pi : Nat) : List (List Nat) :=
+  let north := (List.range n).map fun m => [0, vtx n 1 m, vtx n 1 (m + 1)]
+  let quads := ((List.range (pi - 1)).map fun a' => (List.range n).map fun m =>
+      [vtx n (a' + 1) m, vtx n (a' + 2) m, vtx n (a' + 2) (m + 1), vtx n (a' + 1) (m + 1)]).foldr (· ++ ·) []
+  north ++ quads
+
+/-- 2:C3, 2:B4 [value] — the shell itself is not closed (its terminal latitude is a boundary: those sides lie in
+one face only), so the meridian reversal has nothing to act on before the collapse. -/
+theorem open13 : edgesInTwoFaces (facesOpen 12 6) = false ∧ (facesOpen 12 6).length = 72 := by decide +kernel
+
+/-- 2:B4, 2:C4 [value] — on `𝔽₁₃` (`n = 12`) the reindexing `ρ_u` is cellular exactly for `u ∈ {1, 11}` among the
+units `{1, 5, 7, 11}`, and the pole exchange is cellular on the completion. -/
+theorem census13 :
+    cellular 13 1 = true ∧ cellular 13 5 = false ∧ cellular 13 7 = false ∧ cellular 13 11 = true ∧
+    poleExchange 13 = true := by decide +kernel
+
+end Complex
 end FRC
 
 /-! inlined: FrcCore/Instances.lean -/
