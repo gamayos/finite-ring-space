@@ -1,4 +1,4 @@
-/* 13-epi: the pi-Wieferich search beyond 2^32 (13:G10, 13:Y2) -- 4^(p-1) = 1 + p (mod p^2), i.e. 2 q_p(2) = 1
+/* 13-epi: the pi-Wieferich search beyond 2^32 (13:G4, 13:G10) -- 4^(p-1) = 1 + p (mod p^2), i.e. 2 q_p(2) = 1
    (mod p); OEIS A355959.  128-bit Montgomery arithmetic modulo p^2 for p < 2^63, self-checked against the 64-bit
    path of pi_wieferich.c below 2^32 (third argument: any value switches the self-test on).
    Build: cc -O2 -o pi_wieferich128 pi_wieferich128.c -lm.   Usage: pi_wieferich128 lo hi [selftest]

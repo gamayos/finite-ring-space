@@ -1,4 +1,4 @@
-/* 13-epi: the pi-Wieferich search (13:G10, 13:Y2) -- the primes with 4^(p-1) = 1 + p (mod p^2), equivalently
+/* 13-epi: the pi-Wieferich search (13:G4, 13:G10) -- the primes with 4^(p-1) = 1 + p (mod p^2), equivalently
    2 q_p(2) = 1 (mod p) for the Fermat quotient q_p(2) = (2^(p-1) - 1)/p (OEIS A355959, (p+2)^(p-1) = 1 (mod p^2)).
    Segmented sieve over [lo, hi), p < 2^32; for each odd prime p: r = 2^(p-1) mod p^2 by square-and-multiply in
    128-bit integers, q = (r - 1)/p, test 2q = 1 (mod p).  Also records the distribution of q_p(2)/p in 16 bins of

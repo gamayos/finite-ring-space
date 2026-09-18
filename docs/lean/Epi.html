@@ -33,7 +33,7 @@
 <span class="ln" id="L11"><a class="lno" href="#L11">11</a>the tower of `π` exact (G1–G3, G5, G9); the Cayley quarter-turn map and its composition law (C3); the Wallis</span>
 <span class="ln" id="L12"><a class="lno" href="#L12">12</a>pair: strict monotonicity, the width identity and the enclosure `v_n &lt; π &lt; w_n` (E2, with Mathlib&#x27;s Wallis</span>
 <span class="ln" id="L13"><a class="lno" href="#L13">13</a>product); the impossibility of exact calibration of `e` from the irrationality of `π` (H3); the index condition</span>
-<span class="ln" id="L14"><a class="lno" href="#L14">14</a>of the null experiment (H5); the wall of `π` at second order: the π-Wieferich condition of Y2 in its three</span>
+<span class="ln" id="L14"><a class="lno" href="#L14">14</a>of the null experiment (H5); the wall of `π` at second order: the π-Wieferich condition of G4 in its three</span>
 <span class="ln" id="L15"><a class="lno" href="#L15">15</a>forms with the exact identity `q_p(4) = 2q_p(2) + p·q_p(2)²`, Eisenstein&#x27;s congruence `2q_p(2) ≡ −H_{(p−1)/2}`,</span>
 <span class="ln" id="L16"><a class="lno" href="#L16">16</a>the identification with OEIS A355959 (G10), and G4&#x27;s second-order clause from Morley&#x27;s congruence.  Classical (tier 2) on Mathlib&#x27;s hierarchy; the finite content — the derangement</span>
 <span class="ln" id="L17"><a class="lno" href="#L17">17</a>recurrence, antiperiodicity, the tower, orientation transport, the wrap-free window and the value rows on</span>
@@ -785,9 +785,9 @@
 <span class="ln" id="L763"><a class="lno" href="#L763">763</a></span>
 <span class="ln" id="L764"><a class="lno" href="#L764">764</a></span>
 <span class="ln" id="L765"><a class="lno" href="#L765">765</a></span>
-<span class="ln" id="L766"><a class="lno" href="#L766">766</a>/-! ## The Fermat quotient and the π-Wieferich condition (13:G10, 13:Y2, 13:G4)</span>
+<span class="ln" id="L766"><a class="lno" href="#L766">766</a>/-! ## The Fermat quotient and the π-Wieferich condition (13:G4, 13:G10)</span>
 <span class="ln" id="L767"><a class="lno" href="#L767">767</a></span>
-<span class="ln" id="L768"><a class="lno" href="#L768">768</a>The wall of `π` at second order.  The condition `4^{p−1} ≡ 1 + p (mod p²)` of Y2 in its three forms, the exact</span>
+<span class="ln" id="L768"><a class="lno" href="#L768">768</a>The wall of `π` at second order.  The condition `4^{p−1} ≡ 1 + p (mod p²)` of G4 in its three forms, the exact</span>
 <span class="ln" id="L769"><a class="lno" href="#L769">769</a>identity `q_p(4) = 2q_p(2) + p·q_p(2)²`, Eisenstein&#x27;s congruence `2q_p(2) ≡ −H_{(p−1)/2}`, G4&#x27;s second-order</span>
 <span class="ln" id="L770"><a class="lno" href="#L770">770</a>clause from Morley&#x27;s congruence, and the identification of the set with OEIS A355959, `(p+2)^{p−1} ≡ 1 (mod p²)`.</span>
 <span class="ln" id="L771"><a class="lno" href="#L771">771</a>The ring steps are proved once over any commutative ring with `p² = 0` (section `wieferich`); the sections</span>
@@ -920,7 +920,7 @@
 <span class="ln" id="L898"><a class="lno" href="#L898">898</a>  push_cast at this</span>
 <span class="ln" id="L899"><a class="lno" href="#L899">899</a>  exact this</span>
 <span class="ln" id="L900"><a class="lno" href="#L900">900</a></span>
-<span class="ln" id="L901"><a class="lno" href="#L901">901</a>/-- 13:G10, 13:Y2 — the π-Wieferich condition in its three forms: `4^{p−1} ≡ 1 + p (mod p²)` ⟺</span>
+<span class="ln" id="L901"><a class="lno" href="#L901">901</a>/-- 13:G10 — the π-Wieferich condition in its three forms: `4^{p−1} ≡ 1 + p (mod p²)` ⟺</span>
 <span class="ln" id="L902"><a class="lno" href="#L902">902</a>`q_p(4) ≡ 1 (mod p)` ⟺ `2·q_p(2) ≡ 1 (mod p)` — a prescribed value of the Fermat quotient of `2`. -/</span>
 <span class="ln decl" id="FRC.Epi.piWieferich_iff"><a class="lno" href="#FRC.Epi.piWieferich_iff">903</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcLedger/Epi.lean#L903" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small t2" src="lean-t2.png" alt="" title="tier 2, classical: Classical.choice, Quot.sound, propext">theorem piWieferich_iff (hp2 : p ≠ 2) :</span>
 <span class="ln" id="L904"><a class="lno" href="#L904">904</a>    ((4 : ZMod (p ^ 2)) ^ (p - 1) = 1 + p ↔ (fq 4 p : ZMod p) = 1) ∧</span>
@@ -1113,7 +1113,7 @@
 <span class="ln" id="L1091"><a class="lno" href="#L1091">1091</a>  have key := eisenstein_generic (K := ZMod p) m _ (two_ne_zero_zmod p hp2) hH hc</span>
 <span class="ln" id="L1092"><a class="lno" href="#L1092">1092</a>  exact_mod_cast key</span>
 <span class="ln" id="L1093"><a class="lno" href="#L1093">1093</a></span>
-<span class="ln" id="L1094"><a class="lno" href="#L1094">1094</a>/-- 13:G10, 13:Y2 — the π-Wieferich condition in harmonic form: `4^{p−1} ≡ 1 + p (mod p²)` exactly when</span>
+<span class="ln" id="L1094"><a class="lno" href="#L1094">1094</a>/-- 13:G10 — the π-Wieferich condition in harmonic form: `4^{p−1} ≡ 1 + p (mod p²)` exactly when</span>
 <span class="ln" id="L1095"><a class="lno" href="#L1095">1095</a>`H_{(p−1)/2} = Σ_{j=1}^{(p−1)/2} 1/j ≡ −1 (mod p)`. -/</span>
 <span class="ln decl" id="FRC.Epi.piWieferich_iff_harmonic"><a class="lno" href="#FRC.Epi.piWieferich_iff_harmonic">1096</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcLedger/Epi.lean#L1096" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small t2" src="lean-t2.png" alt="" title="tier 2, classical: Classical.choice, Quot.sound, propext">theorem piWieferich_iff_harmonic (m : ℕ) (hm : p = 2 * m + 1) :</span>
 <span class="ln" id="L1097"><a class="lno" href="#L1097">1097</a>    (4 : ZMod (p ^ 2)) ^ (p - 1) = 1 + p ↔ ∑ j ∈ Finset.range m, ((j + 1 : ℕ) : ZMod p)⁻¹ = -1 := by</span>
@@ -1122,7 +1122,7 @@
 <span class="ln" id="L1100"><a class="lno" href="#L1100">1100</a>  rw [h1, h2, eisenstein p m hm]</span>
 <span class="ln" id="L1101"><a class="lno" href="#L1101">1101</a>  exact neg_eq_iff_eq_neg</span>
 <span class="ln" id="L1102"><a class="lno" href="#L1102">1102</a></span>
-<span class="ln" id="L1103"><a class="lno" href="#L1103">1103</a>/-- 13:G10, 13:Y2 — the π-Wieferich set is OEIS A355959: `(p + 2)^{p−1} ≡ 1 (mod p²)` exactly when</span>
+<span class="ln" id="L1103"><a class="lno" href="#L1103">1103</a>/-- 13:G10 — the π-Wieferich set is OEIS A355959: `(p + 2)^{p−1} ≡ 1 (mod p²)` exactly when</span>
 <span class="ln" id="L1104"><a class="lno" href="#L1104">1104</a>`2 q_p(2) ≡ 1 (mod p)`, i.e. exactly when `4^{p−1} ≡ 1 + p (mod p²)`. -/</span>
 <span class="ln decl" id="FRC.Epi.piWieferich_iff_oeis"><a class="lno" href="#FRC.Epi.piWieferich_iff_oeis">1105</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcLedger/Epi.lean#L1105" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small t2" src="lean-t2.png" alt="" title="tier 2, classical: Classical.choice, Quot.sound, propext">theorem piWieferich_iff_oeis (hp2 : p ≠ 2) :</span>
 <span class="ln" id="L1106"><a class="lno" href="#L1106">1106</a>    ((p : ZMod (p ^ 2)) + 2) ^ (p - 1) = 1 ↔ (2 * fq 2 p : ZMod p) = 1 := by</span>

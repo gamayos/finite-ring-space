@@ -11,7 +11,7 @@ two-squares invariant given Gauss's congruence, Lucas on the tower `C(2p^r, p^r)
 the tower of `π` exact (G1–G3, G5, G9); the Cayley quarter-turn map and its composition law (C3); the Wallis
 pair: strict monotonicity, the width identity and the enclosure `v_n < π < w_n` (E2, with Mathlib's Wallis
 product); the impossibility of exact calibration of `e` from the irrationality of `π` (H3); the index condition
-of the null experiment (H5); the wall of `π` at second order: the π-Wieferich condition of Y2 in its three
+of the null experiment (H5); the wall of `π` at second order: the π-Wieferich condition of G4 in its three
 forms with the exact identity `q_p(4) = 2q_p(2) + p·q_p(2)²`, Eisenstein's congruence `2q_p(2) ≡ −H_{(p−1)/2}`,
 the identification with OEIS A355959 (G10), and G4's second-order clause from Morley's congruence.  Classical (tier 2) on Mathlib's hierarchy; the finite content — the derangement
 recurrence, antiperiodicity, the tower, orientation transport, the wrap-free window and the value rows on
@@ -763,9 +763,9 @@ end wallisR
 
 
 
-/-! ## The Fermat quotient and the π-Wieferich condition (13:G10, 13:Y2, 13:G4)
+/-! ## The Fermat quotient and the π-Wieferich condition (13:G4, 13:G10)
 
-The wall of `π` at second order.  The condition `4^{p−1} ≡ 1 + p (mod p²)` of Y2 in its three forms, the exact
+The wall of `π` at second order.  The condition `4^{p−1} ≡ 1 + p (mod p²)` of G4 in its three forms, the exact
 identity `q_p(4) = 2q_p(2) + p·q_p(2)²`, Eisenstein's congruence `2q_p(2) ≡ −H_{(p−1)/2}`, G4's second-order
 clause from Morley's congruence, and the identification of the set with OEIS A355959, `(p+2)^{p−1} ≡ 1 (mod p²)`.
 The ring steps are proved once over any commutative ring with `p² = 0` (section `wieferich`); the sections
@@ -898,7 +898,7 @@ theorem four_pow_pred (hp2 : p ≠ 2) :
   push_cast at this
   exact this
 
-/-- 13:G10, 13:Y2 — the π-Wieferich condition in its three forms: `4^{p−1} ≡ 1 + p (mod p²)` ⟺
+/-- 13:G10 — the π-Wieferich condition in its three forms: `4^{p−1} ≡ 1 + p (mod p²)` ⟺
 `q_p(4) ≡ 1 (mod p)` ⟺ `2·q_p(2) ≡ 1 (mod p)` — a prescribed value of the Fermat quotient of `2`. -/
 theorem piWieferich_iff (hp2 : p ≠ 2) :
     ((4 : ZMod (p ^ 2)) ^ (p - 1) = 1 + p ↔ (fq 4 p : ZMod p) = 1) ∧
@@ -1091,7 +1091,7 @@ theorem eisenstein (m : ℕ) (hm : p = 2 * m + 1) :
   have key := eisenstein_generic (K := ZMod p) m _ (two_ne_zero_zmod p hp2) hH hc
   exact_mod_cast key
 
-/-- 13:G10, 13:Y2 — the π-Wieferich condition in harmonic form: `4^{p−1} ≡ 1 + p (mod p²)` exactly when
+/-- 13:G10 — the π-Wieferich condition in harmonic form: `4^{p−1} ≡ 1 + p (mod p²)` exactly when
 `H_{(p−1)/2} = Σ_{j=1}^{(p−1)/2} 1/j ≡ −1 (mod p)`. -/
 theorem piWieferich_iff_harmonic (m : ℕ) (hm : p = 2 * m + 1) :
     (4 : ZMod (p ^ 2)) ^ (p - 1) = 1 + p ↔ ∑ j ∈ Finset.range m, ((j + 1 : ℕ) : ZMod p)⁻¹ = -1 := by
@@ -1100,7 +1100,7 @@ theorem piWieferich_iff_harmonic (m : ℕ) (hm : p = 2 * m + 1) :
   rw [h1, h2, eisenstein p m hm]
   exact neg_eq_iff_eq_neg
 
-/-- 13:G10, 13:Y2 — the π-Wieferich set is OEIS A355959: `(p + 2)^{p−1} ≡ 1 (mod p²)` exactly when
+/-- 13:G10 — the π-Wieferich set is OEIS A355959: `(p + 2)^{p−1} ≡ 1 (mod p²)` exactly when
 `2 q_p(2) ≡ 1 (mod p)`, i.e. exactly when `4^{p−1} ≡ 1 + p (mod p²)`. -/
 theorem piWieferich_iff_oeis (hp2 : p ≠ 2) :
     ((p : ZMod (p ^ 2)) + 2) ^ (p - 1) = 1 ↔ (2 * fq 2 p : ZMod p) = 1 := by

@@ -312,7 +312,7 @@
     },
     {
      "label": "G4",
-     "predicate": "Second order at the half wall: $w_m\\equiv-2+2\\p(q_\\p(4)-1)\\pmod{\\p^{2}}$ with $q_\\p(4)\\equiv2q_\\p(2)$, exact to $\\p^{3}$ through Morley (A3); the universal $-2$ persists to $\\p^{2}$ exactly for the $\\pi$-Wieferich primes $4^{\\p-1}\\equiv1+\\p\\pmod{\\p^{2}}$, which below $10^{6}$ are exactly $5$ and $45827$ (heuristic expectation $\\sum1/\\p\\approx2.4$); the normalised quotients equidistribute empirically \\apx.",
+     "predicate": "Second order at the half wall: $w_m\\equiv-2+2\\p(q_\\p(4)-1)\\pmod{\\p^{2}}$ with $q_\\p(4)\\equiv2q_\\p(2)$, exact to $\\p^{3}$ through Morley (A3); the universal $-2$ persists to $\\p^{2}$ exactly for the $\\pi$-Wieferich primes $4^{\\p-1}\\equiv1+\\p\\pmod{\\p^{2}}$ (OEIS A355959, G10), which are exactly $5$ and $45827$ below $1.08\\times10^{11}$ \\cite{oeisA355959}, re-verified here to $2^{35}$ (\\src{pi\\_wieferich128}; $45827\\equiv3\\pmod4$, so $\\p=5$ is the only Subject shell among them; two below $10^{6}$ against the range frequency $\\sum_{\\p<10^{6}}1/\\p\\approx2.4$); the normalised quotients equidistribute empirically \\apx.",
      "tag": "T",
      "source": "Thm.~\\ref{thm:secondorder}; \\src{pi.S1}, \\src{pi.S2}; \\lean{Epi.half\\_wall\\_second\\_order}",
      "key": "p13037"
@@ -477,7 +477,7 @@
     },
     {
      "label": "J6",
-     "predicate": "Two constants, two walls: both attach their full-resolution shell content to sparse-prime problems (Kurepa non-vanishing for $e$, a prescribed Fermat quotient of Wieferich type for $\\pi$); for each shell the bounded observer holds an exact finite certificate and holds no uniform certificate across all shells --- per-instance decidability without a uniform bound, the characteristic shape of statements at the arithmetic horizon; no claim that either hypothesis is thereby decided.",
+     "predicate": "Two constants, two walls: both attach their full-resolution shell content to sparse-prime problems (Kurepa non-vanishing for $e$, a prescribed Fermat quotient of Wieferich type for $\\pi$); for each shell the bounded observer holds an exact finite certificate and holds no uniform certificate across all shells --- per-instance decidability without a uniform bound, the characteristic shape of statements at the arithmetic horizon; Kurepa's hypothesis is not thereby decided, and the number of persistence shells is not a predicate of the paper.",
      "tag": "T",
      "source": "\\S\\ref{sec:consequences}, ``Two constants, two celebrated walls''; \\src{kur.K1}, \\src{pi.S2}",
      "key": "p13057"
@@ -528,13 +528,6 @@
      "tag": "O",
      "source": "Thm.~\\ref{thm:wall-e}; \\src{kur.K1}, \\src{e.S1}, \\src{e.N1}",
      "key": "p13061"
-    },
-    {
-     "label": "Y2",
-     "predicate": "The wall of $\\pi$ beyond the verified range: infinitude of the $\\pi$-Wieferich set $4^{\\p-1}\\equiv1+\\p\\pmod{\\p^{2}}$ --- OEIS A355959, $(\\p+2)^{\\p-1}\\equiv1\\pmod{\\p^{2}}$ (G10), exactly $\\{5,45827\\}$ below $1.08\\times10^{11}$ \\cite{oeisA355959}, re-verified here to $2^{35}$ (\\src{pi\\_wieferich128}; $45827\\equiv3\\pmod4$, so $\\p=5$ is the only Subject shell in it); a prescribed-value Fermat-quotient set of the Wieferich family, decided by no shell, by no finite search and by no relation of this paper. The third-order Bernoulli law of G7 is closed by A8.",
-     "tag": "O",
-     "source": "Thm.~\\ref{thm:secondorder}; \\src{pi.S2}",
-     "key": "p13062"
     },
     {
      "label": "Y3",
@@ -1050,7 +1043,7 @@
     ],
     "tier": 2,
     "ok": true,
-    "doc": "13:G10, 13:Y2 — the π-Wieferich condition in its three forms: `4^{p−1} ≡ 1 + p (mod p²)` ⟺ `q_p(4) ≡ 1 (mod p)` ⟺ `2·q_p(2) ≡ 1 (mod p)` — a prescribed value of the Fermat quotient of `2`."
+    "doc": "13:G10 — the π-Wieferich condition in its three forms: `4^{p−1} ≡ 1 + p (mod p²)` ⟺ `q_p(4) ≡ 1 (mod p)` ⟺ `2·q_p(2) ≡ 1 (mod p)` — a prescribed value of the Fermat quotient of `2`."
    },
    {
     "name": "FRC.Epi.eisenstein",
@@ -1076,7 +1069,7 @@
     ],
     "tier": 2,
     "ok": true,
-    "doc": "13:G10, 13:Y2 — the π-Wieferich condition in harmonic form: `4^{p−1} ≡ 1 + p (mod p²)` exactly when `H_{(p−1)/2} = Σ_{j=1}^{(p−1)/2} 1/j ≡ −1 (mod p)`."
+    "doc": "13:G10 — the π-Wieferich condition in harmonic form: `4^{p−1} ≡ 1 + p (mod p²)` exactly when `H_{(p−1)/2} = Σ_{j=1}^{(p−1)/2} 1/j ≡ −1 (mod p)`."
    },
    {
     "name": "FRC.Epi.piWieferich_iff_oeis",
@@ -1089,7 +1082,7 @@
     ],
     "tier": 2,
     "ok": true,
-    "doc": "13:G10, 13:Y2 — the π-Wieferich set is OEIS A355959: `(p + 2)^{p−1} ≡ 1 (mod p²)` exactly when `2 q_p(2) ≡ 1 (mod p)`, i.e. exactly when `4^{p−1} ≡ 1 + p (mod p²)`."
+    "doc": "13:G10 — the π-Wieferich set is OEIS A355959: `(p + 2)^{p−1} ≡ 1 (mod p²)` exactly when `2 q_p(2) ≡ 1 (mod p)`, i.e. exactly when `4^{p−1} ≡ 1 + p (mod p²)`."
    }
   ],
   "H2": [
