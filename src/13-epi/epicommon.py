@@ -13,7 +13,7 @@ A check of the registry is a *family* of micro-checks — one labelled claim of 
 kur.K1, …) — and names the row(s) of the paper's predicate ledger it witnesses (LEDGER; rows cited as 13:XN). The
 ledger's source column cites these check ids in return. Master-ledger rows reached through the paper rows:
 00:B8 (13:J1, 13:J3), 00:B9 (13:J4, 13:J5), 00:C13 (13:J3), 00:C14 (13:B2, 13:H2), 00:B1 (13:B4),
-00:C24 (13:G7 with A8, the third-order wall) and 00:C26 (13:Y3, the four chains as E- and G-partial sums); 13:Y1 and 13:Y3 are the paper's hypotheses (block Y, tag O); their master rows T7–T9 were withdrawn 17 Sep 2026.
+00:C24 (13:G7 with A8, the third-order wall) and 00:C26 (13:E5, the four chains as E- and G-partial sums); 13:Y1 is the paper's hypothesis (block Y, tag O); the former master rows T7–T9 were withdrawn 17 Sep 2026.
 """
 import os, json, sys
 from collections import OrderedDict
@@ -67,6 +67,8 @@ LEDGER = {
     "tow.W": "13:J1, 13:J2, 13:G2, 13:H2, 13:I4",
     # kurepa_wall.c
     "kur.K1": "13:F2, 13:Y1",
+    # frame_invariants.c
+    "frm.I1": "13:I5",
 }
 
 LABELS = {
@@ -110,9 +112,10 @@ LABELS = {
     "tow.H": "the height run over all 500 shells p ≡ 1 (mod 4), p ≤ 8009, in the smallest-primitive-root frame with H minimised over the two chiralities: π_A = [−1/2] pinned at height 2 on every shell; H(e_p) ≤ 2√p on every shell; exactly 68 shells with H ≤ 10; height 2 on exactly {13, 1933, 4177, 5857} (median H/√p ≈ 0.525 printed as the diagnostic)",
     "tow.W": "the wrap-free window and the calibration pin on p ∈ {13, 29, 101, 997, 8009}: ⌊√p⌋² < p and 2⌊√p⌋ < p; the pinning relation 2π_A + 1 ≡ 0; the half-turn tautology g^{2κ} = −1 for the smallest primitive root; the quarter-turn pin i² + 1 ≡ 0",
     "kur.K1": "Kurepa's wall in the derangement form for all 22 043 odd primes p < 2.5·10⁵ (kurepa_wall.c, one O(p) pass per prime in 128-bit modular arithmetic): !(p−1) ≡ K(p) (mod p) and K(p) ≢ 0 (mod p), zero failures of either condition",
+    "frm.I1": "the three frame invariants of the two constants on the 4 783 shells p ≡ 1 (mod 4) below 10⁵ (frame_invariants.c): every triple (K(p) mod p, q_p(4) mod p, a + b i) exact — p = 13: (10, 6, −3+2i), p = 1093 the one shell with q_p(4) = 0 — the 4×4×4 contingency table of (K/p, q_p(4)/p, φ/π) and its chi-square 59.6 on 63 df exact, the means 0.502, 0.499 and variances 0.0828, 0.0831 by certified rational bounds; the independence reading is the paper's [approx] statement",
 }
 
-SCRIPT = {"e": "validate_e", "pi": "validate_pi", "pi2": "validate_pi2", "tow": "validate_towers", "kur": "kurepa_wall"}
+SCRIPT = {"e": "validate_e", "pi": "validate_pi", "pi2": "validate_pi2", "tow": "validate_towers", "kur": "kurepa_wall", "frm": "frame_invariants"}
 _FAM = [None, None]
 
 def family(tag, fam):

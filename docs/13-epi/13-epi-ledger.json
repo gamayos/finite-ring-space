@@ -216,7 +216,7 @@
     },
     {
      "label": "E5",
-     "predicate": "The feasibility hierarchy: among $\\fQ$-native constructors of $\\pi$ the best known rate is geometric, $\\Theta(k)$ steps (Machin, arcsin), against $\\Theta(k/\\log k)$ for the derangement chain of $e$; the circle count and the Leibniz/Wallis chains sit at $2^{k}$; the AGM is not $\\fQ$-native. A factorial-rate chain exists for every real by rounding (and for $\\pi$ by rounding the Machin chain), so the split is by kind of chain --- E-partial sums ($e$) against G-partial sums ($\\pi$), master C26; whether $\\pi$ has an E-partial-sum chain with rational coefficients is Y3.",
+     "predicate": "The feasibility hierarchy: among $\\fQ$-native constructors of $\\pi$ the best known rate is geometric, $\\Theta(k)$ steps (Machin, arcsin), against $\\Theta(k/\\log k)$ for the derangement chain of $e$; the circle count and the Leibniz/Wallis chains sit at $2^{k}$; the AGM is not $\\fQ$-native. A factorial-rate chain exists for every real by rounding (and for $\\pi$ by rounding the Machin chain), so the split is by kind of chain --- E-partial sums ($e$) against G-partial sums ($\\pi$), master C26; whether $\\piR$ is the value of an E-function with rational coefficients at a rational point is a question of the continuum (Fischler--Rivoal's conjecture $\\operatorname{Frac}\\mathcal E\\cap\\operatorname{Frac}\\mathcal G=\\overline{\\Q}$ would answer it negatively), not a predicate of the frame.",
      "tag": "T",
      "source": "Prop.~\\ref{prop:feas-pi}; \\src{pi.R3}, \\src{e.R4}",
      "key": "p13026"
@@ -433,6 +433,13 @@
      "tag": "T",
      "source": "Cor.~\\ref{cor:crt}; \\src{tow.W}; \\lean{FRC.Shell.Frame.two\\_pi}",
      "key": "p13051"
+    },
+    {
+     "label": "I5",
+     "predicate": "The three frame invariants across shells: on the $4783$ shells $\\p\\equiv1\\pmod4$ below $10^{5}$, the triple $(\\Ku{\\p}/\\p,\\ q_\\p(4)/\\p,\\ \\varphi/\\piR)$ --- the wall of $e$ (F2), the wall of $\\pi$ at second order (G4), the angular address $\\varphi=\\arg(a+b\\imR)$ of $\\p=a^{2}+b^{2}$, $a\\equiv1\\pmod4$ (G3) --- is exact on each shell ($\\p=13$: $10,6,-3+2\\imR$; $1093$: $q_\\p(4)=0$, the Wieferich prime); means $0.502,0.499,0.499$ and variances $0.0828,0.0831,0.0832$ (uniform: $1/2$, $1/12$), correlations $-0.016,-0.008,+0.010$ ($\\sigma=0.0145$), $4\\times4\\times4$ chi-square $59.6$ on $63$ df, $a/\\sqrt\\p=\\cos\\varphi$ arcsine-distributed (mean $0.004$, variance $0.500$) \\apx: consistent with independence on the examined range.",
+     "tag": "T",
+     "source": "\\S\\ref{sec:duality}, ``The three invariants across shells''; \\src{frm.I1}",
+     "key": "p13068"
     }
    ]
   },
@@ -490,7 +497,7 @@
    "rows": [
     {
      "label": "V1",
-     "predicate": "The package \\texttt{finite-ring-space/src/13-epi}: the five blocks \\src{validate\\_e} ($12$ families, $82$ micro-checks), \\src{validate\\_pi} ($11$, $98$), \\src{validate\\_pi2} ($10$, $551$), \\src{validate\\_towers} ($6$, $72$), \\src{kurepa\\_wall} ($1$ family over $22{,}043$ primes), $40$ families and $806$ micro-checks, each family naming the rows it witnesses; the notebook \\texttt{13-epi-main.ipynb} executes them in the browser and the driver \\texttt{run\\_all.py} writes \\texttt{results.json}.",
+     "predicate": "The package \\texttt{finite-ring-space/src/13-epi}: the six blocks \\src{validate\\_e} ($12$ families, $82$ micro-checks), \\src{validate\\_pi} ($11$, $98$), \\src{validate\\_pi2} ($10$, $551$), \\src{validate\\_towers} ($6$, $72$), \\src{kurepa\\_wall} ($1$ family over $22{,}043$ primes), \\src{frame\\_invariants} ($1$ family, $7$ micro-checks over the $4783$ shells below $10^{5}$), $41$ families and $813$ micro-checks, each family naming the rows it witnesses; the notebook \\texttt{13-epi-main.ipynb} executes them in the browser and the driver \\texttt{run\\_all.py} writes \\texttt{results.json}.",
      "tag": "T",
      "source": "\\S\\ref{app:verif}; \\src{run\\_all}",
      "key": "p13058"
@@ -504,7 +511,7 @@
     },
     {
      "label": "V3",
-     "predicate": "Provenance: the four Python scripts and the C pass are the paper's scripts as written, wrapped to report to one registry (the two $\\pi$-Wieferich search programs \\src{pi\\_wieferich}, \\src{pi\\_wieferich128} and their record \\texttt{results\\_wieferich.txt} are added with G10); the recorded memorandum outputs \\texttt{results\\_*.txt} remain in the package as the source record.",
+     "predicate": "Provenance: the four Python scripts and the C pass are the paper's scripts as written, wrapped to report to one registry (the two $\\pi$-Wieferich search programs \\src{pi\\_wieferich}, \\src{pi\\_wieferich128} and their record \\texttt{results\\_wieferich.txt} are added with G10; the frame-invariant pass \\src{frame\\_invariants}, C with its driver, with I5); the recorded memorandum outputs \\texttt{results\\_*.txt} remain in the package as the source record.",
      "tag": "T",
      "source": "\\S\\ref{app:verif}",
      "key": "p13060"
@@ -528,13 +535,6 @@
      "tag": "O",
      "source": "Thm.~\\ref{thm:wall-e}; \\src{kur.K1}, \\src{e.S1}, \\src{e.N1}",
      "key": "p13061"
-    },
-    {
-     "label": "Y3",
-     "predicate": "The $e$--$\\pi$ dichotomy as theorem. (a) A factorial-rate chain exists for every real by rounding ($\\mathrm{round}(n!\\,x)/n!$; for $\\pi$ also by rounding the Machin chain), so the clause as first stated is decided and the split of E5 is by kind of chain (E- against G-partial sums, master C26); open is whether $\\piR$ is a value of an E-function with rational coefficients at a rational point --- $\\piR\\in\\mathcal G$ is a theorem, $\\operatorname{Frac}\\mathcal E\\cap\\operatorname{Frac}\\mathcal G=\\overline{\\Q}$ (Fischler--Rivoal 2016) would decide it negatively, and no theorem decides it; decided by no shell ($\\piA=2\\kap$; $\\Fp$ carries no rate) and by no finite computation. (b) $\\delta(X)=\\min_{\\p\\le X}|\\theta-1|$: exact to $X=4\\times10^{6}$ (H4); $\\delta\\to0$ is A7; its order $\\piR/(2N(X))$ is the uniform model's reading \\apx, bounded below only by the irrationality measure of $\\piR$ ($\\mu\\le7.1033$, Zeilberger--Zudilin 2020) \\import, decided by no finite computation. (c) The joint law of $(\\Ku{\\p}/\\p,\\ q_\\p(4)/\\p,\\ \\varphi/\\piR)$, $\\p=a^{2}+b^{2}$, $\\varphi=\\arg(a+b\\imR)$ ($a/\\sqrt\\p=\\cos\\varphi$ follows the arcsine law): $\\varphi/\\piR$ equidistributes (Hecke) \\import; $q_\\p(4)/\\p$ equidistributes in the base at fixed $\\p$ (Heath-Brown), nothing in $\\p$; $\\Ku{\\p}/\\p$ is Y1's; the $4783$ shells $\\p<10^{5}$ consistent with independence ($4\\times4\\times4$ chi-square $59.6$ on $63$ df \\apx).",
-     "tag": "O",
-     "source": "Prop.~\\ref{prop:feas-pi}, Prop.~\\ref{prop:calib}",
-     "key": "p13063"
     }
    ]
   }

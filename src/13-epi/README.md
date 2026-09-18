@@ -1,7 +1,7 @@
 # 13-epi validation package
 
 Validation package of *Finite Field Realisation of the Classical Constants π and e* (Akhtman, 2026), `13-epi` of the
-FRC corpus. Five blocks, 40 family checks over ≈ 800 exact micro-checks, driven by `13-epi-main.ipynb` (Google Colab,
+FRC corpus. Six blocks, 41 family checks over ≈ 810 exact micro-checks, driven by `13-epi-main.ipynb` (Google Colab,
 *Runtime → Run all*, ≈ 45 s) or by `run_all.py`. Integers, residues and exact rationals throughout: the external
 targets e and π enter only as certified rational brackets of the paper's own chains (the subfactorial chain, the
 Machin chain), and the binary64 constants only as the objects of study of the readout theorems, compared exactly
@@ -12,7 +12,7 @@ witnesses (the paper's Section "Machine verification and predicate ledger", rows
 `docs/13-epi/13-epi-ledger.html`); the ledger's source column cites the check ids in return. Where a row is proved in
 Lean (`lean/FrcCore/Epi.lean` with no axioms, or `lean/FrcLedger/Epi.lean` on Mathlib), the check here is the instance
 the reader can run. Master-ledger rows of
-the corpus reached through the paper rows: `00:B8`, `00:B9`, `00:C13`, `00:C14`, `00:B1`, `00:C24`, `00:C26` (the paper's hypotheses Y1 and Y3 have no live master row: the former T7–T9 were withdrawn 17 Sep 2026).
+the corpus reached through the paper rows: `00:B8`, `00:B9`, `00:C13`, `00:C14`, `00:B1`, `00:C24`, `00:C26` (the paper's hypothesis Y1 has no live master row: the former T7–T9 were withdrawn 17 Sep 2026).
 
 [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/gamayos/finite-ring-space/blob/main/src/13-epi/13-epi-main.ipynb)
 
@@ -25,10 +25,11 @@ the corpus reached through the paper rows: `00:B8`, `00:B9`, `00:C13`, `00:C14`,
 | `validate_pi2.py` | pi2.A1–A2, B1–B2, C1–C4, D1–D2 | 551 | Gauss's congruence and the two-squares invariant on 211 primes (13:G3); Sun's supercongruence and the third-order Bernoulli law on sixty primes, the blind-range Euler congruence (13:G7); the proof ingredients of the first-order vanishing — binomial transfer, Lerch, the Wallis evaluation, A + B = 2L by formal-antiderivative bookkeeping (13:G6); the first revival to p² (13:G5) |
 | `validate_towers.py` | tow.E, P, C, O, H, W | 72 | the fixed-shell towers of e and π on p = 13, 29 (13:F7, G9, B3); the Cayley composition law exhaustively (13:C3); orientation transport over the units (13:B2); the height run over all 500 shells p ≤ 8009 — the calibration pin at height 2, the band H ≤ 2√p, 68 small-height shells, the height-2 set {13, 1933, 4177, 5857} (13:J2, J3); the wrap-free window, the pinning relation, the half-turn tautology, the quarter-turn pin (13:J1, J2, G2, H2, I4) |
 | `kurepa_wall.c` (via `kurepa_wall.py`) | kur.K1 | 3 | !(p−1) ≡ K(p) (mod p) and K(p) ≢ 0 (mod p) for all 22 043 odd primes p < 2.5·10⁵, one O(p) pass per prime in 128-bit modular arithmetic; compiled on the fly (a pure-Python pass to 2·10⁴ runs without a compiler and says so) (13:F2, Y1) |
+| `frame_invariants.c` (via `frame_invariants.py`) | frm.I1 | 7 | the three frame invariants of the two constants on the 4 783 shells p ≡ 1 (mod 4) below 10⁵ — K(p) mod p, q_p(4) mod p, p = a² + b² with a ≡ 1 (mod 4) — every triple exact (p = 13: 10, 6, −3+2i; 1093 the one shell with q_p(4) = 0), the 4×4×4 contingency table of (K/p, q_p(4)/p, φ/π) and its chi-square 59.6 on 63 df exact, the means and variances by certified rational bounds; the independence reading is the paper's [approx] statement (13:I5) |
 | `pi_wieferich.c`, `pi_wieferich128.c` (standalone) | — | — | the π-Wieferich search 4^(p−1) ≡ 1 + p (mod p²), i.e. 2q_p(2) ≡ 1 (mod p): the 64-bit program covers p < 2³² (203 280 220 odd primes, hits {5, 45827}, 74 s); the 128-bit Montgomery program covers any range below 2⁶³ and self-checks against the 64-bit path — run over [2³², 2³⁵), 1 276 926 058 primes, no hit (43 min); the recorded runs are `results_wieferich.txt`. The OEIS entry A355959 records no third member below 1.08·10¹¹ (13:G4, G10) |
 | `epicommon.py` | — | — | the registry: micro-check collector, family aggregation, `LEDGER` (check → rows), `LABELS`, `results.json` |
 
-Run: `python3 run_all.py` (≈ 40 s; 30 s of it the C pass). Each block also runs alone (`python3 validate_pi.py`).
+Run: `python3 run_all.py` (≈ 45 s; 30 s of it the Kurepa C pass). Each block also runs alone (`python3 validate_pi.py`).
 Rebuild the notebook: `python3 make_notebook.py`. `results_e.txt`, `results_pi.txt`, `results_pi2.txt` are the
 recorded outputs of the memorandum runs (July 2026) and stay as the source record; the package run writes
 `results.json`.
@@ -51,6 +52,6 @@ of the memorandum README therefore no longer applies: every family is EXACT.
 ## Predicate ledger
 
 Rows A1–A8 imports; B1, B4, C1, C4, D1, E1, H1, J4 definitions (the two selector normalisations C1, C4 are the
-paper's two D moves); D2, H3 proof-only rows; Y1, Y3 the hypotheses (block Y, tag O: Kurepa's hypothesis; the e–π dichotomy as theorem) — the
-π wall has no hypothesis row: its persistence shells are certified one at a time (13:G4, G10), and their number is not a
-predicate of the framework. Check → row: `epicommon.LEDGER`.
+paper's two D moves); D2, H3 proof-only rows; Y1 the hypothesis (block Y, tag O: Kurepa's hypothesis) — the π wall has no hypothesis row:
+its persistence shells are certified one at a time (13:G4, G10), and their number is not a predicate of the framework;
+the e–π dichotomy is a split by kind of chain (13:E5), with the three frame invariants exact on every shell (13:I5). Check → row: `epicommon.LEDGER`.

@@ -15,6 +15,7 @@ BLOCKS = [
     ("validate_pi2", "pi2", "The quarter wall and the arcsin hierarchy", "Gauss's congruence and the two-squares invariant on the 211 primes p ≡ 1 (mod 4) below 3000; Sun's supercongruence σ_p ≡ 0 (mod p²) and the third-order Bernoulli law on the sixty primes 5 ≤ p < 300; the proof ingredients of the first-order vanishing (binomial transfer, Lerch, the Wallis evaluation, the key identity A + B = 2L); the blind-range Euler congruence; the first revival to second order."),
     ("validate_towers", "tow", "The towers, the frame and the heights", "The fixed-shell towers of e and π on p = 13 and 29 (exact shell projection, bracketed external convergence); the Cayley composition law exhaustively on F_13 and F_29; orientation transport over the units; the height run over all 500 shells p ≡ 1 (mod 4), p ≤ 8009 (the calibration pin, the horizon band, the 68 small-height shells, the height-2 set); the wrap-free window, the pinning relation, the half-turn tautology and the quarter-turn pin."),
     ("kurepa_wall", "kur", "The Kurepa wall to 2.5·10⁵", "`kurepa_wall.c`, compiled here: one O(p) pass per prime in 128-bit modular arithmetic checking !(p−1) ≡ K(p) (mod p) and K(p) ≢ 0 (mod p) for all 22 043 odd primes p < 2.5·10⁵ (≈ 30 s)."),
+    ("frame_invariants", "frm", "The three frame invariants across shells", "`frame_invariants.c`, compiled here: K(p) mod p, q_p(4) mod p and p = a² + b² for the 4 783 shells p ≡ 1 (mod 4) below 10⁵; the triples exact, the 4×4×4 contingency table and its chi-square exact, the moments by certified rational bounds; the independence reading is the paper's [approx] statement (13:I5)."),
 ]
 
 md(f"""[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)]({COLAB})
@@ -29,7 +30,7 @@ ledger it witnesses (the paper's Section "Machine verification and predicate led
 `docs/13-epi/13-epi-ledger.html`), and the ledger's source column cites the check ids in return. Master-ledger rows of the
 corpus reached through the paper rows: `00:B8` (the two-level horizon law), `00:B9` (certification as the orthogonal axis),
 `00:C13` (the horizon band), `00:C14` (the quarter-turn and its chirality), `00:B1` (framed rationals), `00:C24` (the third-order wall of π) and `00:C26` (the four chains as
-E- and G-partial sums); the paper's hypotheses Y1–Y3 (block Y, tag O) carry their obstruction records.
+E- and G-partial sums); the paper's hypothesis Y1 (block Y, tag O) carries its obstruction record.
 
 **Kinds.** Every check is `EXACT`: a pass is a proof on the tested instances. The few floating-point figures printed (a
 Pearson correlation, a median, the Gauss sums, the Fermat-quotient moments) are the paper's [approx] diagnostics and decide nothing.

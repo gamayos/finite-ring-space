@@ -1,9 +1,9 @@
 """
 run_all.py — the 13-epi validation package, end to end
 =======================================================
-Runs the five blocks, writes results.json — one record per family check, carrying the paper's ledger row(s) it
-witnesses — and exits nonzero if any check fails. Pure Python except kurepa_wall.c (compiled on the fly; a pure-Python
-fallback to a smaller bound runs without a compiler). ≈ 40 s, of which ≈ 30 s is the C pass over 22 043 primes.
+Runs the six blocks, writes results.json — one record per family check, carrying the paper's ledger row(s) it
+witnesses — and exits nonzero if any check fails. Pure Python except kurepa_wall.c and frame_invariants.c (compiled on the fly; a
+pure-Python fallback to a smaller bound runs without a compiler). ≈ 40 s, of which ≈ 30 s is the C pass over 22 043 primes.
 
     python3 run_all.py
 
@@ -16,11 +16,12 @@ Blocks:  validate_e        the derangement chain: enclosure, readouts, feasibili
          validate_towers   the fixed-shell towers, the Cayley map, orientation transport, the height run,
                            the wrap-free window and the pins                                                 tow.E–W
          kurepa_wall       !(p−1) ≡ K(p) and K(p) ≢ 0 for all 22 043 odd primes p < 2.5·10⁵ (C)                kur.K1
+         frame_invariants  the triples (K(p)/p, q_p(4)/p, φ/π) on the 4 783 shells p ≡ 1 (mod 4) below 10⁵ (C)     frm.I1
 """
 import sys, time
 import epicommon
 
-BLOCKS = ["validate_e", "validate_pi", "validate_pi2", "validate_towers", "kurepa_wall"]
+BLOCKS = ["validate_e", "validate_pi", "validate_pi2", "validate_towers", "kurepa_wall", "frame_invariants"]
 
 def main():
     t0 = time.time()

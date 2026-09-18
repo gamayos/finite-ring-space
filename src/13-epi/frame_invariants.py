@@ -5,8 +5,8 @@ Compiles and runs frame_invariants.c (one O(p) pass per prime: K(p) mod p, q_p(4
 (mod 4), b > 0 even) and decides, in exact arithmetic, the paper's stated figures: the shell count; the triples at
 p = 13, 233, 30089 and at the Wieferich prime 1093 (q_1093(4) = 0); the 4×4×4 contingency table of (K/p, q_p(4)/p,
 φ/π) against the quarter bins — the first two by rational comparison, the third by the sign of a and |a| against b —
-and its chi-square as an exact rational; the marginal means and variances of K/p and q_p(4)/p as exact rationals,
-rounded as the paper states them. The moments of φ/π and of a/√p (the arcsine law) use float arctangents and are
+and its chi-square as an exact rational; the marginal means and variances of K/p and q_p(4)/p by certified rational
+bounds of width 10⁻¹², rounded as the paper states them. The moments of φ/π and of a/√p (the arcsine law) use float arctangents and are
 printed as [approx] readings; the independence reading (chi-square 59.6 on 63 df) is the paper's [approx] statement
 and decides nothing. A C compiler is required; without one the block runs the same pass in pure Python to the bound
 2·10⁴ and records the reduced bound.
@@ -56,6 +56,23 @@ def angle_bin(a, b):                      # φ = arg(a + b i) with b > 0: the qu
     if a > 0: return 0 if b < a else 1    # φ < π/4  iff b < a ; else φ ∈ [π/4, π/2)  (a = b never: p odd)
     return 2 if b > -a else 3             # φ ∈ [π/2, 3π/4) iff b > |a| ; else [3π/4, π)
 
+S = 10 ** 12
+
+def moments(xs):
+    """Certified bounds on the mean and the variance of the rationals num/den, as (lo, hi) pairs of Fractions:
+    each term is bracketed by floor(num*S/den)/S and its successor, so the mean lies in an interval of width 1/S and the
+    variance E[x^2] - E[x]^2 in an interval of width < 3/S; no float enters."""
+    n = len(xs)
+    lo1 = sum(num * S // den for num, den in xs); hi1 = lo1 + n
+    lo2 = sum(num * num * S // (den * den) for num, den in xs); hi2 = lo2 + n
+    m_lo, m_hi = Fr(lo1, n * S), Fr(hi1, n * S)
+    v_lo, v_hi = Fr(lo2, n * S) - m_hi ** 2, Fr(hi2, n * S) - m_lo ** 2
+    return (m_lo, m_hi), (v_lo, v_hi)
+
+def rounds_to(bounds, digits, target):
+    lo, hi = bounds
+    return round(lo, digits) == target and round(hi, digits) == target
+
 def run():
     t = time.time()
     exe = compile_c()
@@ -76,13 +93,12 @@ def run():
         table[key] = table.get(key, 0) + 1
     E = Fr(n, 64)
     chi = sum((Fr(table.get((i, j, k), 0)) - E) ** 2 / E for i in range(4) for j in range(4) for k in range(4))
-    meanK = sum(Fr(K, p) for p, K, q, a, b in rows) / n; varK = sum((Fr(K, p) - meanK) ** 2 for p, K, q, a, b in rows) / n
-    meanQ = sum(Fr(q, p) for p, K, q, a, b in rows) / n; varQ = sum((Fr(q, p) - meanQ) ** 2 for p, K, q, a, b in rows) / n
+    (meanK, varK), (meanQ, varQ) = moments([(K, p) for p, K, q, a, b in rows]), moments([(q, p) for p, K, q, a, b in rows])
     phi = [math.atan2(b, a) / math.pi for p, K, q, a, b in rows]
     meanP = sum(phi) / n; varP = sum((x - meanP) ** 2 for x in phi) / n
     cosv = [a / math.sqrt(p) for p, K, q, a, b in rows]
     meanC = sum(cosv) / n; varC = sum((x - meanC) ** 2 for x in cosv) / n
-    print(f"    {n} shells p = 1 (mod 4) below {bound}; K/p: mean {float(meanK):.4f} var {float(varK):.4f}; q_p(4)/p: mean {float(meanQ):.4f} var {float(varQ):.4f} (exact rationals)")
+    print(f"    {n} shells p = 1 (mod 4) below {bound}; K/p: mean {float(meanK[0]):.4f} var {float(varK[0]):.4f}; q_p(4)/p: mean {float(meanQ[0]):.4f} var {float(varQ[0]):.4f} (certified rational bounds, width 1e-12)")
     print(f"    phi/pi: mean {meanP:.4f} var {varP:.4f} [approx]; a/sqrt p: mean {meanC:.3f} var {varC:.3f} [approx] (arcsine law: 0, 1/2); uniform law: 1/2, 1/12 = 0.0833")
     print(f"    4x4x4 table against the product of the quarter bins: chi-square {float(chi):.2f} on 63 df (exact rational {chi.numerator}/{chi.denominator}) [approx reading: consistent with independence]")
     family("frm", "I1")
@@ -92,8 +108,8 @@ def run():
             byp.get(13) == (10, 6, -3, 2) and byp.get(233) == (69, 14, 13, 8) and byp.get(30089) == (5260, 7666, -67, 160))
         chk("the Wieferich prime 1093 is the one shell with q_p(4) = 0 (q_p(2) = 0 gives q_p(4) = 2q_p(2) + p q_p(2)^2 = 0)",
             byp.get(1093, (0, -1))[1] == 0 and sum(1 for p, K, q, a, b in rows if q == 0) == 1)
-        chk("means of K/p and q_p(4)/p round to 0.502 and 0.499, variances to 0.0828 and 0.0831 (exact rationals)",
-            round(meanK, 3) == Fr(502, 1000) and round(meanQ, 3) == Fr(499, 1000) and round(varK, 4) == Fr(828, 10000) and round(varQ, 4) == Fr(831, 10000))
+        chk("means of K/p and q_p(4)/p round to 0.502 and 0.499, variances to 0.0828 and 0.0831 (certified rational bounds)",
+            rounds_to(meanK, 3, Fr(502, 1000)) and rounds_to(meanQ, 3, Fr(499, 1000)) and rounds_to(varK, 4, Fr(828, 10000)) and rounds_to(varQ, 4, Fr(831, 10000)))
         chk("the 4x4x4 chi-square is an exact rational in [59.5, 59.7] (the paper's 59.6 on 63 df)", Fr(595, 10) <= chi <= Fr(597, 10))
     else:
         chk(f"NO C COMPILER: {n} shells p = 1 (mod 4) below {bound} (pure-Python pass)", n > 0)
