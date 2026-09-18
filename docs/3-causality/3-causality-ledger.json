@@ -160,7 +160,7 @@
     },
     {
      "label": "E2",
-     "predicate": "Local correspondence [chart]: integer points with $|Q_{\\nu}|<\\p$ satisfy $Q_{\\nu}=0$ in $\\Z$ iff on the shell (the window law, 1:D2); the asymptotic claim of Remark~\\ref{rem:local-correspondence} --- density and equidistribution of the shell's null points against the real cone --- is not proved and stands as Y1.",
+     "predicate": "Local correspondence [chart]: integer points with $|Q_{\\nu}|<\\p$ satisfy $Q_{\\nu}=0$ in $\\Z$ iff on the shell (the window law, 1:D2); on each shell the window's null points are exactly the real cone's integer points in that window, the real cone the chart of that coincidence; a comparison beyond the window, or ``as $\\p\\to\\infty$'', is not a question of the paper (Remark~\\ref{rem:local-correspondence}).",
      "tag": "D",
      "source": "Rem.~\\ref{rem:local-correspondence}; 1:D2",
      "key": "p03019"
@@ -184,19 +184,6 @@
      "tag": "T",
      "source": "\\lean{Causality, FRC.Shell.Frame.boost\\_preserves}",
      "key": "p03021"
-    }
-   ]
-  },
-  {
-   "letter": "Y",
-   "title": "Hypotheses",
-   "rows": [
-    {
-     "label": "Y1",
-     "predicate": "The large-$\\p$ correspondence of Remark~\\ref{rem:local-correspondence}: whether the window points of the shell's null cone approach the real light cone with density and equidistribution as $\\p\\to\\infty$; named by the paper as future work, not claimed, no witness.",
-     "tag": "O",
-     "source": "Rem.~\\ref{rem:local-correspondence}",
-     "key": "p03022"
     }
    ]
   }

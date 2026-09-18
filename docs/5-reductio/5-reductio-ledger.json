@@ -320,19 +320,6 @@
    ]
   },
   {
-   "letter": "Y",
-   "title": "Hypotheses",
-   "rows": [
-    {
-     "label": "Y1",
-     "predicate": "Whether a Dedekind-finite infinite structure can satisfy Det (in ZF without countable choice): left open by Proposition~\\ref{prop:finiteness}, immaterial to the three normal forms, whose structures are all Dedekind-infinite.",
-     "tag": "O",
-     "source": "Prop.~\\ref{prop:finiteness}",
-     "key": "p05040"
-    }
-   ]
-  },
-  {
    "letter": "T",
    "title": "Tasks",
    "rows": [
