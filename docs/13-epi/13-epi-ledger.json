@@ -52,7 +52,7 @@
     },
     {
      "label": "A7",
-     "predicate": "Equidistribution of $\\lambda(\\im)/\\p$ over the primes $\\p\\equiv1\\pmod4$ (Duke--Friedlander--Iwaniec), the sole import behind the cross-shell existence of calibrated shells and the generic-growth reading of the heights.",
+     "predicate": "Equidistribution of $\\lambda(\\im)/\\p$ over the primes $\\p\\equiv1\\pmod4$ (Duke--Friedlander--Iwaniec), the sole import behind the range predictions for calibrated shells (H4) and the generic-growth reading of the heights.",
      "tag": "I",
      "source": "\\cite{duke1995equidistribution}",
      "key": "p13007"
@@ -388,7 +388,7 @@
     },
     {
      "label": "H4",
-     "predicate": "Calibrated shells at every precision: by A7, $\\varepsilon$-calibrated shells ($|\\theta-1|<\\varepsilon$ for one chirality) exist for every $\\varepsilon>0$ with relative density $2\\varepsilon/\\piR$, and $\\chi(\\eP)\\to e^{\\imR}$ along them; data for $\\p<10^{6}$ ($39{,}175$ primes $\\equiv1\\bmod4$): $260$ shells within $0.01$ against $\\approx249$ predicted, the best six led by $(\\p,\\lambda(\\im))=(778933,123966)$ at $|\\theta-1|=3.9\\times10^{-5}$, consistent with the nearest-hit prediction $\\piR/(2N)\\approx4.0\\times10^{-5}$ \\apx{} (exact minima $3.93\\times10^{-5}$ at $10^{6}$, $6.34\\times10^{-6}$ at $2\\times10^{6}$, $4.53\\times10^{-6}$ at $4\\times10^{6}$); the calibration inequalities decided as rational inequalities with $\\piR$ bracketed by the Machin chain.",
+     "predicate": "Calibrated shells on every range: A7 (imported) read as the uniform model on a range of $N$ shells --- $2\\varepsilon N/\\piR$ of them $\\varepsilon$-calibrated ($|\\theta-1|<\\varepsilon$ for one chirality), the nearest at $\\piR/(2N)$, and $\\chi(\\eP)$ within $\\varepsilon$ of $e^{\\imR}$ on each; the import's limit, calibrated shells at every $\\varepsilon$, is the chart's [chart]; data for $\\p<10^{6}$ ($39{,}175$ primes $\\equiv1\\bmod4$): $260$ shells within $0.01$ against $\\approx249$ predicted, the best six led by $(\\p,\\lambda(\\im))=(778933,123966)$ at $|\\theta-1|=3.9\\times10^{-5}$, consistent with the nearest-hit prediction $\\piR/(2N)\\approx4.0\\times10^{-5}$ \\apx{} (exact minima $3.93\\times10^{-5}$ at $10^{6}$, $6.34\\times10^{-6}$ at $2\\times10^{6}$, $4.53\\times10^{-6}$ at $4\\times10^{6}$); the calibration inequalities decided as rational inequalities with $\\piR$ bracketed by the Machin chain.",
      "tag": "I|T",
      "source": "Prop.~\\ref{prop:calib}; \\src{e.A1}",
      "key": "p13046"
@@ -408,7 +408,7 @@
    "rows": [
     {
      "label": "I1",
-     "predicate": "Emergence of the classical $e$: (i) in every shell with $\\p>n_0+|Z_0(\\p)|+1$ a non-blind scale in $[n_0,n_0+|Z_0(\\p)|]$ reads out $\\ro(\\eR)$, at binary64 exactly $18!/\\dr{18}$; (ii) the frame-internal continuation is the antiperiodic residue line with blind set $Z_0(\\p)$ and terminal invariant $-(\\Ku{\\p})^{-1}$, collapsed by the readout to one dyadic rational; (iii) $\\chi(\\eP)\\to e^{\\imR}$ along calibrated shells, exact calibration impossible, no pointwise link between the carriers. Composed from D4, F2, F3, F5, H3--H5.",
+     "predicate": "Emergence of the classical $e$: (i) in every shell with $\\p>n_0+|Z_0(\\p)|+1$ a non-blind scale in $[n_0,n_0+|Z_0(\\p)|]$ reads out $\\ro(\\eR)$, at binary64 exactly $18!/\\dr{18}$; (ii) the frame-internal continuation is the antiperiodic residue line with blind set $Z_0(\\p)$ and terminal invariant $-(\\Ku{\\p})^{-1}$, collapsed by the readout to one dyadic rational; (iii) $\\chi(\\eP)$ within $\\varepsilon$ of $e^{\\imR}$ on the $\\varepsilon$-calibrated shells of every range (H4), exact calibration impossible, no pointwise link between the carriers. Composed from D4, F2, F3, F5, H3--H5.",
      "tag": "T",
      "source": "Thm.~\\ref{thm:main-e}; \\src{e.R2}, \\src{e.S1}, \\src{e.A1}, \\src{e.N1}",
      "key": "p13048"
@@ -531,9 +531,9 @@
    "rows": [
     {
      "label": "Y1",
-     "predicate": "Kurepa's hypothesis, $\\p\\nmid\\Ku{\\p}$ for every odd prime, equivalently $\\p\\nmid\\dr{(\\p-1)}$ (F2) and $B_{\\p-1}\\not\\equiv1\\pmod\\p$: universal existence of the terminal residue $-(\\Ku{\\p})^{-1}$ of $e$; equivalently, the walk $\\Ku{0},\\Ku{1},\\dots,\\Ku{\\p}$ of the left factorial's partial sums does not return to its origin modulo $\\p$ (F8). Open since 1971; the one claimed proof (Barsky--Benzaghou 2004, Thm.~3) withdrawn by its authors (2011); no counterexample for $\\p<2^{40}$; re-verified here with the wall identity for all $121{,}126$ odd primes $\\p<1.6\\times10^{6}$. Decided by no shell (each decides its own value: $\\Ku{13}\\equiv10$, $\\Ku{233}\\equiv69$, $\\Ku{30089}\\equiv5260$), by no finite search (F5's uniform model at the wall expects $\\sum_{\\p\\le X}1/\\p\\approx\\ln\\ln X-0.24$ counterexamples \\apx, so the model is scoped to $n\\le\\p-2$) and by no relation of this paper. Beside it, two limit laws over the infinite family of shells, decided by nothing finite: $|Z_0(\\p)|-1\\to\\mathrm{Poisson}(1)$ (F5) and the independence of the quarter-turn index and the gcd class of the wall-residue index (H5; $94$ of $210$ against $96.0\\pm6.6$ \\apx).",
+     "predicate": "Kurepa's hypothesis, $\\p\\nmid\\Ku{\\p}$ for every odd prime, equivalently $\\p\\nmid\\dr{(\\p-1)}$ (F2) and $B_{\\p-1}\\not\\equiv1\\pmod\\p$: universal existence of the terminal residue $-(\\Ku{\\p})^{-1}$ of $e$; equivalently, the walk $\\Ku{0},\\Ku{1},\\dots,\\Ku{\\p}$ of the left factorial's partial sums does not return to its origin modulo $\\p$ (F8). Open since 1971; the one claimed proof (Barsky--Benzaghou 2004, Thm.~3) withdrawn by its authors (2011); no counterexample for $\\p<2^{40}$; re-verified here with the wall identity for all $121{,}126$ odd primes $\\p<1.6\\times10^{6}$. Decided by no shell (each decides its own value: $\\Ku{13}\\equiv10$, $\\Ku{233}\\equiv69$, $\\Ku{30089}\\equiv5260$), by no finite search (F5's uniform model at the wall expects $\\sum_{\\p\\le X}1/\\p\\approx\\ln\\ln X-0.24$ counterexamples \\apx, so the model is scoped to $n\\le\\p-2$) and by no relation of this paper. The blind-set statistics (F5), the null experiment (H5) and the frame invariants across shells (I5) are range readings beside it, not clauses of it.",
      "tag": "O",
-     "source": "Thm.~\\ref{thm:wall-e}; \\src{kur.K1}, \\src{e.S1}, \\src{e.N1}",
+     "source": "Thm.~\\ref{thm:wall-e}; \\src{kur.K1}, \\src{e.S1}",
      "key": "p13061"
     }
    ]
@@ -945,13 +945,9 @@
     "name": "FRC.Epi.half_wall_second_order",
     "module": "FrcLedger/Epi",
     "line": 923,
-    "axioms": [
-     "Classical.choice",
-     "Quot.sound",
-     "propext"
-    ],
-    "tier": 2,
-    "ok": true,
+    "axioms": null,
+    "tier": "missing",
+    "ok": false,
     "doc": "13:G4 — the second order at the half wall: with `m = (p−1)/2` and Morley's congruence `C(p−1, m) ≡ (−1)^m 4^{p−1}` taken modulo `p²` (the import A3), `16^m ≡ (−2 + 2p(q_p(4) − 1))·m·C(2m,m)² (mod p²)`, i.e. `w_m ≡ −2 + 2p(q_p(4) − 1)`; the universal `−2` persists to `p²` exactly when `q_p(4) ≡ 1`, the π-Wieferich condition."
    }
   ],
@@ -1036,52 +1032,36 @@
     "name": "FRC.Epi.piWieferich_iff",
     "module": "FrcLedger/Epi",
     "line": 903,
-    "axioms": [
-     "Classical.choice",
-     "Quot.sound",
-     "propext"
-    ],
-    "tier": 2,
-    "ok": true,
+    "axioms": null,
+    "tier": "missing",
+    "ok": false,
     "doc": "13:G10 — the π-Wieferich condition in its three forms: `4^{p−1} ≡ 1 + p (mod p²)` ⟺ `q_p(4) ≡ 1 (mod p)` ⟺ `2·q_p(2) ≡ 1 (mod p)` — a prescribed value of the Fermat quotient of `2`."
    },
    {
     "name": "FRC.Epi.eisenstein",
     "module": "FrcLedger/Epi",
     "line": 1073,
-    "axioms": [
-     "Classical.choice",
-     "Quot.sound",
-     "propext"
-    ],
-    "tier": 2,
-    "ok": true,
+    "axioms": null,
+    "tier": "missing",
+    "ok": false,
     "doc": "13:G10 — Eisenstein's congruence: `2 q_p(2) ≡ −H_{(p−1)/2} (mod p)`, `H_m = Σ_{j<m} (j+1)⁻¹`."
    },
    {
     "name": "FRC.Epi.piWieferich_iff_harmonic",
     "module": "FrcLedger/Epi",
     "line": 1096,
-    "axioms": [
-     "Classical.choice",
-     "Quot.sound",
-     "propext"
-    ],
-    "tier": 2,
-    "ok": true,
+    "axioms": null,
+    "tier": "missing",
+    "ok": false,
     "doc": "13:G10 — the π-Wieferich condition in harmonic form: `4^{p−1} ≡ 1 + p (mod p²)` exactly when `H_{(p−1)/2} = Σ_{j=1}^{(p−1)/2} 1/j ≡ −1 (mod p)`."
    },
    {
     "name": "FRC.Epi.piWieferich_iff_oeis",
     "module": "FrcLedger/Epi",
     "line": 1105,
-    "axioms": [
-     "Classical.choice",
-     "Quot.sound",
-     "propext"
-    ],
-    "tier": 2,
-    "ok": true,
+    "axioms": null,
+    "tier": "missing",
+    "ok": false,
     "doc": "13:G10 — the π-Wieferich set is OEIS A355959: `(p + 2)^{p−1} ≡ 1 (mod p²)` exactly when `2 q_p(2) ≡ 1 (mod p)`, i.e. exactly when `4^{p−1} ≡ 1 + p (mod p²)`."
    }
   ],
