@@ -275,6 +275,13 @@
      "tag": "T",
      "source": "Prop.~\\ref{prop:tower-e}; \\src{tow.E}; \\lean{Epi.tower\\_e\\_exact\\_zmod, FRC.Epi.tower\\_e\\_exact}",
      "key": "p13033"
+    },
+    {
+     "label": "F8",
+     "predicate": "The tail identity: $j!\\,\\dr{(\\p-1-j)}\\equiv(-1)^{j}\\bigl(\\Ku{\\p}-\\Ku{j}\\bigr)\\pmod\\p$ for $0\\le j\\le\\p-1$ ($j=0$ is F2); hence $n\\in Z_0(\\p)$ iff $\\Ku{(\\p-1-n)}\\equiv\\Ku{\\p}$: the blind set counts the collisions of the partial sums of the left factorial with their total, $n=1$ is the forced collision $\\Ku{(\\p-2)}\\equiv\\Ku{\\p}$, and Kurepa's hypothesis is the return-to-origin question of the walk with steps $j!$.",
+     "tag": "T",
+     "source": "Lem.~\\ref{lem:wilson}, Thm.~\\ref{thm:wall-e}; \\src{e.W5}; \\lean{Epi.tail\\_identity\\_zmod, Epi.blind\\_iff\\_collision}",
+     "key": "p13066"
     }
    ]
   },
@@ -476,7 +483,7 @@
    "rows": [
     {
      "label": "V1",
-     "predicate": "The package \\texttt{finite-ring-space/src/13-epi}: the five blocks \\src{validate\\_e} ($11$ families, $61$ micro-checks), \\src{validate\\_pi} ($10$, $94$), \\src{validate\\_pi2} ($10$, $551$), \\src{validate\\_towers} ($6$, $72$), \\src{kurepa\\_wall} ($1$ family over $22{,}043$ primes), $38$ families and $781$ micro-checks, each family naming the rows it witnesses; the notebook \\texttt{13-epi-main.ipynb} executes them in the browser and the driver \\texttt{run\\_all.py} writes \\texttt{results.json}.",
+     "predicate": "The package \\texttt{finite-ring-space/src/13-epi}: the five blocks \\src{validate\\_e} ($12$ families, $82$ micro-checks), \\src{validate\\_pi} ($10$, $94$), \\src{validate\\_pi2} ($10$, $551$), \\src{validate\\_towers} ($6$, $72$), \\src{kurepa\\_wall} ($1$ family over $22{,}043$ primes), $39$ families and $802$ micro-checks, each family naming the rows it witnesses; the notebook \\texttt{13-epi-main.ipynb} executes them in the browser and the driver \\texttt{run\\_all.py} writes \\texttt{results.json}.",
      "tag": "T",
      "source": "\\S\\ref{app:verif}; \\src{run\\_all}",
      "key": "p13058"
@@ -497,7 +504,7 @@
     },
     {
      "label": "V4",
-     "predicate": "Lean, two libraries: \\texttt{lean/FrcLedger/Epi.lean} (Mathlib; classical, tier~2) proves C3, E2, F1--F4, F7, G1--G3, G5, G9, H3, H5 for every shell (G3 given A3); \\texttt{lean/FrcCore} (no Mathlib, \\emph{no axioms}) proves B2, F3, F7, H2, I4, J1, J2 for every shell and decides B3, F2, F4, F6, G1, G5, G8 on $\\mathbb{F}_{13}$ and the wall shells, kernel-checked on every push.",
+     "predicate": "Lean, two libraries: \\texttt{lean/FrcLedger/Epi.lean} (Mathlib; classical, tier~2) proves C3, E2, F1--F4, F7, F8, G1--G3, G5, G9, H3, H5 for every shell (G3 given A3); \\texttt{lean/FrcCore} (no Mathlib, \\emph{no axioms}) proves B2, F3, F7, H2, I4, J1, J2 for every shell and decides B3, F2, F4, F6, G1, G5, G8 on $\\mathbb{F}_{13}$ and the wall shells, kernel-checked on every push.",
      "tag": "T",
      "source": "\\lean{Epi, FRC.Epi.dr\\_antiperiodic}",
      "key": "p13065"
@@ -510,7 +517,7 @@
    "rows": [
     {
      "label": "Y1",
-     "predicate": "Kurepa's hypothesis, $\\p\\nmid\\Ku{\\p}$ for every odd prime, equivalently $\\p\\nmid\\dr{(\\p-1)}$ (F2) and $B_{\\p-1}\\not\\equiv1\\pmod\\p$: universal existence of the terminal residue $-(\\Ku{\\p})^{-1}$ of $e$. Open since 1971; the one claimed proof (Barsky--Benzaghou 2004, Thm.~3) withdrawn by its authors (2011); no counterexample for $\\p<2^{40}$; re-verified here with the wall identity for all $121{,}126$ odd primes $\\p<1.6\\times10^{6}$. Decided by no shell (each decides its own value: $\\Ku{13}\\equiv10$, $\\Ku{233}\\equiv69$, $\\Ku{30089}\\equiv5260$), by no finite search (F5's uniform model at the wall expects $\\sum_{\\p\\le X}1/\\p\\approx\\ln\\ln X-0.24$ counterexamples \\apx, so the model is scoped to $n\\le\\p-2$) and by no relation of this paper. Beside it, two limit laws over the infinite family of shells, decided by nothing finite: $|Z_0(\\p)|-1\\to\\mathrm{Poisson}(1)$ (F5) and the independence of the quarter-turn index and the gcd class of the wall-residue index (H5; $94$ of $210$ against $96.0\\pm6.6$ \\apx). Obstructed 2026-09-17 (master archive).",
+     "predicate": "Kurepa's hypothesis, $\\p\\nmid\\Ku{\\p}$ for every odd prime, equivalently $\\p\\nmid\\dr{(\\p-1)}$ (F2) and $B_{\\p-1}\\not\\equiv1\\pmod\\p$: universal existence of the terminal residue $-(\\Ku{\\p})^{-1}$ of $e$; equivalently, the walk $\\Ku{0},\\Ku{1},\\dots,\\Ku{\\p}$ of the left factorial's partial sums does not return to its origin modulo $\\p$ (F8). Open since 1971; the one claimed proof (Barsky--Benzaghou 2004, Thm.~3) withdrawn by its authors (2011); no counterexample for $\\p<2^{40}$; re-verified here with the wall identity for all $121{,}126$ odd primes $\\p<1.6\\times10^{6}$. Decided by no shell (each decides its own value: $\\Ku{13}\\equiv10$, $\\Ku{233}\\equiv69$, $\\Ku{30089}\\equiv5260$), by no finite search (F5's uniform model at the wall expects $\\sum_{\\p\\le X}1/\\p\\approx\\ln\\ln X-0.24$ counterexamples \\apx, so the model is scoped to $n\\le\\p-2$) and by no relation of this paper. Beside it, two limit laws over the infinite family of shells, decided by nothing finite: $|Z_0(\\p)|-1\\to\\mathrm{Poisson}(1)$ (F5) and the independence of the quarter-turn index and the gcd class of the wall-residue index (H5; $94$ of $210$ against $96.0\\pm6.6$ \\apx). Obstructed 2026-09-17 (master archive).",
      "tag": "O",
      "source": "Thm.~\\ref{thm:wall-e}; \\src{kur.K1}, \\src{e.S1}, \\src{e.N1}",
      "key": "p13061"
@@ -620,7 +627,7 @@
    {
     "name": "FRC.Epi.cayley_values",
     "module": "FrcLedger/Epi",
-    "line": 437,
+    "line": 508,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -633,7 +640,7 @@
    {
     "name": "FRC.Epi.cayley_mul",
     "module": "FrcLedger/Epi",
-    "line": 450,
+    "line": 521,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -648,7 +655,7 @@
    {
     "name": "FRC.Epi.wallis_enclosure",
     "module": "FrcLedger/Epi",
-    "line": 664,
+    "line": 735,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -661,7 +668,7 @@
    {
     "name": "FRC.Epi.wallis_width",
     "module": "FrcLedger/Epi",
-    "line": 572,
+    "line": 643,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -674,7 +681,7 @@
    {
     "name": "FRC.Epi.wallisV_strictMono",
     "module": "FrcLedger/Epi",
-    "line": 595,
+    "line": 666,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -687,7 +694,7 @@
    {
     "name": "FRC.Epi.wallisW_strictAnti",
     "module": "FrcLedger/Epi",
-    "line": 618,
+    "line": 689,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -702,7 +709,7 @@
    {
     "name": "FRC.Epi.wilson_reflection_zmod",
     "module": "FrcLedger/Epi",
-    "line": 194,
+    "line": 229,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -717,7 +724,7 @@
    {
     "name": "FRC.Epi.derangements_wall_zmod",
     "module": "FrcLedger/Epi",
-    "line": 200,
+    "line": 235,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -730,7 +737,7 @@
    {
     "name": "FRC.Epi.terminal_residue",
     "module": "FrcLedger/Epi",
-    "line": 205,
+    "line": 240,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -754,7 +761,7 @@
    {
     "name": "FRC.Epi.derangements_antiperiodic_zmod",
     "module": "FrcLedger/Epi",
-    "line": 214,
+    "line": 249,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -787,7 +794,7 @@
    {
     "name": "FRC.Epi.series_duals_zmod",
     "module": "FrcLedger/Epi",
-    "line": 221,
+    "line": 256,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -831,7 +838,7 @@
    {
     "name": "FRC.Epi.tower_e_exact_zmod",
     "module": "FrcLedger/Epi",
-    "line": 228,
+    "line": 263,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -851,11 +858,39 @@
     "doc": "13:F7 — the fixed-shell tower of `e`, exact at every grade: `(mp)! ≡ 0` and `!(mp) ≡ (−1)^m` for `m ≥ 1`, so the member `q_m = ((mp)! + δ_m)/!(mp)` reads `e_p` — numerator `≡ !(mp)·e_p` — whenever `δ_m ≡ (−1)^m e_p`."
    }
   ],
+  "F8": [
+   {
+    "name": "FRC.Epi.tail_identity_zmod",
+    "module": "FrcLedger/Epi",
+    "line": 269,
+    "axioms": [
+     "Classical.choice",
+     "Quot.sound",
+     "propext"
+    ],
+    "tier": 2,
+    "ok": true,
+    "doc": "13:F8, 13:Y1 — the tail identity on the shell: `j! · !(p−1−j) ≡ (−1)^j (!p − !j) (mod p)`, `0 ≤ j ≤ p − 1`."
+   },
+   {
+    "name": "FRC.Epi.blind_iff_collision",
+    "module": "FrcLedger/Epi",
+    "line": 277,
+    "axioms": [
+     "Classical.choice",
+     "Quot.sound",
+     "propext"
+    ],
+    "tier": 2,
+    "ok": true,
+    "doc": "13:F8, 13:Y1 — the collision reading of the blind set: for `n ≤ p − 1`, `!n ≡ 0 (mod p)` exactly when the partial sum `!(p−1−n)` of the left factorial collides with `!p`; Kurepa's hypothesis at `p` is the case `n = p − 1`, `!(0) = 0 ≢ !p`; the universal blind scale `n = 1` is `!(p−2) ≡ !p` (the tail `(p−2)! + (p−1)! ≡ 0`)."
+   }
+  ],
   "G1": [
    {
     "name": "FRC.Epi.legibility_window",
     "module": "FrcLedger/Epi",
-    "line": 308,
+    "line": 379,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -879,7 +914,7 @@
    {
     "name": "FRC.Epi.half_wall_terminus",
     "module": "FrcLedger/Epi",
-    "line": 331,
+    "line": 402,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -894,7 +929,7 @@
    {
     "name": "FRC.Epi.quarter_wall_invariant",
     "module": "FrcLedger/Epi",
-    "line": 358,
+    "line": 429,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -909,7 +944,7 @@
    {
     "name": "FRC.Epi.first_revival",
     "module": "FrcLedger/Epi",
-    "line": 401,
+    "line": 472,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -922,7 +957,7 @@
    {
     "name": "FRC.Epi.choose_two_mul_pow",
     "module": "FrcLedger/Epi",
-    "line": 394,
+    "line": 465,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -957,7 +992,7 @@
    {
     "name": "FRC.Epi.tower_pi_exact",
     "module": "FrcLedger/Epi",
-    "line": 412,
+    "line": 483,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -970,7 +1005,7 @@
    {
     "name": "FRC.Epi.choose_two_mul_pow",
     "module": "FrcLedger/Epi",
-    "line": 394,
+    "line": 465,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -996,7 +1031,7 @@
    {
     "name": "FRC.Epi.calibration_ne_one",
     "module": "FrcLedger/Epi",
-    "line": 472,
+    "line": 543,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -1009,7 +1044,7 @@
    {
     "name": "FRC.Epi.exp_I_ne_one",
     "module": "FrcLedger/Epi",
-    "line": 481,
+    "line": 552,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -1024,7 +1059,7 @@
    {
     "name": "FRC.Epi.index_condition_shell",
     "module": "FrcLedger/Epi",
-    "line": 548,
+    "line": 619,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -1037,7 +1072,7 @@
    {
     "name": "FRC.Epi.index_condition",
     "module": "FrcLedger/Epi",
-    "line": 499,
+    "line": 570,
     "axioms": [
      "Classical.choice",
      "Quot.sound",

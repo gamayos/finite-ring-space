@@ -174,6 +174,41 @@ theorem tower_e_exact (p : ℕ) (hp0 : (p : K) = 0) (hodd : Odd p)
   rw [hfacp m hm, hder, zero_add, hδ]
   exact mul_div_cancel_left₀ e (pow_ne_zero m (neg_ne_zero.2 one_ne_zero))
 
+/-- The tail identity: `j! · !(p−1−j) = (−1)^j · (K(p) − K(j))` for `0 ≤ j ≤ p − 1` — the derangement residue
+line read from the wall is the sequence of tails `Σ_{m=j}^{p−1} m!` of Kurepa's left factorial. -/
+theorem tail_identity (p : ℕ) (hp0 : (p : K) = 0) (hw : (((p - 1) ! : ℕ) : K) = -1)
+    (hfac : ∀ k, k ≤ p - 1 → ((k ! : ℕ) : K) ≠ 0) (h1 : 1 ≤ p) (j : ℕ) (hj : j ≤ p - 1) :
+    ((j ! : ℕ) : K) * ((numDerangements (p - 1 - j) : ℕ) : K) = (-1) ^ j * ((kurepa p : K) - (kurepa j : K)) := by
+  have hcast : ((numDerangements (p - 1 - j) : ℕ) : K) = ((numDerangements (p - 1 - j) : ℤ) : K) := by
+    rw [Int.cast_natCast]
+  rw [hcast, numDerangements_sum, Int.cast_sum]
+  simp only [Int.cast_mul, Int.cast_pow, Int.cast_neg, Int.cast_one, Int.cast_natCast]
+  rw [Finset.mul_sum]
+  have hterm : ∀ k ∈ range (p - 1 - j + 1),
+      ((j ! : ℕ) : K) * ((-1) ^ k * (((k + 1).ascFactorial (p - 1 - j - k) : ℕ) : K)) =
+        (-1) ^ j * (((p - 1 - k) ! : ℕ) : K) := by
+    intro k hk
+    have hk' : k ≤ p - 1 - j := by have := mem_range.1 hk; omega
+    have hA : ((k ! : ℕ) : K) * (((k + 1).ascFactorial (p - 1 - j - k) : ℕ) : K) = (((p - 1 - j) ! : ℕ) : K) := by
+      rw [← Nat.cast_mul, Nat.factorial_mul_ascFactorial, Nat.add_sub_cancel' hk']
+    have hjr := factorial_mul_reflect p hp0 hw h1 j hj
+    have hkr := factorial_mul_reflect p hp0 hw h1 k (by omega)
+    apply mul_left_cancel₀ (hfac k (by omega))
+    linear_combination (-1 : K) ^ k * ((j ! : ℕ) : K) * hA + (-1 : K) ^ k * hjr - (-1 : K) ^ j * hkr
+  rw [Finset.sum_congr rfl hterm, ← Finset.mul_sum]
+  congr 1
+  have hn : p - 1 - j + 1 = p - j := by omega
+  rw [hn]
+  have hre : ∀ k ∈ range (p - j), (((p - 1 - k) ! : ℕ) : K) = (fun i => (((j + i) ! : ℕ) : K)) ((p - j) - 1 - k) := by
+    intro k hk
+    have := mem_range.1 hk
+    show (((p - 1 - k) ! : ℕ) : K) = (((j + ((p - j) - 1 - k)) ! : ℕ) : K)
+    congr 2; omega
+  rw [Finset.sum_congr rfl hre, Finset.sum_range_reflect (fun i => (((j + i) ! : ℕ) : K)) (p - j),
+    ← Finset.sum_Ico_eq_sum_range (fun m => ((m ! : ℕ) : K)) j p]
+  unfold kurepa
+  rw [Nat.cast_sum, Nat.cast_sum, eq_sub_iff_add_eq, add_comm, Finset.sum_range_add_sum_Ico _ (by omega)]
+
 end wall
 
 /-! ## The prime shell: `K := ZMod p` -/
@@ -232,6 +267,42 @@ theorem tower_e_exact_zmod (hp2 : p ≠ 2) (m : ℕ) (hm : 1 ≤ m) (e δ : ZMod
     (((m * p) ! : ℕ) : ZMod p) = 0 ∧ ((numDerangements (m * p) : ℕ) : ZMod p) = (-1) ^ m ∧
     ((((m * p) ! : ℕ) : ZMod p) + δ) / ((numDerangements (m * p) : ℕ) : ZMod p) = e :=
   tower_e_exact p (ZMod.natCast_self p) (hp.out.odd_of_ne_two hp2) (factorial_mul_prime_eq_zero p) m hm e δ hδ
+
+/-- 13:F8, 13:Y1 — the tail identity on the shell: `j! · !(p−1−j) ≡ (−1)^j (!p − !j) (mod p)`, `0 ≤ j ≤ p − 1`. -/
+theorem tail_identity_zmod (j : ℕ) (hj : j ≤ p - 1) :
+    ((j ! : ℕ) : ZMod p) * ((numDerangements (p - 1 - j) : ℕ) : ZMod p) =
+      (-1) ^ j * ((kurepa p : ZMod p) - (kurepa j : ZMod p)) :=
+  tail_identity p (ZMod.natCast_self p) (ZMod.wilsons_lemma p) (factorial_ne_zero_zmod p) hp.out.one_le j hj
+
+/-- 13:F8, 13:Y1 — the collision reading of the blind set: for `n ≤ p − 1`, `!n ≡ 0 (mod p)` exactly when the partial
+sum `!(p−1−n)` of the left factorial collides with `!p`; Kurepa's hypothesis at `p` is the case `n = p − 1`,
+`!(0) = 0 ≢ !p`; the universal blind scale `n = 1` is `!(p−2) ≡ !p` (the tail `(p−2)! + (p−1)! ≡ 0`). -/
+theorem blind_iff_collision (n : ℕ) (hn : n ≤ p - 1) :
+    (((numDerangements n : ℕ) : ZMod p) = 0 ↔ (kurepa (p - 1 - n) : ZMod p) = (kurepa p : ZMod p)) ∧
+    (kurepa (p - 2) : ZMod p) = (kurepa p : ZMod p) := by
+  have key : ∀ n, n ≤ p - 1 →
+      (((numDerangements n : ℕ) : ZMod p) = 0 ↔ (kurepa (p - 1 - n) : ZMod p) = (kurepa p : ZMod p)) := by
+    intro n hn
+    have h := tail_identity_zmod p (p - 1 - n) (by omega)
+    rw [show p - 1 - (p - 1 - n) = n by omega] at h
+    have hf := factorial_ne_zero_zmod p (p - 1 - n) (by omega)
+    have hs : ((-1 : ZMod p) ^ (p - 1 - n)) ≠ 0 := by
+      apply pow_ne_zero; intro h1
+      exact (one_ne_zero : (1 : ZMod p) ≠ 0) (neg_eq_zero.1 h1)
+    constructor
+    · intro h0
+      rw [h0, mul_zero] at h
+      have := (mul_eq_zero.1 h.symm).resolve_left hs
+      exact (sub_eq_zero.1 this).symm
+    · intro hc
+      have : ((-1 : ZMod p) ^ (p - 1 - n)) * ((kurepa p : ZMod p) - (kurepa (p - 1 - n) : ZMod p)) = 0 := by
+        rw [hc, sub_self, mul_zero]
+      rw [← h] at this
+      exact (mul_eq_zero.1 this).resolve_left hf
+  refine ⟨key n hn, ?_⟩
+  have h2 := hp.out.two_le
+  have := (key 1 (by omega)).1 (by rw [numDerangements_one, Nat.cast_zero])
+  rwa [show p - 1 - 1 = p - 2 by omega] at this
 
 end prime
 

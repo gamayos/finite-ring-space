@@ -22,7 +22,7 @@ md(f"""[![Open In Colab](https://colab.research.google.com/assets/colab-badge.sv
 ## Finite Field Realisation of the Classical Constants π and e (Akhtman, 2026)
 
 **Validation Package.** `finite-ring-space/src/{PKG}` — five blocks driven by this notebook, {len(ecommon.LABELS)} family checks aggregating
-≈ 780 exact micro-checks (integers, residues, exact rationals; the external targets e and π enter only as certified rational
+≈ 800 exact micro-checks (integers, residues, exact rationals; the external targets e and π enter only as certified rational
 brackets of the paper's own chains, the binary64 constants only as the objects of study of the readout theorems). A family
 check is one labelled claim of a script, identified as `<script>.<family>`; each names the row(s) of the paper's predicate
 ledger it witnesses (the paper's Section "Machine verification and predicate ledger", rows cited as `13:XN`; public copy at

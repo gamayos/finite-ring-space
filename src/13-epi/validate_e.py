@@ -6,7 +6,7 @@ Sections:
   [4] Null experiment: pointwise identification g^{i_t} = k(e)-residue solvability statistics.
 
 Package form (2026-09): the memorandum script as written, its PASS/FAIL lines and the paper's stated figures turned
-into registry predicates (families e.R1-R4, e.W1-W4, e.S1, e.A1, e.N1). The radian-calibration scan of [3] now decides
+into registry predicates (families e.R1-R4, e.W1-W5, e.S1, e.A1, e.N1). The radian-calibration scan of [3] now decides
 |theta - 1| < 0.01 and the ordering of the best shells in exact rational arithmetic with pi as a Machin bracket
 (width < 1e-100), as the paper states; the binary64 constant math.e is the object of study of the readout theorem
 and is compared exactly with the correctly rounded framed rationals. Every check is exact; the Pearson correlation
@@ -173,6 +173,13 @@ def run():
         family("e", "W2")
         chk(f"p={p}: antiperiodicity D_(n+p) == -D_n over a full period", anti)
         chk(f"p={p}: 1 in Z0(p) and p-1 not in Z0(p)", 1 in z0 and (p-1) not in z0)
+        # the tail identity and the collision reading of the blind set (13:F8; the Y1 push of 2026-09-18)
+        family("e", "W5")
+        Kj = [0]
+        for k in range(p): Kj.append((Kj[-1] + f_[k]) % p)          # Kj[j] = K(j) = sum_{k<j} k! mod p
+        chk(f"p={p}: tail identity j! D_(p-1-j) == (-1)^j (K(p) - K(j)) for all j < p", all(f_[j] * d[p-1-j] % p == ((-1)**j * (Kj[p] - Kj[j])) % p for j in range(p)))
+        chk(f"p={p}: blind set = collisions of the partial sums: Z0(p) = {{p-1-j : K(j) == K(p), j <= p-2}}", set(z0) == {p-1-j for j in range(p-1) if Kj[j] == Kj[p]})
+        chk(f"p={p}: the forced collision K(p-2) == K(p) (n = 1) and K(0) = 0 != K(p) (Kurepa at p)", Kj[p-2] == Kj[p] and Kj[p] != 0)
         log(f"{p:6d} |   {'PASS' if wall else 'FAIL'}      |          {'PASS' if anti else 'FAIL'}           |    {ke!s:>8}                | {z0 if len(z0)<=8 else str(z0[:8])+'...'} (|Z0|={len(z0)})")
 
     # series duals
@@ -313,7 +320,7 @@ def run():
     _DIAG[0] = f"Pearson correlation of the angular addresses {num/den:+.3f} (the paper's [approx] reading)"
 
 
-    flush("e", order=["R1", "R2", "R3", "R4", "W1", "W2", "W3", "W4", "S1", "A1", "N1"], details={"N1": _DIAG[0]})
+    flush("e", order=["R1", "R2", "R3", "R4", "W1", "W2", "W3", "W4", "W5", "S1", "A1", "N1"], details={"N1": _DIAG[0]})
 
 if __name__ == "__main__":
     import epicommon
