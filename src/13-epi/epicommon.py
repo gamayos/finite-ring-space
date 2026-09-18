@@ -44,6 +44,7 @@ LEDGER = {
     "pi.W2": "13:G2",
     "pi.S1": "13:G4",
     "pi.S2": "13:G4, 13:I2",
+    "pi.S3": "13:G10, 13:Y2",
     "pi.L1": "13:G5, 13:G8",
     "pi.V1": "13:G6",
     # validate_pi2.py
@@ -89,6 +90,7 @@ LABELS = {
     "pi.W2": "the wall residue −2 is universal: [w_m] ≡ −2 also for p ≡ 3 (mod 4), p ∈ {7, 23, 1031}",
     "pi.S1": "second order at the half wall for p ∈ {13, 29, 37, 41, 53, 101}: Morley's congruence (−1)^m C(p−1,m) ≡ 4^{p−1} (mod p³) and the formula w_m ≡ −2 + 2p(q_p(4) − 1) (mod p²)",
     "pi.S2": "the π-Wieferich search: 4^{p−1} ≡ 1 + p (mod p²) holds for exactly p ∈ {5, 45827} among the primes below 10⁶ (the normalised quotients' moments over p < 2·10⁴ are printed as the paper's [approx] reading)",
+    "pi.S3": "the π-Wieferich condition in three forms on p ∈ {5, 13, 29, 37, 41, 53, 101, 45827}: q_p(4) = 2q_p(2) + p·q_p(2)² exactly, 4^{p−1} ≡ 1 + p (mod p²) iff q_p(4) ≡ 1 iff 2q_p(2) ≡ 1 (mod p); Eisenstein's 2q_p(2) ≡ −H_{(p−1)/2}; and the OEIS A355959 form (p+2)^{p−1} ≡ 1 (mod p²) iff 2q_p(2) ≡ 1, holding at 5 and 45827 only",
     "pi.L1": "Lucas revivals: [v_p] ≡ 8 for p ∈ {5, 7, 11, 13, 29, 37}; on p = 13, C(26,13) ≡ 2 = C(2,1)·C(0,0), C(28,14) ≡ 4 = C(2,1)² digitwise, and the two-digit revival scales number exactly (2κ)² = 36",
     "pi.V1": "first-order wall vanishing: σ_p = Σ_{k<m} C(2k,k)/((2k+1)16^k) ≡ 0 (mod p) for all 428 odd primes 5 ≤ p < 3000, with σ_3 = 1 the sole exception; the rational numerator of σ_p is divisible by p for 5 ≤ p < 200",
     "pi2.A1": "Gauss's central-binomial congruence C(2κ,κ) ≡ 2a* (mod p), a* ≡ 1 (mod 4) the odd part of p = a² + b², for all 211 primes p ≡ 1 (mod 4) below 3000",

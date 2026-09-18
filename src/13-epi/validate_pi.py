@@ -9,7 +9,7 @@ Sections:
 
 
 Package form (2026-09): the memorandum script as written, its PASS/FAIL lines and the paper's stated figures turned
-into registry predicates (families pi.R1-R4, pi.W1-W2, pi.S1-S2, pi.L1, pi.V1); the arcsin tail bound (pi.R4) and
+into registry predicates (families pi.R1-R4, pi.W1-W2, pi.S1-S3, pi.L1, pi.V1); the arcsin tail bound (pi.R4) and
 the universality of the first revival (pi.L1) are added. Every predicate is exact (integers, exact rationals; pi as
 the exact Machin bracket PI). The Fermat-quotient moments of [3], the pattern hunt of [5] and the Gauss sums of [6]
 are the paper's [approx] diagnostics: printed, deciding nothing.
@@ -204,6 +204,22 @@ def run():
     family("pi", "S2")
     chk("pi-Wieferich primes below 10^6 are exactly {5, 45827}", hits == [5, 45827])
 
+    # the pi-Wieferich condition in three forms, Eisenstein's harmonic form and the OEIS A355959 form (13:G10)
+    family("pi", "S3")
+    S3 = [5, 13, 29, 37, 41, 53, 101, 45827]
+    def fq(a, p): return (pow(a, p-1, p*p) - 1)//p             # the Fermat quotient q_p(a) reduced to [0, p)
+    def fq_exact(a, p): return (a**(p-1) - 1)//p               # the Fermat quotient as the integer (a^(p-1) - 1)/p
+    def H(m, p): return sum(pow(j, -1, p) for j in range(1, m+1)) % p
+    chk("q_p(4) = 2 q_p(2) + p q_p(2)^2 exactly (as integers) for p in {5, 13, 29, 37, 41, 53, 101, 45827}",
+        all(fq_exact(4, p) == 2*fq_exact(2, p) + p*fq_exact(2, p)**2 for p in S3))
+    chk("the three forms agree on the same primes: 4^(p-1) == 1 + p (mod p^2) iff q_p(4) == 1 iff 2 q_p(2) == 1 (mod p)",
+        all((pow(4, p-1, p*p) == (1 + p) % (p*p)) == (fq(4, p) % p == 1) == (2*fq(2, p) % p == 1) for p in S3))
+    chk("Eisenstein: 2 q_p(2) == -H_((p-1)/2) (mod p), H_m = sum_(j<=m) 1/j, on the same primes",
+        all(2*fq(2, p) % p == (-H((p-1)//2, p)) % p for p in S3))
+    chk("OEIS A355959: (p+2)^(p-1) == 1 (mod p^2) iff 2 q_p(2) == 1 (mod p) on the same primes, holding at 5 and 45827 only",
+        all((pow(p+2, p-1, p*p) == 1) == (2*fq(2, p) % p == 1) for p in S3)
+        and [p for p in S3 if pow(p+2, p-1, p*p) == 1] == [5, 45827])
+
     # distribution of q_p(4) mod p (uniformity check via normalized mean/var on p<20000)
     vals = []
     for p in sieve(20000):
@@ -314,7 +330,7 @@ def run():
     log("angle of -1 on the multiplicative circle: 2pi * (2t)/(4t) = pi exactly, every frame, both chiralities.")
 
 
-    flush("pi", order=["R1", "R2", "R3", "R4", "W1", "W2", "S1", "S2", "L1", "V1"])
+    flush("pi", order=["R1", "R2", "R3", "R4", "W1", "W2", "S1", "S2", "S3", "L1", "V1"])
 
 if __name__ == "__main__":
     import epicommon

@@ -314,7 +314,7 @@
      "label": "G4",
      "predicate": "Second order at the half wall: $w_m\\equiv-2+2\\p(q_\\p(4)-1)\\pmod{\\p^{2}}$ with $q_\\p(4)\\equiv2q_\\p(2)$, exact to $\\p^{3}$ through Morley (A3); the universal $-2$ persists to $\\p^{2}$ exactly for the $\\pi$-Wieferich primes $4^{\\p-1}\\equiv1+\\p\\pmod{\\p^{2}}$, which below $10^{6}$ are exactly $5$ and $45827$ (heuristic expectation $\\sum1/\\p\\approx2.4$); the normalised quotients equidistribute empirically \\apx.",
      "tag": "T",
-     "source": "Thm.~\\ref{thm:secondorder}; \\src{pi.S1}, \\src{pi.S2}",
+     "source": "Thm.~\\ref{thm:secondorder}; \\src{pi.S1}, \\src{pi.S2}; \\lean{Epi.half\\_wall\\_second\\_order}",
      "key": "p13037"
     },
     {
@@ -351,6 +351,13 @@
      "tag": "T",
      "source": "Prop.~\\ref{prop:tower-pi}; \\src{tow.P}; \\lean{Epi.tower\\_pi\\_exact, Epi.choose\\_two\\_mul\\_pow}",
      "key": "p13042"
+    },
+    {
+     "label": "G10",
+     "predicate": "The $\\pi$-Wieferich condition in three forms: $4^{\\p-1}\\equiv1+\\p\\pmod{\\p^{2}}$ iff $q_\\p(4)\\equiv1$ iff $2q_\\p(2)\\equiv1\\pmod\\p$, with $q_\\p(4)=2q_\\p(2)+\\p\\,q_\\p(2)^{2}$ exactly; Eisenstein's $2q_\\p(2)\\equiv-H_{(\\p-1)/2}\\pmod\\p$ ($H_m=\\sum_{j\\le m}1/j$) makes it $H_{(\\p-1)/2}\\equiv-1$, and $(\\p+2)^{\\p-1}\\equiv1\\pmod{\\p^{2}}$ identifies it with OEIS A355959 \\cite{oeisA355959}.",
+     "tag": "T",
+     "source": "Rem.~\\ref{rem:wieferich}; \\src{pi.S3}; \\lean{Epi.piWieferich\\_iff, Epi.eisenstein, Epi.piWieferich\\_iff\\_harmonic, Epi.piWieferich\\_iff\\_oeis}",
+     "key": "p13067"
     }
    ]
   },
@@ -483,7 +490,7 @@
    "rows": [
     {
      "label": "V1",
-     "predicate": "The package \\texttt{finite-ring-space/src/13-epi}: the five blocks \\src{validate\\_e} ($12$ families, $82$ micro-checks), \\src{validate\\_pi} ($10$, $94$), \\src{validate\\_pi2} ($10$, $551$), \\src{validate\\_towers} ($6$, $72$), \\src{kurepa\\_wall} ($1$ family over $22{,}043$ primes), $39$ families and $802$ micro-checks, each family naming the rows it witnesses; the notebook \\texttt{13-epi-main.ipynb} executes them in the browser and the driver \\texttt{run\\_all.py} writes \\texttt{results.json}.",
+     "predicate": "The package \\texttt{finite-ring-space/src/13-epi}: the five blocks \\src{validate\\_e} ($12$ families, $82$ micro-checks), \\src{validate\\_pi} ($11$, $98$), \\src{validate\\_pi2} ($10$, $551$), \\src{validate\\_towers} ($6$, $72$), \\src{kurepa\\_wall} ($1$ family over $22{,}043$ primes), $40$ families and $806$ micro-checks, each family naming the rows it witnesses; the notebook \\texttt{13-epi-main.ipynb} executes them in the browser and the driver \\texttt{run\\_all.py} writes \\texttt{results.json}.",
      "tag": "T",
      "source": "\\S\\ref{app:verif}; \\src{run\\_all}",
      "key": "p13058"
@@ -497,14 +504,14 @@
     },
     {
      "label": "V3",
-     "predicate": "Provenance: the four Python scripts and the C pass are the paper's scripts as written, wrapped to report to one registry; the recorded memorandum outputs \\texttt{results\\_*.txt} remain in the package as the source record.",
+     "predicate": "Provenance: the four Python scripts and the C pass are the paper's scripts as written, wrapped to report to one registry (the two $\\pi$-Wieferich search programs \\src{pi\\_wieferich}, \\src{pi\\_wieferich128} and their record \\texttt{results\\_wieferich.txt} are added with G10); the recorded memorandum outputs \\texttt{results\\_*.txt} remain in the package as the source record.",
      "tag": "T",
      "source": "\\S\\ref{app:verif}",
      "key": "p13060"
     },
     {
      "label": "V4",
-     "predicate": "Lean, two libraries: \\texttt{lean/FrcLedger/Epi.lean} (Mathlib; classical, tier~2) proves C3, E2, F1--F4, F7, F8, G1--G3, G5, G9, H3, H5 for every shell (G3 given A3); \\texttt{lean/FrcCore} (no Mathlib, \\emph{no axioms}) proves B2, F3, F7, H2, I4, J1, J2 for every shell and decides B3, F2, F4, F6, G1, G5, G8 on $\\mathbb{F}_{13}$ and the wall shells, kernel-checked on every push.",
+     "predicate": "Lean, two libraries: \\texttt{lean/FrcLedger/Epi.lean} (Mathlib; classical, tier~2) proves C3, E2, F1--F4, F7, F8, G1--G5, G9, G10, H3, H5 for every shell (G3 and G4 given A3); \\texttt{lean/FrcCore} (no Mathlib, \\emph{no axioms}) proves B2, F3, F7, H2, I4, J1, J2 for every shell and decides B3, F2, F4, F6, G1, G5, G8 on $\\mathbb{F}_{13}$ and the wall shells, kernel-checked on every push.",
      "tag": "T",
      "source": "\\lean{Epi, FRC.Epi.dr\\_antiperiodic}",
      "key": "p13065"
@@ -524,7 +531,7 @@
     },
     {
      "label": "Y2",
-     "predicate": "The wall of $\\pi$ beyond the verified range: infinitude of the $\\pi$-Wieferich set $4^{\\p-1}\\equiv1+\\p\\pmod{\\p^{2}}$ --- exactly $\\{5,45827\\}$ below $2^{32}$ ($203{,}280{,}221$ primes; $45827\\equiv3\\pmod4$, so $\\p=5$ is the only Subject shell in it); a prescribed-value Fermat-quotient set of the Wieferich family, decided by no shell, by no finite search and by no relation of this paper. The third-order Bernoulli law of G7 is closed by A8.",
+     "predicate": "The wall of $\\pi$ beyond the verified range: infinitude of the $\\pi$-Wieferich set $4^{\\p-1}\\equiv1+\\p\\pmod{\\p^{2}}$ --- OEIS A355959, $(\\p+2)^{\\p-1}\\equiv1\\pmod{\\p^{2}}$ (G10), exactly $\\{5,45827\\}$ below $1.08\\times10^{11}$ \\cite{oeisA355959}, re-verified here to $2^{35}$ (\\src{pi\\_wieferich128}; $45827\\equiv3\\pmod4$, so $\\p=5$ is the only Subject shell in it); a prescribed-value Fermat-quotient set of the Wieferich family, decided by no shell, by no finite search and by no relation of this paper. The third-order Bernoulli law of G7 is closed by A8.",
      "tag": "O",
      "source": "Thm.~\\ref{thm:secondorder}; \\src{pi.S2}",
      "key": "p13062"
@@ -627,7 +634,7 @@
    {
     "name": "FRC.Epi.cayley_values",
     "module": "FrcLedger/Epi",
-    "line": 508,
+    "line": 510,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -640,7 +647,7 @@
    {
     "name": "FRC.Epi.cayley_mul",
     "module": "FrcLedger/Epi",
-    "line": 521,
+    "line": 523,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -655,7 +662,7 @@
    {
     "name": "FRC.Epi.wallis_enclosure",
     "module": "FrcLedger/Epi",
-    "line": 735,
+    "line": 737,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -668,7 +675,7 @@
    {
     "name": "FRC.Epi.wallis_width",
     "module": "FrcLedger/Epi",
-    "line": 643,
+    "line": 645,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -681,7 +688,7 @@
    {
     "name": "FRC.Epi.wallisV_strictMono",
     "module": "FrcLedger/Epi",
-    "line": 666,
+    "line": 668,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -694,7 +701,7 @@
    {
     "name": "FRC.Epi.wallisW_strictAnti",
     "module": "FrcLedger/Epi",
-    "line": 689,
+    "line": 691,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -709,7 +716,7 @@
    {
     "name": "FRC.Epi.wilson_reflection_zmod",
     "module": "FrcLedger/Epi",
-    "line": 229,
+    "line": 231,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -724,7 +731,7 @@
    {
     "name": "FRC.Epi.derangements_wall_zmod",
     "module": "FrcLedger/Epi",
-    "line": 235,
+    "line": 237,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -737,7 +744,7 @@
    {
     "name": "FRC.Epi.terminal_residue",
     "module": "FrcLedger/Epi",
-    "line": 240,
+    "line": 242,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -761,7 +768,7 @@
    {
     "name": "FRC.Epi.derangements_antiperiodic_zmod",
     "module": "FrcLedger/Epi",
-    "line": 249,
+    "line": 251,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -794,7 +801,7 @@
    {
     "name": "FRC.Epi.series_duals_zmod",
     "module": "FrcLedger/Epi",
-    "line": 256,
+    "line": 258,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -838,7 +845,7 @@
    {
     "name": "FRC.Epi.tower_e_exact_zmod",
     "module": "FrcLedger/Epi",
-    "line": 263,
+    "line": 265,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -862,7 +869,7 @@
    {
     "name": "FRC.Epi.tail_identity_zmod",
     "module": "FrcLedger/Epi",
-    "line": 269,
+    "line": 271,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -875,7 +882,7 @@
    {
     "name": "FRC.Epi.blind_iff_collision",
     "module": "FrcLedger/Epi",
-    "line": 277,
+    "line": 279,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -890,7 +897,7 @@
    {
     "name": "FRC.Epi.legibility_window",
     "module": "FrcLedger/Epi",
-    "line": 379,
+    "line": 381,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -914,7 +921,7 @@
    {
     "name": "FRC.Epi.half_wall_terminus",
     "module": "FrcLedger/Epi",
-    "line": 402,
+    "line": 404,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -929,7 +936,7 @@
    {
     "name": "FRC.Epi.quarter_wall_invariant",
     "module": "FrcLedger/Epi",
-    "line": 429,
+    "line": 431,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -940,11 +947,26 @@
     "doc": "13:G3 — the quarter-wall two-squares invariant: on `p = 4κ + 1 = a² + b²`, given Gauss's congruence `C(2κ,κ) ≡ 2a` (the import A3), `⟦w_κ⟧ = −(a²)⁻¹ = (b²)⁻¹`."
    }
   ],
+  "G4": [
+   {
+    "name": "FRC.Epi.half_wall_second_order",
+    "module": "FrcLedger/Epi",
+    "line": 923,
+    "axioms": [
+     "Classical.choice",
+     "Quot.sound",
+     "propext"
+    ],
+    "tier": 2,
+    "ok": true,
+    "doc": "13:G4 — the second order at the half wall: with `m = (p−1)/2` and Morley's congruence `C(p−1, m) ≡ (−1)^m 4^{p−1}` taken modulo `p²` (the import A3), `16^m ≡ (−2 + 2p(q_p(4) − 1))·m·C(2m,m)² (mod p²)`, i.e. `w_m ≡ −2 + 2p(q_p(4) − 1)`; the universal `−2` persists to `p²` exactly when `q_p(4) ≡ 1`, the π-Wieferich condition."
+   }
+  ],
   "G5": [
    {
     "name": "FRC.Epi.first_revival",
     "module": "FrcLedger/Epi",
-    "line": 472,
+    "line": 474,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -957,7 +979,7 @@
    {
     "name": "FRC.Epi.choose_two_mul_pow",
     "module": "FrcLedger/Epi",
-    "line": 465,
+    "line": 467,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -992,7 +1014,7 @@
    {
     "name": "FRC.Epi.tower_pi_exact",
     "module": "FrcLedger/Epi",
-    "line": 483,
+    "line": 485,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -1005,7 +1027,7 @@
    {
     "name": "FRC.Epi.choose_two_mul_pow",
     "module": "FrcLedger/Epi",
-    "line": 465,
+    "line": 467,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -1014,6 +1036,60 @@
     "tier": 2,
     "ok": true,
     "doc": "13:G5, 13:G9 — Lucas on the tower: `C(2p^r, p^r) ≡ 2 (mod p)` for every `r` (the first revival is `r = 1`)."
+   }
+  ],
+  "G10": [
+   {
+    "name": "FRC.Epi.piWieferich_iff",
+    "module": "FrcLedger/Epi",
+    "line": 903,
+    "axioms": [
+     "Classical.choice",
+     "Quot.sound",
+     "propext"
+    ],
+    "tier": 2,
+    "ok": true,
+    "doc": "13:G10, 13:Y2 — the π-Wieferich condition in its three forms: `4^{p−1} ≡ 1 + p (mod p²)` ⟺ `q_p(4) ≡ 1 (mod p)` ⟺ `2·q_p(2) ≡ 1 (mod p)` — a prescribed value of the Fermat quotient of `2`."
+   },
+   {
+    "name": "FRC.Epi.eisenstein",
+    "module": "FrcLedger/Epi",
+    "line": 1073,
+    "axioms": [
+     "Classical.choice",
+     "Quot.sound",
+     "propext"
+    ],
+    "tier": 2,
+    "ok": true,
+    "doc": "13:G10 — Eisenstein's congruence: `2 q_p(2) ≡ −H_{(p−1)/2} (mod p)`, `H_m = Σ_{j<m} (j+1)⁻¹`."
+   },
+   {
+    "name": "FRC.Epi.piWieferich_iff_harmonic",
+    "module": "FrcLedger/Epi",
+    "line": 1096,
+    "axioms": [
+     "Classical.choice",
+     "Quot.sound",
+     "propext"
+    ],
+    "tier": 2,
+    "ok": true,
+    "doc": "13:G10, 13:Y2 — the π-Wieferich condition in harmonic form: `4^{p−1} ≡ 1 + p (mod p²)` exactly when `H_{(p−1)/2} = Σ_{j=1}^{(p−1)/2} 1/j ≡ −1 (mod p)`."
+   },
+   {
+    "name": "FRC.Epi.piWieferich_iff_oeis",
+    "module": "FrcLedger/Epi",
+    "line": 1105,
+    "axioms": [
+     "Classical.choice",
+     "Quot.sound",
+     "propext"
+    ],
+    "tier": 2,
+    "ok": true,
+    "doc": "13:G10, 13:Y2 — the π-Wieferich set is OEIS A355959: `(p + 2)^{p−1} ≡ 1 (mod p²)` exactly when `2 q_p(2) ≡ 1 (mod p)`, i.e. exactly when `4^{p−1} ≡ 1 + p (mod p²)`."
    }
   ],
   "H2": [
@@ -1031,7 +1107,7 @@
    {
     "name": "FRC.Epi.calibration_ne_one",
     "module": "FrcLedger/Epi",
-    "line": 543,
+    "line": 545,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -1044,7 +1120,7 @@
    {
     "name": "FRC.Epi.exp_I_ne_one",
     "module": "FrcLedger/Epi",
-    "line": 552,
+    "line": 554,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -1059,7 +1135,7 @@
    {
     "name": "FRC.Epi.index_condition_shell",
     "module": "FrcLedger/Epi",
-    "line": 619,
+    "line": 621,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -1072,7 +1148,7 @@
    {
     "name": "FRC.Epi.index_condition",
     "module": "FrcLedger/Epi",
-    "line": 570,
+    "line": 572,
     "axioms": [
      "Classical.choice",
      "Quot.sound",

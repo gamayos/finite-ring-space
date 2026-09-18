@@ -180,6 +180,15 @@
   "kind": "EXACT"
  },
  {
+  "id": "pi.S3",
+  "rows": "13:G10, 13:Y2",
+  "script": "validate_pi",
+  "label": "the π-Wieferich condition in three forms on p ∈ {5, 13, 29, 37, 41, 53, 101, 45827}: q_p(4) = 2q_p(2) + p·q_p(2)² exactly, 4^{p−1} ≡ 1 + p (mod p²) iff q_p(4) ≡ 1 iff 2q_p(2) ≡ 1 (mod p); Eisenstein's 2q_p(2) ≡ −H_{(p−1)/2}; and the OEIS A355959 form (p+2)^{p−1} ≡ 1 (mod p²) iff 2q_p(2) ≡ 1, holding at 5 and 45827 only",
+  "ok": true,
+  "detail": "4 exact micro-checks",
+  "kind": "EXACT"
+ },
+ {
   "id": "pi.L1",
   "rows": "13:G5, 13:G8",
   "script": "validate_pi",

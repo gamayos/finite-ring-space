@@ -11,7 +11,9 @@ two-squares invariant given Gauss's congruence, Lucas on the tower `C(2p^r, p^r)
 the tower of `π` exact (G1–G3, G5, G9); the Cayley quarter-turn map and its composition law (C3); the Wallis
 pair: strict monotonicity, the width identity and the enclosure `v_n < π < w_n` (E2, with Mathlib's Wallis
 product); the impossibility of exact calibration of `e` from the irrationality of `π` (H3); the index condition
-of the null experiment (H5).  Classical (tier 2) on Mathlib's hierarchy; the finite content — the derangement
+of the null experiment (H5); the wall of `π` at second order: the π-Wieferich condition of Y2 in its three
+forms with the exact identity `q_p(4) = 2q_p(2) + p·q_p(2)²`, Eisenstein's congruence `2q_p(2) ≡ −H_{(p−1)/2}`,
+the identification with OEIS A355959 (G10), and G4's second-order clause from Morley's congruence.  Classical (tier 2) on Mathlib's hierarchy; the finite content — the derangement
 recurrence, antiperiodicity, the tower, orientation transport, the wrap-free window and the value rows on
 `𝔽₁₃` and the six wall shells — is proved with no axioms in `FrcCore/Epi.lean`.
 
@@ -758,5 +760,378 @@ theorem wallis_enclosure (n : ℕ) (hn : 1 ≤ n) :
         apply mul_le_mul_of_nonneg_right hle; positivity
 
 end wallisR
+
+
+
+/-! ## The Fermat quotient and the π-Wieferich condition (13:G10, 13:Y2, 13:G4)
+
+The wall of `π` at second order.  The condition `4^{p−1} ≡ 1 + p (mod p²)` of Y2 in its three forms, the exact
+identity `q_p(4) = 2q_p(2) + p·q_p(2)²`, Eisenstein's congruence `2q_p(2) ≡ −H_{(p−1)/2}`, G4's second-order
+clause from Morley's congruence, and the identification of the set with OEIS A355959, `(p+2)^{p−1} ≡ 1 (mod p²)`.
+The ring steps are proved once over any commutative ring with `p² = 0` (section `wieferich`); the sections
+`wieferichp` instantiate `ZMod (p²)` and `ZMod p`. -/
+
+/-- The Fermat quotient `q_p(a) = (a^{p−1} − 1)/p` as a natural number. -/
+def fq (a p : ℕ) : ℕ := (a ^ (p - 1) - 1) / p
+
+theorem fq_spec {a p : ℕ} (ha : 1 ≤ a) (hdvd : p ∣ a ^ (p - 1) - 1) :
+    a ^ (p - 1) = 1 + p * fq a p := by
+  unfold fq
+  have h1 : 1 ≤ a ^ (p - 1) := Nat.one_le_pow _ _ ha
+  rw [Nat.mul_div_cancel' hdvd]; omega
+
+/-- 13:G10 — `q_p(4) = 2 q_p(2) + p q_p(2)²` exactly, from `4^{p−1} = (2^{p−1})²`. -/
+theorem fq_four_eq {p : ℕ} (hp : 0 < p) (h2 : p ∣ 2 ^ (p - 1) - 1) :
+    fq 4 p = 2 * fq 2 p + p * fq 2 p ^ 2 ∧ p ∣ 4 ^ (p - 1) - 1 := by
+  have e2 := fq_spec (a := 2) (by norm_num) h2
+  have e4 : 4 ^ (p - 1) = (2 ^ (p - 1)) ^ 2 := by rw [← pow_mul, mul_comm, pow_mul]; norm_num
+  have key : 4 ^ (p - 1) - 1 = p * (2 * fq 2 p + p * fq 2 p ^ 2) := by
+    rw [e4, e2]; ring_nf; omega
+  refine ⟨?_, ⟨_, key⟩⟩
+  show (4 ^ (p - 1) - 1) / p = _
+  rw [key, Nat.mul_div_cancel_left _ hp]
+
+section wieferich
+
+variable {R : Type*} [CommRing R]
+
+/-- 13:G4 — the second order at the half wall from Morley's congruence, the ring step: with
+`x = 4^{p−1} = 1 + p q`, `c² = x²` (`C(p−1,m) ≡ (−1)^m 4^{p−1}`), `2m = p − 1` and `p² = 0`:
+`2·x = 2·(−2 + 2p(q − 1))·m·c²`. -/
+theorem second_order_generic (p q m c x : R) (hpp : p * p = 0) (hx : x = 1 + p * q) (hc2 : c ^ 2 = x ^ 2)
+    (h2m : 2 * m = -1 + p) : 2 * x = 2 * ((-2 + 2 * p * (q - 1)) * (m * c ^ 2)) := by
+  rw [hc2]
+  subst hx
+  linear_combination (-(-2 + 2 * p * (q - 1)) * (1 + p * q) ^ 2) * h2m + (-2 * p ^ 2 * q ^ 3 + 2 * p ^ 2 * q ^ 2 + 2 * p * q ^ 3 - 4 * p * q ^ 2 + 4 * p * q + 2 * q ^ 2 - 2 * q + 2) * hpp
+
+/-- `(1 + p u)^n = 1 + n p u` when `p² = 0`. -/
+theorem one_add_mul_pow (p u : R) (hpp : p * p = 0) : ∀ n : ℕ, (1 + p * u) ^ n = 1 + n * (p * u)
+  | 0 => by simp
+  | n + 1 => by
+    rw [pow_succ, one_add_mul_pow p u hpp n]
+    push_cast
+    linear_combination (n * u * u) * hpp
+
+/-- The OEIS step: `x (1 + n p i) − 1 = p (q − i)` for `x = 1 + p q`, `n = p − 1`, `p² = 0` (with `i = 2⁻¹` in use). -/
+theorem oeis_generic (p q i n : R) (hpp : p * p = 0) (hn : n = p - 1) (x : R) (hx : x = 1 + p * q) :
+    x * (1 + n * (p * i)) - 1 = p * (q - i) := by
+  subst hx hn
+  linear_combination (i * (1 + p * q) - q * i) * hpp
+
+theorem sum_range_two_mul {M : Type*} [AddCommMonoid M] (f : ℕ → M) :
+    ∀ m, ∑ k ∈ Finset.range (2 * m), f k = ∑ j ∈ Finset.range m, (f (2 * j) + f (2 * j + 1))
+  | 0 => rfl
+  | m + 1 => by
+    rw [Finset.sum_range_succ, ← sum_range_two_mul f m, show 2 * (m + 1) = 2 * m + 1 + 1 by ring,
+      Finset.sum_range_succ, Finset.sum_range_succ, add_assoc]
+
+end wieferich
+
+section wieferichK
+
+variable {K : Type*} [Field K]
+
+/-- `H_{p−1} = Σ_{k<p−1} (k+1)⁻¹ = 0` over a field with `p = 0` and `2 ≠ 0` (the terms pair off as `k ↔ p − k`). -/
+theorem harmonic_generic (p : ℕ) (hp0 : (p : K) = 0) (h1 : 1 ≤ p) (h2 : (2 : K) ≠ 0) :
+    ∑ k ∈ Finset.range (p - 1), ((k + 1 : ℕ) : K)⁻¹ = 0 := by
+  have hr := Finset.sum_range_reflect (fun k => ((k + 1 : ℕ) : K)⁻¹) (p - 1)
+  have hterm : ∀ k ∈ Finset.range (p - 1), ((p - 1 - 1 - k + 1 : ℕ) : K)⁻¹ = -((k + 1 : ℕ) : K)⁻¹ := by
+    intro k hk
+    have := Finset.mem_range.1 hk
+    rw [show p - 1 - 1 - k + 1 = p - 1 - k by omega, natCast_pred_sub p hp0 h1 k (by omega), inv_neg, Nat.cast_add,
+      Nat.cast_one]
+  rw [Finset.sum_congr rfl hterm, Finset.sum_neg_distrib] at hr
+  have : (2 : K) * ∑ k ∈ Finset.range (p - 1), ((k + 1 : ℕ) : K)⁻¹ = 0 := by linear_combination -hr
+  exact (mul_eq_zero.1 this).resolve_left h2
+
+/-- Eisenstein's congruence, the field step: from `a = Σ_{k<2m} (−1)^k (k+1)⁻¹` and `H_{2m} = 0`, `a = −H_m`
+(the alternating sum over `[1, 2m]` is `H_{2m} − H_m`). -/
+theorem eisenstein_generic (m : ℕ) (a : K) (h2 : (2 : K) ≠ 0)
+    (hH : ∑ k ∈ Finset.range (2 * m), ((k + 1 : ℕ) : K)⁻¹ = 0)
+    (hc : a = ∑ k ∈ Finset.range (2 * m), (-1) ^ k * ((k + 1 : ℕ) : K)⁻¹) :
+    a = -∑ j ∈ Finset.range m, ((j + 1 : ℕ) : K)⁻¹ := by
+  rw [sum_range_two_mul] at hc hH
+  have key : ∀ j ∈ Finset.range m,
+      ((-1) ^ (2 * j) * ((2 * j + 1 : ℕ) : K)⁻¹ + (-1) ^ (2 * j + 1) * ((2 * j + 1 + 1 : ℕ) : K)⁻¹) =
+      (((2 * j + 1 : ℕ) : K)⁻¹ + ((2 * j + 1 + 1 : ℕ) : K)⁻¹) - ((j + 1 : ℕ) : K)⁻¹ := by
+    intro j hj
+    have e : ((2 * j + 1 + 1 : ℕ) : K)⁻¹ = 2⁻¹ * ((j + 1 : ℕ) : K)⁻¹ := by
+      rw [show 2 * j + 1 + 1 = 2 * (j + 1) by ring, Nat.cast_mul, mul_inv, Nat.cast_ofNat]
+    rw [pow_mul, neg_one_sq, one_pow, one_mul, pow_succ, pow_mul, neg_one_sq, one_pow, one_mul, e]
+    have := mul_inv_cancel₀ h2
+    linear_combination (-((j + 1 : ℕ) : K)⁻¹) * this
+  rw [Finset.sum_congr rfl key, Finset.sum_sub_distrib, hH, zero_sub] at hc
+  exact hc
+
+end wieferichK
+
+
+/-! ### On the shell lifted to `p²`: the three forms, the half wall at second order, Eisenstein, OEIS -/
+section wieferichp
+
+variable (p : ℕ) [hp : Fact p.Prime]
+
+/-- Fermat: `p ∣ 2^{p−1} − 1` for every odd prime. -/
+theorem two_pow_pred_dvd (hp2 : p ≠ 2) : p ∣ 2 ^ (p - 1) - 1 := by
+  rw [← ZMod.natCast_eq_zero_iff, Nat.cast_sub (Nat.one_le_two_pow), Nat.cast_pow, Nat.cast_ofNat, Nat.cast_one]
+  rw [ZMod.pow_card_sub_one_eq_one (two_ne_zero_zmod p hp2), sub_self]
+
+omit hp in
+theorem p_sq_eq_zero : ((p : ZMod (p ^ 2)) * p) = 0 := by
+  rw [← Nat.cast_mul, ← pow_two, ZMod.natCast_self]
+
+theorem p_mul_natCast_eq_zero_iff (a : ℕ) : ((p : ZMod (p ^ 2)) * a) = 0 ↔ (a : ZMod p) = 0 := by
+  rw [← Nat.cast_mul, ZMod.natCast_eq_zero_iff, ZMod.natCast_eq_zero_iff, pow_two,
+    Nat.mul_dvd_mul_iff_left hp.out.pos]
+
+theorem p_mul_intCast_eq_zero_iff (a : ℤ) : ((p : ZMod (p ^ 2)) * a) = 0 ↔ (a : ZMod p) = 0 := by
+  have : ((p : ZMod (p ^ 2)) * a) = ((p * a : ℤ) : ZMod (p ^ 2)) := by push_cast; ring
+  rw [this, ZMod.intCast_zmod_eq_zero_iff_dvd, ZMod.intCast_zmod_eq_zero_iff_dvd, pow_two, Nat.cast_mul,
+    Int.mul_dvd_mul_iff_left (by exact_mod_cast hp.out.ne_zero)]
+
+/-- 13:G10 — `4^{p−1} = 1 + p·q_p(4)` in `ZMod (p²)`, and `q_p(4) = 2q_p(2) + p·q_p(2)²`. -/
+theorem four_pow_pred (hp2 : p ≠ 2) :
+    (4 : ZMod (p ^ 2)) ^ (p - 1) = 1 + p * fq 4 p ∧ fq 4 p = 2 * fq 2 p + p * fq 2 p ^ 2 := by
+  obtain ⟨e, h4⟩ := fq_four_eq hp.out.pos (two_pow_pred_dvd p hp2)
+  refine ⟨?_, e⟩
+  have := congrArg (Nat.cast : ℕ → ZMod (p ^ 2)) (fq_spec (a := 4) (by norm_num) h4)
+  push_cast at this
+  exact this
+
+/-- 13:G10, 13:Y2 — the π-Wieferich condition in its three forms: `4^{p−1} ≡ 1 + p (mod p²)` ⟺
+`q_p(4) ≡ 1 (mod p)` ⟺ `2·q_p(2) ≡ 1 (mod p)` — a prescribed value of the Fermat quotient of `2`. -/
+theorem piWieferich_iff (hp2 : p ≠ 2) :
+    ((4 : ZMod (p ^ 2)) ^ (p - 1) = 1 + p ↔ (fq 4 p : ZMod p) = 1) ∧
+    ((fq 4 p : ZMod p) = 1 ↔ (2 * fq 2 p : ZMod p) = 1) := by
+  obtain ⟨h4, e⟩ := four_pow_pred p hp2
+  constructor
+  · rw [h4]
+    have key : (1 : ZMod (p ^ 2)) + p * fq 4 p = 1 + p ↔ (p : ZMod (p ^ 2)) * (((fq 4 p : ℤ) - 1 : ℤ) : ZMod (p ^ 2)) = 0 := by
+      push_cast
+      constructor
+      · intro h; linear_combination h
+      · intro h; linear_combination h
+    rw [key, p_mul_intCast_eq_zero_iff]
+    push_cast
+    exact sub_eq_zero
+  · rw [e]; push_cast; rw [ZMod.natCast_self]; simp
+
+/-- 13:G4 — the second order at the half wall: with `m = (p−1)/2` and Morley's congruence
+`C(p−1, m) ≡ (−1)^m 4^{p−1}` taken modulo `p²` (the import A3), `16^m ≡ (−2 + 2p(q_p(4) − 1))·m·C(2m,m)²
+(mod p²)`, i.e. `w_m ≡ −2 + 2p(q_p(4) − 1)`; the universal `−2` persists to `p²` exactly when `q_p(4) ≡ 1`,
+the π-Wieferich condition. -/
+theorem half_wall_second_order (hp2 : p ≠ 2) (m : ℕ) (hm : p = 2 * m + 1)
+    (hM : ((centralBinom m : ℕ) : ZMod (p ^ 2)) = (-1) ^ m * 4 ^ (p - 1)) :
+    (2 : ZMod (p ^ 2)) * 16 ^ m =
+      2 * ((-2 + 2 * p * ((fq 4 p : ZMod (p ^ 2)) - 1)) * (m * ((centralBinom m : ℕ) : ZMod (p ^ 2)) ^ 2)) ∧
+    ((2 : ZMod (p ^ 2)) * 16 ^ m = 2 * (-2 * (m * ((centralBinom m : ℕ) : ZMod (p ^ 2)) ^ 2)) ↔
+      (fq 4 p : ZMod p) = 1) := by
+  obtain ⟨h4, _⟩ := four_pow_pred p hp2
+  have h16 : (16 : ZMod (p ^ 2)) ^ m = 4 ^ (p - 1) := by
+    rw [show p - 1 = 2 * m by omega, pow_mul]; norm_num
+  have hc2 : (((centralBinom m : ℕ) : ZMod (p ^ 2))) ^ 2 = ((4 : ZMod (p ^ 2)) ^ (p - 1)) ^ 2 := by
+    rw [hM, mul_pow, ← pow_mul, mul_comm m 2, pow_mul, neg_one_sq, one_pow, one_mul]
+  have h2m : (2 : ZMod (p ^ 2)) * m = -1 + p := by
+    have : ((2 * m + 1 : ℕ) : ZMod (p ^ 2)) = p := by rw [← hm]
+    push_cast at this
+    linear_combination this
+  have key := second_order_generic (p : ZMod (p ^ 2)) (fq 4 p) m _ _ (p_sq_eq_zero p) h4 hc2 h2m
+  rw [h16]
+  refine ⟨key, ?_⟩
+  rw [key]
+  have hm1 : 1 ≤ m := by have := hp.out.two_le; omega
+  have hcop4 : Nat.Coprime 4 p := by
+    rw [Nat.coprime_comm, hp.out.coprime_iff_not_dvd]
+    intro h
+    exact hp2 ((Nat.prime_dvd_prime_iff_eq hp.out Nat.prime_two).1 (hp.out.dvd_of_dvd_pow (show p ∣ 2 ^ 2 by norm_num; exact h)))
+  have hcopm : Nat.Coprime m p := by
+    rw [Nat.coprime_comm, hp.out.coprime_iff_not_dvd]
+    exact Nat.not_dvd_of_pos_of_lt hm1 (by omega)
+  have hcopC : Nat.Coprime (centralBinom m) p := by
+    rw [Nat.coprime_comm, hp.out.coprime_iff_not_dvd]
+    intro hdvd
+    have hfac : centralBinom m * m ! * m ! = (2 * m) ! := by
+      have := Nat.choose_mul_factorial_mul_factorial (show m ≤ 2 * m by omega)
+      rwa [show 2 * m - m = m by omega, ← centralBinom_eq_two_mul_choose] at this
+    have : p ∣ (2 * m) ! := hfac ▸ Dvd.dvd.mul_right (Dvd.dvd.mul_right hdvd _) _
+    have := (hp.out.dvd_factorial).1 this
+    omega
+  have hu4 : IsUnit ((4 : ℕ) : ZMod (p ^ 2)) := (ZMod.isUnit_iff_coprime 4 (p ^ 2)).2 (hcop4.pow_right 2)
+  have hum : IsUnit ((m : ℕ) : ZMod (p ^ 2)) := (ZMod.isUnit_iff_coprime m (p ^ 2)).2 (hcopm.pow_right 2)
+  have huC : IsUnit ((centralBinom m : ℕ) : ZMod (p ^ 2)) :=
+    (ZMod.isUnit_iff_coprime _ (p ^ 2)).2 (hcopC.pow_right 2)
+  have hunit : IsUnit (((4 : ℕ) : ZMod (p ^ 2)) * (m * ((centralBinom m : ℕ) : ZMod (p ^ 2)) ^ 2)) :=
+    hu4.mul (hum.mul (huC.pow 2))
+  have hiff := p_mul_intCast_eq_zero_iff p ((fq 4 p : ℤ) - 1)
+  push_cast at hiff
+  rw [sub_eq_zero] at hiff
+  constructor
+  · intro h
+    have h0 : ((p : ZMod (p ^ 2)) * ((fq 4 p : ZMod (p ^ 2)) - 1)) *
+        (((4 : ℕ) : ZMod (p ^ 2)) * (m * ((centralBinom m : ℕ) : ZMod (p ^ 2)) ^ 2)) = 0 := by
+      push_cast; linear_combination h
+    exact hiff.1 ((hunit.mul_left_eq_zero).1 h0)
+  · intro h
+    have h0 := hiff.2 h
+    linear_combination (4 * (m * ((centralBinom m : ℕ) : ZMod (p ^ 2)) ^ 2)) * h0
+
+/-- `C(p−1, k) ≡ (−1)^k (mod p)`. -/
+theorem choose_pred_zmod (k : ℕ) (hk : k ≤ p - 1) : ((choose (p - 1) k : ℕ) : ZMod p) = (-1) ^ k :=
+  choose_pred_eq_neg_one_pow (K := ZMod p) p (ZMod.natCast_self p) hp.out.one_le
+    (fun j hj0 hj => natCast_ne_zero_of_lt p j hj0 (by omega)) k hk
+
+/-- The lift: `a ≡ b (mod p)` gives `p·a = p·b` in `ZMod (p²)`. -/
+theorem p_mul_congr (a b : ℤ) (h : (a : ZMod p) = b) : (p : ZMod (p ^ 2)) * a = p * b := by
+  have := (p_mul_intCast_eq_zero_iff p (a - b)).2 (by push_cast; rw [h, sub_self])
+  push_cast at this; linear_combination this
+
+/-- `C(p, k+1)·(k+1) = p·(−1)^k` in `ZMod (p²)` for `k + 1 ≤ p − 1`. -/
+theorem choose_succ_mul_eq (k : ℕ) (hk : k + 1 ≤ p - 1) :
+    ((choose p (k + 1) : ℕ) : ZMod (p ^ 2)) * ((k + 1 : ℕ) : ZMod (p ^ 2)) = p * (-1) ^ k := by
+  have h := Nat.add_one_mul_choose_eq (p - 1) k
+  rw [Nat.sub_add_cancel hp.out.one_le] at h
+  have hc := choose_pred_zmod p k (by omega)
+  have hl := p_mul_congr p (choose (p - 1) k : ℕ) ((-1) ^ k) (by push_cast; exact hc)
+  push_cast at hl
+  have := congrArg (fun m : ℕ => (m : ZMod (p ^ 2))) h
+  push_cast at this ⊢
+  rw [← this, hl]
+
+theorem coprime_succ_sq (k : ℕ) (hk : k + 1 ≤ p - 1) : Nat.Coprime (k + 1) (p ^ 2) := by
+  apply Nat.Coprime.pow_right
+  rw [Nat.coprime_comm, hp.out.coprime_iff_not_dvd]
+  exact Nat.not_dvd_of_pos_of_lt (by omega) (by omega)
+
+/-- `C(p, k+1) = p·(−1)^k·(k+1)⁻¹` in `ZMod (p²)`. -/
+theorem choose_succ_eq (k : ℕ) (hk : k + 1 ≤ p - 1) :
+    ((choose p (k + 1) : ℕ) : ZMod (p ^ 2)) = p * (-1) ^ k * ((k + 1 : ℕ) : ZMod (p ^ 2))⁻¹ := by
+  have hu := ZMod.coe_mul_inv_eq_one (k + 1) (coprime_succ_sq p k hk)
+  have h := choose_succ_mul_eq p k hk
+  calc ((choose p (k + 1) : ℕ) : ZMod (p ^ 2))
+      = ((choose p (k + 1) : ℕ) : ZMod (p ^ 2)) * (((k + 1 : ℕ) : ZMod (p ^ 2)) * ((k + 1 : ℕ) : ZMod (p ^ 2))⁻¹) := by
+        rw [hu, mul_one]
+    _ = p * (-1) ^ k * ((k + 1 : ℕ) : ZMod (p ^ 2))⁻¹ := by rw [← mul_assoc, h]
+
+/-- `2^p − 2 = p · Σ_{k<p−1} (−1)^k (k+1)⁻¹` in `ZMod (p²)`. -/
+theorem two_pow_sub_two (hp2 : p ≠ 2) :
+    (2 : ZMod (p ^ 2)) * p * fq 2 p = p * ∑ k ∈ Finset.range (p - 1), (-1) ^ k * ((k + 1 : ℕ) : ZMod (p ^ 2))⁻¹ := by
+  have hsum := Nat.sum_range_choose p
+  have h1 : p + 1 = (p - 1) + 1 + 1 := by have := hp.out.one_le; omega
+  rw [h1, Finset.sum_range_succ, Finset.sum_range_succ', show p - 1 + 1 = p by have := hp.out.one_le; omega,
+    choose_self, choose_zero_right] at hsum
+  have hc := congrArg (fun m : ℕ => (m : ZMod (p ^ 2))) hsum
+  push_cast at hc
+  have hq := congrArg (fun m : ℕ => (m : ZMod (p ^ 2))) (fq_spec (a := 2) (by norm_num) (two_pow_pred_dvd p hp2))
+  push_cast at hq
+  have h2p : (2 : ZMod (p ^ 2)) ^ p = 2 * 2 ^ (p - 1) := by
+    have := pow_succ' (2 : ZMod (p ^ 2)) (p - 1)
+    rwa [Nat.sub_add_cancel hp.out.one_le] at this
+  rw [Finset.mul_sum]
+  have hterm : ∀ k ∈ Finset.range (p - 1), ((choose p (k + 1) : ℕ) : ZMod (p ^ 2)) =
+      (p : ZMod (p ^ 2)) * ((-1) ^ k * ((k + 1 : ℕ) : ZMod (p ^ 2))⁻¹) := by
+    intro k hk
+    have := Finset.mem_range.1 hk
+    rw [choose_succ_eq p k (by omega), mul_assoc]
+  rw [Finset.sum_congr rfl hterm] at hc
+  linear_combination -hc - 2 * hq - h2p
+
+/-- `p·x = 0` in `ZMod (p²)` exactly when `x` reduces to `0` in `ZMod p`. -/
+theorem p_mul_eq_zero_iff_cast (x : ZMod (p ^ 2)) :
+    (p : ZMod (p ^ 2)) * x = 0 ↔ ((x.cast : ZMod p) = 0) := by
+  conv_lhs => rw [← ZMod.natCast_zmod_val x]
+  rw [p_mul_natCast_eq_zero_iff, ZMod.natCast_val]
+
+theorem cast_inv_succ (k : ℕ) (hk : k + 1 ≤ p - 1) :
+    ((((k + 1 : ℕ) : ZMod (p ^ 2))⁻¹).cast : ZMod p) = ((k + 1 : ℕ) : ZMod p)⁻¹ := by
+  have hu := ZMod.coe_mul_inv_eq_one (k + 1) (coprime_succ_sq p k hk)
+  have hdvd : p ∣ p ^ 2 := dvd_pow_self p two_ne_zero
+  have := congrArg (ZMod.castHom hdvd (ZMod p)) hu
+  rw [map_mul, map_one, ZMod.castHom_apply, ZMod.castHom_apply, ZMod.cast_natCast hdvd] at this
+  exact eq_inv_of_mul_eq_one_right this
+
+/-- `H_{p−1} = Σ_{k<p−1} (k+1)⁻¹ = 0` in `ZMod p`. -/
+theorem harmonic_pred_eq_zero (hp2 : p ≠ 2) : ∑ k ∈ Finset.range (p - 1), ((k + 1 : ℕ) : ZMod p)⁻¹ = 0 :=
+  harmonic_generic p (ZMod.natCast_self p) hp.out.one_le (two_ne_zero_zmod p hp2)
+
+/-- `p·x = p·y` in `ZMod (p²)` exactly when `x` and `y` agree in `ZMod p`. -/
+theorem p_mul_eq_iff_cast (x y : ZMod (p ^ 2)) :
+    (p : ZMod (p ^ 2)) * x = (p : ZMod (p ^ 2)) * y ↔ (x.cast : ZMod p) = y.cast := by
+  have hdvd : p ∣ p ^ 2 := dvd_pow_self p two_ne_zero
+  have e : ((x - y).cast : ZMod p) = x.cast - y.cast := ZMod.cast_sub hdvd x y
+  constructor
+  · intro h
+    have h0 := (p_mul_eq_zero_iff_cast p (x - y)).1 (by rw [mul_sub, h, sub_self])
+    rw [e] at h0
+    exact sub_eq_zero.1 h0
+  · intro h
+    have h0 : ((x - y).cast : ZMod p) = 0 := by rw [e, h]; exact sub_self _
+    have := (p_mul_eq_zero_iff_cast p (x - y)).2 h0
+    rw [mul_sub, sub_eq_zero] at this
+    exact this
+
+/-- 13:G10 — Eisenstein's congruence: `2 q_p(2) ≡ −H_{(p−1)/2} (mod p)`, `H_m = Σ_{j<m} (j+1)⁻¹`. -/
+theorem eisenstein (m : ℕ) (hm : p = 2 * m + 1) :
+    (2 * fq 2 p : ZMod p) = -∑ j ∈ Finset.range m, ((j + 1 : ℕ) : ZMod p)⁻¹ := by
+  have hp2 : p ≠ 2 := by omega
+  have hdvd : p ∣ p ^ 2 := dvd_pow_self p two_ne_zero
+  have h := two_pow_sub_two p hp2
+  have h0 : (p : ZMod (p ^ 2)) * ((2 * fq 2 p : ℕ) : ZMod (p ^ 2)) =
+      p * ∑ k ∈ Finset.range (p - 1), (-1) ^ k * ((k + 1 : ℕ) : ZMod (p ^ 2))⁻¹ := by
+    rw [Nat.cast_mul, Nat.cast_ofNat]; linear_combination h
+  have hc := (p_mul_eq_iff_cast p ((2 * fq 2 p : ℕ) : ZMod (p ^ 2)) _).1 h0
+  rw [← ZMod.castHom_apply (h := hdvd), ← ZMod.castHom_apply (h := hdvd), map_natCast, map_sum] at hc
+  have hterm : ∀ k ∈ Finset.range (p - 1), ZMod.castHom hdvd (ZMod p) ((-1) ^ k * ((k + 1 : ℕ) : ZMod (p ^ 2))⁻¹) =
+      (-1) ^ k * ((k + 1 : ℕ) : ZMod p)⁻¹ := by
+    intro k hk
+    have := Finset.mem_range.1 hk
+    rw [map_mul, map_pow, map_neg, map_one, ZMod.castHom_apply, cast_inv_succ p k (by omega)]
+  rw [Finset.sum_congr rfl hterm] at hc
+  have hH := harmonic_pred_eq_zero p hp2
+  rw [show p - 1 = 2 * m by omega] at hc hH
+  have key := eisenstein_generic (K := ZMod p) m _ (two_ne_zero_zmod p hp2) hH hc
+  exact_mod_cast key
+
+/-- 13:G10, 13:Y2 — the π-Wieferich condition in harmonic form: `4^{p−1} ≡ 1 + p (mod p²)` exactly when
+`H_{(p−1)/2} = Σ_{j=1}^{(p−1)/2} 1/j ≡ −1 (mod p)`. -/
+theorem piWieferich_iff_harmonic (m : ℕ) (hm : p = 2 * m + 1) :
+    (4 : ZMod (p ^ 2)) ^ (p - 1) = 1 + p ↔ ∑ j ∈ Finset.range m, ((j + 1 : ℕ) : ZMod p)⁻¹ = -1 := by
+  have hp2 : p ≠ 2 := by omega
+  obtain ⟨h1, h2⟩ := piWieferich_iff p hp2
+  rw [h1, h2, eisenstein p m hm]
+  exact neg_eq_iff_eq_neg
+
+/-- 13:G10, 13:Y2 — the π-Wieferich set is OEIS A355959: `(p + 2)^{p−1} ≡ 1 (mod p²)` exactly when
+`2 q_p(2) ≡ 1 (mod p)`, i.e. exactly when `4^{p−1} ≡ 1 + p (mod p²)`. -/
+theorem piWieferich_iff_oeis (hp2 : p ≠ 2) :
+    ((p : ZMod (p ^ 2)) + 2) ^ (p - 1) = 1 ↔ (2 * fq 2 p : ZMod p) = 1 := by
+  have hcop : Nat.Coprime 2 (p ^ 2) := by
+    apply Nat.Coprime.pow_right
+    rw [Nat.coprime_comm, hp.out.coprime_iff_not_dvd]
+    intro h; exact hp2 ((Nat.prime_dvd_prime_iff_eq hp.out Nat.prime_two).1 h)
+  have h2i := ZMod.coe_mul_inv_eq_one 2 hcop
+  set i : ZMod (p ^ 2) := ((2 : ℕ) : ZMod (p ^ 2))⁻¹ with hi
+  have h2i' : (2 : ZMod (p ^ 2)) * i = 1 := by rw [hi]; exact_mod_cast h2i
+  have hu2 : IsUnit (2 : ZMod (p ^ 2)) := ⟨⟨2, i, h2i', by rw [mul_comm]; exact h2i'⟩, rfl⟩
+  have hq := congrArg (Nat.cast : ℕ → ZMod (p ^ 2)) (fq_spec (a := 2) (by norm_num) (two_pow_pred_dvd p hp2))
+  push_cast at hq
+  have hfac : ((p : ZMod (p ^ 2)) + 2) = 2 * (1 + p * i) := by linear_combination (-(p : ZMod (p ^ 2))) * h2i'
+  have hn : ((p - 1 : ℕ) : ZMod (p ^ 2)) = p - 1 := by rw [Nat.cast_sub hp.out.one_le, Nat.cast_one]
+  have key : ((p : ZMod (p ^ 2)) + 2) ^ (p - 1) - 1 = p * ((fq 2 p : ZMod (p ^ 2)) - i) := by
+    rw [hfac, mul_pow, one_add_mul_pow _ _ (p_sq_eq_zero p), hn]
+    exact oeis_generic (p : ZMod (p ^ 2)) (fq 2 p) i _ (p_sq_eq_zero p) rfl _ hq
+  have hiff := p_mul_intCast_eq_zero_iff p (2 * (fq 2 p : ℤ) - 1)
+  push_cast at hiff
+  rw [sub_eq_zero] at hiff
+  rw [← sub_eq_zero, key, ← hiff]
+  constructor
+  · intro h
+    have : (2 : ZMod (p ^ 2)) * ((p : ZMod (p ^ 2)) * ((fq 2 p : ZMod (p ^ 2)) - i)) = 0 := by rw [h, mul_zero]
+    linear_combination this + (p : ZMod (p ^ 2)) * h2i'
+  · intro h
+    have h' : (2 : ZMod (p ^ 2)) * ((p : ZMod (p ^ 2)) * ((fq 2 p : ZMod (p ^ 2)) - i)) = 0 := by
+      linear_combination h - (p : ZMod (p ^ 2)) * h2i'
+    exact (hu2.mul_right_eq_zero).1 h'
+
+end wieferichp
 
 end FRC.Epi
