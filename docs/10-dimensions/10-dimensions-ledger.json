@@ -2,7 +2,7 @@
  "paper": "10-dim",
  "title": "Dimensional Analysis in Finite Ring Continuum",
  "doi": "https://doi.org/10.20944/preprints202605.0668.v1",
- "generated": "17 September 2026",
+ "generated": "18 September 2026",
  "blocks": [
   {
    "letter": "A",
@@ -354,11 +354,11 @@
    ]
   },
   {
-   "letter": "O",
-   "title": "The open front",
+   "letter": "T",
+   "title": "Tasks",
    "rows": [
     {
-     "label": "O1",
+     "label": "T1",
      "predicate": "The electromagnetic domain: charge and the electromagnetic units are not constructed in the two-generator-plus-flag system; whether they enter as a further flag, a further generator, or a monomial of the existing ones is the paper's stated deferral.",
      "tag": "O",
      "source": "\\S\\ref{sec:discussion}",

@@ -36,5 +36,5 @@ laboratory Carrier Ω = 2 408 561 (S = 602 140).
 ## Predicate ledger
 
 Rows B1–B4, C1, C4, D4, E8 are definitions (C6 and E6 composite); A1–A6 imports; D5, D7, E1 realisations with
-falsifiers; E7 the Ω-hard Carrier register; V1–V4 the verification rows; O1 the open electromagnetic domain.
+falsifiers; E7 the Ω-hard Carrier register; V1–V4 the verification rows; T1 the open electromagnetic domain (a task, block T).
 Check → row: `dimcommon.LEDGER`.

@@ -2,7 +2,7 @@
  "paper": "6-four",
  "title": "Scale-Shift and Fractional Fourier Transform as Rotations over Finite Holographic Substrate",
  "doi": "https://doi.org/10.20944/preprints202606.0127.v1",
- "generated": "17 September 2026",
+ "generated": "18 September 2026",
  "blocks": [
   {
    "letter": "A",
@@ -376,11 +376,11 @@
    ]
   },
   {
-   "letter": "O",
-   "title": "The open front",
+   "letter": "Y",
+   "title": "Hypotheses",
    "rows": [
     {
-     "label": "O1",
+     "label": "Y1",
      "predicate": "Cardinal exclusivity: for every $s\\notin\\{0,\\kap,2\\kap,3\\kap\\}$ the operator \\eqref{eq:conj-expansion} is not monomial --- sweep-verified on the $112$ intermediate indices of E7, the proof obstructed by the possible vanishing of sparse six-term Laurent polynomials on subgroup cosets.",
      "tag": "O",
      "source": "Conj.~\\ref{conj:monomial}",
@@ -433,7 +433,7 @@
    {
     "name": "FRC.Shell.Frame.euler_identity",
     "module": "FrcCore/Frame",
-    "line": 297,
+    "line": 298,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -444,11 +444,11 @@
    {
     "name": "FRC.Shell.Frame.orientation_class",
     "module": "FrcCore/Frame",
-    "line": 269,
+    "line": 270,
     "axioms": [],
     "tier": 0,
     "ok": true,
-    "doc": "2:D5, 6:B3 — the orientation classes: for `g' = g^u`, the quarter-turn `−g'^κ` is `−g^κ` when `u ≡ 1 (mod 4)` and `−(−g^κ)` when `u ≡ 3 (mod 4)`."
+    "doc": "2:D5, 6:B3, 13:B2 — the orientation classes: for `g' = g^u`, the quarter-turn `−g'^κ` is `−g^κ` when `u ≡ 1 (mod 4)` and `−(−g^κ)` when `u ≡ 3 (mod 4)`."
    }
   ],
   "B5": [

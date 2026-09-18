@@ -2,7 +2,7 @@
 c_conjecture.py — block C: the conjecture of the conclusion, clause by clause (EXACT; C2–C4 CHART)
 =================================================================================================
 The conclusion conjectures that the finite substrate supports polynomial equation solving, limit-like
-approximation and ε-approximation of continuous symmetries (ledger row 1:O1).  Rows 1:G1–G4 decide it:
+approximation and ε-approximation of continuous symmetries (ledger row 1:Y1).  Rows 1:G1–G4 decide it:
 
   C1  (1:G1)  solving: f ∈ F_p[X] has a root in F_p iff gcd(f, X^p − X) ≠ 1, and deg gcd = the number of
               distinct roots — every monic polynomial of degree ≤ 3 over F_13 (2197) and F_17 (4913), by

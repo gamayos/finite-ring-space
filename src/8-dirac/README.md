@@ -40,5 +40,5 @@ booleans are made predicates by `worked_checks.py`.
 ## Predicate ledger
 
 Rows B1, C1, C3, D1, D4, E1, F1 are definitions; A1–A6 imports; B8, D13, F5 realisations with falsifiers; V1–V3 the
-verification rows; O1 the open classification of the admissible set. Check → row: see `dcommon.LEDGER`; every T row
+verification rows; T1 the open classification of the admissible set (a task, block T). Check → row: see `dcommon.LEDGER`; every T row
 of blocks B–F except the proof-only rows (C2, D3) names its witness.

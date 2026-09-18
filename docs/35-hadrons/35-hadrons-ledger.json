@@ -2,7 +2,7 @@
  "paper": "35-hadr",
  "title": "Ground-State Light Hadron Spectroscopy over Finite Substrate",
  "doi": "https://doi.org/10.20944/preprints202506.1507.v2",
- "generated": "17 September 2026",
+ "generated": "18 September 2026",
  "blocks": [
   {
    "letter": "A",
@@ -380,82 +380,82 @@
   },
   {
    "letter": "P",
-   "title": "Falsifiable predictions (formerly D1--D10, in the body's order)",
+   "title": "Falsifiable predictions",
    "rows": [
     {
      "label": "P1",
      "predicate": "Gell-Mann--Okubo exact at leading order; PDG $0.57\\%$, the bounded $\\chi_3^2$ second order. Falsifier: a violation beyond the second-order insertion.",
-     "tag": "E",
+     "tag": "T|R",
      "source": "C2; \\src{had.\\allowbreak su3f\\_\\allowbreak relations}",
      "key": "p35051"
     },
     {
      "label": "P2",
      "predicate": "Decuplet equal spacing exact; PDG $9.2\\%$ spread, $\\beta\\simeq146.8$ MeV, the same second order. Falsifier: a non-equal spacing beyond it.",
-     "tag": "E",
+     "tag": "T|R",
      "source": "C3; \\src{had.\\allowbreak su3f\\_\\allowbreak relations}",
      "key": "p35052"
     },
     {
      "label": "P3",
      "predicate": "The hyperfine pattern $g_{\\mathrm{spin}}=\\half S(S+1)-\\tfrac98$, octet $-\\tfrac34$, decuplet $+\\tfrac34$, separation $\\tfrac32A_{\\mathrm{light}}$ with $A_{\\mathrm{light}}\\simeq195$ MeV. Falsifier: a spin splitting outside this pattern.",
-     "tag": "E",
+     "tag": "T|R",
      "source": "C5; \\src{had.\\allowbreak hyperfine\\_\\allowbreak charsum}",
      "key": "p35053"
     },
     {
      "label": "P4",
      "predicate": "Proton effective stability: the proton is the minimal colour-neutral wrap, with no allowed strong or electromagnetic channel toward a smaller residue; the single neutron transition is one flavour flip, the $\\beta$ channel \\cite{akhtman2026fields}. Falsifier: an observed proton decay or a strong/electromagnetic baryon-number-violating process.",
-     "tag": "E",
+     "tag": "T|R",
      "source": "B1, A5, B5; \\src{had.\\allowbreak carrier\\_\\allowbreak residue}",
      "key": "p35054"
     },
     {
      "label": "P5",
      "predicate": "No exotic light multiplets beyond the $\\mathbf 8$ and $\\mathbf{10}$ at leading wrap order. Falsifier: a confirmed light baryon outside the $\\mathbf 8$ and $\\mathbf{10}$ at the wrap scale.",
-     "tag": "E",
+     "tag": "T|R",
      "source": "C1",
      "key": "p35055"
     },
     {
      "label": "P6",
      "predicate": "Coleman--Glashow exact at one body; PDG $0.79\\%$, the residual the two-body electromagnetic term; the orderings $M_n>M_p$ and $M_\\Sigma>M_\\Lambda$ fixed. Falsifier: a Coleman--Glashow violation beyond the two-body term.",
-     "tag": "E",
+     "tag": "T|R",
      "source": "C7, C8, C9; \\src{had.\\allowbreak isospin\\_\\allowbreak cottingham}",
      "key": "p35056"
     },
     {
      "label": "P7",
      "predicate": "Heavy-quark symmetry $M_{\\Lambda_b}-M_{\\Lambda_c}=M_B-M_D$ ($2.4\\%$) and the $1/m_Q$ hyperfine ratio $(M_{\\Sigma_c^{*}}-M_{\\Sigma_c})/(M_{\\Sigma^{*}}-M_{\\Sigma})\\simeq m_s/m_c$. Falsifier: a heavy-baryon spectrum off the spin-decoupled, $1/m_Q$-scaled pattern.",
-     "tag": "E",
+     "tag": "T|R",
      "source": "C10; \\src{had.\\allowbreak heavy\\_\\allowbreak flavour}",
      "key": "p35057"
     },
     {
      "label": "P8",
      "predicate": "Second-order decuplet relation \\eqref{eq:thirddiff}, the vanishing third difference; PDG $6$ MeV ($0.36\\%$). Falsifier: a third difference beyond the few-MeV third-order scale.",
-     "tag": "E",
+     "tag": "T|R",
      "source": "C11; \\src{had.\\allowbreak su3f\\_\\allowbreak second\\_\\allowbreak order}",
      "key": "p35058"
     },
     {
      "label": "P9",
      "predicate": "Vector-meson nonet equal spacing $2M_{K^{*}}=M_\\rho+M_\\phi$ (PDG $0.42\\%$) and ideal mixing $M_\\omega\\simeq M_\\rho$; $\\rho,\\phi$ anchor, $K^{*},\\omega$ predicted $<1\\%$; the pseudoscalars are Goldstone bosons (a distinct chiral mechanism). Falsifier: a vector nonet off the linear-strangeness pattern.",
-     "tag": "E",
+     "tag": "T|R",
      "source": "Prop.~\\ref{prop:vector}; \\src{had.\\allowbreak vector\\_\\allowbreak nonet}",
      "key": "p35059"
     },
     {
      "label": "P10",
      "predicate": "Absolute octet$+$decuplet spectrum from the $\\Om$-hard scale $\\sig$ and three sub-horizon eigenvalues ($\\lambda_l$, $m_s/m_l$, $\\lambda_{\\mathrm{hf}}$, the two constituent ratios computed forward, C19): five parameter-free predictions within $1.1\\%$ (Table~\\ref{tab:absolute}). Falsifier: a predicted mass off beyond the traced second order.",
-     "tag": "E",
+     "tag": "T|R",
      "source": "\\S\\ref{sec:absolute}; \\src{had.\\allowbreak absolute\\_\\allowbreak masses}",
      "key": "p35060"
     },
     {
      "label": "P11",
      "predicate": "The $\\Lambda$--$N$ gap is the strange constituent excess, $M_\\Lambda-M_N=m_s-m_l=176.8$ MeV, hyperfine- and scale-free \\eqref{eq:lamn}. Falsifier: a gap inconsistent with the strange seed and the $\\Xi,\\Sigma$ splittings.",
-     "tag": "E",
+     "tag": "T|R",
      "source": "C16; \\src{had.\\allowbreak confinement\\_\\allowbreak completion}",
      "key": "p35061"
     }
@@ -490,7 +490,7 @@
   },
   {
    "letter": "Z",
-   "title": "Residue: $\\Om$-hard (formerly E5)",
+   "title": "Residue: $\\Om$-hard",
    "rows": [
     {
      "label": "Z1",
@@ -524,9 +524,9 @@
    "text": "Derived within this paper from the rows above it; where a family identifier is named, its content is verified by the validation package."
   },
   {
-   "tag": "E",
-   "name": "Prediction",
-   "text": "A falsifiable consequence of the rows above, stated with its falsifier and its present confrontation."
+   "tag": "T|R",
+   "name": "Theorem on a realisation",
+   "text": "A theorem consumed through a declared realisation: in block P the paper's predictions, each derived and witnessed, stated with its falsifier and its present confrontation; a refuted confrontation fires the realisation's falsifier, not the theorem."
   },
   {
    "tag": "Ω",

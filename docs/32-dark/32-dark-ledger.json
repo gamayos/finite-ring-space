@@ -2,7 +2,7 @@
  "paper": "32-dark",
  "title": "The Dark Sector over Finite Substrate",
  "doi": "https://doi.org/10.20944/preprints202606.1689.v1",
- "generated": "17 September 2026",
+ "generated": "18 September 2026",
  "blocks": [
   {
    "letter": "A",
@@ -93,14 +93,14 @@
     },
     {
      "label": "B5",
-     "predicate": "The intrinsic scatter is the spread $\\delta\\alpha$ of the source's collective phase, read through the chart angle; its identification with the disk's dynamical temperature is the conjecture O2. Falsifier: an intrinsic scatter that does not follow $\\tan\\alpha(x)$, i.e.\\ no rise into the deep regime at fixed $\\delta\\alpha$ (P2).",
+     "predicate": "The intrinsic scatter is the spread $\\delta\\alpha$ of the source's collective phase, read through the chart angle; its identification with the disk's dynamical temperature is the conjecture Y2. Falsifier: an intrinsic scatter that does not follow $\\tan\\alpha(x)$, i.e.\\ no rise into the deep regime at fixed $\\delta\\alpha$ (P2).",
      "tag": "R",
      "source": "\\S\\ref{sub:scatterderiv}",
      "key": "p32012"
     },
     {
      "label": "B6",
-     "predicate": "The lensing enhancement is the coherence-weighted amplitude, following the bulk-coherent components. Falsifier: a merger lensing peak tracking the shocked gas; the cluster-core residual off the amplitude-sum form over the core's composites is the exposure of the conjecture O1.",
+     "predicate": "The lensing enhancement is the coherence-weighted amplitude, following the bulk-coherent components. Falsifier: a merger lensing peak tracking the shocked gas; the cluster-core residual off the amplitude-sum form over the core's composites is the exposure of the conjecture Y1.",
      "tag": "R",
      "source": "\\S\\ref{sub:bullet}",
      "key": "p32013"
@@ -259,9 +259,9 @@
     },
     {
      "label": "X8",
-     "predicate": "\\textbf{The cluster-core residual} is referred to the coherent amplitude addition $\\sqrt{N_{\\mathrm{eff}}}$ over the core's separately virialised composites, the one law that also gives the merger selection (C10); the quantitative closure, with $N_{\\mathrm{eff}}$ uncomputed, is the conjecture O1.",
+     "predicate": "\\textbf{The cluster-core residual} is referred to the coherent amplitude addition $\\sqrt{N_{\\mathrm{eff}}}$ over the core's separately virialised composites, the one law that also gives the merger selection (C10); the quantitative closure, with $N_{\\mathrm{eff}}$ uncomputed, is the conjecture Y1.",
      "tag": "T",
-     "source": "Eq.~\\eqref{eq:cohsum}, \\S\\ref{sub:clustermag}, O1; \\src{dark.\\allowbreak cluster\\_\\allowbreak coherent}",
+     "source": "Eq.~\\eqref{eq:cohsum}, \\S\\ref{sub:clustermag}, Y1; \\src{dark.\\allowbreak cluster\\_\\allowbreak coherent}",
      "key": "p32034"
     },
     {
@@ -289,47 +289,47 @@
   },
   {
    "letter": "P",
-   "title": "Falsifiable predictions (formerly D1, D3, D4, D7, D8; the body's P-labels)",
+   "title": "Falsifiable predictions",
    "rows": [
     {
      "label": "P1",
      "predicate": "The redshift law $\\az(z)=cH(z)/2\\pi$: the knee shifts and the Tully--Fisher zero-point evolves, $v_{\\mathrm{flat}}\\propto E(z)^{1/4}$ ($+7\\%$, $+15\\%$, $+31\\%$ at $z=0.5,1,2$), parameter-free; shape resolvable, value in Z1. Falsifier: a high-$z$ knee away from $cH(z)/2\\pi$, or a non-evolving Tully--Fisher zero-point.",
-     "tag": "E",
+     "tag": "T|R",
      "source": "\\S\\ref{sec:predictions}; \\src{dark.\\allowbreak predictions}",
      "key": "p32038"
     },
     {
      "label": "P2",
      "predicate": "The scatter is the two-variable form $\\sigma=(2\\tan\\alpha/\\ln10)\\,\\delta\\alpha$, vanishing for cold high-$x$ systems and rising as $x^{-1/4}$; SPARC at fixed $\\az$: intrinsic $0.038$\\,dex overall, $0.04$ at the knee, $0.13$ at $x\\simeq0.02$, bounding $\\delta\\alpha\\lesssim3.5^{\\circ}$. Falsifier: a deep-regime intrinsic scatter that does not rise, or a measured collective spread the scatter does not track.",
-     "tag": "E",
+     "tag": "T|R",
      "source": "\\S\\ref{sub:scatterderiv}, \\S\\ref{sec:predictions}; \\src{dark.\\allowbreak rar\\_\\allowbreak scatter}, \\src{dark.\\allowbreak predictions}",
      "key": "p32039"
     },
     {
      "label": "P3",
      "predicate": "Wide binaries ($\\gtrsim10$\\,kAU) follow $\\gb/(1-e^{-\\sqrt{x}})$ with the global $\\az$ and the vector Galactic field $\\gext\\simeq1.8\\az$: a $10$--$30\\%$ velocity enhancement ($12$--$16\\%$ at $10$--$40$\\,kAU on the collinear estimate), the exponential knee distinct from Newtonian and rational forms. Falsifier: Newtonian wide-binary motion, or a knee of the wrong shape.",
-     "tag": "E",
+     "tag": "T|R",
      "source": "\\S\\ref{sec:predictions}; \\src{dark.\\allowbreak predictions}",
      "key": "p32040"
     },
     {
      "label": "P4",
      "predicate": "Pressure-supported systems (ellipticals, dSphs, UDGs) lie below the cold-disk relation by the coherence factor $\\sqrt{w}$, $w=1/(1+(\\sigma_v/v)^{2})$, by $0.05$--$0.15$\\,dex for $\\sigma_v/v=0.5$--$1$, correlating with $\\sigma_v/v$. Falsifier: pressure-supported systems on the cold-disk relation.",
-     "tag": "E",
+     "tag": "T|R",
      "source": "\\S\\ref{sec:predictions}; \\src{dark.\\allowbreak predictions}",
      "key": "p32041"
     },
     {
      "label": "P5",
-     "predicate": "Coherence-state cluster gas: the X-ray gas gravitates only when bulk-coherent, contributing in a relaxed cluster ($C_{ij}\\to1$) and dropping out of a merger ($C_{ij}\\to0$), the lensing displacement growing with the shock Mach number; the quantitative core residual of the same law is the conjecture O1. Falsifier: a merger lensing peak tracking the shocked gas, or no relaxed-versus-merging difference.",
-     "tag": "E",
+     "predicate": "Coherence-state cluster gas: the X-ray gas gravitates only when bulk-coherent, contributing in a relaxed cluster ($C_{ij}\\to1$) and dropping out of a merger ($C_{ij}\\to0$), the lensing displacement growing with the shock Mach number; the quantitative core residual of the same law is the conjecture Y1. Falsifier: a merger lensing peak tracking the shocked gas, or no relaxed-versus-merging difference.",
+     "tag": "T|R",
      "source": "Eq.~\\eqref{eq:cohsum}, \\S\\ref{sec:predictions}",
      "key": "p32042"
     },
     {
      "label": "P6",
      "predicate": "A global, isotropic scale and no dark substructure: the floor is the global drive rate, identical in every direction and environment once the external-field correction is made; no new dark-matter state and no dark subhaloes, so stream perturbations and the satellite abundance trace baryons alone. Falsifier: a directional or density dependence of $\\az$ beyond the external-field effect, or stream gaps and substructure lensing with no baryonic counterpart.",
-     "tag": "E",
+     "tag": "T|R",
      "source": "B1, B3; \\S\\ref{sec:predictions}",
      "key": "p32043"
     }
@@ -355,7 +355,7 @@
     },
     {
      "label": "V3",
-     "predicate": "What the run does not decide: the $\\Om$-hard running (Z1) enters no check; the cluster illustration of \\src{dark.\\allowbreak cluster\\_\\allowbreak coherent} evaluates the law $N_{\\mathrm{eff}}=(\\sum\\sqrt{g_i})^2/\\sum g_i$ on stated cases, not $N_{\\mathrm{eff}}$ from a core population (O1); the identification $\\delta\\alpha=\\arctan(\\sigma_v/v)$ (O2) is bounded, not tested, by the SPARC residuals; the named test of B8 (\\src{dark.rar\\_shape}) prefers the exponential form by $\\chi^2$ but the two forms differ by at most $0.02$\\,dex per bin against a bin scatter of $0.12$\\,dex, so the binned relation does not exclude the rational form; the transport run generating the registration rate (C4) is not in the suite.",
+     "predicate": "What the run does not decide: the $\\Om$-hard running (Z1) enters no check; the cluster illustration of \\src{dark.\\allowbreak cluster\\_\\allowbreak coherent} evaluates the law $N_{\\mathrm{eff}}=(\\sum\\sqrt{g_i})^2/\\sum g_i$ on stated cases, not $N_{\\mathrm{eff}}$ from a core population (Y1); the identification $\\delta\\alpha=\\arctan(\\sigma_v/v)$ (Y2) is bounded, not tested, by the SPARC residuals; the named test of B8 (\\src{dark.rar\\_shape}) prefers the exponential form by $\\chi^2$ but the two forms differ by at most $0.02$\\,dex per bin against a bin scatter of $0.12$\\,dex, so the binned relation does not exclude the rational form; the transport run generating the registration rate (C4) is not in the suite.",
      "tag": "T",
      "source": "App.~\\ref{app:methods}",
      "key": "p32046"
@@ -364,7 +364,7 @@
   },
   {
    "letter": "Z",
-   "title": "Residue: $\\Om$-hard (formerly D6)",
+   "title": "Residue: $\\Om$-hard",
    "rows": [
     {
      "label": "Z1",
@@ -376,18 +376,18 @@
    ]
   },
   {
-   "letter": "O",
-   "title": "Open: the conjectures stated ahead of derivation (formerly Y1--Y2)",
+   "letter": "Y",
+   "title": "Hypotheses: the conjectures stated ahead of derivation",
    "rows": [
     {
-     "label": "O1",
+     "label": "Y1",
      "predicate": "The cluster-core residual as the coherent amplitude addition \\eqref{eq:cohsum} over the core's separately virialised composites, $\\sqrt{N_{\\mathrm{eff}}}$ over the smooth boost, the law that also gives the Bullet selection. Exposure: the coherence criterion is not derived; the radial acceleration relation forces $N_{\\mathrm{eff}}=1$ within a galaxy (\\src{dark.\\allowbreak rar\\_\\allowbreak scatter}), while the relaxed-core residual requires $N_{\\mathrm{eff}}\\simeq4$, uncomputed (\\S\\ref{sub:clustermag}). Deciding computation: $N_{\\mathrm{eff}}$ from the core galaxy populations of \\citet{sanders2003,pointecouteau2005}.",
      "tag": "O",
      "source": "\\S\\ref{sub:clustermag}; \\src{dark.\\allowbreak cluster\\_\\allowbreak coherent}",
      "key": "p32048"
     },
     {
-     "label": "O2",
+     "label": "Y2",
      "predicate": "The collective phase spread as the disk's dynamical temperature, $\\delta\\alpha=\\arctan(\\sigma_v/v_{\\mathrm{circ}})$. Exposure: at $\\sigma_v/v\\simeq0.1$--$0.2$ the law gives two to four times the SPARC intrinsic scatter at every $x$; the knee bounds $\\delta\\alpha\\lesssim3.5^{\\circ}$; the within-galaxy scatter of $116$ disks shows no correlation with $1/V_{\\mathrm{flat}}$ ($\\rho=-0.02$). Test: the scatter against measured dispersions.",
      "tag": "O",
      "source": "\\S\\ref{sub:scatterderiv}; \\src{dark.\\allowbreak rar\\_\\allowbreak scatter}",
@@ -418,9 +418,9 @@
    "text": "Derived within this paper from the rows above it; where a family identifier is named, its content is verified by the validation package."
   },
   {
-   "tag": "E",
-   "name": "Prediction",
-   "text": "A falsifiable consequence of the rows above, stated with its falsifier and its present confrontation."
+   "tag": "T|R",
+   "name": "Theorem on a realisation",
+   "text": "A theorem consumed through a declared realisation: in block P the paper's predictions, each derived and witnessed, stated with its falsifier and its present confrontation; a refuted confrontation fires the realisation's falsifier, not the theorem."
   },
   {
    "tag": "Ω",

@@ -51,7 +51,7 @@ and raises on any failure. Committed executed, with outputs.
 | A3 | 6:B3 | B7, B8 | 6:C7 | D3 | 6:E3 |
 | A4 | 6:B5 (00:C2) | B9 | 6:C8 | D4 | 6:E5 |
 | A5 | 6:B6 | B10 | 6:C9 (00:C7, transform layer) | D5 | 6:E6 |
-| A6 | 6:B7 | C1 | 6:D1 | D6, D7 | 6:E7 (the sweep of the open row 6:O1) |
+| A6 | 6:B7 | C1 | 6:D1 | D6, D7 | 6:E7 (the sweep of the hypothesis 6:Y1) |
 | B1 | 6:C2 | C2, C3 | 6:D2 | E1 | 6:F2 |
 | B2, B3 | 6:C3 (00:C2) | C4, C5 | 6:D4 (00:C2) | E2, E3 | 6:F3 |
 | B4 | 6:C4 | | | E4 … E7 | 6:F4 … 6:F7 |

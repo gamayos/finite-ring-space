@@ -2,7 +2,7 @@
  "paper": "28-flav",
  "title": "Fermion Flavour Sector over Finite Substrate",
  "doi": "https://doi.org/10.20944/preprints202606.2124.v1",
- "generated": "17 September 2026",
+ "generated": "18 September 2026",
  "blocks": [
   {
    "letter": "A",
@@ -275,54 +275,54 @@
   },
   {
    "letter": "P",
-   "title": "Falsifiable predictions (formerly D1--D8)",
+   "title": "Falsifiable predictions",
    "rows": [
     {
      "label": "P1",
      "predicate": "Charged-lepton Koide $Q_\\ell=2/3$ exact on B5 (measured $0.666661\\pm0.000007$); $m_e=0.5106$ vs $0.5110$ MeV. Falsifier: a lepton-mass shift of $Q_\\ell$ off $2/3$ beyond the $\\tau$-mass tolerance.",
-     "tag": "E",
+     "tag": "T|R",
      "source": "C2, B5; \\src{flv.tier\\_b}",
      "key": "p28036"
     },
     {
      "label": "P2",
      "predicate": "Up-quark Koide $Q_u=5/6$ in framed arithmetic, $r_u^2=N(1-\\omega)=3$; continuum $0.849$ in the working scheme, $0.832$ with pole masses, band $0.83$--$0.89$. Falsifier: up/charm/top masses moving $Q_u$ outside the band in every standard scheme.",
-     "tag": "E",
+     "tag": "T|R",
      "source": "C4; \\src{flv.\\allowbreak revision\\_\\allowbreak checks}, \\src{flv.\\allowbreak quark\\_\\allowbreak amp}",
      "key": "p28037"
     },
     {
      "label": "P3",
      "predicate": "Cabibbo $V_{us}=|\\sqrt{m_d/m_s}-e^{i\\varphi}\\sqrt{m_u/m_c}|$: leading term $0.224^{+0.011}_{-0.004}$ vs $0.2243$ ($0.3\\%$), the up term $\\pm0.04$ with $\\varphi$ open. Falsifier: no $\\varphi$ satisfying the relation within the input band.",
-     "tag": "E",
+     "tag": "T|R",
      "source": "C6",
      "key": "p28038"
     },
     {
      "label": "P5",
      "predicate": "Normal neutrino ordering, from $Q_\\nu=2/3$, the two $\\Delta m^2$ and the boundary branch (C11b); the signed circulant solves both orderings. Falsifier: inverted ordering.",
-     "tag": "E",
+     "tag": "T|R",
      "source": "\\S\\ref{sec:neutrino}; \\src{flv.neutrino}",
      "key": "p28039"
     },
     {
      "label": "P6",
      "predicate": "Mass-sum floor $\\sum m_\\nu=58.7$ meV ($m_1{\\simeq}0$, $m_2{\\simeq}8.6$, $m_3{\\simeq}50$ meV; $58.8$ at NuFIT~6.0), the $m_1=0$ normal-ordering floor. Falsifier: a cosmological $\\sum m_\\nu<0.058$ eV.",
-     "tag": "E",
+     "tag": "T|R",
      "source": "\\S\\ref{sec:neutrino}; \\src{flv.neutrino}",
      "key": "p28040"
     },
     {
      "label": "P7",
      "predicate": "Effective Majorana mass $m_{\\beta\\beta}{\\simeq}1.5$--$3.7$ meV (NO, $m_1{\\simeq}0$, circulant phase). Falsifier: a $0\\nu\\beta\\beta$ signal at the inverted scale $15$--$50$ meV.",
-     "tag": "E",
+     "tag": "T|R",
      "source": "C11",
      "key": "p28041"
     },
     {
      "label": "P8",
      "predicate": "Leptonic CP locked to the octant by \\eqref{eq:tm2}: $\\delta_{\\mathrm{CP}}\\in(204^\\circ,310^\\circ)$ over the $3\\sigma$ $\\theta_{23}$ range, $\\pm124^\\circ$/$\\pm74^\\circ$ at the NuFIT~6.0 best fits, $\\sin\\delta_{\\mathrm{CP}}{<}0$, $J=1/(6\\sqrt3)$. Falsifier: CP-conserving $\\delta_{\\mathrm{CP}}$, $\\sin\\delta_{\\mathrm{CP}}{>}0$, or $(\\theta_{23},\\delta_{\\mathrm{CP}})$ off the relation.",
-     "tag": "E",
+     "tag": "T|R",
      "source": "C10; \\src{flv.pmns\\_cp}, \\src{flv.\\allowbreak tm2\\_\\allowbreak jointfit}",
      "key": "p28042"
     }
@@ -357,7 +357,7 @@
   },
   {
    "letter": "Z",
-   "title": "Residues: $\\Om$-hard (formerly D10--D13)",
+   "title": "Residues: $\\Om$-hard",
    "rows": [
     {
      "label": "Z1",
@@ -412,9 +412,9 @@
    "text": "Derived within this paper from the rows above it; where a family identifier is named, its content is verified by the validation package."
   },
   {
-   "tag": "E",
-   "name": "Prediction",
-   "text": "A falsifiable consequence of the rows above, stated with its falsifier and its present confrontation; marked exact, neutrino, or mixing in its row."
+   "tag": "T|R",
+   "name": "Theorem on a realisation",
+   "text": "A theorem consumed through a declared realisation: in block P the paper's predictions, each derived and witnessed, stated with its falsifier and its present confrontation; a refuted confrontation fires the realisation's falsifier, not the theorem."
   },
   {
    "tag": "Ω",

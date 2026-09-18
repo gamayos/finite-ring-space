@@ -1,5 +1,5 @@
 {
- "generated": "17 September 2026",
+ "generated": "18 September 2026",
  "rows": [
   {
    "id": "14:X3",
@@ -118,7 +118,7 @@
    "label": "X3",
    "key": "p21043",
    "tag": "T|R",
-   "predicate": "\\textbf{No horizons, no singularities, no information loss.} Collapse ends in a horizonless body, operationally black at $r_f$ (conditional on the fold-transition programme, C12), with an exact saturating interior profile --- and information conservation is a theorem citation, not an absence claim: interior data live in offset sectors the drive confines exactly \\citep{quantum}: the theory never forfeits predictivity.",
+   "predicate": "\\textbf{No horizons, no singularities, no information loss.} Collapse ends in a horizonless body, operationally black at $r_f$ (C12), with an exact saturating interior profile --- and information conservation is a theorem citation, not an absence claim: interior data live in offset sectors the drive confines exactly \\citep{quantum}: the theory never forfeits predictivity.",
    "source": "Prop.~\\ref{prop:operational},~\\ref{prop:exactprofile}",
    "master": [],
    "restated": [],
@@ -671,8 +671,8 @@
    "label": "X8",
    "key": "p32034",
    "tag": "T",
-   "predicate": "\\textbf{The cluster-core residual} is referred to the coherent amplitude addition $\\sqrt{N_{\\mathrm{eff}}}$ over the core's separately virialised composites, the one law that also gives the merger selection (C10); the quantitative closure, with $N_{\\mathrm{eff}}$ uncomputed, is the conjecture O1.",
-   "source": "Eq.~\\eqref{eq:cohsum}, \\S\\ref{sub:clustermag}, O1; \\src{dark.\\allowbreak cluster\\_\\allowbreak coherent}",
+   "predicate": "\\textbf{The cluster-core residual} is referred to the coherent amplitude addition $\\sqrt{N_{\\mathrm{eff}}}$ over the core's separately virialised composites, the one law that also gives the merger selection (C10); the quantitative closure, with $N_{\\mathrm{eff}}$ uncomputed, is the conjecture Y1.",
+   "source": "Eq.~\\eqref{eq:cohsum}, \\S\\ref{sub:clustermag}, Y1; \\src{dark.\\allowbreak cluster\\_\\allowbreak coherent}",
    "master": [],
    "restated": [],
    "witnessed": false,

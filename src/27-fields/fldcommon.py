@@ -17,7 +17,7 @@ EXACT — integer, F_p, F_{p²} or cyclotomic arithmetic throughout; MIXED — a
 continuum-comparison layer; APPROX — a continuum-comparison or dimensional-transmutation reading by construction.
 
 Master-ledger rows reached through the paper rows: 00:B5 (27:C11), 00:H1 (27:C4, C5, C6), 00:H2 (27:C6),
-00:H3 (27:Z1, O1), 00:I1 (27:C7), 00:I2 (27:C7), 00:I3 (27:Z1), 00:I4 (27:P9), 00:J1 (27:C8), 00:J4 (27:C10),
+00:H3 (27:Z1, Y1), 00:I1 (27:C7), 00:I2 (27:C7), 00:I3 (27:Z1), 00:I4 (27:P9), 00:J1 (27:C8), 00:J4 (27:C10),
 00:K2 (27:P8), 00:G1 (27:C2), 00:E1, 00:E3 (27:C2, C3), 00:D6 (27:B1–B4), 00:D2 (27:B5), 00:N1 (27:P1–P7),
 00:Z5 (27:C9), 00:Z8 (27:C2).
 """
@@ -42,7 +42,7 @@ LEDGER = {
     "fld.weak_current":      "27:C4, 27:C6, 27:X6",
     "fld.p4":                "27:C4, 27:X6",
     "fld.p10":               "27:C10",
-    "fld.v_scale":           "27:O1, 27:Z1",
+    "fld.v_scale":           "27:Y1, 27:Z1",
     "fld.qcd":               "27:C7, 27:X7",
     "fld.p5":                "27:C7",
     "fld.string_tension":    "27:C7, 27:X7",
@@ -71,7 +71,7 @@ for f in ("fld.correspondence", "fld.v_scale"):
 LABELS = {
     "fld.em1_prototype": "the finite U(1) prototype on Z/M (M = 12, 52, 156, 420 — the phase cycles of F₁₃, F₅₃, F₁₅₇, F₄₂₁): plaquette flux, Wilson action, covariant difference and global superselection gauge-invariant on 200 random configurations each; holonomy = enclosed flux (discrete Stokes) and additive; the Coulomb coefficient of the L = 128 lattice Green's function against 1/4π; like charges repel, gravity attracts (the sign dichotomy)",
     "fld.enumerate_maxwell": "uniqueness of the Maxwell operator: the range-1 adjacency-local gauge- and hypercubic-invariant quadratic space has exact F_p corank 2 on L = 4, 5, 6, splitting into one relevant O(k²) operator — the transverse projector |k|²δ − kk — and one irrelevant O(k⁴) artefact",
-    "fld.audit_finitism": "the finitism cross-check of the EM/O1 claims with no float: F(dλ) = 0 on all 64 basis gauge fields, the constant gauge inert, the L = 4 Coulomb Green's function as an exact rational (two unit charges at separation 1: 257/7680), the O1 admissible nullity 2 by exact integer rank, the Wilson action cyclotomic (1 − cos 2πF/M in Q(ζ_M))",
+    "fld.audit_finitism": "the finitism cross-check of the electromagnetic and admissible-space claims with no float: F(dλ) = 0 on all 64 basis gauge fields, the constant gauge inert, the L = 4 Coulomb Green's function as an exact rational (two unit charges at separation 1: 257/7680), the O1 admissible nullity 2 by exact integer rank, the Wilson action cyclotomic (1 − cos 2πF/M in Q(ζ_M))",
     "fld.correspondence": "the finite gauge correspondence, block by block: Z_M → U(1) a homomorphism with positive Wilson weight (A); SU(2,F₃) = 2T ⊂ SU(2,C), |2T| = |SL(2,F₃)| = 24, S ≥ 0 (B); the low-curvature Yang–Mills quadratic term with O(ε⁴) residue for SU(2), SU(3) (C); exact conjugation invariance (D); the window residue linear in H (E); σ > 0 from positivity on 2T (F); the character lift fixed on the shells (G); finite quadrature on the near-identity ball (H)",
     "fld.o2_numbers": "the bare coupling as phase-channel capacity: 1/α_bare = 4π; the EM/gravity hierarchy α/(m_p/m_P)² ≈ 10³⁶; the gap 4π → 137.04 recorded as the open part (factor ≈ 10.9)",
     "fld.p2": "the order-one coefficient of α_bare = 1/4π is 1 (channel unity); the capacity-bounded Gauss law 4πr² sin E = q gives the weak-field Coulomb coefficient 1/4π (r·A₀(r) at r = 20), the saturation core r* = (4π)^(−1/2), and a finite self-energy of the order q²/(8πr*)",
@@ -263,7 +263,7 @@ def _pred_p10(ns, out):
 def _pred_v_scale(ns, out):
     chk("the script's own verdict: no failed check", ns["fails"] == 0)
     v1 = 2 ** 1.5 * ns["mP"] * math.exp(-(2 * math.pi) ** 2)
-    chk(f"O1 numeral: 2^(3/2) m_P e^(−(2π)²) = {v1:.1f} GeV against v = 246.2 GeV, +{100 * (v1 / 246.21965 - 1):.2f} % (within 0.5 %)",
+    chk(f"Y1 numeral: 2^(3/2) m_P e^(−(2π)²) = {v1:.1f} GeV against v = 246.2 GeV, +{100 * (v1 / 246.21965 - 1):.2f} % (within 0.5 %)",
         abs(v1 / 246.21965 - 1) < 0.005)
     chk(f"m_P e^(−(2π)²) = {ns['vc']:.1f} GeV (87.4)", abs(ns["vc"] - 87.4) < 0.2)
 

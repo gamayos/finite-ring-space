@@ -2,7 +2,7 @@
  "paper": "21-grav",
  "title": "Gravitation as Phase Synchronisation",
  "doi": "https://doi.org/10.20944/preprints202606.1018.v2",
- "generated": "17 September 2026",
+ "generated": "18 September 2026",
  "blocks": [
   {
    "letter": "A",
@@ -204,14 +204,14 @@
     },
     {
      "label": "C12",
-     "predicate": "The exact saturating static profile and its slip core at $r_*=\\sqrt{Gm}$: horizonless, operationally black at $r_f=r_s/\\ln\\Omega$ --- the exact statement the cut form, $4\\pi r^{2}$ its [chart] reading; the $r_f$-anchored claims conditional on the fold-transition programme.",
+     "predicate": "The exact saturating static profile and its slip core at $r_*=\\sqrt{Gm}$: horizonless, operationally black at $r_f=r_s/\\ln\\Omega$ --- the exact statement the cut form, $4\\pi r^{2}$ its [chart] reading; the $r_f$-anchored claims stated in the substrate coordinate, $r_*<r_f<M$ for $M>(\\ln\\Omega/2)^{2}$ Planck masses (master E10).",
      "tag": "T",
-     "source": "Prop.~\\ref{prop:exactprofile},~\\ref{prop:operational}; \\src{grav.ppn}, \\src{grav.strongfield}",
+     "source": "Prop.~\\ref{prop:exactprofile},~\\ref{prop:operational}; \\src{grav.ppn}, \\src{grav.strongfield}, \\src{grav.fold\\_echo}",
      "key": "p21027"
     },
     {
      "label": "C13",
-     "predicate": "Area-law entropy $S=c_S'A_f/\\ell_P^2$: the $\\tfrac14$ the $Q_4$ gauge quotient counted on the shell ($S/A=\\kap/\\p $ exactly), the Carrier identity $S=(\\Omega-1)/4$ at the coherence-horizon shell the same quarter (a consistency, not a closure); the count identified with the coordinate area at the operational cut (fold-conditional, the identification a realisation with the capacity prediction as its falsifier); an exact merger area law $\\Delta A=2M_1M_2$ on the count face of the mass; a phase-slip (Hawking-scaling) emission suppressed below one quantum per Hubble time.",
+     "predicate": "Area-law entropy $S=c_S'A_f/\\ell_P^2$: the $\\tfrac14$ the $Q_4$ gauge quotient counted on the shell ($S/A=\\kap/\\p $ exactly), the Carrier identity $S=(\\Omega-1)/4$ at the coherence-horizon shell the same quarter (a consistency, not a closure); the count identified with the coordinate area at the operational cut (the identification a realisation with the capacity prediction as its falsifier); the $k_B\\ln W$ identification a realisation with its own falsifier (master D15); an exact merger area law $\\Delta A=2M_1M_2$ on the count face of the mass; a phase-slip (Hawking-scaling) emission suppressed below one quantum per Hubble time.",
      "tag": "T|R",
      "source": "Prop.~\\ref{prop:area}; \\src{grav.strongfield}, \\src{grav.orderone}",
      "key": "p21028"
@@ -246,7 +246,7 @@
     },
     {
      "label": "C18",
-     "predicate": "The primordial spectrum is structural: $n_s=1$ as the scale-dilation fixed point, the red tilt an asymptotic conjecture with committed protocol ($-\\pi^{2}/\\ln\\Omega$, the angle structural, the linearity condition named), the wrapped chart fixing the low large-angle power.",
+     "predicate": "The primordial spectrum: $n_s=1$ the scale-dilation fixed point; the tilt's committed form $-\\pi^{2}/\\ln\\Omega$ a realisation, $\\ln\\Omega$ the e-fold count of the frame's scale range, with the measured tilt its falsifier ($\\tfrac12\\ln\\Omega$ excluded at $8.4\\sigma$; the linearity condition undefined on a shell; master L8); the wrapped chart fixing the low large-angle power.",
      "tag": "T|R",
      "source": "Prop.~\\ref{prop:primordial}; \\src{grav.primordial}",
      "key": "p21033"
@@ -287,13 +287,6 @@
      "key": "p21038"
     },
     {
-     "label": "C24",
-     "predicate": "The fold-return floor identity at dev scale: the period-averaged exterior return through the fold, $\\overline{P_{\\mathrm{ext}}F\\,U_{\\mathrm C}^{\\,n}F^{-1}P_{\\mathrm{ext}}}$, equals the uniform floor operator exactly --- no stationary exterior structure above $1/N_I$; the no-prompt-echo criterion verified at toy scale.",
-     "tag": "T",
-     "source": "Rem.~\\ref{rem:exponential}; \\src{grav.fold\\_echo}",
-     "key": "p21039"
-    },
-    {
      "label": "C25",
      "predicate": "The PPN triangle closed by two routes: channel unity gives $\\gamma=1$ (C7), the instance cover forces $2\\gamma-\\beta=1$ (A9), jointly $\\beta=1$ --- Proposition~\\ref{prop:ppn} reached independently, the deviation $\\tfrac23(2\\gamma-\\beta-1)$ its falsifier.",
      "tag": "T",
@@ -322,7 +315,7 @@
     },
     {
      "label": "X3",
-     "predicate": "\\textbf{No horizons, no singularities, no information loss.} Collapse ends in a horizonless body, operationally black at $r_f$ (conditional on the fold-transition programme, C12), with an exact saturating interior profile --- and information conservation is a theorem citation, not an absence claim: interior data live in offset sectors the drive confines exactly \\citep{quantum}: the theory never forfeits predictivity.",
+     "predicate": "\\textbf{No horizons, no singularities, no information loss.} Collapse ends in a horizonless body, operationally black at $r_f$ (C12), with an exact saturating interior profile --- and information conservation is a theorem citation, not an absence claim: interior data live in offset sectors the drive confines exactly \\citep{quantum}: the theory never forfeits predictivity.",
      "tag": "T|R",
      "source": "Prop.~\\ref{prop:operational},~\\ref{prop:exactprofile}",
      "key": "p21043"
@@ -371,49 +364,56 @@
     {
      "label": "P1",
      "predicate": "Strong-field signatures at or outside the photon sphere: shadow $+4.6\\%$, ringdown $-4.4\\%$, ISCO frequency $-6.9\\%$ with accretion efficiency $5.48\\%$ (against $5.72\\%$): one origin, jointly falsifiable, conditional on Theorem~\\ref{thm:branch}'s inputs alone.",
-     "tag": "E",
+     "tag": "T|R",
      "source": "\\S\\ref{sub:strongdata}, Prop.~\\ref{prop:shadow},~\\ref{prop:isco}; \\src{grav.strongfield}",
      "key": "p21049"
     },
     {
      "label": "P7",
-     "predicate": "Floor-surface signatures: no prompt echoes (the round-trip delay to $r_f$ carrying $e^{2u(r_f)}=\\Omega$) and no evaporation bursts; conditional on the fold-transition programme (C12, C24; the no-prompt-echo criterion a theorem at dev scale); a reported echo detection at the stated precision falsifies the construction.",
-     "tag": "E",
-     "source": "\\S\\ref{sub:strongdata}, Rem.~\\ref{rem:exponential},~\\ref{rem:hawking}; \\src{grav.strongfield}, \\src{grav.fold\\_echo}",
+     "predicate": "Floor-surface signatures: no prompt echoes (the exact profile horizonless with no reflecting surface, C12; the round-trip delay to $r_f$ carrying $e^{2u(r_f)}=\\Omega$) and no evaporation bursts; a reported echo detection at the stated precision falsifies the construction.",
+     "tag": "T|R",
+     "source": "\\S\\ref{sub:strongdata}, Rem.~\\ref{rem:exponential},~\\ref{rem:hawking}; \\src{grav.strongfield}",
      "key": "p21050"
+    },
+    {
+     "label": "P8",
+     "predicate": "The primordial tilt $n_s-1=-\\pi^{2}/\\ln\\Omega=-0.0351$ [approx] at $\\ln\\Omega=281$, against Planck 2018 $-0.0351\\pm0.0042$; $0.25\\%$ per factor two in $S$; the neighbouring count $\\tfrac12\\ln\\Omega$ excluded at $8.4\\sigma$.",
+     "tag": "T|R",
+     "source": "Prop.~\\ref{prop:primordial}; \\src{grav.primordial}",
+     "key": "p21060"
     },
     {
      "label": "P2",
      "predicate": "Preferred-frame effects at $O(10^{-61})$: the drive's in-principle signature, far below current $10^{-5}$ bounds.",
-     "tag": "E",
+     "tag": "T|R",
      "source": "Prop.~\\ref{prop:dragging}",
      "key": "p21051"
     },
     {
      "label": "P3",
      "predicate": "The weak-acceleration floor $a_0=cH_0/2\\pi=1.04\\times10^{-10}\\,\\mathrm{m\\,s^{-2}}$ at the entailed $H_0=67.4$ \\cite{entropy}, against the fitted $1.20\\pm0.24\\times10^{-10}$: $13\\%$ low, $0.7\\sigma$ of the systematic-dominated error, no free parameter; the $2\\pi$ the dictionary's full cycle [\\textsf{D}], the one-cycle-per-period threshold the realisation [\\textsf{R}] with its discrete falsifier.",
-     "tag": "E",
+     "tag": "T|R",
      "source": "Prop.~\\ref{prop:afloor}; \\src{grav.rar}",
      "key": "p21052"
     },
     {
      "label": "P4",
      "predicate": "The radial acceleration relation, $g_{\\mathrm{obs}}=g_N/(1-e^{-\\sqrt{g_N/a_0}})$, no fitted function beyond the declared barrier identification (C19), the form the data selected across the four observed acceleration decades, its approach to Newton the discriminant ($0.05$ at $g_N\\approx5a_0$ against the simple rational interpolant); the deep limit gives the baryonic Tully--Fisher relation $v^4=GMa_0$.",
-     "tag": "E",
+     "tag": "T|R",
      "source": "Prop.~\\ref{prop:crossover}; \\src{grav.deepregime}",
      "key": "p21053"
     },
     {
      "label": "P5",
      "predicate": "The floor tracks the expansion, $a_0(z)\\propto H(z)$ (BTFR zero-point $\\propto E(z)^{1/4}$); high-$z$ rotation curves decisive.",
-     "tag": "E",
+     "tag": "T|R",
      "source": "\\S\\ref{sub:rar}, \\citep{dark}",
      "key": "p21054"
     },
     {
      "label": "P6",
      "predicate": "The 2PN periastron excess $\\delta\\dot\\omega/\\dot\\omega\\approx1.5\\times10^{-6}$ for PSR~J0737$-$3039, today degenerate with the mass refit; decisive either way once an independent observable fixes $M_{\\mathrm{tot}}$ at $10^{-6}$. Independent of the coherent-fraction falsifier of \\citep{quantum}; the ledger carries both.",
-     "tag": "E",
+     "tag": "T|R",
      "source": "\\S\\ref{sub:2pn}; \\src{grav.2pn}",
      "key": "p21055"
     }
@@ -482,9 +482,9 @@
    "text": "Derived within this paper from the rows above it; where a family identifier is named, its content is reproduced by the validation package."
   },
   {
-   "tag": "E",
-   "name": "Prediction",
-   "text": "A falsifiable consequence of the rows above, stated with its falsifier and its present confrontation; graded on the rows it consumes."
+   "tag": "T|R",
+   "name": "Theorem on a realisation",
+   "text": "A theorem consumed through a declared realisation: in block P the paper's predictions, each derived and witnessed, stated with its falsifier and its present confrontation; a refuted confrontation fires the realisation's falsifier, not the theorem."
   },
   {
    "tag": "Ω",
@@ -516,18 +516,22 @@
    "E4"
   ],
   "C12": [
-   "E5"
+   "E5",
+   "E10"
   ],
   "C13": [
    "E6",
    "E7",
-   "T6"
+   "D15"
   ],
   "C17": [
    "T5"
   ],
   "C18": [
-   "T2"
+   "L8"
+  ],
+  "P8": [
+   "L8"
   ],
   "C19": [
    "L1"
@@ -540,9 +544,6 @@
   ],
   "C23": [
    "T4"
-  ],
-  "C24": [
-   "T3"
   ],
   "P5": [
    "L7"

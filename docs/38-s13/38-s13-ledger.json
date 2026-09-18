@@ -2,7 +2,7 @@
  "paper": "38-s13",
  "title": "Exact Quantum Dynamics on (13,233)",
  "doi": "https://doi.org/10.20944/preprints202608.0390.v1",
- "generated": "17 September 2026",
+ "generated": "18 September 2026",
  "blocks": [
   {
    "letter": "A",
@@ -211,7 +211,7 @@
     },
     {
      "label": "C13",
-     "predicate": "The apsidal bound: a nested Subject registers $\\kap/\\dS=(\\p-1)/(\\Om-1)<1/(\\sqrt\\Om+1)$, the nesting condition $\\p^{2}<\\Om$ itself; on the physical Carrier no Subject registers an observed precession (Mercury's $8.0\\times10^{-8}$ per revolution sits $54$ orders above the bound $10^{-61}$ [approx]), and the pair reads per orbit of period $T$ the floor $TH_{0}/2\\pi$ (C10, C11; \\S\\ref{sec:reality}). Formerly the conjecture O4 (key p38024, retired); master E8.",
+     "predicate": "The apsidal bound: a nested Subject registers $\\kap/\\dS=(\\p-1)/(\\Om-1)<1/(\\sqrt\\Om+1)$, the nesting condition $\\p^{2}<\\Om$ itself; on the physical Carrier no Subject registers an observed precession (Mercury's $8.0\\times10^{-8}$ per revolution sits $54$ orders above the bound $10^{-61}$ [approx]), and the pair reads per orbit of period $T$ the floor $TH_{0}/2\\pi$ (C10, C11; \\S\\ref{sec:reality}). Master E8.",
      "tag": "T",
      "source": "master \\src{check\\_e8}",
      "key": "p38053"
@@ -356,7 +356,7 @@
     {
      "label": "P1",
      "predicate": "The registration floor $a_{0}=cH_{0}/2\\pi$, read from the pair's $\\kap$-free per-chronon leak rate (C11): parameter-free, tracking $H(z)$. Falsifier: a measured floor off $cH_{0}/2\\pi$ beyond the $H_{0}$ uncertainty, or one not tracking $H(z)$ (\\S\\ref{sec:predictions}, item 5; the dark sector's L1).",
-     "tag": "E",
+     "tag": "T|R",
      "source": "\\S\\ref{sec:predictions}",
      "key": "p38049"
     }
@@ -428,9 +428,9 @@
    "text": "The row states what a physical term denotes in the substrate: constitutive, not interpretive, defended by the totality of its registered consequences."
   },
   {
-   "tag": "E",
-   "name": "Prediction",
-   "text": "A falsifiable statement with its falsifier, stated as a consequence of the rows above it."
+   "tag": "T|R",
+   "name": "Theorem on a realisation",
+   "text": "A theorem consumed through a declared realisation: in block P the paper's predictions, each derived and witnessed, stated with its falsifier and its present confrontation; a refuted confrontation fires the realisation's falsifier, not the theorem."
   },
   {
    "tag": "O",

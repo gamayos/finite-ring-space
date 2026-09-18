@@ -3,7 +3,7 @@
 # =====================================================================
 #  v_scale.py -- the electroweak scale v as a dimensional-transmutation
 #  quantity: v = m_P exp(-c), the exponent c Omega-hard (27-fields,
-#  Rem. masscons; ledger rows Z1, O1).
+#  Rem. masscons; ledger rows Z1, Y1).
 #
 #  What this script establishes (2026-09-13 revision, task T22):
 #    1. v is not a clean power of Omega.
@@ -19,7 +19,7 @@
 #       with b_0 = 7 needs alpha_s(M_P) = 0.020, and one-loop running
 #       from alpha_s(M_Z) = 0.118 gives 0.019.
 #    4. The closed form m_P exp(-(2 pi)^2) = 87 GeV (9 % from M_W) is
-#       recorded as a conjecture (row O1), not claimed.
+#       recorded as a conjecture (row Y1), not claimed.
 # =====================================================================
 import math
 
@@ -75,21 +75,21 @@ print(f"   e^-45 with b_0=7 needs alpha_s(M_P) = {as_MP_needed:.4f};  one-loop f
 print(f"   ln(mP / 0.2 GeV) = {math.log(mP/0.2):.1f}")
 check("QCD exponent consistent (alpha_s(M_P) needed vs run within 10 %)", abs(as_MP_needed/as_MP_run-1) < 0.10)
 
-# 4. the (2 pi)^2 closed form: recorded as conjecture O1
-print("\n== 4. the closed form  mP * exp(-(2pi)^2)  (conjecture O1) ==")
+# 4. the (2 pi)^2 closed form: recorded as conjecture Y1
+print("\n== 4. the closed form  mP * exp(-(2pi)^2)  (conjecture Y1) ==")
 vc = mP*math.exp(-(2*pi)**2)
 print(f"   mP*exp(-(2pi)^2) = {vc:.2f} GeV;  ratio to M_W: {vc/MW:.3f} (+{100*(vc/MW-1):.0f} %);  ratio to v: {vc/v:.3f}")
 check("closed form within 10 % of M_W (the conjecture's stated exposure)", abs(vc/MW-1) < 0.10)
 
 print(f"""
-   CLASSIFICATION (Rem. masscons; rows Z1, O1):
+   CLASSIFICATION (Rem. masscons; rows Z1, Y1):
      * v = mP exp(-c) is the saturation scale of the non-split channel;
        the exponent c is the cross-scale beta-function, Omega-hard (Z1).
      * c is NOT the SU(2) gauge coefficient: b_2 = 19/6 gives {L_b2:.0e} GeV and
        the gauge coupling's own infrared scale is {mu_IR:.0e} GeV; the b = 2.00
        that lands on M_W is a fit.
      * the closed form mP exp(-(2pi)^2) = {vc:.0f} GeV is a conjecture without a
-       derivation of the exponent, recorded as O1 and not claimed.
+       derivation of the exponent, recorded as Y1 and not claimed.
 """)
 print("v_scale.py:", "PASS" if fails == 0 else f"FAIL ({fails})")
 raise SystemExit(1 if fails else 0)

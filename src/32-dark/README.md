@@ -41,8 +41,8 @@ the predictions, the cluster illustration), tagged [approx] in the paper, verdic
 | `dark.interpolation` | `interpolation.py` | CHART | the interpolation from the rotation angle: deep slope 1/2, Newtonian slope 1; the 0.051 discriminant against the simple rational form at x = 5.2; the two pinning checks of B8; the chart angle (32:B8, C6, X4) |
 | `dark.rar_shape` | `rar_shape.py` | CHART | the named test of B8 against the binned SPARC relation: the exponential form's free a₀ within 10 % of the RAR fit and below the rational form in χ²; the band 2 < x < 10 within the bin scatter; the floor 13 % below the fit [approx] (32:B8, C2, C6) |
 | `dark.deep_mond` | `deep_mond.py` | CHART | the two-chart Gauss law: a₀ = cH₀/2π = 1.042 × 10⁻¹⁰; RAR slope 0.514, BTFR slope 0.250, v_flat(5 × 10¹⁰ M⊙) = 162 km/s; the exponential-disk curve flattening [approx] (32:C2, C4, C5, X2, X3) |
-| `dark.rar_scatter` | `rar_scatter.py` | CHART | the SPARC residual test at fixed a₀: intrinsic 0.038 dex, 0.04 at the knee rising to 0.13 at x ≈ 0.02; δα ≲ 3.5°; ρ = −0.01 over 116 disks; the 0.14-dex amplitude-sum boost; ν(0.1) = 3.7 [approx, data] (32:C8, P2, X5, O1, O2) |
-| `dark.cluster_coherent` | `cluster_coherent.py` | CHART | the coherence-matrix amplitude law N_eff = (Σ√g)²/Σg: N for equal components, 2.67 for 4:1:1; the core boost √6 decaying to 1 by ~Mpc [illustrative] (32:C10, X7, X8, O1) |
+| `dark.rar_scatter` | `rar_scatter.py` | CHART | the SPARC residual test at fixed a₀: intrinsic 0.038 dex, 0.04 at the knee rising to 0.13 at x ≈ 0.02; δα ≲ 3.5°; ρ = −0.01 over 116 disks; the 0.14-dex amplitude-sum boost; ν(0.1) = 3.7 [approx, data] (32:C8, P2, X5, Y1, Y2) |
+| `dark.cluster_coherent` | `cluster_coherent.py` | CHART | the coherence-matrix amplitude law N_eff = (Σ√g)²/Σg: N for equal components, 2.67 for 4:1:1; the core boost √6 decaying to 1 by ~Mpc [illustrative] (32:C10, X7, X8, Y1) |
 | `dark.predictions` | `predictions.py` | CHART | the predictions computed: v_flat ∝ E(z)^(1/4) (+7, +15, +31 % at z = 0.5, 1, 2); the scatter law 0.27 dex at x = 0.01, σ_v/v = 0.1; the wide-binary velocity enhancement 12–16 % at 10–40 kAU with g_ext = 1.8a₀; the coherence offset −0.05 to −0.15 dex [approx] (32:P1–P4) |
 | `dark.make_figures` | `make_figures.py` | CHART | the paper's two figures regenerated into `figures/` (32:V2) |
 | — | `darkcommon.py` | — | the registry: the script runner, `PRED` (the predicates per family), `LEDGER` (family → rows), `LABELS`, `KIND`, `results.json` |
@@ -66,5 +66,5 @@ prints the acceleration ratio ν = 1.24–1.35 (the registry checks √ν − 1 
 
 Rows A1–A7 imports; B1–B8 realisations; C1–C11 derived (C4, C6, C11 composite T|R; C10 composite D|T); X1–X11 the
 explanation register; P1–P6 the predictions (P1, P2, P3, P4, P6 formerly D1, D4, D7, D8, D3; P5, the coherence-state
-cluster gas, from the body's list); V1–V3 the verification; Z1 the Ω-hard residue, formerly D6; O1–O2 the conjectures,
+cluster gas, from the body's list); V1–V3 the verification; Z1 the Ω-hard residue, formerly D6; Y1–Y2 the conjectures (block Y, tag O),
 formerly Y1–Y2. Family → rows: `darkcommon.LEDGER`.

@@ -21,7 +21,7 @@ continuum reading or a comparison with data (the interpolation, the RAR/BTFR, th
 the cluster law's illustration), tagged [approx] in the paper, verdict by stated tolerance.
 
 Master-ledger rows of the corpus sourced from this paper: 00:L1 (the floor a0 = cH0/2pi and the RAR's barrier identification,
-32:B8, C2, C4-C6), 00:L7 (the running floor a0(z), 32:P1), 00:Z7 (the running's normalisation, 32:O2 and the predictions),
+32:B8, C2, C4-C6), 00:L7 (the running floor a0(z), 32:P1), 00:Z7 (the running's normalisation, 32:Y2 and the predictions),
 00:D3 (distance is decoherence, 32:B1), 00:N1 (the exclusion predictions, 32:P6), 00:N2 (parameter-freeness, 32:C2).
 """
 import io, json, os, re, sys, time, traceback, math
@@ -42,8 +42,8 @@ LEDGER = {
     "dark.interpolation":       "32:B8, 32:C6, 32:X4",
     "dark.rar_shape":           "32:B8, 32:C2, 32:C6",
     "dark.deep_mond":           "32:C2, 32:C4, 32:C5, 32:X2, 32:X3",
-    "dark.rar_scatter":         "32:C8, 32:P2, 32:X5, 32:O1, 32:O2",
-    "dark.cluster_coherent":    "32:C10, 32:X7, 32:X8, 32:O1",
+    "dark.rar_scatter":         "32:C8, 32:P2, 32:X5, 32:Y1, 32:Y2",
+    "dark.cluster_coherent":    "32:C10, 32:X7, 32:X8, 32:Y1",
     "dark.predictions":         "32:P1, 32:P2, 32:P3, 32:P4",
     "dark.make_figures":        "32:V2",
 }
@@ -64,8 +64,8 @@ LABELS = {
     "dark.interpolation": "the interpolation from the rotation angle: deep slope 1/2 and Newtonian slope 1; the discriminant against the simple rational form, maximum 0.051 in g_obs/g_b at x = 5.2; the two pinning checks of B8 (a barrier κx^β gives deep slope 1 − β; the knee at 1/κ²); the chart angle sin²α = e^(−√x); the figure",
     "dark.rar_shape": "the named test of B8 against the binned radial acceleration relation (data/RAR.mrt, 0.2-dex bins, the bin scatter as uncertainty): the exponential form's free a₀ within 10 % of the RAR fit 1.20 × 10⁻¹⁰ and below the simple form in χ²; in the band 2 < x < 10 the departure from the exponential form is within the bin scatter in every bin and the rational form has the larger χ²; the floor cH₀/2π 5–25 % below the free fit (the paper's 13 %) [approx]",
     "dark.deep_mond": "the two-chart Gauss law: a₀ = cH₀/2π = 1.042 × 10⁻¹⁰ at H₀ = 67.4; the RAR deep-regime slope 1/2 and the BTFR slope 1/4 (v⁴ = GMa₀, 5 × 10¹⁰ M⊙ → 162 km/s); the exponential-disk rotation curve flattening at the registered speed; the figure [approx]",
-    "dark.rar_scatter": "the SPARC residual test at fixed a₀ = cH₀/2π: intrinsic scatter 0.038 dex overall, 0.04 at the knee, rising to ≈ 0.13 at x ≈ 0.02; the two-variable law bounding δα ≲ 3.5° (σ_v/v = 0.1–0.2 excluded, O2); no correlation of the within-galaxy scatter with 1/V_flat over 116 disks (ρ = −0.02); a gas–disk–bulge amplitude sum would boost the RAR by 0.14 dex (O1's within-galaxy constraint); ν(0.1) = 3.69 [approx, data]",
-    "dark.cluster_coherent": "the coherence-matrix amplitude law: N_eff = (Σ√g)²/Σg equals N for equal components and is suppressed by a dominant BCG (4:1:1 → 2.67); the core boost √N_eff with N_core = 6 (2.45) decaying to 1 by ~Mpc in the illustrative radial profile — the Bullet selection (C → 0) and the core addition (C → 1) in one law, the factor-two closure a conjecture (O1) [illustrative]",
+    "dark.rar_scatter": "the SPARC residual test at fixed a₀ = cH₀/2π: intrinsic scatter 0.038 dex overall, 0.04 at the knee, rising to ≈ 0.13 at x ≈ 0.02; the two-variable law bounding δα ≲ 3.5° (σ_v/v = 0.1–0.2 excluded, Y2); no correlation of the within-galaxy scatter with 1/V_flat over 116 disks (ρ = −0.02); a gas–disk–bulge amplitude sum would boost the RAR by 0.14 dex (Y1's within-galaxy constraint); ν(0.1) = 3.69 [approx, data]",
+    "dark.cluster_coherent": "the coherence-matrix amplitude law: N_eff = (Σ√g)²/Σg equals N for equal components and is suppressed by a dominant BCG (4:1:1 → 2.67); the core boost √N_eff with N_core = 6 (2.45) decaying to 1 by ~Mpc in the illustrative radial profile — the Bullet selection (C → 0) and the core addition (C → 1) in one law, the factor-two closure a conjecture (Y1) [illustrative]",
     "dark.predictions": "the falsifiable predictions computed: a₀(z) = cH(z)/2π with v_flat ∝ E(z)^(1/4) (+7 %, +15 %, +31 % at z = 0.5, 1, 2); the two-variable scatter law σ(x, σ_v/v) (0.27 dex at x = 0.01, σ_v/v = 0.1); the wide-binary velocity enhancement with the Galactic external field 1.8a₀ (√ν − 1 = 12–16 % at 10–40 kAU, the paper's 10–30 %); the pressure-supported coherence offset √w (−0.05 to −0.15 dex for σ_v/v = 0.5–1) [approx]",
     "dark.make_figures": "the paper's two figures regenerated (fig_rar.pdf: the RAR with the rational alternative and the exponential-disk rotation curve; fig_mechanism.pdf: the first-passage collapse and the chart angle), written to figures/",
 }

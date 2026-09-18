@@ -5,7 +5,7 @@
   "script": "flux_exact",
   "label": "the discrete Gauss law of the synchronisation flux in exact rationals on the 5³ box: a unit point source gives unit flux through both enclosing surfaces, a source-free noise field gives zero, their superposition gives one — Newton's law as the high-acceleration reading",
   "ok": true,
-  "detail": "4 checks, 0.1 s",
+  "detail": "4 checks, 0.3 s",
   "kind": "EXACT"
  },
  {
@@ -23,7 +23,7 @@
   "script": "firstpassage_finite",
   "label": "the finite-cycle first-passage law at 60 digits: the single-step identity f(e^(−s)) = e^(−arccosh e^s); the reduction arccosh(e^s) = √(2s)(1 + s/6 + …) with rel.err/s → 1/6, carrier-exact to ~10⁻⁶¹ at s ~ Ω^(−1/2); the wrap correction of the killed walk on Z_N against the infinite line, O(e^(−(N−a) arccosh e^s))",
   "ok": true,
-  "detail": "3 checks, 12.3 s",
+  "detail": "3 checks, 22.2 s",
   "kind": "EXACT"
  },
  {
@@ -32,7 +32,7 @@
   "script": "meridian_walk",
   "label": "the meridian killed walk: the exact rational discriminant 1 − z² of the first-passage quadratic; the simulated escape probability against e^(−a√(2s)) (seeded); the assembled resolved fraction 1 − e^(−√x) with deep slope 1/2 (the RAR fit form); the mechanism figure",
   "ok": true,
-  "detail": "4 checks, 4.1 s",
+  "detail": "4 checks, 7.8 s",
   "kind": "SIM"
  },
  {
@@ -41,7 +41,7 @@
   "script": "deep_regime",
   "label": "the noisy Kuramoto (Adler) link dφ = (T − sin φ)dt + √(2D) dW, seeded: the mean response is Newtonian at every noise level (deep slopes 1.03 at D = 0.3 and 1.11 at D = 0.6, the boost constant to rising) — the √ law is registration, not force modification; deep.json and the figure",
   "ok": true,
-  "detail": "4 checks, 3.4 s",
+  "detail": "4 checks, 6.4 s",
   "kind": "SIM"
  },
  {
@@ -50,7 +50,7 @@
   "script": "deep_regime_fp",
   "label": "the stationary Fokker–Planck solution of the same link: the small-tilt log-slope exactly 1 at D = 0.3 and 0.6 (within 2 × 10⁻³), the boost constant to rising; no √ regime in the mean force",
   "ok": true,
-  "detail": "3 checks, 1.3 s",
+  "detail": "3 checks, 2.2 s",
   "kind": "CHART"
  },
  {
@@ -59,7 +59,7 @@
   "script": "interpolation",
   "label": "the interpolation from the rotation angle: deep slope 1/2 and Newtonian slope 1; the discriminant against the simple rational form, maximum 0.051 in g_obs/g_b at x = 5.2; the two pinning checks of B8 (a barrier κx^β gives deep slope 1 − β; the knee at 1/κ²); the chart angle sin²α = e^(−√x); the figure",
   "ok": true,
-  "detail": "5 checks, 0.5 s",
+  "detail": "5 checks, 1.0 s",
   "kind": "CHART"
  },
  {
@@ -77,23 +77,23 @@
   "script": "deep_mond",
   "label": "the two-chart Gauss law: a₀ = cH₀/2π = 1.042 × 10⁻¹⁰ at H₀ = 67.4; the RAR deep-regime slope 1/2 and the BTFR slope 1/4 (v⁴ = GMa₀, 5 × 10¹⁰ M⊙ → 162 km/s); the exponential-disk rotation curve flattening at the registered speed; the figure [approx]",
   "ok": true,
-  "detail": "6 checks, 0.7 s",
+  "detail": "6 checks, 1.2 s",
   "kind": "CHART"
  },
  {
   "id": "dark.rar_scatter",
-  "rows": "32:C8, 32:P2, 32:X5, 32:O1, 32:O2",
+  "rows": "32:C8, 32:P2, 32:X5, 32:Y1, 32:Y2",
   "script": "rar_scatter",
-  "label": "the SPARC residual test at fixed a₀ = cH₀/2π: intrinsic scatter 0.038 dex overall, 0.04 at the knee, rising to ≈ 0.13 at x ≈ 0.02; the two-variable law bounding δα ≲ 3.5° (σ_v/v = 0.1–0.2 excluded, O2); no correlation of the within-galaxy scatter with 1/V_flat over 116 disks (ρ = −0.02); a gas–disk–bulge amplitude sum would boost the RAR by 0.14 dex (O1's within-galaxy constraint); ν(0.1) = 3.69 [approx, data]",
+  "label": "the SPARC residual test at fixed a₀ = cH₀/2π: intrinsic scatter 0.038 dex overall, 0.04 at the knee, rising to ≈ 0.13 at x ≈ 0.02; the two-variable law bounding δα ≲ 3.5° (σ_v/v = 0.1–0.2 excluded, Y2); no correlation of the within-galaxy scatter with 1/V_flat over 116 disks (ρ = −0.02); a gas–disk–bulge amplitude sum would boost the RAR by 0.14 dex (Y1's within-galaxy constraint); ν(0.1) = 3.69 [approx, data]",
   "ok": true,
-  "detail": "15 checks, 0.0 s",
+  "detail": "15 checks, 0.1 s",
   "kind": "CHART"
  },
  {
   "id": "dark.cluster_coherent",
-  "rows": "32:C10, 32:X7, 32:X8, 32:O1",
+  "rows": "32:C10, 32:X7, 32:X8, 32:Y1",
   "script": "cluster_coherent",
-  "label": "the coherence-matrix amplitude law: N_eff = (Σ√g)²/Σg equals N for equal components and is suppressed by a dominant BCG (4:1:1 → 2.67); the core boost √N_eff with N_core = 6 (2.45) decaying to 1 by ~Mpc in the illustrative radial profile — the Bullet selection (C → 0) and the core addition (C → 1) in one law, the factor-two closure a conjecture (O1) [illustrative]",
+  "label": "the coherence-matrix amplitude law: N_eff = (Σ√g)²/Σg equals N for equal components and is suppressed by a dominant BCG (4:1:1 → 2.67); the core boost √N_eff with N_core = 6 (2.45) decaying to 1 by ~Mpc in the illustrative radial profile — the Bullet selection (C → 0) and the core addition (C → 1) in one law, the factor-two closure a conjecture (Y1) [illustrative]",
   "ok": true,
   "detail": "4 checks, 0.0 s",
   "kind": "CHART"
@@ -113,7 +113,7 @@
   "script": "make_figures",
   "label": "the paper's two figures regenerated (fig_rar.pdf: the RAR with the rational alternative and the exponential-disk rotation curve; fig_mechanism.pdf: the first-passage collapse and the chart angle), written to figures/",
   "ok": true,
-  "detail": "2 checks, 4.3 s",
+  "detail": "2 checks, 7.6 s",
   "kind": "CHART"
  }
 ]

@@ -2,7 +2,7 @@
  "paper": "8-dirac",
  "title": "Schrödinger and Dirac Dynamics",
  "doi": "https://doi.org/10.20944/preprints202510.1486.v2",
- "generated": "17 September 2026",
+ "generated": "18 September 2026",
  "blocks": [
   {
    "letter": "A",
@@ -362,11 +362,11 @@
    ]
   },
   {
-   "letter": "O",
-   "title": "The open front",
+   "letter": "T",
+   "title": "Tasks",
    "rows": [
     {
-     "label": "O1",
+     "label": "T1",
      "predicate": "The classification of the admissible set $\\calA(H)$ for a general self-adjoint Hamiltonian --- the roots of $\\det(I-\\alpha H)$ in $K^{-}$ --- beyond the nilpotent case ($\\calA=K^{-}$, C6, E4) and the diagonal case (the Cayley transform of the spectrum, C5).",
      "tag": "O",
      "source": "Rem.~\\ref{rem:admissibility}",

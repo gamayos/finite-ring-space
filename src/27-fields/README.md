@@ -30,7 +30,7 @@ continuum-comparison or dimensional-transmutation reading by construction.
 |---|---|---|---|
 | `fld.em1_prototype` | `em1_prototype.py` | MIXED | the finite U(1) prototype on Z/M (M = 12, 52, 156, 420): gauge invariance of flux, action, covariant difference; discrete Stokes; the Coulomb coefficient against 1/4π; like charges repel, gravity attracts (27:C2, C3, X2) |
 | `fld.enumerate_maxwell` | `enumerate_maxwell.py` | MIXED | uniqueness of the Maxwell operator: exact F_p corank 2 on L = 4, 5, 6, one relevant operator = the transverse projector, one irrelevant O(k⁴) artefact (27:C2, X3) |
-| `fld.audit_finitism` | `audit_finitism.py` | EXACT | the EM/O1 claims with no float: F(dλ) = 0 exhaustive, the L = 4 Green's function 257/7680, nullity 2 by integer rank, the Wilson action cyclotomic (27:C2, C3) |
+| `fld.audit_finitism` | `audit_finitism.py` | EXACT | the electromagnetic and admissible-space claims with no float: F(dλ) = 0 exhaustive, the L = 4 Green's function 257/7680, nullity 2 by integer rank, the Wilson action cyclotomic (27:C2, C3) |
 | `fld.o2_numbers` | `o2_numbers.py` | MIXED | 1/α_bare = 4π; the 10³⁶ hierarchy; the open gap 4π → 137 (27:C2) |
 | `fld.p2` | `p2.py` | MIXED | the order-one coefficient 1; the saturation profile's Coulomb coefficient, core r* and finite self-energy (27:C2) |
 | `fld.correspondence` | `correspondence.py` | APPROX | the finite gauge correspondence, blocks A–H (27:C1, C7) |
@@ -40,7 +40,7 @@ continuum-comparison or dimensional-transmutation reading by construction.
 | `fld.weak_current` | `weak_current.py` | MIXED | the V−A current (N against 0, q = 3, 5, 7, 13), the chiral projector, G_F = 1/(√2 v²) (27:C4, C6, X6) |
 | `fld.p4` | `p4.py` | EXACT | maximal parity violation from the Frobenius branch, exact in Z/(q+1) (27:C4, X6) |
 | `fld.p10` | `p10.py` | EXACT | chirality selection relative to the drive, convention-invariant (27:C10) |
-| `fld.v_scale` | `v_scale.py` | APPROX | the electroweak scale against the transmutation forms; the O1 numeral 2^(3/2) m_P e^(−(2π)²) = 247.2 GeV (27:O1, Z1) |
+| `fld.v_scale` | `v_scale.py` | APPROX | the electroweak scale against the transmutation forms; the Y1 numeral 2^(3/2) m_P e^(−(2π)²) = 247.2 GeV (27:Y1, Z1) |
 | `fld.qcd` | `qcd.py` | MIXED | SU(3,2) enumerated over F₄ (216, centre Z₃); the strong-coupling string tension (27:C7, X7) |
 | `fld.p5` | `p5.py` | EXACT | the SU(3,F₄) gluon connection: exhaustive Wilson invariance, the self-coupling commutator, the triplet covariant (27:C7) |
 | `fld.string_tension` | `string_tension.py` | MIXED | c₁ as an exact character sum: S₃, 2T closed form, the SU(3) series β/18 + β²/216; σ > 0 (27:C7, X7) |
@@ -79,5 +79,5 @@ none of the checked statements touch.
 ## Predicate ledger
 
 Rows A1–A6 imports; B1–B6 realisations; C1–C11 derived (C3, C5, C6, C8–C10 composite T|R); X1–X11 the explanation
-register; P1–P9 the predictions; V1–V3 the verification; Z1 the Ω-hard running and scales; O1 the electroweak-scale
+register; P1–P9 the predictions; V1–V3 the verification; Z1 the Ω-hard running and scales; Y1 the electroweak-scale
 conjecture (formerly Y1; block O holds the open rows, as in the corpus). Family → rows: `fldcommon.LEDGER`.

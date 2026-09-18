@@ -16,8 +16,8 @@ as the numeric image of exact references (qm.emulation, the hardware compilation
 recorded per family in results.json.
 
 Master-ledger rows reached through the paper rows: 00:D4 (22:B1), 00:F1 (22:C10, 22:C12), 00:C10 (22:C10, 22:C11),
-00:C11 (22:C12), 00:F2 (22:C15), 00:F3 (22:C21), 00:D3 (22:B6), 00:D1 (22:B2), 00:C4, 00:C9 (22:A1), 00:D10 (22:C11),
-00:B8 (22:Z1), 00:F4, 00:T6, 00:Y5 (22:B2).
+00:C11 (22:C12), 00:F2 (22:C15), 00:F3 (22:C21), 00:D3 (22:B6), 00:D1, 00:D14 (22:B2), 00:C4, 00:C9 (22:A1), 00:D10 (22:C11),
+00:B8 (22:Z1), 00:D15, 00:F4, 00:Y5 (22:B2).
 """
 import io, json, os, re, sys, time, traceback
 from collections import OrderedDict

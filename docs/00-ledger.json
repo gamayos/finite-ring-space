@@ -1,5 +1,5 @@
 {
- "generated": "17 September 2026",
+ "generated": "18 September 2026",
  "blocks": {
   "A": "Foundation: from existence to the finite carrier",
   "B": "The Carrier: the substrate structure",
@@ -24,9 +24,9 @@
   "P": "pillar — a forced foundational proposition",
   "T": "theorem — derived within the framework",
   "D": "definition — a naming or set-up move, no empirical content",
-  "R": "realisation — what a physical term denotes in the substrate; forced (A10), each row stating the falsifier that kills it. Replaces the retired tag `B` (bridge), 2026-09-11",
+  "R": "realisation — what a physical term denotes in the substrate; forced (A10), each row stating the falsifier that kills it",
   "I": "import — a standard result or measured datum, used without reproof",
-  "Ω": "Ω-hard — a value in no embedded reader's window, not closeable by a bounded observer; host-decided on any laboratory Carrier; never applied to a relation (notation convention 6, 2026-09-11)",
+  "Ω": "Ω-hard — a value in no embedded reader's window, not closeable by a bounded observer; host-decided on any laboratory Carrier; never applied to a relation",
   "O": "open — genuinely unresolved"
  },
  "rows": [
@@ -981,7 +981,7 @@
      "key": "p00136"
     }
    ],
-   "statement": "\\textbf{The spatial chart is the 3-sphere} (declared): the frame torsor $\\mathrm{SL}_2(\\F_\\Om)$ (C6) carries one form on every shell --- $\\mathrm{SU}_2(\\F_{\\p^2}/\\F_\\p)=\\mathrm{SL}_2(\\F_\\p)$ for the Hermitian form $wJ$, $w^{\\p}=-w$ --- with the three element types of $\\mathrm{SL}_2(\\mathbb{R})$, of which $SU(2)$ has one, all of finite order, and the sphere $x^2+y^2+z^2+w^2=1$ and $ad-bc=1$ one quadric of $\\p^3-\\p$ points through the quarter-turn: the compact real form is no datum of the finite structure and cycle closure selects nothing (proved 2026-09-17). $SU(2)=S^3$ is declared the continuum chart of the frame torsor [chart]; given it, the spinor sign gives $S^3$ rather than $SO(3)$ (C22), uniqueness is Poincar\\'e--Perelman [import], and the global de Sitter slicing has $S^3$ sections [import], the chart fixing $\\Om\\sim10^{122}$. Decides the former Y7 (O, p00053, archived 2026-09-17)."
+   "statement": "\\textbf{The spatial chart is the 3-sphere} (declared): the frame torsor $\\mathrm{SL}_2(\\F_\\Om)$ (C6) carries one form on every shell --- $\\mathrm{SU}_2(\\F_{\\p^2}/\\F_\\p)=\\mathrm{SL}_2(\\F_\\p)$ for the Hermitian form $wJ$, $w^{\\p}=-w$ --- with the three element types of $\\mathrm{SL}_2(\\mathbb{R})$, of which $SU(2)$ has one, all of finite order, and the sphere $x^2+y^2+z^2+w^2=1$ and $ad-bc=1$ one quadric of $\\p^3-\\p$ points through the quarter-turn: the compact real form is no datum of the finite structure and cycle closure selects nothing. $SU(2)=S^3$ is declared the continuum chart of the frame torsor [chart]; given it, the spinor sign gives $S^3$ rather than $SO(3)$ (C22), uniqueness is Poincar\\'e--Perelman [import], and the global de Sitter slicing has $S^3$ sections [import], the chart fixing $\\Om\\sim10^{122}$."
   },
   {
    "label": "C24",
@@ -994,7 +994,7 @@
    ],
    "witness": "13:validate_pi2.py, 00:check_t8.py",
    "refs": [],
-   "statement": "\\textbf{The third-order wall of $\\pi$}: for every prime $\\p\\ge5$, $\\sigma_\\p=\\sum_{k<(\\p-1)/2}\\binom{2k}{k}/((2k+1)16^{k})$ satisfies $\\sigma_\\p\\equiv0\\ (\\mathrm{mod}\\ \\p^{2})$ (Sun, JNT \\textbf{131} (2011), (1.4)) and $\\sigma_\\p/\\p^{2}\\equiv(-1)^{(\\p+1)/2}B_{\\p-3}/36\\ (\\mathrm{mod}\\ \\p)$: Sun's Conjecture 5.1, $\\sigma_\\p\\equiv(-1)^{(\\p-1)/2}(H_{\\p-1}/12+3\\p^{4}B_{\\p-5}/160)\\ (\\mathrm{mod}\\ \\p^{5})$ for $\\p>5$, proved by Hessami Pilehrood, Hessami Pilehrood and Tauraso (Int.\\ J.\\ Number Theory \\textbf{8} (2012), Thm.\\ 5 (44)), reduced mod $\\p^{3}$ with Glaisher's $H_{\\p-1}\\equiv-\\p^{2}B_{\\p-3}/3\\ (\\mathrm{mod}\\ \\p^{3})$; $\\p=5$ direct. Re-verified for all primes below $10^{4}$ (2026-09-17). Formerly clause (ii) of T8."
+   "statement": "\\textbf{The third-order wall of $\\pi$}: for every prime $\\p\\ge5$, $\\sigma_\\p=\\sum_{k<(\\p-1)/2}\\binom{2k}{k}/((2k+1)16^{k})$ satisfies $\\sigma_\\p\\equiv0\\ (\\mathrm{mod}\\ \\p^{2})$ (Sun, JNT \\textbf{131} (2011), (1.4)) and $\\sigma_\\p/\\p^{2}\\equiv(-1)^{(\\p+1)/2}B_{\\p-3}/36\\ (\\mathrm{mod}\\ \\p)$: Sun's Conjecture 5.1, $\\sigma_\\p\\equiv(-1)^{(\\p-1)/2}(H_{\\p-1}/12+3\\p^{4}B_{\\p-5}/160)\\ (\\mathrm{mod}\\ \\p^{5})$ for $\\p>5$, proved by Hessami Pilehrood, Hessami Pilehrood and Tauraso (Int.\\ J.\\ Number Theory \\textbf{8} (2012), Thm.\\ 5 (44)), reduced mod $\\p^{3}$ with Glaisher's $H_{\\p-1}\\equiv-\\p^{2}B_{\\p-3}/3\\ (\\mathrm{mod}\\ \\p^{3})$; $\\p=5$ direct. Re-verified for all primes below $10^{4}$."
   },
   {
    "label": "C25",
@@ -1034,7 +1034,7 @@
    ],
    "witness": "13:validate_e.py, 13:validate_pi.py, 00:check_c26.py",
    "refs": [],
-   "statement": "\\textbf{The four chains of 13-epi are E- and G-partial sums} [import]: the derangement chain $D_n/n!=\\sum_{k\\le n}(-1)^{k}/k!$ is the partial-sum chain of the E-function $e^{-z}$ at $z=1$; the arcsin and Machin chains are partial-sum chains of the G-functions $\\arcsin z$ at $1/2$ and $\\arctan z$ at $1/5$, $1/239$; $e^{\\pm1}\\in\\mathcal E$ and $\\pi,1/\\pi\\in\\mathcal G$, both rings (Fischler--Rivoal, Comment.\\ Math.\\ Helv.\\ \\textbf{89} (2014); J.\\ \\'Ec.\\ polytech.\\ Math.\\ \\textbf{3} (2016), Def.\\ 2). The factorial rate $\\Theta(k/\\log k)$ against the geometric rate $\\Theta(k)$ of 13-epi E5 is the rate of E- against G-partial sums; a factorial-rate chain by rounding, $\\mathrm{round}(n!\\,x)/n!$, exists for every real $x$ and distinguishes nothing. The dichotomy is exact --- $\\pi$ the value of no E-function with rational coefficients at a rational point --- if $\\operatorname{Frac}\\mathcal E\\cap\\operatorname{Frac}\\mathcal G=\\overline{\\Q}$ (conjectural, ibid.\\ p.\\ 37). Formerly clause (i) of T9."
+   "statement": "\\textbf{The four chains of 13-epi are E- and G-partial sums} [import]: the derangement chain $D_n/n!=\\sum_{k\\le n}(-1)^{k}/k!$ is the partial-sum chain of the E-function $e^{-z}$ at $z=1$; the arcsin and Machin chains are partial-sum chains of the G-functions $\\arcsin z$ at $1/2$ and $\\arctan z$ at $1/5$, $1/239$; $e^{\\pm1}\\in\\mathcal E$ and $\\pi,1/\\pi\\in\\mathcal G$, both rings (Fischler--Rivoal, Comment.\\ Math.\\ Helv.\\ \\textbf{89} (2014); J.\\ \\'Ec.\\ polytech.\\ Math.\\ \\textbf{3} (2016), Def.\\ 2). The factorial rate $\\Theta(k/\\log k)$ against the geometric rate $\\Theta(k)$ of 13-epi E5 is the rate of E- against G-partial sums; a factorial-rate chain by rounding, $\\mathrm{round}(n!\\,x)/n!$, exists for every real $x$ and distinguishes nothing. The dichotomy is exact --- $\\pi$ the value of no E-function with rational coefficients at a rational point --- if $\\operatorname{Frac}\\mathcal E\\cap\\operatorname{Frac}\\mathcal G=\\overline{\\Q}$ (conjectural, ibid.\\ p.\\ 37)."
   },
   {
    "label": "D1",
@@ -1351,6 +1351,46 @@
    "statement": "\\textbf{Mass is dilation} (the harness face of D2): the boost factor of a frame's per-chronon step (C19) is its mass phase, one $Q_4$ datum with the winding rate (C20): the quarter on the spinor cover $C_{2(\\p +1)}$, the sign alone on the norm-one base $C_{\\p +1}$; the lab's harness flow is its chart between the exact $C_4$ stations, the pair class $4\\gcd(\\dS,2\\kap +1)$ host-decided; rest energy the norm reading, $\\ker N=C_{\\p +1}$, boost-invariant (D2); gravitational time dilation literal: the static clock ratio is the register character $\\gen^{-\\Delta n}$, the exponential with zero coefficient freedom, $\\beta=\\gamma=1$ (C21, E4, D1). The registration dictionary is E9 on a hosted pair and E8 on the physical Carrier, its per-chronon rate the floor (38:C10--C11), the temporal face the floor's half. Falsifier: a static clock ratio between two stations not fixed by their register offset $\\Delta n$ (the PPN temporal form, defect $4ab$), or D2's. Residual: the P1 bank (21-grav); extension C21."
   },
   {
+   "label": "D15",
+   "name": "Thermodynamic entropy is the channel count",
+   "block": "D",
+   "key": "p00146",
+   "tag": "R",
+   "sources": [
+    "21-grav",
+    "37-sim",
+    "22-qm"
+   ],
+   "witness": "37:horizon_thermo.py, 00:check_d15.py",
+   "refs": [
+    {
+     "label": "B7",
+     "key": "p00017"
+    },
+    {
+     "label": "D2",
+     "key": "p00043"
+    },
+    {
+     "label": "D7",
+     "key": "p00048"
+    },
+    {
+     "label": "E6",
+     "key": "p00057"
+    },
+    {
+     "label": "E7",
+     "key": "p00058"
+    },
+    {
+     "label": "F2",
+     "key": "p00060"
+    }
+   ],
+   "statement": "\\textbf{Thermodynamic entropy is the channel count}: the entropy of the first law (E7) is the record $\\dS=(\\p ^2-1)/4=\\kap (\\p +1)=|\\F_\\p ^\\times|\\,|C_{\\p +1}|/4$, one $k_B$ per channel, $S_{\\mathrm{th}}=k_B\\dS$ [chart], $W:=e^{\\dS}$ the chart's microstate number ($\\ln W=\\dS$ holds for no shell count; the $k_B$ at the site is the chart's unit, not the residue $-\\hbar/c$, B7). The content ledger is the drive-confined offset data (F2, 22:C15). Falsifier: a horizon whose Clausius entropy $\\int dM/T$ at the thermometer temperature differs from $k_B$ times its channel count beyond order $1/\\p$."
+  },
+  {
    "label": "E1",
    "name": "Uniqueness of the dynamics",
    "block": "E",
@@ -1454,22 +1494,34 @@
     "22-qm",
     "37-sim"
    ],
-   "witness": "37:horizon_thermo.py",
+   "witness": "37:horizon_thermo.py, 00:check_d15.py",
    "refs": [
     {
      "label": "E5",
      "key": "p00056"
     },
     {
-     "label": "F1",
-     "key": "p00059"
+     "label": "E6",
+     "key": "p00057"
     },
     {
-     "label": "J1",
-     "key": "p00076"
+     "label": "D2",
+     "key": "p00043"
+    },
+    {
+     "label": "D14",
+     "key": "p00143"
+    },
+    {
+     "label": "D15",
+     "key": "p00146"
+    },
+    {
+     "label": "F1",
+     "key": "p00059"
     }
    ],
-   "statement": "\\textbf{Gravity} (horizon triple), instantiated: the record is the registered distinguishable-state count, $S=(A/4)(1-1/\\p )$ (F1); the temperature has two exact faces --- the registration rate $T=(\\p +1)/\\p ^2$, the slip rate every thermometer reads (E5), and the response $T_{\\mathrm{resp}}=(dS/dM)^{-1}=1/\\p $ at the spinor half-period $M_{1/2}=(\\p +1)/2$, the rate face of the mass, the count face the cardinality (J1) --- splitting by $(1+1/\\p )$, each with its Smarr relation; verified $8/8$ shells."
+   "statement": "\\textbf{Gravity} (horizon triple), instantiated: the record is the registered distinguishable-state count $\\dS=(A/4)(1-1/\\p )=M(M-1)$ (F1) on the rate face $M=(\\p +1)/2$ of the mass (D2, D14; $\\p =2M-1$ the count face), $d\\dS/dM=\\p$ exactly; the temperature has two exact faces --- the registration rate $T=(\\p +1)/\\p ^2$, the slip rate every thermometer reads (E5), and the response $T_{\\mathrm{resp}}=(d\\dS/dM)^{-1}=1/\\p$ --- splitting by $1+1/\\p$. First law $dM=T_{\\mathrm{resp}}\\,d\\dS=T\\,d\\dS/(1+1/\\p )$; Smarr $2T_{\\mathrm{resp}}\\dS=M(1-1/\\p )$, $2T\\dS=M(1-1/\\p ^2)$; the chart's $dM=T\\,dS$, $M=2TS$ [import] to order $1/\\p$ (D15). Verified $8/8$ shells (37-sim) and at $\\p =5,13,17,29,37,53,1549$."
   },
   {
    "label": "E8",
@@ -1537,6 +1589,28 @@
     }
    ],
    "statement": "\\textbf{Gravity} (the laboratory dictionary): on a hosted pair $p_{\\mathrm{sl}}=3(\\dS /\\kap )\\,r_{g}$ is one relation, homogeneous of degree $0$, between two chart lengths, fixing their ratio $3\\dS /\\kap$ and consuming no chart datum: a definition of the chart's $r_{g}$ per $(\\kap ,\\dS )$, host-decided, under which $3\\,r_{g}/p_{\\mathrm{sl}}=\\kap /\\dS$ is C18's identity; the face ratio $2$ reads $2\\gamma-\\beta=1$ on the comparison chart (38:C8, E4). Instances: $(13,233)$ $58\\,r_{g}$ and $3/58$; $(5,233)$ $174\\,r_{g}$; at $\\kap =3$, $p_{\\mathrm{sl}}=\\dS \\,r_{g}$ (D3). No empirical content; the physical reading is E8."
+  },
+  {
+   "label": "E10",
+   "name": "The fold is a chart projection",
+   "block": "E",
+   "key": "p00147",
+   "tag": "T",
+   "sources": [
+    "21-grav"
+   ],
+   "witness": "21:validate_fold_echo.py, 00:check_e10.py",
+   "refs": [
+    {
+     "label": "C2",
+     "key": "p00022"
+    },
+    {
+     "label": "E5",
+     "key": "p00056"
+    }
+   ],
+   "statement": "\\textbf{The fold is a chart projection}: the substrate coordinate $r$ is the decoherence count, the exponential reading the character $\\gen^{-\\Delta n(r)}$, and the exact datum at a shell of the radial partition is the pair $(r,\\gen^{-\\Delta n(r)})$, injective in $r$; the areal reading $R=re^{M/r}$ [chart] multiplies the count by the lifted character and forgets $r$ --- its two branches are two Carrier data (the residue product $r\\gen^{\\Delta}$ collides at $\\p =13,17,29$, the pair never), and the cut current $p_r=Q_r/A_r$ recovers $r$ from any exterior reading ($A_r=6(2r^2+2r+1)$ on $\\mathbb Z^3$, monotone). The fold-return average is fold-independent: $P_EFU^nF^{-1}P_E=P_EU^nP_E$ for every interior chart $F$, the period average $N^{-1}J_E$ (not $N_I^{-1}$), $P_EU^NP_E=P_E$ --- no echo criterion. The $r_f$-anchored statements are made in the substrate coordinate, $r_*<r_f<M$ for $M>(\\ln\\Om /2)^2$ Planck masses [chart]."
   },
   {
    "label": "F1",
@@ -2152,6 +2226,28 @@
    "statement": "\\textbf{The interior completions weighed}: black-hole cosmology keeps the black-hole-line identity by consuming a parent exterior and a singularity-replacing mechanism (torsion; exclusion pressure); the finite reading consumes neither --- no outside (A3), no singularity over a finite totality. The octant cap (L3) separates the two completions empirically: an interior bounce carries time on both sides."
   },
   {
+   "label": "L8",
+   "name": "The primordial tilt",
+   "block": "L",
+   "key": "p00148",
+   "tag": "R",
+   "sources": [
+    "21-grav"
+   ],
+   "witness": "21:validate_primordial.py, 00:check_l8.py",
+   "refs": [
+    {
+     "label": "A9",
+     "key": "p00009"
+    },
+    {
+     "label": "Z7",
+     "key": "p00115"
+    }
+   ],
+   "statement": "\\textbf{The primordial tilt}: $n_s=1$ is the scale-dilation fixed point (Harrison--Zel'dovich [import]); the tilt's committed form is $n_s-1=-\\pi^2/\\ln\\Om$ [chart], $\\ln\\Om$ the e-fold count of the frame's scale range from the resolution floor $1/\\sqrt\\Om$ to the coherence horizon $\\sqrt\\Om$ (the log of the drive cycle), a realisation fixed by the measured tilt: $-0.0351$ [approx] against Planck 2018 $-0.0351\\pm0.0042$ [import], $0.25\\%$ per factor two in $\\dS$ (A9), $\\Om$-hard by no role; the Planck-to-horizon count $\\tfrac12\\ln\\Om$ is excluded at $8.4\\sigma$. Falsifier: a Planck-resolution deviation from $-\\pi^2/\\ln\\Om$. The running of $a_0$ stays Z7."
+  },
+  {
    "label": "M1",
    "name": "Superconductivity (structure)",
    "block": "M",
@@ -2269,33 +2365,7 @@
    ],
    "witness": null,
    "refs": [],
-   "statement": "The induced-relaxation theorem, chart-free form: derive the registered adjacency chart and its homogeneity from the one Carrier action. Chart-relative form proved (21-gravity, round-02 push); pillars: relative-cycle defect, compression identity, pair-tally current."
-  },
-  {
-   "label": "T2",
-   "name": "The tilt's remaining identification K=Ω",
-   "block": "T",
-   "key": "p00095",
-   "tag": "O",
-   "sources": [
-    "21-grav"
-   ],
-   "witness": "21:validate_primordial.py",
-   "refs": [],
-   "statement": "The tilt's remaining identification $K=\\ln\\Om$: the scale-path mechanism probe-verified ($K^{2}\\lambda_1\\to\\pi^{2}$, $99.1\\%$ at $K=281$), $\\theta_*=\\pi/2$ structural; the censoring-linearity/identification condition outstanding."
-  },
-  {
-   "label": "T3",
-   "name": "The fold transition at physical scale",
-   "block": "T",
-   "key": "p00096",
-   "tag": "O",
-   "sources": [
-    "21-grav"
-   ],
-   "witness": "21:validate_fold_echo.py",
-   "refs": [],
-   "statement": "The fold transition at physical scale: the radial quotient, the branch identification, and the physical-scale fold-return criterion (dev-scale form proved: the period-averaged exterior return is the uniform floor operator)."
+   "statement": "The induced-relaxation theorem, chart-free form: derive the registered adjacency chart and its homogeneity from the one Carrier action. Chart-relative form proved (21-gravity); pillars: relative-cycle defect, compression identity, pair-tally current."
   },
   {
    "label": "T4",
@@ -2322,20 +2392,6 @@
    "witness": null,
    "refs": [],
    "statement": "The physical $\\ell=2$ quasinormal spectrum and the $O(J^{2})$ rotational multipoles (Hartle--Thorne programme); the quoted ringdown is eikonal."
-  },
-  {
-   "label": "T6",
-   "name": "The thermodynamic identifications",
-   "block": "T",
-   "key": "p00099",
-   "tag": "O",
-   "sources": [
-    "21-grav",
-    "22-qm"
-   ],
-   "witness": null,
-   "refs": [],
-   "statement": "The thermodynamic identifications: capacity $\\to k_B\\ln W$ and a generalised first law for the floor temperature; the capacity/content split and sector-label conservation are in place."
   },
   {
    "label": "Z1",

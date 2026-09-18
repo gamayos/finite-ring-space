@@ -111,7 +111,7 @@ The rotation R_s = [[c_s, −d_s], [d_s, c_s]] with z_s = g^{−s}; the exponent
 | D6 | Proposition `heisenberg`, eq. `conj-expansion` | F σ F⁻¹ = D_1, F D_1 F⁻¹ = σ⁻¹; F^r σ = σ_r F^r; F^[s] = Σ_r c_r(s) F^r with c_r(s) = ¼ Σ_ℓ (g^{rκ−s})^ℓ |
 | D7 | Conjecture `monomial` (the sweep) | F^[s] σ F^[s]⁻¹ monomial exactly at the four cardinal indices, non-monomial at all 112 intermediate indices of p ∈ {13, 17, 29, 37, 41} |
 
-Ledger rows witnessed: 6:E2, 6:E3, 6:E5–E7 (the sweep of E7 is the verified half of the open row 6:O1).""")
+Ledger rows witnessed: 6:E2, 6:E3, 6:E5–E7 (the sweep of E7 is the verified half of the hypothesis 6:Y1).""")
 code("import d_weil; d_weil.run()")
 
 md("""## Block E — the cyclotomic observer readout and the entropy cycle  (`e_entropy.py`, EXACT / [approx])

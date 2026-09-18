@@ -2,7 +2,7 @@
  "paper": "2-geom",
  "title": "Geometry and Constants in Finite Ring Continuum",
  "doi": "https://doi.org/10.3390/sym18050751",
- "generated": "17 September 2026",
+ "generated": "18 September 2026",
  "blocks": [
   {
    "letter": "A",
@@ -278,11 +278,11 @@
    ]
   },
   {
-   "letter": "O",
-   "title": "Open",
+   "letter": "T",
+   "title": "Tasks",
    "rows": [
     {
-     "label": "O1",
+     "label": "T1",
      "predicate": "The observer-local chart: a metric, geodesics and curvature on the completion, in which local Euclidean geometry would be written; deferred by the paper (Discussion, ``Boundary of the Approximation Claim''); no Gromov--Hausdorff statement is made or claimed.",
      "tag": "O",
      "source": "Discussion",
@@ -482,11 +482,11 @@
    {
     "name": "FRC.Shell.Frame.half_period",
     "module": "FrcCore/Frame",
-    "line": 249,
+    "line": 250,
     "axioms": [],
     "tier": 0,
     "ok": true,
-    "doc": "2:D1, 00:C1 — the half-period: `g^{2κ} = −1` for the drive of every frame."
+    "doc": "2:D1, 13:H2, 00:C1 — the half-period: `g^{2κ} = −1` for the drive of every frame (the half-turn tautology behind `χ(−1) = e^{iπ}`)."
    }
   ],
   "D2": [
@@ -506,7 +506,7 @@
    {
     "name": "FRC.Shell.Frame.quarter_turn_order",
     "module": "FrcCore/Frame",
-    "line": 261,
+    "line": 262,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -541,11 +541,11 @@
    {
     "name": "FRC.Shell.Frame.orientation_class",
     "module": "FrcCore/Frame",
-    "line": 269,
+    "line": 270,
     "axioms": [],
     "tier": 0,
     "ok": true,
-    "doc": "2:D5, 6:B3 — the orientation classes: for `g' = g^u`, the quarter-turn `−g'^κ` is `−g^κ` when `u ≡ 1 (mod 4)` and `−(−g^κ)` when `u ≡ 3 (mod 4)`."
+    "doc": "2:D5, 6:B3, 13:B2 — the orientation classes: for `g' = g^u`, the quarter-turn `−g'^κ` is `−g^κ` when `u ≡ 1 (mod 4)` and `−(−g^κ)` when `u ≡ 3 (mod 4)`."
    }
   ],
   "D6": [
@@ -565,7 +565,7 @@
    {
     "name": "FRC.Shell.Frame.euler_identity",
     "module": "FrcCore/Frame",
-    "line": 297,
+    "line": 298,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -726,11 +726,11 @@
    {
     "name": "FRC.Shell.Frame.half_period",
     "module": "FrcCore/Frame",
-    "line": 249,
+    "line": 250,
     "axioms": [],
     "tier": 0,
     "ok": true,
-    "doc": "2:D1, 00:C1 — the half-period: `g^{2κ} = −1` for the drive of every frame."
+    "doc": "2:D1, 13:H2, 00:C1 — the half-period: `g^{2κ} = −1` for the drive of every frame (the half-turn tautology behind `χ(−1) = e^{iπ}`)."
    },
    {
     "name": "FRC.Complex.closed13",

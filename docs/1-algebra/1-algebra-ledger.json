@@ -2,7 +2,7 @@
  "paper": "1-alg",
  "title": "Relativistic Algebra over Finite Ring Continuum",
  "doi": "https://doi.org/10.3390/axioms14080636",
- "generated": "17 September 2026",
+ "generated": "18 September 2026",
  "blocks": [
   {
    "letter": "A",
@@ -256,11 +256,11 @@
    ]
   },
   {
-   "letter": "O",
-   "title": "Open",
+   "letter": "Y",
+   "title": "Hypotheses",
    "rows": [
     {
-     "label": "O1",
+     "label": "Y1",
      "predicate": "The conjecture of the conclusion, what remains after G1--G5: the Lie-algebra layer --- one-parameter subgroups and their generators inside the window, where iterating a window rotation $m$ times consumes range as $H^{2m}$; whether the Cayley step of 8-dirac (8:C4) supplies exact one-parameter subgroups of the window net on every shell is open.",
      "tag": "O",
      "source": "Conclusions; 8:C4",
@@ -446,11 +446,11 @@
    {
     "name": "FRC.Shell.Frame.quarter_turn_sq",
     "module": "FrcCore/Frame",
-    "line": 256,
+    "line": 257,
     "axioms": [],
     "tier": 0,
     "ok": true,
-    "doc": "1:B3, 2:D2 — the quarter-turn `i = −g^κ` squares to `−1`."
+    "doc": "1:B3, 2:D2, 13:J2 — the quarter-turn `i = −g^κ` squares to `−1` (the pinning relation `i² + 1 ≡ 0`)."
    },
    {
     "name": "FRC.Shell.s13_datum",
@@ -646,7 +646,7 @@
    {
     "name": "FRC.Shell.Frame.no_south_pole",
     "module": "FrcCore/Frame",
-    "line": 343,
+    "line": 345,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -762,11 +762,11 @@
    {
     "name": "FRC.Shell.Frame.half_period",
     "module": "FrcCore/Frame",
-    "line": 249,
+    "line": 250,
     "axioms": [],
     "tier": 0,
     "ok": true,
-    "doc": "2:D1, 00:C1 — the half-period: `g^{2κ} = −1` for the drive of every frame."
+    "doc": "2:D1, 13:H2, 00:C1 — the half-period: `g^{2κ} = −1` for the drive of every frame (the half-turn tautology behind `χ(−1) = e^{iπ}`)."
    },
    {
     "name": "FRC.Shell.Poly.Frame.root_iff_common_factor",

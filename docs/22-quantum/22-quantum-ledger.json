@@ -2,7 +2,7 @@
  "paper": "22-qm",
  "title": "Quantum Observation over Finite Substrate",
  "doi": "https://doi.org/10.20944/preprints202606.1160.v2",
- "generated": "17 September 2026",
+ "generated": "18 September 2026",
  "blocks": [
   {
    "letter": "A",
@@ -392,35 +392,35 @@
     {
      "label": "P1",
      "predicate": "Gravitationally induced entanglement at exactly the Newtonian rate, $V^2+C^2=1$ on the pure channel: equal force but unequal entanglement --- a source gravitates by its full mass while the systematic conditional phase, the calibrated discriminator, is carried by the coherent sectors alone, the fully incoherent channel separable at generic (nondegenerate) geometry. The one dated forward prediction.",
-     "tag": "E",
+     "tag": "T|R",
      "source": "Rem.~\\ref{rem:bmvpred}; \\src{qm.bmv}",
      "key": "p22052"
     },
     {
      "label": "P2",
      "predicate": "Third-order interference exactly zero at every accessible scale, any wrap quantised to a multiple of $\\Omega$: a single confirmed small $I_3\\neq0$ falsifies outright.",
-     "tag": "E",
+     "tag": "T|R",
      "source": "Cor.~\\ref{cor:sorkin}, Rem.~\\ref{rem:horizon}; \\src{qm.sorkin}",
      "key": "p22053"
     },
     {
      "label": "P3",
      "predicate": "The Tsirelson value $S=2\\sqrt2$ exact and the network behaviour of complex (not real) quantum theory: vacuum dispersion, $S\\neq2\\sqrt2$, or non-quantum network behaviour each falsify.",
-     "tag": "E",
+     "tag": "T|R",
      "source": "Thm.~\\ref{thm:tsirelson},~\\ref{thm:table}; \\src{qm.composite}, \\src{qm.renou}",
      "key": "p22054"
     },
     {
      "label": "P4",
      "predicate": "No vacuum dispersion at any sub-horizon order (the finite double cover accumulates nothing): the gamma-ray-burst time-of-flight bounds leave the framework untouched.",
-     "tag": "E",
+     "tag": "T|R",
      "source": "Rem.~\\ref{rem:doublecover}; \\src{qm.dispersion}",
      "key": "p22055"
     },
     {
      "label": "P5",
      "predicate": "Quantum computation succeeds as standard quantum mechanics prescribes at every accessible depth; the first deviation, if any, is quantised at the unit-core ceiling $k^*=404$ ($202$ for $\\sqrt\\Omega$), not gradual.",
-     "tag": "E",
+     "tag": "T|R",
      "source": "Prop.~\\ref{prop:granularity}; \\src{qm.granularity}",
      "key": "p22056"
     }
@@ -496,9 +496,9 @@
    "text": "Derived within this paper from the rows above it; where a family identifier is named, its content is verified by the validation package in exact arithmetic."
   },
   {
-   "tag": "E",
-   "name": "Prediction",
-   "text": "A falsifiable consequence of the rows above, stated with its falsifier and its present confrontation; graded on the rows it consumes."
+   "tag": "T|R",
+   "name": "Theorem on a realisation",
+   "text": "A theorem consumed through a declared realisation: in block P the paper's predictions, each derived and witnessed, stated with its falsifier and its present confrontation; a refuted confrontation fires the realisation's falsifier, not the theorem."
   },
   {
    "tag": "Ω",

@@ -41,14 +41,14 @@ LEDGER = {
     "grav.radiative":        "21:C15",
     "grav.orderone":         "21:C5, 21:C16, 21:C13",
     "grav.rotating":         "21:C10, 21:C17",
-    "grav.primordial":       "21:C18, 21:X6",
+    "grav.primordial":       "21:C18, 21:X6, 21:P8",
     "grav.inertia":          "21:C20",
     "grav.defect":           "21:C21",
     "grav.counting":         "21:C7, 21:C21",
     "grav.binding":          "21:C21, 21:C23",
     "grav.1pn_eih":          "21:C23",
     "grav.2pn":              "21:C8, 21:P6",
-    "grav.fold_echo":        "21:C24, 21:P7",
+    "grav.fold_echo":        "21:C12, 21:P7",
 }
 
 KIND = {
@@ -80,7 +80,7 @@ LABELS = {
     "grav.binding": "binding bookkeeping decided in exact arithmetic on the torus Z_N³: superposition exact (no O(G²) term); the far-field cut flux around a bound pair equals m₁ + m₂ exactly (substrate winding sources); the interaction energy exactly bilinear; the binding defect m₁(1 − u₂(a)) a registered-clock identity — hence η_Nordtvedt = 0 with the two-shift cancellation",
     "grav.1pn_eih": "the 1PN equivalence lemma: through first post-Newtonian order the two-body metric coefficients A to O(U²) and B to O(U) coincide with GR's isotropic form on the superposed potential U₁ + U₂, cross term included — the Einstein–Infeld–Hoffmann sector shared exactly; the 2PN ν-sector left open",
     "grav.2pn": "the 2PN inputs: the isotropic-gauge deviations of the exponential metric from Schwarzschild, δA = U³/6 in −g₀₀ and δB = U²/2 in g_ij, certified term by term; the test-particle periastron excess π(GM/c²p)²(2 + e²/2) from the matched-invariant orbit equation (δc₂, δc₃ and their apsidal sum); for PSR J0737−3039 the fractional excess ≈ 1.5 × 10⁻⁶ [chart]",
-    "grav.fold_echo": "the fold-return criterion at dev scale, exact over F₁₇: on the chain C₈ with the interior block folded by its exact DFT, the period-averaged exterior return P_E F_I Uⁿ F_I⁻¹ P_E equals the rank-one uniform-floor operator — no stationary exterior structure above 1/N_I, no prompt echo at toy scale",
+    "grav.fold_echo": "the fold-return criterion at dev scale, exact over F₁₇: on the chain C₈ with the interior block folded by its exact DFT, the period-averaged exterior return P_E F_I Uⁿ F_I⁻¹ P_E equals the rank-one uniform-floor operator N⁻¹J_E, fold-independent (the fold drops out of the average; master E10)",
 }
 
 SCRIPT = {"grav.fierz_pauli": "fierz_pauli_uniqueness"}   # every other family is validate_<stem>.py

@@ -2,7 +2,7 @@
  "paper": "27-fld",
  "title": "Standard-Model Interactions over Finite Substrate",
  "doi": "https://doi.org/10.20944/preprints202606.1328.v1",
- "generated": "17 September 2026",
+ "generated": "18 September 2026",
  "blocks": [
   {
    "letter": "A",
@@ -273,63 +273,63 @@
     {
      "label": "P1",
      "predicate": "\\textbf{No fourth generation and no fifth interaction} \\emph{[forced]}. The role ladder closes, the fifth step returns to counting, and the Carrier is the entire substrate, so a fourth chiral family and a fifth fundamental force are forbidden, not merely absent (Tier~4). \\emph{Falsifier:} any fourth-generation fermion, or any new fundamental interaction.",
-     "tag": "E",
+     "tag": "T|R",
      "source": "Prop.~\\ref{prop:threegen}; \\src{fld.p9b}",
      "key": "p27035"
     },
     {
      "label": "P2",
      "predicate": "\\textbf{A desert to the substrate scale} \\emph{[forced]}. The gauge group is exactly $\\SU(3)\\times\\SU(2)\\times\\U(1)$ until the substrate resolves the colour--isospin split; no new gauge boson, vector-like fermion, or extra scalar lies between the electroweak and substrate ($\\sim10^{16}$--$10^{19}\\,$GeV) scales. \\emph{Falsifier:} a $Z'$, $W'$, leptoquark, second Higgs doublet, or compositeness signature at the LHC or a future collider. This is the sharpest divergence from supersymmetry, extra dimensions, and composite-Higgs scenarios.",
-     "tag": "E",
+     "tag": "T|R",
      "source": "Prop.~\\ref{prop:unify}",
      "key": "p27036"
     },
     {
      "label": "P3",
      "predicate": "\\textbf{No TeV supersymmetry} \\emph{[forced]}. The ${\\sim}13\\%$ three-coupling near-miss is closed by the $X,Y$ completion at the substrate scale, with the running carried by purely Standard-Model content; there are no superpartners enforcing exact low-scale unification. \\emph{Falsifier:} discovery of superpartners, or evidence that unification demands TeV-scale thresholds.",
-     "tag": "E",
+     "tag": "T|R",
      "source": "Prop.~\\ref{prop:running}; \\src{fld.p1}",
      "key": "p27037"
     },
     {
      "label": "P4",
      "predicate": "\\textbf{The proton is effectively stable, $\\tau_p\\gtrsim10^{45}\\,$yr} \\emph{[forced]}. The $X,Y$ leptoquarks acquire mass at the substrate scale, not at $\\sim10^{16}\\,$GeV, so $\\tau_p\\sim M_X^4/(\\al_{\\mathrm{GUT}}^2 m_p^5)$ reaches $10^{45}$--$10^{47}\\,$yr for $M_X$ near the Planck scale, orders beyond the $\\sim10^{36}\\,$yr of supersymmetric $\\SO(10)$ and the $\\sim10^{35}\\,$yr reach of Hyper-Kamiokande. \\emph{Falsifier:} observation of $p\\to e^+\\pi^0$ near $10^{34}$--$10^{35}\\,$yr in Hyper-Kamiokande, DUNE, or JUNO, against the current bound \\cite{superk2017}. The programme predicts these searches find nothing.",
-     "tag": "E",
+     "tag": "T|R",
      "source": "Prop.~\\ref{prop:unify}; \\src{fld.p8}",
      "key": "p27038"
     },
     {
      "label": "P5",
      "predicate": "\\textbf{Majorana neutrinos, heavy singlets, no light sterile neutrino} \\emph{[sector]}. The $\\nu^c$ is the gauge-singlet $\\Lam^0$ of the generation, so it takes a Majorana mass at unification and drives the seesaw, the three right-handed states sitting at $\\sim10^{14}$--$10^{15}\\,$GeV. \\emph{Falsifier:} a confirmed eV-scale sterile neutrino, or evidence that the light neutrinos are Dirac. This diverges from Dirac-neutrino and sterile-neutrino interpretations and is consistent with $N_{\\mathrm{eff}}=3$.",
-     "tag": "E",
+     "tag": "T|R",
      "source": "Thm.~\\ref{thm:gen}, Prop.~\\ref{prop:mass}; \\src{fld.p7}",
      "key": "p27039"
     },
     {
      "label": "P6",
      "predicate": "\\textbf{No new particle of dark matter} \\emph{[sector]}. The matter content is exactly one Standard-Model generation, triplicated, with heavy $\\nu^c$; the construction contains no weakly-interacting massive particle and no axion. \\emph{Falsifier:} a positive signal in a direct-detection (LZ, XENONnT) or axion (ADMX) experiment. Dark matter, if not a Standard-Model state, must then reside in the gravitational/substrate sector, a residual burden of the programme.",
-     "tag": "E",
+     "tag": "T|R",
      "source": "Thm.~\\ref{thm:gen}",
      "key": "p27040"
     },
     {
      "label": "P7",
      "predicate": "\\textbf{No new-physics contribution to the muon anomaly} \\emph{[sector]}. With no states beyond the Standard Model, $(g-2)_\\mu$ must be accounted for by Standard-Model (notably hadronic) contributions. \\emph{Falsifier:} a robustly established beyond-Standard-Model excess; the current lattice and experimental trend toward the Standard-Model value favours this prediction.",
-     "tag": "E",
+     "tag": "T|R",
      "source": "Thm.~\\ref{thm:gen}",
      "key": "p27041"
     },
     {
      "label": "P8",
      "predicate": "\\textbf{The charged-lepton Koide relation is exactly $2/3$} \\emph{[structural, $T\\mid\\Omega$]}: $(m_e+m_\\mu+m_\\tau)/(\\sqrt{m_e}+\\sqrt{m_\\mu}+\\sqrt{m_\\tau})^2=2/3$, empirically to one part in $10^{5}$, is the cube-root generation orbit at the self-dual value $\\rho^2=2^{-1}$ --- $Q=\\tfrac13+\\tfrac23\\rho^2$ exact, $\\rho^2$ the quarter-turn ($4\\mid\\Omega-1$) self-dual amplitude on the cubic ($3\\mid\\Omega+1$) plane. Form and value derived; the selection of the mass vector onto that orientation is the $\\Omega$-hard flavour residual (Z1). \\emph{Falsifier:} a measured $Q$ displaced from $2/3$ beyond the per-mille winding-phase corrections.",
-     "tag": "E",
+     "tag": "T|R",
      "source": "Prop.~\\ref{prop:koide}; \\src{fld.koide}",
      "key": "p27042"
     },
     {
      "label": "P9",
      "predicate": "\\textbf{Vanishing strong-CP angle without an axion} \\emph{[structural, $T\\mid R$]}. The QCD vacuum angle vanishes on the substrate, $\\bar\\theta=0$ with no axion: the colour action carries no topological term and colour is drive-invariant, so the bare $\\theta=0$, and the Hermitian quark mass matrices have real determinant, so $\\arg\\det M_q=0$, while the Cabibbo--Kobayashi--Maskawa phase sits in the up--down misalignment. \\emph{Falsifier:} a neutron electric dipole moment above the QCD floor, or a discovered axion.",
-     "tag": "E",
+     "tag": "T|R",
      "source": "Prop.~\\ref{prop:strongcp}; \\src{fld.strongcp}",
      "key": "p27043"
     }
@@ -348,7 +348,7 @@
     },
     {
      "label": "V2",
-     "predicate": "The discipline, recorded per family as its class (Appendix~\\ref{app:repro}): \\textsf{EXACT} --- integer, $\\F_p$, $\\F_{p^2}$ or cyclotomic arithmetic throughout, a pass a proof on the tested instances; \\textsf{MIXED} --- an exact core with a labelled continuum-comparison layer, the exact claim never resting on the float part; \\textsf{APPROX} --- a continuum-comparison or dimensional-transmutation reading by construction. Fifteen families \\textsf{EXACT}, eleven \\textsf{MIXED}, two \\textsf{APPROX}; \\texttt{audit\\_finitism.py} cross-checks that the load-bearing EM/O1 claims rest on integer and cyclotomic arithmetic alone.",
+     "predicate": "The discipline, recorded per family as its class (Appendix~\\ref{app:repro}): \\textsf{EXACT} --- integer, $\\F_p$, $\\F_{p^2}$ or cyclotomic arithmetic throughout, a pass a proof on the tested instances; \\textsf{MIXED} --- an exact core with a labelled continuum-comparison layer, the exact claim never resting on the float part; \\textsf{APPROX} --- a continuum-comparison or dimensional-transmutation reading by construction. Fifteen families \\textsf{EXACT}, eleven \\textsf{MIXED}, two \\textsf{APPROX}; \\texttt{audit\\_finitism.py} cross-checks that the load-bearing electromagnetic and admissible-space claims rest on integer and cyclotomic arithmetic alone.",
      "tag": "T",
      "source": "Sec.~\\ref{sec:repro}, Sec.~\\ref{sec:finitism}",
      "key": "p27045"
@@ -376,11 +376,11 @@
    ]
   },
   {
-   "letter": "O",
-   "title": "Open: the conjecture stated ahead of derivation",
+   "letter": "Y",
+   "title": "Hypotheses: the conjecture stated ahead of derivation",
    "rows": [
     {
-     "label": "O1",
+     "label": "Y1",
      "predicate": "The electroweak scale as the minimal winding weight of the gauged spinor frame at channel unity: $v/\\sqrt2=m_P\\big(e^{-S_{+1/2}}+e^{-S_{-1/2}}\\big)$, $S_{\\pm1/2}=4\\pi^2/g^2$ the 't~Hooft half-charge action of $\\SU(2)/\\Z_2$ at $g=1$, i.e.\\ $v=2^{3/2}m_P\\,e^{-(2\\pi)^2}=247.2$~GeV against $246.2$ ($0.38\\,\\%$ high). The exponent is verified (Section~\\ref{sec:corr}, \\src{fld.v\\_scale}); the amplitude identification, the two-sector prefactor and the residual are underived. Exposure: odds about $1$ in $45$ for the landing; the strong channel obeys no such rule; the running cannot test it (Rem.~\\ref{rmk:masscons}). Falsifier: a derived amplitude identification with a residual other than $0.38\\,\\%$, or a closed form for the residual that fails.",
      "tag": "O",
      "source": "Rem.~\\ref{rmk:masscons}; \\src{fld.v\\_scale}",
@@ -411,9 +411,9 @@
    "text": "Derived within this paper from the rows above it; where a family identifier is named, its content is verified by the validation package."
   },
   {
-   "tag": "E",
-   "name": "Prediction",
-   "text": "A falsifiable consequence of the rows above, stated with its falsifier; marked forced, sector, or structural in its row."
+   "tag": "T|R",
+   "name": "Theorem on a realisation",
+   "text": "A theorem consumed through a declared realisation: in block P the paper's predictions, each derived and witnessed, stated with its falsifier and its present confrontation; a refuted confrontation fires the realisation's falsifier, not the theorem."
   },
   {
    "tag": "Ω",
@@ -496,7 +496,7 @@
    "H3",
    "I3"
   ],
-  "O1": [
+  "Y1": [
    "H3"
   ]
  },

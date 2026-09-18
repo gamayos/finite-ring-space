@@ -10,8 +10,8 @@ sympy (mpmath); matplotlib for the figure scripts.
 Every family names the row(s) of the paper's predicate ledger it witnesses (the paper's Section "Status", subsection
 "Predicate ledger", 59 rows in blocks A, B, C, X, P, V, Z, cited as `21:XN`; public copy
 `docs/21-gravity/21-gravity-ledger.html`); the ledger's source column cites the family ids in return. Master-ledger
-rows of the corpus reached through the paper rows: `00:A9`, `00:D1`, `00:D3`, `00:D5`, `00:B7`, `00:E1`, `00:E3`–`00:E7`,
-`00:L1`, `00:L7`, `00:T1`–`00:T6`, `00:Z7`.
+rows of the corpus reached through the paper rows: `00:A9`, `00:D1`, `00:D3`, `00:D5`, `00:B7`, `00:E1`, `00:D15`, `00:E3`–`00:E7`,
+`00:E10`, `00:L1`, `00:L7`, `00:L8`, `00:T1`, `00:T4`, `00:T5`, `00:Z7`.
 
 Three kinds, recorded per family in `results.json`: **EXACT** — decidable identities over finite fields, cyclotomic
 extensions, exact rationals, or symbolic identities, no tolerance in the verdict; **CHART** — a continuum reading (a
@@ -38,14 +38,14 @@ tolerance on time averages.
 | `grav.radiative` | `validate_radiative.py` | EXACT | the wave equation, c_g = c, TT rank 2, helicity ±2, no mode doubling; the even symbol on the continuum form and on C₁₃ (21:C15) |
 | `grav.orderone` | `validate_orderone.py` | EXACT | c_S′ = 1/4 from the de Sitter closure, the 2π of a₀, the radiation constant, the 4π; the Carrier-register residues on Ω = 2 408 561 (21:C5, C13, C16) |
 | `grav.rotating` | `validate_rotating.py` | CHART | Lense–Thirring frame-dragging, the gravitomagnetic dipole, horizonless-ness, the O(a) shadow shift (21:C10, C17) |
-| `grav.primordial` | `validate_primordial.py` | EXACT | scale invariance iff n_s = 1, the sign of the red tilt, the wrapped-chart truncation, the O2 probe K²λ₁ → π² (21:C18, X6) |
+| `grav.primordial` | `validate_primordial.py` | EXACT | scale invariance iff n_s = 1, the sign of the red tilt, the wrapped-chart truncation, the O2 probe K²λ₁ → π² (21:C18, X6, P8) |
 | `grav.inertia` | `validate_inertia.py` | EXACT | the two-shift law: the finite Fourier shift theorem, the Ehrenfest parabola, the equivalence principle bitwise (21:C20) |
 | `grav.defect` | `validate_defect.py` | EXACT | the projection defect on dev shells: cycle-quotient closure, the wrap count, K_S contractive vs U_C recurrent, the sine mode as the unique minimal odd harmonic (21:C21, C22) |
 | `grav.counting` | `validate_counting.py` | EXACT | the Christoffel registration pattern, the censored geometric identity, the Ω = 641 readout instance, the Kesten control, the per-stratum split in Z[√2] and mod 641 (21:C7, C21) |
 | `grav.binding` | `validate_binding.py` | EXACT | binding bookkeeping on Z_N³: superposition exact, far-field flux m₁ + m₂ exactly, bilinear interaction energy, the registered-clock defect m(1 − u), η_Nordtvedt = 0 (21:C21, C23) |
 | `grav.1pn_eih` | `validate_1pn_eih.py` | EXACT | the 1PN equivalence lemma: A to O(U²), B to O(U) identical to GR-isotropic on the superposed potential (21:C23) |
 | `grav.2pn` | `validate_2pn.py` | EXACT | δA = U³/6, δB = U²/2 term by term; the test-particle periastron excess π(GM/c²p)²(2 + e²/2) and its J0737−3039 reading ≈ 1.5 × 10⁻⁶ [chart] (21:C8, P6) |
-| `grav.fold_echo` | `validate_fold_echo.py` | EXACT | the fold-return criterion at dev scale over F₁₇: the period-averaged exterior return is the uniform floor operator (21:C24, P7) |
+| `grav.fold_echo` | `validate_fold_echo.py` | EXACT | the fold-return average at dev scale over F₁₇: the period-averaged exterior return is the uniform floor operator N⁻¹J_E, fold-independent (21:C12, P7) |
 | — | `make_fig_*.py`, `make_all_figures.py` | — | the publication figures (matplotlib), outside the run |
 | — | `gravcommon.py` | — | the registry: the script runner, `LEDGER` (family → rows), `LABELS`, `KIND`, `results.json` |
 

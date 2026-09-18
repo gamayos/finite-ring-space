@@ -2,7 +2,7 @@
  "paper": "4-rep",
  "title": "Universal Latent Representation in FRC",
  "doi": "https://doi.org/10.3390/e28010040",
- "generated": "17 September 2026",
+ "generated": "18 September 2026",
  "blocks": [
   {
    "letter": "A",
@@ -140,7 +140,7 @@
     },
     {
      "label": "D2",
-     "predicate": "Scope and limits: the theorem uses the finiteness of $\\mathcal Z$ alone, no algebraic or geometric property of $\\mathcal U_t$; the shell as host is the ontology's claim (A3); optimisation decides when a representation is recovered, not which; non-stationary or weakly factorisable data may admit none; coordinate alignment may be intractable; nonlinearity as expansion and depth as shell complexity are analogies (O1).",
+     "predicate": "Scope and limits: the theorem uses the finiteness of $\\mathcal Z$ alone, no algebraic or geometric property of $\\mathcal U_t$; the shell as host is the ontology's claim (A3); optimisation decides when a representation is recovered, not which; non-stationary or weakly factorisable data may admit none; coordinate alignment may be intractable; nonlinearity as expansion and depth as shell complexity are analogies (Y1).",
      "tag": "D",
      "source": "Section~\\ref{sec:introduction}; Section~\\ref{sec:discussion}; Interp.~\\ref{interp:nonlinear}, \\ref{interp:complexity}",
      "key": "p04017"
@@ -202,18 +202,24 @@
    ]
   },
   {
-   "letter": "O",
-   "title": "Open",
+   "letter": "Y",
+   "title": "Hypotheses",
    "rows": [
     {
-     "label": "O1",
+     "label": "Y1",
      "predicate": "Depth and the shell hierarchy: whether nonlinear layers correspond to innovation steps $\\mathcal U_t\\hookrightarrow\\mathcal U_{t+1}$ and depth to arithmetic complexity (Interpretations~\\ref{interp:nonlinear}, \\ref{interp:complexity}) as a theorem; named as future work (iii), not claimed.",
      "tag": "O",
      "source": "Section~\\ref{sec:conclusion}",
      "key": "p04024"
-    },
+    }
+   ]
+  },
+  {
+   "letter": "T",
+   "title": "Tasks",
+   "rows": [
     {
-     "label": "O2",
+     "label": "T1",
      "predicate": "Learning objectives as approximations of adequacy (contrastive, masked prediction), algorithms for the projection maps $g_m$, and a general algebraic account of multimodal learning; named as future work (i), (ii), (iv), not claimed.",
      "tag": "O",
      "source": "Section~\\ref{sec:conclusion}",
