@@ -15,7 +15,10 @@ root, the Fourier inversion, the polynomial reading and covariance, the four-cyc
 (6-fourier: the meridian ladder as lists, the scale-shift as re-indexing and its effective step, the zoom ladder of `𝔽₁₃` by `decide`), `Algebra`
 (1-algebra rows: the Klein orbits and their count, the frame group, the window and its read-backs), `Epi`
 (13-epi: the derangement numbers by recurrence, antiperiodicity and the tower of `e` on every shell, orientation transport, the
-wrap-free window, the residue lines and the wall products on `𝔽₁₃` and the wall shells by `decide`),
+wrap-free window, the residue lines and the wall products on `𝔽₁₃` and the wall shells by `decide`), `Dimensions`
+(10-dimensions: the domain lattice as pairs of residues with its group law and powers, the unit flag of order four and the meridian
+transport on every capacity, the crossed duality, the flagged readings, the linear pin, the root pairs and the linkage on every framed
+Carrier; the order-four census of `D_13`, the two Carriers, the `(13, 233)` minimality scan and the realized domains by `decide +kernel`),
 `Poly` (polynomials as coefficient sequences: evaluation, synthetic division, the root bound, the root
 criterion of 1:G1), `Quaternion` (the signed window and the framed quaternions of 1:G5), `Causality` (the square classes, the
 anisotropic and hyperbolic planes of the Lorentzian form, the norm-one boosts and the velocity law of 3-causality), `Representation`

@@ -1,0 +1,495 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-HNE3RMJ5L1"></script>
+<script> window.dataLayer = window.dataLayer || []; function gtag(){dataLayer.push(arguments);} gtag('js', new Date()); gtag('config', 'G-HNE3RMJ5L1'); </script>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Dimensions.lean — FrcCore</title>
+<meta name="description" content="The Lean module FrcCore/Dimensions of the FRC predicate ledgers, rendered with an anchor per declaration">
+<meta name="author" content="Yosef Akhtman">
+<link rel="icon" href="../../frc-logo-fav.png">
+<link rel="stylesheet" href="../../style.css">
+
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <h1>Dimensions.lean — FrcCore</h1>
+    
+    <nav><a href="../../index.html">Home</a><a href="../../publications.html">Publications</a><a href="../../00-ledger.html">Ledger</a><a href="../../predictions.html">Predictions</a><a href="../../explicability.html">Explicability</a></nav>
+  </header>
+<main id="ledger-main"><section class="prose"><p>The core module <code>lean/FrcCore/Dimensions.lean</code> — the substrate from first principles, no Mathlib, no axioms (the modules in order: <a href="Nat.html">Nat</a>, <a href="Pigeonhole.html">Pigeonhole</a>, <a href="Shell.html">Shell</a>, <a href="Frame.html">Frame</a>, <a href="Orbit.html">Orbit</a>, <a href="Sum.html">Sum</a>, <a href="Meridian.html">Meridian</a>, <a href="Algebra.html">Algebra</a>, <a href="Epi.html">Epi</a>, <a href="Dimensions.html">Dimensions</a>, <a href="Poly.html">Poly</a>, <a href="Quaternion.html">Quaternion</a>, <a href="Causality.html">Causality</a>, <a href="Representation.html">Representation</a>, <a href="Reductio.html">Reductio</a>, <a href="Geometry.html">Geometry</a>, <a href="Complex.html">Complex</a>, <a href="Instances.html">Instances</a>): 45 theorems (15 definitions): 45 with no axioms (green), 0 at tier 1 (teal: <code>propext</code>, <code>Quot.sound</code>), 0 at tier 2 (amber: <code>Classical.choice</code>), 0 red; the small plain glyph marks a definition (no proof, no axioms; on the ledger pages the plain glyph is instead a module cited as a whole). Each declaration is anchored; the ledger rows cite them by name. <a href="https://live.lean-lang.org/#project=lean-v4.34.0&url=https://raw.githubusercontent.com/gamayos/finite-ring-space/main/lean/web/FrcCore.lean" target="_blank" rel="noopener">▶ open in the Lean web editor</a> · <a href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcCore/Dimensions.lean" target="_blank" rel="noopener">on GitHub</a> · <a href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcCore/axioms.log" target="_blank" rel="noopener">axioms.log</a> · <a href="https://github.com/gamayos/finite-ring-space/actions/workflows/lean.yml" target="_blank" rel="noopener">CI</a>.</p></section><pre class="lean"><span class="ln" id="L1"><a class="lno" href="#L1">1</a>import FrcCore.Frame</span>
+<span class="ln" id="L2"><a class="lno" href="#L2">2</a>import FrcCore.Meridian</span>
+<span class="ln" id="L3"><a class="lno" href="#L3">3</a>import FrcCore.Epi</span>
+<span class="ln" id="L4"><a class="lno" href="#L4">4</a></span>
+<span class="ln" id="L5"><a class="lno" href="#L5">5</a>/-!</span>
+<span class="ln" id="L6"><a class="lno" href="#L6">6</a># 10-dimensions — the domain lattice, the unit flag and the Carrier residues, no axioms</span>
+<span class="ln" id="L7"><a class="lno" href="#L7">7</a></span>
+<span class="ln" id="L8"><a class="lno" href="#L8">8</a>The modular unit-domain labels `U_{r,s} = [L]^r [T]^s` of *Dimensional Analysis over Finite Holographic</span>
+<span class="ln" id="L9"><a class="lno" href="#L9">9</a>Substrate* as pairs of residues `(r mod p, s mod 4κ)`, `p = 4κ + 1`: the group law, inverses and powers</span>
+<span class="ln" id="L10"><a class="lno" href="#L10">10</a>(10:C2, the monomial half of C3); the chart duality `δ_S` and the crossed duality `δ_C` as involutions (D1);</span>
+<span class="ln" id="L11"><a class="lno" href="#L11">11</a>the unit flag `I_q = (0, κ)` — `I_q⁴ = 1`, `I_q² = [T]^π`, `I_q, I_q², I_q³ ≠ 1`, no flag of space on a</span>
+<span class="ln" id="L12"><a class="lno" href="#L12">12</a>framed shell (`4r = 0 ⇒ r = 0`), the half-period as the one element of order two, meridian transport</span>
+<span class="ln" id="L13"><a class="lno" href="#L13">13</a>`([L][T]^κ)^p = I_q` (D2, C6); the record `s ↦ I_q^s` with its values (D3); the flagged readings `[E]`, `[p]`,</span>
+<span class="ln" id="L14"><a class="lno" href="#L14">14</a>`[S]`, the phase counts neutral, the horizon inaccessibility of the flag on `𝔽₁₃` (D6); the Carrier face —</span>
+<span class="ln" id="L15"><a class="lno" href="#L15">15</a>the linear pin `2G + 1 = 0 ⇒ G = 2S`, the root pairs, the linkage `(k_B c)² = −1 ⇒ k_B c = ±ħ` and the pair</span>
+<span class="ln" id="L16"><a class="lno" href="#L16">16</a>consequences on every framed Carrier (E4, E5); the two Carriers `233` and `2 408 561` decided by the kernel</span>
+<span class="ln" id="L17"><a class="lno" href="#L17">17</a>(E4, E5); the minimality scan certifying `(13, 233)` with its counterfactuals (E9); the derived domains</span>
+<span class="ln" id="L18"><a class="lno" href="#L18">18</a>realized on `𝔽₁₃` (F2–F4, G3); the window ladder by integer squares (G2). Every declaration is checked to</span>
+<span class="ln" id="L19"><a class="lno" href="#L19">19</a>depend on no axiom (`check_core_axioms.py`).</span>
+<span class="ln" id="L20"><a class="lno" href="#L20">20</a>-/</span>
+<span class="ln" id="L21"><a class="lno" href="#L21">21</a></span>
+<span class="ln" id="L22"><a class="lno" href="#L22">22</a>namespace FRC.Dimensions</span>
+<span class="ln" id="L23"><a class="lno" href="#L23">23</a></span>
+<span class="ln" id="L24"><a class="lno" href="#L24">24</a>open FRC.Shell</span>
+<span class="ln" id="L25"><a class="lno" href="#L25">25</a></span>
+<span class="ln" id="L26"><a class="lno" href="#L26">26</a>/-! ## The domain lattice as pairs of residues (10:C1, C2, C3) -/</span>
+<span class="ln" id="L27"><a class="lno" href="#L27">27</a></span>
+<span class="ln" id="L28"><a class="lno" href="#L28">28</a>/-- 10:C1 — a modular unit-domain label `U_{r,s}`: the space exponent `r` in `C_p`, the time exponent `s`</span>
+<span class="ln" id="L29"><a class="lno" href="#L29">29</a>in `C_n` (`n = p − 1 = 4κ`). -/</span>
+<span class="ln decl" id="FRC.Dimensions.Dom"><a class="lno" href="#FRC.Dimensions.Dom">30</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcCore/Dimensions.lean#L30" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small" src="../lean.png" alt="" title="a definition: no proof, no axioms">structure Dom (p n : Nat) where</span>
+<span class="ln" id="L31"><a class="lno" href="#L31">31</a>  r : Shell p</span>
+<span class="ln" id="L32"><a class="lno" href="#L32">32</a>  s : Shell n</span>
+<span class="ln" id="L33"><a class="lno" href="#L33">33</a></span>
+<span class="ln" id="L34"><a class="lno" href="#L34">34</a>namespace Dom</span>
+<span class="ln" id="L35"><a class="lno" href="#L35">35</a></span>
+<span class="ln" id="L36"><a class="lno" href="#L36">36</a>variable {p n : Nat}</span>
+<span class="ln" id="L37"><a class="lno" href="#L37">37</a></span>
+<span class="ln decl" id="FRC.Dimensions.Dom.ext"><a class="lno" href="#FRC.Dimensions.Dom.ext">38</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcCore/Dimensions.lean#L38" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small ok" src="../lean-ok.png" alt="" title="no axioms">theorem ext {a b : Dom p n} (hr : a.r = b.r) (hs : a.s = b.s) : a = b := by</span>
+<span class="ln" id="L39"><a class="lno" href="#L39">39</a>  cases a; cases b; cases hr; cases hs; rfl</span>
+<span class="ln" id="L40"><a class="lno" href="#L40">40</a></span>
+<span class="ln decl" id="FRC.Dimensions.Dom.r_congr"><a class="lno" href="#FRC.Dimensions.Dom.r_congr">41</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcCore/Dimensions.lean#L41" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small ok" src="../lean-ok.png" alt="" title="no axioms">theorem r_congr {a b : Dom p n} (h : a = b) : a.r = b.r := by cases h; rfl</span>
+<span class="ln decl" id="FRC.Dimensions.Dom.s_congr"><a class="lno" href="#FRC.Dimensions.Dom.s_congr">42</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcCore/Dimensions.lean#L42" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small ok" src="../lean-ok.png" alt="" title="no axioms">theorem s_congr {a b : Dom p n} (h : a = b) : a.s = b.s := by cases h; rfl</span>
+<span class="ln" id="L43"><a class="lno" href="#L43">43</a></span>
+<span class="ln" id="L44"><a class="lno" href="#L44">44</a>instance : DecidableEq (Dom p n) := fun a b =&gt;</span>
+<span class="ln" id="L45"><a class="lno" href="#L45">45</a>  if h : a.r = b.r ∧ a.s = b.s then isTrue (ext h.1 h.2)</span>
+<span class="ln" id="L46"><a class="lno" href="#L46">46</a>  else isFalse (fun e =&gt; h ⟨r_congr e, s_congr e⟩)</span>
+<span class="ln" id="L47"><a class="lno" href="#L47">47</a></span>
+<span class="ln" id="L48"><a class="lno" href="#L48">48</a>variable [Pos p] [Pos n]</span>
+<span class="ln" id="L49"><a class="lno" href="#L49">49</a></span>
+<span class="ln" id="L50"><a class="lno" href="#L50">50</a>/-- 10:C2 — the product of labels adds the exponents: `U_{r,s} U_{r&#x27;,s&#x27;} = U_{r+r&#x27;, s+s&#x27;}`. -/</span>
+<span class="ln decl" id="FRC.Dimensions.Dom.mul"><a class="lno" href="#FRC.Dimensions.Dom.mul">51</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcCore/Dimensions.lean#L51" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small" src="../lean.png" alt="" title="a definition: no proof, no axioms">def mul (a b : Dom p n) : Dom p n := ⟨a.r + b.r, a.s + b.s⟩</span>
+<span class="ln" id="L52"><a class="lno" href="#L52">52</a>instance : Mul (Dom p n) := ⟨mul⟩</span>
+<span class="ln" id="L53"><a class="lno" href="#L53">53</a></span>
+<span class="ln" id="L54"><a class="lno" href="#L54">54</a>/-- 10:C2 — the neutral label `U_{0,0} = 1`. -/</span>
+<span class="ln decl" id="FRC.Dimensions.Dom.one"><a class="lno" href="#FRC.Dimensions.Dom.one">55</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcCore/Dimensions.lean#L55" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small" src="../lean.png" alt="" title="a definition: no proof, no axioms">def one : Dom p n := ⟨0, 0⟩</span>
+<span class="ln" id="L56"><a class="lno" href="#L56">56</a>instance : One (Dom p n) := ⟨one⟩</span>
+<span class="ln" id="L57"><a class="lno" href="#L57">57</a></span>
+<span class="ln" id="L58"><a class="lno" href="#L58">58</a>/-- 10:C2, 10:D1 — the inverse label `U_{r,s}⁻¹ = U_{−r,−s}`, the chart duality `δ_S`. -/</span>
+<span class="ln decl" id="FRC.Dimensions.Dom.inv"><a class="lno" href="#FRC.Dimensions.Dom.inv">59</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcCore/Dimensions.lean#L59" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small" src="../lean.png" alt="" title="a definition: no proof, no axioms">def inv (a : Dom p n) : Dom p n := ⟨-a.r, -a.s⟩</span>
+<span class="ln" id="L60"><a class="lno" href="#L60">60</a>instance : Inv (Dom p n) := ⟨inv⟩</span>
+<span class="ln" id="L61"><a class="lno" href="#L61">61</a></span>
+<span class="ln" id="L62"><a class="lno" href="#L62">62</a>/-- Powers by structural recursion. -/</span>
+<span class="ln decl" id="FRC.Dimensions.Dom.pow"><a class="lno" href="#FRC.Dimensions.Dom.pow">63</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcCore/Dimensions.lean#L63" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small" src="../lean.png" alt="" title="a definition: no proof, no axioms">def pow (a : Dom p n) : Nat → Dom p n</span>
+<span class="ln" id="L64"><a class="lno" href="#L64">64</a>  | 0 =&gt; 1</span>
+<span class="ln" id="L65"><a class="lno" href="#L65">65</a>  | k + 1 =&gt; pow a k * a</span>
+<span class="ln" id="L66"><a class="lno" href="#L66">66</a>instance : Pow (Dom p n) Nat := ⟨pow⟩</span>
+<span class="ln" id="L67"><a class="lno" href="#L67">67</a></span>
+<span class="ln decl" id="FRC.Dimensions.Dom.mul_def"><a class="lno" href="#FRC.Dimensions.Dom.mul_def">68</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcCore/Dimensions.lean#L68" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small ok" src="../lean-ok.png" alt="" title="no axioms">theorem mul_def (a b : Dom p n) : a * b = ⟨a.r + b.r, a.s + b.s⟩ := rfl</span>
+<span class="ln decl" id="FRC.Dimensions.Dom.one_def"><a class="lno" href="#FRC.Dimensions.Dom.one_def">69</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcCore/Dimensions.lean#L69" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small ok" src="../lean-ok.png" alt="" title="no axioms">theorem one_def : (1 : Dom p n) = ⟨0, 0⟩ := rfl</span>
+<span class="ln decl" id="FRC.Dimensions.Dom.inv_def"><a class="lno" href="#FRC.Dimensions.Dom.inv_def">70</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcCore/Dimensions.lean#L70" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small ok" src="../lean-ok.png" alt="" title="no axioms">theorem inv_def (a : Dom p n) : a⁻¹ = ⟨-a.r, -a.s⟩ := rfl</span>
+<span class="ln decl" id="FRC.Dimensions.Dom.pow_zero"><a class="lno" href="#FRC.Dimensions.Dom.pow_zero">71</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcCore/Dimensions.lean#L71" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small ok" src="../lean-ok.png" alt="" title="no axioms">theorem pow_zero (a : Dom p n) : a ^ 0 = 1 := rfl</span>
+<span class="ln decl" id="FRC.Dimensions.Dom.pow_succ"><a class="lno" href="#FRC.Dimensions.Dom.pow_succ">72</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcCore/Dimensions.lean#L72" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small ok" src="../lean-ok.png" alt="" title="no axioms">theorem pow_succ (a : Dom p n) (k : Nat) : a ^ (k + 1) = a ^ k * a := rfl</span>
+<span class="ln" id="L73"><a class="lno" href="#L73">73</a></span>
+<span class="ln" id="L74"><a class="lno" href="#L74">74</a>/-- 10:C2 — the label group is abelian: commutativity. -/</span>
+<span class="ln decl" id="FRC.Dimensions.Dom.mul_comm"><a class="lno" href="#FRC.Dimensions.Dom.mul_comm">75</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcCore/Dimensions.lean#L75" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small ok" src="../lean-ok.png" alt="" title="no axioms">theorem mul_comm (a b : Dom p n) : a * b = b * a :=</span>
+<span class="ln" id="L76"><a class="lno" href="#L76">76</a>  ext (Shell.add_comm _ _) (Shell.add_comm _ _)</span>
+<span class="ln" id="L77"><a class="lno" href="#L77">77</a></span>
+<span class="ln" id="L78"><a class="lno" href="#L78">78</a>/-- 10:C2 — associativity. -/</span>
+<span class="ln decl" id="FRC.Dimensions.Dom.mul_assoc"><a class="lno" href="#FRC.Dimensions.Dom.mul_assoc">79</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcCore/Dimensions.lean#L79" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small ok" src="../lean-ok.png" alt="" title="no axioms">theorem mul_assoc (a b c : Dom p n) : a * b * c = a * (b * c) :=</span>
+<span class="ln" id="L80"><a class="lno" href="#L80">80</a>  ext (Shell.add_assoc _ _ _) (Shell.add_assoc _ _ _)</span>
+<span class="ln" id="L81"><a class="lno" href="#L81">81</a></span>
+<span class="ln" id="L82"><a class="lno" href="#L82">82</a>/-- 10:C2 — the unit. -/</span>
+<span class="ln decl" id="FRC.Dimensions.Dom.one_mul"><a class="lno" href="#FRC.Dimensions.Dom.one_mul">83</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcCore/Dimensions.lean#L83" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small ok" src="../lean-ok.png" alt="" title="no axioms">theorem one_mul (a : Dom p n) : 1 * a = a := ext (Shell.zero_add _) (Shell.zero_add _)</span>
+<span class="ln decl" id="FRC.Dimensions.Dom.mul_one"><a class="lno" href="#FRC.Dimensions.Dom.mul_one">84</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcCore/Dimensions.lean#L84" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small ok" src="../lean-ok.png" alt="" title="no axioms">theorem mul_one (a : Dom p n) : a * 1 = a := ext (Shell.add_zero _) (Shell.add_zero _)</span>
+<span class="ln" id="L85"><a class="lno" href="#L85">85</a></span>
+<span class="ln" id="L86"><a class="lno" href="#L86">86</a>/-- 10:C2 — the inverse: `U_{r,s} U_{−r,−s} = 1`. -/</span>
+<span class="ln decl" id="FRC.Dimensions.Dom.mul_inv"><a class="lno" href="#FRC.Dimensions.Dom.mul_inv">87</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcCore/Dimensions.lean#L87" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small ok" src="../lean-ok.png" alt="" title="no axioms">theorem mul_inv (a : Dom p n) : a * a⁻¹ = 1 := ext (Shell.add_neg _) (Shell.add_neg _)</span>
+<span class="ln decl" id="FRC.Dimensions.Dom.inv_mul"><a class="lno" href="#FRC.Dimensions.Dom.inv_mul">88</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcCore/Dimensions.lean#L88" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small ok" src="../lean-ok.png" alt="" title="no axioms">theorem inv_mul (a : Dom p n) : a⁻¹ * a = 1 := ext (Shell.neg_add _) (Shell.neg_add _)</span>
+<span class="ln" id="L89"><a class="lno" href="#L89">89</a></span>
+<span class="ln" id="L90"><a class="lno" href="#L90">90</a>/-- 10:D1 — the chart duality `δ_S : D ↦ D⁻¹` is an involution. -/</span>
+<span class="ln decl" id="FRC.Dimensions.Dom.inv_inv"><a class="lno" href="#FRC.Dimensions.Dom.inv_inv">91</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcCore/Dimensions.lean#L91" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small ok" src="../lean-ok.png" alt="" title="no axioms">theorem inv_inv (a : Dom p n) : a⁻¹⁻¹ = a := ext (Shell.neg_neg _) (Shell.neg_neg _)</span>
+<span class="ln" id="L92"><a class="lno" href="#L92">92</a></span>
+<span class="ln" id="L93"><a class="lno" href="#L93">93</a>/-- 10:C2, 10:C3 — the grading: `U_a^{k+l} = U_a^k U_a^l`. -/</span>
+<span class="ln decl" id="FRC.Dimensions.Dom.pow_add"><a class="lno" href="#FRC.Dimensions.Dom.pow_add">94</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcCore/Dimensions.lean#L94" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small ok" src="../lean-ok.png" alt="" title="no axioms">theorem pow_add (a : Dom p n) (k l : Nat) : a ^ (k + l) = a ^ k * a ^ l := by</span>
+<span class="ln" id="L95"><a class="lno" href="#L95">95</a>  induction l with</span>
+<span class="ln" id="L96"><a class="lno" href="#L96">96</a>  | zero =&gt; rw [Nat.add_zero, pow_zero, mul_one]</span>
+<span class="ln" id="L97"><a class="lno" href="#L97">97</a>  | succ l ih =&gt; rw [Nat.add_succ, pow_succ, ih, pow_succ, mul_assoc]</span>
+<span class="ln" id="L98"><a class="lno" href="#L98">98</a></span>
+<span class="ln" id="L99"><a class="lno" href="#L99">99</a>/-- 10:C3 — the domain of a power is the multiple of the label: `U_{r,s}^k = U_{kr, ks}`; so the domain</span>
+<span class="ln" id="L100"><a class="lno" href="#L100">100</a>of a monomial `∏ U_{a_j}^{k_j}` is `Σ k_j a_j`, and the monomial is neutral iff that sum is `(0, 0)`. -/</span>
+<span class="ln decl" id="FRC.Dimensions.Dom.pow_eq"><a class="lno" href="#FRC.Dimensions.Dom.pow_eq">101</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcCore/Dimensions.lean#L101" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small ok" src="../lean-ok.png" alt="" title="no axioms">theorem pow_eq (a : Dom p n) (k : Nat) : a ^ k = ⟨ofNat k * a.r, ofNat k * a.s⟩ := by</span>
+<span class="ln" id="L102"><a class="lno" href="#L102">102</a>  induction k with</span>
+<span class="ln" id="L103"><a class="lno" href="#L103">103</a>  | zero =&gt;</span>
+<span class="ln" id="L104"><a class="lno" href="#L104">104</a>    refine ext ?_ ?_</span>
+<span class="ln" id="L105"><a class="lno" href="#L105">105</a>    · show (0 : Shell p) = ofNat 0 * a.r</span>
+<span class="ln" id="L106"><a class="lno" href="#L106">106</a>      rw [show (ofNat 0 : Shell p) = 0 from rfl, Shell.zero_mul]</span>
+<span class="ln" id="L107"><a class="lno" href="#L107">107</a>    · show (0 : Shell n) = ofNat 0 * a.s</span>
+<span class="ln" id="L108"><a class="lno" href="#L108">108</a>      rw [show (ofNat 0 : Shell n) = 0 from rfl, Shell.zero_mul]</span>
+<span class="ln" id="L109"><a class="lno" href="#L109">109</a>  | succ k ih =&gt;</span>
+<span class="ln" id="L110"><a class="lno" href="#L110">110</a>    rw [pow_succ, ih, mul_def, ofNat_succ, ofNat_succ, Shell.right_distrib, Shell.right_distrib,</span>
+<span class="ln" id="L111"><a class="lno" href="#L111">111</a>      Shell.one_mul, Shell.one_mul]</span>
+<span class="ln" id="L112"><a class="lno" href="#L112">112</a></span>
+<span class="ln" id="L113"><a class="lno" href="#L113">113</a>/-- 10:C3 — the product of powers: `(U_a U_b)^k = U_a^k U_b^k`. -/</span>
+<span class="ln decl" id="FRC.Dimensions.Dom.mul_pow"><a class="lno" href="#FRC.Dimensions.Dom.mul_pow">114</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcCore/Dimensions.lean#L114" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small ok" src="../lean-ok.png" alt="" title="no axioms">theorem mul_pow (a b : Dom p n) (k : Nat) : (a * b) ^ k = a ^ k * b ^ k := by</span>
+<span class="ln" id="L115"><a class="lno" href="#L115">115</a>  rw [pow_eq, pow_eq, pow_eq, mul_def]</span>
+<span class="ln" id="L116"><a class="lno" href="#L116">116</a>  exact ext (Shell.left_distrib _ _ _) (Shell.left_distrib _ _ _)</span>
+<span class="ln" id="L117"><a class="lno" href="#L117">117</a></span>
+<span class="ln" id="L118"><a class="lno" href="#L118">118</a>end Dom</span>
+<span class="ln" id="L119"><a class="lno" href="#L119">119</a></span>
+<span class="ln" id="L120"><a class="lno" href="#L120">120</a>/-! ## Bounded universal quantifiers, decided by search (no axioms) -/</span>
+<span class="ln" id="L121"><a class="lno" href="#L121">121</a></span>
+<span class="ln" id="L122"><a class="lno" href="#L122">122</a>/-- `∀ m &lt; n, P m`, decided by recursion on `n` — Lean&#x27;s own instance carries `propext`; this one nothing. -/</span>
+<span class="ln decl" id="FRC.Dimensions.decForallLT"><a class="lno" href="#FRC.Dimensions.decForallLT">123</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcCore/Dimensions.lean#L123" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small" src="../lean.png" alt="" title="a definition: no proof, no axioms">def decForallLT (P : Nat → Prop) [DecidablePred P] : (n : Nat) → Decidable (∀ m, m &lt; n → P m)</span>
+<span class="ln" id="L124"><a class="lno" href="#L124">124</a>  | 0 =&gt; isTrue (fun m hm =&gt; absurd hm (Nat.not_lt_zero m))</span>
+<span class="ln" id="L125"><a class="lno" href="#L125">125</a>  | n + 1 =&gt;</span>
+<span class="ln" id="L126"><a class="lno" href="#L126">126</a>    match decForallLT P n with</span>
+<span class="ln" id="L127"><a class="lno" href="#L127">127</a>    | isFalse h =&gt; isFalse (fun hall =&gt; h (fun m hm =&gt; hall m (Nat.lt_succ_of_lt hm)))</span>
+<span class="ln" id="L128"><a class="lno" href="#L128">128</a>    | isTrue h =&gt;</span>
+<span class="ln" id="L129"><a class="lno" href="#L129">129</a>      if hn : P n then</span>
+<span class="ln" id="L130"><a class="lno" href="#L130">130</a>        isTrue (fun m hm =&gt;</span>
+<span class="ln" id="L131"><a class="lno" href="#L131">131</a>          match Nat.lt_or_ge m n with</span>
+<span class="ln" id="L132"><a class="lno" href="#L132">132</a>          | .inl hlt =&gt; h m hlt</span>
+<span class="ln" id="L133"><a class="lno" href="#L133">133</a>          | .inr hge =&gt; (Nat.le_antisymm (Nat.le_of_lt_succ hm) hge) ▸ hn)</span>
+<span class="ln" id="L134"><a class="lno" href="#L134">134</a>      else isFalse (fun hall =&gt; hn (hall n (Nat.lt_succ_self n)))</span>
+<span class="ln" id="L135"><a class="lno" href="#L135">135</a></span>
+<span class="ln" id="L136"><a class="lno" href="#L136">136</a>instance instDecForallLT (P : Nat → Prop) [DecidablePred P] (n : Nat) : Decidable (∀ m, m &lt; n → P m) :=</span>
+<span class="ln" id="L137"><a class="lno" href="#L137">137</a>  decForallLT P n</span>
+<span class="ln" id="L138"><a class="lno" href="#L138">138</a></span>
+<span class="ln" id="L139"><a class="lno" href="#L139">139</a>/-- `∀ x : Shell p, P x`, decided through the representatives. -/</span>
+<span class="ln" id="L140"><a class="lno" href="#L140">140</a>instance instDecForallShell {p : Nat} [Pos p] (P : Shell p → Prop) [DecidablePred P] :</span>
+<span class="ln" id="L141"><a class="lno" href="#L141">141</a>    Decidable (∀ x, P x) :=</span>
+<span class="ln" id="L142"><a class="lno" href="#L142">142</a>  match decForallLT (fun v =&gt; P (ofNat v)) p with</span>
+<span class="ln" id="L143"><a class="lno" href="#L143">143</a>  | isTrue h =&gt; isTrue (fun x =&gt; ofNat_val x ▸ h x.val x.lt)</span>
+<span class="ln" id="L144"><a class="lno" href="#L144">144</a>  | isFalse h =&gt; isFalse (fun hall =&gt; h (fun v _ =&gt; hall (ofNat v)))</span>
+<span class="ln" id="L145"><a class="lno" href="#L145">145</a></span>
+<span class="ln" id="L146"><a class="lno" href="#L146">146</a>/-- `∀ x : Dom p n, P x`, decided componentwise. -/</span>
+<span class="ln" id="L147"><a class="lno" href="#L147">147</a>instance instDecForallDom {p n : Nat} [Pos p] [Pos n] (P : Dom p n → Prop) [DecidablePred P] :</span>
+<span class="ln" id="L148"><a class="lno" href="#L148">148</a>    Decidable (∀ x, P x) :=</span>
+<span class="ln" id="L149"><a class="lno" href="#L149">149</a>  match (inferInstance : Decidable (∀ r : Shell p, ∀ s : Shell n, P ⟨r, s⟩)) with</span>
+<span class="ln" id="L150"><a class="lno" href="#L150">150</a>  | isTrue h =&gt; isTrue (fun x =&gt; match x with | ⟨r, s⟩ =&gt; h r s)</span>
+<span class="ln" id="L151"><a class="lno" href="#L151">151</a>  | isFalse h =&gt; isFalse (fun hall =&gt; h (fun r s =&gt; hall ⟨r, s⟩))</span>
+<span class="ln" id="L152"><a class="lno" href="#L152">152</a></span>
+<span class="ln" id="L153"><a class="lno" href="#L153">153</a>/-! ## The generators and the flag on the shell of capacity `κ` (10:D2, C6, D3, D6) -/</span>
+<span class="ln" id="L154"><a class="lno" href="#L154">154</a>section shell</span>
+<span class="ln" id="L155"><a class="lno" href="#L155">155</a></span>
+<span class="ln" id="L156"><a class="lno" href="#L156">156</a>variable (κ : Nat) [Pos κ]</span>
+<span class="ln" id="L157"><a class="lno" href="#L157">157</a></span>
+<span class="ln" id="L158"><a class="lno" href="#L158">158</a>instance instPosFour : Pos (4 * κ) := ⟨Nat.mul_pos (Nat.zero_lt_succ 3) Pos.pos⟩</span>
+<span class="ln" id="L159"><a class="lno" href="#L159">159</a></span>
+<span class="ln" id="L160"><a class="lno" href="#L160">160</a>/-- The lattice of the shell of capacity `κ`: `D_p = C_{4κ+1} × C_{4κ}`. -/</span>
+<span class="ln decl" id="FRC.Dimensions.DomK"><a class="lno" href="#FRC.Dimensions.DomK">161</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcCore/Dimensions.lean#L161" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small" src="../lean.png" alt="" title="a definition: no proof, no axioms">abbrev DomK := Dom (4 * κ + 1) (4 * κ)</span>
+<span class="ln" id="L162"><a class="lno" href="#L162">162</a></span>
+<span class="ln" id="L163"><a class="lno" href="#L163">163</a>/-- 10:C1 — the space generator `[L] = (1, 0)`. -/</span>
+<span class="ln decl" id="FRC.Dimensions.L"><a class="lno" href="#FRC.Dimensions.L">164</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcCore/Dimensions.lean#L164" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small" src="../lean.png" alt="" title="a definition: no proof, no axioms">def L : DomK κ := ⟨1, 0⟩</span>
+<span class="ln" id="L165"><a class="lno" href="#L165">165</a>/-- 10:C1 — the time generator `[T] = (0, 1)`. -/</span>
+<span class="ln decl" id="FRC.Dimensions.T"><a class="lno" href="#FRC.Dimensions.T">166</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcCore/Dimensions.lean#L166" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small" src="../lean.png" alt="" title="a definition: no proof, no axioms">def T : DomK κ := ⟨0, 1⟩</span>
+<span class="ln" id="L167"><a class="lno" href="#L167">167</a>/-- 10:D2 — the unit flag `I_q = [T]^κ = (0, κ)`. -/</span>
+<span class="ln decl" id="FRC.Dimensions.flag"><a class="lno" href="#FRC.Dimensions.flag">168</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcCore/Dimensions.lean#L168" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small" src="../lean.png" alt="" title="a definition: no proof, no axioms">def flag : DomK κ := ⟨0, ofNat κ⟩</span>
+<span class="ln" id="L169"><a class="lno" href="#L169">169</a>/-- 10:D6 — the energy domain `[E] = I_q [T]⁻¹`. -/</span>
+<span class="ln decl" id="FRC.Dimensions.energy"><a class="lno" href="#FRC.Dimensions.energy">170</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcCore/Dimensions.lean#L170" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small" src="../lean.png" alt="" title="a definition: no proof, no axioms">def energy : DomK κ := flag κ * (T κ)⁻¹</span>
+<span class="ln" id="L171"><a class="lno" href="#L171">171</a>/-- 10:D6 — the momentum domain `[p] = I_q [L]⁻¹`. -/</span>
+<span class="ln decl" id="FRC.Dimensions.mom"><a class="lno" href="#FRC.Dimensions.mom">172</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcCore/Dimensions.lean#L172" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small" src="../lean.png" alt="" title="a definition: no proof, no axioms">def mom : DomK κ := flag κ * (L κ)⁻¹</span>
+<span class="ln" id="L173"><a class="lno" href="#L173">173</a>/-- 10:D1 — the crossed duality `δ_C = I_q δ_S : D ↦ I_q D⁻¹`. -/</span>
+<span class="ln decl" id="FRC.Dimensions.deltaC"><a class="lno" href="#FRC.Dimensions.deltaC">174</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcCore/Dimensions.lean#L174" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small" src="../lean.png" alt="" title="a definition: no proof, no axioms">def deltaC (a : DomK κ) : DomK κ := flag κ * a⁻¹</span>
+<span class="ln" id="L175"><a class="lno" href="#L175">175</a></span>
+<span class="ln" id="L176"><a class="lno" href="#L176">176</a>/-- 10:D2 — `I_q = [T]^κ`. -/</span>
+<span class="ln decl" id="FRC.Dimensions.flag_eq_pow"><a class="lno" href="#FRC.Dimensions.flag_eq_pow">177</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcCore/Dimensions.lean#L177" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small ok" src="../lean-ok.png" alt="" title="no axioms">theorem flag_eq_pow : T κ ^ κ = flag κ := by</span>
+<span class="ln" id="L178"><a class="lno" href="#L178">178</a>  rw [Dom.pow_eq]</span>
+<span class="ln" id="L179"><a class="lno" href="#L179">179</a>  exact Dom.ext (by show ofNat κ * 0 = 0; exact Shell.mul_zero _)</span>
+<span class="ln" id="L180"><a class="lno" href="#L180">180</a>    (by show ofNat κ * 1 = ofNat κ; exact Shell.mul_one _)</span>
+<span class="ln" id="L181"><a class="lno" href="#L181">181</a></span>
+<span class="ln" id="L182"><a class="lno" href="#L182">182</a>/-- `ofNat (m·κ)` in `C_{4κ}` has representative `m·κ` for `m &lt; 4`. -/</span>
+<span class="ln decl" id="FRC.Dimensions.val_ofNat_mul_kappa"><a class="lno" href="#FRC.Dimensions.val_ofNat_mul_kappa">183</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcCore/Dimensions.lean#L183" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small ok" src="../lean-ok.png" alt="" title="no axioms">theorem val_ofNat_mul_kappa (m : Nat) (hm : m &lt; 4) : (ofNat (m * κ) : Shell (4 * κ)).val = m * κ :=</span>
+<span class="ln" id="L184"><a class="lno" href="#L184">184</a>  FRC.Nat.mod_eq_of_lt (FRC.Nat.mul_lt_mul_of_lt_of_pos hm Pos.pos)</span>
+<span class="ln" id="L185"><a class="lno" href="#L185">185</a></span>
+<span class="ln decl" id="FRC.Dimensions.ofNat_kappa_ne_zero"><a class="lno" href="#FRC.Dimensions.ofNat_kappa_ne_zero">186</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcCore/Dimensions.lean#L186" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small ok" src="../lean-ok.png" alt="" title="no axioms">theorem ofNat_kappa_ne_zero : (ofNat κ : Shell (4 * κ)) ≠ 0 := fun h =&gt; by</span>
+<span class="ln" id="L187"><a class="lno" href="#L187">187</a>  have hv := val_injective h</span>
+<span class="ln" id="L188"><a class="lno" href="#L188">188</a>  rw [show ofNat κ = (ofNat (1 * κ) : Shell (4 * κ)) by rw [Nat.one_mul],</span>
+<span class="ln" id="L189"><a class="lno" href="#L189">189</a>    val_ofNat_mul_kappa κ 1 (by decide), Nat.one_mul, val_zero] at hv</span>
+<span class="ln" id="L190"><a class="lno" href="#L190">190</a>  exact Nat.ne_of_gt Pos.pos hv</span>
+<span class="ln" id="L191"><a class="lno" href="#L191">191</a></span>
+<span class="ln decl" id="FRC.Dimensions.ofNat_two_kappa_ne_zero"><a class="lno" href="#FRC.Dimensions.ofNat_two_kappa_ne_zero">192</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcCore/Dimensions.lean#L192" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small ok" src="../lean-ok.png" alt="" title="no axioms">theorem ofNat_two_kappa_ne_zero : (ofNat (2 * κ) : Shell (4 * κ)) ≠ 0 := fun h =&gt; by</span>
+<span class="ln" id="L193"><a class="lno" href="#L193">193</a>  have hv := val_injective h</span>
+<span class="ln" id="L194"><a class="lno" href="#L194">194</a>  rw [val_ofNat_mul_kappa κ 2 (by decide), val_zero] at hv</span>
+<span class="ln" id="L195"><a class="lno" href="#L195">195</a>  exact Nat.ne_of_gt (Nat.mul_pos (Nat.zero_lt_succ 1) Pos.pos) hv</span>
+<span class="ln" id="L196"><a class="lno" href="#L196">196</a></span>
+<span class="ln decl" id="FRC.Dimensions.ofNat_three_kappa_ne_zero"><a class="lno" href="#FRC.Dimensions.ofNat_three_kappa_ne_zero">197</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcCore/Dimensions.lean#L197" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small ok" src="../lean-ok.png" alt="" title="no axioms">theorem ofNat_three_kappa_ne_zero : (ofNat (3 * κ) : Shell (4 * κ)) ≠ 0 := fun h =&gt; by</span>
+<span class="ln" id="L198"><a class="lno" href="#L198">198</a>  have hv := val_injective h</span>
+<span class="ln" id="L199"><a class="lno" href="#L199">199</a>  rw [val_ofNat_mul_kappa κ 3 (by decide), val_zero] at hv</span>
+<span class="ln" id="L200"><a class="lno" href="#L200">200</a>  exact Nat.ne_of_gt (Nat.mul_pos (Nat.zero_lt_succ 2) Pos.pos) hv</span>
+<span class="ln" id="L201"><a class="lno" href="#L201">201</a></span>
+<span class="ln" id="L202"><a class="lno" href="#L202">202</a>/-- `4κ ≡ 0` in `C_{4κ}`. -/</span>
+<span class="ln decl" id="FRC.Dimensions.ofNat_four_kappa"><a class="lno" href="#FRC.Dimensions.ofNat_four_kappa">203</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcCore/Dimensions.lean#L203" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small ok" src="../lean-ok.png" alt="" title="no axioms">theorem ofNat_four_kappa : (ofNat (4 * κ) : Shell (4 * κ)) = 0 := Epi.ofNat_self</span>
+<span class="ln" id="L204"><a class="lno" href="#L204">204</a></span>
+<span class="ln decl" id="FRC.Dimensions.flag_pow"><a class="lno" href="#FRC.Dimensions.flag_pow">205</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcCore/Dimensions.lean#L205" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small ok" src="../lean-ok.png" alt="" title="no axioms">theorem flag_pow (m : Nat) : flag κ ^ m = ⟨0, ofNat (m * κ)⟩ := by</span>
+<span class="ln" id="L206"><a class="lno" href="#L206">206</a>  rw [Dom.pow_eq]</span>
+<span class="ln" id="L207"><a class="lno" href="#L207">207</a>  exact Dom.ext (by show ofNat m * 0 = 0; exact Shell.mul_zero _)</span>
+<span class="ln" id="L208"><a class="lno" href="#L208">208</a>    (by show ofNat m * ofNat κ = ofNat (m * κ); rw [Frame.ofNat_mul])</span>
+<span class="ln" id="L209"><a class="lno" href="#L209">209</a></span>
+<span class="ln" id="L210"><a class="lno" href="#L210">210</a>/-- 10:D2 — `I_q⁴ = 1`. -/</span>
+<span class="ln decl" id="FRC.Dimensions.flag_pow_four"><a class="lno" href="#FRC.Dimensions.flag_pow_four">211</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcCore/Dimensions.lean#L211" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small ok" src="../lean-ok.png" alt="" title="no axioms">theorem flag_pow_four : flag κ ^ 4 = 1 := by</span>
+<span class="ln" id="L212"><a class="lno" href="#L212">212</a>  rw [flag_pow, ofNat_four_kappa]; rfl</span>
+<span class="ln" id="L213"><a class="lno" href="#L213">213</a></span>
+<span class="ln" id="L214"><a class="lno" href="#L214">214</a>/-- 10:D2 — `I_q² = [T]^π`, the half-period `π = 2κ`, and `I_q, I_q², I_q³ ≠ 1`: the flag has order four. -/</span>
+<span class="ln decl" id="FRC.Dimensions.flag_order_four"><a class="lno" href="#FRC.Dimensions.flag_order_four">215</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcCore/Dimensions.lean#L215" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small ok" src="../lean-ok.png" alt="" title="no axioms">theorem flag_order_four :</span>
+<span class="ln" id="L216"><a class="lno" href="#L216">216</a>    flag κ ^ 2 = T κ ^ (2 * κ) ∧ flag κ ^ 1 ≠ 1 ∧ flag κ ^ 2 ≠ 1 ∧ flag κ ^ 3 ≠ 1 := by</span>
+<span class="ln" id="L217"><a class="lno" href="#L217">217</a>  refine ⟨?_, fun h =&gt; ?_, fun h =&gt; ?_, fun h =&gt; ?_⟩</span>
+<span class="ln" id="L218"><a class="lno" href="#L218">218</a>  · rw [flag_pow, Dom.pow_eq]</span>
+<span class="ln" id="L219"><a class="lno" href="#L219">219</a>    exact Dom.ext (by show (0 : Shell (4 * κ + 1)) = ofNat (2 * κ) * 0; rw [Shell.mul_zero])</span>
+<span class="ln" id="L220"><a class="lno" href="#L220">220</a>      (by show ofNat (2 * κ) = ofNat (2 * κ) * 1; rw [Shell.mul_one])</span>
+<span class="ln" id="L221"><a class="lno" href="#L221">221</a>  · rw [flag_pow, Nat.one_mul] at h; exact ofNat_kappa_ne_zero κ (Dom.s_congr h)</span>
+<span class="ln" id="L222"><a class="lno" href="#L222">222</a>  · rw [flag_pow] at h; exact ofNat_two_kappa_ne_zero κ (Dom.s_congr h)</span>
+<span class="ln" id="L223"><a class="lno" href="#L223">223</a>  · rw [flag_pow] at h; exact ofNat_three_kappa_ne_zero κ (Dom.s_congr h)</span>
+<span class="ln" id="L224"><a class="lno" href="#L224">224</a></span>
+<span class="ln" id="L225"><a class="lno" href="#L225">225</a>/-- 10:D2 — the conjugate generator `I_q⁻¹ = I_q³ = (0, 3κ)`. -/</span>
+<span class="ln decl" id="FRC.Dimensions.flag_inv"><a class="lno" href="#FRC.Dimensions.flag_inv">226</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcCore/Dimensions.lean#L226" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small ok" src="../lean-ok.png" alt="" title="no axioms">theorem flag_inv : (flag κ)⁻¹ = flag κ ^ 3 := by</span>
+<span class="ln" id="L227"><a class="lno" href="#L227">227</a>  rw [flag_pow, Dom.inv_def]</span>
+<span class="ln" id="L228"><a class="lno" href="#L228">228</a>  refine Dom.ext (Shell.neg_zero) ?_</span>
+<span class="ln" id="L229"><a class="lno" href="#L229">229</a>  show -(ofNat κ) = ofNat (3 * κ)</span>
+<span class="ln" id="L230"><a class="lno" href="#L230">230</a>  apply Shell.neg_eq_of_add_eq_zero</span>
+<span class="ln" id="L231"><a class="lno" href="#L231">231</a>  have h4 : 4 * κ = 3 * κ + κ := Nat.succ_mul 3 κ</span>
+<span class="ln" id="L232"><a class="lno" href="#L232">232</a>  rw [Frame.ofNat_add, Nat.add_comm, ← h4, ofNat_four_kappa]</span>
+<span class="ln" id="L233"><a class="lno" href="#L233">233</a></span>
+<span class="ln" id="L234"><a class="lno" href="#L234">234</a>omit [Pos κ] in</span>
+<span class="ln" id="L235"><a class="lno" href="#L235">235</a>/-- 10:D2 — no flag of space on a framed shell: `4r = 0` forces `r = 0` (`2 ≠ 0` and no zero divisors), so</span>
+<span class="ln" id="L236"><a class="lno" href="#L236">236</a>the meridian factor contributes no element of order four; and `2r = 0` forces `r = 0`. -/</span>
+<span class="ln decl" id="FRC.Dimensions.no_flag_of_space"><a class="lno" href="#FRC.Dimensions.no_flag_of_space">237</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcCore/Dimensions.lean#L237" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small ok" src="../lean-ok.png" alt="" title="no axioms">theorem no_flag_of_space {g : Shell (4 * κ + 1)} (F : Frame (4 * κ + 1) κ g) (r : Shell (4 * κ + 1))</span>
+<span class="ln" id="L238"><a class="lno" href="#L238">238</a>    (h : (2 * 2 : Shell (4 * κ + 1)) * r = 0) : r = 0 := by</span>
+<span class="ln" id="L239"><a class="lno" href="#L239">239</a>  rw [Shell.mul_assoc] at h</span>
+<span class="ln" id="L240"><a class="lno" href="#L240">240</a>  exact F.no_south_pole _ (F.no_south_pole _ h)</span>
+<span class="ln" id="L241"><a class="lno" href="#L241">241</a></span>
+<span class="ln" id="L242"><a class="lno" href="#L242">242</a>/-- 10:D2 — the order-two element: `2s = 0` in `C_{4κ}` iff `s ∈ {0, 2κ}` — decided on `κ = 3` for every</span>
+<span class="ln" id="L243"><a class="lno" href="#L243">243</a>residue; the general law is `two_smul_flag` of the Mathlib module. -/</span>
+<span class="ln decl" id="FRC.Dimensions.order_two_13"><a class="lno" href="#FRC.Dimensions.order_two_13">244</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcCore/Dimensions.lean#L244" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small ok" src="../lean-ok.png" alt="" title="no axioms">theorem order_two_13 :</span>
+<span class="ln" id="L245"><a class="lno" href="#L245">245</a>    ∀ s : Shell 12, (2 : Shell 12) * s = 0 ↔ (s = 0 ∨ s = 6) := by decide +kernel</span>
+<span class="ln" id="L246"><a class="lno" href="#L246">246</a></span>
+<span class="ln" id="L247"><a class="lno" href="#L247">247</a>/-- 10:D2 — the elements of order four of `D_13 = C_13 × C_12` are exactly `(0, 3)` and `(0, 9)`: the flag</span>
+<span class="ln" id="L248"><a class="lno" href="#L248">248</a>and its conjugate, both in the time factor (exhaustive over the `156` labels). -/</span>
+<span class="ln decl" id="FRC.Dimensions.order_four_13"><a class="lno" href="#FRC.Dimensions.order_four_13">249</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcCore/Dimensions.lean#L249" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small ok" src="../lean-ok.png" alt="" title="no axioms">theorem order_four_13 :</span>
+<span class="ln" id="L250"><a class="lno" href="#L250">250</a>    ∀ x : DomK 3, (x ^ 4 = 1 ∧ x ^ 2 ≠ 1) ↔ (x = flag 3 ∨ x = (flag 3)⁻¹) := by decide +kernel</span>
+<span class="ln" id="L251"><a class="lno" href="#L251">251</a></span>
+<span class="ln" id="L252"><a class="lno" href="#L252">252</a>/-- 10:D2, 10:C6 — meridian transport onto the flag: `([L][T]^κ)^p = I_q` — the meridian component wraps,</span>
+<span class="ln" id="L253"><a class="lno" href="#L253">253</a>`p ≡ 0 (mod p)`, and the phase component advances by `pκ = κ + κ·4κ ≡ κ (mod 4κ)`; for every capacity. -/</span>
+<span class="ln decl" id="FRC.Dimensions.meridian_transport"><a class="lno" href="#FRC.Dimensions.meridian_transport">254</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcCore/Dimensions.lean#L254" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small ok" src="../lean-ok.png" alt="" title="no axioms">theorem meridian_transport : (L κ * T κ ^ κ) ^ (4 * κ + 1) = flag κ := by</span>
+<span class="ln" id="L255"><a class="lno" href="#L255">255</a>  rw [flag_eq_pow, Dom.pow_eq]</span>
+<span class="ln" id="L256"><a class="lno" href="#L256">256</a>  refine Dom.ext ?_ ?_</span>
+<span class="ln" id="L257"><a class="lno" href="#L257">257</a>  · show ofNat (4 * κ + 1) * (1 + 0) = 0</span>
+<span class="ln" id="L258"><a class="lno" href="#L258">258</a>    rw [Shell.add_zero, Shell.mul_one]; exact Epi.ofNat_self</span>
+<span class="ln" id="L259"><a class="lno" href="#L259">259</a>  · show ofNat (4 * κ + 1) * (0 + ofNat κ) = ofNat κ</span>
+<span class="ln" id="L260"><a class="lno" href="#L260">260</a>    rw [Shell.zero_add, Frame.ofNat_mul, FRC.Nat.add_mul (4 * κ) 1 κ, Nat.one_mul,</span>
+<span class="ln" id="L261"><a class="lno" href="#L261">261</a>      Nat.mul_comm (4 * κ) κ, Nat.add_comm]</span>
+<span class="ln" id="L262"><a class="lno" href="#L262">262</a>    exact ofNat_add_mul_self κ κ</span>
+<span class="ln" id="L263"><a class="lno" href="#L263">263</a>  where</span>
+<span class="ln" id="L264"><a class="lno" href="#L264">264</a>  ofNat_add_mul_self (a : Nat) : ∀ m : Nat, (ofNat (a + m * (4 * κ)) : Shell (4 * κ)) = ofNat a</span>
+<span class="ln" id="L265"><a class="lno" href="#L265">265</a>    | 0 =&gt; by rw [Nat.zero_mul, Nat.add_zero]</span>
+<span class="ln" id="L266"><a class="lno" href="#L266">266</a>    | m + 1 =&gt; by</span>
+<span class="ln" id="L267"><a class="lno" href="#L267">267</a>      rw [FRC.Nat.add_mul m 1 (4 * κ), Nat.one_mul, ← Nat.add_assoc, Epi.ofNat_add_self,</span>
+<span class="ln" id="L268"><a class="lno" href="#L268">268</a>        ofNat_add_mul_self a m]</span>
+<span class="ln" id="L269"><a class="lno" href="#L269">269</a></span>
+<span class="ln" id="L270"><a class="lno" href="#L270">270</a>/-- 10:D1 — the crossed duality is an involution, `δ_C(δ_C D) = D`, and carries `[L] ↦ [p]`, `[T] ↦ [E]`. -/</span>
+<span class="ln decl" id="FRC.Dimensions.deltaC_involutive"><a class="lno" href="#FRC.Dimensions.deltaC_involutive">271</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcCore/Dimensions.lean#L271" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small ok" src="../lean-ok.png" alt="" title="no axioms">theorem deltaC_involutive (a : DomK κ) :</span>
+<span class="ln" id="L272"><a class="lno" href="#L272">272</a>    deltaC κ (deltaC κ a) = a ∧ deltaC κ (L κ) = mom κ ∧ deltaC κ (T κ) = energy κ := by</span>
+<span class="ln" id="L273"><a class="lno" href="#L273">273</a>  refine ⟨?_, rfl, rfl⟩</span>
+<span class="ln" id="L274"><a class="lno" href="#L274">274</a>  unfold deltaC</span>
+<span class="ln" id="L275"><a class="lno" href="#L275">275</a>  refine Dom.ext ?_ ?_</span>
+<span class="ln" id="L276"><a class="lno" href="#L276">276</a>  · show (0 : Shell (4 * κ + 1)) + -(0 + -a.r) = a.r</span>
+<span class="ln" id="L277"><a class="lno" href="#L277">277</a>    rw [Shell.zero_add, Shell.zero_add, Shell.neg_neg]</span>
+<span class="ln" id="L278"><a class="lno" href="#L278">278</a>  · show ofNat κ + -(ofNat κ + -a.s) = a.s</span>
+<span class="ln" id="L279"><a class="lno" href="#L279">279</a>    rw [Shell.neg_add_rev, Shell.neg_neg, ← Shell.add_assoc, Shell.add_neg, Shell.zero_add]</span>
+<span class="ln" id="L280"><a class="lno" href="#L280">280</a></span>
+<span class="ln" id="L281"><a class="lno" href="#L281">281</a>/-- 10:D3 — the record `s ↦ I_q^s` on `s = 0, 1, 2, 3` takes the four values `1, (0, κ), (0, 2κ), (0, 3κ)`</span>
+<span class="ln" id="L282"><a class="lno" href="#L282">282</a>of the flag subgroup, and returns to `1` at `s = 4`; its values at `0` and `2` are the parity subgroup, the</span>
+<span class="ln" id="L283"><a class="lno" href="#L283">283</a>chart shadow of the four-cycle. -/</span>
+<span class="ln decl" id="FRC.Dimensions.record_values"><a class="lno" href="#FRC.Dimensions.record_values">284</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcCore/Dimensions.lean#L284" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small ok" src="../lean-ok.png" alt="" title="no axioms">theorem record_values :</span>
+<span class="ln" id="L285"><a class="lno" href="#L285">285</a>    flag κ ^ 0 = 1 ∧ flag κ ^ 1 = ⟨0, ofNat κ⟩ ∧ flag κ ^ 2 = ⟨0, ofNat (2 * κ)⟩ ∧</span>
+<span class="ln" id="L286"><a class="lno" href="#L286">286</a>    flag κ ^ 3 = ⟨0, ofNat (3 * κ)⟩ ∧ flag κ ^ 4 = 1 ∧ flag κ ^ 2 * flag κ ^ 2 = 1 := by</span>
+<span class="ln" id="L287"><a class="lno" href="#L287">287</a>  refine ⟨rfl, by rw [flag_pow, Nat.one_mul], flag_pow κ 2, flag_pow κ 3, flag_pow_four κ, ?_⟩</span>
+<span class="ln" id="L288"><a class="lno" href="#L288">288</a>  rw [← Dom.pow_add]; exact flag_pow_four κ</span>
+<span class="ln" id="L289"><a class="lno" href="#L289">289</a></span>
+<span class="ln" id="L290"><a class="lno" href="#L290">290</a>/-- 10:D6 — the flagged readings: `[E] = (0, κ − 1)` one capacity step above the count, `[p] = (−1, κ)`,</span>
+<span class="ln" id="L291"><a class="lno" href="#L291">291</a>the action `[S] = [E][T] = I_q`, and the phase counts neutral, `[E][T] I_q⁻¹ = 1`, `[p][L] I_q⁻¹ = 1`. -/</span>
+<span class="ln decl" id="FRC.Dimensions.flagged_readings"><a class="lno" href="#FRC.Dimensions.flagged_readings">292</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcCore/Dimensions.lean#L292" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small ok" src="../lean-ok.png" alt="" title="no axioms">theorem flagged_readings :</span>
+<span class="ln" id="L293"><a class="lno" href="#L293">293</a>    energy κ = ⟨0, ofNat κ + -1⟩ ∧ mom κ = ⟨-1, ofNat κ⟩ ∧ energy κ * T κ = flag κ ∧</span>
+<span class="ln" id="L294"><a class="lno" href="#L294">294</a>    energy κ * T κ * (flag κ)⁻¹ = 1 ∧ mom κ * L κ * (flag κ)⁻¹ = 1 := by</span>
+<span class="ln" id="L295"><a class="lno" href="#L295">295</a>  have h3 : energy κ * T κ = flag κ := by</span>
+<span class="ln" id="L296"><a class="lno" href="#L296">296</a>    unfold energy; rw [Dom.mul_assoc, Dom.inv_mul, Dom.mul_one]</span>
+<span class="ln" id="L297"><a class="lno" href="#L297">297</a>  have h5 : mom κ * L κ = flag κ := by</span>
+<span class="ln" id="L298"><a class="lno" href="#L298">298</a>    unfold mom; rw [Dom.mul_assoc, Dom.inv_mul, Dom.mul_one]</span>
+<span class="ln" id="L299"><a class="lno" href="#L299">299</a>  refine ⟨?_, ?_, h3, ?_, ?_⟩</span>
+<span class="ln" id="L300"><a class="lno" href="#L300">300</a>  · exact Dom.ext (by show (0 : Shell (4 * κ + 1)) + -0 = 0; rw [Shell.neg_zero, Shell.add_zero]) rfl</span>
+<span class="ln" id="L301"><a class="lno" href="#L301">301</a>  · refine Dom.ext (by show (0 : Shell (4 * κ + 1)) + -1 = -1; rw [Shell.zero_add]) ?_</span>
+<span class="ln" id="L302"><a class="lno" href="#L302">302</a>    show ofNat κ + -0 = ofNat κ</span>
+<span class="ln" id="L303"><a class="lno" href="#L303">303</a>    rw [Shell.neg_zero, Shell.add_zero]</span>
+<span class="ln" id="L304"><a class="lno" href="#L304">304</a>  · rw [h3, Dom.mul_inv]</span>
+<span class="ln" id="L305"><a class="lno" href="#L305">305</a>  · rw [h5, Dom.mul_inv]</span>
+<span class="ln" id="L306"><a class="lno" href="#L306">306</a></span>
+<span class="ln" id="L307"><a class="lno" href="#L307">307</a>end shell</span>
+<span class="ln" id="L308"><a class="lno" href="#L308">308</a></span>
+<span class="ln" id="L309"><a class="lno" href="#L309">309</a>/-! ## The Carrier face: the defining congruences at pair level (10:E4, 10:E5) -/</span>
+<span class="ln" id="L310"><a class="lno" href="#L310">310</a>section carrier</span>
+<span class="ln" id="L311"><a class="lno" href="#L311">311</a></span>
+<span class="ln" id="L312"><a class="lno" href="#L312">312</a>variable {Ω : Nat} [Pos Ω] {S : Nat} {g : Shell Ω}</span>
+<span class="ln" id="L313"><a class="lno" href="#L313">313</a></span>
+<span class="ln" id="L314"><a class="lno" href="#L314">314</a>/-- 10:E4 — the linear pin: on a framed Carrier `Ω = 4S + 1`, `2G + 1 = 0` has the unique solution</span>
+<span class="ln" id="L315"><a class="lno" href="#L315">315</a>`G = 2S`, the half-cycle. -/</span>
+<span class="ln decl" id="FRC.Dimensions.G_unique"><a class="lno" href="#FRC.Dimensions.G_unique">316</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcCore/Dimensions.lean#L316" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small ok" src="../lean-ok.png" alt="" title="no axioms">theorem G_unique (F : Frame Ω S g) (x : Shell Ω) : 2 * x + 1 = 0 ↔ x = ofNat (2 * S) := by</span>
+<span class="ln" id="L317"><a class="lno" href="#L317">317</a>  have hΩ : (ofNat (4 * S + 1) : Shell Ω) = 0 := by rw [← F.cap]; exact Epi.ofNat_self</span>
+<span class="ln" id="L318"><a class="lno" href="#L318">318</a>  have h2S : (2 : Shell Ω) * ofNat (2 * S) + 1 = 0 := by</span>
+<span class="ln" id="L319"><a class="lno" href="#L319">319</a>    rw [Frame.two_mul&#x27;, Frame.ofNat_add, show (1 : Shell Ω) = ofNat 1 from rfl, Frame.ofNat_add,</span>
+<span class="ln" id="L320"><a class="lno" href="#L320">320</a>      ← Nat.two_mul, ← FRC.Nat.mul_assoc]</span>
+<span class="ln" id="L321"><a class="lno" href="#L321">321</a>    exact hΩ</span>
+<span class="ln" id="L322"><a class="lno" href="#L322">322</a>  constructor</span>
+<span class="ln" id="L323"><a class="lno" href="#L323">323</a>  · intro h</span>
+<span class="ln" id="L324"><a class="lno" href="#L324">324</a>    apply F.mul_left_cancel F.two_ne_zero</span>
+<span class="ln" id="L325"><a class="lno" href="#L325">325</a>    apply Shell.add_right_cancel (c := 1)</span>
+<span class="ln" id="L326"><a class="lno" href="#L326">326</a>    rw [h, h2S]</span>
+<span class="ln" id="L327"><a class="lno" href="#L327">327</a>  · intro h; rw [h]; exact h2S</span>
+<span class="ln" id="L328"><a class="lno" href="#L328">328</a></span>
+<span class="ln" id="L329"><a class="lno" href="#L329">329</a>/-- 10:E4 — the root pair: if `x² = a` with `x ≠ 0` then `y² = a` iff `y = x` or `y = −x`, and `−x ≠ x`;</span>
+<span class="ln" id="L330"><a class="lno" href="#L330">330</a>each quadratic defining congruence has exactly two roots on a framed Carrier. -/</span>
+<span class="ln decl" id="FRC.Dimensions.root_pair"><a class="lno" href="#FRC.Dimensions.root_pair">331</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcCore/Dimensions.lean#L331" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small ok" src="../lean-ok.png" alt="" title="no axioms">theorem root_pair (F : Frame Ω S g) (a x : Shell Ω) (hx : x * x = a) (hx0 : x ≠ 0) :</span>
+<span class="ln" id="L332"><a class="lno" href="#L332">332</a>    (∀ y : Shell Ω, y * y = a ↔ (y = x ∨ y = -x)) ∧ -x ≠ x := by</span>
+<span class="ln" id="L333"><a class="lno" href="#L333">333</a>  refine ⟨fun y =&gt; ⟨fun hy =&gt; ?_, fun hy =&gt; ?_⟩, fun h =&gt; hx0 (F.eq_zero_of_eq_neg h.symm)⟩</span>
+<span class="ln" id="L334"><a class="lno" href="#L334">334</a>  · have h0 : (y + -x) * (y + x) = 0 := by</span>
+<span class="ln" id="L335"><a class="lno" href="#L335">335</a>      rw [Shell.right_distrib, Shell.left_distrib, Shell.left_distrib, ← Shell.neg_mul, ← Shell.neg_mul,</span>
+<span class="ln" id="L336"><a class="lno" href="#L336">336</a>        Shell.mul_comm y x, Shell.add_assoc, ← Shell.add_assoc (x * y), Shell.add_neg, Shell.zero_add,</span>
+<span class="ln" id="L337"><a class="lno" href="#L337">337</a>        hy, hx, Shell.add_neg]</span>
+<span class="ln" id="L338"><a class="lno" href="#L338">338</a>    rcases F.mul_eq_zero h0 with h | h</span>
+<span class="ln" id="L339"><a class="lno" href="#L339">339</a>    · left; exact (Shell.eq_neg_of_add_eq_zero h).trans (Shell.neg_neg x)</span>
+<span class="ln" id="L340"><a class="lno" href="#L340">340</a>    · right; exact Shell.eq_neg_of_add_eq_zero h</span>
+<span class="ln" id="L341"><a class="lno" href="#L341">341</a>  · rcases hy with rfl | rfl</span>
+<span class="ln" id="L342"><a class="lno" href="#L342">342</a>    · exact hx</span>
+<span class="ln" id="L343"><a class="lno" href="#L343">343</a>    · rw [Shell.neg_mul_neg]; exact hx</span>
+<span class="ln" id="L344"><a class="lno" href="#L344">344</a></span>
+<span class="ln" id="L345"><a class="lno" href="#L345">345</a>/-- 10:E4, 10:E5 — the linkage at pair level and the pair consequences, on a framed Carrier: from</span>
+<span class="ln" id="L346"><a class="lno" href="#L346">346</a>`2G + 1 = 0`, `2c² = 1`, `ħ² = −1`, `k_B² = −2`: `(k_B c)² = −1`, so `k_B c = ħ` or `k_B c = −ħ`</span>
+<span class="ln" id="L347"><a class="lno" href="#L347">347</a>(`{±k_B}{±c} = {±ħ}`); `G = −c²`; `(2G)² = 1`; `ħ⁴ = 1`; and `(ħ c)² = −2 G²`, the monomial face. -/</span>
+<span class="ln decl" id="FRC.Dimensions.linkage"><a class="lno" href="#FRC.Dimensions.linkage">348</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcCore/Dimensions.lean#L348" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small ok" src="../lean-ok.png" alt="" title="no axioms">theorem linkage (F : Frame Ω S g) (G c h k : Shell Ω) (hG : 2 * G + 1 = 0) (hc : 2 * (c * c) = 1)</span>
+<span class="ln" id="L349"><a class="lno" href="#L349">349</a>    (hh : h * h = -1) (hk : k * k = -2) :</span>
+<span class="ln" id="L350"><a class="lno" href="#L350">350</a>    (k * c) * (k * c) = -1 ∧ (k * c = h ∨ k * c = -h) ∧ G = -(c * c) ∧ (2 * G) * (2 * G) = 1 ∧</span>
+<span class="ln" id="L351"><a class="lno" href="#L351">351</a>    (h * h) * (h * h) = 1 ∧ (h * c) * (h * c) = -2 * (G * G) := by</span>
+<span class="ln" id="L352"><a class="lno" href="#L352">352</a>  have hkc : (k * c) * (k * c) = -1 := by</span>
+<span class="ln" id="L353"><a class="lno" href="#L353">353</a>    rw [Shell.mul_assoc, Shell.mul_left_comm c, ← Shell.mul_assoc, hk, ← Shell.neg_mul, hc]</span>
+<span class="ln" id="L354"><a class="lno" href="#L354">354</a>  have hh0 : h ≠ 0 := fun h0 =&gt; by</span>
+<span class="ln" id="L355"><a class="lno" href="#L355">355</a>    rw [h0, Shell.zero_mul] at hh</span>
+<span class="ln" id="L356"><a class="lno" href="#L356">356</a>    have := congrArg Neg.neg hh</span>
+<span class="ln" id="L357"><a class="lno" href="#L357">357</a>    rw [Shell.neg_zero, Shell.neg_neg] at this</span>
+<span class="ln" id="L358"><a class="lno" href="#L358">358</a>    exact F.one_ne_zero this.symm</span>
+<span class="ln" id="L359"><a class="lno" href="#L359">359</a>  have hlink : k * c = h ∨ k * c = -h := ((root_pair F (-1) h hh hh0).1 (k * c)).1 hkc</span>
+<span class="ln" id="L360"><a class="lno" href="#L360">360</a>  have h2G : 2 * G = -1 := Shell.eq_neg_of_add_eq_zero hG</span>
+<span class="ln" id="L361"><a class="lno" href="#L361">361</a>  refine ⟨hkc, hlink, ?_, ?_, ?_, ?_⟩</span>
+<span class="ln" id="L362"><a class="lno" href="#L362">362</a>  · apply F.mul_left_cancel F.two_ne_zero</span>
+<span class="ln" id="L363"><a class="lno" href="#L363">363</a>    rw [h2G, ← Shell.mul_neg, hc]</span>
+<span class="ln" id="L364"><a class="lno" href="#L364">364</a>  · rw [h2G, Shell.neg_mul_neg, Shell.mul_one]</span>
+<span class="ln" id="L365"><a class="lno" href="#L365">365</a>  · rw [hh, Shell.neg_mul_neg, Shell.mul_one]</span>
+<span class="ln" id="L366"><a class="lno" href="#L366">366</a>  · have h4 : (2 * 2 : Shell Ω) * (G * G) = 1 := by</span>
+<span class="ln" id="L367"><a class="lno" href="#L367">367</a>      rw [Shell.mul_assoc, ← Shell.mul_left_comm G 2 G, ← Shell.mul_assoc, h2G, Shell.neg_mul_neg,</span>
+<span class="ln" id="L368"><a class="lno" href="#L368">368</a>        Shell.mul_one]</span>
+<span class="ln" id="L369"><a class="lno" href="#L369">369</a>    have hcc : c * c = 2 * (G * G) := by</span>
+<span class="ln" id="L370"><a class="lno" href="#L370">370</a>      apply F.mul_left_cancel F.two_ne_zero</span>
+<span class="ln" id="L371"><a class="lno" href="#L371">371</a>      rw [hc, ← Shell.mul_assoc, h4]</span>
+<span class="ln" id="L372"><a class="lno" href="#L372">372</a>    rw [Shell.mul_assoc, Shell.mul_left_comm c, ← Shell.mul_assoc, hh, Shell.neg_one_mul, hcc,</span>
+<span class="ln" id="L373"><a class="lno" href="#L373">373</a>      Shell.neg_mul]</span>
+<span class="ln" id="L374"><a class="lno" href="#L374">374</a></span>
+<span class="ln" id="L375"><a class="lno" href="#L375">375</a>end carrier</span>
+<span class="ln" id="L376"><a class="lno" href="#L376">376</a></span>
+<span class="ln" id="L377"><a class="lno" href="#L377">377</a>/-! ## The values decided by the kernel (10:E4, E5, E9, F2–F4, G2, G3) -/</span>
+<span class="ln" id="L378"><a class="lno" href="#L378">378</a>section values</span>
+<span class="ln" id="L379"><a class="lno" href="#L379">379</a></span>
+<span class="ln" id="L380"><a class="lno" href="#L380">380</a>/-- 10:E4, 10:E5 — the Carrier `Ω = 233` (`S = 58`): `G = 116 = 2S`, `ħ = 89`, `k_B = 124`, `c = 159`,</span>
+<span class="ln" id="L381"><a class="lno" href="#L381">381</a>`h = 144 = −ħ` satisfy the defining congruences, the linkage `k_B c = −ħ`, `G = −c²`, `ħ c = k_B G`</span>
+<span class="ln" id="L382"><a class="lno" href="#L382">382</a>(the monomial on the `k_B` residue), and the partner `109 = −124` fails the linkage. -/</span>
+<span class="ln decl" id="FRC.Dimensions.carrier233"><a class="lno" href="#FRC.Dimensions.carrier233">383</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcCore/Dimensions.lean#L383" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small ok" src="../lean-ok.png" alt="" title="no axioms">theorem carrier233 :</span>
+<span class="ln" id="L384"><a class="lno" href="#L384">384</a>    2 * (116 : Shell 233) + 1 = 0 ∧ (89 : Shell 233) * 89 = -1 ∧ (124 : Shell 233) * 124 = -2 ∧</span>
+<span class="ln" id="L385"><a class="lno" href="#L385">385</a>    2 * ((159 : Shell 233) * 159) = 1 ∧ (124 : Shell 233) * 159 = -89 ∧ (144 : Shell 233) = -89 ∧</span>
+<span class="ln" id="L386"><a class="lno" href="#L386">386</a>    (116 : Shell 233) = -(159 * 159) ∧ (89 : Shell 233) * 159 = 124 * 116 ∧</span>
+<span class="ln" id="L387"><a class="lno" href="#L387">387</a>    (109 : Shell 233) = -124 ∧ (109 : Shell 233) * 159 ≠ -89 := by decide +kernel</span>
+<span class="ln" id="L388"><a class="lno" href="#L388">388</a></span>
+<span class="ln" id="L389"><a class="lno" href="#L389">389</a>/-- 10:E4, 10:E5 — the laboratory Carrier `Ω = 2 408 561` (`S = 602 140`): `G = 1 204 280`, `ħ = 18 688`,</span>
+<span class="ln" id="L390"><a class="lno" href="#L390">390</a>`k_B = 1 880 160`, `c = 171 106`, `h = 2 389 873 = −ħ` satisfy the defining congruences, the linkage,</span>
+<span class="ln" id="L391"><a class="lno" href="#L391">391</a>`G = −c²` and `ħ c = k_B G`. -/</span>
+<span class="ln decl" id="FRC.Dimensions.carrierLab"><a class="lno" href="#FRC.Dimensions.carrierLab">392</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcCore/Dimensions.lean#L392" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small ok" src="../lean-ok.png" alt="" title="no axioms">theorem carrierLab :</span>
+<span class="ln" id="L393"><a class="lno" href="#L393">393</a>    2 * (1204280 : Shell 2408561) + 1 = 0 ∧ (18688 : Shell 2408561) * 18688 = -1 ∧</span>
+<span class="ln" id="L394"><a class="lno" href="#L394">394</a>    (1880160 : Shell 2408561) * 1880160 = -2 ∧ 2 * ((171106 : Shell 2408561) * 171106) = 1 ∧</span>
+<span class="ln" id="L395"><a class="lno" href="#L395">395</a>    (1880160 : Shell 2408561) * 171106 = -18688 ∧ (2389873 : Shell 2408561) = -18688 ∧</span>
+<span class="ln" id="L396"><a class="lno" href="#L396">396</a>    (1204280 : Shell 2408561) = -(171106 * 171106) ∧</span>
+<span class="ln" id="L397"><a class="lno" href="#L397">397</a>    (18688 : Shell 2408561) * 171106 = 1880160 * 1204280 := by decide +kernel</span>
+<span class="ln" id="L398"><a class="lno" href="#L398">398</a></span>
+<span class="ln" id="L399"><a class="lno" href="#L399">399</a>/-- Primality by trial division, decidable. -/</span>
+<span class="ln decl" id="FRC.Dimensions.isPrime"><a class="lno" href="#FRC.Dimensions.isPrime">400</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcCore/Dimensions.lean#L400" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small" src="../lean.png" alt="" title="a definition: no proof, no axioms">def isPrime (n : Nat) : Prop := 2 ≤ n ∧ ∀ d, d &lt; n → 2 ≤ d → n % d ≠ 0</span>
+<span class="ln" id="L401"><a class="lno" href="#L401">401</a>instance (n : Nat) : Decidable (isPrime n) := by unfold isPrime; exact inferInstance</span>
+<span class="ln" id="L402"><a class="lno" href="#L402">402</a></span>
+<span class="ln" id="L403"><a class="lno" href="#L403">403</a>/-- 10:E9 — the admissibility predicate of the programme on `(p, Ω) = (4κ + 1, 4S + 1)`: `p` prime,</span>
+<span class="ln" id="L404"><a class="lno" href="#L404">404</a>`κ &gt; 1`; `Ω` prime, `S` even, `S ≡ 1 (mod 3)`; `p² &lt; Ω`. -/</span>
+<span class="ln decl" id="FRC.Dimensions.admissible"><a class="lno" href="#FRC.Dimensions.admissible">405</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcCore/Dimensions.lean#L405" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small" src="../lean.png" alt="" title="a definition: no proof, no axioms">def admissible (κ S : Nat) : Prop :=</span>
+<span class="ln" id="L406"><a class="lno" href="#L406">406</a>  isPrime (4 * κ + 1) ∧ 1 &lt; κ ∧ isPrime (4 * S + 1) ∧ S % 2 = 0 ∧ S % 3 = 1 ∧</span>
+<span class="ln" id="L407"><a class="lno" href="#L407">407</a>  (4 * κ + 1) * (4 * κ + 1) &lt; 4 * S + 1</span>
+<span class="ln" id="L408"><a class="lno" href="#L408">408</a>instance (κ S : Nat) : Decidable (admissible κ S) := by unfold admissible; exact inferInstance</span>
+<span class="ln" id="L409"><a class="lno" href="#L409">409</a></span>
+<span class="ln" id="L410"><a class="lno" href="#L410">410</a>/-- 10:E9 — the minimal admissible pair is `(13, 233)`: `(κ, S) = (3, 58)` is admissible, no pair with</span>
+<span class="ln" id="L411"><a class="lno" href="#L411">411</a>`S &lt; 58` is (for `S &lt; 58`, `p² &lt; Ω` forces `κ ≤ 3`), and the counterfactuals — dropping the mod-3 clause</span>
+<span class="ln" id="L412"><a class="lno" href="#L412">412</a>admits `(13, 193)` (`S = 48`), dropping `κ &gt; 1` admits `(5, 41)` (`S = 10`), and `κ = 2` gives the</span>
+<span class="ln" id="L413"><a class="lno" href="#L413">413</a>composite `9`. -/</span>
+<span class="ln decl" id="FRC.Dimensions.minimality"><a class="lno" href="#FRC.Dimensions.minimality">414</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcCore/Dimensions.lean#L414" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small ok" src="../lean-ok.png" alt="" title="no axioms">theorem minimality :</span>
+<span class="ln" id="L415"><a class="lno" href="#L415">415</a>    admissible 3 58 ∧ (∀ κ, κ &lt; 4 → ∀ S, S &lt; 58 → ¬ admissible κ S) ∧</span>
+<span class="ln" id="L416"><a class="lno" href="#L416">416</a>    (∀ κ, 4 ≤ κ → ∀ S, S &lt; 58 → ¬ ((4 * κ + 1) * (4 * κ + 1) &lt; 4 * S + 1)) ∧</span>
+<span class="ln" id="L417"><a class="lno" href="#L417">417</a>    (isPrime 193 ∧ 48 % 2 = 0 ∧ 48 % 3 = 0 ∧ 13 * 13 &lt; 193) ∧</span>
+<span class="ln" id="L418"><a class="lno" href="#L418">418</a>    (isPrime 5 ∧ isPrime 41 ∧ 10 % 2 = 0 ∧ 10 % 3 = 1 ∧ 25 &lt; 41) ∧ ¬ isPrime 9 := by</span>
+<span class="ln" id="L419"><a class="lno" href="#L419">419</a>  refine ⟨by decide +kernel, by decide +kernel, fun κ hκ S hS h =&gt; ?_, by decide +kernel,</span>
+<span class="ln" id="L420"><a class="lno" href="#L420">420</a>    by decide +kernel, by decide +kernel⟩</span>
+<span class="ln" id="L421"><a class="lno" href="#L421">421</a>  have h1 : 17 * 17 ≤ (4 * κ + 1) * (4 * κ + 1) :=</span>
+<span class="ln" id="L422"><a class="lno" href="#L422">422</a>    Nat.mul_le_mul (Nat.succ_le_succ (Nat.mul_le_mul_left 4 hκ)) (Nat.succ_le_succ (Nat.mul_le_mul_left 4 hκ))</span>
+<span class="ln" id="L423"><a class="lno" href="#L423">423</a>  have h2 : 4 * S + 1 ≤ 229 := Nat.succ_le_succ (Nat.mul_le_mul_left 4 (Nat.le_of_lt_succ hS))</span>
+<span class="ln" id="L424"><a class="lno" href="#L424">424</a>  exact Nat.lt_irrefl _ (Nat.lt_of_lt_of_le (Nat.lt_of_le_of_lt h1 h) (Nat.le_trans h2 (by decide)))</span>
+<span class="ln" id="L425"><a class="lno" href="#L425">425</a></span>
+<span class="ln" id="L426"><a class="lno" href="#L426">426</a>/-- 10:F2, 10:F3, 10:F4, 10:G3 — the derived domains realized on `𝔽₁₃` (`κ = 3`, the flag `(0, 3)`):</span>
+<span class="ln" id="L427"><a class="lno" href="#L427">427</a>`[m] = [E][v]⁻² = (11, 4)`, `[a] = (1, 10)`, `[F] = [m][a] = (12, 2)`, `[p] = [m][v] = (12, 3) = I_q [L]⁻¹`,</span>
+<span class="ln" id="L428"><a class="lno" href="#L428">428</a>`[S] = [E][T] = I_q`, `[P] = (0, 1)`, `[G] = [F][L]²[m]⁻² = (5, 6)`; the geometric conversions `[Għ/c³] = [L]²`,</span>
+<span class="ln" id="L429"><a class="lno" href="#L429">429</a>`[Gm/c²] = [L]`, `[Gm/c³] = [T]`, `[Gm/r³] = [T]⁻²`; `[Θ] = [E][k_B]⁻¹ = [a]` and the Unruh closure;</span>
+<span class="ln" id="L430"><a class="lno" href="#L430">430</a>the phase exponent `[E][T][ħ]⁻¹ = 1`; kinetic energy `[m][v]² = [E]`; `Q + Q²` inhomogeneous, `[L] ≠ [L]²`;</span>
+<span class="ln" id="L431"><a class="lno" href="#L431">431</a>`F/a = [m]`, flagged. -/</span>
+<span class="ln decl" id="FRC.Dimensions.realized13"><a class="lno" href="#FRC.Dimensions.realized13">432</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcCore/Dimensions.lean#L432" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small ok" src="../lean-ok.png" alt="" title="no axioms">theorem realized13 :</span>
+<span class="ln" id="L433"><a class="lno" href="#L433">433</a>    let E := energy 3; let v := L 3 * (T 3)⁻¹; let m := E * (v ^ 2)⁻¹; let a := v * (T 3)⁻¹</span>
+<span class="ln" id="L434"><a class="lno" href="#L434">434</a>    let f := m * a; let pm := m * v; let G := f * L 3 ^ 2 * (m ^ 2)⁻¹; let kB := flag 3 * (L 3)⁻¹ * T 3</span>
+<span class="ln" id="L435"><a class="lno" href="#L435">435</a>    m = ⟨11, 4⟩ ∧ a = ⟨1, 10⟩ ∧ f = ⟨12, 2⟩ ∧ pm = ⟨12, 3⟩ ∧ pm = mom 3 ∧ E * T 3 = flag 3 ∧</span>
+<span class="ln" id="L436"><a class="lno" href="#L436">436</a>    E * (T 3)⁻¹ = ⟨0, 1⟩ ∧ G = ⟨5, 6⟩ ∧</span>
+<span class="ln" id="L437"><a class="lno" href="#L437">437</a>    G * flag 3 * (v ^ 3)⁻¹ = L 3 ^ 2 ∧ G * m * (v ^ 2)⁻¹ = L 3 ∧ G * m * (v ^ 3)⁻¹ = T 3 ∧</span>
+<span class="ln" id="L438"><a class="lno" href="#L438">438</a>    G * m * (L 3 ^ 3)⁻¹ = (T 3 ^ 2)⁻¹ ∧ E * kB⁻¹ = a ∧ flag 3 * a * v⁻¹ * kB⁻¹ = a ∧</span>
+<span class="ln" id="L439"><a class="lno" href="#L439">439</a>    E * T 3 * (flag 3)⁻¹ = 1 ∧ m * v ^ 2 = E ∧ L 3 ≠ L 3 ^ 2 ∧ f * a⁻¹ = m := by</span>
+<span class="ln" id="L440"><a class="lno" href="#L440">440</a>  decide</span>
+<span class="ln" id="L441"><a class="lno" href="#L441">441</a></span>
+<span class="ln" id="L442"><a class="lno" href="#L442">442</a>/-- 10:D6 — the flag is horizon-inaccessible on `𝔽₁₃`: no label with `|r|, |s| ≤ 2 &lt; κ = 3` (the</span>
+<span class="ln" id="L443"><a class="lno" href="#L443">443</a>representatives `r ∈ {11, 12, 0, 1, 2}`, `s ∈ {10, 11, 0, 1, 2}`) is `I_q = (0, 3)`, while at `H = 3` the</span>
+<span class="ln" id="L444"><a class="lno" href="#L444">444</a>label `(0, 3)` itself is the flag. -/</span>
+<span class="ln decl" id="FRC.Dimensions.flag_inaccessible13"><a class="lno" href="#FRC.Dimensions.flag_inaccessible13">445</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcCore/Dimensions.lean#L445" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small ok" src="../lean-ok.png" alt="" title="no axioms">theorem flag_inaccessible13 :</span>
+<span class="ln" id="L446"><a class="lno" href="#L446">446</a>    (∀ x : DomK 3, (x.r.val ≤ 2 ∨ 11 ≤ x.r.val) → (x.s.val ≤ 2 ∨ 10 ≤ x.s.val) → x ≠ flag 3) ∧</span>
+<span class="ln" id="L447"><a class="lno" href="#L447">447</a>    (⟨0, 3⟩ : DomK 3) = flag 3 := by decide +kernel</span>
+<span class="ln" id="L448"><a class="lno" href="#L448">448</a></span>
+<span class="ln" id="L449"><a class="lno" href="#L449">449</a>/-- 10:G2 — the window ladder by integer squares: `(2√κ)² = 4κ &lt; (κ/2)² = κ²/4`, i.e. `16κ &lt; κ²`, holds for</span>
+<span class="ln" id="L450"><a class="lno" href="#L450">450</a>`κ = 17, 387, 602 140` and fails for `κ = 3`; the coherence identity `(2√κ)² = 4κ = p − 1` and the</span>
+<span class="ln" id="L451"><a class="lno" href="#L451">451</a>totality closure `4S = Ω − 1` on the laboratory Carrier. -/</span>
+<span class="ln decl" id="FRC.Dimensions.window_ladder"><a class="lno" href="#FRC.Dimensions.window_ladder">452</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcCore/Dimensions.lean#L452" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small ok" src="../lean-ok.png" alt="" title="no axioms">theorem window_ladder :</span>
+<span class="ln" id="L453"><a class="lno" href="#L453">453</a>    16 * 17 &lt; 17 * 17 ∧ 16 * 387 &lt; 387 * 387 ∧ 16 * 602140 &lt; 602140 * 602140 ∧ ¬ (16 * 3 &lt; 3 * 3) ∧</span>
+<span class="ln" id="L454"><a class="lno" href="#L454">454</a>    (∀ κ, 2 * 2 * κ = 4 * κ ∧ 4 * κ = (4 * κ + 1) - 1) ∧ 4 * 602140 = 2408561 - 1 := by</span>
+<span class="ln" id="L455"><a class="lno" href="#L455">455</a>  refine ⟨by decide +kernel, by decide +kernel, by decide +kernel, by decide +kernel, fun κ =&gt; ⟨rfl, rfl⟩, by decide +kernel⟩</span>
+<span class="ln" id="L456"><a class="lno" href="#L456">456</a></span>
+<span class="ln" id="L457"><a class="lno" href="#L457">457</a>/-- 10:G1, 10:G3 — local recovery on `𝔽₁₃` at `H = 5`: the `121` conventional pairs `|r|, |s| ≤ 5` have</span>
+<span class="ln" id="L458"><a class="lno" href="#L458">458</a>distinct modular labels, `12 &gt; 10`. -/</span>
+<span class="ln decl" id="FRC.Dimensions.recovery13"><a class="lno" href="#FRC.Dimensions.recovery13">459</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcCore/Dimensions.lean#L459" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small ok" src="../lean-ok.png" alt="" title="no axioms">theorem recovery13 :</span>
+<span class="ln" id="L460"><a class="lno" href="#L460">460</a>    12 &gt; 2 * 5 ∧</span>
+<span class="ln" id="L461"><a class="lno" href="#L461">461</a>    ∀ r, r &lt; 11 → ∀ s, s &lt; 11 → ∀ r&#x27;, r&#x27; &lt; 11 → ∀ s&#x27;, s&#x27; &lt; 11 →</span>
+<span class="ln" id="L462"><a class="lno" href="#L462">462</a>      ((ofNat (r + 8) : Shell 13) = ofNat (r&#x27; + 8) ∧ (ofNat (s + 7) : Shell 12) = ofNat (s&#x27; + 7)) →</span>
+<span class="ln" id="L463"><a class="lno" href="#L463">463</a>      r = r&#x27; ∧ s = s&#x27; := by</span>
+<span class="ln" id="L464"><a class="lno" href="#L464">464</a>  refine ⟨by decide +kernel, by decide +kernel⟩</span>
+<span class="ln" id="L465"><a class="lno" href="#L465">465</a></span>
+<span class="ln" id="L466"><a class="lno" href="#L466">466</a>end values</span>
+<span class="ln" id="L467"><a class="lno" href="#L467">467</a></span>
+<span class="ln" id="L468"><a class="lno" href="#L468">468</a>end FRC.Dimensions</span>
+<span class="ln" id="L469"><a class="lno" href="#L469">469</a></span>
+</pre></main>
+</div>
+</body>
+</html>

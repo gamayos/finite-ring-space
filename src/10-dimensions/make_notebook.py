@@ -22,7 +22,9 @@ md(f"""[![Open In Colab](https://colab.research.google.com/assets/colab-badge.sv
 210 exact micro-checks (integers, residues, exact rationals; no floats, no random sampling). A family check is a layer of
 `verify_domains.py` (A–H) or a claim of `check_lift.py` (L1–L5), identified as `<script>.<family>`; each names the row(s) of the paper's
 predicate ledger it witnesses (the paper's Section "Machine verification and predicate ledger", rows cited as `10:XN`; public copy at
-`docs/10-dimensions/10-dimensions-ledger.html`), and the ledger's source column cites the check ids in return. Master-ledger rows of the
+`docs/10-dimensions/10-dimensions-ledger.html`), and the ledger's source column cites the check ids in return. Where a row is proved in
+Lean (`lean/FrcCore/Dimensions.lean` with no axioms, or `lean/FrcLedger/Dimensions.lean` on Mathlib), the check here is the instance the
+reader can run. Master-ledger rows of the
 corpus reached through the paper rows: `00:D7` (a unit is a reciprocal cross-frame relation), `00:C12` (temperature and the arity),
 `00:C13` (the window ladder and the minimal pair), `00:C8` (the c-square congruence), `00:B10` (the pair-inert sign sector).
 The manuscript's 105 source gates (`check_gates.py`) read the paper's LaTeX and run in the corpus tree, not here.

@@ -5,3 +5,4 @@ import FrcLedger.Causality
 import FrcLedger.Representation
 import FrcLedger.Reductio
 import FrcLedger.Epi
+import FrcLedger.Dimensions

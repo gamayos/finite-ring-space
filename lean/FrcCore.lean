@@ -7,6 +7,7 @@ import FrcCore.Sum
 import FrcCore.Meridian
 import FrcCore.Algebra
 import FrcCore.Epi
+import FrcCore.Dimensions
 import FrcCore.Poly
 import FrcCore.Quaternion
 import FrcCore.Causality

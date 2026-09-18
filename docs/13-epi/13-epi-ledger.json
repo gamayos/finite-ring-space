@@ -945,9 +945,13 @@
     "name": "FRC.Epi.half_wall_second_order",
     "module": "FrcLedger/Epi",
     "line": 923,
-    "axioms": null,
-    "tier": "missing",
-    "ok": false,
+    "axioms": [
+     "Classical.choice",
+     "Quot.sound",
+     "propext"
+    ],
+    "tier": 2,
+    "ok": true,
     "doc": "13:G4 — the second order at the half wall: with `m = (p−1)/2` and Morley's congruence `C(p−1, m) ≡ (−1)^m 4^{p−1}` taken modulo `p²` (the import A3), `16^m ≡ (−2 + 2p(q_p(4) − 1))·m·C(2m,m)² (mod p²)`, i.e. `w_m ≡ −2 + 2p(q_p(4) − 1)`; the universal `−2` persists to `p²` exactly when `q_p(4) ≡ 1`, the π-Wieferich condition."
    }
   ],
@@ -1032,36 +1036,52 @@
     "name": "FRC.Epi.piWieferich_iff",
     "module": "FrcLedger/Epi",
     "line": 903,
-    "axioms": null,
-    "tier": "missing",
-    "ok": false,
+    "axioms": [
+     "Classical.choice",
+     "Quot.sound",
+     "propext"
+    ],
+    "tier": 2,
+    "ok": true,
     "doc": "13:G10 — the π-Wieferich condition in its three forms: `4^{p−1} ≡ 1 + p (mod p²)` ⟺ `q_p(4) ≡ 1 (mod p)` ⟺ `2·q_p(2) ≡ 1 (mod p)` — a prescribed value of the Fermat quotient of `2`."
    },
    {
     "name": "FRC.Epi.eisenstein",
     "module": "FrcLedger/Epi",
     "line": 1073,
-    "axioms": null,
-    "tier": "missing",
-    "ok": false,
+    "axioms": [
+     "Classical.choice",
+     "Quot.sound",
+     "propext"
+    ],
+    "tier": 2,
+    "ok": true,
     "doc": "13:G10 — Eisenstein's congruence: `2 q_p(2) ≡ −H_{(p−1)/2} (mod p)`, `H_m = Σ_{j<m} (j+1)⁻¹`."
    },
    {
     "name": "FRC.Epi.piWieferich_iff_harmonic",
     "module": "FrcLedger/Epi",
     "line": 1096,
-    "axioms": null,
-    "tier": "missing",
-    "ok": false,
+    "axioms": [
+     "Classical.choice",
+     "Quot.sound",
+     "propext"
+    ],
+    "tier": 2,
+    "ok": true,
     "doc": "13:G10 — the π-Wieferich condition in harmonic form: `4^{p−1} ≡ 1 + p (mod p²)` exactly when `H_{(p−1)/2} = Σ_{j=1}^{(p−1)/2} 1/j ≡ −1 (mod p)`."
    },
    {
     "name": "FRC.Epi.piWieferich_iff_oeis",
     "module": "FrcLedger/Epi",
     "line": 1105,
-    "axioms": null,
-    "tier": "missing",
-    "ok": false,
+    "axioms": [
+     "Classical.choice",
+     "Quot.sound",
+     "propext"
+    ],
+    "tier": 2,
+    "ok": true,
     "doc": "13:G10 — the π-Wieferich set is OEIS A355959: `(p + 2)^{p−1} ≡ 1 (mod p²)` exactly when `2 q_p(2) ≡ 1 (mod p)`, i.e. exactly when `4^{p−1} ≡ 1 + p (mod p²)`."
    }
   ],

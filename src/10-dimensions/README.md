@@ -6,9 +6,10 @@ Colab, *Runtime → Run all*, ≈ 10 s) or by `run_all.py`. Pure Python — inte
 no random sampling.
 
 Every family check is a layer of `verify_domains.py` (A–H) or a claim of `check_lift.py` (L1–L5) and names the row(s)
-of the paper's predicate ledger it witnesses (the paper's Section "Machine verification and predicate ledger", 44 rows
-in blocks A–G, V, O, cited as `10:XN`; public copy `docs/10-dimensions/10-dimensions-ledger.html`); the ledger's source
-column cites the check ids in return. Master-ledger rows of the corpus reached through the paper rows: `00:D7`, `00:C12`,
+of the paper's predicate ledger it witnesses (the paper's Section "Machine verification and predicate ledger", 45 rows
+in blocks A–G, V, T, cited as `10:XN`; public copy `docs/10-dimensions/10-dimensions-ledger.html`); the ledger's source
+column cites the check ids in return. Where a row is proved in Lean (`lean/FrcCore/Dimensions.lean` with no axioms, or
+`lean/FrcLedger/Dimensions.lean` on Mathlib), the check here is the instance the reader can run. Master-ledger rows of the corpus reached through the paper rows: `00:D7`, `00:C12`,
 `00:C13`, `00:C8`, `00:B10`.
 
 [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/gamayos/finite-ring-space/blob/main/src/10-dimensions/10-dimensions-main.ipynb)
@@ -36,5 +37,5 @@ laboratory Carrier Ω = 2 408 561 (S = 602 140).
 ## Predicate ledger
 
 Rows B1–B4, C1, C4, D4, E8 are definitions (C6 and E6 composite); A1–A6 imports; D5, D7, E1 realisations with
-falsifiers; E7 the Ω-hard Carrier register; V1–V4 the verification rows; T1 the open electromagnetic domain (a task, block T).
+falsifiers; E7 the Ω-hard Carrier register; V1–V5 the verification rows (V5 the two Lean libraries); T1 the open electromagnetic domain (a task, block T).
 Check → row: `dimcommon.LEDGER`.
