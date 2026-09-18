@@ -1,0 +1,718 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-HNE3RMJ5L1"></script>
+<script> window.dataLayer = window.dataLayer || []; function gtag(){dataLayer.push(arguments);} gtag('js', new Date()); gtag('config', 'G-HNE3RMJ5L1'); </script>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Epi.lean — FrcLedger</title>
+<meta name="description" content="The Lean module FrcLedger/Epi of the FRC predicate ledgers, rendered with an anchor per declaration">
+<meta name="author" content="Yosef Akhtman">
+<link rel="icon" href="../frc-logo-fav.png">
+<link rel="stylesheet" href="../style.css?v=45116e26">
+
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <h1>Epi.lean — FrcLedger</h1>
+    
+    <nav><a href="../index.html">Home</a><a href="../publications.html">Publications</a><a href="../00-ledger.html">Ledger</a><a href="../predictions.html">Predictions</a><a href="../explicability.html">Explicability</a></nav>
+  </header>
+<main id="ledger-main"><section class="prose"><p>The Lean module <code>lean/FrcLedger/Epi.lean</code> of the paper <a href="../13-epi/13-epi-ledger.html">13-epi</a> (on Mathlib): 55 theorems (5 definitions): 1 with no axioms (green), 7 at tier 1 (teal: <code>propext</code>, <code>Quot.sound</code>), 47 at tier 2 (amber: <code>Classical.choice</code>), 0 red; the small plain glyph marks a definition (no proof, no axioms; on the ledger pages the plain glyph is instead a module cited as a whole). Each declaration is anchored; the ledger rows cite them by name. <a href="https://live.lean-lang.org/#project=mathlib-stable&url=https://raw.githubusercontent.com/gamayos/finite-ring-space/main/lean/web/Epi.lean" target="_blank" rel="noopener">▶ open in the Lean web editor</a> · <a href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcLedger/Epi.lean" target="_blank" rel="noopener">on GitHub</a> · <a href="https://github.com/gamayos/finite-ring-space/blob/main/lean/axioms.log" target="_blank" rel="noopener">axioms.log</a> · <a href="https://github.com/gamayos/finite-ring-space/actions/workflows/lean.yml" target="_blank" rel="noopener">CI</a>.</p></section><pre class="lean"><span class="ln" id="L1"><a class="lno" href="#L1">1</a>import Mathlib</span>
+<span class="ln" id="L2"><a class="lno" href="#L2">2</a></span>
+<span class="ln" id="L3"><a class="lno" href="#L3">3</a>/-!</span>
+<span class="ln" id="L4"><a class="lno" href="#L4">4</a># 13-epi — the classical constants on the shell: the ledger rows in Lean (2026-09-18)</span>
+<span class="ln" id="L5"><a class="lno" href="#L5">5</a></span>
+<span class="ln" id="L6"><a class="lno" href="#L6">6</a>Rows of the predicate ledger of *Finite Field Realisation of the Classical Constants π and e* (tree</span>
+<span class="ln" id="L7"><a class="lno" href="#L7">7</a>`13-epi-20260713`).  The wall of `e`: Wilson reflection, the wall identity `!(p−1) ≡ !p`, the terminal residue</span>
+<span class="ln" id="L8"><a class="lno" href="#L8">8</a>`−(!p)⁻¹`, antiperiodicity `!(n+p) ≡ −!n`, the series duals, the fixed-shell tower exact at every grade</span>
+<span class="ln" id="L9"><a class="lno" href="#L9">9</a>(F1–F4, F7); the wall hierarchy of `π`: the legibility window, the half-wall terminus `−2`, the quarter-wall</span>
+<span class="ln" id="L10"><a class="lno" href="#L10">10</a>two-squares invariant given Gauss&#x27;s congruence, Lucas on the tower `C(2p^r, p^r) ≡ 2`, the first revival `8`,</span>
+<span class="ln" id="L11"><a class="lno" href="#L11">11</a>the tower of `π` exact (G1–G3, G5, G9); the Cayley quarter-turn map and its composition law (C3); the Wallis</span>
+<span class="ln" id="L12"><a class="lno" href="#L12">12</a>pair: strict monotonicity, the width identity and the enclosure `v_n &lt; π &lt; w_n` (E2, with Mathlib&#x27;s Wallis</span>
+<span class="ln" id="L13"><a class="lno" href="#L13">13</a>product); the impossibility of exact calibration of `e` from the irrationality of `π` (H3); the index condition</span>
+<span class="ln" id="L14"><a class="lno" href="#L14">14</a>of the null experiment (H5).  Classical (tier 2) on Mathlib&#x27;s hierarchy; the finite content — the derangement</span>
+<span class="ln" id="L15"><a class="lno" href="#L15">15</a>recurrence, antiperiodicity, the tower, orientation transport, the wrap-free window and the value rows on</span>
+<span class="ln" id="L16"><a class="lno" href="#L16">16</a>`𝔽₁₃` and the six wall shells — is proved with no axioms in `FrcCore/Epi.lean`.</span>
+<span class="ln" id="L17"><a class="lno" href="#L17">17</a></span>
+<span class="ln" id="L18"><a class="lno" href="#L18">18</a>The ring arithmetic of the wall is proved once over an arbitrary field `K` with `p = 0`, `(p−1)! = −1` and</span>
+<span class="ln" id="L19"><a class="lno" href="#L19">19</a>`k! ≠ 0` (`k ≤ p−1`); the sections `prime` and `primepi` instantiate `K := ZMod p`.</span>
+<span class="ln" id="L20"><a class="lno" href="#L20">20</a>-/</span>
+<span class="ln" id="L21"><a class="lno" href="#L21">21</a></span>
+<span class="ln" id="L22"><a class="lno" href="#L22">22</a>namespace FRC.Epi</span>
+<span class="ln" id="L23"><a class="lno" href="#L23">23</a></span>
+<span class="ln" id="L24"><a class="lno" href="#L24">24</a>open Finset Nat</span>
+<span class="ln" id="L25"><a class="lno" href="#L25">25</a>/-! ## The Wallis pair (13:E1, E2) -/</span>
+<span class="ln" id="L26"><a class="lno" href="#L26">26</a>section wallis</span>
+<span class="ln" id="L27"><a class="lno" href="#L27">27</a></span>
+<span class="ln" id="L28"><a class="lno" href="#L28">28</a>variable {K : Type*} [Field K]</span>
+<span class="ln" id="L29"><a class="lno" href="#L29">29</a></span>
+<span class="ln" id="L30"><a class="lno" href="#L30">30</a>/-- 13:E1 — the Wallis pair on the framed rationals: `v n = 2·16^n/((2n+1)·C(2n,n)²)` (the doubled Wallis</span>
+<span class="ln" id="L31"><a class="lno" href="#L31">31</a>partial product) and `w n = 16^n/(n·C(2n,n)²)` (the joint-return tally). -/</span>
+<span class="ln decl" id="FRC.Epi.wallisV"><a class="lno" href="#FRC.Epi.wallisV">32</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcLedger/Epi.lean#L32" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small" src="lean.png" alt="" title="a definition: no proof, no axioms">noncomputable def wallisV (n : ℕ) : K := 2 * (16 : K) ^ n / ((2 * (n : K) + 1) * ((centralBinom n : ℕ) : K) ^ 2)</span>
+<span class="ln" id="L33"><a class="lno" href="#L33">33</a></span>
+<span class="ln" id="L34"><a class="lno" href="#L34">34</a>/-- The Wallis chain on a field: `w n = 16^n / (n · C(2n,n)²)`. -/</span>
+<span class="ln decl" id="FRC.Epi.wallisW"><a class="lno" href="#FRC.Epi.wallisW">35</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcLedger/Epi.lean#L35" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small" src="lean.png" alt="" title="a definition: no proof, no axioms">noncomputable def wallisW (n : ℕ) : K := (16 : K) ^ n / ((n : K) * ((centralBinom n : ℕ) : K) ^ 2)</span>
+<span class="ln" id="L36"><a class="lno" href="#L36">36</a></span>
+<span class="ln" id="L37"><a class="lno" href="#L37">37</a>end wallis</span>
+<span class="ln" id="L38"><a class="lno" href="#L38">38</a></span>
+<span class="ln" id="L39"><a class="lno" href="#L39">39</a></span>
+<span class="ln" id="L40"><a class="lno" href="#L40">40</a>/-- Kurepa&#x27;s left factorial `!n = Σ_{k&lt;n} k!`. -/</span>
+<span class="ln decl" id="FRC.Epi.kurepa"><a class="lno" href="#FRC.Epi.kurepa">41</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcLedger/Epi.lean#L41" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small" src="lean.png" alt="" title="a definition: no proof, no axioms">def kurepa (n : ℕ) : ℕ := ∑ k ∈ range n, k !</span>
+<span class="ln" id="L42"><a class="lno" href="#L42">42</a></span>
+<span class="ln" id="L43"><a class="lno" href="#L43">43</a>/-- The alternating factorial sum `A(n) = Σ_{k&lt;n} (−1)^k k!`. -/</span>
+<span class="ln decl" id="FRC.Epi.altFact"><a class="lno" href="#FRC.Epi.altFact">44</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcLedger/Epi.lean#L44" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small" src="lean.png" alt="" title="a definition: no proof, no axioms">def altFact (n : ℕ) : ℤ := ∑ k ∈ range n, (-1 : ℤ) ^ k * (k ! : ℤ)</span>
+<span class="ln" id="L45"><a class="lno" href="#L45">45</a></span>
+<span class="ln" id="L46"><a class="lno" href="#L46">46</a>/-! ## The wall, over any field of characteristic `p` with Wilson&#x27;s value</span>
+<span class="ln" id="L47"><a class="lno" href="#L47">47</a></span>
+<span class="ln" id="L48"><a class="lno" href="#L48">48</a>Everything is proved once over a field `K` in which `p = 0`, `(p−1)! = −1` and `k! ≠ 0` for `k ≤ p − 1`;</span>
+<span class="ln" id="L49"><a class="lno" href="#L49">49</a>the section `prime` instantiates `K := ZMod p` (whose instances under `Fact p.Prime` are not `ring`-friendly). -/</span>
+<span class="ln" id="L50"><a class="lno" href="#L50">50</a>section wall</span>
+<span class="ln" id="L51"><a class="lno" href="#L51">51</a></span>
+<span class="ln" id="L52"><a class="lno" href="#L52">52</a>variable {K : Type*} [Field K]</span>
+<span class="ln" id="L53"><a class="lno" href="#L53">53</a></span>
+<span class="ln decl" id="FRC.Epi.neg_one_pow_mul_self"><a class="lno" href="#FRC.Epi.neg_one_pow_mul_self">54</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcLedger/Epi.lean#L54" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small t1" src="lean-t1.png" alt="" title="tier 1: Quot.sound, propext">theorem neg_one_pow_mul_self (k : ℕ) : (-1 : K) ^ k * (-1) ^ k = 1 := by</span>
+<span class="ln" id="L55"><a class="lno" href="#L55">55</a>  rw [← pow_add, ← two_mul, pow_mul]; simp</span>
+<span class="ln" id="L56"><a class="lno" href="#L56">56</a></span>
+<span class="ln decl" id="FRC.Epi.neg_one_pow_sub_of_pow_eq_one"><a class="lno" href="#FRC.Epi.neg_one_pow_sub_of_pow_eq_one">57</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcLedger/Epi.lean#L57" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small t1" src="lean-t1.png" alt="" title="tier 1: Quot.sound, propext">theorem neg_one_pow_sub_of_pow_eq_one {a k : ℕ} (h : (-1 : K) ^ a = 1) (hk : k ≤ a) :</span>
+<span class="ln" id="L58"><a class="lno" href="#L58">58</a>    (-1 : K) ^ (a - k) = (-1) ^ k := by</span>
+<span class="ln" id="L59"><a class="lno" href="#L59">59</a>  have : (-1 : K) ^ (a - k) * ((-1) ^ k * (-1) ^ k) = (-1) ^ a * (-1) ^ k := by</span>
+<span class="ln" id="L60"><a class="lno" href="#L60">60</a>    rw [← mul_assoc, ← pow_add, Nat.sub_add_cancel hk]</span>
+<span class="ln" id="L61"><a class="lno" href="#L61">61</a>  rwa [neg_one_pow_mul_self, mul_one, h, one_mul] at this</span>
+<span class="ln" id="L62"><a class="lno" href="#L62">62</a></span>
+<span class="ln decl" id="FRC.Epi.natCast_pred_sub"><a class="lno" href="#FRC.Epi.natCast_pred_sub">63</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcLedger/Epi.lean#L63" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small t1" src="lean-t1.png" alt="" title="tier 1: Quot.sound, propext">theorem natCast_pred_sub (p : ℕ) (hp0 : (p : K) = 0) (h1 : 1 ≤ p) (k : ℕ) (hk : k ≤ p - 1) :</span>
+<span class="ln" id="L64"><a class="lno" href="#L64">64</a>    ((p - 1 - k : ℕ) : K) = -((k : K) + 1) := by</span>
+<span class="ln" id="L65"><a class="lno" href="#L65">65</a>  rw [Nat.cast_sub hk, Nat.cast_sub h1, hp0]; ring</span>
+<span class="ln" id="L66"><a class="lno" href="#L66">66</a></span>
+<span class="ln decl" id="FRC.Epi.factorial_mul_reflect"><a class="lno" href="#FRC.Epi.factorial_mul_reflect">67</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcLedger/Epi.lean#L67" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small t1" src="lean-t1.png" alt="" title="tier 1: Quot.sound, propext">theorem factorial_mul_reflect (p : ℕ) (hp0 : (p : K) = 0) (hw : (((p - 1) ! : ℕ) : K) = -1)</span>
+<span class="ln" id="L68"><a class="lno" href="#L68">68</a>    (h1 : 1 ≤ p) (k : ℕ) (hk : k ≤ p - 1) :</span>
+<span class="ln" id="L69"><a class="lno" href="#L69">69</a>    ((k ! : ℕ) : K) * (((p - 1 - k) ! : ℕ) : K) = -(-1) ^ k := by</span>
+<span class="ln" id="L70"><a class="lno" href="#L70">70</a>  induction k with</span>
+<span class="ln" id="L71"><a class="lno" href="#L71">71</a>  | zero =&gt; rw [Nat.factorial_zero, Nat.cast_one, one_mul, Nat.sub_zero, hw, pow_zero]</span>
+<span class="ln" id="L72"><a class="lno" href="#L72">72</a>  | succ k ih =&gt;</span>
+<span class="ln" id="L73"><a class="lno" href="#L73">73</a>    have hk&#x27; : k ≤ p - 1 := Nat.le_of_succ_le hk</span>
+<span class="ln" id="L74"><a class="lno" href="#L74">74</a>    have e : p - 1 - k = (p - 1 - (k + 1)) + 1 := by omega</span>
+<span class="ln" id="L75"><a class="lno" href="#L75">75</a>    have := ih hk&#x27;</span>
+<span class="ln" id="L76"><a class="lno" href="#L76">76</a>    rw [e, Nat.factorial_succ, ← e, Nat.cast_mul, natCast_pred_sub p hp0 h1 k hk&#x27;] at this</span>
+<span class="ln" id="L77"><a class="lno" href="#L77">77</a>    rw [Nat.factorial_succ, Nat.cast_mul, Nat.cast_add, Nat.cast_one]</span>
+<span class="ln" id="L78"><a class="lno" href="#L78">78</a>    linear_combination -this</span>
+<span class="ln" id="L79"><a class="lno" href="#L79">79</a></span>
+<span class="ln decl" id="FRC.Epi.wilson_reflection"><a class="lno" href="#FRC.Epi.wilson_reflection">80</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcLedger/Epi.lean#L80" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small t2" src="lean-t2.png" alt="" title="tier 2, classical: Classical.choice, Quot.sound, propext">theorem wilson_reflection (p : ℕ) (hp0 : (p : K) = 0) (hw : (((p - 1) ! : ℕ) : K) = -1)</span>
+<span class="ln" id="L81"><a class="lno" href="#L81">81</a>    (h1 : 1 ≤ p) (k : ℕ) (hk : k ≤ p - 1) :</span>
+<span class="ln" id="L82"><a class="lno" href="#L82">82</a>    ((k ! : ℕ) : K)⁻¹ = -(-1) ^ k * (((p - 1 - k) ! : ℕ) : K) := by</span>
+<span class="ln" id="L83"><a class="lno" href="#L83">83</a>  apply inv_eq_of_mul_eq_one_right</span>
+<span class="ln" id="L84"><a class="lno" href="#L84">84</a>  linear_combination -(-1 : K) ^ k * factorial_mul_reflect p hp0 hw h1 k hk + neg_one_pow_mul_self (K := K) k</span>
+<span class="ln" id="L85"><a class="lno" href="#L85">85</a></span>
+<span class="ln decl" id="FRC.Epi.ascFactorial_reflect"><a class="lno" href="#FRC.Epi.ascFactorial_reflect">86</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcLedger/Epi.lean#L86" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small t2" src="lean-t2.png" alt="" title="tier 2, classical: Classical.choice, Quot.sound, propext">theorem ascFactorial_reflect (p : ℕ) (hp0 : (p : K) = 0) (hw : (((p - 1) ! : ℕ) : K) = -1)</span>
+<span class="ln" id="L87"><a class="lno" href="#L87">87</a>    (hfac : ∀ k, k ≤ p - 1 → ((k ! : ℕ) : K) ≠ 0) (h1 : 1 ≤ p) (k : ℕ) (hk : k ≤ p - 1) :</span>
+<span class="ln" id="L88"><a class="lno" href="#L88">88</a>    (((k + 1).ascFactorial (p - 1 - k) : ℕ) : K) = (-1) ^ k * (((p - 1 - k) ! : ℕ) : K) := by</span>
+<span class="ln" id="L89"><a class="lno" href="#L89">89</a>  apply mul_left_cancel₀ (hfac k hk)</span>
+<span class="ln" id="L90"><a class="lno" href="#L90">90</a>  have hA : ((k ! : ℕ) : K) * ((k + 1).ascFactorial (p - 1 - k) : ℕ) = -1 := by</span>
+<span class="ln" id="L91"><a class="lno" href="#L91">91</a>    rw [← Nat.cast_mul, Nat.factorial_mul_ascFactorial, Nat.add_sub_cancel&#x27; hk, hw]</span>
+<span class="ln" id="L92"><a class="lno" href="#L92">92</a>  linear_combination hA - (-1 : K) ^ k * factorial_mul_reflect p hp0 hw h1 k hk + neg_one_pow_mul_self (K := K) k</span>
+<span class="ln" id="L93"><a class="lno" href="#L93">93</a></span>
+<span class="ln decl" id="FRC.Epi.derangements_wall"><a class="lno" href="#FRC.Epi.derangements_wall">94</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcLedger/Epi.lean#L94" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small t2" src="lean-t2.png" alt="" title="tier 2, classical: Classical.choice, Quot.sound, propext">theorem derangements_wall (p : ℕ) (hp0 : (p : K) = 0) (hw : (((p - 1) ! : ℕ) : K) = -1)</span>
+<span class="ln" id="L95"><a class="lno" href="#L95">95</a>    (hfac : ∀ k, k ≤ p - 1 → ((k ! : ℕ) : K) ≠ 0) (h1 : 1 ≤ p) :</span>
+<span class="ln" id="L96"><a class="lno" href="#L96">96</a>    ((numDerangements (p - 1) : ℕ) : K) = (kurepa p : K) := by</span>
+<span class="ln" id="L97"><a class="lno" href="#L97">97</a>  have h := numDerangements_sum (p - 1)</span>
+<span class="ln" id="L98"><a class="lno" href="#L98">98</a>  have hcast : ((numDerangements (p - 1) : ℕ) : K) = ((numDerangements (p - 1) : ℤ) : K) := by</span>
+<span class="ln" id="L99"><a class="lno" href="#L99">99</a>    rw [Int.cast_natCast]</span>
+<span class="ln" id="L100"><a class="lno" href="#L100">100</a>  rw [hcast, h, Int.cast_sum]</span>
+<span class="ln" id="L101"><a class="lno" href="#L101">101</a>  simp only [Int.cast_mul, Int.cast_pow, Int.cast_neg, Int.cast_one, Int.cast_natCast]</span>
+<span class="ln" id="L102"><a class="lno" href="#L102">102</a>  rw [Nat.sub_add_cancel h1]</span>
+<span class="ln" id="L103"><a class="lno" href="#L103">103</a>  unfold kurepa</span>
+<span class="ln" id="L104"><a class="lno" href="#L104">104</a>  rw [Nat.cast_sum, ← sum_range_reflect (fun j =&gt; ((j ! : ℕ) : K)) p]</span>
+<span class="ln" id="L105"><a class="lno" href="#L105">105</a>  apply sum_congr rfl</span>
+<span class="ln" id="L106"><a class="lno" href="#L106">106</a>  intro k hk</span>
+<span class="ln" id="L107"><a class="lno" href="#L107">107</a>  have hk&#x27; : k ≤ p - 1 := by have := mem_range.1 hk; omega</span>
+<span class="ln" id="L108"><a class="lno" href="#L108">108</a>  rw [ascFactorial_reflect p hp0 hw hfac h1 k hk&#x27;, ← mul_assoc, neg_one_pow_mul_self, one_mul]</span>
+<span class="ln" id="L109"><a class="lno" href="#L109">109</a></span>
+<span class="ln decl" id="FRC.Epi.derangements_succ_cast"><a class="lno" href="#FRC.Epi.derangements_succ_cast">110</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcLedger/Epi.lean#L110" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small t1" src="lean-t1.png" alt="" title="tier 1: Quot.sound, propext">theorem derangements_succ_cast (n : ℕ) :</span>
+<span class="ln" id="L111"><a class="lno" href="#L111">111</a>    ((numDerangements (n + 1) : ℕ) : K) = ((n : K) + 1) * (numDerangements n : ℕ) - (-1) ^ n := by</span>
+<span class="ln" id="L112"><a class="lno" href="#L112">112</a>  have := congrArg (fun z : ℤ =&gt; (z : K)) (numDerangements_succ n)</span>
+<span class="ln" id="L113"><a class="lno" href="#L113">113</a>  simp only [Int.cast_natCast, Int.cast_sub, Int.cast_mul, Int.cast_add, Int.cast_one, Int.cast_pow,</span>
+<span class="ln" id="L114"><a class="lno" href="#L114">114</a>    Int.cast_neg] at this</span>
+<span class="ln" id="L115"><a class="lno" href="#L115">115</a>  exact this</span>
+<span class="ln" id="L116"><a class="lno" href="#L116">116</a></span>
+<span class="ln decl" id="FRC.Epi.neg_one_pow_pred_of_odd"><a class="lno" href="#FRC.Epi.neg_one_pow_pred_of_odd">117</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcLedger/Epi.lean#L117" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small t1" src="lean-t1.png" alt="" title="tier 1: Quot.sound, propext">theorem neg_one_pow_pred_of_odd (p : ℕ) (hodd : Odd p) : (-1 : K) ^ (p - 1) = 1 := by</span>
+<span class="ln" id="L118"><a class="lno" href="#L118">118</a>  obtain ⟨m, hm⟩ := hodd</span>
+<span class="ln" id="L119"><a class="lno" href="#L119">119</a>  rw [hm, Nat.add_sub_cancel, pow_mul]; simp</span>
+<span class="ln" id="L120"><a class="lno" href="#L120">120</a></span>
+<span class="ln decl" id="FRC.Epi.derangements_antiperiodic"><a class="lno" href="#FRC.Epi.derangements_antiperiodic">121</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcLedger/Epi.lean#L121" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small t2" src="lean-t2.png" alt="" title="tier 2, classical: Classical.choice, Quot.sound, propext">theorem derangements_antiperiodic (p : ℕ) (hp0 : (p : K) = 0) (hodd : Odd p) (n : ℕ) :</span>
+<span class="ln" id="L122"><a class="lno" href="#L122">122</a>    ((numDerangements (n + p) : ℕ) : K) = -((numDerangements n : ℕ) : K) := by</span>
+<span class="ln" id="L123"><a class="lno" href="#L123">123</a>  have hneg : (-1 : K) ^ p = -1 := hodd.neg_one_pow</span>
+<span class="ln" id="L124"><a class="lno" href="#L124">124</a>  have h1 : 1 ≤ p := hodd.pos</span>
+<span class="ln" id="L125"><a class="lno" href="#L125">125</a>  induction n with</span>
+<span class="ln" id="L126"><a class="lno" href="#L126">126</a>  | zero =&gt;</span>
+<span class="ln" id="L127"><a class="lno" href="#L127">127</a>    have h := derangements_succ_cast (K := K) (p - 1)</span>
+<span class="ln" id="L128"><a class="lno" href="#L128">128</a>    rw [Nat.sub_add_cancel h1] at h</span>
+<span class="ln" id="L129"><a class="lno" href="#L129">129</a>    rw [zero_add, h, neg_one_pow_pred_of_odd p hodd, numDerangements_zero, Nat.cast_one,</span>
+<span class="ln" id="L130"><a class="lno" href="#L130">130</a>      Nat.cast_sub h1, hp0]</span>
+<span class="ln" id="L131"><a class="lno" href="#L131">131</a>    ring</span>
+<span class="ln" id="L132"><a class="lno" href="#L132">132</a>  | succ n ih =&gt;</span>
+<span class="ln" id="L133"><a class="lno" href="#L133">133</a>    rw [show n + 1 + p = (n + p) + 1 by omega, derangements_succ_cast, ih,</span>
+<span class="ln" id="L134"><a class="lno" href="#L134">134</a>      derangements_succ_cast, pow_add, hneg, Nat.cast_add, hp0]</span>
+<span class="ln" id="L135"><a class="lno" href="#L135">135</a>    ring</span>
+<span class="ln" id="L136"><a class="lno" href="#L136">136</a></span>
+<span class="ln decl" id="FRC.Epi.series_duals"><a class="lno" href="#FRC.Epi.series_duals">137</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcLedger/Epi.lean#L137" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small t2" src="lean-t2.png" alt="" title="tier 2, classical: Classical.choice, Quot.sound, propext">theorem series_duals (p : ℕ) (hp0 : (p : K) = 0) (hw : (((p - 1) ! : ℕ) : K) = -1) (hodd : Odd p) :</span>
+<span class="ln" id="L138"><a class="lno" href="#L138">138</a>    (∑ k ∈ range p, (-1 : K) ^ k * ((k ! : ℕ) : K)⁻¹) = -(kurepa p : K) ∧</span>
+<span class="ln" id="L139"><a class="lno" href="#L139">139</a>    (∑ k ∈ range p, ((k ! : ℕ) : K)⁻¹) = -((altFact p : ℤ) : K) := by</span>
+<span class="ln" id="L140"><a class="lno" href="#L140">140</a>  have h1 : 1 ≤ p := hodd.pos</span>
+<span class="ln" id="L141"><a class="lno" href="#L141">141</a>  constructor</span>
+<span class="ln" id="L142"><a class="lno" href="#L142">142</a>  · unfold kurepa</span>
+<span class="ln" id="L143"><a class="lno" href="#L143">143</a>    rw [Nat.cast_sum, ← sum_range_reflect (fun j =&gt; ((j ! : ℕ) : K)) p, ← sum_neg_distrib]</span>
+<span class="ln" id="L144"><a class="lno" href="#L144">144</a>    apply sum_congr rfl</span>
+<span class="ln" id="L145"><a class="lno" href="#L145">145</a>    intro k hk</span>
+<span class="ln" id="L146"><a class="lno" href="#L146">146</a>    have hk&#x27; : k ≤ p - 1 := by have := mem_range.1 hk; omega</span>
+<span class="ln" id="L147"><a class="lno" href="#L147">147</a>    rw [wilson_reflection p hp0 hw h1 k hk&#x27;]</span>
+<span class="ln" id="L148"><a class="lno" href="#L148">148</a>    linear_combination -((((p - 1 - k) ! : ℕ) : K)) * neg_one_pow_mul_self (K := K) k</span>
+<span class="ln" id="L149"><a class="lno" href="#L149">149</a>  · unfold altFact</span>
+<span class="ln" id="L150"><a class="lno" href="#L150">150</a>    rw [Int.cast_sum]</span>
+<span class="ln" id="L151"><a class="lno" href="#L151">151</a>    simp only [Int.cast_mul, Int.cast_pow, Int.cast_neg, Int.cast_one, Int.cast_natCast]</span>
+<span class="ln" id="L152"><a class="lno" href="#L152">152</a>    rw [← sum_range_reflect (fun j =&gt; (-1 : K) ^ j * ((j ! : ℕ) : K)) p, ← sum_neg_distrib]</span>
+<span class="ln" id="L153"><a class="lno" href="#L153">153</a>    apply sum_congr rfl</span>
+<span class="ln" id="L154"><a class="lno" href="#L154">154</a>    intro k hk</span>
+<span class="ln" id="L155"><a class="lno" href="#L155">155</a>    have hk&#x27; : k ≤ p - 1 := by have := mem_range.1 hk; omega</span>
+<span class="ln" id="L156"><a class="lno" href="#L156">156</a>    rw [wilson_reflection p hp0 hw h1 k hk&#x27;,</span>
+<span class="ln" id="L157"><a class="lno" href="#L157">157</a>      neg_one_pow_sub_of_pow_eq_one (neg_one_pow_pred_of_odd p hodd) hk&#x27;]</span>
+<span class="ln" id="L158"><a class="lno" href="#L158">158</a>    ring</span>
+<span class="ln" id="L159"><a class="lno" href="#L159">159</a></span>
+<span class="ln decl" id="FRC.Epi.tower_e_exact"><a class="lno" href="#FRC.Epi.tower_e_exact">160</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcLedger/Epi.lean#L160" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small ok" src="lean-ok.png" alt="" title="no axioms">theorem tower_e_exact (p : ℕ) (hp0 : (p : K) = 0) (hodd : Odd p)</span>
+<span class="ln" id="L161"><a class="lno" href="#L161">161</a>    (hfacp : ∀ m, 1 ≤ m → (((m * p) ! : ℕ) : K) = 0) (m : ℕ) (hm : 1 ≤ m) (e δ : K)</span>
+<span class="ln" id="L162"><a class="lno" href="#L162">162</a>    (hδ : δ = (-1) ^ m * e) :</span>
+<span class="ln" id="L163"><a class="lno" href="#L163">163</a>    (((m * p) ! : ℕ) : K) = 0 ∧ ((numDerangements (m * p) : ℕ) : K) = (-1) ^ m ∧</span>
+<span class="ln" id="L164"><a class="lno" href="#L164">164</a>    ((((m * p) ! : ℕ) : K) + δ) / ((numDerangements (m * p) : ℕ) : K) = e := by</span>
+<span class="ln" id="L165"><a class="lno" href="#L165">165</a>  have hder : ∀ m, ((numDerangements (m * p) : ℕ) : K) = (-1) ^ m := by</span>
+<span class="ln" id="L166"><a class="lno" href="#L166">166</a>    intro m</span>
+<span class="ln" id="L167"><a class="lno" href="#L167">167</a>    induction m with</span>
+<span class="ln" id="L168"><a class="lno" href="#L168">168</a>    | zero =&gt; rw [Nat.zero_mul, numDerangements_zero, Nat.cast_one, pow_zero]</span>
+<span class="ln" id="L169"><a class="lno" href="#L169">169</a>    | succ m ih =&gt; rw [Nat.succ_mul, derangements_antiperiodic p hp0 hodd, ih, pow_succ, mul_neg_one]</span>
+<span class="ln" id="L170"><a class="lno" href="#L170">170</a>  refine ⟨hfacp m hm, hder m, ?_⟩</span>
+<span class="ln" id="L171"><a class="lno" href="#L171">171</a>  rw [hfacp m hm, hder, zero_add, hδ]</span>
+<span class="ln" id="L172"><a class="lno" href="#L172">172</a>  exact mul_div_cancel_left₀ e (pow_ne_zero m (neg_ne_zero.2 one_ne_zero))</span>
+<span class="ln" id="L173"><a class="lno" href="#L173">173</a></span>
+<span class="ln" id="L174"><a class="lno" href="#L174">174</a>end wall</span>
+<span class="ln" id="L175"><a class="lno" href="#L175">175</a></span>
+<span class="ln" id="L176"><a class="lno" href="#L176">176</a>/-! ## The prime shell: `K := ZMod p` -/</span>
+<span class="ln" id="L177"><a class="lno" href="#L177">177</a>section prime</span>
+<span class="ln" id="L178"><a class="lno" href="#L178">178</a></span>
+<span class="ln" id="L179"><a class="lno" href="#L179">179</a>variable (p : ℕ) [hp : Fact p.Prime]</span>
+<span class="ln" id="L180"><a class="lno" href="#L180">180</a></span>
+<span class="ln decl" id="FRC.Epi.factorial_ne_zero_zmod"><a class="lno" href="#FRC.Epi.factorial_ne_zero_zmod">181</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcLedger/Epi.lean#L181" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small t2" src="lean-t2.png" alt="" title="tier 2, classical: Classical.choice, Quot.sound, propext">theorem factorial_ne_zero_zmod (k : ℕ) (hk : k ≤ p - 1) : ((k ! : ℕ) : ZMod p) ≠ 0 := by</span>
+<span class="ln" id="L182"><a class="lno" href="#L182">182</a>  rw [Ne, ZMod.natCast_eq_zero_iff]</span>
+<span class="ln" id="L183"><a class="lno" href="#L183">183</a>  intro h</span>
+<span class="ln" id="L184"><a class="lno" href="#L184">184</a>  have := (hp.out.dvd_factorial).1 h</span>
+<span class="ln" id="L185"><a class="lno" href="#L185">185</a>  have := hp.out.two_le</span>
+<span class="ln" id="L186"><a class="lno" href="#L186">186</a>  omega</span>
+<span class="ln" id="L187"><a class="lno" href="#L187">187</a></span>
+<span class="ln decl" id="FRC.Epi.factorial_mul_prime_eq_zero"><a class="lno" href="#FRC.Epi.factorial_mul_prime_eq_zero">188</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcLedger/Epi.lean#L188" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small t2" src="lean-t2.png" alt="" title="tier 2, classical: Classical.choice, Quot.sound, propext">theorem factorial_mul_prime_eq_zero (m : ℕ) (hm : 1 ≤ m) : (((m * p) ! : ℕ) : ZMod p) = 0 := by</span>
+<span class="ln" id="L189"><a class="lno" href="#L189">189</a>  rw [ZMod.natCast_eq_zero_iff]</span>
+<span class="ln" id="L190"><a class="lno" href="#L190">190</a>  exact (hp.out.dvd_factorial).2 (Nat.le_mul_of_pos_left p hm)</span>
+<span class="ln" id="L191"><a class="lno" href="#L191">191</a></span>
+<span class="ln" id="L192"><a class="lno" href="#L192">192</a>/-- 13:F1 — Wilson reflection: `1/k! ≡ −(−1)^k (p−1−k)! (mod p)` for `0 ≤ k ≤ p − 1`, from Wilson&#x27;s</span>
+<span class="ln" id="L193"><a class="lno" href="#L193">193</a>theorem `(p−1)! ≡ −1` and `p − j ≡ −j`. -/</span>
+<span class="ln decl" id="FRC.Epi.wilson_reflection_zmod"><a class="lno" href="#FRC.Epi.wilson_reflection_zmod">194</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcLedger/Epi.lean#L194" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small t2" src="lean-t2.png" alt="" title="tier 2, classical: Classical.choice, Quot.sound, propext">theorem wilson_reflection_zmod (k : ℕ) (hk : k ≤ p - 1) :</span>
+<span class="ln" id="L195"><a class="lno" href="#L195">195</a>    ((k ! : ℕ) : ZMod p)⁻¹ = -(-1) ^ k * (((p - 1 - k) ! : ℕ) : ZMod p) :=</span>
+<span class="ln" id="L196"><a class="lno" href="#L196">196</a>  wilson_reflection p (ZMod.natCast_self p) (ZMod.wilsons_lemma p) hp.out.one_le k hk</span>
+<span class="ln" id="L197"><a class="lno" href="#L197">197</a></span>
+<span class="ln" id="L198"><a class="lno" href="#L198">198</a>/-- 13:F2 — the wall identity: `!(p−1) ≡ !p (mod p)` for every prime `p` — the derangement number at the wall</span>
+<span class="ln" id="L199"><a class="lno" href="#L199">199</a>is Kurepa&#x27;s left factorial (the odd-prime case of the Mijajlović–Šami congruence), from Wilson reflection. -/</span>
+<span class="ln decl" id="FRC.Epi.derangements_wall_zmod"><a class="lno" href="#FRC.Epi.derangements_wall_zmod">200</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcLedger/Epi.lean#L200" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small t2" src="lean-t2.png" alt="" title="tier 2, classical: Classical.choice, Quot.sound, propext">theorem derangements_wall_zmod : ((numDerangements (p - 1) : ℕ) : ZMod p) = (kurepa p : ZMod p) :=</span>
+<span class="ln" id="L201"><a class="lno" href="#L201">201</a>  derangements_wall p (ZMod.natCast_self p) (ZMod.wilsons_lemma p) (factorial_ne_zero_zmod p) hp.out.one_le</span>
+<span class="ln" id="L202"><a class="lno" href="#L202">202</a></span>
+<span class="ln" id="L203"><a class="lno" href="#L203">203</a>/-- 13:F2 — the terminal residue of `e`: `⟦ε_{p−1}⟧ = (p−1)!/!(p−1) = −(!p)⁻¹`, and the terminal link exists</span>
+<span class="ln" id="L204"><a class="lno" href="#L204">204</a>(`!(p−1) ≢ 0`) exactly when `p ∤ !p`. -/</span>
+<span class="ln decl" id="FRC.Epi.terminal_residue"><a class="lno" href="#FRC.Epi.terminal_residue">205</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcLedger/Epi.lean#L205" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small t2" src="lean-t2.png" alt="" title="tier 2, classical: Classical.choice, Quot.sound, propext">theorem terminal_residue :</span>
+<span class="ln" id="L206"><a class="lno" href="#L206">206</a>    (((p - 1) ! : ℕ) : ZMod p) / ((numDerangements (p - 1) : ℕ) : ZMod p) = -(kurepa p : ZMod p)⁻¹ ∧</span>
+<span class="ln" id="L207"><a class="lno" href="#L207">207</a>    (((numDerangements (p - 1) : ℕ) : ZMod p) ≠ 0 ↔ ¬ p ∣ kurepa p) := by</span>
+<span class="ln" id="L208"><a class="lno" href="#L208">208</a>  rw [derangements_wall_zmod, ZMod.wilsons_lemma, div_eq_mul_inv, neg_one_mul, Ne,</span>
+<span class="ln" id="L209"><a class="lno" href="#L209">209</a>    ZMod.natCast_eq_zero_iff]</span>
+<span class="ln" id="L210"><a class="lno" href="#L210">210</a>  exact ⟨rfl, Iff.rfl⟩</span>
+<span class="ln" id="L211"><a class="lno" href="#L211">211</a></span>
+<span class="ln" id="L212"><a class="lno" href="#L212">212</a>/-- 13:F3 — antiperiodicity: `!(n + p) ≡ −!n (mod p)` for every odd prime `p` and every `n ≥ 0`, so</span>
+<span class="ln" id="L213"><a class="lno" href="#L213">213</a>`!n mod p` depends on `n mod 2p`; the blind set always contains `n = 1` (`!1 = 0`). -/</span>
+<span class="ln decl" id="FRC.Epi.derangements_antiperiodic_zmod"><a class="lno" href="#FRC.Epi.derangements_antiperiodic_zmod">214</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcLedger/Epi.lean#L214" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small t2" src="lean-t2.png" alt="" title="tier 2, classical: Classical.choice, Quot.sound, propext">theorem derangements_antiperiodic_zmod (hp2 : p ≠ 2) (n : ℕ) :</span>
+<span class="ln" id="L215"><a class="lno" href="#L215">215</a>    ((numDerangements (n + p) : ℕ) : ZMod p) = -((numDerangements n : ℕ) : ZMod p) ∧</span>
+<span class="ln" id="L216"><a class="lno" href="#L216">216</a>    numDerangements 1 = 0 :=</span>
+<span class="ln" id="L217"><a class="lno" href="#L217">217</a>  ⟨derangements_antiperiodic p (ZMod.natCast_self p) (hp.out.odd_of_ne_two hp2) n, numDerangements_one⟩</span>
+<span class="ln" id="L218"><a class="lno" href="#L218">218</a></span>
+<span class="ln" id="L219"><a class="lno" href="#L219">219</a>/-- 13:F4 — the series duals at the wall: `Σ_{k&lt;p} (−1)^k/k! ≡ −!p` and `Σ_{k&lt;p} 1/k! ≡ −A(p)`, `A(p)` the</span>
+<span class="ln" id="L220"><a class="lno" href="#L220">220</a>alternating factorial sum, for every odd prime `p`. -/</span>
+<span class="ln decl" id="FRC.Epi.series_duals_zmod"><a class="lno" href="#FRC.Epi.series_duals_zmod">221</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcLedger/Epi.lean#L221" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small t2" src="lean-t2.png" alt="" title="tier 2, classical: Classical.choice, Quot.sound, propext">theorem series_duals_zmod (hp2 : p ≠ 2) :</span>
+<span class="ln" id="L222"><a class="lno" href="#L222">222</a>    (∑ k ∈ range p, (-1 : ZMod p) ^ k * ((k ! : ℕ) : ZMod p)⁻¹) = -(kurepa p : ZMod p) ∧</span>
+<span class="ln" id="L223"><a class="lno" href="#L223">223</a>    (∑ k ∈ range p, ((k ! : ℕ) : ZMod p)⁻¹) = -((altFact p : ℤ) : ZMod p) :=</span>
+<span class="ln" id="L224"><a class="lno" href="#L224">224</a>  series_duals p (ZMod.natCast_self p) (ZMod.wilsons_lemma p) (hp.out.odd_of_ne_two hp2)</span>
+<span class="ln" id="L225"><a class="lno" href="#L225">225</a></span>
+<span class="ln" id="L226"><a class="lno" href="#L226">226</a>/-- 13:F7 — the fixed-shell tower of `e` is exact at every grade: `(mp)! ≡ 0` and `!(mp) ≡ (−1)^m (mod p)`</span>
+<span class="ln" id="L227"><a class="lno" href="#L227">227</a>for `m ≥ 1`, so `q_m = ((mp)! + δ_m)/!(mp)` reads `e_p` on the shell whenever `δ_m ≡ (−1)^m e_p`. -/</span>
+<span class="ln decl" id="FRC.Epi.tower_e_exact_zmod"><a class="lno" href="#FRC.Epi.tower_e_exact_zmod">228</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcLedger/Epi.lean#L228" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small t2" src="lean-t2.png" alt="" title="tier 2, classical: Classical.choice, Quot.sound, propext">theorem tower_e_exact_zmod (hp2 : p ≠ 2) (m : ℕ) (hm : 1 ≤ m) (e δ : ZMod p) (hδ : δ = (-1) ^ m * e) :</span>
+<span class="ln" id="L229"><a class="lno" href="#L229">229</a>    (((m * p) ! : ℕ) : ZMod p) = 0 ∧ ((numDerangements (m * p) : ℕ) : ZMod p) = (-1) ^ m ∧</span>
+<span class="ln" id="L230"><a class="lno" href="#L230">230</a>    ((((m * p) ! : ℕ) : ZMod p) + δ) / ((numDerangements (m * p) : ℕ) : ZMod p) = e :=</span>
+<span class="ln" id="L231"><a class="lno" href="#L231">231</a>  tower_e_exact p (ZMod.natCast_self p) (hp.out.odd_of_ne_two hp2) (factorial_mul_prime_eq_zero p) m hm e δ hδ</span>
+<span class="ln" id="L232"><a class="lno" href="#L232">232</a></span>
+<span class="ln" id="L233"><a class="lno" href="#L233">233</a>end prime</span>
+<span class="ln" id="L234"><a class="lno" href="#L234">234</a></span>
+<span class="ln" id="L235"><a class="lno" href="#L235">235</a></span>
+<span class="ln" id="L236"><a class="lno" href="#L236">236</a></span>
+<span class="ln" id="L237"><a class="lno" href="#L237">237</a>/-! ## The wall hierarchy of `π`: the Wallis chain `w_n = 16^n/(n C_n²)` on the shell -/</span>
+<span class="ln" id="L238"><a class="lno" href="#L238">238</a>section wallpi</span>
+<span class="ln" id="L239"><a class="lno" href="#L239">239</a></span>
+<span class="ln" id="L240"><a class="lno" href="#L240">240</a>variable {K : Type*} [Field K]</span>
+<span class="ln" id="L241"><a class="lno" href="#L241">241</a></span>
+<span class="ln decl" id="FRC.Epi.sq_eq_one_of_eq_neg_one_pow"><a class="lno" href="#FRC.Epi.sq_eq_one_of_eq_neg_one_pow">242</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcLedger/Epi.lean#L242" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small t1" src="lean-t1.png" alt="" title="tier 1: Quot.sound, propext">theorem sq_eq_one_of_eq_neg_one_pow (c : K) (m : ℕ) (h : c = (-1) ^ m) : c ^ 2 = 1 := by</span>
+<span class="ln" id="L243"><a class="lno" href="#L243">243</a>  rw [h, ← pow_mul, mul_comm, pow_mul]; norm_num</span>
+<span class="ln" id="L244"><a class="lno" href="#L244">244</a></span>
+<span class="ln" id="L245"><a class="lno" href="#L245">245</a>/-- `C(p−1, k) ≡ (−1)^k`, from `C(n, k+1)(k+1) = C(n, k)(n − k)` and `p − 1 − k ≡ −(k+1)`. -/</span>
+<span class="ln decl" id="FRC.Epi.choose_pred_eq_neg_one_pow"><a class="lno" href="#FRC.Epi.choose_pred_eq_neg_one_pow">246</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcLedger/Epi.lean#L246" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small t2" src="lean-t2.png" alt="" title="tier 2, classical: Classical.choice, Quot.sound, propext">theorem choose_pred_eq_neg_one_pow (p : ℕ) (hp0 : (p : K) = 0) (h1 : 1 ≤ p)</span>
+<span class="ln" id="L247"><a class="lno" href="#L247">247</a>    (hunit : ∀ j, 1 ≤ j → j ≤ p - 1 → (j : K) ≠ 0) (k : ℕ) (hk : k ≤ p - 1) :</span>
+<span class="ln" id="L248"><a class="lno" href="#L248">248</a>    ((choose (p - 1) k : ℕ) : K) = (-1) ^ k := by</span>
+<span class="ln" id="L249"><a class="lno" href="#L249">249</a>  induction k with</span>
+<span class="ln" id="L250"><a class="lno" href="#L250">250</a>  | zero =&gt; rw [choose_zero_right, Nat.cast_one, pow_zero]</span>
+<span class="ln" id="L251"><a class="lno" href="#L251">251</a>  | succ k ih =&gt;</span>
+<span class="ln" id="L252"><a class="lno" href="#L252">252</a>    have hk&#x27; : k ≤ p - 1 := Nat.le_of_succ_le hk</span>
+<span class="ln" id="L253"><a class="lno" href="#L253">253</a>    have h := congrArg (fun m : ℕ =&gt; (m : K)) (Nat.choose_succ_right_eq (p - 1) k)</span>
+<span class="ln" id="L254"><a class="lno" href="#L254">254</a>    simp only [Nat.cast_mul, Nat.cast_add, Nat.cast_one] at h</span>
+<span class="ln" id="L255"><a class="lno" href="#L255">255</a>    rw [ih hk&#x27;, Nat.cast_sub hk&#x27;, Nat.cast_sub h1, hp0] at h</span>
+<span class="ln" id="L256"><a class="lno" href="#L256">256</a>    have hne : ((k : K) + 1) ≠ 0 := by</span>
+<span class="ln" id="L257"><a class="lno" href="#L257">257</a>      have := hunit (k + 1) (by omega) hk</span>
+<span class="ln" id="L258"><a class="lno" href="#L258">258</a>      rwa [Nat.cast_add, Nat.cast_one] at this</span>
+<span class="ln" id="L259"><a class="lno" href="#L259">259</a>    apply mul_right_cancel₀ hne</span>
+<span class="ln" id="L260"><a class="lno" href="#L260">260</a>    rw [h, pow_succ]; ring</span>
+<span class="ln" id="L261"><a class="lno" href="#L261">261</a></span>
+<span class="ln decl" id="FRC.Epi.half_wall_generic"><a class="lno" href="#FRC.Epi.half_wall_generic">262</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcLedger/Epi.lean#L262" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small t2" src="lean-t2.png" alt="" title="tier 2, classical: Classical.choice, Quot.sound, propext">theorem half_wall_generic (m : K) (h2m : (2 : K) * m = -1) (x c : K)</span>
+<span class="ln" id="L263"><a class="lno" href="#L263">263</a>    (hx : x = 1) (hc : c ^ 2 = 1) :</span>
+<span class="ln" id="L264"><a class="lno" href="#L264">264</a>    x / (m * c ^ 2) = -2 ∧ m⁻¹ = -2 ∧ (4 : K) * m = -2 := by</span>
+<span class="ln" id="L265"><a class="lno" href="#L265">265</a>  have hinv : m⁻¹ = -2 := inv_eq_of_mul_eq_one_right (by linear_combination -h2m)</span>
+<span class="ln" id="L266"><a class="lno" href="#L266">266</a>  refine ⟨?_, hinv, by linear_combination 2 * h2m⟩</span>
+<span class="ln" id="L267"><a class="lno" href="#L267">267</a>  rw [hx, hc, mul_one, one_div, hinv]</span>
+<span class="ln" id="L268"><a class="lno" href="#L268">268</a></span>
+<span class="ln decl" id="FRC.Epi.quarter_wall_generic"><a class="lno" href="#FRC.Epi.quarter_wall_generic">269</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcLedger/Epi.lean#L269" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small t2" src="lean-t2.png" alt="" title="tier 2, classical: Classical.choice, Quot.sound, propext">theorem quarter_wall_generic (κ a b c : K) (hκ : (4 : K) * κ = -1) (h2 : (2 : K) ≠ 0)</span>
+<span class="ln" id="L270"><a class="lno" href="#L270">270</a>    (hC : c = 2 * a) (ha : a ≠ 0) (hab : a ^ 2 + b ^ 2 = 0) (x : K) (hx : x = 1) :</span>
+<span class="ln" id="L271"><a class="lno" href="#L271">271</a>    x / (κ * c ^ 2) = -(a ^ 2)⁻¹ ∧ -(a ^ 2)⁻¹ = (b ^ 2)⁻¹ := by</span>
+<span class="ln" id="L272"><a class="lno" href="#L272">272</a>  have hκ0 : κ ≠ 0 := by</span>
+<span class="ln" id="L273"><a class="lno" href="#L273">273</a>    intro h; rw [h, mul_zero] at hκ; exact one_ne_zero (by linear_combination hκ)</span>
+<span class="ln" id="L274"><a class="lno" href="#L274">274</a>  have hc0 : c ≠ 0 := by rw [hC]; exact mul_ne_zero h2 ha</span>
+<span class="ln" id="L275"><a class="lno" href="#L275">275</a>  have hinv : (a ^ 2)⁻¹ * a ^ 2 = 1 := inv_mul_cancel₀ (pow_ne_zero 2 ha)</span>
+<span class="ln" id="L276"><a class="lno" href="#L276">276</a>  constructor</span>
+<span class="ln" id="L277"><a class="lno" href="#L277">277</a>  · rw [div_eq_iff (mul_ne_zero hκ0 (pow_ne_zero 2 hc0)), hx, hC]</span>
+<span class="ln" id="L278"><a class="lno" href="#L278">278</a>    linear_combination 4 * κ * hinv + hκ</span>
+<span class="ln" id="L279"><a class="lno" href="#L279">279</a>  · rw [neg_inv]; congr 1; linear_combination -hab</span>
+<span class="ln" id="L280"><a class="lno" href="#L280">280</a></span>
+<span class="ln decl" id="FRC.Epi.first_revival_generic"><a class="lno" href="#FRC.Epi.first_revival_generic">281</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcLedger/Epi.lean#L281" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small t2" src="lean-t2.png" alt="" title="tier 2, classical: Classical.choice, Quot.sound, propext">theorem first_revival_generic (x c d : K) (h2 : (2 : K) ≠ 0) (hx : x = 16) (hc : c = 2) (hd : d = 1) :</span>
+<span class="ln" id="L282"><a class="lno" href="#L282">282</a>    2 * x / (d * c ^ 2) = 8 := by</span>
+<span class="ln" id="L283"><a class="lno" href="#L283">283</a>  subst hx hc hd; field_simp; ring</span>
+<span class="ln" id="L284"><a class="lno" href="#L284">284</a></span>
+<span class="ln decl" id="FRC.Epi.tower_pi_generic"><a class="lno" href="#FRC.Epi.tower_pi_generic">285</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcLedger/Epi.lean#L285" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small t2" src="lean-t2.png" alt="" title="tier 2, classical: Classical.choice, Quot.sound, propext">theorem tower_pi_generic (x c d δ κ : K) (h2 : (2 : K) ≠ 0) (hx : x = 16) (hc : c = 2) (hd : d = 1)</span>
+<span class="ln" id="L286"><a class="lno" href="#L286">286</a>    (hδ : δ = -34) (hκ : (4 : K) * κ = -1) :</span>
+<span class="ln" id="L287"><a class="lno" href="#L287">287</a>    (2 * x + δ) / (d * c ^ 2) = 2 * κ := by</span>
+<span class="ln" id="L288"><a class="lno" href="#L288">288</a>  subst hx hc hd hδ; field_simp; linear_combination -2 * hκ</span>
+<span class="ln" id="L289"><a class="lno" href="#L289">289</a></span>
+<span class="ln" id="L290"><a class="lno" href="#L290">290</a>end wallpi</span>
+<span class="ln" id="L291"><a class="lno" href="#L291">291</a></span>
+<span class="ln" id="L292"><a class="lno" href="#L292">292</a>section primepi</span>
+<span class="ln" id="L293"><a class="lno" href="#L293">293</a></span>
+<span class="ln" id="L294"><a class="lno" href="#L294">294</a>variable (p : ℕ) [hp : Fact p.Prime]</span>
+<span class="ln" id="L295"><a class="lno" href="#L295">295</a></span>
+<span class="ln decl" id="FRC.Epi.natCast_ne_zero_of_lt"><a class="lno" href="#FRC.Epi.natCast_ne_zero_of_lt">296</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcLedger/Epi.lean#L296" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small t2" src="lean-t2.png" alt="" title="tier 2, classical: Classical.choice, Quot.sound, propext">theorem natCast_ne_zero_of_lt (j : ℕ) (hj0 : 1 ≤ j) (hj : j &lt; p) : (j : ZMod p) ≠ 0 := by</span>
+<span class="ln" id="L297"><a class="lno" href="#L297">297</a>  rw [Ne, ZMod.natCast_eq_zero_iff]</span>
+<span class="ln" id="L298"><a class="lno" href="#L298">298</a>  intro h</span>
+<span class="ln" id="L299"><a class="lno" href="#L299">299</a>  have := Nat.le_of_dvd (by omega) h</span>
+<span class="ln" id="L300"><a class="lno" href="#L300">300</a>  omega</span>
+<span class="ln" id="L301"><a class="lno" href="#L301">301</a></span>
+<span class="ln decl" id="FRC.Epi.two_ne_zero_zmod"><a class="lno" href="#FRC.Epi.two_ne_zero_zmod">302</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcLedger/Epi.lean#L302" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small t2" src="lean-t2.png" alt="" title="tier 2, classical: Classical.choice, Quot.sound, propext">theorem two_ne_zero_zmod (hp2 : p ≠ 2) : (2 : ZMod p) ≠ 0 := by</span>
+<span class="ln" id="L303"><a class="lno" href="#L303">303</a>  have := natCast_ne_zero_of_lt p 2 (by omega) (lt_of_le_of_ne hp.out.two_le (Ne.symm hp2))</span>
+<span class="ln" id="L304"><a class="lno" href="#L304">304</a>  rwa [Nat.cast_ofNat] at this</span>
+<span class="ln" id="L305"><a class="lno" href="#L305">305</a></span>
+<span class="ln" id="L306"><a class="lno" href="#L306">306</a>/-- 13:G1 — the legibility window: `p ∤ C(2n,n)` for `1 ≤ n ≤ (p−1)/2` and `p ∣ C(2n,n)` for</span>
+<span class="ln" id="L307"><a class="lno" href="#L307">307</a>`(p−1)/2 &lt; n &lt; p` — the residue line of the Wallis chain is defined exactly on `[1, (p−1)/2]`. -/</span>
+<span class="ln decl" id="FRC.Epi.legibility_window"><a class="lno" href="#FRC.Epi.legibility_window">308</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcLedger/Epi.lean#L308" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small t2" src="lean-t2.png" alt="" title="tier 2, classical: Classical.choice, Quot.sound, propext">theorem legibility_window (n : ℕ) :</span>
+<span class="ln" id="L309"><a class="lno" href="#L309">309</a>    (2 * n ≤ p - 1 → ¬ p ∣ centralBinom n) ∧ (p ≤ 2 * n → n &lt; p → p ∣ centralBinom n) := by</span>
+<span class="ln" id="L310"><a class="lno" href="#L310">310</a>  have hfac : centralBinom n * n ! * n ! = (2 * n) ! := by</span>
+<span class="ln" id="L311"><a class="lno" href="#L311">311</a>    have := Nat.choose_mul_factorial_mul_factorial (show n ≤ 2 * n by omega)</span>
+<span class="ln" id="L312"><a class="lno" href="#L312">312</a>    rwa [show 2 * n - n = n by omega, ← centralBinom_eq_two_mul_choose] at this</span>
+<span class="ln" id="L313"><a class="lno" href="#L313">313</a>  constructor</span>
+<span class="ln" id="L314"><a class="lno" href="#L314">314</a>  · intro hn hdvd</span>
+<span class="ln" id="L315"><a class="lno" href="#L315">315</a>    have : p ∣ (2 * n) ! := hfac ▸ Dvd.dvd.mul_right (Dvd.dvd.mul_right hdvd _) _</span>
+<span class="ln" id="L316"><a class="lno" href="#L316">316</a>    have := (hp.out.dvd_factorial).1 this</span>
+<span class="ln" id="L317"><a class="lno" href="#L317">317</a>    have := hp.out.pos</span>
+<span class="ln" id="L318"><a class="lno" href="#L318">318</a>    omega</span>
+<span class="ln" id="L319"><a class="lno" href="#L319">319</a>  · intro hn hnp</span>
+<span class="ln" id="L320"><a class="lno" href="#L320">320</a>    have h1 : p ∣ (2 * n) ! := (hp.out.dvd_factorial).2 hn</span>
+<span class="ln" id="L321"><a class="lno" href="#L321">321</a>    rw [← hfac] at h1</span>
+<span class="ln" id="L322"><a class="lno" href="#L322">322</a>    have hnf : ¬ p ∣ n ! := fun h =&gt; by have := (hp.out.dvd_factorial).1 h; omega</span>
+<span class="ln" id="L323"><a class="lno" href="#L323">323</a>    rcases (hp.out.dvd_mul).1 h1 with h | h</span>
+<span class="ln" id="L324"><a class="lno" href="#L324">324</a>    · rcases (hp.out.dvd_mul).1 h with h | h</span>
+<span class="ln" id="L325"><a class="lno" href="#L325">325</a>      · exact h</span>
+<span class="ln" id="L326"><a class="lno" href="#L326">326</a>      · exact absurd h hnf</span>
+<span class="ln" id="L327"><a class="lno" href="#L327">327</a>    · exact absurd h hnf</span>
+<span class="ln" id="L328"><a class="lno" href="#L328">328</a></span>
+<span class="ln" id="L329"><a class="lno" href="#L329">329</a>/-- 13:G2 — the half-wall terminus, the calibration face: with `m = (p−1)/2`, `16^m ≡ 1`,</span>
+<span class="ln" id="L330"><a class="lno" href="#L330">330</a>`C(2m,m)² ≡ 1`, and `⟦w_m⟧ = m⁻¹ = −2` for every odd prime; the identity `4·π_A ≡ −2` beside it. -/</span>
+<span class="ln decl" id="FRC.Epi.half_wall_terminus"><a class="lno" href="#FRC.Epi.half_wall_terminus">331</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcLedger/Epi.lean#L331" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small t2" src="lean-t2.png" alt="" title="tier 2, classical: Classical.choice, Quot.sound, propext">theorem half_wall_terminus (hp2 : p ≠ 2) (m : ℕ) (hm : p = 2 * m + 1) :</span>
+<span class="ln" id="L332"><a class="lno" href="#L332">332</a>    (16 : ZMod p) ^ m = 1 ∧ ((centralBinom m : ℕ) : ZMod p) ^ 2 = 1 ∧</span>
+<span class="ln" id="L333"><a class="lno" href="#L333">333</a>    wallisW m = (-2 : ZMod p) ∧ (m : ZMod p)⁻¹ = -2 ∧ (4 : ZMod p) * m = -2 := by</span>
+<span class="ln" id="L334"><a class="lno" href="#L334">334</a>  have h2 : (2 : ZMod p) ≠ 0 := two_ne_zero_zmod p hp2</span>
+<span class="ln" id="L335"><a class="lno" href="#L335">335</a>  have h4 : (4 : ZMod p) ≠ 0 := by</span>
+<span class="ln" id="L336"><a class="lno" href="#L336">336</a>    have : (4 : ZMod p) = 2 * 2 := by norm_num</span>
+<span class="ln" id="L337"><a class="lno" href="#L337">337</a>    rw [this]; exact mul_ne_zero h2 h2</span>
+<span class="ln" id="L338"><a class="lno" href="#L338">338</a>  have h16 : (16 : ZMod p) ^ m = 1 := by</span>
+<span class="ln" id="L339"><a class="lno" href="#L339">339</a>    have : (16 : ZMod p) ^ m = (4 : ZMod p) ^ (p - 1) := by</span>
+<span class="ln" id="L340"><a class="lno" href="#L340">340</a>      rw [show p - 1 = 2 * m by omega, pow_mul]; norm_num</span>
+<span class="ln" id="L341"><a class="lno" href="#L341">341</a>    rw [this]; exact ZMod.pow_card_sub_one_eq_one h4</span>
+<span class="ln" id="L342"><a class="lno" href="#L342">342</a>  have hC : ((centralBinom m : ℕ) : ZMod p) = (-1) ^ m := by</span>
+<span class="ln" id="L343"><a class="lno" href="#L343">343</a>    have hm&#x27; : m ≤ p - 1 := by omega</span>
+<span class="ln" id="L344"><a class="lno" href="#L344">344</a>    have := choose_pred_eq_neg_one_pow (K := ZMod p) p (ZMod.natCast_self p) hp.out.one_le</span>
+<span class="ln" id="L345"><a class="lno" href="#L345">345</a>      (fun j hj0 hj =&gt; natCast_ne_zero_of_lt p j hj0 (by omega)) m hm&#x27;</span>
+<span class="ln" id="L346"><a class="lno" href="#L346">346</a>    rw [centralBinom_eq_two_mul_choose, show 2 * m = p - 1 by omega]; exact this</span>
+<span class="ln" id="L347"><a class="lno" href="#L347">347</a>  have hC2 : ((centralBinom m : ℕ) : ZMod p) ^ 2 = 1 := by</span>
+<span class="ln" id="L348"><a class="lno" href="#L348">348</a>    exact sq_eq_one_of_eq_neg_one_pow _ m hC</span>
+<span class="ln" id="L349"><a class="lno" href="#L349">349</a>  have h2m : (2 : ZMod p) * m = -1 := by</span>
+<span class="ln" id="L350"><a class="lno" href="#L350">350</a>    have : ((2 * m + 1 : ℕ) : ZMod p) = 0 := by rw [← hm]; exact ZMod.natCast_self p</span>
+<span class="ln" id="L351"><a class="lno" href="#L351">351</a>    push_cast at this</span>
+<span class="ln" id="L352"><a class="lno" href="#L352">352</a>    exact eq_neg_of_add_eq_zero_left this</span>
+<span class="ln" id="L353"><a class="lno" href="#L353">353</a>  obtain ⟨hw, hinv, h4m⟩ := half_wall_generic (K := ZMod p) m h2m _ _ h16 hC2</span>
+<span class="ln" id="L354"><a class="lno" href="#L354">354</a>  exact ⟨h16, hC2, hw, hinv, h4m⟩</span>
+<span class="ln" id="L355"><a class="lno" href="#L355">355</a></span>
+<span class="ln" id="L356"><a class="lno" href="#L356">356</a>/-- 13:G3 — the quarter-wall two-squares invariant: on `p = 4κ + 1 = a² + b²`, given Gauss&#x27;s congruence</span>
+<span class="ln" id="L357"><a class="lno" href="#L357">357</a>`C(2κ,κ) ≡ 2a` (the import A3), `⟦w_κ⟧ = −(a²)⁻¹ = (b²)⁻¹`. -/</span>
+<span class="ln decl" id="FRC.Epi.quarter_wall_invariant"><a class="lno" href="#FRC.Epi.quarter_wall_invariant">358</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcLedger/Epi.lean#L358" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small t2" src="lean-t2.png" alt="" title="tier 2, classical: Classical.choice, Quot.sound, propext">theorem quarter_wall_invariant (κ a b : ℕ) (hκ : p = 4 * κ + 1) (hab : a ^ 2 + b ^ 2 = p)</span>
+<span class="ln" id="L359"><a class="lno" href="#L359">359</a>    (ha : 0 &lt; a) (hb : 0 &lt; b) (hG : ((centralBinom κ : ℕ) : ZMod p) = 2 * a) :</span>
+<span class="ln" id="L360"><a class="lno" href="#L360">360</a>    wallisW κ = -((a : ZMod p) ^ 2)⁻¹ ∧ -((a : ZMod p) ^ 2)⁻¹ = ((b : ZMod p) ^ 2)⁻¹ := by</span>
+<span class="ln" id="L361"><a class="lno" href="#L361">361</a>  have hp2 : p ≠ 2 := by omega</span>
+<span class="ln" id="L362"><a class="lno" href="#L362">362</a>  have h2 : (2 : ZMod p) ≠ 0 := two_ne_zero_zmod p hp2</span>
+<span class="ln" id="L363"><a class="lno" href="#L363">363</a>  have hκ&#x27; : (4 : ZMod p) * κ = -1 := by</span>
+<span class="ln" id="L364"><a class="lno" href="#L364">364</a>    have : ((4 * κ + 1 : ℕ) : ZMod p) = 0 := by rw [← hκ]; exact ZMod.natCast_self p</span>
+<span class="ln" id="L365"><a class="lno" href="#L365">365</a>    push_cast at this</span>
+<span class="ln" id="L366"><a class="lno" href="#L366">366</a>    exact eq_neg_of_add_eq_zero_left this</span>
+<span class="ln" id="L367"><a class="lno" href="#L367">367</a>  have h16 : (16 : ZMod p) ^ κ = 1 := by</span>
+<span class="ln" id="L368"><a class="lno" href="#L368">368</a>    have : (16 : ZMod p) ^ κ = (2 : ZMod p) ^ (p - 1) := by</span>
+<span class="ln" id="L369"><a class="lno" href="#L369">369</a>      rw [show p - 1 = 4 * κ by omega, pow_mul]; norm_num</span>
+<span class="ln" id="L370"><a class="lno" href="#L370">370</a>    rw [this]; exact ZMod.pow_card_sub_one_eq_one h2</span>
+<span class="ln" id="L371"><a class="lno" href="#L371">371</a>  have hab&#x27; : (a : ZMod p) ^ 2 + (b : ZMod p) ^ 2 = 0 := by</span>
+<span class="ln" id="L372"><a class="lno" href="#L372">372</a>    have : ((a ^ 2 + b ^ 2 : ℕ) : ZMod p) = 0 := by rw [hab]; exact ZMod.natCast_self p</span>
+<span class="ln" id="L373"><a class="lno" href="#L373">373</a>    push_cast at this; exact this</span>
+<span class="ln" id="L374"><a class="lno" href="#L374">374</a>  have ha2 : a ≤ a ^ 2 := Nat.le_self_pow (by norm_num) a</span>
+<span class="ln" id="L375"><a class="lno" href="#L375">375</a>  have hb2 : 1 ≤ b ^ 2 := Nat.one_le_pow _ _ hb</span>
+<span class="ln" id="L376"><a class="lno" href="#L376">376</a>  have ha&#x27; : (a : ZMod p) ≠ 0 := natCast_ne_zero_of_lt p a ha (by omega)</span>
+<span class="ln" id="L377"><a class="lno" href="#L377">377</a>  exact quarter_wall_generic (K := ZMod p) κ a b _ hκ&#x27; h2 hG ha&#x27; hab&#x27; _ h16</span>
+<span class="ln" id="L378"><a class="lno" href="#L378">378</a></span>
+<span class="ln" id="L379"><a class="lno" href="#L379">379</a>/-- Lucas at the first revival and up the tower: `C(2p^{r+1}, p^{r+1}) ≡ C(2p^r, p^r) (mod p)`. -/</span>
+<span class="ln decl" id="FRC.Epi.choose_two_mul_pow_succ"><a class="lno" href="#FRC.Epi.choose_two_mul_pow_succ">380</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcLedger/Epi.lean#L380" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small t2" src="lean-t2.png" alt="" title="tier 2, classical: Classical.choice, Quot.sound, propext">theorem choose_two_mul_pow_succ (r : ℕ) :</span>
+<span class="ln" id="L381"><a class="lno" href="#L381">381</a>    ((choose (2 * p ^ (r + 1)) (p ^ (r + 1)) : ℕ) : ZMod p) = ((choose (2 * p ^ r) (p ^ r) : ℕ) : ZMod p) := by</span>
+<span class="ln" id="L382"><a class="lno" href="#L382">382</a>  have hpos : 0 &lt; p := hp.out.pos</span>
+<span class="ln" id="L383"><a class="lno" href="#L383">383</a>  have h := Choose.choose_modEq_choose_mod_mul_choose_div (p := p) (n := 2 * p ^ (r + 1)) (k := p ^ (r + 1))</span>
+<span class="ln" id="L384"><a class="lno" href="#L384">384</a>  have e1 : 2 * p ^ (r + 1) % p = 0 := by rw [pow_succ, ← mul_assoc]; exact Nat.mul_mod_left _ _</span>
+<span class="ln" id="L385"><a class="lno" href="#L385">385</a>  have e2 : p ^ (r + 1) % p = 0 := by rw [pow_succ]; exact Nat.mul_mod_left _ _</span>
+<span class="ln" id="L386"><a class="lno" href="#L386">386</a>  have e3 : 2 * p ^ (r + 1) / p = 2 * p ^ r := by rw [pow_succ, ← mul_assoc]; exact Nat.mul_div_cancel _ hpos</span>
+<span class="ln" id="L387"><a class="lno" href="#L387">387</a>  have e4 : p ^ (r + 1) / p = p ^ r := by rw [pow_succ]; exact Nat.mul_div_cancel _ hpos</span>
+<span class="ln" id="L388"><a class="lno" href="#L388">388</a>  rw [e1, e2, e3, e4, choose_zero_right] at h</span>
+<span class="ln" id="L389"><a class="lno" href="#L389">389</a>  simp only [Nat.cast_one, one_mul] at h</span>
+<span class="ln" id="L390"><a class="lno" href="#L390">390</a>  have := (ZMod.intCast_eq_intCast_iff _ _ p).2 h</span>
+<span class="ln" id="L391"><a class="lno" href="#L391">391</a>  exact_mod_cast this</span>
+<span class="ln" id="L392"><a class="lno" href="#L392">392</a></span>
+<span class="ln" id="L393"><a class="lno" href="#L393">393</a>/-- 13:G5, 13:G9 — Lucas on the tower: `C(2p^r, p^r) ≡ 2 (mod p)` for every `r` (the first revival is `r = 1`). -/</span>
+<span class="ln decl" id="FRC.Epi.choose_two_mul_pow"><a class="lno" href="#FRC.Epi.choose_two_mul_pow">394</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcLedger/Epi.lean#L394" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small t2" src="lean-t2.png" alt="" title="tier 2, classical: Classical.choice, Quot.sound, propext">theorem choose_two_mul_pow (r : ℕ) : ((choose (2 * p ^ r) (p ^ r) : ℕ) : ZMod p) = 2 := by</span>
+<span class="ln" id="L395"><a class="lno" href="#L395">395</a>  induction r with</span>
+<span class="ln" id="L396"><a class="lno" href="#L396">396</a>  | zero =&gt; norm_num</span>
+<span class="ln" id="L397"><a class="lno" href="#L397">397</a>  | succ r ih =&gt; rw [choose_two_mul_pow_succ p r, ih]</span>
+<span class="ln" id="L398"><a class="lno" href="#L398">398</a></span>
+<span class="ln" id="L399"><a class="lno" href="#L399">399</a>/-- 13:G5 — the first revival: `⟦v_p⟧ = 2·16^p/((2p+1)·C(2p,p)²) ≡ 8` on every odd prime shell, by Lucas</span>
+<span class="ln" id="L400"><a class="lno" href="#L400">400</a>(`C(2p,p) ≡ 2`), Fermat (`16^p ≡ 16`) and `2p + 1 ≡ 1`. -/</span>
+<span class="ln decl" id="FRC.Epi.first_revival"><a class="lno" href="#FRC.Epi.first_revival">401</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcLedger/Epi.lean#L401" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small t2" src="lean-t2.png" alt="" title="tier 2, classical: Classical.choice, Quot.sound, propext">theorem first_revival (hp2 : p ≠ 2) :</span>
+<span class="ln" id="L402"><a class="lno" href="#L402">402</a>    (2 : ZMod p) * 16 ^ p / (((2 * p + 1 : ℕ) : ZMod p) * ((centralBinom p : ℕ) : ZMod p) ^ 2) = 8 := by</span>
+<span class="ln" id="L403"><a class="lno" href="#L403">403</a>  apply first_revival_generic _ _ _ (two_ne_zero_zmod p hp2)</span>
+<span class="ln" id="L404"><a class="lno" href="#L404">404</a>  · exact ZMod.pow_card 16</span>
+<span class="ln" id="L405"><a class="lno" href="#L405">405</a>  · rw [centralBinom_eq_two_mul_choose]</span>
+<span class="ln" id="L406"><a class="lno" href="#L406">406</a>    have := choose_two_mul_pow p 1</span>
+<span class="ln" id="L407"><a class="lno" href="#L407">407</a>    rwa [pow_one] at this</span>
+<span class="ln" id="L408"><a class="lno" href="#L408">408</a>  · push_cast; rw [ZMod.natCast_self]; ring</span>
+<span class="ln" id="L409"><a class="lno" href="#L409">409</a></span>
+<span class="ln" id="L410"><a class="lno" href="#L410">410</a>/-- 13:G9 — the fixed-shell tower of `π`: for `n = p^r`, `r ≥ 1`, `16^n ≡ 16`, `C(2n,n) ≡ 2` and `2n + 1 ≡ 1`,</span>
+<span class="ln" id="L411"><a class="lno" href="#L411">411</a>so `π̂_{p,r} = (2·16^n + δ)/((2n+1)·C(2n,n)²)` reads `π_A = 2κ` exactly, whenever `δ ≡ −34`. -/</span>
+<span class="ln decl" id="FRC.Epi.tower_pi_exact"><a class="lno" href="#FRC.Epi.tower_pi_exact">412</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcLedger/Epi.lean#L412" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small t2" src="lean-t2.png" alt="" title="tier 2, classical: Classical.choice, Quot.sound, propext">theorem tower_pi_exact (κ : ℕ) (hκ : p = 4 * κ + 1) (r : ℕ) (hr : 1 ≤ r) (δ : ZMod p) (hδ : δ = -34) :</span>
+<span class="ln" id="L413"><a class="lno" href="#L413">413</a>    (2 * (16 : ZMod p) ^ (p ^ r) + δ) /</span>
+<span class="ln" id="L414"><a class="lno" href="#L414">414</a>      (((2 * p ^ r + 1 : ℕ) : ZMod p) * ((centralBinom (p ^ r) : ℕ) : ZMod p) ^ 2) = 2 * κ := by</span>
+<span class="ln" id="L415"><a class="lno" href="#L415">415</a>  have hp2 : p ≠ 2 := by omega</span>
+<span class="ln" id="L416"><a class="lno" href="#L416">416</a>  apply tower_pi_generic _ _ _ _ _ (two_ne_zero_zmod p hp2)</span>
+<span class="ln" id="L417"><a class="lno" href="#L417">417</a>  · exact ZMod.pow_card_pow 16</span>
+<span class="ln" id="L418"><a class="lno" href="#L418">418</a>  · rw [centralBinom_eq_two_mul_choose]; exact choose_two_mul_pow p r</span>
+<span class="ln" id="L419"><a class="lno" href="#L419">419</a>  · push_cast</span>
+<span class="ln" id="L420"><a class="lno" href="#L420">420</a>    rw [ZMod.natCast_self, zero_pow (by omega)]; ring</span>
+<span class="ln" id="L421"><a class="lno" href="#L421">421</a>  · exact hδ</span>
+<span class="ln" id="L422"><a class="lno" href="#L422">422</a>  · have : ((4 * κ + 1 : ℕ) : ZMod p) = 0 := by rw [← hκ]; exact ZMod.natCast_self p</span>
+<span class="ln" id="L423"><a class="lno" href="#L423">423</a>    push_cast at this</span>
+<span class="ln" id="L424"><a class="lno" href="#L424">424</a>    exact eq_neg_of_add_eq_zero_left this</span>
+<span class="ln" id="L425"><a class="lno" href="#L425">425</a></span>
+<span class="ln" id="L426"><a class="lno" href="#L426">426</a>end primepi</span>
+<span class="ln" id="L427"><a class="lno" href="#L427">427</a></span>
+<span class="ln" id="L428"><a class="lno" href="#L428">428</a>/-! ## The Cayley quarter-turn map (13:C3) -/</span>
+<span class="ln" id="L429"><a class="lno" href="#L429">429</a>section cayley</span>
+<span class="ln" id="L430"><a class="lno" href="#L430">430</a></span>
+<span class="ln" id="L431"><a class="lno" href="#L431">431</a>variable {K : Type*} [Field K]</span>
+<span class="ln" id="L432"><a class="lno" href="#L432">432</a></span>
+<span class="ln" id="L433"><a class="lno" href="#L433">433</a>/-- The Cayley quarter-turn map `C(x) = (1 + i x)/(1 − i x)`. -/</span>
+<span class="ln decl" id="FRC.Epi.cayley"><a class="lno" href="#FRC.Epi.cayley">434</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcLedger/Epi.lean#L434" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small" src="lean.png" alt="" title="a definition: no proof, no axioms">noncomputable def cayley (i x : K) : K := (1 + i * x) / (1 - i * x)</span>
+<span class="ln" id="L435"><a class="lno" href="#L435">435</a></span>
+<span class="ln" id="L436"><a class="lno" href="#L436">436</a>/-- 13:C3 — `C(0) = 1` and `C(1) = i` for a quarter turn `i` (`i² = −1`) in characteristic `≠ 2`. -/</span>
+<span class="ln decl" id="FRC.Epi.cayley_values"><a class="lno" href="#FRC.Epi.cayley_values">437</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcLedger/Epi.lean#L437" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small t2" src="lean-t2.png" alt="" title="tier 2, classical: Classical.choice, Quot.sound, propext">theorem cayley_values (i : K) (hi : i * i = -1) (h2 : (2 : K) ≠ 0) :</span>
+<span class="ln" id="L438"><a class="lno" href="#L438">438</a>    cayley i 0 = 1 ∧ cayley i 1 = i := by</span>
+<span class="ln" id="L439"><a class="lno" href="#L439">439</a>  constructor</span>
+<span class="ln" id="L440"><a class="lno" href="#L440">440</a>  · simp [cayley]</span>
+<span class="ln" id="L441"><a class="lno" href="#L441">441</a>  · have h1 : 1 - i * 1 ≠ 0 := by</span>
+<span class="ln" id="L442"><a class="lno" href="#L442">442</a>      intro h; apply h2</span>
+<span class="ln" id="L443"><a class="lno" href="#L443">443</a>      have : i = 1 := by linear_combination -h</span>
+<span class="ln" id="L444"><a class="lno" href="#L444">444</a>      rw [this] at hi; linear_combination hi</span>
+<span class="ln" id="L445"><a class="lno" href="#L445">445</a>    unfold cayley</span>
+<span class="ln" id="L446"><a class="lno" href="#L446">446</a>    rw [div_eq_iff h1]; linear_combination hi</span>
+<span class="ln" id="L447"><a class="lno" href="#L447">447</a></span>
+<span class="ln" id="L448"><a class="lno" href="#L448">448</a>/-- 13:C3 — the composition law `C(x)·C(y) = C((x + y)/(1 − xy))`: the rational law is the half-angle form</span>
+<span class="ln" id="L449"><a class="lno" href="#L449">449</a>of phase composition, with denominators units. -/</span>
+<span class="ln decl" id="FRC.Epi.cayley_mul"><a class="lno" href="#FRC.Epi.cayley_mul">450</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcLedger/Epi.lean#L450" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small t2" src="lean-t2.png" alt="" title="tier 2, classical: Classical.choice, Quot.sound, propext">theorem cayley_mul (i x y : K) (hi : i * i = -1) (hx : 1 - i * x ≠ 0) (hy : 1 - i * y ≠ 0)</span>
+<span class="ln" id="L451"><a class="lno" href="#L451">451</a>    (hxy : 1 - x * y ≠ 0) :</span>
+<span class="ln" id="L452"><a class="lno" href="#L452">452</a>    cayley i x * cayley i y = cayley i ((x + y) / (1 - x * y)) := by</span>
+<span class="ln" id="L453"><a class="lno" href="#L453">453</a>  have key : (1 - i * x) * (1 - i * y) = (1 - x * y) - i * (x + y) := by linear_combination x * y * hi</span>
+<span class="ln" id="L454"><a class="lno" href="#L454">454</a>  have hden : 1 - i * ((x + y) / (1 - x * y)) ≠ 0 := by</span>
+<span class="ln" id="L455"><a class="lno" href="#L455">455</a>    rw [show 1 - i * ((x + y) / (1 - x * y)) = ((1 - x * y) - i * (x + y)) / (1 - x * y) by</span>
+<span class="ln" id="L456"><a class="lno" href="#L456">456</a>      field_simp]</span>
+<span class="ln" id="L457"><a class="lno" href="#L457">457</a>    rw [← key]</span>
+<span class="ln" id="L458"><a class="lno" href="#L458">458</a>    exact div_ne_zero (mul_ne_zero hx hy) hxy</span>
+<span class="ln" id="L459"><a class="lno" href="#L459">459</a>  unfold cayley</span>
+<span class="ln" id="L460"><a class="lno" href="#L460">460</a>  rw [eq_div_iff hden]</span>
+<span class="ln" id="L461"><a class="lno" href="#L461">461</a>  field_simp</span>
+<span class="ln" id="L462"><a class="lno" href="#L462">462</a>  linear_combination (-2 * i * x * y * (x + y)) * hi</span>
+<span class="ln" id="L463"><a class="lno" href="#L463">463</a></span>
+<span class="ln" id="L464"><a class="lno" href="#L464">464</a>end cayley</span>
+<span class="ln" id="L465"><a class="lno" href="#L465">465</a></span>
+<span class="ln" id="L466"><a class="lno" href="#L466">466</a>/-! ## Angular structure: exact calibration of `e` is impossible (13:H3) -/</span>
+<span class="ln" id="L467"><a class="lno" href="#L467">467</a>section angular</span>
+<span class="ln" id="L468"><a class="lno" href="#L468">468</a></span>
+<span class="ln" id="L469"><a class="lno" href="#L469">469</a>open Real</span>
+<span class="ln" id="L470"><a class="lno" href="#L470">470</a></span>
+<span class="ln" id="L471"><a class="lno" href="#L471">471</a>/-- 13:H3 — `θ = 2πλ/(p−1) ≠ 1` for every label `λ ≥ 1` and every `p`: `θ = 1` would make `π` rational. -/</span>
+<span class="ln decl" id="FRC.Epi.calibration_ne_one"><a class="lno" href="#FRC.Epi.calibration_ne_one">472</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcLedger/Epi.lean#L472" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small t2" src="lean-t2.png" alt="" title="tier 2, classical: Classical.choice, Quot.sound, propext">theorem calibration_ne_one (n l : ℕ) (hl : 0 &lt; l) : 2 * π * l / n ≠ 1 := by</span>
+<span class="ln" id="L473"><a class="lno" href="#L473">473</a>  intro h</span>
+<span class="ln" id="L474"><a class="lno" href="#L474">474</a>  have hn : (n : ℝ) ≠ 0 := by intro hn; rw [hn, div_zero] at h; exact zero_ne_one h</span>
+<span class="ln" id="L475"><a class="lno" href="#L475">475</a>  have hl&#x27; : (l : ℝ) ≠ 0 := by exact_mod_cast hl.ne&#x27;</span>
+<span class="ln" id="L476"><a class="lno" href="#L476">476</a>  have : π = (n : ℝ) / (2 * l) := by</span>
+<span class="ln" id="L477"><a class="lno" href="#L477">477</a>    field_simp at h ⊢; linarith</span>
+<span class="ln" id="L478"><a class="lno" href="#L478">478</a>  exact irrational_pi.ne_rat ((n : ℚ) / (2 * l)) (by rw [this]; push_cast; ring)</span>
+<span class="ln" id="L479"><a class="lno" href="#L479">479</a></span>
+<span class="ln" id="L480"><a class="lno" href="#L480">480</a>/-- 13:H3 — `e^{i n} ≠ 1` for every `n ≥ 1`: `e^{i}` is not a root of unity (while `χ(e_p)` is one). -/</span>
+<span class="ln decl" id="FRC.Epi.exp_I_ne_one"><a class="lno" href="#FRC.Epi.exp_I_ne_one">481</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcLedger/Epi.lean#L481" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small t2" src="lean-t2.png" alt="" title="tier 2, classical: Classical.choice, Quot.sound, propext">theorem exp_I_ne_one (n : ℕ) (hn : 0 &lt; n) : Complex.exp (n * Complex.I) ≠ 1 := by</span>
+<span class="ln" id="L482"><a class="lno" href="#L482">482</a>  rw [Ne, Complex.exp_eq_one_iff]</span>
+<span class="ln" id="L483"><a class="lno" href="#L483">483</a>  rintro ⟨k, hk⟩</span>
+<span class="ln" id="L484"><a class="lno" href="#L484">484</a>  have h2 : (n : ℂ) * Complex.I = (k * (2 * π)) * Complex.I := by rw [hk]; ring</span>
+<span class="ln" id="L485"><a class="lno" href="#L485">485</a>  have h1 : (n : ℂ) = k * (2 * π) := mul_right_cancel₀ Complex.I_ne_zero h2</span>
+<span class="ln" id="L486"><a class="lno" href="#L486">486</a>  have h3 : (n : ℝ) = k * (2 * π) := by exact_mod_cast h1</span>
+<span class="ln" id="L487"><a class="lno" href="#L487">487</a>  have hk0 : (k : ℝ) ≠ 0 := by</span>
+<span class="ln" id="L488"><a class="lno" href="#L488">488</a>    intro h0; rw [h0, zero_mul] at h3</span>
+<span class="ln" id="L489"><a class="lno" href="#L489">489</a>    exact (Nat.cast_pos.2 hn).ne&#x27; h3</span>
+<span class="ln" id="L490"><a class="lno" href="#L490">490</a>  exact irrational_pi.ne_rat ((n : ℚ) / (2 * k)) (by push_cast; field_simp; linarith)</span>
+<span class="ln" id="L491"><a class="lno" href="#L491">491</a></span>
+<span class="ln" id="L492"><a class="lno" href="#L492">492</a>end angular</span>
+<span class="ln" id="L493"><a class="lno" href="#L493">493</a></span>
+<span class="ln" id="L494"><a class="lno" href="#L494">494</a>/-! ## The null experiment: the index condition (13:H5) -/</span>
+<span class="ln" id="L495"><a class="lno" href="#L495">495</a>section index</span>
+<span class="ln" id="L496"><a class="lno" href="#L496">496</a></span>
+<span class="ln" id="L497"><a class="lno" href="#L497">497</a>/-- 13:H5 — the index condition: `u·l ≡ s (mod n)` is solvable with `u` coprime to `n` exactly when</span>
+<span class="ln" id="L498"><a class="lno" href="#L498">498</a>`gcd(l, n) = gcd(s, n)`. -/</span>
+<span class="ln decl" id="FRC.Epi.index_condition"><a class="lno" href="#FRC.Epi.index_condition">499</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcLedger/Epi.lean#L499" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small t2" src="lean-t2.png" alt="" title="tier 2, classical: Classical.choice, Quot.sound, propext">theorem index_condition (n l s : ℕ) [NeZero n] :</span>
+<span class="ln" id="L500"><a class="lno" href="#L500">500</a>    (∃ u : ℕ, u.Coprime n ∧ u * l ≡ s [MOD n]) ↔ Nat.gcd l n = Nat.gcd s n := by</span>
+<span class="ln" id="L501"><a class="lno" href="#L501">501</a>  constructor</span>
+<span class="ln" id="L502"><a class="lno" href="#L502">502</a>  · rintro ⟨u, hu, h⟩</span>
+<span class="ln" id="L503"><a class="lno" href="#L503">503</a>    rw [← Nat.ModEq.gcd_eq h, Nat.Coprime.gcd_mul_left_cancel l hu]</span>
+<span class="ln" id="L504"><a class="lno" href="#L504">504</a>  · intro hg</span>
+<span class="ln" id="L505"><a class="lno" href="#L505">505</a>    obtain ⟨d, hd⟩ : ∃ d, Nat.gcd l n = d := ⟨_, rfl⟩</span>
+<span class="ln" id="L506"><a class="lno" href="#L506">506</a>    have hd0 : 0 &lt; d := hd ▸ Nat.gcd_pos_of_pos_right l (NeZero.pos n)</span>
+<span class="ln" id="L507"><a class="lno" href="#L507">507</a>    obtain ⟨n&#x27;, hn&#x27;⟩ : d ∣ n := hd ▸ Nat.gcd_dvd_right l n</span>
+<span class="ln" id="L508"><a class="lno" href="#L508">508</a>    obtain ⟨l&#x27;, hl&#x27;⟩ : d ∣ l := hd ▸ Nat.gcd_dvd_left l n</span>
+<span class="ln" id="L509"><a class="lno" href="#L509">509</a>    obtain ⟨s&#x27;, hs&#x27;⟩ : d ∣ s := (hd ▸ hg : d = Nat.gcd s n) ▸ Nat.gcd_dvd_left s n</span>
+<span class="ln" id="L510"><a class="lno" href="#L510">510</a>    have hl&#x27;c : Nat.Coprime l&#x27; n&#x27; := by</span>
+<span class="ln" id="L511"><a class="lno" href="#L511">511</a>      have := Nat.coprime_div_gcd_div_gcd (m := l) (n := n) (hd ▸ hd0)</span>
+<span class="ln" id="L512"><a class="lno" href="#L512">512</a>      rw [hd] at this</span>
+<span class="ln" id="L513"><a class="lno" href="#L513">513</a>      rwa [hl&#x27;, hn&#x27;, Nat.mul_div_cancel_left _ hd0, Nat.mul_div_cancel_left _ hd0] at this</span>
+<span class="ln" id="L514"><a class="lno" href="#L514">514</a>    have hs&#x27;c : Nat.Coprime s&#x27; n&#x27; := by</span>
+<span class="ln" id="L515"><a class="lno" href="#L515">515</a>      have hg&#x27; : Nat.gcd s n = d := hd ▸ hg.symm</span>
+<span class="ln" id="L516"><a class="lno" href="#L516">516</a>      have := Nat.coprime_div_gcd_div_gcd (m := s) (n := n) (hg&#x27; ▸ hd0)</span>
+<span class="ln" id="L517"><a class="lno" href="#L517">517</a>      rw [hg&#x27;] at this</span>
+<span class="ln" id="L518"><a class="lno" href="#L518">518</a>      rwa [hs&#x27;, hn&#x27;, Nat.mul_div_cancel_left _ hd0, Nat.mul_div_cancel_left _ hd0] at this</span>
+<span class="ln" id="L519"><a class="lno" href="#L519">519</a>    have : NeZero n&#x27; := ⟨fun h0 =&gt; NeZero.ne n (by rw [hn&#x27;, h0, mul_zero])⟩</span>
+<span class="ln" id="L520"><a class="lno" href="#L520">520</a>    have hdvd : n&#x27; ∣ n := ⟨d, by rw [hn&#x27;, mul_comm]⟩</span>
+<span class="ln" id="L521"><a class="lno" href="#L521">521</a>    let U&#x27; : (ZMod n&#x27;)ˣ := ZMod.unitOfCoprime s&#x27; hs&#x27;c * (ZMod.unitOfCoprime l&#x27; hl&#x27;c)⁻¹</span>
+<span class="ln" id="L522"><a class="lno" href="#L522">522</a>    obtain ⟨U, hU⟩ := ZMod.unitsMap_surjective hdvd U&#x27;</span>
+<span class="ln" id="L523"><a class="lno" href="#L523">523</a>    refine ⟨(U : ZMod n).val, ZMod.val_coe_unit_coprime U, ?_⟩</span>
+<span class="ln" id="L524"><a class="lno" href="#L524">524</a>    have key : (U : ZMod n).val * l&#x27; ≡ s&#x27; [MOD n&#x27;] := by</span>
+<span class="ln" id="L525"><a class="lno" href="#L525">525</a>      rw [← ZMod.natCast_eq_natCast_iff, Nat.cast_mul, ZMod.natCast_val]</span>
+<span class="ln" id="L526"><a class="lno" href="#L526">526</a>      have hcast : ((U : ZMod n).cast : ZMod n&#x27;) = (U&#x27; : ZMod n&#x27;) := by</span>
+<span class="ln" id="L527"><a class="lno" href="#L527">527</a>        rw [← ZMod.unitsMap_val hdvd, hU]</span>
+<span class="ln" id="L528"><a class="lno" href="#L528">528</a>      rw [hcast]</span>
+<span class="ln" id="L529"><a class="lno" href="#L529">529</a>      simp only [U&#x27;, Units.val_mul, ZMod.coe_unitOfCoprime]</span>
+<span class="ln" id="L530"><a class="lno" href="#L530">530</a>      rw [mul_assoc, ← ZMod.coe_unitOfCoprime l&#x27; hl&#x27;c, Units.inv_mul, mul_one]</span>
+<span class="ln" id="L531"><a class="lno" href="#L531">531</a>    have := Nat.ModEq.mul_left&#x27; d key</span>
+<span class="ln" id="L532"><a class="lno" href="#L532">532</a>    rw [← hn&#x27;] at this</span>
+<span class="ln" id="L533"><a class="lno" href="#L533">533</a>    rw [hl&#x27;, hs&#x27;, mul_left_comm]</span>
+<span class="ln" id="L534"><a class="lno" href="#L534">534</a>    exact this</span>
+<span class="ln" id="L535"><a class="lno" href="#L535">535</a></span>
+<span class="ln" id="L536"><a class="lno" href="#L536">536</a>/-- 13:H5 — for an element `g` of order `n` in a monoid: `(g^u)^l = g^s` for some `u` coprime to `n` — some other</span>
+<span class="ln" id="L537"><a class="lno" href="#L537">537</a>generator of the cycle raised to the label — exactly when `gcd(l, n) = gcd(s, n)`. -/</span>
+<span class="ln decl" id="FRC.Epi.index_condition_pow"><a class="lno" href="#FRC.Epi.index_condition_pow">538</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcLedger/Epi.lean#L538" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small t2" src="lean-t2.png" alt="" title="tier 2, classical: Classical.choice, Quot.sound, propext">theorem index_condition_pow {G : Type*} [Monoid G] (g : G) (hfin : IsOfFinOrder g) (n : ℕ) [NeZero n]</span>
+<span class="ln" id="L539"><a class="lno" href="#L539">539</a>    (hn : orderOf g = n) (l s : ℕ) :</span>
+<span class="ln" id="L540"><a class="lno" href="#L540">540</a>    (∃ u : ℕ, u.Coprime n ∧ (g ^ u) ^ l = g ^ s) ↔ Nat.gcd l n = Nat.gcd s n := by</span>
+<span class="ln" id="L541"><a class="lno" href="#L541">541</a>  rw [← index_condition n l s]</span>
+<span class="ln" id="L542"><a class="lno" href="#L542">542</a>  apply exists_congr; intro u</span>
+<span class="ln" id="L543"><a class="lno" href="#L543">543</a>  rw [← pow_mul, hfin.pow_eq_pow_iff_modEq, hn]</span>
+<span class="ln" id="L544"><a class="lno" href="#L544">544</a></span>
+<span class="ln" id="L545"><a class="lno" href="#L545">545</a>/-- 13:H5 — the null experiment&#x27;s index condition on the shell: for a primitive root `g` of `ZMod p`, the</span>
+<span class="ln" id="L546"><a class="lno" href="#L546">546</a>target `g^s` is `h^l` for some primitive root `h = g^u` (either chirality, `u` coprime to `p − 1`) exactly when</span>
+<span class="ln" id="L547"><a class="lno" href="#L547">547</a>`gcd(l, p−1) = gcd(s, p−1)`. -/</span>
+<span class="ln decl" id="FRC.Epi.index_condition_shell"><a class="lno" href="#FRC.Epi.index_condition_shell">548</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcLedger/Epi.lean#L548" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small t2" src="lean-t2.png" alt="" title="tier 2, classical: Classical.choice, Quot.sound, propext">theorem index_condition_shell (p : ℕ) [hp : Fact p.Prime] (g : ZMod p) (hg : IsPrimitiveRoot g (p - 1))</span>
+<span class="ln" id="L549"><a class="lno" href="#L549">549</a>    (l s : ℕ) :</span>
+<span class="ln" id="L550"><a class="lno" href="#L550">550</a>    (∃ u : ℕ, u.Coprime (p - 1) ∧ (g ^ u) ^ l = g ^ s) ↔ Nat.gcd l (p - 1) = Nat.gcd s (p - 1) := by</span>
+<span class="ln" id="L551"><a class="lno" href="#L551">551</a>  have h2 := hp.out.two_le</span>
+<span class="ln" id="L552"><a class="lno" href="#L552">552</a>  have : NeZero (p - 1) := ⟨by omega⟩</span>
+<span class="ln" id="L553"><a class="lno" href="#L553">553</a>  have hfin : IsOfFinOrder g := orderOf_pos_iff.1 (by rw [← hg.eq_orderOf]; omega)</span>
+<span class="ln" id="L554"><a class="lno" href="#L554">554</a>  exact index_condition_pow g hfin (p - 1) hg.eq_orderOf.symm l s</span>
+<span class="ln" id="L555"><a class="lno" href="#L555">555</a></span>
+<span class="ln" id="L556"><a class="lno" href="#L556">556</a>end index</span>
+<span class="ln" id="L557"><a class="lno" href="#L557">557</a></span>
+<span class="ln" id="L558"><a class="lno" href="#L558">558</a></span>
+<span class="ln" id="L559"><a class="lno" href="#L559">559</a>section wallisQ</span>
+<span class="ln" id="L560"><a class="lno" href="#L560">560</a></span>
+<span class="ln decl" id="FRC.Epi.centralBinom_succ_rat"><a class="lno" href="#FRC.Epi.centralBinom_succ_rat">561</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcLedger/Epi.lean#L561" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small t2" src="lean-t2.png" alt="" title="tier 2, classical: Classical.choice, Quot.sound, propext">theorem centralBinom_succ_rat (n : ℕ) :</span>
+<span class="ln" id="L562"><a class="lno" href="#L562">562</a>    ((centralBinom (n + 1) : ℕ) : ℚ) = 2 * (2 * n + 1) * (centralBinom n : ℚ) / (n + 1) := by</span>
+<span class="ln" id="L563"><a class="lno" href="#L563">563</a>  have h := congrArg (fun m : ℕ =&gt; (m : ℚ)) (Nat.succ_mul_centralBinom_succ n)</span>
+<span class="ln" id="L564"><a class="lno" href="#L564">564</a>  push_cast at h</span>
+<span class="ln" id="L565"><a class="lno" href="#L565">565</a>  rw [eq_div_iff (by positivity)]</span>
+<span class="ln" id="L566"><a class="lno" href="#L566">566</a>  linear_combination h</span>
+<span class="ln" id="L567"><a class="lno" href="#L567">567</a></span>
+<span class="ln decl" id="FRC.Epi.centralBinom_pos_rat"><a class="lno" href="#FRC.Epi.centralBinom_pos_rat">568</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcLedger/Epi.lean#L568" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small t2" src="lean-t2.png" alt="" title="tier 2, classical: Classical.choice, Quot.sound, propext">theorem centralBinom_pos_rat (n : ℕ) : (0 : ℚ) &lt; (centralBinom n : ℕ) := by</span>
+<span class="ln" id="L569"><a class="lno" href="#L569">569</a>  exact_mod_cast centralBinom_pos n</span>
+<span class="ln" id="L570"><a class="lno" href="#L570">570</a></span>
+<span class="ln" id="L571"><a class="lno" href="#L571">571</a>/-- 13:E2 — the exact width identity `w_n − v_n = w_n/(2n+1)` for `n ≥ 1`. -/</span>
+<span class="ln decl" id="FRC.Epi.wallis_width"><a class="lno" href="#FRC.Epi.wallis_width">572</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcLedger/Epi.lean#L572" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small t2" src="lean-t2.png" alt="" title="tier 2, classical: Classical.choice, Quot.sound, propext">theorem wallis_width (n : ℕ) (hn : 1 ≤ n) :</span>
+<span class="ln" id="L573"><a class="lno" href="#L573">573</a>    wallisW n - wallisV n = (wallisW n : ℚ) / (2 * n + 1) := by</span>
+<span class="ln" id="L574"><a class="lno" href="#L574">574</a>  have hn&#x27; : (0 : ℚ) &lt; n := by exact_mod_cast hn</span>
+<span class="ln" id="L575"><a class="lno" href="#L575">575</a>  have hC := centralBinom_pos_rat n</span>
+<span class="ln" id="L576"><a class="lno" href="#L576">576</a>  unfold wallisW wallisV</span>
+<span class="ln" id="L577"><a class="lno" href="#L577">577</a>  field_simp</span>
+<span class="ln" id="L578"><a class="lno" href="#L578">578</a>  ring</span>
+<span class="ln" id="L579"><a class="lno" href="#L579">579</a></span>
+<span class="ln" id="L580"><a class="lno" href="#L580">580</a>/-- 13:E2 — `v_{n+1} = v_n · 4(n+1)²/((2n+3)(2n+1))`. -/</span>
+<span class="ln decl" id="FRC.Epi.wallisV_succ"><a class="lno" href="#FRC.Epi.wallisV_succ">581</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcLedger/Epi.lean#L581" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small t2" src="lean-t2.png" alt="" title="tier 2, classical: Classical.choice, Quot.sound, propext">theorem wallisV_succ (n : ℕ) :</span>
+<span class="ln" id="L582"><a class="lno" href="#L582">582</a>    (wallisV (n + 1) : ℚ) = wallisV n * (4 * (n + 1) ^ 2 / ((2 * n + 3) * (2 * n + 1))) := by</span>
+<span class="ln" id="L583"><a class="lno" href="#L583">583</a>  have hC := centralBinom_pos_rat n</span>
+<span class="ln" id="L584"><a class="lno" href="#L584">584</a>  unfold wallisV</span>
+<span class="ln" id="L585"><a class="lno" href="#L585">585</a>  rw [centralBinom_succ_rat]</span>
+<span class="ln" id="L586"><a class="lno" href="#L586">586</a>  push_cast</span>
+<span class="ln" id="L587"><a class="lno" href="#L587">587</a>  field_simp</span>
+<span class="ln" id="L588"><a class="lno" href="#L588">588</a>  ring</span>
+<span class="ln" id="L589"><a class="lno" href="#L589">589</a></span>
+<span class="ln decl" id="FRC.Epi.wallisV_pos"><a class="lno" href="#FRC.Epi.wallisV_pos">590</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcLedger/Epi.lean#L590" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small t2" src="lean-t2.png" alt="" title="tier 2, classical: Classical.choice, Quot.sound, propext">theorem wallisV_pos (n : ℕ) : (0 : ℚ) &lt; wallisV n := by</span>
+<span class="ln" id="L591"><a class="lno" href="#L591">591</a>  have hC := centralBinom_pos_rat n</span>
+<span class="ln" id="L592"><a class="lno" href="#L592">592</a>  unfold wallisV; positivity</span>
+<span class="ln" id="L593"><a class="lno" href="#L593">593</a></span>
+<span class="ln" id="L594"><a class="lno" href="#L594">594</a>/-- 13:E2 — the Wallis lower chain `v_n` is strictly increasing. -/</span>
+<span class="ln decl" id="FRC.Epi.wallisV_strictMono"><a class="lno" href="#FRC.Epi.wallisV_strictMono">595</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcLedger/Epi.lean#L595" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small t2" src="lean-t2.png" alt="" title="tier 2, classical: Classical.choice, Quot.sound, propext">theorem wallisV_strictMono (n : ℕ) : (wallisV n : ℚ) &lt; wallisV (n + 1) := by</span>
+<span class="ln" id="L596"><a class="lno" href="#L596">596</a>  rw [wallisV_succ]</span>
+<span class="ln" id="L597"><a class="lno" href="#L597">597</a>  apply lt_mul_of_one_lt_right (wallisV_pos n)</span>
+<span class="ln" id="L598"><a class="lno" href="#L598">598</a>  rw [one_lt_div (by positivity)]</span>
+<span class="ln" id="L599"><a class="lno" href="#L599">599</a>  nlinarith</span>
+<span class="ln" id="L600"><a class="lno" href="#L600">600</a></span>
+<span class="ln" id="L601"><a class="lno" href="#L601">601</a>/-- 13:E2 — `w_{n+1} = w_n · 4n(n+1)/(2n+1)²`. -/</span>
+<span class="ln decl" id="FRC.Epi.wallisW_succ"><a class="lno" href="#FRC.Epi.wallisW_succ">602</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcLedger/Epi.lean#L602" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small t2" src="lean-t2.png" alt="" title="tier 2, classical: Classical.choice, Quot.sound, propext">theorem wallisW_succ (n : ℕ) (hn : 1 ≤ n) :</span>
+<span class="ln" id="L603"><a class="lno" href="#L603">603</a>    (wallisW (n + 1) : ℚ) = wallisW n * (4 * n * (n + 1) / (2 * n + 1) ^ 2) := by</span>
+<span class="ln" id="L604"><a class="lno" href="#L604">604</a>  have hn&#x27; : (0 : ℚ) &lt; n := by exact_mod_cast hn</span>
+<span class="ln" id="L605"><a class="lno" href="#L605">605</a>  have hC := centralBinom_pos_rat n</span>
+<span class="ln" id="L606"><a class="lno" href="#L606">606</a>  unfold wallisW</span>
+<span class="ln" id="L607"><a class="lno" href="#L607">607</a>  rw [centralBinom_succ_rat]</span>
+<span class="ln" id="L608"><a class="lno" href="#L608">608</a>  push_cast</span>
+<span class="ln" id="L609"><a class="lno" href="#L609">609</a>  field_simp</span>
+<span class="ln" id="L610"><a class="lno" href="#L610">610</a>  ring</span>
+<span class="ln" id="L611"><a class="lno" href="#L611">611</a></span>
+<span class="ln decl" id="FRC.Epi.wallisW_pos"><a class="lno" href="#FRC.Epi.wallisW_pos">612</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcLedger/Epi.lean#L612" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small t2" src="lean-t2.png" alt="" title="tier 2, classical: Classical.choice, Quot.sound, propext">theorem wallisW_pos (n : ℕ) (hn : 1 ≤ n) : (0 : ℚ) &lt; wallisW n := by</span>
+<span class="ln" id="L613"><a class="lno" href="#L613">613</a>  have hn&#x27; : (0 : ℚ) &lt; n := by exact_mod_cast hn</span>
+<span class="ln" id="L614"><a class="lno" href="#L614">614</a>  have hC := centralBinom_pos_rat n</span>
+<span class="ln" id="L615"><a class="lno" href="#L615">615</a>  unfold wallisW; positivity</span>
+<span class="ln" id="L616"><a class="lno" href="#L616">616</a></span>
+<span class="ln" id="L617"><a class="lno" href="#L617">617</a>/-- 13:E2 — the Wallis upper chain `w_n` is strictly decreasing from `n = 1`. -/</span>
+<span class="ln decl" id="FRC.Epi.wallisW_strictAnti"><a class="lno" href="#FRC.Epi.wallisW_strictAnti">618</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcLedger/Epi.lean#L618" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small t2" src="lean-t2.png" alt="" title="tier 2, classical: Classical.choice, Quot.sound, propext">theorem wallisW_strictAnti (n : ℕ) (hn : 1 ≤ n) : (wallisW (n + 1) : ℚ) &lt; wallisW n := by</span>
+<span class="ln" id="L619"><a class="lno" href="#L619">619</a>  rw [wallisW_succ n hn]</span>
+<span class="ln" id="L620"><a class="lno" href="#L620">620</a>  apply mul_lt_of_lt_one_right (wallisW_pos n hn)</span>
+<span class="ln" id="L621"><a class="lno" href="#L621">621</a>  rw [div_lt_one (by positivity)]</span>
+<span class="ln" id="L622"><a class="lno" href="#L622">622</a>  nlinarith</span>
+<span class="ln" id="L623"><a class="lno" href="#L623">623</a></span>
+<span class="ln" id="L624"><a class="lno" href="#L624">624</a>end wallisQ</span>
+<span class="ln" id="L625"><a class="lno" href="#L625">625</a></span>
+<span class="ln" id="L626"><a class="lno" href="#L626">626</a>section wallisR</span>
+<span class="ln" id="L627"><a class="lno" href="#L627">627</a></span>
+<span class="ln" id="L628"><a class="lno" href="#L628">628</a>open Real</span>
+<span class="ln" id="L629"><a class="lno" href="#L629">629</a></span>
+<span class="ln decl" id="FRC.Epi.centralBinom_real"><a class="lno" href="#FRC.Epi.centralBinom_real">630</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcLedger/Epi.lean#L630" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small t2" src="lean-t2.png" alt="" title="tier 2, classical: Classical.choice, Quot.sound, propext">theorem centralBinom_real (n : ℕ) :</span>
+<span class="ln" id="L631"><a class="lno" href="#L631">631</a>    ((centralBinom n : ℕ) : ℝ) = ((2 * n) ! : ℝ) / ((n ! : ℝ) ^ 2) := by</span>
+<span class="ln" id="L632"><a class="lno" href="#L632">632</a>  have h : centralBinom n * n ! * n ! = (2 * n) ! := by</span>
+<span class="ln" id="L633"><a class="lno" href="#L633">633</a>    have := Nat.choose_mul_factorial_mul_factorial (show n ≤ 2 * n by omega)</span>
+<span class="ln" id="L634"><a class="lno" href="#L634">634</a>    rwa [show 2 * n - n = n by omega, ← centralBinom_eq_two_mul_choose] at this</span>
+<span class="ln" id="L635"><a class="lno" href="#L635">635</a>  have h&#x27; := congrArg (fun m : ℕ =&gt; (m : ℝ)) h</span>
+<span class="ln" id="L636"><a class="lno" href="#L636">636</a>  push_cast at h&#x27;</span>
+<span class="ln" id="L637"><a class="lno" href="#L637">637</a>  rw [eq_div_iff (by positivity)]</span>
+<span class="ln" id="L638"><a class="lno" href="#L638">638</a>  linear_combination h&#x27;</span>
+<span class="ln" id="L639"><a class="lno" href="#L639">639</a></span>
+<span class="ln decl" id="FRC.Epi.wallisV_real"><a class="lno" href="#FRC.Epi.wallisV_real">640</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcLedger/Epi.lean#L640" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small t2" src="lean-t2.png" alt="" title="tier 2, classical: Classical.choice, Quot.sound, propext">theorem wallisV_real (n : ℕ) : ((wallisV n : ℚ) : ℝ) = 2 * Real.Wallis.W n := by</span>
+<span class="ln" id="L641"><a class="lno" href="#L641">641</a>  rw [Real.Wallis.W_eq_factorial_ratio]</span>
+<span class="ln" id="L642"><a class="lno" href="#L642">642</a>  unfold wallisV</span>
+<span class="ln" id="L643"><a class="lno" href="#L643">643</a>  push_cast</span>
+<span class="ln" id="L644"><a class="lno" href="#L644">644</a>  rw [centralBinom_real]</span>
+<span class="ln" id="L645"><a class="lno" href="#L645">645</a>  have h1 : (0 : ℝ) &lt; (n ! : ℝ) := by positivity</span>
+<span class="ln" id="L646"><a class="lno" href="#L646">646</a>  have h2 : (0 : ℝ) &lt; ((2 * n) ! : ℝ) := by positivity</span>
+<span class="ln" id="L647"><a class="lno" href="#L647">647</a>  rw [show (16 : ℝ) ^ n = 2 ^ (4 * n) by rw [pow_mul]; norm_num]</span>
+<span class="ln" id="L648"><a class="lno" href="#L648">648</a>  field_simp</span>
+<span class="ln" id="L649"><a class="lno" href="#L649">649</a></span>
+<span class="ln decl" id="FRC.Epi.wallisW_real"><a class="lno" href="#FRC.Epi.wallisW_real">650</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcLedger/Epi.lean#L650" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small t2" src="lean-t2.png" alt="" title="tier 2, classical: Classical.choice, Quot.sound, propext">theorem wallisW_real (n : ℕ) (hn : 1 ≤ n) :</span>
+<span class="ln" id="L651"><a class="lno" href="#L651">651</a>    ((wallisW n : ℚ) : ℝ) = Real.Wallis.W n * (2 * n + 1) / n := by</span>
+<span class="ln" id="L652"><a class="lno" href="#L652">652</a>  rw [Real.Wallis.W_eq_factorial_ratio]</span>
+<span class="ln" id="L653"><a class="lno" href="#L653">653</a>  unfold wallisW</span>
+<span class="ln" id="L654"><a class="lno" href="#L654">654</a>  push_cast</span>
+<span class="ln" id="L655"><a class="lno" href="#L655">655</a>  rw [centralBinom_real]</span>
+<span class="ln" id="L656"><a class="lno" href="#L656">656</a>  have h1 : (0 : ℝ) &lt; (n ! : ℝ) := by positivity</span>
+<span class="ln" id="L657"><a class="lno" href="#L657">657</a>  have h2 : (0 : ℝ) &lt; ((2 * n) ! : ℝ) := by positivity</span>
+<span class="ln" id="L658"><a class="lno" href="#L658">658</a>  have hn&#x27; : (0 : ℝ) &lt; n := by exact_mod_cast hn</span>
+<span class="ln" id="L659"><a class="lno" href="#L659">659</a>  rw [show (16 : ℝ) ^ n = 2 ^ (4 * n) by rw [pow_mul]; norm_num]</span>
+<span class="ln" id="L660"><a class="lno" href="#L660">660</a>  field_simp</span>
+<span class="ln" id="L661"><a class="lno" href="#L661">661</a></span>
+<span class="ln" id="L662"><a class="lno" href="#L662">662</a>/-- 13:E2 — the two-sided enclosure `v_n &lt; π &lt; w_n` for every `n ≥ 1`: the lower chain is the doubled Wallis</span>
+<span class="ln" id="L663"><a class="lno" href="#L663">663</a>partial product `2W_n &lt; 2W_{n+1} ≤ π`, the upper chain is `W_n(2n+1)/n ≥ π(2n+1)²/(4n(n+1)) &gt; π`. -/</span>
+<span class="ln decl" id="FRC.Epi.wallis_enclosure"><a class="lno" href="#FRC.Epi.wallis_enclosure">664</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcLedger/Epi.lean#L664" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small t2" src="lean-t2.png" alt="" title="tier 2, classical: Classical.choice, Quot.sound, propext">theorem wallis_enclosure (n : ℕ) (hn : 1 ≤ n) :</span>
+<span class="ln" id="L665"><a class="lno" href="#L665">665</a>    ((wallisV n : ℚ) : ℝ) &lt; π ∧ π &lt; ((wallisW n : ℚ) : ℝ) := by</span>
+<span class="ln" id="L666"><a class="lno" href="#L666">666</a>  have hn&#x27; : (0 : ℝ) &lt; n := by exact_mod_cast hn</span>
+<span class="ln" id="L667"><a class="lno" href="#L667">667</a>  constructor</span>
+<span class="ln" id="L668"><a class="lno" href="#L668">668</a>  · rw [wallisV_real]</span>
+<span class="ln" id="L669"><a class="lno" href="#L669">669</a>    have hs := Real.Wallis.W_succ n</span>
+<span class="ln" id="L670"><a class="lno" href="#L670">670</a>    have hpos := Real.Wallis.W_pos n</span>
+<span class="ln" id="L671"><a class="lno" href="#L671">671</a>    have hlt : Real.Wallis.W n &lt; Real.Wallis.W (n + 1) := by</span>
+<span class="ln" id="L672"><a class="lno" href="#L672">672</a>      rw [hs]</span>
+<span class="ln" id="L673"><a class="lno" href="#L673">673</a>      apply lt_mul_of_one_lt_right hpos</span>
+<span class="ln" id="L674"><a class="lno" href="#L674">674</a>      rw [_root_.div_mul_div_comm, one_lt_div (by positivity)]</span>
+<span class="ln" id="L675"><a class="lno" href="#L675">675</a>      nlinarith</span>
+<span class="ln" id="L676"><a class="lno" href="#L676">676</a>    have := Real.Wallis.W_le (n + 1)</span>
+<span class="ln" id="L677"><a class="lno" href="#L677">677</a>    linarith</span>
+<span class="ln" id="L678"><a class="lno" href="#L678">678</a>  · rw [wallisW_real n hn]</span>
+<span class="ln" id="L679"><a class="lno" href="#L679">679</a>    have hle := Real.Wallis.le_W n</span>
+<span class="ln" id="L680"><a class="lno" href="#L680">680</a>    have hpi := Real.pi_pos</span>
+<span class="ln" id="L681"><a class="lno" href="#L681">681</a>    rw [lt_div_iff₀ hn&#x27;]</span>
+<span class="ln" id="L682"><a class="lno" href="#L682">682</a>    have key : π * n &lt; ((2 * n + 1) / (2 * n + 2) * (π / 2)) * (2 * n + 1) := by</span>
+<span class="ln" id="L683"><a class="lno" href="#L683">683</a>      rw [_root_.div_mul_div_comm, div_mul_eq_mul_div, lt_div_iff₀ (by positivity)]</span>
+<span class="ln" id="L684"><a class="lno" href="#L684">684</a>      nlinarith</span>
+<span class="ln" id="L685"><a class="lno" href="#L685">685</a>    calc π * n &lt; ((2 * n + 1) / (2 * n + 2) * (π / 2)) * (2 * n + 1) := key</span>
+<span class="ln" id="L686"><a class="lno" href="#L686">686</a>      _ ≤ Real.Wallis.W n * (2 * n + 1) := by</span>
+<span class="ln" id="L687"><a class="lno" href="#L687">687</a>        apply mul_le_mul_of_nonneg_right hle; positivity</span>
+<span class="ln" id="L688"><a class="lno" href="#L688">688</a></span>
+<span class="ln" id="L689"><a class="lno" href="#L689">689</a>end wallisR</span>
+<span class="ln" id="L690"><a class="lno" href="#L690">690</a></span>
+<span class="ln" id="L691"><a class="lno" href="#L691">691</a>end FRC.Epi</span>
+<span class="ln" id="L692"><a class="lno" href="#L692">692</a></span>
+</pre></main>
+</div>
+</body>
+</html>

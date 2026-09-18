@@ -16,14 +16,14 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent
 ALLOWED = {"propext", "Classical.choice", "Quot.sound"}
-DECL = re.compile(r"^(?:@\[[^\]]*\]\s*)?(?:private\s+|protected\s+)?(theorem|lemma|def|abbrev)\s+([\w.']+)", re.M)
+DECL = re.compile(r"^(?:@\[[^\]]*\]\s*)?(?:private\s+|protected\s+|noncomputable\s+)*(theorem|lemma|def|abbrev)\s+([\w.']+)", re.M)
 NS = re.compile(r"^(namespace|end)\s+([\w.]+)\s*$", re.M)
 LINE = re.compile(r"^'(.+)' (?:depends on axioms: \[([^\]]*)\]|does not depend on any axioms)")   # greedy: names may end in a prime
 
 def declarations(path):
     """Fully qualified theorem names of one module, in source order."""
     out, stack = [], []
-    for m in re.finditer(r"^(namespace|end)\s+([\w.]+)\s*$|^(?:@\[[^\]]*\]\s*)?(?:private\s+|protected\s+)?(theorem|lemma|def|abbrev)\s+([\w.']+)", path.read_text(encoding="utf-8"), re.M):
+    for m in re.finditer(r"^(namespace|end)\s+([\w.]+)\s*$|^(?:@\[[^\]]*\]\s*)?(?:private\s+|protected\s+|noncomputable\s+)*(theorem|lemma|def|abbrev)\s+([\w.']+)", path.read_text(encoding="utf-8"), re.M):
         if m.group(1) == "namespace": stack.append(m.group(2))
         elif m.group(1) == "end":
             if stack and stack[-1] == m.group(2): stack.pop()

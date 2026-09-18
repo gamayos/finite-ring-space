@@ -9,8 +9,10 @@ with correctly rounded framed rationals. No floating-point reference value of ei
 
 Every family check is one labelled claim of a script and names the row(s) of the paper's predicate ledger it
 witnesses (the paper's Section "Machine verification and predicate ledger", rows cited as `13:XN`; public copy
-`docs/13-epi/13-epi-ledger.html`); the ledger's source column cites the check ids in return. Master-ledger rows of
-the corpus reached through the paper rows: `00:B8`, `00:B9`, `00:C13`, `00:C14`, `00:B1`, `00:C24`, `00:C26` (the former T7–T9 withdrawn 17 Sep 2026; O1–O3 open in the paper).
+`docs/13-epi/13-epi-ledger.html`); the ledger's source column cites the check ids in return. Where a row is proved in
+Lean (`lean/FrcCore/Epi.lean` with no axioms, or `lean/FrcLedger/Epi.lean` on Mathlib), the check here is the instance
+the reader can run. Master-ledger rows of
+the corpus reached through the paper rows: `00:B8`, `00:B9`, `00:C13`, `00:C14`, `00:B1`, `00:C24`, `00:C26` (the paper's hypotheses Y1–Y3 have no live master row: the former T7–T9 were withdrawn 17 Sep 2026).
 
 [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/gamayos/finite-ring-space/blob/main/src/13-epi/13-epi-main.ipynb)
 
@@ -48,5 +50,5 @@ of the memorandum README therefore no longer applies: every family is EXACT.
 ## Predicate ledger
 
 Rows A1–A7 imports; B1, B4, C1, C4, D1, E1, H1, J4 definitions (the two selector normalisations C1, C4 are the
-paper's two D moves); D2, H3 proof-only rows; O1–O3 the open walls (Kurepa's hypothesis, the π-Wieferich infinitude
+paper's two D moves); D2, H3 proof-only rows; Y1–Y3 the open walls (hypotheses, block Y, tag O) (Kurepa's hypothesis, the π-Wieferich infinitude
 and the Bernoulli law beyond p < 300, the e–π dichotomy as theorem). Check → row: `epicommon.LEDGER`.

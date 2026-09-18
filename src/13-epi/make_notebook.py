@@ -29,7 +29,7 @@ ledger it witnesses (the paper's Section "Machine verification and predicate led
 `docs/13-epi/13-epi-ledger.html`), and the ledger's source column cites the check ids in return. Master-ledger rows of the
 corpus reached through the paper rows: `00:B8` (the two-level horizon law), `00:B9` (certification as the orthogonal axis),
 `00:C13` (the horizon band), `00:C14` (the quarter-turn and its chirality), `00:B1` (framed rationals), `00:C24` (the third-order wall of π) and `00:C26` (the four chains as
-E- and G-partial sums); the paper's open rows O1–O3 carry their obstruction records.
+E- and G-partial sums); the paper's hypotheses Y1–Y3 (block Y, tag O) carry their obstruction records.
 
 **Kinds.** Every check is `EXACT`: a pass is a proof on the tested instances. The few floating-point figures printed (a
 Pearson correlation, a median, the Gauss sums, the Fermat-quotient moments) are the paper's [approx] diagnostics and decide nothing.

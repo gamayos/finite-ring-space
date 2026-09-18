@@ -16,6 +16,7 @@ and the paper's frame. Instance rows and refutations are decided by `decide` in 
 | `FrcLedger/Causality.lean` | 3-causality | B2, B3, B5, C2, C3 | `no_causal_root`, `neg_sq_is_square`, `absorb`, `aniso_tx`, `boost_preserves`, `boost_comp`, `boost_orthogonal`, `gamma_ne_zero`, `gamma_velocity`, `velocity_addition` |
 | `FrcLedger/Representation.lean` | 4-rep | B3–B6, C1–C4, E1, E3 | `Adequate`, `adequate_inj`, `transition_exists`, `transition_unique`, `embeds_in_shell`, `canonical_iota`, `chart_injective`, `transition_images`, `lift`, `consistency`, `sphere_of_equivariant`, `godel_injective`, `mod_injective`, `godel_instance` |
 | `FrcLedger/Reductio.lean` | 5-red | B3, B5, C2, C3, D3, D8, E1–E4, E8 | `theory_complete`, `decRealize`, `decTheory`, `infinite_of_succ`, `cantor`, `cantor_finite`, `records_lt`, `no_mirror`, `certified_fraction_tendsto`, `finite_choice`, `periodic_choice`, `equivariant_section_iff`, `obstruction_five`, `no_doubling`, `ultrafilter_principal`, `decideAllSubsets`, `nat_embeds` |
+| `FrcLedger/Epi.lean` | 13-epi | C3, E2, F1–F4, F7, G1–G3, G5, G9, H3, H5 | the wall of `e`: `wilson_reflection_zmod`, `derangements_wall_zmod`, `terminal_residue`, `derangements_antiperiodic_zmod`, `series_duals_zmod`, `tower_e_exact_zmod`; the wall of `π`: `legibility_window`, `half_wall_terminus`, `quarter_wall_invariant`, `choose_two_mul_pow`, `first_revival`, `tower_pi_exact`; `cayley_values`, `cayley_mul`; the Wallis pair: `wallis_width`, `wallisV_strictMono`, `wallisW_strictAnti`, `wallis_enclosure` (`v_n < π < w_n` from Mathlib's Wallis product); `calibration_ne_one`, `exp_I_ne_one`; `index_condition`, `index_condition_shell` |
 
 Every theorem's docstring opens with the row it decides (`/-- 1:B2 … -/`); the ledger's source column names the
 theorem back (`\lean{Algebra.no_south_pole}`); `axioms.log` records, for every declaration, the axioms its proof
@@ -44,10 +45,11 @@ algorithm from the definition of `Nat.mod`.
 | `FrcCore/Nat.lean` | — | the arithmetic: cancellation, `mul_assoc`, the `%`-laws, `mod_spec`, `mod_unique`, subtraction, powers |
 | `FrcCore/Pigeonhole.lean` | — | `NoDup`, `erase`, the pigeonhole on `[0, n)` and `[1, n]` |
 | `FrcCore/Shell.lean` | — | the ring `Shell p`: the laws, negation by `add_neg`, powers, `neg_one_pow` |
-| `FrcCore/Frame.lean` | 00:A8, 00:C1, 00:C7, 00:C14; 1:B3, F1; 2:D1, D2, D5, D6 | `IsPrimitive`, `Generates`, `Frame`, `generates` (the pigeonhole), `pow_inj`, `exists_inv`, `mul_eq_zero`, `sq_eq_one`, `half_period`, `quarter_turn_sq`, `quarter_turn_order`, `orientation_class`, `euler_identity`, `two_pi`, `no_south_pole` |
+| `FrcCore/Frame.lean` | 00:A8, 00:C1, 00:C7, 00:C14; 1:B3, F1; 2:D1, D2, D5, D6; 13:B2, H2, I4, J2 | `IsPrimitive`, `Generates`, `Frame`, `generates` (the pigeonhole), `pow_inj`, `exists_inv`, `mul_eq_zero`, `sq_eq_one`, `half_period`, `quarter_turn_sq`, `quarter_turn_order`, `orientation_class`, `euler_identity`, `two_pi`, `no_south_pole` |
 | `FrcCore/Orbit.lean` | 1:G1; 2:B3 | `generator_orbit`, `fermat` |
 | `FrcCore/Sum.lean` | 2:F1, F3, F4, F5; 6:B5, B6, B7 | `sumRange`, `geom_sum_mul`, `principal_root`, `dft_inverse`, `W_sq`, `J_sq`, `F_sq`, `W_J_comm`, `sum_perm`, `dft_eq_polyEval`, `dft_covariance`, the `V = V⁺ ⊕ V⁻` decomposition |
 | `FrcCore/Meridian.lean` | 6:D4, D5 | the meridian ladder as lists: `meridian`, `scale`, `meridian_scale` (the scale-shift is re-indexing), `meridian_step` (the effective step `g^m`), `scale_periodic`; `ladder13` (the zoom ladder of `𝔽₁₃`, `g = 2`, by `decide`) |
+| `FrcCore/Epi.lean` | 13:B2, F3, F7, J1; B3, F2, F4, F6, G1, G5, G8 [value] | the derangement numbers by recurrence: `dr_succ`, `dr_antiperiodic`, `tower_e_exact`; `orientation_transport` (no third case); `wrap_free`; on `𝔽₁₃` and the wall shells by `decide`: `coincidence13`, `terminal13`, `residue_line_e13`, `residue_line_pi13`, `revivals13`, `kurepa_alt_values` |
 | `FrcCore/Algebra.lean` | 1:B2, B4, C2, C4, D2, D4, D6, E2; 2:D7 | `klein_orbit_four`, `orbit_rep`, `orbit_rep_unique`, `affine_frame_unit`, `Affine.simply_transitive`, `frame_count`, `meridian_involution`, `window_injective`, `window_signed`, the read-backs, `scale_periodic`, `approx_obstruction`, `complex_chart_zero_divisor` |
 | `FrcCore/Poly.lean` | 1:G1 | polynomials as coefficient sequences: `eval_mul`, `quot_linear_spec` (synthetic division), `root_bound`, `root_iff_common_factor` |
 | `FrcCore/Quaternion.lean` | 1:G5 | the signed window and the framed quaternions: `read_mul`, `quaternion_window` |
@@ -75,6 +77,7 @@ toolchain pinned here), with the module as one self-contained file (`web/<module
 - Causality: `https://live.lean-lang.org/#project=mathlib-stable&url=https://raw.githubusercontent.com/gamayos/finite-ring-space/main/lean/web/Causality.lean`
 - Representation: `https://live.lean-lang.org/#project=mathlib-stable&url=https://raw.githubusercontent.com/gamayos/finite-ring-space/main/lean/web/Representation.lean`
 - Reductio: `https://live.lean-lang.org/#project=mathlib-stable&url=https://raw.githubusercontent.com/gamayos/finite-ring-space/main/lean/web/Reductio.lean`
+- Epi: `https://live.lean-lang.org/#project=mathlib-stable&url=https://raw.githubusercontent.com/gamayos/finite-ring-space/main/lean/web/Epi.lean`
 
 **In VS Code, in the browser** — "Code ▸ Codespaces ▸ Create codespace" on the repository, or open the
 `.devcontainer` in any devcontainer host: the setup script installs the toolchain and Mathlib's cache (minutes),

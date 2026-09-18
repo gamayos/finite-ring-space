@@ -245,14 +245,15 @@ theorem four_kappa (F : Frame p κ g) : 2 * κ + 2 * κ = p - 1 := by
   show 2 * κ + 2 * κ = 2 * 2 * κ
   rw [FRC.Nat.mul_assoc, ← Nat.two_mul (2 * κ)]
 
-/-- 2:D1, 00:C1 — the half-period: `g^{2κ} = −1` for the drive of every frame. -/
+/-- 2:D1, 13:H2, 00:C1 — the half-period: `g^{2κ} = −1` for the drive of every frame (the half-turn tautology
+behind `χ(−1) = e^{iπ}`). -/
 theorem half_period (F : Frame p κ g) : g ^ (2 * κ) = -1 := by
   have hsq : g ^ (2 * κ) * g ^ (2 * κ) = 1 := by rw [← pow_add, F.four_kappa, F.pow_n]
   match F.sq_eq_one hsq with
   | .inr e => exact e
   | .inl e => exact absurd e (F.prim.2 (2 * κ) F.two_kappa_lt F.two_kappa_pos)
 
-/-- 1:B3, 2:D2 — the quarter-turn `i = −g^κ` squares to `−1`. -/
+/-- 1:B3, 2:D2, 13:J2 — the quarter-turn `i = −g^κ` squares to `−1` (the pinning relation `i² + 1 ≡ 0`). -/
 theorem quarter_turn_sq (F : Frame p κ g) : quarterTurn g κ * quarterTurn g κ = -1 := by
   unfold quarterTurn
   rw [neg_mul_neg, ← pow_add, ← Nat.two_mul, F.half_period]
@@ -264,7 +265,7 @@ theorem quarter_turn_order (F : Frame p κ g) : (g ^ κ) ^ 2 = -1 ∧ (g ^ κ) ^
   show (g ^ κ) ^ (2 * 2) = 1
   rw [pow_mul, h2, neg_pow_two, one_pow]
 
-/-- 2:D5, 6:B3 — the orientation classes: for `g' = g^u`, the quarter-turn `−g'^κ` is `−g^κ` when
+/-- 2:D5, 6:B3, 13:B2 — the orientation classes: for `g' = g^u`, the quarter-turn `−g'^κ` is `−g^κ` when
 `u ≡ 1 (mod 4)` and `−(−g^κ)` when `u ≡ 3 (mod 4)`. -/
 theorem orientation_class (F : Frame p κ g) (u : Nat) :
     (u % 4 = 1 → -((g ^ u) ^ κ) = -(g ^ κ)) ∧ (u % 4 = 3 → -((g ^ u) ^ κ) = -(-(g ^ κ))) := by
@@ -302,7 +303,8 @@ theorem euler_identity (F : Frame p κ g) (i : Nat) :
     rw [← FRC.Nat.mul_assoc, Nat.mul_comm (i * i)]
   rw [e1, F.half_period, neg_one_pow, sq_mod_two]
 
-/-- 00:C1 — the web closes: `2π ≡ −1` on every shell (`4κ = p − 1`). -/
+/-- 00:C1, 13:J2, 13:I4 — the web closes: `2π ≡ −1` on every shell (`4κ = p − 1`): the height-two pinning
+`2π_A + 1 ≡ 0`, which holds in every fibre of a composite lift. -/
 theorem two_pi (F : Frame p κ g) : (ofNat (2 * halfPeriod κ) : Shell p) = -1 := by
   apply ext
   rw [val_ofNat, val_neg, val_one, FRC.Nat.mod_eq_of_lt F.one_lt_p]

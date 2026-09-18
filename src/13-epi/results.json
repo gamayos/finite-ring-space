@@ -334,7 +334,7 @@
  },
  {
   "id": "kur.K1",
-  "rows": "13:F2, 13:O1",
+  "rows": "13:F2, 13:Y1",
   "script": "kurepa_wall",
   "label": "Kurepa's wall in the derangement form for all 22 043 odd primes p < 2.5·10⁵ (kurepa_wall.c, one O(p) pass per prime in 128-bit modular arithmetic): !(p−1) ≡ K(p) (mod p) and K(p) ≢ 0 (mod p), zero failures of either condition",
   "ok": true,

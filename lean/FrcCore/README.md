@@ -13,7 +13,9 @@ repetition), `Shell` (the ring), `Frame` (the datum: generation by the pigeonhol
 orientation classes, Euler identity), `Orbit` (the generator orbit, Fermat), `Sum` (finite sums, the principal
 root, the Fourier inversion, the polynomial reading and covariance, the four-cycle, `V = V⁺ ⊕ V⁻`), `Meridian`
 (6-fourier: the meridian ladder as lists, the scale-shift as re-indexing and its effective step, the zoom ladder of `𝔽₁₃` by `decide`), `Algebra`
-(1-algebra rows: the Klein orbits and their count, the frame group, the window and its read-backs),
+(1-algebra rows: the Klein orbits and their count, the frame group, the window and its read-backs), `Epi`
+(13-epi: the derangement numbers by recurrence, antiperiodicity and the tower of `e` on every shell, orientation transport, the
+wrap-free window, the residue lines and the wall products on `𝔽₁₃` and the wall shells by `decide`),
 `Poly` (polynomials as coefficient sequences: evaluation, synthetic division, the root bound, the root
 criterion of 1:G1), `Quaternion` (the signed window and the framed quaternions of 1:G5), `Causality` (the square classes, the
 anisotropic and hyperbolic planes of the Lorentzian form, the norm-one boosts and the velocity law of 3-causality), `Representation`
