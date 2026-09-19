@@ -22,7 +22,10 @@ md(f"""[![Open In Colab](https://colab.research.google.com/assets/colab-badge.sv
 **Validation Package.** `finite-ring-space/src/{PKG}` — three blocks driven by this notebook, {len(ecommon.LABELS)} family checks aggregating
 88 micro-checks. A family check is one labelled claim of a script, identified as `<script>.<family>`; each names the row(s) of the
 paper's predicate ledger it witnesses (the paper's Section "Claim status", subsection "Predicate ledger", rows cited as `14:XN`;
-public copy at `docs/14-entropy/14-entropy-ledger.html`), and the ledger's source column cites the check ids in return.
+public copy at `docs/14-entropy/14-entropy-ledger.html`), and the ledger's source column cites the check ids in return. Where a
+row is proved in Lean (`lean/FrcCore/Entropy.lean` with no axioms, or `lean/FrcLedger/Entropy.lean` on Mathlib — the congruences
+and the laboratory Carrier, the octant sector and its character, the age identity inverted with its numerals bracketed, the
+locus), the check here is the instance the reader can run.
 Master-ledger rows of the corpus reached through the paper rows: `00:A9` (scale, the sole import), `00:L1`–`00:L7` (cosmology,
 the metrology, the octant lemma, the triangle, the area law, the interior completions, the running floor), `00:F7` (the additive
 window, formerly Y6).

@@ -13,9 +13,12 @@ quotes — a pass says the paper's numeral follows from its named inputs; it is 
 No fitted framework parameter and no random sampling enters anywhere.
 
 Every family check is one labelled claim of a script and names the row(s) of the paper's predicate ledger it
-witnesses (the paper's Section "Claim status", subsection "Predicate ledger", 44 rows in blocks A, B, C, X, P, V, Z,
-O, cited as `14:XN`; public copy `docs/14-entropy/14-entropy-ledger.html`); the ledger's source column cites the
-check ids in return. Master-ledger rows of the corpus reached through the paper rows: `00:A9`, `00:L1`–`00:L7`,
+witnesses (the paper's Section "Claim status", subsection "Predicate ledger", 45 rows in blocks A, B, C, X, P, V, Z,
+cited as `14:XN`; public copy `docs/14-entropy/14-entropy-ledger.html`); the ledger's source column cites the
+check ids in return. Where a row is proved in Lean (`lean/FrcCore/Entropy.lean` with no axioms, or
+`lean/FrcLedger/Entropy.lean` on Mathlib — the congruences and the laboratory Carrier, the octant sector and its
+character, the rival chart's age identity inverted with its numerals bracketed, the locus), the check here is the
+instance the reader can run. Master-ledger rows of the corpus reached through the paper rows: `00:A9`, `00:L1`–`00:L7`,
 `00:F7` (formerly Y6).
 
 [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/gamayos/finite-ring-space/blob/main/src/14-entropy/14-entropy-main.ipynb)
@@ -51,5 +54,6 @@ not cited by it.
 ## Predicate ledger
 
 Rows A1–A8 imports; B1, B3, B4, B6–B8 realisations, B2, B5 definitions, B9 composite; C1–C10 derived; X1–X8 the
-explicability dividends; P1–P4 the predictions with their falsifiers; V1–V3 the verification; Z1 the Ω-hard
-numeral; B10 the capacity axis as a definition (the former lock conjecture O1, closed 17 Sep 2026 as 00:F7). Check → row: `entcommon.LEDGER`.
+explicability dividends; P1–P4 the predictions with their falsifiers; V1–V4 the verification (V4 the two Lean
+libraries, 19 Sep 2026); Z1 the Ω-hard numeral; B10 the capacity axis as a definition (the former lock conjecture
+O1, closed 17 Sep 2026 as 00:F7). Check → row: `entcommon.LEDGER`.
