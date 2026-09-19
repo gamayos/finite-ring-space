@@ -26,7 +26,9 @@ anisotropic and hyperbolic planes of the Lorentzian form, the norm-one boosts an
 (5-red: a Δ₀ language with its standard and frame evaluators and the bounded-stability schema with computed bound, the migration counts, iteration on a finite state space — repetition, eventual periodicity, the horizon separation — the least-element choice and its periodicity), `Geometry`
 (2-geometry rows: the counts, the fixed-shell bound, adjacency and label covariance), `Complex` (the orbital
 shell coded as a cell complex, closedness and the automorphism census decided by the kernel), `Instances`
-(𝔽₁₃, 𝔽₁₇, 𝔽₂₉ by `decide`). `../web/FrcCore.lean` is the same library in one file for live.lean-lang.org — it needs no
+(𝔽₁₃, 𝔽₁₇, 𝔽₂₉ by `decide`), `Rh` (20-rh: the zero-slot and slot complementarity on every shell, the half-turn arithmetic and the
+Subject constants, the scale-shift's fixed-point count, the Ramanujan sum, the quadratic extension as pairs with the Klein four-group,
+the critical line and the norm-one circle, frame coincidence below the horizon; `𝔽₁₃(√2)`, `𝔽₅₃` and the pair `(13, 233)` by `decide`). `../web/FrcCore.lean` is the same library in one file for live.lean-lang.org — it needs no
 Mathlib and compiles in two seconds under any Lean 4.34 project.
 
 Build: `lake build` (toolchain `leanprover/lean4:v4.34.0`, no dependencies). Gate (from `lean/`): `python3 check_core_axioms.py`.

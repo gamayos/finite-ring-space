@@ -81,14 +81,14 @@
      "label": "B1",
      "predicate": "The two frames on one substrate: the Carrier chart $\\F_\\Omega$, held by no embedded observer, and the Subject $\\Fp$ embedded with $\\Omega\\gg p^{2}$; what they share is the quarter-turn core $Q_4$ and nothing else --- on the laboratory pair $(13,233)$ the cycles $C_{12}$ and $C_{232}$ admit no projection ($12\\nmid232$); hardness by register ($p$-hard, $\\Omega$-hard).",
      "tag": "D",
-     "source": "Def.~\\ref{def:shells}; \\src{A10}",
+     "source": "Def.~\\ref{def:shells}; \\src{A10}; \\lean{Rh.lab\\_pair, Rh.no\\_cycle\\_projection, FRC.Rh.lab\\_pair}",
      "key": "p20008"
     },
     {
      "label": "B2",
      "predicate": "Frame coincidence below the horizon: for $n\\le\\sqrt p$ the residue $n$ is the same integer in $\\Fp$ and $\\F_\\Omega$, and primality of $n$ equals irreducibility in the Subject chart; the Subject-realised primes $\\Pi_p$ are the primes to $\\sqrt p$.",
      "tag": "T",
-     "source": "Prop.~\\ref{prop:coincide}; \\src{A11}",
+     "source": "Prop.~\\ref{prop:coincide}; \\src{A11}; \\lean{Rh.window\\_readback, Rh.prime\\_iff\\_window\\_irreducible, Rh.sqrt\\_sq\\_lt\\_prime, FRC.Rh.window\\_readback, FRC.Rh.factorisation\\_iff, FRC.Rh.frame\\_coincidence}",
      "key": "p20009"
     },
     {
@@ -102,49 +102,49 @@
      "label": "B4",
      "predicate": "Zero-slot: $Z_\\Omega(k)=\\sum_{x\\in\\Fx{\\Omega}}x^{k}$ vanishes on every nonterminal exponent $1\\le k\\le\\Omega-2$ and equals $-1$ on the full cycle; the nonterminal slots are the universal mode basis.",
      "tag": "T",
-     "source": "Thm.~\\ref{thm:zeroslot}; \\src{A1}",
+     "source": "Thm.~\\ref{thm:zeroslot}; \\src{A1}; \\lean{Rh.zero\\_slot, FRC.Rh.zero\\_slot}",
      "key": "p20011"
     },
     {
      "label": "B5",
      "predicate": "Slot complementarity: $\\Phi(k)=-\\gen^{\\,k}$ bijects the nontrivial spectral slots onto the nonterminal additive slots $\\Fx{\\Omega}\\setminus\\{-1\\}$, the two removed points being $\\mu_2$, the intertwiner the half-cycle element.",
      "tag": "T",
-     "source": "Thm.~\\ref{thm:compl}; \\src{A2}",
+     "source": "Thm.~\\ref{thm:compl}; \\src{A2}; \\lean{Rh.slot\\_complementarity, FRC.Rh.slot\\_complementarity}",
      "key": "p20012"
     },
     {
      "label": "B6",
      "predicate": "Hermitian phase calculus on $K=\\F_{p^{2}}$: norm and trace $\\F_p$-valued, the phase circle $U_{p+1}$ of order $p+1$ with Frobenius as inversion, the quarter-turn $\\It$ Frobenius-fixed and off the circle ($\\Nm(\\It)=-1$), the trace-zero $\\eta$ with $\\eta^{2}=\\nu$ a nonsquare, $\\Tr(a+b\\eta)=2a$, $\\Nm=a^{2}-\\nu b^{2}$.",
      "tag": "T",
-     "source": "Lem.~\\ref{lem:K}; \\src{A3}",
+     "source": "Lem.~\\ref{lem:K}; \\src{A3}; \\lean{Rh.phase\\_circle, Rh.frobenius\\_eq\\_star, Rh.norm\\_eq\\_pow, Rh.quarter\\_turn\\_off\\_circle, FRC.Rh.Ext.mul\\_conj, FRC.Rh.Ext.conj\\_inv\\_of\\_norm\\_one, FRC.Rh.Ext.quarter\\_turn\\_off\\_circle, FRC.Rh.Ext.circle13}",
      "key": "p20013"
     },
     {
      "label": "B7",
      "predicate": "Flat ground state: the full-modulus Ramanujan sum $c_p(n)\\equiv-1$ for every $n\\not\\equiv0$; the mode at the spectral origin carries no prime information.",
      "tag": "T",
-     "source": "Prop.~\\ref{prop:ground}; \\src{A9}",
+     "source": "Prop.~\\ref{prop:ground}; \\src{A9}; \\lean{Rh.ramanujan\\_sum, FRC.Rh.ramanujan\\_sum, FRC.Rh.ramanujan53}",
      "key": "p20014"
     },
     {
      "label": "B8",
      "predicate": "The finite critical line: the half-turn $2^{-1}=2\\kp+1=-\\pi$; $\\Tr(z)=1$ exactly on the $p$ points $z=2^{-1}+\\eta\\theta$, with energy $\\Nm(z)=\\tfrac14-\\nu\\theta^{2}$; de-framed, $2^{-1}/p=(2\\kp+1)/p\\to\\half$ from above [chart].",
      "tag": "T",
-     "source": "Prop.~\\ref{prop:critical}; \\src{A4}, \\src{B3}",
+     "source": "Prop.~\\ref{prop:critical}; \\src{A4}, \\src{B3}; \\lean{Rh.half\\_turn, Rh.trace\\_eq\\_one\\_iff, Rh.card\\_critical\\_line, Rh.norm\\_on\\_line, FRC.Rh.half\\_inverse, FRC.Rh.Ext.critical\\_line, FRC.Rh.Ext.norm\\_on\\_line}",
      "key": "p20015"
     },
     {
      "label": "B9",
      "predicate": "The two agreement loci: the Klein four-group $\\langle\\phi,\\rho\\rangle$ of Frobenius and the functional-equation half-turn fixes exactly $\\F_p$ (the prime meridian), $L_{1/2}$ (the critical line) and their meeting $\\{2^{-1}\\}$; no other line is fixed.",
      "tag": "T",
-     "source": "Thm.~\\ref{thm:agree}; \\src{A5}",
+     "source": "Thm.~\\ref{thm:agree}; \\src{A5}; \\lean{Rh.klein\\_four, Rh.fixed\\_frobenius, Rh.trace\\_eq\\_one\\_iff, Rh.fixed\\_half\\_turn, FRC.Rh.Ext.klein\\_four, FRC.Rh.Ext.fixed\\_conj, FRC.Rh.Ext.critical\\_line, FRC.Rh.Ext.fixed\\_half\\_turn}",
      "key": "p20016"
     },
     {
      "label": "B10",
      "predicate": "The Subject constants on the shell: $\\pi=2\\kp$, $2\\pi\\equiv-1$, $\\It=\\gen^{-\\kp}$, $\\It^{2}\\equiv-1$, $\\Et=\\gen^{\\,\\It}$ on the odd representative, $\\gen^{\\,\\pi}\\equiv-1$, $\\Et^{\\,\\It\\pi}\\equiv-1$; on $\\F_{13}$: $\\gen=2$, $\\It=5$, $\\Et=6$, $\\pi=6$.",
      "tag": "T",
-     "source": "\\S\\ref{sub:frc}, Rem.~\\ref{rem:frame}; \\src{A6}",
+     "source": "\\S\\ref{sub:frc}, Rem.~\\ref{rem:frame}; \\src{A6}; \\lean{Rh.subject\\_constants, Rh.constants13, FRC.Rh.subject\\_constants, FRC.Rh.constants13, FRC.Shell.frame13}",
      "key": "p20017"
     },
     {
@@ -171,7 +171,7 @@
      "label": "C2",
      "predicate": "Resonance and the von Mangoldt weight: $R_L\\to\\frac{\\varphi(n)}{n}\\Lambda(n)$ (Hardy, A3); $\\Lambda=\\mu\\ast\\log$ exactly on the divisor lattice; the intertwiner $\\Lambda=\\frac{n}{\\varphi(n)}R$; support the prime powers in every form.",
      "tag": "T",
-     "source": "Thm.~\\ref{thm:resonance}; \\src{E1a}, \\src{E1b}",
+     "source": "Thm.~\\ref{thm:resonance}; \\src{E1a}, \\src{E1b}; \\lean{Rh.vonMangoldt\\_moebius}",
      "key": "p20020"
     },
     {
@@ -192,7 +192,7 @@
      "label": "C5",
      "predicate": "Mean-square flatness: with $r_j$ the normalised correlation of the mean-removed prime indicator with the nonconstant chart mode $\\chi_j$, $\\sum_{j\\ne0}r_j^{2}=1$ exactly (Parseval), so the root-mean-square correlation is $1/\\sqrt{p-2}$.",
      "tag": "T",
-     "source": "Prop.~\\ref{prop:flat}",
+     "source": "Prop.~\\ref{prop:flat}; \\lean{Rh.chi\\_parseval, Rh.flatness}",
      "key": "p20023"
     },
     {
@@ -267,7 +267,7 @@
      "label": "E1",
      "predicate": "The scale-evolution generator: on the shell the scale-shift $x\\mapsto\\gen^{\\,r}x$ is a unitary permutation of $\\Fx{p}$ with the complex characters as eigenvectors; in the idealisation [chart] its generator is $\\Hh=-i(x\\partial_x+\\half)$ with eigenstates $x^{-\\bar\\rho}$, $\\rho=\\half+i\\gamma$, the symmetrizing $\\half$ the half-turn of B8.",
      "tag": "T",
-     "source": "Prop.~\\ref{prop:H}; \\src{A7}, \\src{A7b}",
+     "source": "Prop.~\\ref{prop:H}; \\src{A7}, \\src{A7b}; \\lean{Rh.scale\\_shift, Rh.character\\_eigen, Rh.chi\\_shift, FRC.Rh.shift\\_power\\_character, FRC.Rh.shift\\_trace}",
      "key": "p20032"
     },
     {
@@ -344,14 +344,14 @@
      "label": "E12",
      "predicate": "\\textbf{The shell theorem.} On every shell, with no hypothesis: (i) the spectral content of $v$ is the constant mode carrying the mean with the nonterminal modes of the quarter-turn meridian; (ii) every mode lies on $\\Tr=1$, real part $2^{-1}=2\\kp+1=-\\pi$; (iii) the scale-shift has the modes as eigenvectors in both character readings, eigenphases $2\\pi j/(p-1)$ independent of $v$; (iv) the Jacobi matrix is real-symmetric with the secular roots as spectrum. No off-line mode; the same on every shell, the Carrier included; true of every vector, the Davenport--Heilbronn vector included. No intertwiner between (iii) and (iv), and no identification of (iv) with a discretisation of $\\Hh$, is asserted or used (E2).",
      "tag": "T",
-     "source": "Thm.~\\ref{thm:hp}; \\src{A1}--\\src{A9}, \\src{A7b}",
+     "source": "Thm.~\\ref{thm:hp}; \\src{A1}--\\src{A9}, \\src{A7b}; \\lean{Rh.chi\\_inversion, Rh.chi\\_shift, Rh.scale\\_shift, FRC.Rh.shift\\_power\\_character, FRC.Rh.shift\\_trace}",
      "key": "p20043"
     },
     {
      "label": "E13",
      "predicate": "Shell-basis completeness is not a clause of E12: the $p-1$ complex characters are an orthonormal basis of $\\mathbb C^{\\Fx{p}}$ (finite Parseval), true of every vector, the trivial character carrying the mean $\\psi(p-1)/(p-1)$; the $\\F_p$-valued power characters are never orthonormal and do not expand $v$; completeness for the zero set of $\\zeta$ is D5, a different clause.",
      "tag": "D",
-     "source": "Rem.~\\ref{rem:parseval}; \\src{A7b}",
+     "source": "Rem.~\\ref{rem:parseval}; \\src{A7b}; \\lean{Rh.chi\\_orthogonal, Rh.chi\\_parseval, Rh.chi\\_inversion, Rh.power\\_characters\\_not\\_orthonormal}",
      "key": "p20044"
     },
     {
@@ -477,6 +477,13 @@
      "tag": "T",
      "source": "\\src{run\\_all}; the notebook",
      "key": "p20058"
+    },
+    {
+     "label": "V6",
+     "predicate": "The formal layer: \\texttt{FrcLedger/Rh.lean} on Mathlib proves B2, B4--B10 (B8's shell clauses), C2's identity $\\Lambda=\\mu\\ast\\log$, C5, E1's shell clause, E12(i), (iii) and E13's orthogonality, inversion and Parseval for every shell; \\texttt{FrcCore/Rh.lean}, no axioms, proves B2, B4, B5, B7, B8, B10, B9 with Frobenius as conjugation, E12(iii) in $\\F_p$; B1, B6, B7, B10 decided on $\\F_{13}$, $\\F_{53}$.",
+     "tag": "T",
+     "source": "\\texttt{lean/\\allowbreak FrcLedger/\\allowbreak Rh.lean}; \\texttt{lean/\\allowbreak FrcCore/\\allowbreak Rh.lean}",
+     "key": "p20076"
     }
    ]
   },
@@ -541,5 +548,694 @@
    "D12"
   ]
  },
- "lean": {}
+ "lean": {
+  "B1": [
+   {
+    "name": "FRC.Rh.lab_pair",
+    "module": "FrcLedger/Rh",
+    "line": 707,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "20:B1 [value] — the laboratory pair `(13, 233)`: nested, `13² < 233`; the two cycles share the quarter-turn core `Q₄` and nothing else, `gcd(12, 232) = 4`, with `5² = −1` on `𝔽₁₃` and `89² = −1` on `𝔽₂₃₃`; and `12 ∤ 232`."
+   },
+   {
+    "name": "FRC.Rh.no_cycle_projection",
+    "module": "FrcLedger/Rh",
+    "line": 713,
+    "axioms": [
+     "Classical.choice",
+     "Quot.sound",
+     "propext"
+    ],
+    "tier": 2,
+    "ok": true,
+    "doc": "20:B1 — no projection of the Carrier's cycle onto the Subject's: there is no surjective homomorphism `C_{232} → C_{12}`, since `12 ∤ 232`."
+   },
+   {
+    "name": "FRC.Rh.lab_pair",
+    "module": "FrcCore/Rh",
+    "line": 514,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "20:B1 [value] — the pair `(13, 233)`: nested, `13² < 233`; both cycles carry the quarter-turn core (`4 ∣ 12`, `4 ∣ 232`; `5² = −1` on `𝔽₁₃`, `89² = −1` on `𝔽₂₃₃`) and share nothing else (`3 ∤ 232`, so `gcd(12, 232) = 4`); the Carrier's cycle does not project onto the Subject's (`12 ∤ 232`); the horizon window `H = 3` is wrap-free on both (`9 < 13`, `9 < 233`)."
+   }
+  ],
+  "B2": [
+   {
+    "name": "FRC.Rh.window_readback",
+    "module": "FrcLedger/Rh",
+    "line": 644,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "20:B2 — below the horizon the reading is frame-exact: on any shell `ZMod q` with `H² < q`, residues `n ≤ H` are the integers themselves and window products read back exactly, so the Subject `𝔽_p` and the Carrier `𝔽_Ω` agree on the window."
+   },
+   {
+    "name": "FRC.Rh.prime_iff_window_irreducible",
+    "module": "FrcLedger/Rh",
+    "line": 657,
+    "axioms": [
+     "Quot.sound",
+     "propext"
+    ],
+    "tier": 1,
+    "ok": true,
+    "doc": "20:B2 — primality equals irreducibility in the window: for `2 ≤ m ≤ H` and any shell with `H² < q`, `m` is prime iff it admits no factorisation `a · b = m` with `2 ≤ a, b ≤ H` read on the shell."
+   },
+   {
+    "name": "FRC.Rh.sqrt_sq_lt_prime",
+    "module": "FrcLedger/Rh",
+    "line": 687,
+    "axioms": [
+     "Classical.choice",
+     "Quot.sound",
+     "propext"
+    ],
+    "tier": 2,
+    "ok": true,
+    "doc": "20:B2 — `⌊√p⌋² < p` for a prime `p`: the horizon window `H = ⌊√p⌋` is wrap-free."
+   },
+   {
+    "name": "FRC.Rh.window_readback",
+    "module": "FrcCore/Rh",
+    "line": 464,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "20:B2 — below the horizon the reading is frame-exact: on any shell with `H² < p`, a residue `m ≤ H` is the integer `m`, and the product of two window residues reads back as the integer product."
+   },
+   {
+    "name": "FRC.Rh.factorisation_iff",
+    "module": "FrcCore/Rh",
+    "line": 475,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "20:B2 — primality equals irreducibility in the window: for `m ≤ H` on a shell with `H² < p`, `m` factors as `a · b` with `2 ≤ a, b ≤ H` read on the shell exactly when it factors so as an integer. The statement is the same on every shell above the window — the Subject `𝔽_p` and the Carrier `𝔽_Ω` read the same primes."
+   },
+   {
+    "name": "FRC.Rh.frame_coincidence",
+    "module": "FrcCore/Rh",
+    "line": 501,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "20:B2 — frame coincidence: on the Subject `𝔽_p` and the Carrier `𝔽_Ω`, both above the window `H² < p`, `H² < Ω`, a window residue factors on one shell exactly when it factors on the other."
+   }
+  ],
+  "B4": [
+   {
+    "name": "FRC.Rh.zero_slot",
+    "module": "FrcLedger/Rh",
+    "line": 38,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "20:B4 — zero-slot, every shell: `Σ_{x ∈ F^×} x^k = 0` on every nonterminal exponent `1 ≤ k ≤ p − 2`, and `= −1` on the full cycle `k = p − 1`."
+   },
+   {
+    "name": "FRC.Rh.zero_slot",
+    "module": "FrcCore/Rh",
+    "line": 82,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "20:B4 — the zero-slot on every shell: over the nonzero residues `x = l + 1`, `l < p − 1`, `Σ x^k = 0` for every nonterminal exponent `0 < k < p − 1`, and `Σ x^{p−1} = −1` on the full cycle."
+   }
+  ],
+  "B5": [
+   {
+    "name": "FRC.Rh.slot_complementarity",
+    "module": "FrcLedger/Rh",
+    "line": 51,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "20:B5 — slot complementarity, every shell: `Φ(k) = −g^k` is injective on the nontrivial spectral slots `1 ≤ k ≤ p − 2` and maps them onto the nonterminal additive slots `F^× ∖ {−1}`."
+   },
+   {
+    "name": "FRC.Rh.slot_complementarity",
+    "module": "FrcCore/Rh",
+    "line": 100,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "20:B5 — slot complementarity on every shell: `Φ(k) = −g^k` is injective on the nontrivial spectral slots `0 < k < p − 1`, its values avoid `0` and `−1`, and every residue off `{0, −1}` is `Φ(k)` for one such `k`."
+   }
+  ],
+  "B6": [
+   {
+    "name": "FRC.Rh.phase_circle",
+    "module": "FrcLedger/Rh",
+    "line": 387,
+    "axioms": [
+     "Classical.choice",
+     "Quot.sound",
+     "propext"
+    ],
+    "tier": 2,
+    "ok": true,
+    "doc": "20:B6 — the phase circle `U_{p+1} = {z : N(z) = 1}` has exactly `p + 1` elements, and Frobenius is inversion on it: `z̄ = z⁻¹` for `N(z) = 1`."
+   },
+   {
+    "name": "FRC.Rh.frobenius_eq_star",
+    "module": "FrcLedger/Rh",
+    "line": 352,
+    "axioms": [
+     "Classical.choice",
+     "Quot.sound",
+     "propext"
+    ],
+    "tier": 2,
+    "ok": true,
+    "doc": "20:B6 — Frobenius on the extension is conjugation: `z^p = z̄` for every `z ∈ F(η)`."
+   },
+   {
+    "name": "FRC.Rh.norm_eq_pow",
+    "module": "FrcLedger/Rh",
+    "line": 381,
+    "axioms": [
+     "Classical.choice",
+     "Quot.sound",
+     "propext"
+    ],
+    "tier": 2,
+    "ok": true,
+    "doc": "20:B6 — the norm is the `(p+1)`-st power: `z^{p+1} = z z̄ = N(z)` in the extension."
+   },
+   {
+    "name": "FRC.Rh.quarter_turn_off_circle",
+    "module": "FrcLedger/Rh",
+    "line": 427,
+    "axioms": [
+     "Classical.choice",
+     "Quot.sound",
+     "propext"
+    ],
+    "tier": 2,
+    "ok": true,
+    "doc": "20:B6 — the quarter-turn `i ∈ F` (`i² = −1`) is Frobenius-fixed and off the circle: `N(i) = −1 ≠ 1`."
+   },
+   {
+    "name": "FRC.Rh.Ext.mul_conj",
+    "module": "FrcCore/Rh",
+    "line": 343,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "20:B6 — `z z̄ = N(z)`: conjugation is inversion on the norm-one circle."
+   },
+   {
+    "name": "FRC.Rh.Ext.conj_inv_of_norm_one",
+    "module": "FrcCore/Rh",
+    "line": 351,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "20:B6 — on the circle `N(z) = 1` the conjugate is the inverse: `z z̄ = 1`."
+   },
+   {
+    "name": "FRC.Rh.Ext.quarter_turn_off_circle",
+    "module": "FrcCore/Rh",
+    "line": 430,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "20:B6 — the quarter-turn `i = −g^κ`, as the element `i + 0η`, is fixed by conjugation and lies off the circle: `N(i) = i² = −1 ≠ 1`."
+   },
+   {
+    "name": "FRC.Rh.Ext.circle13",
+    "module": "FrcCore/Rh",
+    "line": 444,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "20:B6 [value] — on `𝔽₁₃(√2)` (`2` a nonsquare mod `13`): the norm-one circle has `13 + 1 = 14` points among the `169` elements, and Frobenius `z ↦ z^{13}` is conjugation on every element."
+   }
+  ],
+  "B7": [
+   {
+    "name": "FRC.Rh.ramanujan_sum",
+    "module": "FrcLedger/Rh",
+    "line": 91,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "20:B7 — the flat ground state, in any integral domain with a primitive `p`-th root of unity `ω` (the cyclotomic ledger, `𝔽_q` with `q ≡ 1 (mod p)`, or `ℂ`): the full-modulus Ramanujan sum `c_p(n) = Σ_{a=1}^{p−1} ω^{an}` equals `−1` for every `n ≢ 0 (mod p)`, and `p − 1` at the origin; the mode at the spectral origin carries no prime information."
+   },
+   {
+    "name": "FRC.Rh.ramanujan_sum",
+    "module": "FrcCore/Rh",
+    "line": 239,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "20:B7 — the flat ground state: in a shell `𝔽_q` with a frame (no zero divisors) and an element `ω` of order exactly `m`, the Ramanujan sum `Σ_{a=1}^{m−1} ω^{an}` equals `−1` for every `n ≢ 0 (mod m)`. With `m = p` this is `c_p(n) ≡ −1`: the mode at the spectral origin carries no prime information."
+   },
+   {
+    "name": "FRC.Rh.ramanujan53",
+    "module": "FrcCore/Rh",
+    "line": 278,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "20:B7 [value] — on `𝔽₅₃` with `ω = 16` of order `13`: `c_{13}(n) = Σ_{a=1}^{12} ω^{an} = −1` for every `0 < n < 13`, and `12 = m − 1` at `n = 0`."
+   }
+  ],
+  "B8": [
+   {
+    "name": "FRC.Rh.half_turn",
+    "module": "FrcLedger/Rh",
+    "line": 137,
+    "axioms": [
+     "Classical.choice",
+     "Quot.sound",
+     "propext"
+    ],
+    "tier": 2,
+    "ok": true,
+    "doc": "20:B8, 20:B10 — the half-turn arithmetic on every shell of `4κ + 1` elements: `2π ≡ −1` with `π = 2κ`, and `2⁻¹ = 2κ + 1 = −π`."
+   },
+   {
+    "name": "FRC.Rh.trace_eq_one_iff",
+    "module": "FrcLedger/Rh",
+    "line": 235,
+    "axioms": [
+     "Classical.choice",
+     "Quot.sound",
+     "propext"
+    ],
+    "tier": 2,
+    "ok": true,
+    "doc": "20:B8, 20:B9 — the finite critical line: `Tr z = 1` exactly when `Re z = 2⁻¹`; this locus is the fixed locus of `σ = ρ ∘ φ : z ↦ 1 − z̄`."
+   },
+   {
+    "name": "FRC.Rh.card_critical_line",
+    "module": "FrcLedger/Rh",
+    "line": 297,
+    "axioms": [
+     "Classical.choice",
+     "Quot.sound",
+     "propext"
+    ],
+    "tier": 2,
+    "ok": true,
+    "doc": "20:B8 — the critical line carries exactly `p` points: `z = 2⁻¹ + bη`, one for each `b ∈ F`."
+   },
+   {
+    "name": "FRC.Rh.norm_on_line",
+    "module": "FrcLedger/Rh",
+    "line": 284,
+    "axioms": [
+     "Classical.choice",
+     "Quot.sound",
+     "propext"
+    ],
+    "tier": 2,
+    "ok": true,
+    "doc": "20:B8 — on the critical line the energy is `N(z) = ¼ − νb²`."
+   },
+   {
+    "name": "FRC.Rh.half_inverse",
+    "module": "FrcCore/Rh",
+    "line": 123,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "20:B8 — `2⁻¹ = 2κ + 1 = −π` on every shell: `2·(2κ + 1) = 1` and `2κ + 1 = −(2κ)`."
+   },
+   {
+    "name": "FRC.Rh.Ext.critical_line",
+    "module": "FrcCore/Rh",
+    "line": 369,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "20:B8, 20:B9 — the finite critical line: `Tr z = 1` exactly when `Re z = 2⁻¹ = 2κ + 1`; it is the fixed locus of `σ = ρ ∘ φ`; every `2⁻¹ + bη` lies on it, one point per residue `b` — `p` points."
+   },
+   {
+    "name": "FRC.Rh.Ext.norm_on_line",
+    "module": "FrcCore/Rh",
+    "line": 421,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "20:B8 — the energy on the critical line: `N(2⁻¹ + bη) = (2⁻¹)² − νb²`, with `2 · 2⁻¹ = 1`."
+   }
+  ],
+  "B9": [
+   {
+    "name": "FRC.Rh.klein_four",
+    "module": "FrcLedger/Rh",
+    "line": 216,
+    "axioms": [
+     "Classical.choice",
+     "Quot.sound",
+     "propext"
+    ],
+    "tier": 2,
+    "ok": true,
+    "doc": "20:B9 — Frobenius `φ = star` and the functional-equation half-turn `ρ : z ↦ 1 − z` generate a Klein four-group: both are involutions and they commute."
+   },
+   {
+    "name": "FRC.Rh.fixed_frobenius",
+    "module": "FrcLedger/Rh",
+    "line": 222,
+    "axioms": [
+     "Classical.choice",
+     "Quot.sound",
+     "propext"
+    ],
+    "tier": 2,
+    "ok": true,
+    "doc": "20:B9 — the fixed locus of Frobenius is the prime meridian `F` (the elements with `b = 0`)."
+   },
+   {
+    "name": "FRC.Rh.trace_eq_one_iff",
+    "module": "FrcLedger/Rh",
+    "line": 235,
+    "axioms": [
+     "Classical.choice",
+     "Quot.sound",
+     "propext"
+    ],
+    "tier": 2,
+    "ok": true,
+    "doc": "20:B8, 20:B9 — the finite critical line: `Tr z = 1` exactly when `Re z = 2⁻¹`; this locus is the fixed locus of `σ = ρ ∘ φ : z ↦ 1 − z̄`."
+   },
+   {
+    "name": "FRC.Rh.fixed_half_turn",
+    "module": "FrcLedger/Rh",
+    "line": 257,
+    "axioms": [
+     "Classical.choice",
+     "Quot.sound",
+     "propext"
+    ],
+    "tier": 2,
+    "ok": true,
+    "doc": "20:B9 — the fixed locus of the half-turn `ρ` is the single point `2⁻¹`, the meeting of the prime meridian and the critical line."
+   },
+   {
+    "name": "FRC.Rh.Ext.klein_four",
+    "module": "FrcCore/Rh",
+    "line": 336,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "20:B9 — conjugation `φ` and the half-turn `ρ` generate a Klein four-group: both are involutions and they commute, `φ ρ = ρ φ = σ`."
+   },
+   {
+    "name": "FRC.Rh.Ext.fixed_conj",
+    "module": "FrcCore/Rh",
+    "line": 359,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "20:B9 — the fixed locus of conjugation is the prime meridian: `z̄ = z ⟺ b = 0`."
+   },
+   {
+    "name": "FRC.Rh.Ext.critical_line",
+    "module": "FrcCore/Rh",
+    "line": 369,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "20:B8, 20:B9 — the finite critical line: `Tr z = 1` exactly when `Re z = 2⁻¹ = 2κ + 1`; it is the fixed locus of `σ = ρ ∘ φ`; every `2⁻¹ + bη` lies on it, one point per residue `b` — `p` points."
+   },
+   {
+    "name": "FRC.Rh.Ext.fixed_half_turn",
+    "module": "FrcCore/Rh",
+    "line": 400,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "20:B9 — the fixed locus of the half-turn `ρ` is the single point `2⁻¹`, the meeting of the prime meridian and the critical line: `ρ z = z ⟺ (φ z = z ∧ σ z = z) ⟺ z = 2⁻¹ + 0η`."
+   }
+  ],
+  "B10": [
+   {
+    "name": "FRC.Rh.subject_constants",
+    "module": "FrcLedger/Rh",
+    "line": 171,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "20:B10 — the Subject constants on every shell: `π = 2κ` with `2π = −1`; the quarter-turn `i = g^{−κ}` (read as `g^{3κ}`, since `g^{4κ} = 1`) equals `−g^κ` and squares to `−1`; `g^π = −1`; and the Euler identity `e^{iπ} = (g^m)^{m·π} = −1` for every odd `m` — the convention \"`e = g^m` on the odd representative `m` of `i`\" fixes the parity of the exponent, and the identity uses nothing else about `m`."
+   },
+   {
+    "name": "FRC.Rh.constants13",
+    "module": "FrcLedger/Rh",
+    "line": 188,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "20:B10 [value] — on `𝔽₁₃(τ; 0, 1, 2)`: `κ = 3`, `π = 6`, `2π = −1`, `i = 2^{−3} = 2^9 = 5`, `i² = −1`, `e = 2^5 = 6` on the odd representative `5`, `2^π = −1`, `e^{iπ} = 6^{30} = −1`."
+   },
+   {
+    "name": "FRC.Rh.subject_constants",
+    "module": "FrcCore/Rh",
+    "line": 150,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "20:B10 — the Subject constants on every shell: `2π = −1` with `π = 2κ`; `i = g^{−κ} = −g^κ` with `i² = −1`; `g^π = −1`; and `e^{iπ} = (g^m)^{m·π} = −1` for every odd `m` — the convention \"`e = g^m` on the odd representative `m` of `i`\" fixes the parity of the exponent, and the identity uses nothing else about `m`."
+   },
+   {
+    "name": "FRC.Rh.constants13",
+    "module": "FrcCore/Rh",
+    "line": 160,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "20:B10 [value] — on `𝔽₁₃(τ; 0, 1, 2)`: `π = 6`, `2π = −1`, `i = 2^9 = 5 = −2^3`, `i² = −1`, `e = 2^5 = 6`, `2^π = −1`, `e^{iπ} = 6^{30} = −1`."
+   },
+   {
+    "name": "FRC.Shell.frame13",
+    "module": "FrcCore/Instances",
+    "line": 14,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "00:C1, 20:B10 on `𝔽₁₃`: the frame `(τ; 0, 1, 2)` of capacity `3` — `2` is primitive (decided)."
+   }
+  ],
+  "C2": [
+   {
+    "name": "FRC.Rh.vonMangoldt_moebius",
+    "module": "FrcLedger/Rh",
+    "line": 624,
+    "axioms": [
+     "Classical.choice",
+     "Quot.sound",
+     "propext"
+    ],
+    "tier": 2,
+    "ok": true,
+    "doc": "20:C2 — `Λ = μ ∗ log` exactly on the divisor lattice: `Λ(n) = Σ_{d ∣ n} μ(d) log(n/d)`; and the support of `Λ` is the prime powers. (Hardy's limit `R_L → (φ(n)/n) Λ(n)` is the import A3.)"
+   }
+  ],
+  "C5": [
+   {
+    "name": "FRC.Rh.chi_parseval",
+    "module": "FrcLedger/Rh",
+    "line": 571,
+    "axioms": [
+     "Classical.choice",
+     "Quot.sound",
+     "propext"
+    ],
+    "tier": 2,
+    "ok": true,
+    "doc": "20:E13, 20:C5 — Parseval on the cycle: `Σ_j |⟨v, χ_j⟩|² = n Σ_m |v(m)|²`; the chart modes are complete."
+   },
+   {
+    "name": "FRC.Rh.flatness",
+    "module": "FrcLedger/Rh",
+    "line": 598,
+    "axioms": [
+     "Classical.choice",
+     "Quot.sound",
+     "propext"
+    ],
+    "tier": 2,
+    "ok": true,
+    "doc": "20:C5 — mean-square flatness: for a mean-removed vector `u ≠ 0` on the cycle (`Σ_m u(m) = 0`), the normalised correlations `r_j = |⟨u, χ_j⟩|/(‖u‖ ‖χ_j‖)` with the nonconstant modes satisfy `Σ_{j≠0} r_j² = 1` exactly, so their mean square over the `n − 1 = p − 2` nonconstant modes is `1/(p − 2)`: the root-mean-square correlation is `1/√(p − 2)`."
+   }
+  ],
+  "E1": [
+   {
+    "name": "FRC.Rh.scale_shift",
+    "module": "FrcLedger/Rh",
+    "line": 450,
+    "axioms": [
+     "Classical.choice",
+     "Quot.sound",
+     "propext"
+    ],
+    "tier": 2,
+    "ok": true,
+    "doc": "20:E1, 20:E12 — the scale-shift `S : x ↦ g^r x` is a permutation of `F^×` with the power characters `x ↦ x^k` as eigenvectors in the `𝔽_p` reading, `S x^k = g^{rk} x^k`, and its fixed-point count — the trace of its permutation matrix — is `(p − 1)·[(p − 1) ∣ r]`, which carries no prime data."
+   },
+   {
+    "name": "FRC.Rh.character_eigen",
+    "module": "FrcLedger/Rh",
+    "line": 485,
+    "axioms": [
+     "Classical.choice",
+     "Quot.sound",
+     "propext"
+    ],
+    "tier": 2,
+    "ok": true,
+    "doc": "20:E12, 20:E1 — the multiplicative characters of the shell are eigenvectors of the scale-shift in the abstract reading: `χ(g^r x) = χ(g)^r χ(x)` for every `χ : F^× →* ℂ^×`."
+   },
+   {
+    "name": "FRC.Rh.chi_shift",
+    "module": "FrcLedger/Rh",
+    "line": 524,
+    "axioms": [
+     "Classical.choice",
+     "Quot.sound",
+     "propext"
+    ],
+    "tier": 2,
+    "ok": true,
+    "doc": "20:E12, 20:E1 — clause (iii): the scale-shift `m ↦ m + 1` (the residue `g^m ↦ g^{m+1}`) has every chart mode as an eigenvector, with eigenphase `e^{2πi·j/n}` independent of the vector: `χ_j(m + 1) = e^{2πi j/n} χ_j(m)`."
+   },
+   {
+    "name": "FRC.Rh.shift_power_character",
+    "module": "FrcCore/Rh",
+    "line": 169,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "20:E1, 20:E12 — the power characters are eigenvectors of the scale-shift `x ↦ g^r x` in the `𝔽_p` reading: `(g^r x)^k = (g^r)^k · x^k`."
+   },
+   {
+    "name": "FRC.Rh.shift_trace",
+    "module": "FrcCore/Rh",
+    "line": 194,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "20:E12, 20:E1 — clause (iii) in the `𝔽_p` reading: the fixed-point count of the scale-shift, the trace of its permutation matrix: `x ↦ g^r x` fixes every nonzero residue when `(p − 1) ∣ r` and none otherwise, `Tr S^r = (p − 1)·[(p − 1) ∣ r]`; the shell's trace carries no prime data."
+   }
+  ],
+  "E12": [
+   {
+    "name": "FRC.Rh.chi_inversion",
+    "module": "FrcLedger/Rh",
+    "line": 533,
+    "axioms": [
+     "Classical.choice",
+     "Quot.sound",
+     "propext"
+    ],
+    "tier": 2,
+    "ok": true,
+    "doc": "20:E12, 20:E13 — clause (i): Fourier inversion on the cycle, `v = (1/n) Σ_j ⟨v, χ_j⟩ χ_j`, with the constant mode carrying the mean, `⟨v, χ_0⟩ = Σ_m v(m)`, so the nontrivial modes carry `v − v̄·1`."
+   },
+   {
+    "name": "FRC.Rh.chi_shift",
+    "module": "FrcLedger/Rh",
+    "line": 524,
+    "axioms": [
+     "Classical.choice",
+     "Quot.sound",
+     "propext"
+    ],
+    "tier": 2,
+    "ok": true,
+    "doc": "20:E12, 20:E1 — clause (iii): the scale-shift `m ↦ m + 1` (the residue `g^m ↦ g^{m+1}`) has every chart mode as an eigenvector, with eigenphase `e^{2πi·j/n}` independent of the vector: `χ_j(m + 1) = e^{2πi j/n} χ_j(m)`."
+   },
+   {
+    "name": "FRC.Rh.scale_shift",
+    "module": "FrcLedger/Rh",
+    "line": 450,
+    "axioms": [
+     "Classical.choice",
+     "Quot.sound",
+     "propext"
+    ],
+    "tier": 2,
+    "ok": true,
+    "doc": "20:E1, 20:E12 — the scale-shift `S : x ↦ g^r x` is a permutation of `F^×` with the power characters `x ↦ x^k` as eigenvectors in the `𝔽_p` reading, `S x^k = g^{rk} x^k`, and its fixed-point count — the trace of its permutation matrix — is `(p − 1)·[(p − 1) ∣ r]`, which carries no prime data."
+   },
+   {
+    "name": "FRC.Rh.shift_power_character",
+    "module": "FrcCore/Rh",
+    "line": 169,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "20:E1, 20:E12 — the power characters are eigenvectors of the scale-shift `x ↦ g^r x` in the `𝔽_p` reading: `(g^r x)^k = (g^r)^k · x^k`."
+   },
+   {
+    "name": "FRC.Rh.shift_trace",
+    "module": "FrcCore/Rh",
+    "line": 194,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "20:E12, 20:E1 — clause (iii) in the `𝔽_p` reading: the fixed-point count of the scale-shift, the trace of its permutation matrix: `x ↦ g^r x` fixes every nonzero residue when `(p − 1) ∣ r` and none otherwise, `Tr S^r = (p − 1)·[(p − 1) ∣ r]`; the shell's trace carries no prime data."
+   }
+  ],
+  "E13": [
+   {
+    "name": "FRC.Rh.chi_orthogonal",
+    "module": "FrcLedger/Rh",
+    "line": 512,
+    "axioms": [
+     "Classical.choice",
+     "Quot.sound",
+     "propext"
+    ],
+    "tier": 2,
+    "ok": true,
+    "doc": "20:E13 — orthogonality of the chart modes: `Σ_m χ_j(m) χ_k(m)̄ = n·[j = k]`, each of squared norm `n = p − 1` (with `chi_inversion`, the `p − 1` characters are an orthogonal basis of `ℂ^{F^×}`; the orthonormal system is `χ_j/√n`)."
+   },
+   {
+    "name": "FRC.Rh.chi_parseval",
+    "module": "FrcLedger/Rh",
+    "line": 571,
+    "axioms": [
+     "Classical.choice",
+     "Quot.sound",
+     "propext"
+    ],
+    "tier": 2,
+    "ok": true,
+    "doc": "20:E13, 20:C5 — Parseval on the cycle: `Σ_j |⟨v, χ_j⟩|² = n Σ_m |v(m)|²`; the chart modes are complete."
+   },
+   {
+    "name": "FRC.Rh.chi_inversion",
+    "module": "FrcLedger/Rh",
+    "line": 533,
+    "axioms": [
+     "Classical.choice",
+     "Quot.sound",
+     "propext"
+    ],
+    "tier": 2,
+    "ok": true,
+    "doc": "20:E12, 20:E13 — clause (i): Fourier inversion on the cycle, `v = (1/n) Σ_j ⟨v, χ_j⟩ χ_j`, with the constant mode carrying the mean, `⟨v, χ_0⟩ = Σ_m v(m)`, so the nontrivial modes carry `v − v̄·1`."
+   },
+   {
+    "name": "FRC.Rh.power_characters_not_orthonormal",
+    "module": "FrcLedger/Rh",
+    "line": 473,
+    "axioms": [
+     "Classical.choice",
+     "Quot.sound",
+     "propext"
+    ],
+    "tier": 2,
+    "ok": true,
+    "doc": "20:E12, 20:E13 — the `𝔽_p`-valued power characters are never orthonormal: the self-pairing `Σ_{x ∈ F^×} x^j · x^j` is `0` or `−1`, never `1`, on every odd shell."
+   }
+  ]
+ }
 }

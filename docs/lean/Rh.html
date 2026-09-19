@@ -1,0 +1,750 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-HNE3RMJ5L1"></script>
+<script> window.dataLayer = window.dataLayer || []; function gtag(){dataLayer.push(arguments);} gtag('js', new Date()); gtag('config', 'G-HNE3RMJ5L1'); </script>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Rh.lean — FrcLedger</title>
+<meta name="description" content="The Lean module FrcLedger/Rh of the FRC predicate ledgers, rendered with an anchor per declaration">
+<meta name="author" content="Yosef Akhtman">
+<link rel="icon" href="../frc-logo-fav.png">
+<link rel="stylesheet" href="../style.css?v=45116e26">
+
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <h1>Rh.lean — FrcLedger</h1>
+    
+    <nav><a href="../index.html">Home</a><a href="../publications.html">Publications</a><a href="../00-ledger.html">Ledger</a><a href="../predictions.html">Predictions</a><a href="../explicability.html">Explicability</a></nav>
+  </header>
+<main id="ledger-main"><section class="prose"><p>The Lean module <code>lean/FrcLedger/Rh.lean</code> of the paper <a href="../20-rh/20-rh-ledger.html">20-rh</a> (on Mathlib): 38 theorems (2 definitions): 7 with no axioms (green), 3 at tier 1 (teal: <code>propext</code>, <code>Quot.sound</code>), 28 at tier 2 (amber: <code>Classical.choice</code>), 0 red; the small plain glyph marks a definition (no proof, no axioms; on the ledger pages the plain glyph is instead a module cited as a whole). Each declaration is anchored; the ledger rows cite them by name. <a href="https://live.lean-lang.org/#project=mathlib-stable&url=https://raw.githubusercontent.com/gamayos/finite-ring-space/main/lean/web/Rh.lean" target="_blank" rel="noopener">▶ open in the Lean web editor</a> · <a href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcLedger/Rh.lean" target="_blank" rel="noopener">on GitHub</a> · <a href="https://github.com/gamayos/finite-ring-space/blob/main/lean/axioms.log" target="_blank" rel="noopener">axioms.log</a> · <a href="https://github.com/gamayos/finite-ring-space/actions/workflows/lean.yml" target="_blank" rel="noopener">CI</a>.</p></section><pre class="lean"><span class="ln" id="L1"><a class="lno" href="#L1">1</a>import Mathlib</span>
+<span class="ln" id="L2"><a class="lno" href="#L2">2</a></span>
+<span class="ln" id="L3"><a class="lno" href="#L3">3</a>/-!</span>
+<span class="ln" id="L4"><a class="lno" href="#L4">4</a># 20-rh — the Riemann Hypothesis over the holographic substrate: the shell rows in Lean (2026-09-19)</span>
+<span class="ln" id="L5"><a class="lno" href="#L5">5</a></span>
+<span class="ln" id="L6"><a class="lno" href="#L6">6</a>The exact arithmetic of the paper&#x27;s block B, the constants of its Subject register, and the two character</span>
+<span class="ln" id="L7"><a class="lno" href="#L7">7</a>readings of the shell theorem — rows B2, B4–B10 (B8&#x27;s shell clauses), C2&#x27;s identity `Λ = μ ∗ log`, C5, E1&#x27;s shell</span>
+<span class="ln" id="L8"><a class="lno" href="#L8">8</a>clause, E12 (i) and (iii), and E13&#x27;s orthogonality, inversion and Parseval — proved for every shell: an arbitrary</span>
+<span class="ln" id="L9"><a class="lno" href="#L9">9</a>finite field `F` with `4κ + 1` elements and a primitive root `g`, or `ZMod p` where the prime is needed, and, for</span>
+<span class="ln" id="L10"><a class="lno" href="#L10">10</a>the analytic identities, over any integral domain or over `ℂ`; the laboratory pair `(13, 233)` of B1 decided. The zero-slot and slot complementarity</span>
+<span class="ln" id="L11"><a class="lno" href="#L11">11</a>(B4, B5); the Ramanujan sum `c_p(n) = −1` off the origin (B7); the quadratic extension `F(η)`, `η² = ν` a</span>
+<span class="ln" id="L12"><a class="lno" href="#L12">12</a>nonsquare, as Mathlib&#x27;s `QuadraticAlgebra F ν 0`: its norm-one circle of order `p + 1`, Frobenius as</span>
+<span class="ln" id="L13"><a class="lno" href="#L13">13</a>conjugation and as inversion on the circle, the quarter-turn Frobenius-fixed and off the circle (B6); the finite</span>
+<span class="ln" id="L14"><a class="lno" href="#L14">14</a>critical line `Tr z = 1 ⟺ Re z = 2⁻¹ = 2κ + 1 = −π` with `p` points and energy `¼ − νb²` (B8); the Klein</span>
+<span class="ln" id="L15"><a class="lno" href="#L15">15</a>four-group of Frobenius and the functional-equation half-turn with its three fixed loci (B9); the constants</span>
+<span class="ln" id="L16"><a class="lno" href="#L16">16</a>`π = 2κ`, `2π = −1`, `i = g^{−κ}`, `i² = −1`, `g^π = −1`, `e^{iπ} = −1` on the odd representative (B10, with</span>
+<span class="ln" id="L17"><a class="lno" href="#L17">17</a>`𝔽₁₃` decided); the scale-shift on the power characters and its trace `(p − 1)[(p − 1) ∣ r]` (E1, E12(iii), the</span>
+<span class="ln" id="L18"><a class="lno" href="#L18">18</a>`𝔽_p` reading); the complex characters of the cycle: orthonormality, Fourier inversion with the constant mode</span>
+<span class="ln" id="L19"><a class="lno" href="#L19">19</a>carrying the mean, the shift as a diagonal operator with eigenphases `2πj/(p − 1)`, Parseval, and the</span>
+<span class="ln" id="L20"><a class="lno" href="#L20">20</a>mean-square flatness `Σ_{j≠0} r_j² = 1` (E12(i), E12(iii), E13, C5); `Λ = μ ∗ log` and its support (C2); frame</span>
+<span class="ln" id="L21"><a class="lno" href="#L21">21</a>coincidence below the horizon (B2); the laboratory pair `(13, 233)` (B1). Every theorem&#x27;s docstring opens with</span>
+<span class="ln" id="L22"><a class="lno" href="#L22">22</a>the row it decides. Classical (tier 2) on Mathlib&#x27;s hierarchy; the shell arithmetic is also in the core</span>
+<span class="ln" id="L23"><a class="lno" href="#L23">23</a>(`FrcCore/Rh.lean`) with no axioms.</span>
+<span class="ln" id="L24"><a class="lno" href="#L24">24</a>-/</span>
+<span class="ln" id="L25"><a class="lno" href="#L25">25</a></span>
+<span class="ln" id="L26"><a class="lno" href="#L26">26</a>namespace FRC.Rh</span>
+<span class="ln" id="L27"><a class="lno" href="#L27">27</a></span>
+<span class="ln" id="L28"><a class="lno" href="#L28">28</a>open Finset</span>
+<span class="ln" id="L29"><a class="lno" href="#L29">29</a></span>
+<span class="ln" id="L30"><a class="lno" href="#L30">30</a>/-! ## The shell: the zero-slot, slot complementarity and the Ramanujan sum (rows B4, B5, B7) -/</span>
+<span class="ln" id="L31"><a class="lno" href="#L31">31</a></span>
+<span class="ln" id="L32"><a class="lno" href="#L32">32</a>section shell</span>
+<span class="ln" id="L33"><a class="lno" href="#L33">33</a></span>
+<span class="ln" id="L34"><a class="lno" href="#L34">34</a>variable {F : Type*} [Field F] [Fintype F] [DecidableEq F]</span>
+<span class="ln" id="L35"><a class="lno" href="#L35">35</a></span>
+<span class="ln" id="L36"><a class="lno" href="#L36">36</a>/-- 20:B4 — zero-slot, every shell: `Σ_{x ∈ F^×} x^k = 0` on every nonterminal exponent `1 ≤ k ≤ p − 2`, and</span>
+<span class="ln" id="L37"><a class="lno" href="#L37">37</a>`= −1` on the full cycle `k = p − 1`. -/</span>
+<span class="ln decl" id="FRC.Rh.zero_slot"><a class="lno" href="#FRC.Rh.zero_slot">38</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcLedger/Rh.lean#L38" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small ok" src="lean-ok.png" alt="" title="no axioms">theorem zero_slot :</span>
+<span class="ln" id="L39"><a class="lno" href="#L39">39</a>    (∀ k, 1 ≤ k → k ≤ Fintype.card F - 2 → ∑ x : Fˣ, ((x : F) ^ k) = 0) ∧</span>
+<span class="ln" id="L40"><a class="lno" href="#L40">40</a>    ∑ x : Fˣ, ((x : F) ^ (Fintype.card F - 1)) = -1 := by</span>
+<span class="ln" id="L41"><a class="lno" href="#L41">41</a>  refine ⟨fun k hk1 hk2 =&gt; ?_, ?_⟩</span>
+<span class="ln" id="L42"><a class="lno" href="#L42">42</a>  · rw [FiniteField.sum_pow_units, ite_eq_right]</span>
+<span class="ln" id="L43"><a class="lno" href="#L43">43</a>    intro hdvd</span>
+<span class="ln" id="L44"><a class="lno" href="#L44">44</a>    have := Nat.le_of_dvd (by omega) hdvd</span>
+<span class="ln" id="L45"><a class="lno" href="#L45">45</a>    omega</span>
+<span class="ln" id="L46"><a class="lno" href="#L46">46</a>  · rw [FiniteField.sum_pow_units, ite_eq_left dvd_rfl]</span>
+<span class="ln" id="L47"><a class="lno" href="#L47">47</a></span>
+<span class="ln" id="L48"><a class="lno" href="#L48">48</a>omit [DecidableEq F] in</span>
+<span class="ln" id="L49"><a class="lno" href="#L49">49</a>/-- 20:B5 — slot complementarity, every shell: `Φ(k) = −g^k` is injective on the nontrivial spectral slots</span>
+<span class="ln" id="L50"><a class="lno" href="#L50">50</a>`1 ≤ k ≤ p − 2` and maps them onto the nonterminal additive slots `F^× ∖ {−1}`. -/</span>
+<span class="ln decl" id="FRC.Rh.slot_complementarity"><a class="lno" href="#FRC.Rh.slot_complementarity">51</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcLedger/Rh.lean#L51" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small ok" src="lean-ok.png" alt="" title="no axioms">theorem slot_complementarity (g : F) (hg : IsPrimitiveRoot g (Fintype.card F - 1)) :</span>
+<span class="ln" id="L52"><a class="lno" href="#L52">52</a>    Set.InjOn (fun k : ℕ =&gt; -(g ^ k)) (Set.Icc 1 (Fintype.card F - 2)) ∧</span>
+<span class="ln" id="L53"><a class="lno" href="#L53">53</a>    (fun k : ℕ =&gt; -(g ^ k)) &#x27;&#x27; Set.Icc 1 (Fintype.card F - 2) = {y : F | y ≠ 0 ∧ y ≠ -1} := by</span>
+<span class="ln" id="L54"><a class="lno" href="#L54">54</a>  have h1 : 1 &lt; Fintype.card F := Fintype.one_lt_card</span>
+<span class="ln" id="L55"><a class="lno" href="#L55">55</a>  have : NeZero (Fintype.card F - 1) := ⟨by omega⟩</span>
+<span class="ln" id="L56"><a class="lno" href="#L56">56</a>  have hg0 : g ≠ 0 := by</span>
+<span class="ln" id="L57"><a class="lno" href="#L57">57</a>    rintro rfl</span>
+<span class="ln" id="L58"><a class="lno" href="#L58">58</a>    have := hg.pow_eq_one</span>
+<span class="ln" id="L59"><a class="lno" href="#L59">59</a>    rw [zero_pow (by omega)] at this</span>
+<span class="ln" id="L60"><a class="lno" href="#L60">60</a>    exact zero_ne_one this</span>
+<span class="ln" id="L61"><a class="lno" href="#L61">61</a>  refine ⟨fun a ha b hb hab =&gt; ?_, ?_⟩</span>
+<span class="ln" id="L62"><a class="lno" href="#L62">62</a>  · simp only [Set.mem_Icc] at ha hb</span>
+<span class="ln" id="L63"><a class="lno" href="#L63">63</a>    exact hg.pow_inj (by omega) (by omega) (neg_injective hab)</span>
+<span class="ln" id="L64"><a class="lno" href="#L64">64</a>  · ext y</span>
+<span class="ln" id="L65"><a class="lno" href="#L65">65</a>    simp only [Set.mem_image, Set.mem_Icc, Set.mem_ofPred_eq]</span>
+<span class="ln" id="L66"><a class="lno" href="#L66">66</a>    constructor</span>
+<span class="ln" id="L67"><a class="lno" href="#L67">67</a>    · rintro ⟨k, ⟨hk1, hk2⟩, rfl⟩</span>
+<span class="ln" id="L68"><a class="lno" href="#L68">68</a>      refine ⟨neg_ne_zero.2 (pow_ne_zero _ hg0), fun h =&gt; ?_⟩</span>
+<span class="ln" id="L69"><a class="lno" href="#L69">69</a>      have := neg_injective h</span>
+<span class="ln" id="L70"><a class="lno" href="#L70">70</a>      exact hg.pow_ne_one_of_pos_of_lt (by omega) (by omega) this</span>
+<span class="ln" id="L71"><a class="lno" href="#L71">71</a>    · rintro ⟨hy0, hy1⟩</span>
+<span class="ln" id="L72"><a class="lno" href="#L72">72</a>      have hpow : (-y) ^ (Fintype.card F - 1) = 1 :=</span>
+<span class="ln" id="L73"><a class="lno" href="#L73">73</a>        FiniteField.pow_card_sub_one_eq_one (-y) (neg_ne_zero.2 hy0)</span>
+<span class="ln" id="L74"><a class="lno" href="#L74">74</a>      obtain ⟨i, hi, hiy⟩ := hg.eq_pow_of_pow_eq_one hpow</span>
+<span class="ln" id="L75"><a class="lno" href="#L75">75</a>      have hi0 : i ≠ 0 := by</span>
+<span class="ln" id="L76"><a class="lno" href="#L76">76</a>        rintro rfl</span>
+<span class="ln" id="L77"><a class="lno" href="#L77">77</a>        rw [pow_zero] at hiy</span>
+<span class="ln" id="L78"><a class="lno" href="#L78">78</a>        exact hy1 (by rw [← neg_neg y, ← hiy])</span>
+<span class="ln" id="L79"><a class="lno" href="#L79">79</a>      exact ⟨i, ⟨by omega, by omega⟩, by rw [hiy, neg_neg]⟩</span>
+<span class="ln" id="L80"><a class="lno" href="#L80">80</a></span>
+<span class="ln" id="L81"><a class="lno" href="#L81">81</a>end shell</span>
+<span class="ln" id="L82"><a class="lno" href="#L82">82</a></span>
+<span class="ln" id="L83"><a class="lno" href="#L83">83</a>section ramanujan</span>
+<span class="ln" id="L84"><a class="lno" href="#L84">84</a></span>
+<span class="ln" id="L85"><a class="lno" href="#L85">85</a>variable {R : Type*} [CommRing R] [IsDomain R]</span>
+<span class="ln" id="L86"><a class="lno" href="#L86">86</a></span>
+<span class="ln" id="L87"><a class="lno" href="#L87">87</a>/-- 20:B7 — the flat ground state, in any integral domain with a primitive `p`-th root of unity `ω` (the</span>
+<span class="ln" id="L88"><a class="lno" href="#L88">88</a>cyclotomic ledger, `𝔽_q` with `q ≡ 1 (mod p)`, or `ℂ`): the full-modulus Ramanujan sum `c_p(n) = Σ_{a=1}^{p−1}</span>
+<span class="ln" id="L89"><a class="lno" href="#L89">89</a>ω^{an}` equals `−1` for every `n ≢ 0 (mod p)`, and `p − 1` at the origin; the mode at the spectral origin carries</span>
+<span class="ln" id="L90"><a class="lno" href="#L90">90</a>no prime information. -/</span>
+<span class="ln decl" id="FRC.Rh.ramanujan_sum"><a class="lno" href="#FRC.Rh.ramanujan_sum">91</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcLedger/Rh.lean#L91" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small ok" src="lean-ok.png" alt="" title="no axioms">theorem ramanujan_sum {p : ℕ} (hp : 0 &lt; p) {ω : R} (hω : IsPrimitiveRoot ω p) (n : ℕ) :</span>
+<span class="ln" id="L92"><a class="lno" href="#L92">92</a>    (¬ p ∣ n → ∑ a ∈ Ico 1 p, ω ^ (a * n) = -1) ∧</span>
+<span class="ln" id="L93"><a class="lno" href="#L93">93</a>    (p ∣ n → ∑ a ∈ Ico 1 p, ω ^ (a * n) = ((p - 1 : ℕ) : R)) := by</span>
+<span class="ln" id="L94"><a class="lno" href="#L94">94</a>  have hsplit : ∑ a ∈ range p, ω ^ (a * n) = 1 + ∑ a ∈ Ico 1 p, ω ^ (a * n) := by</span>
+<span class="ln" id="L95"><a class="lno" href="#L95">95</a>    obtain ⟨m, rfl⟩ : ∃ m, p = m + 1 := ⟨p - 1, by omega⟩</span>
+<span class="ln" id="L96"><a class="lno" href="#L96">96</a>    rw [sum_range_succ&#x27;, sum_Ico_eq_sum_range, Nat.add_sub_cancel, zero_mul, pow_zero, add_comm]</span>
+<span class="ln" id="L97"><a class="lno" href="#L97">97</a>    congr 1</span>
+<span class="ln" id="L98"><a class="lno" href="#L98">98</a>    refine sum_congr rfl fun a _ =&gt; ?_</span>
+<span class="ln" id="L99"><a class="lno" href="#L99">99</a>    rw [add_comm 1 a]</span>
+<span class="ln" id="L100"><a class="lno" href="#L100">100</a>  constructor</span>
+<span class="ln" id="L101"><a class="lno" href="#L101">101</a>  · intro hn</span>
+<span class="ln" id="L102"><a class="lno" href="#L102">102</a>    have hx1 : ω ^ n ≠ 1 := fun h =&gt; hn ((hω.pow_eq_one_iff_dvd n).1 h)</span>
+<span class="ln" id="L103"><a class="lno" href="#L103">103</a>    have hxp : (ω ^ n) ^ p = 1 := by rw [← pow_mul, mul_comm, pow_mul, hω.pow_eq_one, one_pow]</span>
+<span class="ln" id="L104"><a class="lno" href="#L104">104</a>    have hsum : ∑ a ∈ range p, ω ^ (a * n) = 0 := by</span>
+<span class="ln" id="L105"><a class="lno" href="#L105">105</a>      have h := geom_sum_mul (ω ^ n) p</span>
+<span class="ln" id="L106"><a class="lno" href="#L106">106</a>      rw [hxp, sub_self] at h</span>
+<span class="ln" id="L107"><a class="lno" href="#L107">107</a>      have h&#x27; : ∑ a ∈ range p, ω ^ (a * n) = ∑ a ∈ range p, (ω ^ n) ^ a :=</span>
+<span class="ln" id="L108"><a class="lno" href="#L108">108</a>        sum_congr rfl fun a _ =&gt; by rw [← pow_mul, mul_comm]</span>
+<span class="ln" id="L109"><a class="lno" href="#L109">109</a>      rw [h&#x27;]</span>
+<span class="ln" id="L110"><a class="lno" href="#L110">110</a>      exact (mul_eq_zero.1 h).resolve_right (sub_ne_zero.2 hx1)</span>
+<span class="ln" id="L111"><a class="lno" href="#L111">111</a>    rw [hsum] at hsplit</span>
+<span class="ln" id="L112"><a class="lno" href="#L112">112</a>    exact (neg_eq_of_add_eq_zero_right hsplit.symm).symm</span>
+<span class="ln" id="L113"><a class="lno" href="#L113">113</a>  · intro hn</span>
+<span class="ln" id="L114"><a class="lno" href="#L114">114</a>    have hone : ∀ a, ω ^ (a * n) = 1 := fun a =&gt; by</span>
+<span class="ln" id="L115"><a class="lno" href="#L115">115</a>      obtain ⟨c, rfl⟩ := hn</span>
+<span class="ln" id="L116"><a class="lno" href="#L116">116</a>      rw [← mul_assoc, mul_comm a, mul_assoc, pow_mul, hω.pow_eq_one, one_pow]</span>
+<span class="ln" id="L117"><a class="lno" href="#L117">117</a>    simp only [hone, sum_const, Nat.card_Ico, nsmul_eq_mul, mul_one]</span>
+<span class="ln" id="L118"><a class="lno" href="#L118">118</a></span>
+<span class="ln" id="L119"><a class="lno" href="#L119">119</a>end ramanujan</span>
+<span class="ln" id="L120"><a class="lno" href="#L120">120</a></span>
+<span class="ln" id="L121"><a class="lno" href="#L121">121</a>/-! ## The Subject register on the shell (rows B10, B8&#x27;s arithmetic) -/</span>
+<span class="ln" id="L122"><a class="lno" href="#L122">122</a></span>
+<span class="ln" id="L123"><a class="lno" href="#L123">123</a>section constants</span>
+<span class="ln" id="L124"><a class="lno" href="#L124">124</a></span>
+<span class="ln" id="L125"><a class="lno" href="#L125">125</a>variable {F : Type*} [Field F] [Fintype F]</span>
+<span class="ln" id="L126"><a class="lno" href="#L126">126</a></span>
+<span class="ln" id="L127"><a class="lno" href="#L127">127</a>/-- `2 ≠ 0` on a shell of `4κ + 1` elements. -/</span>
+<span class="ln decl" id="FRC.Rh.two_ne_zero_of_card"><a class="lno" href="#FRC.Rh.two_ne_zero_of_card">128</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcLedger/Rh.lean#L128" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small t2" src="lean-t2.png" alt="" title="tier 2, classical: Classical.choice, Quot.sound, propext">lemma two_ne_zero_of_card (κ : ℕ) (hκ : Fintype.card F = 4 * κ + 1) : (2 : F) ≠ 0 := by</span>
+<span class="ln" id="L129"><a class="lno" href="#L129">129</a>  intro h2</span>
+<span class="ln" id="L130"><a class="lno" href="#L130">130</a>  have hc : ((4 * κ + 1 : ℕ) : F) = 0 := by rw [← hκ]; exact FiniteField.cast_card_eq_zero F</span>
+<span class="ln" id="L131"><a class="lno" href="#L131">131</a>  have : ((4 * κ + 1 : ℕ) : F) = 2 * (2 * κ) + 1 := by push_cast; ring</span>
+<span class="ln" id="L132"><a class="lno" href="#L132">132</a>  rw [this, h2, zero_mul, zero_add] at hc</span>
+<span class="ln" id="L133"><a class="lno" href="#L133">133</a>  exact one_ne_zero hc</span>
+<span class="ln" id="L134"><a class="lno" href="#L134">134</a></span>
+<span class="ln" id="L135"><a class="lno" href="#L135">135</a>/-- 20:B8, 20:B10 — the half-turn arithmetic on every shell of `4κ + 1` elements: `2π ≡ −1` with `π = 2κ`,</span>
+<span class="ln" id="L136"><a class="lno" href="#L136">136</a>and `2⁻¹ = 2κ + 1 = −π`. -/</span>
+<span class="ln decl" id="FRC.Rh.half_turn"><a class="lno" href="#FRC.Rh.half_turn">137</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcLedger/Rh.lean#L137" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small t2" src="lean-t2.png" alt="" title="tier 2, classical: Classical.choice, Quot.sound, propext">theorem half_turn (κ : ℕ) (hκ : Fintype.card F = 4 * κ + 1) :</span>
+<span class="ln" id="L138"><a class="lno" href="#L138">138</a>    (2 : F) * ((2 * κ : ℕ) : F) = -1 ∧ (2 : F) * ((2 * κ + 1 : ℕ) : F) = 1 ∧</span>
+<span class="ln" id="L139"><a class="lno" href="#L139">139</a>    ((2 * κ + 1 : ℕ) : F) = -((2 * κ : ℕ) : F) ∧ (2 : F)⁻¹ = ((2 * κ + 1 : ℕ) : F) := by</span>
+<span class="ln" id="L140"><a class="lno" href="#L140">140</a>  have hc : ((4 * κ + 1 : ℕ) : F) = 0 := by rw [← hκ]; exact FiniteField.cast_card_eq_zero F</span>
+<span class="ln" id="L141"><a class="lno" href="#L141">141</a>  have h2 : (2 : F) ≠ 0 := two_ne_zero_of_card κ hκ</span>
+<span class="ln" id="L142"><a class="lno" href="#L142">142</a>  have e1 : (2 : F) * ((2 * κ : ℕ) : F) = -1 := by</span>
+<span class="ln" id="L143"><a class="lno" href="#L143">143</a>    have : ((4 * κ + 1 : ℕ) : F) = 2 * ((2 * κ : ℕ) : F) + 1 := by push_cast; ring</span>
+<span class="ln" id="L144"><a class="lno" href="#L144">144</a>    rw [this] at hc</span>
+<span class="ln" id="L145"><a class="lno" href="#L145">145</a>    exact eq_neg_of_add_eq_zero_left hc</span>
+<span class="ln" id="L146"><a class="lno" href="#L146">146</a>  have e2 : (2 : F) * ((2 * κ + 1 : ℕ) : F) = 1 := by</span>
+<span class="ln" id="L147"><a class="lno" href="#L147">147</a>    push_cast at e1 ⊢</span>
+<span class="ln" id="L148"><a class="lno" href="#L148">148</a>    linear_combination e1</span>
+<span class="ln" id="L149"><a class="lno" href="#L149">149</a>  refine ⟨e1, e2, ?_, ?_⟩</span>
+<span class="ln" id="L150"><a class="lno" href="#L150">150</a>  · push_cast at e1 e2 ⊢</span>
+<span class="ln" id="L151"><a class="lno" href="#L151">151</a>    have : (2 : F) * (2 * (κ : F) + 1 + 2 * (κ : F)) = 0 := by linear_combination e2 + e1</span>
+<span class="ln" id="L152"><a class="lno" href="#L152">152</a>    have := (mul_eq_zero.1 this).resolve_left h2</span>
+<span class="ln" id="L153"><a class="lno" href="#L153">153</a>    exact eq_neg_of_add_eq_zero_left this</span>
+<span class="ln" id="L154"><a class="lno" href="#L154">154</a>  · exact (eq_inv_of_mul_eq_one_right e2).symm</span>
+<span class="ln" id="L155"><a class="lno" href="#L155">155</a></span>
+<span class="ln" id="L156"><a class="lno" href="#L156">156</a>/-- The half-period `g^{2κ} = −1` for a primitive root of a shell with `4κ + 1` elements. -/</span>
+<span class="ln decl" id="FRC.Rh.half_period"><a class="lno" href="#FRC.Rh.half_period">157</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcLedger/Rh.lean#L157" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small t2" src="lean-t2.png" alt="" title="tier 2, classical: Classical.choice, Quot.sound, propext">lemma half_period (κ : ℕ) (hκ : Fintype.card F = 4 * κ + 1) (g : F)</span>
+<span class="ln" id="L158"><a class="lno" href="#L158">158</a>    (hg : IsPrimitiveRoot g (Fintype.card F - 1)) : g ^ (2 * κ) = -1 := by</span>
+<span class="ln" id="L159"><a class="lno" href="#L159">159</a>  have hκ&#x27; : Fintype.card F - 1 = 4 * κ := by omega</span>
+<span class="ln" id="L160"><a class="lno" href="#L160">160</a>  have hκpos : κ ≠ 0 := by</span>
+<span class="ln" id="L161"><a class="lno" href="#L161">161</a>    intro h; subst h; have := Fintype.one_lt_card (α := F); omega</span>
+<span class="ln" id="L162"><a class="lno" href="#L162">162</a>  have h2 : IsPrimitiveRoot (g ^ (2 * κ)) 2 := by</span>
+<span class="ln" id="L163"><a class="lno" href="#L163">163</a>    rw [hκ&#x27;] at hg</span>
+<span class="ln" id="L164"><a class="lno" href="#L164">164</a>    exact hg.pow (by omega) (show 4 * κ = 2 * κ * 2 by ring)</span>
+<span class="ln" id="L165"><a class="lno" href="#L165">165</a>  exact h2.eq_neg_one_of_two_right</span>
+<span class="ln" id="L166"><a class="lno" href="#L166">166</a></span>
+<span class="ln" id="L167"><a class="lno" href="#L167">167</a>/-- 20:B10 — the Subject constants on every shell: `π = 2κ` with `2π = −1`; the quarter-turn `i = g^{−κ}`</span>
+<span class="ln" id="L168"><a class="lno" href="#L168">168</a>(read as `g^{3κ}`, since `g^{4κ} = 1`) equals `−g^κ` and squares to `−1`; `g^π = −1`; and the Euler identity</span>
+<span class="ln" id="L169"><a class="lno" href="#L169">169</a>`e^{iπ} = (g^m)^{m·π} = −1` for every odd `m` — the convention &quot;`e = g^m` on the odd representative `m` of `i`&quot;</span>
+<span class="ln" id="L170"><a class="lno" href="#L170">170</a>fixes the parity of the exponent, and the identity uses nothing else about `m`. -/</span>
+<span class="ln decl" id="FRC.Rh.subject_constants"><a class="lno" href="#FRC.Rh.subject_constants">171</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcLedger/Rh.lean#L171" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small ok" src="lean-ok.png" alt="" title="no axioms">theorem subject_constants (κ : ℕ) (hκ : Fintype.card F = 4 * κ + 1) (g : F)</span>
+<span class="ln" id="L172"><a class="lno" href="#L172">172</a>    (hg : IsPrimitiveRoot g (Fintype.card F - 1)) :</span>
+<span class="ln" id="L173"><a class="lno" href="#L173">173</a>    (2 : F) * ((2 * κ : ℕ) : F) = -1 ∧ g ^ (3 * κ) = -(g ^ κ) ∧ (g ^ (3 * κ)) ^ 2 = -1 ∧</span>
+<span class="ln" id="L174"><a class="lno" href="#L174">174</a>    g ^ (2 * κ) = -1 ∧ ∀ m : ℕ, m % 2 = 1 → (g ^ m) ^ (m * (2 * κ)) = -1 := by</span>
+<span class="ln" id="L175"><a class="lno" href="#L175">175</a>  have hhp := half_period κ hκ g hg</span>
+<span class="ln" id="L176"><a class="lno" href="#L176">176</a>  have hi : g ^ (3 * κ) = -(g ^ κ) := by</span>
+<span class="ln" id="L177"><a class="lno" href="#L177">177</a>    rw [show 3 * κ = κ + 2 * κ by ring, pow_add, hhp, mul_neg, mul_one]</span>
+<span class="ln" id="L178"><a class="lno" href="#L178">178</a>  refine ⟨(half_turn κ hκ).1, hi, ?_, hhp, fun m hm =&gt; ?_⟩</span>
+<span class="ln" id="L179"><a class="lno" href="#L179">179</a>  · rw [hi, neg_sq, ← pow_mul, show κ * 2 = 2 * κ by ring, hhp]</span>
+<span class="ln" id="L180"><a class="lno" href="#L180">180</a>  · rw [← pow_mul, show m * (m * (2 * κ)) = 2 * κ * (m * m) by ring, pow_mul, hhp]</span>
+<span class="ln" id="L181"><a class="lno" href="#L181">181</a>    have hodd : Odd (m * m) := by</span>
+<span class="ln" id="L182"><a class="lno" href="#L182">182</a>      have := Nat.odd_iff.2 hm</span>
+<span class="ln" id="L183"><a class="lno" href="#L183">183</a>      exact this.mul this</span>
+<span class="ln" id="L184"><a class="lno" href="#L184">184</a>    exact hodd.neg_one_pow</span>
+<span class="ln" id="L185"><a class="lno" href="#L185">185</a></span>
+<span class="ln" id="L186"><a class="lno" href="#L186">186</a>/-- 20:B10 [value] — on `𝔽₁₃(τ; 0, 1, 2)`: `κ = 3`, `π = 6`, `2π = −1`, `i = 2^{−3} = 2^9 = 5`, `i² = −1`,</span>
+<span class="ln" id="L187"><a class="lno" href="#L187">187</a>`e = 2^5 = 6` on the odd representative `5`, `2^π = −1`, `e^{iπ} = 6^{30} = −1`. -/</span>
+<span class="ln decl" id="FRC.Rh.constants13"><a class="lno" href="#FRC.Rh.constants13">188</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcLedger/Rh.lean#L188" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small ok" src="lean-ok.png" alt="" title="no axioms">theorem constants13 :</span>
+<span class="ln" id="L189"><a class="lno" href="#L189">189</a>    (2 : ZMod 13) * 6 = -1 ∧ (2 : ZMod 13) ^ 9 = 5 ∧ (5 : ZMod 13) ^ 2 = -1 ∧ (2 : ZMod 13) ^ 5 = 6 ∧</span>
+<span class="ln" id="L190"><a class="lno" href="#L190">190</a>    (2 : ZMod 13) ^ 6 = -1 ∧ (6 : ZMod 13) ^ (5 * 6) = -1 := by decide</span>
+<span class="ln" id="L191"><a class="lno" href="#L191">191</a></span>
+<span class="ln" id="L192"><a class="lno" href="#L192">192</a>end constants</span>
+<span class="ln" id="L193"><a class="lno" href="#L193">193</a></span>
+<span class="ln" id="L194"><a class="lno" href="#L194">194</a>/-! ## The quadratic extension: the phase circle, the critical line, the two loci of agreement (rows B6, B8, B9) -/</span>
+<span class="ln" id="L195"><a class="lno" href="#L195">195</a></span>
+<span class="ln" id="L196"><a class="lno" href="#L196">196</a>section extension</span>
+<span class="ln" id="L197"><a class="lno" href="#L197">197</a></span>
+<span class="ln" id="L198"><a class="lno" href="#L198">198</a>variable {F : Type*} [Field F] (ν : F)</span>
+<span class="ln" id="L199"><a class="lno" href="#L199">199</a></span>
+<span class="ln" id="L200"><a class="lno" href="#L200">200</a>local notation &quot;K&quot; =&gt; QuadraticAlgebra F ν 0</span>
+<span class="ln" id="L201"><a class="lno" href="#L201">201</a></span>
+<span class="ln" id="L202"><a class="lno" href="#L202">202</a>/-- The trace of `a + bη` is `2a`. -/</span>
+<span class="ln decl" id="FRC.Rh.trace_eq"><a class="lno" href="#FRC.Rh.trace_eq">203</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcLedger/Rh.lean#L203" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small t2" src="lean-t2.png" alt="" title="tier 2, classical: Classical.choice, Quot.sound, propext">lemma trace_eq (z : K) : QuadraticAlgebra.trace z = 2 * z.re := by</span>
+<span class="ln" id="L204"><a class="lno" href="#L204">204</a>  rw [QuadraticAlgebra.trace_def, zero_mul, add_zero]</span>
+<span class="ln" id="L205"><a class="lno" href="#L205">205</a></span>
+<span class="ln" id="L206"><a class="lno" href="#L206">206</a>/-- The norm of `a + bη` is `a² − νb²`. -/</span>
+<span class="ln decl" id="FRC.Rh.norm_eq"><a class="lno" href="#FRC.Rh.norm_eq">207</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcLedger/Rh.lean#L207" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small t1" src="lean-t1.png" alt="" title="tier 1: Quot.sound, propext">lemma norm_eq (z : K) : QuadraticAlgebra.norm z = z.re * z.re - ν * z.im * z.im := by</span>
+<span class="ln" id="L208"><a class="lno" href="#L208">208</a>  rw [QuadraticAlgebra.norm_def, zero_mul, zero_mul, add_zero]</span>
+<span class="ln" id="L209"><a class="lno" href="#L209">209</a></span>
+<span class="ln" id="L210"><a class="lno" href="#L210">210</a>/-- The conjugate of `a + bη` is `a − bη`. -/</span>
+<span class="ln decl" id="FRC.Rh.star_eq"><a class="lno" href="#FRC.Rh.star_eq">211</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcLedger/Rh.lean#L211" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small t1" src="lean-t1.png" alt="" title="tier 1: Quot.sound, propext">lemma star_eq (z : K) : star z = ⟨z.re, -z.im⟩ := by</span>
+<span class="ln" id="L212"><a class="lno" href="#L212">212</a>  ext &lt;;&gt; simp [QuadraticAlgebra.re_star, QuadraticAlgebra.im_star]</span>
+<span class="ln" id="L213"><a class="lno" href="#L213">213</a></span>
+<span class="ln" id="L214"><a class="lno" href="#L214">214</a>/-- 20:B9 — Frobenius `φ = star` and the functional-equation half-turn `ρ : z ↦ 1 − z` generate a Klein</span>
+<span class="ln" id="L215"><a class="lno" href="#L215">215</a>four-group: both are involutions and they commute. -/</span>
+<span class="ln decl" id="FRC.Rh.klein_four"><a class="lno" href="#FRC.Rh.klein_four">216</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcLedger/Rh.lean#L216" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small t2" src="lean-t2.png" alt="" title="tier 2, classical: Classical.choice, Quot.sound, propext">theorem klein_four (z : K) :</span>
+<span class="ln" id="L217"><a class="lno" href="#L217">217</a>    star (star z) = z ∧ (1 - (1 - z)) = z ∧ star (1 - z) = 1 - star z := by</span>
+<span class="ln" id="L218"><a class="lno" href="#L218">218</a>  refine ⟨star_star z, sub_sub_cancel 1 z, ?_⟩</span>
+<span class="ln" id="L219"><a class="lno" href="#L219">219</a>  rw [star_sub, star_one]</span>
+<span class="ln" id="L220"><a class="lno" href="#L220">220</a></span>
+<span class="ln" id="L221"><a class="lno" href="#L221">221</a>/-- 20:B9 — the fixed locus of Frobenius is the prime meridian `F` (the elements with `b = 0`). -/</span>
+<span class="ln decl" id="FRC.Rh.fixed_frobenius"><a class="lno" href="#FRC.Rh.fixed_frobenius">222</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcLedger/Rh.lean#L222" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small t2" src="lean-t2.png" alt="" title="tier 2, classical: Classical.choice, Quot.sound, propext">theorem fixed_frobenius (h2 : (2 : F) ≠ 0) (z : K) : star z = z ↔ z.im = 0 := by</span>
+<span class="ln" id="L223"><a class="lno" href="#L223">223</a>  rw [star_eq]</span>
+<span class="ln" id="L224"><a class="lno" href="#L224">224</a>  constructor</span>
+<span class="ln" id="L225"><a class="lno" href="#L225">225</a>  · intro h</span>
+<span class="ln" id="L226"><a class="lno" href="#L226">226</a>    have := congrArg QuadraticAlgebra.im h</span>
+<span class="ln" id="L227"><a class="lno" href="#L227">227</a>    simp only at this</span>
+<span class="ln" id="L228"><a class="lno" href="#L228">228</a>    have h&#x27; : (2 : F) * z.im = 0 := by linear_combination -this</span>
+<span class="ln" id="L229"><a class="lno" href="#L229">229</a>    exact (mul_eq_zero.1 h&#x27;).resolve_left h2</span>
+<span class="ln" id="L230"><a class="lno" href="#L230">230</a>  · intro h</span>
+<span class="ln" id="L231"><a class="lno" href="#L231">231</a>    ext &lt;;&gt; simp [h]</span>
+<span class="ln" id="L232"><a class="lno" href="#L232">232</a></span>
+<span class="ln" id="L233"><a class="lno" href="#L233">233</a>/-- 20:B8, 20:B9 — the finite critical line: `Tr z = 1` exactly when `Re z = 2⁻¹`; this locus is the fixed</span>
+<span class="ln" id="L234"><a class="lno" href="#L234">234</a>locus of `σ = ρ ∘ φ : z ↦ 1 − z̄`. -/</span>
+<span class="ln decl" id="FRC.Rh.trace_eq_one_iff"><a class="lno" href="#FRC.Rh.trace_eq_one_iff">235</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcLedger/Rh.lean#L235" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small t2" src="lean-t2.png" alt="" title="tier 2, classical: Classical.choice, Quot.sound, propext">theorem trace_eq_one_iff (h2 : (2 : F) ≠ 0) (z : K) :</span>
+<span class="ln" id="L236"><a class="lno" href="#L236">236</a>    (QuadraticAlgebra.trace z = 1 ↔ z.re = 2⁻¹) ∧ (1 - star z = z ↔ z.re = 2⁻¹) := by</span>
+<span class="ln" id="L237"><a class="lno" href="#L237">237</a>  have key : (2 : F) * z.re = 1 ↔ z.re = 2⁻¹ := by</span>
+<span class="ln" id="L238"><a class="lno" href="#L238">238</a>    constructor</span>
+<span class="ln" id="L239"><a class="lno" href="#L239">239</a>    · intro h; exact eq_inv_of_mul_eq_one_right h</span>
+<span class="ln" id="L240"><a class="lno" href="#L240">240</a>    · intro h; rw [h, mul_inv_cancel₀ h2]</span>
+<span class="ln" id="L241"><a class="lno" href="#L241">241</a>  refine ⟨by rw [trace_eq]; exact key, ?_⟩</span>
+<span class="ln" id="L242"><a class="lno" href="#L242">242</a>  rw [star_eq]</span>
+<span class="ln" id="L243"><a class="lno" href="#L243">243</a>  constructor</span>
+<span class="ln" id="L244"><a class="lno" href="#L244">244</a>  · intro h</span>
+<span class="ln" id="L245"><a class="lno" href="#L245">245</a>    have := congrArg QuadraticAlgebra.re h</span>
+<span class="ln" id="L246"><a class="lno" href="#L246">246</a>    simp only [QuadraticAlgebra.re_sub, QuadraticAlgebra.re_one] at this</span>
+<span class="ln" id="L247"><a class="lno" href="#L247">247</a>    exact key.1 (by linear_combination -this)</span>
+<span class="ln" id="L248"><a class="lno" href="#L248">248</a>  · intro h</span>
+<span class="ln" id="L249"><a class="lno" href="#L249">249</a>    ext</span>
+<span class="ln" id="L250"><a class="lno" href="#L250">250</a>    · simp only [QuadraticAlgebra.re_sub, QuadraticAlgebra.re_one]</span>
+<span class="ln" id="L251"><a class="lno" href="#L251">251</a>      have := key.2 h</span>
+<span class="ln" id="L252"><a class="lno" href="#L252">252</a>      linear_combination -this</span>
+<span class="ln" id="L253"><a class="lno" href="#L253">253</a>    · simp only [QuadraticAlgebra.im_sub, QuadraticAlgebra.im_one, zero_sub, neg_neg]</span>
+<span class="ln" id="L254"><a class="lno" href="#L254">254</a></span>
+<span class="ln" id="L255"><a class="lno" href="#L255">255</a>/-- 20:B9 — the fixed locus of the half-turn `ρ` is the single point `2⁻¹`, the meeting of the prime meridian</span>
+<span class="ln" id="L256"><a class="lno" href="#L256">256</a>and the critical line. -/</span>
+<span class="ln decl" id="FRC.Rh.fixed_half_turn"><a class="lno" href="#FRC.Rh.fixed_half_turn">257</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcLedger/Rh.lean#L257" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small t2" src="lean-t2.png" alt="" title="tier 2, classical: Classical.choice, Quot.sound, propext">theorem fixed_half_turn (h2 : (2 : F) ≠ 0) (z : K) :</span>
+<span class="ln" id="L258"><a class="lno" href="#L258">258</a>    (1 - z = z ↔ z = ⟨2⁻¹, 0⟩) ∧ (z.im = 0 ∧ z.re = 2⁻¹ ↔ z = ⟨2⁻¹, 0⟩) := by</span>
+<span class="ln" id="L259"><a class="lno" href="#L259">259</a>  have hinv : (2 : F) * 2⁻¹ = 1 := mul_inv_cancel₀ h2</span>
+<span class="ln" id="L260"><a class="lno" href="#L260">260</a>  constructor</span>
+<span class="ln" id="L261"><a class="lno" href="#L261">261</a>  · constructor</span>
+<span class="ln" id="L262"><a class="lno" href="#L262">262</a>    · intro h</span>
+<span class="ln" id="L263"><a class="lno" href="#L263">263</a>      have hre := congrArg QuadraticAlgebra.re h</span>
+<span class="ln" id="L264"><a class="lno" href="#L264">264</a>      have him := congrArg QuadraticAlgebra.im h</span>
+<span class="ln" id="L265"><a class="lno" href="#L265">265</a>      simp only [QuadraticAlgebra.re_sub, QuadraticAlgebra.re_one, QuadraticAlgebra.im_sub,</span>
+<span class="ln" id="L266"><a class="lno" href="#L266">266</a>        QuadraticAlgebra.im_one, zero_sub] at hre him</span>
+<span class="ln" id="L267"><a class="lno" href="#L267">267</a>      have h2re : (2 : F) * z.re = 1 := by linear_combination -hre</span>
+<span class="ln" id="L268"><a class="lno" href="#L268">268</a>      have h2im : (2 : F) * z.im = 0 := by linear_combination -him</span>
+<span class="ln" id="L269"><a class="lno" href="#L269">269</a>      ext</span>
+<span class="ln" id="L270"><a class="lno" href="#L270">270</a>      · exact eq_inv_of_mul_eq_one_right h2re</span>
+<span class="ln" id="L271"><a class="lno" href="#L271">271</a>      · exact (mul_eq_zero.1 h2im).resolve_left h2</span>
+<span class="ln" id="L272"><a class="lno" href="#L272">272</a>    · rintro rfl</span>
+<span class="ln" id="L273"><a class="lno" href="#L273">273</a>      ext</span>
+<span class="ln" id="L274"><a class="lno" href="#L274">274</a>      · simp only [QuadraticAlgebra.re_sub, QuadraticAlgebra.re_one]</span>
+<span class="ln" id="L275"><a class="lno" href="#L275">275</a>        linear_combination -hinv</span>
+<span class="ln" id="L276"><a class="lno" href="#L276">276</a>      · simp only [QuadraticAlgebra.im_sub, QuadraticAlgebra.im_one, sub_zero]</span>
+<span class="ln" id="L277"><a class="lno" href="#L277">277</a>  · constructor</span>
+<span class="ln" id="L278"><a class="lno" href="#L278">278</a>    · rintro ⟨him, hre⟩; ext</span>
+<span class="ln" id="L279"><a class="lno" href="#L279">279</a>      · exact hre</span>
+<span class="ln" id="L280"><a class="lno" href="#L280">280</a>      · exact him</span>
+<span class="ln" id="L281"><a class="lno" href="#L281">281</a>    · rintro rfl; exact ⟨rfl, rfl⟩</span>
+<span class="ln" id="L282"><a class="lno" href="#L282">282</a></span>
+<span class="ln" id="L283"><a class="lno" href="#L283">283</a>/-- 20:B8 — on the critical line the energy is `N(z) = ¼ − νb²`. -/</span>
+<span class="ln decl" id="FRC.Rh.norm_on_line"><a class="lno" href="#FRC.Rh.norm_on_line">284</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcLedger/Rh.lean#L284" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small t2" src="lean-t2.png" alt="" title="tier 2, classical: Classical.choice, Quot.sound, propext">theorem norm_on_line (z : K) (hz : z.re = 2⁻¹) :</span>
+<span class="ln" id="L285"><a class="lno" href="#L285">285</a>    QuadraticAlgebra.norm z = (4 : F)⁻¹ - ν * z.im ^ 2 := by</span>
+<span class="ln" id="L286"><a class="lno" href="#L286">286</a>  rw [norm_eq, hz, sq, mul_assoc]</span>
+<span class="ln" id="L287"><a class="lno" href="#L287">287</a>  congr 1</span>
+<span class="ln" id="L288"><a class="lno" href="#L288">288</a>  rw [show (4 : F) = 2 * 2 by norm_num, mul_inv]</span>
+<span class="ln" id="L289"><a class="lno" href="#L289">289</a></span>
+<span class="ln" id="L290"><a class="lno" href="#L290">290</a>variable [Fintype F] [DecidableEq F]</span>
+<span class="ln" id="L291"><a class="lno" href="#L291">291</a></span>
+<span class="ln" id="L292"><a class="lno" href="#L292">292</a>/-- The extension as a finite type, through its coordinates. -/</span>
+<span class="ln" id="L293"><a class="lno" href="#L293">293</a>noncomputable instance instFintypeK : Fintype K :=</span>
+<span class="ln" id="L294"><a class="lno" href="#L294">294</a>  Fintype.ofEquiv (F × F) (QuadraticAlgebra.equivProd ν 0).symm</span>
+<span class="ln" id="L295"><a class="lno" href="#L295">295</a></span>
+<span class="ln" id="L296"><a class="lno" href="#L296">296</a>/-- 20:B8 — the critical line carries exactly `p` points: `z = 2⁻¹ + bη`, one for each `b ∈ F`. -/</span>
+<span class="ln decl" id="FRC.Rh.card_critical_line"><a class="lno" href="#FRC.Rh.card_critical_line">297</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcLedger/Rh.lean#L297" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small t2" src="lean-t2.png" alt="" title="tier 2, classical: Classical.choice, Quot.sound, propext">theorem card_critical_line (h2 : (2 : F) ≠ 0) :</span>
+<span class="ln" id="L298"><a class="lno" href="#L298">298</a>    (univ.filter (fun z : K =&gt; QuadraticAlgebra.trace z = 1)).card = Fintype.card F := by</span>
+<span class="ln" id="L299"><a class="lno" href="#L299">299</a>  have hline : univ.filter (fun z : K =&gt; QuadraticAlgebra.trace z = 1) =</span>
+<span class="ln" id="L300"><a class="lno" href="#L300">300</a>      univ.image (fun b : F =&gt; (⟨2⁻¹, b⟩ : K)) := by</span>
+<span class="ln" id="L301"><a class="lno" href="#L301">301</a>    ext z</span>
+<span class="ln" id="L302"><a class="lno" href="#L302">302</a>    simp only [mem_filter, mem_univ, true_and, mem_image]</span>
+<span class="ln" id="L303"><a class="lno" href="#L303">303</a>    rw [(trace_eq_one_iff ν h2 z).1]</span>
+<span class="ln" id="L304"><a class="lno" href="#L304">304</a>    constructor</span>
+<span class="ln" id="L305"><a class="lno" href="#L305">305</a>    · intro h; exact ⟨z.im, by ext &lt;;&gt; simp [h]⟩</span>
+<span class="ln" id="L306"><a class="lno" href="#L306">306</a>    · rintro ⟨b, rfl⟩; rfl</span>
+<span class="ln" id="L307"><a class="lno" href="#L307">307</a>  rw [hline, card_image_of_injective _ (fun a b h =&gt; by simpa using congrArg QuadraticAlgebra.im h),</span>
+<span class="ln" id="L308"><a class="lno" href="#L308">308</a>    card_univ]</span>
+<span class="ln" id="L309"><a class="lno" href="#L309">309</a></span>
+<span class="ln" id="L310"><a class="lno" href="#L310">310</a>end extension</span>
+<span class="ln" id="L311"><a class="lno" href="#L311">311</a></span>
+<span class="ln" id="L312"><a class="lno" href="#L312">312</a>section frobenius</span>
+<span class="ln" id="L313"><a class="lno" href="#L313">313</a></span>
+<span class="ln" id="L314"><a class="lno" href="#L314">314</a>variable {F : Type*} [Field F] [Fintype F] [DecidableEq F] {p : ℕ} [hp : Fact p.Prime] [CharP F p]</span>
+<span class="ln" id="L315"><a class="lno" href="#L315">315</a>  (hcard : Fintype.card F = p) (ν : F) [hν : Fact (¬ IsSquare ν)]</span>
+<span class="ln" id="L316"><a class="lno" href="#L316">316</a></span>
+<span class="ln" id="L317"><a class="lno" href="#L317">317</a>local notation &quot;K&quot; =&gt; QuadraticAlgebra F ν 0</span>
+<span class="ln" id="L318"><a class="lno" href="#L318">318</a></span>
+<span class="ln" id="L319"><a class="lno" href="#L319">319</a>omit [DecidableEq F] in</span>
+<span class="ln" id="L320"><a class="lno" href="#L320">320</a>include hcard hν in</span>
+<span class="ln" id="L321"><a class="lno" href="#L321">321</a>/-- On a shell carrying a nonsquare, `2 ≠ 0` (every element of `𝔽₂` is a square). -/</span>
+<span class="ln decl" id="FRC.Rh.two_ne_zero_of_nonsquare"><a class="lno" href="#FRC.Rh.two_ne_zero_of_nonsquare">322</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcLedger/Rh.lean#L322" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small t2" src="lean-t2.png" alt="" title="tier 2, classical: Classical.choice, Quot.sound, propext">lemma two_ne_zero_of_nonsquare : (2 : F) ≠ 0 := by</span>
+<span class="ln" id="L323"><a class="lno" href="#L323">323</a>  intro h2</span>
+<span class="ln" id="L324"><a class="lno" href="#L324">324</a>  have hp2 : p = 2 := (Nat.prime_dvd_prime_iff_eq hp.out Nat.prime_two).1</span>
+<span class="ln" id="L325"><a class="lno" href="#L325">325</a>    ((CharP.cast_eq_zero_iff F p 2).1 (by exact_mod_cast h2))</span>
+<span class="ln" id="L326"><a class="lno" href="#L326">326</a>  -- every element of a two-element field is a square: `x^2 = x`</span>
+<span class="ln" id="L327"><a class="lno" href="#L327">327</a>  apply hν.out</span>
+<span class="ln" id="L328"><a class="lno" href="#L328">328</a>  refine ⟨ν, ?_⟩</span>
+<span class="ln" id="L329"><a class="lno" href="#L329">329</a>  have := FiniteField.pow_card ν</span>
+<span class="ln" id="L330"><a class="lno" href="#L330">330</a>  rw [hcard, hp2, sq] at this</span>
+<span class="ln" id="L331"><a class="lno" href="#L331">331</a>  exact this.symm</span>
+<span class="ln" id="L332"><a class="lno" href="#L332">332</a></span>
+<span class="ln" id="L333"><a class="lno" href="#L333">333</a>omit [DecidableEq F] in</span>
+<span class="ln" id="L334"><a class="lno" href="#L334">334</a>include hcard hν in</span>
+<span class="ln" id="L335"><a class="lno" href="#L335">335</a>/-- Euler&#x27;s criterion for the nonsquare `ν`: `ν^{(p−1)/2} = −1`. -/</span>
+<span class="ln decl" id="FRC.Rh.nonsquare_pow"><a class="lno" href="#FRC.Rh.nonsquare_pow">336</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcLedger/Rh.lean#L336" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small t2" src="lean-t2.png" alt="" title="tier 2, classical: Classical.choice, Quot.sound, propext">lemma nonsquare_pow : ν ^ (p / 2) = -1 := by</span>
+<span class="ln" id="L337"><a class="lno" href="#L337">337</a>  have h2 : (2 : F) ≠ 0 := two_ne_zero_of_nonsquare hcard ν</span>
+<span class="ln" id="L338"><a class="lno" href="#L338">338</a>  have hp2 : p ≠ 2 := by</span>
+<span class="ln" id="L339"><a class="lno" href="#L339">339</a>    intro h; apply h2</span>
+<span class="ln" id="L340"><a class="lno" href="#L340">340</a>    have := (CharP.cast_eq_zero_iff F p p).2 dvd_rfl</span>
+<span class="ln" id="L341"><a class="lno" href="#L341">341</a>    rw [h] at this; exact_mod_cast this</span>
+<span class="ln" id="L342"><a class="lno" href="#L342">342</a>  have hchar : ringChar F ≠ 2 := by rw [ringChar.eq F p]; exact hp2</span>
+<span class="ln" id="L343"><a class="lno" href="#L343">343</a>  have hν0 : ν ≠ 0 := by</span>
+<span class="ln" id="L344"><a class="lno" href="#L344">344</a>    rintro rfl; exact hν.out ⟨0, by simp⟩</span>
+<span class="ln" id="L345"><a class="lno" href="#L345">345</a>  rcases FiniteField.pow_dichotomy hchar hν0 with h | h</span>
+<span class="ln" id="L346"><a class="lno" href="#L346">346</a>  · exact absurd ((FiniteField.isSquare_iff hchar hν0).2 h) hν.out</span>
+<span class="ln" id="L347"><a class="lno" href="#L347">347</a>  · rwa [hcard] at h</span>
+<span class="ln" id="L348"><a class="lno" href="#L348">348</a></span>
+<span class="ln" id="L349"><a class="lno" href="#L349">349</a>omit [DecidableEq F] in</span>
+<span class="ln" id="L350"><a class="lno" href="#L350">350</a>include hcard in</span>
+<span class="ln" id="L351"><a class="lno" href="#L351">351</a>/-- 20:B6 — Frobenius on the extension is conjugation: `z^p = z̄` for every `z ∈ F(η)`. -/</span>
+<span class="ln decl" id="FRC.Rh.frobenius_eq_star"><a class="lno" href="#FRC.Rh.frobenius_eq_star">352</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcLedger/Rh.lean#L352" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small t2" src="lean-t2.png" alt="" title="tier 2, classical: Classical.choice, Quot.sound, propext">theorem frobenius_eq_star (z : K) : z ^ p = star z := by</span>
+<span class="ln" id="L353"><a class="lno" href="#L353">353</a>  have : CharP K p := charP_of_injective_algebraMap (algebraMap F K).injective p</span>
+<span class="ln" id="L354"><a class="lno" href="#L354">354</a>  have hodd : p = 2 * (p / 2) + 1 := by</span>
+<span class="ln" id="L355"><a class="lno" href="#L355">355</a>    have := hp.out.eq_two_or_odd&#x27;</span>
+<span class="ln" id="L356"><a class="lno" href="#L356">356</a>    rcases this with h | h</span>
+<span class="ln" id="L357"><a class="lno" href="#L357">357</a>    · exfalso</span>
+<span class="ln" id="L358"><a class="lno" href="#L358">358</a>      have h2 : (2 : F) ≠ 0 := two_ne_zero_of_nonsquare hcard ν</span>
+<span class="ln" id="L359"><a class="lno" href="#L359">359</a>      apply h2</span>
+<span class="ln" id="L360"><a class="lno" href="#L360">360</a>      have := (CharP.cast_eq_zero_iff F p p).2 dvd_rfl</span>
+<span class="ln" id="L361"><a class="lno" href="#L361">361</a>      rw [h] at this; exact_mod_cast this</span>
+<span class="ln" id="L362"><a class="lno" href="#L362">362</a>    · exact (Nat.two_mul_div_two_add_one_of_odd h).symm</span>
+<span class="ln" id="L363"><a class="lno" href="#L363">363</a>  have hω : (QuadraticAlgebra.omega : K) ^ p = -QuadraticAlgebra.omega := by</span>
+<span class="ln" id="L364"><a class="lno" href="#L364">364</a>    rw [hodd, pow_succ, pow_mul, QuadraticAlgebra.omega_pow_two_eq_add]</span>
+<span class="ln" id="L365"><a class="lno" href="#L365">365</a>    simp only [zero_smul, add_zero]</span>
+<span class="ln" id="L366"><a class="lno" href="#L366">366</a>    rw [← Algebra.algebraMap_eq_smul_one, ← map_pow, nonsquare_pow hcard ν, map_neg, map_one,</span>
+<span class="ln" id="L367"><a class="lno" href="#L367">367</a>      neg_one_mul]</span>
+<span class="ln" id="L368"><a class="lno" href="#L368">368</a>  have hz : z = algebraMap F K z.re + z.im • QuadraticAlgebra.omega := by</span>
+<span class="ln" id="L369"><a class="lno" href="#L369">369</a>    rw [Algebra.algebraMap_eq_smul_one]; exact (QuadraticAlgebra.re_smul_add_im_smul z).symm</span>
+<span class="ln" id="L370"><a class="lno" href="#L370">370</a>  have hre : z.re ^ p = z.re := by rw [← hcard]; exact FiniteField.pow_card z.re</span>
+<span class="ln" id="L371"><a class="lno" href="#L371">371</a>  have him : z.im ^ p = z.im := by rw [← hcard]; exact FiniteField.pow_card z.im</span>
+<span class="ln" id="L372"><a class="lno" href="#L372">372</a>  conv_lhs =&gt; rw [hz]</span>
+<span class="ln" id="L373"><a class="lno" href="#L373">373</a>  rw [add_pow_char, ← map_pow, hre, smul_pow, him, hω, star_eq]</span>
+<span class="ln" id="L374"><a class="lno" href="#L374">374</a>  ext</span>
+<span class="ln" id="L375"><a class="lno" href="#L375">375</a>  · simp [QuadraticAlgebra.algebraMap_eq, QuadraticAlgebra.re_omega]</span>
+<span class="ln" id="L376"><a class="lno" href="#L376">376</a>  · simp [QuadraticAlgebra.algebraMap_eq, QuadraticAlgebra.im_omega]</span>
+<span class="ln" id="L377"><a class="lno" href="#L377">377</a></span>
+<span class="ln" id="L378"><a class="lno" href="#L378">378</a>omit [DecidableEq F] in</span>
+<span class="ln" id="L379"><a class="lno" href="#L379">379</a>include hcard in</span>
+<span class="ln" id="L380"><a class="lno" href="#L380">380</a>/-- 20:B6 — the norm is the `(p+1)`-st power: `z^{p+1} = z z̄ = N(z)` in the extension. -/</span>
+<span class="ln decl" id="FRC.Rh.norm_eq_pow"><a class="lno" href="#FRC.Rh.norm_eq_pow">381</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcLedger/Rh.lean#L381" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small t2" src="lean-t2.png" alt="" title="tier 2, classical: Classical.choice, Quot.sound, propext">theorem norm_eq_pow (z : K) : algebraMap F K (QuadraticAlgebra.norm z) = z ^ (p + 1) := by</span>
+<span class="ln" id="L382"><a class="lno" href="#L382">382</a>  rw [pow_succ, frobenius_eq_star hcard ν z, QuadraticAlgebra.algebraMap_norm_eq_mul_star, mul_comm]</span>
+<span class="ln" id="L383"><a class="lno" href="#L383">383</a></span>
+<span class="ln" id="L384"><a class="lno" href="#L384">384</a>include hcard in</span>
+<span class="ln" id="L385"><a class="lno" href="#L385">385</a>/-- 20:B6 — the phase circle `U_{p+1} = {z : N(z) = 1}` has exactly `p + 1` elements, and Frobenius is</span>
+<span class="ln" id="L386"><a class="lno" href="#L386">386</a>inversion on it: `z̄ = z⁻¹` for `N(z) = 1`. -/</span>
+<span class="ln decl" id="FRC.Rh.phase_circle"><a class="lno" href="#FRC.Rh.phase_circle">387</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcLedger/Rh.lean#L387" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small t2" src="lean-t2.png" alt="" title="tier 2, classical: Classical.choice, Quot.sound, propext">theorem phase_circle :</span>
+<span class="ln" id="L388"><a class="lno" href="#L388">388</a>    (univ.filter (fun z : K =&gt; QuadraticAlgebra.norm z = 1)).card = p + 1 ∧</span>
+<span class="ln" id="L389"><a class="lno" href="#L389">389</a>    ∀ z : K, QuadraticAlgebra.norm z = 1 → star z = z⁻¹ := by</span>
+<span class="ln" id="L390"><a class="lno" href="#L390">390</a>  constructor</span>
+<span class="ln" id="L391"><a class="lno" href="#L391">391</a>  · -- the circle is the set of `(p+1)`-st roots of unity, counted by a primitive root</span>
+<span class="ln" id="L392"><a class="lno" href="#L392">392</a>    have hcardK : Fintype.card K = p ^ 2 := by</span>
+<span class="ln" id="L393"><a class="lno" href="#L393">393</a>      rw [Fintype.card_congr (QuadraticAlgebra.equivProd ν 0), Fintype.card_prod, hcard, sq]</span>
+<span class="ln" id="L394"><a class="lno" href="#L394">394</a>    have hset : univ.filter (fun z : K =&gt; QuadraticAlgebra.norm z = 1) =</span>
+<span class="ln" id="L395"><a class="lno" href="#L395">395</a>        Polynomial.nthRootsFinset (p + 1) (1 : K) := by</span>
+<span class="ln" id="L396"><a class="lno" href="#L396">396</a>      ext z</span>
+<span class="ln" id="L397"><a class="lno" href="#L397">397</a>      rw [mem_filter, Polynomial.mem_nthRootsFinset (by omega), ← norm_eq_pow hcard ν]</span>
+<span class="ln" id="L398"><a class="lno" href="#L398">398</a>      constructor</span>
+<span class="ln" id="L399"><a class="lno" href="#L399">399</a>      · rintro ⟨-, h⟩; rw [h, map_one]</span>
+<span class="ln" id="L400"><a class="lno" href="#L400">400</a>      · intro h; exact ⟨mem_univ _, QuadraticAlgebra.algebraMap_injective (by rw [h, map_one])⟩</span>
+<span class="ln" id="L401"><a class="lno" href="#L401">401</a>    rw [hset]</span>
+<span class="ln" id="L402"><a class="lno" href="#L402">402</a>    -- a primitive `(p+1)`-st root of unity in `K`</span>
+<span class="ln" id="L403"><a class="lno" href="#L403">403</a>    obtain ⟨ζ, hζ⟩ := IsCyclic.exists_generator (α := Kˣ)</span>
+<span class="ln" id="L404"><a class="lno" href="#L404">404</a>    have hord : orderOf ζ = p ^ 2 - 1 := by</span>
+<span class="ln" id="L405"><a class="lno" href="#L405">405</a>      rw [orderOf_eq_card_of_forall_mem_zpowers hζ, Nat.card_eq_fintype_card, Fintype.card_units,</span>
+<span class="ln" id="L406"><a class="lno" href="#L406">406</a>        hcardK]</span>
+<span class="ln" id="L407"><a class="lno" href="#L407">407</a>    have hprim : IsPrimitiveRoot ζ (p ^ 2 - 1) := hord ▸ IsPrimitiveRoot.orderOf ζ</span>
+<span class="ln" id="L408"><a class="lno" href="#L408">408</a>    have hp1 : p ^ 2 - 1 = (p - 1) * (p + 1) := by</span>
+<span class="ln" id="L409"><a class="lno" href="#L409">409</a>      obtain ⟨q, hq⟩ : ∃ q, p = q + 1 := ⟨p - 1, by have := hp.out.one_lt; omega⟩</span>
+<span class="ln" id="L410"><a class="lno" href="#L410">410</a>      rw [hq, Nat.add_sub_cancel]</span>
+<span class="ln" id="L411"><a class="lno" href="#L411">411</a>      apply Nat.sub_eq_of_eq_add</span>
+<span class="ln" id="L412"><a class="lno" href="#L412">412</a>      ring</span>
+<span class="ln" id="L413"><a class="lno" href="#L413">413</a>    have hpos : 0 &lt; p ^ 2 - 1 := by</span>
+<span class="ln" id="L414"><a class="lno" href="#L414">414</a>      have := hp.out.one_lt; rw [hp1]; exact Nat.mul_pos (by omega) (by omega)</span>
+<span class="ln" id="L415"><a class="lno" href="#L415">415</a>    have hprim&#x27; : IsPrimitiveRoot ((ζ : K) ^ (p - 1)) (p + 1) := by</span>
+<span class="ln" id="L416"><a class="lno" href="#L416">416</a>      rw [← Units.val_pow_eq_pow_val, IsPrimitiveRoot.coe_units_iff]</span>
+<span class="ln" id="L417"><a class="lno" href="#L417">417</a>      exact hprim.pow hpos hp1</span>
+<span class="ln" id="L418"><a class="lno" href="#L418">418</a>    exact hprim&#x27;.card_nthRootsFinset</span>
+<span class="ln" id="L419"><a class="lno" href="#L419">419</a>  · intro z hz</span>
+<span class="ln" id="L420"><a class="lno" href="#L420">420</a>    have h := QuadraticAlgebra.algebraMap_norm_eq_mul_star z</span>
+<span class="ln" id="L421"><a class="lno" href="#L421">421</a>    rw [hz, map_one] at h</span>
+<span class="ln" id="L422"><a class="lno" href="#L422">422</a>    exact eq_inv_of_mul_eq_one_right h.symm</span>
+<span class="ln" id="L423"><a class="lno" href="#L423">423</a></span>
+<span class="ln" id="L424"><a class="lno" href="#L424">424</a>omit [DecidableEq F] in</span>
+<span class="ln" id="L425"><a class="lno" href="#L425">425</a>include hcard in</span>
+<span class="ln" id="L426"><a class="lno" href="#L426">426</a>/-- 20:B6 — the quarter-turn `i ∈ F` (`i² = −1`) is Frobenius-fixed and off the circle: `N(i) = −1 ≠ 1`. -/</span>
+<span class="ln decl" id="FRC.Rh.quarter_turn_off_circle"><a class="lno" href="#FRC.Rh.quarter_turn_off_circle">427</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcLedger/Rh.lean#L427" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small t2" src="lean-t2.png" alt="" title="tier 2, classical: Classical.choice, Quot.sound, propext">theorem quarter_turn_off_circle (i : F) (hi : i ^ 2 = -1) :</span>
+<span class="ln" id="L428"><a class="lno" href="#L428">428</a>    star (algebraMap F K i) = algebraMap F K i ∧ QuadraticAlgebra.norm (algebraMap F K i) = -1 ∧</span>
+<span class="ln" id="L429"><a class="lno" href="#L429">429</a>    QuadraticAlgebra.norm (algebraMap F K i) ≠ 1 := by</span>
+<span class="ln" id="L430"><a class="lno" href="#L430">430</a>  have h2 : (2 : F) ≠ 0 := two_ne_zero_of_nonsquare hcard ν</span>
+<span class="ln" id="L431"><a class="lno" href="#L431">431</a>  have hn : QuadraticAlgebra.norm (algebraMap F K i) = -1 := by</span>
+<span class="ln" id="L432"><a class="lno" href="#L432">432</a>    rw [QuadraticAlgebra.norm_algebraMap, hi]</span>
+<span class="ln" id="L433"><a class="lno" href="#L433">433</a>  refine ⟨?_, hn, ?_⟩</span>
+<span class="ln" id="L434"><a class="lno" href="#L434">434</a>  · rw [star_eq, QuadraticAlgebra.algebraMap_eq]; simp</span>
+<span class="ln" id="L435"><a class="lno" href="#L435">435</a>  · rw [hn]; intro h</span>
+<span class="ln" id="L436"><a class="lno" href="#L436">436</a>    apply h2</span>
+<span class="ln" id="L437"><a class="lno" href="#L437">437</a>    linear_combination -h</span>
+<span class="ln" id="L438"><a class="lno" href="#L438">438</a></span>
+<span class="ln" id="L439"><a class="lno" href="#L439">439</a>end frobenius</span>
+<span class="ln" id="L440"><a class="lno" href="#L440">440</a></span>
+<span class="ln" id="L441"><a class="lno" href="#L441">441</a>/-! ## The scale-shift on the shell: the `𝔽_p` reading (rows E1, E12(iii), E13) -/</span>
+<span class="ln" id="L442"><a class="lno" href="#L442">442</a></span>
+<span class="ln" id="L443"><a class="lno" href="#L443">443</a>section spectrum</span>
+<span class="ln" id="L444"><a class="lno" href="#L444">444</a></span>
+<span class="ln" id="L445"><a class="lno" href="#L445">445</a>variable {F : Type*} [Field F] [Fintype F] [DecidableEq F]</span>
+<span class="ln" id="L446"><a class="lno" href="#L446">446</a></span>
+<span class="ln" id="L447"><a class="lno" href="#L447">447</a>/-- 20:E1, 20:E12 — the scale-shift `S : x ↦ g^r x` is a permutation of `F^×` with the power characters</span>
+<span class="ln" id="L448"><a class="lno" href="#L448">448</a>`x ↦ x^k` as eigenvectors in the `𝔽_p` reading, `S x^k = g^{rk} x^k`, and its fixed-point count — the trace of</span>
+<span class="ln" id="L449"><a class="lno" href="#L449">449</a>its permutation matrix — is `(p − 1)·[(p − 1) ∣ r]`, which carries no prime data. -/</span>
+<span class="ln decl" id="FRC.Rh.scale_shift"><a class="lno" href="#FRC.Rh.scale_shift">450</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcLedger/Rh.lean#L450" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small t2" src="lean-t2.png" alt="" title="tier 2, classical: Classical.choice, Quot.sound, propext">theorem scale_shift (g : F) (hg : IsPrimitiveRoot g (Fintype.card F - 1)) (r : ℕ) :</span>
+<span class="ln" id="L451"><a class="lno" href="#L451">451</a>    Function.Bijective (fun x : Fˣ =&gt; (Units.mk0 g (hg.ne_zero (by have := Fintype.one_lt_card (α := F); omega))) ^ r * x) ∧</span>
+<span class="ln" id="L452"><a class="lno" href="#L452">452</a>    (∀ (k : ℕ) (x : F), (g ^ r * x) ^ k = (g ^ r) ^ k * x ^ k) ∧</span>
+<span class="ln" id="L453"><a class="lno" href="#L453">453</a>    (univ.filter (fun x : Fˣ =&gt; g ^ r * (x : F) = x)).card =</span>
+<span class="ln" id="L454"><a class="lno" href="#L454">454</a>      if (Fintype.card F - 1) ∣ r then Fintype.card F - 1 else 0 := by</span>
+<span class="ln" id="L455"><a class="lno" href="#L455">455</a>  refine ⟨(Group.mulLeft_bijective _), fun k x =&gt; mul_pow _ _ _, ?_⟩</span>
+<span class="ln" id="L456"><a class="lno" href="#L456">456</a>  split_ifs with hdvd</span>
+<span class="ln" id="L457"><a class="lno" href="#L457">457</a>  · have h1 : g ^ r = 1 := (hg.pow_eq_one_iff_dvd r).2 hdvd</span>
+<span class="ln" id="L458"><a class="lno" href="#L458">458</a>    have : univ.filter (fun x : Fˣ =&gt; g ^ r * (x : F) = x) = univ := by</span>
+<span class="ln" id="L459"><a class="lno" href="#L459">459</a>      ext x; simp [h1]</span>
+<span class="ln" id="L460"><a class="lno" href="#L460">460</a>    rw [this, card_univ, Fintype.card_units]</span>
+<span class="ln" id="L461"><a class="lno" href="#L461">461</a>  · have h1 : g ^ r ≠ 1 := fun h =&gt; hdvd ((hg.pow_eq_one_iff_dvd r).1 h)</span>
+<span class="ln" id="L462"><a class="lno" href="#L462">462</a>    have : univ.filter (fun x : Fˣ =&gt; g ^ r * (x : F) = x) = ∅ := by</span>
+<span class="ln" id="L463"><a class="lno" href="#L463">463</a>      rw [Finset.filter_eq_empty_iff]</span>
+<span class="ln" id="L464"><a class="lno" href="#L464">464</a>      intro x _ h</span>
+<span class="ln" id="L465"><a class="lno" href="#L465">465</a>      apply h1</span>
+<span class="ln" id="L466"><a class="lno" href="#L466">466</a>      have hx : (x : F) ≠ 0 := x.ne_zero</span>
+<span class="ln" id="L467"><a class="lno" href="#L467">467</a>      calc g ^ r = g ^ r * (x : F) * (x : F)⁻¹ := by rw [mul_assoc, mul_inv_cancel₀ hx, mul_one]</span>
+<span class="ln" id="L468"><a class="lno" href="#L468">468</a>        _ = 1 := by rw [h, mul_inv_cancel₀ hx]</span>
+<span class="ln" id="L469"><a class="lno" href="#L469">469</a>    rw [this, card_empty]</span>
+<span class="ln" id="L470"><a class="lno" href="#L470">470</a></span>
+<span class="ln" id="L471"><a class="lno" href="#L471">471</a>/-- 20:E12, 20:E13 — the `𝔽_p`-valued power characters are never orthonormal: the self-pairing</span>
+<span class="ln" id="L472"><a class="lno" href="#L472">472</a>`Σ_{x ∈ F^×} x^j · x^j` is `0` or `−1`, never `1`, on every odd shell. -/</span>
+<span class="ln decl" id="FRC.Rh.power_characters_not_orthonormal"><a class="lno" href="#FRC.Rh.power_characters_not_orthonormal">473</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcLedger/Rh.lean#L473" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small t2" src="lean-t2.png" alt="" title="tier 2, classical: Classical.choice, Quot.sound, propext">theorem power_characters_not_orthonormal (h2 : (2 : F) ≠ 0) (j : ℕ) :</span>
+<span class="ln" id="L474"><a class="lno" href="#L474">474</a>    ∑ x : Fˣ, ((x : F) ^ j * (x : F) ^ j) ≠ 1 := by</span>
+<span class="ln" id="L475"><a class="lno" href="#L475">475</a>  have : ∑ x : Fˣ, ((x : F) ^ j * (x : F) ^ j) = ∑ x : Fˣ, ((x : F) ^ (2 * j)) :=</span>
+<span class="ln" id="L476"><a class="lno" href="#L476">476</a>    sum_congr rfl fun x _ =&gt; by rw [← pow_add, two_mul]</span>
+<span class="ln" id="L477"><a class="lno" href="#L477">477</a>  rw [this, FiniteField.sum_pow_units]</span>
+<span class="ln" id="L478"><a class="lno" href="#L478">478</a>  split_ifs</span>
+<span class="ln" id="L479"><a class="lno" href="#L479">479</a>  · intro h; apply h2; linear_combination -h</span>
+<span class="ln" id="L480"><a class="lno" href="#L480">480</a>  · exact zero_ne_one</span>
+<span class="ln" id="L481"><a class="lno" href="#L481">481</a></span>
+<span class="ln" id="L482"><a class="lno" href="#L482">482</a>omit [Fintype F] [DecidableEq F] in</span>
+<span class="ln" id="L483"><a class="lno" href="#L483">483</a>/-- 20:E12, 20:E1 — the multiplicative characters of the shell are eigenvectors of the scale-shift in the</span>
+<span class="ln" id="L484"><a class="lno" href="#L484">484</a>abstract reading: `χ(g^r x) = χ(g)^r χ(x)` for every `χ : F^× →* ℂ^×`. -/</span>
+<span class="ln decl" id="FRC.Rh.character_eigen"><a class="lno" href="#FRC.Rh.character_eigen">485</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcLedger/Rh.lean#L485" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small t2" src="lean-t2.png" alt="" title="tier 2, classical: Classical.choice, Quot.sound, propext">theorem character_eigen (χ : Fˣ →* ℂˣ) (g x : Fˣ) (r : ℕ) : χ (g ^ r * x) = χ g ^ r * χ x := by</span>
+<span class="ln" id="L486"><a class="lno" href="#L486">486</a>  rw [map_mul, map_pow]</span>
+<span class="ln" id="L487"><a class="lno" href="#L487">487</a></span>
+<span class="ln" id="L488"><a class="lno" href="#L488">488</a>end spectrum</span>
+<span class="ln" id="L489"><a class="lno" href="#L489">489</a></span>
+<span class="ln" id="L490"><a class="lno" href="#L490">490</a>/-! ## The complex characters of the cycle: orthonormality, inversion, the shift, Parseval, flatness</span>
+<span class="ln" id="L491"><a class="lno" href="#L491">491</a>(rows E12(i), E12(iii), E13, C5) -/</span>
+<span class="ln" id="L492"><a class="lno" href="#L492">492</a></span>
+<span class="ln" id="L493"><a class="lno" href="#L493">493</a>section characters</span>
+<span class="ln" id="L494"><a class="lno" href="#L494">494</a></span>
+<span class="ln" id="L495"><a class="lno" href="#L495">495</a>open Complex</span>
+<span class="ln" id="L496"><a class="lno" href="#L496">496</a></span>
+<span class="ln" id="L497"><a class="lno" href="#L497">497</a>variable {n : ℕ} [NeZero n]</span>
+<span class="ln" id="L498"><a class="lno" href="#L498">498</a></span>
+<span class="ln" id="L499"><a class="lno" href="#L499">499</a>/-- The `j`-th chart mode of the cycle `C_n`: `χ_j(m) = e^{2πi·jm/n}`. On the shell, `m` is the discrete</span>
+<span class="ln" id="L500"><a class="lno" href="#L500">500</a>logarithm of the residue `g^m` and `n = p − 1`. -/</span>
+<span class="ln decl" id="FRC.Rh.chi"><a class="lno" href="#FRC.Rh.chi">501</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcLedger/Rh.lean#L501" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small" src="lean.png" alt="" title="a definition: no proof, no axioms">noncomputable def chi (j m : ZMod n) : ℂ := ZMod.stdAddChar (j * m)</span>
+<span class="ln" id="L502"><a class="lno" href="#L502">502</a></span>
+<span class="ln" id="L503"><a class="lno" href="#L503">503</a>/-- The coefficient of `v` on the mode `χ_j`: `⟨v, χ_j⟩ = Σ_m v(m) χ_j(m)̄`. -/</span>
+<span class="ln decl" id="FRC.Rh.coef"><a class="lno" href="#FRC.Rh.coef">504</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcLedger/Rh.lean#L504" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small" src="lean.png" alt="" title="a definition: no proof, no axioms">noncomputable def coef (v : ZMod n → ℂ) (j : ZMod n) : ℂ := ∑ m, v m * (starRingEnd ℂ) (chi j m)</span>
+<span class="ln" id="L505"><a class="lno" href="#L505">505</a></span>
+<span class="ln decl" id="FRC.Rh.chi_conj"><a class="lno" href="#FRC.Rh.chi_conj">506</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcLedger/Rh.lean#L506" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small t2" src="lean-t2.png" alt="" title="tier 2, classical: Classical.choice, Quot.sound, propext">lemma chi_conj (j m : ZMod n) : (starRingEnd ℂ) (chi j m) = ZMod.stdAddChar (-(j * m)) := by</span>
+<span class="ln" id="L507"><a class="lno" href="#L507">507</a>  rw [chi, AddChar.map_neg_eq_conj]</span>
+<span class="ln" id="L508"><a class="lno" href="#L508">508</a></span>
+<span class="ln" id="L509"><a class="lno" href="#L509">509</a>/-- 20:E13 — orthogonality of the chart modes: `Σ_m χ_j(m) χ_k(m)̄ = n·[j = k]`, each of squared norm</span>
+<span class="ln" id="L510"><a class="lno" href="#L510">510</a>`n = p − 1` (with `chi_inversion`, the `p − 1` characters are an orthogonal basis of `ℂ^{F^×}`; the orthonormal</span>
+<span class="ln" id="L511"><a class="lno" href="#L511">511</a>system is `χ_j/√n`). -/</span>
+<span class="ln decl" id="FRC.Rh.chi_orthogonal"><a class="lno" href="#FRC.Rh.chi_orthogonal">512</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcLedger/Rh.lean#L512" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small t2" src="lean-t2.png" alt="" title="tier 2, classical: Classical.choice, Quot.sound, propext">theorem chi_orthogonal (j k : ZMod n) :</span>
+<span class="ln" id="L513"><a class="lno" href="#L513">513</a>    ∑ m, chi j m * (starRingEnd ℂ) (chi k m) = if j = k then (n : ℂ) else 0 := by</span>
+<span class="ln" id="L514"><a class="lno" href="#L514">514</a>  have : ∀ m, chi j m * (starRingEnd ℂ) (chi k m) = ZMod.stdAddChar (m * (j - k)) := fun m =&gt; by</span>
+<span class="ln" id="L515"><a class="lno" href="#L515">515</a>    rw [chi_conj, chi, ← AddChar.map_add_eq_mul]</span>
+<span class="ln" id="L516"><a class="lno" href="#L516">516</a>    congr 1; ring</span>
+<span class="ln" id="L517"><a class="lno" href="#L517">517</a>  simp_rw [this]</span>
+<span class="ln" id="L518"><a class="lno" href="#L518">518</a>  rw [AddChar.sum_mulShift _ (ZMod.isPrimitive_stdAddChar n), ZMod.card]</span>
+<span class="ln" id="L519"><a class="lno" href="#L519">519</a>  simp only [sub_eq_zero]</span>
+<span class="ln" id="L520"><a class="lno" href="#L520">520</a>  split_ifs &lt;;&gt; simp</span>
+<span class="ln" id="L521"><a class="lno" href="#L521">521</a></span>
+<span class="ln" id="L522"><a class="lno" href="#L522">522</a>/-- 20:E12, 20:E1 — clause (iii): the scale-shift `m ↦ m + 1` (the residue `g^m ↦ g^{m+1}`) has every chart mode</span>
+<span class="ln" id="L523"><a class="lno" href="#L523">523</a>as an eigenvector, with eigenphase `e^{2πi·j/n}` independent of the vector: `χ_j(m + 1) = e^{2πi j/n} χ_j(m)`. -/</span>
+<span class="ln decl" id="FRC.Rh.chi_shift"><a class="lno" href="#FRC.Rh.chi_shift">524</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcLedger/Rh.lean#L524" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small t2" src="lean-t2.png" alt="" title="tier 2, classical: Classical.choice, Quot.sound, propext">theorem chi_shift (j m : ZMod n) :</span>
+<span class="ln" id="L525"><a class="lno" href="#L525">525</a>    chi j (m + 1) = ZMod.stdAddChar j * chi j m ∧</span>
+<span class="ln" id="L526"><a class="lno" href="#L526">526</a>    ZMod.stdAddChar (j : ZMod n) = exp (2 * Real.pi * I * j.val / n) := by</span>
+<span class="ln" id="L527"><a class="lno" href="#L527">527</a>  constructor</span>
+<span class="ln" id="L528"><a class="lno" href="#L528">528</a>  · rw [chi, chi, mul_add, mul_one, AddChar.map_add_eq_mul, mul_comm]</span>
+<span class="ln" id="L529"><a class="lno" href="#L529">529</a>  · rw [ZMod.stdAddChar_apply, ZMod.toCircle_apply]</span>
+<span class="ln" id="L530"><a class="lno" href="#L530">530</a></span>
+<span class="ln" id="L531"><a class="lno" href="#L531">531</a>/-- 20:E12, 20:E13 — clause (i): Fourier inversion on the cycle, `v = (1/n) Σ_j ⟨v, χ_j⟩ χ_j`, with the constant</span>
+<span class="ln" id="L532"><a class="lno" href="#L532">532</a>mode carrying the mean, `⟨v, χ_0⟩ = Σ_m v(m)`, so the nontrivial modes carry `v − v̄·1`. -/</span>
+<span class="ln decl" id="FRC.Rh.chi_inversion"><a class="lno" href="#FRC.Rh.chi_inversion">533</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcLedger/Rh.lean#L533" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small t2" src="lean-t2.png" alt="" title="tier 2, classical: Classical.choice, Quot.sound, propext">theorem chi_inversion (v : ZMod n → ℂ) :</span>
+<span class="ln" id="L534"><a class="lno" href="#L534">534</a>    (∀ m, v m = (n : ℂ)⁻¹ * ∑ j, coef v j * chi j m) ∧ coef v 0 = ∑ m, v m ∧</span>
+<span class="ln" id="L535"><a class="lno" href="#L535">535</a>    ∀ m, v m - (n : ℂ)⁻¹ * ∑ m&#x27;, v m&#x27; = (n : ℂ)⁻¹ * ∑ j ∈ univ.erase 0, coef v j * chi j m := by</span>
+<span class="ln" id="L536"><a class="lno" href="#L536">536</a>  have hn : (n : ℂ) ≠ 0 := by exact_mod_cast NeZero.ne n</span>
+<span class="ln" id="L537"><a class="lno" href="#L537">537</a>  have hkey : ∀ m, ∑ j, coef v j * chi j m = (n : ℂ) * v m := by</span>
+<span class="ln" id="L538"><a class="lno" href="#L538">538</a>    intro m</span>
+<span class="ln" id="L539"><a class="lno" href="#L539">539</a>    simp only [coef, sum_mul]</span>
+<span class="ln" id="L540"><a class="lno" href="#L540">540</a>    rw [sum_comm]</span>
+<span class="ln" id="L541"><a class="lno" href="#L541">541</a>    have : ∀ m&#x27;, ∑ j, v m&#x27; * (starRingEnd ℂ) (chi j m&#x27;) * chi j m</span>
+<span class="ln" id="L542"><a class="lno" href="#L542">542</a>        = v m&#x27; * ∑ j, chi j m * (starRingEnd ℂ) (chi j m&#x27;) := fun m&#x27; =&gt; by</span>
+<span class="ln" id="L543"><a class="lno" href="#L543">543</a>      rw [mul_sum]; exact sum_congr rfl fun j _ =&gt; by ring</span>
+<span class="ln" id="L544"><a class="lno" href="#L544">544</a>    simp_rw [this]</span>
+<span class="ln" id="L545"><a class="lno" href="#L545">545</a>    have horth : ∀ m&#x27;, ∑ j, chi j m * (starRingEnd ℂ) (chi j m&#x27;) = if m&#x27; = m then (n : ℂ) else 0 := by</span>
+<span class="ln" id="L546"><a class="lno" href="#L546">546</a>      intro m&#x27;</span>
+<span class="ln" id="L547"><a class="lno" href="#L547">547</a>      have : ∀ j, chi j m * (starRingEnd ℂ) (chi j m&#x27;) = ZMod.stdAddChar (j * (m - m&#x27;)) := fun j =&gt; by</span>
+<span class="ln" id="L548"><a class="lno" href="#L548">548</a>        rw [chi_conj, chi, ← AddChar.map_add_eq_mul]</span>
+<span class="ln" id="L549"><a class="lno" href="#L549">549</a>        congr 1; ring</span>
+<span class="ln" id="L550"><a class="lno" href="#L550">550</a>      simp_rw [this]</span>
+<span class="ln" id="L551"><a class="lno" href="#L551">551</a>      rw [AddChar.sum_mulShift _ (ZMod.isPrimitive_stdAddChar n), ZMod.card]</span>
+<span class="ln" id="L552"><a class="lno" href="#L552">552</a>      by_cases h : m&#x27; = m</span>
+<span class="ln" id="L553"><a class="lno" href="#L553">553</a>      · subst h; simp</span>
+<span class="ln" id="L554"><a class="lno" href="#L554">554</a>      · rw [ite_eq_right (fun e =&gt; h (sub_eq_zero.1 e).symm), ite_eq_right h]; simp</span>
+<span class="ln" id="L555"><a class="lno" href="#L555">555</a>    simp_rw [horth]</span>
+<span class="ln" id="L556"><a class="lno" href="#L556">556</a>    simp [mul_comm]</span>
+<span class="ln" id="L557"><a class="lno" href="#L557">557</a>  have hmean : coef v 0 = ∑ m, v m := by</span>
+<span class="ln" id="L558"><a class="lno" href="#L558">558</a>    simp only [coef, chi, zero_mul, AddChar.map_zero_eq_one, map_one, mul_one]</span>
+<span class="ln" id="L559"><a class="lno" href="#L559">559</a>  refine ⟨fun m =&gt; ?_, hmean, fun m =&gt; ?_⟩</span>
+<span class="ln" id="L560"><a class="lno" href="#L560">560</a>  · rw [hkey, ← mul_assoc, inv_mul_cancel₀ hn, one_mul]</span>
+<span class="ln" id="L561"><a class="lno" href="#L561">561</a>  · have hsplit := sum_erase_add univ (fun j =&gt; coef v j * chi j m) (mem_univ 0)</span>
+<span class="ln" id="L562"><a class="lno" href="#L562">562</a>    rw [hkey] at hsplit</span>
+<span class="ln" id="L563"><a class="lno" href="#L563">563</a>    have h0 : coef v 0 * chi 0 m = ∑ m&#x27;, v m&#x27; := by</span>
+<span class="ln" id="L564"><a class="lno" href="#L564">564</a>      rw [hmean, chi, zero_mul, AddChar.map_zero_eq_one, mul_one]</span>
+<span class="ln" id="L565"><a class="lno" href="#L565">565</a>    rw [h0] at hsplit</span>
+<span class="ln" id="L566"><a class="lno" href="#L566">566</a>    have : ∑ j ∈ univ.erase 0, coef v j * chi j m = (n : ℂ) * v m - ∑ m&#x27;, v m&#x27; := by</span>
+<span class="ln" id="L567"><a class="lno" href="#L567">567</a>      linear_combination hsplit</span>
+<span class="ln" id="L568"><a class="lno" href="#L568">568</a>    rw [this, mul_sub, ← mul_assoc, inv_mul_cancel₀ hn, one_mul]</span>
+<span class="ln" id="L569"><a class="lno" href="#L569">569</a></span>
+<span class="ln" id="L570"><a class="lno" href="#L570">570</a>/-- 20:E13, 20:C5 — Parseval on the cycle: `Σ_j |⟨v, χ_j⟩|² = n Σ_m |v(m)|²`; the chart modes are complete. -/</span>
+<span class="ln decl" id="FRC.Rh.chi_parseval"><a class="lno" href="#FRC.Rh.chi_parseval">571</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcLedger/Rh.lean#L571" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small t2" src="lean-t2.png" alt="" title="tier 2, classical: Classical.choice, Quot.sound, propext">theorem chi_parseval (v : ZMod n → ℂ) :</span>
+<span class="ln" id="L572"><a class="lno" href="#L572">572</a>    ∑ j, normSq (coef v j) = n * ∑ m, normSq (v m) := by</span>
+<span class="ln" id="L573"><a class="lno" href="#L573">573</a>  have h := (chi_inversion v).1</span>
+<span class="ln" id="L574"><a class="lno" href="#L574">574</a>  apply Complex.ofReal_injective</span>
+<span class="ln" id="L575"><a class="lno" href="#L575">575</a>  push_cast</span>
+<span class="ln" id="L576"><a class="lno" href="#L576">576</a>  simp_rw [← Complex.mul_conj]</span>
+<span class="ln" id="L577"><a class="lno" href="#L577">577</a>  have hc : ∀ j, (starRingEnd ℂ) (coef v j) = ∑ m, (starRingEnd ℂ) (v m) * chi j m := fun j =&gt; by</span>
+<span class="ln" id="L578"><a class="lno" href="#L578">578</a>    simp only [coef, map_sum, map_mul, Complex.conj_conj]</span>
+<span class="ln" id="L579"><a class="lno" href="#L579">579</a>  calc ∑ j, coef v j * (starRingEnd ℂ) (coef v j)</span>
+<span class="ln" id="L580"><a class="lno" href="#L580">580</a>      = ∑ j, ∑ m, (starRingEnd ℂ) (v m) * (coef v j * chi j m) := by</span>
+<span class="ln" id="L581"><a class="lno" href="#L581">581</a>        refine sum_congr rfl fun j _ =&gt; ?_</span>
+<span class="ln" id="L582"><a class="lno" href="#L582">582</a>        rw [hc, mul_sum]; exact sum_congr rfl fun m _ =&gt; by ring</span>
+<span class="ln" id="L583"><a class="lno" href="#L583">583</a>    _ = ∑ m, (starRingEnd ℂ) (v m) * ∑ j, coef v j * chi j m := by</span>
+<span class="ln" id="L584"><a class="lno" href="#L584">584</a>        rw [sum_comm]; exact sum_congr rfl fun m _ =&gt; by rw [mul_sum]</span>
+<span class="ln" id="L585"><a class="lno" href="#L585">585</a>    _ = ∑ m, (starRingEnd ℂ) (v m) * ((n : ℂ) * v m) := by</span>
+<span class="ln" id="L586"><a class="lno" href="#L586">586</a>        refine sum_congr rfl fun m _ =&gt; ?_</span>
+<span class="ln" id="L587"><a class="lno" href="#L587">587</a>        congr 1</span>
+<span class="ln" id="L588"><a class="lno" href="#L588">588</a>        have hn : (n : ℂ) ≠ 0 := by exact_mod_cast NeZero.ne n</span>
+<span class="ln" id="L589"><a class="lno" href="#L589">589</a>        have := h m</span>
+<span class="ln" id="L590"><a class="lno" href="#L590">590</a>        rw [this, ← mul_assoc, mul_inv_cancel₀ hn, one_mul]</span>
+<span class="ln" id="L591"><a class="lno" href="#L591">591</a>    _ = (n : ℂ) * ∑ m, v m * (starRingEnd ℂ) (v m) := by</span>
+<span class="ln" id="L592"><a class="lno" href="#L592">592</a>        rw [mul_sum]; exact sum_congr rfl fun m _ =&gt; by ring</span>
+<span class="ln" id="L593"><a class="lno" href="#L593">593</a></span>
+<span class="ln" id="L594"><a class="lno" href="#L594">594</a>/-- 20:C5 — mean-square flatness: for a mean-removed vector `u ≠ 0` on the cycle (`Σ_m u(m) = 0`), the</span>
+<span class="ln" id="L595"><a class="lno" href="#L595">595</a>normalised correlations `r_j = |⟨u, χ_j⟩|/(‖u‖ ‖χ_j‖)` with the nonconstant modes satisfy `Σ_{j≠0} r_j² = 1`</span>
+<span class="ln" id="L596"><a class="lno" href="#L596">596</a>exactly, so their mean square over the `n − 1 = p − 2` nonconstant modes is `1/(p − 2)`: the root-mean-square</span>
+<span class="ln" id="L597"><a class="lno" href="#L597">597</a>correlation is `1/√(p − 2)`. -/</span>
+<span class="ln decl" id="FRC.Rh.flatness"><a class="lno" href="#FRC.Rh.flatness">598</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcLedger/Rh.lean#L598" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small t2" src="lean-t2.png" alt="" title="tier 2, classical: Classical.choice, Quot.sound, propext">theorem flatness (u : ZMod n → ℂ) (hmean : ∑ m, u m = 0) (hu : u ≠ 0) :</span>
+<span class="ln" id="L599"><a class="lno" href="#L599">599</a>    ∑ j ∈ univ.erase 0, normSq (coef u j) / (n * ∑ m, normSq (u m)) = 1 ∧</span>
+<span class="ln" id="L600"><a class="lno" href="#L600">600</a>    (∑ j ∈ univ.erase 0, normSq (coef u j) / (n * ∑ m, normSq (u m))) / ((n : ℝ) - 1) = 1 / ((n : ℝ) - 1) := by</span>
+<span class="ln" id="L601"><a class="lno" href="#L601">601</a>  have hpos : 0 &lt; ∑ m, normSq (u m) := by</span>
+<span class="ln" id="L602"><a class="lno" href="#L602">602</a>    obtain ⟨m, hm⟩ : ∃ m, u m ≠ 0 := by</span>
+<span class="ln" id="L603"><a class="lno" href="#L603">603</a>      by_contra h; push Not at h; exact hu (funext h)</span>
+<span class="ln" id="L604"><a class="lno" href="#L604">604</a>    exact sum_pos&#x27; (fun m _ =&gt; normSq_nonneg _) ⟨m, mem_univ _, normSq_pos.2 hm⟩</span>
+<span class="ln" id="L605"><a class="lno" href="#L605">605</a>  have hn : (0 : ℝ) &lt; n := by exact_mod_cast Nat.pos_of_ne_zero (NeZero.ne n)</span>
+<span class="ln" id="L606"><a class="lno" href="#L606">606</a>  have hden : (n : ℝ) * ∑ m, normSq (u m) ≠ 0 := (mul_pos hn hpos).ne&#x27;</span>
+<span class="ln" id="L607"><a class="lno" href="#L607">607</a>  have h0 : coef u 0 = 0 := by rw [(chi_inversion u).2.1, hmean]</span>
+<span class="ln" id="L608"><a class="lno" href="#L608">608</a>  have hsplit := sum_erase_add univ (fun j =&gt; normSq (coef u j)) (mem_univ 0)</span>
+<span class="ln" id="L609"><a class="lno" href="#L609">609</a>  rw [chi_parseval, h0, normSq_zero, add_zero] at hsplit</span>
+<span class="ln" id="L610"><a class="lno" href="#L610">610</a>  have h1 : ∑ j ∈ univ.erase 0, normSq (coef u j) / (n * ∑ m, normSq (u m)) = 1 := by</span>
+<span class="ln" id="L611"><a class="lno" href="#L611">611</a>    rw [← sum_div, hsplit, div_self hden]</span>
+<span class="ln" id="L612"><a class="lno" href="#L612">612</a>  exact ⟨h1, by rw [h1]⟩</span>
+<span class="ln" id="L613"><a class="lno" href="#L613">613</a></span>
+<span class="ln" id="L614"><a class="lno" href="#L614">614</a>end characters</span>
+<span class="ln" id="L615"><a class="lno" href="#L615">615</a></span>
+<span class="ln" id="L616"><a class="lno" href="#L616">616</a>/-! ## The resonance: the von Mangoldt weight (row C2) -/</span>
+<span class="ln" id="L617"><a class="lno" href="#L617">617</a></span>
+<span class="ln" id="L618"><a class="lno" href="#L618">618</a>section resonance</span>
+<span class="ln" id="L619"><a class="lno" href="#L619">619</a></span>
+<span class="ln" id="L620"><a class="lno" href="#L620">620</a>open ArithmeticFunction</span>
+<span class="ln" id="L621"><a class="lno" href="#L621">621</a></span>
+<span class="ln" id="L622"><a class="lno" href="#L622">622</a>/-- 20:C2 — `Λ = μ ∗ log` exactly on the divisor lattice: `Λ(n) = Σ_{d ∣ n} μ(d) log(n/d)`; and the support of</span>
+<span class="ln" id="L623"><a class="lno" href="#L623">623</a>`Λ` is the prime powers. (Hardy&#x27;s limit `R_L → (φ(n)/n) Λ(n)` is the import A3.) -/</span>
+<span class="ln decl" id="FRC.Rh.vonMangoldt_moebius"><a class="lno" href="#FRC.Rh.vonMangoldt_moebius">624</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcLedger/Rh.lean#L624" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small t2" src="lean-t2.png" alt="" title="tier 2, classical: Classical.choice, Quot.sound, propext">theorem vonMangoldt_moebius (m : ℕ) :</span>
+<span class="ln" id="L625"><a class="lno" href="#L625">625</a>    vonMangoldt m = ∑ d ∈ m.divisors, (moebius d : ℝ) * Real.log ((m : ℝ) / d) ∧</span>
+<span class="ln" id="L626"><a class="lno" href="#L626">626</a>    (vonMangoldt m ≠ 0 ↔ IsPrimePow m) := by</span>
+<span class="ln" id="L627"><a class="lno" href="#L627">627</a>  refine ⟨?_, vonMangoldt_ne_zero_iff⟩</span>
+<span class="ln" id="L628"><a class="lno" href="#L628">628</a>  rw [← moebius_mul_log_eq_vonMangoldt, mul_apply,</span>
+<span class="ln" id="L629"><a class="lno" href="#L629">629</a>    Nat.sum_divisorsAntidiagonal (fun a b =&gt; (moebius : ArithmeticFunction ℝ) a * log b)]</span>
+<span class="ln" id="L630"><a class="lno" href="#L630">630</a>  refine sum_congr rfl fun d hd =&gt; ?_</span>
+<span class="ln" id="L631"><a class="lno" href="#L631">631</a>  simp only [intCoe_apply, log_apply]</span>
+<span class="ln" id="L632"><a class="lno" href="#L632">632</a>  rw [Nat.cast_div (Nat.dvd_of_mem_divisors hd) (by</span>
+<span class="ln" id="L633"><a class="lno" href="#L633">633</a>    exact_mod_cast (Nat.pos_of_mem_divisors hd).ne&#x27;)]</span>
+<span class="ln" id="L634"><a class="lno" href="#L634">634</a></span>
+<span class="ln" id="L635"><a class="lno" href="#L635">635</a>end resonance</span>
+<span class="ln" id="L636"><a class="lno" href="#L636">636</a></span>
+<span class="ln" id="L637"><a class="lno" href="#L637">637</a>/-! ## Frame coincidence below the horizon (row B2) -/</span>
+<span class="ln" id="L638"><a class="lno" href="#L638">638</a></span>
+<span class="ln" id="L639"><a class="lno" href="#L639">639</a>section coincidence</span>
+<span class="ln" id="L640"><a class="lno" href="#L640">640</a></span>
+<span class="ln" id="L641"><a class="lno" href="#L641">641</a>/-- 20:B2 — below the horizon the reading is frame-exact: on any shell `ZMod q` with `H² &lt; q`, residues</span>
+<span class="ln" id="L642"><a class="lno" href="#L642">642</a>`n ≤ H` are the integers themselves and window products read back exactly, so the Subject `𝔽_p` and the Carrier</span>
+<span class="ln" id="L643"><a class="lno" href="#L643">643</a>`𝔽_Ω` agree on the window. -/</span>
+<span class="ln decl" id="FRC.Rh.window_readback"><a class="lno" href="#FRC.Rh.window_readback">644</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcLedger/Rh.lean#L644" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small ok" src="lean-ok.png" alt="" title="no axioms">theorem window_readback {q : ℕ} [NeZero q] {H : ℕ} (hH : H * H &lt; q) :</span>
+<span class="ln" id="L645"><a class="lno" href="#L645">645</a>    (∀ m, m ≤ H → ((m : ZMod q)).val = m) ∧</span>
+<span class="ln" id="L646"><a class="lno" href="#L646">646</a>    ∀ a b, a ≤ H → b ≤ H → ((a : ZMod q) * b).val = a * b := by</span>
+<span class="ln" id="L647"><a class="lno" href="#L647">647</a>  have hle : ∀ m, m ≤ H → m &lt; q := fun m hm =&gt; by</span>
+<span class="ln" id="L648"><a class="lno" href="#L648">648</a>    rcases Nat.eq_zero_or_pos H with h | h</span>
+<span class="ln" id="L649"><a class="lno" href="#L649">649</a>    · subst h; have := Nat.pos_of_ne_zero (NeZero.ne q); omega</span>
+<span class="ln" id="L650"><a class="lno" href="#L650">650</a>    · exact lt_of_le_of_lt (le_trans hm (Nat.le_mul_self H)) hH</span>
+<span class="ln" id="L651"><a class="lno" href="#L651">651</a>  refine ⟨fun m hm =&gt; ZMod.val_natCast_of_lt (hle m hm), fun a b ha hb =&gt; ?_⟩</span>
+<span class="ln" id="L652"><a class="lno" href="#L652">652</a>  rw [← Nat.cast_mul, ZMod.val_natCast_of_lt]</span>
+<span class="ln" id="L653"><a class="lno" href="#L653">653</a>  exact lt_of_le_of_lt (Nat.mul_le_mul ha hb) hH</span>
+<span class="ln" id="L654"><a class="lno" href="#L654">654</a></span>
+<span class="ln" id="L655"><a class="lno" href="#L655">655</a>/-- 20:B2 — primality equals irreducibility in the window: for `2 ≤ m ≤ H` and any shell with `H² &lt; q`, `m`</span>
+<span class="ln" id="L656"><a class="lno" href="#L656">656</a>is prime iff it admits no factorisation `a · b = m` with `2 ≤ a, b ≤ H` read on the shell. -/</span>
+<span class="ln decl" id="FRC.Rh.prime_iff_window_irreducible"><a class="lno" href="#FRC.Rh.prime_iff_window_irreducible">657</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcLedger/Rh.lean#L657" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small t1" src="lean-t1.png" alt="" title="tier 1: Quot.sound, propext">theorem prime_iff_window_irreducible {q : ℕ} [NeZero q] {H : ℕ} (hH : H * H &lt; q) (m : ℕ) (hm2 : 2 ≤ m)</span>
+<span class="ln" id="L658"><a class="lno" href="#L658">658</a>    (hmH : m ≤ H) :</span>
+<span class="ln" id="L659"><a class="lno" href="#L659">659</a>    Nat.Prime m ↔ ¬ ∃ a b, 2 ≤ a ∧ 2 ≤ b ∧ a ≤ H ∧ b ≤ H ∧ (a : ZMod q) * b = m := by</span>
+<span class="ln" id="L660"><a class="lno" href="#L660">660</a>  have hrb := window_readback (q := q) hH</span>
+<span class="ln" id="L661"><a class="lno" href="#L661">661</a>  constructor</span>
+<span class="ln" id="L662"><a class="lno" href="#L662">662</a>  · rintro hp ⟨a, b, ha2, hb2, haH, hbH, hab⟩</span>
+<span class="ln" id="L663"><a class="lno" href="#L663">663</a>    have hval := congrArg ZMod.val hab</span>
+<span class="ln" id="L664"><a class="lno" href="#L664">664</a>    rw [hrb.2 a b haH hbH, hrb.1 m hmH] at hval</span>
+<span class="ln" id="L665"><a class="lno" href="#L665">665</a>    have hdvd : a ∣ m := ⟨b, hval.symm⟩</span>
+<span class="ln" id="L666"><a class="lno" href="#L666">666</a>    rcases (Nat.dvd_prime hp).1 hdvd with h | h</span>
+<span class="ln" id="L667"><a class="lno" href="#L667">667</a>    · omega</span>
+<span class="ln" id="L668"><a class="lno" href="#L668">668</a>    · rw [h] at hval</span>
+<span class="ln" id="L669"><a class="lno" href="#L669">669</a>      have hb1 : b = 1 := Nat.eq_of_mul_eq_mul_left (show 0 &lt; m by omega)</span>
+<span class="ln" id="L670"><a class="lno" href="#L670">670</a>        (show m * b = m * 1 by rw [Nat.mul_one]; exact hval)</span>
+<span class="ln" id="L671"><a class="lno" href="#L671">671</a>      omega</span>
+<span class="ln" id="L672"><a class="lno" href="#L672">672</a>  · intro h</span>
+<span class="ln" id="L673"><a class="lno" href="#L673">673</a>    rw [Nat.prime_def]</span>
+<span class="ln" id="L674"><a class="lno" href="#L674">674</a>    refine ⟨hm2, fun a ham =&gt; ?_⟩</span>
+<span class="ln" id="L675"><a class="lno" href="#L675">675</a>    by_contra hane</span>
+<span class="ln" id="L676"><a class="lno" href="#L676">676</a>    push Not at hane</span>
+<span class="ln" id="L677"><a class="lno" href="#L677">677</a>    obtain ⟨b, hb⟩ := ham</span>
+<span class="ln" id="L678"><a class="lno" href="#L678">678</a>    have hb0 : b ≠ 0 := by rintro rfl; rw [Nat.mul_zero] at hb; omega</span>
+<span class="ln" id="L679"><a class="lno" href="#L679">679</a>    have hb1 : b ≠ 1 := by rintro rfl; rw [Nat.mul_one] at hb; exact hane.2 hb.symm</span>
+<span class="ln" id="L680"><a class="lno" href="#L680">680</a>    have ha0 : a ≠ 0 := by rintro rfl; rw [Nat.zero_mul] at hb; omega</span>
+<span class="ln" id="L681"><a class="lno" href="#L681">681</a>    apply h</span>
+<span class="ln" id="L682"><a class="lno" href="#L682">682</a>    refine ⟨a, b, by omega, by omega, le_trans (Nat.le_of_dvd (by omega) ⟨b, hb⟩) hmH,</span>
+<span class="ln" id="L683"><a class="lno" href="#L683">683</a>      le_trans (Nat.le_of_dvd (by omega) ⟨a, by rw [mul_comm]; exact hb⟩) hmH, ?_⟩</span>
+<span class="ln" id="L684"><a class="lno" href="#L684">684</a>    rw [← Nat.cast_mul, ← hb]</span>
+<span class="ln" id="L685"><a class="lno" href="#L685">685</a></span>
+<span class="ln" id="L686"><a class="lno" href="#L686">686</a>/-- 20:B2 — `⌊√p⌋² &lt; p` for a prime `p`: the horizon window `H = ⌊√p⌋` is wrap-free. -/</span>
+<span class="ln decl" id="FRC.Rh.sqrt_sq_lt_prime"><a class="lno" href="#FRC.Rh.sqrt_sq_lt_prime">687</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcLedger/Rh.lean#L687" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small t2" src="lean-t2.png" alt="" title="tier 2, classical: Classical.choice, Quot.sound, propext">lemma sqrt_sq_lt_prime {p : ℕ} (hp : p.Prime) : Nat.sqrt p * Nat.sqrt p &lt; p := by</span>
+<span class="ln" id="L688"><a class="lno" href="#L688">688</a>  rcases lt_or_eq_of_le (Nat.sqrt_le p) with h | h</span>
+<span class="ln" id="L689"><a class="lno" href="#L689">689</a>  · exact h</span>
+<span class="ln" id="L690"><a class="lno" href="#L690">690</a>  · exfalso</span>
+<span class="ln" id="L691"><a class="lno" href="#L691">691</a>    have hdvd : Nat.sqrt p ∣ p := ⟨Nat.sqrt p, h.symm⟩</span>
+<span class="ln" id="L692"><a class="lno" href="#L692">692</a>    rcases (Nat.dvd_prime hp).1 hdvd with h1 | h1</span>
+<span class="ln" id="L693"><a class="lno" href="#L693">693</a>    · rw [h1] at h; have := hp.one_lt; omega</span>
+<span class="ln" id="L694"><a class="lno" href="#L694">694</a>    · rw [h1] at h</span>
+<span class="ln" id="L695"><a class="lno" href="#L695">695</a>      have := hp.one_lt</span>
+<span class="ln" id="L696"><a class="lno" href="#L696">696</a>      nlinarith</span>
+<span class="ln" id="L697"><a class="lno" href="#L697">697</a></span>
+<span class="ln" id="L698"><a class="lno" href="#L698">698</a>end coincidence</span>
+<span class="ln" id="L699"><a class="lno" href="#L699">699</a></span>
+<span class="ln" id="L700"><a class="lno" href="#L700">700</a>/-! ## The laboratory pair (13, 233) (row B1) -/</span>
+<span class="ln" id="L701"><a class="lno" href="#L701">701</a></span>
+<span class="ln" id="L702"><a class="lno" href="#L702">702</a>section lab</span>
+<span class="ln" id="L703"><a class="lno" href="#L703">703</a></span>
+<span class="ln" id="L704"><a class="lno" href="#L704">704</a>/-- 20:B1 [value] — the laboratory pair `(13, 233)`: nested, `13² &lt; 233`; the two cycles share the quarter-turn</span>
+<span class="ln" id="L705"><a class="lno" href="#L705">705</a>core `Q₄` and nothing else, `gcd(12, 232) = 4`, with `5² = −1` on `𝔽₁₃` and `89² = −1` on `𝔽₂₃₃`; and</span>
+<span class="ln" id="L706"><a class="lno" href="#L706">706</a>`12 ∤ 232`. -/</span>
+<span class="ln decl" id="FRC.Rh.lab_pair"><a class="lno" href="#FRC.Rh.lab_pair">707</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcLedger/Rh.lean#L707" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small ok" src="lean-ok.png" alt="" title="no axioms">theorem lab_pair :</span>
+<span class="ln" id="L708"><a class="lno" href="#L708">708</a>    13 * 13 &lt; 233 ∧ Nat.gcd 12 232 = 4 ∧ (5 : ZMod 13) ^ 2 = -1 ∧ (89 : ZMod 233) ^ 2 = -1 ∧ ¬ 12 ∣ 232 := by</span>
+<span class="ln" id="L709"><a class="lno" href="#L709">709</a>  decide</span>
+<span class="ln" id="L710"><a class="lno" href="#L710">710</a></span>
+<span class="ln" id="L711"><a class="lno" href="#L711">711</a>/-- 20:B1 — no projection of the Carrier&#x27;s cycle onto the Subject&#x27;s: there is no surjective homomorphism</span>
+<span class="ln" id="L712"><a class="lno" href="#L712">712</a>`C_{232} → C_{12}`, since `12 ∤ 232`. -/</span>
+<span class="ln decl" id="FRC.Rh.no_cycle_projection"><a class="lno" href="#FRC.Rh.no_cycle_projection">713</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcLedger/Rh.lean#L713" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small t2" src="lean-t2.png" alt="" title="tier 2, classical: Classical.choice, Quot.sound, propext">theorem no_cycle_projection :</span>
+<span class="ln" id="L714"><a class="lno" href="#L714">714</a>    ¬ ∃ f : Multiplicative (ZMod 232) →* Multiplicative (ZMod 12), Function.Surjective f := by</span>
+<span class="ln" id="L715"><a class="lno" href="#L715">715</a>  rintro ⟨f, hf⟩</span>
+<span class="ln" id="L716"><a class="lno" href="#L716">716</a>  have := Subgroup.card_dvd_of_surjective f hf</span>
+<span class="ln" id="L717"><a class="lno" href="#L717">717</a>  rw [Nat.card_eq_fintype_card, Nat.card_eq_fintype_card] at this</span>
+<span class="ln" id="L718"><a class="lno" href="#L718">718</a>  simp only [Fintype.card_multiplicative, ZMod.card] at this</span>
+<span class="ln" id="L719"><a class="lno" href="#L719">719</a>  exact absurd this (by decide)</span>
+<span class="ln" id="L720"><a class="lno" href="#L720">720</a></span>
+<span class="ln" id="L721"><a class="lno" href="#L721">721</a>end lab</span>
+<span class="ln" id="L722"><a class="lno" href="#L722">722</a></span>
+<span class="ln" id="L723"><a class="lno" href="#L723">723</a>end FRC.Rh</span>
+<span class="ln" id="L724"><a class="lno" href="#L724">724</a></span>
+</pre></main>
+</div>
+</body>
+</html>

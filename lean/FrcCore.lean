@@ -16,3 +16,4 @@ import FrcCore.Reductio
 import FrcCore.Geometry
 import FrcCore.Complex
 import FrcCore.Instances
+import FrcCore.Rh

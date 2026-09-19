@@ -1,7 +1,9 @@
-"""Builds 20-rh-validate.ipynb (the Colab driver of the 20-rh validation package). Run: python3 make_notebook.py"""
+"""Builds the Colab driver of the 20-rh validation package — 20-rh-main.ipynb (the corpus name, the one the public
+ledger page links) and 20-rh-validate.ipynb (the name the paper's Reproducibility section pins at commit b2a3fcec);
+the two are the same notebook. Run: python3 make_notebook.py"""
 import nbformat as nbf
 
-COLAB = "https://colab.research.google.com/github/gamayos/finite-ring-space/blob/main/src/20-rh/20-rh-validate.ipynb"
+COLAB = "https://colab.research.google.com/github/gamayos/finite-ring-space/blob/main/src/20-rh/20-rh-main.ipynb"
 nb = nbf.v4.new_notebook()
 nb.metadata = {"kernelspec": {"display_name": "Python 3", "language": "python", "name": "python3"},
                "language_info": {"name": "python"}, "colab": {"provenance": [], "toc_visible": True}}
@@ -9,16 +11,19 @@ cells = []
 md = lambda s: cells.append(nbf.v4.new_markdown_cell(s))
 code = lambda s: cells.append(nbf.v4.new_code_cell(s))
 
-md(f"""# 20-rh — validation package
-[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)]({COLAB})
+md(f"""[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)]({COLAB})
 
-**Paper.** *Riemann Hypothesis over Finite Holographic Substrate* (Akhtman & Voether, 2026), `20-rh` of the FRC corpus.
-**Package.** `finite-ring-space/src/20-rh` — seven block scripts driven by this notebook, 94 checks (57 EXACT, 34 [approx], 3 [chart]). Every cell below names the labelled
-statements of the paper it checks (`Theorem`, `Proposition`, `Numerical Observation`, `Definition` — by their `\\label`
-as printed in the paper), lists the paper-local predicates as the block scripts register them, and gives the master-ledger
-row of the corpus they witness (`00:D11` the shell theorem, `00:D12` the classical hypothesis as a screen value).
-The package regenerates every numerical figure of the paper (`figures/`); the one qualitative illustration
-(`carrier-domains.png`) is not a computation and is omitted.
+## Riemann Hypothesis over the Holographic Substrate (Akhtman & Voether, 2026)
+
+**Validation Package.** `finite-ring-space/src/20-rh` — seven block scripts driven by this notebook, 94 checks (57 EXACT, 34 [approx],
+3 [chart]). Each check names the row(s) of the paper's predicate ledger it witnesses (the paper's Appendix A, rows cited as `20:XN`;
+public copy at `docs/20-rh/20-rh-ledger.html`), and the ledger's source column cites the check ids in return. Where a row is proved in
+Lean (`lean/FrcCore/Rh.lean` with no axioms, or `lean/FrcLedger/Rh.lean` on Mathlib — the shell rows B2, B4–B10, C2, C5, E1, E12, E13),
+the check here is the instance the reader can run. Master-ledger rows of the corpus reached through the paper rows: `00:D11` (the shell
+theorem, `20:E12`) and `00:D12` (the classical hypothesis as a screen value, `20:F1–F2`). Every cell below names the labelled
+statements of the paper it checks (`Theorem`, `Proposition`, `Numerical Observation`, `Definition` — by their `\\label` as printed
+in the paper) and lists the paper-local predicates as the block scripts register them. The package regenerates every numerical
+figure of the paper (`figures/`); the one qualitative illustration (`carrier-domains.png`) is not a computation and is omitted.
 
 **Kinds.** `EXACT` checks are integer-pinned finite computations (a pass is a proof on the tested instances);
 `[approx]` checks compare a floating-point observation with the value the paper states, to a stated tolerance;
@@ -31,7 +36,7 @@ zeta functions, as the paper says they do.
 largest object); set `FAST = True` in the second cell for reduced depths (≈ 2 min; the same 94 checks, the deep
 tails of the depth scans shortened). The last cell writes `results.json` and fails loudly if any predicate fails.
 
-**Ledger.** The paper carries a predicate ledger (its Subsection "Predicate ledger": 65 rows in blocks A–F, V, Z, cited as `20:XN`). Each check below prints the ledger row(s) it witnesses in square brackets, and `results.json` records them; the ledger's source column cites these check ids in return. The two master-ledger rows of the corpus, `00:D11` and `00:D12`, are `20:E12` and `20:F1–F2`.""")
+**Ledger.** The paper's predicate ledger (Appendix A: 66 rows in blocks A–F, V, Z, cited as `20:XN`). Each check below prints the ledger row(s) it witnesses in square brackets, and `results.json` records them.""")
 
 code("""# --- environment: clone the package if this notebook is not already running inside it (Colab), install the two
 # non-default dependencies. numpy, scipy, matplotlib are standard on Colab; mpmath and sympy are usually present too.
@@ -45,7 +50,7 @@ if not os.path.exists("rhcommon.py"):
     else:
         os.chdir("finite-ring-space/src/20-rh")
 
-!pip install -q --disable-pip-version-check numpy>=1.24 scipy>=1.10 mpmath>=1.3 sympy>=1.12 matplotlib>=3.7
+!pip install -q --disable-pip-version-check "numpy>=1.24" "scipy>=1.10" "mpmath>=1.3" "sympy>=1.12" "matplotlib>=3.7"
 print("working directory:", os.getcwd())""")
 
 code("""FAST = False                      # True: reduced depths (≈ 2 min); False: the paper's depths (≈ 4 min)
@@ -185,5 +190,6 @@ assert ok, f"FAILED predicates: {failed}"
 print("all predicates pass; figures in figures/, records in results.json")""")
 
 nb.cells = cells
-nbf.write(nb, "20-rh-validate.ipynb")
-print("wrote 20-rh-validate.ipynb with", len(cells), "cells")
+for name in ("20-rh-main.ipynb", "20-rh-validate.ipynb"):
+    nbf.write(nb, name)
+    print("wrote", name, "with", len(cells), "cells")

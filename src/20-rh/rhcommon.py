@@ -33,7 +33,7 @@ os.makedirs(FIGDIR, exist_ok=True)
 # ----------------------------------------------------------------------------- registry
 RESULTS = []
 
-# The paper's predicate ledger (20-rh Subsection "Predicate ledger", rows cited as 20:XN): the row(s) each
+# The paper's predicate ledger (20-rh Appendix A, rows cited as 20:XN): the row(s) each
 # check witnesses. The ledger's source column cites these check ids in return.
 LEDGER = {
     "A1": "20:B4", "A2": "20:B5", "A3": "20:B6", "A4": "20:B8", "A5": "20:B9", "A6": "20:B10", "A7": "20:E1, 20:E12, 20:E13",

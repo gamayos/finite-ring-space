@@ -2,9 +2,11 @@
 
 Machine checks for *Riemann Hypothesis over Finite Holographic Substrate* (Akhtman & Voether, 2026),
 paper `20-rh` of the FRC corpus. Seven block scripts, one driver, one notebook; 94 predicate checks (57 EXACT, 34 [approx], 3 [chart]), each keyed to a row of the
-paper's predicate ledger (§10.6, rows cited as `20:XN`); every numerical figure of the paper regenerated.
+paper's predicate ledger (Appendix A, rows cited as `20:XN`; public copy `docs/20-rh/20-rh-ledger.html`); every numerical figure of the paper regenerated.
+Where a row is proved in Lean (`lean/FrcCore/Rh.lean` with no axioms, or `lean/FrcLedger/Rh.lean` on Mathlib — the shell rows B2, B4–B10, C2, C5,
+E1, E12, E13), the check here is the instance the reader can run.
 
-[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/gamayos/finite-ring-space/blob/main/src/20-rh/20-rh-validate.ipynb)
+[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/gamayos/finite-ring-space/blob/main/src/20-rh/20-rh-main.ipynb)
 
 Discipline: `EXACT` checks are integer-pinned finite computations (a pass is a proof on the tested
 instances); `[approx]` checks compare a floating-point observation with the value the paper states, to
@@ -37,7 +39,8 @@ C7 23 s (the χ mod 5 validation arm 13 s), D 200 s (Hurwitz-zeta arms 130 s, th
 
 ## The notebook
 
-`20-rh-validate.ipynb` drives the same scripts cell by cell. Each block's markdown cell names the paper's
+`20-rh-main.ipynb` drives the same scripts cell by cell (`20-rh-validate.ipynb` is the same notebook under the name the paper's
+Reproducibility section pins at commit `b2a3fcec`; `make_notebook.py` writes both). Each block's markdown cell names the paper's
 labelled statements it checks (by `\label`, as printed in the paper), lists the paper-local predicate ids
 the script registers, and gives the master-ledger row witnessed (`00:D11`, `00:D12`). The figures are
 displayed inline after each block; the last cell writes `results.json` and raises on any failure. In
@@ -59,38 +62,28 @@ The qualitative illustration `carrier-domains.png` (§1) is not a computation an
 
 ## Predicate ledger
 
-The paper carries an in-paper predicate ledger (Subsection "Predicate ledger", 65 rows in blocks A–F, V, Z,
-added 2026-09-13). Every check of this package names the ledger row(s) it witnesses (`LEDGER` in `rhcommon.py`;
+The paper carries its predicate ledger as Appendix A (66 rows in blocks A–F, V, Z). Every check of this package names the ledger row(s) it witnesses (`LEDGER` in `rhcommon.py`;
 the `rows` field of each record in `results.json`; the check line prints it), and the ledger's source column
 cites the check ids in return. The package ids A1 … E4 are therefore check ids, not predicate ids: a ledger row
 may be witnessed by several checks (row 20:E12, the shell theorem, by A1–A9 and A7b on six shells) and a check may
 witness two rows. The two master-ledger rows of the corpus, 00:D11 and 00:D12, are 20:E12 and 20:F1–F2.
 
-## Findings recorded and resolved
+## Four figures the package pins to the digit
 
-Four places where the computation and the paper's text of 12 September did not coincide to the digit were
-found by this package and corrected in the paper on 13 September with the package as witness; they are kept
-here as the record of what changed.
-
-1. **Prop `gauge` (C5).** The paper stated the additive operator's spacing standard deviation as "0.08 of its
-   mean" against the zeros' 0.39; on the paper's own grid (U = 15, M = 2048, potential scale 5) the absolute
-   standard deviation is 0.078 on a mean spacing 0.72, i.e. 0.11 of the mean, while 0.39 is the zeros' ratio
-   (std 1.54 on mean 3.96, first ten heights). The paper now states 0.11 of the mean (0.08 on 0.72). The check
-   pins both numbers.
-2. **Obs `dh`, the 4×10⁵ secular roots (D2c).** At depth 4×10⁵ the unsettled count on [85.3, 86.1] also swings
-   below 42.5 and above 45.5 (excursion 42.35–45.65), adding two crossing pairs (85.35/85.52, 85.88/86.05)
-   besides the roots 85.65/85.75; at 10⁵ the excursion stays inside (42.5, 45.5) and the two roots are the only
-   crossings. The paper now names the roots as the upward crossings of 43.5 and 44.5 and records the swing.
-3. **Obs `dh`, the count at 85.3 (D2d).** "42.66 to 42.73" were the endpoint depths; the interior depths read
-   42.64, 42.65, 42.68. The paper now states 42.64 to 42.73.
-4. **Obs `antipode`, the band energies (E2b).** The figures 1220 > 640 > 323 > 214 "at p ≈ 10⁴" were reproduced
-   by no normalisation the text stated. The paper now states the reproducible form: the band energy of the
-   prime indicator on Z/10007, Parseval-normalised over the bins within three of each a/q, 1153 > 592 > 301 >
-   205, the law E_q ∝ 1/φ(q). The check pins these to ±2.
+1. **Prop `gauge` (C5).** On the paper's grid (U = 15, M = 2048, potential scale 5) the additive operator's spacing standard
+   deviation is 0.078 on a mean spacing 0.72, i.e. 0.11 of the mean, against the zeros' 0.39 (std 1.54 on mean 3.96, first ten
+   heights). The check pins both numbers.
+2. **Obs `dh`, the 4×10⁵ secular roots (D2c).** At depth 4×10⁵ the unsettled count on [85.3, 86.1] swings below 42.5 and above
+   45.5 (excursion 42.35–45.65), adding two crossing pairs (85.35/85.52, 85.88/86.05) besides the roots 85.65/85.75; at 10⁵ the
+   excursion stays inside (42.5, 45.5) and the two roots are the only crossings. The paper names the roots as the upward
+   crossings of 43.5 and 44.5 and records the swing.
+3. **Obs `dh`, the count at 85.3 (D2d).** The depths read 42.64, 42.65, 42.68 and 42.73; the paper states 42.64 to 42.73.
+4. **Obs `antipode`, the band energies (E2b).** The band energy of the prime indicator on Z/10007, Parseval-normalised over the
+   bins within three of each a/q, reads 1153 > 592 > 301 > 205, the law E_q ∝ 1/φ(q). The check pins these to ±2.
 
 ## External witnesses
 
-The corpus-side checks that produced the numbers in the revision history of the paper are in
-`finite-universe-3/20-rh-20260608/reviews/round-0N/` (secular-dh-check, r03check, r04check); the ledger
-witness for 00:D11 is `00-ledger-20260816/validation/check_rh_shell.py`. This package supersedes the
-paper's legacy `figures/*.py` scripts as the public reproduction; the paper's Reproducibility section links here.
+The corpus witness of 00:D11 is `00-ledger-20260816/validation/check_rh_shell.py`; the Lean witnesses of the shell rows are
+`lean/FrcLedger/Rh.lean` (Mathlib) and `lean/FrcCore/Rh.lean` (no axioms), rendered at `docs/lean/Rh.html` and
+`docs/lean/core/Rh.html`. This package is the public reproduction of the paper's figures; the paper's Reproducibility section
+links here.
