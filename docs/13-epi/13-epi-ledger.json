@@ -2,7 +2,7 @@
  "paper": "13-epi",
  "title": "Finite Field Realisation of π and e",
  "doi": "https://doi.org/10.20944/preprints202607.1141.v1",
- "generated": "18 September 2026",
+ "generated": "19 September 2026",
  "blocks": [
   {
    "letter": "A",
@@ -52,7 +52,7 @@
     },
     {
      "label": "A7",
-     "predicate": "Equidistribution of $\\lambda(\\im)/\\p$ over the primes $\\p\\equiv1\\pmod4$ (Duke--Friedlander--Iwaniec), the sole import behind the range predictions for calibrated shells (H4) and the generic-growth reading of the heights.",
+     "predicate": "Equidistribution of $\\lambda(\\im)/\\p$ over the primes $\\p\\equiv1\\pmod4$ (Duke--Friedlander--Iwaniec), the sole import behind the cross-shell existence of calibrated shells and the generic-growth reading of the heights.",
      "tag": "I",
      "source": "\\cite{duke1995equidistribution}",
      "key": "p13007"
@@ -388,7 +388,7 @@
     },
     {
      "label": "H4",
-     "predicate": "Calibrated shells on every range: A7 (imported) read as the uniform model on a range of $N$ shells --- $2\\varepsilon N/\\piR$ of them $\\varepsilon$-calibrated ($|\\theta-1|<\\varepsilon$ for one chirality), the nearest at $\\piR/(2N)$, and $\\chi(\\eP)$ within $\\varepsilon$ of $e^{\\imR}$ on each; the import's limit, calibrated shells at every $\\varepsilon$, is the chart's [chart]; data for $\\p<10^{6}$ ($39{,}175$ primes $\\equiv1\\bmod4$): $260$ shells within $0.01$ against $\\approx249$ predicted, the best six led by $(\\p,\\lambda(\\im))=(778933,123966)$ at $|\\theta-1|=3.9\\times10^{-5}$, consistent with the nearest-hit prediction $\\piR/(2N)\\approx4.0\\times10^{-5}$ \\apx{} (exact minima $3.93\\times10^{-5}$ at $10^{6}$, $6.34\\times10^{-6}$ at $2\\times10^{6}$, $4.53\\times10^{-6}$ at $4\\times10^{6}$); the calibration inequalities decided as rational inequalities with $\\piR$ bracketed by the Machin chain.",
+     "predicate": "Calibrated shells at every precision: by A7, $\\varepsilon$-calibrated shells ($|\\theta-1|<\\varepsilon$ for one chirality) exist for every $\\varepsilon>0$ with relative density $2\\varepsilon/\\piR$, and $\\chi(\\eP)\\to e^{\\imR}$ along them; data for $\\p<10^{6}$ ($39{,}175$ primes $\\equiv1\\bmod4$): $260$ shells within $0.01$ against $\\approx249$ predicted, the best six led by $(\\p,\\lambda(\\im))=(778933,123966)$ at $|\\theta-1|=3.9\\times10^{-5}$, consistent with the nearest-hit prediction $\\piR/(2N)\\approx4.0\\times10^{-5}$ \\apx{} (exact minima $3.93\\times10^{-5}$ at $10^{6}$, $6.34\\times10^{-6}$ at $2\\times10^{6}$, $4.53\\times10^{-6}$ at $4\\times10^{6}$); the calibration inequalities decided as rational inequalities with $\\piR$ bracketed by the Machin chain.",
      "tag": "I|T",
      "source": "Prop.~\\ref{prop:calib}; \\src{e.A1}",
      "key": "p13046"
@@ -408,7 +408,7 @@
    "rows": [
     {
      "label": "I1",
-     "predicate": "Emergence of the classical $e$: (i) in every shell with $\\p>n_0+|Z_0(\\p)|+1$ a non-blind scale in $[n_0,n_0+|Z_0(\\p)|]$ reads out $\\ro(\\eR)$, at binary64 exactly $18!/\\dr{18}$; (ii) the frame-internal continuation is the antiperiodic residue line with blind set $Z_0(\\p)$ and terminal invariant $-(\\Ku{\\p})^{-1}$, collapsed by the readout to one dyadic rational; (iii) $\\chi(\\eP)$ within $\\varepsilon$ of $e^{\\imR}$ on the $\\varepsilon$-calibrated shells of every range (H4), exact calibration impossible, no pointwise link between the carriers. Composed from D4, F2, F3, F5, H3--H5.",
+     "predicate": "Emergence of the classical $e$: (i) in every shell with $\\p>n_0+|Z_0(\\p)|+1$ a non-blind scale in $[n_0,n_0+|Z_0(\\p)|]$ reads out $\\ro(\\eR)$, at binary64 exactly $18!/\\dr{18}$; (ii) the frame-internal continuation is the antiperiodic residue line with blind set $Z_0(\\p)$ and terminal invariant $-(\\Ku{\\p})^{-1}$, collapsed by the readout to one dyadic rational; (iii) $\\chi(\\eP)\\to e^{\\imR}$ along calibrated shells, exact calibration impossible, no pointwise link between the carriers. Composed from D4, F2, F3, F5, H3--H5.",
      "tag": "T",
      "source": "Thm.~\\ref{thm:main-e}; \\src{e.R2}, \\src{e.S1}, \\src{e.A1}, \\src{e.N1}",
      "key": "p13048"
@@ -484,7 +484,7 @@
     },
     {
      "label": "J6",
-     "predicate": "Two constants, two walls: both attach their full-resolution shell content to sparse-prime problems (Kurepa non-vanishing for $e$, a prescribed Fermat quotient of Wieferich type for $\\pi$); for each shell the bounded observer holds an exact finite certificate and holds no uniform certificate across all shells --- per-instance decidability without a uniform bound, the characteristic shape of statements at the arithmetic horizon; Kurepa's hypothesis is not thereby decided, and the number of persistence shells is not a predicate of the paper.",
+     "predicate": "Two constants, two walls: both attach their full-resolution shell content to sparse-prime problems (Kurepa non-vanishing for $e$, a prescribed Fermat quotient of Wieferich type for $\\pi$); for each shell the bounded observer holds an exact finite certificate and holds no uniform certificate across all shells --- per-instance decidability without a uniform bound, the characteristic shape of statements at the arithmetic horizon; Kurepa's hypothesis is not thereby decided; the frequency of the persistence shells is a range reading (G4), their totality not a predicate of the paper.",
      "tag": "T",
      "source": "\\S\\ref{sec:consequences}, ``Two constants, two celebrated walls''; \\src{kur.K1}, \\src{pi.S2}",
      "key": "p13057"
@@ -531,10 +531,17 @@
    "rows": [
     {
      "label": "Y1",
-     "predicate": "Kurepa's hypothesis, $\\p\\nmid\\Ku{\\p}$ for every odd prime, equivalently $\\p\\nmid\\dr{(\\p-1)}$ (F2) and $B_{\\p-1}\\not\\equiv1\\pmod\\p$: universal existence of the terminal residue $-(\\Ku{\\p})^{-1}$ of $e$; equivalently, the walk $\\Ku{0},\\Ku{1},\\dots,\\Ku{\\p}$ of the left factorial's partial sums does not return to its origin modulo $\\p$ (F8). Open since 1971; the one claimed proof (Barsky--Benzaghou 2004, Thm.~3) withdrawn by its authors (2011); no counterexample for $\\p<2^{40}$; re-verified here with the wall identity for all $121{,}126$ odd primes $\\p<1.6\\times10^{6}$. Decided by no shell (each decides its own value: $\\Ku{13}\\equiv10$, $\\Ku{233}\\equiv69$, $\\Ku{30089}\\equiv5260$), by no finite search (F5's uniform model at the wall expects $\\sum_{\\p\\le X}1/\\p\\approx\\ln\\ln X-0.24$ counterexamples \\apx, so the model is scoped to $n\\le\\p-2$) and by no relation of this paper. The blind-set statistics (F5), the null experiment (H5) and the frame invariants across shells (I5) are range readings beside it, not clauses of it.",
+     "predicate": "Kurepa's hypothesis, $\\p\\nmid\\Ku{\\p}$ for every odd prime, equivalently $\\p\\nmid\\dr{(\\p-1)}$ (F2) and $B_{\\p-1}\\not\\equiv1\\pmod\\p$: universal existence of the terminal residue $-(\\Ku{\\p})^{-1}$ of $e$; equivalently, the walk $\\Ku{0},\\Ku{1},\\dots,\\Ku{\\p}$ of the left factorial's partial sums does not return to its origin modulo $\\p$ (F8). Open since 1971; the one claimed proof (Barsky--Benzaghou 2004, Thm.~3) withdrawn by its authors (2011); no counterexample for $\\p<2^{40}$; re-verified here with the wall identity for all $121{,}126$ odd primes $\\p<1.6\\times10^{6}$. Decided by no shell (each decides its own value: $\\Ku{13}\\equiv10$, $\\Ku{233}\\equiv69$, $\\Ku{30089}\\equiv5260$), by no finite search (F5's uniform model at the wall expects $\\sum_{\\p\\le X}1/\\p\\approx\\ln\\ln X-0.24$ counterexamples \\apx, so the model is scoped to $n\\le\\p-2$) and by no relation of this paper. Beside it, two large-$\\p$ laws read on ranges: $|Z_0(\\p)|-1\\to\\mathrm{Poisson}(1)$ (F5) and the independence of the quarter-turn index and the gcd class of the wall-residue index (H5; $94$ of $210$ against $96.0\\pm6.6$ \\apx).",
      "tag": "O",
-     "source": "Thm.~\\ref{thm:wall-e}; \\src{kur.K1}, \\src{e.S1}",
+     "source": "Thm.~\\ref{thm:wall-e}; \\src{kur.K1}, \\src{e.S1}, \\src{e.N1}",
      "key": "p13061"
+    },
+    {
+     "label": "Y3",
+     "predicate": "The large-$\\p$ laws of the two walls, read on ranges and open as laws. (a) The calibration rate $\\delta(X)=\\min_{\\p\\le X}|\\theta-1|$: exact to $X=4\\times10^{6}$ (H4), $\\delta\\to0$ by A7; whether its order is the uniform model's $\\piR/(2N(X))$ for every large finite $X$, the continuum bound being the irrationality measure of $\\piR$ ($\\mu\\le7.1033$, Zeilberger--Zudilin 2020) \\import. (b) The joint law of $(\\Ku{\\p}/\\p,\\ q_\\p(4)/\\p,\\ \\varphi/\\piR)$ for large $\\p$ (I5 on $\\p<10^{5}$): $\\varphi/\\piR$ equidistributes (Hecke) \\import, $q_\\p(4)/\\p$ equidistributes in the base at fixed $\\p$ (Heath-Brown) and nothing is proved in $\\p$, $\\Ku{\\p}/\\p$ is Y1's; whether the three are independent in the large-$\\p$ law. Each clause is a statement about every large finite $\\p$ with the continuum as its chart, decided by no shell alone and by no relation of this paper.",
+     "tag": "O",
+     "source": "Prop.~\\ref{prop:calib}, \\S\\ref{sec:duality}; \\src{e.A1}, \\src{frm.I1}",
+     "key": "p13063"
     }
    ]
   }

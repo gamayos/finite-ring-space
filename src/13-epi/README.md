@@ -12,7 +12,7 @@ witnesses (the paper's Section "Machine verification and predicate ledger", rows
 `docs/13-epi/13-epi-ledger.html`); the ledger's source column cites the check ids in return. Where a row is proved in
 Lean (`lean/FrcCore/Epi.lean` with no axioms, or `lean/FrcLedger/Epi.lean` on Mathlib), the check here is the instance
 the reader can run. Master-ledger rows of
-the corpus reached through the paper rows: `00:B8`, `00:B9`, `00:C13`, `00:C14`, `00:B1`, `00:C24`, `00:C26` (the paper's hypothesis Y1 has no live master row: the former T7–T9 were withdrawn 17 Sep 2026).
+the corpus reached through the paper rows: `00:B8`, `00:B9`, `00:C13`, `00:C14`, `00:B1`, `00:C24`, `00:C26` (the paper's hypotheses Y1 and Y3 have no live master row: the former T7–T9 were withdrawn 17 Sep 2026).
 
 [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/gamayos/finite-ring-space/blob/main/src/13-epi/13-epi-main.ipynb)
 
@@ -52,6 +52,7 @@ of the memorandum README therefore no longer applies: every family is EXACT.
 ## Predicate ledger
 
 Rows A1–A8 imports; B1, B4, C1, C4, D1, E1, H1, J4 definitions (the two selector normalisations C1, C4 are the
-paper's two D moves); D2, H3 proof-only rows; Y1 the hypothesis (block Y, tag O: Kurepa's hypothesis) — the π wall has no hypothesis row:
-its persistence shells are certified one at a time (13:G4, G10), and their number is not a predicate of the framework;
-the e–π dichotomy is a split by kind of chain (13:E5), with the three frame invariants exact on every shell (13:I5). Check → row: `epicommon.LEDGER`.
+paper's two D moves); D2, H3 proof-only rows; Y1, Y3 the hypotheses (block Y, tag O: Kurepa's hypothesis; the large-p laws of the two walls,
+the calibration rate and the joint law of the frame invariants) — the π wall's persistence shells are certified one at a
+time (13:G4, G10), their frequency a range reading; the e–π dichotomy is a split by kind of chain (13:E5), the three
+frame invariants exact on every shell (13:I5). Check → row: `epicommon.LEDGER`.

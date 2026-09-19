@@ -13,7 +13,7 @@ A check of the registry is a *family* of micro-checks — one labelled claim of 
 kur.K1, …) — and names the row(s) of the paper's predicate ledger it witnesses (LEDGER; rows cited as 13:XN). The
 ledger's source column cites these check ids in return. Master-ledger rows reached through the paper rows:
 00:B8 (13:J1, 13:J3), 00:B9 (13:J4, 13:J5), 00:C13 (13:J3), 00:C14 (13:B2, 13:H2), 00:B1 (13:B4),
-00:C24 (13:G7 with A8, the third-order wall) and 00:C26 (13:E5, the four chains as E- and G-partial sums); 13:Y1 is the paper's hypothesis (block Y, tag O); the former master rows T7–T9 were withdrawn 17 Sep 2026.
+00:C24 (13:G7 with A8, the third-order wall) and 00:C26 (13:E5, the four chains as E- and G-partial sums); 13:Y1 and 13:Y3 are the paper's hypotheses (block Y, tag O); the former master rows T7–T9 were withdrawn 17 Sep 2026.
 """
 import os, json, sys
 from collections import OrderedDict
@@ -68,7 +68,7 @@ LEDGER = {
     # kurepa_wall.c
     "kur.K1": "13:F2, 13:Y1",
     # frame_invariants.c
-    "frm.I1": "13:I5",
+    "frm.I1": "13:I5, 13:Y3",
 }
 
 LABELS = {

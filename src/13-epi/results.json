@@ -356,16 +356,16 @@
   "script": "kurepa_wall",
   "label": "Kurepa's wall in the derangement form for all 22 043 odd primes p < 2.5·10⁵ (kurepa_wall.c, one O(p) pass per prime in 128-bit modular arithmetic): !(p−1) ≡ K(p) (mod p) and K(p) ≢ 0 (mod p), zero failures of either condition",
   "ok": true,
-  "detail": "3 exact micro-checks; kurepa_wall.c, N = 250000, 46 s",
+  "detail": "3 exact micro-checks; kurepa_wall.c, N = 250000, 25 s",
   "kind": "EXACT"
  },
  {
   "id": "frm.I1",
-  "rows": "13:I5",
+  "rows": "13:I5, 13:Y3",
   "script": "frame_invariants",
   "label": "the three frame invariants of the two constants on the 4 783 shells p ≡ 1 (mod 4) below 10⁵ (frame_invariants.c): every triple (K(p) mod p, q_p(4) mod p, a + b i) exact — p = 13: (10, 6, −3+2i), p = 1093 the one shell with q_p(4) = 0 — the 4×4×4 contingency table of (K/p, q_p(4)/p, φ/π) and its chi-square 59.6 on 63 df exact, the means 0.502, 0.499 and variances 0.0828, 0.0831 by certified rational bounds; the independence reading is the paper's [approx] statement",
   "ok": true,
-  "detail": "7 exact micro-checks; frame_invariants.c, N = 100000, 4 s",
+  "detail": "7 exact micro-checks; frame_invariants.c, N = 100000, 2 s",
   "kind": "EXACT"
  }
 ]
