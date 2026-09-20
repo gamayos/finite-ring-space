@@ -15,7 +15,7 @@ chart mode against the prime indicator (Prop. flat, Obs. flat). Paper-local pred
   E1c Def. resonance / Fig. emergence [approx]  Ψ_L(N) = Σ_{n≤N} (n/φ(n)) R_L(n) → ψ(N): the maximal deviation on
                                     N ≤ 30 falls monotonically over L = 15, 60, 240
   E2a Obs. antipode  EXACT     per-mode energy μ²(q)/φ(q) on squarefree q: 1, ½, ¼, ⅙ at q = 2, 3, 5, 7, with its
-                                    unique global maximum at the antipode q = 2 (all q ≤ 2000)
+                                    unique maximum among the nonconstant modes at the antipode q = 2 (all 2 ≤ q ≤ 2000; q = 1 ties)
   E2b Obs. antipode  [approx]  the additive-transform band energy of the prime indicator on Z/10007, Parseval-
                                     normalised over the bins within three of each a/q, peaks at the antipode and
                                     follows 1/φ(q): 1153 > 592 > 301 > 205 at q = 2, 3, 5, 7 (the paper's figures,
@@ -137,7 +137,7 @@ def run():
     from fractions import Fraction
     E = {q: Fraction(int(mu[q] ** 2), int(phi[q])) for q in range(2, 2001)}
     ok = (E[2], E[3], E[5], E[7]) == (Fraction(1), Fraction(1, 2), Fraction(1, 4), Fraction(1, 6)) and all(E[q] < 1 for q in E if q != 2)
-    check("E2a", "per-mode energy μ²(q)/φ(q) = 1, ½, ¼, ⅙ at q = 2, 3, 5, 7; unique global maximum at the antipode q = 2 (q ≤ 2000)", ok,
+    check("E2a", "per-mode energy μ²(q)/φ(q) = 1, ½, ¼, ⅙ at q = 2, 3, 5, 7; unique maximum among the nonconstant modes at the antipode q = 2 (2 ≤ q ≤ 2000)", ok,
           "energies " + ", ".join(f"q={q}: {E[q]}" for q in (2, 3, 5, 7, 11)), kind="EXACT")
     # ---------------- E2b: the additive-transform band energy (reported against the paper's figures, not pinned)
     p4 = 10007
@@ -211,7 +211,7 @@ def run():
     B = ax[0, 1]
     for i, q in enumerate([2, 3, 5]):
         B.step(ns, [mu[q] / phi[q] * ramanujan(q, int(n), mu) for n in ns], where="mid", color=FR[i], lw=1.5, label=fr"$q={q}$ (energy {E[q]})")
-    B.axhline(0, color=GRIDC, lw=0.8); B.set_title(r"units-chart modes $\frac{\mu(q)}{\varphi(q)}c_q$ in energy order (antipode $q=2$ first)"); B.set_xlabel("$n$"); B.legend(fontsize=8); B.set_xlim(X0, X1)
+    B.axhline(0, color=GRIDC, lw=0.8); B.set_title(r"units-chart modes $\frac{\mu(q)}{\varphi(q)}c_q$ for $q=2,3,5$ (decreasing energy)"); B.set_xlabel("$n$"); B.legend(fontsize=8); B.set_xlim(X0, X1)
     C = ax[1, 0]
     C.step(np.concatenate([[X0], ns]), np.concatenate([[0], psi]), where="post", color="#111", lw=2.0, label=r"$\psi(x)$")
     for i, M in enumerate([5, 20, 80]):

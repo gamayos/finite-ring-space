@@ -12,7 +12,7 @@
   "id": "A6",
   "rows": "20:B10",
   "script": "a_shell",
-  "label": "Subject constants on F_13: \u03c0=2\u03ba, i=g^-\u03ba, e=g^i (odd rep.)",
+  "label": "Subject constants on F_13: \u03c0=2\u03ba, i=g^-\u03ba, e=g^i (odd lift)",
   "ok": true,
   "detail": "g=2 \u03ba=3 \u03c0=6 i=5 e=6: 2\u03c0\u2261-1, i\u00b2\u2261-1, g^\u03c0\u2261-1, e^(i\u03c0)\u2261-1, 2\u207b\u00b9=2\u03ba+1=-\u03c0",
   "kind": "EXACT"
@@ -75,7 +75,7 @@
   "id": "A7b",
   "rows": "20:E1, 20:E12, 20:E13",
   "script": "a_shell",
-  "label": "\u2113\u00b2(F_13^\u00d7): mean v\u0304 = \u03c8(p\u22121)/(p\u22121) on the trivial mode, v \u2212 v\u0304\u00b71 on the nontrivial characters, orthonormal; S\u03c7_j = \u03c9^j \u03c7_j",
+  "label": "\u2113\u00b2(F_13^\u00d7): mean v\u0304 = \u03c8(p\u22121)/(p\u22121) on the trivial mode, v \u2212 v\u0304\u00b71 on the nontrivial characters, \u03c7_j/\u221a(p\u22121) orthonormal; S\u03c7_j = \u03c9^j \u03c7_j",
   "ok": true,
   "detail": "v\u0304 = 0.852492 (= log 27720/12 at p = 13)",
   "kind": "[approx]"
@@ -102,7 +102,7 @@
   "id": "A6",
   "rows": "20:B10",
   "script": "a_shell",
-  "label": "Subject constants on F_17: \u03c0=2\u03ba, i=g^-\u03ba, e=g^i (odd rep.)",
+  "label": "Subject constants on F_17: \u03c0=2\u03ba, i=g^-\u03ba, e=g^i (odd lift)",
   "ok": true,
   "detail": "g=3 \u03ba=4 \u03c0=8 i=4 e=5: 2\u03c0\u2261-1, i\u00b2\u2261-1, g^\u03c0\u2261-1, e^(i\u03c0)\u2261-1, 2\u207b\u00b9=2\u03ba+1=-\u03c0",
   "kind": "EXACT"
@@ -165,7 +165,7 @@
   "id": "A7b",
   "rows": "20:E1, 20:E12, 20:E13",
   "script": "a_shell",
-  "label": "\u2113\u00b2(F_17^\u00d7): mean v\u0304 = \u03c8(p\u22121)/(p\u22121) on the trivial mode, v \u2212 v\u0304\u00b71 on the nontrivial characters, orthonormal; S\u03c7_j = \u03c9^j \u03c7_j",
+  "label": "\u2113\u00b2(F_17^\u00d7): mean v\u0304 = \u03c8(p\u22121)/(p\u22121) on the trivial mode, v \u2212 v\u0304\u00b71 on the nontrivial characters, \u03c7_j/\u221a(p\u22121) orthonormal; S\u03c7_j = \u03c9^j \u03c7_j",
   "ok": true,
   "detail": "",
   "kind": "[approx]"
@@ -192,7 +192,7 @@
   "id": "A6",
   "rows": "20:B10",
   "script": "a_shell",
-  "label": "Subject constants on F_29: \u03c0=2\u03ba, i=g^-\u03ba, e=g^i (odd rep.)",
+  "label": "Subject constants on F_29: \u03c0=2\u03ba, i=g^-\u03ba, e=g^i (odd lift)",
   "ok": true,
   "detail": "g=2 \u03ba=7 \u03c0=14 i=17 e=21: 2\u03c0\u2261-1, i\u00b2\u2261-1, g^\u03c0\u2261-1, e^(i\u03c0)\u2261-1, 2\u207b\u00b9=2\u03ba+1=-\u03c0",
   "kind": "EXACT"
@@ -255,7 +255,7 @@
   "id": "A7b",
   "rows": "20:E1, 20:E12, 20:E13",
   "script": "a_shell",
-  "label": "\u2113\u00b2(F_29^\u00d7): mean v\u0304 = \u03c8(p\u22121)/(p\u22121) on the trivial mode, v \u2212 v\u0304\u00b71 on the nontrivial characters, orthonormal; S\u03c7_j = \u03c9^j \u03c7_j",
+  "label": "\u2113\u00b2(F_29^\u00d7): mean v\u0304 = \u03c8(p\u22121)/(p\u22121) on the trivial mode, v \u2212 v\u0304\u00b71 on the nontrivial characters, \u03c7_j/\u221a(p\u22121) orthonormal; S\u03c7_j = \u03c9^j \u03c7_j",
   "ok": true,
   "detail": "",
   "kind": "[approx]"
@@ -282,7 +282,7 @@
   "id": "A6",
   "rows": "20:B10",
   "script": "a_shell",
-  "label": "Subject constants on F_37: \u03c0=2\u03ba, i=g^-\u03ba, e=g^i (odd rep.)",
+  "label": "Subject constants on F_37: \u03c0=2\u03ba, i=g^-\u03ba, e=g^i (odd lift)",
   "ok": true,
   "detail": "g=2 \u03ba=9 \u03c0=18 i=6 e=17: 2\u03c0\u2261-1, i\u00b2\u2261-1, g^\u03c0\u2261-1, e^(i\u03c0)\u2261-1, 2\u207b\u00b9=2\u03ba+1=-\u03c0",
   "kind": "EXACT"
@@ -345,7 +345,7 @@
   "id": "A7b",
   "rows": "20:E1, 20:E12, 20:E13",
   "script": "a_shell",
-  "label": "\u2113\u00b2(F_37^\u00d7): mean v\u0304 = \u03c8(p\u22121)/(p\u22121) on the trivial mode, v \u2212 v\u0304\u00b71 on the nontrivial characters, orthonormal; S\u03c7_j = \u03c9^j \u03c7_j",
+  "label": "\u2113\u00b2(F_37^\u00d7): mean v\u0304 = \u03c8(p\u22121)/(p\u22121) on the trivial mode, v \u2212 v\u0304\u00b71 on the nontrivial characters, \u03c7_j/\u221a(p\u22121) orthonormal; S\u03c7_j = \u03c9^j \u03c7_j",
   "ok": true,
   "detail": "",
   "kind": "[approx]"
@@ -372,7 +372,7 @@
   "id": "A6",
   "rows": "20:B10",
   "script": "a_shell",
-  "label": "Subject constants on F_41: \u03c0=2\u03ba, i=g^-\u03ba, e=g^i (odd rep.)",
+  "label": "Subject constants on F_41: \u03c0=2\u03ba, i=g^-\u03ba, e=g^i (odd lift)",
   "ok": true,
   "detail": "g=6 \u03ba=10 \u03c0=20 i=9 e=19: 2\u03c0\u2261-1, i\u00b2\u2261-1, g^\u03c0\u2261-1, e^(i\u03c0)\u2261-1, 2\u207b\u00b9=2\u03ba+1=-\u03c0",
   "kind": "EXACT"
@@ -435,7 +435,7 @@
   "id": "A7b",
   "rows": "20:E1, 20:E12, 20:E13",
   "script": "a_shell",
-  "label": "\u2113\u00b2(F_41^\u00d7): mean v\u0304 = \u03c8(p\u22121)/(p\u22121) on the trivial mode, v \u2212 v\u0304\u00b71 on the nontrivial characters, orthonormal; S\u03c7_j = \u03c9^j \u03c7_j",
+  "label": "\u2113\u00b2(F_41^\u00d7): mean v\u0304 = \u03c8(p\u22121)/(p\u22121) on the trivial mode, v \u2212 v\u0304\u00b71 on the nontrivial characters, \u03c7_j/\u221a(p\u22121) orthonormal; S\u03c7_j = \u03c9^j \u03c7_j",
   "ok": true,
   "detail": "",
   "kind": "[approx]"
@@ -462,7 +462,7 @@
   "id": "A6",
   "rows": "20:B10",
   "script": "a_shell",
-  "label": "Subject constants on F_173: \u03c0=2\u03ba, i=g^-\u03ba, e=g^i (odd rep.)",
+  "label": "Subject constants on F_173: \u03c0=2\u03ba, i=g^-\u03ba, e=g^i (odd lift)",
   "ok": true,
   "detail": "g=2 \u03ba=43 \u03c0=86 i=93 e=45: 2\u03c0\u2261-1, i\u00b2\u2261-1, g^\u03c0\u2261-1, e^(i\u03c0)\u2261-1, 2\u207b\u00b9=2\u03ba+1=-\u03c0",
   "kind": "EXACT"
@@ -537,6 +537,15 @@
   "label": "frame coincidence below \u221a10009 = 100 on the pair (10009, 100180109): residues, window products and primality agree",
   "ok": true,
   "detail": "\u03a0_p = [2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47, 53, 59, 61, 67, 71, 73, 79, 83, 89, 97]",
+  "kind": "EXACT"
+ },
+ {
+  "id": "A6b",
+  "rows": "20:B10",
+  "script": "a_shell",
+  "label": "the odd-lift rule on all 211 frames p \u2261 1 (mod 4) below 3000: e^{i\u03c0} \u2261 \u22121 on the odd lift, \u2261 +1 on the even member; F_17: g=3, i=4, lift 21, e=5",
+  "ok": true,
+  "detail": "frames 211, failures []; F_17 (i, e) = (4, 5)",
   "kind": "EXACT"
  },
  {
@@ -777,9 +786,9 @@
   "id": "D4",
   "rows": "20:F1",
   "script": "d_classification",
-  "label": "frame-exact count on one shell: at p = 97, 1009, 4801 (T = 2\u03c0p) the depth-\u230a\u221ap\u230b comb, midway between consecutive zeros below the ceiling, rounds to the exact N(t) at every midpoint (max deviation 0.079, 0.107, 0.164 \u2014 within 0.08, 0.11, 0.17); the 10\u2076 comb within 0.002",
+  "label": "frame-exact count on one shell: at p = 97, 1009, 4801 (T = 2\u03c0p) the depth-\u230a\u221ap\u230b comb, midway between consecutive zeros below the ceiling, rounds to the exact N(t) at every midpoint (max deviation 0.079, 0.107, 0.164 \u2014 within 0.08, 0.11, 0.17); the 10\u2076 comb within 0.002; the control \u03b8(t)/\u03c0 + 1 alone deviates by 0.27, 0.498, 0.52 and fails to round at one midpoint of p = 4801",
   "ok": true,
-  "detail": "p=97 (depth 9, 8 midpoints): max dev 0.079 (10\u2076 comb 0.000); p=1009 (depth 31, 12 midpoints): max dev 0.107 (10\u2076 comb 0.001); p=4801 (depth 69, 15 midpoints): max dev 0.164 (10\u2076 comb 0.002)",
+  "detail": "p=97 (depth 9, 8 midpoints): max dev 0.079 (10\u2076 comb 0.000; smooth term alone 0.268, rounds True); p=1009 (depth 31, 12 midpoints): max dev 0.107 (10\u2076 comb 0.001; smooth term alone 0.498, rounds True); p=4801 (depth 69, 15 midpoints): max dev 0.164 (10\u2076 comb 0.002; smooth term alone 0.523, rounds False)",
   "kind": "[approx]"
  },
  {
@@ -813,7 +822,7 @@
   "id": "E2a",
   "rows": "20:B11",
   "script": "e_resonance",
-  "label": "per-mode energy \u03bc\u00b2(q)/\u03c6(q) = 1, \u00bd, \u00bc, \u2159 at q = 2, 3, 5, 7; unique global maximum at the antipode q = 2 (q \u2264 2000)",
+  "label": "per-mode energy \u03bc\u00b2(q)/\u03c6(q) = 1, \u00bd, \u00bc, \u2159 at q = 2, 3, 5, 7; unique maximum among the nonconstant modes at the antipode q = 2 (2 \u2264 q \u2264 2000)",
   "ok": true,
   "detail": "energies q=2: 1, q=3: 1/2, q=5: 1/4, q=7: 1/6, q=11: 1/10",
   "kind": "EXACT"

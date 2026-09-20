@@ -5455,6 +5455,35 @@ theorem fixed_half_turn (F : Frame p κ g) (z : Ext p) :
   exact ⟨⟨fun h => ⟨hc.2 (hr.1 h).1, hs.2 (hr.1 h).2⟩, fun h => hr.2 ⟨hc.1 h.1, hs.1 h.2⟩⟩,
     hr.trans ⟨fun h => ext h.2 h.1, fun h => ⟨im_congr h, re_congr h⟩⟩⟩
 
+/-- 20:E12, 20:B8 — the spectral readout in the core: the mode index `θ` is read at `z(θ) = 2⁻¹ + θη`,
+`2⁻¹ = 2κ + 1`. -/
+def readout (κ : Nat) (θ : Shell p) : Ext p := ⟨ofNat (2 * κ + 1), θ⟩
+
+/-- 20:E12, 20:B8 — clause (ii) of the shell theorem, no axioms: every readout lies on the trace-one line, its
+real part is the half-turn `2⁻¹ = 2κ + 1`, and `θ ↦ z(θ)` is injective. -/
+theorem readout_on_line (F : Frame p κ g) (θ : Shell p) :
+    trace (readout κ θ) = 1 ∧ (readout κ θ).re = ofNat (2 * κ + 1) ∧
+    ∀ θ' : Shell p, readout κ θ = readout κ θ' → θ = θ' := by
+  refine ⟨(critical_line F (readout κ θ)).2.2 θ, rfl, fun θ' h => im_congr h⟩
+
+/-- 20:E12 — the slot index of a nontrivial slot: for `1 ≤ k ≤ p − 2` the index `θ = Φ(k) = −g^k` is neither
+`0` (the centre `2⁻¹`) nor `−1` (the full-cycle exponent), on every shell and with no axioms. -/
+theorem readout_slot_index (F : Frame p κ g) (k : Nat) (hk1 : 1 ≤ k) (hk2 : k ≤ p - 2) :
+    -(g ^ k) ≠ 0 ∧ -(g ^ k) ≠ -1 := by
+  refine ⟨fun h => F.pow_ne_zero k ?_, fun h => ?_⟩
+  · calc g ^ k = - -(g ^ k) := (neg_neg _).symm
+      _ = -0 := by rw [h]
+      _ = 0 := neg_zero
+  · have h1 : g ^ k = 1 := by
+      calc g ^ k = - -(g ^ k) := (neg_neg _).symm
+        _ = - -1 := by rw [h]
+        _ = 1 := neg_neg 1
+    have hmod := F.mod_eq_zero_of_pow_eq_one h1
+    have hlt : k < p - 1 :=
+      Nat.lt_of_le_of_lt hk2 (Nat.pred_lt (Nat.ne_of_gt F.n_pos))
+    rw [FRC.Nat.mod_eq_of_lt hlt] at hmod
+    exact Nat.not_succ_le_zero 0 (by rw [hmod] at hk1; exact hk1)
+
 /-- 20:B8 — the energy on the critical line: `N(2⁻¹ + bη) = (2⁻¹)² − νb²`, with `2 · 2⁻¹ = 1`. -/
 theorem norm_on_line (F : Frame p κ g) (ν : Shell p) (z : Ext p) (hz : z.re = ofNat (2 * κ + 1)) :
     norm ν z = ofNat (2 * κ + 1) * ofNat (2 * κ + 1) + -(ν * (z.im * z.im)) ∧

@@ -1,5 +1,5 @@
 """Builds the Colab driver of the 20-rh validation package — 20-rh-main.ipynb (the corpus name, the one the public
-ledger page links) and 20-rh-validate.ipynb (the name the paper's Reproducibility section pins at commit b2a3fcec);
+ledger page links) and 20-rh-validate.ipynb (the name the paper's Reproducibility section fixes at commit b2a3fcec);
 the two are the same notebook. Run: python3 make_notebook.py"""
 import nbformat as nbf
 
@@ -13,19 +13,19 @@ code = lambda s: cells.append(nbf.v4.new_code_cell(s))
 
 md(f"""[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)]({COLAB})
 
-## Riemann Hypothesis over the Holographic Substrate (Akhtman & Voether, 2026)
+## The Riemann Hypothesis over the Holographic Substrate: a Finite-Field Dictionary and the Screen Reading (Akhtman & Voether, 2026)
 
-**Validation Package.** `finite-ring-space/src/20-rh` — seven block scripts driven by this notebook, 94 checks (57 EXACT, 34 [approx],
+**Validation Package.** `finite-ring-space/src/20-rh` — seven block scripts driven by this notebook, 95 checks (58 EXACT, 34 [approx],
 3 [chart]). Each check names the row(s) of the paper's predicate ledger it witnesses (the paper's Appendix A, rows cited as `20:XN`;
 public copy at `docs/20-rh/20-rh-ledger.html`), and the ledger's source column cites the check ids in return. Where a row is proved in
 Lean (`lean/FrcCore/Rh.lean` with no axioms, or `lean/FrcLedger/Rh.lean` on Mathlib — the shell rows B2, B4–B10, C2, C5, E1, E12, E13),
 the check here is the instance the reader can run. Master-ledger rows of the corpus reached through the paper rows: `00:D11` (the shell
-theorem, `20:E12`) and `00:D12` (the classical hypothesis as a screen value, `20:F1–F2`). Every cell below names the labelled
+theorem, `20:E12`) and `00:D12` (the screen reading of the classical hypothesis, `20:F1–F2`). Every cell below names the labelled
 statements of the paper it checks (`Theorem`, `Proposition`, `Numerical Observation`, `Definition` — by their `\\label` as printed
 in the paper) and lists the paper-local predicates as the block scripts register them. The package regenerates every numerical
 figure of the paper (`figures/`); the one qualitative illustration (`carrier-domains.png`) is not a computation and is omitted.
 
-**Kinds.** `EXACT` checks are integer-pinned finite computations (a pass is a proof on the tested instances);
+**Kinds.** `EXACT` checks are integer-exact finite computations (a pass is a proof on the tested instances);
 `[approx]` checks compare a floating-point observation with the value the paper states, to a stated tolerance;
 `[chart]` marks a continuum reading of a finite object. The discipline of the construction — *ζ never evaluated* —
 binds blocks A–C: every construction there uses only the sieved von Mangoldt comb, its logarithms, and the archimedean
@@ -33,7 +33,7 @@ phase from log Γ; the Riemann heights appear as validation markers only. The co
 zeta functions, as the paper says they do.
 
 **Run.** Cell by cell, or *Runtime → Run all*. Full depths take ≈ 6 min on Colab (the 8×10⁷ comb of block D is the
-largest object); set `FAST = True` in the second cell for reduced depths (≈ 2 min; the same 94 checks, the deep
+largest object); set `FAST = True` in the second cell for reduced depths (≈ 2 min; the same 95 checks, the deep
 tails of the depth scans shortened). The last cell writes `results.json` and fails loudly if any predicate fails.
 
 **Ledger.** The paper's predicate ledger (Appendix A: 66 rows in blocks A–F, V, Z, cited as `20:XN`). Each check below prints the ledger row(s) it witnesses in square brackets, and `results.json` records them.""")
@@ -73,10 +73,11 @@ Shells p = 13, 17, 29, 37, 41 in full (every point of F_{p²}); p = 173 for A1, 
 | A3 | Lemma `K` | on F_{p²} = F_p(η): \\|U_{p+1}\\| = p+1, Frobenius = inversion on it, i = √−1 Frobenius-fixed with N(i) = −1 |
 | A4 | Proposition `critical` | the finite critical line: Tr z = 1 ⟺ z = 2⁻¹ + bη; \\|L_{1/2}\\| = p; N(z) = ¼ − νb²; 2⁻¹ = 2κ+1 = −π |
 | A5 | Theorem `agree` | the Klein four-group ⟨φ, ρ⟩ and its fixed loci F_p, L_{1/2}, {2⁻¹}; F_p ∩ L_{1/2} = {2⁻¹} |
-| A6 | §1.3 (the Subject register) | π = 2κ, 2π ≡ −1, i = g^{−κ}, i² ≡ −1, e = g^i on the odd representative, e^{iπ} ≡ −1 |
+| A6 | §1.3 (the Subject register) | π = 2κ, 2π ≡ −1, i = g^{−κ}, i² ≡ −1, e = g^i on the odd lift, e^{iπ} ≡ −1 |
+| A6b | Remark `frame` (the odd-lift rule) | on all 211 frames p ≡ 1 (mod 4) below 3000 with the least primitive root: e^{iπ} ≡ −1 on the odd lift of i and ≡ +1 on the even member; F₁₇ with g = 3: i = 4, lift 21, e = 5 |
 | A7 | Theorem `hp` (iii), the F_p reading | S x^k = g^k x^k on the power characters, integer arithmetic; Tr S^r = (p−1)·[(p−1) \\| r] (EXACT) |
-| A7b | Theorem `hp` (i), (iii); Remark `parseval` | on ℓ²(F_p^×) the constant mode carries the mean v̄ = ψ(p−1)/(p−1), the nontrivial characters carry v − v̄·1, orthonormal; S χ_j = ω^j χ_j ([approx], floating point) |
-| A8 | Theorem `hp` (iv), Definition `jacobi` | self-adjointness is free: any real multiset is the spectrum of a real-symmetric tridiagonal matrix (Lanczos on ten heights; [approx], floating point) |
+| A7b | Theorem `hp` (i), (iii); Remark `parseval` | on ℓ²(F_p^×) the constant mode carries the mean v̄ = ψ(p−1)/(p−1), the nontrivial characters carry v − v̄·1, χ_j/√(p−1) orthonormal; S χ_j = ω^j χ_j ([approx], floating point) |
+| A8 | Definition `jacobi` | self-adjointness is free: any real multiset is the spectrum of a real-symmetric tridiagonal matrix (Lanczos on ten heights; [approx], floating point) |
 | A9 | Proposition `ground` | the Ramanujan sum c_p(n) = Σ_a ω^{an} ≡ −1 for every n ≢ 0 (mod p), in F_q with q ≡ 1 (mod p) and ω of order p (EXACT) |
 | A10 | Definition `shells` (the shared quarter-turn core) | Q₄ ⊂ both cycles; on the pair (13, 233) the projection C_{Ω−1} → C_{p−1} does not exist (12 ∤ 232) |
 | A11 | Proposition `coincide` | frame coincidence below √p: residues, window products and primality agree between F_p and the Carrier chart F_Ω (Ω the least prime ≡ 1 mod 4 above p²), on the five shells and on 1009, 10009 |
@@ -129,7 +130,7 @@ Ledger rows: 20:E11 (C6), 20:E3 (C6b).""")
 code("import c_gue; c_gue.run(); show('fig_hilbert_polya')")
 
 md("""### Block C, continued — the χ-twisted comb  (`c_chi.py`, [approx])
-Proposition `chi` (both cases), Numerical Observation `chi`: the real character χ = χ_{−4}, θ_χ(t) = Im log Γ(¾ + it/2) + (t/2) log(4/π),
+Definition `chi` (both cases), Numerical Observation `chi`: the real character χ = χ_{−4}, θ_χ(t) = Im log Γ(¾ + it/2) + (t/2) log(4/π),
 N_χ = θ_χ/π + S^χ_comb with no pole term; validation arm L(s, χ) = 4^{−s}[ζ(s, ¼) − ζ(s, ¾)] via Hurwitz zeta; then the complex character
 χ mod 5 with χ(2) = i, the count taken as a difference from height 0 and the root number's half-phase in the validation arm.
 
@@ -143,13 +144,13 @@ Ledger rows: 20:E14–E16 (E16 by C7c).""")
 code("import c_chi; c_chi.run()")
 
 md("""## Block D — the classification and the Euler-product discriminator  (`d_classification.py`, [approx], master ledger **00:D12**)
-Theorem `turing`: C ≤ N_crit ≤ N; RH below T is N = N_crit; C = N is Turing's practical certificate, read on the shell from the two
-sides of the explicit formula (both readings uncertified). Corollary `conditional`: the classical hypothesis is the screen value
-N − N_crit = 0. Numerical Observation `dh`: the value is discriminating. The control arms evaluate Hurwitz zeta functions.
+Proposition `turing`: C ≤ N_crit ≤ N; RH below T is N = N_crit; C = N is Turing's practical certificate; the shell estimates the two
+terms from the two sides of the explicit formula (both readings uncertified at finite depth). Definition `screen`: the screen reading of
+the hypothesis, the value N − N_crit = 0. Numerical Observation `dh`: the control, the deficit 2 against 0. The control arms evaluate Hurwitz zeta functions.
 
 | id | paper statement | predicate |
 |---|---|---|
-| D1 | Theorem `turing`, Corollary `conditional` | Ñ_N rounds to N = 1, 3, 10 at T = 15, 30, 50.3; sign changes of the horizon main sum give C = 1, 3, 10 = N |
+| D1 | Proposition `turing`, Definition `screen` | Ñ_N rounds to N = 1, 3, 10 at T = 15, 30, 50.3; sign changes of the horizon main sum give C = 1, 3, 10 = N |
 | D2a | Numerical Observation `dh` | the completed Davenport–Heilbronn Λ_f(½ + it) is real to 10⁻²⁰ |
 | D2b | Numerical Observation `dh` | argument principle by band on [0, 87]: f: 45 strip zeros vs 43 on-line sign changes, the deficit 2 opening only in the band of the off-line pair 0.8085171825 + 85.6993484854 i (validated \\|f\\| < 10⁻⁶); \\|Z_f\\| dips to 0.357 at 85.71; control L(s, χ): 45 = 45, deficit 0 in every band |
 | D2c | Numerical Observation `dh` | the secular condition on the Λ_f comb lands two "on-line" roots on the phantom height, the upward crossings of the levels 43.5 and 44.5: 85.63/85.76 (10⁵), 85.65/85.75 (4×10⁵); at 4×10⁵ the unsettled count also swings through 42.5 and 45.5 |
@@ -158,7 +159,7 @@ N − N_crit = 0. Numerical Observation `dh`: the value is discriminating. The c
 | D2f | Proposition `combformula`, Numerical Observation `dh` | the pole-corrected ζ count at t = 1: 0.0051, 0.0032, 0.0022, 0.0016, 0.0015, 0.0013, 0.0012 at the same depths (exact 0), falling monotonically; t = 5, 10 within 4×10⁻⁴ from 10⁶ on |
 | D2g | Remark `combsettle`, Numerical Observation `dh` | the DH drift is the zero term of the off-line zero ρ₀: corrected by it and its constant the count reads 44.960 → 44.972 at 85.9 (raw 45.14 → 45.73; exact 45) and 43.035 → 43.022 at 85.3 (exact 43), monotone |
 | D3 | Proposition `combformula` | validation arm: Re(Σ_w − Π_N − log((s−1)/s)) → log \\|ζ(½+it)\\| (mpmath) at t = 1, 5, 10, 15, 30, the error falling with depth (0.0049 at t = 1, 8×10⁷) |
-| D4 | Theorem `turing` (frame-exact inputs) | on the shells p = 97, 1009, 4801 (primes ≡ 1 mod 4; T = 2πp) the raw count from the frame-exact comb of depth ⌊√p⌋ = 9, 31, 69 evaluated midway between consecutive zeros just below the ceiling (the test heights chosen with the validation arm), rounds to the exact N(t) (mpmath `nzeros`) at every midpoint: maximum deviation 0.079, 0.107, 0.164 (within 0.08, 0.11, 0.17); the 10⁶ comb within 0.002 |
+| D4 | Proposition `turing` (frame-exact inputs) | on the shells p = 97, 1009, 4801 (primes ≡ 1 mod 4; T = 2πp) the raw count from the frame-exact comb of depth ⌊√p⌋ = 9, 31, 69 evaluated midway between consecutive zeros just below the ceiling (the test heights chosen with the validation arm), rounds to the exact N(t) (mpmath `nzeros`) at every midpoint: maximum deviation 0.079, 0.107, 0.164 (within 0.08, 0.11, 0.17); the 10⁶ comb within 0.002; the control θ(t)/π + 1 alone deviates by 0.27, 0.498, 0.52 and fails to round at one midpoint of p = 4801 |
 
 Ledger rows: 20:F1 (D1, D4), 20:F3 (D2a, D2b), 20:F4 (D2c, D2d, D2g), 20:F5 (D2e, D2f), 20:F8 (D2f, D2g, D3).""")
 code("import d_classification; d_classification.run(); show('fig_dh')")

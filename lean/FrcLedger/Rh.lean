@@ -287,6 +287,20 @@ theorem norm_on_line (z : K) (hz : z.re = 2⁻¹) :
   congr 1
   rw [show (4 : F) = 2 * 2 by norm_num, mul_inv]
 
+/-- 20:E12, 20:B8 — the spectral readout: the mode index `θ ∈ F` is read at the point `z(θ) = 2⁻¹ + θη` of
+the quadratic extension. -/
+def readout (θ : F) : K := ⟨2⁻¹, θ⟩
+
+/-- 20:E12, 20:B8 — clause (ii) of the shell theorem: every readout `z(θ) = 2⁻¹ + θη` lies on the trace-one
+line, its real part is the half-turn `2⁻¹`, and `θ ↦ z(θ)` is injective (with `card_critical_line`, a
+bijection of `F` onto the line). -/
+theorem readout_on_line (h2 : (2 : F) ≠ 0) (θ : F) :
+    QuadraticAlgebra.trace (readout ν θ) = 1 ∧ (readout ν θ).re = 2⁻¹ ∧
+    Function.Injective (readout ν) := by
+  refine ⟨?_, rfl, fun a b h => by simpa [readout] using congrArg QuadraticAlgebra.im h⟩
+  rw [trace_eq]
+  exact mul_inv_cancel₀ h2
+
 variable [Fintype F] [DecidableEq F]
 
 /-- The extension as a finite type, through its coordinates. -/
@@ -306,6 +320,19 @@ theorem card_critical_line (h2 : (2 : F) ≠ 0) :
     · rintro ⟨b, rfl⟩; rfl
   rw [hline, card_image_of_injective _ (fun a b h => by simpa using congrArg QuadraticAlgebra.im h),
     card_univ]
+
+omit [DecidableEq F] in
+/-- 20:E12 — the slot index of a nontrivial slot: for `1 ≤ k ≤ p − 2` the index `θ = Φ(k) = −g^k` at which
+slot `k` is read is neither `0` (the centre `2⁻¹`) nor `−1` (the full-cycle exponent). -/
+theorem readout_slot_index (g : F) (hg : IsPrimitiveRoot g (Fintype.card F - 1)) (k : ℕ)
+    (hk1 : 1 ≤ k) (hk2 : k ≤ Fintype.card F - 2) : -(g ^ k) ≠ 0 ∧ -(g ^ k) ≠ -1 := by
+  have hcard : 1 < Fintype.card F := Fintype.one_lt_card
+  have hg0 : g ≠ 0 := hg.ne_zero (by omega)
+  refine ⟨fun h => pow_ne_zero k hg0 (neg_eq_zero.1 h), fun h => ?_⟩
+  have h1 : g ^ k = 1 := neg_inj.1 h
+  have hdvd := (hg.pow_eq_one_iff_dvd k).1 h1
+  have := Nat.le_of_dvd (by omega) hdvd
+  omega
 
 end extension
 
@@ -444,9 +471,10 @@ section spectrum
 
 variable {F : Type*} [Field F] [Fintype F] [DecidableEq F]
 
-/-- 20:E1, 20:E12 — the scale-shift `S : x ↦ g^r x` is a permutation of `F^×` with the power characters
-`x ↦ x^k` as eigenvectors in the `𝔽_p` reading, `S x^k = g^{rk} x^k`, and its fixed-point count — the trace of
-its permutation matrix — is `(p − 1)·[(p − 1) ∣ r]`, which carries no prime data. -/
+/-- 20:E1, 20:E12 — the scale-shift `S : x ↦ g^r x` is a permutation of `F^×` (a bijection, so its matrix on
+`ℓ²(F^×)` is a permutation matrix, hence unitary) with the power characters `x ↦ x^k` as eigenvectors in the
+`𝔽_p` reading, `S x^k = g^{rk} x^k`, and its fixed-point count — the trace of its permutation matrix — is
+`(p − 1)·[(p − 1) ∣ r]`, which carries no prime data. -/
 theorem scale_shift (g : F) (hg : IsPrimitiveRoot g (Fintype.card F - 1)) (r : ℕ) :
     Function.Bijective (fun x : Fˣ => (Units.mk0 g (hg.ne_zero (by have := Fintype.one_lt_card (α := F); omega))) ^ r * x) ∧
     (∀ (k : ℕ) (x : F), (g ^ r * x) ^ k = (g ^ r) ^ k * x ^ k) ∧

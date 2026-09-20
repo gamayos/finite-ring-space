@@ -1,7 +1,7 @@
 """
 c_chi.py — block C, continued: the χ-twisted comb and the generalized hypothesis ([approx])
 ==========================================================================================
-Proposition chi states that the construction goes through verbatim for a real (quadratic)
+Definition chi states that the construction goes through verbatim for a real (quadratic)
 character; Numerical Observation chi supports it for χ_{−4} (conductor 4, odd, root number 1).
 Two arms:
 
@@ -61,7 +61,7 @@ def Lambda_chi_line(t):
     return mp.power(4 / mp.pi, (s + 1) / 2) * mp.gamma((s + 1) / 2) * L
 
 def run():
-    print("\n== block C (continued): the χ-twisted comb, χ = χ_{−4} (Prop. chi, Obs. chi) ==")
+    print("\n== block C (continued): the χ-twisted comb, χ = χ_{−4} (Def. chi, Obs. chi) ==")
     # validation arm: the completed L is real on the line; its first six zeros by sign change + refinement
     with Timer("Hurwitz-zeta validation arm"):
         ts = np.arange(1.0, 23.0, 0.01)
@@ -137,7 +137,7 @@ def Z_chi5_factory():
     return Z, W
 
 def run_complex():
-    print("\n== block C (continued): the complex character χ mod 5, χ(2) = i (Prop. chi, Obs. chi; ledger E16) ==")
+    print("\n== block C (continued): the complex character χ mod 5, χ(2) = i (Def. chi, Obs. chi; ledger E16) ==")
     with Timer("Hurwitz-zeta validation arm, χ mod 5"):
         Z, W = Z_chi5_factory()
         ts = np.arange(0.0, 40.0, 0.02)

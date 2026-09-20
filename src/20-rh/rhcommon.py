@@ -8,7 +8,7 @@ ledger it witnesses (LEDGER below; rows cited as 20:XN), and the ledger's source
 Everything the block scripts share:
   * the von Mangoldt comb Λ(n) (sieved) and its raised-cosine taper in log n;
   * the archimedean scale-phase θ(T) from log Γ (never from ζ);
-  * the raw comb count  Ñ_N(T) = θ(T)/π + 1 + S_comb(T)  (Theorem turing; Obs. trace) and the pole-corrected
+  * the raw comb count  Ñ_N(T) = θ(T)/π + 1 + S_comb(T)  (Proposition turing; Obs. trace) and the pole-corrected
     count  N̂_N(T) = Ñ_N(T) − (1/π) Im[Π_N(½+iT) + log((s−1)/s)]  (Proposition combformula), Π_N the explicit
     pole term of the smoothed explicit formula — the raw count carries it and has no limit in N, the corrected
     count settles;
@@ -36,7 +36,7 @@ RESULTS = []
 # The paper's predicate ledger (20-rh Appendix A, rows cited as 20:XN): the row(s) each
 # check witnesses. The ledger's source column cites these check ids in return.
 LEDGER = {
-    "A1": "20:B4", "A2": "20:B5", "A3": "20:B6", "A4": "20:B8", "A5": "20:B9", "A6": "20:B10", "A7": "20:E1, 20:E12, 20:E13",
+    "A1": "20:B4", "A2": "20:B5", "A3": "20:B6", "A4": "20:B8", "A5": "20:B9", "A6": "20:B10", "A6b": "20:B10", "A7": "20:E1, 20:E12, 20:E13",
     "A7b": "20:E1, 20:E12, 20:E13", "A8": "20:E9", "A9": "20:B7", "A10": "20:B1", "A11": "20:B2",
     "B1": "20:D2", "B2": "20:D3", "B3": "20:B8", "B4": "20:D4",
     "C1": "20:E5", "C2": "20:E6", "C2b": "20:E6, 20:E8", "C2c": "20:E6", "C3": "20:E8", "C4": "20:E9", "C5": "20:E10", "C6": "20:E11", "C6b": "20:E3",
@@ -137,7 +137,7 @@ def theta(T):
     return np.imag(loggamma(0.25 + 0.5j * T)) - 0.5 * T * math.log(math.pi)
 
 def count_raw(comb, T, const=1.0, theta_fn=theta):
-    """Ñ_N(T) = θ(T)/π + const + S_comb(T): the raw comb count (Theorem turing; uncertified)."""
+    """Ñ_N(T) = θ(T)/π + const + S_comb(T): the raw comb count (Proposition turing; uncertified)."""
     T = np.atleast_1d(np.asarray(T, float))
     val = theta_fn(T) / math.pi + const + comb.S(T)
     return val if val.size > 1 else float(val[0])

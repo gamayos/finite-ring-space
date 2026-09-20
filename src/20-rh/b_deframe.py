@@ -13,7 +13,7 @@ coordinate of the shell that reads it (T/2π = p). Paper-local predicates:
   B3  Prop. critical  [chart]  the de-framing limit of the critical real part: 2⁻¹/p = (2κ+1)/p → ½
   B4  Def. deframe    [approx] the horizon-length main sum (length ⌊√(t/2π)⌋, weight n^{-1/2}) tracks Z(t)
                                 through the first ten zeros: sign changes of the main sum on [10, 55]
-                                bracket every one of γ_1..γ_10 (the on-line reading of Theorem turing)
+                                bracket every one of γ_1..γ_10 (the on-line reading of Proposition turing)
 
 The Hardy Z function Z(t) enters here as the classical side of the correspondence (the paper's
 "ζ never evaluated" discipline binds the prime-side realisation of block C, not this dictionary

@@ -594,6 +594,9 @@
 'FRC.Rh.Ext.fixed_conj' does not depend on any axioms
 'FRC.Rh.Ext.critical_line' does not depend on any axioms
 'FRC.Rh.Ext.fixed_half_turn' does not depend on any axioms
+'FRC.Rh.Ext.readout' does not depend on any axioms
+'FRC.Rh.Ext.readout_on_line' does not depend on any axioms
+'FRC.Rh.Ext.readout_slot_index' does not depend on any axioms
 'FRC.Rh.Ext.norm_on_line' does not depend on any axioms
 'FRC.Rh.Ext.quarter_turn_off_circle' does not depend on any axioms
 'FRC.Rh.Ext.circle13' does not depend on any axioms

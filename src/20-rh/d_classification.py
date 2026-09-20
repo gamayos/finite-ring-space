@@ -1,9 +1,9 @@
 """
 d_classification.py — block D: the classification and the Euler-product discriminator (00:D12)
 =============================================================================================
-Theorem turing: C(T) ≤ N_crit(T) ≤ N(T); RH below T is N = N_crit; C = N is Turing's practical
+Proposition turing: C(T) ≤ N_crit(T) ≤ N(T); RH below T is N = N_crit; C = N is Turing's practical
 certificate; the shell reads N from the comb (raw count, uncertified) and C from the de-framing
-(sign changes of the main sum). Corollary conditional: the classical hypothesis is the screen
+(sign changes of the main sum). Definition screen: the classical hypothesis is read as the screen
 value N − N_crit = 0. Numerical Observation dh: the value is discriminating — the Davenport–
 Heilbronn function f (no Euler product) opens a phantom deficit of 2 at its first off-line pair
 while its constituent L(s, χ) closes with deficit 0; on the comb side the secular condition
@@ -12,7 +12,7 @@ depth; the ζ comb behaves the same way at ζ's own singularity to the right of 
 
 Paper-local predicates:
 
-  D1  Thm. turing / Cor. conditional  [approx]  at T = 15, 30, 50.3 the raw comb count Ñ_N rounds to the exact
+  D1  Prop. turing / Def. screen     [approx]  at T = 15, 30, 50.3 the raw comb count Ñ_N rounds to the exact
                                                 N = 1, 3, 10, and the sign changes of the horizon main sum Z_M on
                                                 (0, T) — the de-framing side — give C = 1, 3, 10 = N (Turing's
                                                 certificate read on the shell, both readings uncertified)
@@ -44,7 +44,7 @@ Paper-local predicates:
   D3  Prop. combformula  [approx]  the identity's validation arm: the corrected tapered sum Σ_w − Π_N − log((s−1)/s) against
                          log ζ(½ + it) (mpmath) at t = 1, 5, 10, 15, 30: the real-part error falls with depth at every height
                          (0.0049 at t = 1, depth 8×10⁷) and the imaginary part is the corrected count of D2f
-  D4  Thm. turing (frame-exact inputs)  [approx]  on the shells p = 97, 1009, 4801 (primes ≡ 1 mod 4; ceilings T = 2πp ≈ 609, 6340,
+  D4  Prop. turing (frame-exact inputs)  [approx]  on the shells p = 97, 1009, 4801 (primes ≡ 1 mod 4; ceilings T = 2πp ≈ 609, 6340,
                          30166) the raw count from the frame-exact comb of depth ⌊√p⌋ = 9, 31, 69, evaluated midway between
                          consecutive zeros just below the ceiling (the test heights chosen with the validation arm: zeros from
                          Z(t) sign changes, the count from mpmath nzeros), rounds to the exact N(t) at every midpoint: maximum
@@ -193,13 +193,13 @@ def dh_corrected_at_depths(n_all, lam_all, t, depths):
     return raw + np.array([float(mp.im(zero_cut_term(N, t, RHO_OFF) - H0)) / math.pi for N in depths])
 
 def Z_main(t):
-    """The horizon-length Riemann–Siegel main sum (Definition deframe), the de-framing side of Theorem turing."""
+    """The horizon-length Riemann–Siegel main sum (Definition deframe), the de-framing side of Proposition turing."""
     N = int(math.floor(math.sqrt(t / (2 * math.pi))))
     th = float(theta(t))
     return 2 * sum(math.cos(th - t * math.log(n)) / math.sqrt(n) for n in range(1, N + 1))
 
 def run():
-    print("\n== block D: the classification and the Euler-product discriminator (Thm. turing, Cor. conditional, Obs. dh) ==")
+    print("\n== block D: the screen reading and its Davenport–Heilbronn control (Prop. turing, Def. screen, Obs. dh) ==")
     # ---------------- D1: the two readings on ζ
     comb = Comb(10 ** 6)
     Tq = np.array([15.0, 30.0, 50.3]); exact = [1, 3, 10]
@@ -325,10 +325,10 @@ def run():
     ok = all(np.all(np.diff(e) < 0) for e in re_err.values()) and re_err[1.0][-1] < (0.0052 if not FAST else 0.0065)
     check("D3", "the identity's validation arm: Re(Σ_w − Π_N − log((s−1)/s)) → log|ζ(½+it)| at t = 1, 5, 10, 15, 30, the error falling with depth (0.0049 at t = 1, 8×10⁷)", ok,
           "; ".join(f"t={t}: " + " → ".join(f"{v:.4f}" for v in (e[0], e[len(e)//2], e[-1])) for t, e in re_err.items()), kind="[approx]")
-    # ---------------- D4: the count from the frame-exact comb on one shell (Theorem turing)
+    # ---------------- D4: the count from the frame-exact comb on one shell (Proposition turing)
     with Timer("frame-exact shells"):
         shells = [97, 1009] + ([4801] if not FAST else [])          # primes ≡ 1 (mod 4): admissible Subject shells
-        dev_fe, dev_deep, npts = {}, {}, {}
+        dev_fe, dev_deep, dev_smooth, npts = {}, {}, {}, {}
         deep = Comb(10 ** 6)
         for p_sh in shells:
             Tc = 2 * math.pi * p_sh; depth = int(math.floor(math.sqrt(p_sh)))
@@ -337,13 +337,17 @@ def run():
                            for i in range(len(grid) - 1) if zv[i] * zv[i + 1] < 0])
             mids = 0.5 * (zs[1:] + zs[:-1]); nz = np.array([int(mp.nzeros(t)) for t in mids]); npts[p_sh] = len(mids)
             v = count_raw(Comb(depth), mids); vd = count_raw(deep, mids)
+            vs = np.array([float(theta(t)) / math.pi + 1 for t in mids])       # the control: the smooth term alone
             dev_fe[p_sh] = (float(np.max(np.abs(v - nz))), bool(np.all(np.round(v) == nz)))
             dev_deep[p_sh] = (float(np.max(np.abs(vd - nz))), bool(np.all(np.round(vd) == nz)))
+            dev_smooth[p_sh] = (float(np.max(np.abs(vs - nz))), bool(np.all(np.round(vs) == nz)))
     stated = {97: 0.079, 1009: 0.107, 4801: 0.164}
+    stated_smooth = {97: (0.268, True), 1009: (0.498, True), 4801: (0.523, False)}
     ok = (all(r for _, r in dev_fe.values()) and all(r for _, r in dev_deep.values())
-          and all(abs(dev_fe[p_sh][0] - stated[p_sh]) < 0.02 for p_sh in shells) and max(d for d, _ in dev_deep.values()) < 0.004)
-    check("D4", "frame-exact count on one shell: at p = 97, 1009, 4801 (T = 2πp) the depth-⌊√p⌋ comb, midway between consecutive zeros below the ceiling, rounds to the exact N(t) at every midpoint (max deviation 0.079, 0.107, 0.164 — within 0.08, 0.11, 0.17); the 10⁶ comb within 0.002", ok,
-          "; ".join(f"p={p_sh} (depth {int(math.sqrt(p_sh))}, {npts[p_sh]} midpoints): max dev {dev_fe[p_sh][0]:.3f} (10⁶ comb {dev_deep[p_sh][0]:.3f})" for p_sh in shells), kind="[approx]")
+          and all(abs(dev_fe[p_sh][0] - stated[p_sh]) < 0.02 for p_sh in shells) and max(d for d, _ in dev_deep.values()) < 0.004
+          and all(abs(dev_smooth[p_sh][0] - stated_smooth[p_sh][0]) < 0.02 and dev_smooth[p_sh][1] == stated_smooth[p_sh][1] for p_sh in shells))
+    check("D4", "frame-exact count on one shell: at p = 97, 1009, 4801 (T = 2πp) the depth-⌊√p⌋ comb, midway between consecutive zeros below the ceiling, rounds to the exact N(t) at every midpoint (max deviation 0.079, 0.107, 0.164 — within 0.08, 0.11, 0.17); the 10⁶ comb within 0.002; the control θ(t)/π + 1 alone deviates by 0.27, 0.498, 0.52 and fails to round at one midpoint of p = 4801", ok,
+          "; ".join(f"p={p_sh} (depth {int(math.sqrt(p_sh))}, {npts[p_sh]} midpoints): max dev {dev_fe[p_sh][0]:.3f} (10⁶ comb {dev_deep[p_sh][0]:.3f}; smooth term alone {dev_smooth[p_sh][0]:.3f}, rounds {dev_smooth[p_sh][1]})" for p_sh in shells), kind="[approx]")
     # ---------------- figure
     with Timer("window grid [84,87]"):
         tw = np.arange(84.0, 87.0 + 1e-9, 0.005 if not FAST else 0.01)

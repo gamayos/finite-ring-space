@@ -11,13 +11,16 @@ Master ledger row 00:D11 (the shell theorem, 20-rh Thm. hp); paper ledger rows 2
                         N(z) = ¼ − νb²; 2⁻¹ = 2κ+1 = −π (capacity-first)
   A5  Thm. agree        the Klein four-group ⟨φ, ρ⟩ and its fixed loci F_p, L_{1/2}, {2⁻¹}; F_p ∩ L_{1/2} = {2⁻¹}
   A6  §1.3 (register)   the Subject constants: π = 2κ, 2π ≡ −1, i = g^{−κ}, i² ≡ −1, e = g^i on the odd
-                        representative, g^π ≡ −1, e^{iπ} ≡ −1  (F_13: g = 2, κ = 3, i = 5, e = 6)
+                        lift, g^π ≡ −1, e^{iπ} ≡ −1  (F_13: g = 2, κ = 3, i = 5, e = 6)
+  A6b Rem. frame        the odd-lift rule on every frame p ≡ 1 (mod 4) below 3000, least primitive root: with r the
+                        least residue of i, the lift is r if odd else r + p; on it e^{iπ} ≡ −1, on the even member
+                        e^{r'π} ≡ +1, so the lift matters in an exponent (F_17: g = 3, i = 4, lift 21, e = 5)
   A7  Thm. hp (iii)     EXACT: the scale-shift on the power characters, S x^k = g^k x^k in F_p, and its trace
                         Tr S^r = (p−1)·[(p−1) | r] (§10.2: the shell's trace carries no prime data) — integer arithmetic
   A7b Thm. hp (i),(iii) [approx]: the complex reading — the constant mode carries the mean v̄ = ψ(p−1)/(p−1),
-                        the nontrivial characters carry v − v̄·1 (Rem. parseval), the characters are orthonormal and
+                        the nontrivial characters carry v − v̄·1 (Rem. parseval), the normalised characters χ_j/√(p−1) are orthonormal and
                         S χ_j = ω^j χ_j on ℓ²(F_p^×) — floating-point roots of unity, tolerance 10⁻¹⁰
-  A8  Thm. hp (iv)      [approx]: self-adjointness is free: any real multiset is the spectrum of a real-symmetric
+  A8  Def. jacobi       [approx]: self-adjointness is free: any real multiset is the spectrum of a real-symmetric
                         tridiagonal matrix (Def. jacobi), checked on the first ten heights in floating point (10⁻¹¹)
   A9  Prop. ground      EXACT: flat ground state, the Ramanujan sum c_p(n) = −1 for every n ≢ 0 (mod p), computed in
                         F_q with a primitive p-th root of unity (q the least prime ≡ 1 mod p): Σ_{a=1}^{p−1} ω^{an} ≡ −1
@@ -29,7 +32,7 @@ Master ledger row 00:D11 (the shell theorem, 20-rh Thm. hp); paper ledger rows 2
                         Ω the least prime ≡ 1 (mod 4) above p²
 
 Shells: p = 13, 17, 29, 37, 41 in full (all p² points of F_{p²}); 173 for A1, A4, A6; 1009 and 10009 for A11.
-Kinds: A1–A7, A9–A11 are integer arithmetic (EXACT); A7b and A8 use floating-point roots of unity and eigenvalues ([approx]).
+Kinds: A1–A7, A6b, A9–A11 are integer arithmetic (EXACT); A7b and A8 use floating-point roots of unity and eigenvalues ([approx]).
 """
 import math, cmath
 import sympy as sp
@@ -84,12 +87,12 @@ def run():
         pi_ = 2 * kappa
         i_ = pow(g, p - 1 - kappa, p)                       # g^{-κ}
         assert i_ == (-pow(g, kappa, p)) % p
-        i_odd = i_ if i_ % 2 == 1 else i_ + p               # the odd integer representative of i
+        i_odd = i_ if i_ % 2 == 1 else i_ + p               # the odd integer lift of i (Remark frame)
         e_ = pow(g, i_odd, p)
         ok = ((2 * pi_) % p == p - 1 and (i_ * i_) % p == p - 1 and pow(g, pi_, p) == p - 1
               and pow(e_, i_odd * pi_, p) == p - 1 and (2 * (2 * kappa + 1)) % p == 1
               and (2 * kappa + 1) % p == (-pi_) % p)
-        check("A6", f"Subject constants on F_{p}: π=2κ, i=g^-κ, e=g^i (odd rep.)", ok,
+        check("A6", f"Subject constants on F_{p}: π=2κ, i=g^-κ, e=g^i (odd lift)", ok,
               f"g={g} κ={kappa} π={pi_} i={i_} e={e_}: 2π≡-1, i²≡-1, g^π≡-1, e^(iπ)≡-1, 2⁻¹=2κ+1=-π")
         # A4 the finite critical line
         inv2 = (2 * kappa + 1) % p
@@ -157,7 +160,7 @@ def run():
         tr = [sum(1 for x in range(1, p) if (pow(g, r, p) * x) % p == x) for r in range(1, p)]
         ok_tr = all(tr[r - 1] == ((p - 1) if r % (p - 1) == 0 else 0) for r in range(1, p))
         check("A7", f"F_{p}: S x^k = g^k x^k on the power characters (integer arithmetic); Tr S^r = (p−1)[(p−1)|r]", ok_fp and ok_tr)
-        check("A7b", f"ℓ²(F_{p}^×): mean v̄ = ψ(p−1)/(p−1) on the trivial mode, v − v̄·1 on the nontrivial characters, orthonormal; Sχ_j = ω^j χ_j",
+        check("A7b", f"ℓ²(F_{p}^×): mean v̄ = ψ(p−1)/(p−1) on the trivial mode, v − v̄·1 on the nontrivial characters, χ_j/√(p−1) orthonormal; Sχ_j = ω^j χ_j",
               ok_mean and ok_orth and ok_c, f"v̄ = {mean:.6f} (= log 27720/12 at p = 13)" if p == 13 else "", kind="[approx]")
         # A10 the shared quarter-turn core; no cycle projection onto (13, 233)
         Om = 233
@@ -181,6 +184,20 @@ def run():
         primes = {n for n in range(2, H + 1) if sp.isprime(n)}
         check("A11", f"frame coincidence below √{p} = {H} on the pair ({p}, {Om}): residues, window products and primality agree", same and prods and irreducible == primes,
               f"Π_p = {sorted(primes)}")
+    # A6b the odd-lift rule (Remark frame) on every admissible frame below 3000, least primitive root
+    frames = [q for q in range(5, 3000) if q % 4 == 1 and sp.isprime(q)]
+    bad = []
+    for q in frames:
+        gq = int(sp.primitive_root(q)); kq = (q - 1) // 4; piq = 2 * kq
+        r = pow(gq, q - 1 - kq, q)                          # the least residue of i = g^{-κ}
+        odd, even = (r, r + q) if r % 2 == 1 else (r + q, r)
+        e_odd = pow(gq, odd, q)
+        if not (pow(e_odd, odd * piq, q) == q - 1 and pow(e_odd, even * piq, q) == 1 and (r * r) % q == q - 1):
+            bad.append(q)
+    f17 = (pow(3, 16 - 4, 17), pow(3, 21, 17))               # F_17 with g = 3: i = 3^{-4} = 4 (even), lift 21, e = 3^21 = 5
+    ok = not bad and f17 == (4, 5)
+    check("A6b", f"the odd-lift rule on all {len(frames)} frames p ≡ 1 (mod 4) below 3000: e^{{iπ}} ≡ −1 on the odd lift, ≡ +1 on the even member; F_17: g=3, i=4, lift 21, e=5", ok,
+          f"frames {len(frames)}, failures {bad}; F_17 (i, e) = {f17}")
     # A8 self-adjointness is free
     J = jacobi_from_points(HEIGHTS[:10])
     ev = np.sort(np.linalg.eigvalsh(J))
