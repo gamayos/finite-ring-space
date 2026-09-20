@@ -2,7 +2,7 @@
  "paper": "5-red",
  "title": "Paradoxes of Infinity as Reductio ad Absurdum",
  "doi": "https://doi.org/10.20944/preprints202508.1744.v1",
- "generated": "19 September 2026",
+ "generated": "20 September 2026",
  "blocks": [
   {
    "letter": "A",
@@ -487,8 +487,12 @@
     "name": "FRC.Reductio.records_lt",
     "module": "FrcLedger/Reductio",
     "line": 81,
-    "axioms": [],
-    "tier": 0,
+    "axioms": [
+     "Classical.choice",
+     "Quot.sound",
+     "propext"
+    ],
+    "tier": 2,
     "ok": true,
     "doc": "5:C2 (Proposition mirror, the count): fewer than `s^(K+1)` strings of length at most `K` exist over an alphabet of `s ≥ 2` letters."
    },
@@ -496,8 +500,12 @@
     "name": "FRC.Reductio.no_mirror",
     "module": "FrcLedger/Reductio",
     "line": 86,
-    "axioms": [],
-    "tier": 0,
+    "axioms": [
+     "Classical.choice",
+     "Quot.sound",
+     "propext"
+    ],
+    "tier": 2,
     "ok": true,
     "doc": "5:C2 (Proposition mirror): a part with fewer distinguishable records than the frame has elements admits no injective representation of the frame's domain."
    },
@@ -569,8 +577,10 @@
     "name": "FRC.Reductio.cantor_finite",
     "module": "FrcLedger/Reductio",
     "line": 73,
-    "axioms": [],
-    "tier": 0,
+    "axioms": [
+     "propext"
+    ],
+    "tier": 1,
     "ok": true,
     "doc": "5:D3: on the frame, `n < 2^n`."
    },
@@ -688,8 +698,12 @@
     "name": "FRC.Reductio.obstruction_five",
     "module": "FrcLedger/Reductio",
     "line": 146,
-    "axioms": [],
-    "tier": 0,
+    "axioms": [
+     "Classical.choice",
+     "Quot.sound",
+     "propext"
+    ],
+    "tier": 2,
     "ok": true,
     "doc": "5:E4 (Example basis-obstruction): on the line over `𝔽₅` the involution `v ↦ −v` fixes no basis — `−v ≠ v` for every `v ≠ 0` — while over `𝔽₂` it fixes `1`: the obstruction is arithmetic."
    },

@@ -597,4 +597,4 @@ const PUBLICATIONS = [
   }
 ];
 
-const GENERATED = "19 September 2026";
+const GENERATED = "20 September 2026";

@@ -1,5 +1,5 @@
 {
- "generated": "19 September 2026",
+ "generated": "20 September 2026",
  "rows": [
   {
    "id": "14:X3",
@@ -21,7 +21,7 @@
    "key": "p14031",
    "tag": "T",
    "predicate": "\\textbf{The congruence $\\dS$ even} acquires a second physical face: it is the existence of the octant sector, hence the well-definedness of the measured age --- a structure of the Carrier's cycle lattice, certified by realisation and read as an observational condition, never an arithmetic property of the numeral.",
-   "source": "Lem.~\\ref{lem:octant}(iv); \\lean{Entropy.octant\\_second\\_face, Entropy.octant\\_sector\\_iff, FRC.Entropy.two\\_is\\_square}",
+   "source": "Lem.~\\ref{lem:octant}(iv); \\lean{Entropy.octant\\_second\\_face, Entropy.octant\\_sector\\_iff, FRC.Entropy.two\\_is\\_square\\_iff}",
    "master": [],
    "restated": [],
    "witnessed": false,

@@ -2,7 +2,7 @@
  "paper": "10-dim",
  "title": "Dimensional Analysis in Finite Ring Continuum",
  "doi": "https://doi.org/10.20944/preprints202605.0668.v1",
- "generated": "19 September 2026",
+ "generated": "20 September 2026",
  "blocks": [
   {
    "letter": "A",
@@ -637,8 +637,11 @@
     "name": "FRC.Dimensions.meridian_transport",
     "module": "FrcLedger/Dimensions",
     "line": 303,
-    "axioms": [],
-    "tier": 0,
+    "axioms": [
+     "Quot.sound",
+     "propext"
+    ],
+    "tier": 1,
     "ok": true,
     "doc": "10:D2, 10:C6 — meridian transport onto the flag: the two periods interfere, `([L][T]^κ)^p = I_q` — the meridian component wraps (`p ≡ 0 (mod p)`) while the phase component advances by `pκ = 4κ·κ + κ ≡ κ (mod 4κ)`; for every shell."
    },
@@ -681,8 +684,11 @@
     "name": "FRC.Dimensions.deltaC_involutive",
     "module": "FrcLedger/Dimensions",
     "line": 416,
-    "axioms": [],
-    "tier": 0,
+    "axioms": [
+     "Quot.sound",
+     "propext"
+    ],
+    "tier": 1,
     "ok": true,
     "doc": "10:D1 — `δ_C` is an involution: `δ_C²(D) = I_q (I_q D⁻¹)⁻¹ = D`."
    },
@@ -748,8 +754,12 @@
     "name": "FRC.Dimensions.no_flag_of_space",
     "module": "FrcLedger/Dimensions",
     "line": 458,
-    "axioms": [],
-    "tier": 0,
+    "axioms": [
+     "Classical.choice",
+     "Quot.sound",
+     "propext"
+    ],
+    "tier": 2,
     "ok": true,
     "doc": "10:D2 — no flag of space: `4r = 0` in `C_p` forces `r = 0` (`p` an odd prime), so the meridian factor contributes no element of order four."
    },
@@ -770,8 +780,11 @@
     "name": "FRC.Dimensions.meridian_transport",
     "module": "FrcLedger/Dimensions",
     "line": 303,
-    "axioms": [],
-    "tier": 0,
+    "axioms": [
+     "Quot.sound",
+     "propext"
+    ],
+    "tier": 1,
     "ok": true,
     "doc": "10:D2, 10:C6 — meridian transport onto the flag: the two periods interfere, `([L][T]^κ)^p = I_q` — the meridian component wraps (`p ≡ 0 (mod p)`) while the phase component advances by `pκ = 4κ·κ + κ ≡ κ (mod 4κ)`; for every shell."
    },
@@ -896,8 +909,11 @@
     "name": "FRC.Dimensions.flagged_readings",
     "module": "FrcLedger/Dimensions",
     "line": 425,
-    "axioms": [],
-    "tier": 0,
+    "axioms": [
+     "Quot.sound",
+     "propext"
+    ],
+    "tier": 1,
     "ok": true,
     "doc": "10:D6 — the flagged readings sit one capacity step above their counts: `[E] = [T]^{κ−1}` and `[p] = [L]^{−1}[T]^κ` on the realized lattice; `[S] = [E][T] = I_q` and the phase counts are neutral, `[E][T][ħ]⁻¹ = 1`, `[p][L][ħ]⁻¹ = 1`."
    },
@@ -1058,8 +1074,12 @@
     "name": "FRC.Dimensions.G_unique",
     "module": "FrcLedger/Dimensions",
     "line": 806,
-    "axioms": [],
-    "tier": 0,
+    "axioms": [
+     "Classical.choice",
+     "Quot.sound",
+     "propext"
+    ],
+    "tier": 2,
     "ok": true,
     "doc": "10:E4 — the linear defining congruence: on the Carrier chart (`4S + 1 = 0`, `2 ≠ 0`), `2G + 1 = 0` has the unique solution `G = 2S`, the half-cycle."
    },
@@ -1067,8 +1087,12 @@
     "name": "FRC.Dimensions.root_pair",
     "module": "FrcLedger/Dimensions",
     "line": 817,
-    "axioms": [],
-    "tier": 0,
+    "axioms": [
+     "Classical.choice",
+     "Quot.sound",
+     "propext"
+    ],
+    "tier": 2,
     "ok": true,
     "doc": "10:E4 — each quadratic defining congruence has exactly two roots, the pair `{x, −x}`: if `x² = a` with `x ≠ 0` (`2 ≠ 0`), then `y² = a` iff `y = x` or `y = −x`, and `−x ≠ x`."
    },
@@ -1076,8 +1100,12 @@
     "name": "FRC.Dimensions.linkage",
     "module": "FrcLedger/Dimensions",
     "line": 825,
-    "axioms": [],
-    "tier": 0,
+    "axioms": [
+     "Classical.choice",
+     "Quot.sound",
+     "propext"
+    ],
+    "tier": 2,
     "ok": true,
     "doc": "10:E4 — the linkage derived at pair level: `k_B² = −2` and `2c² = 1` give `(k_B c)² = −1`, so `k_B c ∈ {ħ, −ħ}` for any root `ħ` of `−1`: `{±k_B}{±c} = {±ħ}`."
    },
@@ -1110,8 +1138,12 @@
     "name": "FRC.Dimensions.carrier233",
     "module": "FrcLedger/Dimensions",
     "line": 923,
-    "axioms": [],
-    "tier": 0,
+    "axioms": [
+     "Classical.choice",
+     "Quot.sound",
+     "propext"
+    ],
+    "tier": 2,
     "ok": true,
     "doc": "10:E4, 10:E5 — the Carrier `Ω = 233` (`S = 58`, admissible: `58` even, `58 ≡ 1 (mod 3)`, `233` prime): `G = 116 = 2S`, `ħ = 89`, `k_B = 124`, `c = 159`, `h = 144 = −ħ` satisfy the defining congruences, the linkage `k_B c = −ħ`, `G = −c²`, `G² = 4⁻¹`, `ħ⁴ = 1`, and `ħ c = k_B G` (the monomial on the `k_B` residue); the partner root `109 = −124` fails the linkage; decided in `ZMod 233`."
    },
@@ -1119,8 +1151,12 @@
     "name": "FRC.Dimensions.carrierLab",
     "module": "FrcLedger/Dimensions",
     "line": 935,
-    "axioms": [],
-    "tier": 0,
+    "axioms": [
+     "Classical.choice",
+     "Quot.sound",
+     "propext"
+    ],
+    "tier": 2,
     "ok": true,
     "doc": "10:E4, 10:E5 — the laboratory Carrier `Ω = 2 408 561` (`S = 602 140`, admissible): `G = 1 204 280 = 2S`, `ħ = 18 688`, `k_B = 1 880 160`, `c = 171 106`, `h = 2 389 873 = −ħ` satisfy the defining congruences, the linkage, `G = −c²`, `G² = 4⁻¹`, `ħ⁴ = 1`, `ħ c = k_B G`; decided in `ZMod 2408561`."
    },
@@ -1201,8 +1237,12 @@
     "name": "FRC.Dimensions.carrier233",
     "module": "FrcLedger/Dimensions",
     "line": 923,
-    "axioms": [],
-    "tier": 0,
+    "axioms": [
+     "Classical.choice",
+     "Quot.sound",
+     "propext"
+    ],
+    "tier": 2,
     "ok": true,
     "doc": "10:E4, 10:E5 — the Carrier `Ω = 233` (`S = 58`, admissible: `58` even, `58 ≡ 1 (mod 3)`, `233` prime): `G = 116 = 2S`, `ħ = 89`, `k_B = 124`, `c = 159`, `h = 144 = −ħ` satisfy the defining congruences, the linkage `k_B c = −ħ`, `G = −c²`, `G² = 4⁻¹`, `ħ⁴ = 1`, and `ħ c = k_B G` (the monomial on the `k_B` residue); the partner root `109 = −124` fails the linkage; decided in `ZMod 233`."
    },
@@ -1210,8 +1250,12 @@
     "name": "FRC.Dimensions.carrierLab",
     "module": "FrcLedger/Dimensions",
     "line": 935,
-    "axioms": [],
-    "tier": 0,
+    "axioms": [
+     "Classical.choice",
+     "Quot.sound",
+     "propext"
+    ],
+    "tier": 2,
     "ok": true,
     "doc": "10:E4, 10:E5 — the laboratory Carrier `Ω = 2 408 561` (`S = 602 140`, admissible): `G = 1 204 280 = 2S`, `ħ = 18 688`, `k_B = 1 880 160`, `c = 171 106`, `h = 2 389 873 = −ħ` satisfy the defining congruences, the linkage, `G = −c²`, `G² = 4⁻¹`, `ħ⁴ = 1`, `ħ c = k_B G`; decided in `ZMod 2408561`."
    },
@@ -1398,8 +1442,12 @@
     "name": "FRC.Dimensions.window_ladder",
     "module": "FrcLedger/Dimensions",
     "line": 1116,
-    "axioms": [],
-    "tier": 0,
+    "axioms": [
+     "Classical.choice",
+     "Quot.sound",
+     "propext"
+    ],
+    "tier": 2,
     "ok": true,
     "doc": "10:G2 — the window ladder `2√κ < κ/2 < κ < 2κ`, by integer squares: `16κ < κ²` iff `κ > 16`, and `κ/2 < κ < 2κ` for `κ > 0` — nested for every `κ ≥ 17`, failing for the toy `κ = 3`; the coherence identity `(2√κ)² = 4κ = p − 1` and the totality closure `(2√S)² = 4S = Ω − 1`."
    },
@@ -1431,8 +1479,12 @@
     "name": "FRC.Dimensions.recovery13",
     "module": "FrcLedger/Dimensions",
     "line": 1141,
-    "axioms": [],
-    "tier": 0,
+    "axioms": [
+     "Classical.choice",
+     "Quot.sound",
+     "propext"
+    ],
+    "tier": 2,
     "ok": true,
     "doc": "10:G3 — local recovery on `κ = 3` at `H = 5`: the instance of the theorem."
    },

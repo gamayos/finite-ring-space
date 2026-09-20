@@ -2,7 +2,7 @@
  "paper": "20-rh",
  "title": "Riemann Hypothesis over the Holographic Substrate",
  "doi": "https://doi.org/10.20944/preprints202606.0768.v1",
- "generated": "19 September 2026",
+ "generated": "20 September 2026",
  "blocks": [
   {
    "letter": "A",
@@ -554,8 +554,11 @@
     "name": "FRC.Rh.lab_pair",
     "module": "FrcLedger/Rh",
     "line": 707,
-    "axioms": [],
-    "tier": 0,
+    "axioms": [
+     "Quot.sound",
+     "propext"
+    ],
+    "tier": 1,
     "ok": true,
     "doc": "20:B1 [value] — the laboratory pair `(13, 233)`: nested, `13² < 233`; the two cycles share the quarter-turn core `Q₄` and nothing else, `gcd(12, 232) = 4`, with `5² = −1` on `𝔽₁₃` and `89² = −1` on `𝔽₂₃₃`; and `12 ∤ 232`."
    },
@@ -587,8 +590,11 @@
     "name": "FRC.Rh.window_readback",
     "module": "FrcLedger/Rh",
     "line": 644,
-    "axioms": [],
-    "tier": 0,
+    "axioms": [
+     "Quot.sound",
+     "propext"
+    ],
+    "tier": 1,
     "ok": true,
     "doc": "20:B2 — below the horizon the reading is frame-exact: on any shell `ZMod q` with `H² < q`, residues `n ≤ H` are the integers themselves and window products read back exactly, so the Subject `𝔽_p` and the Carrier `𝔽_Ω` agree on the window."
    },
@@ -650,8 +656,12 @@
     "name": "FRC.Rh.zero_slot",
     "module": "FrcLedger/Rh",
     "line": 38,
-    "axioms": [],
-    "tier": 0,
+    "axioms": [
+     "Classical.choice",
+     "Quot.sound",
+     "propext"
+    ],
+    "tier": 2,
     "ok": true,
     "doc": "20:B4 — zero-slot, every shell: `Σ_{x ∈ F^×} x^k = 0` on every nonterminal exponent `1 ≤ k ≤ p − 2`, and `= −1` on the full cycle `k = p − 1`."
    },
@@ -670,8 +680,12 @@
     "name": "FRC.Rh.slot_complementarity",
     "module": "FrcLedger/Rh",
     "line": 51,
-    "axioms": [],
-    "tier": 0,
+    "axioms": [
+     "Classical.choice",
+     "Quot.sound",
+     "propext"
+    ],
+    "tier": 2,
     "ok": true,
     "doc": "20:B5 — slot complementarity, every shell: `Φ(k) = −g^k` is injective on the nontrivial spectral slots `1 ≤ k ≤ p − 2` and maps them onto the nonterminal additive slots `F^× ∖ {−1}`."
    },
@@ -780,8 +794,12 @@
     "name": "FRC.Rh.ramanujan_sum",
     "module": "FrcLedger/Rh",
     "line": 91,
-    "axioms": [],
-    "tier": 0,
+    "axioms": [
+     "Classical.choice",
+     "Quot.sound",
+     "propext"
+    ],
+    "tier": 2,
     "ok": true,
     "doc": "20:B7 — the flat ground state, in any integral domain with a primitive `p`-th root of unity `ω` (the cyclotomic ledger, `𝔽_q` with `q ≡ 1 (mod p)`, or `ℂ`): the full-modulus Ramanujan sum `c_p(n) = Σ_{a=1}^{p−1} ω^{an}` equals `−1` for every `n ≢ 0 (mod p)`, and `p − 1` at the origin; the mode at the spectral origin carries no prime information."
    },
@@ -980,8 +998,12 @@
     "name": "FRC.Rh.subject_constants",
     "module": "FrcLedger/Rh",
     "line": 171,
-    "axioms": [],
-    "tier": 0,
+    "axioms": [
+     "Classical.choice",
+     "Quot.sound",
+     "propext"
+    ],
+    "tier": 2,
     "ok": true,
     "doc": "20:B10 — the Subject constants on every shell: `π = 2κ` with `2π = −1`; the quarter-turn `i = g^{−κ}` (read as `g^{3κ}`, since `g^{4κ} = 1`) equals `−g^κ` and squares to `−1`; `g^π = −1`; and the Euler identity `e^{iπ} = (g^m)^{m·π} = −1` for every odd `m` — the convention \"`e = g^m` on the odd representative `m` of `i`\" fixes the parity of the exponent, and the identity uses nothing else about `m`."
    },
@@ -989,8 +1011,11 @@
     "name": "FRC.Rh.constants13",
     "module": "FrcLedger/Rh",
     "line": 188,
-    "axioms": [],
-    "tier": 0,
+    "axioms": [
+     "Quot.sound",
+     "propext"
+    ],
+    "tier": 1,
     "ok": true,
     "doc": "20:B10 [value] — on `𝔽₁₃(τ; 0, 1, 2)`: `κ = 3`, `π = 6`, `2π = −1`, `i = 2^{−3} = 2^9 = 5`, `i² = −1`, `e = 2^5 = 6` on the odd representative `5`, `2^π = −1`, `e^{iπ} = 6^{30} = −1`."
    },

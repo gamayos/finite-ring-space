@@ -2,7 +2,7 @@
  "paper": "2-geom",
  "title": "Geometry and Constants in Finite Ring Continuum",
  "doi": "https://doi.org/10.3390/sym18050751",
- "generated": "19 September 2026",
+ "generated": "20 September 2026",
  "blocks": [
   {
    "letter": "A",
@@ -383,8 +383,11 @@
     "name": "FRC.Geometry.euler_characteristic",
     "module": "FrcLedger/Geometry",
     "line": 122,
-    "axioms": [],
-    "tier": 0,
+    "axioms": [
+     "Quot.sound",
+     "propext"
+    ],
+    "tier": 1,
     "ok": true,
     "doc": "2:C2 (Remark 3.4, the counts): for the orbital shell, `χ = V − E + F = 1`; for its completion, `χ = 2` (`π = 2κ`, `n = p − 1`), as integer identities."
    },
@@ -628,8 +631,12 @@
     "name": "FRC.Geometry.fixed_shell_bound",
     "module": "FrcLedger/Geometry",
     "line": 155,
-    "axioms": [],
-    "tier": 0,
+    "axioms": [
+     "Classical.choice",
+     "Quot.sound",
+     "propext"
+    ],
+    "tier": 2,
     "ok": true,
     "doc": "2:E3 (the fixed-shell bound, every shell): for any depth cut `m`, every grid point `x / g^n` with `x ≤ 2κ` that lies below `1` is at most `max (1 − g^{−m}) (2κ · g^{−(m+1)})`; with `m = ⌊log_g(2κ+1)⌋` that bound is below `1` (`fixed_shell_bound_lt_one`), so the interval above it is free at every depth and the covering radius of the fixed-shell refinement in `[0, 1]` is bounded below independently of `N`."
    },

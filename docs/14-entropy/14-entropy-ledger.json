@@ -2,7 +2,7 @@
  "paper": "14-entr",
  "title": "De Sitter Entropy Estimates over Finite Holographic Substrate",
  "doi": "https://doi.org/10.20944/preprints202608.0310.v1",
- "generated": "19 September 2026",
+ "generated": "20 September 2026",
  "blocks": [
   {
    "letter": "A",
@@ -164,7 +164,7 @@
      "label": "C3",
      "predicate": "The same-channel demotion: $t_0H_\\Lambda=\\tfrac23\\artanh\\sqrt{\\Omega_\\Lambda}$ \\lcdm{} depends on the one fitted parameter, so the $0.2\\%$ landing on $\\pi/4$ restates the fit (by B5).",
      "tag": "T",
-     "source": "\\S\\ref{sec:audit}; \\src{est.A1}; \\lean{Entropy.lcdmAge}",
+     "source": "\\S\\ref{sec:audit}; \\src{est.A1}; \\lean{Entropy.lcdmAge, Entropy.lcdm\\_age, Entropy.age\\_bracket}",
      "key": "p14020"
     },
     {
@@ -185,7 +185,7 @@
      "label": "C6",
      "predicate": "The octant sector: $C_{8}\\subset C_{4\\dS}$ exists exactly when $\\dS$ is even, its character $\\zeta_8$ the residue the Tsirelson identity carries; the octant count $\\dS/2$ is an integer on every admissible Carrier.",
      "tag": "T",
-     "source": "\\S\\ref{sec:registers}, \\citep{akhtman2026quantum}; \\src{est.F1}; \\lean{Entropy.octant\\_exists\\_iff, Entropy.octant\\_character, FRC.Entropy.tsirelson\\_square, FRC.Entropy.lab\\_carrier}",
+     "source": "\\S\\ref{sec:registers}, \\citep{akhtman2026quantum}; \\src{est.F1}; \\lean{Entropy.octant\\_exists\\_iff, Entropy.octant\\_character, FRC.Entropy.tsirelson\\_square, FRC.Entropy.octant\\_iff, FRC.Entropy.lab\\_carrier}",
      "key": "p14023"
     },
     {
@@ -247,7 +247,7 @@
      "label": "X4",
      "predicate": "\\textbf{The congruence $\\dS$ even} acquires a second physical face: it is the existence of the octant sector, hence the well-definedness of the measured age --- a structure of the Carrier's cycle lattice, certified by realisation and read as an observational condition, never an arithmetic property of the numeral.",
      "tag": "T",
-     "source": "Lem.~\\ref{lem:octant}(iv); \\lean{Entropy.octant\\_second\\_face, Entropy.octant\\_sector\\_iff, FRC.Entropy.two\\_is\\_square}",
+     "source": "Lem.~\\ref{lem:octant}(iv); \\lean{Entropy.octant\\_second\\_face, Entropy.octant\\_sector\\_iff, FRC.Entropy.two\\_is\\_square\\_iff}",
      "key": "p14031"
     },
     {
@@ -460,7 +460,7 @@
    {
     "name": "FRC.Entropy.cardinality",
     "module": "FrcLedger/Entropy",
-    "line": 39,
+    "line": 43,
     "axioms": [
      "Quot.sound",
      "propext"
@@ -472,18 +472,18 @@
    {
     "name": "FRC.Entropy.quarter_identity",
     "module": "FrcCore/Entropy",
-    "line": 35,
+    "line": 37,
     "axioms": [],
     "tier": 0,
     "ok": true,
-    "doc": "14:A1, 14:B9 — the quarter identity: `Ω = 4S + 1` has `Ω ≡ 1 (mod 4)` and `Ω − 1 = 4S`, so the import fixes the quarter_identity exactly; the finite face of B9's area law `A = 4S`."
+    "doc": "14:A1, 14:B9 — the quarter identity: `Ω = 4S + 1` has `Ω ≡ 1 (mod 4)` and `Ω − 1 = 4S`, so the import fixes the cardinality exactly; the finite face of B9's area law `A = 4S`."
    }
   ],
   "A2": [
    {
     "name": "FRC.Entropy.carrierLab",
     "module": "FrcLedger/Entropy",
-    "line": 117,
+    "line": 121,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -496,7 +496,7 @@
    {
     "name": "FRC.Entropy.carrierLab_prime",
     "module": "FrcCore/Entropy",
-    "line": 228,
+    "line": 353,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -505,7 +505,7 @@
    {
     "name": "FRC.Entropy.c_square",
     "module": "FrcLedger/Entropy",
-    "line": 96,
+    "line": 100,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -518,7 +518,7 @@
    {
     "name": "FRC.Entropy.triality_centre",
     "module": "FrcLedger/Entropy",
-    "line": 86,
+    "line": 90,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -533,7 +533,7 @@
    {
     "name": "FRC.Entropy.dictionary",
     "module": "FrcLedger/Entropy",
-    "line": 136,
+    "line": 140,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -546,7 +546,7 @@
    {
     "name": "FRC.Entropy.octant_count",
     "module": "FrcCore/Entropy",
-    "line": 59,
+    "line": 61,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -557,7 +557,7 @@
    {
     "name": "FRC.Entropy.fluid_w",
     "module": "FrcLedger/Entropy",
-    "line": 296,
+    "line": 302,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -572,7 +572,7 @@
    {
     "name": "FRC.Entropy.quarter_turn",
     "module": "FrcLedger/Entropy",
-    "line": 56,
+    "line": 60,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -585,7 +585,7 @@
    {
     "name": "FRC.Entropy.area_law_chart",
     "module": "FrcLedger/Entropy",
-    "line": 79,
+    "line": 83,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -598,18 +598,18 @@
    {
     "name": "FRC.Entropy.quarter_identity",
     "module": "FrcCore/Entropy",
-    "line": 35,
+    "line": 37,
     "axioms": [],
     "tier": 0,
     "ok": true,
-    "doc": "14:A1, 14:B9 — the quarter identity: `Ω = 4S + 1` has `Ω ≡ 1 (mod 4)` and `Ω − 1 = 4S`, so the import fixes the quarter_identity exactly; the finite face of B9's area law `A = 4S`."
+    "doc": "14:A1, 14:B9 — the quarter identity: `Ω = 4S + 1` has `Ω ≡ 1 (mod 4)` and `Ω − 1 = 4S`, so the import fixes the cardinality exactly; the finite face of B9's area law `A = 4S`."
    }
   ],
   "B10": [
    {
     "name": "FRC.Entropy.hydrogen_units",
     "module": "FrcLedger/Entropy",
-    "line": 421,
+    "line": 619,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -622,7 +622,7 @@
    {
     "name": "FRC.Entropy.nesting_lab",
     "module": "FrcLedger/Entropy",
-    "line": 432,
+    "line": 630,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -635,7 +635,7 @@
    {
     "name": "FRC.Entropy.nesting_bound",
     "module": "FrcCore/Entropy",
-    "line": 155,
+    "line": 280,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -644,7 +644,7 @@
    {
     "name": "FRC.Entropy.lab_nesting",
     "module": "FrcCore/Entropy",
-    "line": 241,
+    "line": 366,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -655,7 +655,7 @@
    {
     "name": "FRC.Entropy.horizon_quarter_closure",
     "module": "FrcLedger/Entropy",
-    "line": 124,
+    "line": 128,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -670,7 +670,7 @@
    {
     "name": "FRC.Entropy.lcdmAge",
     "module": "FrcLedger/Entropy",
-    "line": 222,
+    "line": 228,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -678,14 +678,40 @@
     ],
     "tier": 2,
     "ok": true,
-    "doc": "14:A8 [ΛCDM], consumed by 14:C3 — the rival chart's age identity as the import it is (a definition, not a derivation): in flat matter-plus-`Λ` the product of the age and the asymptotic rate is `t₀H_Λ = (2/3) artanh √Ω_Λ`, a function of the one fitted parameter; outside `[0, 1)` the value is junk. That a landing of it on `π/4` restates the fit is C3's judgment under B5, not formal content."
+    "doc": "14:A8 [ΛCDM], consumed by 14:C3 — the rival chart's age identity as the import it is: in flat matter-plus-`Λ` the product of the age and the asymptotic rate is `t₀H_Λ = (2/3) artanh √Ω_Λ`, a function of the one fitted parameter; outside `[0, 1)` the value is junk. It is verified against the chart's own Friedmann equation in `lcdm_age` below (the closed-form solution reaches `1` exactly then; uniqueness of the solution is not formalised). That a landing of it on `π/4` restates the fit is C3's judgment under B5, not formal content."
+   },
+   {
+    "name": "FRC.Entropy.lcdm_age",
+    "module": "FrcLedger/Entropy",
+    "line": 496,
+    "axioms": [
+     "Classical.choice",
+     "Quot.sound",
+     "propext"
+    ],
+    "tier": 2,
+    "ok": true,
+    "doc": "14:A8, 14:C3 [ΛCDM] — the age identity verified: with `Ω_m + Ω_Λ = 1` the closed-form scale factor reaches `1` at the time `t` exactly when `t H_Λ = (2/3) artanh √Ω_Λ`, so the product `t₀H_Λ` of C3 is the chart's own age–rate relation, a function of the one fitted parameter."
+   },
+   {
+    "name": "FRC.Entropy.age_bracket",
+    "module": "FrcLedger/Entropy",
+    "line": 564,
+    "axioms": [
+     "Classical.choice",
+     "Quot.sound",
+     "propext"
+    ],
+    "tier": 2,
+    "ok": true,
+    "doc": "14:C3 — the audit numeral bracketed: at the fitted `Ω_Λ = 0.685` (A8, taken as data) the rival chart's `t₀H_Λ = (2/3) artanh √0.685` lies in `(0.7870, 0.7871)` — the paper's `0.7871` — and exceeds `π/4` by between `0.21 %` and `0.22 %` of `π/4`, the audit's \"≈ 0.2 %\"."
    }
   ],
   "C5": [
    {
     "name": "FRC.Entropy.octant_chart",
     "module": "FrcLedger/Entropy",
-    "line": 144,
+    "line": 148,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -698,7 +724,7 @@
    {
     "name": "FRC.Entropy.closure_budget",
     "module": "FrcLedger/Entropy",
-    "line": 171,
+    "line": 175,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -711,7 +737,7 @@
    {
     "name": "FRC.Entropy.closure_count",
     "module": "FrcCore/Entropy",
-    "line": 65,
+    "line": 67,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -720,7 +746,7 @@
    {
     "name": "FRC.Entropy.octant_count",
     "module": "FrcCore/Entropy",
-    "line": 59,
+    "line": 61,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -731,7 +757,7 @@
    {
     "name": "FRC.Entropy.octant_exists_iff",
     "module": "FrcLedger/Entropy",
-    "line": 192,
+    "line": 196,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -744,7 +770,7 @@
    {
     "name": "FRC.Entropy.octant_character",
     "module": "FrcLedger/Entropy",
-    "line": 178,
+    "line": 182,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -757,16 +783,25 @@
    {
     "name": "FRC.Entropy.tsirelson_square",
     "module": "FrcCore/Entropy",
-    "line": 115,
+    "line": 117,
     "axioms": [],
     "tier": 0,
     "ok": true,
-    "doc": "14:C6, 14:X4 — the Tsirelson square: with `ζ = g^m` and `ζ' = g^{7m}` its inverse (`ζζ' = 1`), `(ζ + ζ')² = 2` and `(2(ζ + ζ'))² = 8` on every frame of capacity `κ = 2m`; hence `2` is a square on every such shell — the direction \"octant ⇒ c-square\" of X4's second face (the converse is `FRC.Entropy.octant_second_face` on Mathlib)."
+    "doc": "14:C6, 14:X4 — the Tsirelson square: with `ζ = g^m` and `ζ' = g^{7m}` its inverse (`ζζ' = 1`), `(ζ + ζ')² = 2` and `(2(ζ + ζ'))² = 8` on every frame of capacity `κ = 2m`; hence `2` is a square on every such shell — the direction \"octant ⇒ c-square\" of X4's second face (the converse is `even_capacity_of_two_square` below; the equivalence `two_is_square_iff`)."
+   },
+   {
+    "name": "FRC.Entropy.octant_iff",
+    "module": "FrcCore/Entropy",
+    "line": 255,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "14:C6 — the octant sector at tier 0, as an equivalence: on every frame, an element with `ζ⁴ = −1` and `ζ⁸ = 1` exists exactly when the capacity is even."
    },
    {
     "name": "FRC.Entropy.lab_carrier",
     "module": "FrcCore/Entropy",
-    "line": 221,
+    "line": 346,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -777,7 +812,7 @@
    {
     "name": "FRC.Entropy.octant_inversion",
     "module": "FrcLedger/Entropy",
-    "line": 232,
+    "line": 238,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -790,7 +825,7 @@
    {
     "name": "FRC.Entropy.landing_bracket",
     "module": "FrcLedger/Entropy",
-    "line": 385,
+    "line": 391,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -805,7 +840,7 @@
    {
     "name": "FRC.Entropy.channel_one_consistency",
     "module": "FrcLedger/Entropy",
-    "line": 261,
+    "line": 267,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -818,7 +853,7 @@
    {
     "name": "FRC.Entropy.channel_one_numeral",
     "module": "FrcLedger/Entropy",
-    "line": 370,
+    "line": 376,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -831,7 +866,7 @@
    {
     "name": "FRC.Entropy.cluster_identity",
     "module": "FrcLedger/Entropy",
-    "line": 281,
+    "line": 287,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -846,7 +881,7 @@
    {
     "name": "FRC.Entropy.count_face",
     "module": "FrcLedger/Entropy",
-    "line": 404,
+    "line": 602,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -861,7 +896,7 @@
    {
     "name": "FRC.Entropy.capacity_zero",
     "module": "FrcLedger/Entropy",
-    "line": 414,
+    "line": 612,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -874,7 +909,7 @@
    {
     "name": "FRC.Entropy.capacity_axis",
     "module": "FrcCore/Entropy",
-    "line": 234,
+    "line": 359,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -885,7 +920,7 @@
    {
     "name": "FRC.Entropy.milgrom_rebooking",
     "module": "FrcLedger/Entropy",
-    "line": 153,
+    "line": 157,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -900,7 +935,7 @@
    {
     "name": "FRC.Entropy.octant_inversion",
     "module": "FrcLedger/Entropy",
-    "line": 232,
+    "line": 238,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -913,7 +948,7 @@
    {
     "name": "FRC.Entropy.landing_bracket",
     "module": "FrcLedger/Entropy",
-    "line": 385,
+    "line": 391,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -928,7 +963,7 @@
    {
     "name": "FRC.Entropy.octant_second_face",
     "module": "FrcLedger/Entropy",
-    "line": 209,
+    "line": 213,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -941,7 +976,7 @@
    {
     "name": "FRC.Entropy.octant_sector_iff",
     "module": "FrcLedger/Entropy",
-    "line": 165,
+    "line": 169,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -952,20 +987,20 @@
     "doc": "14:C6, 14:X4 — the arithmetic face: the octant sector `C₈ ⊂ C_{4S}` exists exactly when `8 ∣ 4S`, that is when `S` is even (X4's claim about what certifies the congruence is a realisation clause, not this equivalence)."
    },
    {
-    "name": "FRC.Entropy.two_is_square",
+    "name": "FRC.Entropy.two_is_square_iff",
     "module": "FrcCore/Entropy",
-    "line": 144,
+    "line": 269,
     "axioms": [],
     "tier": 0,
     "ok": true,
-    "doc": "14:X4 — one direction of the second face at tier 0: on every frame of even capacity `2` is a square, `(ζ + ζ⁻¹)² = 2`; the converse (`2` a square ⇒ even capacity) is on Mathlib, its instances decided in `octant17`."
+    "doc": "14:X4 — the second face as an equivalence at tier 0: on every frame `(τ; 0, 1, g)`, `2` is a square exactly when the capacity is even — the c-square congruence and the octant sector are one condition."
    }
   ],
   "P3": [
    {
     "name": "FRC.Entropy.age_rate_locus",
     "module": "FrcLedger/Entropy",
-    "line": 252,
+    "line": 258,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -978,7 +1013,7 @@
    {
     "name": "FRC.Entropy.locus_bracket",
     "module": "FrcLedger/Entropy",
-    "line": 358,
+    "line": 364,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -993,7 +1028,7 @@
    {
     "name": "FRC.Entropy.fluid_w",
     "module": "FrcLedger/Entropy",
-    "line": 296,
+    "line": 302,
     "axioms": [
      "Classical.choice",
      "Quot.sound",

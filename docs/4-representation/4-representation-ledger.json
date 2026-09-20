@@ -2,7 +2,7 @@
  "paper": "4-rep",
  "title": "Universal Latent Representation in FRC",
  "doi": "https://doi.org/10.3390/e28010040",
- "generated": "19 September 2026",
+ "generated": "20 September 2026",
  "blocks": [
   {
    "letter": "A",
@@ -312,8 +312,10 @@
     "name": "FRC.Representation.transition_unique",
     "module": "FrcLedger/Representation",
     "line": 37,
-    "axioms": [],
-    "tier": 0,
+    "axioms": [
+     "Quot.sound"
+    ],
+    "tier": 1,
     "ok": true,
     "doc": "4:B5 (the uniqueness clause): a map with that property is determined by it, since `E₁ ∘ g` is onto `W₁`."
    },
@@ -451,8 +453,11 @@
     "name": "FRC.Representation.lift",
     "module": "FrcLedger/Representation",
     "line": 73,
-    "axioms": [],
-    "tier": 0,
+    "axioms": [
+     "Classical.choice",
+     "Quot.sound"
+    ],
+    "tier": 2,
     "ok": true,
     "doc": "4:C3 (Corollary 1): the lift `L = φ⁻¹ ∘ E : X → Z` recovers the latent state, `L ∘ g = id`, and `L x` is the unique `z` with `E x = φ z`."
    },
@@ -480,8 +485,11 @@
     "name": "FRC.Representation.consistency",
     "module": "FrcLedger/Representation",
     "line": 83,
-    "axioms": [],
-    "tier": 0,
+    "axioms": [
+     "Classical.choice",
+     "Quot.sound"
+    ],
+    "tier": 2,
     "ok": true,
     "doc": "4:C4 (Corollary 2): the lifts of two modalities' observations of one latent state agree, so the canonical charts `ψ ∘ L_m ∘ g_m` and `ψ ∘ L_n ∘ g_n` both equal `ψ`."
    },
@@ -566,8 +574,10 @@
     "name": "FRC.Representation.mod_injective",
     "module": "FrcLedger/Representation",
     "line": 127,
-    "axioms": [],
-    "tier": 0,
+    "axioms": [
+     "propext"
+    ],
+    "tier": 1,
     "ok": true,
     "doc": "4:E3 (the reduction into one field): an injective integer code with values below `q` stays injective modulo `q`."
    },
