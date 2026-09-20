@@ -5566,15 +5566,17 @@ The finite content of *De Sitter Entropy Estimates over Finite Holographic Subst
 `8 ∣ 4S ⟺ 2 ∣ S`, with `S = 2m` the cycle `8m`, its quarter `2m` and its octant `m` (C6, X4, B2); the closure
 budget `2x ≤ 2m ⟺ x ≤ m` (C5); on every frame `(τ; 0, 1, g)` of even capacity `κ = 2m` the octant character
 `ζ = g^m` — `ζ⁴ = −1`, `ζ⁸ = 1`, its inverse `g^{7m}`, the Tsirelson square `(ζ + ζ⁻¹)² = 2`,
-`(2(ζ + ζ⁻¹))² = 8`, hence `2` a square on every such shell — one direction of the octant's second face at
-tier 0 (even capacity ⇒ `2` a square); the converse is `FrcLedger.Entropy.octant_second_face` on Mathlib, and
-its instances on `𝔽₁₃`, `𝔽₂₉` are decided here (C6, X4); the nesting bound `q² < p`, `p² < Ω ⇒ q⁴ < Ω` (B10); primality by trial division up to the square
-root. Decided by the kernel: the octant on `𝔽₁₇` and its absence on `𝔽₁₃` and `𝔽₂₉`, the characters `ζ₈` of
-the Carriers `233` and `2 408 561`; the laboratory Carrier — `S = 602 140` even, `≡ 1 (mod 3)`, `4S + 1` prime
-(A2); the capacity axis `𝔽₅`, no shell at `κ = 2`, `𝔽₁₃` at hydrogen, `12N + 1` prime at `N = 1, 3` and not at
-`N = 2` (C10, B10); the nesting `37 → 1373 → 2 408 561` and the bound `N ≤ 3` on the laboratory Carrier (B10).
-The realisation premises of the octant lemma (A4, A5, B6, B7) are outside this module: it decides the lemma's
-arithmetic. Every declaration is checked to depend on no axiom (`check_core_axioms.py`).
+`(2(ζ + ζ⁻¹))² = 8`, hence `2` a square on every such shell; and the converses — an element with `ζ⁴ = −1`,
+`ζ⁸ = 1` forces the capacity even, and a square root `r` of `2` gives one, `ζ = (r + i r)/2` with `ζ² = i` —
+so that, on every frame at tier 0, the octant sector exists ⟺ the capacity is even ⟺ `2` is a square: the
+octant and the c-square are one condition (C6, X4); the nesting bound `q² < p`, `p² < Ω ⇒ q⁴ < Ω` (B10);
+primality by trial division up to the square root. Decided by the kernel: the octant on `𝔽₁₇` and its absence
+on `𝔽₁₃` and `𝔽₂₉`, the characters `ζ₈` of the Carriers `233` and `2 408 561`; the laboratory Carrier —
+`S = 602 140` even, `≡ 1 (mod 3)`, `4S + 1` prime (A2); the capacity axis `𝔽₅`, no shell at `κ = 2`, `𝔽₁₃` at
+hydrogen, `12N + 1` prime at `N = 1, 3` and not at `N = 2` (C10, B10); the nesting `37 → 1373 → 2 408 561` and
+the bound `N ≤ 3` on the laboratory Carrier (B10). The realisation premises of the octant lemma (A4, A5, B6,
+B7) are outside this module: it decides the lemma's arithmetic. Every declaration is checked to depend on no
+axiom (`check_core_axioms.py`).
 -/
 
 namespace FRC.Entropy
@@ -5585,7 +5587,7 @@ open FRC.Shell
 section congruences
 
 /-- 14:A1, 14:B9 — the quarter identity: `Ω = 4S + 1` has `Ω ≡ 1 (mod 4)` and `Ω − 1 = 4S`, so the import fixes the
-quarter_identity exactly; the finite face of B9's area law `A = 4S`. -/
+cardinality exactly; the finite face of B9's area law `A = 4S`. -/
 theorem quarter_identity (S : Nat) : (4 * S + 1) % 4 = 1 ∧ 4 * S + 1 - 1 = 4 * S :=
   ⟨FRC.Nat.add_mul_mod_self_left 1 S 4 (Nat.zero_lt_succ 3), FRC.Nat.add_sub_cancel (4 * S) 1⟩
 
@@ -5665,7 +5667,7 @@ theorem octant_residue (F : Frame p κ g) (m : Nat) (hm : κ = 2 * m) :
 /-- 14:C6, 14:X4 — the Tsirelson square: with `ζ = g^m` and `ζ' = g^{7m}` its inverse (`ζζ' = 1`),
 `(ζ + ζ')² = 2` and `(2(ζ + ζ'))² = 8` on every frame of capacity `κ = 2m`; hence `2` is a square on every
 such shell — the direction "octant ⇒ c-square" of X4's second face (the converse is
-`FRC.Entropy.octant_second_face` on Mathlib). -/
+`even_capacity_of_two_square` below; the equivalence `two_is_square_iff`). -/
 theorem tsirelson_square (F : Frame p κ g) (m : Nat) (hm : κ = 2 * m) :
     g ^ m * g ^ (7 * m) = 1 ∧ (g ^ m + g ^ (7 * m)) ^ 2 = 2 ∧
     (2 * (g ^ m + g ^ (7 * m))) ^ 2 = 8 := by
@@ -5692,13 +5694,136 @@ theorem tsirelson_square (F : Frame p κ g) (m : Nat) (hm : κ = 2 * m) :
   refine ⟨hz, hsq, ?_⟩
   rw [Shell.mul_pow, hsq, Shell.pow_two, lit_mul 2 2, lit_mul 4 2]
 
-/-- 14:X4 — one direction of the second face at tier 0: on every frame of even capacity `2` is a square,
-`(ζ + ζ⁻¹)² = 2`; the converse (`2` a square ⇒ even capacity) is on Mathlib, its instances decided in
-`octant17`. -/
+/-- 14:X4 — the direction "even capacity ⇒ `2` a square" at tier 0: on every frame of even capacity `2` is a
+square, `(ζ + ζ⁻¹)² = 2`; the converse is `even_capacity_of_two_square`, the equivalence `two_is_square_iff`. -/
 theorem two_is_square (F : Frame p κ g) (m : Nat) (hm : κ = 2 * m) : ∃ r : Shell p, r * r = 2 :=
   ⟨g ^ m + g ^ (7 * m), by rw [← Shell.pow_two]; exact (tsirelson_square F m hm).2.1⟩
 
 end octant
+
+/-! ## The converse: `2` a square ⇒ even capacity, on every frame (14:X4) -/
+section converse
+
+variable {p : Nat} [Pos p] {κ : Nat} {g : Shell p}
+
+/-- `a b (c d) = a c (b d)` on every shell. -/
+theorem mul_mul_mul_comm (a b c d : Shell p) : a * b * (c * d) = a * c * (b * d) := by
+  rw [Shell.mul_assoc, Shell.mul_left_comm b c d, ← Shell.mul_assoc]
+
+/-- Literals add as their values: `a + b = (a + b)` on every shell. -/
+theorem lit_add (a b : Nat) : (OfNat.ofNat a : Shell p) + OfNat.ofNat b = (OfNat.ofNat (a + b) : Shell p) :=
+  Shell.ext (by
+    show (a % p + b % p) % p = (a + b) % p
+    exact (FRC.Nat.add_mod a b p Pos.pos).symm)
+
+/-- `−1 ≠ 1` on every frame (`2 ≠ 0`). -/
+theorem neg_one_ne_one (F : Frame p κ g) : (-1 : Shell p) ≠ 1 := fun h => by
+  have h2 : (1 : Shell p) + 1 = 0 := by
+    have := Shell.neg_add (1 : Shell p); rw [h] at this; exact this
+  exact F.two_ne_zero (by rw [Frame.two_eq_one_add_one]; exact h2)
+
+/-- `−1 ≠ 0` on every frame. -/
+theorem neg_one_ne_zero (F : Frame p κ g) : (-1 : Shell p) ≠ 0 := fun h => by
+  have : (1 : Shell p) = 0 := by
+    have h' : -(-1 : Shell p) = -0 := congrArg Neg.neg h
+    rw [Shell.neg_neg, Shell.neg_zero] at h'
+    exact h'
+  exact F.one_ne_zero this
+
+/-- A square root of `2` gives a square root of the quarter-turn: with `i² = −1`, `2h = 1` and `r² = 2`,
+`ζ = (r + i r) h` has `ζ² = i`, hence `ζ⁴ = −1` and `ζ⁸ = 1` — an element of order eight wherever `−1 ≠ 1`,
+that is on every frame. -/
+theorem octant_of_two_square {r i h : Shell p} (hr : r * r = 2) (hi : i * i = -1)
+    (hh : 2 * h = 1) :
+    ∃ ζ : Shell p, ζ * ζ = i ∧ ζ ^ 4 = -1 ∧ ζ ^ 8 = 1 := by
+  -- `(r + i r)² = 4 i`
+  have hA : (r + i * r) * (r + i * r) = i * 4 := by
+    rw [Shell.left_distrib, Shell.right_distrib, Shell.right_distrib, hr,
+      Shell.mul_assoc i r r, hr, Shell.mul_left_comm r i r, hr,
+      Shell.mul_assoc i r (i * r), Shell.mul_left_comm r i r, ← Shell.mul_assoc i i (r * r), hi, hr,
+      Shell.neg_one_mul, Shell.add_comm 2 (i * 2), Shell.add_assoc, Shell.add_comm 2 (i * 2 + -2),
+      Shell.add_assoc, Shell.neg_add, Shell.add_zero, ← Shell.left_distrib, lit_add 2 2]
+  -- `4 h² = (2h)² = 1`
+  have h4 : (4 : Shell p) * (h * h) = 1 := by
+    rw [← lit_mul 2 2, ← mul_mul_mul_comm, hh, Shell.one_mul]
+  have hz : ((r + i * r) * h) * ((r + i * r) * h) = i := by
+    rw [mul_mul_mul_comm, hA, Shell.mul_assoc, h4, Shell.mul_one]
+  refine ⟨(r + i * r) * h, hz, ?_, ?_⟩
+  · rw [show (4 : Nat) = 2 * 2 from rfl, Shell.pow_mul, Shell.pow_two, Shell.pow_two, hz, hi]
+  · rw [show (8 : Nat) = 2 * 2 * 2 from rfl, Shell.pow_mul, Shell.pow_mul, Shell.pow_two, Shell.pow_two,
+      Shell.pow_two, hz, hi, Shell.neg_mul_neg, Shell.one_mul]
+
+/-- The arithmetic of the order: `(k · 8) % 4κ = 0` and `(k · 4) % 4κ ≠ 0` force `κ` even (a divisor `4κ` of
+`8k` that misses `4k` cannot be `4 · odd`; `0 < κ` is only what `mod_spec` needs). -/
+theorem even_of_order_eight {κ k : Nat} (hκ : 0 < κ) (h8 : (k * 8) % (4 * κ) = 0)
+    (h4 : (k * 4) % (4 * κ) ≠ 0) : ∃ m, κ = 2 * m := by
+  have h4κ : 0 < 4 * κ := Nat.mul_pos (Nat.zero_lt_succ 3) hκ
+  obtain ⟨q, hq⟩ := FRC.Nat.mod_spec (4 * κ) h4κ (k * 8)
+  rw [h8, Nat.add_zero] at hq
+  -- `2k = κ q`
+  have h2k : 2 * k = κ * q := by
+    apply Nat.eq_of_mul_eq_mul_left (Nat.zero_lt_succ 3)
+    rw [← FRC.Nat.mul_assoc, ← FRC.Nat.mul_assoc, Nat.mul_comm 4 2, Nat.mul_comm (2 * 4) k, ← hq]
+  have h2 : 0 < 2 := Nat.zero_lt_succ 1
+  obtain ⟨m, hm⟩ := FRC.Nat.mod_spec 2 h2 κ
+  have hlt : κ % 2 < 2 := FRC.Nat.mod_lt' κ h2
+  match hκ2 : κ % 2 with
+  | 0 => rw [hκ2, Nat.add_zero] at hm; exact ⟨m, hm⟩
+  | 1 =>
+    -- `κ` odd: `q` is even, `k = κ q'`, so `4κ ∣ 4k`, contradicting `h4`
+    have hq2 : q % 2 = 0 := by
+      have e1 : (κ * q) % 2 = q % 2 := by
+        rw [FRC.Nat.mul_mod κ q 2 h2, hκ2, Nat.one_mul, FRC.Nat.mod_mod q 2 h2]
+      have e2 : (2 * k) % 2 = 0 := by
+        rw [Nat.mul_comm 2 k]
+        exact (FRC.Nat.mod_unique (Nat.zero_lt_succ 1) (by rw [Nat.add_zero, Nat.mul_comm k 2]) : (k * 2) % 2 = 0)
+      rw [← e1, ← h2k]; exact e2
+    obtain ⟨q', hq'⟩ := FRC.Nat.mod_spec 2 h2 q
+    rw [hq2, Nat.add_zero] at hq'
+    have hk : k = κ * q' := by
+      apply Nat.eq_of_mul_eq_mul_left h2
+      rw [h2k, hq', Nat.mul_left_comm κ 2 q']
+    exact absurd (FRC.Nat.mod_unique h4κ
+      (by rw [hk, Nat.add_zero, Nat.mul_comm (κ * q') 4, ← FRC.Nat.mul_assoc])) h4
+  | n + 2 => exact absurd hlt (by rw [hκ2]; exact Nat.not_lt_of_ge (Nat.le_add_left 2 n))
+
+/-- 14:C6 — the octant forces even capacity: on every frame, an element `ζ` with `ζ⁴ = −1` and `ζ⁸ = 1` (an
+element of order eight) gives `8 ∣ 4κ`, so the capacity is even. -/
+theorem even_capacity_of_octant (F : Frame p κ g) {ζ : Shell p} (hz4 : ζ ^ 4 = -1) (hz8 : ζ ^ 8 = 1) :
+    ∃ m, κ = 2 * m := by
+  have hζ0 : ζ ≠ 0 := fun h0 => by
+    rw [h0, show (4 : Nat) = 3 + 1 from rfl, Shell.pow_succ, Shell.mul_zero] at hz4
+    exact neg_one_ne_zero F hz4.symm
+  obtain ⟨k, hk, hgk⟩ := F.eq_pow_of_ne_zero hζ0
+  have e8 : (k * 8) % (p - 1) = 0 :=
+    F.mod_eq_zero_of_pow_eq_one (by rw [Shell.pow_mul, hgk]; exact hz8)
+  have e4 : (k * 4) % (p - 1) ≠ 0 := fun e => by
+    have := F.pow_eq_one_of_mod e
+    rw [Shell.pow_mul, hgk, hz4] at this
+    exact neg_one_ne_one F this
+  rw [F.n_eq] at e8 e4
+  exact even_of_order_eight F.cap_pos e8 e4
+
+/-- 14:C6 — the octant sector at tier 0, as an equivalence: on every frame, an element with `ζ⁴ = −1` and
+`ζ⁸ = 1` exists exactly when the capacity is even. -/
+theorem octant_iff (F : Frame p κ g) : (∃ ζ : Shell p, ζ ^ 4 = -1 ∧ ζ ^ 8 = 1) ↔ ∃ m, κ = 2 * m :=
+  ⟨fun ⟨_, h4, h8⟩ => even_capacity_of_octant F h4 h8,
+   fun ⟨m, hm⟩ => ⟨g ^ m, octant_residue F m hm⟩⟩
+
+/-- 14:X4 — the converse of the second face at tier 0: on every frame, a square root of `2` forces the
+capacity even — `ζ = (r + i r)/2` has `ζ² = i`, so an element of order eight exists and `8 ∣ 4κ`. -/
+theorem even_capacity_of_two_square (F : Frame p κ g) {r : Shell p} (hr : r * r = 2) :
+    ∃ m, κ = 2 * m := by
+  obtain ⟨h, hh⟩ := F.exists_inv F.two_ne_zero
+  obtain ⟨ζ, _, hz4, hz8⟩ := octant_of_two_square hr F.quarter_turn_sq hh
+  exact even_capacity_of_octant F hz4 hz8
+
+/-- 14:X4 — the second face as an equivalence at tier 0: on every frame `(τ; 0, 1, g)`, `2` is a square
+exactly when the capacity is even — the c-square congruence and the octant sector are one condition. -/
+theorem two_is_square_iff (F : Frame p κ g) : (∃ r : Shell p, r * r = 2) ↔ ∃ m, κ = 2 * m :=
+  ⟨fun ⟨_, hr⟩ => even_capacity_of_two_square F hr, fun ⟨m, hm⟩ => two_is_square F m hm⟩
+
+end converse
 
 /-! ## The nesting bound and trial division (14:B10) -/
 section nesting

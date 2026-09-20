@@ -13,8 +13,12 @@ order three on the Carrier, the c-square `2` a square exactly when `S` is even, 
 `8 ∣ 4S ⟺ S` even, the closure budget `2x ≤ S ⟺ x ≤ S/2`, the character of order eight with `ζ⁴ = −1` and the
 Tsirelson square `(2(ζ + ζ⁻¹))² = 8`, the sector realised on every Carrier exactly when `S` is even, and the
 c-square congruence as the sector's second face (C5, C6, X4); the horizon-quarter closure (C2). The rival
-chart's age identity `t₀H_Λ = (2/3) artanh √Ω_Λ` taken as the import it is, and its inversion: `π/4` is reached
-at `Ω_Λ = tanh²(3π/8)` and, on `[0, 1)`, only there (C3, C7, X3); the age–rate locus
+chart's age identity `t₀H_Λ = (2/3) artanh √Ω_Λ` taken as the import it is, verified against the chart's own
+Friedmann equation (the standard closed form `(Ω_m/Ω_Λ)^{1/3} sinh^{2/3}(3H_Λ t/2)` solves
+`(ȧ/a)² = H₀²(Ω_m a⁻³ + Ω_Λ)` with `a(0) = 0`, expanding, and in the flat case `Ω_m + Ω_Λ = 1` reaches `1`
+exactly at `t H_Λ = (2/3) artanh √Ω_Λ`, with rate `H₀` there; that it is the unique such solution is not
+formalised), its numeral at the fitted `0.685` bracketed, and its inversion: `π/4` is reached at
+`Ω_Λ = tanh²(3π/8)` and, on `[0, 1)`, only there (A8, C3, C7, X3); the age–rate locus
 `t H₀ = (π/4)/tanh(3π/8)`, the channel-1 consistency and the two-cluster chart identity (P3, C8, C4); the
 effective-fluid reading `w = −1` (B8, P4); the count face and its chart dress `√(S/π)` (C9); the capacity axis —
 `κ = 2` has no shell, hydrogen at `κ = 3`, the `3N` shell exactly when `12N + 1` is prime and none at `N = 2`,
@@ -215,10 +219,12 @@ end octant
 /-! ## The rival chart's age identity and the locus (14:C3, C7, C8, P3, C4, B8) -/
 section age
 
-/-- 14:A8 [ΛCDM], consumed by 14:C3 — the rival chart's age identity as the import it is (a definition, not a
-derivation): in flat matter-plus-`Λ` the product of the age and the asymptotic rate is
-`t₀H_Λ = (2/3) artanh √Ω_Λ`, a function of the one fitted parameter; outside `[0, 1)` the value is junk. That
-a landing of it on `π/4` restates the fit is C3's judgment under B5, not formal content. -/
+/-- 14:A8 [ΛCDM], consumed by 14:C3 — the rival chart's age identity as the import it is: in flat
+matter-plus-`Λ` the product of the age and the asymptotic rate is `t₀H_Λ = (2/3) artanh √Ω_Λ`, a function of
+the one fitted parameter; outside `[0, 1)` the value is junk. It is verified against the chart's own Friedmann
+equation in `lcdm_age` below (the closed-form solution reaches `1` exactly then; uniqueness of the solution is
+not formalised). That a landing of it on `π/4` restates the fit is C3's judgment under B5, not formal
+content. -/
 noncomputable def lcdmAge (Ω : ℝ) : ℝ := 2 / 3 * artanh (√Ω)
 
 /-- The octant's rate factor `tanh(3π/8)` is positive. -/
@@ -394,6 +400,198 @@ theorem landing_bracket :
   refine ⟨by linarith, by linarith, by linarith, by linarith⟩
 
 end age
+
+/-! ## The rival chart's age identity, verified against its own Friedmann equation (14:A8, C3) -/
+section friedmann
+
+/-- 14:A8 [ΛCDM] — the standard flat matter-plus-`Λ` scale factor of the rival chart, for `t ≥ 0`:
+`a(t) = (Ω_m/Ω_Λ)^{1/3} sinh^{2/3}(3H_Λ t/2)`, with `H_Λ` the asymptotic rate. -/
+noncomputable def lcdmScale (Ωm ΩΛ HΛ t : ℝ) : ℝ :=
+  (Ωm / ΩΛ) ^ ((1 : ℝ) / 3) * sinh (3 * HΛ * t / 2) ^ ((2 : ℝ) / 3)
+
+/-- The cube of the scale factor for `t ≥ 0`: `a³ = (Ω_m/Ω_Λ) sinh²(3H_Λ t/2)`. -/
+theorem lcdmScale_cube (Ωm ΩΛ HΛ t : ℝ) (hm : 0 < Ωm) (hΛ : 0 < ΩΛ) (hH : 0 ≤ HΛ) (ht : 0 ≤ t) :
+    lcdmScale Ωm ΩΛ HΛ t ^ 3 = Ωm / ΩΛ * sinh (3 * HΛ * t / 2) ^ 2 := by
+  have hs : 0 ≤ sinh (3 * HΛ * t / 2) := by
+    rw [← Real.sinh_zero]; exact Real.sinh_le_sinh.2 (by positivity)
+  have hq : 0 ≤ Ωm / ΩΛ := by positivity
+  unfold lcdmScale
+  rw [mul_pow, ← Real.rpow_natCast, ← Real.rpow_natCast, ← Real.rpow_mul hq, ← Real.rpow_mul hs]
+  norm_num
+
+/-- The scale factor is positive for `t > 0`. -/
+theorem lcdmScale_pos (Ωm ΩΛ HΛ t : ℝ) (hm : 0 < Ωm) (hΛ : 0 < ΩΛ) (hH : 0 < HΛ) (ht : 0 < t) :
+    0 < lcdmScale Ωm ΩΛ HΛ t :=
+  mul_pos (Real.rpow_pos_of_pos (by positivity) _)
+    (Real.rpow_pos_of_pos (Real.sinh_pos_iff.2 (by positivity)) _)
+
+/-- The derivative of the scale factor for `t > 0`: `ȧ = H_Λ · (cosh x / sinh x) · a` with `x = 3H_Λ t/2`. -/
+theorem lcdm_hasDerivAt (Ωm ΩΛ HΛ t : ℝ) (hm : 0 < Ωm) (hΛ : 0 < ΩΛ) (hH : 0 < HΛ) (ht : 0 < t) :
+    HasDerivAt (lcdmScale Ωm ΩΛ HΛ)
+      (HΛ * (cosh (3 * HΛ * t / 2) / sinh (3 * HΛ * t / 2)) * lcdmScale Ωm ΩΛ HΛ t) t := by
+  set x := 3 * HΛ * t / 2 with hx
+  have hxpos : 0 < x := by positivity
+  set s := sinh x with hsdef
+  have hs : 0 < s := Real.sinh_pos_iff.2 hxpos
+  set K := (Ωm / ΩΛ) ^ ((1 : ℝ) / 3) with hK
+  have hKpos : 0 < K := Real.rpow_pos_of_pos (by positivity) _
+  have ha : lcdmScale Ωm ΩΛ HΛ t = K * s ^ ((2 : ℝ) / 3) := rfl
+  have h1 : HasDerivAt (fun y : ℝ => 3 * HΛ * y / 2) (3 * HΛ / 2) t := by
+    have := ((hasDerivAt_id t).const_mul (3 * HΛ)).div_const 2
+    simpa using this
+  have h2 : HasDerivAt (fun y : ℝ => sinh (3 * HΛ * y / 2)) (cosh x * (3 * HΛ / 2)) t := h1.sinh
+  have h3 : HasDerivAt (fun y : ℝ => sinh (3 * HΛ * y / 2) ^ ((2 : ℝ) / 3))
+      (cosh x * (3 * HΛ / 2) * ((2 : ℝ) / 3) * s ^ ((2 : ℝ) / 3 - 1)) t :=
+    h2.rpow_const (Or.inl hs.ne')
+  have h4 : HasDerivAt (lcdmScale Ωm ΩΛ HΛ)
+      (K * (cosh x * (3 * HΛ / 2) * ((2 : ℝ) / 3) * s ^ ((2 : ℝ) / 3 - 1))) t := h3.const_mul K
+  refine h4.congr_deriv ?_
+  have hsub : s ^ ((2 : ℝ) / 3 - 1) = s ^ ((2 : ℝ) / 3) / s := by
+    rw [Real.rpow_sub hs, Real.rpow_one]
+  rw [ha, hsub]; field_simp
+
+/-- 14:A8, 14:C3 [ΛCDM] — the closed form solves the flat Friedmann equation of the rival chart with matter
+and `Λ`: `a(0) = 0`, `a(t) > 0` and `ȧ > 0` for `t > 0` (the expanding branch), and
+`(ȧ/a)² = H₀²(Ω_m a⁻³ + Ω_Λ)` with `H_Λ = H₀ √Ω_Λ`; that it is the unique such solution is not formalised. -/
+theorem lcdm_friedmann (Ωm ΩΛ H0 t : ℝ) (hm : 0 < Ωm) (hΛ : 0 < ΩΛ) (hH : 0 < H0) (ht : 0 < t) :
+    let HΛ := H0 * √ΩΛ
+    let a' := HΛ * (cosh (3 * HΛ * t / 2) / sinh (3 * HΛ * t / 2)) * lcdmScale Ωm ΩΛ HΛ t
+    lcdmScale Ωm ΩΛ HΛ 0 = 0 ∧ 0 < lcdmScale Ωm ΩΛ HΛ t ∧ 0 < a' ∧
+    HasDerivAt (lcdmScale Ωm ΩΛ HΛ) a' t ∧
+    (a' / lcdmScale Ωm ΩΛ HΛ t) ^ 2 = H0 ^ 2 * (Ωm / lcdmScale Ωm ΩΛ HΛ t ^ 3 + ΩΛ) := by
+  intro HΛ a'
+  have hHpos : 0 < HΛ := by positivity
+  have hxpos : 0 < 3 * HΛ * t / 2 := by positivity
+  have hs : 0 < sinh (3 * HΛ * t / 2) := Real.sinh_pos_iff.2 hxpos
+  have hc : 0 < cosh (3 * HΛ * t / 2) := Real.cosh_pos _
+  have hapos := lcdmScale_pos Ωm ΩΛ HΛ t hm hΛ hHpos ht
+  refine ⟨?_, hapos, by positivity, lcdm_hasDerivAt Ωm ΩΛ HΛ t hm hΛ hHpos ht, ?_⟩
+  · unfold lcdmScale
+    simp [Real.zero_rpow (by norm_num : (2 : ℝ) / 3 ≠ 0)]
+  · have hcube := lcdmScale_cube Ωm ΩΛ HΛ t hm hΛ hHpos.le ht.le
+    have hH2 : HΛ ^ 2 = H0 ^ 2 * ΩΛ := by
+      show (H0 * √ΩΛ) ^ 2 = H0 ^ 2 * ΩΛ
+      rw [mul_pow, Real.sq_sqrt hΛ.le]
+    have hratio : a' / lcdmScale Ωm ΩΛ HΛ t = HΛ * (cosh (3 * HΛ * t / 2) / sinh (3 * HΛ * t / 2)) := by
+      show HΛ * (cosh (3 * HΛ * t / 2) / sinh (3 * HΛ * t / 2)) * lcdmScale Ωm ΩΛ HΛ t /
+        lcdmScale Ωm ΩΛ HΛ t = _
+      field_simp
+    rw [hratio, hcube, mul_pow, div_pow, Real.cosh_sq, hH2]
+    field_simp
+    ring
+
+/-- The scale factor reaches `1` exactly when `sinh²(3H_Λ t/2) = Ω_Λ/Ω_m` (`t > 0`). -/
+theorem lcdmScale_eq_one_iff (Ωm ΩΛ HΛ t : ℝ) (hm : 0 < Ωm) (hΛ : 0 < ΩΛ) (hH : 0 < HΛ) (ht : 0 < t) :
+    lcdmScale Ωm ΩΛ HΛ t = 1 ↔ sinh (3 * HΛ * t / 2) ^ 2 = ΩΛ / Ωm := by
+  have hapos := lcdmScale_pos Ωm ΩΛ HΛ t hm hΛ hH ht
+  rw [← pow_eq_one_iff_of_nonneg hapos.le (by norm_num : (3 : ℕ) ≠ 0),
+    lcdmScale_cube Ωm ΩΛ HΛ t hm hΛ hH.le ht.le]
+  constructor
+  · intro h; field_simp at h ⊢; linarith
+  · intro h; rw [h]; field_simp
+
+/-- 14:A8, 14:C3 [ΛCDM] — the age identity verified: with `Ω_m + Ω_Λ = 1` the closed-form scale factor
+reaches `1` at the time `t` exactly when `t H_Λ = (2/3) artanh √Ω_Λ`, so the product `t₀H_Λ` of C3 is the
+chart's own age–rate relation, a function of the one fitted parameter. -/
+theorem lcdm_age (Ωm ΩΛ H0 t : ℝ) (hm : 0 < Ωm) (hΛ : 0 < ΩΛ) (hsum : Ωm + ΩΛ = 1) (hH : 0 < H0)
+    (ht : 0 < t) :
+    lcdmScale Ωm ΩΛ (H0 * √ΩΛ) t = 1 ↔ t * (H0 * √ΩΛ) = lcdmAge ΩΛ := by
+  set HΛ := H0 * √ΩΛ with hHΛ
+  have hHpos : 0 < HΛ := by positivity
+  set x := 3 * HΛ * t / 2 with hx
+  have hxpos : 0 < x := by positivity
+  have hs : 0 < sinh x := Real.sinh_pos_iff.2 hxpos
+  have hΛ1 : ΩΛ < 1 := by linarith
+  have hsq : √ΩΛ ∈ Set.Ioo (-1 : ℝ) 1 := by
+    refine ⟨by linarith [Real.sqrt_nonneg ΩΛ], ?_⟩
+    rw [Real.sqrt_lt' one_pos]; linarith
+  rw [lcdmScale_eq_one_iff Ωm ΩΛ HΛ t hm hΛ hHpos ht]
+  have hx' : t * HΛ = lcdmAge ΩΛ ↔ x = artanh √ΩΛ := by
+    unfold lcdmAge; rw [hx]; constructor <;> intro h <;> linarith
+  rw [hx']
+  constructor
+  · intro h
+    have htanh : tanh x = √ΩΛ := by
+      have hc : 0 < cosh x := Real.cosh_pos x
+      have ht2 : tanh x ^ 2 = ΩΛ := by
+        rw [Real.tanh_eq_sinh_div_cosh, div_pow, Real.cosh_sq, h]
+        field_simp; linarith
+      have htpos : 0 < tanh x := by
+        rw [Real.tanh_eq_sinh_div_cosh]; exact div_pos hs hc
+      rw [← ht2, Real.sqrt_sq htpos.le]
+    rw [← htanh, Real.artanh_tanh]
+  · intro h
+    show sinh x ^ 2 = ΩΛ / Ωm
+    rw [h, Real.sinh_artanh hsq, div_pow, Real.sq_sqrt hΛ.le, Real.sq_sqrt (by linarith)]
+    congr 1; linarith
+
+/-- 14:A8, 14:C3 [ΛCDM] — the rate today: at the time the flat closed form reaches `1`, its derivative is
+`H₀` — `H₀` is the present rate of the solution, `H_Λ = H₀√Ω_Λ` its asymptotic rate. -/
+theorem lcdm_rate_today (Ωm ΩΛ H0 t : ℝ) (hm : 0 < Ωm) (hΛ : 0 < ΩΛ) (hsum : Ωm + ΩΛ = 1) (hH : 0 < H0)
+    (ht : 0 < t) (h1 : lcdmScale Ωm ΩΛ (H0 * √ΩΛ) t = 1) :
+    HasDerivAt (lcdmScale Ωm ΩΛ (H0 * √ΩΛ)) H0 t := by
+  set HΛ := H0 * √ΩΛ with hHΛ
+  have hHpos : 0 < HΛ := by positivity
+  have hxpos : 0 < 3 * HΛ * t / 2 := by positivity
+  have hs : 0 < sinh (3 * HΛ * t / 2) := Real.sinh_pos_iff.2 hxpos
+  have hc : 0 < cosh (3 * HΛ * t / 2) := Real.cosh_pos _
+  have hsin := (lcdmScale_eq_one_iff Ωm ΩΛ HΛ t hm hΛ hHpos ht).1 h1
+  have hsqrt : 0 < √ΩΛ := Real.sqrt_pos.2 hΛ
+  -- `(cosh/sinh)² = 1/Ω_Λ`, both sides positive
+  have hcs : cosh (3 * HΛ * t / 2) / sinh (3 * HΛ * t / 2) = (√ΩΛ)⁻¹ := by
+    rw [← pow_left_inj₀ (by positivity) (by positivity) (by norm_num : (2 : ℕ) ≠ 0), div_pow,
+      Real.cosh_sq, hsin, inv_pow, Real.sq_sqrt hΛ.le]
+    field_simp; linarith
+  refine (lcdm_hasDerivAt Ωm ΩΛ HΛ t hm hΛ hHpos ht).congr_deriv ?_
+  rw [h1, hcs, mul_one, hHΛ]; field_simp
+
+/-- The Taylor brackets of `e^t` at `t = 0.36118` and `t = 0.36128` (seven terms, Mathlib's tail bound). -/
+theorem exp_tail_bounds' : exp (0.36118 : ℝ) < 1.4350218 ∧ (1.4351649 : ℝ) < exp 0.36128 := by
+  constructor
+  · have h := Real.exp_bound' (x := 0.36118) (by norm_num) (by norm_num) (n := 7) (by norm_num)
+    norm_num [Finset.sum_range_succ, Nat.factorial] at h ⊢
+    linarith
+  · have h := abs_le.1 (Real.exp_bound (x := 0.36128) (by rw [abs_of_pos (by norm_num)]; norm_num)
+      (n := 7) (by norm_num))
+    rw [abs_of_pos (by norm_num : (0 : ℝ) < 0.36128)] at h
+    have h1 := h.1
+    norm_num [Finset.sum_range_succ, Nat.factorial] at h1 ⊢
+    linarith
+
+/-- 14:C3 — the audit numeral bracketed: at the fitted `Ω_Λ = 0.685` (A8, taken as data) the rival chart's
+`t₀H_Λ = (2/3) artanh √0.685` lies in `(0.7870, 0.7871)` — the paper's `0.7871` — and exceeds `π/4` by
+between `0.21 %` and `0.22 %` of `π/4`, the audit's "≈ 0.2 %". -/
+theorem age_bracket :
+    (0.7870 : ℝ) < lcdmAge 0.685 ∧ lcdmAge 0.685 < 0.7871 ∧
+    0.0021 * (π / 4) < lcdmAge 0.685 - π / 4 ∧ lcdmAge 0.685 - π / 4 < 0.0022 * (π / 4) := by
+  have hs1 : (0.82764 : ℝ) < √0.685 := by rw [Real.lt_sqrt (by norm_num)]; norm_num
+  have hs2 : √(0.685 : ℝ) < 0.82765 := by rw [Real.sqrt_lt' (by norm_num)]; norm_num
+  have hlog : lcdmAge 0.685 = 2 / 3 * (1 / 2 * log ((1 + √0.685) / (1 - √0.685))) := by
+    unfold lcdmAge; rw [Real.artanh_eq_half_log ⟨by linarith, by linarith⟩]
+  have hy1 : (10.6036 : ℝ) < (1 + √0.685) / (1 - √0.685) := by
+    rw [lt_div_iff₀ (by linarith)]; linarith
+  have hy2 : (1 + √0.685) / (1 - √0.685) < 10.6044 := by
+    rw [div_lt_iff₀ (by linarith)]; linarith
+  have he := exp_tail_bounds'
+  have he1 := Real.exp_one_gt_d9
+  have he2 := Real.exp_one_lt_d9
+  have hpos : (0 : ℝ) < exp 1 := Real.exp_pos 1
+  have hE1 : exp (2.36118 : ℝ) < 10.6036 := by
+    rw [show (2.36118 : ℝ) = 1 + 1 + 0.36118 by norm_num, Real.exp_add, Real.exp_add]
+    nlinarith [mul_pos hpos hpos, Real.exp_pos (0.36118 : ℝ)]
+  have hE2 : (10.6044 : ℝ) < exp 2.36128 := by
+    rw [show (2.36128 : ℝ) = 1 + 1 + 0.36128 by norm_num, Real.exp_add, Real.exp_add]
+    nlinarith [mul_pos hpos hpos, Real.exp_pos (0.36128 : ℝ)]
+  have hl1 : (2.36118 : ℝ) < log ((1 + √0.685) / (1 - √0.685)) := by
+    rw [Real.lt_log_iff_exp_lt (by linarith)]; linarith
+  have hl2 : log ((1 + √0.685) / (1 - √0.685)) < 2.36128 := by
+    rw [Real.log_lt_iff_lt_exp (by linarith)]; linarith
+  have hpi1 := Real.pi_gt_d6
+  have hpi2 := Real.pi_lt_d6
+  rw [hlog]
+  refine ⟨by linarith, by linarith, by linarith, by linarith⟩
+
+end friedmann
 
 /-! ## The registrable triangle and the capacity axis (14:C9, C10, B10) -/
 section triangle
