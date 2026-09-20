@@ -6,7 +6,7 @@
  "blocks": [
   {
    "letter": "A",
-   "title": "Inputs: imported, not derived here",
+   "title": "Inputs: imported or declared, not derived here",
    "rows": [
     {
      "label": "A1",
@@ -45,31 +45,38 @@
     },
     {
      "label": "A6",
-     "predicate": "The comparison data: no off-line zero of $\\zeta$ to height $3\\times10^{12}$; GUE spacing statistics of the zeros; some $2600$ zeros to twelve digits from the primes to $10^{6}$ by harmonic inversion (the precision the observations of block E do not aim at); the self-adjoint realisations of the Berry--Keating operator.",
+     "predicate": "The comparison data: no off-line zero of $\\zeta$ to height $3\\times10^{12}$, by Turing's certificate, so every zero there is simple; GUE spacing statistics of the zeros; some $2600$ zeros to twelve digits from the primes to $10^{6}$ by harmonic inversion (the precision the observations of block E do not aim at); the self-adjoint realisations of the Berry--Keating operator.",
      "tag": "I",
      "source": "\\citep{platt2021,montgomery1973,odlyzko1987,main1998,berry1999,endres2010}",
      "key": "p20006"
     },
     {
      "label": "A7",
-     "predicate": "The physical readings of Section~\\ref{sec:physical} --- the Carrier as the Universe, the constants by register, $c^{2}=2^{-1}$, mass as cardinality, the $3$-sphere frame space --- are owned by the papers cited there and enter no result of this paper.",
+     "predicate": "The physical readings of Subsection~\\ref{sub:physical} (the Carrier as the Universe, the constants by register, $c^{2}=2^{-1}$, mass as cardinality, the $3$-sphere frame space) are owned by the papers cited there and enter no result of this paper.",
      "tag": "I",
-     "source": "\\S\\ref{sec:physical}",
+     "source": "\\S\\ref{sub:physical}",
      "key": "p20007"
     },
     {
      "label": "A8",
      "predicate": "Explicit bounds on the Riemann--Siegel remainder: Gabcke's explicit error term, used by the verification of A6; with it the sign of $Z$ is certified wherever $|Z_M(t)|$ exceeds the bound (F1).",
      "tag": "I",
-     "source": "\\citep{gabcke1979}; Thm.~\\ref{thm:turing}",
+     "source": "\\citep{gabcke1979}; Prop.~\\ref{prop:turing}",
      "key": "p20070"
     },
     {
      "label": "A9",
      "predicate": "The semiclassical phase-space cell $2\\pi$ of the Berry--Keating count [chart], imposed as the standard unit, not derived from the shell constants; the shell's own count uses no cell (E12(iii)).",
      "tag": "I",
-     "source": "\\citep{berry1999}; Rem.~\\ref{prop:cutoff}",
+     "source": "\\citep{berry1999}; Rem.~\\ref{rem:cutoff}",
      "key": "p20071"
+    },
+    {
+     "label": "A10",
+     "predicate": "The aliasing premise: the identification of the height coordinate with the meridian cycle (A1) carries the zero predicate, an off-line zero of multiplicity $m$ at a height symbol $H>2\\pi\\Omega$ is an off-line residue of multiplicity $m$ at the aliased height. The kernels $n^{-iT}$ share no period ($\\log2/\\log3$ irrational), so the chart carries no aliasing; declared, not derived.",
+     "tag": "D",
+     "source": "\\S\\ref{sec:promotion}; F7",
+     "key": "p20077"
     }
    ]
   },
@@ -79,7 +86,7 @@
    "rows": [
     {
      "label": "B1",
-     "predicate": "The two frames on one substrate: the Carrier chart $\\F_\\Omega$, held by no embedded observer, and the Subject $\\Fp$ embedded with $\\Omega\\gg p^{2}$; what they share is the quarter-turn core $Q_4$ and nothing else --- on the laboratory pair $(13,233)$ the cycles $C_{12}$ and $C_{232}$ admit no projection ($12\\nmid232$); hardness by register ($p$-hard, $\\Omega$-hard).",
+     "predicate": "The two frames on one substrate: the Carrier chart $\\F_\\Omega$, held by no embedded observer, and the Subject $\\Fp$ embedded with $\\Omega\\gg p^{2}$; what they share is the quarter-turn core $Q_4$ and nothing else, on the laboratory pair $(13,233)$ the cycles $C_{12}$ and $C_{232}$ admit no projection ($12\\nmid232$); hardness by register ($p$-hard, $\\Omega$-hard).",
      "tag": "D",
      "source": "Def.~\\ref{def:shells}; \\src{A10}; \\lean{Rh.lab\\_pair, Rh.no\\_cycle\\_projection, FRC.Rh.lab\\_pair}",
      "key": "p20008"
@@ -142,14 +149,14 @@
     },
     {
      "label": "B10",
-     "predicate": "The Subject constants on the shell: $\\pi=2\\kp$, $2\\pi\\equiv-1$, $\\It=\\gen^{-\\kp}$, $\\It^{2}\\equiv-1$, $\\Et=\\gen^{\\,\\It}$ on the odd representative, $\\gen^{\\,\\pi}\\equiv-1$, $\\Et^{\\,\\It\\pi}\\equiv-1$; on $\\F_{13}$: $\\gen=2$, $\\It=5$, $\\Et=6$, $\\pi=6$.",
+     "predicate": "The Subject constants on the shell: $\\pi=2\\kp$, $2\\pi\\equiv-1$, $\\It=\\gen^{-\\kp}$, $\\It^{2}\\equiv-1$, $\\Et=\\gen^{\\,\\It}$ on the odd lift, $\\gen^{\\,\\pi}\\equiv-1$, $\\Et^{\\,\\It\\pi}\\equiv-1$; on $\\F_{13}$: $\\gen=2$, $\\It=5$, $\\Et=6$, $\\pi=6$.",
      "tag": "T",
-     "source": "\\S\\ref{sub:frc}, Rem.~\\ref{rem:frame}; \\src{A6}; \\lean{Rh.subject\\_constants, Rh.constants13, FRC.Rh.subject\\_constants, FRC.Rh.constants13, FRC.Shell.frame13}",
+     "source": "\\S\\ref{sub:frc}, Rem.~\\ref{rem:frame}; \\src{A6}, \\src{A6b}; \\lean{Rh.subject\\_constants, Rh.constants13, FRC.Rh.subject\\_constants, FRC.Rh.constants13, FRC.Shell.frame13}",
      "key": "p20017"
     },
     {
      "label": "B11",
-     "predicate": "Antipode dominance: in the units-chart basis the per-mode energy is $\\mu^{2}(q)/\\varphi(q)=1/\\varphi(q)$ on squarefree $q$ --- $1,\\half,\\tfrac14,\\tfrac16$ at $q=2,3,5,7$ --- with its unique maximum at the antipode $q=2$; the additive-transform band energy of the prime indicator peaks there and follows the same law [approx].",
+     "predicate": "Antipode dominance: in the units-chart basis the per-mode energy is $\\mu^{2}(q)/\\varphi(q)=1/\\varphi(q)$ on squarefree $q$ ($1,\\half,\\tfrac14,\\tfrac16$ at $q=2,3,5,7$), its unique maximum among the nonconstant modes at the antipode $q=2$, decreasing along the primes, not the modulus; in the additive transform the band nearest the half-turn, $k=(p\\pm1)/2$, is the strongest off the spectral origin and follows the same law [approx].",
      "tag": "T",
      "source": "Obs.~\\ref{obs:antipode}; \\src{E2a}, \\src{E2b}",
      "key": "p20018"
@@ -176,7 +183,7 @@
     },
     {
      "label": "C3",
-     "predicate": "The staircase from the modes: $\\Psi_L(N)=\\sum_{n\\le N}\\frac{n}{\\varphi(n)}R_L(n)\\to\\psi(N)$ as the bandwidth grows, antipode first; the finite-bandwidth wiggle tightens monotonically [approx].",
+     "predicate": "The staircase from the modes: $\\Psi_L(N)=\\sum_{n\\le N}\\frac{n}{\\varphi(n)}R_L(n)\\to\\psi(N)$ as the bandwidth grows, the modes in modulus order, the antipode the first nonconstant one; the finite-bandwidth wiggle tightens monotonically [approx].",
      "tag": "T",
      "source": "\\S\\ref{sec:emergence}, Fig.~\\ref{fig:emergence}; \\src{E1c}",
      "key": "p20021"
@@ -197,7 +204,7 @@
     },
     {
      "label": "C6",
-     "predicate": "Square-root cancellation: the maximal chart-mode correlation is a small multiple of the floor $1/\\sqrt{p-2}$ of C5 --- $0.077$ against $0.0315$ at $p=1009$ ($2.4$ times), $0.0087$ against $0.0032$ at $p=100049$ ($2.7$ times) [approx]; the resonance in its window correlates $0.90$. The bound uniform over every shell is Z5.",
+     "predicate": "Square-root cancellation: the maximal chart-mode correlation is a small multiple of the floor $1/\\sqrt{p-2}$ of C5, $0.077$ against $0.0315$ at $p=1009$ ($2.4$ times), $0.0087$ against $0.0032$ at $p=100049$ ($2.7$ times) [approx]; the resonance in its window correlates $0.90$. The bound uniform over every shell is Z5.",
      "tag": "T",
      "source": "Obs.~\\ref{obs:flat}; \\src{E4}",
      "key": "p20024"
@@ -212,19 +219,19 @@
      "label": "D1",
      "predicate": "The dictionary [chart]: horizon $\\sqrt p\\leftrightarrow$ Riemann--Siegel length $\\sqrt{T/2\\pi}$, half-turn $\\leftrightarrow n^{-1/2}$, scale $\\leftrightarrow\\log n$; a shell of cardinality $p$ reads $\\zeta$ on the line to $T=2\\pi p$, one cycle of the shell, and a height is the scale coordinate of the shell that reads it, its count using residues below $\\sqrt{T/2\\pi}$ only.",
      "tag": "D",
-     "source": "Def.~\\ref{thm:deframe}",
+     "source": "Def.~\\ref{def:deframe}",
      "key": "p20025"
     },
     {
      "label": "D2",
-     "predicate": "Zero density is shell scale-depth: at $T=2\\pi p$ the smooth Riemann--von Mangoldt density is $\\frac1{2\\pi}\\log p$ --- $0.6226,0.9891,1.3556,1.7220$ at $p=50,500,5\\cdot10^{3},5\\cdot10^{4}$ [chart]; a substitution under the dictionary, recorded as a consistency, not a test.",
+     "predicate": "Zero density is shell scale-depth: at $T=2\\pi p$ the smooth Riemann--von Mangoldt density is $\\frac1{2\\pi}\\log p$, $0.6226,0.9891,1.3556,1.7220$ at $p=50,500,5\\cdot10^{3},5\\cdot10^{4}$ [chart]; a substitution under the dictionary, recorded as a consistency, not a test.",
      "tag": "T",
      "source": "Prop.~\\ref{thm:density}; \\src{B1}",
      "key": "p20026"
     },
     {
      "label": "D3",
-     "predicate": "Reconstruction residue: the finite-horizon error of the main sum is the Riemann--Siegel remainder $O(T^{-1/4})=O(p^{-1/4})$ (A3), unconditional --- fitted slope $-0.24$ over $t=40\\ldots5120$ [approx].",
+     "predicate": "Reconstruction residue: the finite-horizon error of the main sum is the Riemann--Siegel remainder $O(T^{-1/4})=O(p^{-1/4})$ (A3), unconditional, fitted slope $-0.24$ over $t=40\\ldots5120$ [approx].",
      "tag": "I",
      "source": "Obs.~\\ref{obs:residue}; \\src{B2}",
      "key": "p20027"
@@ -252,7 +259,7 @@
     },
     {
      "label": "D7",
-     "predicate": "The reconstruction is on-line: $Z(T)$ is real, so every point it produces lies on $\\Real=\\half$; by D5 the classical hypothesis is the completeness of that on-line spectrum, the faithfulness of the de-framing, and likewise for each $\\chi$-twist.",
+     "predicate": "The reconstruction is on-line: $Z(T)$ is real on the line, so every point it produces has $\\Real=\\half$, a property of the reading; the hypothesis is then the completeness clause of D5, the faithfulness of the de-framing, and likewise for each $\\chi$-twist (E14).",
      "tag": "T",
      "source": "Cor.~\\ref{cor:reduce}",
      "key": "p20031"
@@ -265,28 +272,28 @@
    "rows": [
     {
      "label": "E1",
-     "predicate": "The scale-evolution generator: on the shell the scale-shift $x\\mapsto\\gen^{\\,r}x$ is a unitary permutation of $\\Fx{p}$ with the complex characters as eigenvectors; in the idealisation [chart] its generator is $\\Hh=-i(x\\partial_x+\\half)$ with eigenstates $x^{-\\bar\\rho}$, $\\rho=\\half+i\\gamma$, the symmetrizing $\\half$ the half-turn of B8.",
+     "predicate": "The scale-evolution generator: on the shell the scale-shift $x\\mapsto\\gen^{\\,r}x$ is a unitary permutation of $\\Fx{p}$ with the complex characters as eigenvectors; in the analytic chart [chart] the dilation group $U_r=e^{ir\\Hh}$ has the self-adjoint generator $\\Hh=-i(x\\partial_x+\\half)$ with generalised eigenfunctions $x^{-\\bar\\rho}$, $\\rho=\\half+i\\gamma$, the symmetrizing $\\half$ the half-turn of B8; the chart assignment is used nowhere as a shell identity.",
      "tag": "T",
      "source": "Prop.~\\ref{prop:H}; \\src{A7}, \\src{A7b}; \\lean{Rh.scale\\_shift, Rh.character\\_eigen, Rh.chi\\_shift, FRC.Rh.shift\\_power\\_character, FRC.Rh.shift\\_trace}",
      "key": "p20032"
     },
     {
      "label": "E2",
-     "predicate": "The Hilbert--P\\'olya target correspondence: the de-framing on the spectrum is $\\rho\\mapsto-i(\\rho-\\half)$, real on the nontrivial zeros iff the hypothesis; $\\sigma(\\Hh)=\\{-i(\\rho-\\half)\\}$ is the target, not a result; the exhibited operator is the Jacobi matrix $\\mathbf J_N$ (E9), a self-adjoint realisation of the secular roots, which every finite real multiset admits; its identification with a discretisation of $\\Hh$ is a further spectral and operator correspondence, not asserted and used by no row.",
+     "predicate": "The Hilbert--P\\'olya target correspondence: the de-framing on the spectrum is $\\rho\\mapsto-i(\\rho-\\half)$, real on the nontrivial zeros iff the hypothesis; $\\sigma(\\Hh)=\\{-i(\\rho-\\half)\\}$ is the target, not a result. The exhibited operator is the Jacobi matrix $\\mathbf J_N$ (E9), a realisation every finite real multiset admits; its identification with a discretisation of $\\Hh$ is not asserted and used by no row.",
      "tag": "D",
-     "source": "Def.~\\ref{cor:specmap}",
+     "source": "Def.~\\ref{def:specmap}",
      "key": "p20033"
     },
     {
      "label": "E3",
      "predicate": "Cutoff and semiclassical density: with the space quantum $1_\\Omega$ as lower cutoff the Berry--Keating phase-space count is the Riemann--von Mangoldt count, density the shell scale-depth of D2 [chart]; the cell normalisation $1_\\Omega^{2}\\sim2\\pi$ is imposed [chart] (A9).",
      "tag": "D",
-     "source": "Rem.~\\ref{prop:cutoff}; \\src{C6b}",
+     "source": "Rem.~\\ref{rem:cutoff}; \\src{C6b}",
      "key": "p20034"
     },
     {
      "label": "E4",
-     "predicate": "Prime--zero duality on the scale axis: $\\sum\\Lambda(n)n^{-s}=-\\zeta'/\\zeta$, poles at $s=1$, the nontrivial zeros and the trivial zeros; on $s=\\half+i\\gamma$ the comb resonates at the heights.",
+     "predicate": "Prime--zero duality on the scale axis: $\\sum\\Lambda(n)n^{-s}=-\\zeta'/\\zeta$, poles at $s=1$, the nontrivial zeros and the trivial zeros; the poles on the self-dual axis are exactly the on-line zeros, an off-line zero a pole at its own location off the axis.",
      "tag": "I",
      "source": "Prop.~\\ref{prop:primezero}",
      "key": "p20035"
@@ -300,14 +307,14 @@
     },
     {
      "label": "E6",
-     "predicate": "The discrete eigenvalues from the comb: the raw count $\\widetilde{\\mathcal N}_N(T)=\\theta(T)/\\pi+1+S_{\\mathrm{comb}}(T)$ carries the pole term (F8) and has no limit in $N$; the pole-corrected count $\\widehat{\\mathcal N}_N=\\widetilde{\\mathcal N}_N-\\tfrac1\\pi\\Im[\\Pi_N+\\log\\tfrac{s-1}{s}]$ crosses $n-\\half$ near the zeros, its secular condition recovering the first ten heights to mean error $3.4\\times10^{-5}$ (max $6.6\\times10^{-5}$) at $N=10^{6}$, $2.3\\times10^{-5}$ at $10^{7}$, $1.3\\times10^{-5}$ at $10^{8}$, falling with depth; the raw condition gives $4.4\\times10^{-5}$ (max $1.5\\times10^{-4}$) at $10^{6}$ and does not sharpen past $10^{7}$ ($4.2\\times10^{-5}$ at $10^{8}$, $\\gamma_1$ error $2.6\\times10^{-4}$) [approx].",
+     "predicate": "The discrete eigenvalues from the comb: the raw count $\\widetilde{\\mathcal N}_N(T)=\\theta(T)/\\pi+1+S_{\\mathrm{comb}}(T)$ carries the pole term (F8) and has no limit in $N$; the pole-corrected count $\\widehat{\\mathcal N}_N=\\widetilde{\\mathcal N}_N-\\tfrac1\\pi\\Im[\\Pi_N+\\log\\tfrac{s-1}{s}]$ crosses $n-\\half$ near the zeros, its secular condition recovering the first ten heights to mean error $3.4\\times10^{-5}$ at $N=10^{6}$ and $1.3\\times10^{-5}$ at $10^{8}$; the raw condition stalls past $10^{7}$ [approx].",
      "tag": "T",
      "source": "Obs.~\\ref{obs:trace}; \\src{C2}, \\src{C2b}, \\src{C2c}",
      "key": "p20037"
     },
     {
      "label": "E7",
-     "predicate": "The limits are finitist refinements: $N\\to\\infty$ in E5--E6 is a sequence of finite reframings to finer scale, the comb depth the refinement depth, no completed infinity invoked; a comb of depth $N$ is the window of a Subject with $\\sqrt p\\ge N$ (B3), so the exhibited combs ($10^{6}$--$10^{8}$) are read on $p\\ge N^{2}$, embedded while $\\Omega\\gg N^{4}$; the tuple (heights, main-sum length, depth, Subject) is recorded per construction.",
+     "predicate": "The limits are finitist refinements: $N\\to\\infty$ is a sequence of finite reframings, the comb depth the refinement depth, no completed infinity invoked; a comb of depth $N$ is the window of a Subject with $\\sqrt p\\ge N$ (B3), so the exhibited combs are read on $p\\ge N^{2}$, embedded while $\\Omega\\gg N^{4}$; each construction's (heights, main-sum length, depth, Subject) is recorded.",
      "tag": "D",
      "source": "Rem.~\\ref{rem:finitist}",
      "key": "p20038"
@@ -321,7 +328,7 @@
     },
     {
      "label": "E9",
-     "predicate": "The comb-built Jacobi realisation: the real-symmetric tridiagonal matrix of the height measure of the corrected secular roots has those roots as its exact spectrum ($4\\times10^{-14}$ [approx]) and the heights to $3.4\\times10^{-5}$, with the stated ten coefficients $a$, $b$; self-adjointness is free --- every finite real multiset is such a spectrum --- so it imposes no constraint.",
+     "predicate": "The comb-built Jacobi realisation: the real-symmetric tridiagonal matrix of the height measure of the corrected secular roots has those roots as its exact spectrum ($4\\times10^{-14}$ [approx]) and the heights to $3.4\\times10^{-5}$, with the stated ten coefficients $a$, $b$; self-adjointness is free (every finite real multiset is such a spectrum), so it imposes no constraint.",
      "tag": "T",
      "source": "Def.~\\ref{def:jacobi}, Obs.~\\ref{obs:jacobi}; \\src{C4}, \\src{A8}",
      "key": "p20040"
@@ -342,23 +349,23 @@
     },
     {
      "label": "E12",
-     "predicate": "\\textbf{The shell theorem.} On every shell, with no hypothesis: (i) the spectral content of $v$ is the constant mode carrying the mean with the nonterminal modes of the quarter-turn meridian; (ii) every mode lies on $\\Tr=1$, real part $2^{-1}=2\\kp+1=-\\pi$; (iii) the scale-shift has the modes as eigenvectors in both character readings, eigenphases $2\\pi j/(p-1)$ independent of $v$; (iv) the Jacobi matrix is real-symmetric with the secular roots as spectrum. No off-line mode; the same on every shell, the Carrier included; true of every vector, the Davenport--Heilbronn vector included. No intertwiner between (iii) and (iv), and no identification of (iv) with a discretisation of $\\Hh$, is asserted or used (E2).",
+     "predicate": "\\textbf{The shell theorem.} On every shell, with no hypothesis: (i) $v$ expands in the constant mode and the nonterminal modes of the quarter-turn meridian; (ii) every readout lies on $\\Tr=1$, real part $2^{-1}=2\\kp+1=-\\pi$; (iii) the scale-shift has the modes as eigenvectors, eigenphases $2\\pi j/(p-1)$ independent of $v$. No off-line mode; true of every vector, the Davenport--Heilbronn vector included.",
      "tag": "T",
-     "source": "Thm.~\\ref{thm:hp}; \\src{A1}--\\src{A9}, \\src{A7b}; \\lean{Rh.chi\\_inversion, Rh.chi\\_shift, Rh.scale\\_shift, FRC.Rh.shift\\_power\\_character, FRC.Rh.shift\\_trace}",
+     "source": "Thm.~\\ref{thm:hp}; \\src{A1}--\\src{A7}, \\src{A7b}, \\src{A9}; (i), (iii): \\lean{Rh.chi\\_inversion, Rh.chi\\_shift, Rh.scale\\_shift, FRC.Rh.shift\\_power\\_character, FRC.Rh.shift\\_trace}; (ii): \\lean{Rh.readout\\_on\\_line, Rh.readout\\_slot\\_index, FRC.Rh.Ext.readout\\_on\\_line, FRC.Rh.Ext.readout\\_slot\\_index}",
      "key": "p20043"
     },
     {
      "label": "E13",
-     "predicate": "Shell-basis completeness is not a clause of E12: the $p-1$ complex characters are an orthonormal basis of $\\mathbb C^{\\Fx{p}}$ (finite Parseval), true of every vector, the trivial character carrying the mean $\\psi(p-1)/(p-1)$; the $\\F_p$-valued power characters are never orthonormal and do not expand $v$; completeness for the zero set of $\\zeta$ is D5, a different clause.",
+     "predicate": "Shell-basis completeness is not a clause of E12: the $p-1$ complex characters are an orthogonal basis of $\\mathbb C^{\\Fx{p}}$ ($\\lVert\\chi_j\\rVert^{2}=p-1$; finite Parseval), true of every vector, the trivial character carrying the mean $\\psi(p-1)/(p-1)$; the $\\F_p$-valued power characters are never orthonormal and do not expand $v$; completeness for the zero set of $\\zeta$ is D5, a different clause.",
      "tag": "D",
      "source": "Rem.~\\ref{rem:parseval}; \\src{A7b}; \\lean{Rh.chi\\_orthogonal, Rh.chi\\_parseval, Rh.chi\\_inversion, Rh.power\\_characters\\_not\\_orthonormal}",
      "key": "p20044"
     },
     {
      "label": "E14",
-     "predicate": "The $\\chi$-twist: for a real character the twisted vector is self-conjugate and the construction goes through verbatim; for a primitive complex character the half-phase of the root number and the matching $\\Gamma$-factor restore the self-dual structure --- computed and validated for the conductor-$5$ character (E16); the generalized hypothesis is the faithfulness of the twisted de-framing, on the same footing as D5.",
+     "predicate": "The $\\chi$-twist: for a real character the twisted vector is self-conjugate, the twisted secular condition recovering six heights of $L(s,\\chi_{-4})$ to mean error $8.6\\times10^{-5}$ [approx]; for a primitive complex character the root number's half-phase and the matching $\\Gamma$-factor restore the self-dual structure (E16); the generalized hypothesis is read as the twisted de-framing's faithfulness, as D5.",
      "tag": "T",
-     "source": "Prop.~\\ref{prop:chi}; \\src{C7a}",
+     "source": "Def.~\\ref{prop:chi}, Obs.~\\ref{obs:chi}; \\src{C7a}",
      "key": "p20045"
     },
     {
@@ -370,69 +377,69 @@
     },
     {
      "label": "E16",
-     "predicate": "Twisted-comb validation, the complex character of conductor $5$ ($\\chi(2)=i$, odd): the half-phase $W(\\chi)^{-1/2}\\Lambda(\\half+it,\\chi)$ is real on the line to $10^{-20}$; the twisted count $\\tfrac1\\pi[\\theta_\\chi(T)-\\theta_\\chi(0)]+\\tfrac1\\pi\\Im[\\Sigma^{\\chi}_w(\\half+iT)-\\Sigma^{\\chi}_w(\\half)]$ rounds to the exact integers $1,\\dots,14$ midway between the fifteen zeros below $40$, within $3\\times10^{-4}$; the twisted secular condition with the $N=10^{6}$ comb, brackets from the count alone, $L$ never evaluated, recovers the fifteen heights to mean error $8.0\\times10^{-5}$ (max $2.0\\times10^{-4}$) [approx]. Closes O4.",
+     "predicate": "Twisted-comb validation, the complex character of conductor $5$ ($\\chi(2)=i$, odd): the half-phase $W(\\chi)^{-1/2}\\Lambda(\\half+it,\\chi)$ is real on the line to $10^{-20}$; the twisted count rounds to the exact integers $1,\\dots,14$ midway between the fifteen zeros below $40$, within $3\\times10^{-4}$; the twisted secular condition with the $N=10^{6}$ comb, $L$ never evaluated, recovers the fifteen heights to mean error $8.0\\times10^{-5}$ [approx].",
      "tag": "T",
-     "source": "Prop.~\\ref{prop:chi}, Obs.~\\ref{obs:chi}; \\src{C7c}",
+     "source": "Def.~\\ref{prop:chi}, Obs.~\\ref{obs:chi}; \\src{C7c}",
      "key": "p20072"
     }
    ]
   },
   {
    "letter": "F",
-   "title": "The classification: the screen value and its discriminator",
+   "title": "The screen reading: the value and its control",
    "rows": [
     {
      "label": "F1",
-     "predicate": "\\textbf{Turing's count on the shell.} $C\\le N_{\\mathrm{crit}}\\le\\mathcal N$ (A4); the hypothesis below $T$ is $\\mathcal N(T)=N_{\\mathrm{crit}}(T)$, $C=\\mathcal N$ the practical certificate. The shell reads $\\mathcal N$ from the comb count (rounding valid only under a bound $\\varepsilon_N<\\half$: for the raw count none is depth-independent, F8; the corrected count converges to $\\mathcal N$ under the hypothesis, F8, without an explicit finite-depth constant; per height the certificate is the classical one, A6 with A8) and $C$ from the sign changes of the horizon main sum (certified with the explicit remainder bound of A8, imported; the shell adds no certificate), inputs frame-exact by B2 and D1 --- the main sum to $\\sqrt{T/2\\pi}$, the comb to the window's depth $\\lfloor\\sqrt p\\rfloor$, which rounds the count at the shell's own ceiling on the sampled midpoints ($p=97$, $1009$, $4801$; within $0.08$, $0.11$, $0.17$ [approx]), the exhibited precision using depths read on $p\\ge N^{2}$ (E7); the secular condition reads $\\mathcal N$, not $N_{\\mathrm{crit}}$. An off-line zero is a \\emph{phantom}: $\\mathcal N-N_{\\mathrm{crit}}>0$.",
+     "predicate": "\\textbf{Turing's count on the shell.} $C\\le N_{\\mathrm{crit}}\\le\\mathcal N$ (A4); the hypothesis below $T$ is $\\mathcal N(T)=N_{\\mathrm{crit}}(T)$, $C=\\mathcal N$ the certificate. The shell estimates $\\mathcal N$ by the pole-corrected comb count (F8; uncertified at finite depth) and $C$ by the main sum's sign changes (A8); the secular condition reads $\\mathcal N$, not $N_{\\mathrm{crit}}$. An off-line zero is a phantom: $\\mathcal N-N_{\\mathrm{crit}}>0$.",
      "tag": "T",
-     "source": "Thm.~\\ref{thm:turing}; \\src{D1}, \\src{D4}",
+     "source": "Prop.~\\ref{prop:turing}; \\src{D1}, \\src{D4}",
      "key": "p20047"
     },
     {
      "label": "F2",
-     "predicate": "\\textbf{The classical hypothesis is a screen value.} Under the holographic reading the identification is exhaustive: the hypothesis has no content beyond $\\mathcal N=N_{\\mathrm{crit}}$ at every height the Carrier's cycle carries. Per height the value is decidable, verified to $3\\times10^{12}$ (A6), the shell contributing consistency and no new certificate; above the coherence horizon read as a height it is $\\Omega$-hard (Z1), the tag recording where the value is read and not whether a proof exists; E12 holds for the Davenport--Heilbronn vector and so does not use the Euler product.",
-     "tag": "T",
-     "source": "Cor.~\\ref{cor:conditional}",
+     "predicate": "\\textbf{The screen reading.} By D5 and F1 the classical hypothesis below $T$ is the value $\\mathcal N(T)-N_{\\mathrm{crit}}(T)=0$, both terms estimated on the shell, the count from the pole-corrected comb (convergent under the hypothesis, uncertified at finite depth), the on-line zeros from the sign changes (exact where certified, A8, and simple). Declared, not derived; E12 uses no Euler product.",
+     "tag": "D",
+     "source": "Def.~\\ref{def:screen}, Rem.~\\ref{rem:screen}",
      "key": "p20048"
     },
     {
      "label": "F3",
-     "predicate": "The discriminator, controls on the line: the completed Davenport--Heilbronn $\\Lambda_f$ is real on the line to $10^{-20}$ [approx]; on $[0,87]$ the argument principle counts $N_f=45$ strip zeros against $C=43$ sign changes, the deficit $2$ opening only in the band of the off-line pair (A5), where $|Z_f|$ dips to $0.357$ at $t=85.70$ without crossing [approx]; the constituent $L(s,\\chi)$ closes $45=45$ with deficit $0$ in every band.",
+     "predicate": "The control on the line: the completed Davenport--Heilbronn $\\Lambda_f$ is real on the line to $10^{-20}$ [approx]; on $[0,87]$ the argument principle counts $N_f=45$ strip zeros against $C=43$ sign changes, the deficit $2$ opening only in the band of the off-line pair (A5), where $|Z_f|$ dips to $0.357$ without crossing; the constituent $L(s,\\chi)$ closes with deficit $0$.",
      "tag": "T",
      "source": "Obs.~\\ref{obs:dh}; \\src{D2a}, \\src{D2b}",
      "key": "p20049"
     },
     {
      "label": "F4",
-     "predicate": "The discriminator, negative control on the comb side: the secular condition on the generalized comb $\\Lambda_f$ (divisor recursion from the coefficients) returns two ``on-line'' roots at the phantom height, $85.63/85.76$ (comb to $10^{5}$) and $85.65/85.75$ ($4\\times10^{5}$), where the line holds no zero; the raw count near the pair drifts with depth, $45.14\\to45.73$ at $t=85.9$ over $5\\times10^{4}\\ldots8\\times10^{5}$, and is stable away from it [approx].",
+     "predicate": "The negative control on the comb side: the secular condition on the generalized comb $\\Lambda_f$ (divisor recursion from the coefficients) returns two ``on-line'' roots at the phantom height, $85.65/85.75$ (comb to $4\\times10^{5}$), where the line holds no zero; the raw count near the pair drifts with depth, $45.14\\to45.73$ at $t=85.9$, and is stable away from it [approx].",
      "tag": "T",
      "source": "Obs.~\\ref{obs:dh}; \\src{D2c}, \\src{D2d}, \\src{D2g}",
      "key": "p20050"
     },
     {
      "label": "F5",
-     "predicate": "The $\\zeta$ comb at its own singularity, the pole: at $t=1$ (exact count $0$) the raw count reads $+0.09,-0.26,+0.36,-0.08,-0.81,-1.42,-1.46$ at depths $10^{4}\\ldots8\\times10^{7}$, while at $t=15$ it stays within $2\\times10^{-3}$ of $1$ at every depth; the pole-corrected count at $t=1$ reads $0.0051\\ldots0.0012$ at the same depths, falling monotonically [approx]. The drift is the pole term of F8, which also fixes the consequence for F1: no rounding bound for the raw count is depth-independent.",
+     "predicate": "The $\\zeta$ comb at its own singularity, the pole: at $t=1$ (exact count $0$) the raw count drifts, $+0.09\\ldots-1.46$ over depths $10^{4}\\ldots8\\times10^{7}$, while at $t=15$ it stays within $2\\times10^{-3}$ of $1$; the pole-corrected count at $t=1$ falls monotonically, $0.0051\\to0.0012$ [approx]. The drift is the pole term of F8: no rounding bound for the raw count is depth-independent (F1).",
      "tag": "T",
      "source": "Obs.~\\ref{obs:dh}; \\src{D2e}, \\src{D2f}",
      "key": "p20051"
     },
     {
      "label": "F6",
-     "predicate": "The Euler-product reading: an Euler product is the signature of a single multiplicative structure; the Davenport--Heilbronn function, a superposition of two, has the self-dual line and the functional symmetry and lacks the product; the classification separates the cases by the value $\\mathcal N-N_{\\mathrm{crit}}$ and places no zero on the line by fiat.",
+     "predicate": "The Euler-product reading: an Euler product is the signature of a single multiplicative structure; the Davenport--Heilbronn function, a superposition of two, has the self-dual line and the functional symmetry and lacks the product; the screen reading separates the cases by the value $\\mathcal N-N_{\\mathrm{crit}}$ and places no zero on the line by fiat.",
      "tag": "D",
      "source": "\\S\\ref{subsec:discriminator}",
      "key": "p20052"
     },
     {
      "label": "F7",
-     "predicate": "The closure of the quantifier: with the totality finite (A2) and the height chart frame-covariant (A1), heights are residues on the reading shell's cycle, the largest shell is the Carrier's chart, and a height symbol beyond $2\\pi\\Omega$ denotes a residue of the cycle; the universal quantifier closes at the cycle, and the closure does no further work within it --- the value inside the cycle is F2.",
+     "predicate": "The closure of the quantifier, conditional on A2 (the totality finite) and A10 (the height chart's aliasing carries the zero predicate): heights are residues on the reading shell's cycle, the largest shell the Carrier's, so the quantifier closes at the cycle $2\\pi\\Omega$ and does no further work within it, the value inside the cycle is F2.",
      "tag": "T",
      "source": "\\S\\ref{sec:promotion}, \\S\\ref{sub:epistemic}",
      "key": "p20053"
     },
     {
      "label": "F8",
-     "predicate": "\\textbf{The smoothed explicit formula for the tapered comb.} Under the hypothesis of no zero to the right of the line, exactly, $\\sum_{n\\le N}\\Lambda(n)w(n)n^{-s}/\\log n=\\Pi_N(s)+J_N(s)$, with $\\Pi_N(s)=\\int_0^{L}W(u/L)(e^{(1-s)u}-e^{-su})\\,du/u$ explicit, $|\\Pi_N|\\asymp\\sqrt N/(|1-s|\\log N)^{3}$, $J_N$ conditionally convergent and $J_N(s)\\to G(s)=\\log((s-1)\\zeta(s)/s)$ off the zeros with error $O_T(L^{-1}\\log L)$, the Sokhotski--Plemelj value proved: the raw count has no limit at any height and the pole-corrected count converges to $\\mathcal N(T)$. For a zero $\\rho$ to the right of the line ($\\beta<\\tfrac32$) of a Dirichlet series with the same structure, the regulariser's image is the explicit term $-\\Pi^{(\\rho)}_N$, of size $N^{\\beta-1/2}/(|\\rho-s|L)^{3}$ (Rem.~\\ref{rem:combsettle}); the identity is not extended to a function with infinitely many zeros to the right of the line. Observed: the drift of the raw $\\zeta$ count at $t=1$ is removed by the pole term and its constant, and the drift of the Davenport--Heilbronn count near $85.7$ by the zero term of the pair below $87$ and its constant, the counts settling --- $0.0051\\to0.0012$ at $t=1$ over $10^{4}\\ldots8\\times10^{7}$; $44.960\\to44.972$ at $85.9$ and $43.035\\to43.022$ at $85.3$ for $f$ [approx]; the real part of the corrected sum reproduces $\\log|\\zeta|$ to $5\\times10^{-3}$ at $t=1$ [approx]. Closes O5.",
+     "predicate": "\\textbf{The smoothed explicit formula.} Under the hypothesis of no zero to the right of the line, $\\sum_{n\\le N}\\Lambda(n)w(n)n^{-s}/\\log n=\\Pi_N(s)+J_N(s)$ exactly, $\\Pi_N$ explicit and unbounded, $J_N(s)\\to G(s)=\\log((s-1)\\zeta(s)/s)$ off the zeros: the pole-corrected count converges to $\\mathcal N(T)$. An off-line zero adds an explicit term $-\\Pi^{(\\rho)}_N$ (Rem.~\\ref{rem:combsettle}), not summed over infinitely many. Observed: the corrected counts settle (D2f, D2g, D3) [approx].",
      "tag": "T",
      "source": "Prop.~\\ref{prop:combformula}, Rem.~\\ref{rem:combsettle}, Obs.~\\ref{obs:dh}; \\src{D2f}, \\src{D2g}, \\src{D3}",
      "key": "p20069"
@@ -445,21 +452,21 @@
    "rows": [
     {
      "label": "V1",
-     "predicate": "Block A of the package: $61$ checks of B1--B2, B4--B11, E1, E12--E13 on the shells $p=13,17,29,37,41$ in full ($p=173$ for the zero-slot, the critical line and the constants; $1009$ and $10009$ for the coincidence) --- $55$ integer-exact, including the $\\F_p$ reading of E12(iii), $\\Tr S^{r}=(p-1)\\,[(p-1)\\mid r]$ and the Ramanujan sums in $\\F_q$; $6$ [approx], the complex-character reading and the mean on the five shells and the floating-point Jacobi check.",
+     "predicate": "Block A of the package: $62$ checks of B1--B2, B4--B11, E1, E9, E12--E13 on the shells $p=13,17,29,37,41$ ($173$, $1009$, $10009$ and the frames below $3000$ for single checks): $56$ integer-exact, including the $\\F_p$ reading of E12(iii) and the Ramanujan sums in $\\F_q$; $6$ [approx], the complex-character reading, the mean and the Jacobi check.",
      "tag": "T",
      "source": "\\src{a\\_shell}",
      "key": "p20054"
     },
     {
      "label": "V2",
-     "predicate": "Blocks B--C: the dictionary (D2--D4), the prime side (E5--E6, E8--E10, the raw and the pole-corrected secular condition to depth $10^{8}$), the target statistics (E3, E11) and the twist (E15--E16), $16$ checks against the stated figures to stated tolerances; the constructions import only the sieved comb and $\\log\\Gamma$, so ``$\\zeta$ never evaluated'' is enforced by the code's import structure, and the secular roots are bracketed by the count itself.",
+     "predicate": "Blocks B--C: the dictionary (D2--D4), the prime side (E5--E6, E8--E10, the secular condition to depth $10^{8}$), the target statistics (E3, E11) and the twist (E15--E16), $16$ checks to stated tolerances; the constructions import only the sieved comb and $\\log\\Gamma$, so ``$\\zeta$ never evaluated'' is enforced by the import structure, the secular roots bracketed by the count itself.",
      "tag": "T",
      "source": "\\src{b\\_deframe}, \\src{c\\_*}",
      "key": "p20055"
     },
     {
      "label": "V3",
-     "predicate": "Block D: F1 at $T=15,30,50.3$ and on the shells $p=97,1009,4801$ at their own ceilings, the controls F3--F5, and the smoothed explicit formula F8 (the corrected $\\zeta$ and $f$ counts, the real part against $\\log|\\zeta|$), $10$ checks; the strip count is a winding-number computation of $\\Lambda_f$ and $\\Lambda(s,\\chi)$ around $29$ band rectangles $[-\\tfrac32,\\tfrac52]\\times[t_k,t_{k+1}]$, the off-line pair validated by $|f(s)|<10^{-6}$; the $\\zeta$ comb sieved to $8\\times10^{7}$.",
+     "predicate": "Block D: F1 at $T=15,30,50.3$ and on the shells $p=97,1009,4801$ at their ceilings, the controls F3--F5 and the smoothed explicit formula F8, $10$ checks; the strip count is a winding-number computation of $\\Lambda_f$ and $\\Lambda(s,\\chi)$ around $29$ band rectangles, the off-line pair validated by $|f(s)|<10^{-6}$; the $\\zeta$ comb sieved to $8\\times10^{7}$.",
      "tag": "T",
      "source": "\\src{d\\_classification}",
      "key": "p20056"
@@ -473,14 +480,14 @@
     },
     {
      "label": "V5",
-     "predicate": "The driver: seven block scripts, one notebook run in the browser, $94$ checks ($57$ exact, $34$ [approx], $3$ [chart]), every numerical figure of the paper regenerated, a record per check written to \\src{results.json} keyed to these rows; the corpus witness of E12 is \\src{check\\_rh\\_shell}.",
+     "predicate": "The driver: seven block scripts, one notebook run in the browser, $95$ checks ($58$ exact, $34$ [approx], $3$ [chart]), every numerical figure of the paper regenerated, a record per check written to \\src{results.json} keyed to these rows; the corpus witness of E12 is \\src{check\\_rh\\_shell}.",
      "tag": "T",
      "source": "\\src{run\\_all}; the notebook",
      "key": "p20058"
     },
     {
      "label": "V6",
-     "predicate": "The formal layer: \\texttt{FrcLedger/Rh.lean} on Mathlib proves B2, B4--B10 (B8's shell clauses), C2's identity $\\Lambda=\\mu\\ast\\log$, C5, E1's shell clause, E12(i), (iii) and E13's orthogonality, inversion and Parseval for every shell; \\texttt{FrcCore/Rh.lean}, no axioms, proves B2, B4, B5, B7, B8, B10, B9 with Frobenius as conjugation, E12(iii) in $\\F_p$; B1, B6, B7, B10 decided on $\\F_{13}$, $\\F_{53}$.",
+     "predicate": "The formal layer: \\texttt{FrcLedger/Rh.lean} on Mathlib proves B2, B4--B10 (B8's shell clauses), C2's identity $\\Lambda=\\mu\\ast\\log$, C5, E1's shell clause, E12(i)--(iii) and E13's orthogonality, inversion and Parseval for every shell; \\texttt{FrcCore/Rh.lean}, no axioms, proves B2, B4, B5, B7, B8, B10, B9 with Frobenius as conjugation, E12(ii) (the readout), E12(iii) in $\\F_p$; B1, B6, B7, B10 decided on $\\F_{13}$, $\\F_{53}$.",
      "tag": "T",
      "source": "\\texttt{lean/\\allowbreak FrcLedger/\\allowbreak Rh.lean}; \\texttt{lean/\\allowbreak FrcCore/\\allowbreak Rh.lean}",
      "key": "p20076"
@@ -493,21 +500,21 @@
    "rows": [
     {
      "label": "Z1",
-     "predicate": "The uniform value $\\mathcal N=N_{\\mathrm{crit}}$ over the Carrier's cycle, and the value at each height in $(2\\pi\\sqrt\\Omega,\\,2\\pi\\Omega]$: decided by the shell whose scale is that height, which is no embedded Subject ($p^{2}<\\Omega$ fails), in no embedded reader's window, host-decided on a hosted Carrier. The tag records where the value is read, not whether a proof exists: the existence of a finite-description certificate of the uniform value is a question about proofs, which no row poses or decides; the positivity route (F6, \\S\\ref{sec:promotion}) is a classical proof, not attempted.",
+     "predicate": "The uniform value $\\mathcal N=N_{\\mathrm{crit}}$ over the Carrier's cycle, and the value at each height in $(2\\pi\\sqrt\\Omega,\\,2\\pi\\Omega]$: read by the shell whose scale is that height, no embedded Subject; the failing computation is the count at that height from any embedded window. Whether a finite-description proof exists is a question no row poses; positivity (\\S\\ref{sec:promotion}) is not attempted.",
      "tag": "Ω",
-     "source": "Cor.~\\ref{cor:conditional}, \\S\\ref{sub:hardcore}, \\S\\ref{sec:promotion}",
+     "source": "Rem.~\\ref{rem:screen}, \\S\\ref{sub:physical}, \\S\\ref{sec:promotion}",
      "key": "p20059"
     },
     {
      "label": "Z2",
      "predicate": "The heights as Carrier residues: under the frame-covariance of the height chart (A1) each $\\gamma$ is a residue on the frequency latitude $L_{\\kp+1}$ of the Carrier, its exact index below the resolution of every embedded Subject; finite-precision readings remain available to every Subject for the heights its scale reaches.",
      "tag": "Ω",
-     "source": "\\S\\ref{sub:constants}",
+     "source": "\\S\\ref{sub:physical}",
      "key": "p20060"
     },
     {
      "label": "Z5",
-     "predicate": "The uniform flatness bound over the shells: with $M(p)=\\max_{j\\ne0}\\lvert\\langle\\mathbf1_\\Pi,\\chi_j\\rangle\\rvert/(\\lVert\\mathbf1_\\Pi-\\bar{\\mathbf1}_\\Pi\\rVert\\,\\lVert\\chi_j\\rVert)$, the normalised correlation of the indicator of the primes of the shell with the chart modes, the mean removed (floor $1/\\sqrt{p-2}$, C5), the bound $M(p)=O(p^{-1/2}\\log^{5/2}p)$ for every Subject. The generalized hypothesis for the characters modulo $p$ implies it ($\\sum_{\\ell<p}\\chi(\\ell)=O(\\sqrt p\\log^{2}p)$ [import: \\citealp[Ch.~20]{davenport2000}]); the converse is not asserted. Each shell's maximum is a finite computation (C6); the bound uniform over every shell of the cycle is read by no embedded Subject.",
+     "predicate": "The uniform flatness bound over the shells: with $M(p)=\\max_{j\\ne0}\\lvert\\langle\\mathbf1_\\Pi,\\chi_j\\rangle\\rvert/(\\lVert\\mathbf1_\\Pi-\\bar{\\mathbf1}_\\Pi\\rVert\\,\\lVert\\chi_j\\rVert)$ the normalised correlation of the shell's prime indicator with the chart modes, mean removed (floor $1/\\sqrt{p-2}$, C5), the bound $M(p)=O(p^{-1/2}\\log^{5/2}p)$; the generalized hypothesis modulo $p$ implies it [import: \\citealp[Ch.~20]{davenport2000}], the converse not asserted. Each shell's maximum is a finite computation (C6), the uniform bound read by no embedded Subject.",
      "tag": "Ω",
      "source": "\\S\\ref{sec:emergence}, Obs.~\\ref{obs:flat}",
      "key": "p20075"
@@ -553,7 +560,7 @@
    {
     "name": "FRC.Rh.lab_pair",
     "module": "FrcLedger/Rh",
-    "line": 707,
+    "line": 735,
     "axioms": [
      "Quot.sound",
      "propext"
@@ -565,7 +572,7 @@
    {
     "name": "FRC.Rh.no_cycle_projection",
     "module": "FrcLedger/Rh",
-    "line": 713,
+    "line": 741,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -578,7 +585,7 @@
    {
     "name": "FRC.Rh.lab_pair",
     "module": "FrcCore/Rh",
-    "line": 514,
+    "line": 543,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -589,7 +596,7 @@
    {
     "name": "FRC.Rh.window_readback",
     "module": "FrcLedger/Rh",
-    "line": 644,
+    "line": 672,
     "axioms": [
      "Quot.sound",
      "propext"
@@ -601,7 +608,7 @@
    {
     "name": "FRC.Rh.prime_iff_window_irreducible",
     "module": "FrcLedger/Rh",
-    "line": 657,
+    "line": 685,
     "axioms": [
      "Quot.sound",
      "propext"
@@ -613,7 +620,7 @@
    {
     "name": "FRC.Rh.sqrt_sq_lt_prime",
     "module": "FrcLedger/Rh",
-    "line": 687,
+    "line": 715,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -626,7 +633,7 @@
    {
     "name": "FRC.Rh.window_readback",
     "module": "FrcCore/Rh",
-    "line": 464,
+    "line": 493,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -635,7 +642,7 @@
    {
     "name": "FRC.Rh.factorisation_iff",
     "module": "FrcCore/Rh",
-    "line": 475,
+    "line": 504,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -644,7 +651,7 @@
    {
     "name": "FRC.Rh.frame_coincidence",
     "module": "FrcCore/Rh",
-    "line": 501,
+    "line": 530,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -703,7 +710,7 @@
    {
     "name": "FRC.Rh.phase_circle",
     "module": "FrcLedger/Rh",
-    "line": 387,
+    "line": 414,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -716,7 +723,7 @@
    {
     "name": "FRC.Rh.frobenius_eq_star",
     "module": "FrcLedger/Rh",
-    "line": 352,
+    "line": 379,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -729,7 +736,7 @@
    {
     "name": "FRC.Rh.norm_eq_pow",
     "module": "FrcLedger/Rh",
-    "line": 381,
+    "line": 408,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -742,7 +749,7 @@
    {
     "name": "FRC.Rh.quarter_turn_off_circle",
     "module": "FrcLedger/Rh",
-    "line": 427,
+    "line": 454,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -773,7 +780,7 @@
    {
     "name": "FRC.Rh.Ext.quarter_turn_off_circle",
     "module": "FrcCore/Rh",
-    "line": 430,
+    "line": 459,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -782,7 +789,7 @@
    {
     "name": "FRC.Rh.Ext.circle13",
     "module": "FrcCore/Rh",
-    "line": 444,
+    "line": 473,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -852,7 +859,7 @@
    {
     "name": "FRC.Rh.card_critical_line",
     "module": "FrcLedger/Rh",
-    "line": 297,
+    "line": 311,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -896,7 +903,7 @@
    {
     "name": "FRC.Rh.Ext.norm_on_line",
     "module": "FrcCore/Rh",
-    "line": 421,
+    "line": 450,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -1051,7 +1058,7 @@
    {
     "name": "FRC.Rh.vonMangoldt_moebius",
     "module": "FrcLedger/Rh",
-    "line": 624,
+    "line": 652,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -1066,7 +1073,7 @@
    {
     "name": "FRC.Rh.chi_parseval",
     "module": "FrcLedger/Rh",
-    "line": 571,
+    "line": 599,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -1079,7 +1086,7 @@
    {
     "name": "FRC.Rh.flatness",
     "module": "FrcLedger/Rh",
-    "line": 598,
+    "line": 626,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -1094,7 +1101,7 @@
    {
     "name": "FRC.Rh.scale_shift",
     "module": "FrcLedger/Rh",
-    "line": 450,
+    "line": 478,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -1102,12 +1109,12 @@
     ],
     "tier": 2,
     "ok": true,
-    "doc": "20:E1, 20:E12 — the scale-shift `S : x ↦ g^r x` is a permutation of `F^×` with the power characters `x ↦ x^k` as eigenvectors in the `𝔽_p` reading, `S x^k = g^{rk} x^k`, and its fixed-point count — the trace of its permutation matrix — is `(p − 1)·[(p − 1) ∣ r]`, which carries no prime data."
+    "doc": "20:E1, 20:E12 — the scale-shift `S : x ↦ g^r x` is a permutation of `F^×` (a bijection, so its matrix on `ℓ²(F^×)` is a permutation matrix, hence unitary) with the power characters `x ↦ x^k` as eigenvectors in the `𝔽_p` reading, `S x^k = g^{rk} x^k`, and its fixed-point count — the trace of its permutation matrix — is `(p − 1)·[(p − 1) ∣ r]`, which carries no prime data."
    },
    {
     "name": "FRC.Rh.character_eigen",
     "module": "FrcLedger/Rh",
-    "line": 485,
+    "line": 513,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -1120,7 +1127,7 @@
    {
     "name": "FRC.Rh.chi_shift",
     "module": "FrcLedger/Rh",
-    "line": 524,
+    "line": 552,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -1153,7 +1160,7 @@
    {
     "name": "FRC.Rh.chi_inversion",
     "module": "FrcLedger/Rh",
-    "line": 533,
+    "line": 561,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -1166,7 +1173,7 @@
    {
     "name": "FRC.Rh.chi_shift",
     "module": "FrcLedger/Rh",
-    "line": 524,
+    "line": 552,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -1179,7 +1186,7 @@
    {
     "name": "FRC.Rh.scale_shift",
     "module": "FrcLedger/Rh",
-    "line": 450,
+    "line": 478,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -1187,7 +1194,7 @@
     ],
     "tier": 2,
     "ok": true,
-    "doc": "20:E1, 20:E12 — the scale-shift `S : x ↦ g^r x` is a permutation of `F^×` with the power characters `x ↦ x^k` as eigenvectors in the `𝔽_p` reading, `S x^k = g^{rk} x^k`, and its fixed-point count — the trace of its permutation matrix — is `(p − 1)·[(p − 1) ∣ r]`, which carries no prime data."
+    "doc": "20:E1, 20:E12 — the scale-shift `S : x ↦ g^r x` is a permutation of `F^×` (a bijection, so its matrix on `ℓ²(F^×)` is a permutation matrix, hence unitary) with the power characters `x ↦ x^k` as eigenvectors in the `𝔽_p` reading, `S x^k = g^{rk} x^k`, and its fixed-point count — the trace of its permutation matrix — is `(p − 1)·[(p − 1) ∣ r]`, which carries no prime data."
    },
    {
     "name": "FRC.Rh.shift_power_character",
@@ -1206,13 +1213,57 @@
     "tier": 0,
     "ok": true,
     "doc": "20:E12, 20:E1 — clause (iii) in the `𝔽_p` reading: the fixed-point count of the scale-shift, the trace of its permutation matrix: `x ↦ g^r x` fixes every nonzero residue when `(p − 1) ∣ r` and none otherwise, `Tr S^r = (p − 1)·[(p − 1) ∣ r]`; the shell's trace carries no prime data."
+   },
+   {
+    "name": "FRC.Rh.readout_on_line",
+    "module": "FrcLedger/Rh",
+    "line": 297,
+    "axioms": [
+     "Classical.choice",
+     "Quot.sound",
+     "propext"
+    ],
+    "tier": 2,
+    "ok": true,
+    "doc": "20:E12, 20:B8 — clause (ii) of the shell theorem: every readout `z(θ) = 2⁻¹ + θη` lies on the trace-one line, its real part is the half-turn `2⁻¹`, and `θ ↦ z(θ)` is injective (with `card_critical_line`, a bijection of `F` onto the line)."
+   },
+   {
+    "name": "FRC.Rh.readout_slot_index",
+    "module": "FrcLedger/Rh",
+    "line": 327,
+    "axioms": [
+     "Classical.choice",
+     "Quot.sound",
+     "propext"
+    ],
+    "tier": 2,
+    "ok": true,
+    "doc": "20:E12 — the slot index of a nontrivial slot: for `1 ≤ k ≤ p − 2` the index `θ = Φ(k) = −g^k` at which slot `k` is read is neither `0` (the centre `2⁻¹`) nor `−1` (the full-cycle exponent)."
+   },
+   {
+    "name": "FRC.Rh.Ext.readout_on_line",
+    "module": "FrcCore/Rh",
+    "line": 426,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "20:E12, 20:B8 — clause (ii) of the shell theorem, no axioms: every readout lies on the trace-one line, its real part is the half-turn `2⁻¹ = 2κ + 1`, and `θ ↦ z(θ)` is injective."
+   },
+   {
+    "name": "FRC.Rh.Ext.readout_slot_index",
+    "module": "FrcCore/Rh",
+    "line": 433,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "20:E12 — the slot index of a nontrivial slot: for `1 ≤ k ≤ p − 2` the index `θ = Φ(k) = −g^k` is neither `0` (the centre `2⁻¹`) nor `−1` (the full-cycle exponent), on every shell and with no axioms."
    }
   ],
   "E13": [
    {
     "name": "FRC.Rh.chi_orthogonal",
     "module": "FrcLedger/Rh",
-    "line": 512,
+    "line": 540,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -1225,7 +1276,7 @@
    {
     "name": "FRC.Rh.chi_parseval",
     "module": "FrcLedger/Rh",
-    "line": 571,
+    "line": 599,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -1238,7 +1289,7 @@
    {
     "name": "FRC.Rh.chi_inversion",
     "module": "FrcLedger/Rh",
-    "line": 533,
+    "line": 561,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -1251,7 +1302,7 @@
    {
     "name": "FRC.Rh.power_characters_not_orthonormal",
     "module": "FrcLedger/Rh",
-    "line": 473,
+    "line": 501,
     "axioms": [
      "Classical.choice",
      "Quot.sound",

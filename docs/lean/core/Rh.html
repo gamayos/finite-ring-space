@@ -20,7 +20,7 @@
     
     <nav><a href="../../index.html">Home</a><a href="../../publications.html">Publications</a><a href="../../00-ledger.html">Ledger</a><a href="../../predictions.html">Predictions</a><a href="../../explicability.html">Explicability</a></nav>
   </header>
-<main id="ledger-main"><section class="prose"><p>The core module <code>lean/FrcCore/Rh.lean</code> — the substrate from first principles, no Mathlib, no axioms (the modules in order: <a href="Nat.html">Nat</a>, <a href="Pigeonhole.html">Pigeonhole</a>, <a href="Shell.html">Shell</a>, <a href="Frame.html">Frame</a>, <a href="Orbit.html">Orbit</a>, <a href="Sum.html">Sum</a>, <a href="Meridian.html">Meridian</a>, <a href="Algebra.html">Algebra</a>, <a href="Epi.html">Epi</a>, <a href="Dimensions.html">Dimensions</a>, <a href="Poly.html">Poly</a>, <a href="Quaternion.html">Quaternion</a>, <a href="Causality.html">Causality</a>, <a href="Representation.html">Representation</a>, <a href="Reductio.html">Reductio</a>, <a href="Geometry.html">Geometry</a>, <a href="Complex.html">Complex</a>, <a href="Instances.html">Instances</a>, <a href="Rh.html">Rh</a>, <a href="Entropy.html">Entropy</a>): 36 theorems (10 definitions): 36 with no axioms (green), 0 at tier 1 (teal: <code>propext</code>, <code>Quot.sound</code>), 0 at tier 2 (amber: <code>Classical.choice</code>), 0 red; the small plain glyph marks a definition (no proof, no axioms; on the ledger pages the plain glyph is instead a module cited as a whole). Each declaration is anchored; the ledger rows cite them by name. <a href="https://live.lean-lang.org/#project=lean-v4.34.0&url=https://raw.githubusercontent.com/gamayos/finite-ring-space/main/lean/web/FrcCore.lean" target="_blank" rel="noopener">▶ open in the Lean web editor</a> · <a href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcCore/Rh.lean" target="_blank" rel="noopener">on GitHub</a> · <a href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcCore/axioms.log" target="_blank" rel="noopener">axioms.log</a> · <a href="https://github.com/gamayos/finite-ring-space/actions/workflows/lean.yml" target="_blank" rel="noopener">CI</a>.</p></section><pre class="lean"><span class="ln" id="L1"><a class="lno" href="#L1">1</a>import FrcCore.Algebra</span>
+<main id="ledger-main"><section class="prose"><p>The core module <code>lean/FrcCore/Rh.lean</code> — the substrate from first principles, no Mathlib, no axioms (the modules in order: <a href="Nat.html">Nat</a>, <a href="Pigeonhole.html">Pigeonhole</a>, <a href="Shell.html">Shell</a>, <a href="Frame.html">Frame</a>, <a href="Orbit.html">Orbit</a>, <a href="Sum.html">Sum</a>, <a href="Meridian.html">Meridian</a>, <a href="Algebra.html">Algebra</a>, <a href="Epi.html">Epi</a>, <a href="Dimensions.html">Dimensions</a>, <a href="Poly.html">Poly</a>, <a href="Quaternion.html">Quaternion</a>, <a href="Causality.html">Causality</a>, <a href="Representation.html">Representation</a>, <a href="Reductio.html">Reductio</a>, <a href="Geometry.html">Geometry</a>, <a href="Complex.html">Complex</a>, <a href="Instances.html">Instances</a>, <a href="Rh.html">Rh</a>, <a href="Entropy.html">Entropy</a>): 38 theorems (11 definitions): 38 with no axioms (green), 0 at tier 1 (teal: <code>propext</code>, <code>Quot.sound</code>), 0 at tier 2 (amber: <code>Classical.choice</code>), 0 red; the small plain glyph marks a definition (no proof, no axioms; on the ledger pages the plain glyph is instead a module cited as a whole). Each declaration is anchored; the ledger rows cite them by name. <a href="https://live.lean-lang.org/#project=lean-v4.34.0&url=https://raw.githubusercontent.com/gamayos/finite-ring-space/main/lean/web/FrcCore.lean" target="_blank" rel="noopener">▶ open in the Lean web editor</a> · <a href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcCore/Rh.lean" target="_blank" rel="noopener">on GitHub</a> · <a href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcCore/axioms.log" target="_blank" rel="noopener">axioms.log</a> · <a href="https://github.com/gamayos/finite-ring-space/actions/workflows/lean.yml" target="_blank" rel="noopener">CI</a>.</p></section><pre class="lean"><span class="ln" id="L1"><a class="lno" href="#L1">1</a>import FrcCore.Algebra</span>
 <span class="ln" id="L2"><a class="lno" href="#L2">2</a>import FrcCore.Instances</span>
 <span class="ln" id="L3"><a class="lno" href="#L3">3</a></span>
 <span class="ln" id="L4"><a class="lno" href="#L4">4</a>/-!</span>
@@ -439,106 +439,135 @@
 <span class="ln" id="L417"><a class="lno" href="#L417">417</a>  exact ⟨⟨fun h =&gt; ⟨hc.2 (hr.1 h).1, hs.2 (hr.1 h).2⟩, fun h =&gt; hr.2 ⟨hc.1 h.1, hs.1 h.2⟩⟩,</span>
 <span class="ln" id="L418"><a class="lno" href="#L418">418</a>    hr.trans ⟨fun h =&gt; ext h.2 h.1, fun h =&gt; ⟨im_congr h, re_congr h⟩⟩⟩</span>
 <span class="ln" id="L419"><a class="lno" href="#L419">419</a></span>
-<span class="ln" id="L420"><a class="lno" href="#L420">420</a>/-- 20:B8 — the energy on the critical line: `N(2⁻¹ + bη) = (2⁻¹)² − νb²`, with `2 · 2⁻¹ = 1`. -/</span>
-<span class="ln decl" id="FRC.Rh.Ext.norm_on_line"><a class="lno" href="#FRC.Rh.Ext.norm_on_line">421</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcCore/Rh.lean#L421" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small ok" src="../lean-ok.png" alt="" title="no axioms">theorem norm_on_line (F : Frame p κ g) (ν : Shell p) (z : Ext p) (hz : z.re = ofNat (2 * κ + 1)) :</span>
-<span class="ln" id="L422"><a class="lno" href="#L422">422</a>    norm ν z = ofNat (2 * κ + 1) * ofNat (2 * κ + 1) + -(ν * (z.im * z.im)) ∧</span>
-<span class="ln" id="L423"><a class="lno" href="#L423">423</a>    (2 : Shell p) * ofNat (2 * κ + 1) = 1 := by</span>
-<span class="ln" id="L424"><a class="lno" href="#L424">424</a>  refine ⟨?_, (half_inverse F).1⟩</span>
-<span class="ln" id="L425"><a class="lno" href="#L425">425</a>  show z.re * z.re + -(ν * (z.im * z.im)) = _</span>
-<span class="ln" id="L426"><a class="lno" href="#L426">426</a>  rw [hz]</span>
-<span class="ln" id="L427"><a class="lno" href="#L427">427</a></span>
-<span class="ln" id="L428"><a class="lno" href="#L428">428</a>/-- 20:B6 — the quarter-turn `i = −g^κ`, as the element `i + 0η`, is fixed by conjugation and lies off the</span>
-<span class="ln" id="L429"><a class="lno" href="#L429">429</a>circle: `N(i) = i² = −1 ≠ 1`. -/</span>
-<span class="ln decl" id="FRC.Rh.Ext.quarter_turn_off_circle"><a class="lno" href="#FRC.Rh.Ext.quarter_turn_off_circle">430</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcCore/Rh.lean#L430" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small ok" src="../lean-ok.png" alt="" title="no axioms">theorem quarter_turn_off_circle (F : Frame p κ g) (ν : Shell p) :</span>
-<span class="ln" id="L431"><a class="lno" href="#L431">431</a>    conj ⟨quarterTurn g κ, 0⟩ = ⟨quarterTurn g κ, 0⟩ ∧ norm ν ⟨quarterTurn g κ, 0⟩ = -1 ∧</span>
-<span class="ln" id="L432"><a class="lno" href="#L432">432</a>    norm ν ⟨quarterTurn g κ, 0⟩ ≠ 1 := by</span>
-<span class="ln" id="L433"><a class="lno" href="#L433">433</a>  have hn : norm ν ⟨quarterTurn g κ, 0⟩ = -1 := by</span>
-<span class="ln" id="L434"><a class="lno" href="#L434">434</a>    show quarterTurn g κ * quarterTurn g κ + -(ν * (0 * 0)) = -1</span>
-<span class="ln" id="L435"><a class="lno" href="#L435">435</a>    rw [F.quarter_turn_sq, zero_mul, mul_zero, neg_zero, add_zero]</span>
-<span class="ln" id="L436"><a class="lno" href="#L436">436</a>  refine ⟨ext rfl neg_zero, hn, fun h =&gt; ?_⟩</span>
-<span class="ln" id="L437"><a class="lno" href="#L437">437</a>  rw [hn] at h</span>
-<span class="ln" id="L438"><a class="lno" href="#L438">438</a>  exact F.one_ne_zero (F.eq_zero_of_eq_neg h.symm)</span>
-<span class="ln" id="L439"><a class="lno" href="#L439">439</a></span>
-<span class="ln" id="L440"><a class="lno" href="#L440">440</a>end frame</span>
-<span class="ln" id="L441"><a class="lno" href="#L441">441</a></span>
-<span class="ln" id="L442"><a class="lno" href="#L442">442</a>/-- 20:B6 [value] — on `𝔽₁₃(√2)` (`2` a nonsquare mod `13`): the norm-one circle has `13 + 1 = 14` points</span>
-<span class="ln" id="L443"><a class="lno" href="#L443">443</a>among the `169` elements, and Frobenius `z ↦ z^{13}` is conjugation on every element. -/</span>
-<span class="ln decl" id="FRC.Rh.Ext.circle13"><a class="lno" href="#FRC.Rh.Ext.circle13">444</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcCore/Rh.lean#L444" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small ok" src="../lean-ok.png" alt="" title="no axioms">theorem circle13 :</span>
-<span class="ln" id="L445"><a class="lno" href="#L445">445</a>    natCount (fun k =&gt; norm (2 : Shell 13) ⟨ofNat (k / 13), ofNat (k % 13)⟩ = 1) 169 = 14 ∧</span>
-<span class="ln" id="L446"><a class="lno" href="#L446">446</a>    (∀ k, k &lt; 169 → pow (2 : Shell 13) ⟨ofNat (k / 13), ofNat (k % 13)⟩ 13 =</span>
-<span class="ln" id="L447"><a class="lno" href="#L447">447</a>      conj ⟨ofNat (k / 13), ofNat (k % 13)⟩) ∧</span>
-<span class="ln" id="L448"><a class="lno" href="#L448">448</a>    (∀ x : Nat, x &lt; 13 → 0 &lt; x → (ofNat x : Shell 13) * ofNat x ≠ 2) := by decide +kernel</span>
-<span class="ln" id="L449"><a class="lno" href="#L449">449</a></span>
-<span class="ln" id="L450"><a class="lno" href="#L450">450</a>end Ext</span>
-<span class="ln" id="L451"><a class="lno" href="#L451">451</a></span>
-<span class="ln" id="L452"><a class="lno" href="#L452">452</a>/-! ## Frame coincidence below the horizon (20:B2) -/</span>
-<span class="ln" id="L453"><a class="lno" href="#L453">453</a></span>
-<span class="ln" id="L454"><a class="lno" href="#L454">454</a>section coincidence</span>
-<span class="ln" id="L455"><a class="lno" href="#L455">455</a></span>
-<span class="ln decl" id="FRC.Rh.le_mul_self"><a class="lno" href="#FRC.Rh.le_mul_self">456</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcCore/Rh.lean#L456" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small ok" src="../lean-ok.png" alt="" title="no axioms">theorem le_mul_self : ∀ H : Nat, H ≤ H * H</span>
-<span class="ln" id="L457"><a class="lno" href="#L457">457</a>  | 0 =&gt; Nat.le_refl 0</span>
-<span class="ln" id="L458"><a class="lno" href="#L458">458</a>  | H + 1 =&gt; by</span>
-<span class="ln" id="L459"><a class="lno" href="#L459">459</a>    show H + 1 ≤ (H + 1) * H + (H + 1)</span>
-<span class="ln" id="L460"><a class="lno" href="#L460">460</a>    exact Nat.le_add_left (H + 1) ((H + 1) * H)</span>
-<span class="ln" id="L461"><a class="lno" href="#L461">461</a></span>
-<span class="ln" id="L462"><a class="lno" href="#L462">462</a>/-- 20:B2 — below the horizon the reading is frame-exact: on any shell with `H² &lt; p`, a residue `m ≤ H` is</span>
-<span class="ln" id="L463"><a class="lno" href="#L463">463</a>the integer `m`, and the product of two window residues reads back as the integer product. -/</span>
-<span class="ln decl" id="FRC.Rh.window_readback"><a class="lno" href="#FRC.Rh.window_readback">464</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcCore/Rh.lean#L464" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small ok" src="../lean-ok.png" alt="" title="no axioms">theorem window_readback {H : Nat} (hH : H * H &lt; p) :</span>
-<span class="ln" id="L465"><a class="lno" href="#L465">465</a>    (∀ m, m ≤ H → (ofNat m : Shell p).val = m) ∧</span>
-<span class="ln" id="L466"><a class="lno" href="#L466">466</a>    ∀ a b, a ≤ H → b ≤ H → (ofNat a * ofNat b : Shell p).val = a * b := by</span>
-<span class="ln" id="L467"><a class="lno" href="#L467">467</a>  have hlt : ∀ m, m ≤ H → m &lt; p := fun m hm =&gt;</span>
-<span class="ln" id="L468"><a class="lno" href="#L468">468</a>    Nat.lt_of_le_of_lt (Nat.le_trans hm (le_mul_self H)) hH</span>
-<span class="ln" id="L469"><a class="lno" href="#L469">469</a>  refine ⟨fun m hm =&gt; by rw [val_ofNat, FRC.Nat.mod_eq_of_lt (hlt m hm)], fun a b ha hb =&gt; ?_⟩</span>
-<span class="ln" id="L470"><a class="lno" href="#L470">470</a>  rw [ofNat_mul, val_ofNat, FRC.Nat.mod_eq_of_lt (Nat.lt_of_le_of_lt (Nat.mul_le_mul ha hb) hH)]</span>
-<span class="ln" id="L471"><a class="lno" href="#L471">471</a></span>
-<span class="ln" id="L472"><a class="lno" href="#L472">472</a>/-- 20:B2 — primality equals irreducibility in the window: for `m ≤ H` on a shell with `H² &lt; p`, `m` factors</span>
-<span class="ln" id="L473"><a class="lno" href="#L473">473</a>as `a · b` with `2 ≤ a, b ≤ H` read on the shell exactly when it factors so as an integer. The statement is the</span>
-<span class="ln" id="L474"><a class="lno" href="#L474">474</a>same on every shell above the window — the Subject `𝔽_p` and the Carrier `𝔽_Ω` read the same primes. -/</span>
-<span class="ln decl" id="FRC.Rh.factorisation_iff"><a class="lno" href="#FRC.Rh.factorisation_iff">475</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcCore/Rh.lean#L475" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small ok" src="../lean-ok.png" alt="" title="no axioms">theorem factorisation_iff {H : Nat} (hH : H * H &lt; p) (m : Nat) (hm : m ≤ H) :</span>
-<span class="ln" id="L476"><a class="lno" href="#L476">476</a>    (∃ a b, 2 ≤ a ∧ 2 ≤ b ∧ a ≤ H ∧ b ≤ H ∧ (ofNat a * ofNat b : Shell p) = ofNat m) ↔</span>
-<span class="ln" id="L477"><a class="lno" href="#L477">477</a>    ∃ a b, 2 ≤ a ∧ 2 ≤ b ∧ a * b = m := by</span>
-<span class="ln" id="L478"><a class="lno" href="#L478">478</a>  have hrb := window_readback (p := p) hH</span>
-<span class="ln" id="L479"><a class="lno" href="#L479">479</a>  constructor</span>
-<span class="ln" id="L480"><a class="lno" href="#L480">480</a>  · intro h</span>
-<span class="ln" id="L481"><a class="lno" href="#L481">481</a>    match h with</span>
-<span class="ln" id="L482"><a class="lno" href="#L482">482</a>    | ⟨a, b, ha, hb, haH, hbH, e⟩ =&gt;</span>
-<span class="ln" id="L483"><a class="lno" href="#L483">483</a>      refine ⟨a, b, ha, hb, ?_⟩</span>
-<span class="ln" id="L484"><a class="lno" href="#L484">484</a>      have := val_injective e</span>
-<span class="ln" id="L485"><a class="lno" href="#L485">485</a>      rw [hrb.2 a b haH hbH, hrb.1 m hm] at this</span>
-<span class="ln" id="L486"><a class="lno" href="#L486">486</a>      exact this</span>
-<span class="ln" id="L487"><a class="lno" href="#L487">487</a>  · intro h</span>
-<span class="ln" id="L488"><a class="lno" href="#L488">488</a>    match h with</span>
-<span class="ln" id="L489"><a class="lno" href="#L489">489</a>    | ⟨a, b, ha, hb, e⟩ =&gt;</span>
-<span class="ln" id="L490"><a class="lno" href="#L490">490</a>      have hm&#x27; : a * b ≤ H := by rw [e]; exact hm</span>
-<span class="ln" id="L491"><a class="lno" href="#L491">491</a>      have haab : a ≤ a * b := by</span>
-<span class="ln" id="L492"><a class="lno" href="#L492">492</a>        have := Nat.mul_le_mul_left a (Nat.le_trans (Nat.le_succ 1) hb)</span>
-<span class="ln" id="L493"><a class="lno" href="#L493">493</a>        rw [Nat.mul_one] at this; exact this</span>
-<span class="ln" id="L494"><a class="lno" href="#L494">494</a>      have hbab : b ≤ a * b := by</span>
-<span class="ln" id="L495"><a class="lno" href="#L495">495</a>        have := Nat.mul_le_mul_right b (Nat.le_trans (Nat.le_succ 1) ha)</span>
-<span class="ln" id="L496"><a class="lno" href="#L496">496</a>        rw [Nat.one_mul] at this; exact this</span>
-<span class="ln" id="L497"><a class="lno" href="#L497">497</a>      exact ⟨a, b, ha, hb, Nat.le_trans haab hm&#x27;, Nat.le_trans hbab hm&#x27;, by rw [ofNat_mul, e]⟩</span>
-<span class="ln" id="L498"><a class="lno" href="#L498">498</a></span>
-<span class="ln" id="L499"><a class="lno" href="#L499">499</a>/-- 20:B2 — frame coincidence: on the Subject `𝔽_p` and the Carrier `𝔽_Ω`, both above the window `H² &lt; p`,</span>
-<span class="ln" id="L500"><a class="lno" href="#L500">500</a>`H² &lt; Ω`, a window residue factors on one shell exactly when it factors on the other. -/</span>
-<span class="ln decl" id="FRC.Rh.frame_coincidence"><a class="lno" href="#FRC.Rh.frame_coincidence">501</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcCore/Rh.lean#L501" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small ok" src="../lean-ok.png" alt="" title="no axioms">theorem frame_coincidence {Ω : Nat} [Pos Ω] {H : Nat} (hp : H * H &lt; p) (hΩ : H * H &lt; Ω) (m : Nat) (hm : m ≤ H) :</span>
-<span class="ln" id="L502"><a class="lno" href="#L502">502</a>    (∃ a b, 2 ≤ a ∧ 2 ≤ b ∧ a ≤ H ∧ b ≤ H ∧ (ofNat a * ofNat b : Shell p) = ofNat m) ↔</span>
-<span class="ln" id="L503"><a class="lno" href="#L503">503</a>    (∃ a b, 2 ≤ a ∧ 2 ≤ b ∧ a ≤ H ∧ b ≤ H ∧ (ofNat a * ofNat b : Shell Ω) = ofNat m) :=</span>
-<span class="ln" id="L504"><a class="lno" href="#L504">504</a>  (factorisation_iff hp m hm).trans (factorisation_iff hΩ m hm).symm</span>
-<span class="ln" id="L505"><a class="lno" href="#L505">505</a></span>
-<span class="ln" id="L506"><a class="lno" href="#L506">506</a>end coincidence</span>
-<span class="ln" id="L507"><a class="lno" href="#L507">507</a></span>
-<span class="ln" id="L508"><a class="lno" href="#L508">508</a>/-! ## The laboratory pair (20:B1) -/</span>
-<span class="ln" id="L509"><a class="lno" href="#L509">509</a></span>
-<span class="ln" id="L510"><a class="lno" href="#L510">510</a>/-- 20:B1 [value] — the pair `(13, 233)`: nested, `13² &lt; 233`; both cycles carry the quarter-turn core</span>
-<span class="ln" id="L511"><a class="lno" href="#L511">511</a>(`4 ∣ 12`, `4 ∣ 232`; `5² = −1` on `𝔽₁₃`, `89² = −1` on `𝔽₂₃₃`) and share nothing else (`3 ∤ 232`, so</span>
-<span class="ln" id="L512"><a class="lno" href="#L512">512</a>`gcd(12, 232) = 4`); the Carrier&#x27;s cycle does not project onto the Subject&#x27;s (`12 ∤ 232`); the horizon window</span>
-<span class="ln" id="L513"><a class="lno" href="#L513">513</a>`H = 3` is wrap-free on both (`9 &lt; 13`, `9 &lt; 233`). -/</span>
-<span class="ln decl" id="FRC.Rh.lab_pair"><a class="lno" href="#FRC.Rh.lab_pair">514</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcCore/Rh.lean#L514" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small ok" src="../lean-ok.png" alt="" title="no axioms">theorem lab_pair :</span>
-<span class="ln" id="L515"><a class="lno" href="#L515">515</a>    13 * 13 &lt; 233 ∧ 12 % 4 = 0 ∧ 232 % 4 = 0 ∧ 232 % 3 ≠ 0 ∧ (5 : Shell 13) * 5 = -1 ∧</span>
-<span class="ln" id="L516"><a class="lno" href="#L516">516</a>    (89 : Shell 233) * 89 = -1 ∧ 232 % 12 ≠ 0 ∧ 3 * 3 &lt; 13 ∧ 3 * 3 &lt; 233 := by decide</span>
-<span class="ln" id="L517"><a class="lno" href="#L517">517</a></span>
-<span class="ln" id="L518"><a class="lno" href="#L518">518</a>end FRC.Rh</span>
-<span class="ln" id="L519"><a class="lno" href="#L519">519</a></span>
+<span class="ln" id="L420"><a class="lno" href="#L420">420</a>/-- 20:E12, 20:B8 — the spectral readout in the core: the mode index `θ` is read at `z(θ) = 2⁻¹ + θη`,</span>
+<span class="ln" id="L421"><a class="lno" href="#L421">421</a>`2⁻¹ = 2κ + 1`. -/</span>
+<span class="ln decl" id="FRC.Rh.Ext.readout"><a class="lno" href="#FRC.Rh.Ext.readout">422</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcCore/Rh.lean#L422" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small" src="../lean.png" alt="" title="a definition: no proof, no axioms">def readout (κ : Nat) (θ : Shell p) : Ext p := ⟨ofNat (2 * κ + 1), θ⟩</span>
+<span class="ln" id="L423"><a class="lno" href="#L423">423</a></span>
+<span class="ln" id="L424"><a class="lno" href="#L424">424</a>/-- 20:E12, 20:B8 — clause (ii) of the shell theorem, no axioms: every readout lies on the trace-one line, its</span>
+<span class="ln" id="L425"><a class="lno" href="#L425">425</a>real part is the half-turn `2⁻¹ = 2κ + 1`, and `θ ↦ z(θ)` is injective. -/</span>
+<span class="ln decl" id="FRC.Rh.Ext.readout_on_line"><a class="lno" href="#FRC.Rh.Ext.readout_on_line">426</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcCore/Rh.lean#L426" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small ok" src="../lean-ok.png" alt="" title="no axioms">theorem readout_on_line (F : Frame p κ g) (θ : Shell p) :</span>
+<span class="ln" id="L427"><a class="lno" href="#L427">427</a>    trace (readout κ θ) = 1 ∧ (readout κ θ).re = ofNat (2 * κ + 1) ∧</span>
+<span class="ln" id="L428"><a class="lno" href="#L428">428</a>    ∀ θ&#x27; : Shell p, readout κ θ = readout κ θ&#x27; → θ = θ&#x27; := by</span>
+<span class="ln" id="L429"><a class="lno" href="#L429">429</a>  refine ⟨(critical_line F (readout κ θ)).2.2 θ, rfl, fun θ&#x27; h =&gt; im_congr h⟩</span>
+<span class="ln" id="L430"><a class="lno" href="#L430">430</a></span>
+<span class="ln" id="L431"><a class="lno" href="#L431">431</a>/-- 20:E12 — the slot index of a nontrivial slot: for `1 ≤ k ≤ p − 2` the index `θ = Φ(k) = −g^k` is neither</span>
+<span class="ln" id="L432"><a class="lno" href="#L432">432</a>`0` (the centre `2⁻¹`) nor `−1` (the full-cycle exponent), on every shell and with no axioms. -/</span>
+<span class="ln decl" id="FRC.Rh.Ext.readout_slot_index"><a class="lno" href="#FRC.Rh.Ext.readout_slot_index">433</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcCore/Rh.lean#L433" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small ok" src="../lean-ok.png" alt="" title="no axioms">theorem readout_slot_index (F : Frame p κ g) (k : Nat) (hk1 : 1 ≤ k) (hk2 : k ≤ p - 2) :</span>
+<span class="ln" id="L434"><a class="lno" href="#L434">434</a>    -(g ^ k) ≠ 0 ∧ -(g ^ k) ≠ -1 := by</span>
+<span class="ln" id="L435"><a class="lno" href="#L435">435</a>  refine ⟨fun h =&gt; F.pow_ne_zero k ?_, fun h =&gt; ?_⟩</span>
+<span class="ln" id="L436"><a class="lno" href="#L436">436</a>  · calc g ^ k = - -(g ^ k) := (neg_neg _).symm</span>
+<span class="ln" id="L437"><a class="lno" href="#L437">437</a>      _ = -0 := by rw [h]</span>
+<span class="ln" id="L438"><a class="lno" href="#L438">438</a>      _ = 0 := neg_zero</span>
+<span class="ln" id="L439"><a class="lno" href="#L439">439</a>  · have h1 : g ^ k = 1 := by</span>
+<span class="ln" id="L440"><a class="lno" href="#L440">440</a>      calc g ^ k = - -(g ^ k) := (neg_neg _).symm</span>
+<span class="ln" id="L441"><a class="lno" href="#L441">441</a>        _ = - -1 := by rw [h]</span>
+<span class="ln" id="L442"><a class="lno" href="#L442">442</a>        _ = 1 := neg_neg 1</span>
+<span class="ln" id="L443"><a class="lno" href="#L443">443</a>    have hmod := F.mod_eq_zero_of_pow_eq_one h1</span>
+<span class="ln" id="L444"><a class="lno" href="#L444">444</a>    have hlt : k &lt; p - 1 :=</span>
+<span class="ln" id="L445"><a class="lno" href="#L445">445</a>      Nat.lt_of_le_of_lt hk2 (Nat.pred_lt (Nat.ne_of_gt F.n_pos))</span>
+<span class="ln" id="L446"><a class="lno" href="#L446">446</a>    rw [FRC.Nat.mod_eq_of_lt hlt] at hmod</span>
+<span class="ln" id="L447"><a class="lno" href="#L447">447</a>    exact Nat.not_succ_le_zero 0 (by rw [hmod] at hk1; exact hk1)</span>
+<span class="ln" id="L448"><a class="lno" href="#L448">448</a></span>
+<span class="ln" id="L449"><a class="lno" href="#L449">449</a>/-- 20:B8 — the energy on the critical line: `N(2⁻¹ + bη) = (2⁻¹)² − νb²`, with `2 · 2⁻¹ = 1`. -/</span>
+<span class="ln decl" id="FRC.Rh.Ext.norm_on_line"><a class="lno" href="#FRC.Rh.Ext.norm_on_line">450</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcCore/Rh.lean#L450" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small ok" src="../lean-ok.png" alt="" title="no axioms">theorem norm_on_line (F : Frame p κ g) (ν : Shell p) (z : Ext p) (hz : z.re = ofNat (2 * κ + 1)) :</span>
+<span class="ln" id="L451"><a class="lno" href="#L451">451</a>    norm ν z = ofNat (2 * κ + 1) * ofNat (2 * κ + 1) + -(ν * (z.im * z.im)) ∧</span>
+<span class="ln" id="L452"><a class="lno" href="#L452">452</a>    (2 : Shell p) * ofNat (2 * κ + 1) = 1 := by</span>
+<span class="ln" id="L453"><a class="lno" href="#L453">453</a>  refine ⟨?_, (half_inverse F).1⟩</span>
+<span class="ln" id="L454"><a class="lno" href="#L454">454</a>  show z.re * z.re + -(ν * (z.im * z.im)) = _</span>
+<span class="ln" id="L455"><a class="lno" href="#L455">455</a>  rw [hz]</span>
+<span class="ln" id="L456"><a class="lno" href="#L456">456</a></span>
+<span class="ln" id="L457"><a class="lno" href="#L457">457</a>/-- 20:B6 — the quarter-turn `i = −g^κ`, as the element `i + 0η`, is fixed by conjugation and lies off the</span>
+<span class="ln" id="L458"><a class="lno" href="#L458">458</a>circle: `N(i) = i² = −1 ≠ 1`. -/</span>
+<span class="ln decl" id="FRC.Rh.Ext.quarter_turn_off_circle"><a class="lno" href="#FRC.Rh.Ext.quarter_turn_off_circle">459</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcCore/Rh.lean#L459" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small ok" src="../lean-ok.png" alt="" title="no axioms">theorem quarter_turn_off_circle (F : Frame p κ g) (ν : Shell p) :</span>
+<span class="ln" id="L460"><a class="lno" href="#L460">460</a>    conj ⟨quarterTurn g κ, 0⟩ = ⟨quarterTurn g κ, 0⟩ ∧ norm ν ⟨quarterTurn g κ, 0⟩ = -1 ∧</span>
+<span class="ln" id="L461"><a class="lno" href="#L461">461</a>    norm ν ⟨quarterTurn g κ, 0⟩ ≠ 1 := by</span>
+<span class="ln" id="L462"><a class="lno" href="#L462">462</a>  have hn : norm ν ⟨quarterTurn g κ, 0⟩ = -1 := by</span>
+<span class="ln" id="L463"><a class="lno" href="#L463">463</a>    show quarterTurn g κ * quarterTurn g κ + -(ν * (0 * 0)) = -1</span>
+<span class="ln" id="L464"><a class="lno" href="#L464">464</a>    rw [F.quarter_turn_sq, zero_mul, mul_zero, neg_zero, add_zero]</span>
+<span class="ln" id="L465"><a class="lno" href="#L465">465</a>  refine ⟨ext rfl neg_zero, hn, fun h =&gt; ?_⟩</span>
+<span class="ln" id="L466"><a class="lno" href="#L466">466</a>  rw [hn] at h</span>
+<span class="ln" id="L467"><a class="lno" href="#L467">467</a>  exact F.one_ne_zero (F.eq_zero_of_eq_neg h.symm)</span>
+<span class="ln" id="L468"><a class="lno" href="#L468">468</a></span>
+<span class="ln" id="L469"><a class="lno" href="#L469">469</a>end frame</span>
+<span class="ln" id="L470"><a class="lno" href="#L470">470</a></span>
+<span class="ln" id="L471"><a class="lno" href="#L471">471</a>/-- 20:B6 [value] — on `𝔽₁₃(√2)` (`2` a nonsquare mod `13`): the norm-one circle has `13 + 1 = 14` points</span>
+<span class="ln" id="L472"><a class="lno" href="#L472">472</a>among the `169` elements, and Frobenius `z ↦ z^{13}` is conjugation on every element. -/</span>
+<span class="ln decl" id="FRC.Rh.Ext.circle13"><a class="lno" href="#FRC.Rh.Ext.circle13">473</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcCore/Rh.lean#L473" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small ok" src="../lean-ok.png" alt="" title="no axioms">theorem circle13 :</span>
+<span class="ln" id="L474"><a class="lno" href="#L474">474</a>    natCount (fun k =&gt; norm (2 : Shell 13) ⟨ofNat (k / 13), ofNat (k % 13)⟩ = 1) 169 = 14 ∧</span>
+<span class="ln" id="L475"><a class="lno" href="#L475">475</a>    (∀ k, k &lt; 169 → pow (2 : Shell 13) ⟨ofNat (k / 13), ofNat (k % 13)⟩ 13 =</span>
+<span class="ln" id="L476"><a class="lno" href="#L476">476</a>      conj ⟨ofNat (k / 13), ofNat (k % 13)⟩) ∧</span>
+<span class="ln" id="L477"><a class="lno" href="#L477">477</a>    (∀ x : Nat, x &lt; 13 → 0 &lt; x → (ofNat x : Shell 13) * ofNat x ≠ 2) := by decide +kernel</span>
+<span class="ln" id="L478"><a class="lno" href="#L478">478</a></span>
+<span class="ln" id="L479"><a class="lno" href="#L479">479</a>end Ext</span>
+<span class="ln" id="L480"><a class="lno" href="#L480">480</a></span>
+<span class="ln" id="L481"><a class="lno" href="#L481">481</a>/-! ## Frame coincidence below the horizon (20:B2) -/</span>
+<span class="ln" id="L482"><a class="lno" href="#L482">482</a></span>
+<span class="ln" id="L483"><a class="lno" href="#L483">483</a>section coincidence</span>
+<span class="ln" id="L484"><a class="lno" href="#L484">484</a></span>
+<span class="ln decl" id="FRC.Rh.le_mul_self"><a class="lno" href="#FRC.Rh.le_mul_self">485</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcCore/Rh.lean#L485" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small ok" src="../lean-ok.png" alt="" title="no axioms">theorem le_mul_self : ∀ H : Nat, H ≤ H * H</span>
+<span class="ln" id="L486"><a class="lno" href="#L486">486</a>  | 0 =&gt; Nat.le_refl 0</span>
+<span class="ln" id="L487"><a class="lno" href="#L487">487</a>  | H + 1 =&gt; by</span>
+<span class="ln" id="L488"><a class="lno" href="#L488">488</a>    show H + 1 ≤ (H + 1) * H + (H + 1)</span>
+<span class="ln" id="L489"><a class="lno" href="#L489">489</a>    exact Nat.le_add_left (H + 1) ((H + 1) * H)</span>
+<span class="ln" id="L490"><a class="lno" href="#L490">490</a></span>
+<span class="ln" id="L491"><a class="lno" href="#L491">491</a>/-- 20:B2 — below the horizon the reading is frame-exact: on any shell with `H² &lt; p`, a residue `m ≤ H` is</span>
+<span class="ln" id="L492"><a class="lno" href="#L492">492</a>the integer `m`, and the product of two window residues reads back as the integer product. -/</span>
+<span class="ln decl" id="FRC.Rh.window_readback"><a class="lno" href="#FRC.Rh.window_readback">493</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcCore/Rh.lean#L493" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small ok" src="../lean-ok.png" alt="" title="no axioms">theorem window_readback {H : Nat} (hH : H * H &lt; p) :</span>
+<span class="ln" id="L494"><a class="lno" href="#L494">494</a>    (∀ m, m ≤ H → (ofNat m : Shell p).val = m) ∧</span>
+<span class="ln" id="L495"><a class="lno" href="#L495">495</a>    ∀ a b, a ≤ H → b ≤ H → (ofNat a * ofNat b : Shell p).val = a * b := by</span>
+<span class="ln" id="L496"><a class="lno" href="#L496">496</a>  have hlt : ∀ m, m ≤ H → m &lt; p := fun m hm =&gt;</span>
+<span class="ln" id="L497"><a class="lno" href="#L497">497</a>    Nat.lt_of_le_of_lt (Nat.le_trans hm (le_mul_self H)) hH</span>
+<span class="ln" id="L498"><a class="lno" href="#L498">498</a>  refine ⟨fun m hm =&gt; by rw [val_ofNat, FRC.Nat.mod_eq_of_lt (hlt m hm)], fun a b ha hb =&gt; ?_⟩</span>
+<span class="ln" id="L499"><a class="lno" href="#L499">499</a>  rw [ofNat_mul, val_ofNat, FRC.Nat.mod_eq_of_lt (Nat.lt_of_le_of_lt (Nat.mul_le_mul ha hb) hH)]</span>
+<span class="ln" id="L500"><a class="lno" href="#L500">500</a></span>
+<span class="ln" id="L501"><a class="lno" href="#L501">501</a>/-- 20:B2 — primality equals irreducibility in the window: for `m ≤ H` on a shell with `H² &lt; p`, `m` factors</span>
+<span class="ln" id="L502"><a class="lno" href="#L502">502</a>as `a · b` with `2 ≤ a, b ≤ H` read on the shell exactly when it factors so as an integer. The statement is the</span>
+<span class="ln" id="L503"><a class="lno" href="#L503">503</a>same on every shell above the window — the Subject `𝔽_p` and the Carrier `𝔽_Ω` read the same primes. -/</span>
+<span class="ln decl" id="FRC.Rh.factorisation_iff"><a class="lno" href="#FRC.Rh.factorisation_iff">504</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcCore/Rh.lean#L504" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small ok" src="../lean-ok.png" alt="" title="no axioms">theorem factorisation_iff {H : Nat} (hH : H * H &lt; p) (m : Nat) (hm : m ≤ H) :</span>
+<span class="ln" id="L505"><a class="lno" href="#L505">505</a>    (∃ a b, 2 ≤ a ∧ 2 ≤ b ∧ a ≤ H ∧ b ≤ H ∧ (ofNat a * ofNat b : Shell p) = ofNat m) ↔</span>
+<span class="ln" id="L506"><a class="lno" href="#L506">506</a>    ∃ a b, 2 ≤ a ∧ 2 ≤ b ∧ a * b = m := by</span>
+<span class="ln" id="L507"><a class="lno" href="#L507">507</a>  have hrb := window_readback (p := p) hH</span>
+<span class="ln" id="L508"><a class="lno" href="#L508">508</a>  constructor</span>
+<span class="ln" id="L509"><a class="lno" href="#L509">509</a>  · intro h</span>
+<span class="ln" id="L510"><a class="lno" href="#L510">510</a>    match h with</span>
+<span class="ln" id="L511"><a class="lno" href="#L511">511</a>    | ⟨a, b, ha, hb, haH, hbH, e⟩ =&gt;</span>
+<span class="ln" id="L512"><a class="lno" href="#L512">512</a>      refine ⟨a, b, ha, hb, ?_⟩</span>
+<span class="ln" id="L513"><a class="lno" href="#L513">513</a>      have := val_injective e</span>
+<span class="ln" id="L514"><a class="lno" href="#L514">514</a>      rw [hrb.2 a b haH hbH, hrb.1 m hm] at this</span>
+<span class="ln" id="L515"><a class="lno" href="#L515">515</a>      exact this</span>
+<span class="ln" id="L516"><a class="lno" href="#L516">516</a>  · intro h</span>
+<span class="ln" id="L517"><a class="lno" href="#L517">517</a>    match h with</span>
+<span class="ln" id="L518"><a class="lno" href="#L518">518</a>    | ⟨a, b, ha, hb, e⟩ =&gt;</span>
+<span class="ln" id="L519"><a class="lno" href="#L519">519</a>      have hm&#x27; : a * b ≤ H := by rw [e]; exact hm</span>
+<span class="ln" id="L520"><a class="lno" href="#L520">520</a>      have haab : a ≤ a * b := by</span>
+<span class="ln" id="L521"><a class="lno" href="#L521">521</a>        have := Nat.mul_le_mul_left a (Nat.le_trans (Nat.le_succ 1) hb)</span>
+<span class="ln" id="L522"><a class="lno" href="#L522">522</a>        rw [Nat.mul_one] at this; exact this</span>
+<span class="ln" id="L523"><a class="lno" href="#L523">523</a>      have hbab : b ≤ a * b := by</span>
+<span class="ln" id="L524"><a class="lno" href="#L524">524</a>        have := Nat.mul_le_mul_right b (Nat.le_trans (Nat.le_succ 1) ha)</span>
+<span class="ln" id="L525"><a class="lno" href="#L525">525</a>        rw [Nat.one_mul] at this; exact this</span>
+<span class="ln" id="L526"><a class="lno" href="#L526">526</a>      exact ⟨a, b, ha, hb, Nat.le_trans haab hm&#x27;, Nat.le_trans hbab hm&#x27;, by rw [ofNat_mul, e]⟩</span>
+<span class="ln" id="L527"><a class="lno" href="#L527">527</a></span>
+<span class="ln" id="L528"><a class="lno" href="#L528">528</a>/-- 20:B2 — frame coincidence: on the Subject `𝔽_p` and the Carrier `𝔽_Ω`, both above the window `H² &lt; p`,</span>
+<span class="ln" id="L529"><a class="lno" href="#L529">529</a>`H² &lt; Ω`, a window residue factors on one shell exactly when it factors on the other. -/</span>
+<span class="ln decl" id="FRC.Rh.frame_coincidence"><a class="lno" href="#FRC.Rh.frame_coincidence">530</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcCore/Rh.lean#L530" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small ok" src="../lean-ok.png" alt="" title="no axioms">theorem frame_coincidence {Ω : Nat} [Pos Ω] {H : Nat} (hp : H * H &lt; p) (hΩ : H * H &lt; Ω) (m : Nat) (hm : m ≤ H) :</span>
+<span class="ln" id="L531"><a class="lno" href="#L531">531</a>    (∃ a b, 2 ≤ a ∧ 2 ≤ b ∧ a ≤ H ∧ b ≤ H ∧ (ofNat a * ofNat b : Shell p) = ofNat m) ↔</span>
+<span class="ln" id="L532"><a class="lno" href="#L532">532</a>    (∃ a b, 2 ≤ a ∧ 2 ≤ b ∧ a ≤ H ∧ b ≤ H ∧ (ofNat a * ofNat b : Shell Ω) = ofNat m) :=</span>
+<span class="ln" id="L533"><a class="lno" href="#L533">533</a>  (factorisation_iff hp m hm).trans (factorisation_iff hΩ m hm).symm</span>
+<span class="ln" id="L534"><a class="lno" href="#L534">534</a></span>
+<span class="ln" id="L535"><a class="lno" href="#L535">535</a>end coincidence</span>
+<span class="ln" id="L536"><a class="lno" href="#L536">536</a></span>
+<span class="ln" id="L537"><a class="lno" href="#L537">537</a>/-! ## The laboratory pair (20:B1) -/</span>
+<span class="ln" id="L538"><a class="lno" href="#L538">538</a></span>
+<span class="ln" id="L539"><a class="lno" href="#L539">539</a>/-- 20:B1 [value] — the pair `(13, 233)`: nested, `13² &lt; 233`; both cycles carry the quarter-turn core</span>
+<span class="ln" id="L540"><a class="lno" href="#L540">540</a>(`4 ∣ 12`, `4 ∣ 232`; `5² = −1` on `𝔽₁₃`, `89² = −1` on `𝔽₂₃₃`) and share nothing else (`3 ∤ 232`, so</span>
+<span class="ln" id="L541"><a class="lno" href="#L541">541</a>`gcd(12, 232) = 4`); the Carrier&#x27;s cycle does not project onto the Subject&#x27;s (`12 ∤ 232`); the horizon window</span>
+<span class="ln" id="L542"><a class="lno" href="#L542">542</a>`H = 3` is wrap-free on both (`9 &lt; 13`, `9 &lt; 233`). -/</span>
+<span class="ln decl" id="FRC.Rh.lab_pair"><a class="lno" href="#FRC.Rh.lab_pair">543</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcCore/Rh.lean#L543" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small ok" src="../lean-ok.png" alt="" title="no axioms">theorem lab_pair :</span>
+<span class="ln" id="L544"><a class="lno" href="#L544">544</a>    13 * 13 &lt; 233 ∧ 12 % 4 = 0 ∧ 232 % 4 = 0 ∧ 232 % 3 ≠ 0 ∧ (5 : Shell 13) * 5 = -1 ∧</span>
+<span class="ln" id="L545"><a class="lno" href="#L545">545</a>    (89 : Shell 233) * 89 = -1 ∧ 232 % 12 ≠ 0 ∧ 3 * 3 &lt; 13 ∧ 3 * 3 &lt; 233 := by decide</span>
+<span class="ln" id="L546"><a class="lno" href="#L546">546</a></span>
+<span class="ln" id="L547"><a class="lno" href="#L547">547</a>end FRC.Rh</span>
+<span class="ln" id="L548"><a class="lno" href="#L548">548</a></span>
 </pre></main>
 </div>
 </body>
