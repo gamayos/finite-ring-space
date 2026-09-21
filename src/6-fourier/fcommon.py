@@ -5,8 +5,8 @@ fcommon.py — shared primitives for the 6-fourier validation package
 (Akhtman, 2026), validation package of the FRC corpus (finite-ring-space/src/6-fourier).
 
 Each check names the row(s) of the paper's predicate ledger it witnesses (LEDGER below; rows cited as
-6:XN), and the ledger's source column cites the check ids; the paper \\label(s) a check decides are in the
-block docstrings. Three master-ledger rows of the corpus (00:C2, 00:C14, 00:C7) are reached through the
+6:XN), and the ledger's source column names the witness script (the check ids are listed on the public
+page from results.json); the paper \\label(s) a check decides are in the block docstrings. Three master-ledger rows of the corpus (00:C2, 00:C14, 00:C7) are reached through the
 paper rows.
 
 Everything the block scripts share:
@@ -34,9 +34,10 @@ SHELLS = [p for p, _, _, _ in TABLE]
 # ----------------------------------------------------------------------------- registry
 RESULTS = []
 
-# The paper's predicate ledger (6-fourier Section "Machine verification and predicate ledger", rows cited as
-# 6:XN): the row(s) each check witnesses. The ledger's source column cites these check ids in return. The
-# paper \label(s) each check decides are listed in the block scripts' docstrings.
+# The paper's predicate ledger (6-fourier Appendix A, "Machine verification and predicate ledger", rows cited as
+# 6:XN): the row(s) each check witnesses. The ledger's source column names the witness script; the public page
+# lists these check ids against the rows. The paper \label(s) each check decides are listed in the block scripts'
+# docstrings.
 LEDGER = {
     "A1": "6:B1", "A2": "6:B2", "A3": "6:B3", "A4": "6:B5", "A5": "6:B6", "A6": "6:B7",
     "B1": "6:C2", "B2": "6:C3", "B3": "6:C3", "B4": "6:C4", "B5": "6:C5", "B6": "6:C6", "B7": "6:C7", "B8": "6:C7",

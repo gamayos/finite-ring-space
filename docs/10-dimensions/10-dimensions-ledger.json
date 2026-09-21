@@ -355,7 +355,7 @@
      "label": "V5",
      "predicate": "Lean, two libraries: \\texttt{lean/FrcLedger/Dimensions.lean} (Mathlib, tier~2) proves C2, C3, C5, C6, D1--D3, D6, E2--E5, F2--F4, G1, G2 for every shell and Carrier; \\texttt{lean/FrcCore/Dimensions.lean} (\\emph{no axioms}) proves C2, D1, D2, D6, E4, E5 for every shell and decides E9, G3 and the two Carriers by the kernel, checked on every push.",
      "tag": "T",
-     "source": "\\src{check\\_axioms.py}, \\src{check\\_core\\_axioms.py} \\lean{Dimensions, FRC.Dimensions.flag\\_order\\_four}",
+     "source": "\\src{lean/check\\_axioms.py}, \\src{lean/check\\_core\\_axioms.py} \\lean{Dimensions, FRC.Dimensions.flag\\_order\\_four}",
      "key": "p10045"
     }
    ]

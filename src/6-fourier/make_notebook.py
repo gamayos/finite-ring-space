@@ -9,12 +9,13 @@ def code(s): cells.append({"cell_type": "code", "metadata": {}, "execution_count
 
 md(f"""[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)]({COLAB})
 
-## Finite Ring Cosmology: Scale-Shift and Fractional Fourier Transform as Rotations over Finite Holographic Substrate (Akhtman, 2026)
+## Scale-Shift and Fractional Fourier Transform as Rotations over Finite Holographic Substrate (Akhtman, 2026)
 
 **Validation Package.** `finite-ring-space/src/6-fourier` — five block scripts driven by this notebook, 36 checks. Every cell below names the labelled
 statements of the paper it checks (`Theorem`, `Lemma`, `Proposition`, `Remark`, `Corollary`, `Example`, the one `Conjecture`, Table `tab:checks` — by
-their `\\label` as printed in the paper), lists the paper's ledger rows the block witnesses (the paper's Section "Machine verification and predicate
-ledger", rows cited as `6:XN`, 47 rows in blocks A–F, V, O; public copy at `docs/6-fourier/6-fourier-ledger.html`), and gives the master-ledger rows
+their `\\label` as printed in the paper), lists the paper's ledger rows the block witnesses (the paper's Appendix A, "Machine verification and predicate
+ledger", rows cited as `6:XN`, 48 rows in blocks A–F, V, Y; public copy at `docs/6-fourier/6-fourier-ledger.html`; the ledger's source column names
+the witness script, the check ids are listed on the public page from `results.json`), and gives the master-ledger rows
 of the corpus reached through them (`00:C2` scale-shift duality and the fractional Fourier cycle, `00:C14` the quarter-turn as the odd member of the
 ±√−1 pair, `00:C7` the conjugate reframing on the transform layer). The package regenerates the paper's one numerical figure
 (`figures/entropy-cycle-f13`); the framed complex-plane rendering `f13-C` is a drawing, not a computation, and its generator is kept as is.

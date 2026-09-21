@@ -4,10 +4,10 @@ Validation package of *Scale-Shift and Fractional Fourier Transform as Rotations
 Substrate* (Akhtman, 2026), `6-fourier` of the FRC corpus. Five block scripts, 36 checks, one regenerated
 figure, driven by `6-fourier-main.ipynb` (Google Colab, *Runtime → Run all*, ≈ 10 s) or by `run_all.py`.
 
-Every check names the row(s) of the paper's predicate ledger it witnesses (the paper's Section "Machine verification
-and predicate ledger", 47 rows in blocks A–F, V, O, cited as `6:XN`; public copy `docs/6-fourier/6-fourier-ledger.html`),
-and the ledger's source column cites the check ids in return; the paper `\label`(s) each check decides are in the block
-docstrings. Three master-ledger rows of the corpus are reached through the paper rows (`00:C2`, `00:C14`, `00:C7`).
+Every check names the row(s) of the paper's predicate ledger it witnesses (the paper's Appendix A, "Machine verification
+and predicate ledger", 48 rows in blocks A–F, V, Y, cited as `6:XN`; public copy `docs/6-fourier/6-fourier-ledger.html`),
+and the ledger's source column names the witness script of each machine-verified row (the check ids are listed on the
+public page from `results.json`); the paper `\label`(s) each check decides are in the block docstrings. Three master-ledger rows of the corpus are reached through the paper rows (`00:C2`, `00:C14`, `00:C7`).
 
 [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/gamayos/finite-ring-space/blob/main/src/6-fourier/6-fourier-main.ipynb)
 
@@ -56,7 +56,8 @@ and raises on any failure. Committed executed, with outputs.
 | B2, B3 | 6:C3 (00:C2) | C4, C5 | 6:D4 (00:C2) | E2, E3 | 6:F3 |
 | B4 | 6:C4 | | | E4 … E7 | 6:F4 … 6:F7 |
 
-Rows B4, C1, D3, D6, E1, E4, F1 are definitions, A1–A7 imports, V1–V3 the verification rows, O1 the open conjecture.
+Rows B4, C1, D3, D6, E1, E4, F1 are definitions, A1–A7 imports, V1–V4 the verification rows (V4 the two Lean libraries,
+gated by `lean/check_axioms.py` and `lean/check_core_axioms.py`), Y1 the hypothesis.
 
 ## Superseded
 
