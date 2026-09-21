@@ -5,7 +5,7 @@
   "script": "validate_newton",
   "label": "the Newtonian layer: the exact lattice Green's function of Z³ (Montroll–Bessel) with 4πr·G(r) → 1 and the O(r⁻²) correction, the r⁻¹ potential (r⁻² force), the locked ensemble coupling as m against the incoherent √m; the spanning-tree admissibility det L_red = τ(C_n) = n (n = 5, 8, 12), the finite solvability predicate",
   "ok": true,
-  "detail": "2 checks, 0.7 s",
+  "detail": "2 checks, 1.4 s",
   "kind": "CHART"
  },
  {
@@ -14,7 +14,7 @@
   "script": "validate_ppn",
   "label": "the relativistic layer: Fermat deflection 4Gm/c²b in the index n = 1 + 2u; β = γ = 1 from the exponential metric; the perihelion factor (2 + 2γ − β)/3 = 1; the static-profile series Gm/r·(1 + (Gm/r²)²/30) — symbolic identities",
   "ok": true,
-  "detail": "1 checks, 0.9 s",
+  "detail": "1 checks, 0.8 s",
   "kind": "EXACT"
  },
  {
@@ -23,7 +23,7 @@
   "script": "validate_branch",
   "label": "the nonlinear completion: the cut-flux law of the full sine model (transfer antisymmetry) — flux through every closed surface equals the enclosed demand to solver precision for one and two sources at strong gradients, the nonlinear deviation scaling as m³ (no m² self-sourcing); symbolically, isotropic Schwarzschild is the exponential reading of ψ = 2 artanh(U/2), ψ non-harmonic, and the Schwarzschild reading violates the composition law R(a+b) = R(a)R(b) the exponential uniquely satisfies",
   "ok": true,
-  "detail": "1 checks, 14.0 s",
+  "detail": "1 checks, 42.2 s",
   "kind": "CHART"
  },
  {
@@ -41,7 +41,7 @@
   "script": "fierz_pauli_uniqueness",
   "label": "uniqueness: by the symbol/transversality method the discrete Fierz–Pauli functional is the unique adjacency-local gauge functional on the shell in the (3+1) signature — the rank-2 analogue of Maxwell uniqueness",
   "ok": true,
-  "detail": "10 checks, 0.3 s",
+  "detail": "10 checks, 1.1 s",
   "kind": "EXACT"
  },
  {
@@ -50,7 +50,7 @@
   "script": "validate_radiative",
   "label": "the radiative sector: the quarter-turn conjugate momentum makes the dynamics Hamiltonian, χü = κΔu; channel unity gives c_g² = κ/χ = c²; the Fierz–Pauli field carries two transverse-traceless polarisations of helicity ±2; the dispersion relation, the long-wave speed, TT rank 2, no mode doubling (Nyquist); the symbol even in k, on the continuum form and on C₁₃",
   "ok": true,
-  "detail": "2 checks, 0.1 s",
+  "detail": "2 checks, 0.3 s",
   "kind": "EXACT"
  },
  {
@@ -68,7 +68,7 @@
   "script": "validate_strongfield",
   "label": "the strong field: the slip-core boundary r* = √(Gm); the photon sphere r_ph = 2Gm with b_c = 2e·Gm (shadow +4.6 %, ringdown −4.4 %); the ISCO at r = (3 + √5)Gm with accretion efficiency 5.48 % against Schwarzschild's 5.72 % and Gm·Ω/c³ = 0.0633 (0.931×); r_f = r_s/ln Ω, S/S_BH = ln⁻²Ω, the echo delay factor Ω/ln²Ω; Sgr A*/M87* angular diameters 53.3 → 55.7 µas, 39.7 → 41.5 µas [approx]",
   "ok": true,
-  "detail": "1 checks, 0.4 s",
+  "detail": "1 checks, 2.0 s",
   "kind": "CHART"
  },
  {
@@ -131,7 +131,7 @@
   "script": "validate_defect",
   "label": "the projection defect on dev shells: cycle-quotient closure exact (defect 1); windowed registration accumulating exactly the wrap count; K_S = P U_C P contractive on a non-invariant sector while U_C is a permutation of finite order; on the odd-character space of C₁₂ the antisymmetric currents are spanned by odd harmonics with the sine mode the unique minimal degree — the minimal-degree condition a declared realisation",
   "ok": true,
-  "detail": "9 checks, 0.0 s",
+  "detail": "9 checks, 0.2 s",
   "kind": "EXACT"
  },
  {
@@ -149,7 +149,7 @@
   "script": "validate_fluxnoise",
   "label": "flux conservation under noise: a driven, pinned Kuramoto chain in the statistically stationary regime — the time-averaged transport through every link equals the source demand with and without drive noise (seeded simulation)",
   "ok": true,
-  "detail": "1 checks, 3.3 s",
+  "detail": "1 checks, 13.2 s",
   "kind": "SIM"
  },
  {
@@ -158,7 +158,7 @@
   "script": "validate_2pn",
   "label": "the 2PN inputs: the isotropic-gauge deviations of the exponential metric from Schwarzschild, δA = U³/6 in −g₀₀ and δB = U²/2 in g_ij, certified term by term; the test-particle periastron excess π(GM/c²p)²(2 + e²/2) from the matched-invariant orbit equation (δc₂, δc₃ and their apsidal sum); for PSR J0737−3039 the fractional excess ≈ 1.5 × 10⁻⁶ [chart]",
   "ok": true,
-  "detail": "8 checks, 0.1 s",
+  "detail": "8 checks, 0.3 s",
   "kind": "EXACT"
  },
  {
@@ -167,7 +167,7 @@
   "script": "validate_1pn_eih",
   "label": "the 1PN equivalence lemma: through first post-Newtonian order the two-body metric coefficients A to O(U²) and B to O(U) coincide with GR's isotropic form on the superposed potential U₁ + U₂, cross term included — the Einstein–Infeld–Hoffmann sector shared exactly; the 2PN ν-sector left open",
   "ok": true,
-  "detail": "3 checks, 0.1 s",
+  "detail": "3 checks, 0.2 s",
   "kind": "EXACT"
  },
  {
@@ -176,7 +176,7 @@
   "script": "validate_binding",
   "label": "binding bookkeeping decided in exact arithmetic on the torus Z_N³: superposition exact (no O(G²) term); the far-field cut flux around a bound pair equals m₁ + m₂ exactly (substrate winding sources); the interaction energy exactly bilinear; the binding defect m₁(1 − u₂(a)) a registered-clock identity — hence η_Nordtvedt = 0 with the two-shift cancellation",
   "ok": true,
-  "detail": "5 checks, 1.1 s",
+  "detail": "5 checks, 2.7 s",
   "kind": "EXACT"
  },
  {

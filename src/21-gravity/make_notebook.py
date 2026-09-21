@@ -28,8 +28,12 @@ md(f"""[![Open In Colab](https://colab.research.google.com/assets/colab-badge.sv
 family check is one script's verdict (`grav.<stem>`), its micro-checks the script's labelled checks and every PASS/FAIL line it
 prints; each family names the row(s) of the paper's predicate ledger it witnesses (the paper's Section "Status", subsection
 "Predicate ledger", rows cited as `21:XN`; public copy at `docs/21-gravity/21-gravity-ledger.html`), and the ledger's source column
-cites the family ids in return. Master-ledger rows of the corpus reached through the paper rows: `00:L1`, `00:D5`, `00:L7`, `00:C21`,
-`00:E4`, `00:E7`, `00:Z7`.
+cites the family ids in return. Where a row is proved in Lean (`lean/FrcCore/Gravity.lean` with no axioms, or
+`lean/FrcLedger/Gravity.lean` on Mathlib — the Carrier register, the count face and the merger law, the cover forcing, the operational
+cut and the photon sphere, the registration root and the crossover's limits, the shift theorem, with the shadow, ringdown, efficiency,
+floor, tilt and interpolant numerals bracketed), the check here is the instance the reader can run. Master-ledger rows of the corpus
+reached through the paper rows: `00:A9`, `00:D1`, `00:D3`, `00:D5`, `00:B7`, `00:E1`, `00:D15`, `00:E3`–`00:E7`, `00:E10`, `00:L1`,
+`00:L7`, `00:L8`, `00:T1`, `00:T4`, `00:T5`, `00:Z7`.
 
 **Kinds.** `EXACT`: decidable identities over finite fields, exact rationals or symbolic identities, no tolerance in the verdict.
 `CHART`: a continuum reading or a comparison with measured data, tagged [approx]/[data] in the script, verdict by stated tolerance.

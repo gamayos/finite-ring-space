@@ -634,3 +634,14 @@
 'FRC.Entropy.carrierLab_prime' does not depend on any axioms
 'FRC.Entropy.capacity_axis' does not depend on any axioms
 'FRC.Entropy.lab_nesting' does not depend on any axioms
+'FRC.Gravity.ofNat_mul' does not depend on any axioms
+'FRC.Gravity.ofNat_add' does not depend on any axioms
+'FRC.Gravity.ofNat_p' does not depend on any axioms
+'FRC.Gravity.calibration' does not depend on any axioms
+'FRC.Gravity.newton_residue' does not depend on any axioms
+'FRC.Gravity.hbar_root' does not depend on any axioms
+'FRC.Gravity.count_identity' does not depend on any axioms
+'FRC.Gravity.two_face_count' does not depend on any axioms
+'FRC.Gravity.register13_17' does not depend on any axioms
+'FRC.Gravity.merger_instance' does not depend on any axioms
+'FRC.Gravity.lab_register' does not depend on any axioms

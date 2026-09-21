@@ -8,8 +8,12 @@ checks and every PASS/FAIL line it prints; an exception or a nonzero exit fails 
 sympy (mpmath); matplotlib for the figure scripts.
 
 Every family names the row(s) of the paper's predicate ledger it witnesses (the paper's Section "Status", subsection
-"Predicate ledger", 59 rows in blocks A, B, C, X, P, V, Z, cited as `21:XN`; public copy
-`docs/21-gravity/21-gravity-ledger.html`); the ledger's source column cites the family ids in return. Master-ledger
+"Predicate ledger", 60 rows in blocks A, B, C, X, P, V, Z, cited as `21:XN`; public copy
+`docs/21-gravity/21-gravity-ledger.html`); the ledger's source column cites the family ids in return. Where a row is
+proved in Lean (`lean/FrcCore/Gravity.lean` with no axioms, or `lean/FrcLedger/Gravity.lean` on Mathlib — the Carrier
+register, the count face and the merger law, the cover forcing, the operational cut and the photon sphere, the
+registration root and the crossover's limits, the shift theorem, with the shadow, ringdown, efficiency, floor, tilt and
+interpolant numerals bracketed), the check here is the instance the reader can run. Master-ledger
 rows of the corpus reached through the paper rows: `00:A9`, `00:D1`, `00:D3`, `00:D5`, `00:B7`, `00:E1`, `00:D15`, `00:E3`–`00:E7`,
 `00:E10`, `00:L1`, `00:L7`, `00:L8`, `00:T1`, `00:T4`, `00:T5`, `00:Z7`.
 
@@ -66,6 +70,6 @@ open (master row T4).
 
 ## Predicate ledger
 
-Rows A1–A9 imports; B1–B6 realisations; C1–C25 derived (C13–C19 composite T|R); X1–X8 the explanation register;
-P1–P7 the predictions (P7 the former P1′); V1–V3 the verification; Z1 the Ω-hard running of a₀. Family → rows:
-`gravcommon.LEDGER`.
+Rows A1–A9 imports; B1–B6 realisations; C1–C23, C25 derived (C24 retired 17 Sep 2026; C13–C19 composite T|R); X1–X8 the
+explanation register; P1–P8 the predictions (P7 the former P1′, P8 the primordial tilt, 17 Sep 2026); V1–V4 the
+verification (V4 the two Lean libraries, 20 Sep 2026); Z1 the Ω-hard running of a₀. Family → rows: `gravcommon.LEDGER`.
