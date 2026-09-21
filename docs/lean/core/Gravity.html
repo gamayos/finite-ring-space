@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-HNE3RMJ5L1"></script>
+<script> window.dataLayer = window.dataLayer || []; function gtag(){dataLayer.push(arguments);} gtag('js', new Date()); gtag('config', 'G-HNE3RMJ5L1'); </script>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Gravity.lean — FrcCore</title>
+<meta name="description" content="The Lean module FrcCore/Gravity of the FRC predicate ledgers, rendered with an anchor per declaration">
+<meta name="author" content="Yosef Akhtman">
+<link rel="icon" href="../../frc-logo-fav.png">
+<link rel="stylesheet" href="../../style.css">
+
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <h1>Gravity.lean — FrcCore</h1>
+    
+    <nav><a href="../../index.html">Home</a><a href="../../publications.html">Publications</a><a href="../../00-ledger.html">Ledger</a><a href="../../predictions.html">Predictions</a><a href="../../explicability.html">Explicability</a></nav>
+  </header>
+<main id="ledger-main"><section class="prose"><p>The core module <code>lean/FrcCore/Gravity.lean</code> — the substrate from first principles, no Mathlib, no axioms (the modules in order: <a href="Nat.html">Nat</a>, <a href="Pigeonhole.html">Pigeonhole</a>, <a href="Shell.html">Shell</a>, <a href="Frame.html">Frame</a>, <a href="Orbit.html">Orbit</a>, <a href="Sum.html">Sum</a>, <a href="Meridian.html">Meridian</a>, <a href="Algebra.html">Algebra</a>, <a href="Epi.html">Epi</a>, <a href="Dimensions.html">Dimensions</a>, <a href="Poly.html">Poly</a>, <a href="Quaternion.html">Quaternion</a>, <a href="Causality.html">Causality</a>, <a href="Representation.html">Representation</a>, <a href="Reductio.html">Reductio</a>, <a href="Geometry.html">Geometry</a>, <a href="Complex.html">Complex</a>, <a href="Instances.html">Instances</a>, <a href="Rh.html">Rh</a>, <a href="Entropy.html">Entropy</a>, <a href="Dirac.html">Dirac</a>, <a href="Gravity.html">Gravity</a>): 11 theorems (0 definitions): 11 with no axioms (green), 0 at tier 1 (teal: <code>propext</code>, <code>Quot.sound</code>), 0 at tier 2 (amber: <code>Classical.choice</code>), 0 red; the small plain glyph marks a definition (no proof, no axioms; on the ledger pages the plain glyph is instead a module cited as a whole). Each declaration is anchored; the ledger rows cite them by name. <a href="https://live.lean-lang.org/#project=lean-v4.34.0&url=https://raw.githubusercontent.com/gamayos/finite-ring-space/main/lean/web/FrcCore.lean" target="_blank" rel="noopener">▶ open in the Lean web editor</a> · <a href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcCore/Gravity.lean" target="_blank" rel="noopener">on GitHub</a> · <a href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcCore/axioms.log" target="_blank" rel="noopener">axioms.log</a> · <a href="https://github.com/gamayos/finite-ring-space/actions/workflows/lean.yml" target="_blank" rel="noopener">CI</a>.</p></section><pre class="lean"><span class="ln" id="L1"><a class="lno" href="#L1">1</a>import FrcCore.Frame</span>
+<span class="ln" id="L2"><a class="lno" href="#L2">2</a>import FrcCore.Entropy</span>
+<span class="ln" id="L3"><a class="lno" href="#L3">3</a>import FrcCore.Instances</span>
+<span class="ln" id="L4"><a class="lno" href="#L4">4</a></span>
+<span class="ln" id="L5"><a class="lno" href="#L5">5</a>/-!</span>
+<span class="ln" id="L6"><a class="lno" href="#L6">6</a># 21-gravity — the Carrier register and the count face on every frame, no axioms</span>
+<span class="ln" id="L7"><a class="lno" href="#L7">7</a></span>
+<span class="ln" id="L8"><a class="lno" href="#L8">8</a>The finite content of *Gravitation as Phase Synchronisation over Finite Holographic Substrate* (tree</span>
+<span class="ln" id="L9"><a class="lno" href="#L9">9</a>`21-gravity-20260623`) from first principles. On every frame `(τ; 0, 1, g)` of capacity `κ` (`p = 4κ + 1`):</span>
+<span class="ln" id="L10"><a class="lno" href="#L10">10</a>the calibration congruence `4κ = −1`, `(4κ)² = 1` (C16); the register value of the Newton constant `G = 2κ`</span>
+<span class="ln" id="L11"><a class="lno" href="#L11">11</a>— `2G = −1`, `(−2) G = 1` (the face convention `4π ↦ −2`), the Gauss count `(2 · 4κ) G = 1`, `c² = 2⁻¹ = 2κ + 1`</span>
+<span class="ln" id="L12"><a class="lno" href="#L12">12</a>with `2c² = 1`, and `G = −c²` (C2, C5, C16); the action quantum as a member of the quarter-turn pair,</span>
+<span class="ln" id="L13"><a class="lno" href="#L13">13</a>`ħ = g^κ = −i` (`Frame.quarterTurn g κ = −g^κ`) with `ħ² = −1`, and `ħ = 2r` for the square root `r = g^κ c²` of</span>
+<span class="ln" id="L14"><a class="lno" href="#L14">14</a>the capacity, `r² = κ` (C5). In the count register: the count</span>
+<span class="ln" id="L15"><a class="lno" href="#L15">15</a>face of the area law, `4S + 1 = p²` for `S = κ(4κ + 2)`, `Sp = κA` and `4Sp = A(p − 1)` for `A = p(p + 1)`</span>
+<span class="ln" id="L16"><a class="lno" href="#L16">16</a>(C13); the two-face ratio `κ/S : κ/(2S) = 2` and the fibre product `(p − 1)(Ω − 1) = 4 · 4κS` (A9). Decided</span>
+<span class="ln" id="L17"><a class="lno" href="#L17">17</a>by the kernel: the register on `𝔽₁₃` (`κ = 3`, drive `2`) and `𝔽₁₇` (`κ = 4`, drive `3`), the merger law&#x27;s</span>
+<span class="ln" id="L18"><a class="lno" href="#L18">18</a>instance `27 811 + 1 596 → 29 407` with `ΔA = 88 772 712` (C13), and the laboratory Carrier `Ω = 2 408 561`:</span>
+<span class="ln" id="L19"><a class="lno" href="#L19">19</a>`4S = 2 408 560 = −1`, `(4S)² = 1`, `G = 1 204 280` with `2G = −1`, `(−2) G = 1`, the Gauss count, `ħ = 18 688`</span>
+<span class="ln" id="L20"><a class="lno" href="#L20">20</a>with `ħ² = −1`, `ħ = 2 · 9 344` and `9 344² = S = 602 140` (C2, C5, C16; the residues `c = 171 106` and</span>
+<span class="ln" id="L21"><a class="lno" href="#L21">21</a>`G = −c²` are `Dimensions.carrierLab`). Every declaration is checked to depend on no axiom</span>
+<span class="ln" id="L22"><a class="lno" href="#L22">22</a>(`check_core_axioms.py`).</span>
+<span class="ln" id="L23"><a class="lno" href="#L23">23</a>-/</span>
+<span class="ln" id="L24"><a class="lno" href="#L24">24</a></span>
+<span class="ln" id="L25"><a class="lno" href="#L25">25</a>namespace FRC.Gravity</span>
+<span class="ln" id="L26"><a class="lno" href="#L26">26</a></span>
+<span class="ln" id="L27"><a class="lno" href="#L27">27</a>open FRC.Shell</span>
+<span class="ln" id="L28"><a class="lno" href="#L28">28</a></span>
+<span class="ln" id="L29"><a class="lno" href="#L29">29</a>/-! ## The register on every frame (21:C2, C5, C16) -/</span>
+<span class="ln" id="L30"><a class="lno" href="#L30">30</a>section register</span>
+<span class="ln" id="L31"><a class="lno" href="#L31">31</a></span>
+<span class="ln" id="L32"><a class="lno" href="#L32">32</a>variable {p : Nat} [Pos p] {κ : Nat} {g : Shell p}</span>
+<span class="ln" id="L33"><a class="lno" href="#L33">33</a></span>
+<span class="ln" id="L34"><a class="lno" href="#L34">34</a>/-- Literals multiply and add as their values, in the `ofNat` form. -/</span>
+<span class="ln decl" id="FRC.Gravity.ofNat_mul"><a class="lno" href="#FRC.Gravity.ofNat_mul">35</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcCore/Gravity.lean#L35" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small ok" src="../lean-ok.png" alt="" title="no axioms">theorem ofNat_mul (a b : Nat) : (ofNat a : Shell p) * ofNat b = ofNat (a * b) :=</span>
+<span class="ln" id="L36"><a class="lno" href="#L36">36</a>  Shell.ext (by</span>
+<span class="ln" id="L37"><a class="lno" href="#L37">37</a>    show (a % p * (b % p)) % p = (a * b) % p</span>
+<span class="ln" id="L38"><a class="lno" href="#L38">38</a>    exact (FRC.Nat.mul_mod a b p Pos.pos).symm)</span>
+<span class="ln" id="L39"><a class="lno" href="#L39">39</a></span>
+<span class="ln decl" id="FRC.Gravity.ofNat_add"><a class="lno" href="#FRC.Gravity.ofNat_add">40</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcCore/Gravity.lean#L40" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small ok" src="../lean-ok.png" alt="" title="no axioms">theorem ofNat_add (a b : Nat) : (ofNat a : Shell p) + ofNat b = ofNat (a + b) :=</span>
+<span class="ln" id="L41"><a class="lno" href="#L41">41</a>  Shell.ext (by</span>
+<span class="ln" id="L42"><a class="lno" href="#L42">42</a>    show (a % p + b % p) % p = (a + b) % p</span>
+<span class="ln" id="L43"><a class="lno" href="#L43">43</a>    exact (FRC.Nat.add_mod a b p Pos.pos).symm)</span>
+<span class="ln" id="L44"><a class="lno" href="#L44">44</a></span>
+<span class="ln" id="L45"><a class="lno" href="#L45">45</a>/-- The residue of the cardinality itself is `0`. -/</span>
+<span class="ln decl" id="FRC.Gravity.ofNat_p"><a class="lno" href="#FRC.Gravity.ofNat_p">46</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcCore/Gravity.lean#L46" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small ok" src="../lean-ok.png" alt="" title="no axioms">theorem ofNat_p : (ofNat p : Shell p) = 0 :=</span>
+<span class="ln" id="L47"><a class="lno" href="#L47">47</a>  Shell.ext (by show p % p = 0; exact FRC.Nat.mod_self p Pos.pos)</span>
+<span class="ln" id="L48"><a class="lno" href="#L48">48</a></span>
+<span class="ln" id="L49"><a class="lno" href="#L49">49</a>/-- 21:C16, 21:A1 — the calibration congruence on every frame: the full cycle `2π ↦ 4κ = p − 1` is `−1`,</span>
+<span class="ln" id="L50"><a class="lno" href="#L50">50</a>and `(4κ)² = 1`. -/</span>
+<span class="ln decl" id="FRC.Gravity.calibration"><a class="lno" href="#FRC.Gravity.calibration">51</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcCore/Gravity.lean#L51" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small ok" src="../lean-ok.png" alt="" title="no axioms">theorem calibration (F : Frame p κ g) :</span>
+<span class="ln" id="L52"><a class="lno" href="#L52">52</a>    (ofNat (4 * κ) : Shell p) = -1 ∧ (ofNat (4 * κ) : Shell p) * ofNat (4 * κ) = 1 := by</span>
+<span class="ln" id="L53"><a class="lno" href="#L53">53</a>  have h : (ofNat (4 * κ) : Shell p) = -1 := by</span>
+<span class="ln" id="L54"><a class="lno" href="#L54">54</a>    have h2 := F.two_pi</span>
+<span class="ln" id="L55"><a class="lno" href="#L55">55</a>    have e : 2 * Frame.halfPeriod κ = 4 * κ := (FRC.Nat.mul_assoc 2 2 κ).symm</span>
+<span class="ln" id="L56"><a class="lno" href="#L56">56</a>    rw [e] at h2</span>
+<span class="ln" id="L57"><a class="lno" href="#L57">57</a>    exact h2</span>
+<span class="ln" id="L58"><a class="lno" href="#L58">58</a>  exact ⟨h, by rw [h, Shell.neg_mul_neg, Shell.one_mul]⟩</span>
+<span class="ln" id="L59"><a class="lno" href="#L59">59</a></span>
+<span class="ln" id="L60"><a class="lno" href="#L60">60</a>/-- 21:C2, 21:C5, 21:C16 — the register value of the Newton constant on every frame, `G = 2κ`, the half-cycle:</span>
+<span class="ln" id="L61"><a class="lno" href="#L61">61</a>`2G = −1`; `(−2) G = 1` (the face convention `4π ↦ −2`, `G = (−2)⁻¹`); the Gauss count `(2 · 4κ) G = 1`;</span>
+<span class="ln" id="L62"><a class="lno" href="#L62">62</a>`c² = 2⁻¹ = 2κ + 1` with `2c² = 1`; and `G = −c²`. -/</span>
+<span class="ln decl" id="FRC.Gravity.newton_residue"><a class="lno" href="#FRC.Gravity.newton_residue">63</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcCore/Gravity.lean#L63" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small ok" src="../lean-ok.png" alt="" title="no axioms">theorem newton_residue (F : Frame p κ g) :</span>
+<span class="ln" id="L64"><a class="lno" href="#L64">64</a>    (2 : Shell p) * ofNat (2 * κ) = -1 ∧ (-2 : Shell p) * ofNat (2 * κ) = 1 ∧</span>
+<span class="ln" id="L65"><a class="lno" href="#L65">65</a>    (2 * ofNat (4 * κ) : Shell p) * ofNat (2 * κ) = 1 ∧</span>
+<span class="ln" id="L66"><a class="lno" href="#L66">66</a>    (2 : Shell p) * ofNat (2 * κ + 1) = 1 ∧ (ofNat (2 * κ) : Shell p) = -ofNat (2 * κ + 1) := by</span>
+<span class="ln" id="L67"><a class="lno" href="#L67">67</a>  obtain ⟨h4, _⟩ := calibration F</span>
+<span class="ln" id="L68"><a class="lno" href="#L68">68</a>  have hG : (2 : Shell p) * ofNat (2 * κ) = -1 := by</span>
+<span class="ln" id="L69"><a class="lno" href="#L69">69</a>    show ofNat 2 * ofNat (2 * κ) = -1</span>
+<span class="ln" id="L70"><a class="lno" href="#L70">70</a>    rw [ofNat_mul, ← FRC.Nat.mul_assoc]</span>
+<span class="ln" id="L71"><a class="lno" href="#L71">71</a>    exact h4</span>
+<span class="ln" id="L72"><a class="lno" href="#L72">72</a>  have hG&#x27; : (-2 : Shell p) * ofNat (2 * κ) = 1 := by</span>
+<span class="ln" id="L73"><a class="lno" href="#L73">73</a>    rw [← Shell.neg_mul, hG, Shell.neg_neg]</span>
+<span class="ln" id="L74"><a class="lno" href="#L74">74</a>  have hc : (2 : Shell p) * ofNat (2 * κ + 1) = 1 := by</span>
+<span class="ln" id="L75"><a class="lno" href="#L75">75</a>    show ofNat 2 * ofNat (2 * κ + 1) = 1</span>
+<span class="ln" id="L76"><a class="lno" href="#L76">76</a>    rw [ofNat_mul, Nat.mul_add, ← FRC.Nat.mul_assoc, Nat.mul_one, ← ofNat_add, h4]</span>
+<span class="ln" id="L77"><a class="lno" href="#L77">77</a>    show -1 + ofNat 2 = 1</span>
+<span class="ln" id="L78"><a class="lno" href="#L78">78</a>    rw [show (ofNat 2 : Shell p) = 1 + 1 from Frame.two_eq_one_add_one, ← Shell.add_assoc, Shell.neg_add,</span>
+<span class="ln" id="L79"><a class="lno" href="#L79">79</a>      Shell.zero_add]</span>
+<span class="ln" id="L80"><a class="lno" href="#L80">80</a>  refine ⟨hG, hG&#x27;, ?_, hc, ?_⟩</span>
+<span class="ln" id="L81"><a class="lno" href="#L81">81</a>  · rw [h4, ← Shell.mul_neg, Shell.mul_one, hG&#x27;]</span>
+<span class="ln" id="L82"><a class="lno" href="#L82">82</a>  · apply Shell.eq_neg_of_add_eq_zero</span>
+<span class="ln" id="L83"><a class="lno" href="#L83">83</a>    rw [ofNat_add, ← Nat.add_assoc, F.four_kappa, F.n_eq, ← F.cap]</span>
+<span class="ln" id="L84"><a class="lno" href="#L84">84</a>    exact ofNat_p</span>
+<span class="ln" id="L85"><a class="lno" href="#L85">85</a></span>
+<span class="ln" id="L86"><a class="lno" href="#L86">86</a>/-- 21:C5 — the action quantum on every frame: `ħ = g^κ` is a member of the quarter-turn pair (`−i`, the</span>
+<span class="ln" id="L87"><a class="lno" href="#L87">87</a>frame&#x27;s `quarterTurn` being `−g^κ`), `ħ² = −1`; with `c² = 2κ + 1` the residue `r = ħ c²` is a square root of</span>
+<span class="ln" id="L88"><a class="lno" href="#L88">88</a>the capacity, `r² = κ`, and `ħ = 2r` — the paper&#x27;s `ħ = 2√S` read on the shell. -/</span>
+<span class="ln decl" id="FRC.Gravity.hbar_root"><a class="lno" href="#FRC.Gravity.hbar_root">89</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcCore/Gravity.lean#L89" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small ok" src="../lean-ok.png" alt="" title="no axioms">theorem hbar_root (F : Frame p κ g) :</span>
+<span class="ln" id="L90"><a class="lno" href="#L90">90</a>    (g ^ κ) ^ 2 = -1 ∧ (g ^ κ * ofNat (2 * κ + 1)) * (g ^ κ * ofNat (2 * κ + 1)) = ofNat κ ∧</span>
+<span class="ln" id="L91"><a class="lno" href="#L91">91</a>    (2 : Shell p) * (g ^ κ * ofNat (2 * κ + 1)) = g ^ κ := by</span>
+<span class="ln" id="L92"><a class="lno" href="#L92">92</a>  obtain ⟨hq, _⟩ := F.quarter_turn_order</span>
+<span class="ln" id="L93"><a class="lno" href="#L93">93</a>  obtain ⟨_, _, _, hc, _⟩ := newton_residue F</span>
+<span class="ln" id="L94"><a class="lno" href="#L94">94</a>  obtain ⟨h4, _⟩ := calibration F</span>
+<span class="ln" id="L95"><a class="lno" href="#L95">95</a>  have h2r : (2 : Shell p) * (g ^ κ * ofNat (2 * κ + 1)) = g ^ κ := by</span>
+<span class="ln" id="L96"><a class="lno" href="#L96">96</a>    rw [Shell.mul_left_comm, hc, Shell.mul_one]</span>
+<span class="ln" id="L97"><a class="lno" href="#L97">97</a>  refine ⟨hq, ?_, h2r⟩</span>
+<span class="ln" id="L98"><a class="lno" href="#L98">98</a>  -- `4 (r² − κ) = (2r)² − 4κ = ħ² + 1 = 0`, and `4 ≠ 0` on the shell</span>
+<span class="ln" id="L99"><a class="lno" href="#L99">99</a>  have h4ne : (4 : Shell p) ≠ 0 := by</span>
+<span class="ln" id="L100"><a class="lno" href="#L100">100</a>    rw [show (4 : Shell p) = 2 * 2 from (ofNat_mul 2 2).symm]</span>
+<span class="ln" id="L101"><a class="lno" href="#L101">101</a>    exact F.mul_ne_zero F.two_ne_zero F.two_ne_zero</span>
+<span class="ln" id="L102"><a class="lno" href="#L102">102</a>  have h4κ : (4 : Shell p) * ofNat κ = -1 := by</span>
+<span class="ln" id="L103"><a class="lno" href="#L103">103</a>    show ofNat 4 * ofNat κ = -1</span>
+<span class="ln" id="L104"><a class="lno" href="#L104">104</a>    rw [ofNat_mul]; exact h4</span>
+<span class="ln" id="L105"><a class="lno" href="#L105">105</a>  have h4r : (4 : Shell p) * ((g ^ κ * ofNat (2 * κ + 1)) * (g ^ κ * ofNat (2 * κ + 1))) = -1 := by</span>
+<span class="ln" id="L106"><a class="lno" href="#L106">106</a>    rw [show (4 : Shell p) = 2 * 2 from (ofNat_mul 2 2).symm, FRC.Entropy.mul_mul_mul_comm, h2r,</span>
+<span class="ln" id="L107"><a class="lno" href="#L107">107</a>      ← Shell.pow_two, hq]</span>
+<span class="ln" id="L108"><a class="lno" href="#L108">108</a>  have key : (4 : Shell p) * ((g ^ κ * ofNat (2 * κ + 1)) * (g ^ κ * ofNat (2 * κ + 1)) + -ofNat κ) = 0 := by</span>
+<span class="ln" id="L109"><a class="lno" href="#L109">109</a>    rw [Shell.left_distrib, h4r, ← Shell.mul_neg, h4κ, Shell.neg_neg]</span>
+<span class="ln" id="L110"><a class="lno" href="#L110">110</a>    exact Shell.neg_add 1</span>
+<span class="ln" id="L111"><a class="lno" href="#L111">111</a>  rcases F.mul_eq_zero key with h | h</span>
+<span class="ln" id="L112"><a class="lno" href="#L112">112</a>  · exact absurd h h4ne</span>
+<span class="ln" id="L113"><a class="lno" href="#L113">113</a>  · have := Shell.eq_neg_of_add_eq_zero h</span>
+<span class="ln" id="L114"><a class="lno" href="#L114">114</a>    rw [Shell.neg_neg] at this</span>
+<span class="ln" id="L115"><a class="lno" href="#L115">115</a>    exact this</span>
+<span class="ln" id="L116"><a class="lno" href="#L116">116</a></span>
+<span class="ln" id="L117"><a class="lno" href="#L117">117</a>end register</span>
+<span class="ln" id="L118"><a class="lno" href="#L118">118</a></span>
+<span class="ln" id="L119"><a class="lno" href="#L119">119</a>/-! ## The count face (21:A9, C13) -/</span>
+<span class="ln" id="L120"><a class="lno" href="#L120">120</a>section count</span>
+<span class="ln" id="L121"><a class="lno" href="#L121">121</a></span>
+<span class="ln" id="L122"><a class="lno" href="#L122">122</a>/-- 21:C13 — the count face of the area law on `p = 4κ + 1`: `S = κ(4κ + 2)` has `4S + 1 = p²`</span>
+<span class="ln" id="L123"><a class="lno" href="#L123">123</a>(`S = (p² − 1)/4`), and with the coordinate area `A = p(p + 1)`: `Sp = κA` (`S/A = κ/p`) and `4Sp = A(p − 1)`</span>
+<span class="ln" id="L124"><a class="lno" href="#L124">124</a>(`S = (A/4)(1 − 1/p)`). -/</span>
+<span class="ln decl" id="FRC.Gravity.count_identity"><a class="lno" href="#FRC.Gravity.count_identity">125</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcCore/Gravity.lean#L125" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small ok" src="../lean-ok.png" alt="" title="no axioms">theorem count_identity (κ : Nat) :</span>
+<span class="ln" id="L126"><a class="lno" href="#L126">126</a>    4 * (κ * (4 * κ + 2)) + 1 = (4 * κ + 1) * (4 * κ + 1) ∧</span>
+<span class="ln" id="L127"><a class="lno" href="#L127">127</a>    κ * (4 * κ + 2) * (4 * κ + 1) = κ * ((4 * κ + 1) * (4 * κ + 2)) ∧</span>
+<span class="ln" id="L128"><a class="lno" href="#L128">128</a>    4 * (κ * (4 * κ + 2)) * (4 * κ + 1) = ((4 * κ + 1) * (4 * κ + 2)) * (4 * κ) := by</span>
+<span class="ln" id="L129"><a class="lno" href="#L129">129</a>  refine ⟨?_, ?_, ?_⟩</span>
+<span class="ln" id="L130"><a class="lno" href="#L130">130</a>  · calc 4 * (κ * (4 * κ + 2)) + 1</span>
+<span class="ln" id="L131"><a class="lno" href="#L131">131</a>        = 4 * (κ * (4 * κ) + κ * 2) + 1 := by rw [Nat.mul_add κ]</span>
+<span class="ln" id="L132"><a class="lno" href="#L132">132</a>      _ = (4 * (κ * (4 * κ)) + 4 * (κ * 2)) + 1 := by rw [Nat.mul_add 4]</span>
+<span class="ln" id="L133"><a class="lno" href="#L133">133</a>      _ = (4 * κ * (4 * κ) + 4 * κ * 2) + 1 := by rw [Nat.mul_assoc 4 κ (4 * κ), Nat.mul_assoc 4 κ 2]</span>
+<span class="ln" id="L134"><a class="lno" href="#L134">134</a>      _ = (4 * κ * (4 * κ) + (4 * κ + 4 * κ)) + 1 := by rw [Nat.mul_two]</span>
+<span class="ln" id="L135"><a class="lno" href="#L135">135</a>      _ = 4 * κ * (4 * κ) + 4 * κ + (4 * κ + 1) := by</span>
+<span class="ln" id="L136"><a class="lno" href="#L136">136</a>          rw [Nat.add_assoc (4 * κ * (4 * κ)) (4 * κ + 4 * κ) 1, Nat.add_assoc (4 * κ) (4 * κ) 1,</span>
+<span class="ln" id="L137"><a class="lno" href="#L137">137</a>            Nat.add_assoc (4 * κ * (4 * κ)) (4 * κ) (4 * κ + 1)]</span>
+<span class="ln" id="L138"><a class="lno" href="#L138">138</a>      _ = (4 * κ + 1) * (4 * κ) + (4 * κ + 1) * 1 := by rw [Nat.add_mul, Nat.one_mul, Nat.mul_one]</span>
+<span class="ln" id="L139"><a class="lno" href="#L139">139</a>      _ = (4 * κ + 1) * (4 * κ + 1) := by rw [← Nat.mul_add]</span>
+<span class="ln" id="L140"><a class="lno" href="#L140">140</a>  · rw [Nat.mul_assoc, Nat.mul_comm (4 * κ + 2)]</span>
+<span class="ln" id="L141"><a class="lno" href="#L141">141</a>  · calc 4 * (κ * (4 * κ + 2)) * (4 * κ + 1)</span>
+<span class="ln" id="L142"><a class="lno" href="#L142">142</a>        = (4 * κ + 1) * (4 * (κ * (4 * κ + 2))) := Nat.mul_comm _ _</span>
+<span class="ln" id="L143"><a class="lno" href="#L143">143</a>      _ = (4 * κ + 1) * ((4 * κ + 2) * (4 * κ)) := by</span>
+<span class="ln" id="L144"><a class="lno" href="#L144">144</a>          rw [← Nat.mul_assoc 4 κ, Nat.mul_comm (4 * κ) (4 * κ + 2)]</span>
+<span class="ln" id="L145"><a class="lno" href="#L145">145</a>      _ = (4 * κ + 1) * (4 * κ + 2) * (4 * κ) := (Nat.mul_assoc _ _ _).symm</span>
+<span class="ln" id="L146"><a class="lno" href="#L146">146</a></span>
+<span class="ln" id="L147"><a class="lno" href="#L147">147</a>/-- 21:A9 — the two-face count: the angular face `κ/S` against the temporal face `κ/(2S)` has ratio `2`</span>
+<span class="ln" id="L148"><a class="lno" href="#L148">148</a>(`κ · 2S = 2 · κS`), and the registration fibre product has `(p − 1)(Ω − 1) = 4 · 4κS` for `p = 4κ + 1`,</span>
+<span class="ln" id="L149"><a class="lno" href="#L149">149</a>`Ω = 4S + 1`. -/</span>
+<span class="ln decl" id="FRC.Gravity.two_face_count"><a class="lno" href="#FRC.Gravity.two_face_count">150</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcCore/Gravity.lean#L150" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small ok" src="../lean-ok.png" alt="" title="no axioms">theorem two_face_count (κ S : Nat) :</span>
+<span class="ln" id="L151"><a class="lno" href="#L151">151</a>    κ * (2 * S) = 2 * (κ * S) ∧ (4 * κ) * (4 * S) = 4 * (4 * (κ * S)) := by</span>
+<span class="ln" id="L152"><a class="lno" href="#L152">152</a>  refine ⟨Nat.mul_left_comm κ 2 S, ?_⟩</span>
+<span class="ln" id="L153"><a class="lno" href="#L153">153</a>  rw [Nat.mul_assoc 4 κ, Nat.mul_left_comm κ 4]</span>
+<span class="ln" id="L154"><a class="lno" href="#L154">154</a></span>
+<span class="ln" id="L155"><a class="lno" href="#L155">155</a>end count</span>
+<span class="ln" id="L156"><a class="lno" href="#L156">156</a></span>
+<span class="ln" id="L157"><a class="lno" href="#L157">157</a>/-! ## The values decided by the kernel (21:C2, C5, C13, C16) -/</span>
+<span class="ln" id="L158"><a class="lno" href="#L158">158</a>section values</span>
+<span class="ln" id="L159"><a class="lno" href="#L159">159</a></span>
+<span class="ln" id="L160"><a class="lno" href="#L160">160</a>/-- 21:C2, 21:C5, 21:C16 — the register on `𝔽₁₃` (`κ = 3`, drive `2`): `4κ = 12 = −1`, `G = 6` with</span>
+<span class="ln" id="L161"><a class="lno" href="#L161">161</a>`2G = −1`, `c² = 7` with `2c² = 1`, `ħ = 2³ = 8 = −i` with `ħ² = −1` (the frame&#x27;s `quarterTurn` is `5`), the root `r = 8 · 7 = 4` with `r² = 3 = κ` and</span>
+<span class="ln" id="L162"><a class="lno" href="#L162">162</a>`2r = ħ`; and on `𝔽₁₇` (`κ = 4`, drive `3`): `4κ = 16 = −1`, `G = 8`, `c² = 9`, `ħ = 3⁴ = 13 = −i` (`quarterTurn`</span>
+<span class="ln" id="L163"><a class="lno" href="#L163">163</a>`4`), `r = 15` with `r² = 4 = κ`, `2r = 13`. -/</span>
+<span class="ln decl" id="FRC.Gravity.register13_17"><a class="lno" href="#FRC.Gravity.register13_17">164</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcCore/Gravity.lean#L164" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small ok" src="../lean-ok.png" alt="" title="no axioms">theorem register13_17 :</span>
+<span class="ln" id="L165"><a class="lno" href="#L165">165</a>    (12 : Shell 13) = -1 ∧ 2 * (6 : Shell 13) = -1 ∧ 2 * (7 : Shell 13) = 1 ∧ (6 : Shell 13) = -7 ∧</span>
+<span class="ln" id="L166"><a class="lno" href="#L166">166</a>    (2 : Shell 13) ^ 3 = 8 ∧ (8 : Shell 13) * 8 = -1 ∧ (4 : Shell 13) * 4 = 3 ∧ 2 * (4 : Shell 13) = 8 ∧</span>
+<span class="ln" id="L167"><a class="lno" href="#L167">167</a>    (16 : Shell 17) = -1 ∧ 2 * (8 : Shell 17) = -1 ∧ 2 * (9 : Shell 17) = 1 ∧ (8 : Shell 17) = -9 ∧</span>
+<span class="ln" id="L168"><a class="lno" href="#L168">168</a>    (3 : Shell 17) ^ 4 = 13 ∧ (13 : Shell 17) * 13 = -1 ∧ (15 : Shell 17) * 15 = 4 ∧</span>
+<span class="ln" id="L169"><a class="lno" href="#L169">169</a>    2 * (15 : Shell 17) = 13 := by decide +kernel</span>
+<span class="ln" id="L170"><a class="lno" href="#L170">170</a></span>
+<span class="ln" id="L171"><a class="lno" href="#L171">171</a>/-- 21:C13 — the merger law&#x27;s instance on the count face `A = M(M + 1)`: `27 811 + 1 596 → 29 407` gives</span>
+<span class="ln" id="L172"><a class="lno" href="#L172">172</a>`ΔA = 2 · 27 811 · 1 596 = 88 772 712`. -/</span>
+<span class="ln decl" id="FRC.Gravity.merger_instance"><a class="lno" href="#FRC.Gravity.merger_instance">173</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcCore/Gravity.lean#L173" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small ok" src="../lean-ok.png" alt="" title="no axioms">theorem merger_instance :</span>
+<span class="ln" id="L174"><a class="lno" href="#L174">174</a>    29407 * (29407 + 1) = 27811 * (27811 + 1) + 1596 * (1596 + 1) + 88772712 ∧</span>
+<span class="ln" id="L175"><a class="lno" href="#L175">175</a>    2 * (27811 * 1596) = 88772712 ∧ 27811 + 1596 = 29407 := by decide</span>
+<span class="ln" id="L176"><a class="lno" href="#L176">176</a></span>
+<span class="ln" id="L177"><a class="lno" href="#L177">177</a>/-- 21:C2, 21:C5, 21:C16 — the laboratory Carrier `Ω = 2 408 561` (`S = 602 140`), host-decided: `4S = 2 408 560 = −1`</span>
+<span class="ln" id="L178"><a class="lno" href="#L178">178</a>and `(4S)² = 1` (the calibration congruence); `G = 1 204 280 = 2S` with `2G = −1`, `(−2) G = 1` and the Gauss</span>
+<span class="ln" id="L179"><a class="lno" href="#L179">179</a>count `(2 · 4S) G = 1`; `ħ = 18 688` with `ħ² = −1`, `ħ = 2 · 9 344` and `9 344² = S`. -/</span>
+<span class="ln decl" id="FRC.Gravity.lab_register"><a class="lno" href="#FRC.Gravity.lab_register">180</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcCore/Gravity.lean#L180" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small ok" src="../lean-ok.png" alt="" title="no axioms">theorem lab_register :</span>
+<span class="ln" id="L181"><a class="lno" href="#L181">181</a>    4 * 602140 = 2408560 ∧ (2408560 : Shell 2408561) = -1 ∧</span>
+<span class="ln" id="L182"><a class="lno" href="#L182">182</a>    (2408560 : Shell 2408561) * 2408560 = 1 ∧</span>
+<span class="ln" id="L183"><a class="lno" href="#L183">183</a>    2 * (1204280 : Shell 2408561) = -1 ∧ (-2 : Shell 2408561) * 1204280 = 1 ∧</span>
+<span class="ln" id="L184"><a class="lno" href="#L184">184</a>    (2 * (2408560 : Shell 2408561)) * 1204280 = 1 ∧</span>
+<span class="ln" id="L185"><a class="lno" href="#L185">185</a>    (18688 : Shell 2408561) * 18688 = -1 ∧ 2 * (9344 : Shell 2408561) = 18688 ∧</span>
+<span class="ln" id="L186"><a class="lno" href="#L186">186</a>    (9344 : Shell 2408561) * 9344 = 602140 := by decide +kernel</span>
+<span class="ln" id="L187"><a class="lno" href="#L187">187</a></span>
+<span class="ln" id="L188"><a class="lno" href="#L188">188</a>end values</span>
+<span class="ln" id="L189"><a class="lno" href="#L189">189</a></span>
+<span class="ln" id="L190"><a class="lno" href="#L190">190</a>end FRC.Gravity</span>
+<span class="ln" id="L191"><a class="lno" href="#L191">191</a></span>
+</pre></main>
+</div>
+</body>
+</html>

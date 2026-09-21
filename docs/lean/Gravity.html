@@ -1,0 +1,769 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-HNE3RMJ5L1"></script>
+<script> window.dataLayer = window.dataLayer || []; function gtag(){dataLayer.push(arguments);} gtag('js', new Date()); gtag('config', 'G-HNE3RMJ5L1'); </script>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Gravity.lean — FrcLedger</title>
+<meta name="description" content="The Lean module FrcLedger/Gravity of the FRC predicate ledgers, rendered with an anchor per declaration">
+<meta name="author" content="Yosef Akhtman">
+<link rel="icon" href="../frc-logo-fav.png">
+<link rel="stylesheet" href="../style.css?v=cf2646a3">
+
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <h1>Gravity.lean — FrcLedger</h1>
+    
+    <nav><a href="../index.html">Home</a><a href="../publications.html">Publications</a><a href="../00-ledger.html">Ledger</a><a href="../predictions.html">Predictions</a><a href="../explicability.html">Explicability</a></nav>
+  </header>
+<main id="ledger-main"><section class="prose"><p>The Lean module <code>lean/FrcLedger/Gravity.lean</code> of the paper <a href="../21-gravity/21-gravity-ledger.html">21-grav</a> (on Mathlib): 42 theorems (1 definitions): 0 with no axioms (green), 5 at tier 1 (teal: <code>propext</code>, <code>Quot.sound</code>), 37 at tier 2 (amber: <code>Classical.choice</code>), 0 red; the small plain glyph marks a definition (no proof, no axioms; on the ledger pages the plain glyph is instead a module cited as a whole). Each declaration is anchored; the ledger rows cite them by name. <a href="https://live.lean-lang.org/#project=mathlib-stable&url=https://raw.githubusercontent.com/gamayos/finite-ring-space/main/lean/web/Gravity.lean" target="_blank" rel="noopener">▶ open in the Lean web editor</a> · <a href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcLedger/Gravity.lean" target="_blank" rel="noopener">on GitHub</a> · <a href="https://github.com/gamayos/finite-ring-space/blob/main/lean/axioms.log" target="_blank" rel="noopener">axioms.log</a> · <a href="https://github.com/gamayos/finite-ring-space/actions/workflows/lean.yml" target="_blank" rel="noopener">CI</a>.</p></section><pre class="lean"><span class="ln" id="L1"><a class="lno" href="#L1">1</a>import Mathlib</span>
+<span class="ln" id="L2"><a class="lno" href="#L2">2</a></span>
+<span class="ln" id="L3"><a class="lno" href="#L3">3</a>/-!</span>
+<span class="ln" id="L4"><a class="lno" href="#L4">4</a># 21-gravity — the Carrier register, the count face, the strong field and the floor: the ledger rows in Lean (2026-09-20)</span>
+<span class="ln" id="L5"><a class="lno" href="#L5">5</a></span>
+<span class="ln" id="L6"><a class="lno" href="#L6">6</a>Rows of the predicate ledger of *Gravitation as Phase Synchronisation over Finite Holographic Substrate* (tree</span>
+<span class="ln" id="L7"><a class="lno" href="#L7">7</a>`21-gravity-20260623`). The Carrier register: the calibration congruence `2π ↦ 4S ≡ −1`, `(4S)² ≡ 1`, and the</span>
+<span class="ln" id="L8"><a class="lno" href="#L8">8</a>register value of the Newton constant `G = 2S` — `2G = −1`, `G = (−2)⁻¹` (the face convention `4π ↦ −2`), the</span>
+<span class="ln" id="L9"><a class="lno" href="#L9">9</a>Gauss count `(2 · 4S)⁻¹ = 2S`, `G = −c²` with `c² = 2⁻¹ = 2S + 1`, the chart ratio `4π/2π = 2` as `(−2)/(−1)` —</span>
+<span class="ln" id="L10"><a class="lno" href="#L10">10</a>and the action quantum as one of the quarter-turn pair `±i`, `ħ = 2√S` with `ħ² = 4S = −1` on every Carrier</span>
+<span class="ln" id="L11"><a class="lno" href="#L11">11</a>(C2, C5, C16; the laboratory Carrier&#x27;s residues are `Dimensions.carrierLab`). The count face of the area law on a</span>
+<span class="ln" id="L12"><a class="lno" href="#L12">12</a>symmetry-complete shell, `S/A = κ/p` and `S = (A/4)(1 − 1/p)` exactly, the merger law `ΔA = 2M₁M₂` with its</span>
+<span class="ln" id="L13"><a class="lno" href="#L13">13</a>radiating form and the paper&#x27;s instance (C13); the cover forcing `2γ − β = 1` with its deviation and the</span>
+<span class="ln" id="L14"><a class="lno" href="#L14">14</a>triangle `γ = 1 ∧ 2γ − β = 1 ⇒ β = 1` with the perihelion factor (A9, C7, C8, C25); the mass–energy channel</span>
+<span class="ln" id="L15"><a class="lno" href="#L15">15</a>`gcd(p − 1, 2(p + 1)) = 4` on every `p ≡ 1 (mod 4)` (A9).</span>
+<span class="ln" id="L16"><a class="lno" href="#L16">16</a>The strong field: the operational cut `e^{2M/r_f} = Ω` with the ordering `r_* &lt; r_f &lt; M` exactly when</span>
+<span class="ln" id="L17"><a class="lno" href="#L17">17</a>`M &gt; (ln Ω/2)²` and `ln Ω &gt; 2` (C12); the photon sphere at `r = 2Gm` with `b_c = 2e·Gm` as the minimum of</span>
+<span class="ln" id="L18"><a class="lno" href="#L18">18</a>`r e^{2Gm/r}` (C12, P1); the shadow `+4.6 %` and ringdown `−4.4 %` bracketed from `e` and `√3`, the Sgr A*</span>
+<span class="ln" id="L19"><a class="lno" href="#L19">19</a>excess (P1); the innermost stable orbit — with the circular-orbit `L²` of the paper taken as given, the</span>
+<span class="ln" id="L20"><a class="lno" href="#L20">20</a>stationarity root `r = 3 + √5` and `E² = e^{−2/r} r/4` there — and the efficiency `5.48 %` against</span>
+<span class="ln" id="L21"><a class="lno" href="#L21">21</a>Schwarzschild&#x27;s `5.72 %` bracketed (P1); the capacity ratio `ln⁻²Ω` (C13); the redshift&#x27;s linear form (C4). The</span>
+<span class="ln" id="L22"><a class="lno" href="#L22">22</a>floor `a₀ = cH₀/2π` at the entailed `H₀` against the SPARC scale, `13 %` low and `0.7σ` (P3); the registration</span>
+<span class="ln" id="L23"><a class="lno" href="#L23">23</a>root `η` of `wη² − 2η + w = 0` in `(0, 1)`, the crossover squeezed between its deep and Newtonian limits — both</span>
+<span class="ln" id="L24"><a class="lno" href="#L24">24</a>as limits — with the Tully–Fisher algebra (C19, P4);</span>
+<span class="ln" id="L25"><a class="lno" href="#L25">25</a>the discriminant `0.05` at `g_N = 5a₀` against the simple interpolant (P4). The primordial spectrum:</span>
+<span class="ln" id="L26"><a class="lno" href="#L26">26</a>scale invariance of `k³P(k)` exactly at `n_s = 1`, the tilt `−π²/ln Ω = −0.0351` at `ln Ω = 281`</span>
+<span class="ln" id="L27"><a class="lno" href="#L27">27</a>(`122 ln 10 = 280.9`), the `8.4σ` exclusion of `½ ln Ω`, the `0.25 %` per factor two (C18, P8). The lattice: the</span>
+<span class="ln" id="L28"><a class="lno" href="#L28">28</a>central difference is anti-self-adjoint on the cycle (`Δᵀ = −Δ`, the identity carrying the Fierz–Pauli gauge</span>
+<span class="ln" id="L29"><a class="lno" href="#L29">29</a>invariance) while the adjoint of the one-sided difference is the negative backward difference (C9); the finite</span>
+<span class="ln" id="L30"><a class="lno" href="#L30">30</a>Fourier shift theorem in both forms — the kick as a character in position, the position shift as a character</span>
+<span class="ln" id="L31"><a class="lno" href="#L31">31</a>on the transform (C20); the arithmetic behind C15&#x27;s dispersion symbol and C1&#x27;s coherent coefficient. The series: the</span>
+<span class="ln" id="L32"><a class="lno" href="#L32">32</a>exponential reading is multiplicative and the isotropic Schwarzschild factor is `e^{−2 artanh(U/2)}`, violating</span>
+<span class="ln" id="L33"><a class="lno" href="#L33">33</a>the composition law (C11); the post-Newtonian Taylor brackets — `A − A_S = U³/6 + O(U⁴)`, `B − B_S = U²/2 + O(U³)`</span>
+<span class="ln" id="L34"><a class="lno" href="#L34">34</a>— the single-potential inputs shared through 1PN and parting at 2PN (C8, P6); the numeral behind P2&#x27;s</span>
+<span class="ln" id="L35"><a class="lno" href="#L35">35</a>preferred-frame scale, `1/√Ω = 10⁻⁶¹`. Classical (tier 2) on Mathlib&#x27;s hierarchy; the finite content — the</span>
+<span class="ln" id="L36"><a class="lno" href="#L36">36</a>register on every frame, the count face, the merger instance, the laboratory Carrier decided by the kernel — is</span>
+<span class="ln" id="L37"><a class="lno" href="#L37">37</a>proved with no axioms in `FrcCore/Gravity.lean`. Outside both modules: the realisations of block B, the synchronisation dynamics (the</span>
+<span class="ln" id="L38"><a class="lno" href="#L38">38</a>Kuramoto relaxation, C1&#x27;s gradient flow, C21, C22), the four-term Fierz–Pauli functional itself (the package&#x27;s</span>
+<span class="ln" id="L39"><a class="lno" href="#L39">39</a>exact integer identity), the orbit equations behind the ISCO, the two-body sector of C23, the rotating solution</span>
+<span class="ln" id="L40"><a class="lno" href="#L40">40</a>and the wave equation beyond their symbols, and every comparison with measured data, which enters below only as</span>
+<span class="ln" id="L41"><a class="lno" href="#L41">41</a>declared numerals [data].</span>
+<span class="ln" id="L42"><a class="lno" href="#L42">42</a>-/</span>
+<span class="ln" id="L43"><a class="lno" href="#L43">43</a></span>
+<span class="ln" id="L44"><a class="lno" href="#L44">44</a>namespace FRC.Gravity</span>
+<span class="ln" id="L45"><a class="lno" href="#L45">45</a></span>
+<span class="ln" id="L46"><a class="lno" href="#L46">46</a>open Real</span>
+<span class="ln" id="L47"><a class="lno" href="#L47">47</a></span>
+<span class="ln" id="L48"><a class="lno" href="#L48">48</a>/-! ## The Carrier register (21:C2, C5, C16, X8) -/</span>
+<span class="ln" id="L49"><a class="lno" href="#L49">49</a>section register</span>
+<span class="ln" id="L50"><a class="lno" href="#L50">50</a></span>
+<span class="ln" id="L51"><a class="lno" href="#L51">51</a>variable {K : Type*} [Field K]</span>
+<span class="ln" id="L52"><a class="lno" href="#L52">52</a></span>
+<span class="ln" id="L53"><a class="lno" href="#L53">53</a>/-- 21:C16, 21:A1 — the calibration congruence: on the Carrier chart `4S + 1 = 0` the full cycle `2π ↦ 4S` is</span>
+<span class="ln" id="L54"><a class="lno" href="#L54">54</a>`−1` and `(4S)² = 1`, one residue relation. -/</span>
+<span class="ln decl" id="FRC.Gravity.calibration_congruence"><a class="lno" href="#FRC.Gravity.calibration_congruence">55</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcLedger/Gravity.lean#L55" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small t1" src="lean-t1.png" alt="" title="tier 1: Quot.sound, propext">theorem calibration_congruence (S : ℕ) (hΩ : ((4 * S + 1 : ℕ) : K) = 0) :</span>
+<span class="ln" id="L56"><a class="lno" href="#L56">56</a>    ((4 * S : ℕ) : K) = -1 ∧ ((4 * S : ℕ) : K) ^ 2 = 1 := by</span>
+<span class="ln" id="L57"><a class="lno" href="#L57">57</a>  push_cast at hΩ ⊢</span>
+<span class="ln" id="L58"><a class="lno" href="#L58">58</a>  exact ⟨by linear_combination hΩ, by linear_combination (4 * (S : K) - 1) * hΩ⟩</span>
+<span class="ln" id="L59"><a class="lno" href="#L59">59</a></span>
+<span class="ln" id="L60"><a class="lno" href="#L60">60</a>/-- 21:C2, 21:C5, 21:C16 — the register value of the Newton constant, `G = 2S`, on the Carrier chart</span>
+<span class="ln" id="L61"><a class="lno" href="#L61">61</a>`4S + 1 = 0`: `2G = −1` (the half-cycle); `(−2) G = 1`, the face convention `4π ↦ −2` with `G = (−2)⁻¹`; the</span>
+<span class="ln" id="L62"><a class="lno" href="#L62">62</a>Gauss count `(2 · 4S) G = 1`; `c² = 2⁻¹ = 2S + 1` and `G = −c²` (the chart ratio `4π/2π = 2` is read as</span>
+<span class="ln" id="L63"><a class="lno" href="#L63">63</a>`(−2)/(−1)`). The uniqueness of the linear solution is `Dimensions.G_unique`. -/</span>
+<span class="ln decl" id="FRC.Gravity.newton_register"><a class="lno" href="#FRC.Gravity.newton_register">64</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcLedger/Gravity.lean#L64" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small t2" src="lean-t2.png" alt="" title="tier 2, classical: Classical.choice, Quot.sound, propext">theorem newton_register (S : ℕ) (hΩ : ((4 * S + 1 : ℕ) : K) = 0) :</span>
+<span class="ln" id="L65"><a class="lno" href="#L65">65</a>    2 * ((2 * S : ℕ) : K) = -1 ∧ (-2) * ((2 * S : ℕ) : K) = 1 ∧</span>
+<span class="ln" id="L66"><a class="lno" href="#L66">66</a>    (2 * ((4 * S : ℕ) : K)) * ((2 * S : ℕ) : K) = 1 ∧</span>
+<span class="ln" id="L67"><a class="lno" href="#L67">67</a>    2 * ((2 * S + 1 : ℕ) : K) = 1 ∧ ((2 * S + 1 : ℕ) : K) = 2⁻¹ ∧</span>
+<span class="ln" id="L68"><a class="lno" href="#L68">68</a>    ((2 * S : ℕ) : K) = -((2 * S + 1 : ℕ) : K) := by</span>
+<span class="ln" id="L69"><a class="lno" href="#L69">69</a>  push_cast at hΩ ⊢</span>
+<span class="ln" id="L70"><a class="lno" href="#L70">70</a>  refine ⟨by linear_combination hΩ, by linear_combination -hΩ,</span>
+<span class="ln" id="L71"><a class="lno" href="#L71">71</a>    by linear_combination (4 * (S : K) - 1) * hΩ, by linear_combination hΩ, ?_,</span>
+<span class="ln" id="L72"><a class="lno" href="#L72">72</a>    by linear_combination hΩ⟩</span>
+<span class="ln" id="L73"><a class="lno" href="#L73">73</a>  exact eq_inv_of_mul_eq_one_left (by linear_combination hΩ)</span>
+<span class="ln" id="L74"><a class="lno" href="#L74">74</a></span>
+<span class="ln" id="L75"><a class="lno" href="#L75">75</a>/-- On the Carrier `𝔽_Ω`, `Ω = 4S + 1` prime, `2 ≠ 0` (`Ω` is odd). -/</span>
+<span class="ln decl" id="FRC.Gravity.carrier_two_ne_zero"><a class="lno" href="#FRC.Gravity.carrier_two_ne_zero">76</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcLedger/Gravity.lean#L76" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small t2" src="lean-t2.png" alt="" title="tier 2, classical: Classical.choice, Quot.sound, propext">theorem carrier_two_ne_zero (S : ℕ) [hp : Fact (Nat.Prime (4 * S + 1))] :</span>
+<span class="ln" id="L77"><a class="lno" href="#L77">77</a>    (2 : ZMod (4 * S + 1)) ≠ 0 := by</span>
+<span class="ln" id="L78"><a class="lno" href="#L78">78</a>  rw [show (2 : ZMod (4 * S + 1)) = ((2 : ℕ) : ZMod (4 * S + 1)) by norm_cast, Ne,</span>
+<span class="ln" id="L79"><a class="lno" href="#L79">79</a>    ZMod.natCast_eq_zero_iff]</span>
+<span class="ln" id="L80"><a class="lno" href="#L80">80</a>  intro hd</span>
+<span class="ln" id="L81"><a class="lno" href="#L81">81</a>  have h1 : 4 * S + 1 ≤ 2 := Nat.le_of_dvd (by norm_num) hd</span>
+<span class="ln" id="L82"><a class="lno" href="#L82">82</a>  have h2 : 2 ≤ 4 * S + 1 := hp.out.two_le</span>
+<span class="ln" id="L83"><a class="lno" href="#L83">83</a>  omega</span>
+<span class="ln" id="L84"><a class="lno" href="#L84">84</a></span>
+<span class="ln" id="L85"><a class="lno" href="#L85">85</a>/-- In any field with `4S + 1 = 0` and `2 ≠ 0`, a quarter-turn `i² = −1` gives a square root of `S`,</span>
+<span class="ln" id="L86"><a class="lno" href="#L86">86</a>`r = i/2`, with `(2r)² = −1`. -/</span>
+<span class="ln decl" id="FRC.Gravity.hbar_of_quarter_turn"><a class="lno" href="#FRC.Gravity.hbar_of_quarter_turn">87</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcLedger/Gravity.lean#L87" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small t2" src="lean-t2.png" alt="" title="tier 2, classical: Classical.choice, Quot.sound, propext">theorem hbar_of_quarter_turn {K : Type*} [Field K] (S : ℕ) (hΩ : ((4 * S + 1 : ℕ) : K) = 0)</span>
+<span class="ln" id="L88"><a class="lno" href="#L88">88</a>    (h2 : (2 : K) ≠ 0) (i : K) (hi : i ^ 2 = -1) :</span>
+<span class="ln" id="L89"><a class="lno" href="#L89">89</a>    ∃ r : K, r ^ 2 = (S : K) ∧ (2 * r) ^ 2 = -1 := by</span>
+<span class="ln" id="L90"><a class="lno" href="#L90">90</a>  push_cast at hΩ</span>
+<span class="ln" id="L91"><a class="lno" href="#L91">91</a>  have h4 : (2⁻¹ : K) ^ 2 * 4 = 1 := by field_simp; norm_num</span>
+<span class="ln" id="L92"><a class="lno" href="#L92">92</a>  refine ⟨i * 2⁻¹, ?_, ?_⟩</span>
+<span class="ln" id="L93"><a class="lno" href="#L93">93</a>  · calc (i * 2⁻¹) ^ 2 = i ^ 2 * (2⁻¹) ^ 2 := by ring</span>
+<span class="ln" id="L94"><a class="lno" href="#L94">94</a>      _ = -1 * (2⁻¹) ^ 2 := by rw [hi]</span>
+<span class="ln" id="L95"><a class="lno" href="#L95">95</a>      _ = (S : K) := by linear_combination (-(2⁻¹ : K) ^ 2) * hΩ + (S : K) * h4</span>
+<span class="ln" id="L96"><a class="lno" href="#L96">96</a>  · have : 2 * (i * 2⁻¹) = i := by field_simp</span>
+<span class="ln" id="L97"><a class="lno" href="#L97">97</a>    rw [this, hi]</span>
+<span class="ln" id="L98"><a class="lno" href="#L98">98</a></span>
+<span class="ln" id="L99"><a class="lno" href="#L99">99</a>/-- 21:C5, 21:C16, 21:A1 — the action quantum as the quarter-turn pair: on every Carrier `Ω = 4S + 1` prime, `S`</span>
+<span class="ln" id="L100"><a class="lno" href="#L100">100</a>is a square (`S = (i/2)²` with `i² = −1`, since `4S = −1`), so `ħ = 2√S` has `ħ² = 4S = −1` — `ħ` is one of the</span>
+<span class="ln" id="L101"><a class="lno" href="#L101">101</a>quarter-turn pair `±i`. -/</span>
+<span class="ln decl" id="FRC.Gravity.hbar_register"><a class="lno" href="#FRC.Gravity.hbar_register">102</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcLedger/Gravity.lean#L102" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small t2" src="lean-t2.png" alt="" title="tier 2, classical: Classical.choice, Quot.sound, propext">theorem hbar_register (S : ℕ) [Fact (Nat.Prime (4 * S + 1))] :</span>
+<span class="ln" id="L103"><a class="lno" href="#L103">103</a>    ∃ r : ZMod (4 * S + 1), r ^ 2 = (S : ZMod (4 * S + 1)) ∧ (2 * r) ^ 2 = -1 := by</span>
+<span class="ln" id="L104"><a class="lno" href="#L104">104</a>  obtain ⟨i, hi⟩ : IsSquare (-1 : ZMod (4 * S + 1)) := ZMod.exists_sq_eq_neg_one_iff.mpr (by omega)</span>
+<span class="ln" id="L105"><a class="lno" href="#L105">105</a>  exact hbar_of_quarter_turn S (ZMod.natCast_self _) (carrier_two_ne_zero S) i (by rw [sq]; exact hi.symm)</span>
+<span class="ln" id="L106"><a class="lno" href="#L106">106</a></span>
+<span class="ln" id="L107"><a class="lno" href="#L107">107</a>/-- The arithmetic behind 21:X8 — the weakness of gravity as cardinality dilution: with the Planck mass the</span>
+<span class="ln" id="L108"><a class="lno" href="#L108">108</a>locality horizon, `m_P = √Ω`, the dimensionless coupling of two masses `m` is `(m/m_P)² = m²/Ω`, small because</span>
+<span class="ln" id="L109"><a class="lno" href="#L109">109</a>`Ω` is large. C5&#x27;s frame covariance is not formal content. -/</span>
+<span class="ln decl" id="FRC.Gravity.dilution"><a class="lno" href="#FRC.Gravity.dilution">110</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcLedger/Gravity.lean#L110" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small t2" src="lean-t2.png" alt="" title="tier 2, classical: Classical.choice, Quot.sound, propext">theorem dilution (m Ω : ℝ) (hΩ : 0 &lt; Ω) : (m / √Ω) ^ 2 = m ^ 2 / Ω := by</span>
+<span class="ln" id="L111"><a class="lno" href="#L111">111</a>  rw [div_pow, sq_sqrt hΩ.le]</span>
+<span class="ln" id="L112"><a class="lno" href="#L112">112</a></span>
+<span class="ln" id="L113"><a class="lno" href="#L113">113</a>end register</span>
+<span class="ln" id="L114"><a class="lno" href="#L114">114</a></span>
+<span class="ln" id="L115"><a class="lno" href="#L115">115</a>/-! ## The count face and the cover forcing (21:A9, B2, C7, C8, C13, C25) -/</span>
+<span class="ln" id="L116"><a class="lno" href="#L116">116</a>section count</span>
+<span class="ln" id="L117"><a class="lno" href="#L117">117</a></span>
+<span class="ln" id="L118"><a class="lno" href="#L118">118</a>/-- 21:C13 — the count face of the area law on a symmetry-complete shell `p = 4κ + 1`: with `S = (p² − 1)/4`,</span>
+<span class="ln" id="L119"><a class="lno" href="#L119">119</a>i.e. `4S + 1 = p²` for `S = κ(4κ + 2)`, and the coordinate area `A = p(p + 1)`, the ratio `S/A = κ/p` holds</span>
+<span class="ln" id="L120"><a class="lno" href="#L120">120</a>exactly (`Sp = κA`) and `S = (A/4)(1 − 1/p)` (`4Sp = A(p − 1)`) — the Bekenstein quarter as the `Q₄` quotient. -/</span>
+<span class="ln decl" id="FRC.Gravity.count_face"><a class="lno" href="#FRC.Gravity.count_face">121</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcLedger/Gravity.lean#L121" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small t1" src="lean-t1.png" alt="" title="tier 1: propext">theorem count_face (κ : ℕ) :</span>
+<span class="ln" id="L122"><a class="lno" href="#L122">122</a>    4 * (κ * (4 * κ + 2)) + 1 = (4 * κ + 1) ^ 2 ∧</span>
+<span class="ln" id="L123"><a class="lno" href="#L123">123</a>    (κ * (4 * κ + 2)) * (4 * κ + 1) = κ * ((4 * κ + 1) * (4 * κ + 2)) ∧</span>
+<span class="ln" id="L124"><a class="lno" href="#L124">124</a>    4 * (κ * (4 * κ + 2)) * (4 * κ + 1) = ((4 * κ + 1) * (4 * κ + 2)) * (4 * κ) :=</span>
+<span class="ln" id="L125"><a class="lno" href="#L125">125</a>  ⟨by ring, by ring, by ring⟩</span>
+<span class="ln" id="L126"><a class="lno" href="#L126">126</a></span>
+<span class="ln" id="L127"><a class="lno" href="#L127">127</a>/-- 21:C13 — the merger area law on the count face, `A = M(M + 1)`: `ΔA = 2M₁M₂` exactly under additive mass,</span>
+<span class="ln" id="L128"><a class="lno" href="#L128">128</a>the paper&#x27;s instance `27 811 + 1 596 → 29 407` giving `ΔA = 88 772 712`; with a radiated `δ` the count gives</span>
+<span class="ln" id="L129"><a class="lno" href="#L129">129</a>`ΔA = 2M₁M₂ − (2(M₁ + M₂) + 1)δ + δ²`, at most the additive value for `0 ≤ δ ≤ 2(M₁ + M₂) + 1` — the area</span>
+<span class="ln" id="L130"><a class="lno" href="#L130">130</a>statement an inequality (the coefficient `−2(M₁ + M₂)δ` is the `A = M²` form; on the count face the linear</span>
+<span class="ln" id="L131"><a class="lno" href="#L131">131</a>term carries the extra `−δ`). -/</span>
+<span class="ln decl" id="FRC.Gravity.merger_area_law"><a class="lno" href="#FRC.Gravity.merger_area_law">132</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcLedger/Gravity.lean#L132" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small t2" src="lean-t2.png" alt="" title="tier 2, classical: Classical.choice, Quot.sound, propext">theorem merger_area_law (M₁ M₂ δ : ℤ) :</span>
+<span class="ln" id="L133"><a class="lno" href="#L133">133</a>    (M₁ + M₂) * (M₁ + M₂ + 1) - M₁ * (M₁ + 1) - M₂ * (M₂ + 1) = 2 * M₁ * M₂ ∧</span>
+<span class="ln" id="L134"><a class="lno" href="#L134">134</a>    (M₁ + M₂ - δ) * (M₁ + M₂ - δ + 1) - M₁ * (M₁ + 1) - M₂ * (M₂ + 1)</span>
+<span class="ln" id="L135"><a class="lno" href="#L135">135</a>      = 2 * M₁ * M₂ - (2 * (M₁ + M₂) + 1) * δ + δ ^ 2 ∧</span>
+<span class="ln" id="L136"><a class="lno" href="#L136">136</a>    (0 ≤ δ → δ ≤ 2 * (M₁ + M₂) + 1 →</span>
+<span class="ln" id="L137"><a class="lno" href="#L137">137</a>      (M₁ + M₂ - δ) * (M₁ + M₂ - δ + 1) - M₁ * (M₁ + 1) - M₂ * (M₂ + 1) ≤ 2 * M₁ * M₂) ∧</span>
+<span class="ln" id="L138"><a class="lno" href="#L138">138</a>    (27811 + 1596) * (27811 + 1596 + 1) - 27811 * (27811 + 1) - 1596 * (1596 + 1) = (88772712 : ℤ) := by</span>
+<span class="ln" id="L139"><a class="lno" href="#L139">139</a>  refine ⟨by ring, by ring, ?_, by norm_num⟩</span>
+<span class="ln" id="L140"><a class="lno" href="#L140">140</a>  intro h0 h1</span>
+<span class="ln" id="L141"><a class="lno" href="#L141">141</a>  nlinarith [mul_nonneg h0 (sub_nonneg.mpr h1)]</span>
+<span class="ln" id="L142"><a class="lno" href="#L142">142</a></span>
+<span class="ln" id="L143"><a class="lno" href="#L143">143</a>/-- 21:A9, 21:C25, 21:C7, 21:C8 — the cover forcing: the apsidal coefficient `2 − β + 2γ` against the</span>
+<span class="ln" id="L144"><a class="lno" href="#L144">144</a>PPN-free deficit `3/2` equals the two-face ratio `2` exactly when `2γ − β = 1`, with deviation</span>
+<span class="ln" id="L145"><a class="lno" href="#L145">145</a>`(2/3)(2γ − β − 1)`; channel unity `γ = 1` together with the forcing gives `β = 1`, and the perihelion factor</span>
+<span class="ln" id="L146"><a class="lno" href="#L146">146</a>`(2 + 2γ − β)/3` is then `1` (the deflection factor `(1 + γ)/2` is `1` at `γ = 1`). -/</span>
+<span class="ln decl" id="FRC.Gravity.cover_forcing"><a class="lno" href="#FRC.Gravity.cover_forcing">147</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcLedger/Gravity.lean#L147" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small t2" src="lean-t2.png" alt="" title="tier 2, classical: Classical.choice, Quot.sound, propext">theorem cover_forcing (β γ : ℝ) :</span>
+<span class="ln" id="L148"><a class="lno" href="#L148">148</a>    ((2 - β + 2 * γ) / (3 / 2) = 2 ↔ 2 * γ - β = 1) ∧</span>
+<span class="ln" id="L149"><a class="lno" href="#L149">149</a>    (2 - β + 2 * γ) / (3 / 2) - 2 = 2 / 3 * (2 * γ - β - 1) ∧</span>
+<span class="ln" id="L150"><a class="lno" href="#L150">150</a>    (γ = 1 → 2 * γ - β = 1 → β = 1 ∧ (2 + 2 * γ - β) / 3 = 1) := by</span>
+<span class="ln" id="L151"><a class="lno" href="#L151">151</a>  refine ⟨?_, by ring, ?_⟩</span>
+<span class="ln" id="L152"><a class="lno" href="#L152">152</a>  · constructor &lt;;&gt; intro h &lt;;&gt; linarith</span>
+<span class="ln" id="L153"><a class="lno" href="#L153">153</a>  · rintro rfl h</span>
+<span class="ln" id="L154"><a class="lno" href="#L154">154</a>    exact ⟨by linarith, by linarith⟩</span>
+<span class="ln" id="L155"><a class="lno" href="#L155">155</a></span>
+<span class="ln" id="L156"><a class="lno" href="#L156">156</a>/-- 21:A9 — the mass–energy channel `C_{p−1} ∩ C_{2(p+1)} = Q₄`: on every shell `p ≡ 1 (mod 4)`,</span>
+<span class="ln" id="L157"><a class="lno" href="#L157">157</a>`gcd(p − 1, 2(p + 1)) = 4`; the subgroup reading — in the cyclic unit group of `𝔽_{p²}` (order `(p − 1)(p + 1)`)</span>
+<span class="ln" id="L158"><a class="lno" href="#L158">158</a>the subgroups of orders `p − 1` and `2(p + 1)` meet in the subgroup of order `gcd` — is not formalised here. -/</span>
+<span class="ln decl" id="FRC.Gravity.channel_q4"><a class="lno" href="#FRC.Gravity.channel_q4">159</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcLedger/Gravity.lean#L159" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small t1" src="lean-t1.png" alt="" title="tier 1: Quot.sound, propext">theorem channel_q4 (p : ℕ) (hp : p % 4 = 1) : Nat.gcd (p - 1) (2 * (p + 1)) = 4 := by</span>
+<span class="ln" id="L160"><a class="lno" href="#L160">160</a>  obtain ⟨κ, rfl⟩ : ∃ κ, p = 4 * κ + 1 := ⟨p / 4, by omega⟩</span>
+<span class="ln" id="L161"><a class="lno" href="#L161">161</a>  have h1 : 4 * κ + 1 - 1 = 4 * κ := by omega</span>
+<span class="ln" id="L162"><a class="lno" href="#L162">162</a>  have h2 : 2 * (4 * κ + 1 + 1) = 4 * (1 + 2 * κ) := by ring</span>
+<span class="ln" id="L163"><a class="lno" href="#L163">163</a>  rw [h1, h2, Nat.gcd_mul_left, Nat.gcd_add_mul_right_right, Nat.gcd_one_right]</span>
+<span class="ln" id="L164"><a class="lno" href="#L164">164</a></span>
+<span class="ln" id="L165"><a class="lno" href="#L165">165</a>end count</span>
+<span class="ln" id="L166"><a class="lno" href="#L166">166</a></span>
+<span class="ln" id="L167"><a class="lno" href="#L167">167</a>/-! ## The strong field (21:C4, C12, C13, P1, P7, X3) -/</span>
+<span class="ln" id="L168"><a class="lno" href="#L168">168</a>section strongfield</span>
+<span class="ln" id="L169"><a class="lno" href="#L169">169</a></span>
+<span class="ln" id="L170"><a class="lno" href="#L170">170</a>/-- 21:C12, 21:P7 — the operational cut and the slip core in the substrate coordinate (`G = 1`, `M` in Planck</span>
+<span class="ln" id="L171"><a class="lno" href="#L171">171</a>masses, `L = ln Ω`): `r_f = 2M/L` carries `e^{2M/r_f} = Ω` (the round-trip delay&#x27;s factor); `r_* = √M &lt; r_f`</span>
+<span class="ln" id="L172"><a class="lno" href="#L172">172</a>exactly when `M &gt; (L/2)²`, and `r_f &lt; M` exactly when `L &gt; 2` (master E10). -/</span>
+<span class="ln decl" id="FRC.Gravity.operational_cut"><a class="lno" href="#FRC.Gravity.operational_cut">173</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcLedger/Gravity.lean#L173" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small t2" src="lean-t2.png" alt="" title="tier 2, classical: Classical.choice, Quot.sound, propext">theorem operational_cut (M L Ω : ℝ) (hM : 0 &lt; M) (hL : 0 &lt; L) (hΩ : L = log Ω) (hΩ0 : 0 &lt; Ω) :</span>
+<span class="ln" id="L174"><a class="lno" href="#L174">174</a>    exp (2 * M / (2 * M / L)) = Ω ∧</span>
+<span class="ln" id="L175"><a class="lno" href="#L175">175</a>    (√M &lt; 2 * M / L ↔ (L / 2) ^ 2 &lt; M) ∧ (2 * M / L &lt; M ↔ 2 &lt; L) := by</span>
+<span class="ln" id="L176"><a class="lno" href="#L176">176</a>  refine ⟨?_, ?_, ?_⟩</span>
+<span class="ln" id="L177"><a class="lno" href="#L177">177</a>  · have : 2 * M / (2 * M / L) = L := by field_simp</span>
+<span class="ln" id="L178"><a class="lno" href="#L178">178</a>    rw [this, hΩ, exp_log hΩ0]</span>
+<span class="ln" id="L179"><a class="lno" href="#L179">179</a>  · rw [Real.sqrt_lt&#x27; (by positivity), div_pow, lt_div_iff₀ (by positivity)]</span>
+<span class="ln" id="L180"><a class="lno" href="#L180">180</a>    constructor &lt;;&gt; intro h &lt;;&gt; nlinarith</span>
+<span class="ln" id="L181"><a class="lno" href="#L181">181</a>  · rw [div_lt_iff₀ hL]</span>
+<span class="ln" id="L182"><a class="lno" href="#L182">182</a>    constructor &lt;;&gt; intro h &lt;;&gt; nlinarith</span>
+<span class="ln" id="L183"><a class="lno" href="#L183">183</a></span>
+<span class="ln" id="L184"><a class="lno" href="#L184">184</a>/-- 21:P1 — the photon sphere (`prop:shadow`, `rem:exponential`): the impact parameter `b(r) = r e^{2Gm/r}` of the exponential metric</span>
+<span class="ln" id="L185"><a class="lno" href="#L185">185</a>satisfies `b(r) ≥ 2e·Gm` for every `r &gt; 0`, with equality exactly at `r = 2Gm` (from `x + 1 ≤ eˣ`, strict off</span>
+<span class="ln" id="L186"><a class="lno" href="#L186">186</a>`x = 0`): the photon sphere is at `r_ph = 2Gm`, the critical impact parameter `b_c = 2e·Gm`. -/</span>
+<span class="ln decl" id="FRC.Gravity.photon_sphere"><a class="lno" href="#FRC.Gravity.photon_sphere">187</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcLedger/Gravity.lean#L187" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small t2" src="lean-t2.png" alt="" title="tier 2, classical: Classical.choice, Quot.sound, propext">theorem photon_sphere (Gm r : ℝ) (hG : 0 &lt; Gm) (hr : 0 &lt; r) :</span>
+<span class="ln" id="L188"><a class="lno" href="#L188">188</a>    2 * exp 1 * Gm ≤ r * exp (2 * Gm / r) ∧ (r * exp (2 * Gm / r) = 2 * exp 1 * Gm ↔ r = 2 * Gm) := by</span>
+<span class="ln" id="L189"><a class="lno" href="#L189">189</a>  have hsplit : exp (2 * Gm / r) = exp 1 * exp (2 * Gm / r - 1) := by</span>
+<span class="ln" id="L190"><a class="lno" href="#L190">190</a>    rw [← exp_add]; ring_nf</span>
+<span class="ln" id="L191"><a class="lno" href="#L191">191</a>  have hx := Real.add_one_le_exp (2 * Gm / r - 1)</span>
+<span class="ln" id="L192"><a class="lno" href="#L192">192</a>  have hkey : 2 * exp 1 * Gm = r * exp 1 * (2 * Gm / r - 1 + 1) := by field_simp; ring</span>
+<span class="ln" id="L193"><a class="lno" href="#L193">193</a>  have hpos : 0 &lt; r * exp 1 := by positivity</span>
+<span class="ln" id="L194"><a class="lno" href="#L194">194</a>  constructor</span>
+<span class="ln" id="L195"><a class="lno" href="#L195">195</a>  · rw [hsplit, hkey]</span>
+<span class="ln" id="L196"><a class="lno" href="#L196">196</a>    calc r * exp 1 * (2 * Gm / r - 1 + 1) ≤ r * exp 1 * exp (2 * Gm / r - 1) :=</span>
+<span class="ln" id="L197"><a class="lno" href="#L197">197</a>          mul_le_mul_of_nonneg_left hx hpos.le</span>
+<span class="ln" id="L198"><a class="lno" href="#L198">198</a>      _ = r * (exp 1 * exp (2 * Gm / r - 1)) := by ring</span>
+<span class="ln" id="L199"><a class="lno" href="#L199">199</a>  · constructor</span>
+<span class="ln" id="L200"><a class="lno" href="#L200">200</a>    · intro h</span>
+<span class="ln" id="L201"><a class="lno" href="#L201">201</a>      by_contra hne</span>
+<span class="ln" id="L202"><a class="lno" href="#L202">202</a>      have hx&#x27; : 2 * Gm / r - 1 ≠ 0 := by</span>
+<span class="ln" id="L203"><a class="lno" href="#L203">203</a>        intro h0</span>
+<span class="ln" id="L204"><a class="lno" href="#L204">204</a>        apply hne</span>
+<span class="ln" id="L205"><a class="lno" href="#L205">205</a>        have : 2 * Gm / r = 1 := by linarith</span>
+<span class="ln" id="L206"><a class="lno" href="#L206">206</a>        rw [div_eq_one_iff_eq hr.ne&#x27;] at this</span>
+<span class="ln" id="L207"><a class="lno" href="#L207">207</a>        linarith</span>
+<span class="ln" id="L208"><a class="lno" href="#L208">208</a>      have hlt := Real.add_one_lt_exp hx&#x27;</span>
+<span class="ln" id="L209"><a class="lno" href="#L209">209</a>      have : r * exp 1 * (2 * Gm / r - 1 + 1) &lt; r * exp 1 * exp (2 * Gm / r - 1) :=</span>
+<span class="ln" id="L210"><a class="lno" href="#L210">210</a>        mul_lt_mul_of_pos_left hlt hpos</span>
+<span class="ln" id="L211"><a class="lno" href="#L211">211</a>      rw [hsplit, ← mul_assoc] at h</span>
+<span class="ln" id="L212"><a class="lno" href="#L212">212</a>      linarith</span>
+<span class="ln" id="L213"><a class="lno" href="#L213">213</a>    · rintro rfl</span>
+<span class="ln" id="L214"><a class="lno" href="#L214">214</a>      have : 2 * Gm / (2 * Gm) = 1 := by field_simp</span>
+<span class="ln" id="L215"><a class="lno" href="#L215">215</a>      rw [this]; ring</span>
+<span class="ln" id="L216"><a class="lno" href="#L216">216</a></span>
+<span class="ln" id="L217"><a class="lno" href="#L217">217</a>/-- `√3` to seven places. -/</span>
+<span class="ln decl" id="FRC.Gravity.sqrt_three_bounds"><a class="lno" href="#FRC.Gravity.sqrt_three_bounds">218</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcLedger/Gravity.lean#L218" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small t2" src="lean-t2.png" alt="" title="tier 2, classical: Classical.choice, Quot.sound, propext">theorem sqrt_three_bounds : (1.7320508 : ℝ) &lt; √3 ∧ √3 &lt; 1.7320509 :=</span>
+<span class="ln" id="L219"><a class="lno" href="#L219">219</a>  ⟨(Real.lt_sqrt (by norm_num)).mpr (by norm_num), (Real.sqrt_lt&#x27; (by norm_num)).mpr (by norm_num)⟩</span>
+<span class="ln" id="L220"><a class="lno" href="#L220">220</a></span>
+<span class="ln" id="L221"><a class="lno" href="#L221">221</a>/-- 21:P1 — the shadow and the ringdown against general relativity, bracketed from `e` (nine places) and `√3`:</span>
+<span class="ln" id="L222"><a class="lno" href="#L222">222</a>the critical impact parameters `b_c = 2e·Gm` (this work) and `3√3·Gm` (Schwarzschild) have ratio</span>
+<span class="ln" id="L223"><a class="lno" href="#L223">223</a>`2e/(3√3)` between `1.0462` and `1.0463` (the shadow `+4.6 %`), and the eikonal ringdown frequency, `∝ 1/b_c`,</span>
+<span class="ln" id="L224"><a class="lno" href="#L224">224</a>ratio `3√3/(2e)` between `0.9557` and `0.9558` (`−4.4 %`); the Sgr A* excess `(4e − 6√3) θ_g` at the</span>
+<span class="ln" id="L225"><a class="lno" href="#L225">225</a>GRAVITY `θ_g = 5.12 µas` [data, A8] lies between `2.46` and `2.47 µas` (the `2.5 µas` of the text). -/</span>
+<span class="ln decl" id="FRC.Gravity.shadow_bracket"><a class="lno" href="#FRC.Gravity.shadow_bracket">226</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcLedger/Gravity.lean#L226" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small t2" src="lean-t2.png" alt="" title="tier 2, classical: Classical.choice, Quot.sound, propext">theorem shadow_bracket :</span>
+<span class="ln" id="L227"><a class="lno" href="#L227">227</a>    (1.0462 : ℝ) &lt; 2 * exp 1 / (3 * √3) ∧ 2 * exp 1 / (3 * √3) &lt; 1.0463 ∧</span>
+<span class="ln" id="L228"><a class="lno" href="#L228">228</a>    (0.9557 : ℝ) &lt; 3 * √3 / (2 * exp 1) ∧ 3 * √3 / (2 * exp 1) &lt; 0.9558 ∧</span>
+<span class="ln" id="L229"><a class="lno" href="#L229">229</a>    (2.46 : ℝ) &lt; (4 * exp 1 - 6 * √3) * 5.12 ∧ (4 * exp 1 - 6 * √3) * 5.12 &lt; 2.47 := by</span>
+<span class="ln" id="L230"><a class="lno" href="#L230">230</a>  have e1 := Real.exp_one_gt_d9</span>
+<span class="ln" id="L231"><a class="lno" href="#L231">231</a>  have e2 := Real.exp_one_lt_d9</span>
+<span class="ln" id="L232"><a class="lno" href="#L232">232</a>  obtain ⟨s1, s2⟩ := sqrt_three_bounds</span>
+<span class="ln" id="L233"><a class="lno" href="#L233">233</a>  have hs : (0 : ℝ) &lt; √3 := by positivity</span>
+<span class="ln" id="L234"><a class="lno" href="#L234">234</a>  have he : (0 : ℝ) &lt; exp 1 := exp_pos 1</span>
+<span class="ln" id="L235"><a class="lno" href="#L235">235</a>  refine ⟨?_, ?_, ?_, ?_, by nlinarith, by nlinarith⟩</span>
+<span class="ln" id="L236"><a class="lno" href="#L236">236</a>  · rw [lt_div_iff₀ (by positivity)]; nlinarith</span>
+<span class="ln" id="L237"><a class="lno" href="#L237">237</a>  · rw [div_lt_iff₀ (by positivity)]; nlinarith</span>
+<span class="ln" id="L238"><a class="lno" href="#L238">238</a>  · rw [lt_div_iff₀ (by positivity)]; nlinarith</span>
+<span class="ln" id="L239"><a class="lno" href="#L239">239</a>  · rw [div_lt_iff₀ (by positivity)]; nlinarith</span>
+<span class="ln" id="L240"><a class="lno" href="#L240">240</a></span>
+<span class="ln" id="L241"><a class="lno" href="#L241">241</a>/-- 21:P1 — the innermost stable circular orbit of the exponential metric (`G = m = 1`, isotropic radius),</span>
+<span class="ln" id="L242"><a class="lno" href="#L242">242</a>with the circular-orbit relations of the paper&#x27;s `prop:isco` taken as given and not formalised</span>
+<span class="ln" id="L243"><a class="lno" href="#L243">243</a>(`L² = e^{2/r} r²/(r − 2)` and `E² = e^{−2/r}(r − 1)/(r − 2)` for a circular orbit at `r &gt; 2`): what is</span>
+<span class="ln" id="L244"><a class="lno" href="#L244">244</a>proved is that `log L²` has derivative `(r² − 6r + 4)/(r²(r − 2))`, that `r_ISCO = 3 + √5` is the root of</span>
+<span class="ln" id="L245"><a class="lno" href="#L245">245</a>`r² − 6r + 4` above `2`, and that `(r − 1)/(r − 2) = r/4` there, so `E² = e^{−2/r} r/4` at the orbit. -/</span>
+<span class="ln decl" id="FRC.Gravity.isco"><a class="lno" href="#FRC.Gravity.isco">246</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcLedger/Gravity.lean#L246" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small t2" src="lean-t2.png" alt="" title="tier 2, classical: Classical.choice, Quot.sound, propext">theorem isco (r : ℝ) (hr : 2 &lt; r) :</span>
+<span class="ln" id="L247"><a class="lno" href="#L247">247</a>    HasDerivAt (fun r : ℝ =&gt; 2 / r + 2 * log r - log (r - 2))</span>
+<span class="ln" id="L248"><a class="lno" href="#L248">248</a>      ((r ^ 2 - 6 * r + 4) / (r ^ 2 * (r - 2))) r ∧</span>
+<span class="ln" id="L249"><a class="lno" href="#L249">249</a>    (3 + √5) ^ 2 - 6 * (3 + √5) + 4 = 0 ∧ 2 &lt; 3 + √5 ∧</span>
+<span class="ln" id="L250"><a class="lno" href="#L250">250</a>    (3 + √5 - 1) / (3 + √5 - 2) = (3 + √5) / 4 := by</span>
+<span class="ln" id="L251"><a class="lno" href="#L251">251</a>  have h5 := Real.sq_sqrt (show (0 : ℝ) ≤ 5 by norm_num)</span>
+<span class="ln" id="L252"><a class="lno" href="#L252">252</a>  have hs5 : (0 : ℝ) &lt; √5 := by positivity</span>
+<span class="ln" id="L253"><a class="lno" href="#L253">253</a>  refine ⟨?_, by linear_combination h5, by linarith, ?_⟩</span>
+<span class="ln" id="L254"><a class="lno" href="#L254">254</a>  · have hr0 : r ≠ 0 := by linarith</span>
+<span class="ln" id="L255"><a class="lno" href="#L255">255</a>    have hr2 : r - 2 ≠ 0 := by linarith</span>
+<span class="ln" id="L256"><a class="lno" href="#L256">256</a>    have d1 : HasDerivAt (fun r : ℝ =&gt; 2 / r) (-(2 / r ^ 2)) r := by</span>
+<span class="ln" id="L257"><a class="lno" href="#L257">257</a>      have := (hasDerivAt_inv hr0).const_mul 2</span>
+<span class="ln" id="L258"><a class="lno" href="#L258">258</a>      convert this using 1 &lt;;&gt; [funext x; skip] &lt;;&gt; ring</span>
+<span class="ln" id="L259"><a class="lno" href="#L259">259</a>    have d2 : HasDerivAt (fun r : ℝ =&gt; 2 * log r) (2 * r⁻¹) r :=</span>
+<span class="ln" id="L260"><a class="lno" href="#L260">260</a>      (Real.hasDerivAt_log hr0).const_mul 2</span>
+<span class="ln" id="L261"><a class="lno" href="#L261">261</a>    have d3 : HasDerivAt (fun r : ℝ =&gt; log (r - 2)) (1 / (r - 2)) r :=</span>
+<span class="ln" id="L262"><a class="lno" href="#L262">262</a>      ((hasDerivAt_id&#x27; r).sub_const 2).log hr2</span>
+<span class="ln" id="L263"><a class="lno" href="#L263">263</a>    convert (d1.add d2).sub d3 using 1</span>
+<span class="ln" id="L264"><a class="lno" href="#L264">264</a>    field_simp</span>
+<span class="ln" id="L265"><a class="lno" href="#L265">265</a>    ring</span>
+<span class="ln" id="L266"><a class="lno" href="#L266">266</a>  · rw [div_eq_div_iff (by linarith) (by norm_num)]</span>
+<span class="ln" id="L267"><a class="lno" href="#L267">267</a>    linear_combination -h5</span>
+<span class="ln" id="L268"><a class="lno" href="#L268">268</a></span>
+<span class="ln" id="L269"><a class="lno" href="#L269">269</a>/-- A bracket of `e^{−x}` from `x₁ &lt; x &lt; x₂`, a lower bound of `e^{x₁}` and an upper bound of `e^{x₂}`. -/</span>
+<span class="ln decl" id="FRC.Gravity.exp_neg_bracket"><a class="lno" href="#FRC.Gravity.exp_neg_bracket">270</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcLedger/Gravity.lean#L270" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small t2" src="lean-t2.png" alt="" title="tier 2, classical: Classical.choice, Quot.sound, propext">theorem exp_neg_bracket {x x₁ x₂ lo hi : ℝ} (hx₁ : x₁ &lt; x) (hx₂ : x &lt; x₂) (hlo : 0 &lt; lo)</span>
+<span class="ln" id="L271"><a class="lno" href="#L271">271</a>    (h1 : lo &lt; exp x₁) (h2 : exp x₂ &lt; hi) : hi⁻¹ &lt; exp (-x) ∧ exp (-x) &lt; lo⁻¹ := by</span>
+<span class="ln" id="L272"><a class="lno" href="#L272">272</a>  constructor</span>
+<span class="ln" id="L273"><a class="lno" href="#L273">273</a>  · calc hi⁻¹ &lt; (exp x₂)⁻¹ := inv_strictAnti₀ (exp_pos _) h2</span>
+<span class="ln" id="L274"><a class="lno" href="#L274">274</a>      _ = exp (-x₂) := (exp_neg _).symm</span>
+<span class="ln" id="L275"><a class="lno" href="#L275">275</a>      _ &lt; exp (-x) := exp_lt_exp.mpr (by linarith)</span>
+<span class="ln" id="L276"><a class="lno" href="#L276">276</a>  · calc exp (-x) &lt; exp (-x₁) := exp_lt_exp.mpr (by linarith)</span>
+<span class="ln" id="L277"><a class="lno" href="#L277">277</a>      _ = (exp x₁)⁻¹ := exp_neg _</span>
+<span class="ln" id="L278"><a class="lno" href="#L278">278</a>      _ &lt; lo⁻¹ := inv_strictAnti₀ hlo h1</span>
+<span class="ln" id="L279"><a class="lno" href="#L279">279</a></span>
+<span class="ln" id="L280"><a class="lno" href="#L280">280</a>/-- The Taylor brackets of `e^t` at the two ends of `t = 2/r_ISCO = (3 − √5)/2`. -/</span>
+<span class="ln decl" id="FRC.Gravity.exp_isco_tail_bounds"><a class="lno" href="#FRC.Gravity.exp_isco_tail_bounds">281</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcLedger/Gravity.lean#L281" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small t2" src="lean-t2.png" alt="" title="tier 2, classical: Classical.choice, Quot.sound, propext">theorem exp_isco_tail_bounds :</span>
+<span class="ln" id="L282"><a class="lno" href="#L282">282</a>    (1.465161 : ℝ) &lt; exp 0.381966 ∧ exp (0.3819661 : ℝ) &lt; 1.465163 := by</span>
+<span class="ln" id="L283"><a class="lno" href="#L283">283</a>  constructor</span>
+<span class="ln" id="L284"><a class="lno" href="#L284">284</a>  · have h := abs_le.1 (Real.exp_bound (x := 0.381966) (by rw [abs_of_pos (by norm_num)]; norm_num)</span>
+<span class="ln" id="L285"><a class="lno" href="#L285">285</a>      (n := 7) (by norm_num))</span>
+<span class="ln" id="L286"><a class="lno" href="#L286">286</a>    rw [abs_of_pos (by norm_num : (0 : ℝ) &lt; 0.381966)] at h</span>
+<span class="ln" id="L287"><a class="lno" href="#L287">287</a>    have h1 := h.1</span>
+<span class="ln" id="L288"><a class="lno" href="#L288">288</a>    norm_num [Finset.sum_range_succ, Nat.factorial] at h1 ⊢</span>
+<span class="ln" id="L289"><a class="lno" href="#L289">289</a>    linarith</span>
+<span class="ln" id="L290"><a class="lno" href="#L290">290</a>  · have h := Real.exp_bound&#x27; (x := 0.3819661) (by norm_num) (by norm_num) (n := 7) (by norm_num)</span>
+<span class="ln" id="L291"><a class="lno" href="#L291">291</a>    norm_num [Finset.sum_range_succ, Nat.factorial] at h ⊢</span>
+<span class="ln" id="L292"><a class="lno" href="#L292">292</a>    linarith</span>
+<span class="ln" id="L293"><a class="lno" href="#L293">293</a></span>
+<span class="ln" id="L294"><a class="lno" href="#L294">294</a>/-- `√5` to seven places. -/</span>
+<span class="ln decl" id="FRC.Gravity.sqrt_five_bounds"><a class="lno" href="#FRC.Gravity.sqrt_five_bounds">295</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcLedger/Gravity.lean#L295" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small t2" src="lean-t2.png" alt="" title="tier 2, classical: Classical.choice, Quot.sound, propext">theorem sqrt_five_bounds : (2.2360679 : ℝ) &lt; √5 ∧ √5 &lt; 2.2360680 :=</span>
+<span class="ln" id="L296"><a class="lno" href="#L296">296</a>  ⟨(Real.lt_sqrt (by norm_num)).mpr (by norm_num), (Real.sqrt_lt&#x27; (by norm_num)).mpr (by norm_num)⟩</span>
+<span class="ln" id="L297"><a class="lno" href="#L297">297</a></span>
+<span class="ln" id="L298"><a class="lno" href="#L298">298</a>/-- 21:P1 — the accretion efficiency bracketed: at `r_ISCO = 3 + √5` the orbital energy `E = √(e^{−2/r} r/4)`</span>
+<span class="ln" id="L299"><a class="lno" href="#L299">299</a>lies between `0.9452` and `0.9453`, so `1 − E` is between `5.47 %` and `5.48 %` (the text&#x27;s `5.48 %`),</span>
+<span class="ln" id="L300"><a class="lno" href="#L300">300</a>against Schwarzschild&#x27;s `1 − √(8/9)` between `5.71 %` and `5.72 %`. -/</span>
+<span class="ln decl" id="FRC.Gravity.isco_efficiency"><a class="lno" href="#FRC.Gravity.isco_efficiency">301</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcLedger/Gravity.lean#L301" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small t2" src="lean-t2.png" alt="" title="tier 2, classical: Classical.choice, Quot.sound, propext">theorem isco_efficiency :</span>
+<span class="ln" id="L302"><a class="lno" href="#L302">302</a>    (0.0547 : ℝ) &lt; 1 - √(exp (-(2 / (3 + √5))) * (3 + √5) / 4) ∧</span>
+<span class="ln" id="L303"><a class="lno" href="#L303">303</a>    1 - √(exp (-(2 / (3 + √5))) * (3 + √5) / 4) &lt; 0.0548 ∧</span>
+<span class="ln" id="L304"><a class="lno" href="#L304">304</a>    (0.0571 : ℝ) &lt; 1 - √(8 / 9) ∧ 1 - √(8 / 9) &lt; (0.0572 : ℝ) := by</span>
+<span class="ln" id="L305"><a class="lno" href="#L305">305</a>  obtain ⟨s1, s2⟩ := sqrt_five_bounds</span>
+<span class="ln" id="L306"><a class="lno" href="#L306">306</a>  obtain ⟨t1, t2⟩ := exp_isco_tail_bounds</span>
+<span class="ln" id="L307"><a class="lno" href="#L307">307</a>  have hx : 2 / (3 + √5) = (3 - √5) / 2 := by</span>
+<span class="ln" id="L308"><a class="lno" href="#L308">308</a>    have h5 := Real.sq_sqrt (show (0 : ℝ) ≤ 5 by norm_num)</span>
+<span class="ln" id="L309"><a class="lno" href="#L309">309</a>    rw [div_eq_div_iff (by positivity) (by norm_num)]</span>
+<span class="ln" id="L310"><a class="lno" href="#L310">310</a>    linear_combination h5</span>
+<span class="ln" id="L311"><a class="lno" href="#L311">311</a>  obtain ⟨hlo, hhi⟩ := exp_neg_bracket (x := 2 / (3 + √5)) (x₁ := 0.381966) (x₂ := 0.3819661)</span>
+<span class="ln" id="L312"><a class="lno" href="#L312">312</a>    (by rw [hx]; linarith) (by rw [hx]; linarith) (by norm_num) t1 t2</span>
+<span class="ln" id="L313"><a class="lno" href="#L313">313</a>  norm_num at hlo hhi</span>
+<span class="ln" id="L314"><a class="lno" href="#L314">314</a>  have hE := exp_pos (-(2 / (3 + √5)))</span>
+<span class="ln" id="L315"><a class="lno" href="#L315">315</a>  have hv1 : (0.89341 : ℝ) &lt; exp (-(2 / (3 + √5))) * (3 + √5) / 4 := by nlinarith</span>
+<span class="ln" id="L316"><a class="lno" href="#L316">316</a>  have hv2 : exp (-(2 / (3 + √5))) * (3 + √5) / 4 &lt; (0.89345 : ℝ) := by nlinarith</span>
+<span class="ln" id="L317"><a class="lno" href="#L317">317</a>  have hq1 : (0.9452 : ℝ) &lt; √(exp (-(2 / (3 + √5))) * (3 + √5) / 4) :=</span>
+<span class="ln" id="L318"><a class="lno" href="#L318">318</a>    (Real.lt_sqrt (by norm_num)).mpr (by nlinarith)</span>
+<span class="ln" id="L319"><a class="lno" href="#L319">319</a>  have hq2 : √(exp (-(2 / (3 + √5))) * (3 + √5) / 4) &lt; (0.9453 : ℝ) :=</span>
+<span class="ln" id="L320"><a class="lno" href="#L320">320</a>    (Real.sqrt_lt&#x27; (by norm_num)).mpr (by nlinarith)</span>
+<span class="ln" id="L321"><a class="lno" href="#L321">321</a>  have hs1 : (0.9428 : ℝ) &lt; √(8 / 9) := (Real.lt_sqrt (by norm_num)).mpr (by norm_num)</span>
+<span class="ln" id="L322"><a class="lno" href="#L322">322</a>  have hs2 : √(8 / 9 : ℝ) &lt; 0.9429 := (Real.sqrt_lt&#x27; (by norm_num)).mpr (by norm_num)</span>
+<span class="ln" id="L323"><a class="lno" href="#L323">323</a>  refine ⟨by linarith, by linarith, by linarith, by linarith⟩</span>
+<span class="ln" id="L324"><a class="lno" href="#L324">324</a></span>
+<span class="ln" id="L325"><a class="lno" href="#L325">325</a>/-- The arithmetic behind 21:C13&#x27;s capacity ratio: for `r_f = r_s/L` the square of `r_f/r_s` is `1/L²`, and at</span>
+<span class="ln" id="L326"><a class="lno" href="#L326">326</a>`L = ln Ω = 281` the ratio lies between `1.26 × 10⁻⁵` and `1.27 × 10⁻⁵` (the text&#x27;s `1.3 × 10⁻⁵`); that the</span>
+<span class="ln" id="L327"><a class="lno" href="#L327">327</a>externally resolvable capacity scales as `(r_f/r_s)²` is the paper&#x27;s count, not formal content. -/</span>
+<span class="ln decl" id="FRC.Gravity.capacity_ratio"><a class="lno" href="#FRC.Gravity.capacity_ratio">328</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcLedger/Gravity.lean#L328" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small t2" src="lean-t2.png" alt="" title="tier 2, classical: Classical.choice, Quot.sound, propext">theorem capacity_ratio (rs L : ℝ) (hrs : rs ≠ 0) (hL : L ≠ 0) : (rs / L / rs) ^ 2 = 1 / L ^ 2 := by</span>
+<span class="ln" id="L329"><a class="lno" href="#L329">329</a>  field_simp</span>
+<span class="ln" id="L330"><a class="lno" href="#L330">330</a></span>
+<span class="ln decl" id="FRC.Gravity.capacity_ratio_numeral"><a class="lno" href="#FRC.Gravity.capacity_ratio_numeral">331</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcLedger/Gravity.lean#L331" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small t2" src="lean-t2.png" alt="" title="tier 2, classical: Classical.choice, Quot.sound, propext">theorem capacity_ratio_numeral : (1.26e-5 : ℝ) &lt; 1 / 281 ^ 2 ∧ (1 / 281 ^ 2 : ℝ) &lt; 1.27e-5 := by</span>
+<span class="ln" id="L332"><a class="lno" href="#L332">332</a>  norm_num</span>
+<span class="ln" id="L333"><a class="lno" href="#L333">333</a></span>
+<span class="ln" id="L334"><a class="lno" href="#L334">334</a>/-- 21:C4 — the redshift as clock rate: the bias field `e^{−u}` with `u = Gm/rc²` gives</span>
+<span class="ln" id="L335"><a class="lno" href="#L335">335</a>`Δf/f = 1 − e^{−u} = u + O(u²)`, `|1 − e^{−u} − u| ≤ u²` on `0 ≤ u ≤ 1`. -/</span>
+<span class="ln decl" id="FRC.Gravity.redshift_linear"><a class="lno" href="#FRC.Gravity.redshift_linear">336</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcLedger/Gravity.lean#L336" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small t2" src="lean-t2.png" alt="" title="tier 2, classical: Classical.choice, Quot.sound, propext">theorem redshift_linear (u : ℝ) (h0 : 0 ≤ u) (h1 : u ≤ 1) : |1 - exp (-u) - u| ≤ u ^ 2 := by</span>
+<span class="ln" id="L337"><a class="lno" href="#L337">337</a>  have h := Real.exp_bound (x := -u) (by rw [abs_neg, abs_of_nonneg h0]; exact h1) (n := 2) (by norm_num)</span>
+<span class="ln" id="L338"><a class="lno" href="#L338">338</a>  norm_num [Finset.sum_range_succ, Nat.factorial, abs_neg, abs_of_nonneg h0] at h</span>
+<span class="ln" id="L339"><a class="lno" href="#L339">339</a>  rw [abs_le] at h ⊢</span>
+<span class="ln" id="L340"><a class="lno" href="#L340">340</a>  constructor &lt;;&gt; nlinarith [sq_nonneg u]</span>
+<span class="ln" id="L341"><a class="lno" href="#L341">341</a></span>
+<span class="ln" id="L342"><a class="lno" href="#L342">342</a>end strongfield</span>
+<span class="ln" id="L343"><a class="lno" href="#L343">343</a></span>
+<span class="ln" id="L344"><a class="lno" href="#L344">344</a>/-! ## The floor and the registration crossover (21:C19, P3, P4, X2) -/</span>
+<span class="ln" id="L345"><a class="lno" href="#L345">345</a>section floor</span>
+<span class="ln" id="L346"><a class="lno" href="#L346">346</a></span>
+<span class="ln" id="L347"><a class="lno" href="#L347">347</a>/-- 21:P3 — the weak-acceleration floor `a₀ = cH₀/2π` at the entailed `H₀ = 67.4 km s⁻¹ Mpc⁻¹` (the `H₀` of</span>
+<span class="ln" id="L348"><a class="lno" href="#L348">348</a>`\cite{entropy}`, the speed of light and the megaparsec all declared numerals [data]): `a₀` lies between `1.04` and `1.05 × 10⁻¹⁰</span>
+<span class="ln" id="L349"><a class="lno" href="#L349">349</a>m s⁻²`; against the fitted `1.20 × 10⁻¹⁰` it is between `13.0 %` and `13.2 %` low, and the deficit is between</span>
+<span class="ln" id="L350"><a class="lno" href="#L350">350</a>`0.65` and `0.67` of the systematic `0.24 × 10⁻¹⁰` (the text&#x27;s `13 %`, `0.7σ`). -/</span>
+<span class="ln decl" id="FRC.Gravity.floor_value"><a class="lno" href="#FRC.Gravity.floor_value">351</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcLedger/Gravity.lean#L351" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small t2" src="lean-t2.png" alt="" title="tier 2, classical: Classical.choice, Quot.sound, propext">theorem floor_value (c H0 : ℝ) (hc : c = 299792458) (hH : H0 = 67.4e3 / 3.0856775814913673e22) :</span>
+<span class="ln" id="L352"><a class="lno" href="#L352">352</a>    (1.04e-10 : ℝ) &lt; c * H0 / (2 * π) ∧ c * H0 / (2 * π) &lt; 1.05e-10 ∧</span>
+<span class="ln" id="L353"><a class="lno" href="#L353">353</a>    (0.868 : ℝ) &lt; c * H0 / (2 * π) / 1.2e-10 ∧ c * H0 / (2 * π) / 1.2e-10 &lt; 0.870 ∧</span>
+<span class="ln" id="L354"><a class="lno" href="#L354">354</a>    (0.65 : ℝ) &lt; (1.2e-10 - c * H0 / (2 * π)) / 0.24e-10 ∧</span>
+<span class="ln" id="L355"><a class="lno" href="#L355">355</a>    (1.2e-10 - c * H0 / (2 * π)) / 0.24e-10 &lt; 0.67 := by</span>
+<span class="ln" id="L356"><a class="lno" href="#L356">356</a>  have hpi1 := Real.pi_gt_d6</span>
+<span class="ln" id="L357"><a class="lno" href="#L357">357</a>  have hpi2 := Real.pi_lt_d6</span>
+<span class="ln" id="L358"><a class="lno" href="#L358">358</a>  subst hc hH</span>
+<span class="ln" id="L359"><a class="lno" href="#L359">359</a>  have hA : (1.042e-10 : ℝ) &lt; 299792458 * (67.4e3 / 3.0856775814913673e22) / (2 * π) := by</span>
+<span class="ln" id="L360"><a class="lno" href="#L360">360</a>    rw [lt_div_iff₀ (by positivity)]; nlinarith</span>
+<span class="ln" id="L361"><a class="lno" href="#L361">361</a>  have hB : 299792458 * (67.4e3 / 3.0856775814913673e22) / (2 * π) &lt; (1.0423e-10 : ℝ) := by</span>
+<span class="ln" id="L362"><a class="lno" href="#L362">362</a>    rw [div_lt_iff₀ (by positivity)]; nlinarith</span>
+<span class="ln" id="L363"><a class="lno" href="#L363">363</a>  refine ⟨by linarith, by linarith, ?_, ?_, ?_, ?_⟩</span>
+<span class="ln" id="L364"><a class="lno" href="#L364">364</a>  · rw [lt_div_iff₀ (by norm_num)]; linarith</span>
+<span class="ln" id="L365"><a class="lno" href="#L365">365</a>  · rw [div_lt_iff₀ (by norm_num)]; linarith</span>
+<span class="ln" id="L366"><a class="lno" href="#L366">366</a>  · rw [lt_div_iff₀ (by norm_num)]; linarith</span>
+<span class="ln" id="L367"><a class="lno" href="#L367">367</a>  · rw [div_lt_iff₀ (by norm_num)]; linarith</span>
+<span class="ln" id="L368"><a class="lno" href="#L368">368</a></span>
+<span class="ln" id="L369"><a class="lno" href="#L369">369</a>/-- 21:C19, 21:P4 — the registration root: for `0 &lt; w &lt; 1` the quadratic `wη² − 2η + w = 0` (rational in the</span>
+<span class="ln" id="L370"><a class="lno" href="#L370">370</a>paper&#x27;s `w`, here over `ℝ`) has</span>
+<span class="ln" id="L371"><a class="lno" href="#L371">371</a>exactly the roots `(1 ∓ √(1 − w²))/w`; the smaller, `η = (1 − √(1 − w²))/w`, lies in `(0, 1)` and the larger</span>
+<span class="ln" id="L372"><a class="lno" href="#L372">372</a>exceeds `1`, so the in-`(0, 1)` root that fixes the resolved fraction `f = 1 − η^a` is unique. -/</span>
+<span class="ln decl" id="FRC.Gravity.registration_root"><a class="lno" href="#FRC.Gravity.registration_root">373</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcLedger/Gravity.lean#L373" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small t2" src="lean-t2.png" alt="" title="tier 2, classical: Classical.choice, Quot.sound, propext">theorem registration_root (w : ℝ) (hw0 : 0 &lt; w) (hw1 : w &lt; 1) :</span>
+<span class="ln" id="L374"><a class="lno" href="#L374">374</a>    w * ((1 - √(1 - w ^ 2)) / w) ^ 2 - 2 * ((1 - √(1 - w ^ 2)) / w) + w = 0 ∧</span>
+<span class="ln" id="L375"><a class="lno" href="#L375">375</a>    0 &lt; (1 - √(1 - w ^ 2)) / w ∧ (1 - √(1 - w ^ 2)) / w &lt; 1 ∧</span>
+<span class="ln" id="L376"><a class="lno" href="#L376">376</a>    1 &lt; (1 + √(1 - w ^ 2)) / w ∧</span>
+<span class="ln" id="L377"><a class="lno" href="#L377">377</a>    (∀ x : ℝ, w * x ^ 2 - 2 * x + w = 0 →</span>
+<span class="ln" id="L378"><a class="lno" href="#L378">378</a>      x = (1 - √(1 - w ^ 2)) / w ∨ x = (1 + √(1 - w ^ 2)) / w) := by</span>
+<span class="ln" id="L379"><a class="lno" href="#L379">379</a>  have hw2 : 0 ≤ 1 - w ^ 2 := by nlinarith</span>
+<span class="ln" id="L380"><a class="lno" href="#L380">380</a>  set s := √(1 - w ^ 2) with hs</span>
+<span class="ln" id="L381"><a class="lno" href="#L381">381</a>  have hs2 : s ^ 2 = 1 - w ^ 2 := Real.sq_sqrt hw2</span>
+<span class="ln" id="L382"><a class="lno" href="#L382">382</a>  have hs0 : 0 ≤ s := Real.sqrt_nonneg _</span>
+<span class="ln" id="L383"><a class="lno" href="#L383">383</a>  have hs1 : s &lt; 1 := by</span>
+<span class="ln" id="L384"><a class="lno" href="#L384">384</a>    rw [hs, Real.sqrt_lt&#x27; (by norm_num)]; nlinarith</span>
+<span class="ln" id="L385"><a class="lno" href="#L385">385</a>  have hsw : 1 - w &lt; s := by nlinarith [mul_pos hw0 (sub_pos.mpr hw1)]</span>
+<span class="ln" id="L386"><a class="lno" href="#L386">386</a>  have hab : (1 - s) / w + (1 + s) / w = 2 / w := by rw [← add_div]; ring_nf</span>
+<span class="ln" id="L387"><a class="lno" href="#L387">387</a>  have hsum : w * (2 / w) = 2 := by field_simp</span>
+<span class="ln" id="L388"><a class="lno" href="#L388">388</a>  have hprod : w * ((1 - s) / w * ((1 + s) / w)) = w := by</span>
+<span class="ln" id="L389"><a class="lno" href="#L389">389</a>    rw [div_mul_div_comm, ← mul_div_assoc, div_eq_iff (by positivity)]</span>
+<span class="ln" id="L390"><a class="lno" href="#L390">390</a>    linear_combination (-w) * hs2</span>
+<span class="ln" id="L391"><a class="lno" href="#L391">391</a>  have hquad : ∀ x : ℝ, w * x ^ 2 - 2 * x + w = w * (x - (1 - s) / w) * (x - (1 + s) / w) := by</span>
+<span class="ln" id="L392"><a class="lno" href="#L392">392</a>    intro x</span>
+<span class="ln" id="L393"><a class="lno" href="#L393">393</a>    have e : w * (x - (1 - s) / w) * (x - (1 + s) / w)</span>
+<span class="ln" id="L394"><a class="lno" href="#L394">394</a>        = w * x ^ 2 - w * ((1 - s) / w + (1 + s) / w) * x + w * ((1 - s) / w * ((1 + s) / w)) := by ring</span>
+<span class="ln" id="L395"><a class="lno" href="#L395">395</a>    rw [e, hab, hsum, hprod]</span>
+<span class="ln" id="L396"><a class="lno" href="#L396">396</a>  refine ⟨?_, div_pos (by linarith) hw0, ?_, ?_, ?_⟩</span>
+<span class="ln" id="L397"><a class="lno" href="#L397">397</a>  · rw [hquad]; ring</span>
+<span class="ln" id="L398"><a class="lno" href="#L398">398</a>  · rw [div_lt_one hw0]; linarith</span>
+<span class="ln" id="L399"><a class="lno" href="#L399">399</a>  · rw [lt_div_iff₀ hw0]; linarith</span>
+<span class="ln" id="L400"><a class="lno" href="#L400">400</a>  · intro x hx</span>
+<span class="ln" id="L401"><a class="lno" href="#L401">401</a>    rw [hquad] at hx</span>
+<span class="ln" id="L402"><a class="lno" href="#L402">402</a>    rcases mul_eq_zero.mp hx with h | h</span>
+<span class="ln" id="L403"><a class="lno" href="#L403">403</a>    · rcases mul_eq_zero.mp h with h | h</span>
+<span class="ln" id="L404"><a class="lno" href="#L404">404</a>      · exact absurd h hw0.ne&#x27;</span>
+<span class="ln" id="L405"><a class="lno" href="#L405">405</a>      · left; linarith</span>
+<span class="ln" id="L406"><a class="lno" href="#L406">406</a>    · right; linarith</span>
+<span class="ln" id="L407"><a class="lno" href="#L407">407</a></span>
+<span class="ln" id="L408"><a class="lno" href="#L408">408</a>/-- 21:C19, 21:P4 — the crossover `g_obs = g_N/(1 − e^{−√x})`, `x = g_N/a₀`, squeezed: with `t = √x &gt; 0`,</span>
+<span class="ln" id="L409"><a class="lno" href="#L409">409</a>`1 ≤ t/(1 − e^{−t})`, and `t/(1 − e^{−t}) ≤ 1/(1 − 3t/4)` for `t ≤ 1`; and the Tully–Fisher algebra is</span>
+<span class="ln" id="L410"><a class="lno" href="#L410">410</a>exact: `v² = g_obs r` with `g_obs = √(g_N a₀)`, `g_N = GM/r²`, gives `v⁴ = GMa₀`. -/</span>
+<span class="ln decl" id="FRC.Gravity.crossover_limits"><a class="lno" href="#FRC.Gravity.crossover_limits">411</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcLedger/Gravity.lean#L411" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small t2" src="lean-t2.png" alt="" title="tier 2, classical: Classical.choice, Quot.sound, propext">theorem crossover_limits (t : ℝ) (ht : 0 &lt; t) :</span>
+<span class="ln" id="L412"><a class="lno" href="#L412">412</a>    0 &lt; 1 - exp (-t) ∧ 1 ≤ t / (1 - exp (-t)) ∧</span>
+<span class="ln" id="L413"><a class="lno" href="#L413">413</a>    (t ≤ 1 → t / (1 - exp (-t)) ≤ 1 / (1 - 3 * t / 4)) ∧</span>
+<span class="ln" id="L414"><a class="lno" href="#L414">414</a>    (∀ G M r a₀ v : ℝ, 0 &lt; r → 0 ≤ G * M → 0 ≤ a₀ →</span>
+<span class="ln" id="L415"><a class="lno" href="#L415">415</a>      v ^ 2 = √(G * M / r ^ 2 * a₀) * r → v ^ 4 = G * M * a₀) := by</span>
+<span class="ln" id="L416"><a class="lno" href="#L416">416</a>  have hpos : 0 &lt; 1 - exp (-t) := by</span>
+<span class="ln" id="L417"><a class="lno" href="#L417">417</a>    have : exp (-t) &lt; exp 0 := exp_lt_exp.mpr (by linarith)</span>
+<span class="ln" id="L418"><a class="lno" href="#L418">418</a>    rw [exp_zero] at this</span>
+<span class="ln" id="L419"><a class="lno" href="#L419">419</a>    linarith</span>
+<span class="ln" id="L420"><a class="lno" href="#L420">420</a>  refine ⟨hpos, ?_, ?_, ?_⟩</span>
+<span class="ln" id="L421"><a class="lno" href="#L421">421</a>  · rw [le_div_iff₀ hpos]</span>
+<span class="ln" id="L422"><a class="lno" href="#L422">422</a>    have := Real.add_one_le_exp (-t)</span>
+<span class="ln" id="L423"><a class="lno" href="#L423">423</a>    linarith</span>
+<span class="ln" id="L424"><a class="lno" href="#L424">424</a>  · intro ht1</span>
+<span class="ln" id="L425"><a class="lno" href="#L425">425</a>    have h := Real.exp_bound (x := -t) (by rw [abs_neg, abs_of_pos ht]; exact ht1) (n := 2) (by norm_num)</span>
+<span class="ln" id="L426"><a class="lno" href="#L426">426</a>    norm_num [Finset.sum_range_succ, Nat.factorial, abs_neg, abs_of_pos ht] at h</span>
+<span class="ln" id="L427"><a class="lno" href="#L427">427</a>    rw [abs_le] at h</span>
+<span class="ln" id="L428"><a class="lno" href="#L428">428</a>    have h34 : 0 &lt; 1 - 3 * t / 4 := by linarith</span>
+<span class="ln" id="L429"><a class="lno" href="#L429">429</a>    rw [div_le_div_iff₀ hpos h34]</span>
+<span class="ln" id="L430"><a class="lno" href="#L430">430</a>    nlinarith</span>
+<span class="ln" id="L431"><a class="lno" href="#L431">431</a>  · intro G M r a₀ v hr hGM ha v2</span>
+<span class="ln" id="L432"><a class="lno" href="#L432">432</a>    have hnn : 0 ≤ G * M / r ^ 2 * a₀ := by positivity</span>
+<span class="ln" id="L433"><a class="lno" href="#L433">433</a>    calc v ^ 4 = (v ^ 2) ^ 2 := by ring</span>
+<span class="ln" id="L434"><a class="lno" href="#L434">434</a>      _ = (√(G * M / r ^ 2 * a₀)) ^ 2 * r ^ 2 := by rw [v2]; ring</span>
+<span class="ln" id="L435"><a class="lno" href="#L435">435</a>      _ = G * M / r ^ 2 * a₀ * r ^ 2 := by rw [Real.sq_sqrt hnn]</span>
+<span class="ln" id="L436"><a class="lno" href="#L436">436</a>      _ = G * M * a₀ := by field_simp</span>
+<span class="ln" id="L437"><a class="lno" href="#L437">437</a></span>
+<span class="ln" id="L438"><a class="lno" href="#L438">438</a>/-- 21:C19, 21:P4, 21:X2 — the deep limit: `t/(1 − e^{−t}) → 1` as `t → 0⁺`, so `g_obs/√(g_N a₀) → 1` — the</span>
+<span class="ln" id="L439"><a class="lno" href="#L439">439</a>deep regime `g_obs = √(g_N a₀)`, the floor read as noise with no dark sector. -/</span>
+<span class="ln decl" id="FRC.Gravity.crossover_deep_limit"><a class="lno" href="#FRC.Gravity.crossover_deep_limit">440</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcLedger/Gravity.lean#L440" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small t2" src="lean-t2.png" alt="" title="tier 2, classical: Classical.choice, Quot.sound, propext">theorem crossover_deep_limit :</span>
+<span class="ln" id="L441"><a class="lno" href="#L441">441</a>    Filter.Tendsto (fun t : ℝ =&gt; t / (1 - exp (-t))) (nhdsWithin 0 (Set.Ioi 0)) (nhds 1) := by</span>
+<span class="ln" id="L442"><a class="lno" href="#L442">442</a>  have hc : ContinuousAt (fun t : ℝ =&gt; 1 / (1 - 3 * t / 4)) 0 := by</span>
+<span class="ln" id="L443"><a class="lno" href="#L443">443</a>    apply ContinuousAt.div continuousAt_const</span>
+<span class="ln" id="L444"><a class="lno" href="#L444">444</a>    · fun_prop</span>
+<span class="ln" id="L445"><a class="lno" href="#L445">445</a>    · norm_num</span>
+<span class="ln" id="L446"><a class="lno" href="#L446">446</a>  have hup : Filter.Tendsto (fun t : ℝ =&gt; 1 / (1 - 3 * t / 4)) (nhdsWithin 0 (Set.Ioi 0)) (nhds 1) := by</span>
+<span class="ln" id="L447"><a class="lno" href="#L447">447</a>    have := hc.tendsto.mono_left (nhdsWithin_le_nhds : nhdsWithin (0 : ℝ) (Set.Ioi 0) ≤ nhds 0)</span>
+<span class="ln" id="L448"><a class="lno" href="#L448">448</a>    simpa using this</span>
+<span class="ln" id="L449"><a class="lno" href="#L449">449</a>  refine tendsto_of_tendsto_of_tendsto_of_le_of_le&#x27; tendsto_const_nhds hup ?_ ?_</span>
+<span class="ln" id="L450"><a class="lno" href="#L450">450</a>  · filter_upwards [self_mem_nhdsWithin] with t ht</span>
+<span class="ln" id="L451"><a class="lno" href="#L451">451</a>    exact (crossover_limits t ht).2.1</span>
+<span class="ln" id="L452"><a class="lno" href="#L452">452</a>  · filter_upwards [Ioo_mem_nhdsGT (show (0 : ℝ) &lt; 1 by norm_num)] with t ht</span>
+<span class="ln" id="L453"><a class="lno" href="#L453">453</a>    exact (crossover_limits t ht.1).2.2.1 ht.2.le</span>
+<span class="ln" id="L454"><a class="lno" href="#L454">454</a></span>
+<span class="ln" id="L455"><a class="lno" href="#L455">455</a>/-- 21:C19, 21:P4 — the Newtonian limit: `1 − e^{−t} → 1` as `t → ∞`, so `g_obs/g_N → 1` for `x → ∞`. -/</span>
+<span class="ln decl" id="FRC.Gravity.crossover_newton_limit"><a class="lno" href="#FRC.Gravity.crossover_newton_limit">456</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcLedger/Gravity.lean#L456" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small t2" src="lean-t2.png" alt="" title="tier 2, classical: Classical.choice, Quot.sound, propext">theorem crossover_newton_limit :</span>
+<span class="ln" id="L457"><a class="lno" href="#L457">457</a>    Filter.Tendsto (fun t : ℝ =&gt; 1 - exp (-t)) Filter.atTop (nhds 1) := by</span>
+<span class="ln" id="L458"><a class="lno" href="#L458">458</a>  have := Real.tendsto_exp_neg_atTop_nhds_zero</span>
+<span class="ln" id="L459"><a class="lno" href="#L459">459</a>  simpa using tendsto_const_nhds.sub this</span>
+<span class="ln" id="L460"><a class="lno" href="#L460">460</a></span>
+<span class="ln" id="L461"><a class="lno" href="#L461">461</a>/-- The Taylor brackets of `e^t` at the two ends of `t = √5 − 2`. -/</span>
+<span class="ln decl" id="FRC.Gravity.exp_root_five_tail_bounds"><a class="lno" href="#FRC.Gravity.exp_root_five_tail_bounds">462</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcLedger/Gravity.lean#L462" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small t2" src="lean-t2.png" alt="" title="tier 2, classical: Classical.choice, Quot.sound, propext">theorem exp_root_five_tail_bounds :</span>
+<span class="ln" id="L463"><a class="lno" href="#L463">463</a>    (1.2662602 : ℝ) &lt; exp 0.2360679 ∧ exp (0.2360680 : ℝ) &lt; 1.2662605 := by</span>
+<span class="ln" id="L464"><a class="lno" href="#L464">464</a>  constructor</span>
+<span class="ln" id="L465"><a class="lno" href="#L465">465</a>  · have h := abs_le.1 (Real.exp_bound (x := 0.2360679) (by rw [abs_of_pos (by norm_num)]; norm_num)</span>
+<span class="ln" id="L466"><a class="lno" href="#L466">466</a>      (n := 7) (by norm_num))</span>
+<span class="ln" id="L467"><a class="lno" href="#L467">467</a>    rw [abs_of_pos (by norm_num : (0 : ℝ) &lt; 0.2360679)] at h</span>
+<span class="ln" id="L468"><a class="lno" href="#L468">468</a>    have h1 := h.1</span>
+<span class="ln" id="L469"><a class="lno" href="#L469">469</a>    norm_num [Finset.sum_range_succ, Nat.factorial] at h1 ⊢</span>
+<span class="ln" id="L470"><a class="lno" href="#L470">470</a>    linarith</span>
+<span class="ln" id="L471"><a class="lno" href="#L471">471</a>  · have h := Real.exp_bound&#x27; (x := 0.2360680) (by norm_num) (by norm_num) (n := 7) (by norm_num)</span>
+<span class="ln" id="L472"><a class="lno" href="#L472">472</a>    norm_num [Finset.sum_range_succ, Nat.factorial] at h ⊢</span>
+<span class="ln" id="L473"><a class="lno" href="#L473">473</a>    linarith</span>
+<span class="ln" id="L474"><a class="lno" href="#L474">474</a></span>
+<span class="ln" id="L475"><a class="lno" href="#L475">475</a>/-- 21:P4 — the discriminant against the simple interpolant at `g_N = 5a₀`: the crossover</span>
+<span class="ln" id="L476"><a class="lno" href="#L476">476</a>`ν(5) = 1/(1 − e^{−√5})` lies between `1.11966` and `1.11967`, the simple interpolant</span>
+<span class="ln" id="L477"><a class="lno" href="#L477">477</a>`ν_s(5) = 1/2 + √(1/4 + 1/5)` between `1.17082` and `1.17083`, so they part by between `0.0511` and `0.0512` in</span>
+<span class="ln" id="L478"><a class="lno" href="#L478">478</a>`g_obs/g_N` (the text&#x27;s `0.05`). -/</span>
+<span class="ln decl" id="FRC.Gravity.interpolant_discriminant"><a class="lno" href="#FRC.Gravity.interpolant_discriminant">479</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcLedger/Gravity.lean#L479" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small t2" src="lean-t2.png" alt="" title="tier 2, classical: Classical.choice, Quot.sound, propext">theorem interpolant_discriminant :</span>
+<span class="ln" id="L480"><a class="lno" href="#L480">480</a>    (1.11966 : ℝ) &lt; 1 / (1 - exp (-√5)) ∧ 1 / (1 - exp (-√5)) &lt; 1.11967 ∧</span>
+<span class="ln" id="L481"><a class="lno" href="#L481">481</a>    (1.17082 : ℝ) &lt; 1 / 2 + √(1 / 4 + 1 / 5) ∧ 1 / 2 + √(1 / 4 + 1 / 5) &lt; 1.17083 ∧</span>
+<span class="ln" id="L482"><a class="lno" href="#L482">482</a>    (0.0511 : ℝ) &lt; (1 / 2 + √(1 / 4 + 1 / 5)) - 1 / (1 - exp (-√5)) ∧</span>
+<span class="ln" id="L483"><a class="lno" href="#L483">483</a>    (1 / 2 + √(1 / 4 + 1 / 5)) - 1 / (1 - exp (-√5)) &lt; 0.0512 := by</span>
+<span class="ln" id="L484"><a class="lno" href="#L484">484</a>  obtain ⟨s1, s2⟩ := sqrt_five_bounds</span>
+<span class="ln" id="L485"><a class="lno" href="#L485">485</a>  obtain ⟨t1, t2⟩ := exp_root_five_tail_bounds</span>
+<span class="ln" id="L486"><a class="lno" href="#L486">486</a>  have hm1 := Real.exp_neg_one_gt_d9</span>
+<span class="ln" id="L487"><a class="lno" href="#L487">487</a>  have hm2 := Real.exp_neg_one_lt_d9</span>
+<span class="ln" id="L488"><a class="lno" href="#L488">488</a>  have hsplit : exp (-√5) = exp (-1) * exp (-1) * exp (2 - √5) := by</span>
+<span class="ln" id="L489"><a class="lno" href="#L489">489</a>    rw [← exp_add, ← exp_add]; ring_nf</span>
+<span class="ln" id="L490"><a class="lno" href="#L490">490</a>  obtain ⟨hlo, hhi⟩ := exp_neg_bracket (x := √5 - 2) (x₁ := 0.2360679) (x₂ := 0.2360680)</span>
+<span class="ln" id="L491"><a class="lno" href="#L491">491</a>    (by linarith) (by linarith) (by norm_num) t1 t2</span>
+<span class="ln" id="L492"><a class="lno" href="#L492">492</a>  norm_num at hlo hhi</span>
+<span class="ln" id="L493"><a class="lno" href="#L493">493</a>  have hm : (0 : ℝ) &lt; exp (-1) := exp_pos _</span>
+<span class="ln" id="L494"><a class="lno" href="#L494">494</a>  have hq1 : (0.106877 : ℝ) &lt; exp (-√5) := by rw [hsplit]; nlinarith [mul_pos hm hm]</span>
+<span class="ln" id="L495"><a class="lno" href="#L495">495</a>  have hq2 : exp (-√5) &lt; (0.106878 : ℝ) := by rw [hsplit]; nlinarith [mul_pos hm hm]</span>
+<span class="ln" id="L496"><a class="lno" href="#L496">496</a>  have hden : (0 : ℝ) &lt; 1 - exp (-√5) := by linarith</span>
+<span class="ln" id="L497"><a class="lno" href="#L497">497</a>  have hr1 : (1.11966 : ℝ) &lt; 1 / (1 - exp (-√5)) := by rw [lt_div_iff₀ hden]; linarith</span>
+<span class="ln" id="L498"><a class="lno" href="#L498">498</a>  have hr2 : 1 / (1 - exp (-√5)) &lt; (1.11967 : ℝ) := by rw [div_lt_iff₀ hden]; linarith</span>
+<span class="ln" id="L499"><a class="lno" href="#L499">499</a>  have hs1 : (0.67082 : ℝ) &lt; √(1 / 4 + 1 / 5) := (Real.lt_sqrt (by norm_num)).mpr (by norm_num)</span>
+<span class="ln" id="L500"><a class="lno" href="#L500">500</a>  have hs2 : √(1 / 4 + 1 / 5 : ℝ) &lt; 0.67083 := (Real.sqrt_lt&#x27; (by norm_num)).mpr (by norm_num)</span>
+<span class="ln" id="L501"><a class="lno" href="#L501">501</a>  refine ⟨hr1, hr2, by linarith, by linarith, by linarith, by linarith⟩</span>
+<span class="ln" id="L502"><a class="lno" href="#L502">502</a></span>
+<span class="ln" id="L503"><a class="lno" href="#L503">503</a>end floor</span>
+<span class="ln" id="L504"><a class="lno" href="#L504">504</a></span>
+<span class="ln" id="L505"><a class="lno" href="#L505">505</a>/-! ## The primordial spectrum (21:C18, P8, X6) -/</span>
+<span class="ln" id="L506"><a class="lno" href="#L506">506</a>section primordial</span>
+<span class="ln" id="L507"><a class="lno" href="#L507">507</a></span>
+<span class="ln" id="L508"><a class="lno" href="#L508">508</a>/-- The arithmetic behind 21:C18&#x27;s fixed point: for a power law `P(k) = k^n` the dimensionless `k³P(k)` is the</span>
+<span class="ln" id="L509"><a class="lno" href="#L509">509</a>same at every scale `k &gt; 0` exactly when `n = −3`, i.e. `n_s − 1 = n + 3 = 0`, the Harrison–Zel&#x27;dovich</span>
+<span class="ln" id="L510"><a class="lno" href="#L510">510</a>`n_s = 1`, uniquely; that the drive&#x27;s jitter spectrum is this fixed point is the paper&#x27;s argument. -/</span>
+<span class="ln decl" id="FRC.Gravity.scale_invariance_iff"><a class="lno" href="#FRC.Gravity.scale_invariance_iff">511</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcLedger/Gravity.lean#L511" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small t2" src="lean-t2.png" alt="" title="tier 2, classical: Classical.choice, Quot.sound, propext">theorem scale_invariance_iff (n : ℝ) :</span>
+<span class="ln" id="L512"><a class="lno" href="#L512">512</a>    (∀ k : ℝ, 0 &lt; k → k ^ 3 * k ^ n = 1) ↔ n = -3 := by</span>
+<span class="ln" id="L513"><a class="lno" href="#L513">513</a>  constructor</span>
+<span class="ln" id="L514"><a class="lno" href="#L514">514</a>  · intro h</span>
+<span class="ln" id="L515"><a class="lno" href="#L515">515</a>    have h2 := h 2 (by norm_num)</span>
+<span class="ln" id="L516"><a class="lno" href="#L516">516</a>    have h3 : (2 : ℝ) ^ (n + 3) = 1 := by</span>
+<span class="ln" id="L517"><a class="lno" href="#L517">517</a>      rw [rpow_add (by norm_num : (0 : ℝ) &lt; 2), show (2 : ℝ) ^ (3 : ℝ) = 2 ^ (3 : ℕ) by</span>
+<span class="ln" id="L518"><a class="lno" href="#L518">518</a>        exact_mod_cast rpow_natCast 2 3]</span>
+<span class="ln" id="L519"><a class="lno" href="#L519">519</a>      linarith</span>
+<span class="ln" id="L520"><a class="lno" href="#L520">520</a>    have hl := congrArg Real.log h3</span>
+<span class="ln" id="L521"><a class="lno" href="#L521">521</a>    rw [Real.log_rpow (by norm_num), Real.log_one] at hl</span>
+<span class="ln" id="L522"><a class="lno" href="#L522">522</a>    rcases mul_eq_zero.mp hl with h | h</span>
+<span class="ln" id="L523"><a class="lno" href="#L523">523</a>    · linarith</span>
+<span class="ln" id="L524"><a class="lno" href="#L524">524</a>    · exact absurd h (Real.log_pos (by norm_num)).ne&#x27;</span>
+<span class="ln" id="L525"><a class="lno" href="#L525">525</a>  · rintro rfl k hk</span>
+<span class="ln" id="L526"><a class="lno" href="#L526">526</a>    rw [Real.rpow_neg hk.le, show (3 : ℝ) = (3 : ℕ) by norm_num, rpow_natCast]</span>
+<span class="ln" id="L527"><a class="lno" href="#L527">527</a>    exact mul_inv_cancel₀ (pow_ne_zero 3 hk.ne&#x27;)</span>
+<span class="ln" id="L528"><a class="lno" href="#L528">528</a></span>
+<span class="ln" id="L529"><a class="lno" href="#L529">529</a>/-- The Taylor brackets of `e^t` at `t = 0.30259` (below) and `t = 0.30258` (above), the two sides of</span>
+<span class="ln" id="L530"><a class="lno" href="#L530">530</a>`ln 10 − 2`. -/</span>
+<span class="ln decl" id="FRC.Gravity.exp_log_ten_tail_bounds"><a class="lno" href="#FRC.Gravity.exp_log_ten_tail_bounds">531</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcLedger/Gravity.lean#L531" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small t2" src="lean-t2.png" alt="" title="tier 2, classical: Classical.choice, Quot.sound, propext">theorem exp_log_ten_tail_bounds :</span>
+<span class="ln" id="L532"><a class="lno" href="#L532">532</a>    (1.353359 : ℝ) &lt; exp 0.30259 ∧ exp (0.30258 : ℝ) &lt; 1.353346 := by</span>
+<span class="ln" id="L533"><a class="lno" href="#L533">533</a>  constructor</span>
+<span class="ln" id="L534"><a class="lno" href="#L534">534</a>  · have h := abs_le.1 (Real.exp_bound (x := 0.30259) (by rw [abs_of_pos (by norm_num)]; norm_num)</span>
+<span class="ln" id="L535"><a class="lno" href="#L535">535</a>      (n := 7) (by norm_num))</span>
+<span class="ln" id="L536"><a class="lno" href="#L536">536</a>    rw [abs_of_pos (by norm_num : (0 : ℝ) &lt; 0.30259)] at h</span>
+<span class="ln" id="L537"><a class="lno" href="#L537">537</a>    have h1 := h.1</span>
+<span class="ln" id="L538"><a class="lno" href="#L538">538</a>    norm_num [Finset.sum_range_succ, Nat.factorial] at h1 ⊢</span>
+<span class="ln" id="L539"><a class="lno" href="#L539">539</a>    linarith</span>
+<span class="ln" id="L540"><a class="lno" href="#L540">540</a>  · have h := Real.exp_bound&#x27; (x := 0.30258) (by norm_num) (by norm_num) (n := 8) (by norm_num)</span>
+<span class="ln" id="L541"><a class="lno" href="#L541">541</a>    norm_num [Finset.sum_range_succ, Nat.factorial] at h ⊢</span>
+<span class="ln" id="L542"><a class="lno" href="#L542">542</a>    linarith</span>
+<span class="ln" id="L543"><a class="lno" href="#L543">543</a></span>
+<span class="ln" id="L544"><a class="lno" href="#L544">544</a>/-- 21:P8 — `ln 10` bracketed: `2.30258 &lt; ln 10 &lt; 2.30259`, from `e` to nine places and the Taylor tail. -/</span>
+<span class="ln decl" id="FRC.Gravity.log_ten_bounds"><a class="lno" href="#FRC.Gravity.log_ten_bounds">545</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcLedger/Gravity.lean#L545" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small t2" src="lean-t2.png" alt="" title="tier 2, classical: Classical.choice, Quot.sound, propext">theorem log_ten_bounds : (2.30258 : ℝ) &lt; log 10 ∧ log 10 &lt; 2.30259 := by</span>
+<span class="ln" id="L546"><a class="lno" href="#L546">546</a>  have e1 := Real.exp_one_gt_d9</span>
+<span class="ln" id="L547"><a class="lno" href="#L547">547</a>  have e2 := Real.exp_one_lt_d9</span>
+<span class="ln" id="L548"><a class="lno" href="#L548">548</a>  obtain ⟨t1, t2⟩ := exp_log_ten_tail_bounds</span>
+<span class="ln" id="L549"><a class="lno" href="#L549">549</a>  have he : (0 : ℝ) &lt; exp 1 := exp_pos 1</span>
+<span class="ln" id="L550"><a class="lno" href="#L550">550</a>  constructor</span>
+<span class="ln" id="L551"><a class="lno" href="#L551">551</a>  · rw [Real.lt_log_iff_exp_lt (by norm_num)]</span>
+<span class="ln" id="L552"><a class="lno" href="#L552">552</a>    have : exp (2.30258 : ℝ) = exp 1 * exp 1 * exp 0.30258 := by</span>
+<span class="ln" id="L553"><a class="lno" href="#L553">553</a>      rw [← exp_add, ← exp_add]; norm_num</span>
+<span class="ln" id="L554"><a class="lno" href="#L554">554</a>    rw [this]; nlinarith [mul_pos he he, exp_pos (0.30258 : ℝ)]</span>
+<span class="ln" id="L555"><a class="lno" href="#L555">555</a>  · rw [Real.log_lt_iff_lt_exp (by norm_num)]</span>
+<span class="ln" id="L556"><a class="lno" href="#L556">556</a>    have : exp (2.30259 : ℝ) = exp 1 * exp 1 * exp 0.30259 := by</span>
+<span class="ln" id="L557"><a class="lno" href="#L557">557</a>      rw [← exp_add, ← exp_add]; norm_num</span>
+<span class="ln" id="L558"><a class="lno" href="#L558">558</a>    rw [this]; nlinarith [mul_pos he he, exp_pos (0.30259 : ℝ)]</span>
+<span class="ln" id="L559"><a class="lno" href="#L559">559</a></span>
+<span class="ln" id="L560"><a class="lno" href="#L560">560</a>/-- 21:C18, 21:P8 — the tilt&#x27;s numerals bracketed: the e-fold count `ln Ω` at `Ω = 10¹²²` is `122 ln 10`,</span>
+<span class="ln" id="L561"><a class="lno" href="#L561">561</a>between `280.91` and `280.92` (the anchored `281`); the committed tilt `−π²/281` lies between `−0.035124` and</span>
+<span class="ln" id="L562"><a class="lno" href="#L562">562</a>`−0.035123` (the text&#x27;s `−0.0351`, against Planck&#x27;s `−0.0351 ± 0.0042` [data]); the neighbouring count</span>
+<span class="ln" id="L563"><a class="lno" href="#L563">563</a>`½ ln Ω` gives `−π²/140.5`, parted from the committed value by more than `8.36σ` and less than `8.37σ` at</span>
+<span class="ln" id="L564"><a class="lno" href="#L564">564</a>`σ = 0.0042` (the text&#x27;s `8.4σ`); and a factor two in `S` moves the tilt by the fraction `ln 2/281`, between `0.246 %`</span>
+<span class="ln" id="L565"><a class="lno" href="#L565">565</a>and `0.247 %` (the text&#x27;s `0.25 %`). -/</span>
+<span class="ln decl" id="FRC.Gravity.tilt_bracket"><a class="lno" href="#FRC.Gravity.tilt_bracket">566</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcLedger/Gravity.lean#L566" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small t2" src="lean-t2.png" alt="" title="tier 2, classical: Classical.choice, Quot.sound, propext">theorem tilt_bracket :</span>
+<span class="ln" id="L567"><a class="lno" href="#L567">567</a>    (280.91 : ℝ) &lt; 122 * log 10 ∧ 122 * log 10 &lt; 280.92 ∧</span>
+<span class="ln" id="L568"><a class="lno" href="#L568">568</a>    (-0.035124 : ℝ) &lt; -(π ^ 2 / 281) ∧ -(π ^ 2 / 281) &lt; -0.035123 ∧</span>
+<span class="ln" id="L569"><a class="lno" href="#L569">569</a>    (8.36 : ℝ) * 0.0042 &lt; π ^ 2 / 140.5 - π ^ 2 / 281 ∧ π ^ 2 / 140.5 - π ^ 2 / 281 &lt; 8.37 * 0.0042 ∧</span>
+<span class="ln" id="L570"><a class="lno" href="#L570">570</a>    (0.00246 : ℝ) &lt; log 2 / 281 ∧ log 2 / 281 &lt; 0.00247 := by</span>
+<span class="ln" id="L571"><a class="lno" href="#L571">571</a>  obtain ⟨l1, l2⟩ := log_ten_bounds</span>
+<span class="ln" id="L572"><a class="lno" href="#L572">572</a>  have hpi1 := Real.pi_gt_d6</span>
+<span class="ln" id="L573"><a class="lno" href="#L573">573</a>  have hpi2 := Real.pi_lt_d6</span>
+<span class="ln" id="L574"><a class="lno" href="#L574">574</a>  have hp2 : (9.8696002 : ℝ) &lt; π ^ 2 := by nlinarith</span>
+<span class="ln" id="L575"><a class="lno" href="#L575">575</a>  have hp2&#x27; : π ^ 2 &lt; (9.8696066 : ℝ) := by nlinarith</span>
+<span class="ln" id="L576"><a class="lno" href="#L576">576</a>  have h2a := Real.log_two_gt_d9</span>
+<span class="ln" id="L577"><a class="lno" href="#L577">577</a>  have h2b := Real.log_two_lt_d9</span>
+<span class="ln" id="L578"><a class="lno" href="#L578">578</a>  have hσ : π ^ 2 / 140.5 - π ^ 2 / 281 = π ^ 2 / 281 := by ring</span>
+<span class="ln" id="L579"><a class="lno" href="#L579">579</a>  rw [hσ]</span>
+<span class="ln" id="L580"><a class="lno" href="#L580">580</a>  refine ⟨by linarith, by linarith, by linarith, by linarith, ?_, ?_, by linarith, by linarith⟩</span>
+<span class="ln" id="L581"><a class="lno" href="#L581">581</a>  · norm_num; linarith</span>
+<span class="ln" id="L582"><a class="lno" href="#L582">582</a>  · norm_num; linarith</span>
+<span class="ln" id="L583"><a class="lno" href="#L583">583</a></span>
+<span class="ln" id="L584"><a class="lno" href="#L584">584</a>end primordial</span>
+<span class="ln" id="L585"><a class="lno" href="#L585">585</a></span>
+<span class="ln" id="L586"><a class="lno" href="#L586">586</a>/-! ## The lattice (21:C1, C9, C15, C20) -/</span>
+<span class="ln" id="L587"><a class="lno" href="#L587">587</a>section lattice</span>
+<span class="ln" id="L588"><a class="lno" href="#L588">588</a></span>
+<span class="ln" id="L589"><a class="lno" href="#L589">589</a>variable {N : ℕ} [NeZero N] {R : Type*} [CommRing R]</span>
+<span class="ln" id="L590"><a class="lno" href="#L590">590</a></span>
+<span class="ln" id="L591"><a class="lno" href="#L591">591</a>/-- 21:C9 — anti-self-adjointness of the central difference on the cycle `ℤ/N`: with</span>
+<span class="ln" id="L592"><a class="lno" href="#L592">592</a>`(Δf)(x) = f(x + 1) − f(x − 1)`, `Σ_x f(x)(Δg)(x) = −Σ_x (Δf)(x) g(x)` — `Δᵀ = −Δ`, the identity that carries</span>
+<span class="ln" id="L593"><a class="lno" href="#L593">593</a>the discrete Fierz–Pauli gauge invariance (the package proves the four-term functional&#x27;s invariance as an exact</span>
+<span class="ln" id="L594"><a class="lno" href="#L594">594</a>integer identity; the paper&#x27;s `½` in `D_μ = (T_μ − T_μ⁻¹)/2` scales both sides alike). The one-sided</span>
+<span class="ln" id="L595"><a class="lno" href="#L595">595</a>difference `(δf)(x) = f(x + 1) − f(x)` has adjoint the negative *backward* difference,</span>
+<span class="ln" id="L596"><a class="lno" href="#L596">596</a>`Σ_x f(x)(δg)(x) = −Σ_x (f(x) − f(x − 1)) g(x)` — the package&#x27;s failing control is that this is not `−δ`. -/</span>
+<span class="ln decl" id="FRC.Gravity.central_difference_adjoint"><a class="lno" href="#FRC.Gravity.central_difference_adjoint">597</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcLedger/Gravity.lean#L597" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small t2" src="lean-t2.png" alt="" title="tier 2, classical: Classical.choice, Quot.sound, propext">theorem central_difference_adjoint (f g : ZMod N → R) :</span>
+<span class="ln" id="L598"><a class="lno" href="#L598">598</a>    ∑ x, f x * (g (x + 1) - g (x - 1)) = -∑ x, (f (x + 1) - f (x - 1)) * g x ∧</span>
+<span class="ln" id="L599"><a class="lno" href="#L599">599</a>    ∑ x, f x * (g (x + 1) - g x) = -∑ x, (f x - f (x - 1)) * g x := by</span>
+<span class="ln" id="L600"><a class="lno" href="#L600">600</a>  have h1 : ∑ x, f x * g (x + 1) = ∑ x, f (x - 1) * g x := by</span>
+<span class="ln" id="L601"><a class="lno" href="#L601">601</a>    rw [← Equiv.sum_comp (Equiv.addRight (1 : ZMod N)) (fun x =&gt; f (x - 1) * g x)]</span>
+<span class="ln" id="L602"><a class="lno" href="#L602">602</a>    simp</span>
+<span class="ln" id="L603"><a class="lno" href="#L603">603</a>  have h2 : ∑ x, f x * g (x - 1) = ∑ x, f (x + 1) * g x := by</span>
+<span class="ln" id="L604"><a class="lno" href="#L604">604</a>    rw [← Equiv.sum_comp (Equiv.subRight (1 : ZMod N)) (fun x =&gt; f (x + 1) * g x)]</span>
+<span class="ln" id="L605"><a class="lno" href="#L605">605</a>    simp</span>
+<span class="ln" id="L606"><a class="lno" href="#L606">606</a>  constructor</span>
+<span class="ln" id="L607"><a class="lno" href="#L607">607</a>  · simp only [mul_sub, sub_mul, Finset.sum_sub_distrib, h1, h2]; ring</span>
+<span class="ln" id="L608"><a class="lno" href="#L608">608</a>  · simp only [mul_sub, sub_mul, Finset.sum_sub_distrib, h1]; ring</span>
+<span class="ln" id="L609"><a class="lno" href="#L609">609</a></span>
+<span class="ln" id="L610"><a class="lno" href="#L610">610</a>/-- The finite Fourier transform on the cycle, against a character `ζ` with `ζ^N = 1`:</span>
+<span class="ln" id="L611"><a class="lno" href="#L611">611</a>`(F f)(k) = Σ_x f(x) ζ^{xk}`. -/</span>
+<span class="ln decl" id="FRC.Gravity.dft"><a class="lno" href="#FRC.Gravity.dft">612</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcLedger/Gravity.lean#L612" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small" src="lean.png" alt="" title="a definition: no proof, no axioms">def dft (ζ : R) (f : ZMod N → R) (k : ZMod N) : R := ∑ x, f x * ζ ^ (x.val * k.val)</span>
+<span class="ln" id="L613"><a class="lno" href="#L613">613</a></span>
+<span class="ln" id="L614"><a class="lno" href="#L614">614</a>omit [NeZero N] in</span>
+<span class="ln" id="L615"><a class="lno" href="#L615">615</a>/-- A root of unity is insensitive to the reduction of its exponent modulo `N`. -/</span>
+<span class="ln decl" id="FRC.Gravity.pow_val_mod"><a class="lno" href="#FRC.Gravity.pow_val_mod">616</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcLedger/Gravity.lean#L616" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small t1" src="lean-t1.png" alt="" title="tier 1: propext">theorem pow_val_mod (ζ : R) (hζ : ζ ^ N = 1) (m k : ℕ) : ζ ^ ((m % N) * k) = ζ ^ (m * k) := by</span>
+<span class="ln" id="L617"><a class="lno" href="#L617">617</a>  conv_rhs =&gt; rw [← Nat.mod_add_div m N]</span>
+<span class="ln" id="L618"><a class="lno" href="#L618">618</a>  rw [add_mul, pow_add, mul_assoc, pow_mul, pow_mul, hζ, one_pow, mul_one]</span>
+<span class="ln" id="L619"><a class="lno" href="#L619">619</a></span>
+<span class="ln" id="L620"><a class="lno" href="#L620">620</a>omit [NeZero N] in</span>
+<span class="ln" id="L621"><a class="lno" href="#L621">621</a>/-- A root of unity is insensitive to the reduction of a factor of its exponent modulo `N`. -/</span>
+<span class="ln decl" id="FRC.Gravity.pow_mul_val_mod"><a class="lno" href="#FRC.Gravity.pow_mul_val_mod">622</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcLedger/Gravity.lean#L622" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small t1" src="lean-t1.png" alt="" title="tier 1: propext">theorem pow_mul_val_mod (ζ : R) (hζ : ζ ^ N = 1) (k m : ℕ) : ζ ^ (k * (m % N)) = ζ ^ (k * m) := by</span>
+<span class="ln" id="L623"><a class="lno" href="#L623">623</a>  rw [mul_comm, pow_val_mod ζ hζ, mul_comm]</span>
+<span class="ln" id="L624"><a class="lno" href="#L624">624</a></span>
+<span class="ln" id="L625"><a class="lno" href="#L625">625</a>/-- 21:C20 — the finite Fourier shift theorem in both forms, the kick of the two-shift law: the kick, a</span>
+<span class="ln" id="L626"><a class="lno" href="#L626">626</a>character `ζ^{ax}` multiplying `f` in position, shifts the transform, `F(ζ^{a·} f)(k) = (F f)(k + a)`; dually,</span>
+<span class="ln" id="L627"><a class="lno" href="#L627">627</a>shifting `f` by `a` multiplies its transform by the character, `F(f(· − a))(k) = ζ^{ak} (F f)(k)`. -/</span>
+<span class="ln decl" id="FRC.Gravity.shift_theorem"><a class="lno" href="#FRC.Gravity.shift_theorem">628</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcLedger/Gravity.lean#L628" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small t2" src="lean-t2.png" alt="" title="tier 2, classical: Classical.choice, Quot.sound, propext">theorem shift_theorem (ζ : R) (hζ : ζ ^ N = 1) (f : ZMod N → R) (a k : ZMod N) :</span>
+<span class="ln" id="L629"><a class="lno" href="#L629">629</a>    dft ζ (fun x =&gt; ζ ^ (a.val * x.val) * f x) k = dft ζ f (k + a) ∧</span>
+<span class="ln" id="L630"><a class="lno" href="#L630">630</a>    dft ζ (fun x =&gt; f (x - a)) k = ζ ^ (a.val * k.val) * dft ζ f k := by</span>
+<span class="ln" id="L631"><a class="lno" href="#L631">631</a>  constructor</span>
+<span class="ln" id="L632"><a class="lno" href="#L632">632</a>  · unfold dft</span>
+<span class="ln" id="L633"><a class="lno" href="#L633">633</a>    apply Finset.sum_congr rfl</span>
+<span class="ln" id="L634"><a class="lno" href="#L634">634</a>    intro x _</span>
+<span class="ln" id="L635"><a class="lno" href="#L635">635</a>    dsimp only</span>
+<span class="ln" id="L636"><a class="lno" href="#L636">636</a>    rw [ZMod.val_add, pow_mul_val_mod ζ hζ, mul_add, pow_add, mul_comm a.val x.val]</span>
+<span class="ln" id="L637"><a class="lno" href="#L637">637</a>    ring</span>
+<span class="ln" id="L638"><a class="lno" href="#L638">638</a>  · unfold dft</span>
+<span class="ln" id="L639"><a class="lno" href="#L639">639</a>    rw [Finset.mul_sum, ← Equiv.sum_comp (Equiv.addRight a)]</span>
+<span class="ln" id="L640"><a class="lno" href="#L640">640</a>    apply Finset.sum_congr rfl</span>
+<span class="ln" id="L641"><a class="lno" href="#L641">641</a>    intro x _</span>
+<span class="ln" id="L642"><a class="lno" href="#L642">642</a>    simp only [Equiv.coe_addRight, add_sub_cancel_right]</span>
+<span class="ln" id="L643"><a class="lno" href="#L643">643</a>    rw [ZMod.val_add, pow_val_mod ζ hζ, add_mul, pow_add]</span>
+<span class="ln" id="L644"><a class="lno" href="#L644">644</a>    ring</span>
+<span class="ln" id="L645"><a class="lno" href="#L645">645</a></span>
+<span class="ln" id="L646"><a class="lno" href="#L646">646</a>/-- The arithmetic behind 21:C15&#x27;s dispersion symbol: the central second difference acts on the plane wave</span>
+<span class="ln" id="L647"><a class="lno" href="#L647">647</a>`e^{ikx}` by `−(2 − 2 cos k) = −4 sin²(k/2)`; the wave equation, its two polarisations and the speed `c` are</span>
+<span class="ln" id="L648"><a class="lno" href="#L648">648</a>the package&#x27;s. -/</span>
+<span class="ln decl" id="FRC.Gravity.dispersion_symbol"><a class="lno" href="#FRC.Gravity.dispersion_symbol">649</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcLedger/Gravity.lean#L649" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small t2" src="lean-t2.png" alt="" title="tier 2, classical: Classical.choice, Quot.sound, propext">theorem dispersion_symbol (k : ℝ) : 2 - 2 * cos k = 4 * sin (k / 2) ^ 2 := by</span>
+<span class="ln" id="L650"><a class="lno" href="#L650">650</a>  have h := Real.cos_two_mul (k / 2)</span>
+<span class="ln" id="L651"><a class="lno" href="#L651">651</a>  rw [show 2 * (k / 2) = k by ring] at h</span>
+<span class="ln" id="L652"><a class="lno" href="#L652">652</a>  rw [h, Real.cos_sq&#x27;]; ring</span>
+<span class="ln" id="L653"><a class="lno" href="#L653">653</a></span>
+<span class="ln" id="L654"><a class="lno" href="#L654">654</a>/-- The arithmetic behind 21:C1&#x27;s coefficient: a locked cluster of `m` cells with one phase sums with</span>
+<span class="ln" id="L655"><a class="lno" href="#L655">655</a>coefficient exactly `m`, `‖Σ_{j&lt;m} z‖ = m ‖z‖`; the incoherent `O(√m)` and the gradient flow are not formal</span>
+<span class="ln" id="L656"><a class="lno" href="#L656">656</a>content. -/</span>
+<span class="ln decl" id="FRC.Gravity.locked_sum"><a class="lno" href="#FRC.Gravity.locked_sum">657</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcLedger/Gravity.lean#L657" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small t2" src="lean-t2.png" alt="" title="tier 2, classical: Classical.choice, Quot.sound, propext">theorem locked_sum (m : ℕ) (z : ℂ) : ‖∑ _j : Fin m, z‖ = m * ‖z‖ := by</span>
+<span class="ln" id="L658"><a class="lno" href="#L658">658</a>  simp [Finset.sum_const, Finset.card_univ, Fintype.card_fin]</span>
+<span class="ln" id="L659"><a class="lno" href="#L659">659</a></span>
+<span class="ln" id="L660"><a class="lno" href="#L660">660</a>end lattice</span>
+<span class="ln" id="L661"><a class="lno" href="#L661">661</a></span>
+<span class="ln" id="L662"><a class="lno" href="#L662">662</a>/-! ## The series and the exponential reading (21:C8, C11, C23, P2, P6) -/</span>
+<span class="ln" id="L663"><a class="lno" href="#L663">663</a>section series</span>
+<span class="ln" id="L664"><a class="lno" href="#L664">664</a></span>
+<span class="ln" id="L665"><a class="lno" href="#L665">665</a>/-- 21:C11 — the exponential reading is the multiplicative one, `e^{−(a+b)} = e^{−a} e^{−b}`; the isotropic</span>
+<span class="ln" id="L666"><a class="lno" href="#L666">666</a>Schwarzschild factor `R(U) = (1 − U/2)/(1 + U/2)` is `e^{−2 artanh(U/2)}`, the exponential reading of the</span>
+<span class="ln" id="L667"><a class="lno" href="#L667">667</a>self-sourced `ψ = 2 artanh(U/2)`, and it violates the composition law: `R(1) = 1/3 ≠ 9/25 = R(1/2)²`. -/</span>
+<span class="ln decl" id="FRC.Gravity.exponential_reading"><a class="lno" href="#FRC.Gravity.exponential_reading">668</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcLedger/Gravity.lean#L668" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small t2" src="lean-t2.png" alt="" title="tier 2, classical: Classical.choice, Quot.sound, propext">theorem exponential_reading (a b : ℝ) :</span>
+<span class="ln" id="L669"><a class="lno" href="#L669">669</a>    exp (-(a + b)) = exp (-a) * exp (-b) ∧</span>
+<span class="ln" id="L670"><a class="lno" href="#L670">670</a>    (∀ U : ℝ, -2 &lt; U → U &lt; 2 → exp (-(2 * artanh (U / 2))) = (1 - U / 2) / (1 + U / 2)) ∧</span>
+<span class="ln" id="L671"><a class="lno" href="#L671">671</a>    (1 - (1 : ℝ) / 2) / (1 + 1 / 2) ≠ ((1 - (1 / 2 : ℝ) / 2) / (1 + (1 / 2) / 2)) ^ 2 := by</span>
+<span class="ln" id="L672"><a class="lno" href="#L672">672</a>  refine ⟨by rw [← exp_add]; ring_nf, ?_, by norm_num⟩</span>
+<span class="ln" id="L673"><a class="lno" href="#L673">673</a>  intro U h1 h2</span>
+<span class="ln" id="L674"><a class="lno" href="#L674">674</a>  have hx : U / 2 ∈ Set.Icc (-1 : ℝ) 1 := ⟨by linarith, by linarith⟩</span>
+<span class="ln" id="L675"><a class="lno" href="#L675">675</a>  rw [Real.artanh_eq_half_log hx]</span>
+<span class="ln" id="L676"><a class="lno" href="#L676">676</a>  have hpos : 0 &lt; (1 + U / 2) / (1 - U / 2) := by apply div_pos &lt;;&gt; linarith</span>
+<span class="ln" id="L677"><a class="lno" href="#L677">677</a>  rw [show -(2 * (1 / 2 * log ((1 + U / 2) / (1 - U / 2)))) = -log ((1 + U / 2) / (1 - U / 2)) by ring,</span>
+<span class="ln" id="L678"><a class="lno" href="#L678">678</a>    exp_neg, exp_log hpos, inv_div]</span>
+<span class="ln" id="L679"><a class="lno" href="#L679">679</a></span>
+<span class="ln" id="L680"><a class="lno" href="#L680">680</a>/-- 21:C8, 21:P6 — the post-Newtonian inputs as Taylor brackets on `|U| ≤ 1/2`: the exponential metric&#x27;s</span>
+<span class="ln" id="L681"><a class="lno" href="#L681">681</a>`A = e^{−2U}`, `B = e^{2U}` against the isotropic Schwarzschild `A_S = ((1 − U/2)/(1 + U/2))²`,</span>
+<span class="ln" id="L682"><a class="lno" href="#L682">682</a>`B_S = (1 + U/2)⁴` satisfy `|A − A_S − U³/6| ≤ 3U⁴` and `|B − B_S − U²/2| ≤ 3|U|³`: the single-potential</span>
+<span class="ln" id="L683"><a class="lno" href="#L683">683</a>inputs consumed by C23 coincide through first post-Newtonian order (`A` to `O(U²)`, `B` to `O(U)`) and part at</span>
+<span class="ln" id="L684"><a class="lno" href="#L684">684</a>2PN with `δA = U³/6`, `δB = U²/2`; the two-body superposition of C23 is the package&#x27;s. -/</span>
+<span class="ln decl" id="FRC.Gravity.pn_series"><a class="lno" href="#FRC.Gravity.pn_series">685</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcLedger/Gravity.lean#L685" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small t2" src="lean-t2.png" alt="" title="tier 2, classical: Classical.choice, Quot.sound, propext">theorem pn_series (U : ℝ) (hU : |U| ≤ 1 / 2) :</span>
+<span class="ln" id="L686"><a class="lno" href="#L686">686</a>    |exp (-(2 * U)) - ((1 - U / 2) / (1 + U / 2)) ^ 2 - U ^ 3 / 6| ≤ 3 * U ^ 4 ∧</span>
+<span class="ln" id="L687"><a class="lno" href="#L687">687</a>    |exp (2 * U) - (1 + U / 2) ^ 4 - U ^ 2 / 2| ≤ 3 * |U| ^ 3 := by</span>
+<span class="ln" id="L688"><a class="lno" href="#L688">688</a>  have hU&#x27; := abs_le.1 hU</span>
+<span class="ln" id="L689"><a class="lno" href="#L689">689</a>  have hden : 1 + U / 2 ≠ 0 := by intro h; linarith [hU&#x27;.1]</span>
+<span class="ln" id="L690"><a class="lno" href="#L690">690</a>  have hden2 : (9 / 16 : ℝ) ≤ (1 + U / 2) ^ 2 := by nlinarith [hU&#x27;.1]</span>
+<span class="ln" id="L691"><a class="lno" href="#L691">691</a>  have hU4 : 0 ≤ U ^ 4 := by positivity</span>
+<span class="ln" id="L692"><a class="lno" href="#L692">692</a>  have habs4 : |U| ^ 4 = U ^ 4 := by rw [← abs_pow, abs_of_nonneg hU4]</span>
+<span class="ln" id="L693"><a class="lno" href="#L693">693</a>  have habs3 : |U| ^ 3 * |U| = U ^ 4 := by</span>
+<span class="ln" id="L694"><a class="lno" href="#L694">694</a>    rw [← pow_succ, ← abs_pow, abs_of_nonneg (by positivity)]</span>
+<span class="ln" id="L695"><a class="lno" href="#L695">695</a>  have hU3 : 0 ≤ |U| ^ 3 := by positivity</span>
+<span class="ln" id="L696"><a class="lno" href="#L696">696</a>  constructor</span>
+<span class="ln" id="L697"><a class="lno" href="#L697">697</a>  · have h := Real.exp_bound (x := -(2 * U)) (by rw [abs_neg, abs_mul, abs_two]; linarith) (n := 4)</span>
+<span class="ln" id="L698"><a class="lno" href="#L698">698</a>      (by norm_num)</span>
+<span class="ln" id="L699"><a class="lno" href="#L699">699</a>    rw [abs_neg, abs_mul, abs_two] at h</span>
+<span class="ln" id="L700"><a class="lno" href="#L700">700</a>    norm_num [Finset.sum_range_succ, Nat.factorial] at h</span>
+<span class="ln" id="L701"><a class="lno" href="#L701">701</a>    rw [abs_le] at h</span>
+<span class="ln" id="L702"><a class="lno" href="#L702">702</a>    have hpow : (2 * |U|) ^ 4 = 16 * U ^ 4 := by rw [mul_pow, habs4]; norm_num</span>
+<span class="ln" id="L703"><a class="lno" href="#L703">703</a>    rw [hpow] at h</span>
+<span class="ln" id="L704"><a class="lno" href="#L704">704</a>    have hA : ((1 - U / 2) / (1 + U / 2)) ^ 2 - (1 - 2 * U + 2 * U ^ 2 - 3 / 2 * U ^ 3)</span>
+<span class="ln" id="L705"><a class="lno" href="#L705">705</a>        = U ^ 4 * (1 + 3 * U / 8) / (1 + U / 2) ^ 2 := by</span>
+<span class="ln" id="L706"><a class="lno" href="#L706">706</a>      rw [div_pow, eq_div_iff (pow_ne_zero 2 hden), sub_mul, div_mul_cancel₀ _ (pow_ne_zero 2 hden)]</span>
+<span class="ln" id="L707"><a class="lno" href="#L707">707</a>      ring</span>
+<span class="ln" id="L708"><a class="lno" href="#L708">708</a>    have hrem : |U ^ 4 * (1 + 3 * U / 8) / (1 + U / 2) ^ 2| ≤ 2.12 * U ^ 4 := by</span>
+<span class="ln" id="L709"><a class="lno" href="#L709">709</a>      rw [abs_div, abs_mul, abs_of_nonneg hU4, abs_of_pos (by positivity : (0 : ℝ) &lt; (1 + U / 2) ^ 2),</span>
+<span class="ln" id="L710"><a class="lno" href="#L710">710</a>        div_le_iff₀ (by positivity)]</span>
+<span class="ln" id="L711"><a class="lno" href="#L711">711</a>      have : |1 + 3 * U / 8| ≤ 1.1875 := by rw [abs_le]; constructor &lt;;&gt; linarith [hU&#x27;.1, hU&#x27;.2]</span>
+<span class="ln" id="L712"><a class="lno" href="#L712">712</a>      nlinarith [abs_nonneg (1 + 3 * U / 8)]</span>
+<span class="ln" id="L713"><a class="lno" href="#L713">713</a>    rw [abs_le] at hrem</span>
+<span class="ln" id="L714"><a class="lno" href="#L714">714</a>    have hA&#x27; : ((1 - U / 2) / (1 + U / 2)) ^ 2</span>
+<span class="ln" id="L715"><a class="lno" href="#L715">715</a>        = 1 - 2 * U + 2 * U ^ 2 - 3 / 2 * U ^ 3 + U ^ 4 * (1 + 3 * U / 8) / (1 + U / 2) ^ 2 := by</span>
+<span class="ln" id="L716"><a class="lno" href="#L716">716</a>      linarith [hA]</span>
+<span class="ln" id="L717"><a class="lno" href="#L717">717</a>    rw [hA&#x27;, abs_le]</span>
+<span class="ln" id="L718"><a class="lno" href="#L718">718</a>    constructor &lt;;&gt; nlinarith [hrem.1, hrem.2, h.1, h.2]</span>
+<span class="ln" id="L719"><a class="lno" href="#L719">719</a>  · have h := Real.exp_bound (x := 2 * U) (by rw [abs_mul, abs_two]; linarith) (n := 3) (by norm_num)</span>
+<span class="ln" id="L720"><a class="lno" href="#L720">720</a>    rw [abs_mul, abs_two] at h</span>
+<span class="ln" id="L721"><a class="lno" href="#L721">721</a>    norm_num [Finset.sum_range_succ, Nat.factorial] at h</span>
+<span class="ln" id="L722"><a class="lno" href="#L722">722</a>    rw [abs_le] at h ⊢</span>
+<span class="ln" id="L723"><a class="lno" href="#L723">723</a>    have hpow : (2 * |U|) ^ 3 = 8 * |U| ^ 3 := by rw [mul_pow]; norm_num</span>
+<span class="ln" id="L724"><a class="lno" href="#L724">724</a>    rw [hpow] at h</span>
+<span class="ln" id="L725"><a class="lno" href="#L725">725</a>    have hU4&#x27; : U ^ 4 ≤ |U| ^ 3 / 2 := by rw [← habs3]; nlinarith</span>
+<span class="ln" id="L726"><a class="lno" href="#L726">726</a>    have hcube : U ^ 3 ≤ |U| ^ 3 ∧ -(|U| ^ 3) ≤ U ^ 3 := by</span>
+<span class="ln" id="L727"><a class="lno" href="#L727">727</a>      constructor</span>
+<span class="ln" id="L728"><a class="lno" href="#L728">728</a>      · calc U ^ 3 ≤ |U ^ 3| := le_abs_self _</span>
+<span class="ln" id="L729"><a class="lno" href="#L729">729</a>          _ = |U| ^ 3 := abs_pow U 3</span>
+<span class="ln" id="L730"><a class="lno" href="#L730">730</a>      · calc -(|U| ^ 3) = -|U ^ 3| := by rw [abs_pow]</span>
+<span class="ln" id="L731"><a class="lno" href="#L731">731</a>          _ ≤ U ^ 3 := neg_abs_le _</span>
+<span class="ln" id="L732"><a class="lno" href="#L732">732</a>    constructor &lt;;&gt; nlinarith [h.1, h.2, hcube.1, hcube.2]</span>
+<span class="ln" id="L733"><a class="lno" href="#L733">733</a></span>
+<span class="ln" id="L734"><a class="lno" href="#L734">734</a>/-- The numeral behind 21:P2: the drive&#x27;s signature is `O(1/√Ω)` (the paper&#x27;s `α₁, α₂`), and at `Ω = 10¹²²`</span>
+<span class="ln" id="L735"><a class="lno" href="#L735">735</a>this is `10⁻⁶¹`. -/</span>
+<span class="ln decl" id="FRC.Gravity.preferred_frame_scale"><a class="lno" href="#FRC.Gravity.preferred_frame_scale">736</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcLedger/Gravity.lean#L736" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small t2" src="lean-t2.png" alt="" title="tier 2, classical: Classical.choice, Quot.sound, propext">theorem preferred_frame_scale : 1 / √((10 : ℝ) ^ 122) = 10 ^ (-61 : ℤ) := by</span>
+<span class="ln" id="L737"><a class="lno" href="#L737">737</a>  rw [show (10 : ℝ) ^ 122 = (10 ^ 61) ^ 2 by norm_num, Real.sqrt_sq (by positivity)]</span>
+<span class="ln" id="L738"><a class="lno" href="#L738">738</a>  norm_num</span>
+<span class="ln" id="L739"><a class="lno" href="#L739">739</a></span>
+<span class="ln" id="L740"><a class="lno" href="#L740">740</a>end series</span>
+<span class="ln" id="L741"><a class="lno" href="#L741">741</a></span>
+<span class="ln" id="L742"><a class="lno" href="#L742">742</a>end FRC.Gravity</span>
+<span class="ln" id="L743"><a class="lno" href="#L743">743</a></span>
+</pre></main>
+</div>
+</body>
+</html>

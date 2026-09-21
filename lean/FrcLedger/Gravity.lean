@@ -50,8 +50,8 @@ section register
 
 variable {K : Type*} [Field K]
 
-/-- 21:C16 — the calibration congruence: on the Carrier chart `4S + 1 = 0` the full cycle `2π ↦ 4S` is `−1`
-and `(4S)² = 1`, one residue relation. -/
+/-- 21:C16, 21:A1 — the calibration congruence: on the Carrier chart `4S + 1 = 0` the full cycle `2π ↦ 4S` is
+`−1` and `(4S)² = 1`, one residue relation. -/
 theorem calibration_congruence (S : ℕ) (hΩ : ((4 * S + 1 : ℕ) : K) = 0) :
     ((4 * S : ℕ) : K) = -1 ∧ ((4 * S : ℕ) : K) ^ 2 = 1 := by
   push_cast at hΩ ⊢
@@ -96,8 +96,8 @@ theorem hbar_of_quarter_turn {K : Type*} [Field K] (S : ℕ) (hΩ : ((4 * S + 1 
   · have : 2 * (i * 2⁻¹) = i := by field_simp
     rw [this, hi]
 
-/-- 21:C5, 21:C16 — the action quantum as the quarter-turn pair: on every Carrier `Ω = 4S + 1` prime, `S` is a
-square (`S = (i/2)²` with `i² = −1`, since `4S = −1`), so `ħ = 2√S` has `ħ² = 4S = −1` — `ħ` is one of the
+/-- 21:C5, 21:C16, 21:A1 — the action quantum as the quarter-turn pair: on every Carrier `Ω = 4S + 1` prime, `S`
+is a square (`S = (i/2)²` with `i² = −1`, since `4S = −1`), so `ħ = 2√S` has `ħ² = 4S = −1` — `ħ` is one of the
 quarter-turn pair `±i`. -/
 theorem hbar_register (S : ℕ) [Fact (Nat.Prime (4 * S + 1))] :
     ∃ r : ZMod (4 * S + 1), r ^ 2 = (S : ZMod (4 * S + 1)) ∧ (2 * r) ^ 2 = -1 := by
@@ -541,7 +541,7 @@ theorem exp_log_ten_tail_bounds :
     norm_num [Finset.sum_range_succ, Nat.factorial] at h ⊢
     linarith
 
-/-- `ln 10` bracketed: `2.30258 < ln 10 < 2.30259`, from `e` to nine places and the Taylor tail. -/
+/-- 21:P8 — `ln 10` bracketed: `2.30258 < ln 10 < 2.30259`, from `e` to nine places and the Taylor tail. -/
 theorem log_ten_bounds : (2.30258 : ℝ) < log 10 ∧ log 10 < 2.30259 := by
   have e1 := Real.exp_one_gt_d9
   have e2 := Real.exp_one_lt_d9

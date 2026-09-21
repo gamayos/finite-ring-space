@@ -2,7 +2,7 @@
  "paper": "21-grav",
  "title": "Gravitation as Phase Synchronisation",
  "doi": "https://doi.org/10.20944/preprints202606.1018.v2",
- "generated": "20 September 2026",
+ "generated": "21 September 2026",
  "blocks": [
   {
    "letter": "A",
@@ -12,7 +12,7 @@
      "label": "A1",
      "predicate": "The finite substrate: the torsor Carrier, coordinatized by a frame as $\\F_\\Omega$, its cardinality the Carrier identity $\\Omega=4S+1$ with the measured $S\\sim10^{122}$ (Planck units) locating the coherence horizon, with the phase cycle $C_{\\Omega-1}$, the quarter-turn core $Q_4$, the drive (time is scale-dilation, each Subject's own), the coherence horizon $\\sqrt\\Omega$, and the resolution floor $1/\\sqrt\\Omega$.",
      "tag": "I",
-     "source": "\\citep{algebra,lorentzian,frcrh}",
+     "source": "\\citep{algebra,lorentzian,frcrh}; \\lean{Gravity.calibration\\_congruence, Gravity.hbar\\_register, FRC.Gravity.calibration}",
      "key": "p21001"
     },
     {
@@ -68,7 +68,7 @@
      "label": "A9",
      "predicate": "The minimal-instance results consumed: the two-face count of the drift (angular $\\kap/S$, temporal $\\kap/(2S)$, ratio $2$ the double cover), the registration dictionary $p_{\\mathrm{sl}}=3(S/\\kap)\\,r_g$ with the forcing $2\\gamma-\\beta=1$, and the mass--energy channel $C_{\\p-1}\\cap C_{2(\\p+1)}=Q_4$.",
      "tag": "I",
-     "source": "\\citep{s13}",
+     "source": "\\citep{s13}; \\lean{Gravity.cover\\_forcing, Gravity.channel\\_q4, FRC.Gravity.two\\_face\\_count}",
      "key": "p21009"
     }
    ]
@@ -129,14 +129,14 @@
      "label": "C1",
      "predicate": "The linearised dynamics is the gradient flow of a coherence free energy --- its current derived from the pair tally conditional on channel unity (Lemma~\\ref{lem:pairtally}) --- and a locked cluster of cardinality $m$ couples with coefficient exactly $m$.",
      "tag": "T",
-     "source": "Lem.~\\ref{lem:gradient},~\\ref{lem:additivity},~\\ref{lem:pairtally}; \\src{grav.newton}",
+     "source": "Lem.~\\ref{lem:gradient},~\\ref{lem:additivity},~\\ref{lem:pairtally}; \\src{grav.newton}; \\lean{Gravity.locked\\_sum}",
      "key": "p21016"
     },
     {
      "label": "C2",
      "predicate": "Newton's law $F=-Gm_1m_2/r^2$ with $G=1/4\\pi\\varkappa$ [chart] (register value $G=2S$): the $r^{-2}$ from harmonicity in the three frame freedoms, the product $m_1m_2$ from coherent additivity.",
      "tag": "T",
-     "source": "Thm.~\\ref{thm:newton}, Lem.~\\ref{lem:green}; \\src{grav.newton}",
+     "source": "Thm.~\\ref{thm:newton}, Lem.~\\ref{lem:green}; \\src{grav.newton}; \\lean{Gravity.newton\\_register, FRC.Gravity.newton\\_residue}",
      "key": "p21017"
     },
     {
@@ -150,14 +150,14 @@
      "label": "C4",
      "predicate": "The equivalence principle as an identity; the bias field is clock rate, giving the redshift $\\Delta f/f=Gm/rc^2$; the turnaround radius against the Hubble drive.",
      "tag": "T",
-     "source": "Cor.~\\ref{cor:equiv}--\\ref{cor:turnaround}; \\src{grav.rar}",
+     "source": "Cor.~\\ref{cor:equiv}--\\ref{cor:turnaround}; \\src{grav.rar}; \\lean{Gravity.redshift\\_linear}",
      "key": "p21019"
     },
     {
      "label": "C5",
      "predicate": "The magnitude $G=\\hbar c/m_P^2$, frame-covariant (a relativity principle for scale); gravity's weakness is cardinality dilution.",
      "tag": "T",
-     "source": "\\S\\ref{sub:G}; \\src{grav.orderone}",
+     "source": "\\S\\ref{sub:G}; \\src{grav.orderone}; \\lean{Gravity.hbar\\_register, FRC.Gravity.hbar\\_root}",
      "key": "p21020"
     },
     {
@@ -171,21 +171,21 @@
      "label": "C7",
      "predicate": "Channel unity forces the spatial bias to equal the temporal one, $\\gamma=1$, restoring the full light deflection $4Gm/c^2b$.",
      "tag": "T",
-     "source": "Lem.~\\ref{lem:isopair}, Prop.~\\ref{prop:bending}; \\src{grav.ppn}, \\src{grav.counting}",
+     "source": "Lem.~\\ref{lem:isopair}, Prop.~\\ref{prop:bending}; \\src{grav.ppn}, \\src{grav.counting}; \\lean{Gravity.cover\\_forcing}",
      "key": "p21022"
     },
     {
      "label": "C8",
      "predicate": "The exponential isotropic metric by multiplicative composition, with $\\beta=\\gamma=1$: deflection, Shapiro delay, and perihelion at their observed values.",
      "tag": "T",
-     "source": "Lem.~\\ref{lem:multiplicative}, Prop.~\\ref{prop:ppn}; \\src{grav.ppn}, \\src{grav.2pn}",
+     "source": "Lem.~\\ref{lem:multiplicative}, Prop.~\\ref{prop:ppn}; \\src{grav.ppn}, \\src{grav.2pn}; \\lean{Gravity.cover\\_forcing, Gravity.pn\\_series}",
      "key": "p21023"
     },
     {
      "label": "C9",
      "predicate": "The discrete Fierz--Pauli functional, exactly gauge-invariant and the unique adjacency-local stiffness on the shell (the spin-one case is unique-Maxwell).",
      "tag": "T",
-     "source": "Prop.~\\ref{prop:uniqueness}; \\src{grav.fp\\_gauge}, \\src{grav.fierz\\_pauli}",
+     "source": "Prop.~\\ref{prop:uniqueness}; \\src{grav.fp\\_gauge}, \\src{grav.fierz\\_pauli}; \\lean{Gravity.central\\_difference\\_adjoint}",
      "key": "p21024"
     },
     {
@@ -199,21 +199,21 @@
      "label": "C11",
      "predicate": "The nonlinear completion forced: the exact cut-flux law (transfer antisymmetry) plus the winding grading forbid independent static self-sourcing, the clock-comparison cocycle makes the exponential reading unique (exactly the character $\\gen^{-\\Delta n}$, $e^{-u}$ its observer lift), and Deser's bootstrap does not apply because what gravitates is winding rate.",
      "tag": "T",
-     "source": "Thm.~\\ref{thm:branch}; \\src{grav.branch}",
+     "source": "Thm.~\\ref{thm:branch}; \\src{grav.branch}; \\lean{Gravity.exponential\\_reading}",
      "key": "p21026"
     },
     {
      "label": "C12",
      "predicate": "The exact saturating static profile and its slip core at $r_*=\\sqrt{Gm}$: horizonless, operationally black at $r_f=r_s/\\ln\\Omega$ --- the exact statement the cut form, $4\\pi r^{2}$ its [chart] reading; the $r_f$-anchored claims stated in the substrate coordinate, $r_*<r_f<M$ for $M>(\\ln\\Omega/2)^{2}$ Planck masses (master E10).",
      "tag": "T",
-     "source": "Prop.~\\ref{prop:exactprofile},~\\ref{prop:operational}; \\src{grav.ppn}, \\src{grav.strongfield}, \\src{grav.fold\\_echo}",
+     "source": "Prop.~\\ref{prop:exactprofile},~\\ref{prop:operational}; \\src{grav.ppn}, \\src{grav.strongfield}, \\src{grav.fold\\_echo}; \\lean{Gravity.operational\\_cut}",
      "key": "p21027"
     },
     {
      "label": "C13",
      "predicate": "Area-law entropy $S=c_S'A_f/\\ell_P^2$: the $\\tfrac14$ the $Q_4$ gauge quotient counted on the shell ($S/A=\\kap/\\p $ exactly), the Carrier identity $S=(\\Omega-1)/4$ at the coherence-horizon shell the same quarter (a consistency, not a closure); the count identified with the coordinate area at the operational cut (the identification a realisation with the capacity prediction as its falsifier); the $k_B\\ln W$ identification a realisation with its own falsifier (master D15); an exact merger area law $\\Delta A=2M_1M_2$ on the count face of the mass; a phase-slip (Hawking-scaling) emission suppressed below one quantum per Hubble time.",
      "tag": "T|R",
-     "source": "Prop.~\\ref{prop:area}; \\src{grav.strongfield}, \\src{grav.orderone}",
+     "source": "Prop.~\\ref{prop:area}; \\src{grav.strongfield}, \\src{grav.orderone}; \\lean{Gravity.count\\_face, Gravity.merger\\_area\\_law, Gravity.capacity\\_ratio, FRC.Gravity.count\\_identity, FRC.Gravity.merger\\_instance}",
      "key": "p21028"
     },
     {
@@ -234,7 +234,7 @@
      "label": "C16",
      "predicate": "The order-one constants are determined: $c_S'=\\tfrac14$ (the $Q_4$ gauge quotient, counted on an instantiated shell and carried by the Carrier identity), the floor's $2\\pi$ the full cycle of the angle--count dictionary [\\textsf{D}], its threshold the realisation [\\textsf{R}], the recurring constant the solid angle $4\\pi$, reducing in the Carrier register to the calibration congruence $(4S)^{2}\\equiv1$ (one residue relation).",
      "tag": "T|R",
-     "source": "Prop.~\\ref{prop:area},~\\ref{prop:afloor}; \\src{grav.orderone}",
+     "source": "Prop.~\\ref{prop:area},~\\ref{prop:afloor}; \\src{grav.orderone}; \\lean{Gravity.calibration\\_congruence, Gravity.newton\\_register, FRC.Gravity.calibration, FRC.Gravity.lab\\_register}",
      "key": "p21031"
     },
     {
@@ -248,21 +248,21 @@
      "label": "C18",
      "predicate": "The primordial spectrum: $n_s=1$ the scale-dilation fixed point; the tilt's committed form $-\\pi^{2}/\\ln\\Omega$ a realisation, $\\ln\\Omega$ the e-fold count of the frame's scale range, with the measured tilt its falsifier ($\\tfrac12\\ln\\Omega$ excluded at $8.4\\sigma$; the linearity condition undefined on a shell; master L8); the wrapped chart fixing the low large-angle power.",
      "tag": "T|R",
-     "source": "Prop.~\\ref{prop:primordial}; \\src{grav.primordial}",
+     "source": "Prop.~\\ref{prop:primordial}; \\src{grav.primordial}; \\lean{Gravity.scale\\_invariance\\_iff, Gravity.tilt\\_bracket}",
      "key": "p21033"
     },
     {
      "label": "C19",
      "predicate": "The registration crossover made exact: the killed walk is the noise sector, first passage the masking event, the window attribution the framed-rational tally ratio $g_N/f$, and the orbital response now derived (Theorem~\\ref{thm:twoshift} with the registered-inertia identity); the remaining declared content is the masking-barrier identification (barrier $=$ coincidence amplitude $\\sqrt x$) and the corpus's unified sampling clause, shared with \\citep{quantum}.",
      "tag": "T|R",
-     "source": "Prop.~\\ref{prop:crossover}; \\citep{quantum}; \\src{grav.deepregime}, \\src{grav.deepregime\\_\\allowbreak orbit}, \\src{grav.fluxnoise}",
+     "source": "Prop.~\\ref{prop:crossover}; \\citep{quantum}; \\src{grav.deepregime}, \\src{grav.deepregime\\_\\allowbreak orbit}, \\src{grav.fluxnoise}; \\lean{Gravity.registration\\_root, Gravity.crossover\\_limits, Gravity.crossover\\_deep\\_limit}",
      "key": "p21034"
     },
     {
      "label": "C20",
      "predicate": "The two-shift update law: kick (finite Fourier shift by the source character) composed with metaplectic transport gives $\\Delta^{2}_{\\tau}q=-\\nabla u$ with $m$ cancelling --- registered inertia and the equivalence principle inside one derived law.",
      "tag": "T",
-     "source": "Thm.~\\ref{thm:twoshift}; \\src{grav.inertia}, \\src{grav.deepregime\\_\\allowbreak orbit}",
+     "source": "Thm.~\\ref{thm:twoshift}; \\src{grav.inertia}, \\src{grav.deepregime\\_\\allowbreak orbit}; \\lean{Gravity.shift\\_theorem}",
      "key": "p21035"
     },
     {
@@ -290,7 +290,7 @@
      "label": "C25",
      "predicate": "The PPN triangle closed by two routes: channel unity gives $\\gamma=1$ (C7), the instance cover forces $2\\gamma-\\beta=1$ (A9), jointly $\\beta=1$ --- Proposition~\\ref{prop:ppn} reached independently, the deviation $\\tfrac23(2\\gamma-\\beta-1)$ its falsifier.",
      "tag": "T",
-     "source": "Rem.~\\ref{rem:cover}; \\citep{s13}",
+     "source": "Rem.~\\ref{rem:cover}; \\citep{s13}; \\lean{Gravity.cover\\_forcing}",
      "key": "p21040"
     }
    ]
@@ -310,7 +310,7 @@
      "label": "X2",
      "predicate": "\\textbf{No dark-matter particle.} The radial acceleration relation is a registration crossover of the resolution floor, not evidence for undetected mass: galactic dynamics require no dark sector beyond the floor already fixed by $\\Omega$.",
      "tag": "T|R",
-     "source": "Prop.~\\ref{prop:crossover},~\\ref{prop:afloor}; \\src{grav.deepregime}",
+     "source": "Prop.~\\ref{prop:crossover},~\\ref{prop:afloor}; \\src{grav.deepregime}; \\lean{Gravity.crossover\\_deep\\_limit}",
      "key": "p21042"
     },
     {
@@ -352,7 +352,7 @@
      "label": "X8",
      "predicate": "\\textbf{The weakness of gravity} is cardinality dilution, not a hierarchy to be tuned.",
      "tag": "T",
-     "source": "\\S\\ref{sub:G}",
+     "source": "\\S\\ref{sub:G}; \\lean{Gravity.dilution}",
      "key": "p21048"
     }
    ]
@@ -365,42 +365,42 @@
      "label": "P1",
      "predicate": "Strong-field signatures at or outside the photon sphere: shadow $+4.6\\%$, ringdown $-4.4\\%$, ISCO frequency $-6.9\\%$ with accretion efficiency $5.48\\%$ (against $5.72\\%$): one origin, jointly falsifiable, conditional on Theorem~\\ref{thm:branch}'s inputs alone.",
      "tag": "T|R",
-     "source": "\\S\\ref{sub:strongdata}, Prop.~\\ref{prop:shadow},~\\ref{prop:isco}; \\src{grav.strongfield}",
+     "source": "\\S\\ref{sub:strongdata}, Prop.~\\ref{prop:shadow},~\\ref{prop:isco}; \\src{grav.strongfield}; \\lean{Gravity.photon\\_sphere, Gravity.shadow\\_bracket, Gravity.isco, Gravity.isco\\_efficiency}",
      "key": "p21049"
     },
     {
      "label": "P7",
      "predicate": "Floor-surface signatures: no prompt echoes (the exact profile horizonless with no reflecting surface, C12; the round-trip delay to $r_f$ carrying $e^{2u(r_f)}=\\Omega$) and no evaporation bursts; a reported echo detection at the stated precision falsifies the construction.",
      "tag": "T|R",
-     "source": "\\S\\ref{sub:strongdata}, Rem.~\\ref{rem:exponential},~\\ref{rem:hawking}; \\src{grav.strongfield}",
+     "source": "\\S\\ref{sub:strongdata}, Rem.~\\ref{rem:exponential},~\\ref{rem:hawking}; \\src{grav.strongfield}; \\lean{Gravity.operational\\_cut}",
      "key": "p21050"
     },
     {
      "label": "P8",
      "predicate": "The primordial tilt $n_s-1=-\\pi^{2}/\\ln\\Omega=-0.0351$ [approx] at $\\ln\\Omega=281$, against Planck 2018 $-0.0351\\pm0.0042$; $0.25\\%$ per factor two in $S$; the neighbouring count $\\tfrac12\\ln\\Omega$ excluded at $8.4\\sigma$.",
      "tag": "T|R",
-     "source": "Prop.~\\ref{prop:primordial}; \\src{grav.primordial}",
+     "source": "Prop.~\\ref{prop:primordial}; \\src{grav.primordial}; \\lean{Gravity.tilt\\_bracket}",
      "key": "p21060"
     },
     {
      "label": "P2",
      "predicate": "Preferred-frame effects at $O(10^{-61})$: the drive's in-principle signature, far below current $10^{-5}$ bounds.",
      "tag": "T|R",
-     "source": "Prop.~\\ref{prop:dragging}",
+     "source": "Prop.~\\ref{prop:dragging}; \\lean{Gravity.preferred\\_frame\\_scale}",
      "key": "p21051"
     },
     {
      "label": "P3",
      "predicate": "The weak-acceleration floor $a_0=cH_0/2\\pi=1.04\\times10^{-10}\\,\\mathrm{m\\,s^{-2}}$ at the entailed $H_0=67.4$ \\cite{entropy}, against the fitted $1.20\\pm0.24\\times10^{-10}$: $13\\%$ low, $0.7\\sigma$ of the systematic-dominated error, no free parameter; the $2\\pi$ the dictionary's full cycle [\\textsf{D}], the one-cycle-per-period threshold the realisation [\\textsf{R}] with its discrete falsifier.",
      "tag": "T|R",
-     "source": "Prop.~\\ref{prop:afloor}; \\src{grav.rar}",
+     "source": "Prop.~\\ref{prop:afloor}; \\src{grav.rar}; \\lean{Gravity.floor\\_value}",
      "key": "p21052"
     },
     {
      "label": "P4",
      "predicate": "The radial acceleration relation, $g_{\\mathrm{obs}}=g_N/(1-e^{-\\sqrt{g_N/a_0}})$, no fitted function beyond the declared barrier identification (C19), the form the data selected across the four observed acceleration decades, its approach to Newton the discriminant ($0.05$ at $g_N\\approx5a_0$ against the simple rational interpolant); the deep limit gives the baryonic Tully--Fisher relation $v^4=GMa_0$.",
      "tag": "T|R",
-     "source": "Prop.~\\ref{prop:crossover}; \\src{grav.deepregime}",
+     "source": "Prop.~\\ref{prop:crossover}; \\src{grav.deepregime}; \\lean{Gravity.crossover\\_limits, Gravity.registration\\_root, Gravity.interpolant\\_discriminant}",
      "key": "p21053"
     },
     {
@@ -414,7 +414,7 @@
      "label": "P6",
      "predicate": "The 2PN periastron excess $\\delta\\dot\\omega/\\dot\\omega\\approx1.5\\times10^{-6}$ for PSR~J0737$-$3039, today degenerate with the mass refit; decisive either way once an independent observable fixes $M_{\\mathrm{tot}}$ at $10^{-6}$. Independent of the coherent-fraction falsifier of \\citep{quantum}; the ledger carries both.",
      "tag": "T|R",
-     "source": "\\S\\ref{sub:2pn}; \\src{grav.2pn}",
+     "source": "\\S\\ref{sub:2pn}; \\src{grav.2pn}; \\lean{Gravity.pn\\_series}",
      "key": "p21055"
     }
    ]
@@ -443,6 +443,13 @@
      "tag": "T",
      "source": "Reproducibility; \\S\\ref{sub:2pn}",
      "key": "p21058"
+    },
+    {
+     "label": "V4",
+     "predicate": "The formal layer: \\texttt{FrcLedger/Gravity.lean} proves the Carrier register, the count face and merger law, the cover forcing and channel, the operational cut, photon sphere and registration root, and brackets the shadow, ringdown, efficiency, floor, tilt and interpolant numerals; \\texttt{FrcCore/Gravity.lean} (no axioms) proves the register on every frame and decides the laboratory Carrier.",
+     "tag": "T",
+     "source": "\\texttt{lean/\\allowbreak FrcLedger/\\allowbreak Gravity.lean}; \\texttt{lean/\\allowbreak FrcCore/\\allowbreak Gravity.lean}",
+     "key": "p21061"
     }
    ]
   },
@@ -552,5 +559,645 @@
    "Z7"
   ]
  },
- "lean": {}
+ "lean": {
+  "A1": [
+   {
+    "name": "FRC.Gravity.calibration_congruence",
+    "module": "FrcLedger/Gravity",
+    "line": 55,
+    "axioms": [
+     "Quot.sound",
+     "propext"
+    ],
+    "tier": 1,
+    "ok": true,
+    "doc": "21:C16, 21:A1 — the calibration congruence: on the Carrier chart `4S + 1 = 0` the full cycle `2π ↦ 4S` is `−1` and `(4S)² = 1`, one residue relation."
+   },
+   {
+    "name": "FRC.Gravity.hbar_register",
+    "module": "FrcLedger/Gravity",
+    "line": 102,
+    "axioms": [
+     "Classical.choice",
+     "Quot.sound",
+     "propext"
+    ],
+    "tier": 2,
+    "ok": true,
+    "doc": "21:C5, 21:C16, 21:A1 — the action quantum as the quarter-turn pair: on every Carrier `Ω = 4S + 1` prime, `S` is a square (`S = (i/2)²` with `i² = −1`, since `4S = −1`), so `ħ = 2√S` has `ħ² = 4S = −1` — `ħ` is one of the quarter-turn pair `±i`."
+   },
+   {
+    "name": "FRC.Gravity.calibration",
+    "module": "FrcCore/Gravity",
+    "line": 51,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "21:C16, 21:A1 — the calibration congruence on every frame: the full cycle `2π ↦ 4κ = p − 1` is `−1`, and `(4κ)² = 1`."
+   }
+  ],
+  "A9": [
+   {
+    "name": "FRC.Gravity.cover_forcing",
+    "module": "FrcLedger/Gravity",
+    "line": 147,
+    "axioms": [
+     "Classical.choice",
+     "Quot.sound",
+     "propext"
+    ],
+    "tier": 2,
+    "ok": true,
+    "doc": "21:A9, 21:C25, 21:C7, 21:C8 — the cover forcing: the apsidal coefficient `2 − β + 2γ` against the PPN-free deficit `3/2` equals the two-face ratio `2` exactly when `2γ − β = 1`, with deviation `(2/3)(2γ − β − 1)`; channel unity `γ = 1` together with the forcing gives `β = 1`, and the perihelion factor `(2 + 2γ − β)/3` is then `1` (the deflection factor `(1 + γ)/2` is `1` at `γ = 1`)."
+   },
+   {
+    "name": "FRC.Gravity.channel_q4",
+    "module": "FrcLedger/Gravity",
+    "line": 159,
+    "axioms": [
+     "Quot.sound",
+     "propext"
+    ],
+    "tier": 1,
+    "ok": true,
+    "doc": "21:A9 — the mass–energy channel `C_{p−1} ∩ C_{2(p+1)} = Q₄`: on every shell `p ≡ 1 (mod 4)`, `gcd(p − 1, 2(p + 1)) = 4`; the subgroup reading — in the cyclic unit group of `𝔽_{p²}` (order `(p − 1)(p + 1)`) the subgroups of orders `p − 1` and `2(p + 1)` meet in the subgroup of order `gcd` — is not formalised here."
+   },
+   {
+    "name": "FRC.Gravity.two_face_count",
+    "module": "FrcCore/Gravity",
+    "line": 150,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "21:A9 — the two-face count: the angular face `κ/S` against the temporal face `κ/(2S)` has ratio `2` (`κ · 2S = 2 · κS`), and the registration fibre product has `(p − 1)(Ω − 1) = 4 · 4κS` for `p = 4κ + 1`, `Ω = 4S + 1`."
+   }
+  ],
+  "C1": [
+   {
+    "name": "FRC.Gravity.locked_sum",
+    "module": "FrcLedger/Gravity",
+    "line": 657,
+    "axioms": [
+     "Classical.choice",
+     "Quot.sound",
+     "propext"
+    ],
+    "tier": 2,
+    "ok": true,
+    "doc": "The arithmetic behind 21:C1's coefficient: a locked cluster of `m` cells with one phase sums with coefficient exactly `m`, `‖Σ_{j<m} z‖ = m ‖z‖`; the incoherent `O(√m)` and the gradient flow are not formal content."
+   }
+  ],
+  "C2": [
+   {
+    "name": "FRC.Gravity.newton_register",
+    "module": "FrcLedger/Gravity",
+    "line": 64,
+    "axioms": [
+     "Classical.choice",
+     "Quot.sound",
+     "propext"
+    ],
+    "tier": 2,
+    "ok": true,
+    "doc": "21:C2, 21:C5, 21:C16 — the register value of the Newton constant, `G = 2S`, on the Carrier chart `4S + 1 = 0`: `2G = −1` (the half-cycle); `(−2) G = 1`, the face convention `4π ↦ −2` with `G = (−2)⁻¹`; the Gauss count `(2 · 4S) G = 1`; `c² = 2⁻¹ = 2S + 1` and `G = −c²` (the chart ratio `4π/2π = 2` is read as `(−2)/(−1)`). The uniqueness of the linear solution is `Dimensions.G_unique`."
+   },
+   {
+    "name": "FRC.Gravity.newton_residue",
+    "module": "FrcCore/Gravity",
+    "line": 63,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "21:C2, 21:C5, 21:C16 — the register value of the Newton constant on every frame, `G = 2κ`, the half-cycle: `2G = −1`; `(−2) G = 1` (the face convention `4π ↦ −2`, `G = (−2)⁻¹`); the Gauss count `(2 · 4κ) G = 1`; `c² = 2⁻¹ = 2κ + 1` with `2c² = 1`; and `G = −c²`."
+   }
+  ],
+  "C4": [
+   {
+    "name": "FRC.Gravity.redshift_linear",
+    "module": "FrcLedger/Gravity",
+    "line": 336,
+    "axioms": [
+     "Classical.choice",
+     "Quot.sound",
+     "propext"
+    ],
+    "tier": 2,
+    "ok": true,
+    "doc": "21:C4 — the redshift as clock rate: the bias field `e^{−u}` with `u = Gm/rc²` gives `Δf/f = 1 − e^{−u} = u + O(u²)`, `|1 − e^{−u} − u| ≤ u²` on `0 ≤ u ≤ 1`."
+   }
+  ],
+  "C5": [
+   {
+    "name": "FRC.Gravity.hbar_register",
+    "module": "FrcLedger/Gravity",
+    "line": 102,
+    "axioms": [
+     "Classical.choice",
+     "Quot.sound",
+     "propext"
+    ],
+    "tier": 2,
+    "ok": true,
+    "doc": "21:C5, 21:C16, 21:A1 — the action quantum as the quarter-turn pair: on every Carrier `Ω = 4S + 1` prime, `S` is a square (`S = (i/2)²` with `i² = −1`, since `4S = −1`), so `ħ = 2√S` has `ħ² = 4S = −1` — `ħ` is one of the quarter-turn pair `±i`."
+   },
+   {
+    "name": "FRC.Gravity.hbar_root",
+    "module": "FrcCore/Gravity",
+    "line": 89,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "21:C5 — the action quantum on every frame: `ħ = g^κ` is a member of the quarter-turn pair (`−i`, the frame's `quarterTurn` being `−g^κ`), `ħ² = −1`; with `c² = 2κ + 1` the residue `r = ħ c²` is a square root of the capacity, `r² = κ`, and `ħ = 2r` — the paper's `ħ = 2√S` read on the shell."
+   }
+  ],
+  "C7": [
+   {
+    "name": "FRC.Gravity.cover_forcing",
+    "module": "FrcLedger/Gravity",
+    "line": 147,
+    "axioms": [
+     "Classical.choice",
+     "Quot.sound",
+     "propext"
+    ],
+    "tier": 2,
+    "ok": true,
+    "doc": "21:A9, 21:C25, 21:C7, 21:C8 — the cover forcing: the apsidal coefficient `2 − β + 2γ` against the PPN-free deficit `3/2` equals the two-face ratio `2` exactly when `2γ − β = 1`, with deviation `(2/3)(2γ − β − 1)`; channel unity `γ = 1` together with the forcing gives `β = 1`, and the perihelion factor `(2 + 2γ − β)/3` is then `1` (the deflection factor `(1 + γ)/2` is `1` at `γ = 1`)."
+   }
+  ],
+  "C8": [
+   {
+    "name": "FRC.Gravity.cover_forcing",
+    "module": "FrcLedger/Gravity",
+    "line": 147,
+    "axioms": [
+     "Classical.choice",
+     "Quot.sound",
+     "propext"
+    ],
+    "tier": 2,
+    "ok": true,
+    "doc": "21:A9, 21:C25, 21:C7, 21:C8 — the cover forcing: the apsidal coefficient `2 − β + 2γ` against the PPN-free deficit `3/2` equals the two-face ratio `2` exactly when `2γ − β = 1`, with deviation `(2/3)(2γ − β − 1)`; channel unity `γ = 1` together with the forcing gives `β = 1`, and the perihelion factor `(2 + 2γ − β)/3` is then `1` (the deflection factor `(1 + γ)/2` is `1` at `γ = 1`)."
+   },
+   {
+    "name": "FRC.Gravity.pn_series",
+    "module": "FrcLedger/Gravity",
+    "line": 685,
+    "axioms": [
+     "Classical.choice",
+     "Quot.sound",
+     "propext"
+    ],
+    "tier": 2,
+    "ok": true,
+    "doc": "21:C8, 21:P6 — the post-Newtonian inputs as Taylor brackets on `|U| ≤ 1/2`: the exponential metric's `A = e^{−2U}`, `B = e^{2U}` against the isotropic Schwarzschild `A_S = ((1 − U/2)/(1 + U/2))²`, `B_S = (1 + U/2)⁴` satisfy `|A − A_S − U³/6| ≤ 3U⁴` and `|B − B_S − U²/2| ≤ 3|U|³`: the single-potential inputs consumed by C23 coincide through first post-Newtonian order (`A` to `O(U²)`, `B` to `O(U)`) and part at 2PN with `δA = U³/6`, `δB = U²/2`; the two-body superposition of C23 is the package's."
+   }
+  ],
+  "C9": [
+   {
+    "name": "FRC.Gravity.central_difference_adjoint",
+    "module": "FrcLedger/Gravity",
+    "line": 597,
+    "axioms": [
+     "Classical.choice",
+     "Quot.sound",
+     "propext"
+    ],
+    "tier": 2,
+    "ok": true,
+    "doc": "21:C9 — anti-self-adjointness of the central difference on the cycle `ℤ/N`: with `(Δf)(x) = f(x + 1) − f(x − 1)`, `Σ_x f(x)(Δg)(x) = −Σ_x (Δf)(x) g(x)` — `Δᵀ = −Δ`, the identity that carries the discrete Fierz–Pauli gauge invariance (the package proves the four-term functional's invariance as an exact integer identity; the paper's `½` in `D_μ = (T_μ − T_μ⁻¹)/2` scales both sides alike). The one-sided difference `(δf)(x) = f(x + 1) − f(x)` has adjoint the negative *backward* difference, `Σ_x f(x)(δg)(x) = −Σ_x (f(x) − f(x − 1)) g(x)` — the package's failing control is that this is not `−δ`."
+   }
+  ],
+  "C11": [
+   {
+    "name": "FRC.Gravity.exponential_reading",
+    "module": "FrcLedger/Gravity",
+    "line": 668,
+    "axioms": [
+     "Classical.choice",
+     "Quot.sound",
+     "propext"
+    ],
+    "tier": 2,
+    "ok": true,
+    "doc": "21:C11 — the exponential reading is the multiplicative one, `e^{−(a+b)} = e^{−a} e^{−b}`; the isotropic Schwarzschild factor `R(U) = (1 − U/2)/(1 + U/2)` is `e^{−2 artanh(U/2)}`, the exponential reading of the self-sourced `ψ = 2 artanh(U/2)`, and it violates the composition law: `R(1) = 1/3 ≠ 9/25 = R(1/2)²`."
+   }
+  ],
+  "C12": [
+   {
+    "name": "FRC.Gravity.operational_cut",
+    "module": "FrcLedger/Gravity",
+    "line": 173,
+    "axioms": [
+     "Classical.choice",
+     "Quot.sound",
+     "propext"
+    ],
+    "tier": 2,
+    "ok": true,
+    "doc": "21:C12, 21:P7 — the operational cut and the slip core in the substrate coordinate (`G = 1`, `M` in Planck masses, `L = ln Ω`): `r_f = 2M/L` carries `e^{2M/r_f} = Ω` (the round-trip delay's factor); `r_* = √M < r_f` exactly when `M > (L/2)²`, and `r_f < M` exactly when `L > 2` (master E10)."
+   }
+  ],
+  "C13": [
+   {
+    "name": "FRC.Gravity.count_face",
+    "module": "FrcLedger/Gravity",
+    "line": 121,
+    "axioms": [
+     "propext"
+    ],
+    "tier": 1,
+    "ok": true,
+    "doc": "21:C13 — the count face of the area law on a symmetry-complete shell `p = 4κ + 1`: with `S = (p² − 1)/4`, i.e. `4S + 1 = p²` for `S = κ(4κ + 2)`, and the coordinate area `A = p(p + 1)`, the ratio `S/A = κ/p` holds exactly (`Sp = κA`) and `S = (A/4)(1 − 1/p)` (`4Sp = A(p − 1)`) — the Bekenstein quarter as the `Q₄` quotient."
+   },
+   {
+    "name": "FRC.Gravity.merger_area_law",
+    "module": "FrcLedger/Gravity",
+    "line": 132,
+    "axioms": [
+     "Classical.choice",
+     "Quot.sound",
+     "propext"
+    ],
+    "tier": 2,
+    "ok": true,
+    "doc": "21:C13 — the merger area law on the count face, `A = M(M + 1)`: `ΔA = 2M₁M₂` exactly under additive mass, the paper's instance `27 811 + 1 596 → 29 407` giving `ΔA = 88 772 712`; with a radiated `δ` the count gives `ΔA = 2M₁M₂ − (2(M₁ + M₂) + 1)δ + δ²`, at most the additive value for `0 ≤ δ ≤ 2(M₁ + M₂) + 1` — the area statement an inequality (the coefficient `−2(M₁ + M₂)δ` is the `A = M²` form; on the count face the linear term carries the extra `−δ`)."
+   },
+   {
+    "name": "FRC.Gravity.capacity_ratio",
+    "module": "FrcLedger/Gravity",
+    "line": 328,
+    "axioms": [
+     "Classical.choice",
+     "Quot.sound",
+     "propext"
+    ],
+    "tier": 2,
+    "ok": true,
+    "doc": "The arithmetic behind 21:C13's capacity ratio: for `r_f = r_s/L` the square of `r_f/r_s` is `1/L²`, and at `L = ln Ω = 281` the ratio lies between `1.26 × 10⁻⁵` and `1.27 × 10⁻⁵` (the text's `1.3 × 10⁻⁵`); that the externally resolvable capacity scales as `(r_f/r_s)²` is the paper's count, not formal content."
+   },
+   {
+    "name": "FRC.Gravity.count_identity",
+    "module": "FrcCore/Gravity",
+    "line": 125,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "21:C13 — the count face of the area law on `p = 4κ + 1`: `S = κ(4κ + 2)` has `4S + 1 = p²` (`S = (p² − 1)/4`), and with the coordinate area `A = p(p + 1)`: `Sp = κA` (`S/A = κ/p`) and `4Sp = A(p − 1)` (`S = (A/4)(1 − 1/p)`)."
+   },
+   {
+    "name": "FRC.Gravity.merger_instance",
+    "module": "FrcCore/Gravity",
+    "line": 173,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "21:C13 — the merger law's instance on the count face `A = M(M + 1)`: `27 811 + 1 596 → 29 407` gives `ΔA = 2 · 27 811 · 1 596 = 88 772 712`."
+   }
+  ],
+  "C16": [
+   {
+    "name": "FRC.Gravity.calibration_congruence",
+    "module": "FrcLedger/Gravity",
+    "line": 55,
+    "axioms": [
+     "Quot.sound",
+     "propext"
+    ],
+    "tier": 1,
+    "ok": true,
+    "doc": "21:C16, 21:A1 — the calibration congruence: on the Carrier chart `4S + 1 = 0` the full cycle `2π ↦ 4S` is `−1` and `(4S)² = 1`, one residue relation."
+   },
+   {
+    "name": "FRC.Gravity.newton_register",
+    "module": "FrcLedger/Gravity",
+    "line": 64,
+    "axioms": [
+     "Classical.choice",
+     "Quot.sound",
+     "propext"
+    ],
+    "tier": 2,
+    "ok": true,
+    "doc": "21:C2, 21:C5, 21:C16 — the register value of the Newton constant, `G = 2S`, on the Carrier chart `4S + 1 = 0`: `2G = −1` (the half-cycle); `(−2) G = 1`, the face convention `4π ↦ −2` with `G = (−2)⁻¹`; the Gauss count `(2 · 4S) G = 1`; `c² = 2⁻¹ = 2S + 1` and `G = −c²` (the chart ratio `4π/2π = 2` is read as `(−2)/(−1)`). The uniqueness of the linear solution is `Dimensions.G_unique`."
+   },
+   {
+    "name": "FRC.Gravity.calibration",
+    "module": "FrcCore/Gravity",
+    "line": 51,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "21:C16, 21:A1 — the calibration congruence on every frame: the full cycle `2π ↦ 4κ = p − 1` is `−1`, and `(4κ)² = 1`."
+   },
+   {
+    "name": "FRC.Gravity.lab_register",
+    "module": "FrcCore/Gravity",
+    "line": 180,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "21:C2, 21:C5, 21:C16 — the laboratory Carrier `Ω = 2 408 561` (`S = 602 140`), host-decided: `4S = 2 408 560 = −1` and `(4S)² = 1` (the calibration congruence); `G = 1 204 280 = 2S` with `2G = −1`, `(−2) G = 1` and the Gauss count `(2 · 4S) G = 1`; `ħ = 18 688` with `ħ² = −1`, `ħ = 2 · 9 344` and `9 344² = S`."
+   }
+  ],
+  "C18": [
+   {
+    "name": "FRC.Gravity.scale_invariance_iff",
+    "module": "FrcLedger/Gravity",
+    "line": 511,
+    "axioms": [
+     "Classical.choice",
+     "Quot.sound",
+     "propext"
+    ],
+    "tier": 2,
+    "ok": true,
+    "doc": "The arithmetic behind 21:C18's fixed point: for a power law `P(k) = k^n` the dimensionless `k³P(k)` is the same at every scale `k > 0` exactly when `n = −3`, i.e. `n_s − 1 = n + 3 = 0`, the Harrison–Zel'dovich `n_s = 1`, uniquely; that the drive's jitter spectrum is this fixed point is the paper's argument."
+   },
+   {
+    "name": "FRC.Gravity.tilt_bracket",
+    "module": "FrcLedger/Gravity",
+    "line": 566,
+    "axioms": [
+     "Classical.choice",
+     "Quot.sound",
+     "propext"
+    ],
+    "tier": 2,
+    "ok": true,
+    "doc": "21:C18, 21:P8 — the tilt's numerals bracketed: the e-fold count `ln Ω` at `Ω = 10¹²²` is `122 ln 10`, between `280.91` and `280.92` (the anchored `281`); the committed tilt `−π²/281` lies between `−0.035124` and `−0.035123` (the text's `−0.0351`, against Planck's `−0.0351 ± 0.0042` [data]); the neighbouring count `½ ln Ω` gives `−π²/140.5`, parted from the committed value by more than `8.36σ` and less than `8.37σ` at `σ = 0.0042` (the text's `8.4σ`); and a factor two in `S` moves the tilt by the fraction `ln 2/281`, between `0.246 %` and `0.247 %` (the text's `0.25 %`)."
+   }
+  ],
+  "C19": [
+   {
+    "name": "FRC.Gravity.registration_root",
+    "module": "FrcLedger/Gravity",
+    "line": 373,
+    "axioms": [
+     "Classical.choice",
+     "Quot.sound",
+     "propext"
+    ],
+    "tier": 2,
+    "ok": true,
+    "doc": "21:C19, 21:P4 — the registration root: for `0 < w < 1` the quadratic `wη² − 2η + w = 0` (rational in the paper's `w`, here over `ℝ`) has exactly the roots `(1 ∓ √(1 − w²))/w`; the smaller, `η = (1 − √(1 − w²))/w`, lies in `(0, 1)` and the larger exceeds `1`, so the in-`(0, 1)` root that fixes the resolved fraction `f = 1 − η^a` is unique."
+   },
+   {
+    "name": "FRC.Gravity.crossover_limits",
+    "module": "FrcLedger/Gravity",
+    "line": 411,
+    "axioms": [
+     "Classical.choice",
+     "Quot.sound",
+     "propext"
+    ],
+    "tier": 2,
+    "ok": true,
+    "doc": "21:C19, 21:P4 — the crossover `g_obs = g_N/(1 − e^{−√x})`, `x = g_N/a₀`, squeezed: with `t = √x > 0`, `1 ≤ t/(1 − e^{−t})`, and `t/(1 − e^{−t}) ≤ 1/(1 − 3t/4)` for `t ≤ 1`; and the Tully–Fisher algebra is exact: `v² = g_obs r` with `g_obs = √(g_N a₀)`, `g_N = GM/r²`, gives `v⁴ = GMa₀`."
+   },
+   {
+    "name": "FRC.Gravity.crossover_deep_limit",
+    "module": "FrcLedger/Gravity",
+    "line": 440,
+    "axioms": [
+     "Classical.choice",
+     "Quot.sound",
+     "propext"
+    ],
+    "tier": 2,
+    "ok": true,
+    "doc": "21:C19, 21:P4, 21:X2 — the deep limit: `t/(1 − e^{−t}) → 1` as `t → 0⁺`, so `g_obs/√(g_N a₀) → 1` — the deep regime `g_obs = √(g_N a₀)`, the floor read as noise with no dark sector."
+   }
+  ],
+  "C20": [
+   {
+    "name": "FRC.Gravity.shift_theorem",
+    "module": "FrcLedger/Gravity",
+    "line": 628,
+    "axioms": [
+     "Classical.choice",
+     "Quot.sound",
+     "propext"
+    ],
+    "tier": 2,
+    "ok": true,
+    "doc": "21:C20 — the finite Fourier shift theorem in both forms, the kick of the two-shift law: the kick, a character `ζ^{ax}` multiplying `f` in position, shifts the transform, `F(ζ^{a·} f)(k) = (F f)(k + a)`; dually, shifting `f` by `a` multiplies its transform by the character, `F(f(· − a))(k) = ζ^{ak} (F f)(k)`."
+   }
+  ],
+  "C25": [
+   {
+    "name": "FRC.Gravity.cover_forcing",
+    "module": "FrcLedger/Gravity",
+    "line": 147,
+    "axioms": [
+     "Classical.choice",
+     "Quot.sound",
+     "propext"
+    ],
+    "tier": 2,
+    "ok": true,
+    "doc": "21:A9, 21:C25, 21:C7, 21:C8 — the cover forcing: the apsidal coefficient `2 − β + 2γ` against the PPN-free deficit `3/2` equals the two-face ratio `2` exactly when `2γ − β = 1`, with deviation `(2/3)(2γ − β − 1)`; channel unity `γ = 1` together with the forcing gives `β = 1`, and the perihelion factor `(2 + 2γ − β)/3` is then `1` (the deflection factor `(1 + γ)/2` is `1` at `γ = 1`)."
+   }
+  ],
+  "X2": [
+   {
+    "name": "FRC.Gravity.crossover_deep_limit",
+    "module": "FrcLedger/Gravity",
+    "line": 440,
+    "axioms": [
+     "Classical.choice",
+     "Quot.sound",
+     "propext"
+    ],
+    "tier": 2,
+    "ok": true,
+    "doc": "21:C19, 21:P4, 21:X2 — the deep limit: `t/(1 − e^{−t}) → 1` as `t → 0⁺`, so `g_obs/√(g_N a₀) → 1` — the deep regime `g_obs = √(g_N a₀)`, the floor read as noise with no dark sector."
+   }
+  ],
+  "X8": [
+   {
+    "name": "FRC.Gravity.dilution",
+    "module": "FrcLedger/Gravity",
+    "line": 110,
+    "axioms": [
+     "Classical.choice",
+     "Quot.sound",
+     "propext"
+    ],
+    "tier": 2,
+    "ok": true,
+    "doc": "The arithmetic behind 21:X8 — the weakness of gravity as cardinality dilution: with the Planck mass the locality horizon, `m_P = √Ω`, the dimensionless coupling of two masses `m` is `(m/m_P)² = m²/Ω`, small because `Ω` is large. C5's frame covariance is not formal content."
+   }
+  ],
+  "P1": [
+   {
+    "name": "FRC.Gravity.photon_sphere",
+    "module": "FrcLedger/Gravity",
+    "line": 187,
+    "axioms": [
+     "Classical.choice",
+     "Quot.sound",
+     "propext"
+    ],
+    "tier": 2,
+    "ok": true,
+    "doc": "21:P1 — the photon sphere (`prop:shadow`, `rem:exponential`): the impact parameter `b(r) = r e^{2Gm/r}` of the exponential metric satisfies `b(r) ≥ 2e·Gm` for every `r > 0`, with equality exactly at `r = 2Gm` (from `x + 1 ≤ eˣ`, strict off `x = 0`): the photon sphere is at `r_ph = 2Gm`, the critical impact parameter `b_c = 2e·Gm`."
+   },
+   {
+    "name": "FRC.Gravity.shadow_bracket",
+    "module": "FrcLedger/Gravity",
+    "line": 226,
+    "axioms": [
+     "Classical.choice",
+     "Quot.sound",
+     "propext"
+    ],
+    "tier": 2,
+    "ok": true,
+    "doc": "21:P1 — the shadow and the ringdown against general relativity, bracketed from `e` (nine places) and `√3`: the critical impact parameters `b_c = 2e·Gm` (this work) and `3√3·Gm` (Schwarzschild) have ratio `2e/(3√3)` between `1.0462` and `1.0463` (the shadow `+4.6 %`), and the eikonal ringdown frequency, `∝ 1/b_c`, ratio `3√3/(2e)` between `0.9557` and `0.9558` (`−4.4 %`); the Sgr A* excess `(4e − 6√3) θ_g` at the GRAVITY `θ_g = 5.12 µas` [data, A8] lies between `2.46` and `2.47 µas` (the `2.5 µas` of the text)."
+   },
+   {
+    "name": "FRC.Gravity.isco",
+    "module": "FrcLedger/Gravity",
+    "line": 246,
+    "axioms": [
+     "Classical.choice",
+     "Quot.sound",
+     "propext"
+    ],
+    "tier": 2,
+    "ok": true,
+    "doc": "21:P1 — the innermost stable circular orbit of the exponential metric (`G = m = 1`, isotropic radius), with the circular-orbit relations of the paper's `prop:isco` taken as given and not formalised (`L² = e^{2/r} r²/(r − 2)` and `E² = e^{−2/r}(r − 1)/(r − 2)` for a circular orbit at `r > 2`): what is proved is that `log L²` has derivative `(r² − 6r + 4)/(r²(r − 2))`, that `r_ISCO = 3 + √5` is the root of `r² − 6r + 4` above `2`, and that `(r − 1)/(r − 2) = r/4` there, so `E² = e^{−2/r} r/4` at the orbit."
+   },
+   {
+    "name": "FRC.Gravity.isco_efficiency",
+    "module": "FrcLedger/Gravity",
+    "line": 301,
+    "axioms": [
+     "Classical.choice",
+     "Quot.sound",
+     "propext"
+    ],
+    "tier": 2,
+    "ok": true,
+    "doc": "21:P1 — the accretion efficiency bracketed: at `r_ISCO = 3 + √5` the orbital energy `E = √(e^{−2/r} r/4)` lies between `0.9452` and `0.9453`, so `1 − E` is between `5.47 %` and `5.48 %` (the text's `5.48 %`), against Schwarzschild's `1 − √(8/9)` between `5.71 %` and `5.72 %`."
+   }
+  ],
+  "P7": [
+   {
+    "name": "FRC.Gravity.operational_cut",
+    "module": "FrcLedger/Gravity",
+    "line": 173,
+    "axioms": [
+     "Classical.choice",
+     "Quot.sound",
+     "propext"
+    ],
+    "tier": 2,
+    "ok": true,
+    "doc": "21:C12, 21:P7 — the operational cut and the slip core in the substrate coordinate (`G = 1`, `M` in Planck masses, `L = ln Ω`): `r_f = 2M/L` carries `e^{2M/r_f} = Ω` (the round-trip delay's factor); `r_* = √M < r_f` exactly when `M > (L/2)²`, and `r_f < M` exactly when `L > 2` (master E10)."
+   }
+  ],
+  "P8": [
+   {
+    "name": "FRC.Gravity.tilt_bracket",
+    "module": "FrcLedger/Gravity",
+    "line": 566,
+    "axioms": [
+     "Classical.choice",
+     "Quot.sound",
+     "propext"
+    ],
+    "tier": 2,
+    "ok": true,
+    "doc": "21:C18, 21:P8 — the tilt's numerals bracketed: the e-fold count `ln Ω` at `Ω = 10¹²²` is `122 ln 10`, between `280.91` and `280.92` (the anchored `281`); the committed tilt `−π²/281` lies between `−0.035124` and `−0.035123` (the text's `−0.0351`, against Planck's `−0.0351 ± 0.0042` [data]); the neighbouring count `½ ln Ω` gives `−π²/140.5`, parted from the committed value by more than `8.36σ` and less than `8.37σ` at `σ = 0.0042` (the text's `8.4σ`); and a factor two in `S` moves the tilt by the fraction `ln 2/281`, between `0.246 %` and `0.247 %` (the text's `0.25 %`)."
+   }
+  ],
+  "P2": [
+   {
+    "name": "FRC.Gravity.preferred_frame_scale",
+    "module": "FrcLedger/Gravity",
+    "line": 736,
+    "axioms": [
+     "Classical.choice",
+     "Quot.sound",
+     "propext"
+    ],
+    "tier": 2,
+    "ok": true,
+    "doc": "The numeral behind 21:P2: the drive's signature is `O(1/√Ω)` (the paper's `α₁, α₂`), and at `Ω = 10¹²²` this is `10⁻⁶¹`."
+   }
+  ],
+  "P3": [
+   {
+    "name": "FRC.Gravity.floor_value",
+    "module": "FrcLedger/Gravity",
+    "line": 351,
+    "axioms": [
+     "Classical.choice",
+     "Quot.sound",
+     "propext"
+    ],
+    "tier": 2,
+    "ok": true,
+    "doc": "21:P3 — the weak-acceleration floor `a₀ = cH₀/2π` at the entailed `H₀ = 67.4 km s⁻¹ Mpc⁻¹` (the `H₀` of `\\cite{entropy}`, the speed of light and the megaparsec all declared numerals [data]): `a₀` lies between `1.04` and `1.05 × 10⁻¹⁰ m s⁻²`; against the fitted `1.20 × 10⁻¹⁰` it is between `13.0 %` and `13.2 %` low, and the deficit is between `0.65` and `0.67` of the systematic `0.24 × 10⁻¹⁰` (the text's `13 %`, `0.7σ`)."
+   }
+  ],
+  "P4": [
+   {
+    "name": "FRC.Gravity.crossover_limits",
+    "module": "FrcLedger/Gravity",
+    "line": 411,
+    "axioms": [
+     "Classical.choice",
+     "Quot.sound",
+     "propext"
+    ],
+    "tier": 2,
+    "ok": true,
+    "doc": "21:C19, 21:P4 — the crossover `g_obs = g_N/(1 − e^{−√x})`, `x = g_N/a₀`, squeezed: with `t = √x > 0`, `1 ≤ t/(1 − e^{−t})`, and `t/(1 − e^{−t}) ≤ 1/(1 − 3t/4)` for `t ≤ 1`; and the Tully–Fisher algebra is exact: `v² = g_obs r` with `g_obs = √(g_N a₀)`, `g_N = GM/r²`, gives `v⁴ = GMa₀`."
+   },
+   {
+    "name": "FRC.Gravity.registration_root",
+    "module": "FrcLedger/Gravity",
+    "line": 373,
+    "axioms": [
+     "Classical.choice",
+     "Quot.sound",
+     "propext"
+    ],
+    "tier": 2,
+    "ok": true,
+    "doc": "21:C19, 21:P4 — the registration root: for `0 < w < 1` the quadratic `wη² − 2η + w = 0` (rational in the paper's `w`, here over `ℝ`) has exactly the roots `(1 ∓ √(1 − w²))/w`; the smaller, `η = (1 − √(1 − w²))/w`, lies in `(0, 1)` and the larger exceeds `1`, so the in-`(0, 1)` root that fixes the resolved fraction `f = 1 − η^a` is unique."
+   },
+   {
+    "name": "FRC.Gravity.interpolant_discriminant",
+    "module": "FrcLedger/Gravity",
+    "line": 479,
+    "axioms": [
+     "Classical.choice",
+     "Quot.sound",
+     "propext"
+    ],
+    "tier": 2,
+    "ok": true,
+    "doc": "21:P4 — the discriminant against the simple interpolant at `g_N = 5a₀`: the crossover `ν(5) = 1/(1 − e^{−√5})` lies between `1.11966` and `1.11967`, the simple interpolant `ν_s(5) = 1/2 + √(1/4 + 1/5)` between `1.17082` and `1.17083`, so they part by between `0.0511` and `0.0512` in `g_obs/g_N` (the text's `0.05`)."
+   }
+  ],
+  "P6": [
+   {
+    "name": "FRC.Gravity.pn_series",
+    "module": "FrcLedger/Gravity",
+    "line": 685,
+    "axioms": [
+     "Classical.choice",
+     "Quot.sound",
+     "propext"
+    ],
+    "tier": 2,
+    "ok": true,
+    "doc": "21:C8, 21:P6 — the post-Newtonian inputs as Taylor brackets on `|U| ≤ 1/2`: the exponential metric's `A = e^{−2U}`, `B = e^{2U}` against the isotropic Schwarzschild `A_S = ((1 − U/2)/(1 + U/2))²`, `B_S = (1 + U/2)⁴` satisfy `|A − A_S − U³/6| ≤ 3U⁴` and `|B − B_S − U²/2| ≤ 3|U|³`: the single-potential inputs consumed by C23 coincide through first post-Newtonian order (`A` to `O(U²)`, `B` to `O(U)`) and part at 2PN with `δA = U³/6`, `δB = U²/2`; the two-body superposition of C23 is the package's."
+   }
+  ]
+ }
 }

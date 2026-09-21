@@ -46,8 +46,8 @@ theorem ofNat_add (a b : Nat) : (ofNat a : Shell p) + ofNat b = ofNat (a + b) :=
 theorem ofNat_p : (ofNat p : Shell p) = 0 :=
   Shell.ext (by show p % p = 0; exact FRC.Nat.mod_self p Pos.pos)
 
-/-- 21:C16 — the calibration congruence on every frame: the full cycle `2π ↦ 4κ = p − 1` is `−1`, and
-`(4κ)² = 1`. -/
+/-- 21:C16, 21:A1 — the calibration congruence on every frame: the full cycle `2π ↦ 4κ = p − 1` is `−1`,
+and `(4κ)² = 1`. -/
 theorem calibration (F : Frame p κ g) :
     (ofNat (4 * κ) : Shell p) = -1 ∧ (ofNat (4 * κ) : Shell p) * ofNat (4 * κ) = 1 := by
   have h : (ofNat (4 * κ) : Shell p) = -1 := by
