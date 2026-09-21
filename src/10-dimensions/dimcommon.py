@@ -7,7 +7,7 @@ random sampling. The suite verify_domains.py is organised in eight layers A–H,
 lift script check_lift.py decides the five claims L1–L5 of Proposition `lift` on two shells and two Carriers. A
 family is one check of the registry, identified as <script tag>.<family> (dom.A … dom.H, lift.L1 … lift.L5), and
 names the row(s) of the paper's predicate ledger it witnesses (LEDGER; rows cited as 10:XN). The ledger's source
-column cites these check ids in return. Master-ledger rows reached through the paper rows: 00:D7 (10:D7),
+column names the witness script; the family checks are listed on the public page from results.json. Master-ledger rows reached through the paper rows: 00:D7 (10:D7),
 00:C12 (10:F3), 00:C13 (10:E9, 10:G2), 00:C8 (10:E4), 00:B10 (10:E5).
 
 check_gates.py (105 source gates on the manuscript's text) runs in the corpus tree only, where sections/*.tex

@@ -6,9 +6,9 @@ Colab, *Runtime → Run all*, ≈ 10 s) or by `run_all.py`. Pure Python — inte
 no random sampling.
 
 Every family check is a layer of `verify_domains.py` (A–H) or a claim of `check_lift.py` (L1–L5) and names the row(s)
-of the paper's predicate ledger it witnesses (the paper's Section "Machine verification and predicate ledger", 45 rows
+of the paper's predicate ledger it witnesses (the paper's Appendix B "Machine verification and predicate ledger", 45 rows
 in blocks A–G, V, T, cited as `10:XN`; public copy `docs/10-dimensions/10-dimensions-ledger.html`); the ledger's source
-column cites the check ids in return. Where a row is proved in Lean (`lean/FrcCore/Dimensions.lean` with no axioms, or
+column names the witness script (the family checks are listed on the public page from `results.json`). Where a row is proved in Lean (`lean/FrcCore/Dimensions.lean` with no axioms, or
 `lean/FrcLedger/Dimensions.lean` on Mathlib), the check here is the instance the reader can run. Master-ledger rows of the corpus reached through the paper rows: `00:D7`, `00:C12`,
 `00:C13`, `00:C8`, `00:B10`.
 
