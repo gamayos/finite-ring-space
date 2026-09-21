@@ -386,9 +386,9 @@ theorem carrier233 :
     (116 : Shell 233) = -(159 * 159) ∧ (89 : Shell 233) * 159 = 124 * 116 ∧
     (109 : Shell 233) = -124 ∧ (109 : Shell 233) * 159 ≠ -89 := by decide +kernel
 
-/-- 10:E4, 10:E5 — the laboratory Carrier `Ω = 2 408 561` (`S = 602 140`): `G = 1 204 280`, `ħ = 18 688`,
-`k_B = 1 880 160`, `c = 171 106`, `h = 2 389 873 = −ħ` satisfy the defining congruences, the linkage,
-`G = −c²` and `ħ c = k_B G`. -/
+/-- 10:E4, 10:E5, 21:C5 — the laboratory Carrier `Ω = 2 408 561` (`S = 602 140`): `G = 1 204 280`,
+`ħ = 18 688`, `k_B = 1 880 160`, `c = 171 106`, `h = 2 389 873 = −ħ` satisfy the defining congruences, the
+linkage, `G = −c²` and `ħ c = k_B G`. -/
 theorem carrierLab :
     2 * (1204280 : Shell 2408561) + 1 = 0 ∧ (18688 : Shell 2408561) * 18688 = -1 ∧
     (1880160 : Shell 2408561) * 1880160 = -2 ∧ 2 * ((171106 : Shell 2408561) * 171106) = 1 ∧

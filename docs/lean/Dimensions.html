@@ -10,7 +10,7 @@
 <meta name="description" content="The Lean module FrcLedger/Dimensions of the FRC predicate ledgers, rendered with an anchor per declaration">
 <meta name="author" content="Yosef Akhtman">
 <link rel="icon" href="../frc-logo-fav.png">
-<link rel="stylesheet" href="../style.css?v=45116e26">
+<link rel="stylesheet" href="../style.css?v=cf2646a3">
 
 </head>
 <body>
@@ -823,8 +823,8 @@
 <span class="ln" id="L801"><a class="lno" href="#L801">801</a></span>
 <span class="ln" id="L802"><a class="lno" href="#L802">802</a>variable {K : Type*} [Field K]</span>
 <span class="ln" id="L803"><a class="lno" href="#L803">803</a></span>
-<span class="ln" id="L804"><a class="lno" href="#L804">804</a>/-- 10:E4 — the linear defining congruence: on the Carrier chart (`4S + 1 = 0`, `2 ≠ 0`), `2G + 1 = 0` has</span>
-<span class="ln" id="L805"><a class="lno" href="#L805">805</a>the unique solution `G = 2S`, the half-cycle. -/</span>
+<span class="ln" id="L804"><a class="lno" href="#L804">804</a>/-- 10:E4, 21:C2 — the linear defining congruence: on the Carrier chart (`4S + 1 = 0`, `2 ≠ 0`), `2G + 1 = 0`</span>
+<span class="ln" id="L805"><a class="lno" href="#L805">805</a>has the unique solution `G = 2S`, the half-cycle. -/</span>
 <span class="ln decl" id="FRC.Dimensions.G_unique"><a class="lno" href="#FRC.Dimensions.G_unique">806</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcLedger/Dimensions.lean#L806" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small t2" src="lean-t2.png" alt="" title="tier 2, classical: Classical.choice, Quot.sound, propext">theorem G_unique (S : ℕ) (hΩ : ((4 * S + 1 : ℕ) : K) = 0) (h2 : (2 : K) ≠ 0) (x : K) :</span>
 <span class="ln" id="L807"><a class="lno" href="#L807">807</a>    2 * x + 1 = 0 ↔ x = ((2 * S : ℕ) : K) := by</span>
 <span class="ln" id="L808"><a class="lno" href="#L808">808</a>  push_cast at hΩ ⊢</span>
@@ -951,9 +951,9 @@
 <span class="ln" id="L929"><a class="lno" href="#L929">929</a>    (109 : ZMod 233) = -124 ∧ (109 : ZMod 233) * 159 ≠ -89 := by</span>
 <span class="ln" id="L930"><a class="lno" href="#L930">930</a>  refine ⟨by norm_num, ?_⟩; decide</span>
 <span class="ln" id="L931"><a class="lno" href="#L931">931</a></span>
-<span class="ln" id="L932"><a class="lno" href="#L932">932</a>/-- 10:E4, 10:E5 — the laboratory Carrier `Ω = 2 408 561` (`S = 602 140`, admissible): `G = 1 204 280 = 2S`,</span>
-<span class="ln" id="L933"><a class="lno" href="#L933">933</a>`ħ = 18 688`, `k_B = 1 880 160`, `c = 171 106`, `h = 2 389 873 = −ħ` satisfy the defining congruences, the</span>
-<span class="ln" id="L934"><a class="lno" href="#L934">934</a>linkage, `G = −c²`, `G² = 4⁻¹`, `ħ⁴ = 1`, `ħ c = k_B G`; decided in `ZMod 2408561`. -/</span>
+<span class="ln" id="L932"><a class="lno" href="#L932">932</a>/-- 10:E4, 10:E5, 21:C5 — the laboratory Carrier `Ω = 2 408 561` (`S = 602 140`, admissible):</span>
+<span class="ln" id="L933"><a class="lno" href="#L933">933</a>`G = 1 204 280 = 2S`, `ħ = 18 688`, `k_B = 1 880 160`, `c = 171 106`, `h = 2 389 873 = −ħ` satisfy the defining</span>
+<span class="ln" id="L934"><a class="lno" href="#L934">934</a>congruences, the linkage, `G = −c²`, `G² = 4⁻¹`, `ħ⁴ = 1`, `ħ c = k_B G`; decided in `ZMod 2408561`. -/</span>
 <span class="ln decl" id="FRC.Dimensions.carrierLab"><a class="lno" href="#FRC.Dimensions.carrierLab">935</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcLedger/Dimensions.lean#L935" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small t2" src="lean-t2.png" alt="" title="tier 2, classical: Classical.choice, Quot.sound, propext">theorem carrierLab :</span>
 <span class="ln" id="L936"><a class="lno" href="#L936">936</a>    Nat.Prime 2408561 ∧ 2408561 = 4 * 602140 + 1 ∧ 602140 % 2 = 0 ∧ 602140 % 3 = 1 ∧</span>
 <span class="ln" id="L937"><a class="lno" href="#L937">937</a>    2 * (1204280 : ZMod 2408561) + 1 = 0 ∧ (18688 : ZMod 2408561) ^ 2 = -1 ∧</span>

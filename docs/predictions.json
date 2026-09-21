@@ -1,5 +1,5 @@
 {
- "generated": "20 September 2026",
+ "generated": "21 September 2026",
  "rows": [
   {
    "id": "00:L7",
@@ -70,7 +70,7 @@
    "key": "p21049",
    "tag": "T|R",
    "predicate": "Strong-field signatures at or outside the photon sphere: shadow $+4.6\\%$, ringdown $-4.4\\%$, ISCO frequency $-6.9\\%$ with accretion efficiency $5.48\\%$ (against $5.72\\%$): one origin, jointly falsifiable, conditional on Theorem~\\ref{thm:branch}'s inputs alone.",
-   "source": "\\S\\ref{sub:strongdata}, Prop.~\\ref{prop:shadow},~\\ref{prop:isco}; \\src{grav.strongfield}",
+   "source": "\\S\\ref{sub:strongdata}, Prop.~\\ref{prop:shadow},~\\ref{prop:isco}; \\src{grav.strongfield}; \\lean{Gravity.photon\\_sphere, Gravity.shadow\\_bracket, Gravity.isco, Gravity.isco\\_efficiency}",
    "master": [],
    "restated": [],
    "witnessed": false,
@@ -83,7 +83,7 @@
    "key": "p21051",
    "tag": "T|R",
    "predicate": "Preferred-frame effects at $O(10^{-61})$: the drive's in-principle signature, far below current $10^{-5}$ bounds.",
-   "source": "Prop.~\\ref{prop:dragging}",
+   "source": "Prop.~\\ref{prop:dragging}; \\lean{Gravity.preferred\\_frame\\_scale}",
    "master": [],
    "restated": [],
    "witnessed": false,
@@ -96,7 +96,7 @@
    "key": "p21052",
    "tag": "T|R",
    "predicate": "The weak-acceleration floor $a_0=cH_0/2\\pi=1.04\\times10^{-10}\\,\\mathrm{m\\,s^{-2}}$ at the entailed $H_0=67.4$ \\cite{entropy}, against the fitted $1.20\\pm0.24\\times10^{-10}$: $13\\%$ low, $0.7\\sigma$ of the systematic-dominated error, no free parameter; the $2\\pi$ the dictionary's full cycle [\\textsf{D}], the one-cycle-per-period threshold the realisation [\\textsf{R}] with its discrete falsifier.",
-   "source": "Prop.~\\ref{prop:afloor}; \\src{grav.rar}",
+   "source": "Prop.~\\ref{prop:afloor}; \\src{grav.rar}; \\lean{Gravity.floor\\_value}",
    "master": [
     "L1"
    ],
@@ -113,7 +113,7 @@
    "key": "p21053",
    "tag": "T|R",
    "predicate": "The radial acceleration relation, $g_{\\mathrm{obs}}=g_N/(1-e^{-\\sqrt{g_N/a_0}})$, no fitted function beyond the declared barrier identification (C19), the form the data selected across the four observed acceleration decades, its approach to Newton the discriminant ($0.05$ at $g_N\\approx5a_0$ against the simple rational interpolant); the deep limit gives the baryonic Tully--Fisher relation $v^4=GMa_0$.",
-   "source": "Prop.~\\ref{prop:crossover}; \\src{grav.deepregime}",
+   "source": "Prop.~\\ref{prop:crossover}; \\src{grav.deepregime}; \\lean{Gravity.crossover\\_limits, Gravity.registration\\_root, Gravity.interpolant\\_discriminant}",
    "master": [],
    "restated": [],
    "witnessed": false,
@@ -126,7 +126,7 @@
    "key": "p21055",
    "tag": "T|R",
    "predicate": "The 2PN periastron excess $\\delta\\dot\\omega/\\dot\\omega\\approx1.5\\times10^{-6}$ for PSR~J0737$-$3039, today degenerate with the mass refit; decisive either way once an independent observable fixes $M_{\\mathrm{tot}}$ at $10^{-6}$. Independent of the coherent-fraction falsifier of \\citep{quantum}; the ledger carries both.",
-   "source": "\\S\\ref{sub:2pn}; \\src{grav.2pn}",
+   "source": "\\S\\ref{sub:2pn}; \\src{grav.2pn}; \\lean{Gravity.pn\\_series}",
    "master": [],
    "restated": [],
    "witnessed": false,
@@ -139,7 +139,7 @@
    "key": "p21050",
    "tag": "T|R",
    "predicate": "Floor-surface signatures: no prompt echoes (the exact profile horizonless with no reflecting surface, C12; the round-trip delay to $r_f$ carrying $e^{2u(r_f)}=\\Omega$) and no evaporation bursts; a reported echo detection at the stated precision falsifies the construction.",
-   "source": "\\S\\ref{sub:strongdata}, Rem.~\\ref{rem:exponential},~\\ref{rem:hawking}; \\src{grav.strongfield}",
+   "source": "\\S\\ref{sub:strongdata}, Rem.~\\ref{rem:exponential},~\\ref{rem:hawking}; \\src{grav.strongfield}; \\lean{Gravity.operational\\_cut}",
    "master": [],
    "restated": [],
    "witnessed": true,
@@ -152,7 +152,7 @@
    "key": "p21060",
    "tag": "T|R",
    "predicate": "The primordial tilt $n_s-1=-\\pi^{2}/\\ln\\Omega=-0.0351$ [approx] at $\\ln\\Omega=281$, against Planck 2018 $-0.0351\\pm0.0042$; $0.25\\%$ per factor two in $S$; the neighbouring count $\\tfrac12\\ln\\Omega$ excluded at $8.4\\sigma$.",
-   "source": "Prop.~\\ref{prop:primordial}; \\src{grav.primordial}",
+   "source": "Prop.~\\ref{prop:primordial}; \\src{grav.primordial}; \\lean{Gravity.tilt\\_bracket}",
    "master": [
     "L8"
    ],

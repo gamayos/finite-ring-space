@@ -19,3 +19,4 @@ import FrcCore.Instances
 import FrcCore.Rh
 import FrcCore.Entropy
 import FrcCore.Gravity
+import FrcCore.Dirac

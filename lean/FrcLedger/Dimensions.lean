@@ -801,8 +801,8 @@ section carrier
 
 variable {K : Type*} [Field K]
 
-/-- 10:E4 — the linear defining congruence: on the Carrier chart (`4S + 1 = 0`, `2 ≠ 0`), `2G + 1 = 0` has
-the unique solution `G = 2S`, the half-cycle. -/
+/-- 10:E4, 21:C2 — the linear defining congruence: on the Carrier chart (`4S + 1 = 0`, `2 ≠ 0`), `2G + 1 = 0`
+has the unique solution `G = 2S`, the half-cycle. -/
 theorem G_unique (S : ℕ) (hΩ : ((4 * S + 1 : ℕ) : K) = 0) (h2 : (2 : K) ≠ 0) (x : K) :
     2 * x + 1 = 0 ↔ x = ((2 * S : ℕ) : K) := by
   push_cast at hΩ ⊢
@@ -929,9 +929,9 @@ theorem carrier233 :
     (109 : ZMod 233) = -124 ∧ (109 : ZMod 233) * 159 ≠ -89 := by
   refine ⟨by norm_num, ?_⟩; decide
 
-/-- 10:E4, 10:E5 — the laboratory Carrier `Ω = 2 408 561` (`S = 602 140`, admissible): `G = 1 204 280 = 2S`,
-`ħ = 18 688`, `k_B = 1 880 160`, `c = 171 106`, `h = 2 389 873 = −ħ` satisfy the defining congruences, the
-linkage, `G = −c²`, `G² = 4⁻¹`, `ħ⁴ = 1`, `ħ c = k_B G`; decided in `ZMod 2408561`. -/
+/-- 10:E4, 10:E5, 21:C5 — the laboratory Carrier `Ω = 2 408 561` (`S = 602 140`, admissible):
+`G = 1 204 280 = 2S`, `ħ = 18 688`, `k_B = 1 880 160`, `c = 171 106`, `h = 2 389 873 = −ħ` satisfy the defining
+congruences, the linkage, `G = −c²`, `G² = 4⁻¹`, `ħ⁴ = 1`, `ħ c = k_B G`; decided in `ZMod 2408561`. -/
 theorem carrierLab :
     Nat.Prime 2408561 ∧ 2408561 = 4 * 602140 + 1 ∧ 602140 % 2 = 0 ∧ 602140 % 3 = 1 ∧
     2 * (1204280 : ZMod 2408561) + 1 = 0 ∧ (18688 : ZMod 2408561) ^ 2 = -1 ∧

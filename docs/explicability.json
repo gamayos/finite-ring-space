@@ -1,5 +1,5 @@
 {
- "generated": "20 September 2026",
+ "generated": "21 September 2026",
  "rows": [
   {
    "id": "14:X3",
@@ -104,7 +104,7 @@
    "key": "p21042",
    "tag": "T|R",
    "predicate": "\\textbf{No dark-matter particle.} The radial acceleration relation is a registration crossover of the resolution floor, not evidence for undetected mass: galactic dynamics require no dark sector beyond the floor already fixed by $\\Omega$.",
-   "source": "Prop.~\\ref{prop:crossover},~\\ref{prop:afloor}; \\src{grav.deepregime}",
+   "source": "Prop.~\\ref{prop:crossover},~\\ref{prop:afloor}; \\src{grav.deepregime}; \\lean{Gravity.crossover\\_deep\\_limit}",
    "master": [],
    "restated": [
     "32:X11"
@@ -184,7 +184,7 @@
    "key": "p21048",
    "tag": "T",
    "predicate": "\\textbf{The weakness of gravity} is cardinality dilution, not a hierarchy to be tuned.",
-   "source": "\\S\\ref{sub:G}",
+   "source": "\\S\\ref{sub:G}; \\lean{Gravity.dilution}",
    "master": [],
    "restated": [
     "38:X1"

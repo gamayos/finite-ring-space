@@ -82,18 +82,18 @@
  },
  {
   "id": "o2.C3i",
-  "rows": "",
+  "rows": "8:B3",
   "script": "o2_checks",
-  "label": "o2.C3i",
+  "label": "i = g^{−κ} is a square iff κ is even (8 | p − 1), on every symmetry-complete shell p < 2000",
   "ok": true,
   "detail": "147 exact micro-checks",
   "kind": "EXACT"
  },
  {
   "id": "o2.C3a",
-  "rows": "",
+  "rows": "8:B3",
   "script": "o2_checks",
-  "label": "o2.C3a",
+  "label": "2, 2⁻¹, −2 are squares iff κ is even: on κ-even shells g is the only named nonsquare",
   "ok": true,
   "detail": "441 exact micro-checks",
   "kind": "EXACT"
@@ -379,9 +379,9 @@
  },
  {
   "id": "o8.X9",
-  "rows": "",
+  "rows": "8:F4",
   "script": "o8_checks",
-  "label": "o8.X9",
+  "label": "the dispersion relation on the cycle: −Δ_Φ χ_k = (2 − g^k − g^{−k}) χ_k for every k (F_13); D^s − m invertible for m ≠ 0",
   "ok": true,
   "detail": "12 exact micro-checks",
   "kind": "EXACT"

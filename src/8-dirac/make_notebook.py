@@ -28,7 +28,10 @@ md(f"""[![Open In Colab](https://colab.research.google.com/assets/colab-badge.sv
 3 848 exact micro-checks. Every script is exact integer arithmetic over F_p and K = F_p[w]/(w² − ν): no floats, no random sampling.
 A family check is the labelled claim of a script's docstring (Z1, C3, P5, O1a, X7, L2, …), identified as `<script>.<family>`; each names
 the row(s) of the paper's predicate ledger it witnesses (the paper's Section "Machine verification and predicate ledger", rows cited as
-`8:XN`; public copy at `docs/8-dirac/8-dirac-ledger.html`), and the ledger's source column cites the check ids in return. The
+`8:XN`; public copy at `docs/8-dirac/8-dirac-ledger.html`), and the ledger's source column cites the check ids in return. Where a row is proved in Lean (`lean/FrcCore/Dirac.lean` with no axioms, or `lean/FrcLedger/Dirac.lean` on Mathlib —
+the chronon parity and the named residues, the Hermitian layer and the Cayley step, the kinetic period, the torus with
+Hilbert 90, the Clifford relations and the spinor twist, the characters and the counts), the check here is the instance
+the reader can run. The
 master-ledger rows of the corpus reached through the paper rows: `00:C3` (the Euclidean–Lorentzian dichotomy, 8:B4), `00:C8` (the square
 class is chronon parity, 8:B5–B6), `00:B10` (the chart grading carries no signature, 8:B5).
 
