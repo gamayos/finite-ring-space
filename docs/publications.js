@@ -178,7 +178,7 @@ const PUBLICATIONS = [
   {
     "key": "10-dim",
     "n": 10,
-    "title": "Dimensional Analysis in Finite Ring Continuum",
+    "title": "Dimensional Analysis over Finite Holographic Substrate",
     "status": {
       "kind": "preprint"
     },

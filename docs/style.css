@@ -210,7 +210,7 @@ pre.lean img.leanico { width: 12px; height: 12px; display: inline-block; vertica
 .wrap a.wit.ico svg { width: 15px; height: 15px; fill: none; stroke: currentColor; stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round; }
 .wrap a.wit.ico.py.ok { color: var(--pub); } .wrap a.wit.ico.py.fail { color: var(--rej); }
 /* syntax colours (Pygments token classes) — a quiet palette on the site's tokens, both themes */
-pre.lean .k, pre.lean .kn, pre.lean .kd, pre.lean .kr, pre.lean .kc { color: #7a3e9d; }                 /* keywords */
+pre.lean .k, pre.lean .kn, pre.lean .kd, pre.lean .kr, pre.lean .kc, pre.lean .kt { color: #7a3e9d; }   /* keywords */
 pre.lean .s, pre.lean .s1, pre.lean .s2, pre.lean .sd, pre.lean .sa, pre.lean .si, pre.lean .se, pre.lean .sb, pre.lean .sh, pre.lean .sx { color: #2a7f62; }   /* strings, docstrings */
 pre.lean .c, pre.lean .c1, pre.lean .cm, pre.lean .ch, pre.lean .cs { color: var(--ink-faint); font-style: italic; }   /* comments */
 pre.lean .ln.decl .c1 { color: var(--accent); font-style: normal; font-weight: 600; }                         /* the `# row` marker */
@@ -221,11 +221,12 @@ pre.lean .nc, pre.lean .nn { color: #1f5fbf; font-weight: 600; }                
 pre.lean .nd { color: #7a3e9d; }                                                                               /* decorators */
 pre.lean .o, pre.lean .ow { color: var(--ink-soft); }                                                          /* operators */
 @media (prefers-color-scheme: dark) {
-  pre.lean .k, pre.lean .kn, pre.lean .kd, pre.lean .kr, pre.lean .kc, pre.lean .nd { color: #c792ea; }
+  pre.lean .k, pre.lean .kn, pre.lean .kd, pre.lean .kr, pre.lean .kc, pre.lean .kt, pre.lean .nd { color: #c792ea; }
   pre.lean .s, pre.lean .s1, pre.lean .s2, pre.lean .sd, pre.lean .sa, pre.lean .si, pre.lean .se, pre.lean .sb, pre.lean .sh, pre.lean .sx { color: #7ec699; }
   pre.lean .m, pre.lean .mi, pre.lean .mf, pre.lean .mh, pre.lean .mo, pre.lean .mb { color: #f0a45d; }
   pre.lean .nb, pre.lean .bp { color: #82aaff; } pre.lean .nf, pre.lean .fm, pre.lean .nc, pre.lean .nn { color: #82aaff; }
 }
+.src .glyphs { display: flex; align-items: center; gap: .15rem; margin-top: .25rem; }
 img.runico { width: 16px; height: 16px; display: block; object-fit: contain; filter: invert(.78); }   /* the run glyphs: light on transparency, darkened on the light theme like the plain Lean glyph */
 img.runico.colab { width: 19px; filter: none; }                                                        /* the Colab mark is coloured: shown as drawn in both themes */
 .wrap a.ico:hover img.runico.colab { filter: none; opacity: .8; }
@@ -242,8 +243,8 @@ img.runico.colab { width: 19px; filter: none; }                                 
 .ax.ok { color: var(--pub); } .ax.bad { color: var(--rej); }
 .lean.missing { color: var(--rej); font-family: var(--mono); font-size: .78rem; text-decoration: line-through; }
 pre.lean { font-family: var(--mono); font-size: .8rem; line-height: 1.45; overflow-x: auto; padding: .6rem .8rem 0; margin: 1rem 0; border: 1px solid var(--rule-soft); border-radius: 6px; background: var(--pre-bg, transparent); }
-pre.lean .ln { display: block; white-space: pre; } pre.lean .ln:target { background: color-mix(in srgb, var(--accent) 14%, transparent); }
-pre.lean .lno, .wrap pre.lean a.lno, .wrap pre.lean a.lno:visited { display: inline-block; width: 3.2em; text-align: right; margin-right: 1em; color: var(--ink-faint); border: 0; font-size: .72rem; user-select: none; }
+pre.lean .ln { display: block; white-space: pre-wrap; overflow-wrap: anywhere; padding-left: 3.5rem; text-indent: -3.5rem; }   /* long lines wrap, continuation lines hang past the line number */ pre.lean .ln:target, pre.lean .ln:has(> a.row:target) { background: color-mix(in srgb, var(--accent) 14%, transparent); }   /* a row anchor (row-C5, the paper's witness link) highlights its line */
+pre.lean .lno, .wrap pre.lean a.lno, .wrap pre.lean a.lno:visited { display: inline-block; width: 3rem; text-align: right; margin-right: .5rem; text-indent: 0; color: var(--ink-faint); border: 0; font-size: .72rem; user-select: none; }
 .wrap pre.lean a.gh, .wrap pre.lean a.gh:visited { border: 0; margin-right: .35em; font-size: .72rem; color: var(--ink-soft); }
 .checks, .master, .refs { margin-top: 0.25rem; }
 .kind { color: var(--ink-faint); font-size: 0.85em; }
