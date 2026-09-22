@@ -91,7 +91,7 @@
  },
  {
   "id": "B6",
-  "rows": "1:V1",
+  "rows": "",
   "script": "b_numbers",
   "label": "the Euclidean step count against \u230alog\u2082p\u230b+1: (55,34) needs 7 > \u230alog\u208259\u230b+1 = 6; (987,610) needs 13 > 10; first excess at p = 59; F_4 = 3 < 4",
   "ok": true,

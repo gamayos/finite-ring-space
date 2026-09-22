@@ -31,15 +31,26 @@ RESULTS = []
 # The paper's predicate ledger (Appendix A, rows cited as 1:XN): the row(s) each check witnesses.
 LEDGER = {
     "A1": "1:B2", "A2": "1:B3", "A3": "1:B4", "A4": "1:C2", "A5": "1:C4",
-    "B1": "1:D2", "B2": "1:D4", "B3": "1:D6", "B4": "1:E2", "B5": "1:F1", "B6": "1:V1",
+    "B1": "1:D2", "B2": "1:D4", "B3": "1:D6", "B4": "1:E2", "B5": "1:F1", "B6": "",          # B6 (the Euclidean step count) decides no row of the ledger
     "C1": "1:G1", "C2": "1:G2", "C3": "1:G3", "C4": "1:G4", "C5": "1:G5",
 }
+
+SCRIPT = {"A": "a_shell", "B": "b_numbers", "C": "c_conjecture"}            # check-id prefix -> the block script
+
+# the deciding check of each witnessed row: the one whose verdict decides the row's statement (the other checks that
+# touch the row are corroboration, listed by row() from the records)
+ROWS = {
+    "1:B2": "A1", "1:B3": "A2", "1:B4": "A3", "1:C2": "A4", "1:C4": "A5",
+    "1:D2": "B1", "1:D4": "B2", "1:E2": "B4", "1:F1": "B5",
+    "1:G1": "C1", "1:G2": "C2", "1:G3": "C3", "1:G4": "C4", "1:G5": "C5",
+}
+_RAN = set()                                            # scripts already run in this session (row() runs each once)
 
 def check(pid, label, ok, detail="", kind="EXACT"):
     """Record one predicate check. pid = package check id; LEDGER[pid] = the paper statement(s) decided."""
     ok = bool(ok)
     rows = LEDGER.get(pid, "")
-    script = sys._getframe(1).f_globals.get("__name__", "")
+    script = sys._getframe(1).f_globals.get("__name__", "").split(".")[-1]   # the block script, in place or as a package submodule
     if script == "__main__":
         script = os.path.splitext(os.path.basename(sys.argv[0]))[0]
     RESULTS.append({"id": pid, "rows": rows, "script": script, "label": label, "ok": ok, "detail": detail, "kind": kind})
@@ -53,6 +64,50 @@ def summary(write=True):
         with open("results.json", "w") as f:
             json.dump(RESULTS, f, indent=1)
     return n_ok == len(RESULTS)
+
+def markers():
+    """row label -> (script file, line) of its `# row …` marker: the line of the check that decides the row."""
+    import re
+    out = {}
+    for f in sorted(set(SCRIPT.values())):
+        for i, line in enumerate(open(os.path.join(os.path.dirname(os.path.abspath(__file__)), f + ".py"), encoding="utf-8"), 1):
+            m = re.match(r"\s*# row (.*)", line)
+            if m:
+                for lab in m.group(1).split(","): out.setdefault(lab.strip(), (f + ".py", i))
+    return out
+
+def _run_script(sc):
+    if sc not in _RAN:
+        import importlib
+        mod = importlib.import_module("." + sc, __package__) if __package__ else importlib.import_module(sc); mod.run(); _RAN.add(sc)
+
+def row(label, lines=14):
+    """Verify one ledger row: run the script of the check that decides it (once per session), print that check's source
+    (from its `# row` marker) and every record that cites the row, and return True iff all pass."""
+    pid = ROWS.get(label)
+    if pid is None:
+        print(f"{label}: no python witness (see the row's Lean witness or its source)"); return None
+    script = SCRIPT[pid[0]]
+    citing = {SCRIPT[i[0]] for i, rows in LEDGER.items() if label in [t.strip() for t in rows.split(",")]}
+    for sc in sorted({script} | citing): _run_script(sc)          # the deciding script and every script whose checks cite the row
+    here = os.path.dirname(os.path.abspath(__file__)); mk = markers().get(label)
+    if mk:
+        src = open(os.path.join(here, mk[0]), encoding="utf-8").read().split("\n")
+        print(f"— {mk[0]}:{mk[1]} (the check that decides {label}: {pid})")
+        for j in range(mk[1] - 1, min(mk[1] - 1 + lines, len(src))): print(f"{j + 1:5d}  {src[j]}")
+    recs = [r for r in RESULTS if label in [t.strip() for t in r["rows"].split(",")]]
+    ok = all(r["ok"] for r in recs)
+    for r in recs:
+        role = "(deciding)" if r["id"] == pid else "(corroborating)"
+        print(f"  [{'PASS' if r['ok'] else 'FAIL'}] {r['id']:4s} {role:16s} {r['detail'][:150]}")
+    print(f"{label}: {'VERIFIED' if ok and recs else 'FAILED'} — {len(recs)} record(s)")
+    return ok
+
+def verify_all():
+    """Run every script of the package (those already run in this session are not re-run) and print the summary;
+    True iff every check passed."""
+    for sc in sorted(set(SCRIPT.values())): _run_script(sc)
+    return summary(write=False)
 
 # ----------------------------------------------------------------------------- the shell datum
 def is_prime(n):

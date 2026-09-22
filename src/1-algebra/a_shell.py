@@ -17,7 +17,10 @@ Paper statements decided (Sections 2–3; ledger rows 1:B2–B4, 1:C2, 1:C4):
 
 Shells: p ∈ {5, 13, 17, 29, 37, 41, 173} for A1–A2; p ∈ {13, 17} for A3–A5 (exhaustive over frames and pairs).
 """
-from algcommon import check, SHELLS, CONTROLS, primitive_roots, kappa, quarter_turn, sqrt_neg_one
+try:
+    from .algcommon import check, SHELLS, CONTROLS, primitive_roots, kappa, quarter_turn, sqrt_neg_one
+except ImportError:                       # run in place (python3 a_shell.py)
+    from algcommon import check, SHELLS, CONTROLS, primitive_roots, kappa, quarter_turn, sqrt_neg_one
 
 def klein_orbits(p):
     seen, orbits = set(), []
@@ -45,6 +48,7 @@ def run():
     for p in CONTROLS:
         orbits = klein_orbits(p)
         ok &= (sqrt_neg_one(p) == [] and sorted(len(o) for o in orbits) == [2] + [4] * ((p - 3) // 4))
+    # row 1:B2
     check("A1", "Q4 = {1,i,−1,−i} the unique order-4 subgroup, two Klein orbits of size 2, κ−1 orbits of size 4; no i for p ≡ 3 (mod 4)",
           ok, "; ".join(det) + f"; controls p ∈ {CONTROLS}")
 
@@ -57,6 +61,7 @@ def run():
             ok &= ((i * i) % p == p - 1) and ({i, pow(g, k, p)} == roots) and (pow(g, 2 * k, p) == p - 1); n += 1
         det.append(f"p={p}: {n} primitive roots")
     ok &= (quarter_turn(13, 2) == 5)
+    # row 1:B3
     check("A2", "i = −g^κ, i² = −1 for every primitive root; {−g^κ, g^κ} the two square roots of −1; g^{2κ} = −1; F_13, g = 2: i = 5",
           ok, "; ".join(det))
 
@@ -75,6 +80,7 @@ def run():
                 ok &= all(otimes((a + b) % p, y) == y for y in range(p))
                 ok &= ((a == 0) == all(otimes(b, y) == y for y in range(p)))
                 n += 1
+    # row 1:B4
     check("A3", "φ_{a,b} = a + bx a ring isomorphism onto (F_p, ⊕, ⊗) on every frame; unit a + b; b the unit iff a = 0",
           ok, f"{n} frames on p ∈ {{13, 17}}, all pairs (x, y)")
 
@@ -92,6 +98,7 @@ def run():
                 sols = [psi for psi in frames if comp(psi, f) == f2]
                 ok &= (len(sols) == 1); cnt += 1
         det.append(f"p={p}: |Aff| = {len(frames)} = p(p−1), {cnt} frame pairs, one carrier each")
+    # row 1:C2
     check("A4", "⟨T_a, S_m⟩ = Aff(F_p), order p(p−1), simply transitive on the frames (a, b)", ok, "; ".join(det))
 
     # A5 — the orbital complex: involutions and counts
@@ -109,6 +116,7 @@ def run():
         V = (p - 1) * (2 * k) + 1
         ok &= (V == (p - 1) ** 2 // 2 + 1)
         det.append(f"p={p}: {len(mer)} meridian lists, {len(circles)} great circles, {len(latpairs)} latitude pairs, |V| = {V}")
+    # row 1:C4
     check("A5", "M_n(a) = M_{n+2κ}(−a), L_a(m) = L_{−a}(m+2κ); p−1 meridian lists in 2κ circles; 2κ latitude pairs; |V| = (p−1)²/2 + 1",
           ok, "; ".join(det))
 

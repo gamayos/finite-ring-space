@@ -18,7 +18,10 @@ Paper statements decided (Sections 4–5; ledger rows 1:D2, 1:D4, 1:D6, 1:E2, 1:
                                    p = 59 (55, 34) needs 7 > 6; p = 1009 (987, 610) needs 13 > 10; first excess at 59
 """
 from fractions import Fraction
-from algcommon import check, SHELLS, CONTROLS, primitive_roots, kappa, sqrt_neg_one, is_prime
+try:
+    from .algcommon import check, SHELLS, CONTROLS, primitive_roots, kappa, sqrt_neg_one, is_prime
+except ImportError:                       # run in place (python3 b_numbers.py)
+    from algcommon import check, SHELLS, CONTROLS, primitive_roots, kappa, sqrt_neg_one, is_prime
 
 def run():
     print("block B — the framed numbers, the charts and the horizon")
@@ -33,6 +36,7 @@ def run():
             prods = len({(x * y) % p for x in W for y in W}) == len({x * y for x in W for y in W})
             ok &= (inj == (2 * H < p)) and (sums == (4 * H < p)) and ((2 * H * H < p) <= prods)   # products: sufficient, not necessary (the product set is sparse)
         det.append(f"p={p}: H = 1..{p-1} swept")
+    # row 1:D2
     check("B1", "z ↦ z mod p injective on W_H iff 2H < p; sums read back iff 4H < p; products read back whenever 2H² < p", ok, "; ".join(det))
 
     # B2 — scale-periodicity: in the field yes, in Q no
@@ -45,6 +49,7 @@ def run():
         qgrid = lambda n: tuple(Fraction(x, g ** n) for x in range(p))
         ok &= all(qgrid(n) != qgrid(n + p - 1) for n in range(3))
         det.append(f"({p},{g}): period {p-1} in F_p, none in Q")
+    # row 1:D4
     check("B2", "G_n = (x g^{−n})_x is (p−1)-periodic in the field, with exact period p−1; the rational grids x/gⁿ are not periodic",
           ok, "; ".join(det))
 
@@ -79,6 +84,7 @@ def run():
         mul = lambda A, B: ((A[0] * B[0] - A[1] * B[1]) % p, (A[0] * B[1] + A[1] * B[0]) % p)
         elems = [(a, b) for a in range(p) for b in range(p) if (a, b) != (0, 0)]
         ok &= all(mul(A, B) != (0, 0) for A in elems for B in elems)    # no zero divisors
+    # row 1:E2
     check("B4", "F_p[X]/(X²+1) has zero divisors on the shell (p ≡ 1 mod 4); it is a field exactly when p ≡ 3 (mod 4)",
           ok, "; ".join(det) + f"; fields at p ∈ {CONTROLS} (no zero divisors, exhaustive)")
 
@@ -89,6 +95,7 @@ def run():
         if p % 4 == 1:
             k = kappa(p)
             ok &= ((2 * (2 * k + 1)) % p == 1) and (2 * k + 1 == (p + 1) // 2)
+    # row 1:F1
     check("B5", "2s = 0 ⇒ s = 0 for every odd prime < 200; on the shell 2⁻¹ = 2κ+1 = (p+1)/2, the residue past the antipode", ok, "primes 3..199")
 
     # B6 — the Euclidean step count against the bound ⌊log₂ p⌋+1 (recorded under V1)
