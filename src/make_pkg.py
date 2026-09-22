@@ -3,16 +3,20 @@
 
     python3 src/make_pkg.py 10-dimensions [--out docs/pkg] [--version 2026.9.22]
 
-writes docs/pkg/frc-10-dimensions.tar.gz: a PEP 517 source distribution of `src/10-dimensions/` under the import name
-`frc_10_dimensions` (the directory's `__init__.py` exports `row`), built by hand so that no build tool is needed here —
+writes docs/pkg/frc_10_dimensions-<version>.tar.gz: a PEP 517 source distribution of `src/10-dimensions/` under the import
+name `frc_10_dimensions` (the directory's `__init__.py` exports `row`), built by hand so that no build tool is needed here —
 pip builds it on installation (setuptools ≥ 61 in pip's isolated build environment). Every `.py` of the directory is
-included; notebooks, results and README are not. The version is the date unless given; pip treats a changed version as
-a new package, an unchanged one as already installed. A notebook cell then needs only
+included; notebooks, results and README are not. The version is the date unless given; the file name carries it (PEP 625),
+earlier versions of the same package are removed from the directory, and docs/pkg/index.html is rewritten to list every
+archive there — a pip "find links" page. A notebook cell then needs only
 
-    !pip install -q https://www.finitering.space/pkg/frc-10-dimensions.tar.gz
+    !pip install -q frc-10-dimensions --find-links https://www.finitering.space/pkg/
     from frc_10_dimensions import row; row("10:C5")
+
+and pip, given a named requirement, checks the installed set first: a second call in the same session is
+"Requirement already satisfied" — no download, no rebuild (a URL archive would be rebuilt on every call).
 """
-import argparse, datetime, io, sys, tarfile, time
+import argparse, datetime, html, io, re, sys, tarfile, time
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent          # the repository
@@ -26,7 +30,7 @@ def sdist(pkgdir, out_dir, version):
                  f'requires-python = ">=3.9"\nlicense = {{text = "MIT"}}\n\n[tool.setuptools]\npackages = ["{mod}"]\n')
     pkginfo = f"Metadata-Version: 2.1\nName: {name}\nVersion: {version}\nSummary: The validation package of the FRC paper {pkgdir}\n"
     files = sorted(p for p in d.glob("*.py"))
-    out = out_dir / f"{name}.tar.gz"; out_dir.mkdir(parents=True, exist_ok=True)
+    out = out_dir / f"{mod}-{version}.tar.gz"; out_dir.mkdir(parents=True, exist_ok=True)
     top = f"{name}-{version}"; stamp = 0                       # a fixed mtime: the archive is a function of its contents and version
     def add(tar, arcname, data):
         info = tarfile.TarInfo(arcname); info.size = len(data); info.mtime = stamp; info.mode = 0o644
@@ -35,8 +39,21 @@ def sdist(pkgdir, out_dir, version):
     with tarfile.open(fileobj=buf, mode="w:gz", compresslevel=9) as tar:   # mtime of the gzip header left at 0 by not passing a name
         add(tar, f"{top}/pyproject.toml", pyproject.encode()); add(tar, f"{top}/PKG-INFO", pkginfo.encode())
         for p in files: add(tar, f"{top}/{mod}/{p.name}", p.read_bytes())
+    for old in out_dir.glob(f"{mod}-*.tar.gz"):              # one version per package in the directory (git keeps the history)
+        if old != out: old.unlink()
+    legacy = out_dir / f"{name}.tar.gz"                       # the unversioned name of the first pilot
+    if legacy.exists(): legacy.unlink()
     out.write_bytes(buf.getvalue())
+    index(out_dir)
     return out, len(files)
+
+def index(out_dir):
+    """docs/pkg/index.html: one link per archive, what `pip install <name> --find-links https://www.finitering.space/pkg/` reads."""
+    items = sorted(p.name for p in out_dir.glob("*.tar.gz"))
+    body = "\n".join(f'<a href="{html.escape(n)}">{html.escape(n)}</a><br>' for n in items)
+    (out_dir / "index.html").write_text("<!DOCTYPE html>\n<html><head><meta charset=\"utf-8\"><title>FRC validation packages</title></head><body>\n"
+                                        "<h1>FRC validation packages</h1>\n<p>The validation package of each paper of the Finite Ring Continuum corpus as a source distribution; "
+                                        "<code>pip install frc-&lt;paper&gt; --find-links https://www.finitering.space/pkg/</code> installs one.</p>\n" + body + "\n</body></html>\n", encoding="utf-8")
 
 if __name__ == "__main__":
     ap = argparse.ArgumentParser(); ap.add_argument("pkgdir"); ap.add_argument("--out", default=str(ROOT / "docs" / "pkg"))
