@@ -257,6 +257,8 @@ p.hist { font-size: 0.85rem; color: var(--ink-soft); }
 section.abstract { font-size: 0.95rem; line-height: 1.5; color: var(--ink-soft); margin: 0.6rem 0 0; }   /* full width of .wrap, like the table below it */
 section.abstract p.meta { margin: 0.55rem 0 0; }
 .wrap a.colab, .wrap a.colab:visited, .wrap a.colab:hover { border-bottom: none; text-decoration: none; display: inline-block; line-height: 0; vertical-align: middle; }
+.wrap a.badge, .wrap a.badge:visited, .wrap a.badge:hover { border-bottom: none; text-decoration: none; display: inline-block; line-height: 0; vertical-align: middle; margin-right: .3rem; }   /* the header badges: inline SVG, each a link */
+.wrap a.badge svg { display: block; } .wrap a.badge svg text { font-weight: 400; letter-spacing: 0; } .wrap a.badge:hover svg { filter: brightness(1.08); }
 .wrap img.colab { height: 20px; display: block; }
 header.paper { margin-bottom: 1rem; }
 header.paper + main > section.prose:first-child { margin-top: 0; }
