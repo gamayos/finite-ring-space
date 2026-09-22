@@ -50,9 +50,8 @@ md("""## Summary
 The rows above are the paper's python-witnessed predicates; the whole package, family by family, is `run_all.py`
 (13 family checks, 210 exact micro-checks, `results.json`).""", "rows-summary")
 code(f"""{INSTALL}
-from frc_10_dimensions import row, summary
-for lab in ["10:V1", "10:V2"]: row(lab)
-assert summary(write=False), "a family check failed"
+from frc_10_dimensions import verify_all
+assert verify_all(), "a family check failed"
 print("all family checks pass")""", "rows-run-all")
 
 nb = {"cells": cells, "metadata": {"colab": {"provenance": [], "toc_visible": True}, "kernelspec": {"display_name": "Python 3", "language": "python", "name": "python3"},

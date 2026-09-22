@@ -50,12 +50,11 @@ LABELS = {
 SCRIPT = {"dom": "verify_domains", "lift": "check_lift"}
 
 # the deciding family of each witnessed row: the one whose checks decide the row's statement (the other families
-# that touch the row are corroboration, listed by row() from the records); the V rows are witnessed by whole scripts
+# that touch the row are corroboration, listed by row() from the records)
 ROWS = {
     "10:C2": "dom.A", "10:C3": "dom.A", "10:C5": "dom.E", "10:D1": "dom.F", "10:D2": "dom.A", "10:D3": "lift.L1",
     "10:D6": "dom.A", "10:E2": "dom.B", "10:E3": "dom.B", "10:E4": "dom.C", "10:E5": "dom.H", "10:E9": "dom.D",
     "10:F2": "dom.A", "10:F3": "dom.D", "10:F4": "dom.A", "10:G1": "dom.A", "10:G2": "dom.G", "10:G3": "dom.A",
-    "10:V1": "verify_domains", "10:V2": "check_lift", "10:V4": "run_all",
 }
 _FAM = [None, None]
 _RAN = set()                                            # scripts already run in this session (row() runs each once)
@@ -79,7 +78,7 @@ def row(label, lines=14):
         print(f"{label}: no python witness (see the row's Lean witness or its source)"); return None
     script = SCRIPT.get(fam.split(".")[0], fam)
     citing = {SCRIPT.get(f.split(".")[0], f) for f, rows in LEDGER.items() if label in [t.strip() for t in rows.split(",")]}
-    for sc in (sorted(set(SCRIPT.values())) if script == "run_all" else sorted({script} | citing)):   # the deciding script and every script whose families cite the row; the driver row runs every suite
+    for sc in sorted({script} | citing):                  # the deciding script and every script whose families cite the row, each once per sessionthe driver row runs every suite
         if sc not in _RAN:
             import importlib
             mod = importlib.import_module("." + sc, __package__) if __package__ else importlib.import_module(sc); mod.run(); _RAN.add(sc)
@@ -90,13 +89,22 @@ def row(label, lines=14):
         for j in range(mk[1] - 1, min(mk[1] - 1 + lines, len(src))): print(f"{j + 1:5d}  {src[j]}")
     else:
         print(f"— {script}.py (the whole script witnesses {label})")
-    recs = [r for r in RESULTS if label in [t.strip() for t in r["rows"].split(",")]] or [r for r in RESULTS if script == "run_all" or r["script"] == script]
+    recs = [r for r in RESULTS if label in [t.strip() for t in r["rows"].split(",")]]
     ok = all(r["ok"] for r in recs)
     for r in recs:
         role = "(the script's family)" if "." not in fam else "(deciding)" if r["id"] == fam else "(corroborating)"
         print(f"  [{'PASS' if r['ok'] else 'FAIL'}] {r['id']:8s} {role:22s} {r['detail']}")
     print(f"{label}: {'VERIFIED' if ok and recs else 'FAILED'} — {len(recs)} family record(s)")
     return ok
+
+def verify_all():
+    """Run every script of the package (those already run in this session are not re-run) and print the summary;
+    True iff every family check passed."""
+    import importlib
+    for sc in sorted(set(SCRIPT.values())):
+        if sc not in _RAN:
+            mod = importlib.import_module("." + sc, __package__) if __package__ else importlib.import_module(sc); mod.run(); _RAN.add(sc)
+    return summary(write=False)
 
 def family(tag, fam):
     _FAM[0], _FAM[1] = tag, fam
