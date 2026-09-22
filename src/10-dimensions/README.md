@@ -2,7 +2,7 @@
 
 Validation package of *Dimensional Analysis over Finite Holographic Substrate* (Akhtman, 2026), `10-dim` of the FRC
 corpus. Two exact suites, 13 family checks over 210 exact micro-checks, driven by `10-dimensions-main.ipynb` (Google
-Colab, *Runtime → Run all*, ≈ 10 s) or by `run_all.py`. Pure Python — integers, residues, exact rationals; no floats,
+Colab: one cell per ledger row, any cell on its own, or *Runtime → Run all*, ≈ 10 s) or by `run_all.py`. Pure Python — integers, residues, exact rationals; no floats,
 no random sampling.
 
 Every family check is a layer of `verify_domains.py` (A–H) or a claim of `check_lift.py` (L1–L5) and names the row(s)
@@ -28,14 +28,14 @@ Run: `python3 run_all.py`. Each suite also runs alone (`python3 verify_domains.p
 
 ## One cell per row
 
-`10-dimensions-rows.ipynb` (built by `make_rows_notebook.py`, executed) carries one cell per witnessed ledger row,
+`10-dimensions-main.ipynb` (built by `make_notebook.py`, executed) carries one cell per witnessed ledger row,
 addressable by its stable id (`row-10-C5`; the ledger page opens the notebook at the cell). Every cell is self-contained:
 it installs the package from the site (`pip install https://www.finitering.space/pkg/frc-10-dimensions.tar.gz`, the sdist
 `src/make_pkg.py` writes under `docs/pkg/` at each site build; import name `frc_10_dimensions`, `__init__.py` exporting
 `row`), states the row and runs `row("10:C5")`: the scripts of the families that cite the row run once per session (the deciding family is `dimcommon.ROWS`), the check
 that decides the row is printed from the script's own source — the line under its `# row 10:C5` marker — and every family
 record citing the row is listed with its verdict. The markers in `verify_domains.py` and `check_lift.py` are the lines the
-ledger page's source glyph opens (`docs/src/10-dimensions/<script>.html#L<n>`). The rows' Lean counterparts are the
+ledger page's source glyph opens (`docs/src/10-dimensions/<script>.html#row-<label>`). The rows' Lean counterparts are the
 declarations `row_<label>` at the end of `lean/FrcCore/Dimensions.lean` and `lean/FrcLedger/Dimensions.lean`
 (`lean/make_rows.py`), one per row, with the paper's module as one executable file for the web editor.
 
