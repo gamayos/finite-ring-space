@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-HNE3RMJ5L1"></script>
+<script> window.dataLayer = window.dataLayer || []; function gtag(){dataLayer.push(arguments);} gtag('js', new Date()); gtag('config', 'G-HNE3RMJ5L1'); </script>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>make_notebook.py — src/10-dimensions</title>
+<meta name="description" content="The script make_notebook.py of the 10-dimensions validation package, rendered with an anchor per line">
+<meta name="author" content="Yosef Akhtman">
+<link rel="icon" href="../../frc-logo-fav.png">
+<link rel="stylesheet" href="../../style.css">
+
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <h1>make_notebook.py — src/10-dimensions</h1>
+    
+    <nav><a href="../../index.html">Home</a><a href="../../publications.html">Publications</a><a href="../../00-ledger.html">Ledger</a><a href="../../predictions.html">Predictions</a><a href="../../explicability.html">Explicability</a></nav>
+  </header>
+<main id="ledger-main"><section class="prose"><p>The script <code>src/10-dimensions/make_notebook.py</code> of the validation package of the paper <a href="../../10-dimensions/10-dimensions-ledger.html">10-dim</a>, rendered with an anchor per line. <a href="https://colab.research.google.com/github/gamayos/finite-ring-space/blob/main/src/10-dimensions/10-dimensions-rows.ipynb" target="_blank" rel="noopener">▶ run the rows on Google Colab</a>.</p></section><pre class="lean"><span class="ln" id="L1"><a class="lno" href="#L1">1</a>&quot;&quot;&quot;Builds 8-dirac-main.ipynb (the Colab driver of the 8-dirac validation package). Run: python3 make_notebook.py&quot;&quot;&quot;</span>
+<span class="ln" id="L2"><a class="lno" href="#L2">2</a>import json</span>
+<span class="ln" id="L3"><a class="lno" href="#L3">3</a>import dimcommon as dcommon</span>
+<span class="ln" id="L4"><a class="lno" href="#L4">4</a></span>
+<span class="ln" id="L5"><a class="lno" href="#L5">5</a>NB = &quot;10-dimensions-main.ipynb&quot;</span>
+<span class="ln" id="L6"><a class="lno" href="#L6">6</a>PKG = &quot;10-dimensions&quot;</span>
+<span class="ln" id="L7"><a class="lno" href="#L7">7</a>COLAB = f&quot;https://colab.research.google.com/github/gamayos/finite-ring-space/blob/main/src/{PKG}/{NB}&quot;</span>
+<span class="ln" id="L8"><a class="lno" href="#L8">8</a>cells = []</span>
+<span class="ln" id="L9"><a class="lno" href="#L9">9</a>def md(s): cells.append({&quot;cell_type&quot;: &quot;markdown&quot;, &quot;metadata&quot;: {}, &quot;source&quot;: s})</span>
+<span class="ln" id="L10"><a class="lno" href="#L10">10</a>def code(s): cells.append({&quot;cell_type&quot;: &quot;code&quot;, &quot;metadata&quot;: {}, &quot;execution_count&quot;: None, &quot;outputs&quot;: [], &quot;source&quot;: s})</span>
+<span class="ln" id="L11"><a class="lno" href="#L11">11</a></span>
+<span class="ln" id="L12"><a class="lno" href="#L12">12</a>BLOCKS = [</span>
+<span class="ln" id="L13"><a class="lno" href="#L13">13</a>    (&quot;verify_domains&quot;, &quot;dom&quot;, &quot;The exact suite, layers A–H&quot;, &quot;The shell datum and domain algebra on F_13 (A), the quartet at the unit face in exact rationals (B), the defining congruences on the lab Carrier (C), both Carriers with faces, minimality and temperature (D), covariance witnesses (E), the window bound and twisted action (F), realized action, the window ladder and meridian transport (G), the pair layer and representative inertness (H).&quot;),</span>
+<span class="ln" id="L14"><a class="lno" href="#L14">14</a>    (&quot;check_lift&quot;, &quot;lift&quot;, &quot;The lift&quot;, &quot;Proposition `lift`: the flag records the fractional-Fourier quarter the chart duality forgets — the operator four-cycle, the chart shadow, the record map, the Carrier face of order four, and the invariance classification, on the shells (13, 2) and (173, 3) and the Carriers 233 and 2 408 561.&quot;),</span>
+<span class="ln" id="L15"><a class="lno" href="#L15">15</a>]</span>
+<span class="ln" id="L16"><a class="lno" href="#L16">16</a></span>
+<span class="ln" id="L17"><a class="lno" href="#L17">17</a>md(f&quot;&quot;&quot;[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)]({COLAB})</span>
+<span class="ln" id="L18"><a class="lno" href="#L18">18</a></span>
+<span class="ln" id="L19"><a class="lno" href="#L19">19</a>## Dimensional Analysis over Finite Holographic Substrate (Akhtman, 2026)</span>
+<span class="ln" id="L20"><a class="lno" href="#L20">20</a></span>
+<span class="ln" id="L21"><a class="lno" href="#L21">21</a>**Validation Package.** `finite-ring-space/src/{PKG}` — two exact suites driven by this notebook, {len(dcommon.LABELS)} family checks aggregating</span>
+<span class="ln" id="L22"><a class="lno" href="#L22">22</a>210 exact micro-checks (integers, residues, exact rationals; no floats, no random sampling). A family check is a layer of</span>
+<span class="ln" id="L23"><a class="lno" href="#L23">23</a>`verify_domains.py` (A–H) or a claim of `check_lift.py` (L1–L5), identified as `&lt;script&gt;.&lt;family&gt;`; each names the row(s) of the paper&#x27;s</span>
+<span class="ln" id="L24"><a class="lno" href="#L24">24</a>predicate ledger it witnesses (the paper&#x27;s Appendix B &quot;Machine verification and predicate ledger&quot;, rows cited as `10:XN`; public copy at</span>
+<span class="ln" id="L25"><a class="lno" href="#L25">25</a>`docs/10-dimensions/10-dimensions-ledger.html`), and the ledger&#x27;s source column names the witness script (the family checks are listed on the public page from `results.json`). Where a row is proved in</span>
+<span class="ln" id="L26"><a class="lno" href="#L26">26</a>Lean (`lean/FrcCore/Dimensions.lean` with no axioms, or `lean/FrcLedger/Dimensions.lean` on Mathlib), the check here is the instance the</span>
+<span class="ln" id="L27"><a class="lno" href="#L27">27</a>reader can run. Master-ledger rows of the</span>
+<span class="ln" id="L28"><a class="lno" href="#L28">28</a>corpus reached through the paper rows: `00:D7` (a unit is a reciprocal cross-frame relation), `00:C12` (temperature and the arity),</span>
+<span class="ln" id="L29"><a class="lno" href="#L29">29</a>`00:C13` (the window ladder and the minimal pair), `00:C8` (the c-square congruence), `00:B10` (the pair-inert sign sector).</span>
+<span class="ln" id="L30"><a class="lno" href="#L30">30</a>The manuscript&#x27;s 105 source gates (`check_gates.py`) read the paper&#x27;s LaTeX and run in the corpus tree, not here.</span>
+<span class="ln" id="L31"><a class="lno" href="#L31">31</a></span>
+<span class="ln" id="L32"><a class="lno" href="#L32">32</a>**Kinds.** Every check is `EXACT`: a pass is a proof on the tested instances (the toy shell F_13, the shells p = 29 and 229, the</span>
+<span class="ln" id="L33"><a class="lno" href="#L33">33</a>laboratory-scale shell 173, and both instantiated Carriers Ω = 233 and Ω = 2 408 561).</span>
+<span class="ln" id="L34"><a class="lno" href="#L34">34</a></span>
+<span class="ln" id="L35"><a class="lno" href="#L35">35</a>**Run.** Cell by cell, or *Runtime → Run all*; ≈ 10 s on Colab. The last cell writes `results.json` and fails loudly if any check fails.&quot;&quot;&quot;)</span>
+<span class="ln" id="L36"><a class="lno" href="#L36">36</a></span>
+<span class="ln" id="L37"><a class="lno" href="#L37">37</a>code(f&quot;&quot;&quot;# --- environment: clone the package if this notebook is not already running inside it (Colab). Pure Python; nothing to install.</span>
+<span class="ln" id="L38"><a class="lno" href="#L38">38</a>import os</span>
+<span class="ln" id="L39"><a class="lno" href="#L39">39</a>if not os.path.exists(&quot;dimcommon.py&quot;):</span>
+<span class="ln" id="L40"><a class="lno" href="#L40">40</a>    if not os.path.exists(&quot;finite-ring-space&quot;):</span>
+<span class="ln" id="L41"><a class="lno" href="#L41">41</a>        !git clone --filter=blob:none --sparse https://github.com/gamayos/finite-ring-space.git</span>
+<span class="ln" id="L42"><a class="lno" href="#L42">42</a>        os.chdir(&quot;finite-ring-space&quot;)</span>
+<span class="ln" id="L43"><a class="lno" href="#L43">43</a>        !git sparse-checkout set src/{PKG}</span>
+<span class="ln" id="L44"><a class="lno" href="#L44">44</a>        os.chdir(&quot;src/{PKG}&quot;)</span>
+<span class="ln" id="L45"><a class="lno" href="#L45">45</a>    else:</span>
+<span class="ln" id="L46"><a class="lno" href="#L46">46</a>        os.chdir(&quot;finite-ring-space/src/{PKG}&quot;)</span>
+<span class="ln" id="L47"><a class="lno" href="#L47">47</a>print(&quot;working directory:&quot;, os.path.join(*os.getcwd().split(os.sep)[-3:]))&quot;&quot;&quot;)</span>
+<span class="ln" id="L48"><a class="lno" href="#L48">48</a></span>
+<span class="ln" id="L49"><a class="lno" href="#L49">49</a>code(&quot;&quot;&quot;import importlib, dimcommon as dcommon</span>
+<span class="ln" id="L50"><a class="lno" href="#L50">50</a>importlib.reload(dcommon)         # a fresh registry if the notebook is re-run</span>
+<span class="ln" id="L51"><a class="lno" href="#L51">51</a>print(&quot;families registered:&quot;, len(dcommon.LABELS))&quot;&quot;&quot;)</span>
+<span class="ln" id="L52"><a class="lno" href="#L52">52</a></span>
+<span class="ln" id="L53"><a class="lno" href="#L53">53</a>for script, tag, title, desc in BLOCKS:</span>
+<span class="ln" id="L54"><a class="lno" href="#L54">54</a>    ids = [i for i in dcommon.LABELS if i.startswith(tag + &quot;.&quot;)]</span>
+<span class="ln" id="L55"><a class="lno" href="#L55">55</a>    rows = sorted({r.strip() for i in ids for r in dcommon.LEDGER[i].split(&quot;,&quot;)}, key=lambda r: (r.split(&#x27;:&#x27;)[1][0], int(r.split(&#x27;:&#x27;)[1][1:])))</span>
+<span class="ln" id="L56"><a class="lno" href="#L56">56</a>    table = &quot;| id | claim | ledger rows |\n|---|---|---|\n&quot; + &quot;\n&quot;.join(f&quot;| `{i}` | {dcommon.LABELS[i]} | {dcommon.LEDGER[i]} |&quot; for i in ids)</span>
+<span class="ln" id="L57"><a class="lno" href="#L57">57</a>    md(f&quot;## {title}  (`{script}.py`, EXACT)\n{desc}\n\n{table}\n\nLedger rows witnessed: {&#x27;, &#x27;.join(rows)}.&quot;)</span>
+<span class="ln" id="L58"><a class="lno" href="#L58">58</a>    code(f&quot;import {script}; {script}.run()&quot;)</span>
+<span class="ln" id="L59"><a class="lno" href="#L59">59</a></span>
+<span class="ln" id="L60"><a class="lno" href="#L60">60</a>md(&quot;&quot;&quot;## Summary</span>
+<span class="ln" id="L61"><a class="lno" href="#L61">61</a>Writes `results.json` (one record per family check: id, the ledger row(s) witnessed, claim, PASS/FAIL, the micro-check count) and raises if any check failed.&quot;&quot;&quot;)</span>
+<span class="ln" id="L62"><a class="lno" href="#L62">62</a>code(&quot;&quot;&quot;ok = dcommon.summary(write=True)</span>
+<span class="ln" id="L63"><a class="lno" href="#L63">63</a>failed = [r[&quot;id&quot;] for r in dcommon.RESULTS if not r[&quot;ok&quot;]]</span>
+<span class="ln" id="L64"><a class="lno" href="#L64">64</a>assert ok, f&quot;FAILED checks: {failed}&quot;</span>
+<span class="ln" id="L65"><a class="lno" href="#L65">65</a>print(f&quot;all {len(dcommon.RESULTS)} family checks pass ({len(dcommon.MICRO)} exact micro-checks); records in results.json&quot;)&quot;&quot;&quot;)</span>
+<span class="ln" id="L66"><a class="lno" href="#L66">66</a></span>
+<span class="ln" id="L67"><a class="lno" href="#L67">67</a>for k, c in enumerate(cells):</span>
+<span class="ln" id="L68"><a class="lno" href="#L68">68</a>    c[&quot;id&quot;] = f&quot;cell-{k}&quot;</span>
+<span class="ln" id="L69"><a class="lno" href="#L69">69</a>nb = {&quot;cells&quot;: cells, &quot;nbformat&quot;: 4, &quot;nbformat_minor&quot;: 5,</span>
+<span class="ln" id="L70"><a class="lno" href="#L70">70</a>      &quot;metadata&quot;: {&quot;kernelspec&quot;: {&quot;display_name&quot;: &quot;Python 3&quot;, &quot;language&quot;: &quot;python&quot;, &quot;name&quot;: &quot;python3&quot;},</span>
+<span class="ln" id="L71"><a class="lno" href="#L71">71</a>                   &quot;language_info&quot;: {&quot;name&quot;: &quot;python&quot;}, &quot;colab&quot;: {&quot;provenance&quot;: [], &quot;toc_visible&quot;: True}}}</span>
+<span class="ln" id="L72"><a class="lno" href="#L72">72</a>try:</span>
+<span class="ln" id="L73"><a class="lno" href="#L73">73</a>    import nbformat</span>
+<span class="ln" id="L74"><a class="lno" href="#L74">74</a>    nbf = nbformat.from_dict(nb); nbformat.validate(nbf); nbformat.write(nbf, NB)</span>
+<span class="ln" id="L75"><a class="lno" href="#L75">75</a>except ImportError:</span>
+<span class="ln" id="L76"><a class="lno" href="#L76">76</a>    with open(NB, &quot;w&quot;) as f:</span>
+<span class="ln" id="L77"><a class="lno" href="#L77">77</a>        json.dump(nb, f, indent=1, ensure_ascii=False)</span>
+<span class="ln" id="L78"><a class="lno" href="#L78">78</a>print(f&quot;wrote {NB} with {len(cells)} cells&quot;)</span>
+<span class="ln" id="L79"><a class="lno" href="#L79">79</a></span>
+</pre></main>
+</div>
+</body>
+</html>

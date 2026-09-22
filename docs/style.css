@@ -205,6 +205,10 @@ img.leanico.ok, img.leanico.t1, img.leanico.t2, img.leanico.fail { filter: none;
 pre.lean img.leanico { width: 12px; height: 12px; display: inline-block; vertical-align: -2px; margin-right: .4em; }
 @media (prefers-color-scheme: dark) { img.leanico { filter: none; opacity: .85; } }
 .wrap a.lean.ico.live { width: auto; padding: 0 3px 0 2px; }
+.wrap a.wit.ico, .wrap a.wit.ico:visited { display: inline-flex; align-items: center; justify-content: center; width: 20px; height: 22px; margin: 0 .075rem; border-bottom: none; border-radius: 5px; color: var(--ink-soft); vertical-align: middle; }
+.wrap a.wit.ico:hover { background: var(--rule-soft); color: var(--accent); }
+.wrap a.wit.ico svg { width: 15px; height: 15px; fill: none; stroke: currentColor; stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round; }
+.wrap a.wit.ico.py.ok { color: var(--pub); } .wrap a.wit.ico.py.fail { color: var(--rej); }
 .wrap a.lean.ico .play, .legend .ico .play { font-size: .55rem; margin-left: 2px; line-height: 1; }
 .legend .ico img.leanico { display: inline-block; vertical-align: -3px; }
 .legend.lean dt { white-space: nowrap; }

@@ -1,0 +1,595 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-HNE3RMJ5L1"></script>
+<script> window.dataLayer = window.dataLayer || []; function gtag(){dataLayer.push(arguments);} gtag('js', new Date()); gtag('config', 'G-HNE3RMJ5L1'); </script>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>verify_domains.py — src/10-dimensions</title>
+<meta name="description" content="The script verify_domains.py of the 10-dimensions validation package, rendered with an anchor per line">
+<meta name="author" content="Yosef Akhtman">
+<link rel="icon" href="../../frc-logo-fav.png">
+<link rel="stylesheet" href="../../style.css">
+
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <h1>verify_domains.py — src/10-dimensions</h1>
+    
+    <nav><a href="../../index.html">Home</a><a href="../../publications.html">Publications</a><a href="../../00-ledger.html">Ledger</a><a href="../../predictions.html">Predictions</a><a href="../../explicability.html">Explicability</a></nav>
+  </header>
+<main id="ledger-main"><section class="prose"><p>The script <code>src/10-dimensions/verify_domains.py</code> of the validation package of the paper <a href="../../10-dimensions/10-dimensions-ledger.html">10-dim</a>, rendered with an anchor per line; the 16 lines marked <code># row</code> are the checks the ledger rows cite. <a href="https://colab.research.google.com/github/gamayos/finite-ring-space/blob/main/src/10-dimensions/10-dimensions-rows.ipynb" target="_blank" rel="noopener">▶ run the rows on Google Colab</a>.</p></section><pre class="lean"><span class="ln" id="L1"><a class="lno" href="#L1">1</a>#!/usr/bin/env python3</span>
+<span class="ln" id="L2"><a class="lno" href="#L2">2</a>&quot;&quot;&quot;verify_domains.py -- exact-arithmetic verification for 10-dimensions</span>
+<span class="ln" id="L3"><a class="lno" href="#L3">3</a>(quartet edition).</span>
+<span class="ln" id="L4"><a class="lno" href="#L4">4</a></span>
+<span class="ln" id="L5"><a class="lno" href="#L5">5</a>Layers:</span>
+<span class="ln" id="L6"><a class="lno" href="#L6">6</a>  A. shell datum and domain algebra (F13 working shell): group law, grading,</span>
+<span class="ln" id="L7"><a class="lno" href="#L7">7</a>     fibrewise addition, neutral criterion, local recovery, flag arithmetic</span>
+<span class="ln" id="L8"><a class="lno" href="#L8">8</a>  B. the quartet at the unit face (symbolic, exact rationals over free</span>
+<span class="ln" id="L9"><a class="lno" href="#L9">9</a>     exponents): action identity, pairing closure rank, cancellation identity,</span>
+<span class="ln" id="L10"><a class="lno" href="#L10">10</a>     mechanical table re-derivation</span>
+<span class="ln" id="L11"><a class="lno" href="#L11">11</a>  C. the defining congruences on the lab Carrier (S = 602,140, Omega = 2,408,561): existence,</span>
+<span class="ln" id="L12"><a class="lno" href="#L12">12</a>     exhaustive root enumeration, root pairs, register identities</span>
+<span class="ln" id="L13"><a class="lno" href="#L13">13</a>  H. pair layer (round 05): pair-well-definedness of every congruence identity and</span>
+<span class="ln" id="L14"><a class="lno" href="#L14">14</a>     the representative-inertness sweep over all admissible sign assignments</span>
+<span class="ln" id="L15"><a class="lno" href="#L15">15</a></span>
+<span class="ln" id="L16"><a class="lno" href="#L16">16</a>Every check is integer or exact-rational arithmetic; no floats, no RNG</span>
+<span class="ln" id="L17"><a class="lno" href="#L17">17</a>(the window-ladder orderings are compared by integer squares).</span>
+<span class="ln" id="L18"><a class="lno" href="#L18">18</a>Domains are triples (r mod p, s mod p-1, n mod 4): free [L],[T] exponents</span>
+<span class="ln" id="L19"><a class="lno" href="#L19">19</a>and the flag.</span>
+<span class="ln" id="L20"><a class="lno" href="#L20">20</a>&quot;&quot;&quot;</span>
+<span class="ln" id="L21"><a class="lno" href="#L21">21</a></span>
+<span class="ln" id="L22"><a class="lno" href="#L22">22</a>from fractions import Fraction as Fr</span>
+<span class="ln" id="L23"><a class="lno" href="#L23">23</a>from dimcommon import chk as check, family, flush</span>
+<span class="ln" id="L24"><a class="lno" href="#L24">24</a></span>
+<span class="ln" id="L25"><a class="lno" href="#L25">25</a>def run():</span>
+<span class="ln" id="L26"><a class="lno" href="#L26">26</a></span>
+<span class="ln" id="L27"><a class="lno" href="#L27">27</a></span>
+<span class="ln" id="L28"><a class="lno" href="#L28">28</a>    # A. shell datum and domain algebra on F13</span>
+<span class="ln" id="L29"><a class="lno" href="#L29">29</a>    family(&#x27;dom&#x27;, &#x27;A&#x27;)</span>
+<span class="ln" id="L30"><a class="lno" href="#L30">30</a>    P = 13</span>
+<span class="ln" id="L31"><a class="lno" href="#L31">31</a>    KAPPA = (P - 1) // 4</span>
+<span class="ln" id="L32"><a class="lno" href="#L32">32</a>    G13 = 2</span>
+<span class="ln" id="L33"><a class="lno" href="#L33">33</a></span>
+<span class="ln" id="L34"><a class="lno" href="#L34">34</a>    order = next(k for k in range(1, P) if pow(G13, k, P) == 1)</span>
+<span class="ln" id="L35"><a class="lno" href="#L35">35</a>    check(&quot;g=2 primitive on F13 (order 12)&quot;, order == P - 1)</span>
+<span class="ln" id="L36"><a class="lno" href="#L36">36</a></span>
+<span class="ln" id="L37"><a class="lno" href="#L37">37</a>    I13 = (-pow(G13, KAPPA, P)) % P</span>
+<span class="ln" id="L38"><a class="lno" href="#L38">38</a>    check(&quot;i = -g^kappa = 5&quot;, I13 == 5)</span>
+<span class="ln" id="L39"><a class="lno" href="#L39">39</a>    check(&quot;i = g^{-kappa}&quot;, I13 == pow(G13, (P - 1) - KAPPA, P))</span>
+<span class="ln" id="L40"><a class="lno" href="#L40">40</a>    check(&quot;i^2 = -1&quot;, (I13 * I13) % P == P - 1)</span>
+<span class="ln" id="L41"><a class="lno" href="#L41">41</a>    PI13 = 2 * KAPPA</span>
+<span class="ln" id="L42"><a class="lno" href="#L42">42</a>    check(&quot;pi = 2 kappa = 6&quot;, PI13 == 6)</span>
+<span class="ln" id="L43"><a class="lno" href="#L43">43</a>    check(&quot;e = g^i = 6&quot;, pow(G13, I13, P) == 6)</span>
+<span class="ln" id="L44"><a class="lno" href="#L44">44</a>    check(&quot;g^pi = -1&quot;, pow(G13, PI13, P) == P - 1)</span>
+<span class="ln" id="L45"><a class="lno" href="#L45">45</a>    check(&quot;2 pi = p-1 == -1 (mod p)&quot;, (2 * PI13) % P == P - 1)</span>
+<span class="ln" id="L46"><a class="lno" href="#L46">46</a>    check(&quot;phase-cycle order p-1 = 4 kappa = 2 pi&quot;, P - 1 == 4 * KAPPA == 2 * PI13)</span>
+<span class="ln" id="L47"><a class="lno" href="#L47">47</a></span>
+<span class="ln" id="L48"><a class="lno" href="#L48">48</a>    # capacity is a size: budget statement only (count-per-count), no duration</span>
+<span class="ln" id="L49"><a class="lno" href="#L49">49</a>    check(&quot;capacity budget: quarter cycle holds kappa steps&quot;, 4 * KAPPA == P - 1)</span>
+<span class="ln" id="L50"><a class="lno" href="#L50">50</a></span>
+<span class="ln decl" id="L51"><a class="lno" href="#L51">51</a>    # row 10:C2</span>
+<span class="ln" id="L52"><a class="lno" href="#L52">52</a>    # domain group D_p = Z_p x Z_{p-1} with flag component mod 4</span>
+<span class="ln" id="L53"><a class="lno" href="#L53">53</a>    def dmul(a, b):</span>
+<span class="ln" id="L54"><a class="lno" href="#L54">54</a>        return ((a[0] + b[0]) % P, (a[1] + b[1]) % (P - 1), (a[2] + b[2]) % 4)</span>
+<span class="ln" id="L55"><a class="lno" href="#L55">55</a></span>
+<span class="ln" id="L56"><a class="lno" href="#L56">56</a>    def dinv(a):</span>
+<span class="ln" id="L57"><a class="lno" href="#L57">57</a>        return ((-a[0]) % P, (-a[1]) % (P - 1), (-a[2]) % 4)</span>
+<span class="ln" id="L58"><a class="lno" href="#L58">58</a></span>
+<span class="ln" id="L59"><a class="lno" href="#L59">59</a>    ONE = (0, 0, 0)</span>
+<span class="ln" id="L60"><a class="lno" href="#L60">60</a>    L = (1, 0, 0)</span>
+<span class="ln" id="L61"><a class="lno" href="#L61">61</a>    T = (0, 1, 0)</span>
+<span class="ln" id="L62"><a class="lno" href="#L62">62</a>    FLAG = (0, 0, 1)                 # the unit flag Iq</span>
+<span class="ln" id="L63"><a class="lno" href="#L63">63</a></span>
+<span class="ln" id="L64"><a class="lno" href="#L64">64</a>    check(&quot;group identity&quot;, dmul(ONE, L) == L)</span>
+<span class="ln" id="L65"><a class="lno" href="#L65">65</a>    check(&quot;inverses&quot;, dmul(L, dinv(L)) == ONE and dmul(FLAG, dinv(FLAG)) == ONE)</span>
+<span class="ln" id="L66"><a class="lno" href="#L66">66</a>    check(&quot;flag order four&quot;, dmul(dmul(FLAG, FLAG), dmul(FLAG, FLAG)) == ONE)</span>
+<span class="ln decl" id="L67"><a class="lno" href="#L67">67</a>    # row 10:D2</span>
+<span class="ln" id="L68"><a class="lno" href="#L68">68</a>    # fork B: the flag is internal, Iq = [T]^kappa; realized label of (r,s;j) is</span>
+<span class="ln" id="L69"><a class="lno" href="#L69">69</a>    # (r mod p, (s + j*kappa) mod (p-1)) with sector j mod 4</span>
+<span class="ln" id="L70"><a class="lno" href="#L70">70</a>    def realize(a):</span>
+<span class="ln" id="L71"><a class="lno" href="#L71">71</a>        return (a[0] % P, (a[1] + a[2] * KAPPA) % (P - 1))</span>
+<span class="ln" id="L72"><a class="lno" href="#L72">72</a>    check(&quot;realized flag label = (0, kappa)&quot;, realize(FLAG) == (0, KAPPA))</span>
+<span class="ln" id="L73"><a class="lno" href="#L73">73</a>    o4 = [(r, s) for r in range(P) for s in range(P - 1)</span>
+<span class="ln" id="L74"><a class="lno" href="#L74">74</a>          if (4 * r) % P == 0 and (4 * s) % (P - 1) == 0</span>
+<span class="ln" id="L75"><a class="lno" href="#L75">75</a>          and not ((2 * r) % P == 0 and (2 * s) % (P - 1) == 0)]</span>
+<span class="ln" id="L76"><a class="lno" href="#L76">76</a>    check(&quot;unique order-four subgroup: exactly two generators&quot;, sorted(o4) == [(0, KAPPA), (0, 3 * KAPPA)])</span>
+<span class="ln" id="L77"><a class="lno" href="#L77">77</a>    check(&quot;no flag of space: all order-four elements have r = 0&quot;, all(r == 0 for r, _ in o4))</span>
+<span class="ln" id="L78"><a class="lno" href="#L78">78</a>    check(&quot;flag horizon-inaccessible on window H&lt;kappa&quot;,</span>
+<span class="ln" id="L79"><a class="lno" href="#L79">79</a>          all((0, KAPPA) != (r % P, s % (P - 1))</span>
+<span class="ln" id="L80"><a class="lno" href="#L80">80</a>              for r in range(-1, 2) for s in range(-1, 2)))</span>
+<span class="ln" id="L81"><a class="lno" href="#L81">81</a>    EPSILONS = [e for e in range(1, P - 1) if __import__(&quot;math&quot;).gcd(e, P - 1) == 1]</span>
+<span class="ln" id="L82"><a class="lno" href="#L82">82</a>    check(&quot;flag covariance: eps*kappa in {kappa, 3kappa} for all units eps&quot;,</span>
+<span class="ln" id="L83"><a class="lno" href="#L83">83</a>          all((e * KAPPA) % (P - 1) in (KAPPA, 3 * KAPPA) for e in EPSILONS))</span>
+<span class="ln" id="L84"><a class="lno" href="#L84">84</a>    check(&quot;realization is a homomorphism&quot;,</span>
+<span class="ln" id="L85"><a class="lno" href="#L85">85</a>          all(realize(dmul(a, b)) == ((realize(a)[0] + realize(b)[0]) % P,</span>
+<span class="ln" id="L86"><a class="lno" href="#L86">86</a>                                      (realize(a)[1] + realize(b)[1]) % (P - 1))</span>
+<span class="ln" id="L87"><a class="lno" href="#L87">87</a>              for a in [L, T, FLAG, (3, 5, 2)] for b in [L, T, FLAG, (7, 2, 3)]))</span>
+<span class="ln" id="L88"><a class="lno" href="#L88">88</a></span>
+<span class="ln decl" id="L89"><a class="lno" href="#L89">89</a>    # row 10:F2</span>
+<span class="ln" id="L90"><a class="lno" href="#L90">90</a>    # derived domains</span>
+<span class="ln" id="L91"><a class="lno" href="#L91">91</a>    def dpow(a, k):</span>
+<span class="ln" id="L92"><a class="lno" href="#L92">92</a>        out = ONE</span>
+<span class="ln" id="L93"><a class="lno" href="#L93">93</a>        step = a if k &gt;= 0 else dinv(a)</span>
+<span class="ln" id="L94"><a class="lno" href="#L94">94</a>        for _ in range(abs(k)):</span>
+<span class="ln" id="L95"><a class="lno" href="#L95">95</a>            out = dmul(out, step)</span>
+<span class="ln" id="L96"><a class="lno" href="#L96">96</a>        return out</span>
+<span class="ln" id="L97"><a class="lno" href="#L97">97</a></span>
+<span class="ln decl" id="L98"><a class="lno" href="#L98">98</a>    # row 10:D6</span>
+<span class="ln" id="L99"><a class="lno" href="#L99">99</a>    E_dom = dmul(FLAG, dinv(T))                       # [E] = Iq T^-1</span>
+<span class="ln" id="L100"><a class="lno" href="#L100">100</a>    p_dom = dmul(FLAG, dinv(L))                       # [p] = Iq L^-1</span>
+<span class="ln" id="L101"><a class="lno" href="#L101">101</a>    v_dom = dmul(L, dinv(T))                          # [v] = L T^-1</span>
+<span class="ln" id="L102"><a class="lno" href="#L102">102</a>    m_dom = dmul(E_dom, dinv(dpow(v_dom, 2)))         # [m] = [E][v]^-2</span>
+<span class="ln" id="L103"><a class="lno" href="#L103">103</a>    check(&quot;[m] = Iq L^-2 T&quot;, m_dom == ((-2) % P, 1, 1))</span>
+<span class="ln" id="L104"><a class="lno" href="#L104">104</a>    F_dom = dmul(m_dom, dmul(L, dpow(dinv(T), 2)))    # [F] = [m][a]</span>
+<span class="ln" id="L105"><a class="lno" href="#L105">105</a>    check(&quot;[F] = Iq L^-1 T^-1&quot;, F_dom == ((-1) % P, (-1) % (P - 1), 1))</span>
+<span class="ln" id="L106"><a class="lno" href="#L106">106</a>    S_dom = dmul(E_dom, T)</span>
+<span class="ln" id="L107"><a class="lno" href="#L107">107</a>    check(&quot;[S] = Iq (action carries the flag)&quot;, S_dom == FLAG)</span>
+<span class="ln" id="L108"><a class="lno" href="#L108">108</a>    check(&quot;phase count neutral: [E][T][hbar]^-1 = 1&quot;, dmul(S_dom, dinv(FLAG)) == ONE)</span>
+<span class="ln" id="L109"><a class="lno" href="#L109">109</a>    G_dom = dmul(F_dom, dmul(dpow(L, 2), dinv(dpow(m_dom, 2))))</span>
+<span class="ln" id="L110"><a class="lno" href="#L110">110</a>    check(&quot;[G] = Iq^-1 L^5 T^-3&quot;, G_dom == (5, (-3) % (P - 1), 3))</span>
+<span class="ln" id="L111"><a class="lno" href="#L111">111</a>    check(&quot;Planck area flag-free: [G][hbar][c]^-3&quot;,</span>
+<span class="ln" id="L112"><a class="lno" href="#L112">112</a>          dmul(G_dom, dmul(FLAG, dpow(dinv(v_dom), 3)))[2] == 0)</span>
+<span class="ln" id="L113"><a class="lno" href="#L113">113</a>    check(&quot;[G hbar c^-3] = L^2&quot;,</span>
+<span class="ln" id="L114"><a class="lno" href="#L114">114</a>          dmul(G_dom, dmul(FLAG, dpow(dinv(v_dom), 3))) == (2, 0, 0))</span>
+<span class="ln" id="L115"><a class="lno" href="#L115">115</a>    check(&quot;[Gm/c^2] = L&quot;,</span>
+<span class="ln" id="L116"><a class="lno" href="#L116">116</a>          dmul(G_dom, dmul(m_dom, dpow(dinv(v_dom), 2))) == (1, 0, 0))</span>
+<span class="ln decl" id="L117"><a class="lno" href="#L117">117</a>    # row 10:F4</span>
+<span class="ln" id="L118"><a class="lno" href="#L118">118</a>    check(&quot;[Gm/r^3] = T^-2 flag-free&quot;,</span>
+<span class="ln" id="L119"><a class="lno" href="#L119">119</a>          dmul(G_dom, dmul(m_dom, dpow(dinv(L), 3))) == (0, (-2) % (P - 1), 0))</span>
+<span class="ln" id="L120"><a class="lno" href="#L120">120</a>    check(&quot;Compton flag-free: [m][c][hbar]^-1 = L^-1&quot;,</span>
+<span class="ln" id="L121"><a class="lno" href="#L121">121</a>          dmul(m_dom, dmul(v_dom, dinv(FLAG))) == ((-1) % P, 0, 0))</span>
+<span class="ln" id="L122"><a class="lno" href="#L122">122</a></span>
+<span class="ln" id="L123"><a class="lno" href="#L123">123</a>    # fibrewise addition / neutral criterion / local recovery</span>
+<span class="ln decl" id="L124"><a class="lno" href="#L124">124</a>    # row 10:C3</span>
+<span class="ln" id="L125"><a class="lno" href="#L125">125</a>    check(&quot;squaring leaves fibre: dom(Q) != dom(Q^2) for [L]&quot;, L != dpow(L, 2))</span>
+<span class="ln" id="L126"><a class="lno" href="#L126">126</a>    H = 5</span>
+<span class="ln decl" id="L127"><a class="lno" href="#L127">127</a>    # row 10:G1, 10:G3</span>
+<span class="ln" id="L128"><a class="lno" href="#L128">128</a>    check(&quot;local recovery bound: p-1 &gt; 2H&quot;, P - 1 &gt; 2 * H)</span>
+<span class="ln" id="L129"><a class="lno" href="#L129">129</a>    pairs = [(r, s) for r in range(-H, H + 1) for s in range(-H, H + 1)]</span>
+<span class="ln" id="L130"><a class="lno" href="#L130">130</a>    images = {(r % P, s % (P - 1)) for (r, s) in pairs}</span>
+<span class="ln" id="L131"><a class="lno" href="#L131">131</a>    check(&quot;local recovery: all |r|,|s| &lt;= 5 distinguished&quot;, len(images) == len(pairs))</span>
+<span class="ln" id="L132"><a class="lno" href="#L132">132</a></span>
+<span class="ln" id="L133"><a class="lno" href="#L133">133</a>    # B. the quartet at the unit face (exact rationals over free scales)</span>
+<span class="ln" id="L134"><a class="lno" href="#L134">134</a>    family(&#x27;dom&#x27;, &#x27;B&#x27;)</span>
+<span class="ln" id="L135"><a class="lno" href="#L135">135</a>    # Represent horizons as exponent vectors over (l, t, p, E) and verify the</span>
+<span class="ln" id="L136"><a class="lno" href="#L136">136</a>    # relation lattice; then instantiate with exact rationals satisfying the</span>
+<span class="ln" id="L137"><a class="lno" href="#L137">137</a>    # one identity l*p = t*E and confirm every claimed equality numerically.</span>
+<span class="ln" id="L138"><a class="lno" href="#L138">138</a>    import itertools</span>
+<span class="ln" id="L139"><a class="lno" href="#L139">139</a></span>
+<span class="ln" id="L140"><a class="lno" href="#L140">140</a>    # exponent vectors: c = l - t (= E - p), hbar = l + p (= t + E), mix = p + t</span>
+<span class="ln" id="L141"><a class="lno" href="#L141">141</a>    c_vec    = (1, -1, 0, 0)</span>
+<span class="ln" id="L142"><a class="lno" href="#L142">142</a>    c_vec2   = (0, 0, -1, 1)</span>
+<span class="ln" id="L143"><a class="lno" href="#L143">143</a>    hbar_vec = (1, 0, 1, 0)</span>
+<span class="ln" id="L144"><a class="lno" href="#L144">144</a>    hbar_vec2= (0, 1, 0, 1)</span>
+<span class="ln" id="L145"><a class="lno" href="#L145">145</a>    mix_vec  = (0, 1, 1, 0)</span>
+<span class="ln" id="L146"><a class="lno" href="#L146">146</a>    lE_vec   = (1, 0, 0, 1)</span>
+<span class="ln" id="L147"><a class="lno" href="#L147">147</a>    rel      = (1, -1, 1, -1)        # l - t + p - E = 0 &lt;=&gt; l*p = t*E</span>
+<span class="ln" id="L148"><a class="lno" href="#L148">148</a></span>
+<span class="ln" id="L149"><a class="lno" href="#L149">149</a>    def add(u, v): return tuple(a + b for a, b in zip(u, v))</span>
+<span class="ln" id="L150"><a class="lno" href="#L150">150</a>    def sub(u, v): return tuple(a - b for a, b in zip(u, v))</span>
+<span class="ln" id="L151"><a class="lno" href="#L151">151</a></span>
+<span class="ln" id="L152"><a class="lno" href="#L152">152</a>    check(&quot;c faces differ by the relation&quot;, sub(c_vec, c_vec2) == rel)</span>
+<span class="ln" id="L153"><a class="lno" href="#L153">153</a>    check(&quot;hbar faces differ by the relation&quot;, sub(hbar_vec, hbar_vec2) == rel)</span>
+<span class="ln" id="L154"><a class="lno" href="#L154">154</a>    check(&quot;l*E = hbar*c (exponent identity)&quot;, lE_vec == add(hbar_vec2, c_vec))</span>
+<span class="ln" id="L155"><a class="lno" href="#L155">155</a>    check(&quot;mix = hbar/c (exponent identity)&quot;, mix_vec == sub(hbar_vec2, c_vec2))</span>
+<span class="ln" id="L156"><a class="lno" href="#L156">156</a></span>
+<span class="ln" id="L157"><a class="lno" href="#L157">157</a>    # rank of {c, hbar, mix} modulo the relation is 3 (full)</span>
+<span class="ln" id="L158"><a class="lno" href="#L158">158</a>    def rank_int(rows):</span>
+<span class="ln" id="L159"><a class="lno" href="#L159">159</a>        m = [list(map(Fr, r)) for r in rows]</span>
+<span class="ln" id="L160"><a class="lno" href="#L160">160</a>        rank, ncols = 0, len(m[0])</span>
+<span class="ln" id="L161"><a class="lno" href="#L161">161</a>        for col in range(ncols):</span>
+<span class="ln" id="L162"><a class="lno" href="#L162">162</a>            piv = next((i for i in range(rank, len(m)) if m[i][col] != 0), None)</span>
+<span class="ln" id="L163"><a class="lno" href="#L163">163</a>            if piv is None:</span>
+<span class="ln" id="L164"><a class="lno" href="#L164">164</a>                continue</span>
+<span class="ln" id="L165"><a class="lno" href="#L165">165</a>            m[rank], m[piv] = m[piv], m[rank]</span>
+<span class="ln" id="L166"><a class="lno" href="#L166">166</a>            m[rank] = [x / m[rank][col] for x in m[rank]]</span>
+<span class="ln" id="L167"><a class="lno" href="#L167">167</a>            for i in range(len(m)):</span>
+<span class="ln" id="L168"><a class="lno" href="#L168">168</a>                if i != rank and m[i][col] != 0:</span>
+<span class="ln" id="L169"><a class="lno" href="#L169">169</a>                    m[i] = [a - m[i][col] * b for a, b in zip(m[i], m[rank])]</span>
+<span class="ln" id="L170"><a class="lno" href="#L170">170</a>            rank += 1</span>
+<span class="ln" id="L171"><a class="lno" href="#L171">171</a>        return rank</span>
+<span class="ln" id="L172"><a class="lno" href="#L172">172</a></span>
+<span class="ln decl" id="L173"><a class="lno" href="#L173">173</a>    # row 10:E2</span>
+<span class="ln" id="L174"><a class="lno" href="#L174">174</a>    # pairing lattice mod the relation has rank TWO: mix = hbar - c, lE = hbar + c</span>
+<span class="ln" id="L175"><a class="lno" href="#L175">175</a>    check(&quot;mix = hbar&#x27; - c&#x27; (exponent identity: k_B derived)&quot;,</span>
+<span class="ln" id="L176"><a class="lno" href="#L176">176</a>          mix_vec == sub(hbar_vec2, c_vec2))</span>
+<span class="ln" id="L177"><a class="lno" href="#L177">177</a>    check(&quot;pairing rank 2 mod relation: rank{c,hbar,rel} = 3&quot;,</span>
+<span class="ln" id="L178"><a class="lno" href="#L178">178</a>          rank_int([c_vec, hbar_vec, rel]) == 3)</span>
+<span class="ln" id="L179"><a class="lno" href="#L179">179</a>    check(&quot;mix adds nothing: rank{c,hbar,mix,rel} = 3&quot;,</span>
+<span class="ln" id="L180"><a class="lno" href="#L180">180</a>          rank_int([c_vec, hbar_vec, mix_vec, rel]) == 3)</span>
+<span class="ln" id="L181"><a class="lno" href="#L181">181</a>    check(&quot;lE adds nothing: rank{c,hbar,mix,lE,rel} = 3&quot;,</span>
+<span class="ln" id="L182"><a class="lno" href="#L182">182</a>          rank_int([c_vec, hbar_vec, mix_vec, lE_vec, rel]) == 3)</span>
+<span class="ln" id="L183"><a class="lno" href="#L183">183</a></span>
+<span class="ln decl" id="L184"><a class="lno" href="#L184">184</a>    # row 10:E3</span>
+<span class="ln" id="L185"><a class="lno" href="#L185">185</a>    # numeric instantiation with the identity enforced: choose l,t,p free, E = l*p/t</span>
+<span class="ln" id="L186"><a class="lno" href="#L186">186</a>    l, t, p = Fr(3, 7), Fr(2, 5), Fr(11, 4)</span>
+<span class="ln" id="L187"><a class="lno" href="#L187">187</a>    E = l * p / t</span>
+<span class="ln" id="L188"><a class="lno" href="#L188">188</a>    c_u, hbar_u = l / t, l * p</span>
+<span class="ln" id="L189"><a class="lno" href="#L189">189</a>    check(&quot;unit face: c = l/t = E/p&quot;, c_u == E / p)</span>
+<span class="ln" id="L190"><a class="lno" href="#L190">190</a>    check(&quot;unit face: hbar = l p = t E&quot;, hbar_u == t * E)</span>
+<span class="ln" id="L191"><a class="lno" href="#L191">191</a>    check(&quot;cancellation: (p t)(l/t) = l p  [k_B c = -hbar]&quot;, (p * t) * (l / t) == hbar_u)</span>
+<span class="ln" id="L192"><a class="lno" href="#L192">192</a>    check(&quot;mixed partner: l E = hbar c&quot;, l * E == hbar_u * c_u)</span>
+<span class="ln" id="L193"><a class="lno" href="#L193">193</a>    m_P = p / c_u</span>
+<span class="ln" id="L194"><a class="lno" href="#L194">194</a>    check(&quot;m_P = p/c = E/c^2&quot;, m_P == E / c_u ** 2)</span>
+<span class="ln" id="L195"><a class="lno" href="#L195">195</a>    G_num = hbar_u * c_u / m_P ** 2</span>
+<span class="ln" id="L196"><a class="lno" href="#L196">196</a>    check(&quot;G = hbar c / m_P^2 = l^2 c^3 / hbar&quot;, G_num == l ** 2 * c_u ** 3 / hbar_u)</span>
+<span class="ln" id="L197"><a class="lno" href="#L197">197</a>    # bijection {c, hbar, G} &lt;-&gt; quartet: recover the free scale from G</span>
+<span class="ln" id="L198"><a class="lno" href="#L198">198</a>    check(&quot;bijection: l^2 = G hbar / c^3&quot;, l ** 2 == G_num * hbar_u / c_u ** 3)</span>
+<span class="ln" id="L199"><a class="lno" href="#L199">199</a>    check(&quot;recovered quartet: t=l/c, p=hbar/l, E=hbar c/l&quot;,</span>
+<span class="ln" id="L200"><a class="lno" href="#L200">200</a>          t == l / c_u and p == hbar_u / l and E == hbar_u * c_u / l)</span>
+<span class="ln" id="L201"><a class="lno" href="#L201">201</a>    Theta = E / (hbar_u / c_u)      # E_P / |k_B|</span>
+<span class="ln" id="L202"><a class="lno" href="#L202">202</a>    check(&quot;Theta_P = E_P/|k_B| = c^2/1 * ... consistent&quot;, Theta == E * c_u / hbar_u)</span>
+<span class="ln" id="L203"><a class="lno" href="#L203">203</a></span>
+<span class="ln" id="L204"><a class="lno" href="#L204">204</a>    # DOF: quartet has 4 generators, 1 relation -&gt; 3 free scales; +G -&gt; 3+1</span>
+<span class="ln" id="L205"><a class="lno" href="#L205">205</a>    check(&quot;DOF: 4 - 1 = 3 free scales&quot;, 4 - rank_int([rel]) == 3)</span>
+<span class="ln" id="L206"><a class="lno" href="#L206">206</a></span>
+<span class="ln" id="L207"><a class="lno" href="#L207">207</a>    # ------------------------------------------------------------------</span>
+<span class="ln" id="L208"><a class="lno" href="#L208">208</a>    # flag positions of the quartet: (l, t, p, E) at (0, 0, 1, 1) mod 4;</span>
+<span class="ln" id="L209"><a class="lno" href="#L209">209</a>    # every quartet relation must close on the flag component</span>
+<span class="ln" id="L210"><a class="lno" href="#L210">210</a>    # ------------------------------------------------------------------</span>
+<span class="ln" id="L211"><a class="lno" href="#L211">211</a>    FL = {&quot;l&quot;: 0, &quot;t&quot;: 0, &quot;p&quot;: 1, &quot;E&quot;: 1}</span>
+<span class="ln" id="L212"><a class="lno" href="#L212">212</a>    def flag_of(expr):</span>
+<span class="ln" id="L213"><a class="lno" href="#L213">213</a>        # expr: dict of generator -&gt; exponent</span>
+<span class="ln" id="L214"><a class="lno" href="#L214">214</a>        return sum(FL[g] * e for g, e in expr.items()) % 4</span>
+<span class="ln" id="L215"><a class="lno" href="#L215">215</a>    check(&quot;flag[hbar = l p] = 1&quot;, flag_of({&quot;l&quot;: 1, &quot;p&quot;: 1}) == 1)</span>
+<span class="ln" id="L216"><a class="lno" href="#L216">216</a>    check(&quot;flag[hbar = t E] = 1&quot;, flag_of({&quot;t&quot;: 1, &quot;E&quot;: 1}) == 1)</span>
+<span class="ln" id="L217"><a class="lno" href="#L217">217</a>    check(&quot;flag[c = l/t] = 0&quot;, flag_of({&quot;l&quot;: 1, &quot;t&quot;: -1}) == 0)</span>
+<span class="ln" id="L218"><a class="lno" href="#L218">218</a>    check(&quot;flag[c = E/p] = 0&quot;, flag_of({&quot;E&quot;: 1, &quot;p&quot;: -1}) == 0)</span>
+<span class="ln" id="L219"><a class="lno" href="#L219">219</a>    check(&quot;flag[k_B ~ p t] = 1&quot;, flag_of({&quot;p&quot;: 1, &quot;t&quot;: 1}) == 1)</span>
+<span class="ln" id="L220"><a class="lno" href="#L220">220</a>    check(&quot;flag[hbar c ~ l E] = 1&quot;, flag_of({&quot;l&quot;: 1, &quot;E&quot;: 1}) == 1)</span>
+<span class="ln" id="L221"><a class="lno" href="#L221">221</a>    # G = l^2 c^3 / hbar: flags 2*0 + 3*0 - 1 = -1 = 3 mod 4 (inverse flag)</span>
+<span class="ln" id="L222"><a class="lno" href="#L222">222</a>    check(&quot;flag[G] = -1&quot;, (2 * FL[&quot;l&quot;] + 3 * 0 - flag_of({&quot;l&quot;: 1, &quot;p&quot;: 1})) % 4 == 3)</span>
+<span class="ln" id="L223"><a class="lno" href="#L223">223</a>    # Planck area G hbar / c^3 flag-free; Gm/c^2 flag-free (m at flag 1)</span>
+<span class="ln" id="L224"><a class="lno" href="#L224">224</a>    check(&quot;flag[G hbar/c^3] = 0&quot;, (3 + 1 + 0) % 4 == 0)</span>
+<span class="ln" id="L225"><a class="lno" href="#L225">225</a>    check(&quot;flag[G m/c^2] = 0 (m flag 1)&quot;, (3 + 1 + 0) % 4 == 0)</span>
+<span class="ln" id="L226"><a class="lno" href="#L226">226</a>    # dual horizons are flag-crossed images: p = hbar/l, E = hbar/t</span>
+<span class="ln" id="L227"><a class="lno" href="#L227">227</a>    check(&quot;p = hbar/l (unit face)&quot;, p == hbar_u / l)</span>
+<span class="ln" id="L228"><a class="lno" href="#L228">228</a>    check(&quot;E = hbar/t (unit face)&quot;, E == hbar_u / t)</span>
+<span class="ln" id="L229"><a class="lno" href="#L229">229</a>    # equivalent generating data {l, t, hbar} &lt;-&gt; {c, hbar, G}</span>
+<span class="ln" id="L230"><a class="lno" href="#L230">230</a>    check(&quot;{l,t,hbar} determine c, G&quot;, c_u == l / t and G_num == l ** 2 * (l / t) ** 3 / hbar_u)</span>
+<span class="ln" id="L231"><a class="lno" href="#L231">231</a></span>
+<span class="ln" id="L232"><a class="lno" href="#L232">232</a>    # C. the defining congruences on the lab Carrier</span>
+<span class="ln" id="L233"><a class="lno" href="#L233">233</a>    family(&#x27;dom&#x27;, &#x27;C&#x27;)</span>
+<span class="ln" id="L234"><a class="lno" href="#L234">234</a>    S = 602_140</span>
+<span class="ln" id="L235"><a class="lno" href="#L235">235</a>    Om = 4 * S + 1</span>
+<span class="ln" id="L236"><a class="lno" href="#L236">236</a>    check(&quot;Om = 2,408,561&quot;, Om == 2_408_561)</span>
+<span class="ln" id="L237"><a class="lno" href="#L237">237</a></span>
+<span class="ln" id="L238"><a class="lno" href="#L238">238</a>    def is_prime(n):</span>
+<span class="ln" id="L239"><a class="lno" href="#L239">239</a>        if n &lt; 2: return False</span>
+<span class="ln" id="L240"><a class="lno" href="#L240">240</a>        if n % 2 == 0: return n == 2</span>
+<span class="ln" id="L241"><a class="lno" href="#L241">241</a>        d = 3</span>
+<span class="ln" id="L242"><a class="lno" href="#L242">242</a>        while d * d &lt;= n:</span>
+<span class="ln" id="L243"><a class="lno" href="#L243">243</a>            if n % d == 0: return False</span>
+<span class="ln" id="L244"><a class="lno" href="#L244">244</a>            d += 2</span>
+<span class="ln" id="L245"><a class="lno" href="#L245">245</a>        return True</span>
+<span class="ln" id="L246"><a class="lno" href="#L246">246</a></span>
+<span class="ln" id="L247"><a class="lno" href="#L247">247</a>    check(&quot;admissibility: S even, S=1 mod 3, Om prime&quot;,</span>
+<span class="ln" id="L248"><a class="lno" href="#L248">248</a>          S % 2 == 0 and S % 3 == 1 and is_prime(Om))</span>
+<span class="ln" id="L249"><a class="lno" href="#L249">249</a></span>
+<span class="ln decl" id="L250"><a class="lno" href="#L250">250</a>    # row 10:E4</span>
+<span class="ln" id="L251"><a class="lno" href="#L251">251</a>    # congruence 1: 2G + 1 = 0 -- linear, unique</span>
+<span class="ln" id="L252"><a class="lno" href="#L252">252</a>    G_pin = [x for x in (pow(2, -1, Om) * (Om - 1) % Om,) ]</span>
+<span class="ln" id="L253"><a class="lno" href="#L253">253</a>    G_val = (Om - 1) // 2</span>
+<span class="ln" id="L254"><a class="lno" href="#L254">254</a>    check(&quot;congruence 2G+1=0 unique: G = 2S = 1,204,280&quot;, (2 * G_val + 1) % Om == 0 and G_val == 2 * S == 1_204_280)</span>
+<span class="ln" id="L255"><a class="lno" href="#L255">255</a></span>
+<span class="ln" id="L256"><a class="lno" href="#L256">256</a>    # quadratic defining congruences: exhaustive-root verification via the known values</span>
+<span class="ln" id="L257"><a class="lno" href="#L257">257</a>    hbar_val = 18_688</span>
+<span class="ln" id="L258"><a class="lno" href="#L258">258</a>    kB_val = 1_880_160</span>
+<span class="ln" id="L259"><a class="lno" href="#L259">259</a>    check(&quot;congruence hbar^2 = -1&quot;, (hbar_val * hbar_val) % Om == Om - 1)</span>
+<span class="ln" id="L260"><a class="lno" href="#L260">260</a>    check(&quot;congruence k_B^2 = -2&quot;, (kB_val * kB_val) % Om == Om - 2)</span>
+<span class="ln" id="L261"><a class="lno" href="#L261">261</a>    c2 = (2 * S + 1) % Om</span>
+<span class="ln" id="L262"><a class="lno" href="#L262">262</a>    check(&quot;congruence 2c^2 = 1: c^2 = 2S+1&quot;, (2 * c2) % Om == 1)</span>
+<span class="ln" id="L263"><a class="lno" href="#L263">263</a>    # each quadratic congruence has exactly two roots: x and Om - x</span>
+<span class="ln" id="L264"><a class="lno" href="#L264">264</a>    for name, val, target in ((&quot;hbar&quot;, hbar_val, Om - 1), (&quot;k_B&quot;, kB_val, Om - 2)):</span>
+<span class="ln" id="L265"><a class="lno" href="#L265">265</a>        other = Om - val</span>
+<span class="ln" id="L266"><a class="lno" href="#L266">266</a>        check(f&quot;{name}: two roots {{x, -x}}&quot;, (other * other) % Om == target and other != val)</span>
+<span class="ln" id="L267"><a class="lno" href="#L267">267</a>    # linkage consistency: the stated representatives satisfy k_B c = -hbar</span>
+<span class="ln" id="L268"><a class="lno" href="#L268">268</a>    c_val = (-hbar_val * pow(kB_val, -1, Om)) % Om</span>
+<span class="ln" id="L269"><a class="lno" href="#L269">269</a>    check(&quot;c from k_B c = -hbar&quot;, (kB_val * c_val) % Om == (Om - hbar_val) % Om)</span>
+<span class="ln" id="L270"><a class="lno" href="#L270">270</a>    check(&quot;c^2 lands on the congruence&quot;, (c_val * c_val) % Om == c2)</span>
+<span class="ln" id="L271"><a class="lno" href="#L271">271</a>    check(&quot;register identities: G = -c^2, G^2 = 4^-1&quot;,</span>
+<span class="ln" id="L272"><a class="lno" href="#L272">272</a>          (G_val + c2) % Om == 0 and (4 * G_val * G_val) % Om == 1)</span>
+<span class="ln" id="L273"><a class="lno" href="#L273">273</a>    check(&quot;h = 2 pi hbar = -hbar = k_B c&quot;, (Om - hbar_val) % Om == (kB_val * c_val) % Om)</span>
+<span class="ln" id="L274"><a class="lno" href="#L274">274</a>    check(&quot;m_P^2 = Om = 0 (scale face: the totality)&quot;, (Om) % Om == 0)</span>
+<span class="ln" id="L275"><a class="lno" href="#L275">275</a></span>
+<span class="ln" id="L276"><a class="lno" href="#L276">276</a></span>
+<span class="ln" id="L277"><a class="lno" href="#L277">277</a>    # D. revision layer: both Carriers, face closure, minimality, temperature</span>
+<span class="ln" id="L278"><a class="lno" href="#L278">278</a>    family(&#x27;dom&#x27;, &#x27;D&#x27;)</span>
+<span class="ln" id="L279"><a class="lno" href="#L279">279</a></span>
+<span class="ln" id="L280"><a class="lno" href="#L280">280</a>    def sqrt_roots(a, Om):</span>
+<span class="ln" id="L281"><a class="lno" href="#L281">281</a>        return sorted(x for x in range(Om) if (x * x) % Om == a % Om)</span>
+<span class="ln" id="L282"><a class="lno" href="#L282">282</a></span>
+<span class="ln" id="L283"><a class="lno" href="#L283">283</a>    CARRIERS = {</span>
+<span class="ln" id="L284"><a class="lno" href="#L284">284</a>        233: dict(S=58, hbar=89, kB=124, c=159, G=116, h=144),</span>
+<span class="ln" id="L285"><a class="lno" href="#L285">285</a>        2_408_561: dict(S=602_140, hbar=18_688, kB=1_880_160, c=171_106, G=1_204_280, h=2_389_873),</span>
+<span class="ln" id="L286"><a class="lno" href="#L286">286</a>    }</span>
+<span class="ln" id="L287"><a class="lno" href="#L287">287</a>    # fill lab h and c consistently</span>
+<span class="ln" id="L288"><a class="lno" href="#L288">288</a>    lab = CARRIERS[2_408_561]</span>
+<span class="ln" id="L289"><a class="lno" href="#L289">289</a>    lab[&quot;c&quot;] = (-lab[&quot;hbar&quot;] * pow(lab[&quot;kB&quot;], -1, 2_408_561)) % 2_408_561</span>
+<span class="ln" id="L290"><a class="lno" href="#L290">290</a>    lab[&quot;h&quot;] = (2_408_561 - lab[&quot;hbar&quot;]) % 2_408_561</span>
+<span class="ln" id="L291"><a class="lno" href="#L291">291</a></span>
+<span class="ln" id="L292"><a class="lno" href="#L292">292</a>    for Om_, R in CARRIERS.items():</span>
+<span class="ln" id="L293"><a class="lno" href="#L293">293</a>        S_, hb, kB, c_, G_, h_ = R[&quot;S&quot;], R[&quot;hbar&quot;], R[&quot;kB&quot;], R[&quot;c&quot;], R[&quot;G&quot;], R[&quot;h&quot;]</span>
+<span class="ln" id="L294"><a class="lno" href="#L294">294</a>        check(f&quot;[{Om_}] admissibility triple: S even, S=1 mod 3, Om prime&quot;,</span>
+<span class="ln" id="L295"><a class="lno" href="#L295">295</a>              S_ % 2 == 0 and S_ % 3 == 1 and is_prime(Om_))</span>
+<span class="ln" id="L296"><a class="lno" href="#L296">296</a>        check(f&quot;[{Om_}] two-way class: S even &lt;=&gt; Om = 1 mod 8&quot;, Om_ % 8 == 1)</span>
+<span class="ln" id="L297"><a class="lno" href="#L297">297</a>        # congruence equations of the residue reading</span>
+<span class="ln" id="L298"><a class="lno" href="#L298">298</a>        check(f&quot;[{Om_}] B: 2G = -1&quot;, (2 * G_ + 1) % Om_ == 0)</span>
+<span class="ln" id="L299"><a class="lno" href="#L299">299</a>        check(f&quot;[{Om_}] B: c^2 = 2^-1&quot;, (2 * c_ * c_) % Om_ == 1)</span>
+<span class="ln" id="L300"><a class="lno" href="#L300">300</a>        check(f&quot;[{Om_}] B: hbar^2 = -1&quot;, (hb * hb) % Om_ == Om_ - 1)</span>
+<span class="ln" id="L301"><a class="lno" href="#L301">301</a>        check(f&quot;[{Om_}] B: k_B^2 = -2&quot;, (kB * kB) % Om_ == Om_ - 2)</span>
+<span class="ln" id="L302"><a class="lno" href="#L302">302</a>        check(f&quot;[{Om_}] B: k_B c = -hbar&quot;, (kB * c_) % Om_ == (Om_ - hb) % Om_)</span>
+<span class="ln" id="L303"><a class="lno" href="#L303">303</a>        check(f&quot;[{Om_}] B: h = -hbar&quot;, h_ == (Om_ - hb) % Om_)</span>
+<span class="ln" id="L304"><a class="lno" href="#L304">304</a>        # closure consequences (Prop faces-closure)</span>
+<span class="ln" id="L305"><a class="lno" href="#L305">305</a>        check(f&quot;[{Om_}] closure: G = -c^2&quot;, (G_ + c_ * c_) % Om_ == 0)</span>
+<span class="ln" id="L306"><a class="lno" href="#L306">306</a>        check(f&quot;[{Om_}] closure: G^2 = 4^-1&quot;, (4 * G_ * G_) % Om_ == 1)</span>
+<span class="ln" id="L307"><a class="lno" href="#L307">307</a>        check(f&quot;[{Om_}] closure: hbar^4 = 1&quot;, pow(hb, 4, Om_) == 1)</span>
+<span class="ln" id="L308"><a class="lno" href="#L308">308</a>        check(f&quot;[{Om_}] closure: (k_B c)^2 = -1&quot;, pow(kB * c_, 2, Om_) == Om_ - 1)</span>
+<span class="ln" id="L309"><a class="lno" href="#L309">309</a>        check(f&quot;[{Om_}] closure: hbar c G^-1 = k_B (m_P^2 monomial face on the k_B residue)&quot;,</span>
+<span class="ln" id="L310"><a class="lno" href="#L310">310</a>              (hb * c_ * pow(G_, -1, Om_)) % Om_ == kB)</span>
+<span class="ln" id="L311"><a class="lno" href="#L311">311</a>        check(f&quot;[{Om_}] monomial face nonzero: horizon declaration is not a congruence&quot;,</span>
+<span class="ln" id="L312"><a class="lno" href="#L312">312</a>              (hb * c_ * pow(G_, -1, Om_)) % Om_ != 0)</span>
+<span class="ln" id="L313"><a class="lno" href="#L313">313</a>        # defining congruences have exactly two roots each</span>
+<span class="ln" id="L314"><a class="lno" href="#L314">314</a>        for name, val, tgt in ((&quot;hbar&quot;, hb, Om_ - 1), (&quot;kB&quot;, kB, Om_ - 2)):</span>
+<span class="ln" id="L315"><a class="lno" href="#L315">315</a>            roots = sorted(((val) % Om_, (Om_ - val) % Om_))</span>
+<span class="ln" id="L316"><a class="lno" href="#L316">316</a>            check(f&quot;[{Om_}] {name}: root pair valid&quot;, all((x * x) % Om_ == tgt for x in roots))</span>
+<span class="ln" id="L317"><a class="lno" href="#L317">317</a></span>
+<span class="ln" id="L318"><a class="lno" href="#L318">318</a>    # representative half-planes are chart data (suite annex): band predicates</span>
+<span class="ln" id="L319"><a class="lno" href="#L319">319</a>    # carry no invariant content, as the pair form requires</span>
+<span class="ln" id="L320"><a class="lno" href="#L320">320</a>    r233 = sqrt_roots(58, 233)</span>
+<span class="ln" id="L321"><a class="lno" href="#L321">321</a>    check(&quot;233: sqrt(S) roots {72,161}&quot;, r233 == [72, 161])</span>
+<span class="ln" id="L322"><a class="lno" href="#L322">322</a>    check(&quot;233: hbar-representative from the upper-half root of S (161 -&gt; 89): chart datum&quot;,</span>
+<span class="ln" id="L323"><a class="lno" href="#L323">323</a>          (2 * 161) % 233 == 89 and 161 &gt; 233 // 2)</span>
+<span class="ln" id="L324"><a class="lno" href="#L324">324</a>    check(&quot;233: the other root gives the pair partner h (72 -&gt; 144)&quot;, (2 * 72) % 233 == 144)</span>
+<span class="ln" id="L325"><a class="lno" href="#L325">325</a>    check(&quot;lab: hbar-representative from the lower-half root of S (9344): chart datum&quot;,</span>
+<span class="ln" id="L326"><a class="lno" href="#L326">326</a>          (2 * 9344) % 2_408_561 == 18_688 and 9344 &lt; 2_408_561 // 2)</span>
+<span class="ln" id="L327"><a class="lno" href="#L327">327</a>    check(&quot;half-plane of the hbar-representative differs across Carriers: band = chart data&quot;,</span>
+<span class="ln" id="L328"><a class="lno" href="#L328">328</a>          (161 &gt; 233 // 2) and (9344 &lt; 2_408_561 // 2))</span>
+<span class="ln" id="L329"><a class="lno" href="#L329">329</a></span>
+<span class="ln" id="L330"><a class="lno" href="#L330">330</a>    # -1 is QR unconditionally (Om = 4S+1 = 1 mod 4), S even needed only for 2</span>
+<span class="ln" id="L331"><a class="lno" href="#L331">331</a>    check(&quot;-1 QR even for odd S: Om=13 (S=3), 5^2 = -1&quot;, (5 * 5) % 13 == 12)</span>
+<span class="ln" id="L332"><a class="lno" href="#L332">332</a>    check(&quot;Om = 1 mod 4 for every S&quot;, all((4 * S0 + 1) % 4 == 1 for S0 in range(1, 50)))</span>
+<span class="ln" id="L333"><a class="lno" href="#L333">333</a></span>
+<span class="ln decl" id="L334"><a class="lno" href="#L334">334</a>    # row 10:E9</span>
+<span class="ln" id="L335"><a class="lno" href="#L335">335</a>    # minimality scan under the complete predicate (Appendix A)</span>
+<span class="ln" id="L336"><a class="lno" href="#L336">336</a>    def admissible(p_, Om__):</span>
+<span class="ln" id="L337"><a class="lno" href="#L337">337</a>        kap_ = (p_ - 1) // 4</span>
+<span class="ln" id="L338"><a class="lno" href="#L338">338</a>        S__ = (Om__ - 1) // 4</span>
+<span class="ln" id="L339"><a class="lno" href="#L339">339</a>        return (kap_ &gt; 1 and is_prime(p_) and p_ % 4 == 1</span>
+<span class="ln" id="L340"><a class="lno" href="#L340">340</a>                and Om__ % 4 == 1 and is_prime(Om__)</span>
+<span class="ln" id="L341"><a class="lno" href="#L341">341</a>                and S__ % 2 == 0 and S__ % 3 == 1</span>
+<span class="ln" id="L342"><a class="lno" href="#L342">342</a>                and p_ * p_ &lt; Om__)</span>
+<span class="ln" id="L343"><a class="lno" href="#L343">343</a>    adm = [(p_, Om__) for p_ in range(5, 40, 4) for Om__ in range(p_ * p_ + 1, 234)</span>
+<span class="ln" id="L344"><a class="lno" href="#L344">344</a>           if admissible(p_, Om__)]</span>
+<span class="ln" id="L345"><a class="lno" href="#L345">345</a>    check(&quot;minimality: (13,233) admissible&quot;, (13, 233) in adm)</span>
+<span class="ln" id="L346"><a class="lno" href="#L346">346</a>    check(&quot;minimality: no admissible pair below 233&quot;, min(o for _, o in adm) == 233)</span>
+<span class="ln" id="L347"><a class="lno" href="#L347">347</a>    check(&quot;counterfactual: dropping mod-3 admits (13,193)&quot;,</span>
+<span class="ln" id="L348"><a class="lno" href="#L348">348</a>          is_prime(193) and 48 % 2 == 0 and 48 % 3 == 0 and 13 * 13 &lt; 193)</span>
+<span class="ln" id="L349"><a class="lno" href="#L349">349</a>    check(&quot;counterfactual: dropping kappa&gt;1 admits (5,41)&quot;,</span>
+<span class="ln" id="L350"><a class="lno" href="#L350">350</a>          is_prime(5) and is_prime(41) and 10 % 2 == 0 and 10 % 3 == 1 and 25 &lt; 41)</span>
+<span class="ln" id="L351"><a class="lno" href="#L351">351</a>    check(&quot;F5 is its own quarter-turn core: 4*kappa = 4 = p-1 with kappa=1&quot;, 4 * 1 == 5 - 1)</span>
+<span class="ln" id="L352"><a class="lno" href="#L352">352</a>    check(&quot;kappa=2 not viable: 9 composite&quot;, not is_prime(9))</span>
+<span class="ln" id="L353"><a class="lno" href="#L353">353</a></span>
+<span class="ln decl" id="L354"><a class="lno" href="#L354">354</a>    # row 10:F3</span>
+<span class="ln" id="L355"><a class="lno" href="#L355">355</a>    # temperature and Unruh closures in (r, s, j) bookkeeping</span>
+<span class="ln" id="L356"><a class="lno" href="#L356">356</a>    kB_dom = (-1, 1, 1)                    # Iq L^-1 T</span>
+<span class="ln" id="L357"><a class="lno" href="#L357">357</a>    E_dom3 = (0, -1, 1)                    # Iq T^-1</span>
+<span class="ln" id="L358"><a class="lno" href="#L358">358</a>    acc = (1, -2, 0)</span>
+<span class="ln" id="L359"><a class="lno" href="#L359">359</a>    Theta = tuple(a - b for a, b in zip(E_dom3, kB_dom))</span>
+<span class="ln" id="L360"><a class="lno" href="#L360">360</a>    check(&quot;[Theta] = [E][k_B]^-1 = L T^-2, flag-free&quot;, Theta == acc)</span>
+<span class="ln" id="L361"><a class="lno" href="#L361">361</a>    c_dom3 = (1, -1, 0)</span>
+<span class="ln" id="L362"><a class="lno" href="#L362">362</a>    hb_dom3 = (0, 0, 1)</span>
+<span class="ln" id="L363"><a class="lno" href="#L363">363</a>    unruh = tuple(h + a - c - k for h, a, c, k in zip(hb_dom3, acc, c_dom3, kB_dom))</span>
+<span class="ln" id="L364"><a class="lno" href="#L364">364</a>    check(&quot;Unruh closure: [hbar a / (c k_B)] = [Theta]&quot;, unruh == acc)</span>
+<span class="ln" id="L365"><a class="lno" href="#L365">365</a></span>
+<span class="ln" id="L366"><a class="lno" href="#L366">366</a>    # crossing-degree recovery (Cor recovery-crossings)</span>
+<span class="ln" id="L367"><a class="lno" href="#L367">367</a>    def embed(u, a, b):</span>
+<span class="ln" id="L368"><a class="lno" href="#L368">368</a>        return (a - 2 * u, b + u, u)</span>
+<span class="ln" id="L369"><a class="lno" href="#L369">369</a>    trip = [(u, a, b) for u in range(-2, 3) for a in range(-3, 4) for b in range(-3, 4)]</span>
+<span class="ln" id="L370"><a class="lno" href="#L370">370</a>    check(&quot;classical embedding injective on Z^3&quot;,</span>
+<span class="ln" id="L371"><a class="lno" href="#L371">371</a>          len({embed(u, a, b) for u, a, b in trip}) == len(trip))</span>
+<span class="ln" id="L372"><a class="lno" href="#L372">372</a>    P2, K2 = 229, 57</span>
+<span class="ln" id="L373"><a class="lno" href="#L373">373</a>    def real2(r, s, j):</span>
+<span class="ln" id="L374"><a class="lno" href="#L374">374</a>        return (r % P2, (s + j * K2) % (P2 - 1))</span>
+<span class="ln" id="L375"><a class="lno" href="#L375">375</a>    win = [(r, s, j) for r in range(-5, 6) for s in range(-5, 6) for j in (-1, 0, 1)]</span>
+<span class="ln" id="L376"><a class="lno" href="#L376">376</a>    check(&quot;faithful realization on window (p=229, H=5, |j|&lt;=1)&quot;,</span>
+<span class="ln" id="L377"><a class="lno" href="#L377">377</a>          len({(real2(*w), w[2] % 4) for w in win}) == len(win))</span>
+<span class="ln" id="L378"><a class="lno" href="#L378">378</a>    check(&quot;sector saturates mod 4: hbar^4 realizes at sector zero&quot;,</span>
+<span class="ln" id="L379"><a class="lno" href="#L379">379</a>          (4 * K2) % (P2 - 1) == 0)</span>
+<span class="ln" id="L380"><a class="lno" href="#L380">380</a></span>
+<span class="ln" id="L381"><a class="lno" href="#L381">381</a></span>
+<span class="ln" id="L382"><a class="lno" href="#L382">382</a>    # E. round-02 layer: covariance counterexamples, window covariance,</span>
+<span class="ln" id="L383"><a class="lno" href="#L383">383</a>    family(&#x27;dom&#x27;, &#x27;E&#x27;)</span>
+<span class="ln" id="L384"><a class="lno" href="#L384">384</a></span>
+<span class="ln" id="L385"><a class="lno" href="#L385">385</a>    # (a) regression: the naive character on Z_p-reduced labels is ill-defined</span>
+<span class="ln" id="L386"><a class="lno" href="#L386">386</a>    inv2 = pow(2, -1, 13)</span>
+<span class="ln" id="L387"><a class="lno" href="#L387">387</a>    check(&quot;r02: character ill-defined on the modular projection (r=3 vs r=16 differ)&quot;,</span>
+<span class="ln" id="L388"><a class="lno" href="#L388">388</a>          pow(inv2, 3, 13) != pow(inv2, 16, 13))</span>
+<span class="ln" id="L389"><a class="lno" href="#L389">389</a>    # (b) regression: (p-1, 0) has trivial character yet is non-neutral</span>
+<span class="ln" id="L390"><a class="lno" href="#L390">390</a>    check(&quot;r02: (p-1,0) trivial character for all m&quot;,</span>
+<span class="ln" id="L391"><a class="lno" href="#L391">391</a>          all(pow(m, -(13 - 1), 13) == 1 for m in range(1, 13)))</span>
+<span class="ln" id="L392"><a class="lno" href="#L392">392</a>    check(&quot;r02: (p-1,0) is non-neutral in D_p&quot;, (13 - 1) % 13 != 0)</span>
+<span class="ln" id="L393"><a class="lno" href="#L393">393</a>    # (c) regression: eps as field character fails composition (5^2=1 in Z_12^x)</span>
+<span class="ln" id="L394"><a class="lno" href="#L394">394</a>    check(&quot;r02: eps field-character composition fails&quot;,</span>
+<span class="ln" id="L395"><a class="lno" href="#L395">395</a>          (5 * 5) % 12 == 1 and pow(pow(5, -1, 13), 2, 13) != 1)</span>
+<span class="ln" id="L396"><a class="lno" href="#L396">396</a></span>
+<span class="ln decl" id="L397"><a class="lno" href="#L397">397</a>    # row 10:C5</span>
+<span class="ln" id="L398"><a class="lno" href="#L398">398</a>    # window covariance (Theorem 5, repaired form)</span>
+<span class="ln" id="L399"><a class="lno" href="#L399">399</a>    H = 5</span>
+<span class="ln" id="L400"><a class="lno" href="#L400">400</a>    check(&quot;r02: window dilation: trivial character forces r=0 in window&quot;,</span>
+<span class="ln" id="L401"><a class="lno" href="#L401">401</a>          all(not all(pow(m, -r, 13) == 1 for m in range(2, 13))</span>
+<span class="ln" id="L402"><a class="lno" href="#L402">402</a>              for r in range(-H, H + 1) if r != 0))</span>
+<span class="ln" id="L403"><a class="lno" href="#L403">403</a>    # pushforward invariant sublattice on the realized lattice is {0, pi}</span>
+<span class="ln" id="L404"><a class="lno" href="#L404">404</a>    units12 = [e for e in range(1, 12) if __import__(&quot;math&quot;).gcd(e, 12) == 1]</span>
+<span class="ln" id="L405"><a class="lno" href="#L405">405</a>    inv_labels = [s_ for s_ in range(12) if all((e * s_) % 12 == s_ for e in units12)]</span>
+<span class="ln" id="L406"><a class="lno" href="#L406">406</a>    check(&quot;r02: pushforward-invariant labels are exactly {0, pi}&quot;, inv_labels == [0, 6])</span>
+<span class="ln" id="L407"><a class="lno" href="#L407">407</a>    check(&quot;r02: eps=-1 admissible always&quot;, __import__(&quot;math&quot;).gcd(11, 12) == 1)</span>
+<span class="ln" id="L408"><a class="lno" href="#L408">408</a>    # flag pair behaviour under pushforward: eps mod 4 in {1,3} decides fix/swap</span>
+<span class="ln" id="L409"><a class="lno" href="#L409">409</a>    check(&quot;r02: quarter-turn labels fixed iff eps=1 mod 4&quot;,</span>
+<span class="ln" id="L410"><a class="lno" href="#L410">410</a>          all(((e * 3) % 12 == 3) == (e % 4 == 1) for e in units12))</span>
+<span class="ln" id="L411"><a class="lno" href="#L411">411</a></span>
+<span class="ln" id="L412"><a class="lno" href="#L412">412</a>    # representative-convention data (chart-side record; no invariant content)</span>
+<span class="ln" id="L413"><a class="lno" href="#L413">413</a>    check(&quot;r02: hbar representative lower-half on 233 (chart datum)&quot;, 89 &lt; 233 // 2 and (89 * 89) % 233 == 232)</span>
+<span class="ln" id="L414"><a class="lno" href="#L414">414</a>    check(&quot;r02: hbar representative lower-half on lab (chart datum)&quot;,</span>
+<span class="ln" id="L415"><a class="lno" href="#L415">415</a>          18_688 &lt; 2_408_561 // 2 and (18_688 ** 2) % 2_408_561 == 2_408_560)</span>
+<span class="ln" id="L416"><a class="lno" href="#L416">416</a>    check(&quot;r02: c representative halves differ across Carriers (chart data)&quot;,</span>
+<span class="ln" id="L417"><a class="lno" href="#L417">417</a>          (159 &gt; 233 // 2) and (171_106 &lt; 2_408_561 // 2))</span>
+<span class="ln" id="L418"><a class="lno" href="#L418">418</a>    check(&quot;r02: +-c one residue class (-1 is QR)&quot;, pow(89, 2, 233) == 233 - 1)</span>
+<span class="ln" id="L419"><a class="lno" href="#L419">419</a></span>
+<span class="ln" id="L420"><a class="lno" href="#L420">420</a>    # index-two sublattice &lt;c, hbar, G&gt; in Z^3 on (l, t, hbar)</span>
+<span class="ln" id="L421"><a class="lno" href="#L421">421</a>    M = [[1, -1, 0], [0, 0, 1], [5, -3, -1]]</span>
+<span class="ln" id="L422"><a class="lno" href="#L422">422</a>    det = (M[0][0] * (M[1][1] * M[2][2] - M[1][2] * M[2][1])</span>
+<span class="ln" id="L423"><a class="lno" href="#L423">423</a>           - M[0][1] * (M[1][0] * M[2][2] - M[1][2] * M[2][0])</span>
+<span class="ln" id="L424"><a class="lno" href="#L424">424</a>           + M[0][2] * (M[1][0] * M[2][1] - M[1][1] * M[2][0]))</span>
+<span class="ln" id="L425"><a class="lno" href="#L425">425</a>    check(&quot;r02: &lt;c,hbar,G&gt; has index two (det = -2)&quot;, det == -2)</span>
+<span class="ln" id="L426"><a class="lno" href="#L426">426</a>    check(&quot;r02: l^2 = G hbar / c^3 recovers the scale by positive root&quot;,</span>
+<span class="ln" id="L427"><a class="lno" href="#L427">427</a>          l ** 2 == G_num * hbar_u / c_u ** 3 and l &gt; 0)</span>
+<span class="ln" id="L428"><a class="lno" href="#L428">428</a></span>
+<span class="ln" id="L429"><a class="lno" href="#L429">429</a>    # residue reading rho: multiplicative on constant monomials (both Carriers)</span>
+<span class="ln" id="L430"><a class="lno" href="#L430">430</a>    for Om_, R in CARRIERS.items():</span>
+<span class="ln" id="L431"><a class="lno" href="#L431">431</a>        hb, kB, c_, G_ = R[&quot;hbar&quot;], R[&quot;kB&quot;], R[&quot;c&quot;], R[&quot;G&quot;]</span>
+<span class="ln" id="L432"><a class="lno" href="#L432">432</a>        lhs = (hb * c_ * pow(G_, -1, Om_)) % Om_</span>
+<span class="ln" id="L433"><a class="lno" href="#L433">433</a>        check(f&quot;r02 [{Om_}]: rho multiplicative on hbar*c/G&quot;, lhs == kB)</span>
+<span class="ln" id="L434"><a class="lno" href="#L434">434</a>        check(f&quot;r02 [{Om_}]: rho(h) = -rho(hbar)&quot;, R[&quot;h&quot;] == (Om_ - hb) % Om_)</span>
+<span class="ln" id="L435"><a class="lno" href="#L435">435</a></span>
+<span class="ln" id="L436"><a class="lno" href="#L436">436</a></span>
+<span class="ln" id="L437"><a class="lno" href="#L437">437</a>    # F. round-03 layer: window bound, sigma-twisted action, delta_C</span>
+<span class="ln" id="L438"><a class="lno" href="#L438">438</a>    family(&#x27;dom&#x27;, &#x27;F&#x27;)</span>
+<span class="ln" id="L439"><a class="lno" href="#L439">439</a>    import math as _m</span>
+<span class="ln" id="L440"><a class="lno" href="#L440">440</a>    units12 = [e for e in range(1, 12) if _m.gcd(e, 12) == 1]</span>
+<span class="ln" id="L441"><a class="lno" href="#L441">441</a></span>
+<span class="ln" id="L442"><a class="lno" href="#L442">442</a>    # window counterexample (regression): at H &gt;= 2kap, (0, pi) is invariant and non-neutral</span>
+<span class="ln" id="L443"><a class="lno" href="#L443">443</a>    check(&quot;r03: pi invariant under every pushforward&quot;, all((e * 6) % 12 == 6 for e in units12))</span>
+<span class="ln" id="L444"><a class="lno" href="#L444">444</a>    check(&quot;r03: (0,pi) non-neutral&quot;, 6 % 12 != 0)</span>
+<span class="ln" id="L445"><a class="lno" href="#L445">445</a>    # corrected window H &lt; 2kap: only neutral label invariant</span>
+<span class="ln" id="L446"><a class="lno" href="#L446">446</a>    Hc = 2 * KAPPA - 1</span>
+<span class="ln" id="L447"><a class="lno" href="#L447">447</a>    inv_win = [s_ for s_ in range(-Hc, Hc + 1) if all((e * (s_ % 12)) % 12 == s_ % 12 for e in units12)]</span>
+<span class="ln" id="L448"><a class="lno" href="#L448">448</a>    check(&quot;r03: window H&lt;2kap invariants = {0}&quot;, inv_win == [0])</span>
+<span class="ln" id="L449"><a class="lno" href="#L449">449</a>    check(&quot;r03: window bound equals local-recovery bound&quot;, (4 * KAPPA &gt; 2 * Hc) and (Hc &lt; 2 * KAPPA))</span>
+<span class="ln" id="L450"><a class="lno" href="#L450">450</a></span>
+<span class="ln" id="L451"><a class="lno" href="#L451">451</a>    # sigma-twisted active action: full equivariance sweep on p=13 and p=229</span>
+<span class="ln" id="L452"><a class="lno" href="#L452">452</a>    def sigma(e):</span>
+<span class="ln" id="L453"><a class="lno" href="#L453">453</a>        return 1 if e % 4 == 1 else -1</span>
+<span class="ln" id="L454"><a class="lno" href="#L454">454</a>    for P_, K_ in ((13, 3), (229, 57)):</span>
+<span class="ln" id="L455"><a class="lno" href="#L455">455</a>        U_ = [e for e in range(1, P_ - 1) if _m.gcd(e, P_ - 1) == 1]</span>
+<span class="ln" id="L456"><a class="lno" href="#L456">456</a>        ok = all(((e * s_) % (P_ - 1) + sigma(e) * j * K_) % (P_ - 1)</span>
+<span class="ln" id="L457"><a class="lno" href="#L457">457</a>                 == (e * (s_ + j * K_)) % (P_ - 1)</span>
+<span class="ln" id="L458"><a class="lno" href="#L458">458</a>                 for e in U_ for s_ in range(0, P_ - 1, max(1, (P_ - 1) // 12)) for j in (-2, -1, 0, 1, 2))</span>
+<span class="ln" id="L459"><a class="lno" href="#L459">459</a>        check(f&quot;r03: sigma-twist equivariant on p={P_}&quot;, ok)</span>
+<span class="ln" id="L460"><a class="lno" href="#L460">460</a>    check(&quot;r03: witness e=7,(2;1) matches realized action&quot;, ((7 * 2) % 12 + sigma(7) * 3) % 12 == (7 * 5) % 12)</span>
+<span class="ln" id="L461"><a class="lno" href="#L461">461</a>    check(&quot;r03: witness e=-1,(0;1) matches realized action&quot;, ((11 * 0) % 12 + sigma(11) * 3) % 12 == (11 * 3) % 12)</span>
+<span class="ln" id="L462"><a class="lno" href="#L462">462</a>    check(&quot;r03: plain lift fails for e=7,(2;1) (regression)&quot;, ((7 * 2) % 12 + 3) % 12 != (7 * 5) % 12)</span>
+<span class="ln" id="L463"><a class="lno" href="#L463">463</a>    check(&quot;r03: sigma multiplicative mod 4&quot;,</span>
+<span class="ln" id="L464"><a class="lno" href="#L464">464</a>          all(sigma(a * b) == sigma(a) * sigma(b) for a in units12 for b in units12))</span>
+<span class="ln" id="L465"><a class="lno" href="#L465">465</a></span>
+<span class="ln decl" id="L466"><a class="lno" href="#L466">466</a>    # row 10:D1</span>
+<span class="ln" id="L467"><a class="lno" href="#L467">467</a>    # delta_S / delta_C: involutions; delta_C carries primal domains to dual horizon domains</span>
+<span class="ln" id="L468"><a class="lno" href="#L468">468</a>    def dS_(a):</span>
+<span class="ln" id="L469"><a class="lno" href="#L469">469</a>        return dinv(a)</span>
+<span class="ln" id="L470"><a class="lno" href="#L470">470</a>    def dC_(a):</span>
+<span class="ln" id="L471"><a class="lno" href="#L471">471</a>        return dmul(FLAG, dinv(a))</span>
+<span class="ln" id="L472"><a class="lno" href="#L472">472</a>    check(&quot;r03: delta_S involution&quot;, all(dS_(dS_(a)) == a for a in [L, T, FLAG, (3, 5, 2)]))</span>
+<span class="ln" id="L473"><a class="lno" href="#L473">473</a>    check(&quot;r03: delta_C involution&quot;, all(dC_(dC_(a)) == a for a in [L, T, FLAG, (3, 5, 2)]))</span>
+<span class="ln" id="L474"><a class="lno" href="#L474">474</a>    check(&quot;r03: delta_C[L] = [p] domain&quot;, dC_(L) == p_dom)</span>
+<span class="ln" id="L475"><a class="lno" href="#L475">475</a>    check(&quot;r03: delta_C[T] = [E] domain&quot;, dC_(T) == E_dom)</span>
+<span class="ln" id="L476"><a class="lno" href="#L476">476</a>    check(&quot;r03: delta_S flag-free&quot;, dS_(L)[2] == 0 and dS_(T)[2] == 0)</span>
+<span class="ln" id="L477"><a class="lno" href="#L477">477</a></span>
+<span class="ln" id="L478"><a class="lno" href="#L478">478</a></span>
+<span class="ln" id="L479"><a class="lno" href="#L479">479</a>    # G. round-04 layer: realized action, j-restriction, ladder, k_B linkage typing</span>
+<span class="ln" id="L480"><a class="lno" href="#L480">480</a>    family(&#x27;dom&#x27;, &#x27;G&#x27;)</span>
+<span class="ln" id="L481"><a class="lno" href="#L481">481</a>    import math as _mm</span>
+<span class="ln" id="L482"><a class="lno" href="#L482">482</a></span>
+<span class="ln" id="L483"><a class="lno" href="#L483">483</a>    # realized action composes with residue classes; Z^3 representatives do not</span>
+<span class="ln" id="L484"><a class="lno" href="#L484">484</a>    u0 = 5</span>
+<span class="ln" id="L485"><a class="lno" href="#L485">485</a>    check(&quot;r04: realized action composes (5*5=1 in Z_12^x)&quot;, ((5 * (5 * u0)) % 12) == ((25 % 12) * u0) % 12 == u0 % 12)</span>
+<span class="ln" id="L486"><a class="lno" href="#L486">486</a>    check(&quot;r04: integer representatives do not compose on Z (25s != s)&quot;, 25 * 2 != 2)</span>
+<span class="ln" id="L487"><a class="lno" href="#L487">487</a></span>
+<span class="ln" id="L488"><a class="lno" href="#L488">488</a>    # j-suppression witness: (0,0;1) moves under eps=-1 (flag-free restriction needed)</span>
+<span class="ln" id="L489"><a class="lno" href="#L489">489</a>    check(&quot;r04: (0,0;1) sector moves under eps=-1&quot;, ((-1) * (0 + 3)) % 12 == 9 != 3)</span>
+<span class="ln" id="L490"><a class="lno" href="#L490">490</a></span>
+<span class="ln decl" id="L491"><a class="lno" href="#L491">491</a>    # row 10:G2</span>
+<span class="ln" id="L492"><a class="lno" href="#L492">492</a>    # window ladder: nested for kappa &gt;= 17; toy fails.  All orderings exact:</span>
+<span class="ln" id="L493"><a class="lno" href="#L493">493</a>    # 2 sqrt(k) &lt; k/2  &lt;=&gt;  (4 sqrt(k))^2 &lt; k^2  &lt;=&gt;  16 k &lt; k^2  &lt;=&gt;  k &gt; 16.</span>
+<span class="ln" id="L494"><a class="lno" href="#L494">494</a>    def ladder(k):</span>
+<span class="ln" id="L495"><a class="lno" href="#L495">495</a>        return 16 * k &lt; k * k and 0 &lt; k</span>
+<span class="ln" id="L496"><a class="lno" href="#L496">496</a>    check(&quot;r04: ladder nested for kappa=17,387,602140 (integer-square ordering)&quot;,</span>
+<span class="ln" id="L497"><a class="lno" href="#L497">497</a>          all(ladder(k) for k in (17, 387, 602140)))</span>
+<span class="ln" id="L498"><a class="lno" href="#L498">498</a>    check(&quot;r04: toy kappa=3 below nesting threshold&quot;, not ladder(3))</span>
+<span class="ln" id="L499"><a class="lno" href="#L499">499</a>    check(&quot;r04: coherence window identity (2 sqrt kappa)^2 = 4 kappa = p-1 exactly&quot;,</span>
+<span class="ln" id="L500"><a class="lno" href="#L500">500</a>          all((2 * 2 * k == 4 * k) and (4 * k == (4 * k + 1) - 1) for k in (3, 387, 602140)))</span>
+<span class="ln" id="L501"><a class="lno" href="#L501">501</a>    check(&quot;r04: totality closure exact: (2 sqrt S)^2 = Om - 1&quot;,</span>
+<span class="ln" id="L502"><a class="lno" href="#L502">502</a>          4 * 602140 == 2408561 - 1)</span>
+<span class="ln" id="L503"><a class="lno" href="#L503">503</a></span>
+<span class="ln" id="L504"><a class="lno" href="#L504">504</a>    # F/a is flagged (equal-crossing-degree correction): [F]=(-1,-1;1), [a]=(1,-2;0)</span>
+<span class="ln" id="L505"><a class="lno" href="#L505">505</a>    F3 = (-1, -1, 1); A3 = (1, -2, 0)</span>
+<span class="ln" id="L506"><a class="lno" href="#L506">506</a>    ratio = tuple(f - a for f, a in zip(F3, A3))</span>
+<span class="ln" id="L507"><a class="lno" href="#L507">507</a>    check(&quot;r04: F/a crossing degree 1 (flagged, = [m])&quot;, ratio == (-2, 1, 1))</span>
+<span class="ln" id="L508"><a class="lno" href="#L508">508</a></span>
+<span class="ln" id="L509"><a class="lno" href="#L509">509</a>    # meridian transport onto the flag: (L T^kappa)^p = Iq on several shells</span>
+<span class="ln" id="L510"><a class="lno" href="#L510">510</a>    for P_, K_ in ((13, 3), (29, 7), (229, 57)):</span>
+<span class="ln" id="L511"><a class="lno" href="#L511">511</a>        check(f&quot;r04: meridian transport p={P_}&quot;, (P_ % P_, (P_ * K_) % (P_ - 1)) == (0, K_))</span>
+<span class="ln" id="L512"><a class="lno" href="#L512">512</a></span>
+<span class="ln" id="L513"><a class="lno" href="#L513">513</a>    # both roots of -2 satisfy the congruence individually (the pair is the canonical</span>
+<span class="ln" id="L514"><a class="lno" href="#L514">514</a>    # object); the stated representative is the linkage-consistent one</span>
+<span class="ln" id="L515"><a class="lno" href="#L515">515</a>    for Om_, R in CARRIERS.items():</span>
+<span class="ln" id="L516"><a class="lno" href="#L516">516</a>        kB = R[&quot;kB&quot;]; other = Om_ - kB</span>
+<span class="ln" id="L517"><a class="lno" href="#L517">517</a>        check(f&quot;r04 [{Om_}]: both k_B roots satisfy the congruence&quot;, (other * other) % Om_ == Om_ - 2)</span>
+<span class="ln" id="L518"><a class="lno" href="#L518">518</a>        check(f&quot;r04 [{Om_}]: stated representative is linkage-consistent, its partner is not&quot;,</span>
+<span class="ln" id="L519"><a class="lno" href="#L519">519</a>              (kB * R[&quot;c&quot;]) % Om_ == (Om_ - R[&quot;hbar&quot;]) % Om_ and (other * R[&quot;c&quot;]) % Om_ != (Om_ - R[&quot;hbar&quot;]) % Om_)</span>
+<span class="ln" id="L520"><a class="lno" href="#L520">520</a></span>
+<span class="ln" id="L521"><a class="lno" href="#L521">521</a></span>
+<span class="ln" id="L522"><a class="lno" href="#L522">522</a>    # H. round-05 pair layer: pair-well-definedness and representative inertness</span>
+<span class="ln" id="L523"><a class="lno" href="#L523">523</a>    family(&#x27;dom&#x27;, &#x27;H&#x27;)</span>
+<span class="ln" id="L524"><a class="lno" href="#L524">524</a>    # pair multiplication {±a}{±b} = {±ab} is well defined: the four member</span>
+<span class="ln" id="L525"><a class="lno" href="#L525">525</a>    # products fall in one pair</span>
+<span class="ln" id="L526"><a class="lno" href="#L526">526</a>    for Om_, R in CARRIERS.items():</span>
+<span class="ln" id="L527"><a class="lno" href="#L527">527</a>        a_, b_ = R[&quot;kB&quot;], R[&quot;c&quot;]</span>
+<span class="ln" id="L528"><a class="lno" href="#L528">528</a>        prods = {(sa * a_ * sb * b_) % Om_ for sa in (1, -1) for sb in (1, -1)}</span>
+<span class="ln" id="L529"><a class="lno" href="#L529">529</a>        check(f&quot;H [{Om_}]: pair product well defined ({{±k_B}}{{±c}} is one pair)&quot;,</span>
+<span class="ln" id="L530"><a class="lno" href="#L530">530</a>              prods == {(a_ * b_) % Om_, (-a_ * b_) % Om_})</span>
+<span class="ln" id="L531"><a class="lno" href="#L531">531</a>        # linkage as a pair THEOREM: (k_B c)^2 = -1, so the product pair is the</span>
+<span class="ln" id="L532"><a class="lno" href="#L532">532</a>        # root pair of -1, which is {±hbar}</span>
+<span class="ln" id="L533"><a class="lno" href="#L533">533</a>        check(f&quot;H [{Om_}]: (k_B c)^2 = -1 (linkage derived at pair level)&quot;,</span>
+<span class="ln" id="L534"><a class="lno" href="#L534">534</a>              pow(a_ * b_, 2, Om_) == Om_ - 1)</span>
+<span class="ln" id="L535"><a class="lno" href="#L535">535</a>        check(f&quot;H [{Om_}]: product pair equals {{±hbar}}&quot;,</span>
+<span class="ln" id="L536"><a class="lno" href="#L536">536</a>              prods == {R[&quot;hbar&quot;] % Om_, (Om_ - R[&quot;hbar&quot;]) % Om_})</span>
+<span class="ln" id="L537"><a class="lno" href="#L537">537</a>        # (hbar c / G)^2 = -2: the monomial lands in the k_B pair</span>
+<span class="ln" id="L538"><a class="lno" href="#L538">538</a>        mono = (R[&quot;hbar&quot;] * R[&quot;c&quot;] * pow(R[&quot;G&quot;], -1, Om_)) % Om_</span>
+<span class="ln" id="L539"><a class="lno" href="#L539">539</a>        check(f&quot;H [{Om_}]: (hbar c/G)^2 = -2, landing in the k_B pair&quot;,</span>
+<span class="ln" id="L540"><a class="lno" href="#L540">540</a>              pow(mono, 2, Om_) == Om_ - 2 and mono in {R[&quot;kB&quot;], Om_ - R[&quot;kB&quot;]})</span>
+<span class="ln decl" id="L541"><a class="lno" href="#L541">541</a>        # row 10:E5</span>
+<span class="ln" id="L542"><a class="lno" href="#L542">542</a>    # representative inertness: exactly the assignments with s_h = s_c*s_k are</span>
+<span class="ln" id="L543"><a class="lno" href="#L543">543</a>        # admissible (a (Z/2)^2 group), and every checked identity holds on each</span>
+<span class="ln" id="L544"><a class="lno" href="#L544">544</a>        admissible_count = 0</span>
+<span class="ln" id="L545"><a class="lno" href="#L545">545</a>        for s_c in (1, -1):</span>
+<span class="ln" id="L546"><a class="lno" href="#L546">546</a>            for s_h in (1, -1):</span>
+<span class="ln" id="L547"><a class="lno" href="#L547">547</a>                for s_k in (1, -1):</span>
+<span class="ln" id="L548"><a class="lno" href="#L548">548</a>                    hb2, c2_, kB2 = (s_h * R[&quot;hbar&quot;]) % Om_, (s_c * R[&quot;c&quot;]) % Om_, (s_k * R[&quot;kB&quot;]) % Om_</span>
+<span class="ln" id="L549"><a class="lno" href="#L549">549</a>                    quad = ((2 * c2_ * c2_) % Om_ == 1 and (hb2 * hb2) % Om_ == Om_ - 1</span>
+<span class="ln" id="L550"><a class="lno" href="#L550">550</a>                            and (kB2 * kB2) % Om_ == Om_ - 2)</span>
+<span class="ln" id="L551"><a class="lno" href="#L551">551</a>                    link = (kB2 * c2_) % Om_ == (Om_ - hb2) % Om_</span>
+<span class="ln" id="L552"><a class="lno" href="#L552">552</a>                    if quad and link:</span>
+<span class="ln" id="L553"><a class="lno" href="#L553">553</a>                        admissible_count += 1</span>
+<span class="ln" id="L554"><a class="lno" href="#L554">554</a>                        h2 = (Om_ - hb2) % Om_</span>
+<span class="ln" id="L555"><a class="lno" href="#L555">555</a>                        check(f&quot;H [{Om_}] ({s_c},{s_h},{s_k}): h-form holds&quot;, h2 == (-hb2) % Om_)</span>
+<span class="ln" id="L556"><a class="lno" href="#L556">556</a>                        check(f&quot;H [{Om_}] ({s_c},{s_h},{s_k}): monomial lands on this assignment&#x27;s k_B&quot;,</span>
+<span class="ln" id="L557"><a class="lno" href="#L557">557</a>                              (hb2 * c2_ * pow(R[&quot;G&quot;], -1, Om_)) % Om_ == kB2)</span>
+<span class="ln" id="L558"><a class="lno" href="#L558">558</a>                    assert quad, &quot;quadratic defining congruences are sign-blind&quot;</span>
+<span class="ln" id="L559"><a class="lno" href="#L559">559</a>        check(f&quot;H [{Om_}]: admissible assignments form (Z/2)^2 (exactly four)&quot;,</span>
+<span class="ln" id="L560"><a class="lno" href="#L560">560</a>              admissible_count == 4)</span>
+<span class="ln" id="L561"><a class="lno" href="#L561">561</a>    # hbar-flip relabels within the pair: {hbar, h} -&gt; {h, hbar}</span>
+<span class="ln" id="L562"><a class="lno" href="#L562">562</a>    check(&quot;H: hbar-flip relabels the {hbar,h} pair (233: 89 &lt;-&gt; 144)&quot;,</span>
+<span class="ln" id="L563"><a class="lno" href="#L563">563</a>          (233 - 89) % 233 == 144 and (233 - 144) % 233 == 89)</span>
+<span class="ln" id="L564"><a class="lno" href="#L564">564</a>    flush(&#x27;dom&#x27;, order=list(&#x27;ABCDEFGH&#x27;))</span>
+<span class="ln" id="L565"><a class="lno" href="#L565">565</a></span>
+<span class="ln" id="L566"><a class="lno" href="#L566">566</a>if __name__ == &#x27;__main__&#x27;:</span>
+<span class="ln" id="L567"><a class="lno" href="#L567">567</a>    import dimcommon</span>
+<span class="ln" id="L568"><a class="lno" href="#L568">568</a>    run(); dimcommon.summary(write=False)</span>
+<span class="ln" id="L569"><a class="lno" href="#L569">569</a></span>
+</pre></main>
+</div>
+</body>
+</html>

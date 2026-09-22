@@ -10,7 +10,7 @@
 <meta name="description" content="The Lean module FrcLedger/Entropy of the FRC predicate ledgers, rendered with an anchor per declaration">
 <meta name="author" content="Yosef Akhtman">
 <link rel="icon" href="../frc-logo-fav.png">
-<link rel="stylesheet" href="../style.css?v=cf2646a3">
+<link rel="stylesheet" href="../style.css?v=1df9fbf7">
 
 </head>
 <body>
@@ -20,7 +20,7 @@
     
     <nav><a href="../index.html">Home</a><a href="../publications.html">Publications</a><a href="../00-ledger.html">Ledger</a><a href="../predictions.html">Predictions</a><a href="../explicability.html">Explicability</a></nav>
   </header>
-<main id="ledger-main"><section class="prose"><p>The Lean module <code>lean/FrcLedger/Entropy.lean</code> of the paper <a href="../14-entropy/14-entropy-ledger.html">14-entr</a> (on Mathlib): 42 theorems (2 definitions): 0 with no axioms (green), 2 at tier 1 (teal: <code>propext</code>, <code>Quot.sound</code>), 40 at tier 2 (amber: <code>Classical.choice</code>), 0 red; the small plain glyph marks a definition (no proof, no axioms; on the ledger pages the plain glyph is instead a module cited as a whole). Each declaration is anchored; the ledger rows cite them by name. <a href="https://live.lean-lang.org/#project=mathlib-stable&url=https://raw.githubusercontent.com/gamayos/finite-ring-space/main/lean/web/Entropy.lean" target="_blank" rel="noopener">▶ open in the Lean web editor</a> · <a href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcLedger/Entropy.lean" target="_blank" rel="noopener">on GitHub</a> · <a href="https://github.com/gamayos/finite-ring-space/blob/main/lean/axioms.log" target="_blank" rel="noopener">axioms.log</a> · <a href="https://github.com/gamayos/finite-ring-space/actions/workflows/lean.yml" target="_blank" rel="noopener">CI</a>.</p></section><pre class="lean"><span class="ln" id="L1"><a class="lno" href="#L1">1</a>import Mathlib</span>
+<main id="ledger-main"><section class="prose"><p>The Lean module <code>lean/FrcLedger/Entropy.lean</code> of the paper <a href="../14-entropy/14-entropy-ledger.html">14-entr</a> (on Mathlib): 42 theorems (2 definitions): 0 with no axioms (green), 2 at tier 1 (teal: <code>propext</code>, <code>Quot.sound</code>), 40 at tier 2 (amber: <code>Classical.choice</code>), 0 red; the small plain glyph marks a definition (no proof, no axioms; on the ledger pages the plain glyph is instead a module cited as a whole). Each declaration is anchored; the ledger rows cite them by name. <a href="https://live.lean-lang.org/#project=mathlib-stable&url=https://www.finitering.space/lean/web/Entropy.lean" target="_blank" rel="noopener">▶ open in the Lean web editor</a> · <a href="axioms.log" target="_blank" rel="noopener">axioms.log</a>.</p></section><pre class="lean"><span class="ln" id="L1"><a class="lno" href="#L1">1</a>import Mathlib</span>
 <span class="ln" id="L2"><a class="lno" href="#L2">2</a></span>
 <span class="ln" id="L3"><a class="lno" href="#L3">3</a>/-!</span>
 <span class="ln" id="L4"><a class="lno" href="#L4">4</a># 14-entropy — the de Sitter import, the octant and the age–rate locus: the ledger rows in Lean (2026-09-19)</span>
@@ -62,12 +62,12 @@
 <span class="ln" id="L40"><a class="lno" href="#L40">40</a></span>
 <span class="ln" id="L41"><a class="lno" href="#L41">41</a>/-- 14:A1, 14:B9 — the arithmetic behind the import: `Ω = 4S + 1` gives `S = (Ω − 1)/4`, `4 ∣ Ω − 1` and</span>
 <span class="ln" id="L42"><a class="lno" href="#L42">42</a>`Ω ≡ 1 (mod 4)`; the quarter identity `4S = Ω − 1` is exact, the finite face of B9&#x27;s area law `A = 4S`. -/</span>
-<span class="ln decl" id="FRC.Entropy.cardinality"><a class="lno" href="#FRC.Entropy.cardinality">43</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcLedger/Entropy.lean#L43" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small t1" src="lean-t1.png" alt="" title="tier 1: Quot.sound, propext">theorem cardinality {Ω S : ℕ} (h : Ω = 4 * S + 1) :</span>
+<span class="ln decl" id="FRC.Entropy.cardinality"><a class="lno" href="#FRC.Entropy.cardinality">43</a><img class="leanico small t1" src="lean-t1.png" alt="" title="tier 1: Quot.sound, propext">theorem cardinality {Ω S : ℕ} (h : Ω = 4 * S + 1) :</span>
 <span class="ln" id="L44"><a class="lno" href="#L44">44</a>    S = (Ω - 1) / 4 ∧ 4 ∣ Ω - 1 ∧ Ω % 4 = 1 ∧ 4 * S = Ω - 1 := by</span>
 <span class="ln" id="L45"><a class="lno" href="#L45">45</a>  subst h; refine ⟨by omega, ⟨S, by omega⟩, by omega, by omega⟩</span>
 <span class="ln" id="L46"><a class="lno" href="#L46">46</a></span>
 <span class="ln" id="L47"><a class="lno" href="#L47">47</a>/-- In any field of characteristic `≠ 2`, a root of `i² = −1` has `i⁴ = 1` and is neither `1` nor `−1`. -/</span>
-<span class="ln decl" id="FRC.Entropy.quarter_turn_of_sq"><a class="lno" href="#FRC.Entropy.quarter_turn_of_sq">48</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcLedger/Entropy.lean#L48" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small t1" src="lean-t1.png" alt="" title="tier 1: Quot.sound, propext">theorem quarter_turn_of_sq {K : Type*} [Field K] (i : K) (h2 : (2 : K) ≠ 0) (hi : i ^ 2 = -1) :</span>
+<span class="ln decl" id="FRC.Entropy.quarter_turn_of_sq"><a class="lno" href="#FRC.Entropy.quarter_turn_of_sq">48</a><img class="leanico small t1" src="lean-t1.png" alt="" title="tier 1: Quot.sound, propext">theorem quarter_turn_of_sq {K : Type*} [Field K] (i : K) (h2 : (2 : K) ≠ 0) (hi : i ^ 2 = -1) :</span>
 <span class="ln" id="L49"><a class="lno" href="#L49">49</a>    i ^ 4 = 1 ∧ i ≠ 1 ∧ i ≠ -1 := by</span>
 <span class="ln" id="L50"><a class="lno" href="#L50">50</a>  refine ⟨?_, ?_, ?_⟩</span>
 <span class="ln" id="L51"><a class="lno" href="#L51">51</a>  · calc i ^ 4 = (i ^ 2) ^ 2 := by ring</span>
@@ -79,7 +79,7 @@
 <span class="ln" id="L57"><a class="lno" href="#L57">57</a>every Carrier `Ω = 4S + 1` prime, `−1` is a square, so a quarter-turn `i` with `i² = −1`, `i⁴ = 1`, `i ≠ ±1`</span>
 <span class="ln" id="L58"><a class="lno" href="#L58">58</a>exists in `𝔽_Ω`. That the Bekenstein–Hawking quarter `S = A/4` is this quarter-turn read on the area face is</span>
 <span class="ln" id="L59"><a class="lno" href="#L59">59</a>B9&#x27;s realisation clause, not formal content. -/</span>
-<span class="ln decl" id="FRC.Entropy.quarter_turn"><a class="lno" href="#FRC.Entropy.quarter_turn">60</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcLedger/Entropy.lean#L60" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small t2" src="lean-t2.png" alt="" title="tier 2, classical: Classical.choice, Quot.sound, propext">theorem quarter_turn (S : ℕ) [hp : Fact (Nat.Prime (4 * S + 1))] :</span>
+<span class="ln decl" id="FRC.Entropy.quarter_turn"><a class="lno" href="#FRC.Entropy.quarter_turn">60</a><img class="leanico small t2" src="lean-t2.png" alt="" title="tier 2, classical: Classical.choice, Quot.sound, propext">theorem quarter_turn (S : ℕ) [hp : Fact (Nat.Prime (4 * S + 1))] :</span>
 <span class="ln" id="L61"><a class="lno" href="#L61">61</a>    IsSquare (-1 : ZMod (4 * S + 1)) ∧</span>
 <span class="ln" id="L62"><a class="lno" href="#L62">62</a>    ∃ i : ZMod (4 * S + 1), i ^ 2 = -1 ∧ i ^ 4 = 1 ∧ i ≠ 1 ∧ i ≠ -1 := by</span>
 <span class="ln" id="L63"><a class="lno" href="#L63">63</a>  have hsq : IsSquare (-1 : ZMod (4 * S + 1)) :=</span>
@@ -102,14 +102,14 @@
 <span class="ln" id="L80"><a class="lno" href="#L80">80</a>/-- 14:B9 [chart] — the area law&#x27;s chart face: with `n_A = S/π` Planck cells in the projected horizon,</span>
 <span class="ln" id="L81"><a class="lno" href="#L81">81</a>`4π n_A = 4S`, the full phase cycle; a chart identity with no finite content (the finite face is</span>
 <span class="ln" id="L82"><a class="lno" href="#L82">82</a>`cardinality`). -/</span>
-<span class="ln decl" id="FRC.Entropy.area_law_chart"><a class="lno" href="#FRC.Entropy.area_law_chart">83</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcLedger/Entropy.lean#L83" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small t2" src="lean-t2.png" alt="" title="tier 2, classical: Classical.choice, Quot.sound, propext">theorem area_law_chart (S : ℝ) : 4 * π * (S / π) = 4 * S := by</span>
+<span class="ln decl" id="FRC.Entropy.area_law_chart"><a class="lno" href="#FRC.Entropy.area_law_chart">83</a><img class="leanico small t2" src="lean-t2.png" alt="" title="tier 2, classical: Classical.choice, Quot.sound, propext">theorem area_law_chart (S : ℝ) : 4 * π * (S / π) = 4 * S := by</span>
 <span class="ln" id="L84"><a class="lno" href="#L84">84</a>  have := Real.pi_ne_zero</span>
 <span class="ln" id="L85"><a class="lno" href="#L85">85</a>  field_simp</span>
 <span class="ln" id="L86"><a class="lno" href="#L86">86</a></span>
 <span class="ln" id="L87"><a class="lno" href="#L87">87</a>/-- 14:A2 — the arithmetic behind the triality centre: `S ≡ 1 (mod 3)` gives `3 ∣ Ω + 1` and `3 ∤ Ω − 1 = 4S`,</span>
 <span class="ln" id="L88"><a class="lno" href="#L88">88</a>so the Carrier `𝔽_Ω` carries no element of order three in its unit group (that the centre lives in the</span>
 <span class="ln" id="L89"><a class="lno" href="#L89">89</a>quadratic extension, `C₃ ⊂ C_{Ω+1}`, is the corpus&#x27;s gloss, not proved here). -/</span>
-<span class="ln decl" id="FRC.Entropy.triality_centre"><a class="lno" href="#FRC.Entropy.triality_centre">90</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcLedger/Entropy.lean#L90" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small t2" src="lean-t2.png" alt="" title="tier 2, classical: Classical.choice, Quot.sound, propext">theorem triality_centre (S : ℕ) (h : S % 3 = 1) [Fact (Nat.Prime (4 * S + 1))] :</span>
+<span class="ln decl" id="FRC.Entropy.triality_centre"><a class="lno" href="#FRC.Entropy.triality_centre">90</a><img class="leanico small t2" src="lean-t2.png" alt="" title="tier 2, classical: Classical.choice, Quot.sound, propext">theorem triality_centre (S : ℕ) (h : S % 3 = 1) [Fact (Nat.Prime (4 * S + 1))] :</span>
 <span class="ln" id="L91"><a class="lno" href="#L91">91</a>    3 ∣ 4 * S + 1 + 1 ∧ ¬ 3 ∣ 4 * S ∧ ∀ x : (ZMod (4 * S + 1))ˣ, orderOf x ≠ 3 := by</span>
 <span class="ln" id="L92"><a class="lno" href="#L92">92</a>  refine ⟨⟨(4 * S + 2) / 3, by omega⟩, by omega, fun x hx =&gt; ?_⟩</span>
 <span class="ln" id="L93"><a class="lno" href="#L93">93</a>  have hd := orderOf_dvd_card (x := x)</span>
@@ -119,7 +119,7 @@
 <span class="ln" id="L97"><a class="lno" href="#L97">97</a>/-- 14:A2 — the relation behind the c-square (upstream 2-geometry; Mathlib&#x27;s quadratic-reciprocity</span>
 <span class="ln" id="L98"><a class="lno" href="#L98">98</a>supplement): on a Carrier `Ω = 4S + 1` prime, `2` is a square in `𝔽_Ω` — equivalently `2⁻¹`, the residue `c²`</span>
 <span class="ln" id="L99"><a class="lno" href="#L99">99</a>of the constants correspondence — exactly when `S` is even (`Ω ≡ 1 (mod 8)`). -/</span>
-<span class="ln decl" id="FRC.Entropy.c_square"><a class="lno" href="#FRC.Entropy.c_square">100</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcLedger/Entropy.lean#L100" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small t2" src="lean-t2.png" alt="" title="tier 2, classical: Classical.choice, Quot.sound, propext">theorem c_square (S : ℕ) [hp : Fact (Nat.Prime (4 * S + 1))] :</span>
+<span class="ln decl" id="FRC.Entropy.c_square"><a class="lno" href="#FRC.Entropy.c_square">100</a><img class="leanico small t2" src="lean-t2.png" alt="" title="tier 2, classical: Classical.choice, Quot.sound, propext">theorem c_square (S : ℕ) [hp : Fact (Nat.Prime (4 * S + 1))] :</span>
 <span class="ln" id="L101"><a class="lno" href="#L101">101</a>    (IsSquare (2 : ZMod (4 * S + 1)) ↔ Even S) ∧ (IsSquare (2⁻¹ : ZMod (4 * S + 1)) ↔ Even S) := by</span>
 <span class="ln" id="L102"><a class="lno" href="#L102">102</a>  have hne : 4 * S + 1 ≠ 2 := by omega</span>
 <span class="ln" id="L103"><a class="lno" href="#L103">103</a>  have h2 : (IsSquare (2 : ZMod (4 * S + 1)) ↔ Even S) := by</span>
@@ -140,14 +140,14 @@
 <span class="ln" id="L118"><a class="lno" href="#L118">118</a></span>
 <span class="ln" id="L119"><a class="lno" href="#L119">119</a>/-- 14:A2 — the laboratory Carrier `Ω = 2 408 561`, `S = 602 140`: the three congruences as host-decided</span>
 <span class="ln" id="L120"><a class="lno" href="#L120">120</a>values — `S` even, `S ≡ 1 (mod 3)`, `4S + 1` prime. -/</span>
-<span class="ln decl" id="FRC.Entropy.carrierLab"><a class="lno" href="#FRC.Entropy.carrierLab">121</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcLedger/Entropy.lean#L121" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small t2" src="lean-t2.png" alt="" title="tier 2, classical: Classical.choice, Quot.sound, propext">theorem carrierLab :</span>
+<span class="ln decl" id="FRC.Entropy.carrierLab"><a class="lno" href="#FRC.Entropy.carrierLab">121</a><img class="leanico small t2" src="lean-t2.png" alt="" title="tier 2, classical: Classical.choice, Quot.sound, propext">theorem carrierLab :</span>
 <span class="ln" id="L122"><a class="lno" href="#L122">122</a>    4 * 602140 + 1 = 2408561 ∧ Even 602140 ∧ 602140 % 3 = 1 ∧ Nat.Prime 2408561 :=</span>
 <span class="ln" id="L123"><a class="lno" href="#L123">123</a>  ⟨by norm_num, by decide, by norm_num, by norm_num⟩</span>
 <span class="ln" id="L124"><a class="lno" href="#L124">124</a></span>
 <span class="ln" id="L125"><a class="lno" href="#L125">125</a>/-- 14:C2 [chart] — the horizon-quarter closure is a consistency loop: the shell entropy `S(p) = (p² − 1)/4`</span>
 <span class="ln" id="L126"><a class="lno" href="#L126">126</a>read at the coherence-horizon point `p² = Ω` returns `(Ω − 1)/4 = S`, the import itself. No shell has `p² = Ω`</span>
 <span class="ln" id="L127"><a class="lno" href="#L127">127</a>(`Ω` is prime); the closure is read at the chart point `√Ω`. -/</span>
-<span class="ln decl" id="FRC.Entropy.horizon_quarter_closure"><a class="lno" href="#FRC.Entropy.horizon_quarter_closure">128</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcLedger/Entropy.lean#L128" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small t2" src="lean-t2.png" alt="" title="tier 2, classical: Classical.choice, Quot.sound, propext">theorem horizon_quarter_closure (Ω S : ℕ) (p : ℝ) (hΩ : Ω = 4 * S + 1) (hp : p ^ 2 = Ω) :</span>
+<span class="ln decl" id="FRC.Entropy.horizon_quarter_closure"><a class="lno" href="#FRC.Entropy.horizon_quarter_closure">128</a><img class="leanico small t2" src="lean-t2.png" alt="" title="tier 2, classical: Classical.choice, Quot.sound, propext">theorem horizon_quarter_closure (Ω S : ℕ) (p : ℝ) (hΩ : Ω = 4 * S + 1) (hp : p ^ 2 = Ω) :</span>
 <span class="ln" id="L129"><a class="lno" href="#L129">129</a>    (p ^ 2 - 1) / 4 = S := by</span>
 <span class="ln" id="L130"><a class="lno" href="#L130">130</a>  rw [hp, hΩ]; push_cast; ring</span>
 <span class="ln" id="L131"><a class="lno" href="#L131">131</a></span>
@@ -159,7 +159,7 @@
 <span class="ln" id="L137"><a class="lno" href="#L137">137</a>/-- 14:B2 [chart] — the angle–count dictionary: with the full cycle `2π ↔ 4S`, an angle `θ` is the chart face</span>
 <span class="ln" id="L138"><a class="lno" href="#L138">138</a>of the count `θ/(2π) · 4S`: `π ↔ 2S`, `π/2 ↔ S`, `π/4 ↔ S/2` chronons; the count face is</span>
 <span class="ln" id="L139"><a class="lno" href="#L139">139</a>`FRC.Entropy.octant_count` in the core. -/</span>
-<span class="ln decl" id="FRC.Entropy.dictionary"><a class="lno" href="#FRC.Entropy.dictionary">140</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcLedger/Entropy.lean#L140" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small t2" src="lean-t2.png" alt="" title="tier 2, classical: Classical.choice, Quot.sound, propext">theorem dictionary (S : ℝ) :</span>
+<span class="ln decl" id="FRC.Entropy.dictionary"><a class="lno" href="#FRC.Entropy.dictionary">140</a><img class="leanico small t2" src="lean-t2.png" alt="" title="tier 2, classical: Classical.choice, Quot.sound, propext">theorem dictionary (S : ℝ) :</span>
 <span class="ln" id="L141"><a class="lno" href="#L141">141</a>    π / (2 * π) * (4 * S) = 2 * S ∧ (π / 2) / (2 * π) * (4 * S) = S ∧</span>
 <span class="ln" id="L142"><a class="lno" href="#L142">142</a>    (π / 4) / (2 * π) * (4 * S) = S / 2 := by</span>
 <span class="ln" id="L143"><a class="lno" href="#L143">143</a>  have := Real.pi_ne_zero</span>
@@ -167,7 +167,7 @@
 <span class="ln" id="L145"><a class="lno" href="#L145">145</a></span>
 <span class="ln" id="L146"><a class="lno" href="#L146">146</a>/-- 14:C5 [chart] — clause (iv), the chart conversion of the octant: the count `S/2` out of the `4S`-cycle,</span>
 <span class="ln" id="L147"><a class="lno" href="#L147">147</a>read on the meridian circle `2π r_H/c`, is the depth `(π/4) r_H/c`. -/</span>
-<span class="ln decl" id="FRC.Entropy.octant_chart"><a class="lno" href="#FRC.Entropy.octant_chart">148</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcLedger/Entropy.lean#L148" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small t2" src="lean-t2.png" alt="" title="tier 2, classical: Classical.choice, Quot.sound, propext">theorem octant_chart (S r c : ℝ) (hS : S ≠ 0) :</span>
+<span class="ln decl" id="FRC.Entropy.octant_chart"><a class="lno" href="#FRC.Entropy.octant_chart">148</a><img class="leanico small t2" src="lean-t2.png" alt="" title="tier 2, classical: Classical.choice, Quot.sound, propext">theorem octant_chart (S r c : ℝ) (hS : S ≠ 0) :</span>
 <span class="ln" id="L149"><a class="lno" href="#L149">149</a>    (S / 2) / (4 * S) * (2 * π * r / c) = (π / 4) * r / c := by</span>
 <span class="ln" id="L150"><a class="lno" href="#L150">150</a>  rcases eq_or_ne c 0 with rfl | hc</span>
 <span class="ln" id="L151"><a class="lno" href="#L151">151</a>  · simp</span>
@@ -176,7 +176,7 @@
 <span class="ln" id="L154"><a class="lno" href="#L154">154</a>/-- 14:X2 [chart] — Milgrom&#x27;s rebooking, the substitution `h = 2πħ`: the floor `a₀ = cH/2π` is `cHħ/h`, the</span>
 <span class="ln" id="L155"><a class="lno" href="#L155">155</a>per-cycle rate budget per step. That the `2π` carries zero freedom is X2&#x27;s realisation clause (B2 fixes the</span>
 <span class="ln" id="L156"><a class="lno" href="#L156">156</a>convention), not formal content. -/</span>
-<span class="ln decl" id="FRC.Entropy.milgrom_rebooking"><a class="lno" href="#FRC.Entropy.milgrom_rebooking">157</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcLedger/Entropy.lean#L157" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small t2" src="lean-t2.png" alt="" title="tier 2, classical: Classical.choice, Quot.sound, propext">theorem milgrom_rebooking (c H ħ h : ℝ) (hh : h = 2 * π * ħ) (hħ : ħ ≠ 0) :</span>
+<span class="ln decl" id="FRC.Entropy.milgrom_rebooking"><a class="lno" href="#FRC.Entropy.milgrom_rebooking">157</a><img class="leanico small t2" src="lean-t2.png" alt="" title="tier 2, classical: Classical.choice, Quot.sound, propext">theorem milgrom_rebooking (c H ħ h : ℝ) (hh : h = 2 * π * ħ) (hħ : ħ ≠ 0) :</span>
 <span class="ln" id="L158"><a class="lno" href="#L158">158</a>    c * H / (2 * π) = c * H * ħ / h := by</span>
 <span class="ln" id="L159"><a class="lno" href="#L159">159</a>  subst hh; have := Real.pi_ne_zero; field_simp</span>
 <span class="ln" id="L160"><a class="lno" href="#L160">160</a></span>
@@ -188,20 +188,20 @@
 <span class="ln" id="L166"><a class="lno" href="#L166">166</a>/-- 14:C6, 14:X4 — the arithmetic face: the octant sector `C₈ ⊂ C_{4S}` exists exactly when `8 ∣ 4S`, that is</span>
 <span class="ln" id="L167"><a class="lno" href="#L167">167</a>when `S` is even (X4&#x27;s claim about what certifies the congruence is a realisation clause, not this</span>
 <span class="ln" id="L168"><a class="lno" href="#L168">168</a>equivalence). -/</span>
-<span class="ln decl" id="FRC.Entropy.octant_sector_iff"><a class="lno" href="#FRC.Entropy.octant_sector_iff">169</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcLedger/Entropy.lean#L169" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small t2" src="lean-t2.png" alt="" title="tier 2, classical: Classical.choice, Quot.sound, propext">theorem octant_sector_iff (S : ℕ) : 8 ∣ 4 * S ↔ Even S := by</span>
+<span class="ln decl" id="FRC.Entropy.octant_sector_iff"><a class="lno" href="#FRC.Entropy.octant_sector_iff">169</a><img class="leanico small t2" src="lean-t2.png" alt="" title="tier 2, classical: Classical.choice, Quot.sound, propext">theorem octant_sector_iff (S : ℕ) : 8 ∣ 4 * S ↔ Even S := by</span>
 <span class="ln" id="L170"><a class="lno" href="#L170">170</a>  rw [Nat.even_iff, Nat.dvd_iff_mod_eq_zero]; omega</span>
 <span class="ln" id="L171"><a class="lno" href="#L171">171</a></span>
 <span class="ln" id="L172"><a class="lno" href="#L172">172</a>/-- 14:C5, 14:B6 — the closure count, clauses (iii)–(iv): given B6&#x27;s accounting (a two-way registration of</span>
 <span class="ln" id="L173"><a class="lno" href="#L173">173</a>depth `x` costs `2x` of the one-way budget `S`; the realisation, not formalised), the closable depths are exactly</span>
 <span class="ln" id="L174"><a class="lno" href="#L174">174</a>`x ≤ S/2`, and on a Carrier with `S` even the octant count `S/2` closes the budget, `2 · (S/2) = S`. -/</span>
-<span class="ln decl" id="FRC.Entropy.closure_budget"><a class="lno" href="#FRC.Entropy.closure_budget">175</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcLedger/Entropy.lean#L175" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small t2" src="lean-t2.png" alt="" title="tier 2, classical: Classical.choice, Quot.sound, propext">theorem closure_budget (S : ℕ) :</span>
+<span class="ln decl" id="FRC.Entropy.closure_budget"><a class="lno" href="#FRC.Entropy.closure_budget">175</a><img class="leanico small t2" src="lean-t2.png" alt="" title="tier 2, classical: Classical.choice, Quot.sound, propext">theorem closure_budget (S : ℕ) :</span>
 <span class="ln" id="L176"><a class="lno" href="#L176">176</a>    (∀ x, 2 * x ≤ S ↔ x ≤ S / 2) ∧ (Even S → 2 * (S / 2) = S) := by</span>
 <span class="ln" id="L177"><a class="lno" href="#L177">177</a>  refine ⟨fun x =&gt; by omega, fun hS =&gt; ?_⟩</span>
 <span class="ln" id="L178"><a class="lno" href="#L178">178</a>  rw [Nat.even_iff] at hS; omega</span>
 <span class="ln" id="L179"><a class="lno" href="#L179">179</a></span>
 <span class="ln" id="L180"><a class="lno" href="#L180">180</a>/-- 14:C6 — the octant character: in any field an element `ζ` of order eight (`ζ⁸ = 1`, `ζ⁴ ≠ 1`) has</span>
 <span class="ln" id="L181"><a class="lno" href="#L181">181</a>`ζ⁴ = −1`, and the residue the Tsirelson identity carries has square `(ζ + ζ⁻¹)² = 2`, `(2(ζ + ζ⁻¹))² = 8`. -/</span>
-<span class="ln decl" id="FRC.Entropy.octant_character"><a class="lno" href="#FRC.Entropy.octant_character">182</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcLedger/Entropy.lean#L182" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small t2" src="lean-t2.png" alt="" title="tier 2, classical: Classical.choice, Quot.sound, propext">theorem octant_character {K : Type*} [Field K] (ζ : K) (h8 : ζ ^ 8 = 1) (h4 : ζ ^ 4 ≠ 1) :</span>
+<span class="ln decl" id="FRC.Entropy.octant_character"><a class="lno" href="#FRC.Entropy.octant_character">182</a><img class="leanico small t2" src="lean-t2.png" alt="" title="tier 2, classical: Classical.choice, Quot.sound, propext">theorem octant_character {K : Type*} [Field K] (ζ : K) (h8 : ζ ^ 8 = 1) (h4 : ζ ^ 4 ≠ 1) :</span>
 <span class="ln" id="L183"><a class="lno" href="#L183">183</a>    ζ ^ 4 = -1 ∧ (ζ + ζ⁻¹) ^ 2 = 2 ∧ (2 * (ζ + ζ⁻¹)) ^ 2 = 8 := by</span>
 <span class="ln" id="L184"><a class="lno" href="#L184">184</a>  have hz : ζ ≠ 0 := by rintro rfl; simp at h8</span>
 <span class="ln" id="L185"><a class="lno" href="#L185">185</a>  have hsq : ζ ^ 4 * ζ ^ 4 = 1 := by rw [← pow_add]; exact h8</span>
@@ -215,7 +215,7 @@
 <span class="ln" id="L193"><a class="lno" href="#L193">193</a></span>
 <span class="ln" id="L194"><a class="lno" href="#L194">194</a>/-- 14:C6, 14:X4 — on every Carrier `Ω = 4S + 1` prime the octant sector is realised exactly when `S` is even:</span>
 <span class="ln" id="L195"><a class="lno" href="#L195">195</a>the unit group of `𝔽_Ω` has an element of order eight iff `8 ∣ 4S`. -/</span>
-<span class="ln decl" id="FRC.Entropy.octant_exists_iff"><a class="lno" href="#FRC.Entropy.octant_exists_iff">196</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcLedger/Entropy.lean#L196" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small t2" src="lean-t2.png" alt="" title="tier 2, classical: Classical.choice, Quot.sound, propext">theorem octant_exists_iff (S : ℕ) [Fact (Nat.Prime (4 * S + 1))] :</span>
+<span class="ln decl" id="FRC.Entropy.octant_exists_iff"><a class="lno" href="#FRC.Entropy.octant_exists_iff">196</a><img class="leanico small t2" src="lean-t2.png" alt="" title="tier 2, classical: Classical.choice, Quot.sound, propext">theorem octant_exists_iff (S : ℕ) [Fact (Nat.Prime (4 * S + 1))] :</span>
 <span class="ln" id="L197"><a class="lno" href="#L197">197</a>    (∃ ζ : (ZMod (4 * S + 1))ˣ, orderOf ζ = 8) ↔ Even S := by</span>
 <span class="ln" id="L198"><a class="lno" href="#L198">198</a>  rw [← octant_sector_iff]</span>
 <span class="ln" id="L199"><a class="lno" href="#L199">199</a>  constructor</span>
@@ -232,7 +232,7 @@
 <span class="ln" id="L210"><a class="lno" href="#L210">210</a>/-- 14:X4 — the arithmetic face of the second face: the c-square (`2` a square in `𝔽_Ω`) holds exactly when</span>
 <span class="ln" id="L211"><a class="lno" href="#L211">211</a>the octant sector exists — the two congruence faces coincide on every Carrier. The reading of the octant as</span>
 <span class="ln" id="L212"><a class="lno" href="#L212">212</a>the well-definedness of the measured age is X4&#x27;s realisation clause, not formal content. -/</span>
-<span class="ln decl" id="FRC.Entropy.octant_second_face"><a class="lno" href="#FRC.Entropy.octant_second_face">213</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcLedger/Entropy.lean#L213" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small t2" src="lean-t2.png" alt="" title="tier 2, classical: Classical.choice, Quot.sound, propext">theorem octant_second_face (S : ℕ) [Fact (Nat.Prime (4 * S + 1))] :</span>
+<span class="ln decl" id="FRC.Entropy.octant_second_face"><a class="lno" href="#FRC.Entropy.octant_second_face">213</a><img class="leanico small t2" src="lean-t2.png" alt="" title="tier 2, classical: Classical.choice, Quot.sound, propext">theorem octant_second_face (S : ℕ) [Fact (Nat.Prime (4 * S + 1))] :</span>
 <span class="ln" id="L214"><a class="lno" href="#L214">214</a>    IsSquare (2 : ZMod (4 * S + 1)) ↔ ∃ ζ : (ZMod (4 * S + 1))ˣ, orderOf ζ = 8 := by</span>
 <span class="ln" id="L215"><a class="lno" href="#L215">215</a>  rw [(c_square S).1, octant_exists_iff]</span>
 <span class="ln" id="L216"><a class="lno" href="#L216">216</a></span>
@@ -247,17 +247,17 @@
 <span class="ln" id="L225"><a class="lno" href="#L225">225</a>equation in `lcdm_age` below (the closed-form solution reaches `1` exactly then; uniqueness of the solution is</span>
 <span class="ln" id="L226"><a class="lno" href="#L226">226</a>not formalised). That a landing of it on `π/4` restates the fit is C3&#x27;s judgment under B5, not formal</span>
 <span class="ln" id="L227"><a class="lno" href="#L227">227</a>content. -/</span>
-<span class="ln decl" id="FRC.Entropy.lcdmAge"><a class="lno" href="#FRC.Entropy.lcdmAge">228</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcLedger/Entropy.lean#L228" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small" src="lean.png" alt="" title="a definition: no proof, no axioms">noncomputable def lcdmAge (Ω : ℝ) : ℝ := 2 / 3 * artanh (√Ω)</span>
+<span class="ln decl" id="FRC.Entropy.lcdmAge"><a class="lno" href="#FRC.Entropy.lcdmAge">228</a><img class="leanico small" src="lean.png" alt="" title="a definition: no proof, no axioms">noncomputable def lcdmAge (Ω : ℝ) : ℝ := 2 / 3 * artanh (√Ω)</span>
 <span class="ln" id="L229"><a class="lno" href="#L229">229</a></span>
 <span class="ln" id="L230"><a class="lno" href="#L230">230</a>/-- The octant&#x27;s rate factor `tanh(3π/8)` is positive. -/</span>
-<span class="ln decl" id="FRC.Entropy.tanh_octant_pos"><a class="lno" href="#FRC.Entropy.tanh_octant_pos">231</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcLedger/Entropy.lean#L231" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small t2" src="lean-t2.png" alt="" title="tier 2, classical: Classical.choice, Quot.sound, propext">theorem tanh_octant_pos : 0 &lt; tanh (3 * π / 8) := by</span>
+<span class="ln decl" id="FRC.Entropy.tanh_octant_pos"><a class="lno" href="#FRC.Entropy.tanh_octant_pos">231</a><img class="leanico small t2" src="lean-t2.png" alt="" title="tier 2, classical: Classical.choice, Quot.sound, propext">theorem tanh_octant_pos : 0 &lt; tanh (3 * π / 8) := by</span>
 <span class="ln" id="L232"><a class="lno" href="#L232">232</a>  rw [Real.tanh_eq_sinh_div_cosh]</span>
 <span class="ln" id="L233"><a class="lno" href="#L233">233</a>  exact div_pos (Real.sinh_pos_iff.2 (by positivity)) (Real.cosh_pos _)</span>
 <span class="ln" id="L234"><a class="lno" href="#L234">234</a></span>
 <span class="ln" id="L235"><a class="lno" href="#L235">235</a>/-- 14:C7, 14:X3 [ΛCDM] — the octant inversion: given the octant&#x27;s `π/4` (C5, whose realisation content is not</span>
 <span class="ln" id="L236"><a class="lno" href="#L236">236</a>formalised here), the rival chart&#x27;s identity gives `t₀H_Λ = π/4` at `Ω_Λ = tanh²(3π/8)` and, for</span>
 <span class="ln" id="L237"><a class="lno" href="#L237">237</a>`0 ≤ Ω_Λ &lt; 1`, only there. -/</span>
-<span class="ln decl" id="FRC.Entropy.octant_inversion"><a class="lno" href="#FRC.Entropy.octant_inversion">238</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcLedger/Entropy.lean#L238" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small t2" src="lean-t2.png" alt="" title="tier 2, classical: Classical.choice, Quot.sound, propext">theorem octant_inversion :</span>
+<span class="ln decl" id="FRC.Entropy.octant_inversion"><a class="lno" href="#FRC.Entropy.octant_inversion">238</a><img class="leanico small t2" src="lean-t2.png" alt="" title="tier 2, classical: Classical.choice, Quot.sound, propext">theorem octant_inversion :</span>
 <span class="ln" id="L239"><a class="lno" href="#L239">239</a>    lcdmAge (tanh (3 * π / 8) ^ 2) = π / 4 ∧</span>
 <span class="ln" id="L240"><a class="lno" href="#L240">240</a>    ∀ Ω : ℝ, 0 ≤ Ω → Ω &lt; 1 → lcdmAge Ω = π / 4 → Ω = tanh (3 * π / 8) ^ 2 := by</span>
 <span class="ln" id="L241"><a class="lno" href="#L241">241</a>  have hpos := tanh_octant_pos</span>
@@ -277,7 +277,7 @@
 <span class="ln" id="L255"><a class="lno" href="#L255">255</a>/-- 14:P3 [ΛCDM] — the algebraic locus: with `t H_Λ = π/4` (the octant), `H_Λ = H₀ √Ω_Λ` and</span>
 <span class="ln" id="L256"><a class="lno" href="#L256">256</a>`Ω_Λ = tanh²(3π/8)`, `t H₀ = (π/4)/tanh(3π/8)`; the numeral `0.950` is bracketed in `locus_bracket`; the</span>
 <span class="ln" id="L257"><a class="lno" href="#L257">257</a>stellar-age reading `H₀ = 68.2 ± 1.7` and its confrontations are not formalised. -/</span>
-<span class="ln decl" id="FRC.Entropy.age_rate_locus"><a class="lno" href="#FRC.Entropy.age_rate_locus">258</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcLedger/Entropy.lean#L258" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small t2" src="lean-t2.png" alt="" title="tier 2, classical: Classical.choice, Quot.sound, propext">theorem age_rate_locus (t H0 HΛ Ω : ℝ) (hoct : t * HΛ = π / 4) (hΛ : HΛ = H0 * √Ω)</span>
+<span class="ln decl" id="FRC.Entropy.age_rate_locus"><a class="lno" href="#FRC.Entropy.age_rate_locus">258</a><img class="leanico small t2" src="lean-t2.png" alt="" title="tier 2, classical: Classical.choice, Quot.sound, propext">theorem age_rate_locus (t H0 HΛ Ω : ℝ) (hoct : t * HΛ = π / 4) (hΛ : HΛ = H0 * √Ω)</span>
 <span class="ln" id="L259"><a class="lno" href="#L259">259</a>    (hΩ : Ω = tanh (3 * π / 8) ^ 2) : t * H0 = (π / 4) / tanh (3 * π / 8) := by</span>
 <span class="ln" id="L260"><a class="lno" href="#L260">260</a>  have hpos := tanh_octant_pos</span>
 <span class="ln" id="L261"><a class="lno" href="#L261">261</a>  rw [hΩ, Real.sqrt_sq hpos.le] at hΛ</span>
@@ -286,7 +286,7 @@
 <span class="ln" id="L264"><a class="lno" href="#L264">264</a>/-- 14:C8 [ΛCDM] — the channel-1 consistency: with `Λ = 3Ω_Λ H₀²/c²` (the definition of `Ω_Λ`) the asymptotic</span>
 <span class="ln" id="L265"><a class="lno" href="#L265">265</a>rate is `H_Λ = c√(Λ/3) = H₀√Ω_Λ`, and the locus read on it, `H_Λ/tanh(3π/8)`, returns `H₀` exactly when</span>
 <span class="ln" id="L266"><a class="lno" href="#L266">266</a>`Ω_Λ = tanh²(3π/8)`; at the fitted `0.685` the return is within `0.1 %` (`channel_one_numeral`). -/</span>
-<span class="ln decl" id="FRC.Entropy.channel_one_consistency"><a class="lno" href="#FRC.Entropy.channel_one_consistency">267</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcLedger/Entropy.lean#L267" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small t2" src="lean-t2.png" alt="" title="tier 2, classical: Classical.choice, Quot.sound, propext">theorem channel_one_consistency (H0 c Ω Λ : ℝ) (hH0 : 0 &lt; H0) (hc : 0 &lt; c) (hΩ : 0 ≤ Ω)</span>
+<span class="ln decl" id="FRC.Entropy.channel_one_consistency"><a class="lno" href="#FRC.Entropy.channel_one_consistency">267</a><img class="leanico small t2" src="lean-t2.png" alt="" title="tier 2, classical: Classical.choice, Quot.sound, propext">theorem channel_one_consistency (H0 c Ω Λ : ℝ) (hH0 : 0 &lt; H0) (hc : 0 &lt; c) (hΩ : 0 ≤ Ω)</span>
 <span class="ln" id="L268"><a class="lno" href="#L268">268</a>    (hΛ : Λ = 3 * Ω * H0 ^ 2 / c ^ 2) :</span>
 <span class="ln" id="L269"><a class="lno" href="#L269">269</a>    c * √(Λ / 3) = H0 * √Ω ∧ (H0 * √Ω / tanh (3 * π / 8) = H0 ↔ Ω = tanh (3 * π / 8) ^ 2) := by</span>
 <span class="ln" id="L270"><a class="lno" href="#L270">270</a>  have hpos := tanh_octant_pos</span>
@@ -306,7 +306,7 @@
 <span class="ln" id="L284"><a class="lno" href="#L284">284</a>/-- 14:C8 [ΛCDM] — the two-cluster chart identity: with `S = π (r_H/ℓ_P)²`, a `Λ`-face reading</span>
 <span class="ln" id="L285"><a class="lno" href="#L285">285</a>`r_H = c/(H₀√Ω_Λ)` against a rate-face reading `r_H = c/H_rate` gives `S_Λ/S_rate = (H_rate/H₀)²/Ω_Λ` — the</span>
 <span class="ln" id="L286"><a class="lno" href="#L286">286</a>definition of `Ω_Λ` read on the rows, the Hubble tension displayed and no framework content. -/</span>
-<span class="ln decl" id="FRC.Entropy.cluster_identity"><a class="lno" href="#FRC.Entropy.cluster_identity">287</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcLedger/Entropy.lean#L287" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small t2" src="lean-t2.png" alt="" title="tier 2, classical: Classical.choice, Quot.sound, propext">theorem cluster_identity (c H0 Hr Ω ℓ : ℝ) (hc : c ≠ 0) (hΩ : 0 &lt; Ω) (hℓ : ℓ ≠ 0) :</span>
+<span class="ln decl" id="FRC.Entropy.cluster_identity"><a class="lno" href="#FRC.Entropy.cluster_identity">287</a><img class="leanico small t2" src="lean-t2.png" alt="" title="tier 2, classical: Classical.choice, Quot.sound, propext">theorem cluster_identity (c H0 Hr Ω ℓ : ℝ) (hc : c ≠ 0) (hΩ : 0 &lt; Ω) (hℓ : ℓ ≠ 0) :</span>
 <span class="ln" id="L288"><a class="lno" href="#L288">288</a>    (π * (c / (H0 * √Ω) / ℓ) ^ 2) / (π * (c / Hr / ℓ) ^ 2) = (Hr / H0) ^ 2 / Ω := by</span>
 <span class="ln" id="L289"><a class="lno" href="#L289">289</a>  have hs : √Ω ≠ 0 := (Real.sqrt_pos.2 hΩ).ne&#x27;</span>
 <span class="ln" id="L290"><a class="lno" href="#L290">290</a>  have hpi := Real.pi_ne_zero</span>
@@ -321,7 +321,7 @@
 <span class="ln" id="L299"><a class="lno" href="#L299">299</a>`ρ̇ + 3H(ρ + p) = 0` with `ρ̇ = 0` (a fixed cardinality admits no evolution) and `H ≠ 0` gives `p = −ρ`,</span>
 <span class="ln" id="L300"><a class="lno" href="#L300">300</a>`w = p/ρ = −1` exactly. B8&#x27;s single-component clause and P4&#x27;s `w₀w_a` rigidity are realisation content, not</span>
 <span class="ln" id="L301"><a class="lno" href="#L301">301</a>formalised. -/</span>
-<span class="ln decl" id="FRC.Entropy.fluid_w"><a class="lno" href="#FRC.Entropy.fluid_w">302</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcLedger/Entropy.lean#L302" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small t2" src="lean-t2.png" alt="" title="tier 2, classical: Classical.choice, Quot.sound, propext">theorem fluid_w (H ρ p ρ&#x27; : ℝ) (hH : H ≠ 0) (hρ : ρ ≠ 0) (hρ&#x27; : ρ&#x27; = 0) (h : ρ&#x27; + 3 * H * (ρ + p) = 0) :</span>
+<span class="ln decl" id="FRC.Entropy.fluid_w"><a class="lno" href="#FRC.Entropy.fluid_w">302</a><img class="leanico small t2" src="lean-t2.png" alt="" title="tier 2, classical: Classical.choice, Quot.sound, propext">theorem fluid_w (H ρ p ρ&#x27; : ℝ) (hH : H ≠ 0) (hρ : ρ ≠ 0) (hρ&#x27; : ρ&#x27; = 0) (h : ρ&#x27; + 3 * H * (ρ + p) = 0) :</span>
 <span class="ln" id="L303"><a class="lno" href="#L303">303</a>    p = -ρ ∧ p / ρ = -1 := by</span>
 <span class="ln" id="L304"><a class="lno" href="#L304">304</a>  subst hρ&#x27;</span>
 <span class="ln" id="L305"><a class="lno" href="#L305">305</a>  have hp : p = -ρ := by</span>
@@ -334,14 +334,14 @@
 <span class="ln" id="L312"><a class="lno" href="#L312">312</a></span>
 <span class="ln" id="L313"><a class="lno" href="#L313">313</a></span>
 <span class="ln" id="L314"><a class="lno" href="#L314">314</a>/-- `tanh x = (e^{2x} − 1)/(e^{2x} + 1)`. -/</span>
-<span class="ln decl" id="FRC.Entropy.tanh_eq_exp_two_mul"><a class="lno" href="#FRC.Entropy.tanh_eq_exp_two_mul">315</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcLedger/Entropy.lean#L315" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small t2" src="lean-t2.png" alt="" title="tier 2, classical: Classical.choice, Quot.sound, propext">theorem tanh_eq_exp_two_mul (x : ℝ) : tanh x = (exp (2 * x) - 1) / (exp (2 * x) + 1) := by</span>
+<span class="ln decl" id="FRC.Entropy.tanh_eq_exp_two_mul"><a class="lno" href="#FRC.Entropy.tanh_eq_exp_two_mul">315</a><img class="leanico small t2" src="lean-t2.png" alt="" title="tier 2, classical: Classical.choice, Quot.sound, propext">theorem tanh_eq_exp_two_mul (x : ℝ) : tanh x = (exp (2 * x) - 1) / (exp (2 * x) + 1) := by</span>
 <span class="ln" id="L316"><a class="lno" href="#L316">316</a>  rw [Real.tanh_eq, Real.exp_neg, two_mul, Real.exp_add]</span>
 <span class="ln" id="L317"><a class="lno" href="#L317">317</a>  have h := Real.exp_pos x</span>
 <span class="ln" id="L318"><a class="lno" href="#L318">318</a>  field_simp</span>
 <span class="ln" id="L319"><a class="lno" href="#L319">319</a></span>
 <span class="ln" id="L320"><a class="lno" href="#L320">320</a>/-- The Taylor brackets of `e^t` at the two ends of `t = 3π/4 − 2`: seven terms of the series with the tail</span>
 <span class="ln" id="L321"><a class="lno" href="#L321">321</a>bound of Mathlib&#x27;s `Real.exp_bound`. -/</span>
-<span class="ln decl" id="FRC.Entropy.exp_tail_bounds"><a class="lno" href="#FRC.Entropy.exp_tail_bounds">322</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcLedger/Entropy.lean#L322" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small t2" src="lean-t2.png" alt="" title="tier 2, classical: Classical.choice, Quot.sound, propext">theorem exp_tail_bounds :</span>
+<span class="ln decl" id="FRC.Entropy.exp_tail_bounds"><a class="lno" href="#FRC.Entropy.exp_tail_bounds">322</a><img class="leanico small t2" src="lean-t2.png" alt="" title="tier 2, classical: Classical.choice, Quot.sound, propext">theorem exp_tail_bounds :</span>
 <span class="ln" id="L323"><a class="lno" href="#L323">323</a>    (1.427884 : ℝ) &lt; exp 0.356194 ∧ exp (0.35619475 : ℝ) &lt; 1.4278857 := by</span>
 <span class="ln" id="L324"><a class="lno" href="#L324">324</a>  constructor</span>
 <span class="ln" id="L325"><a class="lno" href="#L325">325</a>  · have h := abs_le.1 (Real.exp_bound (x := 0.356194) (by rw [abs_of_pos (by norm_num)]; norm_num)</span>
@@ -356,7 +356,7 @@
 <span class="ln" id="L334"><a class="lno" href="#L334">334</a></span>
 <span class="ln" id="L335"><a class="lno" href="#L335">335</a>/-- `e^{3π/4}` bracketed: `10.55071 &lt; e^{3π/4} &lt; 10.55073`, from `π` to six places, `e` to nine, and the</span>
 <span class="ln" id="L336"><a class="lno" href="#L336">336</a>Taylor tail. -/</span>
-<span class="ln decl" id="FRC.Entropy.exp_three_pi_four_bounds"><a class="lno" href="#FRC.Entropy.exp_three_pi_four_bounds">337</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcLedger/Entropy.lean#L337" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small t2" src="lean-t2.png" alt="" title="tier 2, classical: Classical.choice, Quot.sound, propext">theorem exp_three_pi_four_bounds : (10.55071 : ℝ) &lt; exp (3 * π / 4) ∧ exp (3 * π / 4) &lt; 10.55073 := by</span>
+<span class="ln decl" id="FRC.Entropy.exp_three_pi_four_bounds"><a class="lno" href="#FRC.Entropy.exp_three_pi_four_bounds">337</a><img class="leanico small t2" src="lean-t2.png" alt="" title="tier 2, classical: Classical.choice, Quot.sound, propext">theorem exp_three_pi_four_bounds : (10.55071 : ℝ) &lt; exp (3 * π / 4) ∧ exp (3 * π / 4) &lt; 10.55073 := by</span>
 <span class="ln" id="L338"><a class="lno" href="#L338">338</a>  have hpi1 := Real.pi_gt_d6</span>
 <span class="ln" id="L339"><a class="lno" href="#L339">339</a>  have hpi2 := Real.pi_lt_d6</span>
 <span class="ln" id="L340"><a class="lno" href="#L340">340</a>  have he1 := Real.exp_one_gt_d9</span>
@@ -373,7 +373,7 @@
 <span class="ln" id="L351"><a class="lno" href="#L351">351</a>  · nlinarith [mul_pos hpos hpos, Real.exp_pos (3 * π / 4 - 2)]</span>
 <span class="ln" id="L352"><a class="lno" href="#L352">352</a></span>
 <span class="ln" id="L353"><a class="lno" href="#L353">353</a>/-- `tanh(3π/8)` bracketed: `0.82685 &lt; tanh(3π/8) &lt; 0.826851`, from `exp_three_pi_four_bounds`. -/</span>
-<span class="ln decl" id="FRC.Entropy.tanh_octant_bounds"><a class="lno" href="#FRC.Entropy.tanh_octant_bounds">354</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcLedger/Entropy.lean#L354" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small t2" src="lean-t2.png" alt="" title="tier 2, classical: Classical.choice, Quot.sound, propext">theorem tanh_octant_bounds : (0.82685 : ℝ) &lt; tanh (3 * π / 8) ∧ tanh (3 * π / 8) &lt; 0.826851 := by</span>
+<span class="ln decl" id="FRC.Entropy.tanh_octant_bounds"><a class="lno" href="#FRC.Entropy.tanh_octant_bounds">354</a><img class="leanico small t2" src="lean-t2.png" alt="" title="tier 2, classical: Classical.choice, Quot.sound, propext">theorem tanh_octant_bounds : (0.82685 : ℝ) &lt; tanh (3 * π / 8) ∧ tanh (3 * π / 8) &lt; 0.826851 := by</span>
 <span class="ln" id="L355"><a class="lno" href="#L355">355</a>  obtain ⟨hE1, hE2⟩ := exp_three_pi_four_bounds</span>
 <span class="ln" id="L356"><a class="lno" href="#L356">356</a>  have htanh : tanh (3 * π / 8) = (exp (3 * π / 4) - 1) / (exp (3 * π / 4) + 1) := by</span>
 <span class="ln" id="L357"><a class="lno" href="#L357">357</a>    rw [tanh_eq_exp_two_mul]; congr 2 &lt;;&gt; ring_nf</span>
@@ -383,7 +383,7 @@
 <span class="ln" id="L361"><a class="lno" href="#L361">361</a>  · rw [htanh, div_lt_iff₀ hden]; linarith</span>
 <span class="ln" id="L362"><a class="lno" href="#L362">362</a></span>
 <span class="ln" id="L363"><a class="lno" href="#L363">363</a>/-- 14:P3 — the locus&#x27;s numeral bracketed: `0.9498 &lt; (π/4)/tanh(3π/8) &lt; 0.9499`, the paper&#x27;s `0.950`. -/</span>
-<span class="ln decl" id="FRC.Entropy.locus_bracket"><a class="lno" href="#FRC.Entropy.locus_bracket">364</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcLedger/Entropy.lean#L364" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small t2" src="lean-t2.png" alt="" title="tier 2, classical: Classical.choice, Quot.sound, propext">theorem locus_bracket : (0.9498 : ℝ) &lt; (π / 4) / tanh (3 * π / 8) ∧ (π / 4) / tanh (3 * π / 8) &lt; 0.9499 := by</span>
+<span class="ln decl" id="FRC.Entropy.locus_bracket"><a class="lno" href="#FRC.Entropy.locus_bracket">364</a><img class="leanico small t2" src="lean-t2.png" alt="" title="tier 2, classical: Classical.choice, Quot.sound, propext">theorem locus_bracket : (0.9498 : ℝ) &lt; (π / 4) / tanh (3 * π / 8) ∧ (π / 4) / tanh (3 * π / 8) &lt; 0.9499 := by</span>
 <span class="ln" id="L365"><a class="lno" href="#L365">365</a>  obtain ⟨hl, hu⟩ := tanh_octant_bounds</span>
 <span class="ln" id="L366"><a class="lno" href="#L366">366</a>  have hpi1 := Real.pi_gt_d6</span>
 <span class="ln" id="L367"><a class="lno" href="#L367">367</a>  have hpi2 := Real.pi_lt_d6</span>
@@ -395,7 +395,7 @@
 <span class="ln" id="L373"><a class="lno" href="#L373">373</a>/-- 14:C8 — the channel-1 return bracketed: at the fitted `Ω_Λ = 0.685` (A8, taken as data) the locus returns</span>
 <span class="ln" id="L374"><a class="lno" href="#L374">374</a>`H_Λ/tanh(3π/8) = H₀ √0.685/tanh(3π/8)` with `1 &lt; √0.685/tanh(3π/8) &lt; 1.001` — the channel-1 `H₀` to</span>
 <span class="ln" id="L375"><a class="lno" href="#L375">375</a>`0.1 %`. -/</span>
-<span class="ln decl" id="FRC.Entropy.channel_one_numeral"><a class="lno" href="#FRC.Entropy.channel_one_numeral">376</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcLedger/Entropy.lean#L376" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small t2" src="lean-t2.png" alt="" title="tier 2, classical: Classical.choice, Quot.sound, propext">theorem channel_one_numeral :</span>
+<span class="ln decl" id="FRC.Entropy.channel_one_numeral"><a class="lno" href="#FRC.Entropy.channel_one_numeral">376</a><img class="leanico small t2" src="lean-t2.png" alt="" title="tier 2, classical: Classical.choice, Quot.sound, propext">theorem channel_one_numeral :</span>
 <span class="ln" id="L377"><a class="lno" href="#L377">377</a>    (1 : ℝ) &lt; √0.685 / tanh (3 * π / 8) ∧ √0.685 / tanh (3 * π / 8) &lt; 1.001 := by</span>
 <span class="ln" id="L378"><a class="lno" href="#L378">378</a>  obtain ⟨hl, hu⟩ := tanh_octant_bounds</span>
 <span class="ln" id="L379"><a class="lno" href="#L379">379</a>  have hpos : (0 : ℝ) &lt; tanh (3 * π / 8) := by linarith</span>
@@ -410,7 +410,7 @@
 <span class="ln" id="L388"><a class="lno" href="#L388">388</a>/-- 14:C7, 14:X3 — the landing bracketed: `0.68368 &lt; tanh²(3π/8) &lt; 0.68369` (the numeral `0.6837`) is</span>
 <span class="ln" id="L389"><a class="lno" href="#L389">389</a>certified from `π` to six places, `e` to nine and the Taylor tail; and, with the Planck numerals</span>
 <span class="ln" id="L390"><a class="lno" href="#L390">390</a>`0.685 ± 0.007` taken as data (A8), the deviation lies between `0.18σ` and `0.19σ`. -/</span>
-<span class="ln decl" id="FRC.Entropy.landing_bracket"><a class="lno" href="#FRC.Entropy.landing_bracket">391</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcLedger/Entropy.lean#L391" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small t2" src="lean-t2.png" alt="" title="tier 2, classical: Classical.choice, Quot.sound, propext">theorem landing_bracket :</span>
+<span class="ln decl" id="FRC.Entropy.landing_bracket"><a class="lno" href="#FRC.Entropy.landing_bracket">391</a><img class="leanico small t2" src="lean-t2.png" alt="" title="tier 2, classical: Classical.choice, Quot.sound, propext">theorem landing_bracket :</span>
 <span class="ln" id="L392"><a class="lno" href="#L392">392</a>    (0.68368 : ℝ) &lt; tanh (3 * π / 8) ^ 2 ∧ tanh (3 * π / 8) ^ 2 &lt; 0.68369 ∧</span>
 <span class="ln" id="L393"><a class="lno" href="#L393">393</a>    0.18 * 0.007 &lt; 0.685 - tanh (3 * π / 8) ^ 2 ∧ 0.685 - tanh (3 * π / 8) ^ 2 &lt; 0.19 * 0.007 := by</span>
 <span class="ln" id="L394"><a class="lno" href="#L394">394</a>  obtain ⟨hl, hu⟩ := tanh_octant_bounds</span>
@@ -428,11 +428,11 @@
 <span class="ln" id="L406"><a class="lno" href="#L406">406</a></span>
 <span class="ln" id="L407"><a class="lno" href="#L407">407</a>/-- 14:A8 [ΛCDM] — the standard flat matter-plus-`Λ` scale factor of the rival chart, for `t ≥ 0`:</span>
 <span class="ln" id="L408"><a class="lno" href="#L408">408</a>`a(t) = (Ω_m/Ω_Λ)^{1/3} sinh^{2/3}(3H_Λ t/2)`, with `H_Λ` the asymptotic rate. -/</span>
-<span class="ln decl" id="FRC.Entropy.lcdmScale"><a class="lno" href="#FRC.Entropy.lcdmScale">409</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcLedger/Entropy.lean#L409" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small" src="lean.png" alt="" title="a definition: no proof, no axioms">noncomputable def lcdmScale (Ωm ΩΛ HΛ t : ℝ) : ℝ :=</span>
+<span class="ln decl" id="FRC.Entropy.lcdmScale"><a class="lno" href="#FRC.Entropy.lcdmScale">409</a><img class="leanico small" src="lean.png" alt="" title="a definition: no proof, no axioms">noncomputable def lcdmScale (Ωm ΩΛ HΛ t : ℝ) : ℝ :=</span>
 <span class="ln" id="L410"><a class="lno" href="#L410">410</a>  (Ωm / ΩΛ) ^ ((1 : ℝ) / 3) * sinh (3 * HΛ * t / 2) ^ ((2 : ℝ) / 3)</span>
 <span class="ln" id="L411"><a class="lno" href="#L411">411</a></span>
 <span class="ln" id="L412"><a class="lno" href="#L412">412</a>/-- The cube of the scale factor for `t ≥ 0`: `a³ = (Ω_m/Ω_Λ) sinh²(3H_Λ t/2)`. -/</span>
-<span class="ln decl" id="FRC.Entropy.lcdmScale_cube"><a class="lno" href="#FRC.Entropy.lcdmScale_cube">413</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcLedger/Entropy.lean#L413" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small t2" src="lean-t2.png" alt="" title="tier 2, classical: Classical.choice, Quot.sound, propext">theorem lcdmScale_cube (Ωm ΩΛ HΛ t : ℝ) (hm : 0 &lt; Ωm) (hΛ : 0 &lt; ΩΛ) (hH : 0 ≤ HΛ) (ht : 0 ≤ t) :</span>
+<span class="ln decl" id="FRC.Entropy.lcdmScale_cube"><a class="lno" href="#FRC.Entropy.lcdmScale_cube">413</a><img class="leanico small t2" src="lean-t2.png" alt="" title="tier 2, classical: Classical.choice, Quot.sound, propext">theorem lcdmScale_cube (Ωm ΩΛ HΛ t : ℝ) (hm : 0 &lt; Ωm) (hΛ : 0 &lt; ΩΛ) (hH : 0 ≤ HΛ) (ht : 0 ≤ t) :</span>
 <span class="ln" id="L414"><a class="lno" href="#L414">414</a>    lcdmScale Ωm ΩΛ HΛ t ^ 3 = Ωm / ΩΛ * sinh (3 * HΛ * t / 2) ^ 2 := by</span>
 <span class="ln" id="L415"><a class="lno" href="#L415">415</a>  have hs : 0 ≤ sinh (3 * HΛ * t / 2) := by</span>
 <span class="ln" id="L416"><a class="lno" href="#L416">416</a>    rw [← Real.sinh_zero]; exact Real.sinh_le_sinh.2 (by positivity)</span>
@@ -442,13 +442,13 @@
 <span class="ln" id="L420"><a class="lno" href="#L420">420</a>  norm_num</span>
 <span class="ln" id="L421"><a class="lno" href="#L421">421</a></span>
 <span class="ln" id="L422"><a class="lno" href="#L422">422</a>/-- The scale factor is positive for `t &gt; 0`. -/</span>
-<span class="ln decl" id="FRC.Entropy.lcdmScale_pos"><a class="lno" href="#FRC.Entropy.lcdmScale_pos">423</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcLedger/Entropy.lean#L423" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small t2" src="lean-t2.png" alt="" title="tier 2, classical: Classical.choice, Quot.sound, propext">theorem lcdmScale_pos (Ωm ΩΛ HΛ t : ℝ) (hm : 0 &lt; Ωm) (hΛ : 0 &lt; ΩΛ) (hH : 0 &lt; HΛ) (ht : 0 &lt; t) :</span>
+<span class="ln decl" id="FRC.Entropy.lcdmScale_pos"><a class="lno" href="#FRC.Entropy.lcdmScale_pos">423</a><img class="leanico small t2" src="lean-t2.png" alt="" title="tier 2, classical: Classical.choice, Quot.sound, propext">theorem lcdmScale_pos (Ωm ΩΛ HΛ t : ℝ) (hm : 0 &lt; Ωm) (hΛ : 0 &lt; ΩΛ) (hH : 0 &lt; HΛ) (ht : 0 &lt; t) :</span>
 <span class="ln" id="L424"><a class="lno" href="#L424">424</a>    0 &lt; lcdmScale Ωm ΩΛ HΛ t :=</span>
 <span class="ln" id="L425"><a class="lno" href="#L425">425</a>  mul_pos (Real.rpow_pos_of_pos (by positivity) _)</span>
 <span class="ln" id="L426"><a class="lno" href="#L426">426</a>    (Real.rpow_pos_of_pos (Real.sinh_pos_iff.2 (by positivity)) _)</span>
 <span class="ln" id="L427"><a class="lno" href="#L427">427</a></span>
 <span class="ln" id="L428"><a class="lno" href="#L428">428</a>/-- The derivative of the scale factor for `t &gt; 0`: `ȧ = H_Λ · (cosh x / sinh x) · a` with `x = 3H_Λ t/2`. -/</span>
-<span class="ln decl" id="FRC.Entropy.lcdm_hasDerivAt"><a class="lno" href="#FRC.Entropy.lcdm_hasDerivAt">429</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcLedger/Entropy.lean#L429" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small t2" src="lean-t2.png" alt="" title="tier 2, classical: Classical.choice, Quot.sound, propext">theorem lcdm_hasDerivAt (Ωm ΩΛ HΛ t : ℝ) (hm : 0 &lt; Ωm) (hΛ : 0 &lt; ΩΛ) (hH : 0 &lt; HΛ) (ht : 0 &lt; t) :</span>
+<span class="ln decl" id="FRC.Entropy.lcdm_hasDerivAt"><a class="lno" href="#FRC.Entropy.lcdm_hasDerivAt">429</a><img class="leanico small t2" src="lean-t2.png" alt="" title="tier 2, classical: Classical.choice, Quot.sound, propext">theorem lcdm_hasDerivAt (Ωm ΩΛ HΛ t : ℝ) (hm : 0 &lt; Ωm) (hΛ : 0 &lt; ΩΛ) (hH : 0 &lt; HΛ) (ht : 0 &lt; t) :</span>
 <span class="ln" id="L430"><a class="lno" href="#L430">430</a>    HasDerivAt (lcdmScale Ωm ΩΛ HΛ)</span>
 <span class="ln" id="L431"><a class="lno" href="#L431">431</a>      (HΛ * (cosh (3 * HΛ * t / 2) / sinh (3 * HΛ * t / 2)) * lcdmScale Ωm ΩΛ HΛ t) t := by</span>
 <span class="ln" id="L432"><a class="lno" href="#L432">432</a>  set x := 3 * HΛ * t / 2 with hx</span>
@@ -475,7 +475,7 @@
 <span class="ln" id="L453"><a class="lno" href="#L453">453</a>/-- 14:A8, 14:C3 [ΛCDM] — the closed form solves the flat Friedmann equation of the rival chart with matter</span>
 <span class="ln" id="L454"><a class="lno" href="#L454">454</a>and `Λ`: `a(0) = 0`, `a(t) &gt; 0` and `ȧ &gt; 0` for `t &gt; 0` (the expanding branch), and</span>
 <span class="ln" id="L455"><a class="lno" href="#L455">455</a>`(ȧ/a)² = H₀²(Ω_m a⁻³ + Ω_Λ)` with `H_Λ = H₀ √Ω_Λ`; that it is the unique such solution is not formalised. -/</span>
-<span class="ln decl" id="FRC.Entropy.lcdm_friedmann"><a class="lno" href="#FRC.Entropy.lcdm_friedmann">456</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcLedger/Entropy.lean#L456" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small t2" src="lean-t2.png" alt="" title="tier 2, classical: Classical.choice, Quot.sound, propext">theorem lcdm_friedmann (Ωm ΩΛ H0 t : ℝ) (hm : 0 &lt; Ωm) (hΛ : 0 &lt; ΩΛ) (hH : 0 &lt; H0) (ht : 0 &lt; t) :</span>
+<span class="ln decl" id="FRC.Entropy.lcdm_friedmann"><a class="lno" href="#FRC.Entropy.lcdm_friedmann">456</a><img class="leanico small t2" src="lean-t2.png" alt="" title="tier 2, classical: Classical.choice, Quot.sound, propext">theorem lcdm_friedmann (Ωm ΩΛ H0 t : ℝ) (hm : 0 &lt; Ωm) (hΛ : 0 &lt; ΩΛ) (hH : 0 &lt; H0) (ht : 0 &lt; t) :</span>
 <span class="ln" id="L457"><a class="lno" href="#L457">457</a>    let HΛ := H0 * √ΩΛ</span>
 <span class="ln" id="L458"><a class="lno" href="#L458">458</a>    let a&#x27; := HΛ * (cosh (3 * HΛ * t / 2) / sinh (3 * HΛ * t / 2)) * lcdmScale Ωm ΩΛ HΛ t</span>
 <span class="ln" id="L459"><a class="lno" href="#L459">459</a>    lcdmScale Ωm ΩΛ HΛ 0 = 0 ∧ 0 &lt; lcdmScale Ωm ΩΛ HΛ t ∧ 0 &lt; a&#x27; ∧</span>
@@ -503,7 +503,7 @@
 <span class="ln" id="L481"><a class="lno" href="#L481">481</a>    ring</span>
 <span class="ln" id="L482"><a class="lno" href="#L482">482</a></span>
 <span class="ln" id="L483"><a class="lno" href="#L483">483</a>/-- The scale factor reaches `1` exactly when `sinh²(3H_Λ t/2) = Ω_Λ/Ω_m` (`t &gt; 0`). -/</span>
-<span class="ln decl" id="FRC.Entropy.lcdmScale_eq_one_iff"><a class="lno" href="#FRC.Entropy.lcdmScale_eq_one_iff">484</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcLedger/Entropy.lean#L484" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small t2" src="lean-t2.png" alt="" title="tier 2, classical: Classical.choice, Quot.sound, propext">theorem lcdmScale_eq_one_iff (Ωm ΩΛ HΛ t : ℝ) (hm : 0 &lt; Ωm) (hΛ : 0 &lt; ΩΛ) (hH : 0 &lt; HΛ) (ht : 0 &lt; t) :</span>
+<span class="ln decl" id="FRC.Entropy.lcdmScale_eq_one_iff"><a class="lno" href="#FRC.Entropy.lcdmScale_eq_one_iff">484</a><img class="leanico small t2" src="lean-t2.png" alt="" title="tier 2, classical: Classical.choice, Quot.sound, propext">theorem lcdmScale_eq_one_iff (Ωm ΩΛ HΛ t : ℝ) (hm : 0 &lt; Ωm) (hΛ : 0 &lt; ΩΛ) (hH : 0 &lt; HΛ) (ht : 0 &lt; t) :</span>
 <span class="ln" id="L485"><a class="lno" href="#L485">485</a>    lcdmScale Ωm ΩΛ HΛ t = 1 ↔ sinh (3 * HΛ * t / 2) ^ 2 = ΩΛ / Ωm := by</span>
 <span class="ln" id="L486"><a class="lno" href="#L486">486</a>  have hapos := lcdmScale_pos Ωm ΩΛ HΛ t hm hΛ hH ht</span>
 <span class="ln" id="L487"><a class="lno" href="#L487">487</a>  rw [← pow_eq_one_iff_of_nonneg hapos.le (by norm_num : (3 : ℕ) ≠ 0),</span>
@@ -515,7 +515,7 @@
 <span class="ln" id="L493"><a class="lno" href="#L493">493</a>/-- 14:A8, 14:C3 [ΛCDM] — the age identity verified: with `Ω_m + Ω_Λ = 1` the closed-form scale factor</span>
 <span class="ln" id="L494"><a class="lno" href="#L494">494</a>reaches `1` at the time `t` exactly when `t H_Λ = (2/3) artanh √Ω_Λ`, so the product `t₀H_Λ` of C3 is the</span>
 <span class="ln" id="L495"><a class="lno" href="#L495">495</a>chart&#x27;s own age–rate relation, a function of the one fitted parameter. -/</span>
-<span class="ln decl" id="FRC.Entropy.lcdm_age"><a class="lno" href="#FRC.Entropy.lcdm_age">496</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcLedger/Entropy.lean#L496" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small t2" src="lean-t2.png" alt="" title="tier 2, classical: Classical.choice, Quot.sound, propext">theorem lcdm_age (Ωm ΩΛ H0 t : ℝ) (hm : 0 &lt; Ωm) (hΛ : 0 &lt; ΩΛ) (hsum : Ωm + ΩΛ = 1) (hH : 0 &lt; H0)</span>
+<span class="ln decl" id="FRC.Entropy.lcdm_age"><a class="lno" href="#FRC.Entropy.lcdm_age">496</a><img class="leanico small t2" src="lean-t2.png" alt="" title="tier 2, classical: Classical.choice, Quot.sound, propext">theorem lcdm_age (Ωm ΩΛ H0 t : ℝ) (hm : 0 &lt; Ωm) (hΛ : 0 &lt; ΩΛ) (hsum : Ωm + ΩΛ = 1) (hH : 0 &lt; H0)</span>
 <span class="ln" id="L497"><a class="lno" href="#L497">497</a>    (ht : 0 &lt; t) :</span>
 <span class="ln" id="L498"><a class="lno" href="#L498">498</a>    lcdmScale Ωm ΩΛ (H0 * √ΩΛ) t = 1 ↔ t * (H0 * √ΩΛ) = lcdmAge ΩΛ := by</span>
 <span class="ln" id="L499"><a class="lno" href="#L499">499</a>  set HΛ := H0 * √ΩΛ with hHΛ</span>
@@ -549,7 +549,7 @@
 <span class="ln" id="L527"><a class="lno" href="#L527">527</a></span>
 <span class="ln" id="L528"><a class="lno" href="#L528">528</a>/-- 14:A8, 14:C3 [ΛCDM] — the rate today: at the time the flat closed form reaches `1`, its derivative is</span>
 <span class="ln" id="L529"><a class="lno" href="#L529">529</a>`H₀` — `H₀` is the present rate of the solution, `H_Λ = H₀√Ω_Λ` its asymptotic rate. -/</span>
-<span class="ln decl" id="FRC.Entropy.lcdm_rate_today"><a class="lno" href="#FRC.Entropy.lcdm_rate_today">530</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcLedger/Entropy.lean#L530" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small t2" src="lean-t2.png" alt="" title="tier 2, classical: Classical.choice, Quot.sound, propext">theorem lcdm_rate_today (Ωm ΩΛ H0 t : ℝ) (hm : 0 &lt; Ωm) (hΛ : 0 &lt; ΩΛ) (hsum : Ωm + ΩΛ = 1) (hH : 0 &lt; H0)</span>
+<span class="ln decl" id="FRC.Entropy.lcdm_rate_today"><a class="lno" href="#FRC.Entropy.lcdm_rate_today">530</a><img class="leanico small t2" src="lean-t2.png" alt="" title="tier 2, classical: Classical.choice, Quot.sound, propext">theorem lcdm_rate_today (Ωm ΩΛ H0 t : ℝ) (hm : 0 &lt; Ωm) (hΛ : 0 &lt; ΩΛ) (hsum : Ωm + ΩΛ = 1) (hH : 0 &lt; H0)</span>
 <span class="ln" id="L531"><a class="lno" href="#L531">531</a>    (ht : 0 &lt; t) (h1 : lcdmScale Ωm ΩΛ (H0 * √ΩΛ) t = 1) :</span>
 <span class="ln" id="L532"><a class="lno" href="#L532">532</a>    HasDerivAt (lcdmScale Ωm ΩΛ (H0 * √ΩΛ)) H0 t := by</span>
 <span class="ln" id="L533"><a class="lno" href="#L533">533</a>  set HΛ := H0 * √ΩΛ with hHΛ</span>
@@ -568,7 +568,7 @@
 <span class="ln" id="L546"><a class="lno" href="#L546">546</a>  rw [h1, hcs, mul_one, hHΛ]; field_simp</span>
 <span class="ln" id="L547"><a class="lno" href="#L547">547</a></span>
 <span class="ln" id="L548"><a class="lno" href="#L548">548</a>/-- The Taylor brackets of `e^t` at `t = 0.36118` and `t = 0.36128` (seven terms, Mathlib&#x27;s tail bound). -/</span>
-<span class="ln decl" id="FRC.Entropy.exp_tail_bounds'"><a class="lno" href="#FRC.Entropy.exp_tail_bounds'">549</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcLedger/Entropy.lean#L549" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small t2" src="lean-t2.png" alt="" title="tier 2, classical: Classical.choice, Quot.sound, propext">theorem exp_tail_bounds&#x27; : exp (0.36118 : ℝ) &lt; 1.4350218 ∧ (1.4351649 : ℝ) &lt; exp 0.36128 := by</span>
+<span class="ln decl" id="FRC.Entropy.exp_tail_bounds'"><a class="lno" href="#FRC.Entropy.exp_tail_bounds'">549</a><img class="leanico small t2" src="lean-t2.png" alt="" title="tier 2, classical: Classical.choice, Quot.sound, propext">theorem exp_tail_bounds&#x27; : exp (0.36118 : ℝ) &lt; 1.4350218 ∧ (1.4351649 : ℝ) &lt; exp 0.36128 := by</span>
 <span class="ln" id="L550"><a class="lno" href="#L550">550</a>  constructor</span>
 <span class="ln" id="L551"><a class="lno" href="#L551">551</a>  · have h := Real.exp_bound&#x27; (x := 0.36118) (by norm_num) (by norm_num) (n := 7) (by norm_num)</span>
 <span class="ln" id="L552"><a class="lno" href="#L552">552</a>    norm_num [Finset.sum_range_succ, Nat.factorial] at h ⊢</span>
@@ -583,7 +583,7 @@
 <span class="ln" id="L561"><a class="lno" href="#L561">561</a>/-- 14:C3 — the audit numeral bracketed: at the fitted `Ω_Λ = 0.685` (A8, taken as data) the rival chart&#x27;s</span>
 <span class="ln" id="L562"><a class="lno" href="#L562">562</a>`t₀H_Λ = (2/3) artanh √0.685` lies in `(0.7870, 0.7871)` — the paper&#x27;s `0.7871` — and exceeds `π/4` by</span>
 <span class="ln" id="L563"><a class="lno" href="#L563">563</a>between `0.21 %` and `0.22 %` of `π/4`, the audit&#x27;s &quot;≈ 0.2 %&quot;. -/</span>
-<span class="ln decl" id="FRC.Entropy.age_bracket"><a class="lno" href="#FRC.Entropy.age_bracket">564</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcLedger/Entropy.lean#L564" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small t2" src="lean-t2.png" alt="" title="tier 2, classical: Classical.choice, Quot.sound, propext">theorem age_bracket :</span>
+<span class="ln decl" id="FRC.Entropy.age_bracket"><a class="lno" href="#FRC.Entropy.age_bracket">564</a><img class="leanico small t2" src="lean-t2.png" alt="" title="tier 2, classical: Classical.choice, Quot.sound, propext">theorem age_bracket :</span>
 <span class="ln" id="L565"><a class="lno" href="#L565">565</a>    (0.7870 : ℝ) &lt; lcdmAge 0.685 ∧ lcdmAge 0.685 &lt; 0.7871 ∧</span>
 <span class="ln" id="L566"><a class="lno" href="#L566">566</a>    0.0021 * (π / 4) &lt; lcdmAge 0.685 - π / 4 ∧ lcdmAge 0.685 - π / 4 &lt; 0.0022 * (π / 4) := by</span>
 <span class="ln" id="L567"><a class="lno" href="#L567">567</a>  have hs1 : (0.82764 : ℝ) &lt; √0.685 := by rw [Real.lt_sqrt (by norm_num)]; norm_num</span>
@@ -621,7 +621,7 @@
 <span class="ln" id="L599"><a class="lno" href="#L599">599</a>/-- 14:C9 [chart] — the count face and its chart dress: `S = π x²` with `x = r_H/ℓ_P &gt; 0` gives `x = √(S/π)`</span>
 <span class="ln" id="L600"><a class="lno" href="#L600">600</a>and `√S = √π · x`, the solid-angle `π` the declared transport between the count face `√S` and the drawn</span>
 <span class="ln" id="L601"><a class="lno" href="#L601">601</a>width. -/</span>
-<span class="ln decl" id="FRC.Entropy.count_face"><a class="lno" href="#FRC.Entropy.count_face">602</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcLedger/Entropy.lean#L602" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small t2" src="lean-t2.png" alt="" title="tier 2, classical: Classical.choice, Quot.sound, propext">theorem count_face (S x : ℝ) (hx : 0 &lt; x) (h : S = π * x ^ 2) :</span>
+<span class="ln decl" id="FRC.Entropy.count_face"><a class="lno" href="#FRC.Entropy.count_face">602</a><img class="leanico small t2" src="lean-t2.png" alt="" title="tier 2, classical: Classical.choice, Quot.sound, propext">theorem count_face (S x : ℝ) (hx : 0 &lt; x) (h : S = π * x ^ 2) :</span>
 <span class="ln" id="L603"><a class="lno" href="#L603">603</a>    x = √(S / π) ∧ √S = √π * x := by</span>
 <span class="ln" id="L604"><a class="lno" href="#L604">604</a>  have hpi := Real.pi_pos</span>
 <span class="ln" id="L605"><a class="lno" href="#L605">605</a>  constructor</span>
@@ -631,14 +631,14 @@
 <span class="ln" id="L609"><a class="lno" href="#L609">609</a>/-- 14:C10 — the primality behind the capacity axis&#x27;s identifications: `κ = 1` (the bare proton) is a shell,</span>
 <span class="ln" id="L610"><a class="lno" href="#L610">610</a>`𝔽₅`; `κ = 2` has no shell (`9` is composite); `κ_H = 3` (ground-state hydrogen, the first non-trivial Object)</span>
 <span class="ln" id="L611"><a class="lno" href="#L611">611</a>is the shell `𝔽₁₃`. -/</span>
-<span class="ln decl" id="FRC.Entropy.capacity_zero"><a class="lno" href="#FRC.Entropy.capacity_zero">612</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcLedger/Entropy.lean#L612" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small t2" src="lean-t2.png" alt="" title="tier 2, classical: Classical.choice, Quot.sound, propext">theorem capacity_zero : Nat.Prime (4 * 1 + 1) ∧ ¬ Nat.Prime (4 * 2 + 1) ∧ Nat.Prime (4 * 3 + 1) :=</span>
+<span class="ln decl" id="FRC.Entropy.capacity_zero"><a class="lno" href="#FRC.Entropy.capacity_zero">612</a><img class="leanico small t2" src="lean-t2.png" alt="" title="tier 2, classical: Classical.choice, Quot.sound, propext">theorem capacity_zero : Nat.Prime (4 * 1 + 1) ∧ ¬ Nat.Prime (4 * 2 + 1) ∧ Nat.Prime (4 * 3 + 1) :=</span>
 <span class="ln" id="L613"><a class="lno" href="#L613">613</a>  ⟨by norm_num, by norm_num, by norm_num⟩</span>
 <span class="ln" id="L614"><a class="lno" href="#L614">614</a></span>
 <span class="ln" id="L615"><a class="lno" href="#L615">615</a>/-- 14:B10 — hydrogen units: the shell of capacity `3N` is `𝔽_{12N+1}`, so it exists exactly when `12N + 1` is</span>
 <span class="ln" id="L616"><a class="lno" href="#L616">616</a>prime — `N = 1` (`13`) and `N = 3` (`37`) exist, `N = 2` (`25`) does not; and the nesting bound, the necessity</span>
 <span class="ln" id="L617"><a class="lno" href="#L617">617</a>direction: a shell `q` registered whole by a Subject `p` of the Carrier `Ω` (`q² &lt; p`, `p² &lt; Ω`) has `q⁴ &lt; Ω`,</span>
 <span class="ln" id="L618"><a class="lno" href="#L618">618</a>so `(12N + 1)⁴ &lt; Ω`; the existence of such a Subject is exhibited on the laboratory Carrier (`nesting_lab`). -/</span>
-<span class="ln decl" id="FRC.Entropy.hydrogen_units"><a class="lno" href="#FRC.Entropy.hydrogen_units">619</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcLedger/Entropy.lean#L619" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small t2" src="lean-t2.png" alt="" title="tier 2, classical: Classical.choice, Quot.sound, propext">theorem hydrogen_units :</span>
+<span class="ln decl" id="FRC.Entropy.hydrogen_units"><a class="lno" href="#FRC.Entropy.hydrogen_units">619</a><img class="leanico small t2" src="lean-t2.png" alt="" title="tier 2, classical: Classical.choice, Quot.sound, propext">theorem hydrogen_units :</span>
 <span class="ln" id="L620"><a class="lno" href="#L620">620</a>    Nat.Prime 13 ∧ ¬ Nat.Prime 25 ∧ Nat.Prime 37 ∧</span>
 <span class="ln" id="L621"><a class="lno" href="#L621">621</a>    ∀ q p Ω : ℕ, q ^ 2 &lt; p → p ^ 2 &lt; Ω → q ^ 4 &lt; Ω := by</span>
 <span class="ln" id="L622"><a class="lno" href="#L622">622</a>  refine ⟨by norm_num, by norm_num, by norm_num, fun q p Ω hq hp =&gt; ?_⟩</span>
@@ -649,7 +649,7 @@
 <span class="ln" id="L627"><a class="lno" href="#L627">627</a>/-- 14:B10 — on the laboratory Carrier `Ω = 2 408 561` the bound is `N ≤ 3`: `37⁴ &lt; Ω &lt; 49⁴`; and the shell of</span>
 <span class="ln" id="L628"><a class="lno" href="#L628">628</a>capacity `9` (`q = 37`) nests through the Subject `p = 1373 = 4 · 343 + 1`, prime: `37² &lt; 1373`,</span>
 <span class="ln" id="L629"><a class="lno" href="#L629">629</a>`1373² &lt; Ω`. -/</span>
-<span class="ln decl" id="FRC.Entropy.nesting_lab"><a class="lno" href="#FRC.Entropy.nesting_lab">630</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcLedger/Entropy.lean#L630" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small t2" src="lean-t2.png" alt="" title="tier 2, classical: Classical.choice, Quot.sound, propext">theorem nesting_lab :</span>
+<span class="ln decl" id="FRC.Entropy.nesting_lab"><a class="lno" href="#FRC.Entropy.nesting_lab">630</a><img class="leanico small t2" src="lean-t2.png" alt="" title="tier 2, classical: Classical.choice, Quot.sound, propext">theorem nesting_lab :</span>
 <span class="ln" id="L631"><a class="lno" href="#L631">631</a>    37 ^ 4 &lt; 2408561 ∧ 2408561 &lt; 49 ^ 4 ∧ (∀ N : ℕ, (12 * N + 1) ^ 4 &lt; 2408561 → N ≤ 3) ∧</span>
 <span class="ln" id="L632"><a class="lno" href="#L632">632</a>    Nat.Prime 1373 ∧ 1373 = 4 * 343 + 1 ∧ 37 ^ 2 &lt; 1373 ∧ 1373 ^ 2 &lt; 2408561 := by</span>
 <span class="ln" id="L633"><a class="lno" href="#L633">633</a>  refine ⟨by norm_num, by norm_num, fun N h =&gt; ?_, by norm_num, by norm_num, by norm_num, by norm_num⟩</span>

@@ -20,7 +20,7 @@
     
     <nav><a href="../../index.html">Home</a><a href="../../publications.html">Publications</a><a href="../../00-ledger.html">Ledger</a><a href="../../predictions.html">Predictions</a><a href="../../explicability.html">Explicability</a></nav>
   </header>
-<main id="ledger-main"><section class="prose"><p>The core module <code>lean/FrcCore/Reductio.lean</code> — the substrate from first principles, no Mathlib, no axioms (the modules in order: <a href="Nat.html">Nat</a>, <a href="Pigeonhole.html">Pigeonhole</a>, <a href="Shell.html">Shell</a>, <a href="Frame.html">Frame</a>, <a href="Orbit.html">Orbit</a>, <a href="Sum.html">Sum</a>, <a href="Meridian.html">Meridian</a>, <a href="Algebra.html">Algebra</a>, <a href="Epi.html">Epi</a>, <a href="Dimensions.html">Dimensions</a>, <a href="Poly.html">Poly</a>, <a href="Quaternion.html">Quaternion</a>, <a href="Causality.html">Causality</a>, <a href="Representation.html">Representation</a>, <a href="Reductio.html">Reductio</a>, <a href="Geometry.html">Geometry</a>, <a href="Complex.html">Complex</a>, <a href="Instances.html">Instances</a>, <a href="Rh.html">Rh</a>, <a href="Entropy.html">Entropy</a>, <a href="Dirac.html">Dirac</a>, <a href="Gravity.html">Gravity</a>): 25 theorems (16 definitions): 25 with no axioms (green), 0 at tier 1 (teal: <code>propext</code>, <code>Quot.sound</code>), 0 at tier 2 (amber: <code>Classical.choice</code>), 0 red; the small plain glyph marks a definition (no proof, no axioms; on the ledger pages the plain glyph is instead a module cited as a whole). Each declaration is anchored; the ledger rows cite them by name. <a href="https://live.lean-lang.org/#project=lean-v4.34.0&url=https://raw.githubusercontent.com/gamayos/finite-ring-space/main/lean/web/FrcCore.lean" target="_blank" rel="noopener">▶ open in the Lean web editor</a> · <a href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcCore/Reductio.lean" target="_blank" rel="noopener">on GitHub</a> · <a href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcCore/axioms.log" target="_blank" rel="noopener">axioms.log</a> · <a href="https://github.com/gamayos/finite-ring-space/actions/workflows/lean.yml" target="_blank" rel="noopener">CI</a>.</p></section><pre class="lean"><span class="ln" id="L1"><a class="lno" href="#L1">1</a>import FrcCore.Nat</span>
+<main id="ledger-main"><section class="prose"><p>The core module <code>lean/FrcCore/Reductio.lean</code> — the substrate from first principles, no Mathlib, no axioms (the modules in order: <a href="Nat.html">Nat</a>, <a href="Pigeonhole.html">Pigeonhole</a>, <a href="Shell.html">Shell</a>, <a href="Frame.html">Frame</a>, <a href="Orbit.html">Orbit</a>, <a href="Sum.html">Sum</a>, <a href="Meridian.html">Meridian</a>, <a href="Algebra.html">Algebra</a>, <a href="Epi.html">Epi</a>, <a href="Dimensions.html">Dimensions</a>, <a href="Poly.html">Poly</a>, <a href="Quaternion.html">Quaternion</a>, <a href="Causality.html">Causality</a>, <a href="Representation.html">Representation</a>, <a href="Reductio.html">Reductio</a>, <a href="Geometry.html">Geometry</a>, <a href="Complex.html">Complex</a>, <a href="Instances.html">Instances</a>, <a href="Rh.html">Rh</a>, <a href="Entropy.html">Entropy</a>, <a href="Dirac.html">Dirac</a>, <a href="Gravity.html">Gravity</a>): 25 theorems (16 definitions): 25 with no axioms (green), 0 at tier 1 (teal: <code>propext</code>, <code>Quot.sound</code>), 0 at tier 2 (amber: <code>Classical.choice</code>), 0 red; the small plain glyph marks a definition (no proof, no axioms; on the ledger pages the plain glyph is instead a module cited as a whole). Each declaration is anchored; the ledger rows cite them by name. <a href="https://live.lean-lang.org/#project=lean-v4.34.0&url=https://www.finitering.space/lean/web/core/Reductio.lean" target="_blank" rel="noopener">▶ open in the Lean web editor</a> · <a href="../core/axioms.log" target="_blank" rel="noopener">axioms.log</a>.</p></section><pre class="lean"><span class="ln" id="L1"><a class="lno" href="#L1">1</a>import FrcCore.Nat</span>
 <span class="ln" id="L2"><a class="lno" href="#L2">2</a>import FrcCore.Pigeonhole</span>
 <span class="ln" id="L3"><a class="lno" href="#L3">3</a>import FrcCore.Shell</span>
 <span class="ln" id="L4"><a class="lno" href="#L4">4</a>import FrcCore.Frame</span>
@@ -45,22 +45,22 @@
 <span class="ln" id="L23"><a class="lno" href="#L23">23</a>/-! ### the maximum, from its definition -/</span>
 <span class="ln" id="L24"><a class="lno" href="#L24">24</a></span>
 <span class="ln" id="L25"><a class="lno" href="#L25">25</a>/-- `mx a b`, the larger of two naturals, with its two bounds proved from the definition. -/</span>
-<span class="ln decl" id="FRC.Reductio.mx"><a class="lno" href="#FRC.Reductio.mx">26</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcCore/Reductio.lean#L26" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small" src="../lean.png" alt="" title="a definition: no proof, no axioms">def mx (a b : Nat) : Nat := if a ≤ b then b else a</span>
+<span class="ln decl" id="FRC.Reductio.mx"><a class="lno" href="#FRC.Reductio.mx">26</a><img class="leanico small" src="../lean.png" alt="" title="a definition: no proof, no axioms">def mx (a b : Nat) : Nat := if a ≤ b then b else a</span>
 <span class="ln" id="L27"><a class="lno" href="#L27">27</a></span>
-<span class="ln decl" id="FRC.Reductio.le_mx_left"><a class="lno" href="#FRC.Reductio.le_mx_left">28</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcCore/Reductio.lean#L28" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small ok" src="../lean-ok.png" alt="" title="no axioms">theorem le_mx_left (a b : Nat) : a ≤ mx a b := by</span>
+<span class="ln decl" id="FRC.Reductio.le_mx_left"><a class="lno" href="#FRC.Reductio.le_mx_left">28</a><img class="leanico small ok" src="../lean-ok.png" alt="" title="no axioms">theorem le_mx_left (a b : Nat) : a ≤ mx a b := by</span>
 <span class="ln" id="L29"><a class="lno" href="#L29">29</a>  unfold mx</span>
 <span class="ln" id="L30"><a class="lno" href="#L30">30</a>  match Nat.decLe a b with</span>
 <span class="ln" id="L31"><a class="lno" href="#L31">31</a>  | isTrue h =&gt; rw [ite_eq_left h]; exact h</span>
 <span class="ln" id="L32"><a class="lno" href="#L32">32</a>  | isFalse h =&gt; rw [ite_eq_right h]; exact Nat.le_refl a</span>
 <span class="ln" id="L33"><a class="lno" href="#L33">33</a></span>
-<span class="ln decl" id="FRC.Reductio.le_mx_right"><a class="lno" href="#FRC.Reductio.le_mx_right">34</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcCore/Reductio.lean#L34" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small ok" src="../lean-ok.png" alt="" title="no axioms">theorem le_mx_right (a b : Nat) : b ≤ mx a b := by</span>
+<span class="ln decl" id="FRC.Reductio.le_mx_right"><a class="lno" href="#FRC.Reductio.le_mx_right">34</a><img class="leanico small ok" src="../lean-ok.png" alt="" title="no axioms">theorem le_mx_right (a b : Nat) : b ≤ mx a b := by</span>
 <span class="ln" id="L35"><a class="lno" href="#L35">35</a>  unfold mx</span>
 <span class="ln" id="L36"><a class="lno" href="#L36">36</a>  match Nat.decLe a b with</span>
 <span class="ln" id="L37"><a class="lno" href="#L37">37</a>  | isTrue h =&gt; rw [ite_eq_left h]; exact Nat.le_refl b</span>
 <span class="ln" id="L38"><a class="lno" href="#L38">38</a>  | isFalse h =&gt; rw [ite_eq_right h]; exact Nat.le_of_lt (Nat.lt_of_not_le h)</span>
 <span class="ln" id="L39"><a class="lno" href="#L39">39</a></span>
-<span class="ln decl" id="FRC.Reductio.lt_of_mx_lt_left"><a class="lno" href="#FRC.Reductio.lt_of_mx_lt_left">40</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcCore/Reductio.lean#L40" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small ok" src="../lean-ok.png" alt="" title="no axioms">theorem lt_of_mx_lt_left {a b N : Nat} (h : mx a b &lt; N) : a &lt; N := Nat.lt_of_le_of_lt (le_mx_left a b) h</span>
-<span class="ln decl" id="FRC.Reductio.lt_of_mx_lt_right"><a class="lno" href="#FRC.Reductio.lt_of_mx_lt_right">41</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcCore/Reductio.lean#L41" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small ok" src="../lean-ok.png" alt="" title="no axioms">theorem lt_of_mx_lt_right {a b N : Nat} (h : mx a b &lt; N) : b &lt; N := Nat.lt_of_le_of_lt (le_mx_right a b) h</span>
+<span class="ln decl" id="FRC.Reductio.lt_of_mx_lt_left"><a class="lno" href="#FRC.Reductio.lt_of_mx_lt_left">40</a><img class="leanico small ok" src="../lean-ok.png" alt="" title="no axioms">theorem lt_of_mx_lt_left {a b N : Nat} (h : mx a b &lt; N) : a &lt; N := Nat.lt_of_le_of_lt (le_mx_left a b) h</span>
+<span class="ln decl" id="FRC.Reductio.lt_of_mx_lt_right"><a class="lno" href="#FRC.Reductio.lt_of_mx_lt_right">41</a><img class="leanico small ok" src="../lean-ok.png" alt="" title="no axioms">theorem lt_of_mx_lt_right {a b N : Nat} (h : mx a b &lt; N) : b &lt; N := Nat.lt_of_le_of_lt (le_mx_right a b) h</span>
 <span class="ln" id="L42"><a class="lno" href="#L42">42</a></span>
 <span class="ln" id="L43"><a class="lno" href="#L43">43</a>/-! ### 5:B6 — the bounded stability schema for an explicit `Δ₀` language -/</span>
 <span class="ln" id="L44"><a class="lno" href="#L44">44</a></span>
@@ -82,7 +82,7 @@
 <span class="ln" id="L60"><a class="lno" href="#L60">60</a>  | ball : Term → Form → Form</span>
 <span class="ln" id="L61"><a class="lno" href="#L61">61</a></span>
 <span class="ln" id="L62"><a class="lno" href="#L62">62</a>/-- The environment extended by a value for variable `0`. -/</span>
-<span class="ln decl" id="FRC.Reductio.cons"><a class="lno" href="#FRC.Reductio.cons">63</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcCore/Reductio.lean#L63" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small" src="../lean.png" alt="" title="a definition: no proof, no axioms">def cons (x : Nat) (env : Nat → Nat) : Nat → Nat</span>
+<span class="ln decl" id="FRC.Reductio.cons"><a class="lno" href="#FRC.Reductio.cons">63</a><img class="leanico small" src="../lean.png" alt="" title="a definition: no proof, no axioms">def cons (x : Nat) (env : Nat → Nat) : Nat → Nat</span>
 <span class="ln" id="L64"><a class="lno" href="#L64">64</a>  | 0 =&gt; x</span>
 <span class="ln" id="L65"><a class="lno" href="#L65">65</a>  | i + 1 =&gt; env i</span>
 <span class="ln" id="L66"><a class="lno" href="#L66">66</a></span>
@@ -95,7 +95,7 @@
 <span class="ln" id="L73"><a class="lno" href="#L73">73</a>  | .mul s t =&gt; evalT env s * evalT env t</span>
 <span class="ln" id="L74"><a class="lno" href="#L74">74</a></span>
 <span class="ln" id="L75"><a class="lno" href="#L75">75</a>/-- `f 0 &amp;&amp; … &amp;&amp; f (n − 1)`. -/</span>
-<span class="ln decl" id="FRC.Reductio.allBelow"><a class="lno" href="#FRC.Reductio.allBelow">76</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcCore/Reductio.lean#L76" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small" src="../lean.png" alt="" title="a definition: no proof, no axioms">def allBelow (f : Nat → Bool) : Nat → Bool</span>
+<span class="ln decl" id="FRC.Reductio.allBelow"><a class="lno" href="#FRC.Reductio.allBelow">76</a><img class="leanico small" src="../lean.png" alt="" title="a definition: no proof, no axioms">def allBelow (f : Nat → Bool) : Nat → Bool</span>
 <span class="ln" id="L77"><a class="lno" href="#L77">77</a>  | 0 =&gt; true</span>
 <span class="ln" id="L78"><a class="lno" href="#L78">78</a>  | n + 1 =&gt; f n &amp;&amp; allBelow f n</span>
 <span class="ln" id="L79"><a class="lno" href="#L79">79</a></span>
@@ -109,7 +109,7 @@
 <span class="ln" id="L87"><a class="lno" href="#L87">87</a></span>
 <span class="ln" id="L88"><a class="lno" href="#L88">88</a>/-- Terms in the frame `W_N`: a value is defined only while every intermediate value stays below `N`</span>
 <span class="ln" id="L89"><a class="lno" href="#L89">89</a>(overflow: `A(x, y, z)` fails for `x + y ≥ N`). -/</span>
-<span class="ln decl" id="FRC.Reductio.evalT"><a class="lno" href="#FRC.Reductio.evalT">90</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcCore/Reductio.lean#L90" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small" src="../lean.png" alt="" title="a definition: no proof, no axioms">def evalT? (N : Nat) (env : Nat → Nat) : Term → Option Nat</span>
+<span class="ln decl" id="FRC.Reductio.evalT"><a class="lno" href="#FRC.Reductio.evalT">90</a><img class="leanico small" src="../lean.png" alt="" title="a definition: no proof, no axioms">def evalT? (N : Nat) (env : Nat → Nat) : Term → Option Nat</span>
 <span class="ln" id="L91"><a class="lno" href="#L91">91</a>  | .var i =&gt; if env i &lt; N then some (env i) else none</span>
 <span class="ln" id="L92"><a class="lno" href="#L92">92</a>  | .zero =&gt; if 0 &lt; N then some 0 else none</span>
 <span class="ln" id="L93"><a class="lno" href="#L93">93</a>  | .one =&gt; if 1 &lt; N then some 1 else none</span>
@@ -126,7 +126,7 @@
 <span class="ln" id="L104"><a class="lno" href="#L104">104</a></span>
 <span class="ln" id="L105"><a class="lno" href="#L105">105</a>/-- Formulas in the frame `W_N`: an atom with an undefined term is false, a bounded quantifier is guarded by</span>
 <span class="ln" id="L106"><a class="lno" href="#L106">106</a>the definedness of its bound (the transcription `φ*` of the paper). -/</span>
-<span class="ln decl" id="FRC.Reductio.evalF"><a class="lno" href="#FRC.Reductio.evalF">107</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcCore/Reductio.lean#L107" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small" src="../lean.png" alt="" title="a definition: no proof, no axioms">def evalF? (N : Nat) (env : Nat → Nat) : Form → Bool</span>
+<span class="ln decl" id="FRC.Reductio.evalF"><a class="lno" href="#FRC.Reductio.evalF">107</a><img class="leanico small" src="../lean.png" alt="" title="a definition: no proof, no axioms">def evalF? (N : Nat) (env : Nat → Nat) : Form → Bool</span>
 <span class="ln" id="L108"><a class="lno" href="#L108">108</a>  | .eq s t =&gt; match evalT? N env s, evalT? N env t with</span>
 <span class="ln" id="L109"><a class="lno" href="#L109">109</a>      | some a, some b =&gt; decide (a = b)</span>
 <span class="ln" id="L110"><a class="lno" href="#L110">110</a>      | some _, none =&gt; false</span>
@@ -144,7 +144,7 @@
 <span class="ln" id="L122"><a class="lno" href="#L122">122</a>      | none =&gt; false</span>
 <span class="ln" id="L123"><a class="lno" href="#L123">123</a></span>
 <span class="ln" id="L124"><a class="lno" href="#L124">124</a>/-- The largest value a term&#x27;s evaluation touches. -/</span>
-<span class="ln decl" id="FRC.Reductio.boundT"><a class="lno" href="#FRC.Reductio.boundT">125</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcCore/Reductio.lean#L125" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small" src="../lean.png" alt="" title="a definition: no proof, no axioms">def boundT (env : Nat → Nat) : Term → Nat</span>
+<span class="ln decl" id="FRC.Reductio.boundT"><a class="lno" href="#FRC.Reductio.boundT">125</a><img class="leanico small" src="../lean.png" alt="" title="a definition: no proof, no axioms">def boundT (env : Nat → Nat) : Term → Nat</span>
 <span class="ln" id="L126"><a class="lno" href="#L126">126</a>  | .var i =&gt; env i</span>
 <span class="ln" id="L127"><a class="lno" href="#L127">127</a>  | .zero =&gt; 0</span>
 <span class="ln" id="L128"><a class="lno" href="#L128">128</a>  | .one =&gt; 1</span>
@@ -152,19 +152,19 @@
 <span class="ln" id="L130"><a class="lno" href="#L130">130</a>  | .mul s t =&gt; mx (mx (boundT env s) (boundT env t)) (evalT env s * evalT env t)</span>
 <span class="ln" id="L131"><a class="lno" href="#L131">131</a></span>
 <span class="ln" id="L132"><a class="lno" href="#L132">132</a>/-- `max (f 0, …, f (n − 1))`. -/</span>
-<span class="ln decl" id="FRC.Reductio.maxBelow"><a class="lno" href="#FRC.Reductio.maxBelow">133</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcCore/Reductio.lean#L133" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small" src="../lean.png" alt="" title="a definition: no proof, no axioms">def maxBelow (f : Nat → Nat) : Nat → Nat</span>
+<span class="ln decl" id="FRC.Reductio.maxBelow"><a class="lno" href="#FRC.Reductio.maxBelow">133</a><img class="leanico small" src="../lean.png" alt="" title="a definition: no proof, no axioms">def maxBelow (f : Nat → Nat) : Nat → Nat</span>
 <span class="ln" id="L134"><a class="lno" href="#L134">134</a>  | 0 =&gt; 0</span>
 <span class="ln" id="L135"><a class="lno" href="#L135">135</a>  | n + 1 =&gt; mx (f n) (maxBelow f n)</span>
 <span class="ln" id="L136"><a class="lno" href="#L136">136</a></span>
 <span class="ln" id="L137"><a class="lno" href="#L137">137</a>/-- `t(φ)`, the largest integer referenced in the evaluation of `φ` over `ℕ`. -/</span>
-<span class="ln decl" id="FRC.Reductio.boundF"><a class="lno" href="#FRC.Reductio.boundF">138</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcCore/Reductio.lean#L138" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small" src="../lean.png" alt="" title="a definition: no proof, no axioms">def boundF (env : Nat → Nat) : Form → Nat</span>
+<span class="ln decl" id="FRC.Reductio.boundF"><a class="lno" href="#FRC.Reductio.boundF">138</a><img class="leanico small" src="../lean.png" alt="" title="a definition: no proof, no axioms">def boundF (env : Nat → Nat) : Form → Nat</span>
 <span class="ln" id="L139"><a class="lno" href="#L139">139</a>  | .eq s t =&gt; mx (boundT env s) (boundT env t)</span>
 <span class="ln" id="L140"><a class="lno" href="#L140">140</a>  | .lt s t =&gt; mx (boundT env s) (boundT env t)</span>
 <span class="ln" id="L141"><a class="lno" href="#L141">141</a>  | .neg φ =&gt; boundF env φ</span>
 <span class="ln" id="L142"><a class="lno" href="#L142">142</a>  | .conj φ ψ =&gt; mx (boundF env φ) (boundF env ψ)</span>
 <span class="ln" id="L143"><a class="lno" href="#L143">143</a>  | .ball t φ =&gt; mx (boundT env t) (maxBelow (fun x =&gt; boundF (cons x env) φ) (evalT env t + 1))</span>
 <span class="ln" id="L144"><a class="lno" href="#L144">144</a></span>
-<span class="ln decl" id="FRC.Reductio.le_maxBelow"><a class="lno" href="#FRC.Reductio.le_maxBelow">145</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcCore/Reductio.lean#L145" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small ok" src="../lean-ok.png" alt="" title="no axioms">theorem le_maxBelow (f : Nat → Nat) : ∀ {n x : Nat}, x &lt; n → f x ≤ maxBelow f n</span>
+<span class="ln decl" id="FRC.Reductio.le_maxBelow"><a class="lno" href="#FRC.Reductio.le_maxBelow">145</a><img class="leanico small ok" src="../lean-ok.png" alt="" title="no axioms">theorem le_maxBelow (f : Nat → Nat) : ∀ {n x : Nat}, x &lt; n → f x ≤ maxBelow f n</span>
 <span class="ln" id="L146"><a class="lno" href="#L146">146</a>  | 0, x, hx =&gt; absurd hx (Nat.not_lt_zero x)</span>
 <span class="ln" id="L147"><a class="lno" href="#L147">147</a>  | n + 1, x, hx =&gt;</span>
 <span class="ln" id="L148"><a class="lno" href="#L148">148</a>    match Nat.decEq x n with</span>
@@ -173,14 +173,14 @@
 <span class="ln" id="L151"><a class="lno" href="#L151">151</a>      have hlt : x &lt; n := Nat.lt_of_le_of_ne (Nat.le_of_lt_succ hx) e</span>
 <span class="ln" id="L152"><a class="lno" href="#L152">152</a>      Nat.le_trans (le_maxBelow f hlt) (le_mx_right _ _)</span>
 <span class="ln" id="L153"><a class="lno" href="#L153">153</a></span>
-<span class="ln decl" id="FRC.Reductio.allBelow_congr"><a class="lno" href="#FRC.Reductio.allBelow_congr">154</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcCore/Reductio.lean#L154" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small ok" src="../lean-ok.png" alt="" title="no axioms">theorem allBelow_congr {f g : Nat → Bool} : ∀ {n : Nat}, (∀ x, x &lt; n → f x = g x) → allBelow f n = allBelow g n</span>
+<span class="ln decl" id="FRC.Reductio.allBelow_congr"><a class="lno" href="#FRC.Reductio.allBelow_congr">154</a><img class="leanico small ok" src="../lean-ok.png" alt="" title="no axioms">theorem allBelow_congr {f g : Nat → Bool} : ∀ {n : Nat}, (∀ x, x &lt; n → f x = g x) → allBelow f n = allBelow g n</span>
 <span class="ln" id="L155"><a class="lno" href="#L155">155</a>  | 0, _ =&gt; rfl</span>
 <span class="ln" id="L156"><a class="lno" href="#L156">156</a>  | n + 1, h =&gt; by</span>
 <span class="ln" id="L157"><a class="lno" href="#L157">157</a>    show (f n &amp;&amp; allBelow f n) = (g n &amp;&amp; allBelow g n)</span>
 <span class="ln" id="L158"><a class="lno" href="#L158">158</a>    rw [h n (Nat.lt_succ_self n), allBelow_congr (fun x hx =&gt; h x (Nat.lt_succ_of_lt hx))]</span>
 <span class="ln" id="L159"><a class="lno" href="#L159">159</a></span>
 <span class="ln" id="L160"><a class="lno" href="#L160">160</a>/-- 5:B6 (terms) — below its bound a term is defined in the frame, with its standard value. -/</span>
-<span class="ln decl" id="FRC.Reductio.evalT_frame"><a class="lno" href="#FRC.Reductio.evalT_frame">161</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcCore/Reductio.lean#L161" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small ok" src="../lean-ok.png" alt="" title="no axioms">theorem evalT_frame (N : Nat) (env : Nat → Nat) : ∀ (t : Term), boundT env t &lt; N → evalT? N env t = some (evalT env t)</span>
+<span class="ln decl" id="FRC.Reductio.evalT_frame"><a class="lno" href="#FRC.Reductio.evalT_frame">161</a><img class="leanico small ok" src="../lean-ok.png" alt="" title="no axioms">theorem evalT_frame (N : Nat) (env : Nat → Nat) : ∀ (t : Term), boundT env t &lt; N → evalT? N env t = some (evalT env t)</span>
 <span class="ln" id="L162"><a class="lno" href="#L162">162</a>  | .var i, h =&gt; by</span>
 <span class="ln" id="L163"><a class="lno" href="#L163">163</a>    have h&#x27; : env i &lt; N := h</span>
 <span class="ln" id="L164"><a class="lno" href="#L164">164</a>    show (if env i &lt; N then some (env i) else none) = some (env i); rw [ite_eq_left h&#x27;]</span>
@@ -215,7 +215,7 @@
 <span class="ln" id="L193"><a class="lno" href="#L193">193</a></span>
 <span class="ln" id="L194"><a class="lno" href="#L194">194</a>/-- 5:B6 (Theorem stability, schema form) — every `Δ₀` formula takes its standard value in every frame `W_N`</span>
 <span class="ln" id="L195"><a class="lno" href="#L195">195</a>with `N &gt; t(φ)`: `W_N ⊨ φ* ⟺ ℕ ⊨ φ`, for every environment, by induction on the formula. -/</span>
-<span class="ln decl" id="FRC.Reductio.stable"><a class="lno" href="#FRC.Reductio.stable">196</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcCore/Reductio.lean#L196" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small ok" src="../lean-ok.png" alt="" title="no axioms">theorem stable (N : Nat) : ∀ (φ : Form) (env : Nat → Nat), boundF env φ &lt; N → evalF? N env φ = evalF env φ</span>
+<span class="ln decl" id="FRC.Reductio.stable"><a class="lno" href="#FRC.Reductio.stable">196</a><img class="leanico small ok" src="../lean-ok.png" alt="" title="no axioms">theorem stable (N : Nat) : ∀ (φ : Form) (env : Nat → Nat), boundF env φ &lt; N → evalF? N env φ = evalF env φ</span>
 <span class="ln" id="L197"><a class="lno" href="#L197">197</a>  | .eq s t, env, h =&gt; by</span>
 <span class="ln" id="L198"><a class="lno" href="#L198">198</a>    show (match evalT? N env s, evalT? N env t with</span>
 <span class="ln" id="L199"><a class="lno" href="#L199">199</a>      | some a, some b =&gt; decide (a = b)</span>
@@ -249,52 +249,52 @@
 <span class="ln" id="L227"><a class="lno" href="#L227">227</a>/-! ### 5:B6 — the worked instance: Goldbach below 10 in the frames -/</span>
 <span class="ln" id="L228"><a class="lno" href="#L228">228</a></span>
 <span class="ln" id="L229"><a class="lno" href="#L229">229</a>/-- The numeral `n` as a term, `((0 + 1) + 1) + …`. -/</span>
-<span class="ln decl" id="FRC.Reductio.num"><a class="lno" href="#FRC.Reductio.num">230</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcCore/Reductio.lean#L230" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small" src="../lean.png" alt="" title="a definition: no proof, no axioms">def num : Nat → Term</span>
+<span class="ln decl" id="FRC.Reductio.num"><a class="lno" href="#FRC.Reductio.num">230</a><img class="leanico small" src="../lean.png" alt="" title="a definition: no proof, no axioms">def num : Nat → Term</span>
 <span class="ln" id="L231"><a class="lno" href="#L231">231</a>  | 0 =&gt; Term.zero</span>
 <span class="ln" id="L232"><a class="lno" href="#L232">232</a>  | n + 1 =&gt; Term.add (num n) Term.one</span>
 <span class="ln" id="L233"><a class="lno" href="#L233">233</a></span>
 <span class="ln" id="L234"><a class="lno" href="#L234">234</a>/-- `∃ x ≤ t, φ` as `¬∀ x ≤ t, ¬φ`. -/</span>
-<span class="ln decl" id="FRC.Reductio.bex"><a class="lno" href="#FRC.Reductio.bex">235</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcCore/Reductio.lean#L235" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small" src="../lean.png" alt="" title="a definition: no proof, no axioms">def bex (t : Term) (φ : Form) : Form := Form.neg (Form.ball t (Form.neg φ))</span>
+<span class="ln decl" id="FRC.Reductio.bex"><a class="lno" href="#FRC.Reductio.bex">235</a><img class="leanico small" src="../lean.png" alt="" title="a definition: no proof, no axioms">def bex (t : Term) (φ : Form) : Form := Form.neg (Form.ball t (Form.neg φ))</span>
 <span class="ln" id="L236"><a class="lno" href="#L236">236</a></span>
 <span class="ln" id="L237"><a class="lno" href="#L237">237</a>/-- &quot;variable `i` is prime&quot;: `1 &lt; x ∧ ∀ d ≤ x, ∀ e ≤ x, ¬(d·e = x ∧ d ≠ 1 ∧ d ≠ x)`. -/</span>
-<span class="ln decl" id="FRC.Reductio.prime"><a class="lno" href="#FRC.Reductio.prime">238</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcCore/Reductio.lean#L238" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small" src="../lean.png" alt="" title="a definition: no proof, no axioms">def prime (i : Nat) : Form :=</span>
+<span class="ln decl" id="FRC.Reductio.prime"><a class="lno" href="#FRC.Reductio.prime">238</a><img class="leanico small" src="../lean.png" alt="" title="a definition: no proof, no axioms">def prime (i : Nat) : Form :=</span>
 <span class="ln" id="L239"><a class="lno" href="#L239">239</a>  Form.conj (Form.lt Term.one (Term.var i))</span>
 <span class="ln" id="L240"><a class="lno" href="#L240">240</a>    (Form.ball (Term.var i) (Form.ball (Term.var (i + 1))</span>
 <span class="ln" id="L241"><a class="lno" href="#L241">241</a>      (Form.neg (Form.conj (Form.eq (Term.mul (Term.var 1) (Term.var 0)) (Term.var (i + 2)))</span>
 <span class="ln" id="L242"><a class="lno" href="#L242">242</a>        (Form.conj (Form.neg (Form.eq (Term.var 1) Term.one)) (Form.neg (Form.eq (Term.var 1) (Term.var (i + 2)))))))))</span>
 <span class="ln" id="L243"><a class="lno" href="#L243">243</a></span>
 <span class="ln" id="L244"><a class="lno" href="#L244">244</a>/-- &quot;variable `0` is even&quot;: `∃ k ≤ m, k + k = m`. -/</span>
-<span class="ln decl" id="FRC.Reductio.even0"><a class="lno" href="#FRC.Reductio.even0">245</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcCore/Reductio.lean#L245" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small" src="../lean.png" alt="" title="a definition: no proof, no axioms">def even0 : Form := bex (Term.var 0) (Form.eq (Term.add (Term.var 0) (Term.var 0)) (Term.var 1))</span>
+<span class="ln decl" id="FRC.Reductio.even0"><a class="lno" href="#FRC.Reductio.even0">245</a><img class="leanico small" src="../lean.png" alt="" title="a definition: no proof, no axioms">def even0 : Form := bex (Term.var 0) (Form.eq (Term.add (Term.var 0) (Term.var 0)) (Term.var 1))</span>
 <span class="ln" id="L246"><a class="lno" href="#L246">246</a></span>
 <span class="ln" id="L247"><a class="lno" href="#L247">247</a>/-- Goldbach below `M`: every even `m ≤ M` with `4 ≤ m` is a sum of two primes `x, y ≤ m` — a `Δ₀` sentence. -/</span>
-<span class="ln decl" id="FRC.Reductio.goldbach"><a class="lno" href="#FRC.Reductio.goldbach">248</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcCore/Reductio.lean#L248" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small" src="../lean.png" alt="" title="a definition: no proof, no axioms">def goldbach (M : Nat) : Form :=</span>
+<span class="ln decl" id="FRC.Reductio.goldbach"><a class="lno" href="#FRC.Reductio.goldbach">248</a><img class="leanico small" src="../lean.png" alt="" title="a definition: no proof, no axioms">def goldbach (M : Nat) : Form :=</span>
 <span class="ln" id="L249"><a class="lno" href="#L249">249</a>  Form.ball (num M) (Form.neg (Form.conj (Form.conj even0 (Form.neg (Form.lt (Term.var 0) (num 4))))</span>
 <span class="ln" id="L250"><a class="lno" href="#L250">250</a>    (Form.neg (bex (Term.var 0) (bex (Term.var 1)</span>
 <span class="ln" id="L251"><a class="lno" href="#L251">251</a>      (Form.conj (prime 1) (Form.conj (prime 0) (Form.eq (Term.add (Term.var 1) (Term.var 0)) (Term.var 2)))))))))</span>
 <span class="ln" id="L252"><a class="lno" href="#L252">252</a></span>
 <span class="ln" id="L253"><a class="lno" href="#L253">253</a>/-- 5:B6 (Example schema-instance) — Goldbach below `10` is true over `ℕ`, decided by the kernel. -/</span>
-<span class="ln decl" id="FRC.Reductio.goldbach_ten"><a class="lno" href="#FRC.Reductio.goldbach_ten">254</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcCore/Reductio.lean#L254" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small ok" src="../lean-ok.png" alt="" title="no axioms">theorem goldbach_ten : evalF (fun _ =&gt; 0) (goldbach 10) = true := by decide +kernel</span>
+<span class="ln decl" id="FRC.Reductio.goldbach_ten"><a class="lno" href="#FRC.Reductio.goldbach_ten">254</a><img class="leanico small ok" src="../lean-ok.png" alt="" title="no axioms">theorem goldbach_ten : evalF (fun _ =&gt; 0) (goldbach 10) = true := by decide +kernel</span>
 <span class="ln" id="L255"><a class="lno" href="#L255">255</a></span>
 <span class="ln" id="L256"><a class="lno" href="#L256">256</a>/-- 5:B6 (Example schema-instance) — its bound: the evaluation touches `100 = 10·10` and nothing larger. -/</span>
-<span class="ln decl" id="FRC.Reductio.goldbach_ten_bound"><a class="lno" href="#FRC.Reductio.goldbach_ten_bound">257</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcCore/Reductio.lean#L257" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small ok" src="../lean-ok.png" alt="" title="no axioms">theorem goldbach_ten_bound : boundF (fun _ =&gt; 0) (goldbach 10) = 100 := by decide +kernel</span>
+<span class="ln decl" id="FRC.Reductio.goldbach_ten_bound"><a class="lno" href="#FRC.Reductio.goldbach_ten_bound">257</a><img class="leanico small ok" src="../lean-ok.png" alt="" title="no axioms">theorem goldbach_ten_bound : boundF (fun _ =&gt; 0) (goldbach 10) = 100 := by decide +kernel</span>
 <span class="ln" id="L258"><a class="lno" href="#L258">258</a></span>
 <span class="ln" id="L259"><a class="lno" href="#L259">259</a>/-- 5:B6 (Example schema-instance) — hence, by `stable`, every frame `W_N` with `N &gt; 100` gives the sentence its</span>
 <span class="ln" id="L260"><a class="lno" href="#L260">260</a>standard value; `W_101` does so by direct evaluation as well. -/</span>
-<span class="ln decl" id="FRC.Reductio.goldbach_ten_frame"><a class="lno" href="#FRC.Reductio.goldbach_ten_frame">261</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcCore/Reductio.lean#L261" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small ok" src="../lean-ok.png" alt="" title="no axioms">theorem goldbach_ten_frame : evalF? 101 (fun _ =&gt; 0) (goldbach 10) = true := by decide +kernel</span>
+<span class="ln decl" id="FRC.Reductio.goldbach_ten_frame"><a class="lno" href="#FRC.Reductio.goldbach_ten_frame">261</a><img class="leanico small ok" src="../lean-ok.png" alt="" title="no axioms">theorem goldbach_ten_frame : evalF? 101 (fun _ =&gt; 0) (goldbach 10) = true := by decide +kernel</span>
 <span class="ln" id="L262"><a class="lno" href="#L262">262</a></span>
 <span class="ln" id="L263"><a class="lno" href="#L263">263</a>/-- 5:B6 — the schema instance `St(goldbach 10, M)` for every `M`: all frames `100 &lt; N` agree with `ℕ`. -/</span>
-<span class="ln decl" id="FRC.Reductio.goldbach_ten_stable"><a class="lno" href="#FRC.Reductio.goldbach_ten_stable">264</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcCore/Reductio.lean#L264" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small ok" src="../lean-ok.png" alt="" title="no axioms">theorem goldbach_ten_stable (N : Nat) (hN : 100 &lt; N) : evalF? N (fun _ =&gt; 0) (goldbach 10) = true := by</span>
+<span class="ln decl" id="FRC.Reductio.goldbach_ten_stable"><a class="lno" href="#FRC.Reductio.goldbach_ten_stable">264</a><img class="leanico small ok" src="../lean-ok.png" alt="" title="no axioms">theorem goldbach_ten_stable (N : Nat) (hN : 100 &lt; N) : evalF? N (fun _ =&gt; 0) (goldbach 10) = true := by</span>
 <span class="ln" id="L265"><a class="lno" href="#L265">265</a>  rw [stable N (goldbach 10) (fun _ =&gt; 0) (goldbach_ten_bound ▸ hN)]; exact goldbach_ten</span>
 <span class="ln" id="L266"><a class="lno" href="#L266">266</a></span>
 <span class="ln" id="L267"><a class="lno" href="#L267">267</a>/-! ### 5:C2 — records and the mirror -/</span>
 <span class="ln" id="L268"><a class="lno" href="#L268">268</a></span>
 <span class="ln" id="L269"><a class="lno" href="#L269">269</a>/-- The number of strings of length at most `K` over `s` letters, `Σ_{i ≤ K} s^i`. -/</span>
-<span class="ln decl" id="FRC.Reductio.records"><a class="lno" href="#FRC.Reductio.records">270</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcCore/Reductio.lean#L270" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small" src="../lean.png" alt="" title="a definition: no proof, no axioms">def records (s : Nat) : Nat → Nat</span>
+<span class="ln decl" id="FRC.Reductio.records"><a class="lno" href="#FRC.Reductio.records">270</a><img class="leanico small" src="../lean.png" alt="" title="a definition: no proof, no axioms">def records (s : Nat) : Nat → Nat</span>
 <span class="ln" id="L271"><a class="lno" href="#L271">271</a>  | 0 =&gt; 1</span>
 <span class="ln" id="L272"><a class="lno" href="#L272">272</a>  | K + 1 =&gt; records s K + s ^ (K + 1)</span>
 <span class="ln" id="L273"><a class="lno" href="#L273">273</a></span>
 <span class="ln" id="L274"><a class="lno" href="#L274">274</a>/-- 5:C2 (the count) — fewer than `s^(K+1)` records exist for an alphabet of `s ≥ 2` letters. -/</span>
-<span class="ln decl" id="FRC.Reductio.records_lt"><a class="lno" href="#FRC.Reductio.records_lt">275</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcCore/Reductio.lean#L275" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small ok" src="../lean-ok.png" alt="" title="no axioms">theorem records_lt (s : Nat) (hs : 2 ≤ s) : ∀ K, records s K &lt; s ^ (K + 1)</span>
+<span class="ln decl" id="FRC.Reductio.records_lt"><a class="lno" href="#FRC.Reductio.records_lt">275</a><img class="leanico small ok" src="../lean-ok.png" alt="" title="no axioms">theorem records_lt (s : Nat) (hs : 2 ≤ s) : ∀ K, records s K &lt; s ^ (K + 1)</span>
 <span class="ln" id="L276"><a class="lno" href="#L276">276</a>  | 0 =&gt; by</span>
 <span class="ln" id="L277"><a class="lno" href="#L277">277</a>    show 1 &lt; s ^ 1</span>
 <span class="ln" id="L278"><a class="lno" href="#L278">278</a>    rw [Nat.pow_succ, Nat.pow_zero, Nat.one_mul]</span>
@@ -308,7 +308,7 @@
 <span class="ln" id="L286"><a class="lno" href="#L286">286</a></span>
 <span class="ln" id="L287"><a class="lno" href="#L287">287</a>/-- 5:C2 (Proposition mirror) — a part with fewer records than the frame has elements holds no injective</span>
 <span class="ln" id="L288"><a class="lno" href="#L288">288</a>representation of the frame&#x27;s domain: no `f : [0, N) → [0, R)` is injective when `R &lt; N`. -/</span>
-<span class="ln decl" id="FRC.Reductio.no_mirror"><a class="lno" href="#FRC.Reductio.no_mirror">289</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcCore/Reductio.lean#L289" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small ok" src="../lean-ok.png" alt="" title="no axioms">theorem no_mirror {N R : Nat} (hR : R &lt; N) (f : Nat → Nat) (hf : ∀ i, i &lt; N → f i &lt; R)</span>
+<span class="ln decl" id="FRC.Reductio.no_mirror"><a class="lno" href="#FRC.Reductio.no_mirror">289</a><img class="leanico small ok" src="../lean-ok.png" alt="" title="no axioms">theorem no_mirror {N R : Nat} (hR : R &lt; N) (f : Nat → Nat) (hf : ∀ i, i &lt; N → f i &lt; R)</span>
 <span class="ln" id="L290"><a class="lno" href="#L290">290</a>    (hinj : ∀ i j, i &lt; N → j &lt; N → f i = f j → i = j) : False :=</span>
 <span class="ln" id="L291"><a class="lno" href="#L291">291</a>  have hnd := FRC.Shell.imageList_nodup hinj (Nat.le_refl N)</span>
 <span class="ln" id="L292"><a class="lno" href="#L292">292</a>  have hlen := FRC.Shell.imageList_length f N</span>
@@ -321,22 +321,22 @@
 <span class="ln" id="L299"><a class="lno" href="#L299">299</a>/-! ### 5:C5, 5:E5 — an iteration on finitely many states repeats: periodic König and bounded halting -/</span>
 <span class="ln" id="L300"><a class="lno" href="#L300">300</a></span>
 <span class="ln" id="L301"><a class="lno" href="#L301">301</a>/-- `iter f x k = f^k x`. -/</span>
-<span class="ln decl" id="FRC.Reductio.iter"><a class="lno" href="#FRC.Reductio.iter">302</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcCore/Reductio.lean#L302" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small" src="../lean.png" alt="" title="a definition: no proof, no axioms">def iter (f : Nat → Nat) (x : Nat) : Nat → Nat</span>
+<span class="ln decl" id="FRC.Reductio.iter"><a class="lno" href="#FRC.Reductio.iter">302</a><img class="leanico small" src="../lean.png" alt="" title="a definition: no proof, no axioms">def iter (f : Nat → Nat) (x : Nat) : Nat → Nat</span>
 <span class="ln" id="L303"><a class="lno" href="#L303">303</a>  | 0 =&gt; x</span>
 <span class="ln" id="L304"><a class="lno" href="#L304">304</a>  | k + 1 =&gt; f (iter f x k)</span>
 <span class="ln" id="L305"><a class="lno" href="#L305">305</a></span>
-<span class="ln decl" id="FRC.Reductio.iter_lt"><a class="lno" href="#FRC.Reductio.iter_lt">306</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcCore/Reductio.lean#L306" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small ok" src="../lean-ok.png" alt="" title="no axioms">theorem iter_lt (f : Nat → Nat) {n : Nat} (hf : ∀ y, y &lt; n → f y &lt; n) {x : Nat} (hx : x &lt; n) :</span>
+<span class="ln decl" id="FRC.Reductio.iter_lt"><a class="lno" href="#FRC.Reductio.iter_lt">306</a><img class="leanico small ok" src="../lean-ok.png" alt="" title="no axioms">theorem iter_lt (f : Nat → Nat) {n : Nat} (hf : ∀ y, y &lt; n → f y &lt; n) {x : Nat} (hx : x &lt; n) :</span>
 <span class="ln" id="L307"><a class="lno" href="#L307">307</a>    ∀ k, iter f x k &lt; n</span>
 <span class="ln" id="L308"><a class="lno" href="#L308">308</a>  | 0 =&gt; hx</span>
 <span class="ln" id="L309"><a class="lno" href="#L309">309</a>  | k + 1 =&gt; hf _ (iter_lt f hf hx k)</span>
 <span class="ln" id="L310"><a class="lno" href="#L310">310</a></span>
-<span class="ln decl" id="FRC.Reductio.iter_add"><a class="lno" href="#FRC.Reductio.iter_add">311</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcCore/Reductio.lean#L311" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small ok" src="../lean-ok.png" alt="" title="no axioms">theorem iter_add (f : Nat → Nat) (x : Nat) (i : Nat) : ∀ k, iter f x (i + k) = iter f (iter f x i) k</span>
+<span class="ln decl" id="FRC.Reductio.iter_add"><a class="lno" href="#FRC.Reductio.iter_add">311</a><img class="leanico small ok" src="../lean-ok.png" alt="" title="no axioms">theorem iter_add (f : Nat → Nat) (x : Nat) (i : Nat) : ∀ k, iter f x (i + k) = iter f (iter f x i) k</span>
 <span class="ln" id="L312"><a class="lno" href="#L312">312</a>  | 0 =&gt; rfl</span>
 <span class="ln" id="L313"><a class="lno" href="#L313">313</a>  | k + 1 =&gt; by show f (iter f x (i + k)) = f (iter f (iter f x i) k); rw [iter_add f x i k]</span>
 <span class="ln" id="L314"><a class="lno" href="#L314">314</a></span>
 <span class="ln" id="L315"><a class="lno" href="#L315">315</a>/-- 5:E5, 5:C5 (Lemma periodic König, the pigeonhole) — on `n` states the iteration from `x` revisits a state within</span>
 <span class="ln" id="L316"><a class="lno" href="#L316">316</a>`n` steps: some `i &lt; j ≤ n` have `f^i x = f^j x`. -/</span>
-<span class="ln decl" id="FRC.Reductio.repeat_below"><a class="lno" href="#FRC.Reductio.repeat_below">317</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcCore/Reductio.lean#L317" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small ok" src="../lean-ok.png" alt="" title="no axioms">theorem repeat_below (f : Nat → Nat) (n : Nat) (hf : ∀ y, y &lt; n → f y &lt; n) (x : Nat) (hx : x &lt; n) :</span>
+<span class="ln decl" id="FRC.Reductio.repeat_below"><a class="lno" href="#FRC.Reductio.repeat_below">317</a><img class="leanico small ok" src="../lean-ok.png" alt="" title="no axioms">theorem repeat_below (f : Nat → Nat) (n : Nat) (hf : ∀ y, y &lt; n → f y &lt; n) (x : Nat) (hx : x &lt; n) :</span>
 <span class="ln" id="L318"><a class="lno" href="#L318">318</a>    ∃ i j, i &lt; j ∧ j ≤ n ∧ iter f x i = iter f x j :=</span>
 <span class="ln" id="L319"><a class="lno" href="#L319">319</a>  have dec : Decidable (∃ j, j &lt; n + 1 ∧ ∃ i, i &lt; j ∧ iter f x i = iter f x j) :=</span>
 <span class="ln" id="L320"><a class="lno" href="#L320">320</a>    @FRC.Shell.decExistsLT (fun j =&gt; ∃ i, i &lt; j ∧ iter f x i = iter f x j)</span>
@@ -357,7 +357,7 @@
 <span class="ln" id="L335"><a class="lno" href="#L335">335</a>    have := Pigeonhole.length_le_of_nodup_lt n _ hnd hb</span>
 <span class="ln" id="L336"><a class="lno" href="#L336">336</a>    by rw [FRC.Shell.imageList_length] at this; exact absurd this (Nat.not_succ_le_self n)</span>
 <span class="ln" id="L337"><a class="lno" href="#L337">337</a></span>
-<span class="ln decl" id="FRC.Reductio.sub_pos"><a class="lno" href="#FRC.Reductio.sub_pos">338</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcCore/Reductio.lean#L338" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small ok" src="../lean-ok.png" alt="" title="no axioms">theorem sub_pos {i j : Nat} (h : i &lt; j) : 0 &lt; j - i :=</span>
+<span class="ln decl" id="FRC.Reductio.sub_pos"><a class="lno" href="#FRC.Reductio.sub_pos">338</a><img class="leanico small ok" src="../lean-ok.png" alt="" title="no axioms">theorem sub_pos {i j : Nat} (h : i &lt; j) : 0 &lt; j - i :=</span>
 <span class="ln" id="L339"><a class="lno" href="#L339">339</a>  match Nat.decEq (j - i) 0 with</span>
 <span class="ln" id="L340"><a class="lno" href="#L340">340</a>  | isTrue e =&gt;</span>
 <span class="ln" id="L341"><a class="lno" href="#L341">341</a>    have hj : j = i := by rw [← FRC.Nat.add_sub_of_le (Nat.le_of_lt h), e, Nat.add_zero]</span>
@@ -366,7 +366,7 @@
 <span class="ln" id="L344"><a class="lno" href="#L344">344</a></span>
 <span class="ln" id="L345"><a class="lno" href="#L345">345</a>/-- 5:E5 — the walk is eventually periodic: from step `i` on, period `p = j − i` with `0 &lt; p ≤ n`,</span>
 <span class="ln" id="L346"><a class="lno" href="#L346">346</a>`f^(i+k+p) x = f^(i+k) x` for every `k`. -/</span>
-<span class="ln decl" id="FRC.Reductio.eventually_periodic"><a class="lno" href="#FRC.Reductio.eventually_periodic">347</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcCore/Reductio.lean#L347" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small ok" src="../lean-ok.png" alt="" title="no axioms">theorem eventually_periodic (f : Nat → Nat) (n : Nat) (hf : ∀ y, y &lt; n → f y &lt; n) (x : Nat) (hx : x &lt; n) :</span>
+<span class="ln decl" id="FRC.Reductio.eventually_periodic"><a class="lno" href="#FRC.Reductio.eventually_periodic">347</a><img class="leanico small ok" src="../lean-ok.png" alt="" title="no axioms">theorem eventually_periodic (f : Nat → Nat) (n : Nat) (hf : ∀ y, y &lt; n → f y &lt; n) (x : Nat) (hx : x &lt; n) :</span>
 <span class="ln" id="L348"><a class="lno" href="#L348">348</a>    ∃ i p, 0 &lt; p ∧ p ≤ n ∧ ∀ k, iter f x (i + k + p) = iter f x (i + k) :=</span>
 <span class="ln" id="L349"><a class="lno" href="#L349">349</a>  match repeat_below f n hf x hx with</span>
 <span class="ln" id="L350"><a class="lno" href="#L350">350</a>  | ⟨i, j, hij, hjn, e⟩ =&gt;</span>
@@ -374,7 +374,7 @@
 <span class="ln" id="L352"><a class="lno" href="#L352">352</a>      rw [Nat.add_right_comm, FRC.Nat.add_sub_of_le (Nat.le_of_lt hij), iter_add f x j k, iter_add f x i k, e]⟩</span>
 <span class="ln" id="L353"><a class="lno" href="#L353">353</a></span>
 <span class="ln" id="L354"><a class="lno" href="#L354">354</a>/-- 5:C5 (horizon separation) — a run on `n` states reaches a state `h` iff it reaches it within `n` steps: halting for bounded space is decided from above by `n` steps of simulation. -/</span>
-<span class="ln decl" id="FRC.Reductio.halts_iff_halts_below"><a class="lno" href="#FRC.Reductio.halts_iff_halts_below">355</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcCore/Reductio.lean#L355" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small ok" src="../lean-ok.png" alt="" title="no axioms">theorem halts_iff_halts_below (f : Nat → Nat) (n : Nat) (hf : ∀ y, y &lt; n → f y &lt; n) (h : Nat)</span>
+<span class="ln decl" id="FRC.Reductio.halts_iff_halts_below"><a class="lno" href="#FRC.Reductio.halts_iff_halts_below">355</a><img class="leanico small ok" src="../lean-ok.png" alt="" title="no axioms">theorem halts_iff_halts_below (f : Nat → Nat) (n : Nat) (hf : ∀ y, y &lt; n → f y &lt; n) (h : Nat)</span>
 <span class="ln" id="L356"><a class="lno" href="#L356">356</a>    (x : Nat) (hx : x &lt; n) : (∃ k, iter f x k = h) ↔ ∃ k, k ≤ n ∧ iter f x k = h :=</span>
 <span class="ln" id="L357"><a class="lno" href="#L357">357</a>  ⟨fun ⟨k, hk⟩ =&gt;</span>
 <span class="ln" id="L358"><a class="lno" href="#L358">358</a>    match repeat_below f n hf x hx with</span>
@@ -405,19 +405,19 @@
 <span class="ln" id="L383"><a class="lno" href="#L383">383</a>/-! ### 5:D3 — Cantor&#x27;s theorem on the finite frame -/</span>
 <span class="ln" id="L384"><a class="lno" href="#L384">384</a></span>
 <span class="ln" id="L385"><a class="lno" href="#L385">385</a>/-- 5:D3 (Remark, the external diagonal) — Cantor&#x27;s theorem holds in every finite frame: `n &lt; 2^n`. -/</span>
-<span class="ln decl" id="FRC.Reductio.cantor_finite"><a class="lno" href="#FRC.Reductio.cantor_finite">386</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcCore/Reductio.lean#L386" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small ok" src="../lean-ok.png" alt="" title="no axioms">theorem cantor_finite (n : Nat) : n &lt; 2 ^ n := Nat.lt_two_pow_self</span>
+<span class="ln decl" id="FRC.Reductio.cantor_finite"><a class="lno" href="#FRC.Reductio.cantor_finite">386</a><img class="leanico small ok" src="../lean-ok.png" alt="" title="no axioms">theorem cantor_finite (n : Nat) : n &lt; 2 ^ n := Nat.lt_two_pow_self</span>
 <span class="ln" id="L387"><a class="lno" href="#L387">387</a></span>
 <span class="ln" id="L388"><a class="lno" href="#L388">388</a>/-! ### 5:E1, 5:E2 — definable choice by the least element -/</span>
 <span class="ln" id="L389"><a class="lno" href="#L389">389</a></span>
 <span class="ln" id="L390"><a class="lno" href="#L390">390</a>/-- The least `x &lt; n` with `P x`, if any: the choice function `ch(A) = min A` of Definition global-choice. -/</span>
-<span class="ln decl" id="FRC.Reductio.leastBelow"><a class="lno" href="#FRC.Reductio.leastBelow">391</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcCore/Reductio.lean#L391" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small" src="../lean.png" alt="" title="a definition: no proof, no axioms">def leastBelow (P : Nat → Bool) : Nat → Option Nat</span>
+<span class="ln decl" id="FRC.Reductio.leastBelow"><a class="lno" href="#FRC.Reductio.leastBelow">391</a><img class="leanico small" src="../lean.png" alt="" title="a definition: no proof, no axioms">def leastBelow (P : Nat → Bool) : Nat → Option Nat</span>
 <span class="ln" id="L392"><a class="lno" href="#L392">392</a>  | 0 =&gt; none</span>
 <span class="ln" id="L393"><a class="lno" href="#L393">393</a>  | n + 1 =&gt; match leastBelow P n with</span>
 <span class="ln" id="L394"><a class="lno" href="#L394">394</a>    | some x =&gt; some x</span>
 <span class="ln" id="L395"><a class="lno" href="#L395">395</a>    | none =&gt; if P n then some n else none</span>
 <span class="ln" id="L396"><a class="lno" href="#L396">396</a></span>
 <span class="ln" id="L397"><a class="lno" href="#L397">397</a>/-- 5:E1 — a nonempty family has a choice: if some `x &lt; n` has `P x`, `leastBelow P n` is defined. -/</span>
-<span class="ln decl" id="FRC.Reductio.leastBelow_some"><a class="lno" href="#FRC.Reductio.leastBelow_some">398</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcCore/Reductio.lean#L398" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small ok" src="../lean-ok.png" alt="" title="no axioms">theorem leastBelow_some (P : Nat → Bool) : ∀ (n x : Nat), x &lt; n → P x = true → ∃ y, leastBelow P n = some y</span>
+<span class="ln decl" id="FRC.Reductio.leastBelow_some"><a class="lno" href="#FRC.Reductio.leastBelow_some">398</a><img class="leanico small ok" src="../lean-ok.png" alt="" title="no axioms">theorem leastBelow_some (P : Nat → Bool) : ∀ (n x : Nat), x &lt; n → P x = true → ∃ y, leastBelow P n = some y</span>
 <span class="ln" id="L399"><a class="lno" href="#L399">399</a>  | 0, x, hx, _ =&gt; absurd hx (Nat.not_lt_zero x)</span>
 <span class="ln" id="L400"><a class="lno" href="#L400">400</a>  | n + 1, x, hx, hP =&gt;</span>
 <span class="ln" id="L401"><a class="lno" href="#L401">401</a>    match hl : leastBelow P n with</span>
@@ -441,7 +441,7 @@
 <span class="ln" id="L419"><a class="lno" href="#L419">419</a>          (fun ⟨z, hz⟩ =&gt; nomatch (hl ▸ hz : (none : Option Nat) = some z))</span>
 <span class="ln" id="L420"><a class="lno" href="#L420">420</a></span>
 <span class="ln" id="L421"><a class="lno" href="#L421">421</a>/-- 5:E1 (Proposition finite-choice) — the choice is a member, below the bound, and the least one. -/</span>
-<span class="ln decl" id="FRC.Reductio.leastBelow_spec"><a class="lno" href="#FRC.Reductio.leastBelow_spec">422</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcCore/Reductio.lean#L422" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small ok" src="../lean-ok.png" alt="" title="no axioms">theorem leastBelow_spec (P : Nat → Bool) : ∀ (n x : Nat), leastBelow P n = some x →</span>
+<span class="ln decl" id="FRC.Reductio.leastBelow_spec"><a class="lno" href="#FRC.Reductio.leastBelow_spec">422</a><img class="leanico small ok" src="../lean-ok.png" alt="" title="no axioms">theorem leastBelow_spec (P : Nat → Bool) : ∀ (n x : Nat), leastBelow P n = some x →</span>
 <span class="ln" id="L423"><a class="lno" href="#L423">423</a>    x &lt; n ∧ P x = true ∧ ∀ y, y &lt; x → P y = false</span>
 <span class="ln" id="L424"><a class="lno" href="#L424">424</a>  | 0, x, h =&gt; nomatch (h : (none : Option Nat) = some x)</span>
 <span class="ln" id="L425"><a class="lno" href="#L425">425</a>  | n + 1, x, h =&gt; by</span>
@@ -475,7 +475,7 @@
 <span class="ln" id="L453"><a class="lno" href="#L453">453</a></span>
 <span class="ln" id="L454"><a class="lno" href="#L454">454</a>/-- 5:E2 (Lemma periodic choice) — the choice depends on the set alone: pointwise equal families choose alike,</span>
 <span class="ln" id="L455"><a class="lno" href="#L455">455</a>so an equality-periodic family `A_{i+N} = A_i` has a choice function of the same period. -/</span>
-<span class="ln decl" id="FRC.Reductio.leastBelow_congr"><a class="lno" href="#FRC.Reductio.leastBelow_congr">456</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcCore/Reductio.lean#L456" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small ok" src="../lean-ok.png" alt="" title="no axioms">theorem leastBelow_congr {P Q : Nat → Bool} : ∀ {n : Nat}, (∀ x, x &lt; n → P x = Q x) → leastBelow P n = leastBelow Q n</span>
+<span class="ln decl" id="FRC.Reductio.leastBelow_congr"><a class="lno" href="#FRC.Reductio.leastBelow_congr">456</a><img class="leanico small ok" src="../lean-ok.png" alt="" title="no axioms">theorem leastBelow_congr {P Q : Nat → Bool} : ∀ {n : Nat}, (∀ x, x &lt; n → P x = Q x) → leastBelow P n = leastBelow Q n</span>
 <span class="ln" id="L457"><a class="lno" href="#L457">457</a>  | 0, _ =&gt; rfl</span>
 <span class="ln" id="L458"><a class="lno" href="#L458">458</a>  | n + 1, h =&gt; by</span>
 <span class="ln" id="L459"><a class="lno" href="#L459">459</a>    show (match leastBelow P n with</span>
@@ -489,7 +489,7 @@
 <span class="ln" id="L467"><a class="lno" href="#L467">467</a></span>
 <span class="ln" id="L468"><a class="lno" href="#L468">468</a>/-- 5:E4 (Example basis-obstruction) — on the line over `𝔽₅` the map `v ↦ −v` fixes no basis: `−v ≠ v` for every</span>
 <span class="ln" id="L469"><a class="lno" href="#L469">469</a>`v ≠ 0`; over `𝔽₂` it fixes `1`, so the obstruction is arithmetic. -/</span>
-<span class="ln decl" id="FRC.Reductio.obstruction_five"><a class="lno" href="#FRC.Reductio.obstruction_five">470</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcCore/Reductio.lean#L470" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small ok" src="../lean-ok.png" alt="" title="no axioms">theorem obstruction_five :</span>
+<span class="ln decl" id="FRC.Reductio.obstruction_five"><a class="lno" href="#FRC.Reductio.obstruction_five">470</a><img class="leanico small ok" src="../lean-ok.png" alt="" title="no axioms">theorem obstruction_five :</span>
 <span class="ln" id="L471"><a class="lno" href="#L471">471</a>    (-(1 : Shell 5) ≠ 1) ∧ (-(2 : Shell 5) ≠ 2) ∧ (-(3 : Shell 5) ≠ 3) ∧ (-(4 : Shell 5) ≠ 4) ∧ (-(1 : Shell 2) = 1) := by</span>
 <span class="ln" id="L472"><a class="lno" href="#L472">472</a>  decide</span>
 <span class="ln" id="L473"><a class="lno" href="#L473">473</a></span>

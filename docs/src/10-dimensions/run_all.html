@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-HNE3RMJ5L1"></script>
+<script> window.dataLayer = window.dataLayer || []; function gtag(){dataLayer.push(arguments);} gtag('js', new Date()); gtag('config', 'G-HNE3RMJ5L1'); </script>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>run_all.py — src/10-dimensions</title>
+<meta name="description" content="The script run_all.py of the 10-dimensions validation package, rendered with an anchor per line">
+<meta name="author" content="Yosef Akhtman">
+<link rel="icon" href="../../frc-logo-fav.png">
+<link rel="stylesheet" href="../../style.css">
+
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <h1>run_all.py — src/10-dimensions</h1>
+    
+    <nav><a href="../../index.html">Home</a><a href="../../publications.html">Publications</a><a href="../../00-ledger.html">Ledger</a><a href="../../predictions.html">Predictions</a><a href="../../explicability.html">Explicability</a></nav>
+  </header>
+<main id="ledger-main"><section class="prose"><p>The script <code>src/10-dimensions/run_all.py</code> of the validation package of the paper <a href="../../10-dimensions/10-dimensions-ledger.html">10-dim</a>, rendered with an anchor per line. <a href="https://colab.research.google.com/github/gamayos/finite-ring-space/blob/main/src/10-dimensions/10-dimensions-rows.ipynb" target="_blank" rel="noopener">▶ run the rows on Google Colab</a>.</p></section><pre class="lean"><span class="ln" id="L1"><a class="lno" href="#L1">1</a>&quot;&quot;&quot;</span>
+<span class="ln" id="L2"><a class="lno" href="#L2">2</a>run_all.py — the 10-dimensions validation package, end to end</span>
+<span class="ln" id="L3"><a class="lno" href="#L3">3</a>=============================================================</span>
+<span class="ln" id="L4"><a class="lno" href="#L4">4</a>Runs the two exact suites, writes results.json — one record per family check, carrying the paper&#x27;s ledger</span>
+<span class="ln" id="L5"><a class="lno" href="#L5">5</a>row(s) it witnesses — and exits nonzero if any check fails.  Pure Python, ≈ 5 s.</span>
+<span class="ln" id="L6"><a class="lno" href="#L6">6</a></span>
+<span class="ln" id="L7"><a class="lno" href="#L7">7</a>    python3 run_all.py</span>
+<span class="ln" id="L8"><a class="lno" href="#L8">8</a></span>
+<span class="ln" id="L9"><a class="lno" href="#L9">9</a>Blocks:  verify_domains   layers A–H, 200 exact micro-checks (F_13, p = 29, 229; Carriers 233 and 2 408 561)   dom.A–H</span>
+<span class="ln" id="L10"><a class="lno" href="#L10">10</a>         check_lift       Proposition `lift`, L1–L5 on the shells (13, 2), (173, 3) and both Carriers           lift.L1–L5</span>
+<span class="ln" id="L11"><a class="lno" href="#L11">11</a>check_gates.py (105 source gates on the manuscript text) runs in the corpus tree only.</span>
+<span class="ln" id="L12"><a class="lno" href="#L12">12</a>&quot;&quot;&quot;</span>
+<span class="ln" id="L13"><a class="lno" href="#L13">13</a>import sys, time</span>
+<span class="ln" id="L14"><a class="lno" href="#L14">14</a>import dimcommon</span>
+<span class="ln" id="L15"><a class="lno" href="#L15">15</a></span>
+<span class="ln" id="L16"><a class="lno" href="#L16">16</a>BLOCKS = [&quot;verify_domains&quot;, &quot;check_lift&quot;]</span>
+<span class="ln" id="L17"><a class="lno" href="#L17">17</a></span>
+<span class="ln" id="L18"><a class="lno" href="#L18">18</a>def main():</span>
+<span class="ln" id="L19"><a class="lno" href="#L19">19</a>    t0 = time.time()</span>
+<span class="ln" id="L20"><a class="lno" href="#L20">20</a>    for name in BLOCKS:</span>
+<span class="ln" id="L21"><a class="lno" href="#L21">21</a>        mod = __import__(name)</span>
+<span class="ln" id="L22"><a class="lno" href="#L22">22</a>        t = time.time(); print(f&quot;— {name}&quot;)</span>
+<span class="ln" id="L23"><a class="lno" href="#L23">23</a>        mod.run()</span>
+<span class="ln" id="L24"><a class="lno" href="#L24">24</a>        print(f&quot;    [{name}: {time.time() - t:.1f} s]&quot;)</span>
+<span class="ln" id="L25"><a class="lno" href="#L25">25</a>    ok = dimcommon.summary(write=True)</span>
+<span class="ln" id="L26"><a class="lno" href="#L26">26</a>    print(f&quot;{len(dimcommon.RESULTS)} family checks, {len(dimcommon.MICRO)} exact micro-checks, {time.time() - t0:.0f} s; results.json written&quot;)</span>
+<span class="ln" id="L27"><a class="lno" href="#L27">27</a>    sys.exit(0 if ok else 1)</span>
+<span class="ln" id="L28"><a class="lno" href="#L28">28</a></span>
+<span class="ln" id="L29"><a class="lno" href="#L29">29</a>if __name__ == &quot;__main__&quot;:</span>
+<span class="ln" id="L30"><a class="lno" href="#L30">30</a>    main()</span>
+<span class="ln" id="L31"><a class="lno" href="#L31">31</a></span>
+</pre></main>
+</div>
+</body>
+</html>

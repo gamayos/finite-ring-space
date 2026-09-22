@@ -20,7 +20,7 @@
     
     <nav><a href="../../index.html">Home</a><a href="../../publications.html">Publications</a><a href="../../00-ledger.html">Ledger</a><a href="../../predictions.html">Predictions</a><a href="../../explicability.html">Explicability</a></nav>
   </header>
-<main id="ledger-main"><section class="prose"><p>The core module <code>lean/FrcCore/Poly.lean</code> — the substrate from first principles, no Mathlib, no axioms (the modules in order: <a href="Nat.html">Nat</a>, <a href="Pigeonhole.html">Pigeonhole</a>, <a href="Shell.html">Shell</a>, <a href="Frame.html">Frame</a>, <a href="Orbit.html">Orbit</a>, <a href="Sum.html">Sum</a>, <a href="Meridian.html">Meridian</a>, <a href="Algebra.html">Algebra</a>, <a href="Epi.html">Epi</a>, <a href="Dimensions.html">Dimensions</a>, <a href="Poly.html">Poly</a>, <a href="Quaternion.html">Quaternion</a>, <a href="Causality.html">Causality</a>, <a href="Representation.html">Representation</a>, <a href="Reductio.html">Reductio</a>, <a href="Geometry.html">Geometry</a>, <a href="Complex.html">Complex</a>, <a href="Instances.html">Instances</a>, <a href="Rh.html">Rh</a>, <a href="Entropy.html">Entropy</a>, <a href="Dirac.html">Dirac</a>, <a href="Gravity.html">Gravity</a>): 18 theorems (8 definitions): 18 with no axioms (green), 0 at tier 1 (teal: <code>propext</code>, <code>Quot.sound</code>), 0 at tier 2 (amber: <code>Classical.choice</code>), 0 red; the small plain glyph marks a definition (no proof, no axioms; on the ledger pages the plain glyph is instead a module cited as a whole). Each declaration is anchored; the ledger rows cite them by name. <a href="https://live.lean-lang.org/#project=lean-v4.34.0&url=https://raw.githubusercontent.com/gamayos/finite-ring-space/main/lean/web/FrcCore.lean" target="_blank" rel="noopener">▶ open in the Lean web editor</a> · <a href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcCore/Poly.lean" target="_blank" rel="noopener">on GitHub</a> · <a href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcCore/axioms.log" target="_blank" rel="noopener">axioms.log</a> · <a href="https://github.com/gamayos/finite-ring-space/actions/workflows/lean.yml" target="_blank" rel="noopener">CI</a>.</p></section><pre class="lean"><span class="ln" id="L1"><a class="lno" href="#L1">1</a>import FrcCore.Sum</span>
+<main id="ledger-main"><section class="prose"><p>The core module <code>lean/FrcCore/Poly.lean</code> — the substrate from first principles, no Mathlib, no axioms (the modules in order: <a href="Nat.html">Nat</a>, <a href="Pigeonhole.html">Pigeonhole</a>, <a href="Shell.html">Shell</a>, <a href="Frame.html">Frame</a>, <a href="Orbit.html">Orbit</a>, <a href="Sum.html">Sum</a>, <a href="Meridian.html">Meridian</a>, <a href="Algebra.html">Algebra</a>, <a href="Epi.html">Epi</a>, <a href="Dimensions.html">Dimensions</a>, <a href="Poly.html">Poly</a>, <a href="Quaternion.html">Quaternion</a>, <a href="Causality.html">Causality</a>, <a href="Representation.html">Representation</a>, <a href="Reductio.html">Reductio</a>, <a href="Geometry.html">Geometry</a>, <a href="Complex.html">Complex</a>, <a href="Instances.html">Instances</a>, <a href="Rh.html">Rh</a>, <a href="Entropy.html">Entropy</a>, <a href="Dirac.html">Dirac</a>, <a href="Gravity.html">Gravity</a>): 18 theorems (8 definitions): 18 with no axioms (green), 0 at tier 1 (teal: <code>propext</code>, <code>Quot.sound</code>), 0 at tier 2 (amber: <code>Classical.choice</code>), 0 red; the small plain glyph marks a definition (no proof, no axioms; on the ledger pages the plain glyph is instead a module cited as a whole). Each declaration is anchored; the ledger rows cite them by name. <a href="https://live.lean-lang.org/#project=lean-v4.34.0&url=https://www.finitering.space/lean/web/FrcCore.lean" target="_blank" rel="noopener">▶ open in the Lean web editor</a> · <a href="../core/axioms.log" target="_blank" rel="noopener">axioms.log</a>.</p></section><pre class="lean"><span class="ln" id="L1"><a class="lno" href="#L1">1</a>import FrcCore.Sum</span>
 <span class="ln" id="L2"><a class="lno" href="#L2">2</a></span>
 <span class="ln" id="L3"><a class="lno" href="#L3">3</a>/-!</span>
 <span class="ln" id="L4"><a class="lno" href="#L4">4</a># FrcCore.Poly — polynomials over the shell and the root criterion (1:G1)</span>
@@ -39,7 +39,7 @@
 <span class="ln" id="L17"><a class="lno" href="#L17">17</a></span>
 <span class="ln" id="L18"><a class="lno" href="#L18">18</a>variable {p : Nat} [Pos p]</span>
 <span class="ln" id="L19"><a class="lno" href="#L19">19</a></span>
-<span class="ln decl" id="FRC.Shell.sum_split"><a class="lno" href="#FRC.Shell.sum_split">20</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcCore/Poly.lean#L20" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small ok" src="../lean-ok.png" alt="" title="no axioms">theorem sum_split (f : Nat → Shell p) (n k : Nat) :</span>
+<span class="ln decl" id="FRC.Shell.sum_split"><a class="lno" href="#FRC.Shell.sum_split">20</a><img class="leanico small ok" src="../lean-ok.png" alt="" title="no axioms">theorem sum_split (f : Nat → Shell p) (n k : Nat) :</span>
 <span class="ln" id="L21"><a class="lno" href="#L21">21</a>    sumRange f (n + k) = sumRange f n + sumRange (fun t =&gt; f (n + t)) k := by</span>
 <span class="ln" id="L22"><a class="lno" href="#L22">22</a>  induction k with</span>
 <span class="ln" id="L23"><a class="lno" href="#L23">23</a>  | zero =&gt; rw [Nat.add_zero, sumRange_zero, add_zero]</span>
@@ -48,7 +48,7 @@
 <span class="ln" id="L26"><a class="lno" href="#L26">26</a>    rw [sumRange_succ, sumRange_succ, ih, add_assoc]</span>
 <span class="ln" id="L27"><a class="lno" href="#L27">27</a></span>
 <span class="ln" id="L28"><a class="lno" href="#L28">28</a>/-- The triangular reindexing `Σ_{l&lt;N} Σ_{j≤l} F j (l − j) = Σ_{j&lt;N} Σ_{k&lt;N−j} F j k`. -/</span>
-<span class="ln decl" id="FRC.Shell.sum_triangle"><a class="lno" href="#FRC.Shell.sum_triangle">29</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcCore/Poly.lean#L29" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small ok" src="../lean-ok.png" alt="" title="no axioms">theorem sum_triangle (F : Nat → Nat → Shell p) (N : Nat) :</span>
+<span class="ln decl" id="FRC.Shell.sum_triangle"><a class="lno" href="#FRC.Shell.sum_triangle">29</a><img class="leanico small ok" src="../lean-ok.png" alt="" title="no axioms">theorem sum_triangle (F : Nat → Nat → Shell p) (N : Nat) :</span>
 <span class="ln" id="L30"><a class="lno" href="#L30">30</a>    sumRange (fun l =&gt; sumRange (fun j =&gt; F j (l - j)) (l + 1)) N =</span>
 <span class="ln" id="L31"><a class="lno" href="#L31">31</a>    sumRange (fun j =&gt; sumRange (fun k =&gt; F j k) (N - j)) N := by</span>
 <span class="ln" id="L32"><a class="lno" href="#L32">32</a>  induction N with</span>
@@ -73,32 +73,32 @@
 <span class="ln" id="L51"><a class="lno" href="#L51">51</a>      sumRange_succ (fun j =&gt; F j (N - j)) N, Nat.sub_self, add_assoc]</span>
 <span class="ln" id="L52"><a class="lno" href="#L52">52</a></span>
 <span class="ln" id="L53"><a class="lno" href="#L53">53</a>/-- A polynomial as its coefficient sequence. -/</span>
-<span class="ln decl" id="FRC.Shell.Poly"><a class="lno" href="#FRC.Shell.Poly">54</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcCore/Poly.lean#L54" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small" src="../lean.png" alt="" title="a definition: no proof, no axioms">abbrev Poly (p : Nat) [Pos p] := Nat → Shell p</span>
+<span class="ln decl" id="FRC.Shell.Poly"><a class="lno" href="#FRC.Shell.Poly">54</a><img class="leanico small" src="../lean.png" alt="" title="a definition: no proof, no axioms">abbrev Poly (p : Nat) [Pos p] := Nat → Shell p</span>
 <span class="ln" id="L55"><a class="lno" href="#L55">55</a></span>
 <span class="ln" id="L56"><a class="lno" href="#L56">56</a>namespace Poly</span>
 <span class="ln" id="L57"><a class="lno" href="#L57">57</a></span>
 <span class="ln" id="L58"><a class="lno" href="#L58">58</a>/-- `f` has degree at most `n`: the coefficients beyond `n` vanish. -/</span>
-<span class="ln decl" id="FRC.Shell.Poly.Bound"><a class="lno" href="#FRC.Shell.Poly.Bound">59</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcCore/Poly.lean#L59" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small" src="../lean.png" alt="" title="a definition: no proof, no axioms">def Bound (f : Poly p) (n : Nat) : Prop := ∀ i, n &lt; i → f i = 0</span>
+<span class="ln decl" id="FRC.Shell.Poly.Bound"><a class="lno" href="#FRC.Shell.Poly.Bound">59</a><img class="leanico small" src="../lean.png" alt="" title="a definition: no proof, no axioms">def Bound (f : Poly p) (n : Nat) : Prop := ∀ i, n &lt; i → f i = 0</span>
 <span class="ln" id="L60"><a class="lno" href="#L60">60</a></span>
 <span class="ln" id="L61"><a class="lno" href="#L61">61</a>/-- The Cauchy product `(f·g) i = Σ_{j ≤ i} f j · g (i − j)`. -/</span>
-<span class="ln decl" id="FRC.Shell.Poly.mul"><a class="lno" href="#FRC.Shell.Poly.mul">62</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcCore/Poly.lean#L62" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small" src="../lean.png" alt="" title="a definition: no proof, no axioms">def mul (f g : Poly p) : Poly p := fun i =&gt; sumRange (fun j =&gt; f j * g (i - j)) (i + 1)</span>
+<span class="ln decl" id="FRC.Shell.Poly.mul"><a class="lno" href="#FRC.Shell.Poly.mul">62</a><img class="leanico small" src="../lean.png" alt="" title="a definition: no proof, no axioms">def mul (f g : Poly p) : Poly p := fun i =&gt; sumRange (fun j =&gt; f j * g (i - j)) (i + 1)</span>
 <span class="ln" id="L63"><a class="lno" href="#L63">63</a></span>
 <span class="ln" id="L64"><a class="lno" href="#L64">64</a>/-- `f(a)` summed to the bound `n`: `Σ_{i ≤ n} f i · a^i`. -/</span>
-<span class="ln decl" id="FRC.Shell.Poly.eval"><a class="lno" href="#FRC.Shell.Poly.eval">65</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcCore/Poly.lean#L65" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small" src="../lean.png" alt="" title="a definition: no proof, no axioms">def eval (f : Poly p) (n : Nat) (a : Shell p) : Shell p := sumRange (fun i =&gt; f i * a ^ i) (n + 1)</span>
+<span class="ln decl" id="FRC.Shell.Poly.eval"><a class="lno" href="#FRC.Shell.Poly.eval">65</a><img class="leanico small" src="../lean.png" alt="" title="a definition: no proof, no axioms">def eval (f : Poly p) (n : Nat) (a : Shell p) : Shell p := sumRange (fun i =&gt; f i * a ^ i) (n + 1)</span>
 <span class="ln" id="L66"><a class="lno" href="#L66">66</a></span>
 <span class="ln" id="L67"><a class="lno" href="#L67">67</a>/-- `X − a`. -/</span>
-<span class="ln decl" id="FRC.Shell.Poly.linear"><a class="lno" href="#FRC.Shell.Poly.linear">68</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcCore/Poly.lean#L68" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small" src="../lean.png" alt="" title="a definition: no proof, no axioms">def linear (a : Shell p) : Poly p</span>
+<span class="ln decl" id="FRC.Shell.Poly.linear"><a class="lno" href="#FRC.Shell.Poly.linear">68</a><img class="leanico small" src="../lean.png" alt="" title="a definition: no proof, no axioms">def linear (a : Shell p) : Poly p</span>
 <span class="ln" id="L69"><a class="lno" href="#L69">69</a>  | 0 =&gt; -a</span>
 <span class="ln" id="L70"><a class="lno" href="#L70">70</a>  | 1 =&gt; 1</span>
 <span class="ln" id="L71"><a class="lno" href="#L71">71</a>  | _ + 2 =&gt; 0</span>
 <span class="ln" id="L72"><a class="lno" href="#L72">72</a></span>
 <span class="ln" id="L73"><a class="lno" href="#L73">73</a>/-- `X^p − X`. -/</span>
-<span class="ln decl" id="FRC.Shell.Poly.xpx"><a class="lno" href="#FRC.Shell.Poly.xpx">74</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcCore/Poly.lean#L74" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small" src="../lean.png" alt="" title="a definition: no proof, no axioms">def xpx : Poly p := fun i =&gt; if i = p then 1 else if i = 1 then -1 else 0</span>
+<span class="ln decl" id="FRC.Shell.Poly.xpx"><a class="lno" href="#FRC.Shell.Poly.xpx">74</a><img class="leanico small" src="../lean.png" alt="" title="a definition: no proof, no axioms">def xpx : Poly p := fun i =&gt; if i = p then 1 else if i = 1 then -1 else 0</span>
 <span class="ln" id="L75"><a class="lno" href="#L75">75</a></span>
-<span class="ln decl" id="FRC.Shell.Poly.eval_congr"><a class="lno" href="#FRC.Shell.Poly.eval_congr">76</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcCore/Poly.lean#L76" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small ok" src="../lean-ok.png" alt="" title="no axioms">theorem eval_congr {f h : Poly p} (e : ∀ i, f i = h i) (n : Nat) (a : Shell p) : eval f n a = eval h n a :=</span>
+<span class="ln decl" id="FRC.Shell.Poly.eval_congr"><a class="lno" href="#FRC.Shell.Poly.eval_congr">76</a><img class="leanico small ok" src="../lean-ok.png" alt="" title="no axioms">theorem eval_congr {f h : Poly p} (e : ∀ i, f i = h i) (n : Nat) (a : Shell p) : eval f n a = eval h n a :=</span>
 <span class="ln" id="L77"><a class="lno" href="#L77">77</a>  sum_congr (n + 1) (fun i _ =&gt; by show f i * a ^ i = h i * a ^ i; rw [e i])</span>
 <span class="ln" id="L78"><a class="lno" href="#L78">78</a></span>
-<span class="ln decl" id="FRC.Shell.Poly.eval_bound"><a class="lno" href="#FRC.Shell.Poly.eval_bound">79</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcCore/Poly.lean#L79" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small ok" src="../lean-ok.png" alt="" title="no axioms">theorem eval_bound {f : Poly p} {n N : Nat} (hf : Bound f n) (hN : n ≤ N) (a : Shell p) :</span>
+<span class="ln decl" id="FRC.Shell.Poly.eval_bound"><a class="lno" href="#FRC.Shell.Poly.eval_bound">79</a><img class="leanico small ok" src="../lean-ok.png" alt="" title="no axioms">theorem eval_bound {f : Poly p} {n N : Nat} (hf : Bound f n) (hN : n ≤ N) (a : Shell p) :</span>
 <span class="ln" id="L80"><a class="lno" href="#L80">80</a>    eval f N a = eval f n a := by</span>
 <span class="ln" id="L81"><a class="lno" href="#L81">81</a>  unfold eval</span>
 <span class="ln" id="L82"><a class="lno" href="#L82">82</a>  have e : N + 1 = (n + 1) + (N - n) := by</span>
@@ -107,7 +107,7 @@
 <span class="ln" id="L85"><a class="lno" href="#L85">85</a>    show f (n + 1 + t) * a ^ (n + 1 + t) = 0</span>
 <span class="ln" id="L86"><a class="lno" href="#L86">86</a>    rw [hf _ (Nat.lt_of_lt_of_le (Nat.lt_succ_self n) (Nat.le_add_right (n + 1) t)), zero_mul]), add_zero]</span>
 <span class="ln" id="L87"><a class="lno" href="#L87">87</a></span>
-<span class="ln decl" id="FRC.Shell.Poly.mul_bound"><a class="lno" href="#FRC.Shell.Poly.mul_bound">88</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcCore/Poly.lean#L88" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small ok" src="../lean-ok.png" alt="" title="no axioms">theorem mul_bound {d q : Poly p} {m k : Nat} (hd : Bound d m) (hq : Bound q k) : Bound (mul d q) (m + k) := by</span>
+<span class="ln decl" id="FRC.Shell.Poly.mul_bound"><a class="lno" href="#FRC.Shell.Poly.mul_bound">88</a><img class="leanico small ok" src="../lean-ok.png" alt="" title="no axioms">theorem mul_bound {d q : Poly p} {m k : Nat} (hd : Bound d m) (hq : Bound q k) : Bound (mul d q) (m + k) := by</span>
 <span class="ln" id="L89"><a class="lno" href="#L89">89</a>  intro i hi</span>
 <span class="ln" id="L90"><a class="lno" href="#L90">90</a>  apply sum_zero</span>
 <span class="ln" id="L91"><a class="lno" href="#L91">91</a>  intro j hj</span>
@@ -125,7 +125,7 @@
 <span class="ln" id="L103"><a class="lno" href="#L103">103</a>  | .isFalse hjm =&gt; rw [hd j (Nat.lt_of_not_le hjm), zero_mul]</span>
 <span class="ln" id="L104"><a class="lno" href="#L104">104</a></span>
 <span class="ln" id="L105"><a class="lno" href="#L105">105</a>/-- The evaluation is multiplicative: `(f·g)(a) = f(a)·g(a)`, with the bounds added. -/</span>
-<span class="ln decl" id="FRC.Shell.Poly.eval_mul"><a class="lno" href="#FRC.Shell.Poly.eval_mul">106</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcCore/Poly.lean#L106" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small ok" src="../lean-ok.png" alt="" title="no axioms">theorem eval_mul {f g : Poly p} {n m : Nat} (hf : Bound f n) (hg : Bound g m) (a : Shell p) :</span>
+<span class="ln decl" id="FRC.Shell.Poly.eval_mul"><a class="lno" href="#FRC.Shell.Poly.eval_mul">106</a><img class="leanico small ok" src="../lean-ok.png" alt="" title="no axioms">theorem eval_mul {f g : Poly p} {n m : Nat} (hf : Bound f n) (hg : Bound g m) (a : Shell p) :</span>
 <span class="ln" id="L107"><a class="lno" href="#L107">107</a>    eval (mul f g) (n + m) a = eval f n a * eval g m a := by</span>
 <span class="ln" id="L108"><a class="lno" href="#L108">108</a>  unfold eval mul</span>
 <span class="ln" id="L109"><a class="lno" href="#L109">109</a>  have h1 : sumRange (fun l =&gt; sumRange (fun j =&gt; f j * g (l - j)) (l + 1) * a ^ l) (n + m + 1) =</span>
@@ -165,18 +165,18 @@
 <span class="ln" id="L143"><a class="lno" href="#L143">143</a>  rw [h2, sum_mul_right]</span>
 <span class="ln" id="L144"><a class="lno" href="#L144">144</a>  exact congrArg (· * sumRange (fun i =&gt; g i * a ^ i) (m + 1)) (eval_bound hf (Nat.le_add_right n m) a)</span>
 <span class="ln" id="L145"><a class="lno" href="#L145">145</a></span>
-<span class="ln decl" id="FRC.Shell.Poly.linear_bound"><a class="lno" href="#FRC.Shell.Poly.linear_bound">146</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcCore/Poly.lean#L146" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small ok" src="../lean-ok.png" alt="" title="no axioms">theorem linear_bound (a : Shell p) : Bound (linear a) 1 := by</span>
+<span class="ln decl" id="FRC.Shell.Poly.linear_bound"><a class="lno" href="#FRC.Shell.Poly.linear_bound">146</a><img class="leanico small ok" src="../lean-ok.png" alt="" title="no axioms">theorem linear_bound (a : Shell p) : Bound (linear a) 1 := by</span>
 <span class="ln" id="L147"><a class="lno" href="#L147">147</a>  intro i hi</span>
 <span class="ln" id="L148"><a class="lno" href="#L148">148</a>  match i, hi with</span>
 <span class="ln" id="L149"><a class="lno" href="#L149">149</a>  | _ + 2, _ =&gt; rfl</span>
 <span class="ln" id="L150"><a class="lno" href="#L150">150</a></span>
-<span class="ln decl" id="FRC.Shell.Poly.mul_linear_zero"><a class="lno" href="#FRC.Shell.Poly.mul_linear_zero">151</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcCore/Poly.lean#L151" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small ok" src="../lean-ok.png" alt="" title="no axioms">theorem mul_linear_zero (a : Shell p) (q : Poly p) : mul (linear a) q 0 = -(a * q 0) := by</span>
+<span class="ln decl" id="FRC.Shell.Poly.mul_linear_zero"><a class="lno" href="#FRC.Shell.Poly.mul_linear_zero">151</a><img class="leanico small ok" src="../lean-ok.png" alt="" title="no axioms">theorem mul_linear_zero (a : Shell p) (q : Poly p) : mul (linear a) q 0 = -(a * q 0) := by</span>
 <span class="ln" id="L152"><a class="lno" href="#L152">152</a>  show sumRange (fun j =&gt; linear a j * q (0 - j)) 1 = _</span>
 <span class="ln" id="L153"><a class="lno" href="#L153">153</a>  rw [sumRange_succ, sumRange_zero, zero_add]</span>
 <span class="ln" id="L154"><a class="lno" href="#L154">154</a>  show -a * q 0 = -(a * q 0)</span>
 <span class="ln" id="L155"><a class="lno" href="#L155">155</a>  exact (neg_mul a (q 0)).symm</span>
 <span class="ln" id="L156"><a class="lno" href="#L156">156</a></span>
-<span class="ln decl" id="FRC.Shell.Poly.mul_linear_succ"><a class="lno" href="#FRC.Shell.Poly.mul_linear_succ">157</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcCore/Poly.lean#L157" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small ok" src="../lean-ok.png" alt="" title="no axioms">theorem mul_linear_succ (a : Shell p) (q : Poly p) (i : Nat) :</span>
+<span class="ln decl" id="FRC.Shell.Poly.mul_linear_succ"><a class="lno" href="#FRC.Shell.Poly.mul_linear_succ">157</a><img class="leanico small ok" src="../lean-ok.png" alt="" title="no axioms">theorem mul_linear_succ (a : Shell p) (q : Poly p) (i : Nat) :</span>
 <span class="ln" id="L158"><a class="lno" href="#L158">158</a>    mul (linear a) q (i + 1) = q i + -(a * q (i + 1)) := by</span>
 <span class="ln" id="L159"><a class="lno" href="#L159">159</a>  show sumRange (fun j =&gt; linear a j * q (i + 1 - j)) (i + 1 + 1) = _</span>
 <span class="ln" id="L160"><a class="lno" href="#L160">160</a>  have e : i + 1 + 1 = 2 + i := Nat.add_comm i 2</span>
@@ -189,11 +189,11 @@
 <span class="ln" id="L167"><a class="lno" href="#L167">167</a>  rw [← neg_mul, one_mul, add_comm]</span>
 <span class="ln" id="L168"><a class="lno" href="#L168">168</a></span>
 <span class="ln" id="L169"><a class="lno" href="#L169">169</a>/-- The quotient of `f` (bound `n`) by `X − a`: `q i = Σ_{t &lt; n − i} f (i + 1 + t) · a^t`. -/</span>
-<span class="ln decl" id="FRC.Shell.Poly.quotLinear"><a class="lno" href="#FRC.Shell.Poly.quotLinear">170</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcCore/Poly.lean#L170" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small" src="../lean.png" alt="" title="a definition: no proof, no axioms">def quotLinear (f : Poly p) (n : Nat) (a : Shell p) : Poly p :=</span>
+<span class="ln decl" id="FRC.Shell.Poly.quotLinear"><a class="lno" href="#FRC.Shell.Poly.quotLinear">170</a><img class="leanico small" src="../lean.png" alt="" title="a definition: no proof, no axioms">def quotLinear (f : Poly p) (n : Nat) (a : Shell p) : Poly p :=</span>
 <span class="ln" id="L171"><a class="lno" href="#L171">171</a>  fun i =&gt; sumRange (fun t =&gt; f (i + 1 + t) * a ^ t) (n - i)</span>
 <span class="ln" id="L172"><a class="lno" href="#L172">172</a></span>
 <span class="ln" id="L173"><a class="lno" href="#L173">173</a>/-- Synthetic division: at a root `a` of `f`, `f = (X − a)·q` with `q` of degree one less. -/</span>
-<span class="ln decl" id="FRC.Shell.Poly.quot_linear_spec"><a class="lno" href="#FRC.Shell.Poly.quot_linear_spec">174</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcCore/Poly.lean#L174" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small ok" src="../lean-ok.png" alt="" title="no axioms">theorem quot_linear_spec {f : Poly p} {n : Nat} (hf : Bound f n) {a : Shell p} (ha : eval f n a = 0) :</span>
+<span class="ln decl" id="FRC.Shell.Poly.quot_linear_spec"><a class="lno" href="#FRC.Shell.Poly.quot_linear_spec">174</a><img class="leanico small ok" src="../lean-ok.png" alt="" title="no axioms">theorem quot_linear_spec {f : Poly p} {n : Nat} (hf : Bound f n) {a : Shell p} (ha : eval f n a = 0) :</span>
 <span class="ln" id="L175"><a class="lno" href="#L175">175</a>    Bound (quotLinear f n a) (n - 1) ∧ ∀ i, f i = mul (linear a) (quotLinear f n a) i := by</span>
 <span class="ln" id="L176"><a class="lno" href="#L176">176</a>  constructor</span>
 <span class="ln" id="L177"><a class="lno" href="#L177">177</a>  · intro i hi</span>
@@ -256,13 +256,13 @@
 <span class="ln" id="L234"><a class="lno" href="#L234">234</a>        rw [z1, z2, sumRange_zero, sumRange_zero, mul_zero, neg_zero, add_zero]</span>
 <span class="ln" id="L235"><a class="lno" href="#L235">235</a>        exact hf _ (Nat.lt_succ_of_le hni)</span>
 <span class="ln" id="L236"><a class="lno" href="#L236">236</a></span>
-<span class="ln decl" id="FRC.Shell.Poly.eval_linear"><a class="lno" href="#FRC.Shell.Poly.eval_linear">237</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcCore/Poly.lean#L237" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small ok" src="../lean-ok.png" alt="" title="no axioms">theorem eval_linear (a b : Shell p) : eval (linear a) 1 b = b + -a := by</span>
+<span class="ln decl" id="FRC.Shell.Poly.eval_linear"><a class="lno" href="#FRC.Shell.Poly.eval_linear">237</a><img class="leanico small ok" src="../lean-ok.png" alt="" title="no axioms">theorem eval_linear (a b : Shell p) : eval (linear a) 1 b = b + -a := by</span>
 <span class="ln" id="L238"><a class="lno" href="#L238">238</a>  show sumRange (fun i =&gt; linear a i * b ^ i) 2 = _</span>
 <span class="ln" id="L239"><a class="lno" href="#L239">239</a>  rw [sumRange_succ, sumRange_succ, sumRange_zero, zero_add]</span>
 <span class="ln" id="L240"><a class="lno" href="#L240">240</a>  show -a * b ^ 0 + 1 * b ^ 1 = b + -a</span>
 <span class="ln" id="L241"><a class="lno" href="#L241">241</a>  rw [pow_zero, mul_one, pow_one, one_mul, add_comm]</span>
 <span class="ln" id="L242"><a class="lno" href="#L242">242</a></span>
-<span class="ln decl" id="FRC.Shell.Poly.eval_mul_linear"><a class="lno" href="#FRC.Shell.Poly.eval_mul_linear">243</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcCore/Poly.lean#L243" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small ok" src="../lean-ok.png" alt="" title="no axioms">theorem eval_mul_linear {q : Poly p} {n : Nat} (hq : Bound q n) (a b : Shell p) :</span>
+<span class="ln decl" id="FRC.Shell.Poly.eval_mul_linear"><a class="lno" href="#FRC.Shell.Poly.eval_mul_linear">243</a><img class="leanico small ok" src="../lean-ok.png" alt="" title="no axioms">theorem eval_mul_linear {q : Poly p} {n : Nat} (hq : Bound q n) (a b : Shell p) :</span>
 <span class="ln" id="L244"><a class="lno" href="#L244">244</a>    eval (mul (linear a) q) (n + 1) b = (b + -a) * eval q n b := by</span>
 <span class="ln" id="L245"><a class="lno" href="#L245">245</a>  rw [Nat.add_comm n 1, eval_mul (linear_bound a) hq, eval_linear]</span>
 <span class="ln" id="L246"><a class="lno" href="#L246">246</a></span>
@@ -271,7 +271,7 @@
 <span class="ln" id="L249"><a class="lno" href="#L249">249</a></span>
 <span class="ln" id="L250"><a class="lno" href="#L250">250</a>/-- 1:G1, the root bound — a polynomial of degree at most `n` that vanishes at `n + 1` distinct points is</span>
 <span class="ln" id="L251"><a class="lno" href="#L251">251</a>zero: the distinct roots are counted by the degree. -/</span>
-<span class="ln decl" id="FRC.Shell.Poly.Frame.root_bound"><a class="lno" href="#FRC.Shell.Poly.Frame.root_bound">252</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcCore/Poly.lean#L252" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small ok" src="../lean-ok.png" alt="" title="no axioms">theorem root_bound (F : Frame p κ g) : ∀ (n : Nat) (f : Poly p), Bound f n → ∀ (r : Nat → Shell p),</span>
+<span class="ln decl" id="FRC.Shell.Poly.Frame.root_bound"><a class="lno" href="#FRC.Shell.Poly.Frame.root_bound">252</a><img class="leanico small ok" src="../lean-ok.png" alt="" title="no axioms">theorem root_bound (F : Frame p κ g) : ∀ (n : Nat) (f : Poly p), Bound f n → ∀ (r : Nat → Shell p),</span>
 <span class="ln" id="L253"><a class="lno" href="#L253">253</a>    (∀ i j, i ≤ n → j ≤ n → r i = r j → i = j) → (∀ i, i ≤ n → eval f n (r i) = 0) → ∀ i, f i = 0 := by</span>
 <span class="ln" id="L254"><a class="lno" href="#L254">254</a>  intro n</span>
 <span class="ln" id="L255"><a class="lno" href="#L255">255</a>  induction n with</span>
@@ -314,17 +314,17 @@
 <span class="ln" id="L292"><a class="lno" href="#L292">292</a>    | 0 =&gt; rw [mul_linear_zero, hz, mul_zero, neg_zero]</span>
 <span class="ln" id="L293"><a class="lno" href="#L293">293</a>    | i + 1 =&gt; rw [mul_linear_succ, hz, hz, mul_zero, neg_zero, add_zero]</span>
 <span class="ln" id="L294"><a class="lno" href="#L294">294</a></span>
-<span class="ln decl" id="FRC.Shell.Poly.Frame.xpx_bound"><a class="lno" href="#FRC.Shell.Poly.Frame.xpx_bound">295</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcCore/Poly.lean#L295" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small ok" src="../lean-ok.png" alt="" title="no axioms">theorem xpx_bound : Bound (xpx : Poly p) p := by</span>
+<span class="ln decl" id="FRC.Shell.Poly.Frame.xpx_bound"><a class="lno" href="#FRC.Shell.Poly.Frame.xpx_bound">295</a><img class="leanico small ok" src="../lean-ok.png" alt="" title="no axioms">theorem xpx_bound : Bound (xpx : Poly p) p := by</span>
 <span class="ln" id="L296"><a class="lno" href="#L296">296</a>  intro i hi</span>
 <span class="ln" id="L297"><a class="lno" href="#L297">297</a>  show (if i = p then 1 else if i = 1 then -1 else 0 : Shell p) = 0</span>
 <span class="ln" id="L298"><a class="lno" href="#L298">298</a>  rw [ite_eq_right (Nat.ne_of_gt hi), ite_eq_right (fun e =&gt; absurd hi (by rw [e]; exact Nat.not_lt_of_le (Pos.pos : 0 &lt; p)))]</span>
 <span class="ln" id="L299"><a class="lno" href="#L299">299</a></span>
-<span class="ln decl" id="FRC.Shell.Poly.Frame.xpx_p"><a class="lno" href="#FRC.Shell.Poly.Frame.xpx_p">300</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcCore/Poly.lean#L300" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small ok" src="../lean-ok.png" alt="" title="no axioms">theorem xpx_p : (xpx : Poly p) p = 1 := by</span>
+<span class="ln decl" id="FRC.Shell.Poly.Frame.xpx_p"><a class="lno" href="#FRC.Shell.Poly.Frame.xpx_p">300</a><img class="leanico small ok" src="../lean-ok.png" alt="" title="no axioms">theorem xpx_p : (xpx : Poly p) p = 1 := by</span>
 <span class="ln" id="L301"><a class="lno" href="#L301">301</a>  show (if p = p then 1 else if p = 1 then -1 else 0 : Shell p) = 1</span>
 <span class="ln" id="L302"><a class="lno" href="#L302">302</a>  rw [ite_eq_left rfl]</span>
 <span class="ln" id="L303"><a class="lno" href="#L303">303</a></span>
 <span class="ln" id="L304"><a class="lno" href="#L304">304</a>/-- `X^p − X` vanishes everywhere: Fermat. -/</span>
-<span class="ln decl" id="FRC.Shell.Poly.Frame.eval_xpx"><a class="lno" href="#FRC.Shell.Poly.Frame.eval_xpx">305</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcCore/Poly.lean#L305" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small ok" src="../lean-ok.png" alt="" title="no axioms">theorem eval_xpx (F : Frame p κ g) (a : Shell p) : eval (xpx : Poly p) p a = 0 := by</span>
+<span class="ln decl" id="FRC.Shell.Poly.Frame.eval_xpx"><a class="lno" href="#FRC.Shell.Poly.Frame.eval_xpx">305</a><img class="leanico small ok" src="../lean-ok.png" alt="" title="no axioms">theorem eval_xpx (F : Frame p κ g) (a : Shell p) : eval (xpx : Poly p) p a = 0 := by</span>
 <span class="ln" id="L306"><a class="lno" href="#L306">306</a>  have h2 : 2 ≤ p := Nat.le_of_lt F.two_lt_p</span>
 <span class="ln" id="L307"><a class="lno" href="#L307">307</a>  have e : p + 1 = 2 + (p - 1) := by</span>
 <span class="ln" id="L308"><a class="lno" href="#L308">308</a>    calc p + 1 = 1 + (p - 1) + 1 := by rw [FRC.Nat.add_sub_of_le Pos.pos]</span>
@@ -355,11 +355,11 @@
 <span class="ln" id="L333"><a class="lno" href="#L333">333</a></span>
 <span class="ln" id="L334"><a class="lno" href="#L334">334</a>/-- A common factor of positive degree `m`: `d` with `d m ≠ 0` dividing both, with cofactors of the</span>
 <span class="ln" id="L335"><a class="lno" href="#L335">335</a>complementary degrees. -/</span>
-<span class="ln decl" id="FRC.Shell.Poly.Frame.CommonFactor"><a class="lno" href="#FRC.Shell.Poly.Frame.CommonFactor">336</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcCore/Poly.lean#L336" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small" src="../lean.png" alt="" title="a definition: no proof, no axioms">def CommonFactor (f : Poly p) (n : Nat) (h : Poly p) (k : Nat) : Prop :=</span>
+<span class="ln decl" id="FRC.Shell.Poly.Frame.CommonFactor"><a class="lno" href="#FRC.Shell.Poly.Frame.CommonFactor">336</a><img class="leanico small" src="../lean.png" alt="" title="a definition: no proof, no axioms">def CommonFactor (f : Poly p) (n : Nat) (h : Poly p) (k : Nat) : Prop :=</span>
 <span class="ln" id="L337"><a class="lno" href="#L337">337</a>  ∃ (d : Poly p) (m : Nat) (q1 q2 : Poly p), 1 ≤ m ∧ Bound d m ∧ d m ≠ 0 ∧ Bound q1 (n - m) ∧</span>
 <span class="ln" id="L338"><a class="lno" href="#L338">338</a>    Bound q2 (k - m) ∧ (∀ i, f i = mul d q1 i) ∧ (∀ i, h i = mul d q2 i)</span>
 <span class="ln" id="L339"><a class="lno" href="#L339">339</a></span>
-<span class="ln decl" id="FRC.Shell.Poly.Frame.ofNat_inj_lt"><a class="lno" href="#FRC.Shell.Poly.Frame.ofNat_inj_lt">340</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcCore/Poly.lean#L340" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small ok" src="../lean-ok.png" alt="" title="no axioms">theorem ofNat_inj_lt {i j : Nat} (hi : i &lt; p) (hj : j &lt; p) (h : (ofNat i : Shell p) = ofNat j) : i = j := by</span>
+<span class="ln decl" id="FRC.Shell.Poly.Frame.ofNat_inj_lt"><a class="lno" href="#FRC.Shell.Poly.Frame.ofNat_inj_lt">340</a><img class="leanico small ok" src="../lean-ok.png" alt="" title="no axioms">theorem ofNat_inj_lt {i j : Nat} (hi : i &lt; p) (hj : j &lt; p) (h : (ofNat i : Shell p) = ofNat j) : i = j := by</span>
 <span class="ln" id="L341"><a class="lno" href="#L341">341</a>  have := val_injective h</span>
 <span class="ln" id="L342"><a class="lno" href="#L342">342</a>  rw [val_ofNat, val_ofNat, FRC.Nat.mod_eq_of_lt hi, FRC.Nat.mod_eq_of_lt hj] at this</span>
 <span class="ln" id="L343"><a class="lno" href="#L343">343</a>  exact this</span>
@@ -369,7 +369,7 @@
 <span class="ln" id="L347"><a class="lno" href="#L347">347</a>degree `m ≥ 1` with no root would force its cofactor in `X^p − X`, of degree `p − m &lt; p`, to vanish at</span>
 <span class="ln" id="L348"><a class="lno" href="#L348">348</a>all `p` residues, hence to be zero (`root_bound`), against `X^p − X ≠ 0`; the root of `d` is found by</span>
 <span class="ln" id="L349"><a class="lno" href="#L349">349</a>deciding `∃ i &lt; p, d(i) = 0`. -/</span>
-<span class="ln decl" id="FRC.Shell.Poly.Frame.root_iff_common_factor"><a class="lno" href="#FRC.Shell.Poly.Frame.root_iff_common_factor">350</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcCore/Poly.lean#L350" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small ok" src="../lean-ok.png" alt="" title="no axioms">theorem root_iff_common_factor (F : Frame p κ g) {f : Poly p} {n : Nat} (hf : Bound f n) :</span>
+<span class="ln decl" id="FRC.Shell.Poly.Frame.root_iff_common_factor"><a class="lno" href="#FRC.Shell.Poly.Frame.root_iff_common_factor">350</a><img class="leanico small ok" src="../lean-ok.png" alt="" title="no axioms">theorem root_iff_common_factor (F : Frame p κ g) {f : Poly p} {n : Nat} (hf : Bound f n) :</span>
 <span class="ln" id="L351"><a class="lno" href="#L351">351</a>    (∃ a, eval f n a = 0) ↔ CommonFactor f n (xpx : Poly p) p := by</span>
 <span class="ln" id="L352"><a class="lno" href="#L352">352</a>  constructor</span>
 <span class="ln" id="L353"><a class="lno" href="#L353">353</a>  · intro ⟨a, ha⟩</span>

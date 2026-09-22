@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-HNE3RMJ5L1"></script>
+<script> window.dataLayer = window.dataLayer || []; function gtag(){dataLayer.push(arguments);} gtag('js', new Date()); gtag('config', 'G-HNE3RMJ5L1'); </script>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>dimcommon.py — src/10-dimensions</title>
+<meta name="description" content="The script dimcommon.py of the 10-dimensions validation package, rendered with an anchor per line">
+<meta name="author" content="Yosef Akhtman">
+<link rel="icon" href="../../frc-logo-fav.png">
+<link rel="stylesheet" href="../../style.css">
+
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <h1>dimcommon.py — src/10-dimensions</h1>
+    
+    <nav><a href="../../index.html">Home</a><a href="../../publications.html">Publications</a><a href="../../00-ledger.html">Ledger</a><a href="../../predictions.html">Predictions</a><a href="../../explicability.html">Explicability</a></nav>
+  </header>
+<main id="ledger-main"><section class="prose"><p>The script <code>src/10-dimensions/dimcommon.py</code> of the validation package of the paper <a href="../../10-dimensions/10-dimensions-ledger.html">10-dim</a>, rendered with an anchor per line. <a href="https://colab.research.google.com/github/gamayos/finite-ring-space/blob/main/src/10-dimensions/10-dimensions-rows.ipynb" target="_blank" rel="noopener">▶ run the rows on Google Colab</a>.</p></section><pre class="lean"><span class="ln" id="L1"><a class="lno" href="#L1">1</a>&quot;&quot;&quot;</span>
+<span class="ln" id="L2"><a class="lno" href="#L2">2</a>dimcommon.py — shared registry for the 10-dimensions validation package</span>
+<span class="ln" id="L3"><a class="lno" href="#L3">3</a>========================================================================</span>
+<span class="ln" id="L4"><a class="lno" href="#L4">4</a>&quot;Dimensional Analysis over Finite Holographic Substrate&quot; (Akhtman, 2026), validation package of the FRC corpus</span>
+<span class="ln" id="L5"><a class="lno" href="#L5">5</a>(finite-ring-space/src/10-dimensions). Every check is exact: integers, residues, exact rationals; no floats, no</span>
+<span class="ln" id="L6"><a class="lno" href="#L6">6</a>random sampling. The suite verify_domains.py is organised in eight layers A–H, each a family of micro-checks; the</span>
+<span class="ln" id="L7"><a class="lno" href="#L7">7</a>lift script check_lift.py decides the five claims L1–L5 of Proposition `lift` on two shells and two Carriers. A</span>
+<span class="ln" id="L8"><a class="lno" href="#L8">8</a>family is one check of the registry, identified as &lt;script tag&gt;.&lt;family&gt; (dom.A … dom.H, lift.L1 … lift.L5), and</span>
+<span class="ln" id="L9"><a class="lno" href="#L9">9</a>names the row(s) of the paper&#x27;s predicate ledger it witnesses (LEDGER; rows cited as 10:XN). The ledger&#x27;s source</span>
+<span class="ln" id="L10"><a class="lno" href="#L10">10</a>column names the witness script; the family checks are listed on the public page from results.json. Master-ledger rows reached through the paper rows: 00:D7 (10:D7),</span>
+<span class="ln" id="L11"><a class="lno" href="#L11">11</a>00:C12 (10:F3), 00:C13 (10:E9, 10:G2), 00:C8 (10:E4), 00:B10 (10:E5).</span>
+<span class="ln" id="L12"><a class="lno" href="#L12">12</a></span>
+<span class="ln" id="L13"><a class="lno" href="#L13">13</a>check_gates.py (105 source gates on the manuscript&#x27;s text) runs in the corpus tree only, where sections/*.tex</span>
+<span class="ln" id="L14"><a class="lno" href="#L14">14</a>live; it is not part of run_all.py.</span>
+<span class="ln" id="L15"><a class="lno" href="#L15">15</a>&quot;&quot;&quot;</span>
+<span class="ln" id="L16"><a class="lno" href="#L16">16</a>import os, json, sys</span>
+<span class="ln" id="L17"><a class="lno" href="#L17">17</a>from collections import OrderedDict</span>
+<span class="ln" id="L18"><a class="lno" href="#L18">18</a></span>
+<span class="ln" id="L19"><a class="lno" href="#L19">19</a>RESULTS = []</span>
+<span class="ln" id="L20"><a class="lno" href="#L20">20</a>MICRO = []             # (script tag, family, label, ok)</span>
+<span class="ln" id="L21"><a class="lno" href="#L21">21</a></span>
+<span class="ln" id="L22"><a class="lno" href="#L22">22</a>LEDGER = {</span>
+<span class="ln" id="L23"><a class="lno" href="#L23">23</a>    &quot;dom.A&quot;: &quot;10:C2, 10:C3, 10:D2, 10:D6, 10:F2, 10:F4, 10:G1, 10:G3&quot;,</span>
+<span class="ln" id="L24"><a class="lno" href="#L24">24</a>    &quot;dom.B&quot;: &quot;10:E2, 10:E3&quot;,</span>
+<span class="ln" id="L25"><a class="lno" href="#L25">25</a>    &quot;dom.C&quot;: &quot;10:E4&quot;,</span>
+<span class="ln" id="L26"><a class="lno" href="#L26">26</a>    &quot;dom.D&quot;: &quot;10:E4, 10:E5, 10:E9, 10:F3, 10:G1&quot;,</span>
+<span class="ln" id="L27"><a class="lno" href="#L27">27</a>    &quot;dom.E&quot;: &quot;10:C5&quot;,</span>
+<span class="ln" id="L28"><a class="lno" href="#L28">28</a>    &quot;dom.F&quot;: &quot;10:C5, 10:D1&quot;,</span>
+<span class="ln" id="L29"><a class="lno" href="#L29">29</a>    &quot;dom.G&quot;: &quot;10:C5, 10:D2, 10:G2&quot;,</span>
+<span class="ln" id="L30"><a class="lno" href="#L30">30</a>    &quot;dom.H&quot;: &quot;10:E4, 10:E5&quot;,</span>
+<span class="ln" id="L31"><a class="lno" href="#L31">31</a>    &quot;lift.L1&quot;: &quot;10:D3&quot;, &quot;lift.L2&quot;: &quot;10:D3&quot;, &quot;lift.L3&quot;: &quot;10:D3&quot;, &quot;lift.L4&quot;: &quot;10:D3&quot;, &quot;lift.L5&quot;: &quot;10:C5, 10:D3&quot;,</span>
+<span class="ln" id="L32"><a class="lno" href="#L32">32</a>}</span>
+<span class="ln" id="L33"><a class="lno" href="#L33">33</a></span>
+<span class="ln" id="L34"><a class="lno" href="#L34">34</a>LABELS = {</span>
+<span class="ln" id="L35"><a class="lno" href="#L35">35</a>    &quot;dom.A&quot;: &quot;shell datum and domain algebra on F_13: frame datum (g = 2, i = −g^κ, π = 2κ, 4κ = p−1); the group law, inverses and grading of D_p = Z_p × Z_{p−1}; the internal flag I_q = [T]^κ unique of order four, no flag of space, horizon-inaccessible, covariant; realization a homomorphism; the derived domains (m, F, S, G, Compton, Planck area, Schwarzschild, orbital frequency); fibrewise addition and local recovery at H = 5&quot;,</span>
+<span class="ln" id="L36"><a class="lno" href="#L36">36</a>    &quot;dom.B&quot;: &quot;the quartet at the unit face: exponent-vector relation lattice over {ℓ_P, t_P, ħ} (both faces of c and ħ differ by ℓp = tE; rank two; k_B and ℓE add nothing); exact-rational instantiation of every stated equality (|k_B|c = ħ, m_P, G, Θ_P, {c, ħ, G} ↔ quartet); 4 − 1 = 3 degrees of freedom; flag positions (0,0,1,1)&quot;,</span>
+<span class="ln" id="L37"><a class="lno" href="#L37">37</a>    &quot;dom.C&quot;: &quot;the defining congruences on the lab Carrier Ω = 2 408 561 (S = 602 140): admissibility; 2G ≡ −1 unique; ħ² ≡ −1, k_B² ≡ −2, 2c² ≡ 1 with their exact root pairs; G ≡ −c², G² ≡ 4⁻¹, h ≡ −ħ; m_P² ≐ Ω ≡ 0&quot;,</span>
+<span class="ln" id="L38"><a class="lno" href="#L38">38</a>    &quot;dom.D&quot;: &quot;both Carriers (233 and the lab Carrier): the congruence-and-closure system, ħcG⁻¹ landing in the k_B pair; the representative annex; the admissibility minimality scan certifying (13, 233) with the counterfactuals; [Θ] = [L][T]⁻² and the Unruh closure; the crossing-degree embedding injective and windowed-faithful&quot;,</span>
+<span class="ln" id="L39"><a class="lno" href="#L39">39</a>    &quot;dom.E&quot;: &quot;covariance: the naive character ill-defined on the modular projection; (p−1, 0) trivial character yet non-neutral; the ε-composition failure; window covariance below the bound; pushforward-invariant labels {0, π}; the quarter-turn fix/swap criterion ε ≡ ±1 (mod 4); the index-two sublattice ⟨c, ħ, G⟩ (det −2)&quot;,</span>
+<span class="ln" id="L40"><a class="lno" href="#L40">40</a>    &quot;dom.F&quot;: &quot;the (0, π) witness forcing H &lt; 2κ; the σ-twisted action equivariant by full sweep on p = 13 and 229 with the plain-lift failure; σ multiplicative mod 4; δ_S, δ_C involutions, δ_C carrying [L] ↦ [p], [T] ↦ [E]&quot;,</span>
+<span class="ln" id="L41"><a class="lno" href="#L41">41</a>    &quot;dom.G&quot;: &quot;realized action against the Z³-representative failure; the flagged label (0, 0; 1) moving under ε = −1; the window ladder 2√κ &lt; κ/2 &lt; κ &lt; 2κ nested for every κ ≥ 17 and failing for κ = 3; (2√κ)² = p−1, (2√S)² = Ω−1; the flagged ratio F/a; meridian transport (L T^κ)^p = I_q on three shells; both roots on both Carriers&quot;,</span>
+<span class="ln" id="L42"><a class="lno" href="#L42">42</a>    &quot;dom.H&quot;: &quot;the pair layer: pair multiplication well defined; the linkage {±k_B}{±c} = {±ħ} derived at pair level; ħcG⁻¹ in the k_B pair via (ħcG⁻¹)² ≡ −2; representative inertness — exactly the four assignments with σ_ħ = σ_c σ_k admissible, a (Z/2)², every identity holding on each; the ħ-flip relabelling of {ħ, h}&quot;,</span>
+<span class="ln" id="L43"><a class="lno" href="#L43">43</a>    &quot;lift.L1&quot;: &quot;operator four-cycle: F = iW on F_p^{p−1}, F² = J, F⁴ = I, F² ≠ I (p = 13, 173)&quot;,</span>
+<span class="ln" id="L44"><a class="lno" href="#L44">44</a>    &quot;lift.L2&quot;: &quot;chart shadow of order two: F exchanges the two dual charts, J exchanges none; the cardinal skeleton acts on charts as s mod 2&quot;,</span>
+<span class="ln" id="L45"><a class="lno" href="#L45">45</a>    &quot;lift.L3&quot;: &quot;record map s ↦ I_q^s an isomorphism Z_4 → the flag subgroup {0, κ, 2κ, 3κ}; the quotient by {0, 2κ} returns s mod 2&quot;,</span>
+<span class="ln" id="L46"><a class="lno" href="#L46">46</a>    &quot;lift.L4&quot;: &quot;Carrier face: ħ² = −1 (mod Ω), ħ⁴ = 1, ħ² ≠ 1 — the crossing quantum has order four, never two (Ω = 233, 2 408 561)&quot;,</span>
+<span class="ln" id="L47"><a class="lno" href="#L47">47</a>    &quot;lift.L5&quot;: &quot;invariance on the realized lattice: {u : εu = u for every admissible ε} = {0, 2κ}; witnesses (κ,1) ↦ 2κ and (−κ,1) ↦ 0 invariant, (0,1) ↦ κ not, (0,2) ↦ 2κ invariant&quot;,</span>
+<span class="ln" id="L48"><a class="lno" href="#L48">48</a>}</span>
+<span class="ln" id="L49"><a class="lno" href="#L49">49</a></span>
+<span class="ln" id="L50"><a class="lno" href="#L50">50</a>SCRIPT = {&quot;dom&quot;: &quot;verify_domains&quot;, &quot;lift&quot;: &quot;check_lift&quot;}</span>
+<span class="ln" id="L51"><a class="lno" href="#L51">51</a></span>
+<span class="ln" id="L52"><a class="lno" href="#L52">52</a># the deciding family of each witnessed row: the one whose checks decide the row&#x27;s statement (the other families</span>
+<span class="ln" id="L53"><a class="lno" href="#L53">53</a># that touch the row are corroboration, listed by row() from the records); the V rows are witnessed by whole scripts</span>
+<span class="ln" id="L54"><a class="lno" href="#L54">54</a>ROWS = {</span>
+<span class="ln" id="L55"><a class="lno" href="#L55">55</a>    &quot;10:C2&quot;: &quot;dom.A&quot;, &quot;10:C3&quot;: &quot;dom.A&quot;, &quot;10:C5&quot;: &quot;dom.E&quot;, &quot;10:D1&quot;: &quot;dom.F&quot;, &quot;10:D2&quot;: &quot;dom.A&quot;, &quot;10:D3&quot;: &quot;lift.L1&quot;,</span>
+<span class="ln" id="L56"><a class="lno" href="#L56">56</a>    &quot;10:D6&quot;: &quot;dom.A&quot;, &quot;10:E2&quot;: &quot;dom.B&quot;, &quot;10:E3&quot;: &quot;dom.B&quot;, &quot;10:E4&quot;: &quot;dom.C&quot;, &quot;10:E5&quot;: &quot;dom.H&quot;, &quot;10:E9&quot;: &quot;dom.D&quot;,</span>
+<span class="ln" id="L57"><a class="lno" href="#L57">57</a>    &quot;10:F2&quot;: &quot;dom.A&quot;, &quot;10:F3&quot;: &quot;dom.D&quot;, &quot;10:F4&quot;: &quot;dom.A&quot;, &quot;10:G1&quot;: &quot;dom.A&quot;, &quot;10:G2&quot;: &quot;dom.G&quot;, &quot;10:G3&quot;: &quot;dom.A&quot;,</span>
+<span class="ln" id="L58"><a class="lno" href="#L58">58</a>    &quot;10:V1&quot;: &quot;verify_domains&quot;, &quot;10:V2&quot;: &quot;check_lift&quot;, &quot;10:V4&quot;: &quot;run_all&quot;,</span>
+<span class="ln" id="L59"><a class="lno" href="#L59">59</a>}</span>
+<span class="ln" id="L60"><a class="lno" href="#L60">60</a>_FAM = [None, None]</span>
+<span class="ln" id="L61"><a class="lno" href="#L61">61</a>_RAN = set()                                            # scripts already run in this session (row() runs each once)</span>
+<span class="ln" id="L62"><a class="lno" href="#L62">62</a></span>
+<span class="ln" id="L63"><a class="lno" href="#L63">63</a>def markers():</span>
+<span class="ln" id="L64"><a class="lno" href="#L64">64</a>    &quot;&quot;&quot;row label -&gt; (script file, line) of its `# row …` marker: the line of the check that decides the row.&quot;&quot;&quot;</span>
+<span class="ln" id="L65"><a class="lno" href="#L65">65</a>    import re</span>
+<span class="ln" id="L66"><a class="lno" href="#L66">66</a>    out = {}</span>
+<span class="ln" id="L67"><a class="lno" href="#L67">67</a>    for f in sorted(set(SCRIPT.values())):</span>
+<span class="ln" id="L68"><a class="lno" href="#L68">68</a>        for i, line in enumerate(open(os.path.join(os.path.dirname(os.path.abspath(__file__)), f + &quot;.py&quot;), encoding=&quot;utf-8&quot;), 1):</span>
+<span class="ln" id="L69"><a class="lno" href="#L69">69</a>            m = re.match(r&quot;\s*# row (.*)&quot;, line)</span>
+<span class="ln" id="L70"><a class="lno" href="#L70">70</a>            if m:</span>
+<span class="ln" id="L71"><a class="lno" href="#L71">71</a>                for lab in m.group(1).split(&quot;,&quot;): out.setdefault(lab.strip(), (f + &quot;.py&quot;, i))</span>
+<span class="ln" id="L72"><a class="lno" href="#L72">72</a>    return out</span>
+<span class="ln" id="L73"><a class="lno" href="#L73">73</a></span>
+<span class="ln" id="L74"><a class="lno" href="#L74">74</a>def row(label, lines=14):</span>
+<span class="ln" id="L75"><a class="lno" href="#L75">75</a>    &quot;&quot;&quot;Verify one ledger row: run the script of its deciding family (once per session), print the deciding check&#x27;s</span>
+<span class="ln" id="L76"><a class="lno" href="#L76">76</a>    source (from its `# row` marker) and every family record that cites the row, and return True iff all pass.&quot;&quot;&quot;</span>
+<span class="ln" id="L77"><a class="lno" href="#L77">77</a>    fam = ROWS.get(label)</span>
+<span class="ln" id="L78"><a class="lno" href="#L78">78</a>    if fam is None:</span>
+<span class="ln" id="L79"><a class="lno" href="#L79">79</a>        print(f&quot;{label}: no python witness (see the row&#x27;s Lean witness or its source)&quot;); return None</span>
+<span class="ln" id="L80"><a class="lno" href="#L80">80</a>    script = SCRIPT.get(fam.split(&quot;.&quot;)[0], fam)</span>
+<span class="ln" id="L81"><a class="lno" href="#L81">81</a>    for sc in (sorted(set(SCRIPT.values())) if script == &quot;run_all&quot; else [script]):     # the driver row runs every suite</span>
+<span class="ln" id="L82"><a class="lno" href="#L82">82</a>        if sc not in _RAN:</span>
+<span class="ln" id="L83"><a class="lno" href="#L83">83</a>            mod = __import__(sc); mod.run(); _RAN.add(sc)</span>
+<span class="ln" id="L84"><a class="lno" href="#L84">84</a>    here = os.path.dirname(os.path.abspath(__file__)); mk = markers().get(label)</span>
+<span class="ln" id="L85"><a class="lno" href="#L85">85</a>    if mk:</span>
+<span class="ln" id="L86"><a class="lno" href="#L86">86</a>        src = open(os.path.join(here, mk[0]), encoding=&quot;utf-8&quot;).read().split(&quot;\n&quot;)</span>
+<span class="ln" id="L87"><a class="lno" href="#L87">87</a>        print(f&quot;— {mk[0]}:{mk[1]} (the check that decides {label}; family {fam})&quot;)</span>
+<span class="ln" id="L88"><a class="lno" href="#L88">88</a>        for j in range(mk[1] - 1, min(mk[1] - 1 + lines, len(src))): print(f&quot;{j + 1:5d}  {src[j]}&quot;)</span>
+<span class="ln" id="L89"><a class="lno" href="#L89">89</a>    else:</span>
+<span class="ln" id="L90"><a class="lno" href="#L90">90</a>        print(f&quot;— {script}.py (the whole script witnesses {label})&quot;)</span>
+<span class="ln" id="L91"><a class="lno" href="#L91">91</a>    recs = [r for r in RESULTS if label in [t.strip() for t in r[&quot;rows&quot;].split(&quot;,&quot;)]] or [r for r in RESULTS if script == &quot;run_all&quot; or r[&quot;script&quot;] == script]</span>
+<span class="ln" id="L92"><a class="lno" href="#L92">92</a>    ok = all(r[&quot;ok&quot;] for r in recs)</span>
+<span class="ln" id="L93"><a class="lno" href="#L93">93</a>    for r in recs:</span>
+<span class="ln" id="L94"><a class="lno" href="#L94">94</a>        role = &quot;(the script&#x27;s family)&quot; if &quot;.&quot; not in fam else &quot;(deciding)&quot; if r[&quot;id&quot;] == fam else &quot;(corroborating)&quot;</span>
+<span class="ln" id="L95"><a class="lno" href="#L95">95</a>        print(f&quot;  [{&#x27;PASS&#x27; if r[&#x27;ok&#x27;] else &#x27;FAIL&#x27;}] {r[&#x27;id&#x27;]:8s} {role:22s} {r[&#x27;detail&#x27;]}&quot;)</span>
+<span class="ln" id="L96"><a class="lno" href="#L96">96</a>    print(f&quot;{label}: {&#x27;VERIFIED&#x27; if ok and recs else &#x27;FAILED&#x27;} — {len(recs)} family record(s)&quot;)</span>
+<span class="ln" id="L97"><a class="lno" href="#L97">97</a>    return ok</span>
+<span class="ln" id="L98"><a class="lno" href="#L98">98</a></span>
+<span class="ln" id="L99"><a class="lno" href="#L99">99</a>def family(tag, fam):</span>
+<span class="ln" id="L100"><a class="lno" href="#L100">100</a>    _FAM[0], _FAM[1] = tag, fam</span>
+<span class="ln" id="L101"><a class="lno" href="#L101">101</a></span>
+<span class="ln" id="L102"><a class="lno" href="#L102">102</a>def chk(label, ok, tag=None, fam=None):</span>
+<span class="ln" id="L103"><a class="lno" href="#L103">103</a>    &quot;&quot;&quot;A micro-check, recorded under the current (tag, family); never exits.&quot;&quot;&quot;</span>
+<span class="ln" id="L104"><a class="lno" href="#L104">104</a>    MICRO.append((tag or _FAM[0], fam or _FAM[1], label, bool(ok)))</span>
+<span class="ln" id="L105"><a class="lno" href="#L105">105</a>    if not ok:</span>
+<span class="ln" id="L106"><a class="lno" href="#L106">106</a>        print(f&quot;    FAIL: {label}&quot;)</span>
+<span class="ln" id="L107"><a class="lno" href="#L107">107</a></span>
+<span class="ln" id="L108"><a class="lno" href="#L108">108</a>def flush(tag, order=None):</span>
+<span class="ln" id="L109"><a class="lno" href="#L109">109</a>    fams = OrderedDict()</span>
+<span class="ln" id="L110"><a class="lno" href="#L110">110</a>    for t, fam, label, ok in MICRO:</span>
+<span class="ln" id="L111"><a class="lno" href="#L111">111</a>        if t == tag:</span>
+<span class="ln" id="L112"><a class="lno" href="#L112">112</a>            fams.setdefault(fam, []).append(ok)</span>
+<span class="ln" id="L113"><a class="lno" href="#L113">113</a>    for fam in (order or fams):</span>
+<span class="ln" id="L114"><a class="lno" href="#L114">114</a>        oks = fams.get(fam, [])</span>
+<span class="ln" id="L115"><a class="lno" href="#L115">115</a>        check(f&quot;{tag}.{fam}&quot;, ok=bool(oks) and all(oks), detail=f&quot;{len(oks)} exact micro-checks&quot;)</span>
+<span class="ln" id="L116"><a class="lno" href="#L116">116</a></span>
+<span class="ln" id="L117"><a class="lno" href="#L117">117</a>def check(pid, ok, detail=&quot;&quot;, kind=&quot;EXACT&quot;, label=None):</span>
+<span class="ln" id="L118"><a class="lno" href="#L118">118</a>    ok = bool(ok)</span>
+<span class="ln" id="L119"><a class="lno" href="#L119">119</a>    rows = LEDGER.get(pid, &quot;&quot;)</span>
+<span class="ln" id="L120"><a class="lno" href="#L120">120</a>    label = label or LABELS.get(pid, pid)</span>
+<span class="ln" id="L121"><a class="lno" href="#L121">121</a>    RESULTS.append({&quot;id&quot;: pid, &quot;rows&quot;: rows, &quot;script&quot;: SCRIPT.get(pid.split(&quot;.&quot;)[0], pid.split(&quot;.&quot;)[0]), &quot;label&quot;: label, &quot;ok&quot;: ok, &quot;detail&quot;: detail, &quot;kind&quot;: kind})</span>
+<span class="ln" id="L122"><a class="lno" href="#L122">122</a>    print(f&quot;  [{&#x27;PASS&#x27; if ok else &#x27;FAIL&#x27;}] {pid:8s} {kind:5s} [{rows}] {label[:110]}&quot; + (f&quot;  --  {detail}&quot; if detail else &quot;&quot;))</span>
+<span class="ln" id="L123"><a class="lno" href="#L123">123</a>    return ok</span>
+<span class="ln" id="L124"><a class="lno" href="#L124">124</a></span>
+<span class="ln" id="L125"><a class="lno" href="#L125">125</a>def summary(write=True):</span>
+<span class="ln" id="L126"><a class="lno" href="#L126">126</a>    n_ok = sum(r[&quot;ok&quot;] for r in RESULTS)</span>
+<span class="ln" id="L127"><a class="lno" href="#L127">127</a>    print(f&quot;\nSUMMARY: {n_ok}/{len(RESULTS)} checks passed ({len(MICRO)} exact micro-checks)&quot; + (&quot;&quot; if n_ok == len(RESULTS) else &quot;  &lt;-- FAILURES&quot;))</span>
+<span class="ln" id="L128"><a class="lno" href="#L128">128</a>    if write:</span>
+<span class="ln" id="L129"><a class="lno" href="#L129">129</a>        with open(&quot;results.json&quot;, &quot;w&quot;) as f:</span>
+<span class="ln" id="L130"><a class="lno" href="#L130">130</a>            json.dump(RESULTS, f, indent=1, ensure_ascii=False)</span>
+<span class="ln" id="L131"><a class="lno" href="#L131">131</a>    return n_ok == len(RESULTS)</span>
+<span class="ln" id="L132"><a class="lno" href="#L132">132</a></span>
+</pre></main>
+</div>
+</body>
+</html>

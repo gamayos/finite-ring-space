@@ -48,7 +48,53 @@ LABELS = {
 }
 
 SCRIPT = {"dom": "verify_domains", "lift": "check_lift"}
+
+# the deciding family of each witnessed row: the one whose checks decide the row's statement (the other families
+# that touch the row are corroboration, listed by row() from the records); the V rows are witnessed by whole scripts
+ROWS = {
+    "10:C2": "dom.A", "10:C3": "dom.A", "10:C5": "dom.E", "10:D1": "dom.F", "10:D2": "dom.A", "10:D3": "lift.L1",
+    "10:D6": "dom.A", "10:E2": "dom.B", "10:E3": "dom.B", "10:E4": "dom.C", "10:E5": "dom.H", "10:E9": "dom.D",
+    "10:F2": "dom.A", "10:F3": "dom.D", "10:F4": "dom.A", "10:G1": "dom.A", "10:G2": "dom.G", "10:G3": "dom.A",
+    "10:V1": "verify_domains", "10:V2": "check_lift", "10:V4": "run_all",
+}
 _FAM = [None, None]
+_RAN = set()                                            # scripts already run in this session (row() runs each once)
+
+def markers():
+    """row label -> (script file, line) of its `# row …` marker: the line of the check that decides the row."""
+    import re
+    out = {}
+    for f in sorted(set(SCRIPT.values())):
+        for i, line in enumerate(open(os.path.join(os.path.dirname(os.path.abspath(__file__)), f + ".py"), encoding="utf-8"), 1):
+            m = re.match(r"\s*# row (.*)", line)
+            if m:
+                for lab in m.group(1).split(","): out.setdefault(lab.strip(), (f + ".py", i))
+    return out
+
+def row(label, lines=14):
+    """Verify one ledger row: run the script of its deciding family (once per session), print the deciding check's
+    source (from its `# row` marker) and every family record that cites the row, and return True iff all pass."""
+    fam = ROWS.get(label)
+    if fam is None:
+        print(f"{label}: no python witness (see the row's Lean witness or its source)"); return None
+    script = SCRIPT.get(fam.split(".")[0], fam)
+    for sc in (sorted(set(SCRIPT.values())) if script == "run_all" else [script]):     # the driver row runs every suite
+        if sc not in _RAN:
+            mod = __import__(sc); mod.run(); _RAN.add(sc)
+    here = os.path.dirname(os.path.abspath(__file__)); mk = markers().get(label)
+    if mk:
+        src = open(os.path.join(here, mk[0]), encoding="utf-8").read().split("\n")
+        print(f"— {mk[0]}:{mk[1]} (the check that decides {label}; family {fam})")
+        for j in range(mk[1] - 1, min(mk[1] - 1 + lines, len(src))): print(f"{j + 1:5d}  {src[j]}")
+    else:
+        print(f"— {script}.py (the whole script witnesses {label})")
+    recs = [r for r in RESULTS if label in [t.strip() for t in r["rows"].split(",")]] or [r for r in RESULTS if script == "run_all" or r["script"] == script]
+    ok = all(r["ok"] for r in recs)
+    for r in recs:
+        role = "(the script's family)" if "." not in fam else "(deciding)" if r["id"] == fam else "(corroborating)"
+        print(f"  [{'PASS' if r['ok'] else 'FAIL'}] {r['id']:8s} {role:22s} {r['detail']}")
+    print(f"{label}: {'VERIFIED' if ok and recs else 'FAILED'} — {len(recs)} family record(s)")
+    return ok
 
 def family(tag, fam):
     _FAM[0], _FAM[1] = tag, fam

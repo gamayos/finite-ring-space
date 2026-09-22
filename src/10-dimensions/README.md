@@ -26,6 +26,17 @@ column names the witness script (the family checks are listed on the public page
 Run: `python3 run_all.py`. Each suite also runs alone (`python3 verify_domains.py`). Rebuild the notebook:
 `python3 make_notebook.py`.
 
+## One cell per row
+
+`10-dimensions-rows.ipynb` (built by `make_rows_notebook.py`, executed) carries one cell per witnessed ledger row,
+addressable by its stable id (`row-10-C5`; the ledger page opens the notebook at the cell). A cell states the row and runs
+`dimcommon.row("10:C5")`: the script of the row's *deciding family* (`dimcommon.ROWS`) runs once per session, the check
+that decides the row is printed from the script's own source — the line under its `# row 10:C5` marker — and every family
+record citing the row is listed with its verdict. The markers in `verify_domains.py` and `check_lift.py` are the lines the
+ledger page's source glyph opens (`docs/src/10-dimensions/<script>.html#L<n>`). The rows' Lean counterparts are the
+declarations `row_<label>` at the end of `lean/FrcCore/Dimensions.lean` and `lean/FrcLedger/Dimensions.lean`
+(`lean/make_rows.py`), one per row, with the paper's module as one executable file for the web editor.
+
 ## Provenance
 
 `verify_domains.py` is the paper's suite as written (the 200 micro-check names unchanged), wrapped in a `run()` that

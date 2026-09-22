@@ -52,13 +52,7 @@ const PUBLICATIONS = [
     },
     "doi": "https://doi.org/10.3390/axioms14080636",
     "doiLabel": "axioms14080636",
-    "ledger": "1-algebra/1-algebra-ledger.html",
     "links": [
-      {
-        "href": "1-algebra/1-algebra-ledger.html",
-        "label": "ledger",
-        "title": "the paper's predicate ledger"
-      },
       {
         "href": "https://colab.research.google.com/github/gamayos/finite-ring-space/blob/main/src/1-algebra/1-algebra-main.ipynb",
         "label": "notebook",
@@ -76,13 +70,7 @@ const PUBLICATIONS = [
     },
     "doi": "https://doi.org/10.3390/sym18050751",
     "doiLabel": "sym18050751",
-    "ledger": "2-geometry/2-geometry-ledger.html",
     "links": [
-      {
-        "href": "2-geometry/2-geometry-ledger.html",
-        "label": "ledger",
-        "title": "the paper's predicate ledger"
-      },
       {
         "href": "https://colab.research.google.com/github/gamayos/finite-ring-space/blob/main/src/2-geometry/2-geometry-main.ipynb",
         "label": "notebook",
@@ -100,13 +88,7 @@ const PUBLICATIONS = [
     },
     "doi": "https://doi.org/10.3390/e27111098",
     "doiLabel": "e27111098",
-    "ledger": "3-causality/3-causality-ledger.html",
     "links": [
-      {
-        "href": "3-causality/3-causality-ledger.html",
-        "label": "ledger",
-        "title": "the paper's predicate ledger"
-      },
       {
         "href": "https://colab.research.google.com/github/gamayos/finite-ring-space/blob/main/src/3-causality/3-causality-main.ipynb",
         "label": "notebook",
@@ -124,13 +106,7 @@ const PUBLICATIONS = [
     },
     "doi": "https://doi.org/10.3390/e28010040",
     "doiLabel": "e28010040",
-    "ledger": "4-representation/4-representation-ledger.html",
     "links": [
-      {
-        "href": "4-representation/4-representation-ledger.html",
-        "label": "ledger",
-        "title": "the paper's predicate ledger"
-      },
       {
         "href": "https://colab.research.google.com/github/gamayos/finite-ring-space/blob/main/src/4-representation/4-representation-main.ipynb",
         "label": "notebook",
@@ -147,13 +123,7 @@ const PUBLICATIONS = [
     },
     "doi": "https://doi.org/10.20944/preprints202508.1744.v1",
     "doiLabel": "pp202508.1744.v1",
-    "ledger": "5-reductio/5-reductio-ledger.html",
     "links": [
-      {
-        "href": "5-reductio/5-reductio-ledger.html",
-        "label": "ledger",
-        "title": "the paper's predicate ledger"
-      },
       {
         "href": "https://colab.research.google.com/github/gamayos/finite-ring-space/blob/main/src/5-reductio/5-reductio-main.ipynb",
         "label": "notebook",
@@ -170,13 +140,7 @@ const PUBLICATIONS = [
     },
     "doi": "https://doi.org/10.20944/preprints202606.0127.v1",
     "doiLabel": "pp202606.0127.v1",
-    "ledger": "6-fourier/6-fourier-ledger.html",
     "links": [
-      {
-        "href": "6-fourier/6-fourier-ledger.html",
-        "label": "ledger",
-        "title": "the paper's predicate ledger"
-      },
       {
         "href": "https://colab.research.google.com/github/gamayos/finite-ring-space/blob/main/src/6-fourier/6-fourier-main.ipynb",
         "label": "notebook",
@@ -193,13 +157,7 @@ const PUBLICATIONS = [
     },
     "doi": "https://doi.org/10.20944/preprints202510.1486.v2",
     "doiLabel": "pp202510.1486.v2",
-    "ledger": "8-dirac/8-dirac-ledger.html",
     "links": [
-      {
-        "href": "8-dirac/8-dirac-ledger.html",
-        "label": "ledger",
-        "title": "the paper's predicate ledger"
-      },
       {
         "href": "https://colab.research.google.com/github/gamayos/finite-ring-space/blob/main/src/8-dirac/8-dirac-main.ipynb",
         "label": "notebook",
@@ -249,13 +207,7 @@ const PUBLICATIONS = [
     },
     "doi": "https://doi.org/10.20944/preprints202607.1141.v1",
     "doiLabel": "pp202607.1141.v1",
-    "ledger": "13-epi/13-epi-ledger.html",
     "links": [
-      {
-        "href": "13-epi/13-epi-ledger.html",
-        "label": "ledger",
-        "title": "the paper's predicate ledger"
-      },
       {
         "href": "https://colab.research.google.com/github/gamayos/finite-ring-space/blob/main/src/13-epi/13-epi-main.ipynb",
         "label": "notebook",
@@ -272,13 +224,7 @@ const PUBLICATIONS = [
     },
     "doi": "https://doi.org/10.20944/preprints202608.0310.v1",
     "doiLabel": "pp202608.0310.v1",
-    "ledger": "14-entropy/14-entropy-ledger.html",
     "links": [
-      {
-        "href": "14-entropy/14-entropy-ledger.html",
-        "label": "ledger",
-        "title": "the paper's predicate ledger"
-      },
       {
         "href": "https://colab.research.google.com/github/gamayos/finite-ring-space/blob/main/src/14-entropy/14-entropy-main.ipynb",
         "label": "notebook",
@@ -295,13 +241,7 @@ const PUBLICATIONS = [
     },
     "doi": "https://doi.org/10.20944/preprints202606.0768.v1",
     "doiLabel": "pp202606.0768.v1",
-    "ledger": "20-rh/20-rh-ledger.html",
     "links": [
-      {
-        "href": "20-rh/20-rh-ledger.html",
-        "label": "ledger",
-        "title": "the paper's predicate ledger"
-      },
       {
         "href": "https://colab.research.google.com/github/gamayos/finite-ring-space/blob/main/src/20-rh/20-rh-main.ipynb",
         "label": "notebook",
@@ -318,13 +258,7 @@ const PUBLICATIONS = [
     },
     "doi": "https://doi.org/10.20944/preprints202606.1018.v2",
     "doiLabel": "pp202606.1018.v2",
-    "ledger": "21-gravity/21-gravity-ledger.html",
     "links": [
-      {
-        "href": "21-gravity/21-gravity-ledger.html",
-        "label": "ledger",
-        "title": "the paper's predicate ledger"
-      },
       {
         "href": "https://colab.research.google.com/github/gamayos/finite-ring-space/blob/main/src/21-gravity/21-gravity-main.ipynb",
         "label": "notebook",
@@ -341,13 +275,7 @@ const PUBLICATIONS = [
     },
     "doi": "https://doi.org/10.20944/preprints202606.1160.v2",
     "doiLabel": "pp202606.1160.v2",
-    "ledger": "22-quantum/22-quantum-ledger.html",
     "links": [
-      {
-        "href": "22-quantum/22-quantum-ledger.html",
-        "label": "ledger",
-        "title": "the paper's predicate ledger"
-      },
       {
         "href": "https://colab.research.google.com/github/gamayos/finite-ring-space/blob/main/src/22-quantum/22-quantum-main.ipynb",
         "label": "notebook",
@@ -394,13 +322,7 @@ const PUBLICATIONS = [
     },
     "doi": "https://doi.org/10.20944/preprints202606.1328.v1",
     "doiLabel": "pp202606.1328.v1",
-    "ledger": "27-fields/27-fields-ledger.html",
     "links": [
-      {
-        "href": "27-fields/27-fields-ledger.html",
-        "label": "ledger",
-        "title": "the paper's predicate ledger"
-      },
       {
         "href": "https://colab.research.google.com/github/gamayos/finite-ring-space/blob/main/src/27-fields/27-fields-main.ipynb",
         "label": "notebook",
@@ -417,13 +339,7 @@ const PUBLICATIONS = [
     },
     "doi": "https://doi.org/10.20944/preprints202606.2124.v1",
     "doiLabel": "pp202606.2124.v1",
-    "ledger": "28-flavour/28-flavour-ledger.html",
     "links": [
-      {
-        "href": "28-flavour/28-flavour-ledger.html",
-        "label": "ledger",
-        "title": "the paper's predicate ledger"
-      },
       {
         "href": "https://colab.research.google.com/github/gamayos/finite-ring-space/blob/main/src/28-flavour/28-flavour-main.ipynb",
         "label": "notebook",
@@ -450,13 +366,7 @@ const PUBLICATIONS = [
     },
     "doi": "https://doi.org/10.20944/preprints202606.1689.v1",
     "doiLabel": "pp202606.1689.v1",
-    "ledger": "32-dark/32-dark-ledger.html",
     "links": [
-      {
-        "href": "32-dark/32-dark-ledger.html",
-        "label": "ledger",
-        "title": "the paper's predicate ledger"
-      },
       {
         "href": "https://colab.research.google.com/github/gamayos/finite-ring-space/blob/main/src/32-dark/32-dark-main.ipynb",
         "label": "notebook",
@@ -473,13 +383,7 @@ const PUBLICATIONS = [
     },
     "doi": "https://doi.org/10.20944/preprints202506.1507.v2",
     "doiLabel": "pp202506.1507.v2",
-    "ledger": "35-hadrons/35-hadrons-ledger.html",
     "links": [
-      {
-        "href": "35-hadrons/35-hadrons-ledger.html",
-        "label": "ledger",
-        "title": "the paper's predicate ledger"
-      },
       {
         "href": "https://colab.research.google.com/github/gamayos/finite-ring-space/blob/main/src/35-hadrons/35-hadrons-main.ipynb",
         "label": "notebook",
@@ -496,13 +400,7 @@ const PUBLICATIONS = [
     },
     "doi": "https://doi.org/10.20944/preprints202608.0390.v1",
     "doiLabel": "pp202608.0390.v1",
-    "ledger": "38-s13/38-s13-ledger.html",
     "links": [
-      {
-        "href": "38-s13/38-s13-ledger.html",
-        "label": "ledger",
-        "title": "the paper's predicate ledger"
-      },
       {
         "href": "https://colab.research.google.com/github/gamayos/finite-ring-space/blob/main/src/38-s13/38-s13-main.ipynb",
         "label": "notebook",
@@ -597,4 +495,4 @@ const PUBLICATIONS = [
   }
 ];
 
-const GENERATED = "21 September 2026";
+const GENERATED = "22 September 2026";

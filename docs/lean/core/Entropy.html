@@ -20,7 +20,7 @@
     
     <nav><a href="../../index.html">Home</a><a href="../../publications.html">Publications</a><a href="../../00-ledger.html">Ledger</a><a href="../../predictions.html">Predictions</a><a href="../../explicability.html">Explicability</a></nav>
   </header>
-<main id="ledger-main"><section class="prose"><p>The core module <code>lean/FrcCore/Entropy.lean</code> — the substrate from first principles, no Mathlib, no axioms (the modules in order: <a href="Nat.html">Nat</a>, <a href="Pigeonhole.html">Pigeonhole</a>, <a href="Shell.html">Shell</a>, <a href="Frame.html">Frame</a>, <a href="Orbit.html">Orbit</a>, <a href="Sum.html">Sum</a>, <a href="Meridian.html">Meridian</a>, <a href="Algebra.html">Algebra</a>, <a href="Epi.html">Epi</a>, <a href="Dimensions.html">Dimensions</a>, <a href="Poly.html">Poly</a>, <a href="Quaternion.html">Quaternion</a>, <a href="Causality.html">Causality</a>, <a href="Representation.html">Representation</a>, <a href="Reductio.html">Reductio</a>, <a href="Geometry.html">Geometry</a>, <a href="Complex.html">Complex</a>, <a href="Instances.html">Instances</a>, <a href="Rh.html">Rh</a>, <a href="Entropy.html">Entropy</a>, <a href="Dirac.html">Dirac</a>, <a href="Gravity.html">Gravity</a>): 29 theorems (0 definitions): 29 with no axioms (green), 0 at tier 1 (teal: <code>propext</code>, <code>Quot.sound</code>), 0 at tier 2 (amber: <code>Classical.choice</code>), 0 red; the small plain glyph marks a definition (no proof, no axioms; on the ledger pages the plain glyph is instead a module cited as a whole). Each declaration is anchored; the ledger rows cite them by name. <a href="https://live.lean-lang.org/#project=lean-v4.34.0&url=https://raw.githubusercontent.com/gamayos/finite-ring-space/main/lean/web/FrcCore.lean" target="_blank" rel="noopener">▶ open in the Lean web editor</a> · <a href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcCore/Entropy.lean" target="_blank" rel="noopener">on GitHub</a> · <a href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcCore/axioms.log" target="_blank" rel="noopener">axioms.log</a> · <a href="https://github.com/gamayos/finite-ring-space/actions/workflows/lean.yml" target="_blank" rel="noopener">CI</a>.</p></section><pre class="lean"><span class="ln" id="L1"><a class="lno" href="#L1">1</a>import FrcCore.Frame</span>
+<main id="ledger-main"><section class="prose"><p>The core module <code>lean/FrcCore/Entropy.lean</code> — the substrate from first principles, no Mathlib, no axioms (the modules in order: <a href="Nat.html">Nat</a>, <a href="Pigeonhole.html">Pigeonhole</a>, <a href="Shell.html">Shell</a>, <a href="Frame.html">Frame</a>, <a href="Orbit.html">Orbit</a>, <a href="Sum.html">Sum</a>, <a href="Meridian.html">Meridian</a>, <a href="Algebra.html">Algebra</a>, <a href="Epi.html">Epi</a>, <a href="Dimensions.html">Dimensions</a>, <a href="Poly.html">Poly</a>, <a href="Quaternion.html">Quaternion</a>, <a href="Causality.html">Causality</a>, <a href="Representation.html">Representation</a>, <a href="Reductio.html">Reductio</a>, <a href="Geometry.html">Geometry</a>, <a href="Complex.html">Complex</a>, <a href="Instances.html">Instances</a>, <a href="Rh.html">Rh</a>, <a href="Entropy.html">Entropy</a>, <a href="Dirac.html">Dirac</a>, <a href="Gravity.html">Gravity</a>): 29 theorems (0 definitions): 29 with no axioms (green), 0 at tier 1 (teal: <code>propext</code>, <code>Quot.sound</code>), 0 at tier 2 (amber: <code>Classical.choice</code>), 0 red; the small plain glyph marks a definition (no proof, no axioms; on the ledger pages the plain glyph is instead a module cited as a whole). Each declaration is anchored; the ledger rows cite them by name. <a href="https://live.lean-lang.org/#project=lean-v4.34.0&url=https://www.finitering.space/lean/web/core/Entropy.lean" target="_blank" rel="noopener">▶ open in the Lean web editor</a> · <a href="../core/axioms.log" target="_blank" rel="noopener">axioms.log</a>.</p></section><pre class="lean"><span class="ln" id="L1"><a class="lno" href="#L1">1</a>import FrcCore.Frame</span>
 <span class="ln" id="L2"><a class="lno" href="#L2">2</a>import FrcCore.Orbit</span>
 <span class="ln" id="L3"><a class="lno" href="#L3">3</a>import FrcCore.Dimensions</span>
 <span class="ln" id="L4"><a class="lno" href="#L4">4</a>import FrcCore.Instances</span>
@@ -56,12 +56,12 @@
 <span class="ln" id="L34"><a class="lno" href="#L34">34</a></span>
 <span class="ln" id="L35"><a class="lno" href="#L35">35</a>/-- 14:A1, 14:B9 — the quarter identity: `Ω = 4S + 1` has `Ω ≡ 1 (mod 4)` and `Ω − 1 = 4S`, so the import fixes the</span>
 <span class="ln" id="L36"><a class="lno" href="#L36">36</a>cardinality exactly; the finite face of B9&#x27;s area law `A = 4S`. -/</span>
-<span class="ln decl" id="FRC.Entropy.quarter_identity"><a class="lno" href="#FRC.Entropy.quarter_identity">37</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcCore/Entropy.lean#L37" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small ok" src="../lean-ok.png" alt="" title="no axioms">theorem quarter_identity (S : Nat) : (4 * S + 1) % 4 = 1 ∧ 4 * S + 1 - 1 = 4 * S :=</span>
+<span class="ln decl" id="FRC.Entropy.quarter_identity"><a class="lno" href="#FRC.Entropy.quarter_identity">37</a><img class="leanico small ok" src="../lean-ok.png" alt="" title="no axioms">theorem quarter_identity (S : Nat) : (4 * S + 1) % 4 = 1 ∧ 4 * S + 1 - 1 = 4 * S :=</span>
 <span class="ln" id="L38"><a class="lno" href="#L38">38</a>  ⟨FRC.Nat.add_mul_mod_self_left 1 S 4 (Nat.zero_lt_succ 3), FRC.Nat.add_sub_cancel (4 * S) 1⟩</span>
 <span class="ln" id="L39"><a class="lno" href="#L39">39</a></span>
 <span class="ln" id="L40"><a class="lno" href="#L40">40</a>/-- 14:A2 — the triality centre: `S ≡ 1 (mod 3)` gives `(Ω + 1) % 3 = 0` and `(Ω − 1) % 3 = 1`, so the centre</span>
 <span class="ln" id="L41"><a class="lno" href="#L41">41</a>`3 ∣ Ω + 1` is carried and `3 ∤ 4S`. -/</span>
-<span class="ln decl" id="FRC.Entropy.triality_residues"><a class="lno" href="#FRC.Entropy.triality_residues">42</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcCore/Entropy.lean#L42" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small ok" src="../lean-ok.png" alt="" title="no axioms">theorem triality_residues (S : Nat) (h : S % 3 = 1) : (4 * S + 2) % 3 = 0 ∧ (4 * S) % 3 = 1 := by</span>
+<span class="ln decl" id="FRC.Entropy.triality_residues"><a class="lno" href="#FRC.Entropy.triality_residues">42</a><img class="leanico small ok" src="../lean-ok.png" alt="" title="no axioms">theorem triality_residues (S : Nat) (h : S % 3 = 1) : (4 * S + 2) % 3 = 0 ∧ (4 * S) % 3 = 1 := by</span>
 <span class="ln" id="L43"><a class="lno" href="#L43">43</a>  have h3 : 0 &lt; 3 := Nat.zero_lt_succ 2</span>
 <span class="ln" id="L44"><a class="lno" href="#L44">44</a>  have h4S : (4 * S) % 3 = 1 := by</span>
 <span class="ln" id="L45"><a class="lno" href="#L45">45</a>    rw [FRC.Nat.mul_mod 4 S 3 h3, h]</span>
@@ -69,7 +69,7 @@
 <span class="ln" id="L47"><a class="lno" href="#L47">47</a>  rw [FRC.Nat.add_mod (4 * S) 2 3 h3, h4S]</span>
 <span class="ln" id="L48"><a class="lno" href="#L48">48</a></span>
 <span class="ln" id="L49"><a class="lno" href="#L49">49</a>/-- 14:C6, 14:X4 — the octant sector `C₈ ⊂ C_{4S}` exists (`8 ∣ 4S`) exactly when `S` is even. -/</span>
-<span class="ln decl" id="FRC.Entropy.octant_divides"><a class="lno" href="#FRC.Entropy.octant_divides">50</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcCore/Entropy.lean#L50" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small ok" src="../lean-ok.png" alt="" title="no axioms">theorem octant_divides (S : Nat) : (∃ k, 4 * S = 8 * k) ↔ (∃ m, S = 2 * m) := by</span>
+<span class="ln decl" id="FRC.Entropy.octant_divides"><a class="lno" href="#FRC.Entropy.octant_divides">50</a><img class="leanico small ok" src="../lean-ok.png" alt="" title="no axioms">theorem octant_divides (S : Nat) : (∃ k, 4 * S = 8 * k) ↔ (∃ m, S = 2 * m) := by</span>
 <span class="ln" id="L51"><a class="lno" href="#L51">51</a>  constructor</span>
 <span class="ln" id="L52"><a class="lno" href="#L52">52</a>  · rintro ⟨k, hk⟩</span>
 <span class="ln" id="L53"><a class="lno" href="#L53">53</a>    refine ⟨k, Nat.eq_of_mul_eq_mul_left (Nat.zero_lt_succ 3) ?_⟩</span>
@@ -80,13 +80,13 @@
 <span class="ln" id="L58"><a class="lno" href="#L58">58</a>/-- 14:B2, 14:C5 — the dictionary on the count face: the full cycle is `4S` (`2π`); the half-cycle `2S` (`π`)</span>
 <span class="ln" id="L59"><a class="lno" href="#L59">59</a>twice over is the cycle, and with `S = 2m` the octant `m = S/2` (`π/4`) eight times over is the cycle — an</span>
 <span class="ln" id="L60"><a class="lno" href="#L60">60</a>integer count on every admissible Carrier. -/</span>
-<span class="ln decl" id="FRC.Entropy.octant_count"><a class="lno" href="#FRC.Entropy.octant_count">61</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcCore/Entropy.lean#L61" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small ok" src="../lean-ok.png" alt="" title="no axioms">theorem octant_count (S m : Nat) (h : S = 2 * m) : 2 * (2 * S) = 4 * S ∧ 8 * m = 4 * S :=</span>
+<span class="ln decl" id="FRC.Entropy.octant_count"><a class="lno" href="#FRC.Entropy.octant_count">61</a><img class="leanico small ok" src="../lean-ok.png" alt="" title="no axioms">theorem octant_count (S m : Nat) (h : S = 2 * m) : 2 * (2 * S) = 4 * S ∧ 8 * m = 4 * S :=</span>
 <span class="ln" id="L62"><a class="lno" href="#L62">62</a>  ⟨by rw [← FRC.Nat.mul_assoc], by rw [h, ← FRC.Nat.mul_assoc]⟩</span>
 <span class="ln" id="L63"><a class="lno" href="#L63">63</a></span>
 <span class="ln" id="L64"><a class="lno" href="#L64">64</a>/-- 14:C5, 14:B6 — the closure count: given B6&#x27;s accounting (a two-way registration of depth `x` costs `2x` of</span>
 <span class="ln" id="L65"><a class="lno" href="#L65">65</a>the one-way budget `S = 2m`; the realisation, not formalised), the closable depths are exactly `x ≤ m`, and the</span>
 <span class="ln" id="L66"><a class="lno" href="#L66">66</a>octant `x = m` closes the budget. -/</span>
-<span class="ln decl" id="FRC.Entropy.closure_count"><a class="lno" href="#FRC.Entropy.closure_count">67</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcCore/Entropy.lean#L67" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small ok" src="../lean-ok.png" alt="" title="no axioms">theorem closure_count (m x : Nat) : 2 * x ≤ 2 * m ↔ x ≤ m := by</span>
+<span class="ln decl" id="FRC.Entropy.closure_count"><a class="lno" href="#FRC.Entropy.closure_count">67</a><img class="leanico small ok" src="../lean-ok.png" alt="" title="no axioms">theorem closure_count (m x : Nat) : 2 * x ≤ 2 * m ↔ x ≤ m := by</span>
 <span class="ln" id="L68"><a class="lno" href="#L68">68</a>  constructor</span>
 <span class="ln" id="L69"><a class="lno" href="#L69">69</a>  · intro h</span>
 <span class="ln" id="L70"><a class="lno" href="#L70">70</a>    match Nat.lt_or_ge m x with</span>
@@ -105,19 +105,19 @@
 <span class="ln" id="L83"><a class="lno" href="#L83">83</a>variable {p : Nat} [Pos p] {κ : Nat} {g : Shell p}</span>
 <span class="ln" id="L84"><a class="lno" href="#L84">84</a></span>
 <span class="ln" id="L85"><a class="lno" href="#L85">85</a>/-- Literals multiply as their values: `a · b = ab` on every shell. -/</span>
-<span class="ln decl" id="FRC.Entropy.lit_mul"><a class="lno" href="#FRC.Entropy.lit_mul">86</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcCore/Entropy.lean#L86" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small ok" src="../lean-ok.png" alt="" title="no axioms">theorem lit_mul (a b : Nat) : (OfNat.ofNat a : Shell p) * OfNat.ofNat b = (OfNat.ofNat (a * b) : Shell p) :=</span>
+<span class="ln decl" id="FRC.Entropy.lit_mul"><a class="lno" href="#FRC.Entropy.lit_mul">86</a><img class="leanico small ok" src="../lean-ok.png" alt="" title="no axioms">theorem lit_mul (a b : Nat) : (OfNat.ofNat a : Shell p) * OfNat.ofNat b = (OfNat.ofNat (a * b) : Shell p) :=</span>
 <span class="ln" id="L87"><a class="lno" href="#L87">87</a>  Shell.ext (by</span>
 <span class="ln" id="L88"><a class="lno" href="#L88">88</a>    show (a % p * (b % p)) % p = (a * b) % p</span>
 <span class="ln" id="L89"><a class="lno" href="#L89">89</a>    exact (FRC.Nat.mul_mod a b p Pos.pos).symm)</span>
 <span class="ln" id="L90"><a class="lno" href="#L90">90</a></span>
 <span class="ln" id="L91"><a class="lno" href="#L91">91</a>/-- `a + 1 + (1 − a) = 2` on every shell. -/</span>
-<span class="ln decl" id="FRC.Entropy.add_one_add_one_neg"><a class="lno" href="#FRC.Entropy.add_one_add_one_neg">92</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcCore/Entropy.lean#L92" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small ok" src="../lean-ok.png" alt="" title="no axioms">theorem add_one_add_one_neg (a : Shell p) : a + 1 + (1 + -a) = 2 := by</span>
+<span class="ln decl" id="FRC.Entropy.add_one_add_one_neg"><a class="lno" href="#FRC.Entropy.add_one_add_one_neg">92</a><img class="leanico small ok" src="../lean-ok.png" alt="" title="no axioms">theorem add_one_add_one_neg (a : Shell p) : a + 1 + (1 + -a) = 2 := by</span>
 <span class="ln" id="L93"><a class="lno" href="#L93">93</a>  rw [Shell.add_assoc, ← Shell.add_assoc 1 1 (-a), Shell.add_comm (1 + 1) (-a),</span>
 <span class="ln" id="L94"><a class="lno" href="#L94">94</a>    ← Shell.add_assoc a (-a) (1 + 1), Shell.add_neg a, Shell.zero_add]</span>
 <span class="ln" id="L95"><a class="lno" href="#L95">95</a>  exact Frame.two_eq_one_add_one.symm</span>
 <span class="ln" id="L96"><a class="lno" href="#L96">96</a></span>
 <span class="ln" id="L97"><a class="lno" href="#L97">97</a>/-- On a frame of capacity `κ = 2m`: `g^{4m} = −1` (the half-period) and `g^{8m} = 1`. -/</span>
-<span class="ln decl" id="FRC.Entropy.even_capacity_powers"><a class="lno" href="#FRC.Entropy.even_capacity_powers">98</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcCore/Entropy.lean#L98" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small ok" src="../lean-ok.png" alt="" title="no axioms">theorem even_capacity_powers (F : Frame p κ g) (m : Nat) (hm : κ = 2 * m) :</span>
+<span class="ln decl" id="FRC.Entropy.even_capacity_powers"><a class="lno" href="#FRC.Entropy.even_capacity_powers">98</a><img class="leanico small ok" src="../lean-ok.png" alt="" title="no axioms">theorem even_capacity_powers (F : Frame p κ g) (m : Nat) (hm : κ = 2 * m) :</span>
 <span class="ln" id="L99"><a class="lno" href="#L99">99</a>    g ^ (4 * m) = -1 ∧ g ^ (8 * m) = 1 := by</span>
 <span class="ln" id="L100"><a class="lno" href="#L100">100</a>  have h4 : 4 * m = 2 * κ := by rw [hm, ← FRC.Nat.mul_assoc]</span>
 <span class="ln" id="L101"><a class="lno" href="#L101">101</a>  have h8 : 8 * m = p - 1 := by rw [F.n_eq, hm, ← FRC.Nat.mul_assoc]</span>
@@ -125,7 +125,7 @@
 <span class="ln" id="L103"><a class="lno" href="#L103">103</a></span>
 <span class="ln" id="L104"><a class="lno" href="#L104">104</a>/-- 14:C6 — the octant character: on every frame `(τ; 0, 1, g)` of even capacity `κ = 2m`, `ζ = g^m` has</span>
 <span class="ln" id="L105"><a class="lno" href="#L105">105</a>`ζ⁴ = −1` and `ζ⁸ = 1` — the sector `C₈ ⊂ C_{4κ}` is realised and `ζ` is its residue `ζ₈`. -/</span>
-<span class="ln decl" id="FRC.Entropy.octant_residue"><a class="lno" href="#FRC.Entropy.octant_residue">106</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcCore/Entropy.lean#L106" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small ok" src="../lean-ok.png" alt="" title="no axioms">theorem octant_residue (F : Frame p κ g) (m : Nat) (hm : κ = 2 * m) :</span>
+<span class="ln decl" id="FRC.Entropy.octant_residue"><a class="lno" href="#FRC.Entropy.octant_residue">106</a><img class="leanico small ok" src="../lean-ok.png" alt="" title="no axioms">theorem octant_residue (F : Frame p κ g) (m : Nat) (hm : κ = 2 * m) :</span>
 <span class="ln" id="L107"><a class="lno" href="#L107">107</a>    (g ^ m) ^ 4 = -1 ∧ (g ^ m) ^ 8 = 1 := by</span>
 <span class="ln" id="L108"><a class="lno" href="#L108">108</a>  obtain ⟨h4, h8⟩ := even_capacity_powers F m hm</span>
 <span class="ln" id="L109"><a class="lno" href="#L109">109</a>  constructor</span>
@@ -136,7 +136,7 @@
 <span class="ln" id="L114"><a class="lno" href="#L114">114</a>`(ζ + ζ&#x27;)² = 2` and `(2(ζ + ζ&#x27;))² = 8` on every frame of capacity `κ = 2m`; hence `2` is a square on every</span>
 <span class="ln" id="L115"><a class="lno" href="#L115">115</a>such shell — the direction &quot;octant ⇒ c-square&quot; of X4&#x27;s second face (the converse is</span>
 <span class="ln" id="L116"><a class="lno" href="#L116">116</a>`even_capacity_of_two_square` below; the equivalence `two_is_square_iff`). -/</span>
-<span class="ln decl" id="FRC.Entropy.tsirelson_square"><a class="lno" href="#FRC.Entropy.tsirelson_square">117</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcCore/Entropy.lean#L117" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small ok" src="../lean-ok.png" alt="" title="no axioms">theorem tsirelson_square (F : Frame p κ g) (m : Nat) (hm : κ = 2 * m) :</span>
+<span class="ln decl" id="FRC.Entropy.tsirelson_square"><a class="lno" href="#FRC.Entropy.tsirelson_square">117</a><img class="leanico small ok" src="../lean-ok.png" alt="" title="no axioms">theorem tsirelson_square (F : Frame p κ g) (m : Nat) (hm : κ = 2 * m) :</span>
 <span class="ln" id="L118"><a class="lno" href="#L118">118</a>    g ^ m * g ^ (7 * m) = 1 ∧ (g ^ m + g ^ (7 * m)) ^ 2 = 2 ∧</span>
 <span class="ln" id="L119"><a class="lno" href="#L119">119</a>    (2 * (g ^ m + g ^ (7 * m))) ^ 2 = 8 := by</span>
 <span class="ln" id="L120"><a class="lno" href="#L120">120</a>  obtain ⟨h4, h8⟩ := even_capacity_powers F m hm</span>
@@ -164,7 +164,7 @@
 <span class="ln" id="L142"><a class="lno" href="#L142">142</a></span>
 <span class="ln" id="L143"><a class="lno" href="#L143">143</a>/-- 14:X4 — the direction &quot;even capacity ⇒ `2` a square&quot; at tier 0: on every frame of even capacity `2` is a</span>
 <span class="ln" id="L144"><a class="lno" href="#L144">144</a>square, `(ζ + ζ⁻¹)² = 2`; the converse is `even_capacity_of_two_square`, the equivalence `two_is_square_iff`. -/</span>
-<span class="ln decl" id="FRC.Entropy.two_is_square"><a class="lno" href="#FRC.Entropy.two_is_square">145</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcCore/Entropy.lean#L145" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small ok" src="../lean-ok.png" alt="" title="no axioms">theorem two_is_square (F : Frame p κ g) (m : Nat) (hm : κ = 2 * m) : ∃ r : Shell p, r * r = 2 :=</span>
+<span class="ln decl" id="FRC.Entropy.two_is_square"><a class="lno" href="#FRC.Entropy.two_is_square">145</a><img class="leanico small ok" src="../lean-ok.png" alt="" title="no axioms">theorem two_is_square (F : Frame p κ g) (m : Nat) (hm : κ = 2 * m) : ∃ r : Shell p, r * r = 2 :=</span>
 <span class="ln" id="L146"><a class="lno" href="#L146">146</a>  ⟨g ^ m + g ^ (7 * m), by rw [← Shell.pow_two]; exact (tsirelson_square F m hm).2.1⟩</span>
 <span class="ln" id="L147"><a class="lno" href="#L147">147</a></span>
 <span class="ln" id="L148"><a class="lno" href="#L148">148</a>end octant</span>
@@ -175,23 +175,23 @@
 <span class="ln" id="L153"><a class="lno" href="#L153">153</a>variable {p : Nat} [Pos p] {κ : Nat} {g : Shell p}</span>
 <span class="ln" id="L154"><a class="lno" href="#L154">154</a></span>
 <span class="ln" id="L155"><a class="lno" href="#L155">155</a>/-- `a b (c d) = a c (b d)` on every shell. -/</span>
-<span class="ln decl" id="FRC.Entropy.mul_mul_mul_comm"><a class="lno" href="#FRC.Entropy.mul_mul_mul_comm">156</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcCore/Entropy.lean#L156" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small ok" src="../lean-ok.png" alt="" title="no axioms">theorem mul_mul_mul_comm (a b c d : Shell p) : a * b * (c * d) = a * c * (b * d) := by</span>
+<span class="ln decl" id="FRC.Entropy.mul_mul_mul_comm"><a class="lno" href="#FRC.Entropy.mul_mul_mul_comm">156</a><img class="leanico small ok" src="../lean-ok.png" alt="" title="no axioms">theorem mul_mul_mul_comm (a b c d : Shell p) : a * b * (c * d) = a * c * (b * d) := by</span>
 <span class="ln" id="L157"><a class="lno" href="#L157">157</a>  rw [Shell.mul_assoc, Shell.mul_left_comm b c d, ← Shell.mul_assoc]</span>
 <span class="ln" id="L158"><a class="lno" href="#L158">158</a></span>
 <span class="ln" id="L159"><a class="lno" href="#L159">159</a>/-- Literals add as their values: `a + b = (a + b)` on every shell. -/</span>
-<span class="ln decl" id="FRC.Entropy.lit_add"><a class="lno" href="#FRC.Entropy.lit_add">160</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcCore/Entropy.lean#L160" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small ok" src="../lean-ok.png" alt="" title="no axioms">theorem lit_add (a b : Nat) : (OfNat.ofNat a : Shell p) + OfNat.ofNat b = (OfNat.ofNat (a + b) : Shell p) :=</span>
+<span class="ln decl" id="FRC.Entropy.lit_add"><a class="lno" href="#FRC.Entropy.lit_add">160</a><img class="leanico small ok" src="../lean-ok.png" alt="" title="no axioms">theorem lit_add (a b : Nat) : (OfNat.ofNat a : Shell p) + OfNat.ofNat b = (OfNat.ofNat (a + b) : Shell p) :=</span>
 <span class="ln" id="L161"><a class="lno" href="#L161">161</a>  Shell.ext (by</span>
 <span class="ln" id="L162"><a class="lno" href="#L162">162</a>    show (a % p + b % p) % p = (a + b) % p</span>
 <span class="ln" id="L163"><a class="lno" href="#L163">163</a>    exact (FRC.Nat.add_mod a b p Pos.pos).symm)</span>
 <span class="ln" id="L164"><a class="lno" href="#L164">164</a></span>
 <span class="ln" id="L165"><a class="lno" href="#L165">165</a>/-- `−1 ≠ 1` on every frame (`2 ≠ 0`). -/</span>
-<span class="ln decl" id="FRC.Entropy.neg_one_ne_one"><a class="lno" href="#FRC.Entropy.neg_one_ne_one">166</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcCore/Entropy.lean#L166" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small ok" src="../lean-ok.png" alt="" title="no axioms">theorem neg_one_ne_one (F : Frame p κ g) : (-1 : Shell p) ≠ 1 := fun h =&gt; by</span>
+<span class="ln decl" id="FRC.Entropy.neg_one_ne_one"><a class="lno" href="#FRC.Entropy.neg_one_ne_one">166</a><img class="leanico small ok" src="../lean-ok.png" alt="" title="no axioms">theorem neg_one_ne_one (F : Frame p κ g) : (-1 : Shell p) ≠ 1 := fun h =&gt; by</span>
 <span class="ln" id="L167"><a class="lno" href="#L167">167</a>  have h2 : (1 : Shell p) + 1 = 0 := by</span>
 <span class="ln" id="L168"><a class="lno" href="#L168">168</a>    have := Shell.neg_add (1 : Shell p); rw [h] at this; exact this</span>
 <span class="ln" id="L169"><a class="lno" href="#L169">169</a>  exact F.two_ne_zero (by rw [Frame.two_eq_one_add_one]; exact h2)</span>
 <span class="ln" id="L170"><a class="lno" href="#L170">170</a></span>
 <span class="ln" id="L171"><a class="lno" href="#L171">171</a>/-- `−1 ≠ 0` on every frame. -/</span>
-<span class="ln decl" id="FRC.Entropy.neg_one_ne_zero"><a class="lno" href="#FRC.Entropy.neg_one_ne_zero">172</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcCore/Entropy.lean#L172" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small ok" src="../lean-ok.png" alt="" title="no axioms">theorem neg_one_ne_zero (F : Frame p κ g) : (-1 : Shell p) ≠ 0 := fun h =&gt; by</span>
+<span class="ln decl" id="FRC.Entropy.neg_one_ne_zero"><a class="lno" href="#FRC.Entropy.neg_one_ne_zero">172</a><img class="leanico small ok" src="../lean-ok.png" alt="" title="no axioms">theorem neg_one_ne_zero (F : Frame p κ g) : (-1 : Shell p) ≠ 0 := fun h =&gt; by</span>
 <span class="ln" id="L173"><a class="lno" href="#L173">173</a>  have : (1 : Shell p) = 0 := by</span>
 <span class="ln" id="L174"><a class="lno" href="#L174">174</a>    have h&#x27; : -(-1 : Shell p) = -0 := congrArg Neg.neg h</span>
 <span class="ln" id="L175"><a class="lno" href="#L175">175</a>    rw [Shell.neg_neg, Shell.neg_zero] at h&#x27;</span>
@@ -201,7 +201,7 @@
 <span class="ln" id="L179"><a class="lno" href="#L179">179</a>/-- A square root of `2` gives a square root of the quarter-turn: with `i² = −1`, `2h = 1` and `r² = 2`,</span>
 <span class="ln" id="L180"><a class="lno" href="#L180">180</a>`ζ = (r + i r) h` has `ζ² = i`, hence `ζ⁴ = −1` and `ζ⁸ = 1` — an element of order eight wherever `−1 ≠ 1`,</span>
 <span class="ln" id="L181"><a class="lno" href="#L181">181</a>that is on every frame. -/</span>
-<span class="ln decl" id="FRC.Entropy.octant_of_two_square"><a class="lno" href="#FRC.Entropy.octant_of_two_square">182</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcCore/Entropy.lean#L182" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small ok" src="../lean-ok.png" alt="" title="no axioms">theorem octant_of_two_square {r i h : Shell p} (hr : r * r = 2) (hi : i * i = -1)</span>
+<span class="ln decl" id="FRC.Entropy.octant_of_two_square"><a class="lno" href="#FRC.Entropy.octant_of_two_square">182</a><img class="leanico small ok" src="../lean-ok.png" alt="" title="no axioms">theorem octant_of_two_square {r i h : Shell p} (hr : r * r = 2) (hi : i * i = -1)</span>
 <span class="ln" id="L183"><a class="lno" href="#L183">183</a>    (hh : 2 * h = 1) :</span>
 <span class="ln" id="L184"><a class="lno" href="#L184">184</a>    ∃ ζ : Shell p, ζ * ζ = i ∧ ζ ^ 4 = -1 ∧ ζ ^ 8 = 1 := by</span>
 <span class="ln" id="L185"><a class="lno" href="#L185">185</a>  -- `(r + i r)² = 4 i`</span>
@@ -223,7 +223,7 @@
 <span class="ln" id="L201"><a class="lno" href="#L201">201</a></span>
 <span class="ln" id="L202"><a class="lno" href="#L202">202</a>/-- The arithmetic of the order: `(k · 8) % 4κ = 0` and `(k · 4) % 4κ ≠ 0` force `κ` even (a divisor `4κ` of</span>
 <span class="ln" id="L203"><a class="lno" href="#L203">203</a>`8k` that misses `4k` cannot be `4 · odd`; `0 &lt; κ` is only what `mod_spec` needs). -/</span>
-<span class="ln decl" id="FRC.Entropy.even_of_order_eight"><a class="lno" href="#FRC.Entropy.even_of_order_eight">204</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcCore/Entropy.lean#L204" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small ok" src="../lean-ok.png" alt="" title="no axioms">theorem even_of_order_eight {κ k : Nat} (hκ : 0 &lt; κ) (h8 : (k * 8) % (4 * κ) = 0)</span>
+<span class="ln decl" id="FRC.Entropy.even_of_order_eight"><a class="lno" href="#FRC.Entropy.even_of_order_eight">204</a><img class="leanico small ok" src="../lean-ok.png" alt="" title="no axioms">theorem even_of_order_eight {κ k : Nat} (hκ : 0 &lt; κ) (h8 : (k * 8) % (4 * κ) = 0)</span>
 <span class="ln" id="L205"><a class="lno" href="#L205">205</a>    (h4 : (k * 4) % (4 * κ) ≠ 0) : ∃ m, κ = 2 * m := by</span>
 <span class="ln" id="L206"><a class="lno" href="#L206">206</a>  have h4κ : 0 &lt; 4 * κ := Nat.mul_pos (Nat.zero_lt_succ 3) hκ</span>
 <span class="ln" id="L207"><a class="lno" href="#L207">207</a>  obtain ⟨q, hq⟩ := FRC.Nat.mod_spec (4 * κ) h4κ (k * 8)</span>
@@ -257,7 +257,7 @@
 <span class="ln" id="L235"><a class="lno" href="#L235">235</a></span>
 <span class="ln" id="L236"><a class="lno" href="#L236">236</a>/-- 14:C6 — the octant forces even capacity: on every frame, an element `ζ` with `ζ⁴ = −1` and `ζ⁸ = 1` (an</span>
 <span class="ln" id="L237"><a class="lno" href="#L237">237</a>element of order eight) gives `8 ∣ 4κ`, so the capacity is even. -/</span>
-<span class="ln decl" id="FRC.Entropy.even_capacity_of_octant"><a class="lno" href="#FRC.Entropy.even_capacity_of_octant">238</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcCore/Entropy.lean#L238" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small ok" src="../lean-ok.png" alt="" title="no axioms">theorem even_capacity_of_octant (F : Frame p κ g) {ζ : Shell p} (hz4 : ζ ^ 4 = -1) (hz8 : ζ ^ 8 = 1) :</span>
+<span class="ln decl" id="FRC.Entropy.even_capacity_of_octant"><a class="lno" href="#FRC.Entropy.even_capacity_of_octant">238</a><img class="leanico small ok" src="../lean-ok.png" alt="" title="no axioms">theorem even_capacity_of_octant (F : Frame p κ g) {ζ : Shell p} (hz4 : ζ ^ 4 = -1) (hz8 : ζ ^ 8 = 1) :</span>
 <span class="ln" id="L239"><a class="lno" href="#L239">239</a>    ∃ m, κ = 2 * m := by</span>
 <span class="ln" id="L240"><a class="lno" href="#L240">240</a>  have hζ0 : ζ ≠ 0 := fun h0 =&gt; by</span>
 <span class="ln" id="L241"><a class="lno" href="#L241">241</a>    rw [h0, show (4 : Nat) = 3 + 1 from rfl, Shell.pow_succ, Shell.mul_zero] at hz4</span>
@@ -274,13 +274,13 @@
 <span class="ln" id="L252"><a class="lno" href="#L252">252</a></span>
 <span class="ln" id="L253"><a class="lno" href="#L253">253</a>/-- 14:C6 — the octant sector at tier 0, as an equivalence: on every frame, an element with `ζ⁴ = −1` and</span>
 <span class="ln" id="L254"><a class="lno" href="#L254">254</a>`ζ⁸ = 1` exists exactly when the capacity is even. -/</span>
-<span class="ln decl" id="FRC.Entropy.octant_iff"><a class="lno" href="#FRC.Entropy.octant_iff">255</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcCore/Entropy.lean#L255" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small ok" src="../lean-ok.png" alt="" title="no axioms">theorem octant_iff (F : Frame p κ g) : (∃ ζ : Shell p, ζ ^ 4 = -1 ∧ ζ ^ 8 = 1) ↔ ∃ m, κ = 2 * m :=</span>
+<span class="ln decl" id="FRC.Entropy.octant_iff"><a class="lno" href="#FRC.Entropy.octant_iff">255</a><img class="leanico small ok" src="../lean-ok.png" alt="" title="no axioms">theorem octant_iff (F : Frame p κ g) : (∃ ζ : Shell p, ζ ^ 4 = -1 ∧ ζ ^ 8 = 1) ↔ ∃ m, κ = 2 * m :=</span>
 <span class="ln" id="L256"><a class="lno" href="#L256">256</a>  ⟨fun ⟨_, h4, h8⟩ =&gt; even_capacity_of_octant F h4 h8,</span>
 <span class="ln" id="L257"><a class="lno" href="#L257">257</a>   fun ⟨m, hm⟩ =&gt; ⟨g ^ m, octant_residue F m hm⟩⟩</span>
 <span class="ln" id="L258"><a class="lno" href="#L258">258</a></span>
 <span class="ln" id="L259"><a class="lno" href="#L259">259</a>/-- 14:X4 — the converse of the second face at tier 0: on every frame, a square root of `2` forces the</span>
 <span class="ln" id="L260"><a class="lno" href="#L260">260</a>capacity even — `ζ = (r + i r)/2` has `ζ² = i`, so an element of order eight exists and `8 ∣ 4κ`. -/</span>
-<span class="ln decl" id="FRC.Entropy.even_capacity_of_two_square"><a class="lno" href="#FRC.Entropy.even_capacity_of_two_square">261</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcCore/Entropy.lean#L261" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small ok" src="../lean-ok.png" alt="" title="no axioms">theorem even_capacity_of_two_square (F : Frame p κ g) {r : Shell p} (hr : r * r = 2) :</span>
+<span class="ln decl" id="FRC.Entropy.even_capacity_of_two_square"><a class="lno" href="#FRC.Entropy.even_capacity_of_two_square">261</a><img class="leanico small ok" src="../lean-ok.png" alt="" title="no axioms">theorem even_capacity_of_two_square (F : Frame p κ g) {r : Shell p} (hr : r * r = 2) :</span>
 <span class="ln" id="L262"><a class="lno" href="#L262">262</a>    ∃ m, κ = 2 * m := by</span>
 <span class="ln" id="L263"><a class="lno" href="#L263">263</a>  obtain ⟨h, hh⟩ := F.exists_inv F.two_ne_zero</span>
 <span class="ln" id="L264"><a class="lno" href="#L264">264</a>  obtain ⟨ζ, _, hz4, hz8⟩ := octant_of_two_square hr F.quarter_turn_sq hh</span>
@@ -288,7 +288,7 @@
 <span class="ln" id="L266"><a class="lno" href="#L266">266</a></span>
 <span class="ln" id="L267"><a class="lno" href="#L267">267</a>/-- 14:X4 — the second face as an equivalence at tier 0: on every frame `(τ; 0, 1, g)`, `2` is a square</span>
 <span class="ln" id="L268"><a class="lno" href="#L268">268</a>exactly when the capacity is even — the c-square congruence and the octant sector are one condition. -/</span>
-<span class="ln decl" id="FRC.Entropy.two_is_square_iff"><a class="lno" href="#FRC.Entropy.two_is_square_iff">269</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcCore/Entropy.lean#L269" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small ok" src="../lean-ok.png" alt="" title="no axioms">theorem two_is_square_iff (F : Frame p κ g) : (∃ r : Shell p, r * r = 2) ↔ ∃ m, κ = 2 * m :=</span>
+<span class="ln decl" id="FRC.Entropy.two_is_square_iff"><a class="lno" href="#FRC.Entropy.two_is_square_iff">269</a><img class="leanico small ok" src="../lean-ok.png" alt="" title="no axioms">theorem two_is_square_iff (F : Frame p κ g) : (∃ r : Shell p, r * r = 2) ↔ ∃ m, κ = 2 * m :=</span>
 <span class="ln" id="L270"><a class="lno" href="#L270">270</a>  ⟨fun ⟨_, hr⟩ =&gt; even_capacity_of_two_square F hr, fun ⟨m, hm⟩ =&gt; two_is_square F m hm⟩</span>
 <span class="ln" id="L271"><a class="lno" href="#L271">271</a></span>
 <span class="ln" id="L272"><a class="lno" href="#L272">272</a>end converse</span>
@@ -299,7 +299,7 @@
 <span class="ln" id="L277"><a class="lno" href="#L277">277</a>/-- 14:B10 — the nesting bound, the necessity direction: a shell `q` registered whole by a Subject `p` of the</span>
 <span class="ln" id="L278"><a class="lno" href="#L278">278</a>Carrier `Ω` (`q² &lt; p`, `p² &lt; Ω`) has `q⁴ &lt; Ω`; for `q = 12N + 1` this bounds the hydrogen count `N`; a Subject</span>
 <span class="ln" id="L279"><a class="lno" href="#L279">279</a>between the two is exhibited on the laboratory Carrier (`lab_nesting`, `p = 1373`). -/</span>
-<span class="ln decl" id="FRC.Entropy.nesting_bound"><a class="lno" href="#FRC.Entropy.nesting_bound">280</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcCore/Entropy.lean#L280" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small ok" src="../lean-ok.png" alt="" title="no axioms">theorem nesting_bound (q p Ω : Nat) (hq : q * q &lt; p) (hp : p * p &lt; Ω) : q * q * (q * q) &lt; Ω := by</span>
+<span class="ln decl" id="FRC.Entropy.nesting_bound"><a class="lno" href="#FRC.Entropy.nesting_bound">280</a><img class="leanico small ok" src="../lean-ok.png" alt="" title="no axioms">theorem nesting_bound (q p Ω : Nat) (hq : q * q &lt; p) (hp : p * p &lt; Ω) : q * q * (q * q) &lt; Ω := by</span>
 <span class="ln" id="L281"><a class="lno" href="#L281">281</a>  have hp0 : 0 &lt; p := FRC.Nat.pos_of_lt hq</span>
 <span class="ln" id="L282"><a class="lno" href="#L282">282</a>  have h1 : q * q * (q * q) &lt; p * p := by</span>
 <span class="ln" id="L283"><a class="lno" href="#L283">283</a>    match Nat.lt_or_ge 0 (q * q) with</span>
@@ -315,7 +315,7 @@
 <span class="ln" id="L293"><a class="lno" href="#L293">293</a></span>
 <span class="ln" id="L294"><a class="lno" href="#L294">294</a>/-- Trial division up to `B` decides primality when `n &lt; (B + 1)²`: a divisor `d ≥ 2` of `n` with</span>
 <span class="ln" id="L295"><a class="lno" href="#L295">295</a>`d &gt; B` has a cofactor `q = n/d` with `2 ≤ q ≤ B`, itself a divisor. -/</span>
-<span class="ln decl" id="FRC.Entropy.isPrime_of_bounded"><a class="lno" href="#FRC.Entropy.isPrime_of_bounded">296</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcCore/Entropy.lean#L296" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small ok" src="../lean-ok.png" alt="" title="no axioms">theorem isPrime_of_bounded (n B : Nat) (h2 : 2 ≤ n) (hB : n &lt; (B + 1) * (B + 1))</span>
+<span class="ln decl" id="FRC.Entropy.isPrime_of_bounded"><a class="lno" href="#FRC.Entropy.isPrime_of_bounded">296</a><img class="leanico small ok" src="../lean-ok.png" alt="" title="no axioms">theorem isPrime_of_bounded (n B : Nat) (h2 : 2 ≤ n) (hB : n &lt; (B + 1) * (B + 1))</span>
 <span class="ln" id="L297"><a class="lno" href="#L297">297</a>    (hd : ∀ d, d &lt; B + 1 → 2 ≤ d → n % d ≠ 0) : Dimensions.isPrime n := by</span>
 <span class="ln" id="L298"><a class="lno" href="#L298">298</a>  refine ⟨h2, fun d hdn hd2 hmod =&gt; ?_⟩</span>
 <span class="ln" id="L299"><a class="lno" href="#L299">299</a>  have hd0 : 0 &lt; d := Nat.lt_of_lt_of_le (Nat.zero_lt_succ 1) hd2</span>
@@ -349,7 +349,7 @@
 <span class="ln" id="L327"><a class="lno" href="#L327">327</a>/-- 14:C6, 14:X4 — the octant on `𝔽₁₇` (`κ = 4`, `g = 3`): `ζ = 3² = 9` has `9⁴ = −1`, `9⁸ = 1`,</span>
 <span class="ln" id="L328"><a class="lno" href="#L328">328</a>`ζ⁻¹ = 2`, `(9 + 2)² = 2`, `(2 · 11)² = 8`; on `𝔽₁₃` (`κ = 3`) and `𝔽₂₉` (`κ = 7`) no residue has `x⁴ = −1`,</span>
 <span class="ln" id="L329"><a class="lno" href="#L329">329</a>and `2` is not a square. -/</span>
-<span class="ln decl" id="FRC.Entropy.octant17"><a class="lno" href="#FRC.Entropy.octant17">330</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcCore/Entropy.lean#L330" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small ok" src="../lean-ok.png" alt="" title="no axioms">theorem octant17 :</span>
+<span class="ln decl" id="FRC.Entropy.octant17"><a class="lno" href="#FRC.Entropy.octant17">330</a><img class="leanico small ok" src="../lean-ok.png" alt="" title="no axioms">theorem octant17 :</span>
 <span class="ln" id="L331"><a class="lno" href="#L331">331</a>    (9 : Shell 17) = 3 ^ 2 ∧ (9 : Shell 17) ^ 4 = -1 ∧ (9 : Shell 17) ^ 8 = 1 ∧ (9 : Shell 17) * 2 = 1 ∧</span>
 <span class="ln" id="L332"><a class="lno" href="#L332">332</a>    ((9 : Shell 17) + 2) ^ 2 = 2 ∧ (2 * ((9 : Shell 17) + 2)) ^ 2 = 8 ∧</span>
 <span class="ln" id="L333"><a class="lno" href="#L333">333</a>    (∀ x : Shell 13, x ^ 4 ≠ -1) ∧ (∀ x : Shell 13, x * x ≠ 2) ∧</span>
@@ -357,7 +357,7 @@
 <span class="ln" id="L335"><a class="lno" href="#L335">335</a></span>
 <span class="ln" id="L336"><a class="lno" href="#L336">336</a>/-- 14:C6 — an octant character of the Carrier `Ω = 233` (`S = 58` even), host-decided in the chart with drive</span>
 <span class="ln" id="L337"><a class="lno" href="#L337">337</a>`3`: `ζ₈ = 3²⁹ = 221`, `ζ₈⁴ = −1`, `ζ₈⁸ = 1`, `ζ₈⁻¹ = 97`, `(ζ₈ + ζ₈⁻¹)² = 2`, `(2(ζ₈ + ζ₈⁻¹))² = 8`. -/</span>
-<span class="ln decl" id="FRC.Entropy.octant233"><a class="lno" href="#FRC.Entropy.octant233">338</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcCore/Entropy.lean#L338" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small ok" src="../lean-ok.png" alt="" title="no axioms">theorem octant233 :</span>
+<span class="ln decl" id="FRC.Entropy.octant233"><a class="lno" href="#FRC.Entropy.octant233">338</a><img class="leanico small ok" src="../lean-ok.png" alt="" title="no axioms">theorem octant233 :</span>
 <span class="ln" id="L339"><a class="lno" href="#L339">339</a>    (221 : Shell 233) ^ 4 = -1 ∧ (221 : Shell 233) ^ 8 = 1 ∧ (221 : Shell 233) * 97 = 1 ∧</span>
 <span class="ln" id="L340"><a class="lno" href="#L340">340</a>    ((221 : Shell 233) + 97) ^ 2 = 2 ∧ (2 * ((221 : Shell 233) + 97)) ^ 2 = 8 := by decide +kernel</span>
 <span class="ln" id="L341"><a class="lno" href="#L341">341</a></span>
@@ -365,27 +365,27 @@
 <span class="ln" id="L343"><a class="lno" href="#L343">343</a>`S = 602 140` even and `≡ 1 (mod 3)`, the octant sector realised — in the chart with drive `6`,</span>
 <span class="ln" id="L344"><a class="lno" href="#L344">344</a>`ζ₈ = 6³⁰¹⁰⁷⁰ = 1 639 587`, `ζ₈⁴ = −1`, `ζ₈⁸ = 1`, `ζ₈⁻¹ = 1 111 186`, `(ζ₈ + ζ₈⁻¹)² = 2`,</span>
 <span class="ln" id="L345"><a class="lno" href="#L345">345</a>`(2(ζ₈ + ζ₈⁻¹))² = 8`. -/</span>
-<span class="ln decl" id="FRC.Entropy.lab_carrier"><a class="lno" href="#FRC.Entropy.lab_carrier">346</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcCore/Entropy.lean#L346" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small ok" src="../lean-ok.png" alt="" title="no axioms">theorem lab_carrier :</span>
+<span class="ln decl" id="FRC.Entropy.lab_carrier"><a class="lno" href="#FRC.Entropy.lab_carrier">346</a><img class="leanico small ok" src="../lean-ok.png" alt="" title="no axioms">theorem lab_carrier :</span>
 <span class="ln" id="L347"><a class="lno" href="#L347">347</a>    4 * 602140 + 1 = 2408561 ∧ 602140 % 2 = 0 ∧ 602140 % 3 = 1 ∧</span>
 <span class="ln" id="L348"><a class="lno" href="#L348">348</a>    (1639587 : Shell 2408561) ^ 4 = -1 ∧ (1639587 : Shell 2408561) ^ 8 = 1 ∧</span>
 <span class="ln" id="L349"><a class="lno" href="#L349">349</a>    (1639587 : Shell 2408561) * 1111186 = 1 ∧ ((1639587 : Shell 2408561) + 1111186) ^ 2 = 2 ∧</span>
 <span class="ln" id="L350"><a class="lno" href="#L350">350</a>    (2 * ((1639587 : Shell 2408561) + 1111186)) ^ 2 = 8 := by decide +kernel</span>
 <span class="ln" id="L351"><a class="lno" href="#L351">351</a></span>
 <span class="ln" id="L352"><a class="lno" href="#L352">352</a>/-- 14:A2 — the laboratory Carrier is prime: `2 408 561 &lt; 1553²`, and no `d ≤ 1552` divides it. -/</span>
-<span class="ln decl" id="FRC.Entropy.carrierLab_prime"><a class="lno" href="#FRC.Entropy.carrierLab_prime">353</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcCore/Entropy.lean#L353" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small ok" src="../lean-ok.png" alt="" title="no axioms">theorem carrierLab_prime : Dimensions.isPrime 2408561 :=</span>
+<span class="ln decl" id="FRC.Entropy.carrierLab_prime"><a class="lno" href="#FRC.Entropy.carrierLab_prime">353</a><img class="leanico small ok" src="../lean-ok.png" alt="" title="no axioms">theorem carrierLab_prime : Dimensions.isPrime 2408561 :=</span>
 <span class="ln" id="L354"><a class="lno" href="#L354">354</a>  isPrime_of_bounded 2408561 1552 (by decide) (by decide) (by decide +kernel)</span>
 <span class="ln" id="L355"><a class="lno" href="#L355">355</a></span>
 <span class="ln" id="L356"><a class="lno" href="#L356">356</a>/-- 14:C10, 14:B10 — the primality behind the capacity axis: `κ = 1` (the bare proton) is the shell `𝔽₅`, `κ = 2`</span>
 <span class="ln" id="L357"><a class="lno" href="#L357">357</a>has no shell (`9` composite), `κ_H = 3` (hydrogen, `N = 1`) is `𝔽₁₃`; the `3N` shell at `N = 3` (`37`), none at</span>
 <span class="ln" id="L358"><a class="lno" href="#L358">358</a>`N = 2` (`25`). -/</span>
-<span class="ln decl" id="FRC.Entropy.capacity_axis"><a class="lno" href="#FRC.Entropy.capacity_axis">359</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcCore/Entropy.lean#L359" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small ok" src="../lean-ok.png" alt="" title="no axioms">theorem capacity_axis :</span>
+<span class="ln decl" id="FRC.Entropy.capacity_axis"><a class="lno" href="#FRC.Entropy.capacity_axis">359</a><img class="leanico small ok" src="../lean-ok.png" alt="" title="no axioms">theorem capacity_axis :</span>
 <span class="ln" id="L360"><a class="lno" href="#L360">360</a>    Dimensions.isPrime 5 ∧ ¬ Dimensions.isPrime 9 ∧ Dimensions.isPrime (12 * 1 + 1) ∧</span>
 <span class="ln" id="L361"><a class="lno" href="#L361">361</a>    ¬ Dimensions.isPrime (12 * 2 + 1) ∧ Dimensions.isPrime (12 * 3 + 1) := by decide +kernel</span>
 <span class="ln" id="L362"><a class="lno" href="#L362">362</a></span>
 <span class="ln" id="L363"><a class="lno" href="#L363">363</a>/-- 14:B10 — the nesting on the laboratory Carrier: the capacity-`9` shell `q = 37` nests through the Subject</span>
 <span class="ln" id="L364"><a class="lno" href="#L364">364</a>`p = 1373 = 4 · 343 + 1`, prime (`1373 &lt; 38²`, no `d ≤ 37` divides it), `37² &lt; 1373`, `1373² &lt; Ω`; and the bound</span>
 <span class="ln" id="L365"><a class="lno" href="#L365">365</a>`N ≤ 3`: `37⁴ &lt; Ω &lt; 49⁴`. -/</span>
-<span class="ln decl" id="FRC.Entropy.lab_nesting"><a class="lno" href="#FRC.Entropy.lab_nesting">366</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcCore/Entropy.lean#L366" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small ok" src="../lean-ok.png" alt="" title="no axioms">theorem lab_nesting :</span>
+<span class="ln decl" id="FRC.Entropy.lab_nesting"><a class="lno" href="#FRC.Entropy.lab_nesting">366</a><img class="leanico small ok" src="../lean-ok.png" alt="" title="no axioms">theorem lab_nesting :</span>
 <span class="ln" id="L367"><a class="lno" href="#L367">367</a>    Dimensions.isPrime 1373 ∧ 1373 = 4 * 343 + 1 ∧ 37 * 37 &lt; 1373 ∧ 1373 * 1373 &lt; 2408561 ∧</span>
 <span class="ln" id="L368"><a class="lno" href="#L368">368</a>    37 * 37 * (37 * 37) &lt; 2408561 ∧ 2408561 &lt; 49 * 49 * (49 * 49) :=</span>
 <span class="ln" id="L369"><a class="lno" href="#L369">369</a>  ⟨isPrime_of_bounded 1373 37 (by decide) (by decide) (by decide +kernel), by decide, by decide,</span>

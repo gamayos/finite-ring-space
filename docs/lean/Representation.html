@@ -10,7 +10,7 @@
 <meta name="description" content="The Lean module FrcLedger/Representation of the FRC predicate ledgers, rendered with an anchor per declaration">
 <meta name="author" content="Yosef Akhtman">
 <link rel="icon" href="../frc-logo-fav.png">
-<link rel="stylesheet" href="../style.css?v=cf2646a3">
+<link rel="stylesheet" href="../style.css?v=1df9fbf7">
 
 </head>
 <body>
@@ -20,7 +20,7 @@
     
     <nav><a href="../index.html">Home</a><a href="../publications.html">Publications</a><a href="../00-ledger.html">Ledger</a><a href="../predictions.html">Predictions</a><a href="../explicability.html">Explicability</a></nav>
   </header>
-<main id="ledger-main"><section class="prose"><p>The Lean module <code>lean/FrcLedger/Representation.lean</code> of the paper <a href="../4-representation/4-representation-ledger.html">4-rep</a> (on Mathlib): 13 theorems (1 definitions): 2 with no axioms (green), 2 at tier 1 (teal: <code>propext</code>, <code>Quot.sound</code>), 9 at tier 2 (amber: <code>Classical.choice</code>), 0 red; the small plain glyph marks a definition (no proof, no axioms; on the ledger pages the plain glyph is instead a module cited as a whole). Each declaration is anchored; the ledger rows cite them by name. <a href="https://live.lean-lang.org/#project=mathlib-stable&url=https://raw.githubusercontent.com/gamayos/finite-ring-space/main/lean/web/Representation.lean" target="_blank" rel="noopener">▶ open in the Lean web editor</a> · <a href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcLedger/Representation.lean" target="_blank" rel="noopener">on GitHub</a> · <a href="https://github.com/gamayos/finite-ring-space/blob/main/lean/axioms.log" target="_blank" rel="noopener">axioms.log</a> · <a href="https://github.com/gamayos/finite-ring-space/actions/workflows/lean.yml" target="_blank" rel="noopener">CI</a>.</p></section><pre class="lean"><span class="ln" id="L1"><a class="lno" href="#L1">1</a>import Mathlib</span>
+<main id="ledger-main"><section class="prose"><p>The Lean module <code>lean/FrcLedger/Representation.lean</code> of the paper <a href="../4-representation/4-representation-ledger.html">4-rep</a> (on Mathlib): 13 theorems (1 definitions): 2 with no axioms (green), 2 at tier 1 (teal: <code>propext</code>, <code>Quot.sound</code>), 9 at tier 2 (amber: <code>Classical.choice</code>), 0 red; the small plain glyph marks a definition (no proof, no axioms; on the ledger pages the plain glyph is instead a module cited as a whole). Each declaration is anchored; the ledger rows cite them by name. <a href="https://live.lean-lang.org/#project=mathlib-stable&url=https://www.finitering.space/lean/web/Representation.lean" target="_blank" rel="noopener">▶ open in the Lean web editor</a> · <a href="axioms.log" target="_blank" rel="noopener">axioms.log</a>.</p></section><pre class="lean"><span class="ln" id="L1"><a class="lno" href="#L1">1</a>import Mathlib</span>
 <span class="ln" id="L2"><a class="lno" href="#L2">2</a></span>
 <span class="ln" id="L3"><a class="lno" href="#L3">3</a>/-!</span>
 <span class="ln" id="L4"><a class="lno" href="#L4">4</a># 4-rep — universal latent representation: the ledger rows in Lean (2026-09-17)</span>
@@ -41,14 +41,14 @@
 <span class="ln" id="L19"><a class="lno" href="#L19">19</a></span>
 <span class="ln" id="L20"><a class="lno" href="#L20">20</a>/-- 4:B3 (Definition 2): `E : X → W` is adequate for the observation map `g : Z → X` when `E ∘ g` is a bijection</span>
 <span class="ln" id="L21"><a class="lno" href="#L21">21</a>`Z → W`; minimality (`W = φ(Z)`) is contained in the bijection. -/</span>
-<span class="ln decl" id="FRC.Representation.Adequate"><a class="lno" href="#FRC.Representation.Adequate">22</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcLedger/Representation.lean#L22" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small" src="lean.png" alt="" title="a definition: no proof, no axioms">abbrev Adequate (g : Z → X) (E : X → W) : Prop := Function.Bijective (E ∘ g)</span>
+<span class="ln decl" id="FRC.Representation.Adequate"><a class="lno" href="#FRC.Representation.Adequate">22</a><img class="leanico small" src="lean.png" alt="" title="a definition: no proof, no axioms">abbrev Adequate (g : Z → X) (E : X → W) : Prop := Function.Bijective (E ∘ g)</span>
 <span class="ln" id="L23"><a class="lno" href="#L23">23</a></span>
 <span class="ln" id="L24"><a class="lno" href="#L24">24</a>/-- 4:B4: adequacy makes the observation map injective on the latent domain. -/</span>
-<span class="ln decl" id="FRC.Representation.adequate_inj"><a class="lno" href="#FRC.Representation.adequate_inj">25</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcLedger/Representation.lean#L25" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small ok" src="lean-ok.png" alt="" title="no axioms">theorem adequate_inj {g : Z → X} {E : X → W} (h : Adequate g E) : Function.Injective g := h.1.of_comp</span>
+<span class="ln decl" id="FRC.Representation.adequate_inj"><a class="lno" href="#FRC.Representation.adequate_inj">25</a><img class="leanico small ok" src="lean-ok.png" alt="" title="no axioms">theorem adequate_inj {g : Z → X} {E : X → W} (h : Adequate g E) : Function.Injective g := h.1.of_comp</span>
 <span class="ln" id="L26"><a class="lno" href="#L26">26</a></span>
 <span class="ln" id="L27"><a class="lno" href="#L27">27</a>/-- 4:B5 (Lemma 2): two adequate representations of one observation map are related by the bijection</span>
 <span class="ln" id="L28"><a class="lno" href="#L28">28</a>`ψ = φ₂ ∘ φ₁⁻¹ : W₁ ≃ W₂` on the resolved observations, `E₂ ∘ g = ψ ∘ E₁ ∘ g`. -/</span>
-<span class="ln decl" id="FRC.Representation.transition_exists"><a class="lno" href="#FRC.Representation.transition_exists">29</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcLedger/Representation.lean#L29" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small t2" src="lean-t2.png" alt="" title="tier 2, classical: Classical.choice, Quot.sound">theorem transition_exists {g : Z → X} {E₁ : X → W₁} {E₂ : X → W₂} (h₁ : Adequate g E₁) (h₂ : Adequate g E₂) :</span>
+<span class="ln decl" id="FRC.Representation.transition_exists"><a class="lno" href="#FRC.Representation.transition_exists">29</a><img class="leanico small t2" src="lean-t2.png" alt="" title="tier 2, classical: Classical.choice, Quot.sound">theorem transition_exists {g : Z → X} {E₁ : X → W₁} {E₂ : X → W₂} (h₁ : Adequate g E₁) (h₂ : Adequate g E₂) :</span>
 <span class="ln" id="L30"><a class="lno" href="#L30">30</a>    ∃ ψ : W₁ ≃ W₂, ∀ z, E₂ (g z) = ψ (E₁ (g z)) := by</span>
 <span class="ln" id="L31"><a class="lno" href="#L31">31</a>  refine ⟨(Equiv.ofBijective _ h₁).symm.trans (Equiv.ofBijective _ h₂), fun z =&gt; ?_⟩</span>
 <span class="ln" id="L32"><a class="lno" href="#L32">32</a>  show E₂ (g z) = Equiv.ofBijective (E₂ ∘ g) h₂ ((Equiv.ofBijective (E₁ ∘ g) h₁).symm ((E₁ ∘ g) z))</span>
@@ -56,7 +56,7 @@
 <span class="ln" id="L34"><a class="lno" href="#L34">34</a>  rfl</span>
 <span class="ln" id="L35"><a class="lno" href="#L35">35</a></span>
 <span class="ln" id="L36"><a class="lno" href="#L36">36</a>/-- 4:B5 (the uniqueness clause): a map with that property is determined by it, since `E₁ ∘ g` is onto `W₁`. -/</span>
-<span class="ln decl" id="FRC.Representation.transition_unique"><a class="lno" href="#FRC.Representation.transition_unique">37</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcLedger/Representation.lean#L37" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small t1" src="lean-t1.png" alt="" title="tier 1: Quot.sound">theorem transition_unique {g : Z → X} {E₁ : X → W₁} {E₂ : X → W₂} (h₁ : Adequate g E₁) (ψ ψ&#x27; : W₁ → W₂)</span>
+<span class="ln decl" id="FRC.Representation.transition_unique"><a class="lno" href="#FRC.Representation.transition_unique">37</a><img class="leanico small t1" src="lean-t1.png" alt="" title="tier 1: Quot.sound">theorem transition_unique {g : Z → X} {E₁ : X → W₁} {E₂ : X → W₂} (h₁ : Adequate g E₁) (ψ ψ&#x27; : W₁ → W₂)</span>
 <span class="ln" id="L38"><a class="lno" href="#L38">38</a>    (h : ∀ z, E₂ (g z) = ψ (E₁ (g z))) (h&#x27; : ∀ z, E₂ (g z) = ψ&#x27; (E₁ (g z))) : ψ = ψ&#x27; := by</span>
 <span class="ln" id="L39"><a class="lno" href="#L39">39</a>  funext w</span>
 <span class="ln" id="L40"><a class="lno" href="#L40">40</a>  obtain ⟨z, rfl⟩ := h₁.2 w</span>
@@ -64,12 +64,12 @@
 <span class="ln" id="L42"><a class="lno" href="#L42">42</a></span>
 <span class="ln" id="L43"><a class="lno" href="#L43">43</a>/-- 4:B6: a representation space of the cardinality of the latent domain embeds injectively in the shell — the</span>
 <span class="ln" id="L44"><a class="lno" href="#L44">44</a>one place where finiteness enters. -/</span>
-<span class="ln decl" id="FRC.Representation.embeds_in_shell"><a class="lno" href="#FRC.Representation.embeds_in_shell">45</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcLedger/Representation.lean#L45" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small t2" src="lean-t2.png" alt="" title="tier 2, classical: Classical.choice, Quot.sound, propext">theorem embeds_in_shell [Fintype W] [Fintype U] (h : Fintype.card W ≤ Fintype.card U) : Nonempty (W ↪ U) :=</span>
+<span class="ln decl" id="FRC.Representation.embeds_in_shell"><a class="lno" href="#FRC.Representation.embeds_in_shell">45</a><img class="leanico small t2" src="lean-t2.png" alt="" title="tier 2, classical: Classical.choice, Quot.sound, propext">theorem embeds_in_shell [Fintype W] [Fintype U] (h : Fintype.card W ≤ Fintype.card U) : Nonempty (W ↪ U) :=</span>
 <span class="ln" id="L46"><a class="lno" href="#L46">46</a>  Function.Embedding.nonempty_of_card_le h</span>
 <span class="ln" id="L47"><a class="lno" href="#L47">47</a></span>
 <span class="ln" id="L48"><a class="lno" href="#L48">48</a>/-- 4:B6, 4:C2 (Theorem 1 (iii), the canonical choice): with `incl : Z → U` the inclusion of the latent domain and</span>
 <span class="ln" id="L49"><a class="lno" href="#L49">49</a>`φ = E ∘ g`, the embedding `ι := incl ∘ φ⁻¹` is injective and `ι ∘ φ = incl` — the chart `ψ_m` is the inclusion. -/</span>
-<span class="ln decl" id="FRC.Representation.canonical_iota"><a class="lno" href="#FRC.Representation.canonical_iota">50</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcLedger/Representation.lean#L50" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small t2" src="lean-t2.png" alt="" title="tier 2, classical: Classical.choice, Quot.sound">theorem canonical_iota {incl : Z → U} (hincl : Function.Injective incl) {g : Z → X} {E : X → W}</span>
+<span class="ln decl" id="FRC.Representation.canonical_iota"><a class="lno" href="#FRC.Representation.canonical_iota">50</a><img class="leanico small t2" src="lean-t2.png" alt="" title="tier 2, classical: Classical.choice, Quot.sound">theorem canonical_iota {incl : Z → U} (hincl : Function.Injective incl) {g : Z → X} {E : X → W}</span>
 <span class="ln" id="L51"><a class="lno" href="#L51">51</a>    (h : Adequate g E) :</span>
 <span class="ln" id="L52"><a class="lno" href="#L52">52</a>    Function.Injective (incl ∘ (Equiv.ofBijective _ h).symm) ∧</span>
 <span class="ln" id="L53"><a class="lno" href="#L53">53</a>      ∀ z, (incl ∘ (Equiv.ofBijective _ h).symm) (E (g z)) = incl z := by</span>
@@ -78,12 +78,12 @@
 <span class="ln" id="L56"><a class="lno" href="#L56">56</a>  rw [Equiv.ofBijective_symm_apply_apply (E ∘ g) h z]</span>
 <span class="ln" id="L57"><a class="lno" href="#L57">57</a></span>
 <span class="ln" id="L58"><a class="lno" href="#L58">58</a>/-- 4:C1 (Theorem 1 (i)): the chart `ψ_m = ι_m ∘ φ_m` is injective for every injective `ι_m`. -/</span>
-<span class="ln decl" id="FRC.Representation.chart_injective"><a class="lno" href="#FRC.Representation.chart_injective">59</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcLedger/Representation.lean#L59" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small ok" src="lean-ok.png" alt="" title="no axioms">theorem chart_injective {ι : W → U} (hι : Function.Injective ι) {g : Z → X} {E : X → W} (h : Adequate g E) :</span>
+<span class="ln decl" id="FRC.Representation.chart_injective"><a class="lno" href="#FRC.Representation.chart_injective">59</a><img class="leanico small ok" src="lean-ok.png" alt="" title="no axioms">theorem chart_injective {ι : W → U} (hι : Function.Injective ι) {g : Z → X} {E : X → W} (h : Adequate g E) :</span>
 <span class="ln" id="L60"><a class="lno" href="#L60">60</a>    Function.Injective (ι ∘ (E ∘ g)) := hι.comp h.1</span>
 <span class="ln" id="L61"><a class="lno" href="#L61">61</a></span>
 <span class="ln" id="L62"><a class="lno" href="#L62">62</a>/-- 4:C1 (Theorem 1 (ii)): the transition `Ψ_{m→n} = ψ_n ∘ ψ_m⁻¹` is a bijection between the images, carrying</span>
 <span class="ln" id="L63"><a class="lno" href="#L63">63</a>`ψ_m z` to `ψ_n z`. -/</span>
-<span class="ln decl" id="FRC.Representation.transition_images"><a class="lno" href="#FRC.Representation.transition_images">64</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcLedger/Representation.lean#L64" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small t2" src="lean-t2.png" alt="" title="tier 2, classical: Classical.choice, Quot.sound, propext">theorem transition_images {ψm ψn : Z → U} (hm : Function.Injective ψm) (hn : Function.Injective ψn) :</span>
+<span class="ln decl" id="FRC.Representation.transition_images"><a class="lno" href="#FRC.Representation.transition_images">64</a><img class="leanico small t2" src="lean-t2.png" alt="" title="tier 2, classical: Classical.choice, Quot.sound, propext">theorem transition_images {ψm ψn : Z → U} (hm : Function.Injective ψm) (hn : Function.Injective ψn) :</span>
 <span class="ln" id="L65"><a class="lno" href="#L65">65</a>    ∃ Ψ : Set.range ψm ≃ Set.range ψn, ∀ z, (Ψ ⟨ψm z, z, rfl⟩ : U) = ψn z := by</span>
 <span class="ln" id="L66"><a class="lno" href="#L66">66</a>  refine ⟨(Equiv.ofInjective ψm hm).symm.trans (Equiv.ofInjective ψn hn), fun z =&gt; ?_⟩</span>
 <span class="ln" id="L67"><a class="lno" href="#L67">67</a>  show ((Equiv.ofInjective ψn hn) ((Equiv.ofInjective ψm hm).symm ⟨ψm z, z, rfl⟩) : U) = ψn z</span>
@@ -92,7 +92,7 @@
 <span class="ln" id="L70"><a class="lno" href="#L70">70</a></span>
 <span class="ln" id="L71"><a class="lno" href="#L71">71</a>/-- 4:C3 (Corollary 1): the lift `L = φ⁻¹ ∘ E : X → Z` recovers the latent state, `L ∘ g = id`, and `L x` is the</span>
 <span class="ln" id="L72"><a class="lno" href="#L72">72</a>unique `z` with `E x = φ z`. -/</span>
-<span class="ln decl" id="FRC.Representation.lift"><a class="lno" href="#FRC.Representation.lift">73</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcLedger/Representation.lean#L73" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small t2" src="lean-t2.png" alt="" title="tier 2, classical: Classical.choice, Quot.sound">theorem lift {g : Z → X} {E : X → W} (h : Adequate g E) :</span>
+<span class="ln decl" id="FRC.Representation.lift"><a class="lno" href="#FRC.Representation.lift">73</a><img class="leanico small t2" src="lean-t2.png" alt="" title="tier 2, classical: Classical.choice, Quot.sound">theorem lift {g : Z → X} {E : X → W} (h : Adequate g E) :</span>
 <span class="ln" id="L74"><a class="lno" href="#L74">74</a>    (∀ z, (Equiv.ofBijective _ h).symm (E (g z)) = z) ∧</span>
 <span class="ln" id="L75"><a class="lno" href="#L75">75</a>      ∀ x z, E x = (E ∘ g) z ↔ (Equiv.ofBijective _ h).symm (E x) = z := by</span>
 <span class="ln" id="L76"><a class="lno" href="#L76">76</a>  refine ⟨fun z =&gt; Equiv.ofBijective_symm_apply_apply _ h z, fun x z =&gt; ⟨fun hx =&gt; ?_, fun hz =&gt; ?_⟩⟩</span>
@@ -102,7 +102,7 @@
 <span class="ln" id="L80"><a class="lno" href="#L80">80</a></span>
 <span class="ln" id="L81"><a class="lno" href="#L81">81</a>/-- 4:C4 (Corollary 2): the lifts of two modalities&#x27; observations of one latent state agree, so the canonical</span>
 <span class="ln" id="L82"><a class="lno" href="#L82">82</a>charts `ψ ∘ L_m ∘ g_m` and `ψ ∘ L_n ∘ g_n` both equal `ψ`. -/</span>
-<span class="ln decl" id="FRC.Representation.consistency"><a class="lno" href="#FRC.Representation.consistency">83</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcLedger/Representation.lean#L83" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small t2" src="lean-t2.png" alt="" title="tier 2, classical: Classical.choice, Quot.sound">theorem consistency {Xm Xn Wm Wn : Type*} {gm : Z → Xm} {gn : Z → Xn} {Em : Xm → Wm} {En : Xn → Wn}</span>
+<span class="ln decl" id="FRC.Representation.consistency"><a class="lno" href="#FRC.Representation.consistency">83</a><img class="leanico small t2" src="lean-t2.png" alt="" title="tier 2, classical: Classical.choice, Quot.sound">theorem consistency {Xm Xn Wm Wn : Type*} {gm : Z → Xm} {gn : Z → Xn} {Em : Xm → Wm} {En : Xn → Wn}</span>
 <span class="ln" id="L84"><a class="lno" href="#L84">84</a>    (hm : Adequate gm Em) (hn : Adequate gn En) (z : Z) :</span>
 <span class="ln" id="L85"><a class="lno" href="#L85">85</a>    (Equiv.ofBijective _ hm).symm (Em (gm z)) = (Equiv.ofBijective _ hn).symm (En (gn z)) := by</span>
 <span class="ln" id="L86"><a class="lno" href="#L86">86</a>  rw [(lift hm).1 z, (lift hn).1 z]</span>
@@ -116,7 +116,7 @@
 <span class="ln" id="L94"><a class="lno" href="#L94">94</a></span>
 <span class="ln" id="L95"><a class="lno" href="#L95">95</a>/-- 4:E1 (the hypersphere): a Euclidean chart `emb : Z → E` equivariant for a symmetry that acts transitively on</span>
 <span class="ln" id="L96"><a class="lno" href="#L96">96</a>the domain and by linear isometries on the space has constant norm — its image lies on one sphere about the origin. -/</span>
-<span class="ln decl" id="FRC.Representation.sphere_of_equivariant"><a class="lno" href="#FRC.Representation.sphere_of_equivariant">97</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcLedger/Representation.lean#L97" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small t2" src="lean-t2.png" alt="" title="tier 2, classical: Classical.choice, Quot.sound, propext">theorem sphere_of_equivariant (ρ : G → E ≃ₗᵢ[ℝ] E) (emb : Z → E)</span>
+<span class="ln decl" id="FRC.Representation.sphere_of_equivariant"><a class="lno" href="#FRC.Representation.sphere_of_equivariant">97</a><img class="leanico small t2" src="lean-t2.png" alt="" title="tier 2, classical: Classical.choice, Quot.sound, propext">theorem sphere_of_equivariant (ρ : G → E ≃ₗᵢ[ℝ] E) (emb : Z → E)</span>
 <span class="ln" id="L98"><a class="lno" href="#L98">98</a>    (hequiv : ∀ (σ : G) (z : Z), emb (σ • z) = ρ σ (emb z)) (z₀ z : Z) : ‖emb z‖ = ‖emb z₀‖ := by</span>
 <span class="ln" id="L99"><a class="lno" href="#L99">99</a>  obtain ⟨σ, hσ⟩ := MulAction.exists_smul_eq G z₀ z</span>
 <span class="ln" id="L100"><a class="lno" href="#L100">100</a>  rw [← hσ, hequiv, LinearIsometryEquiv.norm_map]</span>
@@ -127,7 +127,7 @@
 <span class="ln" id="L105"><a class="lno" href="#L105">105</a></span>
 <span class="ln" id="L106"><a class="lno" href="#L106">106</a>/-- 4:E3 (Gödel encoding): over distinct primes `p₁, …, p_d` the code `x ↦ ∏ pᵢ^{xᵢ}` is injective on</span>
 <span class="ln" id="L107"><a class="lno" href="#L107">107</a>`ℕ^d` — unique factorisation. -/</span>
-<span class="ln decl" id="FRC.Representation.godel_injective"><a class="lno" href="#FRC.Representation.godel_injective">108</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcLedger/Representation.lean#L108" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small t2" src="lean-t2.png" alt="" title="tier 2, classical: Classical.choice, Quot.sound, propext">theorem godel_injective {d : ℕ} (p : Fin d → ℕ) (hp : ∀ i, (p i).Prime) (hinj : Function.Injective p) :</span>
+<span class="ln decl" id="FRC.Representation.godel_injective"><a class="lno" href="#FRC.Representation.godel_injective">108</a><img class="leanico small t2" src="lean-t2.png" alt="" title="tier 2, classical: Classical.choice, Quot.sound, propext">theorem godel_injective {d : ℕ} (p : Fin d → ℕ) (hp : ∀ i, (p i).Prime) (hinj : Function.Injective p) :</span>
 <span class="ln" id="L109"><a class="lno" href="#L109">109</a>    Function.Injective (fun x : Fin d → ℕ =&gt; ∏ i, p i ^ x i) := by</span>
 <span class="ln" id="L110"><a class="lno" href="#L110">110</a>  intro x y hxy</span>
 <span class="ln" id="L111"><a class="lno" href="#L111">111</a>  have key : ∀ (x : Fin d → ℕ) (j : Fin d), (∏ i, p i ^ x i).factorization (p j) = x j := by</span>
@@ -146,7 +146,7 @@
 <span class="ln" id="L124"><a class="lno" href="#L124">124</a></span>
 <span class="ln" id="L125"><a class="lno" href="#L125">125</a>/-- 4:E3 (the reduction into one field): an injective integer code with values below `q` stays injective</span>
 <span class="ln" id="L126"><a class="lno" href="#L126">126</a>modulo `q`. -/</span>
-<span class="ln decl" id="FRC.Representation.mod_injective"><a class="lno" href="#FRC.Representation.mod_injective">127</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcLedger/Representation.lean#L127" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small t1" src="lean-t1.png" alt="" title="tier 1: propext">theorem mod_injective {α : Type*} (f : α → ℕ) (hf : Function.Injective f) (q : ℕ) (hq : ∀ a, f a &lt; q) :</span>
+<span class="ln decl" id="FRC.Representation.mod_injective"><a class="lno" href="#FRC.Representation.mod_injective">127</a><img class="leanico small t1" src="lean-t1.png" alt="" title="tier 1: propext">theorem mod_injective {α : Type*} (f : α → ℕ) (hf : Function.Injective f) (q : ℕ) (hq : ∀ a, f a &lt; q) :</span>
 <span class="ln" id="L128"><a class="lno" href="#L128">128</a>    Function.Injective (fun a =&gt; f a % q) := by</span>
 <span class="ln" id="L129"><a class="lno" href="#L129">129</a>  intro a b h</span>
 <span class="ln" id="L130"><a class="lno" href="#L130">130</a>  apply hf</span>
@@ -154,7 +154,7 @@
 <span class="ln" id="L132"><a class="lno" href="#L132">132</a></span>
 <span class="ln" id="L133"><a class="lno" href="#L133">133</a>/-- 4:E3 (the instance of the package): with `d = 3`, exponents `≤ 4` and the primes `2, 3, 5`, the code is at most</span>
 <span class="ln" id="L134"><a class="lno" href="#L134">134</a>`2⁴3⁴5⁴ = 810 000`, and `q = 810 013` is the least prime above it. -/</span>
-<span class="ln decl" id="FRC.Representation.godel_instance"><a class="lno" href="#FRC.Representation.godel_instance">135</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcLedger/Representation.lean#L135" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small t2" src="lean-t2.png" alt="" title="tier 2, classical: Classical.choice, Quot.sound, propext">theorem godel_instance : 2 ^ 4 * 3 ^ 4 * 5 ^ 4 = 810000 ∧ Nat.Prime 810013 := ⟨by norm_num, by norm_num⟩</span>
+<span class="ln decl" id="FRC.Representation.godel_instance"><a class="lno" href="#FRC.Representation.godel_instance">135</a><img class="leanico small t2" src="lean-t2.png" alt="" title="tier 2, classical: Classical.choice, Quot.sound, propext">theorem godel_instance : 2 ^ 4 * 3 ^ 4 * 5 ^ 4 = 810000 ∧ Nat.Prime 810013 := ⟨by norm_num, by norm_num⟩</span>
 <span class="ln" id="L136"><a class="lno" href="#L136">136</a></span>
 <span class="ln" id="L137"><a class="lno" href="#L137">137</a>end godel</span>
 <span class="ln" id="L138"><a class="lno" href="#L138">138</a></span>

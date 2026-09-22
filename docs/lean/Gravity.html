@@ -10,7 +10,7 @@
 <meta name="description" content="The Lean module FrcLedger/Gravity of the FRC predicate ledgers, rendered with an anchor per declaration">
 <meta name="author" content="Yosef Akhtman">
 <link rel="icon" href="../frc-logo-fav.png">
-<link rel="stylesheet" href="../style.css?v=cf2646a3">
+<link rel="stylesheet" href="../style.css?v=1df9fbf7">
 
 </head>
 <body>
@@ -20,7 +20,7 @@
     
     <nav><a href="../index.html">Home</a><a href="../publications.html">Publications</a><a href="../00-ledger.html">Ledger</a><a href="../predictions.html">Predictions</a><a href="../explicability.html">Explicability</a></nav>
   </header>
-<main id="ledger-main"><section class="prose"><p>The Lean module <code>lean/FrcLedger/Gravity.lean</code> of the paper <a href="../21-gravity/21-gravity-ledger.html">21-grav</a> (on Mathlib): 42 theorems (1 definitions): 0 with no axioms (green), 5 at tier 1 (teal: <code>propext</code>, <code>Quot.sound</code>), 37 at tier 2 (amber: <code>Classical.choice</code>), 0 red; the small plain glyph marks a definition (no proof, no axioms; on the ledger pages the plain glyph is instead a module cited as a whole). Each declaration is anchored; the ledger rows cite them by name. <a href="https://live.lean-lang.org/#project=mathlib-stable&url=https://raw.githubusercontent.com/gamayos/finite-ring-space/main/lean/web/Gravity.lean" target="_blank" rel="noopener">▶ open in the Lean web editor</a> · <a href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcLedger/Gravity.lean" target="_blank" rel="noopener">on GitHub</a> · <a href="https://github.com/gamayos/finite-ring-space/blob/main/lean/axioms.log" target="_blank" rel="noopener">axioms.log</a> · <a href="https://github.com/gamayos/finite-ring-space/actions/workflows/lean.yml" target="_blank" rel="noopener">CI</a>.</p></section><pre class="lean"><span class="ln" id="L1"><a class="lno" href="#L1">1</a>import Mathlib</span>
+<main id="ledger-main"><section class="prose"><p>The Lean module <code>lean/FrcLedger/Gravity.lean</code> of the paper <a href="../21-gravity/21-gravity-ledger.html">21-grav</a> (on Mathlib): 42 theorems (1 definitions): 0 with no axioms (green), 5 at tier 1 (teal: <code>propext</code>, <code>Quot.sound</code>), 37 at tier 2 (amber: <code>Classical.choice</code>), 0 red; the small plain glyph marks a definition (no proof, no axioms; on the ledger pages the plain glyph is instead a module cited as a whole). Each declaration is anchored; the ledger rows cite them by name. <a href="https://live.lean-lang.org/#project=mathlib-stable&url=https://www.finitering.space/lean/web/Gravity.lean" target="_blank" rel="noopener">▶ open in the Lean web editor</a> · <a href="axioms.log" target="_blank" rel="noopener">axioms.log</a>.</p></section><pre class="lean"><span class="ln" id="L1"><a class="lno" href="#L1">1</a>import Mathlib</span>
 <span class="ln" id="L2"><a class="lno" href="#L2">2</a></span>
 <span class="ln" id="L3"><a class="lno" href="#L3">3</a>/-!</span>
 <span class="ln" id="L4"><a class="lno" href="#L4">4</a># 21-gravity — the Carrier register, the count face, the strong field and the floor: the ledger rows in Lean (2026-09-20)</span>
@@ -74,7 +74,7 @@
 <span class="ln" id="L52"><a class="lno" href="#L52">52</a></span>
 <span class="ln" id="L53"><a class="lno" href="#L53">53</a>/-- 21:C16, 21:A1 — the calibration congruence: on the Carrier chart `4S + 1 = 0` the full cycle `2π ↦ 4S` is</span>
 <span class="ln" id="L54"><a class="lno" href="#L54">54</a>`−1` and `(4S)² = 1`, one residue relation. -/</span>
-<span class="ln decl" id="FRC.Gravity.calibration_congruence"><a class="lno" href="#FRC.Gravity.calibration_congruence">55</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcLedger/Gravity.lean#L55" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small t1" src="lean-t1.png" alt="" title="tier 1: Quot.sound, propext">theorem calibration_congruence (S : ℕ) (hΩ : ((4 * S + 1 : ℕ) : K) = 0) :</span>
+<span class="ln decl" id="FRC.Gravity.calibration_congruence"><a class="lno" href="#FRC.Gravity.calibration_congruence">55</a><img class="leanico small t1" src="lean-t1.png" alt="" title="tier 1: Quot.sound, propext">theorem calibration_congruence (S : ℕ) (hΩ : ((4 * S + 1 : ℕ) : K) = 0) :</span>
 <span class="ln" id="L56"><a class="lno" href="#L56">56</a>    ((4 * S : ℕ) : K) = -1 ∧ ((4 * S : ℕ) : K) ^ 2 = 1 := by</span>
 <span class="ln" id="L57"><a class="lno" href="#L57">57</a>  push_cast at hΩ ⊢</span>
 <span class="ln" id="L58"><a class="lno" href="#L58">58</a>  exact ⟨by linear_combination hΩ, by linear_combination (4 * (S : K) - 1) * hΩ⟩</span>
@@ -83,7 +83,7 @@
 <span class="ln" id="L61"><a class="lno" href="#L61">61</a>`4S + 1 = 0`: `2G = −1` (the half-cycle); `(−2) G = 1`, the face convention `4π ↦ −2` with `G = (−2)⁻¹`; the</span>
 <span class="ln" id="L62"><a class="lno" href="#L62">62</a>Gauss count `(2 · 4S) G = 1`; `c² = 2⁻¹ = 2S + 1` and `G = −c²` (the chart ratio `4π/2π = 2` is read as</span>
 <span class="ln" id="L63"><a class="lno" href="#L63">63</a>`(−2)/(−1)`). The uniqueness of the linear solution is `Dimensions.G_unique`. -/</span>
-<span class="ln decl" id="FRC.Gravity.newton_register"><a class="lno" href="#FRC.Gravity.newton_register">64</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcLedger/Gravity.lean#L64" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small t2" src="lean-t2.png" alt="" title="tier 2, classical: Classical.choice, Quot.sound, propext">theorem newton_register (S : ℕ) (hΩ : ((4 * S + 1 : ℕ) : K) = 0) :</span>
+<span class="ln decl" id="FRC.Gravity.newton_register"><a class="lno" href="#FRC.Gravity.newton_register">64</a><img class="leanico small t2" src="lean-t2.png" alt="" title="tier 2, classical: Classical.choice, Quot.sound, propext">theorem newton_register (S : ℕ) (hΩ : ((4 * S + 1 : ℕ) : K) = 0) :</span>
 <span class="ln" id="L65"><a class="lno" href="#L65">65</a>    2 * ((2 * S : ℕ) : K) = -1 ∧ (-2) * ((2 * S : ℕ) : K) = 1 ∧</span>
 <span class="ln" id="L66"><a class="lno" href="#L66">66</a>    (2 * ((4 * S : ℕ) : K)) * ((2 * S : ℕ) : K) = 1 ∧</span>
 <span class="ln" id="L67"><a class="lno" href="#L67">67</a>    2 * ((2 * S + 1 : ℕ) : K) = 1 ∧ ((2 * S + 1 : ℕ) : K) = 2⁻¹ ∧</span>
@@ -95,7 +95,7 @@
 <span class="ln" id="L73"><a class="lno" href="#L73">73</a>  exact eq_inv_of_mul_eq_one_left (by linear_combination hΩ)</span>
 <span class="ln" id="L74"><a class="lno" href="#L74">74</a></span>
 <span class="ln" id="L75"><a class="lno" href="#L75">75</a>/-- On the Carrier `𝔽_Ω`, `Ω = 4S + 1` prime, `2 ≠ 0` (`Ω` is odd). -/</span>
-<span class="ln decl" id="FRC.Gravity.carrier_two_ne_zero"><a class="lno" href="#FRC.Gravity.carrier_two_ne_zero">76</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcLedger/Gravity.lean#L76" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small t2" src="lean-t2.png" alt="" title="tier 2, classical: Classical.choice, Quot.sound, propext">theorem carrier_two_ne_zero (S : ℕ) [hp : Fact (Nat.Prime (4 * S + 1))] :</span>
+<span class="ln decl" id="FRC.Gravity.carrier_two_ne_zero"><a class="lno" href="#FRC.Gravity.carrier_two_ne_zero">76</a><img class="leanico small t2" src="lean-t2.png" alt="" title="tier 2, classical: Classical.choice, Quot.sound, propext">theorem carrier_two_ne_zero (S : ℕ) [hp : Fact (Nat.Prime (4 * S + 1))] :</span>
 <span class="ln" id="L77"><a class="lno" href="#L77">77</a>    (2 : ZMod (4 * S + 1)) ≠ 0 := by</span>
 <span class="ln" id="L78"><a class="lno" href="#L78">78</a>  rw [show (2 : ZMod (4 * S + 1)) = ((2 : ℕ) : ZMod (4 * S + 1)) by norm_cast, Ne,</span>
 <span class="ln" id="L79"><a class="lno" href="#L79">79</a>    ZMod.natCast_eq_zero_iff]</span>
@@ -106,7 +106,7 @@
 <span class="ln" id="L84"><a class="lno" href="#L84">84</a></span>
 <span class="ln" id="L85"><a class="lno" href="#L85">85</a>/-- In any field with `4S + 1 = 0` and `2 ≠ 0`, a quarter-turn `i² = −1` gives a square root of `S`,</span>
 <span class="ln" id="L86"><a class="lno" href="#L86">86</a>`r = i/2`, with `(2r)² = −1`. -/</span>
-<span class="ln decl" id="FRC.Gravity.hbar_of_quarter_turn"><a class="lno" href="#FRC.Gravity.hbar_of_quarter_turn">87</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcLedger/Gravity.lean#L87" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small t2" src="lean-t2.png" alt="" title="tier 2, classical: Classical.choice, Quot.sound, propext">theorem hbar_of_quarter_turn {K : Type*} [Field K] (S : ℕ) (hΩ : ((4 * S + 1 : ℕ) : K) = 0)</span>
+<span class="ln decl" id="FRC.Gravity.hbar_of_quarter_turn"><a class="lno" href="#FRC.Gravity.hbar_of_quarter_turn">87</a><img class="leanico small t2" src="lean-t2.png" alt="" title="tier 2, classical: Classical.choice, Quot.sound, propext">theorem hbar_of_quarter_turn {K : Type*} [Field K] (S : ℕ) (hΩ : ((4 * S + 1 : ℕ) : K) = 0)</span>
 <span class="ln" id="L88"><a class="lno" href="#L88">88</a>    (h2 : (2 : K) ≠ 0) (i : K) (hi : i ^ 2 = -1) :</span>
 <span class="ln" id="L89"><a class="lno" href="#L89">89</a>    ∃ r : K, r ^ 2 = (S : K) ∧ (2 * r) ^ 2 = -1 := by</span>
 <span class="ln" id="L90"><a class="lno" href="#L90">90</a>  push_cast at hΩ</span>
@@ -121,7 +121,7 @@
 <span class="ln" id="L99"><a class="lno" href="#L99">99</a>/-- 21:C5, 21:C16, 21:A1 — the action quantum as the quarter-turn pair: on every Carrier `Ω = 4S + 1` prime, `S`</span>
 <span class="ln" id="L100"><a class="lno" href="#L100">100</a>is a square (`S = (i/2)²` with `i² = −1`, since `4S = −1`), so `ħ = 2√S` has `ħ² = 4S = −1` — `ħ` is one of the</span>
 <span class="ln" id="L101"><a class="lno" href="#L101">101</a>quarter-turn pair `±i`. -/</span>
-<span class="ln decl" id="FRC.Gravity.hbar_register"><a class="lno" href="#FRC.Gravity.hbar_register">102</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcLedger/Gravity.lean#L102" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small t2" src="lean-t2.png" alt="" title="tier 2, classical: Classical.choice, Quot.sound, propext">theorem hbar_register (S : ℕ) [Fact (Nat.Prime (4 * S + 1))] :</span>
+<span class="ln decl" id="FRC.Gravity.hbar_register"><a class="lno" href="#FRC.Gravity.hbar_register">102</a><img class="leanico small t2" src="lean-t2.png" alt="" title="tier 2, classical: Classical.choice, Quot.sound, propext">theorem hbar_register (S : ℕ) [Fact (Nat.Prime (4 * S + 1))] :</span>
 <span class="ln" id="L103"><a class="lno" href="#L103">103</a>    ∃ r : ZMod (4 * S + 1), r ^ 2 = (S : ZMod (4 * S + 1)) ∧ (2 * r) ^ 2 = -1 := by</span>
 <span class="ln" id="L104"><a class="lno" href="#L104">104</a>  obtain ⟨i, hi⟩ : IsSquare (-1 : ZMod (4 * S + 1)) := ZMod.exists_sq_eq_neg_one_iff.mpr (by omega)</span>
 <span class="ln" id="L105"><a class="lno" href="#L105">105</a>  exact hbar_of_quarter_turn S (ZMod.natCast_self _) (carrier_two_ne_zero S) i (by rw [sq]; exact hi.symm)</span>
@@ -129,7 +129,7 @@
 <span class="ln" id="L107"><a class="lno" href="#L107">107</a>/-- The arithmetic behind 21:X8 — the weakness of gravity as cardinality dilution: with the Planck mass the</span>
 <span class="ln" id="L108"><a class="lno" href="#L108">108</a>locality horizon, `m_P = √Ω`, the dimensionless coupling of two masses `m` is `(m/m_P)² = m²/Ω`, small because</span>
 <span class="ln" id="L109"><a class="lno" href="#L109">109</a>`Ω` is large. C5&#x27;s frame covariance is not formal content. -/</span>
-<span class="ln decl" id="FRC.Gravity.dilution"><a class="lno" href="#FRC.Gravity.dilution">110</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcLedger/Gravity.lean#L110" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small t2" src="lean-t2.png" alt="" title="tier 2, classical: Classical.choice, Quot.sound, propext">theorem dilution (m Ω : ℝ) (hΩ : 0 &lt; Ω) : (m / √Ω) ^ 2 = m ^ 2 / Ω := by</span>
+<span class="ln decl" id="FRC.Gravity.dilution"><a class="lno" href="#FRC.Gravity.dilution">110</a><img class="leanico small t2" src="lean-t2.png" alt="" title="tier 2, classical: Classical.choice, Quot.sound, propext">theorem dilution (m Ω : ℝ) (hΩ : 0 &lt; Ω) : (m / √Ω) ^ 2 = m ^ 2 / Ω := by</span>
 <span class="ln" id="L111"><a class="lno" href="#L111">111</a>  rw [div_pow, sq_sqrt hΩ.le]</span>
 <span class="ln" id="L112"><a class="lno" href="#L112">112</a></span>
 <span class="ln" id="L113"><a class="lno" href="#L113">113</a>end register</span>
@@ -140,7 +140,7 @@
 <span class="ln" id="L118"><a class="lno" href="#L118">118</a>/-- 21:C13 — the count face of the area law on a symmetry-complete shell `p = 4κ + 1`: with `S = (p² − 1)/4`,</span>
 <span class="ln" id="L119"><a class="lno" href="#L119">119</a>i.e. `4S + 1 = p²` for `S = κ(4κ + 2)`, and the coordinate area `A = p(p + 1)`, the ratio `S/A = κ/p` holds</span>
 <span class="ln" id="L120"><a class="lno" href="#L120">120</a>exactly (`Sp = κA`) and `S = (A/4)(1 − 1/p)` (`4Sp = A(p − 1)`) — the Bekenstein quarter as the `Q₄` quotient. -/</span>
-<span class="ln decl" id="FRC.Gravity.count_face"><a class="lno" href="#FRC.Gravity.count_face">121</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcLedger/Gravity.lean#L121" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small t1" src="lean-t1.png" alt="" title="tier 1: propext">theorem count_face (κ : ℕ) :</span>
+<span class="ln decl" id="FRC.Gravity.count_face"><a class="lno" href="#FRC.Gravity.count_face">121</a><img class="leanico small t1" src="lean-t1.png" alt="" title="tier 1: propext">theorem count_face (κ : ℕ) :</span>
 <span class="ln" id="L122"><a class="lno" href="#L122">122</a>    4 * (κ * (4 * κ + 2)) + 1 = (4 * κ + 1) ^ 2 ∧</span>
 <span class="ln" id="L123"><a class="lno" href="#L123">123</a>    (κ * (4 * κ + 2)) * (4 * κ + 1) = κ * ((4 * κ + 1) * (4 * κ + 2)) ∧</span>
 <span class="ln" id="L124"><a class="lno" href="#L124">124</a>    4 * (κ * (4 * κ + 2)) * (4 * κ + 1) = ((4 * κ + 1) * (4 * κ + 2)) * (4 * κ) :=</span>
@@ -151,7 +151,7 @@
 <span class="ln" id="L129"><a class="lno" href="#L129">129</a>`ΔA = 2M₁M₂ − (2(M₁ + M₂) + 1)δ + δ²`, at most the additive value for `0 ≤ δ ≤ 2(M₁ + M₂) + 1` — the area</span>
 <span class="ln" id="L130"><a class="lno" href="#L130">130</a>statement an inequality (the coefficient `−2(M₁ + M₂)δ` is the `A = M²` form; on the count face the linear</span>
 <span class="ln" id="L131"><a class="lno" href="#L131">131</a>term carries the extra `−δ`). -/</span>
-<span class="ln decl" id="FRC.Gravity.merger_area_law"><a class="lno" href="#FRC.Gravity.merger_area_law">132</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcLedger/Gravity.lean#L132" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small t2" src="lean-t2.png" alt="" title="tier 2, classical: Classical.choice, Quot.sound, propext">theorem merger_area_law (M₁ M₂ δ : ℤ) :</span>
+<span class="ln decl" id="FRC.Gravity.merger_area_law"><a class="lno" href="#FRC.Gravity.merger_area_law">132</a><img class="leanico small t2" src="lean-t2.png" alt="" title="tier 2, classical: Classical.choice, Quot.sound, propext">theorem merger_area_law (M₁ M₂ δ : ℤ) :</span>
 <span class="ln" id="L133"><a class="lno" href="#L133">133</a>    (M₁ + M₂) * (M₁ + M₂ + 1) - M₁ * (M₁ + 1) - M₂ * (M₂ + 1) = 2 * M₁ * M₂ ∧</span>
 <span class="ln" id="L134"><a class="lno" href="#L134">134</a>    (M₁ + M₂ - δ) * (M₁ + M₂ - δ + 1) - M₁ * (M₁ + 1) - M₂ * (M₂ + 1)</span>
 <span class="ln" id="L135"><a class="lno" href="#L135">135</a>      = 2 * M₁ * M₂ - (2 * (M₁ + M₂) + 1) * δ + δ ^ 2 ∧</span>
@@ -166,7 +166,7 @@
 <span class="ln" id="L144"><a class="lno" href="#L144">144</a>PPN-free deficit `3/2` equals the two-face ratio `2` exactly when `2γ − β = 1`, with deviation</span>
 <span class="ln" id="L145"><a class="lno" href="#L145">145</a>`(2/3)(2γ − β − 1)`; channel unity `γ = 1` together with the forcing gives `β = 1`, and the perihelion factor</span>
 <span class="ln" id="L146"><a class="lno" href="#L146">146</a>`(2 + 2γ − β)/3` is then `1` (the deflection factor `(1 + γ)/2` is `1` at `γ = 1`). -/</span>
-<span class="ln decl" id="FRC.Gravity.cover_forcing"><a class="lno" href="#FRC.Gravity.cover_forcing">147</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcLedger/Gravity.lean#L147" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small t2" src="lean-t2.png" alt="" title="tier 2, classical: Classical.choice, Quot.sound, propext">theorem cover_forcing (β γ : ℝ) :</span>
+<span class="ln decl" id="FRC.Gravity.cover_forcing"><a class="lno" href="#FRC.Gravity.cover_forcing">147</a><img class="leanico small t2" src="lean-t2.png" alt="" title="tier 2, classical: Classical.choice, Quot.sound, propext">theorem cover_forcing (β γ : ℝ) :</span>
 <span class="ln" id="L148"><a class="lno" href="#L148">148</a>    ((2 - β + 2 * γ) / (3 / 2) = 2 ↔ 2 * γ - β = 1) ∧</span>
 <span class="ln" id="L149"><a class="lno" href="#L149">149</a>    (2 - β + 2 * γ) / (3 / 2) - 2 = 2 / 3 * (2 * γ - β - 1) ∧</span>
 <span class="ln" id="L150"><a class="lno" href="#L150">150</a>    (γ = 1 → 2 * γ - β = 1 → β = 1 ∧ (2 + 2 * γ - β) / 3 = 1) := by</span>
@@ -178,7 +178,7 @@
 <span class="ln" id="L156"><a class="lno" href="#L156">156</a>/-- 21:A9 — the mass–energy channel `C_{p−1} ∩ C_{2(p+1)} = Q₄`: on every shell `p ≡ 1 (mod 4)`,</span>
 <span class="ln" id="L157"><a class="lno" href="#L157">157</a>`gcd(p − 1, 2(p + 1)) = 4`; the subgroup reading — in the cyclic unit group of `𝔽_{p²}` (order `(p − 1)(p + 1)`)</span>
 <span class="ln" id="L158"><a class="lno" href="#L158">158</a>the subgroups of orders `p − 1` and `2(p + 1)` meet in the subgroup of order `gcd` — is not formalised here. -/</span>
-<span class="ln decl" id="FRC.Gravity.channel_q4"><a class="lno" href="#FRC.Gravity.channel_q4">159</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcLedger/Gravity.lean#L159" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small t1" src="lean-t1.png" alt="" title="tier 1: Quot.sound, propext">theorem channel_q4 (p : ℕ) (hp : p % 4 = 1) : Nat.gcd (p - 1) (2 * (p + 1)) = 4 := by</span>
+<span class="ln decl" id="FRC.Gravity.channel_q4"><a class="lno" href="#FRC.Gravity.channel_q4">159</a><img class="leanico small t1" src="lean-t1.png" alt="" title="tier 1: Quot.sound, propext">theorem channel_q4 (p : ℕ) (hp : p % 4 = 1) : Nat.gcd (p - 1) (2 * (p + 1)) = 4 := by</span>
 <span class="ln" id="L160"><a class="lno" href="#L160">160</a>  obtain ⟨κ, rfl⟩ : ∃ κ, p = 4 * κ + 1 := ⟨p / 4, by omega⟩</span>
 <span class="ln" id="L161"><a class="lno" href="#L161">161</a>  have h1 : 4 * κ + 1 - 1 = 4 * κ := by omega</span>
 <span class="ln" id="L162"><a class="lno" href="#L162">162</a>  have h2 : 2 * (4 * κ + 1 + 1) = 4 * (1 + 2 * κ) := by ring</span>
@@ -192,7 +192,7 @@
 <span class="ln" id="L170"><a class="lno" href="#L170">170</a>/-- 21:C12, 21:P7 — the operational cut and the slip core in the substrate coordinate (`G = 1`, `M` in Planck</span>
 <span class="ln" id="L171"><a class="lno" href="#L171">171</a>masses, `L = ln Ω`): `r_f = 2M/L` carries `e^{2M/r_f} = Ω` (the round-trip delay&#x27;s factor); `r_* = √M &lt; r_f`</span>
 <span class="ln" id="L172"><a class="lno" href="#L172">172</a>exactly when `M &gt; (L/2)²`, and `r_f &lt; M` exactly when `L &gt; 2` (master E10). -/</span>
-<span class="ln decl" id="FRC.Gravity.operational_cut"><a class="lno" href="#FRC.Gravity.operational_cut">173</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcLedger/Gravity.lean#L173" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small t2" src="lean-t2.png" alt="" title="tier 2, classical: Classical.choice, Quot.sound, propext">theorem operational_cut (M L Ω : ℝ) (hM : 0 &lt; M) (hL : 0 &lt; L) (hΩ : L = log Ω) (hΩ0 : 0 &lt; Ω) :</span>
+<span class="ln decl" id="FRC.Gravity.operational_cut"><a class="lno" href="#FRC.Gravity.operational_cut">173</a><img class="leanico small t2" src="lean-t2.png" alt="" title="tier 2, classical: Classical.choice, Quot.sound, propext">theorem operational_cut (M L Ω : ℝ) (hM : 0 &lt; M) (hL : 0 &lt; L) (hΩ : L = log Ω) (hΩ0 : 0 &lt; Ω) :</span>
 <span class="ln" id="L174"><a class="lno" href="#L174">174</a>    exp (2 * M / (2 * M / L)) = Ω ∧</span>
 <span class="ln" id="L175"><a class="lno" href="#L175">175</a>    (√M &lt; 2 * M / L ↔ (L / 2) ^ 2 &lt; M) ∧ (2 * M / L &lt; M ↔ 2 &lt; L) := by</span>
 <span class="ln" id="L176"><a class="lno" href="#L176">176</a>  refine ⟨?_, ?_, ?_⟩</span>
@@ -206,7 +206,7 @@
 <span class="ln" id="L184"><a class="lno" href="#L184">184</a>/-- 21:P1 — the photon sphere (`prop:shadow`, `rem:exponential`): the impact parameter `b(r) = r e^{2Gm/r}` of the exponential metric</span>
 <span class="ln" id="L185"><a class="lno" href="#L185">185</a>satisfies `b(r) ≥ 2e·Gm` for every `r &gt; 0`, with equality exactly at `r = 2Gm` (from `x + 1 ≤ eˣ`, strict off</span>
 <span class="ln" id="L186"><a class="lno" href="#L186">186</a>`x = 0`): the photon sphere is at `r_ph = 2Gm`, the critical impact parameter `b_c = 2e·Gm`. -/</span>
-<span class="ln decl" id="FRC.Gravity.photon_sphere"><a class="lno" href="#FRC.Gravity.photon_sphere">187</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcLedger/Gravity.lean#L187" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small t2" src="lean-t2.png" alt="" title="tier 2, classical: Classical.choice, Quot.sound, propext">theorem photon_sphere (Gm r : ℝ) (hG : 0 &lt; Gm) (hr : 0 &lt; r) :</span>
+<span class="ln decl" id="FRC.Gravity.photon_sphere"><a class="lno" href="#FRC.Gravity.photon_sphere">187</a><img class="leanico small t2" src="lean-t2.png" alt="" title="tier 2, classical: Classical.choice, Quot.sound, propext">theorem photon_sphere (Gm r : ℝ) (hG : 0 &lt; Gm) (hr : 0 &lt; r) :</span>
 <span class="ln" id="L188"><a class="lno" href="#L188">188</a>    2 * exp 1 * Gm ≤ r * exp (2 * Gm / r) ∧ (r * exp (2 * Gm / r) = 2 * exp 1 * Gm ↔ r = 2 * Gm) := by</span>
 <span class="ln" id="L189"><a class="lno" href="#L189">189</a>  have hsplit : exp (2 * Gm / r) = exp 1 * exp (2 * Gm / r - 1) := by</span>
 <span class="ln" id="L190"><a class="lno" href="#L190">190</a>    rw [← exp_add]; ring_nf</span>
@@ -237,7 +237,7 @@
 <span class="ln" id="L215"><a class="lno" href="#L215">215</a>      rw [this]; ring</span>
 <span class="ln" id="L216"><a class="lno" href="#L216">216</a></span>
 <span class="ln" id="L217"><a class="lno" href="#L217">217</a>/-- `√3` to seven places. -/</span>
-<span class="ln decl" id="FRC.Gravity.sqrt_three_bounds"><a class="lno" href="#FRC.Gravity.sqrt_three_bounds">218</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcLedger/Gravity.lean#L218" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small t2" src="lean-t2.png" alt="" title="tier 2, classical: Classical.choice, Quot.sound, propext">theorem sqrt_three_bounds : (1.7320508 : ℝ) &lt; √3 ∧ √3 &lt; 1.7320509 :=</span>
+<span class="ln decl" id="FRC.Gravity.sqrt_three_bounds"><a class="lno" href="#FRC.Gravity.sqrt_three_bounds">218</a><img class="leanico small t2" src="lean-t2.png" alt="" title="tier 2, classical: Classical.choice, Quot.sound, propext">theorem sqrt_three_bounds : (1.7320508 : ℝ) &lt; √3 ∧ √3 &lt; 1.7320509 :=</span>
 <span class="ln" id="L219"><a class="lno" href="#L219">219</a>  ⟨(Real.lt_sqrt (by norm_num)).mpr (by norm_num), (Real.sqrt_lt&#x27; (by norm_num)).mpr (by norm_num)⟩</span>
 <span class="ln" id="L220"><a class="lno" href="#L220">220</a></span>
 <span class="ln" id="L221"><a class="lno" href="#L221">221</a>/-- 21:P1 — the shadow and the ringdown against general relativity, bracketed from `e` (nine places) and `√3`:</span>
@@ -245,7 +245,7 @@
 <span class="ln" id="L223"><a class="lno" href="#L223">223</a>`2e/(3√3)` between `1.0462` and `1.0463` (the shadow `+4.6 %`), and the eikonal ringdown frequency, `∝ 1/b_c`,</span>
 <span class="ln" id="L224"><a class="lno" href="#L224">224</a>ratio `3√3/(2e)` between `0.9557` and `0.9558` (`−4.4 %`); the Sgr A* excess `(4e − 6√3) θ_g` at the</span>
 <span class="ln" id="L225"><a class="lno" href="#L225">225</a>GRAVITY `θ_g = 5.12 µas` [data, A8] lies between `2.46` and `2.47 µas` (the `2.5 µas` of the text). -/</span>
-<span class="ln decl" id="FRC.Gravity.shadow_bracket"><a class="lno" href="#FRC.Gravity.shadow_bracket">226</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcLedger/Gravity.lean#L226" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small t2" src="lean-t2.png" alt="" title="tier 2, classical: Classical.choice, Quot.sound, propext">theorem shadow_bracket :</span>
+<span class="ln decl" id="FRC.Gravity.shadow_bracket"><a class="lno" href="#FRC.Gravity.shadow_bracket">226</a><img class="leanico small t2" src="lean-t2.png" alt="" title="tier 2, classical: Classical.choice, Quot.sound, propext">theorem shadow_bracket :</span>
 <span class="ln" id="L227"><a class="lno" href="#L227">227</a>    (1.0462 : ℝ) &lt; 2 * exp 1 / (3 * √3) ∧ 2 * exp 1 / (3 * √3) &lt; 1.0463 ∧</span>
 <span class="ln" id="L228"><a class="lno" href="#L228">228</a>    (0.9557 : ℝ) &lt; 3 * √3 / (2 * exp 1) ∧ 3 * √3 / (2 * exp 1) &lt; 0.9558 ∧</span>
 <span class="ln" id="L229"><a class="lno" href="#L229">229</a>    (2.46 : ℝ) &lt; (4 * exp 1 - 6 * √3) * 5.12 ∧ (4 * exp 1 - 6 * √3) * 5.12 &lt; 2.47 := by</span>
@@ -265,7 +265,7 @@
 <span class="ln" id="L243"><a class="lno" href="#L243">243</a>(`L² = e^{2/r} r²/(r − 2)` and `E² = e^{−2/r}(r − 1)/(r − 2)` for a circular orbit at `r &gt; 2`): what is</span>
 <span class="ln" id="L244"><a class="lno" href="#L244">244</a>proved is that `log L²` has derivative `(r² − 6r + 4)/(r²(r − 2))`, that `r_ISCO = 3 + √5` is the root of</span>
 <span class="ln" id="L245"><a class="lno" href="#L245">245</a>`r² − 6r + 4` above `2`, and that `(r − 1)/(r − 2) = r/4` there, so `E² = e^{−2/r} r/4` at the orbit. -/</span>
-<span class="ln decl" id="FRC.Gravity.isco"><a class="lno" href="#FRC.Gravity.isco">246</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcLedger/Gravity.lean#L246" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small t2" src="lean-t2.png" alt="" title="tier 2, classical: Classical.choice, Quot.sound, propext">theorem isco (r : ℝ) (hr : 2 &lt; r) :</span>
+<span class="ln decl" id="FRC.Gravity.isco"><a class="lno" href="#FRC.Gravity.isco">246</a><img class="leanico small t2" src="lean-t2.png" alt="" title="tier 2, classical: Classical.choice, Quot.sound, propext">theorem isco (r : ℝ) (hr : 2 &lt; r) :</span>
 <span class="ln" id="L247"><a class="lno" href="#L247">247</a>    HasDerivAt (fun r : ℝ =&gt; 2 / r + 2 * log r - log (r - 2))</span>
 <span class="ln" id="L248"><a class="lno" href="#L248">248</a>      ((r ^ 2 - 6 * r + 4) / (r ^ 2 * (r - 2))) r ∧</span>
 <span class="ln" id="L249"><a class="lno" href="#L249">249</a>    (3 + √5) ^ 2 - 6 * (3 + √5) + 4 = 0 ∧ 2 &lt; 3 + √5 ∧</span>
@@ -289,7 +289,7 @@
 <span class="ln" id="L267"><a class="lno" href="#L267">267</a>    linear_combination -h5</span>
 <span class="ln" id="L268"><a class="lno" href="#L268">268</a></span>
 <span class="ln" id="L269"><a class="lno" href="#L269">269</a>/-- A bracket of `e^{−x}` from `x₁ &lt; x &lt; x₂`, a lower bound of `e^{x₁}` and an upper bound of `e^{x₂}`. -/</span>
-<span class="ln decl" id="FRC.Gravity.exp_neg_bracket"><a class="lno" href="#FRC.Gravity.exp_neg_bracket">270</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcLedger/Gravity.lean#L270" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small t2" src="lean-t2.png" alt="" title="tier 2, classical: Classical.choice, Quot.sound, propext">theorem exp_neg_bracket {x x₁ x₂ lo hi : ℝ} (hx₁ : x₁ &lt; x) (hx₂ : x &lt; x₂) (hlo : 0 &lt; lo)</span>
+<span class="ln decl" id="FRC.Gravity.exp_neg_bracket"><a class="lno" href="#FRC.Gravity.exp_neg_bracket">270</a><img class="leanico small t2" src="lean-t2.png" alt="" title="tier 2, classical: Classical.choice, Quot.sound, propext">theorem exp_neg_bracket {x x₁ x₂ lo hi : ℝ} (hx₁ : x₁ &lt; x) (hx₂ : x &lt; x₂) (hlo : 0 &lt; lo)</span>
 <span class="ln" id="L271"><a class="lno" href="#L271">271</a>    (h1 : lo &lt; exp x₁) (h2 : exp x₂ &lt; hi) : hi⁻¹ &lt; exp (-x) ∧ exp (-x) &lt; lo⁻¹ := by</span>
 <span class="ln" id="L272"><a class="lno" href="#L272">272</a>  constructor</span>
 <span class="ln" id="L273"><a class="lno" href="#L273">273</a>  · calc hi⁻¹ &lt; (exp x₂)⁻¹ := inv_strictAnti₀ (exp_pos _) h2</span>
@@ -300,7 +300,7 @@
 <span class="ln" id="L278"><a class="lno" href="#L278">278</a>      _ &lt; lo⁻¹ := inv_strictAnti₀ hlo h1</span>
 <span class="ln" id="L279"><a class="lno" href="#L279">279</a></span>
 <span class="ln" id="L280"><a class="lno" href="#L280">280</a>/-- The Taylor brackets of `e^t` at the two ends of `t = 2/r_ISCO = (3 − √5)/2`. -/</span>
-<span class="ln decl" id="FRC.Gravity.exp_isco_tail_bounds"><a class="lno" href="#FRC.Gravity.exp_isco_tail_bounds">281</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcLedger/Gravity.lean#L281" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small t2" src="lean-t2.png" alt="" title="tier 2, classical: Classical.choice, Quot.sound, propext">theorem exp_isco_tail_bounds :</span>
+<span class="ln decl" id="FRC.Gravity.exp_isco_tail_bounds"><a class="lno" href="#FRC.Gravity.exp_isco_tail_bounds">281</a><img class="leanico small t2" src="lean-t2.png" alt="" title="tier 2, classical: Classical.choice, Quot.sound, propext">theorem exp_isco_tail_bounds :</span>
 <span class="ln" id="L282"><a class="lno" href="#L282">282</a>    (1.465161 : ℝ) &lt; exp 0.381966 ∧ exp (0.3819661 : ℝ) &lt; 1.465163 := by</span>
 <span class="ln" id="L283"><a class="lno" href="#L283">283</a>  constructor</span>
 <span class="ln" id="L284"><a class="lno" href="#L284">284</a>  · have h := abs_le.1 (Real.exp_bound (x := 0.381966) (by rw [abs_of_pos (by norm_num)]; norm_num)</span>
@@ -314,13 +314,13 @@
 <span class="ln" id="L292"><a class="lno" href="#L292">292</a>    linarith</span>
 <span class="ln" id="L293"><a class="lno" href="#L293">293</a></span>
 <span class="ln" id="L294"><a class="lno" href="#L294">294</a>/-- `√5` to seven places. -/</span>
-<span class="ln decl" id="FRC.Gravity.sqrt_five_bounds"><a class="lno" href="#FRC.Gravity.sqrt_five_bounds">295</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcLedger/Gravity.lean#L295" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small t2" src="lean-t2.png" alt="" title="tier 2, classical: Classical.choice, Quot.sound, propext">theorem sqrt_five_bounds : (2.2360679 : ℝ) &lt; √5 ∧ √5 &lt; 2.2360680 :=</span>
+<span class="ln decl" id="FRC.Gravity.sqrt_five_bounds"><a class="lno" href="#FRC.Gravity.sqrt_five_bounds">295</a><img class="leanico small t2" src="lean-t2.png" alt="" title="tier 2, classical: Classical.choice, Quot.sound, propext">theorem sqrt_five_bounds : (2.2360679 : ℝ) &lt; √5 ∧ √5 &lt; 2.2360680 :=</span>
 <span class="ln" id="L296"><a class="lno" href="#L296">296</a>  ⟨(Real.lt_sqrt (by norm_num)).mpr (by norm_num), (Real.sqrt_lt&#x27; (by norm_num)).mpr (by norm_num)⟩</span>
 <span class="ln" id="L297"><a class="lno" href="#L297">297</a></span>
 <span class="ln" id="L298"><a class="lno" href="#L298">298</a>/-- 21:P1 — the accretion efficiency bracketed: at `r_ISCO = 3 + √5` the orbital energy `E = √(e^{−2/r} r/4)`</span>
 <span class="ln" id="L299"><a class="lno" href="#L299">299</a>lies between `0.9452` and `0.9453`, so `1 − E` is between `5.47 %` and `5.48 %` (the text&#x27;s `5.48 %`),</span>
 <span class="ln" id="L300"><a class="lno" href="#L300">300</a>against Schwarzschild&#x27;s `1 − √(8/9)` between `5.71 %` and `5.72 %`. -/</span>
-<span class="ln decl" id="FRC.Gravity.isco_efficiency"><a class="lno" href="#FRC.Gravity.isco_efficiency">301</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcLedger/Gravity.lean#L301" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small t2" src="lean-t2.png" alt="" title="tier 2, classical: Classical.choice, Quot.sound, propext">theorem isco_efficiency :</span>
+<span class="ln decl" id="FRC.Gravity.isco_efficiency"><a class="lno" href="#FRC.Gravity.isco_efficiency">301</a><img class="leanico small t2" src="lean-t2.png" alt="" title="tier 2, classical: Classical.choice, Quot.sound, propext">theorem isco_efficiency :</span>
 <span class="ln" id="L302"><a class="lno" href="#L302">302</a>    (0.0547 : ℝ) &lt; 1 - √(exp (-(2 / (3 + √5))) * (3 + √5) / 4) ∧</span>
 <span class="ln" id="L303"><a class="lno" href="#L303">303</a>    1 - √(exp (-(2 / (3 + √5))) * (3 + √5) / 4) &lt; 0.0548 ∧</span>
 <span class="ln" id="L304"><a class="lno" href="#L304">304</a>    (0.0571 : ℝ) &lt; 1 - √(8 / 9) ∧ 1 - √(8 / 9) &lt; (0.0572 : ℝ) := by</span>
@@ -347,15 +347,15 @@
 <span class="ln" id="L325"><a class="lno" href="#L325">325</a>/-- The arithmetic behind 21:C13&#x27;s capacity ratio: for `r_f = r_s/L` the square of `r_f/r_s` is `1/L²`, and at</span>
 <span class="ln" id="L326"><a class="lno" href="#L326">326</a>`L = ln Ω = 281` the ratio lies between `1.26 × 10⁻⁵` and `1.27 × 10⁻⁵` (the text&#x27;s `1.3 × 10⁻⁵`); that the</span>
 <span class="ln" id="L327"><a class="lno" href="#L327">327</a>externally resolvable capacity scales as `(r_f/r_s)²` is the paper&#x27;s count, not formal content. -/</span>
-<span class="ln decl" id="FRC.Gravity.capacity_ratio"><a class="lno" href="#FRC.Gravity.capacity_ratio">328</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcLedger/Gravity.lean#L328" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small t2" src="lean-t2.png" alt="" title="tier 2, classical: Classical.choice, Quot.sound, propext">theorem capacity_ratio (rs L : ℝ) (hrs : rs ≠ 0) (hL : L ≠ 0) : (rs / L / rs) ^ 2 = 1 / L ^ 2 := by</span>
+<span class="ln decl" id="FRC.Gravity.capacity_ratio"><a class="lno" href="#FRC.Gravity.capacity_ratio">328</a><img class="leanico small t2" src="lean-t2.png" alt="" title="tier 2, classical: Classical.choice, Quot.sound, propext">theorem capacity_ratio (rs L : ℝ) (hrs : rs ≠ 0) (hL : L ≠ 0) : (rs / L / rs) ^ 2 = 1 / L ^ 2 := by</span>
 <span class="ln" id="L329"><a class="lno" href="#L329">329</a>  field_simp</span>
 <span class="ln" id="L330"><a class="lno" href="#L330">330</a></span>
-<span class="ln decl" id="FRC.Gravity.capacity_ratio_numeral"><a class="lno" href="#FRC.Gravity.capacity_ratio_numeral">331</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcLedger/Gravity.lean#L331" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small t2" src="lean-t2.png" alt="" title="tier 2, classical: Classical.choice, Quot.sound, propext">theorem capacity_ratio_numeral : (1.26e-5 : ℝ) &lt; 1 / 281 ^ 2 ∧ (1 / 281 ^ 2 : ℝ) &lt; 1.27e-5 := by</span>
+<span class="ln decl" id="FRC.Gravity.capacity_ratio_numeral"><a class="lno" href="#FRC.Gravity.capacity_ratio_numeral">331</a><img class="leanico small t2" src="lean-t2.png" alt="" title="tier 2, classical: Classical.choice, Quot.sound, propext">theorem capacity_ratio_numeral : (1.26e-5 : ℝ) &lt; 1 / 281 ^ 2 ∧ (1 / 281 ^ 2 : ℝ) &lt; 1.27e-5 := by</span>
 <span class="ln" id="L332"><a class="lno" href="#L332">332</a>  norm_num</span>
 <span class="ln" id="L333"><a class="lno" href="#L333">333</a></span>
 <span class="ln" id="L334"><a class="lno" href="#L334">334</a>/-- 21:C4 — the redshift as clock rate: the bias field `e^{−u}` with `u = Gm/rc²` gives</span>
 <span class="ln" id="L335"><a class="lno" href="#L335">335</a>`Δf/f = 1 − e^{−u} = u + O(u²)`, `|1 − e^{−u} − u| ≤ u²` on `0 ≤ u ≤ 1`. -/</span>
-<span class="ln decl" id="FRC.Gravity.redshift_linear"><a class="lno" href="#FRC.Gravity.redshift_linear">336</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcLedger/Gravity.lean#L336" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small t2" src="lean-t2.png" alt="" title="tier 2, classical: Classical.choice, Quot.sound, propext">theorem redshift_linear (u : ℝ) (h0 : 0 ≤ u) (h1 : u ≤ 1) : |1 - exp (-u) - u| ≤ u ^ 2 := by</span>
+<span class="ln decl" id="FRC.Gravity.redshift_linear"><a class="lno" href="#FRC.Gravity.redshift_linear">336</a><img class="leanico small t2" src="lean-t2.png" alt="" title="tier 2, classical: Classical.choice, Quot.sound, propext">theorem redshift_linear (u : ℝ) (h0 : 0 ≤ u) (h1 : u ≤ 1) : |1 - exp (-u) - u| ≤ u ^ 2 := by</span>
 <span class="ln" id="L337"><a class="lno" href="#L337">337</a>  have h := Real.exp_bound (x := -u) (by rw [abs_neg, abs_of_nonneg h0]; exact h1) (n := 2) (by norm_num)</span>
 <span class="ln" id="L338"><a class="lno" href="#L338">338</a>  norm_num [Finset.sum_range_succ, Nat.factorial, abs_neg, abs_of_nonneg h0] at h</span>
 <span class="ln" id="L339"><a class="lno" href="#L339">339</a>  rw [abs_le] at h ⊢</span>
@@ -370,7 +370,7 @@
 <span class="ln" id="L348"><a class="lno" href="#L348">348</a>`\cite{entropy}`, the speed of light and the megaparsec all declared numerals [data]): `a₀` lies between `1.04` and `1.05 × 10⁻¹⁰</span>
 <span class="ln" id="L349"><a class="lno" href="#L349">349</a>m s⁻²`; against the fitted `1.20 × 10⁻¹⁰` it is between `13.0 %` and `13.2 %` low, and the deficit is between</span>
 <span class="ln" id="L350"><a class="lno" href="#L350">350</a>`0.65` and `0.67` of the systematic `0.24 × 10⁻¹⁰` (the text&#x27;s `13 %`, `0.7σ`). -/</span>
-<span class="ln decl" id="FRC.Gravity.floor_value"><a class="lno" href="#FRC.Gravity.floor_value">351</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcLedger/Gravity.lean#L351" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small t2" src="lean-t2.png" alt="" title="tier 2, classical: Classical.choice, Quot.sound, propext">theorem floor_value (c H0 : ℝ) (hc : c = 299792458) (hH : H0 = 67.4e3 / 3.0856775814913673e22) :</span>
+<span class="ln decl" id="FRC.Gravity.floor_value"><a class="lno" href="#FRC.Gravity.floor_value">351</a><img class="leanico small t2" src="lean-t2.png" alt="" title="tier 2, classical: Classical.choice, Quot.sound, propext">theorem floor_value (c H0 : ℝ) (hc : c = 299792458) (hH : H0 = 67.4e3 / 3.0856775814913673e22) :</span>
 <span class="ln" id="L352"><a class="lno" href="#L352">352</a>    (1.04e-10 : ℝ) &lt; c * H0 / (2 * π) ∧ c * H0 / (2 * π) &lt; 1.05e-10 ∧</span>
 <span class="ln" id="L353"><a class="lno" href="#L353">353</a>    (0.868 : ℝ) &lt; c * H0 / (2 * π) / 1.2e-10 ∧ c * H0 / (2 * π) / 1.2e-10 &lt; 0.870 ∧</span>
 <span class="ln" id="L354"><a class="lno" href="#L354">354</a>    (0.65 : ℝ) &lt; (1.2e-10 - c * H0 / (2 * π)) / 0.24e-10 ∧</span>
@@ -392,7 +392,7 @@
 <span class="ln" id="L370"><a class="lno" href="#L370">370</a>paper&#x27;s `w`, here over `ℝ`) has</span>
 <span class="ln" id="L371"><a class="lno" href="#L371">371</a>exactly the roots `(1 ∓ √(1 − w²))/w`; the smaller, `η = (1 − √(1 − w²))/w`, lies in `(0, 1)` and the larger</span>
 <span class="ln" id="L372"><a class="lno" href="#L372">372</a>exceeds `1`, so the in-`(0, 1)` root that fixes the resolved fraction `f = 1 − η^a` is unique. -/</span>
-<span class="ln decl" id="FRC.Gravity.registration_root"><a class="lno" href="#FRC.Gravity.registration_root">373</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcLedger/Gravity.lean#L373" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small t2" src="lean-t2.png" alt="" title="tier 2, classical: Classical.choice, Quot.sound, propext">theorem registration_root (w : ℝ) (hw0 : 0 &lt; w) (hw1 : w &lt; 1) :</span>
+<span class="ln decl" id="FRC.Gravity.registration_root"><a class="lno" href="#FRC.Gravity.registration_root">373</a><img class="leanico small t2" src="lean-t2.png" alt="" title="tier 2, classical: Classical.choice, Quot.sound, propext">theorem registration_root (w : ℝ) (hw0 : 0 &lt; w) (hw1 : w &lt; 1) :</span>
 <span class="ln" id="L374"><a class="lno" href="#L374">374</a>    w * ((1 - √(1 - w ^ 2)) / w) ^ 2 - 2 * ((1 - √(1 - w ^ 2)) / w) + w = 0 ∧</span>
 <span class="ln" id="L375"><a class="lno" href="#L375">375</a>    0 &lt; (1 - √(1 - w ^ 2)) / w ∧ (1 - √(1 - w ^ 2)) / w &lt; 1 ∧</span>
 <span class="ln" id="L376"><a class="lno" href="#L376">376</a>    1 &lt; (1 + √(1 - w ^ 2)) / w ∧</span>
@@ -430,7 +430,7 @@
 <span class="ln" id="L408"><a class="lno" href="#L408">408</a>/-- 21:C19, 21:P4 — the crossover `g_obs = g_N/(1 − e^{−√x})`, `x = g_N/a₀`, squeezed: with `t = √x &gt; 0`,</span>
 <span class="ln" id="L409"><a class="lno" href="#L409">409</a>`1 ≤ t/(1 − e^{−t})`, and `t/(1 − e^{−t}) ≤ 1/(1 − 3t/4)` for `t ≤ 1`; and the Tully–Fisher algebra is</span>
 <span class="ln" id="L410"><a class="lno" href="#L410">410</a>exact: `v² = g_obs r` with `g_obs = √(g_N a₀)`, `g_N = GM/r²`, gives `v⁴ = GMa₀`. -/</span>
-<span class="ln decl" id="FRC.Gravity.crossover_limits"><a class="lno" href="#FRC.Gravity.crossover_limits">411</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcLedger/Gravity.lean#L411" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small t2" src="lean-t2.png" alt="" title="tier 2, classical: Classical.choice, Quot.sound, propext">theorem crossover_limits (t : ℝ) (ht : 0 &lt; t) :</span>
+<span class="ln decl" id="FRC.Gravity.crossover_limits"><a class="lno" href="#FRC.Gravity.crossover_limits">411</a><img class="leanico small t2" src="lean-t2.png" alt="" title="tier 2, classical: Classical.choice, Quot.sound, propext">theorem crossover_limits (t : ℝ) (ht : 0 &lt; t) :</span>
 <span class="ln" id="L412"><a class="lno" href="#L412">412</a>    0 &lt; 1 - exp (-t) ∧ 1 ≤ t / (1 - exp (-t)) ∧</span>
 <span class="ln" id="L413"><a class="lno" href="#L413">413</a>    (t ≤ 1 → t / (1 - exp (-t)) ≤ 1 / (1 - 3 * t / 4)) ∧</span>
 <span class="ln" id="L414"><a class="lno" href="#L414">414</a>    (∀ G M r a₀ v : ℝ, 0 &lt; r → 0 ≤ G * M → 0 ≤ a₀ →</span>
@@ -459,7 +459,7 @@
 <span class="ln" id="L437"><a class="lno" href="#L437">437</a></span>
 <span class="ln" id="L438"><a class="lno" href="#L438">438</a>/-- 21:C19, 21:P4, 21:X2 — the deep limit: `t/(1 − e^{−t}) → 1` as `t → 0⁺`, so `g_obs/√(g_N a₀) → 1` — the</span>
 <span class="ln" id="L439"><a class="lno" href="#L439">439</a>deep regime `g_obs = √(g_N a₀)`, the floor read as noise with no dark sector. -/</span>
-<span class="ln decl" id="FRC.Gravity.crossover_deep_limit"><a class="lno" href="#FRC.Gravity.crossover_deep_limit">440</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcLedger/Gravity.lean#L440" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small t2" src="lean-t2.png" alt="" title="tier 2, classical: Classical.choice, Quot.sound, propext">theorem crossover_deep_limit :</span>
+<span class="ln decl" id="FRC.Gravity.crossover_deep_limit"><a class="lno" href="#FRC.Gravity.crossover_deep_limit">440</a><img class="leanico small t2" src="lean-t2.png" alt="" title="tier 2, classical: Classical.choice, Quot.sound, propext">theorem crossover_deep_limit :</span>
 <span class="ln" id="L441"><a class="lno" href="#L441">441</a>    Filter.Tendsto (fun t : ℝ =&gt; t / (1 - exp (-t))) (nhdsWithin 0 (Set.Ioi 0)) (nhds 1) := by</span>
 <span class="ln" id="L442"><a class="lno" href="#L442">442</a>  have hc : ContinuousAt (fun t : ℝ =&gt; 1 / (1 - 3 * t / 4)) 0 := by</span>
 <span class="ln" id="L443"><a class="lno" href="#L443">443</a>    apply ContinuousAt.div continuousAt_const</span>
@@ -475,13 +475,13 @@
 <span class="ln" id="L453"><a class="lno" href="#L453">453</a>    exact (crossover_limits t ht.1).2.2.1 ht.2.le</span>
 <span class="ln" id="L454"><a class="lno" href="#L454">454</a></span>
 <span class="ln" id="L455"><a class="lno" href="#L455">455</a>/-- 21:C19, 21:P4 — the Newtonian limit: `1 − e^{−t} → 1` as `t → ∞`, so `g_obs/g_N → 1` for `x → ∞`. -/</span>
-<span class="ln decl" id="FRC.Gravity.crossover_newton_limit"><a class="lno" href="#FRC.Gravity.crossover_newton_limit">456</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcLedger/Gravity.lean#L456" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small t2" src="lean-t2.png" alt="" title="tier 2, classical: Classical.choice, Quot.sound, propext">theorem crossover_newton_limit :</span>
+<span class="ln decl" id="FRC.Gravity.crossover_newton_limit"><a class="lno" href="#FRC.Gravity.crossover_newton_limit">456</a><img class="leanico small t2" src="lean-t2.png" alt="" title="tier 2, classical: Classical.choice, Quot.sound, propext">theorem crossover_newton_limit :</span>
 <span class="ln" id="L457"><a class="lno" href="#L457">457</a>    Filter.Tendsto (fun t : ℝ =&gt; 1 - exp (-t)) Filter.atTop (nhds 1) := by</span>
 <span class="ln" id="L458"><a class="lno" href="#L458">458</a>  have := Real.tendsto_exp_neg_atTop_nhds_zero</span>
 <span class="ln" id="L459"><a class="lno" href="#L459">459</a>  simpa using tendsto_const_nhds.sub this</span>
 <span class="ln" id="L460"><a class="lno" href="#L460">460</a></span>
 <span class="ln" id="L461"><a class="lno" href="#L461">461</a>/-- The Taylor brackets of `e^t` at the two ends of `t = √5 − 2`. -/</span>
-<span class="ln decl" id="FRC.Gravity.exp_root_five_tail_bounds"><a class="lno" href="#FRC.Gravity.exp_root_five_tail_bounds">462</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcLedger/Gravity.lean#L462" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small t2" src="lean-t2.png" alt="" title="tier 2, classical: Classical.choice, Quot.sound, propext">theorem exp_root_five_tail_bounds :</span>
+<span class="ln decl" id="FRC.Gravity.exp_root_five_tail_bounds"><a class="lno" href="#FRC.Gravity.exp_root_five_tail_bounds">462</a><img class="leanico small t2" src="lean-t2.png" alt="" title="tier 2, classical: Classical.choice, Quot.sound, propext">theorem exp_root_five_tail_bounds :</span>
 <span class="ln" id="L463"><a class="lno" href="#L463">463</a>    (1.2662602 : ℝ) &lt; exp 0.2360679 ∧ exp (0.2360680 : ℝ) &lt; 1.2662605 := by</span>
 <span class="ln" id="L464"><a class="lno" href="#L464">464</a>  constructor</span>
 <span class="ln" id="L465"><a class="lno" href="#L465">465</a>  · have h := abs_le.1 (Real.exp_bound (x := 0.2360679) (by rw [abs_of_pos (by norm_num)]; norm_num)</span>
@@ -498,7 +498,7 @@
 <span class="ln" id="L476"><a class="lno" href="#L476">476</a>`ν(5) = 1/(1 − e^{−√5})` lies between `1.11966` and `1.11967`, the simple interpolant</span>
 <span class="ln" id="L477"><a class="lno" href="#L477">477</a>`ν_s(5) = 1/2 + √(1/4 + 1/5)` between `1.17082` and `1.17083`, so they part by between `0.0511` and `0.0512` in</span>
 <span class="ln" id="L478"><a class="lno" href="#L478">478</a>`g_obs/g_N` (the text&#x27;s `0.05`). -/</span>
-<span class="ln decl" id="FRC.Gravity.interpolant_discriminant"><a class="lno" href="#FRC.Gravity.interpolant_discriminant">479</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcLedger/Gravity.lean#L479" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small t2" src="lean-t2.png" alt="" title="tier 2, classical: Classical.choice, Quot.sound, propext">theorem interpolant_discriminant :</span>
+<span class="ln decl" id="FRC.Gravity.interpolant_discriminant"><a class="lno" href="#FRC.Gravity.interpolant_discriminant">479</a><img class="leanico small t2" src="lean-t2.png" alt="" title="tier 2, classical: Classical.choice, Quot.sound, propext">theorem interpolant_discriminant :</span>
 <span class="ln" id="L480"><a class="lno" href="#L480">480</a>    (1.11966 : ℝ) &lt; 1 / (1 - exp (-√5)) ∧ 1 / (1 - exp (-√5)) &lt; 1.11967 ∧</span>
 <span class="ln" id="L481"><a class="lno" href="#L481">481</a>    (1.17082 : ℝ) &lt; 1 / 2 + √(1 / 4 + 1 / 5) ∧ 1 / 2 + √(1 / 4 + 1 / 5) &lt; 1.17083 ∧</span>
 <span class="ln" id="L482"><a class="lno" href="#L482">482</a>    (0.0511 : ℝ) &lt; (1 / 2 + √(1 / 4 + 1 / 5)) - 1 / (1 - exp (-√5)) ∧</span>
@@ -530,7 +530,7 @@
 <span class="ln" id="L508"><a class="lno" href="#L508">508</a>/-- The arithmetic behind 21:C18&#x27;s fixed point: for a power law `P(k) = k^n` the dimensionless `k³P(k)` is the</span>
 <span class="ln" id="L509"><a class="lno" href="#L509">509</a>same at every scale `k &gt; 0` exactly when `n = −3`, i.e. `n_s − 1 = n + 3 = 0`, the Harrison–Zel&#x27;dovich</span>
 <span class="ln" id="L510"><a class="lno" href="#L510">510</a>`n_s = 1`, uniquely; that the drive&#x27;s jitter spectrum is this fixed point is the paper&#x27;s argument. -/</span>
-<span class="ln decl" id="FRC.Gravity.scale_invariance_iff"><a class="lno" href="#FRC.Gravity.scale_invariance_iff">511</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcLedger/Gravity.lean#L511" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small t2" src="lean-t2.png" alt="" title="tier 2, classical: Classical.choice, Quot.sound, propext">theorem scale_invariance_iff (n : ℝ) :</span>
+<span class="ln decl" id="FRC.Gravity.scale_invariance_iff"><a class="lno" href="#FRC.Gravity.scale_invariance_iff">511</a><img class="leanico small t2" src="lean-t2.png" alt="" title="tier 2, classical: Classical.choice, Quot.sound, propext">theorem scale_invariance_iff (n : ℝ) :</span>
 <span class="ln" id="L512"><a class="lno" href="#L512">512</a>    (∀ k : ℝ, 0 &lt; k → k ^ 3 * k ^ n = 1) ↔ n = -3 := by</span>
 <span class="ln" id="L513"><a class="lno" href="#L513">513</a>  constructor</span>
 <span class="ln" id="L514"><a class="lno" href="#L514">514</a>  · intro h</span>
@@ -550,7 +550,7 @@
 <span class="ln" id="L528"><a class="lno" href="#L528">528</a></span>
 <span class="ln" id="L529"><a class="lno" href="#L529">529</a>/-- The Taylor brackets of `e^t` at `t = 0.30259` (below) and `t = 0.30258` (above), the two sides of</span>
 <span class="ln" id="L530"><a class="lno" href="#L530">530</a>`ln 10 − 2`. -/</span>
-<span class="ln decl" id="FRC.Gravity.exp_log_ten_tail_bounds"><a class="lno" href="#FRC.Gravity.exp_log_ten_tail_bounds">531</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcLedger/Gravity.lean#L531" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small t2" src="lean-t2.png" alt="" title="tier 2, classical: Classical.choice, Quot.sound, propext">theorem exp_log_ten_tail_bounds :</span>
+<span class="ln decl" id="FRC.Gravity.exp_log_ten_tail_bounds"><a class="lno" href="#FRC.Gravity.exp_log_ten_tail_bounds">531</a><img class="leanico small t2" src="lean-t2.png" alt="" title="tier 2, classical: Classical.choice, Quot.sound, propext">theorem exp_log_ten_tail_bounds :</span>
 <span class="ln" id="L532"><a class="lno" href="#L532">532</a>    (1.353359 : ℝ) &lt; exp 0.30259 ∧ exp (0.30258 : ℝ) &lt; 1.353346 := by</span>
 <span class="ln" id="L533"><a class="lno" href="#L533">533</a>  constructor</span>
 <span class="ln" id="L534"><a class="lno" href="#L534">534</a>  · have h := abs_le.1 (Real.exp_bound (x := 0.30259) (by rw [abs_of_pos (by norm_num)]; norm_num)</span>
@@ -564,7 +564,7 @@
 <span class="ln" id="L542"><a class="lno" href="#L542">542</a>    linarith</span>
 <span class="ln" id="L543"><a class="lno" href="#L543">543</a></span>
 <span class="ln" id="L544"><a class="lno" href="#L544">544</a>/-- 21:P8 — `ln 10` bracketed: `2.30258 &lt; ln 10 &lt; 2.30259`, from `e` to nine places and the Taylor tail. -/</span>
-<span class="ln decl" id="FRC.Gravity.log_ten_bounds"><a class="lno" href="#FRC.Gravity.log_ten_bounds">545</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcLedger/Gravity.lean#L545" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small t2" src="lean-t2.png" alt="" title="tier 2, classical: Classical.choice, Quot.sound, propext">theorem log_ten_bounds : (2.30258 : ℝ) &lt; log 10 ∧ log 10 &lt; 2.30259 := by</span>
+<span class="ln decl" id="FRC.Gravity.log_ten_bounds"><a class="lno" href="#FRC.Gravity.log_ten_bounds">545</a><img class="leanico small t2" src="lean-t2.png" alt="" title="tier 2, classical: Classical.choice, Quot.sound, propext">theorem log_ten_bounds : (2.30258 : ℝ) &lt; log 10 ∧ log 10 &lt; 2.30259 := by</span>
 <span class="ln" id="L546"><a class="lno" href="#L546">546</a>  have e1 := Real.exp_one_gt_d9</span>
 <span class="ln" id="L547"><a class="lno" href="#L547">547</a>  have e2 := Real.exp_one_lt_d9</span>
 <span class="ln" id="L548"><a class="lno" href="#L548">548</a>  obtain ⟨t1, t2⟩ := exp_log_ten_tail_bounds</span>
@@ -585,7 +585,7 @@
 <span class="ln" id="L563"><a class="lno" href="#L563">563</a>`½ ln Ω` gives `−π²/140.5`, parted from the committed value by more than `8.36σ` and less than `8.37σ` at</span>
 <span class="ln" id="L564"><a class="lno" href="#L564">564</a>`σ = 0.0042` (the text&#x27;s `8.4σ`); and a factor two in `S` moves the tilt by the fraction `ln 2/281`, between `0.246 %`</span>
 <span class="ln" id="L565"><a class="lno" href="#L565">565</a>and `0.247 %` (the text&#x27;s `0.25 %`). -/</span>
-<span class="ln decl" id="FRC.Gravity.tilt_bracket"><a class="lno" href="#FRC.Gravity.tilt_bracket">566</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcLedger/Gravity.lean#L566" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small t2" src="lean-t2.png" alt="" title="tier 2, classical: Classical.choice, Quot.sound, propext">theorem tilt_bracket :</span>
+<span class="ln decl" id="FRC.Gravity.tilt_bracket"><a class="lno" href="#FRC.Gravity.tilt_bracket">566</a><img class="leanico small t2" src="lean-t2.png" alt="" title="tier 2, classical: Classical.choice, Quot.sound, propext">theorem tilt_bracket :</span>
 <span class="ln" id="L567"><a class="lno" href="#L567">567</a>    (280.91 : ℝ) &lt; 122 * log 10 ∧ 122 * log 10 &lt; 280.92 ∧</span>
 <span class="ln" id="L568"><a class="lno" href="#L568">568</a>    (-0.035124 : ℝ) &lt; -(π ^ 2 / 281) ∧ -(π ^ 2 / 281) &lt; -0.035123 ∧</span>
 <span class="ln" id="L569"><a class="lno" href="#L569">569</a>    (8.36 : ℝ) * 0.0042 &lt; π ^ 2 / 140.5 - π ^ 2 / 281 ∧ π ^ 2 / 140.5 - π ^ 2 / 281 &lt; 8.37 * 0.0042 ∧</span>
@@ -616,7 +616,7 @@
 <span class="ln" id="L594"><a class="lno" href="#L594">594</a>integer identity; the paper&#x27;s `½` in `D_μ = (T_μ − T_μ⁻¹)/2` scales both sides alike). The one-sided</span>
 <span class="ln" id="L595"><a class="lno" href="#L595">595</a>difference `(δf)(x) = f(x + 1) − f(x)` has adjoint the negative *backward* difference,</span>
 <span class="ln" id="L596"><a class="lno" href="#L596">596</a>`Σ_x f(x)(δg)(x) = −Σ_x (f(x) − f(x − 1)) g(x)` — the package&#x27;s failing control is that this is not `−δ`. -/</span>
-<span class="ln decl" id="FRC.Gravity.central_difference_adjoint"><a class="lno" href="#FRC.Gravity.central_difference_adjoint">597</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcLedger/Gravity.lean#L597" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small t2" src="lean-t2.png" alt="" title="tier 2, classical: Classical.choice, Quot.sound, propext">theorem central_difference_adjoint (f g : ZMod N → R) :</span>
+<span class="ln decl" id="FRC.Gravity.central_difference_adjoint"><a class="lno" href="#FRC.Gravity.central_difference_adjoint">597</a><img class="leanico small t2" src="lean-t2.png" alt="" title="tier 2, classical: Classical.choice, Quot.sound, propext">theorem central_difference_adjoint (f g : ZMod N → R) :</span>
 <span class="ln" id="L598"><a class="lno" href="#L598">598</a>    ∑ x, f x * (g (x + 1) - g (x - 1)) = -∑ x, (f (x + 1) - f (x - 1)) * g x ∧</span>
 <span class="ln" id="L599"><a class="lno" href="#L599">599</a>    ∑ x, f x * (g (x + 1) - g x) = -∑ x, (f x - f (x - 1)) * g x := by</span>
 <span class="ln" id="L600"><a class="lno" href="#L600">600</a>  have h1 : ∑ x, f x * g (x + 1) = ∑ x, f (x - 1) * g x := by</span>
@@ -631,23 +631,23 @@
 <span class="ln" id="L609"><a class="lno" href="#L609">609</a></span>
 <span class="ln" id="L610"><a class="lno" href="#L610">610</a>/-- The finite Fourier transform on the cycle, against a character `ζ` with `ζ^N = 1`:</span>
 <span class="ln" id="L611"><a class="lno" href="#L611">611</a>`(F f)(k) = Σ_x f(x) ζ^{xk}`. -/</span>
-<span class="ln decl" id="FRC.Gravity.dft"><a class="lno" href="#FRC.Gravity.dft">612</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcLedger/Gravity.lean#L612" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small" src="lean.png" alt="" title="a definition: no proof, no axioms">def dft (ζ : R) (f : ZMod N → R) (k : ZMod N) : R := ∑ x, f x * ζ ^ (x.val * k.val)</span>
+<span class="ln decl" id="FRC.Gravity.dft"><a class="lno" href="#FRC.Gravity.dft">612</a><img class="leanico small" src="lean.png" alt="" title="a definition: no proof, no axioms">def dft (ζ : R) (f : ZMod N → R) (k : ZMod N) : R := ∑ x, f x * ζ ^ (x.val * k.val)</span>
 <span class="ln" id="L613"><a class="lno" href="#L613">613</a></span>
 <span class="ln" id="L614"><a class="lno" href="#L614">614</a>omit [NeZero N] in</span>
 <span class="ln" id="L615"><a class="lno" href="#L615">615</a>/-- A root of unity is insensitive to the reduction of its exponent modulo `N`. -/</span>
-<span class="ln decl" id="FRC.Gravity.pow_val_mod"><a class="lno" href="#FRC.Gravity.pow_val_mod">616</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcLedger/Gravity.lean#L616" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small t1" src="lean-t1.png" alt="" title="tier 1: propext">theorem pow_val_mod (ζ : R) (hζ : ζ ^ N = 1) (m k : ℕ) : ζ ^ ((m % N) * k) = ζ ^ (m * k) := by</span>
+<span class="ln decl" id="FRC.Gravity.pow_val_mod"><a class="lno" href="#FRC.Gravity.pow_val_mod">616</a><img class="leanico small t1" src="lean-t1.png" alt="" title="tier 1: propext">theorem pow_val_mod (ζ : R) (hζ : ζ ^ N = 1) (m k : ℕ) : ζ ^ ((m % N) * k) = ζ ^ (m * k) := by</span>
 <span class="ln" id="L617"><a class="lno" href="#L617">617</a>  conv_rhs =&gt; rw [← Nat.mod_add_div m N]</span>
 <span class="ln" id="L618"><a class="lno" href="#L618">618</a>  rw [add_mul, pow_add, mul_assoc, pow_mul, pow_mul, hζ, one_pow, mul_one]</span>
 <span class="ln" id="L619"><a class="lno" href="#L619">619</a></span>
 <span class="ln" id="L620"><a class="lno" href="#L620">620</a>omit [NeZero N] in</span>
 <span class="ln" id="L621"><a class="lno" href="#L621">621</a>/-- A root of unity is insensitive to the reduction of a factor of its exponent modulo `N`. -/</span>
-<span class="ln decl" id="FRC.Gravity.pow_mul_val_mod"><a class="lno" href="#FRC.Gravity.pow_mul_val_mod">622</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcLedger/Gravity.lean#L622" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small t1" src="lean-t1.png" alt="" title="tier 1: propext">theorem pow_mul_val_mod (ζ : R) (hζ : ζ ^ N = 1) (k m : ℕ) : ζ ^ (k * (m % N)) = ζ ^ (k * m) := by</span>
+<span class="ln decl" id="FRC.Gravity.pow_mul_val_mod"><a class="lno" href="#FRC.Gravity.pow_mul_val_mod">622</a><img class="leanico small t1" src="lean-t1.png" alt="" title="tier 1: propext">theorem pow_mul_val_mod (ζ : R) (hζ : ζ ^ N = 1) (k m : ℕ) : ζ ^ (k * (m % N)) = ζ ^ (k * m) := by</span>
 <span class="ln" id="L623"><a class="lno" href="#L623">623</a>  rw [mul_comm, pow_val_mod ζ hζ, mul_comm]</span>
 <span class="ln" id="L624"><a class="lno" href="#L624">624</a></span>
 <span class="ln" id="L625"><a class="lno" href="#L625">625</a>/-- 21:C20 — the finite Fourier shift theorem in both forms, the kick of the two-shift law: the kick, a</span>
 <span class="ln" id="L626"><a class="lno" href="#L626">626</a>character `ζ^{ax}` multiplying `f` in position, shifts the transform, `F(ζ^{a·} f)(k) = (F f)(k + a)`; dually,</span>
 <span class="ln" id="L627"><a class="lno" href="#L627">627</a>shifting `f` by `a` multiplies its transform by the character, `F(f(· − a))(k) = ζ^{ak} (F f)(k)`. -/</span>
-<span class="ln decl" id="FRC.Gravity.shift_theorem"><a class="lno" href="#FRC.Gravity.shift_theorem">628</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcLedger/Gravity.lean#L628" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small t2" src="lean-t2.png" alt="" title="tier 2, classical: Classical.choice, Quot.sound, propext">theorem shift_theorem (ζ : R) (hζ : ζ ^ N = 1) (f : ZMod N → R) (a k : ZMod N) :</span>
+<span class="ln decl" id="FRC.Gravity.shift_theorem"><a class="lno" href="#FRC.Gravity.shift_theorem">628</a><img class="leanico small t2" src="lean-t2.png" alt="" title="tier 2, classical: Classical.choice, Quot.sound, propext">theorem shift_theorem (ζ : R) (hζ : ζ ^ N = 1) (f : ZMod N → R) (a k : ZMod N) :</span>
 <span class="ln" id="L629"><a class="lno" href="#L629">629</a>    dft ζ (fun x =&gt; ζ ^ (a.val * x.val) * f x) k = dft ζ f (k + a) ∧</span>
 <span class="ln" id="L630"><a class="lno" href="#L630">630</a>    dft ζ (fun x =&gt; f (x - a)) k = ζ ^ (a.val * k.val) * dft ζ f k := by</span>
 <span class="ln" id="L631"><a class="lno" href="#L631">631</a>  constructor</span>
@@ -668,7 +668,7 @@
 <span class="ln" id="L646"><a class="lno" href="#L646">646</a>/-- The arithmetic behind 21:C15&#x27;s dispersion symbol: the central second difference acts on the plane wave</span>
 <span class="ln" id="L647"><a class="lno" href="#L647">647</a>`e^{ikx}` by `−(2 − 2 cos k) = −4 sin²(k/2)`; the wave equation, its two polarisations and the speed `c` are</span>
 <span class="ln" id="L648"><a class="lno" href="#L648">648</a>the package&#x27;s. -/</span>
-<span class="ln decl" id="FRC.Gravity.dispersion_symbol"><a class="lno" href="#FRC.Gravity.dispersion_symbol">649</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcLedger/Gravity.lean#L649" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small t2" src="lean-t2.png" alt="" title="tier 2, classical: Classical.choice, Quot.sound, propext">theorem dispersion_symbol (k : ℝ) : 2 - 2 * cos k = 4 * sin (k / 2) ^ 2 := by</span>
+<span class="ln decl" id="FRC.Gravity.dispersion_symbol"><a class="lno" href="#FRC.Gravity.dispersion_symbol">649</a><img class="leanico small t2" src="lean-t2.png" alt="" title="tier 2, classical: Classical.choice, Quot.sound, propext">theorem dispersion_symbol (k : ℝ) : 2 - 2 * cos k = 4 * sin (k / 2) ^ 2 := by</span>
 <span class="ln" id="L650"><a class="lno" href="#L650">650</a>  have h := Real.cos_two_mul (k / 2)</span>
 <span class="ln" id="L651"><a class="lno" href="#L651">651</a>  rw [show 2 * (k / 2) = k by ring] at h</span>
 <span class="ln" id="L652"><a class="lno" href="#L652">652</a>  rw [h, Real.cos_sq&#x27;]; ring</span>
@@ -676,7 +676,7 @@
 <span class="ln" id="L654"><a class="lno" href="#L654">654</a>/-- The arithmetic behind 21:C1&#x27;s coefficient: a locked cluster of `m` cells with one phase sums with</span>
 <span class="ln" id="L655"><a class="lno" href="#L655">655</a>coefficient exactly `m`, `‖Σ_{j&lt;m} z‖ = m ‖z‖`; the incoherent `O(√m)` and the gradient flow are not formal</span>
 <span class="ln" id="L656"><a class="lno" href="#L656">656</a>content. -/</span>
-<span class="ln decl" id="FRC.Gravity.locked_sum"><a class="lno" href="#FRC.Gravity.locked_sum">657</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcLedger/Gravity.lean#L657" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small t2" src="lean-t2.png" alt="" title="tier 2, classical: Classical.choice, Quot.sound, propext">theorem locked_sum (m : ℕ) (z : ℂ) : ‖∑ _j : Fin m, z‖ = m * ‖z‖ := by</span>
+<span class="ln decl" id="FRC.Gravity.locked_sum"><a class="lno" href="#FRC.Gravity.locked_sum">657</a><img class="leanico small t2" src="lean-t2.png" alt="" title="tier 2, classical: Classical.choice, Quot.sound, propext">theorem locked_sum (m : ℕ) (z : ℂ) : ‖∑ _j : Fin m, z‖ = m * ‖z‖ := by</span>
 <span class="ln" id="L658"><a class="lno" href="#L658">658</a>  simp [Finset.sum_const, Finset.card_univ, Fintype.card_fin]</span>
 <span class="ln" id="L659"><a class="lno" href="#L659">659</a></span>
 <span class="ln" id="L660"><a class="lno" href="#L660">660</a>end lattice</span>
@@ -687,7 +687,7 @@
 <span class="ln" id="L665"><a class="lno" href="#L665">665</a>/-- 21:C11 — the exponential reading is the multiplicative one, `e^{−(a+b)} = e^{−a} e^{−b}`; the isotropic</span>
 <span class="ln" id="L666"><a class="lno" href="#L666">666</a>Schwarzschild factor `R(U) = (1 − U/2)/(1 + U/2)` is `e^{−2 artanh(U/2)}`, the exponential reading of the</span>
 <span class="ln" id="L667"><a class="lno" href="#L667">667</a>self-sourced `ψ = 2 artanh(U/2)`, and it violates the composition law: `R(1) = 1/3 ≠ 9/25 = R(1/2)²`. -/</span>
-<span class="ln decl" id="FRC.Gravity.exponential_reading"><a class="lno" href="#FRC.Gravity.exponential_reading">668</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcLedger/Gravity.lean#L668" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small t2" src="lean-t2.png" alt="" title="tier 2, classical: Classical.choice, Quot.sound, propext">theorem exponential_reading (a b : ℝ) :</span>
+<span class="ln decl" id="FRC.Gravity.exponential_reading"><a class="lno" href="#FRC.Gravity.exponential_reading">668</a><img class="leanico small t2" src="lean-t2.png" alt="" title="tier 2, classical: Classical.choice, Quot.sound, propext">theorem exponential_reading (a b : ℝ) :</span>
 <span class="ln" id="L669"><a class="lno" href="#L669">669</a>    exp (-(a + b)) = exp (-a) * exp (-b) ∧</span>
 <span class="ln" id="L670"><a class="lno" href="#L670">670</a>    (∀ U : ℝ, -2 &lt; U → U &lt; 2 → exp (-(2 * artanh (U / 2))) = (1 - U / 2) / (1 + U / 2)) ∧</span>
 <span class="ln" id="L671"><a class="lno" href="#L671">671</a>    (1 - (1 : ℝ) / 2) / (1 + 1 / 2) ≠ ((1 - (1 / 2 : ℝ) / 2) / (1 + (1 / 2) / 2)) ^ 2 := by</span>
@@ -704,7 +704,7 @@
 <span class="ln" id="L682"><a class="lno" href="#L682">682</a>`B_S = (1 + U/2)⁴` satisfy `|A − A_S − U³/6| ≤ 3U⁴` and `|B − B_S − U²/2| ≤ 3|U|³`: the single-potential</span>
 <span class="ln" id="L683"><a class="lno" href="#L683">683</a>inputs consumed by C23 coincide through first post-Newtonian order (`A` to `O(U²)`, `B` to `O(U)`) and part at</span>
 <span class="ln" id="L684"><a class="lno" href="#L684">684</a>2PN with `δA = U³/6`, `δB = U²/2`; the two-body superposition of C23 is the package&#x27;s. -/</span>
-<span class="ln decl" id="FRC.Gravity.pn_series"><a class="lno" href="#FRC.Gravity.pn_series">685</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcLedger/Gravity.lean#L685" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small t2" src="lean-t2.png" alt="" title="tier 2, classical: Classical.choice, Quot.sound, propext">theorem pn_series (U : ℝ) (hU : |U| ≤ 1 / 2) :</span>
+<span class="ln decl" id="FRC.Gravity.pn_series"><a class="lno" href="#FRC.Gravity.pn_series">685</a><img class="leanico small t2" src="lean-t2.png" alt="" title="tier 2, classical: Classical.choice, Quot.sound, propext">theorem pn_series (U : ℝ) (hU : |U| ≤ 1 / 2) :</span>
 <span class="ln" id="L686"><a class="lno" href="#L686">686</a>    |exp (-(2 * U)) - ((1 - U / 2) / (1 + U / 2)) ^ 2 - U ^ 3 / 6| ≤ 3 * U ^ 4 ∧</span>
 <span class="ln" id="L687"><a class="lno" href="#L687">687</a>    |exp (2 * U) - (1 + U / 2) ^ 4 - U ^ 2 / 2| ≤ 3 * |U| ^ 3 := by</span>
 <span class="ln" id="L688"><a class="lno" href="#L688">688</a>  have hU&#x27; := abs_le.1 hU</span>
@@ -755,7 +755,7 @@
 <span class="ln" id="L733"><a class="lno" href="#L733">733</a></span>
 <span class="ln" id="L734"><a class="lno" href="#L734">734</a>/-- The numeral behind 21:P2: the drive&#x27;s signature is `O(1/√Ω)` (the paper&#x27;s `α₁, α₂`), and at `Ω = 10¹²²`</span>
 <span class="ln" id="L735"><a class="lno" href="#L735">735</a>this is `10⁻⁶¹`. -/</span>
-<span class="ln decl" id="FRC.Gravity.preferred_frame_scale"><a class="lno" href="#FRC.Gravity.preferred_frame_scale">736</a><a class="gh" href="https://github.com/gamayos/finite-ring-space/blob/main/lean/FrcLedger/Gravity.lean#L736" title="this line on GitHub" target="_blank" rel="noopener">⧉</a><img class="leanico small t2" src="lean-t2.png" alt="" title="tier 2, classical: Classical.choice, Quot.sound, propext">theorem preferred_frame_scale : 1 / √((10 : ℝ) ^ 122) = 10 ^ (-61 : ℤ) := by</span>
+<span class="ln decl" id="FRC.Gravity.preferred_frame_scale"><a class="lno" href="#FRC.Gravity.preferred_frame_scale">736</a><img class="leanico small t2" src="lean-t2.png" alt="" title="tier 2, classical: Classical.choice, Quot.sound, propext">theorem preferred_frame_scale : 1 / √((10 : ℝ) ^ 122) = 10 ^ (-61 : ℤ) := by</span>
 <span class="ln" id="L737"><a class="lno" href="#L737">737</a>  rw [show (10 : ℝ) ^ 122 = (10 ^ 61) ^ 2 by norm_num, Real.sqrt_sq (by positivity)]</span>
 <span class="ln" id="L738"><a class="lno" href="#L738">738</a>  norm_num</span>
 <span class="ln" id="L739"><a class="lno" href="#L739">739</a></span>

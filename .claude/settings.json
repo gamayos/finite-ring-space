@@ -1,0 +1,9 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(python3 -c \"import json;nb=json.load\\(open\\('src/10-dimensions/10-dimensions-rows.ipynb'\\)\\);print\\(len\\(nb['cells']\\),'cells'\\)\")",
+      "Bash(git add *)",
+      "Bash(rm .git/index.lock)"
+    ]
+  }
+}

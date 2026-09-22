@@ -37,6 +37,7 @@ def check_shell(p, g):
     i_res = (-pow(g, k, p)) % p     # oriented quarter-turn residue
     assert (i_res * i_res) % p == p - 1, "i^2 != -1"
 
+    # row 10:D3
     # shell Fourier matrix W_{jk} = g^{jk} on F_p^{n}; F = i*W
     W = [[pow(g, (j * l) % n, p) for l in range(n)] for j in range(n)]
     F = [[(i_res * W[j][l]) % p for l in range(n)] for j in range(n)]
