@@ -228,14 +228,15 @@ pre.lean .o, pre.lean .ow { color: var(--ink-soft); }                           
 }
 .src .glyphs { display: flex; align-items: center; gap: .15rem; margin-top: .25rem; }
 img.runico { width: 16px; height: 16px; display: block; object-fit: contain; filter: invert(.78); }   /* the run glyphs: light on transparency, darkened on the light theme like the plain Lean glyph */
+img.runico.pysrc { filter: brightness(0) invert(.55); }   /* the python-source glyph, a white PNG: no verdict (a script cited whole) mid grey; the verdict colours below are filter chains solved numerically to the exact tier colours of the Lean glyphs (the sRGB filter matrices), so they hold in every browser */
+.wrap a.wit.ico.py.ok img.runico.pysrc, .legend .ico img.runico.pysrc { filter: brightness(0) saturate(100%) invert(28%) sepia(88%) saturate(4307%) hue-rotate(144deg) brightness(118%) contrast(64%); }   /* #2e9e62, the green of lean-ok.png */
+.wrap a.wit.ico.py.fail img.runico.pysrc { filter: brightness(0) saturate(100%) invert(24%) sepia(41%) saturate(6155%) hue-rotate(347deg) brightness(93%) contrast(59%); }   /* #c04a4a, the red of lean-fail.png */
 img.runico.colab { width: 19px; filter: none; }                                                        /* the Colab mark is coloured: shown as drawn in both themes */
 .wrap a.ico:hover img.runico.colab { filter: none; opacity: .8; }
-.wrap a.wit.ico.py.ok img.runico { filter: invert(.5) sepia(1) saturate(2.4) hue-rotate(95deg) brightness(.8); }      /* the verdict as the tier colours: green PASS */
-.wrap a.wit.ico.py.fail img.runico { filter: invert(.4) sepia(1) saturate(4) hue-rotate(330deg); }                  /* red FAIL */
 .wrap a.ico:hover img.runico { filter: invert(.45) sepia(.6) saturate(3) hue-rotate(170deg); }        /* the accent on hover */
 .legend .ico img.runico { display: inline-block; vertical-align: -3px; }
 @media (prefers-color-scheme: dark) { img.runico { filter: none; opacity: .85; } .wrap a.ico:hover img.runico { filter: none; opacity: 1; }
-  .wrap a.wit.ico.py.ok img.runico { filter: invert(.2) sepia(1) saturate(2) hue-rotate(80deg); opacity: 1; } .wrap a.wit.ico.py.fail img.runico { filter: invert(.15) sepia(1) saturate(4) hue-rotate(320deg); opacity: 1; } }
+ }
 .wrap a.lean.ico .play, .legend .ico .play { font-size: .55rem; margin-left: 2px; line-height: 1; }
 .legend .ico img.leanico { display: inline-block; vertical-align: -3px; }
 .legend.lean dt { white-space: nowrap; }

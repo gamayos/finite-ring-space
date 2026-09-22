@@ -327,35 +327,35 @@
      "label": "V1",
      "predicate": "The exact suite: eight layers, $200$ micro-checks --- A the shell datum and domain algebra on $\\F_{13}$ ($32$), B the quartet at the unit face ($30$), C the defining congruences on the laboratory Carrier ($13$), D both Carriers, faces, minimality, temperature ($50$), E covariance ($18$), F window bound, twisted action, dualities ($15$), G realized action, ladder, transport, pair canonicity ($15$), H the pair layer ($27$).",
      "tag": "T",
-     "source": "\\src{verify\\_domains.py}",
+     "source": "\\pyfile{verify\\_domains}",
      "key": "p10040"
     },
     {
      "label": "V2",
      "predicate": "The lift: L1--L5 on the shells $(13,2)$, $(173,3)$ and the Carriers $233$, $2\\,408\\,561$, $10$ micro-checks.",
      "tag": "T",
-     "source": "\\src{check\\_lift.py}",
+     "source": "\\pyfile{check\\_lift}",
      "key": "p10041"
     },
     {
      "label": "V3",
      "predicate": "The source gates: $105$ required tokens and verbatim bans on \\texttt{sections/*.tex} and \\texttt{mdpi.tex} --- markup residue, the $\\kap/\\chron/\\dt$ roles, the corpus blacklist, the constructive register, the required forms, the doctrine gates of rounds 02--06 --- run in the corpus tree, where the manuscript lives.",
      "tag": "T",
-     "source": "\\src{check\\_gates.py}",
+     "source": "\\pyfile{check\\_gates}",
      "key": "p10042"
     },
     {
      "label": "V4",
      "predicate": "The driver: two suites, one notebook run in the browser, $13$ family checks over $210$ exact micro-checks, a record per check written to \\texttt{results.json} keyed to these rows.",
      "tag": "T",
-     "source": "\\src{run\\_all.py}",
+     "source": "\\pyfile{run\\_all}",
      "key": "p10043"
     },
     {
      "label": "V5",
      "predicate": "Lean, two libraries: \\texttt{lean/FrcLedger/Dimensions.lean} (Mathlib, tier~2) proves C2, C3, C5, C6, D1--D3, D6, E2--E5, F2--F4, G1, G2 for every shell and Carrier; \\texttt{lean/FrcCore/Dimensions.lean} (\\emph{no axioms}) proves C2, D1, D2, D6, E4, E5 for every shell and decides E9, G3 and the two Carriers by the kernel, checked on every push.",
      "tag": "T",
-     "source": "\\src{lean/check\\_axioms.py}, \\src{lean/check\\_core\\_axioms.py} \\lean{Dimensions, FRC.Dimensions.flag\\_order\\_four}",
+     "source": "\\leanfile{FrcLedger}\\newline \\leanfile{FrcCore} \\lean{Dimensions, FRC.Dimensions.flag\\_order\\_four}",
      "key": "p10045"
     }
    ]
@@ -1505,17 +1505,6 @@
     "tier": 0,
     "ok": true,
     "doc": "10:G1, 10:G3 — local recovery on `𝔽₁₃` at `H = 5`: the `121` conventional pairs `|r|, |s| ≤ 5` have distinct modular labels, `12 > 10`."
-   }
-  ],
-  "V5": [
-   {
-    "name": "FRC.Dimensions.flag_order_four",
-    "module": "FrcCore/Dimensions",
-    "line": 215,
-    "axioms": [],
-    "tier": 0,
-    "ok": true,
-    "doc": "10:D2 — `I_q² = [T]^π`, the half-period `π = 2κ`, and `I_q, I_q², I_q³ ≠ 1`: the flag has order four."
    }
   ]
  }
