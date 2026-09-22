@@ -69,5 +69,37 @@
    "10:G3": "Dimensions",
    "10:G4": "Dimensions"
   }
+ },
+ "2-geometry": {
+  "module": "Geometry",
+  "FrcCore": {
+   "2:B3": "Geometry",
+   "2:B4": "Complex",
+   "2:C2": "Complex",
+   "2:C3": "Complex",
+   "2:C4": "Complex",
+   "2:D1": "Geometry",
+   "2:D2": "Geometry",
+   "2:D3": "Geometry",
+   "2:D5": "Geometry",
+   "2:D6": "Geometry",
+   "2:D7": "Geometry",
+   "2:E3": "Geometry",
+   "2:F1": "Geometry",
+   "2:F3": "Geometry",
+   "2:F4": "Geometry",
+   "2:F5": "Geometry"
+  },
+  "FrcLedger": {
+   "2:B3": "Geometry",
+   "2:C2": "Geometry",
+   "2:D1": "Geometry",
+   "2:D2": "Geometry",
+   "2:D5": "Geometry",
+   "2:D6": "Geometry",
+   "2:E3": "Geometry",
+   "2:F1": "Geometry",
+   "2:F3": "Geometry"
+  }
  }
 }

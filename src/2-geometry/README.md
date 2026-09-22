@@ -3,13 +3,15 @@
 Validation package of *Geometry and Constants in Finite Ring Continuum* (Akhtman, Symmetry 2026, 18, 751),
 `2-geometry` of the FRC corpus, added with the paper's predicate ledger (Appendix A, 17 September 2026) from the
 corpus script `validation/verify_geometry.py`. Four block scripts, eighteen checks, standard library only, driven
-by `2-geometry-main.ipynb` (Google Colab, *Runtime → Run all*, ≈ 30 s) or by `run_all.py`.
+by `2-geometry-main.ipynb` (Google Colab: one cell per ledger row, any cell on its own, or *Runtime → Run all*, ≈ 30 s)
+or by `run_all.py`.
 
-Every check names the row(s) of the paper's predicate ledger it witnesses (Appendix A, 34 rows in blocks A–F, V, O,
-cited as `2:XN`; public copy `docs/2-geometry/2-geometry-ledger.html`), and the ledger's source column cites the
-check ids in return. Where a row is proved in Lean (`lean/FrcLedger/Geometry.lean` on Mathlib, or `lean/FrcCore`
-with no axioms, in this repository), the check here is the instance the reader can run; the witnesses decide the
-same statements at different generality.
+Every check names the row(s) of the paper's predicate ledger it witnesses (Appendix A "Predicate ledger and machine
+verification", 32 rows in blocks A–F, T, cited as `2:XN`; public copy `docs/2-geometry/2-geometry-ledger.html`), and
+the ledger's source column links, for each machine-verified row, the script at the check that decides it and the Lean
+module at the row's declaration (`lean/FrcCore/Geometry.lean` with no axioms — B4, C2–C4's in `lean/FrcCore/Complex.lean`,
+which imports Geometry — or `lean/FrcLedger/Geometry.lean` on Mathlib); the check here is the instance the reader can
+run; the two witnesses decide the same statements at different generality.
 
 Run: `python3 run_all.py` (python ≥ 3.8, no third-party packages; ≈ 3 s). Each block also runs on its own.
 
@@ -36,3 +38,20 @@ Run: `python3 run_all.py` (python ≥ 3.8, no third-party packages; ≈ 3 s). Ea
 
 `results.json` carries one record per check (id, rows, script, kind, claim, PASS/FAIL, detail); the site generator
 reads it to colour the witnesses on the public ledger page.
+
+## One cell per row
+
+`2-geometry-main.ipynb` (built by `make_notebook.py`, executed) carries one cell per witnessed ledger row, addressable by
+its stable id (`row-2-D1`; the ledger page opens the notebook at the cell). Every cell is self-contained: it installs the
+package from the site (`pip install frc-2-geometry --find-links https://www.finitering.space/pkg/` — a named requirement,
+so pip reports it already satisfied once installed; the sdist `frc_2_geometry-<version>.tar.gz` that `src/make_pkg.py`
+writes under `docs/pkg/` at each site build; import name `frc_2_geometry`, `__init__.py` exporting `row` and `verify_all`),
+states the row and runs `row("2:D1")`: the block script of the check that decides the row runs once per session (the
+deciding check is `geocommon.ROWS`; a check deciding several rows — A1 for D1–D4, B3 for B4 and C4 — carries them all
+on one marker), that check is printed from the script's own source — the line under its `# row 2:D1` marker — and every
+record citing the row is listed with its verdict (C2b corroborates E3). The markers in the four block scripts are the
+lines the ledger page's source glyph opens (`docs/src/2-geometry/<script>.html#row-<label>`). The rows' Lean
+counterparts are the declarations `row_<label>` at the end of `lean/FrcCore/Geometry.lean` (B4, C2, C3, C4's in
+`lean/FrcCore/Complex.lean`, which imports Geometry) and `lean/FrcLedger/Geometry.lean` (`lean/make_rows.py`), one per
+row, with the modules as executable files for the web editor (`lean/web/core/Geometry.lean`, `lean/web/core/Complex.lean`,
+`lean/web/Geometry.lean`).

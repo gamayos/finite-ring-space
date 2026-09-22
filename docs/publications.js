@@ -76,7 +76,13 @@ const PUBLICATIONS = [
     },
     "doi": "https://doi.org/10.3390/sym18050751",
     "doiLabel": "sym18050751",
+    "ledger": "2-geometry/2-geometry-ledger.html",
     "links": [
+      {
+        "href": "2-geometry/2-geometry-ledger.html",
+        "label": "ledger",
+        "title": "the paper's predicate ledger"
+      },
       {
         "href": "https://colab.research.google.com/github/gamayos/finite-ring-space/blob/main/src/2-geometry/2-geometry-main.ipynb",
         "label": "notebook",

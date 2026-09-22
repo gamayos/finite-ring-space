@@ -16,7 +16,7 @@ archive there — a pip "find links" page. A notebook cell then needs only
 and pip, given a named requirement, checks the installed set first: a second call in the same session is
 "Requirement already satisfied" — no download, no rebuild (a URL archive would be rebuilt on every call).
 """
-import argparse, datetime, html, io, re, sys, tarfile, time
+import argparse, datetime, gzip, html, io, re, sys, tarfile, time
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent          # the repository
@@ -36,7 +36,7 @@ def sdist(pkgdir, out_dir, version):
         info = tarfile.TarInfo(arcname); info.size = len(data); info.mtime = stamp; info.mode = 0o644
         tar.addfile(info, io.BytesIO(data))
     buf = io.BytesIO()
-    with tarfile.open(fileobj=buf, mode="w:gz", compresslevel=9) as tar:   # mtime of the gzip header left at 0 by not passing a name
+    with gzip.GzipFile(fileobj=buf, mode="wb", compresslevel=9, mtime=0) as gz, tarfile.open(fileobj=gz, mode="w") as tar:   # the gzip header's mtime fixed at 0: the archive is a function of its contents and version alone
         add(tar, f"{top}/pyproject.toml", pyproject.encode()); add(tar, f"{top}/PKG-INFO", pkginfo.encode())
         for p in files: add(tar, f"{top}/{mod}/{p.name}", p.read_bytes())
     for old in out_dir.glob(f"{mod}-*.tar.gz"):              # one version per package in the directory (git keeps the history)

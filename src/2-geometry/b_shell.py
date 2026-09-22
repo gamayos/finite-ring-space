@@ -9,7 +9,10 @@ reversal is a map of the completion only (prop:phase-frame-change, prop:shell-co
 """
 import math
 from collections import Counter, defaultdict
-import geocommon as gc
+try:
+    from . import geocommon as gc
+except ImportError:                       # run in place (python3 <script>.py)
+    import geocommon as gc
 
 SHELLS = (5, 13, 17, 29)
 
@@ -69,6 +72,7 @@ def run():
         ok &= (len(V), len(E), len(F)) == (pi * n + 1, 2 * pi * n, pi * n) and len(V) - len(E) + len(F) == 1
         ok &= (len(Vc), len(Ec), len(Fc)) == ((pi - 1) * n + 2, (2 * pi - 1) * n, pi * n) and len(Vc) - len(Ec) + len(Fc) == 2
         det.append(f"p={p}: |V|,|E|,|F| = {len(V)},{len(E)},{len(F)}, chi=1; completion {len(Vc)},{len(Ec)},{len(Fc)}, chi=2")
+    # row 2:C2
     gc.check("B1", "cell counts of S_p and of its completion, chi = 1 and chi = 2 (Remark 3.4)", ok, "; ".join(det))
 
     # B2 the completion is a closed surface (chi = 2, a sphere); S_p itself is not closed (2:C3)
@@ -78,6 +82,7 @@ def run():
         closed = closed_surface(Vc, Ec, Fc)
         ok &= closed and not closed_surface(V, E, F)
         det.append(f"p={p}: completion closed={closed}, S_p closed=False")
+    # row 2:C3
     gc.check("B2", "the completion is a closed surface with chi = 2 (a sphere) by exhaustive incidence; S_p has a boundary", ok, "; ".join(det))
 
     # B3 cellular automorphisms: rho_u iff u = ±1; the dihedral maps; meridian reversal on the completion only (2:B4, 2:C4)
@@ -100,6 +105,7 @@ def run():
         ok &= cellular(sig, Ec, Fc)
         ok &= sum(1 for v in V if v == "N") == 1 and sum(1 for v in V if v != "N" and v[0] == pi) == n
         det.append(f"p={p}: rho_u cellular only for u in {good} of {len(gc.units(n))} units")
+    # row 2:B4, 2:C4
     gc.check("B3", "rho_u (m -> um) is cellular iff u = ±1; the dihedral maps are; meridian reversal is a map of the completion only", ok, "; ".join(det))
 
 if __name__ == "__main__":
