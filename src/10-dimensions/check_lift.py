@@ -90,7 +90,8 @@ def check_carrier(Om):
     return l4
 
 def run():
-    from dimcommon import chk, flush
+    try: from .dimcommon import chk, flush
+    except ImportError: from dimcommon import chk, flush
     for (p, g) in [(13, 2), (173, 3)]:
         l1, l2, l3 = check_shell(p, g)
         chk("L1(p=%d)" % p, l1, "lift", "L1"); chk("L2(p=%d)" % p, l2, "lift", "L2")
@@ -100,5 +101,6 @@ def run():
     flush("lift", order=["L1", "L2", "L3", "L4", "L5"])
 
 if __name__ == "__main__":
-    import dimcommon
+    try: from . import dimcommon
+    except ImportError: import dimcommon
     run(); dimcommon.summary(write=False)

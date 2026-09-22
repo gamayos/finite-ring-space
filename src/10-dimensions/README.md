@@ -29,8 +29,10 @@ Run: `python3 run_all.py`. Each suite also runs alone (`python3 verify_domains.p
 ## One cell per row
 
 `10-dimensions-rows.ipynb` (built by `make_rows_notebook.py`, executed) carries one cell per witnessed ledger row,
-addressable by its stable id (`row-10-C5`; the ledger page opens the notebook at the cell). A cell states the row and runs
-`dimcommon.row("10:C5")`: the script of the row's *deciding family* (`dimcommon.ROWS`) runs once per session, the check
+addressable by its stable id (`row-10-C5`; the ledger page opens the notebook at the cell). Every cell is self-contained:
+it installs the package from the site (`pip install https://www.finitering.space/pkg/frc-10-dimensions.tar.gz`, the sdist
+`src/make_pkg.py` writes under `docs/pkg/` at each site build; import name `frc_10_dimensions`, `__init__.py` exporting
+`row`), states the row and runs `row("10:C5")`: the scripts of the families that cite the row run once per session (the deciding family is `dimcommon.ROWS`), the check
 that decides the row is printed from the script's own source — the line under its `# row 10:C5` marker — and every family
 record citing the row is listed with its verdict. The markers in `verify_domains.py` and `check_lift.py` are the lines the
 ledger page's source glyph opens (`docs/src/10-dimensions/<script>.html#L<n>`). The rows' Lean counterparts are the

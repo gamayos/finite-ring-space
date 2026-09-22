@@ -209,6 +209,32 @@ pre.lean img.leanico { width: 12px; height: 12px; display: inline-block; vertica
 .wrap a.wit.ico:hover { background: var(--rule-soft); color: var(--accent); }
 .wrap a.wit.ico svg { width: 15px; height: 15px; fill: none; stroke: currentColor; stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round; }
 .wrap a.wit.ico.py.ok { color: var(--pub); } .wrap a.wit.ico.py.fail { color: var(--rej); }
+/* syntax colours (Pygments token classes) — a quiet palette on the site's tokens, both themes */
+pre.lean .k, pre.lean .kn, pre.lean .kd, pre.lean .kr, pre.lean .kc { color: #7a3e9d; }                 /* keywords */
+pre.lean .s, pre.lean .s1, pre.lean .s2, pre.lean .sd, pre.lean .sa, pre.lean .si, pre.lean .se, pre.lean .sb, pre.lean .sh, pre.lean .sx { color: #2a7f62; }   /* strings, docstrings */
+pre.lean .c, pre.lean .c1, pre.lean .cm, pre.lean .ch, pre.lean .cs { color: var(--ink-faint); font-style: italic; }   /* comments */
+pre.lean .ln.decl .c1 { color: var(--accent); font-style: normal; font-weight: 600; }                         /* the `# row` marker */
+pre.lean .m, pre.lean .mi, pre.lean .mf, pre.lean .mh, pre.lean .mo, pre.lean .mb { color: #b35c00; }         /* numbers */
+pre.lean .nb, pre.lean .bp { color: #2f5d7c; }                                                                 /* builtins */
+pre.lean .nf, pre.lean .fm { color: #1f5fbf; }                                                                 /* function names */
+pre.lean .nc, pre.lean .nn { color: #1f5fbf; font-weight: 600; }                                               /* classes, modules */
+pre.lean .nd { color: #7a3e9d; }                                                                               /* decorators */
+pre.lean .o, pre.lean .ow { color: var(--ink-soft); }                                                          /* operators */
+@media (prefers-color-scheme: dark) {
+  pre.lean .k, pre.lean .kn, pre.lean .kd, pre.lean .kr, pre.lean .kc, pre.lean .nd { color: #c792ea; }
+  pre.lean .s, pre.lean .s1, pre.lean .s2, pre.lean .sd, pre.lean .sa, pre.lean .si, pre.lean .se, pre.lean .sb, pre.lean .sh, pre.lean .sx { color: #7ec699; }
+  pre.lean .m, pre.lean .mi, pre.lean .mf, pre.lean .mh, pre.lean .mo, pre.lean .mb { color: #f0a45d; }
+  pre.lean .nb, pre.lean .bp { color: #82aaff; } pre.lean .nf, pre.lean .fm, pre.lean .nc, pre.lean .nn { color: #82aaff; }
+}
+img.runico { width: 16px; height: 16px; display: block; object-fit: contain; filter: invert(.78); }   /* the run glyphs: light on transparency, darkened on the light theme like the plain Lean glyph */
+img.runico.colab { width: 19px; filter: none; }                                                        /* the Colab mark is coloured: shown as drawn in both themes */
+.wrap a.ico:hover img.runico.colab { filter: none; opacity: .8; }
+.wrap a.wit.ico.py.ok img.runico { filter: invert(.5) sepia(1) saturate(2.4) hue-rotate(95deg) brightness(.8); }      /* the verdict as the tier colours: green PASS */
+.wrap a.wit.ico.py.fail img.runico { filter: invert(.4) sepia(1) saturate(4) hue-rotate(330deg); }                  /* red FAIL */
+.wrap a.ico:hover img.runico { filter: invert(.45) sepia(.6) saturate(3) hue-rotate(170deg); }        /* the accent on hover */
+.legend .ico img.runico { display: inline-block; vertical-align: -3px; }
+@media (prefers-color-scheme: dark) { img.runico { filter: none; opacity: .85; } .wrap a.ico:hover img.runico { filter: none; opacity: 1; }
+  .wrap a.wit.ico.py.ok img.runico { filter: invert(.2) sepia(1) saturate(2) hue-rotate(80deg); opacity: 1; } .wrap a.wit.ico.py.fail img.runico { filter: invert(.15) sepia(1) saturate(4) hue-rotate(320deg); opacity: 1; } }
 .wrap a.lean.ico .play, .legend .ico .play { font-size: .55rem; margin-left: 2px; line-height: 1; }
 .legend .ico img.leanico { display: inline-block; vertical-align: -3px; }
 .legend.lean dt { white-space: nowrap; }

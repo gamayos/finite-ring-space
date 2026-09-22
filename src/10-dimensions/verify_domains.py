@@ -20,7 +20,10 @@ and the flag.
 """
 
 from fractions import Fraction as Fr
-from dimcommon import chk as check, family, flush
+try:
+    from .dimcommon import chk as check, family, flush      # installed as the package frc_10_dimensions
+except ImportError:
+    from dimcommon import chk as check, family, flush       # run from the directory
 
 def run():
 
@@ -564,5 +567,6 @@ def run():
     flush('dom', order=list('ABCDEFGH'))
 
 if __name__ == '__main__':
-    import dimcommon
+    try: from . import dimcommon
+    except ImportError: import dimcommon
     run(); dimcommon.summary(write=False)

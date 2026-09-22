@@ -72,15 +72,17 @@ def markers():
     return out
 
 def row(label, lines=14):
-    """Verify one ledger row: run the script of its deciding family (once per session), print the deciding check's
-    source (from its `# row` marker) and every family record that cites the row, and return True iff all pass."""
+    """Verify one ledger row: run the scripts of the families that cite it (each once per session), print the deciding
+    check's source (from its `# row` marker) and every family record that cites the row, and return True iff all pass."""
     fam = ROWS.get(label)
     if fam is None:
         print(f"{label}: no python witness (see the row's Lean witness or its source)"); return None
     script = SCRIPT.get(fam.split(".")[0], fam)
-    for sc in (sorted(set(SCRIPT.values())) if script == "run_all" else [script]):     # the driver row runs every suite
+    citing = {SCRIPT.get(f.split(".")[0], f) for f, rows in LEDGER.items() if label in [t.strip() for t in rows.split(",")]}
+    for sc in (sorted(set(SCRIPT.values())) if script == "run_all" else sorted({script} | citing)):   # the deciding script and every script whose families cite the row; the driver row runs every suite
         if sc not in _RAN:
-            mod = __import__(sc); mod.run(); _RAN.add(sc)
+            import importlib
+            mod = importlib.import_module("." + sc, __package__) if __package__ else importlib.import_module(sc); mod.run(); _RAN.add(sc)
     here = os.path.dirname(os.path.abspath(__file__)); mk = markers().get(label)
     if mk:
         src = open(os.path.join(here, mk[0]), encoding="utf-8").read().split("\n")

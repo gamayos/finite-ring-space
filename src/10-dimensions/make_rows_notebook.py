@@ -31,34 +31,29 @@ md(f"""[![Open in Colab](https://colab.research.google.com/assets/colab-badge.sv
 ## Dimensional Analysis over Finite Holographic Substrate (Akhtman, 2026) — the ledger rows
 
 **One cell per row.** Each cell below verifies one row of the paper's predicate ledger (Appendix B; the public copy
-`docs/{PKG}/{PKG}-ledger.html`): it states the row, runs the script of the row's deciding family (`verify_domains.py`,
-`check_lift.py` — each once per session), prints the check that decides the row from the script's own source, and lists
-every family record that cites the row with its verdict. The ledger page links each row here, at its cell. The package's
+`docs/{PKG}/{PKG}-ledger.html`): it installs the package (`pip install` from the site, a no-op after the first), states
+the row, runs the scripts of the families that cite it (`verify_domains.py`, `check_lift.py` — each once per session),
+prints the check that decides the row from the script's own source, and lists every family record that cites the row
+with its verdict. Any cell can be run first. The ledger page links each row here, at its cell. The package's
 narrative notebook (`{PKG}-main.ipynb`) runs the same scripts block by block.
 
-**Run.** Cell by cell (the first cell prepares the environment), or *Runtime → Run all*; ≈ 10 s on Colab.""", "rows-header")
+**Run.** Any cell on its own, or *Runtime → Run all*; ≈ 10 s on Colab.""", "rows-header")
 
-code(f"""# --- environment: the package (pure Python; nothing to install). On Colab this clones the repository's src/{PKG}.
-import os, subprocess
-if not os.path.exists("dimcommon.py"):
-    if not os.path.exists("finite-ring-space"):
-        subprocess.run(["git", "clone", "--filter=blob:none", "--sparse", "https://github.com/gamayos/finite-ring-space.git"], check=True)
-        subprocess.run(["git", "-C", "finite-ring-space", "sparse-checkout", "set", "src/{PKG}"], check=True)
-    os.chdir("finite-ring-space/src/{PKG}")
-import importlib, dimcommon as dc
-importlib.reload(dc)
-print("working directory:", os.path.join(*os.getcwd().split(os.sep)[-3:]), "—", len(dc.ROWS), "rows with a python witness")""", "rows-env")
+INSTALL = "!pip install -q https://www.finitering.space/pkg/frc-10-dimensions.tar.gz"
+md("""Every cell is self-contained: its first line installs the package from the site (a no-op once installed in the session), its last runs the row.""", "rows-note")
 
 for r in witnessed:
     lab = f"{PAPER}:{r['label']}"
-    code(f"# {lab} [{r['tag']}] — the deciding family {dcommon.ROWS[lab]}\n{plain(r['predicate'])}\ndc.row(\"{lab}\")", f"row-{PAPER}-{r['label']}")
+    code(f"{INSTALL}\n# {lab} [{r['tag']}] — the deciding family {dcommon.ROWS[lab]}\n{plain(r['predicate'])}\nfrom frc_10_dimensions import row; row(\"{lab}\")", f"row-{PAPER}-{r['label']}")
 
 md("""## Summary
 
 The rows above are the paper's python-witnessed predicates; the whole package, family by family, is `run_all.py`
 (13 family checks, 210 exact micro-checks, `results.json`).""", "rows-summary")
-code("""ok = dc.summary(write=False)
-assert ok, "a family check failed"
+code(f"""{INSTALL}
+from frc_10_dimensions import row, summary
+for lab in ["10:V1", "10:V2"]: row(lab)
+assert summary(write=False), "a family check failed"
 print("all family checks pass")""", "rows-run-all")
 
 nb = {"cells": cells, "metadata": {"colab": {"provenance": [], "toc_visible": True}, "kernelspec": {"display_name": "Python 3", "language": "python", "name": "python3"},
