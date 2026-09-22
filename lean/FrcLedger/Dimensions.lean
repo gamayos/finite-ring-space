@@ -19,7 +19,8 @@ normalisation and the positive root (E2, E3); the defining congruences at pair l
 root pairs, the linkage, the pair consequences, representative inertness, the `h`-form, the existence of the
 residues on every admissible Carrier, and the two Carriers `233` and `2 408 561` decided (E4, E5); the
 lifted labels `(r, s; j)` and the mechanical, gravitational and thermal domains (F2–F4); local recovery, the
-crossing embedding and its windowed faithfulness (G1); the window ladder (G2); the `κ = 3` examples (G3).
+crossing embedding and its windowed faithfulness (G1); the window ladder (G2); the `κ = 3` examples and the
+energy–momentum relation on the lift (G3); the window coincidence and Buckingham's count on the pendulum (G4).
 Classical (tier 2) on Mathlib's hierarchy; the finite content — the lattice as pairs of residues, the flag,
 the transport, the Carrier values and the minimality scan — is proved with no axioms in
 `FrcCore/Dimensions.lean`.
@@ -122,8 +123,9 @@ theorem monomial {ι : Type*} (s : Finset ι) (m : ι → Dom κ) (q : ι → ZM
     ∏ j ∈ s, single (m j) (q j) ^ k j = single (∑ j ∈ s, k j • m j) (∏ j ∈ s, q j ^ k j) := by
   simp_rw [single_pow]; exact prod_single s _ _
 
-/-- 10:C3 — the domain of a monomial with integer exponents, in the label group:
-`∏ U_{a_j}^{k_j} = U_{Σ k_j a_j}`. -/
+/-- 10:C3, 10:G4 — the domain of a monomial with integer exponents, in the label group:
+`∏ U_{a_j}^{k_j} = U_{Σ k_j a_j}`; so on the shell a monomial is neutral iff `Σ k_j a_j = 0`, the neutrality
+criterion that G4's count reads on the lift through the window coincidence (`window_neutrality`). -/
 theorem monomial_units {ι : Type*} (s : Finset ι) (m : ι → Dom κ) (k : ι → ℤ) :
     ∏ j ∈ s, Uhom κ (Multiplicative.ofAdd (m j)) ^ k j
       = Uhom κ (Multiplicative.ofAdd (∑ j ∈ s, k j • m j)) := by
@@ -1041,7 +1043,7 @@ theorem comparison_examples :
 
 end labels
 
-/-! ## Local recovery and the window ladder (10:G1, 10:G2, 10:G3) -/
+/-! ## Local recovery, the window ladder, the examples and Buckingham's count (10:G1–G4) -/
 section recovery
 
 /-- 10:G1 — local recovery of classical exponent bookkeeping: for `4κ > 2H`, two conventional pairs
@@ -1061,8 +1063,9 @@ theorem local_recovery (κ H : ℕ) (hH : 2 * H < 4 * κ) (r r' s s' : ℤ) (hr 
 /-- 10:G1 — the crossing embedding of classical `M`-`L`-`T` bookkeeping, `M^u L^a T^b ↦ (a − 2u, b + u; u)`. -/
 def embed (u a b : ℤ) : Lab := (a - 2 * u, b + u, u)
 
-/-- 10:G1 — the embedding is injective on `Z³` (triangular with unit diagonal): the crossing degree carries
-the mass exponent exactly. -/
+/-- 10:G1, 10:G4 — the embedding is injective on `Z³` (triangular with unit diagonal): the crossing degree
+carries the mass exponent exactly; the map being linear by its formula, the lifted label matrix of quantities
+with classical `M`-`L`-`T` dimensions has the kernel, hence the rank, of the classical one (G4). -/
 theorem embed_injective (u a b u' a' b' : ℤ) (h : embed u a b = embed u' a' b') :
     u = u' ∧ a = a' ∧ b = b' := by
   simp only [embed, Prod.ext_iff] at h
@@ -1142,6 +1145,51 @@ theorem recovery13 (r r' s s' : ℤ) (hr : |r| ≤ 5) (hr' : |r'| ≤ 5) (hs : |
     (h : ((r : ZMod 13), (s : ZMod 12)) = ((r' : ZMod 13), (s' : ZMod 12))) : r = r' ∧ s = s' :=
   local_recovery 3 5 (by norm_num) r r' s s' hr hr' hs hs' h
 
+/-- 10:G3 — the energy–momentum relation `E² = p²c² + m²c⁴` is homogeneous on the lift: the three labels
+`[E]²`, `[p]²[c]²`, `[m]²[c]⁴` coincide, `(0, −2; 2)`, one fibre at crossing degree two; its massless case
+`E = pc` at crossing degree one, and `E = mc²` on the energy fibre; realized on `κ = 3`, `[E]² = (0, 4)`,
+the lifted and the shell computation agreeing. -/
+theorem energy_momentum :
+    (2 : ℤ) • energyL = (2 : ℤ) • (momL + speedL) ∧ (2 : ℤ) • energyL = (2 : ℤ) • (massL + (2 : ℤ) • speedL) ∧
+    (2 : ℤ) • energyL = (0, -2, 2) ∧ ((2 : ℤ) • energyL).2.2 = 2 ∧
+    energyL = momL + speedL ∧ energyL.2.2 = 1 ∧ energyL = massL + (2 : ℤ) • speedL ∧
+    realize 3 ((2 : ℤ) • energyL) = ((0 : ZMod 13), (4 : ZMod 12)) ∧
+    2 • energy 3 = ((0 : ZMod 13), (4 : ZMod 12)) := by
+  decide
+
+/-- 10:G4 — the window coincidence: on `|r|, |s| ≤ H` with `2H < κ` and `|j| ≤ 1`, a lifted label realizes to
+the neutral label iff it is `(0, 0; 0)` — lifted and realized neutrality coincide on the window (the
+instance of `realize_faithful` against the neutral label). -/
+theorem window_neutrality (κ H : ℕ) [NeZero κ] (hH : 2 * H < κ) (r s j : ℤ)
+    (hr : |r| ≤ H) (hs : |s| ≤ H) (hj : |j| ≤ 1) :
+    realize κ (r, s, j) = 0 ↔ (r, s, j) = (0, 0, 0) := by
+  constructor
+  · intro h
+    obtain ⟨h1, h2, h3⟩ := realize_faithful κ H hH r 0 s 0 j 0 hr (by simp) hs (by simp) hj (by simp)
+      (by rw [h]; exact (map_zero _).symm)
+    rw [h1, h2, h3]
+  · rintro ⟨⟩; exact map_zero _
+
+/-- 10:G4 — Buckingham's count on the pendulum `(T, ℓ, g, m)`: the classical dimensions lie in `M`-`L`-`T`
+and embed to the lifted labels `[T] = (0, 1; 0)`, `[ℓ] = (1, 0; 0)`, `[g] = (1, −2; 0)`, `[m] = (−2, 1; 1)`;
+a monomial `T^{k₁} ℓ^{k₂} g^{k₃} m^{k₄}` is neutral on the lift iff `(k₁, k₂, k₃, k₄) = t·(2, −1, 1, 0)` —
+the kernel of the `4 × 3` label matrix is the line of `T²g/ℓ`, one dimensionless product, so the rank is
+`3 = 4 − 1` (the mass, alone in carrying crossing degree, enters no neutral product, `k₄ = 0`); the minor
+of the label matrix on the rows `(ℓ, g, m)` is `−2 ≠ 0`. -/
+theorem pendulum_kernel :
+    embed 0 0 1 = timeL ∧ embed 0 1 0 = spaceL ∧ embed 0 1 (-2) = accelL ∧ embed 1 0 0 = massL ∧
+    (∀ k₁ k₂ k₃ k₄ : ℤ, k₁ • timeL + k₂ • spaceL + k₃ • accelL + k₄ • massL = 0 ↔
+      ∃ t : ℤ, k₁ = 2 * t ∧ k₂ = -t ∧ k₃ = t ∧ k₄ = 0) ∧
+    (2 : ℤ) • timeL - spaceL + accelL = 0 ∧
+    Matrix.det !![spaceL.1, spaceL.2.1, spaceL.2.2; accelL.1, accelL.2.1, accelL.2.2;
+      massL.1, massL.2.1, massL.2.2] = -2 := by
+  refine ⟨by decide, by decide, by decide, by decide, fun k₁ k₂ k₃ k₄ => ?_, by decide, ?_⟩
+  · simp only [timeL, spaceL, accelL, massL, Prod.smul_mk, smul_eq_mul, Prod.mk_add_mk, Prod.mk_eq_zero]
+    constructor
+    · rintro ⟨h1, h2, h3⟩; exact ⟨k₃, by omega, by omega, rfl, by omega⟩
+    · rintro ⟨t, rfl, rfl, rfl, rfl⟩; omega
+  · rw [Matrix.det_fin_three]; simp [spaceL, accelL, massL]
+
 end recovery
 
 -- Ledger rows (generated by make_rows.py from docs/10-dimensions/10-dimensions-ledger.json; edit the ledger, not this section)
@@ -1197,8 +1245,11 @@ theorem row_G1 : And (∀ (κ H : Nat), @LT.lt Nat instLTNat (@HMul.hMul Nat Nat
 theorem row_G2 : ∀ (κ S : ℕ), ((16 : ℕ) * κ < κ ^ (2 : ℕ) ↔ (16 : ℕ) < κ) ∧ ((0 : ℕ) < κ → κ / (2 : ℕ) < κ ∧ κ < (2 : ℕ) * κ) ∧ ¬(16 : ℕ) * (3 : ℕ) < (3 : ℕ) ^ (2 : ℕ) ∧ ((2 : ℕ) * (2 : ℕ) * κ = (4 : ℕ) * κ ∧ (4 : ℕ) * κ = (4 : ℕ) * κ + (1 : ℕ) - (1 : ℕ)) ∧ (4 : ℕ) * S = (4 : ℕ) * S + (1 : ℕ) - (1 : ℕ) :=
   @FRC.Dimensions.window_ladder
 set_option linter.defProp false in
-/-- 10:G3 — The worked examples: $\kap=3$, $H=5$, $12>10$ so every pair in $[-5,5]^{2}$ is distinguished; kinetic energy $[m][v]^{2}=[E]$; $Q+Q^{2}$ inhomogeneous; the phase exponent neutral; flag arithmetic ($G\hbar/c^{3}$ flag-free, $\Iq^{2}=\unitT^{\pi}$); the Schwarzschild length $[Gm/c^{2}]=\unitL$; the gravitational frequency $[Gm/r^{3}]=\unitT^{-2}$. -/
-def row_G3 := And.intro @FRC.Dimensions.examples13 (@FRC.Dimensions.recovery13)
+/-- 10:G3 — The worked examples: $\kap=3$, $H=5$, $12>10$ so every pair in $[-5,5]^{2}$ is distinguished; kinetic energy $[m][v]^{2}=[E]$; $Q+Q^{2}$ inhomogeneous; the phase exponent neutral; flag arithmetic ($G\hbar/c^{3}$ flag-free, $\Iq^{2}=\unitT^{\pi}$); the Schwarzschild length $[Gm/c^{2}]=\unitL$; the gravitational frequency $[Gm/r^{3}]=\unitT^{-2}$; the energy--momentum relation $E^{2}=p^{2}c^{2}+m^{2}c^{4}$ homogeneous at crossing degree two, its massless case $E=pc$ at crossing degree one. -/
+def row_G3 := And.intro @FRC.Dimensions.examples13 (And.intro @FRC.Dimensions.recovery13 (@FRC.Dimensions.energy_momentum))
+/-- 10:G4 — Buckingham's count: on the integer lift the neutral monomials of $N$ quantities are the kernel of their $N\times3$ label matrix, $N-\operatorname{rank}$ independent dimensionless products with rank $\le3$, the classical count for quantities whose classical dimensions lie in $M$-$L$-$T$ and the derived-$k_B$ count for thermal ones; on the window $2H<\kap$, $|j|\le1$ lifted and realized neutrality coincide; the pendulum $(T,\ell,g,m)$: rank $3$, one product. -/
+theorem row_G4 : (∀ (κ : ℕ) {ι : Type u_1} (s : Finset ι) (m : ι → FRC.Dimensions.Dom κ) (k : ι → ℤ), ∏ j ∈ s, (FRC.Dimensions.Uhom κ) (Multiplicative.ofAdd (m j)) ^ k j = (FRC.Dimensions.Uhom κ) (Multiplicative.ofAdd (∑ j ∈ s, k j • m j))) ∧ (∀ (u a b u' a' b' : ℤ), FRC.Dimensions.embed u a b = FRC.Dimensions.embed u' a' b' → u = u' ∧ a = a' ∧ b = b') ∧ (∀ (κ H : ℕ) [NeZero κ], (2 : ℕ) * H < κ → ∀ (r s j : ℤ), |r| ≤ ↑H → |s| ≤ ↑H → |j| ≤ (1 : ℤ) → ((FRC.Dimensions.realize κ) (r, s, j) = (0 : FRC.Dimensions.Dom κ) ↔ (r, s, j) = ((0 : ℤ), (0 : ℤ), (0 : ℤ)))) ∧ FRC.Dimensions.embed (0 : ℤ) (0 : ℤ) (1 : ℤ) = FRC.Dimensions.timeL ∧ FRC.Dimensions.embed (0 : ℤ) (1 : ℤ) (0 : ℤ) = FRC.Dimensions.spaceL ∧ FRC.Dimensions.embed (0 : ℤ) (1 : ℤ) (-2 : ℤ) = FRC.Dimensions.accelL ∧ FRC.Dimensions.embed (1 : ℤ) (0 : ℤ) (0 : ℤ) = FRC.Dimensions.massL ∧ (∀ (k₁ k₂ k₃ k₄ : ℤ), k₁ • FRC.Dimensions.timeL + k₂ • FRC.Dimensions.spaceL + k₃ • FRC.Dimensions.accelL + k₄ • FRC.Dimensions.massL = (0 : FRC.Dimensions.Lab) ↔ ∃ t, k₁ = (2 : ℤ) * t ∧ k₂ = -t ∧ k₃ = t ∧ k₄ = (0 : ℤ)) ∧ (2 : ℤ) • FRC.Dimensions.timeL - FRC.Dimensions.spaceL + FRC.Dimensions.accelL = (0 : FRC.Dimensions.Lab) ∧ !![FRC.Dimensions.spaceL.1, FRC.Dimensions.spaceL.2.1, FRC.Dimensions.spaceL.2.2; FRC.Dimensions.accelL.1, FRC.Dimensions.accelL.2.1, FRC.Dimensions.accelL.2.2; FRC.Dimensions.massL.1, FRC.Dimensions.massL.2.1, FRC.Dimensions.massL.2.2].det = (-2 : ℤ) :=
+  And.intro @FRC.Dimensions.monomial_units (And.intro @FRC.Dimensions.embed_injective (And.intro @FRC.Dimensions.window_neutrality (@FRC.Dimensions.pendulum_kernel)))
 -- end ledger rows
 
 end FRC.Dimensions

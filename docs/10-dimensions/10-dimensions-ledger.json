@@ -314,14 +314,14 @@
      "label": "G3",
      "predicate": "The worked examples: $\\kap=3$, $H=5$, $12>10$ so every pair in $[-5,5]^{2}$ is distinguished; kinetic energy $[m][v]^{2}=[E]$; $Q+Q^{2}$ inhomogeneous; the phase exponent neutral; flag arithmetic ($G\\hbar/c^{3}$ flag-free, $\\Iq^{2}=\\unitT^{\\pi}$); the Schwarzschild length $[Gm/c^{2}]=\\unitL$; the gravitational frequency $[Gm/r^{3}]=\\unitT^{-2}$; the energy--momentum relation $E^{2}=p^{2}c^{2}+m^{2}c^{4}$ homogeneous at crossing degree two, its massless case $E=pc$ at crossing degree one.",
      "tag": "T",
-     "source": "Exs.~\\ref{ex:kappa3}, \\ref{ex:kinetic}, \\ref{ex:dispersion}, \\ref{ex:squaring}, \\ref{ex:phase-neutrality}, \\ref{ex:flag-arithmetic}, \\ref{ex:schwarzschild}, \\ref{ex:gravitational-frequency}\\pywit{verify\\_domains}{G3}\\leanwit{FrcCore}{G3} \\lean{Dimensions.examples13, Dimensions.recovery13, FRC.Dimensions.realized13, FRC.Dimensions.recovery13}",
+     "source": "Exs.~\\ref{ex:kappa3}, \\ref{ex:kinetic}, \\ref{ex:dispersion}, \\ref{ex:squaring}, \\ref{ex:phase-neutrality}, \\ref{ex:flag-arithmetic}, \\ref{ex:schwarzschild}, \\ref{ex:gravitational-frequency}\\pywit{verify\\_domains}{G3}\\leanwit{FrcCore}{G3} \\lean{Dimensions.examples13, Dimensions.recovery13, Dimensions.energy\\_momentum, FRC.Dimensions.realized13, FRC.Dimensions.recovery13, FRC.Dimensions.energy\\_momentum13}",
      "key": "p10039"
     },
     {
      "label": "G4",
      "predicate": "Buckingham's count: on the integer lift the neutral monomials of $N$ quantities are the kernel of their $N\\times3$ label matrix, $N-\\operatorname{rank}$ independent dimensionless products with rank $\\le3$, the classical count for quantities whose classical dimensions lie in $M$-$L$-$T$ and the derived-$k_B$ count for thermal ones; on the window $2H<\\kap$, $|j|\\le1$ lifted and realized neutrality coincide; the pendulum $(T,\\ell,g,m)$: rank $3$, one product.",
      "tag": "T",
-     "source": "Cor.~\\ref{cor:pi-theorem}\\pywit{verify\\_domains}{G4}",
+     "source": "Cor.~\\ref{cor:pi-theorem}\\pywit{verify\\_domains}{G4}\\leanwit{FrcLedger}{G4} \\lean{Dimensions.monomial\\_units, Dimensions.embed\\_injective, Dimensions.window\\_neutrality, Dimensions.pendulum\\_kernel}",
      "key": "p10046"
     }
    ]
@@ -397,7 +397,7 @@
    {
     "name": "FRC.Dimensions.U_mul",
     "module": "FrcLedger/Dimensions",
-    "line": 60,
+    "line": 61,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -410,7 +410,7 @@
    {
     "name": "FRC.Dimensions.Uhom_injective",
     "module": "FrcLedger/Dimensions",
-    "line": 91,
+    "line": 92,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -423,7 +423,7 @@
    {
     "name": "FRC.Dimensions.graded",
     "module": "FrcLedger/Dimensions",
-    "line": 102,
+    "line": 103,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -447,7 +447,7 @@
    {
     "name": "FRC.Dimensions.fibre_add",
     "module": "FrcLedger/Dimensions",
-    "line": 108,
+    "line": 109,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -460,7 +460,7 @@
    {
     "name": "FRC.Dimensions.coeff_sum_single",
     "module": "FrcLedger/Dimensions",
-    "line": 114,
+    "line": 115,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -473,7 +473,7 @@
    {
     "name": "FRC.Dimensions.monomial_units",
     "module": "FrcLedger/Dimensions",
-    "line": 127,
+    "line": 129,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -481,12 +481,12 @@
     ],
     "tier": 2,
     "ok": true,
-    "doc": "10:C3 — the domain of a monomial with integer exponents, in the label group: `∏ U_{a_j}^{k_j} = U_{Σ k_j a_j}`."
+    "doc": "10:C3, 10:G4 — the domain of a monomial with integer exponents, in the label group: `∏ U_{a_j}^{k_j} = U_{Σ k_j a_j}`; so on the shell a monomial is neutral iff `Σ k_j a_j = 0`, the neutrality criterion that G4's count reads on the lift through the window coincidence (`window_neutrality`)."
    },
    {
     "name": "FRC.Dimensions.single_mem_grade_iff",
     "module": "FrcLedger/Dimensions",
-    "line": 135,
+    "line": 137,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -510,7 +510,7 @@
    {
     "name": "FRC.Dimensions.dilation_character",
     "module": "FrcLedger/Dimensions",
-    "line": 695,
+    "line": 697,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -523,7 +523,7 @@
    {
     "name": "FRC.Dimensions.invariant_iff",
     "module": "FrcLedger/Dimensions",
-    "line": 629,
+    "line": 631,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -536,7 +536,7 @@
    {
     "name": "FRC.Dimensions.quarter_turn_law",
     "module": "FrcLedger/Dimensions",
-    "line": 661,
+    "line": 663,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -549,7 +549,7 @@
    {
     "name": "FRC.Dimensions.sigma_twist",
     "module": "FrcLedger/Dimensions",
-    "line": 683,
+    "line": 685,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -562,7 +562,7 @@
    {
     "name": "FRC.Dimensions.half_period_invariant_not_neutral",
     "module": "FrcLedger/Dimensions",
-    "line": 646,
+    "line": 648,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -575,7 +575,7 @@
    {
     "name": "FRC.Dimensions.flag_moves",
     "module": "FrcLedger/Dimensions",
-    "line": 653,
+    "line": 655,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -588,7 +588,7 @@
    {
     "name": "FRC.Dimensions.witnesses13",
     "module": "FrcLedger/Dimensions",
-    "line": 708,
+    "line": 710,
     "axioms": [
      "Quot.sound",
      "propext"
@@ -602,7 +602,7 @@
    {
     "name": "FRC.Dimensions.meridian_transport",
     "module": "FrcLedger/Dimensions",
-    "line": 303,
+    "line": 305,
     "axioms": [
      "Quot.sound",
      "propext"
@@ -625,7 +625,7 @@
    {
     "name": "FRC.Dimensions.deltaS_involutive",
     "module": "FrcLedger/Dimensions",
-    "line": 384,
+    "line": 386,
     "axioms": [
      "Quot.sound",
      "propext"
@@ -637,7 +637,7 @@
    {
     "name": "FRC.Dimensions.four_domains",
     "module": "FrcLedger/Dimensions",
-    "line": 392,
+    "line": 394,
     "axioms": [
      "Quot.sound",
      "propext"
@@ -649,7 +649,7 @@
    {
     "name": "FRC.Dimensions.deltaC_involutive",
     "module": "FrcLedger/Dimensions",
-    "line": 416,
+    "line": 418,
     "axioms": [
      "Quot.sound",
      "propext"
@@ -661,7 +661,7 @@
    {
     "name": "FRC.Dimensions.deltaC_generators",
     "module": "FrcLedger/Dimensions",
-    "line": 420,
+    "line": 422,
     "axioms": [
      "Quot.sound",
      "propext"
@@ -693,7 +693,7 @@
    {
     "name": "FRC.Dimensions.order_four_iff",
     "module": "FrcLedger/Dimensions",
-    "line": 485,
+    "line": 487,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -706,7 +706,7 @@
    {
     "name": "FRC.Dimensions.unique_order_four_subgroup",
     "module": "FrcLedger/Dimensions",
-    "line": 536,
+    "line": 538,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -719,7 +719,7 @@
    {
     "name": "FRC.Dimensions.no_flag_of_space",
     "module": "FrcLedger/Dimensions",
-    "line": 458,
+    "line": 460,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -732,7 +732,7 @@
    {
     "name": "FRC.Dimensions.order_two_iff",
     "module": "FrcLedger/Dimensions",
-    "line": 514,
+    "line": 516,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -745,7 +745,7 @@
    {
     "name": "FRC.Dimensions.meridian_transport",
     "module": "FrcLedger/Dimensions",
-    "line": 303,
+    "line": 305,
     "axioms": [
      "Quot.sound",
      "propext"
@@ -757,7 +757,7 @@
    {
     "name": "FRC.Dimensions.quarter_turn_law",
     "module": "FrcLedger/Dimensions",
-    "line": 661,
+    "line": 663,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -799,7 +799,7 @@
    {
     "name": "FRC.Dimensions.operator_four_cycle",
     "module": "FrcLedger/Dimensions",
-    "line": 582,
+    "line": 584,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -812,7 +812,7 @@
    {
     "name": "FRC.Dimensions.record_injective",
     "module": "FrcLedger/Dimensions",
-    "line": 326,
+    "line": 328,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -825,7 +825,7 @@
    {
     "name": "FRC.Dimensions.record_range",
     "module": "FrcLedger/Dimensions",
-    "line": 336,
+    "line": 338,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -838,7 +838,7 @@
    {
     "name": "FRC.Dimensions.record_mem_parity_iff",
     "module": "FrcLedger/Dimensions",
-    "line": 357,
+    "line": 359,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -851,7 +851,7 @@
    {
     "name": "FRC.Dimensions.crossing_order_four",
     "module": "FrcLedger/Dimensions",
-    "line": 614,
+    "line": 616,
     "axioms": [
      "Quot.sound",
      "propext"
@@ -874,7 +874,7 @@
    {
     "name": "FRC.Dimensions.flagged_readings",
     "module": "FrcLedger/Dimensions",
-    "line": 425,
+    "line": 427,
     "axioms": [
      "Quot.sound",
      "propext"
@@ -886,7 +886,7 @@
    {
     "name": "FRC.Dimensions.flag_inaccessible",
     "module": "FrcLedger/Dimensions",
-    "line": 437,
+    "line": 439,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -919,7 +919,7 @@
    {
     "name": "FRC.Dimensions.action_identity",
     "module": "FrcLedger/Dimensions",
-    "line": 722,
+    "line": 724,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -932,7 +932,7 @@
    {
     "name": "FRC.Dimensions.quartet_param",
     "module": "FrcLedger/Dimensions",
-    "line": 729,
+    "line": 731,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -945,7 +945,7 @@
    {
     "name": "FRC.Dimensions.pairing_closure",
     "module": "FrcLedger/Dimensions",
-    "line": 740,
+    "line": 742,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -958,7 +958,7 @@
    {
     "name": "FRC.Dimensions.normalisation",
     "module": "FrcLedger/Dimensions",
-    "line": 763,
+    "line": 765,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -971,7 +971,7 @@
    {
     "name": "FRC.Dimensions.index_two",
     "module": "FrcLedger/Dimensions",
-    "line": 776,
+    "line": 778,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -984,7 +984,7 @@
    {
     "name": "FRC.Dimensions.scale_from_constants",
     "module": "FrcLedger/Dimensions",
-    "line": 781,
+    "line": 783,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -997,7 +997,7 @@
    {
     "name": "FRC.Dimensions.exponent_faces",
     "module": "FrcLedger/Dimensions",
-    "line": 790,
+    "line": 792,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -1012,7 +1012,7 @@
    {
     "name": "FRC.Dimensions.cancellation",
     "module": "FrcLedger/Dimensions",
-    "line": 749,
+    "line": 751,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -1025,7 +1025,7 @@
    {
     "name": "FRC.Dimensions.quartet_flags",
     "module": "FrcLedger/Dimensions",
-    "line": 1021,
+    "line": 1023,
     "axioms": [
      "Quot.sound",
      "propext"
@@ -1039,7 +1039,7 @@
    {
     "name": "FRC.Dimensions.G_unique",
     "module": "FrcLedger/Dimensions",
-    "line": 806,
+    "line": 808,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -1052,7 +1052,7 @@
    {
     "name": "FRC.Dimensions.root_pair",
     "module": "FrcLedger/Dimensions",
-    "line": 817,
+    "line": 819,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -1065,7 +1065,7 @@
    {
     "name": "FRC.Dimensions.linkage",
     "module": "FrcLedger/Dimensions",
-    "line": 825,
+    "line": 827,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -1078,7 +1078,7 @@
    {
     "name": "FRC.Dimensions.residues_exist",
     "module": "FrcLedger/Dimensions",
-    "line": 895,
+    "line": 897,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -1091,7 +1091,7 @@
    {
     "name": "FRC.Dimensions.h_form",
     "module": "FrcLedger/Dimensions",
-    "line": 873,
+    "line": 875,
     "axioms": [
      "Quot.sound",
      "propext"
@@ -1103,7 +1103,7 @@
    {
     "name": "FRC.Dimensions.carrier233",
     "module": "FrcLedger/Dimensions",
-    "line": 923,
+    "line": 925,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -1116,7 +1116,7 @@
    {
     "name": "FRC.Dimensions.carrierLab",
     "module": "FrcLedger/Dimensions",
-    "line": 935,
+    "line": 937,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -1176,7 +1176,7 @@
    {
     "name": "FRC.Dimensions.pair_consequences",
     "module": "FrcLedger/Dimensions",
-    "line": 833,
+    "line": 835,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -1189,7 +1189,7 @@
    {
     "name": "FRC.Dimensions.sign_assignments",
     "module": "FrcLedger/Dimensions",
-    "line": 850,
+    "line": 852,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -1202,7 +1202,7 @@
    {
     "name": "FRC.Dimensions.carrier233",
     "module": "FrcLedger/Dimensions",
-    "line": 923,
+    "line": 925,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -1215,7 +1215,7 @@
    {
     "name": "FRC.Dimensions.carrierLab",
     "module": "FrcLedger/Dimensions",
-    "line": 935,
+    "line": 937,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -1268,7 +1268,7 @@
    {
     "name": "FRC.Dimensions.mechanical_domains",
     "module": "FrcLedger/Dimensions",
-    "line": 987,
+    "line": 989,
     "axioms": [
      "Quot.sound",
      "propext"
@@ -1280,7 +1280,7 @@
    {
     "name": "FRC.Dimensions.geometric_conversions",
     "module": "FrcLedger/Dimensions",
-    "line": 1000,
+    "line": 1002,
     "axioms": [
      "Quot.sound",
      "propext"
@@ -1303,7 +1303,7 @@
    {
     "name": "FRC.Dimensions.temperature_domain",
     "module": "FrcLedger/Dimensions",
-    "line": 1012,
+    "line": 1014,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -1323,7 +1323,7 @@
    {
     "name": "FRC.Dimensions.equal_crossing_flag_free",
     "module": "FrcLedger/Dimensions",
-    "line": 1030,
+    "line": 1032,
     "axioms": [
      "propext"
     ],
@@ -1334,7 +1334,7 @@
    {
     "name": "FRC.Dimensions.comparison_examples",
     "module": "FrcLedger/Dimensions",
-    "line": 1036,
+    "line": 1038,
     "axioms": [
      "Quot.sound",
      "propext"
@@ -1357,7 +1357,7 @@
    {
     "name": "FRC.Dimensions.local_recovery",
     "module": "FrcLedger/Dimensions",
-    "line": 1049,
+    "line": 1051,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -1370,7 +1370,7 @@
    {
     "name": "FRC.Dimensions.embed_injective",
     "module": "FrcLedger/Dimensions",
-    "line": 1066,
+    "line": 1069,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -1378,12 +1378,12 @@
     ],
     "tier": 2,
     "ok": true,
-    "doc": "10:G1 — the embedding is injective on `Z³` (triangular with unit diagonal): the crossing degree carries the mass exponent exactly."
+    "doc": "10:G1, 10:G4 — the embedding is injective on `Z³` (triangular with unit diagonal): the crossing degree carries the mass exponent exactly; the map being linear by its formula, the lifted label matrix of quantities with classical `M`-`L`-`T` dimensions has the kernel, hence the rank, of the classical one (G4)."
    },
    {
     "name": "FRC.Dimensions.realize_faithful",
     "module": "FrcLedger/Dimensions",
-    "line": 1075,
+    "line": 1078,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -1407,7 +1407,7 @@
    {
     "name": "FRC.Dimensions.window_ladder",
     "module": "FrcLedger/Dimensions",
-    "line": 1116,
+    "line": 1119,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -1431,7 +1431,7 @@
    {
     "name": "FRC.Dimensions.examples13",
     "module": "FrcLedger/Dimensions",
-    "line": 1130,
+    "line": 1133,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -1444,7 +1444,7 @@
    {
     "name": "FRC.Dimensions.recovery13",
     "module": "FrcLedger/Dimensions",
-    "line": 1141,
+    "line": 1144,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -1453,6 +1453,19 @@
     "tier": 2,
     "ok": true,
     "doc": "10:G3 — local recovery on `κ = 3` at `H = 5`: the instance of the theorem."
+   },
+   {
+    "name": "FRC.Dimensions.energy_momentum",
+    "module": "FrcLedger/Dimensions",
+    "line": 1152,
+    "axioms": [
+     "Classical.choice",
+     "Quot.sound",
+     "propext"
+    ],
+    "tier": 2,
+    "ok": true,
+    "doc": "10:G3 — the energy–momentum relation `E² = p²c² + m²c⁴` is homogeneous on the lift: the three labels `[E]²`, `[p]²[c]²`, `[m]²[c]⁴` coincide, `(0, −2; 2)`, one fibre at crossing degree two; its massless case `E = pc` at crossing degree one, and `E = mc²` on the energy fibre; realized on `κ = 3`, `[E]² = (0, 4)`, the lifted and the shell computation agreeing."
    },
    {
     "name": "FRC.Dimensions.realized13",
@@ -1471,6 +1484,69 @@
     "tier": 0,
     "ok": true,
     "doc": "10:G1, 10:G3 — local recovery on `𝔽₁₃` at `H = 5`: the `121` conventional pairs `|r|, |s| ≤ 5` have distinct modular labels, `12 > 10`."
+   },
+   {
+    "name": "FRC.Dimensions.energy_momentum13",
+    "module": "FrcCore/Dimensions",
+    "line": 470,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "10:G3 — the energy–momentum relation realized on `𝔽₁₃`: with `[v] = [L][T]⁻¹`, `[p] = I_q[L]⁻¹` and `[m] = (11, 4)`, the three labels `[E]²`, `([p][c])²`, `([m][c]²)²` coincide, `(0, 4) = I_q²[T]⁻²`, the fibre of `[E]²`, so `E² = p²c² + m²c⁴` is homogeneous; its massless case `[E] = [p][c]`, and `[E] = [m][c]²` on the energy fibre, `[m] = [E][v]⁻²`."
+   }
+  ],
+  "G4": [
+   {
+    "name": "FRC.Dimensions.monomial_units",
+    "module": "FrcLedger/Dimensions",
+    "line": 129,
+    "axioms": [
+     "Classical.choice",
+     "Quot.sound",
+     "propext"
+    ],
+    "tier": 2,
+    "ok": true,
+    "doc": "10:C3, 10:G4 — the domain of a monomial with integer exponents, in the label group: `∏ U_{a_j}^{k_j} = U_{Σ k_j a_j}`; so on the shell a monomial is neutral iff `Σ k_j a_j = 0`, the neutrality criterion that G4's count reads on the lift through the window coincidence (`window_neutrality`)."
+   },
+   {
+    "name": "FRC.Dimensions.embed_injective",
+    "module": "FrcLedger/Dimensions",
+    "line": 1069,
+    "axioms": [
+     "Classical.choice",
+     "Quot.sound",
+     "propext"
+    ],
+    "tier": 2,
+    "ok": true,
+    "doc": "10:G1, 10:G4 — the embedding is injective on `Z³` (triangular with unit diagonal): the crossing degree carries the mass exponent exactly; the map being linear by its formula, the lifted label matrix of quantities with classical `M`-`L`-`T` dimensions has the kernel, hence the rank, of the classical one (G4)."
+   },
+   {
+    "name": "FRC.Dimensions.window_neutrality",
+    "module": "FrcLedger/Dimensions",
+    "line": 1163,
+    "axioms": [
+     "Classical.choice",
+     "Quot.sound",
+     "propext"
+    ],
+    "tier": 2,
+    "ok": true,
+    "doc": "10:G4 — the window coincidence: on `|r|, |s| ≤ H` with `2H < κ` and `|j| ≤ 1`, a lifted label realizes to the neutral label iff it is `(0, 0; 0)` — lifted and realized neutrality coincide on the window (the instance of `realize_faithful` against the neutral label)."
+   },
+   {
+    "name": "FRC.Dimensions.pendulum_kernel",
+    "module": "FrcLedger/Dimensions",
+    "line": 1179,
+    "axioms": [
+     "Classical.choice",
+     "Quot.sound",
+     "propext"
+    ],
+    "tier": 2,
+    "ok": true,
+    "doc": "10:G4 — Buckingham's count on the pendulum `(T, ℓ, g, m)`: the classical dimensions lie in `M`-`L`-`T` and embed to the lifted labels `[T] = (0, 1; 0)`, `[ℓ] = (1, 0; 0)`, `[g] = (1, −2; 0)`, `[m] = (−2, 1; 1)`; a monomial `T^{k₁} ℓ^{k₂} g^{k₃} m^{k₄}` is neutral on the lift iff `(k₁, k₂, k₃, k₄) = t·(2, −1, 1, 0)` — the kernel of the `4 × 3` label matrix is the line of `T²g/ℓ`, one dimensionless product, so the rank is `3 = 4 − 1` (the mass, alone in carrying crossing degree, enters no neutral product, `k₄ = 0`); the minor of the label matrix on the rows `(ℓ, g, m)` is `−2 ≠ 0`."
    }
   ]
  }
