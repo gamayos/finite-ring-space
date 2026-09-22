@@ -132,6 +132,10 @@ def run():
     pairs = [(r, s) for r in range(-H, H + 1) for s in range(-H, H + 1)]
     images = {(r % P, s % (P - 1)) for (r, s) in pairs}
     check("local recovery: all |r|,|s| <= 5 distinguished", len(images) == len(pairs))
+    # the energy--momentum relation E^2 = p^2 c^2 + m^2 c^4: its three terms in one fibre, at crossing degree two (the
+    # half-period sector) -- Example ex:dispersion, row 10:G3
+    E2 = dpow(E_dom, 2); pc2 = dpow(dmul(p_dom, v_dom), 2); mc4 = dpow(dmul(m_dom, dpow(v_dom, 2)), 2)
+    check("dispersion: [E]^2 = [pc]^2 = [mc^2]^2, one fibre at sector 2", E2 == pc2 == mc4 and E2[2] == 2)
 
     # B. the quartet at the unit face (exact rationals over free scales)
     family('dom', 'B')
@@ -512,6 +516,15 @@ def run():
     # meridian transport onto the flag: (L T^kappa)^p = Iq on several shells
     for P_, K_ in ((13, 3), (29, 7), (229, 57)):
         check(f"r04: meridian transport p={P_}", (P_ % P_, (P_ * K_) % (P_ - 1)) == (0, K_))
+
+    # Buckingham's count on the integer lift (Corollary cor:pi-theorem): the pendulum (T, l, g, m) with lifted labels
+    # (0,1;0), (1,0;0), (1,-2;0), (-2,1;1) has rank 3, hence N - rank = 1 dimensionless product, T^2 g / l, whose
+    # lifted label vanishes; the mass, the only quantity with a crossing degree, cannot enter it
+    pend = [(0, 1, 0), (1, 0, 0), (1, -2, 0), (-2, 1, 1)]
+    kvec = (2, -1, 1, 0)
+    lab_ = tuple(sum(k * q[i] for k, q in zip(kvec, pend)) for i in range(3))
+    # row 10:G4
+    check("Buckingham: pendulum (T, l, g, m) rank 3, one product T^2 g/l with label (0,0;0)", rank_int(pend) == 3 and lab_ == (0, 0, 0))
 
     # both roots of -2 satisfy the congruence individually (the pair is the canonical
     # object); the stated representative is the linkage-consistent one

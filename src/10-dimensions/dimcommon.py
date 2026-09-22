@@ -26,19 +26,19 @@ LEDGER = {
     "dom.D": "10:E4, 10:E5, 10:E9, 10:F3, 10:G1",
     "dom.E": "10:C5",
     "dom.F": "10:C5, 10:D1",
-    "dom.G": "10:C5, 10:D2, 10:G2",
+    "dom.G": "10:C5, 10:D2, 10:G2, 10:G4",
     "dom.H": "10:E4, 10:E5",
     "lift.L1": "10:D3", "lift.L2": "10:D3", "lift.L3": "10:D3", "lift.L4": "10:D3", "lift.L5": "10:C5, 10:D3",
 }
 
 LABELS = {
-    "dom.A": "shell datum and domain algebra on F_13: frame datum (g = 2, i = −g^κ, π = 2κ, 4κ = p−1); the group law, inverses and grading of D_p = Z_p × Z_{p−1}; the internal flag I_q = [T]^κ unique of order four, no flag of space, horizon-inaccessible, covariant; realization a homomorphism; the derived domains (m, F, S, G, Compton, Planck area, Schwarzschild, orbital frequency); fibrewise addition and local recovery at H = 5",
+    "dom.A": "shell datum and domain algebra on F_13: frame datum (g = 2, i = −g^κ, π = 2κ, 4κ = p−1); the group law, inverses and grading of D_p = Z_p × Z_{p−1}; the internal flag I_q = [T]^κ unique of order four, no flag of space, horizon-inaccessible, covariant; realization a homomorphism; the derived domains (m, F, S, G, Compton, Planck area, Schwarzschild, orbital frequency); fibrewise addition and local recovery at H = 5; the energy–momentum relation in one fibre at crossing degree two",
     "dom.B": "the quartet at the unit face: exponent-vector relation lattice over {ℓ_P, t_P, ħ} (both faces of c and ħ differ by ℓp = tE; rank two; k_B and ℓE add nothing); exact-rational instantiation of every stated equality (|k_B|c = ħ, m_P, G, Θ_P, {c, ħ, G} ↔ quartet); 4 − 1 = 3 degrees of freedom; flag positions (0,0,1,1)",
     "dom.C": "the defining congruences on the lab Carrier Ω = 2 408 561 (S = 602 140): admissibility; 2G ≡ −1 unique; ħ² ≡ −1, k_B² ≡ −2, 2c² ≡ 1 with their exact root pairs; G ≡ −c², G² ≡ 4⁻¹, h ≡ −ħ; m_P² ≐ Ω ≡ 0",
     "dom.D": "both Carriers (233 and the lab Carrier): the congruence-and-closure system, ħcG⁻¹ landing in the k_B pair; the representative annex; the admissibility minimality scan certifying (13, 233) with the counterfactuals; [Θ] = [L][T]⁻² and the Unruh closure; the crossing-degree embedding injective and windowed-faithful",
     "dom.E": "covariance: the naive character ill-defined on the modular projection; (p−1, 0) trivial character yet non-neutral; the ε-composition failure; window covariance below the bound; pushforward-invariant labels {0, π}; the quarter-turn fix/swap criterion ε ≡ ±1 (mod 4); the index-two sublattice ⟨c, ħ, G⟩ (det −2)",
     "dom.F": "the (0, π) witness forcing H < 2κ; the σ-twisted action equivariant by full sweep on p = 13 and 229 with the plain-lift failure; σ multiplicative mod 4; δ_S, δ_C involutions, δ_C carrying [L] ↦ [p], [T] ↦ [E]",
-    "dom.G": "realized action against the Z³-representative failure; the flagged label (0, 0; 1) moving under ε = −1; the window ladder 2√κ < κ/2 < κ < 2κ nested for every κ ≥ 17 and failing for κ = 3; (2√κ)² = p−1, (2√S)² = Ω−1; the flagged ratio F/a; meridian transport (L T^κ)^p = I_q on three shells; both roots on both Carriers",
+    "dom.G": "realized action against the Z³-representative failure; the flagged label (0, 0; 1) moving under ε = −1; the window ladder 2√κ < κ/2 < κ < 2κ nested for every κ ≥ 17 and failing for κ = 3; (2√κ)² = p−1, (2√S)² = Ω−1; the flagged ratio F/a; meridian transport (L T^κ)^p = I_q on three shells; both roots on both Carriers; Buckingham's count on the integer lift (the pendulum: rank 3, one product)",
     "dom.H": "the pair layer: pair multiplication well defined; the linkage {±k_B}{±c} = {±ħ} derived at pair level; ħcG⁻¹ in the k_B pair via (ħcG⁻¹)² ≡ −2; representative inertness — exactly the four assignments with σ_ħ = σ_c σ_k admissible, a (Z/2)², every identity holding on each; the ħ-flip relabelling of {ħ, h}",
     "lift.L1": "operator four-cycle: F = iW on F_p^{p−1}, F² = J, F⁴ = I, F² ≠ I (p = 13, 173)",
     "lift.L2": "chart shadow of order two: F exchanges the two dual charts, J exchanges none; the cardinal skeleton acts on charts as s mod 2",
@@ -55,6 +55,7 @@ ROWS = {
     "10:C2": "dom.A", "10:C3": "dom.A", "10:C5": "dom.E", "10:D1": "dom.F", "10:D2": "dom.A", "10:D3": "lift.L1",
     "10:D6": "dom.A", "10:E2": "dom.B", "10:E3": "dom.B", "10:E4": "dom.C", "10:E5": "dom.H", "10:E9": "dom.D",
     "10:F2": "dom.A", "10:F3": "dom.D", "10:F4": "dom.A", "10:G1": "dom.A", "10:G2": "dom.G", "10:G3": "dom.A",
+    "10:G4": "dom.G",
 }
 _FAM = [None, None]
 _RAN = set()                                            # scripts already run in this session (row() runs each once)

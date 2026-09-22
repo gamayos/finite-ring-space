@@ -38,8 +38,10 @@ with its verdict. Any cell can be run first. The ledger page links each row here
 
 **Run.** Any cell on its own, or *Runtime → Run all*; ≈ 10 s on Colab.""", "rows-header")
 
-INSTALL = "!pip install -q https://www.finitering.space/pkg/frc-10-dimensions.tar.gz"
-md("""Every cell is self-contained: its first line installs the package from the site (a no-op once installed in the session), its last runs the row.""", "rows-note")
+# the package from the site as a named requirement through the site's find-links page (docs/pkg/index.html): pip checks the
+# installed set first, so a second call in the session is "Requirement already satisfied" (a URL archive would be rebuilt every time)
+INSTALL = "!pip install -q frc-10-dimensions --find-links https://www.finitering.space/pkg/"
+md("""Every cell is self-contained: its first line installs the package from the site (pip reports it already satisfied once it is there), its last runs the row.""", "rows-note")
 
 for r in witnessed:
     lab = f"{PAPER}:{r['label']}"
@@ -48,7 +50,7 @@ for r in witnessed:
 md("""## Summary
 
 The rows above are the paper's python-witnessed predicates; the whole package, family by family, is `run_all.py`
-(13 family checks, 210 exact micro-checks, `results.json`).""", "rows-summary")
+(13 family checks, 212 exact micro-checks, `results.json`).""", "rows-summary")
 code(f"""{INSTALL}
 from frc_10_dimensions import verify_all
 assert verify_all(), "a family check failed"

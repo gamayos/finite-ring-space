@@ -3,9 +3,9 @@
   "id": "dom.A",
   "rows": "10:C2, 10:C3, 10:D2, 10:D6, 10:F2, 10:F4, 10:G1, 10:G3",
   "script": "verify_domains",
-  "label": "shell datum and domain algebra on F_13: frame datum (g = 2, i = −g^κ, π = 2κ, 4κ = p−1); the group law, inverses and grading of D_p = Z_p × Z_{p−1}; the internal flag I_q = [T]^κ unique of order four, no flag of space, horizon-inaccessible, covariant; realization a homomorphism; the derived domains (m, F, S, G, Compton, Planck area, Schwarzschild, orbital frequency); fibrewise addition and local recovery at H = 5",
+  "label": "shell datum and domain algebra on F_13: frame datum (g = 2, i = −g^κ, π = 2κ, 4κ = p−1); the group law, inverses and grading of D_p = Z_p × Z_{p−1}; the internal flag I_q = [T]^κ unique of order four, no flag of space, horizon-inaccessible, covariant; realization a homomorphism; the derived domains (m, F, S, G, Compton, Planck area, Schwarzschild, orbital frequency); fibrewise addition and local recovery at H = 5; the energy–momentum relation in one fibre at crossing degree two",
   "ok": true,
-  "detail": "32 exact micro-checks",
+  "detail": "33 exact micro-checks",
   "kind": "EXACT"
  },
  {
@@ -55,11 +55,11 @@
  },
  {
   "id": "dom.G",
-  "rows": "10:C5, 10:D2, 10:G2",
+  "rows": "10:C5, 10:D2, 10:G2, 10:G4",
   "script": "verify_domains",
-  "label": "realized action against the Z³-representative failure; the flagged label (0, 0; 1) moving under ε = −1; the window ladder 2√κ < κ/2 < κ < 2κ nested for every κ ≥ 17 and failing for κ = 3; (2√κ)² = p−1, (2√S)² = Ω−1; the flagged ratio F/a; meridian transport (L T^κ)^p = I_q on three shells; both roots on both Carriers",
+  "label": "realized action against the Z³-representative failure; the flagged label (0, 0; 1) moving under ε = −1; the window ladder 2√κ < κ/2 < κ < 2κ nested for every κ ≥ 17 and failing for κ = 3; (2√κ)² = p−1, (2√S)² = Ω−1; the flagged ratio F/a; meridian transport (L T^κ)^p = I_q on three shells; both roots on both Carriers; Buckingham's count on the integer lift (the pendulum: rank 3, one product)",
   "ok": true,
-  "detail": "15 exact micro-checks",
+  "detail": "16 exact micro-checks",
   "kind": "EXACT"
  },
  {

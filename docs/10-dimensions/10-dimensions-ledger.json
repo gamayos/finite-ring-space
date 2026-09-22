@@ -60,7 +60,7 @@
      "label": "B1",
      "predicate": "The Carrier: the finite complete totality, a timeless torsor of $\\Om$ attribute-free points, its cardinality its only absolute characteristic, its reframings $x\\mapsto ax+b$ automorphisms; the Subject: a bounded observer, an embedded prime shell of capacity $\\kap$ with frame data $\\Fp(\\chron;0,1,\\gen)$, $\\p^{2}<\\Om$; the two definitions together the paper's reading of the holographic principle.",
      "tag": "D",
-     "source": "Defs.~\\ref{def:carrier}, \\ref{def:subject}, Rem.~\\ref{rem:holographic}",
+     "source": "Defs.~\\ref{def:carrier}, \\ref{def:subject}, Rems.~\\ref{rem:holographic}, \\ref{rem:shell-scale}",
      "key": "p10007"
     },
     {
@@ -129,7 +129,7 @@
      "label": "C6",
      "predicate": "What the action forces and what is declared: the time-exponent period $\\p-1$ is forced by the pushforward action of $\\Zp^{\\times}$, the space-exponent refinement to period $\\p$ is declared and carried by the transport theorem (D2); classical temporal unit change is nominal re-assignment within a fixed presentation, the chronon atomic.",
      "tag": "T|D",
-     "source": "Rems.~\\ref{rem:periods}, \\ref{rem:atomicity}, Prop.~\\ref{prop:meridian-transport}\\leanwit{FrcCore}{C6} \\lean{Dimensions.meridian\\_transport, FRC.Dimensions.meridian\\_transport}",
+     "source": "Rems.~\\ref{rem:periods}, \\ref{rem:atomicity}, \\ref{rem:lattice-spacetime}, Prop.~\\ref{prop:meridian-transport}\\leanwit{FrcCore}{C6} \\lean{Dimensions.meridian\\_transport, FRC.Dimensions.meridian\\_transport}",
      "key": "p10016"
     }
    ]
@@ -239,7 +239,7 @@
      "label": "E7",
      "predicate": "The Carrier register is $\\Om$-hard: no bounded observer resolves the constants' residues; the selection of a member in each pair $\\{x,-x\\}$ is a resolved fact of the instantiated totality, knowable to no sub-capacity frame (the window ladder, G2); the absolute unit values are read at the totality and their unit-face magnitudes are their only registrable manifestation.",
      "tag": "Ω",
-     "source": "\\S\\ref{sec:instantiation}, Rem.~\\ref{rem:h-form}",
+     "source": "\\S\\ref{sec:instantiation}, Rems.~\\ref{rem:h-form}, \\ref{rem:procedure}, \\ref{rem:measured}",
      "key": "p10030"
     },
     {
@@ -287,7 +287,7 @@
      "label": "F4",
      "predicate": "Count-valued comparisons are flag-free: every ratio of two quantities of equal crossing degree ($Gm/r^{3}$, the phase exponent $[E][T]/[\\hbar]$) is a neutral or flag-free label, the flag entering unitful measures only; $F/a=[m]$, crossing degrees $1$ and $0$, is the flagged boundary case.",
      "tag": "T",
-     "source": "Exs.~\\ref{ex:phase-neutrality}, \\ref{ex:gravitational-frequency}, \\S\\ref{sec:mechanics-gravity}\\pywit{verify\\_domains}{F4}\\leanwit{FrcCore}{F4} \\lean{Dimensions.equal\\_crossing\\_flag\\_free, Dimensions.comparison\\_examples, FRC.Dimensions.realized13}",
+     "source": "Exs.~\\ref{ex:phase-neutrality}, \\ref{ex:gravitational-frequency}, \\S\\ref{sec:mechanics-gravity}, Rem.~\\ref{rem:no-free-exponent}\\pywit{verify\\_domains}{F4}\\leanwit{FrcCore}{F4} \\lean{Dimensions.equal\\_crossing\\_flag\\_free, Dimensions.comparison\\_examples, FRC.Dimensions.realized13}",
      "key": "p10036"
     }
    ]
@@ -300,7 +300,7 @@
      "label": "G1",
      "predicate": "Local recovery: for an exponent horizon $H$ with $4\\kap>2H$ the modular labels distinguish every conventional pair $|r|,|s|\\le H$; the flagged sector is recovered through the crossing degree, $M^{u}L^{a}T^{b}\\mapsto(a-2u,\\,b+u;\\,u)$ injective and windowed-faithful.",
      "tag": "T",
-     "source": "Thm.~\\ref{thm:local-recovery}, Cor.~\\ref{cor:recovery-crossings}\\pywit{verify\\_domains}{G1}\\leanwit{FrcCore}{G1} \\lean{Dimensions.local\\_recovery, Dimensions.embed\\_injective, Dimensions.realize\\_faithful, FRC.Dimensions.recovery13}",
+     "source": "Thm.~\\ref{thm:local-recovery}, Cor.~\\ref{cor:recovery-crossings}, Rem.~\\ref{rem:wrap}\\pywit{verify\\_domains}{G1}\\leanwit{FrcCore}{G1} \\lean{Dimensions.local\\_recovery, Dimensions.embed\\_injective, Dimensions.realize\\_faithful, FRC.Dimensions.recovery13}",
      "key": "p10037"
     },
     {
@@ -312,10 +312,17 @@
     },
     {
      "label": "G3",
-     "predicate": "The worked examples: $\\kap=3$, $H=5$, $12>10$ so every pair in $[-5,5]^{2}$ is distinguished; kinetic energy $[m][v]^{2}=[E]$; $Q+Q^{2}$ inhomogeneous; the phase exponent neutral; flag arithmetic ($G\\hbar/c^{3}$ flag-free, $\\Iq^{2}=\\unitT^{\\pi}$); the Schwarzschild length $[Gm/c^{2}]=\\unitL$; the gravitational frequency $[Gm/r^{3}]=\\unitT^{-2}$.",
+     "predicate": "The worked examples: $\\kap=3$, $H=5$, $12>10$ so every pair in $[-5,5]^{2}$ is distinguished; kinetic energy $[m][v]^{2}=[E]$; $Q+Q^{2}$ inhomogeneous; the phase exponent neutral; flag arithmetic ($G\\hbar/c^{3}$ flag-free, $\\Iq^{2}=\\unitT^{\\pi}$); the Schwarzschild length $[Gm/c^{2}]=\\unitL$; the gravitational frequency $[Gm/r^{3}]=\\unitT^{-2}$; the energy--momentum relation $E^{2}=p^{2}c^{2}+m^{2}c^{4}$ homogeneous at crossing degree two, its massless case $E=pc$ at crossing degree one.",
      "tag": "T",
-     "source": "Exs.~\\ref{ex:kappa3}, \\ref{ex:kinetic}, \\ref{ex:squaring}, \\ref{ex:phase-neutrality}, \\ref{ex:flag-arithmetic}, \\ref{ex:schwarzschild}, \\ref{ex:gravitational-frequency}\\pywit{verify\\_domains}{G3}\\leanwit{FrcCore}{G3} \\lean{Dimensions.examples13, Dimensions.recovery13, FRC.Dimensions.realized13, FRC.Dimensions.recovery13}",
+     "source": "Exs.~\\ref{ex:kappa3}, \\ref{ex:kinetic}, \\ref{ex:dispersion}, \\ref{ex:squaring}, \\ref{ex:phase-neutrality}, \\ref{ex:flag-arithmetic}, \\ref{ex:schwarzschild}, \\ref{ex:gravitational-frequency}\\pywit{verify\\_domains}{G3}\\leanwit{FrcCore}{G3} \\lean{Dimensions.examples13, Dimensions.recovery13, FRC.Dimensions.realized13, FRC.Dimensions.recovery13}",
      "key": "p10039"
+    },
+    {
+     "label": "G4",
+     "predicate": "Buckingham's count: on the integer lift the neutral monomials of $N$ quantities are the kernel of their $N\\times3$ label matrix, $N-\\operatorname{rank}$ independent dimensionless products with rank $\\le3$, the classical count for quantities whose classical dimensions lie in $M$-$L$-$T$ and the derived-$k_B$ count for thermal ones; on the window $2H<\\kap$, $|j|\\le1$ lifted and realized neutrality coincide; the pendulum $(T,\\ell,g,m)$: rank $3$, one product.",
+     "tag": "T",
+     "source": "Cor.~\\ref{cor:pi-theorem}\\pywit{verify\\_domains}{G4}",
+     "key": "p10046"
     }
    ]
   },
