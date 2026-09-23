@@ -37,6 +37,6 @@ function initLedger(root) {
   }
   q.addEventListener("input", function () { query = q.value.trim().toLowerCase(); render(); });
   build(); render();
-  if (location.hash) { var t = document.getElementById(location.hash.slice(1)); if (t) t.classList.add("target"); }
+  if (location.hash) { var t = document.getElementById(location.hash.slice(1)); if (t) (t.closest("tr") || t).classList.add("target"); }   /* the label anchor is the row, the key anchor a cell of it */
 }
 if (typeof LEDGER_PREVIEW === "undefined") initLedger(document);

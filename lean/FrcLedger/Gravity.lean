@@ -1,7 +1,7 @@
 import Mathlib
 
 /-!
-# 21-gravity — the Carrier register, the count face, the strong field and the floor: the ledger rows in Lean (2026-09-20)
+# 21-gravity — the Carrier register, the count face, the strong field and the floor: the ledger predicates in Lean (2026-09-20)
 
 Rows of the predicate ledger of *Gravitation as Phase Synchronisation over Finite Holographic Substrate* (tree
 `21-gravity-20260623`). The Carrier register: the calibration congruence `2π ↦ 4S ≡ −1`, `(4S)² ≡ 1`, and the

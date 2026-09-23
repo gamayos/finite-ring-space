@@ -23,7 +23,7 @@ md(f"""
 
 # FRC predicate ledgers — the Lean witnesses
 
-Each module under `lean/FrcLedger/` proves ledger rows of one paper as Lean 4 theorems over Mathlib
+Each module under `lean/FrcLedger/` proves ledger predicates of one paper as Lean 4 theorems over Mathlib
 ({', '.join(f'`{m}`' for m in modules)}). This notebook installs the pinned toolchain, fetches Mathlib's
 compiled cache and re-checks every module, then prints the axioms each theorem depends on and applies the
 strict gate (only `propext`, `Classical.choice`, `Quot.sound`; `sorryAx` and `native_decide` fail).

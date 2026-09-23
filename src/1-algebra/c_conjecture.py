@@ -2,7 +2,7 @@
 c_conjecture.py — block C: the conjecture of the conclusion, clause by clause (EXACT; C2–C4 CHART)
 =================================================================================================
 The conclusion conjectures that the finite substrate supports polynomial equation solving, limit-like
-approximation and ε-approximation of continuous symmetries (ledger row 1:Y1).  Rows 1:G1–G4 decide it:
+approximation and ε-approximation of continuous symmetries (ledger predicate 1:Y1).  Predicates 1:G1–G4 decide it:
 
   C1  (1:G1)  solving: f ∈ F_p[X] has a root in F_p iff gcd(f, X^p − X) ≠ 1, and deg gcd = the number of
               distinct roots — every monic polynomial of degree ≤ 3 over F_13 (2197) and F_17 (4913), by
@@ -69,7 +69,7 @@ def run():
                 g = p_gcd(f, xp_minus_x, p)
                 ok &= ((len(g) - 1) == len(roots)) and ((len(roots) > 0) == (len(g) > 1)); n += 1
         det.append(f"p={p}: {n} monic polynomials of degree ≤ {dmax}")
-    # row 1:G1
+    # predicate 1:G1
     check("C1", "f has a root in F_p iff gcd(f, X^p − X) ≠ 1; deg gcd(f, X^p − X) = number of distinct roots (exhaustive, degree ≤ 3)",
           ok, "; ".join(det))
 
@@ -90,7 +90,7 @@ def run():
             p = next_shell(2 * abs(x) + 1); kap = (p - 1) // 4
             ok &= (abs(r - Fraction(x, 2 ** n)) < eps) and (abs(x) <= 2 * kap) and p % 4 == 1 and is_prime(p)
         det.append(f"{name}: ε=10⁻⁸ → n={n}, p={p}")
-    # row 1:G2
+    # predicate 1:G2
     check("C2", "for every r and ε some shell p = 4κ+1 carries x/2ⁿ, |x| ≤ 2κ, within ε of r (five reals, ε = 10⁻²..10⁻⁸)",
           ok, "; ".join(det), kind="CHART")
 
@@ -110,7 +110,7 @@ def run():
             worst_defect = max(worst_defect, abs(k(a) + k(b) - k(a + b)))
         ok &= (worst_angle <= math.pi / N + 1e-12) and (worst_chord <= math.pi / N + 1e-12) and (worst_defect <= 1)
         det.append(f"p={p}: angle {worst_angle:.4f} ≤ π/N={math.pi / N:.4f}, defect ≤ {worst_defect}")
-    # row 1:G3
+    # predicate 1:G3
     check("C3", "k(θ) = ⌊Nθ/2π + ½⌋, N = p−1: angle and chord error ≤ π/N, group-law defect ≤ 1, on every shell",
           ok, "; ".join(det), kind="CHART")
 
@@ -167,7 +167,7 @@ def run():
     ok &= abs(d_o2 - math.pi / 2) < 1e-12
     eps0 = min(exact.values()); ok &= abs(eps0 - exact["icosahedral"]) < 1e-15 and eps0 < math.pi / 2
     det.append(f"cyclic/dihedral (in O(2)): ≥ {math.degrees(d_o2):.2f}°; ε₀ = {math.degrees(eps0):.4f}° = {eps0:.6f} rad")
-    # row 1:G4
+    # predicate 1:G4
     check("C4", "covering radii in SO(3): tetrahedral π/2, octahedral arccos((2√2−1)/4), icosahedral arccos((3√5−1)/8) = ε₀ ≈ 44.48°, cyclic/dihedral ≥ π/2; no finite subgroup is an ε-net for ε < ε₀",
           ok, "; ".join(det), kind="CHART")
 
@@ -208,7 +208,7 @@ def run():
         exact = qmul_int(a, b); modp = qmul_int(tuple(c % p for c in a), tuple(c % p for c in b))
         ok &= all(read(c % p) == e for c, e in zip(modp, exact)) and all(abs(e) <= 4 * H * H for e in exact); n_pairs += 1
     det.append(f"2·arcsin(1/3) = {math.degrees(2 * math.asin(1/3)):.1f}° < ε₀; composition on F_{p}, H={H}: {n_pairs} pairs read back exactly")
-    # row 1:G5
+    # predicate 1:G5
     check("C5", "the normalised window quaternions W_H⁴ are a 2·arcsin(1/H)-net of SO(3) (H = 1, 2, 3), 38.9° < ε₀ at H = 3; their products read back exactly from the shell when 8H² < p",
           ok, "; ".join(det), kind="CHART")
 

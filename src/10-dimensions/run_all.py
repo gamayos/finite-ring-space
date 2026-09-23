@@ -2,7 +2,7 @@
 run_all.py — the 10-dimensions validation package, end to end
 =============================================================
 Runs the two exact suites, writes results.json — one record per family check, carrying the paper's ledger
-row(s) it witnesses — and exits nonzero if any check fails.  Pure Python, ≈ 5 s.
+predicate(s) it witnesses — and exits nonzero if any check fails.  Pure Python, ≈ 5 s.
 
     python3 run_all.py
 

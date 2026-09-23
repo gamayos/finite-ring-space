@@ -4,7 +4,7 @@ import Mathlib
 /-! FrcLedger/Dirac.lean -/
 
 /-!
-# 8-dirac — Schrödinger and Dirac dynamics over the finite substrate: the ledger rows in Lean (2026-09-20)
+# 8-dirac — Schrödinger and Dirac dynamics over the finite substrate: the ledger predicates in Lean (2026-09-20)
 
 Rows of the predicate ledger of *Schrödinger and Dirac Dynamics over Finite Substrate* (tree
 `8-dirac-20260709`). The coefficient field `K = F[w]/(w² − ν)` on components with its Frobenius conjugation

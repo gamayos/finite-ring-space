@@ -5,7 +5,7 @@ import FrcCore.Frame
 import FrcCore.Sum
 
 /-!
-# 5-red — paradoxes of infinity as reductio: the ledger rows with no axioms
+# 5-red — paradoxes of infinity as reductio: the ledger predicates with no axioms
 
 Rows of the predicate ledger of *Paradoxes of Infinity as Reductio ad Absurdum* (tree `5-reductio-20260706`).
 What the finite exit asserts is finite mathematics, and it is proved here on the kernel alone: the bounded

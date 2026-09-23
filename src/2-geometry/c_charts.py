@@ -56,7 +56,7 @@ def run():
             grid.append((math.sin(th) * math.cos(ph), math.sin(th) * math.sin(ph), math.cos(th)))
     cov = max(min(geod(x, y) for y in grid) for x in fib_sphere(60000))
     bound = math.sqrt(2) * math.pi / (p - 1)
-    # row 2:E2
+    # predicate 2:E2
     gc.check("C1", "base-grid covering radius at p = 13 within the bound sqrt2 pi/(p-1)", cov <= bound,
              f"measured {cov:.4f} rad, bound {bound:.4f} rad", kind="CHART")
 
@@ -68,7 +68,7 @@ def run():
         radii_p = [fixed_shell_radius(p, g, N, p - 1) for N in (12, 24)]; lb_p = lower_bound(p, g, p - 1)
         ok &= all(r >= lb for r in radii) and radii[-1] == radii[-2] and all(r >= lb_p for r in radii_p) and radii_p[0] == radii_p[1]
         det.append(f"({p},{g}): radius {radii[-1]} >= {lb}")
-    # row 2:E3
+    # predicate 2:E3
     gc.check("C2", "fixed-shell covering radius stabilises at >= 1/2 min(g^-m, 1 - H g^-(m+1)) for every depth (H = 2k and H = p-1)", ok, "; ".join(det[:4]))
     eps = Fraction(1, 20)
     viol = [(p, g) for p, g in [(13, 2), (13, 11), (17, 3), (29, 2)] if fixed_shell_radius(p, g, 40) > eps]
@@ -80,7 +80,7 @@ def run():
     tower = [(p, 2) for p in (13, 29, 173, 1013, 4093)]
     errs = [tower_best(t, tower) for t in targets]
     single = [tower_best(t, [(13, 2)]) for t in targets]
-    # row 2:E4
+    # predicate 2:E4
     gc.check("C3", "the tower of shells (p = 13..4093, g = 2) brings every target within 1/2048; the single shell (13, 2) does not",
              all(e <= 1 / 2048 for e in errs) and max(single) > 1 / 16,
              "tower errors " + ", ".join(f"{e:.2e}" for e in errs) + "; single shell " + ", ".join(f"{e:.3f}" for e in single), kind="CHART")

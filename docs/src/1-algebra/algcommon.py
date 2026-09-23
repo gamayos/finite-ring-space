@@ -5,10 +5,10 @@ algcommon.py — shared primitives for the 1-algebra validation package
 doi 10.3390/axioms14080636), validation package of the FRC corpus (finite-ring-space/src/1-algebra),
 added with the paper's predicate ledger (Appendix A, 16 September 2026).
 
-Each check names the row(s) of the paper's predicate ledger it witnesses (LEDGER below; rows cited as
+Each check names the predicate(s) of the paper's ledger it witnesses (LEDGER below; predicates cited as
 1:XN), and the ledger's source column cites the check ids in return. The paper \\label(s) a check decides
-are in the block docstrings. Seven master-ledger rows of the corpus cite this paper (00:A8, B1, B8, B11,
-C9, C10, Y3); the rows of the paper ledger that the master carries are listed in the site generator.
+are in the block docstrings. Seven master-ledger predicates of the corpus cite this paper (00:A8, B1, B8, B11,
+C9, C10, Y3); the predicates of the paper ledger that the master carries are listed in the site generator.
 
 Everything the block scripts share:
   * the shell datum: p = 4κ+1 prime, the primitive roots of F_p, the oriented quarter-turn i = −g^κ;
@@ -16,7 +16,7 @@ Everything the block scripts share:
   * the PASS/FAIL registry every block reports into (results.json).
 
 Kinds: EXACT checks are integer-pinned computations in F_p or exact rationals (a pass is a proof on the
-tested instances); CHART checks decide a [chart] row — a statement about the reading of the shell against
+tested instances); CHART checks decide a [chart] predicate — a statement about the reading of the shell against
 Q or R — in exact rationals.
 """
 import os, json, sys
@@ -28,23 +28,23 @@ CONTROLS = [7, 11, 19, 23]
 # ----------------------------------------------------------------------------- registry
 RESULTS = []
 
-# The paper's predicate ledger (Appendix A, rows cited as 1:XN): the row(s) each check witnesses.
+# The paper's predicate ledger (Appendix A, predicates cited as 1:XN): the predicate(s) each check witnesses.
 LEDGER = {
     "A1": "1:B2", "A2": "1:B3", "A3": "1:B4", "A4": "1:C2", "A5": "1:C4",
-    "B1": "1:D2", "B2": "1:D4", "B3": "1:D6", "B4": "1:E2", "B5": "1:F1", "B6": "",          # B6 (the Euclidean step count) decides no row of the ledger
+    "B1": "1:D2", "B2": "1:D4", "B3": "1:D6", "B4": "1:E2", "B5": "1:F1", "B6": "",          # B6 (the Euclidean step count) decides no predicate of the ledger
     "C1": "1:G1", "C2": "1:G2", "C3": "1:G3", "C4": "1:G4", "C5": "1:G5",
 }
 
 SCRIPT = {"A": "a_shell", "B": "b_numbers", "C": "c_conjecture"}            # check-id prefix -> the block script
 
-# the deciding check of each witnessed row: the one whose verdict decides the row's statement (the other checks that
-# touch the row are corroboration, listed by row() from the records)
-ROWS = {
+# the deciding check of each witnessed predicate: the one whose verdict decides the predicate's statement (the other checks that
+# touch it are corroboration, listed by predicate() from the records)
+PREDICATES = {
     "1:B2": "A1", "1:B3": "A2", "1:B4": "A3", "1:C2": "A4", "1:C4": "A5",
     "1:D2": "B1", "1:D4": "B2", "1:E2": "B4", "1:F1": "B5",
     "1:G1": "C1", "1:G2": "C2", "1:G3": "C3", "1:G4": "C4", "1:G5": "C5",
 }
-_RAN = set()                                            # scripts already run in this session (row() runs each once)
+_RAN = set()                                            # scripts already run in this session (predicate() runs each once)
 
 def check(pid, label, ok, detail="", kind="EXACT"):
     """Record one predicate check. pid = package check id; LEDGER[pid] = the paper statement(s) decided."""
@@ -66,12 +66,12 @@ def summary(write=True):
     return n_ok == len(RESULTS)
 
 def markers():
-    """row label -> (script file, line) of its `# row …` marker: the line of the check that decides the row."""
+    """predicate label -> (script file, line) of its `# predicate …` marker: the line of the check that decides it."""
     import re
     out = {}
     for f in sorted(set(SCRIPT.values())):
         for i, line in enumerate(open(os.path.join(os.path.dirname(os.path.abspath(__file__)), f + ".py"), encoding="utf-8"), 1):
-            m = re.match(r"\s*# row (.*)", line)
+            m = re.match(r"\s*# predicate (.*)", line)
             if m:
                 for lab in m.group(1).split(","): out.setdefault(lab.strip(), (f + ".py", i))
     return out
@@ -81,15 +81,15 @@ def _run_script(sc):
         import importlib
         mod = importlib.import_module("." + sc, __package__) if __package__ else importlib.import_module(sc); mod.run(); _RAN.add(sc)
 
-def row(label, lines=14):
-    """Verify one ledger row: run the script of the check that decides it (once per session), print that check's source
-    (from its `# row` marker) and every record that cites the row, and return True iff all pass."""
-    pid = ROWS.get(label)
+def predicate(label, lines=14):
+    """Verify one ledger predicate: run the script of the check that decides it (once per session), print that check's source
+    (from its `# predicate` marker) and every record that cites the predicate, and return True iff all pass."""
+    pid = PREDICATES.get(label)
     if pid is None:
-        print(f"{label}: no python witness (see the row's Lean witness or its source)"); return None
+        print(f"{label}: no python witness (see the predicate's Lean witness or its source)"); return None
     script = SCRIPT[pid[0]]
     citing = {SCRIPT[i[0]] for i, rows in LEDGER.items() if label in [t.strip() for t in rows.split(",")]}
-    for sc in sorted({script} | citing): _run_script(sc)          # the deciding script and every script whose checks cite the row
+    for sc in sorted({script} | citing): _run_script(sc)          # the deciding script and every script whose checks cite the predicate
     here = os.path.dirname(os.path.abspath(__file__)); mk = markers().get(label)
     if mk:
         src = open(os.path.join(here, mk[0]), encoding="utf-8").read().split("\n")

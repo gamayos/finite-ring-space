@@ -1,7 +1,7 @@
 import FrcCore.Frame
 
 /-!
-# 6-fourier — the meridians and the meridian-scale map (rows D4, D5), no axioms
+# 6-fourier — the meridians and the meridian-scale map (predicates D4, D5), no axioms
 
 The meridian `M_m = (a g^m)_{a = 0..π}`, `π = 2κ`, as an ordered list of `2κ + 1` entries, and the
 meridian-scale map `S_r(x) = g^r x`: `S_r(M_m) = M_{m+r}` as ordered lists, consecutive entries of `M_m`

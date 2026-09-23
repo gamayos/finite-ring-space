@@ -39,8 +39,8 @@ def web(name):
     for d in inlined:
         parts.append(f"\n/-! inlined: FrcLedger/{d}.lean (verbatim, minus its import lines) -/\n\n" + body(d))
     parts.append(f"\n/-! FrcLedger/{name}.lean -/\n\n" + body(name))
-    rows = re.findall(r"^(?:theorem|def) (row_\w+)", module(name), re.M)     # the ledger rows: their axioms computed in the editor
-    if rows: parts.append("\n-- Ledger rows: axioms (each row's, computed here)\n" + "".join(f"#print axioms FRC.{name}.{r}\n" for r in rows))
+    rows = re.findall(r"^(?:theorem|def) (p\d{5})\b", module(name), re.M)     # the ledger predicates: their axioms computed in the editor
+    if rows: parts.append("\n-- Ledger predicates: axioms (each predicate's, computed here)\n" + "".join(f"#print axioms FRC.{name}.{r}\n" for r in rows))
     return "".join(parts)
 
 def main():

@@ -4,7 +4,7 @@ import Mathlib
 /-! FrcLedger/Rh.lean -/
 
 /-!
-# 20-rh — the Riemann Hypothesis over the holographic substrate: the shell rows in Lean (2026-09-19)
+# 20-rh — the Riemann Hypothesis over the holographic substrate: the shell predicates in Lean (2026-09-19)
 
 The exact arithmetic of the paper's block B, the constants of its Subject register, and the two character
 readings of the shell theorem — rows B2, B4–B10 (B8's shell clauses), C2's identity `Λ = μ ∗ log`, C5, E1's shell

@@ -1,7 +1,7 @@
 import Mathlib
 
 /-!
-# 4-rep — universal latent representation: the ledger rows in Lean (2026-09-17)
+# 4-rep — universal latent representation: the ledger predicates in Lean (2026-09-17)
 
 Rows of the predicate ledger of *Universal Latent Representation in Finite Ring Continuum* (Entropy 2026, 28, 40;
 tree `4-deepfrc-20251217`).  The representation rows (B4–C4) are set theory and hold for arbitrary types; the

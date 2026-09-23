@@ -51,7 +51,7 @@ def run():
     # capacity is a size: budget statement only (count-per-count), no duration
     check("capacity budget: quarter cycle holds kappa steps", 4 * KAPPA == P - 1)
 
-    # row 10:C2
+    # predicate 10:C2
     # domain group D_p = Z_p x Z_{p-1} with flag component mod 4
     def dmul(a, b):
         return ((a[0] + b[0]) % P, (a[1] + b[1]) % (P - 1), (a[2] + b[2]) % 4)
@@ -67,7 +67,7 @@ def run():
     check("group identity", dmul(ONE, L) == L)
     check("inverses", dmul(L, dinv(L)) == ONE and dmul(FLAG, dinv(FLAG)) == ONE)
     check("flag order four", dmul(dmul(FLAG, FLAG), dmul(FLAG, FLAG)) == ONE)
-    # row 10:D2
+    # predicate 10:D2
     # fork B: the flag is internal, Iq = [T]^kappa; realized label of (r,s;j) is
     # (r mod p, (s + j*kappa) mod (p-1)) with sector j mod 4
     def realize(a):
@@ -89,7 +89,7 @@ def run():
                                       (realize(a)[1] + realize(b)[1]) % (P - 1))
               for a in [L, T, FLAG, (3, 5, 2)] for b in [L, T, FLAG, (7, 2, 3)]))
 
-    # row 10:F2
+    # predicate 10:F2
     # derived domains
     def dpow(a, k):
         out = ONE
@@ -98,7 +98,7 @@ def run():
             out = dmul(out, step)
         return out
 
-    # row 10:D6
+    # predicate 10:D6
     E_dom = dmul(FLAG, dinv(T))                       # [E] = Iq T^-1
     p_dom = dmul(FLAG, dinv(L))                       # [p] = Iq L^-1
     v_dom = dmul(L, dinv(T))                          # [v] = L T^-1
@@ -117,23 +117,23 @@ def run():
           dmul(G_dom, dmul(FLAG, dpow(dinv(v_dom), 3))) == (2, 0, 0))
     check("[Gm/c^2] = L",
           dmul(G_dom, dmul(m_dom, dpow(dinv(v_dom), 2))) == (1, 0, 0))
-    # row 10:F4
+    # predicate 10:F4
     check("[Gm/r^3] = T^-2 flag-free",
           dmul(G_dom, dmul(m_dom, dpow(dinv(L), 3))) == (0, (-2) % (P - 1), 0))
     check("Compton flag-free: [m][c][hbar]^-1 = L^-1",
           dmul(m_dom, dmul(v_dom, dinv(FLAG))) == ((-1) % P, 0, 0))
 
     # fibrewise addition / neutral criterion / local recovery
-    # row 10:C3
+    # predicate 10:C3
     check("squaring leaves fibre: dom(Q) != dom(Q^2) for [L]", L != dpow(L, 2))
     H = 5
-    # row 10:G1, 10:G3
+    # predicate 10:G1, 10:G3
     check("local recovery bound: p-1 > 2H", P - 1 > 2 * H)
     pairs = [(r, s) for r in range(-H, H + 1) for s in range(-H, H + 1)]
     images = {(r % P, s % (P - 1)) for (r, s) in pairs}
     check("local recovery: all |r|,|s| <= 5 distinguished", len(images) == len(pairs))
     # the energy--momentum relation E^2 = p^2 c^2 + m^2 c^4: its three terms in one fibre, at crossing degree two (the
-    # half-period sector) -- Example ex:dispersion, row 10:G3
+    # half-period sector) -- Example ex:dispersion, predicate 10:G3
     E2 = dpow(E_dom, 2); pc2 = dpow(dmul(p_dom, v_dom), 2); mc4 = dpow(dmul(m_dom, dpow(v_dom, 2)), 2)
     check("dispersion: [E]^2 = [pc]^2 = [mc^2]^2, one fibre at sector 2", E2 == pc2 == mc4 and E2[2] == 2)
 
@@ -177,7 +177,7 @@ def run():
             rank += 1
         return rank
 
-    # row 10:E2
+    # predicate 10:E2
     # pairing lattice mod the relation has rank TWO: mix = hbar - c, lE = hbar + c
     check("mix = hbar' - c' (exponent identity: k_B derived)",
           mix_vec == sub(hbar_vec2, c_vec2))
@@ -188,7 +188,7 @@ def run():
     check("lE adds nothing: rank{c,hbar,mix,lE,rel} = 3",
           rank_int([c_vec, hbar_vec, mix_vec, lE_vec, rel]) == 3)
 
-    # row 10:E3
+    # predicate 10:E3
     # numeric instantiation with the identity enforced: choose l,t,p free, E = l*p/t
     l, t, p = Fr(3, 7), Fr(2, 5), Fr(11, 4)
     E = l * p / t
@@ -254,7 +254,7 @@ def run():
     check("admissibility: S even, S=1 mod 3, Om prime",
           S % 2 == 0 and S % 3 == 1 and is_prime(Om))
 
-    # row 10:E4
+    # predicate 10:E4
     # congruence 1: 2G + 1 = 0 -- linear, unique
     G_pin = [x for x in (pow(2, -1, Om) * (Om - 1) % Om,) ]
     G_val = (Om - 1) // 2
@@ -338,7 +338,7 @@ def run():
     check("-1 QR even for odd S: Om=13 (S=3), 5^2 = -1", (5 * 5) % 13 == 12)
     check("Om = 1 mod 4 for every S", all((4 * S0 + 1) % 4 == 1 for S0 in range(1, 50)))
 
-    # row 10:E9
+    # predicate 10:E9
     # minimality scan under the complete predicate (Appendix A)
     def admissible(p_, Om__):
         kap_ = (p_ - 1) // 4
@@ -358,7 +358,7 @@ def run():
     check("F5 is its own quarter-turn core: 4*kappa = 4 = p-1 with kappa=1", 4 * 1 == 5 - 1)
     check("kappa=2 not viable: 9 composite", not is_prime(9))
 
-    # row 10:F3
+    # predicate 10:F3
     # temperature and Unruh closures in (r, s, j) bookkeeping
     kB_dom = (-1, 1, 1)                    # Iq L^-1 T
     E_dom3 = (0, -1, 1)                    # Iq T^-1
@@ -401,7 +401,7 @@ def run():
     check("r02: eps field-character composition fails",
           (5 * 5) % 12 == 1 and pow(pow(5, -1, 13), 2, 13) != 1)
 
-    # row 10:C5
+    # predicate 10:C5
     # window covariance (Theorem 5, repaired form)
     H = 5
     check("r02: window dilation: trivial character forces r=0 in window",
@@ -470,7 +470,7 @@ def run():
     check("r03: sigma multiplicative mod 4",
           all(sigma(a * b) == sigma(a) * sigma(b) for a in units12 for b in units12))
 
-    # row 10:D1
+    # predicate 10:D1
     # delta_S / delta_C: involutions; delta_C carries primal domains to dual horizon domains
     def dS_(a):
         return dinv(a)
@@ -495,7 +495,7 @@ def run():
     # j-suppression witness: (0,0;1) moves under eps=-1 (flag-free restriction needed)
     check("r04: (0,0;1) sector moves under eps=-1", ((-1) * (0 + 3)) % 12 == 9 != 3)
 
-    # row 10:G2
+    # predicate 10:G2
     # window ladder: nested for kappa >= 17; toy fails.  All orderings exact:
     # 2 sqrt(k) < k/2  <=>  (4 sqrt(k))^2 < k^2  <=>  16 k < k^2  <=>  k > 16.
     def ladder(k):
@@ -523,16 +523,16 @@ def run():
     pend = [(0, 1, 0), (1, 0, 0), (1, -2, 0), (-2, 1, 1)]
     kvec = (2, -1, 1, 0)
     lab_ = tuple(sum(k * q[i] for k, q in zip(kvec, pend)) for i in range(3))
-    # row 10:G4
+    # predicate 10:G4
     check("Buckingham: pendulum (T, l, g, m) rank 3, one product T^2 g/l with label (0,0;0)", rank_int(pend) == 3 and lab_ == (0, 0, 0))
-    # The electromagnetic domain (Remark rem:electromagnetic, row 10:F5): with the Coulomb constant neutral, [q]^2 = [E][L] =
+    # The electromagnetic domain (Remark rem:electromagnetic, predicate 10:F5): with the Coulomb constant neutral, [q]^2 = [E][L] =
     # I_q [L][T]^-1, on the shell (1, kappa-1), on the lift (1,-1;1). Its square roots in D_p = Z_p x Z_{4 kappa}: the space half
     # 2^-1 = 2 kappa + 1 = -2 kappa (the meridian half-turn); the phase equation 2s = kappa-1 (mod 4 kappa) is solvable iff kappa
     # is odd, then two roots differing by the half-period (0, 2 kappa) = I_q^2; on the lift no root at all (odd coordinates).
     def charge_roots(k):
         p_, n_ = 4 * k + 1, 4 * k
         return sorted((r, s) for r in range(p_) for s in range(n_) if ((2 * r) % p_, (2 * s) % n_) == (1, (k - 1) % n_))
-    # row 10:F5
+    # predicate 10:F5
     check("charge: [q]^2 = [E][L] = I_q [L][T]^-1 = (1, 2) on F_13, its roots exactly (7,1) and (7,7), differing by the half-period (0, 6)",
           ((0 + 1) % 13, (3 - 1 + 0) % 12) == (1, 2) and charge_roots(3) == [(7, 1), (7, 7)] and ((7 - 7) % 13, (7 - 1) % 12) == (0, 6))
     check("charge: the roots exist iff kappa is odd, then exactly (2 kappa+1, (kappa-1)/2) and its half-period partner (every prime p = 4 kappa+1, kappa <= 30)",
@@ -577,7 +577,7 @@ def run():
         mono = (R["hbar"] * R["c"] * pow(R["G"], -1, Om_)) % Om_
         check(f"H [{Om_}]: (hbar c/G)^2 = -2, landing in the k_B pair",
               pow(mono, 2, Om_) == Om_ - 2 and mono in {R["kB"], Om_ - R["kB"]})
-        # row 10:E5
+        # predicate 10:E5
     # representative inertness: exactly the assignments with s_h = s_c*s_k are
         # admissible (a (Z/2)^2 group), and every checked identity holds on each
         admissible_count = 0

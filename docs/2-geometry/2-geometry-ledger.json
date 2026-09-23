@@ -60,14 +60,14 @@
      "label": "B3",
      "predicate": "Primitive generators form one orbit: every generator is $\\gen^{u}$ with $u\\in\\Z_{\\p-1}^{\\times}$, a torsor for $\\operatorname{Aut}(C_{\\p-1})$ (Props.~\\ref{prop:primitive-orbit}, \\ref{prop:no-canonical-e}).",
      "tag": "T",
-     "source": "A1\\newline \\pywit{a\\_datum}{B3}\\newline \\leanwit{FrcCore}{B3} \\lean{Geometry.generator\\_orbit, FRC.Shell.Frame.generator\\_orbit, FRC.Shell.s13\\_orbit}",
+     "source": "A1\\newline \\pywit{a\\_datum}{p02007}\\newline \\leanwit{FrcCore}{p02007} \\lean{Geometry.generator\\_orbit, FRC.Shell.Frame.generator\\_orbit, FRC.Shell.s13\\_orbit}",
      "key": "p02007"
     },
     {
      "label": "B4",
      "predicate": "Cellular automorphisms of the index grid: $m\\mapsto\\pm m+c$, the dihedral group of the phase cycle; on the completion also meridian reversal $a\\mapsto\\pi-a$, exchanging the poles. The reindexing $\\rho_{u}\\colon m\\mapsto um$ preserves latitude adjacency only for $u\\equiv\\pm1\\pmod{\\p-1}$; $\\sigma$ is not a map of $\\Sp$ ($\\north$ one vertex, $L_{\\pi}$ has $\\p-1$); decided on $\\p\\le29$.",
      "tag": "T",
-     "source": "Prop.~\\ref{prop:phase-frame-change}\\newline \\pywit{b\\_shell}{B4}\\newline \\leanwitin{FrcCore}{Complex}{B4} \\lean{FRC.Geometry.rho\\_adj\\_iff, FRC.Complex.census13}",
+     "source": "Prop.~\\ref{prop:phase-frame-change}\\newline \\pywit{b\\_shell}{p02008}\\newline \\leanwitin{FrcCore}{Complex}{p02008} \\lean{FRC.Geometry.rho\\_adj\\_iff, FRC.Complex.census13}",
      "key": "p02008"
     }
    ]
@@ -87,21 +87,21 @@
      "label": "C2",
      "predicate": "Counts: $|V|=\\pi(\\p-1)+1$, $|E|=2\\pi(\\p-1)$, $|F|=\\pi(\\p-1)$, $\\chi(\\Sp)=1$; the completion has $(\\pi-1)(\\p-1)+2$ vertices, $(2\\pi-1)(\\p-1)$ edges, $\\pi(\\p-1)$ faces, $\\chi=2$ (Rem.~\\ref{rem:cell-counts}).",
      "tag": "T",
-     "source": "\\pywit{b\\_shell}{C2}\\newline \\leanwitin{FrcCore}{Complex}{C2} \\lean{Geometry.euler\\_characteristic, FRC.Geometry.euler\\_characteristic, FRC.Complex.counts13}",
+     "source": "\\pywit{b\\_shell}{p02010}\\newline \\leanwitin{FrcCore}{Complex}{p02010} \\lean{Geometry.euler\\_characteristic, FRC.Geometry.euler\\_characteristic, FRC.Complex.counts13}",
      "key": "p02010"
     },
     {
      "label": "C3",
      "predicate": "Canonical spherical completion: collapsing $L_{\\pi}$ to $\\south$ gives a closed orientable surface --- every edge in two faces, every vertex link a cycle --- with $\\chi=2$, hence $S^{2}$ (A3), on every shell (Thm.~\\ref{thm:combinatorial-sphere}; decided on $\\p\\in\\{5,13,17,29\\}$ by exhaustive incidence).",
      "tag": "T",
-     "source": "A3\\newline \\pywit{b\\_shell}{C3}\\newline \\leanwitin{FrcCore}{Complex}{C3} \\lean{FRC.Complex.closed5, FRC.Complex.closed13, FRC.Complex.closed17, FRC.Complex.open13}",
+     "source": "A3\\newline \\pywit{b\\_shell}{p02011}\\newline \\leanwitin{FrcCore}{Complex}{p02011} \\lean{FRC.Complex.closed5, FRC.Complex.closed13, FRC.Complex.closed17, FRC.Complex.open13}",
      "key": "p02011"
     },
     {
      "label": "C4",
      "predicate": "Frame covariance: $\\Sp$ is one complex for every generator --- the index grid $I_{\\p}\\times\\Phi_{\\p}$ with its step relations; the frame $\\gen'=\\gen^{u}$ moves the field labels, $a\\gen^{m}\\mapsto a\\gen^{um}$, by the automorphism $\\rho_{u}$ of $\\Phi_{\\p}$, not the cells. The map $\\varphi_{u}$ of Prop.~\\ref{prop:shell-covariance} is cellular only for $u\\equiv\\pm1$.",
      "tag": "T",
-     "source": "Prop.~\\ref{prop:shell-covariance}\\newline \\pywit{b\\_shell}{C4}\\newline \\leanwitin{FrcCore}{Complex}{C4} \\lean{FRC.Geometry.label\\_covariance, FRC.Complex.census13}",
+     "source": "Prop.~\\ref{prop:shell-covariance}\\newline \\pywit{b\\_shell}{p02012}\\newline \\leanwitin{FrcCore}{Complex}{p02012} \\lean{FRC.Geometry.label\\_covariance, FRC.Complex.census13}",
      "key": "p02012"
     }
    ]
@@ -114,56 +114,56 @@
      "label": "D1",
      "predicate": "The half-period: $\\gen^{\\pi}=-1$ for every primitive $\\gen$, $\\pi=2\\kap$ (Prop.~\\ref{prop:half-period}); $2\\pi\\equiv-1$ (00:C1).",
      "tag": "T",
-     "source": "\\pywit{a\\_datum}{D1}\\newline \\leanwit{FrcCore}{D1} \\lean{Geometry.half\\_period, FRC.Shell.Frame.half\\_period}",
+     "source": "\\pywit{a\\_datum}{p02013}\\newline \\leanwit{FrcCore}{p02013} \\lean{Geometry.half\\_period, FRC.Shell.Frame.half\\_period}",
      "key": "p02013"
     },
     {
      "label": "D2",
      "predicate": "The quarter-turn subgroup $\\Qp=\\{x:x^{4}=1\\}$ is the unique subgroup of order four; $\\gen^{\\kap}$ has order four with $(\\gen^{\\kap})^{2}=-1$; $\\Qp=\\{\\pm1,\\pm\\It\\}$ (Def.~\\ref{def:quarter-turn-subgroup}, Prop.~\\ref{prop:quarter-turn}; 1:B2).",
      "tag": "T",
-     "source": "\\pywit{a\\_datum}{D2}\\newline \\leanwit{FrcCore}{D2} \\lean{Geometry.quarter\\_turn\\_order, FRC.Shell.Frame.quarter\\_turn\\_order}",
+     "source": "\\pywit{a\\_datum}{p02014}\\newline \\leanwit{FrcCore}{p02014} \\lean{Geometry.quarter\\_turn\\_order, FRC.Shell.Frame.quarter\\_turn\\_order}",
      "key": "p02014"
     },
     {
      "label": "D3",
      "predicate": "The oriented quarter-turn $\\It=-\\gen^{\\kap}=\\gen^{-\\kap}$, $\\It^{2}=-1$, orientation by A2 (Rem.~\\ref{rem:observer-canonical-e}); on $\\F_{13}(\\chron;0,1,2)$: $\\It=5$, $-\\It=8$, $\\pi=6$ [value] (Fig.~\\ref{fig:f13-constant-datum}).",
      "tag": "D",
-     "source": "A2\\newline \\pywit{a\\_datum}{D3}\\newline \\leanwit{FrcCore}{D3} \\lean{FRC.Shell.s13\\_datum}",
+     "source": "A2\\newline \\pywit{a\\_datum}{p02015}\\newline \\leanwit{FrcCore}{p02015} \\lean{FRC.Shell.s13\\_datum}",
      "key": "p02015"
     },
     {
      "label": "D4",
      "predicate": "The exponential unit $\\eu:=\\gen^{\\It}$, $\\It$ read as an exponent in $\\Phi_{\\p}$ through its residue representative; derived, generator-dependent (Rem.~\\ref{rem:exponential-unit}; 00:C1, convention~3); on $\\F_{13}$, $\\eu=6=\\pi$ [value].",
      "tag": "D",
-     "source": "Section~4; 00:C1\\newline \\pywit{a\\_datum}{D4}",
+     "source": "Section~4; 00:C1\\newline \\pywit{a\\_datum}{p02016}",
      "key": "p02016"
     },
     {
      "label": "D5",
      "predicate": "Orientation classes: for $\\gen'=\\gen^{u}$, $\\It'=-\\gen'^{\\kap}$ equals $\\It$ when $u\\equiv1\\pmod4$ and $-\\It$ when $u\\equiv3\\pmod4$; the oriented quarter-turn is frame-covariant within one class of generators, not under every generator change.",
      "tag": "T",
-     "source": "Rem.~\\ref{rem:frame-transport}\\newline \\pywit{a\\_datum}{D5}\\newline \\leanwit{FrcCore}{D5} \\lean{Geometry.orientation\\_class, FRC.Shell.Frame.orientation\\_class}",
+     "source": "Rem.~\\ref{rem:frame-transport}\\newline \\pywit{a\\_datum}{p02017}\\newline \\leanwit{FrcCore}{p02017} \\lean{Geometry.orientation\\_class, FRC.Shell.Frame.orientation\\_class}",
      "key": "p02017"
     },
     {
      "label": "D6",
      "predicate": "The Euler identity on the shell: $\\eu^{\\It\\pi}=\\gen^{2\\kap\\It^{2}}=(-1)^{\\It}$, equal to $-1$ exactly when the representative of $\\It$ is odd (00:C14); the oriented frames of a shell are those with $-\\gen^{\\kap}$ odd --- on $\\F_{13}$, $\\gen=2$ ($\\It=5$) is one, on $\\F_{17}$, $\\gen=3$ ($\\It=4$) is not.",
      "tag": "T",
-     "source": "Section~\\ref{sec:structural-data}; 00:C14\\newline \\pywit{a\\_datum}{D6}\\newline \\leanwit{FrcCore}{D6} \\lean{Geometry.euler\\_identity, FRC.Shell.Frame.euler\\_identity, FRC.Shell.s17\\_orientation}",
+     "source": "Section~\\ref{sec:structural-data}; 00:C14\\newline \\pywit{a\\_datum}{p02018}\\newline \\leanwit{FrcCore}{p02018} \\lean{Geometry.euler\\_identity, FRC.Shell.Frame.euler\\_identity, FRC.Shell.s17\\_orientation}",
      "key": "p02018"
     },
     {
      "label": "D7",
      "predicate": "Negation $R(x)=-x$ and inversion $I(x)=x^{-1}$ are commuting involutions; off $\\Qp$ the $\\langle R,I\\rangle$-orbit $\\{x,-x,x^{-1},-x^{-1}\\}$ has four elements, and $\\Fpx\\setminus\\Qp$ splits into $\\kap-1$ such orbits (Props.~\\ref{prop:shell-negation}, \\ref{prop:k4-shell}; 1:B2).",
      "tag": "T",
-     "source": "1:B2\\newline \\pywit{a\\_datum}{D7}\\newline \\leanwit{FrcCore}{D7} \\lean{Algebra.klein\\_orbit\\_four, FRC.Shell.Frame.klein\\_orbit\\_four, FRC.Shell.Frame.orbit\\_rep, FRC.Shell.Frame.orbit\\_rep\\_unique}",
+     "source": "1:B2\\newline \\pywit{a\\_datum}{p02019}\\newline \\leanwit{FrcCore}{p02019} \\lean{Algebra.klein\\_orbit\\_four, FRC.Shell.Frame.klein\\_orbit\\_four, FRC.Shell.Frame.orbit\\_rep, FRC.Shell.Frame.orbit\\_rep\\_unique}",
      "key": "p02019"
     },
     {
      "label": "D8",
      "predicate": "Euclidean conjugation $C_{\\gen}\\colon(a,b)\\mapsto(a,-b)$ is an involution of the coordinate pairs $\\Fp^{2}$; on the shell $a+b\\It$ is a field element and the pair map $\\Fp^{2}\\to\\Fp$ is $\\p$-to-one (1:E2), so $C_{\\gen}$ is a chart-level involution, not a field automorphism.",
      "tag": "D",
-     "source": "Prop.~\\ref{rem:euclidean-conjugation}; 1:E2\\newline \\pywit{a\\_datum}{D8}",
+     "source": "Prop.~\\ref{rem:euclidean-conjugation}; 1:E2\\newline \\pywit{a\\_datum}{p02020}",
      "key": "p02020"
     }
    ]
@@ -183,21 +183,21 @@
      "label": "E2",
      "predicate": "Base-grid estimate [chart]: every point of $S^{2}$ lies within geodesic distance $\\sqrt2\\,\\pi_{\\R}/(\\p-1)$ of $\\Xi_{\\p,\\gen}(V(\\Sp))$; measured covering radius $0.360$ at $\\p=13$ against the bound $0.370$ (Prop.~\\ref{prop:grid-density}).",
      "tag": "T",
-     "source": "\\pywit{c\\_charts}{E2}",
+     "source": "\\pywit{c\\_charts}{p02022}",
      "key": "p02022"
     },
     {
      "label": "E3",
      "predicate": "Fixed-shell refinement is bounded: with $m=\\lfloor\\log_{\\gen}(2\\kap+1)\\rfloor$ no point $x/\\gen^{n}$, $|x|\\le2\\kap$, lies in $(\\max(1-\\gen^{-m},2\\kap\\gen^{-m-1}),1)$ at any depth, so the covering radius of the scale grid in $[0,1]$ is $\\ge\\tfrac12\\min(\\gen^{-m},1-2\\kap\\gen^{-m-1})$ for every $N$: $1/8$ at $(13,2)$, $5/22$ at $(13,11)$.",
      "tag": "T",
-     "source": "Section~\\ref{sec:precision}\\newline \\pywit{c\\_charts}{E3}\\newline \\leanwit{FrcCore}{E3} \\lean{Geometry.fixed\\_shell\\_bound, FRC.Geometry.fixed\\_shell\\_bound, FRC.Geometry.fixed\\_shell\\_gap}",
+     "source": "Section~\\ref{sec:precision}\\newline \\pywit{c\\_charts}{p02023}\\newline \\leanwit{FrcCore}{p02023} \\lean{Geometry.fixed\\_shell\\_bound, FRC.Geometry.fixed\\_shell\\_bound, FRC.Geometry.fixed\\_shell\\_gap}",
      "key": "p02023"
     },
     {
      "label": "E4",
      "predicate": "Finite precision across the tower [chart]: for every $L$-bounded observable family, $\\varepsilon>0$ and configuration on $(S^{2})^{r}$ some shell $\\p$ carries grid points within $\\varepsilon$ (1:G2 with the path bound of E2); on one shell the precision is bounded by E3.",
      "tag": "T",
-     "source": "Thm.~\\ref{thm:operational-precision}; 1:G2\\newline \\pywit{c\\_charts}{E4}",
+     "source": "Thm.~\\ref{thm:operational-precision}; 1:G2\\newline \\pywit{c\\_charts}{p02024}",
      "key": "p02024"
     }
    ]
@@ -210,7 +210,7 @@
      "label": "F1",
      "predicate": "$\\gen$ is a principal $n$-th root of unity, $n=\\p-1$: $\\gen^{n}=1$, $\\sum_{j<n}\\gen^{jk}=0$ for $0<k<n$, and $n^{-1}=-1$ in $\\Fp$ (Prop.~\\ref{prop:principal-root}; $2\\pi\\equiv-1$).",
      "tag": "T",
-     "source": "\\pywit{d\\_fourier}{F1}\\newline \\leanwit{FrcCore}{F1} \\lean{Geometry.principal\\_root, FRC.Shell.Frame.principal\\_root}",
+     "source": "\\pywit{d\\_fourier}{p02025}\\newline \\leanwit{FrcCore}{p02025} \\lean{Geometry.principal\\_root, FRC.Shell.Frame.principal\\_root}",
      "key": "p02025"
     },
     {
@@ -224,28 +224,28 @@
      "label": "F3",
      "predicate": "Inversion: $v_{j}=-\\sum_{k<n}\\mathcal F_{\\gen}(v)_{k}\\gen^{-jk}$, i.e.\\ $W_{\\gen}^{-1}=-(\\gen^{-jk})_{jk}=-W_{\\gen}J$ (Prop.~\\ref{prop:ring-dft-inverse}; 6:B5), exact on every shell.",
      "tag": "T",
-     "source": "\\pywit{d\\_fourier}{F3}\\newline \\leanwit{FrcCore}{F3} \\lean{Geometry.dft\\_inverse, FRC.Shell.Frame.dft\\_inverse}",
+     "source": "\\pywit{d\\_fourier}{p02027}\\newline \\leanwit{FrcCore}{p02027} \\lean{Geometry.dft\\_inverse, FRC.Shell.Frame.dft\\_inverse}",
      "key": "p02027"
     },
     {
      "label": "F4",
      "predicate": "Polynomial reading: $\\mathcal F_{\\gen}(v)_{k}=P_{v}(\\gen^{k})$ with $P_{v}=\\sum_{j}v_{j}X^{j}$; the transform exchanges coefficients with values on the phase cycle (Prop.~\\ref{prop:polynomial-form}).",
      "tag": "T",
-     "source": "\\pywit{d\\_fourier}{F4}\\newline \\leanwit{FrcCore}{F4} \\lean{FRC.Shell.Frame.dft\\_eq\\_polyEval}",
+     "source": "\\pywit{d\\_fourier}{p02028}\\newline \\leanwit{FrcCore}{p02028} \\lean{FRC.Shell.Frame.dft\\_eq\\_polyEval}",
      "key": "p02028"
     },
     {
      "label": "F5",
      "predicate": "Covariance under generator change: for $\\gen'=\\gen^{u}$, $v^{(\\gen')}_{j}=v^{(\\gen)}_{uj}$ and $\\mathcal F_{\\gen'}(v^{(\\gen')})=\\mathcal F_{\\gen}(v^{(\\gen)})$ (Prop.~\\ref{prop:ring-dft-covariance}).",
      "tag": "T",
-     "source": "\\pywit{d\\_fourier}{F5}\\newline \\leanwit{FrcCore}{F5} \\lean{FRC.Shell.Frame.dft\\_covariance}",
+     "source": "\\pywit{d\\_fourier}{p02029}\\newline \\leanwit{FrcCore}{p02029} \\lean{FRC.Shell.Frame.dft\\_covariance}",
      "key": "p02029"
     },
     {
      "label": "F6",
      "predicate": "Exact external transport [chart]: $\\chi(\\gen^{m})=e^{-2\\pi_{\\R}\\It m/n}$ is an isomorphism of $\\Fpx$ onto the complex $n$-th roots of unity with $\\chi(\\gen^{m+1})=e^{-2\\pi_{\\R}\\It/n}\\chi(\\gen^{m})$, $\\chi(\\gen^{m+\\pi})=-\\chi(\\gen^{m})$, $\\chi(\\It\\gen^{m})=\\It\\,\\chi(\\gen^{m})$, $\\chi(\\gen^{jr})=e^{-2\\pi_{\\R}\\It jr/n}$ (Prop.~\\ref{prop:datum-role-transport}).",
      "tag": "T",
-     "source": "\\pywit{d\\_fourier}{F6}",
+     "source": "\\pywit{d\\_fourier}{p02030}",
      "key": "p02030"
     },
     {

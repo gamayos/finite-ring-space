@@ -213,7 +213,7 @@ pre.lean img.leanico { width: 12px; height: 12px; display: inline-block; vertica
 pre.lean .k, pre.lean .kn, pre.lean .kd, pre.lean .kr, pre.lean .kc, pre.lean .kt { color: #7a3e9d; }   /* keywords */
 pre.lean .s, pre.lean .s1, pre.lean .s2, pre.lean .sd, pre.lean .sa, pre.lean .si, pre.lean .se, pre.lean .sb, pre.lean .sh, pre.lean .sx { color: #2a7f62; }   /* strings, docstrings */
 pre.lean .c, pre.lean .c1, pre.lean .cm, pre.lean .ch, pre.lean .cs { color: var(--ink-faint); font-style: italic; }   /* comments */
-pre.lean .ln.decl .c1 { color: var(--accent); font-style: normal; font-weight: 600; }                         /* the `# row` marker */
+pre.lean .ln.decl .c1 { color: var(--accent); font-style: normal; font-weight: 600; }                         /* the `# predicate` marker */
 pre.lean .m, pre.lean .mi, pre.lean .mf, pre.lean .mh, pre.lean .mo, pre.lean .mb { color: #b35c00; }         /* numbers */
 pre.lean .nb, pre.lean .bp { color: #2f5d7c; }                                                                 /* builtins */
 pre.lean .nf, pre.lean .fm { color: #1f5fbf; }                                                                 /* function names */
@@ -244,7 +244,7 @@ img.runico.colab { width: 19px; filter: none; }                                 
 .ax.ok { color: var(--pub); } .ax.bad { color: var(--rej); }
 .lean.missing { color: var(--rej); font-family: var(--mono); font-size: .78rem; text-decoration: line-through; }
 pre.lean { font-family: var(--mono); font-size: .8rem; line-height: 1.45; overflow-x: auto; padding: .6rem .8rem 0; margin: 1rem 0; border: 1px solid var(--rule-soft); border-radius: 6px; background: var(--pre-bg, transparent); }
-pre.lean .ln { display: block; white-space: pre-wrap; overflow-wrap: anywhere; padding-left: 3.5rem; text-indent: -3.5rem; }   /* long lines wrap, continuation lines hang past the line number */ pre.lean .ln:target, pre.lean .ln:has(> a.row:target) { background: color-mix(in srgb, var(--accent) 14%, transparent); }   /* a row anchor (row-C5, the paper's witness link) highlights its line */
+pre.lean .ln { display: block; white-space: pre-wrap; overflow-wrap: anywhere; padding-left: 3.5rem; text-indent: -3.5rem; }   /* long lines wrap, continuation lines hang past the line number */ pre.lean .ln:target, pre.lean .ln:has(> a.pred:target) { background: color-mix(in srgb, var(--accent) 14%, transparent); }   /* a predicate anchor (p10015, the paper's witness link) highlights its line */
 pre.lean .lno, .wrap pre.lean a.lno, .wrap pre.lean a.lno:visited { display: inline-block; width: 3rem; text-align: right; margin-right: .5rem; text-indent: 0; color: var(--ink-faint); border: 0; font-size: .72rem; user-select: none; }
 .wrap pre.lean a.gh, .wrap pre.lean a.gh:visited { border: 0; margin-right: .35em; font-size: .72rem; color: var(--ink-soft); }
 .checks, .master, .refs { margin-top: 0.25rem; }
@@ -309,7 +309,7 @@ mjx-container { max-width: 100%; overflow-x: auto; overflow-y: hidden; }
   .empty { padding: 1.5rem 0; }
   nav { gap: .4rem .9rem; }
 }
-/* the source pages' bar: the way back to the ledger (at the row when opened at one), the file's path and size, copy, download, the editor */
+/* the source pages' bar: the way back to the ledger (at the predicate when opened at one), the file's path and size, copy, download, the editor */
 .srcbar { position: sticky; top: 0; z-index: 2; display: flex; align-items: center; flex-wrap: wrap; gap: .5rem .75rem; margin: 1rem 0 0; padding: .45rem .8rem; border: 1px solid var(--rule-soft); border-bottom: 0; border-radius: 6px 6px 0 0; background: var(--bg); font-size: .82rem; }
 .srcbar + pre.lean { margin-top: 0; border-top-left-radius: 0; border-top-right-radius: 0; }
 .srcbar .back { display: inline-flex; align-items: center; gap: .35rem; }
@@ -322,4 +322,4 @@ mjx-container { max-width: 100%; overflow-x: auto; overflow-y: hidden; }
 .srcbar .tool svg { width: 14px; height: 14px; fill: none; stroke: currentColor; stroke-width: 1.7; stroke-linecap: round; stroke-linejoin: round; }
 .srcbar .tool.done { color: #2e9e62; border-color: #2e9e62; } .srcbar .tool.failed { color: #c04a4a; border-color: #c04a4a; }
 .srcbar .vh { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); }
-pre.lean .ln, pre.lean a.row { scroll-margin-top: 2.8rem; }   /* a targeted line (or row anchor) lands below the sticky bar */
+pre.lean .ln, pre.lean a.pred { scroll-margin-top: 2.8rem; }   /* a targeted line (or predicate anchor) lands below the sticky bar */

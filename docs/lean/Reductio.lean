@@ -1,7 +1,7 @@
 import Mathlib
 
 /-!
-# 5-red — paradoxes of infinity as reductio: the ledger rows in Lean (2026-09-17)
+# 5-red — paradoxes of infinity as reductio: the ledger predicates in Lean (2026-09-17)
 
 Rows of the predicate ledger of *Paradoxes of Infinity as Reductio ad Absurdum* (tree `5-reductio-20260706`).
 The finite exit's properties for any finite structure in any language (the complete theory is complete, and

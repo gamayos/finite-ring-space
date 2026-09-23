@@ -3,12 +3,12 @@
 [![lean](https://github.com/gamayos/finite-ring-space/actions/workflows/lean.yml/badge.svg)](https://github.com/gamayos/finite-ring-space/actions/workflows/lean.yml)
 [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/gamayos/finite-ring-space/blob/main/lean/frc-lean-main.ipynb)
 
-Rows of the papers' predicate ledgers proved as Lean 4 theorems over Mathlib. A Python witness in
-`../src/<package>/` decides a row on the shells it sweeps; a theorem here decides it on every shell — the
+Predicates of the papers' ledgers proved as Lean 4 theorems over Mathlib. A Python witness in
+`../src/<package>/` decides a predicate on the shells it sweeps; a theorem here decides it on every shell — the
 statement is quantified over an arbitrary finite field `F` with `Fintype.card F = 4κ + 1`, a primitive root `g`,
-and the paper's frame. Instance rows and refutations are decided by `decide` in the kernel.
+and the paper's frame. Instance predicates and refutations are decided by `decide` in the kernel.
 
-| module | paper | rows | theorems |
+| module | paper | predicates | theorems |
 |---|---|---|---|
 | `FrcLedger/Fourier.lean` | 6-fourier | B5, B7, C2–C5, C7–C9, D2, E2, E3, E5–E7 (master C2, C7) | `W_sq`, `J_sq`, `W_mul_J_comm`, `quarter_turn_sq`, `shell_relations`, `shell_relations_zmod`; the fractional family: `shell_proj`, `shell_frft_add`, `shell_frft_cardinal`, `shell_frft_injective`, `shell_frftLift`, `shell_conj`, `shell_frft_add_two_kappa`; the multiplicities: `shell_odd_proj_ne_zero`, `shell_multiplicity_sums`, `gauss_mul_gauss_inv`, `gauss_inv_of_sign`, `shell_multiplicity_tuple`; the rotation group: `circle`, `rot_mul`, `unitsEquivCircle`, `card_circle`, `rot_cardinal`, `rot_eigenline`, `frft_mul_proj_one`; `shell_spectral_obstruction`, `shell_heisenberg` |
 | `FrcLedger/Algebra.lean` | 1-algebra | B2, B3, B4, C4, D2, D4, D6, E2, F1, G1–G3, V1 | `quarter_turn_exists`, `klein_orbit_four`, `card_fourth_roots`, `quarter_turn`, `affine_frame`, `meridian_involution`, `framed_integer_window`, `scale_periodic`, `complex_chart_zero_divisor`, `no_south_pole`, `s13_quarter_turn`, `euclid_step_count`, `approx_obstruction`, `root_iff_not_coprime`, `tower_density`, `circle_net`, `group_law_defect` |
@@ -23,7 +23,7 @@ and the paper's frame. Instance rows and refutations are decided by `decide` in 
 | `FrcLedger/Rh.lean` | 20-rh | B2, B4–B10, C2 (`Λ = μ ∗ log`), C5, E1 (the shell clause), E12 (i)–(iii), E13; B1 [value] (master D11) | the shell: `zero_slot`, `slot_complementarity`, `ramanujan_sum`; the Subject register: `half_turn`, `half_period`, `subject_constants`, `constants13`; the quadratic extension `F(η)` as `QuadraticAlgebra F ν 0`: `trace_eq`, `norm_eq`, `star_eq`, `klein_four`, `fixed_frobenius`, `trace_eq_one_iff`, `fixed_half_turn`, `norm_on_line`, `card_critical_line`, the spectral readout `readout`, `readout_on_line` (E12 (ii): every readout on the trace-one line, injective), `readout_slot_index` (the slot index `−g^k` is neither `0` nor `−1`), `frobenius_eq_star`, `norm_eq_pow`, `phase_circle` (`|U_{p+1}| = p + 1`, Frobenius as inversion), `quarter_turn_off_circle`; the scale-shift in the `𝔽_p` reading: `scale_shift` (`Tr S^r = (p − 1)[(p − 1) ∣ r]`), `power_characters_not_orthonormal`, `character_eigen`; the complex characters of the cycle: `chi_orthogonal`, `chi_shift` (eigenphases `2πj/(p − 1)`), `chi_inversion` (the constant mode carries the mean), `chi_parseval`, `flatness` (`Σ_{j≠0} r_j² = 1`); `vonMangoldt_moebius` (`Λ = μ ∗ log`, support the prime powers); `window_readback`, `prime_iff_window_irreducible`, `sqrt_sq_lt_prime`; `lab_pair`, `no_cycle_projection` |
 | `FrcLedger/Gravity.lean` | 21-gravity | A1, A9, C1 (the coefficient), C2, C4, C5, C7, C8, C9, C11, C12, C13, C16, C18, C19, C20, C25, X2, X8, P1, P2, P3, P4, P6, P7, P8 | the Carrier register: `calibration_congruence` (`4S = −1`, `(4S)² = 1`), `newton_register` (`G = 2S`: `2G = −1`, `(−2)G = 1`, the Gauss count `(2·4S)G = 1`, `c² = 2⁻¹ = 2S + 1`, `G = −c²`), `hbar_of_quarter_turn`, `hbar_register` (`ħ = 2√S` with `ħ² = −1` on every Carrier), `dilution`; the count face: `count_face` (`S/A = κ/p`, `S = (A/4)(1 − 1/p)`), `merger_area_law` (`ΔA = 2M₁M₂`, the radiating form, the instance `88 772 712`), `cover_forcing` (`2γ − β = 1 ⟺` the face ratio `2`, the deviation `(2/3)(2γ − β − 1)`, `β = 1`), `channel_q4` (`gcd(p − 1, 2(p + 1)) = 4`); the strong field: `operational_cut` (`e^{2M/r_f} = Ω`, `r_* < r_f < M ⟺ M > (ln Ω/2)²`, `ln Ω > 2`), `photon_sphere` (`r e^{2Gm/r} ≥ 2e·Gm`, equality at `r = 2Gm`), `shadow_bracket` (`2e/(3√3)` in `(1.0462, 1.0463)`, `3√3/(2e)` in `(0.9557, 0.9558)`, the Sgr A* excess), `isco` (the stationarity root `3 + √5`, `E² = e^{−2/r} r/4`), `isco_efficiency` (`1 − E` in `(5.47 %, 5.48 %)` against `5.72 %`), `capacity_ratio`, `redshift_linear`; the floor: `floor_value` (`a₀ = cH₀/2π` in `(1.04, 1.05) × 10⁻¹⁰`, `13 %` low, `0.66σ`), `registration_root` (the root of `wη² − 2η + w = 0` in `(0, 1)`, unique), `crossover_limits`, `crossover_deep_limit`, `crossover_newton_limit`, `interpolant_discriminant` (`0.05` at `g_N = 5a₀`); the spectrum: `scale_invariance_iff` (`k³P(k)` invariant `⟺ n_s = 1`), `log_ten_bounds`, `tilt_bracket` (`−π²/281` in `(−0.035124, −0.035123)`, `8.36σ–8.37σ`, `0.25 %` per factor two); the lattice: `central_difference_adjoint` (`Δᵀ = −Δ` on the cycle, the one-sided control), `dft`, `shift_theorem` (both forms), `dispersion_symbol`, `locked_sum`; the series: `exponential_reading` (Schwarzschild as `e^{−2 artanh(U/2)}`, the composition law violated), `pn_series` (`A − A_S = U³/6 + O(U⁴)`, `B − B_S = U²/2 + O(U³)` on `|U| ≤ ½`), `preferred_frame_scale` |
 
-Every theorem's docstring opens with the row it decides (`/-- 1:B2 … -/`); the ledger's source column names the
+Every theorem's docstring opens with the predicate it decides (`/-- 1:B2 … -/`); the ledger's source column names the
 theorem back (`\lean{Algebra.no_south_pole}`); `axioms.log` records, for every declaration, the axioms its proof
 depends on. `sorryAx` (an unfinished proof) and `Lean.ofReduceBool` (`native_decide`) fail the build.
 
@@ -45,7 +45,7 @@ by `decide` on `𝔽₁₃`, `𝔽₁₇`, `𝔽₂₉`; sums are structural rec
 `Nat` lemmas that carry `propext` are re-derived by induction in `FrcCore/Nat.lean`, including the division
 algorithm from the definition of `Nat.mod`.
 
-| core module | rows | declarations |
+| core module | predicates | declarations |
 |---|---|---|
 | `FrcCore/Nat.lean` | — | the arithmetic: cancellation, `mul_assoc`, the `%`-laws, `mod_spec`, `mod_unique`, subtraction, powers |
 | `FrcCore/Pigeonhole.lean` | — | `NoDup`, `erase`, the pigeonhole on `[0, n)` and `[1, n]` |

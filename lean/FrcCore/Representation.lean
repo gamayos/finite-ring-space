@@ -4,10 +4,10 @@ import FrcCore.Frame
 import FrcCore.Sum
 
 /-!
-# 4-rep — universal latent representation: the ledger rows with no axioms
+# 4-rep — universal latent representation: the ledger predicates with no axioms
 
 Rows of the predicate ledger of *Universal Latent Representation in Finite Ring Continuum* (Entropy 2026, 28, 40;
-tree `4-deepfrc-20251217`).  The representation rows are set theory over arbitrary types: a bijection is carried as
+tree `4-deepfrc-20251217`).  The representation predicates are set theory over arbitrary types: a bijection is carried as
 data (`Bij`: the map, its inverse, the two inverse laws), adequacy as a bijection through the observation map, and
 every statement is pointwise, so neither function extensionality nor choice is used.  The Gödel row is decided on
 two primes by induction, the hypersphere row in the shell's own arithmetic (the character chart has constant

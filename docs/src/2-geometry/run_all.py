@@ -1,7 +1,7 @@
 """
 run_all.py — the 2-geometry validation package, end to end
 ==========================================================
-Runs the four blocks in order, writes results.json (each record carrying the paper's ledger row(s) it decides),
+Runs the four blocks in order, writes results.json (each record carrying the paper's ledger predicate(s) it decides),
 and exits nonzero if any check fails.
 
     python3 run_all.py            # ≈ 20 s on a laptop; python ≥ 3.8, standard library only

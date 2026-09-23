@@ -1,6 +1,6 @@
 name: lean
 
-# The witness of record for the ledger's Lean rows.  Every push to lean/ rebuilds the project against
+# The witness of record for the ledger's Lean predicates.  Every push to lean/ rebuilds the project against
 # the pinned Mathlib, replays the compiled environment through the kernel (leanchecker), audits the
 # axioms under the strict rule (only propext, Classical.choice, Quot.sound — sorryAx, native_decide and
 # any home-rolled axiom fail), checks the committed axioms.log and the web copies, and compiles the

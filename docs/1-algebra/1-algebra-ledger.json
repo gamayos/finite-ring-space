@@ -46,21 +46,21 @@
      "label": "B2",
      "predicate": "Symmetry completeness (Thm.~\\ref{thm:symmetric-completeness}): the fourth roots of unity form the unique order-four subgroup $Q_4=\\{1,\\im,-1,-\\im\\}$; under the Klein four-group $\\langle x\\mapsto-x,\\,x\\mapsto x^{-1}\\rangle$, $Q_4$ is the union of the two size-two orbits $\\{\\pm1\\}$, $\\{\\pm\\im\\}$, and $\\Fpx\\setminus Q_4$ splits into exactly $\\kap-1$ orbits of size four. For $\\p\\equiv3\\pmod4$ no $\\im$ exists.",
      "tag": "T",
-     "source": "\\pywit{a\\_shell}{B2}\\newline \\leanwit{FrcCore}{B2} \\lean{Algebra.quarter\\_turn\\_exists, Algebra.klein\\_orbit\\_four, Algebra.card\\_fourth\\_roots, FRC.Shell.Frame.quarter\\_turn\\_exists, FRC.Shell.Frame.fourth\\_roots, FRC.Shell.Frame.klein\\_orbit\\_four, FRC.Shell.Frame.orbit\\_rep, FRC.Shell.Frame.orbit\\_rep\\_unique, FRC.Shell.s13\\_klein}",
+     "source": "\\pywit{a\\_shell}{p01004}\\newline \\leanwit{FrcCore}{p01004} \\lean{Algebra.quarter\\_turn\\_exists, Algebra.klein\\_orbit\\_four, Algebra.card\\_fourth\\_roots, FRC.Shell.Frame.quarter\\_turn\\_exists, FRC.Shell.Frame.fourth\\_roots, FRC.Shell.Frame.klein\\_orbit\\_four, FRC.Shell.Frame.orbit\\_rep, FRC.Shell.Frame.orbit\\_rep\\_unique, FRC.Shell.s13\\_klein}",
      "key": "p01004"
     },
     {
      "label": "B3",
      "predicate": "The oriented quarter-turn: $\\im=-\\gen^{\\kap}$ satisfies $\\im^{2}=-1$ for every primitive root $\\gen$; the two square roots of $-1$ are $\\{-\\gen^{\\kap},\\gen^{\\kap}\\}$, so the drive fixes which is $\\im$. On $\\F_{13}$, $\\gen=2$: $\\im=5$.",
      "tag": "T",
-     "source": "\\pywit{a\\_shell}{B3}\\newline \\leanwit{FrcCore}{B3} \\lean{Algebra.quarter\\_turn, Algebra.s13\\_quarter\\_turn, FRC.Shell.Frame.quarter\\_turn\\_sq, FRC.Shell.s13\\_datum}",
+     "source": "\\pywit{a\\_shell}{p01005}\\newline \\leanwit{FrcCore}{p01005} \\lean{Algebra.quarter\\_turn, Algebra.s13\\_quarter\\_turn, FRC.Shell.Frame.quarter\\_turn\\_sq, FRC.Shell.s13\\_datum}",
      "key": "p01005"
     },
     {
      "label": "B4",
      "predicate": "Affine reframing (Def.~\\ref{def:framed-field}, Lemma~\\ref{lem:affine-invariance}): $\\varphi_{a,b}(x)=a+bx$, $b\\neq0$, is a ring isomorphism $(\\Fp,+,\\cdot)\\to(\\Fp,\\oplus,\\otimes)$ with origin $a$ and unit $a+b$; every polynomial identity is frame-covariant.",
      "tag": "T",
-     "source": "\\pywit{a\\_shell}{B4}\\newline \\leanwit{FrcCore}{B4} \\lean{Algebra.affine\\_frame, FRC.Shell.Frame.affine\\_frame\\_unit}",
+     "source": "\\pywit{a\\_shell}{p01006}\\newline \\leanwit{FrcCore}{p01006} \\lean{Algebra.affine\\_frame, FRC.Shell.Frame.affine\\_frame\\_unit}",
      "key": "p01006"
     },
     {
@@ -87,7 +87,7 @@
      "label": "C2",
      "predicate": "The frame group (Prop.~\\ref{prop:frame-group}): $\\langle T_a,S_m\\rangle$ is the affine group of order $\\p(\\p-1)$, acting simply transitively on the frames $(a,b)$, $b\\neq0$; the set of frames is a torsor under it (00:C5, 00:D13).",
      "tag": "T",
-     "source": "\\texttt{manuscript}\\newline \\pywit{a\\_shell}{C2}\\newline \\leanwit{FrcCore}{C2} \\lean{FRC.Shell.Frame.Affine.simply\\_transitive, FRC.Shell.Frame.frame\\_count}",
+     "source": "\\texttt{manuscript}\\newline \\pywit{a\\_shell}{p01009}\\newline \\leanwit{FrcCore}{p01009} \\lean{FRC.Shell.Frame.Affine.simply\\_transitive, FRC.Shell.Frame.frame\\_count}",
      "key": "p01009"
     },
     {
@@ -101,7 +101,7 @@
      "label": "C4",
      "predicate": "Involutions and counts (Def.~\\ref{def:orbit-sphere}\\,(a)--(c)): $M_n(a)=M_{n+2\\kap}(-a)$ and $L_a(m)=L_{-a}(m+2\\kap)$ since $\\gen^{2\\kap}=-1$; $\\p-1$ distinct meridian lists in $2\\kap$ great circles; $2\\kap$ latitude pairs; one-sided vertex count $(\\p-1)^{2}/2+1$, the double cover $(\\p-1)^{2}$ (00:B11).",
      "tag": "T",
-     "source": "\\pywit{a\\_shell}{C4}\\newline \\leanwit{FrcCore}{C4} \\lean{Algebra.meridian\\_involution, FRC.Shell.Frame.meridian\\_involution}",
+     "source": "\\pywit{a\\_shell}{p01011}\\newline \\leanwit{FrcCore}{p01011} \\lean{Algebra.meridian\\_involution, FRC.Shell.Frame.meridian\\_involution}",
      "key": "p01011"
     }
    ]
@@ -121,7 +121,7 @@
      "label": "D2",
      "predicate": "The window law: $z\\mapsto z\\bmod\\p$ is injective on $W_H$ when $2H<\\p$; for $x,y\\in W_H$ the residue of $x\\pm y$ reads back the integer when $4H<\\p$, and that of $xy$ when $2H^{2}<\\p$ (the same injectivity on the windows $2H$ and $H^{2}$).",
      "tag": "T",
-     "source": "\\pywit{b\\_numbers}{D2}\\newline \\leanwit{FrcCore}{D2} \\lean{Algebra.framed\\_integer\\_window, FRC.Shell.Frame.window\\_injective, FRC.Shell.Frame.window\\_signed, FRC.Shell.Frame.window\\_add\\_readback, FRC.Shell.Frame.window\\_mul\\_readback}",
+     "source": "\\pywit{b\\_numbers}{p01013}\\newline \\leanwit{FrcCore}{p01013} \\lean{Algebra.framed\\_integer\\_window, FRC.Shell.Frame.window\\_injective, FRC.Shell.Frame.window\\_signed, FRC.Shell.Frame.window\\_add\\_readback, FRC.Shell.Frame.window\\_mul\\_readback}",
      "key": "p01013"
     },
     {
@@ -135,7 +135,7 @@
      "label": "D4",
      "predicate": "Scale-periodicity (Lemma~\\ref{thm:scale-periodicity}, in the field): $S_n(x)=x\\gen^{-n}$ satisfies $S_{n+(\\p-1)}=S_n$; the grids $G_n$ are $(\\p-1)$-periodic as ordered lists; the zoom $[x,n]\\mapsto[x,n+1]$ has order $\\p-1$. As lists of rationals $x/\\gen^{n}$ ($\\gen$ lifted to $\\Z$) the grids are not periodic: the periodicity is a relation of the field.",
      "tag": "T",
-     "source": "6:D4\\newline \\pywit{b\\_numbers}{D4}\\newline \\leanwit{FrcCore}{D4} \\lean{Algebra.scale\\_periodic, FRC.Shell.Frame.scale\\_periodic}",
+     "source": "6:D4\\newline \\pywit{b\\_numbers}{p01015}\\newline \\leanwit{FrcCore}{p01015} \\lean{Algebra.scale\\_periodic, FRC.Shell.Frame.scale\\_periodic}",
      "key": "p01015"
     },
     {
@@ -162,7 +162,7 @@
      "label": "E2",
      "predicate": "The extension by $X^{2}+1$ is trivial (Prop.~\\ref{prop:Cp-field} reversed): on the shell $\\Fp[X]/(X^{2}+1)\\cong\\Fp\\times\\Fp$ has zero divisors, $(X+\\im)(X-\\im)=0$, so it is not a field; $\\Fp[X]/(X^{2}+1)$ is a field exactly when $\\p\\equiv3\\pmod4$; the quadratic extension of the shell is $\\Fp[\\eta]$, $\\eta^{2}=\\nu$ a non-square (8-dirac B6).",
      "tag": "T",
-     "source": "\\pywit{b\\_numbers}{E2}\\newline \\leanwit{FrcCore}{E2} \\lean{Algebra.complex\\_chart\\_zero\\_divisor, FRC.Shell.Frame.complex\\_chart\\_zero\\_divisor}",
+     "source": "\\pywit{b\\_numbers}{p01019}\\newline \\leanwit{FrcCore}{p01019} \\lean{Algebra.complex\\_chart\\_zero\\_divisor, FRC.Shell.Frame.complex\\_chart\\_zero\\_divisor}",
      "key": "p01019"
     }
    ]
@@ -175,7 +175,7 @@
      "label": "F1",
      "predicate": "No element of additive order two (Thm.~\\ref{thm:no-south-pole}): $2s=0$ forces $s=0$; the antipode of the origin on the additive cycle is not a residue; it sits between $2\\kap=(\\p-1)/2$ and $2\\kap+1=(\\p+1)/2=2^{-1}$ (20-rh B8).",
      "tag": "T",
-     "source": "\\pywit{b\\_numbers}{F1}\\newline \\leanwit{FrcCore}{F1} \\lean{Algebra.no\\_south\\_pole, FRC.Shell.Frame.no\\_south\\_pole}",
+     "source": "\\pywit{b\\_numbers}{p01020}\\newline \\leanwit{FrcCore}{p01020} \\lean{Algebra.no\\_south\\_pole, FRC.Shell.Frame.no\\_south\\_pole}",
      "key": "p01020"
     },
     {
@@ -195,35 +195,35 @@
      "label": "G1",
      "predicate": "Solving in the substrate (first clause): $f\\in\\Fp[X]$ has a root in $\\Fp$ iff $f$ and $X^{\\p}-X=\\prod_{a}(X-a)$ are not coprime; the gcd counts the distinct roots and Cantor--Zassenhaus splitting finds them, exactly. An equation without a root in $\\Fp$ is recognised, not extended (E2).",
      "tag": "T",
-     "source": "\\pywit{c\\_conjecture}{G1}\\newline \\leanwit{FrcCore}{G1} \\lean{Algebra.root\\_iff\\_not\\_coprime, FRC.Shell.Poly.Frame.root\\_iff\\_common\\_factor, FRC.Shell.Poly.Frame.root\\_bound, FRC.Shell.Frame.fermat}",
+     "source": "\\pywit{c\\_conjecture}{p01026}\\newline \\leanwit{FrcCore}{p01026} \\lean{Algebra.root\\_iff\\_not\\_coprime, FRC.Shell.Poly.Frame.root\\_iff\\_common\\_factor, FRC.Shell.Poly.Frame.root\\_bound, FRC.Shell.Frame.fermat}",
      "key": "p01026"
     },
     {
      "label": "G2",
      "predicate": "Limit-like approximation (second clause), across the tower: for every real $r$ and $\\varepsilon>0$ some shell $\\p=4\\kap+1$ carries a framed rational $x/2^{n}$, $|x|\\le2\\kap$, within $\\varepsilon$ of $r$ (primes $\\equiv1\\pmod4$ beyond every bound). One shell resolves to D5's bound; the limit is the tower, not a completion.",
      "tag": "T",
-     "source": "\\pywit{c\\_conjecture}{G2}\\newline \\leanwit{FrcLedger}{G2} \\lean{Algebra.tower\\_density}",
+     "source": "\\pywit{c\\_conjecture}{p01027}\\newline \\leanwit{FrcLedger}{p01027} \\lean{Algebra.tower\\_density}",
      "key": "p01027"
     },
     {
      "label": "G3",
      "predicate": "Continuous symmetry, the abelian case (third clause): $\\Fpx\\simeq C_{\\p-1}\\simeq SO(2,\\Fp)$ (6:E2) is a $\\pi/(\\p-1)$-net of $U(1)$ under $k\\mapsto e^{2\\pi\\im k/(\\p-1)}$; the rounding $k(\\theta)=\\lfloor(\\p-1)\\theta/2\\pi+\\tfrac12\\rfloor$ has angle and chord error $\\le\\pi/(\\p-1)$ and group-law defect at most one step.",
      "tag": "T",
-     "source": "6:E2\\newline \\pywit{c\\_conjecture}{G3}\\newline \\leanwit{FrcLedger}{G3} \\lean{Algebra.circle\\_net, Algebra.group\\_law\\_defect}",
+     "source": "6:E2\\newline \\pywit{c\\_conjecture}{p01028}\\newline \\leanwit{FrcLedger}{p01028} \\lean{Algebra.circle\\_net, Algebra.group\\_law\\_defect}",
      "key": "p01028"
     },
     {
      "label": "G4",
      "predicate": "Continuous symmetry, the non-abelian obstruction: no finite subgroup of $SO(3)$ is an $\\varepsilon$-net for $\\varepsilon<\\varepsilon_0=\\arccos\\big((3\\sqrt5-1)/8\\big)\\approx44.5^\\circ$, the covering radius of the icosahedral group (A3); the tetrahedral, cyclic and dihedral groups have radius $\\ge\\pi/2$, the octahedral $\\approx62.8^\\circ$. Finite subgroups cannot approximate $SO(3)$; the window does (G5).",
      "tag": "T",
-     "source": "A3\\newline \\pywit{c\\_conjecture}{G4}",
+     "source": "A3\\newline \\pywit{c\\_conjecture}{p01029}",
      "key": "p01029"
     },
     {
      "label": "G5",
      "predicate": "Continuous symmetry, the non-abelian case resolved by the window: the framed quaternions $W_H^{4}$, read in a shell $\\p>8H^{2}$, compose exactly (products land in $W_{4H^{2}}$); normalised, they are an $\\varepsilon$-net of $SO(3)$ with $\\varepsilon\\le2\\arcsin(1/H)$ (round $Hs$ to the lattice). At $H=3$, $\\p=73$: $38.9^\\circ<\\varepsilon_0$, finer than any finite subgroup; measured $30.0^\\circ$.",
      "tag": "T",
-     "source": "Section~\\ref{sec:conclusion}\\newline \\pywit{c\\_conjecture}{G5}\\newline \\leanwitin{FrcCore}{Quaternion}{G5} \\lean{FRC.Shell.Frame.quaternion\\_window, FRC.Shell.Frame.read\\_mul}",
+     "source": "Section~\\ref{sec:conclusion}\\newline \\pywit{c\\_conjecture}{p01030}\\newline \\leanwitin{FrcCore}{Quaternion}{p01030} \\lean{FRC.Shell.Frame.quaternion\\_window, FRC.Shell.Frame.read\\_mul}",
      "key": "p01030"
     }
    ]

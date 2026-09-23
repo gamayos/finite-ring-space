@@ -2,7 +2,7 @@ import FrcCore.Algebra
 import FrcCore.Instances
 
 /-!
-# FrcCore.Rh — the shell rows of 20-rh with no axioms
+# FrcCore.Rh — the shell predicates of 20-rh with no axioms
 
 The exact arithmetic of *Riemann Hypothesis over the Holographic Substrate* (20-rh), block B and the `𝔽_p`
 reading of the shell theorem, on the kernel alone. For every frame `(τ; 0, 1, g)` of capacity `κ`

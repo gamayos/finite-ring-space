@@ -44,15 +44,15 @@ def run():
     ok = [True] * 5
     for p, g in FRAMES:
         d = dft_checks(p, g); ok = [a and b for a, b in zip(ok, d)]
-    # row 2:F1
+    # predicate 2:F1
     gc.check("D1", "g a principal root: g^n = 1, sum_j g^{jk} = 0 for 0 < k < n, n^-1 = -1", ok[0])
-    # row 2:F3
+    # predicate 2:F3
     gc.check("D2", "inversion W^-1 = -(g^{-jk}) on (13, 2), (13, 11), (17, 3), (29, 2)", ok[1])
-    # row 2:F4
+    # predicate 2:F4
     gc.check("D3", "polynomial reading F(v)_k = P_v(g^k)", ok[2])
-    # row 2:F5
+    # predicate 2:F5
     gc.check("D4", "covariance F_{g^u}(v') = F_g(v) with v'_j = v_{uj}", ok[3])
-    # row 2:F6
+    # predicate 2:F6
     gc.check("D5", "external transport chi(g^m) = exp(-2 pi i m/n), injective: step, half-period, quarter-turn", ok[4], kind="CHART")
 
 if __name__ == "__main__":

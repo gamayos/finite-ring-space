@@ -1,7 +1,7 @@
 """
 run_all.py — the 1-algebra validation package, end to end
 =========================================================
-Runs the three blocks in order, writes results.json (each record carrying the paper's ledger row it decides),
+Runs the three blocks in order, writes results.json (each record carrying the paper's ledger predicate it decides),
 and exits nonzero if any check fails.
 
     python3 run_all.py            # ≈ 10 s on a laptop; python ≥ 3.8, standard library only

@@ -1,7 +1,7 @@
 import Mathlib
 
 /-!
-# 14-entropy — the de Sitter import, the octant and the age–rate locus: the ledger rows in Lean (2026-09-19)
+# 14-entropy — the de Sitter import, the octant and the age–rate locus: the ledger predicates in Lean (2026-09-19)
 
 Rows of the predicate ledger of *De Sitter Entropy Estimates over Finite Holographic Substrate* (tree
 `14-entropy-20260722`). The import and its congruences: `Ω = 4S + 1` fixes `S = (Ω − 1)/4` and `4 ∣ Ω − 1`

@@ -4,7 +4,7 @@
     python3 src/make_pkg.py 10-dimensions [--out docs/pkg] [--version 20260923]
 
 writes docs/pkg/frc-10-dimensions-<version>.tar.gz: a PEP 517 source distribution of `src/10-dimensions/` under the import
-name `frc_10_dimensions` (the directory's `__init__.py` exports `row`), built by hand so that no build tool is needed here —
+name `frc_10_dimensions` (the directory's `__init__.py` exports `predicate`), built by hand so that no build tool is needed here —
 pip builds it on installation (setuptools ≥ 61 in pip's isolated build environment). Every `.py` of the directory is
 included; notebooks, results and README are not. The version is the date, YYYYMMDD, unless given; the file name is the
 project name as the notebooks spell it plus the version (pip splits a find-links file name at the dash after the requested
@@ -13,7 +13,7 @@ same package are removed from the directory, and docs/pkg/index.html is rewritte
 "find links" page. A notebook cell then needs only
 
     !pip install -q frc-10-dimensions --find-links https://finitering.space/pkg/
-    from frc_10_dimensions import row; row("10:C5")
+    from frc_10_dimensions import predicate; predicate("10:C5")
 
 and pip, given a named requirement, checks the installed set first: a second call in the same session is
 "Requirement already satisfied" — no download, no rebuild (a URL archive would be rebuilt on every call).
@@ -28,7 +28,7 @@ def sdist(pkgdir, out_dir, version):
     name = "frc-" + pkgdir; mod = "frc_" + pkgdir.replace("-", "_")
     if not (d / "__init__.py").exists(): sys.exit(f"{d}/__init__.py missing: the package needs its import surface")
     pyproject = (f'[build-system]\nrequires = ["setuptools>=61"]\nbuild-backend = "setuptools.build_meta"\n\n'
-                 f'[project]\nname = "{name}"\nversion = "{version}"\ndescription = "The validation package of the FRC paper {pkgdir}: one check per ledger row, exact arithmetic"\n'
+                 f'[project]\nname = "{name}"\nversion = "{version}"\ndescription = "The validation package of the FRC paper {pkgdir}: one check per ledger predicate, exact arithmetic"\n'
                  f'requires-python = ">=3.9"\nlicense = {{text = "MIT"}}\n\n[tool.setuptools]\npackages = ["{mod}"]\n')
     pkginfo = f"Metadata-Version: 2.1\nName: {name}\nVersion: {version}\nSummary: The validation package of the FRC paper {pkgdir}\n"
     files = sorted(p for p in d.glob("*.py"))

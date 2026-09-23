@@ -6,8 +6,8 @@ dimcommon.py — shared registry for the 10-dimensions validation package
 random sampling. The suite verify_domains.py is organised in eight layers A–H, each a family of micro-checks; the
 lift script check_lift.py decides the five claims L1–L5 of Proposition `lift` on two shells and two Carriers. A
 family is one check of the registry, identified as <script tag>.<family> (dom.A … dom.H, lift.L1 … lift.L5), and
-names the row(s) of the paper's predicate ledger it witnesses (LEDGER; rows cited as 10:XN). The ledger's source
-column names the witness script; the family checks are listed on the public page from results.json. Master-ledger rows reached through the paper rows: 00:D7 (10:D7),
+names the predicate(s) of the paper's ledger it witnesses (LEDGER; predicates cited as 10:XN). The ledger's source
+column names the witness script; the family checks are listed on the public page from results.json. Master-ledger predicates reached through the paper predicates: 00:D7 (10:D7),
 00:C12 (10:F3), 00:C13 (10:E9, 10:G2), 00:C8 (10:E4), 00:B10 (10:E5).
 
 check_gates.py (105 source gates on the manuscript's text) runs in the corpus tree only, where sections/*.tex
@@ -49,37 +49,37 @@ LABELS = {
 
 SCRIPT = {"dom": "verify_domains", "lift": "check_lift"}
 
-# the deciding family of each witnessed row: the one whose checks decide the row's statement (the other families
-# that touch the row are corroboration, listed by row() from the records)
-ROWS = {
+# the deciding family of each witnessed predicate: the one whose checks decide the predicate's statement (the other families
+# that touch it are corroboration, listed by predicate() from the records)
+PREDICATES = {
     "10:C2": "dom.A", "10:C3": "dom.A", "10:C5": "dom.E", "10:D1": "dom.F", "10:D2": "dom.A", "10:D3": "lift.L1",
     "10:D6": "dom.A", "10:E2": "dom.B", "10:E3": "dom.B", "10:E4": "dom.C", "10:E5": "dom.H", "10:E9": "dom.D",
     "10:F2": "dom.A", "10:F3": "dom.D", "10:F4": "dom.A", "10:G1": "dom.A", "10:G2": "dom.G", "10:G3": "dom.A",
     "10:F5": "dom.G", "10:G4": "dom.G",
 }
 _FAM = [None, None]
-_RAN = set()                                            # scripts already run in this session (row() runs each once)
+_RAN = set()                                            # scripts already run in this session (predicate() runs each once)
 
 def markers():
-    """row label -> (script file, line) of its `# row …` marker: the line of the check that decides the row."""
+    """predicate label -> (script file, line) of its `# predicate …` marker: the line of the check that decides it."""
     import re
     out = {}
     for f in sorted(set(SCRIPT.values())):
         for i, line in enumerate(open(os.path.join(os.path.dirname(os.path.abspath(__file__)), f + ".py"), encoding="utf-8"), 1):
-            m = re.match(r"\s*# row (.*)", line)
+            m = re.match(r"\s*# predicate (.*)", line)
             if m:
                 for lab in m.group(1).split(","): out.setdefault(lab.strip(), (f + ".py", i))
     return out
 
-def row(label, lines=14):
-    """Verify one ledger row: run the scripts of the families that cite it (each once per session), print the deciding
-    check's source (from its `# row` marker) and every family record that cites the row, and return True iff all pass."""
-    fam = ROWS.get(label)
+def predicate(label, lines=14):
+    """Verify one ledger predicate: run the scripts of the families that cite it (each once per session), print the deciding
+    check's source (from its `# predicate` marker) and every family record that cites the predicate, and return True iff all pass."""
+    fam = PREDICATES.get(label)
     if fam is None:
-        print(f"{label}: no python witness (see the row's Lean witness or its source)"); return None
+        print(f"{label}: no python witness (see the predicate's Lean witness or its source)"); return None
     script = SCRIPT.get(fam.split(".")[0], fam)
     citing = {SCRIPT.get(f.split(".")[0], f) for f, rows in LEDGER.items() if label in [t.strip() for t in rows.split(",")]}
-    for sc in sorted({script} | citing):                  # the deciding script and every script whose families cite the row, each once per sessionthe driver row runs every suite
+    for sc in sorted({script} | citing):                  # the deciding script and every script whose families cite the predicate, each once per session
         if sc not in _RAN:
             import importlib
             mod = importlib.import_module("." + sc, __package__) if __package__ else importlib.import_module(sc); mod.run(); _RAN.add(sc)

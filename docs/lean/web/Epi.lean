@@ -4,7 +4,7 @@ import Mathlib
 /-! FrcLedger/Epi.lean -/
 
 /-!
-# 13-epi — the classical constants on the shell: the ledger rows in Lean (2026-09-18)
+# 13-epi — the classical constants on the shell: the ledger predicates in Lean (2026-09-18)
 
 Rows of the predicate ledger of *Finite Field Realisation of the Classical Constants π and e* (tree
 `13-epi-20260713`).  The wall of `e`: Wilson reflection, the wall identity `!(p−1) ≡ !p`, the terminal residue
