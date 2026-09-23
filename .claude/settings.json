@@ -5,7 +5,9 @@
       "Bash(git add *)",
       "Bash(rm .git/index.lock)",
       "Bash(git commit *)",
-      "Bash(git push *)"
+      "Bash(git push *)",
+      "Bash(git fetch *)",
+      "Bash(git rebase *)"
     ]
   }
 }
