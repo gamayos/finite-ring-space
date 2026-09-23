@@ -60,7 +60,7 @@ const PUBLICATIONS = [
         "title": "the paper's predicate ledger"
       },
       {
-        "href": "https://colab.research.google.com/github/gamayos/finite-ring-space/blob/main/src/1-algebra/1-algebra-main.ipynb",
+        "href": "https://colab.research.google.com/github/gamayos/finite-ring-space/blob/main/src/1-algebra/frc-1-algebra.ipynb",
         "label": "notebook",
         "title": "the validation notebook on Google Colab"
       }
@@ -84,7 +84,7 @@ const PUBLICATIONS = [
         "title": "the paper's predicate ledger"
       },
       {
-        "href": "https://colab.research.google.com/github/gamayos/finite-ring-space/blob/main/src/2-geometry/2-geometry-main.ipynb",
+        "href": "https://colab.research.google.com/github/gamayos/finite-ring-space/blob/main/src/2-geometry/frc-2-geometry.ipynb",
         "label": "notebook",
         "title": "the validation notebook on Google Colab"
       }
@@ -234,7 +234,7 @@ const PUBLICATIONS = [
         "title": "the paper's predicate ledger"
       },
       {
-        "href": "https://colab.research.google.com/github/gamayos/finite-ring-space/blob/main/src/10-dimensions/10-dimensions-main.ipynb",
+        "href": "https://colab.research.google.com/github/gamayos/finite-ring-space/blob/main/src/10-dimensions/frc-10-dimensions.ipynb",
         "label": "notebook",
         "title": "the validation notebook on Google Colab"
       }

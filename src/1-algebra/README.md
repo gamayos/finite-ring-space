@@ -3,7 +3,7 @@
 Validation package of *Relativistic Algebra over Finite Ring Continuum* (Akhtman, Axioms 2025, 14, 636,
 doi 10.3390/axioms14080636), `1-algebra` of the FRC corpus, added with the paper's predicate ledger
 (Appendix A, 16 September 2026). Three block scripts, sixteen checks, standard library only, driven by
-`1-algebra-main.ipynb` (Google Colab: one cell per ledger predicate, any cell on its own, or *Runtime → Run all*, ≈ 45 s) or by `run_all.py`.
+`frc-1-algebra.ipynb` (Google Colab: one cell per ledger predicate, any cell on its own, or *Runtime → Run all*, ≈ 45 s) or by `run_all.py`.
 
 Every check names the predicate of the paper's predicate ledger it witnesses (Appendix A "Predicate ledger and machine verification", 27 predicates in blocks A–G, Y,
 cited as `1:XN`; public copy `docs/1-algebra/1-algebra-ledger.html`), and the ledger's source column links, for each
@@ -37,7 +37,7 @@ reads it to colour the witnesses on the public ledger page.
 
 ## One cell per predicate
 
-`1-algebra-main.ipynb` (built by `make_notebook.py`, executed) carries one cell per witnessed ledger predicate, addressable by
+`frc-1-algebra.ipynb` (built by `make_notebook.py`, executed) carries one cell per witnessed ledger predicate, addressable by
 its stable id (the predicate's accession key, e.g. `p01004` for `1:B2`; the ledger page opens the notebook at the cell). Every cell is self-contained: it installs the
 package from the site (`pip install frc-1-algebra --find-links https://finitering.space/pkg/` — a named requirement,
 so pip reports it already satisfied once installed; the sdist `frc-1-algebra-<version>.tar.gz` that `src/make_pkg.py`

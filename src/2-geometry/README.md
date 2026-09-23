@@ -3,7 +3,7 @@
 Validation package of *Geometry and Constants in Finite Ring Continuum* (Akhtman, Symmetry 2026, 18, 751),
 `2-geometry` of the FRC corpus, added with the paper's predicate ledger (Appendix A, 17 September 2026) from the
 corpus script `validation/verify_geometry.py`. Four block scripts, eighteen checks, standard library only, driven
-by `2-geometry-main.ipynb` (Google Colab: one cell per ledger predicate, any cell on its own, or *Runtime → Run all*, ≈ 30 s)
+by `frc-2-geometry.ipynb` (Google Colab: one cell per ledger predicate, any cell on its own, or *Runtime → Run all*, ≈ 30 s)
 or by `run_all.py`.
 
 Every check names the predicate(s) of the paper's ledger it witnesses (Appendix A "Predicate ledger and machine
@@ -41,7 +41,7 @@ reads it to colour the witnesses on the public ledger page.
 
 ## One cell per predicate
 
-`2-geometry-main.ipynb` (built by `make_notebook.py`, executed) carries one cell per witnessed ledger predicate, addressable by
+`frc-2-geometry.ipynb` (built by `make_notebook.py`, executed) carries one cell per witnessed ledger predicate, addressable by
 its stable id (the predicate's accession key, e.g. `p02013` for `2:D1`; the ledger page opens the notebook at the cell). Every cell is self-contained: it installs the
 package from the site (`pip install frc-2-geometry --find-links https://finitering.space/pkg/` — a named requirement,
 so pip reports it already satisfied once installed; the sdist `frc-2-geometry-<version>.tar.gz` that `src/make_pkg.py`
