@@ -53,16 +53,17 @@ const PUBLICATIONS = [
     "doi": "https://doi.org/10.3390/axioms14080636",
     "doiLabel": "axioms14080636",
     "ledger": "1-algebra/index.html",
+    "schema": true,
     "links": [
       {
-        "href": "1-algebra/index.html",
-        "label": "ledger",
-        "title": "the paper's predicate ledger"
+        "href": "src/1-algebra/index.html",
+        "label": "python",
+        "title": "the validation package src/1-algebra: its scripts, rendered — every check passing"
       },
       {
-        "href": "https://colab.research.google.com/github/gamayos/finite-ring-space/blob/main/src/1-algebra/frc-1-algebra.ipynb",
-        "label": "notebook",
-        "title": "the validation notebook on Google Colab"
+        "href": "lean/core/Algebra.html",
+        "label": "lean",
+        "title": "the Lean module FrcCore/Algebra: no Mathlib, no axioms"
       }
     ]
   },
@@ -77,16 +78,17 @@ const PUBLICATIONS = [
     "doi": "https://doi.org/10.3390/sym18050751",
     "doiLabel": "sym18050751",
     "ledger": "2-geometry/index.html",
+    "schema": true,
     "links": [
       {
-        "href": "2-geometry/index.html",
-        "label": "ledger",
-        "title": "the paper's predicate ledger"
+        "href": "src/2-geometry/index.html",
+        "label": "python",
+        "title": "the validation package src/2-geometry: its scripts, rendered — every check passing"
       },
       {
-        "href": "https://colab.research.google.com/github/gamayos/finite-ring-space/blob/main/src/2-geometry/frc-2-geometry.ipynb",
-        "label": "notebook",
-        "title": "the validation notebook on Google Colab"
+        "href": "lean/core/Geometry.html",
+        "label": "lean",
+        "title": "the Lean module FrcCore/Geometry: no Mathlib, no axioms"
       }
     ]
   },
@@ -227,16 +229,17 @@ const PUBLICATIONS = [
     "doi": "https://doi.org/10.20944/preprints202605.0668.v1",
     "doiLabel": "pp202605.0668.v1",
     "ledger": "10-dimensions/index.html",
+    "schema": true,
     "links": [
       {
-        "href": "10-dimensions/index.html",
-        "label": "ledger",
-        "title": "the paper's predicate ledger"
+        "href": "src/10-dimensions/index.html",
+        "label": "python",
+        "title": "the validation package src/10-dimensions: its scripts, rendered — every check passing"
       },
       {
-        "href": "https://colab.research.google.com/github/gamayos/finite-ring-space/blob/main/src/10-dimensions/frc-10-dimensions.ipynb",
-        "label": "notebook",
-        "title": "the validation notebook on Google Colab"
+        "href": "lean/core/Dimensions.html",
+        "label": "lean",
+        "title": "the Lean module FrcCore/Dimensions: no Mathlib, no axioms"
       }
     ]
   },
