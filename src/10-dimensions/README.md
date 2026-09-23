@@ -30,7 +30,7 @@ Run: `python3 run_all.py`. Each suite also runs alone (`python3 verify_domains.p
 
 `10-dimensions-main.ipynb` (built by `make_notebook.py`, executed) carries one cell per witnessed ledger row,
 addressable by its stable id (`row-10-C5`; the ledger page opens the notebook at the cell). Every cell is self-contained:
-it installs the package from the site (`pip install frc-10-dimensions --find-links https://www.finitering.space/pkg/` — a named requirement, so pip reports it already satisfied once installed; the sdist `frc_10_dimensions-<version>.tar.gz`
+it installs the package from the site (`pip install frc-10-dimensions --find-links https://www.finitering.space/pkg/` — a named requirement, so pip reports it already satisfied once installed; the sdist `frc-10-dimensions-<version>.tar.gz`
 `src/make_pkg.py` writes under `docs/pkg/` at each site build; import name `frc_10_dimensions`, `__init__.py` exporting
 `row`), states the row and runs `row("10:C5")`: the scripts of the families that cite the row run once per session (the deciding family is `dimcommon.ROWS`), the check
 that decides the row is printed from the script's own source — the line under its `# row 10:C5` marker — and every family
