@@ -1,0 +1,751 @@
+import Mathlib
+
+/-!
+# 20-rh — the Riemann Hypothesis over the holographic substrate: the shell rows in Lean (2026-09-19)
+
+The exact arithmetic of the paper's block B, the constants of its Subject register, and the two character
+readings of the shell theorem — rows B2, B4–B10 (B8's shell clauses), C2's identity `Λ = μ ∗ log`, C5, E1's shell
+clause, E12 (i) and (iii), and E13's orthogonality, inversion and Parseval — proved for every shell: an arbitrary
+finite field `F` with `4κ + 1` elements and a primitive root `g`, or `ZMod p` where the prime is needed, and, for
+the analytic identities, over any integral domain or over `ℂ`; the laboratory pair `(13, 233)` of B1 decided. The zero-slot and slot complementarity
+(B4, B5); the Ramanujan sum `c_p(n) = −1` off the origin (B7); the quadratic extension `F(η)`, `η² = ν` a
+nonsquare, as Mathlib's `QuadraticAlgebra F ν 0`: its norm-one circle of order `p + 1`, Frobenius as
+conjugation and as inversion on the circle, the quarter-turn Frobenius-fixed and off the circle (B6); the finite
+critical line `Tr z = 1 ⟺ Re z = 2⁻¹ = 2κ + 1 = −π` with `p` points and energy `¼ − νb²` (B8); the Klein
+four-group of Frobenius and the functional-equation half-turn with its three fixed loci (B9); the constants
+`π = 2κ`, `2π = −1`, `i = g^{−κ}`, `i² = −1`, `g^π = −1`, `e^{iπ} = −1` on the odd representative (B10, with
+`𝔽₁₃` decided); the scale-shift on the power characters and its trace `(p − 1)[(p − 1) ∣ r]` (E1, E12(iii), the
+`𝔽_p` reading); the complex characters of the cycle: orthonormality, Fourier inversion with the constant mode
+carrying the mean, the shift as a diagonal operator with eigenphases `2πj/(p − 1)`, Parseval, and the
+mean-square flatness `Σ_{j≠0} r_j² = 1` (E12(i), E12(iii), E13, C5); `Λ = μ ∗ log` and its support (C2); frame
+coincidence below the horizon (B2); the laboratory pair `(13, 233)` (B1). Every theorem's docstring opens with
+the row it decides. Classical (tier 2) on Mathlib's hierarchy; the shell arithmetic is also in the core
+(`FrcCore/Rh.lean`) with no axioms.
+-/
+
+namespace FRC.Rh
+
+open Finset
+
+/-! ## The shell: the zero-slot, slot complementarity and the Ramanujan sum (rows B4, B5, B7) -/
+
+section shell
+
+variable {F : Type*} [Field F] [Fintype F] [DecidableEq F]
+
+/-- 20:B4 — zero-slot, every shell: `Σ_{x ∈ F^×} x^k = 0` on every nonterminal exponent `1 ≤ k ≤ p − 2`, and
+`= −1` on the full cycle `k = p − 1`. -/
+theorem zero_slot :
+    (∀ k, 1 ≤ k → k ≤ Fintype.card F - 2 → ∑ x : Fˣ, ((x : F) ^ k) = 0) ∧
+    ∑ x : Fˣ, ((x : F) ^ (Fintype.card F - 1)) = -1 := by
+  refine ⟨fun k hk1 hk2 => ?_, ?_⟩
+  · rw [FiniteField.sum_pow_units, ite_eq_right]
+    intro hdvd
+    have := Nat.le_of_dvd (by omega) hdvd
+    omega
+  · rw [FiniteField.sum_pow_units, ite_eq_left dvd_rfl]
+
+omit [DecidableEq F] in
+/-- 20:B5 — slot complementarity, every shell: `Φ(k) = −g^k` is injective on the nontrivial spectral slots
+`1 ≤ k ≤ p − 2` and maps them onto the nonterminal additive slots `F^× ∖ {−1}`. -/
+theorem slot_complementarity (g : F) (hg : IsPrimitiveRoot g (Fintype.card F - 1)) :
+    Set.InjOn (fun k : ℕ => -(g ^ k)) (Set.Icc 1 (Fintype.card F - 2)) ∧
+    (fun k : ℕ => -(g ^ k)) '' Set.Icc 1 (Fintype.card F - 2) = {y : F | y ≠ 0 ∧ y ≠ -1} := by
+  have h1 : 1 < Fintype.card F := Fintype.one_lt_card
+  have : NeZero (Fintype.card F - 1) := ⟨by omega⟩
+  have hg0 : g ≠ 0 := by
+    rintro rfl
+    have := hg.pow_eq_one
+    rw [zero_pow (by omega)] at this
+    exact zero_ne_one this
+  refine ⟨fun a ha b hb hab => ?_, ?_⟩
+  · simp only [Set.mem_Icc] at ha hb
+    exact hg.pow_inj (by omega) (by omega) (neg_injective hab)
+  · ext y
+    simp only [Set.mem_image, Set.mem_Icc, Set.mem_ofPred_eq]
+    constructor
+    · rintro ⟨k, ⟨hk1, hk2⟩, rfl⟩
+      refine ⟨neg_ne_zero.2 (pow_ne_zero _ hg0), fun h => ?_⟩
+      have := neg_injective h
+      exact hg.pow_ne_one_of_pos_of_lt (by omega) (by omega) this
+    · rintro ⟨hy0, hy1⟩
+      have hpow : (-y) ^ (Fintype.card F - 1) = 1 :=
+        FiniteField.pow_card_sub_one_eq_one (-y) (neg_ne_zero.2 hy0)
+      obtain ⟨i, hi, hiy⟩ := hg.eq_pow_of_pow_eq_one hpow
+      have hi0 : i ≠ 0 := by
+        rintro rfl
+        rw [pow_zero] at hiy
+        exact hy1 (by rw [← neg_neg y, ← hiy])
+      exact ⟨i, ⟨by omega, by omega⟩, by rw [hiy, neg_neg]⟩
+
+end shell
+
+section ramanujan
+
+variable {R : Type*} [CommRing R] [IsDomain R]
+
+/-- 20:B7 — the flat ground state, in any integral domain with a primitive `p`-th root of unity `ω` (the
+cyclotomic ledger, `𝔽_q` with `q ≡ 1 (mod p)`, or `ℂ`): the full-modulus Ramanujan sum `c_p(n) = Σ_{a=1}^{p−1}
+ω^{an}` equals `−1` for every `n ≢ 0 (mod p)`, and `p − 1` at the origin; the mode at the spectral origin carries
+no prime information. -/
+theorem ramanujan_sum {p : ℕ} (hp : 0 < p) {ω : R} (hω : IsPrimitiveRoot ω p) (n : ℕ) :
+    (¬ p ∣ n → ∑ a ∈ Ico 1 p, ω ^ (a * n) = -1) ∧
+    (p ∣ n → ∑ a ∈ Ico 1 p, ω ^ (a * n) = ((p - 1 : ℕ) : R)) := by
+  have hsplit : ∑ a ∈ range p, ω ^ (a * n) = 1 + ∑ a ∈ Ico 1 p, ω ^ (a * n) := by
+    obtain ⟨m, rfl⟩ : ∃ m, p = m + 1 := ⟨p - 1, by omega⟩
+    rw [sum_range_succ', sum_Ico_eq_sum_range, Nat.add_sub_cancel, zero_mul, pow_zero, add_comm]
+    congr 1
+    refine sum_congr rfl fun a _ => ?_
+    rw [add_comm 1 a]
+  constructor
+  · intro hn
+    have hx1 : ω ^ n ≠ 1 := fun h => hn ((hω.pow_eq_one_iff_dvd n).1 h)
+    have hxp : (ω ^ n) ^ p = 1 := by rw [← pow_mul, mul_comm, pow_mul, hω.pow_eq_one, one_pow]
+    have hsum : ∑ a ∈ range p, ω ^ (a * n) = 0 := by
+      have h := geom_sum_mul (ω ^ n) p
+      rw [hxp, sub_self] at h
+      have h' : ∑ a ∈ range p, ω ^ (a * n) = ∑ a ∈ range p, (ω ^ n) ^ a :=
+        sum_congr rfl fun a _ => by rw [← pow_mul, mul_comm]
+      rw [h']
+      exact (mul_eq_zero.1 h).resolve_right (sub_ne_zero.2 hx1)
+    rw [hsum] at hsplit
+    exact (neg_eq_of_add_eq_zero_right hsplit.symm).symm
+  · intro hn
+    have hone : ∀ a, ω ^ (a * n) = 1 := fun a => by
+      obtain ⟨c, rfl⟩ := hn
+      rw [← mul_assoc, mul_comm a, mul_assoc, pow_mul, hω.pow_eq_one, one_pow]
+    simp only [hone, sum_const, Nat.card_Ico, nsmul_eq_mul, mul_one]
+
+end ramanujan
+
+/-! ## The Subject register on the shell (rows B10, B8's arithmetic) -/
+
+section constants
+
+variable {F : Type*} [Field F] [Fintype F]
+
+/-- `2 ≠ 0` on a shell of `4κ + 1` elements. -/
+lemma two_ne_zero_of_card (κ : ℕ) (hκ : Fintype.card F = 4 * κ + 1) : (2 : F) ≠ 0 := by
+  intro h2
+  have hc : ((4 * κ + 1 : ℕ) : F) = 0 := by rw [← hκ]; exact FiniteField.cast_card_eq_zero F
+  have : ((4 * κ + 1 : ℕ) : F) = 2 * (2 * κ) + 1 := by push_cast; ring
+  rw [this, h2, zero_mul, zero_add] at hc
+  exact one_ne_zero hc
+
+/-- 20:B8, 20:B10 — the half-turn arithmetic on every shell of `4κ + 1` elements: `2π ≡ −1` with `π = 2κ`,
+and `2⁻¹ = 2κ + 1 = −π`. -/
+theorem half_turn (κ : ℕ) (hκ : Fintype.card F = 4 * κ + 1) :
+    (2 : F) * ((2 * κ : ℕ) : F) = -1 ∧ (2 : F) * ((2 * κ + 1 : ℕ) : F) = 1 ∧
+    ((2 * κ + 1 : ℕ) : F) = -((2 * κ : ℕ) : F) ∧ (2 : F)⁻¹ = ((2 * κ + 1 : ℕ) : F) := by
+  have hc : ((4 * κ + 1 : ℕ) : F) = 0 := by rw [← hκ]; exact FiniteField.cast_card_eq_zero F
+  have h2 : (2 : F) ≠ 0 := two_ne_zero_of_card κ hκ
+  have e1 : (2 : F) * ((2 * κ : ℕ) : F) = -1 := by
+    have : ((4 * κ + 1 : ℕ) : F) = 2 * ((2 * κ : ℕ) : F) + 1 := by push_cast; ring
+    rw [this] at hc
+    exact eq_neg_of_add_eq_zero_left hc
+  have e2 : (2 : F) * ((2 * κ + 1 : ℕ) : F) = 1 := by
+    push_cast at e1 ⊢
+    linear_combination e1
+  refine ⟨e1, e2, ?_, ?_⟩
+  · push_cast at e1 e2 ⊢
+    have : (2 : F) * (2 * (κ : F) + 1 + 2 * (κ : F)) = 0 := by linear_combination e2 + e1
+    have := (mul_eq_zero.1 this).resolve_left h2
+    exact eq_neg_of_add_eq_zero_left this
+  · exact (eq_inv_of_mul_eq_one_right e2).symm
+
+/-- The half-period `g^{2κ} = −1` for a primitive root of a shell with `4κ + 1` elements. -/
+lemma half_period (κ : ℕ) (hκ : Fintype.card F = 4 * κ + 1) (g : F)
+    (hg : IsPrimitiveRoot g (Fintype.card F - 1)) : g ^ (2 * κ) = -1 := by
+  have hκ' : Fintype.card F - 1 = 4 * κ := by omega
+  have hκpos : κ ≠ 0 := by
+    intro h; subst h; have := Fintype.one_lt_card (α := F); omega
+  have h2 : IsPrimitiveRoot (g ^ (2 * κ)) 2 := by
+    rw [hκ'] at hg
+    exact hg.pow (by omega) (show 4 * κ = 2 * κ * 2 by ring)
+  exact h2.eq_neg_one_of_two_right
+
+/-- 20:B10 — the Subject constants on every shell: `π = 2κ` with `2π = −1`; the quarter-turn `i = g^{−κ}`
+(read as `g^{3κ}`, since `g^{4κ} = 1`) equals `−g^κ` and squares to `−1`; `g^π = −1`; and the Euler identity
+`e^{iπ} = (g^m)^{m·π} = −1` for every odd `m` — the convention "`e = g^m` on the odd representative `m` of `i`"
+fixes the parity of the exponent, and the identity uses nothing else about `m`. -/
+theorem subject_constants (κ : ℕ) (hκ : Fintype.card F = 4 * κ + 1) (g : F)
+    (hg : IsPrimitiveRoot g (Fintype.card F - 1)) :
+    (2 : F) * ((2 * κ : ℕ) : F) = -1 ∧ g ^ (3 * κ) = -(g ^ κ) ∧ (g ^ (3 * κ)) ^ 2 = -1 ∧
+    g ^ (2 * κ) = -1 ∧ ∀ m : ℕ, m % 2 = 1 → (g ^ m) ^ (m * (2 * κ)) = -1 := by
+  have hhp := half_period κ hκ g hg
+  have hi : g ^ (3 * κ) = -(g ^ κ) := by
+    rw [show 3 * κ = κ + 2 * κ by ring, pow_add, hhp, mul_neg, mul_one]
+  refine ⟨(half_turn κ hκ).1, hi, ?_, hhp, fun m hm => ?_⟩
+  · rw [hi, neg_sq, ← pow_mul, show κ * 2 = 2 * κ by ring, hhp]
+  · rw [← pow_mul, show m * (m * (2 * κ)) = 2 * κ * (m * m) by ring, pow_mul, hhp]
+    have hodd : Odd (m * m) := by
+      have := Nat.odd_iff.2 hm
+      exact this.mul this
+    exact hodd.neg_one_pow
+
+/-- 20:B10 [value] — on `𝔽₁₃(τ; 0, 1, 2)`: `κ = 3`, `π = 6`, `2π = −1`, `i = 2^{−3} = 2^9 = 5`, `i² = −1`,
+`e = 2^5 = 6` on the odd representative `5`, `2^π = −1`, `e^{iπ} = 6^{30} = −1`. -/
+theorem constants13 :
+    (2 : ZMod 13) * 6 = -1 ∧ (2 : ZMod 13) ^ 9 = 5 ∧ (5 : ZMod 13) ^ 2 = -1 ∧ (2 : ZMod 13) ^ 5 = 6 ∧
+    (2 : ZMod 13) ^ 6 = -1 ∧ (6 : ZMod 13) ^ (5 * 6) = -1 := by decide
+
+end constants
+
+/-! ## The quadratic extension: the phase circle, the critical line, the two loci of agreement (rows B6, B8, B9) -/
+
+section extension
+
+variable {F : Type*} [Field F] (ν : F)
+
+local notation "K" => QuadraticAlgebra F ν 0
+
+/-- The trace of `a + bη` is `2a`. -/
+lemma trace_eq (z : K) : QuadraticAlgebra.trace z = 2 * z.re := by
+  rw [QuadraticAlgebra.trace_def, zero_mul, add_zero]
+
+/-- The norm of `a + bη` is `a² − νb²`. -/
+lemma norm_eq (z : K) : QuadraticAlgebra.norm z = z.re * z.re - ν * z.im * z.im := by
+  rw [QuadraticAlgebra.norm_def, zero_mul, zero_mul, add_zero]
+
+/-- The conjugate of `a + bη` is `a − bη`. -/
+lemma star_eq (z : K) : star z = ⟨z.re, -z.im⟩ := by
+  ext <;> simp [QuadraticAlgebra.re_star, QuadraticAlgebra.im_star]
+
+/-- 20:B9 — Frobenius `φ = star` and the functional-equation half-turn `ρ : z ↦ 1 − z` generate a Klein
+four-group: both are involutions and they commute. -/
+theorem klein_four (z : K) :
+    star (star z) = z ∧ (1 - (1 - z)) = z ∧ star (1 - z) = 1 - star z := by
+  refine ⟨star_star z, sub_sub_cancel 1 z, ?_⟩
+  rw [star_sub, star_one]
+
+/-- 20:B9 — the fixed locus of Frobenius is the prime meridian `F` (the elements with `b = 0`). -/
+theorem fixed_frobenius (h2 : (2 : F) ≠ 0) (z : K) : star z = z ↔ z.im = 0 := by
+  rw [star_eq]
+  constructor
+  · intro h
+    have := congrArg QuadraticAlgebra.im h
+    simp only at this
+    have h' : (2 : F) * z.im = 0 := by linear_combination -this
+    exact (mul_eq_zero.1 h').resolve_left h2
+  · intro h
+    ext <;> simp [h]
+
+/-- 20:B8, 20:B9 — the finite critical line: `Tr z = 1` exactly when `Re z = 2⁻¹`; this locus is the fixed
+locus of `σ = ρ ∘ φ : z ↦ 1 − z̄`. -/
+theorem trace_eq_one_iff (h2 : (2 : F) ≠ 0) (z : K) :
+    (QuadraticAlgebra.trace z = 1 ↔ z.re = 2⁻¹) ∧ (1 - star z = z ↔ z.re = 2⁻¹) := by
+  have key : (2 : F) * z.re = 1 ↔ z.re = 2⁻¹ := by
+    constructor
+    · intro h; exact eq_inv_of_mul_eq_one_right h
+    · intro h; rw [h, mul_inv_cancel₀ h2]
+  refine ⟨by rw [trace_eq]; exact key, ?_⟩
+  rw [star_eq]
+  constructor
+  · intro h
+    have := congrArg QuadraticAlgebra.re h
+    simp only [QuadraticAlgebra.re_sub, QuadraticAlgebra.re_one] at this
+    exact key.1 (by linear_combination -this)
+  · intro h
+    ext
+    · simp only [QuadraticAlgebra.re_sub, QuadraticAlgebra.re_one]
+      have := key.2 h
+      linear_combination -this
+    · simp only [QuadraticAlgebra.im_sub, QuadraticAlgebra.im_one, zero_sub, neg_neg]
+
+/-- 20:B9 — the fixed locus of the half-turn `ρ` is the single point `2⁻¹`, the meeting of the prime meridian
+and the critical line. -/
+theorem fixed_half_turn (h2 : (2 : F) ≠ 0) (z : K) :
+    (1 - z = z ↔ z = ⟨2⁻¹, 0⟩) ∧ (z.im = 0 ∧ z.re = 2⁻¹ ↔ z = ⟨2⁻¹, 0⟩) := by
+  have hinv : (2 : F) * 2⁻¹ = 1 := mul_inv_cancel₀ h2
+  constructor
+  · constructor
+    · intro h
+      have hre := congrArg QuadraticAlgebra.re h
+      have him := congrArg QuadraticAlgebra.im h
+      simp only [QuadraticAlgebra.re_sub, QuadraticAlgebra.re_one, QuadraticAlgebra.im_sub,
+        QuadraticAlgebra.im_one, zero_sub] at hre him
+      have h2re : (2 : F) * z.re = 1 := by linear_combination -hre
+      have h2im : (2 : F) * z.im = 0 := by linear_combination -him
+      ext
+      · exact eq_inv_of_mul_eq_one_right h2re
+      · exact (mul_eq_zero.1 h2im).resolve_left h2
+    · rintro rfl
+      ext
+      · simp only [QuadraticAlgebra.re_sub, QuadraticAlgebra.re_one]
+        linear_combination -hinv
+      · simp only [QuadraticAlgebra.im_sub, QuadraticAlgebra.im_one, sub_zero]
+  · constructor
+    · rintro ⟨him, hre⟩; ext
+      · exact hre
+      · exact him
+    · rintro rfl; exact ⟨rfl, rfl⟩
+
+/-- 20:B8 — on the critical line the energy is `N(z) = ¼ − νb²`. -/
+theorem norm_on_line (z : K) (hz : z.re = 2⁻¹) :
+    QuadraticAlgebra.norm z = (4 : F)⁻¹ - ν * z.im ^ 2 := by
+  rw [norm_eq, hz, sq, mul_assoc]
+  congr 1
+  rw [show (4 : F) = 2 * 2 by norm_num, mul_inv]
+
+/-- 20:E12, 20:B8 — the spectral readout: the mode index `θ ∈ F` is read at the point `z(θ) = 2⁻¹ + θη` of
+the quadratic extension. -/
+def readout (θ : F) : K := ⟨2⁻¹, θ⟩
+
+/-- 20:E12, 20:B8 — clause (ii) of the shell theorem: every readout `z(θ) = 2⁻¹ + θη` lies on the trace-one
+line, its real part is the half-turn `2⁻¹`, and `θ ↦ z(θ)` is injective (with `card_critical_line`, a
+bijection of `F` onto the line). -/
+theorem readout_on_line (h2 : (2 : F) ≠ 0) (θ : F) :
+    QuadraticAlgebra.trace (readout ν θ) = 1 ∧ (readout ν θ).re = 2⁻¹ ∧
+    Function.Injective (readout ν) := by
+  refine ⟨?_, rfl, fun a b h => by simpa [readout] using congrArg QuadraticAlgebra.im h⟩
+  rw [trace_eq]
+  exact mul_inv_cancel₀ h2
+
+variable [Fintype F] [DecidableEq F]
+
+/-- The extension as a finite type, through its coordinates. -/
+noncomputable instance instFintypeK : Fintype K :=
+  Fintype.ofEquiv (F × F) (QuadraticAlgebra.equivProd ν 0).symm
+
+/-- 20:B8 — the critical line carries exactly `p` points: `z = 2⁻¹ + bη`, one for each `b ∈ F`. -/
+theorem card_critical_line (h2 : (2 : F) ≠ 0) :
+    (univ.filter (fun z : K => QuadraticAlgebra.trace z = 1)).card = Fintype.card F := by
+  have hline : univ.filter (fun z : K => QuadraticAlgebra.trace z = 1) =
+      univ.image (fun b : F => (⟨2⁻¹, b⟩ : K)) := by
+    ext z
+    simp only [mem_filter, mem_univ, true_and, mem_image]
+    rw [(trace_eq_one_iff ν h2 z).1]
+    constructor
+    · intro h; exact ⟨z.im, by ext <;> simp [h]⟩
+    · rintro ⟨b, rfl⟩; rfl
+  rw [hline, card_image_of_injective _ (fun a b h => by simpa using congrArg QuadraticAlgebra.im h),
+    card_univ]
+
+omit [DecidableEq F] in
+/-- 20:E12 — the slot index of a nontrivial slot: for `1 ≤ k ≤ p − 2` the index `θ = Φ(k) = −g^k` at which
+slot `k` is read is neither `0` (the centre `2⁻¹`) nor `−1` (the full-cycle exponent). -/
+theorem readout_slot_index (g : F) (hg : IsPrimitiveRoot g (Fintype.card F - 1)) (k : ℕ)
+    (hk1 : 1 ≤ k) (hk2 : k ≤ Fintype.card F - 2) : -(g ^ k) ≠ 0 ∧ -(g ^ k) ≠ -1 := by
+  have hcard : 1 < Fintype.card F := Fintype.one_lt_card
+  have hg0 : g ≠ 0 := hg.ne_zero (by omega)
+  refine ⟨fun h => pow_ne_zero k hg0 (neg_eq_zero.1 h), fun h => ?_⟩
+  have h1 : g ^ k = 1 := neg_inj.1 h
+  have hdvd := (hg.pow_eq_one_iff_dvd k).1 h1
+  have := Nat.le_of_dvd (by omega) hdvd
+  omega
+
+end extension
+
+section frobenius
+
+variable {F : Type*} [Field F] [Fintype F] [DecidableEq F] {p : ℕ} [hp : Fact p.Prime] [CharP F p]
+  (hcard : Fintype.card F = p) (ν : F) [hν : Fact (¬ IsSquare ν)]
+
+local notation "K" => QuadraticAlgebra F ν 0
+
+omit [DecidableEq F] in
+include hcard hν in
+/-- On a shell carrying a nonsquare, `2 ≠ 0` (every element of `𝔽₂` is a square). -/
+lemma two_ne_zero_of_nonsquare : (2 : F) ≠ 0 := by
+  intro h2
+  have hp2 : p = 2 := (Nat.prime_dvd_prime_iff_eq hp.out Nat.prime_two).1
+    ((CharP.cast_eq_zero_iff F p 2).1 (by exact_mod_cast h2))
+  -- every element of a two-element field is a square: `x^2 = x`
+  apply hν.out
+  refine ⟨ν, ?_⟩
+  have := FiniteField.pow_card ν
+  rw [hcard, hp2, sq] at this
+  exact this.symm
+
+omit [DecidableEq F] in
+include hcard hν in
+/-- Euler's criterion for the nonsquare `ν`: `ν^{(p−1)/2} = −1`. -/
+lemma nonsquare_pow : ν ^ (p / 2) = -1 := by
+  have h2 : (2 : F) ≠ 0 := two_ne_zero_of_nonsquare hcard ν
+  have hp2 : p ≠ 2 := by
+    intro h; apply h2
+    have := (CharP.cast_eq_zero_iff F p p).2 dvd_rfl
+    rw [h] at this; exact_mod_cast this
+  have hchar : ringChar F ≠ 2 := by rw [ringChar.eq F p]; exact hp2
+  have hν0 : ν ≠ 0 := by
+    rintro rfl; exact hν.out ⟨0, by simp⟩
+  rcases FiniteField.pow_dichotomy hchar hν0 with h | h
+  · exact absurd ((FiniteField.isSquare_iff hchar hν0).2 h) hν.out
+  · rwa [hcard] at h
+
+omit [DecidableEq F] in
+include hcard in
+/-- 20:B6 — Frobenius on the extension is conjugation: `z^p = z̄` for every `z ∈ F(η)`. -/
+theorem frobenius_eq_star (z : K) : z ^ p = star z := by
+  have : CharP K p := charP_of_injective_algebraMap (algebraMap F K).injective p
+  have hodd : p = 2 * (p / 2) + 1 := by
+    have := hp.out.eq_two_or_odd'
+    rcases this with h | h
+    · exfalso
+      have h2 : (2 : F) ≠ 0 := two_ne_zero_of_nonsquare hcard ν
+      apply h2
+      have := (CharP.cast_eq_zero_iff F p p).2 dvd_rfl
+      rw [h] at this; exact_mod_cast this
+    · exact (Nat.two_mul_div_two_add_one_of_odd h).symm
+  have hω : (QuadraticAlgebra.omega : K) ^ p = -QuadraticAlgebra.omega := by
+    rw [hodd, pow_succ, pow_mul, QuadraticAlgebra.omega_pow_two_eq_add]
+    simp only [zero_smul, add_zero]
+    rw [← Algebra.algebraMap_eq_smul_one, ← map_pow, nonsquare_pow hcard ν, map_neg, map_one,
+      neg_one_mul]
+  have hz : z = algebraMap F K z.re + z.im • QuadraticAlgebra.omega := by
+    rw [Algebra.algebraMap_eq_smul_one]; exact (QuadraticAlgebra.re_smul_add_im_smul z).symm
+  have hre : z.re ^ p = z.re := by rw [← hcard]; exact FiniteField.pow_card z.re
+  have him : z.im ^ p = z.im := by rw [← hcard]; exact FiniteField.pow_card z.im
+  conv_lhs => rw [hz]
+  rw [add_pow_char, ← map_pow, hre, smul_pow, him, hω, star_eq]
+  ext
+  · simp [QuadraticAlgebra.algebraMap_eq, QuadraticAlgebra.re_omega]
+  · simp [QuadraticAlgebra.algebraMap_eq, QuadraticAlgebra.im_omega]
+
+omit [DecidableEq F] in
+include hcard in
+/-- 20:B6 — the norm is the `(p+1)`-st power: `z^{p+1} = z z̄ = N(z)` in the extension. -/
+theorem norm_eq_pow (z : K) : algebraMap F K (QuadraticAlgebra.norm z) = z ^ (p + 1) := by
+  rw [pow_succ, frobenius_eq_star hcard ν z, QuadraticAlgebra.algebraMap_norm_eq_mul_star, mul_comm]
+
+include hcard in
+/-- 20:B6 — the phase circle `U_{p+1} = {z : N(z) = 1}` has exactly `p + 1` elements, and Frobenius is
+inversion on it: `z̄ = z⁻¹` for `N(z) = 1`. -/
+theorem phase_circle :
+    (univ.filter (fun z : K => QuadraticAlgebra.norm z = 1)).card = p + 1 ∧
+    ∀ z : K, QuadraticAlgebra.norm z = 1 → star z = z⁻¹ := by
+  constructor
+  · -- the circle is the set of `(p+1)`-st roots of unity, counted by a primitive root
+    have hcardK : Fintype.card K = p ^ 2 := by
+      rw [Fintype.card_congr (QuadraticAlgebra.equivProd ν 0), Fintype.card_prod, hcard, sq]
+    have hset : univ.filter (fun z : K => QuadraticAlgebra.norm z = 1) =
+        Polynomial.nthRootsFinset (p + 1) (1 : K) := by
+      ext z
+      rw [mem_filter, Polynomial.mem_nthRootsFinset (by omega), ← norm_eq_pow hcard ν]
+      constructor
+      · rintro ⟨-, h⟩; rw [h, map_one]
+      · intro h; exact ⟨mem_univ _, QuadraticAlgebra.algebraMap_injective (by rw [h, map_one])⟩
+    rw [hset]
+    -- a primitive `(p+1)`-st root of unity in `K`
+    obtain ⟨ζ, hζ⟩ := IsCyclic.exists_generator (α := Kˣ)
+    have hord : orderOf ζ = p ^ 2 - 1 := by
+      rw [orderOf_eq_card_of_forall_mem_zpowers hζ, Nat.card_eq_fintype_card, Fintype.card_units,
+        hcardK]
+    have hprim : IsPrimitiveRoot ζ (p ^ 2 - 1) := hord ▸ IsPrimitiveRoot.orderOf ζ
+    have hp1 : p ^ 2 - 1 = (p - 1) * (p + 1) := by
+      obtain ⟨q, hq⟩ : ∃ q, p = q + 1 := ⟨p - 1, by have := hp.out.one_lt; omega⟩
+      rw [hq, Nat.add_sub_cancel]
+      apply Nat.sub_eq_of_eq_add
+      ring
+    have hpos : 0 < p ^ 2 - 1 := by
+      have := hp.out.one_lt; rw [hp1]; exact Nat.mul_pos (by omega) (by omega)
+    have hprim' : IsPrimitiveRoot ((ζ : K) ^ (p - 1)) (p + 1) := by
+      rw [← Units.val_pow_eq_pow_val, IsPrimitiveRoot.coe_units_iff]
+      exact hprim.pow hpos hp1
+    exact hprim'.card_nthRootsFinset
+  · intro z hz
+    have h := QuadraticAlgebra.algebraMap_norm_eq_mul_star z
+    rw [hz, map_one] at h
+    exact eq_inv_of_mul_eq_one_right h.symm
+
+omit [DecidableEq F] in
+include hcard in
+/-- 20:B6 — the quarter-turn `i ∈ F` (`i² = −1`) is Frobenius-fixed and off the circle: `N(i) = −1 ≠ 1`. -/
+theorem quarter_turn_off_circle (i : F) (hi : i ^ 2 = -1) :
+    star (algebraMap F K i) = algebraMap F K i ∧ QuadraticAlgebra.norm (algebraMap F K i) = -1 ∧
+    QuadraticAlgebra.norm (algebraMap F K i) ≠ 1 := by
+  have h2 : (2 : F) ≠ 0 := two_ne_zero_of_nonsquare hcard ν
+  have hn : QuadraticAlgebra.norm (algebraMap F K i) = -1 := by
+    rw [QuadraticAlgebra.norm_algebraMap, hi]
+  refine ⟨?_, hn, ?_⟩
+  · rw [star_eq, QuadraticAlgebra.algebraMap_eq]; simp
+  · rw [hn]; intro h
+    apply h2
+    linear_combination -h
+
+end frobenius
+
+/-! ## The scale-shift on the shell: the `𝔽_p` reading (rows E1, E12(iii), E13) -/
+
+section spectrum
+
+variable {F : Type*} [Field F] [Fintype F] [DecidableEq F]
+
+/-- 20:E1, 20:E12 — the scale-shift `S : x ↦ g^r x` is a permutation of `F^×` (a bijection, so its matrix on
+`ℓ²(F^×)` is a permutation matrix, hence unitary) with the power characters `x ↦ x^k` as eigenvectors in the
+`𝔽_p` reading, `S x^k = g^{rk} x^k`, and its fixed-point count — the trace of its permutation matrix — is
+`(p − 1)·[(p − 1) ∣ r]`, which carries no prime data. -/
+theorem scale_shift (g : F) (hg : IsPrimitiveRoot g (Fintype.card F - 1)) (r : ℕ) :
+    Function.Bijective (fun x : Fˣ => (Units.mk0 g (hg.ne_zero (by have := Fintype.one_lt_card (α := F); omega))) ^ r * x) ∧
+    (∀ (k : ℕ) (x : F), (g ^ r * x) ^ k = (g ^ r) ^ k * x ^ k) ∧
+    (univ.filter (fun x : Fˣ => g ^ r * (x : F) = x)).card =
+      if (Fintype.card F - 1) ∣ r then Fintype.card F - 1 else 0 := by
+  refine ⟨(Group.mulLeft_bijective _), fun k x => mul_pow _ _ _, ?_⟩
+  split_ifs with hdvd
+  · have h1 : g ^ r = 1 := (hg.pow_eq_one_iff_dvd r).2 hdvd
+    have : univ.filter (fun x : Fˣ => g ^ r * (x : F) = x) = univ := by
+      ext x; simp [h1]
+    rw [this, card_univ, Fintype.card_units]
+  · have h1 : g ^ r ≠ 1 := fun h => hdvd ((hg.pow_eq_one_iff_dvd r).1 h)
+    have : univ.filter (fun x : Fˣ => g ^ r * (x : F) = x) = ∅ := by
+      rw [Finset.filter_eq_empty_iff]
+      intro x _ h
+      apply h1
+      have hx : (x : F) ≠ 0 := x.ne_zero
+      calc g ^ r = g ^ r * (x : F) * (x : F)⁻¹ := by rw [mul_assoc, mul_inv_cancel₀ hx, mul_one]
+        _ = 1 := by rw [h, mul_inv_cancel₀ hx]
+    rw [this, card_empty]
+
+/-- 20:E12, 20:E13 — the `𝔽_p`-valued power characters are never orthonormal: the self-pairing
+`Σ_{x ∈ F^×} x^j · x^j` is `0` or `−1`, never `1`, on every odd shell. -/
+theorem power_characters_not_orthonormal (h2 : (2 : F) ≠ 0) (j : ℕ) :
+    ∑ x : Fˣ, ((x : F) ^ j * (x : F) ^ j) ≠ 1 := by
+  have : ∑ x : Fˣ, ((x : F) ^ j * (x : F) ^ j) = ∑ x : Fˣ, ((x : F) ^ (2 * j)) :=
+    sum_congr rfl fun x _ => by rw [← pow_add, two_mul]
+  rw [this, FiniteField.sum_pow_units]
+  split_ifs
+  · intro h; apply h2; linear_combination -h
+  · exact zero_ne_one
+
+omit [Fintype F] [DecidableEq F] in
+/-- 20:E12, 20:E1 — the multiplicative characters of the shell are eigenvectors of the scale-shift in the
+abstract reading: `χ(g^r x) = χ(g)^r χ(x)` for every `χ : F^× →* ℂ^×`. -/
+theorem character_eigen (χ : Fˣ →* ℂˣ) (g x : Fˣ) (r : ℕ) : χ (g ^ r * x) = χ g ^ r * χ x := by
+  rw [map_mul, map_pow]
+
+end spectrum
+
+/-! ## The complex characters of the cycle: orthonormality, inversion, the shift, Parseval, flatness
+(rows E12(i), E12(iii), E13, C5) -/
+
+section characters
+
+open Complex
+
+variable {n : ℕ} [NeZero n]
+
+/-- The `j`-th chart mode of the cycle `C_n`: `χ_j(m) = e^{2πi·jm/n}`. On the shell, `m` is the discrete
+logarithm of the residue `g^m` and `n = p − 1`. -/
+noncomputable def chi (j m : ZMod n) : ℂ := ZMod.stdAddChar (j * m)
+
+/-- The coefficient of `v` on the mode `χ_j`: `⟨v, χ_j⟩ = Σ_m v(m) χ_j(m)̄`. -/
+noncomputable def coef (v : ZMod n → ℂ) (j : ZMod n) : ℂ := ∑ m, v m * (starRingEnd ℂ) (chi j m)
+
+lemma chi_conj (j m : ZMod n) : (starRingEnd ℂ) (chi j m) = ZMod.stdAddChar (-(j * m)) := by
+  rw [chi, AddChar.map_neg_eq_conj]
+
+/-- 20:E13 — orthogonality of the chart modes: `Σ_m χ_j(m) χ_k(m)̄ = n·[j = k]`, each of squared norm
+`n = p − 1` (with `chi_inversion`, the `p − 1` characters are an orthogonal basis of `ℂ^{F^×}`; the orthonormal
+system is `χ_j/√n`). -/
+theorem chi_orthogonal (j k : ZMod n) :
+    ∑ m, chi j m * (starRingEnd ℂ) (chi k m) = if j = k then (n : ℂ) else 0 := by
+  have : ∀ m, chi j m * (starRingEnd ℂ) (chi k m) = ZMod.stdAddChar (m * (j - k)) := fun m => by
+    rw [chi_conj, chi, ← AddChar.map_add_eq_mul]
+    congr 1; ring
+  simp_rw [this]
+  rw [AddChar.sum_mulShift _ (ZMod.isPrimitive_stdAddChar n), ZMod.card]
+  simp only [sub_eq_zero]
+  split_ifs <;> simp
+
+/-- 20:E12, 20:E1 — clause (iii): the scale-shift `m ↦ m + 1` (the residue `g^m ↦ g^{m+1}`) has every chart mode
+as an eigenvector, with eigenphase `e^{2πi·j/n}` independent of the vector: `χ_j(m + 1) = e^{2πi j/n} χ_j(m)`. -/
+theorem chi_shift (j m : ZMod n) :
+    chi j (m + 1) = ZMod.stdAddChar j * chi j m ∧
+    ZMod.stdAddChar (j : ZMod n) = exp (2 * Real.pi * I * j.val / n) := by
+  constructor
+  · rw [chi, chi, mul_add, mul_one, AddChar.map_add_eq_mul, mul_comm]
+  · rw [ZMod.stdAddChar_apply, ZMod.toCircle_apply]
+
+/-- 20:E12, 20:E13 — clause (i): Fourier inversion on the cycle, `v = (1/n) Σ_j ⟨v, χ_j⟩ χ_j`, with the constant
+mode carrying the mean, `⟨v, χ_0⟩ = Σ_m v(m)`, so the nontrivial modes carry `v − v̄·1`. -/
+theorem chi_inversion (v : ZMod n → ℂ) :
+    (∀ m, v m = (n : ℂ)⁻¹ * ∑ j, coef v j * chi j m) ∧ coef v 0 = ∑ m, v m ∧
+    ∀ m, v m - (n : ℂ)⁻¹ * ∑ m', v m' = (n : ℂ)⁻¹ * ∑ j ∈ univ.erase 0, coef v j * chi j m := by
+  have hn : (n : ℂ) ≠ 0 := by exact_mod_cast NeZero.ne n
+  have hkey : ∀ m, ∑ j, coef v j * chi j m = (n : ℂ) * v m := by
+    intro m
+    simp only [coef, sum_mul]
+    rw [sum_comm]
+    have : ∀ m', ∑ j, v m' * (starRingEnd ℂ) (chi j m') * chi j m
+        = v m' * ∑ j, chi j m * (starRingEnd ℂ) (chi j m') := fun m' => by
+      rw [mul_sum]; exact sum_congr rfl fun j _ => by ring
+    simp_rw [this]
+    have horth : ∀ m', ∑ j, chi j m * (starRingEnd ℂ) (chi j m') = if m' = m then (n : ℂ) else 0 := by
+      intro m'
+      have : ∀ j, chi j m * (starRingEnd ℂ) (chi j m') = ZMod.stdAddChar (j * (m - m')) := fun j => by
+        rw [chi_conj, chi, ← AddChar.map_add_eq_mul]
+        congr 1; ring
+      simp_rw [this]
+      rw [AddChar.sum_mulShift _ (ZMod.isPrimitive_stdAddChar n), ZMod.card]
+      by_cases h : m' = m
+      · subst h; simp
+      · rw [ite_eq_right (fun e => h (sub_eq_zero.1 e).symm), ite_eq_right h]; simp
+    simp_rw [horth]
+    simp [mul_comm]
+  have hmean : coef v 0 = ∑ m, v m := by
+    simp only [coef, chi, zero_mul, AddChar.map_zero_eq_one, map_one, mul_one]
+  refine ⟨fun m => ?_, hmean, fun m => ?_⟩
+  · rw [hkey, ← mul_assoc, inv_mul_cancel₀ hn, one_mul]
+  · have hsplit := sum_erase_add univ (fun j => coef v j * chi j m) (mem_univ 0)
+    rw [hkey] at hsplit
+    have h0 : coef v 0 * chi 0 m = ∑ m', v m' := by
+      rw [hmean, chi, zero_mul, AddChar.map_zero_eq_one, mul_one]
+    rw [h0] at hsplit
+    have : ∑ j ∈ univ.erase 0, coef v j * chi j m = (n : ℂ) * v m - ∑ m', v m' := by
+      linear_combination hsplit
+    rw [this, mul_sub, ← mul_assoc, inv_mul_cancel₀ hn, one_mul]
+
+/-- 20:E13, 20:C5 — Parseval on the cycle: `Σ_j |⟨v, χ_j⟩|² = n Σ_m |v(m)|²`; the chart modes are complete. -/
+theorem chi_parseval (v : ZMod n → ℂ) :
+    ∑ j, normSq (coef v j) = n * ∑ m, normSq (v m) := by
+  have h := (chi_inversion v).1
+  apply Complex.ofReal_injective
+  push_cast
+  simp_rw [← Complex.mul_conj]
+  have hc : ∀ j, (starRingEnd ℂ) (coef v j) = ∑ m, (starRingEnd ℂ) (v m) * chi j m := fun j => by
+    simp only [coef, map_sum, map_mul, Complex.conj_conj]
+  calc ∑ j, coef v j * (starRingEnd ℂ) (coef v j)
+      = ∑ j, ∑ m, (starRingEnd ℂ) (v m) * (coef v j * chi j m) := by
+        refine sum_congr rfl fun j _ => ?_
+        rw [hc, mul_sum]; exact sum_congr rfl fun m _ => by ring
+    _ = ∑ m, (starRingEnd ℂ) (v m) * ∑ j, coef v j * chi j m := by
+        rw [sum_comm]; exact sum_congr rfl fun m _ => by rw [mul_sum]
+    _ = ∑ m, (starRingEnd ℂ) (v m) * ((n : ℂ) * v m) := by
+        refine sum_congr rfl fun m _ => ?_
+        congr 1
+        have hn : (n : ℂ) ≠ 0 := by exact_mod_cast NeZero.ne n
+        have := h m
+        rw [this, ← mul_assoc, mul_inv_cancel₀ hn, one_mul]
+    _ = (n : ℂ) * ∑ m, v m * (starRingEnd ℂ) (v m) := by
+        rw [mul_sum]; exact sum_congr rfl fun m _ => by ring
+
+/-- 20:C5 — mean-square flatness: for a mean-removed vector `u ≠ 0` on the cycle (`Σ_m u(m) = 0`), the
+normalised correlations `r_j = |⟨u, χ_j⟩|/(‖u‖ ‖χ_j‖)` with the nonconstant modes satisfy `Σ_{j≠0} r_j² = 1`
+exactly, so their mean square over the `n − 1 = p − 2` nonconstant modes is `1/(p − 2)`: the root-mean-square
+correlation is `1/√(p − 2)`. -/
+theorem flatness (u : ZMod n → ℂ) (hmean : ∑ m, u m = 0) (hu : u ≠ 0) :
+    ∑ j ∈ univ.erase 0, normSq (coef u j) / (n * ∑ m, normSq (u m)) = 1 ∧
+    (∑ j ∈ univ.erase 0, normSq (coef u j) / (n * ∑ m, normSq (u m))) / ((n : ℝ) - 1) = 1 / ((n : ℝ) - 1) := by
+  have hpos : 0 < ∑ m, normSq (u m) := by
+    obtain ⟨m, hm⟩ : ∃ m, u m ≠ 0 := by
+      by_contra h; push Not at h; exact hu (funext h)
+    exact sum_pos' (fun m _ => normSq_nonneg _) ⟨m, mem_univ _, normSq_pos.2 hm⟩
+  have hn : (0 : ℝ) < n := by exact_mod_cast Nat.pos_of_ne_zero (NeZero.ne n)
+  have hden : (n : ℝ) * ∑ m, normSq (u m) ≠ 0 := (mul_pos hn hpos).ne'
+  have h0 : coef u 0 = 0 := by rw [(chi_inversion u).2.1, hmean]
+  have hsplit := sum_erase_add univ (fun j => normSq (coef u j)) (mem_univ 0)
+  rw [chi_parseval, h0, normSq_zero, add_zero] at hsplit
+  have h1 : ∑ j ∈ univ.erase 0, normSq (coef u j) / (n * ∑ m, normSq (u m)) = 1 := by
+    rw [← sum_div, hsplit, div_self hden]
+  exact ⟨h1, by rw [h1]⟩
+
+end characters
+
+/-! ## The resonance: the von Mangoldt weight (row C2) -/
+
+section resonance
+
+open ArithmeticFunction
+
+/-- 20:C2 — `Λ = μ ∗ log` exactly on the divisor lattice: `Λ(n) = Σ_{d ∣ n} μ(d) log(n/d)`; and the support of
+`Λ` is the prime powers. (Hardy's limit `R_L → (φ(n)/n) Λ(n)` is the import A3.) -/
+theorem vonMangoldt_moebius (m : ℕ) :
+    vonMangoldt m = ∑ d ∈ m.divisors, (moebius d : ℝ) * Real.log ((m : ℝ) / d) ∧
+    (vonMangoldt m ≠ 0 ↔ IsPrimePow m) := by
+  refine ⟨?_, vonMangoldt_ne_zero_iff⟩
+  rw [← moebius_mul_log_eq_vonMangoldt, mul_apply,
+    Nat.sum_divisorsAntidiagonal (fun a b => (moebius : ArithmeticFunction ℝ) a * log b)]
+  refine sum_congr rfl fun d hd => ?_
+  simp only [intCoe_apply, log_apply]
+  rw [Nat.cast_div (Nat.dvd_of_mem_divisors hd) (by
+    exact_mod_cast (Nat.pos_of_mem_divisors hd).ne')]
+
+end resonance
+
+/-! ## Frame coincidence below the horizon (row B2) -/
+
+section coincidence
+
+/-- 20:B2 — below the horizon the reading is frame-exact: on any shell `ZMod q` with `H² < q`, residues
+`n ≤ H` are the integers themselves and window products read back exactly, so the Subject `𝔽_p` and the Carrier
+`𝔽_Ω` agree on the window. -/
+theorem window_readback {q : ℕ} [NeZero q] {H : ℕ} (hH : H * H < q) :
+    (∀ m, m ≤ H → ((m : ZMod q)).val = m) ∧
+    ∀ a b, a ≤ H → b ≤ H → ((a : ZMod q) * b).val = a * b := by
+  have hle : ∀ m, m ≤ H → m < q := fun m hm => by
+    rcases Nat.eq_zero_or_pos H with h | h
+    · subst h; have := Nat.pos_of_ne_zero (NeZero.ne q); omega
+    · exact lt_of_le_of_lt (le_trans hm (Nat.le_mul_self H)) hH
+  refine ⟨fun m hm => ZMod.val_natCast_of_lt (hle m hm), fun a b ha hb => ?_⟩
+  rw [← Nat.cast_mul, ZMod.val_natCast_of_lt]
+  exact lt_of_le_of_lt (Nat.mul_le_mul ha hb) hH
+
+/-- 20:B2 — primality equals irreducibility in the window: for `2 ≤ m ≤ H` and any shell with `H² < q`, `m`
+is prime iff it admits no factorisation `a · b = m` with `2 ≤ a, b ≤ H` read on the shell. -/
+theorem prime_iff_window_irreducible {q : ℕ} [NeZero q] {H : ℕ} (hH : H * H < q) (m : ℕ) (hm2 : 2 ≤ m)
+    (hmH : m ≤ H) :
+    Nat.Prime m ↔ ¬ ∃ a b, 2 ≤ a ∧ 2 ≤ b ∧ a ≤ H ∧ b ≤ H ∧ (a : ZMod q) * b = m := by
+  have hrb := window_readback (q := q) hH
+  constructor
+  · rintro hp ⟨a, b, ha2, hb2, haH, hbH, hab⟩
+    have hval := congrArg ZMod.val hab
+    rw [hrb.2 a b haH hbH, hrb.1 m hmH] at hval
+    have hdvd : a ∣ m := ⟨b, hval.symm⟩
+    rcases (Nat.dvd_prime hp).1 hdvd with h | h
+    · omega
+    · rw [h] at hval
+      have hb1 : b = 1 := Nat.eq_of_mul_eq_mul_left (show 0 < m by omega)
+        (show m * b = m * 1 by rw [Nat.mul_one]; exact hval)
+      omega
+  · intro h
+    rw [Nat.prime_def]
+    refine ⟨hm2, fun a ham => ?_⟩
+    by_contra hane
+    push Not at hane
+    obtain ⟨b, hb⟩ := ham
+    have hb0 : b ≠ 0 := by rintro rfl; rw [Nat.mul_zero] at hb; omega
+    have hb1 : b ≠ 1 := by rintro rfl; rw [Nat.mul_one] at hb; exact hane.2 hb.symm
+    have ha0 : a ≠ 0 := by rintro rfl; rw [Nat.zero_mul] at hb; omega
+    apply h
+    refine ⟨a, b, by omega, by omega, le_trans (Nat.le_of_dvd (by omega) ⟨b, hb⟩) hmH,
+      le_trans (Nat.le_of_dvd (by omega) ⟨a, by rw [mul_comm]; exact hb⟩) hmH, ?_⟩
+    rw [← Nat.cast_mul, ← hb]
+
+/-- 20:B2 — `⌊√p⌋² < p` for a prime `p`: the horizon window `H = ⌊√p⌋` is wrap-free. -/
+lemma sqrt_sq_lt_prime {p : ℕ} (hp : p.Prime) : Nat.sqrt p * Nat.sqrt p < p := by
+  rcases lt_or_eq_of_le (Nat.sqrt_le p) with h | h
+  · exact h
+  · exfalso
+    have hdvd : Nat.sqrt p ∣ p := ⟨Nat.sqrt p, h.symm⟩
+    rcases (Nat.dvd_prime hp).1 hdvd with h1 | h1
+    · rw [h1] at h; have := hp.one_lt; omega
+    · rw [h1] at h
+      have := hp.one_lt
+      nlinarith
+
+end coincidence
+
+/-! ## The laboratory pair (13, 233) (row B1) -/
+
+section lab
+
+/-- 20:B1 [value] — the laboratory pair `(13, 233)`: nested, `13² < 233`; the two cycles share the quarter-turn
+core `Q₄` and nothing else, `gcd(12, 232) = 4`, with `5² = −1` on `𝔽₁₃` and `89² = −1` on `𝔽₂₃₃`; and
+`12 ∤ 232`. -/
+theorem lab_pair :
+    13 * 13 < 233 ∧ Nat.gcd 12 232 = 4 ∧ (5 : ZMod 13) ^ 2 = -1 ∧ (89 : ZMod 233) ^ 2 = -1 ∧ ¬ 12 ∣ 232 := by
+  decide
+
+/-- 20:B1 — no projection of the Carrier's cycle onto the Subject's: there is no surjective homomorphism
+`C_{232} → C_{12}`, since `12 ∤ 232`. -/
+theorem no_cycle_projection :
+    ¬ ∃ f : Multiplicative (ZMod 232) →* Multiplicative (ZMod 12), Function.Surjective f := by
+  rintro ⟨f, hf⟩
+  have := Subgroup.card_dvd_of_surjective f hf
+  rw [Nat.card_eq_fintype_card, Nat.card_eq_fintype_card] at this
+  simp only [Fintype.card_multiplicative, ZMod.card] at this
+  exact absurd this (by decide)
+
+end lab
+
+end FRC.Rh
