@@ -10,13 +10,16 @@
 <meta name="description" content="The Lean module FrcLedger/Entropy of the FRC predicate ledgers, rendered with an anchor per declaration">
 <meta name="author" content="Yosef Akhtman">
 <link rel="icon" href="../frc-logo-fav.png">
-<link rel="stylesheet" href="../style.css?v=0401b71a">
-<script>(function(){function init(){var bar=document.querySelector('.srcbar');if(!bar)return;var back=bar.querySelector('a.back'),bl=back.querySelector('.bl');
-function sync(){var h=location.hash.slice(1),t=h&&document.getElementById(h),ln=t&&(t.classList.contains('ln')?t:t.closest('.ln')),ra=t&&t.matches('a.row[data-ledger]')?t:ln&&ln.querySelector('a.row[data-ledger]');
-if(ra){var lab=ra.id.replace(/^row-/,'');back.href=ra.getAttribute('data-ledger')+'#'+lab;bl.textContent=ra.getAttribute('data-paper')+' ledger · row '+lab;}else{back.href=back.getAttribute('data-href');bl.textContent=back.getAttribute('data-label');}}
-sync();addEventListener('hashchange',sync);
+<link rel="stylesheet" href="../style.css?v=9ffa2ec9">
+<script>(function(){function init(){var bar=document.querySelector('.srcbar');if(!bar)return;var back=bar.querySelector('a.back'),bl=back.querySelector('.bl'),run=bar.querySelector('a.tool.run'),lines=document.querySelectorAll('pre.lean .ln'),marks=[];
+for(var i=0;i<lines.length;i++){var a=lines[i].querySelector('a.row[data-ledger]');if(a)marks.push(lines[i]);}
+function pick(ln){var h=location.hash.slice(1),t=h&&document.getElementById(h);return(t&&t.matches('a.row[data-ledger]')&&t.closest('.ln')===ln)?t:ln.querySelector('a.row[data-ledger]');}
+function current(){var edge=bar.getBoundingClientRect().bottom,h=location.hash.slice(1),t=h&&document.getElementById(h),tl=t&&(t.classList.contains('ln')?t:t.closest('.ln')),ln=null;if(tl&&tl.querySelector('a.row[data-ledger]')){var q=tl.getBoundingClientRect();if(q.top>=edge&&q.bottom<=innerHeight)return tl;}for(var i=0;i<marks.length;i++){var r=marks[i].getBoundingClientRect();if(r.top<=edge+r.height)ln=marks[i];else break;}return ln;}
+function apply(ra){if(ra){var lab=ra.id.replace(/^row-/,''),pd=ra.getAttribute('data-paper');back.href=ra.getAttribute('data-ledger')+'#'+lab;bl.textContent=pd+' ledger \u00b7 row '+lab;if(run)run.href=run.getAttribute('data-href')+'#scrollTo=row-'+pd.split('-')[0]+'-'+lab;}else{back.href=back.getAttribute('data-href');bl.textContent=back.getAttribute('data-label');if(run)run.href=run.getAttribute('data-href');}}
+var tick=false;function sync(){if(tick)return;tick=true;requestAnimationFrame(function(){tick=false;var ln=current();apply(ln&&pick(ln));});}
+sync();addEventListener('scroll',sync,{passive:true});addEventListener('resize',sync);addEventListener('hashchange',function(){setTimeout(sync,0);});
 var btn=bar.querySelector('button.copy'),tl=btn.querySelector('.tl'),vh=btn.querySelector('.vh'),raw=btn.getAttribute('data-raw'),timer;
-function fromPage(){return Array.prototype.map.call(document.querySelectorAll('pre.lean .ln'),function(l){var c=l.cloneNode(true);c.querySelectorAll('.lno,a.row,img').forEach(function(e){e.remove()});return c.textContent;}).join('\n');}
+function fromPage(){return Array.prototype.map.call(lines,function(l){var c=l.cloneNode(true);c.querySelectorAll('.lno,a.row,img').forEach(function(e){e.remove()});return c.textContent;}).join('\n');}
 function done(ok){clearTimeout(timer);btn.classList.toggle('done',ok);btn.classList.toggle('failed',!ok);tl.textContent=ok?'copied':'open raw';vh.textContent=ok?'copied to the clipboard':'copy failed; the raw file opens in a new tab';timer=setTimeout(function(){btn.classList.remove('done','failed');tl.textContent='copy';vh.textContent='';},1500);}
 btn.addEventListener('click',function(){var text=window.fetch?fetch(raw).then(function(r){if(!r.ok)throw 0;return r.text();}).catch(fromPage):Promise.resolve(fromPage());
 text.then(function(s){if(!navigator.clipboard)throw 0;return navigator.clipboard.writeText(s);}).then(function(){done(true);}).catch(function(){done(false);window.open(raw,'_blank');});});}

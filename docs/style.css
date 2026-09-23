@@ -311,6 +311,7 @@ mjx-container { max-width: 100%; overflow-x: auto; overflow-y: hidden; }
 .srcbar { position: sticky; top: 0; z-index: 2; display: flex; align-items: center; flex-wrap: wrap; gap: .5rem .75rem; margin: 1rem 0 0; padding: .45rem .8rem; border: 1px solid var(--rule-soft); border-bottom: 0; border-radius: 6px 6px 0 0; background: var(--bg); font-size: .82rem; }
 .srcbar + pre.lean { margin-top: 0; border-top-left-radius: 0; border-top-right-radius: 0; }
 .srcbar .back { display: inline-flex; align-items: center; gap: .35rem; }
+.wrap .srcbar a.back, .wrap .srcbar a.back:visited, .wrap .srcbar a.back:hover, .wrap .srcbar .also a, .wrap .srcbar .also a:visited, .wrap .srcbar .also a:hover { border-bottom: 0; }   /* the bar's links carry no underline */
 .srcbar .back svg { width: 15px; height: 15px; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
 .srcbar .also { color: var(--ink-faint); }
 .srcbar .path { color: var(--ink-faint); font-family: var(--mono); font-size: .76rem; margin-left: auto; }
