@@ -76,6 +76,7 @@ def run():
     o4 = [(r, s) for r in range(P) for s in range(P - 1)
           if (4 * r) % P == 0 and (4 * s) % (P - 1) == 0
           and not ((2 * r) % P == 0 and (2 * s) % (P - 1) == 0)]
+    # predicate 10:X3
     check("unique order-four subgroup: exactly two generators", sorted(o4) == [(0, KAPPA), (0, 3 * KAPPA)])
     check("no flag of space: all order-four elements have r = 0", all(r == 0 for r, _ in o4))
     check("flag horizon-inaccessible on window H<kappa",
@@ -209,6 +210,7 @@ def run():
     check("Theta_P = E_P/|k_B| = c^2/1 * ... consistent", Theta == E * c_u / hbar_u)
 
     # DOF: quartet has 4 generators, 1 relation -> 3 free scales; +G -> 3+1
+    # predicate 10:X1
     check("DOF: 4 - 1 = 3 free scales", 4 - rank_int([rel]) == 3)
 
     # ------------------------------------------------------------------
@@ -358,7 +360,7 @@ def run():
     check("F5 is its own quarter-turn core: 4*kappa = 4 = p-1 with kappa=1", 4 * 1 == 5 - 1)
     check("kappa=2 not viable: 9 composite", not is_prime(9))
 
-    # predicate 10:F3
+    # predicate 10:F3, 10:X2
     # temperature and Unruh closures in (r, s, j) bookkeeping
     kB_dom = (-1, 1, 1)                    # Iq L^-1 T
     E_dom3 = (0, -1, 1)                    # Iq T^-1
@@ -532,7 +534,7 @@ def run():
     def charge_roots(k):
         p_, n_ = 4 * k + 1, 4 * k
         return sorted((r, s) for r in range(p_) for s in range(n_) if ((2 * r) % p_, (2 * s) % n_) == (1, (k - 1) % n_))
-    # predicate 10:F5
+    # predicate 10:F5, 10:X4
     check("charge: [q]^2 = [E][L] = I_q [L][T]^-1 = (1, 2) on F_13, its roots exactly (7,1) and (7,7), differing by the half-period (0, 6)",
           ((0 + 1) % 13, (3 - 1 + 0) % 12) == (1, 2) and charge_roots(3) == [(7, 1), (7, 7)] and ((7 - 7) % 13, (7 - 1) % 12) == (0, 6))
     check("charge: the roots exist iff kappa is odd, then exactly (2 kappa+1, (kappa-1)/2) and its half-period partner (every prime p = 4 kappa+1, kappa <= 30)",

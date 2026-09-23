@@ -11,7 +11,7 @@ PKG = "1-algebra"; NB = f"frc-{PKG}.ipynb"; PAPER = "1"
 COLAB = f"https://colab.research.google.com/github/gamayos/finite-ring-space/blob/main/src/{PKG}/{NB}"
 LEDGER_URL = f"https://finitering.space/{PKG}/"; APPENDIX = "A"          # the paper's ledger page and the appendix that carries the ledger
 BADGE = "https://finitering.space/media/frc-ledger-badge.svg"                          # the FRC ledger badge, the way back to the page
-SCRIPTS = "`a_shell.py`, `b_numbers.py`, `c_conjecture.py`"; RUNTIME = "≈ 30 s; the block C charts are the slow part"
+SCRIPTS = ", ".join(f"[`{n}`](https://finitering.space/src/{PKG}/{n[:-3]}.html)" for n in ["a_shell.py", "b_numbers.py", "c_conjecture.py"]); RUNTIME = "≈ 30 s; the block C charts are the slow part"
 LEDGER = os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "..", "docs", PKG, f"{PKG}-ledger.json")
 cells = []
 def md(s, cid): cells.append({"cell_type": "markdown", "metadata": {"id": cid}, "source": s})

@@ -211,7 +211,7 @@ theorem flag_pow (m : Nat) : flag κ ^ m = ⟨0, ofNat (m * κ)⟩ := by
 theorem flag_pow_four : flag κ ^ 4 = 1 := by
   rw [flag_pow, ofNat_four_kappa]; rfl
 
-/-- 10:D2 — `I_q² = [T]^π`, the half-period `π = 2κ`, and `I_q, I_q², I_q³ ≠ 1`: the flag has order four. -/
+/-- 10:D2, 10:X3 — `I_q² = [T]^π`, the half-period `π = 2κ`, and `I_q, I_q², I_q³ ≠ 1`: the flag has order four. -/
 theorem flag_order_four :
     flag κ ^ 2 = T κ ^ (2 * κ) ∧ flag κ ^ 1 ≠ 1 ∧ flag κ ^ 2 ≠ 1 ∧ flag κ ^ 3 ≠ 1 := by
   refine ⟨?_, fun h => ?_, fun h => ?_, fun h => ?_⟩
@@ -232,7 +232,7 @@ theorem flag_inv : (flag κ)⁻¹ = flag κ ^ 3 := by
   rw [Frame.ofNat_add, Nat.add_comm, ← h4, ofNat_four_kappa]
 
 omit [Pos κ] in
-/-- 10:D2 — no flag of space on a framed shell: `4r = 0` forces `r = 0` (`2 ≠ 0` and no zero divisors), so
+/-- 10:D2, 10:X3 — no flag of space on a framed shell: `4r = 0` forces `r = 0` (`2 ≠ 0` and no zero divisors), so
 the meridian factor contributes no element of order four; and `2r = 0` forces `r = 0`. -/
 theorem no_flag_of_space {g : Shell (4 * κ + 1)} (F : Frame (4 * κ + 1) κ g) (r : Shell (4 * κ + 1))
     (h : (2 * 2 : Shell (4 * κ + 1)) * r = 0) : r = 0 := by
@@ -244,7 +244,7 @@ residue; the general law is `two_smul_flag` of the Mathlib module. -/
 theorem order_two_13 :
     ∀ s : Shell 12, (2 : Shell 12) * s = 0 ↔ (s = 0 ∨ s = 6) := by decide +kernel
 
-/-- 10:D2 — the elements of order four of `D_13 = C_13 × C_12` are exactly `(0, 3)` and `(0, 9)`: the flag
+/-- 10:D2, 10:X3 — the elements of order four of `D_13 = C_13 × C_12` are exactly `(0, 3)` and `(0, 9)`: the flag
 and its conjugate, both in the time factor (exhaustive over the `156` labels). -/
 theorem order_four_13 :
     ∀ x : DomK 3, (x ^ 4 = 1 ∧ x ^ 2 ≠ 1) ↔ (x = flag 3 ∨ x = (flag 3)⁻¹) := by decide +kernel
@@ -423,7 +423,7 @@ theorem minimality :
   have h2 : 4 * S + 1 ≤ 229 := Nat.succ_le_succ (Nat.mul_le_mul_left 4 (Nat.le_of_lt_succ hS))
   exact Nat.lt_irrefl _ (Nat.lt_of_lt_of_le (Nat.lt_of_le_of_lt h1 h) (Nat.le_trans h2 (by decide)))
 
-/-- 10:F2, 10:F3, 10:F4, 10:G3 — the derived domains realized on `𝔽₁₃` (`κ = 3`, the flag `(0, 3)`):
+/-- 10:F2, 10:F3, 10:F4, 10:G3, 10:X1, 10:X2 — the derived domains realized on `𝔽₁₃` (`κ = 3`, the flag `(0, 3)`):
 `[m] = [E][v]⁻² = (11, 4)`, `[a] = (1, 10)`, `[F] = [m][a] = (12, 2)`, `[p] = [m][v] = (12, 3) = I_q [L]⁻¹`,
 `[S] = [E][T] = I_q`, `[P] = (0, 1)`, `[G] = [F][L]²[m]⁻² = (5, 6)`; the geometric conversions `[Għ/c³] = [L]²`,
 `[Gm/c²] = [L]`, `[Gm/c³] = [T]`, `[Gm/r³] = [T]⁻²`; `[Θ] = [E][k_B]⁻¹ = [a]` and the Unruh closure;
@@ -473,7 +473,7 @@ theorem energy_momentum13 :
     E ^ 2 = flag 3 ^ 2 * (T 3 ^ 2)⁻¹ ∧ E = mom 3 * v ∧ E = ⟨11, 4⟩ * v ^ 2 ∧ E * (v ^ 2)⁻¹ = ⟨11, 4⟩ := by
   decide
 
-/-- 10:F5 — the charge label on `𝔽₁₃` (`κ = 3`): with the Coulomb constant neutral, `[q]² = [E][L] = I_q [L][T]⁻¹`,
+/-- 10:F5, 10:X4 — the charge label on `𝔽₁₃` (`κ = 3`): with the Coulomb constant neutral, `[q]² = [E][L] = I_q [L][T]⁻¹`,
 and the labels with `x² = [q]²` are exactly `⟨7, 1⟩` and `⟨7, 7⟩ = ⟨7, 1⟩ · I_q²` (the half-period), their space
 exponent `7 = 2⁻¹ = 2κ + 1`, the meridian half-turn. -/
 theorem charge13 :
@@ -481,15 +481,15 @@ theorem charge13 :
     (⟨7, 7⟩ : DomK 3) = ⟨7, 1⟩ * flag 3 ^ 2 ∧ energy 3 * L 3 = flag 3 * (L 3 * (T 3)⁻¹) ∧
     (2 : Shell 13) * 7 = 1 := by decide
 
-/-- 10:F5 — the charge label on `p = 29` (`κ = 7`): exactly `⟨15, 3⟩` and `⟨15, 17⟩ = ⟨15, 3⟩ · I_q²`. -/
+/-- 10:F5, 10:X4 — the charge label on `p = 29` (`κ = 7`): exactly `⟨15, 3⟩` and `⟨15, 17⟩ = ⟨15, 3⟩ · I_q²`. -/
 theorem charge29 :
     (∀ x : DomK 7, x * x = energy 7 * L 7 ↔ x = ⟨15, 3⟩ ∨ x = ⟨15, 17⟩) ∧
     (⟨15, 17⟩ : DomK 7) = ⟨15, 3⟩ * flag 7 ^ 2 := by decide
 
-/-- 10:F5 — on `p = 17` (`κ = 4`, even) no label squares to `[q]²`: the charge has no domain on that shell. -/
+/-- 10:F5, 10:X4 — on `p = 17` (`κ = 4`, even) no label squares to `[q]²`: the charge has no domain on that shell. -/
 theorem no_charge17 : ∀ x : DomK 4, x * x ≠ energy 4 * L 4 := by decide
 
-/-- 10:F5 — on `p = 41` (`κ = 10`, even) no label squares to `[q]²`. -/
+/-- 10:F5, 10:X4 — on `p = 41` (`κ = 10`, even) no label squares to `[q]²`. -/
 theorem no_charge41 : ∀ x : DomK 10, x * x ≠ energy 10 * L 10 := by decide
 
 end values
@@ -546,6 +546,18 @@ theorem p10038 : (16 : Nat) * (17 : Nat) < (17 : Nat) * (17 : Nat) ∧ (16 : Nat
 set_option linter.defProp false in
 /-- 10:G3 (p10039) — The worked examples: $\kap=3$, $H=5$, $12>10$ so every pair in $[-5,5]^{2}$ is distinguished; kinetic energy $[m][v]^{2}=[E]$; $Q+Q^{2}$ inhomogeneous; the phase exponent neutral; flag arithmetic ($G\hbar/c^{3}$ flag-free, $\Iq^{2}=\unitT^{\pi}$); the Schwarzschild length $[Gm/c^{2}]=\unitL$; the gravitational frequency $[Gm/r^{3}]=\unitT^{-2}$; the energy--momentum relation $E^{2}=p^{2}c^{2}+m^{2}c^{4}$ homogeneous at crossing degree two, its massless case $E=pc$ at crossing degree one. -/
 def p10039 := And.intro @FRC.Dimensions.realized13 (And.intro @FRC.Dimensions.recovery13 (@FRC.Dimensions.energy_momentum13))
+/-- 10:X1 (p10048) — The arity of classical bookkeeping, derived: four horizons less one identity, $4-1=3$ free scales in bijection with $\{c,\hbar,G\}$, exactly three independent members of $\{c,\hbar,G,k_B\}$; the three mechanical primitives are the two chart generators and the flag's torsion-free surrogate, mass, $[m]=\Iq\unitL^{-2}\unitT$, $m_P=\pP/c$. Classical dimensional analysis postulates the count and the mass primitive. -/
+theorem p10048 : have E := FRC.Dimensions.energy (3 : Nat); have v := FRC.Dimensions.L (3 : Nat) * (FRC.Dimensions.T (3 : Nat))⁻¹; have m := E * (v ^ (2 : Nat))⁻¹; have a := v * (FRC.Dimensions.T (3 : Nat))⁻¹; have f := m * a; have pm := m * v; have G := f * FRC.Dimensions.L (3 : Nat) ^ (2 : Nat) * (m ^ (2 : Nat))⁻¹; have kB := FRC.Dimensions.flag (3 : Nat) * (FRC.Dimensions.L (3 : Nat))⁻¹ * FRC.Dimensions.T (3 : Nat); m = { r := (11 : FRC.Shell ((4 : Nat) * (3 : Nat) + (1 : Nat))), s := (4 : FRC.Shell ((4 : Nat) * (3 : Nat))) } ∧ a = { r := (1 : FRC.Shell ((4 : Nat) * (3 : Nat) + (1 : Nat))), s := (10 : FRC.Shell ((4 : Nat) * (3 : Nat))) } ∧ f = { r := (12 : FRC.Shell ((4 : Nat) * (3 : Nat) + (1 : Nat))), s := (2 : FRC.Shell ((4 : Nat) * (3 : Nat))) } ∧ pm = { r := (12 : FRC.Shell ((4 : Nat) * (3 : Nat) + (1 : Nat))), s := (3 : FRC.Shell ((4 : Nat) * (3 : Nat))) } ∧ pm = FRC.Dimensions.mom (3 : Nat) ∧ E * FRC.Dimensions.T (3 : Nat) = FRC.Dimensions.flag (3 : Nat) ∧ E * (FRC.Dimensions.T (3 : Nat))⁻¹ = { r := (0 : FRC.Shell ((4 : Nat) * (3 : Nat) + (1 : Nat))), s := (1 : FRC.Shell ((4 : Nat) * (3 : Nat))) } ∧ G = { r := (5 : FRC.Shell ((4 : Nat) * (3 : Nat) + (1 : Nat))), s := (6 : FRC.Shell ((4 : Nat) * (3 : Nat))) } ∧ G * FRC.Dimensions.flag (3 : Nat) * (v ^ (3 : Nat))⁻¹ = FRC.Dimensions.L (3 : Nat) ^ (2 : Nat) ∧ G * m * (v ^ (2 : Nat))⁻¹ = FRC.Dimensions.L (3 : Nat) ∧ G * m * (v ^ (3 : Nat))⁻¹ = FRC.Dimensions.T (3 : Nat) ∧ G * m * (FRC.Dimensions.L (3 : Nat) ^ (3 : Nat))⁻¹ = (FRC.Dimensions.T (3 : Nat) ^ (2 : Nat))⁻¹ ∧ E * kB⁻¹ = a ∧ FRC.Dimensions.flag (3 : Nat) * a * v⁻¹ * kB⁻¹ = a ∧ E * FRC.Dimensions.T (3 : Nat) * (FRC.Dimensions.flag (3 : Nat))⁻¹ = (1 : FRC.Dimensions.DomK (3 : Nat)) ∧ m * v ^ (2 : Nat) = E ∧ FRC.Dimensions.L (3 : Nat) ≠ FRC.Dimensions.L (3 : Nat) ^ (2 : Nat) ∧ f * a⁻¹ = m :=
+  @FRC.Dimensions.realized13
+/-- 10:X2 (p10049) — The thermal primitive is redundant: $[\Theta]=\unitE[k_B]^{-1}=\unitL\unitT^{-2}$, the acceleration domain, flag-free where energy carries the flag; $|k_B|=\hbar/c$ is the quartet's mixed product; the Unruh combination $\hbar a/(c\,k_B)$ closes as a domain identity. Classical bookkeeping adjoins a thermal unit and reads $k_B$ as a conversion. -/
+theorem p10049 : have E := FRC.Dimensions.energy (3 : Nat); have v := FRC.Dimensions.L (3 : Nat) * (FRC.Dimensions.T (3 : Nat))⁻¹; have m := E * (v ^ (2 : Nat))⁻¹; have a := v * (FRC.Dimensions.T (3 : Nat))⁻¹; have f := m * a; have pm := m * v; have G := f * FRC.Dimensions.L (3 : Nat) ^ (2 : Nat) * (m ^ (2 : Nat))⁻¹; have kB := FRC.Dimensions.flag (3 : Nat) * (FRC.Dimensions.L (3 : Nat))⁻¹ * FRC.Dimensions.T (3 : Nat); m = { r := (11 : FRC.Shell ((4 : Nat) * (3 : Nat) + (1 : Nat))), s := (4 : FRC.Shell ((4 : Nat) * (3 : Nat))) } ∧ a = { r := (1 : FRC.Shell ((4 : Nat) * (3 : Nat) + (1 : Nat))), s := (10 : FRC.Shell ((4 : Nat) * (3 : Nat))) } ∧ f = { r := (12 : FRC.Shell ((4 : Nat) * (3 : Nat) + (1 : Nat))), s := (2 : FRC.Shell ((4 : Nat) * (3 : Nat))) } ∧ pm = { r := (12 : FRC.Shell ((4 : Nat) * (3 : Nat) + (1 : Nat))), s := (3 : FRC.Shell ((4 : Nat) * (3 : Nat))) } ∧ pm = FRC.Dimensions.mom (3 : Nat) ∧ E * FRC.Dimensions.T (3 : Nat) = FRC.Dimensions.flag (3 : Nat) ∧ E * (FRC.Dimensions.T (3 : Nat))⁻¹ = { r := (0 : FRC.Shell ((4 : Nat) * (3 : Nat) + (1 : Nat))), s := (1 : FRC.Shell ((4 : Nat) * (3 : Nat))) } ∧ G = { r := (5 : FRC.Shell ((4 : Nat) * (3 : Nat) + (1 : Nat))), s := (6 : FRC.Shell ((4 : Nat) * (3 : Nat))) } ∧ G * FRC.Dimensions.flag (3 : Nat) * (v ^ (3 : Nat))⁻¹ = FRC.Dimensions.L (3 : Nat) ^ (2 : Nat) ∧ G * m * (v ^ (2 : Nat))⁻¹ = FRC.Dimensions.L (3 : Nat) ∧ G * m * (v ^ (3 : Nat))⁻¹ = FRC.Dimensions.T (3 : Nat) ∧ G * m * (FRC.Dimensions.L (3 : Nat) ^ (3 : Nat))⁻¹ = (FRC.Dimensions.T (3 : Nat) ^ (2 : Nat))⁻¹ ∧ E * kB⁻¹ = a ∧ FRC.Dimensions.flag (3 : Nat) * a * v⁻¹ * kB⁻¹ = a ∧ E * FRC.Dimensions.T (3 : Nat) * (FRC.Dimensions.flag (3 : Nat))⁻¹ = (1 : FRC.Dimensions.DomK (3 : Nat)) ∧ m * v ^ (2 : Nat) = E ∧ FRC.Dimensions.L (3 : Nat) ≠ FRC.Dimensions.L (3 : Nat) ^ (2 : Nat) ∧ f * a⁻¹ = m :=
+  @FRC.Dimensions.realized13
+/-- 10:X3 (p10050) — One action quantum for both conjugate pairs: the domain lattice has exactly one order-four subgroup, in the time factor (no flag of space), canonical and covariant, so $E=hf$ and $p=\hbar k$ share one $\hbar$, $\lP\pP=\tPl\EP$ --- derived from the shell's algebra with no Lorentz structure used. -/
+theorem p10050 : (∀ (κ : Nat) [FRC.Pos κ], FRC.Dimensions.flag κ ^ (2 : Nat) = FRC.Dimensions.T κ ^ ((2 : Nat) * κ) ∧ FRC.Dimensions.flag κ ^ (1 : Nat) ≠ (1 : FRC.Dimensions.DomK κ) ∧ FRC.Dimensions.flag κ ^ (2 : Nat) ≠ (1 : FRC.Dimensions.DomK κ) ∧ FRC.Dimensions.flag κ ^ (3 : Nat) ≠ (1 : FRC.Dimensions.DomK κ)) ∧ (∀ (κ : Nat) {g : FRC.Shell ((4 : Nat) * κ + (1 : Nat))}, FRC.Shell.Frame ((4 : Nat) * κ + (1 : Nat)) κ g → ∀ (r : FRC.Shell ((4 : Nat) * κ + (1 : Nat))), (2 : FRC.Shell ((4 : Nat) * κ + (1 : Nat))) * (2 : FRC.Shell ((4 : Nat) * κ + (1 : Nat))) * r = (0 : FRC.Shell ((4 : Nat) * κ + (1 : Nat))) → r = (0 : FRC.Shell ((4 : Nat) * κ + (1 : Nat)))) ∧ ∀ (x : FRC.Dimensions.DomK (3 : Nat)), x ^ (4 : Nat) = (1 : FRC.Dimensions.DomK (3 : Nat)) ∧ x ^ (2 : Nat) ≠ (1 : FRC.Dimensions.DomK (3 : Nat)) ↔ x = FRC.Dimensions.flag (3 : Nat) ∨ x = (FRC.Dimensions.flag (3 : Nat))⁻¹ :=
+  And.intro @FRC.Dimensions.flag_order_four (And.intro @FRC.Dimensions.no_flag_of_space (@FRC.Dimensions.order_four_13))
+/-- 10:X4 (p10051) — Charge is an integer degree of the two generators on the shells of odd capacity, not a further primitive: with the Coulomb constant neutral (F5), $[q]^{2}=\Iq\unitL\unitT^{-1}$, $q_P^{2}=\hbar c$; the lift has no half root (the Gaussian exponents $M^{1/2}L^{3/2}T^{-1}$ are half-integers there), so torsion-free bookkeeping adjoins an electrical primitive as it adjoins mass; the fine-structure ratio stays a neutral count. -/
+theorem p10051 : ((∀ (x : FRC.Dimensions.DomK (3 : Nat)), x * x = FRC.Dimensions.energy (3 : Nat) * FRC.Dimensions.L (3 : Nat) ↔ x = { r := (7 : FRC.Shell ((4 : Nat) * (3 : Nat) + (1 : Nat))), s := (1 : FRC.Shell ((4 : Nat) * (3 : Nat))) } ∨ x = { r := (7 : FRC.Shell ((4 : Nat) * (3 : Nat) + (1 : Nat))), s := (7 : FRC.Shell ((4 : Nat) * (3 : Nat))) }) ∧ { r := (7 : FRC.Shell ((4 : Nat) * (3 : Nat) + (1 : Nat))), s := (7 : FRC.Shell ((4 : Nat) * (3 : Nat))) } = { r := (7 : FRC.Shell ((4 : Nat) * (3 : Nat) + (1 : Nat))), s := (1 : FRC.Shell ((4 : Nat) * (3 : Nat))) } * FRC.Dimensions.flag (3 : Nat) ^ (2 : Nat) ∧ FRC.Dimensions.energy (3 : Nat) * FRC.Dimensions.L (3 : Nat) = FRC.Dimensions.flag (3 : Nat) * (FRC.Dimensions.L (3 : Nat) * (FRC.Dimensions.T (3 : Nat))⁻¹) ∧ (2 : FRC.Shell (13 : Nat)) * (7 : FRC.Shell (13 : Nat)) = (1 : FRC.Shell (13 : Nat))) ∧ ((∀ (x : FRC.Dimensions.DomK (7 : Nat)), x * x = FRC.Dimensions.energy (7 : Nat) * FRC.Dimensions.L (7 : Nat) ↔ x = { r := (15 : FRC.Shell ((4 : Nat) * (7 : Nat) + (1 : Nat))), s := (3 : FRC.Shell ((4 : Nat) * (7 : Nat))) } ∨ x = { r := (15 : FRC.Shell ((4 : Nat) * (7 : Nat) + (1 : Nat))), s := (17 : FRC.Shell ((4 : Nat) * (7 : Nat))) }) ∧ { r := (15 : FRC.Shell ((4 : Nat) * (7 : Nat) + (1 : Nat))), s := (17 : FRC.Shell ((4 : Nat) * (7 : Nat))) } = { r := (15 : FRC.Shell ((4 : Nat) * (7 : Nat) + (1 : Nat))), s := (3 : FRC.Shell ((4 : Nat) * (7 : Nat))) } * FRC.Dimensions.flag (7 : Nat) ^ (2 : Nat)) ∧ (∀ (x : FRC.Dimensions.DomK (4 : Nat)), x * x ≠ FRC.Dimensions.energy (4 : Nat) * FRC.Dimensions.L (4 : Nat)) ∧ ∀ (x : FRC.Dimensions.DomK (10 : Nat)), x * x ≠ FRC.Dimensions.energy (10 : Nat) * FRC.Dimensions.L (10 : Nat) :=
+  And.intro @FRC.Dimensions.charge13 (And.intro @FRC.Dimensions.charge29 (And.intro @FRC.Dimensions.no_charge17 (@FRC.Dimensions.no_charge41)))
 -- end ledger predicates
 
 end FRC.Dimensions

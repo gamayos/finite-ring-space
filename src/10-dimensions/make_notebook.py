@@ -11,7 +11,7 @@ PKG = "10-dimensions"; NB = f"frc-{PKG}.ipynb"; PAPER = "10"
 COLAB = f"https://colab.research.google.com/github/gamayos/finite-ring-space/blob/main/src/{PKG}/{NB}"
 LEDGER_URL = f"https://finitering.space/{PKG}/"; APPENDIX = "B"          # the paper's ledger page and the appendix that carries the ledger
 BADGE = "https://finitering.space/media/frc-ledger-badge.svg"                          # the FRC ledger badge, the way back to the page
-SCRIPTS = "`verify_domains.py`, `check_lift.py`"; RUNTIME = "≈ 10 s"
+SCRIPTS = ", ".join(f"[`{n}`](https://finitering.space/src/{PKG}/{n[:-3]}.html)" for n in ["verify_domains.py", "check_lift.py"]); RUNTIME = "≈ 10 s"
 LEDGER = os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "..", "docs", PKG, f"{PKG}-ledger.json")
 cells = []
 def md(s, cid): cells.append({"cell_type": "markdown", "metadata": {"id": cid}, "source": s})

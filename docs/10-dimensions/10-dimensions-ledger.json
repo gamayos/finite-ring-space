@@ -332,6 +332,40 @@
      "key": "p10046"
     }
    ]
+  },
+  {
+   "letter": "X",
+   "title": "What the construction explains",
+   "rows": [
+    {
+     "label": "X1",
+     "predicate": "The arity of classical bookkeeping, derived: four horizons less one identity, $4-1=3$ free scales in bijection with $\\{c,\\hbar,G\\}$, exactly three independent members of $\\{c,\\hbar,G,k_B\\}$; the three mechanical primitives are the two chart generators and the flag's torsion-free surrogate, mass, $[m]=\\Iq\\unitL^{-2}\\unitT$, $m_P=\\pP/c$. Classical dimensional analysis postulates the count and the mass primitive.",
+     "tag": "T",
+     "source": "Cors.~\\ref{cor:derived}, \\ref{cor:dof}, Thm.~\\ref{thm:closure}, Prop.~\\ref{prop:mechanical-domains} (restates E2, E3, F2)\\newline \\pywit{verify\\_domains}{p10048}\\newline \\leanwit{FrcCore}{p10048} \\lean{Dimensions.quartet\\_param, Dimensions.scale\\_from\\_constants, Dimensions.cancellation, Dimensions.mechanical\\_domains, FRC.Dimensions.realized13}",
+     "key": "p10048"
+    },
+    {
+     "label": "X2",
+     "predicate": "The thermal primitive is redundant: $[\\Theta]=\\unitE[k_B]^{-1}=\\unitL\\unitT^{-2}$, the acceleration domain, flag-free where energy carries the flag; $|k_B|=\\hbar/c$ is the quartet's mixed product; the Unruh combination $\\hbar a/(c\\,k_B)$ closes as a domain identity. Classical bookkeeping adjoins a thermal unit and reads $k_B$ as a conversion.",
+     "tag": "T",
+     "source": "Cors.~\\ref{cor:kbc}, \\ref{cor:temperature}, Rem.~\\ref{rem:unruh} (restates E3, F3)\\newline \\pywit{verify\\_domains}{p10049}\\newline \\leanwit{FrcCore}{p10049} \\lean{Dimensions.cancellation, Dimensions.temperature\\_domain, FRC.Dimensions.realized13}",
+     "key": "p10049"
+    },
+    {
+     "label": "X3",
+     "predicate": "One action quantum for both conjugate pairs: the domain lattice has exactly one order-four subgroup, in the time factor (no flag of space), canonical and covariant, so $E=hf$ and $p=\\hbar k$ share one $\\hbar$, $\\lP\\pP=\\tPl\\EP$ --- derived from the shell's algebra with no Lorentz structure used.",
+     "tag": "T",
+     "source": "Thm.~\\ref{thm:domain-q4}, Cor.~\\ref{cor:no-space-flag}, Prop.~\\ref{prop:h-domain}, Rem.~\\ref{prop:action-identity} (restates D2, E2)\\newline \\pywit{verify\\_domains}{p10050}\\newline \\leanwit{FrcCore}{p10050} \\lean{Dimensions.unique\\_order\\_four\\_subgroup, Dimensions.no\\_flag\\_of\\_space, Dimensions.action\\_identity, FRC.Dimensions.flag\\_order\\_four, FRC.Dimensions.no\\_flag\\_of\\_space, FRC.Dimensions.order\\_four\\_13}",
+     "key": "p10050"
+    },
+    {
+     "label": "X4",
+     "predicate": "Charge is an integer degree of the two generators on the shells of odd capacity, not a further primitive: with the Coulomb constant neutral (F5), $[q]^{2}=\\Iq\\unitL\\unitT^{-1}$, $q_P^{2}=\\hbar c$; the lift has no half root (the Gaussian exponents $M^{1/2}L^{3/2}T^{-1}$ are half-integers there), so torsion-free bookkeeping adjoins an electrical primitive as it adjoins mass; the fine-structure ratio stays a neutral count.",
+     "tag": "T",
+     "source": "Rem.~\\ref{rem:electromagnetic} (restates F5)\\newline \\pywit{verify\\_domains}{p10051}\\newline \\leanwit{FrcCore}{p10051} \\lean{FRC.Dimensions.charge13, FRC.Dimensions.charge29, FRC.Dimensions.no\\_charge17, FRC.Dimensions.no\\_charge41}",
+     "key": "p10051"
+    }
+   ]
   }
  ],
  "legend": [
@@ -703,7 +737,7 @@
     ],
     "tier": 2,
     "ok": true,
-    "doc": "10:D2 — `D_p` contains exactly one subgroup of order four, `⟨I_q⟩ = {1, I_q, I_q², I_q³}`."
+    "doc": "10:D2, 10:X3 — `D_p` contains exactly one subgroup of order four, `⟨I_q⟩ = {1, I_q, I_q², I_q³}`."
    },
    {
     "name": "FRC.Dimensions.no_flag_of_space",
@@ -716,7 +750,7 @@
     ],
     "tier": 2,
     "ok": true,
-    "doc": "10:D2 — no flag of space: `4r = 0` in `C_p` forces `r = 0` (`p` an odd prime), so the meridian factor contributes no element of order four."
+    "doc": "10:D2, 10:X3 — no flag of space: `4r = 0` in `C_p` forces `r = 0` (`p` an odd prime), so the meridian factor contributes no element of order four."
    },
    {
     "name": "FRC.Dimensions.order_two_iff",
@@ -763,7 +797,7 @@
     "axioms": [],
     "tier": 0,
     "ok": true,
-    "doc": "10:D2 — `I_q² = [T]^π`, the half-period `π = 2κ`, and `I_q, I_q², I_q³ ≠ 1`: the flag has order four."
+    "doc": "10:D2, 10:X3 — `I_q² = [T]^π`, the half-period `π = 2κ`, and `I_q, I_q², I_q³ ≠ 1`: the flag has order four."
    },
    {
     "name": "FRC.Dimensions.no_flag_of_space",
@@ -772,7 +806,7 @@
     "axioms": [],
     "tier": 0,
     "ok": true,
-    "doc": "10:D2 — no flag of space on a framed shell: `4r = 0` forces `r = 0` (`2 ≠ 0` and no zero divisors), so the meridian factor contributes no element of order four; and `2r = 0` forces `r = 0`."
+    "doc": "10:D2, 10:X3 — no flag of space on a framed shell: `4r = 0` forces `r = 0` (`2 ≠ 0` and no zero divisors), so the meridian factor contributes no element of order four; and `2r = 0` forces `r = 0`."
    },
    {
     "name": "FRC.Dimensions.order_four_13",
@@ -781,7 +815,7 @@
     "axioms": [],
     "tier": 0,
     "ok": true,
-    "doc": "10:D2 — the elements of order four of `D_13 = C_13 × C_12` are exactly `(0, 3)` and `(0, 9)`: the flag and its conjugate, both in the time factor (exhaustive over the `156` labels)."
+    "doc": "10:D2, 10:X3 — the elements of order four of `D_13 = C_13 × C_12` are exactly `(0, 3)` and `(0, 9)`: the flag and its conjugate, both in the time factor (exhaustive over the `156` labels)."
    }
   ],
   "D3": [
@@ -916,7 +950,7 @@
     ],
     "tier": 2,
     "ok": true,
-    "doc": "10:E1, 10:E2 — one crossing, one action: with the dual horizons the crossed images `p_P = ħ/ℓ_P`, `E_P = ħ/t_P`, the quartet satisfies the single identity `ℓ_P p_P = t_P E_P = ħ`."
+    "doc": "10:E1, 10:E2, 10:X3 — one crossing, one action: with the dual horizons the crossed images `p_P = ħ/ℓ_P`, `E_P = ħ/t_P`, the quartet satisfies the single identity `ℓ_P p_P = t_P E_P = ħ`."
    },
    {
     "name": "FRC.Dimensions.quartet_param",
@@ -929,7 +963,7 @@
     ],
     "tier": 2,
     "ok": true,
-    "doc": "10:E2 — the relation lattice has rank `4 − 1 = 3`: a quartet `(ℓ, t, p, E)` of scales with `ℓ, t ≠ 0` satisfies `ℓp = tE` exactly when it is `(ℓ, t, ħ/ℓ, ħ/t)` for the one value `ħ = ℓp` — three free scales, in bijection with the primitive triple `(ℓ_P, t_P, ħ)`."
+    "doc": "10:E2, 10:X1 — the relation lattice has rank `4 − 1 = 3`: a quartet `(ℓ, t, p, E)` of scales with `ℓ, t ≠ 0` satisfies `ℓp = tE` exactly when it is `(ℓ, t, ħ/ℓ, ħ/t)` for the one value `ħ = ℓp` — three free scales, in bijection with the primitive triple `(ℓ_P, t_P, ħ)`."
    },
    {
     "name": "FRC.Dimensions.pairing_closure",
@@ -981,7 +1015,7 @@
     ],
     "tier": 2,
     "ok": true,
-    "doc": "10:E2 — the positive root closes the bijection: for `c, ħ, G > 0` there is exactly one `ℓ > 0` with `ℓ² = G ħ / c³`."
+    "doc": "10:E2, 10:X1 — the positive root closes the bijection: for `c, ħ, G > 0` there is exactly one `ℓ > 0` with `ℓ² = G ħ / c³`."
    },
    {
     "name": "FRC.Dimensions.exponent_faces",
@@ -1009,7 +1043,7 @@
     ],
     "tier": 2,
     "ok": true,
-    "doc": "10:E3 — the cancellation identity `|k_B| c = ħ` at the unit face, `(p t)(ℓ/t) = ℓ p`; mass derived, `m_P = p/c = E/c²`; the temperature horizon `Θ_P = E/|k_B| = E c/ħ`."
+    "doc": "10:E3, 10:X1, 10:X2 — the cancellation identity `|k_B| c = ħ` at the unit face, `(p t)(ℓ/t) = ℓ p`; mass derived, `m_P = p/c = E/c²`; the temperature horizon `Θ_P = E/|k_B| = E c/ħ`."
    },
    {
     "name": "FRC.Dimensions.quartet_flags",
@@ -1264,7 +1298,7 @@
     ],
     "tier": 1,
     "ok": true,
-    "doc": "10:F2 — the mechanical and gravitational domains from `[E] = I_q[T]⁻¹` and `[v] = [L][T]⁻¹`: `[m] = [E][v]⁻² = I_q[L]⁻²[T]`, `[a] = [v][T]⁻¹`, `[F] = [m][a] = I_q[L]⁻¹[T]⁻¹`, `[p] = [m][v] = I_q[L]⁻¹` (the flagged wavenumber `I_q[L]⁻¹` again), `[S] = [E][T] = I_q`, `[P] = [E][T]⁻¹ = I_q[T]⁻²`, `[pressure] = [F][L]⁻² = I_q[L]⁻³[T]⁻¹`, `[G] = [F][L]²[m]⁻² = I_q⁻¹[L]⁵[T]⁻³`, and the quartet face `[ħ][c][m]⁻² = [G]`; mass is derived, not primitive."
+    "doc": "10:F2, 10:X1 — the mechanical and gravitational domains from `[E] = I_q[T]⁻¹` and `[v] = [L][T]⁻¹`: `[m] = [E][v]⁻² = I_q[L]⁻²[T]`, `[a] = [v][T]⁻¹`, `[F] = [m][a] = I_q[L]⁻¹[T]⁻¹`, `[p] = [m][v] = I_q[L]⁻¹` (the flagged wavenumber `I_q[L]⁻¹` again), `[S] = [E][T] = I_q`, `[P] = [E][T]⁻¹ = I_q[T]⁻²`, `[pressure] = [F][L]⁻² = I_q[L]⁻³[T]⁻¹`, `[G] = [F][L]²[m]⁻² = I_q⁻¹[L]⁵[T]⁻³`, and the quartet face `[ħ][c][m]⁻² = [G]`; mass is derived, not primitive."
    },
    {
     "name": "FRC.Dimensions.geometric_conversions",
@@ -1285,7 +1319,7 @@
     "axioms": [],
     "tier": 0,
     "ok": true,
-    "doc": "10:F2, 10:F3, 10:F4, 10:G3 — the derived domains realized on `𝔽₁₃` (`κ = 3`, the flag `(0, 3)`): `[m] = [E][v]⁻² = (11, 4)`, `[a] = (1, 10)`, `[F] = [m][a] = (12, 2)`, `[p] = [m][v] = (12, 3) = I_q [L]⁻¹`, `[S] = [E][T] = I_q`, `[P] = (0, 1)`, `[G] = [F][L]²[m]⁻² = (5, 6)`; the geometric conversions `[Għ/c³] = [L]²`, `[Gm/c²] = [L]`, `[Gm/c³] = [T]`, `[Gm/r³] = [T]⁻²`; `[Θ] = [E][k_B]⁻¹ = [a]` and the Unruh closure; the phase exponent `[E][T][ħ]⁻¹ = 1`; kinetic energy `[m][v]² = [E]`; `Q + Q²` inhomogeneous, `[L] ≠ [L]²`; `F/a = [m]`, flagged."
+    "doc": "10:F2, 10:F3, 10:F4, 10:G3, 10:X1, 10:X2 — the derived domains realized on `𝔽₁₃` (`κ = 3`, the flag `(0, 3)`): `[m] = [E][v]⁻² = (11, 4)`, `[a] = (1, 10)`, `[F] = [m][a] = (12, 2)`, `[p] = [m][v] = (12, 3) = I_q [L]⁻¹`, `[S] = [E][T] = I_q`, `[P] = (0, 1)`, `[G] = [F][L]²[m]⁻² = (5, 6)`; the geometric conversions `[Għ/c³] = [L]²`, `[Gm/c²] = [L]`, `[Gm/c³] = [T]`, `[Gm/r³] = [T]⁻²`; `[Θ] = [E][k_B]⁻¹ = [a]` and the Unruh closure; the phase exponent `[E][T][ħ]⁻¹ = 1`; kinetic energy `[m][v]² = [E]`; `Q + Q²` inhomogeneous, `[L] ≠ [L]²`; `F/a = [m]`, flagged."
    }
   ],
   "F3": [
@@ -1296,7 +1330,7 @@
     "axioms": [],
     "tier": 0,
     "ok": true,
-    "doc": "10:F3 — temperature carries the acceleration domain: with `[k_B] = [p_P t_P] = I_q[L]⁻¹[T]`, `[Θ] = [E][k_B]⁻¹ = [L][T]⁻² = [a]`, flag-free; and the Unruh combination `[ħ a / (c k_B)] = [Θ]` closes flag-free."
+    "doc": "10:F3, 10:X2 — temperature carries the acceleration domain: with `[k_B] = [p_P t_P] = I_q[L]⁻¹[T]`, `[Θ] = [E][k_B]⁻¹ = [L][T]⁻² = [a]`, flag-free; and the Unruh combination `[ħ a / (c k_B)] = [Θ]` closes flag-free."
    },
    {
     "name": "FRC.Dimensions.realized13",
@@ -1305,7 +1339,7 @@
     "axioms": [],
     "tier": 0,
     "ok": true,
-    "doc": "10:F2, 10:F3, 10:F4, 10:G3 — the derived domains realized on `𝔽₁₃` (`κ = 3`, the flag `(0, 3)`): `[m] = [E][v]⁻² = (11, 4)`, `[a] = (1, 10)`, `[F] = [m][a] = (12, 2)`, `[p] = [m][v] = (12, 3) = I_q [L]⁻¹`, `[S] = [E][T] = I_q`, `[P] = (0, 1)`, `[G] = [F][L]²[m]⁻² = (5, 6)`; the geometric conversions `[Għ/c³] = [L]²`, `[Gm/c²] = [L]`, `[Gm/c³] = [T]`, `[Gm/r³] = [T]⁻²`; `[Θ] = [E][k_B]⁻¹ = [a]` and the Unruh closure; the phase exponent `[E][T][ħ]⁻¹ = 1`; kinetic energy `[m][v]² = [E]`; `Q + Q²` inhomogeneous, `[L] ≠ [L]²`; `F/a = [m]`, flagged."
+    "doc": "10:F2, 10:F3, 10:F4, 10:G3, 10:X1, 10:X2 — the derived domains realized on `𝔽₁₃` (`κ = 3`, the flag `(0, 3)`): `[m] = [E][v]⁻² = (11, 4)`, `[a] = (1, 10)`, `[F] = [m][a] = (12, 2)`, `[p] = [m][v] = (12, 3) = I_q [L]⁻¹`, `[S] = [E][T] = I_q`, `[P] = (0, 1)`, `[G] = [F][L]²[m]⁻² = (5, 6)`; the geometric conversions `[Għ/c³] = [L]²`, `[Gm/c²] = [L]`, `[Gm/c³] = [T]`, `[Gm/r³] = [T]⁻²`; `[Θ] = [E][k_B]⁻¹ = [a]` and the Unruh closure; the phase exponent `[E][T][ħ]⁻¹ = 1`; kinetic energy `[m][v]² = [E]`; `Q + Q²` inhomogeneous, `[L] ≠ [L]²`; `F/a = [m]`, flagged."
    }
   ],
   "F4": [
@@ -1339,7 +1373,7 @@
     "axioms": [],
     "tier": 0,
     "ok": true,
-    "doc": "10:F2, 10:F3, 10:F4, 10:G3 — the derived domains realized on `𝔽₁₃` (`κ = 3`, the flag `(0, 3)`): `[m] = [E][v]⁻² = (11, 4)`, `[a] = (1, 10)`, `[F] = [m][a] = (12, 2)`, `[p] = [m][v] = (12, 3) = I_q [L]⁻¹`, `[S] = [E][T] = I_q`, `[P] = (0, 1)`, `[G] = [F][L]²[m]⁻² = (5, 6)`; the geometric conversions `[Għ/c³] = [L]²`, `[Gm/c²] = [L]`, `[Gm/c³] = [T]`, `[Gm/r³] = [T]⁻²`; `[Θ] = [E][k_B]⁻¹ = [a]` and the Unruh closure; the phase exponent `[E][T][ħ]⁻¹ = 1`; kinetic energy `[m][v]² = [E]`; `Q + Q²` inhomogeneous, `[L] ≠ [L]²`; `F/a = [m]`, flagged."
+    "doc": "10:F2, 10:F3, 10:F4, 10:G3, 10:X1, 10:X2 — the derived domains realized on `𝔽₁₃` (`κ = 3`, the flag `(0, 3)`): `[m] = [E][v]⁻² = (11, 4)`, `[a] = (1, 10)`, `[F] = [m][a] = (12, 2)`, `[p] = [m][v] = (12, 3) = I_q [L]⁻¹`, `[S] = [E][T] = I_q`, `[P] = (0, 1)`, `[G] = [F][L]²[m]⁻² = (5, 6)`; the geometric conversions `[Għ/c³] = [L]²`, `[Gm/c²] = [L]`, `[Gm/c³] = [T]`, `[Gm/r³] = [T]⁻²`; `[Θ] = [E][k_B]⁻¹ = [a]` and the Unruh closure; the phase exponent `[E][T][ħ]⁻¹ = 1`; kinetic energy `[m][v]² = [E]`; `Q + Q²` inhomogeneous, `[L] ≠ [L]²`; `F/a = [m]`, flagged."
    }
   ],
   "F5": [
@@ -1350,7 +1384,7 @@
     "axioms": [],
     "tier": 0,
     "ok": true,
-    "doc": "10:F5 — the charge label on `𝔽₁₃` (`κ = 3`): with the Coulomb constant neutral, `[q]² = [E][L] = I_q [L][T]⁻¹`, and the labels with `x² = [q]²` are exactly `⟨7, 1⟩` and `⟨7, 7⟩ = ⟨7, 1⟩ · I_q²` (the half-period), their space exponent `7 = 2⁻¹ = 2κ + 1`, the meridian half-turn."
+    "doc": "10:F5, 10:X4 — the charge label on `𝔽₁₃` (`κ = 3`): with the Coulomb constant neutral, `[q]² = [E][L] = I_q [L][T]⁻¹`, and the labels with `x² = [q]²` are exactly `⟨7, 1⟩` and `⟨7, 7⟩ = ⟨7, 1⟩ · I_q²` (the half-period), their space exponent `7 = 2⁻¹ = 2κ + 1`, the meridian half-turn."
    },
    {
     "name": "FRC.Dimensions.charge29",
@@ -1359,7 +1393,7 @@
     "axioms": [],
     "tier": 0,
     "ok": true,
-    "doc": "10:F5 — the charge label on `p = 29` (`κ = 7`): exactly `⟨15, 3⟩` and `⟨15, 17⟩ = ⟨15, 3⟩ · I_q²`."
+    "doc": "10:F5, 10:X4 — the charge label on `p = 29` (`κ = 7`): exactly `⟨15, 3⟩` and `⟨15, 17⟩ = ⟨15, 3⟩ · I_q²`."
    },
    {
     "name": "FRC.Dimensions.no_charge17",
@@ -1368,7 +1402,7 @@
     "axioms": [],
     "tier": 0,
     "ok": true,
-    "doc": "10:F5 — on `p = 17` (`κ = 4`, even) no label squares to `[q]²`: the charge has no domain on that shell."
+    "doc": "10:F5, 10:X4 — on `p = 17` (`κ = 4`, even) no label squares to `[q]²`: the charge has no domain on that shell."
    },
    {
     "name": "FRC.Dimensions.no_charge41",
@@ -1377,7 +1411,7 @@
     "axioms": [],
     "tier": 0,
     "ok": true,
-    "doc": "10:F5 — on `p = 41` (`κ = 10`, even) no label squares to `[q]²`."
+    "doc": "10:F5, 10:X4 — on `p = 41` (`κ = 10`, even) no label squares to `[q]²`."
    }
   ],
   "G1": [
@@ -1501,7 +1535,7 @@
     "axioms": [],
     "tier": 0,
     "ok": true,
-    "doc": "10:F2, 10:F3, 10:F4, 10:G3 — the derived domains realized on `𝔽₁₃` (`κ = 3`, the flag `(0, 3)`): `[m] = [E][v]⁻² = (11, 4)`, `[a] = (1, 10)`, `[F] = [m][a] = (12, 2)`, `[p] = [m][v] = (12, 3) = I_q [L]⁻¹`, `[S] = [E][T] = I_q`, `[P] = (0, 1)`, `[G] = [F][L]²[m]⁻² = (5, 6)`; the geometric conversions `[Għ/c³] = [L]²`, `[Gm/c²] = [L]`, `[Gm/c³] = [T]`, `[Gm/r³] = [T]⁻²`; `[Θ] = [E][k_B]⁻¹ = [a]` and the Unruh closure; the phase exponent `[E][T][ħ]⁻¹ = 1`; kinetic energy `[m][v]² = [E]`; `Q + Q²` inhomogeneous, `[L] ≠ [L]²`; `F/a = [m]`, flagged."
+    "doc": "10:F2, 10:F3, 10:F4, 10:G3, 10:X1, 10:X2 — the derived domains realized on `𝔽₁₃` (`κ = 3`, the flag `(0, 3)`): `[m] = [E][v]⁻² = (11, 4)`, `[a] = (1, 10)`, `[F] = [m][a] = (12, 2)`, `[p] = [m][v] = (12, 3) = I_q [L]⁻¹`, `[S] = [E][T] = I_q`, `[P] = (0, 1)`, `[G] = [F][L]²[m]⁻² = (5, 6)`; the geometric conversions `[Għ/c³] = [L]²`, `[Gm/c²] = [L]`, `[Gm/c³] = [T]`, `[Gm/r³] = [T]⁻²`; `[Θ] = [E][k_B]⁻¹ = [a]` and the Unruh closure; the phase exponent `[E][T][ħ]⁻¹ = 1`; kinetic energy `[m][v]² = [E]`; `Q + Q²` inhomogeneous, `[L] ≠ [L]²`; `F/a = [m]`, flagged."
    },
    {
     "name": "FRC.Dimensions.recovery13",
@@ -1574,6 +1608,207 @@
     "tier": 2,
     "ok": true,
     "doc": "10:G4 — Buckingham's count on the pendulum `(T, ℓ, g, m)`: the classical dimensions lie in `M`-`L`-`T` and embed to the lifted labels `[T] = (0, 1; 0)`, `[ℓ] = (1, 0; 0)`, `[g] = (1, −2; 0)`, `[m] = (−2, 1; 1)`; a monomial `T^{k₁} ℓ^{k₂} g^{k₃} m^{k₄}` is neutral on the lift iff `(k₁, k₂, k₃, k₄) = t·(2, −1, 1, 0)` — the kernel of the `4 × 3` label matrix is the line of `T²g/ℓ`, one dimensionless product, so the rank is `3 = 4 − 1` (the mass, alone in carrying crossing degree, enters no neutral product, `k₄ = 0`); the minor of the label matrix on the rows `(ℓ, g, m)` is `−2 ≠ 0`."
+   }
+  ],
+  "X1": [
+   {
+    "name": "FRC.Dimensions.quartet_param",
+    "module": "FrcLedger/Dimensions",
+    "line": 731,
+    "axioms": [
+     "Classical.choice",
+     "Quot.sound",
+     "propext"
+    ],
+    "tier": 2,
+    "ok": true,
+    "doc": "10:E2, 10:X1 — the relation lattice has rank `4 − 1 = 3`: a quartet `(ℓ, t, p, E)` of scales with `ℓ, t ≠ 0` satisfies `ℓp = tE` exactly when it is `(ℓ, t, ħ/ℓ, ħ/t)` for the one value `ħ = ℓp` — three free scales, in bijection with the primitive triple `(ℓ_P, t_P, ħ)`."
+   },
+   {
+    "name": "FRC.Dimensions.scale_from_constants",
+    "module": "FrcLedger/Dimensions",
+    "line": 783,
+    "axioms": [
+     "Classical.choice",
+     "Quot.sound",
+     "propext"
+    ],
+    "tier": 2,
+    "ok": true,
+    "doc": "10:E2, 10:X1 — the positive root closes the bijection: for `c, ħ, G > 0` there is exactly one `ℓ > 0` with `ℓ² = G ħ / c³`."
+   },
+   {
+    "name": "FRC.Dimensions.cancellation",
+    "module": "FrcLedger/Dimensions",
+    "line": 751,
+    "axioms": [
+     "Classical.choice",
+     "Quot.sound",
+     "propext"
+    ],
+    "tier": 2,
+    "ok": true,
+    "doc": "10:E3, 10:X1, 10:X2 — the cancellation identity `|k_B| c = ħ` at the unit face, `(p t)(ℓ/t) = ℓ p`; mass derived, `m_P = p/c = E/c²`; the temperature horizon `Θ_P = E/|k_B| = E c/ħ`."
+   },
+   {
+    "name": "FRC.Dimensions.mechanical_domains",
+    "module": "FrcLedger/Dimensions",
+    "line": 989,
+    "axioms": [
+     "Quot.sound",
+     "propext"
+    ],
+    "tier": 1,
+    "ok": true,
+    "doc": "10:F2, 10:X1 — the mechanical and gravitational domains from `[E] = I_q[T]⁻¹` and `[v] = [L][T]⁻¹`: `[m] = [E][v]⁻² = I_q[L]⁻²[T]`, `[a] = [v][T]⁻¹`, `[F] = [m][a] = I_q[L]⁻¹[T]⁻¹`, `[p] = [m][v] = I_q[L]⁻¹` (the flagged wavenumber `I_q[L]⁻¹` again), `[S] = [E][T] = I_q`, `[P] = [E][T]⁻¹ = I_q[T]⁻²`, `[pressure] = [F][L]⁻² = I_q[L]⁻³[T]⁻¹`, `[G] = [F][L]²[m]⁻² = I_q⁻¹[L]⁵[T]⁻³`, and the quartet face `[ħ][c][m]⁻² = [G]`; mass is derived, not primitive."
+   },
+   {
+    "name": "FRC.Dimensions.realized13",
+    "module": "FrcCore/Dimensions",
+    "line": 432,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "10:F2, 10:F3, 10:F4, 10:G3, 10:X1, 10:X2 — the derived domains realized on `𝔽₁₃` (`κ = 3`, the flag `(0, 3)`): `[m] = [E][v]⁻² = (11, 4)`, `[a] = (1, 10)`, `[F] = [m][a] = (12, 2)`, `[p] = [m][v] = (12, 3) = I_q [L]⁻¹`, `[S] = [E][T] = I_q`, `[P] = (0, 1)`, `[G] = [F][L]²[m]⁻² = (5, 6)`; the geometric conversions `[Għ/c³] = [L]²`, `[Gm/c²] = [L]`, `[Gm/c³] = [T]`, `[Gm/r³] = [T]⁻²`; `[Θ] = [E][k_B]⁻¹ = [a]` and the Unruh closure; the phase exponent `[E][T][ħ]⁻¹ = 1`; kinetic energy `[m][v]² = [E]`; `Q + Q²` inhomogeneous, `[L] ≠ [L]²`; `F/a = [m]`, flagged."
+   }
+  ],
+  "X2": [
+   {
+    "name": "FRC.Dimensions.cancellation",
+    "module": "FrcLedger/Dimensions",
+    "line": 751,
+    "axioms": [
+     "Classical.choice",
+     "Quot.sound",
+     "propext"
+    ],
+    "tier": 2,
+    "ok": true,
+    "doc": "10:E3, 10:X1, 10:X2 — the cancellation identity `|k_B| c = ħ` at the unit face, `(p t)(ℓ/t) = ℓ p`; mass derived, `m_P = p/c = E/c²`; the temperature horizon `Θ_P = E/|k_B| = E c/ħ`."
+   },
+   {
+    "name": "FRC.Dimensions.temperature_domain",
+    "module": "FrcLedger/Dimensions",
+    "line": 1014,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "10:F3, 10:X2 — temperature carries the acceleration domain: with `[k_B] = [p_P t_P] = I_q[L]⁻¹[T]`, `[Θ] = [E][k_B]⁻¹ = [L][T]⁻² = [a]`, flag-free; and the Unruh combination `[ħ a / (c k_B)] = [Θ]` closes flag-free."
+   },
+   {
+    "name": "FRC.Dimensions.realized13",
+    "module": "FrcCore/Dimensions",
+    "line": 432,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "10:F2, 10:F3, 10:F4, 10:G3, 10:X1, 10:X2 — the derived domains realized on `𝔽₁₃` (`κ = 3`, the flag `(0, 3)`): `[m] = [E][v]⁻² = (11, 4)`, `[a] = (1, 10)`, `[F] = [m][a] = (12, 2)`, `[p] = [m][v] = (12, 3) = I_q [L]⁻¹`, `[S] = [E][T] = I_q`, `[P] = (0, 1)`, `[G] = [F][L]²[m]⁻² = (5, 6)`; the geometric conversions `[Għ/c³] = [L]²`, `[Gm/c²] = [L]`, `[Gm/c³] = [T]`, `[Gm/r³] = [T]⁻²`; `[Θ] = [E][k_B]⁻¹ = [a]` and the Unruh closure; the phase exponent `[E][T][ħ]⁻¹ = 1`; kinetic energy `[m][v]² = [E]`; `Q + Q²` inhomogeneous, `[L] ≠ [L]²`; `F/a = [m]`, flagged."
+   }
+  ],
+  "X3": [
+   {
+    "name": "FRC.Dimensions.unique_order_four_subgroup",
+    "module": "FrcLedger/Dimensions",
+    "line": 538,
+    "axioms": [
+     "Classical.choice",
+     "Quot.sound",
+     "propext"
+    ],
+    "tier": 2,
+    "ok": true,
+    "doc": "10:D2, 10:X3 — `D_p` contains exactly one subgroup of order four, `⟨I_q⟩ = {1, I_q, I_q², I_q³}`."
+   },
+   {
+    "name": "FRC.Dimensions.no_flag_of_space",
+    "module": "FrcLedger/Dimensions",
+    "line": 460,
+    "axioms": [
+     "Classical.choice",
+     "Quot.sound",
+     "propext"
+    ],
+    "tier": 2,
+    "ok": true,
+    "doc": "10:D2, 10:X3 — no flag of space: `4r = 0` in `C_p` forces `r = 0` (`p` an odd prime), so the meridian factor contributes no element of order four."
+   },
+   {
+    "name": "FRC.Dimensions.action_identity",
+    "module": "FrcLedger/Dimensions",
+    "line": 724,
+    "axioms": [
+     "Classical.choice",
+     "Quot.sound",
+     "propext"
+    ],
+    "tier": 2,
+    "ok": true,
+    "doc": "10:E1, 10:E2, 10:X3 — one crossing, one action: with the dual horizons the crossed images `p_P = ħ/ℓ_P`, `E_P = ħ/t_P`, the quartet satisfies the single identity `ℓ_P p_P = t_P E_P = ħ`."
+   },
+   {
+    "name": "FRC.Dimensions.flag_order_four",
+    "module": "FrcCore/Dimensions",
+    "line": 215,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "10:D2, 10:X3 — `I_q² = [T]^π`, the half-period `π = 2κ`, and `I_q, I_q², I_q³ ≠ 1`: the flag has order four."
+   },
+   {
+    "name": "FRC.Dimensions.no_flag_of_space",
+    "module": "FrcCore/Dimensions",
+    "line": 237,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "10:D2, 10:X3 — no flag of space on a framed shell: `4r = 0` forces `r = 0` (`2 ≠ 0` and no zero divisors), so the meridian factor contributes no element of order four; and `2r = 0` forces `r = 0`."
+   },
+   {
+    "name": "FRC.Dimensions.order_four_13",
+    "module": "FrcCore/Dimensions",
+    "line": 249,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "10:D2, 10:X3 — the elements of order four of `D_13 = C_13 × C_12` are exactly `(0, 3)` and `(0, 9)`: the flag and its conjugate, both in the time factor (exhaustive over the `156` labels)."
+   }
+  ],
+  "X4": [
+   {
+    "name": "FRC.Dimensions.charge13",
+    "module": "FrcCore/Dimensions",
+    "line": 479,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "10:F5, 10:X4 — the charge label on `𝔽₁₃` (`κ = 3`): with the Coulomb constant neutral, `[q]² = [E][L] = I_q [L][T]⁻¹`, and the labels with `x² = [q]²` are exactly `⟨7, 1⟩` and `⟨7, 7⟩ = ⟨7, 1⟩ · I_q²` (the half-period), their space exponent `7 = 2⁻¹ = 2κ + 1`, the meridian half-turn."
+   },
+   {
+    "name": "FRC.Dimensions.charge29",
+    "module": "FrcCore/Dimensions",
+    "line": 485,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "10:F5, 10:X4 — the charge label on `p = 29` (`κ = 7`): exactly `⟨15, 3⟩` and `⟨15, 17⟩ = ⟨15, 3⟩ · I_q²`."
+   },
+   {
+    "name": "FRC.Dimensions.no_charge17",
+    "module": "FrcCore/Dimensions",
+    "line": 490,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "10:F5, 10:X4 — on `p = 17` (`κ = 4`, even) no label squares to `[q]²`: the charge has no domain on that shell."
+   },
+   {
+    "name": "FRC.Dimensions.no_charge41",
+    "module": "FrcCore/Dimensions",
+    "line": 493,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "10:F5, 10:X4 — on `p = 41` (`κ = 10`, even) no label squares to `[q]²`."
    }
   ]
  }

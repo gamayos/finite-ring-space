@@ -6,7 +6,7 @@ dimcommon.py — shared registry for the 10-dimensions validation package
 random sampling. The suite verify_domains.py is organised in eight layers A–H, each a family of micro-checks; the
 lift script check_lift.py decides the five claims L1–L5 of Proposition `lift` on two shells and two Carriers. A
 family is one check of the registry, identified as <script tag>.<family> (dom.A … dom.H, lift.L1 … lift.L5), and
-names the predicate(s) of the paper's ledger it witnesses (LEDGER; predicates cited as 10:XN). The ledger's source
+names the predicate(s) of the paper's ledger it witnesses (LEDGER; predicates cited as 10:<label>). The ledger's source
 column names the witness script; the family checks are listed on the public page from results.json. Master-ledger predicates reached through the paper predicates: 00:D7 (10:D7),
 00:C12 (10:F3), 00:C13 (10:E9, 10:G2), 00:C8 (10:E4), 00:B10 (10:E5).
 
@@ -20,13 +20,13 @@ RESULTS = []
 MICRO = []             # (script tag, family, label, ok)
 
 LEDGER = {
-    "dom.A": "10:C2, 10:C3, 10:D2, 10:D6, 10:F2, 10:F4, 10:G1, 10:G3",
-    "dom.B": "10:E2, 10:E3",
+    "dom.A": "10:C2, 10:C3, 10:D2, 10:D6, 10:F2, 10:F4, 10:G1, 10:G3, 10:X1, 10:X3",
+    "dom.B": "10:E2, 10:E3, 10:X1, 10:X2, 10:X3",
     "dom.C": "10:E4",
-    "dom.D": "10:E4, 10:E5, 10:E9, 10:F3, 10:G1",
+    "dom.D": "10:E4, 10:E5, 10:E9, 10:F3, 10:G1, 10:X2",
     "dom.E": "10:C5",
     "dom.F": "10:C5, 10:D1",
-    "dom.G": "10:C5, 10:D2, 10:F5, 10:G2, 10:G4",
+    "dom.G": "10:C5, 10:D2, 10:F5, 10:G2, 10:G4, 10:X4",
     "dom.H": "10:E4, 10:E5",
     "lift.L1": "10:D3", "lift.L2": "10:D3", "lift.L3": "10:D3", "lift.L4": "10:D3", "lift.L5": "10:C5, 10:D3",
 }
@@ -56,6 +56,7 @@ PREDICATES = {
     "10:D6": "dom.A", "10:E2": "dom.B", "10:E3": "dom.B", "10:E4": "dom.C", "10:E5": "dom.H", "10:E9": "dom.D",
     "10:F2": "dom.A", "10:F3": "dom.D", "10:F4": "dom.A", "10:G1": "dom.A", "10:G2": "dom.G", "10:G3": "dom.A",
     "10:F5": "dom.G", "10:G4": "dom.G",
+    "10:X1": "dom.B", "10:X2": "dom.D", "10:X3": "dom.A", "10:X4": "dom.G",       # block X restates E2/F2, E3/F3, D2/E2, F5: the same deciding checks
 }
 _FAM = [None, None]
 _RAN = set()                                            # scripts already run in this session (predicate() runs each once)

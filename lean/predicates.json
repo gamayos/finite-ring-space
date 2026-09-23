@@ -47,7 +47,11 @@
    "10:F5": "Dimensions",
    "10:G1": "Dimensions",
    "10:G2": "Dimensions",
-   "10:G3": "Dimensions"
+   "10:G3": "Dimensions",
+   "10:X1": "Dimensions",
+   "10:X2": "Dimensions",
+   "10:X3": "Dimensions",
+   "10:X4": "Dimensions"
   },
   "FrcLedger": {
    "10:C2": "Dimensions",
@@ -68,7 +72,10 @@
    "10:G1": "Dimensions",
    "10:G2": "Dimensions",
    "10:G3": "Dimensions",
-   "10:G4": "Dimensions"
+   "10:G4": "Dimensions",
+   "10:X1": "Dimensions",
+   "10:X2": "Dimensions",
+   "10:X3": "Dimensions"
   }
  },
  "2-geometry": {
