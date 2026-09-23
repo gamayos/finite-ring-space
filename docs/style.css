@@ -256,7 +256,7 @@ section.prose { margin: 1rem 0; line-height: 1.55; } section.prose.closing { bor
 p.hist { font-size: 0.85rem; color: var(--ink-soft); }
 section.abstract { font-size: 0.95rem; line-height: 1.5; color: var(--ink-soft); margin: 0.6rem 0 0; }   /* full width of .wrap, like the table below it */
 section.abstract p.meta { margin: 0.55rem 0 0; } section.abstract p.meta a.badge { margin-right: .3rem; }   /* a page built before the badges moved to the menu line keeps its header until its next build */
-nav { align-items: center; flex-wrap: wrap; }
+nav { align-items: center; flex-wrap: wrap; } nav.withmeta { flex-wrap: wrap-reverse; }   /* a menu line with the badges: when it wraps, the badges' line comes first (above the menu), at whatever width the wrap happens */
 nav .meta { margin-left: auto; display: inline-flex; align-items: center; gap: .45rem; }   /* the paper's badges at the right end of the menu line */
 .wrap a.colab, .wrap a.colab:visited, .wrap a.colab:hover { border-bottom: none; text-decoration: none; display: inline-block; line-height: 0; vertical-align: middle; }
 .wrap a.badge, .wrap a.badge:visited, .wrap a.badge:hover { border-bottom: none; text-decoration: none; display: inline-block; line-height: 0; vertical-align: middle; margin: 0; padding: 0; }   /* the header badges: inline SVG, each a link; the .badge padding is the text badges' */
@@ -287,7 +287,6 @@ a.ledgerlink:hover { border-bottom-color: var(--ink); }
 html { -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
 mjx-container { max-width: 100%; overflow-x: auto; overflow-y: hidden; }
 @media (max-width: 720px) {
-  nav .meta { order: -1; width: 100%; margin-left: 0; justify-content: flex-end; }   /* the badges first, right-justified, the menu under them */
   .wrap table { display: block; width: 100%; }
   .wrap table thead { display: none; }
   .wrap table tbody { display: block; width: 100%; }
@@ -308,7 +307,7 @@ mjx-container { max-width: 100%; overflow-x: auto; overflow-y: hidden; }
   td.links { grid-area: links; }
   td.doi { white-space: normal; }
   .empty { padding: 1.5rem 0; }
-  nav { flex-wrap: wrap; gap: .4rem .9rem; }
+  nav { gap: .4rem .9rem; }
 }
 /* the source pages' bar: the way back to the ledger (at the row when opened at one), the file's path and size, copy, download, the editor */
 .srcbar { position: sticky; top: 0; z-index: 2; display: flex; align-items: center; flex-wrap: wrap; gap: .5rem .75rem; margin: 1rem 0 0; padding: .45rem .8rem; border: 1px solid var(--rule-soft); border-bottom: 0; border-radius: 6px 6px 0 0; background: var(--bg); font-size: .82rem; }
