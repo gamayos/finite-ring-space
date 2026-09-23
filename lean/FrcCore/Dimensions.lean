@@ -211,7 +211,7 @@ theorem flag_pow (m : Nat) : flag κ ^ m = ⟨0, ofNat (m * κ)⟩ := by
 theorem flag_pow_four : flag κ ^ 4 = 1 := by
   rw [flag_pow, ofNat_four_kappa]; rfl
 
-/-- 10:D2 — `I_q² = [T]^π`, the half-period `π = 2κ`, and `I_q, I_q², I_q³ ≠ 1`: the flag has order four. -/
+/-- 10:D2, 10:X3 — `I_q² = [T]^π`, the half-period `π = 2κ`, and `I_q, I_q², I_q³ ≠ 1`: the flag has order four. -/
 theorem flag_order_four :
     flag κ ^ 2 = T κ ^ (2 * κ) ∧ flag κ ^ 1 ≠ 1 ∧ flag κ ^ 2 ≠ 1 ∧ flag κ ^ 3 ≠ 1 := by
   refine ⟨?_, fun h => ?_, fun h => ?_, fun h => ?_⟩
@@ -232,7 +232,7 @@ theorem flag_inv : (flag κ)⁻¹ = flag κ ^ 3 := by
   rw [Frame.ofNat_add, Nat.add_comm, ← h4, ofNat_four_kappa]
 
 omit [Pos κ] in
-/-- 10:D2 — no flag of space on a framed shell: `4r = 0` forces `r = 0` (`2 ≠ 0` and no zero divisors), so
+/-- 10:D2, 10:X3 — no flag of space on a framed shell: `4r = 0` forces `r = 0` (`2 ≠ 0` and no zero divisors), so
 the meridian factor contributes no element of order four; and `2r = 0` forces `r = 0`. -/
 theorem no_flag_of_space {g : Shell (4 * κ + 1)} (F : Frame (4 * κ + 1) κ g) (r : Shell (4 * κ + 1))
     (h : (2 * 2 : Shell (4 * κ + 1)) * r = 0) : r = 0 := by
@@ -244,7 +244,7 @@ residue; the general law is `two_smul_flag` of the Mathlib module. -/
 theorem order_two_13 :
     ∀ s : Shell 12, (2 : Shell 12) * s = 0 ↔ (s = 0 ∨ s = 6) := by decide +kernel
 
-/-- 10:D2 — the elements of order four of `D_13 = C_13 × C_12` are exactly `(0, 3)` and `(0, 9)`: the flag
+/-- 10:D2, 10:X3 — the elements of order four of `D_13 = C_13 × C_12` are exactly `(0, 3)` and `(0, 9)`: the flag
 and its conjugate, both in the time factor (exhaustive over the `156` labels). -/
 theorem order_four_13 :
     ∀ x : DomK 3, (x ^ 4 = 1 ∧ x ^ 2 ≠ 1) ↔ (x = flag 3 ∨ x = (flag 3)⁻¹) := by decide +kernel
@@ -423,7 +423,7 @@ theorem minimality :
   have h2 : 4 * S + 1 ≤ 229 := Nat.succ_le_succ (Nat.mul_le_mul_left 4 (Nat.le_of_lt_succ hS))
   exact Nat.lt_irrefl _ (Nat.lt_of_lt_of_le (Nat.lt_of_le_of_lt h1 h) (Nat.le_trans h2 (by decide)))
 
-/-- 10:F2, 10:F3, 10:F4, 10:G3 — the derived domains realized on `𝔽₁₃` (`κ = 3`, the flag `(0, 3)`):
+/-- 10:F2, 10:F3, 10:F4, 10:G3, 10:X1, 10:X2 — the derived domains realized on `𝔽₁₃` (`κ = 3`, the flag `(0, 3)`):
 `[m] = [E][v]⁻² = (11, 4)`, `[a] = (1, 10)`, `[F] = [m][a] = (12, 2)`, `[p] = [m][v] = (12, 3) = I_q [L]⁻¹`,
 `[S] = [E][T] = I_q`, `[P] = (0, 1)`, `[G] = [F][L]²[m]⁻² = (5, 6)`; the geometric conversions `[Għ/c³] = [L]²`,
 `[Gm/c²] = [L]`, `[Gm/c³] = [T]`, `[Gm/r³] = [T]⁻²`; `[Θ] = [E][k_B]⁻¹ = [a]` and the Unruh closure;
@@ -473,7 +473,7 @@ theorem energy_momentum13 :
     E ^ 2 = flag 3 ^ 2 * (T 3 ^ 2)⁻¹ ∧ E = mom 3 * v ∧ E = ⟨11, 4⟩ * v ^ 2 ∧ E * (v ^ 2)⁻¹ = ⟨11, 4⟩ := by
   decide
 
-/-- 10:F5 — the charge label on `𝔽₁₃` (`κ = 3`): with the Coulomb constant neutral, `[q]² = [E][L] = I_q [L][T]⁻¹`,
+/-- 10:F5, 10:X4 — the charge label on `𝔽₁₃` (`κ = 3`): with the Coulomb constant neutral, `[q]² = [E][L] = I_q [L][T]⁻¹`,
 and the labels with `x² = [q]²` are exactly `⟨7, 1⟩` and `⟨7, 7⟩ = ⟨7, 1⟩ · I_q²` (the half-period), their space
 exponent `7 = 2⁻¹ = 2κ + 1`, the meridian half-turn. -/
 theorem charge13 :
@@ -481,15 +481,15 @@ theorem charge13 :
     (⟨7, 7⟩ : DomK 3) = ⟨7, 1⟩ * flag 3 ^ 2 ∧ energy 3 * L 3 = flag 3 * (L 3 * (T 3)⁻¹) ∧
     (2 : Shell 13) * 7 = 1 := by decide
 
-/-- 10:F5 — the charge label on `p = 29` (`κ = 7`): exactly `⟨15, 3⟩` and `⟨15, 17⟩ = ⟨15, 3⟩ · I_q²`. -/
+/-- 10:F5, 10:X4 — the charge label on `p = 29` (`κ = 7`): exactly `⟨15, 3⟩` and `⟨15, 17⟩ = ⟨15, 3⟩ · I_q²`. -/
 theorem charge29 :
     (∀ x : DomK 7, x * x = energy 7 * L 7 ↔ x = ⟨15, 3⟩ ∨ x = ⟨15, 17⟩) ∧
     (⟨15, 17⟩ : DomK 7) = ⟨15, 3⟩ * flag 7 ^ 2 := by decide
 
-/-- 10:F5 — on `p = 17` (`κ = 4`, even) no label squares to `[q]²`: the charge has no domain on that shell. -/
+/-- 10:F5, 10:X4 — on `p = 17` (`κ = 4`, even) no label squares to `[q]²`: the charge has no domain on that shell. -/
 theorem no_charge17 : ∀ x : DomK 4, x * x ≠ energy 4 * L 4 := by decide
 
-/-- 10:F5 — on `p = 41` (`κ = 10`, even) no label squares to `[q]²`. -/
+/-- 10:F5, 10:X4 — on `p = 41` (`κ = 10`, even) no label squares to `[q]²`. -/
 theorem no_charge41 : ∀ x : DomK 10, x * x ≠ energy 10 * L 10 := by decide
 
 end values

@@ -455,7 +455,7 @@ section flagprime
 variable (κ : ℕ) [NeZero κ] [hp : Fact (Nat.Prime (4 * κ + 1))]
 
 omit [NeZero κ] in
-/-- 10:D2 — no flag of space: `4r = 0` in `C_p` forces `r = 0` (`p` an odd prime), so the meridian factor
+/-- 10:D2, 10:X3 — no flag of space: `4r = 0` in `C_p` forces `r = 0` (`p` an odd prime), so the meridian factor
 contributes no element of order four. -/
 theorem no_flag_of_space (r : ZMod (4 * κ + 1)) (h : 4 * r = 0) : r = 0 := by
   have h4 : (4 : ZMod (4 * κ + 1)) ≠ 0 := by
@@ -534,7 +534,7 @@ theorem order_two_iff (x : Dom κ) : addOrderOf x = 2 ↔ x = 2 • flag κ := b
     · rw [smul_smul, show 2 * 2 = 4 from rfl]; exact four_smul_flag κ
     · interval_cases m; rw [one_smul]; exact two_smul_flag_ne_zero κ
 
-/-- 10:D2 — `D_p` contains exactly one subgroup of order four, `⟨I_q⟩ = {1, I_q, I_q², I_q³}`. -/
+/-- 10:D2, 10:X3 — `D_p` contains exactly one subgroup of order four, `⟨I_q⟩ = {1, I_q, I_q², I_q³}`. -/
 theorem unique_order_four_subgroup (H : AddSubgroup (Dom κ)) (hH : Nat.card H = 4) :
     H = AddSubgroup.zmultiples (flag κ) := by
   have horder : ∀ x ∈ H, addOrderOf x ∣ 4 := fun x hx => by
@@ -719,13 +719,13 @@ section unitface
 
 variable {K : Type*} [Field K]
 
-/-- 10:E1, 10:E2 — one crossing, one action: with the dual horizons the crossed images `p_P = ħ/ℓ_P`,
+/-- 10:E1, 10:E2, 10:X3 — one crossing, one action: with the dual horizons the crossed images `p_P = ħ/ℓ_P`,
 `E_P = ħ/t_P`, the quartet satisfies the single identity `ℓ_P p_P = t_P E_P = ħ`. -/
 theorem action_identity (l t hbar : K) (hl : l ≠ 0) (ht : t ≠ 0) :
     l * (hbar / l) = hbar ∧ t * (hbar / t) = hbar :=
   ⟨mul_div_cancel₀ hbar hl, mul_div_cancel₀ hbar ht⟩
 
-/-- 10:E2 — the relation lattice has rank `4 − 1 = 3`: a quartet `(ℓ, t, p, E)` of scales with `ℓ, t ≠ 0`
+/-- 10:E2, 10:X1 — the relation lattice has rank `4 − 1 = 3`: a quartet `(ℓ, t, p, E)` of scales with `ℓ, t ≠ 0`
 satisfies `ℓp = tE` exactly when it is `(ℓ, t, ħ/ℓ, ħ/t)` for the one value `ħ = ℓp` — three free scales,
 in bijection with the primitive triple `(ℓ_P, t_P, ħ)`. -/
 theorem quartet_param (l t p E : K) (hl : l ≠ 0) (ht : t ≠ 0) :
@@ -746,7 +746,7 @@ theorem pairing_closure (l t p E : K) (hl : l ≠ 0) (ht : t ≠ 0) (hp : p ≠ 
   · rw [eq_div_iff (div_ne_zero hl ht), mul_div_assoc', div_eq_iff ht]; ring
   · rw [mul_div_assoc', eq_div_iff ht]; linear_combination (-l) * h
 
-/-- 10:E3 — the cancellation identity `|k_B| c = ħ` at the unit face, `(p t)(ℓ/t) = ℓ p`; mass derived,
+/-- 10:E3, 10:X1, 10:X2 — the cancellation identity `|k_B| c = ħ` at the unit face, `(p t)(ℓ/t) = ℓ p`; mass derived,
 `m_P = p/c = E/c²`; the temperature horizon `Θ_P = E/|k_B| = E c/ħ`. -/
 theorem cancellation (l t p E : K) (hl : l ≠ 0) (ht : t ≠ 0) (hp : p ≠ 0) (h : l * p = t * E) :
     (p * t) * (l / t) = l * p ∧ p / (l / t) = E / (l / t) ^ 2 ∧ E / (p * t) = E * (l / t) / (l * p) := by
@@ -778,7 +778,7 @@ matrix of `c = ℓ t⁻¹`, `ħ`, `G = ℓ⁵ t⁻³ ħ⁻¹` has determinant `�
 theorem index_two : Matrix.det !![(1 : ℤ), -1, 0; 0, 0, 1; 5, -3, -1] = -2 := by
   rw [Matrix.det_fin_three]; simp
 
-/-- 10:E2 — the positive root closes the bijection: for `c, ħ, G > 0` there is exactly one `ℓ > 0` with
+/-- 10:E2, 10:X1 — the positive root closes the bijection: for `c, ħ, G > 0` there is exactly one `ℓ > 0` with
 `ℓ² = G ħ / c³`. -/
 theorem scale_from_constants (c hbar G : ℝ) (hc : 0 < c) (hh : 0 < hbar) (hG : 0 < G) :
     ∃! l : ℝ, 0 < l ∧ l ^ 2 = G * hbar / c ^ 3 := by
@@ -981,7 +981,7 @@ def gravL : Lab := (5, -3, -1)
 def kBL : Lab := (-1, 1, 1)
 def thetaL : Lab := (1, -2, 0)
 
-/-- 10:F2 — the mechanical and gravitational domains from `[E] = I_q[T]⁻¹` and `[v] = [L][T]⁻¹`:
+/-- 10:F2, 10:X1 — the mechanical and gravitational domains from `[E] = I_q[T]⁻¹` and `[v] = [L][T]⁻¹`:
 `[m] = [E][v]⁻² = I_q[L]⁻²[T]`, `[a] = [v][T]⁻¹`, `[F] = [m][a] = I_q[L]⁻¹[T]⁻¹`, `[p] = [m][v] = I_q[L]⁻¹`
 (the flagged wavenumber `I_q[L]⁻¹` again), `[S] = [E][T] = I_q`, `[P] = [E][T]⁻¹ = I_q[T]⁻²`,
 `[pressure] = [F][L]⁻² = I_q[L]⁻³[T]⁻¹`, `[G] = [F][L]²[m]⁻² = I_q⁻¹[L]⁵[T]⁻³`, and the quartet face
@@ -1008,7 +1008,7 @@ theorem geometric_conversions :
     massL + speedL - flagL = (-1, 0, 0) := by
   decide
 
-/-- 10:F3 — temperature carries the acceleration domain: with `[k_B] = [p_P t_P] = I_q[L]⁻¹[T]`,
+/-- 10:F3, 10:X2 — temperature carries the acceleration domain: with `[k_B] = [p_P t_P] = I_q[L]⁻¹[T]`,
 `[Θ] = [E][k_B]⁻¹ = [L][T]⁻² = [a]`, flag-free; and the Unruh combination `[ħ a / (c k_B)] = [Θ]` closes
 flag-free. -/
 theorem temperature_domain :
