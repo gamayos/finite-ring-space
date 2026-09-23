@@ -31,7 +31,7 @@
    ],
    "restated": [],
    "witnessed": false,
-   "page": "14-entropy/14-entropy-ledger.html"
+   "page": "14-entropy/index.html"
   },
   {
    "id": "14:P3",
@@ -46,7 +46,7 @@
    ],
    "restated": [],
    "witnessed": false,
-   "page": "14-entropy/14-entropy-ledger.html"
+   "page": "14-entropy/index.html"
   },
   {
    "id": "14:P4",
@@ -61,7 +61,7 @@
    ],
    "restated": [],
    "witnessed": false,
-   "page": "14-entropy/14-entropy-ledger.html"
+   "page": "14-entropy/index.html"
   },
   {
    "id": "21:P1",
@@ -74,7 +74,7 @@
    "master": [],
    "restated": [],
    "witnessed": false,
-   "page": "21-gravity/21-gravity-ledger.html"
+   "page": "21-gravity/index.html"
   },
   {
    "id": "21:P2",
@@ -87,7 +87,7 @@
    "master": [],
    "restated": [],
    "witnessed": false,
-   "page": "21-gravity/21-gravity-ledger.html"
+   "page": "21-gravity/index.html"
   },
   {
    "id": "21:P3",
@@ -104,7 +104,7 @@
     "38:P1"
    ],
    "witnessed": false,
-   "page": "21-gravity/21-gravity-ledger.html"
+   "page": "21-gravity/index.html"
   },
   {
    "id": "21:P4",
@@ -117,7 +117,7 @@
    "master": [],
    "restated": [],
    "witnessed": false,
-   "page": "21-gravity/21-gravity-ledger.html"
+   "page": "21-gravity/index.html"
   },
   {
    "id": "21:P6",
@@ -130,7 +130,7 @@
    "master": [],
    "restated": [],
    "witnessed": false,
-   "page": "21-gravity/21-gravity-ledger.html"
+   "page": "21-gravity/index.html"
   },
   {
    "id": "21:P7",
@@ -143,7 +143,7 @@
    "master": [],
    "restated": [],
    "witnessed": true,
-   "page": "21-gravity/21-gravity-ledger.html"
+   "page": "21-gravity/index.html"
   },
   {
    "id": "21:P8",
@@ -158,7 +158,7 @@
    ],
    "restated": [],
    "witnessed": false,
-   "page": "21-gravity/21-gravity-ledger.html"
+   "page": "21-gravity/index.html"
   },
   {
    "id": "22:P1",
@@ -171,7 +171,7 @@
    "master": [],
    "restated": [],
    "witnessed": false,
-   "page": "22-quantum/22-quantum-ledger.html"
+   "page": "22-quantum/index.html"
   },
   {
    "id": "22:P2",
@@ -184,7 +184,7 @@
    "master": [],
    "restated": [],
    "witnessed": false,
-   "page": "22-quantum/22-quantum-ledger.html"
+   "page": "22-quantum/index.html"
   },
   {
    "id": "22:P3",
@@ -197,7 +197,7 @@
    "master": [],
    "restated": [],
    "witnessed": false,
-   "page": "22-quantum/22-quantum-ledger.html"
+   "page": "22-quantum/index.html"
   },
   {
    "id": "22:P4",
@@ -210,7 +210,7 @@
    "master": [],
    "restated": [],
    "witnessed": false,
-   "page": "22-quantum/22-quantum-ledger.html"
+   "page": "22-quantum/index.html"
   },
   {
    "id": "22:P5",
@@ -223,7 +223,7 @@
    "master": [],
    "restated": [],
    "witnessed": false,
-   "page": "22-quantum/22-quantum-ledger.html"
+   "page": "22-quantum/index.html"
   },
   {
    "id": "27:P1",
@@ -238,7 +238,7 @@
    ],
    "restated": [],
    "witnessed": false,
-   "page": "27-fields/27-fields-ledger.html"
+   "page": "27-fields/index.html"
   },
   {
    "id": "27:P2",
@@ -253,7 +253,7 @@
    ],
    "restated": [],
    "witnessed": false,
-   "page": "27-fields/27-fields-ledger.html"
+   "page": "27-fields/index.html"
   },
   {
    "id": "27:P3",
@@ -268,7 +268,7 @@
    ],
    "restated": [],
    "witnessed": false,
-   "page": "27-fields/27-fields-ledger.html"
+   "page": "27-fields/index.html"
   },
   {
    "id": "27:P4",
@@ -285,7 +285,7 @@
     "35:P4"
    ],
    "witnessed": false,
-   "page": "27-fields/27-fields-ledger.html"
+   "page": "27-fields/index.html"
   },
   {
    "id": "27:P5",
@@ -298,7 +298,7 @@
    "master": [],
    "restated": [],
    "witnessed": false,
-   "page": "27-fields/27-fields-ledger.html"
+   "page": "27-fields/index.html"
   },
   {
    "id": "27:P6",
@@ -313,7 +313,7 @@
    ],
    "restated": [],
    "witnessed": false,
-   "page": "27-fields/27-fields-ledger.html"
+   "page": "27-fields/index.html"
   },
   {
    "id": "27:P7",
@@ -328,7 +328,7 @@
    ],
    "restated": [],
    "witnessed": false,
-   "page": "27-fields/27-fields-ledger.html"
+   "page": "27-fields/index.html"
   },
   {
    "id": "27:P8",
@@ -345,7 +345,7 @@
     "28:P1"
    ],
    "witnessed": false,
-   "page": "27-fields/27-fields-ledger.html"
+   "page": "27-fields/index.html"
   },
   {
    "id": "27:P9",
@@ -360,7 +360,7 @@
    ],
    "restated": [],
    "witnessed": false,
-   "page": "27-fields/27-fields-ledger.html"
+   "page": "27-fields/index.html"
   },
   {
    "id": "28:P2",
@@ -375,7 +375,7 @@
    ],
    "restated": [],
    "witnessed": false,
-   "page": "28-flavour/28-flavour-ledger.html"
+   "page": "28-flavour/index.html"
   },
   {
    "id": "28:P3",
@@ -388,7 +388,7 @@
    "master": [],
    "restated": [],
    "witnessed": false,
-   "page": "28-flavour/28-flavour-ledger.html"
+   "page": "28-flavour/index.html"
   },
   {
    "id": "28:P5",
@@ -401,7 +401,7 @@
    "master": [],
    "restated": [],
    "witnessed": false,
-   "page": "28-flavour/28-flavour-ledger.html"
+   "page": "28-flavour/index.html"
   },
   {
    "id": "28:P6",
@@ -416,7 +416,7 @@
    ],
    "restated": [],
    "witnessed": false,
-   "page": "28-flavour/28-flavour-ledger.html"
+   "page": "28-flavour/index.html"
   },
   {
    "id": "28:P7",
@@ -429,7 +429,7 @@
    "master": [],
    "restated": [],
    "witnessed": false,
-   "page": "28-flavour/28-flavour-ledger.html"
+   "page": "28-flavour/index.html"
   },
   {
    "id": "28:P8",
@@ -442,7 +442,7 @@
    "master": [],
    "restated": [],
    "witnessed": false,
-   "page": "28-flavour/28-flavour-ledger.html"
+   "page": "28-flavour/index.html"
   },
   {
    "id": "32:P2",
@@ -455,7 +455,7 @@
    "master": [],
    "restated": [],
    "witnessed": false,
-   "page": "32-dark/32-dark-ledger.html"
+   "page": "32-dark/index.html"
   },
   {
    "id": "32:P3",
@@ -468,7 +468,7 @@
    "master": [],
    "restated": [],
    "witnessed": false,
-   "page": "32-dark/32-dark-ledger.html"
+   "page": "32-dark/index.html"
   },
   {
    "id": "32:P4",
@@ -481,7 +481,7 @@
    "master": [],
    "restated": [],
    "witnessed": false,
-   "page": "32-dark/32-dark-ledger.html"
+   "page": "32-dark/index.html"
   },
   {
    "id": "32:P5",
@@ -494,7 +494,7 @@
    "master": [],
    "restated": [],
    "witnessed": false,
-   "page": "32-dark/32-dark-ledger.html"
+   "page": "32-dark/index.html"
   },
   {
    "id": "32:P6",
@@ -509,7 +509,7 @@
    ],
    "restated": [],
    "witnessed": false,
-   "page": "32-dark/32-dark-ledger.html"
+   "page": "32-dark/index.html"
   },
   {
    "id": "35:P1",
@@ -522,7 +522,7 @@
    "master": [],
    "restated": [],
    "witnessed": false,
-   "page": "35-hadrons/35-hadrons-ledger.html"
+   "page": "35-hadrons/index.html"
   },
   {
    "id": "35:P2",
@@ -535,7 +535,7 @@
    "master": [],
    "restated": [],
    "witnessed": false,
-   "page": "35-hadrons/35-hadrons-ledger.html"
+   "page": "35-hadrons/index.html"
   },
   {
    "id": "35:P3",
@@ -548,7 +548,7 @@
    "master": [],
    "restated": [],
    "witnessed": false,
-   "page": "35-hadrons/35-hadrons-ledger.html"
+   "page": "35-hadrons/index.html"
   },
   {
    "id": "35:P5",
@@ -561,7 +561,7 @@
    "master": [],
    "restated": [],
    "witnessed": false,
-   "page": "35-hadrons/35-hadrons-ledger.html"
+   "page": "35-hadrons/index.html"
   },
   {
    "id": "35:P6",
@@ -574,7 +574,7 @@
    "master": [],
    "restated": [],
    "witnessed": false,
-   "page": "35-hadrons/35-hadrons-ledger.html"
+   "page": "35-hadrons/index.html"
   },
   {
    "id": "35:P7",
@@ -587,7 +587,7 @@
    "master": [],
    "restated": [],
    "witnessed": false,
-   "page": "35-hadrons/35-hadrons-ledger.html"
+   "page": "35-hadrons/index.html"
   },
   {
    "id": "35:P8",
@@ -600,7 +600,7 @@
    "master": [],
    "restated": [],
    "witnessed": false,
-   "page": "35-hadrons/35-hadrons-ledger.html"
+   "page": "35-hadrons/index.html"
   },
   {
    "id": "35:P9",
@@ -613,7 +613,7 @@
    "master": [],
    "restated": [],
    "witnessed": false,
-   "page": "35-hadrons/35-hadrons-ledger.html"
+   "page": "35-hadrons/index.html"
   },
   {
    "id": "35:P10",
@@ -626,7 +626,7 @@
    "master": [],
    "restated": [],
    "witnessed": false,
-   "page": "35-hadrons/35-hadrons-ledger.html"
+   "page": "35-hadrons/index.html"
   },
   {
    "id": "35:P11",
@@ -639,7 +639,7 @@
    "master": [],
    "restated": [],
    "witnessed": false,
-   "page": "35-hadrons/35-hadrons-ledger.html"
+   "page": "35-hadrons/index.html"
   }
  ],
  "restated": {

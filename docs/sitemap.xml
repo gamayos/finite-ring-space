@@ -1,11 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://finitering.space/00-ledger.html</loc>
-    <lastmod>2026-09-23</lastmod>
-  </url>
-  <url>
-    <loc>https://finitering.space/1-algebra/1-algebra-ledger.html</loc>
+    <loc>https://finitering.space/1-algebra/</loc>
     <lastmod>2026-09-23</lastmod>
   </url>
   <url>
@@ -13,55 +9,51 @@
     <lastmod>2026-09-13</lastmod>
   </url>
   <url>
-    <loc>https://finitering.space/10-dimensions/10-dimensions-ledger.html</loc>
+    <loc>https://finitering.space/10-dimensions/</loc>
     <lastmod>2026-09-23</lastmod>
   </url>
   <url>
-    <loc>https://finitering.space/13-epi/13-epi-ledger.html</loc>
+    <loc>https://finitering.space/13-epi/</loc>
     <lastmod>2026-09-23</lastmod>
   </url>
   <url>
-    <loc>https://finitering.space/14-entropy/14-entropy-ledger.html</loc>
+    <loc>https://finitering.space/14-entropy/</loc>
     <lastmod>2026-09-23</lastmod>
   </url>
   <url>
-    <loc>https://finitering.space/2-geometry/2-geometry-ledger.html</loc>
+    <loc>https://finitering.space/2-geometry/</loc>
     <lastmod>2026-09-23</lastmod>
   </url>
   <url>
-    <loc>https://finitering.space/20-rh/20-rh-ledger.html</loc>
+    <loc>https://finitering.space/20-rh/</loc>
     <lastmod>2026-09-23</lastmod>
   </url>
   <url>
-    <loc>https://finitering.space/21-gravity/21-gravity-ledger.html</loc>
+    <loc>https://finitering.space/21-gravity/</loc>
     <lastmod>2026-09-23</lastmod>
   </url>
   <url>
-    <loc>https://finitering.space/22-quantum/22-quantum-ledger.html</loc>
+    <loc>https://finitering.space/22-quantum/</loc>
     <lastmod>2026-09-23</lastmod>
   </url>
   <url>
-    <loc>https://finitering.space/27-fields/27-fields-ledger.html</loc>
+    <loc>https://finitering.space/27-fields/</loc>
     <lastmod>2026-09-23</lastmod>
   </url>
   <url>
-    <loc>https://finitering.space/28-flavour/28-flavour-ledger.html</loc>
+    <loc>https://finitering.space/28-flavour/</loc>
     <lastmod>2026-09-23</lastmod>
   </url>
   <url>
-    <loc>https://finitering.space/3-causality/3-causality-ledger.html</loc>
+    <loc>https://finitering.space/3-causality/</loc>
     <lastmod>2026-09-23</lastmod>
   </url>
   <url>
-    <loc>https://finitering.space/32-dark/32-dark-ledger.html</loc>
+    <loc>https://finitering.space/32-dark/</loc>
     <lastmod>2026-09-23</lastmod>
   </url>
   <url>
-    <loc>https://finitering.space/35-hadrons/35-hadrons-ledger.html</loc>
-    <lastmod>2026-09-23</lastmod>
-  </url>
-  <url>
-    <loc>https://finitering.space/38-s13/38-s13-ledger.html</loc>
+    <loc>https://finitering.space/35-hadrons/</loc>
     <lastmod>2026-09-23</lastmod>
   </url>
   <url>
@@ -69,19 +61,23 @@
     <lastmod>2026-09-23</lastmod>
   </url>
   <url>
-    <loc>https://finitering.space/4-representation/4-representation-ledger.html</loc>
+    <loc>https://finitering.space/38-s13/lab.html</loc>
     <lastmod>2026-09-23</lastmod>
   </url>
   <url>
-    <loc>https://finitering.space/5-reductio/5-reductio-ledger.html</loc>
+    <loc>https://finitering.space/4-representation/</loc>
     <lastmod>2026-09-23</lastmod>
   </url>
   <url>
-    <loc>https://finitering.space/6-fourier/6-fourier-ledger.html</loc>
+    <loc>https://finitering.space/5-reductio/</loc>
     <lastmod>2026-09-23</lastmod>
   </url>
   <url>
-    <loc>https://finitering.space/8-dirac/8-dirac-ledger.html</loc>
+    <loc>https://finitering.space/6-fourier/</loc>
+    <lastmod>2026-09-23</lastmod>
+  </url>
+  <url>
+    <loc>https://finitering.space/8-dirac/</loc>
     <lastmod>2026-09-23</lastmod>
   </url>
   <url>

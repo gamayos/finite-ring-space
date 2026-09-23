@@ -52,10 +52,10 @@ const PUBLICATIONS = [
     },
     "doi": "https://doi.org/10.3390/axioms14080636",
     "doiLabel": "axioms14080636",
-    "ledger": "1-algebra/1-algebra-ledger.html",
+    "ledger": "1-algebra/index.html",
     "links": [
       {
-        "href": "1-algebra/1-algebra-ledger.html",
+        "href": "1-algebra/index.html",
         "label": "ledger",
         "title": "the paper's predicate ledger"
       },
@@ -76,10 +76,10 @@ const PUBLICATIONS = [
     },
     "doi": "https://doi.org/10.3390/sym18050751",
     "doiLabel": "sym18050751",
-    "ledger": "2-geometry/2-geometry-ledger.html",
+    "ledger": "2-geometry/index.html",
     "links": [
       {
-        "href": "2-geometry/2-geometry-ledger.html",
+        "href": "2-geometry/index.html",
         "label": "ledger",
         "title": "the paper's predicate ledger"
       },
@@ -100,10 +100,10 @@ const PUBLICATIONS = [
     },
     "doi": "https://doi.org/10.3390/e27111098",
     "doiLabel": "e27111098",
-    "ledger": "3-causality/3-causality-ledger.html",
+    "ledger": "3-causality/index.html",
     "links": [
       {
-        "href": "3-causality/3-causality-ledger.html",
+        "href": "3-causality/index.html",
         "label": "ledger",
         "title": "the paper's predicate ledger"
       },
@@ -124,10 +124,10 @@ const PUBLICATIONS = [
     },
     "doi": "https://doi.org/10.3390/e28010040",
     "doiLabel": "e28010040",
-    "ledger": "4-representation/4-representation-ledger.html",
+    "ledger": "4-representation/index.html",
     "links": [
       {
-        "href": "4-representation/4-representation-ledger.html",
+        "href": "4-representation/index.html",
         "label": "ledger",
         "title": "the paper's predicate ledger"
       },
@@ -147,10 +147,10 @@ const PUBLICATIONS = [
     },
     "doi": "https://doi.org/10.20944/preprints202508.1744.v1",
     "doiLabel": "pp202508.1744.v1",
-    "ledger": "5-reductio/5-reductio-ledger.html",
+    "ledger": "5-reductio/index.html",
     "links": [
       {
-        "href": "5-reductio/5-reductio-ledger.html",
+        "href": "5-reductio/index.html",
         "label": "ledger",
         "title": "the paper's predicate ledger"
       },
@@ -170,10 +170,10 @@ const PUBLICATIONS = [
     },
     "doi": "https://doi.org/10.20944/preprints202606.0127.v1",
     "doiLabel": "pp202606.0127.v1",
-    "ledger": "6-fourier/6-fourier-ledger.html",
+    "ledger": "6-fourier/index.html",
     "links": [
       {
-        "href": "6-fourier/6-fourier-ledger.html",
+        "href": "6-fourier/index.html",
         "label": "ledger",
         "title": "the paper's predicate ledger"
       },
@@ -193,10 +193,10 @@ const PUBLICATIONS = [
     },
     "doi": "https://doi.org/10.20944/preprints202510.1486.v2",
     "doiLabel": "pp202510.1486.v2",
-    "ledger": "8-dirac/8-dirac-ledger.html",
+    "ledger": "8-dirac/index.html",
     "links": [
       {
-        "href": "8-dirac/8-dirac-ledger.html",
+        "href": "8-dirac/index.html",
         "label": "ledger",
         "title": "the paper's predicate ledger"
       },
@@ -226,10 +226,10 @@ const PUBLICATIONS = [
     },
     "doi": "https://doi.org/10.20944/preprints202605.0668.v1",
     "doiLabel": "pp202605.0668.v1",
-    "ledger": "10-dimensions/10-dimensions-ledger.html",
+    "ledger": "10-dimensions/index.html",
     "links": [
       {
-        "href": "10-dimensions/10-dimensions-ledger.html",
+        "href": "10-dimensions/index.html",
         "label": "ledger",
         "title": "the paper's predicate ledger"
       },
@@ -249,10 +249,10 @@ const PUBLICATIONS = [
     },
     "doi": "https://doi.org/10.20944/preprints202607.1141.v1",
     "doiLabel": "pp202607.1141.v1",
-    "ledger": "13-epi/13-epi-ledger.html",
+    "ledger": "13-epi/index.html",
     "links": [
       {
-        "href": "13-epi/13-epi-ledger.html",
+        "href": "13-epi/index.html",
         "label": "ledger",
         "title": "the paper's predicate ledger"
       },
@@ -272,10 +272,10 @@ const PUBLICATIONS = [
     },
     "doi": "https://doi.org/10.20944/preprints202608.0310.v1",
     "doiLabel": "pp202608.0310.v1",
-    "ledger": "14-entropy/14-entropy-ledger.html",
+    "ledger": "14-entropy/index.html",
     "links": [
       {
-        "href": "14-entropy/14-entropy-ledger.html",
+        "href": "14-entropy/index.html",
         "label": "ledger",
         "title": "the paper's predicate ledger"
       },
@@ -295,10 +295,10 @@ const PUBLICATIONS = [
     },
     "doi": "https://doi.org/10.20944/preprints202606.0768.v1",
     "doiLabel": "pp202606.0768.v1",
-    "ledger": "20-rh/20-rh-ledger.html",
+    "ledger": "20-rh/index.html",
     "links": [
       {
-        "href": "20-rh/20-rh-ledger.html",
+        "href": "20-rh/index.html",
         "label": "ledger",
         "title": "the paper's predicate ledger"
       },
@@ -318,10 +318,10 @@ const PUBLICATIONS = [
     },
     "doi": "https://doi.org/10.20944/preprints202606.1018.v2",
     "doiLabel": "pp202606.1018.v2",
-    "ledger": "21-gravity/21-gravity-ledger.html",
+    "ledger": "21-gravity/index.html",
     "links": [
       {
-        "href": "21-gravity/21-gravity-ledger.html",
+        "href": "21-gravity/index.html",
         "label": "ledger",
         "title": "the paper's predicate ledger"
       },
@@ -341,10 +341,10 @@ const PUBLICATIONS = [
     },
     "doi": "https://doi.org/10.20944/preprints202606.1160.v2",
     "doiLabel": "pp202606.1160.v2",
-    "ledger": "22-quantum/22-quantum-ledger.html",
+    "ledger": "22-quantum/index.html",
     "links": [
       {
-        "href": "22-quantum/22-quantum-ledger.html",
+        "href": "22-quantum/index.html",
         "label": "ledger",
         "title": "the paper's predicate ledger"
       },
@@ -394,10 +394,10 @@ const PUBLICATIONS = [
     },
     "doi": "https://doi.org/10.20944/preprints202606.1328.v1",
     "doiLabel": "pp202606.1328.v1",
-    "ledger": "27-fields/27-fields-ledger.html",
+    "ledger": "27-fields/index.html",
     "links": [
       {
-        "href": "27-fields/27-fields-ledger.html",
+        "href": "27-fields/index.html",
         "label": "ledger",
         "title": "the paper's predicate ledger"
       },
@@ -417,10 +417,10 @@ const PUBLICATIONS = [
     },
     "doi": "https://doi.org/10.20944/preprints202606.2124.v1",
     "doiLabel": "pp202606.2124.v1",
-    "ledger": "28-flavour/28-flavour-ledger.html",
+    "ledger": "28-flavour/index.html",
     "links": [
       {
-        "href": "28-flavour/28-flavour-ledger.html",
+        "href": "28-flavour/index.html",
         "label": "ledger",
         "title": "the paper's predicate ledger"
       },
@@ -450,10 +450,10 @@ const PUBLICATIONS = [
     },
     "doi": "https://doi.org/10.20944/preprints202606.1689.v1",
     "doiLabel": "pp202606.1689.v1",
-    "ledger": "32-dark/32-dark-ledger.html",
+    "ledger": "32-dark/index.html",
     "links": [
       {
-        "href": "32-dark/32-dark-ledger.html",
+        "href": "32-dark/index.html",
         "label": "ledger",
         "title": "the paper's predicate ledger"
       },
@@ -473,10 +473,10 @@ const PUBLICATIONS = [
     },
     "doi": "https://doi.org/10.20944/preprints202506.1507.v2",
     "doiLabel": "pp202506.1507.v2",
-    "ledger": "35-hadrons/35-hadrons-ledger.html",
+    "ledger": "35-hadrons/index.html",
     "links": [
       {
-        "href": "35-hadrons/35-hadrons-ledger.html",
+        "href": "35-hadrons/index.html",
         "label": "ledger",
         "title": "the paper's predicate ledger"
       },
@@ -496,10 +496,10 @@ const PUBLICATIONS = [
     },
     "doi": "https://doi.org/10.20944/preprints202608.0390.v1",
     "doiLabel": "pp202608.0390.v1",
-    "ledger": "38-s13/38-s13-ledger.html",
+    "ledger": "38-s13/index.html",
     "links": [
       {
-        "href": "38-s13/38-s13-ledger.html",
+        "href": "38-s13/index.html",
         "label": "ledger",
         "title": "the paper's predicate ledger"
       },
@@ -509,7 +509,7 @@ const PUBLICATIONS = [
         "title": "the validation notebook on Google Colab"
       },
       {
-        "href": "38-s13/",
+        "href": "38-s13/lab.html",
         "label": "lab",
         "title": "laboratory page"
       }
