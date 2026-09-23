@@ -253,7 +253,7 @@
      "label": "E9",
      "predicate": "The minimal admissible pair: under the programme's admissibility predicate ($\\p=4\\kap+1$ prime, $\\kap>1$; $\\Om=4\\dS+1$ prime, $\\dS$ even, $\\dS\\equiv1\\bmod3$; $\\p^{2}<\\Om$) the smallest instance is $(\\p,\\Om)=(13,233)$, by exhaustive scan, with the counterfactuals: dropping the mod-$3$ clause admits $(13,193)$, dropping $\\kap>1$ admits $(5,41)$, $\\kap=2$ gives the composite $9$.",
      "tag": "T",
-     "source": "\\S\\ref{sec:instantiation}, App.~\\ref{app:primer}\\newline \\pywit{verify\\_domains}{p10032}\\newline \\leanwit{FrcCore}{p10032} \\lean{FRC.Dimensions.minimality}",
+     "source": "Defs.~\\ref{def:carrier}, \\ref{def:subject}, Rem.~\\ref{rem:holographic}, \\S\\ref{sec:instantiation}\\newline \\pywit{verify\\_domains}{p10032}\\newline \\leanwit{FrcCore}{p10032} \\lean{FRC.Dimensions.minimality}",
      "key": "p10032"
     }
    ]

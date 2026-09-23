@@ -341,7 +341,7 @@ def run():
     check("Om = 1 mod 4 for every S", all((4 * S0 + 1) % 4 == 1 for S0 in range(1, 50)))
 
     # predicate 10:E9
-    # minimality scan under the complete predicate (Appendix A)
+    # minimality scan under the complete predicate (the paper's Definitions 1 and 2, Remark 1)
     def admissible(p_, Om__):
         kap_ = (p_ - 1) // 4
         S__ = (Om__ - 1) // 4

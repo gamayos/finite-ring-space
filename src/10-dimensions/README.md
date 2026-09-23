@@ -6,7 +6,7 @@ Colab: one cell per ledger predicate, any cell on its own, or *Runtime → Run a
 no random sampling.
 
 Every family check is a layer of `verify_domains.py` (A–H) or a claim of `check_lift.py` (L1–L5) and names the predicate(s)
-of the paper's ledger it witnesses (the paper's Appendix B "Predicate ledger and machine verification", 45 predicates
+of the paper's ledger it witnesses (the paper's Appendix A "Predicate ledger, machine verification and formalisation", 45 predicates
 in blocks A–G, X, cited as `10:<label>`; public copy `docs/10-dimensions/10-dimensions-ledger.html`); the ledger's source
 column names the witness script (the family checks are listed on the public page from `results.json`). Where a predicate is proved in Lean (`lean/FrcCore/Dimensions.lean` with no axioms, or
 `lean/FrcLedger/Dimensions.lean` on Mathlib), the check here is the instance the reader can run. Master-ledger predicates of the corpus reached through the paper predicates: `00:D7`, `00:C12`,
