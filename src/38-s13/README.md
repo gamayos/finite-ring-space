@@ -5,7 +5,7 @@ pp202608.0390). Discipline: every exact claim in the paper is integer-pinned; fl
 declared chart residuals, never behind a T-tagged claim. Thirteen families through one registry (`s13common.py`);
 the notebook `38-s13-main.ipynb` (Colab badge inside) runs them all; `results.json` carries one record per family
 with the paper's ledger rows it witnesses. Rows are cited as `38:XN`; the public ledger is
-`docs/38-s13/38-s13-ledger.html`, the laboratory `https://www.finitering.space/38-s13/`.
+`docs/38-s13/38-s13-ledger.html`, the laboratory `https://finitering.space/38-s13/`.
 
 Run: `python3 run_all.py` (node ≥ 18 and python ≥ 3.10 with `sympy` for `o1_gr_chart`; ≈ 20 s, the rendering suite
 dominating). Each script also runs on its own and exits nonzero on any failure.

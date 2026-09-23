@@ -39,7 +39,7 @@ reads it to colour the witnesses on the public ledger page.
 
 `1-algebra-main.ipynb` (built by `make_notebook.py`, executed) carries one cell per witnessed ledger row, addressable by
 its stable id (`row-1-B2`; the ledger page opens the notebook at the cell). Every cell is self-contained: it installs the
-package from the site (`pip install frc-1-algebra --find-links https://www.finitering.space/pkg/` — a named requirement,
+package from the site (`pip install frc-1-algebra --find-links https://finitering.space/pkg/` — a named requirement,
 so pip reports it already satisfied once installed; the sdist `frc-1-algebra-<version>.tar.gz` that `src/make_pkg.py`
 writes under `docs/pkg/` at each site build; import name `frc_1_algebra`, `__init__.py` exporting `row` and `verify_all`),
 states the row and runs `row("1:B2")`: the block script of the check that decides the row runs once per session (the

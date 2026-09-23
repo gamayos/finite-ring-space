@@ -12,7 +12,7 @@ name, so the dashes of the project name are fine; PEP 625's underscore form was 
 same package are removed from the directory, and docs/pkg/index.html is rewritten to list every archive there — a pip
 "find links" page. A notebook cell then needs only
 
-    !pip install -q frc-10-dimensions --find-links https://www.finitering.space/pkg/
+    !pip install -q frc-10-dimensions --find-links https://finitering.space/pkg/
     from frc_10_dimensions import row; row("10:C5")
 
 and pip, given a named requirement, checks the installed set first: a second call in the same session is
@@ -50,12 +50,12 @@ def sdist(pkgdir, out_dir, version):
     return out, len(files)
 
 def index(out_dir):
-    """docs/pkg/index.html: one link per archive, what `pip install <name> --find-links https://www.finitering.space/pkg/` reads."""
+    """docs/pkg/index.html: one link per archive, what `pip install <name> --find-links https://finitering.space/pkg/` reads."""
     items = sorted(p.name for p in out_dir.glob("*.tar.gz"))
     body = "\n".join(f'<a href="{html.escape(n)}">{html.escape(n)}</a><br>' for n in items)
     (out_dir / "index.html").write_text("<!DOCTYPE html>\n<html><head><meta charset=\"utf-8\"><title>FRC validation packages</title></head><body>\n"
                                         "<h1>FRC validation packages</h1>\n<p>The validation package of each paper of the Finite Ring Continuum corpus as a source distribution; "
-                                        "<code>pip install frc-&lt;paper&gt; --find-links https://www.finitering.space/pkg/</code> installs one.</p>\n" + body + "\n</body></html>\n", encoding="utf-8")
+                                        "<code>pip install frc-&lt;paper&gt; --find-links https://finitering.space/pkg/</code> installs one.</p>\n" + body + "\n</body></html>\n", encoding="utf-8")
 
 if __name__ == "__main__":
     ap = argparse.ArgumentParser(); ap.add_argument("pkgdir"); ap.add_argument("--out", default=str(ROOT / "docs" / "pkg"))

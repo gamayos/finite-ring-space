@@ -40,7 +40,7 @@ with its verdict. Any cell can be run first. The ledger page links each row here
 
 # the package from the site as a named requirement through the site's find-links page (docs/pkg/index.html): pip checks the
 # installed set first, so a second call in the session is "Requirement already satisfied" (a URL archive would be rebuilt every time)
-INSTALL = "!pip install -q frc-1-algebra --find-links https://www.finitering.space/pkg/"
+INSTALL = "!pip install -q frc-1-algebra --find-links https://finitering.space/pkg/"
 md("""Every cell is self-contained: its first line installs the package from the site (pip reports it already satisfied once it is there), its last runs the row.""", "rows-note")
 
 for r in witnessed:
