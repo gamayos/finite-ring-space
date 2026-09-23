@@ -525,6 +525,29 @@ def run():
     lab_ = tuple(sum(k * q[i] for k, q in zip(kvec, pend)) for i in range(3))
     # row 10:G4
     check("Buckingham: pendulum (T, l, g, m) rank 3, one product T^2 g/l with label (0,0;0)", rank_int(pend) == 3 and lab_ == (0, 0, 0))
+    # The electromagnetic domain (Remark rem:electromagnetic, row 10:F5): with the Coulomb constant neutral, [q]^2 = [E][L] =
+    # I_q [L][T]^-1, on the shell (1, kappa-1), on the lift (1,-1;1). Its square roots in D_p = Z_p x Z_{4 kappa}: the space half
+    # 2^-1 = 2 kappa + 1 = -2 kappa (the meridian half-turn); the phase equation 2s = kappa-1 (mod 4 kappa) is solvable iff kappa
+    # is odd, then two roots differing by the half-period (0, 2 kappa) = I_q^2; on the lift no root at all (odd coordinates).
+    def charge_roots(k):
+        p_, n_ = 4 * k + 1, 4 * k
+        return sorted((r, s) for r in range(p_) for s in range(n_) if ((2 * r) % p_, (2 * s) % n_) == (1, (k - 1) % n_))
+    # row 10:F5
+    check("charge: [q]^2 = [E][L] = I_q [L][T]^-1 = (1, 2) on F_13, its roots exactly (7,1) and (7,7), differing by the half-period (0, 6)",
+          ((0 + 1) % 13, (3 - 1 + 0) % 12) == (1, 2) and charge_roots(3) == [(7, 1), (7, 7)] and ((7 - 7) % 13, (7 - 1) % 12) == (0, 6))
+    check("charge: the roots exist iff kappa is odd, then exactly (2 kappa+1, (kappa-1)/2) and its half-period partner (every prime p = 4 kappa+1, kappa <= 30)",
+          all((charge_roots(k) == sorted([(2 * k + 1, (k - 1) // 2), (2 * k + 1, (k - 1) // 2 + 2 * k)])) if k % 2 else charge_roots(k) == []
+              for k in range(1, 31) if all((4 * k + 1) % d for d in range(2, 4 * k + 1))))
+    check("charge: the space exponent 2^-1 = 2 kappa+1 = -2 kappa is the meridian half-turn, |r| = 2 kappa, on p = 13, 29, 173, 229",
+          all((2 * (2 * k + 1)) % (4 * k + 1) == 1 and (2 * k + 1) - (4 * k + 1) == -2 * k for k in (3, 7, 43, 57)))
+    check("charge: on the lift [q]^2 = (1,-1;1) has no half; [phi]^2 = [q]^2 [L]^-2 = [F], [E_field]^2 = [F]^2 [q]^-2 = the energy density, e^2/(hbar c) neutral",
+          all(c % 2 for c in (1, -1, 1)) and (1 - 2, -1, 1) == (-1, -1, 1) and (2 * (-1) - 1, 2 * (-1) + 1, 2 - 1) == (0 - 3, -1, 1)
+          and (0 + 1, 0 - 1, 1 + 0) == (1, -1, 1))
+    check("charge: the dilation character m^-r at r = 2 kappa+1 is m^-1 (m|p) (Euler); a non-square dilation flips the sign, never window-covariant (p = 13, 29)",
+          all(pow(m, -(2 * k + 1), 4 * k + 1) == (pow(m, -1, 4 * k + 1) * pow(m, 2 * k, 4 * k + 1)) % (4 * k + 1)
+              and pow(m, 2 * k, 4 * k + 1) == (1 if any((x * x) % (4 * k + 1) == m for x in range(1, 4 * k + 1)) else 4 * k)
+              for k in (3, 7) for m in range(1, 4 * k + 1))
+          and any(pow(m, 6, 13) == 12 for m in range(1, 13)))
 
     # both roots of -2 satisfy the congruence individually (the pair is the canonical
     # object); the stated representative is the linkage-consistent one

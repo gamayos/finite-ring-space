@@ -6,7 +6,7 @@ row(s) it witnesses — and exits nonzero if any check fails.  Pure Python, ≈ 
 
     python3 run_all.py
 
-Blocks:  verify_domains   layers A–H, 202 exact micro-checks (F_13, p = 29, 229; Carriers 233 and 2 408 561)   dom.A–H
+Blocks:  verify_domains   layers A–H, 207 exact micro-checks (F_13, p = 29, 229; Carriers 233 and 2 408 561)   dom.A–H
          check_lift       Proposition `lift`, L1–L5 on the shells (13, 2), (173, 3) and both Carriers           lift.L1–L5
 check_gates.py (105 source gates on the manuscript text) runs in the corpus tree only.
 """

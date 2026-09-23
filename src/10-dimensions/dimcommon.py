@@ -26,7 +26,7 @@ LEDGER = {
     "dom.D": "10:E4, 10:E5, 10:E9, 10:F3, 10:G1",
     "dom.E": "10:C5",
     "dom.F": "10:C5, 10:D1",
-    "dom.G": "10:C5, 10:D2, 10:G2, 10:G4",
+    "dom.G": "10:C5, 10:D2, 10:F5, 10:G2, 10:G4",
     "dom.H": "10:E4, 10:E5",
     "lift.L1": "10:D3", "lift.L2": "10:D3", "lift.L3": "10:D3", "lift.L4": "10:D3", "lift.L5": "10:C5, 10:D3",
 }
@@ -38,7 +38,7 @@ LABELS = {
     "dom.D": "both Carriers (233 and the lab Carrier): the congruence-and-closure system, ħcG⁻¹ landing in the k_B pair; the representative annex; the admissibility minimality scan certifying (13, 233) with the counterfactuals; [Θ] = [L][T]⁻² and the Unruh closure; the crossing-degree embedding injective and windowed-faithful",
     "dom.E": "covariance: the naive character ill-defined on the modular projection; (p−1, 0) trivial character yet non-neutral; the ε-composition failure; window covariance below the bound; pushforward-invariant labels {0, π}; the quarter-turn fix/swap criterion ε ≡ ±1 (mod 4); the index-two sublattice ⟨c, ħ, G⟩ (det −2)",
     "dom.F": "the (0, π) witness forcing H < 2κ; the σ-twisted action equivariant by full sweep on p = 13 and 229 with the plain-lift failure; σ multiplicative mod 4; δ_S, δ_C involutions, δ_C carrying [L] ↦ [p], [T] ↦ [E]",
-    "dom.G": "realized action against the Z³-representative failure; the flagged label (0, 0; 1) moving under ε = −1; the window ladder 2√κ < κ/2 < κ < 2κ nested for every κ ≥ 17 and failing for κ = 3; (2√κ)² = p−1, (2√S)² = Ω−1; the flagged ratio F/a; meridian transport (L T^κ)^p = I_q on three shells; both roots on both Carriers; Buckingham's count on the integer lift (the pendulum: rank 3, one product)",
+    "dom.G": "realized action against the Z³-representative failure; the flagged label (0, 0; 1) moving under ε = −1; the window ladder 2√κ < κ/2 < κ < 2κ nested for every κ ≥ 17 and failing for κ = 3; (2√κ)² = p−1, (2√S)² = Ω−1; the flagged ratio F/a; meridian transport (L T^κ)^p = I_q on three shells; both roots on both Carriers; Buckingham's count on the integer lift (the pendulum: rank 3, one product); the electromagnetic domain — [q]² = I_q[L][T]⁻¹, its two roots on the odd capacities and none on the even, the meridian half-turn, the even labels on the lift, the dilation character",
     "dom.H": "the pair layer: pair multiplication well defined; the linkage {±k_B}{±c} = {±ħ} derived at pair level; ħcG⁻¹ in the k_B pair via (ħcG⁻¹)² ≡ −2; representative inertness — exactly the four assignments with σ_ħ = σ_c σ_k admissible, a (Z/2)², every identity holding on each; the ħ-flip relabelling of {ħ, h}",
     "lift.L1": "operator four-cycle: F = iW on F_p^{p−1}, F² = J, F⁴ = I, F² ≠ I (p = 13, 173)",
     "lift.L2": "chart shadow of order two: F exchanges the two dual charts, J exchanges none; the cardinal skeleton acts on charts as s mod 2",
@@ -55,7 +55,7 @@ ROWS = {
     "10:C2": "dom.A", "10:C3": "dom.A", "10:C5": "dom.E", "10:D1": "dom.F", "10:D2": "dom.A", "10:D3": "lift.L1",
     "10:D6": "dom.A", "10:E2": "dom.B", "10:E3": "dom.B", "10:E4": "dom.C", "10:E5": "dom.H", "10:E9": "dom.D",
     "10:F2": "dom.A", "10:F3": "dom.D", "10:F4": "dom.A", "10:G1": "dom.A", "10:G2": "dom.G", "10:G3": "dom.A",
-    "10:G4": "dom.G",
+    "10:F5": "dom.G", "10:G4": "dom.G",
 }
 _FAM = [None, None]
 _RAN = set()                                            # scripts already run in this session (row() runs each once)

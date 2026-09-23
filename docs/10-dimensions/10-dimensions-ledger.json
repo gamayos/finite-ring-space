@@ -2,7 +2,7 @@
  "paper": "10-dim",
  "title": "Dimensional Analysis over Finite Holographic Substrate",
  "doi": "https://doi.org/10.20944/preprints202605.0668.v1",
- "generated": "22 September 2026",
+ "generated": "23 September 2026",
  "blocks": [
   {
    "letter": "A",
@@ -260,7 +260,7 @@
   },
   {
    "letter": "F",
-   "title": "Mechanics, gravitation and temperature",
+   "title": "Mechanics, gravitation, temperature and the electromagnetic domain",
    "rows": [
     {
      "label": "F1",
@@ -289,6 +289,13 @@
      "tag": "T",
      "source": "Exs.~\\ref{ex:phase-neutrality}, \\ref{ex:gravitational-frequency}, \\S\\ref{sec:mechanics-gravity}, Rem.~\\ref{rem:no-free-exponent}\\newline \\pywit{verify\\_domains}{F4}\\newline \\leanwit{FrcCore}{F4} \\lean{Dimensions.equal\\_crossing\\_flag\\_free, Dimensions.comparison\\_examples, FRC.Dimensions.realized13}",
      "key": "p10036"
+    },
+    {
+     "label": "F5",
+     "predicate": "The electromagnetic domain: with the Coulomb constant neutral (declared), $[q]^{2}=\\unitE\\unitL=\\Iq\\unitL\\unitT^{-1}$; charge is an integer degree on the lift realised as $\\unitL^{2\\kap+1}\\unitT^{(\\kap-1)/2}$, existing iff $\\kap$ is odd, unique up to $\\Iq^{2}$, never window-covariant ($|r|=2\\kap$); no further generator within C1's two charts; on the even capacities no label squares to $[q]^{2}$.",
+     "tag": "T|D",
+     "source": "Rem.~\\ref{rem:electromagnetic}\\newline \\pywit{verify\\_domains}{F5}\\newline \\leanwit{FrcCore}{F5} \\lean{FRC.Dimensions.charge13, FRC.Dimensions.charge29, FRC.Dimensions.no\\_charge17, FRC.Dimensions.no\\_charge41}",
+     "key": "p10047"
     }
    ]
   },
@@ -325,19 +332,6 @@
      "key": "p10046"
     }
    ]
-  },
-  {
-   "letter": "T",
-   "title": "Tasks",
-   "rows": [
-    {
-     "label": "T1",
-     "predicate": "The electromagnetic domain: charge and the electromagnetic units are not constructed in the two-generator-plus-flag system; whether they enter as a further flag, a further generator, or a monomial of the existing ones is the paper's stated deferral.",
-     "tag": "O",
-     "source": "\\S\\ref{sec:discussion}",
-     "key": "p10044"
-    }
-   ]
   }
  ],
  "legend": [
@@ -365,11 +359,6 @@
    "tag": "Ω",
    "name": "$\\Om$-hard",
    "text": "A value fixed by the totality, in no bounded observer's window; a demarcation of where the value is read, not an open item."
-  },
-  {
-   "tag": "O",
-   "name": "Open",
-   "text": "Genuinely unresolved."
   }
  ],
  "master": {
@@ -1351,6 +1340,44 @@
     "tier": 0,
     "ok": true,
     "doc": "10:F2, 10:F3, 10:F4, 10:G3 — the derived domains realized on `𝔽₁₃` (`κ = 3`, the flag `(0, 3)`): `[m] = [E][v]⁻² = (11, 4)`, `[a] = (1, 10)`, `[F] = [m][a] = (12, 2)`, `[p] = [m][v] = (12, 3) = I_q [L]⁻¹`, `[S] = [E][T] = I_q`, `[P] = (0, 1)`, `[G] = [F][L]²[m]⁻² = (5, 6)`; the geometric conversions `[Għ/c³] = [L]²`, `[Gm/c²] = [L]`, `[Gm/c³] = [T]`, `[Gm/r³] = [T]⁻²`; `[Θ] = [E][k_B]⁻¹ = [a]` and the Unruh closure; the phase exponent `[E][T][ħ]⁻¹ = 1`; kinetic energy `[m][v]² = [E]`; `Q + Q²` inhomogeneous, `[L] ≠ [L]²`; `F/a = [m]`, flagged."
+   }
+  ],
+  "F5": [
+   {
+    "name": "FRC.Dimensions.charge13",
+    "module": "FrcCore/Dimensions",
+    "line": 479,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "10:F5 — the charge label on `𝔽₁₃` (`κ = 3`): with the Coulomb constant neutral, `[q]² = [E][L] = I_q [L][T]⁻¹`, and the labels with `x² = [q]²` are exactly `⟨7, 1⟩` and `⟨7, 7⟩ = ⟨7, 1⟩ · I_q²` (the half-period), their space exponent `7 = 2⁻¹ = 2κ + 1`, the meridian half-turn."
+   },
+   {
+    "name": "FRC.Dimensions.charge29",
+    "module": "FrcCore/Dimensions",
+    "line": 485,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "10:F5 — the charge label on `p = 29` (`κ = 7`): exactly `⟨15, 3⟩` and `⟨15, 17⟩ = ⟨15, 3⟩ · I_q²`."
+   },
+   {
+    "name": "FRC.Dimensions.no_charge17",
+    "module": "FrcCore/Dimensions",
+    "line": 490,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "10:F5 — on `p = 17` (`κ = 4`, even) no label squares to `[q]²`: the charge has no domain on that shell."
+   },
+   {
+    "name": "FRC.Dimensions.no_charge41",
+    "module": "FrcCore/Dimensions",
+    "line": 493,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "10:F5 — on `p = 41` (`κ = 10`, even) no label squares to `[q]²`."
    }
   ],
   "G1": [

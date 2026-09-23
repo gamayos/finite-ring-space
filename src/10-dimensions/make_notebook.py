@@ -50,7 +50,7 @@ for r in witnessed:
 md("""## Summary
 
 The rows above are the paper's python-witnessed predicates; the whole package, family by family, is `run_all.py`
-(13 family checks, 212 exact micro-checks, `results.json`).""", "rows-summary")
+(13 family checks, 217 exact micro-checks, `results.json`).""", "rows-summary")
 code(f"""{INSTALL}
 from frc_10_dimensions import verify_all
 assert verify_all(), "a family check failed"

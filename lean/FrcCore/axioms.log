@@ -365,6 +365,10 @@
 'FRC.Dimensions.window_ladder' does not depend on any axioms
 'FRC.Dimensions.recovery13' does not depend on any axioms
 'FRC.Dimensions.energy_momentum13' does not depend on any axioms
+'FRC.Dimensions.charge13' does not depend on any axioms
+'FRC.Dimensions.charge29' does not depend on any axioms
+'FRC.Dimensions.no_charge17' does not depend on any axioms
+'FRC.Dimensions.no_charge41' does not depend on any axioms
 'FRC.Shell.sum_split' does not depend on any axioms
 'FRC.Shell.sum_triangle' does not depend on any axioms
 'FRC.Shell.Poly.Bound' does not depend on any axioms
@@ -752,6 +756,7 @@
 'FRC.Dimensions.row_F2' does not depend on any axioms
 'FRC.Dimensions.row_F3' does not depend on any axioms
 'FRC.Dimensions.row_F4' does not depend on any axioms
+'FRC.Dimensions.row_F5' does not depend on any axioms
 'FRC.Dimensions.row_G1' does not depend on any axioms
 'FRC.Dimensions.row_G2' does not depend on any axioms
 'FRC.Dimensions.row_G3' does not depend on any axioms
