@@ -322,4 +322,5 @@ mjx-container { max-width: 100%; overflow-x: auto; overflow-y: hidden; }
 .srcbar .tool svg { width: 14px; height: 14px; fill: none; stroke: currentColor; stroke-width: 1.7; stroke-linecap: round; stroke-linejoin: round; }
 .srcbar .tool.done { color: #2e9e62; border-color: #2e9e62; } .srcbar .tool.failed { color: #c04a4a; border-color: #c04a4a; }
 .srcbar .vh { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); }
+.srcbar.solo { position: static; border-bottom: 1px solid var(--rule-soft); border-radius: 6px; margin: 1.1rem 0 .4rem; }   /* the bar on its own (a package page): a closed pill, not stuck to a code block */
 pre.lean .ln, pre.lean a.pred { scroll-margin-top: 2.8rem; }   /* a targeted line (or predicate anchor) lands below the sticky bar */
