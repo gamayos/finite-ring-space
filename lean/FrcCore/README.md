@@ -12,7 +12,8 @@ Modules (in dependency order): `Nat` (arithmetic, the division algorithm), `Pige
 repetition), `Shell` (the ring), `Frame` (the datum: generation by the pigeonhole, half-period, quarter-turn,
 orientation classes, Euler identity), `Orbit` (the generator orbit, Fermat), `Sum` (finite sums, the principal
 root, the Fourier inversion, the polynomial reading and covariance, the four-cycle, `V = V⁺ ⊕ V⁻`), `Meridian`
-(6-fourier: the meridian ladder as lists, the scale-shift as re-indexing and its effective step, the zoom ladder of `𝔽₁₃` by `decide`), `Algebra`
+(6-fourier: the meridian ladder as lists, the scale-shift as re-indexing and its effective step, the zoom ladder of `𝔽₁₃` by `decide`), `Fourier`
+(the 6-fourier predicates named by key, conjunctions of the theorems of `Frame`, `Sum` and `Meridian` that prove them), `Algebra`
 (1-algebra rows: the Klein orbits and their count, the frame group, the window and its read-backs), `Epi`
 (13-epi: the derangement numbers by recurrence, antiperiodicity and the tower of `e` on every shell, orientation transport, the
 wrap-free window, the residue lines and the wall products on `𝔽₁₃` and the wall shells by `decide`), `Dimensions`

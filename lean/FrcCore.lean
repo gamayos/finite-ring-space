@@ -5,6 +5,7 @@ import FrcCore.Frame
 import FrcCore.Orbit
 import FrcCore.Sum
 import FrcCore.Meridian
+import FrcCore.Fourier
 import FrcCore.Algebra
 import FrcCore.Epi
 import FrcCore.Dimensions

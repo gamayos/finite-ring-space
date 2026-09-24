@@ -165,6 +165,10 @@
     <lastmod>2026-09-24</lastmod>
   </url>
   <url>
+    <loc>https://finitering.space/lean/core/Fourier.html</loc>
+    <lastmod>2026-09-24</lastmod>
+  </url>
+  <url>
     <loc>https://finitering.space/lean/core/Frame.html</loc>
     <lastmod>2026-09-24</lastmod>
   </url>
@@ -257,6 +261,30 @@
     <lastmod>2026-09-24</lastmod>
   </url>
   <url>
+    <loc>https://finitering.space/src/13-epi/epi.html</loc>
+    <lastmod>2026-09-24</lastmod>
+  </url>
+  <url>
+    <loc>https://finitering.space/src/13-epi/</loc>
+    <lastmod>2026-09-24</lastmod>
+  </url>
+  <url>
+    <loc>https://finitering.space/src/13-epi/make_notebook.html</loc>
+    <lastmod>2026-09-24</lastmod>
+  </url>
+  <url>
+    <loc>https://finitering.space/src/14-entropy/entropy.html</loc>
+    <lastmod>2026-09-24</lastmod>
+  </url>
+  <url>
+    <loc>https://finitering.space/src/14-entropy/</loc>
+    <lastmod>2026-09-24</lastmod>
+  </url>
+  <url>
+    <loc>https://finitering.space/src/14-entropy/make_notebook.html</loc>
+    <lastmod>2026-09-24</lastmod>
+  </url>
+  <url>
     <loc>https://finitering.space/src/2-geometry/geometry.html</loc>
     <lastmod>2026-09-24</lastmod>
   </url>
@@ -280,15 +308,55 @@
     <loc>https://finitering.space/src/3-causality/make_notebook.html</loc>
     <lastmod>2026-09-24</lastmod>
   </url>
-<url>
+  <url>
+    <loc>https://finitering.space/src/4-representation/</loc>
+    <lastmod>2026-09-24</lastmod>
+  </url>
+  <url>
+    <loc>https://finitering.space/src/4-representation/make_notebook.html</loc>
+    <lastmod>2026-09-24</lastmod>
+  </url>
+  <url>
+    <loc>https://finitering.space/src/4-representation/representation.html</loc>
+    <lastmod>2026-09-24</lastmod>
+  </url>
+  <url>
+    <loc>https://finitering.space/src/5-reductio/</loc>
+    <lastmod>2026-09-24</lastmod>
+  </url>
+  <url>
+    <loc>https://finitering.space/src/5-reductio/make_notebook.html</loc>
+    <lastmod>2026-09-24</lastmod>
+  </url>
+  <url>
+    <loc>https://finitering.space/src/5-reductio/reductio.html</loc>
+    <lastmod>2026-09-24</lastmod>
+  </url>
+  <url>
+    <loc>https://finitering.space/src/6-fourier/fourier.html</loc>
+    <lastmod>2026-09-24</lastmod>
+  </url>
+  <url>
+    <loc>https://finitering.space/src/6-fourier/</loc>
+    <lastmod>2026-09-24</lastmod>
+  </url>
+  <url>
+    <loc>https://finitering.space/src/6-fourier/make_f13_C_figure.html</loc>
+    <lastmod>2026-09-24</lastmod>
+  </url>
+  <url>
+    <loc>https://finitering.space/src/6-fourier/make_notebook.html</loc>
+    <lastmod>2026-09-24</lastmod>
+  </url>
+  <url>
     <loc>https://finitering.space/src/8-dirac/dirac.html</loc>
     <lastmod>2026-09-24</lastmod>
   </url>
-<url>
+  <url>
     <loc>https://finitering.space/src/8-dirac/</loc>
     <lastmod>2026-09-24</lastmod>
   </url>
-<url>
+  <url>
     <loc>https://finitering.space/src/8-dirac/make_notebook.html</loc>
     <lastmod>2026-09-24</lastmod>
   </url>

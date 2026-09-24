@@ -129,41 +129,6 @@
    "3:C3": "Causality"
   }
  },
- "14-entropy": {
-  "module": "Entropy",
-  "FrcCore": {
-   "14:A1": "Entropy",
-   "14:A2": "Entropy",
-   "14:B10": "Entropy",
-   "14:B2": "Entropy",
-   "14:B9": "Entropy",
-   "14:C10": "Entropy",
-   "14:C5": "Entropy",
-   "14:C6": "Entropy",
-   "14:X4": "Entropy"
-  },
-  "FrcLedger": {
-   "14:A1": "Entropy",
-   "14:A2": "Entropy",
-   "14:B10": "Entropy",
-   "14:B2": "Entropy",
-   "14:B8": "Entropy",
-   "14:B9": "Entropy",
-   "14:C10": "Entropy",
-   "14:C2": "Entropy",
-   "14:C3": "Entropy",
-   "14:C5": "Entropy",
-   "14:C6": "Entropy",
-   "14:C7": "Entropy",
-   "14:C8": "Entropy",
-   "14:C9": "Entropy",
-   "14:P3": "Entropy",
-   "14:P4": "Entropy",
-   "14:X2": "Entropy",
-   "14:X3": "Entropy",
-   "14:X4": "Entropy"
-  }
- },
  "4-representation": {
   "module": "Representation",
   "FrcCore": {
@@ -188,32 +153,6 @@
    "4:C4": "Representation",
    "4:E1": "Representation",
    "4:E3": "Representation"
-  }
- },
- "5-reductio": {
-  "module": "Reductio",
-  "FrcCore": {
-   "5:B6": "Reductio",
-   "5:C2": "Reductio",
-   "5:C5": "Reductio",
-   "5:D3": "Reductio",
-   "5:E1": "Reductio",
-   "5:E2": "Reductio",
-   "5:E4": "Reductio",
-   "5:E5": "Reductio"
-  },
-  "FrcLedger": {
-   "5:B3": "Reductio",
-   "5:B5": "Reductio",
-   "5:C2": "Reductio",
-   "5:C3": "Reductio",
-   "5:D3": "Reductio",
-   "5:D8": "Reductio",
-   "5:E1": "Reductio",
-   "5:E2": "Reductio",
-   "5:E3": "Reductio",
-   "5:E4": "Reductio",
-   "5:E8": "Reductio"
   }
  },
  "8-dirac": {
@@ -267,6 +206,96 @@
    "8:F2": "Dirac",
    "8:F3": "Dirac",
    "8:F4": "Dirac"
+  }
+ },
+ "14-entropy": {
+  "module": "Entropy",
+  "FrcCore": {
+   "14:A1": "Entropy",
+   "14:A2": "Entropy",
+   "14:B10": "Entropy",
+   "14:B2": "Entropy",
+   "14:B9": "Entropy",
+   "14:C10": "Entropy",
+   "14:C5": "Entropy",
+   "14:C6": "Entropy",
+   "14:X4": "Entropy"
+  },
+  "FrcLedger": {
+   "14:A1": "Entropy",
+   "14:A2": "Entropy",
+   "14:B10": "Entropy",
+   "14:B2": "Entropy",
+   "14:B8": "Entropy",
+   "14:B9": "Entropy",
+   "14:C10": "Entropy",
+   "14:C2": "Entropy",
+   "14:C3": "Entropy",
+   "14:C5": "Entropy",
+   "14:C6": "Entropy",
+   "14:C7": "Entropy",
+   "14:C8": "Entropy",
+   "14:C9": "Entropy",
+   "14:P3": "Entropy",
+   "14:P4": "Entropy",
+   "14:X2": "Entropy",
+   "14:X3": "Entropy",
+   "14:X4": "Entropy"
+  }
+ },
+ "6-fourier": {
+  "module": "Fourier",
+  "FrcCore": {
+   "6:B2": "Fourier",
+   "6:B3": "Fourier",
+   "6:B5": "Fourier",
+   "6:B6": "Fourier",
+   "6:B7": "Fourier",
+   "6:D4": "Fourier",
+   "6:D5": "Fourier"
+  },
+  "FrcLedger": {
+   "6:B5": "Fourier",
+   "6:B7": "Fourier",
+   "6:C2": "Fourier",
+   "6:C3": "Fourier",
+   "6:C4": "Fourier",
+   "6:C5": "Fourier",
+   "6:C7": "Fourier",
+   "6:C8": "Fourier",
+   "6:C9": "Fourier",
+   "6:D2": "Fourier",
+   "6:E2": "Fourier",
+   "6:E3": "Fourier",
+   "6:E5": "Fourier",
+   "6:E6": "Fourier",
+   "6:E7": "Fourier"
+  }
+ },
+ "5-reductio": {
+  "module": "Reductio",
+  "FrcCore": {
+   "5:B6": "Reductio",
+   "5:C2": "Reductio",
+   "5:C5": "Reductio",
+   "5:D3": "Reductio",
+   "5:E1": "Reductio",
+   "5:E2": "Reductio",
+   "5:E4": "Reductio",
+   "5:E5": "Reductio"
+  },
+  "FrcLedger": {
+   "5:B3": "Reductio",
+   "5:B5": "Reductio",
+   "5:C2": "Reductio",
+   "5:C3": "Reductio",
+   "5:D3": "Reductio",
+   "5:D8": "Reductio",
+   "5:E1": "Reductio",
+   "5:E2": "Reductio",
+   "5:E3": "Reductio",
+   "5:E4": "Reductio",
+   "5:E8": "Reductio"
   }
  },
  "13-epi": {

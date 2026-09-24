@@ -134,16 +134,19 @@ const PUBLICATIONS = [
     "doi": "https://doi.org/10.3390/e28010040",
     "doiLabel": "e28010040",
     "ledger": "4-representation/index.html",
+    "schema": true,
     "links": [
       {
-        "href": "4-representation/index.html",
-        "label": "ledger",
-        "title": "the paper's predicate ledger"
+        "href": "https://colab.research.google.com/github/gamayos/finite-ring-space/blob/main/src/4-representation/frc-4-representation.ipynb",
+        "label": "python",
+        "count": 11,
+        "title": "11 predicates checked, all passing: the notebook frc-4-representation.ipynb on Google Colab, one cell per predicate"
       },
       {
-        "href": "https://colab.research.google.com/github/gamayos/finite-ring-space/blob/main/src/4-representation/4-representation-main.ipynb",
-        "label": "notebook",
-        "title": "the validation notebook on Google Colab"
+        "href": "https://live.lean-lang.org/#project=lean-v4.34.0&url=https://finitering.space/lean/web/core/Representation.lean",
+        "label": "lean",
+        "count": 10,
+        "title": "10 predicates proved in Lean: the core module Representation as one executable file (plain Lean, no Mathlib) in the Lean web editor"
       }
     ]
   },
@@ -157,16 +160,19 @@ const PUBLICATIONS = [
     "doi": "https://doi.org/10.20944/preprints202508.1744.v1",
     "doiLabel": "pp202508.1744.v1",
     "ledger": "5-reductio/index.html",
+    "schema": true,
     "links": [
       {
-        "href": "5-reductio/index.html",
-        "label": "ledger",
-        "title": "the paper's predicate ledger"
+        "href": "https://colab.research.google.com/github/gamayos/finite-ring-space/blob/main/src/5-reductio/frc-5-reductio.ipynb",
+        "label": "python",
+        "count": 18,
+        "title": "18 predicates checked, all passing: the notebook frc-5-reductio.ipynb on Google Colab, one cell per predicate"
       },
       {
-        "href": "https://colab.research.google.com/github/gamayos/finite-ring-space/blob/main/src/5-reductio/5-reductio-main.ipynb",
-        "label": "notebook",
-        "title": "the validation notebook on Google Colab"
+        "href": "https://live.lean-lang.org/#project=lean-v4.34.0&url=https://finitering.space/lean/web/core/Reductio.lean",
+        "label": "lean",
+        "count": 14,
+        "title": "14 predicates proved in Lean: the core module Reductio as one executable file (plain Lean, no Mathlib) in the Lean web editor"
       }
     ]
   },
@@ -180,16 +186,19 @@ const PUBLICATIONS = [
     "doi": "https://doi.org/10.20944/preprints202606.0127.v1",
     "doiLabel": "pp202606.0127.v1",
     "ledger": "6-fourier/index.html",
+    "schema": true,
     "links": [
       {
-        "href": "6-fourier/index.html",
-        "label": "ledger",
-        "title": "the paper's predicate ledger"
+        "href": "https://colab.research.google.com/github/gamayos/finite-ring-space/blob/main/src/6-fourier/frc-6-fourier.ipynb",
+        "label": "python",
+        "count": 29,
+        "title": "29 predicates checked, all passing: the notebook frc-6-fourier.ipynb on Google Colab, one cell per predicate"
       },
       {
-        "href": "https://colab.research.google.com/github/gamayos/finite-ring-space/blob/main/src/6-fourier/6-fourier-main.ipynb",
-        "label": "notebook",
-        "title": "the validation notebook on Google Colab"
+        "href": "https://live.lean-lang.org/#project=lean-v4.34.0&url=https://finitering.space/lean/web/core/Fourier.lean",
+        "label": "lean",
+        "count": 20,
+        "title": "20 predicates proved in Lean: the core module Fourier as one executable file (plain Lean, no Mathlib) in the Lean web editor"
       }
     ]
   },
@@ -265,16 +274,19 @@ const PUBLICATIONS = [
     "doi": "https://doi.org/10.20944/preprints202607.1141.v1",
     "doiLabel": "pp202607.1141.v1",
     "ledger": "13-epi/index.html",
+    "schema": true,
     "links": [
       {
-        "href": "13-epi/index.html",
-        "label": "ledger",
-        "title": "the paper's predicate ledger"
+        "href": "https://colab.research.google.com/github/gamayos/finite-ring-space/blob/main/src/13-epi/frc-13-epi.ipynb",
+        "label": "python",
+        "count": 41,
+        "title": "41 predicates checked, all passing: the notebook frc-13-epi.ipynb on Google Colab, one cell per predicate"
       },
       {
-        "href": "https://colab.research.google.com/github/gamayos/finite-ring-space/blob/main/src/13-epi/13-epi-main.ipynb",
-        "label": "notebook",
-        "title": "the validation notebook on Google Colab"
+        "href": "https://live.lean-lang.org/#project=lean-v4.34.0&url=https://finitering.space/lean/web/core/Epi.lean",
+        "label": "lean",
+        "count": 25,
+        "title": "25 predicates proved in Lean: the core module Epi as one executable file (plain Lean, no Mathlib) in the Lean web editor"
       }
     ]
   },
@@ -288,16 +300,19 @@ const PUBLICATIONS = [
     "doi": "https://doi.org/10.20944/preprints202608.0310.v1",
     "doiLabel": "pp202608.0310.v1",
     "ledger": "14-entropy/index.html",
+    "schema": true,
     "links": [
       {
-        "href": "14-entropy/index.html",
-        "label": "ledger",
-        "title": "the paper's predicate ledger"
+        "href": "https://colab.research.google.com/github/gamayos/finite-ring-space/blob/main/src/14-entropy/frc-14-entropy.ipynb",
+        "label": "python",
+        "count": 18,
+        "title": "18 predicates checked, all passing: the notebook frc-14-entropy.ipynb on Google Colab, one cell per predicate"
       },
       {
-        "href": "https://colab.research.google.com/github/gamayos/finite-ring-space/blob/main/src/14-entropy/14-entropy-main.ipynb",
-        "label": "notebook",
-        "title": "the validation notebook on Google Colab"
+        "href": "https://live.lean-lang.org/#project=lean-v4.34.0&url=https://finitering.space/lean/web/core/Entropy.lean",
+        "label": "lean",
+        "count": 19,
+        "title": "19 predicates proved in Lean: the core module Entropy as one executable file (plain Lean, no Mathlib) in the Lean web editor"
       }
     ]
   },

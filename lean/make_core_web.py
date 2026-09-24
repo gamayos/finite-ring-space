@@ -6,8 +6,8 @@ predicate declaration of the module, so the editor computes each predicate's axi
 import re, sys
 from pathlib import Path
 ROOT = Path(__file__).resolve().parent
-ORDER = ["Nat", "Pigeonhole", "Shell", "Frame", "Orbit", "Sum", "Meridian", "Algebra", "Epi", "Dimensions", "Poly", "Quaternion", "Causality", "Representation", "Reductio", "Geometry", "Complex", "Instances", "Rh", "Entropy", "Gravity", "Dirac"]
-PAPERS = ["Algebra", "Geometry", "Causality", "Representation", "Reductio", "Epi", "Dimensions", "Rh", "Entropy", "Gravity", "Dirac"]   # the modules that are a paper's
+ORDER = ["Nat", "Pigeonhole", "Shell", "Frame", "Orbit", "Sum", "Meridian", "Fourier", "Algebra", "Epi", "Dimensions", "Poly", "Quaternion", "Causality", "Representation", "Reductio", "Geometry", "Complex", "Instances", "Rh", "Entropy", "Gravity", "Dirac"]
+PAPERS = ["Algebra", "Fourier", "Geometry", "Causality", "Representation", "Reductio", "Epi", "Dimensions", "Rh", "Entropy", "Gravity", "Dirac"]   # the modules that are a paper's
 
 def src(m): return (ROOT / "FrcCore" / f"{m}.lean").read_text(encoding="utf-8")
 def _topo(order):
