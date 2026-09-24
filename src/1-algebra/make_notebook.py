@@ -40,7 +40,7 @@ md("""Every cell is self-contained: its first line installs the package from the
 
 for r in witnessed:
     lab = f"{PAPER}:{r['label']}"
-    code(f"{INSTALL}\n# {lab} [{r['tag']}] — the deciding check {dcommon.PREDICATES[lab]}\n{plain(r['predicate'])}\nfrom frc_1_algebra import predicate; predicate(\"{lab}\")", r['key'])
+    code(f"{INSTALL}\n# {lab} ({r['key']}) [{r['tag']}] — the deciding check {dcommon.PREDICATES[lab]}\n{plain(r['predicate'])}\nfrom frc_1_algebra import predicate; predicate(\"{lab}\")", r['key'])
 
 md("""## Summary
 
