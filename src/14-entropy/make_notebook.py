@@ -45,7 +45,7 @@ for r in witnessed:
 md("""## Summary
 
 The cells above are the paper's python-witnessed predicates; the whole script, family by family, is `python3 entropy.py`
-(19 family checks, 88 micro-checks — EXACT counts on the laboratory Carrier and CHART computations on the published data — `results.json`, the figures in `out/`), `python3 -m frc_14_entropy` once installed.""", "summary")
+(19 family checks, 92 micro-checks — EXACT counts on the laboratory Carrier and CHART computations on the published data — `results.json`, the figures in `out/`), `python3 -m frc_14_entropy` once installed.""", "summary")
 code(f"""{INSTALL}
 from frc_14_entropy import verify_all
 assert verify_all(), "a family check failed"

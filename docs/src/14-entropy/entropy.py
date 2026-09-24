@@ -4,7 +4,7 @@ entropy.py — the validation package of "De Sitter Entropy Estimates over Finit
 registry entcommon.py and the blocks estimate_S.py, triangle.py, capacity.py merged).
 ========================================================================================================================
 
-One script, three blocks, nineteen family checks of 88 micro-checks; Python with matplotlib (the two triangle blocks draw
+One script, three blocks, nineteen family checks of 92 micro-checks; Python with matplotlib (the two triangle blocks draw
 the paper's figures into out/). Two kinds of check are kept apart. EXACT: integer counts on the instantiated laboratory
 Carrier Ω = 2 408 561 (the admissibility congruences, the quarter identity, the octant count) — a pass is a proof on that
 instance. CHART: a one-line computation on published [approx] or [ΛCDM] data (the instrument table, the concordances, the
@@ -71,7 +71,7 @@ LABELS = {
     "est.C4": "the one-face concordance: rate rows carried to the Λ face by c/(H tanh(3π/8)) — r_H^Λ = 1.66, 1.53, 1.60, 1.44, 1.64 × 10²⁶ m — agree to ±7 % half-range over five readings and ±4 % over the conventional channels; the ladder–row-1 residual ≈ 8 % [approx]",
     "est.L1": "the floor landing cH₀/a₀ = 5.46 ± 1.1 at H₀ = 67.4, 0.8σ from 2π [approx]",
     "est.P2": "the octant bound (π/4) r_H/c = 13.79 Gyr at the channel-1 Λ, degenerate with the ΛCDM t₀ = 13.80 to 0.2 %; the oldest cluster population 13.61 ± 0.34 Gyr 0.5σ below the bound, the prior-dependent inferred age 13.81 straddling it within 0.1σ [ΛCDM]",
-    "est.P1": "the running floor against Ciocan et al.: on the ∝ H(z) chord a₀(z = 1) = 2.15 × 10⁻¹⁰ (E(1) = 1.79), 0.5σ from the measured 2.38 ± 0.10 with the anchor's systematic band; the fitted linear rate 1.59 ± 0.10 exceeds the chord's 0.95 per unit redshift by ≈ 3σ before systematics [ΛCDM]",
+    "est.P1": "the running floor against MUSE-DARK III: on the ∝ H(z) chord a₀(z = 1) = 2.15 × 10⁻¹⁰ (E(1) = 1.79), 0.5σ from the measured 2.38 ± 0.10 with the anchor's systematic band; the authors' global linear rate 1.59 ± 0.10 exceeds the chord's 0.95 per unit redshift by ≈ 3σ before systematics; the four bins (1.99 → 2.71 × 10⁻¹⁰ over z = 0.50–1.28) exclude a constant floor, Δχ² = 23 against A H(z)/H₀, which fits at A = 1.39 ± 0.03 (χ² = 5.4/3); the binned rate 0.98 ± 0.19 per unit redshift sits on the chord; the amplitude 0.12 dex above cH₀/2π, inside the 0.2 dex gas systematic [ΛCDM]",
     "tri.A": "the triangle's audit identities before drawing: the octant t_oct = (√π/4)√S t_P to 10⁻¹²; the two-cluster ratio 1.71 on S; the r_H split 1/√Ω_Λ = 1.208; H₀ = H_Λ/tanh(3π/8) = 67.4; the width identity log₁₀(r_H/ℓ_P) = log₁₀ √(S/π) exact [approx]",
     "tri.D": "the diagonal: ordinary least squares over the thirteen mid-triangle objects gives k = 3.032 with intercept 1.00 × 10³ at the metre pivot; the constrained k = 3 cubic coefficient c̃ = m/R³ = 0.97 × 10³ kg/m³ (not a density: a sphere's is 0.62 dex lower); the fifteen-object sensitivity k = 3.007; the Schwarzschild exit 1.8 × 10⁸ M☉ within the (1.4–2.8) × 10⁸ band across the four fit variants [approx]",
     "tri.W": "the wall residents and the slope decomposition: the electron on the Compton wall and Sgr A* on the Schwarzschild wall to < 0.01 dex; k = 3 + dc/d log R with mean c = 2.99 and drift 0.61 dex over the 19-decade baseline; the Compton entry 5.3 × 10⁻¹² m [approx]",
@@ -212,7 +212,7 @@ def save(fig, stem):
 # Exit status: 0 iff the exact checks and the census both pass.
 #
 # Package form (2026-09): the script as written, its integer checks, [PASS] lines and asserts reported to the registry
-# (entcommon) as the families est.F1 (exact faces), est.B9 (area law), est.T1 (the instrument table), est.C1
+# (the head of this script) as the families est.F1 (exact faces), est.B9 (area law), est.T1 (the instrument table), est.C1
 # (two-face concordance), est.C2 (the chart identity), est.A1 (the circularity audit), est.C3 (the channel-1
 # consistency), est.P3 (the age-rate locus), est.C4 (one-face concordance), est.L1 (the floor landing), est.P2 (the
 # octant bound against the stellar ages), est.P1 (the running floor). A failing check prints and fails its family;
@@ -240,6 +240,7 @@ def block_est():
 
 
     print("exact faces (counts): Om = 4S+1; S even; S = 1 mod 3; 4S+1 prime")
+    # 14:A2 (p14002), 14:C6 (p14023)
     checks = [
         ("Om = 4S+1", OM_LAB == 2_408_561),
         ("S even (octant sector Z_8 exists: 8 | 4S iff 2 | S)", S_LAB % 2 == 0),
@@ -247,7 +248,6 @@ def block_est():
         ("4S+1 prime", is_prime(OM_LAB)),
         ("octant count S/2 is an integer", (S_LAB // 2) * 2 == S_LAB),
     ]
-    # 14:A2 (p14002), 14:C6 (p14023)
     family("est", "F1")
     for name, ok in checks:
         print(f"  [{'PASS' if ok else 'FAIL'}] {name}  (lab Carrier Om={OM_LAB})")
@@ -260,13 +260,13 @@ def block_est():
     print("area law (row B9): quarter identity and quarter-turn chain (counts)")
     KAP_H = 3
     Q_H = 4 * KAP_H + 1
+    # 14:B9 (p14017)
     b9_checks = [
         ("quarter identity 4S = Om - 1", 4 * S_LAB == OM_LAB - 1),
         ("quarter-turn at the Carrier: 4 | Om - 1", (OM_LAB - 1) % 4 == 0),
         ("quarter-turn at the Subject: q_H = 4 kap_H + 1 = 13, prime",
          Q_H == 13 and is_prime(Q_H) and (Q_H - 1) % 4 == 0),
     ]
-    # 14:B9 (p14017)
     family("est", "B9")
     for name, ok in b9_checks:
         print(f"  [{'PASS' if ok else 'FAIL'}] {name}")
@@ -493,8 +493,27 @@ def block_est():
     chk("a0(z=1) on the H(z) chord: 2.15e-10 (flat LCDM E(z=1) = 1.79) [LCDM]", abs(a0_pred - 2.15) < 0.01 and abs(Hz - 1.79) < 0.005)
     chk("endpoint 0.5 sigma from the measured 2.38 +/- 0.10 with the anchor's systematic band", abs(sig_end - 0.5) < 0.1)
     chk("the fitted linear rate 1.59 +/- 0.10 exceeds the chord's 0.95 per unit redshift by ~3 sigma (pre-systematics)", abs(slope_pred - 0.95) < 0.01 and abs(sig_slope - 3.0) < 0.1)
-    print("[PASS] Ciocan confrontation: constant floor disfavoured; endpoint 0.5 sigma;"
-          " linear rate ~3 sigma open (95% bands read at face value)")
+    # the four bins (Fig. 3 of Ciocan et al. 2026, digitised in the corpus paper 43-muse, validation/muse_bins.py): z centre, a0 in 1e-10 m/s^2, error [import]
+    zb, ab, eb = [0.503, 0.825, 1.047, 1.276], [1.990, 2.200, 2.571, 2.710], [0.086, 0.105, 0.112, 0.136]
+    Eb = [sqrt(Om_m * (1 + z) ** 3 + (1 - Om_m)) for z in zb]; wb = [1 / e ** 2 for e in eb]      # flat LCDM E(z) at the bin centres; inverse-variance weights
+    a_const = sum(w * a for w, a in zip(wb, ab)) / sum(wb)
+    chi_const = sum(w * (a - a_const) ** 2 for w, a in zip(wb, ab))                                  # a constant floor, 3 dof
+    A_fit = sum(w * a * E for w, a, E in zip(wb, ab, Eb)) / sum(w * E * E for w, E in zip(wb, Eb))   # A H(z)/H0 at free amplitude, 3 dof
+    dA_fit = 1 / sqrt(sum(w * E * E for w, E in zip(wb, Eb)))
+    chi_run = sum(w * (a - A_fit * E) ** 2 for w, a, E in zip(wb, ab, Eb))
+    S, Sz, Szz = sum(wb), sum(w * z for w, z in zip(wb, zb)), sum(w * z * z for w, z in zip(wb, zb))
+    Sa, Sza = sum(w * a for w, a in zip(wb, ab)), sum(w * z * a for w, z, a in zip(wb, zb, ab))
+    a1_bins = (S * Sza - Sz * Sa) / (S * Szz - Sz ** 2); da1_bins = sqrt(S / (S * Szz - Sz ** 2))     # the weighted linear fit's rate per unit redshift
+    excess = log10(A_fit / (c * (67.4e3 / Mpc) / (2 * pi) * 1e10))                                    # the amplitude over the floor c H0/2 pi at the channel-1 H0
+    print(f"  the four bins: constant floor chi2 = {chi_const:.1f}/3; A H(z)/H0 chi2 = {chi_run:.1f}/3 at A = {A_fit:.2f} +/- {dA_fit:.2f}"
+          f" (Delta chi2 = {chi_const - chi_run:.0f}); binned rate {a1_bins:.2f} +/- {da1_bins:.2f} per unit z on the chord {slope_pred:.2f};"
+          f" amplitude {excess:.2f} dex above c H0/2 pi")
+    chk("four bins 1.99 -> 2.71e-10 over z = 0.50-1.28: a constant floor is excluded, Delta chi2 = 23 against A H(z)/H0 [LCDM]", abs(chi_const - chi_run - 23) < 0.5)
+    chk("A H(z)/H0 fits the bins at free amplitude: A = 1.39 +/- 0.03, chi2 = 5.4/3", abs(A_fit - 1.39) < 0.005 and abs(dA_fit - 0.03) < 0.005 and abs(chi_run - 5.4) < 0.05)
+    chk("the binned rate 0.98 +/- 0.19 per unit redshift sits on the H(z) chord (0.95)", abs(a1_bins - 0.98) < 0.005 and abs(da1_bins - 0.19) < 0.005 and abs(a1_bins - slope_pred) < da1_bins)
+    chk("the amplitude's excess over c H0/2 pi is 0.12 dex, inside the 0.2 dex gas systematic", abs(excess - 0.12) < 0.006 and excess < 0.2)
+    print("[PASS] MUSE-DARK III confrontation: constant floor excluded (Delta chi2 = 23); the running form fits at A = 1.39;"
+          " endpoint 0.5 sigma; the authors' global linear rate ~3 sigma above the chord, the binned rate on it")
 
     # bound channel
     print("\nbound: registered entropy budget ~1e104 << S  (headroom ~1e18 to saturation)")
@@ -519,9 +538,9 @@ def block_est():
 # saturation falsifier drawn.
 #
 # Package form (2026-09): make-wedge-2.py of the paper, renamed triangle.py, wrapped in run(); its asserts report to the
-# registry (entcommon) as the families tri.A (audit identities), tri.D (the diagonal), tri.W (wall residents and the slope
+# registry (the head of this script) as the families tri.A (audit identities), tri.D (the diagonal), tri.W (wall residents and the slope
 # decomposition), tri.F (the figures, written to out/). The wall-channels annotation reads "channel-1 consistency rate"
-# (the paper's T19 wording, 2026-09-13) where the July figure read "entailed rate H0 = 67.4 +/- 0.7".
+# (the wording of the 13 September 2026 revision) where the July figure read "entailed rate H0 = 67.4 +/- 0.7".
 def block_tri():
     """Block tri — triangle: the audit identities before drawing, the diagonal, the wall residents, the figures (tri.A, tri.D, tri.W, tri.F)."""
     plt = _plt()
@@ -844,7 +863,7 @@ def block_tri():
 # is the same 61 dex on both faces, t_P to r_H/c.
 #
 # Package form (2026-09): make-wedge-3.py of the paper, renamed capacity.py, wrapped in run(); its asserts report to the
-# registry (entcommon) as the families cap.A (the audit and diagonal identities, identical to triangle.py's), cap.K (the
+# registry (the head of this script) as the families cap.A (the audit and diagonal identities, identical to triangle.py's), cap.K (the
 # capacity axis: the pinned mass axis, the Avogadro landing), cap.F (the figure, written to out/).
 def block_cap():
     """Block cap — capacity: the same identities re-asserted, the pinned mass axis and the Avogadro landing, the figure (cap.A, cap.K, cap.F)."""

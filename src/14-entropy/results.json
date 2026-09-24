@@ -114,9 +114,9 @@
   "rows": "14:P1",
   "block": "est",
   "script": "entropy",
-  "label": "the running floor against Ciocan et al.: on the ∝ H(z) chord a₀(z = 1) = 2.15 × 10⁻¹⁰ (E(1) = 1.79), 0.5σ from the measured 2.38 ± 0.10 with the anchor's systematic band; the fitted linear rate 1.59 ± 0.10 exceeds the chord's 0.95 per unit redshift by ≈ 3σ before systematics [ΛCDM]",
+  "label": "the running floor against MUSE-DARK III: on the ∝ H(z) chord a₀(z = 1) = 2.15 × 10⁻¹⁰ (E(1) = 1.79), 0.5σ from the measured 2.38 ± 0.10 with the anchor's systematic band; the authors' global linear rate 1.59 ± 0.10 exceeds the chord's 0.95 per unit redshift by ≈ 3σ before systematics; the four bins (1.99 → 2.71 × 10⁻¹⁰ over z = 0.50–1.28) exclude a constant floor, Δχ² = 23 against A H(z)/H₀, which fits at A = 1.39 ± 0.03 (χ² = 5.4/3); the binned rate 0.98 ± 0.19 per unit redshift sits on the chord; the amplitude 0.12 dex above cH₀/2π, inside the 0.2 dex gas systematic [ΛCDM]",
   "ok": true,
-  "detail": "3 micro-checks",
+  "detail": "7 micro-checks",
   "kind": "CHART"
  },
  {

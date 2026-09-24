@@ -2,7 +2,7 @@
 
 Validation package of *De Sitter Entropy Estimates over Finite Holographic Substrate* (Akhtman & Voether, 2026),
 `14-entr` of the FRC corpus. One script, `entropy.py` (since 24 September 2026; the registry and the three blocks
-merged), three blocks, 19 family checks over 88 micro-checks, driven by `frc-14-entropy.ipynb` (Google Colab: one cell
+merged), three blocks, 19 family checks over 92 micro-checks, driven by `frc-14-entropy.ipynb` (Google Colab: one cell
 per ledger predicate, any cell on its own, or *Runtime → Run all*, ≈ 5 s) or run whole. Python with matplotlib (the two
 triangle blocks draw the paper's figures into `out/`).
 
@@ -29,7 +29,7 @@ instance the reader can run. Master-ledger predicates of the corpus reached thro
 
 | block | families | micro-checks | claims backed |
 |---|---|---|---|
-| `est` | est.F1, B9, T1, C1, C2, A1, C3, P3, C4, L1, P2, P1 | 52 | the paper's `estimate_S.py` as written: the exact faces and the area law on the laboratory Carrier (EXACT; 14:A2, C6, B9); the instrument table from the four public data (14:C1, C4); the two-face concordance ±17 %/factor 1.9 and the conventional ±14 %/1.7 (14:C4); the chart identity behind the two clusters (14:C8); the circularity audit and the octant inversion, 0.19σ (14:C3, C7, X3, X6); the channel-1 consistency 67.4 (14:C8); the age–rate locus 0.950 read on the stellar age, H₀ = 68.2 ± 1.7 with its three confrontations (14:P3); the one-face concordance ±7 %/±4 % and the r_H^Λ column (14:C4, C7); the floor landing 5.46 ± 1.1 (14:X2); the octant bound 13.79 Gyr against the stellar ages (14:C5, P2); the running floor against the intermediate-redshift measurement (14:P1) |
+| `est` | est.F1, B9, T1, C1, C2, A1, C3, P3, C4, L1, P2, P1 | 56 | the paper's `estimate_S.py` as written: the exact faces (EXACT; 14:A2, C6) and the area law (EXACT counts and a CHART face; 14:B9) on the laboratory Carrier; the instrument table from the four public data (14:C1, C4); the two-face concordance ±17 %/factor 1.9 and the conventional ±14 %/1.7 (14:C4); the chart identity behind the two clusters (14:C8); the circularity audit and the octant inversion, 0.19σ (14:C3, C7, X3, X6); the channel-1 consistency 67.4 (14:C8); the age–rate locus 0.950 read on the stellar age, H₀ = 68.2 ± 1.7 with its three confrontations (14:P3); the one-face concordance ±7 %/±4 % and the r_H^Λ column (14:C4, C7); the floor landing 5.46 ± 1.1 (14:X2); the octant bound 13.79 Gyr against the stellar ages (14:C5, P2); the running floor against the intermediate-redshift measurement — the endpoint and the global linear rate against the ∝ H(z) chord, and the four bins: a constant floor excluded by Δχ² = 23, the running form at A = 1.39 ± 0.03 with χ² = 5.4/3, the binned rate 0.98 ± 0.19 on the chord, the amplitude 0.12 dex above cH₀/2π (14:P1) |
 | `tri` | tri.A, D, W, F | 19 | `make-wedge-2.py` of the paper: the audit identities before drawing (14:C5, C8, C9); the thirteen-object regression k = 3.032, the constrained cubic coefficient c̃ = m/R³ = 0.97 × 10³ kg/m³, the fifteen-object sensitivity, the over-closure exit 1.8 × 10⁸ M☉ within its band (14:C9, X5); the wall residents, the slope decomposition, the Compton entry (14:C9); the triangle and wall-channels figures written (no predicate) |
 | `cap` | cap.A, K, F | 17 | `make-wedge-3.py` of the paper: the same identities re-asserted (14:C9); the pinned mass axis and the Avogadro landing to 0.0035 dex (14:C10); the capacity-axis figure written (no predicate) |
 
@@ -69,7 +69,8 @@ to the registry and their figures written to `out/`; the wall-channels annotatio
 wording) where the July figure read "entailed rate H₀ = 67.4 ± 0.7". Until 24 September 2026 the package was four
 files (`entcommon.py`, `estimate_S.py`, `triangle.py`, `capacity.py`, driven by `run_all.py` and the narrative notebook
 `14-entropy-main.ipynb`); the records of `results.json` are unchanged by the merge (the two figure families no longer
-cite a ledger predicate, block V having left the ledger). Not part of the run: the concordance figure (no in-tree
+cite a ledger predicate, block V having left the ledger), and `est.P1` gained the four-bin confrontation the predicate
+states (the bins digitised in the corpus paper 43-muse; 88 → 92 micro-checks). Not part of the run: the concordance figure (no in-tree
 generator) and the exploratory simplex/shell scripts of August 2026 in the corpus tree (`check_simplex`,
 `check_shell`, `check_particles`, `make-simplex`, `make-shell`), which back the structural note of the paper's
 Section 4 and are not cited by it.
@@ -78,6 +79,6 @@ Section 4 and are not cited by it.
 
 Predicates A1–A8 imports; B1, B3, B4, B6–B8 realisations, B2, B5 definitions, B9 composite; C1–C10 derived; X1–X8 the
 explicability dividends; P1–P4 the predictions with their falsifiers; Z1 the Ω-hard numeral; B10 the capacity axis as
-a definition (the former lock conjecture O1, closed 17 Sep 2026 as `00:F7`). Block V (V1–V4, keys p14040–p14042, p14045)
-retired on 24 September 2026: its rows stated the package and the libraries, not predicates of the paper; the machine
-verification is carried by the witness links of the rows. Check → predicate: `entropy.LEDGER`.
+a definition (the former lock conjecture O1, closed 17 Sep 2026 as `00:F7`). Block V retired on 24 September 2026: its
+rows described the package and the libraries, not the paper; the machine verification is carried by the witness links
+of the rows. Check → predicate: `entropy.LEDGER`.
