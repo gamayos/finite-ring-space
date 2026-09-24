@@ -10,7 +10,7 @@
 <title>FRC publications</title>
 <meta name="description" content="Publication status of the Finite Ring Cosmology corpus: manuscripts, preprints, venue history.">
 <link rel="icon" href="frc-logo-fav.png">
-<link rel="stylesheet" href="style.css?v=0d8b242b">
+<link rel="stylesheet" href="style.css?v=c79e04d7">
 </head>
 <body>
 <div class="wrap">
@@ -56,7 +56,7 @@
     <h2>Reading the package column</h2>
     <dl>
       <dt><span class="ico wit py ok"><img class="runico pysrc" src="media/python.png" alt="python"></span> checks</dt><dd>The number of the paper's predicates the validation package checks — green when every check passes, red when one fails; opens the notebook on Google Colab, one cell per predicate. The title of such a paper opens its predicate ledger.</dd>
-      <dt><span class="ico lean"><img class="leanico ok" src="lean/lean-ok.png" alt="Lean"></span> proofs</dt><dd>The number of predicates proved in Lean; opens the paper's core module (no Mathlib, no axioms) as one executable file in the Lean web editor. A paper whose header counts its two libraries separately shows two: green the predicates proved in the core, amber those proved on Mathlib (classical), each opening its module's executable file.</dd>
+      <dt><span class="ico lean"><img class="leanico ok" src="lean/lean-ok.png" alt="Lean"></span> proofs</dt><dd>The number of predicates proved in Lean; opens the paper's core module (no Mathlib, no axioms) as one executable file in the Lean web editor. Two counts where the paper has both libraries: green the predicates proved in the core (no axioms), teal those proved on Mathlib (classical), each opening its module's executable file; the two may overlap.</dd>
       <dt><span class="ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 6.5l1.5 1.5L8 5.5"/><path d="M11 6.5h9"/><path d="M4 12.5l1.5 1.5L8 11.5"/><path d="M11 12.5h9"/><path d="M4 18.5l1.5 1.5L8 17.5"/><path d="M11 18.5h9"/></svg></span> ledger</dt><dd>The paper's predicate ledger: every claim tagged, sourced and, where it admits a finite check, witnessed by a script.</dd>
       <dt><span class="ico"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="3" width="16" height="18" rx="2"/><path d="M8 3v18"/><path d="M12.5 9.5l4 2.5-4 2.5z"/></svg></span> notebook</dt><dd>The validation notebook, opened directly on Google Colab: the paper's scripts run in the browser, the ledger predicates they witness named.</dd>
       <dt><span class="ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9.5 3h5M10 3v6l-5.5 9.5A1.5 1.5 0 0 0 5.8 21h12.4a1.5 1.5 0 0 0 1.3-2.5L14 9V3"/><path d="M7.5 16h9"/></svg></span> lab</dt><dd>An interactive rendering of the paper's construction.</dd>
@@ -70,7 +70,7 @@
 
 </div>
 
-<script src="publications.js?v=cd084706"></script>
+<script src="publications.js?v=d0cf0153"></script>
 <script>
 (function () {
   "use strict";
@@ -85,7 +85,7 @@
 
   var active = "all", query = "", sortKey = "n", sortDir = 1;
 
-  var PKG_ICONS = {"ledger": "<svg viewBox=\"0 0 24 24\" aria-hidden=\"true\"><path d=\"M4 6.5l1.5 1.5L8 5.5\"/><path d=\"M11 6.5h9\"/><path d=\"M4 12.5l1.5 1.5L8 11.5\"/><path d=\"M11 12.5h9\"/><path d=\"M4 18.5l1.5 1.5L8 17.5\"/><path d=\"M11 18.5h9\"/></svg>", "notebook": "<svg viewBox=\"0 0 24 24\" aria-hidden=\"true\"><rect x=\"4\" y=\"3\" width=\"16\" height=\"18\" rx=\"2\"/><path d=\"M8 3v18\"/><path d=\"M12.5 9.5l4 2.5-4 2.5z\"/></svg>", "lab": "<svg viewBox=\"0 0 24 24\" aria-hidden=\"true\"><path d=\"M9.5 3h5M10 3v6l-5.5 9.5A1.5 1.5 0 0 0 5.8 21h12.4a1.5 1.5 0 0 0 1.3-2.5L14 9V3\"/><path d=\"M7.5 16h9\"/></svg>", "python": "<img class=\"runico pysrc\" src=\"media/python.png\" alt=\"python\">", "python-fail": "<img class=\"runico pysrc\" src=\"media/python.png\" alt=\"python\">", "lean": "<img class=\"leanico ok\" src=\"lean/lean-ok.png\" alt=\"Lean\">", "lean-mathlib": "<img class=\"leanico t2\" src=\"lean/lean-t2.png\" alt=\"Lean\">"};
+  var PKG_ICONS = {"ledger": "<svg viewBox=\"0 0 24 24\" aria-hidden=\"true\"><path d=\"M4 6.5l1.5 1.5L8 5.5\"/><path d=\"M11 6.5h9\"/><path d=\"M4 12.5l1.5 1.5L8 11.5\"/><path d=\"M11 12.5h9\"/><path d=\"M4 18.5l1.5 1.5L8 17.5\"/><path d=\"M11 18.5h9\"/></svg>", "notebook": "<svg viewBox=\"0 0 24 24\" aria-hidden=\"true\"><rect x=\"4\" y=\"3\" width=\"16\" height=\"18\" rx=\"2\"/><path d=\"M8 3v18\"/><path d=\"M12.5 9.5l4 2.5-4 2.5z\"/></svg>", "lab": "<svg viewBox=\"0 0 24 24\" aria-hidden=\"true\"><path d=\"M9.5 3h5M10 3v6l-5.5 9.5A1.5 1.5 0 0 0 5.8 21h12.4a1.5 1.5 0 0 0 1.3-2.5L14 9V3\"/><path d=\"M7.5 16h9\"/></svg>", "python": "<img class=\"runico pysrc\" src=\"media/python.png\" alt=\"python\">", "python-fail": "<img class=\"runico pysrc\" src=\"media/python.png\" alt=\"python\">", "lean": "<img class=\"leanico ok\" src=\"lean/lean-ok.png\" alt=\"Lean\">", "lean-mathlib": "<img class=\"leanico ml\" src=\"lean/lean-ml.png\" alt=\"Lean, Mathlib\">"};
   var el = {
     tally: document.getElementById("tally"),
     rows:  document.getElementById("rows"),
