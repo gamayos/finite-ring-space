@@ -326,16 +326,19 @@ const PUBLICATIONS = [
     "doi": "https://doi.org/10.20944/preprints202606.0768.v1",
     "doiLabel": "pp202606.0768.v1",
     "ledger": "20-rh/index.html",
+    "schema": true,
     "links": [
       {
-        "href": "20-rh/index.html",
-        "label": "ledger",
-        "title": "the paper's predicate ledger"
+        "href": "https://colab.research.google.com/github/gamayos/finite-ring-space/blob/main/src/20-rh/frc-20-rh.ipynb",
+        "label": "python",
+        "count": 35,
+        "title": "35 predicates checked, all passing: the notebook frc-20-rh.ipynb on Google Colab, one cell per predicate"
       },
       {
-        "href": "https://colab.research.google.com/github/gamayos/finite-ring-space/blob/main/src/20-rh/20-rh-main.ipynb",
-        "label": "notebook",
-        "title": "the validation notebook on Google Colab"
+        "href": "https://live.lean-lang.org/#project=lean-v4.34.0&url=https://finitering.space/lean/web/core/Rh.lean",
+        "label": "lean",
+        "count": 14,
+        "title": "14 predicates proved in Lean: the core module Rh as one executable file (plain Lean, no Mathlib) in the Lean web editor"
       }
     ]
   },

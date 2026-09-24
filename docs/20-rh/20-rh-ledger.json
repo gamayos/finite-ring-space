@@ -88,14 +88,14 @@
      "label": "B1",
      "predicate": "The two frames on one substrate: the Carrier chart $\\F_\\Omega$, held by no embedded observer, and the Subject $\\Fp$ embedded with $\\Omega\\gg p^{2}$; what they share is the quarter-turn core $Q_4$ and nothing else, on the laboratory pair $(13,233)$ the cycles $C_{12}$ and $C_{232}$ admit no projection ($12\\nmid232$); hardness by register ($p$-hard, $\\Omega$-hard).",
      "tag": "D",
-     "source": "Def.~\\ref{def:shells}; \\src{A10}; \\lean{Rh.lab\\_pair, Rh.no\\_cycle\\_projection, FRC.Rh.lab\\_pair}",
+     "source": "Def.~\\ref{def:shells}\\newline \\pywit{rh}{p20008}\\newline \\leanwit{FrcCore}{p20008} \\lean{Rh.lab\\_pair, Rh.no\\_cycle\\_projection, FRC.Rh.lab\\_pair}",
      "key": "p20008"
     },
     {
      "label": "B2",
      "predicate": "Frame coincidence below the horizon: for $n\\le\\sqrt p$ the residue $n$ is the same integer in $\\Fp$ and $\\F_\\Omega$, and primality of $n$ equals irreducibility in the Subject chart; the Subject-realised primes $\\Pi_p$ are the primes to $\\sqrt p$.",
      "tag": "T",
-     "source": "Prop.~\\ref{prop:coincide}; \\src{A11}; \\lean{Rh.window\\_readback, Rh.prime\\_iff\\_window\\_irreducible, Rh.sqrt\\_sq\\_lt\\_prime, FRC.Rh.window\\_readback, FRC.Rh.factorisation\\_iff, FRC.Rh.frame\\_coincidence}",
+     "source": "Prop.~\\ref{prop:coincide}\\newline \\pywit{rh}{p20009}\\newline \\leanwit{FrcCore}{p20009} \\lean{Rh.window\\_readback, Rh.prime\\_iff\\_window\\_irreducible, Rh.sqrt\\_sq\\_lt\\_prime, FRC.Rh.window\\_readback, FRC.Rh.factorisation\\_iff, FRC.Rh.frame\\_coincidence}",
      "key": "p20009"
     },
     {
@@ -109,56 +109,56 @@
      "label": "B4",
      "predicate": "Zero-slot: $Z_\\Omega(k)=\\sum_{x\\in\\Fx{\\Omega}}x^{k}$ vanishes on every nonterminal exponent $1\\le k\\le\\Omega-2$ and equals $-1$ on the full cycle; the nonterminal slots are the universal mode basis.",
      "tag": "T",
-     "source": "Thm.~\\ref{thm:zeroslot}; \\src{A1}; \\lean{Rh.zero\\_slot, FRC.Rh.zero\\_slot}",
+     "source": "Thm.~\\ref{thm:zeroslot}\\newline \\pywit{rh}{p20011}\\newline \\leanwit{FrcCore}{p20011} \\lean{Rh.zero\\_slot, FRC.Rh.zero\\_slot}",
      "key": "p20011"
     },
     {
      "label": "B5",
      "predicate": "Slot complementarity: $\\Phi(k)=-\\gen^{\\,k}$ bijects the nontrivial spectral slots onto the nonterminal additive slots $\\Fx{\\Omega}\\setminus\\{-1\\}$, the two removed points being $\\mu_2$, the intertwiner the half-cycle element.",
      "tag": "T",
-     "source": "Thm.~\\ref{thm:compl}; \\src{A2}; \\lean{Rh.slot\\_complementarity, FRC.Rh.slot\\_complementarity}",
+     "source": "Thm.~\\ref{thm:compl}\\newline \\pywit{rh}{p20012}\\newline \\leanwit{FrcCore}{p20012} \\lean{Rh.slot\\_complementarity, FRC.Rh.slot\\_complementarity}",
      "key": "p20012"
     },
     {
      "label": "B6",
      "predicate": "Hermitian phase calculus on $K=\\F_{p^{2}}$: norm and trace $\\F_p$-valued, the phase circle $U_{p+1}$ of order $p+1$ with Frobenius as inversion, the quarter-turn $\\It$ Frobenius-fixed and off the circle ($\\Nm(\\It)=-1$), the trace-zero $\\eta$ with $\\eta^{2}=\\nu$ a nonsquare, $\\Tr(a+b\\eta)=2a$, $\\Nm=a^{2}-\\nu b^{2}$.",
      "tag": "T",
-     "source": "Lem.~\\ref{lem:K}; \\src{A3}; \\lean{Rh.phase\\_circle, Rh.frobenius\\_eq\\_star, Rh.norm\\_eq\\_pow, Rh.quarter\\_turn\\_off\\_circle, FRC.Rh.Ext.mul\\_conj, FRC.Rh.Ext.conj\\_inv\\_of\\_norm\\_one, FRC.Rh.Ext.quarter\\_turn\\_off\\_circle, FRC.Rh.Ext.circle13}",
+     "source": "Lem.~\\ref{lem:K}\\newline \\pywit{rh}{p20013}\\newline \\leanwit{FrcCore}{p20013} \\lean{Rh.phase\\_circle, Rh.frobenius\\_eq\\_star, Rh.norm\\_eq\\_pow, Rh.quarter\\_turn\\_off\\_circle, FRC.Rh.Ext.mul\\_conj, FRC.Rh.Ext.conj\\_inv\\_of\\_norm\\_one, FRC.Rh.Ext.quarter\\_turn\\_off\\_circle, FRC.Rh.Ext.circle13}",
      "key": "p20013"
     },
     {
      "label": "B7",
      "predicate": "Flat ground state: the full-modulus Ramanujan sum $c_p(n)\\equiv-1$ for every $n\\not\\equiv0$; the mode at the spectral origin carries no prime information.",
      "tag": "T",
-     "source": "Prop.~\\ref{prop:ground}; \\src{A9}; \\lean{Rh.ramanujan\\_sum, FRC.Rh.ramanujan\\_sum, FRC.Rh.ramanujan53}",
+     "source": "Prop.~\\ref{prop:ground}\\newline \\pywit{rh}{p20014}\\newline \\leanwit{FrcCore}{p20014} \\lean{Rh.ramanujan\\_sum, FRC.Rh.ramanujan\\_sum, FRC.Rh.ramanujan53}",
      "key": "p20014"
     },
     {
      "label": "B8",
      "predicate": "The finite critical line: the half-turn $2^{-1}=2\\kp+1=-\\pi$; $\\Tr(z)=1$ exactly on the $p$ points $z=2^{-1}+\\eta\\theta$, with energy $\\Nm(z)=\\tfrac14-\\nu\\theta^{2}$; de-framed, $2^{-1}/p=(2\\kp+1)/p\\to\\half$ from above [chart].",
      "tag": "T",
-     "source": "Prop.~\\ref{prop:critical}; \\src{A4}, \\src{B3}; \\lean{Rh.half\\_turn, Rh.trace\\_eq\\_one\\_iff, Rh.card\\_critical\\_line, Rh.norm\\_on\\_line, FRC.Rh.half\\_inverse, FRC.Rh.Ext.critical\\_line, FRC.Rh.Ext.norm\\_on\\_line}",
+     "source": "Prop.~\\ref{prop:critical}\\newline \\pywit{rh}{p20015}\\newline \\leanwit{FrcCore}{p20015} \\lean{Rh.half\\_turn, Rh.trace\\_eq\\_one\\_iff, Rh.card\\_critical\\_line, Rh.norm\\_on\\_line, FRC.Rh.half\\_inverse, FRC.Rh.Ext.critical\\_line, FRC.Rh.Ext.norm\\_on\\_line}",
      "key": "p20015"
     },
     {
      "label": "B9",
      "predicate": "The two agreement loci: the Klein four-group $\\langle\\phi,\\rho\\rangle$ of Frobenius and the functional-equation half-turn fixes exactly $\\F_p$ (the prime meridian), $L_{1/2}$ (the critical line) and their meeting $\\{2^{-1}\\}$; no other line is fixed.",
      "tag": "T",
-     "source": "Thm.~\\ref{thm:agree}; \\src{A5}; \\lean{Rh.klein\\_four, Rh.fixed\\_frobenius, Rh.trace\\_eq\\_one\\_iff, Rh.fixed\\_half\\_turn, FRC.Rh.Ext.klein\\_four, FRC.Rh.Ext.fixed\\_conj, FRC.Rh.Ext.critical\\_line, FRC.Rh.Ext.fixed\\_half\\_turn}",
+     "source": "Thm.~\\ref{thm:agree}\\newline \\pywit{rh}{p20016}\\newline \\leanwit{FrcCore}{p20016} \\lean{Rh.klein\\_four, Rh.fixed\\_frobenius, Rh.trace\\_eq\\_one\\_iff, Rh.fixed\\_half\\_turn, FRC.Rh.Ext.klein\\_four, FRC.Rh.Ext.fixed\\_conj, FRC.Rh.Ext.critical\\_line, FRC.Rh.Ext.fixed\\_half\\_turn}",
      "key": "p20016"
     },
     {
      "label": "B10",
      "predicate": "The Subject constants on the shell: $\\pi=2\\kp$, $2\\pi\\equiv-1$, $\\It=\\gen^{-\\kp}$, $\\It^{2}\\equiv-1$, $\\Et=\\gen^{\\,\\It}$ on the odd lift, $\\gen^{\\,\\pi}\\equiv-1$, $\\Et^{\\,\\It\\pi}\\equiv-1$; on $\\F_{13}$: $\\gen=2$, $\\It=5$, $\\Et=6$, $\\pi=6$.",
      "tag": "T",
-     "source": "\\S\\ref{sub:frc}, Rem.~\\ref{rem:frame}; \\src{A6}, \\src{A6b}; \\lean{Rh.subject\\_constants, Rh.constants13, FRC.Rh.subject\\_constants, FRC.Rh.constants13, FRC.Shell.frame13}",
+     "source": "\\S\\ref{sub:frc}, Rem.~\\ref{rem:frame}\\newline \\pywit{rh}{p20017}\\newline \\leanwit{FrcCore}{p20017} \\lean{Rh.subject\\_constants, Rh.constants13, FRC.Rh.subject\\_constants, FRC.Rh.constants13, FRC.Shell.frame13}",
      "key": "p20017"
     },
     {
      "label": "B11",
      "predicate": "Antipode dominance: in the units-chart basis the per-mode energy is $\\mu^{2}(q)/\\varphi(q)=1/\\varphi(q)$ on squarefree $q$ ($1,\\half,\\tfrac14,\\tfrac16$ at $q=2,3,5,7$), its unique maximum among the nonconstant modes at the antipode $q=2$, decreasing along the primes, not the modulus; in the additive transform the band nearest the half-turn, $k=(p\\pm1)/2$, is the strongest off the spectral origin and follows the same law [approx].",
      "tag": "T",
-     "source": "Obs.~\\ref{obs:antipode}; \\src{E2a}, \\src{E2b}",
+     "source": "Obs.~\\ref{obs:antipode}\\newline \\pywit{rh}{p20018}",
      "key": "p20018"
     }
    ]
@@ -178,35 +178,35 @@
      "label": "C2",
      "predicate": "Resonance and the von Mangoldt weight: $R_L\\to\\frac{\\varphi(n)}{n}\\Lambda(n)$ (Hardy, A3); $\\Lambda=\\mu\\ast\\log$ exactly on the divisor lattice; the intertwiner $\\Lambda=\\frac{n}{\\varphi(n)}R$; support the prime powers in every form.",
      "tag": "T",
-     "source": "Thm.~\\ref{thm:resonance}; \\src{E1a}, \\src{E1b}; \\lean{Rh.vonMangoldt\\_moebius}",
+     "source": "Thm.~\\ref{thm:resonance}\\newline \\pywit{rh}{p20020}\\newline \\leanwit{FrcLedger}{p20020} \\lean{Rh.vonMangoldt\\_moebius}",
      "key": "p20020"
     },
     {
      "label": "C3",
      "predicate": "The staircase from the modes: $\\Psi_L(N)=\\sum_{n\\le N}\\frac{n}{\\varphi(n)}R_L(n)\\to\\psi(N)$ as the bandwidth grows, the modes in modulus order, the antipode the first nonconstant one; the finite-bandwidth wiggle tightens monotonically [approx].",
      "tag": "T",
-     "source": "\\S\\ref{sec:emergence}, Fig.~\\ref{fig:emergence}; \\src{E1c}",
+     "source": "\\S\\ref{sec:emergence}, Fig.~\\ref{fig:emergence}\\newline \\pywit{rh}{p20021}",
      "key": "p20021"
     },
     {
      "label": "C4",
      "predicate": "Horizon-scale resolution: a least bandwidth $L^{*}(H)$ at which $R_L$ separates every prime power in $\\{2,\\dots,H\\}$ from every other value exists, and $L^{*}(H)\\asymp H=\\lfloor\\sqrt p\\rfloor$ up to slowly growing factors, far below the field scale $H^{2}$ [approx].",
      "tag": "T",
-     "source": "Obs.~\\ref{obs:horizon}; \\src{E3}",
+     "source": "Obs.~\\ref{obs:horizon}\\newline \\pywit{rh}{p20022}",
      "key": "p20022"
     },
     {
      "label": "C5",
      "predicate": "Mean-square flatness: with $r_j$ the normalised correlation of the mean-removed prime indicator with the nonconstant chart mode $\\chi_j$, $\\sum_{j\\ne0}r_j^{2}=1$ exactly (Parseval), so the root-mean-square correlation is $1/\\sqrt{p-2}$.",
      "tag": "T",
-     "source": "Prop.~\\ref{prop:flat}; \\lean{Rh.chi\\_parseval, Rh.flatness}",
+     "source": "Prop.~\\ref{prop:flat}\\newline \\leanwit{FrcLedger}{p20023} \\lean{Rh.chi\\_parseval, Rh.flatness}",
      "key": "p20023"
     },
     {
      "label": "C6",
      "predicate": "Square-root cancellation: the maximal chart-mode correlation is a small multiple of the floor $1/\\sqrt{p-2}$ of C5, $0.077$ against $0.0315$ at $p=1009$ ($2.4$ times), $0.0087$ against $0.0032$ at $p=100049$ ($2.7$ times) [approx]; the resonance in its window correlates $0.90$. The bound uniform over every shell is Z5.",
      "tag": "T",
-     "source": "Obs.~\\ref{obs:flat}; \\src{E4}",
+     "source": "Obs.~\\ref{obs:flat}\\newline \\pywit{rh}{p20024}",
      "key": "p20024"
     }
    ]
@@ -226,21 +226,21 @@
      "label": "D2",
      "predicate": "Zero density is shell scale-depth: at $T=2\\pi p$ the smooth Riemann--von Mangoldt density is $\\frac1{2\\pi}\\log p$, $0.6226,0.9891,1.3556,1.7220$ at $p=50,500,5\\cdot10^{3},5\\cdot10^{4}$ [chart]; a substitution under the dictionary, recorded as a consistency, not a test.",
      "tag": "T",
-     "source": "Prop.~\\ref{thm:density}; \\src{B1}",
+     "source": "Prop.~\\ref{thm:density}\\newline \\pywit{rh}{p20026}",
      "key": "p20026"
     },
     {
      "label": "D3",
      "predicate": "Reconstruction residue: the finite-horizon error of the main sum is the Riemann--Siegel remainder $O(T^{-1/4})=O(p^{-1/4})$ (A3), unconditional, fitted slope $-0.24$ over $t=40\\ldots5120$ [approx].",
      "tag": "I",
-     "source": "Obs.~\\ref{obs:residue}; \\src{B2}",
+     "source": "Obs.~\\ref{obs:residue}\\newline \\pywit{rh}{p20027}",
      "key": "p20027"
     },
     {
      "label": "D4",
      "predicate": "The bare horizon-length sum locates the first zeros: one sign change per zero of $\\zeta$ on $[10,55]$, each within $0.5$ of $\\gamma_n$, from one or two terms [approx].",
      "tag": "T",
-     "source": "\\S\\ref{sec:deframe}, Fig.~\\ref{fig:deframe}; \\src{B4}",
+     "source": "\\S\\ref{sec:deframe}, Fig.~\\ref{fig:deframe}\\newline \\pywit{rh}{p20028}",
      "key": "p20028"
     },
     {
@@ -274,7 +274,7 @@
      "label": "E1",
      "predicate": "The scale-evolution generator: on the shell the scale-shift $x\\mapsto\\gen^{\\,r}x$ is a unitary permutation of $\\Fx{p}$ with the complex characters as eigenvectors; in the analytic chart [chart] the dilation group $U_r=e^{ir\\Hh}$ has the self-adjoint generator $\\Hh=-i(x\\partial_x+\\half)$ with generalised eigenfunctions $x^{-\\bar\\rho}$, $\\rho=\\half+i\\gamma$, the symmetrizing $\\half$ the half-turn of B8; the chart assignment is used nowhere as a shell identity.",
      "tag": "T",
-     "source": "Prop.~\\ref{prop:H}; \\src{A7}, \\src{A7b}; \\lean{Rh.scale\\_shift, Rh.character\\_eigen, Rh.chi\\_shift, FRC.Rh.shift\\_power\\_character, FRC.Rh.shift\\_trace}",
+     "source": "Prop.~\\ref{prop:H}\\newline \\pywit{rh}{p20032}\\newline \\leanwit{FrcCore}{p20032} \\lean{Rh.scale\\_shift, Rh.character\\_eigen, Rh.chi\\_shift, FRC.Rh.shift\\_power\\_character, FRC.Rh.shift\\_trace}",
      "key": "p20032"
     },
     {
@@ -288,7 +288,7 @@
      "label": "E3",
      "predicate": "Cutoff and semiclassical density: with the space quantum $1_\\Omega$ as lower cutoff the Berry--Keating phase-space count is the Riemann--von Mangoldt count, density the shell scale-depth of D2 [chart]; the cell normalisation $1_\\Omega^{2}\\sim2\\pi$ is imposed [chart] (A9).",
      "tag": "D",
-     "source": "Rem.~\\ref{rem:cutoff}; \\src{C6b}",
+     "source": "Rem.~\\ref{rem:cutoff}\\newline \\pywit{rh}{p20034}",
      "key": "p20034"
     },
     {
@@ -302,14 +302,14 @@
      "label": "E5",
      "predicate": "The heights from the primes, $\\zeta$ never evaluated: the tapered scale-spectrum $\\Sigma_N(\\gamma)$ of the comb to $N=10^{6}$ peaks at the first six heights within $0.03$, each peak several times the baseline, width $\\sim2\\pi/\\log N$ [approx].",
      "tag": "T",
-     "source": "Obs.~\\ref{obs:primespec}; \\src{C1}",
+     "source": "Obs.~\\ref{obs:primespec}\\newline \\pywit{rh}{p20036}",
      "key": "p20036"
     },
     {
      "label": "E6",
      "predicate": "The discrete eigenvalues from the comb: the raw count $\\widetilde{\\mathcal N}_N(T)=\\theta(T)/\\pi+1+S_{\\mathrm{comb}}(T)$ carries the pole term (F8) and has no limit in $N$; the pole-corrected count $\\widehat{\\mathcal N}_N=\\widetilde{\\mathcal N}_N-\\tfrac1\\pi\\Im[\\Pi_N+\\log\\tfrac{s-1}{s}]$ crosses $n-\\half$ near the zeros, its secular condition recovering the first ten heights to mean error $3.4\\times10^{-5}$ at $N=10^{6}$ and $1.3\\times10^{-5}$ at $10^{8}$; the raw condition stalls past $10^{7}$ [approx].",
      "tag": "T",
-     "source": "Obs.~\\ref{obs:trace}; \\src{C2}, \\src{C2b}, \\src{C2c}",
+     "source": "Obs.~\\ref{obs:trace}\\newline \\pywit{rh}{p20037}",
      "key": "p20037"
     },
     {
@@ -323,63 +323,63 @@
      "label": "E8",
      "predicate": "The heights from an explicit matrix: the colleague matrix of the Chebyshev expansion of $\\cos(\\pi\\widehat{\\mathcal N}_N)$ on $[10,52]$ at $N=10^{6}$ returns the ten heights to mean error $4.8\\times10^{-5}$ at dimension $520$ and $3.5\\times10^{-5}$ at $620$, converging to the corrected roots' own $3.4\\times10^{-5}$ at this depth [approx]; the precision is the smoothed count's, not the comb's (A6).",
      "tag": "T",
-     "source": "Obs.~\\ref{obs:matrix}; \\src{C3}, \\src{C2b}",
+     "source": "Obs.~\\ref{obs:matrix}\\newline \\pywit{rh}{p20039}",
      "key": "p20039"
     },
     {
      "label": "E9",
      "predicate": "The comb-built Jacobi realisation: the real-symmetric tridiagonal matrix of the height measure of the corrected secular roots has those roots as its exact spectrum ($4\\times10^{-14}$ [approx]) and the heights to $3.4\\times10^{-5}$, with the stated ten coefficients $a$, $b$; self-adjointness is free (every finite real multiset is such a spectrum), so it imposes no constraint.",
      "tag": "T",
-     "source": "Def.~\\ref{def:jacobi}, Obs.~\\ref{obs:jacobi}; \\src{C4}, \\src{A8}",
+     "source": "Def.~\\ref{def:jacobi}, Obs.~\\ref{obs:jacobi}\\newline \\pywit{rh}{p20040}",
      "key": "p20040"
     },
     {
      "label": "E10",
      "predicate": "Additive injection is gauge-trivial: $-i\\,d/du+V$ is unitarily equivalent to $-i\\,d/du$ with a shifted boundary phase, its spectrum uniform; numerically the spacing standard deviation of $-i\\,d/du+V_{\\mathrm{comb}}$ is $0.11$ of its mean against the heights' $0.39$ [approx]; the comb enters through the trace.",
      "tag": "T",
-     "source": "Prop.~\\ref{prop:gauge}; \\src{C5}",
+     "source": "Prop.~\\ref{prop:gauge}\\newline \\pywit{rh}{p20041}",
      "key": "p20041"
     },
     {
      "label": "E11",
      "predicate": "GUE level repulsion of the target spectrum: unfolded spacings of the first $240$ zeros give $P(s<\\half)=0.05$ (GUE $\\approx0.12$, Poisson $\\approx0.39$) and variance $0.13$ (GUE $\\approx0.18$, Poisson $1$) [approx]; a known statistic (A6) reproduced.",
      "tag": "I",
-     "source": "Obs.~\\ref{obs:gue}; \\src{C6}",
+     "source": "Obs.~\\ref{obs:gue}\\newline \\pywit{rh}{p20042}",
      "key": "p20042"
     },
     {
      "label": "E12",
      "predicate": "\\textbf{The shell theorem.} On every shell, with no hypothesis: (i) $v$ expands in the constant mode and the nonterminal modes of the quarter-turn meridian; (ii) every readout lies on $\\Tr=1$, real part $2^{-1}=2\\kp+1=-\\pi$; (iii) the scale-shift has the modes as eigenvectors, eigenphases $2\\pi j/(p-1)$ independent of $v$. No off-line mode; true of every vector, the Davenport--Heilbronn vector included.",
      "tag": "T",
-     "source": "Thm.~\\ref{thm:hp}; \\src{A1}--\\src{A7}, \\src{A7b}, \\src{A9}; (i), (iii): \\lean{Rh.chi\\_inversion, Rh.chi\\_shift, Rh.scale\\_shift, FRC.Rh.shift\\_power\\_character, FRC.Rh.shift\\_trace}; (ii): \\lean{Rh.readout\\_on\\_line, Rh.readout\\_slot\\_index, FRC.Rh.Ext.readout\\_on\\_line, FRC.Rh.Ext.readout\\_slot\\_index}",
+     "source": "Thm.~\\ref{thm:hp}\\newline \\pywit{rh}{p20043}\\newline \\leanwit{FrcCore}{p20043} \\lean{Rh.chi\\_inversion, Rh.chi\\_shift, Rh.scale\\_shift, FRC.Rh.shift\\_power\\_character, FRC.Rh.shift\\_trace, Rh.readout\\_on\\_line, Rh.readout\\_slot\\_index, FRC.Rh.Ext.readout\\_on\\_line, FRC.Rh.Ext.readout\\_slot\\_index}",
      "key": "p20043"
     },
     {
      "label": "E13",
      "predicate": "Shell-basis completeness is not a clause of E12: the $p-1$ complex characters are an orthogonal basis of $\\mathbb C^{\\Fx{p}}$ ($\\lVert\\chi_j\\rVert^{2}=p-1$; finite Parseval), true of every vector, the trivial character carrying the mean $\\psi(p-1)/(p-1)$; the $\\F_p$-valued power characters are never orthonormal and do not expand $v$; completeness for the zero set of $\\zeta$ is D5, a different clause.",
      "tag": "D",
-     "source": "Rem.~\\ref{rem:parseval}; \\src{A7b}; \\lean{Rh.chi\\_orthogonal, Rh.chi\\_parseval, Rh.chi\\_inversion, Rh.power\\_characters\\_not\\_orthonormal}",
+     "source": "Rem.~\\ref{rem:parseval}\\newline \\pywit{rh}{p20044}\\newline \\leanwit{FrcLedger}{p20044} \\lean{Rh.chi\\_orthogonal, Rh.chi\\_parseval, Rh.chi\\_inversion, Rh.power\\_characters\\_not\\_orthonormal}",
      "key": "p20044"
     },
     {
      "label": "E14",
      "predicate": "The $\\chi$-twist: for a real character the twisted vector is self-conjugate, the twisted secular condition recovering six heights of $L(s,\\chi_{-4})$ to mean error $8.6\\times10^{-5}$ [approx]; for a primitive complex character the root number's half-phase and the matching $\\Gamma$-factor restore the self-dual structure (E16); the generalized hypothesis is read as the twisted de-framing's faithfulness, as D5.",
      "tag": "T",
-     "source": "Def.~\\ref{prop:chi}, Obs.~\\ref{obs:chi}; \\src{C7a}",
+     "source": "Def.~\\ref{prop:chi}, Obs.~\\ref{obs:chi}\\newline \\pywit{rh}{p20045}",
      "key": "p20045"
     },
     {
      "label": "E15",
      "predicate": "Twisted-comb validation, $\\chi_{-4}$: $\\widetilde{\\mathcal N}_{N,\\chi}=\\theta_\\chi/\\pi+S^{\\chi}_{\\mathrm{comb}}$, with no pole term to remove, reads $0.4997,\\dots,5.4998$ at the first six zeros of $L(s,\\chi)$ (located via Hurwitz zeta), and the twisted secular condition with the $N=10^{6}$ comb recovers $6.0209,\\dots,21.4506$ to mean error $8.6\\times10^{-5}$, $L$ never evaluated [approx].",
      "tag": "T",
-     "source": "Obs.~\\ref{obs:chi}; \\src{C7a}, \\src{C7b}",
+     "source": "Obs.~\\ref{obs:chi}\\newline \\pywit{rh}{p20046}",
      "key": "p20046"
     },
     {
      "label": "E16",
      "predicate": "Twisted-comb validation, the complex character of conductor $5$ ($\\chi(2)=i$, odd): the half-phase $W(\\chi)^{-1/2}\\Lambda(\\half+it,\\chi)$ is real on the line to $10^{-20}$; the twisted count rounds to the exact integers $1,\\dots,14$ midway between the fifteen zeros below $40$, within $3\\times10^{-4}$; the twisted secular condition with the $N=10^{6}$ comb, $L$ never evaluated, recovers the fifteen heights to mean error $8.0\\times10^{-5}$ [approx].",
      "tag": "T",
-     "source": "Def.~\\ref{prop:chi}, Obs.~\\ref{obs:chi}; \\src{C7c}",
+     "source": "Def.~\\ref{prop:chi}, Obs.~\\ref{obs:chi}\\newline \\pywit{rh}{p20072}",
      "key": "p20072"
     }
    ]
@@ -392,7 +392,7 @@
      "label": "F1",
      "predicate": "\\textbf{Turing's count on the shell.} $C\\le N_{\\mathrm{crit}}\\le\\mathcal N$ (A4); the hypothesis below $T$ is $\\mathcal N(T)=N_{\\mathrm{crit}}(T)$, $C=\\mathcal N$ the certificate. The shell estimates $\\mathcal N$ by the pole-corrected comb count (F8; uncertified at finite depth) and $C$ by the main sum's sign changes (A8); the secular condition reads $\\mathcal N$, not $N_{\\mathrm{crit}}$. An off-line zero is a phantom: $\\mathcal N-N_{\\mathrm{crit}}>0$.",
      "tag": "T",
-     "source": "Prop.~\\ref{prop:turing}; \\src{D1}, \\src{D4}",
+     "source": "Prop.~\\ref{prop:turing}\\newline \\pywit{rh}{p20047}",
      "key": "p20047"
     },
     {
@@ -406,21 +406,21 @@
      "label": "F3",
      "predicate": "The control on the line: the completed Davenport--Heilbronn $\\Lambda_f$ is real on the line to $10^{-20}$ [approx]; on $[0,87]$ the argument principle counts $N_f=45$ strip zeros against $C=43$ sign changes, the deficit $2$ opening only in the band of the off-line pair (A5), where $|Z_f|$ dips to $0.357$ without crossing; the constituent $L(s,\\chi)$ closes with deficit $0$.",
      "tag": "T",
-     "source": "Obs.~\\ref{obs:dh}; \\src{D2a}, \\src{D2b}",
+     "source": "Obs.~\\ref{obs:dh}\\newline \\pywit{rh}{p20049}",
      "key": "p20049"
     },
     {
      "label": "F4",
      "predicate": "The negative control on the comb side: the secular condition on the generalized comb $\\Lambda_f$ (divisor recursion from the coefficients) returns two ``on-line'' roots at the phantom height, $85.65/85.75$ (comb to $4\\times10^{5}$), where the line holds no zero; the raw count near the pair drifts with depth, $45.14\\to45.73$ at $t=85.9$, and is stable away from it [approx].",
      "tag": "T",
-     "source": "Obs.~\\ref{obs:dh}; \\src{D2c}, \\src{D2d}, \\src{D2g}",
+     "source": "Obs.~\\ref{obs:dh}\\newline \\pywit{rh}{p20050}",
      "key": "p20050"
     },
     {
      "label": "F5",
      "predicate": "The $\\zeta$ comb at its own singularity, the pole: at $t=1$ (exact count $0$) the raw count drifts, $+0.09\\ldots-1.46$ over depths $10^{4}\\ldots8\\times10^{7}$, while at $t=15$ it stays within $2\\times10^{-3}$ of $1$; the pole-corrected count at $t=1$ falls monotonically, $0.0051\\to0.0012$ [approx]. The drift is the pole term of F8: no rounding bound for the raw count is depth-independent (F1).",
      "tag": "T",
-     "source": "Obs.~\\ref{obs:dh}; \\src{D2e}, \\src{D2f}",
+     "source": "Obs.~\\ref{obs:dh}\\newline \\pywit{rh}{p20051}",
      "key": "p20051"
     },
     {
@@ -441,56 +441,8 @@
      "label": "F8",
      "predicate": "\\textbf{The smoothed explicit formula.} Under the hypothesis of no zero to the right of the line, $\\sum_{n\\le N}\\Lambda(n)w(n)n^{-s}/\\log n=\\Pi_N(s)+J_N(s)$ exactly, $\\Pi_N$ explicit and unbounded, $J_N(s)\\to G(s)=\\log((s-1)\\zeta(s)/s)$ off the zeros: the pole-corrected count converges to $\\mathcal N(T)$. An off-line zero adds an explicit term $-\\Pi^{(\\rho)}_N$ (Rem.~\\ref{rem:combsettle}), not summed over infinitely many. Observed: the corrected counts settle (D2f, D2g, D3) [approx].",
      "tag": "T",
-     "source": "Prop.~\\ref{prop:combformula}, Rem.~\\ref{rem:combsettle}, Obs.~\\ref{obs:dh}; \\src{D2f}, \\src{D2g}, \\src{D3}",
+     "source": "Prop.~\\ref{prop:combformula}, Rem.~\\ref{rem:combsettle}, Obs.~\\ref{obs:dh}\\newline \\pywit{rh}{p20069}",
      "key": "p20069"
-    }
-   ]
-  },
-  {
-   "letter": "V",
-   "title": "Machine verification (the validation package \\texttt{finite-ring-space/src/20-rh})",
-   "rows": [
-    {
-     "label": "V1",
-     "predicate": "Block A of the package: $62$ checks of B1--B2, B4--B11, E1, E9, E12--E13 on the shells $p=13,17,29,37,41$ ($173$, $1009$, $10009$ and the frames below $3000$ for single checks): $56$ integer-exact, including the $\\F_p$ reading of E12(iii) and the Ramanujan sums in $\\F_q$; $6$ [approx], the complex-character reading, the mean and the Jacobi check.",
-     "tag": "T",
-     "source": "\\src{a\\_shell}",
-     "key": "p20054"
-    },
-    {
-     "label": "V2",
-     "predicate": "Blocks B--C: the dictionary (D2--D4), the prime side (E5--E6, E8--E10, the secular condition to depth $10^{8}$), the target statistics (E3, E11) and the twist (E15--E16), $16$ checks to stated tolerances; the constructions import only the sieved comb and $\\log\\Gamma$, so ``$\\zeta$ never evaluated'' is enforced by the import structure, the secular roots bracketed by the count itself.",
-     "tag": "T",
-     "source": "\\src{b\\_deframe}, \\src{c\\_*}",
-     "key": "p20055"
-    },
-    {
-     "label": "V3",
-     "predicate": "Block D: F1 at $T=15,30,50.3$ and on the shells $p=97,1009,4801$ at their ceilings, the controls F3--F5 and the smoothed explicit formula F8, $10$ checks; the strip count is a winding-number computation of $\\Lambda_f$ and $\\Lambda(s,\\chi)$ around $29$ band rectangles, the off-line pair validated by $|f(s)|<10^{-6}$; the $\\zeta$ comb sieved to $8\\times10^{7}$.",
-     "tag": "T",
-     "source": "\\src{d\\_classification}",
-     "key": "p20056"
-    },
-    {
-     "label": "V4",
-     "predicate": "Block E: the resonance (C2--C4, C6) and the antipode (B11), $7$ checks, $\\Lambda=\\mu\\ast\\log$ symbolic to $n=300$.",
-     "tag": "T",
-     "source": "\\src{e\\_resonance}",
-     "key": "p20057"
-    },
-    {
-     "label": "V5",
-     "predicate": "The driver: seven block scripts, one notebook run in the browser, $95$ checks ($58$ exact, $34$ [approx], $3$ [chart]), every numerical figure of the paper regenerated, a record per check written to \\src{results.json} keyed to these rows; the corpus witness of E12 is \\src{check\\_rh\\_shell}.",
-     "tag": "T",
-     "source": "\\src{run\\_all}; the notebook",
-     "key": "p20058"
-    },
-    {
-     "label": "V6",
-     "predicate": "The formal layer: \\texttt{FrcLedger/Rh.lean} on Mathlib proves B2, B4--B10 (B8's shell clauses), C2's identity $\\Lambda=\\mu\\ast\\log$, C5, E1's shell clause, E12(i)--(iii) and E13's orthogonality, inversion and Parseval for every shell; \\texttt{FrcCore/Rh.lean}, no axioms, proves B2, B4, B5, B7, B8, B10, B9 with Frobenius as conjugation, E12(ii) (the readout), E12(iii) in $\\F_p$; B1, B6, B7, B10 decided on $\\F_{13}$, $\\F_{53}$.",
-     "tag": "T",
-     "source": "\\texttt{lean/\\allowbreak FrcLedger/\\allowbreak Rh.lean}; \\texttt{lean/\\allowbreak FrcCore/\\allowbreak Rh.lean}",
-     "key": "p20076"
     }
    ]
   },
@@ -536,7 +488,7 @@
   {
    "tag": "T",
    "name": "Theorem",
-   "text": "Derived within this paper from the rows above it, or an exact instance check in integer arithmetic; a row whose content is a numerical observation carries its figures as declared [approx]/[chart] and is a theorem in the weaker sense that the named witness reproduces them to the stated tolerance on the tested instances --- the closing paragraph lists the two grades separately."
+   "text": "Derived within this paper from the rows above it, or an exact instance check in integer arithmetic; a predicate whose content is a numerical observation carries its figures as declared [approx]/[chart] and is a theorem in the weaker sense that the linked witness reproduces them to the stated tolerance on the tested instances --- the closing paragraph lists the two grades separately."
   },
   {
    "tag": "Ω",
