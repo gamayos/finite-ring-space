@@ -792,3 +792,12 @@
 'FRC.Entropy.p14031' depends on axioms: [propext, Classical.choice, Quot.sound]
 'FRC.Entropy.p14038' depends on axioms: [propext, Classical.choice, Quot.sound]
 'FRC.Entropy.p14039' depends on axioms: [propext, Classical.choice, Quot.sound]
+'FRC.Representation.p04008' does not depend on any axioms
+'FRC.Representation.p04009' depends on axioms: [Classical.choice, Quot.sound]
+'FRC.Representation.p04010' depends on axioms: [propext, Classical.choice, Quot.sound]
+'FRC.Representation.p04011' depends on axioms: [propext, Classical.choice, Quot.sound]
+'FRC.Representation.p04012' depends on axioms: [Classical.choice, Quot.sound]
+'FRC.Representation.p04013' depends on axioms: [Classical.choice, Quot.sound]
+'FRC.Representation.p04014' depends on axioms: [Classical.choice, Quot.sound]
+'FRC.Representation.p04018' depends on axioms: [propext, Classical.choice, Quot.sound]
+'FRC.Representation.p04020' depends on axioms: [propext, Classical.choice, Quot.sound]

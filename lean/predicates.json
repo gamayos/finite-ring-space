@@ -163,5 +163,31 @@
    "14:X3": "Entropy",
    "14:X4": "Entropy"
   }
+ },
+ "4-representation": {
+  "module": "Representation",
+  "FrcCore": {
+   "4:B4": "Representation",
+   "4:B5": "Representation",
+   "4:B6": "Representation",
+   "4:C1": "Representation",
+   "4:C2": "Representation",
+   "4:C3": "Representation",
+   "4:C4": "Representation",
+   "4:C5": "Representation",
+   "4:E1": "Representation",
+   "4:E3": "Representation"
+  },
+  "FrcLedger": {
+   "4:B4": "Representation",
+   "4:B5": "Representation",
+   "4:B6": "Representation",
+   "4:C1": "Representation",
+   "4:C2": "Representation",
+   "4:C3": "Representation",
+   "4:C4": "Representation",
+   "4:E1": "Representation",
+   "4:E3": "Representation"
+  }
  }
 }
