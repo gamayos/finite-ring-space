@@ -56,14 +56,16 @@ const PUBLICATIONS = [
     "schema": true,
     "links": [
       {
-        "href": "src/1-algebra/index.html",
+        "href": "https://colab.research.google.com/github/gamayos/finite-ring-space/blob/main/src/1-algebra/frc-1-algebra.ipynb",
         "label": "python",
-        "title": "the validation package src/1-algebra: its scripts, rendered — every check passing"
+        "count": 14,
+        "title": "14 predicates checked, all passing: the notebook frc-1-algebra.ipynb on Google Colab, one cell per predicate"
       },
       {
-        "href": "lean/core/Algebra.html",
+        "href": "https://live.lean-lang.org/#project=lean-v4.34.0&url=https://finitering.space/lean/web/core/Algebra.lean",
         "label": "lean",
-        "title": "the Lean module FrcCore/Algebra: no Mathlib, no axioms"
+        "count": 13,
+        "title": "13 predicates proved in Lean: the core module Algebra as one executable file (plain Lean, no Mathlib) in the Lean web editor"
       }
     ]
   },
@@ -81,14 +83,16 @@ const PUBLICATIONS = [
     "schema": true,
     "links": [
       {
-        "href": "src/2-geometry/index.html",
+        "href": "https://colab.research.google.com/github/gamayos/finite-ring-space/blob/main/src/2-geometry/frc-2-geometry.ipynb",
         "label": "python",
-        "title": "the validation package src/2-geometry: its scripts, rendered — every check passing"
+        "count": 21,
+        "title": "21 predicates checked, all passing: the notebook frc-2-geometry.ipynb on Google Colab, one cell per predicate"
       },
       {
-        "href": "lean/core/Geometry.html",
+        "href": "https://live.lean-lang.org/#project=lean-v4.34.0&url=https://finitering.space/lean/web/core/Geometry.lean",
         "label": "lean",
-        "title": "the Lean module FrcCore/Geometry: no Mathlib, no axioms"
+        "count": 16,
+        "title": "16 predicates proved in Lean: the core module Geometry as one executable file (plain Lean, no Mathlib) in the Lean web editor"
       }
     ]
   },
@@ -232,14 +236,16 @@ const PUBLICATIONS = [
     "schema": true,
     "links": [
       {
-        "href": "src/10-dimensions/index.html",
+        "href": "https://colab.research.google.com/github/gamayos/finite-ring-space/blob/main/src/10-dimensions/frc-10-dimensions.ipynb",
         "label": "python",
-        "title": "the validation package src/10-dimensions: its scripts, rendered — every check passing"
+        "count": 24,
+        "title": "24 predicates checked, all passing: the notebook frc-10-dimensions.ipynb on Google Colab, one cell per predicate"
       },
       {
-        "href": "lean/core/Dimensions.html",
+        "href": "https://live.lean-lang.org/#project=lean-v4.34.0&url=https://finitering.space/lean/web/core/Dimensions.lean",
         "label": "lean",
-        "title": "the Lean module FrcCore/Dimensions: no Mathlib, no axioms"
+        "count": 25,
+        "title": "25 predicates proved in Lean: the core module Dimensions as one executable file (plain Lean, no Mathlib) in the Lean web editor"
       }
     ]
   },
@@ -600,4 +606,4 @@ const PUBLICATIONS = [
   }
 ];
 
-const GENERATED = "23 September 2026";
+const GENERATED = "24 September 2026";
