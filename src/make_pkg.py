@@ -6,7 +6,8 @@
 writes docs/pkg/frc-10-dimensions-<version>.tar.gz: a PEP 517 source distribution of `src/10-dimensions/` under the import
 name `frc_10_dimensions` (the directory's `__init__.py` exports `predicate`), built by hand so that no build tool is needed here —
 pip builds it on installation (setuptools ≥ 61 in pip's isolated build environment). Every `.py` of the directory is
-included; notebooks, results and README are not. The version is the date, YYYYMMDD, unless given; the file name is the
+included, and every `.c` (13-epi compiles its two C passes on the fly, so the sources travel as package data); notebooks,
+results and README are not. The version is the date, YYYYMMDD, unless given; the file name is the
 project name as the notebooks spell it plus the version (pip splits a find-links file name at the dash after the requested
 name, so the dashes of the project name are fine; PEP 625's underscore form was the earlier spelling), earlier versions of the
 same package are removed from the directory, and docs/pkg/index.html is rewritten to list every archive there — a pip
@@ -32,9 +33,10 @@ def sdist(pkgdir, out_dir, version):
     pyproject = (f'[build-system]\nrequires = ["setuptools>=61"]\nbuild-backend = "setuptools.build_meta"\n\n'
                  f'[project]\nname = "{name}"\nversion = "{version}"\ndescription = "The validation package of the FRC paper {pkgdir}: one check per ledger predicate{"" if requires else ", exact arithmetic"}"\n'
                  f'requires-python = ">=3.9"\nlicense = {{text = "MIT"}}\n' + (f'dependencies = [{", ".join(chr(34) + r + chr(34) for r in requires)}]\n' if requires else "")
-                 + f'\n[tool.setuptools]\npackages = ["{mod}"]\n')
+                 + f'\n[tool.setuptools]\npackages = ["{mod}"]\n'
+                 + (f'\n[tool.setuptools.package-data]\n"{mod}" = ["*.c"]\n' if any(d.glob("*.c")) else ""))   # the C sources beside the script, installed with it
     pkginfo = f"Metadata-Version: 2.1\nName: {name}\nVersion: {version}\nSummary: The validation package of the FRC paper {pkgdir}\n"
-    files = sorted(p for p in d.glob("*.py"))
+    files = sorted(p for p in list(d.glob("*.py")) + list(d.glob("*.c")))
     out = out_dir / f"{name}-{version}.tar.gz"; out_dir.mkdir(parents=True, exist_ok=True)
     top = f"{name}-{version}"; stamp = 0                       # a fixed mtime: the archive is a function of its contents and version
     def add(tar, arcname, data):

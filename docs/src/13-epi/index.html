@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-HNE3RMJ5L1"></script>
+<script> window.dataLayer = window.dataLayer || []; function gtag(){dataLayer.push(arguments);} gtag('js', new Date()); gtag('config', 'G-HNE3RMJ5L1'); </script>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>src/13-epi — the validation package</title>
+<meta name="description" content="The validation package of Finite Field Realisation of π and e: its scripts, rendered">
+<meta name="author" content="Yosef Akhtman">
+<link rel="icon" href="../../frc-logo-fav.png">
+<link rel="stylesheet" href="../../style.css">
+<link rel="canonical" href="https://finitering.space/src/13-epi/">
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <h1>src/13-epi — the validation package</h1>
+    
+    <nav><a href="../../index.html">Home</a><a href="../../publications.html">Publications</a><a href="../../00-ledger.html">Ledger</a><a href="../../predictions.html">Predictions</a><a href="../../explicability.html">Explicability</a></nav>
+  </header>
+<main id="ledger-main"><div class="srcbar solo"><a class="back" href="../../13-epi/index.html" title="Finite Field Realisation of π and e — the predicate ledger"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg><span class="bl">13-epi ledger</span></a><span class="path">src/13-epi/epi.py · 6 blocks</span><a class="tool run" href="https://colab.research.google.com/github/gamayos/finite-ring-space/blob/main/src/13-epi/frc-13-epi.ipynb" target="_blank" rel="noopener" title="The predicates notebook on Google Colab"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 5l12 7-12 7z"/></svg>Colab</a></div><section class="prose"><p>The validation package of <em>Finite Field Realisation of π and e</em>: one script, <a href="epi.html"><code>epi.py</code></a>, 6 blocks, standard library only, one check per predicate of the paper's <a href="../../13-epi/index.html">predicate ledger</a> — 41 of 41 checks passing. The script is rendered with an anchor per line; its markers (<code># 13:D3 (p13019)</code>: the predicate and its key) are the checks the ledger predicates cite, and each block below opens at its definition. The notebook <a href="https://colab.research.google.com/github/gamayos/finite-ring-space/blob/main/src/13-epi/frc-13-epi.ipynb" target="_blank" rel="noopener">frc-13-epi.ipynb</a> runs one cell per predicate on Google Colab. Installed from this site as a named requirement: <code>pip install frc-13-epi --find-links https://finitering.space/pkg/</code> (the sdist <a href="../../pkg/frc-13-epi-20260924.tar.gz">frc-13-epi-20260924.tar.gz</a>).</p></section><table><thead><tr><th style="width:11rem">Block</th><th>What it decides</th><th style="width:6rem">Predicates</th></tr></thead><tbody><tr><td class="key"><a href="epi.html#L290">block e</a></td><td>the derangement chain of e — enclosure, readouts, feasibility, the Kurepa wall, antiperiodicity, duals, the p = 13 line, blind statistics, radian calibration, the null experiment (e.R1 … e.N1)</td><td class="status">12</td></tr><tr><td class="key"><a href="epi.html#L603">block pi</a></td><td>the Wallis, Machin and arcsin chains of π, the legibility window and the −2 terminus, Morley and the π-Wieferich search, Lucas revivals, the first-order arcsin vanishing (pi.R1 … pi.V1)</td><td class="status">13</td></tr><tr><td class="key"><a href="epi.html#L926">block pi2</a></td><td>the two-squares quarter invariant, Sun&#x27;s supercongruence and the Bernoulli law, the proof ingredients, the blind-range Euler congruence, the revival to p² (pi2.A1 … pi2.D2)</td><td class="status">1</td></tr><tr><td class="key"><a href="epi.html#L1104">block tow</a></td><td>the fixed-shell towers, the Cayley map, orientation transport, the height run, the wrap-free window and the pins (tow.E … tow.W)</td><td class="status">11</td></tr><tr><td class="key"><a href="epi.html#L1292">block kur</a></td><td>!(p−1) ≡ K(p) and K(p) ≢ 0 for all 22 043 odd primes p &lt; 2.5·10⁵ (kurepa_wall.c, compiled on the fly; a pure-python pass to a smaller bound without a compiler) (kur.K1)</td><td class="status">2</td></tr><tr><td class="key"><a href="epi.html#L1386">block frm</a></td><td>the triples (K(p)/p, q_p(4)/p, φ/π) on the 4 783 shells p ≡ 1 (mod 4) below 10⁵ (frame_invariants.c, compiled on the fly) (frm.I1)</td><td class="status">2</td></tr></tbody></table></main>
+</div>
+</body>
+</html>
