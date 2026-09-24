@@ -10,7 +10,7 @@
 <title>FRC publications</title>
 <meta name="description" content="Publication status of the Finite Ring Cosmology corpus: manuscripts, preprints, venue history.">
 <link rel="icon" href="frc-logo-fav.png">
-<link rel="stylesheet" href="style.css?v=cb1b3c14">
+<link rel="stylesheet" href="style.css?v=c597b346">
 </head>
 <body>
 <div class="wrap">
@@ -25,10 +25,7 @@
 
   <div class="tally" id="tally"></div>
 
-  <div class="tools">
-    <input type="search" id="q" placeholder="Search title, key, or venue…" autocomplete="off" spellcheck="false">
-    <span class="count" id="count"></span>
-  </div>
+  <div class="tools"><div class="lead"><input type="search" id="q" placeholder="Search title, key, or venue…" autocomplete="off" spellcheck="false"><span class="count" id="count"></span></div><div class="totals" id="totals" title="Over the papers listed: the predicates checked in python, proved in the core (no axioms), proved on Mathlib, and the laboratory pages"></div></div>
 
   <table>
     <thead>
@@ -36,7 +33,7 @@
         <th data-sort="n"      style="width:7rem">Key <span class="car"></span></th>
         <th data-sort="title">Title <span class="car"></span></th>
         <th data-sort="status" style="width:6rem">Status <span class="car"></span></th>
-        <th style="width:12.5rem">Package</th>
+        <th style="width:13.5rem">Package</th>
       </tr>
     </thead>
     <tbody id="rows"></tbody>
@@ -91,6 +88,7 @@
     rows:  document.getElementById("rows"),
     empty: document.getElementById("empty"),
     count: document.getElementById("count"),
+    totals: document.getElementById("totals"),
     q:     document.getElementById("q")
   };
   document.getElementById("gen").textContent = (typeof GENERATED === "string") ? GENERATED : "—";
@@ -165,6 +163,17 @@
     });
   }
 
+  function buildTotals(list) {                      // the package column summed over the rows shown: the same badges as the rows, the python one red if any listed package fails
+    var py = 0, core = 0, ml = 0, lab = 0, fail = false;
+    list.forEach(function (p) { (p.links || []).forEach(function (L) {
+      if (L.label === "python" || L.label === "python-fail") { py += L.count || 0; if (L.label === "python-fail") fail = true; }
+      else if (L.label === "lean") core += L.count || 0; else if (L.label === "lean-mathlib") ml += L.count || 0; else if (L.label === "lab") lab += 1; }); });
+    var sum = function (cls, icon, v, t) { return '<span class="ico sum ' + cls + '" title="' + t + '">' + icon + '<span class="n">' + v + '</span></span>'; };
+    el.totals.innerHTML = sum("wit py " + (fail ? "fail" : "ok"), PKG_ICONS["python"], py, py + " predicates checked in python" + (fail ? " — a listed package fails" : ""))
+      + sum("lean", PKG_ICONS["lean"], core, core + " predicates proved in the core (no axioms)")
+      + sum("lean ml", PKG_ICONS["lean-mathlib"], ml, ml + " predicates proved on Mathlib (classical)")
+      + sum("lab", PKG_ICONS["lab"], lab, lab + " laboratory page" + (lab === 1 ? "" : "s"));
+  }
   function render() {
     var list = PUBLICATIONS.filter(matches).sort(function (a, b) {
       var x = sortVal(a), y = sortVal(b);
@@ -221,7 +230,7 @@
     });
 
     el.empty.hidden = list.length > 0;
-    el.count.textContent = list.length + " of " + PUBLICATIONS.length;
+    el.count.textContent = list.length + "/" + PUBLICATIONS.length; buildTotals(list);
   }
 
   Array.prototype.forEach.call(document.querySelectorAll("thead th"), function (th) {
