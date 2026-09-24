@@ -5,13 +5,12 @@ A predicate cell states the predicate (its text, from the site's ledger JSON) an
 predicate's deciding check runs once per session, the deciding check's source is printed from its `# predicate` marker, and every
 record citing the predicate is listed with its verdict. Run: python3 make_notebook.py  (then execute the notebook)."""
 import json, re, os
-import algcommon as dcommon
+import algebra as dcommon
 
 PKG = "1-algebra"; NB = f"frc-{PKG}.ipynb"; PAPER = "1"
-COLAB = f"https://colab.research.google.com/github/gamayos/finite-ring-space/blob/main/src/{PKG}/{NB}"
 LEDGER_URL = f"https://finitering.space/{PKG}/"; APPENDIX = "A"          # the paper's ledger page and the appendix that carries the ledger
-BADGE = "https://finitering.space/media/frc-ledger-badge.svg"                          # the FRC ledger badge, the way back to the page
-SCRIPTS = ", ".join(f"[`{n}`](https://finitering.space/src/{PKG}/{n[:-3]}.html)" for n in ["a_shell.py", "b_numbers.py", "c_conjecture.py"]); RUNTIME = "≈ 30 s; the block C charts are the slow part"
+CITE = "Akhtman, Axioms 2025"; DOI = "https://doi.org/10.3390/axioms14080636"                       # the heading's citation, linked to the article
+SCRIPT = "algebra.py"; SCRIPTS = f"[`{SCRIPT}`](https://finitering.space/src/{PKG}/{SCRIPT[:-3]}.html)"; RUNTIME = "≈ 30 s"      # the one script, linked to its source page
 LEDGER = os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "..", "docs", PKG, f"{PKG}-ledger.json")
 cells = []
 def md(s, cid): cells.append({"cell_type": "markdown", "metadata": {"id": cid}, "source": s})
@@ -29,13 +28,10 @@ data = json.load(open(LEDGER, encoding="utf-8"))
 rows = [r for b in data["blocks"] for r in b["rows"]]
 witnessed = [r for r in rows if f"{PAPER}:{r['label']}" in dcommon.PREDICATES]
 
-md(f"""[![Open in Colab](https://colab.research.google.com/assets/colab-badge.svg)]({COLAB}) [![predicate ledger]({BADGE})]({LEDGER_URL})
-
-## Relativistic Algebra over Finite Ring Continuum (Akhtman, Axioms 2025) — the predicate ledger, one cell per predicate
+md(f"""## Relativistic Algebra over Finite Ring Continuum, [{CITE}]({DOI})
 
 Each cell below verifies one predicate of the paper's predicate ledger (Appendix {APPENDIX}; [{LEDGER_URL[8:]}]({LEDGER_URL})): it runs the
-scripts whose checks cite the predicate ({SCRIPTS}; each once per session), prints the check that decides it, and lists every
-record that cites it with its verdict. Any cell can be run first, or *Runtime → Run all* ({RUNTIME}).""", "header")
+blocks of {SCRIPTS} whose checks cite the predicate, prints the check and lists every record that cites it with its verdict. Any cell can be run first, or *Runtime → Run all* ({RUNTIME}).""", "header")
 
 # the package from the site as a named requirement through the site's find-links page (docs/pkg/index.html): pip checks the
 # installed set first, so a second call in the session is "Requirement already satisfied" (a URL archive would be rebuilt every time)
@@ -48,8 +44,8 @@ for r in witnessed:
 
 md("""## Summary
 
-The cells above are the paper's python-witnessed predicates; the whole package, check by check, is `run_all.py`
-(16 checks, `results.json`).""", "summary")
+The cells above are the paper's python-witnessed predicates; the whole script, check by check, is `python3 algebra.py`
+(16 checks, `results.json`), `python3 -m frc_1_algebra` once installed.""", "summary")
 code(f"""{INSTALL}
 from frc_1_algebra import verify_all
 assert verify_all(), "a check failed"

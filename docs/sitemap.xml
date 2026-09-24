@@ -233,24 +233,8 @@
     <lastmod>2026-09-24</lastmod>
   </url>
   <url>
-    <loc>https://finitering.space/src/1-algebra/__init__.html</loc>
-    <lastmod>2026-09-23</lastmod>
-  </url>
-  <url>
-    <loc>https://finitering.space/src/1-algebra/a_shell.html</loc>
-    <lastmod>2026-09-23</lastmod>
-  </url>
-  <url>
-    <loc>https://finitering.space/src/1-algebra/algcommon.html</loc>
-    <lastmod>2026-09-23</lastmod>
-  </url>
-  <url>
-    <loc>https://finitering.space/src/1-algebra/b_numbers.html</loc>
-    <lastmod>2026-09-23</lastmod>
-  </url>
-  <url>
-    <loc>https://finitering.space/src/1-algebra/c_conjecture.html</loc>
-    <lastmod>2026-09-23</lastmod>
+    <loc>https://finitering.space/src/1-algebra/algebra.html</loc>
+    <lastmod>2026-09-24</lastmod>
   </url>
   <url>
     <loc>https://finitering.space/src/1-algebra/</loc>
@@ -258,15 +242,7 @@
   </url>
   <url>
     <loc>https://finitering.space/src/1-algebra/make_notebook.html</loc>
-    <lastmod>2026-09-23</lastmod>
-  </url>
-  <url>
-    <loc>https://finitering.space/src/1-algebra/run_all.html</loc>
-    <lastmod>2026-09-23</lastmod>
-  </url>
-  <url>
-    <loc>https://finitering.space/src/10-dimensions/__init__.html</loc>
-    <lastmod>2026-09-23</lastmod>
+    <lastmod>2026-09-24</lastmod>
   </url>
   <url>
     <loc>https://finitering.space/src/10-dimensions/check_gates.html</loc>
@@ -286,7 +262,7 @@
   </url>
   <url>
     <loc>https://finitering.space/src/10-dimensions/make_notebook.html</loc>
-    <lastmod>2026-09-23</lastmod>
+    <lastmod>2026-09-24</lastmod>
   </url>
   <url>
     <loc>https://finitering.space/src/10-dimensions/run_all.html</loc>
@@ -294,10 +270,6 @@
   </url>
   <url>
     <loc>https://finitering.space/src/10-dimensions/verify_domains.html</loc>
-    <lastmod>2026-09-23</lastmod>
-  </url>
-  <url>
-    <loc>https://finitering.space/src/2-geometry/__init__.html</loc>
     <lastmod>2026-09-23</lastmod>
   </url>
   <url>
@@ -326,7 +298,7 @@
   </url>
   <url>
     <loc>https://finitering.space/src/2-geometry/make_notebook.html</loc>
-    <lastmod>2026-09-23</lastmod>
+    <lastmod>2026-09-24</lastmod>
   </url>
   <url>
     <loc>https://finitering.space/src/2-geometry/run_all.html</loc>
