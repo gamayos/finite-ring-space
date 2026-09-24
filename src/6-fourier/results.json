@@ -290,6 +290,16 @@
   "kind": "EXACT"
  },
  {
+  "id": "D8",
+  "rows": "6:E8",
+  "block": "D",
+  "script": "fourier",
+  "label": "cardinal exclusivity (thm:monomial): row 0 of F^[s] \u03c3 F^[s]\u207b\u00b9 is x\u207b\u00b9 times a quadratic in x = g^j off j \u2208 {\u22121,0,1}, leading coefficient i(c\u2080+c\u2082)c\u2083(\u2212s) \u2260 0, at least 4\u03ba\u22125 nonzero entries for every non-cardinal s, every shell p \u2261 1 (mod 4) below 200",
+  "ok": true,
+  "detail": "20 shells, 1920 non-cardinal indices; fewest nonzero entries in row 0: 11",
+  "kind": "EXACT"
+ },
+ {
   "id": "E1",
   "rows": "6:F2",
   "block": "E",
