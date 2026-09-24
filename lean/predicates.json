@@ -215,5 +215,58 @@
    "5:E4": "Reductio",
    "5:E8": "Reductio"
   }
+ },
+ "8-dirac": {
+  "module": "Dirac",
+  "FrcCore": {
+   "8:A2": "Dirac",
+   "8:A5": "Dirac",
+   "8:B3": "Dirac",
+   "8:B4": "Dirac",
+   "8:B5": "Dirac",
+   "8:B6": "Dirac",
+   "8:B7": "Dirac",
+   "8:C5": "Dirac",
+   "8:C6": "Dirac",
+   "8:D12": "Dirac",
+   "8:D2": "Dirac",
+   "8:D5": "Dirac",
+   "8:D6": "Dirac",
+   "8:D7": "Dirac",
+   "8:D9": "Dirac",
+   "8:E2": "Dirac",
+   "8:E4": "Dirac",
+   "8:F2": "Dirac",
+   "8:F3": "Dirac",
+   "8:F4": "Dirac"
+  },
+  "FrcLedger": {
+   "8:A2": "Dirac",
+   "8:A5": "Dirac",
+   "8:B2": "Dirac",
+   "8:B3": "Dirac",
+   "8:B4": "Dirac",
+   "8:B5": "Dirac",
+   "8:B6": "Dirac",
+   "8:B7": "Dirac",
+   "8:C2": "Dirac",
+   "8:C4": "Dirac",
+   "8:C5": "Dirac",
+   "8:C6": "Dirac",
+   "8:D10": "Dirac",
+   "8:D11": "Dirac",
+   "8:D12": "Dirac",
+   "8:D2": "Dirac",
+   "8:D5": "Dirac",
+   "8:D6": "Dirac",
+   "8:D7": "Dirac",
+   "8:D9": "Dirac",
+   "8:E2": "Dirac",
+   "8:E3": "Dirac",
+   "8:E4": "Dirac",
+   "8:F2": "Dirac",
+   "8:F3": "Dirac",
+   "8:F4": "Dirac"
+  }
  }
 }

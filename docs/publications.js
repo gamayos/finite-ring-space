@@ -203,16 +203,19 @@ const PUBLICATIONS = [
     "doi": "https://doi.org/10.20944/preprints202510.1486.v2",
     "doiLabel": "pp202510.1486.v2",
     "ledger": "8-dirac/index.html",
+    "schema": true,
     "links": [
       {
-        "href": "8-dirac/index.html",
-        "label": "ledger",
-        "title": "the paper's predicate ledger"
+        "href": "https://colab.research.google.com/github/gamayos/finite-ring-space/blob/main/src/8-dirac/frc-8-dirac.ipynb",
+        "label": "python",
+        "count": 24,
+        "title": "24 predicates checked, all passing: the notebook frc-8-dirac.ipynb on Google Colab, one cell per predicate"
       },
       {
-        "href": "https://colab.research.google.com/github/gamayos/finite-ring-space/blob/main/src/8-dirac/8-dirac-main.ipynb",
-        "label": "notebook",
-        "title": "the validation notebook on Google Colab"
+        "href": "https://live.lean-lang.org/#project=lean-v4.34.0&url=https://finitering.space/lean/web/core/Dirac.lean",
+        "label": "lean",
+        "count": 26,
+        "title": "26 predicates proved in Lean: the core module Dirac as one executable file (plain Lean, no Mathlib) in the Lean web editor"
       }
     ]
   },

@@ -58,6 +58,9 @@ cover/
 
 # Django stuff:
 *.log
+# the axiom logs the site serves (site_build.py copies lean/axioms.log and lean/FrcCore/axioms.log under docs/lean/)
+!docs/lean/axioms.log
+!docs/lean/core/axioms.log
 local_settings.py
 db.sqlite3
 db.sqlite3-journal
