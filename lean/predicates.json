@@ -189,5 +189,31 @@
    "4:E1": "Representation",
    "4:E3": "Representation"
   }
+ },
+ "5-reductio": {
+  "module": "Reductio",
+  "FrcCore": {
+   "5:B6": "Reductio",
+   "5:C2": "Reductio",
+   "5:C5": "Reductio",
+   "5:D3": "Reductio",
+   "5:E1": "Reductio",
+   "5:E2": "Reductio",
+   "5:E4": "Reductio",
+   "5:E5": "Reductio"
+  },
+  "FrcLedger": {
+   "5:B3": "Reductio",
+   "5:B5": "Reductio",
+   "5:C2": "Reductio",
+   "5:C3": "Reductio",
+   "5:D3": "Reductio",
+   "5:D8": "Reductio",
+   "5:E1": "Reductio",
+   "5:E2": "Reductio",
+   "5:E3": "Reductio",
+   "5:E4": "Reductio",
+   "5:E8": "Reductio"
+  }
  }
 }

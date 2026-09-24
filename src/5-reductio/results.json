@@ -2,7 +2,8 @@
  {
   "id": "A1",
   "rows": "5:B5",
-  "script": "a_frames",
+  "block": "A",
+  "script": "reductio",
   "label": "Th(W_N) is complete and decidable: every sentence of the sample is decided by evaluation on N = 2..8; sigma_N is categorical \u2014 its models on a domain of size N are the N! copies of W_N (N <= 5)",
   "ok": true,
   "detail": "10 sentences x 7 frames; N=2: 2 models of sigma_N on [0,N), all copies of W_N; N=3: 6 models of sigma_N on [0,N), all copies of W_N; N=4: 24 models of sigma_N on [0,N), all copies of W_N",
@@ -11,7 +12,8 @@
  {
   "id": "A2",
   "rows": "5:B3",
-  "script": "a_frames",
+  "block": "A",
+  "script": "reductio",
   "label": "no finite model of Q: on N elements no successor map is injective and misses 0 (all N^N maps, N <= 7), so Th(W_N) does not interpret Q",
   "ok": true,
   "detail": "N=1: 1 maps, 0 injective-avoiding-0; N=2: 4 maps, 0 injective-avoiding-0; N=3: 27 maps, 0 injective-avoiding-0; N=4: 256 maps, 0 injective-avoiding-0",
@@ -20,7 +22,8 @@
  {
   "id": "A3",
   "rows": "5:B6",
-  "script": "a_frames",
+  "block": "A",
+  "script": "reductio",
   "label": "bounded stability: every Delta_0 sentence takes its standard value in every frame above t(phi) \u2014 the worked instance (Goldbach below 20, t = 400) in 40 frames above the bound, and a random sample; below the bound frames can disagree",
   "ok": true,
   "detail": "Goldbach<=20: true, t(phi) = 400 (proved bound), empirical threshold N >= 21; 300 random sentences, 82 disagree below their bound",
@@ -29,7 +32,8 @@
  {
   "id": "A4",
   "rows": "5:C2, 5:C3",
-  "script": "a_frames",
+  "block": "A",
+  "script": "reductio",
   "label": "records: sum_{i<=K} s^i < s^(K+1) (s = 2, 3, 10; K <= 20); no injection of N elements into R < N records (exhaustive); the certified fraction s^(K+1)/floor(c^L/2) falls to 0",
   "ok": true,
   "detail": "records(2,10) = 2047 < 2048; fraction at L = 20, 40, 80: 3.9e-03, 3.7e-09, 3.4e-21",
@@ -38,7 +42,8 @@
  {
   "id": "A5",
   "rows": "5:C5",
-  "script": "a_frames",
+  "block": "A",
+  "script": "reductio",
   "label": "horizon separation: a deterministic run on C configurations halts within C steps or revisits a configuration and never halts \u2014 decidable from above by C steps",
   "ok": true,
   "detail": "C <= 5 exhaustive (all maps with a fixed halting state); C = 1000, 200 random systems: decided within C steps",
@@ -47,7 +52,8 @@
  {
   "id": "B1",
   "rows": "5:D2",
-  "script": "b_paradox",
+  "block": "B",
+  "script": "reductio",
   "label": "on V_4 (65536 sets, Ackermann codes) the Russell class of every u is a set not in u; no set of V_4 contains every set of V_4; x notin x throughout \u2014 bounded comprehension has no antinomy",
   "ok": true,
   "detail": "V_4 exhaustive; the only set containing all of V_3 is V_3 itself, a member of V_4 but not of itself",
@@ -56,7 +62,8 @@
  {
   "id": "B2",
   "rows": "5:D3",
-  "script": "b_paradox",
+  "block": "B",
+  "script": "reductio",
   "label": "the external diagonal: for every listing of n strings the diagonal is missing (n <= 3 exhaustive, n = 60 random); no map [n] -> P([n]) is onto (n <= 3); 2^n > n; the diagonal of a complete finite registry is one of its entries",
   "ok": true,
   "detail": "no outside-the-list element exists when the registry is complete and finite",
@@ -65,7 +72,8 @@
  {
   "id": "B3",
   "rows": "5:D4, 5:E8",
-  "script": "b_paradox",
+  "block": "B",
+  "script": "reductio",
   "label": "on a finite set counting measure is complete and invariant under every bijection (|X| = 6, all 720 permutations x 64 subsets); no injection X + X -> X (|X| <= 4); every ultrafilter on a 3-set is principal (all 3, of the filters enumerated)",
   "ok": true,
   "detail": "7 filters on the 3-set, 3 ultrafilters, all principal",
@@ -74,7 +82,8 @@
  {
   "id": "B4",
   "rows": "5:D9",
-  "script": "b_paradox",
+  "block": "B",
+  "script": "reductio",
   "label": "the iterated singletons emptyset, {emptyset}, {{emptyset}}, ... (7 of them, the last of 65 537 bits) are pairwise distinct with ranks 0, 1, 2, ...: a universal set would be infinite",
   "ok": true,
   "detail": "ranks [0, 1, 2, 3, 4, 5, 6]",
@@ -83,7 +92,8 @@
  {
   "id": "C1",
   "rows": "5:E1",
-  "script": "c_choice",
+  "block": "C",
+  "script": "reductio",
   "label": "ch(A) = min A is a member and the least element of every nonempty subset of F_13 (8191 subsets); finite products of nonempty sets are nonempty",
   "ok": true,
   "detail": "",
@@ -92,7 +102,8 @@
  {
   "id": "C2",
   "rows": "5:E2",
-  "script": "c_choice",
+  "block": "C",
+  "script": "reductio",
   "label": "an equality-periodic family A_{i+N} = A_i on F_13 has the choice f(i) = min A_i of the same period (50 random families, periods 1..7)",
   "ok": true,
   "detail": "",
@@ -101,7 +112,8 @@
  {
   "id": "C3",
   "rows": "5:E3",
-  "script": "c_choice",
+  "block": "C",
+  "script": "reductio",
   "label": "a G-equivariant section exists iff every stabiliser action on its fibre has a fixed point: exhaustive on both sides for random G-families, G = Z/2, Z/3, S_3, fibres of size 1..3",
   "ok": true,
   "detail": "139 families, 136 with a section; the criterion agrees in every case",
@@ -110,7 +122,8 @@
  {
   "id": "C4",
   "rows": "5:E4",
-  "script": "c_choice",
+  "block": "C",
+  "script": "reductio",
   "label": "every subspace of F_5^3 (64 of them) has the greedy minimal basis, independent and spanning; the involution v -> -v on the line fixes no basis over F_p for odd p <= 13 and fixes 1 over F_2",
   "ok": true,
   "detail": "obstruction over F_3, F_5, F_7, F_11, F_13; none over F_2",
@@ -119,7 +132,8 @@
  {
   "id": "C5",
   "rows": "5:E5",
-  "script": "c_choice",
+  "block": "C",
+  "script": "reductio",
   "label": "periodic Koenig: in every finite digraph with out-degree >= 1 the greedy walk repeats within |D|+1 steps and is eventually periodic with period <= |D| (exhaustive |D| <= 3, random |D| = 10, 20, 30)",
   "ok": true,
   "detail": "353 digraphs exhaustive",
@@ -128,7 +142,8 @@
  {
   "id": "C6",
   "rows": "5:E6",
-  "script": "c_choice",
+  "block": "C",
+  "script": "reductio",
   "label": "periodic de Bruijn-Erdos (dimension one): the transfer digraph decides c-colorability of all finite subgraphs of a random periodic graph; when they are colorable, a definable sigma^m-periodic coloring with m <= |D'_c| is produced and verified",
   "ok": true,
   "detail": "40 random periodic graphs (block <= 3, range 1, c = 2, 3): 32 colorable with a periodic coloring found, 8 with a finite obstruction",
@@ -137,7 +152,8 @@
  {
   "id": "D1",
   "rows": "5:D8",
-  "script": "d_determinacy",
+  "block": "D",
+  "script": "reductio",
   "label": "the full second-order theory of W_3 is decided by exhaustive evaluation: 8 subsets, 512 relations, 27 functions; the well-ordering sentence and Dedekind-finiteness are true, the existence of a linear order true, a false sentence false",
   "ok": true,
   "detail": "second-order quantifiers as finite conjunctions/disjunctions",
@@ -146,7 +162,8 @@
  {
   "id": "D2",
   "rows": "5:B7",
-  "script": "d_determinacy",
+  "block": "D",
+  "script": "reductio",
   "label": "the Pi_1 sentence 'every even number is a sum of two primes' receives a verdict from each frame about its own domain: true in W_N for every 4 <= N <= 400; the closure over all frames is not a sentence of any frame",
   "ok": true,
   "detail": "397 frames, all true; no frame decides the unbounded quantifier",
