@@ -2,15 +2,15 @@
 """Builds frc-10-dimensions.ipynb, the package's Colab notebook: one cell per witnessed predicate of the paper's ledger, each cell addressable
 from the ledger page by the predicate's accession key as its stable id (`p10015`: Colab opens the notebook at that cell with `#scrollTo=p10015`).
 A predicate cell states the predicate (its text, from the site's ledger JSON) and runs `predicate("10:C5")`: the script of the
-predicate's deciding family runs once per session, the deciding check's source is printed from its `# predicate` marker, and every
+predicate's deciding family runs once per session, the deciding check's source is printed from its marker (`# <paper>:<label> (<key>)`), and every
 family record citing the predicate is listed with its verdict. Run: python3 make_notebook.py  (then execute the notebook)."""
 import json, re, os
-import dimcommon as dcommon
+import dimensions as dcommon
 
 PKG = "10-dimensions"; NB = f"frc-{PKG}.ipynb"; PAPER = "10"
 LEDGER_URL = f"https://finitering.space/{PKG}/"; APPENDIX = "A"          # the paper's ledger page and the appendix that carries the ledger
 CITE = "Akhtman, Preprints 2026"; DOI = "https://doi.org/10.20944/preprints202605.0668.v1"                       # the heading's citation, linked to the article
-SCRIPTS = ", ".join(f"[`{n}`](https://finitering.space/src/{PKG}/{n[:-3]}.html)" for n in ["verify_domains.py", "check_lift.py"]); RUNTIME = "≈ 10 s"
+SCRIPT = "dimensions.py"; SCRIPTS = f"[`{SCRIPT}`](https://finitering.space/src/{PKG}/{SCRIPT[:-3]}.html)"; RUNTIME = "≈ 10 s"      # the one script, linked to its source page
 LEDGER = os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "..", "docs", PKG, f"{PKG}-ledger.json")
 cells = []
 def md(s, cid): cells.append({"cell_type": "markdown", "metadata": {"id": cid}, "source": s})
@@ -31,7 +31,7 @@ witnessed = [r for r in rows if f"{PAPER}:{r['label']}" in dcommon.PREDICATES]
 md(f"""## Dimensional Analysis over Finite Holographic Substrate, [{CITE}]({DOI})
 
 Each cell below verifies one predicate of the paper's predicate ledger (Appendix {APPENDIX}; [{LEDGER_URL[8:]}]({LEDGER_URL})): it runs the
-scripts whose checks cite the predicate ({SCRIPTS}), prints the check and lists every record that cites it with its verdict. Any cell can be run first, or *Runtime → Run all* ({RUNTIME}).""", "header")
+blocks of {SCRIPTS} whose checks cite the predicate, prints the check and lists every record that cites it with its verdict. Any cell can be run first, or *Runtime → Run all* ({RUNTIME}).""", "header")
 
 # the package from the site as a named requirement through the site's find-links page (docs/pkg/index.html): pip checks the
 # installed set first, so a second call in the session is "Requirement already satisfied" (a URL archive would be rebuilt every time)
@@ -44,8 +44,8 @@ for r in witnessed:
 
 md("""## Summary
 
-The cells above are the paper's python-witnessed predicates; the whole package, family by family, is `run_all.py`
-(13 family checks, 217 exact micro-checks, `results.json`).""", "summary")
+The cells above are the paper's python-witnessed predicates; the whole script, family by family, is `python3 dimensions.py`
+(13 family checks, 217 exact micro-checks, `results.json`), `python3 -m frc_10_dimensions` once installed.""", "summary")
 code(f"""{INSTALL}
 from frc_10_dimensions import verify_all
 assert verify_all(), "a family check failed"

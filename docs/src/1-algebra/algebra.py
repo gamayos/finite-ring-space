@@ -5,7 +5,7 @@ predicate ledger (Appendix A, 16 September 2026; one script since 24 September 2
 ========================================================================================================================
 
 One script, three blocks, sixteen checks, standard library only. Each check names the predicate(s) of the paper's ledger
-it witnesses (LEDGER below; predicates cited as 1:XN) under a `# predicate 1:XN` marker, and the ledger's source column
+it witnesses (LEDGER below; predicates cited as 1:XN) under a `# 1:XN (<key>)` marker, and the ledger's source column
 links the marker in return (finitering.space/src/1-algebra/algebra.html#<key>). The paper \\label(s) a check decides are
 in the block banners. Seven master-ledger predicates of the corpus cite this paper (00:A8, B1, B8, B11, C9, C10, Y3); the
 predicates of the paper ledger that the master carries are listed in the site generator.
@@ -77,13 +77,13 @@ def summary(write=True):
     return n_ok == len(RESULTS)
 
 def markers():
-    """predicate label -> (script file, line) of its `# predicate …` marker: the line of the check that decides it."""
+    """predicate label -> (script file, line) of its marker `# <paper>:<label> (<key>)`: the line of the check that decides it."""
     import re
     out = {}
     for i, line in enumerate(open(os.path.abspath(__file__), encoding="utf-8"), 1):
-        m = re.match(r"\s*# predicate (.*)", line)
+        m = re.match(r"\s*# ((?:\d+:[A-Z]+\d+[a-z]?(?: \(p\d{5}\))?)(?:, \d+:[A-Z]+\d+[a-z]?(?: \(p\d{5}\))?)*)\s*$", line)
         if m:
-            for lab in m.group(1).split(","): out.setdefault(lab.strip(), (SCRIPT + ".py", i))
+            for lab in re.findall(r"\d+:[A-Z]+\d+[a-z]?", m.group(1)): out.setdefault(lab, (SCRIPT + ".py", i))
     return out
 
 def _run_block(letter):
@@ -92,7 +92,7 @@ def _run_block(letter):
 
 def predicate(label, lines=14):
     """Verify one ledger predicate: run the block of the check that decides it (once per session), print that check's source
-    (from its `# predicate` marker) and every record that cites the predicate, and return True iff all pass."""
+    (from its marker) and every record that cites the predicate, and return True iff all pass."""
     pid = PREDICATES.get(label)
     if pid is None:
         print(f"{label}: no python witness (see the predicate's Lean witness or its source)"); return None
@@ -156,7 +156,7 @@ def sqrt_neg_one(p):
 #
 #   A1  thm:symmetric-completeness   the fourth roots of unity are Q4 = {1, i, −1, −i}; under the Klein four-group
 #       (1:B2)                       ⟨x ↦ −x, x ↦ x⁻¹⟩, Q4 is the union of the two size-2 orbits {±1}, {±i}, and
-#                                    F_p^× \\ Q4 splits into exactly κ−1 orbits of size 4; for p ≡ 3 (mod 4) no i
+#                                    F_p^× \ Q4 splits into exactly κ−1 orbits of size 4; for p ≡ 3 (mod 4) no i
 #   A2  (1:B3)                       i = −g^κ satisfies i² = −1 for every primitive root g; {−g^κ, g^κ} are the two
 #                                    square roots of −1; on F_13 with g = 2, i = 5
 #   A3  def:framed-field,            φ_{a,b}(x) = a + bx is a ring isomorphism (F_p, +, ·) → (F_p, ⊕, ⊗) on every
@@ -194,7 +194,7 @@ def block_A():
     for p in CONTROLS:
         orbits = klein_orbits(p)
         ok &= (sqrt_neg_one(p) == [] and sorted(len(o) for o in orbits) == [2] + [4] * ((p - 3) // 4))
-    # predicate 1:B2
+    # 1:B2 (p01004)
     check("A1", "Q4 = {1,i,−1,−i} the unique order-4 subgroup, two Klein orbits of size 2, κ−1 orbits of size 4; no i for p ≡ 3 (mod 4)",
           ok, "; ".join(det) + f"; controls p ∈ {CONTROLS}")
 
@@ -207,7 +207,7 @@ def block_A():
             ok &= ((i * i) % p == p - 1) and ({i, pow(g, k, p)} == roots) and (pow(g, 2 * k, p) == p - 1); n += 1
         det.append(f"p={p}: {n} primitive roots")
     ok &= (quarter_turn(13, 2) == 5)
-    # predicate 1:B3
+    # 1:B3 (p01005)
     check("A2", "i = −g^κ, i² = −1 for every primitive root; {−g^κ, g^κ} the two square roots of −1; g^{2κ} = −1; F_13, g = 2: i = 5",
           ok, "; ".join(det))
 
@@ -226,7 +226,7 @@ def block_A():
                 ok &= all(otimes((a + b) % p, y) == y for y in range(p))
                 ok &= ((a == 0) == all(otimes(b, y) == y for y in range(p)))
                 n += 1
-    # predicate 1:B4
+    # 1:B4 (p01006)
     check("A3", "φ_{a,b} = a + bx a ring isomorphism onto (F_p, ⊕, ⊗) on every frame; unit a + b; b the unit iff a = 0",
           ok, f"{n} frames on p ∈ {{13, 17}}, all pairs (x, y)")
 
@@ -244,7 +244,7 @@ def block_A():
                 sols = [psi for psi in frames if comp(psi, f) == f2]
                 ok &= (len(sols) == 1); cnt += 1
         det.append(f"p={p}: |Aff| = {len(frames)} = p(p−1), {cnt} frame pairs, one carrier each")
-    # predicate 1:C2
+    # 1:C2 (p01009)
     check("A4", "⟨T_a, S_m⟩ = Aff(F_p), order p(p−1), simply transitive on the frames (a, b)", ok, "; ".join(det))
 
     # A5 — the orbital complex: involutions and counts
@@ -262,7 +262,7 @@ def block_A():
         V = (p - 1) * (2 * k) + 1
         ok &= (V == (p - 1) ** 2 // 2 + 1)
         det.append(f"p={p}: {len(mer)} meridian lists, {len(circles)} great circles, {len(latpairs)} latitude pairs, |V| = {V}")
-    # predicate 1:C4
+    # 1:C4 (p01011)
     check("A5", "M_n(a) = M_{n+2κ}(−a), L_a(m) = L_{−a}(m+2κ); p−1 meridian lists in 2κ circles; 2κ latitude pairs; |V| = (p−1)²/2 + 1",
           ok, "; ".join(det))
 
@@ -297,7 +297,7 @@ def block_B():
             prods = len({(x * y) % p for x in W for y in W}) == len({x * y for x in W for y in W})
             ok &= (inj == (2 * H < p)) and (sums == (4 * H < p)) and ((2 * H * H < p) <= prods)   # products: sufficient, not necessary (the product set is sparse)
         det.append(f"p={p}: H = 1..{p-1} swept")
-    # predicate 1:D2
+    # 1:D2 (p01013)
     check("B1", "z ↦ z mod p injective on W_H iff 2H < p; sums read back iff 4H < p; products read back whenever 2H² < p", ok, "; ".join(det))
 
     # B2 — scale-periodicity: in the field yes, in Q no
@@ -310,7 +310,7 @@ def block_B():
         qgrid = lambda n: tuple(Fraction(x, g ** n) for x in range(p))
         ok &= all(qgrid(n) != qgrid(n + p - 1) for n in range(3))
         det.append(f"({p},{g}): period {p-1} in F_p, none in Q")
-    # predicate 1:D4
+    # 1:D4 (p01015)
     check("B2", "G_n = (x g^{−n})_x is (p−1)-periodic in the field, with exact period p−1; the rational grids x/gⁿ are not periodic",
           ok, "; ".join(det))
 
@@ -345,7 +345,7 @@ def block_B():
         mul = lambda A, B: ((A[0] * B[0] - A[1] * B[1]) % p, (A[0] * B[1] + A[1] * B[0]) % p)
         elems = [(a, b) for a in range(p) for b in range(p) if (a, b) != (0, 0)]
         ok &= all(mul(A, B) != (0, 0) for A in elems for B in elems)    # no zero divisors
-    # predicate 1:E2
+    # 1:E2 (p01019)
     check("B4", "F_p[X]/(X²+1) has zero divisors on the shell (p ≡ 1 mod 4); it is a field exactly when p ≡ 3 (mod 4)",
           ok, "; ".join(det) + f"; fields at p ∈ {CONTROLS} (no zero divisors, exhaustive)")
 
@@ -356,7 +356,7 @@ def block_B():
         if p % 4 == 1:
             k = kappa(p)
             ok &= ((2 * (2 * k + 1)) % p == 1) and (2 * k + 1 == (p + 1) // 2)
-    # predicate 1:F1
+    # 1:F1 (p01020)
     check("B5", "2s = 0 ⇒ s = 0 for every odd prime < 200; on the shell 2⁻¹ = 2κ+1 = (p+1)/2, the residue past the antipode", ok, "primes 3..199")
 
     # B6 — the Euclidean step count against the bound ⌊log₂ p⌋+1 (recorded under V1)
@@ -441,7 +441,7 @@ def block_C():
                 g = p_gcd(f, xp_minus_x, p)
                 ok &= ((len(g) - 1) == len(roots)) and ((len(roots) > 0) == (len(g) > 1)); n += 1
         det.append(f"p={p}: {n} monic polynomials of degree ≤ {dmax}")
-    # predicate 1:G1
+    # 1:G1 (p01026)
     check("C1", "f has a root in F_p iff gcd(f, X^p − X) ≠ 1; deg gcd(f, X^p − X) = number of distinct roots (exhaustive, degree ≤ 3)",
           ok, "; ".join(det))
 
@@ -462,7 +462,7 @@ def block_C():
             p = next_shell(2 * abs(x) + 1); kap = (p - 1) // 4
             ok &= (abs(r - Fraction(x, 2 ** n)) < eps) and (abs(x) <= 2 * kap) and p % 4 == 1 and is_prime(p)
         det.append(f"{name}: ε=10⁻⁸ → n={n}, p={p}")
-    # predicate 1:G2
+    # 1:G2 (p01027)
     check("C2", "for every r and ε some shell p = 4κ+1 carries x/2ⁿ, |x| ≤ 2κ, within ε of r (five reals, ε = 10⁻²..10⁻⁸)",
           ok, "; ".join(det), kind="CHART")
 
@@ -482,7 +482,7 @@ def block_C():
             worst_defect = max(worst_defect, abs(k(a) + k(b) - k(a + b)))
         ok &= (worst_angle <= math.pi / N + 1e-12) and (worst_chord <= math.pi / N + 1e-12) and (worst_defect <= 1)
         det.append(f"p={p}: angle {worst_angle:.4f} ≤ π/N={math.pi / N:.4f}, defect ≤ {worst_defect}")
-    # predicate 1:G3
+    # 1:G3 (p01028)
     check("C3", "k(θ) = ⌊Nθ/2π + ½⌋, N = p−1: angle and chord error ≤ π/N, group-law defect ≤ 1, on every shell",
           ok, "; ".join(det), kind="CHART")
 
@@ -539,7 +539,7 @@ def block_C():
     ok &= abs(d_o2 - math.pi / 2) < 1e-12
     eps0 = min(exact.values()); ok &= abs(eps0 - exact["icosahedral"]) < 1e-15 and eps0 < math.pi / 2
     det.append(f"cyclic/dihedral (in O(2)): ≥ {math.degrees(d_o2):.2f}°; ε₀ = {math.degrees(eps0):.4f}° = {eps0:.6f} rad")
-    # predicate 1:G4
+    # 1:G4 (p01029)
     check("C4", "covering radii in SO(3): tetrahedral π/2, octahedral arccos((2√2−1)/4), icosahedral arccos((3√5−1)/8) = ε₀ ≈ 44.48°, cyclic/dihedral ≥ π/2; no finite subgroup is an ε-net for ε < ε₀",
           ok, "; ".join(det), kind="CHART")
 
@@ -580,7 +580,7 @@ def block_C():
         exact = qmul_int(a, b); modp = qmul_int(tuple(c % p for c in a), tuple(c % p for c in b))
         ok &= all(read(c % p) == e for c, e in zip(modp, exact)) and all(abs(e) <= 4 * H * H for e in exact); n_pairs += 1
     det.append(f"2·arcsin(1/3) = {math.degrees(2 * math.asin(1/3)):.1f}° < ε₀; composition on F_{p}, H={H}: {n_pairs} pairs read back exactly")
-    # predicate 1:G5
+    # 1:G5 (p01030)
     check("C5", "the normalised window quaternions W_H⁴ are a 2·arcsin(1/H)-net of SO(3) (H = 1, 2, 3), 38.9° < ε₀ at H = 3; their products read back exactly from the shell when 8H² < p",
           ok, "; ".join(det), kind="CHART")
 

@@ -2,15 +2,15 @@
 """Builds frc-2-geometry.ipynb, the package's Colab notebook: one cell per witnessed predicate of the paper's ledger, each cell addressable
 from the ledger page by the predicate's accession key as its stable id (`p02013`: Colab opens the notebook at that cell with `#scrollTo=p02013`).
 A predicate cell states the predicate (its text, from the site's ledger JSON) and runs `predicate("2:D1")`: the block script of the
-predicate's deciding check runs once per session, the deciding check's source is printed from its `# predicate` marker, and every
+predicate's deciding check runs once per session, the deciding check's source is printed from its marker (`# <paper>:<label> (<key>)`), and every
 record citing the predicate is listed with its verdict. Run: python3 make_notebook.py  (then execute the notebook)."""
 import json, re, os
-import geocommon as dcommon
+import geometry as dcommon
 
 PKG = "2-geometry"; NB = f"frc-{PKG}.ipynb"; PAPER = "2"
 LEDGER_URL = f"https://finitering.space/{PKG}/"; APPENDIX = "A"          # the paper's ledger page and the appendix that carries the ledger
 CITE = "Akhtman, Symmetry 2026"; DOI = "https://doi.org/10.3390/sym18050751"                       # the heading's citation, linked to the article
-SCRIPTS = ", ".join(f"[`{n}`](https://finitering.space/src/{PKG}/{n[:-3]}.html)" for n in ["a_datum.py", "b_shell.py", "c_charts.py", "d_fourier.py"]); RUNTIME = "≈ 30 s"
+SCRIPT = "geometry.py"; SCRIPTS = f"[`{SCRIPT}`](https://finitering.space/src/{PKG}/{SCRIPT[:-3]}.html)"; RUNTIME = "≈ 10 s"      # the one script, linked to its source page
 LEDGER = os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "..", "docs", PKG, f"{PKG}-ledger.json")
 cells = []
 def md(s, cid): cells.append({"cell_type": "markdown", "metadata": {"id": cid}, "source": s})
@@ -31,7 +31,7 @@ witnessed = [r for r in rows if f"{PAPER}:{r['label']}" in dcommon.PREDICATES]
 md(f"""## Geometry and Constants in Finite Ring Continuum, [{CITE}]({DOI})
 
 Each cell below verifies one predicate of the paper's predicate ledger (Appendix {APPENDIX}; [{LEDGER_URL[8:]}]({LEDGER_URL})): it runs the
-scripts whose checks cite the predicate ({SCRIPTS}), prints the check and lists every record that cites it with its verdict. Any cell can be run first, or *Runtime → Run all* ({RUNTIME}).""", "header")
+blocks of {SCRIPTS} whose checks cite the predicate, prints the check and lists every record that cites it with its verdict. Any cell can be run first, or *Runtime → Run all* ({RUNTIME}).""", "header")
 
 # the package from the site as a named requirement through the site's find-links page (docs/pkg/index.html): pip checks the
 # installed set first, so a second call in the session is "Requirement already satisfied" (a URL archive would be rebuilt every time)
@@ -44,8 +44,8 @@ for r in witnessed:
 
 md("""## Summary
 
-The cells above are the paper's python-witnessed predicates; the whole package, check by check, is `run_all.py`
-(18 checks, `results.json`).""", "summary")
+The cells above are the paper's python-witnessed predicates; the whole script, check by check, is `python3 geometry.py`
+(18 checks, `results.json`), `python3 -m frc_2_geometry` once installed.""", "summary")
 code(f"""{INSTALL}
 from frc_2_geometry import verify_all
 assert verify_all(), "a check failed"

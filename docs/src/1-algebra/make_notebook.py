@@ -2,7 +2,7 @@
 """Builds frc-1-algebra.ipynb, the package's Colab notebook: one cell per witnessed predicate of the paper's ledger, each cell addressable
 from the ledger page by the predicate's accession key as its stable id (`p01004`: Colab opens the notebook at that cell with `#scrollTo=p01004`).
 A predicate cell states the predicate (its text, from the site's ledger JSON) and runs `predicate("1:B2")`: the block script of the
-predicate's deciding check runs once per session, the deciding check's source is printed from its `# predicate` marker, and every
+predicate's deciding check runs once per session, the deciding check's source is printed from its marker (`# <paper>:<label> (<key>)`), and every
 record citing the predicate is listed with its verdict. Run: python3 make_notebook.py  (then execute the notebook)."""
 import json, re, os
 import algebra as dcommon

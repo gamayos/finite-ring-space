@@ -213,7 +213,7 @@ pre.lean img.leanico { width: 12px; height: 12px; display: inline-block; vertica
 pre.lean .k, pre.lean .kn, pre.lean .kd, pre.lean .kr, pre.lean .kc, pre.lean .kt { color: #7a3e9d; }   /* keywords */
 pre.lean .s, pre.lean .s1, pre.lean .s2, pre.lean .sd, pre.lean .sa, pre.lean .si, pre.lean .se, pre.lean .sb, pre.lean .sh, pre.lean .sx { color: #2a7f62; }   /* strings, docstrings */
 pre.lean .c, pre.lean .c1, pre.lean .cm, pre.lean .ch, pre.lean .cs { color: var(--ink-faint); font-style: italic; }   /* comments */
-pre.lean .ln.decl .c1 { color: var(--accent); font-style: normal; font-weight: 600; }                         /* the `# predicate` marker */
+pre.lean .ln.decl .c1 { color: var(--accent); font-style: normal; font-weight: 600; }                         /* the predicate marker */
 pre.lean .m, pre.lean .mi, pre.lean .mf, pre.lean .mh, pre.lean .mo, pre.lean .mb { color: #b35c00; }         /* numbers */
 pre.lean .nb, pre.lean .bp { color: #2f5d7c; }                                                                 /* builtins */
 pre.lean .nf, pre.lean .fm { color: #1f5fbf; }                                                                 /* function names */

@@ -2,7 +2,8 @@
  {
   "id": "A1",
   "rows": "2:D1, 2:D2, 2:D3, 2:D4",
-  "script": "a_datum",
+  "block": "A",
+  "script": "geometry",
   "label": "half-period g^pi = -1; i = -g^k of order 4 with i^2 = -1; Q_p = {\u00b11, \u00b1i}; 2pi = -1; e = g^i",
   "ok": true,
   "detail": "p=5: g=2, i=3, e=g^i=3, pi=2; p=13: g=2, i=5, e=g^i=6, pi=6; p=17: g=3, i=4, e=g^i=13, pi=8",
@@ -11,7 +12,8 @@
  {
   "id": "A2",
   "rows": "2:B3",
-  "script": "a_datum",
+  "block": "A",
+  "script": "geometry",
   "label": "generators = {g^u : gcd(u, p-1) = 1}, one Aut(C_{p-1})-torsor",
   "ok": true,
   "detail": "",
@@ -20,7 +22,8 @@
  {
   "id": "A3",
   "rows": "2:D5",
-  "script": "a_datum",
+  "block": "A",
+  "script": "geometry",
   "label": "orientation classes of the quarter-turn under g -> g^u: kept for u = 1, flipped for u = 3 (mod 4)",
   "ok": true,
   "detail": "p=5: 1 of 2 generators keep i; p=13: 2 of 4 generators keep i; p=17: 4 of 8 generators keep i; p=29: 6 of 12 generators keep i; p=37: 6 of 12 generators keep i; p=41: 8 of 16 generators keep i",
@@ -29,7 +32,8 @@
  {
   "id": "A4",
   "rows": "2:D6",
-  "script": "a_datum",
+  "block": "A",
+  "script": "geometry",
   "label": "Euler identity e^{i pi} = (-1)^i with i the residue representative; F13 g=2 odd, F17 g=3 even",
   "ok": true,
   "detail": "p=5: i odd for g in [2] (1/2); p=13: i odd for g in [2, 6] (2/4); p=17: i odd for g in [6, 7, 10, 11] (4/8)",
@@ -38,7 +42,8 @@
  {
   "id": "A5",
   "rows": "2:D7",
-  "script": "a_datum",
+  "block": "A",
+  "script": "geometry",
   "label": "R, I commuting involutions; <R,I>-orbits off Q_p have four elements, k-1 of them",
   "ok": true,
   "detail": "",
@@ -47,7 +52,8 @@
  {
   "id": "A6",
   "rows": "2:D8",
-  "script": "a_datum",
+  "block": "A",
+  "script": "geometry",
   "label": "conjugation is an involution of the pairs, not of the field (the pair map is p-to-one)",
   "ok": true,
   "detail": "",
@@ -56,7 +62,8 @@
  {
   "id": "B1",
   "rows": "2:C2",
-  "script": "b_shell",
+  "block": "B",
+  "script": "geometry",
   "label": "cell counts of S_p and of its completion, chi = 1 and chi = 2 (Remark 3.4)",
   "ok": true,
   "detail": "p=5: |V|,|E|,|F| = 9,16,8, chi=1; completion 6,12,8, chi=2; p=13: |V|,|E|,|F| = 73,144,72, chi=1; completion 62,132,72, chi=2; p=17: |V|,|E|,|F| = 129,256,128, chi=1; completion 114,240,128, chi=2; p=29: |V|,|E|,|F| = 393,784,392, chi=1; completion 366,756,392, chi=2",
@@ -65,7 +72,8 @@
  {
   "id": "B2",
   "rows": "2:C3",
-  "script": "b_shell",
+  "block": "B",
+  "script": "geometry",
   "label": "the completion is a closed surface with chi = 2 (a sphere) by exhaustive incidence; S_p has a boundary",
   "ok": true,
   "detail": "p=5: completion closed=True, S_p closed=False; p=13: completion closed=True, S_p closed=False; p=17: completion closed=True, S_p closed=False; p=29: completion closed=True, S_p closed=False",
@@ -74,7 +82,8 @@
  {
   "id": "B3",
   "rows": "2:B4, 2:C4",
-  "script": "b_shell",
+  "block": "B",
+  "script": "geometry",
   "label": "rho_u (m -> um) is cellular iff u = \u00b11; the dihedral maps are; meridian reversal is a map of the completion only",
   "ok": true,
   "detail": "p=5: rho_u cellular only for u in [1, 3] of 2 units; p=13: rho_u cellular only for u in [1, 11] of 4 units; p=17: rho_u cellular only for u in [1, 15] of 8 units; p=29: rho_u cellular only for u in [1, 27] of 12 units",
@@ -83,7 +92,8 @@
  {
   "id": "C1",
   "rows": "2:E2",
-  "script": "c_charts",
+  "block": "C",
+  "script": "geometry",
   "label": "base-grid covering radius at p = 13 within the bound sqrt2 pi/(p-1)",
   "ok": true,
   "detail": "measured 0.3604 rad, bound 0.3702 rad",
@@ -92,7 +102,8 @@
  {
   "id": "C2",
   "rows": "2:E3",
-  "script": "c_charts",
+  "block": "C",
+  "script": "geometry",
   "label": "fixed-shell covering radius stabilises at >= 1/2 min(g^-m, 1 - H g^-(m+1)) for every depth (H = 2k and H = p-1)",
   "ok": true,
   "detail": "(13,2): radius 1/8 >= 1/8; (13,11): radius 5/22 >= 5/22; (13,6): radius 1/12 >= 1/12; (17,3): radius 1/18 >= 1/18",
@@ -101,7 +112,8 @@
  {
   "id": "C2b",
   "rows": "2:E3",
-  "script": "c_charts",
+  "block": "C",
+  "script": "geometry",
   "label": "fixed-shell density at eps = 1/20: the covering radius exceeds 1/20 on every tested shell",
   "ok": true,
   "detail": "shells with covering radius > 1/20 at N = 40: [(13, 2), (13, 11), (17, 3), (29, 2)]",
@@ -110,7 +122,8 @@
  {
   "id": "C3",
   "rows": "2:E4",
-  "script": "c_charts",
+  "block": "C",
+  "script": "geometry",
   "label": "the tower of shells (p = 13..4093, g = 2) brings every target within 1/2048; the single shell (13, 2) does not",
   "ok": true,
   "detail": "tower errors 9.77e-05, 8.14e-05, 2.42e-04, 9.31e-05; single shell 0.100, 0.021, 0.035, 0.039",
@@ -119,7 +132,8 @@
  {
   "id": "D1",
   "rows": "2:F1",
-  "script": "d_fourier",
+  "block": "D",
+  "script": "geometry",
   "label": "g a principal root: g^n = 1, sum_j g^{jk} = 0 for 0 < k < n, n^-1 = -1",
   "ok": true,
   "detail": "",
@@ -128,7 +142,8 @@
  {
   "id": "D2",
   "rows": "2:F3",
-  "script": "d_fourier",
+  "block": "D",
+  "script": "geometry",
   "label": "inversion W^-1 = -(g^{-jk}) on (13, 2), (13, 11), (17, 3), (29, 2)",
   "ok": true,
   "detail": "",
@@ -137,7 +152,8 @@
  {
   "id": "D3",
   "rows": "2:F4",
-  "script": "d_fourier",
+  "block": "D",
+  "script": "geometry",
   "label": "polynomial reading F(v)_k = P_v(g^k)",
   "ok": true,
   "detail": "",
@@ -146,7 +162,8 @@
  {
   "id": "D4",
   "rows": "2:F5",
-  "script": "d_fourier",
+  "block": "D",
+  "script": "geometry",
   "label": "covariance F_{g^u}(v') = F_g(v) with v'_j = v_{uj}",
   "ok": true,
   "detail": "",
@@ -155,7 +172,8 @@
  {
   "id": "D5",
   "rows": "2:F6",
-  "script": "d_fourier",
+  "block": "D",
+  "script": "geometry",
   "label": "external transport chi(g^m) = exp(-2 pi i m/n), injective: step, half-period, quarter-turn",
   "ok": true,
   "detail": "",
