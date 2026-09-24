@@ -16,7 +16,7 @@ functions applied to chart quantities.
 A family is one check of the registry, identified as <block>.<family> (est.F1 … est.P1, tri.A … tri.F, cap.A … cap.F), and
 names the predicate(s) of the paper's ledger it witnesses (LEDGER; predicates cited as 14:<label>) — the deciding family's
 `# 14:<label> (<key>)` marker is what the ledger's source column links (PREDICATES;
-finitering.space/src/14-entropy/entropy.html#<key>); the family checks are listed on the public page from results.json.
+finitering.space/src/14-entropy/#<key>); the family checks are listed on the public page from results.json.
 Master-ledger predicates reached through the paper predicates: 00:A9 (14:A1, 14:A2), 00:L2 (14:C4, 14:B5, 14:Z1),
 00:L3 (14:C5, 14:C7, 14:P2, 14:P3, 14:P4), 00:L4 (14:C9), 00:L5 (14:B9), 00:L6 (14:X8), 00:L7 (14:P1, 14:B4),
 00:L1 (14:X2, 14:A6), 00:F7 (the additive window, 14:B10).

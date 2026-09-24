@@ -10,7 +10,7 @@ import dirac as dcommon
 PKG = "8-dirac"; NB = f"frc-{PKG}.ipynb"; PAPER = "8"
 LEDGER_URL = f"https://finitering.space/{PKG}/"; APPENDIX = "A"          # the paper's ledger page and the appendix that carries the ledger
 CITE = "Akhtman, Preprints 2025"; DOI = "https://doi.org/10.20944/preprints202510.1486.v2"                     # the heading's citation, linked to the article
-SCRIPT = "dirac.py"; SCRIPTS = f"[`{SCRIPT}`](https://finitering.space/src/{PKG}/{SCRIPT[:-3]}.html)"; RUNTIME = "≈ 1 min"      # the one script, linked to its source page
+SCRIPT = "dirac.py"; SCRIPTS = f"[`{SCRIPT}`](https://finitering.space/src/{PKG}/)"; RUNTIME = "≈ 1 min"      # the one script, linked to its source page
 LEDGER = os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "..", "docs", PKG, f"{PKG}-ledger.json")
 cells = []
 def md(s, cid): cells.append({"cell_type": "markdown", "metadata": {"id": cid}, "source": s})

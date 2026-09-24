@@ -8,7 +8,7 @@ script since 24 September 2026, the three block scripts merged).
 One script, three blocks, thirteen checks (eleven exact, two chart), standard library only. Each check names the
 predicate(s) of the paper's ledger it witnesses (LEDGER below; predicates cited as 4:XN) under a `# 4:XN (<key>)` marker,
 the key the predicate's accession key, and the ledger's source column links the marker of the check that decides each
-predicate (PREDICATES below; finitering.space/src/4-representation/representation.html#<key>). Where a predicate is
+predicate (PREDICATES below; finitering.space/src/4-representation/#<key>). Where a predicate is
 proved in Lean (lean/FrcCore/Representation.lean, no axioms; lean/FrcLedger/Representation.lean on Mathlib), the check
 here is the instance the reader can run.
 

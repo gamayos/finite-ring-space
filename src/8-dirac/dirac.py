@@ -9,7 +9,7 @@ One script, eight blocks, 52 family checks over 3 848 exact micro-checks, standa
 integer arithmetic over F_p and K = F_p[w]/(w² − ν): no floats, no random sampling. A family is the labelled claim of a
 block (fin.S1, o2.C3i, o8.X7, …), one check of the registry, identified as <block>.<family>, and names the predicate(s) of
 the paper's ledger it witnesses (LEDGER; predicates cited as 8:<label>) — the deciding family's `# 8:<label> (<key>)`
-marker is what the ledger's source column links (PREDICATES; finitering.space/src/8-dirac/dirac.html#<key>); the family
+marker is what the ledger's source column links (PREDICATES; finitering.space/src/8-dirac/#<key>); the family
 checks are listed on the public page from results.json. Where a predicate is proved in Lean (lean/FrcCore/Dirac.lean with
 no axioms, lean/FrcLedger/Dirac.lean on Mathlib), the check here is the instance the reader can run. Master-ledger
 predicates reached through the paper predicates: 00:C3 (8:B4), 00:C8 (8:B5, 8:B6), 00:B10 (8:B5).

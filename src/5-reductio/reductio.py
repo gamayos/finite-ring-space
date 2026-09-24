@@ -7,7 +7,7 @@ the paper's predicate ledger (Appendix B, 17 September 2026; one script since 24
 One script, four blocks, seventeen checks, standard library only. Each check names the predicate(s) of the paper's ledger
 it witnesses (LEDGER below; predicates cited as 5:XN) under a `# 5:XN (<key>)` marker, the key the predicate's accession
 key, and the ledger's source column links the marker of the check that decides each predicate (PREDICATES below;
-finitering.space/src/5-reductio/reductio.html#<key>). Where a predicate is proved in Lean (lean/FrcCore/Reductio.lean, no
+finitering.space/src/5-reductio/#<key>). Where a predicate is proved in Lean (lean/FrcCore/Reductio.lean, no
 axioms; lean/FrcLedger/Reductio.lean on Mathlib), the check here is the instance the reader can run.
 
     python3 reductio.py           every block, results.json written; exit 1 if a check fails (≈ 10 s)

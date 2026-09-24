@@ -67,6 +67,6 @@ it installs the package from the site (`pip install frc-13-epi --find-links http
 `predicate`; the sdist carries the `.py` files only, so the two C passes run their pure-python fallback there), states the predicate and runs `predicate("13:F2")`: the blocks of the families that cite the predicate run once per session (the deciding family is `epi.PREDICATES`), the check
 that decides the predicate is printed from the script's own source — the line under its `# 13:F2 (p13028)` marker — and every family
 record citing the predicate is listed with its verdict. The markers in `epi.py` are the lines the
-ledger page's source glyph opens (`docs/src/13-epi/epi.html#<key>`). The predicates' Lean counterparts are the
+ledger page's source glyph opens (`docs/src/13-epi/#<key>`). The predicates' Lean counterparts are the
 declarations named by their keys (`p13028`) at the end of `lean/FrcCore/Epi.lean` and `lean/FrcLedger/Epi.lean`
 (`lean/make_predicates.py`), one per predicate, with the paper's module as one executable file for the web editor.

@@ -6,7 +6,7 @@ kurepa_wall, frame_invariants merged; the two C passes stay beside it as kurepa_
 fly — a pure-python pass to a smaller bound runs without a compiler).
 ========================================================================================================================
 
-One script, six blocks, forty family checks of exact micro-checks, standard library only. Every check is exact: integers,
+One script, six blocks, forty-one family checks of exact micro-checks, standard library only. Every check is exact: integers,
 residues, exact rationals (fractions.Fraction); the external targets e and π enter only as certified rational brackets of
 the paper's own chains (the subfactorial chain for e, the Machin chain for π), and the binary64 constants enter as the
 objects of study of the readout theorems (compared exactly with correctly rounded framed rationals). No floating-point
@@ -16,7 +16,7 @@ median, the Gauss sums) are [approx]-tagged diagnostics of the paper and decide 
 A check of the registry is a *family* of micro-checks — one labelled claim of a block (e.R1, pi.W1, pi2.B2, tow.H,
 kur.K1, …) — and names the predicate(s) of the paper's ledger it witnesses (LEDGER; predicates cited as 13:XN); the
 deciding family's `# 13:XN (<key>)` marker is what the ledger's source column links (PREDICATES;
-finitering.space/src/13-epi/epi.html#<key>). Master-ledger predicates reached through the paper predicates: 00:B8
+finitering.space/src/13-epi/#<key>). Master-ledger predicates reached through the paper predicates: 00:B8
 (13:J1, 13:J3), 00:B9 (13:J4, 13:J5), 00:C13 (13:J3), 00:C14 (13:B2, 13:H2), 00:B1 (13:B4), 00:C24 (13:G7 with A8, the
 third-order wall) and 00:C26 (13:E5, the four chains as E- and G-partial sums); 13:Y1 and 13:Y3 are the paper's
 hypotheses (block Y, tag O).

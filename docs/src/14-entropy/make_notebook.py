@@ -10,7 +10,7 @@ import entropy as dcommon
 PKG = "14-entropy"; NB = f"frc-{PKG}.ipynb"; PAPER = "14"
 LEDGER_URL = f"https://finitering.space/{PKG}/"; SECTION = "5.3"          # the paper's ledger page and the subsection that carries the ledger (Claim status: Predicate ledger)
 CITE = "Akhtman & Voether, Preprints 2026"; DOI = "https://doi.org/10.20944/preprints202608.0310.v1"                       # the heading's citation, linked to the article
-SCRIPT = "entropy.py"; SCRIPTS = f"[`{SCRIPT}`](https://finitering.space/src/{PKG}/{SCRIPT[:-3]}.html)"; RUNTIME = "≈ 5 s"      # the one script, linked to its source page
+SCRIPT = "entropy.py"; SCRIPTS = f"[`{SCRIPT}`](https://finitering.space/src/{PKG}/)"; RUNTIME = "≈ 5 s"      # the one script, linked to its source page
 LEDGER = os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "..", "docs", PKG, f"{PKG}-ledger.json")
 cells = []
 def md(s, cid): cells.append({"cell_type": "markdown", "metadata": {"id": cid}, "source": s})

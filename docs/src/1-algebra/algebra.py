@@ -6,7 +6,7 @@ predicate ledger (Appendix A, 16 September 2026; one script since 24 September 2
 
 One script, three blocks, sixteen checks, standard library only. Each check names the predicate(s) of the paper's ledger
 it witnesses (LEDGER below; predicates cited as 1:XN) under a `# 1:XN (<key>)` marker, and the ledger's source column
-links the marker in return (finitering.space/src/1-algebra/algebra.html#<key>). The paper \\label(s) a check decides are
+links the marker in return (finitering.space/src/1-algebra/#<key>). The paper \\label(s) a check decides are
 in the block banners. Seven master-ledger predicates of the corpus cite this paper (00:A8, B1, B8, B11, C9, C10, Y3); the
 predicates of the paper ledger that the master carries are listed in the site generator.
 

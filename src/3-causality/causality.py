@@ -8,7 +8,7 @@ since 24 September 2026, the four block scripts merged).
 One script, four blocks, sixteen checks, standard library only. Each check names the predicate(s) of the paper's ledger it
 witnesses (LEDGER below; predicates cited as 3:XN) under a `# 3:XN (<key>)` marker, the key the predicate's accession key,
 and the ledger's source column links the marker of the check that decides each predicate (PREDICATES below;
-finitering.space/src/3-causality/causality.html#<key>). Where a predicate is proved in Lean (lean/FrcCore/Causality.lean,
+finitering.space/src/3-causality/#<key>). Where a predicate is proved in Lean (lean/FrcCore/Causality.lean,
 no axioms; lean/FrcLedger/Causality.lean on Mathlib), the check here is the instance the reader can run.
 
     python3 causality.py          every block, results.json written; exit 1 if a check fails (≈ 10 s)

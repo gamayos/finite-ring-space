@@ -98,7 +98,7 @@ writes under `docs/pkg/` at each site build; import name `frc_8_dirac`, `__init_
 states the predicate and runs `predicate("8:D9")`: the blocks of the families that cite the predicate run once per session (the
 deciding family is `dirac.PREDICATES`, the block the prefix of its id), the deciding check is printed from the script's own source — the line under its
 `# 8:D9 (<key>)` marker — and every record citing the predicate is listed with its verdict. The markers in `dirac.py`
-are the lines the ledger page's source glyph opens (`docs/src/8-dirac/dirac.html#<key>`). The predicates'
+are the lines the ledger page's source glyph opens (`docs/src/8-dirac/#<key>`). The predicates'
 Lean counterparts are the declarations named by their keys (`p08029`) at the end of `lean/FrcCore/Dirac.lean` and
 `lean/FrcLedger/Dirac.lean` (`lean/make_predicates.py`), one per predicate, with the module as one executable file for the
 web editor (`lean/web/core/Dirac.lean`, `lean/web/Dirac.lean`).

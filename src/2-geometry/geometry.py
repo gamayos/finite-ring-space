@@ -7,7 +7,7 @@ predicate ledger (Appendix A, 17 September 2026, from the corpus script validati
 
 One script, four blocks, eighteen checks, standard library only. Each check names the predicate(s) of the paper's ledger it
 witnesses (LEDGER below; predicates cited as 2:XN) under a `# 2:XN (<key>)` marker, the key the predicate's accession key,, and the ledger's source column links the
-marker of the check that decides each predicate (PREDICATES below; finitering.space/src/2-geometry/geometry.html#<key>).
+marker of the check that decides each predicate (PREDICATES below; finitering.space/src/2-geometry/#<key>).
 Where a predicate is proved in Lean (lean/FrcLedger/Geometry.lean on Mathlib, or lean/FrcCore with no axioms), the check here
 is the instance the reader can run; the witnesses decide the same statements at different generality.
 

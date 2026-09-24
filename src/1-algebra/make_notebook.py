@@ -10,7 +10,7 @@ import algebra as dcommon
 PKG = "1-algebra"; NB = f"frc-{PKG}.ipynb"; PAPER = "1"
 LEDGER_URL = f"https://finitering.space/{PKG}/"; APPENDIX = "A"          # the paper's ledger page and the appendix that carries the ledger
 CITE = "Akhtman, Axioms 2025"; DOI = "https://doi.org/10.3390/axioms14080636"                       # the heading's citation, linked to the article
-SCRIPT = "algebra.py"; SCRIPTS = f"[`{SCRIPT}`](https://finitering.space/src/{PKG}/{SCRIPT[:-3]}.html)"; RUNTIME = "≈ 30 s"      # the one script, linked to its source page
+SCRIPT = "algebra.py"; SCRIPTS = f"[`{SCRIPT}`](https://finitering.space/src/{PKG}/)"; RUNTIME = "≈ 30 s"      # the one script, linked to its source page
 LEDGER = os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "..", "docs", PKG, f"{PKG}-ledger.json")
 cells = []
 def md(s, cid): cells.append({"cell_type": "markdown", "metadata": {"id": cid}, "source": s})

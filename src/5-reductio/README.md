@@ -66,6 +66,6 @@ writes under `docs/pkg/` at each site build; import name `frc_5_reductio`, `__in
 states the predicate and runs `predicate("5:E1")`: the block of the check that decides the predicate runs once per session (the
 deciding check is `reductio.PREDICATES`, the block the letter of its id; A4 decides C2 and C3, B3 decides D4 and E8, each on one marker), that check is printed from the script's own source — the line under its
 `# 5:E1 (p05027)` marker — and every record citing the predicate is listed with its verdict. The markers in `reductio.py`
-are the lines the ledger page's source glyph opens (`docs/src/5-reductio/reductio.html#<key>`). The predicates'
+are the lines the ledger page's source glyph opens (`docs/src/5-reductio/#<key>`). The predicates'
 Lean counterparts are the declarations named by their keys (`p05027`) at the end of `lean/FrcCore/Reductio.lean` and `lean/FrcLedger/Reductio.lean`
 (`lean/make_predicates.py`), one per predicate, with the module as one executable file for the web editor (`lean/web/core/Reductio.lean`, `lean/web/Reductio.lean`).

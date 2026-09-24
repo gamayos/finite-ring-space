@@ -86,7 +86,7 @@ writes under `docs/pkg/` at each site build, declaring numpy and matplotlib; imp
 states the predicate and runs `predicate("6:C3")`: the block of the check that decides the predicate runs once per session (the
 deciding check is `fourier.PREDICATES`, the block the letter of its id), that check is printed from the script's own source — the line under its
 `# 6:C3 (<key>)` marker — and every record citing the predicate is listed with its verdict. The markers in `fourier.py`
-are the lines the ledger page's source glyph opens (`docs/src/6-fourier/fourier.html#<key>`). The predicates'
+are the lines the ledger page's source glyph opens (`docs/src/6-fourier/#<key>`). The predicates'
 Lean counterparts are the declarations named by their keys (`p06017`) at the end of `lean/FrcCore/Fourier.lean` (seven, no axioms:
 B2, B3, B5–B7, D4, D5, conjunctions of theorems of `Frame`, `Sum` and `Meridian`) and `lean/FrcLedger/Fourier.lean` (fifteen, Mathlib), one per
 predicate (`lean/make_predicates.py`), with the module as one executable file for the web editor (`lean/web/core/Fourier.lean`, `lean/web/Fourier.lean`).

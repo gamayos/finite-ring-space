@@ -35,7 +35,7 @@ it installs the package from the site (`pip install frc-10-dimensions --find-lin
 `predicate`), states the predicate and runs `predicate("10:C5")`: the blocks of the families that cite the predicate run once per session (the deciding family is `dimensions.PREDICATES`), the check
 that decides the predicate is printed from the script's own source — the line under its `# 10:C5 (<key>)` marker — and every family
 record citing the predicate is listed with its verdict. The markers in `dimensions.py` are the lines the
-ledger page's source glyph opens (`docs/src/10-dimensions/dimensions.html#<key>`). The predicates' Lean counterparts are the
+ledger page's source glyph opens (`docs/src/10-dimensions/#<key>`). The predicates' Lean counterparts are the
 declarations named by their keys (`p10015`) at the end of `lean/FrcCore/Dimensions.lean` and `lean/FrcLedger/Dimensions.lean`
 (`lean/make_predicates.py`), one per predicate, with the paper's module as one executable file for the web editor.
 

@@ -10,7 +10,7 @@ import reductio as dcommon
 PKG = "5-reductio"; NB = f"frc-{PKG}.ipynb"; PAPER = "5"
 LEDGER_URL = f"https://finitering.space/{PKG}/"; APPENDIX = "B"          # the paper's ledger page and the appendix that carries the ledger
 CITE = "Akhtman, Preprints 2025"; DOI = "https://doi.org/10.20944/preprints202508.1744.v1"                       # the heading's citation, linked to the article
-SCRIPT = "reductio.py"; SCRIPTS = f"[`{SCRIPT}`](https://finitering.space/src/{PKG}/{SCRIPT[:-3]}.html)"; RUNTIME = "≈ 60 s; the Goldbach frames of block A are the slow part"      # the one script, linked to its source page
+SCRIPT = "reductio.py"; SCRIPTS = f"[`{SCRIPT}`](https://finitering.space/src/{PKG}/)"; RUNTIME = "≈ 60 s; the Goldbach frames of block A are the slow part"      # the one script, linked to its source page
 LEDGER = os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "..", "docs", PKG, f"{PKG}-ledger.json")
 cells = []
 def md(s, cid): cells.append({"cell_type": "markdown", "metadata": {"id": cid}, "source": s})

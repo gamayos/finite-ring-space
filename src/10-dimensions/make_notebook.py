@@ -10,7 +10,7 @@ import dimensions as dcommon
 PKG = "10-dimensions"; NB = f"frc-{PKG}.ipynb"; PAPER = "10"
 LEDGER_URL = f"https://finitering.space/{PKG}/"; APPENDIX = "A"          # the paper's ledger page and the appendix that carries the ledger
 CITE = "Akhtman, Preprints 2026"; DOI = "https://doi.org/10.20944/preprints202605.0668.v1"                       # the heading's citation, linked to the article
-SCRIPT = "dimensions.py"; SCRIPTS = f"[`{SCRIPT}`](https://finitering.space/src/{PKG}/{SCRIPT[:-3]}.html)"; RUNTIME = "≈ 10 s"      # the one script, linked to its source page
+SCRIPT = "dimensions.py"; SCRIPTS = f"[`{SCRIPT}`](https://finitering.space/src/{PKG}/)"; RUNTIME = "≈ 10 s"      # the one script, linked to its source page
 LEDGER = os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "..", "docs", PKG, f"{PKG}-ledger.json")
 cells = []
 def md(s, cid): cells.append({"cell_type": "markdown", "metadata": {"id": cid}, "source": s})

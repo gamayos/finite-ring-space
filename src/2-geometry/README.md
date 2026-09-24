@@ -50,7 +50,7 @@ states the predicate and runs `predicate("2:D1")`: the block of the check that d
 deciding check is `geometry.PREDICATES`, the block the letter of its id; a check deciding several predicates — A1 for D1–D4, B3 for B4 and C4 — carries them all
 on one marker), that check is printed from the script's own source — the line under its `# 2:D1 (<key>)` marker — and every
 record citing the predicate is listed with its verdict (C2b corroborates E3). The markers in `geometry.py` are the
-lines the ledger page's source glyph opens (`docs/src/2-geometry/geometry.html#<key>`). The predicates' Lean
+lines the ledger page's source glyph opens (`docs/src/2-geometry/#<key>`). The predicates' Lean
 counterparts are the declarations named by their keys (`p02013`) at the end of `lean/FrcCore/Geometry.lean` (B4, C2, C3, C4's in
 `lean/FrcCore/Complex.lean`, which imports Geometry) and `lean/FrcLedger/Geometry.lean` (`lean/make_predicates.py`), one per
 predicate, with the modules as executable files for the web editor (`lean/web/core/Geometry.lean`, `lean/web/core/Complex.lean`,

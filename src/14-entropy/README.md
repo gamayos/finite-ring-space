@@ -54,7 +54,7 @@ states the predicate and runs `predicate("14:C5")`: the blocks of the families t
 session (the deciding family is `entropy.PREDICATES`), the check that decides the predicate is printed from the
 script's own source — the line under its `# 14:C5 (<key>)` marker — and every family record citing the predicate is
 listed with its verdict, the deciding one marked. The markers in `entropy.py` are the lines the ledger page's source
-glyph opens (`docs/src/14-entropy/entropy.html#<key>`). The predicates' Lean counterparts are the declarations named by
+glyph opens (`docs/src/14-entropy/#<key>`). The predicates' Lean counterparts are the declarations named by
 their keys (`p14022`) at the end of `lean/FrcCore/Entropy.lean` and `lean/FrcLedger/Entropy.lean`
 (`lean/make_predicates.py`), one per predicate, with the paper's module as one executable file for the web editor.
 

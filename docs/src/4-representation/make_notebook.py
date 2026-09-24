@@ -10,7 +10,7 @@ import representation as dcommon
 PKG = "4-representation"; NB = f"frc-{PKG}.ipynb"; PAPER = "4"
 LEDGER_URL = f"https://finitering.space/{PKG}/"; APPENDIX = "A"          # the paper's ledger page and the appendix that carries the ledger
 CITE = "Akhtman, Entropy 2026"; DOI = "https://doi.org/10.3390/e28010040"                       # the heading's citation, linked to the article
-SCRIPT = "representation.py"; SCRIPTS = f"[`{SCRIPT}`](https://finitering.space/src/{PKG}/{SCRIPT[:-3]}.html)"; RUNTIME = "≈ 15 s"      # the one script, linked to its source page
+SCRIPT = "representation.py"; SCRIPTS = f"[`{SCRIPT}`](https://finitering.space/src/{PKG}/)"; RUNTIME = "≈ 15 s"      # the one script, linked to its source page
 LEDGER = os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "..", "docs", PKG, f"{PKG}-ledger.json")
 cells = []
 def md(s, cid): cells.append({"cell_type": "markdown", "metadata": {"id": cid}, "source": s})

@@ -51,6 +51,6 @@ writes under `docs/pkg/` at each site build; import name `frc_4_representation`,
 states the predicate and runs `predicate("4:C1")`: the block of the check that decides the predicate runs once per session (the
 deciding check is `representation.PREDICATES`, the block the letter of its id; A4 decides C1 and C2, A5 decides C3 and C4, each on one marker), that check is printed from the script's own source — the line under its
 `# 4:C1 (p04011)` marker — and every record citing the predicate is listed with its verdict. The markers in `representation.py`
-are the lines the ledger page's source glyph opens (`docs/src/4-representation/representation.html#<key>`). The predicates'
+are the lines the ledger page's source glyph opens (`docs/src/4-representation/#<key>`). The predicates'
 Lean counterparts are the declarations named by their keys (`p04011`) at the end of `lean/FrcCore/Representation.lean` and `lean/FrcLedger/Representation.lean`
 (`lean/make_predicates.py`), one per predicate, with the module as one executable file for the web editor (`lean/web/core/Representation.lean`, `lean/web/Representation.lean`).

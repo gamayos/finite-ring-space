@@ -7,7 +7,7 @@ Substrate" (Akhtman, 2026; doi 10.20944/preprints202606.0127.v1), the paper 6-fo
 
 One script, five blocks, thirty-six checks, numpy (matplotlib for the one figure). Each check names the predicate(s) of the
 paper's ledger it witnesses (LEDGER below; predicates cited as 6:XN) under a `# 6:XN (<key>)` marker, and the ledger's
-source column links the marker in return (finitering.space/src/6-fourier/fourier.html#<key>). The paper \\label(s) a
+source column links the marker in return (finitering.space/src/6-fourier/#<key>). The paper \\label(s) a
 check decides are in the block banners. Three master-ledger predicates of the corpus are reached through the paper's:
 00:C2 (6:B5, 6:C3, 6:D4), 00:C14 (6:B2), 00:C7 on the transform layer (6:C9).
 

@@ -333,11 +333,6 @@
    "tag": "Ω",
    "name": "$\\Omega$-hard",
    "text": "Decided by the totality; not closeable by a bounded observer. A demarcation, not an open item."
-  },
-  {
-   "tag": "O",
-   "name": "Open",
-   "text": "Genuinely unresolved."
   }
  ],
  "master": {

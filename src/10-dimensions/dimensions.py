@@ -10,7 +10,7 @@ A–H, each a family of micro-checks; block lift (check_lift) decides the five c
 and two Carriers. A family is one check of the registry, identified as <block>.<family> (dom.A … dom.H, lift.L1 … lift.L5),
 and names the predicate(s) of the paper's ledger it witnesses (LEDGER; predicates cited as 10:<label>) — the deciding
 family's `# 10:<label> (<key>)` marker is what the ledger's source column links (PREDICATES;
-finitering.space/src/10-dimensions/dimensions.html#<key>); the family checks are listed on the public page from
+finitering.space/src/10-dimensions/#<key>); the family checks are listed on the public page from
 results.json. Master-ledger predicates reached through the paper predicates: 00:D7 (10:D7), 00:C12 (10:F3), 00:C13 (10:E9,
 10:G2), 00:C8 (10:E4), 00:B10 (10:E5).
 

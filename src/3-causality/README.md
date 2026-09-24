@@ -52,6 +52,6 @@ writes under `docs/pkg/` at each site build; import name `frc_3_causality`, `__i
 states the predicate and runs `predicate("3:B2")`: the block of the check that decides the predicate runs once per session (the
 deciding check is `causality.PREDICATES`, the block the letter of its id), that check is printed from the script's own source — the line under its
 `# 3:B2 (p03006)` marker — and every record citing the predicate is listed with its verdict (A4 corroborates B2, B5 corroborates B5, C2 corroborates C2, D2 corroborates D1). The markers in `causality.py`
-are the lines the ledger page's source glyph opens (`docs/src/3-causality/causality.html#<key>`). The predicates'
+are the lines the ledger page's source glyph opens (`docs/src/3-causality/#<key>`). The predicates'
 Lean counterparts are the declarations named by their keys (`p03006`) at the end of `lean/FrcCore/Causality.lean` and `lean/FrcLedger/Causality.lean`
 (`lean/make_predicates.py`), one per predicate, with the module as one executable file for the web editor (`lean/web/core/Causality.lean`, `lean/web/Causality.lean`).
