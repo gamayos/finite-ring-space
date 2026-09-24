@@ -1,5 +1,5 @@
 {
- "generated": "23 September 2026",
+ "generated": "24 September 2026",
  "blocks": {
   "A": "Foundation: from existence to the finite carrier",
   "B": "The Carrier: the substrate structure",
@@ -199,7 +199,7 @@
     "14-entr",
     "12-prim"
    ],
-   "witness": "14:estimate_S.py [mixed]",
+   "witness": "14:entropy.py [mixed]",
    "refs": [
     {
      "label": "C13",
@@ -404,7 +404,7 @@
     "22-qm",
     "1-alg"
    ],
-   "witness": "13:validate_towers.py",
+   "witness": "13:epi.py",
    "refs": [
     {
      "label": "B9",
@@ -424,7 +424,7 @@
     "22-qm",
     "37-sim"
    ],
-   "witness": "13:validate_towers.py",
+   "witness": "13:epi.py",
    "refs": [
     {
      "label": "B7",
@@ -549,7 +549,7 @@
    "sources": [
     "6-four"
    ],
-   "witness": "6:b_fractional.py",
+   "witness": "6:fourier.py",
    "refs": [],
    "statement": "Scale-shift duality: dilation $x\\mapsto gx$ is phase evolution of the frame, advancing $t$; over the cycle it is the fractional Fourier transform, whose quarter-turn $Q_4$ is the discrete Fourier transform."
   },
@@ -789,7 +789,7 @@
     "13-epi",
     "2-geom"
    ],
-   "witness": "13:validate_pi2.py, 6:a_shell.py",
+   "witness": "13:epi.py, 6:fourier.py",
    "refs": [
     {
      "label": "C7",
@@ -992,7 +992,7 @@
    "sources": [
     "13-epi"
    ],
-   "witness": "13:validate_pi2.py, 00:check_t8.py",
+   "witness": "13:epi.py, 00:check_t8.py",
    "refs": [],
    "statement": "\\textbf{The third-order wall of $\\pi$}: for every prime $\\p\\ge5$, $\\sigma_\\p=\\sum_{k<(\\p-1)/2}\\binom{2k}{k}/((2k+1)16^{k})$ satisfies $\\sigma_\\p\\equiv0\\ (\\mathrm{mod}\\ \\p^{2})$ (Sun, JNT \\textbf{131} (2011), (1.4)) and $\\sigma_\\p/\\p^{2}\\equiv(-1)^{(\\p+1)/2}B_{\\p-3}/36\\ (\\mathrm{mod}\\ \\p)$: Sun's Conjecture 5.1, $\\sigma_\\p\\equiv(-1)^{(\\p-1)/2}(H_{\\p-1}/12+3\\p^{4}B_{\\p-5}/160)\\ (\\mathrm{mod}\\ \\p^{5})$ for $\\p>5$, proved by Hessami Pilehrood, Hessami Pilehrood and Tauraso (Int.\\ J.\\ Number Theory \\textbf{8} (2012), Thm.\\ 5 (44)), reduced mod $\\p^{3}$ with Glaisher's $H_{\\p-1}\\equiv-\\p^{2}B_{\\p-3}/3\\ (\\mathrm{mod}\\ \\p^{3})$; $\\p=5$ direct. Re-verified for all primes below $10^{4}$."
   },
@@ -1032,7 +1032,7 @@
    "sources": [
     "13-epi"
    ],
-   "witness": "13:validate_e.py, 13:validate_pi.py, 00:check_c26.py",
+   "witness": "13:epi.py, 00:check_c26.py",
    "refs": [],
    "statement": "\\textbf{The four chains of 13-epi are E- and G-partial sums} [import]: the derangement chain $D_n/n!=\\sum_{k\\le n}(-1)^{k}/k!$ is the partial-sum chain of the E-function $e^{-z}$ at $z=1$; the arcsin and Machin chains are partial-sum chains of the G-functions $\\arcsin z$ at $1/2$ and $\\arctan z$ at $1/5$, $1/239$; $e^{\\pm1}\\in\\mathcal E$ and $\\pi,1/\\pi\\in\\mathcal G$, both rings (Fischler--Rivoal, Comment.\\ Math.\\ Helv.\\ \\textbf{89} (2014); J.\\ \\'Ec.\\ polytech.\\ Math.\\ \\textbf{3} (2016), Def.\\ 2). The factorial rate $\\Theta(k/\\log k)$ against the geometric rate $\\Theta(k)$ of 13-epi E5 is the rate of E- against G-partial sums; a factorial-rate chain by rounding, $\\mathrm{round}(n!\\,x)/n!$, exists for every real $x$ and distinguishes nothing. Whether $\\pi$ is the value of an E-function with rational coefficients at a rational point is a question of the continuum, not of the frame: the conjecture $\\operatorname{Frac}\\mathcal E\\cap\\operatorname{Frac}\\mathcal G=\\overline{\\Q}$ (ibid.\\ p.\\ 37) would answer it negatively; the split of 13-epi E5 is by kind of chain and needs no such answer."
   },
@@ -1140,7 +1140,7 @@
     "22-qm",
     "12-prim"
    ],
-   "witness": "10:verify_domains.py",
+   "witness": "10:dimensions.py",
    "refs": [
     {
      "label": "B7",
@@ -2137,7 +2137,7 @@
    "sources": [
     "14-entr"
    ],
-   "witness": "14:estimate_S.py [mixed]",
+   "witness": "14:entropy.py [mixed]",
    "refs": [],
    "statement": "\\textbf{Metrology of the import}: the datum $\\dS$ is read on two faces by four instrument classes, concordantly (14-entr); evidence is priced on two registers, metrology under the circularity criterion (channel-disjoint from the fitting channel) and explanation by zero-freedom derivation. The numeral is $\\Om$-hard; the relations behind it ($\\Om=4\\dS+1$, $\\dS=A/4$) are $\\Om$-blind; the [chart] reading $\\dS\\sim10^{122}$ is the value's chart, not certified content."
   },
@@ -2150,7 +2150,7 @@
    "sources": [
     "14-entr"
    ],
-   "witness": "14:estimate_S.py [mixed]",
+   "witness": "14:entropy.py [mixed]",
    "refs": [
     {
      "label": "C13",
@@ -2172,7 +2172,7 @@
    "sources": [
     "14-entr"
    ],
-   "witness": "14:make-wedge-2.py [mixed]",
+   "witness": "14:entropy.py [mixed]",
    "refs": [
     {
      "label": "A2",
@@ -2194,7 +2194,7 @@
    "sources": [
     "14-entr"
    ],
-   "witness": "14:estimate_S.py [mixed]",
+   "witness": "14:entropy.py [mixed]",
    "refs": [
     {
      "label": "L2",

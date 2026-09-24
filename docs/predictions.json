@@ -1,5 +1,5 @@
 {
- "generated": "23 September 2026",
+ "generated": "24 September 2026",
  "rows": [
   {
    "id": "00:L7",
@@ -25,7 +25,7 @@
    "key": "p14037",
    "tag": "T|R",
    "predicate": "The registered record depth is bounded by $(\\pi/4)\\,r_H/c=13.79$ Gyr \\apx{} (channel-1 anchor) at every observational frame chronon, against a $\\Lambda$CDM $t_0$ that grows with chart time: degenerate to $0.2\\%$ now, separating at ${\\sim}7\\%$ per Gyr; the octant carries zero parameter freedom at fixed $\\Lambda$. Status \\citep{valcin2026}: the oldest cluster population $0.5\\sigma$ below the bound, the inferred age straddling it within $0.1\\sigma$ (\\S\\ref{sec:open}). Falsifier: one well-dated object older than the octant value, in any frame --- fit-independent, fatal; the same bound excludes interior-bounce black-hole cosmology (X8).",
-   "source": "Lem.~\\ref{lem:octant}; \\src{est.P2}",
+   "source": "Lem.~\\ref{lem:octant}\\newline \\pywit{entropy}{p14037}",
    "master": [
     "L3"
    ],
@@ -40,7 +40,7 @@
    "key": "p14038",
    "tag": "T|R",
    "predicate": "The age--rate locus $t_{\\mathrm{age}}H_0=(\\pi/4)/\\tanh(3\\pi/8)=0.950$, exact for the realisation set. Read on the fit-independent stellar age ($13.61\\pm0.34$ Gyr): $H_0=68.2\\pm1.7$ km/s/Mpc \\apx, $0.5\\sigma$ from Planck, $0.65\\sigma$ from TRGB, $2.4\\sigma$ from the Cepheid ladder --- the framework favours the CMB/TRGB value at that significance, and forbids the $\\Omega_\\Lambda\\approx0.76$ by which the rival chart would accommodate the ladder value at the same age. Read on the channel-1 $\\Lambda$ it returns the channel-1 $H_0$ (to $0.1\\%$): a consistency, not a prediction (C8). Falsifier: a confirmed ladder $H_0$ with the stellar age standing ($t_\\star H_0\\ge1.0$ against $0.950$).",
-   "source": "\\S\\ref{sec:open}; \\src{est.P3}; \\lean{Entropy.age\\_rate\\_locus, Entropy.locus\\_bracket}",
+   "source": "\\S\\ref{sec:open}\\newline \\pywit{entropy}{p14038}\\newline \\leanwit{FrcLedger}{p14038} \\lean{Entropy.age\\_rate\\_locus, Entropy.locus\\_bracket}",
    "master": [
     "L3"
    ],
@@ -55,7 +55,7 @@
    "key": "p14039",
    "tag": "T|R",
    "predicate": "\\textbf{(Lead; grade \\tT$\\,\\vert\\,$\\tR.)} The dark-energy equation of state is rigid: $\\Lambda$ is the curvature face of the fixed cardinality, constant, its effective-fluid reading $w=-1$ exactly with no $w_0w_a$ freedom; the fluid statement consumes the conservation-law correspondence and the single-component clause (B8), hence the realisation grade. Status: DESI-era combined fits prefer evolving dark energy at $3$--$4.2\\sigma$ \\citep{desi2025}, contested by reanalyses (\\S\\ref{sec:import}). Falsifier: confirmed evolution of $w$, which kills $\\Lambda\\sim1/\\Om$ outright and exposes P2 through $\\Lambda$.",
-   "source": "\\S\\ref{sec:import}; \\lean{Entropy.fluid\\_w}",
+   "source": "\\S\\ref{sec:import}\\newline \\leanwit{FrcLedger}{p14039} \\lean{Entropy.fluid\\_w}",
    "master": [
     "L3"
    ],
