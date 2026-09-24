@@ -10,7 +10,7 @@
 <title>FRC publications</title>
 <meta name="description" content="Publication status of the Finite Ring Cosmology corpus: manuscripts, preprints, venue history.">
 <link rel="icon" href="frc-logo-fav.png">
-<link rel="stylesheet" href="style.css?v=c79e04d7">
+<link rel="stylesheet" href="style.css?v=cb1b3c14">
 </head>
 <body>
 <div class="wrap">
@@ -209,7 +209,7 @@
       lk.className = "links";
       (p.links || []).forEach(function (L) {
         var a = document.createElement("a"); a.href = L.href; a.title = L.title || L.label;
-        if (PKG_ICONS[L.label]) { a.className = "ico" + (L.label === "python" ? " wit py ok" : L.label === "python-fail" ? " wit py fail" : L.label.indexOf("lean") === 0 ? " lean" : "") + (L.count != null ? " sum" : ""); a.innerHTML = PKG_ICONS[L.label] + (L.count != null ? '<span class="n">' + L.count + '</span>' : ""); a.setAttribute("aria-label", L.label.split("-")[0] + (L.count != null ? " " + L.count : "")); }
+        if (PKG_ICONS[L.label]) { a.className = "ico" + (L.label === "python" ? " wit py ok" : L.label === "python-fail" ? " wit py fail" : L.label === "lean-mathlib" ? " lean ml" : L.label.indexOf("lean") === 0 ? " lean" : "") + (L.count != null ? " sum" : ""); a.innerHTML = PKG_ICONS[L.label] + (L.count != null ? '<span class="n">' + L.count + '</span>' : ""); a.setAttribute("aria-label", L.label.split("-")[0] + (L.count != null ? " " + L.count : "")); }
         else { a.textContent = L.label; }
         if (L.href.indexOf("http") === 0) { a.rel = "noopener"; a.target = "_blank"; }
         lk.appendChild(a);
