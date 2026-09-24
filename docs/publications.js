@@ -197,8 +197,14 @@ const PUBLICATIONS = [
       {
         "href": "https://live.lean-lang.org/#project=lean-v4.34.0&url=https://finitering.space/lean/web/core/Fourier.lean",
         "label": "lean",
-        "count": 20,
-        "title": "20 predicates proved in Lean: the core module Fourier as one executable file (plain Lean, no Mathlib) in the Lean web editor"
+        "count": 7,
+        "title": "7 predicates proved in the core (no axioms), 2 of them also on Mathlib: the core module Fourier as one executable file (plain Lean, no Mathlib) in the Lean web editor"
+      },
+      {
+        "href": "https://live.lean-lang.org/#project=mathlib-stable&url=https://finitering.space/lean/web/Fourier.lean",
+        "label": "lean-mathlib",
+        "count": 15,
+        "title": "15 predicates proved on Mathlib (classical), 2 of them also in the core: the module Fourier as one file on Mathlib in the Lean web editor"
       }
     ]
   },
