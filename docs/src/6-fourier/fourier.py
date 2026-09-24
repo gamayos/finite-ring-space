@@ -5,20 +5,20 @@ Substrate" (Akhtman, 2026; doi 10.20944/preprints202606.0127.v1), the paper 6-fo
 24 September 2026, the five block scripts merged).
 ========================================================================================================================
 
-One script, five blocks, thirty-six checks, numpy (matplotlib for the one figure). Each check names the predicate(s) of the
+One script, five blocks, thirty-seven checks, numpy (matplotlib for the one figure). Each check names the predicate(s) of the
 paper's ledger it witnesses (LEDGER below; predicates cited as 6:XN) under a `# 6:XN (<key>)` marker, and the ledger's
 source column links the marker in return (finitering.space/src/6-fourier/#<key>). The paper \\label(s) a
 check decides are in the block banners. Three master-ledger predicates of the corpus are reached through the paper's:
 00:C2 (6:B5, 6:C3, 6:D4), 00:C14 (6:B2), 00:C7 on the transform layer (6:C9).
 
-    python3 fourier.py            every block, results.json written; exit 1 if a check fails (≈ 5 s)
+    python3 fourier.py            every block, results.json written; exit 1 if a check fails (≈ 6 s)
     python3 fourier.py D          one block (A, B, C, D or E); no results.json
     from frc_6_fourier import predicate; predicate("6:C3")     one predicate: its block runs once per session
 
 Blocks:  A  the frame datum and the shell Fourier operator     EXACT            (6:B1–B3, B5–B7)
          B  the fractional family F^[s]                        EXACT            (6:C2–C9)
          C  representation domains and the coordinate zoom     EXACT            (6:D1, D2, D4, D5)
-         D  the Weil dictionary, the operator-level comparison EXACT            (6:E2, E3, E5–E7)
+         D  the Weil dictionary, the operator-level comparison EXACT            (6:E2, E3, E5–E8)
          E  the cyclotomic observer readout, the entropy cycle EXACT / [approx] (6:F2–F7)
 
 Everything the blocks share:
@@ -53,7 +53,7 @@ LEDGER = {
     "B1": "6:C2", "B2": "6:C3", "B3": "6:C3", "B4": "6:C4", "B5": "6:C5", "B6": "6:C6", "B7": "6:C7", "B8": "6:C7",
     "B9": "6:C8", "B10": "6:C9",
     "C1": "6:D1", "C2": "6:D2", "C3": "6:D2", "C4": "6:D4", "C5": "6:D4", "C6": "6:D5",
-    "D1": "6:E2", "D2": "6:E2", "D3": "6:E3", "D4": "6:E5", "D5": "6:E6", "D6": "6:E7", "D7": "6:E7",
+    "D1": "6:E2", "D2": "6:E2", "D3": "6:E3", "D4": "6:E5", "D5": "6:E6", "D6": "6:E7", "D7": "6:E7", "D8": "6:E8",
     "E1": "6:F2", "E2": "6:F3", "E3": "6:F3", "E4": "6:F4", "E5": "6:F5", "E6": "6:F6", "E7": "6:F7",
 }
 # The master-ledger predicates of the corpus witnessed through the paper's: 00:C2 (6:B5, 6:C3, 6:D4), 00:C14 (6:B2),
@@ -72,7 +72,7 @@ PREDICATES = {
     "6:B1": "A1", "6:B2": "A2", "6:B3": "A3", "6:B5": "A4", "6:B6": "A5", "6:B7": "A6",
     "6:C2": "B1", "6:C3": "B2", "6:C4": "B4", "6:C5": "B5", "6:C6": "B6", "6:C7": "B7", "6:C8": "B9", "6:C9": "B10",
     "6:D1": "C1", "6:D2": "C2", "6:D4": "C4", "6:D5": "C6",
-    "6:E2": "D2", "6:E3": "D3", "6:E5": "D4", "6:E6": "D5", "6:E7": "D6",
+    "6:E2": "D2", "6:E3": "D3", "6:E5": "D4", "6:E6": "D5", "6:E7": "D6", "6:E8": "D8",
     "6:F2": "E1", "6:F3": "E2", "6:F4": "E4", "6:F5": "E5", "6:F6": "E6", "6:F7": "E7",
 }
 _RAN = set()                                            # blocks already run in this session (predicate() runs each once)
@@ -729,11 +729,14 @@ def block_C():
 #   D6  prop:heisenberg       F σ F⁻¹ = D_1, F D_1 F⁻¹ = σ⁻¹ with D_1 = diag(g^k); F^r σ = σ_r F^r,
 #                             (σ_0, σ_1, σ_2, σ_3) = (σ, D_1, σ⁻¹, D_1⁻¹); the expansion eq:conj-expansion
 #                             F^[s] = Σ_r c_r(s) F^r with c_r(s) = ¼ Σ_ℓ (g^{rκ−s})^ℓ
-#   D7  conj:monomial         the sweep: F^[s] σ F^[s]⁻¹ monomial exactly at the four cardinal indices and
+#   D7  prop:heisenberg       the sweep: F^[s] σ F^[s]⁻¹ monomial exactly at the four cardinal indices and
 #                             non-monomial at every one of the 112 intermediate indices over
 #                             p ∈ {13, 17, 29, 37, 41} (p = 5 has no intermediate index)
+#   D8  thm:monomial          cardinal exclusivity: off j ∈ {−1, 0, 1} row 0 of F^[s] σ F^[s]⁻¹ is x⁻¹ times a
+#                             quadratic in x = g^j with leading coefficient i(c₀+c₂)c₃(−s) ≠ 0, so at least 4κ−5
+#                             nonzero entries for every non-cardinal s; every shell p ≡ 1 (mod 4) below 200
 #
-# Shells: p = 5, 13, 17, 29, 37, 41.
+# Shells: p = 5, 13, 17, 29, 37, 41 (D8: every shell below 200).
 def shift(n):
     """(σ v)_k = v_{k−1}: the exponent-shift permutation matrix."""
     S = np.zeros((n, n), dtype=np.int64)
@@ -742,7 +745,7 @@ def shift(n):
     return S
 
 def block_D():
-    """Block D — the Weil dictionary and the operator-level comparison (EXACT, integer-pinned): D1–D7."""
+    """Block D — the Weil dictionary and the operator-level comparison (EXACT, integer-pinned): D1–D8."""
     print("block D — the Weil dictionary and the operator-level comparison")
     frames = {p: Frame(p) for p in SHELLS}
 
@@ -855,6 +858,37 @@ def block_D():
         det.append(f"p={p}: monomial at {sorted(s for s in range(n) if mono[s])}")
     ok &= (n_int == 112)
     check("D7", "F^[s] σ F^[s]⁻¹ is monomial exactly at the four cardinal indices and non-monomial at every one of the 112 intermediate indices of p ∈ {13,17,29,37,41}", ok, "; ".join(det) + f"; {n_int} intermediate indices swept")
+
+    # D8 — cardinal exclusivity as a theorem (thm:monomial): off j ∈ {−1, 0, 1} row 0 of F^[s] σ F^[s]⁻¹ is
+    # i[(c₀+c₂)(c'₃x + c'₁x⁻¹) + (c₁+c₃)(c'₀+c'₂)], x = g^j, c_r = c_r(s), c'_r = c_r(−s): x⁻¹ times a quadratic in x whose leading
+    # coefficient i(c₀+c₂)c'₃ is nonzero for every non-cardinal s (c₀+c₂ = (1+g^{−2s})/2, every c_r(±s) ≠ 0), so the row has at
+    # least 4κ−5 nonzero entries. Checked on every shell p ≡ 1 (mod 4) below 200 (the quadratic's coefficients, the entry formula
+    # against the direct product, the count), five of the six shells of Table tab:checks among them (p = 5 has no such index).
+    ok, n_int8, worst, det = True, 0, None, []
+    for p in [q for q in range(13, 200) if q % 4 == 1 and all(q % d for d in range(2, int(q ** 0.5) + 1))]:
+        f = frames.get(p) or Frame(p); n, k, inv2 = f.n, f.kap, pow(2, p - 2, p)
+        sig = shift(n)
+        c = lambda r, t: f.inv4 * sum(pow(f.gpow(r * k - t), l, p) for l in range(4)) % p
+        for s in range(n):
+            if s % k == 0:
+                continue
+            cs, cps = [c(r, s) for r in range(4)], [c(r, -s) for r in range(4)]
+            c02 = (cs[0] + cs[2]) % p
+            ok &= all(x != 0 for x in cs + cps) and c02 == inv2 * (1 + f.gpow(-2 * s)) % p and c02 != 0
+            lead, cst = f.i * c02 * cps[3] % p, f.i * c02 * cps[1] % p
+            ok &= lead != 0 and cst != 0
+            row = (mm(f.frft(s)[:1], sig, p) @ f.frft(-s)) % p                 # row 0 of F^[s] σ F^[s]⁻¹, by the product
+            D0 = [f.i * (c02 * (cps[3] * f.gpow(j) + cps[1] * f.gpow(-j)) + (cs[1] + cs[3]) * (cps[0] + cps[2])) % p for j in range(n)]
+            ok &= all(row[0, j] == D0[j] for j in range(n) if j not in {n - 1, 0, 1})
+            nz = int(np.count_nonzero(row)); roots = sum(1 for j in range(n) if D0[j] == 0)
+            ok &= roots <= 2 and nz >= n - 5
+            worst = nz if worst is None else min(worst, nz)
+            n_int8 += 1
+        det.append(f"p={p}")
+    ok &= len(det) == 20 and n_int8 == 1920                                         # the twenty shells 13..197, Σ(p−5)
+    # 6:E8 (p06050)
+    check("D8", "cardinal exclusivity (thm:monomial): row 0 of F^[s] σ F^[s]⁻¹ is x⁻¹ times a quadratic in x = g^j off j ∈ {−1,0,1}, leading coefficient i(c₀+c₂)c₃(−s) ≠ 0, at least 4κ−5 nonzero entries for every non-cardinal s, every shell p ≡ 1 (mod 4) below 200", ok,
+          f"{len(det)} shells, {n_int8} non-cardinal indices; fewest nonzero entries in row 0: {worst}")
 
 # ------------------------------------------------------------------------------------------------------------
 # Block E — the cyclotomic observer readout and the entropy on the meridian cycle

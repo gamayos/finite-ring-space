@@ -101,14 +101,14 @@
      "label": "C2",
      "predicate": "The modular unit-domain group and the grading: $\\{U_{r,s}\\}$ is a finite abelian group isomorphic to $\\Dp$ under $U_{r,s}U_{r',s'}=U_{r+r',s+s'}$, and $\\Ap$ is $\\Dp$-graded, $\\Ap^{(r,s)}\\Ap^{(r',s')}\\subseteq\\Ap^{(r+r',s+s')}$.",
      "tag": "T",
-     "source": "Thms.~\\ref{thm:group}, \\ref{thm:graded}\\newline \\pywit{dimensions}{p10012}\\newline \\leanwit{FrcCore}{p10012} \\lean{Dimensions.U\\_mul, Dimensions.Uhom\\_injective, Dimensions.graded, FRC.Dimensions.Dom.mul\\_inv}",
+     "source": "Thms.~\\ref{thm:group}, \\ref{thm:graded}\\newline \\pywit{dimensions}{p10012}{C2}, \\leanwit{FrcCore}{p10012}{C2}, \\leanwit{FrcLedger}{p10012}{C2} \\lean{Dimensions.U\\_mul, Dimensions.Uhom\\_injective, Dimensions.graded, FRC.Dimensions.Dom.mul\\_inv}",
      "key": "p10012"
     },
     {
      "label": "C3",
      "predicate": "Fibrewise addition and the neutral-domain criterion: a sum of homogeneous quantities is homogeneous exactly when its nonzero summands share a domain, the fibre components adding separately; a monomial $\\prod Q_j^{k_j}$ has domain $\\sum k_j(r_j,s_j)$ and is a neutral-domain invariant iff that sum is $(0,0)$ in $\\Dp$.",
      "tag": "T",
-     "source": "Thms.~\\ref{thm:fibrewise}, \\ref{thm:neutral}\\newline \\pywit{dimensions}{p10013}\\newline \\leanwit{FrcCore}{p10013} \\lean{Dimensions.fibre\\_add, Dimensions.coeff\\_sum\\_single, Dimensions.monomial\\_units, Dimensions.single\\_mem\\_grade\\_iff, FRC.Dimensions.Dom.pow\\_eq}",
+     "source": "Thms.~\\ref{thm:fibrewise}, \\ref{thm:neutral}\\newline \\pywit{dimensions}{p10013}{C3}, \\leanwit{FrcCore}{p10013}{C3}, \\leanwit{FrcLedger}{p10013}{C3} \\lean{Dimensions.fibre\\_add, Dimensions.coeff\\_sum\\_single, Dimensions.monomial\\_units, Dimensions.single\\_mem\\_grade\\_iff, FRC.Dimensions.Dom.pow\\_eq}",
      "key": "p10013"
     },
     {
@@ -122,14 +122,14 @@
      "label": "C5",
      "predicate": "Window covariance: on a bounded window $|r|,|s|\\le H<2\\kap$ in the flag-free sector the labels are covariant under every admissible reframing; the bound is sharp (the label $(0,\\pi)$ is pushforward-invariant yet non-neutral); the naive character is ill-defined on the modular projection and the would-be temporal character fails composition ($5^{2}\\equiv1$ in $\\Z_{12}^{\\times}$); on the realized lattice the invariant labels are exactly $\\{0,2\\kap\\}$; the $\\sigma$-twisted action is equivariant by full sweep on $\\p=13$ and $229$; the flagged label $(0,0;1)$ moves under $\\eps=-1$.",
      "tag": "T",
-     "source": "Thm.~\\ref{thm:covariance}\\newline \\pywit{dimensions}{p10015}\\newline \\leanwit{FrcLedger}{p10015} \\lean{Dimensions.dilation\\_character, Dimensions.invariant\\_iff, Dimensions.quarter\\_turn\\_law, Dimensions.sigma\\_twist, Dimensions.half\\_period\\_invariant\\_not\\_neutral, Dimensions.flag\\_moves, Dimensions.witnesses13}",
+     "source": "Thm.~\\ref{thm:covariance}\\newline \\pywit{dimensions}{p10015}{C5}, \\leanwit{FrcLedger}{p10015}{C5} \\lean{Dimensions.dilation\\_character, Dimensions.invariant\\_iff, Dimensions.quarter\\_turn\\_law, Dimensions.sigma\\_twist, Dimensions.half\\_period\\_invariant\\_not\\_neutral, Dimensions.flag\\_moves, Dimensions.witnesses13}",
      "key": "p10015"
     },
     {
      "label": "C6",
      "predicate": "What the action forces and what is declared: the time-exponent period $\\p-1$ is forced by the pushforward action of $\\Zp^{\\times}$, the space-exponent refinement to period $\\p$ is declared and carried by the transport theorem (D2); classical temporal unit change is nominal re-assignment within a fixed presentation, the chronon atomic.",
      "tag": "T|D",
-     "source": "Rems.~\\ref{rem:periods}, \\ref{rem:atomicity}, \\ref{rem:lattice-spacetime}, Prop.~\\ref{prop:meridian-transport}\\newline \\leanwit{FrcCore}{p10016} \\lean{Dimensions.meridian\\_transport, FRC.Dimensions.meridian\\_transport}",
+     "source": "Rems.~\\ref{rem:periods}, \\ref{rem:atomicity}, \\ref{rem:lattice-spacetime}, Prop.~\\ref{prop:meridian-transport}\\newline \\leanwit{FrcCore}{p10016}{C6}, \\leanwit{FrcLedger}{p10016}{C6} \\lean{Dimensions.meridian\\_transport, FRC.Dimensions.meridian\\_transport}",
      "key": "p10016"
     }
    ]
@@ -142,21 +142,21 @@
      "label": "D1",
      "predicate": "Chart duality: $[f]=\\unitT^{-1}$; $\\delta_S:D\\mapsto D^{-1}$ is an involution of the domain group whose orbit on the generators is the four-domain structure (space, momentum, time, energy); $\\delta_C$ the second involution, carrying $\\unitL\\mapsto[p]$, $\\unitT\\mapsto\\unitE$.",
      "tag": "T",
-     "source": "Def.~\\ref{def:frequency-domain}, Thm.~\\ref{thm:turn}\\newline \\pywit{dimensions}{p10017}\\newline \\leanwit{FrcCore}{p10017} \\lean{Dimensions.deltaS\\_involutive, Dimensions.four\\_domains, Dimensions.deltaC\\_involutive, Dimensions.deltaC\\_generators, FRC.Dimensions.Dom.inv\\_inv, FRC.Dimensions.deltaC\\_involutive}",
+     "source": "Def.~\\ref{def:frequency-domain}, Thm.~\\ref{thm:turn}\\newline \\pywit{dimensions}{p10017}{D1}, \\leanwit{FrcCore}{p10017}{D1}, \\leanwit{FrcLedger}{p10017}{D1} \\lean{Dimensions.deltaS\\_involutive, Dimensions.four\\_domains, Dimensions.deltaC\\_involutive, Dimensions.deltaC\\_generators, FRC.Dimensions.Dom.inv\\_inv, FRC.Dimensions.deltaC\\_involutive}",
      "key": "p10017"
     },
     {
      "label": "D2",
      "predicate": "The internal flag: $\\Dp$ contains exactly one subgroup of order four, $\\langle\\unitT^{\\kap}\\rangle$, entirely in the time-exponent factor; $\\Iq:=\\unitT^{\\kap}$, $\\Iq^{4}=1$, $\\Iq^{2}=\\unitT^{\\pi}$; no flag of space ($\\Z_\\p$ has no element of order four); the two periods interfere, $(\\unitL\\unitT^{\\kap})^{\\p}=\\Iq$, on three shells.",
      "tag": "T",
-     "source": "Thm.~\\ref{thm:domain-q4}, Cor.~\\ref{cor:no-space-flag}, Prop.~\\ref{prop:meridian-transport}\\newline \\pywit{dimensions}{p10018}\\newline \\leanwit{FrcCore}{p10018} \\lean{Dimensions.order\\_four\\_iff, Dimensions.unique\\_order\\_four\\_subgroup, Dimensions.no\\_flag\\_of\\_space, Dimensions.order\\_two\\_iff, Dimensions.meridian\\_transport, Dimensions.quarter\\_turn\\_law, FRC.Dimensions.flag\\_order\\_four, FRC.Dimensions.no\\_flag\\_of\\_space, FRC.Dimensions.order\\_four\\_13}",
+     "source": "Thm.~\\ref{thm:domain-q4}, Cor.~\\ref{cor:no-space-flag}, Prop.~\\ref{prop:meridian-transport}\\newline \\pywit{dimensions}{p10018}{D2}, \\leanwit{FrcCore}{p10018}{D2}, \\leanwit{FrcLedger}{p10018}{D2} \\lean{Dimensions.order\\_four\\_iff, Dimensions.unique\\_order\\_four\\_subgroup, Dimensions.no\\_flag\\_of\\_space, Dimensions.order\\_two\\_iff, Dimensions.meridian\\_transport, Dimensions.quarter\\_turn\\_law, FRC.Dimensions.flag\\_order\\_four, FRC.Dimensions.no\\_flag\\_of\\_space, FRC.Dimensions.order\\_four\\_13}",
      "key": "p10018"
     },
     {
      "label": "D3",
      "predicate": "The lift: the flag records the quarter the chart duality forgets --- on charts the cardinal skeleton acts as $s\\bmod2$ ($F$ exchanges the conjugate charts, $J$ fixes them), on labels $s\\mapsto\\Iq^{s}$ is an isomorphism $\\Z_4\\to\\langle\\Iq\\rangle$ whose quotient by $\\{0,2\\kap\\}$ returns the chart action; on the Carrier $\\hbar^{2}=-1$, $\\hbar^{4}=1$, $\\hbar^{2}\\ne1$, the crossing quantum of order four, never two. Shells $(13,2)$, $(173,3)$; Carriers $233$, $2\\,408\\,561$.",
      "tag": "T",
-     "source": "Prop.~\\ref{prop:lift}\\newline \\pywit{dimensions}{p10019}\\newline \\leanwit{FrcCore}{p10019} \\lean{Dimensions.operator\\_four\\_cycle, Dimensions.record\\_injective, Dimensions.record\\_range, Dimensions.record\\_mem\\_parity\\_iff, Dimensions.crossing\\_order\\_four, FRC.Dimensions.record\\_values}",
+     "source": "Prop.~\\ref{prop:lift}\\newline \\pywit{dimensions}{p10019}{D3}, \\leanwit{FrcCore}{p10019}{D3}, \\leanwit{FrcLedger}{p10019}{D3} \\lean{Dimensions.operator\\_four\\_cycle, Dimensions.record\\_injective, Dimensions.record\\_range, Dimensions.record\\_mem\\_parity\\_iff, Dimensions.crossing\\_order\\_four, FRC.Dimensions.record\\_values}",
      "key": "p10019"
     },
     {
@@ -177,7 +177,7 @@
      "label": "D6",
      "predicate": "The flagged readings over the counts: $\\unitE=[h][f]=\\Iq\\unitT^{-1}$, $[p]=\\unithbar[k]=\\Iq\\unitL^{-1}$, one quantity per pair, the flagged reading one capacity step above its count; $[S]=\\unitE\\unitT=\\Iq$ and every phase count neutral, $\\unitE\\unitT\\unithbar^{-1}=1$; the absolute unit is horizon-inaccessible (no monomial of a window $H\\ll\\kap$ expresses the flag) and becomes visible at $\\kap\\le H<2\\kap$.",
      "tag": "T",
-     "source": "Props.~\\ref{prop:energy-domain}, \\ref{prop:action-domain}, Cor.~\\ref{cor:flag-horizon}, Rem.~\\ref{rem:saturation}\\newline \\pywit{dimensions}{p10022}\\newline \\leanwit{FrcCore}{p10022} \\lean{Dimensions.flagged\\_readings, Dimensions.flag\\_inaccessible, FRC.Dimensions.flagged\\_readings, FRC.Dimensions.flag\\_inaccessible13}",
+     "source": "Props.~\\ref{prop:energy-domain}, \\ref{prop:action-domain}, Cor.~\\ref{cor:flag-horizon}, Rem.~\\ref{rem:saturation}\\newline \\pywit{dimensions}{p10022}{D6}, \\leanwit{FrcCore}{p10022}{D6}, \\leanwit{FrcLedger}{p10022}{D6} \\lean{Dimensions.flagged\\_readings, Dimensions.flag\\_inaccessible, FRC.Dimensions.flagged\\_readings, FRC.Dimensions.flag\\_inaccessible13}",
      "key": "p10022"
     },
     {
@@ -204,28 +204,28 @@
      "label": "E2",
      "predicate": "One crossing, one action, and pairing closure: $\\lP\\pP=\\tPl\\EP=\\hbar$ (the two faces of $c$ and $\\hbar$ differ by the single relation $\\ell p=tE$); the cross-domain relations reduce to the two generators $c$, $\\hbar$, the mixed products their monomials, $|k_B|=\\hbar/c$ derived; the relation lattice over $\\{\\lP,\\tPl,\\hbar\\}$ has rank two and $k_B$, $\\lP\\EP$ add nothing; $4-1=3$ free scales in bijection with $\\{c,\\hbar,G\\}$, the classical arity derived.",
      "tag": "T",
-     "source": "Rem.~\\ref{prop:action-identity}, Thm.~\\ref{thm:closure}, Cor.~\\ref{cor:dof}\\newline \\pywit{dimensions}{p10025}\\newline \\leanwit{FrcLedger}{p10025} \\lean{Dimensions.action\\_identity, Dimensions.quartet\\_param, Dimensions.pairing\\_closure, Dimensions.normalisation, Dimensions.index\\_two, Dimensions.scale\\_from\\_constants, Dimensions.exponent\\_faces}",
+     "source": "Rem.~\\ref{prop:action-identity}, Thm.~\\ref{thm:closure}, Cor.~\\ref{cor:dof}\\newline \\pywit{dimensions}{p10025}{E2}, \\leanwit{FrcLedger}{p10025}{E2} \\lean{Dimensions.action\\_identity, Dimensions.quartet\\_param, Dimensions.pairing\\_closure, Dimensions.normalisation, Dimensions.index\\_two, Dimensions.scale\\_from\\_constants, Dimensions.exponent\\_faces}",
      "key": "p10025"
     },
     {
      "label": "E3",
      "predicate": "The cancellation identity $|k_B|c=\\hbar$ at the unit face, $(\\pP\\tPl)(\\lP/\\tPl)=\\lP\\pP$; mass derived, $m_P=\\pP/c=\\EP/c^{2}$; the temperature horizon $\\Theta_P=\\EP/|k_B|$; the flag positions $(0,0,1,1)$ and the closure of every quartet relation on the flag component; no $\\hbar$ of space and time.",
      "tag": "T",
-     "source": "Cors.~\\ref{cor:kbc}, \\ref{cor:derived}, Prop.~\\ref{prop:quartet-flags}, Rem.~\\ref{rem:two-moves}\\newline \\pywit{dimensions}{p10026}\\newline \\leanwit{FrcLedger}{p10026} \\lean{Dimensions.cancellation, Dimensions.quartet\\_flags}",
+     "source": "Cors.~\\ref{cor:kbc}, \\ref{cor:derived}, Prop.~\\ref{prop:quartet-flags}, Rem.~\\ref{rem:two-moves}\\newline \\pywit{dimensions}{p10026}{E3}, \\leanwit{FrcLedger}{p10026}{E3} \\lean{Dimensions.cancellation, Dimensions.quartet\\_flags}",
      "key": "p10026"
     },
     {
      "label": "E4",
      "predicate": "The defining congruences, pair form: on the Carrier chart $2G+1\\equiv0$, $2c^{2}\\equiv1$, $\\hbar^{2}\\equiv-1$, $k_B^{2}\\equiv-2\\pmod\\Om$ determine the constants uniquely at pair level --- $G=2\\dS$ exact, the quadratics each with exactly two roots $\\{x,-x\\}$ (admissibility guarantees the residues: $\\Om\\equiv1\\bmod4$, $\\dS$ even for $2$, hence $-2$) --- and the linkage $\\{\\pm k_B\\}\\{\\pm c\\}=\\{\\pm\\hbar\\}$ is derived at pair level; the root pair of $-1$ is $\\{\\hbar,h\\}$ with $h=2\\pi\\hbar\\equiv-\\hbar$. Exhaustive on both Carriers.",
      "tag": "T",
-     "source": "Thm.~\\ref{thm:pins}, Rem.~\\ref{rem:h-form}\\newline \\pywit{dimensions}{p10027}\\newline \\leanwit{FrcCore}{p10027} \\lean{Dimensions.G\\_unique, Dimensions.root\\_pair, Dimensions.linkage, Dimensions.residues\\_exist, Dimensions.h\\_form, Dimensions.carrier233, Dimensions.carrierLab, FRC.Dimensions.G\\_unique, FRC.Dimensions.root\\_pair, FRC.Dimensions.linkage, FRC.Dimensions.carrier233, FRC.Dimensions.carrierLab}",
+     "source": "Thm.~\\ref{thm:pins}, Rem.~\\ref{rem:h-form}\\newline \\pywit{dimensions}{p10027}{E4}, \\leanwit{FrcCore}{p10027}{E4}, \\leanwit{FrcLedger}{p10027}{E4} \\lean{Dimensions.G\\_unique, Dimensions.root\\_pair, Dimensions.linkage, Dimensions.residues\\_exist, Dimensions.h\\_form, Dimensions.carrier233, Dimensions.carrierLab, FRC.Dimensions.G\\_unique, FRC.Dimensions.root\\_pair, FRC.Dimensions.linkage, FRC.Dimensions.carrier233, FRC.Dimensions.carrierLab}",
      "key": "p10027"
     },
     {
      "label": "E5",
      "predicate": "Pair consequences and representative inertness: $G=-c^{2}$, $G^{2}\\equiv4^{-1}$, $\\hbar^{4}\\equiv1$, $(k_Bc)^{2}\\equiv-1$, and $\\hbar cG^{-1}$ lands in $\\{\\pm k_B\\}$; of the eight sign assignments exactly the four with $\\sigma_\\hbar=\\sigma_c\\sigma_k$ are admissible, a $(\\Z/2)^{2}$, every identity holding on each and the $\\hbar$-flip relabelling within $\\{\\hbar,h\\}$; what a bounded observer registers is exactly the pair-inert content.",
      "tag": "T",
-     "source": "Cor.~\\ref{prop:faces-closure}, Rem.~\\ref{rem:registration}\\newline \\pywit{dimensions}{p10028}\\newline \\leanwit{FrcCore}{p10028} \\lean{Dimensions.pair\\_consequences, Dimensions.sign\\_assignments, Dimensions.carrier233, Dimensions.carrierLab, FRC.Dimensions.linkage, FRC.Dimensions.carrier233, FRC.Dimensions.carrierLab}",
+     "source": "Cor.~\\ref{prop:faces-closure}, Rem.~\\ref{rem:registration}\\newline \\pywit{dimensions}{p10028}{E5}, \\leanwit{FrcCore}{p10028}{E5}, \\leanwit{FrcLedger}{p10028}{E5} \\lean{Dimensions.pair\\_consequences, Dimensions.sign\\_assignments, Dimensions.carrier233, Dimensions.carrierLab, FRC.Dimensions.linkage, FRC.Dimensions.carrier233, FRC.Dimensions.carrierLab}",
      "key": "p10028"
     },
     {
@@ -253,7 +253,7 @@
      "label": "E9",
      "predicate": "The minimal admissible pair: under the programme's admissibility predicate ($\\p=4\\kap+1$ prime, $\\kap>1$; $\\Om=4\\dS+1$ prime, $\\dS$ even, $\\dS\\equiv1\\bmod3$; $\\p^{2}<\\Om$) the smallest instance is $(\\p,\\Om)=(13,233)$, by exhaustive scan, with the counterfactuals: dropping the mod-$3$ clause admits $(13,193)$, dropping $\\kap>1$ admits $(5,41)$, $\\kap=2$ gives the composite $9$.",
      "tag": "T",
-     "source": "Defs.~\\ref{def:carrier}, \\ref{def:subject}, Rem.~\\ref{rem:holographic}, \\S\\ref{sec:instantiation}\\newline \\pywit{dimensions}{p10032}\\newline \\leanwit{FrcCore}{p10032} \\lean{FRC.Dimensions.minimality}",
+     "source": "Defs.~\\ref{def:carrier}, \\ref{def:subject}, Rem.~\\ref{rem:holographic}, \\S\\ref{sec:instantiation}\\newline \\pywit{dimensions}{p10032}{E9}, \\leanwit{FrcCore}{p10032}{E9} \\lean{FRC.Dimensions.minimality}",
      "key": "p10032"
     }
    ]
@@ -273,28 +273,28 @@
      "label": "F2",
      "predicate": "The mechanical and gravitational domains: $[m]=\\Iq\\unitL^{-2}\\unitT$; $[a]=\\unitL\\unitT^{-2}$, $[F]=\\Iq\\unitL^{-1}\\unitT^{-1}$, $[p]=\\Iq\\unitL^{-1}$, $[S]=\\Iq$, $[P]=\\Iq\\unitT^{-2}$, $[\\text{pressure}]=\\Iq\\unitL^{-3}\\unitT^{-1}$; $[G]=\\Iq^{-1}\\unitL^{5}\\unitT^{-3}$; the geometric conversions $[G\\hbar/c^{3}]=\\unitL^{2}$, $[Gm/c^{2}]=\\unitL$, $[Gm/c^{3}]=\\unitT$, $[G\\rho_m]=\\unitT^{-2}$; mass derived, not primitive.",
      "tag": "T",
-     "source": "Props.~\\ref{prop:mass-domain}, \\ref{prop:mechanical-domains}, \\ref{prop:G-domain}, Cor.~\\ref{cor:geometric-domains}\\newline \\pywit{dimensions}{p10034}\\newline \\leanwit{FrcCore}{p10034} \\lean{Dimensions.mechanical\\_domains, Dimensions.geometric\\_conversions, FRC.Dimensions.realized13}",
+     "source": "Props.~\\ref{prop:mass-domain}, \\ref{prop:mechanical-domains}, \\ref{prop:G-domain}, Cor.~\\ref{cor:geometric-domains}\\newline \\pywit{dimensions}{p10034}{F2}, \\leanwit{FrcCore}{p10034}{F2}, \\leanwit{FrcLedger}{p10034}{F2} \\lean{Dimensions.mechanical\\_domains, Dimensions.geometric\\_conversions, FRC.Dimensions.realized13}",
      "key": "p10034"
     },
     {
      "label": "F3",
      "predicate": "Temperature carries the acceleration domain: $[\\Theta]=\\unitE[k_B]^{-1}=\\unitL\\unitT^{-2}=[a]$, flag-free; the Unruh combination $\\hbar a/c\\,k_B$ closes flag-free in the algebra; neither mass nor temperature is primitive, the classical $M$-$L$-$T$-plus-thermal system the torsion-free shadow of two generators plus the flag.",
      "tag": "T",
-     "source": "Cor.~\\ref{cor:temperature}, Rem.~\\ref{rem:unruh}\\newline \\pywit{dimensions}{p10035}\\newline \\leanwit{FrcCore}{p10035} \\lean{Dimensions.temperature\\_domain, FRC.Dimensions.realized13}",
+     "source": "Cor.~\\ref{cor:temperature}, Rem.~\\ref{rem:unruh}\\newline \\pywit{dimensions}{p10035}{F3}, \\leanwit{FrcCore}{p10035}{F3}, \\leanwit{FrcLedger}{p10035}{F3} \\lean{Dimensions.temperature\\_domain, FRC.Dimensions.realized13}",
      "key": "p10035"
     },
     {
      "label": "F4",
      "predicate": "Count-valued comparisons are flag-free: every ratio of two quantities of equal crossing degree ($Gm/r^{3}$, the phase exponent $[E][T]/[\\hbar]$) is a neutral or flag-free label, the flag entering unitful measures only; $F/a=[m]$, crossing degrees $1$ and $0$, is the flagged boundary case.",
      "tag": "T",
-     "source": "Exs.~\\ref{ex:phase-neutrality}, \\ref{ex:gravitational-frequency}, \\S\\ref{sec:mechanics-gravity}, Rem.~\\ref{rem:no-free-exponent}\\newline \\pywit{dimensions}{p10036}\\newline \\leanwit{FrcCore}{p10036} \\lean{Dimensions.equal\\_crossing\\_flag\\_free, Dimensions.comparison\\_examples, FRC.Dimensions.realized13}",
+     "source": "Exs.~\\ref{ex:phase-neutrality}, \\ref{ex:gravitational-frequency}, \\S\\ref{sec:mechanics-gravity}, Rem.~\\ref{rem:no-free-exponent}\\newline \\pywit{dimensions}{p10036}{F4}, \\leanwit{FrcCore}{p10036}{F4}, \\leanwit{FrcLedger}{p10036}{F4} \\lean{Dimensions.equal\\_crossing\\_flag\\_free, Dimensions.comparison\\_examples, FRC.Dimensions.realized13}",
      "key": "p10036"
     },
     {
      "label": "F5",
      "predicate": "The electromagnetic domain: with the Coulomb constant neutral (declared), $[q]^{2}=\\unitE\\unitL=\\Iq\\unitL\\unitT^{-1}$; charge is an integer degree on the lift realised as $\\unitL^{2\\kap+1}\\unitT^{(\\kap-1)/2}$, existing iff $\\kap$ is odd, unique up to $\\Iq^{2}$, never window-covariant ($|r|=2\\kap$); no further generator within C1's two charts; on the even capacities no label squares to $[q]^{2}$.",
      "tag": "T|D",
-     "source": "Rem.~\\ref{rem:electromagnetic}\\newline \\pywit{dimensions}{p10047}\\newline \\leanwit{FrcCore}{p10047} \\lean{FRC.Dimensions.charge13, FRC.Dimensions.charge29, FRC.Dimensions.no\\_charge17, FRC.Dimensions.no\\_charge41}",
+     "source": "Rem.~\\ref{rem:electromagnetic}\\newline \\pywit{dimensions}{p10047}{F5}, \\leanwit{FrcCore}{p10047}{F5} \\lean{FRC.Dimensions.charge13, FRC.Dimensions.charge29, FRC.Dimensions.no\\_charge17, FRC.Dimensions.no\\_charge41}",
      "key": "p10047"
     }
    ]
@@ -307,28 +307,28 @@
      "label": "G1",
      "predicate": "Local recovery: for an exponent horizon $H$ with $4\\kap>2H$ the modular labels distinguish every conventional pair $|r|,|s|\\le H$; the flagged sector is recovered through the crossing degree, $M^{u}L^{a}T^{b}\\mapsto(a-2u,\\,b+u;\\,u)$ injective and windowed-faithful.",
      "tag": "T",
-     "source": "Thm.~\\ref{thm:local-recovery}, Cor.~\\ref{cor:recovery-crossings}, Rem.~\\ref{rem:wrap}\\newline \\pywit{dimensions}{p10037}\\newline \\leanwit{FrcCore}{p10037} \\lean{Dimensions.local\\_recovery, Dimensions.embed\\_injective, Dimensions.realize\\_faithful, FRC.Dimensions.recovery13}",
+     "source": "Thm.~\\ref{thm:local-recovery}, Cor.~\\ref{cor:recovery-crossings}, Rem.~\\ref{rem:wrap}\\newline \\pywit{dimensions}{p10037}{G1}, \\leanwit{FrcCore}{p10037}{G1}, \\leanwit{FrcLedger}{p10037}{G1} \\lean{Dimensions.local\\_recovery, Dimensions.embed\\_injective, Dimensions.realize\\_faithful, FRC.Dimensions.recovery13}",
      "key": "p10037"
     },
     {
      "label": "G2",
      "predicate": "The window ladder: coherence $2\\sqrt\\kap$ below recovery $\\kap/2$ below flag inaccessibility $\\kap$ below covariance $2\\kap$, nested strictly for every $\\kap\\ge17$ and failing for the toy $\\kap=3$, all orderings by integer squares; the coherence identity $(2\\sqrt\\kap)^{2}=\\p-1$ and the totality closure $(2\\sqrt\\dS)^{2}=\\Om-1$.",
      "tag": "T",
-     "source": "Rem.~\\ref{rem:ladder}\\newline \\pywit{dimensions}{p10038}\\newline \\leanwit{FrcCore}{p10038} \\lean{Dimensions.window\\_ladder, FRC.Dimensions.window\\_ladder}",
+     "source": "Rem.~\\ref{rem:ladder}\\newline \\pywit{dimensions}{p10038}{G2}, \\leanwit{FrcCore}{p10038}{G2}, \\leanwit{FrcLedger}{p10038}{G2} \\lean{Dimensions.window\\_ladder, FRC.Dimensions.window\\_ladder}",
      "key": "p10038"
     },
     {
      "label": "G3",
      "predicate": "The worked examples: $\\kap=3$, $H=5$, $12>10$ so every pair in $[-5,5]^{2}$ is distinguished; kinetic energy $[m][v]^{2}=[E]$; $Q+Q^{2}$ inhomogeneous; the phase exponent neutral; flag arithmetic ($G\\hbar/c^{3}$ flag-free, $\\Iq^{2}=\\unitT^{\\pi}$); the Schwarzschild length $[Gm/c^{2}]=\\unitL$; the gravitational frequency $[Gm/r^{3}]=\\unitT^{-2}$; the energy--momentum relation $E^{2}=p^{2}c^{2}+m^{2}c^{4}$ homogeneous at crossing degree two, its massless case $E=pc$ at crossing degree one.",
      "tag": "T",
-     "source": "Exs.~\\ref{ex:kappa3}, \\ref{ex:kinetic}, \\ref{ex:dispersion}, \\ref{ex:squaring}, \\ref{ex:phase-neutrality}, \\ref{ex:flag-arithmetic}, \\ref{ex:schwarzschild}, \\ref{ex:gravitational-frequency}\\newline \\pywit{dimensions}{p10039}\\newline \\leanwit{FrcCore}{p10039} \\lean{Dimensions.examples13, Dimensions.recovery13, Dimensions.energy\\_momentum, FRC.Dimensions.realized13, FRC.Dimensions.recovery13, FRC.Dimensions.energy\\_momentum13}",
+     "source": "Exs.~\\ref{ex:kappa3}, \\ref{ex:kinetic}, \\ref{ex:dispersion}, \\ref{ex:squaring}, \\ref{ex:phase-neutrality}, \\ref{ex:flag-arithmetic}, \\ref{ex:schwarzschild}, \\ref{ex:gravitational-frequency}\\newline \\pywit{dimensions}{p10039}{G3}, \\leanwit{FrcCore}{p10039}{G3}, \\leanwit{FrcLedger}{p10039}{G3} \\lean{Dimensions.examples13, Dimensions.recovery13, Dimensions.energy\\_momentum, FRC.Dimensions.realized13, FRC.Dimensions.recovery13, FRC.Dimensions.energy\\_momentum13}",
      "key": "p10039"
     },
     {
      "label": "G4",
      "predicate": "Buckingham's count: on the integer lift the neutral monomials of $N$ quantities are the kernel of their $N\\times3$ label matrix, $N-\\operatorname{rank}$ independent dimensionless products with rank $\\le3$, the classical count for quantities whose classical dimensions lie in $M$-$L$-$T$ and the derived-$k_B$ count for thermal ones; on the window $2H<\\kap$, $|j|\\le1$ lifted and realized neutrality coincide; the pendulum $(T,\\ell,g,m)$: rank $3$, one product.",
      "tag": "T",
-     "source": "Cor.~\\ref{cor:pi-theorem}\\newline \\pywit{dimensions}{p10046}\\newline \\leanwit{FrcLedger}{p10046} \\lean{Dimensions.monomial\\_units, Dimensions.embed\\_injective, Dimensions.window\\_neutrality, Dimensions.pendulum\\_kernel}",
+     "source": "Cor.~\\ref{cor:pi-theorem}\\newline \\pywit{dimensions}{p10046}{G4}, \\leanwit{FrcLedger}{p10046}{G4} \\lean{Dimensions.monomial\\_units, Dimensions.embed\\_injective, Dimensions.window\\_neutrality, Dimensions.pendulum\\_kernel}",
      "key": "p10046"
     }
    ]
@@ -341,28 +341,28 @@
      "label": "X1",
      "predicate": "The arity of classical bookkeeping, derived: four horizons less one identity, $4-1=3$ free scales in bijection with $\\{c,\\hbar,G\\}$, exactly three independent members of $\\{c,\\hbar,G,k_B\\}$; the three mechanical primitives are the two chart generators and the flag's torsion-free surrogate, mass, $[m]=\\Iq\\unitL^{-2}\\unitT$, $m_P=\\pP/c$. Classical dimensional analysis postulates the count and the mass primitive.",
      "tag": "T",
-     "source": "Cors.~\\ref{cor:derived}, \\ref{cor:dof}, Thm.~\\ref{thm:closure}, Prop.~\\ref{prop:mechanical-domains} (restates E2, E3, F2)\\newline \\pywit{dimensions}{p10048}\\newline \\leanwit{FrcCore}{p10048} \\lean{Dimensions.quartet\\_param, Dimensions.scale\\_from\\_constants, Dimensions.cancellation, Dimensions.mechanical\\_domains, FRC.Dimensions.realized13}",
+     "source": "Cors.~\\ref{cor:derived}, \\ref{cor:dof}, Thm.~\\ref{thm:closure}, Prop.~\\ref{prop:mechanical-domains} (restates E2, E3, F2)\\newline \\pywit{dimensions}{p10048}{X1}, \\leanwit{FrcCore}{p10048}{X1}, \\leanwit{FrcLedger}{p10048}{X1} \\lean{Dimensions.quartet\\_param, Dimensions.scale\\_from\\_constants, Dimensions.cancellation, Dimensions.mechanical\\_domains, FRC.Dimensions.realized13}",
      "key": "p10048"
     },
     {
      "label": "X2",
      "predicate": "The thermal primitive is redundant: $[\\Theta]=\\unitE[k_B]^{-1}=\\unitL\\unitT^{-2}$, the acceleration domain, flag-free where energy carries the flag; $|k_B|=\\hbar/c$ is the quartet's mixed product; the Unruh combination $\\hbar a/(c\\,k_B)$ closes as a domain identity. Classical bookkeeping adjoins a thermal unit and reads $k_B$ as a conversion.",
      "tag": "T",
-     "source": "Cors.~\\ref{cor:kbc}, \\ref{cor:temperature}, Rem.~\\ref{rem:unruh} (restates E3, F3)\\newline \\pywit{dimensions}{p10049}\\newline \\leanwit{FrcCore}{p10049} \\lean{Dimensions.cancellation, Dimensions.temperature\\_domain, FRC.Dimensions.realized13}",
+     "source": "Cors.~\\ref{cor:kbc}, \\ref{cor:temperature}, Rem.~\\ref{rem:unruh} (restates E3, F3)\\newline \\pywit{dimensions}{p10049}{X2}, \\leanwit{FrcCore}{p10049}{X2}, \\leanwit{FrcLedger}{p10049}{X2} \\lean{Dimensions.cancellation, Dimensions.temperature\\_domain, FRC.Dimensions.realized13}",
      "key": "p10049"
     },
     {
      "label": "X3",
      "predicate": "One action quantum for both conjugate pairs: the domain lattice has exactly one order-four subgroup, in the time factor (no flag of space), canonical and covariant, so $E=hf$ and $p=\\hbar k$ share one $\\hbar$, $\\lP\\pP=\\tPl\\EP$ --- derived from the shell's algebra with no Lorentz structure used.",
      "tag": "T",
-     "source": "Thm.~\\ref{thm:domain-q4}, Cor.~\\ref{cor:no-space-flag}, Prop.~\\ref{prop:h-domain}, Rem.~\\ref{prop:action-identity} (restates D2, E2)\\newline \\pywit{dimensions}{p10050}\\newline \\leanwit{FrcCore}{p10050} \\lean{Dimensions.unique\\_order\\_four\\_subgroup, Dimensions.no\\_flag\\_of\\_space, Dimensions.action\\_identity, FRC.Dimensions.flag\\_order\\_four, FRC.Dimensions.no\\_flag\\_of\\_space, FRC.Dimensions.order\\_four\\_13}",
+     "source": "Thm.~\\ref{thm:domain-q4}, Cor.~\\ref{cor:no-space-flag}, Prop.~\\ref{prop:h-domain}, Rem.~\\ref{prop:action-identity} (restates D2, E2)\\newline \\pywit{dimensions}{p10050}{X3}, \\leanwit{FrcCore}{p10050}{X3}, \\leanwit{FrcLedger}{p10050}{X3} \\lean{Dimensions.unique\\_order\\_four\\_subgroup, Dimensions.no\\_flag\\_of\\_space, Dimensions.action\\_identity, FRC.Dimensions.flag\\_order\\_four, FRC.Dimensions.no\\_flag\\_of\\_space, FRC.Dimensions.order\\_four\\_13}",
      "key": "p10050"
     },
     {
      "label": "X4",
      "predicate": "Charge is an integer degree of the two generators on the shells of odd capacity, not a further primitive: with the Coulomb constant neutral (F5), $[q]^{2}=\\Iq\\unitL\\unitT^{-1}$, $q_P^{2}=\\hbar c$; the lift has no half root (the Gaussian exponents $M^{1/2}L^{3/2}T^{-1}$ are half-integers there), so torsion-free bookkeeping adjoins an electrical primitive as it adjoins mass; the fine-structure ratio stays a neutral count.",
      "tag": "T",
-     "source": "Rem.~\\ref{rem:electromagnetic} (restates F5)\\newline \\pywit{dimensions}{p10051}\\newline \\leanwit{FrcCore}{p10051} \\lean{FRC.Dimensions.charge13, FRC.Dimensions.charge29, FRC.Dimensions.no\\_charge17, FRC.Dimensions.no\\_charge41}",
+     "source": "Rem.~\\ref{rem:electromagnetic} (restates F5)\\newline \\pywit{dimensions}{p10051}{X4}, \\leanwit{FrcCore}{p10051}{X4} \\lean{FRC.Dimensions.charge13, FRC.Dimensions.charge29, FRC.Dimensions.no\\_charge17, FRC.Dimensions.no\\_charge41}",
      "key": "p10051"
     }
    ]

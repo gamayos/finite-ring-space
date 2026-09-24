@@ -283,6 +283,13 @@
      "tag": "T",
      "source": "Prop.~\\ref{prop:heisenberg}, \\S\\ref{sub:operator-comparison}\\newline \\pywit{fourier}{p06036}{E7}, \\leanwit{FrcLedger}{p06036}{E7} \\lean{Fourier.shell\\_heisenberg}",
      "key": "p06036"
+    },
+    {
+     "label": "E8",
+     "predicate": "Cardinal exclusivity: for every $s\\notin\\{0,\\kap,2\\kap,3\\kap\\}$ the operator \\eqref{eq:conj-expansion} is not monomial --- off $j\\in\\{-1,0,1\\}$ its row $0$ is $x^{-1}$ times a quadratic in $x=\\gen^{j}$ with leading coefficient $\\im\\,[c_0(s)+c_2(s)]\\,c_3(-s)\\neq0$, $c_0(s)+c_2(s)=\\tfrac12(1+\\gen^{-2s})$, so the row has at least $4\\kap-5$ nonzero entries; the count checked on every shell below $200$.",
+     "tag": "T",
+     "source": "Thm.~\\ref{thm:monomial}\\newline \\pywit{fourier}{p06050}{E8}",
+     "key": "p06050"
     }
    ]
   },
@@ -340,19 +347,6 @@
      "key": "p06043"
     }
    ]
-  },
-  {
-   "letter": "Y",
-   "title": "Hypotheses",
-   "rows": [
-    {
-     "label": "Y1",
-     "predicate": "Cardinal exclusivity: for every $s\\notin\\{0,\\kap,2\\kap,3\\kap\\}$ the operator \\eqref{eq:conj-expansion} is not monomial --- sweep-verified on the $112$ intermediate indices of E7, the proof obstructed by the possible vanishing of sparse six-term Laurent polynomials on subgroup cosets.",
-     "tag": "O",
-     "source": "Conj.~\\ref{conj:monomial}",
-     "key": "p06047"
-    }
-   ]
   }
  ],
  "legend": [
@@ -370,11 +364,6 @@
    "tag": "T",
    "name": "Theorem",
    "text": "Derived within this paper from the rows above it and machine-verified in exact arithmetic by the named witness, or observed numerically and reproduced by it to the stated tolerance."
-  },
-  {
-   "tag": "O",
-   "name": "Open",
-   "text": "Genuinely unresolved."
   }
  ],
  "master": {
