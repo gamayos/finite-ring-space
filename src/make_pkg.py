@@ -27,9 +27,12 @@ def sdist(pkgdir, out_dir, version):
     d = ROOT / "src" / pkgdir
     name = "frc-" + pkgdir; mod = "frc_" + pkgdir.replace("-", "_")
     if not (d / "__init__.py").exists(): sys.exit(f"{d}/__init__.py missing: the package needs its import surface")
+    m = re.search(r"^REQUIRES\s*=\s*\[([^\]]*)\]", (d / "__init__.py").read_text(encoding="utf-8"), re.M)   # the package's third-party requirements (14-entropy: matplotlib for the figures); none for a standard-library package
+    requires = re.findall(r"['\"]([^'\"]+)['\"]", m.group(1)) if m else []
     pyproject = (f'[build-system]\nrequires = ["setuptools>=61"]\nbuild-backend = "setuptools.build_meta"\n\n'
-                 f'[project]\nname = "{name}"\nversion = "{version}"\ndescription = "The validation package of the FRC paper {pkgdir}: one check per ledger predicate, exact arithmetic"\n'
-                 f'requires-python = ">=3.9"\nlicense = {{text = "MIT"}}\n\n[tool.setuptools]\npackages = ["{mod}"]\n')
+                 f'[project]\nname = "{name}"\nversion = "{version}"\ndescription = "The validation package of the FRC paper {pkgdir}: one check per ledger predicate{"" if requires else ", exact arithmetic"}"\n'
+                 f'requires-python = ">=3.9"\nlicense = {{text = "MIT"}}\n' + (f'dependencies = [{", ".join(chr(34) + r + chr(34) for r in requires)}]\n' if requires else "")
+                 + f'\n[tool.setuptools]\npackages = ["{mod}"]\n')
     pkginfo = f"Metadata-Version: 2.1\nName: {name}\nVersion: {version}\nSummary: The validation package of the FRC paper {pkgdir}\n"
     files = sorted(p for p in d.glob("*.py"))
     out = out_dir / f"{name}-{version}.tar.gz"; out_dir.mkdir(parents=True, exist_ok=True)

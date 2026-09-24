@@ -2,7 +2,8 @@
  {
   "id": "est.F1",
   "rows": "14:A2, 14:C6",
-  "script": "estimate_S",
+  "block": "est",
+  "script": "entropy",
   "label": "the exact faces on the laboratory Carrier Ω = 2 408 561 (S = 602 140): Ω = 4S + 1, S even (the octant sector Z₈ exists), S ≡ 1 (mod 3), 4S + 1 prime, the octant count S/2 an integer — integer arithmetic, deterministic trial division",
   "ok": true,
   "detail": "5 micro-checks",
@@ -11,7 +12,8 @@
  {
   "id": "est.B9",
   "rows": "14:B9",
-  "script": "estimate_S",
+  "block": "est",
+  "script": "entropy",
   "label": "the area law: the quarter identity 4S = Ω − 1 and the quarter-turn chain (4 | Ω − 1; the hydrogen shell q_H = 4κ_H + 1 = 13, prime) as counts; the chart face 4π n_A = 4S(r_H), n_A = (r_H/ℓ_P)², to 10⁻¹² [approx]",
   "ok": true,
   "detail": "5 micro-checks",
@@ -20,7 +22,8 @@
  {
   "id": "est.T1",
   "rows": "14:C1, 14:C4",
-  "script": "estimate_S",
+  "block": "est",
+  "script": "entropy",
   "label": "the instrument table reproduced from the four public data and the laboratory constants: r_H = 1.66, 1.27, 1.33, 1.19, 1.29, 1.64 × 10²⁶ m, S = 3.3, 1.9, 2.1, 1.7, 2.0, 3.2 × 10¹²², σ_√S = 1, 1.4, 2.4, 20, 2.5, 2.5 % for rows 1, 2a, 2b, 3, 4a, 4b [approx]",
   "ok": true,
   "detail": "6 micro-checks",
@@ -29,7 +32,8 @@
  {
   "id": "est.C1",
   "rows": "14:C4",
-  "script": "estimate_S",
+  "block": "est",
+  "script": "entropy",
   "label": "the two-face concordance over the five evidence readings (gauge row 4a excluded): √S = (1.3–1.8) × 10⁶¹, ±17 % half-range on the count face, a factor 1.9 on S; the conventional channels alone ±14 %, factor 1.7 [approx]",
   "ok": true,
   "detail": "5 micro-checks",
@@ -38,7 +42,8 @@
  {
   "id": "est.C2",
   "rows": "14:C8",
-  "script": "estimate_S",
+  "block": "est",
+  "script": "entropy",
   "label": "the chart identity S_Λ/S_rate = (H_rate/H₀)²/Ω_Λ verified per ladder row to 0.2 % — the definition of Ω_Λ read on the rows; the cluster excess 1.68 against 1/Ω_Λ = 1.46 [ΛCDM]",
   "ok": true,
   "detail": "3 micro-checks",
@@ -47,7 +52,8 @@
  {
   "id": "est.A1",
   "rows": "14:C3, 14:C7, 14:X3, 14:X6",
-  "script": "estimate_S",
+  "block": "est",
+  "script": "entropy",
   "label": "the circularity audit: t₀H_Λ = (2/3) artanh √Ω_Λ = 0.7871 at the fitted Ω_Λ = 0.685, within 0.2 % of π/4; the inversion π/4 ↦ Ω_Λ = tanh²(3π/8) = 0.6837, a 0.19σ landing on 0.685 ± 0.007 [ΛCDM]",
   "ok": true,
   "detail": "4 micro-checks",
@@ -56,7 +62,8 @@
  {
   "id": "est.C3",
   "rows": "14:C8",
-  "script": "estimate_S",
+  "block": "est",
+  "script": "entropy",
   "label": "the channel-1 consistency: H_Λ = 55.7 km/s/Mpc from the fit's Λ (1/H_Λ = 17.55 Gyr), and the locus returns H₀ = H_Λ/tanh(3π/8) = 67.4, the fit's own value to 0.1 % [ΛCDM]",
   "ok": true,
   "detail": "2 micro-checks",
@@ -65,7 +72,8 @@
  {
   "id": "est.P3",
   "rows": "14:P3",
-  "script": "estimate_S",
+  "block": "est",
+  "script": "entropy",
   "label": "the age–rate locus t_age H₀ = (π/4)/tanh(3π/8) = 0.950 (flat ΛCDM 0.951 at the fitted Ω_Λ); read on t⋆ = 13.61 ± 0.34 Gyr: H₀ = 68.2 ± 1.7 km/s/Mpc, 0.5σ from Planck, 0.65σ from TRGB, 2.4σ from the Cepheid ladder; the ladder pair (13.61 Gyr, 73) has t⋆H₀ = 1.016 [approx]",
   "ok": true,
   "detail": "5 micro-checks",
@@ -74,7 +82,8 @@
  {
   "id": "est.C4",
   "rows": "14:C4, 14:C7",
-  "script": "estimate_S",
+  "block": "est",
+  "script": "entropy",
   "label": "the one-face concordance: rate rows carried to the Λ face by c/(H tanh(3π/8)) — r_H^Λ = 1.66, 1.53, 1.60, 1.44, 1.64 × 10²⁶ m — agree to ±7 % half-range over five readings and ±4 % over the conventional channels; the ladder–row-1 residual ≈ 8 % [approx]",
   "ok": true,
   "detail": "8 micro-checks",
@@ -83,7 +92,8 @@
  {
   "id": "est.L1",
   "rows": "14:X2",
-  "script": "estimate_S",
+  "block": "est",
+  "script": "entropy",
   "label": "the floor landing cH₀/a₀ = 5.46 ± 1.1 at H₀ = 67.4, 0.8σ from 2π [approx]",
   "ok": true,
   "detail": "2 micro-checks",
@@ -92,7 +102,8 @@
  {
   "id": "est.P2",
   "rows": "14:C5, 14:P2",
-  "script": "estimate_S",
+  "block": "est",
+  "script": "entropy",
   "label": "the octant bound (π/4) r_H/c = 13.79 Gyr at the channel-1 Λ, degenerate with the ΛCDM t₀ = 13.80 to 0.2 %; the oldest cluster population 13.61 ± 0.34 Gyr 0.5σ below the bound, the prior-dependent inferred age 13.81 straddling it within 0.1σ [ΛCDM]",
   "ok": true,
   "detail": "4 micro-checks",
@@ -101,7 +112,8 @@
  {
   "id": "est.P1",
   "rows": "14:P1",
-  "script": "estimate_S",
+  "block": "est",
+  "script": "entropy",
   "label": "the running floor against Ciocan et al.: on the ∝ H(z) chord a₀(z = 1) = 2.15 × 10⁻¹⁰ (E(1) = 1.79), 0.5σ from the measured 2.38 ± 0.10 with the anchor's systematic band; the fitted linear rate 1.59 ± 0.10 exceeds the chord's 0.95 per unit redshift by ≈ 3σ before systematics [ΛCDM]",
   "ok": true,
   "detail": "3 micro-checks",
@@ -110,7 +122,8 @@
  {
   "id": "tri.A",
   "rows": "14:C5, 14:C8, 14:C9",
-  "script": "triangle",
+  "block": "tri",
+  "script": "entropy",
   "label": "the triangle's audit identities before drawing: the octant t_oct = (√π/4)√S t_P to 10⁻¹²; the two-cluster ratio 1.71 on S; the r_H split 1/√Ω_Λ = 1.208; H₀ = H_Λ/tanh(3π/8) = 67.4; the width identity log₁₀(r_H/ℓ_P) = log₁₀ √(S/π) exact [approx]",
   "ok": true,
   "detail": "5 micro-checks",
@@ -119,7 +132,8 @@
  {
   "id": "tri.D",
   "rows": "14:C9, 14:X5",
-  "script": "triangle",
+  "block": "tri",
+  "script": "entropy",
   "label": "the diagonal: ordinary least squares over the thirteen mid-triangle objects gives k = 3.032 with intercept 1.00 × 10³ at the metre pivot; the constrained k = 3 cubic coefficient c̃ = m/R³ = 0.97 × 10³ kg/m³ (not a density: a sphere's is 0.62 dex lower); the fifteen-object sensitivity k = 3.007; the Schwarzschild exit 1.8 × 10⁸ M☉ within the (1.4–2.8) × 10⁸ band across the four fit variants [approx]",
   "ok": true,
   "detail": "6 micro-checks",
@@ -128,7 +142,8 @@
  {
   "id": "tri.W",
   "rows": "14:C9",
-  "script": "triangle",
+  "block": "tri",
+  "script": "entropy",
   "label": "the wall residents and the slope decomposition: the electron on the Compton wall and Sgr A* on the Schwarzschild wall to < 0.01 dex; k = 3 + dc/d log R with mean c = 2.99 and drift 0.61 dex over the 19-decade baseline; the Compton entry 5.3 × 10⁻¹² m [approx]",
   "ok": true,
   "detail": "5 micro-checks",
@@ -136,9 +151,10 @@
  },
  {
   "id": "tri.F",
-  "rows": "14:V2",
-  "script": "triangle",
-  "label": "the figures written: the registrable triangle (with and without the channel inset) and the standalone wall-channels figure (Figure 3 of the paper)",
+  "rows": "",
+  "block": "tri",
+  "script": "entropy",
+  "label": "the figures written: the registrable triangle (with and without the channel inset) and the standalone wall-channels figure (Figure 3 of the paper; no ledger predicate)",
   "ok": true,
   "detail": "3 micro-checks",
   "kind": "CHART"
@@ -146,7 +162,8 @@
  {
   "id": "cap.A",
   "rows": "14:C9",
-  "script": "capacity",
+  "block": "cap",
+  "script": "entropy",
   "label": "the audit and diagonal identities re-asserted in the capacity-axis variant (identical to tri.A, tri.D, tri.W)",
   "ok": true,
   "detail": "14 micro-checks",
@@ -155,7 +172,8 @@
  {
   "id": "cap.K",
   "rows": "14:C10",
-  "script": "capacity",
+  "block": "cap",
+  "script": "entropy",
   "label": "the capacity axis: the mass-axis pin (−45, 62) held after all children (no datalim drift); the one-gram horizontal lands on N_A = 6.022 × 10²³ hydrogen units to 0.0035 dex (tolerance 0.005) [approx]",
   "ok": true,
   "detail": "2 micro-checks",
@@ -163,9 +181,10 @@
  },
  {
   "id": "cap.F",
-  "rows": "14:V2",
-  "script": "capacity",
-  "label": "the figure written: the registrable triangle with the holographic-ring-capacity axis (Figure 4 of the paper)",
+  "rows": "",
+  "block": "cap",
+  "script": "entropy",
+  "label": "the figure written: the registrable triangle with the holographic-ring-capacity axis (Figure 4 of the paper; no ledger predicate)",
   "ok": true,
   "detail": "1 micro-checks",
   "kind": "CHART"

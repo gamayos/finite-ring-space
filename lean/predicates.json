@@ -128,5 +128,40 @@
    "3:C2": "Causality",
    "3:C3": "Causality"
   }
+ },
+ "14-entropy": {
+  "module": "Entropy",
+  "FrcCore": {
+   "14:A1": "Entropy",
+   "14:A2": "Entropy",
+   "14:B10": "Entropy",
+   "14:B2": "Entropy",
+   "14:B9": "Entropy",
+   "14:C10": "Entropy",
+   "14:C5": "Entropy",
+   "14:C6": "Entropy",
+   "14:X4": "Entropy"
+  },
+  "FrcLedger": {
+   "14:A1": "Entropy",
+   "14:A2": "Entropy",
+   "14:B10": "Entropy",
+   "14:B2": "Entropy",
+   "14:B8": "Entropy",
+   "14:B9": "Entropy",
+   "14:C10": "Entropy",
+   "14:C2": "Entropy",
+   "14:C3": "Entropy",
+   "14:C5": "Entropy",
+   "14:C6": "Entropy",
+   "14:C7": "Entropy",
+   "14:C8": "Entropy",
+   "14:C9": "Entropy",
+   "14:P3": "Entropy",
+   "14:P4": "Entropy",
+   "14:X2": "Entropy",
+   "14:X3": "Entropy",
+   "14:X4": "Entropy"
+  }
  }
 }
