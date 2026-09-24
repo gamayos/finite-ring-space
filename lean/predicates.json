@@ -109,5 +109,24 @@
    "2:F1": "Geometry",
    "2:F3": "Geometry"
   }
+ },
+ "3-causality": {
+  "module": "Causality",
+  "FrcCore": {
+   "3:B2": "Causality",
+   "3:B3": "Causality",
+   "3:B4": "Causality",
+   "3:B5": "Causality",
+   "3:C2": "Causality",
+   "3:C3": "Causality",
+   "3:D1": "Causality"
+  },
+  "FrcLedger": {
+   "3:B2": "Causality",
+   "3:B3": "Causality",
+   "3:B5": "Causality",
+   "3:C2": "Causality",
+   "3:C3": "Causality"
+  }
  }
 }

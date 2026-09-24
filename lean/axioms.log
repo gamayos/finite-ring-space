@@ -768,3 +768,8 @@
 'FRC.Geometry.p02023' depends on axioms: [propext, Classical.choice, Quot.sound]
 'FRC.Geometry.p02025' depends on axioms: [propext, Classical.choice, Quot.sound]
 'FRC.Geometry.p02027' depends on axioms: [propext, Classical.choice, Quot.sound]
+'FRC.Causality.p03006' depends on axioms: [propext, Classical.choice, Quot.sound]
+'FRC.Causality.p03007' depends on axioms: [propext, Quot.sound]
+'FRC.Causality.p03009' depends on axioms: [propext, Classical.choice, Quot.sound]
+'FRC.Causality.p03013' depends on axioms: [propext, Classical.choice, Quot.sound]
+'FRC.Causality.p03014' depends on axioms: [propext, Classical.choice, Quot.sound]

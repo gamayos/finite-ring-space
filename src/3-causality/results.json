@@ -2,7 +2,8 @@
  {
   "id": "A1",
   "rows": "3:B2",
-  "script": "a_classes",
+  "block": "A",
+  "script": "causality",
   "label": "F_p^x splits into two classes of (p-1)/2; -1, c^2 and -c^2 are squares (c != 0); no c with c^2 in N",
   "ok": true,
   "detail": "p=5: |S|=|N|=2, -1=4 in S; p=13: |S|=|N|=6, -1=12 in S; p=17: |S|=|N|=8, -1=16 in S",
@@ -11,7 +12,8 @@
  {
   "id": "A2",
   "rows": "3:B3",
-  "script": "a_classes",
+  "block": "A",
+  "script": "causality",
   "label": "one square class => Q equivalent to a_0 (sum of squares) by w_i^2 = a_i/a_0; no root of a_0 exists for a_0 in N, and -a_i stays in N",
   "ok": true,
   "detail": "p=5: 32 one-class coefficient tuples absorbed; p=13: 2592 one-class coefficient tuples absorbed; p=17: 8192 one-class coefficient tuples absorbed",
@@ -20,7 +22,8 @@
  {
   "id": "A3",
   "rows": "3:B1",
-  "script": "a_classes",
+  "block": "A",
+  "script": "causality",
   "label": "every primitive root g is a nonsquare (nu = g canonical); Q_nu depends on nu only through its class",
   "ok": true,
   "detail": "",
@@ -29,7 +32,8 @@
  {
   "id": "A4",
   "rows": "3:B2",
-  "script": "a_classes",
+  "block": "A",
+  "script": "causality",
   "label": "-c^2 t^2 + x^2 + y^2 + z^2 (c != 0) has p^3 + p^2 - p zeros: the Euclidean (hyperbolic) type; c = 0 degenerate",
   "ok": true,
   "detail": "",
@@ -38,7 +42,8 @@
  {
   "id": "B1",
   "rows": "3:B4",
-  "script": "b_signature",
+  "block": "B",
+  "script": "causality",
   "label": "Q_nu has p^3 - p^2 + p zeros for nu nonsquare (elliptic, Witt index 1) and p^3 + p^2 - p for nu square (hyperbolic, Witt index 2), every nu",
   "ok": true,
   "detail": "p=5: 105 zeros (nu in N), 145 (nu in S); p=13: 2041 zeros (nu in N), 2353 (nu in S); p=17: 4641 zeros (nu in N), 5185 (nu in S); p=29: 23577 zeros (nu in N), 25201 (nu in S)",
@@ -47,7 +52,8 @@
  {
   "id": "B2",
   "rows": "3:B5",
-  "script": "b_signature",
+  "block": "B",
+  "script": "causality",
   "label": "over K = F_{p^2}: nu = c^2, every element of F_p a square, Q_nu of the plus type (Witt index 2)",
   "ok": true,
   "detail": "p=5: q=25, 16225 zeros of Q_nu over K = q^3+q^2-q; |O(Q_nu, F_25)| = 486720000 = 2q^2(q^2-1)^2 (plus type; the minus type would be 488280000); p=13: q=169, 4855201 zeros of Q_nu over K = q^3+q^2-q",
@@ -56,7 +62,8 @@
  {
   "id": "B3",
   "rows": "3:B6",
-  "script": "b_signature",
+  "block": "B",
+  "script": "causality",
   "label": "|O(Q_nu, F_p)| = 2p^2(p^4-1) (O_4^-) and |O(Euclidean)| = 2p^2(p^2-1)^2 (O_4^+) by frame counting",
   "ok": true,
   "detail": "p=5: |O(Q_nu)|=31200 = 2p^2(p^4-1); Euclidean 28800 = 2p^2(p^2-1)^2; p=13: |O(Q_nu)|=9653280 = 2p^2(p^4-1); Euclidean 9539712 = 2p^2(p^2-1)^2; p=17: |O(Q_nu)|=48274560 = 2p^2(p^4-1); Euclidean 47941632 = 2p^2(p^2-1)^2",
@@ -65,7 +72,8 @@
  {
   "id": "B4",
   "rows": "3:B7",
-  "script": "b_signature",
+  "block": "B",
+  "script": "causality",
   "label": "the null cone and the two non-null classes (square class of Q_nu(v)) partition F_p^4 with sizes p^3-p^2+p, (p-1)(p^3+p)/2 each; invariant under reflections and rescaling",
   "ok": true,
   "detail": "p=5: null 105, square class 260, nonsquare class 260; p=13: null 2041, square class 13260, nonsquare class 13260",
@@ -74,7 +82,8 @@
  {
   "id": "B5",
   "rows": "3:B5",
-  "script": "b_signature",
+  "block": "B",
+  "script": "causality",
   "label": "x^2 - nu t^2 is anisotropic (nu nonsquare); y^2 + z^2 and x^2 - w^2 t^2 are hyperbolic planes: Witt index 1 vs 2 from the decomposition",
   "ok": true,
   "detail": "",
@@ -83,7 +92,8 @@
  {
   "id": "C1",
   "rows": "3:C2",
-  "script": "c_boost",
+  "block": "C",
+  "script": "causality",
   "label": "the boosts Lambda(gamma, b), gamma^2 - nu b^2 = 1, form the norm-one cycle of order p+1; each preserves Q_nu; Lambda(z1)Lambda(z2) = Lambda(z1 z2)",
   "ok": true,
   "detail": "p=5: |N^1|=6; p=13: |N^1|=14; p=17: |N^1|=18; p=29: |N^1|=30; p=37: |N^1|=38; p=41: |N^1|=42",
@@ -92,7 +102,8 @@
  {
   "id": "C2",
   "rows": "3:C2",
-  "script": "c_boost",
+  "block": "C",
+  "script": "causality",
   "label": "SO(Q_nu, F_p) in 1+1 dimensions has p+1 elements (nu nonsquare, non-split torus), p-1 (nu square, split torus), all of the shape [[g, b], [nu b, g]]",
   "ok": true,
   "detail": "p=5, nu=2: |SO|=6; p=5, nu=4: |SO|=4; p=13, nu=2: |SO|=14; p=13, nu=12: |SO|=12; p=17, nu=3: |SO|=18; p=17, nu=16: |SO|=16",
@@ -101,7 +112,8 @@
  {
   "id": "C3",
   "rows": "3:C3",
-  "script": "c_boost",
+  "block": "C",
+  "script": "causality",
   "label": "gamma != 0 on every boost; v = -nu b/gamma; gamma^2 (nu - v^2) = nu; v12 = (v1 + v2)/(1 + v1 v2/nu) exactly, denominator never zero",
   "ok": true,
   "detail": "p=5: 3 velocities; p=13: 7 velocities; p=17: 9 velocities",
@@ -110,7 +122,8 @@
  {
   "id": "C4",
   "rows": "3:C5",
-  "script": "c_boost",
+  "block": "C",
+  "script": "causality",
   "label": "the family Lambda(u), u = g^dm in F_p^x: gamma in F_p but a in c.F_p (not in F_p for u != +-1); preserves Q_nu over K; p-1 matrices, the split torus",
   "ok": true,
   "detail": "p=13: 12 matrices Lambda(u), a in c.F_p, a not in F_p for u != +-1; p=17: 16 matrices Lambda(u), a in c.F_p, a not in F_p for u != +-1",
@@ -119,7 +132,8 @@
  {
   "id": "C5",
   "rows": "3:C4",
-  "script": "c_boost",
+  "block": "C",
+  "script": "causality",
   "label": "at p = 5 the x-boosts and O(3, F_p) (order 240) generate O(Q_nu, F_p) = O_4^-(5) of order 31200",
   "ok": true,
   "detail": "|O(3,F_5)|=240, generated group 31200",
@@ -128,7 +142,8 @@
  {
   "id": "D1",
   "rows": "3:D1",
-  "script": "d_example",
+  "block": "D",
+  "script": "causality",
   "label": "F_13: S = {1,3,4,9,10,12}, N = {2,5,6,7,8,11}; nu = 2 = g; X^2 - 2 irreducible; c = sqrt 2 in K \\ F_13; 2041 null points; 14 boosts, 7 velocities",
   "ok": true,
   "detail": "boosts (gamma, b): [(1, 0), (3, 2), (3, 11), (4, 1), (4, 12), (5, 5), (5, 8), (8, 5), (8, 8), (9, 1), (9, 12), (10, 2), (10, 11), (12, 0)]; velocities [0, 2, 3, 6, 7, 10, 11]",
@@ -137,7 +152,8 @@
  {
   "id": "D2",
   "rows": "3:D1",
-  "script": "d_example",
+  "block": "D",
+  "script": "causality",
   "label": "the null cone of Q_2 on F_13 counted vector by vector: 2041 = 13^3 - 13^2 + 13",
   "ok": true,
   "detail": "",

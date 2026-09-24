@@ -107,16 +107,19 @@ const PUBLICATIONS = [
     "doi": "https://doi.org/10.3390/e27111098",
     "doiLabel": "e27111098",
     "ledger": "3-causality/index.html",
+    "schema": true,
     "links": [
       {
-        "href": "3-causality/index.html",
-        "label": "ledger",
-        "title": "the paper's predicate ledger"
+        "href": "https://colab.research.google.com/github/gamayos/finite-ring-space/blob/main/src/3-causality/frc-3-causality.ipynb",
+        "label": "python",
+        "count": 12,
+        "title": "12 predicates checked, all passing: the notebook frc-3-causality.ipynb on Google Colab, one cell per predicate"
       },
       {
-        "href": "https://colab.research.google.com/github/gamayos/finite-ring-space/blob/main/src/3-causality/3-causality-main.ipynb",
-        "label": "notebook",
-        "title": "the validation notebook on Google Colab"
+        "href": "https://live.lean-lang.org/#project=lean-v4.34.0&url=https://finitering.space/lean/web/core/Causality.lean",
+        "label": "lean",
+        "count": 7,
+        "title": "7 predicates proved in Lean: the core module Causality as one executable file (plain Lean, no Mathlib) in the Lean web editor"
       }
     ]
   },
