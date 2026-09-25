@@ -10,7 +10,7 @@
 <title>FRC publications</title>
 <meta name="description" content="Publication status of the Finite Ring Cosmology corpus: manuscripts, preprints, venue history.">
 <link rel="icon" href="frc-logo-fav.png">
-<link rel="stylesheet" href="style.css?v=0b0aaf95">
+<link rel="stylesheet" href="style.css?v=79fb1d7f">
 </head>
 <body>
 <div class="wrap">
@@ -36,7 +36,7 @@
         <th data-sort="n"      style="width:7rem">Key <span class="car"></span></th>
         <th data-sort="title">Title <span class="car"></span></th>
         <th data-sort="status" style="width:6rem">Status <span class="car"></span></th>
-        <th class="pkg" style="width:8.4rem" title="the validation package: predicates checked in python, proved in the core (no axioms), proved on Mathlib, and the laboratory"><span class="g"><span class="ico wit py ok"><img class="runico pysrc" src="media/python.png" alt="python"></span></span><span class="g"><img class="leanico ok" src="lean/lean-ok.png" alt="Lean"></span><span class="g"><img class="leanico ml" src="lean/lean-ml.png" alt="Lean, Mathlib"></span><span class="g lab"><span class="ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9.5 3h5M10 3v6l-5.5 9.5A1.5 1.5 0 0 0 5.8 21h12.4a1.5 1.5 0 0 0 1.3-2.5L14 9V3"/><path d="M7.5 16h9"/></svg></span></span></th>
+        <th class="pkg" style="width:8.4rem" title="the validation package: predicates checked in python, proved in the core (no axioms), proved on Mathlib, and the laboratory"><span class="pkgrow"><span class="g"><span class="ico wit py ok"><img class="runico pysrc" src="media/python.png" alt="python"></span></span><span class="g"><img class="leanico ok" src="lean/lean-ok.png" alt="Lean"></span><span class="g"><img class="leanico ml" src="lean/lean-ml.png" alt="Lean, Mathlib"></span><span class="g lab"><span class="ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9.5 3h5M10 3v6l-5.5 9.5A1.5 1.5 0 0 0 5.8 21h12.4a1.5 1.5 0 0 0 1.3-2.5L14 9V3"/><path d="M7.5 16h9"/></svg></span></span></span></th>
       </tr>
     </thead>
     <tbody id="rows"></tbody>
@@ -208,6 +208,7 @@
 
       var lk = document.createElement("td");
       lk.className = "links pkg";
+      var row = document.createElement("span"); row.className = "pkgrow"; lk.appendChild(row);   /* the grid sits inside the cell so the cell stays a table cell (its rule spans the column) */
       if (p.schema) {
         var slots = {python: 0, "python-fail": 0, lean: 1, "lean-mathlib": 2, lab: 3}, cells = [null, null, null, null];
         (p.links || []).forEach(function (L) { if (slots[L.label] != null) cells[slots[L.label]] = L; });
@@ -220,7 +221,7 @@
             if (L.href.indexOf("http") === 0) { a.rel = "noopener"; a.target = "_blank"; }
             sp.appendChild(a);
           }
-          lk.appendChild(sp);
+          row.appendChild(sp);
         });
       } else {
         var left = document.createElement("span"); left.className = "g legacy"; var labslot = document.createElement("span"); labslot.className = "g lab";
@@ -230,7 +231,7 @@
           if (L.href.indexOf("http") === 0) { a.rel = "noopener"; a.target = "_blank"; }
           (L.label === "lab" ? labslot : left).appendChild(a);
         });
-        lk.appendChild(left); lk.appendChild(labslot);
+        row.appendChild(left); row.appendChild(labslot);
       }
       tr.appendChild(lk);
 

@@ -343,7 +343,7 @@ pre.lean .ln, pre.lean a.pred { scroll-margin-top: 2.8rem; }   /* a targeted lin
 .corpus li .snip { color: var(--ink-soft); }
 .corpus + .legend { margin-top: 2rem; padding-top: 1.25rem; border-top: 1px solid var(--rule); }
 /* the Publications table's package column (25 Sept): four equal slots headed by the glyphs, the counts alone beneath them */
-th.pkg, td.links.pkg { display: grid; grid-template-columns: repeat(4, 2.1rem); align-items: center; justify-items: center; column-gap: 0; }
+th.pkg .pkgrow, td.links.pkg .pkgrow { display: grid; grid-template-columns: repeat(4, 2.1rem); align-items: center; justify-items: center; column-gap: 0; }
 th.pkg .g, td.links.pkg .g { display: inline-flex; justify-content: center; align-items: center; min-height: 22px; width: 100%; }
 th.pkg .g .ico, .wrap th.pkg .g .ico { display: inline-flex; width: auto; height: auto; padding: 0; margin: 0; border: 0; background: none; }
 th.pkg img.runico, th.pkg img.leanico { width: 16px; height: 16px; display: block; }
@@ -354,6 +354,7 @@ th.pkg .ico svg { width: 17px; height: 17px; stroke: var(--ink-soft); fill: none
 .wrap td.links.pkg a.n:hover { background: var(--rule-soft); }
 .wrap td.links.pkg a.ico.lab { width: 22px; height: 22px; margin: 0; }
 td.links.pkg .g.legacy { grid-column: 1 / 4; justify-content: flex-start; gap: .2rem; }
+th.pkg { padding-left: 0; padding-right: 0; }
 @media (prefers-color-scheme: dark) { th.pkg img, .wrap td.links.pkg a.n { opacity: .9; } }
 .pillrows .tally { margin-bottom: .55rem; }   /* the register view: three pill rows, each captioned */
 .pillrows .tally:last-child { margin-bottom: 1.25rem; }
