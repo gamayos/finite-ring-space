@@ -342,3 +342,6 @@ pre.lean .ln, pre.lean a.pred { scroll-margin-top: 2.8rem; }   /* a targeted lin
 .corpus li { padding: .3rem 0; border-top: 1px solid var(--rule); line-height: 1.45; }
 .corpus li .snip { color: var(--ink-soft); }
 .corpus + .legend { margin-top: 2rem; padding-top: 1.25rem; border-top: 1px solid var(--rule); }
+.pillrows .tally { margin-bottom: .55rem; }   /* the register view: three pill rows, each captioned */
+.pillrows .tally:last-child { margin-bottom: 1.25rem; }
+.pillrows .cap { font-size: .72rem; text-transform: uppercase; letter-spacing: .07em; color: var(--ink-faint); align-self: center; min-width: 3.4rem; }
