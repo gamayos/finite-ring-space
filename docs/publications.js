@@ -221,8 +221,8 @@ const PUBLICATIONS = [
       {
         "href": "https://colab.research.google.com/github/gamayos/finite-ring-space/blob/main/src/6-fourier/frc-6-fourier.ipynb",
         "label": "python",
-        "count": 30,
-        "title": "30 predicates checked, all passing: the notebook frc-6-fourier.ipynb on Google Colab, one cell per predicate"
+        "count": 34,
+        "title": "34 predicates checked, all passing: the notebook frc-6-fourier.ipynb on Google Colab, one cell per predicate"
       },
       {
         "href": "https://live.lean-lang.org/#project=lean-v4.34.0&url=https://finitering.space/lean/web/core/Fourier.lean",
@@ -696,4 +696,4 @@ const PUBLICATIONS = [
   }
 ];
 
-const GENERATED = "24 September 2026";
+const GENERATED = "25 September 2026";

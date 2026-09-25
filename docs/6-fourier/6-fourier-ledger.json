@@ -2,7 +2,7 @@
  "paper": "6-four",
  "title": "Scale-Shift and Fractional Fourier Transform as Rotations over Finite Holographic Substrate",
  "doi": "https://doi.org/10.20944/preprints202606.0127.v1",
- "generated": "24 September 2026",
+ "generated": "25 September 2026",
  "blocks": [
   {
    "letter": "A",
@@ -162,14 +162,14 @@
     },
     {
      "label": "C7",
-     "predicate": "The multiplicity dichotomy: $G=\\sum_{k}\\gen^{k^{2}}=\\varepsilon(1+\\im)$; the tuple is $(\\kap,\\kap,\\kap+1,\\kap-1)$ for $\\varepsilon=+1$ and $(\\kap+1,\\kap-1,\\kap,\\kap)$ for $\\varepsilon=-1$; $\\varepsilon(\\gen^{-1})=-\\varepsilon(\\gen)$, $\\varepsilon(\\gen^{u})=\\bigl(\\tfrac{\\kap}{u}\\bigr)\\varepsilon(\\gen)$ for $u\\equiv1\\pmod4$, the two classes equally populated; the proof's identities $GG^{*}=-2$, $G^{2}=2\\im$, $\\operatorname{Tr}\\Ft=\\im G$, $\\operatorname{Tr}\\Ft^{2}=2$, $\\operatorname{Tr}\\Ft^{3}=\\im G^{*}$. Exact on the $38$ primitive frames of $\\p\\in\\{5,13,17,29,37\\}$ and the $16$ of $\\p=41$.",
+     "predicate": "The multiplicity dichotomy: with $G=\\sum_{k}\\gen^{k^{2}}=\\varepsilon(1+\\im)$ (A3), the tuple is $(\\kap,\\kap,\\kap+1,\\kap-1)$ for $\\varepsilon=+1$ and $(\\kap+1,\\kap-1,\\kap,\\kap)$ for $\\varepsilon=-1$; $GG^{*}=-2$ and $\\varepsilon(\\gen^{-1})=-\\varepsilon(\\gen)$. Exact on the $38$ primitive frames of $\\p\\in\\{5,13,17,29,37\\}$ and the $16$ of $\\p=41$.",
      "tag": "T",
      "source": "Thm.~\\ref{thm:multiplicity}\\newline \\pywit{fourier}{p06021}{C7}, \\leanwit{FrcLedger}{p06021}{C7} \\lean{Fourier.gauss\\_mul\\_gauss\\_inv, Fourier.gauss\\_inv\\_of\\_sign, Fourier.shell\\_multiplicity\\_tuple}",
      "key": "p06021"
     },
     {
      "label": "C8",
-     "predicate": "Classification: every exponent lift $a_\\ell\\equiv\\ell\\pmod4$ is additive with the same cardinal skeleton; a family canonical in the chart $\\gen^{u}$ with $u^{2}\\not\\equiv1\\pmod{4\\kap}$ does not commute with $\\Ft$ ($\\p=29$, $u=5$, and every such chart of the six shells); the principal lift is the unique power-tower member.",
+     "predicate": "Exponent lifts: every lift $a_\\ell\\equiv\\ell\\pmod4$, $U^{(a)}_s=\\sum_\\ell\\gen^{-a_\\ell s}\\Pi_\\ell$, is additive with the same cardinal skeleton, $U^{(a)}_{s+r}=U^{(a)}_sU^{(a)}_r$ and $U^{(a)}_{m\\kap}=\\Ft^{m}$.",
      "tag": "T",
      "source": "Rem.~\\ref{rem:classification}\\newline \\pywit{fourier}{p06022}{C8}, \\leanwit{FrcLedger}{p06022}{C8} \\lean{Fourier.shell\\_frftLift}",
      "key": "p06022"
@@ -180,6 +180,20 @@
      "tag": "T",
      "source": "Rem.~\\ref{rem:gt-covariance}, Thm.~\\ref{thm:multiplicity}\\newline \\pywit{fourier}{p06023}{C9}, \\leanwit{FrcLedger}{p06023}{C9} \\lean{Fourier.shell\\_conj}",
      "key": "p06023"
+    },
+    {
+     "label": "C10",
+     "predicate": "The sign under chart change: $\\varepsilon(\\gen^{u})=\\bigl(\\tfrac{\\kap}{u}\\bigr)\\varepsilon(\\gen)$ for $u\\equiv1\\pmod4$, the two classes equally populated on every shell of Table~\\ref{tab:checks}; the identities $G^{2}=2\\im$, $\\operatorname{Tr}\\Ft=\\im G$, $\\operatorname{Tr}\\Ft^{2}=2$, $\\operatorname{Tr}\\Ft^{3}=\\im G^{*}$ of the proof of C7.",
+     "tag": "T",
+     "source": "Thm.~\\ref{thm:multiplicity}\\newline \\pywit{fourier}{p06051}{C10}",
+     "key": "p06051"
+    },
+    {
+     "label": "C11",
+     "predicate": "Charts outside the classified set: a family canonical in the chart $\\gen^{u}$ with $u^{2}\\not\\equiv1\\pmod{4\\kap}$ does not commute with $\\Ft$ --- $\\p=29$, $u=5$, and every such chart of the six shells of Table~\\ref{tab:checks}.",
+     "tag": "T",
+     "source": "Rem.~\\ref{rem:classification}\\newline \\pywit{fourier}{p06052}{C11}",
+     "key": "p06052"
     }
    ]
   },
@@ -196,7 +210,7 @@
     },
     {
      "label": "D2",
-     "predicate": "The $4\\kap$ framed domains are pairwise distinct; read as unordered measurement bases $B_{s+2\\kap}=B_s$, since $\\Ft^{[s+2\\kap]}=\\Ft^{[s]}J$ and $J$ permutes the standard basis, and the cycle carries exactly $2\\kap$ of them.",
+     "predicate": "The $4\\kap$ framed domains are pairwise distinct; read as unordered measurement bases $B_{s+2\\kap}=B_s$, since $\\Ft^{[s+2\\kap]}=\\Ft^{[s]}J$ and $J$ permutes the standard basis.",
      "tag": "T",
      "source": "Cor.~\\ref{cor:distinct-domains}, Rem.~\\ref{rem:ordered-bases}\\newline \\pywit{fourier}{p06025}{D2}, \\leanwit{FrcLedger}{p06025}{D2} \\lean{Fourier.shell\\_frft\\_injective, Fourier.shell\\_frft\\_add\\_two\\_kappa, Fourier.mul\\_J\\_apply}",
      "key": "p06025"
@@ -228,6 +242,13 @@
      "tag": "D",
      "source": "Rem.~\\ref{rem:two-layers}",
      "key": "p06029"
+    },
+    {
+     "label": "D7",
+     "predicate": "The cycle carries exactly $2\\kap$ measurement bases: $B_{s+t}\\neq B_s$ for $t\\notin\\{0,2\\kap\\}$, since every off-site entry of row $0$ of $\\Ft^{[t]}$ is $\\tfrac{\\im}{2}(1-\\gen^{-2t})\\neq0$ and $\\Ft^{[t]}$ is not monomial; the six shells of Table~\\ref{tab:checks}.",
+     "tag": "T",
+     "source": "Rem.~\\ref{rem:ordered-bases}\\newline \\pywit{fourier}{p06053}{D7}",
+     "key": "p06053"
     }
    ]
   },
@@ -265,7 +286,7 @@
     },
     {
      "label": "E5",
-     "predicate": "Spectral obstruction: the exponent shift $\\sigma$ has the $4\\kap$ simple eigenvalues $\\Fpx$, every $\\Ft^{[s]}$ at most four; for $\\kap\\ge2$ the cyclic groups $\\langle\\sigma\\rangle$ and $\\langle\\Ft^{[1]}\\rangle$ are not conjugate.",
+     "predicate": "Spectral obstruction: for $\\kap\\ge2$ no invertible $T$ on $\\Vt$ satisfies $T\\sigma T^{-1}=\\Ft^{[s]}$ for any $s$; the cyclic groups $\\langle\\sigma\\rangle$ and $\\langle\\Ft^{[1]}\\rangle$, of the same order $4\\kap$, are not conjugate.",
      "tag": "T",
      "source": "Prop.~\\ref{prop:nogo}\\newline \\pywit{fourier}{p06034}{E5}, \\leanwit{FrcLedger}{p06034}{E5} \\lean{Fourier.shell\\_spectral\\_obstruction}",
      "key": "p06034"
@@ -290,6 +311,13 @@
      "tag": "T",
      "source": "Thm.~\\ref{thm:monomial}\\newline \\pywit{fourier}{p06050}{E8}",
      "key": "p06050"
+    },
+    {
+     "label": "E9",
+     "predicate": "The spectra behind E5: $\\sigma$ is diagonalizable over $\\Fp$ with the $4\\kap$ simple eigenvalues $\\Fpx$; $\\Ft^{[s]}=\\sum_\\ell\\gen^{-\\ell s}\\Pi_\\ell$ has at most four, among the $\\gen^{-\\ell s}$ ($\\Ft^{[1]}$ on the six shells).",
+     "tag": "T",
+     "source": "Prop.~\\ref{prop:nogo}\\newline \\pywit{fourier}{p06054}{E9}",
+     "key": "p06054"
     }
    ]
   },
@@ -341,9 +369,9 @@
     },
     {
      "label": "F7",
-     "predicate": "The Galois twist $X\\mapsto\\zeta_n^{u}$ relabels the $\\delta_0$ curve by $s\\mapsto us$ for every unit $u$ and leaves the cardinal values of every $\\delta_j$ invariant; the conjugate twist $u=-1$ relabels the curve of every $\\delta_j$, while for $j\\notin\\{0,2\\kap\\}$ a twist $u\\not\\equiv\\pm1$ changes the intermediate curve ($n=12$, $\\delta_1$, $u=5$: $0.55\\mapsto0.44$ at $s=1$) [approx].",
+     "predicate": "The Galois twist $X\\mapsto\\zeta_n^{u}$ leaves the cardinal values of every $\\delta_j$ invariant and relabels the curve of $\\delta_j$ by $s\\mapsto us$ whenever $\\eta uj\\equiv j\\pmod n$ ($\\eta u\\equiv1\\pmod4$): at every cardinal site, and at every site for $u=-1$; off the cardinal sites $u\\not\\equiv\\pm1$ can change the curve ($n=12$, $u=5$, $s=1$: $\\delta_1$ $0.55\\mapsto0.44$, $\\delta_3$ $0.42$ unchanged) [approx].",
      "tag": "T",
-     "source": "Def.~\\ref{def:readout}\\newline \\pywit{fourier}{p06043}{F7}",
+     "source": "Prop.~\\ref{prop:twist}\\newline \\pywit{fourier}{p06043}{F7}",
      "key": "p06043"
     }
    ]
@@ -363,7 +391,7 @@
   {
    "tag": "T",
    "name": "Theorem",
-   "text": "Derived within this paper from the rows above it and machine-verified in exact arithmetic by the named witness, or observed numerically and reproduced by it to the stated tolerance."
+   "text": "Derived within this paper and machine-verified in exact arithmetic by the named witness, or observed numerically and reproduced by it to the stated tolerance."
   }
  ],
  "master": {

@@ -16,9 +16,9 @@ check decides are in the block banners. Three master-ledger predicates of the co
     from frc_6_fourier import predicate; predicate("6:C3")     one predicate: its block runs once per session
 
 Blocks:  A  the frame datum and the shell Fourier operator     EXACT            (6:B1–B3, B5–B7)
-         B  the fractional family F^[s]                        EXACT            (6:C2–C9)
-         C  representation domains and the coordinate zoom     EXACT            (6:D1, D2, D4, D5)
-         D  the Weil dictionary, the operator-level comparison EXACT            (6:E2, E3, E5–E8)
+         B  the fractional family F^[s]                        EXACT            (6:C2–C11)
+         C  representation domains and the coordinate zoom     EXACT            (6:D1, D2, D4, D5, D7)
+         D  the Weil dictionary, the operator-level comparison EXACT            (6:E2, E3, E5–E9)
          E  the cyclotomic observer readout, the entropy cycle EXACT / [approx] (6:F2–F7)
 
 Everything the blocks share:
@@ -50,10 +50,10 @@ RESULTS = []
 # The paper's predicate ledger (Appendix A, predicates cited as 6:XN): the predicate(s) each check witnesses.
 LEDGER = {
     "A1": "6:B1", "A2": "6:B2", "A3": "6:B3", "A4": "6:B5", "A5": "6:B6", "A6": "6:B7",
-    "B1": "6:C2", "B2": "6:C3", "B3": "6:C3", "B4": "6:C4", "B5": "6:C5", "B6": "6:C6", "B7": "6:C7", "B8": "6:C7",
-    "B9": "6:C8", "B10": "6:C9",
-    "C1": "6:D1", "C2": "6:D2", "C3": "6:D2", "C4": "6:D4", "C5": "6:D4", "C6": "6:D5",
-    "D1": "6:E2", "D2": "6:E2", "D3": "6:E3", "D4": "6:E5", "D5": "6:E6", "D6": "6:E7", "D7": "6:E7", "D8": "6:E8",
+    "B1": "6:C2", "B2": "6:C3", "B3": "6:C3", "B4": "6:C4", "B5": "6:C5", "B6": "6:C6", "B7": "6:C7, 6:C10", "B8": "6:C7, 6:C10",
+    "B9": "6:C8, 6:C11", "B10": "6:C9",
+    "C1": "6:D1", "C2": "6:D2", "C3": "6:D2, 6:D7", "C4": "6:D4", "C5": "6:D4", "C6": "6:D5",
+    "D1": "6:E2", "D2": "6:E2", "D3": "6:E3", "D4": "6:E5, 6:E9", "D5": "6:E6", "D6": "6:E7", "D7": "6:E7", "D8": "6:E8",
     "E1": "6:F2", "E2": "6:F3", "E3": "6:F3", "E4": "6:F4", "E5": "6:F5", "E6": "6:F6", "E7": "6:F7",
 }
 # The master-ledger predicates of the corpus witnessed through the paper's: 00:C2 (6:B5, 6:C3, 6:D4), 00:C14 (6:B2),
@@ -70,9 +70,9 @@ BLOCK = {"A": "the frame datum and the shell Fourier operator",          # check
 # E2 (D2, the isomorphism and the count; D1's membership corroborates) and E7 (D6, the covariance identities; D7 the sweep)
 PREDICATES = {
     "6:B1": "A1", "6:B2": "A2", "6:B3": "A3", "6:B5": "A4", "6:B6": "A5", "6:B7": "A6",
-    "6:C2": "B1", "6:C3": "B2", "6:C4": "B4", "6:C5": "B5", "6:C6": "B6", "6:C7": "B7", "6:C8": "B9", "6:C9": "B10",
-    "6:D1": "C1", "6:D2": "C2", "6:D4": "C4", "6:D5": "C6",
-    "6:E2": "D2", "6:E3": "D3", "6:E5": "D4", "6:E6": "D5", "6:E7": "D6", "6:E8": "D8",
+    "6:C2": "B1", "6:C3": "B2", "6:C4": "B4", "6:C5": "B5", "6:C6": "B6", "6:C7": "B7", "6:C8": "B9", "6:C9": "B10", "6:C10": "B7", "6:C11": "B9",
+    "6:D1": "C1", "6:D2": "C2", "6:D4": "C4", "6:D5": "C6", "6:D7": "C3",
+    "6:E2": "D2", "6:E3": "D3", "6:E5": "D4", "6:E6": "D5", "6:E7": "D6", "6:E8": "D8", "6:E9": "D4",
     "6:F2": "E1", "6:F3": "E2", "6:F4": "E4", "6:F5": "E5", "6:F6": "E6", "6:F7": "E7",
 }
 _RAN = set()                                            # blocks already run in this session (predicate() runs each once)
@@ -567,7 +567,7 @@ def block_B():
     ok &= (n38 == 38)
     ok &= (Frame(5, 2).mults() == (2, 0, 1, 1) and Frame(5, 2).epsilon() == -1)
     ok &= (Frame(5, 3).mults() == (1, 1, 2, 0) and Frame(5, 3).epsilon() == 1)
-    # 6:C7 (p06021)
+    # 6:C7 (p06021), 6:C10 (p06051)
     check("B7", "G = ε(1+i), the two patterns, ε(g⁻¹) = −ε(g), ε(g^u) = (κ/u) ε(g), classes equally populated; 38 frames of p ∈ {5,…,37} and 16 of p = 41; p = 5: (2,0,1,1) at g = 2, (1,1,2,0) at g = 3",
           ok, "; ".join(det))
 
@@ -603,8 +603,9 @@ def block_B():
             if np.gcd(u, f0.n) == 1 and (u * u) % f0.n != 1:
                 fu = Frame(p, pow(f0.g, u, p))
                 scan.append((p, u, not eq(mm(fu.frft(1), f0.F, p), mm(f0.F, fu.frft(1), p), p)))
-    # 6:C8 (p06022)
-    check("B9", "exponent lifts a_ℓ ≡ ℓ (mod 4) are additive with the cardinal skeleton (p = 13); the chart g^5 at p = 29 (u² ≢ 1 mod 28) does not commute with F",
+    ok &= all(x[2] for x in scan)                                                          # every such chart of the six shells (6:C11)
+    # 6:C8 (p06022), 6:C11 (p06052)
+    check("B9", "exponent lifts a_ℓ ≡ ℓ (mod 4) are additive with the cardinal skeleton (p = 13); the chart g^5 at p = 29 (u² ≢ 1 mod 28) does not commute with F, nor does any chart with u² ≢ 1 (mod 4κ) on the six shells",
           ok, f"non-commuting at p = 29, u = 5: {noncomm}; all charts with u² ≢ 1 (mod 4κ) on the six shells non-commuting: {all(x[2] for x in scan)} ({len(scan)} charts)")
 
     # B10 — the conjugate reframing (00:C7, transform layer)
@@ -636,7 +637,8 @@ def block_B():
 #                             nonzero, so the meridional bases B_s = F^[s] B_0 are bases
 #   C2  cor:distinct-domains  the 4κ framed (ordered) bases B_0, …, B_{4κ−1} are pairwise distinct
 #   C3  rem:ordered-bases     B_{s+2κ} = B_s as unordered sets (F^[s+2κ] = F^[s] J, J a coordinate
-#                             permutation): the cycle carries exactly 2κ unordered measurement bases
+#                             permutation) and B_{s+t} ≠ B_s for t ∉ {0, 2κ} (row 0 of F^[t] is (i/2)(1 − g^{−2t}) off
+#                             site 0, so F^[t] is not monomial): the cycle carries exactly 2κ unordered measurement bases
 #   C4  prop:meridian-scale   S_r(M_m) = M_{m+r} for every (m, r) ∈ Z_{4κ}², as ordered lists  (00:C2)
 #   C5  cor:effective-step    consecutive entries of M_m differ by g^m; S_{r+(p−1)} = S_r
 #       rem:framed-rational
@@ -676,8 +678,16 @@ def block_C():
         ok &= all(eq(f._fam[(s + 2 * k) % f.n], mm(f._fam[s], f.J, p), p) for s in range(f.n))
         unordered = {frozenset(map(tuple, M.T)) for M in f._fam}
         ok &= (len(unordered) == 2 * k)
+        bases = [frozenset(map(tuple, M.T)) for M in f._fam]
+        ok &= all((bases[s] == bases[t]) == ((s - t) % (2 * k) == 0) for s in range(f.n) for t in range(f.n))   # B_s = B_t iff s ≡ t (mod 2κ)
+        for t in range(f.n):                                                                         # rem:ordered-bases: row 0 of F^[t] off site 0
+            if t in (0, 2 * k):
+                continue
+            val = f.i * f.inv2 * (1 - f.gpow(-2 * t)) % p                                            # (i/2)(1 − g^{−2t}) ≠ 0
+            ok &= val != 0 and all(f._fam[t][0, kk] == val for kk in range(1, f.n)) and int(np.count_nonzero(f._fam[t][0])) >= 2
         det.append(f"p={p}: {f.n} framed, {len(unordered)} unordered")
-    check("C3", "F^[s+2κ] = F^[s] J, so B_{s+2κ} = B_s as unordered bases: 4κ framed domains, exactly 2κ measurement bases", ok, "; ".join(det))
+    # 6:D7 (p06053)
+    check("C3", "F^[s+2κ] = F^[s] J, so B_{s+2κ} = B_s as unordered bases, and B_{s+t} ≠ B_s for t ∉ {0,2κ}: every off-site entry of row 0 of F^[t] is (i/2)(1 − g^{−2t}) ≠ 0, F^[t] not monomial — 4κ framed domains, exactly 2κ measurement bases", ok, "; ".join(det))
 
     # C4 — meridian-scale covariance
     ok, npairs = True, 0
@@ -795,7 +805,7 @@ def block_D():
         neig = sum(1 for a in range(1, p) if rank_mod_p((f.frft(1) - a * f.I()) % p, p) < n)
         ok &= (neig <= 4) and (f.kap == 1 or neig < n)
         det.append(f"p={p}: σ has {n} simple eigenvalues, F^[1] has {neig}")
-    # 6:E5 (p06034)
+    # 6:E5 (p06034), 6:E9 (p06054)
     check("D4", "σ has the 4κ simple eigenvalues F_p^×; F^[1] has at most four; for κ ≥ 2 ⟨σ⟩ and ⟨F^[1]⟩ are not conjugate", ok, "; ".join(det))
 
     # D5 — the common character sector
@@ -912,9 +922,10 @@ def block_D():
 #       entropy13            regenerates figures/entropy-cycle-f13.{pdf,png}
 #   E6  rem:input-dep        δ_1 at p = 13: H(1)/log n = 0.55 against 0.44 for δ_0; δ_j meets Π_1, Π_3 exactly
 #                            when j ∉ {0, 2κ}; δ_{2κ} gives the δ_0 curve
-#   E7  def:readout          the Galois twist X ↦ ζ^u relabels the δ_0 curve by s ↦ us on every unit u and
-#                            leaves the cardinal values of every δ_j invariant; u = −1 relabels every δ_j;
-#                            for j ∉ {0, 2κ} a twist u ≢ ±1 changes the curve (n = 12, δ_1, u = 5: 0.55 ↦ 0.44)
+#   E7  prop:twist           the Galois twist X ↦ ζ^u leaves the cardinal values of every δ_j invariant and relabels
+#       def:readout          the curve of δ_j by s ↦ us whenever ηuj ≡ j (mod n), ηu ≡ 1 (mod 4) — the Born vectors
+#                            permuted by k ↦ ηuk: every cardinal site, every site for u = −1; off the cardinal sites a
+#                            twist u ≢ ±1 can change the curve (n = 12, u = 5: δ_1 0.55 ↦ 0.44, δ_3 0.42 unchanged)
 #
 # Shells: n = 4, 12, 16, 28, 36, 40 (p = 5, 13, 17, 29, 37, 41).
 def cyclotomic(n):
@@ -1119,7 +1130,7 @@ def block_E():
           ok, f"δ_1: H(1)/log n = {H1[1]:.4f}; δ_0: {Hn[1]:.4f}", kind="[approx]")
 
     # E7 — the Galois twist
-    ok, n_units = True, 0
+    ok, n_units, n_pairs = True, 0, 0
     for p in SHELLS:
         nn = p - 1; kk = nn // 4
         base = curves[p]
@@ -1137,12 +1148,30 @@ def block_E():
                 if u == nn - 1:                                                           # the conjugate twist relabels every input
                     Hj = np.array([entropy(fr1(s) @ e) for s in range(nn)])
                     ok &= np.allclose([entropy(fru(s) @ e) for s in range(nn)], Hj[(-np.arange(nn)) % nn], atol=1e-9)
+            eta = 1 if u % 4 == 1 else -1                                                 # prop:twist: ηu ≡ 1 (mod 4)
+            ok &= all((eta * u * j - j) % nn == 0 for j in (0, kk, 2 * kk, 3 * kk))         # the cardinal sites satisfy ηuj ≡ j
+            perm = [(eta * u * kk_) % nn for kk_ in range(nn)]
+            for j in range(nn):
+                if (eta * u * j - j) % nn:
+                    continue
+                e = delta(nn, j)
+                for s in range(nn):
+                    tw = np.abs(fru(s) @ e) ** 2; un = np.abs(fr1((u * s) % nn) @ e) ** 2
+                    ok &= np.allclose(tw / tw.sum(), (un / un.sum())[perm], atol=1e-9)    # the twisted Born vector at k is the untwisted one at ηuk
+                n_pairs += 1
+    ok &= n_pairs == 536                                                                  # 8 + 32 + 64 + 96 + 144 + 192 pairs over the six shells
     D5, P5, fr5 = dft_family(12, 5)
+    D1_, P1_, fr12 = dft_family(12)
     h5 = entropy(fr5(1) @ delta(12, 1)) / np.log(12)
     ok &= abs(round(h5, 2) - 0.44) < 1e-9 and abs(round(float(H1[1]), 2) - 0.55) < 1e-9     # δ_1, u = 5: 0.55 ↦ 0.44
+    c1t = [entropy(fr5(s) @ delta(12, 1)) / np.log(12) for s in range(12)]
+    ok &= not any(np.allclose(c1t, H1[(v * np.arange(12)) % 12], atol=1e-9) for v in (1, 5, 7, 11))   # from every relabelling
+    c3 = [entropy(fr12(s) @ delta(12, 3)) for s in range(12)]; c3t = [entropy(fr5(s) @ delta(12, 3)) for s in range(12)]
+    h3 = c3[1] / np.log(12)
+    ok &= np.allclose(c3, c3t, atol=1e-9) and abs(round(h3, 2) - 0.42) < 1e-9             # δ_3 = δ_κ: the curve unchanged, 0.42 at s = 1
     # 6:F7 (p06043)
-    check("E7", "X ↦ ζ^u relabels the δ_0 curve by s ↦ us on every unit u; the cardinal values of every δ_j are invariant under every twist; u = −1 relabels every δ_j; δ_1 at n = 12 under u = 5: H(1)/log n 0.55 ↦ 0.44",
-          ok, f"{n_units} twists over the six shells; δ_1, u = 5: {h5:.4f}", kind="[approx]")
+    check("E7", "X ↦ ζ^u leaves the cardinal values of every δ_j invariant and relabels the curve of δ_j by s ↦ us whenever ηuj ≡ j (mod n), ηu ≡ 1 (mod 4) — the Born vectors permuted by k ↦ ηuk: every cardinal site, every site for u = −1; n = 12, u = 5: δ_1 0.55 ↦ 0.44, from every relabelling; δ_3 unchanged at 0.42",
+          ok, f"{n_units} twists over the six shells, {n_pairs} (u, j) pairs relabelled; n = 12, u = 5, s = 1: δ_1 {h5:.4f}, δ_3 {h3:.4f}", kind="[approx]")
 
 
 if __name__ == "__main__":

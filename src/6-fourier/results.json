@@ -121,7 +121,7 @@
  },
  {
   "id": "B7",
-  "rows": "6:C7",
+  "rows": "6:C7, 6:C10",
   "block": "B",
   "script": "fourier",
   "label": "G = \u03b5(1+i), the two patterns, \u03b5(g\u207b\u00b9) = \u2212\u03b5(g), \u03b5(g^u) = (\u03ba/u) \u03b5(g), classes equally populated; 38 frames of p \u2208 {5,\u2026,37} and 16 of p = 41; p = 5: (2,0,1,1) at g = 2, (1,1,2,0) at g = 3",
@@ -131,7 +131,7 @@
  },
  {
   "id": "B8",
-  "rows": "6:C7",
+  "rows": "6:C7, 6:C10",
   "block": "B",
   "script": "fourier",
   "label": "G G* = \u22122, G\u00b2 = 2i, Tr F = iG, Tr F\u00b2 = 2, Tr F\u00b3 = iG*, m_\u2113 \u2261 \u00bc \u03a3_r i^{\u2212\u2113r} Tr F^r (mod p)",
@@ -141,10 +141,10 @@
  },
  {
   "id": "B9",
-  "rows": "6:C8",
+  "rows": "6:C8, 6:C11",
   "block": "B",
   "script": "fourier",
-  "label": "exponent lifts a_\u2113 \u2261 \u2113 (mod 4) are additive with the cardinal skeleton (p = 13); the chart g^5 at p = 29 (u\u00b2 \u2262 1 mod 28) does not commute with F",
+  "label": "exponent lifts a_\u2113 \u2261 \u2113 (mod 4) are additive with the cardinal skeleton (p = 13); the chart g^5 at p = 29 (u\u00b2 \u2262 1 mod 28) does not commute with F, nor does any chart with u\u00b2 \u2262 1 (mod 4\u03ba) on the six shells",
   "ok": true,
   "detail": "non-commuting at p = 29, u = 5: True; all charts with u\u00b2 \u2262 1 (mod 4\u03ba) on the six shells non-commuting: True (28 charts)",
   "kind": "EXACT"
@@ -181,10 +181,10 @@
  },
  {
   "id": "C3",
-  "rows": "6:D2",
+  "rows": "6:D2, 6:D7",
   "block": "C",
   "script": "fourier",
-  "label": "F^[s+2\u03ba] = F^[s] J, so B_{s+2\u03ba} = B_s as unordered bases: 4\u03ba framed domains, exactly 2\u03ba measurement bases",
+  "label": "F^[s+2\u03ba] = F^[s] J, so B_{s+2\u03ba} = B_s as unordered bases, and B_{s+t} \u2260 B_s for t \u2209 {0,2\u03ba}: every off-site entry of row 0 of F^[t] is (i/2)(1 \u2212 g^{\u22122t}) \u2260 0, F^[t] not monomial \u2014 4\u03ba framed domains, exactly 2\u03ba measurement bases",
   "ok": true,
   "detail": "p=5: 4 framed, 2 unordered; p=13: 12 framed, 6 unordered; p=17: 16 framed, 8 unordered; p=29: 28 framed, 14 unordered; p=37: 36 framed, 18 unordered; p=41: 40 framed, 20 unordered",
   "kind": "EXACT"
@@ -251,7 +251,7 @@
  },
  {
   "id": "D4",
-  "rows": "6:E5",
+  "rows": "6:E5, 6:E9",
   "block": "D",
   "script": "fourier",
   "label": "\u03c3 has the 4\u03ba simple eigenvalues F_p^\u00d7; F^[1] has at most four; for \u03ba \u2265 2 \u27e8\u03c3\u27e9 and \u27e8F^[1]\u27e9 are not conjugate",
@@ -364,9 +364,9 @@
   "rows": "6:F7",
   "block": "E",
   "script": "fourier",
-  "label": "X \u21a6 \u03b6^u relabels the \u03b4_0 curve by s \u21a6 us on every unit u; the cardinal values of every \u03b4_j are invariant under every twist; u = \u22121 relabels every \u03b4_j; \u03b4_1 at n = 12 under u = 5: H(1)/log n 0.55 \u21a6 0.44",
+  "label": "X \u21a6 \u03b6^u leaves the cardinal values of every \u03b4_j invariant and relabels the curve of \u03b4_j by s \u21a6 us whenever \u03b7uj \u2261 j (mod n), \u03b7u \u2261 1 (mod 4) \u2014 the Born vectors permuted by k \u21a6 \u03b7uk: every cardinal site, every site for u = \u22121; n = 12, u = 5: \u03b4_1 0.55 \u21a6 0.44, from every relabelling; \u03b4_3 unchanged at 0.42",
   "ok": true,
-  "detail": "54 twists over the six shells; \u03b4_1, u = 5: 0.4377",
+  "detail": "54 twists over the six shells, 536 (u, j) pairs relabelled; n = 12, u = 5, s = 1: \u03b4_1 0.4377, \u03b4_3 0.4180",
   "kind": "[approx]"
  }
 ]
