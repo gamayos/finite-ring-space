@@ -2,7 +2,7 @@
  "header": {
   "generated": "25 September 2026",
   "schema": "frc-register/1",
-  "rows": 948,
+  "rows": 950,
   "papers": [
    {
     "key": "00",
@@ -465,7 +465,7 @@
       "text": "Derived within this paper and machine-verified in exact arithmetic by the named witness, or observed and reproduced numerically to the stated tolerance."
      }
     ],
-    "rows": 49
+    "rows": 51
    },
    {
     "key": "8-dirac",
@@ -9166,6 +9166,24 @@
   {
    "paper": "6-four",
    "no": 6,
+   "key": "p06055",
+   "label": "A8",
+   "block": "A",
+   "tag": "I",
+   "name": null,
+   "statement": "The framework's reading of the holographic principle: the capacity $\\dS$ of the totality as the count and the entropy, the area law $A=4\\dS$ read exactly as $A=\\Om-1$, the origin the one point no boundary chart registers; the totality a finite holographic substrate when the observer's label plane $\\Fp\\times\\Fp$ fits inside its count, $\\p^{2}<\\Om$; every substrate-anchored measure as boundary data.",
+   "source": "\\citep[\\S2, \\S6]{Akhtman2026Dimensions}",
+   "page": "6-fourier/index.html#A8",
+   "witness": {
+    "py": null,
+    "lean": []
+   },
+   "refs": [],
+   "text": "The framework's reading of the holographic principle: the capacity $\\dS$ of the totality as the count and the entropy, the area law $A=4\\dS$ read exactly as $A=\\Om-1$, the origin the one point no boundary chart registers; the totality a finite holographic substrate when the observer's label plane $\\Fp\\times\\Fp$ fits inside its count, $\\p^{2}<\\Om$; every substrate-anchored measure as boundary data. \\citep[\\S2, \\S6]{Akhtman2026Dimensions}"
+  },
+  {
+   "paper": "6-four",
+   "no": 6,
    "key": "p06008",
    "label": "B1",
    "block": "B",
@@ -10070,7 +10088,7 @@
     "py": {
      "href": "src/6-fourier/#p06031",
      "script": "fourier.py",
-     "line": 782,
+     "line": 786,
      "verdict": "pass"
     },
     "lean": [
@@ -10126,7 +10144,7 @@
     "py": {
      "href": "src/6-fourier/#p06032",
      "script": "fourier.py",
-     "line": 794,
+     "line": 798,
      "verdict": "pass"
     },
     "lean": [
@@ -10153,7 +10171,7 @@
    "block": "E",
    "tag": "D",
    "name": null,
-   "statement": "Scope and reading of the dictionary: agreement on the four cardinal indices only, the two families acting on spaces of different dimension over different coefficient rings; the holographic reading, the rotation symmetry of the $\\p^{2}$-point plane carried by a cycle of the size of its square root, the state side of dimension $\\p$.",
+   "statement": "Scope and reading of the dictionary: agreement on the four cardinal indices only, the two families on spaces of different dimension over different coefficient rings, the Weil model one dimension larger as a count; the holographic reading, the meridian cycle of $4\\kap=\\p-1$ points carrying the rotations of the label plane, the fractional index and the scale-shift, and bounding every readout's entropy.",
    "source": "Rem.~\\ref{rem:dictionary-scope}, Rem.~\\ref{rem:holographic}",
    "page": "6-fourier/index.html#E4",
    "witness": {
@@ -10161,7 +10179,7 @@
     "lean": []
    },
    "refs": [],
-   "text": "Scope and reading of the dictionary: agreement on the four cardinal indices only, the two families acting on spaces of different dimension over different coefficient rings; the holographic reading, the rotation symmetry of the $\\p^{2}$-point plane carried by a cycle of the size of its square root, the state side of dimension $\\p$. Rem. rem:dictionary-scope, Rem. rem:holographic"
+   "text": "Scope and reading of the dictionary: agreement on the four cardinal indices only, the two families on spaces of different dimension over different coefficient rings, the Weil model one dimension larger as a count; the holographic reading, the meridian cycle of $4\\kap=\\p-1$ points carrying the rotations of the label plane, the fractional index and the scale-shift, and bounding every readout's entropy. Rem. rem:dictionary-scope, Rem. rem:holographic"
   },
   {
    "paper": "6-four",
@@ -10178,7 +10196,7 @@
     "py": {
      "href": "src/6-fourier/#p06034",
      "script": "fourier.py",
-     "line": 808,
+     "line": 812,
      "verdict": "pass"
     },
     "lean": [
@@ -10210,7 +10228,7 @@
     "py": {
      "href": "src/6-fourier/#p06035",
      "script": "fourier.py",
-     "line": 831,
+     "line": 835,
      "verdict": "pass"
     },
     "lean": [
@@ -10250,7 +10268,7 @@
     "py": {
      "href": "src/6-fourier/#p06036",
      "script": "fourier.py",
-     "line": 851,
+     "line": 855,
      "verdict": "pass"
     },
     "lean": [
@@ -10282,7 +10300,7 @@
     "py": {
      "href": "src/6-fourier/#p06050",
      "script": "fourier.py",
-     "line": 899,
+     "line": 903,
      "verdict": "pass"
     },
     "lean": []
@@ -10305,7 +10323,7 @@
     "py": {
      "href": "src/6-fourier/#p06054",
      "script": "fourier.py",
-     "line": 808,
+     "line": 812,
      "verdict": "pass"
     },
     "lean": []
@@ -10314,6 +10332,29 @@
     "p06034"
    ],
    "text": "The spectra behind E5: $\\sigma$ is diagonalizable over $\\Fp$ with the $4\\kap$ simple eigenvalues $\\Fpx$; $\\Ft^{[s]}=\\sum_\\ell\\gen^{-\\ell s}\\Pi_\\ell$ has at most four, among the $\\gen^{-\\ell s}$ ($\\Ft^{[1]}$ on the six shells). Prop. prop:nogo p06054"
+  },
+  {
+   "paper": "6-four",
+   "no": 6,
+   "key": "p06056",
+   "label": "E10",
+   "block": "E",
+   "tag": "T",
+   "name": null,
+   "statement": "The plane as orbits of the cycle: $|SO(2,\\Fp)|=4\\kap$; $\\Fp^{2}$ is its origin and $4\\kap+2$ free orbits of the rotation group, the $4\\kap$ circles of nonzero norm and the two isotropic lines, $\\p^{2}=1+(4\\kap+2)\\,4\\kap$; $\\dim\\Vt=4\\kap$.",
+   "source": "Cor.~\\ref{cor:boundary}\\newline \\pywit{fourier}{p06056}{E10}",
+   "page": "6-fourier/index.html#E10",
+   "witness": {
+    "py": {
+     "href": "src/6-fourier/#p06056",
+     "script": "fourier.py",
+     "line": 938,
+     "verdict": "pass"
+    },
+    "lean": []
+   },
+   "refs": [],
+   "text": "The plane as orbits of the cycle: $|SO(2,\\Fp)|=4\\kap$; $\\Fp^{2}$ is its origin and $4\\kap+2$ free orbits of the rotation group, the $4\\kap$ circles of nonzero norm and the two isotropic lines, $\\p^{2}=1+(4\\kap+2) 4\\kap$; $\\dim\\Vt=4\\kap$. Cor. cor:boundary p06056"
   },
   {
    "paper": "6-four",
@@ -10348,7 +10389,7 @@
     "py": {
      "href": "src/6-fourier/#p06038",
      "script": "fourier.py",
-     "line": 1021,
+     "line": 1060,
      "verdict": "pass"
     },
     "lean": []
@@ -10373,7 +10414,7 @@
     "py": {
      "href": "src/6-fourier/#p06039",
      "script": "fourier.py",
-     "line": 1034,
+     "line": 1073,
      "verdict": "pass"
     },
     "lean": []
@@ -10396,7 +10437,7 @@
     "py": {
      "href": "src/6-fourier/#p06040",
      "script": "fourier.py",
-     "line": 1080,
+     "line": 1119,
      "verdict": "pass"
     },
     "lean": []
@@ -10419,7 +10460,7 @@
     "py": {
      "href": "src/6-fourier/#p06041",
      "script": "fourier.py",
-     "line": 1116,
+     "line": 1155,
      "verdict": "pass"
     },
     "lean": []
@@ -10442,7 +10483,7 @@
     "py": {
      "href": "src/6-fourier/#p06042",
      "script": "fourier.py",
-     "line": 1132,
+     "line": 1171,
      "verdict": "pass"
     },
     "lean": []
@@ -10465,7 +10506,7 @@
     "py": {
      "href": "src/6-fourier/#p06043",
      "script": "fourier.py",
-     "line": 1176,
+     "line": 1215,
      "verdict": "pass"
     },
     "lean": []
@@ -10488,7 +10529,7 @@
     "py": {
      "href": "src/6-fourier/#p06049",
      "script": "fourier.py",
-     "line": 1203,
+     "line": 1242,
      "verdict": "pass"
     },
     "lean": []

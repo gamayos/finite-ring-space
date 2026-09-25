@@ -300,6 +300,16 @@
   "kind": "EXACT"
  },
  {
+  "id": "D9",
+  "rows": "6:E10",
+  "block": "D",
+  "script": "fourier",
+  "label": "the plane as orbits of the cycle (cor:boundary): |SO(2,F_p)| = n = p\u22121 and it is {R_s}; F_p\u00b2 = the origin + (n+2) free orbits (n circles of nonzero norm, two isotropic lines y = \u00b1ix), p\u00b2 = 1+(n+2)n; (u,v) \u21a6 (z_s u, z_s\u207b\u00b9 v); dim V = n",
+  "ok": true,
+  "detail": "p=5: |SO(2)|=4, orbits 1+6\u00d74; p=13: |SO(2)|=12, orbits 1+14\u00d712; p=17: |SO(2)|=16, orbits 1+18\u00d716; p=29: |SO(2)|=28, orbits 1+30\u00d728; p=37: |SO(2)|=36, orbits 1+38\u00d736; p=41: |SO(2)|=40, orbits 1+42\u00d740",
+  "kind": "EXACT"
+ },
+ {
   "id": "E1",
   "rows": "6:F2",
   "block": "E",

@@ -5,7 +5,7 @@ Substrate" (Akhtman, 2026; doi 10.20944/preprints202606.0127.v1), the paper 6-fo
 24 September 2026, the five block scripts merged).
 ========================================================================================================================
 
-One script, five blocks, thirty-eight checks, numpy (matplotlib for the one figure). Each check names the predicate(s) of the
+One script, five blocks, thirty-nine checks, numpy (matplotlib for the one figure). Each check names the predicate(s) of the
 paper's ledger it witnesses (LEDGER below; predicates cited as 6:XN) under a `# 6:XN (<key>)` marker, and the ledger's
 source column links the marker in return (finitering.space/src/6-fourier/#<key>). The paper \\label(s) a
 check decides are in the block banners. Three master-ledger predicates of the corpus are reached through the paper's:
@@ -18,7 +18,7 @@ check decides are in the block banners. Three master-ledger predicates of the co
 Blocks:  A  the frame datum and the shell Fourier operator     EXACT            (6:B1–B3, B5–B7)
          B  the fractional family F^[s]                        EXACT            (6:C2–C11)
          C  representation domains and the coordinate zoom     EXACT            (6:D1, D2, D4, D5, D7)
-         D  the Weil dictionary, the operator-level comparison EXACT            (6:E2, E3, E5–E9)
+         D  the Weil dictionary, the operator-level comparison EXACT            (6:E2, E3, E5–E10)
          E  the cyclotomic observer readout, the entropy cycle EXACT / [approx] (6:F2–F8)
 
 Everything the blocks share:
@@ -53,7 +53,7 @@ LEDGER = {
     "B1": "6:C2", "B2": "6:C3", "B3": "6:C3", "B4": "6:C4", "B5": "6:C5", "B6": "6:C6", "B7": "6:C7, 6:C10", "B8": "6:C7, 6:C10",
     "B9": "6:C8, 6:C11", "B10": "6:C9",
     "C1": "6:D1", "C2": "6:D2", "C3": "6:D2, 6:D7", "C4": "6:D4", "C5": "6:D4", "C6": "6:D5",
-    "D1": "6:E2", "D2": "6:E2", "D3": "6:E3", "D4": "6:E5, 6:E9", "D5": "6:E6", "D6": "6:E7", "D7": "6:E7", "D8": "6:E8",
+    "D1": "6:E2", "D2": "6:E2", "D3": "6:E3", "D4": "6:E5, 6:E9", "D5": "6:E6", "D6": "6:E7", "D7": "6:E7", "D8": "6:E8", "D9": "6:E10",
     "E1": "6:F2", "E2": "6:F3", "E3": "6:F3", "E4": "6:F4", "E5": "6:F5", "E6": "6:F6", "E7": "6:F7", "E8": "6:F8",
 }
 # The master-ledger predicates of the corpus witnessed through the paper's: 00:C2 (6:B5, 6:C3, 6:D4), 00:C14 (6:B2),
@@ -72,7 +72,7 @@ PREDICATES = {
     "6:B1": "A1", "6:B2": "A2", "6:B3": "A3", "6:B5": "A4", "6:B6": "A5", "6:B7": "A6",
     "6:C2": "B1", "6:C3": "B2", "6:C4": "B4", "6:C5": "B5", "6:C6": "B6", "6:C7": "B7", "6:C8": "B9", "6:C9": "B10", "6:C10": "B7", "6:C11": "B9",
     "6:D1": "C1", "6:D2": "C2", "6:D4": "C4", "6:D5": "C6", "6:D7": "C3",
-    "6:E2": "D2", "6:E3": "D3", "6:E5": "D4", "6:E6": "D5", "6:E7": "D6", "6:E8": "D8", "6:E9": "D4",
+    "6:E2": "D2", "6:E3": "D3", "6:E5": "D4", "6:E6": "D5", "6:E7": "D6", "6:E8": "D8", "6:E9": "D4", "6:E10": "D9",
     "6:F2": "E1", "6:F3": "E2", "6:F4": "E4", "6:F5": "E5", "6:F6": "E6", "6:F7": "E7", "6:F8": "E8",
 }
 _RAN = set()                                            # blocks already run in this session (predicate() runs each once)
@@ -745,6 +745,10 @@ def block_C():
 #   D8  thm:monomial          cardinal exclusivity: off j ∈ {−1, 0, 1} row 0 of F^[s] σ F^[s]⁻¹ is x⁻¹ times a
 #                             quadratic in x = g^j with leading coefficient i(c₀+c₂)c₃(−s) ≠ 0, so at least 4κ−5
 #                             nonzero entries for every non-cardinal s; every shell p ≡ 1 (mod 4) below 200
+#   D9  cor:boundary          the plane as orbits of the cycle: |SO(2, F_p)| = p−1 = n; F_p² is the origin and n+2 free
+#                             orbits of the rotation group (the n circles x²+y² = c ≠ 0 and the two isotropic lines
+#                             y = ±ix without the origin), p² = 1 + (n+2)n; R_s acts on u = x+iy, v = x−iy as
+#                             (u, v) ↦ (z_s u, z_s⁻¹ v); dim V = n (the transforms are n×n)
 #
 # Shells: p = 5, 13, 17, 29, 37, 41 (D8: every shell below 200).
 def shift(n):
@@ -755,7 +759,7 @@ def shift(n):
     return S
 
 def block_D():
-    """Block D — the Weil dictionary and the operator-level comparison (EXACT, integer-pinned): D1–D8."""
+    """Block D — the Weil dictionary and the operator-level comparison (EXACT, integer-pinned): D1–D9."""
     print("block D — the Weil dictionary and the operator-level comparison")
     frames = {p: Frame(p) for p in SHELLS}
 
@@ -899,6 +903,41 @@ def block_D():
     # 6:E8 (p06050)
     check("D8", "cardinal exclusivity (thm:monomial): row 0 of F^[s] σ F^[s]⁻¹ is x⁻¹ times a quadratic in x = g^j off j ∈ {−1,0,1}, leading coefficient i(c₀+c₂)c₃(−s) ≠ 0, at least 4κ−5 nonzero entries for every non-cardinal s, every shell p ≡ 1 (mod 4) below 200", ok,
           f"{len(det)} shells, {n_int8} non-cardinal indices; fewest nonzero entries in row 0: {worst}")
+
+    # D9 — the plane as orbits of the cycle (cor:boundary): the rotation group {(c, d): c² + d² = 1} has p−1 = n elements
+    # and is {R_s}; on F_p² its orbits are the origin, the n circles x² + y² = c ≠ 0 and the two isotropic lines y = ±ix
+    # without the origin, every orbit but the origin free (of size n), n+2 of them, p² = 1 + (n+2)n; in u = x + iy,
+    # v = x − iy the rotation R_s is (u, v) ↦ (z_s u, z_s⁻¹ v) with x² + y² = uv; the transforms act on n×n.
+    ok, det = True, []
+    for p in SHELLS:
+        f = frames[p]; n, i = f.n, f.i
+        circle = {(c, d) for c in range(p) for d in range(p) if (c * c + d * d) % p == 1}
+        Rs = {(int(f.R(s)[0, 0]), int(f.R(s)[1, 0])) for s in range(n)}
+        ok &= len(circle) == n and Rs == circle                                       # |SO(2, F_p)| = n, and it is {R_s}
+        seen, orbits = set(), []
+        for x in range(p):
+            for y in range(p):
+                if (x, y) in seen:
+                    continue
+                orb = {((c * x - d * y) % p, (d * x + c * y) % p) for (c, d) in circle}
+                seen |= orb; orbits.append((len(orb), (x * x + y * y) % p))
+        sizes = sorted(o[0] for o in orbits)
+        ok &= sizes == [1] + [n] * (n + 2) and p * p == 1 + (n + 2) * n              # the origin and n+2 free orbits
+        ok &= len({q for (sz, q) in orbits if q != 0}) == n                             # one circle per nonzero norm
+        ok &= sum(1 for (sz, q) in orbits if q == 0 and sz == n) == 2                   # the two isotropic lines
+        null = {(x, y) for x in range(p) for y in range(p) if (x * x + y * y) % p == 0 and (x, y) != (0, 0)}
+        ok &= null == {(x, (i * x) % p) for x in range(1, p)} | {(x, (-i * x) % p) for x in range(1, p)}   # y = ±ix
+        for s in range(n):
+            R, z = f.R(s), f.z(s); zi = pow(z, p - 2, p)
+            for (x, y) in [(1, 0), (0, 1), (2, 3), (i, 1)]:
+                x2, y2 = (int(R[0, 0]) * x + int(R[0, 1]) * y) % p, (int(R[1, 0]) * x + int(R[1, 1]) * y) % p
+                u, v = (x + i * y) % p, (x - i * y) % p
+                ok &= (x2 + i * y2) % p == z * u % p and (x2 - i * y2) % p == zi * v % p and (x * x + y * y) % p == u * v % p
+        ok &= f.frft(1).shape == (n, n)                                                 # dim V = n
+        det.append(f"p={p}: |SO(2)|={len(circle)}, orbits 1+{n + 2}×{n}")
+    # 6:E10 (p06056)
+    check("D9", "the plane as orbits of the cycle (cor:boundary): |SO(2,F_p)| = n = p−1 and it is {R_s}; F_p² = the origin + (n+2) free orbits (n circles of nonzero norm, two isotropic lines y = ±ix), p² = 1+(n+2)n; (u,v) ↦ (z_s u, z_s⁻¹ v); dim V = n",
+          ok, "; ".join(det))
 
 # ------------------------------------------------------------------------------------------------------------
 # Block E — the cyclotomic observer readout and the entropy on the meridian cycle

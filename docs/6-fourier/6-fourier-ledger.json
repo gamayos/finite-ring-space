@@ -56,6 +56,13 @@
      "tag": "I",
      "source": "\\citep{Namias1980,OzaktasBook2001,LimaCampello2012,PeiWenDing2011,LimaCampello2016,LimaCampello2017,GurevichHadani2009,FloratosPavlidis2024}",
      "key": "p06007"
+    },
+    {
+     "label": "A8",
+     "predicate": "The framework's reading of the holographic principle: the capacity $\\dS$ of the totality as the count and the entropy, the area law $A=4\\dS$ read exactly as $A=\\Om-1$, the origin the one point no boundary chart registers; the totality a finite holographic substrate when the observer's label plane $\\Fp\\times\\Fp$ fits inside its count, $\\p^{2}<\\Om$; every substrate-anchored measure as boundary data.",
+     "tag": "I",
+     "source": "\\citep[\\S2, \\S6]{Akhtman2026Dimensions}",
+     "key": "p06055"
     }
    ]
   },
@@ -279,7 +286,7 @@
     },
     {
      "label": "E4",
-     "predicate": "Scope and reading of the dictionary: agreement on the four cardinal indices only, the two families acting on spaces of different dimension over different coefficient rings; the holographic reading, the rotation symmetry of the $\\p^{2}$-point plane carried by a cycle of the size of its square root, the state side of dimension $\\p$.",
+     "predicate": "Scope and reading of the dictionary: agreement on the four cardinal indices only, the two families on spaces of different dimension over different coefficient rings, the Weil model one dimension larger as a count; the holographic reading, the meridian cycle of $4\\kap=\\p-1$ points carrying the rotations of the label plane, the fractional index and the scale-shift, and bounding every readout's entropy.",
      "tag": "D",
      "source": "Rem.~\\ref{rem:dictionary-scope}, Rem.~\\ref{rem:holographic}",
      "key": "p06033"
@@ -318,6 +325,13 @@
      "tag": "T",
      "source": "Prop.~\\ref{prop:nogo}\\newline \\pywit{fourier}{p06054}{E9}",
      "key": "p06054"
+    },
+    {
+     "label": "E10",
+     "predicate": "The plane as orbits of the cycle: $|SO(2,\\Fp)|=4\\kap$; $\\Fp^{2}$ is its origin and $4\\kap+2$ free orbits of the rotation group, the $4\\kap$ circles of nonzero norm and the two isotropic lines, $\\p^{2}=1+(4\\kap+2)\\,4\\kap$; $\\dim\\Vt=4\\kap$.",
+     "tag": "T",
+     "source": "Cor.~\\ref{cor:boundary}\\newline \\pywit{fourier}{p06056}{E10}",
+     "key": "p06056"
     }
    ]
   },
