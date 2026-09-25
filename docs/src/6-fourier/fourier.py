@@ -5,7 +5,7 @@ Substrate" (Akhtman, 2026; doi 10.20944/preprints202606.0127.v1), the paper 6-fo
 24 September 2026, the five block scripts merged).
 ========================================================================================================================
 
-One script, five blocks, thirty-seven checks, numpy (matplotlib for the one figure). Each check names the predicate(s) of the
+One script, five blocks, thirty-eight checks, numpy (matplotlib for the one figure). Each check names the predicate(s) of the
 paper's ledger it witnesses (LEDGER below; predicates cited as 6:XN) under a `# 6:XN (<key>)` marker, and the ledger's
 source column links the marker in return (finitering.space/src/6-fourier/#<key>). The paper \\label(s) a
 check decides are in the block banners. Three master-ledger predicates of the corpus are reached through the paper's:
@@ -19,7 +19,7 @@ Blocks:  A  the frame datum and the shell Fourier operator     EXACT            
          B  the fractional family F^[s]                        EXACT            (6:C2–C11)
          C  representation domains and the coordinate zoom     EXACT            (6:D1, D2, D4, D5, D7)
          D  the Weil dictionary, the operator-level comparison EXACT            (6:E2, E3, E5–E9)
-         E  the cyclotomic observer readout, the entropy cycle EXACT / [approx] (6:F2–F7)
+         E  the cyclotomic observer readout, the entropy cycle EXACT / [approx] (6:F2–F8)
 
 Everything the blocks share:
   * the frame datum of a shell: p = 4κ+1, the smallest primitive root g (the generators of Table `tab:checks`),
@@ -54,7 +54,7 @@ LEDGER = {
     "B9": "6:C8, 6:C11", "B10": "6:C9",
     "C1": "6:D1", "C2": "6:D2", "C3": "6:D2, 6:D7", "C4": "6:D4", "C5": "6:D4", "C6": "6:D5",
     "D1": "6:E2", "D2": "6:E2", "D3": "6:E3", "D4": "6:E5, 6:E9", "D5": "6:E6", "D6": "6:E7", "D7": "6:E7", "D8": "6:E8",
-    "E1": "6:F2", "E2": "6:F3", "E3": "6:F3", "E4": "6:F4", "E5": "6:F5", "E6": "6:F6", "E7": "6:F7",
+    "E1": "6:F2", "E2": "6:F3", "E3": "6:F3", "E4": "6:F4", "E5": "6:F5", "E6": "6:F6", "E7": "6:F7", "E8": "6:F8",
 }
 # The master-ledger predicates of the corpus witnessed through the paper's: 00:C2 (6:B5, 6:C3, 6:D4), 00:C14 (6:B2),
 # 00:C7 on the transform layer (6:C9).
@@ -73,7 +73,7 @@ PREDICATES = {
     "6:C2": "B1", "6:C3": "B2", "6:C4": "B4", "6:C5": "B5", "6:C6": "B6", "6:C7": "B7", "6:C8": "B9", "6:C9": "B10", "6:C10": "B7", "6:C11": "B9",
     "6:D1": "C1", "6:D2": "C2", "6:D4": "C4", "6:D5": "C6", "6:D7": "C3",
     "6:E2": "D2", "6:E3": "D3", "6:E5": "D4", "6:E6": "D5", "6:E7": "D6", "6:E8": "D8", "6:E9": "D4",
-    "6:F2": "E1", "6:F3": "E2", "6:F4": "E4", "6:F5": "E5", "6:F6": "E6", "6:F7": "E7",
+    "6:F2": "E1", "6:F3": "E2", "6:F4": "E4", "6:F5": "E5", "6:F6": "E6", "6:F7": "E7", "6:F8": "E8",
 }
 _RAN = set()                                            # blocks already run in this session (predicate() runs each once)
 
@@ -926,6 +926,10 @@ def block_D():
 #       def:readout          the curve of δ_j by s ↦ us whenever ηuj ≡ j (mod n), ηu ≡ 1 (mod 4) — the Born vectors
 #                            permuted by k ↦ ηuk: every cardinal site, every site for u = −1; off the cardinal sites a
 #                            twist u ≢ ±1 can change the curve (n = 12, u = 5: δ_1 0.55 ↦ 0.44, δ_3 0.42 unchanged)
+#   E8  prop:fractional-unc  the fractional uncertainty relation: c(s) = max |F^[s]_{jk}| satisfies
+#                            c(s)² ≥ max{1/n, 1 − (n−1)t_s/n}; c(s)² = 1/n exactly at s ∈ {κ, 3κ} (B_s mutually
+#                            unbiased to B_0 exactly there); c(s) = 1 at s ∈ {0, 2κ}; H_{B_0} + H_{B_s} ≥ −2 log c(s)
+#                            on random states; p = 13: −2 log c(s)/log n = 0, .10, .41, 1, .41, .10 per half-cycle
 #
 # Shells: n = 4, 12, 16, 28, 36, 40 (p = 5, 13, 17, 29, 37, 41).
 def cyclotomic(n):
@@ -994,7 +998,7 @@ def delta(n, j):
     return e
 
 def block_E():
-    """Block E — the cyclotomic observer readout and the entropy on the meridian cycle: E1–E7."""
+    """Block E — the cyclotomic observer readout and the entropy on the meridian cycle: E1–E8."""
     print("block E — the cyclotomic observer readout")
     os.makedirs(FIGDIR, exist_ok=True)
     frames = {p: Frame(p) for p in SHELLS}
@@ -1172,6 +1176,33 @@ def block_E():
     # 6:F7 (p06043)
     check("E7", "X ↦ ζ^u leaves the cardinal values of every δ_j invariant and relabels the curve of δ_j by s ↦ us whenever ηuj ≡ j (mod n), ηu ≡ 1 (mod 4) — the Born vectors permuted by k ↦ ηuk: every cardinal site, every site for u = −1; n = 12, u = 5: δ_1 0.55 ↦ 0.44, from every relabelling; δ_3 unchanged at 0.42",
           ok, f"{n_units} twists over the six shells, {n_pairs} (u, j) pairs relabelled; n = 12, u = 5, s = 1: δ_1 {h5:.4f}, δ_3 {h3:.4f}", kind="[approx]")
+
+    # E8 — the fractional uncertainty relation (prop:fractional-unc): the largest overlap between B_0 and B_s
+    ok, rng, det = True, np.random.default_rng(8), []
+    for p in SHELLS:
+        n = p - 1; k = n // 4
+        D, P, frft = dft_family(n)
+        z = np.exp(2j * np.pi / n)
+        for s in range(n):
+            Fs = frft(s); c2 = float(np.abs(Fs).max() ** 2)
+            ts = ((2 - z ** (2 * s) - z ** (-2 * s)) / 4).real
+            p0 = 1 - (n - 1) / n * ts
+            ok &= c2 >= max(1.0 / n, p0) - 1e-12                        # c(s)² ≥ max{1/n, 1 − (n−1)t_s/n}
+            ok &= abs(abs(Fs[0, 0]) ** 2 - p0) < 1e-9                    # the (0,0) entry is the localised amplitude at site 0
+            mub = abs(c2 - 1.0 / n) < 1e-9
+            ok &= mub == (s in (k, 3 * k))                               # mutually unbiased exactly at the Fourier meridians
+            ok &= (abs(c2 - 1.0) < 1e-9) == (s in (0, 2 * k))            # a permutation exactly at s ∈ {0, 2κ}
+            for _ in range(40):                                          # Maassen–Uffink on random states
+                psi = rng.normal(size=n) + 1j * rng.normal(size=n); psi /= np.linalg.norm(psi)
+                ok &= entropy(psi) + entropy(Fs.conj().T @ psi) >= -np.log(c2) - 1e-9
+    D, P, frft = dft_family(12)
+    bound = [-2 * np.log(np.abs(frft(s)).max()) / np.log(12) for s in range(12)]
+    stated = [0, .10, .41, 1, .41, .10] * 2
+    ok &= all(abs(round(b, 2) - t) < 1e-9 for b, t in zip(bound, stated))
+    det.append("p = 13: −2 log c(s)/log n = " + ", ".join(f"{b + 0.0:.3f}" for b in bound))
+    # 6:F8 (p06049)
+    check("E8", "c(s)² ≥ max{1/n, 1 − (n−1)t_s/n}; B_s mutually unbiased to B_0 exactly at s ∈ {κ, 3κ}; c(s) = 1 exactly at s ∈ {0, 2κ}; H_{B_0} + H_{B_s} ≥ −2 log c(s) on random states; p = 13: the bound 0, .10, .41, 1, .41, .10 per half-cycle",
+          ok, "; ".join(det) + "; 40 random states per (shell, s)", kind="[approx]")
 
 
 if __name__ == "__main__":

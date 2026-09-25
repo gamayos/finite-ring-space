@@ -2,7 +2,7 @@
  "header": {
   "generated": "25 September 2026",
   "schema": "frc-register/1",
-  "rows": 947,
+  "rows": 948,
   "papers": [
    {
     "key": "00",
@@ -465,7 +465,7 @@
       "text": "Derived within this paper and machine-verified in exact arithmetic by the named witness, or observed and reproduced numerically to the stated tolerance."
      }
     ],
-    "rows": 48
+    "rows": 49
    },
    {
     "key": "8-dirac",
@@ -9081,15 +9081,15 @@
    "block": "A",
    "tag": "I",
    "name": null,
-   "statement": "The classical evaluation of the twisted quadratic Gauss sum for $4\\mid n$, $\\sum_k\\zeta_n^{uk^{2}}=\\bigl(\\tfrac{\\kap}{u}\\bigr)(1\\pm i)\\sqrt n$; the eigenvalue quartet of prime-modulus number-theoretic transforms; the multiplicity counts of the discrete Fourier eigenvalues.",
-   "source": "\\citep{BerndtEvansWilliams1998,Birtwistle1982,McClellanParks1972}",
+   "statement": "The classical evaluation of the twisted quadratic Gauss sum for $4\\mid n$, $\\sum_k\\zeta_n^{uk^{2}}=\\bigl(\\tfrac{\\kap}{u}\\bigr)(1\\pm i)\\sqrt n$; the eigenvalue quartet of prime-modulus number-theoretic transforms; the multiplicity counts of the discrete Fourier eigenvalues; the Gauss sign through the Weil representation.",
+   "source": "\\citep{BerndtEvansWilliams1998,Birtwistle1982,McClellanParks1972,GurevichHadaniHowe2010}",
    "page": "6-fourier/index.html#A3",
    "witness": {
     "py": null,
     "lean": []
    },
    "refs": [],
-   "text": "The classical evaluation of the twisted quadratic Gauss sum for $4\\mid n$, $\\sum_k\\zeta_n^{uk^{2}}=\\bigl(\\tfrac{\\kap}{u}\\bigr)(1\\pm i)\\sqrt n$; the eigenvalue quartet of prime-modulus number-theoretic transforms; the multiplicity counts of the discrete Fourier eigenvalues. [BerndtEvansWilliams1998,Birtwistle1982,McClellanParks1972]"
+   "text": "The classical evaluation of the twisted quadratic Gauss sum for $4\\mid n$, $\\sum_k\\zeta_n^{uk^{2}}=\\bigl(\\tfrac{\\kap}{u}\\bigr)(1\\pm i)\\sqrt n$; the eigenvalue quartet of prime-modulus number-theoretic transforms; the multiplicity counts of the discrete Fourier eigenvalues; the Gauss sign through the Weil representation. [BerndtEvansWilliams1998,Birtwistle1982,McClellanParks1972,GurevichHadaniHowe2010]"
   },
   {
    "paper": "6-four",
@@ -9153,15 +9153,15 @@
    "block": "A",
    "tag": "I",
    "name": null,
-   "statement": "The continuum fractional Fourier transform and the finite constructions the family is separated from: the eigenbasis and matrix-function transforms, the harmonic-oscillator propagator reading.",
-   "source": "\\citep{Namias1980,OzaktasBook2001,LimaCampello2012,PeiWenDing2011,LimaCampello2017}",
+   "statement": "The continuum fractional Fourier transform and the finite constructions the family is placed against: the eigenbasis transforms, the eigenvector-free and matrix-function transforms, the canonical DFT eigenbasis, the arithmetic FrFT of the rotation group, the harmonic-oscillator propagator reading.",
+   "source": "\\citep{Namias1980,OzaktasBook2001,LimaCampello2012,PeiWenDing2011,LimaCampello2016,LimaCampello2017,GurevichHadani2009,FloratosPavlidis2024}",
    "page": "6-fourier/index.html#A7",
    "witness": {
     "py": null,
     "lean": []
    },
    "refs": [],
-   "text": "The continuum fractional Fourier transform and the finite constructions the family is separated from: the eigenbasis and matrix-function transforms, the harmonic-oscillator propagator reading. [Namias1980,OzaktasBook2001,LimaCampello2012,PeiWenDing2011,LimaCampello2017]"
+   "text": "The continuum fractional Fourier transform and the finite constructions the family is placed against: the eigenbasis transforms, the eigenvector-free and matrix-function transforms, the canonical DFT eigenbasis, the arithmetic FrFT of the rotation group, the harmonic-oscillator propagator reading. [Namias1980,OzaktasBook2001,LimaCampello2012,PeiWenDing2011,LimaCampello2016,LimaCampello2017,GurevichHadani2009,FloratosPavlidis2024]"
   },
   {
    "paper": "6-four",
@@ -9806,7 +9806,7 @@
    "block": "C",
    "tag": "T",
    "name": null,
-   "statement": "Charts outside the classified set: a family canonical in the chart $\\gen^{u}$ with $u^{2}\\not\\equiv1\\pmod{4\\kap}$ does not commute with $\\Ft$ --- $\\p=29$, $u=5$, and every such chart of the six shells of Table~\\ref{tab:checks}.",
+   "statement": "Charts outside the classified set: a family canonical in the chart $\\gen^{u}$ with $u^{2}\\not\\equiv1\\pmod{4\\kap}$ does not commute with $\\Ft$, on every shell --- $\\Wt(\\gen^{u})=\\Wt P_u$ with $P_u$ the site relabelling $j\\mapsto uj$, so $\\Wt\\,\\Wt(\\gen^{u})=-JP_u$ and $\\Wt(\\gen^{u})\\,\\Wt=-JP_{u^{-1}}$, equal exactly when $u^{2}\\equiv1$, and the chart's normalized operator $\\Ft'=\\im'\\Wt(\\gen^{u})$ and its $\\Ft'^{[1]}$ are polynomials in each other; $\\p=29$, $u=5$, and every such chart of the six shells of Table~\\ref{tab:checks} checked.",
    "source": "Rem.~\\ref{rem:classification}\\newline \\pywit{fourier}{p06052}{C11}",
    "page": "6-fourier/index.html#C11",
    "witness": {
@@ -9819,7 +9819,7 @@
     "lean": []
    },
    "refs": [],
-   "text": "Charts outside the classified set: a family canonical in the chart $\\gen^{u}$ with $u^{2}\\not\\equiv1\\pmod{4\\kap}$ does not commute with $\\Ft$ — $\\p=29$, $u=5$, and every such chart of the six shells of Table tab:checks. Rem. rem:classification p06052"
+   "text": "Charts outside the classified set: a family canonical in the chart $\\gen^{u}$ with $u^{2}\\not\\equiv1\\pmod{4\\kap}$ does not commute with $\\Ft$, on every shell — $\\Wt(\\gen^{u})=\\Wt P_u$ with $P_u$ the site relabelling $j\\mapsto uj$, so $\\Wt \\Wt(\\gen^{u})=-JP_u$ and $\\Wt(\\gen^{u}) \\Wt=-JP_{u^{-1}}$, equal exactly when $u^{2}\\equiv1$, and the chart's normalized operator $\\Ft'=\\im'\\Wt(\\gen^{u})$ and its $\\Ft'^{[1]}$ are polynomials in each other; $\\p=29$, $u=5$, and every such chart of the six shells of Table tab:checks checked. Rem. rem:classification p06052"
   },
   {
    "paper": "6-four",
@@ -10001,7 +10001,7 @@
    "block": "D",
    "tag": "D",
    "name": null,
-   "statement": "Scope of the unification: the representation-side rotation and the coordinate-side scale shift act on carriers of different dimension and are not equal as operators; they share the index group $\\Phit$ and the cardinal labels, and the operator-level relation is E5--E7.",
+   "statement": "Scope of the two readings: the representation-side rotation and the coordinate-side scale shift act on carriers of different dimension and are not equal as operators; they share the index group $\\Phit$ and the cardinal labels, and the operator-level relation is E5--E9.",
    "source": "Rem.~\\ref{rem:two-layers}",
    "page": "6-fourier/index.html#D6",
    "witness": {
@@ -10010,9 +10010,9 @@
    },
    "refs": [
     "p06034",
-    "p06036"
+    "p06054"
    ],
-   "text": "Scope of the unification: the representation-side rotation and the coordinate-side scale shift act on carriers of different dimension and are not equal as operators; they share the index group $\\Phit$ and the cardinal labels, and the operator-level relation is E5–E7. Rem. rem:two-layers"
+   "text": "Scope of the two readings: the representation-side rotation and the coordinate-side scale shift act on carriers of different dimension and are not equal as operators; they share the index group $\\Phit$ and the cardinal labels, and the operator-level relation is E5–E9. Rem. rem:two-layers"
   },
   {
    "paper": "6-four",
@@ -10348,7 +10348,7 @@
     "py": {
      "href": "src/6-fourier/#p06038",
      "script": "fourier.py",
-     "line": 1017,
+     "line": 1021,
      "verdict": "pass"
     },
     "lean": []
@@ -10373,7 +10373,7 @@
     "py": {
      "href": "src/6-fourier/#p06039",
      "script": "fourier.py",
-     "line": 1030,
+     "line": 1034,
      "verdict": "pass"
     },
     "lean": []
@@ -10396,7 +10396,7 @@
     "py": {
      "href": "src/6-fourier/#p06040",
      "script": "fourier.py",
-     "line": 1076,
+     "line": 1080,
      "verdict": "pass"
     },
     "lean": []
@@ -10419,7 +10419,7 @@
     "py": {
      "href": "src/6-fourier/#p06041",
      "script": "fourier.py",
-     "line": 1112,
+     "line": 1116,
      "verdict": "pass"
     },
     "lean": []
@@ -10442,7 +10442,7 @@
     "py": {
      "href": "src/6-fourier/#p06042",
      "script": "fourier.py",
-     "line": 1128,
+     "line": 1132,
      "verdict": "pass"
     },
     "lean": []
@@ -10465,13 +10465,36 @@
     "py": {
      "href": "src/6-fourier/#p06043",
      "script": "fourier.py",
-     "line": 1172,
+     "line": 1176,
      "verdict": "pass"
     },
     "lean": []
    },
    "refs": [],
    "text": "The Galois twist $X\\mapsto\\zeta_n^{u}$ leaves the cardinal values of every $\\delta_j$ invariant and relabels the curve of $\\delta_j$ by $s\\mapsto us$ whenever $\\eta uj\\equiv j\\pmod n$ ($\\eta u\\equiv1\\pmod4$): at every cardinal site, and at every site for $u=-1$; off the cardinal sites $u\\not\\equiv\\pm1$ can change the curve ($n=12$, $u=5$, $s=1$: $\\delta_1$ $0.55\\mapsto0.44$, $\\delta_3$ $0.42$ unchanged) [approx]. Prop. prop:twist p06043"
+  },
+  {
+   "paper": "6-four",
+   "no": 6,
+   "key": "p06049",
+   "label": "F8",
+   "block": "F",
+   "tag": "T",
+   "name": null,
+   "statement": "Fractional uncertainty relation: $H_{B_0}+H_{B_s}\\ge-2\\log c(s)$, $c(s)$ the largest entry in magnitude of $\\Ft^{[s]}$ under the readout; $c(s)^{2}\\ge\\max\\{1/n,\\,1-\\tfrac{n-1}{n}t_s\\}$; $B_s$ is mutually unbiased to $B_0$ exactly at $s\\in\\{\\kap,3\\kap\\}$; at $\\p=13$ the bound is $0,.10,.41,1$ per quarter-cycle [approx].",
+   "source": "Prop.~\\ref{prop:fractional-unc}\\newline \\pywit{fourier}{p06049}{F8}",
+   "page": "6-fourier/index.html#F8",
+   "witness": {
+    "py": {
+     "href": "src/6-fourier/#p06049",
+     "script": "fourier.py",
+     "line": 1203,
+     "verdict": "pass"
+    },
+    "lean": []
+   },
+   "refs": [],
+   "text": "Fractional uncertainty relation: $H_{B_0}+H_{B_s}\\ge-2\\log c(s)$, $c(s)$ the largest entry in magnitude of $\\Ft^{[s]}$ under the readout; $c(s)^{2}\\ge\\max\\{1/n, 1-\\tfrac{n-1}{n}t_s\\}$; $B_s$ is mutually unbiased to $B_0$ exactly at $s\\in\\{\\kap,3\\kap\\}$; at $\\p=13$ the bound is $0,.10,.41,1$ per quarter-cycle [approx]. Prop. prop:fractional-unc p06049"
   },
   {
    "paper": "8-dirac",

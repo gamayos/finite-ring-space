@@ -368,5 +368,15 @@
   "ok": true,
   "detail": "54 twists over the six shells, 536 (u, j) pairs relabelled; n = 12, u = 5, s = 1: \u03b4_1 0.4377, \u03b4_3 0.4180",
   "kind": "[approx]"
+ },
+ {
+  "id": "E8",
+  "rows": "6:F8",
+  "block": "E",
+  "script": "fourier",
+  "label": "c(s)\u00b2 \u2265 max{1/n, 1 \u2212 (n\u22121)t_s/n}; B_s mutually unbiased to B_0 exactly at s \u2208 {\u03ba, 3\u03ba}; c(s) = 1 exactly at s \u2208 {0, 2\u03ba}; H_{B_0} + H_{B_s} \u2265 \u22122 log c(s) on random states; p = 13: the bound 0, .10, .41, 1, .41, .10 per half-cycle",
+  "ok": true,
+  "detail": "p = 13: \u22122 log c(s)/log n = -0.000, 0.098, 0.413, 1.000, 0.413, 0.098, -0.000, 0.098, 0.413, 1.000, 0.413, 0.098; 40 random states per (shell, s)",
+  "kind": "[approx]"
  }
 ]
