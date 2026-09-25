@@ -10,7 +10,7 @@
 <title>FRC publications</title>
 <meta name="description" content="Publication status of the Finite Ring Cosmology corpus: manuscripts, preprints, venue history.">
 <link rel="icon" href="frc-logo-fav.png">
-<link rel="stylesheet" href="style.css?v=2a783d12">
+<link rel="stylesheet" href="style.css?v=0b0aaf95">
 </head>
 <body>
 <div class="wrap">
@@ -36,7 +36,7 @@
         <th data-sort="n"      style="width:7rem">Key <span class="car"></span></th>
         <th data-sort="title">Title <span class="car"></span></th>
         <th data-sort="status" style="width:6rem">Status <span class="car"></span></th>
-        <th style="width:12.5rem">Package</th>
+        <th class="pkg" style="width:8.4rem" title="the validation package: predicates checked in python, proved in the core (no axioms), proved on Mathlib, and the laboratory"><span class="g"><span class="ico wit py ok"><img class="runico pysrc" src="media/python.png" alt="python"></span></span><span class="g"><img class="leanico ok" src="lean/lean-ok.png" alt="Lean"></span><span class="g"><img class="leanico ml" src="lean/lean-ml.png" alt="Lean, Mathlib"></span><span class="g lab"><span class="ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9.5 3h5M10 3v6l-5.5 9.5A1.5 1.5 0 0 0 5.8 21h12.4a1.5 1.5 0 0 0 1.3-2.5L14 9V3"/><path d="M7.5 16h9"/></svg></span></span></th>
       </tr>
     </thead>
     <tbody id="rows"></tbody>
@@ -54,6 +54,7 @@
 
   <section class="legend">
     <h2>Reading the package column</h2>
+    <p>The four glyphs in the header name the four columns; a paper on the schema shows its counts under them.</p>
     <dl>
       <dt><span class="ico wit py ok"><img class="runico pysrc" src="media/python.png" alt="python"></span> checks</dt><dd>The number of the paper's predicates the validation package checks — green when every check passes, red when one fails; opens the notebook on Google Colab, one cell per predicate. The title of such a paper opens its predicate ledger.</dd>
       <dt><span class="ico lean"><img class="leanico ok" src="lean/lean-ok.png" alt="Lean"></span> proofs</dt><dd>The number of predicates proved in Lean; opens the paper's core module (no Mathlib, no axioms) as one executable file in the Lean web editor. Two counts where the paper has both libraries: green the predicates proved in the core (no axioms), teal those proved on Mathlib (classical), each opening its module's executable file; the two may overlap.</dd>
@@ -206,14 +207,31 @@
       tr.appendChild(st);
 
       var lk = document.createElement("td");
-      lk.className = "links";
-      (p.links || []).forEach(function (L) {
-        var a = document.createElement("a"); a.href = L.href; a.title = L.title || L.label;
-        if (PKG_ICONS[L.label]) { a.className = "ico" + (L.label === "python" ? " wit py ok" : L.label === "python-fail" ? " wit py fail" : L.label === "lean-mathlib" ? " lean ml" : L.label.indexOf("lean") === 0 ? " lean" : "") + (L.count != null ? " sum" : ""); a.innerHTML = PKG_ICONS[L.label] + (L.count != null ? '<span class="n">' + L.count + '</span>' : ""); a.setAttribute("aria-label", L.label.split("-")[0] + (L.count != null ? " " + L.count : "")); }
-        else { a.textContent = L.label; }
-        if (L.href.indexOf("http") === 0) { a.rel = "noopener"; a.target = "_blank"; }
-        lk.appendChild(a);
-      });
+      lk.className = "links pkg";
+      if (p.schema) {
+        var slots = {python: 0, "python-fail": 0, lean: 1, "lean-mathlib": 2, lab: 3}, cells = [null, null, null, null];
+        (p.links || []).forEach(function (L) { if (slots[L.label] != null) cells[slots[L.label]] = L; });
+        cells.forEach(function (L, i) {
+          var sp = document.createElement("span"); sp.className = "g" + (i === 3 ? " lab" : "");
+          if (L) {
+            var a = document.createElement("a"); a.href = L.href; a.title = L.title || L.label;
+            if (i === 3) { a.className = "ico lab"; a.innerHTML = PKG_ICONS.lab; a.setAttribute("aria-label", "lab"); }
+            else { a.className = "n " + (L.label === "python" ? "py ok" : L.label === "python-fail" ? "py fail" : L.label === "lean-mathlib" ? "ml" : "core"); a.textContent = L.count; a.setAttribute("aria-label", L.label.split("-")[0] + " " + L.count); }
+            if (L.href.indexOf("http") === 0) { a.rel = "noopener"; a.target = "_blank"; }
+            sp.appendChild(a);
+          }
+          lk.appendChild(sp);
+        });
+      } else {
+        var left = document.createElement("span"); left.className = "g legacy"; var labslot = document.createElement("span"); labslot.className = "g lab";
+        (p.links || []).forEach(function (L) {
+          var a = document.createElement("a"); a.href = L.href; a.title = L.title || L.label;
+          if (PKG_ICONS[L.label]) { a.className = "ico" + (L.label === "lab" ? " lab" : ""); a.innerHTML = PKG_ICONS[L.label]; a.setAttribute("aria-label", L.label); } else { a.textContent = L.label; }
+          if (L.href.indexOf("http") === 0) { a.rel = "noopener"; a.target = "_blank"; }
+          (L.label === "lab" ? labslot : left).appendChild(a);
+        });
+        lk.appendChild(left); lk.appendChild(labslot);
+      }
       tr.appendChild(lk);
 
       tr.id = "pub-" + p.key;

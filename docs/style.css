@@ -342,6 +342,19 @@ pre.lean .ln, pre.lean a.pred { scroll-margin-top: 2.8rem; }   /* a targeted lin
 .corpus li { padding: .3rem 0; border-top: 1px solid var(--rule); line-height: 1.45; }
 .corpus li .snip { color: var(--ink-soft); }
 .corpus + .legend { margin-top: 2rem; padding-top: 1.25rem; border-top: 1px solid var(--rule); }
+/* the Publications table's package column (25 Sept): four equal slots headed by the glyphs, the counts alone beneath them */
+th.pkg, td.links.pkg { display: grid; grid-template-columns: repeat(4, 2.1rem); align-items: center; justify-items: center; column-gap: 0; }
+th.pkg .g, td.links.pkg .g { display: inline-flex; justify-content: center; align-items: center; min-height: 22px; width: 100%; }
+th.pkg .g .ico, .wrap th.pkg .g .ico { display: inline-flex; width: auto; height: auto; padding: 0; margin: 0; border: 0; background: none; }
+th.pkg img.runico, th.pkg img.leanico { width: 16px; height: 16px; display: block; }
+th.pkg .ico.wit.py.ok img.runico.pysrc { filter: brightness(0) saturate(100%) invert(28%) sepia(88%) saturate(4307%) hue-rotate(144deg) brightness(118%) contrast(64%); }
+th.pkg .ico svg { width: 17px; height: 17px; stroke: var(--ink-soft); fill: none; stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round; }
+.wrap td.links.pkg a.n, .wrap td.links.pkg a.n:visited { font-family: var(--mono); font-size: .85rem; line-height: 1; border: 0; background: none; padding: .1rem .15rem; width: 2ch; box-sizing: content-box; text-align: right; height: auto; text-decoration: none; margin: 0; }
+.wrap td.links.pkg a.n.py.ok, .wrap td.links.pkg a.n.core { color: #2e9e62; } .wrap td.links.pkg a.n.ml { color: #2a8fa8; } .wrap td.links.pkg a.n.py.fail { color: #c04a4a; }
+.wrap td.links.pkg a.n:hover { background: var(--rule-soft); }
+.wrap td.links.pkg a.ico.lab { width: 22px; height: 22px; margin: 0; }
+td.links.pkg .g.legacy { grid-column: 1 / 4; justify-content: flex-start; gap: .2rem; }
+@media (prefers-color-scheme: dark) { th.pkg img, .wrap td.links.pkg a.n { opacity: .9; } }
 .pillrows .tally { margin-bottom: .55rem; }   /* the register view: three pill rows, each captioned */
 .pillrows .tally:last-child { margin-bottom: 1.25rem; }
 .pillrows .cap { font-size: .72rem; text-transform: uppercase; letter-spacing: .07em; color: var(--ink-faint); align-self: center; min-width: 3.4rem; }
