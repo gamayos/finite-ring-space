@@ -1,4 +1,4 @@
-/* register.js — the register view: papers × blocks × tags over register.json, rows from register-rows.json. No framework. */
+/* register.js — the register view: papers × blocks × tags over the records of register.json, the rows' cells from the pages; both in register-data.js (a script: the page opens from a local file too). No framework. */
 (function () {
   "use strict";
   var BLOCKS = {P: "Predictions", T: "Tasks", X: "Explains", Y: "Hypotheses", Z: "Horizon"};
@@ -79,8 +79,12 @@
     build(); render();
   }
   q.addEventListener("input", function () { st.q = q.value.trim().toLowerCase(); update(); });
-  Promise.all([fetch("register.json").then(function (r) { return r.json(); }), fetch("register-rows.json").then(function (r) { return r.json(); })]).then(function (d) {
-    reg = d[0]; frags = d[1];
+  function withData(then) {
+    if (window.FRC_REGISTER) { then(); return; }
+    var sc = document.createElement("script"); sc.src = "register-data.js"; sc.onload = then; document.head.appendChild(sc);
+  }
+  withData(function () {
+    reg = window.FRC_REGISTER; frags = window.FRC_REGISTER_ROWS;
     reg.header.papers.forEach(function (p) { papers[p.key] = p; order.push(p.key); });
     reg.rows.forEach(function (r) { tagsOf(r).forEach(function (t) { allTags[t] = true; }); });
     var k = location.hash.slice(1);

@@ -39,7 +39,11 @@ function initLedger(root) {
   var corpus = root.querySelector("#corpus"), hits = root.querySelector("#corpus-hits"), chead = root.querySelector("#corpus-head"), reg = null, regLoading = false;
   function loadReg(then) {
     if (reg) { then(reg); return; }
-    if (!regLoading) { regLoading = true; fetch(window.REGISTER_URL).then(function (r) { return r.json(); }).then(function (d) { reg = d; then(reg); }); }
+    if (regLoading) return;
+    regLoading = true;
+    function fromScript() { var sc = document.createElement("script"); sc.src = "register-data.js"; sc.onload = function () { reg = window.FRC_REGISTER; then(reg); }; document.head.appendChild(sc); }   /* a local file: fetch() is refused, a script is not */
+    if (location.protocol === "file:") { fromScript(); return; }
+    fetch(window.REGISTER_URL).then(function (r) { return r.json(); }).then(function (d) { reg = d; then(reg); }).catch(fromScript);
   }
   function corpusSearch() {
     if (!corpus || !window.REGISTER_URL) return;
