@@ -24,9 +24,9 @@
     },
     {
      "label": "A3",
-     "predicate": "The classical evaluation of the twisted quadratic Gauss sum for $4\\mid n$, $\\sum_k\\zeta_n^{uk^{2}}=\\bigl(\\tfrac{\\kap}{u}\\bigr)(1\\pm i)\\sqrt n$; the eigenvalue quartet of prime-modulus number-theoretic transforms; the multiplicity counts of the discrete Fourier eigenvalues.",
+     "predicate": "The classical evaluation of the twisted quadratic Gauss sum for $4\\mid n$, $\\sum_k\\zeta_n^{uk^{2}}=\\bigl(\\tfrac{\\kap}{u}\\bigr)(1\\pm i)\\sqrt n$; the eigenvalue quartet of prime-modulus number-theoretic transforms; the multiplicity counts of the discrete Fourier eigenvalues; the Gauss sign through the Weil representation.",
      "tag": "I",
-     "source": "\\citep{BerndtEvansWilliams1998,Birtwistle1982,McClellanParks1972}",
+     "source": "\\citep{BerndtEvansWilliams1998,Birtwistle1982,McClellanParks1972,GurevichHadaniHowe2010}",
      "key": "p06003"
     },
     {
@@ -52,9 +52,9 @@
     },
     {
      "label": "A7",
-     "predicate": "The continuum fractional Fourier transform and the finite constructions the family is separated from: the eigenbasis and matrix-function transforms, the harmonic-oscillator propagator reading.",
+     "predicate": "The continuum fractional Fourier transform and the finite constructions the family is placed against: the eigenbasis transforms, the eigenvector-free and matrix-function transforms, the canonical DFT eigenbasis, the arithmetic FrFT of the rotation group, the harmonic-oscillator propagator reading.",
      "tag": "I",
-     "source": "\\citep{Namias1980,OzaktasBook2001,LimaCampello2012,PeiWenDing2011,LimaCampello2017}",
+     "source": "\\citep{Namias1980,OzaktasBook2001,LimaCampello2012,PeiWenDing2011,LimaCampello2016,LimaCampello2017,GurevichHadani2009,FloratosPavlidis2024}",
      "key": "p06007"
     }
    ]
@@ -190,7 +190,7 @@
     },
     {
      "label": "C11",
-     "predicate": "Charts outside the classified set: a family canonical in the chart $\\gen^{u}$ with $u^{2}\\not\\equiv1\\pmod{4\\kap}$ does not commute with $\\Ft$ --- $\\p=29$, $u=5$, and every such chart of the six shells of Table~\\ref{tab:checks}.",
+     "predicate": "Charts outside the classified set: a family canonical in the chart $\\gen^{u}$ with $u^{2}\\not\\equiv1\\pmod{4\\kap}$ does not commute with $\\Ft$, on every shell --- $\\Wt(\\gen^{u})=\\Wt P_u$ with $P_u$ the site relabelling $j\\mapsto uj$, so $\\Wt\\,\\Wt(\\gen^{u})=-JP_u$ and $\\Wt(\\gen^{u})\\,\\Wt=-JP_{u^{-1}}$, equal exactly when $u^{2}\\equiv1$, and the chart's normalized operator $\\Ft'=\\im'\\Wt(\\gen^{u})$ and its $\\Ft'^{[1]}$ are polynomials in each other; $\\p=29$, $u=5$, and every such chart of the six shells of Table~\\ref{tab:checks} checked.",
      "tag": "T",
      "source": "Rem.~\\ref{rem:classification}\\newline \\pywit{fourier}{p06052}{C11}",
      "key": "p06052"
@@ -238,7 +238,7 @@
     },
     {
      "label": "D6",
-     "predicate": "Scope of the unification: the representation-side rotation and the coordinate-side scale shift act on carriers of different dimension and are not equal as operators; they share the index group $\\Phit$ and the cardinal labels, and the operator-level relation is E5--E7.",
+     "predicate": "Scope of the two readings: the representation-side rotation and the coordinate-side scale shift act on carriers of different dimension and are not equal as operators; they share the index group $\\Phit$ and the cardinal labels, and the operator-level relation is E5--E9.",
      "tag": "D",
      "source": "Rem.~\\ref{rem:two-layers}",
      "key": "p06029"
@@ -373,6 +373,13 @@
      "tag": "T",
      "source": "Prop.~\\ref{prop:twist}\\newline \\pywit{fourier}{p06043}{F7}",
      "key": "p06043"
+    },
+    {
+     "label": "F8",
+     "predicate": "Fractional uncertainty relation: $H_{B_0}+H_{B_s}\\ge-2\\log c(s)$, $c(s)$ the largest entry in magnitude of $\\Ft^{[s]}$ under the readout; $c(s)^{2}\\ge\\max\\{1/n,\\,1-\\tfrac{n-1}{n}t_s\\}$; $B_s$ is mutually unbiased to $B_0$ exactly at $s\\in\\{\\kap,3\\kap\\}$; at $\\p=13$ the bound is $0,.10,.41,1$ per quarter-cycle [approx].",
+     "tag": "T",
+     "source": "Prop.~\\ref{prop:fractional-unc}\\newline \\pywit{fourier}{p06049}{F8}",
+     "key": "p06049"
     }
    ]
   }

@@ -45,7 +45,7 @@ for r in witnessed:
 md("""## Summary
 
 The cells above are the paper's python-witnessed predicates; the whole script, check by check, is `python3 fourier.py`
-(37 checks, `results.json`; numpy, and matplotlib for the one figure), `python3 -m frc_6_fourier` once installed.""", "summary")
+(38 checks, `results.json`; numpy, and matplotlib for the one figure), `python3 -m frc_6_fourier` once installed.""", "summary")
 code(f"""{INSTALL}
 from frc_6_fourier import verify_all
 assert verify_all(), "a check failed"
