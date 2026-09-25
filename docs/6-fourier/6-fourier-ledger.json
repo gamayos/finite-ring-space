@@ -391,7 +391,7 @@
   {
    "tag": "T",
    "name": "Theorem",
-   "text": "Derived within this paper and machine-verified in exact arithmetic by the named witness, or observed numerically and reproduced by it to the stated tolerance."
+   "text": "Derived within this paper and machine-verified in exact arithmetic by the named witness, or observed and reproduced numerically to the stated tolerance."
   }
  ],
  "master": {
