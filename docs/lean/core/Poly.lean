@@ -1,13 +1,13 @@
 import FrcCore.Sum
 
 /-!
-# FrcCore.Poly — polynomials over the shell and the root criterion (1:G1)
+# FrcCore.Poly — polynomials over the shell and the root criterion (1:Y1)
 
 A polynomial is its coefficient sequence `Nat → Shell p` with a degree bound (`Bound f n`: the coefficients
 beyond `n` vanish); equality is coefficientwise, so no function extensionality is needed.  The Cauchy
 product, evaluation as a finite sum, the evaluation homomorphism (`eval_mul`, by a triangular reindexing of
 sums), synthetic division by `X − a` at a root (`quot_linear_spec`), the root bound (a polynomial of degree
-`n` vanishing at `n + 1` distinct points is zero, `root_bound`), and 1:G1's criterion: `f` has a root iff `f`
+`n` vanishing at `n + 1` distinct points is zero, `root_bound`), and 1:Y1's criterion: `f` has a root iff `f`
 and `X^p − X` share a factor of positive degree (`root_iff_common_factor`).  The reverse direction is
 constructive — the root is found by deciding `∃ i < p, d(i) = 0`.  No axioms.
 -/
@@ -247,7 +247,7 @@ theorem eval_mul_linear {q : Poly p} {n : Nat} (hq : Bound q n) (a b : Shell p) 
 namespace Frame
 variable {κ : Nat} {g : Shell p}
 
-/-- 1:G1, the root bound — a polynomial of degree at most `n` that vanishes at `n + 1` distinct points is
+/-- 1:Y1, the root bound — a polynomial of degree at most `n` that vanishes at `n + 1` distinct points is
 zero: the distinct roots are counted by the degree. -/
 theorem root_bound (F : Frame p κ g) : ∀ (n : Nat) (f : Poly p), Bound f n → ∀ (r : Nat → Shell p),
     (∀ i j, i ≤ n → j ≤ n → r i = r j → i = j) → (∀ i, i ≤ n → eval f n (r i) = 0) → ∀ i, f i = 0 := by
@@ -342,7 +342,7 @@ theorem ofNat_inj_lt {i j : Nat} (hi : i < p) (hj : j < p) (h : (ofNat i : Shell
   rw [val_ofNat, val_ofNat, FRC.Nat.mod_eq_of_lt hi, FRC.Nat.mod_eq_of_lt hj] at this
   exact this
 
-/-- 1:G1, the root criterion — `f` has a root in the shell iff `f` and `X^p − X` share a factor of positive
+/-- 1:Y1, the root criterion — `f` has a root in the shell iff `f` and `X^p − X` share a factor of positive
 degree.  Forward: the factor is `X − a` (synthetic division, Fermat).  Backward: a common factor `d` of
 degree `m ≥ 1` with no root would force its cofactor in `X^p − X`, of degree `p − m < p`, to vanish at
 all `p` residues, hence to be zero (`root_bound`), against `X^p − X ≠ 0`; the root of `d` is found by

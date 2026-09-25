@@ -8,7 +8,7 @@ import FrcCore.Poly
 1:B2 (the quarter-turn exists; the fourth roots of unity are exactly `{1, i, −1, −i}`; the Klein orbits
 `{x, −x, x⁻¹, −x⁻¹}` have four elements off them), 1:B4 (the affine unit), 1:C4 (the meridian involution),
 1:D2 (the window law), 1:D4 (scale periodicity), 1:D6 (Theorem approx's range at `(13, 2)`), 1:E2 (the complex
-chart has a zero divisor), 1:F1 (no south pole). No axioms.
+chart has a zero divisor), 1:Z1 (no south pole). No axioms.
 -/
 
 namespace FRC
@@ -473,11 +473,11 @@ theorem p01015 : ∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.She
 /-- 1:E2 (p01019) — The extension by $X^{2}+1$ is trivial (Prop.~\ref{prop:Cp-field} reversed): on the shell $\Fp[X]/(X^{2}+1)\cong\Fp\times\Fp$ has zero divisors, $(X+\im)(X-\im)=0$, so it is not a field; $\Fp[X]/(X^{2}+1)$ is a field exactly when $\p\equiv3\pmod4$; the quadratic extension of the shell is $\Fp[\eta]$, $\eta^{2}=\nu$ a non-square (8-dirac B6). -/
 theorem p01019 : ∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → FRC.Shell.Frame.cmul (FRC.Shell.Frame.quarterTurn g κ, (1 : FRC.Shell p)) (-FRC.Shell.Frame.quarterTurn g κ, (1 : FRC.Shell p)) = ((0 : FRC.Shell p), (0 : FRC.Shell p)) ∧ (FRC.Shell.Frame.quarterTurn g κ, (1 : FRC.Shell p)) ≠ ((0 : FRC.Shell p), (0 : FRC.Shell p)) ∧ (-FRC.Shell.Frame.quarterTurn g κ, (1 : FRC.Shell p)) ≠ ((0 : FRC.Shell p), (0 : FRC.Shell p)) :=
   @FRC.Shell.Frame.complex_chart_zero_divisor
-/-- 1:F1 (p01020) — No element of additive order two (Thm.~\ref{thm:no-south-pole}): $2s=0$ forces $s=0$; the antipode of the origin on the additive cycle is not a residue; it sits between $2\kap=(\p-1)/2$ and $2\kap+1=(\p+1)/2=2^{-1}$ (20-rh B8). -/
-theorem p01020 : ∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → ∀ (s : FRC.Shell p), (2 : FRC.Shell p) * s = (0 : FRC.Shell p) → s = (0 : FRC.Shell p) :=
-  @FRC.Shell.Frame.no_south_pole
-/-- 1:G1 (p01026) — Solving in the substrate (first clause): $f\in\Fp[X]$ has a root in $\Fp$ iff $f$ and $X^{\p}-X=\prod_{a}(X-a)$ are not coprime; the gcd counts the distinct roots and Cantor--Zassenhaus splitting finds them, exactly. An equation without a root in $\Fp$ is recognised, not extended (E2). -/
+/-- 1:Y1 (p01026) — Solving in the substrate (first clause): $f\in\Fp[X]$ has a root in $\Fp$ iff $f$ and $X^{\p}-X=\prod_{a}(X-a)$ are not coprime; the gcd counts the distinct roots and Cantor--Zassenhaus splitting finds them, exactly. An equation without a root in $\Fp$ is recognised, not extended (E2). -/
 theorem p01026 : (∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → ∀ {f : FRC.Shell.Poly p} {n : Nat}, f.Bound n → ((∃ a, f.eval n a = (0 : FRC.Shell p)) ↔ FRC.Shell.Poly.Frame.CommonFactor f n FRC.Shell.Poly.xpx p)) ∧ (∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → ∀ (n : Nat) (f : FRC.Shell.Poly p), f.Bound n → ∀ (r : Nat → FRC.Shell p), (∀ (i j : Nat), i ≤ n → j ≤ n → r i = r j → i = j) → (∀ (i : Nat), i ≤ n → f.eval n (r i) = (0 : FRC.Shell p)) → ∀ (i : Nat), f i = (0 : FRC.Shell p)) ∧ ∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → ∀ (x : FRC.Shell p), x ^ p = x :=
   And.intro @FRC.Shell.Poly.Frame.root_iff_common_factor (And.intro @FRC.Shell.Poly.Frame.root_bound (@FRC.Shell.Frame.fermat))
+/-- 1:Z1 (p01020) — No element of additive order two (Thm.~\ref{thm:no-south-pole}): $2s=0$ forces $s=0$; the antipode of the origin on the additive cycle is not a residue; it sits between $2\kap=(\p-1)/2$ and $2\kap+1=(\p+1)/2=2^{-1}$ (20-rh B8). -/
+theorem p01020 : ∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → ∀ (s : FRC.Shell p), (2 : FRC.Shell p) * s = (0 : FRC.Shell p) → s = (0 : FRC.Shell p) :=
+  @FRC.Shell.Frame.no_south_pole
 -- end ledger predicates
 end FRC.Algebra

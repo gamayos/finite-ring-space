@@ -1022,7 +1022,7 @@ theorem eq_zero_of_eq_neg (F : Frame p κ g) {x : Shell p} (h : x = -x) : x = 0 
   | .inl e => exact absurd e F.two_ne_zero
   | .inr e => exact e
 
-/-- 1:F1 (Theorem 3) — `2s = 0 ⇒ s = 0`: the additive cycle has no element of order two; the antipode of
+/-- 1:Z1 (Theorem 3) — `2s = 0 ⇒ s = 0`: the additive cycle has no element of order two; the antipode of
 the origin is not a residue. -/
 theorem no_south_pole (F : Frame p κ g) (s : Shell p) (h : (2 : Shell p) * s = 0) : s = 0 :=
   match F.mul_eq_zero h with
@@ -1106,8 +1106,8 @@ theorem generator_orbit (F : Frame p κ g) (h : Shell p) :
   · intro ⟨u, _, hu, e⟩
     rw [e]; exact F.primitive_pow_of_coprime hu
 
-/-- 1:G1, the finitary core (Fermat): every residue satisfies `x^p = x` — the polynomial `X^p − X` vanishes on
-the whole shell, which is what the root test of 1:G1 rests on. -/
+/-- 1:Y1, the finitary core (Fermat): every residue satisfies `x^p = x` — the polynomial `X^p − X` vanishes on
+the whole shell, which is what the root test of 1:Y1 rests on. -/
 theorem fermat (F : Frame p κ g) (x : Shell p) : x ^ p = x := by
   have hp1 : x ^ p = x ^ (p - 1) * x :=
     congrArg (fun k => x ^ k) (FRC.Nat.sub_add_cancel Pos.pos).symm

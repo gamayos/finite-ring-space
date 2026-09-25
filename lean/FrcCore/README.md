@@ -21,7 +21,7 @@ wrap-free window, the residue lines and the wall products on `𝔽₁₃` and th
 transport on every capacity, the crossed duality, the flagged readings, the linear pin, the root pairs and the linkage on every framed
 Carrier; the order-four census of `D_13`, the two Carriers, the `(13, 233)` minimality scan and the realized domains by `decide +kernel`),
 `Poly` (polynomials as coefficient sequences: evaluation, synthetic division, the root bound, the root
-criterion of 1:G1), `Quaternion` (the signed window and the framed quaternions of 1:G5), `Causality` (the square classes, the
+criterion of 1:Y1), `Quaternion` (the signed window and the framed quaternions of 1:Y5), `Causality` (the square classes, the
 anisotropic and hyperbolic planes of the Lorentzian form, the norm-one boosts and the velocity law of 3-causality), `Representation`
 (4-rep: adequacy, the transition and the lifts pointwise with bijections as data, the two-prime Gödel code, the character chart's constant norm), `Reductio`
 (5-red: a Δ₀ language with its standard and frame evaluators and the bounded-stability schema with computed bound, the migration counts, iteration on a finite state space — repetition, eventual periodicity, the horizon separation — the least-element choice and its periodicity), `Geometry`

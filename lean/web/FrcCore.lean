@@ -1022,7 +1022,7 @@ theorem eq_zero_of_eq_neg (F : Frame p κ g) {x : Shell p} (h : x = -x) : x = 0 
   | .inl e => exact absurd e F.two_ne_zero
   | .inr e => exact e
 
-/-- 1:F1 (Theorem 3) — `2s = 0 ⇒ s = 0`: the additive cycle has no element of order two; the antipode of
+/-- 1:Z1 (Theorem 3) — `2s = 0 ⇒ s = 0`: the additive cycle has no element of order two; the antipode of
 the origin is not a residue. -/
 theorem no_south_pole (F : Frame p κ g) (s : Shell p) (h : (2 : Shell p) * s = 0) : s = 0 :=
   match F.mul_eq_zero h with
@@ -1106,8 +1106,8 @@ theorem generator_orbit (F : Frame p κ g) (h : Shell p) :
   · intro ⟨u, _, hu, e⟩
     rw [e]; exact F.primitive_pow_of_coprime hu
 
-/-- 1:G1, the finitary core (Fermat): every residue satisfies `x^p = x` — the polynomial `X^p − X` vanishes on
-the whole shell, which is what the root test of 1:G1 rests on. -/
+/-- 1:Y1, the finitary core (Fermat): every residue satisfies `x^p = x` — the polynomial `X^p − X` vanishes on
+the whole shell, which is what the root test of 1:Y1 rests on. -/
 theorem fermat (F : Frame p κ g) (x : Shell p) : x ^ p = x := by
   have hp1 : x ^ p = x ^ (p - 1) * x :=
     congrArg (fun k => x ^ k) (FRC.Nat.sub_add_cancel Pos.pos).symm
@@ -1952,13 +1952,13 @@ end FRC
 /-! inlined: FrcCore/Poly.lean -/
 
 /-!
-# FrcCore.Poly — polynomials over the shell and the root criterion (1:G1)
+# FrcCore.Poly — polynomials over the shell and the root criterion (1:Y1)
 
 A polynomial is its coefficient sequence `Nat → Shell p` with a degree bound (`Bound f n`: the coefficients
 beyond `n` vanish); equality is coefficientwise, so no function extensionality is needed.  The Cauchy
 product, evaluation as a finite sum, the evaluation homomorphism (`eval_mul`, by a triangular reindexing of
 sums), synthetic division by `X − a` at a root (`quot_linear_spec`), the root bound (a polynomial of degree
-`n` vanishing at `n + 1` distinct points is zero, `root_bound`), and 1:G1's criterion: `f` has a root iff `f`
+`n` vanishing at `n + 1` distinct points is zero, `root_bound`), and 1:Y1's criterion: `f` has a root iff `f`
 and `X^p − X` share a factor of positive degree (`root_iff_common_factor`).  The reverse direction is
 constructive — the root is found by deciding `∃ i < p, d(i) = 0`.  No axioms.
 -/
@@ -2198,7 +2198,7 @@ theorem eval_mul_linear {q : Poly p} {n : Nat} (hq : Bound q n) (a b : Shell p) 
 namespace Frame
 variable {κ : Nat} {g : Shell p}
 
-/-- 1:G1, the root bound — a polynomial of degree at most `n` that vanishes at `n + 1` distinct points is
+/-- 1:Y1, the root bound — a polynomial of degree at most `n` that vanishes at `n + 1` distinct points is
 zero: the distinct roots are counted by the degree. -/
 theorem root_bound (F : Frame p κ g) : ∀ (n : Nat) (f : Poly p), Bound f n → ∀ (r : Nat → Shell p),
     (∀ i j, i ≤ n → j ≤ n → r i = r j → i = j) → (∀ i, i ≤ n → eval f n (r i) = 0) → ∀ i, f i = 0 := by
@@ -2293,7 +2293,7 @@ theorem ofNat_inj_lt {i j : Nat} (hi : i < p) (hj : j < p) (h : (ofNat i : Shell
   rw [val_ofNat, val_ofNat, FRC.Nat.mod_eq_of_lt hi, FRC.Nat.mod_eq_of_lt hj] at this
   exact this
 
-/-- 1:G1, the root criterion — `f` has a root in the shell iff `f` and `X^p − X` share a factor of positive
+/-- 1:Y1, the root criterion — `f` has a root in the shell iff `f` and `X^p − X` share a factor of positive
 degree.  Forward: the factor is `X − a` (synthetic division, Fermat).  Backward: a common factor `d` of
 degree `m ≥ 1` with no root would force its cofactor in `X^p − X`, of degree `p − m < p`, to vanish at
 all `p` residues, hence to be zero (`root_bound`), against `X^p − X ≠ 0`; the root of `d` is found by
@@ -2352,7 +2352,7 @@ end FRC
 1:B2 (the quarter-turn exists; the fourth roots of unity are exactly `{1, i, −1, −i}`; the Klein orbits
 `{x, −x, x⁻¹, −x⁻¹}` have four elements off them), 1:B4 (the affine unit), 1:C4 (the meridian involution),
 1:D2 (the window law), 1:D4 (scale periodicity), 1:D6 (Theorem approx's range at `(13, 2)`), 1:E2 (the complex
-chart has a zero divisor), 1:F1 (no south pole). No axioms.
+chart has a zero divisor), 1:Z1 (no south pole). No axioms.
 -/
 
 namespace FRC
@@ -2817,12 +2817,12 @@ theorem p01015 : ∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.She
 /-- 1:E2 (p01019) — The extension by $X^{2}+1$ is trivial (Prop.~\ref{prop:Cp-field} reversed): on the shell $\Fp[X]/(X^{2}+1)\cong\Fp\times\Fp$ has zero divisors, $(X+\im)(X-\im)=0$, so it is not a field; $\Fp[X]/(X^{2}+1)$ is a field exactly when $\p\equiv3\pmod4$; the quadratic extension of the shell is $\Fp[\eta]$, $\eta^{2}=\nu$ a non-square (8-dirac B6). -/
 theorem p01019 : ∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → FRC.Shell.Frame.cmul (FRC.Shell.Frame.quarterTurn g κ, (1 : FRC.Shell p)) (-FRC.Shell.Frame.quarterTurn g κ, (1 : FRC.Shell p)) = ((0 : FRC.Shell p), (0 : FRC.Shell p)) ∧ (FRC.Shell.Frame.quarterTurn g κ, (1 : FRC.Shell p)) ≠ ((0 : FRC.Shell p), (0 : FRC.Shell p)) ∧ (-FRC.Shell.Frame.quarterTurn g κ, (1 : FRC.Shell p)) ≠ ((0 : FRC.Shell p), (0 : FRC.Shell p)) :=
   @FRC.Shell.Frame.complex_chart_zero_divisor
-/-- 1:F1 (p01020) — No element of additive order two (Thm.~\ref{thm:no-south-pole}): $2s=0$ forces $s=0$; the antipode of the origin on the additive cycle is not a residue; it sits between $2\kap=(\p-1)/2$ and $2\kap+1=(\p+1)/2=2^{-1}$ (20-rh B8). -/
-theorem p01020 : ∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → ∀ (s : FRC.Shell p), (2 : FRC.Shell p) * s = (0 : FRC.Shell p) → s = (0 : FRC.Shell p) :=
-  @FRC.Shell.Frame.no_south_pole
-/-- 1:G1 (p01026) — Solving in the substrate (first clause): $f\in\Fp[X]$ has a root in $\Fp$ iff $f$ and $X^{\p}-X=\prod_{a}(X-a)$ are not coprime; the gcd counts the distinct roots and Cantor--Zassenhaus splitting finds them, exactly. An equation without a root in $\Fp$ is recognised, not extended (E2). -/
+/-- 1:Y1 (p01026) — Solving in the substrate (first clause): $f\in\Fp[X]$ has a root in $\Fp$ iff $f$ and $X^{\p}-X=\prod_{a}(X-a)$ are not coprime; the gcd counts the distinct roots and Cantor--Zassenhaus splitting finds them, exactly. An equation without a root in $\Fp$ is recognised, not extended (E2). -/
 theorem p01026 : (∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → ∀ {f : FRC.Shell.Poly p} {n : Nat}, f.Bound n → ((∃ a, f.eval n a = (0 : FRC.Shell p)) ↔ FRC.Shell.Poly.Frame.CommonFactor f n FRC.Shell.Poly.xpx p)) ∧ (∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → ∀ (n : Nat) (f : FRC.Shell.Poly p), f.Bound n → ∀ (r : Nat → FRC.Shell p), (∀ (i j : Nat), i ≤ n → j ≤ n → r i = r j → i = j) → (∀ (i : Nat), i ≤ n → f.eval n (r i) = (0 : FRC.Shell p)) → ∀ (i : Nat), f i = (0 : FRC.Shell p)) ∧ ∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → ∀ (x : FRC.Shell p), x ^ p = x :=
   And.intro @FRC.Shell.Poly.Frame.root_iff_common_factor (And.intro @FRC.Shell.Poly.Frame.root_bound (@FRC.Shell.Frame.fermat))
+/-- 1:Z1 (p01020) — No element of additive order two (Thm.~\ref{thm:no-south-pole}): $2s=0$ forces $s=0$; the antipode of the origin on the additive cycle is not a residue; it sits between $2\kap=(\p-1)/2$ and $2\kap+1=(\p+1)/2=2^{-1}$ (20-rh B8). -/
+theorem p01020 : ∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → ∀ (s : FRC.Shell p), (2 : FRC.Shell p) * s = (0 : FRC.Shell p) → s = (0 : FRC.Shell p) :=
+  @FRC.Shell.Frame.no_south_pole
 -- end ledger predicates
 end FRC.Algebra
 
@@ -3745,7 +3745,7 @@ end FRC.Dimensions
 /-! inlined: FrcCore/Quaternion.lean -/
 
 /-!
-# FrcCore.Quaternion — the framed quaternions and the window (1:G5, the finitary clause)
+# FrcCore.Quaternion — the framed quaternions and the window (1:Y5, the finitary clause)
 
 A signed window integer is a pair of naturals `(u, v)` read as `u − v` in the shell (no `Int`: the core's
 integers are the shell's own readings).  A framed quaternion is four such pairs; the Hamilton product is
@@ -3959,7 +3959,7 @@ def QBound (H : Nat) (q : IQuat) : Prop := SBound H q.a ∧ SBound H q.b ∧ SBo
 theorem IQuat.ext' {q r : IQuat} (ha : q.a = r.a) (hb : q.b = r.b) (hc : q.c = r.c) (hd : q.d = r.d) : q = r := by
   cases q; cases r; cases ha; cases hb; cases hc; cases hd; rfl
 
-/-- 1:G5, exact composition — the reading of the integer product is the product of the readings. -/
+/-- 1:Y5, exact composition — the reading of the integer product is the product of the readings. -/
 theorem read_mul (q r : IQuat) : ((IQuat.mul q r).read : Quat p) = Quat.mul q.read r.read := by
   unfold IQuat.mul IQuat.read Quat.mul
   rw [sread_add, sread_add, sread_add, sread_add, sread_add, sread_add, sread_add, sread_add, sread_add,
@@ -3985,7 +3985,7 @@ theorem norm_bound {H : Nat} {q r : IQuat} (hq : QBound H q) (hr : QBound H r) :
   · have := sum4_bound (m hq.1 hr.2.2.2) (m hq.2.1 hr.2.2.1) (sneg_bound (m hq.2.2.1 hr.2.1)) (m hq.2.2.2 hr.1)
     exact snorm_bound this.1 this.2
 
-/-- 1:G5, the finitary clause — framed quaternions with window coordinates `≤ H`, read in a shell `p > 8H²`,
+/-- 1:Y5, the finitary clause — framed quaternions with window coordinates `≤ H`, read in a shell `p > 8H²`,
 compose exactly: the product of the readings is the reading of the integer product; that product's
 coordinates lie in the window `4H²`; and the reading determines it among the window's quaternions. -/
 theorem quaternion_window {H : Nat} (hH : 8 * (H * H) < p) {q r : IQuat} (hq : QBound H q) (hr : QBound H r) :
@@ -4008,7 +4008,7 @@ end FRC
 namespace FRC.Algebra
 -- Ledger predicates of 1-algebra (generated by make_predicates.py from docs/1-algebra/1-algebra-ledger.json; edit the ledger, not this section)
 set_option linter.defProp false in
-/-- 1:G5 (p01030) — Continuous symmetry, the non-abelian case resolved by the window: the framed quaternions $W_H^{4}$, read in a shell $\p>8H^{2}$, compose exactly (products land in $W_{4H^{2}}$); normalised, they are an $\varepsilon$-net of $SO(3)$ with $\varepsilon\le2\arcsin(1/H)$ (round $Hs$ to the lattice). At $H=3$, $\p=73$: $38.9^\circ<\varepsilon_0$, finer than any finite subgroup; measured $30.0^\circ$. -/
+/-- 1:Y5 (p01030) — Continuous symmetry, the non-abelian case resolved by the window: the framed quaternions $W_H^{4}$, read in a shell $\p>8H^{2}$, compose exactly (products land in $W_{4H^{2}}$); normalised, they are an $\varepsilon$-net of $SO(3)$ with $\varepsilon\le2\arcsin(1/H)$ (round $Hs$ to the lattice). At $H=3$, $\p=73$: $38.9^\circ<\varepsilon_0$, finer than any finite subgroup; measured $30.0^\circ$. -/
 def p01030 := And.intro @FRC.Shell.Frame.quaternion_window (@FRC.Shell.Frame.read_mul)
 -- end ledger predicates
 end FRC.Algebra

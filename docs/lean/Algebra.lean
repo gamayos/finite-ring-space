@@ -8,7 +8,7 @@ Predicates of the paper's ledger (Appendix A of `1-algebra-axioms`, keys `p01001
 paper's ledger states them.
 Every universal statement is over an arbitrary finite field `F` with `Fintype.card F = 4κ + 1`
 (the shell); the window law is on `ZMod p`; instance checks and counts are decided. The section
-`conjecture` decides the conclusion's conjecture clause by clause (rows G1–G3; G4, the `SO(3)` obstruction,
+`conjecture` decides the conclusion's conjecture clause by clause (rows Y1–Y3; Y4, the `SO(3)` obstruction,
 is numerical and imported).
 Every docstring opens with the ledger predicate(s) the declaration decides (`1:B2`); theorem numbers are the paper's
 (Axioms 2025, 14, 636).
@@ -193,7 +193,7 @@ theorem complex_chart_zero_divisor (u : F) (hu : u ^ 2 = -1) :
     linear_combination hroot - hu'
 
 omit [Fintype F] [DecidableEq F] in
-/-- 1:F1 (Theorem 3): `2s = 0 ⇒ s = 0` in a field of characteristic `≠ 2`: the additive cycle
+/-- 1:Z1 (Theorem 3): `2s = 0 ⇒ s = 0` in a field of characteristic `≠ 2`: the additive cycle
 has no element of order two; the antipode of the origin is not a residue. -/
 theorem no_south_pole (hchar : (2 : F) ≠ 0) (s : F) (h : 2 * s = 0) : s = 0 :=
   (mul_eq_zero.1 h).resolve_left hchar
@@ -234,7 +234,7 @@ section conjecture
 
 open Real
 
-/-- 1:G1 (the conjecture's first clause, solving): `f ∈ F_p[X]` has a root in `F_p` iff `f` and
+/-- 1:Y1 (the conjecture's first clause, solving): `f ∈ F_p[X]` has a root in `F_p` iff `f` and
 `X^p − X = ∏_a (X − a)` are not coprime — the root test is a gcd, exact in the substrate. -/
 theorem root_iff_not_coprime (p : ℕ) [hp : Fact p.Prime] (f : (ZMod p)[X]) :
     (∃ a : ZMod p, f.eval a = 0) ↔ ¬ IsCoprime f (X ^ p - X) := by
@@ -264,7 +264,7 @@ theorem root_iff_not_coprime (p : ℕ) [hp : Fact p.Prime] (f : (ZMod p)[X]) :
     have hirr : Irreducible (X - C a : (ZMod p)[X]) := irreducible_X_sub_C a
     exact (hirr.coprime_iff_not_dvd.mpr (fun hd => hno a (dvd_iff_isRoot.mp hd))).symm
 
-/-- 1:G2 (second clause, limit-like approximation): the tower of shells resolves every real — for every
+/-- 1:Y2 (second clause, limit-like approximation): the tower of shells resolves every real — for every
 `r` and `ε > 0` some shell `p = 4κ + 1` carries a framed rational `x / 2^n`, `|x| ≤ 2κ`, within `ε` of `r`
 (Dirichlet for primes `≡ 1 (mod 4)`, `Nat.exists_prime_gt_modEq_one`). -/
 theorem tower_density (r ε : ℝ) (hε : 0 < ε) :
@@ -287,7 +287,7 @@ theorem tower_density (r ε : ℝ) (hε : 0 < ε) :
       _ = (1 / 2) ^ n / 2 := by rw [one_div_pow]; ring
       _ < ε := by linarith
 
-/-- 1:G3 (third clause, the abelian case): the rounding `k(θ) = round(Nθ/2π)` puts `2πk/N` within `π/N`
+/-- 1:Y3 (third clause, the abelian case): the rounding `k(θ) = round(Nθ/2π)` puts `2πk/N` within `π/N`
 of `θ` — `C_N ≅ F_p^×` (`N = p − 1`) is a `π/N`-net of `U(1)`. -/
 theorem circle_net (N : ℕ) (hN : 0 < N) (θ : ℝ) :
     |θ - 2 * π * (round (N * θ / (2 * π)) : ℝ) / N| ≤ π / N := by
@@ -301,7 +301,7 @@ theorem circle_net (N : ℕ) (hN : 0 < N) (θ : ℝ) :
   calc 2 * π / N * |t - round t| ≤ 2 * π / N * (1 / 2) := by gcongr
     _ = π / N := by ring
 
-/-- 1:G3 (third clause): the group-law defect of the rounding is at most one step. -/
+/-- 1:Y3 (third clause): the group-law defect of the rounding is at most one step. -/
 theorem group_law_defect (N : ℕ) (θ₁ θ₂ : ℝ) :
     |round (N * θ₁ / (2 * π)) + round (N * θ₂ / (2 * π)) - round (N * (θ₁ + θ₂) / (2 * π))| ≤ 1 := by
   set t₁ := N * θ₁ / (2 * π) with ht₁
@@ -348,18 +348,18 @@ theorem p01015 : ∀ {F : Type u_1} [Field F] [Fintype F] (g : F), IsPrimitiveRo
 /-- 1:E2 (p01019) — The extension by $X^{2}+1$ is trivial (Prop.~\ref{prop:Cp-field} reversed): on the shell $\Fp[X]/(X^{2}+1)\cong\Fp\times\Fp$ has zero divisors, $(X+\im)(X-\im)=0$, so it is not a field; $\Fp[X]/(X^{2}+1)$ is a field exactly when $\p\equiv3\pmod4$; the quadratic extension of the shell is $\Fp[\eta]$, $\eta^{2}=\nu$ a non-square (8-dirac B6). -/
 theorem p01019 : ∀ {F : Type u_1} [Field F] (u : F), u ^ (2 : ℕ) = (-1 : F) → let R := AdjoinRoot (Polynomial.X ^ (2 : ℕ) + (1 : Polynomial F)); ∃ α β, α ≠ (0 : R) ∧ β ≠ (0 : R) ∧ α * β = (0 : R) :=
   @FRC.Algebra.complex_chart_zero_divisor
-/-- 1:F1 (p01020) — No element of additive order two (Thm.~\ref{thm:no-south-pole}): $2s=0$ forces $s=0$; the antipode of the origin on the additive cycle is not a residue; it sits between $2\kap=(\p-1)/2$ and $2\kap+1=(\p+1)/2=2^{-1}$ (20-rh B8). -/
-theorem p01020 : ∀ {F : Type u_1} [Field F], (2 : F) ≠ (0 : F) → ∀ (s : F), (2 : F) * s = (0 : F) → s = (0 : F) :=
-  @FRC.Algebra.no_south_pole
-/-- 1:G1 (p01026) — Solving in the substrate (first clause): $f\in\Fp[X]$ has a root in $\Fp$ iff $f$ and $X^{\p}-X=\prod_{a}(X-a)$ are not coprime; the gcd counts the distinct roots and Cantor--Zassenhaus splitting finds them, exactly. An equation without a root in $\Fp$ is recognised, not extended (E2). -/
+/-- 1:Y1 (p01026) — Solving in the substrate (first clause): $f\in\Fp[X]$ has a root in $\Fp$ iff $f$ and $X^{\p}-X=\prod_{a}(X-a)$ are not coprime; the gcd counts the distinct roots and Cantor--Zassenhaus splitting finds them, exactly. An equation without a root in $\Fp$ is recognised, not extended (E2). -/
 theorem p01026 : ∀ (p : ℕ) [hp : Fact (Nat.Prime p)] (f : Polynomial (ZMod p)), (∃ a, Polynomial.eval a f = (0 : ZMod p)) ↔ ¬IsCoprime f (Polynomial.X ^ p - Polynomial.X) :=
   @FRC.Algebra.root_iff_not_coprime
-/-- 1:G2 (p01027) — Limit-like approximation (second clause), across the tower: for every real $r$ and $\varepsilon>0$ some shell $\p=4\kap+1$ carries a framed rational $x/2^{n}$, $|x|\le2\kap$, within $\varepsilon$ of $r$ (primes $\equiv1\pmod4$ beyond every bound). One shell resolves to D5's bound; the limit is the tower, not a completion. -/
+/-- 1:Y2 (p01027) — Limit-like approximation (second clause), across the tower: for every real $r$ and $\varepsilon>0$ some shell $\p=4\kap+1$ carries a framed rational $x/2^{n}$, $|x|\le2\kap$, within $\varepsilon$ of $r$ (primes $\equiv1\pmod4$ beyond every bound). One shell resolves to D5's bound; the limit is the tower, not a completion. -/
 theorem p01027 : ∀ (r ε : ℝ), (0 : ℝ) < ε → ∃ p κ n x, Nat.Prime p ∧ p = (4 : ℕ) * κ + (1 : ℕ) ∧ |x| ≤ (2 : ℤ) * ↑κ ∧ |r - ↑x / (2 : ℝ) ^ n| < ε :=
   @FRC.Algebra.tower_density
-/-- 1:G3 (p01028) — Continuous symmetry, the abelian case (third clause): $\Fpx\simeq C_{\p-1}\simeq SO(2,\Fp)$ (6:E2) is a $\pi/(\p-1)$-net of $U(1)$ under $k\mapsto e^{2\pi\im k/(\p-1)}$; the rounding $k(\theta)=\lfloor(\p-1)\theta/2\pi+\tfrac12\rfloor$ has angle and chord error $\le\pi/(\p-1)$ and group-law defect at most one step. -/
+/-- 1:Y3 (p01028) — Continuous symmetry, the abelian case (third clause): $\Fpx\simeq C_{\p-1}\simeq SO(2,\Fp)$ (6:E2) is a $\pi/(\p-1)$-net of $U(1)$ under $k\mapsto e^{2\pi\im k/(\p-1)}$; the rounding $k(\theta)=\lfloor(\p-1)\theta/2\pi+\tfrac12\rfloor$ has angle and chord error $\le\pi/(\p-1)$ and group-law defect at most one step. -/
 theorem p01028 : (∀ (N : ℕ), (0 : ℕ) < N → ∀ (θ : ℝ), |θ - (2 : ℝ) * Real.pi * ↑(round (↑N * θ / ((2 : ℝ) * Real.pi))) / ↑N| ≤ Real.pi / ↑N) ∧ ∀ (N : ℕ) (θ₁ θ₂ : ℝ), |round (↑N * θ₁ / ((2 : ℝ) * Real.pi)) + round (↑N * θ₂ / ((2 : ℝ) * Real.pi)) - round (↑N * (θ₁ + θ₂) / ((2 : ℝ) * Real.pi))| ≤ (1 : ℤ) :=
   And.intro @FRC.Algebra.circle_net (@FRC.Algebra.group_law_defect)
+/-- 1:Z1 (p01020) — No element of additive order two (Thm.~\ref{thm:no-south-pole}): $2s=0$ forces $s=0$; the antipode of the origin on the additive cycle is not a residue; it sits between $2\kap=(\p-1)/2$ and $2\kap+1=(\p+1)/2=2^{-1}$ (20-rh B8). -/
+theorem p01020 : ∀ {F : Type u_1} [Field F], (2 : F) ≠ (0 : F) → ∀ (s : F), (2 : F) * s = (0 : F) → s = (0 : F) :=
+  @FRC.Algebra.no_south_pole
 -- end ledger predicates
 
 end FRC.Algebra

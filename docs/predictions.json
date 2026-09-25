@@ -2,9 +2,9 @@
  "generated": "25 September 2026",
  "rows": [
   {
-   "id": "00:L7",
+   "id": "00:P1",
    "paper": "00",
-   "label": "L7",
+   "label": "P1",
    "key": "p00133",
    "tag": "T|R",
    "predicate": "\\textbf{The running floor}: the acceleration floor tracks the drive rate, $a_0(z)\\propto H(z)$ --- a relation, $\\Om$-blind, consuming no numeral of the Carrier, derived from the synchronisation floor $a_0=cH/2\\pi$ (L1) under the gravity realisation (D5). Staked as the lead falsifiable prediction of 14-entr, 21-grav and 32-dark: the knee shifts and the Tully--Fisher zero-point evolves as $E(z)^{1/4}$. Falsifier: a floor constant in redshift, or one that tracks anything other than $H(z)$. The absolute normalisation is Z7's value; this row carries the shape alone. Confrontation (43-muse, September 2026): MUSE-DARK III excludes a constant floor and fits $A\\,E(z)$ at free amplitude to $z=1.3$; the RC100 decompositions imply a floor back at the local value by $z\\simeq2$, pending the full-curve refit; the JADES pairs at $z\\approx7$ are degenerate with their gas.",
@@ -643,7 +643,7 @@
   }
  ],
  "restated": {
-  "00:L7": [
+  "00:P1": [
    "14:P1",
    "21:P5",
    "32:P1"

@@ -91,7 +91,7 @@
  },
  {
   "id": "B5",
-  "rows": "1:F1",
+  "rows": "1:Z1",
   "block": "B",
   "script": "algebra",
   "label": "2s = 0 \u21d2 s = 0 for every odd prime < 200; on the shell 2\u207b\u00b9 = 2\u03ba+1 = (p+1)/2, the residue past the antipode",
@@ -111,7 +111,7 @@
  },
  {
   "id": "C1",
-  "rows": "1:G1",
+  "rows": "1:Y1",
   "block": "C",
   "script": "algebra",
   "label": "f has a root in F_p iff gcd(f, X^p \u2212 X) \u2260 1; deg gcd(f, X^p \u2212 X) = number of distinct roots (exhaustive, degree \u2264 3)",
@@ -121,7 +121,7 @@
  },
  {
   "id": "C2",
-  "rows": "1:G2",
+  "rows": "1:Y2",
   "block": "C",
   "script": "algebra",
   "label": "for every r and \u03b5 some shell p = 4\u03ba+1 carries x/2\u207f, |x| \u2264 2\u03ba, within \u03b5 of r (five reals, \u03b5 = 10\u207b\u00b2..10\u207b\u2078)",
@@ -131,7 +131,7 @@
  },
  {
   "id": "C3",
-  "rows": "1:G3",
+  "rows": "1:Y3",
   "block": "C",
   "script": "algebra",
   "label": "k(\u03b8) = \u230aN\u03b8/2\u03c0 + \u00bd\u230b, N = p\u22121: angle and chord error \u2264 \u03c0/N, group-law defect \u2264 1, on every shell",
@@ -141,7 +141,7 @@
  },
  {
   "id": "C4",
-  "rows": "1:G4",
+  "rows": "1:Y4",
   "block": "C",
   "script": "algebra",
   "label": "covering radii in SO(3): tetrahedral \u03c0/2, octahedral arccos((2\u221a2\u22121)/4), icosahedral arccos((3\u221a5\u22121)/8) = \u03b5\u2080 \u2248 44.48\u00b0, cyclic/dihedral \u2265 \u03c0/2; no finite subgroup is an \u03b5-net for \u03b5 < \u03b5\u2080",
@@ -151,7 +151,7 @@
  },
  {
   "id": "C5",
-  "rows": "1:G5",
+  "rows": "1:Y5",
   "block": "C",
   "script": "algebra",
   "label": "the normalised window quaternions W_H\u2074 are a 2\u00b7arcsin(1/H)-net of SO(3) (H = 1, 2, 3), 38.9\u00b0 < \u03b5\u2080 at H = 3; their products read back exactly from the shell when 8H\u00b2 < p",

@@ -15,8 +15,8 @@ predicates of the paper ledger that the master carries are listed in the site ge
     from frc_1_algebra import predicate; predicate("1:B2")     one predicate: its block runs once per session
 
 Blocks:  A  the shell, its frame and the orbital complex          EXACT          (1:B2–B4, C2, C4)
-         B  the framed numbers, the charts and the horizon         EXACT / CHART  (1:D2, D4, D6, E2, F1; B6 decides no predicate)
-         C  the conjecture of the conclusion, clause by clause     EXACT / CHART  (1:G1–G5)
+         B  the framed numbers, the charts and the horizon         EXACT / CHART  (1:D2, D4, D6, E2, Z1; B6 decides no predicate)
+         C  the conjecture of the conclusion, clause by clause     EXACT / CHART  (1:Y6–Y5)
 
 Everything the blocks share:
   * the shell datum: p = 4κ+1 prime, the primitive roots of F_p, the oriented quarter-turn i = −g^κ;
@@ -43,8 +43,8 @@ RESULTS = []
 # The paper's predicate ledger (Appendix A, predicates cited as 1:XN): the predicate(s) each check witnesses.
 LEDGER = {
     "A1": "1:B2", "A2": "1:B3", "A3": "1:B4", "A4": "1:C2", "A5": "1:C4",
-    "B1": "1:D2", "B2": "1:D4", "B3": "1:D6", "B4": "1:E2", "B5": "1:F1", "B6": "",          # B6 (the Euclidean step count) decides no predicate of the ledger
-    "C1": "1:G1", "C2": "1:G2", "C3": "1:G3", "C4": "1:G4", "C5": "1:G5",
+    "B1": "1:D2", "B2": "1:D4", "B3": "1:D6", "B4": "1:E2", "B5": "1:Z1", "B6": "",          # B6 (the Euclidean step count) decides no predicate of the ledger
+    "C1": "1:Y1", "C2": "1:Y2", "C3": "1:Y3", "C4": "1:Y4", "C5": "1:Y5",
 }
 
 BLOCK = {"A": "the shell, its frame and the orbital complex",             # check-id prefix -> the block (the function block_<letter> below)
@@ -55,8 +55,8 @@ BLOCK = {"A": "the shell, its frame and the orbital complex",             # chec
 # touch it are corroboration, listed by predicate() from the records)
 PREDICATES = {
     "1:B2": "A1", "1:B3": "A2", "1:B4": "A3", "1:C2": "A4", "1:C4": "A5",
-    "1:D2": "B1", "1:D4": "B2", "1:E2": "B4", "1:F1": "B5",                       # D6: B3 witnesses it in LEDGER but carries no marker (as before the merge)
-    "1:G1": "C1", "1:G2": "C2", "1:G3": "C3", "1:G4": "C4", "1:G5": "C5",
+    "1:D2": "B1", "1:D4": "B2", "1:E2": "B4", "1:Z1": "B5",                       # D6: B3 witnesses it in LEDGER but carries no marker (as before the merge)
+    "1:Y1": "C1", "1:Y2": "C2", "1:Y3": "C3", "1:Y4": "C4", "1:Y5": "C5",
 }
 _RAN = set()                                            # blocks already run in this session (predicate() runs each once)
 
@@ -268,7 +268,7 @@ def block_A():
 
 # ------------------------------------------------------------------------------------------------------------
 # block B: the framed numbers, the charts and the horizon (EXACT; B3 CHART in exact rationals)
-# Paper statements decided (Sections 4–5; ledger predicates 1:D2, 1:D4, 1:D6, 1:E2, 1:F1; B6 decides no predicate):
+# Paper statements decided (Sections 4–5; ledger predicates 1:D2, 1:D4, 1:D6, 1:E2, 1:Z1; B6 decides no predicate):
 #
 #   B1  def:integers (1:D2)          the window W_H = {|z| ≤ H}: z ↦ z mod p injective iff 2H < p; sums read back
 #                                    iff 4H < p; products read back whenever 2H² < p (sufficient; the product set is
@@ -280,7 +280,7 @@ def block_A():
 #                                    lies within 1/16 of 33/10 — range and resolution trade off at fixed window
 #   B4  prop:Cp-field (1:E2)         F_p[X]/(X²+1) has zero divisors on the shell ((u+X)(u−X) = 0, factors nonzero);
 #                                    X²+1 has no root, hence the quotient is a field, exactly for p ≡ 3 (mod 4)
-#   B5  thm:no-south-pole (1:F1)     2s = 0 ⇒ s = 0 on every odd prime; 2·(2κ+1) = 1: the half-turn 2⁻¹ = 2κ+1
+#   B5  thm:no-south-pole (1:Z1)     2s = 0 ⇒ s = 0 on every odd prime; 2·(2κ+1) = 1: the half-turn 2⁻¹ = 2κ+1
 #   B6  (no predicate)               the Euclidean step count against the bound k ≤ ⌊log₂ p⌋+1 (lem:euclid-bound):
 #                                    p = 59 (55, 34) needs 7 > 6; p = 1009 (987, 610) needs 13 > 10; first excess at 59
 def block_B():
@@ -356,7 +356,7 @@ def block_B():
         if p % 4 == 1:
             k = kappa(p)
             ok &= ((2 * (2 * k + 1)) % p == 1) and (2 * k + 1 == (p + 1) // 2)
-    # 1:F1 (p01020)
+    # 1:Z1 (p01020)
     check("B5", "2s = 0 ⇒ s = 0 for every odd prime < 200; on the shell 2⁻¹ = 2κ+1 = (p+1)/2, the residue past the antipode", ok, "primes 3..199")
 
     # B6 — the Euclidean step count against the bound ⌊log₂ p⌋+1 (recorded under V1)
@@ -381,23 +381,23 @@ def block_B():
 # ------------------------------------------------------------------------------------------------------------
 # block C: the conjecture of the conclusion, clause by clause (EXACT; C2–C4 CHART)
 # The conclusion conjectures that the finite substrate supports polynomial equation solving, limit-like
-# approximation and ε-approximation of continuous symmetries (ledger predicate 1:Y1).  Predicates 1:G1–G4 decide it:
+# approximation and ε-approximation of continuous symmetries (ledger predicate 1:Y6).  Predicates 1:Y6–Y4 decide it:
 #
-#   C1  (1:G1)  solving: f ∈ F_p[X] has a root in F_p iff gcd(f, X^p − X) ≠ 1, and deg gcd = the number of
+#   C1  (1:Y1)  solving: f ∈ F_p[X] has a root in F_p iff gcd(f, X^p − X) ≠ 1, and deg gcd = the number of
 #               distinct roots — every monic polynomial of degree ≤ 3 over F_13 (2197) and F_17 (4913), by
 #               brute-force roots against the Euclidean gcd            [exact]
-#   C2  (1:G2)  limit-like approximation across shells: for r ∈ {π, e, √2, 33/10, 1/3} and ε = 10^−k
+#   C2  (1:Y2)  limit-like approximation across shells: for r ∈ {π, e, √2, 33/10, 1/3} and ε = 10^−k
 #               (k = 2..8) the construction n = ⌈log₂(1/ε)⌉, x = round(r·2ⁿ), p = the first prime ≡ 1 (mod 4)
 #               beyond 2|x|+1 gives |r − x/2ⁿ| < ε with |x| ≤ 2κ      [chart: r read as a rational to 60 digits]
-#   C3  (1:G3)  the circle net: for N = p − 1 on every shell the rounding k(θ) = ⌊Nθ/2π + ½⌋ has angle error
+#   C3  (1:Y3)  the circle net: for N = p − 1 on every shell the rounding k(θ) = ⌊Nθ/2π + ½⌋ has angle error
 #               ≤ π/N, chord error |e^{2πik/N} − e^{iθ}| ≤ π/N, and group-law defect |k(θ₁)+k(θ₂)−k(θ₁+θ₂)| ≤ 1,
 #               on a grid of 4N angles plus 20000 random pairs           [chart]
-#   C4  (1:G4)  the SO(3) obstruction: the covering radii of the finite rotation groups in the rotation-angle
+#   C4  (1:Y4)  the SO(3) obstruction: the covering radii of the finite rotation groups in the rotation-angle
 #               metric — tetrahedral π/2, octahedral arccos((2√2−1)/4) ≈ 62.80°, icosahedral
 #               ε₀ = arccos((3√5−1)/8) ≈ 44.48° (the deep hole of the 600-cell, cos = φ²/2√2), cyclic and
 #               dihedral ≥ π/2 (they lie in an O(2)) — by exhaustive group closure and a sampled maximin;
 #               no finite subgroup of SO(3) is an ε-net for ε < ε₀      [chart; the list of groups is A3, Klein]
-#   C5  (1:G5)  the window resolves SO(3): the framed quaternions W_H⁴ = {q ∈ Z⁴ : |q_i| ≤ H}, normalised, are an
+#   C5  (1:Y5)  the window resolves SO(3): the framed quaternions W_H⁴ = {q ∈ Z⁴ : |q_i| ≤ H}, normalised, are an
 #               ε-net of SO(3) with ε ≤ 2·arcsin(1/H) (round H·s to the lattice: |Hs − q| ≤ 1, so the angle is
 #               ≤ arcsin(1/H)); measured ε(1) ≈ 60.8°, ε(2) ≈ 41.0°, ε(3) ≈ 30.0°; 2·arcsin(1/3) = 38.9° < ε₀, so on
 #               the shell p = 73 the window H = 3 out-resolves every finite subgroup; products of window quaternions
@@ -441,7 +441,7 @@ def block_C():
                 g = p_gcd(f, xp_minus_x, p)
                 ok &= ((len(g) - 1) == len(roots)) and ((len(roots) > 0) == (len(g) > 1)); n += 1
         det.append(f"p={p}: {n} monic polynomials of degree ≤ {dmax}")
-    # 1:G1 (p01026)
+    # 1:Y1 (p01026)
     check("C1", "f has a root in F_p iff gcd(f, X^p − X) ≠ 1; deg gcd(f, X^p − X) = number of distinct roots (exhaustive, degree ≤ 3)",
           ok, "; ".join(det))
 
@@ -462,7 +462,7 @@ def block_C():
             p = next_shell(2 * abs(x) + 1); kap = (p - 1) // 4
             ok &= (abs(r - Fraction(x, 2 ** n)) < eps) and (abs(x) <= 2 * kap) and p % 4 == 1 and is_prime(p)
         det.append(f"{name}: ε=10⁻⁸ → n={n}, p={p}")
-    # 1:G2 (p01027)
+    # 1:Y2 (p01027)
     check("C2", "for every r and ε some shell p = 4κ+1 carries x/2ⁿ, |x| ≤ 2κ, within ε of r (five reals, ε = 10⁻²..10⁻⁸)",
           ok, "; ".join(det), kind="CHART")
 
@@ -482,7 +482,7 @@ def block_C():
             worst_defect = max(worst_defect, abs(k(a) + k(b) - k(a + b)))
         ok &= (worst_angle <= math.pi / N + 1e-12) and (worst_chord <= math.pi / N + 1e-12) and (worst_defect <= 1)
         det.append(f"p={p}: angle {worst_angle:.4f} ≤ π/N={math.pi / N:.4f}, defect ≤ {worst_defect}")
-    # 1:G3 (p01028)
+    # 1:Y3 (p01028)
     check("C3", "k(θ) = ⌊Nθ/2π + ½⌋, N = p−1: angle and chord error ≤ π/N, group-law defect ≤ 1, on every shell",
           ok, "; ".join(det), kind="CHART")
 
@@ -539,7 +539,7 @@ def block_C():
     ok &= abs(d_o2 - math.pi / 2) < 1e-12
     eps0 = min(exact.values()); ok &= abs(eps0 - exact["icosahedral"]) < 1e-15 and eps0 < math.pi / 2
     det.append(f"cyclic/dihedral (in O(2)): ≥ {math.degrees(d_o2):.2f}°; ε₀ = {math.degrees(eps0):.4f}° = {eps0:.6f} rad")
-    # 1:G4 (p01029)
+    # 1:Y4 (p01029)
     check("C4", "covering radii in SO(3): tetrahedral π/2, octahedral arccos((2√2−1)/4), icosahedral arccos((3√5−1)/8) = ε₀ ≈ 44.48°, cyclic/dihedral ≥ π/2; no finite subgroup is an ε-net for ε < ε₀",
           ok, "; ".join(det), kind="CHART")
 
@@ -580,7 +580,7 @@ def block_C():
         exact = qmul_int(a, b); modp = qmul_int(tuple(c % p for c in a), tuple(c % p for c in b))
         ok &= all(read(c % p) == e for c, e in zip(modp, exact)) and all(abs(e) <= 4 * H * H for e in exact); n_pairs += 1
     det.append(f"2·arcsin(1/3) = {math.degrees(2 * math.asin(1/3)):.1f}° < ε₀; composition on F_{p}, H={H}: {n_pairs} pairs read back exactly")
-    # 1:G5 (p01030)
+    # 1:Y5 (p01030)
     check("C5", "the normalised window quaternions W_H⁴ are a 2·arcsin(1/H)-net of SO(3) (H = 1, 2, 3), 38.9° < ε₀ at H = 3; their products read back exactly from the shell when 8H² < p",
           ok, "; ".join(det), kind="CHART")
 

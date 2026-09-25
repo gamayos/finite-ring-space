@@ -15,6 +15,7 @@
   "L": "Cosmology and the dark sector",
   "M": "Superconductivity",
   "N": "Synthesis: exclusions and parameter-freeness",
+  "P": "Predictions (the master's falsifiable exposures; the papers' P blocks carry theirs)",
   "T": "Tasks: the development roadmap (stated surfaces, proofs or executions outstanding)",
   "Y": "Conjectures (stated ahead of derivation; promotion re-homes a row in its thematic block)",
   "Z": "The horizon (the limits of the bounded observer)"
@@ -1021,7 +1022,7 @@
      "key": "p00136"
     }
    ],
-   "statement": "\\textbf{The horizon is the origin's antipode on the boost torus}: for $w^2=\\nu$ a nonsquare (the drive $\\gen$ serves), the torsor identification $\\mathbb{P}^1(\\F_\\p)\\cong C_{\\p +1}$ based at the origin --- $P\\mapsto u_P/\\bar u_P$, $u_P$ the unique boost carrying $0$ to $P$ --- is equivariant, sends the origin to $1$ and the horizon class $[1{:}0]$ to $-1=\\zeta^{(\\p +1)/2}$; $\\{\\text{origin},\\text{horizon}\\}$ is the sign pair $C_{\\p -1}\\cap C_{\\p +1}$ (C20), exchanged by the torus's unique involution $q\\mapsto\\nu/q$. On the additive cycle the antipode is no residue (1:F1): the seam between $2\\kap$ and $2\\kap +1=2^{-1}$, labelled $\\p /2$ and charted $\\infty$ (1:F2). Verified at $\\p =5,13,17,29,37$ for every nonsquare $\\nu$ and at every $\\p =4\\kap +1\\le200$."
+   "statement": "\\textbf{The horizon is the origin's antipode on the boost torus}: for $w^2=\\nu$ a nonsquare (the drive $\\gen$ serves), the torsor identification $\\mathbb{P}^1(\\F_\\p)\\cong C_{\\p +1}$ based at the origin --- $P\\mapsto u_P/\\bar u_P$, $u_P$ the unique boost carrying $0$ to $P$ --- is equivariant, sends the origin to $1$ and the horizon class $[1{:}0]$ to $-1=\\zeta^{(\\p +1)/2}$; $\\{\\text{origin},\\text{horizon}\\}$ is the sign pair $C_{\\p -1}\\cap C_{\\p +1}$ (C20), exchanged by the torus's unique involution $q\\mapsto\\nu/q$. On the additive cycle the antipode is no residue (1:Z1): the seam between $2\\kap$ and $2\\kap +1=2^{-1}$, labelled $\\p /2$ and charted $\\infty$ (1:Z2). Verified at $\\p =5,13,17,29,37$ for every nonsquare $\\nu$ and at every $\\p =4\\kap +1\\le200$."
   },
   {
    "label": "C26",
@@ -2126,7 +2127,7 @@
    ],
    "witness": "21:validate_rar.py",
    "refs": [],
-   "statement": "\\textbf{Cosmology} (the dark sector): the synchronisation floor $a_0=cH_0/2\\pi$ fixes the galactic acceleration scale parameter-free --- the $2\\pi$ by the angle--count dictionary (14:B2), the threshold one cycle per drive period (32:B3, 21-grav Prop.~afloor, R), the value $1.04\\times10^{-10}$ [chart] at the entailed $H_0$ (L3), tied to $H(z)$ and not to $\\Lambda$ (L7); $\\Lambda\\sim1/\\Om$ is the totality datum. Below the floor the amplitude reading gives the radial acceleration relation given the barrier identification (32:B8, 21:C19, R), no fitted function. Falsifiers as in 32:B3 and 21:P4. The crossover is instantiated to the chronon (37-sim); the floor-side saturation is gated on the registration--transport coupling."
+   "statement": "\\textbf{Cosmology} (the dark sector): the synchronisation floor $a_0=cH_0/2\\pi$ fixes the galactic acceleration scale parameter-free --- the $2\\pi$ by the angle--count dictionary (14:B2), the threshold one cycle per drive period (32:B3, 21-grav Prop.~afloor, R), the value $1.04\\times10^{-10}$ [chart] at the entailed $H_0$ (L3), tied to $H(z)$ and not to $\\Lambda$ (P1); $\\Lambda\\sim1/\\Om$ is the totality datum. Below the floor the amplitude reading gives the radial acceleration relation given the barrier identification (32:B8, 21:C19, R), no fitted function. Falsifiers as in 32:B3 and 21:P4. The crossover is instantiated to the chronon (37-sim); the floor-side saturation is gated on the registration--transport coupling."
   },
   {
    "label": "L2",
@@ -2553,7 +2554,7 @@
      "key": "p00116"
     }
    ],
-   "statement": "The dark sector's cross-scale running is the \\emph{cosmological} face of the horizon clause. Value tagged: the running's absolute normalisation --- $a_0$ at any one epoch in physical units, equivalently the absolute scale of $H$ --- in no embedded reader's window, its uniform certificate the factorisation of $\\Om-1$: one carrier-scale object with the number-theory instances (Z2--Z4), the masses (Z6), and the EM coupling (Z8). The \\emph{shape} $a_0(z)\\propto H(z)$ is not $\\Om$-hard: it is a relation, staked as a prediction, and lives in L7."
+   "statement": "The dark sector's cross-scale running is the \\emph{cosmological} face of the horizon clause. Value tagged: the running's absolute normalisation --- $a_0$ at any one epoch in physical units, equivalently the absolute scale of $H$ --- in no embedded reader's window, its uniform certificate the factorisation of $\\Om-1$: one carrier-scale object with the number-theory instances (Z2--Z4), the masses (Z6), and the EM coupling (Z8). The \\emph{shape} $a_0(z)\\propto H(z)$ is not $\\Om$-hard: it is a relation, staked as a prediction, and lives in P1."
   },
   {
    "label": "Z8",

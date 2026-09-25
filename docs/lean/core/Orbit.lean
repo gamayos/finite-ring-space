@@ -71,8 +71,8 @@ theorem generator_orbit (F : Frame p κ g) (h : Shell p) :
   · intro ⟨u, _, hu, e⟩
     rw [e]; exact F.primitive_pow_of_coprime hu
 
-/-- 1:G1, the finitary core (Fermat): every residue satisfies `x^p = x` — the polynomial `X^p − X` vanishes on
-the whole shell, which is what the root test of 1:G1 rests on. -/
+/-- 1:Y1, the finitary core (Fermat): every residue satisfies `x^p = x` — the polynomial `X^p − X` vanishes on
+the whole shell, which is what the root test of 1:Y1 rests on. -/
 theorem fermat (F : Frame p κ g) (x : Shell p) : x ^ p = x := by
   have hp1 : x ^ p = x ^ (p - 1) * x :=
     congrArg (fun k => x ^ k) (FRC.Nat.sub_add_cancel Pos.pos).symm

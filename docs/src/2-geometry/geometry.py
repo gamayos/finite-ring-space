@@ -345,7 +345,7 @@ def block_B():
 # bound sqrt2·pi/(p−1) of prop:grid-density.  C2 (EXACT, rationals): the fixed-shell scale grid {x/g^n : |x| ≤ 2κ}
 # has a covering radius in [0, 1] bounded below by ½ min(g^−m, 1 − 2κ g^−(m+1)) at every depth — the bounded
 # precision of a fixed shell, prop:fixed-shell-density and thm:operational-precision (C2b: the covering radius
-# exceeds ε = 1/20 on every tested shell).  C3 (CHART): across the tower of shells the grids resolve every target (1:G2).
+# exceeds ε = 1/20 on every tested shell).  C3 (CHART): across the tower of shells the grids resolve every target (1:Y2).
 def fib_sphere(N):
     pts = []
     ga = math.pi * (3 - math.sqrt(5))
@@ -408,7 +408,7 @@ def block_C():
     check("C2b", "fixed-shell density at eps = 1/20: the covering radius exceeds 1/20 on every tested shell", viol == [(13, 2), (13, 11), (17, 3), (29, 2)],
              f"shells with covering radius > 1/20 at N = 40: {viol}")
 
-    # C3 the tower of shells resolves every target (2:E4, 1:G2) — chart
+    # C3 the tower of shells resolves every target (2:E4, 1:Y2) — chart
     targets = [0.9, 1 / 3, math.pi / 4, math.sqrt(2) - 1]
     tower = [(p, 2) for p in (13, 29, 173, 1013, 4093)]
     errs = [tower_best(t, tower) for t in targets]
