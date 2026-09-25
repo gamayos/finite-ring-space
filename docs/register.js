@@ -1,12 +1,15 @@
 /* register.js — the register view: papers × blocks × tags over the records of register.json, the rows' cells from the pages; both in register-data.js (a script: the page opens from a local file too). No framework. */
 (function () {
   "use strict";
-  var BLOCKS = {P: "Predictions", T: "Tasks", X: "Explains", Y: "Hypotheses", Z: "Horizon"};
+  var BLOCKS = {X: "Explanation", P: "Prediction", Z: "Horizon", T: "Task", Y: "Hypothesis"}, BLOCK_ORDER = ["X", "P", "Z", "T", "Y"];
+  var FORCED_TAG = {X: "T", P: "T", T: "O", Y: "O"};                       /* the rule: choosing X or P sets the status to theorem, T or Y to open */
+  function setBlock(b) { st.block = b; if (FORCED_TAG[b]) st.tag = FORCED_TAG[b]; }
   var TAGS = {G: "ground", P: "pillar", T: "theorem", D: "definition", R: "realisation", I: "import", "Ω": "Ω-hard", O: "open"};
   var st = {paper: "all", block: "T", tag: "all", q: ""};
   var qs = new URLSearchParams(location.search);
   ["paper", "block", "tag", "q"].forEach(function (k) { if (qs.has(k)) st[k] = qs.get(k); });
   if (st.paper === "all" && st.block === "all") st.block = "T";          /* the rule: all papers with all blocks is no view */
+  if (!qs.has("tag") && FORCED_TAG[st.block]) st.tag = FORCED_TAG[st.block];   /* the status the block implies, unless the address says otherwise */
   var reg = null, frags = null, papers = {}, order = [], allTags = {};
   var tbody = document.getElementById("rows"), count = document.getElementById("count"), empty = document.getElementById("empty"), q = document.getElementById("q");
   q.value = st.q;
@@ -30,13 +33,14 @@
     var cp = {all: 0}, cb = {all: 0}, ct = {all: 0};
     reg.rows.forEach(function (r) {
       if (match(r, "paper")) { if (st.block !== "all" || r.block === "T") cp.all++; cp[r.paper] = (cp[r.paper] || 0) + 1; }   /* the All counts say what the click yields under the rule */
-      if (match(r, "block")) { if (st.paper !== "all" || r.paper === "00") cb.all++; if (BLOCKS[r.block]) cb[r.block] = (cb[r.block] || 0) + 1; }
+      if (match(r, "block")) { if (st.paper !== "all" || r.paper === "00") cb.all++; if (BLOCKS[r.block] && !FORCED_TAG[r.block]) cb[r.block] = (cb[r.block] || 0) + 1; }
+      if (BLOCKS[r.block] && FORCED_TAG[r.block] && tagsOf(r).indexOf(FORCED_TAG[r.block]) >= 0 && (st.paper === "all" || r.paper === st.paper) && (!st.q || text(r).indexOf(st.q) >= 0)) cb[r.block] = (cb[r.block] || 0) + 1;   /* a block that sets the status counts under that status: what the click yields */
       if (match(r, "tag")) { ct.all++; tagsOf(r).forEach(function (t) { ct[t] = (ct[t] || 0) + 1; }); }
     });
-    pill(pb, "all", "All", "", cp.all, st.paper === "all", function () { st.paper = "all"; if (st.block === "all") st.block = "T"; update(); });
-    order.forEach(function (k) { pill(pb, k, k === "00" ? "00 master" : k, "", cp[k] || 0, st.paper === k, function () { st.paper = (st.paper === k) ? "all" : k; if (st.paper === "all" && st.block === "all") st.block = "T"; update(); }); });
+    pill(pb, "all", "All", "", cp.all, st.paper === "all", function () { st.paper = "all"; if (st.block === "all") setBlock("T"); update(); });
+    order.forEach(function (k) { pill(pb, k, k === "00" ? "00 master" : k, "", cp[k] || 0, st.paper === k, function () { st.paper = (st.paper === k) ? "all" : k; if (st.paper === "all" && st.block === "all") setBlock("T"); update(); }); });
     pill(bb, "all", "All", "", cb.all, st.block === "all", function () { st.block = "all"; if (st.paper === "all") st.paper = "00"; update(); });
-    Object.keys(BLOCKS).forEach(function (k) { pill(bb, k, k + " · " + BLOCKS[k], "", cb[k] || 0, st.block === k, function () { st.block = (st.block === k) ? "all" : k; if (st.block === "all" && st.paper === "all") st.paper = "00"; update(); }); });
+    BLOCK_ORDER.forEach(function (k) { pill(bb, k, k + ": " + BLOCKS[k], "", cb[k] || 0, st.block === k, function () { if (st.block === k) { st.block = "all"; if (st.paper === "all") st.paper = "00"; } else setBlock(k); update(); }); });
     pill(tb, "all", "All", "", ct.all, st.tag === "all", function () { st.tag = "all"; update(); });
     Object.keys(TAGS).forEach(function (k) { if (allTags[k]) pill(tb, k, TAGS[k], "dot t-" + (k === "Ω" ? "om" : k.toLowerCase()), ct[k] || 0, st.tag === k, function () { st.tag = (st.tag === k) ? "all" : k; update(); }); });
   }
