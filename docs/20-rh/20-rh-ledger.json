@@ -10,7 +10,7 @@
    "rows": [
     {
      "label": "A1",
-     "predicate": "The framed substrate: the Carrier $\\F_\\Omega$ with $\\Omega=4\\dS+1$, the Subject $\\Fp(\\chron;0,1,\\gen)$ with $p=4\\kp+1$ and its register $\\pi=2\\kp$, $\\im=\\gen^{-\\kp}$, $\\E=\\gen^{\\,\\im}$; the four charts and the finite Fourier turns; time as scale-dilation; the frame-covariance of the height chart.",
+     "predicate": "The framed substrate: the Carrier $\\F_\\Omega$ with $\\Omega=4\\dS+1$, the Subject $\\Fp(\\chron;0,1,\\gen)$ with $\\p=4\\kp+1$ and its register $\\pi=2\\kp$, $\\im=\\gen^{-\\kp}$, $\\E=\\gen^{\\,\\im}$; the four charts and the finite Fourier turns; time as scale-dilation; the frame-covariance of the height chart.",
      "tag": "I",
      "source": "\\citep{akhtman2025algebra,akhtman2026geometry,akhtman2026fourier,akhtman2025lorentzian}",
      "key": "p20001"
@@ -86,21 +86,21 @@
    "rows": [
     {
      "label": "B1",
-     "predicate": "The two frames on one substrate: the Carrier chart $\\F_\\Omega$, held by no embedded observer, and the Subject $\\Fp$ embedded with $\\Omega\\gg p^{2}$; what they share is the quarter-turn core $Q_4$ and nothing else, on the laboratory pair $(13,233)$ the cycles $C_{12}$ and $C_{232}$ admit no projection ($12\\nmid232$); hardness by register ($p$-hard, $\\Omega$-hard).",
+     "predicate": "The two frames on one substrate: the Carrier chart $\\F_\\Omega$, held by no embedded observer, and the Subject $\\Fp$ embedded with $\\Omega\\gg \\p^{2}$; what they share is the quarter-turn core $Q_4$ and nothing else, on the laboratory pair $(13,233)$ the cycles $C_{12}$ and $C_{232}$ admit no projection ($12\\nmid232$); hardness by register ($\\p$-hard, $\\Omega$-hard).",
      "tag": "D",
      "source": "Def.~\\ref{def:shells}\\newline \\pywit{rh}{p20008}{B1}, \\leanwit{FrcCore}{p20008}{B1}, \\leanwit{FrcLedger}{p20008}{B1} \\lean{Rh.lab\\_pair, Rh.no\\_cycle\\_projection, FRC.Rh.lab\\_pair}",
      "key": "p20008"
     },
     {
      "label": "B2",
-     "predicate": "Frame coincidence below the horizon: for $n\\le\\sqrt p$ the residue $n$ is the same integer in $\\Fp$ and $\\F_\\Omega$, and primality of $n$ equals irreducibility in the Subject chart; the Subject-realised primes $\\Pi_p$ are the primes to $\\sqrt p$.",
+     "predicate": "Frame coincidence below the horizon: for $n\\le\\sqrt \\p$ the residue $n$ is the same integer in $\\Fp$ and $\\F_\\Omega$, and primality of $n$ equals irreducibility in the Subject chart; the Subject-realised primes $\\Pi_\\p$ are the primes to $\\sqrt \\p$.",
      "tag": "T",
      "source": "Prop.~\\ref{prop:coincide}\\newline \\pywit{rh}{p20009}{B2}, \\leanwit{FrcCore}{p20009}{B2}, \\leanwit{FrcLedger}{p20009}{B2} \\lean{Rh.window\\_readback, Rh.prime\\_iff\\_window\\_irreducible, Rh.sqrt\\_sq\\_lt\\_prime, FRC.Rh.window\\_readback, FRC.Rh.factorisation\\_iff, FRC.Rh.frame\\_coincidence}",
      "key": "p20009"
     },
     {
      "label": "B3",
-     "predicate": "The prime-counting vector $v(n)=\\Lambda(n)$ on $\\Fx{p}$ and its windowed reading on $\\{1,\\dots,\\lfloor\\sqrt p\\rfloor\\}$; $\\psi(x)$ is the cumulative windowed reading; the horizon is a property of the reading, not of the vector.",
+     "predicate": "The prime-counting vector $v(n)=\\Lambda(n)$ on $\\Fx{\\p}$ and its windowed reading on $\\{1,\\dots,\\lfloor\\sqrt \\p\\rfloor\\}$; $\\psi(x)$ is the cumulative windowed reading; the horizon is a property of the reading, not of the vector.",
      "tag": "D",
      "source": "Def.~\\ref{def:vector}",
      "key": "p20010"
@@ -121,28 +121,28 @@
     },
     {
      "label": "B6",
-     "predicate": "Hermitian phase calculus on $K=\\F_{p^{2}}$: norm and trace $\\F_p$-valued, the phase circle $U_{p+1}$ of order $p+1$ with Frobenius as inversion, the quarter-turn $\\im$ Frobenius-fixed and off the circle ($\\Nm(\\im)=-1$), the trace-zero $\\eta$ with $\\eta^{2}=\\nu$ a nonsquare, $\\Tr(a+b\\eta)=2a$, $\\Nm=a^{2}-\\nu b^{2}$.",
+     "predicate": "Hermitian phase calculus on $K=\\F_{\\p^{2}}$: norm and trace $\\Fp$-valued, the phase circle $U_{\\p+1}$ of order $\\p+1$ with Frobenius as inversion, the quarter-turn $\\im$ Frobenius-fixed and off the circle ($\\Nm(\\im)=-1$), the trace-zero $\\eta$ with $\\eta^{2}=\\nu$ a nonsquare, $\\Tr(a+b\\eta)=2a$, $\\Nm=a^{2}-\\nu b^{2}$.",
      "tag": "T",
      "source": "Lem.~\\ref{lem:K}\\newline \\pywit{rh}{p20013}{B6}, \\leanwit{FrcCore}{p20013}{B6}, \\leanwit{FrcLedger}{p20013}{B6} \\lean{Rh.phase\\_circle, Rh.frobenius\\_eq\\_star, Rh.norm\\_eq\\_pow, Rh.quarter\\_turn\\_off\\_circle, FRC.Rh.Ext.mul\\_conj, FRC.Rh.Ext.conj\\_inv\\_of\\_norm\\_one, FRC.Rh.Ext.quarter\\_turn\\_off\\_circle, FRC.Rh.Ext.circle13}",
      "key": "p20013"
     },
     {
      "label": "B7",
-     "predicate": "Flat ground state: the full-modulus Ramanujan sum $c_p(n)\\equiv-1$ for every $n\\not\\equiv0$; the mode at the spectral origin carries no prime information.",
+     "predicate": "Flat ground state: the full-modulus Ramanujan sum $c_\\p(n)\\equiv-1$ for every $n\\not\\equiv0$; the mode at the spectral origin carries no prime information.",
      "tag": "T",
      "source": "Prop.~\\ref{prop:ground}\\newline \\pywit{rh}{p20014}{B7}, \\leanwit{FrcCore}{p20014}{B7}, \\leanwit{FrcLedger}{p20014}{B7} \\lean{Rh.ramanujan\\_sum, FRC.Rh.ramanujan\\_sum, FRC.Rh.ramanujan53}",
      "key": "p20014"
     },
     {
      "label": "B8",
-     "predicate": "The finite critical line: the half-turn $2^{-1}=2\\kp+1=-\\pi$; $\\Tr(z)=1$ exactly on the $p$ points $z=2^{-1}+\\eta\\theta$, with energy $\\Nm(z)=\\tfrac14-\\nu\\theta^{2}$; de-framed, $2^{-1}/p=(2\\kp+1)/p\\to\\half$ from above [chart].",
+     "predicate": "The finite critical line: the half-turn $2^{-1}=2\\kp+1=-\\pi$; $\\Tr(z)=1$ exactly on the $\\p$ points $z=2^{-1}+\\eta\\theta$, with energy $\\Nm(z)=\\tfrac14-\\nu\\theta^{2}$; de-framed, $2^{-1}/\\p=(2\\kp+1)/\\p\\to\\half$ from above [chart].",
      "tag": "T",
      "source": "Prop.~\\ref{prop:critical}\\newline \\pywit{rh}{p20015}{B8}, \\leanwit{FrcCore}{p20015}{B8}, \\leanwit{FrcLedger}{p20015}{B8} \\lean{Rh.half\\_turn, Rh.trace\\_eq\\_one\\_iff, Rh.card\\_critical\\_line, Rh.norm\\_on\\_line, FRC.Rh.half\\_inverse, FRC.Rh.Ext.critical\\_line, FRC.Rh.Ext.norm\\_on\\_line}",
      "key": "p20015"
     },
     {
      "label": "B9",
-     "predicate": "The two agreement loci: the Klein four-group $\\langle\\phi,\\rho\\rangle$ of Frobenius and the functional-equation half-turn fixes exactly $\\F_p$ (the prime meridian), $L_{1/2}$ (the critical line) and their meeting $\\{2^{-1}\\}$; no other line is fixed.",
+     "predicate": "The two agreement loci: the Klein four-group $\\langle\\phi,\\rho\\rangle$ of Frobenius and the functional-equation half-turn fixes exactly $\\Fp$ (the prime meridian), $L_{1/2}$ (the critical line) and their meeting $\\{2^{-1}\\}$; no other line is fixed.",
      "tag": "T",
      "source": "Thm.~\\ref{thm:agree}\\newline \\pywit{rh}{p20016}{B9}, \\leanwit{FrcCore}{p20016}{B9}, \\leanwit{FrcLedger}{p20016}{B9} \\lean{Rh.klein\\_four, Rh.fixed\\_frobenius, Rh.trace\\_eq\\_one\\_iff, Rh.fixed\\_half\\_turn, FRC.Rh.Ext.klein\\_four, FRC.Rh.Ext.fixed\\_conj, FRC.Rh.Ext.critical\\_line, FRC.Rh.Ext.fixed\\_half\\_turn}",
      "key": "p20016"
@@ -156,7 +156,7 @@
     },
     {
      "label": "B11",
-     "predicate": "Antipode dominance: in the units-chart basis the per-mode energy is $\\mu^{2}(q)/\\varphi(q)=1/\\varphi(q)$ on squarefree $q$ ($1,\\half,\\tfrac14,\\tfrac16$ at $q=2,3,5,7$), its unique maximum among the nonconstant modes at the antipode $q=2$, decreasing along the primes, not the modulus; in the additive transform the band nearest the half-turn, $k=(p\\pm1)/2$, is the strongest off the spectral origin and follows the same law [approx].",
+     "predicate": "Antipode dominance: in the units-chart basis the per-mode energy is $\\mu^{2}(q)/\\varphi(q)=1/\\varphi(q)$ on squarefree $q$ ($1,\\half,\\tfrac14,\\tfrac16$ at $q=2,3,5,7$), its unique maximum among the nonconstant modes at the antipode $q=2$, decreasing along the primes, not the modulus; in the additive transform the band nearest the half-turn, $k=(\\p\\pm1)/2$, is the strongest off the spectral origin and follows the same law [approx].",
      "tag": "T",
      "source": "Obs.~\\ref{obs:antipode}\\newline \\pywit{rh}{p20018}{B11}",
      "key": "p20018"
@@ -190,21 +190,21 @@
     },
     {
      "label": "C4",
-     "predicate": "Horizon-scale resolution: a least bandwidth $L^{*}(H)$ at which $R_L$ separates every prime power in $\\{2,\\dots,H\\}$ from every other value exists, and $L^{*}(H)\\asymp H=\\lfloor\\sqrt p\\rfloor$ up to slowly growing factors, far below the field scale $H^{2}$ [approx].",
+     "predicate": "Horizon-scale resolution: a least bandwidth $L^{*}(H)$ at which $R_L$ separates every prime power in $\\{2,\\dots,H\\}$ from every other value exists, and $L^{*}(H)\\asymp H=\\lfloor\\sqrt \\p\\rfloor$ up to slowly growing factors, far below the field scale $H^{2}$ [approx].",
      "tag": "T",
      "source": "Obs.~\\ref{obs:horizon}\\newline \\pywit{rh}{p20022}{C4}",
      "key": "p20022"
     },
     {
      "label": "C5",
-     "predicate": "Mean-square flatness: with $r_j$ the normalised correlation of the mean-removed prime indicator with the nonconstant chart mode $\\chi_j$, $\\sum_{j\\ne0}r_j^{2}=1$ exactly (Parseval), so the root-mean-square correlation is $1/\\sqrt{p-2}$.",
+     "predicate": "Mean-square flatness: with $r_j$ the normalised correlation of the mean-removed prime indicator with the nonconstant chart mode $\\chi_j$, $\\sum_{j\\ne0}r_j^{2}=1$ exactly (Parseval), so the root-mean-square correlation is $1/\\sqrt{\\p-2}$.",
      "tag": "T",
      "source": "Prop.~\\ref{prop:flat}\\newline \\leanwit{FrcLedger}{p20023}{C5} \\lean{Rh.chi\\_parseval, Rh.flatness}",
      "key": "p20023"
     },
     {
      "label": "C6",
-     "predicate": "Square-root cancellation: the maximal chart-mode correlation is a small multiple of the floor $1/\\sqrt{p-2}$ of C5, $0.077$ against $0.0315$ at $p=1009$ ($2.4$ times), $0.0087$ against $0.0032$ at $p=100049$ ($2.7$ times) [approx]; the resonance in its window correlates $0.90$. The bound uniform over every shell is Z5.",
+     "predicate": "Square-root cancellation: the maximal chart-mode correlation is a small multiple of the floor $1/\\sqrt{\\p-2}$ of C5, $0.077$ against $0.0315$ at $\\p=1009$ ($2.4$ times), $0.0087$ against $0.0032$ at $\\p=100049$ ($2.7$ times) [approx]; the resonance in its window correlates $0.90$. The bound uniform over every shell is Z5.",
      "tag": "T",
      "source": "Obs.~\\ref{obs:flat}\\newline \\pywit{rh}{p20024}{C6}",
      "key": "p20024"
@@ -217,21 +217,21 @@
    "rows": [
     {
      "label": "D1",
-     "predicate": "The dictionary [chart]: horizon $\\sqrt p\\leftrightarrow$ Riemann--Siegel length $\\sqrt{T/2\\pi}$, half-turn $\\leftrightarrow n^{-1/2}$, scale $\\leftrightarrow\\log n$; a shell of cardinality $p$ reads $\\zeta$ on the line to $T=2\\pi p$, one cycle of the shell, and a height is the scale coordinate of the shell that reads it, its count using residues below $\\sqrt{T/2\\pi}$ only.",
+     "predicate": "The dictionary [chart]: horizon $\\sqrt \\p\\leftrightarrow$ Riemann--Siegel length $\\sqrt{T/2\\pi}$, half-turn $\\leftrightarrow n^{-1/2}$, scale $\\leftrightarrow\\log n$; a shell of cardinality $\\p$ reads $\\zeta$ on the line to $T=2\\pi \\p$, one cycle of the shell, and a height is the scale coordinate of the shell that reads it, its count using residues below $\\sqrt{T/2\\pi}$ only.",
      "tag": "D",
      "source": "Def.~\\ref{def:deframe}",
      "key": "p20025"
     },
     {
      "label": "D2",
-     "predicate": "Zero density is shell scale-depth: at $T=2\\pi p$ the smooth Riemann--von Mangoldt density is $\\frac1{2\\pi}\\log p$, $0.6226,0.9891,1.3556,1.7220$ at $p=50,500,5\\cdot10^{3},5\\cdot10^{4}$ [chart]; a substitution under the dictionary, recorded as a consistency, not a test.",
+     "predicate": "Zero density is shell scale-depth: at $T=2\\pi \\p$ the smooth Riemann--von Mangoldt density is $\\frac1{2\\pi}\\log \\p$, $0.6226,0.9891,1.3556,1.7220$ at $\\p=50,500,5\\cdot10^{3},5\\cdot10^{4}$ [chart]; a substitution under the dictionary, recorded as a consistency, not a test.",
      "tag": "T",
      "source": "Prop.~\\ref{thm:density}\\newline \\pywit{rh}{p20026}{D2}",
      "key": "p20026"
     },
     {
      "label": "D3",
-     "predicate": "Reconstruction residue: the finite-horizon error of the main sum is the Riemann--Siegel remainder $O(T^{-1/4})=O(p^{-1/4})$ (A3), unconditional, fitted slope $-0.24$ over $t=40\\ldots5120$ [approx].",
+     "predicate": "Reconstruction residue: the finite-horizon error of the main sum is the Riemann--Siegel remainder $O(T^{-1/4})=O(\\p^{-1/4})$ (A3), unconditional, fitted slope $-0.24$ over $t=40\\ldots5120$ [approx].",
      "tag": "I",
      "source": "Obs.~\\ref{obs:residue}\\newline \\pywit{rh}{p20027}{D3}",
      "key": "p20027"
@@ -272,7 +272,7 @@
    "rows": [
     {
      "label": "E1",
-     "predicate": "The scale-evolution generator: on the shell the scale-shift $x\\mapsto\\gen^{\\,r}x$ is a unitary permutation of $\\Fx{p}$ with the complex characters as eigenvectors; in the analytic chart [chart] the dilation group $U_r=e^{ir\\Hh}$ has the self-adjoint generator $\\Hh=-i(x\\partial_x+\\half)$ with generalised eigenfunctions $x^{-\\bar\\rho}$, $\\rho=\\half+i\\gamma$, the symmetrizing $\\half$ the half-turn of B8; the chart assignment is used nowhere as a shell identity.",
+     "predicate": "The scale-evolution generator: on the shell the scale-shift $x\\mapsto\\gen^{\\,r}x$ is a unitary permutation of $\\Fx{\\p}$ with the complex characters as eigenvectors; in the analytic chart [chart] the dilation group $U_r=e^{ir\\Hh}$ has the self-adjoint generator $\\Hh=-i(x\\partial_x+\\half)$ with generalised eigenfunctions $x^{-\\bar\\rho}$, $\\rho=\\half+i\\gamma$, the symmetrizing $\\half$ the half-turn of B8; the chart assignment is used nowhere as a shell identity.",
      "tag": "T",
      "source": "Prop.~\\ref{prop:H}\\newline \\pywit{rh}{p20032}{E1}, \\leanwit{FrcCore}{p20032}{E1}, \\leanwit{FrcLedger}{p20032}{E1} \\lean{Rh.scale\\_shift, Rh.character\\_eigen, Rh.chi\\_shift, FRC.Rh.shift\\_power\\_character, FRC.Rh.shift\\_trace}",
      "key": "p20032"
@@ -314,7 +314,7 @@
     },
     {
      "label": "E7",
-     "predicate": "The limits are finitist refinements: $N\\to\\infty$ is a sequence of finite reframings, the comb depth the refinement depth, no completed infinity invoked; a comb of depth $N$ is the window of a Subject with $\\sqrt p\\ge N$ (B3), so the exhibited combs are read on $p\\ge N^{2}$, embedded while $\\Omega\\gg N^{4}$; each construction's (heights, main-sum length, depth, Subject) is recorded.",
+     "predicate": "The limits are finitist refinements: $N\\to\\infty$ is a sequence of finite reframings, the comb depth the refinement depth, no completed infinity invoked; a comb of depth $N$ is the window of a Subject with $\\sqrt \\p\\ge N$ (B3), so the exhibited combs are read on $\\p\\ge N^{2}$, embedded while $\\Omega\\gg N^{4}$; each construction's (heights, main-sum length, depth, Subject) is recorded.",
      "tag": "D",
      "source": "Rem.~\\ref{rem:finitist}",
      "key": "p20038"
@@ -349,14 +349,14 @@
     },
     {
      "label": "E12",
-     "predicate": "\\textbf{The shell theorem.} On every shell, with no hypothesis: (i) $v$ expands in the constant mode and the nonterminal modes of the quarter-turn meridian; (ii) every readout lies on $\\Tr=1$, real part $2^{-1}=2\\kp+1=-\\pi$; (iii) the scale-shift has the modes as eigenvectors, eigenphases $2\\pi j/(p-1)$ independent of $v$. No off-line mode; true of every vector, the Davenport--Heilbronn vector included.",
+     "predicate": "\\textbf{The shell theorem.} On every shell, with no hypothesis: (i) $v$ expands in the constant mode and the nonterminal modes of the quarter-turn meridian; (ii) every readout lies on $\\Tr=1$, real part $2^{-1}=2\\kp+1=-\\pi$; (iii) the scale-shift has the modes as eigenvectors, eigenphases $2\\pi j/(\\p-1)$ independent of $v$. No off-line mode; true of every vector, the Davenport--Heilbronn vector included.",
      "tag": "T",
      "source": "Thm.~\\ref{thm:hp}\\newline \\pywit{rh}{p20043}{E12}, \\leanwit{FrcCore}{p20043}{E12}, \\leanwit{FrcLedger}{p20043}{E12} \\lean{Rh.chi\\_inversion, Rh.chi\\_shift, Rh.scale\\_shift, FRC.Rh.shift\\_power\\_character, FRC.Rh.shift\\_trace, Rh.readout\\_on\\_line, Rh.readout\\_slot\\_index, FRC.Rh.Ext.readout\\_on\\_line, FRC.Rh.Ext.readout\\_slot\\_index}",
      "key": "p20043"
     },
     {
      "label": "E13",
-     "predicate": "Shell-basis completeness is not a clause of E12: the $p-1$ complex characters are an orthogonal basis of $\\mathbb C^{\\Fx{p}}$ ($\\lVert\\chi_j\\rVert^{2}=p-1$; finite Parseval), true of every vector, the trivial character carrying the mean $\\psi(p-1)/(p-1)$; the $\\F_p$-valued power characters are never orthonormal and do not expand $v$; completeness for the zero set of $\\zeta$ is D5, a different clause.",
+     "predicate": "Shell-basis completeness is not a clause of E12: the $\\p-1$ complex characters are an orthogonal basis of $\\mathbb C^{\\Fx{\\p}}$ ($\\lVert\\chi_j\\rVert^{2}=\\p-1$; finite Parseval), true of every vector, the trivial character carrying the mean $\\psi(\\p-1)/(\\p-1)$; the $\\Fp$-valued power characters are never orthonormal and do not expand $v$; completeness for the zero set of $\\zeta$ is D5, a different clause.",
      "tag": "D",
      "source": "Rem.~\\ref{rem:parseval}\\newline \\pywit{rh}{p20044}{E13}, \\leanwit{FrcLedger}{p20044}{E13} \\lean{Rh.chi\\_orthogonal, Rh.chi\\_parseval, Rh.chi\\_inversion, Rh.power\\_characters\\_not\\_orthonormal}",
      "key": "p20044"
@@ -466,7 +466,7 @@
     },
     {
      "label": "Z5",
-     "predicate": "The uniform flatness bound over the shells: with $M(p)=\\max_{j\\ne0}\\lvert\\langle\\mathbf1_\\Pi,\\chi_j\\rangle\\rvert/(\\lVert\\mathbf1_\\Pi-\\bar{\\mathbf1}_\\Pi\\rVert\\,\\lVert\\chi_j\\rVert)$ the normalised correlation of the shell's prime indicator with the chart modes, mean removed (floor $1/\\sqrt{p-2}$, C5), the bound $M(p)=O(p^{-1/2}\\log^{5/2}p)$; the generalized hypothesis modulo $p$ implies it [import: \\citealp[Ch.~20]{davenport2000}], the converse not asserted. Each shell's maximum is a finite computation (C6), the uniform bound read by no embedded Subject.",
+     "predicate": "The uniform flatness bound over the shells: with $M(\\p)=\\max_{j\\ne0}\\lvert\\langle\\mathbf1_\\Pi,\\chi_j\\rangle\\rvert/(\\lVert\\mathbf1_\\Pi-\\bar{\\mathbf1}_\\Pi\\rVert\\,\\lVert\\chi_j\\rVert)$ the normalised correlation of the shell's prime indicator with the chart modes, mean removed (floor $1/\\sqrt{\\p-2}$, C5), the bound $M(\\p)=O(\\p^{-1/2}\\log^{5/2}\\p)$; the generalized hypothesis modulo $\\p$ implies it [import: \\citealp[Ch.~20]{davenport2000}], the converse not asserted. Each shell's maximum is a finite computation (C6), the uniform bound read by no embedded Subject.",
      "tag": "Ω",
      "source": "\\S\\ref{sec:emergence}, Obs.~\\ref{obs:flat}",
      "key": "p20075"
