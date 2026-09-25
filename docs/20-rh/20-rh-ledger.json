@@ -10,7 +10,7 @@
    "rows": [
     {
      "label": "A1",
-     "predicate": "The framed substrate: the Carrier $\\F_\\Omega$ with $\\Omega=4\\dS+1$, the Subject $\\Fp(\\chron;0,1,\\gen)$ with $p=4\\kp+1$ and its register $\\pi=2\\kp$, $\\im=\\gen^{-\\kp}$, $\\Et=\\gen^{\\,\\im}$; the four charts and the finite Fourier turns; time as scale-dilation; the frame-covariance of the height chart.",
+     "predicate": "The framed substrate: the Carrier $\\F_\\Omega$ with $\\Omega=4\\dS+1$, the Subject $\\Fp(\\chron;0,1,\\gen)$ with $p=4\\kp+1$ and its register $\\pi=2\\kp$, $\\im=\\gen^{-\\kp}$, $\\E=\\gen^{\\,\\im}$; the four charts and the finite Fourier turns; time as scale-dilation; the frame-covariance of the height chart.",
      "tag": "I",
      "source": "\\citep{akhtman2025algebra,akhtman2026geometry,akhtman2026fourier,akhtman2025lorentzian}",
      "key": "p20001"
@@ -149,7 +149,7 @@
     },
     {
      "label": "B10",
-     "predicate": "The Subject constants on the shell: $\\pi=2\\kp$, $2\\pi\\equiv-1$, $\\im=\\gen^{-\\kp}$, $\\im^{2}\\equiv-1$, $\\Et=\\gen^{\\,\\im}$ on the odd lift, $\\gen^{\\,\\pi}\\equiv-1$, $\\Et^{\\,\\im\\pi}\\equiv-1$; on $\\F_{13}$: $\\gen=2$, $\\im=5$, $\\Et=6$, $\\pi=6$.",
+     "predicate": "The Subject constants on the shell: $\\pi=2\\kp$, $2\\pi\\equiv-1$, $\\im=\\gen^{-\\kp}$, $\\im^{2}\\equiv-1$, $\\E=\\gen^{\\,\\im}$ on the odd lift, $\\gen^{\\,\\pi}\\equiv-1$, $\\E^{\\,\\im\\pi}\\equiv-1$; on $\\F_{13}$: $\\gen=2$, $\\im=5$, $\\E=6$, $\\pi=6$.",
      "tag": "T",
      "source": "\\S\\ref{sub:frc}, Rem.~\\ref{rem:frame}\\newline \\pywit{rh}{p20017}{B10}, \\leanwit{FrcCore}{p20017}{B10}, \\leanwit{FrcLedger}{p20017}{B10} \\lean{Rh.subject\\_constants, Rh.constants13, FRC.Rh.subject\\_constants, FRC.Rh.constants13, FRC.Shell.frame13}",
      "key": "p20017"

@@ -10,7 +10,7 @@
    "rows": [
     {
      "label": "A1",
-     "predicate": "The pair: $\\p=13$, $\\kap=3$, $\\Om=233$, $\\dS=58$; $\\gen=2$, $i=5=-\\gen^{\\kap}$.",
+     "predicate": "The pair: $\\p=13$, $\\kap=3$, $\\Om=233$, $\\dS=58$; $\\gen=2$, $\\im=5=-\\gen^{\\kap}$.",
      "tag": "T",
      "source": "\\src{s13.\\allowbreak check\\_s13}",
      "key": "p38001"
@@ -24,7 +24,7 @@
     },
     {
      "label": "A3",
-     "predicate": "The channel at the instance: $\\gcd(12,14)=2$, $\\gcd(12,28)=4$; $N(i)=-1$ (Theorem~\\ref{th:channel}).",
+     "predicate": "The channel at the instance: $\\gcd(12,14)=2$, $\\gcd(12,28)=4$; $N(\\im)=-1$ (Theorem~\\ref{th:channel}).",
      "tag": "T",
      "source": "\\src{s13.\\allowbreak check\\_s13}",
      "key": "p38003"
@@ -38,7 +38,7 @@
     },
     {
      "label": "A5",
-     "predicate": "The naming $\\{\\hbar,h\\}$ and the constant loci of Fig.~\\ref{fig:rings}: the registration reading of \\cite{geometry,dimensions}; consumed once, by the registration orientation $\\iota:i\\mapsto\\hbar$ (Proposition~\\ref{th:register}); proofs consume A4 alone.",
+     "predicate": "The naming $\\{\\hbar,h\\}$ and the constant loci of Fig.~\\ref{fig:rings}: the registration reading of \\cite{geometry,dimensions}; consumed once, by the registration orientation $\\iota:\\im\\mapsto\\hbar$ (Proposition~\\ref{th:register}); proofs consume A4 alone.",
      "tag": "R",
      "source": "Fig.~\\ref{fig:rings}",
      "key": "p38005"
@@ -66,7 +66,7 @@
     },
     {
      "label": "A9",
-     "predicate": "The two fibrations and the frame triple (Theorem~\\ref{th:holography}): $G\\cong\\Prj^{1}\\times\\F_\\p\\times C_{\\p-1}$ for every odd $\\p$, $14\\times13\\times12$; non-split fibres $C_{\\p+1}$ over $\\p(\\p-1)=156$ with the cone-chart section, split fibres $C_{\\p-1}$ over $\\p(\\p+1)=182$ without; the unit $i$ is split at every $\\p=4\\kap+1$.",
+     "predicate": "The two fibrations and the frame triple (Theorem~\\ref{th:holography}): $G\\cong\\Prj^{1}\\times\\F_\\p\\times C_{\\p-1}$ for every odd $\\p$, $14\\times13\\times12$; non-split fibres $C_{\\p+1}$ over $\\p(\\p-1)=156$ with the cone-chart section, split fibres $C_{\\p-1}$ over $\\p(\\p+1)=182$ without; the unit $\\im$ is split at every $\\p=4\\kap+1$.",
      "tag": "T",
      "source": "\\src{s13.\\allowbreak verify-hopf}, \\src{s13.\\allowbreak check\\_fibrations}",
      "key": "p38050"
@@ -114,7 +114,7 @@
     },
     {
      "label": "B6",
-     "predicate": "The Hopf representation: node-on-fiber exact; foliation depth $=$ rung ladder; the drawn leaves are the continuum foliation by the unit $i$, the chart face of the count of A9, distinguishing neither fibration [chart].",
+     "predicate": "The Hopf representation: node-on-fiber exact; foliation depth $=$ rung ladder; the drawn leaves are the continuum foliation by the unit $\\im$, the chart face of the count of A9, distinguishing neither fibration [chart].",
      "tag": "D|T",
      "source": "\\src{s13.\\allowbreak verify-render}",
      "key": "p38014"
