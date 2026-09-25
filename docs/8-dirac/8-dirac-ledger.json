@@ -10,7 +10,7 @@
    "rows": [
     {
      "label": "A1",
-     "predicate": "The framed substrate: the symmetry-complete shell $\\p=4\\kap+1$ with frame $\\Fp(t;0,1,g)$, the derived quarter-turn $\\It=g^{-\\kap}$, $\\pi=2\\kap$, $e=g^{\\It}$, the residue web with $c^{2}=2^{-1}$; the orbital shell with its meridians $M_m$ and latitude circles $L_a$; the relational stance under which the continuum is a projection.",
+     "predicate": "The framed substrate: the symmetry-complete shell $\\p=4\\kap+1$ with frame $\\Fp(t;0,1,g)$, the derived quarter-turn $\\im=g^{-\\kap}$, $\\pi=2\\kap$, $e=g^{\\im}$, the residue web with $c^{2}=2^{-1}$; the orbital shell with its meridians $M_m$ and latitude circles $L_a$; the relational stance under which the continuum is a projection.",
      "tag": "I",
      "source": "\\citep{Akhtman2025Axioms,Akhtman2026Geometry,Akhtman2025Lorentz}",
      "key": "p08001"
@@ -38,7 +38,7 @@
     },
     {
      "label": "A5",
-     "predicate": "The programme's admissibility congruences ($\\kap$ even, $\\kap\\equiv1\\pmod3$, $\\p\\equiv5\\pmod{12}$), the laboratory Carrier $\\Omega=2\\,408\\,561$ with $S=602\\,140$, and the constants web ($c^{2}=2^{-1}$, $\\hbar=\\It$).",
+     "predicate": "The programme's admissibility congruences ($\\kap$ even, $\\kap\\equiv1\\pmod3$, $\\p\\equiv5\\pmod{12}$), the laboratory Carrier $\\Omega=2\\,408\\,561$ with $S=602\\,140$, and the constants web ($c^{2}=2^{-1}$, $\\hbar=\\im$).",
      "tag": "I",
      "source": "\\citep{Akhtman2025Lorentz,Akhtman2026Geometry}\\newline \\leanwit{FrcCore}{p08005}{A5}, \\leanwit{FrcLedger}{p08005}{A5} \\lean{Dirac.carrier\\_constants, FRC.Dirac.minimal\\_admissible, FRC.Dirac.carrier\\_constants}",
      "key": "p08005"
@@ -58,7 +58,7 @@
    "rows": [
     {
      "label": "B1",
-     "predicate": "The shells in play: the worked Subject shells $\\F_{13}$, $\\F_{17}$, the coordinate shell $Y=\\Fp^{4}$, the coefficient field $K$; the two conjugation registers --- $\\It\\in\\Fp$ Frobenius-fixed, the internal Euclidean phase, and $\\w$ the conjugation of the extension; Carrier-scale statements are transfer targets, never sites of computation.",
+     "predicate": "The shells in play: the worked Subject shells $\\F_{13}$, $\\F_{17}$, the coordinate shell $Y=\\Fp^{4}$, the coefficient field $K$; the two conjugation registers --- $\\im\\in\\Fp$ Frobenius-fixed, the internal Euclidean phase, and $\\w$ the conjugation of the extension; Carrier-scale statements are transfer targets, never sites of computation.",
      "tag": "D",
      "source": "Rems.~\\ref{rem:shells}, \\ref{rem:two-registers}",
      "key": "p08007"
@@ -72,21 +72,21 @@
     },
     {
      "label": "B3",
-     "predicate": "The drive is canonical: $g$ is a nonsquare on every shell and the only named residue whose class is nonsquare on every symmetry-complete shell; $\\It$, $2$, $2^{-1}$, $-2$ are squares exactly when $\\kap$ is even; $e=g^{\\It}$ has no stable class; $[g^{-1}]=[g]$. Exhaustive on $\\p<2000$.",
+     "predicate": "The drive is canonical: $g$ is a nonsquare on every shell and the only named residue whose class is nonsquare on every symmetry-complete shell; $\\im$, $2$, $2^{-1}$, $-2$ are squares exactly when $\\kap$ is even; $e=g^{\\im}$ has no stable class; $[g^{-1}]=[g]$. Exhaustive on $\\p<2000$.",
      "tag": "T",
      "source": "Lem.~\\ref{lem:canonical-nu}\\newline \\pywit{dirac}{p08009}{B3}, \\leanwit{FrcCore}{p08009}{B3}, \\leanwit{FrcLedger}{p08009}{B3} \\lean{Dirac.drive\\_nonsquare, Dirac.named\\_residues, Dirac.shell13, Dirac.shell17, FRC.Dirac.drive\\_nonsquare, FRC.Dirac.inv\\_drive\\_nonsquare, FRC.Dirac.quarter\\_class, FRC.Dirac.two\\_class, FRC.Dirac.anchors}",
      "key": "p08009"
     },
     {
      "label": "B4",
-     "predicate": "The two speed-of-light seats: $\\nu=g=c^{2}\\cdot(2g)$ exactly on every shell; $[c^{2}]$ is even iff $\\kap$ is even, $[2g]$ odd iff $\\kap$ is even, the product odd always; the temporal coefficient is not $c^{2}$; anchors $\\F_{13}$ ($2^{-1}=7$ nonsquare), $\\F_{17}$ ($2,\\It,e$ squares), and the laboratory Carrier ($c=171\\,106$ base-rational, $1\\,204\\,281\\cdot12=6=g$).",
+     "predicate": "The two speed-of-light seats: $\\nu=g=c^{2}\\cdot(2g)$ exactly on every shell; $[c^{2}]$ is even iff $\\kap$ is even, $[2g]$ odd iff $\\kap$ is even, the product odd always; the temporal coefficient is not $c^{2}$; anchors $\\F_{13}$ ($2^{-1}=7$ nonsquare), $\\F_{17}$ ($2,\\im,e$ squares), and the laboratory Carrier ($c=171\\,106$ base-rational, $1\\,204\\,281\\cdot12=6=g$).",
      "tag": "T",
      "source": "Rem.~\\ref{rem:nu-not-c}, Cor.~\\ref{cor:two-seats}\\newline \\pywit{dirac}{p08010}{B4}, \\leanwit{FrcCore}{p08010}{B4}, \\leanwit{FrcLedger}{p08010}{B4} \\lean{Dirac.nu\\_factorisation, Dirac.two\\_g\\_class, Dirac.named\\_residues, Dirac.shell13, Dirac.carrier\\_constants, FRC.Dirac.nu\\_factorisation, FRC.Dirac.carrier\\_constants}",
      "key": "p08010"
     },
     {
      "label": "B5",
-     "predicate": "The square class is chronon parity: the squares are $\\langle g^{2}\\rangle$, a residue's class is the parity of its drive-step count; on $\\kap$-even shells every element of $Q_4=\\{1,\\It,-1,-\\It\\}$ is a square, so the order-four chart grading carries no signature. Exhaustive over every primitive root of $\\F_{13}$, $\\F_{17}$; Euler form on $\\p<2000$.",
+     "predicate": "The square class is chronon parity: the squares are $\\langle g^{2}\\rangle$, a residue's class is the parity of its drive-step count; on $\\kap$-even shells every element of $Q_4=\\{1,\\im,-1,-\\im\\}$ is a square, so the order-four chart grading carries no signature. Exhaustive over every primitive root of $\\F_{13}$, $\\F_{17}$; Euler form on $\\p<2000$.",
      "tag": "T",
      "source": "Thm.~\\ref{thm:parity}\\newline \\pywit{dirac}{p08011}{B5}, \\leanwit{FrcCore}{p08011}{B5}, \\leanwit{FrcLedger}{p08011}{B5} \\lean{Dirac.parity\\_iff, FRC.Dirac.parity\\_iff}",
      "key": "p08011"
@@ -245,7 +245,7 @@
     },
     {
      "label": "D12",
-     "predicate": "The worked shells: $\\F_{13}$ with $\\nu=g=2$, $x=y=1$: $A=10$, $B=2$, $S=I+\\gamma^{0}\\gamma^{1}$, $\\widehat\\gamma^{0}=10\\gamma^{0}-4\\gamma^{1}$, $\\widehat\\gamma^{1}=-2\\gamma^{0}+10\\gamma^{1}$; $\\F_{17}$ the minimal admissible shell ($17\\equiv5\\bmod12$, no smaller symmetry-complete prime), $\\It=4$, $2,\\It,e$ squares, $\\nu=3$, $A=15$, $B=1$, $|G_3|=18$, triality present.",
+     "predicate": "The worked shells: $\\F_{13}$ with $\\nu=g=2$, $x=y=1$: $A=10$, $B=2$, $S=I+\\gamma^{0}\\gamma^{1}$, $\\widehat\\gamma^{0}=10\\gamma^{0}-4\\gamma^{1}$, $\\widehat\\gamma^{1}=-2\\gamma^{0}+10\\gamma^{1}$; $\\F_{17}$ the minimal admissible shell ($17\\equiv5\\bmod12$, no smaller symmetry-complete prime), $\\im=4$, $2,\\im,e$ squares, $\\nu=3$, $A=15$, $B=1$, $|G_3|=18$, triality present.",
      "tag": "T",
      "source": "Exs.~\\ref{ex:dirac-13}, \\ref{ex:dirac-17}\\newline \\pywit{dirac}{p08032}{D12}, \\leanwit{FrcCore}{p08032}{D12}, \\leanwit{FrcLedger}{p08032}{D12} \\lean{Dirac.shell13, Dirac.shell17, FRC.Dirac.spin\\_conjugation\\_values, FRC.Dirac.torus\\_counts, FRC.Dirac.anchors, FRC.Dirac.minimal\\_admissible}",
      "key": "p08032"
@@ -306,7 +306,7 @@
     },
     {
      "label": "F2",
-     "predicate": "The latitude identities: $\\kap+1$ is the first rung past the midpoint of the ladder $1,\\dots,2\\kap$; $m\\mapsto m+\\kap$ is multiplication by $g^{\\kap}=\\pm\\It$ and $a\\mapsto a+\\kap$ sends $1$ to $\\kap+1$; $\\kap=-4^{-1}$ so the energy radius is $3\\cdot4^{-1}$; $\\pi=2\\kap=-2^{-1}=-c^{2}$, on the Carrier $\\pi_\\Omega=2S$; the unit-norm circle has $\\p-1$ points. On $\\F_{13}$, $\\F_{17}$ and the laboratory Carrier.",
+     "predicate": "The latitude identities: $\\kap+1$ is the first rung past the midpoint of the ladder $1,\\dots,2\\kap$; $m\\mapsto m+\\kap$ is multiplication by $g^{\\kap}=\\pm\\im$ and $a\\mapsto a+\\kap$ sends $1$ to $\\kap+1$; $\\kap=-4^{-1}$ so the energy radius is $3\\cdot4^{-1}$; $\\pi=2\\kap=-2^{-1}=-c^{2}$, on the Carrier $\\pi_\\Omega=2S$; the unit-norm circle has $\\p-1$ points. On $\\F_{13}$, $\\F_{17}$ and the laboratory Carrier.",
      "tag": "T",
      "source": "\\S\\ref{sec:shell-reading}\\newline \\pywit{dirac}{p08039}{F2}, \\leanwit{FrcCore}{p08039}{F2}, \\leanwit{FrcLedger}{p08039}{F2} \\lean{Dirac.latitude\\_identities, FRC.Dirac.ladder, FRC.Dirac.four\\_kappa, FRC.Dirac.terminal\\_latitude, FRC.Dirac.torus\\_counts}",
      "key": "p08039"

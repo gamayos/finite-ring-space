@@ -24,7 +24,7 @@
     },
     {
      "label": "A3",
-     "predicate": "The corpus: the shell $\\Fp$, $\\p=4\\chron+1$, with its frame and quarter-turn (1:B2, B3); its frames $x\\mapsto a+bx$ (1:C2; 00:C1); the Carrier and its readings as incomplete projections (00:A8, A6); finiteness and counting by return (00:A4, A7); $4\\mid\\p-1$ from the two involutions (00:B3); consolidation as frame maps, innovation as the extension $\\Fpq$ where $\\sqrt\\nu$ is written (3:B5).",
+     "predicate": "The corpus: the shell $\\Fp$, $\\p=4\\kap+1$, with its frame and quarter-turn (1:B2, B3); its frames $x\\mapsto a+bx$ (1:C2; 00:C1); the Carrier and its readings as incomplete projections (00:A8, A6); finiteness and counting by return (00:A4, A7); $4\\mid\\p-1$ from the two involutions (00:B3); consolidation as frame maps, innovation as the extension $\\Fpq$ where $\\sqrt\\nu$ is written (3:B5).",
      "tag": "I",
      "source": "\\cite{Akhtman2025Axioms,Akhtman2025Entropy,Akhtman2025Being}",
      "key": "p04003"

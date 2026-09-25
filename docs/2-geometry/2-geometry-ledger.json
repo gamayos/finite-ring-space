@@ -10,14 +10,14 @@
    "rows": [
     {
      "label": "A1",
-     "predicate": "Finite-field algebra: $\\Fpx$ is cyclic of order $\\p-1$; its generators are the $\\gen^{u}$, $u\\in\\Z_{\\p-1}^{\\times}$; $\\gen^{(\\p-1)/2}=-1$; $-1$ is a square in $\\Fp$ iff $\\p\\equiv1\\pmod4$; the fourth roots of unity form the unique subgroup of order four (1:A1, 1:B2).",
+     "predicate": "Finite-field algebra: $\\Fpx$ is cyclic of order $\\p-1$; its generators are the $\\gen^{u}$, $u\\in\\Zp^{\\times}$; $\\gen^{(\\p-1)/2}=-1$; $-1$ is a square in $\\Fp$ iff $\\p\\equiv1\\pmod4$; the fourth roots of unity form the unique subgroup of order four (1:A1, 1:B2).",
      "tag": "I",
      "source": "Rotman; 1:A1; 1:B2",
      "key": "p02001"
     },
     {
      "label": "A2",
-     "predicate": "The sign of the quarter-turn exponent: $\\It=\\gen^{-\\kap}=-\\gen^{\\kap}$, the exponent negative by pullback covariance (00:C7); the positive-exponent reading is the conjugate chart. Declared here, derived in the corpus.",
+     "predicate": "The sign of the quarter-turn exponent: $\\im=\\gen^{-\\kap}=-\\gen^{\\kap}$, the exponent negative by pullback covariance (00:C7); the positive-exponent reading is the conjugate chart. Declared here, derived in the corpus.",
      "tag": "I",
      "source": "00:C7; 1:A2",
      "key": "p02002"
@@ -58,7 +58,7 @@
     },
     {
      "label": "B3",
-     "predicate": "Primitive generators form one orbit: every generator is $\\gen^{u}$ with $u\\in\\Z_{\\p-1}^{\\times}$, a torsor for $\\operatorname{Aut}(C_{\\p-1})$ (Props.~\\ref{prop:primitive-orbit}, \\ref{prop:no-canonical-e}).",
+     "predicate": "Primitive generators form one orbit: every generator is $\\gen^{u}$ with $u\\in\\Zp^{\\times}$, a torsor for $\\operatorname{Aut}(C_{\\p-1})$ (Props.~\\ref{prop:primitive-orbit}, \\ref{prop:no-canonical-e}).",
      "tag": "T",
      "source": "A1\\newline \\pywit{geometry}{p02007}{B3}, \\leanwit{FrcCore}{p02007}{B3}, \\leanwit{FrcLedger}{p02007}{B3} \\lean{Geometry.generator\\_orbit, FRC.Shell.Frame.generator\\_orbit, FRC.Shell.s13\\_orbit}",
      "key": "p02007"
@@ -119,35 +119,35 @@
     },
     {
      "label": "D2",
-     "predicate": "The quarter-turn subgroup $\\Qp=\\{x:x^{4}=1\\}$ is the unique subgroup of order four; $\\gen^{\\kap}$ has order four with $(\\gen^{\\kap})^{2}=-1$; $\\Qp=\\{\\pm1,\\pm\\It\\}$ (Def.~\\ref{def:quarter-turn-subgroup}, Prop.~\\ref{prop:quarter-turn}; 1:B2).",
+     "predicate": "The quarter-turn subgroup $\\Qp=\\{x:x^{4}=1\\}$ is the unique subgroup of order four; $\\gen^{\\kap}$ has order four with $(\\gen^{\\kap})^{2}=-1$; $\\Qp=\\{\\pm1,\\pm\\im\\}$ (Def.~\\ref{def:quarter-turn-subgroup}, Prop.~\\ref{prop:quarter-turn}; 1:B2).",
      "tag": "T",
      "source": "\\pywit{geometry}{p02014}{D2}, \\leanwit{FrcCore}{p02014}{D2}, \\leanwit{FrcLedger}{p02014}{D2} \\lean{Geometry.quarter\\_turn\\_order, FRC.Shell.Frame.quarter\\_turn\\_order}",
      "key": "p02014"
     },
     {
      "label": "D3",
-     "predicate": "The oriented quarter-turn $\\It=-\\gen^{\\kap}=\\gen^{-\\kap}$, $\\It^{2}=-1$, orientation by A2 (Rem.~\\ref{rem:observer-canonical-e}); on $\\F_{13}(\\chron;0,1,2)$: $\\It=5$, $-\\It=8$, $\\pi=6$ [value] (Fig.~\\ref{fig:f13-constant-datum}).",
+     "predicate": "The oriented quarter-turn $\\im=-\\gen^{\\kap}=\\gen^{-\\kap}$, $\\im^{2}=-1$, orientation by A2 (Rem.~\\ref{rem:observer-canonical-e}); on $\\F_{13}(\\chron;0,1,2)$: $\\im=5$, $-\\im=8$, $\\pi=6$ [value] (Fig.~\\ref{fig:f13-constant-datum}).",
      "tag": "D",
      "source": "A2\\newline \\pywit{geometry}{p02015}{D3}, \\leanwit{FrcCore}{p02015}{D3} \\lean{FRC.Shell.s13\\_datum}",
      "key": "p02015"
     },
     {
      "label": "D4",
-     "predicate": "The exponential unit $\\eu:=\\gen^{\\It}$, $\\It$ read as an exponent in $\\Phi_{\\p}$ through its residue representative; derived, generator-dependent (Rem.~\\ref{rem:exponential-unit}; 00:C1, convention~3); on $\\F_{13}$, $\\eu=6=\\pi$ [value].",
+     "predicate": "The exponential unit $\\eu:=\\gen^{\\im}$, $\\im$ read as an exponent in $\\Phi_{\\p}$ through its residue representative; derived, generator-dependent (Rem.~\\ref{rem:exponential-unit}; 00:C1, convention~3); on $\\F_{13}$, $\\eu=6=\\pi$ [value].",
      "tag": "D",
      "source": "Section~4; 00:C1\\newline \\pywit{geometry}{p02016}{D4}",
      "key": "p02016"
     },
     {
      "label": "D5",
-     "predicate": "Orientation classes: for $\\gen'=\\gen^{u}$, $\\It'=-\\gen'^{\\kap}$ equals $\\It$ when $u\\equiv1\\pmod4$ and $-\\It$ when $u\\equiv3\\pmod4$; the oriented quarter-turn is frame-covariant within one class of generators, not under every generator change.",
+     "predicate": "Orientation classes: for $\\gen'=\\gen^{u}$, $\\im'=-\\gen'^{\\kap}$ equals $\\im$ when $u\\equiv1\\pmod4$ and $-\\im$ when $u\\equiv3\\pmod4$; the oriented quarter-turn is frame-covariant within one class of generators, not under every generator change.",
      "tag": "T",
      "source": "Rem.~\\ref{rem:frame-transport}\\newline \\pywit{geometry}{p02017}{D5}, \\leanwit{FrcCore}{p02017}{D5}, \\leanwit{FrcLedger}{p02017}{D5} \\lean{Geometry.orientation\\_class, FRC.Shell.Frame.orientation\\_class}",
      "key": "p02017"
     },
     {
      "label": "D6",
-     "predicate": "The Euler identity on the shell: $\\eu^{\\It\\pi}=\\gen^{2\\kap\\It^{2}}=(-1)^{\\It}$, equal to $-1$ exactly when the representative of $\\It$ is odd (00:C14); the oriented frames of a shell are those with $-\\gen^{\\kap}$ odd --- on $\\F_{13}$, $\\gen=2$ ($\\It=5$) is one, on $\\F_{17}$, $\\gen=3$ ($\\It=4$) is not.",
+     "predicate": "The Euler identity on the shell: $\\eu^{\\im\\pi}=\\gen^{2\\kap\\im^{2}}=(-1)^{\\im}$, equal to $-1$ exactly when the representative of $\\im$ is odd (00:C14); the oriented frames of a shell are those with $-\\gen^{\\kap}$ odd --- on $\\F_{13}$, $\\gen=2$ ($\\im=5$) is one, on $\\F_{17}$, $\\gen=3$ ($\\im=4$) is not.",
      "tag": "T",
      "source": "Section~\\ref{sec:structural-data}; 00:C14\\newline \\pywit{geometry}{p02018}{D6}, \\leanwit{FrcCore}{p02018}{D6}, \\leanwit{FrcLedger}{p02018}{D6} \\lean{Geometry.euler\\_identity, FRC.Shell.Frame.euler\\_identity, FRC.Shell.s17\\_orientation}",
      "key": "p02018"
@@ -161,7 +161,7 @@
     },
     {
      "label": "D8",
-     "predicate": "Euclidean conjugation $C_{\\gen}\\colon(a,b)\\mapsto(a,-b)$ is an involution of the coordinate pairs $\\Fp^{2}$; on the shell $a+b\\It$ is a field element and the pair map $\\Fp^{2}\\to\\Fp$ is $\\p$-to-one (1:E2), so $C_{\\gen}$ is a chart-level involution, not a field automorphism.",
+     "predicate": "Euclidean conjugation $C_{\\gen}\\colon(a,b)\\mapsto(a,-b)$ is an involution of the coordinate pairs $\\Fp^{2}$; on the shell $a+b\\im$ is a field element and the pair map $\\Fp^{2}\\to\\Fp$ is $\\p$-to-one (1:E2), so $C_{\\gen}$ is a chart-level involution, not a field automorphism.",
      "tag": "D",
      "source": "Prop.~\\ref{rem:euclidean-conjugation}; 1:E2\\newline \\pywit{geometry}{p02020}{D8}",
      "key": "p02020"
@@ -243,7 +243,7 @@
     },
     {
      "label": "F6",
-     "predicate": "Exact external transport [chart]: $\\chi(\\gen^{m})=e^{-2\\pi_{\\R}\\It m/n}$ is an isomorphism of $\\Fpx$ onto the complex $n$-th roots of unity with $\\chi(\\gen^{m+1})=e^{-2\\pi_{\\R}\\It/n}\\chi(\\gen^{m})$, $\\chi(\\gen^{m+\\pi})=-\\chi(\\gen^{m})$, $\\chi(\\It\\gen^{m})=\\It\\,\\chi(\\gen^{m})$, $\\chi(\\gen^{jr})=e^{-2\\pi_{\\R}\\It jr/n}$ (Prop.~\\ref{prop:datum-role-transport}).",
+     "predicate": "Exact external transport [chart]: $\\chi(\\gen^{m})=e^{-2\\pi_{\\R}\\im m/n}$ is an isomorphism of $\\Fpx$ onto the complex $n$-th roots of unity with $\\chi(\\gen^{m+1})=e^{-2\\pi_{\\R}\\im/n}\\chi(\\gen^{m})$, $\\chi(\\gen^{m+\\pi})=-\\chi(\\gen^{m})$, $\\chi(\\im\\gen^{m})=\\im\\,\\chi(\\gen^{m})$, $\\chi(\\gen^{jr})=e^{-2\\pi_{\\R}\\im jr/n}$ (Prop.~\\ref{prop:datum-role-transport}).",
      "tag": "T",
      "source": "\\pywit{geometry}{p02030}{F6}",
      "key": "p02030"

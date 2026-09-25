@@ -24,7 +24,7 @@
     },
     {
      "label": "A3",
-     "predicate": "The framed substrate: the shell $\\p=4\\chron+1$ with frame $(\\chron;0,1,\\g)$ and quarter-turn $i=-\\g^{\\chron}$ (1:B2, B3); the square class as drive-step parity, the drive $\\g$ a nonsquare on every shell, $\\nu=\\g$ canonical (8:B3, B5; 00:C8); the boost cycle as the non-split torus (8:D5; 22:A2).",
+     "predicate": "The framed substrate: the shell $\\p=4\\kap+1$ with frame $(\\chron;0,1,\\g)$ and quarter-turn $\\im=-\\g^{\\kap}$ (1:B2, B3); the square class as drive-step parity, the drive $\\g$ a nonsquare on every shell, $\\nu=\\g$ canonical (8:B3, B5; 00:C8); the boost cycle as the non-split torus (8:D5; 22:A2).",
      "tag": "I",
      "source": "\\cite{akhtman2025algebra}; 8:B3; 00:C3",
      "key": "p03003"
@@ -44,21 +44,21 @@
    "rows": [
     {
      "label": "B1",
-     "predicate": "The shell $\\Fp$, $\\p=4\\chron+1$, with its classes $S$, $N$; the diagonal form $Q_{\\nu}(t,x,y,z)=-\\nu t^{2}+x^{2}+y^{2}+z^{2}$, $\\nu\\in\\Fpx$, a form over $\\Fp$: \\emph{Euclidean} when $\\nu\\in S$ (all coefficients in one class), \\emph{Lorentzian} when $\\nu\\in N$; $Q_{\\nu}$ depends on $\\nu$ only through its class ($\\nu\\mapsto\\nu w^{2}$ is $t\\mapsto wt$); $\\nu=\\g$ canonical.",
+     "predicate": "The shell $\\Fp$, $\\p=4\\kap+1$, with its classes $S$, $N$; the diagonal form $Q_{\\nu}(t,x,y,z)=-\\nu t^{2}+x^{2}+y^{2}+z^{2}$, $\\nu\\in\\Fpx$, a form over $\\Fp$: \\emph{Euclidean} when $\\nu\\in S$ (all coefficients in one class), \\emph{Lorentzian} when $\\nu\\in N$; $Q_{\\nu}$ depends on $\\nu$ only through its class ($\\nu\\mapsto\\nu w^{2}$ is $t\\mapsto wt$); $\\nu=\\g$ canonical.",
      "tag": "D",
      "source": "Eq.~\\eqref{eq:Q_nu}; 8:B2\\newline \\pywit{causality}{p03005}{B1}",
      "key": "p03005"
     },
     {
      "label": "B2",
-     "predicate": "Nonexistence of a causal square root: no $c\\in\\Fp$ has $c^{2}=\\nu$ for $\\nu\\in N$; for $c\\in\\Fpx$ every coefficient of $-c^{2}t^{2}+x^{2}+y^{2}+z^{2}$ is a square ($-1=i^{2}$), the form Euclidean with $\\p^{3}+\\p^{2}-\\p$ zeros; $c=0$ gives a degenerate form.",
+     "predicate": "Nonexistence of a causal square root: no $c\\in\\Fp$ has $c^{2}=\\nu$ for $\\nu\\in N$; for $c\\in\\Fpx$ every coefficient of $-c^{2}t^{2}+x^{2}+y^{2}+z^{2}$ is a square ($-1=\\im^{2}$), the form Euclidean with $\\p^{3}+\\p^{2}-\\p$ zeros; $c=0$ gives a degenerate form.",
      "tag": "T",
      "source": "Thm.~\\ref{thm:nonexistence}\\newline \\pywit{causality}{p03006}{B2}, \\leanwit{FrcCore}{p03006}{B2}, \\leanwit{FrcLedger}{p03006}{B2} \\lean{Causality.no\\_causal\\_root, Causality.neg\\_sq\\_is\\_square, FRC.Shell.Frame.no\\_causal\\_root, FRC.Shell.Frame.neg\\_sq\\_is\\_square}",
      "key": "p03006"
     },
     {
      "label": "B3",
-     "predicate": "Square-class absorption: if $a_{i}/a_{0}\\in S$ for all $i$ then $Q\\simeq a_{0}\\sum Y_{i}^{2}$ by $Y_{i}=w_{i}X_{i}$, $w_{i}^{2}=a_{i}/a_{0}$; no root of $a_{0}$ is needed, and none exists for $a_{0}\\in N$ ($-a_{0}$ is a nonsquare with it).",
+     "predicate": "Square-class absorption: if $a_{i}/a_{0}\\in S$ for all $\\im$ then $Q\\simeq a_{0}\\sum Y_{i}^{2}$ by $Y_{i}=w_{i}X_{i}$, $w_{i}^{2}=a_{i}/a_{0}$; no root of $a_{0}$ is needed, and none exists for $a_{0}\\in N$ ($-a_{0}$ is a nonsquare with it).",
      "tag": "T",
      "source": "Lemma~\\ref{lem:square-class-absorption}\\newline \\pywit{causality}{p03007}{B3}, \\leanwit{FrcCore}{p03007}{B3}, \\leanwit{FrcLedger}{p03007}{B3} \\lean{Causality.absorb, FRC.Shell.Frame.absorb}",
      "key": "p03007"

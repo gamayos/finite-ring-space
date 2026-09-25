@@ -10,7 +10,7 @@
    "rows": [
     {
      "label": "A1",
-     "predicate": "The framed shell $\\F_{\\p}$, $\\p=4\\kap+1$: the frame datum, the phase cycle $\\Phi\\simeq C_{4\\kap}$, the quarter-turn core $\\Qf$ with $\\It=\\gen^{-\\kap}$, and the drive (the frame generator's scale action, one step per chronon in the observer's frame).",
+     "predicate": "The framed shell $\\F_{\\p}$, $\\p=4\\kap+1$: the frame datum, the phase cycle $\\Phi\\simeq C_{4\\kap}$, the quarter-turn core $\\Qf$ with $\\im=\\gen^{-\\kap}$, and the drive (the frame generator's scale action, one step per chronon in the observer's frame).",
      "tag": "I",
      "source": "\\citep{akhtman2025algebra}",
      "key": "p22001"
@@ -93,7 +93,7 @@
     },
     {
      "label": "B4",
-     "predicate": "Probability is a coincidence count, kept in the Subject's ledger $\\led=\\Z[\\zeta_d]$ ($\\Z[\\It]$ for the generic core): the tally of phase agreements, not a field of the substrate. Falsifier: an outcome frequency over a complete joint recurrence that is not an exact tally ratio.",
+     "predicate": "Probability is a coincidence count, kept in the Subject's ledger $\\led=\\Z[\\zeta_d]$ ($\\Z[\\im]$ for the generic core): the tally of phase agreements, not a field of the substrate. Falsifier: an outcome frequency over a complete joint recurrence that is not an exact tally ratio.",
      "tag": "R",
      "source": "Def.~\\ref{def:ledger}, Prop.~\\ref{prop:paircount}",
      "key": "p22012"
@@ -176,7 +176,7 @@
     },
     {
      "label": "C7",
-     "predicate": "Squared amplitudes are coincidence counts (the pair-count identity), realized tallies on $\\Z[\\It]$ for stationary core-valued states of definite drive eigenvalue; a distinct-eigenvalue superposition registers the integral drive-frequency count; for a pure winding the weights are $d^2[r\\equiv k]$.",
+     "predicate": "Squared amplitudes are coincidence counts (the pair-count identity), realized tallies on $\\Z[\\im]$ for stationary core-valued states of definite drive eigenvalue; a distinct-eigenvalue superposition registers the integral drive-frequency count; for a pure winding the weights are $d^2[r\\equiv k]$.",
      "tag": "T",
      "source": "Prop.~\\ref{prop:paircount}, Lem.~\\ref{lem:registered}; \\src{qm.validate}, \\src{qm.decoherence}",
      "key": "p22023"
@@ -218,7 +218,7 @@
     },
     {
      "label": "C13",
-     "predicate": "Complex amplitudes are forced: the generic shared core of two framed shells is $\\Qf$, so the minimal ledger is $\\Z[\\It]$; shells of cardinality $\\equiv3\\pmod4$ (arising from no capacity) give a real-amplitude theory.",
+     "predicate": "Complex amplitudes are forced: the generic shared core of two framed shells is $\\Qf$, so the minimal ledger is $\\Z[\\im]$; shells of cardinality $\\equiv3\\pmod4$ (arising from no capacity) give a real-amplitude theory.",
      "tag": "T",
      "source": "Prop.~\\ref{prop:gaussian}",
      "key": "p22029"
@@ -336,7 +336,7 @@
     },
     {
      "label": "X2",
-     "predicate": "\\textbf{The complexity of amplitudes} is the arithmetic of the shared quarter-turn core, the canonical complex sector $\\Z[\\It]$; a shell without the internal quarter-turn gives a real-amplitude theory instead.",
+     "predicate": "\\textbf{The complexity of amplitudes} is the arithmetic of the shared quarter-turn core, the canonical complex sector $\\Z[\\im]$; a shell without the internal quarter-turn gives a real-amplitude theory instead.",
      "tag": "T",
      "source": "Prop.~\\ref{prop:gaussian}",
      "key": "p22045"

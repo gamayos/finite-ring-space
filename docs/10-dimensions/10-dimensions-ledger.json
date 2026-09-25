@@ -10,7 +10,7 @@
    "rows": [
     {
      "label": "A1",
-     "predicate": "The framed substrate: the Subject shell $\\Fp(\\chron;0,1,\\gen)$ with $\\p=4\\kap+1$, the derived quarter-turn $\\It=-\\gen^{\\kap}$, the phase cycle $4\\kap=2\\pi=\\p-1$, the framed-complex labels; the Carrier $\\Car$ of cardinality $\\Om=4\\dS+1$ with its admissibility congruences; the realisation doctrine (a row stating what a physical term denotes, defended by its consequences and killed by its falsifier).",
+     "predicate": "The framed substrate: the Subject shell $\\Fp(\\chron;0,1,\\gen)$ with $\\p=4\\kap+1$, the derived quarter-turn $\\im=-\\gen^{\\kap}$, the phase cycle $4\\kap=2\\pi=\\p-1$, the framed-complex labels; the Carrier $\\Car$ of cardinality $\\Om=4\\dS+1$ with its admissibility congruences; the realisation doctrine (a row stating what a physical term denotes, defended by its consequences and killed by its falsifier).",
      "tag": "I",
      "source": "\\citep{akhtman2025algebra,akhtman2026geometry,akhtman2025lorentzian,akhtman2026s13}",
      "key": "p10001"
@@ -24,7 +24,7 @@
     },
     {
      "label": "A3",
-     "predicate": "The shell Fourier structure: on $\\Fp^{\\Phi}$, $\\Phi=C_{\\p-1}$, the matrix $W_{jk}=\\gen^{jk}$, the normalized operator $F=\\It W$ with $F^{2}=J$, $F^{4}=I$, and the fractional family with its cardinal skeleton $\\{0,\\kap,2\\kap,3\\kap\\}$.",
+     "predicate": "The shell Fourier structure: on $\\Fp^{\\Phi}$, $\\Phi=C_{\\p-1}$, the matrix $W_{jk}=\\gen^{jk}$, the normalized operator $F=\\im W$ with $F^{2}=J$, $F^{4}=I$, and the fractional family with its cardinal skeleton $\\{0,\\kap,2\\kap,3\\kap\\}$.",
      "tag": "I",
      "source": "\\citep{akhtman2026fourier}; Rem.~\\ref{rem:frft-import}",
      "key": "p10003"
@@ -79,7 +79,7 @@
     },
     {
      "label": "B4",
-     "predicate": "The residue phase label $\\gen^{k}$ with the cardinal packet $1,\\gen^{\\kap},\\gen^{2\\kap},\\gen^{3\\kap}$; the framed-complex label space $\\mathcal C_\\p=\\Fp\\times\\Fp$ with its $\\p$-to-one evaluation; $\\It$ the finite shell quarter-turn label.",
+     "predicate": "The residue phase label $\\gen^{k}$ with the cardinal packet $1,\\gen^{\\kap},\\gen^{2\\kap},\\gen^{3\\kap}$; the framed-complex label space $\\mathcal C_\\p=\\Fp\\times\\Fp$ with its $\\p$-to-one evaluation; $\\im$ the finite shell quarter-turn label.",
      "tag": "D",
      "source": "Defs.~\\ref{def:phase-label}, \\ref{def:complex-label}, Prop.~\\ref{prop:quarter-turn-label}",
      "key": "p10010"

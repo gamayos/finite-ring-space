@@ -10,7 +10,7 @@
    "rows": [
     {
      "label": "A1",
-     "predicate": "The framed substrate: the Carrier $\\F_\\Omega$ with $\\Omega=4\\dS+1$, the Subject $\\Fp(\\chron;0,1,\\gen)$ with $p=4\\kp+1$ and its register $\\pi=2\\kp$, $\\It=\\gen^{-\\kp}$, $\\Et=\\gen^{\\,\\It}$; the four charts and the finite Fourier turns; time as scale-dilation; the frame-covariance of the height chart.",
+     "predicate": "The framed substrate: the Carrier $\\F_\\Omega$ with $\\Omega=4\\dS+1$, the Subject $\\Fp(\\chron;0,1,\\gen)$ with $p=4\\kp+1$ and its register $\\pi=2\\kp$, $\\im=\\gen^{-\\kp}$, $\\Et=\\gen^{\\,\\im}$; the four charts and the finite Fourier turns; time as scale-dilation; the frame-covariance of the height chart.",
      "tag": "I",
      "source": "\\citep{akhtman2025algebra,akhtman2026geometry,akhtman2026fourier,akhtman2025lorentzian}",
      "key": "p20001"
@@ -121,7 +121,7 @@
     },
     {
      "label": "B6",
-     "predicate": "Hermitian phase calculus on $K=\\F_{p^{2}}$: norm and trace $\\F_p$-valued, the phase circle $U_{p+1}$ of order $p+1$ with Frobenius as inversion, the quarter-turn $\\It$ Frobenius-fixed and off the circle ($\\Nm(\\It)=-1$), the trace-zero $\\eta$ with $\\eta^{2}=\\nu$ a nonsquare, $\\Tr(a+b\\eta)=2a$, $\\Nm=a^{2}-\\nu b^{2}$.",
+     "predicate": "Hermitian phase calculus on $K=\\F_{p^{2}}$: norm and trace $\\F_p$-valued, the phase circle $U_{p+1}$ of order $p+1$ with Frobenius as inversion, the quarter-turn $\\im$ Frobenius-fixed and off the circle ($\\Nm(\\im)=-1$), the trace-zero $\\eta$ with $\\eta^{2}=\\nu$ a nonsquare, $\\Tr(a+b\\eta)=2a$, $\\Nm=a^{2}-\\nu b^{2}$.",
      "tag": "T",
      "source": "Lem.~\\ref{lem:K}\\newline \\pywit{rh}{p20013}{B6}, \\leanwit{FrcCore}{p20013}{B6}, \\leanwit{FrcLedger}{p20013}{B6} \\lean{Rh.phase\\_circle, Rh.frobenius\\_eq\\_star, Rh.norm\\_eq\\_pow, Rh.quarter\\_turn\\_off\\_circle, FRC.Rh.Ext.mul\\_conj, FRC.Rh.Ext.conj\\_inv\\_of\\_norm\\_one, FRC.Rh.Ext.quarter\\_turn\\_off\\_circle, FRC.Rh.Ext.circle13}",
      "key": "p20013"
@@ -149,7 +149,7 @@
     },
     {
      "label": "B10",
-     "predicate": "The Subject constants on the shell: $\\pi=2\\kp$, $2\\pi\\equiv-1$, $\\It=\\gen^{-\\kp}$, $\\It^{2}\\equiv-1$, $\\Et=\\gen^{\\,\\It}$ on the odd lift, $\\gen^{\\,\\pi}\\equiv-1$, $\\Et^{\\,\\It\\pi}\\equiv-1$; on $\\F_{13}$: $\\gen=2$, $\\It=5$, $\\Et=6$, $\\pi=6$.",
+     "predicate": "The Subject constants on the shell: $\\pi=2\\kp$, $2\\pi\\equiv-1$, $\\im=\\gen^{-\\kp}$, $\\im^{2}\\equiv-1$, $\\Et=\\gen^{\\,\\im}$ on the odd lift, $\\gen^{\\,\\pi}\\equiv-1$, $\\Et^{\\,\\im\\pi}\\equiv-1$; on $\\F_{13}$: $\\gen=2$, $\\im=5$, $\\Et=6$, $\\pi=6$.",
      "tag": "T",
      "source": "\\S\\ref{sub:frc}, Rem.~\\ref{rem:frame}\\newline \\pywit{rh}{p20017}{B10}, \\leanwit{FrcCore}{p20017}{B10}, \\leanwit{FrcLedger}{p20017}{B10} \\lean{Rh.subject\\_constants, Rh.constants13, FRC.Rh.subject\\_constants, FRC.Rh.constants13, FRC.Shell.frame13}",
      "key": "p20017"
