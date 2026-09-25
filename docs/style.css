@@ -336,3 +336,9 @@ nav .totals a.sum.py.fail img.runico.pysrc { filter: brightness(0) saturate(100%
 @media (prefers-color-scheme: dark) { nav .totals img, nav .totals .n { opacity: .85; } .wrap nav .totals a.sum:hover { background: color-mix(in srgb, var(--ink) 13%, transparent); } .wrap td.links a.sum img, .wrap td.links a.sum .n, .wrap td.links a.sum:hover img, .wrap td.links a.sum:hover .n { opacity: .85; } .wrap td.links a.ico.sum:hover { background: color-mix(in srgb, var(--ink) 13%, transparent); } }   /* dark theme: the pill in ink at 13 % (rule-soft is 4 L* above the dark page, under the row's own hover tint it vanished); glyph and count stay at the theme's .85 under hover too (the run-glyph rule alone would brighten the python image): the hover highlights the badge, the pill behind glyph and count, nothing inside it */
 .srcbar.solo { position: static; border: 0; padding-left: 0; padding-right: 0; margin: 1.1rem 0 .2rem; }   /* the bar on its own (a package page): no frame, flush with the text */
 pre.lean .ln, pre.lean a.pred { scroll-margin-top: 2.8rem; }   /* a targeted line (or predicate anchor) lands below the sticky bar */
+.corpus { margin: 1.5rem 0 0; }   /* the Ledger page: the register's hits in the papers' ledgers, under the master's table */
+.corpus h2 { font-size: .78rem; text-transform: uppercase; letter-spacing: .07em; color: var(--ink-faint); margin: 0 0 .6rem; }
+.corpus ol { list-style: none; margin: 0; padding: 0; font-size: .88rem; }
+.corpus li { padding: .3rem 0; border-top: 1px solid var(--rule); line-height: 1.45; }
+.corpus li .snip { color: var(--ink-soft); }
+.corpus + .legend { margin-top: 2rem; padding-top: 1.25rem; border-top: 1px solid var(--rule); }

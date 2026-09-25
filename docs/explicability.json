@@ -263,7 +263,7 @@
    "label": "X2",
    "key": "p22045",
    "tag": "T",
-   "predicate": "\\textbf{The complexity of amplitudes} is the arithmetic of the shared quarter-turn core, the canonical complex sector $\\Z[\\It]$; a shell without the internal quarter-turn gives a real-amplitude theory instead.",
+   "predicate": "\\textbf{The complexity of amplitudes} is the arithmetic of the shared quarter-turn core, the canonical complex sector $\\Z[\\im]$; a shell without the internal quarter-turn gives a real-amplitude theory instead.",
    "source": "Prop.~\\ref{prop:gaussian}",
    "master": [],
    "restated": [],

@@ -35,8 +35,35 @@ function initLedger(root) {
     heads.forEach(function (h) { h.hidden = !visibleBlocks[h.dataset.block]; });
     count.textContent = shown + " of " + rows.length; empty.hidden = shown > 0;
   }
-  q.addEventListener("input", function () { query = q.value.trim().toLowerCase(); render(); });
+  /* the corpus register (window.REGISTER_URL, the Ledger page): the query is also run over every public paper ledger, the hits listed under the table as links to the predicates on their pages */
+  var corpus = root.querySelector("#corpus"), hits = root.querySelector("#corpus-hits"), chead = root.querySelector("#corpus-head"), reg = null, regLoading = false;
+  function loadReg(then) {
+    if (reg) { then(reg); return; }
+    if (!regLoading) { regLoading = true; fetch(window.REGISTER_URL).then(function (r) { return r.json(); }).then(function (d) { reg = d; then(reg); }); }
+  }
+  function corpusSearch() {
+    if (!corpus || !window.REGISTER_URL) return;
+    if (!query) { corpus.hidden = true; return; }
+    loadReg(function (d) {
+      if (!query) { corpus.hidden = true; return; }
+      var found = d.rows.filter(function (r) { return r.paper !== "00" && (r.no + ":" + r.label + " " + (r.key || "") + " " + r.tag + " " + r.paper + " " + r.text).toLowerCase().indexOf(query) >= 0; });
+      hits.innerHTML = "";
+      found.slice(0, 200).forEach(function (r) {
+        var li = document.createElement("li"), a = document.createElement("a"), tg = document.createElement("span"), sn = document.createElement("span");
+        a.className = "rowref"; a.href = r.page; a.title = r.key || ""; a.textContent = r.no + ":" + r.label;
+        tg.className = "tag " + (r.tag === "Ω" ? "om" : r.tag.split("|")[0].toLowerCase()); tg.textContent = r.tag;
+        var t = r.text; sn.className = "snip"; sn.textContent = t.length > 180 ? t.slice(0, 180).replace(/\s+\S*$/, "") + "…" : t;
+        li.appendChild(a); li.appendChild(document.createTextNode(" ")); li.appendChild(tg); li.appendChild(document.createTextNode(" ")); li.appendChild(sn); hits.appendChild(li);
+      });
+      chead.textContent = found.length ? "In the papers' ledgers: " + found.length + (found.length === 1 ? " predicate" : " predicates") + (found.length > 200 ? " (the first 200 listed)" : "") : "In the papers' ledgers: nothing matches";
+      corpus.hidden = false;
+    });
+  }
+  q.addEventListener("input", function () { query = q.value.trim().toLowerCase(); render(); corpusSearch(); });
   build(); render();
   if (location.hash) { var t = document.getElementById(location.hash.slice(1)); if (t) (t.closest("tr") || t).classList.add("target"); }   /* the label anchor is the row, the key anchor a cell of it */
+  if (window.REGISTER_URL && /^#p\d{5}$/.test(location.hash) && !document.getElementById(location.hash.slice(1))) {   /* a key of another ledger: the register says whose, and the predicate opens on its page */
+    loadReg(function (d) { var k = location.hash.slice(1), hit = d.rows.filter(function (r) { return r.key === k; })[0]; if (hit) location.replace(hit.page); });
+  }
 }
 if (typeof LEDGER_PREVIEW === "undefined") initLedger(document);
