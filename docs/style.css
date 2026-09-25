@@ -354,7 +354,6 @@ th.pkg .ico svg { width: 17px; height: 17px; stroke: var(--ink-soft); fill: none
 .wrap td.links.pkg a.n:hover { background: var(--rule-soft); }
 .wrap td.links.pkg a.ico.lab { width: 22px; height: 22px; margin: 0; }
 td.links.pkg .g.legacy { grid-column: 1 / 4; justify-content: flex-start; gap: .2rem; }
-th.pkg { padding-left: 0; padding-right: 0; }
 @media (prefers-color-scheme: dark) { th.pkg img, .wrap td.links.pkg a.n { opacity: .9; } }
 .pillrows .tally { margin-bottom: .55rem; }   /* the register view: three pill rows, each captioned */
 .pillrows .tally:last-child { margin-bottom: 1.25rem; }
