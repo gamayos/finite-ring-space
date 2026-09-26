@@ -342,6 +342,7 @@ pre.lean .ln, pre.lean a.pred { scroll-margin-top: 2.8rem; }   /* a targeted lin
 .corpus li { padding: .3rem 0; border-top: 1px solid var(--rule); line-height: 1.45; }
 .corpus li .snip { color: var(--ink-soft); }
 .corpus + .legend { margin-top: 2rem; padding-top: 1.25rem; border-top: 1px solid var(--rule); }
+table:not(.ledger) td.status { padding-left: .15rem; }   /* the Publications table: the badge's text starts under the header's text (the badge's own .55rem padding taken off the cell's .7rem) */
 /* the Publications table's package column (25 Sept): four equal slots headed by the glyphs, the counts alone beneath them */
 th.pkg .pkgrow, td.links.pkg .pkgrow { display: grid; grid-template-columns: repeat(4, 2.1rem); align-items: center; justify-items: center; column-gap: 0; }
 th.pkg .g, td.links.pkg .g { display: inline-flex; justify-content: center; align-items: center; min-height: 22px; width: 100%; }
