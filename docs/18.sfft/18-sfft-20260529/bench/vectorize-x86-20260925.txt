@@ -1,0 +1,11 @@
+clang 18.1.3 loop-vectorization report for bench/stream.c on x86-64 (cc -O2 -Rpass=loop-vectorize -Rpass-missed=loop-vectorize), 2026-09-25.
+Line 37: Algorithm A inner loop, division-based reduction. Line 47: Algorithm A inner loop, Barrett reduction. Line 58: Algorithm B inner loop, additions and halvings. Lines 38, 49: the hash loops. Line 30: input generation.
+stream.c:58:9: remark: vectorized loop (vectorization width: 4, interleaved count: 1) [-Rpass=loop-vectorize]
+stream.c:49:9: remark: loop not vectorized [-Rpass-missed=loop-vectorize]
+stream.c:47:9: remark: the cost-model indicates that vectorization is not beneficial [-Rpass-missed=loop-vectorize]
+stream.c:47:9: remark: the cost-model indicates that interleaving is not beneficial [-Rpass-missed=loop-vectorize]
+stream.c:38:9: remark: loop not vectorized [-Rpass-missed=loop-vectorize]
+stream.c:37:9: remark: the cost-model indicates that vectorization is not beneficial [-Rpass-missed=loop-vectorize]
+stream.c:37:9: remark: the cost-model indicates that interleaving is not beneficial [-Rpass-missed=loop-vectorize]
+stream.c:30:15: remark: loop not vectorized [-Rpass-missed=loop-vectorize]
+At -O1 clang runs no loop vectorizer. On the Apple M3 run (stream-20260912.txt) the Algorithm A timings are the same at -O1 and -O2 (1.87/1.88 ns per element for n >= 4012), consistent with the same outcome there.
