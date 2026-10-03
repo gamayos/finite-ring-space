@@ -367,5 +367,32 @@
    "20:E12": "Rh",
    "20:E13": "Rh"
   }
+ },
+ "25-godel": {
+  "module": "Godel",
+  "FrcCore": {
+   "25:C1": "Godel",
+   "25:C5": "Godel",
+   "25:D1": "Godel",
+   "25:D4": "Godel",
+   "25:E1": "Godel",
+   "25:E2": "Godel",
+   "25:F1": "Godel",
+   "25:F2": "Godel",
+   "25:F3": "Godel",
+   "25:F4": "Godel",
+   "25:G4": "Godel"
+  },
+  "FrcLedger": {
+   "25:C1": "Godel",
+   "25:C2": "Godel",
+   "25:C5": "Godel",
+   "25:D1": "Godel",
+   "25:D3": "Godel",
+   "25:E1": "Godel",
+   "25:E2": "Godel",
+   "25:F4": "Godel",
+   "25:H2": "Godel"
+  }
  }
 }

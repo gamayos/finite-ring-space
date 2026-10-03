@@ -472,7 +472,29 @@ const PUBLICATIONS = [
       "kind": "preprint"
     },
     "doi": "https://doi.org/10.20944/preprints202607.0850.v1",
-    "doiLabel": "pp202607.0850.v1"
+    "doiLabel": "pp202607.0850.v1",
+    "ledger": "25-godel/index.html",
+    "schema": true,
+    "links": [
+      {
+        "href": "https://colab.research.google.com/github/gamayos/finite-ring-space/blob/main/src/25-godel/frc-25-godel.ipynb",
+        "label": "python",
+        "count": 20,
+        "title": "20 predicates checked, all passing: the notebook frc-25-godel.ipynb on Google Colab, one cell per predicate"
+      },
+      {
+        "href": "https://live.lean-lang.org/#project=lean-v4.34.0&url=https://finitering.space/lean/web/core/Godel.lean",
+        "label": "lean",
+        "count": 11,
+        "title": "11 predicates proved in the core (no axioms), 6 of them also on Mathlib: the core module Godel as one executable file (plain Lean, no Mathlib) in the Lean web editor"
+      },
+      {
+        "href": "https://live.lean-lang.org/#project=mathlib-stable&url=https://finitering.space/lean/web/Godel.lean",
+        "label": "lean-mathlib",
+        "count": 9,
+        "title": "9 predicates proved on Mathlib (classical), 6 of them also in the core: the module Godel as one file on Mathlib in the Lean web editor"
+      }
+    ]
   },
   {
     "key": "26-pnp",
@@ -696,4 +718,4 @@ const PUBLICATIONS = [
   }
 ];
 
-const GENERATED = "26 September 2026";
+const GENERATED = "3 October 2026";

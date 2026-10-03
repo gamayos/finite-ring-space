@@ -4,6 +4,7 @@ import FrcLedger.Geometry
 import FrcLedger.Causality
 import FrcLedger.Representation
 import FrcLedger.Reductio
+import FrcLedger.Godel
 import FrcLedger.Epi
 import FrcLedger.Dimensions
 import FrcLedger.Rh

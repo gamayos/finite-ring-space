@@ -14,6 +14,7 @@ import FrcCore.Quaternion
 import FrcCore.Causality
 import FrcCore.Representation
 import FrcCore.Reductio
+import FrcCore.Godel
 import FrcCore.Geometry
 import FrcCore.Complex
 import FrcCore.Instances

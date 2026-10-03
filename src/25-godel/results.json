@@ -1,0 +1,202 @@
+[
+ {
+  "id": "A1",
+  "rows": "25:C1",
+  "block": "A",
+  "script": "godel",
+  "label": "no finite model of Q: on N elements every injective map is onto, so no successor is injective and misses 0 (all 873612 maps, N <= 7); the N+1 numerals 0, S0, ..., S^N 0 repeat under every S (all 50069 maps, N <= 6)",
+  "ok": true,
+  "detail": "N=4: 256 maps, 24 injective, all onto; N=5: 3125 maps, 120 injective, all onto; N=6: 46656 maps, 720 injective, all onto; N=7: 823543 maps, 5040 injective, all onto",
+  "kind": "EXACT"
+ },
+ {
+  "id": "A2",
+  "rows": "25:C2",
+  "block": "A",
+  "script": "godel",
+  "label": "Th(M_p) is decided by exhaustive evaluation: a sample of 8 sentences over p = 5, 7, 13 take the values number theory gives them, the evaluation object has m^q leaves, and exactly one of a sentence and its negation is true; sigma_M, evaluated as a sentence in all 177147 structures (c0, c1, o) on 3 elements, holds exactly in the 3! structures isomorphic to M (for M = (Z_3; 0, 1, +) and for a non-commutative M); its distinctness clause excludes the structures of 1 and 2 elements (without it the one-element structure is a model), its closure clause the 16384 one-element extensions of M (without it all are models)",
+  "ok": true,
+  "detail": "p=5: 8 sentences decided, depth-3 objects of 125 leaves; p=7: 8 sentences decided, depth-3 objects of 343 leaves; p=13: 8 sentences decided, depth-3 objects of 2197 leaves; models of sigma among 177147 structures: {'Z_3': 6, 'NC': 6}; 64 structures of 2 elements and 16384 extensions to 4 elements: none",
+  "kind": "EXACT"
+ },
+ {
+  "id": "A3",
+  "rows": "25:C5",
+  "block": "A",
+  "script": "godel",
+  "label": "Tarski scoped: the m+1 sentences F, ~F, ..., ~^m F of length at most m+1 admit no injective numbering into a structure of m elements (all 16738 maps, m = 2..5), and their truth is a finite external table, computed from the written sentences",
+  "ok": true,
+  "detail": "16738 numberings scanned, none injective",
+  "kind": "EXACT"
+ },
+ {
+  "id": "B1",
+  "rows": "25:D1",
+  "block": "B",
+  "script": "godel",
+  "label": "the part cannot hold the whole: with a^K < m every assignment of storage states to the m elements identifies two of them (all 37218 maps on six instances); with a^K = m = 4 the injective readings are the 24 bijections",
+  "ok": true,
+  "detail": "a^K=2<m=3: 8 readings; a^K=4<m=5: 1024 readings; a^K=3<m=4: 81 readings; a^K=4<m=6: 4096 readings",
+  "kind": "EXACT"
+ },
+ {
+  "id": "B2",
+  "rows": "25:D3",
+  "block": "B",
+  "script": "godel",
+  "label": "aliasing: every total reading of m elements by R < m storage states has a fibre of at least ceil(m/R) >= 2 elements, and some reading attains the bound (all 8455 maps on eight instances, m = 5, R = 4 among them, where m/R < 2); every element outside a maximal faithfully represented range is read as one inside it (all 31203 maximal ranges of all readings on six instances)",
+  "ok": true,
+  "detail": "m=4, R=2: largest fibre >= 2, attained; m=5, R=2: largest fibre >= 3, attained; m=5, R=3: largest fibre >= 2, attained; m=6, R=3: largest fibre >= 2, attained; m=7, R=2: largest fibre >= 4, attained; m=7, R=3: largest fibre >= 3, attained; m=6, R=4: largest fibre >= 2, attained; m=5, R=4: largest fibre >= 2, attained",
+  "kind": "EXACT"
+ },
+ {
+  "id": "B3",
+  "rows": "25:D4, 25:J2",
+  "block": "B",
+  "script": "godel",
+  "label": "the wrap: a certificate checked by table lookups is accepted, by the same steps and with a true end sentence, in the structure M' on its cited elements (|M'| <= lookups, within the lemma's (r+1) x lookups) \u2014 under every completion of the uncited entries for a certificate over Z_5 (729 worlds), under a fixed sample of 42 and of 12 completions for certificates over M_13 and over M_p, p = 10^18+9, whose term values are reduced modulo p; a record with a wrong product or a false end sentence is rejected in both worlds; an axiom asserted on syntactic recognition is accepted in all 2187 small worlds of its record and true in 81 of them",
+  "ok": true,
+  "detail": "M_13: 6 steps, 5 lookups, |M'| = 4 <= 5 <= 15, 42 completions (2 fixed, 40 seeded); M_p, p = 10^18+9: 13 steps, end sentence of 4099 symbols, values reduced mod p, |M'| = 11, 12 completions; Z_5: all 729 completions keep the end sentence true; the commutativity axiom accepted in 2187 of 2187 worlds, true in 81; Q's successor axioms accepted as a record over M_13, where 0 = S(12)",
+  "kind": "EXACT"
+ },
+ {
+  "id": "C1",
+  "rows": "25:E1",
+  "block": "C",
+  "script": "godel",
+  "label": "abundance: the closed terms over {1, +} with l leaves are the Catalan(l-1) full binary trees, all of value l mod p (6918 trees enumerated, l <= 10, p = 2, 3, 5, 13); C_{l-1} >= 2^{l-2} and the cohort of true equations C(C_{l-1}, 2) >= 2^l for 6 <= l <= 500, each of 8l-5 symbols, so the truths of length <= L number at least 2^{L/9} (43 <= L <= 4000)",
+  "ok": true,
+  "detail": "l <= 10: 6918 trees enumerated, each of value l mod p for p = 2, 3, 5, 13; cohort at l = 6: 861 >= 64, at l = 4: 10 < 16",
+  "kind": "EXACT"
+ },
+ {
+  "id": "C2",
+  "rows": "25:E2",
+  "block": "C",
+  "script": "godel",
+  "label": "vanishing reach: the records of length <= B over a letters number (a^{B+1}-1)/(a-1) < a^{B+1} (enumerated for a = 2, 3, 5), and at a = 2, B = 20 the certified fraction a^{B+1}/C(C_{l-1}, 2) of the equation cohort is below 1 at l = 12, below 10^-6 at l = 24, and below each tested 1/N (N = 10^3, 10^6, 10^12, 10^100) at the 60 values of l from a first one on",
+  "ok": true,
+  "detail": "fraction at l = 12: 2097152/1727867505; < 1/10^3 from l = 13; < 1/10^6 from l = 15; < 1/10^12 from l = 21; < 1/10^100 from l = 95",
+  "kind": "EXACT"
+ },
+ {
+  "id": "C3",
+  "rows": "25:E4",
+  "block": "C",
+  "script": "godel",
+  "label": "a global clause in the bare evaluation calculus: the universal rule for Ax x+0=x applies to the full set of its m premises alone (all 8224 premise sets for m = 5, 13; every single omission for m = 101, 1009), so the derivation has length m+1, beyond every budget H < m; a false premise is rejected, premises without the universal step derive nothing, and a richer system with an axiom rule for the clause derives it in one line",
+  "ok": true,
+  "detail": "m=5: length 6; m=13: length 14; m=101: length 102; m=1009: length 1010; 8224 premise sets",
+  "kind": "EXACT"
+ },
+ {
+  "id": "C4",
+  "rows": "25:G1",
+  "block": "C",
+  "script": "godel",
+  "label": "the length horizon on instances: for B = 20, 100, 1000 the equation between the left comb and the right comb of floor((B+5)/8)+1 leaves, built and written out, is true in M_13 and M_1000033 and longer than B, so no record of length <= B contains it",
+  "ok": true,
+  "detail": "B=20: a true equation of 27 symbols; B=100: a true equation of 107 symbols; B=1000: a true equation of 1003 symbols",
+  "kind": "EXACT"
+ },
+ {
+  "id": "C5",
+  "rows": "25:G2",
+  "block": "C",
+  "script": "godel",
+  "label": "the evaluation ceiling: the one-rule system D_tt accepts exactly the sentences number theory makes true (a sample of 8 sentences and their negations over M_5, M_7), each true one derived in one line, the line being the sentence itself, while the step-check of the one rule performs m^q evaluations at depth q",
+  "ok": true,
+  "detail": "p=5: 8 truths each derived in one line, 8 falsehoods rejected, step-check 5^q evaluations (q = 3: 125); p=7: 8 truths each derived in one line, 8 falsehoods rejected, step-check 7^q evaluations (q = 3: 343)",
+  "kind": "EXACT"
+ },
+ {
+  "id": "C6",
+  "rows": "25:G7",
+  "block": "C",
+  "script": "godel",
+  "label": "the decomposition's counting cells: bounded consistency decided by exhaustive search \u2014 of the 1026 candidate records of at most three term steps over M_5 (754 with an end step, 272 cut at a step with a wrong value), every accepted one has a true end sentence, and the 34 ending in 0 = 1 are all rejected; the brute certificate of Con_H lists (a^(H+1)-1)/(a-1) > H candidate records (enumerated, a = 2, 3, H <= 10); the reflexivity instances t = t that fit a budget B grow in number over every 8 symbols (enumerated, 3 <= B < 68), not with every symbol",
+  "ok": true,
+  "detail": "1026 records scanned, 562 accepted, 0 with a false end sentence, 34 ending in 0 = 1 (0 accepted); 136935 candidate strings enumerated; reach at B = 3, 11, 19, 27: 1, 2, 4, 9",
+  "kind": "EXACT"
+ },
+ {
+  "id": "D1",
+  "rows": "25:F1",
+  "block": "D",
+  "script": "godel",
+  "label": "mention cost: a coordinate on which the truth of a formula depends is a variable occurring free in it \u2014 on a family of 53925 formulas over M_3 (equations between terms with at most one operation, negations, conjunctions, one or two quantifiers) and on all 17820 formulas of length <= 9 over M_2 in four variables, each written out and read back by an independent reader; the converse fails (a variable can occur idly)",
+  "ok": true,
+  "detail": "53925 formulas over M_3, depending on 0/1/2/3 coordinates: 31839/13872/7566/648, 21903 with an idle variable; 17820 formulas over M_2, 8820 with a dependence, by number of free variables 0..4: [4604, 8344, 4128, 720, 24]",
+  "kind": "EXACT"
+ },
+ {
+  "id": "D2",
+  "rows": "25:F2",
+  "block": "D",
+  "script": "godel",
+  "label": "no compression on built instances: the graph of every injective map on M_2^N depends on all 2N coordinates (N = 1, 2; a fixed sample of 1090 maps at N = 3; a constant map as control); every formula of length <= 9 that defines such a graph (N = 1, 2) mentions all 2N variables; each of the 2432 diagonal formulas Ev (Diag & theta), written out from them with each non-degenerate theta of length <= 5 and read back by the independent reader, computes theta at the diagonal image and has at least 3N + |theta| > N symbols, so its code is no N-tuple; with the scales split (u of scale 1, v of scale 2; 448 formulas) it is longer than theta, which is at least as long as the scale of v",
+  "ok": true,
+  "detail": "1116 injective maps; (N, N2) = (1, 1): 142 formulas define a diagonal relation (shortest 3 symbols), 16 formulas theta; (N, N2) = (2, 2): 16 formulas define a diagonal relation (shortest 9 symbols), 10 formulas theta; (N, N2) = (1, 2): 56 formulas define a diagonal relation (shortest 9 symbols), 8 formulas theta; 2880 diagonal formulas written out",
+  "kind": "EXACT"
+ },
+ {
+  "id": "D3",
+  "rows": "25:F4, 25:Z1",
+  "block": "D",
+  "script": "godel",
+  "label": "density: an injective coding of the a^n strings into k-tuples needs m^k >= a^n \u2014 below it every coding collides (all 718394 maps, five cases), at equality injective codings exist; the names of the k variables alone (the k shortest names over the alphabet) fit in n symbols at every n <= t = m log_a m, fit for the last time at an n between t and 4t, and at no n from there to 8t (exact, seven pairs (a, m) with a = 2, 3, 4, 5); at a = 2 they fit at n = t and exceed n at 4t, 5t, 8t and 100t for t = 100 x 2^100 = 1.27 x 10^32 (m = 2^100), for t = 1000 x 2^1000 > 10^300 (m = 2^1000), and for t between 1.6291 and 1.6292 x 10^125 at m = 4 x 10^122 \u2014 above 10^122 by a factor over 1000",
+  "ok": true,
+  "detail": "718394 codings below the bound, all colliding; last fits: (a, m) = (2, 8): 66; (a, m) = (2, 64): 1440; (a, m) = (2, 256): 8032; (a, m) = (3, 27): 162; (a, m) = (3, 243): 2685; (a, m) = (4, 256): 1792; (a, m) = (5, 125): 570; t at m = 2^100: 126765060022822940149670320537600; t at the physical scale in (1629100e119, 1629104e119)",
+  "kind": "EXACT"
+ },
+ {
+  "id": "D4",
+  "rows": "25:F3",
+  "block": "D",
+  "script": "godel",
+  "label": "quotation exceeds mention: over all 65600 formulas of length <= 9 over M_2 in six variables, written out, the truth depends on fewer coordinates than the formula has symbols \u2014 the shortest formula reading 2, 3, 4 coordinates has 3, 7, 9 symbols, and none of at most 9 symbols reads five of the six",
+  "ok": true,
+  "detail": "65600 formulas; least length by coordinates read: {0: 3, 2: 3, 1: 3, 3: 7, 4: 9}; most coordinates read by length: {3: 2, 4: 2, 5: 2, 6: 2, 7: 3, 8: 3, 9: 4}",
+  "kind": "EXACT"
+ },
+ {
+  "id": "E1",
+  "rows": "25:G4",
+  "block": "E",
+  "script": "godel",
+  "label": "the prefix simulation: the sentence Ay1 Ex1 ... Ayd Exd [x_i = y_i at the coded universal positions & psi(x)], evaluated as written by the shared evaluator, agrees with Q1 z1 ... Qd zd psi(z) on every pattern and every matrix over M_2 (depth <= 3) and M_3 (depth <= 2), 4184 instances, and on a family of 768 pattern-matrix instances over M_5 at depth 2; without the copy clauses the two differ",
+  "ok": true,
+  "detail": "4184 exhaustive instances (M_2: every matrix to depth 3; M_3: every matrix to depth 2) + 768 over M_5",
+  "kind": "EXACT"
+ },
+ {
+  "id": "E2",
+  "rows": "25:G5",
+  "block": "E",
+  "script": "godel",
+  "label": "fragment truth by guessed labels, on small languages: on the propositional layer a consistent labelling exists exactly for the well-formed codes, is unique, and is rooted true exactly for the true ones (all 340 codes of length <= 4 over every labelling; all 87380 codes of length <= 8 by the right-to-left pass); with the variable indices coded as data, the labelled truth \u2014 parse labels, value labels, linkage clauses by cases, the pairing prefix \u2014 holds exactly for the well-formed true codes, against a separate direct evaluator over M_3: on all 66429 strings of length <= 5 over nine tokens (every labelling), on all 531441 strings of length 6 (every labelling, the ends by a complete backtracking search), on the 1540 well-formed codes with a matrix of at most 7 tokens, and on 108048 one-token edits and extensions of them",
+  "ok": true,
+  "detail": "340 codes (24 well-formed) over every labelling; 87380 by the pass; composition: 66429 strings (64 well-formed, 36 true), 531441 strings of length 6 (46 well-formed, 18 true), 1540 well-formed codes (654 true), 108048 edits and extensions (8796 well-formed)",
+  "kind": "EXACT"
+ },
+ {
+  "id": "F1",
+  "rows": "25:H2",
+  "block": "F",
+  "script": "godel",
+  "label": "second-order decidability on a finite domain: a quantifier over k-ary relations ranges over 2^(m^k) relations (enumerated for five (m, k)); on 3 elements, over all 512 binary relations: a strict total order exists, every one well-orders the non-empty subsets, among the 27 functions the 6 injective ones are the 6 onto ones, and the equivalence relations are the 5 partitions",
+  "ok": true,
+  "detail": "(m,k)=(2,1): 4; (m,k)=(2,2): 16; (m,k)=(3,1): 8; (m,k)=(3,2): 512; (m,k)=(2,3): 256",
+  "kind": "EXACT"
+ },
+ {
+  "id": "F2",
+  "rows": "25:H5",
+  "block": "F",
+  "script": "godel",
+  "label": "the trichotomy's middle cell on its finite parts: the first N axioms 'at least n elements' (n <= N <= 4), decided over all 248 structures of at most 5 elements with a unary predicate P, have models with Ex P(x) true and with it false, so they decide neither it nor its negation, and Ax not P(x) settles it; no structure of N elements satisfies N+1 of the axioms; the theory of a finite model (M_2, M_3, M_5) gives every sentence of a sample of 8 its value",
+  "ok": true,
+  "detail": "N <= 4: 248 structures decided; both values of Ex P(x) among the models of the first N axioms; none of N elements satisfies N+1 axioms",
+  "kind": "EXACT"
+ }
+]
