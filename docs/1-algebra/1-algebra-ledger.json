@@ -204,14 +204,14 @@
      "label": "E7",
      "predicate": "The Lie-algebra layer, one axis: on a shell $\\p>8H^{2}$, for $q=a+v\\in W_H^{4}$ with $v\\ne0$, the rotation $\\rho_q\\colon x\\mapsto qxq^{-1}$ is the Cayley step (8:C3) of the self-adjoint $\\eta S_v$ (E2's $\\eta$, $S_vx=v\\times x$, $N(v)=v\\cdot v$) at $\\alpha=\\eta/(\\nu a)$, and the half-turn $U_\\infty=I+2N(v)^{-1}S_v^{2}$ at $a=0$. With $U_\\infty$ these steps form a cyclic group of order $\\p-\\bigl(\\tfrac{N(v)}{\\p}\\bigr)$ containing every iterate; at most $2H^{2}+2H$ of its elements are window rotations.",
      "tag": "T",
-     "source": "Section~\\ref{sec:conclusion}; 8:C3, 8:C5",
+     "source": "Section~\\ref{sec:conclusion}; 8:C3, 8:C5 \\lean{FRC.Shell.Frame.rot\\_cayley, FRC.Shell.Frame.cayley\\_inj, FRC.Shell.Frame.half\\_turn, FRC.Shell.Frame.rot\\_trivial, FRC.Shell.Frame.rot\\_neg, Algebra.axis\\_group, Algebra.card\\_image\\_le\\_of\\_neg}",
      "key": "p01032"
     },
     {
      "label": "E8",
      "predicate": "The Lie-algebra layer, two axes and range: for pure quaternions $u,w$ with $1+N(u)$, $1+N(w)$ and $1-u\\cdot w$ nonzero, $\\rho_{1+u}\\rho_{1+w}=\\rho_{1+u\\circ w}$ with $u\\circ w=(u+w+u\\times w)/(1-u\\cdot w)$, the bracket being $[u,w]=2u\\times w$; at $u\\cdot w=1$ the product is the half-turn about $u+w+u\\times w$. The entries of $q^{m}$, $q\\in W_H^{4}$, are at most $(2H)^{m}$, and $q^{m}$ reads back from the shell iff $2\\|q^{m}\\|_\\infty<\\p$ (D2).",
      "tag": "T",
-     "source": "Section~\\ref{sec:conclusion}; D2",
+     "source": "Section~\\ref{sec:conclusion}; D2 \\lean{FRC.Shell.Frame.compose, FRC.Shell.Frame.one\\_add\\_mul, FRC.Shell.Frame.one\\_add\\_mul\\_half, FRC.Shell.Frame.bracket, FRC.Shell.Frame.rot\\_mul, FRC.Shell.Frame.nrm\\_mul, Algebra.quat\\_pow\\_height, Algebra.readback\\_iff}",
      "key": "p01033"
     }
    ]
@@ -293,7 +293,7 @@
    {
     "name": "FRC.Algebra.quarter_turn_exists",
     "module": "FrcLedger/Algebra",
-    "line": 30,
+    "line": 31,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -306,7 +306,7 @@
    {
     "name": "FRC.Algebra.klein_orbit_four",
     "module": "FrcLedger/Algebra",
-    "line": 51,
+    "line": 52,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -319,7 +319,7 @@
    {
     "name": "FRC.Algebra.card_fourth_roots",
     "module": "FrcLedger/Algebra",
-    "line": 70,
+    "line": 71,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -388,7 +388,7 @@
    {
     "name": "FRC.Algebra.quarter_turn",
     "module": "FrcLedger/Algebra",
-    "line": 92,
+    "line": 93,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -401,7 +401,7 @@
    {
     "name": "FRC.Algebra.s13_quarter_turn",
     "module": "FrcLedger/Algebra",
-    "line": 206,
+    "line": 207,
     "axioms": [
      "Quot.sound",
      "propext"
@@ -433,7 +433,7 @@
    {
     "name": "FRC.Algebra.affine_frame",
     "module": "FrcLedger/Algebra",
-    "line": 103,
+    "line": 104,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -477,7 +477,7 @@
    {
     "name": "FRC.Algebra.meridian_involution",
     "module": "FrcLedger/Algebra",
-    "line": 130,
+    "line": 131,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -501,7 +501,7 @@
    {
     "name": "FRC.Algebra.framed_integer_window",
     "module": "FrcLedger/Algebra",
-    "line": 140,
+    "line": 141,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -552,7 +552,7 @@
    {
     "name": "FRC.Algebra.scale_periodic",
     "module": "FrcLedger/Algebra",
-    "line": 154,
+    "line": 155,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -576,7 +576,7 @@
    {
     "name": "FRC.Algebra.tower_density",
     "module": "FrcLedger/Algebra",
-    "line": 270,
+    "line": 271,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -591,7 +591,7 @@
    {
     "name": "FRC.Algebra.complex_chart_zero_divisor",
     "module": "FrcLedger/Algebra",
-    "line": 162,
+    "line": 163,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -615,7 +615,7 @@
    {
     "name": "FRC.Algebra.root_iff_not_coprime",
     "module": "FrcLedger/Algebra",
-    "line": 239,
+    "line": 240,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -657,7 +657,7 @@
    {
     "name": "FRC.Algebra.circle_net",
     "module": "FrcLedger/Algebra",
-    "line": 292,
+    "line": 293,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -670,7 +670,7 @@
    {
     "name": "FRC.Algebra.group_law_defect",
     "module": "FrcLedger/Algebra",
-    "line": 305,
+    "line": 306,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -685,7 +685,7 @@
    {
     "name": "FRC.Shell.Frame.quaternion_window",
     "module": "FrcCore/Quaternion",
-    "line": 247,
+    "line": 254,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -694,18 +694,157 @@
    {
     "name": "FRC.Shell.Frame.read_mul",
     "module": "FrcCore/Quaternion",
-    "line": 219,
+    "line": 226,
     "axioms": [],
     "tier": 0,
     "ok": true,
     "doc": "1:E6, exact composition — the reading of the integer product is the product of the readings."
    }
   ],
+  "E7": [
+   {
+    "name": "FRC.Shell.Frame.rot_cayley",
+    "module": "FrcCore/Quaternion",
+    "line": 542,
+    "axioms": null,
+    "tier": "missing",
+    "ok": false,
+    "doc": "1:E7, the Cayley form cleared of the norm: for `q = a + v` and a pure `x`, the conjugate `y = q x q̄` satisfies `(aI − S_v) y = N(q) (aI + S_v) x`, where `S_v x = v × x`."
+   },
+   {
+    "name": "FRC.Shell.Frame.cayley_inj",
+    "module": "FrcCore/Quaternion",
+    "line": 582,
+    "axioms": null,
+    "tier": "missing",
+    "ok": false,
+    "doc": "1:E7, `aI − S_v` is injective on pure quaternions when `a ≠ 0` and `a² + N(v) ≠ 0` (a field shell)."
+   },
+   {
+    "name": "FRC.Shell.Frame.half_turn",
+    "module": "FrcCore/Quaternion",
+    "line": 551,
+    "axioms": null,
+    "tier": "missing",
+    "ok": false,
+    "doc": "1:E7, the half-turn: for pure `v` and `x`, `v x v̄ = N(v) x + 2 v × (v × x)`, so `ρ_v = I + 2N(v)⁻¹ S_v²`."
+   },
+   {
+    "name": "FRC.Shell.Frame.rot_trivial",
+    "module": "FrcCore/Quaternion",
+    "line": 705,
+    "axioms": null,
+    "tier": "missing",
+    "ok": false,
+    "doc": "1:E7, the kernel: on a field shell, a rotation `ρ_q` (`N(q) ≠ 0`) that fixes every pure quaternion has `q` a scalar — so `a + t v ↦ ρ_{a+tv}` is injective on the pairs modulo the scalars, and the axis group of `FRC.Algebra.axis_group` is the rotation group of the axis."
+   },
+   {
+    "name": "FRC.Shell.Frame.rot_neg",
+    "module": "FrcCore/Quaternion",
+    "line": 638,
+    "axioms": null,
+    "tier": "missing",
+    "ok": false,
+    "doc": "1:E7, the sign: `ρ_{−q} = ρ_q` (`(−q) x (−q)‾ = q x q̄`, `N(−q) = N(q)`); the window rotations of an axis come in pairs `±(a, t)`, which bounds them by `2H² + 2H` (`FRC.Algebra.card_image_le_of_neg`)."
+   },
+   {
+    "name": "FRC.Algebra.axis_group",
+    "module": "FrcLedger/Algebra",
+    "line": 456,
+    "axioms": null,
+    "tier": "missing",
+    "ok": false,
+    "doc": "1:E7, the rotation group of an axis `v` on a shell `p ≡ 1 (mod 4)`, `N(v) = N ≢ 0`: the pairs `a + t v` modulo the scalars form a cyclic group of order `p − (N|p)`."
+   },
+   {
+    "name": "FRC.Algebra.card_image_le_of_neg",
+    "module": "FrcLedger/Algebra",
+    "line": 499,
+    "axioms": null,
+    "tier": "missing",
+    "ok": false,
+    "doc": "1:E7, the window count: a map of the window pairs that takes `x` and `−x` to the same value (the rotation `ρ_{a + t v₀}`: `ρ_{−q} = ρ_q`) takes at most `2H² + 2H` values."
+   }
+  ],
+  "E8": [
+   {
+    "name": "FRC.Shell.Frame.compose",
+    "module": "FrcCore/Quaternion",
+    "line": 673,
+    "axioms": null,
+    "tier": "missing",
+    "ok": false,
+    "doc": "1:E8, the composition law: for pure `u`, `w` with `1 + N(u)`, `1 + N(w)`, `1 − u·w` and `1 + N(u∘w)` invertible (inverses `nu`, `nw`, `s'`, `nc`), `ρ_{1+u} ρ_{1+w} = ρ_{1+u∘w}` with `u∘w = (u + w + u × w)/(1 − u·w)`; here `ρ_q x = N(q)⁻¹ q x q̄`."
+   },
+   {
+    "name": "FRC.Shell.Frame.one_add_mul",
+    "module": "FrcCore/Quaternion",
+    "line": 600,
+    "axioms": null,
+    "tier": "missing",
+    "ok": false,
+    "doc": "1:E8, the product of two Gibbs quaternions: `(1 + u)(1 + w) = (1 − u·w) + (u + w + u × w)` for pure `u`, `w`."
+   },
+   {
+    "name": "FRC.Shell.Frame.one_add_mul_half",
+    "module": "FrcCore/Quaternion",
+    "line": 632,
+    "axioms": null,
+    "tier": "missing",
+    "ok": false,
+    "doc": "1:E8, the half-turn case: at `u · w = 1` the product `(1 + u)(1 + w)` is the pure quaternion `u + w + u × w`."
+   },
+   {
+    "name": "FRC.Shell.Frame.bracket",
+    "module": "FrcCore/Quaternion",
+    "line": 609,
+    "axioms": null,
+    "tier": "missing",
+    "ok": false,
+    "doc": "1:E8, the bracket: `uw − wu = 2 u × w` for pure `u`, `w`."
+   },
+   {
+    "name": "FRC.Shell.Frame.rot_mul",
+    "module": "FrcCore/Quaternion",
+    "line": 616,
+    "axioms": null,
+    "tier": "missing",
+    "ok": false,
+    "doc": "1:E8, conjugation is multiplicative: `(qr) x (qr)‾ = q (r x r̄) q̄`."
+   },
+   {
+    "name": "FRC.Shell.Frame.nrm_mul",
+    "module": "FrcCore/Quaternion",
+    "line": 621,
+    "axioms": null,
+    "tier": "missing",
+    "ok": false,
+    "doc": "1:E8, the norm is multiplicative: `N(qr) = N(q) N(r)`."
+   },
+   {
+    "name": "FRC.Algebra.quat_pow_height",
+    "module": "FrcLedger/Algebra",
+    "line": 523,
+    "axioms": null,
+    "tier": "missing",
+    "ok": false,
+    "doc": "1:E8, the height law: a window quaternion `q` (integer coordinates of size at most `H`) has every coordinate of `q^m` of size at most `(2H)^m` — the norm is multiplicative and at most `4H²` on the window."
+   },
+   {
+    "name": "FRC.Algebra.readback_iff",
+    "module": "FrcLedger/Algebra",
+    "line": 544,
+    "axioms": null,
+    "tier": "missing",
+    "ok": false,
+    "doc": "1:E8, read-back (the window law D2 coordinate by coordinate): an integer `c` is the signed reading of its residue on the shell `p` (odd) exactly when `2|c| < p`."
+   }
+  ],
   "Z1": [
    {
     "name": "FRC.Algebra.no_south_pole",
     "module": "FrcLedger/Algebra",
-    "line": 198,
+    "line": 199,
     "axioms": [
      "Classical.choice",
      "Quot.sound",

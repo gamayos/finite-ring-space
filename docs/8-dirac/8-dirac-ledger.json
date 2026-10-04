@@ -2,7 +2,7 @@
  "paper": "8-dirac",
  "title": "Schrödinger and Dirac Dynamics",
  "doi": "https://doi.org/10.20944/preprints202510.1486.v2",
- "generated": "3 October 2026",
+ "generated": "4 October 2026",
  "blocks": [
   {
    "letter": "A",
@@ -380,11 +380,13 @@
    "C3"
   ],
   "B5": [
-   "C8",
-   "B10"
+   "C8"
   ],
   "B6": [
    "C8"
+  ],
+  "F4": [
+   "C20"
   ]
  },
  "lean": {

@@ -2,7 +2,7 @@
  "paper": "35-hadr",
  "title": "Ground-State Light Hadron Spectroscopy over Finite Substrate",
  "doi": "https://doi.org/10.20944/preprints202506.1507.v2",
- "generated": "3 October 2026",
+ "generated": "4 October 2026",
  "blocks": [
   {
    "letter": "A",
@@ -545,9 +545,6 @@
    "I5"
   ],
   "C3": [
-   "I5"
-  ],
-  "C4": [
    "I5"
   ],
   "C5": [

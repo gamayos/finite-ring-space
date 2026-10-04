@@ -2,7 +2,7 @@
  "paper": "13-epi",
  "title": "Finite Field Realisation of π and e",
  "doi": "https://doi.org/10.20944/preprints202607.1141.v1",
- "generated": "3 October 2026",
+ "generated": "4 October 2026",
  "blocks": [
   {
    "letter": "A",
@@ -538,10 +538,6 @@
   "J1": [
    "B8"
   ],
-  "J3": [
-   "B8",
-   "C13"
-  ],
   "J4": [
    "B9"
   ],
@@ -551,16 +547,16 @@
   "B2": [
    "C14"
   ],
-  "H2": [
-   "C14"
-  ],
   "B4": [
    "B1"
   ],
-  "Y2": [
+  "A8": [
    "C24"
   ],
-  "Y3": [
+  "G7": [
+   "C24"
+  ],
+  "E5": [
    "C26"
   ]
  },

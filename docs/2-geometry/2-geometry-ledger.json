@@ -584,7 +584,7 @@
    {
     "name": "FRC.Algebra.klein_orbit_four",
     "module": "FrcLedger/Algebra",
-    "line": 51,
+    "line": 52,
     "axioms": [
      "Classical.choice",
      "Quot.sound",

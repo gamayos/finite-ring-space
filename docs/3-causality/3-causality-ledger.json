@@ -2,7 +2,7 @@
  "paper": "3-caus",
  "title": "Euclidean–Lorentzian Dichotomy and Algebraic Causality in Finite Ring Continuum",
  "doi": "https://doi.org/10.3390/e27111098",
- "generated": "3 October 2026",
+ "generated": "4 October 2026",
  "blocks": [
   {
    "letter": "A",
@@ -217,6 +217,11 @@
   ],
   "E1": [
    "C3"
+  ],
+  "A3": [
+   "C1",
+   "C3",
+   "C8"
   ]
  },
  "lean": {

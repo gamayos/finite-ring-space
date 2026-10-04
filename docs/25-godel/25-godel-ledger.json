@@ -2,7 +2,7 @@
  "paper": "25-göd",
  "title": "Incompleteness Without Infinity",
  "doi": "https://doi.org/10.20944/preprints202607.0850.v1",
- "generated": "3 October 2026",
+ "generated": "4 October 2026",
  "blocks": [
   {
    "letter": "A",
@@ -31,7 +31,7 @@
     },
     {
      "label": "A4",
-     "predicate": "The corpus: effective determinacy characterises the finite structures, proved also as 5:D8. No bounded agent certifies that its universe is infinite: every bounded record consistent with an infinite domain is realised in all sufficiently large finite structures. Row Z1 imports its scale as 00:A9. The master rows naming this paper as a source are 00:A3, 00:A5, 00:A6, 00:Z1--00:Z3 and 00:Z9.",
+     "predicate": "The corpus: effective determinacy characterises the finite structures, proved also as 5:D8. No bounded agent certifies that its universe is infinite: every bounded record consistent with an infinite domain is realised in all sufficiently large finite structures. The master rows naming this paper as a source are 00:A3, 00:A5, 00:A6, 00:Z1--00:Z3 and 00:Z9.",
      "tag": "I",
      "source": "\\citep{akhtman2026paradoxes,akhtman2026finitism}",
      "key": "p25004"
@@ -215,17 +215,24 @@
     },
     {
      "label": "F4",
-     "predicate": "Density: an injective coding of length-$n$ strings into $\\M$-tuples needs $k\\ge n\\log a/\\log m$ coordinates ($m^{k}\\ge a^{n}$). The variable names alone cost order $k\\log_{a}k$ symbols. The template therefore fails at every scale beyond a threshold $t(\\M)$ of order $m\\log_{a}m$: at $a=2$, about $10^{32}$ symbols at $m=2^{100}$, beyond $10^{300}$ at $m=2^{1000}$.",
+     "predicate": "Density: $m$ has $d$ base-$a$ digits. An injective coding of length-$n$ strings by $k$-tuples needs $m^{k}\\ge a^{n}$, so $n<dk$. In F2's $\\delta(u)=\\exists v\\,(\\mathrm{Diag}(u,v)\\wedge\\theta(v))$ let $v$ have $k$ coordinates and $u$ have $k_{1}$. Each coordinate of $v$ is named three times, each of $u$ once. So $\\lvert\\delta\\rvert\\ge2c(k)+c(k+k_{1})$, and $\\lambda=\\delta(\\ulcorner\\delta\\urcorner)$ has $\\lvert\\lambda\\rvert\\ge3c(k)+k_{1}$, $c(j)$ the total length of the $j$ shortest names.",
      "tag": "T",
-     "source": "Lem.~\\ref{rem:density}; Rem.~\\ref{rem:window}\\newline \\pywit{godel}{p25026}{F4}, \\leanwit{FrcCore}{p25026}{F4}, \\leanwit{FrcLedger}{p25026}{F4} \\lean{Godel.dense\\_coding, FRC.Godel.dense\\_coding}",
-     "key": "p25026"
+     "source": "Lem.~\\ref{rem:density}; F2\\newline \\pywit{godel}{p25048}{F4}, \\leanwit{FrcCore}{p25048}{F4}, \\leanwit{FrcLedger}{p25048}{F4} \\lean{Godel.dense\\_coding, FRC.Godel.dense\\_coding, FRC.Godel.digit\\_bound}",
+     "key": "p25048"
     },
     {
      "label": "F5",
-     "predicate": "What the construction consumes: classically, one variable over an unbounded arithmetic carries a code of any size at constant syntactic cost. Over a fixed finite structure it carries $\\log_{2}m$ bits. G\\\"odel's proof uses infinity as a syntactic resource, the exponential compression of quotation. Row F2 concerns the construction, not material biconditionals, and does not diminish the classical result.",
+     "predicate": "What the construction consumes: classically, one variable over an unbounded arithmetic carries a code of any size at constant syntactic cost. Over a fixed finite structure it carries one element's digits. G\\\"odel's proof uses infinity as a syntactic resource, the exponential compression of quotation. Row F2 concerns the construction, not material biconditionals, and does not diminish the classical result.",
      "tag": "D",
      "source": "Rem.~\\ref{rem:compressor}",
      "key": "p25027"
+    },
+    {
+     "label": "F6",
+     "predicate": "The threshold lies inside the count: the code of $\\delta$ fills $u$, that of $\\lambda$ fills $v$. By F4 the template needs $2c(k)+c(k+k_{1})<dk_{1}$ and $3c(k)+k_{1}<dk$. Let $k^{*}(\\M)$ be the largest such $k$, or $0$ if none, and $t(\\M)=d\\,k^{*}(\\M)$. No instance codes $\\lambda$ at length $n\\ge t(\\M)$, and $t(\\M)<m$ in every structure. $k^{*}(\\M)<6a^{\\lfloor d/3\\rfloor+1}$, and $k<6a^{\\lfloor d/4\\rfloor+1}$ at one scale, $k_{1}=k$.",
+     "tag": "T",
+     "source": "Lem.~\\ref{rem:density}; F4\\newline \\pywit{godel}{p25047}{F6}",
+     "key": "p25047"
     }
    ]
   },
@@ -263,7 +270,7 @@
     },
     {
      "label": "G5",
-     "predicate": "Fragment truth is definable: work over $\\M_p$ with $p\\ge a+1$, in the expansion $L_{A}$ of $L$ by alphabet-code constants. For each $n$ a formula $\\mathrm{Truth}_{n}(v)$ of length $O(n^{2}\\log n)$ defines truth for the coded prenex sentences of length at most $n$ and rejects every other code. It guesses parse and evaluation labels, checked by local clauses under G4's prefix.",
+     "predicate": "Fragment truth is definable over $\\M_p$ with $p\\ge a+1$, in the expansion $L_{A}$ of $L$ by alphabet-code constants. For each $n$ of $s$ digits a formula $\\mathrm{Truth}_{n}(v)$ of length $O(n^{2}s)$ defines truth for the coded prenex sentences of length at most $n$. It rejects every other code. It guesses parse and evaluation labels, checked by local clauses under G4's prefix.",
      "tag": "T",
      "source": "Thm.~\\ref{thm:truthdef}; G4\\newline \\pywit{godel}{p25032}{G5}",
      "key": "p25032"
@@ -277,9 +284,9 @@
     },
     {
      "label": "G7",
-     "predicate": "Decomposition: each classical limitation (G\\\"odel I and II, Tarski, speed-up) splits into a counting and a complexity face. The counting face is a theorem (E2, G1, D1, G6), and $\\Con{H}(\\D)$ is true at grade (ii). The complexity face is imported (G3), with one reversal (G5). The diagonal is unavailable: per-symbol at every scale (F2), any coding beyond $t(\\M)$ (F4, T1).",
+     "predicate": "Decomposition: each classical limitation (G\\\"odel I and II, Tarski, speed-up) splits into a counting and a complexity face. The counting face is a theorem (E2, G1, D1, G6), and $\\Con{H}(\\D)$ is true at grade (ii). The complexity face is imported (G3), with one reversal (G5). The diagonal is unavailable: per-symbol at every scale (F2), any coding beyond $t(\\M)$ (F6, T1).",
      "tag": "T",
-     "source": "Thm.~\\ref{thm:migration}; D1, E2, F2, F4, G1, G3, G5, G6, T1\\newline \\pywit{godel}{p25034}{G7}",
+     "source": "Thm.~\\ref{thm:migration}; D1, E2, F2, F4, F6, G1, G3, G5, G6, T1\\newline \\pywit{godel}{p25034}{G7}",
      "key": "p25034"
     }
    ]
@@ -367,25 +374,12 @@
    ]
   },
   {
-   "letter": "Z",
-   "title": "The $\\Omega$-hard horizon",
-   "rows": [
-    {
-     "label": "Z1",
-     "predicate": "The physical scale: for $m\\approx4\\times10^{122}$ (00:A9) and $a=2$ the threshold $t(\\M)$ is of order $m\\log_{2}m\\approx1.6\\times10^{125}$ symbols \\emph{[chart]}, above the registrable-state count of order $10^{122}$. Value tagged: a sentence of $t(\\M)$ symbols or more, the range where F4 excludes the template. Such a sentence lies in no embedded reader's window. The computation that fails is the writing of the sentence.",
-     "tag": "Ω",
-     "source": "Rem.~\\ref{rem:window}; F4; 00:A9; 00:Z9",
-     "key": "p25045"
-    }
-   ]
-  },
-  {
    "letter": "T",
    "title": "Tasks",
    "rows": [
     {
      "label": "T1",
-     "predicate": "The sub-threshold window: whether formulas of length polylogarithmic in $p$ over $(\\mathbb F_{p},+,\\times)$ define the small-integer initial segment and the digit-extraction maps. Short decoders yield a short dense-coded diagonal. Whether every short dense diagonal yields short decoders is the open calibration.",
+     "predicate": "The sub-threshold window: let $p$ have $d$ digits. Do formulas of length polynomial in $d$ over $(\\mathbb F_{p},+,\\times)$ define the small-integer initial segment and the digit-extraction maps? Short decoders yield a short dense-coded diagonal. Whether every short dense diagonal yields short decoders is the open calibration.",
      "tag": "O",
      "source": "Rem.~\\ref{rem:window}",
      "key": "p25046"
@@ -410,26 +404,17 @@
    "text": "Derived in the paper, and machine-verified in exact arithmetic where the source column names a witness."
   },
   {
-   "tag": "Ω",
-   "name": "$\\Omega$-hard",
-   "text": "A value in no embedded reader's window; not closeable by a bounded observer. A demarcation, not an open item."
-  },
-  {
    "tag": "O",
    "name": "Open",
    "text": "Not yet derived or decided."
   }
  ],
  "master": {
-  "C2": [
-   "A3"
-  ],
   "C3": [
    "Z1"
   ],
   "G7": [
-   "Z1",
-   "Z2"
+   "Z1"
   ],
   "D1": [
    "A5"
@@ -443,12 +428,17 @@
   "F4": [
    "Z9"
   ],
+  "F6": [
+   "Z9"
+  ],
   "G5": [
    "Z9"
   ],
-  "Z1": [
-   "Z3",
-   "Z9"
+  "C2": [
+   "Z1"
+  ],
+  "A4": [
+   "A4"
   ]
  },
  "lean": {
@@ -884,14 +874,23 @@
     "axioms": [],
     "tier": 0,
     "ok": true,
-    "doc": "25:F4 (Lemma density, the count) — an injective coding of the `a^n` strings of length `n` into `k`-tuples over `m` elements needs `a^n ≤ m^k`. (The paper's `k ≥ n log a / log m` is this inequality with logarithms taken.)"
+    "doc": "25:F4 (Lemma density, the count) — an injective coding of the `a^n` strings of length `n` into `k`-tuples over `m` elements needs `a^n ≤ m^k`."
+   },
+   {
+    "name": "FRC.Godel.digit_bound",
+    "module": "FrcCore/Godel",
+    "line": 474,
+    "axioms": null,
+    "tier": "missing",
+    "ok": false,
+    "doc": "25:F4 (Lemma density, the digit form) — if `m` has at most `d` digits in base `a` (`m < a^d`), a coding of the strings of length `n` by tuples of `k+1` coordinates with `a^n ≤ m^(k+1)` has `n < d·(k+1)`: a tuple carries fewer letters than `d` times its coordinates."
    }
   ],
   "G4": [
    {
     "name": "FRC.Godel.prefix_simulation",
     "module": "FrcCore/Godel",
-    "line": 540,
+    "line": 558,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -900,7 +899,7 @@
    {
     "name": "FRC.Godel.prefix_simulation_closed",
     "module": "FrcCore/Godel",
-    "line": 567,
+    "line": 585,
     "axioms": [],
     "tier": 0,
     "ok": true,

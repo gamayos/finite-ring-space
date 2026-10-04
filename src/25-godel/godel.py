@@ -4,20 +4,20 @@ doi 10.20944/preprints202607.0850.v1), the paper 25-godel of the FRC corpus (fin
 the paper's predicate ledger (Appendix A, 3 October 2026).
 ========================================================================================================================
 
-One script, six blocks, twenty checks, standard library only. Each check names the predicate(s) of the paper's ledger
+One script, six blocks, twenty-one checks, standard library only. Each check names the predicate(s) of the paper's ledger
 it witnesses (LEDGER below; predicates cited as 25:XN) under a `# 25:XN (<key>)` marker, the key the predicate's accession
 key, and the ledger's source column links the marker of the check that decides each predicate (PREDICATES below;
 finitering.space/src/25-godel/#<key>). Where a predicate is proved in Lean (lean/FrcCore/Godel.lean, no axioms;
 lean/FrcLedger/Godel.lean on Mathlib), the check here is the instance the reader can run.
 
-    python3 godel.py              every block, results.json written; exit 1 if a check fails (≈ 35 s)
+    python3 godel.py              every block, results.json written; exit 1 if a check fails (≈ 50 s)
     python3 godel.py D            one block (A–F); no results.json
     from frc_25_godel import predicate; predicate("25:F1")    one predicate: its block runs once per session
 
 Blocks:  A  Gödel's hypotheses over a finite structure (Section 3)                      EXACT  (25:C1, C2, C5)
          B  the part and the whole: collisions, aliasing, the wrap (Section 4)           EXACT  (25:D1, D3, D4; corroborates J2)
          C  the reach bound and the horizon's counting facts (Sections 5.1, 5.3, 5.4)    EXACT  (25:E1, E2, E4, G1, G2, G7)
-         D  the diagonal does not migrate: mention cost, the template, density (5.2)     EXACT  (25:F1–F4; corroborates Z1)
+         D  the diagonal does not migrate: mention cost, the template, density (5.2)     EXACT  (25:F1–F4, F6)
          E  fragment truth: the pairing prefix and the guessed labels (Section 5.3)      EXACT  (25:G4, G5)
          F  second-order decidability and the trichotomy's middle cell (Section 6)       EXACT  (25:H2, H5)
 
@@ -32,7 +32,8 @@ Everything the blocks share:
 Kinds: every check is EXACT — an exhaustive or integer-pinned computation, no floating point; a pass is a proof on the
 tested instances. The counts a label states are asserted by the check. Where a check works on a sample, its label says so and
 the sample is fixed: the sentences of A2, C5 and F2 (a list of eight), the completions of two certificates in B3 (seeded), the
-maps at N = 3 in D2 (every 37th), the matrix family over M_5 in E1.
+maps at N = 3 in D2 (every 37th), the matrix family over M_5 in E1. D3 and D5 decide ranges of structures and the base
+cases of t(M) < m; the comment of block D carries the proofs for every structure.
 """
 import os, json, sys, itertools, math, random
 from fractions import Fraction
@@ -47,7 +48,7 @@ LEDGER = {
     "A1": "25:C1", "A2": "25:C2", "A3": "25:C5",
     "B1": "25:D1", "B2": "25:D3", "B3": "25:D4, 25:J2",
     "C1": "25:E1", "C2": "25:E2", "C3": "25:E4", "C4": "25:G1", "C5": "25:G2", "C6": "25:G7",
-    "D1": "25:F1", "D2": "25:F2", "D3": "25:F4, 25:Z1", "D4": "25:F3",
+    "D1": "25:F1", "D2": "25:F2", "D3": "25:F4", "D4": "25:F3", "D5": "25:F6",
     "E1": "25:G4", "E2": "25:G5",
     "F1": "25:H2", "F2": "25:H5",
 }
@@ -65,11 +66,12 @@ PREDICATES = {
     "25:C1": "A1", "25:C2": "A2", "25:C5": "A3",
     "25:D1": "B1", "25:D3": "B2", "25:D4": "B3",
     "25:E1": "C1", "25:E2": "C2", "25:E4": "C3", "25:G1": "C4", "25:G2": "C5", "25:G7": "C6",
-    "25:F1": "D1", "25:F2": "D2", "25:F4": "D3", "25:F3": "D4",
+    "25:F1": "D1", "25:F2": "D2", "25:F4": "D3", "25:F3": "D4", "25:F6": "D5",
     "25:G4": "E1", "25:G5": "E2",
     "25:H2": "F1", "25:H5": "F2",
 }
 _RAN = set()                                            # blocks already run in this session (predicate() runs each once)
+T_EXACT = {}                                            # (a, m) -> (d, fit_table), computed in D3 and read in D5 (block D)
 
 def check(pid, label, ok, detail="", kind="EXACT"):
     """Record one predicate check. pid = package check id; LEDGER[pid] = the paper statement(s) decided."""
@@ -292,6 +294,49 @@ def name_cost(k, a):
     while k > 0:
         take = min(k, a ** L); cost += take * L; k -= take; L += 1
     return cost
+
+def delta_names(k, k1, a):
+    """The least total length of the variable names in the diagonal formula delta(u) = Ev (Diag(u, v) & theta(v)) with k
+    coordinates in v and k1 in u: k + k1 distinct variables, each coordinate of v named three times (the block, Diag, theta)
+    and each of u once (Diag).  Of k + k1 distinct names the k + k1 shortest cost least, and the weight 3 goes to the k
+    shortest of them."""
+    return 2 * name_cost(k, a) + name_cost(k + k1, a)
+
+def lambda_names(k, k1, a):
+    """The least number of symbols the coordinates cost in lambda = delta(code of delta): each coordinate of v named three
+    times, and a closed term of at least one symbol in each of the k1 places of u."""
+    return 3 * name_cost(k, a) + k1
+
+def admits(k, k1, d, a):
+    """The name count leaves an instance open, in digit form: lambda's symbols fit a code of k coordinates and delta's a
+    code of k1, a code of j coordinates over a structure of d digits holding fewer than d*j letters."""
+    return lambda_names(k, k1, a) < d * k and delta_names(k, k1, a) < d * k1
+
+def fit_table(m, a, d, upto):
+    """[n_0, n_1, …, n_upto], n_j the largest n with a^n <= m^j: the longest strings an injective coding by j-tuples can
+    reach.  For a^(d-1) <= m < a^d each step adds d - 1 or d."""
+    out, P, Q, n = [0], 1, 1, 0
+    for _ in range(upto):
+        P *= m; Q *= a ** (d - 1); n += d - 1
+        if Q * a <= P: Q *= a; n += 1
+        assert Q <= P < Q * a
+        out.append(n)
+    return out
+
+def last_k(w, a, strict=False):
+    """The largest k with delta_names(k, k, a) <= w*k (< w*k if strict), 0 if none: the template at one scale.
+    delta_names(k, k)/k does not decrease with k (proved in the comment of block D; D5 checks it for a = 2..5, k <= 20000),
+    so the k that pass form an initial segment and bisection finds its end.  The doubling stops because the quotient is
+    unbounded (bound (i) there)."""
+    good = (lambda k: delta_names(k, k, a) < w * k) if strict else (lambda k: delta_names(k, k, a) <= w * k)
+    if not good(1): return 0
+    lo, hi = 1, 2
+    while good(hi): hi *= 2
+    while lo < hi - 1:
+        mid = (lo + hi) // 2
+        if good(mid): lo = mid
+        else: hi = mid
+    return lo
 
 # ----------------------------------------------------------------------------- the certificate format of the wrap lemma
 # A structure is a dict {"U": universe (list), "c": {0: element, 1: element}, "+": table, "*": table}; a table is a function
@@ -616,7 +661,7 @@ def block_B():
 # calculus the universal rule applies to the full set of its m premises alone, so a global clause has a derivation of
 # length m+1 > H for every budget H < m.  C4: truths longer than a budget B, built and written out — no record of length
 # <= B contains one.  C5: the one-rule system D_tt accepts exactly the true sentences, each in one line, and step-checks
-# by m^q evaluations.  C6: the two counting cells of the decomposition table that are not rows of their own — bounded
+# by m^q evaluations.  C6: the two counting cells of the decomposition table that are not predicates of their own — bounded
 # consistency by exhaustive search, with the candidate count of its brute certificate, and reach against the budget.
 def block_C():
     """Block C — the reach bound and the horizon's counting facts (EXACT): C1–C6."""
@@ -772,18 +817,52 @@ def block_C():
           f"{n_rec} records scanned, {n_acc} accepted, {n_false} with a false end sentence, {n_absurd} ending in 0 = 1 ({n_absurd_acc} accepted); {n_strings} candidate strings enumerated; reach at B = 3, 11, 19, 27: {reach(3)}, {reach(11)}, {reach(19)}, {reach(27)}")
 
 # ------------------------------------------------------------------------------------------------------------
-# block D: the diagonal does not migrate (25:F1, F2, F3, F4; corroborates Z1) — Section 5.2.
+# block D: the diagonal does not migrate (25:F1, F2, F3, F4, F6) — Section 5.2.
 # D1: mention cost — a coordinate on which the truth of a formula depends is a variable that occurs free in it: on a family of
 # formulas over M_3 and on EVERY formula of length <= 9 over M_2 in four variables, each written out and read back by the
 # independent reader.  D2: the no-compression theorem on built instances — the graph of every injective map on M_2^N depends
 # on all 2N coordinates; every formula that defines such a graph mentions all 2N variables; the diagonal formula written out
-# from each of them computes theta at the diagonal image and is longer than N, so its code is no N-tuple; with the scales
-# split it is longer than the scale of v.  D3: density — an injective coding of the a^n strings into k-tuples needs
-# m^k >= a^n (below it every coding collides); the names of the k variables fit in n symbols up to a crossover between
-# t = m log_a m and 4t, with t at m = 2^100, 2^1000 and its bracket at m = 4 x 10^122.  D4: quotation exceeds mention — over
-# EVERY formula of length <= 9 in six variables, the truth depends on fewer coordinates than the formula has symbols.
+# from each of them computes theta at the diagonal image, names each coordinate of v at least three times and each of u at
+# least once, and is longer than N, so its code is no N-tuple; with the scales split it is longer than the scale of v.
+# D3: density — an injective coding of the a^n strings into k-tuples needs m^k >= a^n (below it every coding collides), so
+# n < dk, d the digit count of m in base a; the diagonal formula with k coordinates in v and k1 in u costs at least
+# 2c(k) + c(k+k1) symbols, and its instance lambda at least 3c(k) + k1.  D4: quotation exceeds mention — over EVERY formula
+# of length <= 9 in six variables, the truth depends on fewer coordinates than the formula has symbols.  D5: the threshold
+# lies inside the count — the two costs fit their codes for no k beyond k*(M), no instance codes lambda at a length
+# n >= t(M) = d k*(M), and t(M) < m in every structure.
+#
+# The statements of D3 and D5 hold for every alphabet a >= 2 and every structure; the checks decide ranges and the base
+# cases.  Notation: d is the digit count of m, a^(d-1) <= m < a^d; c(j) is the total length of the j shortest names; k >= 1
+# and k1 >= 1 are the coordinates of v and of u in delta(u) = Ev (Diag(u, v) & theta(v)), and lambda = delta(code of delta).
+#   The codes.  The code of delta is the k1-tuple that fills u; it codes a string of some length n1 >= |delta|.  The code of
+# lambda is a k-tuple, the argument of theta; it codes a string of length n >= |lambda|.  An injective coding of the strings
+# of length n by k-tuples has a^n <= m^k < a^(dk), so n < dk; likewise n1 < d k1.  At one scale k1 = k and n1 = n.
+#   The count.  In delta the block binds the k coordinates of v, Diag has k1 + k argument places and theta has k: each
+# coordinate of v is named three times and each of u once, by k + k1 distinct names.  Of k + k1 distinct names the k + k1
+# shortest cost least, and the weight 3 goes to the k shortest: |delta| >= 2c(k) + c(k+k1).  In lambda the places of u hold
+# k1 closed terms of at least one symbol: |lambda| >= 3c(k) + k1.  So an instance needs
+#       2c(k) + c(k+k1) < d k1     and     3c(k) + k1 < dk,
+# and k*(M) is the largest k for which some k1 satisfies both (0 if none).  At one scale the first reads N(k) < dk,
+# N(k) = 2c(k) + c(2k), and implies the second.
+#   (i) Bounds.  c(k) is the sum over j >= 0 of the number of the k shortest names longer than j.  The names of at most j
+# letters number A_j <= 2a^j - 2, so c(k) > kJ - 2a^J for every J >= 1.  With J = floor(d/3) + 1, 3J >= d + 1, and
+# 3c(k) < dk gives k <= k(3J - d) < 6a^J: k*(M) < 6a^(floor(d/3)+1).  At one scale the same sum with the weights gives
+# N(k) > 4kJ - 6a^J; with J = floor(d/4) + 1, 4J >= d + 1, and N(k) < dk gives k < 6a^(floor(d/4)+1).  N(k)/k =
+# 2 c(k)/k + 2 c(2k)/(2k), and each term is twice the mean length of an initial run of the names in order of length, so
+# N(k)/k does not decrease: at one scale the k that pass form an initial segment.
+#   (ii) No instance at n >= t(M) = d k*(M).  An instance has k <= k*(M) by definition and n < dk, whatever the two
+# injective codings.
+#   (iii) t(M) < m.  For d <= 4 there is no instance: c(j) >= j, so the second inequality gives 3k + k1 < 4k, k1 < k, and
+# the first gives 3k + k1 < 4 k1, k1 > k.  For d >= 5, d k*(M) < 6d a^J, J = floor(d/3) + 1.  For d >= 13,
+# 6d a^J <= a^(d-1): it holds at d = 13, 14, 15 for a = 2 (2496 <= 4096, 2688 <= 8192, 5760 <= 16384), hence for every a
+# (J < d - 1), and the step d -> d+3 multiplies the left side by a(d+3)/d < a^3.  For d = 5, …, 12 it fails at fifteen
+# pairs (a, d), all with a <= 5, which D5 decides directly, and holds at every larger a (J < d - 1 again).  So
+# t(M) < a^(d-1) <= m.
+#   Below, at one scale.  For k <= floor(a^floor((d-1)/4) / 2) the 2k names have at most floor((d-1)/4) letters, so
+# N(k) <= (d-1)k, which is at most the largest n with a^n <= m^k: the count leaves these k open.
+# The cut 2^400 of the ranges is a test parameter.
 def block_D():
-    """Block D — the diagonal does not migrate: mention cost, the template, density (EXACT): D1–D4."""
+    """Block D — the diagonal does not migrate: mention cost, the template, density (EXACT): D1–D5."""
     # D1 mention cost: a family over M_3, then every short formula over M_2
     m, V = 3, 3
     assigns = list(itertools.product(range(m), repeat=V)); idx = {a: i for i, a in enumerate(assigns)}
@@ -847,7 +926,7 @@ def block_D():
     # the template itself, on written formulas.  u = v_0..v_{N-1} carries a code of scale N, v = v_N..v_{N+N2-1} a code of scale N2
     # (N2 = N: the theorem's template; N2 > N: the scales split).  Diag ranges over EVERY formula of length <= 9 whose relation is the
     # graph of an injective map u -> v, theta over EVERY formula of length <= 5 in v alone that reads each coordinate of v.
-    built = []; n_delta = 0; census = {}
+    built = []; n_delta = 0; census = {}; least_occ = (99, 99)
     for N, N2 in ((1, 1), (2, 2), (1, 2)):
         V = N + N2; forms, swap = formulas_M2(V, 9); u_side, v_side = 1 << N, 1 << N2
         u_names, v_names = VARS[:N], VARS[N:V]
@@ -875,16 +954,20 @@ def block_D():
                     got = read_formula(delta, 0, {u_names[i]: (u >> i) & 1 for i in range(N)})
                     want = read_formula(ttx, 0, {v_names[i]: (d[u] >> i) & 1 for i in range(N2)})
                     ok &= got is not None and got[1] == len(delta) and got[2] <= set(u_names) and got[0] == want[0]   # delta(u) is theta at the diagonal image of u
+                occ_v = min(delta.count(x) for x in v_names); occ_u = min(delta.count(x) for x in u_names)
+                ok &= occ_v >= 3 and occ_u >= 1                         # each coordinate of v is named three times (block, Diag, theta), each of u once
+                least_occ = (min(least_occ[0], occ_v), min(least_occ[1], occ_u))
                 ok &= len(delta) == 2 * N2 + 3 + Ld + Lt                # the written length: the block, the conjunction, Diag, theta
                 ok &= len(delta) >= 3 * N + Lt > N and len(delta) > Lt >= N2   # longer than N and than N2: its code is no N-tuple, and no N2-tuple
         census[(N, N2)] = (len(diags), min(L for L, _, _ in diags), len(thetas))
         built.append(f"(N, N2) = ({N}, {N2}): {len(diags)} formulas define a diagonal relation (shortest {census[(N, N2)][1]} symbols), {len(thetas)} formulas theta")
     ok &= census == {(1, 1): (142, 3, 16), (2, 2): (16, 9, 10), (1, 2): (56, 9, 8)} and n_delta == 142 * 16 + 16 * 10 + 56 * 8 == 2880
+    ok &= least_occ == (3, 1)                                           # the counts 3 and 1 are attained
     # 25:F2 (p25024)
-    check("D2", "no compression on built instances: the graph of every injective map on M_2^N depends on all 2N coordinates (N = 1, 2; a fixed sample of 1090 maps at N = 3; a constant map as control); every formula of length <= 9 that defines such a graph (N = 1, 2) mentions all 2N variables; each of the 2432 diagonal formulas Ev (Diag & theta), written out from them with each non-degenerate theta of length <= 5 and read back by the independent reader, computes theta at the diagonal image and has at least 3N + |theta| > N symbols, so its code is no N-tuple; with the scales split (u of scale 1, v of scale 2; 448 formulas) it is longer than theta, which is at least as long as the scale of v", ok,
+    check("D2", "no compression on built instances: the graph of every injective map on M_2^N depends on all 2N coordinates (N = 1, 2; a fixed sample of 1090 maps at N = 3; a constant map as control); every formula of length <= 9 that defines such a graph (N = 1, 2) mentions all 2N variables; each of the 2432 diagonal formulas Ev (Diag & theta), written out from them with each non-degenerate theta of length <= 5 and read back by the independent reader, computes theta at the diagonal image, names each coordinate of v at least three times and each of u at least once (both counts attained), and has at least 3N + |theta| > N symbols, so its code is no N-tuple; with the scales split (u of scale 1, v of scale 2; 448 formulas) it is longer than theta, which is at least as long as the scale of v", ok,
           f"{n_maps} injective maps; " + "; ".join(built) + f"; {n_delta} diagonal formulas written out")
 
-    # D3 density and the threshold
+    # D3 density and the name count of the template
     ok = True
     n_cases = n_codings = 0
     for a, m, n, k in ((2, 3, 2, 1), (3, 2, 1, 1), (2, 2, 3, 2), (3, 4, 2, 1), (2, 5, 3, 1)):   # below m^k >= a^n every coding collides: every map, five cases
@@ -896,33 +979,40 @@ def block_D():
     ok &= n_cases == 5 and n_codings == 3 ** 4 + 2 ** 3 + 4 ** 8 + 4 ** 9 + 5 ** 8 == 718394
     n_inj = sum(1 for f in itertools.product(range(4), repeat=4) if len(set(f)) == 4)
     ok &= n_inj == 24                                                    # the control: at m^k = a^n = 4 injective codings exist
-    # the name cost.  A code of a length-n string has k(n) coordinates, the least k with m^k >= a^n, and a formula that receives it
-    # names k(n) distinct variables.  The k shortest names over the alphabet cost name_cost(k, a) symbols.  For m = a^u the names
-    # fit in n symbols up to a crossover and never beyond it; the crossover lies between m log_a m and 4 m log_a m.
-    cross = []
-    for a, u in ((2, 3), (2, 6), (2, 8), (3, 3), (3, 5), (4, 4), (5, 3)):
-        m = a ** u; t = u * m                                            # t = m log_a m; k(n) = ceil(n / u)
-        fits = [n for n in range(1, 8 * t + 1) if name_cost(-(-n // u), a) <= n]
-        last = max(fits)
-        ok &= t <= last <= 4 * t and all(name_cost(-(-n // u), a) <= n for n in range(u * a, t + 1))   # they fit at every n <= t (from k = a on); the last fit is in [t, 4t]
-        cross.append(f"(a, m) = ({a}, {m}): {last}")
-    ok &= [int(c.split(": ")[1]) for c in cross] == [66, 1440, 8032, 162, 2685, 1792, 570]
-    thr = {}
-    for b in (100, 1000):                                                # a = 2, m = 2^b: k(n) = ceil(n / b)
-        t = b * 2 ** b; thr[b] = t                                       # t = m log2 m, the order of t(M)
-        ok &= name_cost(-(-t // b), 2) <= t                              # at n = t the names still fit
-        ok &= all(name_cost(-(-(c * t) // b), 2) > c * t for c in (4, 5, 8, 100))   # at 4t and beyond they do not
-    ok &= thr[100] == 126765060022822940149670320537600 and 126 * 10 ** 30 < thr[100] < 127 * 10 ** 30 and thr[1000] > 10 ** 300
-    m_phys = 4 * 10 ** 122                                               # the physical scale of the remark, a = 2: 407.275 < log2 m < 407.276
-    ok &= 2 ** 407275 < m_phys ** 1000 < 2 ** 407276
-    lo, hi = m_phys * 407275 // 1000, m_phys * 407276 // 1000 + 1        # the bracket of t = m log2 m
-    ok &= 16291 * 10 ** 121 <= lo < hi <= 16292 * 10 ** 121 and lo > 1000 * 10 ** 122
-    k_most = lambda n: -(-1000 * n // 407275) + 1                        # k(n) = ceil(n / log2 m) lies between these two
-    k_least = lambda n: -(-1000 * n // 407276)
-    ok &= name_cost(k_most(lo), 2) <= lo and all(name_cost(k_least(c * hi), 2) > c * hi for c in (4, 5, 8, 100))
-    # 25:F4 (p25026)
-    check("D3", "density: an injective coding of the a^n strings into k-tuples needs m^k >= a^n — below it every coding collides (all 718394 maps, five cases), at equality injective codings exist; the names of the k variables alone (the k shortest names over the alphabet) fit in n symbols at every n <= t = m log_a m, fit for the last time at an n between t and 4t, and at no n from there to 8t (exact, seven pairs (a, m) with a = 2, 3, 4, 5); at a = 2 they fit at n = t and exceed n at 4t, 5t, 8t and 100t for t = 100 x 2^100 = 1.27 x 10^32 (m = 2^100), for t = 1000 x 2^1000 > 10^300 (m = 2^1000), and for t between 1.6291 and 1.6292 x 10^125 at m = 4 x 10^122 — above 10^122 by a factor over 1000", ok,
-          f"{n_codings} codings below the bound, all colliding; last fits: " + "; ".join(cross) + f"; t at m = 2^100: {thr[100]}; t at the physical scale in ({str(lo)[:7]}e119, {str(hi)[:7]}e119)")
+    # the digit bound.  d is the digit count of m in base a: a^(d-1) <= m < a^d.  The longest strings an injective coding
+    # by k-tuples reaches have the largest n with a^n <= m^k letters, and (d-1)k <= n < dk.
+    T_EXACT.clear(); n_pairs = 0
+    for a, top in ((2, 500), (3, 400), (4, 400), (5, 700)):              # every structure in a range, in exact integers
+        for m in range(a, top + 1):
+            d = 1
+            while a ** d <= m: d += 1
+            upto = 2 * 6 * a ** (d // 3 + 1)                             # every k up to twice the bound (i) of D5
+            fit = fit_table(m, a, d, upto)
+            for k in range(1, upto + 1):
+                n_pairs += 1; n = fit[k]
+                ok &= a ** n <= m ** k < a ** (n + 1) and (d - 1) * k <= n < d * k
+            T_EXACT[(a, m)] = (d, fit)
+    ok &= len(T_EXACT) == 499 + 398 + 397 + 696 == 1990 and n_pairs == 425112
+    # the name count of the template, in integers.  With k coordinates in v and k1 in u the diagonal formula names k + k1
+    # distinct variables, each coordinate of v three times and each of u once (D2).  Every ordering of k + k1 names chosen
+    # among the k + k1 + 2 shortest, the first k of an ordering given to v: the least cost in delta is delta_names, the
+    # least in lambda (a one-symbol term in each place of u) is lambda_names, and one ordering attains both.
+    n_ord = 0; least = []; pairs = ((1, 1), (2, 2), (3, 3), (1, 2), (2, 1), (1, 3), (3, 1), (2, 3), (3, 2))
+    for a in (2, 3):
+        for k, k1 in pairs:
+            pool = [L for L in range(1, 6) for _ in range(a ** L)][:k + k1 + 2]
+            costs = set()
+            for c in itertools.combinations(range(len(pool)), k + k1):
+                for p in itertools.permutations([pool[x] for x in c]):
+                    n_ord += 1; costs.add((3 * sum(p[:k]) + sum(p[k:]), 3 * sum(p[:k]) + k1))
+            ok &= min(x for x, y in costs) == delta_names(k, k1, a) and min(y for x, y in costs) == lambda_names(k, k1, a)
+            ok &= (delta_names(k, k1, a), lambda_names(k, k1, a)) in costs
+            least.append((min(x for x, y in costs), min(y for x, y in costs)))
+    ok &= n_ord == 52824
+    ok &= least == [(4, 4), (10, 8), (18, 15), (6, 5), (8, 7), (8, 6), (14, 13), (12, 9), (16, 14), (4, 4), (9, 8), (15, 12), (5, 5), (7, 7), (7, 6), (11, 10), (11, 9), (13, 11)]
+    # 25:F4 (p25048)
+    check("D3", "density: an injective coding of the a^n strings into k-tuples needs m^k >= a^n — below it every coding collides (all 718394 maps, five cases), at equality injective codings exist — so n < dk, d the digit count of m in base a: the largest n with a^n <= m^k lies between (d-1)k and dk - 1 (425112 pairs (m, k): every k up to 12a^(floor(d/3)+1) in the 1990 structures a <= m <= 500 (a = 2), 400 (a = 3, 4), 700 (a = 5)); the diagonal formula with k coordinates in v and k1 in u names each coordinate of v three times and each of u once: over all 52824 orderings of k + k1 names chosen among the k + k1 + 2 shortest, the first k of an ordering given to v (a = 2, 3; nine pairs (k, k1) with k, k1 <= 3), the least cost in delta is 2c(k) + c(k+k1), the least in lambda, with a one-symbol term in each place of u, is 3c(k) + k1, and one ordering attains both, c the cost of the shortest names", ok,
+          f"{n_codings} codings below the bound, all colliding; {n_pairs} pairs (m, k); (delta, lambda) costs at a = 2, (k, k1) = (1, 1), (2, 2), (3, 3), (2, 3): " + ", ".join(str((delta_names(k, k1, 2), lambda_names(k, k1, 2))) for k, k1 in ((1, 1), (2, 2), (3, 3), (2, 3))))
 
     # D4 quotation exceeds mention: every formula of length <= 9 in six variables
     ok = True
@@ -947,6 +1037,73 @@ def block_D():
     # 25:F3 (p25025)
     check("D4", "quotation exceeds mention: over all 65600 formulas of length <= 9 over M_2 in six variables, written out, the truth depends on fewer coordinates than the formula has symbols — the shortest formula reading 2, 3, 4 coordinates has 3, 7, 9 symbols, and none of at most 9 symbols reads five of the six", ok,
           f"{n6} formulas; least length by coordinates read: {least}; most coordinates read by length: {most}")
+
+    # D5 the threshold lies inside the count.  An instance with k coordinates in v and k1 in u needs lambda_names < dk and
+    # delta_names < d k1 (admits).  k*(M) is the largest k for which some k1 admits; it depends on a and d alone.
+    ok = True
+    n_mono = 0; ends = []
+    for a in (2, 3, 4, 5):                                               # one scale: N(k)/k does not decrease, N(k) = delta_names(k, k)
+        for k in range(1, 20001):
+            n_mono += 1; ok &= delta_names(k + 1, k + 1, a) * k >= delta_names(k, k, a) * (k + 1)
+        ends.append(delta_names(20001, 20001, a))
+    ok &= n_mono == 80000 and ends == [1029078, 686271, 556370, 486813]
+    kstar = {}; n_direct = n_bound = n_scan = n_scan_k = n_scan_k1 = 0; left = []; inside = []
+    for a in range(2, 41):                                               # by digit count: every alphabet a <= 40, every d >= 1 with a^d <= 2^400
+        d = 1
+        while a ** d <= 2 ** 400:
+            n_direct += 1
+            b3, b4 = 6 * a ** (d // 3 + 1), 6 * a ** (d // 4 + 1)        # the bounds (i)
+            k_one = last_k(d, a, strict=True)                            # one scale: the largest k with N(k) < dk
+            ok &= k_one < b4
+            ok &= 3 * name_cost(b3, a) >= d * b3 and delta_names(b4, b4, a) >= d * b4    # at the bounds the counts fail; the quotients do not decrease, so they fail from there on
+            by_bound = d * b3 <= a ** (d - 1)
+            scanned = d <= 12 and b3 <= 10000
+            if scanned:                                                  # k*(M) by a scan of every k below twice the bound
+                scan = range(1, 2 * b3); n_scan += 1; n_scan_k += len(scan); good = []; one = 0
+                for k in scan:
+                    reach = d * k - 1 - 3 * name_cost(k, a)              # lambda's inequality allows the k1 <= reach
+                    ok &= not admits(k, max(reach, 0) + 1, d, a)         # and no further k1
+                    for k1 in range(1, reach + 1):                       # every such k1
+                        n_scan_k1 += 1
+                        if admits(k, k1, d, a):
+                            if not good or good[-1] != k: good.append(k)
+                            if k1 == k: one = k
+                K = max(good, default=0); kstar[(a, d)] = K
+                ok &= good == list(range(1, K + 1)) and K < b3           # an initial segment, ending below the bound
+                ok &= d * K < a ** (d - 1)                               # directly: t(M) = d k*(M) < a^(d-1) <= m
+                inside.append((Fraction(d * K, a ** (d - 1)), a, d))
+                ok &= (K == 0) == (d <= 4) and one == k_one <= K         # the one-scale threshold found both ways, at most k*(M)
+            if d >= 13: n_bound += 1; ok &= by_bound
+            elif d >= 5 and not by_bound: left.append((a, d))
+            ok &= scanned or (d >= 5 and by_bound)                       # every case is decided by the scan or by the bound
+            d += 1
+    ok &= (n_direct, n_bound, n_scan, n_scan_k, n_scan_k1) == (4347, 3879, 243, 1070649, 1209527) and max(inside) == (Fraction(21, 32), 2, 7)
+    ok &= left == [(2, 5), (2, 6), (2, 7), (2, 8), (2, 9), (2, 10), (2, 11), (2, 12), (3, 5), (3, 6), (3, 7), (4, 5), (4, 6), (5, 5), (5, 6)]
+    ok &= all(x in kstar for x in left) and [d * kstar[(a, d)] for a, d in left] == [10, 18, 42, 72, 126, 180, 275, 396, 15, 36, 84, 20, 54, 30, 66]
+    ok &= [last_k(d, 2, strict=True) for d in (5, 9, 17, 33, 65)] == [1, 7, 43, 806, 209693] and [kstar[(2, d)] for d in (5, 9, 12)] == [2, 14, 33]
+    # the structures of D3, in exact integers: every instance the names leave open, a^n <= m^k and a^n1 <= m^k1 exactly
+    n_inst = n_one = n_try = n_k = 0; share = []; slack = None
+    for (a, m), (d, fit) in T_EXACT.items():
+        K = kstar[(a, d)]; t = d * K
+        ok &= t < m and (K == 0) == (m < a ** 4)
+        one = 0
+        for k in range(1, len(fit)):                                     # every k up to twice the bound
+            n_k += 1
+            reach = fit[k] - 3 * name_cost(k, a)                         # every k1 with lambda's symbols within the reach of k-tuples: k1 <= reach
+            ok &= reach <= len(fit) - 1                                  # the table covers them all
+            for k1 in range(1, reach + 1):
+                n_try += 1
+                if delta_names(k, k1, a) <= fit[k1]:                     # an instance left open: delta's symbols within the reach of k1-tuples
+                    n_inst += 1; one += k1 == k
+                    ok &= admits(k, k1, d, a) and k <= K and fit[k] < t  # it is admitted in digit form, and lambda's length is below t(M)
+                    slack = t - fit[k] if slack is None else min(slack, t - fit[k])
+        n_one += one
+        ok &= all(lambda_names(k, k, a) <= delta_names(k, k, a) <= fit[k] for k in range(1, a ** ((d - 1) // 4) // 2 + 1))   # below, at one scale: each of these k is left open
+        share.append((Fraction(t, m), a, m))
+    ok &= (n_k, n_try, n_inst, n_one, slack) == (425112, 102969, 39624, 3615, 1) and max(share) == (Fraction(21, 32), 2, 64)
+    # 25:F6 (p25047)
+    check("D5", "the threshold lies inside the count: an instance with k coordinates in v and k1 in u needs 2c(k) + c(k+k1) < d k1 and 3c(k) + k1 < dk, d the digit count of m in base a; k*(M) is the largest k for which some k1 satisfies both, and t(M) = d k*(M) — by digit count, k*(M) depending on a and d alone, at every alphabet a <= 40 and every d >= 1 with a^d <= 2^400 (4347 cases): where d <= 12 and 6a^(floor(d/3)+1) <= 10000 (243 cases) a scan of every k below twice that bound (1070649 values) and every k1 the second inequality allows (1209527 pairs) finds the k that pass to be the k <= k*(M), with k*(M) < 6a^(floor(d/3)+1), d k*(M) < a^(d-1) <= m (at most 21/32 of a^(d-1), at a = 2, d = 7), k*(M) = 0 exactly for d <= 4, and the one-scale threshold, the largest k with 2c(k) + c(2k) < dk, found by the scan and by bisection, at most k*(M); from d = 13 on k*(M) < 6a^(floor(d/3)+1) alone gives d k*(M) < a^(d-1) (3879 cases), for d = 5..12 it leaves fifteen pairs (a, d), all scanned, and every case is decided by the scan or the bound; at one scale k < 6a^(floor(d/4)+1) in every case, and (2c(k) + c(2k))/k does not decrease (80000 steps: k <= 20000, a = 2..5); in the 1990 structures of D3, in exact integers, each of the 39624 instances the names leave open (a^n <= m^k, a^n1 <= m^k1; every k up to 12a^(floor(d/3)+1), the 425112 pairs (m, k) of D3, and every k1 within lambda's reach, 102969 pairs (k, k1)) passes in digit form and has n < t(M) (some instance reaches n = t(M) - 1), so no instance codes lambda at a length n >= t(M) under any injective codings; there t(M) < m, k*(M) = 0 exactly when m < a^4, t(M)/m is at most 21/32 (at a = 2, m = 64), and at one scale every k <= floor(a^floor((d-1)/4) / 2) is left open", ok,
+          f"{n_direct} pairs (a, d); k* at a = 2, d = 5, 9, 12: {[kstar[(2, d)] for d in (5, 9, 12)]}; one scale at d = 5, 9, 17, 33, 65: {[last_k(d, 2, strict=True) for d in (5, 9, 17, 33, 65)]}; the fifteen pairs: " + "; ".join(f"({a}, {d}): {d * kstar[(a, d)]} < {a ** (d - 1)}" for a, d in left) + f"; {n_inst} exact instances, {n_one} at one scale")
 
 # ------------------------------------------------------------------------------------------------------------
 # block E: fragment truth (25:G4, G5) — Section 5.3.

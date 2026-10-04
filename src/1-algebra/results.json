@@ -158,5 +158,25 @@
   "ok": true,
   "detail": "H=1: 40 rotations, measured 60.8\u00b0 \u2264 bound 180.0\u00b0; H=2: 272 rotations, measured 41.0\u00b0 \u2264 bound 60.0\u00b0; H=3: 1120 rotations, measured 30.0\u00b0 \u2264 bound 38.9\u00b0; 2\u00b7arcsin(1/3) = 38.9\u00b0 < \u03b5\u2080; composition on F_73, H=3: 20000 pairs read back exactly",
   "kind": "CHART"
+ },
+ {
+  "id": "C6",
+  "rows": "1:E7",
+  "block": "C",
+  "script": "algebra",
+  "label": "\u03c1_q = (aI \u2212 S_v)\u207b\u00b9(aI + S_v), the Cayley step of \u03b7S_v at \u03b1 = \u03b7/(\u03bda), and the half-turn I + 2N(v)\u207b\u00b9S_v\u00b2 at a = 0; with it the steps form a cyclic group of order p \u2212 (N(v)|p) holding every iterate; \u2264 2H\u00b2 + 2H window rotations per axis",
+  "ok": true,
+  "detail": "5564 window rotations on the shells 13, 17, 37, 73, 101 (8H\u00b2 < p): \u03c1_q = (aI \u2212 S_v)\u207b\u00b9(aI + S_v) = the Cayley step of \u03b7S_v at \u03b1 = \u03b7/(\u03bda), and I + 2N(v)\u207b\u00b9S_v\u00b2 at a = 0; 365 axes: the steps, the identity and the half-turn form a cyclic group of order p \u2212 (N(v)|p) holding every iterate; at most 2H\u00b2 + 2H window rotations per axis",
+  "kind": "EXACT"
+ },
+ {
+  "id": "C7",
+  "rows": "1:E8",
+  "block": "C",
+  "script": "algebra",
+  "label": "\u03c1_(1+u)\u03c1_(1+w) = \u03c1_(1+u\u2218w), u\u2218w = (u+w+u\u00d7w)/(1\u2212u\u00b7w); at u\u00b7w = 1 the half-turn about u+w+u\u00d7w; [u,w] = 2u\u00d7w; entries of q^m \u2264 (2H)^m, read back iff 2\u2016q^m\u2016\u221e < p",
+  "ok": true,
+  "detail": "composition \u03c1_(1+u)\u03c1_(1+w) = \u03c1_(1+u\u2218w): 16000 pairs; the half-turn at u\u00b7w = 1: 1693; [u,w] = 2u\u00d7w: 16609 (F_13, F_29, F_73, F_233); heights: 18624 powers q^m (H \u2264 3, m \u2264 6) with entries \u2264 (2H)^m; read-back iff 2\u2016q^m\u2016\u221e < p: 55872 cases on F_13, F_101, F_1009",
+  "kind": "EXACT"
  }
 ]

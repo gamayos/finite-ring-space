@@ -2,7 +2,7 @@
  "paper": "32-dark",
  "title": "The Dark Sector over Finite Substrate",
  "doi": "https://doi.org/10.20944/preprints202606.1689.v1",
- "generated": "3 October 2026",
+ "generated": "4 October 2026",
  "blocks": [
   {
    "letter": "A",
@@ -436,9 +436,6 @@
  "master": {
   "B1": [
    "D3"
-  ],
-  "B8": [
-   "L1"
   ],
   "C4": [
    "L1"

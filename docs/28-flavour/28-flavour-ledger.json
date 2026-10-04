@@ -2,7 +2,7 @@
  "paper": "28-flav",
  "title": "Fermion Flavour Sector over Finite Substrate",
  "doi": "https://doi.org/10.20944/preprints202606.2124.v1",
- "generated": "3 October 2026",
+ "generated": "4 October 2026",
  "blocks": [
   {
    "letter": "A",
@@ -423,9 +423,6 @@
   }
  ],
  "master": {
-  "B1": [
-   "D2"
-  ],
   "B2": [
    "J4"
   ],
@@ -436,8 +433,7 @@
    "K3"
   ],
   "C6": [
-   "K1",
-   "K3"
+   "K1"
   ],
   "C8": [
    "K1"
@@ -447,8 +443,7 @@
   ],
   "C10": [
    "K1",
-   "K3",
-   "C7"
+   "K3"
   ],
   "C11": [
    "K1"
@@ -470,11 +465,13 @@
    "K2"
   ],
   "Z3": [
-   "D8",
    "Z6"
   ],
   "Z4": [
    "Z8"
+  ],
+  "B1": [
+   "K2"
   ]
  },
  "lean": {}

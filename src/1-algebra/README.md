@@ -2,13 +2,13 @@
 
 Validation package of *Relativistic Algebra over Finite Ring Continuum* (Akhtman, Axioms 2025, 14, 636,
 doi 10.3390/axioms14080636), `1-algebra` of the FRC corpus, added with the paper's predicate ledger
-(Appendix A, 16 September 2026; one script since 24 September 2026). One script, `algebra.py`, three blocks, sixteen checks, standard library only, driven by
+(Appendix A, 16 September 2026; one script since 24 September 2026). One script, `algebra.py`, three blocks, eighteen checks, standard library only, driven by
 `frc-1-algebra.ipynb` (Google Colab: one cell per ledger predicate, any cell on its own, or *Runtime → Run all*, ≈ 30 s) or run whole.
 
 Every check names the predicate of the paper's predicate ledger it witnesses (Appendix A "Predicate ledger and machine verification", 27 predicates in blocks A–G, Y,
 cited as `1:XN`; public copy `docs/1-algebra/1-algebra-ledger.html`), and the ledger's source column links, for each
 machine-verified predicate, the script at the check that decides it (`algebra.py#<key>`) and the Lean module at the predicate's declaration
-(`lean/FrcCore/Algebra.lean` with no axioms — E6's in `lean/FrcCore/Quaternion.lean` — or `lean/FrcLedger/Algebra.lean` on Mathlib);
+(`lean/FrcCore/Algebra.lean` with no axioms — E6–E8's in `lean/FrcCore/Quaternion.lean` — or `lean/FrcLedger/Algebra.lean` on Mathlib);
 the check here is the instance the reader can run; the two witnesses decide the same statements at different generality.
 
 Run: `python3 algebra.py` (python ≥ 3.8, no third-party packages; ≈ 30 s; `results.json` written), or one block: `python3 algebra.py C`; installed, `python3 -m frc_1_algebra`.
@@ -31,6 +31,8 @@ Run: `python3 algebra.py` (python ≥ 3.8, no third-party packages; ≈ 30 s; `r
 | `C3` | C | CHART | k(θ) = ⌊Nθ/2π + ½⌋, N = p−1: angle and chord error ≤ π/N, group-law defect ≤ 1, on every shell | `1:E4` |
 | `C4` | C | CHART | covering radii in SO(3): tetrahedral π/2, octahedral arccos((2√2−1)/4) ≈ 62.8°, icosahedral ε₀ = arccos((3√5−1)/8) ≈ 44.48°, cyclic/dihedral ≥ π/2 — no finite subgroup is an ε-net for ε < ε₀ | `1:E5` |
 | `C5` | C | CHART | the normalised window quaternions W_H⁴ are a 2·arcsin(1/H)-net of SO(3) (H = 1, 2, 3; measured 60.8°, 41.0°, 30.0°), 38.9° < ε₀ at H = 3; their products read back exactly from F₇₃ (8H² < p) | `1:E6` |
+| `C6` | C | EXACT | every window rotation ρ_q = (aI − S_v)⁻¹(aI + S_v), the Cayley step of ηS_v at α = η/(νa), and I + 2N(v)⁻¹S_v² at a = 0; on each of 365 axes the steps, the identity and the half-turn are the powers of one element of order p − (N(v)\|p), holding every iterate; ≤ 2H² + 2H window rotations per axis (p = 13, 17, 37, 73, 101) | `1:E7` |
+| `C7` | C | EXACT | ρ_(1+u)ρ_(1+w) = ρ_(1+u∘w), u∘w = (u + w + u×w)/(1 − u·w); the half-turn at u·w = 1; uw − wu = 2u×w (F₁₃, F₂₉, F₇₃, F₂₃₃); entries of q^m ≤ (2H)^m, read back iff 2‖q^m‖∞ < p (H ≤ 3, m ≤ 6) | `1:E8` |
 
 `results.json` carries one record per check (id, rows, block, script, kind, claim, PASS/FAIL, detail); the site generator
 reads it to colour the witnesses on the public ledger page.
@@ -46,6 +48,6 @@ states the predicate and runs `predicate("1:B2")`: the block of the check that d
 deciding check is `algebra.PREDICATES`, the block the letter of its id), that check is printed from the script's own source — the line under its
 `# 1:B2 (<key>)` marker — and every record citing the predicate is listed with its verdict. The markers in `algebra.py`
 are the lines the ledger page's source glyph opens (`docs/src/1-algebra/#<key>`). The predicates'
-Lean counterparts are the declarations named by their keys (`p01004`) at the end of `lean/FrcCore/Algebra.lean` (E6's in
+Lean counterparts are the declarations named by their keys (`p01004`) at the end of `lean/FrcCore/Algebra.lean` (E6–E8's in
 `lean/FrcCore/Quaternion.lean`, which imports Algebra) and `lean/FrcLedger/Algebra.lean` (`lean/make_predicates.py`), one per
 predicate, with the module as one executable file for the web editor (`lean/web/core/Algebra.lean`, `lean/web/Algebra.lean`).
