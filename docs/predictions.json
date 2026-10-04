@@ -1,5 +1,5 @@
 {
- "generated": "3 October 2026",
+ "generated": "4 October 2026",
  "rows": [
   {
    "id": "00:P1",
@@ -17,6 +17,32 @@
    ],
    "witnessed": false,
    "page": "00-ledger.html"
+  },
+  {
+   "id": "10:P1",
+   "paper": "10-dim",
+   "label": "P1",
+   "key": "p10053",
+   "tag": "T|R",
+   "predicate": "The resolution floor, staked: no single coherent registration resolves finer than $\\Om^{-1/4}$, of the order of $10^{-31}$, and no coherent count exceeds $\\Om^{1/4}\\approx6\\times10^{30}$ (G5 over A2, A5, B1; the holographic reading of Rem.~\\ref{rem:holographic}). Falsifier: one coherent registration finer than that. Confrontation: the finest interspecies frequency ratio, $3.2\\times10^{-18}$ \\citep{Aeppli2025}, and the finest differential comparison, $7.6\\times10^{-21}$ \\citep{Bothwell2022} --- $67$ bits against $102$, averaged determinations; the mass-independent clock bound $(t_P^{2}t)^{1/3}$ permits finer beyond $730$~s.",
+   "source": "Rem.~\\ref{rem:measured}, \\S\\ref{sec:discussion}\\newline \\pywit{dimensions}{p10053}{P1}, \\leanwit{FrcCore}{p10053}{P1} \\lean{FRC.Dimensions.resolution\\_floor}",
+   "master": [],
+   "restated": [],
+   "witnessed": false,
+   "page": "10-dimensions/index.html"
+  },
+  {
+   "id": "10:P2",
+   "paper": "10-dim",
+   "label": "P2",
+   "key": "p10054",
+   "tag": "T|R",
+   "predicate": "Constancy, staked: every dimensionless ratio of the constants is fixed in time and position, zero drift, zero dipole --- the totality timeless (B1), every constant a residue of it in the framework's realisation (A1; the quartet's, E1, E6; the charge's, Rem.~\\ref{rem:electromagnetic}), the quartet's fixed by the congruences given $\\dS$ (E4), selected once (E7). Falsifier: a detected variation (E1's). Confrontation: $\\dot\\alpha/\\alpha=1.8(2.5)\\times10^{-19}\\,\\mathrm{yr}^{-1}$ \\citep{Filzinger2023}, consistent with zero.",
+   "source": "\\S\\ref{sec:instantiation}, \\S\\ref{sec:discussion}\\newline \\pywit{dimensions}{p10054}{P2}, \\leanwit{FrcCore}{p10054}{P2} \\lean{FRC.Dimensions.G\\_unique, FRC.Dimensions.root\\_pair}",
+   "master": [],
+   "restated": [],
+   "witnessed": false,
+   "page": "10-dimensions/index.html"
   },
   {
    "id": "14:P2",

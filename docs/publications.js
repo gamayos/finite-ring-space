@@ -295,14 +295,14 @@ const PUBLICATIONS = [
       {
         "href": "https://colab.research.google.com/github/gamayos/finite-ring-space/blob/main/src/10-dimensions/frc-10-dimensions.ipynb",
         "label": "python",
-        "count": 24,
-        "title": "24 predicates checked, all passing: the notebook frc-10-dimensions.ipynb on Google Colab, one cell per predicate"
+        "count": 27,
+        "title": "27 predicates checked, all passing: the notebook frc-10-dimensions.ipynb on Google Colab, one cell per predicate"
       },
       {
         "href": "https://live.lean-lang.org/#project=lean-v4.34.0&url=https://finitering.space/lean/web/core/Dimensions.lean",
         "label": "lean",
-        "count": 21,
-        "title": "21 predicates proved in the core (no axioms), 18 of them also on Mathlib: the core module Dimensions as one executable file (plain Lean, no Mathlib) in the Lean web editor"
+        "count": 24,
+        "title": "24 predicates proved in the core (no axioms), 18 of them also on Mathlib: the core module Dimensions as one executable file (plain Lean, no Mathlib) in the Lean web editor"
       },
       {
         "href": "https://live.lean-lang.org/#project=mathlib-stable&url=https://finitering.space/lean/web/Dimensions.lean",
@@ -718,4 +718,4 @@ const PUBLICATIONS = [
   }
 ];
 
-const GENERATED = "3 October 2026";
+const GENERATED = "4 October 2026";

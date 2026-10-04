@@ -4,7 +4,7 @@ doi 10.20944/preprints202605.0668.v1), the paper 10-dimensions of the FRC corpus
 script since 24 September 2026 (the registry dimcommon.py and the suites verify_domains.py, check_lift.py merged).
 ========================================================================================================================
 
-One script, two blocks, thirteen family checks of 217 exact micro-checks, standard library only. Every check is exact:
+One script, two blocks, thirteen family checks of 226 exact micro-checks, standard library only. Every check is exact:
 integers, residues, exact rationals; no floats, no random sampling. Block dom (verify_domains) is organised in eight layers
 A–H, each a family of micro-checks; block lift (check_lift) decides the five claims L1–L5 of Proposition `lift` on two shells
 and two Carriers. A family is one check of the registry, identified as <block>.<family> (dom.A … dom.H, lift.L1 … lift.L5),
@@ -35,10 +35,10 @@ LEDGER = {
     "dom.A": "10:C2, 10:C3, 10:D2, 10:D6, 10:F2, 10:F4, 10:G1, 10:G3, 10:X1, 10:X3",
     "dom.B": "10:E2, 10:E3, 10:X1, 10:X2, 10:X3",
     "dom.C": "10:E4",
-    "dom.D": "10:E4, 10:E5, 10:E9, 10:F3, 10:G1, 10:X2",
+    "dom.D": "10:E4, 10:E5, 10:E9, 10:F3, 10:G1, 10:P2, 10:X2",
     "dom.E": "10:C5",
     "dom.F": "10:C5, 10:D1",
-    "dom.G": "10:C5, 10:D2, 10:F5, 10:G2, 10:G4, 10:X4",
+    "dom.G": "10:C5, 10:D2, 10:F5, 10:G2, 10:G4, 10:G5, 10:P1, 10:X4",
     "dom.H": "10:E4, 10:E5",
     "lift.L1": "10:D3", "lift.L2": "10:D3", "lift.L3": "10:D3", "lift.L4": "10:D3", "lift.L5": "10:C5, 10:D3",
 }
@@ -47,10 +47,10 @@ LABELS = {
     "dom.A": "shell datum and domain algebra on F_13: frame datum (g = 2, i = −g^κ, π = 2κ, 4κ = p−1); the group law, inverses and grading of D_p = Z_p × Z_{p−1}; the internal flag I_q = [T]^κ unique of order four, no flag of space, horizon-inaccessible, covariant; realization a homomorphism; the derived domains (m, F, S, G, Compton, Planck area, Schwarzschild, orbital frequency); fibrewise addition and local recovery at H = 5; the energy–momentum relation in one fibre at crossing degree two",
     "dom.B": "the quartet at the unit face: exponent-vector relation lattice over {ℓ_P, t_P, ħ} (both faces of c and ħ differ by ℓp = tE; rank two; k_B and ℓE add nothing); exact-rational instantiation of every stated equality (|k_B|c = ħ, m_P, G, Θ_P, {c, ħ, G} ↔ quartet); 4 − 1 = 3 degrees of freedom; flag positions (0,0,1,1)",
     "dom.C": "the defining congruences on the lab Carrier Ω = 2 408 561 (S = 602 140): admissibility; 2G ≡ −1 unique; ħ² ≡ −1, k_B² ≡ −2, 2c² ≡ 1 with their exact root pairs; G ≡ −c², G² ≡ 4⁻¹, h ≡ −ħ; m_P² ≐ Ω ≡ 0",
-    "dom.D": "both Carriers (233 and the lab Carrier): the congruence-and-closure system, ħcG⁻¹ landing in the k_B pair; the representative annex; the admissibility minimality scan certifying (13, 233) with the counterfactuals; [Θ] = [L][T]⁻² and the Unruh closure; the crossing-degree embedding injective and windowed-faithful",
+    "dom.D": "both Carriers (233 and the lab Carrier): the congruence-and-closure system, ħcG⁻¹ landing in the k_B pair; the representative annex; the admissibility minimality scan certifying (13, 233) with the counterfactuals; the constancy prediction P2 against the imported drift bound; [Θ] = [L][T]⁻² and the Unruh closure; the crossing-degree embedding injective and windowed-faithful",
     "dom.E": "covariance: the naive character ill-defined on the modular projection; (p−1, 0) trivial character yet non-neutral; the ε-composition failure; window covariance below the bound; pushforward-invariant labels {0, π}; the quarter-turn fix/swap criterion ε ≡ ±1 (mod 4); the index-two sublattice ⟨c, ħ, G⟩ (det −2)",
     "dom.F": "the (0, π) witness forcing H < 2κ; the σ-twisted action equivariant by full sweep on p = 13 and 229 with the plain-lift failure; σ multiplicative mod 4; δ_S, δ_C involutions, δ_C carrying [L] ↦ [p], [T] ↦ [E]",
-    "dom.G": "realized action against the Z³-representative failure; the flagged label (0, 0; 1) moving under ε = −1; the window ladder 2√κ < κ/2 < κ < 2κ nested for every κ ≥ 17 and failing for κ = 3; (2√κ)² = p−1, (2√S)² = Ω−1; the flagged ratio F/a; meridian transport (L T^κ)^p = I_q on three shells; both roots on both Carriers; Buckingham's count on the integer lift (the pendulum: rank 3, one product); the electromagnetic domain — [q]² = I_q[L][T]⁻¹, its two roots on the odd capacities and none on the even, the meridian half-turn, the even labels on the lift, the dilation character",
+    "dom.G": "realized action against the Z³-representative failure; the flagged label (0, 0; 1) moving under ε = −1; the window ladder 2√κ < κ/2 < κ < 2κ nested for every κ ≥ 17 and failing for κ = 3; (2√κ)² = p−1, (2√S)² = Ω−1; the flagged ratio F/a; meridian transport (L T^κ)^p = I_q on three shells; both roots on both Carriers; Buckingham's count on the integer lift (the pendulum: rank 3, one product); the resolution floor Ω^(−1/4) of order 1e−31 on the chart value, thirteen orders below 1e−18 and twenty-six below 2.2e−5, 102 bits against the 67 of the finest differential frequency comparison (the finest interspecies ratio, 58), the maximal coherent count Ω^(1/4) and the clock-bound crossover t* = t_P Ω^(3/8) ≈ 730 s (the prediction P1); the electromagnetic domain — [q]² = I_q[L][T]⁻¹, its two roots on the odd capacities and none on the even, the meridian half-turn, the even labels on the lift, the dilation character",
     "dom.H": "the pair layer: pair multiplication well defined; the linkage {±k_B}{±c} = {±ħ} derived at pair level; ħcG⁻¹ in the k_B pair via (ħcG⁻¹)² ≡ −2; representative inertness — exactly the four assignments with σ_ħ = σ_c σ_k admissible, a (Z/2)², every identity holding on each; the ħ-flip relabelling of {ħ, h}",
     "lift.L1": "operator four-cycle: F = iW on F_p^{p−1}, F² = J, F⁴ = I, F² ≠ I (p = 13, 173)",
     "lift.L2": "chart shadow of order two: F exchanges the two dual charts, J exchanges none; the cardinal skeleton acts on charts as s mod 2",
@@ -68,7 +68,7 @@ PREDICATES = {
     "10:C2": "dom.A", "10:C3": "dom.A", "10:C5": "dom.E", "10:D1": "dom.F", "10:D2": "dom.A", "10:D3": "lift.L1",
     "10:D6": "dom.A", "10:E2": "dom.B", "10:E3": "dom.B", "10:E4": "dom.C", "10:E5": "dom.H", "10:E9": "dom.D",
     "10:F2": "dom.A", "10:F3": "dom.D", "10:F4": "dom.A", "10:G1": "dom.A", "10:G2": "dom.G", "10:G3": "dom.A",
-    "10:F5": "dom.G", "10:G4": "dom.G",
+    "10:F5": "dom.G", "10:G4": "dom.G", "10:G5": "dom.G", "10:P1": "dom.G", "10:P2": "dom.D",
     "10:X1": "dom.B", "10:X2": "dom.D", "10:X3": "dom.A", "10:X4": "dom.G",       # block X restates E2/F2, E3/F3, D2/E2, F5: the same deciding checks
 }
 _FAM = [None, None]
@@ -504,6 +504,12 @@ def block_dom():
     chk("F5 is its own quarter-turn core: 4*kappa = 4 = p-1 with kappa=1", 4 * 1 == 5 - 1)
     chk("kappa=2 not viable: 9 composite", not is_prime(9))
 
+    # 10:P2 (p10054)
+    # constancy (the prediction P2): the dimensionless ratios of the constants are fixed, zero drift; the present bound on the
+    # fine-structure constant, (1/alpha) dalpha/dt = 1.8(2.5)e-19 /yr (Filzinger et al. 2023, imported), brackets the predicted 0:
+    # 18 - 25 <= 0 <= 18 + 25 in units of 1e-20 /yr.
+    chk("P2: the predicted drift 0 lies within the imported bound 1.8(2.5)e-19 /yr", 18 - 25 <= 0 <= 18 + 25)
+
     # 10:F3 (p10035), 10:X2 (p10049)
     # temperature and Unruh closures in (r, s, j) bookkeeping
     kB_dom = (-1, 1, 1)                    # Iq L^-1 T
@@ -653,6 +659,28 @@ def block_dom():
           all((2 * 2 * k == 4 * k) and (4 * k == (4 * k + 1) - 1) for k in (3, 387, 602140)))
     chk("r04: totality closure exact: (2 sqrt S)^2 = Om - 1",
           4 * 602140 == 2408561 - 1)
+
+    # 10:G5 (p10052), 10:P1 (p10053)
+    # the resolution floor (Remark rem:measured; the prediction P1): a single coherent registration on a shell of cardinality p resolves no finer
+    # than p^(-1/2) (coherent counts bounded at sqrt p, the import A5); under p^2 < Om the floor is at least Om^(-1/4) on every
+    # admissible shell. On the chart value S = 2.6e122 (A2), Om = 4S+1: Om^(-1/4) is of the order of 1e-31
+    # (1e-31 <= Om^(-1/4) < 1e-30  <=>  1e120 < Om <= 1e124); the ratio 1e-18 / Om^(-1/4) rounds to thirteen orders
+    # (1e12.5 <= Om^(1/4) 1e-18 < 1e13.5  <=>  1e122 <= Om < 1e126); the ratio 2.2e-5 / Om^(-1/4) rounds to twenty-six
+    # (1e25.5 <= 2.2e-5 Om^(1/4) < 1e26.5  <=>  1e126 <= 22^4 Om < 1e130). Every comparison exact in integers.
+    S_chart = 26 * 10**121; Om_chart = 4 * S_chart + 1
+    chk("r04: floor Om^(-1/4) of order 1e-31 on the chart value S = 2.6e122", 10**120 < Om_chart <= 10**124)
+    chk("r04: the floor thirteen orders below the 1e-18 frequency comparisons", 10**122 <= Om_chart < 10**126)
+    chk("r04: the floor twenty-six orders below 2.2e-5, the relative uncertainty of G", 10**126 <= 22**4 * Om_chart < 10**130)
+    # P1: the floor in bits, to the nearest integer (101.5 <= log2 Om^(1/4) < 102.5  <=>  2^406 <= Om < 2^410); the finest interspecies
+    # frequency ratio 3.2e-18 is 58 bits (57.5 <= log2(1/3.2e-18) < 58.5  <=>  2^125 <= 1e38 < 2^127) and the finest differential
+    # comparison 7.6e-21 is 67 bits (66.5 <= log2(1/7.6e-21) < 67.5  <=>  76^2 2^133 <= 1e44 < 76^2 2^135); the maximal coherent count Om^(1/4) between 5e30 and 6e30; the duration
+    # beyond which the mass-independent clock bound (t_P^2 t)^(1/3) permits finer than the floor, t* = t_P Om^(3/8), between 600 s
+    # and 900 s with t_P = 5.391247e-44 s (CODATA 2022): t*^8 = t_P^8 Om^3.
+    chk("P1: the floor is 102 bits to the nearest integer (2^406 <= Om < 2^410)", 2**406 <= Om_chart < 2**410)
+    chk("P1: the finest interspecies frequency ratio 3.2e-18 is 58 bits to the nearest integer (2^125 <= 1e38 < 2^127)", 2**125 <= 10**38 < 2**127)
+    chk("P1: the finest differential frequency comparison 7.6e-21 is 67 bits to the nearest integer (76^2 2^133 <= 1e44 < 76^2 2^135)", 76**2 * 2**133 <= 10**44 < 76**2 * 2**135)
+    chk("P1: the maximal coherent count Om^(1/4) lies between 5e30 and 6e30", 5**4 * 10**120 < Om_chart < 6**4 * 10**120)
+    chk("P1: the clock-bound crossover t* = t_P Om^(3/8) lies between 600 s and 900 s", 600**8 * 10**400 < 5391247**8 * Om_chart**3 < 900**8 * 10**400)
 
     # F/a is flagged (equal-crossing-degree correction): [F]=(-1,-1;1), [a]=(1,-2;0)
     F3 = (-1, -1, 1); A3 = (1, -2, 0)

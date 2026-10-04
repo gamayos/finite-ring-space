@@ -31,12 +31,12 @@
  },
  {
   "id": "dom.D",
-  "rows": "10:E4, 10:E5, 10:E9, 10:F3, 10:G1, 10:X2",
+  "rows": "10:E4, 10:E5, 10:E9, 10:F3, 10:G1, 10:P2, 10:X2",
   "block": "dom",
   "script": "dimensions",
-  "label": "both Carriers (233 and the lab Carrier): the congruence-and-closure system, ħcG⁻¹ landing in the k_B pair; the representative annex; the admissibility minimality scan certifying (13, 233) with the counterfactuals; [Θ] = [L][T]⁻² and the Unruh closure; the crossing-degree embedding injective and windowed-faithful",
+  "label": "both Carriers (233 and the lab Carrier): the congruence-and-closure system, ħcG⁻¹ landing in the k_B pair; the representative annex; the admissibility minimality scan certifying (13, 233) with the counterfactuals; the constancy prediction P2 against the imported drift bound; [Θ] = [L][T]⁻² and the Unruh closure; the crossing-degree embedding injective and windowed-faithful",
   "ok": true,
-  "detail": "50 exact micro-checks",
+  "detail": "51 exact micro-checks",
   "kind": "EXACT"
  },
  {
@@ -61,12 +61,12 @@
  },
  {
   "id": "dom.G",
-  "rows": "10:C5, 10:D2, 10:F5, 10:G2, 10:G4, 10:X4",
+  "rows": "10:C5, 10:D2, 10:F5, 10:G2, 10:G4, 10:G5, 10:P1, 10:X4",
   "block": "dom",
   "script": "dimensions",
-  "label": "realized action against the Z³-representative failure; the flagged label (0, 0; 1) moving under ε = −1; the window ladder 2√κ < κ/2 < κ < 2κ nested for every κ ≥ 17 and failing for κ = 3; (2√κ)² = p−1, (2√S)² = Ω−1; the flagged ratio F/a; meridian transport (L T^κ)^p = I_q on three shells; both roots on both Carriers; Buckingham's count on the integer lift (the pendulum: rank 3, one product); the electromagnetic domain — [q]² = I_q[L][T]⁻¹, its two roots on the odd capacities and none on the even, the meridian half-turn, the even labels on the lift, the dilation character",
+  "label": "realized action against the Z³-representative failure; the flagged label (0, 0; 1) moving under ε = −1; the window ladder 2√κ < κ/2 < κ < 2κ nested for every κ ≥ 17 and failing for κ = 3; (2√κ)² = p−1, (2√S)² = Ω−1; the flagged ratio F/a; meridian transport (L T^κ)^p = I_q on three shells; both roots on both Carriers; Buckingham's count on the integer lift (the pendulum: rank 3, one product); the resolution floor Ω^(−1/4) of order 1e−31 on the chart value, thirteen orders below 1e−18 and twenty-six below 2.2e−5, 102 bits against the 67 of the finest differential frequency comparison (the finest interspecies ratio, 58), the maximal coherent count Ω^(1/4) and the clock-bound crossover t* = t_P Ω^(3/8) ≈ 730 s (the prediction P1); the electromagnetic domain — [q]² = I_q[L][T]⁻¹, its two roots on the odd capacities and none on the even, the meridian half-turn, the even labels on the lift, the dilation character",
   "ok": true,
-  "detail": "21 exact micro-checks",
+  "detail": "29 exact micro-checks",
   "kind": "EXACT"
  },
  {

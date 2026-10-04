@@ -1,13 +1,13 @@
 # 10-dimensions validation package
 
 Validation package of *Dimensional Analysis over Finite Holographic Substrate* (Akhtman, 2026), `10-dim` of the FRC
-corpus. One script, `dimensions.py` (since 24 September 2026; the registry and the two suites merged), two blocks, 13 family checks over 217 exact micro-checks, driven by `frc-10-dimensions.ipynb` (Google
+corpus. One script, `dimensions.py` (since 24 September 2026; the registry and the two suites merged), two blocks, 13 family checks over 226 exact micro-checks, driven by `frc-10-dimensions.ipynb` (Google
 Colab: one cell per ledger predicate, any cell on its own, or *Runtime → Run all*, ≈ 10 s) or run whole. Pure Python — integers, residues, exact rationals; no floats,
 no random sampling.
 
 Every family check is a layer of block `dom` (A–H, the suite `verify_domains.py` until the merge) or a claim of block `lift` (L1–L5, `check_lift.py`) and names the predicate(s)
-of the paper's ledger it witnesses (the paper's Appendix A "Predicate ledger, machine verification and formalisation", 45 predicates
-in blocks A–G, X, cited as `10:<label>`; public copy `docs/10-dimensions/10-dimensions-ledger.html`); the ledger's source
+of the paper's ledger it witnesses (the paper's Appendix A "Predicate ledger, machine verification and formalisation", 48 predicates
+in blocks A–G, P, X, cited as `10:<label>`; public copy `docs/10-dimensions/10-dimensions-ledger.html`); the ledger's source
 column links the script at the deciding family's marker, `dimensions.py#<key>` (the family checks are listed on the public page from `results.json`). Where a predicate is proved in Lean (`lean/FrcCore/Dimensions.lean` with no axioms, or
 `lean/FrcLedger/Dimensions.lean` on Mathlib), the check here is the instance the reader can run. Master-ledger predicates of the corpus reached through the paper predicates: `00:D7`, `00:C12`,
 `00:C13`, `00:C8`, `00:B10`.
@@ -18,7 +18,7 @@ column links the script at the deciding family's marker, `dimensions.py#<key>` (
 
 | block | families | micro-checks | claims backed |
 |---|---|---|---|
-| `dom` | dom.A–H | 207 | A the shell datum and domain algebra on F_13 (33; 10:C2, C3, D2, D6, F2, F4, G1, G3, X1, X3); B the quartet at the unit face in exact rationals (30; 10:E2, E3, X1, X2, X3); C the defining congruences on the lab Carrier (13; 10:E4); D both Carriers, faces, the minimality scan (13, 233) with counterfactuals, temperature and the Unruh closure, the crossing-degree embedding (50; 10:E4, E5, E9, F3, G1, X2); E the covariance witnesses (18; 10:C5); F the window bound, the σ-twisted action, the dualities (15; 10:C5, D1); G realized action, the window ladder, meridian transport, pair canonicity, Buckingham's count, the electromagnetic domain (21; 10:C5, D2, F5, G2, G4, X4); H the pair layer and representative inertness (27; 10:E4, E5) |
+| `dom` | dom.A–H | 216 | A the shell datum and domain algebra on F_13 (33; 10:C2, C3, D2, D6, F2, F4, G1, G3, X1, X3); B the quartet at the unit face in exact rationals (30; 10:E2, E3, X1, X2, X3); C the defining congruences on the lab Carrier (13; 10:E4); D both Carriers, faces, the minimality scan (13, 233) with counterfactuals, temperature and the Unruh closure, the crossing-degree embedding, the constancy prediction (51; 10:E4, E5, E9, F3, G1, P2, X2); E the covariance witnesses (18; 10:C5); F the window bound, the σ-twisted action, the dualities (15; 10:C5, D1); G realized action, the window ladder, meridian transport, pair canonicity, Buckingham's count, the resolution floor and its prediction, the electromagnetic domain (29; 10:C5, D2, F5, G2, G4, G5, P1, X4); H the pair layer and representative inertness (27; 10:E4, E5) |
 | `lift` | lift.L1–L5 | 10 | Proposition `lift`: the operator four-cycle, the chart shadow, the record map, the Carrier face of order four, the invariance classification — shells (13, 2), (173, 3), Carriers 233 and 2 408 561 (10:D3, C5) |
 
 The registry (micro-check collector, family aggregation, `LEDGER` check → predicates, `LABELS`, `results.json`) is the head of the script. The manuscript's 105 source gates (`validation/check_gates.py` in the corpus tree, where `sections/*.tex` live; a copy was in this package until 24 September 2026) are not part of the package.
@@ -41,7 +41,7 @@ declarations named by their keys (`p10015`) at the end of `lean/FrcCore/Dimensio
 
 ## Provenance
 
-Block `dom` is the paper's suite `verify_domains.py` as written (the 200 micro-check names unchanged; two checks added on 22 September 2026 for the round-03 revision, the energy–momentum relation and Buckingham's count; five on 23 September for the electromagnetic domain, predicate F5), wrapped in a `run()` that
+Block `dom` is the paper's suite `verify_domains.py` as written (the 200 micro-check names unchanged; two checks added on 22 September 2026 for the round-03 revision, the energy–momentum relation and Buckingham's count; five on 23 September for the electromagnetic domain, predicate F5; nine on 3–4 October for the resolution floor and the two predictions, G5, P1, P2), wrapped in a `run()` that
 reports to the registry instead of asserting: a failing micro-check prints, the layer fails, the run continues.
 Block `lift` is the corpus tree's `check_lift.py` (the public copy had lagged it), its five claims reported per
 instance. Structures exercised: the toy shell F_13 (κ = 3), p = 29, 173, 229; the Carriers Ω = 233 (S = 58) and the

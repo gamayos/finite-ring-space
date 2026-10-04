@@ -3153,7 +3153,9 @@ the linear pin `2G + 1 = 0 ⇒ G = 2S`, the root pairs, the linkage `(k_B c)² =
 consequences on every framed Carrier (E4, E5); the two Carriers `233` and `2 408 561` decided by the kernel
 (E4, E5); the minimality scan certifying `(13, 233)` with its counterfactuals (E9); the derived domains
 realized on `𝔽₁₃` and the energy–momentum relation among them (F2–F4, G3); the charge label, its two values and
-its absence on the even capacities (F5); the window ladder by integer squares (G2). Every declaration is checked to depend on no axiom (`check_core_axioms.py`).
+its absence on the even capacities (F5); the window ladder by integer squares (G2); the roundings of the resolution floor on the
+chart value, its bits and the clock-bound crossover (G5, P1); the linear pin and the root pair as the content of the constancy
+prediction (P2). Every declaration is checked to depend on no axiom (`check_core_axioms.py`).
 -/
 
 namespace FRC.Dimensions
@@ -3448,7 +3450,7 @@ section carrier
 
 variable {Ω : Nat} [Pos Ω] {S : Nat} {g : Shell Ω}
 
-/-- 10:E4 — the linear pin: on a framed Carrier `Ω = 4S + 1`, `2G + 1 = 0` has the unique solution
+/-- 10:E4, 10:P2 — the linear pin: on a framed Carrier `Ω = 4S + 1`, `2G + 1 = 0` has the unique solution
 `G = 2S`, the half-cycle. -/
 theorem G_unique (F : Frame Ω S g) (x : Shell Ω) : 2 * x + 1 = 0 ↔ x = ofNat (2 * S) := by
   have hΩ : (ofNat (4 * S + 1) : Shell Ω) = 0 := by rw [← F.cap]; exact Epi.ofNat_self
@@ -3463,7 +3465,7 @@ theorem G_unique (F : Frame Ω S g) (x : Shell Ω) : 2 * x + 1 = 0 ↔ x = ofNat
     rw [h, h2S]
   · intro h; rw [h]; exact h2S
 
-/-- 10:E4 — the root pair: if `x² = a` with `x ≠ 0` then `y² = a` iff `y = x` or `y = −x`, and `−x ≠ x`;
+/-- 10:E4, 10:P2 — the root pair: if `x² = a` with `x ≠ 0` then `y² = a` iff `y = x` or `y = −x`, and `−x ≠ x`;
 each quadratic defining congruence has exactly two roots on a framed Carrier. -/
 theorem root_pair (F : Frame Ω S g) (a x : Shell Ω) (hx : x * x = a) (hx0 : x ≠ 0) :
     (∀ y : Shell Ω, y * y = a ↔ (y = x ∨ y = -x)) ∧ -x ≠ x := by
@@ -3591,6 +3593,24 @@ theorem window_ladder :
     (∀ κ, 2 * 2 * κ = 4 * κ ∧ 4 * κ = (4 * κ + 1) - 1) ∧ 4 * 602140 = 2408561 - 1 := by
   refine ⟨by decide +kernel, by decide +kernel, by decide +kernel, by decide +kernel, fun κ => ⟨rfl, rfl⟩, by decide +kernel⟩
 
+/-- 10:G5, 10:P1 — the resolution floor on the chart value `S = 2.6 × 10¹²²`, `Ω = 4S + 1`: `Ω^(-1/4)` is of the order
+of `10⁻³¹` (`10¹²⁰ < Ω ≤ 10¹²⁴`), thirteen orders below `10⁻¹⁸` (`10¹²² ≤ Ω < 10¹²⁶`) and twenty-six below `2.2 × 10⁻⁵`
+(`10¹²⁶ ≤ 22⁴ Ω < 10¹³⁰`); in bits, to the nearest integer, `102` (`2⁴⁰⁶ ≤ Ω < 2⁴¹⁰`) against the `58` of the finest interspecies
+frequency ratio, `3.2 × 10⁻¹⁸` (`2¹²⁵ ≤ 10³⁸ < 2¹²⁷`), and the `67` of the finest differential comparison, `7.6 × 10⁻²¹`
+(`76² · 2¹³³ ≤ 10⁴⁴ < 76² · 2¹³⁵`); the maximal coherent count `Ω^(1/4)` between `5 × 10³⁰` and `6 × 10³⁰` (`5⁴ 10¹²⁰ < Ω < 6⁴ 10¹²⁰`); and the
+duration beyond which the mass-independent clock bound `(t_P² t)^(1/3)` permits finer than the floor, `t* = t_P Ω^(3/8)`,
+between `600` and `900` s with `t_P = 5.391247 × 10⁻⁴⁴` s. Every rounding exact in integers, decided by the kernel. -/
+theorem resolution_floor :
+    10^120 < 4 * (26 * 10^121) + 1 ∧ 4 * (26 * 10^121) + 1 ≤ 10^124 ∧
+    10^122 ≤ 4 * (26 * 10^121) + 1 ∧ 4 * (26 * 10^121) + 1 < 10^126 ∧
+    10^126 ≤ 22^4 * (4 * (26 * 10^121) + 1) ∧ 22^4 * (4 * (26 * 10^121) + 1) < 10^130 ∧
+    2^406 ≤ 4 * (26 * 10^121) + 1 ∧ 4 * (26 * 10^121) + 1 < 2^410 ∧
+    2^125 ≤ 10^38 ∧ 10^38 < 2^127 ∧
+    76^2 * 2^133 ≤ 10^44 ∧ 10^44 < 76^2 * 2^135 ∧
+    5^4 * 10^120 < 4 * (26 * 10^121) + 1 ∧ 4 * (26 * 10^121) + 1 < 6^4 * 10^120 ∧
+    600^8 * 10^400 < 5391247^8 * (4 * (26 * 10^121) + 1)^3 ∧ 5391247^8 * (4 * (26 * 10^121) + 1)^3 < 900^8 * 10^400 := by
+  decide +kernel
+
 /-- 10:G1, 10:G3 — local recovery on `𝔽₁₃` at `H = 5`: the `121` conventional pairs `|r|, |s| ≤ 5` have
 distinct modular labels, `12 > 10`. -/
 theorem recovery13 :
@@ -3683,6 +3703,15 @@ theorem p10038 : (16 : Nat) * (17 : Nat) < (17 : Nat) * (17 : Nat) ∧ (16 : Nat
 set_option linter.defProp false in
 /-- 10:G3 (p10039) — The worked examples: $\kap=3$, $H=5$, $12>10$ so every pair in $[-5,5]^{2}$ is distinguished; kinetic energy $[m][v]^{2}=[E]$; $Q+Q^{2}$ inhomogeneous; the phase exponent neutral; flag arithmetic ($G\hbar/c^{3}$ flag-free, $\Iq^{2}=\unitT^{\pi}$); the Schwarzschild length $[Gm/c^{2}]=\unitL$; the gravitational frequency $[Gm/r^{3}]=\unitT^{-2}$; the energy--momentum relation $E^{2}=p^{2}c^{2}+m^{2}c^{4}$ homogeneous at crossing degree two, its massless case $E=pc$ at crossing degree one. -/
 def p10039 := And.intro @FRC.Dimensions.realized13 (And.intro @FRC.Dimensions.recovery13 (@FRC.Dimensions.energy_momentum13))
+/-- 10:G5 (p10052) — The resolution floor: a registration resolved to one part in $N$ is a coherent count of $N$, bounded at $\sqrt\p$ (A5), so a single coherent registration on a shell of cardinality $\p$ resolves no finer than $\p^{-1/2}$; under $\p^{2}<\Om$ the floor is at least $\Om^{-1/4}$ on every admissible shell, of the order of $10^{-31}$ ($102$ bits) at $\dS=2.6\times10^{122}$ (Rem.~\ref{rem:holographic}), thirteen orders below the $10^{-18}$ optical-clock comparisons and twenty-six below the uncertainty of $G$. -/
+theorem p10052 : (10 : Nat) ^ (120 : Nat) < (4 : Nat) * ((26 : Nat) * (10 : Nat) ^ (121 : Nat)) + (1 : Nat) ∧ (4 : Nat) * ((26 : Nat) * (10 : Nat) ^ (121 : Nat)) + (1 : Nat) ≤ (10 : Nat) ^ (124 : Nat) ∧ (10 : Nat) ^ (122 : Nat) ≤ (4 : Nat) * ((26 : Nat) * (10 : Nat) ^ (121 : Nat)) + (1 : Nat) ∧ (4 : Nat) * ((26 : Nat) * (10 : Nat) ^ (121 : Nat)) + (1 : Nat) < (10 : Nat) ^ (126 : Nat) ∧ (10 : Nat) ^ (126 : Nat) ≤ (22 : Nat) ^ (4 : Nat) * ((4 : Nat) * ((26 : Nat) * (10 : Nat) ^ (121 : Nat)) + (1 : Nat)) ∧ (22 : Nat) ^ (4 : Nat) * ((4 : Nat) * ((26 : Nat) * (10 : Nat) ^ (121 : Nat)) + (1 : Nat)) < (10 : Nat) ^ (130 : Nat) ∧ (2 : Nat) ^ (406 : Nat) ≤ (4 : Nat) * ((26 : Nat) * (10 : Nat) ^ (121 : Nat)) + (1 : Nat) ∧ (4 : Nat) * ((26 : Nat) * (10 : Nat) ^ (121 : Nat)) + (1 : Nat) < (2 : Nat) ^ (410 : Nat) ∧ (2 : Nat) ^ (125 : Nat) ≤ (10 : Nat) ^ (38 : Nat) ∧ (10 : Nat) ^ (38 : Nat) < (2 : Nat) ^ (127 : Nat) ∧ (76 : Nat) ^ (2 : Nat) * (2 : Nat) ^ (133 : Nat) ≤ (10 : Nat) ^ (44 : Nat) ∧ (10 : Nat) ^ (44 : Nat) < (76 : Nat) ^ (2 : Nat) * (2 : Nat) ^ (135 : Nat) ∧ (5 : Nat) ^ (4 : Nat) * (10 : Nat) ^ (120 : Nat) < (4 : Nat) * ((26 : Nat) * (10 : Nat) ^ (121 : Nat)) + (1 : Nat) ∧ (4 : Nat) * ((26 : Nat) * (10 : Nat) ^ (121 : Nat)) + (1 : Nat) < (6 : Nat) ^ (4 : Nat) * (10 : Nat) ^ (120 : Nat) ∧ (600 : Nat) ^ (8 : Nat) * (10 : Nat) ^ (400 : Nat) < (5391247 : Nat) ^ (8 : Nat) * ((4 : Nat) * ((26 : Nat) * (10 : Nat) ^ (121 : Nat)) + (1 : Nat)) ^ (3 : Nat) ∧ (5391247 : Nat) ^ (8 : Nat) * ((4 : Nat) * ((26 : Nat) * (10 : Nat) ^ (121 : Nat)) + (1 : Nat)) ^ (3 : Nat) < (900 : Nat) ^ (8 : Nat) * (10 : Nat) ^ (400 : Nat) :=
+  @FRC.Dimensions.resolution_floor
+/-- 10:P1 (p10053) — The resolution floor, staked: no single coherent registration resolves finer than $\Om^{-1/4}$, of the order of $10^{-31}$, and no coherent count exceeds $\Om^{1/4}\approx6\times10^{30}$ (G5 over A2, A5, B1; the holographic reading of Rem.~\ref{rem:holographic}). Falsifier: one coherent registration finer than that. Confrontation: the finest interspecies frequency ratio, $3.2\times10^{-18}$ \citep{Aeppli2025}, and the finest differential comparison, $7.6\times10^{-21}$ \citep{Bothwell2022} --- $67$ bits against $102$, averaged determinations; the mass-independent clock bound $(t_P^{2}t)^{1/3}$ permits finer beyond $730$~s. -/
+theorem p10053 : (10 : Nat) ^ (120 : Nat) < (4 : Nat) * ((26 : Nat) * (10 : Nat) ^ (121 : Nat)) + (1 : Nat) ∧ (4 : Nat) * ((26 : Nat) * (10 : Nat) ^ (121 : Nat)) + (1 : Nat) ≤ (10 : Nat) ^ (124 : Nat) ∧ (10 : Nat) ^ (122 : Nat) ≤ (4 : Nat) * ((26 : Nat) * (10 : Nat) ^ (121 : Nat)) + (1 : Nat) ∧ (4 : Nat) * ((26 : Nat) * (10 : Nat) ^ (121 : Nat)) + (1 : Nat) < (10 : Nat) ^ (126 : Nat) ∧ (10 : Nat) ^ (126 : Nat) ≤ (22 : Nat) ^ (4 : Nat) * ((4 : Nat) * ((26 : Nat) * (10 : Nat) ^ (121 : Nat)) + (1 : Nat)) ∧ (22 : Nat) ^ (4 : Nat) * ((4 : Nat) * ((26 : Nat) * (10 : Nat) ^ (121 : Nat)) + (1 : Nat)) < (10 : Nat) ^ (130 : Nat) ∧ (2 : Nat) ^ (406 : Nat) ≤ (4 : Nat) * ((26 : Nat) * (10 : Nat) ^ (121 : Nat)) + (1 : Nat) ∧ (4 : Nat) * ((26 : Nat) * (10 : Nat) ^ (121 : Nat)) + (1 : Nat) < (2 : Nat) ^ (410 : Nat) ∧ (2 : Nat) ^ (125 : Nat) ≤ (10 : Nat) ^ (38 : Nat) ∧ (10 : Nat) ^ (38 : Nat) < (2 : Nat) ^ (127 : Nat) ∧ (76 : Nat) ^ (2 : Nat) * (2 : Nat) ^ (133 : Nat) ≤ (10 : Nat) ^ (44 : Nat) ∧ (10 : Nat) ^ (44 : Nat) < (76 : Nat) ^ (2 : Nat) * (2 : Nat) ^ (135 : Nat) ∧ (5 : Nat) ^ (4 : Nat) * (10 : Nat) ^ (120 : Nat) < (4 : Nat) * ((26 : Nat) * (10 : Nat) ^ (121 : Nat)) + (1 : Nat) ∧ (4 : Nat) * ((26 : Nat) * (10 : Nat) ^ (121 : Nat)) + (1 : Nat) < (6 : Nat) ^ (4 : Nat) * (10 : Nat) ^ (120 : Nat) ∧ (600 : Nat) ^ (8 : Nat) * (10 : Nat) ^ (400 : Nat) < (5391247 : Nat) ^ (8 : Nat) * ((4 : Nat) * ((26 : Nat) * (10 : Nat) ^ (121 : Nat)) + (1 : Nat)) ^ (3 : Nat) ∧ (5391247 : Nat) ^ (8 : Nat) * ((4 : Nat) * ((26 : Nat) * (10 : Nat) ^ (121 : Nat)) + (1 : Nat)) ^ (3 : Nat) < (900 : Nat) ^ (8 : Nat) * (10 : Nat) ^ (400 : Nat) :=
+  @FRC.Dimensions.resolution_floor
+/-- 10:P2 (p10054) — Constancy, staked: every dimensionless ratio of the constants is fixed in time and position, zero drift, zero dipole --- the totality timeless (B1), every constant a residue of it in the framework's realisation (A1; the quartet's, E1, E6; the charge's, Rem.~\ref{rem:electromagnetic}), the quartet's fixed by the congruences given $\dS$ (E4), selected once (E7). Falsifier: a detected variation (E1's). Confrontation: $\dot\alpha/\alpha=1.8(2.5)\times10^{-19}\,\mathrm{yr}^{-1}$ \citep{Filzinger2023}, consistent with zero. -/
+theorem p10054 : (∀ {Ω : Nat} [FRC.Pos Ω] {S : Nat} {g : FRC.Shell Ω}, FRC.Shell.Frame Ω S g → ∀ (x : FRC.Shell Ω), (2 : FRC.Shell Ω) * x + (1 : FRC.Shell Ω) = (0 : FRC.Shell Ω) ↔ x = FRC.Shell.ofNat ((2 : Nat) * S)) ∧ ∀ {Ω : Nat} [FRC.Pos Ω] {S : Nat} {g : FRC.Shell Ω}, FRC.Shell.Frame Ω S g → ∀ (a x : FRC.Shell Ω), x * x = a → x ≠ (0 : FRC.Shell Ω) → (∀ (y : FRC.Shell Ω), y * y = a ↔ y = x ∨ y = -x) ∧ -x ≠ x :=
+  And.intro @FRC.Dimensions.G_unique (@FRC.Dimensions.root_pair)
 /-- 10:X1 (p10048) — The arity of classical bookkeeping, derived: four horizons less one identity, $4-1=3$ free scales in bijection with $\{c,\hbar,G\}$, exactly three independent members of $\{c,\hbar,G,k_B\}$; the three mechanical primitives are the two chart generators and the flag's torsion-free surrogate, mass, $[m]=\Iq\unitL^{-2}\unitT$, $m_P=\pP/c$. Classical dimensional analysis postulates the count and the mass primitive. -/
 theorem p10048 : have E := FRC.Dimensions.energy (3 : Nat); have v := FRC.Dimensions.L (3 : Nat) * (FRC.Dimensions.T (3 : Nat))⁻¹; have m := E * (v ^ (2 : Nat))⁻¹; have a := v * (FRC.Dimensions.T (3 : Nat))⁻¹; have f := m * a; have pm := m * v; have G := f * FRC.Dimensions.L (3 : Nat) ^ (2 : Nat) * (m ^ (2 : Nat))⁻¹; have kB := FRC.Dimensions.flag (3 : Nat) * (FRC.Dimensions.L (3 : Nat))⁻¹ * FRC.Dimensions.T (3 : Nat); m = { r := (11 : FRC.Shell ((4 : Nat) * (3 : Nat) + (1 : Nat))), s := (4 : FRC.Shell ((4 : Nat) * (3 : Nat))) } ∧ a = { r := (1 : FRC.Shell ((4 : Nat) * (3 : Nat) + (1 : Nat))), s := (10 : FRC.Shell ((4 : Nat) * (3 : Nat))) } ∧ f = { r := (12 : FRC.Shell ((4 : Nat) * (3 : Nat) + (1 : Nat))), s := (2 : FRC.Shell ((4 : Nat) * (3 : Nat))) } ∧ pm = { r := (12 : FRC.Shell ((4 : Nat) * (3 : Nat) + (1 : Nat))), s := (3 : FRC.Shell ((4 : Nat) * (3 : Nat))) } ∧ pm = FRC.Dimensions.mom (3 : Nat) ∧ E * FRC.Dimensions.T (3 : Nat) = FRC.Dimensions.flag (3 : Nat) ∧ E * (FRC.Dimensions.T (3 : Nat))⁻¹ = { r := (0 : FRC.Shell ((4 : Nat) * (3 : Nat) + (1 : Nat))), s := (1 : FRC.Shell ((4 : Nat) * (3 : Nat))) } ∧ G = { r := (5 : FRC.Shell ((4 : Nat) * (3 : Nat) + (1 : Nat))), s := (6 : FRC.Shell ((4 : Nat) * (3 : Nat))) } ∧ G * FRC.Dimensions.flag (3 : Nat) * (v ^ (3 : Nat))⁻¹ = FRC.Dimensions.L (3 : Nat) ^ (2 : Nat) ∧ G * m * (v ^ (2 : Nat))⁻¹ = FRC.Dimensions.L (3 : Nat) ∧ G * m * (v ^ (3 : Nat))⁻¹ = FRC.Dimensions.T (3 : Nat) ∧ G * m * (FRC.Dimensions.L (3 : Nat) ^ (3 : Nat))⁻¹ = (FRC.Dimensions.T (3 : Nat) ^ (2 : Nat))⁻¹ ∧ E * kB⁻¹ = a ∧ FRC.Dimensions.flag (3 : Nat) * a * v⁻¹ * kB⁻¹ = a ∧ E * FRC.Dimensions.T (3 : Nat) * (FRC.Dimensions.flag (3 : Nat))⁻¹ = (1 : FRC.Dimensions.DomK (3 : Nat)) ∧ m * v ^ (2 : Nat) = E ∧ FRC.Dimensions.L (3 : Nat) ≠ FRC.Dimensions.L (3 : Nat) ^ (2 : Nat) ∧ f * a⁻¹ = m :=
   @FRC.Dimensions.realized13

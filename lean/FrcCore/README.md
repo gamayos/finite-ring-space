@@ -19,7 +19,7 @@ root, the Fourier inversion, the polynomial reading and covariance, the four-cyc
 wrap-free window, the residue lines and the wall products on `𝔽₁₃` and the wall shells by `decide`), `Dimensions`
 (10-dimensions: the domain lattice as pairs of residues with its group law and powers, the unit flag of order four and the meridian
 transport on every capacity, the crossed duality, the flagged readings, the linear pin, the root pairs and the linkage on every framed
-Carrier; the order-four census of `D_13`, the two Carriers, the `(13, 233)` minimality scan and the realized domains by `decide +kernel`),
+Carrier; the order-four census of `D_13`, the two Carriers, the `(13, 233)` minimality scan, the realized domains and the resolution floor on the chart value by `decide +kernel`),
 `Poly` (polynomials as coefficient sequences: evaluation, synthetic division, the root bound, the root
 criterion of 1:E3), `Quaternion` (the signed window and the framed quaternions of 1:E6), `Causality` (the square classes, the
 anisotropic and hyperbolic planes of the Lorentzian form, the norm-one boosts and the velocity law of 3-causality), `Representation`
