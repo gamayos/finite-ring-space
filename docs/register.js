@@ -2,7 +2,7 @@
 (function () {
   "use strict";
   var BLOCKS = {X: "Explanation", P: "Prediction", Z: "Horizon", T: "Task", Y: "Hypothesis"}, BLOCK_ORDER = ["X", "P", "Z", "T", "Y"];
-  var FORCED_TAG = {X: "T", P: "T", T: "O", Y: "O"};                       /* the rule: choosing X or P sets the status to theorem, T or Y to open */
+  var FORCED_TAG = {X: "T", T: "O", Y: "O"};                               /* the rule: choosing X sets the status to theorem, T or Y to open; P keeps every status (T and R, Q21) */
   function setBlock(b) { st.block = b; if (FORCED_TAG[b]) st.tag = FORCED_TAG[b]; }
   var TAGS = {G: "ground", P: "pillar", T: "theorem", D: "definition", R: "realisation", I: "import", "Ω": "Ω-hard", O: "open"};
   var st = {paper: "all", block: "T", tag: "all", q: ""};
@@ -59,7 +59,7 @@
                                                 : (r.block + ". " + ((p && p.blocks.filter(function (b) { return b.letter === r.block; })[0] || {}).title || BLOCKS[r.block] || ""));
         html.push('<tr class="blockhead"><td colspan="4"><b>' + title + "</b></td></tr>");
       }
-      var f = frags.rows[r.key] || {statement: "", source: ""};
+      var f = frags.rows[r.rid] || frags.rows[r.key] || {statement: "", source: ""};
       html.push('<tr data-key="' + (r.key || "") + '"><td class="lab"><a href="' + r.page + '" title="the predicate in its ledger">' + (r.paper === "00" ? "00" : r.no) + ":" + r.label + '</a><span class="key" id="' + (r.key || "") + '">' + (r.key || "") + "</span></td>"
               + '<td class="pred">' + f.statement + '</td><td class="status">' + badge(r.tag) + '</td><td class="src">' + f.source + "</td></tr>");
     });
@@ -92,7 +92,14 @@
     reg.header.papers.forEach(function (p) { papers[p.key] = p; order.push(p.key); });
     reg.rows.forEach(function (r) { tagsOf(r).forEach(function (t) { allTags[t] = true; }); });
     var k = location.hash.slice(1);
-    if (/^p\d{5}$/.test(k)) { var hit = reg.rows.filter(function (r) { return r.key === k; })[0]; if (hit) { st.paper = hit.paper; st.block = "all"; } }   /* a key: its paper, every block */
+    if (/^p\d{5}$/.test(k)) { var hits = reg.rows.filter(function (r) { return r.key === k; }), hit = hits.filter(function (r) { return r.no === parseInt(k.slice(1, 3), 10); })[0] || hits[0];   /* a shared key: the row of its ledger of origin (LM12) */ if (hit) { st.paper = hit.paper; st.block = "all"; st.tag = "all"; }   /* every status: the key's row shows whatever its tag (MS1) */
+      else { var sup = (reg.superseded || []).filter(function (s) { return s.key === k; })[0];   /* a key that left: superseded, with its successors (Q19) */
+        if (sup) { var note = document.createElement("p"); note.className = "note superseded"; note.id = k;
+          var links = sup.successors.map(function (s) { var r = reg.rows.filter(function (x) { return x.key === s; }); r = r.filter(function (x) { return x.no === parseInt(s.slice(1, 3), 10); })[0] || r[0];
+            return r ? '<a href="' + r.page + '"><code>' + s + '</code></a>' : "<code>" + s + "</code>"; });
+          note.innerHTML = "<code>" + k + "</code> is superseded" + (links.length ? " by " + links.join(", ") : "") + ".";
+          var tb = document.getElementById("ledger"); tb.parentNode.insertBefore(note, tb); } } }   /* a key: its paper, every block */
     update();
+    if (/^p\d{5}$/.test(k)) { var el = document.getElementById(k); if (el) el.scrollIntoView({block: "center"}); }   /* the key's row, or its superseded notice, in view (MS1) */
   });
 })();

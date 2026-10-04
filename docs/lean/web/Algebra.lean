@@ -1755,7 +1755,8 @@ paper's ledger states them.
 Every universal statement is over an arbitrary finite field `F` with `Fintype.card F = 4κ + 1`
 (the shell); the window law is on `ZMod p`; instance checks and counts are decided. The section
 `conjecture` decides the conclusion's conjecture clause by clause (rows E3, D7, E4; E5, the `SO(3)` obstruction,
-is numerical and imported).
+is numerical and imported). The section `lie` proves the counting clauses of the Lie-algebra layer: the axis group
+of 1:E7, cyclic of order `p − (N|p)`, the window count `2H² + 2H`, and the heights and read-back of 1:E8.
 Every docstring opens with the ledger predicate(s) the declaration decides (`1:B2`); theorem numbers are the paper's
 (Axioms 2025, 14, 636).
 -/
@@ -2072,6 +2073,235 @@ theorem group_law_defect (N : ℕ) (θ₁ θ₂ : ℝ) :
 
 end conjecture
 
+section lie
+
+/-! ### 1:E7, 1:E8 — the Lie-algebra layer: the axis group, the window count, the heights and the read-back -/
+
+open QuadraticAlgebra
+
+variable (p : ℕ) [Fact p.Prime]
+
+/-- The axis algebra of a pure quaternion `v` with `N(v) = d`: the pairs `a + t v`, with `v² = −d`. -/
+abbrev AxisAlg (d : ZMod p) := QuadraticAlgebra (ZMod p) (-d) 0
+
+/-- The scalars inside the axis group. -/
+noncomputable def scalars (d : ZMod p) : Subgroup (AxisAlg p d)ˣ :=
+  (Units.map (algebraMap (ZMod p) (AxisAlg p d) : ZMod p →* AxisAlg p d)).range
+
+instance (d : ZMod p) : Finite (AxisAlg p d) := Finite.of_equiv _ (QuadraticAlgebra.equivProd (-d) 0).symm
+
+theorem card_axisAlg (d : ZMod p) : Nat.card (AxisAlg p d) = p * p := by
+  rw [Nat.card_congr (QuadraticAlgebra.equivProd (-d) 0), Nat.card_prod, Nat.card_zmod]
+
+theorem card_scalars (d : ZMod p) : Nat.card (scalars p d) = p - 1 := by
+  unfold scalars
+  rw [MonoidHom.range_eq_map, Subgroup.card_map_of_injective, Subgroup.card_top, Nat.card_eq_fintype_card, ZMod.card_units]
+  intro x y h
+  apply Units.ext
+  have := congrArg Units.val h
+  simpa using (algebraMap (ZMod p) (AxisAlg p d)).injective this
+
+/-- 1:E7, the axis group when `−d` is not a square: cyclic of order `p + 1`. -/
+theorem axis_field (d : ZMod p) [Fact (¬ IsSquare (-d))] :
+    IsCyclic ((AxisAlg p d)ˣ ⧸ scalars p d) ∧ Nat.card ((AxisAlg p d)ˣ ⧸ scalars p d) = p + 1 := by
+  refine ⟨isCyclic_of_surjective (QuotientGroup.mk' _) (QuotientGroup.mk'_surjective _), ?_⟩
+  have hU : Nat.card (AxisAlg p d)ˣ = p * p - 1 := by
+    rw [Nat.card_units, card_axisAlg]
+  have hL := Subgroup.card_eq_card_quotient_mul_card_subgroup (scalars p d)
+  rw [hU, card_scalars] at hL
+  have h2 : 2 ≤ p := (Fact.out : p.Prime).two_le
+  have : p * p - 1 = (p + 1) * (p - 1) := by
+    have := Nat.mul_self_sub_mul_self_eq p 1
+    simpa using this
+  rw [this] at hL
+  exact (Nat.eq_of_mul_eq_mul_right (by omega) hL).symm
+
+/-- The reading of the axis algebra at a square root `r` of `−d`: `a + t v ↦ a + r t`, a ring map. -/
+def psiK {K : Type*} [Field K] (d r : K) (hr : r * r = -d) : QuadraticAlgebra K (-d) 0 →+* K where
+  toFun z := z.re + r * z.im
+  map_one' := by simp
+  map_mul' x y := by
+    simp only [QuadraticAlgebra.re_mul, QuadraticAlgebra.im_mul]
+    linear_combination (-(x.im * y.im)) * hr
+  map_zero' := by simp
+  map_add' x y := by simp; ring
+
+theorem psiK_apply {K : Type*} [Field K] (d r : K) (hr : r * r = -d) (z : QuadraticAlgebra K (-d) 0) :
+    psiK d r hr z = z.re + r * z.im := rfl
+
+/-- 1:E7, the axis group when `−d = r²` with `r ≠ 0` (characteristic not two): the units modulo the scalars are
+isomorphic to `Kˣ`. -/
+theorem axis_split_equiv {K : Type*} [Field K] (h2 : (2 : K) ≠ 0) (d r : K) (hr : r * r = -d) (hr0 : r ≠ 0) :
+    Nonempty ((QuadraticAlgebra K (-d) 0)ˣ ⧸
+      (Units.map (algebraMap K (QuadraticAlgebra K (-d) 0) : K →* QuadraticAlgebra K (-d) 0)).range ≃* Kˣ) := by
+  have hr' : (-r) * (-r) = -d := by linear_combination hr
+  let f₁ : (QuadraticAlgebra K (-d) 0)ˣ →* Kˣ := Units.map (psiK d r hr : QuadraticAlgebra K (-d) 0 →* K)
+  let f₂ : (QuadraticAlgebra K (-d) 0)ˣ →* Kˣ := Units.map (psiK d (-r) hr' : QuadraticAlgebra K (-d) 0 →* K)
+  let φ : (QuadraticAlgebra K (-d) 0)ˣ →* Kˣ := f₁ * f₂⁻¹
+  have h2r : (2 * r) ≠ 0 := mul_ne_zero h2 hr0
+  have hdet : ∀ x y : QuadraticAlgebra K (-d) 0, psiK d r hr x = psiK d r hr y → psiK d (-r) hr' x = psiK d (-r) hr' y → x = y := by
+    intro x y h1 h2'
+    rw [psiK_apply, psiK_apply] at h1 h2'
+    have him : x.im = y.im := by
+      have : (2 * r) * (x.im - y.im) = 0 := by linear_combination h1 - h2'
+      rcases mul_eq_zero.mp this with h | h
+      · exact absurd h h2r
+      · exact sub_eq_zero.mp h
+    have hre : x.re = y.re := by rw [him] at h1; linear_combination h1
+    exact QuadraticAlgebra.ext hre him
+  have hker : φ.ker = (Units.map (algebraMap K (QuadraticAlgebra K (-d) 0) : K →* QuadraticAlgebra K (-d) 0)).range := by
+    ext z
+    rw [MonoidHom.mem_ker, MonoidHom.mem_range]
+    constructor
+    · intro h
+      have h' : f₁ z = f₂ z := by
+        have := congrArg (· * f₂ z) h
+        simpa [φ] using this
+      have hv := congrArg Units.val h'
+      simp only [f₁, f₂, Units.coe_map, MonoidHom.coe_ofClass, psiK_apply] at hv
+      have him : (z : QuadraticAlgebra K (-d) 0).im = 0 := by
+        have : (2 * r) * (z : QuadraticAlgebra K (-d) 0).im = 0 := by linear_combination hv
+        rcases mul_eq_zero.mp this with h | h
+        · exact absurd h h2r
+        · exact h
+      have hre0 : (z : QuadraticAlgebra K (-d) 0).re ≠ 0 := by
+        intro h0
+        exact z.ne_zero (QuadraticAlgebra.ext (by simpa using h0) (by simpa using him))
+      refine ⟨Units.mk0 _ hre0, ?_⟩
+      apply Units.ext
+      exact QuadraticAlgebra.ext (by simp) (by simp [him])
+    · rintro ⟨c, rfl⟩
+      apply Units.ext
+      simp [φ, f₁, f₂, psiK_apply]
+  have hsurj : Function.Surjective φ := by
+    intro y
+    let zf : Kˣ → QuadraticAlgebra K (-d) 0 := fun y => ⟨((y : K) + 1) / 2, ((y : K) - 1) / (2 * r)⟩
+    have e1 : ∀ y : Kˣ, psiK d r hr (zf y) = y := by
+      intro y; rw [psiK_apply]; show ((y : K) + 1) / 2 + r * (((y : K) - 1) / (2 * r)) = y; field_simp; ring
+    have e2 : ∀ y : Kˣ, psiK d (-r) hr' (zf y) = 1 := by
+      intro y; rw [psiK_apply]; show ((y : K) + 1) / 2 + -r * (((y : K) - 1) / (2 * r)) = 1; field_simp; ring
+    have hmul : zf y * zf y⁻¹ = 1 :=
+      hdet _ _ (by rw [map_mul, map_one, e1, e1]; simp) (by rw [map_mul, map_one, e2, e2, mul_one])
+    have hmul' : zf y⁻¹ * zf y = 1 := by rw [mul_comm]; exact hmul
+    let u : (QuadraticAlgebra K (-d) 0)ˣ := ⟨zf y, zf y⁻¹, hmul, hmul'⟩
+    have hu1 : f₁ u = y := Units.ext (e1 y)
+    have hu2 : f₂ u = 1 := Units.ext (e2 y)
+    exact ⟨u, by simp [φ, hu1, hu2]⟩
+  exact ⟨(QuotientGroup.quotientMulEquivOfEq hker.symm).trans (QuotientGroup.quotientKerEquivOfSurjective φ hsurj)⟩
+
+/-- 1:E7, the axis group on the shell when `−d = r²`, `r ≠ 0`: cyclic of order `p − 1`. -/
+theorem axis_split (hp2 : p ≠ 2) (d r : ZMod p) (hr : r * r = -d) (hr0 : r ≠ 0) :
+    IsCyclic ((AxisAlg p d)ˣ ⧸ scalars p d) ∧ Nat.card ((AxisAlg p d)ˣ ⧸ scalars p d) = p - 1 := by
+  have h2 : (2 : ZMod p) ≠ 0 := Ring.two_ne_zero (by rw [ZMod.ringChar_zmod_n]; exact hp2)
+  obtain ⟨e⟩ := axis_split_equiv h2 d r hr hr0
+  refine ⟨isCyclic_of_surjective e.symm.toMonoidHom e.symm.surjective, ?_⟩
+  exact (Nat.card_congr e.toEquiv).trans (by rw [Nat.card_eq_fintype_card, ZMod.card_units])
+
+/-- 1:E7, the rotation group of an axis `v` on a shell `p ≡ 1 (mod 4)`, `N(v) = N ≢ 0`: the pairs `a + t v` modulo
+the scalars form a cyclic group of order `p − (N|p)`. -/
+theorem axis_group (hp4 : p % 4 = 1) (N : ℤ) (hN : (N : ZMod p) ≠ 0) :
+    IsCyclic ((AxisAlg p N)ˣ ⧸ scalars p N) ∧ (Nat.card ((AxisAlg p N)ˣ ⧸ scalars p N) : ℤ) = p - legendreSym p N := by
+  have hp2 : p ≠ 2 := by omega
+  have hneg : legendreSym p (-N) = legendreSym p N := by
+    rw [show -N = (-1) * N by ring, legendreSym.mul, legendreSym.at_neg_one hp2, ZMod.χ₄_nat_one_mod_four hp4, one_mul]
+  have hNn : ((-N : ℤ) : ZMod p) ≠ 0 := by push_cast; exact neg_ne_zero.mpr hN
+  by_cases hs : IsSquare (-(N : ZMod p))
+  · obtain ⟨r, hr⟩ := hs
+    have hr0 : r ≠ 0 := by rintro rfl; exact hN (neg_eq_zero.mp (hr.trans (mul_zero 0)))
+    obtain ⟨hc, hcard⟩ := axis_split p hp2 (N : ZMod p) r hr.symm hr0
+    refine ⟨hc, ?_⟩
+    have h1 : legendreSym p (-N) = 1 := (legendreSym.eq_one_iff p hNn).mpr (by push_cast; exact ⟨r, hr⟩)
+    rw [hcard, ← hneg, h1]
+    have := (Fact.out : p.Prime).two_le
+    omega
+  · have : Fact (¬ IsSquare (-(N : ZMod p))) := ⟨hs⟩
+    obtain ⟨hc, hcard⟩ := axis_field p (N : ZMod p)
+    refine ⟨hc, ?_⟩
+    have h1 : legendreSym p (-N) = -1 := (legendreSym.eq_neg_one_iff p).mpr (by push_cast; exact hs)
+    rw [hcard, ← hneg, h1]
+    push_cast; ring
+
+/-- The window pairs `(a, t)`, `|a|, |t| ≤ H`, not both zero. -/
+def winPairs (H : ℕ) : Finset (ℤ × ℤ) := ((Finset.Icc (-(H : ℤ)) H) ×ˢ (Finset.Icc (-(H : ℤ)) H)).erase 0
+
+/-- One pair of each sign class `±(a, t)`: `t > 0`, or `t = 0` and `a > 0`. -/
+def halfPairs (H : ℕ) : Finset (ℤ × ℤ) :=
+  ((Finset.Icc (-(H : ℤ)) H) ×ˢ (Finset.Icc (1 : ℤ) H)) ∪ ((Finset.Icc (1 : ℤ) H) ×ˢ {0})
+
+theorem card_halfPairs (H : ℕ) : (halfPairs H).card = 2 * H * H + 2 * H := by
+  unfold halfPairs
+  rw [Finset.card_union_of_disjoint]
+  · simp only [Finset.card_product, Int.card_Icc, Finset.card_singleton]
+    have h1 : ((H : ℤ) + 1 - -(H : ℤ)).toNat = 2 * H + 1 := by omega
+    have h2 : ((H : ℤ) + 1 - 1).toNat = H := by omega
+    rw [h1, h2]; ring
+  · rw [Finset.disjoint_left]
+    rintro ⟨a, t⟩ h1 h2
+    simp only [Finset.mem_product, Finset.mem_Icc, Finset.mem_singleton] at h1 h2
+    omega
+
+/-- 1:E7, the window count: a map of the window pairs that takes `x` and `−x` to the same value (the rotation
+`ρ_{a + t v₀}`: `ρ_{−q} = ρ_q`) takes at most `2H² + 2H` values. -/
+theorem card_image_le_of_neg {β : Type*} [DecidableEq β] (H : ℕ) (f : ℤ × ℤ → β) (hf : ∀ x, f (-x) = f x) :
+    ((winPairs H).image f).card ≤ 2 * H * H + 2 * H := by
+  rw [← card_halfPairs H]
+  refine le_trans (Finset.card_le_card (t := (halfPairs H).image f) ?_) Finset.card_image_le
+  intro y hy
+  simp only [Finset.mem_image, winPairs, Finset.mem_erase, Finset.mem_product, Finset.mem_Icc] at hy ⊢
+  obtain ⟨⟨a, t⟩, ⟨hne, ⟨ha1, ha2⟩, ⟨ht1, ht2⟩⟩, rfl⟩ := hy
+  by_cases hpos : 0 < t ∨ (t = 0 ∧ 0 < a)
+  · refine ⟨(a, t), ?_, rfl⟩
+    simp only [halfPairs, Finset.mem_union, Finset.mem_product, Finset.mem_Icc, Finset.mem_singleton]
+    omega
+  · refine ⟨(-a, -t), ?_, ?_⟩
+    · have hne' : (a, t) ≠ (0, 0) := hne
+      simp only [halfPairs, Finset.mem_union, Finset.mem_product, Finset.mem_Icc, Finset.mem_singleton]
+      have : ¬ (a = 0 ∧ t = 0) := fun h => hne' (by rw [h.1, h.2])
+      omega
+    · exact hf (a, t)
+
+section heights
+
+open Quaternion
+
+/-- 1:E8, the height law: a window quaternion `q` (integer coordinates of size at most `H`) has every coordinate
+of `q^m` of size at most `(2H)^m` — the norm is multiplicative and at most `4H²` on the window. -/
+theorem quat_pow_height (H : ℤ) (q : ℍ[ℤ]) (hr : |q.re| ≤ H) (hi : |q.imI| ≤ H) (hj : |q.imJ| ≤ H) (hk : |q.imK| ≤ H) (m : ℕ) :
+    |(q ^ m).re| ≤ (2 * H) ^ m ∧ |(q ^ m).imI| ≤ (2 * H) ^ m ∧ |(q ^ m).imJ| ≤ (2 * H) ^ m ∧ |(q ^ m).imK| ≤ (2 * H) ^ m := by
+  have hH : 0 ≤ H := le_trans (abs_nonneg _) hr
+  have hn : normSq q ≤ (2 * H) ^ 2 := by
+    rw [normSq_def']
+    have h1 := sq_le_sq' (abs_le.mp hr).1 (abs_le.mp hr).2
+    have h2 := sq_le_sq' (abs_le.mp hi).1 (abs_le.mp hi).2
+    have h3 := sq_le_sq' (abs_le.mp hj).1 (abs_le.mp hj).2
+    have h4 := sq_le_sq' (abs_le.mp hk).1 (abs_le.mp hk).2
+    nlinarith
+  have hpow : normSq (q ^ m) ≤ ((2 * H) ^ m) ^ 2 := by
+    rw [map_pow, ← pow_mul, mul_comm m 2, pow_mul]
+    exact pow_le_pow_left₀ (normSq_nonneg) hn m
+  have hb : 0 ≤ (2 * H) ^ m := pow_nonneg (by linarith) m
+  have key : ∀ c : ℤ, c ^ 2 ≤ normSq (q ^ m) → |c| ≤ (2 * H) ^ m := fun c hc =>
+    abs_le_of_sq_le_sq' (le_trans hc hpow) hb |> fun h => abs_le.mpr h
+  rw [normSq_def'] at hpow
+  refine ⟨key _ ?_, key _ ?_, key _ ?_, key _ ?_⟩ <;> rw [normSq_def'] <;> nlinarith [sq_nonneg (q ^ m).re, sq_nonneg (q ^ m).imI, sq_nonneg (q ^ m).imJ, sq_nonneg (q ^ m).imK]
+
+/-- 1:E8, read-back (the window law D2 coordinate by coordinate): an integer `c` is the signed reading of its residue
+on the shell `p` (odd) exactly when `2|c| < p`. -/
+theorem readback_iff (p : ℕ) [Fact p.Prime] (hp : p ≠ 2) (c : ℤ) : ((c : ZMod p).valMinAbs = c) ↔ 2 * |c| < p := by
+  rw [ZMod.valMinAbs_spec]
+  have hodd : (p : ℤ) % 2 = 1 := by
+    have := (Fact.out : p.Prime).eq_one_or_self_of_dvd 2
+    omega
+  constructor
+  · rintro ⟨_, h1, h2⟩
+    rcases abs_cases c with ⟨h, _⟩ | ⟨h, _⟩ <;> rw [h] <;> omega
+  · intro h
+    refine ⟨rfl, ?_, ?_⟩ <;> rcases abs_cases c with ⟨h', _⟩ | ⟨h', _⟩ <;> rw [h'] at h <;> omega
+
+end heights
+
+end lie
+
 -- Ledger predicates of 1-algebra (generated by make_predicates.py from docs/1-algebra/1-algebra-ledger.json; edit the ledger, not this section)
 /-- 1:B2 (p01004) — Symmetry completeness (Thm.~\ref{thm:symmetric-completeness}): the fourth roots of unity form the unique order-four subgroup $Q_4=\{1,\im,-1,-\im\}$; under the Klein four-group $\langle x\mapsto-x,\,x\mapsto x^{-1}\rangle$, $Q_4$ is the union of the two size-two orbits $\{\pm1\}$, $\{\pm\im\}$, and $\Fpx\setminus Q_4$ splits into exactly $\kap-1$ orbits of size four. For $\p\equiv3\pmod4$ no $\im$ exists. -/
 theorem p01004 : (∀ {F : Type u_1} [Field F] [Fintype F] (κ : ℕ), Fintype.card F = (4 : ℕ) * κ + (1 : ℕ) → ∃ u, u ^ (2 : ℕ) = (-1 : F)) ∧ (∀ {F : Type u_2} [Field F], (2 : F) ≠ (0 : F) → ∀ (x : F), x ≠ (0 : F) → x ^ (2 : ℕ) ≠ (1 : F) → x ^ (2 : ℕ) ≠ (-1 : F) → x ≠ -x ∧ x ≠ x⁻¹ ∧ x ≠ -x⁻¹ ∧ -x ≠ x⁻¹ ∧ -x ≠ -x⁻¹ ∧ x⁻¹ ≠ -x⁻¹) ∧ ∀ {F : Type u_3} [Field F] [Fintype F] (κ : ℕ), Fintype.card F = (4 : ℕ) * κ + (1 : ℕ) → Nat.card ↥(rootsOfUnity (4 : ℕ) F) = (4 : ℕ) :=
@@ -2103,6 +2333,12 @@ theorem p01026 : ∀ (p : ℕ) [hp : Fact (Nat.Prime p)] (f : Polynomial (ZMod p
 /-- 1:E4 (p01028) — Continuous symmetry, the abelian case (third clause): $\Fpx\simeq C_{\p-1}\simeq SO(2,\Fp)$ (6:E2) is a $\pi/(\p-1)$-net of $U(1)$ under $k\mapsto e^{2\pi\im k/(\p-1)}$; the rounding $k(\theta)=\lfloor(\p-1)\theta/2\pi+\tfrac12\rfloor$ has angle and chord error $\le\pi/(\p-1)$ and group-law defect at most one step. -/
 theorem p01028 : (∀ (N : ℕ), (0 : ℕ) < N → ∀ (θ : ℝ), |θ - (2 : ℝ) * Real.pi * ↑(round (↑N * θ / ((2 : ℝ) * Real.pi))) / ↑N| ≤ Real.pi / ↑N) ∧ ∀ (N : ℕ) (θ₁ θ₂ : ℝ), |round (↑N * θ₁ / ((2 : ℝ) * Real.pi)) + round (↑N * θ₂ / ((2 : ℝ) * Real.pi)) - round (↑N * (θ₁ + θ₂) / ((2 : ℝ) * Real.pi))| ≤ (1 : ℤ) :=
   And.intro @FRC.Algebra.circle_net (@FRC.Algebra.group_law_defect)
+/-- 1:E7 (p01032) — The Lie-algebra layer, one axis: on a shell $\p>8H^{2}$, for $q=a+v\in W_H^{4}$ with $v\ne0$, the rotation $\rho_q\colon x\mapsto qxq^{-1}$ is the Cayley step (8:C3) of the self-adjoint $\eta S_v$ (E2's $\eta$, $S_vx=v\times x$, $N(v)=v\cdot v$) at $\alpha=\eta/(\nu a)$, and the half-turn $U_\infty=I+2N(v)^{-1}S_v^{2}$ at $a=0$. With $U_\infty$ these steps form a cyclic group of order $\p-\bigl(\tfrac{N(v)}{\p}\bigr)$ containing every iterate; at most $2H^{2}+2H$ of its elements are window rotations. -/
+theorem p01032 : (∀ (p : ℕ) [Fact (Nat.Prime p)], p % (4 : ℕ) = (1 : ℕ) → ∀ (N : ℤ), ↑N ≠ (0 : ZMod p) → IsCyclic ((FRC.Algebra.AxisAlg p ↑N)ˣ ⧸ FRC.Algebra.scalars p ↑N) ∧ ↑(Nat.card ((FRC.Algebra.AxisAlg p ↑N)ˣ ⧸ FRC.Algebra.scalars p ↑N)) = ↑p - legendreSym p N) ∧ ∀ {β : Type u_1} [DecidableEq β] (H : ℕ) (f : ℤ × ℤ → β), (∀ (x : ℤ × ℤ), f (-x) = f x) → (Finset.image f (FRC.Algebra.winPairs H)).card ≤ (2 : ℕ) * H * H + (2 : ℕ) * H :=
+  And.intro @FRC.Algebra.axis_group (@FRC.Algebra.card_image_le_of_neg)
+set_option linter.defProp false in
+/-- 1:E8 (p01033) — The Lie-algebra layer, two axes and range: for pure quaternions $u,w$ with $1+N(u)$, $1+N(w)$ and $1-u\cdot w$ nonzero, $\rho_{1+u}\rho_{1+w}=\rho_{1+u\circ w}$ with $u\circ w=(u+w+u\times w)/(1-u\cdot w)$, the bracket being $[u,w]=2u\times w$; at $u\cdot w=1$ the product is the half-turn about $u+w+u\times w$. The entries of $q^{m}$, $q\in W_H^{4}$, are at most $(2H)^{m}$, and $q^{m}$ reads back from the shell iff $2\|q^{m}\|_\infty<\p$ (D2). -/
+def p01033 := And.intro @FRC.Algebra.quat_pow_height (@FRC.Algebra.readback_iff)
 /-- 1:Z1 (p01020) — No element of additive order two (Thm.~\ref{thm:no-south-pole}): $2s=0$ forces $s=0$; the antipode of the origin on the additive cycle is not a residue; it sits between $2\kap=(\p-1)/2$ and $2\kap+1=(\p+1)/2=2^{-1}$ (20-rh B8). -/
 theorem p01020 : ∀ {F : Type u_1} [Field F], (2 : F) ≠ (0 : F) → ∀ (s : F), (2 : F) * s = (0 : F) → s = (0 : F) :=
   @FRC.Algebra.no_south_pole
@@ -2121,4 +2357,6 @@ end FRC.Algebra
 #print axioms FRC.Algebra.p01019
 #print axioms FRC.Algebra.p01026
 #print axioms FRC.Algebra.p01028
+#print axioms FRC.Algebra.p01032
+#print axioms FRC.Algebra.p01033
 #print axioms FRC.Algebra.p01020

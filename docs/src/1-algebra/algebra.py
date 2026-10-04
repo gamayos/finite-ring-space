@@ -4,7 +4,7 @@ doi 10.3390/axioms14080636), the paper 1-algebra of the FRC corpus (finite-ring-
 predicate ledger (Appendix A, 16 September 2026; one script since 24 September 2026, the three block scripts merged).
 ========================================================================================================================
 
-One script, three blocks, sixteen checks, standard library only. Each check names the predicate(s) of the paper's ledger
+One script, three blocks, eighteen checks, standard library only. Each check names the predicate(s) of the paper's ledger
 it witnesses (LEDGER below; predicates cited as 1:XN) under a `# 1:XN (<key>)` marker, and the ledger's source column
 links the marker in return (finitering.space/src/1-algebra/#<key>). The paper \\label(s) a check decides are
 in the block banners. Eight master-ledger predicates of the corpus cite this paper (00:A8, B1, B8, B11, C9, C10, C25, D13); the
@@ -16,7 +16,7 @@ predicates of the paper ledger that the master carries are listed in the site ge
 
 Blocks:  A  the shell, its frame and the orbital complex          EXACT          (1:B2–B4, C2, C4)
          B  the framed numbers, the charts and the horizon         EXACT / CHART  (1:D2, D4, D6, E2, Z1; B6 decides no predicate)
-         C  the conjecture of the conclusion, clause by clause     EXACT / CHART  (1:E3, D7, E4–E6)
+         C  the conjecture of the conclusion, clause by clause     EXACT / CHART  (1:E3, D7, E4–E8)
 
 Everything the blocks share:
   * the shell datum: p = 4κ+1 prime, the primitive roots of F_p, the oriented quarter-turn i = −g^κ;
@@ -44,7 +44,7 @@ RESULTS = []
 LEDGER = {
     "A1": "1:B2", "A2": "1:B3", "A3": "1:B4", "A4": "1:C2", "A5": "1:C4",
     "B1": "1:D2", "B2": "1:D4", "B3": "1:D6", "B4": "1:E2", "B5": "1:Z1", "B6": "",          # B6 (the Euclidean step count) decides no predicate of the ledger
-    "C1": "1:E3", "C2": "1:D7", "C3": "1:E4", "C4": "1:E5", "C5": "1:E6",
+    "C1": "1:E3", "C2": "1:D7", "C3": "1:E4", "C4": "1:E5", "C5": "1:E6", "C6": "1:E7", "C7": "1:E8",
 }
 
 BLOCK = {"A": "the shell, its frame and the orbital complex",             # check-id prefix -> the block (the function block_<letter> below)
@@ -56,7 +56,7 @@ BLOCK = {"A": "the shell, its frame and the orbital complex",             # chec
 PREDICATES = {
     "1:B2": "A1", "1:B3": "A2", "1:B4": "A3", "1:C2": "A4", "1:C4": "A5",
     "1:D2": "B1", "1:D4": "B2", "1:E2": "B4", "1:Z1": "B5",                       # D6: B3 witnesses it in LEDGER but carries no marker (as before the merge)
-    "1:E3": "C1", "1:D7": "C2", "1:E4": "C3", "1:E5": "C4", "1:E6": "C5",
+    "1:E3": "C1", "1:D7": "C2", "1:E4": "C3", "1:E5": "C4", "1:E6": "C5", "1:E7": "C6", "1:E8": "C7",
 }
 _RAN = set()                                            # blocks already run in this session (predicate() runs each once)
 
@@ -381,7 +381,7 @@ def block_B():
 # ------------------------------------------------------------------------------------------------------------
 # block C: the conjecture of the conclusion, clause by clause (EXACT; C2–C4 CHART)
 # The conclusion conjectures that the finite substrate supports polynomial equation solving, limit-like
-# approximation and ε-approximation of continuous symmetries.  Predicates 1:E3, D7 and E4–E6 decide it:
+# approximation and ε-approximation of continuous symmetries.  Predicates 1:E3, D7 and E4–E8 decide it:
 #
 #   C1  (1:E3)  solving: f ∈ F_p[X] has a root in F_p iff gcd(f, X^p − X) ≠ 1, and deg gcd = the number of
 #               distinct roots — every monic polynomial of degree ≤ 3 over F_13 (2197) and F_17 (4913), by
@@ -403,6 +403,13 @@ def block_B():
 #               the shell p = 73 the window H = 3 out-resolves every finite subgroup; products of window quaternions
 #               have entries in W_{4H²} and read back exactly from the shell when 8H² < p (20000 random pairs on
 #               F_73, H = 3)                                              [chart; the read-back is exact]
+#   C6  (1:E7)  the Lie-algebra layer, one axis: every window rotation ρ_q, q = a + v, equals (aI − S_v)⁻¹(aI + S_v) — the
+#               Cayley step of ηS_v at α = η/(νa), computed in F_p[η] — and I + 2N(v)⁻¹S_v² at a = 0; on every axis the
+#               steps, the identity and the half-turn are the powers of one element of order p − (N(v)|p), every
+#               iterate stays among them, and at most 2H² + 2H are window rotations (p = 13, 17, 37, 73, 101) [exact]
+#   C7  (1:E8)  two axes and range: ρ_(1+u)ρ_(1+w) = ρ_(1+u∘w), u∘w = (u + w + u×w)/(1 − u·w); the half-turn about
+#               u + w + u×w at u·w = 1; uw − wu = 2u×w (F_13, F_29, F_73, F_233); the entries of q^m are at most (2H)^m and
+#               q^m reads back from the shell iff 2‖q^m‖∞ < p (H ≤ 3, m ≤ 6; p = 13, 101, 1009)                   [exact]
 
 # ---------------------------------------------------------------- polynomial arithmetic over F_p (lists, low degree first)
 def p_trim(a):
@@ -583,6 +590,140 @@ def block_C():
     # 1:E6 (p01030)
     check("C5", "the normalised window quaternions W_H⁴ are a 2·arcsin(1/H)-net of SO(3) (H = 1, 2, 3), 38.9° < ε₀ at H = 3; their products read back exactly from the shell when 8H² < p",
           ok, "; ".join(det), kind="CHART")
+
+    # ---------------------------------------------------------------------------------------------------- the Lie-algebra layer
+    # Quaternion rotations over F_p as 3×3 matrices: ρ_q(x) = q x q̄ / N(q) on pure x, S_v x = v × x, N(v) = v·v.
+    def qm(x, y):
+        a1, b1, c1, d1 = x; a2, b2, c2, d2 = y
+        return (a1*a2 - b1*b2 - c1*c2 - d1*d2, a1*b2 + b1*a2 + c1*d2 - d1*c2, a1*c2 - b1*d2 + c1*a2 + d1*b2, a1*d2 + b1*c2 - c1*b2 + d1*a2)
+    def mm(A, B, p): return tuple(tuple(sum(A[i][k] * B[k][j] for k in range(3)) % p for j in range(3)) for i in range(3))
+    def minv(A, p):
+        (a, b, c), (d, e, f), (g, h, i) = A
+        det = (a*(e*i - f*h) - b*(d*i - f*g) + c*(d*h - e*g)) % p
+        if det == 0: return None
+        di = pow(det, -1, p)
+        adj = ((e*i - f*h, c*h - b*i, b*f - c*e), (f*g - d*i, a*i - c*g, c*d - a*f), (d*h - e*g, b*g - a*h, a*e - b*d))
+        return tuple(tuple((x * di) % p for x in r) for r in adj)
+    I3 = ((1, 0, 0), (0, 1, 0), (0, 0, 1))
+    def rho(q, p):
+        n = sum(c * c for c in q) % p; ni = pow(n, -1, p); cols = []
+        for e in ((0, 1, 0, 0), (0, 0, 1, 0), (0, 0, 0, 1)):
+            r = qm(qm(q, e), (q[0], -q[1], -q[2], -q[3])); cols.append([(c * ni) % p for c in r[1:]])
+        return tuple(tuple(cols[j][i] for j in range(3)) for i in range(3))
+    def Smat(v, p): x, y, z = v; return tuple(tuple(c % p for c in r) for r in ((0, -z, y), (z, 0, -x), (-y, x, 0)))
+    def cayley(a, v, p):
+        S = Smat(v, p); M = minv(tuple(tuple((a * I3[i][j] - S[i][j]) % p for j in range(3)) for i in range(3)), p)
+        return None if M is None else mm(M, tuple(tuple((a * I3[i][j] + S[i][j]) % p for j in range(3)) for i in range(3)), p)
+    def halfturn(v, p):
+        S = Smat(v, p); S2 = mm(S, S, p); ni = pow(sum(c * c for c in v) % p, -1, p)
+        return tuple(tuple((I3[i][j] + 2 * ni * S2[i][j]) % p for j in range(3)) for i in range(3))
+    def legendre(n, p):
+        n %= p
+        return 0 if n == 0 else (1 if pow(n, (p - 1) // 2, p) == 1 else -1)
+    def nonsquare(p): return next(x for x in range(2, p) if legendre(x, p) == -1)
+    def eta_cayley_ok(a, v, p):
+        # 8:C3 in F_p[η], η² = ν: α = η/(νa), H = ηS_v, so αH = (η²/(νa)) S_v; its η-part vanishes and its F_p-part is S_v/a
+        nu = nonsquare(p); inv = lambda x: pow(x % p, -1, p)
+        alpha = (0, inv(nu * a))                                  # 0 + (1/(νa)) η
+        S = Smat(v, p)
+        for i in range(3):
+            for j in range(3):
+                h = (0, S[i][j])                                  # η S_ij
+                prod = ((alpha[0] * h[0] + nu * alpha[1] * h[1]) % p, (alpha[0] * h[1] + alpha[1] * h[0]) % p)
+                if prod != ((S[i][j] * inv(a)) % p, 0): return False
+        return True
+    def primitive(v):
+        g = 0
+        for c in v: g = math.gcd(g, abs(c))
+        v = tuple(c // g for c in v)
+        for c in v:                                               # sign: first nonzero coordinate positive
+            if c: return v if c > 0 else tuple(-x for x in v)
+    def group_order(M, p):
+        k, X = 1, M
+        while X != I3: X = mm(X, M, p); k += 1
+        return k
+
+    ok, det = True, []
+    n_rot = n_axes = 0
+    for p, H in ((13, 1), (17, 1), (37, 2), (73, 3), (101, 3)):
+        assert p > 8 * H * H
+        window = [q for q in itertools.product(range(-H, H + 1), repeat=4) if any(q[1:])]
+        axes = {}
+        for q in window:
+            a, v = q[0], q[1:]
+            R = rho(q, p); n_rot += 1
+            ok &= R == (cayley(a % p, v, p) if a % p else halfturn(v, p))
+            if a % p: ok &= eta_cayley_ok(a % p, v, p)
+            axes.setdefault(primitive(v), set()).add(R)
+        for v0, rots in axes.items():
+            n_axes += 1
+            N = sum(c * c for c in v0) % p
+            G = {I3, halfturn(v0, p)} | {C for C in (cayley(a, v0, p) for a in range(1, p)) if C is not None}
+            order = p - legendre(N, p)
+            ok &= len(G) == order                                                         # the order p − (N(v)|p)
+            gen = next((M for M in G if group_order(M, p) == order), None)                # cyclic: an element of full order
+            powers, X = {I3}, gen
+            while gen is not None and X != I3: powers.add(X); X = mm(X, gen, p)
+            ok &= gen is not None and powers == G                                         # whose powers are exactly the set
+            for R in rots:                                                                # every iterate of a window rotation stays in it
+                X = R
+                for _ in range(order): ok &= X in G; X = mm(X, R, p)
+            ok &= len(rots) <= 2 * H * H + 2 * H                                         # at most 2H² + 2H window rotations
+    det.append(f"{n_rot} window rotations on the shells 13, 17, 37, 73, 101 (8H² < p): ρ_q = (aI − S_v)⁻¹(aI + S_v) = the Cayley step of ηS_v at α = η/(νa), and I + 2N(v)⁻¹S_v² at a = 0")
+    det.append(f"{n_axes} axes: the steps, the identity and the half-turn form a cyclic group of order p − (N(v)|p) holding every iterate; at most 2H² + 2H window rotations per axis")
+    # 1:E7 (p01032)
+    check("C6", "ρ_q = (aI − S_v)⁻¹(aI + S_v), the Cayley step of ηS_v at α = η/(νa), and the half-turn I + 2N(v)⁻¹S_v² at a = 0; with it the steps form a cyclic group of order p − (N(v)|p) holding every iterate; ≤ 2H² + 2H window rotations per axis",
+          ok, "; ".join(det))
+
+    ok, det = True, []
+    rnd = random.Random(20261004)
+    def cross(u, w): return (u[1]*w[2] - u[2]*w[1], u[2]*w[0] - u[0]*w[2], u[0]*w[1] - u[1]*w[0])
+    def dot(u, w): return sum(x * y for x, y in zip(u, w))
+    n_comp = n_half = n_br = 0
+    for p in (13, 29, 73, 233):
+        inv = lambda x: pow(x % p, -1, p)
+        tries = 0
+        while n_comp < 4000 * (1 + (13, 29, 73, 233).index(p)) and tries < 100000:
+            tries += 1
+            u = tuple(rnd.randrange(p) for _ in range(3)); w = tuple(rnd.randrange(p) for _ in range(3))
+            uw = dot(u, w) % p
+            if (1 + dot(u, u)) % p == 0 or (1 + dot(w, w)) % p == 0: continue
+            s = (1 - uw) % p
+            m = tuple((u[i] + w[i] + cross(u, w)[i]) % p for i in range(3))
+            lhs = mm(rho((1,) + u, p), rho((1,) + w, p), p)
+            if s:
+                c = tuple((x * inv(s)) % p for x in m)
+                if (1 + dot(c, c)) % p == 0: continue
+                ok &= lhs == rho((1,) + c, p); n_comp += 1
+            elif any(m) and dot(m, m) % p:
+                ok &= lhs == halfturn(m, p); n_half += 1
+            br = tuple((x - y) % p for x, y in zip(qm((0,) + u, (0,) + w), qm((0,) + w, (0,) + u)))
+            ok &= br == (0,) + tuple((2 * x) % p for x in cross(u, w)); n_br += 1
+        # the half-turn case on purpose: w chosen with u·w = 1
+        for _ in range(300):
+            u = tuple(rnd.randrange(p) for _ in range(3))
+            if not u[0] % p: continue
+            w1, w2 = rnd.randrange(p), rnd.randrange(p)
+            w = (((1 - u[1] * w1 - u[2] * w2) * inv(u[0])) % p, w1, w2)
+            m = tuple((u[i] + w[i] + cross(u, w)[i]) % p for i in range(3))
+            if (1 + dot(u, u)) % p == 0 or (1 + dot(w, w)) % p == 0 or not any(m) or dot(m, m) % p == 0: continue
+            ok &= mm(rho((1,) + u, p), rho((1,) + w, p), p) == halfturn(m, p); n_half += 1
+    det.append(f"composition ρ_(1+u)ρ_(1+w) = ρ_(1+u∘w): {n_comp} pairs; the half-turn at u·w = 1: {n_half}; [u,w] = 2u×w: {n_br} (F_13, F_29, F_73, F_233)")
+    n_pow = n_rb = 0
+    for H in (1, 2, 3):
+        for q in itertools.product(range(-H, H + 1), repeat=4):
+            if not any(q): continue
+            r = (1, 0, 0, 0)
+            for m_ in range(1, 7):
+                r = qm(r, q); n_pow += 1
+                ok &= max(map(abs, r)) <= (2 * H) ** m_
+                for p in (13, 101, 1009):
+                    reads = all(((c % p) - p if (c % p) > (p - 1) // 2 else (c % p)) == c for c in r)
+                    ok &= reads == (2 * max(map(abs, r)) < p); n_rb += 1
+    det.append(f"heights: {n_pow} powers q^m (H ≤ 3, m ≤ 6) with entries ≤ (2H)^m; read-back iff 2‖q^m‖∞ < p: {n_rb} cases on F_13, F_101, F_1009")
+    # 1:E8 (p01033)
+    check("C7", "ρ_(1+u)ρ_(1+w) = ρ_(1+u∘w), u∘w = (u+w+u×w)/(1−u·w); at u·w = 1 the half-turn about u+w+u×w; [u,w] = 2u×w; entries of q^m ≤ (2H)^m, read back iff 2‖q^m‖∞ < p",
+          ok, "; ".join(det))
 
 if __name__ == "__main__":
     import time

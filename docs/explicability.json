@@ -1,5 +1,5 @@
 {
- "generated": "3 October 2026",
+ "generated": "4 October 2026",
  "rows": [
   {
    "id": "10:X1",
@@ -74,7 +74,9 @@
    "tag": "T",
    "predicate": "\\textbf{The congruence $\\dS$ even} acquires a second physical face: it is the existence of the octant sector, hence the well-definedness of the measured age --- a structure of the Carrier's cycle lattice, certified by realisation and read as an observational condition, never an arithmetic property of the numeral.",
    "source": "Lem.~\\ref{lem:octant}(iv)\\newline \\leanwit{FrcCore}{p14031}{X4}, \\leanwit{FrcLedger}{p14031}{X4} \\lean{Entropy.octant\\_second\\_face, Entropy.octant\\_sector\\_iff, FRC.Entropy.two\\_is\\_square\\_iff}",
-   "master": [],
+   "master": [
+    "C16"
+   ],
    "restated": [],
    "witnessed": false,
    "page": "14-entropy/index.html"
@@ -126,9 +128,7 @@
    "tag": "T",
    "predicate": "\\textbf{The interior completions weighed}: black-hole cosmology keeps the same saturation identity by consuming a parent exterior and a singularity-replacing mechanism (torsion; exclusion pressure); the finite reading consumes neither: the containment argument (A3) closes the chart at $\\Om$, and no singularity is available over a finite totality. The registered record-depth bound separates the completions empirically (P2).",
    "source": "\\S\\ref{sec:wedge}, \\citep{pathria1972,poplawski2016,gaztanaga2025}",
-   "master": [
-    "L6"
-   ],
+   "master": [],
    "restated": [],
    "witnessed": false,
    "page": "14-entropy/index.html"
@@ -172,7 +172,9 @@
    "tag": "T|R",
    "predicate": "\\textbf{No horizons, no singularities, no information loss.} Collapse ends in a horizonless body, operationally black at $r_f$ (C12), with an exact saturating interior profile --- and information conservation is a theorem citation, not an absence claim: interior data live in offset sectors the drive confines exactly \\citep{quantum}: the theory never forfeits predictivity.",
    "source": "Prop.~\\ref{prop:operational},~\\ref{prop:exactprofile}",
-   "master": [],
+   "master": [
+    "D15"
+   ],
    "restated": [],
    "witnessed": false,
    "page": "21-gravity/index.html"
@@ -447,7 +449,9 @@
    "tag": "T",
    "predicate": "\\textbf{One complete generation} is the spinor $\\mathbf{16}$ of the rank-five internal frame, so its hypercharges, charges, and anomaly freedom follow and a right-handed neutrino is present, with $\\SO(10)$ unification forced, rather than a hypercharge assignment whose anomaly cancellation is a coincidence; given B5, the anomaly cancellation is the imported $\\SO(10)$ fact (A4) evaluated on the realised content.",
    "source": "Thm.~\\ref{thm:gen}, Prop.~\\ref{prop:unify}; \\src{fld.\\allowbreak generation}, \\src{fld.p8}, \\src{fld.p8b}",
-   "master": [],
+   "master": [
+    "G12"
+   ],
    "restated": [],
    "witnessed": false,
    "page": "27-fields/index.html"
@@ -631,7 +635,9 @@
    "tag": "T",
    "predicate": "\\textbf{Newton's inverse-square law and the equivalence principle} follow from the discrete Gauss law of the synchronisation flux, the acceleration of a test cluster independent of its mass and composition.",
    "source": "Prop.~\\ref{prop:newton}; \\src{dark.\\allowbreak flux\\_\\allowbreak exact}",
-   "master": [],
+   "master": [
+    "E3"
+   ],
    "restated": [],
    "witnessed": false,
    "page": "32-dark/index.html"
@@ -934,8 +940,7 @@
    "predicate": "\\textbf{The shell is holographic}: a Subject's frame datum is one projective direction, one shell cell, one drive phase, and the bulk frame is that boundary datum with nothing left over (Theorem~\\ref{th:holography}; the realisation reading and its falsifier, Reading~\\ref{th:holography-reading}).",
    "source": "\\src{s13.\\allowbreak verify-hopf}, \\src{s13.\\allowbreak check\\_fibrations}",
    "master": [
-    "C22",
-    "D13"
+    "C22"
    ],
    "restated": [],
    "witnessed": false,

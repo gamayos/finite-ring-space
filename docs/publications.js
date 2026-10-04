@@ -58,20 +58,20 @@ const PUBLICATIONS = [
       {
         "href": "https://colab.research.google.com/github/gamayos/finite-ring-space/blob/main/src/1-algebra/frc-1-algebra.ipynb",
         "label": "python",
-        "count": 14,
-        "title": "14 predicates checked, all passing: the notebook frc-1-algebra.ipynb on Google Colab, one cell per predicate"
+        "count": 16,
+        "title": "16 predicates checked, all passing: the notebook frc-1-algebra.ipynb on Google Colab, one cell per predicate"
       },
       {
         "href": "https://live.lean-lang.org/#project=lean-v4.34.0&url=https://finitering.space/lean/web/core/Algebra.lean",
         "label": "lean",
-        "count": 11,
-        "title": "11 predicates proved in the core (no axioms), 9 of them also on Mathlib: the core module Algebra as one executable file (plain Lean, no Mathlib) in the Lean web editor"
+        "count": 13,
+        "title": "13 predicates proved in the core (no axioms), 11 of them also on Mathlib: the core module Algebra as one executable file (plain Lean, no Mathlib) in the Lean web editor"
       },
       {
         "href": "https://live.lean-lang.org/#project=mathlib-stable&url=https://finitering.space/lean/web/Algebra.lean",
         "label": "lean-mathlib",
-        "count": 11,
-        "title": "11 predicates proved on Mathlib (classical), 9 of them also in the core: the module Algebra as one file on Mathlib in the Lean web editor"
+        "count": 13,
+        "title": "13 predicates proved on Mathlib (classical), 11 of them also in the core: the module Algebra as one file on Mathlib in the Lean web editor"
       }
     ]
   },
@@ -479,8 +479,8 @@ const PUBLICATIONS = [
       {
         "href": "https://colab.research.google.com/github/gamayos/finite-ring-space/blob/main/src/25-godel/frc-25-godel.ipynb",
         "label": "python",
-        "count": 20,
-        "title": "20 predicates checked, all passing: the notebook frc-25-godel.ipynb on Google Colab, one cell per predicate"
+        "count": 24,
+        "title": "24 predicates checked, all passing: the notebook frc-25-godel.ipynb on Google Colab, one cell per predicate"
       },
       {
         "href": "https://live.lean-lang.org/#project=lean-v4.34.0&url=https://finitering.space/lean/web/core/Godel.lean",

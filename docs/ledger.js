@@ -67,7 +67,8 @@ function initLedger(root) {
   build(); render();
   if (location.hash) { var t = document.getElementById(location.hash.slice(1)); if (t) (t.closest("tr") || t).classList.add("target"); }   /* the label anchor is the row, the key anchor a cell of it */
   if (window.REGISTER_URL && /^#p\d{5}$/.test(location.hash) && !document.getElementById(location.hash.slice(1))) {   /* a key of another ledger: the register says whose, and the predicate opens on its page */
-    loadReg(function (d) { var k = location.hash.slice(1), hit = d.rows.filter(function (r) { return r.key === k; })[0]; if (hit) location.replace(hit.page); });
+    loadReg(function (d) { var k = location.hash.slice(1), hit = d.rows.filter(function (r) { return r.key === k; })[0]; if (hit) location.replace(hit.page);
+      else if ((d.superseded || []).some(function (s) { return s.key === k; })) location.replace("register.html#" + k); });   /* superseded (Q19) */
   }
 }
 if (typeof LEDGER_PREVIEW === "undefined") initLedger(document);
