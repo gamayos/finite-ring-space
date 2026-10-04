@@ -8,7 +8,7 @@ doi 10.3390/axioms14080636), `1-algebra` of the FRC corpus, added with the paper
 Every check names the predicate of the paper's predicate ledger it witnesses (Appendix A "Predicate ledger and machine verification", 27 predicates in blocks A–G, Y,
 cited as `1:XN`; public copy `docs/1-algebra/1-algebra-ledger.html`), and the ledger's source column links, for each
 machine-verified predicate, the script at the check that decides it (`algebra.py#<key>`) and the Lean module at the predicate's declaration
-(`lean/FrcCore/Algebra.lean` with no axioms — Y5's in `lean/FrcCore/Quaternion.lean` — or `lean/FrcLedger/Algebra.lean` on Mathlib);
+(`lean/FrcCore/Algebra.lean` with no axioms — E6's in `lean/FrcCore/Quaternion.lean` — or `lean/FrcLedger/Algebra.lean` on Mathlib);
 the check here is the instance the reader can run; the two witnesses decide the same statements at different generality.
 
 Run: `python3 algebra.py` (python ≥ 3.8, no third-party packages; ≈ 30 s; `results.json` written), or one block: `python3 algebra.py C`; installed, `python3 -m frc_1_algebra`.
@@ -26,11 +26,11 @@ Run: `python3 algebra.py` (python ≥ 3.8, no third-party packages; ≈ 30 s; `r
 | `B4` | B | EXACT | F_p[X]/(X²+1) has zero divisors on the shell; a field exactly when p ≡ 3 (mod 4) (exhaustive at 7, 11, 19, 23) | `1:E2` |
 | `B5` | B | EXACT | 2s = 0 ⇒ s = 0 for every odd prime < 200; 2⁻¹ = 2κ + 1 on the shell | `1:Z1` |
 | `B6` | B | EXACT | the Euclidean step count against ⌊log₂ p⌋+1: (55, 34) needs 7 > 6 at p = 59, (987, 610) needs 13 > 10 at p = 1009; F₄ = 3 < 4 | — (a check of the package, no ledger predicate) |
-| `C1` | C | EXACT | f ∈ F_p[X] has a root iff gcd(f, X^p − X) ≠ 1, and deg gcd = the number of distinct roots — every monic polynomial of degree ≤ 3 over F₁₃ and F₁₇ | `1:Y1` |
-| `C2` | C | CHART | for r ∈ {π, e, √2, 33/10, 1/3} and ε = 10⁻²..10⁻⁸ a shell p = 4κ+1 carries x/2ⁿ, \|x\| ≤ 2κ, within ε of r (exact rationals) | `1:Y2` |
-| `C3` | C | CHART | k(θ) = ⌊Nθ/2π + ½⌋, N = p−1: angle and chord error ≤ π/N, group-law defect ≤ 1, on every shell | `1:Y3` |
-| `C4` | C | CHART | covering radii in SO(3): tetrahedral π/2, octahedral arccos((2√2−1)/4) ≈ 62.8°, icosahedral ε₀ = arccos((3√5−1)/8) ≈ 44.48°, cyclic/dihedral ≥ π/2 — no finite subgroup is an ε-net for ε < ε₀ | `1:Y4` |
-| `C5` | C | CHART | the normalised window quaternions W_H⁴ are a 2·arcsin(1/H)-net of SO(3) (H = 1, 2, 3; measured 60.8°, 41.0°, 30.0°), 38.9° < ε₀ at H = 3; their products read back exactly from F₇₃ (8H² < p) | `1:Y5` |
+| `C1` | C | EXACT | f ∈ F_p[X] has a root iff gcd(f, X^p − X) ≠ 1, and deg gcd = the number of distinct roots — every monic polynomial of degree ≤ 3 over F₁₃ and F₁₇ | `1:E3` |
+| `C2` | C | CHART | for r ∈ {π, e, √2, 33/10, 1/3} and ε = 10⁻²..10⁻⁸ a shell p = 4κ+1 carries x/2ⁿ, \|x\| ≤ 2κ, within ε of r (exact rationals) | `1:D7` |
+| `C3` | C | CHART | k(θ) = ⌊Nθ/2π + ½⌋, N = p−1: angle and chord error ≤ π/N, group-law defect ≤ 1, on every shell | `1:E4` |
+| `C4` | C | CHART | covering radii in SO(3): tetrahedral π/2, octahedral arccos((2√2−1)/4) ≈ 62.8°, icosahedral ε₀ = arccos((3√5−1)/8) ≈ 44.48°, cyclic/dihedral ≥ π/2 — no finite subgroup is an ε-net for ε < ε₀ | `1:E5` |
+| `C5` | C | CHART | the normalised window quaternions W_H⁴ are a 2·arcsin(1/H)-net of SO(3) (H = 1, 2, 3; measured 60.8°, 41.0°, 30.0°), 38.9° < ε₀ at H = 3; their products read back exactly from F₇₃ (8H² < p) | `1:E6` |
 
 `results.json` carries one record per check (id, rows, block, script, kind, claim, PASS/FAIL, detail); the site generator
 reads it to colour the witnesses on the public ledger page.
@@ -46,6 +46,6 @@ states the predicate and runs `predicate("1:B2")`: the block of the check that d
 deciding check is `algebra.PREDICATES`, the block the letter of its id), that check is printed from the script's own source — the line under its
 `# 1:B2 (<key>)` marker — and every record citing the predicate is listed with its verdict. The markers in `algebra.py`
 are the lines the ledger page's source glyph opens (`docs/src/1-algebra/#<key>`). The predicates'
-Lean counterparts are the declarations named by their keys (`p01004`) at the end of `lean/FrcCore/Algebra.lean` (Y5's in
+Lean counterparts are the declarations named by their keys (`p01004`) at the end of `lean/FrcCore/Algebra.lean` (E6's in
 `lean/FrcCore/Quaternion.lean`, which imports Algebra) and `lean/FrcLedger/Algebra.lean` (`lean/make_predicates.py`), one per
 predicate, with the module as one executable file for the web editor (`lean/web/core/Algebra.lean`, `lean/web/Algebra.lean`).

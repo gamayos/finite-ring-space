@@ -2,7 +2,7 @@
  "paper": "2-geom",
  "title": "Geometry and Constants in Finite Ring Continuum",
  "doi": "https://doi.org/10.3390/sym18050751",
- "generated": "3 October 2026",
+ "generated": "4 October 2026",
  "blocks": [
   {
    "letter": "A",
@@ -31,9 +31,9 @@
     },
     {
      "label": "A4",
-     "predicate": "The framed-rational charts of 1-algebra: on one shell the scale grids $x/\\gen^{n}$, $|x|\\le2\\kap$, trade range for resolution (1:D5); across shells the tower resolves every real (1:Y2).",
+     "predicate": "The framed-rational charts of 1-algebra: on one shell the scale grids $x/\\gen^{n}$, $|x|\\le2\\kap$, trade range for resolution; across shells the tower resolves every real (1:D7).",
      "tag": "I",
-     "source": "1:D5; 1:Y2",
+     "source": "1:D7",
      "key": "p02004"
     }
    ]
@@ -195,9 +195,9 @@
     },
     {
      "label": "E4",
-     "predicate": "Finite precision across the tower [chart]: for every $L$-bounded observable family, $\\varepsilon>0$ and configuration on $(S^{2})^{r}$ some shell $\\p$ carries grid points within $\\varepsilon$ (1:Y2 with the path bound of E2); on one shell the precision is bounded by E3.",
+     "predicate": "Finite precision across the tower [chart]: for every $L$-bounded observable family, $\\varepsilon>0$ and configuration on $(S^{2})^{r}$ some shell $\\p$ carries grid points within $\\varepsilon$ (1:D7 with the path bound of E2); on one shell the precision is bounded by E3.",
      "tag": "T",
-     "source": "Thm.~\\ref{thm:operational-precision}; 1:Y2\\newline \\pywit{geometry}{p02024}{E4}",
+     "source": "Thm.~\\ref{thm:operational-precision}; 1:D7\\newline \\pywit{geometry}{p02024}{E4}",
      "key": "p02024"
     }
    ]
@@ -297,11 +297,27 @@
   "B2": [
    "C1"
   ],
-  "D3": [
-   "C5"
-  ],
   "D6": [
    "C14"
+  ],
+  "D3": [
+   "C7",
+   "C1"
+  ],
+  "B1": [
+   "C1"
+  ],
+  "C1": [
+   "B11"
+  ],
+  "D1": [
+   "C1"
+  ],
+  "D4": [
+   "C1"
+  ],
+  "A2": [
+   "C7"
   ]
  },
  "lean": {

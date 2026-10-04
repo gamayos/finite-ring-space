@@ -2,7 +2,7 @@
  "paper": "1-alg",
  "title": "Relativistic Algebra over Finite Ring Continuum",
  "doi": "https://doi.org/10.3390/axioms14080636",
- "generated": "3 October 2026",
+ "generated": "4 October 2026",
  "blocks": [
   {
    "letter": "A",
@@ -24,7 +24,7 @@
     },
     {
      "label": "A3",
-     "predicate": "The finite subgroups of $SO(3)$: cyclic, dihedral, tetrahedral ($12$), octahedral ($24$), icosahedral ($60$) --- Klein's classification; the binary icosahedral group as the $600$-cell's vertices. Imported for Y4.",
+     "predicate": "The finite subgroups of $SO(3)$: cyclic, dihedral, tetrahedral ($12$), octahedral ($24$), icosahedral ($60$) --- Klein's classification; the binary icosahedral group as the $600$-cell's vertices. Imported for E5.",
      "tag": "I",
      "source": "\\citep{klein1884ikosaeder,coxeter1973regular}",
      "key": "p01025"
@@ -144,12 +144,19 @@
      "tag": "D",
      "source": "Section~\\ref{sec:reals}; 00:B1",
      "key": "p01017"
+    },
+    {
+     "label": "D7",
+     "predicate": "Limit-like approximation (second clause), across the tower: for every real $r$ and $\\varepsilon>0$ some shell $\\p=4\\kap+1$ carries a framed rational $x/2^{n}$, $|x|\\le2\\kap$, within $\\varepsilon$ of $r$ (primes $\\equiv1\\pmod4$ beyond every bound). One shell trades range for resolution; the limit is the tower, not a completion.",
+     "tag": "T",
+     "source": "\\pywit{algebra}{p01027}{D7}, \\leanwit{FrcLedger}{p01027}{D7} \\lean{Algebra.tower\\_density}",
+     "key": "p01027"
     }
    ]
   },
   {
    "letter": "E",
-   "title": "The complex chart",
+   "title": "The complex chart, polynomial equations and continuous symmetry",
    "rows": [
     {
      "label": "E1",
@@ -164,54 +171,48 @@
      "tag": "T",
      "source": "\\pywit{algebra}{p01019}{E2}, \\leanwit{FrcCore}{p01019}{E2}, \\leanwit{FrcLedger}{p01019}{E2} \\lean{Algebra.complex\\_chart\\_zero\\_divisor, FRC.Shell.Frame.complex\\_chart\\_zero\\_divisor}",
      "key": "p01019"
-    }
-   ]
-  },
-  {
-   "letter": "Y",
-   "title": "Hypotheses",
-   "rows": [
+    },
     {
-     "label": "Y1",
+     "label": "E3",
      "predicate": "Solving in the substrate (first clause): $f\\in\\Fp[X]$ has a root in $\\Fp$ iff $f$ and $X^{\\p}-X=\\prod_{a}(X-a)$ are not coprime; the gcd counts the distinct roots and Cantor--Zassenhaus splitting finds them, exactly. An equation without a root in $\\Fp$ is recognised, not extended (E2).",
      "tag": "T",
-     "source": "\\pywit{algebra}{p01026}{Y1}, \\leanwit{FrcCore}{p01026}{Y1}, \\leanwit{FrcLedger}{p01026}{Y1} \\lean{Algebra.root\\_iff\\_not\\_coprime, FRC.Shell.Poly.Frame.root\\_iff\\_common\\_factor, FRC.Shell.Poly.Frame.root\\_bound, FRC.Shell.Frame.fermat}",
+     "source": "\\pywit{algebra}{p01026}{E3}, \\leanwit{FrcCore}{p01026}{E3}, \\leanwit{FrcLedger}{p01026}{E3} \\lean{Algebra.root\\_iff\\_not\\_coprime, FRC.Shell.Poly.Frame.root\\_iff\\_common\\_factor, FRC.Shell.Poly.Frame.root\\_bound, FRC.Shell.Frame.fermat}",
      "key": "p01026"
     },
     {
-     "label": "Y2",
-     "predicate": "Limit-like approximation (second clause), across the tower: for every real $r$ and $\\varepsilon>0$ some shell $\\p=4\\kap+1$ carries a framed rational $x/2^{n}$, $|x|\\le2\\kap$, within $\\varepsilon$ of $r$ (primes $\\equiv1\\pmod4$ beyond every bound). One shell resolves to D5's bound; the limit is the tower, not a completion.",
-     "tag": "T",
-     "source": "\\pywit{algebra}{p01027}{Y2}, \\leanwit{FrcLedger}{p01027}{Y2} \\lean{Algebra.tower\\_density}",
-     "key": "p01027"
-    },
-    {
-     "label": "Y3",
+     "label": "E4",
      "predicate": "Continuous symmetry, the abelian case (third clause): $\\Fpx\\simeq C_{\\p-1}\\simeq SO(2,\\Fp)$ (6:E2) is a $\\pi/(\\p-1)$-net of $U(1)$ under $k\\mapsto e^{2\\pi\\im k/(\\p-1)}$; the rounding $k(\\theta)=\\lfloor(\\p-1)\\theta/2\\pi+\\tfrac12\\rfloor$ has angle and chord error $\\le\\pi/(\\p-1)$ and group-law defect at most one step.",
      "tag": "T",
-     "source": "6:E2\\newline \\pywit{algebra}{p01028}{Y3}, \\leanwit{FrcLedger}{p01028}{Y3} \\lean{Algebra.circle\\_net, Algebra.group\\_law\\_defect}",
+     "source": "6:E2\\newline \\pywit{algebra}{p01028}{E4}, \\leanwit{FrcLedger}{p01028}{E4} \\lean{Algebra.circle\\_net, Algebra.group\\_law\\_defect}",
      "key": "p01028"
     },
     {
-     "label": "Y4",
-     "predicate": "Continuous symmetry, the non-abelian obstruction: no finite subgroup of $SO(3)$ is an $\\varepsilon$-net for $\\varepsilon<\\varepsilon_0=\\arccos\\big((3\\sqrt5-1)/8\\big)\\approx44.5^\\circ$, the covering radius of the icosahedral group (A3); the tetrahedral, cyclic and dihedral groups have radius $\\ge\\pi/2$, the octahedral $\\approx62.8^\\circ$. Finite subgroups cannot approximate $SO(3)$; the window does (Y5).",
+     "label": "E5",
+     "predicate": "Continuous symmetry, the non-abelian obstruction: no finite subgroup of $SO(3)$ is an $\\varepsilon$-net for $\\varepsilon<\\varepsilon_0=\\arccos\\big((3\\sqrt5-1)/8\\big)\\approx44.5^\\circ$, the covering radius of the icosahedral group (A3); the tetrahedral, cyclic and dihedral groups have radius $\\ge\\pi/2$, the octahedral $\\approx62.8^\\circ$. Finite subgroups cannot approximate $SO(3)$; the window does (E6).",
      "tag": "T",
-     "source": "A3\\newline \\pywit{algebra}{p01029}{Y4}",
+     "source": "A3\\newline \\pywit{algebra}{p01029}{E5}",
      "key": "p01029"
     },
     {
-     "label": "Y5",
+     "label": "E6",
      "predicate": "Continuous symmetry, the non-abelian case resolved by the window: the framed quaternions $W_H^{4}$, read in a shell $\\p>8H^{2}$, compose exactly (products land in $W_{4H^{2}}$); normalised, they are an $\\varepsilon$-net of $SO(3)$ with $\\varepsilon\\le2\\arcsin(1/H)$ (round $Hs$ to the lattice). At $H=3$, $\\p=73$: $38.9^\\circ<\\varepsilon_0$, finer than any finite subgroup; measured $30.0^\\circ$.",
      "tag": "T",
-     "source": "Section~\\ref{sec:conclusion}\\newline \\pywit{algebra}{p01030}{Y5}, \\leanwitin{FrcCore}{Quaternion}{p01030}{Y5} \\lean{FRC.Shell.Frame.quaternion\\_window, FRC.Shell.Frame.read\\_mul}",
+     "source": "Section~\\ref{sec:conclusion}\\newline \\pywit{algebra}{p01030}{E6}, \\leanwitin{FrcCore}{Quaternion}{p01030}{E6} \\lean{FRC.Shell.Frame.quaternion\\_window, FRC.Shell.Frame.read\\_mul}",
      "key": "p01030"
     },
     {
-     "label": "Y6",
-     "predicate": "The conjecture of the conclusion, what remains after Y1--Y5: the Lie-algebra layer --- one-parameter subgroups and their generators inside the window, where iterating a window rotation $m$ times consumes range as $H^{2m}$; whether the Cayley step of 8-dirac (8:C4) supplies exact one-parameter subgroups of the window net on every shell is open.",
-     "tag": "O",
-     "source": "Conclusions; 8:C4",
-     "key": "p01024"
+     "label": "E7",
+     "predicate": "The Lie-algebra layer, one axis: on a shell $\\p>8H^{2}$, for $q=a+v\\in W_H^{4}$ with $v\\ne0$, the rotation $\\rho_q\\colon x\\mapsto qxq^{-1}$ is the Cayley step (8:C3) of the self-adjoint $\\eta S_v$ (E2's $\\eta$, $S_vx=v\\times x$, $N(v)=v\\cdot v$) at $\\alpha=\\eta/(\\nu a)$, and the half-turn $U_\\infty=I+2N(v)^{-1}S_v^{2}$ at $a=0$. With $U_\\infty$ these steps form a cyclic group of order $\\p-\\bigl(\\tfrac{N(v)}{\\p}\\bigr)$ containing every iterate; at most $2H^{2}+2H$ of its elements are window rotations.",
+     "tag": "T",
+     "source": "Section~\\ref{sec:conclusion}; 8:C3, 8:C5",
+     "key": "p01032"
+    },
+    {
+     "label": "E8",
+     "predicate": "The Lie-algebra layer, two axes and range: for pure quaternions $u,w$ with $1+N(u)$, $1+N(w)$ and $1-u\\cdot w$ nonzero, $\\rho_{1+u}\\rho_{1+w}=\\rho_{1+u\\circ w}$ with $u\\circ w=(u+w+u\\times w)/(1-u\\cdot w)$, the bracket being $[u,w]=2u\\times w$; at $u\\cdot w=1$ the product is the half-turn about $u+w+u\\times w$. The entries of $q^{m}$, $q\\in W_H^{4}$, are at most $(2H)^{m}$, and $q^{m}$ reads back from the shell iff $2\\|q^{m}\\|_\\infty<\\p$ (D2).",
+     "tag": "T",
+     "source": "Section~\\ref{sec:conclusion}; D2",
+     "key": "p01033"
     }
    ]
   },
@@ -251,11 +252,6 @@
    "tag": "T",
    "name": "Theorem",
    "text": "Derived, and machine-verified in exact arithmetic by the named witness."
-  },
-  {
-   "tag": "O",
-   "name": "Open",
-   "text": "Genuinely unresolved."
   }
  ],
  "master": {
@@ -269,10 +265,8 @@
    "A8"
   ],
   "B5": [
-   "B8"
-  ],
-  "C2": [
-   "D13"
+   "B8",
+   "C1"
   ],
   "C4": [
    "B11"
@@ -280,12 +274,18 @@
   "D3": [
    "B1"
   ],
-  "D4": [
-   "C2"
-  ],
   "Z2": [
    "C25",
    "D13"
+  ],
+  "D1": [
+   "B1"
+  ],
+  "D6": [
+   "B1"
+  ],
+  "A2": [
+   "C7"
   ]
  },
  "lean": {
@@ -572,6 +572,21 @@
     "doc": "1:D4 (Lemma 2 of 1-algebra, scale periodicity) — the residue grid repeats with the period `p − 1` of the drive: `g^{n + (p−1)} = g^n`, hence `x·g^{n + (p−1)} = x·g^n` for every `x`."
    }
   ],
+  "D7": [
+   {
+    "name": "FRC.Algebra.tower_density",
+    "module": "FrcLedger/Algebra",
+    "line": 270,
+    "axioms": [
+     "Classical.choice",
+     "Quot.sound",
+     "propext"
+    ],
+    "tier": 2,
+    "ok": true,
+    "doc": "1:D7 (second clause, limit-like approximation): the tower of shells resolves every real — for every `r` and `ε > 0` some shell `p = 4κ + 1` carries a framed rational `x / 2^n`, `|x| ≤ 2κ`, within `ε` of `r` (Dirichlet for primes `≡ 1 (mod 4)`, `Nat.exists_prime_gt_modEq_one`)."
+   }
+  ],
   "E2": [
    {
     "name": "FRC.Algebra.complex_chart_zero_divisor",
@@ -596,7 +611,7 @@
     "doc": "1:E2 (Proposition 5 reversed) — on a shell that already has a square root of `−1` the complex chart is not a field: `(i, 1)·(−i, 1) = (0, 0)` with both factors nonzero (`X + i` and `X − i` are zero divisors)."
    }
   ],
-  "Y1": [
+  "E3": [
    {
     "name": "FRC.Algebra.root_iff_not_coprime",
     "module": "FrcLedger/Algebra",
@@ -608,7 +623,7 @@
     ],
     "tier": 2,
     "ok": true,
-    "doc": "1:Y1 (the conjecture's first clause, solving): `f ∈ F_p[X]` has a root in `F_p` iff `f` and `X^p − X = ∏_a (X − a)` are not coprime — the root test is a gcd, exact in the substrate."
+    "doc": "1:E3 (the conjecture's first clause, solving): `f ∈ F_p[X]` has a root in `F_p` iff `f` and `X^p − X = ∏_a (X − a)` are not coprime — the root test is a gcd, exact in the substrate."
    },
    {
     "name": "FRC.Shell.Poly.Frame.root_iff_common_factor",
@@ -617,7 +632,7 @@
     "axioms": [],
     "tier": 0,
     "ok": true,
-    "doc": "1:Y1, the root criterion — `f` has a root in the shell iff `f` and `X^p − X` share a factor of positive degree. Forward: the factor is `X − a` (synthetic division, Fermat). Backward: a common factor `d` of degree `m ≥ 1` with no root would force its cofactor in `X^p − X`, of degree `p − m < p`, to vanish at all `p` residues, hence to be zero (`root_bound`), against `X^p − X ≠ 0`; the root of `d` is found by deciding `∃ i < p, d(i) = 0`."
+    "doc": "1:E3, the root criterion — `f` has a root in the shell iff `f` and `X^p − X` share a factor of positive degree. Forward: the factor is `X − a` (synthetic division, Fermat). Backward: a common factor `d` of degree `m ≥ 1` with no root would force its cofactor in `X^p − X`, of degree `p − m < p`, to vanish at all `p` residues, hence to be zero (`root_bound`), against `X^p − X ≠ 0`; the root of `d` is found by deciding `∃ i < p, d(i) = 0`."
    },
    {
     "name": "FRC.Shell.Poly.Frame.root_bound",
@@ -626,7 +641,7 @@
     "axioms": [],
     "tier": 0,
     "ok": true,
-    "doc": "1:Y1, the root bound — a polynomial of degree at most `n` that vanishes at `n + 1` distinct points is zero: the distinct roots are counted by the degree."
+    "doc": "1:E3, the root bound — a polynomial of degree at most `n` that vanishes at `n + 1` distinct points is zero: the distinct roots are counted by the degree."
    },
    {
     "name": "FRC.Shell.Frame.fermat",
@@ -635,25 +650,10 @@
     "axioms": [],
     "tier": 0,
     "ok": true,
-    "doc": "1:Y1, the finitary core (Fermat): every residue satisfies `x^p = x` — the polynomial `X^p − X` vanishes on the whole shell, which is what the root test of 1:Y1 rests on."
+    "doc": "1:E3, the finitary core (Fermat): every residue satisfies `x^p = x` — the polynomial `X^p − X` vanishes on the whole shell, which is what the root test of 1:E3 rests on."
    }
   ],
-  "Y2": [
-   {
-    "name": "FRC.Algebra.tower_density",
-    "module": "FrcLedger/Algebra",
-    "line": 270,
-    "axioms": [
-     "Classical.choice",
-     "Quot.sound",
-     "propext"
-    ],
-    "tier": 2,
-    "ok": true,
-    "doc": "1:Y2 (second clause, limit-like approximation): the tower of shells resolves every real — for every `r` and `ε > 0` some shell `p = 4κ + 1` carries a framed rational `x / 2^n`, `|x| ≤ 2κ`, within `ε` of `r` (Dirichlet for primes `≡ 1 (mod 4)`, `Nat.exists_prime_gt_modEq_one`)."
-   }
-  ],
-  "Y3": [
+  "E4": [
    {
     "name": "FRC.Algebra.circle_net",
     "module": "FrcLedger/Algebra",
@@ -665,7 +665,7 @@
     ],
     "tier": 2,
     "ok": true,
-    "doc": "1:Y3 (third clause, the abelian case): the rounding `k(θ) = round(Nθ/2π)` puts `2πk/N` within `π/N` of `θ` — `C_N ≅ F_p^×` (`N = p − 1`) is a `π/N`-net of `U(1)`."
+    "doc": "1:E4 (third clause, the abelian case): the rounding `k(θ) = round(Nθ/2π)` puts `2πk/N` within `π/N` of `θ` — `C_N ≅ F_p^×` (`N = p − 1`) is a `π/N`-net of `U(1)`."
    },
    {
     "name": "FRC.Algebra.group_law_defect",
@@ -678,10 +678,10 @@
     ],
     "tier": 2,
     "ok": true,
-    "doc": "1:Y3 (third clause): the group-law defect of the rounding is at most one step."
+    "doc": "1:E4 (third clause): the group-law defect of the rounding is at most one step."
    }
   ],
-  "Y5": [
+  "E6": [
    {
     "name": "FRC.Shell.Frame.quaternion_window",
     "module": "FrcCore/Quaternion",
@@ -689,7 +689,7 @@
     "axioms": [],
     "tier": 0,
     "ok": true,
-    "doc": "1:Y5, the finitary clause — framed quaternions with window coordinates `≤ H`, read in a shell `p > 8H²`, compose exactly: the product of the readings is the reading of the integer product; that product's coordinates lie in the window `4H²`; and the reading determines it among the window's quaternions."
+    "doc": "1:E6, the finitary clause — framed quaternions with window coordinates `≤ H`, read in a shell `p > 8H²`, compose exactly: the product of the readings is the reading of the integer product; that product's coordinates lie in the window `4H²`; and the reading determines it among the window's quaternions."
    },
    {
     "name": "FRC.Shell.Frame.read_mul",
@@ -698,7 +698,7 @@
     "axioms": [],
     "tier": 0,
     "ok": true,
-    "doc": "1:Y5, exact composition — the reading of the integer product is the product of the readings."
+    "doc": "1:E6, exact composition — the reading of the integer product is the product of the readings."
    }
   ],
   "Z1": [

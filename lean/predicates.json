@@ -11,8 +11,8 @@
    "1:D4": "Algebra",
    "1:E2": "Algebra",
    "1:Z1": "Algebra",
-   "1:Y1": "Algebra",
-   "1:Y5": "Quaternion"
+   "1:E3": "Algebra",
+   "1:E6": "Quaternion"
   },
   "FrcLedger": {
    "1:B2": "Algebra",
@@ -23,9 +23,9 @@
    "1:D4": "Algebra",
    "1:E2": "Algebra",
    "1:Z1": "Algebra",
-   "1:Y1": "Algebra",
-   "1:Y2": "Algebra",
-   "1:Y3": "Algebra"
+   "1:E3": "Algebra",
+   "1:D7": "Algebra",
+   "1:E4": "Algebra"
   }
  },
  "10-dimensions": {
