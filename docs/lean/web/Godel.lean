@@ -455,10 +455,10 @@ end finiteness
 theorem p25010 : (∀ {A : Type u_1} [Finite A] (S : A → A), Function.Injective S → ∀ (z : A), ∃ x, S x = z) ∧ ∀ {A : Type u_2} (S : A → A) (z : A), Function.Injective S → (∀ (x : A), S x ≠ z) → Infinite A :=
   And.intro @FRC.Godel.finite_succ_onto (@FRC.Godel.infinite_of_succ)
 /-- 25:C2 (p25011) — Completeness and decidability: for finite $\M$ the theory $\Th(\M)$ is complete, consistent and decidable by exhaustive evaluation. A sentence of quantifier depth $q$ takes at most $c\,m^{q}$ atomic evaluations, $c$ depending on its length. One first-order sentence $\sigma_{\M}$ characterises $\M$ up to isomorphism. Cited definitions (not proofs): FRC.Godel.decTheory. -/
-theorem p25011 : ∀ {L : FirstOrder.Language} {M : Type u_3} [L.Structure M] [Nonempty M], (L.completeTheory M).IsComplete :=
+theorem p25011 : ∀ {L : FirstOrder.Language} {M : Type u_1} [L.Structure M] [Nonempty M], (L.completeTheory M).IsComplete :=
   @FRC.Godel.theory_complete
 /-- 25:C5 (p25014) — Tarski scoped: the $m+1$ sentences $\varphi,\neg\varphi,\dots,\neg^{m}\varphi$ outnumber the $m$ elements of $\M$, so every numbering of the sentences by elements of $\M$ gives two of them the same number. Truth in $\M$ is defined externally by a finite table with the evaluation procedure of C2. What fails is the internalisation of truth. -/
-theorem p25014 : ∀ {L : FirstOrder.Language} {M : Type u_3} [Fintype M] (f : L.Sentence → M), ∃ i j, i < j ∧ j ≤ Fintype.card M ∧ FRC.Godel.nots L i ≠ FRC.Godel.nots L j ∧ f (FRC.Godel.nots L i) = f (FRC.Godel.nots L j) :=
+theorem p25014 : ∀ {L : FirstOrder.Language} {M : Type u_1} [Fintype M] (f : L.Sentence → M), ∃ i j, i < j ∧ j ≤ Fintype.card M ∧ FRC.Godel.nots L i ≠ FRC.Godel.nots L j ∧ f (FRC.Godel.nots L i) = f (FRC.Godel.nots L j) :=
   @FRC.Godel.nots_collide
 /-- 25:D1 (p25015) — Relational diagonal: an agent of storage capacity $K$ with $a^{K}<m$ has no injective encoding of the elements of $\M$ into its storage states. Every internal representation identifies distinct elements. A fortiori the agent holds no faithful model of $\M$ that also represents the model's own encoding map. -/
 theorem p25015 : ∀ {A : Type u_1} {Alph : Type u_2} [Fintype A] [Fintype Alph] (K : ℕ), Fintype.card Alph ^ K < Fintype.card A → ∀ (ρ : A → Fin K → Alph), ¬Function.Injective ρ :=
@@ -472,8 +472,8 @@ theorem p25019 : (∀ (n : ℕ), (2 : ℕ) ^ n ≤ catalan (n + (1 : ℕ))) ∧ 
 /-- 25:E2 (p25020) — Vanishing reach: an agent of capacity $(K,H)$ certifies at most $a^{B+1}$ sentences over all its runs, the records being strings of length at most $B$. The certified fraction of the truths of length at most $L$ (E1) is at most $a^{B+1}/2^{\alpha L}$, below $1/N$ for every $N$ once $L$ is large enough. -/
 theorem p25020 : ∀ (a B : ℕ), (2 : ℕ) ≤ a → ∑ i ∈ Finset.range (B + (1 : ℕ)), a ^ i < a ^ (B + (1 : ℕ)) :=
   @FRC.Godel.records_lt
-/-- 25:F4 (p25026) — Density: an injective coding of length-$n$ strings into $\M$-tuples needs $k\ge n\log a/\log m$ coordinates ($m^{k}\ge a^{n}$). The variable names alone cost order $k\log_{a}k$ symbols. The template therefore fails at every scale beyond a threshold $t(\M)$ of order $m\log_{a}m$: at $a=2$, about $10^{32}$ symbols at $m=2^{100}$, beyond $10^{300}$ at $m=2^{1000}$. -/
-theorem p25026 : ∀ {A : Type u_1} {M : Type u_2} [Fintype A] [Fintype M] (n k : ℕ) (c : (Fin n → A) → Fin k → M), Function.Injective c → Fintype.card A ^ n ≤ Fintype.card M ^ k :=
+/-- 25:F4 (p25048) — Density: $m$ has $d$ base-$a$ digits. An injective coding of length-$n$ strings by $k$-tuples, $k\ge1$, needs $m^{k}\ge a^{n}$, so $n<dk$. In F2's $\delta(u)=\exists v\,(\mathrm{Diag}(u,v)\wedge\theta(v))$ let $v$ have $k$ coordinates and $u$ have $k_{1}$. Each coordinate of $v$ is named three times, each of $u$ once. So $\lvert\delta\rvert\ge2c(k)+c(k+k_{1})$, and $\lambda=\delta(\ulcorner\delta\urcorner)$ has $\lvert\lambda\rvert\ge3c(k)+k_{1}$, $c(j)$ the total length of the $j$ shortest names. -/
+theorem p25048 : ∀ {A : Type u_1} {M : Type u_2} [Fintype A] [Fintype M] (n k : ℕ) (c : (Fin n → A) → Fin k → M), Function.Injective c → Fintype.card A ^ n ≤ Fintype.card M ^ k :=
   @FRC.Godel.dense_coding
 /-- 25:H2 (p25036) — Finiteness, the finite direction: for finite $\M$ the full second-order theory $\ThSO(\M)$ is decidable. A second-order quantifier over $k$-ary relations ranges over the $2^{m^{k}}$ subsets of $\M^{k}$, and exhaustive evaluation decides every second-order sentence. Cited definitions (not proofs): FRC.Godel.decideAllRelations. -/
 theorem p25036 : ∀ (M : Type u_1) [Fintype M] [DecidableEq M] (k : ℕ), Fintype.card (Finset (Fin k → M)) = (2 : ℕ) ^ Fintype.card M ^ k :=
@@ -490,5 +490,5 @@ end FRC.Godel
 #print axioms FRC.Godel.p25017
 #print axioms FRC.Godel.p25019
 #print axioms FRC.Godel.p25020
-#print axioms FRC.Godel.p25026
+#print axioms FRC.Godel.p25048
 #print axioms FRC.Godel.p25036

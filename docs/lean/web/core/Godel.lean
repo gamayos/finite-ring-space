@@ -2731,12 +2731,30 @@ theorem split_scale (p N N₂ : Nat) (diag θ : Fm)
 /-! ### 25:F4 — density does not rescue the template -/
 
 /-- 25:F4 (Lemma density, the count) — an injective coding of the `a^n` strings of length `n` into `k`-tuples
-over `m` elements needs `a^n ≤ m^k`.  (The paper's `k ≥ n log a / log m` is this inequality with logarithms taken.) -/
+over `m` elements needs `a^n ≤ m^k`. -/
 theorem dense_coding {a n m k : Nat} (c : Nat → Nat) (hc : ∀ i, i < a ^ n → c i < m ^ k)
     (hinj : ∀ i j, i < a ^ n → j < a ^ n → c i = c j → i = j) : a ^ n ≤ m ^ k :=
   match Nat.lt_or_ge (m ^ k) (a ^ n) with
   | Or.inl h => absurd hinj (part_collides h c hc)
   | Or.inr h => h
+
+/-- A strict power step: `m < b` gives `m^(k+1) < b^(k+1)`. -/
+theorem pow_lt_pow_base {m b : Nat} (h : m < b) : ∀ k : Nat, m ^ (k + 1) < b ^ (k + 1)
+  | 0 => show m ^ 0 * m < b ^ 0 * b from Nat.mul_lt_mul_of_le_of_lt (Nat.le_refl 1) h (Nat.zero_lt_succ 0)
+  | k + 1 => show m ^ (k + 1) * m < b ^ (k + 1) * b from Nat.mul_lt_mul_of_lt_of_lt (pow_lt_pow_base h k) h
+
+/-- 25:F4 (Lemma density, the digit form) — if `m` has at most `d` digits in base `a` (`m < a^d`), a coding of
+the strings of length `n` by tuples of `k+1` coordinates with `a^n ≤ m^(k+1)` has `n < d·(k+1)`: a tuple carries
+fewer letters than `d` times its coordinates. -/
+theorem digit_bound {a n m k d : Nat} (ha : 0 < a) (hm : m < a ^ d) (h : a ^ n ≤ m ^ (k + 1)) :
+    n < d * (k + 1) :=
+  match Nat.lt_or_ge n (d * (k + 1)) with
+  | Or.inl hlt => hlt
+  | Or.inr hge =>
+    have h1 : m ^ (k + 1) < (a ^ d) ^ (k + 1) := pow_lt_pow_base hm k
+    have h2 : a ^ (d * (k + 1)) = (a ^ d) ^ (k + 1) := FRC.Nat.pow_mul a d (k + 1)
+    have h3 : a ^ (d * (k + 1)) ≤ a ^ n := Nat.pow_le_pow_right ha hge
+    absurd (Nat.lt_of_le_of_lt h (h2 ▸ h1)) (Nat.not_lt.mpr h3)
 
 /-! ### 25:G4 — the prefix simulation -/
 
@@ -2874,9 +2892,9 @@ theorem p25024 : (∀ (p N : Nat) (diag θ : FRC.Godel.Fm), (∀ (i : Nat), i < 
 /-- 25:F3 (p25025) — Quotation exceeds mention: a formula's arity is below its length. No sentence $\lambda$ contains a subformula whose truth depends on all coordinates of a tuple of arity at least $\lvert \lambda\rvert$. Under any coding that spends at least $\lvert \lambda\rvert$ coordinates on $\lambda$, per-symbol coding included, no sentence's truth is sensitive to every coordinate of its own code. -/
 theorem p25025 : (∀ (φ : FRC.Godel.Fm) (j N : Nat), (∀ (i : Nat), i < N → FRC.Godel.occ (i + j) φ = true) → N < FRC.Godel.size φ) ∧ (∀ (p : Nat) (φ : FRC.Godel.Fm) (j N : Nat), (∀ (i : Nat), i < N → ∃ env v, FRC.Godel.holds p (FRC.Godel.upd env (i + j) v) φ ≠ FRC.Godel.holds p env φ) → N < FRC.Godel.size φ) ∧ ∀ (p : Nat) {ψ lam : FRC.Godel.Fm}, FRC.Godel.Subformula ψ lam → ∀ (j N : Nat), FRC.Godel.size lam ≤ N → ¬∀ (i : Nat), i < N → ∃ env v, FRC.Godel.holds p (FRC.Godel.upd env (i + j) v) ψ ≠ FRC.Godel.holds p env ψ :=
   And.intro @FRC.Godel.arity_lt_size (And.intro @FRC.Godel.mention_cost_lt (@FRC.Godel.no_self_reading))
-/-- 25:F4 (p25026) — Density: an injective coding of length-$n$ strings into $\M$-tuples needs $k\ge n\log a/\log m$ coordinates ($m^{k}\ge a^{n}$). The variable names alone cost order $k\log_{a}k$ symbols. The template therefore fails at every scale beyond a threshold $t(\M)$ of order $m\log_{a}m$: at $a=2$, about $10^{32}$ symbols at $m=2^{100}$, beyond $10^{300}$ at $m=2^{1000}$. -/
-theorem p25026 : ∀ {a n m k : Nat} (c : Nat → Nat), (∀ (i : Nat), i < a ^ n → c i < m ^ k) → (∀ (i j : Nat), i < a ^ n → j < a ^ n → c i = c j → i = j) → a ^ n ≤ m ^ k :=
-  @FRC.Godel.dense_coding
+/-- 25:F4 (p25048) — Density: $m$ has $d$ base-$a$ digits. An injective coding of length-$n$ strings by $k$-tuples, $k\ge1$, needs $m^{k}\ge a^{n}$, so $n<dk$. In F2's $\delta(u)=\exists v\,(\mathrm{Diag}(u,v)\wedge\theta(v))$ let $v$ have $k$ coordinates and $u$ have $k_{1}$. Each coordinate of $v$ is named three times, each of $u$ once. So $\lvert\delta\rvert\ge2c(k)+c(k+k_{1})$, and $\lambda=\delta(\ulcorner\delta\urcorner)$ has $\lvert\lambda\rvert\ge3c(k)+k_{1}$, $c(j)$ the total length of the $j$ shortest names. -/
+theorem p25048 : (∀ {a n m k : Nat} (c : Nat → Nat), (∀ (i : Nat), i < a ^ n → c i < m ^ k) → (∀ (i j : Nat), i < a ^ n → j < a ^ n → c i = c j → i = j) → a ^ n ≤ m ^ k) ∧ ∀ {a n m k d : Nat}, (0 : Nat) < a → m < a ^ d → a ^ n ≤ m ^ (k + (1 : Nat)) → n < d * (k + (1 : Nat)) :=
+  And.intro @FRC.Godel.dense_coding (@FRC.Godel.digit_bound)
 /-- 25:G4 (p25031) — Prefix simulation: $Q_{1}z_{1}\cdots Q_{d}z_{d}\,\psi(\bar z)$ holds in $\M$ exactly when $\forall y_{1}\exists x_{1}\cdots\forall y_{d}\exists x_{d}\,[\bigwedge_{i:Q_{i}=\forall}x_{i}=y_{i}\wedge\psi(\bar x)]$ does: one uniform prefix simulates every coded quantifier pattern. -/
 theorem p25031 : (∀ (m : Nat), (0 : Nat) < m → ∀ (ψ : List Nat → Bool) (pat : List Bool) (acc : List Nat) (c : Bool), FRC.Godel.paired m ψ pat acc c = (c && FRC.Godel.direct m ψ pat acc)) ∧ ∀ (m : Nat), (0 : Nat) < m → ∀ (ψ : List Nat → Bool) (pat : List Bool), FRC.Godel.paired m ψ pat [] true = FRC.Godel.direct m ψ pat [] :=
   And.intro @FRC.Godel.prefix_simulation (@FRC.Godel.prefix_simulation_closed)
@@ -2894,5 +2912,5 @@ end FRC.Godel
 #print axioms FRC.Godel.p25023
 #print axioms FRC.Godel.p25024
 #print axioms FRC.Godel.p25025
-#print axioms FRC.Godel.p25026
+#print axioms FRC.Godel.p25048
 #print axioms FRC.Godel.p25031

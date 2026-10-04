@@ -215,7 +215,7 @@
     },
     {
      "label": "F4",
-     "predicate": "Density: $m$ has $d$ base-$a$ digits. An injective coding of length-$n$ strings by $k$-tuples needs $m^{k}\\ge a^{n}$, so $n<dk$. In F2's $\\delta(u)=\\exists v\\,(\\mathrm{Diag}(u,v)\\wedge\\theta(v))$ let $v$ have $k$ coordinates and $u$ have $k_{1}$. Each coordinate of $v$ is named three times, each of $u$ once. So $\\lvert\\delta\\rvert\\ge2c(k)+c(k+k_{1})$, and $\\lambda=\\delta(\\ulcorner\\delta\\urcorner)$ has $\\lvert\\lambda\\rvert\\ge3c(k)+k_{1}$, $c(j)$ the total length of the $j$ shortest names.",
+     "predicate": "Density: $m$ has $d$ base-$a$ digits. An injective coding of length-$n$ strings by $k$-tuples, $k\\ge1$, needs $m^{k}\\ge a^{n}$, so $n<dk$. In F2's $\\delta(u)=\\exists v\\,(\\mathrm{Diag}(u,v)\\wedge\\theta(v))$ let $v$ have $k$ coordinates and $u$ have $k_{1}$. Each coordinate of $v$ is named three times, each of $u$ once. So $\\lvert\\delta\\rvert\\ge2c(k)+c(k+k_{1})$, and $\\lambda=\\delta(\\ulcorner\\delta\\urcorner)$ has $\\lvert\\lambda\\rvert\\ge3c(k)+k_{1}$, $c(j)$ the total length of the $j$ shortest names.",
      "tag": "T",
      "source": "Lem.~\\ref{rem:density}; F2\\newline \\pywit{godel}{p25048}{F4}, \\leanwit{FrcCore}{p25048}{F4}, \\leanwit{FrcLedger}{p25048}{F4} \\lean{Godel.dense\\_coding, FRC.Godel.dense\\_coding, FRC.Godel.digit\\_bound}",
      "key": "p25048"
@@ -880,9 +880,9 @@
     "name": "FRC.Godel.digit_bound",
     "module": "FrcCore/Godel",
     "line": 474,
-    "axioms": null,
-    "tier": "missing",
-    "ok": false,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
     "doc": "25:F4 (Lemma density, the digit form) — if `m` has at most `d` digits in base `a` (`m < a^d`), a coding of the strings of length `n` by tuples of `k+1` coordinates with `a^n ≤ m^(k+1)` has `n < d·(k+1)`: a tuple carries fewer letters than `d` times its coordinates."
    }
   ],
