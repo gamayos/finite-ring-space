@@ -208,5 +208,35 @@
   "ok": true,
   "detail": "N <= 4: 248 structures decided; both values of Ex P(x) among the models of the first N axioms; none of N elements satisfies N+1 axioms",
   "kind": "EXACT"
+ },
+ {
+  "id": "G1",
+  "rows": "25:F7",
+  "block": "G",
+  "script": "godel",
+  "label": "decoders over a prime field, as written formulas model-checked on small fields: Int_J(x) <=> 0 <= x < 2^J on every prime p <= 131 and every J with 2^J <= p (184 pairs), of length 50J + 29; inrange(x, N) <=> 0 <= x < N for every N <= 2^E on six fields with 2^(E+1) < p (258 pairs); Pow(r, z) <=> r < 2^e and z = (2^b)^r on all of F_p^2 (29 616 triples); Dig(y, r, s) <=> y < beta^n, r < n and s the digit, on all of F_p^3 (110 827 triples, five cases), of length linear in b n and e; the pruned model checker agrees with the plain one (2867 assignments)",
+  "ok": true,
+  "detail": "Int_J on 184 pairs (p, J), length 50J + 29; inrange on 258 pairs (p, N); Pow on 29616 triples (p, r, z); Dig on 110827 triples (y, r, s), five cases; length of Dig = 50bn + 50b + 196e + 529; pruned and plain checker agree on 2867 assignments",
+  "kind": "EXACT"
+ },
+ {
+  "id": "G2",
+  "rows": "25:F8",
+  "block": "G",
+  "script": "godel",
+  "label": "Diag(u, v) as a written formula, model-checked on F_257 (4 symbols, 3 per element, k1 = 2, k = 34) against the substitution computed from its definition: it holds at v = code F(u) for 5 tuples u (three fixed, two seeded), fails at 40 other v (one symbol changed; a coordinate that codes no string) and at each of the 306 tuples v at one symbol's distance from code F(u) at one u; the instance at D = 1024 symbols per element, k1 = 4096, k = 45044, as strings (the sample theta: v_0 + ... + v_(k-1) = 0): delta is a string over the 32 symbols, read back by an independent reader to the same formula, with the tuple u free; |delta| = 3 850 485 <= D k1 = 4 194 304; u is named at the k1 blocks of its access formula and nowhere else; the numerals denote the code of delta; lambda = delta(numerals) by printed and by string substitution, a sentence of 45 781 237 <= D k = 46 125 056 symbols; the cases written in Diag give lambda at a fixed sample of positions; a theta of up to 704 170 symbols leaves |delta| <= D k1",
+  "ok": true,
+  "detail": "|Diag| on F_257 = 15311 symbols, the checker's range hints used 3699 times, each range verified on that field; |delta| = prefix 270264 + Diag 3219867 + theta 360351 + 3; Diag = access(v) 2252201 + access(u) 167937 + decoding and layout 799729; 199846 positions sampled; E = 26",
+  "kind": "EXACT"
+ },
+ {
+  "id": "G3",
+  "rows": "25:G8",
+  "block": "G",
+  "script": "godel",
+  "label": "truth in the window: with theta = ~T of exactly 704 170 symbols (T the sum equation, 28 651 trivial equations and 0=0) delta fills u exactly, |delta| = D k1 = 4 194 304, and lambda fits v, so every T of at most 704 169 symbols has its fixed point with ~T; a formula in all k variables has at least 225 220 symbols; the construction spends between 700 and 800 symbols of delta per coordinate of u, fits at D = 922 and not at D = 921 (k1 = 4096, the sample theta)",
+  "ok": true,
+  "detail": "|lambda| = 46125056 <= 46125056; symbols of delta per coordinate of u, without the decoding: 744.8; D = 921: |delta| = 3775049 > 3772416; D = 922: 3775173 <= 3776512",
+  "kind": "EXACT"
  }
 ]

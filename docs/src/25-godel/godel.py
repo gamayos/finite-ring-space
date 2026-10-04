@@ -4,22 +4,23 @@ doi 10.20944/preprints202607.0850.v1), the paper 25-godel of the FRC corpus (fin
 the paper's predicate ledger (Appendix A, 3 October 2026).
 ========================================================================================================================
 
-One script, six blocks, twenty-one checks, standard library only. Each check names the predicate(s) of the paper's ledger
+One script, seven blocks, twenty-four checks, standard library only. Each check names the predicate(s) of the paper's ledger
 it witnesses (LEDGER below; predicates cited as 25:XN) under a `# 25:XN (<key>)` marker, the key the predicate's accession
 key, and the ledger's source column links the marker of the check that decides each predicate (PREDICATES below;
 finitering.space/src/25-godel/#<key>). Where a predicate is proved in Lean (lean/FrcCore/Godel.lean, no axioms;
 lean/FrcLedger/Godel.lean on Mathlib), the check here is the instance the reader can run.
 
-    python3 godel.py              every block, results.json written; exit 1 if a check fails (≈ 50 s)
-    python3 godel.py D            one block (A–F); no results.json
+    python3 godel.py              every block, results.json written; exit 1 if a check fails (≈ 2 min)
+    python3 godel.py D            one block (A–G); no results.json
     from frc_25_godel import predicate; predicate("25:F1")    one predicate: its block runs once per session
 
 Blocks:  A  Gödel's hypotheses over a finite structure (Section 3)                      EXACT  (25:C1, C2, C5)
          B  the part and the whole: collisions, aliasing, the wrap (Section 4)           EXACT  (25:D1, D3, D4; corroborates J2)
          C  the reach bound and the horizon's counting facts (Sections 5.1, 5.3, 5.4)    EXACT  (25:E1, E2, E4, G1, G2, G7)
-         D  the diagonal does not migrate: mention cost, the template, density (5.2)     EXACT  (25:F1–F4, F6)
+         D  the diagonal under finitude: mention cost, the template, density (5.2)       EXACT  (25:F1–F4, F6)
          E  fragment truth: the pairing prefix and the guessed labels (Section 5.3)      EXACT  (25:G4, G5)
          F  second-order decidability and the trichotomy's middle cell (Section 6)       EXACT  (25:H2, H5)
+         G  the window below the threshold: decoders, the dense-coded instance (5.2)     EXACT  (25:F7, F8, G8)
 
 Everything the blocks share:
   * the running example M_p = ({0,…,p−1}; 0, 1, +, ×), arithmetic modulo a prime, with its tables read on demand;
@@ -28,12 +29,15 @@ Everything the blocks share:
   * every formula over M_2 up to a given length, written out, with its truth table and free variables (the complete enumerations
     of block D), and an independent reader of the written formula, against which the tables are checked;
   * the PASS/FAIL registry every block reports into (results.json).
+Block G has its own formulas, printer and model checker (the function _dense).
 
 Kinds: every check is EXACT — an exhaustive or integer-pinned computation, no floating point; a pass is a proof on the
 tested instances. The counts a label states are asserted by the check. Where a check works on a sample, its label says so and
 the sample is fixed: the sentences of A2, C5 and F2 (a list of eight), the completions of two certificates in B3 (seeded), the
 maps at N = 3 in D2 (every 37th), the matrix family over M_5 in E1. D3 and D5 decide ranges of structures and the base
-cases of t(M) < m; the comment of block D carries the proofs for every structure.
+cases of t(M) < m; the comment of block D carries the proofs for every structure. G1 and G2 model-check written formulas
+on small prime fields, G2 and G3 build the instance as strings and sample the positions of lambda (seeded); the comment of
+block G carries the proofs for the fields of the instance, where no model check is possible.
 """
 import os, json, sys, itertools, math, random
 from fractions import Fraction
@@ -51,14 +55,16 @@ LEDGER = {
     "D1": "25:F1", "D2": "25:F2", "D3": "25:F4", "D4": "25:F3", "D5": "25:F6",
     "E1": "25:G4", "E2": "25:G5",
     "F1": "25:H2", "F2": "25:H5",
+    "G1": "25:F7", "G2": "25:F8", "G3": "25:G8",
 }
 
 BLOCK = {"A": "Gödel's hypotheses over a finite structure",          # check-id prefix -> the block (the function block_<letter> below)
          "B": "the part and the whole: collisions, aliasing, the wrap",
          "C": "the reach bound and the horizon's counting facts",
-         "D": "the diagonal does not migrate: mention cost, the template, density",
+         "D": "the diagonal under finitude: mention cost, the template, density",
          "E": "fragment truth: the pairing prefix and the guessed labels",
-         "F": "second-order decidability and the trichotomy's middle cell"}
+         "F": "second-order decidability and the trichotomy's middle cell",
+         "G": "the window below the threshold: decoders, the dense-coded instance"}
 
 # the deciding check of each witnessed predicate: the one whose verdict decides the predicate's statement (the other checks that
 # touch it are corroboration, listed by predicate() from the records)
@@ -69,6 +75,7 @@ PREDICATES = {
     "25:F1": "D1", "25:F2": "D2", "25:F4": "D3", "25:F3": "D4", "25:F6": "D5",
     "25:G4": "E1", "25:G5": "E2",
     "25:H2": "F1", "25:H5": "F2",
+    "25:F7": "G1", "25:F8": "G2", "25:G8": "G3",
 }
 _RAN = set()                                            # blocks already run in this session (predicate() runs each once)
 T_EXACT = {}                                            # (a, m) -> (d, fit_table), computed in D3 and read in D5 (block D)
@@ -817,7 +824,7 @@ def block_C():
           f"{n_rec} records scanned, {n_acc} accepted, {n_false} with a false end sentence, {n_absurd} ending in 0 = 1 ({n_absurd_acc} accepted); {n_strings} candidate strings enumerated; reach at B = 3, 11, 19, 27: {reach(3)}, {reach(11)}, {reach(19)}, {reach(27)}")
 
 # ------------------------------------------------------------------------------------------------------------
-# block D: the diagonal does not migrate (25:F1, F2, F3, F4, F6) — Section 5.2.
+# block D: the diagonal under finitude (25:F1, F2, F3, F4, F6) — Section 5.2.
 # D1: mention cost — a coordinate on which the truth of a formula depends is a variable that occurs free in it: on a family of
 # formulas over M_3 and on EVERY formula of length <= 9 over M_2 in four variables, each written out and read back by the
 # independent reader.  D2: the no-compression theorem on built instances — the graph of every injective map on M_2^N depends
@@ -862,7 +869,7 @@ def block_C():
 # N(k) <= (d-1)k, which is at most the largest n with a^n <= m^k: the count leaves these k open.
 # The cut 2^400 of the ranges is a test parameter.
 def block_D():
-    """Block D — the diagonal does not migrate: mention cost, the template, density (EXACT): D1–D5."""
+    """Block D — the diagonal under finitude: mention cost, the template, density (EXACT): D1–D5."""
     # D1 mention cost: a family over M_3, then every short formula over M_2
     m, V = 3, 3
     assigns = list(itertools.product(range(m), repeat=V)); idx = {a: i for i, a in enumerate(assigns)}
@@ -1439,6 +1446,592 @@ def block_F():
     # 25:H5 (p25039)
     check("F2", "the trichotomy's middle cell on its finite parts: the first N axioms 'at least n elements' (n <= N <= 4), decided over all 248 structures of at most 5 elements with a unary predicate P, have models with Ex P(x) true and with it false, so they decide neither it nor its negation, and Ax not P(x) settles it; no structure of N elements satisfies N+1 of the axioms; the theory of a finite model (M_2, M_3, M_5) gives every sentence of a sample of 8 its value", ok,
           "; ".join(det))
+
+# ------------------------------------------------------------------------------------------------ block G
+# block G: the window below the threshold (25:F7, F8, G8) — Section 5.2, Lemma decoders, Theorem instance, Corollary windowtruth.
+#
+# Language: +, * and the constants 0, ..., f (the elements 0..15) and g (16), over the field F_p.  Alphabet: the 32 symbols
+# of SYMS.  A variable is a letter (u, v, x) and an index of fixed width.  A string is coded D symbols per element in
+# base 32, the pad symbol being the digit 0.  The proofs, for every prime under the stated side conditions:
+#   (1) seg_J(x, w) <=> x = w n for some 0 <= n < 2^J.  J = 0: x = 0.  Step: x = y + b w with b in {0, 1} and
+#       y = 2w n', so x = w (2n' + b).  Int_J(x) = seg_J(x, 1): for 2^J <= p it defines {0, ..., 2^J - 1}.
+#   (2) inrange(t, N), for N <= 2^E and 2^(E+1) < p: t and m lie in [0, 2^E) and t + m + 1 = N in F_p; both sides are
+#       below p as integers, so the equation holds in the integers and t < N.  Conversely m = N - 1 - t.
+#   (3) Pow(r, z), for 2^e <= p: by induction r = w sum b_j 2^j and z = prod c^(2^j b_j) for bits b_j; the bits of r are
+#       unique, so z = beta^r and r < 2^e.
+#   (4) Dig(y, r, s), for 2^(b n + 1) < p, n <= 2^e, 2^(e+1) <= p: if it holds then r < n, z = beta^r, z2 = beta^(n-1-r),
+#       s < beta, lo < z, hi < z2, so lo + z (s + beta hi) is an integer below beta^n < p and equals y: s is digit r
+#       of y.  Conversely the digits of y < beta^n are witnesses.
+#   (5) Diag(u, v), for p > 2^(5D+5) and every u_j < 32^D: the auxiliary variables are confined by (2) and by the
+#       access formulas to ranges below 2^E, so every equation among them is an equation of integers.  The cases (copy
+#       before the blocks, in a block before and after the token, after the blocks; numeral; pad) partition the positions
+#       below D k, and in each the symbol is unique.  The clause on v forces every v_i < 32^D by (4).  So Diag(u, v)
+#       holds iff v codes F(u): the string of u with the token of u_i replaced by the numeral of the element u_i.
+#   (6) The fixed point: delta carries its own layout constants as numerals of fixed width.  The numerals of lambda denote
+#       the coordinates of the code of delta.  By (5), Diag(code delta, v) holds iff v = code lambda.  So
+#       F_p |= lambda iff theta(code lambda).
+# G1 model-checks the written formulas of (1)-(4) on small prime fields, exhaustively.  G2 model-checks the written Diag
+# on F_257 (4 symbols, 3 per element) against the substitution computed from its definition, and builds the instance as
+# strings.  G3 builds it with the longest theta.  At the scale of the instance no model check is possible; there the
+# fixed point rests on (1)-(6).
+def _deep(fn):
+    """Run fn in a thread with a large stack: the formulas of block G nest tens of thousands of quantifiers."""
+    import threading
+    box = {}
+    def run():
+        try: box["r"] = fn()
+        except BaseException as e: box["e"] = e
+    lim, stack = sys.getrecursionlimit(), threading.stack_size()
+    sys.setrecursionlimit(1 << 22); threading.stack_size(1 << 29)
+    try:
+        t = threading.Thread(target=run); t.start(); t.join()
+    finally:
+        sys.setrecursionlimit(lim); threading.stack_size(stack)
+    if "e" in box: raise box["e"]
+    return box.get("r")
+
+def _dense():
+    """The formulas of block G, their printer, a model checker for small prime fields, and the instance as strings."""
+    SYMS = " 0123456789abcdefg+*=()&|~EAuvx>"          # code = index; ' ' pads
+    assert len(SYMS) == 32 and len(set(SYMS)) == 32
+    CODE = {c: i for i, c in enumerate(SYMS)}
+    HEX = "0123456789abcdef"
+    CONSTVAL = {c: i for i, c in enumerate(HEX)}; CONSTVAL['g'] = 16
+    HINT = {}                                            # id(formula) -> (variable, bound term, formula): the formula implies 0 <= variable < bound
+
+    def V(n): return ('var', n)
+    def C(ch): return ('const', ch)
+    def add(a, b): return ('add', a, b)
+    def mul(a, b): return ('mul', a, b)
+    def eq(a, b): return ('eq', a, b)
+    def AND(*fs): return ('and', list(fs))
+    def OR(*fs): return ('or', list(fs))
+    def imp(a, b): return ('imp', a, b)
+    def al(n, f): return ('all', n, f)
+    def ex(names, f):
+        for n in reversed(names if isinstance(names, (list, tuple)) else [names]): f = ('ex', n, f)
+        return f
+    ZERO, ONE = C('0'), C('1')
+
+    def num(n, width):
+        """The Horner numeral of n in base 16 with exactly `width` digits: (c0+(g*(c1+(g*( ... 0)))))."""
+        assert 0 <= n < 16 ** width, (n, width)
+        t = ZERO
+        for i in reversed(range(width)): t = add(C(HEX[(n >> (4 * i)) & 15]), mul(C('g'), t))
+        return t
+
+    def numstr(n, width):
+        return "".join("(" + HEX[(n >> (4 * i)) & 15] + "+(g*" for i in range(width)) + "0" + "))" * width
+
+    def pr(node, out, sub=None):
+        k = node[0]
+        if k == 'var': out.append(sub.get(node[1], node[1]) if sub else node[1])
+        elif k == 'const': out.append(node[1])
+        elif k in ('add', 'mul'):
+            out.append('('); pr(node[1], out, sub); out.append('+' if k == 'add' else '*'); pr(node[2], out, sub); out.append(')')
+        elif k == 'eq': pr(node[1], out, sub); out.append('='); pr(node[2], out, sub)
+        elif k in ('and', 'or'):
+            out.append('(')
+            for i, f in enumerate(node[1]):
+                if i: out.append('&' if k == 'and' else '|')
+                pr(f, out, sub)
+            out.append(')')
+        elif k == 'imp': out.append('('); pr(node[1], out, sub); out.append('>'); pr(node[2], out, sub); out.append(')')
+        elif k == 'not': out.append('~'); pr(node[1], out, sub)
+        else: out.append('E' if k == 'ex' else 'A'); out.append(node[1]); pr(node[2], out, sub)
+
+    def show(node, sub=None):
+        out = []; pr(node, out, sub); return "".join(out)
+
+    # -- the model checker
+    class Ev:
+        """Truth of a formula in the field F_p.  A quantifier runs over a candidate set that contains every value of its
+        variable on which the body (for a universal: the guard of the implication) can hold; each candidate is then
+        evaluated in full.  Candidates come from equations solved for the variable (cand), or from a registered range
+        (HINT), which Part 1 verifies exhaustively on the same field."""
+        def __init__(s, p, naive=False): s.p = p; s.memo = {}; s.fvc = {}; s.fvt = {}; s.ct = {}; s.hints_used = 0; s.naive = naive
+        def fv(s, n):
+            r = s.fvc.get(id(n))
+            if r is not None: return r[1]
+            k = n[0]
+            if k == 'var': r = frozenset([n[1]])
+            elif k == 'const': r = frozenset()
+            elif k in ('add', 'mul', 'eq', 'imp'): r = s.fv(n[1]) | s.fv(n[2])
+            elif k in ('and', 'or'): r = frozenset().union(*[s.fv(f) for f in n[1]])
+            elif k == 'not': r = s.fv(n[1])
+            else: r = s.fv(n[2]) - {n[1]}
+            s.fvc[id(n)] = (n, r); return r          # the node is kept alive, so its id is never reused
+        def tv(s, t, env):
+            k = t[0]
+            if k == 'var': return env[t[1]]
+            if k == 'const': return CONSTVAL[t[1]] % s.p
+            closed = not s.fv(t)
+            if closed and id(t) in s.ct: return s.ct[id(t)]
+            a = s.tv(t[1], env); b = s.tv(t[2], env)
+            r = (a + b) % s.p if k == 'add' else (a * b) % s.p
+            if closed: s.ct[id(t)] = r
+            return r
+        def ok(s, t, env, blocked): return all(v in env and v not in blocked for v in s.fv(t))
+        def solve(s, x, e, env, blocked):
+            A, B = e[1], e[2]
+            ia, ib = x in s.fv(A), x in s.fv(B)
+            if ia == ib: return None
+            if ib: A, B = B, A
+            if not s.ok(B, env, blocked): return None
+            tgt = s.tv(B, env); t = A
+            while t[0] != 'var':
+                l, r = t[1], t[2]
+                il, ir = x in s.fv(l), x in s.fv(r)
+                if il and ir: return None
+                other, nxt = (r, l) if il else (l, r)
+                if not s.ok(other, env, blocked): return None
+                ov = s.tv(other, env)
+                if t[0] == 'add': tgt = (tgt - ov) % s.p
+                else:
+                    if ov == 0: return None
+                    tgt = tgt * pow(ov, -1, s.p) % s.p
+                t = nxt
+            return {tgt}
+        def cand(s, x, f, env, blocked):
+            k = f[0]
+            if k == 'eq': return s.solve(x, f, env, blocked)
+            if k == 'and':
+                res = None
+                for g in f[1]:
+                    if x not in s.fv(g):
+                        if g[0] == 'eq' and s.ok(g, env, blocked) and s.tv(g[1], env) != s.tv(g[2], env): return set()
+                        continue
+                    c = s.cand(x, g, env, blocked)
+                    if c is not None: res = c if res is None else (res & c)
+                return res
+            if k == 'or':
+                res = set()
+                for g in f[1]:
+                    if x not in s.fv(g): return None
+                    c = s.cand(x, g, env, blocked)
+                    if c is None: return None
+                    res |= c
+                return res
+            if k == 'ex':
+                if f[1] == x: return None
+                return s.cand(x, f[2], env, blocked | {f[1]})
+            return None
+        def domain(s, x, f, env):
+            if s.naive: return range(s.p)                 # every quantifier over the whole field
+            c = s.cand(x, f, env, frozenset())
+            if c is not None: return c
+            h = HINT.get(id(f))
+            if h is not None and h[0] == x and s.ok(h[1], env, frozenset()): s.hints_used += 1; return range(s.tv(h[1], env))
+            return range(s.p)
+        def ev(s, f, env):
+            k = f[0]
+            if k == 'eq': return s.tv(f[1], env) == s.tv(f[2], env)
+            if k == 'and':
+                for g in f[1]:
+                    if not s.ev(g, env): return False
+                return True
+            if k == 'or':
+                for g in f[1]:
+                    if s.ev(g, env): return True
+                return False
+            if k == 'not': return not s.ev(f[1], env)
+            if k == 'imp': return (not s.ev(f[1], env)) or s.ev(f[2], env)
+            fl = s.fvt.get(id(f))
+            if fl is None: fl = s.fvt[id(f)] = tuple(sorted(s.fv(f)))
+            key = (id(f),) + tuple(env[v] for v in fl)
+            r = s.memo.get(key)
+            if r is not None: return r
+            x, body = f[1], f[2]
+            had = x in env; old = env.get(x)
+            if k == 'ex':
+                r = False
+                for val in s.domain(x, body, env):
+                    env[x] = val
+                    if s.ev(body, env): r = True; break
+            else:
+                r = True
+                for val in (s.domain(x, body[1], env) if body[0] == 'imp' else range(s.p)):
+                    env[x] = val
+                    if not s.ev(body, env): r = False; break
+            if had: env[x] = old
+            else: env.pop(x, None)
+            s.memo[key] = r; return r
+
+    # -- the formulas
+    class Gen:
+        def __init__(s, wx=2, cw=10): s.wx = wx; s.cw = cw
+        def X(s, i): return 'x' + format(i, '0%dx' % s.wx)
+        def K(s, n): return num(n, s.cw)
+        # -- x in {w*n : 0 <= n < 2^J}
+        def seg(s, x, w, J, P, Q):
+            if J == 0: return eq(V(x), ZERO)
+            y, w2 = P
+            return ex(y, AND(OR(eq(V(x), V(y)), eq(V(x), add(V(y), V(w)))),
+                             ex(w2, AND(eq(V(w2), add(V(w), V(w))), s.seg(y, w2, J - 1, Q, P)))))
+        # -- Int_J(t): t in [0, 2^J)     (true initial segment when 2^J <= p)
+        def Int(s, t, J):
+            X, W = s.X(0), s.X(1)
+            return ex([X, W], AND(eq(V(X), t), eq(V(W), ONE), s.seg(X, W, J, (s.X(2), s.X(3)), (s.X(4), s.X(5)))))
+        # -- 0 <= t < N, for N <= 2^E and 2^(E+1) < p
+        def inrange(s, t, N, E):
+            m, om = s.X(18), s.X(19)
+            return ex(m, AND(eq(add(add(t, V(m)), ONE), N),
+                             al(om, imp(OR(eq(V(om), t), eq(V(om), V(m))), s.Int(V(om), E)))))
+        # -- z = (2^bbits)^r and 0 <= r < 2^e; needs 2^e <= p (the binary expansion of r is then unique)
+        def powrec(s, r, z, c, w, e, A, B):
+            if e == 0: return AND(eq(V(r), ZERO), eq(V(z), ONE))
+            r1, z1, w2, c2 = A
+            return ex([r1, z1], AND(OR(AND(eq(V(r), V(r1)), eq(V(z), V(z1))),
+                                       AND(eq(V(r), add(V(r1), V(w))), eq(V(z), mul(V(z1), V(c))))),
+                                    ex([w2, c2], AND(eq(V(w2), add(V(w), V(w))), eq(V(c2), mul(V(c), V(c))),
+                                                     s.powrec(r1, z1, c2, w2, e - 1, B, A)))))
+        def Pow(s, rt, zt, bbits, e):
+            R, Z, Cc, W = (s.X(i) for i in (6, 7, 8, 9))
+            A = tuple(s.X(i) for i in (10, 11, 12, 13)); B = tuple(s.X(i) for i in (14, 15, 16, 17))
+            return ex([R, Z, Cc, W], AND(eq(V(R), rt), eq(V(Z), zt), eq(V(Cc), num(1 << bbits, 2)), eq(V(W), ONE),
+                                         s.powrec(R, Z, Cc, W, e, A, B)))
+        # -- st is digit number rt of yt in base 2^bbits, for yt < (2^bbits)^nd; needs 2^(bbits*nd+1) < p, nd <= 2^e and 2^(e+1) <= p
+        def Dig(s, yt, rt, st, bbits, nd, e):
+            z, z2, lo, hi, m1, m2, om, r2 = (s.X(i) for i in range(20, 28))
+            beta = num(1 << bbits, 2); J = bbits * nd
+            ints = al(om, imp(OR(eq(V(om), V(lo)), eq(V(om), V(m1)), eq(V(om), V(hi)), eq(V(om), V(m2))), s.Int(V(om), J)))
+            f4 = ex([m1, m2], AND(eq(add(add(V(lo), V(m1)), ONE), V(z)), eq(add(add(V(hi), V(m2)), ONE), V(z2)), ints))
+            f3 = ex([lo, hi], AND(eq(yt, add(V(lo), mul(V(z), add(st, mul(beta, V(hi)))))), f4))
+            f2 = ex(z2, AND(s.Pow(V(r2), V(z2), bbits, e), f3))
+            f1 = ex(z, AND(s.Pow(rt, V(z), bbits, e), f2))
+            return ex(r2, AND(eq(add(add(rt, V(r2)), ONE), s.K(nd)), s.inrange(st, beta, bbits), f1))
+        def access(s, jv, xv, cls, cnt, wtok, iw):
+            return ('or', [AND(eq(V(jv), num(i, iw)), eq(V(xv), V(cls + format(i, '0%dx' % wtok)))) for i in range(cnt)])
+        # -- Diag(u, v): the string coded by v is the string coded by u with the token of u_i replaced by the numeral of u_i
+        def diag(s, P):
+            q, i, r, y, sv, j, x, rr, t, io, ro, h, o, c, qs, mm = (s.X(n) for n in range(32, 48))
+            D, k, k1, H, S, B, R0, WU, N1, E = (P[n] for n in 'D k k1 H S B R0 WU N1 E'.split())
+            W = 8 * H + 1; B2 = B - WU + W; NL = N1 + k1 * (W - WU); NOUT = D * k
+            assert NL <= NOUT <= 1 << E and S + k1 * B <= N1 <= D * k1 and R0 + WU <= B
+            K = s.K; cd = P['codes']; sym = lambda ch: K(cd[ch])
+            rng = lambda tt, n: s.inrange(tt, K(n), E)
+            digA = lambda yt, rt, st: s.Dig(yt, rt, st, P['SB'], D, P['ea'])
+            digH = lambda yt, rt, st: s.Dig(yt, rt, st, P['NB'], H, P['eh'])
+            def exr(xn, n, *conj):
+                body = AND(rng(V(xn), n), *conj); HINT[id(body)] = (xn, K(n), body); return ('ex', xn, body)
+            numsym = OR(
+                exr(h, H, ex(o, AND(eq(V(t), add(mul(V(h), K(6)), V(o))), rng(V(o), 6),
+                    OR(AND(eq(V(o), K(0)), eq(V(sv), sym('('))),
+                       AND(eq(V(o), K(1)), ex(c, AND(digH(V(x), V(h), V(c)), eq(V(sv), add(V(c), sym('0')))))),
+                       AND(eq(V(o), K(2)), eq(V(sv), sym('+'))),
+                       AND(eq(V(o), K(3)), eq(V(sv), sym('('))),
+                       AND(eq(V(o), K(4)), eq(V(sv), sym('g'))),
+                       AND(eq(V(o), K(5)), eq(V(sv), sym('*'))))))),
+                AND(eq(V(t), K(6 * H)), eq(V(sv), sym('0'))),
+                exr(mm, 2 * H, eq(V(t), add(K(6 * H + 1), V(mm))), eq(V(sv), sym(')'))))
+            src = OR(AND(rng(V(q), S), eq(V(qs), V(q))),
+                     exr(io, k1, ex(ro, AND(eq(V(q), add(add(K(S), mul(V(io), K(B2))), V(ro))), rng(V(ro), R0),
+                                            eq(V(qs), add(add(K(S), mul(V(io), K(B))), V(ro)))))),
+                     exr(io, k1, ex(ro, AND(eq(V(q), add(add(K(S + R0 + W), mul(V(io), K(B2))), V(ro))), rng(V(ro), B2 - R0 - W),
+                                            eq(V(qs), add(add(K(S + R0 + WU), mul(V(io), K(B))), V(ro)))))),
+                     exr(mm, N1 - S - k1 * B, eq(V(q), add(K(S + k1 * B2), V(mm))), eq(V(qs), add(K(S + k1 * B), V(mm)))))
+            copy = exr(rr, D, ex(qs, AND(eq(V(qs), add(mul(V(j), K(D)), V(rr))), src, digA(V(x), V(rr), V(sv)))))
+            numc = ex(t, AND(eq(V(q), add(add(K(S + R0), mul(V(j), K(B2))), V(t))), rng(V(t), W), numsym))
+            pad = ex(mm, AND(eq(V(q), add(K(NL), V(mm))), s.Int(V(mm), E), eq(V(sv), sym(' '))))
+            out = OR(pad, ex([j, x], AND(s.access(j, x, 'u', k1, P['wu'], P['iwu']), OR(copy, numc))))
+            body = ex([i, r], AND(eq(V(q), add(mul(V(i), K(D)), V(r))), rng(V(r), D),
+                      ex(y, AND(s.access(i, y, 'v', k, P['wv'], P['iwv']), ex(sv, AND(digA(V(y), V(r), V(sv)), out))))))
+            guard = rng(V(q), NOUT); HINT[id(guard)] = (q, K(NOUT), guard)
+            return al(q, imp(guard, body))
+
+    # -- the reference substitution, and an independent reader of printed formulas
+    def F_ref(us, P):
+        """The substitution on strings, from its definition (no case analysis on output positions)."""
+        D, k, k1, H, S, B, R0, WU, N1 = (P[n] for n in 'D k k1 H S B R0 WU N1'.split())
+        SB, NB, cd = P['SB'], P['NB'], P['codes']
+        sin = [(us[q // D] >> (SB * (q % D))) & ((1 << SB) - 1) for q in range(N1)]
+        def NUM(xv):
+            o = []
+            for hh in range(H): o += [cd['('], cd['0'] + ((xv >> (NB * hh)) & ((1 << NB) - 1)), cd['+'], cd['('], cd['g'], cd['*']]
+            return o + [cd['0']] + [cd[')']] * (2 * H)
+        out = sin[:S]
+        for ii in range(k1):
+            b = S + ii * B
+            out += sin[b:b + R0] + NUM(us[ii]) + sin[b + R0 + WU:b + B]
+        out += sin[S + k1 * B:N1]
+        out += [cd[' ']] * (D * k - len(out))
+        return out
+
+    def pack(symlist, D, SB):
+        return [sum(c << (SB * r) for r, c in enumerate(symlist[i:i + D])) for i in range(0, len(symlist), D)]
+
+    def primes_upto(n): return [q for q in range(2, n + 1) if all(q % d for d in range(2, int(q ** .5) + 1))]
+
+    def read_back(s, wid):
+        """An independent reader of a printed formula (fixed name widths `wid` per letter): the formula as a tree."""
+        n = len(s); match = [0] * n; st = []
+        for i, c in enumerate(s):
+            if c == '(': st.append(i)
+            elif c == ')': match[st.pop()] = i
+        assert not st
+        def paren_is_term(i):
+            j = i + 1
+            while True:
+                c = s[j]
+                if c == '(': j = match[j] + 1; continue
+                if c in '+*': return True
+                if c in '=&|>)': return False
+                j += 1
+        def term(i):
+            c = s[i]
+            if c in wid: w = wid[c]; return ('var', s[i:i + 1 + w]), i + 1 + w
+            if c in CONSTVAL: return ('const', c), i + 1
+            assert c == '(', (c, i)
+            a, i = term(i + 1); op = s[i]; assert op in '+*'; b, i = term(i + 1); assert s[i] == ')'
+            return ('add' if op == '+' else 'mul', a, b), i + 1
+        def form(i):
+            c = s[i]
+            if c in 'EA':
+                v, j = term(i + 1); assert v[0] == 'var'; f, j = form(j); return ('ex' if c == 'E' else 'all', v[1], f), j
+            if c == '~': f, j = form(i + 1); return ('not', f), j
+            if c == '(' and not paren_is_term(i):
+                f, j = form(i + 1); fs = [f]; op = None
+                while s[j] != ')':
+                    assert s[j] in '&|>' and op in (None, s[j]); op = s[j]; f, j = form(j + 1); fs.append(f)
+                if op == '>': assert len(fs) == 2; return ('imp', fs[0], fs[1]), j + 1
+                return ('or' if op == '|' else 'and', fs), j + 1
+            a, j = term(i); assert s[j] == '='; b, j = term(j + 1); return ('eq', a, b), j
+        f, j = form(0); assert j == n; return f
+    def same(a, b):
+        stack = [(a, b)]
+        while stack:
+            a, b = stack.pop()
+            if a[0] != b[0]:
+                if {a[0], b[0]} == {'and', 'or'} and len(a[1]) == len(b[1]) == 1: stack.append((a[1][0], b[1][0])); continue
+                return False
+            k = a[0]
+            if k in ('var', 'const'):
+                if a[1] != b[1]: return False
+            elif k in ('and', 'or'):
+                if len(a[1]) != len(b[1]): return False
+                stack.extend(zip(a[1], b[1]))
+            elif k in ('ex', 'all'):
+                if a[1] != b[1]: return False
+                stack.append((a[2], b[2]))
+            elif k == 'not': stack.append((a[1], b[1]))
+            else: stack.append((a[1], b[1])); stack.append((a[2], b[2]))
+        return True
+    def free_vars(node):
+        """The free variables of a formula or term, in one pass (a counter of the binders in force)."""
+        free, bound, stack = set(), {}, [(node, 0)]
+        while stack:
+            n, leaving = stack.pop()
+            if leaving: bound[n] -= 1; continue
+            k = n[0]
+            if k == 'var':
+                if not bound.get(n[1]): free.add(n[1])
+            elif k == 'const': pass
+            elif k in ('and', 'or'): stack.extend((f, 0) for f in n[1])
+            elif k in ('ex', 'all'): bound[n[1]] = bound.get(n[1], 0) + 1; stack.append((n[1], 1)); stack.append((n[2], 0))
+            elif k == 'not': stack.append((n[1], 0))
+            else: stack.append((n[1], 0)); stack.append((n[2], 0))
+        return free
+    def instance(D, k1, theta_of=None):
+        """delta(u) = Ev (Diag(u, v) & theta(v)) at D symbols per element, as a formula and as a string.  The layout constants
+        S and |delta| are written with fixed width, so writing them does not move the layout.  If delta does not fill u,
+        the formula is None and the string is the one built with placeholder constants (of the same length)."""
+        g = Gen(); SB, NB = 5, 4
+        H = -(-SB * D // NB); W = 8 * H + 1
+        wu, iwu, wv, iwv = 3, 3, 4, 4
+        WU = 1 + wu; IDX = 8 * iwu + 1
+        B = 1 + 3 + 1 + IDX + 1 + 3 + 1 + WU + 1 + 1; R0 = 1 + 3 + 1 + IDX + 1 + 3 + 1
+        k = k1 + -(-k1 * (W - WU) // D)                    # v has room for the lambda of a delta that fills u
+        assert k1 <= 16 ** wu and k <= 16 ** wv
+        E = (D * k - 1).bit_length(); ea = (D - 1).bit_length(); eh = (H - 1).bit_length()
+        assert D <= 1 << ea and H <= 1 << eh and NB * H <= SB * D + 3      # side conditions of Dig; p > 2^(5D+5) gives the rest
+        vt = ['v%04x' % i for i in range(k)]; ut = ['u%03x' % i for i in range(k1)]
+        if theta_of is None:                               # the sample theta: v_0 + ... + v_(k-1) = 0, which depends on every coordinate
+            t = V(vt[0])
+            for nm in vt[1:]: t = add(t, V(nm))
+            theta = eq(t, ZERO)
+        else: theta = theta_of(vt)
+        P = dict(D=D, k=k, k1=k1, H=H, S=0, B=B, R0=R0, WU=WU, N1=D * k1, E=E, SB=SB, NB=NB, ea=ea, eh=eh, wu=wu, iwu=iwu, wv=wv, iwv=iwv, codes=CODE)
+        s0 = show(ex(vt, AND(g.diag(P), theta)))
+        P = dict(P, S=s0.index('u') - R0, N1=len(s0), W=W, theta_len=len(show(theta)))
+        if len(s0) > D * k1: return g, P, None, None, s0, vt, ut
+        dg = g.diag(P); delta = ex(vt, AND(dg, theta)); s = show(delta)
+        assert len(s) == len(s0) and s.index('u') - R0 == P['S']
+        return g, P, dg, delta, s, vt, ut
+    def instance_checks(D, k1, theta_of=None, reader=True, sample=200000):
+        """The instance as strings: a dict of verdicts and the numbers the labels state."""
+        g, P, dg, delta, s, vt, ut = instance(D, k1, theta_of)
+        k, H, S, B, R0, WU, N1, W = (P[n] for n in 'k H S B R0 WU N1 W'.split())
+        B2 = B - WU + W; NL = N1 + k1 * (W - WU); r = dict(P=P, N1=N1, NL=NL, k=k)
+        r['alphabet'] = set(s) <= set(SYMS) - {' '}
+        r['fills_u'] = N1 <= D * k1
+        r['tokens'] = s.count('u') == k1 and all(s[S + i * B + R0:S + i * B + R0 + WU] == ut[i] for i in range(k1))
+        r['free'] = free_vars(delta) == set(ut) and free_vars(dg) == set(ut) | set(vt)
+        r['reader'] = same(read_back(s, {'x': 2, 'u': 3, 'v': 4}), delta) if reader else None
+        sp = s + ' ' * (D * k1 - N1)
+        us = [sum(CODE[c] << (5 * q) for q, c in enumerate(sp[i * D:(i + 1) * D])) for i in range(k1)]
+        r['code'] = all(u < 32 ** D for u in us) and "".join(SYMS[(us[q // D] >> (5 * (q % D))) & 31] for q in range(N1)) == s
+        nums = [numstr(u, H) for u in us]
+        r['numerals'] = (all(nums[i] == show(num(us[i], H)) for i in (0, 1, k1 // 2, k1 - 1)) and all(len(x) == W for x in nums) and
+                         all(sum(HEX.index(nums[i][1 + 6 * h]) << (4 * h) for h in range(H)) == us[i] for i in range(k1)))
+        lam = show(delta, sub=dict(zip(ut, nums)))
+        parts = [s[:S]]
+        for i in range(k1):
+            b = S + i * B; parts += [s[b:b + R0], nums[i], s[b + R0 + WU:b + B]]
+        parts.append(s[S + k1 * B:])
+        r['lambda'] = lam == "".join(parts) and len(lam) == NL and 'u' not in lam
+        r['fills_v'] = NL <= D * k
+        def rule(q):                                       # the case analysis written in Diag
+            if q >= NL: return ' '
+            if q < S: return sp[q]
+            if q < S + k1 * B2:
+                i, o = divmod(q - S, B2)
+                if o < R0: return sp[S + i * B + o]
+                if o < R0 + W:
+                    t = o - R0
+                    if t < 6 * H:
+                        h, w = divmod(t, 6)
+                        return HEX[(us[i] >> (4 * h)) & 15] if w == 1 else "(?+(g*"[w]
+                    return '0' if t == 6 * H else ')'
+                return sp[S + i * B + (o - R0 - W) + R0 + WU]
+            return sp[S + k1 * B + (q - S - k1 * B2)]
+        rnd = random.Random(1); lamp = lam + ' ' * (D * k - NL)
+        qs = set(rnd.randrange(D * k) for _ in range(sample))
+        for i in (0, 1, k1 // 3, k1 - 1):
+            for off in list(range(-3, R0 + 3)) + list(range(R0 + W - 3, B2 + 3)) + list(range(R0 + 6 * H - 8, R0 + 6 * H + 8)): qs.add(S + i * B2 + off)
+        qs |= set(range(max(0, S - 5), S + 5)) | set(range(NL - 5, min(NL + 5, D * k))) | {0, D * k - 1}
+        qs = [q for q in qs if 0 <= q < D * k]
+        r['cases'] = all(rule(q) == lamp[q] for q in qs); r['n_cases'] = len(qs)
+        r['ranges'] = D * k <= 1 << P['E'] and max(NL, S + k1 * B2, D * k) < 16 ** g.cw
+        r['parts'] = (sum(1 + len(n) for n in vt), len(show(dg)), P['theta_len'],
+                      len(show(g.access('x21', 'x23', 'v', k, P['wv'], P['iwv']))), len(show(g.access('x25', 'x26', 'u', k1, P['wu'], P['iwu']))))
+        return r
+    import types
+    return types.SimpleNamespace(**locals())
+
+def block_G():
+    """Block G — the window below the threshold (EXACT): G1–G3."""
+    _deep(_block_G)
+
+def _block_G():
+    dd = _dense(); g = dd.Gen(); V, Ev, show = dd.V, dd.Ev, dd.show
+    x0, x1, x2 = "x20", "x21", "x22"
+    ok = True; det = []
+    n = 0
+    for p in dd.primes_upto(131):                                       # Int_J on every prime field up to 131
+        J = 0
+        while (1 << J) <= p:
+            f = g.Int(V(x0), J); e = Ev(p)
+            ok &= {x for x in range(p) if e.ev(f, {x0: x})} == set(range(1 << J)); n += 1; J += 1
+    ok &= n == 184 and all(len(show(g.Int(V(x0), J))) == 50 * J + 29 for J in range(8))
+    det.append(f"Int_J on {n} pairs (p, J), length 50J + 29")
+    n = 0
+    for p, E in ((11, 2), (19, 3), (37, 4), (67, 5), (131, 6), (257, 7)):      # inrange, every N <= 2^E, 2^(E+1) < p
+        e = Ev(p)
+        for N in range(0, (1 << E) + 1):
+            f = g.inrange(V(x0), g.K(N), E)
+            ok &= {x for x in range(p) if e.ev(f, {x0: x})} == set(range(N)); n += 1
+    ok &= n == 258; det.append(f"inrange on {n} pairs (p, N)")
+    n = 0
+    for p in (11, 19, 37):                                              # Pow on all of F_p^2
+        for bb in (1, 2, 4, 5):
+            for ee in (0, 1, 2, 3):
+                f = g.Pow(V(x0), V(x1), bb, ee); e = Ev(p)
+                for r in range(p):
+                    for z in range(p):
+                        ok &= e.ev(f, {x0: r, x1: z}) == (r < (1 << ee) and z == pow(1 << bb, r, p)); n += 1
+    ok &= n == 29616; det.append(f"Pow on {n} triples (p, r, z)")
+    n = 0
+    for p, bb, nd, ee in ((11, 1, 2, 1), (19, 1, 3, 2), (11, 2, 1, 0), (37, 1, 4, 2), (37, 2, 2, 1)):    # Dig on all of F_p^3
+        assert (1 << (bb * nd + 1)) < p and nd <= (1 << ee) and (1 << (ee + 1)) <= p
+        f = g.Dig(V(x0), V(x1), V(x2), bb, nd, ee); e = Ev(p); beta = 1 << bb
+        for y in range(p):
+            for r in range(p):
+                for s in range(p):
+                    ok &= e.ev(f, {x0: y, x1: r, x2: s}) == (y < beta ** nd and r < nd and s == (y // beta ** r) % beta); n += 1
+    ok &= n == 110827; det.append(f"Dig on {n} triples (y, r, s), five cases")
+    L = lambda bb, nd, ee: len(show(g.Dig(V(x0), V(x1), V(x2), bb, nd, ee)))
+    c0 = L(1, 1, 0) - 100; ce = L(1, 1, 1) - L(1, 1, 0)                 # the length of Dig: 50 b n + 50 b + ce e + c0
+    ok &= all(L(bb, nd, ee) == 50 * bb * nd + 50 * bb + ce * ee + c0 for bb in (1, 2, 5) for nd in (1, 3, 8) for ee in (0, 2, 5))
+    det.append(f"length of Dig = 50bn + 50b + {ce}e + {c0}")
+    n = 0
+    for p, mk, ar in ((11, lambda: g.Int(V(x0), 3), 1), (11, lambda: g.inrange(V(x0), g.K(3), 2), 1), (13, lambda: g.inrange(V(x0), g.K(4), 2), 1),
+                      (7, lambda: g.Pow(V(x0), V(x1), 1, 1), 2), (11, lambda: g.Pow(V(x0), V(x1), 2, 2), 2),
+                      (11, lambda: g.Dig(V(x0), V(x1), V(x2), 1, 2, 1), 3), (11, lambda: g.Dig(V(x0), V(x1), V(x2), 2, 1, 0), 3)):
+        f = mk(); e1 = Ev(p); e2 = Ev(p, naive=True)                    # the pruned checker against the plain one
+        for vals in itertools.product(range(p), repeat=ar):
+            env = dict(zip((x0, x1, x2), vals)); ok &= e1.ev(f, dict(env)) == e2.ev(f, dict(env)); n += 1
+    fx = g.Dig(V(x0), V(x1), V(x2), 2, 3, 2); ok &= set(Ev(11).fv(fx)) == dd.free_vars(fx) == {x0, x1, x2}
+    ok &= n == 2867; det.append(f"pruned and plain checker agree on {n} assignments")
+    # 25:F7 (p25049)
+    check("G1", "decoders over a prime field, as written formulas model-checked on small fields: Int_J(x) <=> 0 <= x < 2^J on every prime p <= 131 and every J with 2^J <= p (184 pairs), of length 50J + 29; "
+          "inrange(x, N) <=> 0 <= x < N for every N <= 2^E on six fields with 2^(E+1) < p (258 pairs); Pow(r, z) <=> r < 2^e and z = (2^b)^r on all of F_p^2 (29 616 triples); "
+          "Dig(y, r, s) <=> y < beta^n, r < n and s the digit, on all of F_p^3 (110 827 triples, five cases), of length linear in b n and e; the pruned model checker agrees with the plain one (2867 assignments)", ok,
+          "; ".join(det))
+
+    # Diag as a written formula on a small field: 4 symbols (2 bits), numerals in base 2, 3 symbols per element
+    p, SB, NB, D, k1 = 257, 2, 1, 3, 2
+    H = -(-SB * D // NB); W = 8 * H + 1; S, B, R0, WU, N1 = 1, 2, 1, 1, D * k1
+    NL = N1 + k1 * (W - WU); k = -(-NL // D); E = 7
+    cd = {' ': 0, '0': 1, '(': 3, '+': 0, 'g': 3, '*': 2, ')': 1}
+    P = dict(D=D, k=k, k1=k1, H=H, S=S, B=B, R0=R0, WU=WU, N1=N1, E=E, SB=SB, NB=NB, ea=2, eh=3, wu=1, iwu=1, wv=2, iwv=2, codes=cd)
+    assert (1 << (SB * D + 1)) < p and (1 << (NB * H + 1)) < p and D * k <= (1 << E) and (1 << (E + 1)) < p
+    f = g.diag(P); e = Ev(p); ok = True
+    for N in range(0, (1 << E) + 1):                                    # the ranges the checker's hints use, on this field
+        fr = g.inrange(V(x0), g.K(N), E)
+        ok &= {x for x in range(p) if e.ev(fr, {x0: x})} == set(range(N))
+    rnd = random.Random(20261004); n_true = n_false = 0
+    us_list = [[0, 0], [63, 63], [27, 54]] + [[rnd.randrange(64), rnd.randrange(64)] for _ in range(2)]
+    def env_of(us, vs):
+        env = {'u%x' % a: us[a] for a in range(k1)}; env.update({'v%02x' % a: vs[a] for a in range(k)}); return env
+    def variant(vs, a, r, dlt):
+        w = list(vs); dgt = (w[a] >> (SB * r)) & 3; w[a] += (((dgt + dlt) & 3) - dgt) << (SB * r); return w
+    for us in us_list:
+        vs = dd.pack(dd.F_ref(us, P), D, SB); ok &= len(vs) == k and e.ev(f, env_of(us, vs)); n_true += 1
+        muts = [variant(vs, rnd.randrange(k), rnd.randrange(D), rnd.randrange(1, 4)) for _ in range(6)]
+        w = list(vs); w[rnd.randrange(k)] += 64; muts.append(w)         # a coordinate that codes no string
+        w = list(vs); w[rnd.randrange(k)] = p - 1; muts.append(w)
+        for w in muts: ok &= not e.ev(f, env_of(us, w)); n_false += 1
+    us = us_list[3]; vs = dd.pack(dd.F_ref(us, P), D, SB); n_one = 0
+    for a in range(k):                                                  # every v at one symbol's distance, at one u
+        for r in range(D):
+            for dlt in (1, 2, 3): ok &= not e.ev(f, env_of(us, variant(vs, a, r, dlt))); n_one += 1
+    ok &= (k, n_true, n_false, n_one) == (34, 5, 40, 306)
+    ok_small = ok; det_small = f"|Diag| on F_257 = {len(show(f))} symbols, the checker's range hints used {e.hints_used} times, each range verified on that field"
+
+    D, k1 = 1024, 4096
+    r = dd.instance_checks(D, k1)
+    pre, ldiag, lth, lav, lau = r['parts']; k = r['k']
+    ok = all(r[c] for c in ('alphabet', 'fills_u', 'tokens', 'free', 'reader', 'code', 'numerals', 'lambda', 'fills_v', 'cases', 'ranges'))
+    ok &= (k, r['N1'], D * k1, r['NL'], D * k) == (45044, 3850485, 4194304, 45781237, 46125056)
+    ok &= r['N1'] == pre + ldiag + lth + 3 and D * k1 - r['N1'] + lth == 704170 and ok_small
+    per_u = (pre + lav + lau + lth) / k1                               # symbols of delta per coordinate of u, without the decoding
+    # 25:F8 (p25050)
+    check("G2", "Diag(u, v) as a written formula, model-checked on F_257 (4 symbols, 3 per element, k1 = 2, k = 34) against the substitution computed from its definition: "
+          "it holds at v = code F(u) for 5 tuples u (three fixed, two seeded), fails at 40 other v (one symbol changed; a coordinate that codes no string) "
+          "and at each of the 306 tuples v at one symbol's distance from code F(u) at one u; "
+          "the instance at D = 1024 symbols per element, k1 = 4096, k = 45044, as strings (the sample theta: v_0 + ... + v_(k-1) = 0): delta is a string over the 32 symbols, read back "
+          "by an independent reader to the same formula, with the tuple u free; |delta| = 3 850 485 <= D k1 = 4 194 304; u is named at the k1 blocks of its access formula and nowhere else; "
+          "the numerals denote the code of delta; lambda = delta(numerals) by printed and by string substitution, a sentence of 45 781 237 <= D k = 46 125 056 symbols; "
+          "the cases written in Diag give lambda at a fixed sample of positions; a theta of up to 704 170 symbols leaves |delta| <= D k1", ok,
+          f"{det_small}; |delta| = prefix {pre} + Diag {ldiag} + theta {lth} + 3; Diag = access(v) {lav} + access(u) {lau} + decoding and layout {ldiag - lav - lau}; {r['n_cases']} positions sampled; E = {r['P']['E']}")
+
+    def theta_max(vt):                                                  # theta = ~T of exactly 704 170 symbols
+        t = V(vt[0])
+        for nm in vt[1:]: t = dd.add(t, V(nm))
+        return ('not', dd.AND(dd.eq(t, dd.ZERO), *([dd.eq(V(vt[0]), V(vt[0]))] * 28651), dd.eq(dd.ZERO, dd.ZERO)))
+    r = dd.instance_checks(D, k1, theta_max, reader=False, sample=20000)
+    ok = all(r[c] for c in ('alphabet', 'fills_u', 'tokens', 'free', 'code', 'numerals', 'lambda', 'fills_v', 'cases', 'ranges'))
+    ok &= r['P']['theta_len'] == 704170 and r['N1'] == D * k1 and r['NL'] <= D * r['k'] and r['k'] == k
+    lo_T = sum(len(nm) for nm in ['v%04x' % i for i in range(k)])        # a formula in all k variables names each once
+    ok &= lo_T == 225220 and 700 < per_u < 800
+    g921 = dd.instance(921, k1); g922 = dd.instance(922, k1)
+    ok &= g921[3] is None and g921[1]['N1'] > 921 * k1 and g922[3] is not None and g922[1]['N1'] <= 922 * k1
+    # 25:G8 (p25051)
+    check("G3", "truth in the window: with theta = ~T of exactly 704 170 symbols (T the sum equation, 28 651 trivial equations and 0=0) delta fills u exactly, |delta| = D k1 = 4 194 304, "
+          "and lambda fits v, so every T of at most 704 169 symbols has its fixed point with ~T; a formula in all k variables has at least 225 220 symbols; "
+          "the construction spends between 700 and 800 symbols of delta per coordinate of u, fits at D = 922 and not at D = 921 (k1 = 4096, the sample theta)", ok,
+          f"|lambda| = {r['NL']} <= {D * r['k']}; symbols of delta per coordinate of u, without the decoding: {per_u:.1f}; D = 921: |delta| = {g921[1]['N1']} > {921 * k1}; D = 922: {g922[1]['N1']} <= {922 * k1}")
+
 
 if __name__ == "__main__":
     import time

@@ -10,7 +10,7 @@ import godel as dcommon
 PKG = "25-godel"; NB = f"frc-{PKG}.ipynb"; PAPER = "25"
 LEDGER_URL = f"https://finitering.space/{PKG}/"; APPENDIX = "A"          # the paper's ledger page and the appendix that carries the ledger
 CITE = "Akhtman, Preprints 2026"; DOI = "https://doi.org/10.20944/preprints202607.0850.v1"                       # the heading's citation, linked to the article
-SCRIPT = "godel.py"; SCRIPTS = f"[`{SCRIPT}`](https://finitering.space/src/{PKG}/)"; RUNTIME = "≈ 50 s"      # the one script, linked to its source page
+SCRIPT = "godel.py"; SCRIPTS = f"[`{SCRIPT}`](https://finitering.space/src/{PKG}/)"; RUNTIME = "≈ 2 min"      # the one script, linked to its source page
 LEDGER = os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "..", "docs", PKG, f"{PKG}-ledger.json")
 cells = []
 def md(s, cid): cells.append({"cell_type": "markdown", "metadata": {"id": cid}, "source": s})
@@ -50,7 +50,7 @@ for r in witnessed:
 md("""## Summary
 
 The cells above are the paper's python-witnessed predicates; the whole script, check by check, is `python3 godel.py`
-(21 checks, `results.json`), `python3 -m frc_25_godel` once installed.""", "summary")
+(24 checks, `results.json`), `python3 -m frc_25_godel` once installed.""", "summary")
 code(f"""{INSTALL}
 from frc_25_godel import verify_all
 assert verify_all(), "a check failed"

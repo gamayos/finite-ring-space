@@ -1,11 +1,11 @@
 # 25-godel validation package
 
 Validation package of *Incompleteness Without Infinity* (Akhtman, preprint 2026), `25-göd` of the FRC
-corpus, added with the paper's predicate ledger (Appendix A, 3 October 2026). One script, `godel.py`, six blocks, twenty-one
+corpus, added with the paper's predicate ledger (Appendix A, 3 October 2026). One script, `godel.py`, seven blocks, twenty-four
 checks (all exact), standard library only, driven by `frc-25-godel.ipynb` (Google Colab: one cell per ledger predicate, any cell on its own, or *Runtime → Run all*,
-≈ 50 s) or run whole.
+≈ 2 min) or run whole.
 
-Every check names the predicate(s) of the paper's predicate ledger it witnesses (Appendix A "Predicate ledger, machine verification and formalisation", 46 predicates in blocks A–H, J, T, cited as
+Every check names the predicate(s) of the paper's predicate ledger it witnesses (Appendix A "Predicate ledger, machine verification and formalisation", 48 predicates in blocks A–H, J, cited as
 `25:XN`; public copy `docs/25-godel/index.html`), and the ledger's source column links, for each
 machine-verified predicate, the script at the check that decides it (`godel.py#<key>`) and the Lean module at the predicate's declaration
 (`lean/FrcCore/Godel.lean` with no axioms, `lean/FrcLedger/Godel.lean` on Mathlib). Where a predicate is proved in Lean, the check here is the instance the reader can run.
@@ -35,13 +35,22 @@ The package checks the paper's statements on the finite structures they are abou
   and `3c(k) + k1 < dk`. This holds for no `k` beyond `k*(M) < 6a^(⌊d/3⌋+1)`, of cube-root order in `m`. At one
   scale (`k1 = k`) the bound is `6a^(⌊d/4⌋+1)`, of fourth-root order. No instance codes `λ` at a length
   `n ≥ t(M) = d·k*(M)`, and `t(M) < m` in every structure. The comment of block D in `godel.py` carries the proofs.
+- **The window below the threshold (Section 5.2).** Below `t(M)` the count excludes nothing, and the template has an
+  instance. The decoders are written out: `Int_J(x)`, of `50J + 29` symbols, defines `{0, …, 2^J − 1}` over a prime
+  field with `2^J ≤ p`, and `Dig(y, r, s)` defines the digits of `y` in base `2^b`. They are model-checked on small
+  prime fields. `Diag(u, v)` is written from them and model-checked on `F_257` against the substitution it defines.
+  The instance is built as strings, over an alphabet of 32 symbols, 1024 symbols per element: `δ` has 3 850 485
+  symbols and fills `u` (`k1 = 4096` coordinates), and `λ = δ(⌜δ⌝)` has 45 781 237 and fills `v` (`k = 45044`). Every
+  `θ(v)` of at most 704 170 symbols has its fixed point `λ ↔ θ(⌜λ⌝)`, so no formula of at most 704 169 symbols
+  defines truth for the coded sentences at that scale. The fields of the instance have at least 1026 digits in base
+  32; no formula is evaluated there, and the comment of block G in `godel.py` carries the proofs.
 - **The Tarski reversal (Section 5.3).** The prefix simulation is evaluated as a written sentence against every matrix
   over `M_2` and `M_3`. The guessed labels are checked on every code of length at most 8. Their composition with the
   pairing prefix over `M_3`, the variable indices coded as data, is checked on every string of length at most 6.
 - **Section 6, on its finite side.** Second-order sentences are decided over all 512 binary relations on three
   elements. The finite parts of the theory that occupies the trichotomy's middle cell are decided over 248 structures.
 
-Run: `python3 godel.py` (python ≥ 3.9, no third-party packages; ≈ 50 s; `results.json` written), or one block:
+Run: `python3 godel.py` (python ≥ 3.9, no third-party packages; ≈ 2 min, under 1 GB of memory; `results.json` written), or one block:
 `python3 godel.py D`; installed, `python3 -m frc_25_godel`. The summary fails if a check reports FAIL or if a check of the
 registry does not report at all.
 
@@ -68,6 +77,9 @@ registry does not report at all.
 | `E2` | E | EXACT | fragment truth by guessed labels on small coded languages: the propositional layer (340 codes over every labelling, 87 380 by the right-to-left pass); with variable indices coded as data — parse labels, value labels, linkage clauses, pairing prefix — against a separate direct evaluator over `M_3`: all 66 429 strings of length `≤ 5` and all 531 441 of length 6 over every labelling, 1540 well-formed codes, 108 048 edits and extensions | `25:G5` |
 | `F1` | F | EXACT | a second-order quantifier over `k`-ary relations ranges over `2^(m^k)` relations; four second-order sentences decided over all 512 binary relations on three elements | `25:H2` |
 | `F2` | F | EXACT | the finite parts of "at least `n` elements, for every `n`" with a free predicate `P`, decided over all 248 structures of at most 5 elements, have models with `∃x P(x)` true and false; `∀x ¬P(x)` settles it; the theory of a finite model gives each sentence of a sample its value | `25:H5` |
+| `G1` | G | EXACT | decoders over a prime field, as written formulas model-checked on small fields: `Int_J(x) ⟺ 0 ≤ x < 2^J` on every prime `p ≤ 131` and every `J` with `2^J ≤ p` (184 pairs), of length `50J + 29`; `inrange`, `Pow` and `Dig` on all of `F_p`, `F_p^2`, `F_p^3` (258 pairs, 29 616 and 110 827 triples); the pruned model checker agrees with the plain one | `25:F7` |
+| `G2` | G | EXACT | `Diag(u, v)` as a written formula, model-checked on `F_257` (4 symbols, 3 per element, `k1 = 2`, `k = 34`): it holds at `v = code F(u)` for 5 tuples `u`, fails at 40 other `v` and at each of the 306 tuples `v` at one symbol's distance at one `u`; the instance at `D = 1024`, `k1 = 4096`, `k = 45044`, as strings: `δ` read back by an independent reader, `|δ| = 3 850 485 ≤ D·k1`, the numerals denote the code of `δ`, `λ = δ(numerals)` by printed and by string substitution, `|λ| = 45 781 237 ≤ D·k`; a `θ` of up to 704 170 symbols leaves `|δ| ≤ D·k1` | `25:F8` |
+| `G3` | G | EXACT | truth in the window: with `θ = ¬T` of exactly 704 170 symbols `δ` fills `u` exactly and `λ` fits `v`; a formula in all `k` variables has at least 225 220 symbols; the construction fits at `D = 922` and not at `D = 921` | `25:G8` |
 
 `results.json` carries one record per check (`id`, `rows`, `block`, `script`, `label`, `ok`, `detail`, `kind`); the site generator
 reads it to colour the witnesses on the public ledger page.

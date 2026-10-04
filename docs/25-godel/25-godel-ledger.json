@@ -44,7 +44,7 @@
    "rows": [
     {
      "label": "B1",
-     "predicate": "The setting: a structure $\\M$ in a finite signature $\\sigma$ with $\\lvert\\M\\rvert=m\\ge2$ finite. $L$ is its first-order language, and $\\varphi\\in\\Th(\\M)$ abbreviates $\\M\\models\\varphi$, likewise $\\ThSO(\\M)$ for second-order sentences under full semantics. The running example is $\\M_p=(\\{0,\\dots,p-1\\};0,1,+,\\times)$, arithmetic modulo a prime. Rows E1 and G5 are stated over $\\M_p$.",
+     "predicate": "The setting: a structure $\\M$ in a finite signature $\\sigma$ with $\\lvert\\M\\rvert=m\\ge2$ finite. $L$ is its first-order language, and $\\varphi\\in\\Th(\\M)$ abbreviates $\\M\\models\\varphi$, likewise $\\ThSO(\\M)$ for second-order sentences under full semantics. The running example is $\\M_p=(\\{0,\\dots,p-1\\};0,1,+,\\times)$, arithmetic modulo a prime. Rows E1, F7, F8, G5 and G8 are stated over $\\M_p$.",
      "tag": "D",
      "source": "Section~\\ref{sec:prelim}",
      "key": "p25005"
@@ -190,7 +190,7 @@
   },
   {
    "letter": "F",
-   "title": "The diagonal does not migrate",
+   "title": "The diagonal under finitude",
    "rows": [
     {
      "label": "F1",
@@ -233,6 +233,20 @@
      "tag": "T",
      "source": "Lem.~\\ref{rem:density}; F4\\newline \\pywit{godel}{p25047}{F6}",
      "key": "p25047"
+    },
+    {
+     "label": "F7",
+     "predicate": "Decoders: over $\\M_p$ with $+$, $\\times$, $0$ and $1$, a formula $\\mathrm{Int}_{J}(x)$ of $50J+29$ symbols in the syntax of F8 defines $\\{0,\\dots,2^{J}-1\\}$ when $2^{J}\\le p$. It writes the binary expansion with six bound variables, four of them reused. A formula $\\mathrm{Dig}(y,r,s)$ defines digit $r$ of $y<\\beta^{n}$ in base $\\beta=2^{b}$ when $2^{bn+1}<p$, at a length linear in $bn$.",
+     "tag": "T",
+     "source": "Lem.~\\ref{lem:decoders}\\newline \\pywit{godel}{p25049}{F7}",
+     "key": "p25049"
+    },
+    {
+     "label": "F8",
+     "predicate": "A dense-coded instance: alphabet of $32$ symbols, constants $0,\\dots,16$, $D=1024$ symbols per element, $k_{1}=4096$, $k=45044$, $p$ of at least $D+2$ digits in base $32$. For every $\\theta(v)$ of at most $704\\,170$ symbols without variables of $u$, a formula $\\mathrm{Diag}$ defines diagonal substitution on strings with the layout of $\\delta$, and $\\lvert\\delta\\rvert\\le Dk_{1}$, $\\lvert\\lambda\\rvert\\le Dk$, $\\M_p\\models\\lambda\\leftrightarrow\\theta(\\ulcorner\\lambda\\urcorner)$.",
+     "tag": "T",
+     "source": "Thm.~\\ref{thm:instance}; F2, F7\\newline \\pywit{godel}{p25050}{F8}",
+     "key": "p25050"
     }
    ]
   },
@@ -284,10 +298,17 @@
     },
     {
      "label": "G7",
-     "predicate": "Decomposition: each classical limitation (G\\\"odel I and II, Tarski, speed-up) splits into a counting and a complexity face. The counting face is a theorem (E2, G1, D1, G6), and $\\Con{H}(\\D)$ is true at grade (ii). The complexity face is imported (G3), with one reversal (G5). The diagonal is unavailable: per-symbol at every scale (F2), any coding beyond $t(\\M)$ (F6, T1).",
+     "predicate": "Decomposition: each classical limitation (G\\\"odel I and II, Tarski, speed-up) splits into a counting and a complexity face. The counting face is a theorem (E2, G1, D1, G6), and $\\Con{H}(\\D)$ is true at grade (ii). The complexity face is imported (G3), with one reversal (G5). The diagonal is unavailable: per-symbol at every scale (F2), any coding beyond $t(\\M)$ (F6).",
      "tag": "T",
-     "source": "Thm.~\\ref{thm:migration}; D1, E2, F2, F4, F6, G1, G3, G5, G6, T1\\newline \\pywit{godel}{p25034}{G7}",
+     "source": "Thm.~\\ref{thm:migration}; D1, E2, F2, F4, F6, F8, G1, G3, G5, G6, G8\\newline \\pywit{godel}{p25034}{G7}",
      "key": "p25034"
+    },
+    {
+     "label": "G8",
+     "predicate": "Truth in the window: at the scale of F8 no formula $T(v)$ of at most $704\\,169$ symbols without variables of $u$ defines truth for the densely coded sentences of length at most $Dk$. Take $\\theta=\\neg T$ in F8. The names of all $k$ variables take $225\\,220$ symbols, so the bound is not one of arity.",
+     "tag": "T",
+     "source": "Cor.~\\ref{cor:windowtruth}; F8\\newline \\pywit{godel}{p25051}{G8}",
+     "key": "p25051"
     }
    ]
   },
@@ -372,19 +393,6 @@
      "key": "p25044"
     }
    ]
-  },
-  {
-   "letter": "T",
-   "title": "Tasks",
-   "rows": [
-    {
-     "label": "T1",
-     "predicate": "The sub-threshold window: let $p$ have $d$ digits. Do formulas of length polynomial in $d$ over $(\\mathbb F_{p},+,\\times)$ define the small-integer initial segment and the digit-extraction maps? Short decoders yield a short dense-coded diagonal. Whether every short dense diagonal yields short decoders is the open calibration.",
-     "tag": "O",
-     "source": "Rem.~\\ref{rem:window}",
-     "key": "p25046"
-    }
-   ]
   }
  ],
  "legend": [
@@ -402,11 +410,6 @@
    "tag": "T",
    "name": "Theorem",
    "text": "Derived in the paper, and machine-verified in exact arithmetic where the source column names a witness."
-  },
-  {
-   "tag": "O",
-   "name": "Open",
-   "text": "Not yet derived or decided."
   }
  ],
  "master": {
@@ -414,19 +417,23 @@
    "Z1"
   ],
   "G7": [
-   "Z1"
+   "Z1",
+   "Z9"
   ],
   "D1": [
-   "A5"
+   "A5",
+   "A6"
   ],
   "D3": [
    "A6"
   ],
   "F2": [
-   "Z9"
+   "Z9",
+   "Z1"
   ],
   "F6": [
-   "Z9"
+   "Z9",
+   "Z1"
   ],
   "G5": [
    "Z9"
@@ -436,6 +443,31 @@
   ],
   "A4": [
    "A4"
+  ],
+  "C1": [
+   "Z1"
+  ],
+  "C4": [
+   "Z1"
+  ],
+  "D2": [
+   "A6"
+  ],
+  "F3": [
+   "Z9"
+  ],
+  "F5": [
+   "Z9"
+  ],
+  "G3": [
+   "Z1"
+  ],
+  "G6": [
+   "Z9"
+  ],
+  "T1": [
+   "Z1",
+   "Z9"
   ]
  },
  "lean": {
