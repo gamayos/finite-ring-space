@@ -10,9 +10,11 @@
    "1:D2": "Algebra",
    "1:D4": "Algebra",
    "1:E2": "Algebra",
-   "1:Z1": "Algebra",
    "1:E3": "Algebra",
-   "1:E6": "Quaternion"
+   "1:E6": "Quaternion",
+   "1:E7": "Quaternion",
+   "1:E8": "Quaternion",
+   "1:Z1": "Algebra"
   },
   "FrcLedger": {
    "1:B2": "Algebra",
@@ -21,11 +23,13 @@
    "1:C4": "Algebra",
    "1:D2": "Algebra",
    "1:D4": "Algebra",
-   "1:E2": "Algebra",
-   "1:Z1": "Algebra",
-   "1:E3": "Algebra",
    "1:D7": "Algebra",
-   "1:E4": "Algebra"
+   "1:E2": "Algebra",
+   "1:E3": "Algebra",
+   "1:E4": "Algebra",
+   "1:E7": "Algebra",
+   "1:E8": "Algebra",
+   "1:Z1": "Algebra"
   }
  },
  "10-dimensions": {
