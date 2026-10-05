@@ -1,4 +1,6 @@
 import Mathlib
+import FrcLedger.Theme.Extension
+import FrcLedger.Theme.Frame
 
 /-!
 # 8-dirac — Schrödinger and Dirac dynamics over the finite substrate: the ledger predicates in Lean (2026-09-20)
@@ -39,167 +41,10 @@ D13, F5.
 
 namespace FRC.Dirac
 
-@[ext]
-structure Ext (F : Type*) (ν : F) where
-  re : F
-  im : F
-
-namespace Ext
-variable {F : Type*} [CommRing F] {ν : F}
-
-instance : Zero (Ext F ν) := ⟨⟨0, 0⟩⟩
-instance : One (Ext F ν) := ⟨⟨1, 0⟩⟩
-instance : Add (Ext F ν) := ⟨fun z z' => ⟨z.re + z'.re, z.im + z'.im⟩⟩
-instance : Neg (Ext F ν) := ⟨fun z => ⟨-z.re, -z.im⟩⟩
-instance : Sub (Ext F ν) := ⟨fun z z' => ⟨z.re - z'.re, z.im - z'.im⟩⟩
-instance : Mul (Ext F ν) := ⟨fun z z' => ⟨z.re * z'.re + ν * (z.im * z'.im), z.re * z'.im + z.im * z'.re⟩⟩
-instance : SMul ℕ (Ext F ν) := ⟨fun n z => ⟨n • z.re, n • z.im⟩⟩
-instance : SMul ℤ (Ext F ν) := ⟨fun n z => ⟨n • z.re, n • z.im⟩⟩
-
-@[simp] theorem zero_re : (0 : Ext F ν).re = 0 := rfl
-@[simp] theorem zero_im : (0 : Ext F ν).im = 0 := rfl
-@[simp] theorem one_re : (1 : Ext F ν).re = 1 := rfl
-@[simp] theorem one_im : (1 : Ext F ν).im = 0 := rfl
-@[simp] theorem add_re (z z' : Ext F ν) : (z + z').re = z.re + z'.re := rfl
-@[simp] theorem add_im (z z' : Ext F ν) : (z + z').im = z.im + z'.im := rfl
-@[simp] theorem neg_re (z : Ext F ν) : (-z).re = -z.re := rfl
-@[simp] theorem neg_im (z : Ext F ν) : (-z).im = -z.im := rfl
-@[simp] theorem sub_re (z z' : Ext F ν) : (z - z').re = z.re - z'.re := rfl
-@[simp] theorem sub_im (z z' : Ext F ν) : (z - z').im = z.im - z'.im := rfl
-@[simp] theorem mul_re (z z' : Ext F ν) : (z * z').re = z.re * z'.re + ν * (z.im * z'.im) := rfl
-@[simp] theorem mul_im (z z' : Ext F ν) : (z * z').im = z.re * z'.im + z.im * z'.re := rfl
-@[simp] theorem nsmul_re (n : ℕ) (z : Ext F ν) : (n • z).re = n • z.re := rfl
-@[simp] theorem nsmul_im (n : ℕ) (z : Ext F ν) : (n • z).im = n • z.im := rfl
-@[simp] theorem zsmul_re (n : ℤ) (z : Ext F ν) : (n • z).re = n • z.re := rfl
-@[simp] theorem zsmul_im (n : ℤ) (z : Ext F ν) : (n • z).im = n • z.im := rfl
-
-instance : CommRing (Ext F ν) where
-  add_assoc _ _ _ := by ext <;> simp [add_assoc]
-  zero_add _ := by ext <;> simp
-  add_zero _ := by ext <;> simp
-  add_comm _ _ := by ext <;> simp [add_comm]
-  nsmul := (· • ·)
-  nsmul_zero _ := by ext <;> simp
-  nsmul_succ _ _ := by ext <;> simp [add_smul]
-  zsmul := (· • ·)
-  zsmul_zero' _ := by ext <;> simp
-  zsmul_succ' _ _ := by ext <;> simp [add_smul]
-  zsmul_neg' _ _ := by ext <;> simp [add_smul] <;> ring
-  neg_add_cancel _ := by ext <;> simp
-  sub_eq_add_neg _ _ := by ext <;> simp [sub_eq_add_neg]
-  mul_assoc _ _ _ := by ext <;> simp <;> ring
-  one_mul _ := by ext <;> simp
-  mul_one _ := by ext <;> simp
-  left_distrib _ _ _ := by ext <;> simp <;> ring
-  right_distrib _ _ _ := by ext <;> simp <;> ring
-  zero_mul _ := by ext <;> simp
-  mul_zero _ := by ext <;> simp
-  mul_comm _ _ := by ext <;> simp <;> ring
-
-def ofBase (a : F) : Ext F ν := ⟨a, 0⟩
-def w : Ext F ν := ⟨0, 1⟩
-def conj (z : Ext F ν) : Ext F ν := ⟨z.re, -z.im⟩
-def norm (z : Ext F ν) : F := z.re * z.re - ν * (z.im * z.im)
-
-@[simp] theorem ofBase_re (a : F) : (ofBase a : Ext F ν).re = a := rfl
-@[simp] theorem ofBase_im (a : F) : (ofBase a : Ext F ν).im = 0 := rfl
-@[simp] theorem w_re : (w : Ext F ν).re = 0 := rfl
-@[simp] theorem w_im : (w : Ext F ν).im = 1 := rfl
-@[simp] theorem conj_re (z : Ext F ν) : (conj z).re = z.re := rfl
-@[simp] theorem conj_im (z : Ext F ν) : (conj z).im = -z.im := rfl
-
-theorem w_sq : (w : Ext F ν) ^ 2 = ofBase ν := by ext <;> simp [sq]
-theorem conj_mul (z z' : Ext F ν) : conj (z * z') = conj z * conj z' := by ext <;> simp <;> ring
-theorem conj_add (z z' : Ext F ν) : conj (z + z') = conj z + conj z' := by ext <;> simp [add_comm]
-theorem conj_conj (z : Ext F ν) : conj (conj z) = z := by ext <;> simp
-theorem conj_one : conj (1 : Ext F ν) = 1 := by ext <;> simp
-theorem mul_conj (z : Ext F ν) : z * conj z = ofBase (norm z) := by ext <;> simp [norm] <;> ring
-/-- 8:A2 — the norm is multiplicative: `N(zz') = N(z)N(z')`. -/
-theorem norm_mul (z z' : Ext F ν) : norm (z * z') = norm z * norm z' := by
-  simp only [norm, mul_re, mul_im]; ring
-theorem ofBase_mul (a b : F) : (ofBase (a * b) : Ext F ν) = ofBase a * ofBase b := by ext <;> simp
-theorem ofBase_add (a b : F) : (ofBase (a + b) : Ext F ν) = ofBase a + ofBase b := by ext <;> simp
-theorem ofBase_one : (ofBase 1 : Ext F ν) = 1 := rfl
-theorem ofBase_zero : (ofBase 0 : Ext F ν) = 0 := rfl
-theorem ofBase_injective : Function.Injective (ofBase : F → Ext F ν) := fun a b h => by
-  simpa using congrArg re h
-theorem conj_ofBase (a : F) : conj (ofBase a : Ext F ν) = ofBase a := by ext <;> simp
-theorem conj_w : conj (w : Ext F ν) = -w := by ext <;> simp
-theorem conj_eq_self_iff (z : Ext F ν) (h2 : (2 : F) ≠ 0) [NoZeroDivisors F] :
-    conj z = z ↔ z.im = 0 := by
-  constructor
-  · intro h
-    have := congrArg im h
-    simp at this
-    have h' : (2 : F) * z.im = 0 := by linear_combination -this
-    rcases mul_eq_zero.1 h' with h0 | h0
-    · exact absurd h0 h2
-    · exact h0
-  · intro h; ext <;> simp [h]
-theorem conj_eq_neg_iff (z : Ext F ν) (h2 : (2 : F) ≠ 0) [NoZeroDivisors F] :
-    conj z = -z ↔ z.re = 0 := by
-  constructor
-  · intro h
-    have := congrArg re h
-    simp at this
-    have h' : (2 : F) * z.re = 0 := by linear_combination this
-    rcases mul_eq_zero.1 h' with h0 | h0
-    · exact absurd h0 h2
-    · exact h0
-  · intro h; ext <;> simp [h]
-
-instance : StarRing (Ext F ν) where
-  star := conj
-  star_involutive := conj_conj
-  star_mul z z' := by rw [conj_mul, mul_comm]
-  star_add z z' := conj_add z z'
-
-theorem star_def (z : Ext F ν) : star z = conj z := rfl
-
-/-- `w` generates: `z = re + im · w`. -/
-theorem eq_re_add_im_w (z : Ext F ν) : z = ofBase z.re + ofBase z.im * w := by ext <;> simp
-
-end Ext
-
-/-! ## The field: `ν` a nonsquare makes `K` a field -/
-namespace Ext
-variable {F : Type*} [Field F] {ν : F}
-
-theorem norm_eq_zero_iff (hν : ¬ IsSquare ν) (z : Ext F ν) : norm z = 0 ↔ z = 0 := by
-  constructor
-  · intro h
-    by_cases hb : z.im = 0
-    · have : z.re * z.re = 0 := by simpa [norm, hb] using h
-      ext <;> simp [hb, mul_self_eq_zero.1 this]
-    · exfalso; apply hν
-      refine ⟨z.re / z.im, ?_⟩
-      have : z.re * z.re = ν * (z.im * z.im) := by
-        simpa [norm, sub_eq_zero] using h
-      rw [div_mul_div_comm, eq_div_iff (mul_ne_zero hb hb), this]
-  · rintro rfl; simp [norm]
-
-noncomputable instance instInv : Inv (Ext F ν) := ⟨fun z => ofBase (norm z)⁻¹ * conj z⟩
-
-theorem inv_def (z : Ext F ν) : z⁻¹ = ofBase (norm z)⁻¹ * conj z := rfl
-
-theorem mul_inv_cancel' (hν : ¬ IsSquare ν) (z : Ext F ν) (hz : z ≠ 0) : z * z⁻¹ = 1 := by
-  rw [inv_def, mul_left_comm, mul_conj, ← ofBase_mul, inv_mul_cancel₀ ((norm_eq_zero_iff hν z).not.2 hz)]
-  rfl
-
-/-- 8:A2 — the field structure under `¬ IsSquare ν`, `z⁻¹ = z̄/N(z)` (a `def`, not an instance: the hypothesis is
-not a class). -/
-@[instance_reducible] noncomputable def field (hν : ¬ IsSquare ν) : Field (Ext F ν) where
-  __ := (inferInstance : CommRing (Ext F ν))
-  inv := (·⁻¹)
-  exists_pair_ne := ⟨0, 1, fun h => by simpa using congrArg re h⟩
-  mul_inv_cancel z hz := mul_inv_cancel' hν z hz
-  inv_zero := by ext <;> simp [inv_def, norm]
-  nnqsmul := _
-  nnqsmul_def _ _ := rfl
-  qsmul := _
-  qsmul_def _ _ := rfl
-
-end Ext
+section
+open FRC.Extension (Ext)
+open FRC.Extension.Ext
+open FRC.Frame (parity_iff drive_nonsquare)
 
 /-! ## The norm-one torus and the Cayley transform -/
 namespace Ext
@@ -210,23 +55,23 @@ variable {F : Type*} [Field F] {ν : F}
 noncomputable def cayley (k t : F) : Ext F ν :=
   (1 + ofBase (k * t) * w) * (1 - ofBase (k * t) * w)⁻¹
 
-theorem norm_ofBase_mul (a : F) (z : Ext F ν) : norm (ofBase a * z) = a ^ 2 * norm z := by
-  simp only [norm, mul_re, mul_im, ofBase_re, ofBase_im]; ring
+theorem norm_ofBase_mul (a : F) (z : Ext F ν) : Ext.norm (ofBase a * z) = a ^ 2 * Ext.norm z := by
+  simp only [Ext.norm, mul_re, mul_im, ofBase_re, ofBase_im]; ring
 
-theorem norm_one_add_kw (k t : F) : norm ((1 : Ext F ν) + ofBase (k * t) * w) = 1 - ν * (k * t) ^ 2 := by
-  simp only [norm, add_re, add_im, one_re, one_im, mul_re, mul_im, ofBase_re, ofBase_im, w_re, w_im]; ring
+theorem norm_one_add_kw (k t : F) : Ext.norm ((1 : Ext F ν) + ofBase (k * t) * w) = 1 - ν * (k * t) ^ 2 := by
+  simp only [Ext.norm, add_re, add_im, one_re, one_im, mul_re, mul_im, ofBase_re, ofBase_im, w_re, w_im]; ring
 
-theorem norm_one_sub_kw (k t : F) : norm ((1 : Ext F ν) - ofBase (k * t) * w) = 1 - ν * (k * t) ^ 2 := by
-  simp only [norm, sub_re, sub_im, one_re, one_im, mul_re, mul_im, ofBase_re, ofBase_im, w_re, w_im]; ring
+theorem norm_one_sub_kw (k t : F) : Ext.norm ((1 : Ext F ν) - ofBase (k * t) * w) = 1 - ν * (k * t) ^ 2 := by
+  simp only [Ext.norm, sub_re, sub_im, one_re, one_im, mul_re, mul_im, ofBase_re, ofBase_im, w_re, w_im]; ring
 
-theorem norm_conj (z : Ext F ν) : norm (conj z) = norm z := by simp [norm]
+theorem norm_conj (z : Ext F ν) : Ext.norm (conj z) = Ext.norm z := by simp [Ext.norm]
 
 /-- `N(z⁻¹) = N(z)⁻¹`. -/
-theorem norm_inv (hν : ¬ IsSquare ν) (z : Ext F ν) : norm z⁻¹ = (norm z)⁻¹ := by
+theorem norm_inv (hν : ¬ IsSquare ν) (z : Ext F ν) : Ext.norm z⁻¹ = (Ext.norm z)⁻¹ := by
   by_cases hz : z = 0
   · subst hz
     rw [inv_def]
-    simp [norm]
+    simp [Ext.norm]
   · rw [inv_def, norm_ofBase_mul, norm_conj]
     have := (norm_eq_zero_iff hν z).not.2 hz
     field_simp
@@ -242,9 +87,9 @@ theorem one_sub_nu_sq_ne_zero (hν : ¬ IsSquare ν) (t : F) : 1 - ν * t ^ 2 �
 
 /-- 8:C5 — the Cayley transform takes values in the norm-one torus: `N(φ_α(λ)) = 1` for every `λ ∈ F`, the
 denominator never vanishing (Theorem `cayley-transform`). -/
-theorem cayley_norm (hν : ¬ IsSquare ν) (k t : F) : norm (cayley k t : Ext F ν) = 1 := by
+theorem cayley_norm (hν : ¬ IsSquare ν) (k t : F) : Ext.norm (cayley k t : Ext F ν) = 1 := by
   unfold cayley
-  rw [norm_mul, norm_inv hν, norm_one_add_kw, norm_one_sub_kw]
+  rw [Ext.norm_mul, norm_inv hν, norm_one_add_kw, norm_one_sub_kw]
   exact mul_inv_cancel₀ (one_sub_nu_sq_ne_zero hν _)
 
 end Ext
@@ -257,7 +102,7 @@ variable {F : Type*} [Field F] {ν : F}
 def conjHom : Ext F ν →+* Ext F ν where
   toFun := conj
   map_one' := conj_one
-  map_mul' := conj_mul
+  map_mul' := Ext.conj_mul
   map_zero' := by ext <;> simp
   map_add' := conj_add
 
@@ -275,29 +120,29 @@ def ofBaseHom : F →+* Ext F ν where
 
 @[simp] theorem ofBaseHom_apply (a : F) : ofBaseHom a = (ofBase a : Ext F ν) := rfl
 
-theorem norm_one : norm (1 : Ext F ν) = 1 := by simp [norm]
+theorem norm_one : Ext.norm (1 : Ext F ν) = 1 := by simp [Ext.norm]
 
 /-- `N¹`, the norm-one torus, as a subgroup of the units of `K` (no field structure needed). -/
 def normOneGroup (F : Type*) [Field F] (ν : F) : Subgroup (Ext F ν)ˣ where
-  carrier := {u | norm (u : Ext F ν) = 1}
+  carrier := {u | Ext.norm (u : Ext F ν) = 1}
   mul_mem' {a b} ha hb := by
     simp only [Set.mem_setOf_eq, Units.val_mul] at *
-    rw [norm_mul, ha, hb, one_mul]
+    rw [Ext.norm_mul, ha, hb, one_mul]
   one_mem' := by simp [norm_one]
   inv_mem' {a} ha := by
     simp only [Set.mem_setOf_eq] at *
-    have h := norm_mul (a : Ext F ν) (↑a⁻¹ : Ext F ν)
+    have h := Ext.norm_mul (a : Ext F ν) (↑a⁻¹ : Ext F ν)
     rw [Units.mul_inv, norm_one, ha, one_mul] at h
     exact h.symm
 
-theorem mem_normOneGroup {u : (Ext F ν)ˣ} : u ∈ normOneGroup F ν ↔ norm (u : Ext F ν) = 1 := Iff.rfl
+theorem mem_normOneGroup {u : (Ext F ν)ˣ} : u ∈ normOneGroup F ν ↔ Ext.norm (u : Ext F ν) = 1 := Iff.rfl
 
 /-- Conjugation on the units. -/
 def conjUnits : (Ext F ν)ˣ →* (Ext F ν)ˣ where
-  toFun z := ⟨conj z, conj (↑z⁻¹ : Ext F ν), by rw [← conj_mul, Units.mul_inv, conj_one],
-    by rw [← conj_mul, Units.inv_mul, conj_one]⟩
+  toFun z := ⟨conj z, conj (↑z⁻¹ : Ext F ν), by rw [← Ext.conj_mul, Units.mul_inv, conj_one],
+    by rw [← Ext.conj_mul, Units.inv_mul, conj_one]⟩
   map_one' := Units.ext (by simp [conj_one])
-  map_mul' z z' := Units.ext (by simp [conj_mul])
+  map_mul' z z' := Units.ext (by simp [Ext.conj_mul])
 
 @[simp] theorem conjUnits_val (z : (Ext F ν)ˣ) : ((conjUnits z : (Ext F ν)ˣ) : Ext F ν) = conj z := rfl
 
@@ -318,11 +163,11 @@ theorem boost_val (z : (Ext F ν)ˣ) : (boost z : Ext F ν) * conj (z : Ext F ν
 /-- 8:D5 — the boost of every unit lies in `N¹`: `N(z/z̄) = 1`. -/
 theorem boost_mem (z : (Ext F ν)ˣ) : boost z ∈ normOneGroup F ν := by
   rw [mem_normOneGroup]
-  have h := congrArg norm (boost_val z)
-  rw [norm_mul, norm_conj] at h
-  have hz : norm (z : Ext F ν) ≠ 0 := by
+  have h := congrArg Ext.norm (boost_val z)
+  rw [Ext.norm_mul, norm_conj] at h
+  have hz : Ext.norm (z : Ext F ν) ≠ 0 := by
     intro h0
-    have := norm_mul (z : Ext F ν) (↑z⁻¹ : Ext F ν)
+    have := Ext.norm_mul (z : Ext F ν) (↑z⁻¹ : Ext F ν)
     rw [Units.mul_inv, norm_one, h0, zero_mul] at this
     exact one_ne_zero this
   exact mul_right_cancel₀ hz (by rw [h, one_mul])
@@ -478,58 +323,6 @@ end generic
 /-! ## Chronon parity (8:B5, B3, B4) on `ZMod p` -/
 section parity
 variable {p : ℕ} [hp : Fact (Nat.Prime p)]
-
-/-- 8:B5 — the square class is chronon parity: for a primitive root `g` (`orderOf g = p − 1`), `g^k` is a
-square exactly when `k` is even (Theorem `parity`). -/
-theorem parity_iff {g : ZMod p} (hg : orderOf g = p - 1) (hodd : p % 2 = 1) (k : ℕ) :
-    IsSquare (g ^ k) ↔ Even k := by
-  have hg0 : g ≠ 0 := by
-    rintro rfl
-    have := hp.out.two_le
-    have h : orderOf (0 : ZMod p) = 0 := by
-      rw [orderOf_eq_zero_iff']
-      intro n hn h0
-      rw [zero_pow hn.ne'] at h0
-      exact zero_ne_one h0
-    omega
-  have hgk : g ^ k ≠ 0 := pow_ne_zero k hg0
-  rw [ZMod.euler_criterion p hgk, ← pow_mul, ← orderOf_dvd_iff_pow_eq_one, hg]
-  have hp2 : p - 1 = 2 * (p / 2) := by have := hp.out.two_le; omega
-  rw [hp2]
-  constructor
-  · rintro ⟨c, hc⟩
-    have hpos : 0 < p / 2 := by have := hp.out.two_le; omega
-    have : k = 2 * c := Nat.eq_of_mul_eq_mul_right hpos (by rw [hc]; ring)
-    exact ⟨c, by omega⟩
-  · rintro ⟨c, rfl⟩
-    exact ⟨c, by ring⟩
-
-/-- 8:B3 — the drive is a nonsquare (`g^{(p−1)/2} = −1`), and so is its inverse `g^{p−2}`: `[g⁻¹] = [g]`. -/
-theorem drive_nonsquare {g : ZMod p} (hg : orderOf g = p - 1) (hodd : p % 2 = 1) :
-    ¬ IsSquare g ∧ ¬ IsSquare g⁻¹ := by
-  have h1 := parity_iff hg hodd 1
-  have h2 := parity_iff hg hodd (p - 2)
-  rw [pow_one] at h1
-  have hinv : g⁻¹ = g ^ (p - 2) := by
-    have hg0 : g ≠ 0 := by
-      rintro rfl
-      have := hp.out.two_le
-      have h : orderOf (0 : ZMod p) = 0 := by
-        rw [orderOf_eq_zero_iff']
-        intro n hn h0
-        rw [zero_pow hn.ne'] at h0
-        exact zero_ne_one h0
-      omega
-    have : g ^ (p - 1) = 1 := by rw [← hg]; exact pow_orderOf_eq_one g
-    have hp3 : p - 1 = (p - 2) + 1 := by have := hp.out.two_le; omega
-    rw [hp3, pow_succ] at this
-    exact (eq_inv_of_mul_eq_one_left this).symm
-  refine ⟨fun h => ?_, fun h => ?_⟩
-  · exact Nat.not_even_one (h1.1 h)
-  · rw [hinv] at h
-    obtain ⟨c, hc⟩ := h2.1 h
-    have := hp.out.two_le
-    omega
 
 /-- 8:B3, 8:B4 — on the shell `p = 4κ + 1`: `2` is a square ⟺ `κ` even (the second supplementary law), and
 so `2⁻¹ = c²` and `−2` (`−1` a square); the quarter-turn `i = g^{−κ} = g^{3κ}` is a square ⟺ `κ` even. -/
@@ -990,8 +783,8 @@ theorem cayley_injective (hν : ¬ IsSquare ν) (h2 : (2 : F) ≠ 0) {k : F} (hk
   unfold cayley at hst
   have hs := one_sub_nu_sq_ne_zero hν (k * s)
   have ht := one_sub_nu_sq_ne_zero hν (k * t)
-  have hs' : (1 : Ext F ν) - ofBase (k * s) * w ≠ 0 := fun h => hs (by rw [← norm_one_sub_kw, h]; simp [norm])
-  have ht' : (1 : Ext F ν) - ofBase (k * t) * w ≠ 0 := fun h => ht (by rw [← norm_one_sub_kw, h]; simp [norm])
+  have hs' : (1 : Ext F ν) - ofBase (k * s) * w ≠ 0 := fun h => hs (by rw [← norm_one_sub_kw, h]; simp [Ext.norm])
+  have ht' : (1 : Ext F ν) - ofBase (k * t) * w ≠ 0 := fun h => ht (by rw [← norm_one_sub_kw, h]; simp [Ext.norm])
   rw [← div_eq_mul_inv, ← div_eq_mul_inv, div_eq_div_iff hs' ht'] at hst
   -- (1 + αs)(1 − αt) = (1 + αt)(1 − αs) ⇒ 2α(s − t) = 0
   have him := congrArg im hst
@@ -1010,8 +803,8 @@ theorem cayley_gauge (hν : ¬ IsSquare ν) (k t : F) :
   letI := field hν
   unfold cayley
   have h1 := one_sub_nu_sq_ne_zero hν (k * t)
-  have hs' : (1 : Ext F ν) - ofBase (k * t) * w ≠ 0 := fun h => h1 (by rw [← norm_one_sub_kw, h]; simp [norm])
-  have ha' : (1 : Ext F ν) + ofBase (k * t) * w ≠ 0 := fun h => h1 (by rw [← norm_one_add_kw, h]; simp [norm])
+  have hs' : (1 : Ext F ν) - ofBase (k * t) * w ≠ 0 := fun h => h1 (by rw [← norm_one_sub_kw, h]; simp [Ext.norm])
+  have ha' : (1 : Ext F ν) + ofBase (k * t) * w ≠ 0 := fun h => h1 (by rw [← norm_one_add_kw, h]; simp [Ext.norm])
   have e1 : (1 : Ext F ν) + ofBase (-k * t) * w = 1 - ofBase (k * t) * w := by ext <;> simp
   have e2 : (1 : Ext F ν) - ofBase (-k * t) * w = 1 + ofBase (k * t) * w := by ext <;> simp
   rw [e1, e2, ← div_eq_mul_inv, ← div_eq_mul_inv, div_mul_div_comm,
@@ -1065,7 +858,7 @@ theorem nu_factorisation (g : K) (h2 : (2 : K) ≠ 0) : (2 : K)⁻¹ * (2 * g) =
   field_simp
 
 /-- 8:B6 — norm growth: `N(gz) = g² N(z)` (Theorem `even-transport`; `g²` is even by `parity_iff`). -/
-theorem norm_growth {ν : K} (g : K) (z : FRC.Dirac.Ext K ν) :
+theorem norm_growth {ν : K} (g : K) (z : FRC.Extension.Ext K ν) :
     Ext.norm (Ext.ofBase g * z) = g ^ 2 * Ext.norm z :=
   Ext.norm_ofBase_mul g z
 
@@ -1467,6 +1260,222 @@ theorem carrier_constants :
   refine ⟨by norm_num, by norm_num, by norm_num, by norm_num⟩
 
 end shells
+
+end
+
+/-! ## Old names (ledger migration, task LM17): the declarations moved to the themes, each under its old name -/
+
+section parity_aliases
+variable {p : ℕ} [hp : Fact (Nat.Prime p)]
+
+/-- 8:B5 — the square class is chronon parity: for a primitive root `g` (`orderOf g = p − 1`), `g^k` is a
+square exactly when `k` is even (Theorem `parity`). -/
+theorem parity_iff {g : ZMod p} (hg : orderOf g = p - 1) (hodd : p % 2 = 1) (k : ℕ) :
+    IsSquare (g ^ k) ↔ Even k :=
+  FRC.Frame.parity_iff hg hodd k
+
+/-- 8:B3 — the drive is a nonsquare (`g^{(p−1)/2} = −1`), and so is its inverse `g^{p−2}`: `[g⁻¹] = [g]`. -/
+theorem drive_nonsquare {g : ZMod p} (hg : orderOf g = p - 1) (hodd : p % 2 = 1) :
+    ¬ IsSquare g ∧ ¬ IsSquare g⁻¹ :=
+  FRC.Frame.drive_nonsquare hg hodd
+
+end parity_aliases
+
+@[reducible] def Ext := @FRC.Extension.Ext
+
+namespace Ext
+variable {F : Type*} [CommRing F] {ν : F}
+
+theorem zero_re : (0 : Ext F ν).re = 0 :=
+  FRC.Extension.Ext.zero_re
+
+theorem zero_im : (0 : Ext F ν).im = 0 :=
+  FRC.Extension.Ext.zero_im
+
+theorem one_re : (1 : Ext F ν).re = 1 :=
+  FRC.Extension.Ext.one_re
+
+theorem one_im : (1 : Ext F ν).im = 0 :=
+  FRC.Extension.Ext.one_im
+
+theorem add_re (z z' : Ext F ν) : (z + z').re = z.re + z'.re :=
+  FRC.Extension.Ext.add_re z z'
+
+theorem add_im (z z' : Ext F ν) : (z + z').im = z.im + z'.im :=
+  FRC.Extension.Ext.add_im z z'
+
+theorem neg_re (z : Ext F ν) : (-z).re = -z.re :=
+  FRC.Extension.Ext.neg_re z
+
+theorem neg_im (z : Ext F ν) : (-z).im = -z.im :=
+  FRC.Extension.Ext.neg_im z
+
+theorem sub_re (z z' : Ext F ν) : (z - z').re = z.re - z'.re :=
+  FRC.Extension.Ext.sub_re z z'
+
+theorem sub_im (z z' : Ext F ν) : (z - z').im = z.im - z'.im :=
+  FRC.Extension.Ext.sub_im z z'
+
+theorem mul_re (z z' : Ext F ν) : (z * z').re = z.re * z'.re + ν * (z.im * z'.im) :=
+  FRC.Extension.Ext.mul_re z z'
+
+theorem mul_im (z z' : Ext F ν) : (z * z').im = z.re * z'.im + z.im * z'.re :=
+  FRC.Extension.Ext.mul_im z z'
+
+theorem nsmul_re (n : ℕ) (z : Ext F ν) : (n • z).re = n • z.re :=
+  FRC.Extension.Ext.nsmul_re n z
+
+theorem nsmul_im (n : ℕ) (z : Ext F ν) : (n • z).im = n • z.im :=
+  FRC.Extension.Ext.nsmul_im n z
+
+theorem zsmul_re (n : ℤ) (z : Ext F ν) : (n • z).re = n • z.re :=
+  FRC.Extension.Ext.zsmul_re n z
+
+theorem zsmul_im (n : ℤ) (z : Ext F ν) : (n • z).im = n • z.im :=
+  FRC.Extension.Ext.zsmul_im n z
+
+@[reducible] def ofBase (a : F) : Ext F ν :=
+  FRC.Extension.Ext.ofBase a
+
+@[reducible] def w : Ext F ν :=
+  FRC.Extension.Ext.w
+
+@[reducible] def conj (z : Ext F ν) : Ext F ν :=
+  FRC.Extension.Ext.conj z
+
+@[reducible] def norm (z : Ext F ν) : F :=
+  FRC.Extension.Ext.norm z
+
+theorem ofBase_re (a : F) : (ofBase a : Ext F ν).re = a :=
+  FRC.Extension.Ext.ofBase_re a
+
+theorem ofBase_im (a : F) : (ofBase a : Ext F ν).im = 0 :=
+  FRC.Extension.Ext.ofBase_im a
+
+theorem w_re : (w : Ext F ν).re = 0 :=
+  FRC.Extension.Ext.w_re
+
+theorem w_im : (w : Ext F ν).im = 1 :=
+  FRC.Extension.Ext.w_im
+
+theorem conj_re (z : Ext F ν) : (conj z).re = z.re :=
+  FRC.Extension.Ext.conj_re z
+
+theorem conj_im (z : Ext F ν) : (conj z).im = -z.im :=
+  FRC.Extension.Ext.conj_im z
+
+theorem w_sq : (w : Ext F ν) ^ 2 = ofBase ν :=
+  FRC.Extension.Ext.w_sq
+
+theorem conj_mul (z z' : Ext F ν) : conj (z * z') = conj z * conj z' :=
+  FRC.Extension.Ext.conj_mul z z'
+
+theorem conj_add (z z' : Ext F ν) : conj (z + z') = conj z + conj z' :=
+  FRC.Extension.Ext.conj_add z z'
+
+theorem conj_conj (z : Ext F ν) : conj (conj z) = z :=
+  FRC.Extension.Ext.conj_conj z
+
+theorem conj_one : conj (1 : Ext F ν) = 1 :=
+  FRC.Extension.Ext.conj_one
+
+theorem mul_conj (z : Ext F ν) : z * conj z = ofBase (norm z) :=
+  FRC.Extension.Ext.mul_conj z
+
+/-- 8:A2 — the norm is multiplicative: `N(zz') = N(z)N(z')`. -/
+theorem norm_mul (z z' : Ext F ν) : norm (z * z') = norm z * norm z' :=
+  FRC.Extension.Ext.norm_mul z z'
+
+theorem ofBase_mul (a b : F) : (ofBase (a * b) : Ext F ν) = ofBase a * ofBase b :=
+  FRC.Extension.Ext.ofBase_mul a b
+
+theorem ofBase_add (a b : F) : (ofBase (a + b) : Ext F ν) = ofBase a + ofBase b :=
+  FRC.Extension.Ext.ofBase_add a b
+
+theorem ofBase_one : (ofBase 1 : Ext F ν) = 1 :=
+  FRC.Extension.Ext.ofBase_one
+
+theorem ofBase_zero : (ofBase 0 : Ext F ν) = 0 :=
+  FRC.Extension.Ext.ofBase_zero
+
+theorem ofBase_injective : Function.Injective (ofBase : F → Ext F ν) :=
+  FRC.Extension.Ext.ofBase_injective
+
+theorem conj_ofBase (a : F) : conj (ofBase a : Ext F ν) = ofBase a :=
+  FRC.Extension.Ext.conj_ofBase a
+
+theorem conj_w : conj (w : Ext F ν) = -w :=
+  FRC.Extension.Ext.conj_w
+
+theorem conj_eq_self_iff (z : Ext F ν) (h2 : (2 : F) ≠ 0) [NoZeroDivisors F] :
+    conj z = z ↔ z.im = 0 :=
+  FRC.Extension.Ext.conj_eq_self_iff z h2
+
+theorem conj_eq_neg_iff (z : Ext F ν) (h2 : (2 : F) ≠ 0) [NoZeroDivisors F] :
+    conj z = -z ↔ z.re = 0 :=
+  FRC.Extension.Ext.conj_eq_neg_iff z h2
+
+theorem star_def (z : Ext F ν) : star z = conj z :=
+  FRC.Extension.Ext.star_def z
+
+/-- `w` generates: `z = re + im · w`. -/
+theorem eq_re_add_im_w (z : Ext F ν) : z = ofBase z.re + ofBase z.im * w :=
+  FRC.Extension.Ext.eq_re_add_im_w z
+
+@[reducible] def instZero : Zero (Ext F ν) :=
+  FRC.Extension.Ext.instZero
+
+@[reducible] def instOne : One (Ext F ν) :=
+  FRC.Extension.Ext.instOne
+
+@[reducible] def instAdd : Add (Ext F ν) :=
+  FRC.Extension.Ext.instAdd
+
+@[reducible] def instNeg : Neg (Ext F ν) :=
+  FRC.Extension.Ext.instNeg
+
+@[reducible] def instSub : Sub (Ext F ν) :=
+  FRC.Extension.Ext.instSub
+
+@[reducible] def instMul : Mul (Ext F ν) :=
+  FRC.Extension.Ext.instMul
+
+@[reducible] def instSMulNat : SMul ℕ (Ext F ν) :=
+  FRC.Extension.Ext.instSMulNat
+
+@[reducible] def instSMulInt : SMul ℤ (Ext F ν) :=
+  FRC.Extension.Ext.instSMulInt
+
+@[reducible] def instCommRing : CommRing (Ext F ν) :=
+  FRC.Extension.Ext.instCommRing
+
+@[reducible] def instStarRing : StarRing (Ext F ν) :=
+  FRC.Extension.Ext.instStarRing
+
+end Ext
+
+namespace Ext
+variable {F : Type*} [Field F] {ν : F}
+
+theorem norm_eq_zero_iff (hν : ¬ IsSquare ν) (z : Ext F ν) : norm z = 0 ↔ z = 0 :=
+  FRC.Extension.Ext.norm_eq_zero_iff hν z
+
+@[reducible] noncomputable def instInv : Inv (Ext F ν) :=
+  FRC.Extension.Ext.instInv
+
+theorem inv_def (z : Ext F ν) : z⁻¹ = ofBase (norm z)⁻¹ * conj z :=
+  FRC.Extension.Ext.inv_def z
+
+theorem mul_inv_cancel' (hν : ¬ IsSquare ν) (z : Ext F ν) (hz : z ≠ 0) : z * z⁻¹ = 1 :=
+  FRC.Extension.Ext.mul_inv_cancel' hν z hz
+
+/-- 8:A2 — the field structure under `¬ IsSquare ν`, `z⁻¹ = z̄/N(z)` (a `def`, not an instance: the hypothesis is
+not a class). -/
+@[reducible] noncomputable def field (hν : ¬ IsSquare ν) : Field (Ext F ν) :=
+  FRC.Extension.Ext.field hν
+
+end Ext
+
 
 -- Ledger predicates of 8-dirac (generated by make_predicates.py from docs/8-dirac/8-dirac-ledger.json; edit the ledger, not this section)
 /-- 8:A2 (p08002) — Finite-field algebra: the quadratic extension $K=\Fp[\w]/(\w^{2}-\nu)$ with Frobenius conjugation and norm, Hilbert's Theorem~90, the square classes by Euler's criterion, the unitary group of a nondegenerate Hermitian form over a finite field. Cited definitions (not proofs): FRC.Dirac.Ext.field. -/

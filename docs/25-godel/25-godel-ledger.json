@@ -2,7 +2,7 @@
  "paper": "25-göd",
  "title": "Incompleteness Without Infinity",
  "doi": "https://doi.org/10.20944/preprints202607.0850.v1",
- "generated": "4 October 2026",
+ "generated": "5 October 2026",
  "blocks": [
   {
    "letter": "A",
@@ -499,7 +499,7 @@
    {
     "name": "FRC.Godel.inj_onto",
     "module": "FrcCore/Godel",
-    "line": 48,
+    "line": 455,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -508,7 +508,7 @@
    {
     "name": "FRC.Godel.no_finite_successor",
     "module": "FrcCore/Godel",
-    "line": 59,
+    "line": 461,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -560,7 +560,7 @@
    {
     "name": "FRC.Godel.sentences_outnumber",
     "module": "FrcCore/Godel",
-    "line": 74,
+    "line": 473,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -584,7 +584,7 @@
    {
     "name": "FRC.Godel.part_collides",
     "module": "FrcCore/Godel",
-    "line": 68,
+    "line": 467,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -649,7 +649,7 @@
    {
     "name": "FRC.Godel.trace_transport",
     "module": "FrcCore/Godel",
-    "line": 107,
+    "line": 74,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -658,7 +658,7 @@
    {
     "name": "FRC.Godel.wrap_equation",
     "module": "FrcCore/Godel",
-    "line": 115,
+    "line": 82,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -667,7 +667,7 @@
    {
     "name": "FRC.Godel.lookups_succ",
     "module": "FrcCore/Godel",
-    "line": 121,
+    "line": 88,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -717,7 +717,7 @@
    {
     "name": "FRC.Godel.value_leaves",
     "module": "FrcCore/Godel",
-    "line": 130,
+    "line": 97,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -726,7 +726,7 @@
    {
     "name": "FRC.Godel.equal_leaves_equal_value",
     "module": "FrcCore/Godel",
-    "line": 140,
+    "line": 107,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -750,7 +750,7 @@
    {
     "name": "FRC.Godel.records_lt",
     "module": "FrcCore/Godel",
-    "line": 148,
+    "line": 115,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -759,7 +759,7 @@
    {
     "name": "FRC.Godel.reach_vanishes",
     "module": "FrcCore/Godel",
-    "line": 154,
+    "line": 121,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -770,7 +770,7 @@
    {
     "name": "FRC.Godel.holds_congr",
     "module": "FrcCore/Godel",
-    "line": 237,
+    "line": 204,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -779,7 +779,7 @@
    {
     "name": "FRC.Godel.mention",
     "module": "FrcCore/Godel",
-    "line": 260,
+    "line": 227,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -788,7 +788,7 @@
    {
     "name": "FRC.Godel.arity_le_size",
     "module": "FrcCore/Godel",
-    "line": 344,
+    "line": 262,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -797,7 +797,7 @@
    {
     "name": "FRC.Godel.mention_cost",
     "module": "FrcCore/Godel",
-    "line": 349,
+    "line": 267,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -806,7 +806,7 @@
    {
     "name": "FRC.Godel.size_exBlock",
     "module": "FrcCore/Godel",
-    "line": 416,
+    "line": 330,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -817,7 +817,7 @@
    {
     "name": "FRC.Godel.template_size",
     "module": "FrcCore/Godel",
-    "line": 426,
+    "line": 340,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -826,7 +826,7 @@
    {
     "name": "FRC.Godel.no_template",
     "module": "FrcCore/Godel",
-    "line": 437,
+    "line": 351,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -835,7 +835,7 @@
    {
     "name": "FRC.Godel.split_scale",
     "module": "FrcCore/Godel",
-    "line": 448,
+    "line": 362,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -844,7 +844,7 @@
    {
     "name": "FRC.Godel.mention_cost",
     "module": "FrcCore/Godel",
-    "line": 349,
+    "line": 267,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -855,7 +855,7 @@
    {
     "name": "FRC.Godel.arity_lt_size",
     "module": "FrcCore/Godel",
-    "line": 371,
+    "line": 285,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -864,7 +864,7 @@
    {
     "name": "FRC.Godel.mention_cost_lt",
     "module": "FrcCore/Godel",
-    "line": 377,
+    "line": 291,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -873,7 +873,7 @@
    {
     "name": "FRC.Godel.no_self_reading",
     "module": "FrcCore/Godel",
-    "line": 400,
+    "line": 314,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -897,7 +897,7 @@
    {
     "name": "FRC.Godel.dense_coding",
     "module": "FrcCore/Godel",
-    "line": 460,
+    "line": 504,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -906,7 +906,7 @@
    {
     "name": "FRC.Godel.digit_bound",
     "module": "FrcCore/Godel",
-    "line": 474,
+    "line": 515,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -917,7 +917,7 @@
    {
     "name": "FRC.Godel.prefix_simulation",
     "module": "FrcCore/Godel",
-    "line": 558,
+    "line": 391,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -926,7 +926,7 @@
    {
     "name": "FRC.Godel.prefix_simulation_closed",
     "module": "FrcCore/Godel",
-    "line": 585,
+    "line": 418,
     "axioms": [],
     "tier": 0,
     "ok": true,

@@ -2,7 +2,7 @@ import FrcCore.Nat
 import FrcCore.Pigeonhole
 import FrcCore.Shell
 import FrcCore.Sum
-import FrcCore.Reductio
+import FrcCore.Theme.Logic
 
 /-!
 # 25-göd — incompleteness without infinity: the ledger predicates with no axioms
@@ -26,54 +26,21 @@ about a fixed finite structure is finite mathematics, and its counting core is p
 
 The formulas are those of the signature of `M_p` (`0`, `1`, `+`, `×`). Every declaration prints "does not depend
 on any axioms".
+
+Since the ledger migration (task LM17) the counting core (25:C1, C5, D1, F4 and the Boolean bookkeeping) lives in the
+logic theme (`Theme/Logic.lean`, namespace `FRC.Logic`); every old name stays as an alias.
 -/
 
 namespace FRC.Godel
 
-open FRC.Reductio (allBelow allBelow_congr cons)
+section
+open FRC.Logic
 
 /-! ### Boolean bookkeeping, from the definitions -/
 
-theorem or_intro_left {a b : Bool} (h : a = true) : (a || b) = true := by rw [h]; rfl
-theorem or_intro_right {a b : Bool} (h : b = true) : (a || b) = true := by rw [h]; cases a <;> rfl
-theorem and_true' (c : Bool) : (c && true) = c := by cases c <;> rfl
-theorem and_false' (c : Bool) : (c && false) = false := by cases c <;> rfl
-theorem and_self' (c : Bool) : (c && c) = c := by cases c <;> rfl
-theorem or_false' (c : Bool) : (c || false) = c := by cases c <;> rfl
-theorem and_assoc' (a b c : Bool) : ((a && b) && c) = (a && (b && c)) := by cases a <;> rfl
-
 /-! ### 25:C1 — on a finite carrier an injective map is onto -/
 
-/-- 25:C1 (Proposition noQ, the pigeonhole) — on `[0, n)` an injective map is onto: every `z < n` is a value. -/
-theorem inj_onto (n : Nat) (S : Nat → Nat) (hS : ∀ x, x < n → S x < n)
-    (hinj : ∀ x y, x < n → y < n → S x = S y → x = y) (z : Nat) (hz : z < n) : ∃ x, x < n ∧ S x = z :=
-  have hnd := FRC.Shell.imageList_nodup hinj (Nat.le_refl n)
-  have hlen := FRC.Shell.imageList_length S n
-  have hb : ∀ e, Pigeonhole.mem e (FRC.Shell.imageList S n) → e < n := fun _ he =>
-    match FRC.Shell.mem_imageList he with
-    | ⟨j, hj, ej⟩ => ej ▸ hS j hj
-  FRC.Shell.mem_imageList (Pigeonhole.mem_of_nodup_of_length_lt n _ hnd hb hlen z hz)
-
-/-- 25:C1 (Proposition noQ) — no successor of `Q` on a finite carrier: no map of `[0, n)` into itself is
-injective and omits an element, so no finite structure is a model of `Q`. -/
-theorem no_finite_successor (n : Nat) (S : Nat → Nat) (hS : ∀ x, x < n → S x < n)
-    (hinj : ∀ x y, x < n → y < n → S x = S y → x = y) (z : Nat) (hz : z < n) : ¬ ∀ x, x < n → S x ≠ z :=
-  fun hmiss => match inj_onto n S hS hinj z hz with
-    | ⟨x, hx, e⟩ => hmiss x hx e
-
 /-! ### 25:D1 — the part cannot hold the whole -/
-
-/-- 25:D1 (Theorem part) — an agent with `R` storage states in a structure of `m > R` elements has no injective
-encoding: every reading `ρ : [0, m) → [0, R)` identifies two elements. -/
-theorem part_collides {m R : Nat} (hR : R < m) (ρ : Nat → Nat) (hρ : ∀ i, i < m → ρ i < R) :
-    ¬ ∀ i j, i < m → j < m → ρ i = ρ j → i = j :=
-  fun hinj => FRC.Reductio.no_mirror hR ρ hρ hinj
-
-/-- 25:C5 (Remark Tarski scoped, the count) — `m + 1` sentences, indexed `0, …, m` (the row's sentences
-`φ, ¬φ, …, ¬^m φ`), admit no injective numbering into a structure of `m` elements. -/
-theorem sentences_outnumber (m : Nat) (g : Nat → Nat) (hg : ∀ i, i < m + 1 → g i < m) :
-    ¬ ∀ i j, i < m + 1 → j < m + 1 → g i = g j → i = j :=
-  part_collides (Nat.lt_succ_self m) g hg
 
 /-! ### 25:D4, 25:E1 — closed terms, their values, and the entries an evaluation consults -/
 
@@ -145,16 +112,16 @@ theorem equal_leaves_equal_value (p : Nat) (hp : 0 < p) (s t : Tm) (h : leaves s
 
 /-- 25:E2 (Proposition reach, the count) — the records of length at most `B` over `a ≥ 2` letters number fewer
 than `a^(B+1)`. -/
-theorem records_lt (a : Nat) (ha : 2 ≤ a) (B : Nat) : FRC.Reductio.records a B < a ^ (B + 1) :=
-  FRC.Reductio.records_lt a ha B
+theorem records_lt (a : Nat) (ha : 2 ≤ a) (B : Nat) : FRC.Logic.records a B < a ^ (B + 1) :=
+  FRC.Logic.records_lt a ha B
 
 /-- 25:E2 (Proposition reach, the vanishing fraction in finite form) — against a cohort of `2^L` truths the
 records of length at most `B` certify a fraction below `1/N` once `L ≥ a^(B+1)·N`: their number times `N` is
 below `2^L`. -/
 theorem reach_vanishes (a : Nat) (ha : 2 ≤ a) (B N L : Nat) (h : a ^ (B + 1) * N ≤ L) :
-    FRC.Reductio.records a B * N < 2 ^ L :=
+    FRC.Logic.records a B * N < 2 ^ L :=
   Nat.lt_of_le_of_lt
-    (Nat.le_trans (Nat.mul_le_mul_right N (Nat.le_of_lt (FRC.Reductio.records_lt a ha B))) h)
+    (Nat.le_trans (Nat.mul_le_mul_right N (Nat.le_of_lt (FRC.Logic.records_lt a ha B))) h)
     Nat.lt_two_pow_self
 
 /-! ### 25:F1, 25:F3 — mention cost: truth depends only on variables that occur -/
@@ -268,55 +235,6 @@ theorem mention (p : Nat) (φ : Fm) (env : Nat → Nat) (i v : Nat)
 
 /-! #### counting the coordinates a formula can read -/
 
-/-- The number of `i < n` with `f i = true`. -/
-def count (f : Nat → Bool) : Nat → Nat
-  | 0 => 0
-  | n + 1 => count f n + cond (f n) 1 0
-
-theorem count_full {f : Nat → Bool} : ∀ {n : Nat}, (∀ i, i < n → f i = true) → count f n = n
-  | 0, _ => rfl
-  | n + 1, h => by
-    show count f n + cond (f n) 1 0 = n + 1
-    rw [h n (Nat.lt_succ_self n), count_full (fun i hi => h i (Nat.lt_succ_of_lt hi))]; rfl
-
-theorem cond_or_le (a b : Bool) : cond (a || b) 1 0 ≤ cond a 1 0 + cond b 1 0 := by
-  cases a <;> cases b <;> decide
-
-theorem count_or_le (f g : Nat → Bool) : ∀ n, count (fun i => f i || g i) n ≤ count f n + count g n
-  | 0 => Nat.le_refl 0
-  | n + 1 => by
-    show count (fun i => f i || g i) n + cond (f n || g n) 1 0 ≤ (count f n + cond (f n) 1 0) + (count g n + cond (g n) 1 0)
-    rw [FRC.Nat.add_add_add_comm (count f n) (cond (f n) 1 0) (count g n) (cond (g n) 1 0)]
-    exact Nat.add_le_add (count_or_le f g n) (cond_or_le (f n) (g n))
-
-theorem count_shift (f : Nat → Bool) : ∀ n, count (fun i => f (i + 1)) n ≤ count f (n + 1)
-  | 0 => Nat.zero_le _
-  | n + 1 => by
-    show count (fun i => f (i + 1)) n + cond (f (n + 1)) 1 0 ≤ count f (n + 1) + cond (f (n + 1)) 1 0
-    exact Nat.add_le_add_right (count_shift f n) _
-
-theorem count_false : ∀ n, count (fun _ => false) n = 0
-  | 0 => rfl
-  | n + 1 => by
-    show count (fun _ => false) n + 0 = 0
-    rw [count_false n]
-
-theorem count_single (j : Nat) : ∀ n, count (fun i => decide (j = i)) n ≤ 1 ∧ (n ≤ j → count (fun i => decide (j = i)) n = 0)
-  | 0 => ⟨Nat.zero_le 1, fun _ => rfl⟩
-  | n + 1 =>
-    match Nat.decEq j n with
-    | isTrue e => by
-      have h0 : count (fun i => decide (j = i)) n = 0 := (count_single j n).2 (e ▸ Nat.le_refl j)
-      refine ⟨?_, fun hle => absurd (e ▸ hle : n + 1 ≤ n) (Nat.not_succ_le_self n)⟩
-      show count (fun i => decide (j = i)) n + cond (decide (j = n)) 1 0 ≤ 1
-      rw [h0, decide_eq_true e]; exact Nat.le_refl 1
-    | isFalse e => by
-      refine ⟨?_, fun hle => ?_⟩
-      · show count (fun i => decide (j = i)) n + cond (decide (j = n)) 1 0 ≤ 1
-        rw [decide_eq_false e]; exact (count_single j n).1
-      · show count (fun i => decide (j = i)) n + cond (decide (j = n)) 1 0 = 0
-        rw [decide_eq_false e]; exact (count_single j n).2 (Nat.le_of_succ_le hle)
-
 theorem tcount_le : ∀ (t : VTm) (N : Nat), count (fun i => occT i t) N ≤ tsize t
   | .var j, N => (count_single j N).1
   | .zero, N => by show count (fun _ => false) N ≤ 1; rw [count_false N]; exact Nat.zero_le 1
@@ -361,10 +279,6 @@ theorem fcount_lt : ∀ (φ : Fm) (N : Nat), count (fun i => occ i φ) N < size 
       (Nat.add_le_add (Nat.le_of_lt (fcount_lt φ N)) (Nat.le_of_lt (fcount_lt ψ N))))
   | .all φ, N =>
     Nat.lt_succ_of_lt (Nat.lt_of_le_of_lt (count_shift (fun i => occ i φ) N) (fcount_lt φ (N + 1)))
-
-theorem count_shift_by : ∀ (j : Nat) (f : Nat → Bool) (N : Nat), count (fun i => f (i + j)) N ≤ count f (N + j)
-  | 0, _, _ => Nat.le_refl _
-  | j + 1, f, N => Nat.le_trans (count_shift_by j (fun k => f (k + 1)) N) (count_shift f (N + j))
 
 /-- 25:F3 (Corollary quotation, the arity) — a formula in which the `N` variables `j, …, j + N − 1` occur has more
 than `N` symbols: a formula's arity is below its length. -/
@@ -455,88 +369,7 @@ theorem split_scale (p N N₂ : Nat) (diag θ : Fm)
 
 /-! ### 25:F4 — density does not rescue the template -/
 
-/-- 25:F4 (Lemma density, the count) — an injective coding of the `a^n` strings of length `n` into `k`-tuples
-over `m` elements needs `a^n ≤ m^k`. -/
-theorem dense_coding {a n m k : Nat} (c : Nat → Nat) (hc : ∀ i, i < a ^ n → c i < m ^ k)
-    (hinj : ∀ i j, i < a ^ n → j < a ^ n → c i = c j → i = j) : a ^ n ≤ m ^ k :=
-  match Nat.lt_or_ge (m ^ k) (a ^ n) with
-  | Or.inl h => absurd hinj (part_collides h c hc)
-  | Or.inr h => h
-
-/-- A strict power step: `m < b` gives `m^(k+1) < b^(k+1)`. -/
-theorem pow_lt_pow_base {m b : Nat} (h : m < b) : ∀ k : Nat, m ^ (k + 1) < b ^ (k + 1)
-  | 0 => show m ^ 0 * m < b ^ 0 * b from Nat.mul_lt_mul_of_le_of_lt (Nat.le_refl 1) h (Nat.zero_lt_succ 0)
-  | k + 1 => show m ^ (k + 1) * m < b ^ (k + 1) * b from Nat.mul_lt_mul_of_lt_of_lt (pow_lt_pow_base h k) h
-
-/-- 25:F4 (Lemma density, the digit form) — if `m` has at most `d` digits in base `a` (`m < a^d`), a coding of
-the strings of length `n` by tuples of `k+1` coordinates with `a^n ≤ m^(k+1)` has `n < d·(k+1)`: a tuple carries
-fewer letters than `d` times its coordinates. -/
-theorem digit_bound {a n m k d : Nat} (ha : 0 < a) (hm : m < a ^ d) (h : a ^ n ≤ m ^ (k + 1)) :
-    n < d * (k + 1) :=
-  match Nat.lt_or_ge n (d * (k + 1)) with
-  | Or.inl hlt => hlt
-  | Or.inr hge =>
-    have h1 : m ^ (k + 1) < (a ^ d) ^ (k + 1) := pow_lt_pow_base hm k
-    have h2 : a ^ (d * (k + 1)) = (a ^ d) ^ (k + 1) := FRC.Nat.pow_mul a d (k + 1)
-    have h3 : a ^ (d * (k + 1)) ≤ a ^ n := Nat.pow_le_pow_right ha hge
-    absurd (Nat.lt_of_le_of_lt h (h2 ▸ h1)) (Nat.not_lt.mpr h3)
-
 /-! ### 25:G4 — the prefix simulation -/
-
-/-- `f 0 || … || f (n − 1)`. -/
-def anyBelow (f : Nat → Bool) : Nat → Bool
-  | 0 => false
-  | n + 1 => f n || anyBelow f n
-
-theorem anyBelow_congr {f g : Nat → Bool} : ∀ {n : Nat}, (∀ x, x < n → f x = g x) → anyBelow f n = anyBelow g n
-  | 0, _ => rfl
-  | n + 1, h => by
-    show (f n || anyBelow f n) = (g n || anyBelow g n)
-    rw [h n (Nat.lt_succ_self n), anyBelow_congr (fun x hx => h x (Nat.lt_succ_of_lt hx))]
-
-theorem anyBelow_false : ∀ n, anyBelow (fun _ => false) n = false
-  | 0 => rfl
-  | n + 1 => by
-    show (false || anyBelow (fun _ => false) n) = false
-    rw [anyBelow_false n]; rfl
-
-theorem allBelow_const (b : Bool) : ∀ n, 0 < n → allBelow (fun _ => b) n = b
-  | 0, h => absurd h (Nat.lt_irrefl 0)
-  | 1, _ => and_true' b
-  | n + 2, _ => by
-    show (b && allBelow (fun _ => b) (n + 1)) = b
-    rw [allBelow_const b (n + 1) (Nat.succ_pos n)]; exact and_self' b
-
-theorem anyBelow_and_const (c : Bool) (F : Nat → Bool) (n : Nat) :
-    anyBelow (fun x => c && F x) n = (c && anyBelow F n) := by
-  cases c
-  · exact anyBelow_false n
-  · rfl
-
-theorem allBelow_and_const (c : Bool) (F : Nat → Bool) (n : Nat) (hn : 0 < n) :
-    allBelow (fun y => c && F y) n = (c && allBelow F n) := by
-  cases c
-  · exact allBelow_const false n hn
-  · rfl
-
-/-- Among the `x < n`, the clause `x = y` picks `y`: `∃ x < n, (c ∧ x = y ∧ F x)` is `c ∧ F y` for `y < n`. -/
-theorem anyBelow_pick (c : Bool) (F : Nat → Bool) (y : Nat) :
-    ∀ n, anyBelow (fun x => (c && decide (x = y)) && F x) n = (if y < n then c && F y else false)
-  | 0 => rfl
-  | n + 1 => by
-    show (((c && decide (n = y)) && F n) || anyBelow (fun x => (c && decide (x = y)) && F x) n) = (if y < n + 1 then c && F y else false)
-    rw [anyBelow_pick c F y n]
-    exact match Nat.decEq n y with
-    | isTrue e => by
-      rw [decide_eq_true e, and_true' c, ite_eq_right (e ▸ Nat.lt_irrefl n : ¬ y < n), or_false', ite_eq_left (e ▸ Nat.lt_succ_self n : y < n + 1), e]
-    | isFalse e => by
-      rw [decide_eq_false e, and_false' c]
-      show (if y < n then c && F y else false) = (if y < n + 1 then c && F y else false)
-      exact match Nat.decLt y n with
-      | isTrue hlt => by rw [ite_eq_left hlt, ite_eq_left (Nat.lt_succ_of_lt hlt)]
-      | isFalse hge => by
-        have hne : ¬ y < n + 1 := fun h => hge (Nat.lt_of_le_of_ne (Nat.le_of_lt_succ h) (fun e' => e e'.symm))
-        rw [ite_eq_right hge, ite_eq_right hne]
 
 /-- The coded prefix evaluated directly over a structure of `m` elements: `true` codes `∀`, `false` codes `∃`;
 the matrix `ψ` reads the chosen values (the last chosen first). -/
@@ -589,6 +422,128 @@ theorem prefix_simulation_closed (m : Nat) (hm : 0 < m) (ψ : List Nat → Bool)
 
 
 
+/-! ## Old names (ledger migration, task LM17): the declarations moved to the themes, each under its old name -/
+end
+
+section aliases
+variable {p : Nat} [Pos p] {κ : Nat} {g : Shell p}
+
+open FRC.Logic (allBelow allBelow_congr cons)
+
+theorem or_intro_left {a b : Bool} (h : a = true) : (a || b) = true :=
+  FRC.Logic.or_intro_left h
+
+theorem or_intro_right {a b : Bool} (h : b = true) : (a || b) = true :=
+  FRC.Logic.or_intro_right h
+
+theorem and_true' (c : Bool) : (c && true) = c :=
+  FRC.Logic.and_true' c
+
+theorem and_false' (c : Bool) : (c && false) = false :=
+  FRC.Logic.and_false' c
+
+theorem and_self' (c : Bool) : (c && c) = c :=
+  FRC.Logic.and_self' c
+
+theorem or_false' (c : Bool) : (c || false) = c :=
+  FRC.Logic.or_false' c
+
+theorem and_assoc' (a b c : Bool) : ((a && b) && c) = (a && (b && c)) :=
+  FRC.Logic.and_assoc' a b c
+
+/-- 25:C1 (Proposition noQ, the pigeonhole) — on `[0, n)` an injective map is onto: every `z < n` is a value. -/
+theorem inj_onto (n : Nat) (S : Nat → Nat) (hS : ∀ x, x < n → S x < n)
+    (hinj : ∀ x y, x < n → y < n → S x = S y → x = y) (z : Nat) (hz : z < n) : ∃ x, x < n ∧ S x = z :=
+  FRC.Logic.inj_onto n S hS hinj z hz
+
+/-- 25:C1 (Proposition noQ) — no successor of `Q` on a finite carrier: no map of `[0, n)` into itself is
+injective and omits an element, so no finite structure is a model of `Q`. -/
+theorem no_finite_successor (n : Nat) (S : Nat → Nat) (hS : ∀ x, x < n → S x < n)
+    (hinj : ∀ x y, x < n → y < n → S x = S y → x = y) (z : Nat) (hz : z < n) : ¬ ∀ x, x < n → S x ≠ z :=
+  FRC.Logic.no_finite_successor n S hS hinj z hz
+
+/-- 25:D1 (Theorem part) — an agent with `R` storage states in a structure of `m > R` elements has no injective
+encoding: every reading `ρ : [0, m) → [0, R)` identifies two elements. -/
+theorem part_collides {m R : Nat} (hR : R < m) (ρ : Nat → Nat) (hρ : ∀ i, i < m → ρ i < R) :
+    ¬ ∀ i j, i < m → j < m → ρ i = ρ j → i = j :=
+  FRC.Logic.part_collides hR ρ hρ
+
+/-- 25:C5 (Remark Tarski scoped, the count) — `m + 1` sentences, indexed `0, …, m` (the row's sentences
+`φ, ¬φ, …, ¬^m φ`), admit no injective numbering into a structure of `m` elements. -/
+theorem sentences_outnumber (m : Nat) (g : Nat → Nat) (hg : ∀ i, i < m + 1 → g i < m) :
+    ¬ ∀ i j, i < m + 1 → j < m + 1 → g i = g j → i = j :=
+  FRC.Logic.sentences_outnumber m g hg
+
+/-- The number of `i < n` with `f i = true`. -/
+@[reducible] def count (f : Nat → Bool) : Nat → Nat :=
+  FRC.Logic.count f
+
+theorem count_full {f : Nat → Bool} : ∀ {n : Nat}, (∀ i, i < n → f i = true) → count f n = n :=
+  FRC.Logic.count_full
+
+theorem cond_or_le (a b : Bool) : cond (a || b) 1 0 ≤ cond a 1 0 + cond b 1 0 :=
+  FRC.Logic.cond_or_le a b
+
+theorem count_or_le (f g : Nat → Bool) : ∀ n, count (fun i => f i || g i) n ≤ count f n + count g n :=
+  FRC.Logic.count_or_le f g
+
+theorem count_shift (f : Nat → Bool) : ∀ n, count (fun i => f (i + 1)) n ≤ count f (n + 1) :=
+  FRC.Logic.count_shift f
+
+theorem count_false : ∀ n, count (fun _ => false) n = 0 :=
+  FRC.Logic.count_false
+
+theorem count_single (j : Nat) : ∀ n, count (fun i => decide (j = i)) n ≤ 1 ∧ (n ≤ j → count (fun i => decide (j = i)) n = 0) :=
+  FRC.Logic.count_single j
+
+theorem count_shift_by : ∀ (j : Nat) (f : Nat → Bool) (N : Nat), count (fun i => f (i + j)) N ≤ count f (N + j) :=
+  FRC.Logic.count_shift_by
+
+/-- 25:F4 (Lemma density, the count) — an injective coding of the `a^n` strings of length `n` into `k`-tuples
+over `m` elements needs `a^n ≤ m^k`. -/
+theorem dense_coding {a n m k : Nat} (c : Nat → Nat) (hc : ∀ i, i < a ^ n → c i < m ^ k)
+    (hinj : ∀ i j, i < a ^ n → j < a ^ n → c i = c j → i = j) : a ^ n ≤ m ^ k :=
+  FRC.Logic.dense_coding c hc hinj
+
+/-- A strict power step: `m < b` gives `m^(k+1) < b^(k+1)`. -/
+theorem pow_lt_pow_base {m b : Nat} (h : m < b) : ∀ k : Nat, m ^ (k + 1) < b ^ (k + 1) :=
+  FRC.Logic.pow_lt_pow_base h
+
+/-- 25:F4 (Lemma density, the digit form) — if `m` has at most `d` digits in base `a` (`m < a^d`), a coding of
+the strings of length `n` by tuples of `k+1` coordinates with `a^n ≤ m^(k+1)` has `n < d·(k+1)`: a tuple carries
+fewer letters than `d` times its coordinates. -/
+theorem digit_bound {a n m k d : Nat} (ha : 0 < a) (hm : m < a ^ d) (h : a ^ n ≤ m ^ (k + 1)) :
+    n < d * (k + 1) :=
+  FRC.Logic.digit_bound ha hm h
+
+/-- `f 0 || … || f (n − 1)`. -/
+@[reducible] def anyBelow (f : Nat → Bool) : Nat → Bool :=
+  FRC.Logic.anyBelow f
+
+theorem anyBelow_congr {f g : Nat → Bool} : ∀ {n : Nat}, (∀ x, x < n → f x = g x) → anyBelow f n = anyBelow g n :=
+  FRC.Logic.anyBelow_congr
+
+theorem anyBelow_false : ∀ n, anyBelow (fun _ => false) n = false :=
+  FRC.Logic.anyBelow_false
+
+theorem allBelow_const (b : Bool) : ∀ n, 0 < n → allBelow (fun _ => b) n = b :=
+  FRC.Logic.allBelow_const b
+
+theorem anyBelow_and_const (c : Bool) (F : Nat → Bool) (n : Nat) :
+    anyBelow (fun x => c && F x) n = (c && anyBelow F n) :=
+  FRC.Logic.anyBelow_and_const c F n
+
+theorem allBelow_and_const (c : Bool) (F : Nat → Bool) (n : Nat) (hn : 0 < n) :
+    allBelow (fun y => c && F y) n = (c && allBelow F n) :=
+  FRC.Logic.allBelow_and_const c F n hn
+
+/-- Among the `x < n`, the clause `x = y` picks `y`: `∃ x < n, (c ∧ x = y ∧ F x)` is `c ∧ F y` for `y < n`. -/
+theorem anyBelow_pick (c : Bool) (F : Nat → Bool) (y : Nat) :
+    ∀ n, anyBelow (fun x => (c && decide (x = y)) && F x) n = (if y < n then c && F y else false) :=
+  FRC.Logic.anyBelow_pick c F y
+
+end aliases
+
 -- Ledger predicates of 25-godel (generated by make_predicates.py from docs/25-godel/25-godel-ledger.json; edit the ledger, not this section)
 /-- 25:C1 (p25010) — No finite structure interprets $\mathsf{Q}$: a model of $\mathsf{Q}$ has an injective successor with $0$ outside its range, and on a finite set an injective map is onto. -/
 theorem p25010 : (∀ (n : Nat) (S : Nat → Nat), (∀ (x : Nat), x < n → S x < n) → (∀ (x y : Nat), x < n → y < n → S x = S y → x = y) → ∀ (z : Nat), z < n → ∃ x, x < n ∧ S x = z) ∧ ∀ (n : Nat) (S : Nat → Nat), (∀ (x : Nat), x < n → S x < n) → (∀ (x y : Nat), x < n → y < n → S x = S y → x = y) → ∀ (z : Nat), z < n → ¬∀ (x : Nat), x < n → S x ≠ z :=
@@ -606,7 +561,7 @@ theorem p25018 : (∀ (u : Nat) (f g : Nat → Nat → Nat) (t : FRC.Godel.Tm), 
 theorem p25019 : (∀ (p : Nat), (0 : Nat) < p → ∀ (t : FRC.Godel.Tm), FRC.Godel.val ((1 : Nat) % p) (fun x y => (x + y) % p) t = FRC.Godel.leaves t % p) ∧ ∀ (p : Nat), (0 : Nat) < p → ∀ (s t : FRC.Godel.Tm), FRC.Godel.leaves s = FRC.Godel.leaves t → FRC.Godel.val ((1 : Nat) % p) (fun x y => (x + y) % p) s = FRC.Godel.val ((1 : Nat) % p) (fun x y => (x + y) % p) t :=
   And.intro @FRC.Godel.value_leaves (@FRC.Godel.equal_leaves_equal_value)
 /-- 25:E2 (p25020) — Vanishing reach: an agent of capacity $(K,H)$ certifies at most $a^{B+1}$ sentences over all its runs, the records being strings of length at most $B$. The certified fraction of the truths of length at most $L$ (E1) is at most $a^{B+1}/2^{\alpha L}$, below $1/N$ for every $N$ once $L$ is large enough. -/
-theorem p25020 : (∀ (a : Nat), (2 : Nat) ≤ a → ∀ (B : Nat), FRC.Reductio.records a B < a ^ (B + (1 : Nat))) ∧ ∀ (a : Nat), (2 : Nat) ≤ a → ∀ (B N L : Nat), a ^ (B + (1 : Nat)) * N ≤ L → FRC.Reductio.records a B * N < (2 : Nat) ^ L :=
+theorem p25020 : (∀ (a : Nat), (2 : Nat) ≤ a → ∀ (B : Nat), FRC.Logic.records a B < a ^ (B + (1 : Nat))) ∧ ∀ (a : Nat), (2 : Nat) ≤ a → ∀ (B N L : Nat), a ^ (B + (1 : Nat)) * N ≤ L → FRC.Logic.records a B * N < (2 : Nat) ^ L :=
   And.intro @FRC.Godel.records_lt (@FRC.Godel.reach_vanishes)
 /-- 25:F1 (p25023) — Mention cost: if the truth of a formula in $\M$ depends on coordinate $i$ of a tuple of variables, then $v_{i}$ occurs in it. A formula whose truth depends on all $N$ coordinates has length at least $N$. A quantifier block binding an $N$-tuple contributes at least $N$ symbols. -/
 theorem p25023 : (∀ (p : Nat) (φ : FRC.Godel.Fm) {env env' : Nat → Nat}, (∀ (i : Nat), FRC.Godel.occ i φ = true → env i = env' i) → FRC.Godel.holds p env φ = FRC.Godel.holds p env' φ) ∧ (∀ (p : Nat) (φ : FRC.Godel.Fm) (env : Nat → Nat) (i v : Nat), FRC.Godel.holds p (FRC.Godel.upd env i v) φ ≠ FRC.Godel.holds p env φ → FRC.Godel.occ i φ = true) ∧ (∀ (φ : FRC.Godel.Fm) (N : Nat), (∀ (i : Nat), i < N → FRC.Godel.occ i φ = true) → N ≤ FRC.Godel.size φ) ∧ (∀ (p : Nat) (φ : FRC.Godel.Fm) (N : Nat), (∀ (i : Nat), i < N → ∃ env v, FRC.Godel.holds p (FRC.Godel.upd env i v) φ ≠ FRC.Godel.holds p env φ) → N ≤ FRC.Godel.size φ) ∧ ∀ (n : Nat) (φ : FRC.Godel.Fm), FRC.Godel.size (FRC.Godel.exBlock n φ) = FRC.Godel.size φ + (3 : Nat) * n :=

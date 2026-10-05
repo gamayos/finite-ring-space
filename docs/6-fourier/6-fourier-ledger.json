@@ -2,7 +2,7 @@
  "paper": "6-four",
  "title": "Scale-Shift and Fractional Fourier Transform as Rotations over Finite Holographic Substrate",
  "doi": "https://doi.org/10.20944/preprints202606.0127.v1",
- "generated": "4 October 2026",
+ "generated": "5 October 2026",
  "blocks": [
   {
    "letter": "A",
@@ -440,7 +440,7 @@
    {
     "name": "FRC.Shell.Frame.euler_identity",
     "module": "FrcCore/Frame",
-    "line": 298,
+    "line": 328,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -451,7 +451,7 @@
    {
     "name": "FRC.Shell.Frame.orientation_class",
     "module": "FrcCore/Frame",
-    "line": 270,
+    "line": 300,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -462,7 +462,7 @@
    {
     "name": "FRC.Fourier.shell_relations",
     "module": "FrcLedger/Fourier",
-    "line": 169,
+    "line": 1595,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -475,7 +475,7 @@
    {
     "name": "FRC.Shell.Frame.W_sq'",
     "module": "FrcCore/Sum",
-    "line": 295,
+    "line": 303,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -484,7 +484,7 @@
    {
     "name": "FRC.Shell.Frame.F_sq",
     "module": "FrcCore/Sum",
-    "line": 310,
+    "line": 318,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -493,7 +493,7 @@
    {
     "name": "FRC.Shell.Frame.J_sq",
     "module": "FrcCore/Sum",
-    "line": 299,
+    "line": 307,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -504,7 +504,7 @@
    {
     "name": "FRC.Shell.Frame.ofNat_n",
     "module": "FrcCore/Sum",
-    "line": 114,
+    "line": 122,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -515,7 +515,7 @@
    {
     "name": "FRC.Fourier.shell_relations",
     "module": "FrcLedger/Fourier",
-    "line": 169,
+    "line": 1595,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -528,7 +528,7 @@
    {
     "name": "FRC.Shell.Frame.W_J_comm",
     "module": "FrcCore/Sum",
-    "line": 323,
+    "line": 326,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -537,7 +537,7 @@
    {
     "name": "FRC.Shell.Frame.symm_antisymm_decomp",
     "module": "FrcCore/Sum",
-    "line": 624,
+    "line": 627,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -546,7 +546,7 @@
    {
     "name": "FRC.Shell.Frame.symm_antisymm_unique",
     "module": "FrcCore/Sum",
-    "line": 639,
+    "line": 642,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -555,7 +555,7 @@
    {
     "name": "FRC.Shell.Frame.symm_determined",
     "module": "FrcCore/Sum",
-    "line": 481,
+    "line": 484,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -564,7 +564,7 @@
    {
     "name": "FRC.Shell.Frame.antisymm_determined",
     "module": "FrcCore/Sum",
-    "line": 546,
+    "line": 549,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -575,7 +575,7 @@
    {
     "name": "FRC.Fourier.shell_proj",
     "module": "FrcLedger/Fourier",
-    "line": 1127,
+    "line": 954,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -588,7 +588,7 @@
    {
     "name": "FRC.Fourier.proj_mul_proj",
     "module": "FrcLedger/Fourier",
-    "line": 293,
+    "line": 120,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -601,7 +601,7 @@
    {
     "name": "FRC.Fourier.sum_proj",
     "module": "FrcLedger/Fourier",
-    "line": 329,
+    "line": 156,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -616,7 +616,7 @@
    {
     "name": "FRC.Fourier.shell_frft_add",
     "module": "FrcLedger/Fourier",
-    "line": 1137,
+    "line": 964,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -629,7 +629,7 @@
    {
     "name": "FRC.Fourier.shell_frft_cardinal",
     "module": "FrcLedger/Fourier",
-    "line": 1144,
+    "line": 971,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -642,7 +642,7 @@
    {
     "name": "FRC.Fourier.shell_frft_values",
     "module": "FrcLedger/Fourier",
-    "line": 1150,
+    "line": 977,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -657,7 +657,7 @@
    {
     "name": "FRC.Fourier.shell_frft_injective",
     "module": "FrcLedger/Fourier",
-    "line": 1387,
+    "line": 1214,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -672,7 +672,7 @@
    {
     "name": "FRC.Fourier.shell_odd_proj_ne_zero",
     "module": "FrcLedger/Fourier",
-    "line": 1329,
+    "line": 1156,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -685,7 +685,7 @@
    {
     "name": "FRC.Fourier.shell_even_proj_ne_zero",
     "module": "FrcLedger/Fourier",
-    "line": 1365,
+    "line": 1192,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -698,7 +698,7 @@
    {
     "name": "FRC.Fourier.shell_multiplicity_sums",
     "module": "FrcLedger/Fourier",
-    "line": 1636,
+    "line": 1463,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -713,7 +713,7 @@
    {
     "name": "FRC.Fourier.gauss_mul_gauss_inv",
     "module": "FrcLedger/Fourier",
-    "line": 827,
+    "line": 654,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -726,7 +726,7 @@
    {
     "name": "FRC.Fourier.gauss_inv_of_sign",
     "module": "FrcLedger/Fourier",
-    "line": 888,
+    "line": 715,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -739,7 +739,7 @@
    {
     "name": "FRC.Fourier.shell_multiplicity_tuple",
     "module": "FrcLedger/Fourier",
-    "line": 1665,
+    "line": 1492,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -754,7 +754,7 @@
    {
     "name": "FRC.Fourier.shell_frftLift",
     "module": "FrcLedger/Fourier",
-    "line": 1166,
+    "line": 993,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -769,7 +769,7 @@
    {
     "name": "FRC.Fourier.shell_conj",
     "module": "FrcLedger/Fourier",
-    "line": 1177,
+    "line": 1004,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -784,7 +784,7 @@
    {
     "name": "FRC.Fourier.shell_frft_injective",
     "module": "FrcLedger/Fourier",
-    "line": 1387,
+    "line": 1214,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -797,7 +797,7 @@
    {
     "name": "FRC.Fourier.shell_frft_add_two_kappa",
     "module": "FrcLedger/Fourier",
-    "line": 1193,
+    "line": 1020,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -810,7 +810,7 @@
    {
     "name": "FRC.Fourier.mul_J_apply",
     "module": "FrcLedger/Fourier",
-    "line": 74,
+    "line": 1564,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -865,7 +865,7 @@
    {
     "name": "FRC.Fourier.circle",
     "module": "FrcLedger/Fourier",
-    "line": 636,
+    "line": 463,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -878,7 +878,7 @@
    {
     "name": "FRC.Fourier.rot_mul",
     "module": "FrcLedger/Fourier",
-    "line": 675,
+    "line": 502,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -891,7 +891,7 @@
    {
     "name": "FRC.Fourier.unitsEquivCircle",
     "module": "FrcLedger/Fourier",
-    "line": 720,
+    "line": 547,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -904,7 +904,7 @@
    {
     "name": "FRC.Fourier.card_circle",
     "module": "FrcLedger/Fourier",
-    "line": 748,
+    "line": 575,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -919,7 +919,7 @@
    {
     "name": "FRC.Fourier.rot_cardinal",
     "module": "FrcLedger/Fourier",
-    "line": 684,
+    "line": 511,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -934,7 +934,7 @@
    {
     "name": "FRC.Fourier.shell_spectral_obstruction",
     "module": "FrcLedger/Fourier",
-    "line": 1206,
+    "line": 1033,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -949,7 +949,7 @@
    {
     "name": "FRC.Fourier.frft_mul_proj_one",
     "module": "FrcLedger/Fourier",
-    "line": 538,
+    "line": 365,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -962,7 +962,7 @@
    {
     "name": "FRC.Fourier.rot_eigenline",
     "module": "FrcLedger/Fourier",
-    "line": 703,
+    "line": 530,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -977,7 +977,7 @@
    {
     "name": "FRC.Fourier.shell_heisenberg",
     "module": "FrcLedger/Fourier",
-    "line": 1198,
+    "line": 1025,
     "axioms": [
      "Classical.choice",
      "Quot.sound",

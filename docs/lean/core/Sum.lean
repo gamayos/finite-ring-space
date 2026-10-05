@@ -9,6 +9,9 @@ Sums over `l < n` are defined by structural recursion (`sumRange f (n+1) = sumRa
 The geometric sum gives the principal-root identity (2:F1, Prop. 6.1 of 2-geometry) and the entrywise
 inversion of the shell Fourier matrix `W k j = g^{jk}`: `Σ_l W k l · (−g^{−lj}) = [k = j]` (2:F3,
 Prop. 6.3; 6:B5 in matrix form). No axioms.
+
+Since the ledger migration (task LM17) it also holds 20-rh's sums: peeling the first term, and the sum over the
+nonzero residues reindexed by the drive.
 -/
 
 namespace FRC
@@ -93,6 +96,11 @@ theorem geom_sum_mul (x : Shell p) (n : Nat) :
     rw [sumRange_succ, right_distrib, ih, left_distrib, ← mul_neg, mul_one, ← pow_succ]
     rw [add_add_add_comm, add_comm (x ^ n) (x ^ (n + 1)), add_comm (-1) (-(x ^ n)), add_assoc,
       ← add_assoc (x ^ n), add_neg, zero_add]
+
+/-- `Σ_{l<n+1} f l = f 0 + Σ_{l<n} f (l + 1)`. -/
+theorem sumRange_succ' (f : Nat → Shell p) : ∀ n, sumRange f (n + 1) = f 0 + sumRange (fun l => f (l + 1)) n
+  | 0 => by rw [sumRange_succ, sumRange_zero, sumRange_zero, zero_add, add_zero]
+  | n + 1 => by rw [sumRange_succ, sumRange_succ' f n, sumRange_succ, add_assoc]
 
 namespace Frame
 variable {κ : Nat} {g : Shell p}
@@ -313,11 +321,6 @@ theorem F_sq (F : Frame p κ g) (k j : Nat) :
     intro l; unfold Fmat
     rw [mul_assoc, mul_left_comm (W g k l), ← mul_assoc]
   rw [sum_congr _ (fun l _ => e l), sum_mul_left, F.W_sq' k j, F.quarter_turn_sq, ← neg_mul, one_mul, neg_neg]
-
-theorem inv_unique {x x' y : Shell p} (h : x * y = 1) (h' : x' * y = 1) : x = x' := by
-  calc x = x * (x' * y) := by rw [h', mul_one]
-    _ = x' * (x * y) := mul_left_comm _ _ _
-    _ = x' := by rw [h, mul_one]
 
 /-- 6:B7 (`W J = J W`, entrywise). -/
 theorem W_J_comm (F : Frame p κ g) {k j : Nat} (hk : k < p - 1) (hj : j < p - 1) :
@@ -650,6 +653,28 @@ theorem symm_antisymm_unique (F : Frame p κ g) {a b : Nat → Shell p} (ha : Sy
       _ = 0 := by rw [h1, h2, add_zero])
   refine ⟨ha0, ?_⟩
   rw [ha0, zero_add] at h1; exact h1
+
+/-- The sum over the nonzero residues equals the sum over the powers of the drive: `x = g^m` reindexes. -/
+theorem sum_units_eq_sum_pow (F : Frame p κ g) (f : Shell p → Shell p) :
+    sumRange (fun l => f (ofNat (l + 1))) (p - 1) = sumRange (fun m => f (g ^ m)) (p - 1) := by
+  have hn : p = (p - 1) + 1 := (FRC.Nat.sub_add_cancel Pos.pos).symm
+  have hpos : ∀ m, 1 ≤ (g ^ m).val := fun m =>
+    Nat.pos_of_ne_zero (fun h0 => F.pow_ne_zero m (ext (by rw [h0, val_zero])))
+  have hlt : ∀ m, m < p - 1 → (g ^ m).val - 1 < p - 1 := fun m _ => by
+    have h1 : (g ^ m).val - 1 + 1 = (g ^ m).val := FRC.Nat.sub_add_cancel (hpos m)
+    have h2 : (g ^ m).val < (p - 1) + 1 := hn ▸ (g ^ m).lt
+    rw [← h1] at h2
+    exact Nat.lt_of_succ_lt_succ h2
+  have hinj : ∀ i j, i < p - 1 → j < p - 1 → (g ^ i).val - 1 = (g ^ j).val - 1 → i = j := fun i j hi hj h => by
+    apply F.pow_inj hi hj
+    apply ext
+    rw [← FRC.Nat.sub_add_cancel (hpos i), ← FRC.Nat.sub_add_cancel (hpos j), h]
+  have := sum_perm (fun l => f (ofNat (l + 1))) (fun m => (g ^ m).val - 1) (p - 1) hlt hinj
+  rw [← this]
+  apply sum_congr
+  intro m _
+  show f (ofNat ((g ^ m).val - 1 + 1)) = f (g ^ m)
+  rw [FRC.Nat.sub_add_cancel (hpos m), ofNat_val]
 
 end Frame
 

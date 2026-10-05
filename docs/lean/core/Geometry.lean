@@ -1,7 +1,7 @@
 import FrcCore.Orbit
 import FrcCore.Sum
-import FrcCore.Algebra
 import FrcCore.Instances
+import FrcCore.Poly
 
 /-!
 # FrcCore.Geometry — 2-geometry predicates on the core

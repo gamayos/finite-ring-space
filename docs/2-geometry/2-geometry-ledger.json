@@ -2,7 +2,7 @@
  "paper": "2-geom",
  "title": "Geometry and Constants in Finite Ring Continuum",
  "doi": "https://doi.org/10.3390/sym18050751",
- "generated": "4 October 2026",
+ "generated": "5 October 2026",
  "blocks": [
   {
    "letter": "A",
@@ -322,7 +322,7 @@
    {
     "name": "FRC.Geometry.generator_orbit",
     "module": "FrcLedger/Geometry",
-    "line": 66,
+    "line": 65,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -335,7 +335,7 @@
    {
     "name": "FRC.Shell.Frame.generator_orbit",
     "module": "FrcCore/Orbit",
-    "line": 51,
+    "line": 55,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -375,7 +375,7 @@
    {
     "name": "FRC.Geometry.euler_characteristic",
     "module": "FrcLedger/Geometry",
-    "line": 122,
+    "line": 121,
     "axioms": [
      "Quot.sound",
      "propext"
@@ -465,7 +465,7 @@
    {
     "name": "FRC.Geometry.half_period",
     "module": "FrcLedger/Geometry",
-    "line": 24,
+    "line": 23,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -478,7 +478,7 @@
    {
     "name": "FRC.Shell.Frame.half_period",
     "module": "FrcCore/Frame",
-    "line": 250,
+    "line": 280,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -489,7 +489,7 @@
    {
     "name": "FRC.Geometry.quarter_turn_order",
     "module": "FrcLedger/Geometry",
-    "line": 31,
+    "line": 30,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -502,7 +502,7 @@
    {
     "name": "FRC.Shell.Frame.quarter_turn_order",
     "module": "FrcCore/Frame",
-    "line": 262,
+    "line": 292,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -524,7 +524,7 @@
    {
     "name": "FRC.Geometry.orientation_class",
     "module": "FrcLedger/Geometry",
-    "line": 41,
+    "line": 40,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -537,7 +537,7 @@
    {
     "name": "FRC.Shell.Frame.orientation_class",
     "module": "FrcCore/Frame",
-    "line": 270,
+    "line": 300,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -548,7 +548,7 @@
    {
     "name": "FRC.Geometry.euler_identity",
     "module": "FrcLedger/Geometry",
-    "line": 55,
+    "line": 54,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -561,7 +561,7 @@
    {
     "name": "FRC.Shell.Frame.euler_identity",
     "module": "FrcCore/Frame",
-    "line": 298,
+    "line": 328,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -593,8 +593,8 @@
    },
    {
     "name": "FRC.Shell.Frame.klein_orbit_four",
-    "module": "FrcCore/Algebra",
-    "line": 22,
+    "module": "FrcCore/Orbit",
+    "line": 94,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -602,8 +602,8 @@
    },
    {
     "name": "FRC.Shell.Frame.orbit_rep",
-    "module": "FrcCore/Algebra",
-    "line": 234,
+    "module": "FrcCore/Orbit",
+    "line": 178,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -611,8 +611,8 @@
    },
    {
     "name": "FRC.Shell.Frame.orbit_rep_unique",
-    "module": "FrcCore/Algebra",
-    "line": 317,
+    "module": "FrcCore/Orbit",
+    "line": 261,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -623,7 +623,7 @@
    {
     "name": "FRC.Geometry.fixed_shell_bound",
     "module": "FrcLedger/Geometry",
-    "line": 155,
+    "line": 154,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -656,7 +656,7 @@
    {
     "name": "FRC.Geometry.principal_root",
     "module": "FrcLedger/Geometry",
-    "line": 80,
+    "line": 79,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -669,7 +669,7 @@
    {
     "name": "FRC.Shell.Frame.principal_root",
     "module": "FrcCore/Sum",
-    "line": 121,
+    "line": 129,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -680,7 +680,7 @@
    {
     "name": "FRC.Geometry.dft_inverse",
     "module": "FrcLedger/Geometry",
-    "line": 95,
+    "line": 94,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -693,7 +693,7 @@
    {
     "name": "FRC.Shell.Frame.dft_inverse",
     "module": "FrcCore/Sum",
-    "line": 164,
+    "line": 172,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -704,7 +704,7 @@
    {
     "name": "FRC.Shell.Frame.dft_eq_polyEval",
     "module": "FrcCore/Sum",
-    "line": 435,
+    "line": 438,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -715,7 +715,7 @@
    {
     "name": "FRC.Shell.Frame.dft_covariance",
     "module": "FrcCore/Sum",
-    "line": 458,
+    "line": 461,
     "axioms": [],
     "tier": 0,
     "ok": true,

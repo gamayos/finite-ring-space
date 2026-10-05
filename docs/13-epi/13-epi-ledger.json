@@ -2,7 +2,7 @@
  "paper": "13-epi",
  "title": "Finite Field Realisation of π and e",
  "doi": "https://doi.org/10.20944/preprints202607.1141.v1",
- "generated": "4 October 2026",
+ "generated": "5 October 2026",
  "blocks": [
   {
    "letter": "A",
@@ -565,7 +565,7 @@
    {
     "name": "FRC.Epi.orientation_transport",
     "module": "FrcCore/Epi",
-    "line": 226,
+    "line": 223,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -574,7 +574,7 @@
    {
     "name": "FRC.Shell.Frame.orientation_class",
     "module": "FrcCore/Frame",
-    "line": 270,
+    "line": 300,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -585,7 +585,7 @@
    {
     "name": "FRC.Epi.coincidence13",
     "module": "FrcCore/Epi",
-    "line": 267,
+    "line": 264,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -719,7 +719,7 @@
    {
     "name": "FRC.Epi.terminal13",
     "module": "FrcCore/Epi",
-    "line": 273,
+    "line": 270,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -743,7 +743,7 @@
    {
     "name": "FRC.Epi.dr_antiperiodic",
     "module": "FrcCore/Epi",
-    "line": 124,
+    "line": 121,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -752,7 +752,7 @@
    {
     "name": "FRC.Epi.dr_succ",
     "module": "FrcCore/Epi",
-    "line": 94,
+    "line": 98,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -776,7 +776,7 @@
    {
     "name": "FRC.Epi.kurepa_alt_values",
     "module": "FrcCore/Epi",
-    "line": 302,
+    "line": 299,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -787,7 +787,7 @@
    {
     "name": "FRC.Epi.residue_line_e13",
     "module": "FrcCore/Epi",
-    "line": 280,
+    "line": 277,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -796,7 +796,7 @@
    {
     "name": "FRC.Epi.terminal13",
     "module": "FrcCore/Epi",
-    "line": 273,
+    "line": 270,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -820,7 +820,7 @@
    {
     "name": "FRC.Epi.tower_e_exact",
     "module": "FrcCore/Epi",
-    "line": 143,
+    "line": 140,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -872,7 +872,7 @@
    {
     "name": "FRC.Epi.residue_line_pi13",
     "module": "FrcCore/Epi",
-    "line": 287,
+    "line": 284,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -954,7 +954,7 @@
    {
     "name": "FRC.Epi.revivals13",
     "module": "FrcCore/Epi",
-    "line": 295,
+    "line": 292,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -965,7 +965,7 @@
    {
     "name": "FRC.Epi.residue_line_pi13",
     "module": "FrcCore/Epi",
-    "line": 287,
+    "line": 284,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -1058,7 +1058,7 @@
    {
     "name": "FRC.Shell.Frame.half_period",
     "module": "FrcCore/Frame",
-    "line": 250,
+    "line": 280,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -1125,7 +1125,7 @@
    {
     "name": "FRC.Shell.Frame.two_pi",
     "module": "FrcCore/Frame",
-    "line": 308,
+    "line": 338,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -1136,7 +1136,7 @@
    {
     "name": "FRC.Epi.wrap_free",
     "module": "FrcCore/Epi",
-    "line": 239,
+    "line": 236,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -1147,7 +1147,7 @@
    {
     "name": "FRC.Shell.Frame.two_pi",
     "module": "FrcCore/Frame",
-    "line": 308,
+    "line": 338,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -1156,7 +1156,7 @@
    {
     "name": "FRC.Shell.Frame.quarter_turn_sq",
     "module": "FrcCore/Frame",
-    "line": 257,
+    "line": 287,
     "axioms": [],
     "tier": 0,
     "ok": true,

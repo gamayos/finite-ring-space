@@ -1,5 +1,5 @@
 import Mathlib
-import FrcLedger.Fourier
+import FrcLedger.Theme.Fourier
 
 /-!
 # 1-algebra — the ledger predicates in Lean (2026-09-16)
@@ -93,7 +93,7 @@ omit [DecidableEq F] in
 theorem quarter_turn (κ : ℕ) (hκ : Fintype.card F = 4 * κ + 1) (g : F)
     (hg : IsPrimitiveRoot g (Fintype.card F - 1)) :
     (-(g ^ κ)) ^ 2 = -1 ∧ g ^ (2 * κ) = -1 := by
-  have h := FRC.Fourier.quarter_turn_sq κ hκ g hg
+  have h := FRC.DFT.quarter_turn_sq κ hκ g hg
   refine ⟨h, ?_⟩
   rw [← h]; ring
 

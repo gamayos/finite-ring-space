@@ -11,6 +11,8 @@ The division algorithm is obtained from the definition of `Nat.mod` in `Init.Pre
 around `Nat.modCore`, itself a fuel recursion): `mod_eq_of_lt`, `mod_eq_sub_mod`, `mod_spec`
 (`x = p·q + x % p`) and `mod_unique` (the remainder is determined by any such decomposition). Everything
 about residues mod `p` follows from those four.
+
+Since the ledger migration (task LM17) it also holds `isPrime`, primality by trial division (from 10-dimensions).
 -/
 
 namespace FRC.Nat
@@ -258,5 +260,11 @@ theorem pow_mul (a m n : Nat) : a ^ (m * n) = (a ^ m) ^ n := by
   | succ n ih => rw [Nat.mul_succ, pow_add, ih, Nat.pow_succ]
 
 theorem pos_pow_of_pos {a : Nat} (n : Nat) (h : 0 < a) : 0 < a ^ n := Nat.pow_pos h
+
+/-! ## Primality (10-dimensions' predicate, moved by task LM17) -/
+
+/-- Primality by trial division, decidable. -/
+def isPrime (n : Nat) : Prop := 2 ≤ n ∧ ∀ d, d < n → 2 ≤ d → n % d ≠ 0
+instance (n : Nat) : Decidable (isPrime n) := by unfold isPrime; exact inferInstance
 
 end FRC.Nat

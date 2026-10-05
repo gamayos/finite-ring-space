@@ -2,7 +2,7 @@
  "paper": "1-alg",
  "title": "Relativistic Algebra over Finite Ring Continuum",
  "doi": "https://doi.org/10.3390/axioms14080636",
- "generated": "4 October 2026",
+ "generated": "5 October 2026",
  "blocks": [
   {
    "letter": "A",
@@ -328,8 +328,8 @@
    },
    {
     "name": "FRC.Shell.Frame.quarter_turn_exists",
-    "module": "FrcCore/Algebra",
-    "line": 109,
+    "module": "FrcCore/Frame",
+    "line": 459,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -337,8 +337,8 @@
    },
    {
     "name": "FRC.Shell.Frame.fourth_roots",
-    "module": "FrcCore/Algebra",
-    "line": 113,
+    "module": "FrcCore/Frame",
+    "line": 463,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -346,8 +346,8 @@
    },
    {
     "name": "FRC.Shell.Frame.klein_orbit_four",
-    "module": "FrcCore/Algebra",
-    "line": 22,
+    "module": "FrcCore/Orbit",
+    "line": 94,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -355,8 +355,8 @@
    },
    {
     "name": "FRC.Shell.Frame.orbit_rep",
-    "module": "FrcCore/Algebra",
-    "line": 234,
+    "module": "FrcCore/Orbit",
+    "line": 178,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -364,8 +364,8 @@
    },
    {
     "name": "FRC.Shell.Frame.orbit_rep_unique",
-    "module": "FrcCore/Algebra",
-    "line": 317,
+    "module": "FrcCore/Orbit",
+    "line": 261,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -410,7 +410,7 @@
    {
     "name": "FRC.Shell.Frame.quarter_turn_sq",
     "module": "FrcCore/Frame",
-    "line": 257,
+    "line": 287,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -442,8 +442,8 @@
    },
    {
     "name": "FRC.Shell.Frame.affine_frame_unit",
-    "module": "FrcCore/Algebra",
-    "line": 51,
+    "module": "FrcCore/Frame",
+    "line": 394,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -453,8 +453,8 @@
   "C2": [
    {
     "name": "FRC.Shell.Frame.Affine.simply_transitive",
-    "module": "FrcCore/Algebra",
-    "line": 392,
+    "module": "FrcCore/Theme/Projective",
+    "line": 65,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -462,8 +462,8 @@
    },
    {
     "name": "FRC.Shell.Frame.frame_count",
-    "module": "FrcCore/Algebra",
-    "line": 433,
+    "module": "FrcCore/Theme/Projective",
+    "line": 94,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -486,8 +486,8 @@
    },
    {
     "name": "FRC.Shell.Frame.meridian_involution",
-    "module": "FrcCore/Algebra",
-    "line": 145,
+    "module": "FrcCore/Frame",
+    "line": 495,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -510,8 +510,8 @@
    },
    {
     "name": "FRC.Shell.Frame.window_injective",
-    "module": "FrcCore/Algebra",
-    "line": 59,
+    "module": "FrcCore/Frame",
+    "line": 402,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -519,8 +519,8 @@
    },
    {
     "name": "FRC.Shell.Frame.window_signed",
-    "module": "FrcCore/Algebra",
-    "line": 89,
+    "module": "FrcCore/Frame",
+    "line": 439,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -528,8 +528,8 @@
    },
    {
     "name": "FRC.Shell.Frame.window_add_readback",
-    "module": "FrcCore/Algebra",
-    "line": 75,
+    "module": "FrcCore/Frame",
+    "line": 425,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -537,8 +537,8 @@
    },
    {
     "name": "FRC.Shell.Frame.window_mul_readback",
-    "module": "FrcCore/Algebra",
-    "line": 82,
+    "module": "FrcCore/Frame",
+    "line": 432,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -561,8 +561,8 @@
    },
    {
     "name": "FRC.Shell.Frame.scale_periodic",
-    "module": "FrcCore/Algebra",
-    "line": 41,
+    "module": "FrcCore/Frame",
+    "line": 384,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -600,8 +600,8 @@
    },
    {
     "name": "FRC.Shell.Frame.complex_chart_zero_divisor",
-    "module": "FrcCore/Algebra",
-    "line": 156,
+    "module": "FrcCore/Frame",
+    "line": 506,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -643,7 +643,7 @@
    {
     "name": "FRC.Shell.Frame.fermat",
     "module": "FrcCore/Orbit",
-    "line": 76,
+    "line": 80,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -682,7 +682,7 @@
    {
     "name": "FRC.Shell.Frame.quaternion_window",
     "module": "FrcCore/Quaternion",
-    "line": 254,
+    "line": 244,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -691,7 +691,7 @@
    {
     "name": "FRC.Shell.Frame.read_mul",
     "module": "FrcCore/Quaternion",
-    "line": 226,
+    "line": 216,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -702,7 +702,7 @@
    {
     "name": "FRC.Shell.Frame.rot_cayley",
     "module": "FrcCore/Quaternion",
-    "line": 542,
+    "line": 266,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -711,7 +711,7 @@
    {
     "name": "FRC.Shell.Frame.cayley_inj",
     "module": "FrcCore/Quaternion",
-    "line": 582,
+    "line": 306,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -720,7 +720,7 @@
    {
     "name": "FRC.Shell.Frame.half_turn",
     "module": "FrcCore/Quaternion",
-    "line": 551,
+    "line": 275,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -729,7 +729,7 @@
    {
     "name": "FRC.Shell.Frame.rot_trivial",
     "module": "FrcCore/Quaternion",
-    "line": 705,
+    "line": 425,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -738,7 +738,7 @@
    {
     "name": "FRC.Shell.Frame.rot_neg",
     "module": "FrcCore/Quaternion",
-    "line": 638,
+    "line": 358,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -775,7 +775,7 @@
    {
     "name": "FRC.Shell.Frame.compose",
     "module": "FrcCore/Quaternion",
-    "line": 673,
+    "line": 393,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -784,7 +784,7 @@
    {
     "name": "FRC.Shell.Frame.one_add_mul",
     "module": "FrcCore/Quaternion",
-    "line": 600,
+    "line": 324,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -793,7 +793,7 @@
    {
     "name": "FRC.Shell.Frame.one_add_mul_half",
     "module": "FrcCore/Quaternion",
-    "line": 632,
+    "line": 352,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -802,7 +802,7 @@
    {
     "name": "FRC.Shell.Frame.bracket",
     "module": "FrcCore/Quaternion",
-    "line": 609,
+    "line": 333,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -811,7 +811,7 @@
    {
     "name": "FRC.Shell.Frame.rot_mul",
     "module": "FrcCore/Quaternion",
-    "line": 616,
+    "line": 340,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -819,8 +819,8 @@
    },
    {
     "name": "FRC.Shell.Frame.nrm_mul",
-    "module": "FrcCore/Quaternion",
-    "line": 621,
+    "module": "FrcCore/Theme/Extension",
+    "line": 409,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -870,7 +870,7 @@
    {
     "name": "FRC.Shell.Frame.no_south_pole",
     "module": "FrcCore/Frame",
-    "line": 345,
+    "line": 375,
     "axioms": [],
     "tier": 0,
     "ok": true,

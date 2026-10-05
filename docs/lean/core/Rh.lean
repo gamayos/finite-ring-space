@@ -1,5 +1,7 @@
-import FrcCore.Algebra
+import FrcCore.Sum
 import FrcCore.Instances
+import FrcCore.Poly
+import FrcCore.Theme.Extension
 
 /-!
 # FrcCore.Rh — the shell predicates of 20-rh with no axioms
@@ -22,6 +24,12 @@ and on the Carrier alike (20:B2). On `𝔽₁₃` and `𝔽₅₃`, decided by t
 has `14` points and Frobenius `z ↦ z^{13}` is conjugation on all `169` of them, the Ramanujan sums of
 `𝔽₅₃` with `ω = 16` of order `13`, the constants of `𝔽₁₃(τ; 0, 1, 2)`, and the laboratory pair `(13, 233)`
 (20:B1). No axioms.
+
+Since the ledger migration (task LM17) the quadratic extension is the extension theme's `FRC.Extension.Ext p ν`
+(`Theme/Extension.lean`): 20-rh's pairs `Ext p`, with `ν` passed to each operation, became the one type with `ν` its
+parameter, and the product, powers and the norm became its instances. The half-turn, the critical line and the readout
+stay here on that type; `readout` takes `ν`. The sums, the counting lemmas and the deciders went to the frame theme.
+Every old name stays as an alias.
 -/
 
 namespace FRC.Rh
@@ -29,20 +37,6 @@ namespace FRC.Rh
 open FRC.Shell FRC.Shell.Frame
 
 variable {p : Nat} [Pos p]
-
-/-! ## Sums: peeling the first term -/
-
-/-- `Σ_{l<n+1} f l = f 0 + Σ_{l<n} f (l + 1)`. -/
-theorem sumRange_succ' (f : Nat → Shell p) : ∀ n, sumRange f (n + 1) = f 0 + sumRange (fun l => f (l + 1)) n
-  | 0 => by rw [sumRange_succ, sumRange_zero, sumRange_zero, zero_add, add_zero]
-  | n + 1 => by rw [sumRange_succ, sumRange_succ' f n, sumRange_succ, add_assoc]
-
-/-- `p ≡ 0` and `n + p ≡ n` on the shell. -/
-theorem ofNat_p : (ofNat p : Shell p) = 0 :=
-  ext (by rw [val_ofNat, val_zero, FRC.Nat.mod_self p Pos.pos])
-
-theorem ofNat_add_p (n : Nat) : (ofNat (n + p) : Shell p) = ofNat n := by
-  rw [← ofNat_add, ofNat_p, add_zero]
 
 /-- A residue `l + 1 < p` is nonzero. -/
 theorem ofNat_succ_ne_zero {l : Nat} (hl : l + 1 < p) : (ofNat (l + 1) : Shell p) ≠ 0 := fun h => by
@@ -54,28 +48,6 @@ section frame
 variable {κ : Nat} {g : Shell p}
 
 /-! ## The zero-slot and slot complementarity (20:B4, 20:B5) -/
-
-/-- The sum over the nonzero residues equals the sum over the powers of the drive: `x = g^m` reindexes. -/
-theorem sum_units_eq_sum_pow (F : Frame p κ g) (f : Shell p → Shell p) :
-    sumRange (fun l => f (ofNat (l + 1))) (p - 1) = sumRange (fun m => f (g ^ m)) (p - 1) := by
-  have hn : p = (p - 1) + 1 := (FRC.Nat.sub_add_cancel Pos.pos).symm
-  have hpos : ∀ m, 1 ≤ (g ^ m).val := fun m =>
-    Nat.pos_of_ne_zero (fun h0 => F.pow_ne_zero m (ext (by rw [h0, val_zero])))
-  have hlt : ∀ m, m < p - 1 → (g ^ m).val - 1 < p - 1 := fun m _ => by
-    have h1 : (g ^ m).val - 1 + 1 = (g ^ m).val := FRC.Nat.sub_add_cancel (hpos m)
-    have h2 : (g ^ m).val < (p - 1) + 1 := hn ▸ (g ^ m).lt
-    rw [← h1] at h2
-    exact Nat.lt_of_succ_lt_succ h2
-  have hinj : ∀ i j, i < p - 1 → j < p - 1 → (g ^ i).val - 1 = (g ^ j).val - 1 → i = j := fun i j hi hj h => by
-    apply F.pow_inj hi hj
-    apply ext
-    rw [← FRC.Nat.sub_add_cancel (hpos i), ← FRC.Nat.sub_add_cancel (hpos j), h]
-  have := sum_perm (fun l => f (ofNat (l + 1))) (fun m => (g ^ m).val - 1) (p - 1) hlt hinj
-  rw [← this]
-  apply sum_congr
-  intro m _
-  show f (ofNat ((g ^ m).val - 1 + 1)) = f (g ^ m)
-  rw [FRC.Nat.sub_add_cancel (hpos m), ofNat_val]
 
 /-- 20:B4 — the zero-slot on every shell: over the nonzero residues `x = l + 1`, `l < p − 1`,
 `Σ x^k = 0` for every nonterminal exponent `0 < k < p − 1`, and `Σ x^{p−1} = −1` on the full cycle. -/
@@ -129,12 +101,12 @@ theorem half_inverse (F : Frame p κ g) :
       _ = 1 + (4 * κ + 1) := by rw [Nat.add_comm 1, Nat.add_assoc]
   constructor
   · show ofNat 2 * ofNat (2 * κ + 1) = 1
-    rw [ofNat_mul, e, ofNat_add_p]
+    rw [ofNat_mul, e, ofNat_add_self]
     rfl
   · have e2 : 2 * κ + (2 * κ + 1) = p := by
       rw [← Nat.add_assoc, F.four_kappa]; exact FRC.Nat.sub_add_cancel Pos.pos
     have h : (ofNat (2 * κ) : Shell p) + ofNat (2 * κ + 1) = 0 := by
-      rw [ofNat_add, e2]; exact ofNat_p
+      rw [ofNat_add, e2]; exact ofNat_self
     exact (neg_eq_of_add_eq_zero h).symm
 
 /-- 20:B10 — `i = g^{−κ}`, read as `g^{3κ}` on the cycle of length `4κ`, is the quarter-turn `−g^κ`. -/
@@ -168,25 +140,6 @@ theorem constants13 :
 `(g^r x)^k = (g^r)^k · x^k`. -/
 theorem shift_power_character (r k : Nat) (x : Shell p) : (g ^ r * x) ^ k = (g ^ r) ^ k * x ^ k :=
   mul_pow _ _ _
-
-/-- Counting where nothing satisfies the predicate. -/
-theorem natCount_eq_zero (P : Nat → Prop) [DecidablePred P] : ∀ n, (∀ x, x < n → ¬ P x) → natCount P n = 0
-  | 0, _ => rfl
-  | n + 1, h => by
-    show natCount P n + (if P n then 1 else 0) = 0
-    rw [natCount_eq_zero P n (fun x hx => h x (Nat.lt_succ_of_lt hx)), ite_eq_right (h n (Nat.lt_succ_self n))]
-
-/-- Counting through an equivalent predicate. -/
-theorem natCount_congr (P Q : Nat → Prop) [DecidablePred P] [DecidablePred Q] :
-    ∀ n, (∀ x, x < n → (P x ↔ Q x)) → natCount P n = natCount Q n
-  | 0, _ => rfl
-  | n + 1, h => by
-    show natCount P n + (if P n then 1 else 0) = natCount Q n + (if Q n then 1 else 0)
-    rw [natCount_congr P Q n (fun x hx => h x (Nat.lt_succ_of_lt hx))]
-    have e := h n (Nat.lt_succ_self n)
-    match (inferInstance : Decidable (Q n)) with
-    | isTrue hq => rw [ite_eq_left hq, ite_eq_left (e.2 hq)]
-    | isFalse hq => rw [ite_eq_right hq, ite_eq_right (fun hp => hq (e.1 hp))]
 
 /-- 20:E12, 20:E1 — clause (iii) in the `𝔽_p` reading: the fixed-point count of the scale-shift, the trace of its
 permutation matrix: `x ↦ g^r x` fixes every nonzero residue when `(p − 1) ∣ r` and none otherwise,
@@ -256,23 +209,6 @@ theorem ramanujan_sum (F : Frame q κ' h) {m : Nat} (hm : 0 < m) {ω : Shell q} 
 theorem frame53 : Frame 53 13 (2 : Shell 53) ∧ IsPrimitive (16 : Shell 53) 13 ∧ (2 : Shell 53) ^ 4 = 16 :=
   ⟨⟨rfl, Nat.zero_lt_succ 12, by decide⟩, by decide, by decide⟩
 
-/-- Bounded universal quantifiers, decided by search (no axioms). -/
-def decForallLT (P : Nat → Prop) [DecidablePred P] : (n : Nat) → Decidable (∀ m, m < n → P m)
-  | 0 => isTrue (fun m hm => absurd hm (Nat.not_lt_zero m))
-  | n + 1 =>
-    match decForallLT P n with
-    | isFalse h => isFalse (fun hall => h (fun m hm => hall m (Nat.lt_succ_of_lt hm)))
-    | isTrue h =>
-      if hn : P n then
-        isTrue (fun m hm =>
-          match Nat.lt_or_ge m n with
-          | .inl hlt => h m hlt
-          | .inr hge => (Nat.le_antisymm (Nat.le_of_lt_succ hm) hge) ▸ hn)
-      else isFalse (fun hall => hn (hall n (Nat.lt_succ_self n)))
-
-instance instDecForallLT (P : Nat → Prop) [DecidablePred P] (n : Nat) : Decidable (∀ m, m < n → P m) :=
-  decForallLT P n
-
 /-- 20:B7 [value] — on `𝔽₅₃` with `ω = 16` of order `13`: `c_{13}(n) = Σ_{a=1}^{12} ω^{an} = −1` for every
 `0 < n < 13`, and `12 = m − 1` at `n = 0`. -/
 theorem ramanujan53 :
@@ -283,92 +219,34 @@ end ramanujan
 
 /-! ## The quadratic extension `F(η)`, `η² = ν`, as pairs of residues (20:B6, 20:B8, 20:B9) -/
 
-/-- An element `a + bη` of the quadratic extension of the shell. -/
-structure Ext (p : Nat) where
-  re : Shell p
-  im : Shell p
-
 namespace Ext
 
-omit [Pos p] in
-theorem ext {a b : Ext p} (h1 : a.re = b.re) (h2 : a.im = b.im) : a = b := by
-  match a, b, h1, h2 with
-  | ⟨_, _⟩, ⟨_, _⟩, rfl, rfl => rfl
-
-omit [Pos p] in
-theorem re_congr {a b : Ext p} (h : a = b) : a.re = b.re := by cases h; rfl
-omit [Pos p] in
-theorem im_congr {a b : Ext p} (h : a = b) : a.im = b.im := by cases h; rfl
-
-instance : DecidableEq (Ext p) := fun a b =>
-  if h : a.re = b.re ∧ a.im = b.im then isTrue (ext h.1 h.2)
-  else isFalse (fun e => h ⟨re_congr e, im_congr e⟩)
-
-/-- The product `(a + bη)(c + dη) = (ac + νbd) + (ad + bc)η`. -/
-def mul (ν : Shell p) (z w : Ext p) : Ext p :=
-  ⟨z.re * w.re + ν * (z.im * w.im), z.re * w.im + z.im * w.re⟩
-
-/-- The unit `1 + 0η`. -/
-def one : Ext p := ⟨1, 0⟩
-
-/-- Powers, by repeated multiplication. -/
-def pow (ν : Shell p) (z : Ext p) : Nat → Ext p
-  | 0 => one
-  | n + 1 => mul ν (pow ν z n) z
-
-/-- Conjugation `a + bη ↦ a − bη` (Frobenius on the extension). -/
-def conj (z : Ext p) : Ext p := ⟨z.re, -z.im⟩
-
-/-- The trace `Tr(a + bη) = 2a`. -/
-def trace (z : Ext p) : Shell p := z.re + z.re
-
-/-- The norm `N(a + bη) = a² − νb²`. -/
-def norm (ν : Shell p) (z : Ext p) : Shell p := z.re * z.re + -(ν * (z.im * z.im))
+open FRC.Extension (Ext)
+open FRC.Extension.Ext
+variable {ν : Shell p}
 
 /-- The functional-equation half-turn `ρ : z ↦ 1 − z`. -/
-def rho (z : Ext p) : Ext p := ⟨1 + -z.re, -z.im⟩
+def rho (z : Ext p ν) : Ext p ν := ⟨1 + -z.re, -z.im⟩
 
 /-- The product `σ = ρ ∘ φ : z ↦ 1 − z̄`. -/
-def sigma (z : Ext p) : Ext p := rho (conj z)
+def sigma (z : Ext p ν) : Ext p ν := rho (conj z)
 
 /-- 20:B9 — conjugation `φ` and the half-turn `ρ` generate a Klein four-group: both are involutions and they
 commute, `φ ρ = ρ φ = σ`. -/
-theorem klein_four (z : Ext p) :
+theorem klein_four (z : Ext p ν) :
     conj (conj z) = z ∧ rho (rho z) = z ∧ conj (rho z) = rho (conj z) := by
-  refine ⟨ext rfl (neg_neg z.im), ext ?_ (neg_neg z.im), rfl⟩
+  refine ⟨Ext.ext rfl (neg_neg z.im), Ext.ext ?_ (neg_neg z.im), rfl⟩
   show 1 + -(1 + -z.re) = z.re
   rw [neg_add_rev, neg_neg, ← add_assoc, add_neg, zero_add]
-
-/-- 20:B6 — `z z̄ = N(z)`: conjugation is inversion on the norm-one circle. -/
-theorem mul_conj (ν : Shell p) (z : Ext p) : mul ν z (conj z) = ⟨norm ν z, 0⟩ := by
-  apply ext
-  · show z.re * z.re + ν * (z.im * -z.im) = z.re * z.re + -(ν * (z.im * z.im))
-    rw [← mul_neg, ← mul_neg]
-  · show z.re * -z.im + z.im * z.re = 0
-    rw [← mul_neg, mul_comm z.im, neg_add]
-
-/-- 20:B6 — on the circle `N(z) = 1` the conjugate is the inverse: `z z̄ = 1`. -/
-theorem conj_inv_of_norm_one (ν : Shell p) (z : Ext p) (hz : norm ν z = 1) : mul ν z (conj z) = one := by
-  show mul ν z (conj z) = ⟨1, 0⟩
-  rw [mul_conj, hz]
 
 section frame
 variable {κ : Nat} {g : Shell p}
 
-/-- 20:B9 — the fixed locus of conjugation is the prime meridian: `z̄ = z ⟺ b = 0`. -/
-theorem fixed_conj (F : Frame p κ g) (z : Ext p) : conj z = z ↔ z.im = 0 := by
-  constructor
-  · intro h
-    have := im_congr h
-    exact F.eq_zero_of_eq_neg this.symm
-  · intro h
-    exact ext rfl (show -z.im = z.im by rw [h, neg_zero])
-
 /-- 20:B8, 20:B9 — the finite critical line: `Tr z = 1` exactly when `Re z = 2⁻¹ = 2κ + 1`; it is the fixed locus
 of `σ = ρ ∘ φ`; every `2⁻¹ + bη` lies on it, one point per residue `b` — `p` points. -/
-theorem critical_line (F : Frame p κ g) (z : Ext p) :
+theorem critical_line (F : Frame p κ g) (z : Ext p ν) :
     (trace z = 1 ↔ z.re = ofNat (2 * κ + 1)) ∧ (sigma z = z ↔ z.re = ofNat (2 * κ + 1)) ∧
-    ∀ b : Shell p, trace ⟨ofNat (2 * κ + 1), b⟩ = 1 := by
+    ∀ b : Shell p, trace (⟨ofNat (2 * κ + 1), b⟩ : Ext p ν) = 1 := by
   have hinv := (half_inverse F).1
   have key : z.re + z.re = 1 ↔ z.re = ofNat (2 * κ + 1) := by
     constructor
@@ -386,7 +264,7 @@ theorem critical_line (F : Frame p κ g) (z : Ext p) :
       calc z.re + z.re = (1 + -z.re) + z.re := by rw [h1]
         _ = 1 := by rw [add_assoc, neg_add, add_zero]
     · intro h
-      apply ext
+      apply Ext.ext
       · show 1 + -z.re = z.re
         have h1 := key.2 h
         calc 1 + -z.re = (z.re + z.re) + -z.re := by rw [h1]
@@ -397,7 +275,7 @@ theorem critical_line (F : Frame p κ g) (z : Ext p) :
 
 /-- 20:B9 — the fixed locus of the half-turn `ρ` is the single point `2⁻¹`, the meeting of the prime meridian
 and the critical line: `ρ z = z ⟺ (φ z = z ∧ σ z = z) ⟺ z = 2⁻¹ + 0η`. -/
-theorem fixed_half_turn (F : Frame p κ g) (z : Ext p) :
+theorem fixed_half_turn (F : Frame p κ g) (z : Ext p ν) :
     (rho z = z ↔ (conj z = z ∧ sigma z = z)) ∧ (rho z = z ↔ z = ⟨ofNat (2 * κ + 1), 0⟩) := by
   have hc := fixed_conj F z
   have hs := (critical_line F z).2.1
@@ -407,26 +285,26 @@ theorem fixed_half_turn (F : Frame p κ g) (z : Ext p) :
       have h1 := re_congr h
       have h2 := im_congr h
       refine ⟨F.eq_zero_of_eq_neg h2.symm, hs.1 ?_⟩
-      exact ext (show (sigma z).re = z.re from h1) (show (sigma z).im = z.im from neg_neg z.im)
+      exact Ext.ext (show (sigma z).re = z.re from h1) (show (sigma z).im = z.im from neg_neg z.im)
     · intro h
-      apply ext
+      apply Ext.ext
       · have := hs.2 h.2
         exact (re_congr this : (sigma z).re = z.re)
       · show -z.im = z.im
         rw [h.1, neg_zero]
   exact ⟨⟨fun h => ⟨hc.2 (hr.1 h).1, hs.2 (hr.1 h).2⟩, fun h => hr.2 ⟨hc.1 h.1, hs.1 h.2⟩⟩,
-    hr.trans ⟨fun h => ext h.2 h.1, fun h => ⟨im_congr h, re_congr h⟩⟩⟩
+    hr.trans ⟨fun h => Ext.ext h.2 h.1, fun h => ⟨im_congr h, re_congr h⟩⟩⟩
 
 /-- 20:E12, 20:B8 — the spectral readout in the core: the mode index `θ` is read at `z(θ) = 2⁻¹ + θη`,
 `2⁻¹ = 2κ + 1`. -/
-def readout (κ : Nat) (θ : Shell p) : Ext p := ⟨ofNat (2 * κ + 1), θ⟩
+def readout (ν : Shell p) (κ : Nat) (θ : Shell p) : Ext p ν := ⟨ofNat (2 * κ + 1), θ⟩
 
 /-- 20:E12, 20:B8 — clause (ii) of the shell theorem, no axioms: every readout lies on the trace-one line, its
 real part is the half-turn `2⁻¹ = 2κ + 1`, and `θ ↦ z(θ)` is injective. -/
-theorem readout_on_line (F : Frame p κ g) (θ : Shell p) :
-    trace (readout κ θ) = 1 ∧ (readout κ θ).re = ofNat (2 * κ + 1) ∧
-    ∀ θ' : Shell p, readout κ θ = readout κ θ' → θ = θ' := by
-  refine ⟨(critical_line F (readout κ θ)).2.2 θ, rfl, fun θ' h => im_congr h⟩
+theorem readout_on_line (F : Frame p κ g) (ν θ : Shell p) :
+    trace (readout ν κ θ) = 1 ∧ (readout ν κ θ).re = ofNat (2 * κ + 1) ∧
+    ∀ θ' : Shell p, readout ν κ θ = readout ν κ θ' → θ = θ' := by
+  refine ⟨(critical_line F (readout ν κ θ)).2.2 θ, rfl, fun θ' h => im_congr h⟩
 
 /-- 20:E12 — the slot index of a nontrivial slot: for `1 ≤ k ≤ p − 2` the index `θ = Φ(k) = −g^k` is neither
 `0` (the centre `2⁻¹`) nor `−1` (the full-cycle exponent), on every shell and with no axioms. -/
@@ -447,8 +325,8 @@ theorem readout_slot_index (F : Frame p κ g) (k : Nat) (hk1 : 1 ≤ k) (hk2 : k
     exact Nat.not_succ_le_zero 0 (by rw [hmod] at hk1; exact hk1)
 
 /-- 20:B8 — the energy on the critical line: `N(2⁻¹ + bη) = (2⁻¹)² − νb²`, with `2 · 2⁻¹ = 1`. -/
-theorem norm_on_line (F : Frame p κ g) (ν : Shell p) (z : Ext p) (hz : z.re = ofNat (2 * κ + 1)) :
-    norm ν z = ofNat (2 * κ + 1) * ofNat (2 * κ + 1) + -(ν * (z.im * z.im)) ∧
+theorem norm_on_line (F : Frame p κ g) (z : Ext p ν) (hz : z.re = ofNat (2 * κ + 1)) :
+    norm z = ofNat (2 * κ + 1) * ofNat (2 * κ + 1) + -(ν * (z.im * z.im)) ∧
     (2 : Shell p) * ofNat (2 * κ + 1) = 1 := by
   refine ⟨?_, (half_inverse F).1⟩
   show z.re * z.re + -(ν * (z.im * z.im)) = _
@@ -457,12 +335,12 @@ theorem norm_on_line (F : Frame p κ g) (ν : Shell p) (z : Ext p) (hz : z.re = 
 /-- 20:B6 — the quarter-turn `i = −g^κ`, as the element `i + 0η`, is fixed by conjugation and lies off the
 circle: `N(i) = i² = −1 ≠ 1`. -/
 theorem quarter_turn_off_circle (F : Frame p κ g) (ν : Shell p) :
-    conj ⟨quarterTurn g κ, 0⟩ = ⟨quarterTurn g κ, 0⟩ ∧ norm ν ⟨quarterTurn g κ, 0⟩ = -1 ∧
-    norm ν ⟨quarterTurn g κ, 0⟩ ≠ 1 := by
-  have hn : norm ν ⟨quarterTurn g κ, 0⟩ = -1 := by
+    conj (⟨quarterTurn g κ, 0⟩ : Ext p ν) = ⟨quarterTurn g κ, 0⟩ ∧ norm (⟨quarterTurn g κ, 0⟩ : Ext p ν) = -1 ∧
+    norm (⟨quarterTurn g κ, 0⟩ : Ext p ν) ≠ 1 := by
+  have hn : norm (⟨quarterTurn g κ, 0⟩ : Ext p ν) = -1 := by
     show quarterTurn g κ * quarterTurn g κ + -(ν * (0 * 0)) = -1
     rw [F.quarter_turn_sq, zero_mul, mul_zero, neg_zero, add_zero]
-  refine ⟨ext rfl neg_zero, hn, fun h => ?_⟩
+  refine ⟨Ext.ext rfl neg_zero, hn, fun h => ?_⟩
   rw [hn] at h
   exact F.one_ne_zero (F.eq_zero_of_eq_neg h.symm)
 
@@ -471,8 +349,8 @@ end frame
 /-- 20:B6 [value] — on `𝔽₁₃(√2)` (`2` a nonsquare mod `13`): the norm-one circle has `13 + 1 = 14` points
 among the `169` elements, and Frobenius `z ↦ z^{13}` is conjugation on every element. -/
 theorem circle13 :
-    natCount (fun k => norm (2 : Shell 13) ⟨ofNat (k / 13), ofNat (k % 13)⟩ = 1) 169 = 14 ∧
-    (∀ k, k < 169 → pow (2 : Shell 13) ⟨ofNat (k / 13), ofNat (k % 13)⟩ 13 =
+    natCount (fun k => norm (⟨ofNat (k / 13), ofNat (k % 13)⟩ : Ext 13 2) = 1) 169 = 14 ∧
+    (∀ k, k < 169 → (⟨ofNat (k / 13), ofNat (k % 13)⟩ : Ext 13 2) ^ 13 =
       conj ⟨ofNat (k / 13), ofNat (k % 13)⟩) ∧
     (∀ x : Nat, x < 13 → 0 < x → (ofNat x : Shell 13) * ofNat x ≠ 2) := by decide +kernel
 
@@ -544,6 +422,97 @@ theorem lab_pair :
     13 * 13 < 233 ∧ 12 % 4 = 0 ∧ 232 % 4 = 0 ∧ 232 % 3 ≠ 0 ∧ (5 : Shell 13) * 5 = -1 ∧
     (89 : Shell 233) * 89 = -1 ∧ 232 % 12 ≠ 0 ∧ 3 * 3 < 13 ∧ 3 * 3 < 233 := by decide
 
+/-! ## Old names (ledger migration, task LM17): the declarations moved to the themes, each under its old name -/
+section aliases
+variable {κ : Nat} {g : Shell p}
+
+/-- `p ≡ 0` on the shell (20-rh's name; the lemma is `FRC.Shell.Frame.ofNat_self`). -/
+theorem ofNat_p : (ofNat p : Shell p) = 0 :=
+  FRC.Shell.Frame.ofNat_self
+
+/-- `n + p ≡ n` on the shell (20-rh's name; the lemma is `FRC.Shell.Frame.ofNat_add_self`). -/
+theorem ofNat_add_p (n : Nat) : (ofNat (n + p) : Shell p) = ofNat n :=
+  FRC.Shell.Frame.ofNat_add_self n
+
+/-- Counting where nothing satisfies the predicate. -/
+theorem natCount_eq_zero (P : Nat → Prop) [DecidablePred P] : ∀ n, (∀ x, x < n → ¬ P x) → natCount P n = 0 :=
+  FRC.Shell.Frame.natCount_eq_zero P
+
+/-- Counting through an equivalent predicate. -/
+theorem natCount_congr (P Q : Nat → Prop) [DecidablePred P] [DecidablePred Q] :
+    ∀ n, (∀ x, x < n → (P x ↔ Q x)) → natCount P n = natCount Q n :=
+  FRC.Shell.Frame.natCount_congr P Q
+
+/-- `Σ_{l<n+1} f l = f 0 + Σ_{l<n} f (l + 1)`. -/
+theorem sumRange_succ' (f : Nat → Shell p) : ∀ n, sumRange f (n + 1) = f 0 + sumRange (fun l => f (l + 1)) n :=
+  FRC.Shell.sumRange_succ' f
+
+/-- The sum over the nonzero residues equals the sum over the powers of the drive: `x = g^m` reindexes. -/
+theorem sum_units_eq_sum_pow (F : Frame p κ g) (f : Shell p → Shell p) :
+    sumRange (fun l => f (ofNat (l + 1))) (p - 1) = sumRange (fun m => f (g ^ m)) (p - 1) :=
+  FRC.Shell.Frame.sum_units_eq_sum_pow F f
+
+/-- 20-rh's quadratic extension: `FRC.Extension.Ext p ν`, its `ν` now a parameter of the type. -/
+@[reducible] def Ext (p : Nat) [Pos p] (ν : Shell p) : Type := FRC.Extension.Ext p ν
+
+namespace Ext
+variable {ν : Shell p}
+open FRC.Extension.Ext (ofShell)
+
+theorem ext {z z' : Ext p ν} (h1 : z.re = z'.re) (h2 : z.im = z'.im) : z = z' :=
+  FRC.Extension.Ext.ext h1 h2
+
+theorem re_congr {a b : Ext p ν} (h : a = b) : a.re = b.re :=
+  FRC.Extension.Ext.re_congr h
+
+theorem im_congr {a b : Ext p ν} (h : a = b) : a.im = b.im :=
+  FRC.Extension.Ext.im_congr h
+
+/-- Conjugation `a + bη ↦ a − bη` (Frobenius on the extension). -/
+@[reducible] def conj (z : Ext p ν) : Ext p ν :=
+  FRC.Extension.Ext.conj z
+
+/-- The trace `Tr(a + bη) = 2a`. -/
+@[reducible] def trace (z : Ext p ν) : Shell p :=
+  FRC.Extension.Ext.trace z
+
+/-- The norm `N(a + bη) = a² − νb²`. -/
+@[reducible] def norm (z : Ext p ν) : Shell p :=
+  FRC.Extension.Ext.norm z
+
+/-- Powers, by repeated multiplication. -/
+@[reducible] def pow (z : Ext p ν) : Nat → Ext p ν :=
+  FRC.Extension.Ext.pow z
+
+/-- 20:B6 — `z z̄ = N(z)`: conjugation is inversion on the norm-one circle. -/
+theorem mul_conj (z : Ext p ν) : z * conj z = ofShell (norm z) :=
+  FRC.Extension.Ext.mul_conj z
+
+/-- 20:B6 — on the circle `N(z) = 1` the conjugate is the inverse: `z z̄ = 1`. -/
+theorem conj_inv_of_norm_one (z : Ext p ν) (hz : norm z = 1) : z * conj z = 1 :=
+  FRC.Extension.Ext.conj_inv_of_norm_one z hz
+
+/-- 20:B9 — the fixed locus of conjugation is the prime meridian: `z̄ = z ⟺ b = 0`. -/
+theorem fixed_conj (F : Frame p κ g) (z : Ext p ν) : conj z = z ↔ z.im = 0 :=
+  FRC.Extension.Ext.fixed_conj F z
+
+/-- 20-rh's product, the instance `z * w` of `FRC.Extension.Ext p ν`. -/
+@[reducible] def mul (z w : Ext p ν) : Ext p ν := z * w
+
+/-- 20-rh's unit, `1`. -/
+@[reducible] def one : Ext p ν := 1
+
+end Ext
+
+/-- Bounded universal quantifiers, decided by search (no axioms). -/
+@[reducible] def decForallLT (P : Nat → Prop) [DecidablePred P] : (n : Nat) → Decidable (∀ m, m < n → P m) :=
+  FRC.Shell.decForallLT P
+
+@[reducible] def instDecForallLT (P : Nat → Prop) [DecidablePred P] (n : Nat) : Decidable (∀ m, m < n → P m) :=
+  FRC.Shell.instDecForallLT P n
+
+end aliases
+
 -- Ledger predicates of 20-rh (generated by make_predicates.py from docs/20-rh/20-rh-ledger.json; edit the ledger, not this section)
 /-- 20:B1 (p20008) — The two frames on one substrate: the Carrier chart $\F_\Omega$, held by no embedded observer, and the Subject $\Fp$ embedded with $\Omega\gg p^{2}$; what they share is the quarter-turn core $Q_4$ and nothing else, on the laboratory pair $(13,233)$ the cycles $C_{12}$ and $C_{232}$ admit no projection ($12\nmid232$); hardness by register ($p$-hard, $\Omega$-hard). -/
 theorem p20008 : (13 : Nat) * (13 : Nat) < (233 : Nat) ∧ (12 : Nat) % (4 : Nat) = (0 : Nat) ∧ (232 : Nat) % (4 : Nat) = (0 : Nat) ∧ (232 : Nat) % (3 : Nat) ≠ (0 : Nat) ∧ (5 : FRC.Shell (13 : Nat)) * (5 : FRC.Shell (13 : Nat)) = (-1 : FRC.Shell (13 : Nat)) ∧ (89 : FRC.Shell (233 : Nat)) * (89 : FRC.Shell (233 : Nat)) = (-1 : FRC.Shell (233 : Nat)) ∧ (232 : Nat) % (12 : Nat) ≠ (0 : Nat) ∧ (3 : Nat) * (3 : Nat) < (13 : Nat) ∧ (3 : Nat) * (3 : Nat) < (233 : Nat) :=
@@ -576,7 +545,7 @@ theorem p20017 : (∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Sh
 theorem p20032 : (∀ {p : Nat} [FRC.Pos p] {g : FRC.Shell p} (r k : Nat) (x : FRC.Shell p), (g ^ r * x) ^ k = (g ^ r) ^ k * x ^ k) ∧ ∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → ∀ (r : Nat), FRC.Shell.Frame.natCount (fun x => x ≠ (0 : Nat) ∧ g ^ r * FRC.Shell.ofNat x = FRC.Shell.ofNat x) p = if r % (p - (1 : Nat)) = (0 : Nat) then p - (1 : Nat) else (0 : Nat) :=
   And.intro @FRC.Rh.shift_power_character (@FRC.Rh.shift_trace)
 /-- 20:E12 (p20043) — \textbf{The shell theorem.} On every shell, with no hypothesis: (i) $v$ expands in the constant mode and the nonterminal modes of the quarter-turn meridian; (ii) every readout lies on $\Tr=1$, real part $2^{-1}=2\kp+1=-\pi$; (iii) the scale-shift has the modes as eigenvectors, eigenphases $2\pi j/(p-1)$ independent of $v$. No off-line mode; true of every vector, the Davenport--Heilbronn vector included. -/
-theorem p20043 : (∀ {p : Nat} [FRC.Pos p] {g : FRC.Shell p} (r k : Nat) (x : FRC.Shell p), (g ^ r * x) ^ k = (g ^ r) ^ k * x ^ k) ∧ (∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → ∀ (r : Nat), FRC.Shell.Frame.natCount (fun x => x ≠ (0 : Nat) ∧ g ^ r * FRC.Shell.ofNat x = FRC.Shell.ofNat x) p = if r % (p - (1 : Nat)) = (0 : Nat) then p - (1 : Nat) else (0 : Nat)) ∧ (∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → ∀ (θ : FRC.Shell p), (FRC.Rh.Ext.readout κ θ).trace = (1 : FRC.Shell p) ∧ (FRC.Rh.Ext.readout κ θ).re = FRC.Shell.ofNat ((2 : Nat) * κ + (1 : Nat)) ∧ ∀ (θ' : FRC.Shell p), FRC.Rh.Ext.readout κ θ = FRC.Rh.Ext.readout κ θ' → θ = θ') ∧ ∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → ∀ (k : Nat), (1 : Nat) ≤ k → k ≤ p - (2 : Nat) → -g ^ k ≠ (0 : FRC.Shell p) ∧ -g ^ k ≠ (-1 : FRC.Shell p) :=
+theorem p20043 : (∀ {p : Nat} [FRC.Pos p] {g : FRC.Shell p} (r k : Nat) (x : FRC.Shell p), (g ^ r * x) ^ k = (g ^ r) ^ k * x ^ k) ∧ (∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → ∀ (r : Nat), FRC.Shell.Frame.natCount (fun x => x ≠ (0 : Nat) ∧ g ^ r * FRC.Shell.ofNat x = FRC.Shell.ofNat x) p = if r % (p - (1 : Nat)) = (0 : Nat) then p - (1 : Nat) else (0 : Nat)) ∧ (∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → ∀ (ν θ : FRC.Shell p), (FRC.Rh.Ext.readout ν κ θ).trace = (1 : FRC.Shell p) ∧ (FRC.Rh.Ext.readout ν κ θ).re = FRC.Shell.ofNat ((2 : Nat) * κ + (1 : Nat)) ∧ ∀ (θ' : FRC.Shell p), FRC.Rh.Ext.readout ν κ θ = FRC.Rh.Ext.readout ν κ θ' → θ = θ') ∧ ∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → ∀ (k : Nat), (1 : Nat) ≤ k → k ≤ p - (2 : Nat) → -g ^ k ≠ (0 : FRC.Shell p) ∧ -g ^ k ≠ (-1 : FRC.Shell p) :=
   And.intro @FRC.Rh.shift_power_character (And.intro @FRC.Rh.shift_trace (And.intro @FRC.Rh.Ext.readout_on_line (@FRC.Rh.Ext.readout_slot_index)))
 -- end ledger predicates
 

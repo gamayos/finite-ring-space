@@ -1,6 +1,5 @@
 import Mathlib
-import FrcLedger.Fourier
-import FrcLedger.Algebra
+import FrcLedger.Theme.Fourier
 
 /-!
 # 2-geometry — the ledger predicates in Lean (2026-09-17)
@@ -23,7 +22,7 @@ variable {F : Type*} [Field F] [Fintype F]
 /-- 2:D1 (Prop. 4.1, the shell half-period): `g^π = −1` for `π = 2κ` and every primitive root `g`. -/
 theorem half_period (κ : ℕ) (hκ : Fintype.card F = 4 * κ + 1) (g : F)
     (hg : IsPrimitiveRoot g (Fintype.card F - 1)) : g ^ (2 * κ) = -1 := by
-  have h := FRC.Fourier.quarter_turn_sq κ hκ g hg
+  have h := FRC.DFT.quarter_turn_sq κ hκ g hg
   have : (-(g ^ κ)) ^ 2 = g ^ (2 * κ) := by ring
   rwa [this] at h
 
@@ -31,7 +30,7 @@ theorem half_period (κ : ℕ) (hκ : Fintype.card F = 4 * κ + 1) (g : F)
 theorem quarter_turn_order (κ : ℕ) (hκ : Fintype.card F = 4 * κ + 1) (g : F)
     (hg : IsPrimitiveRoot g (Fintype.card F - 1)) :
     (g ^ κ) ^ 2 = -1 ∧ (g ^ κ) ^ 4 = 1 := by
-  have h := FRC.Fourier.quarter_turn_sq κ hκ g hg
+  have h := FRC.DFT.quarter_turn_sq κ hκ g hg
   have h2 : (g ^ κ) ^ 2 = -1 := by rw [← h]; ring
   refine ⟨h2, ?_⟩
   rw [show (4 : ℕ) = 2 * 2 by norm_num, pow_mul, h2]; ring
@@ -80,7 +79,7 @@ theorem generator_orbit (g : F) (hg : IsPrimitiveRoot g (Fintype.card F - 1)) (h
 theorem principal_root (g : F) (hg : IsPrimitiveRoot g (Fintype.card F - 1)) (k : ℕ) (hk0 : 0 < k)
     (hk : k < Fintype.card F - 1) :
     (∑ j ∈ range (Fintype.card F - 1), (g ^ k) ^ j = 0) ∧ ((Fintype.card F - 1 : ℕ) : F) = -1 := by
-  refine ⟨?_, FRC.Fourier.natCast_card_pred_eq_neg_one⟩
+  refine ⟨?_, FRC.DFT.natCast_card_pred_eq_neg_one⟩
   have hne : g ^ k ≠ 1 := fun h => by
     have := hg.pow_eq_one_iff_dvd k |>.mp h
     exact absurd (Nat.le_of_dvd hk0 this) (not_le.mpr hk)
@@ -95,21 +94,21 @@ theorem principal_root (g : F) (hg : IsPrimitiveRoot g (Fintype.card F - 1)) (k 
 theorem dft_inverse (κ : ℕ) (hκ : Fintype.card F = 4 * κ + 1) (g : F)
     (hg : IsPrimitiveRoot g (Fintype.card F - 1)) :
     haveI : NeZero (Fintype.card F - 1) := ⟨by have := Fintype.one_lt_card (α := F); omega⟩
-    (FRC.Fourier.W g : Matrix (Fin (Fintype.card F - 1)) (Fin (Fintype.card F - 1)) F) *
-        (-(FRC.Fourier.W g * FRC.Fourier.J)) = 1 ∧
+    (FRC.DFT.W g : Matrix (Fin (Fintype.card F - 1)) (Fin (Fintype.card F - 1)) F) *
+        (-(FRC.DFT.W g * FRC.DFT.J)) = 1 ∧
     ∀ k j : Fin (Fintype.card F - 1),
-      (-(FRC.Fourier.W g * FRC.Fourier.J) :
+      (-(FRC.DFT.W g * FRC.DFT.J) :
         Matrix (Fin (Fintype.card F - 1)) (Fin (Fintype.card F - 1)) F) k j
         = -(g ^ ((j : ℕ) * (k : ℕ)))⁻¹ := by
   have : NeZero (Fintype.card F - 1) := ⟨by have := Fintype.one_lt_card (α := F); omega⟩
-  obtain ⟨hW, -, -, -⟩ := FRC.Fourier.shell_relations κ hκ g hg
+  obtain ⟨hW, -, -, -⟩ := FRC.DFT.shell_relations κ hκ g hg
   constructor
-  · rw [mul_neg, ← mul_assoc, ← sq, hW, neg_mul, neg_neg, ← sq, FRC.Fourier.J_sq]
+  · rw [mul_neg, ← mul_assoc, ← sq, hW, neg_mul, neg_neg, ← sq, FRC.DFT.J_sq]
   · intro k j
     rw [Matrix.neg_apply, Matrix.mul_apply]
-    simp only [FRC.Fourier.W_apply, FRC.Fourier.J_apply, mul_ite, mul_one, mul_zero]
+    simp only [FRC.DFT.W_apply, FRC.DFT.J_apply, mul_ite, mul_one, mul_zero]
     rw [Finset.sum_eq_single (-j)]
-    · rw [ite_eq_left (by rw [neg_neg]), pow_mul, FRC.Fourier.pow_neg_val hg.pow_eq_one j, inv_pow,
+    · rw [ite_eq_left (by rw [neg_neg]), pow_mul, FRC.DFT.pow_neg_val hg.pow_eq_one j, inv_pow,
         ← pow_mul]
     · intro x _ hx
       rw [ite_eq_right (fun h => hx (by rw [h, neg_neg]))]

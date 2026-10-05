@@ -2,7 +2,7 @@
  "paper": "8-dirac",
  "title": "Schrödinger and Dirac Dynamics",
  "doi": "https://doi.org/10.20944/preprints202510.1486.v2",
- "generated": "4 October 2026",
+ "generated": "5 October 2026",
  "blocks": [
   {
    "letter": "A",
@@ -412,7 +412,7 @@
    {
     "name": "FRC.Dirac.Ext.field",
     "module": "FrcLedger/Dirac",
-    "line": 191,
+    "line": 1474,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -425,7 +425,7 @@
    {
     "name": "FRC.Dirac.Ext.norm_mul",
     "module": "FrcLedger/Dirac",
-    "line": 118,
+    "line": 1386,
     "axioms": [
      "Quot.sound",
      "propext"
@@ -437,7 +437,7 @@
    {
     "name": "FRC.Dirac.Ext.exists_boost_eq",
     "module": "FrcLedger/Dirac",
-    "line": 340,
+    "line": 185,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -450,7 +450,7 @@
    {
     "name": "FRC.Dirac.Ext.mul_conj",
     "module": "FrcCore/Dirac",
-    "line": 89,
+    "line": 602,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -461,7 +461,7 @@
    {
     "name": "FRC.Dirac.carrier_constants",
     "module": "FrcLedger/Dirac",
-    "line": 1464,
+    "line": 1257,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -474,7 +474,7 @@
    {
     "name": "FRC.Dirac.minimal_admissible",
     "module": "FrcCore/Dirac",
-    "line": 644,
+    "line": 498,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -483,7 +483,7 @@
    {
     "name": "FRC.Dirac.carrier_constants",
     "module": "FrcCore/Dirac",
-    "line": 649,
+    "line": 503,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -494,7 +494,7 @@
    {
     "name": "FRC.Dirac.class_datum",
     "module": "FrcLedger/Dirac",
-    "line": 1028,
+    "line": 821,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -507,7 +507,7 @@
    {
     "name": "FRC.Dirac.form_class",
     "module": "FrcLedger/Dirac",
-    "line": 1037,
+    "line": 830,
     "axioms": [
      "Quot.sound",
      "propext"
@@ -521,7 +521,7 @@
    {
     "name": "FRC.Dirac.drive_nonsquare",
     "module": "FrcLedger/Dirac",
-    "line": 508,
+    "line": 1278,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -534,7 +534,7 @@
    {
     "name": "FRC.Dirac.named_residues",
     "module": "FrcLedger/Dirac",
-    "line": 536,
+    "line": 329,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -547,7 +547,7 @@
    {
     "name": "FRC.Dirac.shell13",
     "module": "FrcLedger/Dirac",
-    "line": 1433,
+    "line": 1226,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -560,7 +560,7 @@
    {
     "name": "FRC.Dirac.shell17",
     "module": "FrcLedger/Dirac",
-    "line": 1447,
+    "line": 1240,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -573,7 +573,7 @@
    {
     "name": "FRC.Dirac.drive_nonsquare",
     "module": "FrcCore/Dirac",
-    "line": 152,
+    "line": 530,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -582,7 +582,7 @@
    {
     "name": "FRC.Dirac.inv_drive_nonsquare",
     "module": "FrcCore/Dirac",
-    "line": 186,
+    "line": 546,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -591,7 +591,7 @@
    {
     "name": "FRC.Dirac.quarter_class",
     "module": "FrcCore/Dirac",
-    "line": 203,
+    "line": 57,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -600,7 +600,7 @@
    {
     "name": "FRC.Dirac.two_class",
     "module": "FrcCore/Dirac",
-    "line": 212,
+    "line": 66,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -609,7 +609,7 @@
    {
     "name": "FRC.Dirac.anchors",
     "module": "FrcCore/Dirac",
-    "line": 633,
+    "line": 487,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -620,7 +620,7 @@
    {
     "name": "FRC.Dirac.nu_factorisation",
     "module": "FrcLedger/Dirac",
-    "line": 1064,
+    "line": 857,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -633,7 +633,7 @@
    {
     "name": "FRC.Dirac.two_g_class",
     "module": "FrcLedger/Dirac",
-    "line": 1080,
+    "line": 873,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -646,7 +646,7 @@
    {
     "name": "FRC.Dirac.named_residues",
     "module": "FrcLedger/Dirac",
-    "line": 536,
+    "line": 329,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -659,7 +659,7 @@
    {
     "name": "FRC.Dirac.shell13",
     "module": "FrcLedger/Dirac",
-    "line": 1433,
+    "line": 1226,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -672,7 +672,7 @@
    {
     "name": "FRC.Dirac.carrier_constants",
     "module": "FrcLedger/Dirac",
-    "line": 1464,
+    "line": 1257,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -685,7 +685,7 @@
    {
     "name": "FRC.Dirac.nu_factorisation",
     "module": "FrcCore/Dirac",
-    "line": 246,
+    "line": 100,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -694,7 +694,7 @@
    {
     "name": "FRC.Dirac.carrier_constants",
     "module": "FrcCore/Dirac",
-    "line": 649,
+    "line": 503,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -705,7 +705,7 @@
    {
     "name": "FRC.Dirac.parity_iff",
     "module": "FrcLedger/Dirac",
-    "line": 484,
+    "line": 1273,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -718,7 +718,7 @@
    {
     "name": "FRC.Dirac.parity_iff",
     "module": "FrcCore/Dirac",
-    "line": 134,
+    "line": 526,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -729,7 +729,7 @@
    {
     "name": "FRC.Dirac.norm_growth",
     "module": "FrcLedger/Dirac",
-    "line": 1068,
+    "line": 861,
     "axioms": [
      "Quot.sound",
      "propext"
@@ -741,7 +741,7 @@
    {
     "name": "FRC.Dirac.Ext.norm_scale",
     "module": "FrcCore/Dirac",
-    "line": 104,
+    "line": 611,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -750,7 +750,7 @@
    {
     "name": "FRC.Dirac.inv_drive_nonsquare",
     "module": "FrcCore/Dirac",
-    "line": 186,
+    "line": 546,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -761,7 +761,7 @@
    {
     "name": "FRC.Dirac.ext_square",
     "module": "FrcLedger/Dirac",
-    "line": 1042,
+    "line": 835,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -774,7 +774,7 @@
    {
     "name": "FRC.Dirac.zeros5",
     "module": "FrcCore/Dirac",
-    "line": 399,
+    "line": 253,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -783,7 +783,7 @@
    {
     "name": "FRC.Dirac.zeros13",
     "module": "FrcCore/Dirac",
-    "line": 402,
+    "line": 256,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -794,7 +794,7 @@
    {
     "name": "FRC.Dirac.herm_star",
     "module": "FrcLedger/Dirac",
-    "line": 731,
+    "line": 524,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -807,7 +807,7 @@
    {
     "name": "FRC.Dirac.herm_nondegenerate",
     "module": "FrcLedger/Dirac",
-    "line": 754,
+    "line": 547,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -820,7 +820,7 @@
    {
     "name": "FRC.Dirac.herm_translate",
     "module": "FrcLedger/Dirac",
-    "line": 766,
+    "line": 559,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -833,7 +833,7 @@
    {
     "name": "FRC.Dirac.herm_translate_adjoint",
     "module": "FrcLedger/Dirac",
-    "line": 773,
+    "line": 566,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -846,7 +846,7 @@
    {
     "name": "FRC.Dirac.herm_laplacian",
     "module": "FrcLedger/Dirac",
-    "line": 790,
+    "line": 583,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -859,7 +859,7 @@
    {
     "name": "FRC.Dirac.herm_hamiltonian",
     "module": "FrcLedger/Dirac",
-    "line": 798,
+    "line": 591,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -874,7 +874,7 @@
    {
     "name": "FRC.Dirac.cayley_unitary",
     "module": "FrcLedger/Dirac",
-    "line": 592,
+    "line": 385,
     "axioms": [
      "Classical.choice",
      "propext"
@@ -886,7 +886,7 @@
    {
     "name": "FRC.Dirac.cayley_periodic",
     "module": "FrcLedger/Dirac",
-    "line": 635,
+    "line": 428,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -901,7 +901,7 @@
    {
     "name": "FRC.Dirac.Ext.cayley_norm",
     "module": "FrcLedger/Dirac",
-    "line": 245,
+    "line": 90,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -914,7 +914,7 @@
    {
     "name": "FRC.Dirac.Ext.cayley_injective",
     "module": "FrcLedger/Dirac",
-    "line": 986,
+    "line": 779,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -927,7 +927,7 @@
    {
     "name": "FRC.Dirac.Ext.card_normOneGroup",
     "module": "FrcLedger/Dirac",
-    "line": 406,
+    "line": 251,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -940,7 +940,7 @@
    {
     "name": "FRC.Dirac.Ext.cayley_gauge",
     "module": "FrcLedger/Dirac",
-    "line": 1008,
+    "line": 801,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -953,7 +953,7 @@
    {
     "name": "FRC.Dirac.torus_counts",
     "module": "FrcCore/Dirac",
-    "line": 406,
+    "line": 260,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -964,7 +964,7 @@
    {
     "name": "FRC.Dirac.kinetic_nilpotent",
     "module": "FrcLedger/Dirac",
-    "line": 652,
+    "line": 445,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -977,7 +977,7 @@
    {
     "name": "FRC.Dirac.cayley_period",
     "module": "FrcLedger/Dirac",
-    "line": 684,
+    "line": 477,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -990,7 +990,7 @@
    {
     "name": "FRC.Dirac.cayley13_values",
     "module": "FrcCore/Dirac",
-    "line": 579,
+    "line": 433,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -1001,7 +1001,7 @@
    {
     "name": "FRC.Dirac.clifford",
     "module": "FrcLedger/Dirac",
-    "line": 1176,
+    "line": 969,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -1014,7 +1014,7 @@
    {
     "name": "FRC.Dirac.pauli",
     "module": "FrcLedger/Dirac",
-    "line": 1155,
+    "line": 948,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -1027,7 +1027,7 @@
    {
     "name": "FRC.Dirac.clifford_values",
     "module": "FrcCore/Dirac",
-    "line": 485,
+    "line": 339,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -1038,7 +1038,7 @@
    {
     "name": "FRC.Dirac.boost_entries",
     "module": "FrcLedger/Dirac",
-    "line": 1390,
+    "line": 1183,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -1051,7 +1051,7 @@
    {
     "name": "FRC.Dirac.Ext.boost_mem",
     "module": "FrcLedger/Dirac",
-    "line": 319,
+    "line": 164,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -1064,7 +1064,7 @@
    {
     "name": "FRC.Dirac.Ext.boost_eq_one_iff",
     "module": "FrcLedger/Dirac",
-    "line": 331,
+    "line": 176,
     "axioms": [
      "Quot.sound",
      "propext"
@@ -1076,7 +1076,7 @@
    {
     "name": "FRC.Dirac.Ext.boost_range",
     "module": "FrcLedger/Dirac",
-    "line": 941,
+    "line": 734,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -1089,7 +1089,7 @@
    {
     "name": "FRC.Dirac.Ext.card_normOneGroup",
     "module": "FrcLedger/Dirac",
-    "line": 406,
+    "line": 251,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -1102,7 +1102,7 @@
    {
     "name": "FRC.Dirac.Ext.normOne_cyclic",
     "module": "FrcLedger/Dirac",
-    "line": 950,
+    "line": 743,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -1115,7 +1115,7 @@
    {
     "name": "FRC.Dirac.Ext.order_three_iff",
     "module": "FrcLedger/Dirac",
-    "line": 968,
+    "line": 761,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -1128,7 +1128,7 @@
    {
     "name": "FRC.Dirac.torus_counts",
     "module": "FrcCore/Dirac",
-    "line": 406,
+    "line": 260,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -1137,7 +1137,7 @@
    {
     "name": "FRC.Dirac.triality_values",
     "module": "FrcCore/Dirac",
-    "line": 617,
+    "line": 471,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -1148,7 +1148,7 @@
    {
     "name": "FRC.Dirac.spin_conjugation",
     "module": "FrcLedger/Dirac",
-    "line": 1253,
+    "line": 1046,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -1161,7 +1161,7 @@
    {
     "name": "FRC.Dirac.spin_conjugation_AB",
     "module": "FrcLedger/Dirac",
-    "line": 1409,
+    "line": 1202,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -1174,7 +1174,7 @@
    {
     "name": "FRC.Dirac.spin_conjugation_values",
     "module": "FrcCore/Dirac",
-    "line": 514,
+    "line": 368,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -1185,7 +1185,7 @@
    {
     "name": "FRC.Dirac.spin_conjugation",
     "module": "FrcLedger/Dirac",
-    "line": 1253,
+    "line": 1046,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -1198,7 +1198,7 @@
    {
     "name": "FRC.Dirac.boost_entries",
     "module": "FrcLedger/Dirac",
-    "line": 1390,
+    "line": 1183,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -1211,7 +1211,7 @@
    {
     "name": "FRC.Dirac.spin_conjugation_values",
     "module": "FrcCore/Dirac",
-    "line": 514,
+    "line": 368,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -1222,7 +1222,7 @@
    {
     "name": "FRC.Dirac.spinor_twist",
     "module": "FrcLedger/Dirac",
-    "line": 1267,
+    "line": 1060,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -1235,7 +1235,7 @@
    {
     "name": "FRC.Dirac.gamma_dagger",
     "module": "FrcLedger/Dirac",
-    "line": 1296,
+    "line": 1089,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -1248,7 +1248,7 @@
    {
     "name": "FRC.Dirac.twist_adjoint",
     "module": "FrcLedger/Dirac",
-    "line": 1314,
+    "line": 1107,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -1261,7 +1261,7 @@
    {
     "name": "FRC.Dirac.spinor_form_values",
     "module": "FrcCore/Dirac",
-    "line": 534,
+    "line": 388,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -1272,7 +1272,7 @@
    {
     "name": "FRC.Dirac.cayley_unitary",
     "module": "FrcLedger/Dirac",
-    "line": 592,
+    "line": 385,
     "axioms": [
      "Classical.choice",
      "propext"
@@ -1284,7 +1284,7 @@
    {
     "name": "FRC.Dirac.translation_nilpotent",
     "module": "FrcLedger/Dirac",
-    "line": 646,
+    "line": 439,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -1299,7 +1299,7 @@
    {
     "name": "FRC.Dirac.lift_adjoint",
     "module": "FrcLedger/Dirac",
-    "line": 1341,
+    "line": 1134,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -1312,7 +1312,7 @@
    {
     "name": "FRC.Dirac.lift_transport",
     "module": "FrcLedger/Dirac",
-    "line": 1356,
+    "line": 1149,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -1327,7 +1327,7 @@
    {
     "name": "FRC.Dirac.shell13",
     "module": "FrcLedger/Dirac",
-    "line": 1433,
+    "line": 1226,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -1340,7 +1340,7 @@
    {
     "name": "FRC.Dirac.shell17",
     "module": "FrcLedger/Dirac",
-    "line": 1447,
+    "line": 1240,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -1353,7 +1353,7 @@
    {
     "name": "FRC.Dirac.spin_conjugation_values",
     "module": "FrcCore/Dirac",
-    "line": 514,
+    "line": 368,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -1362,7 +1362,7 @@
    {
     "name": "FRC.Dirac.torus_counts",
     "module": "FrcCore/Dirac",
-    "line": 406,
+    "line": 260,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -1371,7 +1371,7 @@
    {
     "name": "FRC.Dirac.anchors",
     "module": "FrcCore/Dirac",
-    "line": 633,
+    "line": 487,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -1380,7 +1380,7 @@
    {
     "name": "FRC.Dirac.minimal_admissible",
     "module": "FrcCore/Dirac",
-    "line": 644,
+    "line": 498,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -1391,7 +1391,7 @@
    {
     "name": "FRC.Dirac.loss_factor_one",
     "module": "FrcLedger/Dirac",
-    "line": 911,
+    "line": 704,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -1404,7 +1404,7 @@
    {
     "name": "FRC.Dirac.power_map_count",
     "module": "FrcLedger/Dirac",
-    "line": 925,
+    "line": 718,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -1417,7 +1417,7 @@
    {
     "name": "FRC.Dirac.power_map13",
     "module": "FrcCore/Dirac",
-    "line": 626,
+    "line": 480,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -1428,7 +1428,7 @@
    {
     "name": "FRC.Dirac.unit_loss_factor_one",
     "module": "FrcLedger/Dirac",
-    "line": 917,
+    "line": 710,
     "axioms": [
      "Quot.sound"
     ],
@@ -1441,7 +1441,7 @@
    {
     "name": "FRC.Dirac.cayley_period",
     "module": "FrcLedger/Dirac",
-    "line": 684,
+    "line": 477,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -1454,7 +1454,7 @@
    {
     "name": "FRC.Dirac.kinetic_nilpotent",
     "module": "FrcLedger/Dirac",
-    "line": 652,
+    "line": 445,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -1467,7 +1467,7 @@
    {
     "name": "FRC.Dirac.Ext.torus_period",
     "module": "FrcLedger/Dirac",
-    "line": 958,
+    "line": 751,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -1480,7 +1480,7 @@
    {
     "name": "FRC.Dirac.cayley13_values",
     "module": "FrcCore/Dirac",
-    "line": 579,
+    "line": 433,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -1489,7 +1489,7 @@
    {
     "name": "FRC.Dirac.potential_orders",
     "module": "FrcCore/Dirac",
-    "line": 606,
+    "line": 460,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -1500,7 +1500,7 @@
    {
     "name": "FRC.Dirac.latitude_identities",
     "module": "FrcLedger/Dirac",
-    "line": 1094,
+    "line": 887,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -1513,7 +1513,7 @@
    {
     "name": "FRC.Dirac.ladder",
     "module": "FrcCore/Dirac",
-    "line": 272,
+    "line": 126,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -1522,7 +1522,7 @@
    {
     "name": "FRC.Dirac.four_kappa",
     "module": "FrcCore/Dirac",
-    "line": 276,
+    "line": 130,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -1531,7 +1531,7 @@
    {
     "name": "FRC.Dirac.terminal_latitude",
     "module": "FrcCore/Dirac",
-    "line": 296,
+    "line": 150,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -1540,7 +1540,7 @@
    {
     "name": "FRC.Dirac.torus_counts",
     "module": "FrcCore/Dirac",
-    "line": 406,
+    "line": 260,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -1551,7 +1551,7 @@
    {
     "name": "FRC.Dirac.drive_chi",
     "module": "FrcLedger/Dirac",
-    "line": 823,
+    "line": 616,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -1564,7 +1564,7 @@
    {
     "name": "FRC.Dirac.drive_sum",
     "module": "FrcLedger/Dirac",
-    "line": 828,
+    "line": 621,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -1577,7 +1577,7 @@
    {
     "name": "FRC.Dirac.chi_isotropy",
     "module": "FrcLedger/Dirac",
-    "line": 834,
+    "line": 627,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -1590,7 +1590,7 @@
    {
     "name": "FRC.Dirac.exceptional_eigen",
     "module": "FrcLedger/Dirac",
-    "line": 844,
+    "line": 637,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -1603,7 +1603,7 @@
    {
     "name": "FRC.Dirac.drive_eigen",
     "module": "FrcCore/Dirac",
-    "line": 316,
+    "line": 170,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -1612,7 +1612,7 @@
    {
     "name": "FRC.Dirac.exceptional_eigen",
     "module": "FrcCore/Dirac",
-    "line": 323,
+    "line": 177,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -1621,7 +1621,7 @@
    {
     "name": "FRC.Dirac.isotropy",
     "module": "FrcCore/Dirac",
-    "line": 333,
+    "line": 187,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -1632,7 +1632,7 @@
    {
     "name": "FRC.Dirac.sector_separation",
     "module": "FrcLedger/Dirac",
-    "line": 877,
+    "line": 670,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -1645,7 +1645,7 @@
    {
     "name": "FRC.Dirac.dispersion",
     "module": "FrcLedger/Dirac",
-    "line": 896,
+    "line": 689,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -1658,7 +1658,7 @@
    {
     "name": "FRC.Dirac.exceptional_eigen",
     "module": "FrcLedger/Dirac",
-    "line": 844,
+    "line": 637,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -1671,7 +1671,7 @@
    {
     "name": "FRC.Dirac.sector_separation",
     "module": "FrcCore/Dirac",
-    "line": 354,
+    "line": 208,
     "axioms": [],
     "tier": 0,
     "ok": true,

@@ -2,7 +2,7 @@
  "paper": "14-entr",
  "title": "De Sitter Entropy Estimates over Finite Holographic Substrate",
  "doi": "https://doi.org/10.20944/preprints202608.0310.v1",
- "generated": "4 October 2026",
+ "generated": "5 October 2026",
  "blocks": [
   {
    "letter": "A",
@@ -441,7 +441,7 @@
    {
     "name": "FRC.Entropy.quarter_identity",
     "module": "FrcCore/Entropy",
-    "line": 37,
+    "line": 42,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -465,7 +465,7 @@
    {
     "name": "FRC.Entropy.carrierLab_prime",
     "module": "FrcCore/Entropy",
-    "line": 353,
+    "line": 164,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -515,7 +515,7 @@
    {
     "name": "FRC.Entropy.octant_count",
     "module": "FrcCore/Entropy",
-    "line": 61,
+    "line": 66,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -567,7 +567,7 @@
    {
     "name": "FRC.Entropy.quarter_identity",
     "module": "FrcCore/Entropy",
-    "line": 37,
+    "line": 42,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -604,7 +604,7 @@
    {
     "name": "FRC.Entropy.nesting_bound",
     "module": "FrcCore/Entropy",
-    "line": 280,
+    "line": 91,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -613,7 +613,7 @@
    {
     "name": "FRC.Entropy.lab_nesting",
     "module": "FrcCore/Entropy",
-    "line": 366,
+    "line": 177,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -706,7 +706,7 @@
    {
     "name": "FRC.Entropy.closure_count",
     "module": "FrcCore/Entropy",
-    "line": 67,
+    "line": 72,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -715,7 +715,7 @@
    {
     "name": "FRC.Entropy.octant_count",
     "module": "FrcCore/Entropy",
-    "line": 61,
+    "line": 66,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -752,7 +752,7 @@
    {
     "name": "FRC.Entropy.tsirelson_square",
     "module": "FrcCore/Entropy",
-    "line": 117,
+    "line": 218,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -761,7 +761,7 @@
    {
     "name": "FRC.Entropy.octant_iff",
     "module": "FrcCore/Entropy",
-    "line": 255,
+    "line": 262,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -770,7 +770,7 @@
    {
     "name": "FRC.Entropy.lab_carrier",
     "module": "FrcCore/Entropy",
-    "line": 346,
+    "line": 157,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -878,7 +878,7 @@
    {
     "name": "FRC.Entropy.capacity_axis",
     "module": "FrcCore/Entropy",
-    "line": 359,
+    "line": 170,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -958,7 +958,7 @@
    {
     "name": "FRC.Entropy.two_is_square_iff",
     "module": "FrcCore/Entropy",
-    "line": 269,
+    "line": 273,
     "axioms": [],
     "tier": 0,
     "ok": true,

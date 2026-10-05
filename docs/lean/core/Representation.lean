@@ -2,7 +2,7 @@ import FrcCore.Nat
 import FrcCore.Shell
 import FrcCore.Frame
 import FrcCore.Sum
-import FrcCore.Algebra
+import FrcCore.Theme.Projective
 
 /-!
 # 4-rep — universal latent representation: the ledger predicates with no axioms

@@ -2,7 +2,7 @@
  "paper": "5-red",
  "title": "Paradoxes of Infinity as Reductio ad Absurdum",
  "doi": "https://doi.org/10.20944/preprints202508.1744.v1",
- "generated": "4 October 2026",
+ "generated": "5 October 2026",
  "blocks": [
   {
    "letter": "A",
@@ -375,7 +375,7 @@
    {
     "name": "FRC.Reductio.infinite_of_succ",
     "module": "FrcLedger/Reductio",
-    "line": 57,
+    "line": 142,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -388,7 +388,7 @@
    {
     "name": "FRC.Reductio.theory_complete",
     "module": "FrcLedger/Reductio",
-    "line": 25,
+    "line": 122,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -403,7 +403,7 @@
    {
     "name": "FRC.Reductio.theory_complete",
     "module": "FrcLedger/Reductio",
-    "line": 25,
+    "line": 122,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -416,7 +416,7 @@
    {
     "name": "FRC.Reductio.decRealize",
     "module": "FrcLedger/Reductio",
-    "line": 29,
+    "line": 127,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -429,7 +429,7 @@
    {
     "name": "FRC.Reductio.decTheory",
     "module": "FrcLedger/Reductio",
-    "line": 48,
+    "line": 134,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -444,7 +444,7 @@
    {
     "name": "FRC.Reductio.stable",
     "module": "FrcCore/Reductio",
-    "line": 196,
+    "line": 158,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -453,7 +453,7 @@
    {
     "name": "FRC.Reductio.evalT_frame",
     "module": "FrcCore/Reductio",
-    "line": 161,
+    "line": 153,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -462,7 +462,7 @@
    {
     "name": "FRC.Reductio.goldbach_ten_stable",
     "module": "FrcCore/Reductio",
-    "line": 264,
+    "line": 68,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -473,7 +473,7 @@
    {
     "name": "FRC.Reductio.records_lt",
     "module": "FrcLedger/Reductio",
-    "line": 81,
+    "line": 159,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -486,7 +486,7 @@
    {
     "name": "FRC.Reductio.no_mirror",
     "module": "FrcLedger/Reductio",
-    "line": 86,
+    "line": 164,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -499,7 +499,7 @@
    {
     "name": "FRC.Reductio.records_lt",
     "module": "FrcCore/Reductio",
-    "line": 275,
+    "line": 166,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -508,7 +508,7 @@
    {
     "name": "FRC.Reductio.no_mirror",
     "module": "FrcCore/Reductio",
-    "line": 289,
+    "line": 171,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -519,7 +519,7 @@
    {
     "name": "FRC.Reductio.certified_fraction_tendsto",
     "module": "FrcLedger/Reductio",
-    "line": 92,
+    "line": 28,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -534,7 +534,7 @@
    {
     "name": "FRC.Reductio.repeat_below",
     "module": "FrcCore/Reductio",
-    "line": 317,
+    "line": 188,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -543,7 +543,7 @@
    {
     "name": "FRC.Reductio.halts_iff_halts_below",
     "module": "FrcCore/Reductio",
-    "line": 355,
+    "line": 202,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -554,7 +554,7 @@
    {
     "name": "FRC.Reductio.cantor",
     "module": "FrcLedger/Reductio",
-    "line": 70,
+    "line": 150,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -563,7 +563,7 @@
    {
     "name": "FRC.Reductio.cantor_finite",
     "module": "FrcLedger/Reductio",
-    "line": 73,
+    "line": 154,
     "axioms": [
      "propext"
     ],
@@ -574,7 +574,7 @@
    {
     "name": "FRC.Reductio.cantor_finite",
     "module": "FrcCore/Reductio",
-    "line": 386,
+    "line": 207,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -585,7 +585,7 @@
    {
     "name": "FRC.Reductio.decideAllSubsets",
     "module": "FrcLedger/Reductio",
-    "line": 168,
+    "line": 104,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -598,7 +598,7 @@
    {
     "name": "FRC.Reductio.nat_embeds",
     "module": "FrcLedger/Reductio",
-    "line": 173,
+    "line": 109,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -613,7 +613,7 @@
    {
     "name": "FRC.Reductio.finite_choice",
     "module": "FrcLedger/Reductio",
-    "line": 104,
+    "line": 40,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -626,7 +626,7 @@
    {
     "name": "FRC.Reductio.leastBelow_spec",
     "module": "FrcCore/Reductio",
-    "line": 422,
+    "line": 219,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -635,7 +635,7 @@
    {
     "name": "FRC.Reductio.leastBelow_some",
     "module": "FrcCore/Reductio",
-    "line": 398,
+    "line": 215,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -646,7 +646,7 @@
    {
     "name": "FRC.Reductio.periodic_choice",
     "module": "FrcLedger/Reductio",
-    "line": 108,
+    "line": 44,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -659,7 +659,7 @@
    {
     "name": "FRC.Reductio.leastBelow_congr",
     "module": "FrcCore/Reductio",
-    "line": 456,
+    "line": 225,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -670,7 +670,7 @@
    {
     "name": "FRC.Reductio.equivariant_section_iff",
     "module": "FrcLedger/Reductio",
-    "line": 115,
+    "line": 51,
     "axioms": [
      "Classical.choice",
      "propext"
@@ -684,7 +684,7 @@
    {
     "name": "FRC.Reductio.obstruction_five",
     "module": "FrcLedger/Reductio",
-    "line": 146,
+    "line": 82,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -697,7 +697,7 @@
    {
     "name": "FRC.Reductio.obstruction_five",
     "module": "FrcCore/Reductio",
-    "line": 470,
+    "line": 75,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -708,7 +708,7 @@
    {
     "name": "FRC.Reductio.repeat_below",
     "module": "FrcCore/Reductio",
-    "line": 317,
+    "line": 188,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -717,7 +717,7 @@
    {
     "name": "FRC.Reductio.eventually_periodic",
     "module": "FrcCore/Reductio",
-    "line": 347,
+    "line": 197,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -728,7 +728,7 @@
    {
     "name": "FRC.Reductio.no_doubling",
     "module": "FrcLedger/Reductio",
-    "line": 150,
+    "line": 86,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -741,7 +741,7 @@
    {
     "name": "FRC.Reductio.ultrafilter_principal",
     "module": "FrcLedger/Reductio",
-    "line": 159,
+    "line": 95,
     "axioms": [
      "Classical.choice",
      "Quot.sound",

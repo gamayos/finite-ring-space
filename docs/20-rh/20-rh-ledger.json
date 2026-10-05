@@ -2,7 +2,7 @@
  "paper": "20-rh",
  "title": "Riemann Hypothesis over the Holographic Substrate",
  "doi": "https://doi.org/10.20944/preprints202606.0768.v1",
- "generated": "4 October 2026",
+ "generated": "5 October 2026",
  "blocks": [
   {
    "letter": "A",
@@ -540,7 +540,7 @@
    {
     "name": "FRC.Rh.lab_pair",
     "module": "FrcCore/Rh",
-    "line": 543,
+    "line": 421,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -588,7 +588,7 @@
    {
     "name": "FRC.Rh.window_readback",
     "module": "FrcCore/Rh",
-    "line": 493,
+    "line": 371,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -597,7 +597,7 @@
    {
     "name": "FRC.Rh.factorisation_iff",
     "module": "FrcCore/Rh",
-    "line": 504,
+    "line": 382,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -606,7 +606,7 @@
    {
     "name": "FRC.Rh.frame_coincidence",
     "module": "FrcCore/Rh",
-    "line": 530,
+    "line": 408,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -630,7 +630,7 @@
    {
     "name": "FRC.Rh.zero_slot",
     "module": "FrcCore/Rh",
-    "line": 82,
+    "line": 54,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -654,7 +654,7 @@
    {
     "name": "FRC.Rh.slot_complementarity",
     "module": "FrcCore/Rh",
-    "line": 100,
+    "line": 72,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -717,7 +717,7 @@
    {
     "name": "FRC.Rh.Ext.mul_conj",
     "module": "FrcCore/Rh",
-    "line": 343,
+    "line": 488,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -726,7 +726,7 @@
    {
     "name": "FRC.Rh.Ext.conj_inv_of_norm_one",
     "module": "FrcCore/Rh",
-    "line": 351,
+    "line": 492,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -735,7 +735,7 @@
    {
     "name": "FRC.Rh.Ext.quarter_turn_off_circle",
     "module": "FrcCore/Rh",
-    "line": 459,
+    "line": 337,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -744,7 +744,7 @@
    {
     "name": "FRC.Rh.Ext.circle13",
     "module": "FrcCore/Rh",
-    "line": 473,
+    "line": 351,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -768,7 +768,7 @@
    {
     "name": "FRC.Rh.ramanujan_sum",
     "module": "FrcCore/Rh",
-    "line": 239,
+    "line": 192,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -777,7 +777,7 @@
    {
     "name": "FRC.Rh.ramanujan53",
     "module": "FrcCore/Rh",
-    "line": 278,
+    "line": 214,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -840,7 +840,7 @@
    {
     "name": "FRC.Rh.half_inverse",
     "module": "FrcCore/Rh",
-    "line": 123,
+    "line": 95,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -849,7 +849,7 @@
    {
     "name": "FRC.Rh.Ext.critical_line",
     "module": "FrcCore/Rh",
-    "line": 369,
+    "line": 247,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -858,7 +858,7 @@
    {
     "name": "FRC.Rh.Ext.norm_on_line",
     "module": "FrcCore/Rh",
-    "line": 450,
+    "line": 328,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -921,7 +921,7 @@
    {
     "name": "FRC.Rh.Ext.klein_four",
     "module": "FrcCore/Rh",
-    "line": 336,
+    "line": 236,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -930,7 +930,7 @@
    {
     "name": "FRC.Rh.Ext.fixed_conj",
     "module": "FrcCore/Rh",
-    "line": 359,
+    "line": 496,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -939,7 +939,7 @@
    {
     "name": "FRC.Rh.Ext.critical_line",
     "module": "FrcCore/Rh",
-    "line": 369,
+    "line": 247,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -948,7 +948,7 @@
    {
     "name": "FRC.Rh.Ext.fixed_half_turn",
     "module": "FrcCore/Rh",
-    "line": 400,
+    "line": 278,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -984,7 +984,7 @@
    {
     "name": "FRC.Rh.subject_constants",
     "module": "FrcCore/Rh",
-    "line": 150,
+    "line": 122,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -993,7 +993,7 @@
    {
     "name": "FRC.Rh.constants13",
     "module": "FrcCore/Rh",
-    "line": 160,
+    "line": 132,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -1095,7 +1095,7 @@
    {
     "name": "FRC.Rh.shift_power_character",
     "module": "FrcCore/Rh",
-    "line": 169,
+    "line": 141,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -1104,7 +1104,7 @@
    {
     "name": "FRC.Rh.shift_trace",
     "module": "FrcCore/Rh",
-    "line": 194,
+    "line": 147,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -1154,7 +1154,7 @@
    {
     "name": "FRC.Rh.shift_power_character",
     "module": "FrcCore/Rh",
-    "line": 169,
+    "line": 141,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -1163,7 +1163,7 @@
    {
     "name": "FRC.Rh.shift_trace",
     "module": "FrcCore/Rh",
-    "line": 194,
+    "line": 147,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -1198,7 +1198,7 @@
    {
     "name": "FRC.Rh.Ext.readout_on_line",
     "module": "FrcCore/Rh",
-    "line": 426,
+    "line": 304,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -1207,7 +1207,7 @@
    {
     "name": "FRC.Rh.Ext.readout_slot_index",
     "module": "FrcCore/Rh",
-    "line": 433,
+    "line": 311,
     "axioms": [],
     "tier": 0,
     "ok": true,

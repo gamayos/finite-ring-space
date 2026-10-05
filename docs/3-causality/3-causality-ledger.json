@@ -2,7 +2,7 @@
  "paper": "3-caus",
  "title": "Euclidean–Lorentzian Dichotomy and Algebraic Causality in Finite Ring Continuum",
  "doi": "https://doi.org/10.3390/e27111098",
- "generated": "4 October 2026",
+ "generated": "5 October 2026",
  "blocks": [
   {
    "letter": "A",
@@ -238,7 +238,7 @@
    {
     "name": "FRC.Causality.no_causal_root",
     "module": "FrcLedger/Causality",
-    "line": 18,
+    "line": 17,
     "axioms": [
      "Quot.sound",
      "propext"
@@ -250,7 +250,7 @@
    {
     "name": "FRC.Causality.neg_sq_is_square",
     "module": "FrcLedger/Causality",
-    "line": 22,
+    "line": 21,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -263,7 +263,7 @@
    {
     "name": "FRC.Shell.Frame.no_causal_root",
     "module": "FrcCore/Causality",
-    "line": 26,
+    "line": 28,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -272,7 +272,7 @@
    {
     "name": "FRC.Shell.Frame.neg_sq_is_square",
     "module": "FrcCore/Causality",
-    "line": 35,
+    "line": 34,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -283,7 +283,7 @@
    {
     "name": "FRC.Causality.absorb",
     "module": "FrcLedger/Causality",
-    "line": 27,
+    "line": 26,
     "axioms": [
      "Quot.sound",
      "propext"
@@ -295,7 +295,7 @@
    {
     "name": "FRC.Shell.Frame.absorb",
     "module": "FrcCore/Causality",
-    "line": 44,
+    "line": 43,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -306,7 +306,7 @@
    {
     "name": "FRC.Shell.Frame.null13",
     "module": "FrcCore/Causality",
-    "line": 224,
+    "line": 223,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -315,7 +315,7 @@
    {
     "name": "FRC.Shell.Frame.euclid13",
     "module": "FrcCore/Causality",
-    "line": 226,
+    "line": 225,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -324,7 +324,7 @@
    {
     "name": "FRC.Shell.Frame.null5",
     "module": "FrcCore/Causality",
-    "line": 228,
+    "line": 227,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -333,7 +333,7 @@
    {
     "name": "FRC.Shell.Frame.null17",
     "module": "FrcCore/Causality",
-    "line": 230,
+    "line": 229,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -344,7 +344,7 @@
    {
     "name": "FRC.Causality.aniso_tx",
     "module": "FrcLedger/Causality",
-    "line": 34,
+    "line": 33,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -357,7 +357,7 @@
    {
     "name": "FRC.Shell.Frame.aniso_tx",
     "module": "FrcCore/Causality",
-    "line": 59,
+    "line": 58,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -366,7 +366,7 @@
    {
     "name": "FRC.Shell.Frame.null_yz",
     "module": "FrcCore/Causality",
-    "line": 78,
+    "line": 77,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -375,7 +375,7 @@
    {
     "name": "FRC.Shell.Frame.null_tx_of_square",
     "module": "FrcCore/Causality",
-    "line": 83,
+    "line": 82,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -386,7 +386,7 @@
    {
     "name": "FRC.Causality.boost_preserves",
     "module": "FrcLedger/Causality",
-    "line": 40,
+    "line": 39,
     "axioms": [
      "Quot.sound",
      "propext"
@@ -398,7 +398,7 @@
    {
     "name": "FRC.Causality.boost_comp",
     "module": "FrcLedger/Causality",
-    "line": 45,
+    "line": 44,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -411,7 +411,7 @@
    {
     "name": "FRC.Causality.boost_orthogonal",
     "module": "FrcLedger/Causality",
-    "line": 51,
+    "line": 50,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -424,7 +424,7 @@
    {
     "name": "FRC.Shell.Frame.boost_preserves",
     "module": "FrcCore/Causality",
-    "line": 117,
+    "line": 116,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -433,7 +433,7 @@
    {
     "name": "FRC.Shell.Frame.boost_comp_t",
     "module": "FrcCore/Causality",
-    "line": 126,
+    "line": 125,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -442,7 +442,7 @@
    {
     "name": "FRC.Shell.Frame.boost_comp_x",
     "module": "FrcCore/Causality",
-    "line": 135,
+    "line": 134,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -451,7 +451,7 @@
    {
     "name": "FRC.Shell.Frame.norm_one_mul",
     "module": "FrcCore/Causality",
-    "line": 145,
+    "line": 144,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -460,7 +460,7 @@
    {
     "name": "FRC.Shell.Frame.normOne_values",
     "module": "FrcCore/Causality",
-    "line": 232,
+    "line": 231,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -471,7 +471,7 @@
    {
     "name": "FRC.Causality.gamma_ne_zero",
     "module": "FrcLedger/Causality",
-    "line": 57,
+    "line": 56,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -484,7 +484,7 @@
    {
     "name": "FRC.Causality.gamma_velocity",
     "module": "FrcLedger/Causality",
-    "line": 66,
+    "line": 65,
     "axioms": [
      "Quot.sound",
      "propext"
@@ -496,7 +496,7 @@
    {
     "name": "FRC.Causality.velocity_addition",
     "module": "FrcLedger/Causality",
-    "line": 71,
+    "line": 70,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -509,7 +509,7 @@
    {
     "name": "FRC.Shell.Frame.gamma_ne_zero",
     "module": "FrcCore/Causality",
-    "line": 155,
+    "line": 154,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -518,7 +518,7 @@
    {
     "name": "FRC.Shell.Frame.gamma_velocity",
     "module": "FrcCore/Causality",
-    "line": 173,
+    "line": 172,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -527,7 +527,7 @@
    {
     "name": "FRC.Shell.Frame.velocity_addition",
     "module": "FrcCore/Causality",
-    "line": 184,
+    "line": 183,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -538,7 +538,7 @@
    {
     "name": "FRC.Shell.Frame.null13",
     "module": "FrcCore/Causality",
-    "line": 224,
+    "line": 223,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -547,7 +547,7 @@
    {
     "name": "FRC.Shell.Frame.normOne_values",
     "module": "FrcCore/Causality",
-    "line": 232,
+    "line": 231,
     "axioms": [],
     "tier": 0,
     "ok": true,

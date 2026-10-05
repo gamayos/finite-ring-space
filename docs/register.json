@@ -1,6 +1,6 @@
 {
  "header": {
-  "generated": "4 October 2026",
+  "generated": "5 October 2026",
   "schema": "frc-register/2",
   "rows": 1005,
   "theorems": 999,
@@ -3589,27 +3589,27 @@
     },
     {
      "lib": "FrcCore",
-     "module": "FrcCore/Algebra",
+     "module": "FrcCore/Frame",
      "name": "FRC.Shell.Frame.quarter_turn_exists"
     },
     {
      "lib": "FrcCore",
-     "module": "FrcCore/Algebra",
+     "module": "FrcCore/Frame",
      "name": "FRC.Shell.Frame.fourth_roots"
     },
     {
      "lib": "FrcCore",
-     "module": "FrcCore/Algebra",
+     "module": "FrcCore/Orbit",
      "name": "FRC.Shell.Frame.klein_orbit_four"
     },
     {
      "lib": "FrcCore",
-     "module": "FrcCore/Algebra",
+     "module": "FrcCore/Orbit",
      "name": "FRC.Shell.Frame.orbit_rep"
     },
     {
      "lib": "FrcCore",
-     "module": "FrcCore/Algebra",
+     "module": "FrcCore/Orbit",
      "name": "FRC.Shell.Frame.orbit_rep_unique"
     },
     {
@@ -3686,7 +3686,7 @@
     },
     {
      "lib": "FrcCore",
-     "module": "FrcCore/Algebra",
+     "module": "FrcCore/Frame",
      "name": "FRC.Shell.Frame.affine_frame_unit"
     }
    ],
@@ -3740,12 +3740,12 @@
    "declarations": [
     {
      "lib": "FrcCore",
-     "module": "FrcCore/Algebra",
+     "module": "FrcCore/Theme/Projective",
      "name": "FRC.Shell.Frame.Affine.simply_transitive"
     },
     {
      "lib": "FrcCore",
-     "module": "FrcCore/Algebra",
+     "module": "FrcCore/Theme/Projective",
      "name": "FRC.Shell.Frame.frame_count"
     }
    ],
@@ -3792,7 +3792,7 @@
     },
     {
      "lib": "FrcCore",
-     "module": "FrcCore/Algebra",
+     "module": "FrcCore/Frame",
      "name": "FRC.Shell.Frame.meridian_involution"
     }
    ],
@@ -3837,22 +3837,22 @@
     },
     {
      "lib": "FrcCore",
-     "module": "FrcCore/Algebra",
+     "module": "FrcCore/Frame",
      "name": "FRC.Shell.Frame.window_injective"
     },
     {
      "lib": "FrcCore",
-     "module": "FrcCore/Algebra",
+     "module": "FrcCore/Frame",
      "name": "FRC.Shell.Frame.window_signed"
     },
     {
      "lib": "FrcCore",
-     "module": "FrcCore/Algebra",
+     "module": "FrcCore/Frame",
      "name": "FRC.Shell.Frame.window_add_readback"
     },
     {
      "lib": "FrcCore",
-     "module": "FrcCore/Algebra",
+     "module": "FrcCore/Frame",
      "name": "FRC.Shell.Frame.window_mul_readback"
     }
    ],
@@ -3897,7 +3897,7 @@
     },
     {
      "lib": "FrcCore",
-     "module": "FrcCore/Algebra",
+     "module": "FrcCore/Frame",
      "name": "FRC.Shell.Frame.scale_periodic"
     }
    ],
@@ -3982,7 +3982,7 @@
     },
     {
      "lib": "FrcCore",
-     "module": "FrcCore/Algebra",
+     "module": "FrcCore/Frame",
      "name": "FRC.Shell.Frame.complex_chart_zero_divisor"
     }
    ],
@@ -4212,7 +4212,7 @@
     },
     {
      "lib": "FrcCore",
-     "module": "FrcCore/Quaternion",
+     "module": "FrcCore/Theme/Extension",
      "name": "FRC.Shell.Frame.nrm_mul"
     },
     {
@@ -4744,17 +4744,17 @@
     },
     {
      "lib": "FrcCore",
-     "module": "FrcCore/Algebra",
+     "module": "FrcCore/Orbit",
      "name": "FRC.Shell.Frame.klein_orbit_four"
     },
     {
      "lib": "FrcCore",
-     "module": "FrcCore/Algebra",
+     "module": "FrcCore/Orbit",
      "name": "FRC.Shell.Frame.orbit_rep"
     },
     {
      "lib": "FrcCore",
-     "module": "FrcCore/Algebra",
+     "module": "FrcCore/Orbit",
      "name": "FRC.Shell.Frame.orbit_rep_unique"
     }
    ],
@@ -5925,12 +5925,12 @@
    "declarations": [
     {
      "lib": "FrcCore",
-     "module": "FrcCore/Algebra",
+     "module": "FrcCore/Theme/Projective",
      "name": "FRC.Shell.Frame.Affine.simply_transitive"
     },
     {
      "lib": "FrcCore",
-     "module": "FrcCore/Algebra",
+     "module": "FrcCore/Theme/Projective",
      "name": "FRC.Shell.Frame.frame_count"
     }
    ],
@@ -25162,43 +25162,43 @@
      },
      {
       "lib": "FrcCore",
-      "module": "FrcCore/Algebra",
+      "module": "FrcCore/Frame",
       "name": "FRC.Shell.Frame.quarter_turn_exists",
       "tier": 0,
       "ok": true,
-      "page": "lean/core/Algebra.html#FRC.Shell.Frame.quarter_turn_exists"
+      "page": "lean/core/Frame.html#FRC.Shell.Frame.quarter_turn_exists"
      },
      {
       "lib": "FrcCore",
-      "module": "FrcCore/Algebra",
+      "module": "FrcCore/Frame",
       "name": "FRC.Shell.Frame.fourth_roots",
       "tier": 0,
       "ok": true,
-      "page": "lean/core/Algebra.html#FRC.Shell.Frame.fourth_roots"
+      "page": "lean/core/Frame.html#FRC.Shell.Frame.fourth_roots"
      },
      {
       "lib": "FrcCore",
-      "module": "FrcCore/Algebra",
+      "module": "FrcCore/Orbit",
       "name": "FRC.Shell.Frame.klein_orbit_four",
       "tier": 0,
       "ok": true,
-      "page": "lean/core/Algebra.html#FRC.Shell.Frame.klein_orbit_four"
+      "page": "lean/core/Orbit.html#FRC.Shell.Frame.klein_orbit_four"
      },
      {
       "lib": "FrcCore",
-      "module": "FrcCore/Algebra",
+      "module": "FrcCore/Orbit",
       "name": "FRC.Shell.Frame.orbit_rep",
       "tier": 0,
       "ok": true,
-      "page": "lean/core/Algebra.html#FRC.Shell.Frame.orbit_rep"
+      "page": "lean/core/Orbit.html#FRC.Shell.Frame.orbit_rep"
      },
      {
       "lib": "FrcCore",
-      "module": "FrcCore/Algebra",
+      "module": "FrcCore/Orbit",
       "name": "FRC.Shell.Frame.orbit_rep_unique",
       "tier": 0,
       "ok": true,
-      "page": "lean/core/Algebra.html#FRC.Shell.Frame.orbit_rep_unique"
+      "page": "lean/core/Orbit.html#FRC.Shell.Frame.orbit_rep_unique"
      },
      {
       "lib": "FrcCore",
@@ -25302,11 +25302,11 @@
      },
      {
       "lib": "FrcCore",
-      "module": "FrcCore/Algebra",
+      "module": "FrcCore/Frame",
       "name": "FRC.Shell.Frame.affine_frame_unit",
       "tier": 0,
       "ok": true,
-      "page": "lean/core/Algebra.html#FRC.Shell.Frame.affine_frame_unit"
+      "page": "lean/core/Frame.html#FRC.Shell.Frame.affine_frame_unit"
      }
     ]
    },
@@ -25380,19 +25380,19 @@
     "lean": [
      {
       "lib": "FrcCore",
-      "module": "FrcCore/Algebra",
+      "module": "FrcCore/Theme/Projective",
       "name": "FRC.Shell.Frame.Affine.simply_transitive",
       "tier": 0,
       "ok": true,
-      "page": "lean/core/Algebra.html#FRC.Shell.Frame.Affine.simply_transitive"
+      "page": "lean/core/Theme.html#FRC.Shell.Frame.Affine.simply_transitive"
      },
      {
       "lib": "FrcCore",
-      "module": "FrcCore/Algebra",
+      "module": "FrcCore/Theme/Projective",
       "name": "FRC.Shell.Frame.frame_count",
       "tier": 0,
       "ok": true,
-      "page": "lean/core/Algebra.html#FRC.Shell.Frame.frame_count"
+      "page": "lean/core/Theme.html#FRC.Shell.Frame.frame_count"
      }
     ]
    },
@@ -25451,11 +25451,11 @@
      },
      {
       "lib": "FrcCore",
-      "module": "FrcCore/Algebra",
+      "module": "FrcCore/Frame",
       "name": "FRC.Shell.Frame.meridian_involution",
       "tier": 0,
       "ok": true,
-      "page": "lean/core/Algebra.html#FRC.Shell.Frame.meridian_involution"
+      "page": "lean/core/Frame.html#FRC.Shell.Frame.meridian_involution"
      }
     ]
    },
@@ -25513,35 +25513,35 @@
      },
      {
       "lib": "FrcCore",
-      "module": "FrcCore/Algebra",
+      "module": "FrcCore/Frame",
       "name": "FRC.Shell.Frame.window_injective",
       "tier": 0,
       "ok": true,
-      "page": "lean/core/Algebra.html#FRC.Shell.Frame.window_injective"
+      "page": "lean/core/Frame.html#FRC.Shell.Frame.window_injective"
      },
      {
       "lib": "FrcCore",
-      "module": "FrcCore/Algebra",
+      "module": "FrcCore/Frame",
       "name": "FRC.Shell.Frame.window_signed",
       "tier": 0,
       "ok": true,
-      "page": "lean/core/Algebra.html#FRC.Shell.Frame.window_signed"
+      "page": "lean/core/Frame.html#FRC.Shell.Frame.window_signed"
      },
      {
       "lib": "FrcCore",
-      "module": "FrcCore/Algebra",
+      "module": "FrcCore/Frame",
       "name": "FRC.Shell.Frame.window_add_readback",
       "tier": 0,
       "ok": true,
-      "page": "lean/core/Algebra.html#FRC.Shell.Frame.window_add_readback"
+      "page": "lean/core/Frame.html#FRC.Shell.Frame.window_add_readback"
      },
      {
       "lib": "FrcCore",
-      "module": "FrcCore/Algebra",
+      "module": "FrcCore/Frame",
       "name": "FRC.Shell.Frame.window_mul_readback",
       "tier": 0,
       "ok": true,
-      "page": "lean/core/Algebra.html#FRC.Shell.Frame.window_mul_readback"
+      "page": "lean/core/Frame.html#FRC.Shell.Frame.window_mul_readback"
      }
     ]
    },
@@ -25601,11 +25601,11 @@
      },
      {
       "lib": "FrcCore",
-      "module": "FrcCore/Algebra",
+      "module": "FrcCore/Frame",
       "name": "FRC.Shell.Frame.scale_periodic",
       "tier": 0,
       "ok": true,
-      "page": "lean/core/Algebra.html#FRC.Shell.Frame.scale_periodic"
+      "page": "lean/core/Frame.html#FRC.Shell.Frame.scale_periodic"
      }
     ]
    },
@@ -25717,11 +25717,11 @@
      },
      {
       "lib": "FrcCore",
-      "module": "FrcCore/Algebra",
+      "module": "FrcCore/Frame",
       "name": "FRC.Shell.Frame.complex_chart_zero_divisor",
       "tier": 0,
       "ok": true,
-      "page": "lean/core/Algebra.html#FRC.Shell.Frame.complex_chart_zero_divisor"
+      "page": "lean/core/Frame.html#FRC.Shell.Frame.complex_chart_zero_divisor"
      }
     ]
    },
@@ -26045,11 +26045,11 @@
      },
      {
       "lib": "FrcCore",
-      "module": "FrcCore/Quaternion",
+      "module": "FrcCore/Theme/Extension",
       "name": "FRC.Shell.Frame.nrm_mul",
       "tier": 0,
       "ok": true,
-      "page": "lean/core/Quaternion.html#FRC.Shell.Frame.nrm_mul"
+      "page": "lean/core/Theme.html#FRC.Shell.Frame.nrm_mul"
      },
      {
       "lib": "FrcLedger",
@@ -26796,27 +26796,27 @@
      },
      {
       "lib": "FrcCore",
-      "module": "FrcCore/Algebra",
+      "module": "FrcCore/Orbit",
       "name": "FRC.Shell.Frame.klein_orbit_four",
       "tier": 0,
       "ok": true,
-      "page": "lean/core/Algebra.html#FRC.Shell.Frame.klein_orbit_four"
+      "page": "lean/core/Orbit.html#FRC.Shell.Frame.klein_orbit_four"
      },
      {
       "lib": "FrcCore",
-      "module": "FrcCore/Algebra",
+      "module": "FrcCore/Orbit",
       "name": "FRC.Shell.Frame.orbit_rep",
       "tier": 0,
       "ok": true,
-      "page": "lean/core/Algebra.html#FRC.Shell.Frame.orbit_rep"
+      "page": "lean/core/Orbit.html#FRC.Shell.Frame.orbit_rep"
      },
      {
       "lib": "FrcCore",
-      "module": "FrcCore/Algebra",
+      "module": "FrcCore/Orbit",
       "name": "FRC.Shell.Frame.orbit_rep_unique",
       "tier": 0,
       "ok": true,
-      "page": "lean/core/Algebra.html#FRC.Shell.Frame.orbit_rep_unique"
+      "page": "lean/core/Orbit.html#FRC.Shell.Frame.orbit_rep_unique"
      }
     ]
    },
@@ -28444,19 +28444,19 @@
     "lean": [
      {
       "lib": "FrcCore",
-      "module": "FrcCore/Algebra",
+      "module": "FrcCore/Theme/Projective",
       "name": "FRC.Shell.Frame.Affine.simply_transitive",
       "tier": 0,
       "ok": true,
-      "page": "lean/core/Algebra.html#FRC.Shell.Frame.Affine.simply_transitive"
+      "page": "lean/core/Theme.html#FRC.Shell.Frame.Affine.simply_transitive"
      },
      {
       "lib": "FrcCore",
-      "module": "FrcCore/Algebra",
+      "module": "FrcCore/Theme/Projective",
       "name": "FRC.Shell.Frame.frame_count",
       "tier": 0,
       "ok": true,
-      "page": "lean/core/Algebra.html#FRC.Shell.Frame.frame_count"
+      "page": "lean/core/Theme.html#FRC.Shell.Frame.frame_count"
      }
     ]
    },

@@ -1,5 +1,5 @@
 /-! FrcCore — the FRC substrate from first principles, one file for the live instance (no Mathlib,
-no axioms). Generated from FrcCore/*.lean in dependency order (Nat, Pigeonhole, Shell, Frame, Orbit, Sum, Meridian, Fourier, Instances, Poly, Algebra, Epi, Dimensions, Quaternion, Causality, Representation, Reductio, Godel, Geometry, Complex, Rh, Entropy, Gravity, Dirac)
+no axioms). Generated from FrcCore/*.lean in dependency order (Nat, Pigeonhole, Shell, Frame, Orbit, Sum, Theme.Projective, Theme.Extension, Theme.Logic, Meridian, Fourier, Instances, Poly, Algebra, Epi, Dimensions, Quaternion, Causality, Representation, Reductio, Godel, Geometry, Complex, Rh, Entropy, Gravity, Dirac)
 by make_core_web.py; the modules' own headers follow. Check any declaration with `#print axioms`. -/
 
 /-! inlined: FrcCore/Nat.lean -/
@@ -16,6 +16,8 @@ The division algorithm is obtained from the definition of `Nat.mod` in `Init.Pre
 around `Nat.modCore`, itself a fuel recursion): `mod_eq_of_lt`, `mod_eq_sub_mod`, `mod_spec`
 (`x = p·q + x % p`) and `mod_unique` (the remainder is determined by any such decomposition). Everything
 about residues mod `p` follows from those four.
+
+Since the ledger migration (task LM17) it also holds `isPrime`, primality by trial division (from 10-dimensions).
 -/
 
 namespace FRC.Nat
@@ -264,6 +266,12 @@ theorem pow_mul (a m n : Nat) : a ^ (m * n) = (a ^ m) ^ n := by
 
 theorem pos_pow_of_pos {a : Nat} (n : Nat) (h : 0 < a) : 0 < a ^ n := Nat.pow_pos h
 
+/-! ## Primality (10-dimensions' predicate, moved by task LM17) -/
+
+/-- Primality by trial division, decidable. -/
+def isPrime (n : Nat) : Prop := 2 ≤ n ∧ ∀ d, d < n → 2 ≤ d → n % d ≠ 0
+instance (n : Nat) : Decidable (isPrime n) := by unfold isPrime; exact inferInstance
+
 end FRC.Nat
 
 /-! inlined: FrcCore/Pigeonhole.lean -/
@@ -454,6 +462,8 @@ kernel's accelerated `Nat` arithmetic, and every theorem is checked to depend on
 The ring laws are derived from `FrcCore.Nat`'s division algorithm (`mod_unique`); negation is
 characterised by `add_neg : a + -a = 0`, and everything about `-` follows from the uniqueness of
 additive inverses (`neg_unique`), never from `Nat` subtraction.
+
+Since the ledger migration (task LM17) it also holds `mul_mul_mul_comm` (from 14-entropy and 3-causality).
 -/
 
 namespace FRC
@@ -676,6 +686,10 @@ theorem neg_one_pow (n : Nat) : (-1 : Shell p) ^ n = if n % 2 = 0 then 1 else -1
             rw [← FRC.Nat.mod_add_mod _ _ _ (Nat.zero_lt_succ 1), h1]
           rw [ite_eq_left this]
 
+/-- `a b (c d) = a c (b d)` on every shell (14-entropy and 3-causality's lemma, moved by task LM17). -/
+theorem mul_mul_mul_comm (a b c d : Shell p) : a * b * (c * d) = a * c * (b * d) := by
+  rw [mul_assoc, mul_left_comm b c d, ← mul_assoc]
+
 end ops
 
 end Shell
@@ -697,6 +711,12 @@ From primitivity alone: inverses (`exists_inv`), no zero divisors (`mul_eq_zero`
 of one (`sq_eq_one`), the half-period `g^{2κ} = −1` (2:D1, 00:C1), the quarter-turn `i = −g^κ` with
 `i² = −1` (1:B3, 2:D2), its orientation classes under `g ↦ g^u` (2:D5), and the Euler identity
 `(g^i)^{i·2κ} = (−1)^i` (2:D6, 00:C14). No axioms.
+
+Since the ledger migration (task LM17) it also holds the frame's arithmetic from 1-algebra (scale periodicity, the affine
+frame, the window law and its read-backs, `ofNat_add`, `ofNat_mul`, the quarter-turn and the fourth roots, the meridian
+involution, the complex chart, Theorem approx, `natCount`), `ofNat_self` and `ofNat_add_self` (from 13-epi), the root pair
+(from 10-dimensions), the bounded quantifiers' deciders (from 10-dimensions and 20-rh) and the counting lemmas of 20-rh,
+all under their old names in `FRC.Shell` and `FRC.Shell.Frame`.
 -/
 
 namespace FRC
@@ -740,6 +760,30 @@ structure Frame (p : Nat) [Pos p] (κ : Nat) (g : Shell p) : Prop where
   cap : p = 4 * κ + 1
   cap_pos : 0 < κ
   prim : IsPrimitive g (p - 1)
+
+/-- `∀ m < n, P m`, decided by recursion on `n` — Lean's own instance carries `propext`; this one nothing. -/
+def decForallLT (P : Nat → Prop) [DecidablePred P] : (n : Nat) → Decidable (∀ m, m < n → P m)
+  | 0 => isTrue (fun m hm => absurd hm (Nat.not_lt_zero m))
+  | n + 1 =>
+    match decForallLT P n with
+    | isFalse h => isFalse (fun hall => h (fun m hm => hall m (Nat.lt_succ_of_lt hm)))
+    | isTrue h =>
+      if hn : P n then
+        isTrue (fun m hm =>
+          match Nat.lt_or_ge m n with
+          | .inl hlt => h m hlt
+          | .inr hge => (Nat.le_antisymm (Nat.le_of_lt_succ hm) hge) ▸ hn)
+      else isFalse (fun hall => hn (hall n (Nat.lt_succ_self n)))
+
+instance instDecForallLT (P : Nat → Prop) [DecidablePred P] (n : Nat) : Decidable (∀ m, m < n → P m) :=
+  decForallLT P n
+
+/-- `∀ x : Shell p, P x`, decided through the representatives. -/
+instance instDecForallShell {p : Nat} [Pos p] (P : Shell p → Prop) [DecidablePred P] :
+    Decidable (∀ x, P x) :=
+  match decForallLT (fun v => P (ofNat v)) p with
+  | isTrue h => isTrue (fun x => ofNat_val x ▸ h x.val x.lt)
+  | isFalse h => isFalse (fun hall => h (fun v _ => hall (ofNat v)))
 
 namespace Frame
 variable {κ : Nat} {g : Shell p}
@@ -1029,6 +1073,195 @@ theorem no_south_pole (F : Frame p κ g) (s : Shell p) (h : (2 : Shell p) * s = 
   | .inl e => absurd e F.two_ne_zero
   | .inr e => e
 
+/-! ## The frame's arithmetic (moved from 1-algebra by the ledger migration, task LM17) -/
+
+/-- 1:D4 (Lemma 2 of 1-algebra, scale periodicity) — the residue grid repeats with the period `p − 1`
+of the drive: `g^{n + (p−1)} = g^n`, hence `x·g^{n + (p−1)} = x·g^n` for every `x`. -/
+theorem scale_periodic (F : Frame p κ g) (x : Shell p) (n : Nat) :
+    x * g ^ (n + (p - 1)) = x * g ^ n := by
+  rw [pow_add, F.pow_n, mul_one]
+
+/-- The affine frame `(a, b)` of 1-algebra (Definition 2): the transported product
+`x ⊗ z := a + b·((x − a)/b)·((z − a)/b)`, written with `y` the inverse of `b`. -/
+def affineMul (a b y x z : Shell p) : Shell p := a + b * ((x + -a) * y) * ((z + -a) * y)
+
+/-- 1:B4 (Definition 2 of 1-algebra) — in the affine frame `(a, b)` the multiplicative unit
+is `a + b`, not `b`: `(a + b) ⊗ z = z` for every `z`. -/
+theorem affine_frame_unit {a b y : Shell p} (hby : b * y = 1) (z : Shell p) :
+    affineMul a b y (a + b) z = z := by
+  unfold affineMul
+  have e1 : a + b + -a = b := by rw [add_comm a b, add_assoc, add_neg, add_zero]
+  rw [e1, hby, mul_one, mul_left_comm b, hby, mul_one, add_comm z (-a), ← add_assoc, add_neg, zero_add]
+
+/-- 1:D2 (the window law, injectivity) — two window integers `x, y ≤ H` with `2H < p` that read as the same
+residue are equal: `ofNat x = ofNat y → x = y`. (Both are below `p`, so the residues are the integers.) -/
+theorem window_injective {H x y : Nat} (hH : 2 * H < p) (hx : x ≤ H) (hy : y ≤ H)
+    (h : (ofNat x : Shell p) = ofNat y) : x = y := by
+  have hxp : x < p := Nat.lt_of_le_of_lt hx (Nat.lt_of_le_of_lt (Nat.le_add_left H H) (Nat.two_mul H ▸ hH))
+  have hyp : y < p := Nat.lt_of_le_of_lt hy (Nat.lt_of_le_of_lt (Nat.le_add_left H H) (Nat.two_mul H ▸ hH))
+  have := val_injective h
+  rw [val_ofNat, val_ofNat, FRC.Nat.mod_eq_of_lt hxp, FRC.Nat.mod_eq_of_lt hyp] at this
+  exact this
+
+theorem ofNat_add (x y : Nat) : (ofNat x : Shell p) + ofNat y = ofNat (x + y) :=
+  ext (by rw [val_add, val_ofNat, val_ofNat, val_ofNat, FRC.Nat.mod_add_mod _ _ _ hp, FRC.Nat.add_mod_mod _ _ _ hp])
+
+theorem ofNat_mul (x y : Nat) : (ofNat x : Shell p) * ofNat y = ofNat (x * y) :=
+  ext (by rw [val_mul, val_ofNat, val_ofNat, val_ofNat, FRC.Nat.mod_mul_mod _ _ _ hp, FRC.Nat.mul_mod_mod _ _ _ hp])
+
+/-- `p ≡ 0` on the shell. -/
+theorem ofNat_self : (ofNat p : Shell p) = 0 := by
+  apply ext; show p % p = 0; exact FRC.Nat.mod_self p Pos.pos
+
+theorem ofNat_add_self (n : Nat) : (ofNat (n + p) : Shell p) = ofNat n := by
+  rw [← ofNat_add, ofNat_self, add_zero]
+
+/-- 1:D2, the read-back of sums: for `x, y ≤ H` and `4H < p`, the residue of `x + y` determines the integer
+`x + y` among the integers `z ≤ 2H`. -/
+theorem window_add_readback {H x y z : Nat} (hH : 2 * (2 * H) < p) (hx : x ≤ H) (hy : y ≤ H) (hz : z ≤ 2 * H)
+    (h : (ofNat x : Shell p) + ofNat y = ofNat z) : x + y = z := by
+  rw [ofNat_add] at h
+  exact window_injective hH (by rw [Nat.two_mul]; exact Nat.add_le_add hx hy) hz h
+
+/-- 1:D2, the read-back of products: for `x, y ≤ H` and `2H² < p`, the residue of `x·y` determines the integer
+`x·y` among the integers `z ≤ H²`. -/
+theorem window_mul_readback {H x y z : Nat} (hH : 2 * (H * H) < p) (hx : x ≤ H) (hy : y ≤ H) (hz : z ≤ H * H)
+    (h : (ofNat x : Shell p) * ofNat y = ofNat z) : x * y = z := by
+  rw [ofNat_mul] at h
+  exact window_injective hH (Nat.mul_le_mul hx hy) hz h
+
+/-- 1:D2, the signed window: `x` and `−y` (`x, y ≤ H`, `2H < p`) read as the same residue only when both
+are zero — the window's positive and negative halves do not overlap. -/
+theorem window_signed {H x y : Nat} (hH : 2 * H < p) (hx : x ≤ H) (hy : y ≤ H)
+    (h : (ofNat x : Shell p) = -(ofNat y)) : x = 0 ∧ y = 0 := by
+  have hxp : x < p := Nat.lt_of_le_of_lt hx (Nat.lt_of_le_of_lt (Nat.le_add_left H H) (Nat.two_mul H ▸ hH))
+  have hyp : y < p := Nat.lt_of_le_of_lt hy (Nat.lt_of_le_of_lt (Nat.le_add_left H H) (Nat.two_mul H ▸ hH))
+  have hv := val_injective h
+  rw [val_ofNat, val_neg, val_ofNat, FRC.Nat.mod_eq_of_lt hxp, FRC.Nat.mod_eq_of_lt hyp] at hv
+  -- hv : x = (p - y) % p
+  match Nat.decEq y 0 with
+  | .isTrue hy0 =>
+    rw [hy0, Nat.sub_zero, FRC.Nat.mod_self p hp] at hv
+    exact ⟨hv, hy0⟩
+  | .isFalse hy0 =>
+    have hpy : p - y < p := Nat.sub_lt hp (Nat.pos_of_ne_zero hy0)
+    rw [FRC.Nat.mod_eq_of_lt hpy] at hv
+    -- x = p − y with x ≤ H, y ≤ H gives p = x + y ≤ 2H < p
+    have : p = x + y := by rw [hv, FRC.Nat.sub_add_cancel (Nat.le_of_lt hyp)]
+    have hle : x + y ≤ 2 * H := by rw [Nat.two_mul]; exact Nat.add_le_add hx hy
+    exact absurd (Nat.lt_of_le_of_lt (this ▸ hle) hH) (Nat.lt_irrefl p)
+
+/-- 1:B2 (Theorem 1, existence clause) — a quarter-turn `u` with `u² = −1` exists on every shell. -/
+theorem quarter_turn_exists (F : Frame p κ g) : ∃ u : Shell p, u * u = -1 :=
+  ⟨quarterTurn g κ, F.quarter_turn_sq⟩
+
+/-- 1:B2 (Theorem 1, the structural set) — the fourth roots of unity are exactly `1, −1, i, −i`. -/
+theorem fourth_roots (F : Frame p κ g) (x : Shell p) :
+    x ^ 4 = 1 ↔ x = 1 ∨ x = -1 ∨ x = quarterTurn g κ ∨ x = -(quarterTurn g κ) := by
+  have h4 : x ^ 4 = (x * x) * (x * x) := by
+    rw [show (4 : Nat) = 2 * 2 from rfl, pow_mul, pow_two, pow_two]
+  have hi := F.quarter_turn_sq
+  constructor
+  · intro h
+    rw [h4] at h
+    match F.sq_eq_one h with
+    | .inl e => match F.sq_eq_one e with
+      | .inl e1 => exact .inl e1
+      | .inr e1 => exact .inr (.inl e1)
+    | .inr e =>
+      -- x² = −1 = i²: (x + −i)(x + i) = 0
+      have e2 : (x + -(quarterTurn g κ)) * (x + quarterTurn g κ) = 0 := by
+        rw [right_distrib, left_distrib, left_distrib, e, ← neg_mul, ← neg_mul, hi, neg_neg, mul_comm (quarterTurn g κ) x]
+        rw [add_assoc, ← add_assoc (x * quarterTurn g κ), add_neg, zero_add, neg_add]
+      match F.mul_eq_zero e2 with
+      | .inl e3 => exact .inr (.inr (.inl (by
+          calc x = x + 0 := (add_zero x).symm
+            _ = x + (-(quarterTurn g κ) + quarterTurn g κ) := by rw [neg_add]
+            _ = (x + -(quarterTurn g κ)) + quarterTurn g κ := (add_assoc _ _ _).symm
+            _ = quarterTurn g κ := by rw [e3, zero_add])))
+      | .inr e3 => exact .inr (.inr (.inr (eq_neg_of_add_eq_zero e3)))
+  · intro h
+    match h with
+    | .inl e => rw [e, one_pow]
+    | .inr (.inl e) => rw [h4, e, neg_mul_neg, one_mul, one_mul]
+    | .inr (.inr (.inl e)) => rw [h4, e, hi, neg_mul_neg, one_mul]
+    | .inr (.inr (.inr e)) => rw [h4, e, neg_mul_neg, hi, neg_mul_neg, one_mul]
+
+/-- 1:C4 (Definition 5 (a)) — the meridian involution: `(−a)·g^{n + 2κ} = a·g^n`. -/
+theorem meridian_involution (F : Frame p κ g) (a : Shell p) (n : Nat) :
+    -a * g ^ (n + 2 * κ) = a * g ^ n := by
+  rw [pow_add, F.half_period, mul_comm (g ^ n), ← mul_assoc, neg_mul_neg, mul_one]
+
+/-- The complex chart: pairs `(a, b)` read as `a + b·X` with `X² = −1`, multiplied as
+`(a, b)(c, d) = (ac − bd, ad + bc)`. -/
+def cmul (x y : Shell p × Shell p) : Shell p × Shell p :=
+  (x.1 * y.1 + -(x.2 * y.2), x.1 * y.2 + x.2 * y.1)
+
+/-- 1:E2 (Proposition 5 reversed) — on a shell that already has a square root of `−1` the complex chart is
+not a field: `(i, 1)·(−i, 1) = (0, 0)` with both factors nonzero (`X + i` and `X − i` are zero divisors). -/
+theorem complex_chart_zero_divisor (F : Frame p κ g) :
+    cmul (quarterTurn g κ, (1 : Shell p)) (-(quarterTurn g κ), 1) = (0, 0) ∧
+    (quarterTurn g κ, (1 : Shell p)) ≠ (0, 0) ∧ (-(quarterTurn g κ), (1 : Shell p)) ≠ (0, 0) := by
+  refine ⟨?_, fun h => F.one_ne_zero (congrArg Prod.snd h), fun h => F.one_ne_zero (congrArg Prod.snd h)⟩
+  unfold cmul
+  show (quarterTurn g κ * -(quarterTurn g κ) + -(1 * 1), quarterTurn g κ * 1 + 1 * -(quarterTurn g κ)) = (0, 0)
+  rw [← mul_neg, F.quarter_turn_sq, neg_neg, one_mul, add_neg, mul_one, one_mul, add_neg]
+
+/-- 1:D6 (Theorem approx, the range at `p = 13`, `g = 2`): every grid point
+`x / 2^n` with `x < 13` and `n ≥ 3` is at most `3/2` — as the integer statement `2x ≤ 3·2^n`. -/
+theorem approx_obstruction (n x : Nat) (hn : 3 ≤ n) (hx : x < 13) : 2 * x ≤ 3 * 2 ^ n := by
+  have h8 : 2 ^ 3 ≤ 2 ^ n := Nat.pow_le_pow_right (Nat.zero_lt_succ 1) hn
+  have h1 : 2 * x ≤ 2 * 12 := Nat.mul_le_mul_left 2 (Nat.le_of_lt_succ hx)
+  have h2 : 3 * 2 ^ 3 ≤ 3 * 2 ^ n := Nat.mul_le_mul_left 3 h8
+  exact Nat.le_trans h1 h2
+
+/-- The number of `x < n` with `P x`, as a sum of `0`s and `1`s. -/
+def natCount (P : Nat → Prop) [DecidablePred P] : Nat → Nat
+  | 0 => 0
+  | n + 1 => natCount P n + if P n then 1 else 0
+
+theorem natCount_ne_zero (n : Nat) : natCount (fun x => x ≠ 0) (n + 1) = n := by
+  induction n with
+  | zero => rfl
+  | succ n ih =>
+    show natCount (fun x => x ≠ 0) (n + 1) + (if n + 1 ≠ 0 then 1 else 0) = n + 1
+    rw [ih, ite_eq_left (Nat.succ_ne_zero n)]
+
+/-- 10:E4, 10:P2 — the root pair: if `x² = a` with `x ≠ 0` then `y² = a` iff `y = x` or `y = −x`, and `−x ≠ x`;
+each quadratic defining congruence has exactly two roots on a framed Carrier. -/
+theorem root_pair (F : Frame p κ g) (a x : Shell p) (hx : x * x = a) (hx0 : x ≠ 0) :
+    (∀ y : Shell p, y * y = a ↔ (y = x ∨ y = -x)) ∧ -x ≠ x := by
+  refine ⟨fun y => ⟨fun hy => ?_, fun hy => ?_⟩, fun h => hx0 (F.eq_zero_of_eq_neg h.symm)⟩
+  · have h0 : (y + -x) * (y + x) = 0 := by
+      rw [Shell.right_distrib, Shell.left_distrib, Shell.left_distrib, ← Shell.neg_mul, ← Shell.neg_mul,
+        Shell.mul_comm y x, Shell.add_assoc, ← Shell.add_assoc (x * y), Shell.add_neg, Shell.zero_add,
+        hy, hx, Shell.add_neg]
+    rcases F.mul_eq_zero h0 with h | h
+    · left; exact (Shell.eq_neg_of_add_eq_zero h).trans (Shell.neg_neg x)
+    · right; exact Shell.eq_neg_of_add_eq_zero h
+  · rcases hy with rfl | rfl
+    · exact hx
+    · rw [Shell.neg_mul_neg]; exact hx
+
+/-- Counting where nothing satisfies the predicate. -/
+theorem natCount_eq_zero (P : Nat → Prop) [DecidablePred P] : ∀ n, (∀ x, x < n → ¬ P x) → natCount P n = 0
+  | 0, _ => rfl
+  | n + 1, h => by
+    show natCount P n + (if P n then 1 else 0) = 0
+    rw [natCount_eq_zero P n (fun x hx => h x (Nat.lt_succ_of_lt hx)), ite_eq_right (h n (Nat.lt_succ_self n))]
+
+/-- Counting through an equivalent predicate. -/
+theorem natCount_congr (P Q : Nat → Prop) [DecidablePred P] [DecidablePred Q] :
+    ∀ n, (∀ x, x < n → (P x ↔ Q x)) → natCount P n = natCount Q n
+  | 0, _ => rfl
+  | n + 1, h => by
+    show natCount P n + (if P n then 1 else 0) = natCount Q n + (if Q n then 1 else 0)
+    rw [natCount_congr P Q n (fun x hx => h x (Nat.lt_succ_of_lt hx))]
+    have e := h n (Nat.lt_succ_self n)
+    match (inferInstance : Decidable (Q n)) with
+    | isTrue hq => rw [ite_eq_left hq, ite_eq_left (e.2 hq)]
+    | isFalse hq => rw [ite_eq_right hq, ite_eq_right (fun hp => hq (e.1 hp))]
+
 end Frame
 end Shell
 end FRC
@@ -1041,6 +1274,10 @@ end FRC
 `Coprime u n` is taken in its invertible form — some `a < n` has `a·u ≡ 1 (mod n)` — which is decidable by
 search and, for `n ≥ 1`, the same as `gcd(u, n) = 1` (Bezout); it is what every proof uses. Theorem:
 `h` is primitive of order `n = p − 1` exactly when `h = g^u` with `u < n` coprime to `n`. No axioms.
+
+Since the ledger migration (task LM17) it also holds the Klein orbits off the fourth roots of unity (from 1-algebra),
+the octant character of `2` (from 14-entropy: `2` is a square exactly on the frames of even capacity) and the parity of
+the drive (from 8-dirac: `g^m` is a square exactly when `m` is even).
 -/
 
 namespace FRC
@@ -1118,6 +1355,467 @@ theorem fermat (F : Frame p κ g) (x : Shell p) : x ^ p = x := by
         match F.eq_pow_of_ne_zero e with
         | ⟨m, _, em⟩ => rw [← em, pow_mul_comm, F.pow_n, one_pow, one_mul]
 
+/-! ## The Klein orbits off the fourth roots of unity (moved from 1-algebra, task LM17) -/
+
+/-- 1:B2 (Theorem 1 of 1-algebra), 2:D7 — off the fourth roots of unity, `x`, `−x`, `x⁻¹`, `−x⁻¹` are four
+distinct residues (`y` stands for the inverse: `x·y = 1`). -/
+theorem klein_orbit_four (F : Frame p κ g) {x y : Shell p} (hxy : x * y = 1) (h4 : x ^ 4 ≠ 1) :
+    x ≠ -x ∧ x ≠ y ∧ x ≠ -y ∧ -x ≠ y ∧ -x ≠ -y ∧ y ≠ -y := by
+  have hx0 : x ≠ 0 := fun h => F.one_ne_zero (by rw [← hxy, h, zero_mul])
+  have hy0 : y ≠ 0 := fun h => F.one_ne_zero (by rw [← hxy, h, mul_zero])
+  have h4' : x ^ 4 = (x * x) * (x * x) := by
+    rw [show (4 : Nat) = 2 * 2 from rfl, pow_mul, pow_two, pow_two]
+  have hsq : x * x ≠ 1 := fun h => h4 (by rw [h4', h, one_mul])
+  have hsqn : x * x ≠ -1 := fun h => h4 (by rw [h4', h, neg_mul_neg, one_mul])
+  have hxy' : x = y → False := fun e => hsq (by rw [← hxy, e])
+  have hxny : x = -y → False := fun e => hsqn (by
+    have : x * x = x * -y := by rw [← e]
+    rw [this, ← mul_neg, hxy])
+  refine ⟨fun h => hx0 (F.eq_zero_of_eq_neg h), hxy', hxny, ?_, ?_, ?_⟩
+  · intro h; exact hxny (by rw [← neg_neg x, h])
+  · intro h; exact hxy' (by rw [← neg_neg x, h, neg_neg])
+  · intro h; exact hy0 (F.eq_zero_of_eq_neg h)
+
+theorem inv_unique {x x' y : Shell p} (h : x * y = 1) (h' : x' * y = 1) : x = x' := by
+  calc x = x * (x' * y) := by rw [h', mul_one]
+    _ = x' * (x * y) := mul_left_comm _ _ _
+    _ = x' := by rw [h, mul_one]
+
+/-! ### 1:B2, the count: the Klein orbits off `Q₄` are exactly `κ − 1`, represented by `g^r`, `1 ≤ r < κ` -/
+
+/-- `y` lies in the Klein orbit of `x`: `y ∈ {x, −x, x⁻¹, −x⁻¹}` (the inverse written as `x·y = 1`). -/
+def InOrbit (x y : Shell p) : Prop := y = x ∨ y = -x ∨ x * y = 1 ∨ x * -y = 1
+
+theorem two_mul_eq (κ : Nat) : 2 * κ = κ + κ := Nat.two_mul κ
+theorem three_mul_eq (κ : Nat) : 3 * κ = κ + κ + κ := by rw [Nat.succ_mul, Nat.two_mul]
+theorem four_mul_eq (κ : Nat) : 4 * κ = κ + κ + κ + κ := by rw [Nat.succ_mul, three_mul_eq]
+
+/-- The exponent `m` of `x = g^m` reduced to its orbit representative in `[1, κ)`. -/
+theorem orbit_rep_of_exp (F : Frame p κ g) {m : Nat} (hm : m < p - 1) (h0 : m ≠ 0) (h1 : m ≠ κ)
+    (h2 : m ≠ 2 * κ) (h3 : m ≠ 3 * κ) :
+    ∃ r, 1 ≤ r ∧ r < κ ∧ InOrbit (g ^ r) (g ^ m) := by
+  have hn := F.n_eq
+  have hπ := F.half_period
+  rw [hn, four_mul_eq] at hm
+  rw [two_mul_eq] at h2 hπ
+  rw [three_mul_eq] at h3
+  match Nat.lt_or_ge m κ with
+  | Or.inl hlt => exact ⟨m, Nat.pos_of_ne_zero h0, hlt, Or.inl rfl⟩
+  | Or.inr hge1 => match Nat.lt_or_ge m (κ + κ) with
+    | Or.inl hlt =>
+      -- κ < m < 2κ: r = 2κ − m, and g^m · (−g^r) = −g^{2κ} = 1
+      have hgt : κ < m := Nat.lt_of_le_of_ne hge1 (fun e => h1 e.symm)
+      refine ⟨κ + κ - m, ?_, ?_, Or.inr (Or.inr (Or.inr ?_))⟩
+      · refine Nat.lt_of_add_lt_add_right (n := m) ?_
+        rw [Nat.zero_add, FRC.Nat.sub_add_cancel (Nat.le_of_lt hlt)]; exact hlt
+      · refine Nat.lt_of_add_lt_add_right (n := m) ?_
+        rw [FRC.Nat.sub_add_cancel (Nat.le_of_lt hlt)]; exact Nat.add_lt_add_left hgt κ
+      · rw [← mul_neg, ← pow_add, FRC.Nat.sub_add_cancel (Nat.le_of_lt hlt), hπ, neg_neg]
+    | Or.inr hge2 => match Nat.lt_or_ge m (κ + κ + κ) with
+      | Or.inl hlt =>
+        -- 2κ < m < 3κ: r = m − 2κ, and g^m = −g^r
+        have hgt : κ + κ < m := Nat.lt_of_le_of_ne hge2 (fun e => h2 e.symm)
+        refine ⟨m - (κ + κ), ?_, ?_, Or.inr (Or.inl ?_)⟩
+        · refine Nat.lt_of_add_lt_add_right (n := κ + κ) ?_
+          rw [Nat.zero_add, FRC.Nat.sub_add_cancel hge2]; exact hgt
+        · refine Nat.lt_of_add_lt_add_right (n := κ + κ) ?_
+          rw [FRC.Nat.sub_add_cancel hge2, Nat.add_comm κ (κ + κ)]; exact hlt
+        · have : m = κ + κ + (m - (κ + κ)) := (FRC.Nat.add_sub_of_le hge2).symm
+          rw [this, pow_add, hπ, neg_one_mul, FRC.Nat.add_sub_cancel_left]
+      | Or.inr hge3 =>
+        -- 3κ < m < 4κ: r = 4κ − m, and g^m · g^r = g^{4κ} = 1
+        have hgt : κ + κ + κ < m := Nat.lt_of_le_of_ne hge3 (fun e => h3 e.symm)
+        refine ⟨κ + κ + κ + κ - m, ?_, ?_, Or.inr (Or.inr (Or.inl ?_))⟩
+        · refine Nat.lt_of_add_lt_add_right (n := m) ?_
+          rw [Nat.zero_add, FRC.Nat.sub_add_cancel (Nat.le_of_lt hm)]; exact hm
+        · refine Nat.lt_of_add_lt_add_right (n := m) ?_
+          rw [FRC.Nat.sub_add_cancel (Nat.le_of_lt hm), Nat.add_comm κ m]
+          exact Nat.add_lt_add_right hgt κ
+        · rw [← pow_add, FRC.Nat.sub_add_cancel (Nat.le_of_lt hm), ← four_mul_eq, ← hn, F.pow_n]
+
+/-- Off the fourth roots of unity, `x = g^m` has `m ∉ {0, κ, 2κ, 3κ}`. -/
+theorem exp_not_fourth (F : Frame p κ g) {m : Nat} (h4 : (g ^ m) ^ 4 ≠ 1) :
+    m ≠ 0 ∧ m ≠ κ ∧ m ≠ 2 * κ ∧ m ≠ 3 * κ := by
+  have hi := (F.quarter_turn_order).2
+  refine ⟨fun e => h4 (by rw [e, pow_zero, one_pow]), fun e => h4 (by rw [e, hi]), fun e => h4 ?_, fun e => h4 ?_⟩
+  · rw [e, Nat.mul_comm 2 κ, pow_mul, ← pow_mul, show (2 : Nat) * 4 = 4 * 2 from rfl, pow_mul, hi, one_pow]
+  · rw [e, Nat.mul_comm 3 κ, pow_mul, ← pow_mul, show (3 : Nat) * 4 = 4 * 3 from rfl, pow_mul, hi, one_pow]
+
+/-- 1:B2 (Theorem 1, the count, existence), 2:D7 — every residue off `Q₄` lies in the Klein orbit of some `g^r`
+with `1 ≤ r < κ`. -/
+theorem orbit_rep (F : Frame p κ g) {x : Shell p} (hx : x ≠ 0) (h4 : x ^ 4 ≠ 1) :
+    ∃ r, 1 ≤ r ∧ r < κ ∧ InOrbit (g ^ r) x := by
+  match F.eq_pow_of_ne_zero hx with
+  | ⟨m, hm, e⟩ =>
+    rw [← e] at h4 ⊢
+    match F.exp_not_fourth h4 with
+    | ⟨h0, h1, h2, h3⟩ => exact F.orbit_rep_of_exp hm h0 h1 h2 h3
+
+theorem neg_mul_of_mul_neg {a b : Shell p} (e : a * -b = 1) : -a * b = 1 := by
+  rw [← neg_mul, mul_neg]; exact e
+
+/-- The orbit relation is symmetric. -/
+theorem inOrbit_symm {a b : Shell p} (h : InOrbit a b) : InOrbit b a :=
+  match h with
+  | Or.inl e => Or.inl e.symm
+  | Or.inr (Or.inl e) => Or.inr (Or.inl (by rw [e, neg_neg]))
+  | Or.inr (Or.inr (Or.inl e)) => Or.inr (Or.inr (Or.inl (by rw [mul_comm]; exact e)))
+  | Or.inr (Or.inr (Or.inr e)) => Or.inr (Or.inr (Or.inr (by rw [← mul_neg, mul_comm, mul_neg]; exact e)))
+
+theorem neg_eq_neg {a b : Shell p} (h : -a = -b) : a = b := by rw [← neg_neg a, h, neg_neg]
+
+/-- The orbit relation is transitive. -/
+theorem inOrbit_trans {a b c : Shell p} (h1 : InOrbit a b) (h2 : InOrbit b c) : InOrbit a c := by
+  have hab : b = a ∨ b = -a ∨ a * b = 1 ∨ a * -b = 1 := h1
+  have hbc : c = b ∨ c = -b ∨ b * c = 1 ∨ b * -c = 1 := h2
+  unfold InOrbit
+  match hab, hbc with
+  | Or.inl e, h => exact e ▸ h
+  | Or.inr (Or.inl e), Or.inl e' => exact Or.inr (Or.inl (e' ▸ e))
+  | Or.inr (Or.inl e), Or.inr (Or.inl e') => exact Or.inl (by rw [e', e, neg_neg])
+  | Or.inr (Or.inl e), Or.inr (Or.inr (Or.inl e')) => exact Or.inr (Or.inr (Or.inr (by rw [← mul_neg, neg_mul, ← e]; exact e')))
+  | Or.inr (Or.inl e), Or.inr (Or.inr (Or.inr e')) => exact Or.inr (Or.inr (Or.inl (by rw [← neg_mul_neg, ← e]; exact e')))
+  | Or.inr (Or.inr (Or.inl e)), Or.inl e' => exact Or.inr (Or.inr (Or.inl (e' ▸ e)))
+  | Or.inr (Or.inr (Or.inl e)), Or.inr (Or.inl e') => exact Or.inr (Or.inr (Or.inr (by rw [e', neg_neg]; exact e)))
+  | Or.inr (Or.inr (Or.inl e)), Or.inr (Or.inr (Or.inl e')) =>
+    exact Or.inl (inv_unique (x := c) (x' := a) (y := b) (by rw [mul_comm]; exact e') e)
+  | Or.inr (Or.inr (Or.inl e)), Or.inr (Or.inr (Or.inr e')) =>
+    exact Or.inr (Or.inl (by
+      have := inv_unique (x := -c) (x' := a) (y := b) (by rw [mul_comm]; exact e') e
+      rw [← this, neg_neg]))
+  | Or.inr (Or.inr (Or.inr e)), Or.inl e' => exact Or.inr (Or.inr (Or.inr (e' ▸ e)))
+  | Or.inr (Or.inr (Or.inr e)), Or.inr (Or.inl e') => exact Or.inr (Or.inr (Or.inl (by rw [e']; exact e)))
+  | Or.inr (Or.inr (Or.inr e)), Or.inr (Or.inr (Or.inl e')) =>
+    exact Or.inr (Or.inl (inv_unique (x := -a) (x' := c) (y := b) (neg_mul_of_mul_neg e) (by rw [mul_comm]; exact e')).symm)
+  | Or.inr (Or.inr (Or.inr e)), Or.inr (Or.inr (Or.inr e')) =>
+    exact Or.inl (neg_eq_neg (inv_unique (x := -a) (x' := -c) (y := b) (neg_mul_of_mul_neg e) (by rw [mul_comm]; exact e'))).symm
+
+/-- The exponents of the orbit of `g^r`: `g^s ∈ orbit(g^r)`, `s < n`, forces `s ∈ {r, r + 2κ, 4κ − r, 2κ − r}`
+(for `1 ≤ r < κ`). -/
+theorem orbit_exponent (F : Frame p κ g) {r s : Nat} (hr1 : 1 ≤ r) (hrκ : r < κ) (hs : s < p - 1)
+    (h : InOrbit (g ^ r) (g ^ s)) : s = r ∨ s = r + (κ + κ) ∨ s = κ + κ + κ + κ - r ∨ s = κ + κ - r := by
+  have hn := F.n_eq
+  have hπ := F.half_period
+  rw [two_mul_eq] at hπ
+  rw [hn, four_mul_eq] at hs
+  have hr2 : r < κ + κ := Nat.lt_of_lt_of_le hrκ (Nat.le_add_right κ κ)
+  have hr4 : r < κ + κ + κ + κ := Nat.lt_of_lt_of_le hr2 (Nat.le_trans (Nat.le_add_right _ κ) (Nat.le_add_right _ κ))
+  have hpow_inj : ∀ {i j : Nat}, i < κ + κ + κ + κ → j < κ + κ + κ + κ → g ^ i = g ^ j → i = j :=
+    fun hi hj e => F.pow_inj (by rw [hn, four_mul_eq]; exact hi) (by rw [hn, four_mul_eq]; exact hj) e
+  have hpn : g ^ (κ + κ + κ + κ) = 1 := by rw [← four_mul_eq, ← hn]; exact F.pow_n
+  match h with
+  | Or.inl e => exact Or.inl (hpow_inj hs hr4 e)
+  | Or.inr (Or.inl e) =>
+    have e' : g ^ s = g ^ (r + (κ + κ)) := by rw [e, pow_add, hπ, mul_comm, neg_one_mul]
+    have hlt : r + (κ + κ) < κ + κ + κ + κ := by
+      rw [show κ + κ + κ + κ = (κ + κ) + (κ + κ) by rw [Nat.add_assoc]]
+      exact Nat.add_lt_add_right hr2 _
+    exact Or.inr (Or.inl (hpow_inj hs hlt e'))
+  | Or.inr (Or.inr (Or.inl e)) =>
+    have hlt : κ + κ + κ + κ - r < κ + κ + κ + κ := Nat.sub_lt (Nat.lt_of_lt_of_le (Nat.zero_lt_succ 0) (Nat.le_trans hr1 (Nat.le_of_lt hr4))) hr1
+    have e2 : g ^ r * g ^ (κ + κ + κ + κ - r) = 1 := by rw [← pow_add, FRC.Nat.add_sub_of_le (Nat.le_of_lt hr4), hpn]
+    have e' : g ^ s = g ^ (κ + κ + κ + κ - r) := F.mul_left_cancel (F.pow_ne_zero r) (e.trans e2.symm)
+    exact Or.inr (Or.inr (Or.inl (hpow_inj hs hlt e')))
+  | Or.inr (Or.inr (Or.inr e)) =>
+    have hlt : κ + κ - r < κ + κ + κ + κ := Nat.lt_of_le_of_lt (Nat.sub_le _ _)
+      (Nat.lt_of_lt_of_le (Nat.lt_add_of_pos_right F.cap_pos) (Nat.le_add_right _ κ))
+    have e2 : g ^ r * -(g ^ (κ + κ - r)) = 1 := by
+      rw [← mul_neg, ← pow_add, FRC.Nat.add_sub_of_le (Nat.le_of_lt hr2), hπ, neg_neg]
+    have e' : -(g ^ s) = -(g ^ (κ + κ - r)) := F.mul_left_cancel (F.pow_ne_zero r) (e.trans e2.symm)
+    exact Or.inr (Or.inr (Or.inr (hpow_inj hs hlt (neg_eq_neg e'))))
+
+/-- 1:B2 (Theorem 1, the count, uniqueness), 2:D7 — two representatives `g^r`, `g^{r'}` with `1 ≤ r, r' < κ` whose
+orbits meet are the same: the Klein orbits off `Q₄` are exactly `κ − 1`, one for each `r ∈ [1, κ)`. -/
+theorem orbit_rep_unique (F : Frame p κ g) {r r' : Nat} (hr1 : 1 ≤ r) (hrκ : r < κ) (_hr1' : 1 ≤ r')
+    (hrκ' : r' < κ) {x : Shell p} (hx : InOrbit (g ^ r) x) (hx' : InOrbit (g ^ r') x) : r = r' := by
+  have hn := F.n_eq
+  have hr' : r' < p - 1 := by
+    rw [hn, four_mul_eq]
+    exact Nat.lt_of_lt_of_le hrκ' (Nat.le_trans (Nat.le_add_right κ κ) (Nat.le_trans (Nat.le_add_right _ κ) (Nat.le_add_right _ κ)))
+  have h := inOrbit_trans hx (inOrbit_symm hx')
+  match F.orbit_exponent hr1 hrκ hr' h with
+  | Or.inl e => exact e.symm
+  | Or.inr (Or.inl e) =>
+    exact absurd hrκ' (Nat.not_lt_of_le (by rw [e]; exact Nat.le_trans (Nat.le_add_right κ κ) (Nat.le_add_left _ r)))
+  | Or.inr (Or.inr (Or.inl e)) =>
+    -- 4κ − r > κ since r < κ
+    have : κ ≤ κ + κ + κ + κ - r := by
+      apply FRC.Nat.le_sub_of_add_le
+      rw [Nat.add_assoc, Nat.add_assoc]
+      exact Nat.add_le_add_left (Nat.le_trans (Nat.le_of_lt hrκ) (Nat.le_add_right κ _)) κ
+    exact absurd hrκ' (Nat.not_lt_of_le (e ▸ this))
+  | Or.inr (Or.inr (Or.inr e)) =>
+    -- 2κ − r > κ since r < κ
+    have : κ ≤ κ + κ - r := by
+      apply FRC.Nat.le_sub_of_add_le
+      exact Nat.add_le_add_left (Nat.le_of_lt hrκ) κ
+    exact absurd hrκ' (Nat.not_lt_of_le (e ▸ this))
+
+/-! ## The octant character of `2` (moved from 14-entropy, task LM17) -/
+
+/-! ## The octant character on every framed shell of even capacity (14:C6, X4) -/
+
+
+/-- Literals multiply as their values: `a · b = ab` on every shell. -/
+theorem lit_mul (a b : Nat) : (OfNat.ofNat a : Shell p) * OfNat.ofNat b = (OfNat.ofNat (a * b) : Shell p) :=
+  Shell.ext (by
+    show (a % p * (b % p)) % p = (a * b) % p
+    exact (FRC.Nat.mul_mod a b p Pos.pos).symm)
+
+/-- `a + 1 + (1 − a) = 2` on every shell. -/
+theorem add_one_add_one_neg (a : Shell p) : a + 1 + (1 + -a) = 2 := by
+  rw [Shell.add_assoc, ← Shell.add_assoc 1 1 (-a), Shell.add_comm (1 + 1) (-a),
+    ← Shell.add_assoc a (-a) (1 + 1), Shell.add_neg a, Shell.zero_add]
+  exact Frame.two_eq_one_add_one.symm
+
+/-- On a frame of capacity `κ = 2m`: `g^{4m} = −1` (the half-period) and `g^{8m} = 1`. -/
+theorem even_capacity_powers (F : Frame p κ g) (m : Nat) (hm : κ = 2 * m) :
+    g ^ (4 * m) = -1 ∧ g ^ (8 * m) = 1 := by
+  have h4 : 4 * m = 2 * κ := by rw [hm, ← FRC.Nat.mul_assoc]
+  have h8 : 8 * m = p - 1 := by rw [F.n_eq, hm, ← FRC.Nat.mul_assoc]
+  exact ⟨by rw [h4]; exact F.half_period, by rw [h8]; exact F.pow_n⟩
+
+/-- 14:C6 — the octant character: on every frame `(τ; 0, 1, g)` of even capacity `κ = 2m`, `ζ = g^m` has
+`ζ⁴ = −1` and `ζ⁸ = 1` — the sector `C₈ ⊂ C_{4κ}` is realised and `ζ` is its residue `ζ₈`. -/
+theorem octant_residue (F : Frame p κ g) (m : Nat) (hm : κ = 2 * m) :
+    (g ^ m) ^ 4 = -1 ∧ (g ^ m) ^ 8 = 1 := by
+  obtain ⟨h4, h8⟩ := even_capacity_powers F m hm
+  constructor
+  · rw [← Shell.pow_mul, Nat.mul_comm m 4]; exact h4
+  · rw [← Shell.pow_mul, Nat.mul_comm m 8]; exact h8
+
+/-- 14:C6, 14:X4 — the Tsirelson square: with `ζ = g^m` and `ζ' = g^{7m}` its inverse (`ζζ' = 1`),
+`(ζ + ζ')² = 2` and `(2(ζ + ζ'))² = 8` on every frame of capacity `κ = 2m`; hence `2` is a square on every
+such shell — the direction "octant ⇒ c-square" of X4's second face (the converse is
+`even_capacity_of_two_square` below; the equivalence `two_is_square_iff`). -/
+theorem tsirelson_square (F : Frame p κ g) (m : Nat) (hm : κ = 2 * m) :
+    g ^ m * g ^ (7 * m) = 1 ∧ (g ^ m + g ^ (7 * m)) ^ 2 = 2 ∧
+    (2 * (g ^ m + g ^ (7 * m))) ^ 2 = 8 := by
+  obtain ⟨h4, h8⟩ := even_capacity_powers F m hm
+  have hz : g ^ m * g ^ (7 * m) = 1 := by
+    rw [← Shell.pow_add, show m + 7 * m = 8 * m by
+      rw [Nat.mul_comm 8 m, Nat.mul_succ, Nat.mul_comm m 7, Nat.add_comm]]
+    exact h8
+  -- `ζ'² = −ζ²`: `g^{14m} = g^{8m} g^{4m} g^{2m} = (−1) g^{2m}`
+  have h14 : 7 * m + 7 * m = 8 * m + (4 * m + (m + m)) := by
+    calc 7 * m + 7 * m = (7 + 7) * m := (FRC.Nat.add_mul 7 7 m).symm
+      _ = (8 + (4 + (1 + 1))) * m := rfl
+      _ = 8 * m + (4 * m + (1 * m + 1 * m)) := by
+        rw [FRC.Nat.add_mul, FRC.Nat.add_mul, FRC.Nat.add_mul]
+      _ = 8 * m + (4 * m + (m + m)) := by rw [Nat.one_mul]
+  have hz' : g ^ (7 * m) * g ^ (7 * m) = -(g ^ m * g ^ m) := by
+    rw [← Shell.pow_add, h14, Shell.pow_add, Shell.pow_add, Shell.pow_add, h8, h4, Shell.one_mul,
+      Shell.neg_one_mul]
+  -- `(ζ + ζ')² = ζ² + ζζ' + ζ'ζ + ζ'² = ζ² + 1 + (1 − ζ²) = 2`
+  have hsq : (g ^ m + g ^ (7 * m)) ^ 2 = 2 := by
+    rw [Shell.pow_two, Shell.left_distrib, Shell.right_distrib, Shell.right_distrib, hz,
+      Shell.mul_comm (g ^ (7 * m)) (g ^ m), hz, hz']
+    exact add_one_add_one_neg _
+  refine ⟨hz, hsq, ?_⟩
+  rw [Shell.mul_pow, hsq, Shell.pow_two, lit_mul 2 2, lit_mul 4 2]
+
+/-- 14:X4 — the direction "even capacity ⇒ `2` a square" at tier 0: on every frame of even capacity `2` is a
+square, `(ζ + ζ⁻¹)² = 2`; the converse is `even_capacity_of_two_square`, the equivalence `two_is_square_iff`. -/
+theorem two_is_square (F : Frame p κ g) (m : Nat) (hm : κ = 2 * m) : ∃ r : Shell p, r * r = 2 :=
+  ⟨g ^ m + g ^ (7 * m), by rw [← Shell.pow_two]; exact (tsirelson_square F m hm).2.1⟩
+
+
+/-! ## The converse: `2` a square ⇒ even capacity, on every frame (14:X4) -/
+
+
+/-- Literals add as their values: `a + b = (a + b)` on every shell. -/
+theorem lit_add (a b : Nat) : (OfNat.ofNat a : Shell p) + OfNat.ofNat b = (OfNat.ofNat (a + b) : Shell p) :=
+  Shell.ext (by
+    show (a % p + b % p) % p = (a + b) % p
+    exact (FRC.Nat.add_mod a b p Pos.pos).symm)
+
+/-- `−1 ≠ 1` on every frame (`2 ≠ 0`). -/
+theorem neg_one_ne_one (F : Frame p κ g) : (-1 : Shell p) ≠ 1 := fun h => by
+  have h2 : (1 : Shell p) + 1 = 0 := by
+    have := Shell.neg_add (1 : Shell p); rw [h] at this; exact this
+  exact F.two_ne_zero (by rw [Frame.two_eq_one_add_one]; exact h2)
+
+/-- `−1 ≠ 0` on every frame. -/
+theorem neg_one_ne_zero (F : Frame p κ g) : (-1 : Shell p) ≠ 0 := fun h => by
+  have : (1 : Shell p) = 0 := by
+    have h' : -(-1 : Shell p) = -0 := congrArg Neg.neg h
+    rw [Shell.neg_neg, Shell.neg_zero] at h'
+    exact h'
+  exact F.one_ne_zero this
+
+/-- A square root of `2` gives a square root of the quarter-turn: with `i² = −1`, `2h = 1` and `r² = 2`,
+`ζ = (r + i r) h` has `ζ² = i`, hence `ζ⁴ = −1` and `ζ⁸ = 1` — an element of order eight wherever `−1 ≠ 1`,
+that is on every frame. -/
+theorem octant_of_two_square {r i h : Shell p} (hr : r * r = 2) (hi : i * i = -1)
+    (hh : 2 * h = 1) :
+    ∃ ζ : Shell p, ζ * ζ = i ∧ ζ ^ 4 = -1 ∧ ζ ^ 8 = 1 := by
+  -- `(r + i r)² = 4 i`
+  have hA : (r + i * r) * (r + i * r) = i * 4 := by
+    rw [Shell.left_distrib, Shell.right_distrib, Shell.right_distrib, hr,
+      Shell.mul_assoc i r r, hr, Shell.mul_left_comm r i r, hr,
+      Shell.mul_assoc i r (i * r), Shell.mul_left_comm r i r, ← Shell.mul_assoc i i (r * r), hi, hr,
+      Shell.neg_one_mul, Shell.add_comm 2 (i * 2), Shell.add_assoc, Shell.add_comm 2 (i * 2 + -2),
+      Shell.add_assoc, Shell.neg_add, Shell.add_zero, ← Shell.left_distrib, lit_add 2 2]
+  -- `4 h² = (2h)² = 1`
+  have h4 : (4 : Shell p) * (h * h) = 1 := by
+    rw [← lit_mul 2 2, ← mul_mul_mul_comm, hh, Shell.one_mul]
+  have hz : ((r + i * r) * h) * ((r + i * r) * h) = i := by
+    rw [mul_mul_mul_comm, hA, Shell.mul_assoc, h4, Shell.mul_one]
+  refine ⟨(r + i * r) * h, hz, ?_, ?_⟩
+  · rw [show (4 : Nat) = 2 * 2 from rfl, Shell.pow_mul, Shell.pow_two, Shell.pow_two, hz, hi]
+  · rw [show (8 : Nat) = 2 * 2 * 2 from rfl, Shell.pow_mul, Shell.pow_mul, Shell.pow_two, Shell.pow_two,
+      Shell.pow_two, hz, hi, Shell.neg_mul_neg, Shell.one_mul]
+
+/-- The arithmetic of the order: `(k · 8) % 4κ = 0` and `(k · 4) % 4κ ≠ 0` force `κ` even (a divisor `4κ` of
+`8k` that misses `4k` cannot be `4 · odd`; `0 < κ` is only what `mod_spec` needs). -/
+theorem even_of_order_eight {κ k : Nat} (hκ : 0 < κ) (h8 : (k * 8) % (4 * κ) = 0)
+    (h4 : (k * 4) % (4 * κ) ≠ 0) : ∃ m, κ = 2 * m := by
+  have h4κ : 0 < 4 * κ := Nat.mul_pos (Nat.zero_lt_succ 3) hκ
+  obtain ⟨q, hq⟩ := FRC.Nat.mod_spec (4 * κ) h4κ (k * 8)
+  rw [h8, Nat.add_zero] at hq
+  -- `2k = κ q`
+  have h2k : 2 * k = κ * q := by
+    apply Nat.eq_of_mul_eq_mul_left (Nat.zero_lt_succ 3)
+    rw [← FRC.Nat.mul_assoc, ← FRC.Nat.mul_assoc, Nat.mul_comm 4 2, Nat.mul_comm (2 * 4) k, ← hq]
+  have h2 : 0 < 2 := Nat.zero_lt_succ 1
+  obtain ⟨m, hm⟩ := FRC.Nat.mod_spec 2 h2 κ
+  have hlt : κ % 2 < 2 := FRC.Nat.mod_lt' κ h2
+  match hκ2 : κ % 2 with
+  | 0 => rw [hκ2, Nat.add_zero] at hm; exact ⟨m, hm⟩
+  | 1 =>
+    -- `κ` odd: `q` is even, `k = κ q'`, so `4κ ∣ 4k`, contradicting `h4`
+    have hq2 : q % 2 = 0 := by
+      have e1 : (κ * q) % 2 = q % 2 := by
+        rw [FRC.Nat.mul_mod κ q 2 h2, hκ2, Nat.one_mul, FRC.Nat.mod_mod q 2 h2]
+      have e2 : (2 * k) % 2 = 0 := by
+        rw [Nat.mul_comm 2 k]
+        exact (FRC.Nat.mod_unique (Nat.zero_lt_succ 1) (by rw [Nat.add_zero, Nat.mul_comm k 2]) : (k * 2) % 2 = 0)
+      rw [← e1, ← h2k]; exact e2
+    obtain ⟨q', hq'⟩ := FRC.Nat.mod_spec 2 h2 q
+    rw [hq2, Nat.add_zero] at hq'
+    have hk : k = κ * q' := by
+      apply Nat.eq_of_mul_eq_mul_left h2
+      rw [h2k, hq', Nat.mul_left_comm κ 2 q']
+    exact absurd (FRC.Nat.mod_unique h4κ
+      (by rw [hk, Nat.add_zero, Nat.mul_comm (κ * q') 4, ← FRC.Nat.mul_assoc])) h4
+  | n + 2 => exact absurd hlt (by rw [hκ2]; exact Nat.not_lt_of_ge (Nat.le_add_left 2 n))
+
+/-- 14:C6 — the octant forces even capacity: on every frame, an element `ζ` with `ζ⁴ = −1` and `ζ⁸ = 1` (an
+element of order eight) gives `8 ∣ 4κ`, so the capacity is even. -/
+theorem even_capacity_of_octant (F : Frame p κ g) {ζ : Shell p} (hz4 : ζ ^ 4 = -1) (hz8 : ζ ^ 8 = 1) :
+    ∃ m, κ = 2 * m := by
+  have hζ0 : ζ ≠ 0 := fun h0 => by
+    rw [h0, show (4 : Nat) = 3 + 1 from rfl, Shell.pow_succ, Shell.mul_zero] at hz4
+    exact neg_one_ne_zero F hz4.symm
+  obtain ⟨k, hk, hgk⟩ := F.eq_pow_of_ne_zero hζ0
+  have e8 : (k * 8) % (p - 1) = 0 :=
+    F.mod_eq_zero_of_pow_eq_one (by rw [Shell.pow_mul, hgk]; exact hz8)
+  have e4 : (k * 4) % (p - 1) ≠ 0 := fun e => by
+    have := F.pow_eq_one_of_mod e
+    rw [Shell.pow_mul, hgk, hz4] at this
+    exact neg_one_ne_one F this
+  rw [F.n_eq] at e8 e4
+  exact even_of_order_eight F.cap_pos e8 e4
+
+/-- 14:C6 — the octant sector at tier 0, as an equivalence: on every frame, an element with `ζ⁴ = −1` and
+`ζ⁸ = 1` exists exactly when the capacity is even. -/
+theorem octant_iff (F : Frame p κ g) : (∃ ζ : Shell p, ζ ^ 4 = -1 ∧ ζ ^ 8 = 1) ↔ ∃ m, κ = 2 * m :=
+  ⟨fun ⟨_, h4, h8⟩ => even_capacity_of_octant F h4 h8,
+   fun ⟨m, hm⟩ => ⟨g ^ m, octant_residue F m hm⟩⟩
+
+/-- 14:X4 — the converse of the second face at tier 0: on every frame, a square root of `2` forces the
+capacity even — `ζ = (r + i r)/2` has `ζ² = i`, so an element of order eight exists and `8 ∣ 4κ`. -/
+theorem even_capacity_of_two_square (F : Frame p κ g) {r : Shell p} (hr : r * r = 2) :
+    ∃ m, κ = 2 * m := by
+  obtain ⟨h, hh⟩ := F.exists_inv F.two_ne_zero
+  obtain ⟨ζ, _, hz4, hz8⟩ := octant_of_two_square hr F.quarter_turn_sq hh
+  exact even_capacity_of_octant F hz4 hz8
+
+/-- 14:X4 — the second face as an equivalence at tier 0: on every frame `(τ; 0, 1, g)`, `2` is a square
+exactly when the capacity is even — the c-square congruence and the octant sector are one condition. -/
+theorem two_is_square_iff (F : Frame p κ g) : (∃ r : Shell p, r * r = 2) ↔ ∃ m, κ = 2 * m :=
+  ⟨fun ⟨_, hr⟩ => even_capacity_of_two_square F hr, fun ⟨m, hm⟩ => two_is_square F m hm⟩
+
+
+/-! ## The square class of the drive is the parity of its exponent (moved from 8-dirac, task LM17) -/
+
+theorem two_mul_mod (l : Nat) : (2 * l) % 2 = 0 := by
+  rw [← Nat.add_zero (2 * l)]; exact FRC.Nat.add_mul_mod_self_left 0 l 2 (Nat.zero_lt_succ 1)
+
+theorem mod_two_of_mod_four_mul (m q : Nat) : (4 * q + m) % 2 = m % 2 := by
+  have : 4 * q + m = 2 * (2 * q) + m := by rw [← FRC.Nat.mul_assoc]
+  rw [this, FRC.Nat.add_mul_mod_self_left m (2 * q) 2 (Nat.zero_lt_succ 1)]
+
+theorem mod_n_mod_two (F : Frame p κ g) (m : Nat) : (m % (p - 1)) % 2 = m % 2 := by
+  match FRC.Nat.mod_spec (p - 1) F.n_pos m with
+  | ⟨q, hq⟩ =>
+    have e : m = 4 * (κ * q) + m % (p - 1) := by
+      rw [← FRC.Nat.mul_assoc, ← F.n_eq]; exact hq
+    calc (m % (p - 1)) % 2 = (4 * (κ * q) + m % (p - 1)) % 2 := (mod_two_of_mod_four_mul _ _).symm
+      _ = m % 2 := by rw [← e]
+
+/-- 8:B5 — the square class is chronon parity: on every frame, `g^m` is a square exactly when the drive-step
+count `m` is even (Theorem `parity`). -/
+theorem parity_iff (F : Frame p κ g) (m : Nat) : (∃ y : Shell p, y * y = g ^ m) ↔ m % 2 = 0 := by
+  constructor
+  · rintro ⟨y, hy⟩
+    have hy0 : y ≠ 0 := fun h0 => F.pow_ne_zero m (by rw [← hy, h0, Shell.mul_zero])
+    obtain ⟨l, hl, hgl⟩ := F.eq_pow_of_ne_zero hy0
+    have h2 : g ^ (2 * l) = g ^ m := by
+      rw [Nat.mul_comm, Shell.pow_mul, Shell.pow_two, hgl]; exact hy
+    rw [F.pow_mod, F.pow_mod m] at h2
+    have h3 := F.pow_inj (Nat.mod_lt _ F.n_pos) (Nat.mod_lt _ F.n_pos) h2
+    rw [← mod_n_mod_two F m, ← h3, mod_n_mod_two F]
+    exact two_mul_mod l
+  · intro h
+    match FRC.Nat.mod_spec 2 (Nat.zero_lt_succ 1) m with
+    | ⟨q, hq⟩ =>
+      rw [h, Nat.add_zero] at hq
+      exact ⟨g ^ q, by rw [hq, Nat.mul_comm, Shell.pow_mul, Shell.pow_two]⟩
+
+/-- 8:B3 — the drive is a nonsquare on every frame (`m = 1`). -/
+theorem drive_nonsquare (F : Frame p κ g) : ¬ ∃ y : Shell p, y * y = g := fun ⟨y, hy⟩ =>
+  Nat.noConfusion ((parity_iff F 1).1 ⟨y, by rw [Shell.pow_one]; exact hy⟩)
+
+theorem mod_two_cases (m : Nat) : m % 2 = 0 ∨ m % 2 = 1 := by
+  have := Nat.mod_lt m (Nat.zero_lt_succ 1)
+  match m % 2, this with
+  | 0, _ => exact .inl rfl
+  | 1, _ => exact .inr rfl
+  | k + 2, hk => exact absurd hk (Nat.not_lt_of_le (Nat.le_add_left 2 k))
+
+theorem succ_mod_two_eq_zero_iff (m : Nat) : (m + 1) % 2 = 0 ↔ m % 2 = 1 := by
+  rw [FRC.Nat.add_mod m 1 2 (Nat.zero_lt_succ 1)]
+  rcases mod_two_cases m with h | h <;> rw [h]
+  · exact ⟨fun e => Nat.noConfusion e, fun e => Nat.noConfusion e⟩
+  · exact ⟨fun _ => rfl, fun _ => rfl⟩
+
+/-- The inverse of the drive is `g^{p−2}`: every `y` with `g y = 1` is an odd power of `g`. -/
+theorem inv_drive_odd (F : Frame p κ g) {y : Shell p} (hy : g * y = 1) :
+    ∃ l, l < p - 1 ∧ g ^ l = y ∧ l % 2 = 1 := by
+  have hy0 : y ≠ 0 := fun h0 => F.one_ne_zero (by rw [← hy, h0, Shell.mul_zero])
+  obtain ⟨l, hl, hgl⟩ := F.eq_pow_of_ne_zero hy0
+  refine ⟨l, hl, hgl, ?_⟩
+  have h1 : g ^ (l + 1) = 1 := by rw [Shell.pow_succ, hgl, Shell.mul_comm]; exact hy
+  have h2 := F.mod_eq_zero_of_pow_eq_one h1
+  have h3 : l + 1 = p - 1 := by
+    match Nat.lt_or_ge (l + 1) (p - 1) with
+    | .inl hlt => exact absurd (by rw [FRC.Nat.mod_eq_of_lt hlt] at h2; exact h2) (Nat.succ_ne_zero l)
+    | .inr hge => exact Nat.le_antisymm (Nat.succ_le_of_lt hl) hge
+  have h4 : (l + 1) % 2 = 0 := by
+    rw [h3, F.n_eq, ← Nat.add_zero (4 * κ), mod_two_of_mod_four_mul]
+  exact (succ_mod_two_eq_zero_iff l).1 h4
+
+/-- 8:B3, 8:B6 — the reframing flip preserves the class: the inverse of the drive is a nonsquare (an odd
+power of `g`), so `[g⁻¹] = [g]`. -/
+theorem inv_drive_nonsquare (F : Frame p κ g) {y : Shell p} (hy : g * y = 1) :
+    ¬ ∃ r : Shell p, r * r = y := fun h => by
+  obtain ⟨l, _, hgl, hodd⟩ := inv_drive_odd F hy
+  rw [← hgl] at h
+  have h2 := (parity_iff F l).1 h
+  rw [hodd] at h2
+  exact Nat.noConfusion h2
+
 end Frame
 end Shell
 end FRC
@@ -1132,6 +1830,9 @@ Sums over `l < n` are defined by structural recursion (`sumRange f (n+1) = sumRa
 The geometric sum gives the principal-root identity (2:F1, Prop. 6.1 of 2-geometry) and the entrywise
 inversion of the shell Fourier matrix `W k j = g^{jk}`: `Σ_l W k l · (−g^{−lj}) = [k = j]` (2:F3,
 Prop. 6.3; 6:B5 in matrix form). No axioms.
+
+Since the ledger migration (task LM17) it also holds 20-rh's sums: peeling the first term, and the sum over the
+nonzero residues reindexed by the drive.
 -/
 
 namespace FRC
@@ -1216,6 +1917,11 @@ theorem geom_sum_mul (x : Shell p) (n : Nat) :
     rw [sumRange_succ, right_distrib, ih, left_distrib, ← mul_neg, mul_one, ← pow_succ]
     rw [add_add_add_comm, add_comm (x ^ n) (x ^ (n + 1)), add_comm (-1) (-(x ^ n)), add_assoc,
       ← add_assoc (x ^ n), add_neg, zero_add]
+
+/-- `Σ_{l<n+1} f l = f 0 + Σ_{l<n} f (l + 1)`. -/
+theorem sumRange_succ' (f : Nat → Shell p) : ∀ n, sumRange f (n + 1) = f 0 + sumRange (fun l => f (l + 1)) n
+  | 0 => by rw [sumRange_succ, sumRange_zero, sumRange_zero, zero_add, add_zero]
+  | n + 1 => by rw [sumRange_succ, sumRange_succ' f n, sumRange_succ, add_assoc]
 
 namespace Frame
 variable {κ : Nat} {g : Shell p}
@@ -1436,11 +2142,6 @@ theorem F_sq (F : Frame p κ g) (k j : Nat) :
     intro l; unfold Fmat
     rw [mul_assoc, mul_left_comm (W g k l), ← mul_assoc]
   rw [sum_congr _ (fun l _ => e l), sum_mul_left, F.W_sq' k j, F.quarter_turn_sq, ← neg_mul, one_mul, neg_neg]
-
-theorem inv_unique {x x' y : Shell p} (h : x * y = 1) (h' : x' * y = 1) : x = x' := by
-  calc x = x * (x' * y) := by rw [h', mul_one]
-    _ = x' * (x * y) := mul_left_comm _ _ _
-    _ = x' := by rw [h, mul_one]
 
 /-- 6:B7 (`W J = J W`, entrywise). -/
 theorem W_J_comm (F : Frame p κ g) {k j : Nat} (hk : k < p - 1) (hj : j < p - 1) :
@@ -1774,10 +2475,1157 @@ theorem symm_antisymm_unique (F : Frame p κ g) {a b : Nat → Shell p} (ha : Sy
   refine ⟨ha0, ?_⟩
   rw [ha0, zero_add] at h1; exact h1
 
+/-- The sum over the nonzero residues equals the sum over the powers of the drive: `x = g^m` reindexes. -/
+theorem sum_units_eq_sum_pow (F : Frame p κ g) (f : Shell p → Shell p) :
+    sumRange (fun l => f (ofNat (l + 1))) (p - 1) = sumRange (fun m => f (g ^ m)) (p - 1) := by
+  have hn : p = (p - 1) + 1 := (FRC.Nat.sub_add_cancel Pos.pos).symm
+  have hpos : ∀ m, 1 ≤ (g ^ m).val := fun m =>
+    Nat.pos_of_ne_zero (fun h0 => F.pow_ne_zero m (ext (by rw [h0, val_zero])))
+  have hlt : ∀ m, m < p - 1 → (g ^ m).val - 1 < p - 1 := fun m _ => by
+    have h1 : (g ^ m).val - 1 + 1 = (g ^ m).val := FRC.Nat.sub_add_cancel (hpos m)
+    have h2 : (g ^ m).val < (p - 1) + 1 := hn ▸ (g ^ m).lt
+    rw [← h1] at h2
+    exact Nat.lt_of_succ_lt_succ h2
+  have hinj : ∀ i j, i < p - 1 → j < p - 1 → (g ^ i).val - 1 = (g ^ j).val - 1 → i = j := fun i j hi hj h => by
+    apply F.pow_inj hi hj
+    apply ext
+    rw [← FRC.Nat.sub_add_cancel (hpos i), ← FRC.Nat.sub_add_cancel (hpos j), h]
+  have := sum_perm (fun l => f (ofNat (l + 1))) (fun m => (g ^ m).val - 1) (p - 1) hlt hinj
+  rw [← this]
+  apply sum_congr
+  intro m _
+  show f (ofNat ((g ^ m).val - 1 + 1)) = f (g ^ m)
+  rw [FRC.Nat.sub_add_cancel (hpos m), ofNat_val]
+
 end Frame
 
 end Shell
 end FRC
+
+/-! inlined: FrcCore/Theme/Projective.lean -/
+
+/-!
+# FrcCore.Theme.Projective — the affine group of the shell (the projective theme, ledger migration task LM17)
+
+The affine maps `x ↦ a + b·x`, `b ≠ 0`: the Borel subgroup of `PGL₂` acting on the shell's affine line. They form a
+group under composition and act simply transitively on the frames `(a, b)`; there are `p·(p − 1)` of them
+(1:C2, 4:C5). Moved from 1-algebra with their names unchanged. No axioms.
+-/
+
+namespace FRC
+namespace Shell
+namespace Frame
+
+variable {p : Nat} [Pos p] {κ : Nat} {g : Shell p}
+
+/-- An affine map of the shell, `x ↦ a + b·x` with `b ≠ 0`. -/
+structure Affine (p : Nat) [Pos p] where
+  a : Shell p
+  b : Shell p
+  hb : b ≠ 0
+
+namespace Affine
+
+def apply (φ : Affine p) (x : Shell p) : Shell p := φ.a + φ.b * x
+
+theorem ext' {φ ψ : Affine p} (ha : φ.a = ψ.a) (hb : φ.b = ψ.b) : φ = ψ := by
+  cases φ; cases ψ; cases ha; cases hb; rfl
+
+/-- The identity `x ↦ 0 + 1·x`. -/
+def one (F : Frame p κ g) : Affine p := ⟨0, 1, F.one_ne_zero⟩
+
+/-- Composition: `(a, b) ∘ (c, d) = (a + b·c, b·d)`. -/
+def comp (F : Frame p κ g) (φ ψ : Affine p) : Affine p := ⟨φ.a + φ.b * ψ.a, φ.b * ψ.b, F.mul_ne_zero φ.hb ψ.hb⟩
+
+theorem comp_apply (F : Frame p κ g) (φ ψ : Affine p) (x : Shell p) :
+    (comp F φ ψ).apply x = φ.apply (ψ.apply x) := by
+  unfold comp apply
+  show φ.a + φ.b * ψ.a + φ.b * ψ.b * x = φ.a + φ.b * (ψ.a + ψ.b * x)
+  rw [left_distrib, add_assoc, mul_assoc]
+
+theorem one_apply (F : Frame p κ g) (x : Shell p) : (one F).apply x = x := by
+  unfold one apply; show 0 + 1 * x = x; rw [one_mul, zero_add]
+
+theorem comp_assoc (F : Frame p κ g) (φ ψ χ : Affine p) : comp F (comp F φ ψ) χ = comp F φ (comp F ψ χ) :=
+  ext' (by show φ.a + φ.b * ψ.a + φ.b * ψ.b * χ.a = φ.a + φ.b * (ψ.a + ψ.b * χ.a); rw [left_distrib, add_assoc, mul_assoc])
+    (by show φ.b * ψ.b * χ.b = φ.b * (ψ.b * χ.b); exact mul_assoc _ _ _)
+
+/-- The inverse of `(a, b)`: `(−a·b⁻¹, b⁻¹)`, with `y` the inverse of `b`. -/
+def inv (F : Frame p κ g) (φ : Affine p) (y : Shell p) (hy : φ.b * y = 1) : Affine p :=
+  ⟨-(φ.a * y), y, fun h => F.one_ne_zero (by rw [← hy, h, mul_zero])⟩
+
+theorem comp_inv (F : Frame p κ g) (φ : Affine p) (y : Shell p) (hy : φ.b * y = 1) :
+    comp F φ (inv F φ y hy) = one F :=
+  ext' (by
+      show φ.a + φ.b * -(φ.a * y) = 0
+      calc φ.a + φ.b * -(φ.a * y) = φ.a + -(φ.b * (φ.a * y)) := by rw [← mul_neg]
+        _ = φ.a + -(φ.a * (φ.b * y)) := by rw [mul_left_comm]
+        _ = φ.a + -φ.a := by rw [hy, mul_one]
+        _ = 0 := add_neg _)
+    (by show φ.b * y = 1; exact hy)
+
+/-- 1:C2, 4:C5 (the frame group), simple transitivity — for frames `(a, b)` and `(c, d)` (`b, d ≠ 0`) there
+is exactly one affine map carrying the first to the second: `φ (a, b) := (φ.apply a, φ.b · b)`. -/
+theorem simply_transitive (F : Frame p κ g) (a b c d : Shell p) (hb : b ≠ 0) (hd : d ≠ 0) :
+    (∃ φ : Affine p, φ.apply a = c ∧ φ.b * b = d) ∧
+    (∀ φ ψ : Affine p, φ.apply a = c → φ.b * b = d → ψ.apply a = c → ψ.b * b = d → φ = ψ) := by
+  match F.exists_inv hb with
+  | ⟨y, hy⟩ =>
+    constructor
+    · refine ⟨⟨c + -(d * y * a), d * y, ?_⟩, ?_, ?_⟩
+      · exact F.mul_ne_zero hd (fun h => F.one_ne_zero (by rw [← hy, h, mul_zero]))
+      · show c + -(d * y * a) + d * y * a = c
+        rw [add_assoc, neg_add, add_zero]
+      · show d * y * b = d
+        rw [mul_assoc, mul_comm y b, hy, mul_one]
+    · intro φ ψ h1 h2 h3 h4
+      have eb : φ.b = ψ.b := by
+        calc φ.b = φ.b * (b * y) := by rw [hy, mul_one]
+          _ = (φ.b * b) * y := (mul_assoc _ _ _).symm
+          _ = (ψ.b * b) * y := by rw [h2, h4]
+          _ = ψ.b := by rw [mul_assoc, hy, mul_one]
+      have ea : φ.a = ψ.a := by
+        have e1 : φ.a + φ.b * a = c := h1
+        have e2 : ψ.a + ψ.b * a = c := h3
+        rw [← eb] at e2
+        exact add_right_cancel (e1.trans e2.symm)
+      exact ext' ea eb
+
+end Affine
+
+/-- 1:C2, 4:C5, the order — the frames `(a, b)`, `b ≠ 0`, number `p·(p − 1)`: `p` choices of the origin, `p − 1`
+of the unit. -/
+theorem frame_count (_F : Frame p κ g) :
+    natCount (fun _ => True) p * natCount (fun b => b ≠ 0) p = p * (p - 1) := by
+  have h1 : ∀ n, natCount (fun _ => True) n = n := fun n => by
+    induction n with
+    | zero => rfl
+    | succ n ih => show natCount (fun _ => True) n + (if True then 1 else 0) = n + 1; rw [ih, ite_eq_left trivial]
+  have hp : p = (p - 1) + 1 := (FRC.Nat.sub_add_cancel Pos.pos).symm
+  rw [h1]
+  have h2 : natCount (fun b => b ≠ 0) p = p - 1 := by
+    have := natCount_ne_zero (p - 1)
+    rw [← hp] at this; exact this
+  rw [h2]
+
+end Frame
+end Shell
+end FRC
+
+/-! inlined: FrcCore/Theme/Extension.lean -/
+
+/-!
+# FrcCore.Theme.Extension — the quadratic extension of the shell and the quaternion norm (the extension theme, task LM17)
+
+`FRC.Extension.Ext p ν`: the elements `a + b w` of `𝔽_p[w]/(w² − ν)` on components, with addition, the product
+`(a + bw)(c + dw) = (ac + νbd) + (ad + bc)w`, powers, Frobenius conjugation, the trace and the norm `N = a² − νb²`;
+`z z̄ = N(z)`, conjugation is a ring map and an involution, the norm scales by squares, on the circle `N = 1` the
+conjugate is the inverse, and conjugation fixes exactly the prime meridian. One structure for 8-dirac's coefficient
+field and 20-rh's extension, which keep their old names as aliases. Then the quaternions over the shell, the
+Hamilton product, conjugation and the norm, with the normaliser that decides ring identities on the shell and the
+multiplicativity of the norm `N(qr) = N(q) N(r)` (1-algebra's Quaternion.lean, names unchanged). No axioms.
+-/
+
+namespace FRC.Extension
+
+open FRC.Shell
+
+variable {p : Nat} [Pos p]
+
+
+/-- 8:B1 — an element `a + b w` of the coefficient field, on components. -/
+structure Ext (p : Nat) [Pos p] (ν : Shell p) where
+  re : Shell p
+  im : Shell p
+
+namespace Ext
+variable {ν : Shell p}
+
+theorem ext {z z' : Ext p ν} (h1 : z.re = z'.re) (h2 : z.im = z'.im) : z = z' := by
+  cases z; cases z'; cases h1; cases h2; rfl
+
+theorem re_congr {a b : Ext p ν} (h : a = b) : a.re = b.re := by cases h; rfl
+theorem im_congr {a b : Ext p ν} (h : a = b) : a.im = b.im := by cases h; rfl
+
+instance : DecidableEq (Ext p ν) := fun a b =>
+  if h1 : a.re = b.re then
+    if h2 : a.im = b.im then isTrue (ext h1 h2) else isFalse (fun e => h2 (by cases e; rfl))
+  else isFalse (fun e => h1 (by cases e; rfl))
+
+/-- The base field inside `K`. -/
+def ofShell (a : Shell p) : Ext p ν := ⟨a, 0⟩
+/-- The adjoined root `w`, `w² = ν`. -/
+def w : Ext p ν := ⟨0, 1⟩
+instance (n : Nat) : OfNat (Ext p ν) n := ⟨ofShell (OfNat.ofNat n)⟩
+instance : Add (Ext p ν) := ⟨fun z z' => ⟨z.re + z'.re, z.im + z'.im⟩⟩
+instance : Neg (Ext p ν) := ⟨fun z => ⟨-z.re, -z.im⟩⟩
+instance : Mul (Ext p ν) := ⟨fun z z' => ⟨z.re * z'.re + ν * (z.im * z'.im), z.re * z'.im + z.im * z'.re⟩⟩
+/-- Frobenius conjugation `a + b w ↦ a − b w`. -/
+def conj (z : Ext p ν) : Ext p ν := ⟨z.re, -z.im⟩
+/-- The trace `Tr(a + b w) = 2a`. -/
+def trace (z : Ext p ν) : Shell p := z.re + z.re
+/-- The norm `N(z) = z z̄ = a² − ν b²`. -/
+def norm (z : Ext p ν) : Shell p := z.re * z.re + -(ν * (z.im * z.im))
+/-- Powers by structural recursion. -/
+def pow (z : Ext p ν) : Nat → Ext p ν
+  | 0 => 1
+  | n + 1 => pow z n * z
+instance : Pow (Ext p ν) Nat := ⟨pow⟩
+
+theorem mul_re (z z' : Ext p ν) : (z * z').re = z.re * z'.re + ν * (z.im * z'.im) := rfl
+theorem mul_im (z z' : Ext p ν) : (z * z').im = z.re * z'.im + z.im * z'.re := rfl
+theorem ofShell_re (a : Shell p) : (ofShell a : Ext p ν).re = a := rfl
+theorem ofShell_im (a : Shell p) : (ofShell a : Ext p ν).im = 0 := rfl
+theorem conj_re (z : Ext p ν) : (conj z).re = z.re := rfl
+theorem conj_im (z : Ext p ν) : (conj z).im = -z.im := rfl
+
+/-- 8:A2 — `w² = ν`. -/
+theorem w_sq : (w : Ext p ν) * w = ofShell ν :=
+  ext (by show 0 * 0 + ν * (1 * 1) = ν; rw [Shell.zero_mul, Shell.one_mul, Shell.mul_one, Shell.zero_add])
+      (by show 0 * 1 + 1 * 0 = 0; rw [Shell.zero_mul, Shell.mul_zero, Shell.zero_add])
+
+/-- 8:A2 — the norm is the product with the conjugate: `z z̄ = N(z)`, a base-field element. -/
+theorem mul_conj (z : Ext p ν) : z * conj z = ofShell (norm z) :=
+  ext (by show z.re * z.re + ν * (z.im * -z.im) = z.re * z.re + -(ν * (z.im * z.im))
+          rw [← Shell.mul_neg, ← Shell.mul_neg])
+      (by show z.re * -z.im + z.im * z.re = 0
+          rw [← Shell.mul_neg, Shell.mul_comm z.im z.re, Shell.neg_add])
+
+/-- 8:A2 — conjugation is multiplicative (the Frobenius involution is a ring map). -/
+theorem conj_mul (z z' : Ext p ν) : conj (z * z') = conj z * conj z' :=
+  ext (by show z.re * z'.re + ν * (z.im * z'.im) = z.re * z'.re + ν * (-z.im * -z'.im)
+          rw [Shell.neg_mul_neg])
+      (by show -(z.re * z'.im + z.im * z'.re) = z.re * -z'.im + -z.im * z'.re
+          rw [Shell.neg_add_rev, ← Shell.mul_neg, ← Shell.neg_mul])
+
+/-- 8:B6 — norm growth: `N(c z) = c² N(z)` for every base residue `c`; one chronon of drive multiplies every
+norm by `g²`, a square. -/
+theorem norm_scale (c : Shell p) (z : Ext p ν) : norm (ofShell c * z) = c * c * norm z := by
+  unfold norm
+  rw [mul_re, mul_im, ofShell_re, ofShell_im, Shell.zero_mul, Shell.mul_zero, Shell.add_zero,
+    Shell.zero_mul, Shell.add_zero, FRC.Shell.mul_mul_mul_comm, FRC.Shell.mul_mul_mul_comm c z.im c z.im,
+    Shell.mul_left_comm ν (c * c), Shell.left_distrib, ← Shell.mul_neg]
+
+/-- 20:B9 — conjugation is an involution. -/
+theorem conj_conj (z : Ext p ν) : conj (conj z) = z := ext rfl (Shell.neg_neg z.im)
+
+/-- 20:B6 — on the circle `N(z) = 1` the conjugate is the inverse: `z z̄ = 1`. -/
+theorem conj_inv_of_norm_one (z : Ext p ν) (hz : norm z = 1) : z * conj z = 1 := by
+  rw [mul_conj, hz]; rfl
+
+section frame
+variable {κ : Nat} {g : Shell p}
+
+/-- 20:B9 — the fixed locus of conjugation is the prime meridian: `z̄ = z ⟺ b = 0`. -/
+theorem fixed_conj (F : Frame p κ g) (z : Ext p ν) : conj z = z ↔ z.im = 0 := by
+  constructor
+  · intro h
+    exact F.eq_zero_of_eq_neg (im_congr h).symm
+  · intro h
+    exact ext rfl (show -z.im = z.im by rw [h, Shell.neg_zero])
+
+end frame
+
+end Ext
+
+end FRC.Extension
+
+namespace FRC
+namespace Shell
+namespace Frame
+
+variable {p : Nat} [Pos p]
+
+/-- A quaternion over the shell. -/
+structure Quat (p : Nat) [Pos p] where
+  a : Shell p
+  b : Shell p
+  c : Shell p
+  d : Shell p
+
+/-- The Hamilton product on the shell. -/
+def Quat.mul (q r : Quat p) : Quat p :=
+  ⟨(q.a * r.a + -(q.b * r.b)) + (-(q.c * r.c) + -(q.d * r.d)),
+   (q.a * r.b + q.b * r.a) + (q.c * r.d + -(q.d * r.c)),
+   (q.a * r.c + -(q.b * r.d)) + (q.c * r.a + q.d * r.b),
+   (q.a * r.d + q.b * r.c) + (-(q.c * r.b) + q.d * r.a)⟩
+
+
+/-! ## A normaliser for ring identities on the shell (no axioms)
+
+An identity between two polynomial expressions is decided by expanding each side into a positive and a negative
+list of monomials, sorting, and comparing `P_l ++ N_r` with `P_r ++ N_l`; `RE.sound` turns a successful comparison
+(a kernel computation, `decide`) into the equation on the shell. -/
+
+inductive RE where
+  | var : Nat → RE
+  | zero : RE
+  | one : RE
+  | add : RE → RE → RE
+  | mul : RE → RE → RE
+  | neg : RE → RE
+
+def RE.eval (env : Nat → Shell p) : RE → Shell p
+  | .var i => env i
+  | .zero => 0
+  | .one => 1
+  | .add a b => a.eval env + b.eval env
+  | .mul a b => a.eval env * b.eval env
+  | .neg a => -(a.eval env)
+
+/-- The assignment of shell values to the variables `0, 1, 2, …` of an expression. -/
+def look : List (Shell p) → Nat → Shell p
+  | [], _ => 0
+  | x :: _, 0 => x
+  | _ :: l, n + 1 => look l n
+
+def mEval (env : Nat → Shell p) : List Nat → Shell p
+  | [] => 1
+  | i :: m => env i * mEval env m
+
+def pEval (env : Nat → Shell p) : List (List Nat) → Shell p
+  | [] => 0
+  | m :: P => mEval env m + pEval env P
+
+def pRow (m : List Nat) : List (List Nat) → List (List Nat)
+  | [] => []
+  | n :: Q => (m ++ n) :: pRow m Q
+
+def pMul : List (List Nat) → List (List Nat) → List (List Nat)
+  | [], _ => []
+  | m :: P, Q => pRow m Q ++ pMul P Q
+
+def RE.toP : RE → List (List Nat) × List (List Nat)
+  | .var i => ([[i]], [])
+  | .zero => ([], [])
+  | .one => ([[]], [])
+  | .add a b => (a.toP.1 ++ b.toP.1, a.toP.2 ++ b.toP.2)
+  | .mul a b => (pMul a.toP.1 b.toP.1 ++ pMul a.toP.2 b.toP.2, pMul a.toP.1 b.toP.2 ++ pMul a.toP.2 b.toP.1)
+  | .neg a => (a.toP.2, a.toP.1)
+
+def insM (i : Nat) : List Nat → List Nat
+  | [] => [i]
+  | j :: m => if Nat.ble i j then i :: j :: m else j :: insM i m
+
+def sortM : List Nat → List Nat
+  | [] => []
+  | i :: m => insM i (sortM m)
+
+def lexLe : List Nat → List Nat → Bool
+  | [], _ => true
+  | _ :: _, [] => false
+  | i :: m, j :: n => if i = j then lexLe m n else Nat.ble i j
+
+def insP (m : List Nat) : List (List Nat) → List (List Nat)
+  | [] => [m]
+  | n :: P => if lexLe m n then m :: n :: P else n :: insP m P
+
+def sortP : List (List Nat) → List (List Nat)
+  | [] => []
+  | m :: P => insP m (sortP P)
+
+def nfP : List (List Nat) → List (List Nat)
+  | [] => []
+  | m :: P => insP (sortM m) (nfP P)
+
+theorem mEval_append (env : Nat → Shell p) (m n : List Nat) : mEval env (m ++ n) = mEval env m * mEval env n := by
+  induction m with
+  | nil => exact (one_mul _).symm
+  | cons i m ih => show env i * mEval env (m ++ n) = env i * mEval env m * mEval env n; rw [ih, mul_assoc]
+
+theorem pEval_append (env : Nat → Shell p) (P Q : List (List Nat)) : pEval env (P ++ Q) = pEval env P + pEval env Q := by
+  induction P with
+  | nil => exact (zero_add _).symm
+  | cons m P ih => show mEval env m + pEval env (P ++ Q) = mEval env m + pEval env P + pEval env Q; rw [ih, add_assoc]
+
+theorem pEval_row (env : Nat → Shell p) (m : List Nat) (Q : List (List Nat)) : pEval env (pRow m Q) = mEval env m * pEval env Q := by
+  induction Q with
+  | nil => exact (mul_zero _).symm
+  | cons n Q ih =>
+    show mEval env (m ++ n) + pEval env (pRow m Q) = mEval env m * (mEval env n + pEval env Q)
+    rw [ih, mEval_append, left_distrib]
+
+theorem pEval_mul (env : Nat → Shell p) (P Q : List (List Nat)) : pEval env (pMul P Q) = pEval env P * pEval env Q := by
+  induction P with
+  | nil => exact (zero_mul _).symm
+  | cons m P ih =>
+    show pEval env (pRow m Q ++ pMul P Q) = (mEval env m + pEval env P) * pEval env Q
+    rw [pEval_append, pEval_row, ih, right_distrib]
+
+theorem ring_add (A B C D : Shell p) : A + -B + (C + -D) = A + C + -(B + D) := by
+  rw [neg_add_rev, add_assoc, add_assoc, add_left_comm (-B) C (-D)]
+
+theorem ring_mul (A B C D : Shell p) : (A + -B) * (C + -D) = A * C + B * D + -(A * D + B * C) := by
+  rw [right_distrib, left_distrib, left_distrib, ← mul_neg, ← neg_mul, neg_mul_neg, neg_add_rev, add_assoc, add_assoc]
+  refine congrArg (A * C + ·) ?_
+  rw [add_comm (-(B * C)) (B * D), add_left_comm]
+
+theorem ring_neg (A B : Shell p) : -(A + -B) = B + -A := by rw [neg_add_rev, neg_neg, add_comm]
+
+theorem RE.toP_eval (env : Nat → Shell p) (e : RE) : e.eval env = pEval env e.toP.1 + -(pEval env e.toP.2) := by
+  induction e with
+  | var i =>
+    show env i = (env i * 1 + 0) + -(0 : Shell p)
+    rw [mul_one, add_zero, neg_zero, add_zero]
+  | zero => show (0 : Shell p) = 0 + -0; rw [neg_zero, add_zero]
+  | one => show (1 : Shell p) = (1 + 0) + -(0 : Shell p); rw [add_zero, neg_zero, add_zero]
+  | add a b iha ihb =>
+    show a.eval env + b.eval env = pEval env (a.toP.1 ++ b.toP.1) + -(pEval env (a.toP.2 ++ b.toP.2))
+    rw [iha, ihb, pEval_append, pEval_append, ring_add]
+  | mul a b iha ihb =>
+    show a.eval env * b.eval env = pEval env (pMul a.toP.1 b.toP.1 ++ pMul a.toP.2 b.toP.2) +
+      -(pEval env (pMul a.toP.1 b.toP.2 ++ pMul a.toP.2 b.toP.1))
+    rw [iha, ihb, pEval_append, pEval_append, pEval_mul, pEval_mul, pEval_mul, pEval_mul, ring_mul]
+  | neg a iha =>
+    show -(a.eval env) = pEval env a.toP.2 + -(pEval env a.toP.1)
+    rw [iha, ring_neg]
+
+theorem mEval_insM (env : Nat → Shell p) (i : Nat) (m : List Nat) : mEval env (insM i m) = env i * mEval env m := by
+  induction m with
+  | nil => rfl
+  | cons j m ih =>
+    show mEval env (if Nat.ble i j then i :: j :: m else j :: insM i m) = env i * (env j * mEval env m)
+    cases Nat.ble i j with
+    | true => rfl
+    | false => show env j * mEval env (insM i m) = _; rw [ih, mul_left_comm]
+
+theorem mEval_sortM (env : Nat → Shell p) (m : List Nat) : mEval env (sortM m) = mEval env m := by
+  induction m with
+  | nil => rfl
+  | cons i m ih => show mEval env (insM i (sortM m)) = env i * mEval env m; rw [mEval_insM, ih]
+
+theorem pEval_insP (env : Nat → Shell p) (m : List Nat) (P : List (List Nat)) : pEval env (insP m P) = mEval env m + pEval env P := by
+  induction P with
+  | nil => rfl
+  | cons n P ih =>
+    show pEval env (if lexLe m n then m :: n :: P else n :: insP m P) = mEval env m + (mEval env n + pEval env P)
+    cases lexLe m n with
+    | true => rfl
+    | false => show mEval env n + pEval env (insP m P) = _; rw [ih, add_left_comm]
+
+theorem pEval_nfP (env : Nat → Shell p) (P : List (List Nat)) : pEval env (nfP P) = pEval env P := by
+  induction P with
+  | nil => rfl
+  | cons m P ih => show pEval env (insP (sortM m) (nfP P)) = mEval env m + pEval env P; rw [pEval_insP, ih, mEval_sortM]
+
+def nbeq : List Nat → List Nat → Bool
+  | [], [] => true
+  | [], _ :: _ => false
+  | _ :: _, [] => false
+  | i :: m, j :: n => Nat.beq i j && nbeq m n
+
+def pbeq : List (List Nat) → List (List Nat) → Bool
+  | [], [] => true
+  | [], _ :: _ => false
+  | _ :: _, [] => false
+  | m :: P, n :: Q => nbeq m n && pbeq P Q
+
+theorem and_true_left {a b : Bool} (h : (a && b) = true) : a = true := by
+  cases a with
+  | false => exact absurd h (fun h' => Bool.noConfusion h')
+  | true => rfl
+
+theorem and_true_right {a b : Bool} (h : (a && b) = true) : b = true := by
+  cases a with
+  | false => exact absurd h (fun h' => Bool.noConfusion h')
+  | true => exact h
+
+theorem nbeq_eq : ∀ {m n : List Nat}, nbeq m n = true → m = n
+  | [], [], _ => rfl
+  | i :: m, j :: n, h => by
+    have e1 : i = j := Nat.eq_of_beq_eq_true (and_true_left h)
+    have e2 : m = n := nbeq_eq (and_true_right h)
+    rw [e1, e2]
+  | [], _ :: _, h => Bool.noConfusion h
+  | _ :: _, [], h => Bool.noConfusion h
+
+theorem pbeq_eq : ∀ {P Q : List (List Nat)}, pbeq P Q = true → P = Q
+  | [], [], _ => rfl
+  | m :: P, n :: Q, h => by
+    have e1 : m = n := nbeq_eq (and_true_left h)
+    have e2 : P = Q := pbeq_eq (and_true_right h)
+    rw [e1, e2]
+  | [], _ :: _, h => Bool.noConfusion h
+  | _ :: _, [], h => Bool.noConfusion h
+
+/-- The normaliser's soundness: if the two cross lists agree after normalisation, the two sides are equal on
+every assignment of shell values to the variables. -/
+theorem RE.sound (env : Nat → Shell p) (l r : RE) (hb : pbeq (nfP (l.toP.1 ++ r.toP.2)) (nfP (r.toP.1 ++ l.toP.2)) = true) :
+    l.eval env = r.eval env := by
+  have h := pbeq_eq hb
+  have h1 : pEval env l.toP.1 + pEval env r.toP.2 = pEval env r.toP.1 + pEval env l.toP.2 := by
+    rw [← pEval_append, ← pEval_append, ← pEval_nfP env (l.toP.1 ++ r.toP.2), ← pEval_nfP env (r.toP.1 ++ l.toP.2), h]
+  rw [RE.toP_eval env l, RE.toP_eval env r]
+  apply add_right_cancel (c := pEval env l.toP.2 + pEval env r.toP.2)
+  rw [← add_assoc, add_assoc (pEval env l.toP.1), neg_add, add_zero,
+      ← add_assoc, add_comm (pEval env r.toP.1 + -(pEval env r.toP.2)) (pEval env l.toP.2), ← add_assoc,
+      add_comm (pEval env l.toP.2) (pEval env r.toP.1), add_assoc, neg_add, add_zero, h1]
+
+
+/-! ## Quaternions over the shell: conjugation, norm, cross and dot products, and their expression twins -/
+
+def Quat.conj (q : Quat p) : Quat p := ⟨q.a, -q.b, -q.c, -q.d⟩
+def Quat.nrm (q : Quat p) : Shell p := q.a * q.a + q.b * q.b + (q.c * q.c + q.d * q.d)
+def Quat.vec (q : Quat p) : Quat p := ⟨0, q.b, q.c, q.d⟩
+def Quat.sc (s : Shell p) : Quat p := ⟨s, 0, 0, 0⟩
+def Quat.smul (s : Shell p) (q : Quat p) : Quat p := ⟨s * q.a, s * q.b, s * q.c, s * q.d⟩
+def Quat.add (q r : Quat p) : Quat p := ⟨q.a + r.a, q.b + r.b, q.c + r.c, q.d + r.d⟩
+def Quat.neg (q : Quat p) : Quat p := ⟨-q.a, -q.b, -q.c, -q.d⟩
+def Quat.cross (v x : Quat p) : Quat p := ⟨0, v.c * x.d + -(v.d * x.c), v.d * x.b + -(v.b * x.d), v.b * x.c + -(v.c * x.b)⟩
+def Quat.dot (v x : Quat p) : Shell p := v.b * x.b + v.c * x.c + v.d * x.d
+/-- Conjugation by `q`, not yet divided by the norm: `x ↦ q x q̄`. -/
+def Quat.conjBy (q x : Quat p) : Quat p := Quat.mul (Quat.mul q x) (Quat.conj q)
+
+theorem Quat.ext4 {q r : Quat p} (ha : q.a = r.a) (hb : q.b = r.b) (hc : q.c = r.c) (hd : q.d = r.d) : q = r :=
+  match q, r, ha, hb, hc, hd with
+  | ⟨_, _, _, _⟩, ⟨_, _, _, _⟩, rfl, rfl, rfl, rfl => rfl
+
+theorem Quat.pure_eq {x : Quat p} (hx : x.a = 0) : x = ⟨0, x.b, x.c, x.d⟩ :=
+  match x, hx with
+  | ⟨_, _, _, _⟩, rfl => rfl
+
+structure QR where
+  a : RE
+  b : RE
+  c : RE
+  d : RE
+
+def QR.eval (env : Nat → Shell p) (q : QR) : Quat p := ⟨q.a.eval env, q.b.eval env, q.c.eval env, q.d.eval env⟩
+def QR.mul (q r : QR) : QR :=
+  ⟨.add (.add (.mul q.a r.a) (.neg (.mul q.b r.b))) (.add (.neg (.mul q.c r.c)) (.neg (.mul q.d r.d))),
+   .add (.add (.mul q.a r.b) (.mul q.b r.a)) (.add (.mul q.c r.d) (.neg (.mul q.d r.c))),
+   .add (.add (.mul q.a r.c) (.neg (.mul q.b r.d))) (.add (.mul q.c r.a) (.mul q.d r.b)),
+   .add (.add (.mul q.a r.d) (.mul q.b r.c)) (.add (.neg (.mul q.c r.b)) (.mul q.d r.a))⟩
+def QR.conj (q : QR) : QR := ⟨q.a, .neg q.b, .neg q.c, .neg q.d⟩
+def QR.nrm (q : QR) : RE := .add (.add (.mul q.a q.a) (.mul q.b q.b)) (.add (.mul q.c q.c) (.mul q.d q.d))
+def QR.vec (q : QR) : QR := ⟨.zero, q.b, q.c, q.d⟩
+def QR.sc (s : RE) : QR := ⟨s, .zero, .zero, .zero⟩
+def QR.smul (s : RE) (q : QR) : QR := ⟨.mul s q.a, .mul s q.b, .mul s q.c, .mul s q.d⟩
+def QR.add (q r : QR) : QR := ⟨.add q.a r.a, .add q.b r.b, .add q.c r.c, .add q.d r.d⟩
+def QR.neg (q : QR) : QR := ⟨.neg q.a, .neg q.b, .neg q.c, .neg q.d⟩
+def QR.cross (v x : QR) : QR :=
+  ⟨.zero, .add (.mul v.c x.d) (.neg (.mul v.d x.c)), .add (.mul v.d x.b) (.neg (.mul v.b x.d)), .add (.mul v.b x.c) (.neg (.mul v.c x.b))⟩
+def QR.dot (v x : QR) : RE := .add (.add (.mul v.b x.b) (.mul v.c x.c)) (.mul v.d x.d)
+def QR.conjBy (q x : QR) : QR := QR.mul (QR.mul q x) (QR.conj q)
+/-- A quaternion of variables `i, i+1, i+2, i+3`; a pure one of variables `i, i+1, i+2`. -/
+def QR.v (i : Nat) : QR := ⟨.var i, .var (i + 1), .var (i + 2), .var (i + 3)⟩
+def QR.pv (i : Nat) : QR := ⟨.zero, .var i, .var (i + 1), .var (i + 2)⟩
+
+def RE.check (l r : RE) : Bool := pbeq (nfP (l.toP.1 ++ r.toP.2)) (nfP (r.toP.1 ++ l.toP.2))
+def QR.check (l r : QR) : Bool := RE.check l.a r.a && RE.check l.b r.b && (RE.check l.c r.c && RE.check l.d r.d)
+
+theorem QR.sound (env : Nat → Shell p) (l r : QR) (h : QR.check l r = true) : l.eval env = r.eval env :=
+  Quat.ext4 (RE.sound env _ _ (and_true_left (and_true_left h))) (RE.sound env _ _ (and_true_right (and_true_left h)))
+    (RE.sound env _ _ (and_true_left (and_true_right h))) (RE.sound env _ _ (and_true_right (and_true_right h)))
+
+
+/-- 1:E8, the norm is multiplicative: `N(qr) = N(q) N(r)`. -/
+theorem nrm_mul (q r : Quat p) : Quat.nrm (Quat.mul q r) = Quat.nrm q * Quat.nrm r :=
+  RE.sound (look [q.a, q.b, q.c, q.d, r.a, r.b, r.c, r.d]) (QR.nrm (QR.mul (QR.v 0) (QR.v 4))) (.mul (QR.nrm (QR.v 0)) (QR.nrm (QR.v 4))) (by decide +kernel)
+
+end Frame
+end Shell
+end FRC
+
+/-! inlined: FrcCore/Theme/Logic.lean -/
+
+/-!
+# FrcCore.Theme.Logic — the bounded language over a finite structure and its counting (the logic theme, task LM17)
+
+An explicit language of `Δ₀` formulas with two evaluators, over `ℕ` and in a frame `W_N` where overflow makes an atom
+false, and the bounded stability schema: every formula takes its standard value in every frame above its bound
+(5:B6). The counting behind the paradoxes of infinity and finite Gödel: fewer than `s^(K+1)` records of length
+`≤ K` and no mirror of a larger frame (5:C2); an iteration on `n` states repeats within `n` steps (5:C5, 5:E5);
+Cantor on the finite frame (5:D3); the least element (5:E1, 5:E2); on a finite carrier an injective map is onto, a
+part with fewer states identifies two elements, `m + 1` sentences outnumber `m` elements (25:C1, 25:C5, 25:D1); the
+count of a Boolean predicate; dense codings need `a^n ≤ m^k` (25:F4). Moved from 5-reductio and 25-godel, whose
+modules keep every old name. No axioms.
+-/
+
+namespace FRC.Logic
+
+/-! ### the maximum, from its definition -/
+
+/-- `mx a b`, the larger of two naturals, with its two bounds proved from the definition. -/
+def mx (a b : Nat) : Nat := if a ≤ b then b else a
+
+theorem le_mx_left (a b : Nat) : a ≤ mx a b := by
+  unfold mx
+  match Nat.decLe a b with
+  | isTrue h => rw [ite_eq_left h]; exact h
+  | isFalse h => rw [ite_eq_right h]; exact Nat.le_refl a
+
+theorem le_mx_right (a b : Nat) : b ≤ mx a b := by
+  unfold mx
+  match Nat.decLe a b with
+  | isTrue h => rw [ite_eq_left h]; exact Nat.le_refl b
+  | isFalse h => rw [ite_eq_right h]; exact Nat.le_of_lt (Nat.lt_of_not_le h)
+
+theorem lt_of_mx_lt_left {a b N : Nat} (h : mx a b < N) : a < N := Nat.lt_of_le_of_lt (le_mx_left a b) h
+theorem lt_of_mx_lt_right {a b N : Nat} (h : mx a b < N) : b < N := Nat.lt_of_le_of_lt (le_mx_right a b) h
+
+/-! ### 5:B6 — the bounded stability schema for an explicit `Δ₀` language -/
+
+/-- Terms: variables (de Bruijn indices), `0`, `1`, sum, product. -/
+inductive Term where
+  | var : Nat → Term
+  | zero : Term
+  | one : Term
+  | add : Term → Term → Term
+  | mul : Term → Term → Term
+
+/-- `Δ₀` formulas: atoms `s = t`, `s < t`, negation, conjunction, and the bounded quantifier `∀ x ≤ t, φ`
+(`x` is variable `0` in `φ`, the other variables shift up; `t` is read in the outer environment). -/
+inductive Form where
+  | eq : Term → Term → Form
+  | lt : Term → Term → Form
+  | neg : Form → Form
+  | conj : Form → Form → Form
+  | ball : Term → Form → Form
+
+/-- The environment extended by a value for variable `0`. -/
+def cons (x : Nat) (env : Nat → Nat) : Nat → Nat
+  | 0 => x
+  | i + 1 => env i
+
+/-- Terms over `ℕ`. -/
+def evalT (env : Nat → Nat) : Term → Nat
+  | .var i => env i
+  | .zero => 0
+  | .one => 1
+  | .add s t => evalT env s + evalT env t
+  | .mul s t => evalT env s * evalT env t
+
+/-- `f 0 && … && f (n − 1)`. -/
+def allBelow (f : Nat → Bool) : Nat → Bool
+  | 0 => true
+  | n + 1 => f n && allBelow f n
+
+/-- Formulas over `ℕ` (the standard value). -/
+def evalF (env : Nat → Nat) : Form → Bool
+  | .eq s t => decide (evalT env s = evalT env t)
+  | .lt s t => decide (evalT env s < evalT env t)
+  | .neg φ => !(evalF env φ)
+  | .conj φ ψ => evalF env φ && evalF env ψ
+  | .ball t φ => allBelow (fun x => evalF (cons x env) φ) (evalT env t + 1)
+
+/-- Terms in the frame `W_N`: a value is defined only while every intermediate value stays below `N`
+(overflow: `A(x, y, z)` fails for `x + y ≥ N`). -/
+def evalT? (N : Nat) (env : Nat → Nat) : Term → Option Nat
+  | .var i => if env i < N then some (env i) else none
+  | .zero => if 0 < N then some 0 else none
+  | .one => if 1 < N then some 1 else none
+  | .add s t => match evalT? N env s, evalT? N env t with
+      | some a, some b => if a + b < N then some (a + b) else none
+      | some _, none => none
+      | none, some _ => none
+      | none, none => none
+  | .mul s t => match evalT? N env s, evalT? N env t with
+      | some a, some b => if a * b < N then some (a * b) else none
+      | some _, none => none
+      | none, some _ => none
+      | none, none => none
+
+/-- Formulas in the frame `W_N`: an atom with an undefined term is false, a bounded quantifier is guarded by
+the definedness of its bound (the transcription `φ*` of the paper). -/
+def evalF? (N : Nat) (env : Nat → Nat) : Form → Bool
+  | .eq s t => match evalT? N env s, evalT? N env t with
+      | some a, some b => decide (a = b)
+      | some _, none => false
+      | none, some _ => false
+      | none, none => false
+  | .lt s t => match evalT? N env s, evalT? N env t with
+      | some a, some b => decide (a < b)
+      | some _, none => false
+      | none, some _ => false
+      | none, none => false
+  | .neg φ => !(evalF? N env φ)
+  | .conj φ ψ => evalF? N env φ && evalF? N env ψ
+  | .ball t φ => match evalT? N env t with
+      | some b => allBelow (fun x => evalF? N (cons x env) φ) (b + 1)
+      | none => false
+
+/-- The largest value a term's evaluation touches. -/
+def boundT (env : Nat → Nat) : Term → Nat
+  | .var i => env i
+  | .zero => 0
+  | .one => 1
+  | .add s t => mx (mx (boundT env s) (boundT env t)) (evalT env s + evalT env t)
+  | .mul s t => mx (mx (boundT env s) (boundT env t)) (evalT env s * evalT env t)
+
+/-- `max (f 0, …, f (n − 1))`. -/
+def maxBelow (f : Nat → Nat) : Nat → Nat
+  | 0 => 0
+  | n + 1 => mx (f n) (maxBelow f n)
+
+/-- `t(φ)`, the largest integer referenced in the evaluation of `φ` over `ℕ`. -/
+def boundF (env : Nat → Nat) : Form → Nat
+  | .eq s t => mx (boundT env s) (boundT env t)
+  | .lt s t => mx (boundT env s) (boundT env t)
+  | .neg φ => boundF env φ
+  | .conj φ ψ => mx (boundF env φ) (boundF env ψ)
+  | .ball t φ => mx (boundT env t) (maxBelow (fun x => boundF (cons x env) φ) (evalT env t + 1))
+
+theorem le_maxBelow (f : Nat → Nat) : ∀ {n x : Nat}, x < n → f x ≤ maxBelow f n
+  | 0, x, hx => absurd hx (Nat.not_lt_zero x)
+  | n + 1, x, hx =>
+    match Nat.decEq x n with
+    | isTrue e => by rw [e]; exact le_mx_left _ _
+    | isFalse e =>
+      have hlt : x < n := Nat.lt_of_le_of_ne (Nat.le_of_lt_succ hx) e
+      Nat.le_trans (le_maxBelow f hlt) (le_mx_right _ _)
+
+theorem allBelow_congr {f g : Nat → Bool} : ∀ {n : Nat}, (∀ x, x < n → f x = g x) → allBelow f n = allBelow g n
+  | 0, _ => rfl
+  | n + 1, h => by
+    show (f n && allBelow f n) = (g n && allBelow g n)
+    rw [h n (Nat.lt_succ_self n), allBelow_congr (fun x hx => h x (Nat.lt_succ_of_lt hx))]
+
+/-- 5:B6 (terms) — below its bound a term is defined in the frame, with its standard value. -/
+theorem evalT_frame (N : Nat) (env : Nat → Nat) : ∀ (t : Term), boundT env t < N → evalT? N env t = some (evalT env t)
+  | .var i, h => by
+    have h' : env i < N := h
+    show (if env i < N then some (env i) else none) = some (env i); rw [ite_eq_left h']
+  | .zero, h => by
+    have h' : 0 < N := h
+    show (if 0 < N then some 0 else none) = some 0; rw [ite_eq_left h']
+  | .one, h => by
+    have h' : 1 < N := h
+    show (if 1 < N then some 1 else none) = some 1; rw [ite_eq_left h']
+  | .add s t, h => by
+    have hs := evalT_frame N env s (lt_of_mx_lt_left (lt_of_mx_lt_left h))
+    have ht := evalT_frame N env t (lt_of_mx_lt_right (lt_of_mx_lt_left h))
+    show (match evalT? N env s, evalT? N env t with
+      | some a, some b => if a + b < N then some (a + b) else none
+      | some _, none => none
+      | none, some _ => none
+      | none, none => none) = some (evalT env s + evalT env t)
+    rw [hs, ht]
+    show (if evalT env s + evalT env t < N then some (evalT env s + evalT env t) else none) = some (evalT env s + evalT env t)
+    rw [ite_eq_left (lt_of_mx_lt_right h)]
+  | .mul s t, h => by
+    have hs := evalT_frame N env s (lt_of_mx_lt_left (lt_of_mx_lt_left h))
+    have ht := evalT_frame N env t (lt_of_mx_lt_right (lt_of_mx_lt_left h))
+    show (match evalT? N env s, evalT? N env t with
+      | some a, some b => if a * b < N then some (a * b) else none
+      | some _, none => none
+      | none, some _ => none
+      | none, none => none) = some (evalT env s * evalT env t)
+    rw [hs, ht]
+    show (if evalT env s * evalT env t < N then some (evalT env s * evalT env t) else none) = some (evalT env s * evalT env t)
+    rw [ite_eq_left (lt_of_mx_lt_right h)]
+
+/-- 5:B6 (Theorem stability, schema form) — every `Δ₀` formula takes its standard value in every frame `W_N`
+with `N > t(φ)`: `W_N ⊨ φ* ⟺ ℕ ⊨ φ`, for every environment, by induction on the formula. -/
+theorem stable (N : Nat) : ∀ (φ : Form) (env : Nat → Nat), boundF env φ < N → evalF? N env φ = evalF env φ
+  | .eq s t, env, h => by
+    show (match evalT? N env s, evalT? N env t with
+      | some a, some b => decide (a = b)
+      | some _, none => false
+      | none, some _ => false
+      | none, none => false) = decide (evalT env s = evalT env t)
+    rw [evalT_frame N env s (lt_of_mx_lt_left h), evalT_frame N env t (lt_of_mx_lt_right h)]
+  | .lt s t, env, h => by
+    show (match evalT? N env s, evalT? N env t with
+      | some a, some b => decide (a < b)
+      | some _, none => false
+      | none, some _ => false
+      | none, none => false) = decide (evalT env s < evalT env t)
+    rw [evalT_frame N env s (lt_of_mx_lt_left h), evalT_frame N env t (lt_of_mx_lt_right h)]
+  | .neg φ, env, h => by
+    show (!(evalF? N env φ)) = !(evalF env φ)
+    rw [stable N φ env h]
+  | .conj φ ψ, env, h => by
+    show (evalF? N env φ && evalF? N env ψ) = (evalF env φ && evalF env ψ)
+    rw [stable N φ env (lt_of_mx_lt_left h), stable N ψ env (lt_of_mx_lt_right h)]
+  | .ball t φ, env, h => by
+    show (match evalT? N env t with
+      | some b => allBelow (fun x => evalF? N (cons x env) φ) (b + 1)
+      | none => false) = allBelow (fun x => evalF (cons x env) φ) (evalT env t + 1)
+    rw [evalT_frame N env t (lt_of_mx_lt_left h)]
+    show allBelow (fun x => evalF? N (cons x env) φ) (evalT env t + 1) = allBelow (fun x => evalF (cons x env) φ) (evalT env t + 1)
+    exact allBelow_congr (fun x hx =>
+      stable N φ (cons x env) (Nat.lt_of_le_of_lt (le_maxBelow (fun x => boundF (cons x env) φ) hx) (lt_of_mx_lt_right h)))
+
+/-! ### 5:C2 — records and the mirror -/
+
+/-- The number of strings of length at most `K` over `s` letters, `Σ_{i ≤ K} s^i`. -/
+def records (s : Nat) : Nat → Nat
+  | 0 => 1
+  | K + 1 => records s K + s ^ (K + 1)
+
+/-- 5:C2 (the count) — fewer than `s^(K+1)` records exist for an alphabet of `s ≥ 2` letters. -/
+theorem records_lt (s : Nat) (hs : 2 ≤ s) : ∀ K, records s K < s ^ (K + 1)
+  | 0 => by
+    show 1 < s ^ 1
+    rw [Nat.pow_succ, Nat.pow_zero, Nat.one_mul]
+    exact Nat.lt_of_lt_of_le (Nat.lt_succ_self 1) hs
+  | K + 1 => by
+    show records s K + s ^ (K + 1) < s ^ (K + 1 + 1)
+    have h1 : records s K + s ^ (K + 1) < s ^ (K + 1) + s ^ (K + 1) := Nat.add_lt_add_right (records_lt s hs K) _
+    have h2 : s ^ (K + 1) + s ^ (K + 1) ≤ s ^ (K + 1) * s := by
+      rw [← Nat.mul_two]; exact Nat.mul_le_mul_left _ hs
+    exact Nat.lt_of_lt_of_le h1 h2
+
+/-- 5:C2 (Proposition mirror) — a part with fewer records than the frame has elements holds no injective
+representation of the frame's domain: no `f : [0, N) → [0, R)` is injective when `R < N`. -/
+theorem no_mirror {N R : Nat} (hR : R < N) (f : Nat → Nat) (hf : ∀ i, i < N → f i < R)
+    (hinj : ∀ i j, i < N → j < N → f i = f j → i = j) : False :=
+  have hnd := FRC.Shell.imageList_nodup hinj (Nat.le_refl N)
+  have hlen := FRC.Shell.imageList_length f N
+  have hb : ∀ e, Pigeonhole.mem e (FRC.Shell.imageList f N) → e < R := fun _ he =>
+    match FRC.Shell.mem_imageList he with
+    | ⟨j, hj, ej⟩ => ej ▸ hf j hj
+  have := Pigeonhole.length_le_of_nodup_lt R _ hnd hb
+  Nat.lt_irrefl N (Nat.lt_of_le_of_lt (hlen ▸ this) hR)
+
+/-! ### 5:C5, 5:E5 — an iteration on finitely many states repeats: periodic König and bounded halting -/
+
+/-- `iter f x k = f^k x`. -/
+def iter (f : Nat → Nat) (x : Nat) : Nat → Nat
+  | 0 => x
+  | k + 1 => f (iter f x k)
+
+theorem iter_lt (f : Nat → Nat) {n : Nat} (hf : ∀ y, y < n → f y < n) {x : Nat} (hx : x < n) :
+    ∀ k, iter f x k < n
+  | 0 => hx
+  | k + 1 => hf _ (iter_lt f hf hx k)
+
+theorem iter_add (f : Nat → Nat) (x : Nat) (i : Nat) : ∀ k, iter f x (i + k) = iter f (iter f x i) k
+  | 0 => rfl
+  | k + 1 => by show f (iter f x (i + k)) = f (iter f (iter f x i) k); rw [iter_add f x i k]
+
+/-- 5:E5, 5:C5 (Lemma periodic König, the pigeonhole) — on `n` states the iteration from `x` revisits a state within
+`n` steps: some `i < j ≤ n` have `f^i x = f^j x`. -/
+theorem repeat_below (f : Nat → Nat) (n : Nat) (hf : ∀ y, y < n → f y < n) (x : Nat) (hx : x < n) :
+    ∃ i j, i < j ∧ j ≤ n ∧ iter f x i = iter f x j :=
+  have dec : Decidable (∃ j, j < n + 1 ∧ ∃ i, i < j ∧ iter f x i = iter f x j) :=
+    @FRC.Shell.decExistsLT (fun j => ∃ i, i < j ∧ iter f x i = iter f x j)
+      (fun j => FRC.Shell.decExistsLT (fun i => iter f x i = iter f x j) j) (n + 1)
+  match dec with
+  | isTrue ⟨j, hj, i, hij, e⟩ => ⟨i, j, hij, Nat.le_of_lt_succ hj, e⟩
+  | isFalse hno =>
+    have hinj : ∀ i j, i < n + 1 → j < n + 1 → iter f x i = iter f x j → i = j := fun i j hi hj e =>
+      match Nat.lt_or_ge i j with
+      | Or.inl hlt => absurd ⟨j, hj, i, hlt, e⟩ hno
+      | Or.inr hge => match Nat.lt_or_ge j i with
+        | Or.inl hlt => absurd ⟨i, hi, j, hlt, e.symm⟩ hno
+        | Or.inr hge' => Nat.le_antisymm hge' hge
+    have hnd := FRC.Shell.imageList_nodup hinj (Nat.le_refl (n + 1))
+    have hb : ∀ e, Pigeonhole.mem e (FRC.Shell.imageList (iter f x) (n + 1)) → e < n := fun _ he =>
+      match FRC.Shell.mem_imageList he with
+      | ⟨k, _, ek⟩ => ek ▸ iter_lt f hf hx k
+    have := Pigeonhole.length_le_of_nodup_lt n _ hnd hb
+    by rw [FRC.Shell.imageList_length] at this; exact absurd this (Nat.not_succ_le_self n)
+
+theorem sub_pos {i j : Nat} (h : i < j) : 0 < j - i :=
+  match Nat.decEq (j - i) 0 with
+  | isTrue e =>
+    have hj : j = i := by rw [← FRC.Nat.add_sub_of_le (Nat.le_of_lt h), e, Nat.add_zero]
+    absurd (hj ▸ h) (Nat.lt_irrefl i)
+  | isFalse e => Nat.pos_of_ne_zero e
+
+/-- 5:E5 — the walk is eventually periodic: from step `i` on, period `p = j − i` with `0 < p ≤ n`,
+`f^(i+k+p) x = f^(i+k) x` for every `k`. -/
+theorem eventually_periodic (f : Nat → Nat) (n : Nat) (hf : ∀ y, y < n → f y < n) (x : Nat) (hx : x < n) :
+    ∃ i p, 0 < p ∧ p ≤ n ∧ ∀ k, iter f x (i + k + p) = iter f x (i + k) :=
+  match repeat_below f n hf x hx with
+  | ⟨i, j, hij, hjn, e⟩ =>
+    ⟨i, j - i, sub_pos hij, Nat.le_trans (Nat.sub_le j i) hjn, fun k => by
+      rw [Nat.add_right_comm, FRC.Nat.add_sub_of_le (Nat.le_of_lt hij), iter_add f x j k, iter_add f x i k, e]⟩
+
+/-- 5:C5 (horizon separation) — a run on `n` states reaches a state `h` iff it reaches it within `n` steps: halting for bounded space is decided from above by `n` steps of simulation. -/
+theorem halts_iff_halts_below (f : Nat → Nat) (n : Nat) (hf : ∀ y, y < n → f y < n) (h : Nat)
+    (x : Nat) (hx : x < n) : (∃ k, iter f x k = h) ↔ ∃ k, k ≤ n ∧ iter f x k = h :=
+  ⟨fun ⟨k, hk⟩ =>
+    match repeat_below f n hf x hx with
+    | ⟨i, j, hij, hjn, e⟩ =>
+      match Nat.lt_or_ge k j with
+      | Or.inl hkj => ⟨k, Nat.le_of_lt (Nat.lt_of_lt_of_le hkj hjn), hk⟩
+      | Or.inr hjk =>
+        -- the run is periodic from `i` with period `p = j − i`; reduce `k − i` modulo `p`
+        have hp : 0 < j - i := sub_pos hij
+        have per : ∀ q r, iter f x (i + (r + (j - i) * q)) = iter f x (i + r) := fun q r => by
+          induction q with
+          | zero => rw [Nat.mul_zero, Nat.add_zero]
+          | succ q ih =>
+            rw [Nat.mul_succ, ← Nat.add_assoc r ((j - i) * q) (j - i), Nat.add_comm (r + (j - i) * q) (j - i),
+              ← Nat.add_assoc i (j - i) (r + (j - i) * q), FRC.Nat.add_sub_of_le (Nat.le_of_lt hij), iter_add f x j,
+              ← e, ← iter_add f x i, ih]
+        match FRC.Nat.mod_spec (j - i) hp (k - i) with
+        | ⟨q, hq⟩ =>
+          have hr : (k - i) % (j - i) < j - i := Nat.mod_lt _ hp
+          have hk' : k = i + ((k - i) % (j - i) + (j - i) * q) := by
+            rw [Nat.add_comm ((k - i) % (j - i)) _, ← hq, FRC.Nat.add_sub_of_le (Nat.le_trans (Nat.le_of_lt hij) hjk)]
+          ⟨i + (k - i) % (j - i),
+            Nat.le_of_lt (Nat.lt_of_lt_of_le (Nat.add_lt_add_left hr i)
+              (by rw [FRC.Nat.add_sub_of_le (Nat.le_of_lt hij)]; exact hjn)),
+            by rw [← per q, ← hk']; exact hk⟩,
+   fun ⟨k, _, hk⟩ => ⟨k, hk⟩⟩
+
+/-! ### 5:D3 — Cantor's theorem on the finite frame -/
+
+/-- 5:D3 (Remark, the external diagonal) — Cantor's theorem holds in every finite frame: `n < 2^n`. -/
+theorem cantor_finite (n : Nat) : n < 2 ^ n := Nat.lt_two_pow_self
+
+/-! ### 5:E1, 5:E2 — definable choice by the least element -/
+
+/-- The least `x < n` with `P x`, if any: the choice function `ch(A) = min A` of Definition global-choice. -/
+def leastBelow (P : Nat → Bool) : Nat → Option Nat
+  | 0 => none
+  | n + 1 => match leastBelow P n with
+    | some x => some x
+    | none => if P n then some n else none
+
+/-- 5:E1 — a nonempty family has a choice: if some `x < n` has `P x`, `leastBelow P n` is defined. -/
+theorem leastBelow_some (P : Nat → Bool) : ∀ (n x : Nat), x < n → P x = true → ∃ y, leastBelow P n = some y
+  | 0, x, hx, _ => absurd hx (Nat.not_lt_zero x)
+  | n + 1, x, hx, hP =>
+    match hl : leastBelow P n with
+    | some y => ⟨y, by
+        show (match leastBelow P n with
+          | some x => some x
+          | none => if P n then some n else none) = some y
+        rw [hl]⟩
+    | none =>
+      match Nat.decEq x n with
+      | isTrue e => ⟨n, by
+          show (match leastBelow P n with
+            | some x => some x
+            | none => if P n then some n else none) = some n
+          rw [hl]
+          show (if P n then some n else none) = some n
+          have hPn : P n = true := e ▸ hP
+          rw [hPn, ite_eq_left rfl]⟩
+      | isFalse e =>
+        absurd (leastBelow_some P n x (Nat.lt_of_le_of_ne (Nat.le_of_lt_succ hx) e) hP)
+          (fun ⟨z, hz⟩ => nomatch (hl ▸ hz : (none : Option Nat) = some z))
+
+/-- 5:E1 (Proposition finite-choice) — the choice is a member, below the bound, and the least one. -/
+theorem leastBelow_spec (P : Nat → Bool) : ∀ (n x : Nat), leastBelow P n = some x →
+    x < n ∧ P x = true ∧ ∀ y, y < x → P y = false
+  | 0, x, h => nomatch (h : (none : Option Nat) = some x)
+  | n + 1, x, h => by
+    have h' : (match leastBelow P n with
+      | some x => some x
+      | none => if P n then some n else none) = some x := h
+    clear h
+    revert h'
+    match hl : leastBelow P n with
+    | some y =>
+      intro h'
+      have e : y = x := Option.some.inj h'
+      have := leastBelow_spec P n y hl
+      exact ⟨Nat.lt_succ_of_lt (e ▸ this.1), e ▸ this.2.1, e ▸ this.2.2⟩
+    | none =>
+      intro h'
+      have h'' : (if P n then some n else none) = some x := h'
+      match hP : P n with
+      | true =>
+        rw [hP, ite_eq_left rfl] at h''
+        have e : n = x := Option.some.inj h''
+        refine ⟨Nat.lt_succ_of_le (Nat.le_of_eq e.symm), e ▸ hP, fun y hy => ?_⟩
+        match hPy : P y with
+        | false => rfl
+        | true =>
+          exact absurd (leastBelow_some P n y (e.symm ▸ hy) hPy)
+            (fun ⟨z, hz⟩ => nomatch (hl ▸ hz : (none : Option Nat) = some z))
+      | false =>
+        rw [hP, ite_eq_right Bool.false_ne_true] at h''
+        exact nomatch (h'' : (none : Option Nat) = some x)
+
+/-- 5:E2 (Lemma periodic choice) — the choice depends on the set alone: pointwise equal families choose alike,
+so an equality-periodic family `A_{i+N} = A_i` has a choice function of the same period. -/
+theorem leastBelow_congr {P Q : Nat → Bool} : ∀ {n : Nat}, (∀ x, x < n → P x = Q x) → leastBelow P n = leastBelow Q n
+  | 0, _ => rfl
+  | n + 1, h => by
+    show (match leastBelow P n with
+      | some x => some x
+      | none => if P n then some n else none) = (match leastBelow Q n with
+      | some x => some x
+      | none => if Q n then some n else none)
+    rw [leastBelow_congr (fun x hx => h x (Nat.lt_succ_of_lt hx)), h n (Nat.lt_succ_self n)]
+
+/-! ### The counting core of 25-godel -/
+
+theorem or_intro_left {a b : Bool} (h : a = true) : (a || b) = true := by rw [h]; rfl
+
+theorem or_intro_right {a b : Bool} (h : b = true) : (a || b) = true := by rw [h]; cases a <;> rfl
+
+theorem and_true' (c : Bool) : (c && true) = c := by cases c <;> rfl
+
+theorem and_false' (c : Bool) : (c && false) = false := by cases c <;> rfl
+
+theorem and_self' (c : Bool) : (c && c) = c := by cases c <;> rfl
+
+theorem or_false' (c : Bool) : (c || false) = c := by cases c <;> rfl
+
+theorem and_assoc' (a b c : Bool) : ((a && b) && c) = (a && (b && c)) := by cases a <;> rfl
+
+/-- 25:C1 (Proposition noQ, the pigeonhole) — on `[0, n)` an injective map is onto: every `z < n` is a value. -/
+theorem inj_onto (n : Nat) (S : Nat → Nat) (hS : ∀ x, x < n → S x < n)
+    (hinj : ∀ x y, x < n → y < n → S x = S y → x = y) (z : Nat) (hz : z < n) : ∃ x, x < n ∧ S x = z :=
+  have hnd := FRC.Shell.imageList_nodup hinj (Nat.le_refl n)
+  have hlen := FRC.Shell.imageList_length S n
+  have hb : ∀ e, Pigeonhole.mem e (FRC.Shell.imageList S n) → e < n := fun _ he =>
+    match FRC.Shell.mem_imageList he with
+    | ⟨j, hj, ej⟩ => ej ▸ hS j hj
+  FRC.Shell.mem_imageList (Pigeonhole.mem_of_nodup_of_length_lt n _ hnd hb hlen z hz)
+
+/-- 25:C1 (Proposition noQ) — no successor of `Q` on a finite carrier: no map of `[0, n)` into itself is
+injective and omits an element, so no finite structure is a model of `Q`. -/
+theorem no_finite_successor (n : Nat) (S : Nat → Nat) (hS : ∀ x, x < n → S x < n)
+    (hinj : ∀ x y, x < n → y < n → S x = S y → x = y) (z : Nat) (hz : z < n) : ¬ ∀ x, x < n → S x ≠ z :=
+  fun hmiss => match inj_onto n S hS hinj z hz with
+    | ⟨x, hx, e⟩ => hmiss x hx e
+
+/-- 25:D1 (Theorem part) — an agent with `R` storage states in a structure of `m > R` elements has no injective
+encoding: every reading `ρ : [0, m) → [0, R)` identifies two elements. -/
+theorem part_collides {m R : Nat} (hR : R < m) (ρ : Nat → Nat) (hρ : ∀ i, i < m → ρ i < R) :
+    ¬ ∀ i j, i < m → j < m → ρ i = ρ j → i = j :=
+  fun hinj => no_mirror hR ρ hρ hinj
+
+/-- 25:C5 (Remark Tarski scoped, the count) — `m + 1` sentences, indexed `0, …, m` (the row's sentences
+`φ, ¬φ, …, ¬^m φ`), admit no injective numbering into a structure of `m` elements. -/
+theorem sentences_outnumber (m : Nat) (g : Nat → Nat) (hg : ∀ i, i < m + 1 → g i < m) :
+    ¬ ∀ i j, i < m + 1 → j < m + 1 → g i = g j → i = j :=
+  part_collides (Nat.lt_succ_self m) g hg
+
+/-- The number of `i < n` with `f i = true`. -/
+def count (f : Nat → Bool) : Nat → Nat
+  | 0 => 0
+  | n + 1 => count f n + cond (f n) 1 0
+
+theorem count_full {f : Nat → Bool} : ∀ {n : Nat}, (∀ i, i < n → f i = true) → count f n = n
+  | 0, _ => rfl
+  | n + 1, h => by
+    show count f n + cond (f n) 1 0 = n + 1
+    rw [h n (Nat.lt_succ_self n), count_full (fun i hi => h i (Nat.lt_succ_of_lt hi))]; rfl
+
+theorem cond_or_le (a b : Bool) : cond (a || b) 1 0 ≤ cond a 1 0 + cond b 1 0 := by
+  cases a <;> cases b <;> decide
+
+theorem count_or_le (f g : Nat → Bool) : ∀ n, count (fun i => f i || g i) n ≤ count f n + count g n
+  | 0 => Nat.le_refl 0
+  | n + 1 => by
+    show count (fun i => f i || g i) n + cond (f n || g n) 1 0 ≤ (count f n + cond (f n) 1 0) + (count g n + cond (g n) 1 0)
+    rw [FRC.Nat.add_add_add_comm (count f n) (cond (f n) 1 0) (count g n) (cond (g n) 1 0)]
+    exact Nat.add_le_add (count_or_le f g n) (cond_or_le (f n) (g n))
+
+theorem count_shift (f : Nat → Bool) : ∀ n, count (fun i => f (i + 1)) n ≤ count f (n + 1)
+  | 0 => Nat.zero_le _
+  | n + 1 => by
+    show count (fun i => f (i + 1)) n + cond (f (n + 1)) 1 0 ≤ count f (n + 1) + cond (f (n + 1)) 1 0
+    exact Nat.add_le_add_right (count_shift f n) _
+
+theorem count_false : ∀ n, count (fun _ => false) n = 0
+  | 0 => rfl
+  | n + 1 => by
+    show count (fun _ => false) n + 0 = 0
+    rw [count_false n]
+
+theorem count_single (j : Nat) : ∀ n, count (fun i => decide (j = i)) n ≤ 1 ∧ (n ≤ j → count (fun i => decide (j = i)) n = 0)
+  | 0 => ⟨Nat.zero_le 1, fun _ => rfl⟩
+  | n + 1 =>
+    match Nat.decEq j n with
+    | isTrue e => by
+      have h0 : count (fun i => decide (j = i)) n = 0 := (count_single j n).2 (e ▸ Nat.le_refl j)
+      refine ⟨?_, fun hle => absurd (e ▸ hle : n + 1 ≤ n) (Nat.not_succ_le_self n)⟩
+      show count (fun i => decide (j = i)) n + cond (decide (j = n)) 1 0 ≤ 1
+      rw [h0, decide_eq_true e]; exact Nat.le_refl 1
+    | isFalse e => by
+      refine ⟨?_, fun hle => ?_⟩
+      · show count (fun i => decide (j = i)) n + cond (decide (j = n)) 1 0 ≤ 1
+        rw [decide_eq_false e]; exact (count_single j n).1
+      · show count (fun i => decide (j = i)) n + cond (decide (j = n)) 1 0 = 0
+        rw [decide_eq_false e]; exact (count_single j n).2 (Nat.le_of_succ_le hle)
+
+theorem count_shift_by : ∀ (j : Nat) (f : Nat → Bool) (N : Nat), count (fun i => f (i + j)) N ≤ count f (N + j)
+  | 0, _, _ => Nat.le_refl _
+  | j + 1, f, N => Nat.le_trans (count_shift_by j (fun k => f (k + 1)) N) (count_shift f (N + j))
+
+/-- 25:F4 (Lemma density, the count) — an injective coding of the `a^n` strings of length `n` into `k`-tuples
+over `m` elements needs `a^n ≤ m^k`. -/
+theorem dense_coding {a n m k : Nat} (c : Nat → Nat) (hc : ∀ i, i < a ^ n → c i < m ^ k)
+    (hinj : ∀ i j, i < a ^ n → j < a ^ n → c i = c j → i = j) : a ^ n ≤ m ^ k :=
+  match Nat.lt_or_ge (m ^ k) (a ^ n) with
+  | Or.inl h => absurd hinj (part_collides h c hc)
+  | Or.inr h => h
+
+/-- A strict power step: `m < b` gives `m^(k+1) < b^(k+1)`. -/
+theorem pow_lt_pow_base {m b : Nat} (h : m < b) : ∀ k : Nat, m ^ (k + 1) < b ^ (k + 1)
+  | 0 => show m ^ 0 * m < b ^ 0 * b from Nat.mul_lt_mul_of_le_of_lt (Nat.le_refl 1) h (Nat.zero_lt_succ 0)
+  | k + 1 => show m ^ (k + 1) * m < b ^ (k + 1) * b from Nat.mul_lt_mul_of_lt_of_lt (pow_lt_pow_base h k) h
+
+/-- 25:F4 (Lemma density, the digit form) — if `m` has at most `d` digits in base `a` (`m < a^d`), a coding of
+the strings of length `n` by tuples of `k+1` coordinates with `a^n ≤ m^(k+1)` has `n < d·(k+1)`: a tuple carries
+fewer letters than `d` times its coordinates. -/
+theorem digit_bound {a n m k d : Nat} (ha : 0 < a) (hm : m < a ^ d) (h : a ^ n ≤ m ^ (k + 1)) :
+    n < d * (k + 1) :=
+  match Nat.lt_or_ge n (d * (k + 1)) with
+  | Or.inl hlt => hlt
+  | Or.inr hge =>
+    have h1 : m ^ (k + 1) < (a ^ d) ^ (k + 1) := pow_lt_pow_base hm k
+    have h2 : a ^ (d * (k + 1)) = (a ^ d) ^ (k + 1) := FRC.Nat.pow_mul a d (k + 1)
+    have h3 : a ^ (d * (k + 1)) ≤ a ^ n := Nat.pow_le_pow_right ha hge
+    absurd (Nat.lt_of_le_of_lt h (h2 ▸ h1)) (Nat.not_lt.mpr h3)
+
+/-- `f 0 || … || f (n − 1)`. -/
+def anyBelow (f : Nat → Bool) : Nat → Bool
+  | 0 => false
+  | n + 1 => f n || anyBelow f n
+
+theorem anyBelow_congr {f g : Nat → Bool} : ∀ {n : Nat}, (∀ x, x < n → f x = g x) → anyBelow f n = anyBelow g n
+  | 0, _ => rfl
+  | n + 1, h => by
+    show (f n || anyBelow f n) = (g n || anyBelow g n)
+    rw [h n (Nat.lt_succ_self n), anyBelow_congr (fun x hx => h x (Nat.lt_succ_of_lt hx))]
+
+theorem anyBelow_false : ∀ n, anyBelow (fun _ => false) n = false
+  | 0 => rfl
+  | n + 1 => by
+    show (false || anyBelow (fun _ => false) n) = false
+    rw [anyBelow_false n]; rfl
+
+theorem allBelow_const (b : Bool) : ∀ n, 0 < n → allBelow (fun _ => b) n = b
+  | 0, h => absurd h (Nat.lt_irrefl 0)
+  | 1, _ => and_true' b
+  | n + 2, _ => by
+    show (b && allBelow (fun _ => b) (n + 1)) = b
+    rw [allBelow_const b (n + 1) (Nat.succ_pos n)]; exact and_self' b
+
+theorem anyBelow_and_const (c : Bool) (F : Nat → Bool) (n : Nat) :
+    anyBelow (fun x => c && F x) n = (c && anyBelow F n) := by
+  cases c
+  · exact anyBelow_false n
+  · rfl
+
+theorem allBelow_and_const (c : Bool) (F : Nat → Bool) (n : Nat) (hn : 0 < n) :
+    allBelow (fun y => c && F y) n = (c && allBelow F n) := by
+  cases c
+  · exact allBelow_const false n hn
+  · rfl
+
+/-- Among the `x < n`, the clause `x = y` picks `y`: `∃ x < n, (c ∧ x = y ∧ F x)` is `c ∧ F y` for `y < n`. -/
+theorem anyBelow_pick (c : Bool) (F : Nat → Bool) (y : Nat) :
+    ∀ n, anyBelow (fun x => (c && decide (x = y)) && F x) n = (if y < n then c && F y else false)
+  | 0 => rfl
+  | n + 1 => by
+    show (((c && decide (n = y)) && F n) || anyBelow (fun x => (c && decide (x = y)) && F x) n) = (if y < n + 1 then c && F y else false)
+    rw [anyBelow_pick c F y n]
+    exact match Nat.decEq n y with
+    | isTrue e => by
+      rw [decide_eq_true e, and_true' c, ite_eq_right (e ▸ Nat.lt_irrefl n : ¬ y < n), or_false', ite_eq_left (e ▸ Nat.lt_succ_self n : y < n + 1), e]
+    | isFalse e => by
+      rw [decide_eq_false e, and_false' c]
+      show (if y < n then c && F y else false) = (if y < n + 1 then c && F y else false)
+      exact match Nat.decLt y n with
+      | isTrue hlt => by rw [ite_eq_left hlt, ite_eq_left (Nat.lt_succ_of_lt hlt)]
+      | isFalse hge => by
+        have hne : ¬ y < n + 1 := fun h => hge (Nat.lt_of_le_of_ne (Nat.le_of_lt_succ h) (fun e' => e e'.symm))
+        rw [ite_eq_right hge, ite_eq_right hne]
+
+end FRC.Logic
 
 /-! inlined: FrcCore/Meridian.lean -/
 
@@ -2349,447 +4197,14 @@ end FRC
 /-!
 # FrcCore.Algebra — 1-algebra predicates on the core
 
+The lemmas these predicates cite live in the frame theme (`Frame.lean`, `Orbit.lean`) and the projective theme
+(`Theme/Projective.lean`) since the ledger migration (task LM17), under their names; the module keeps the predicates.
+
 1:B2 (the quarter-turn exists; the fourth roots of unity are exactly `{1, i, −1, −i}`; the Klein orbits
 `{x, −x, x⁻¹, −x⁻¹}` have four elements off them), 1:B4 (the affine unit), 1:C4 (the meridian involution),
 1:D2 (the window law), 1:D4 (scale periodicity), 1:D6 (Theorem approx's range at `(13, 2)`), 1:E2 (the complex
 chart has a zero divisor), 1:Z1 (no south pole). No axioms.
 -/
-
-namespace FRC
-namespace Shell
-namespace Frame
-
-variable {p : Nat} [Pos p] {κ : Nat} {g : Shell p}
-
-/-- 1:B2 (Theorem 1 of 1-algebra), 2:D7 — off the fourth roots of unity, `x`, `−x`, `x⁻¹`, `−x⁻¹` are four
-distinct residues (`y` stands for the inverse: `x·y = 1`). -/
-theorem klein_orbit_four (F : Frame p κ g) {x y : Shell p} (hxy : x * y = 1) (h4 : x ^ 4 ≠ 1) :
-    x ≠ -x ∧ x ≠ y ∧ x ≠ -y ∧ -x ≠ y ∧ -x ≠ -y ∧ y ≠ -y := by
-  have hx0 : x ≠ 0 := fun h => F.one_ne_zero (by rw [← hxy, h, zero_mul])
-  have hy0 : y ≠ 0 := fun h => F.one_ne_zero (by rw [← hxy, h, mul_zero])
-  have h4' : x ^ 4 = (x * x) * (x * x) := by
-    rw [show (4 : Nat) = 2 * 2 from rfl, pow_mul, pow_two, pow_two]
-  have hsq : x * x ≠ 1 := fun h => h4 (by rw [h4', h, one_mul])
-  have hsqn : x * x ≠ -1 := fun h => h4 (by rw [h4', h, neg_mul_neg, one_mul])
-  have hxy' : x = y → False := fun e => hsq (by rw [← hxy, e])
-  have hxny : x = -y → False := fun e => hsqn (by
-    have : x * x = x * -y := by rw [← e]
-    rw [this, ← mul_neg, hxy])
-  refine ⟨fun h => hx0 (F.eq_zero_of_eq_neg h), hxy', hxny, ?_, ?_, ?_⟩
-  · intro h; exact hxny (by rw [← neg_neg x, h])
-  · intro h; exact hxy' (by rw [← neg_neg x, h, neg_neg])
-  · intro h; exact hy0 (F.eq_zero_of_eq_neg h)
-
-/-- 1:D4 (Lemma 2 of 1-algebra, scale periodicity) — the residue grid repeats with the period `p − 1`
-of the drive: `g^{n + (p−1)} = g^n`, hence `x·g^{n + (p−1)} = x·g^n` for every `x`. -/
-theorem scale_periodic (F : Frame p κ g) (x : Shell p) (n : Nat) :
-    x * g ^ (n + (p - 1)) = x * g ^ n := by
-  rw [pow_add, F.pow_n, mul_one]
-
-/-- The affine frame `(a, b)` of 1-algebra (Definition 2): the transported product
-`x ⊗ z := a + b·((x − a)/b)·((z − a)/b)`, written with `y` the inverse of `b`. -/
-def affineMul (a b y x z : Shell p) : Shell p := a + b * ((x + -a) * y) * ((z + -a) * y)
-
-/-- 1:B4 (Definition 2 of 1-algebra) — in the affine frame `(a, b)` the multiplicative unit
-is `a + b`, not `b`: `(a + b) ⊗ z = z` for every `z`. -/
-theorem affine_frame_unit {a b y : Shell p} (hby : b * y = 1) (z : Shell p) :
-    affineMul a b y (a + b) z = z := by
-  unfold affineMul
-  have e1 : a + b + -a = b := by rw [add_comm a b, add_assoc, add_neg, add_zero]
-  rw [e1, hby, mul_one, mul_left_comm b, hby, mul_one, add_comm z (-a), ← add_assoc, add_neg, zero_add]
-
-/-- 1:D2 (the window law, injectivity) — two window integers `x, y ≤ H` with `2H < p` that read as the same
-residue are equal: `ofNat x = ofNat y → x = y`. (Both are below `p`, so the residues are the integers.) -/
-theorem window_injective {H x y : Nat} (hH : 2 * H < p) (hx : x ≤ H) (hy : y ≤ H)
-    (h : (ofNat x : Shell p) = ofNat y) : x = y := by
-  have hxp : x < p := Nat.lt_of_le_of_lt hx (Nat.lt_of_le_of_lt (Nat.le_add_left H H) (Nat.two_mul H ▸ hH))
-  have hyp : y < p := Nat.lt_of_le_of_lt hy (Nat.lt_of_le_of_lt (Nat.le_add_left H H) (Nat.two_mul H ▸ hH))
-  have := val_injective h
-  rw [val_ofNat, val_ofNat, FRC.Nat.mod_eq_of_lt hxp, FRC.Nat.mod_eq_of_lt hyp] at this
-  exact this
-
-theorem ofNat_add (x y : Nat) : (ofNat x : Shell p) + ofNat y = ofNat (x + y) :=
-  ext (by rw [val_add, val_ofNat, val_ofNat, val_ofNat, FRC.Nat.mod_add_mod _ _ _ hp, FRC.Nat.add_mod_mod _ _ _ hp])
-
-theorem ofNat_mul (x y : Nat) : (ofNat x : Shell p) * ofNat y = ofNat (x * y) :=
-  ext (by rw [val_mul, val_ofNat, val_ofNat, val_ofNat, FRC.Nat.mod_mul_mod _ _ _ hp, FRC.Nat.mul_mod_mod _ _ _ hp])
-
-/-- 1:D2, the read-back of sums: for `x, y ≤ H` and `4H < p`, the residue of `x + y` determines the integer
-`x + y` among the integers `z ≤ 2H`. -/
-theorem window_add_readback {H x y z : Nat} (hH : 2 * (2 * H) < p) (hx : x ≤ H) (hy : y ≤ H) (hz : z ≤ 2 * H)
-    (h : (ofNat x : Shell p) + ofNat y = ofNat z) : x + y = z := by
-  rw [ofNat_add] at h
-  exact window_injective hH (by rw [Nat.two_mul]; exact Nat.add_le_add hx hy) hz h
-
-/-- 1:D2, the read-back of products: for `x, y ≤ H` and `2H² < p`, the residue of `x·y` determines the integer
-`x·y` among the integers `z ≤ H²`. -/
-theorem window_mul_readback {H x y z : Nat} (hH : 2 * (H * H) < p) (hx : x ≤ H) (hy : y ≤ H) (hz : z ≤ H * H)
-    (h : (ofNat x : Shell p) * ofNat y = ofNat z) : x * y = z := by
-  rw [ofNat_mul] at h
-  exact window_injective hH (Nat.mul_le_mul hx hy) hz h
-
-/-- 1:D2, the signed window: `x` and `−y` (`x, y ≤ H`, `2H < p`) read as the same residue only when both
-are zero — the window's positive and negative halves do not overlap. -/
-theorem window_signed {H x y : Nat} (hH : 2 * H < p) (hx : x ≤ H) (hy : y ≤ H)
-    (h : (ofNat x : Shell p) = -(ofNat y)) : x = 0 ∧ y = 0 := by
-  have hxp : x < p := Nat.lt_of_le_of_lt hx (Nat.lt_of_le_of_lt (Nat.le_add_left H H) (Nat.two_mul H ▸ hH))
-  have hyp : y < p := Nat.lt_of_le_of_lt hy (Nat.lt_of_le_of_lt (Nat.le_add_left H H) (Nat.two_mul H ▸ hH))
-  have hv := val_injective h
-  rw [val_ofNat, val_neg, val_ofNat, FRC.Nat.mod_eq_of_lt hxp, FRC.Nat.mod_eq_of_lt hyp] at hv
-  -- hv : x = (p - y) % p
-  match Nat.decEq y 0 with
-  | .isTrue hy0 =>
-    rw [hy0, Nat.sub_zero, FRC.Nat.mod_self p hp] at hv
-    exact ⟨hv, hy0⟩
-  | .isFalse hy0 =>
-    have hpy : p - y < p := Nat.sub_lt hp (Nat.pos_of_ne_zero hy0)
-    rw [FRC.Nat.mod_eq_of_lt hpy] at hv
-    -- x = p − y with x ≤ H, y ≤ H gives p = x + y ≤ 2H < p
-    have : p = x + y := by rw [hv, FRC.Nat.sub_add_cancel (Nat.le_of_lt hyp)]
-    have hle : x + y ≤ 2 * H := by rw [Nat.two_mul]; exact Nat.add_le_add hx hy
-    exact absurd (Nat.lt_of_le_of_lt (this ▸ hle) hH) (Nat.lt_irrefl p)
-
-/-- 1:B2 (Theorem 1, existence clause) — a quarter-turn `u` with `u² = −1` exists on every shell. -/
-theorem quarter_turn_exists (F : Frame p κ g) : ∃ u : Shell p, u * u = -1 :=
-  ⟨quarterTurn g κ, F.quarter_turn_sq⟩
-
-/-- 1:B2 (Theorem 1, the structural set) — the fourth roots of unity are exactly `1, −1, i, −i`. -/
-theorem fourth_roots (F : Frame p κ g) (x : Shell p) :
-    x ^ 4 = 1 ↔ x = 1 ∨ x = -1 ∨ x = quarterTurn g κ ∨ x = -(quarterTurn g κ) := by
-  have h4 : x ^ 4 = (x * x) * (x * x) := by
-    rw [show (4 : Nat) = 2 * 2 from rfl, pow_mul, pow_two, pow_two]
-  have hi := F.quarter_turn_sq
-  constructor
-  · intro h
-    rw [h4] at h
-    match F.sq_eq_one h with
-    | .inl e => match F.sq_eq_one e with
-      | .inl e1 => exact .inl e1
-      | .inr e1 => exact .inr (.inl e1)
-    | .inr e =>
-      -- x² = −1 = i²: (x + −i)(x + i) = 0
-      have e2 : (x + -(quarterTurn g κ)) * (x + quarterTurn g κ) = 0 := by
-        rw [right_distrib, left_distrib, left_distrib, e, ← neg_mul, ← neg_mul, hi, neg_neg, mul_comm (quarterTurn g κ) x]
-        rw [add_assoc, ← add_assoc (x * quarterTurn g κ), add_neg, zero_add, neg_add]
-      match F.mul_eq_zero e2 with
-      | .inl e3 => exact .inr (.inr (.inl (by
-          calc x = x + 0 := (add_zero x).symm
-            _ = x + (-(quarterTurn g κ) + quarterTurn g κ) := by rw [neg_add]
-            _ = (x + -(quarterTurn g κ)) + quarterTurn g κ := (add_assoc _ _ _).symm
-            _ = quarterTurn g κ := by rw [e3, zero_add])))
-      | .inr e3 => exact .inr (.inr (.inr (eq_neg_of_add_eq_zero e3)))
-  · intro h
-    match h with
-    | .inl e => rw [e, one_pow]
-    | .inr (.inl e) => rw [h4, e, neg_mul_neg, one_mul, one_mul]
-    | .inr (.inr (.inl e)) => rw [h4, e, hi, neg_mul_neg, one_mul]
-    | .inr (.inr (.inr e)) => rw [h4, e, neg_mul_neg, hi, neg_mul_neg, one_mul]
-
-/-- 1:C4 (Definition 5 (a)) — the meridian involution: `(−a)·g^{n + 2κ} = a·g^n`. -/
-theorem meridian_involution (F : Frame p κ g) (a : Shell p) (n : Nat) :
-    -a * g ^ (n + 2 * κ) = a * g ^ n := by
-  rw [pow_add, F.half_period, mul_comm (g ^ n), ← mul_assoc, neg_mul_neg, mul_one]
-
-/-- The complex chart: pairs `(a, b)` read as `a + b·X` with `X² = −1`, multiplied as
-`(a, b)(c, d) = (ac − bd, ad + bc)`. -/
-def cmul (x y : Shell p × Shell p) : Shell p × Shell p :=
-  (x.1 * y.1 + -(x.2 * y.2), x.1 * y.2 + x.2 * y.1)
-
-/-- 1:E2 (Proposition 5 reversed) — on a shell that already has a square root of `−1` the complex chart is
-not a field: `(i, 1)·(−i, 1) = (0, 0)` with both factors nonzero (`X + i` and `X − i` are zero divisors). -/
-theorem complex_chart_zero_divisor (F : Frame p κ g) :
-    cmul (quarterTurn g κ, (1 : Shell p)) (-(quarterTurn g κ), 1) = (0, 0) ∧
-    (quarterTurn g κ, (1 : Shell p)) ≠ (0, 0) ∧ (-(quarterTurn g κ), (1 : Shell p)) ≠ (0, 0) := by
-  refine ⟨?_, fun h => F.one_ne_zero (congrArg Prod.snd h), fun h => F.one_ne_zero (congrArg Prod.snd h)⟩
-  unfold cmul
-  show (quarterTurn g κ * -(quarterTurn g κ) + -(1 * 1), quarterTurn g κ * 1 + 1 * -(quarterTurn g κ)) = (0, 0)
-  rw [← mul_neg, F.quarter_turn_sq, neg_neg, one_mul, add_neg, mul_one, one_mul, add_neg]
-
-/-- 1:D6 (Theorem approx, the range at `p = 13`, `g = 2`): every grid point
-`x / 2^n` with `x < 13` and `n ≥ 3` is at most `3/2` — as the integer statement `2x ≤ 3·2^n`. -/
-theorem approx_obstruction (n x : Nat) (hn : 3 ≤ n) (hx : x < 13) : 2 * x ≤ 3 * 2 ^ n := by
-  have h8 : 2 ^ 3 ≤ 2 ^ n := Nat.pow_le_pow_right (Nat.zero_lt_succ 1) hn
-  have h1 : 2 * x ≤ 2 * 12 := Nat.mul_le_mul_left 2 (Nat.le_of_lt_succ hx)
-  have h2 : 3 * 2 ^ 3 ≤ 3 * 2 ^ n := Nat.mul_le_mul_left 3 h8
-  exact Nat.le_trans h1 h2
-
-/-! ### 1:B2, the count: the Klein orbits off `Q₄` are exactly `κ − 1`, represented by `g^r`, `1 ≤ r < κ` -/
-
-/-- `y` lies in the Klein orbit of `x`: `y ∈ {x, −x, x⁻¹, −x⁻¹}` (the inverse written as `x·y = 1`). -/
-def InOrbit (x y : Shell p) : Prop := y = x ∨ y = -x ∨ x * y = 1 ∨ x * -y = 1
-
-theorem two_mul_eq (κ : Nat) : 2 * κ = κ + κ := Nat.two_mul κ
-theorem three_mul_eq (κ : Nat) : 3 * κ = κ + κ + κ := by rw [Nat.succ_mul, Nat.two_mul]
-theorem four_mul_eq (κ : Nat) : 4 * κ = κ + κ + κ + κ := by rw [Nat.succ_mul, three_mul_eq]
-
-/-- The exponent `m` of `x = g^m` reduced to its orbit representative in `[1, κ)`. -/
-theorem orbit_rep_of_exp (F : Frame p κ g) {m : Nat} (hm : m < p - 1) (h0 : m ≠ 0) (h1 : m ≠ κ)
-    (h2 : m ≠ 2 * κ) (h3 : m ≠ 3 * κ) :
-    ∃ r, 1 ≤ r ∧ r < κ ∧ InOrbit (g ^ r) (g ^ m) := by
-  have hn := F.n_eq
-  have hπ := F.half_period
-  rw [hn, four_mul_eq] at hm
-  rw [two_mul_eq] at h2 hπ
-  rw [three_mul_eq] at h3
-  match Nat.lt_or_ge m κ with
-  | Or.inl hlt => exact ⟨m, Nat.pos_of_ne_zero h0, hlt, Or.inl rfl⟩
-  | Or.inr hge1 => match Nat.lt_or_ge m (κ + κ) with
-    | Or.inl hlt =>
-      -- κ < m < 2κ: r = 2κ − m, and g^m · (−g^r) = −g^{2κ} = 1
-      have hgt : κ < m := Nat.lt_of_le_of_ne hge1 (fun e => h1 e.symm)
-      refine ⟨κ + κ - m, ?_, ?_, Or.inr (Or.inr (Or.inr ?_))⟩
-      · refine Nat.lt_of_add_lt_add_right (n := m) ?_
-        rw [Nat.zero_add, FRC.Nat.sub_add_cancel (Nat.le_of_lt hlt)]; exact hlt
-      · refine Nat.lt_of_add_lt_add_right (n := m) ?_
-        rw [FRC.Nat.sub_add_cancel (Nat.le_of_lt hlt)]; exact Nat.add_lt_add_left hgt κ
-      · rw [← mul_neg, ← pow_add, FRC.Nat.sub_add_cancel (Nat.le_of_lt hlt), hπ, neg_neg]
-    | Or.inr hge2 => match Nat.lt_or_ge m (κ + κ + κ) with
-      | Or.inl hlt =>
-        -- 2κ < m < 3κ: r = m − 2κ, and g^m = −g^r
-        have hgt : κ + κ < m := Nat.lt_of_le_of_ne hge2 (fun e => h2 e.symm)
-        refine ⟨m - (κ + κ), ?_, ?_, Or.inr (Or.inl ?_)⟩
-        · refine Nat.lt_of_add_lt_add_right (n := κ + κ) ?_
-          rw [Nat.zero_add, FRC.Nat.sub_add_cancel hge2]; exact hgt
-        · refine Nat.lt_of_add_lt_add_right (n := κ + κ) ?_
-          rw [FRC.Nat.sub_add_cancel hge2, Nat.add_comm κ (κ + κ)]; exact hlt
-        · have : m = κ + κ + (m - (κ + κ)) := (FRC.Nat.add_sub_of_le hge2).symm
-          rw [this, pow_add, hπ, neg_one_mul, FRC.Nat.add_sub_cancel_left]
-      | Or.inr hge3 =>
-        -- 3κ < m < 4κ: r = 4κ − m, and g^m · g^r = g^{4κ} = 1
-        have hgt : κ + κ + κ < m := Nat.lt_of_le_of_ne hge3 (fun e => h3 e.symm)
-        refine ⟨κ + κ + κ + κ - m, ?_, ?_, Or.inr (Or.inr (Or.inl ?_))⟩
-        · refine Nat.lt_of_add_lt_add_right (n := m) ?_
-          rw [Nat.zero_add, FRC.Nat.sub_add_cancel (Nat.le_of_lt hm)]; exact hm
-        · refine Nat.lt_of_add_lt_add_right (n := m) ?_
-          rw [FRC.Nat.sub_add_cancel (Nat.le_of_lt hm), Nat.add_comm κ m]
-          exact Nat.add_lt_add_right hgt κ
-        · rw [← pow_add, FRC.Nat.sub_add_cancel (Nat.le_of_lt hm), ← four_mul_eq, ← hn, F.pow_n]
-
-/-- Off the fourth roots of unity, `x = g^m` has `m ∉ {0, κ, 2κ, 3κ}`. -/
-theorem exp_not_fourth (F : Frame p κ g) {m : Nat} (h4 : (g ^ m) ^ 4 ≠ 1) :
-    m ≠ 0 ∧ m ≠ κ ∧ m ≠ 2 * κ ∧ m ≠ 3 * κ := by
-  have hi := (F.quarter_turn_order).2
-  refine ⟨fun e => h4 (by rw [e, pow_zero, one_pow]), fun e => h4 (by rw [e, hi]), fun e => h4 ?_, fun e => h4 ?_⟩
-  · rw [e, Nat.mul_comm 2 κ, pow_mul, ← pow_mul, show (2 : Nat) * 4 = 4 * 2 from rfl, pow_mul, hi, one_pow]
-  · rw [e, Nat.mul_comm 3 κ, pow_mul, ← pow_mul, show (3 : Nat) * 4 = 4 * 3 from rfl, pow_mul, hi, one_pow]
-
-/-- 1:B2 (Theorem 1, the count, existence), 2:D7 — every residue off `Q₄` lies in the Klein orbit of some `g^r`
-with `1 ≤ r < κ`. -/
-theorem orbit_rep (F : Frame p κ g) {x : Shell p} (hx : x ≠ 0) (h4 : x ^ 4 ≠ 1) :
-    ∃ r, 1 ≤ r ∧ r < κ ∧ InOrbit (g ^ r) x := by
-  match F.eq_pow_of_ne_zero hx with
-  | ⟨m, hm, e⟩ =>
-    rw [← e] at h4 ⊢
-    match F.exp_not_fourth h4 with
-    | ⟨h0, h1, h2, h3⟩ => exact F.orbit_rep_of_exp hm h0 h1 h2 h3
-
-theorem neg_mul_of_mul_neg {a b : Shell p} (e : a * -b = 1) : -a * b = 1 := by
-  rw [← neg_mul, mul_neg]; exact e
-
-/-- The orbit relation is symmetric. -/
-theorem inOrbit_symm {a b : Shell p} (h : InOrbit a b) : InOrbit b a :=
-  match h with
-  | Or.inl e => Or.inl e.symm
-  | Or.inr (Or.inl e) => Or.inr (Or.inl (by rw [e, neg_neg]))
-  | Or.inr (Or.inr (Or.inl e)) => Or.inr (Or.inr (Or.inl (by rw [mul_comm]; exact e)))
-  | Or.inr (Or.inr (Or.inr e)) => Or.inr (Or.inr (Or.inr (by rw [← mul_neg, mul_comm, mul_neg]; exact e)))
-
-theorem neg_eq_neg {a b : Shell p} (h : -a = -b) : a = b := by rw [← neg_neg a, h, neg_neg]
-
-/-- The orbit relation is transitive. -/
-theorem inOrbit_trans {a b c : Shell p} (h1 : InOrbit a b) (h2 : InOrbit b c) : InOrbit a c := by
-  have hab : b = a ∨ b = -a ∨ a * b = 1 ∨ a * -b = 1 := h1
-  have hbc : c = b ∨ c = -b ∨ b * c = 1 ∨ b * -c = 1 := h2
-  unfold InOrbit
-  match hab, hbc with
-  | Or.inl e, h => exact e ▸ h
-  | Or.inr (Or.inl e), Or.inl e' => exact Or.inr (Or.inl (e' ▸ e))
-  | Or.inr (Or.inl e), Or.inr (Or.inl e') => exact Or.inl (by rw [e', e, neg_neg])
-  | Or.inr (Or.inl e), Or.inr (Or.inr (Or.inl e')) => exact Or.inr (Or.inr (Or.inr (by rw [← mul_neg, neg_mul, ← e]; exact e')))
-  | Or.inr (Or.inl e), Or.inr (Or.inr (Or.inr e')) => exact Or.inr (Or.inr (Or.inl (by rw [← neg_mul_neg, ← e]; exact e')))
-  | Or.inr (Or.inr (Or.inl e)), Or.inl e' => exact Or.inr (Or.inr (Or.inl (e' ▸ e)))
-  | Or.inr (Or.inr (Or.inl e)), Or.inr (Or.inl e') => exact Or.inr (Or.inr (Or.inr (by rw [e', neg_neg]; exact e)))
-  | Or.inr (Or.inr (Or.inl e)), Or.inr (Or.inr (Or.inl e')) =>
-    exact Or.inl (inv_unique (x := c) (x' := a) (y := b) (by rw [mul_comm]; exact e') e)
-  | Or.inr (Or.inr (Or.inl e)), Or.inr (Or.inr (Or.inr e')) =>
-    exact Or.inr (Or.inl (by
-      have := inv_unique (x := -c) (x' := a) (y := b) (by rw [mul_comm]; exact e') e
-      rw [← this, neg_neg]))
-  | Or.inr (Or.inr (Or.inr e)), Or.inl e' => exact Or.inr (Or.inr (Or.inr (e' ▸ e)))
-  | Or.inr (Or.inr (Or.inr e)), Or.inr (Or.inl e') => exact Or.inr (Or.inr (Or.inl (by rw [e']; exact e)))
-  | Or.inr (Or.inr (Or.inr e)), Or.inr (Or.inr (Or.inl e')) =>
-    exact Or.inr (Or.inl (inv_unique (x := -a) (x' := c) (y := b) (neg_mul_of_mul_neg e) (by rw [mul_comm]; exact e')).symm)
-  | Or.inr (Or.inr (Or.inr e)), Or.inr (Or.inr (Or.inr e')) =>
-    exact Or.inl (neg_eq_neg (inv_unique (x := -a) (x' := -c) (y := b) (neg_mul_of_mul_neg e) (by rw [mul_comm]; exact e'))).symm
-
-/-- The exponents of the orbit of `g^r`: `g^s ∈ orbit(g^r)`, `s < n`, forces `s ∈ {r, r + 2κ, 4κ − r, 2κ − r}`
-(for `1 ≤ r < κ`). -/
-theorem orbit_exponent (F : Frame p κ g) {r s : Nat} (hr1 : 1 ≤ r) (hrκ : r < κ) (hs : s < p - 1)
-    (h : InOrbit (g ^ r) (g ^ s)) : s = r ∨ s = r + (κ + κ) ∨ s = κ + κ + κ + κ - r ∨ s = κ + κ - r := by
-  have hn := F.n_eq
-  have hπ := F.half_period
-  rw [two_mul_eq] at hπ
-  rw [hn, four_mul_eq] at hs
-  have hr2 : r < κ + κ := Nat.lt_of_lt_of_le hrκ (Nat.le_add_right κ κ)
-  have hr4 : r < κ + κ + κ + κ := Nat.lt_of_lt_of_le hr2 (Nat.le_trans (Nat.le_add_right _ κ) (Nat.le_add_right _ κ))
-  have hpow_inj : ∀ {i j : Nat}, i < κ + κ + κ + κ → j < κ + κ + κ + κ → g ^ i = g ^ j → i = j :=
-    fun hi hj e => F.pow_inj (by rw [hn, four_mul_eq]; exact hi) (by rw [hn, four_mul_eq]; exact hj) e
-  have hpn : g ^ (κ + κ + κ + κ) = 1 := by rw [← four_mul_eq, ← hn]; exact F.pow_n
-  match h with
-  | Or.inl e => exact Or.inl (hpow_inj hs hr4 e)
-  | Or.inr (Or.inl e) =>
-    have e' : g ^ s = g ^ (r + (κ + κ)) := by rw [e, pow_add, hπ, mul_comm, neg_one_mul]
-    have hlt : r + (κ + κ) < κ + κ + κ + κ := by
-      rw [show κ + κ + κ + κ = (κ + κ) + (κ + κ) by rw [Nat.add_assoc]]
-      exact Nat.add_lt_add_right hr2 _
-    exact Or.inr (Or.inl (hpow_inj hs hlt e'))
-  | Or.inr (Or.inr (Or.inl e)) =>
-    have hlt : κ + κ + κ + κ - r < κ + κ + κ + κ := Nat.sub_lt (Nat.lt_of_lt_of_le (Nat.zero_lt_succ 0) (Nat.le_trans hr1 (Nat.le_of_lt hr4))) hr1
-    have e2 : g ^ r * g ^ (κ + κ + κ + κ - r) = 1 := by rw [← pow_add, FRC.Nat.add_sub_of_le (Nat.le_of_lt hr4), hpn]
-    have e' : g ^ s = g ^ (κ + κ + κ + κ - r) := F.mul_left_cancel (F.pow_ne_zero r) (e.trans e2.symm)
-    exact Or.inr (Or.inr (Or.inl (hpow_inj hs hlt e')))
-  | Or.inr (Or.inr (Or.inr e)) =>
-    have hlt : κ + κ - r < κ + κ + κ + κ := Nat.lt_of_le_of_lt (Nat.sub_le _ _)
-      (Nat.lt_of_lt_of_le (Nat.lt_add_of_pos_right F.cap_pos) (Nat.le_add_right _ κ))
-    have e2 : g ^ r * -(g ^ (κ + κ - r)) = 1 := by
-      rw [← mul_neg, ← pow_add, FRC.Nat.add_sub_of_le (Nat.le_of_lt hr2), hπ, neg_neg]
-    have e' : -(g ^ s) = -(g ^ (κ + κ - r)) := F.mul_left_cancel (F.pow_ne_zero r) (e.trans e2.symm)
-    exact Or.inr (Or.inr (Or.inr (hpow_inj hs hlt (neg_eq_neg e'))))
-
-/-- 1:B2 (Theorem 1, the count, uniqueness), 2:D7 — two representatives `g^r`, `g^{r'}` with `1 ≤ r, r' < κ` whose
-orbits meet are the same: the Klein orbits off `Q₄` are exactly `κ − 1`, one for each `r ∈ [1, κ)`. -/
-theorem orbit_rep_unique (F : Frame p κ g) {r r' : Nat} (hr1 : 1 ≤ r) (hrκ : r < κ) (_hr1' : 1 ≤ r')
-    (hrκ' : r' < κ) {x : Shell p} (hx : InOrbit (g ^ r) x) (hx' : InOrbit (g ^ r') x) : r = r' := by
-  have hn := F.n_eq
-  have hr' : r' < p - 1 := by
-    rw [hn, four_mul_eq]
-    exact Nat.lt_of_lt_of_le hrκ' (Nat.le_trans (Nat.le_add_right κ κ) (Nat.le_trans (Nat.le_add_right _ κ) (Nat.le_add_right _ κ)))
-  have h := inOrbit_trans hx (inOrbit_symm hx')
-  match F.orbit_exponent hr1 hrκ hr' h with
-  | Or.inl e => exact e.symm
-  | Or.inr (Or.inl e) =>
-    exact absurd hrκ' (Nat.not_lt_of_le (by rw [e]; exact Nat.le_trans (Nat.le_add_right κ κ) (Nat.le_add_left _ r)))
-  | Or.inr (Or.inr (Or.inl e)) =>
-    -- 4κ − r > κ since r < κ
-    have : κ ≤ κ + κ + κ + κ - r := by
-      apply FRC.Nat.le_sub_of_add_le
-      rw [Nat.add_assoc, Nat.add_assoc]
-      exact Nat.add_le_add_left (Nat.le_trans (Nat.le_of_lt hrκ) (Nat.le_add_right κ _)) κ
-    exact absurd hrκ' (Nat.not_lt_of_le (e ▸ this))
-  | Or.inr (Or.inr (Or.inr e)) =>
-    -- 2κ − r > κ since r < κ
-    have : κ ≤ κ + κ - r := by
-      apply FRC.Nat.le_sub_of_add_le
-      exact Nat.add_le_add_left (Nat.le_of_lt hrκ) κ
-    exact absurd hrκ' (Nat.not_lt_of_le (e ▸ this))
-
-/-! ### 1:C2 — the frame group: the affine maps `x ↦ a + b·x`, `b ≠ 0`, act simply transitively on the frames -/
-
-/-- An affine map of the shell, `x ↦ a + b·x` with `b ≠ 0`. -/
-structure Affine (p : Nat) [Pos p] where
-  a : Shell p
-  b : Shell p
-  hb : b ≠ 0
-
-namespace Affine
-
-def apply (φ : Affine p) (x : Shell p) : Shell p := φ.a + φ.b * x
-
-theorem ext' {φ ψ : Affine p} (ha : φ.a = ψ.a) (hb : φ.b = ψ.b) : φ = ψ := by
-  cases φ; cases ψ; cases ha; cases hb; rfl
-
-/-- The identity `x ↦ 0 + 1·x`. -/
-def one (F : Frame p κ g) : Affine p := ⟨0, 1, F.one_ne_zero⟩
-
-/-- Composition: `(a, b) ∘ (c, d) = (a + b·c, b·d)`. -/
-def comp (F : Frame p κ g) (φ ψ : Affine p) : Affine p := ⟨φ.a + φ.b * ψ.a, φ.b * ψ.b, F.mul_ne_zero φ.hb ψ.hb⟩
-
-theorem comp_apply (F : Frame p κ g) (φ ψ : Affine p) (x : Shell p) :
-    (comp F φ ψ).apply x = φ.apply (ψ.apply x) := by
-  unfold comp apply
-  show φ.a + φ.b * ψ.a + φ.b * ψ.b * x = φ.a + φ.b * (ψ.a + ψ.b * x)
-  rw [left_distrib, add_assoc, mul_assoc]
-
-theorem one_apply (F : Frame p κ g) (x : Shell p) : (one F).apply x = x := by
-  unfold one apply; show 0 + 1 * x = x; rw [one_mul, zero_add]
-
-theorem comp_assoc (F : Frame p κ g) (φ ψ χ : Affine p) : comp F (comp F φ ψ) χ = comp F φ (comp F ψ χ) :=
-  ext' (by show φ.a + φ.b * ψ.a + φ.b * ψ.b * χ.a = φ.a + φ.b * (ψ.a + ψ.b * χ.a); rw [left_distrib, add_assoc, mul_assoc])
-    (by show φ.b * ψ.b * χ.b = φ.b * (ψ.b * χ.b); exact mul_assoc _ _ _)
-
-/-- The inverse of `(a, b)`: `(−a·b⁻¹, b⁻¹)`, with `y` the inverse of `b`. -/
-def inv (F : Frame p κ g) (φ : Affine p) (y : Shell p) (hy : φ.b * y = 1) : Affine p :=
-  ⟨-(φ.a * y), y, fun h => F.one_ne_zero (by rw [← hy, h, mul_zero])⟩
-
-theorem comp_inv (F : Frame p κ g) (φ : Affine p) (y : Shell p) (hy : φ.b * y = 1) :
-    comp F φ (inv F φ y hy) = one F :=
-  ext' (by
-      show φ.a + φ.b * -(φ.a * y) = 0
-      calc φ.a + φ.b * -(φ.a * y) = φ.a + -(φ.b * (φ.a * y)) := by rw [← mul_neg]
-        _ = φ.a + -(φ.a * (φ.b * y)) := by rw [mul_left_comm]
-        _ = φ.a + -φ.a := by rw [hy, mul_one]
-        _ = 0 := add_neg _)
-    (by show φ.b * y = 1; exact hy)
-
-/-- 1:C2, 4:C5 (the frame group), simple transitivity — for frames `(a, b)` and `(c, d)` (`b, d ≠ 0`) there
-is exactly one affine map carrying the first to the second: `φ (a, b) := (φ.apply a, φ.b · b)`. -/
-theorem simply_transitive (F : Frame p κ g) (a b c d : Shell p) (hb : b ≠ 0) (hd : d ≠ 0) :
-    (∃ φ : Affine p, φ.apply a = c ∧ φ.b * b = d) ∧
-    (∀ φ ψ : Affine p, φ.apply a = c → φ.b * b = d → ψ.apply a = c → ψ.b * b = d → φ = ψ) := by
-  match F.exists_inv hb with
-  | ⟨y, hy⟩ =>
-    constructor
-    · refine ⟨⟨c + -(d * y * a), d * y, ?_⟩, ?_, ?_⟩
-      · exact F.mul_ne_zero hd (fun h => F.one_ne_zero (by rw [← hy, h, mul_zero]))
-      · show c + -(d * y * a) + d * y * a = c
-        rw [add_assoc, neg_add, add_zero]
-      · show d * y * b = d
-        rw [mul_assoc, mul_comm y b, hy, mul_one]
-    · intro φ ψ h1 h2 h3 h4
-      have eb : φ.b = ψ.b := by
-        calc φ.b = φ.b * (b * y) := by rw [hy, mul_one]
-          _ = (φ.b * b) * y := (mul_assoc _ _ _).symm
-          _ = (ψ.b * b) * y := by rw [h2, h4]
-          _ = ψ.b := by rw [mul_assoc, hy, mul_one]
-      have ea : φ.a = ψ.a := by
-        have e1 : φ.a + φ.b * a = c := h1
-        have e2 : ψ.a + ψ.b * a = c := h3
-        rw [← eb] at e2
-        exact add_right_cancel (e1.trans e2.symm)
-      exact ext' ea eb
-
-end Affine
-
-/-- The number of `x < n` with `P x`, as a sum of `0`s and `1`s. -/
-def natCount (P : Nat → Prop) [DecidablePred P] : Nat → Nat
-  | 0 => 0
-  | n + 1 => natCount P n + if P n then 1 else 0
-
-theorem natCount_ne_zero (n : Nat) : natCount (fun x => x ≠ 0) (n + 1) = n := by
-  induction n with
-  | zero => rfl
-  | succ n ih =>
-    show natCount (fun x => x ≠ 0) (n + 1) + (if n + 1 ≠ 0 then 1 else 0) = n + 1
-    rw [ih, ite_eq_left (Nat.succ_ne_zero n)]
-
-/-- 1:C2, 4:C5, the order — the frames `(a, b)`, `b ≠ 0`, number `p·(p − 1)`: `p` choices of the origin, `p − 1`
-of the unit. -/
-theorem frame_count (_F : Frame p κ g) :
-    natCount (fun _ => True) p * natCount (fun b => b ≠ 0) p = p * (p - 1) := by
-  have h1 : ∀ n, natCount (fun _ => True) n = n := fun n => by
-    induction n with
-    | zero => rfl
-    | succ n ih => show natCount (fun _ => True) n + (if True then 1 else 0) = n + 1; rw [ih, ite_eq_left trivial]
-  have hp : p = (p - 1) + 1 := (FRC.Nat.sub_add_cancel Pos.pos).symm
-  rw [h1]
-  have h2 : natCount (fun b => b ≠ 0) p = p - 1 := by
-    have := natCount_ne_zero (p - 1)
-    rw [← hp] at this; exact this
-  rw [h2]
-
-end Frame
-end Shell
-end FRC
 
 namespace FRC.Algebra
 -- Ledger predicates of 1-algebra (generated by make_predicates.py from docs/1-algebra/1-algebra-ledger.json; edit the ledger, not this section)
@@ -2837,6 +4252,8 @@ orientation transport of the quarter-turn under a change of drive (no third case
 below `√p`; and the value rows decided by the kernel: the `p = 13` coincidence (`e_p = π_A = −1/2 = 6`),
 the residue lines of `e` and `π` on `𝔽₁₃`, the terminal residue `−(!13)⁻¹ = 9`, the legibility window and
 the first revival on `𝔽₁₃`, the 36 two-digit revivals, and the products `!p·A(p)` on the six wall shells.
+
+Since the ledger migration (task LM17) `ofNat_self` and `ofNat_add_self` live in `Frame.lean`; the old names stay as aliases.
 -/
 
 namespace FRC.Epi
@@ -2931,13 +4348,6 @@ theorem dr_succ : ∀ n : Nat, (ofNat (dr (n + 1)) : Shell p) = ofNat (n + 1) * 
       rw [ih, add_assoc, add_neg, add_zero]
     rw [e1, neg_one_pow_succ (n + 1), ofNat_succ (n + 1), right_distrib, one_mul,
       add_comm (ofNat (dr (n + 1)) + -(-1) ^ (n + 1)) (ofNat (n + 1) * ofNat (dr (n + 1))), ← add_assoc]
-
-/-- `p ≡ 0` on the shell. -/
-theorem ofNat_self : (ofNat p : Shell p) = 0 := by
-  apply ext; show p % p = 0; exact FRC.Nat.mod_self p Pos.pos
-
-theorem ofNat_add_self (n : Nat) : (ofNat (n + p) : Shell p) = ofNat n := by
-  rw [← ofNat_add, ofNat_self, add_zero]
 
 theorem four_kappa_add_one_mod_two (κ : Nat) : (4 * κ + 1) % 2 = 1 :=
   FRC.Nat.mod_unique (q := 2 * κ) (Nat.lt_succ_self 1) (by rw [← FRC.Nat.mul_assoc])
@@ -3133,6 +4543,19 @@ theorem kurepa_alt_values :
 
 end values
 
+/-! ## Old names (ledger migration, task LM17): the declarations moved to the themes, each under its old name -/
+section aliases
+variable {p : Nat} [Pos p] {κ : Nat} {g : Shell p}
+
+/-- `p ≡ 0` on the shell. -/
+theorem ofNat_self : (ofNat p : Shell p) = 0 :=
+  FRC.Shell.Frame.ofNat_self
+
+theorem ofNat_add_self (n : Nat) : (ofNat (n + p) : Shell p) = ofNat n :=
+  FRC.Shell.Frame.ofNat_add_self n
+
+end aliases
+
 -- Ledger predicates of 13-epi (generated by make_predicates.py from docs/13-epi/13-epi-ledger.json; edit the ledger, not this section)
 /-- 13:B2 (p13009) — Orientation transport: under $\gen'=\gen^{u}$, $\gcd(u,\p-1)=1$, the re-derived quarter-turn is $\im'=\im$ exactly when $u\equiv1\pmod4$ and $\im'=-\im$ (the conjugate chart) when $u\equiv3\pmod4$; there is no third case, and every chirality-sensitive statement holds for the other chirality under $\im\mapsto-\im$. -/
 theorem p13009 : (∀ {p κ : Nat} [FRC.Pos p] {g : FRC.Shell p}, FRC.Shell.Frame p κ g → ∀ {u : Nat}, FRC.Shell.Coprime u (p - (1 : Nat)) → (u % (4 : Nat) = (1 : Nat) ∨ u % (4 : Nat) = (3 : Nat)) ∧ (u % (4 : Nat) = (1 : Nat) → FRC.Shell.Frame.quarterTurn (g ^ u) κ = FRC.Shell.Frame.quarterTurn g κ) ∧ (u % (4 : Nat) = (3 : Nat) → FRC.Shell.Frame.quarterTurn (g ^ u) κ = -FRC.Shell.Frame.quarterTurn g κ)) ∧ ∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → ∀ (u : Nat), (u % (4 : Nat) = (1 : Nat) → -(g ^ u) ^ κ = -g ^ κ) ∧ (u % (4 : Nat) = (3 : Nat) → -(g ^ u) ^ κ = - -g ^ κ) :=
@@ -3199,11 +4622,16 @@ realized on `𝔽₁₃` and the energy–momentum relation among them (F2–F4,
 its absence on the even capacities (F5); the window ladder by integer squares (G2); the roundings of the resolution floor on the
 chart value, its bits and the clock-bound crossover (G5, P1); the linear pin and the root pair as the content of the constancy
 prediction (P2). Every declaration is checked to depend on no axiom (`check_core_axioms.py`).
+
+Since the ledger migration (task LM17) `isPrime` lives in `Nat.lean`, the root pair and the bounded quantifiers'
+deciders in `Frame.lean`; every old name stays as an alias.
 -/
 
 namespace FRC.Dimensions
 
 open FRC.Shell
+open FRC.Nat (isPrime)
+open FRC.Shell.Frame (root_pair)
 
 /-! ## The domain lattice as pairs of residues (10:C1, C2, C3) -/
 
@@ -3301,30 +4729,6 @@ end Dom
 
 /-! ## Bounded universal quantifiers, decided by search (no axioms) -/
 
-/-- `∀ m < n, P m`, decided by recursion on `n` — Lean's own instance carries `propext`; this one nothing. -/
-def decForallLT (P : Nat → Prop) [DecidablePred P] : (n : Nat) → Decidable (∀ m, m < n → P m)
-  | 0 => isTrue (fun m hm => absurd hm (Nat.not_lt_zero m))
-  | n + 1 =>
-    match decForallLT P n with
-    | isFalse h => isFalse (fun hall => h (fun m hm => hall m (Nat.lt_succ_of_lt hm)))
-    | isTrue h =>
-      if hn : P n then
-        isTrue (fun m hm =>
-          match Nat.lt_or_ge m n with
-          | .inl hlt => h m hlt
-          | .inr hge => (Nat.le_antisymm (Nat.le_of_lt_succ hm) hge) ▸ hn)
-      else isFalse (fun hall => hn (hall n (Nat.lt_succ_self n)))
-
-instance instDecForallLT (P : Nat → Prop) [DecidablePred P] (n : Nat) : Decidable (∀ m, m < n → P m) :=
-  decForallLT P n
-
-/-- `∀ x : Shell p, P x`, decided through the representatives. -/
-instance instDecForallShell {p : Nat} [Pos p] (P : Shell p → Prop) [DecidablePred P] :
-    Decidable (∀ x, P x) :=
-  match decForallLT (fun v => P (ofNat v)) p with
-  | isTrue h => isTrue (fun x => ofNat_val x ▸ h x.val x.lt)
-  | isFalse h => isFalse (fun hall => h (fun v _ => hall (ofNat v)))
-
 /-- `∀ x : Dom p n, P x`, decided componentwise. -/
 instance instDecForallDom {p n : Nat} [Pos p] [Pos n] (P : Dom p n → Prop) [DecidablePred P] :
     Decidable (∀ x, P x) :=
@@ -3382,7 +4786,7 @@ theorem ofNat_three_kappa_ne_zero : (ofNat (3 * κ) : Shell (4 * κ)) ≠ 0 := f
   exact Nat.ne_of_gt (Nat.mul_pos (Nat.zero_lt_succ 2) Pos.pos) hv
 
 /-- `4κ ≡ 0` in `C_{4κ}`. -/
-theorem ofNat_four_kappa : (ofNat (4 * κ) : Shell (4 * κ)) = 0 := Epi.ofNat_self
+theorem ofNat_four_kappa : (ofNat (4 * κ) : Shell (4 * κ)) = 0 := FRC.Shell.Frame.ofNat_self
 
 theorem flag_pow (m : Nat) : flag κ ^ m = ⟨0, ofNat (m * κ)⟩ := by
   rw [Dom.pow_eq]
@@ -3437,7 +4841,7 @@ theorem meridian_transport : (L κ * T κ ^ κ) ^ (4 * κ + 1) = flag κ := by
   rw [flag_eq_pow, Dom.pow_eq]
   refine Dom.ext ?_ ?_
   · show ofNat (4 * κ + 1) * (1 + 0) = 0
-    rw [Shell.add_zero, Shell.mul_one]; exact Epi.ofNat_self
+    rw [Shell.add_zero, Shell.mul_one]; exact FRC.Shell.Frame.ofNat_self
   · show ofNat (4 * κ + 1) * (0 + ofNat κ) = ofNat κ
     rw [Shell.zero_add, Frame.ofNat_mul, FRC.Nat.add_mul (4 * κ) 1 κ, Nat.one_mul,
       Nat.mul_comm (4 * κ) κ, Nat.add_comm]
@@ -3446,7 +4850,7 @@ theorem meridian_transport : (L κ * T κ ^ κ) ^ (4 * κ + 1) = flag κ := by
   ofNat_add_mul_self (a : Nat) : ∀ m : Nat, (ofNat (a + m * (4 * κ)) : Shell (4 * κ)) = ofNat a
     | 0 => by rw [Nat.zero_mul, Nat.add_zero]
     | m + 1 => by
-      rw [FRC.Nat.add_mul m 1 (4 * κ), Nat.one_mul, ← Nat.add_assoc, Epi.ofNat_add_self,
+      rw [FRC.Nat.add_mul m 1 (4 * κ), Nat.one_mul, ← Nat.add_assoc, FRC.Shell.Frame.ofNat_add_self,
         ofNat_add_mul_self a m]
 
 /-- 10:D1 — the crossed duality is an involution, `δ_C(δ_C D) = D`, and carries `[L] ↦ [p]`, `[T] ↦ [E]`. -/
@@ -3496,7 +4900,7 @@ variable {Ω : Nat} [Pos Ω] {S : Nat} {g : Shell Ω}
 /-- 10:E4, 10:P2 — the linear pin: on a framed Carrier `Ω = 4S + 1`, `2G + 1 = 0` has the unique solution
 `G = 2S`, the half-cycle. -/
 theorem G_unique (F : Frame Ω S g) (x : Shell Ω) : 2 * x + 1 = 0 ↔ x = ofNat (2 * S) := by
-  have hΩ : (ofNat (4 * S + 1) : Shell Ω) = 0 := by rw [← F.cap]; exact Epi.ofNat_self
+  have hΩ : (ofNat (4 * S + 1) : Shell Ω) = 0 := by rw [← F.cap]; exact FRC.Shell.Frame.ofNat_self
   have h2S : (2 : Shell Ω) * ofNat (2 * S) + 1 = 0 := by
     rw [Frame.two_mul', Frame.ofNat_add, show (1 : Shell Ω) = ofNat 1 from rfl, Frame.ofNat_add,
       ← Nat.two_mul, ← FRC.Nat.mul_assoc]
@@ -3507,22 +4911,6 @@ theorem G_unique (F : Frame Ω S g) (x : Shell Ω) : 2 * x + 1 = 0 ↔ x = ofNat
     apply Shell.add_right_cancel (c := 1)
     rw [h, h2S]
   · intro h; rw [h]; exact h2S
-
-/-- 10:E4, 10:P2 — the root pair: if `x² = a` with `x ≠ 0` then `y² = a` iff `y = x` or `y = −x`, and `−x ≠ x`;
-each quadratic defining congruence has exactly two roots on a framed Carrier. -/
-theorem root_pair (F : Frame Ω S g) (a x : Shell Ω) (hx : x * x = a) (hx0 : x ≠ 0) :
-    (∀ y : Shell Ω, y * y = a ↔ (y = x ∨ y = -x)) ∧ -x ≠ x := by
-  refine ⟨fun y => ⟨fun hy => ?_, fun hy => ?_⟩, fun h => hx0 (F.eq_zero_of_eq_neg h.symm)⟩
-  · have h0 : (y + -x) * (y + x) = 0 := by
-      rw [Shell.right_distrib, Shell.left_distrib, Shell.left_distrib, ← Shell.neg_mul, ← Shell.neg_mul,
-        Shell.mul_comm y x, Shell.add_assoc, ← Shell.add_assoc (x * y), Shell.add_neg, Shell.zero_add,
-        hy, hx, Shell.add_neg]
-    rcases F.mul_eq_zero h0 with h | h
-    · left; exact (Shell.eq_neg_of_add_eq_zero h).trans (Shell.neg_neg x)
-    · right; exact Shell.eq_neg_of_add_eq_zero h
-  · rcases hy with rfl | rfl
-    · exact hx
-    · rw [Shell.neg_mul_neg]; exact hx
 
 /-- 10:E4, 10:E5 — the linkage at pair level and the pair consequences, on a framed Carrier: from
 `2G + 1 = 0`, `2c² = 1`, `ħ² = −1`, `k_B² = −2`: `(k_B c)² = −1`, so `k_B c = ħ` or `k_B c = −ħ`
@@ -3577,10 +4965,6 @@ theorem carrierLab :
     (1880160 : Shell 2408561) * 171106 = -18688 ∧ (2389873 : Shell 2408561) = -18688 ∧
     (1204280 : Shell 2408561) = -(171106 * 171106) ∧
     (18688 : Shell 2408561) * 171106 = 1880160 * 1204280 := by decide +kernel
-
-/-- Primality by trial division, decidable. -/
-def isPrime (n : Nat) : Prop := 2 ≤ n ∧ ∀ d, d < n → 2 ≤ d → n % d ≠ 0
-instance (n : Nat) : Decidable (isPrime n) := by unfold isPrime; exact inferInstance
 
 /-- 10:E9 — the admissibility predicate of the programme on `(p, Ω) = (4κ + 1, 4S + 1)`: `p` prime,
 `κ > 1`; `Ω` prime, `S` even, `S ≡ 1 (mod 3)`; `p² < Ω`. -/
@@ -3694,6 +5078,34 @@ theorem no_charge41 : ∀ x : DomK 10, x * x ≠ energy 10 * L 10 := by decide
 
 end values
 
+/-! ## Old names (ledger migration, task LM17): the declarations moved to the themes, each under its old name -/
+section aliases
+variable {p : Nat} [Pos p] {κ : Nat} {g : Shell p}
+
+/-- Primality by trial division, decidable. -/
+@[reducible] def isPrime (n : Nat) : Prop :=
+  FRC.Nat.isPrime n
+
+/-- 10:E4, 10:P2 — the root pair: if `x² = a` with `x ≠ 0` then `y² = a` iff `y = x` or `y = −x`, and `−x ≠ x`;
+each quadratic defining congruence has exactly two roots on a framed Carrier. -/
+theorem root_pair (F : Frame p κ g) (a x : Shell p) (hx : x * x = a) (hx0 : x ≠ 0) :
+    (∀ y : Shell p, y * y = a ↔ (y = x ∨ y = -x)) ∧ -x ≠ x :=
+  FRC.Shell.Frame.root_pair F a x hx hx0
+
+/-- `∀ m < n, P m`, decided by recursion on `n` — Lean's own instance carries `propext`; this one nothing. -/
+@[reducible] def decForallLT (P : Nat → Prop) [DecidablePred P] : (n : Nat) → Decidable (∀ m, m < n → P m) :=
+  FRC.Shell.decForallLT P
+
+@[reducible] def instDecForallLT (P : Nat → Prop) [DecidablePred P] (n : Nat) : Decidable (∀ m, m < n → P m) :=
+  FRC.Shell.instDecForallLT P n
+
+/-- `∀ x : Shell p, P x`, decided through the representatives. -/
+@[reducible] def instDecForallShell {p : Nat} [Pos p] (P : Shell p → Prop) [DecidablePred P] :
+    Decidable (∀ x, P x) :=
+  FRC.Shell.instDecForallShell P
+
+end aliases
+
 -- Ledger predicates of 10-dimensions (generated by make_predicates.py from docs/10-dimensions/10-dimensions-ledger.json; edit the ledger, not this section)
 /-- 10:C2 (p10012) — The modular unit-domain group and the grading: $\{U_{r,s}\}$ is a finite abelian group isomorphic to $\Dp$ under $U_{r,s}U_{r',s'}=U_{r+r',s+s'}$, and $\Ap$ is $\Dp$-graded, $\Ap^{(r,s)}\Ap^{(r',s')}\subseteq\Ap^{(r+r',s+s')}$. -/
 theorem p10012 : ∀ {p n : Nat} [FRC.Pos p] [FRC.Pos n] (a : FRC.Dimensions.Dom p n), a * a⁻¹ = (1 : FRC.Dimensions.Dom p n) :=
@@ -3789,6 +5201,9 @@ kernel computation, so an identity is one `decide +kernel`.  1:E7: the rotation 
 transform `(aI − S_v)⁻¹(aI + S_v)` (`rot_cayley`, `cayley_inj`), the half-turn at `a = 0` (`half_turn`), with kernel the
 scalars (`rot_trivial`) and `ρ_{−q} = ρ_q` (`rot_neg`).  1:E8: `(1+u)(1+w) = (1 − u·w) + (u + w + u × w)` (`one_add_mul`),
 the composition law (`compose`), the bracket (`bracket`).  No axioms.
+
+Since the ledger migration (task LM17) the quaternions over the shell, their norm and the ring normaliser live in the
+extension theme (`Theme/Extension.lean`) under their names; this module keeps the window and the Lie-algebra layer.
 -/
 
 namespace FRC
@@ -3967,20 +5382,6 @@ structure IQuat where
   c : SInt
   d : SInt
 
-/-- A quaternion over the shell. -/
-structure Quat (p : Nat) [Pos p] where
-  a : Shell p
-  b : Shell p
-  c : Shell p
-  d : Shell p
-
-/-- The Hamilton product on the shell. -/
-def Quat.mul (q r : Quat p) : Quat p :=
-  ⟨(q.a * r.a + -(q.b * r.b)) + (-(q.c * r.c) + -(q.d * r.d)),
-   (q.a * r.b + q.b * r.a) + (q.c * r.d + -(q.d * r.c)),
-   (q.a * r.c + -(q.b * r.d)) + (q.c * r.a + q.d * r.b),
-   (q.a * r.d + q.b * r.c) + (-(q.c * r.b) + q.d * r.a)⟩
-
 /-- The Hamilton product on the window pairs, the same formula. -/
 def IQuat.mul (q r : IQuat) : IQuat :=
   ⟨sadd (sadd (smul q.a r.a) (sneg (smul q.b r.b))) (sadd (sneg (smul q.c r.c)) (sneg (smul q.d r.d))),
@@ -4036,272 +5437,6 @@ theorem quaternion_window {H : Nat} (hH : 8 * (H * H) < p) {q r : IQuat} (hq : Q
   unfold IQuat.read at he
   exact IQuat.ext' (sread_inj hM hs.1 hn.1 (congrArg Quat.a he)) (sread_inj hM hs.2.1 hn.2.1 (congrArg Quat.b he))
     (sread_inj hM hs.2.2.1 hn.2.2.1 (congrArg Quat.c he)) (sread_inj hM hs.2.2.2 hn.2.2.2 (congrArg Quat.d he))
-
-/-! ## A normaliser for ring identities on the shell (no axioms)
-
-An identity between two polynomial expressions is decided by expanding each side into a positive and a negative
-list of monomials, sorting, and comparing `P_l ++ N_r` with `P_r ++ N_l`; `RE.sound` turns a successful comparison
-(a kernel computation, `decide`) into the equation on the shell. -/
-
-inductive RE where
-  | var : Nat → RE
-  | zero : RE
-  | one : RE
-  | add : RE → RE → RE
-  | mul : RE → RE → RE
-  | neg : RE → RE
-
-def RE.eval (env : Nat → Shell p) : RE → Shell p
-  | .var i => env i
-  | .zero => 0
-  | .one => 1
-  | .add a b => a.eval env + b.eval env
-  | .mul a b => a.eval env * b.eval env
-  | .neg a => -(a.eval env)
-
-/-- The assignment of shell values to the variables `0, 1, 2, …` of an expression. -/
-def look : List (Shell p) → Nat → Shell p
-  | [], _ => 0
-  | x :: _, 0 => x
-  | _ :: l, n + 1 => look l n
-
-def mEval (env : Nat → Shell p) : List Nat → Shell p
-  | [] => 1
-  | i :: m => env i * mEval env m
-
-def pEval (env : Nat → Shell p) : List (List Nat) → Shell p
-  | [] => 0
-  | m :: P => mEval env m + pEval env P
-
-def pRow (m : List Nat) : List (List Nat) → List (List Nat)
-  | [] => []
-  | n :: Q => (m ++ n) :: pRow m Q
-
-def pMul : List (List Nat) → List (List Nat) → List (List Nat)
-  | [], _ => []
-  | m :: P, Q => pRow m Q ++ pMul P Q
-
-def RE.toP : RE → List (List Nat) × List (List Nat)
-  | .var i => ([[i]], [])
-  | .zero => ([], [])
-  | .one => ([[]], [])
-  | .add a b => (a.toP.1 ++ b.toP.1, a.toP.2 ++ b.toP.2)
-  | .mul a b => (pMul a.toP.1 b.toP.1 ++ pMul a.toP.2 b.toP.2, pMul a.toP.1 b.toP.2 ++ pMul a.toP.2 b.toP.1)
-  | .neg a => (a.toP.2, a.toP.1)
-
-def insM (i : Nat) : List Nat → List Nat
-  | [] => [i]
-  | j :: m => if Nat.ble i j then i :: j :: m else j :: insM i m
-
-def sortM : List Nat → List Nat
-  | [] => []
-  | i :: m => insM i (sortM m)
-
-def lexLe : List Nat → List Nat → Bool
-  | [], _ => true
-  | _ :: _, [] => false
-  | i :: m, j :: n => if i = j then lexLe m n else Nat.ble i j
-
-def insP (m : List Nat) : List (List Nat) → List (List Nat)
-  | [] => [m]
-  | n :: P => if lexLe m n then m :: n :: P else n :: insP m P
-
-def sortP : List (List Nat) → List (List Nat)
-  | [] => []
-  | m :: P => insP m (sortP P)
-
-def nfP : List (List Nat) → List (List Nat)
-  | [] => []
-  | m :: P => insP (sortM m) (nfP P)
-
-theorem mEval_append (env : Nat → Shell p) (m n : List Nat) : mEval env (m ++ n) = mEval env m * mEval env n := by
-  induction m with
-  | nil => exact (one_mul _).symm
-  | cons i m ih => show env i * mEval env (m ++ n) = env i * mEval env m * mEval env n; rw [ih, mul_assoc]
-
-theorem pEval_append (env : Nat → Shell p) (P Q : List (List Nat)) : pEval env (P ++ Q) = pEval env P + pEval env Q := by
-  induction P with
-  | nil => exact (zero_add _).symm
-  | cons m P ih => show mEval env m + pEval env (P ++ Q) = mEval env m + pEval env P + pEval env Q; rw [ih, add_assoc]
-
-theorem pEval_row (env : Nat → Shell p) (m : List Nat) (Q : List (List Nat)) : pEval env (pRow m Q) = mEval env m * pEval env Q := by
-  induction Q with
-  | nil => exact (mul_zero _).symm
-  | cons n Q ih =>
-    show mEval env (m ++ n) + pEval env (pRow m Q) = mEval env m * (mEval env n + pEval env Q)
-    rw [ih, mEval_append, left_distrib]
-
-theorem pEval_mul (env : Nat → Shell p) (P Q : List (List Nat)) : pEval env (pMul P Q) = pEval env P * pEval env Q := by
-  induction P with
-  | nil => exact (zero_mul _).symm
-  | cons m P ih =>
-    show pEval env (pRow m Q ++ pMul P Q) = (mEval env m + pEval env P) * pEval env Q
-    rw [pEval_append, pEval_row, ih, right_distrib]
-
-theorem ring_add (A B C D : Shell p) : A + -B + (C + -D) = A + C + -(B + D) := by
-  rw [neg_add_rev, add_assoc, add_assoc, add_left_comm (-B) C (-D)]
-
-theorem ring_mul (A B C D : Shell p) : (A + -B) * (C + -D) = A * C + B * D + -(A * D + B * C) := by
-  rw [right_distrib, left_distrib, left_distrib, ← mul_neg, ← neg_mul, neg_mul_neg, neg_add_rev, add_assoc, add_assoc]
-  refine congrArg (A * C + ·) ?_
-  rw [add_comm (-(B * C)) (B * D), add_left_comm]
-
-theorem ring_neg (A B : Shell p) : -(A + -B) = B + -A := by rw [neg_add_rev, neg_neg, add_comm]
-
-theorem RE.toP_eval (env : Nat → Shell p) (e : RE) : e.eval env = pEval env e.toP.1 + -(pEval env e.toP.2) := by
-  induction e with
-  | var i =>
-    show env i = (env i * 1 + 0) + -(0 : Shell p)
-    rw [mul_one, add_zero, neg_zero, add_zero]
-  | zero => show (0 : Shell p) = 0 + -0; rw [neg_zero, add_zero]
-  | one => show (1 : Shell p) = (1 + 0) + -(0 : Shell p); rw [add_zero, neg_zero, add_zero]
-  | add a b iha ihb =>
-    show a.eval env + b.eval env = pEval env (a.toP.1 ++ b.toP.1) + -(pEval env (a.toP.2 ++ b.toP.2))
-    rw [iha, ihb, pEval_append, pEval_append, ring_add]
-  | mul a b iha ihb =>
-    show a.eval env * b.eval env = pEval env (pMul a.toP.1 b.toP.1 ++ pMul a.toP.2 b.toP.2) +
-      -(pEval env (pMul a.toP.1 b.toP.2 ++ pMul a.toP.2 b.toP.1))
-    rw [iha, ihb, pEval_append, pEval_append, pEval_mul, pEval_mul, pEval_mul, pEval_mul, ring_mul]
-  | neg a iha =>
-    show -(a.eval env) = pEval env a.toP.2 + -(pEval env a.toP.1)
-    rw [iha, ring_neg]
-
-theorem mEval_insM (env : Nat → Shell p) (i : Nat) (m : List Nat) : mEval env (insM i m) = env i * mEval env m := by
-  induction m with
-  | nil => rfl
-  | cons j m ih =>
-    show mEval env (if Nat.ble i j then i :: j :: m else j :: insM i m) = env i * (env j * mEval env m)
-    cases Nat.ble i j with
-    | true => rfl
-    | false => show env j * mEval env (insM i m) = _; rw [ih, mul_left_comm]
-
-theorem mEval_sortM (env : Nat → Shell p) (m : List Nat) : mEval env (sortM m) = mEval env m := by
-  induction m with
-  | nil => rfl
-  | cons i m ih => show mEval env (insM i (sortM m)) = env i * mEval env m; rw [mEval_insM, ih]
-
-theorem pEval_insP (env : Nat → Shell p) (m : List Nat) (P : List (List Nat)) : pEval env (insP m P) = mEval env m + pEval env P := by
-  induction P with
-  | nil => rfl
-  | cons n P ih =>
-    show pEval env (if lexLe m n then m :: n :: P else n :: insP m P) = mEval env m + (mEval env n + pEval env P)
-    cases lexLe m n with
-    | true => rfl
-    | false => show mEval env n + pEval env (insP m P) = _; rw [ih, add_left_comm]
-
-theorem pEval_nfP (env : Nat → Shell p) (P : List (List Nat)) : pEval env (nfP P) = pEval env P := by
-  induction P with
-  | nil => rfl
-  | cons m P ih => show pEval env (insP (sortM m) (nfP P)) = mEval env m + pEval env P; rw [pEval_insP, ih, mEval_sortM]
-
-def nbeq : List Nat → List Nat → Bool
-  | [], [] => true
-  | [], _ :: _ => false
-  | _ :: _, [] => false
-  | i :: m, j :: n => Nat.beq i j && nbeq m n
-
-def pbeq : List (List Nat) → List (List Nat) → Bool
-  | [], [] => true
-  | [], _ :: _ => false
-  | _ :: _, [] => false
-  | m :: P, n :: Q => nbeq m n && pbeq P Q
-
-theorem and_true_left {a b : Bool} (h : (a && b) = true) : a = true := by
-  cases a with
-  | false => exact absurd h (fun h' => Bool.noConfusion h')
-  | true => rfl
-
-theorem and_true_right {a b : Bool} (h : (a && b) = true) : b = true := by
-  cases a with
-  | false => exact absurd h (fun h' => Bool.noConfusion h')
-  | true => exact h
-
-theorem nbeq_eq : ∀ {m n : List Nat}, nbeq m n = true → m = n
-  | [], [], _ => rfl
-  | i :: m, j :: n, h => by
-    have e1 : i = j := Nat.eq_of_beq_eq_true (and_true_left h)
-    have e2 : m = n := nbeq_eq (and_true_right h)
-    rw [e1, e2]
-  | [], _ :: _, h => Bool.noConfusion h
-  | _ :: _, [], h => Bool.noConfusion h
-
-theorem pbeq_eq : ∀ {P Q : List (List Nat)}, pbeq P Q = true → P = Q
-  | [], [], _ => rfl
-  | m :: P, n :: Q, h => by
-    have e1 : m = n := nbeq_eq (and_true_left h)
-    have e2 : P = Q := pbeq_eq (and_true_right h)
-    rw [e1, e2]
-  | [], _ :: _, h => Bool.noConfusion h
-  | _ :: _, [], h => Bool.noConfusion h
-
-/-- The normaliser's soundness: if the two cross lists agree after normalisation, the two sides are equal on
-every assignment of shell values to the variables. -/
-theorem RE.sound (env : Nat → Shell p) (l r : RE) (hb : pbeq (nfP (l.toP.1 ++ r.toP.2)) (nfP (r.toP.1 ++ l.toP.2)) = true) :
-    l.eval env = r.eval env := by
-  have h := pbeq_eq hb
-  have h1 : pEval env l.toP.1 + pEval env r.toP.2 = pEval env r.toP.1 + pEval env l.toP.2 := by
-    rw [← pEval_append, ← pEval_append, ← pEval_nfP env (l.toP.1 ++ r.toP.2), ← pEval_nfP env (r.toP.1 ++ l.toP.2), h]
-  rw [RE.toP_eval env l, RE.toP_eval env r]
-  apply add_right_cancel (c := pEval env l.toP.2 + pEval env r.toP.2)
-  rw [← add_assoc, add_assoc (pEval env l.toP.1), neg_add, add_zero,
-      ← add_assoc, add_comm (pEval env r.toP.1 + -(pEval env r.toP.2)) (pEval env l.toP.2), ← add_assoc,
-      add_comm (pEval env l.toP.2) (pEval env r.toP.1), add_assoc, neg_add, add_zero, h1]
-
-/-! ## Quaternions over the shell: conjugation, norm, cross and dot products, and their expression twins -/
-
-def Quat.conj (q : Quat p) : Quat p := ⟨q.a, -q.b, -q.c, -q.d⟩
-def Quat.nrm (q : Quat p) : Shell p := q.a * q.a + q.b * q.b + (q.c * q.c + q.d * q.d)
-def Quat.vec (q : Quat p) : Quat p := ⟨0, q.b, q.c, q.d⟩
-def Quat.sc (s : Shell p) : Quat p := ⟨s, 0, 0, 0⟩
-def Quat.smul (s : Shell p) (q : Quat p) : Quat p := ⟨s * q.a, s * q.b, s * q.c, s * q.d⟩
-def Quat.add (q r : Quat p) : Quat p := ⟨q.a + r.a, q.b + r.b, q.c + r.c, q.d + r.d⟩
-def Quat.neg (q : Quat p) : Quat p := ⟨-q.a, -q.b, -q.c, -q.d⟩
-def Quat.cross (v x : Quat p) : Quat p := ⟨0, v.c * x.d + -(v.d * x.c), v.d * x.b + -(v.b * x.d), v.b * x.c + -(v.c * x.b)⟩
-def Quat.dot (v x : Quat p) : Shell p := v.b * x.b + v.c * x.c + v.d * x.d
-/-- Conjugation by `q`, not yet divided by the norm: `x ↦ q x q̄`. -/
-def Quat.conjBy (q x : Quat p) : Quat p := Quat.mul (Quat.mul q x) (Quat.conj q)
-
-theorem Quat.ext4 {q r : Quat p} (ha : q.a = r.a) (hb : q.b = r.b) (hc : q.c = r.c) (hd : q.d = r.d) : q = r :=
-  match q, r, ha, hb, hc, hd with
-  | ⟨_, _, _, _⟩, ⟨_, _, _, _⟩, rfl, rfl, rfl, rfl => rfl
-
-theorem Quat.pure_eq {x : Quat p} (hx : x.a = 0) : x = ⟨0, x.b, x.c, x.d⟩ :=
-  match x, hx with
-  | ⟨_, _, _, _⟩, rfl => rfl
-
-structure QR where
-  a : RE
-  b : RE
-  c : RE
-  d : RE
-
-def QR.eval (env : Nat → Shell p) (q : QR) : Quat p := ⟨q.a.eval env, q.b.eval env, q.c.eval env, q.d.eval env⟩
-def QR.mul (q r : QR) : QR :=
-  ⟨.add (.add (.mul q.a r.a) (.neg (.mul q.b r.b))) (.add (.neg (.mul q.c r.c)) (.neg (.mul q.d r.d))),
-   .add (.add (.mul q.a r.b) (.mul q.b r.a)) (.add (.mul q.c r.d) (.neg (.mul q.d r.c))),
-   .add (.add (.mul q.a r.c) (.neg (.mul q.b r.d))) (.add (.mul q.c r.a) (.mul q.d r.b)),
-   .add (.add (.mul q.a r.d) (.mul q.b r.c)) (.add (.neg (.mul q.c r.b)) (.mul q.d r.a))⟩
-def QR.conj (q : QR) : QR := ⟨q.a, .neg q.b, .neg q.c, .neg q.d⟩
-def QR.nrm (q : QR) : RE := .add (.add (.mul q.a q.a) (.mul q.b q.b)) (.add (.mul q.c q.c) (.mul q.d q.d))
-def QR.vec (q : QR) : QR := ⟨.zero, q.b, q.c, q.d⟩
-def QR.sc (s : RE) : QR := ⟨s, .zero, .zero, .zero⟩
-def QR.smul (s : RE) (q : QR) : QR := ⟨.mul s q.a, .mul s q.b, .mul s q.c, .mul s q.d⟩
-def QR.add (q r : QR) : QR := ⟨.add q.a r.a, .add q.b r.b, .add q.c r.c, .add q.d r.d⟩
-def QR.neg (q : QR) : QR := ⟨.neg q.a, .neg q.b, .neg q.c, .neg q.d⟩
-def QR.cross (v x : QR) : QR :=
-  ⟨.zero, .add (.mul v.c x.d) (.neg (.mul v.d x.c)), .add (.mul v.d x.b) (.neg (.mul v.b x.d)), .add (.mul v.b x.c) (.neg (.mul v.c x.b))⟩
-def QR.dot (v x : QR) : RE := .add (.add (.mul v.b x.b) (.mul v.c x.c)) (.mul v.d x.d)
-def QR.conjBy (q x : QR) : QR := QR.mul (QR.mul q x) (QR.conj q)
-/-- A quaternion of variables `i, i+1, i+2, i+3`; a pure one of variables `i, i+1, i+2`. -/
-def QR.v (i : Nat) : QR := ⟨.var i, .var (i + 1), .var (i + 2), .var (i + 3)⟩
-def QR.pv (i : Nat) : QR := ⟨.zero, .var i, .var (i + 1), .var (i + 2)⟩
-
-def RE.check (l r : RE) : Bool := pbeq (nfP (l.toP.1 ++ r.toP.2)) (nfP (r.toP.1 ++ l.toP.2))
-def QR.check (l r : QR) : Bool := RE.check l.a r.a && RE.check l.b r.b && (RE.check l.c r.c && RE.check l.d r.d)
-
-theorem QR.sound (env : Nat → Shell p) (l r : QR) (h : QR.check l r = true) : l.eval env = r.eval env :=
-  Quat.ext4 (RE.sound env _ _ (and_true_left (and_true_left h))) (RE.sound env _ _ (and_true_right (and_true_left h)))
-    (RE.sound env _ _ (and_true_left (and_true_right h))) (RE.sound env _ _ (and_true_right (and_true_right h)))
 
 /-! ## 1:E7 — the Lie-algebra layer, one axis -/
 
@@ -4389,10 +5524,6 @@ theorem bracket (u w : Quat p) (hu : u.a = 0) (hw : w.a = 0) :
 theorem rot_mul (q r x : Quat p) : Quat.conjBy (Quat.mul q r) x = Quat.conjBy q (Quat.conjBy r x) :=
   QR.sound (look [q.a, q.b, q.c, q.d, r.a, r.b, r.c, r.d, x.a, x.b, x.c, x.d]) (QR.conjBy (QR.mul (QR.v 0) (QR.v 4)) (QR.v 8))
     (QR.conjBy (QR.v 0) (QR.conjBy (QR.v 4) (QR.v 8))) (by decide +kernel)
-
-/-- 1:E8, the norm is multiplicative: `N(qr) = N(q) N(r)`. -/
-theorem nrm_mul (q r : Quat p) : Quat.nrm (Quat.mul q r) = Quat.nrm q * Quat.nrm r :=
-  RE.sound (look [q.a, q.b, q.c, q.d, r.a, r.b, r.c, r.d]) (QR.nrm (QR.mul (QR.v 0) (QR.v 4))) (.mul (QR.nrm (QR.v 0)) (QR.nrm (QR.v 4))) (by decide +kernel)
 
 /-- 1:E8, scaling: `(sq) x (sq)‾ = s² q x q̄` and `N(sq) = s² N(q)`, so the rotation of `q` depends on `q` up to a scalar. -/
 theorem rot_smul (s : Shell p) (q x : Quat p) :
@@ -4540,6 +5671,8 @@ nonsquare `ν` (the Witt kernel of the Lorentzian form), while `y² + z²` and `
 is multiplicative), boosts compose as norm-one elements multiply, `γ` is never zero, and the velocities
 `v = −νb/γ` obey the Einstein addition law exactly.  The counts — the null cone `p³ − p² + p` on the Lorentzian form,
 `p³ + p² − p` on the Euclidean one, `p + 1` boosts — are decided by the kernel on `𝔽₅`, `𝔽₁₃`, `𝔽₁₇`.  No axioms.
+
+Since the ledger migration (task LM17) `mul_mul_mul_comm` lives in `Shell.lean`; the old name stays as an alias.
 -/
 
 namespace FRC
@@ -4553,9 +5686,6 @@ def IsSquare (x : Shell p) : Prop := ∃ y : Shell p, y * y = x
 
 /-- 3:B2 (Thm. nonexistence, first clause) — `c² = ν` makes `ν` a square, so a nonsquare `ν` has no root `c`. -/
 theorem no_causal_root {ν : Shell p} (h : ¬IsSquare ν) (c : Shell p) : c * c ≠ ν := fun e => h ⟨c, e⟩
-
-theorem mul_mul_mul_comm (a b c d : Shell p) : (a * b) * (c * d) = (a * c) * (b * d) := by
-  rw [mul_assoc, mul_left_comm b, ← mul_assoc]
 
 theorem sq_mul (a b : Shell p) : (a * b) * (a * b) = (a * a) * (b * b) := mul_mul_mul_comm a b a b
 
@@ -4760,6 +5890,15 @@ theorem null17 : nullCount 17 3 = 4641 := by decide +kernel
 /-- 3:C2, 3:D1 [value] — the boosts number `p + 1`: `6`, `14`, `18`, `30` on `𝔽₅`, `𝔽₁₃`, `𝔽₁₇`, `𝔽₂₉`. -/
 theorem normOne_values : normOneCount 5 2 = 6 ∧ normOneCount 13 2 = 14 ∧ normOneCount 17 3 = 18 ∧
     normOneCount 29 2 = 30 := by decide +kernel
+
+/-! ## Old names (ledger migration, task LM17): the declarations moved to the themes, each under its old name -/
+section aliases
+variable {p : Nat} [Pos p] {κ : Nat} {g : Shell p}
+
+theorem mul_mul_mul_comm (a b c d : Shell p) : (a * b) * (c * d) = (a * c) * (b * d) :=
+  FRC.Shell.mul_mul_mul_comm a b c d
+
+end aliases
 
 end Frame
 end Shell
@@ -5030,213 +6169,16 @@ a larger frame); the pigeonhole behind periodic König and the horizon separatio
 iteration on `n` states repeats within `n` steps, so halting is decided by `n` steps); Cantor's theorem on the
 finite frame; definable choice by the least element; the equivariant obstruction on `𝔽₅`.  Every declaration
 prints "does not depend on any axioms".
+
+Since the ledger migration (task LM17) the language, its evaluation, the stability schema and the counting live in
+the logic theme (`Theme/Logic.lean`, namespace `FRC.Logic`); this module keeps the worked instance, the obstruction on
+`𝔽₅` and every old name as an alias.
 -/
 
 namespace FRC.Reductio
 
-/-! ### the maximum, from its definition -/
-
-/-- `mx a b`, the larger of two naturals, with its two bounds proved from the definition. -/
-def mx (a b : Nat) : Nat := if a ≤ b then b else a
-
-theorem le_mx_left (a b : Nat) : a ≤ mx a b := by
-  unfold mx
-  match Nat.decLe a b with
-  | isTrue h => rw [ite_eq_left h]; exact h
-  | isFalse h => rw [ite_eq_right h]; exact Nat.le_refl a
-
-theorem le_mx_right (a b : Nat) : b ≤ mx a b := by
-  unfold mx
-  match Nat.decLe a b with
-  | isTrue h => rw [ite_eq_left h]; exact Nat.le_refl b
-  | isFalse h => rw [ite_eq_right h]; exact Nat.le_of_lt (Nat.lt_of_not_le h)
-
-theorem lt_of_mx_lt_left {a b N : Nat} (h : mx a b < N) : a < N := Nat.lt_of_le_of_lt (le_mx_left a b) h
-theorem lt_of_mx_lt_right {a b N : Nat} (h : mx a b < N) : b < N := Nat.lt_of_le_of_lt (le_mx_right a b) h
-
-/-! ### 5:B6 — the bounded stability schema for an explicit `Δ₀` language -/
-
-/-- Terms: variables (de Bruijn indices), `0`, `1`, sum, product. -/
-inductive Term where
-  | var : Nat → Term
-  | zero : Term
-  | one : Term
-  | add : Term → Term → Term
-  | mul : Term → Term → Term
-
-/-- `Δ₀` formulas: atoms `s = t`, `s < t`, negation, conjunction, and the bounded quantifier `∀ x ≤ t, φ`
-(`x` is variable `0` in `φ`, the other variables shift up; `t` is read in the outer environment). -/
-inductive Form where
-  | eq : Term → Term → Form
-  | lt : Term → Term → Form
-  | neg : Form → Form
-  | conj : Form → Form → Form
-  | ball : Term → Form → Form
-
-/-- The environment extended by a value for variable `0`. -/
-def cons (x : Nat) (env : Nat → Nat) : Nat → Nat
-  | 0 => x
-  | i + 1 => env i
-
-/-- Terms over `ℕ`. -/
-def evalT (env : Nat → Nat) : Term → Nat
-  | .var i => env i
-  | .zero => 0
-  | .one => 1
-  | .add s t => evalT env s + evalT env t
-  | .mul s t => evalT env s * evalT env t
-
-/-- `f 0 && … && f (n − 1)`. -/
-def allBelow (f : Nat → Bool) : Nat → Bool
-  | 0 => true
-  | n + 1 => f n && allBelow f n
-
-/-- Formulas over `ℕ` (the standard value). -/
-def evalF (env : Nat → Nat) : Form → Bool
-  | .eq s t => decide (evalT env s = evalT env t)
-  | .lt s t => decide (evalT env s < evalT env t)
-  | .neg φ => !(evalF env φ)
-  | .conj φ ψ => evalF env φ && evalF env ψ
-  | .ball t φ => allBelow (fun x => evalF (cons x env) φ) (evalT env t + 1)
-
-/-- Terms in the frame `W_N`: a value is defined only while every intermediate value stays below `N`
-(overflow: `A(x, y, z)` fails for `x + y ≥ N`). -/
-def evalT? (N : Nat) (env : Nat → Nat) : Term → Option Nat
-  | .var i => if env i < N then some (env i) else none
-  | .zero => if 0 < N then some 0 else none
-  | .one => if 1 < N then some 1 else none
-  | .add s t => match evalT? N env s, evalT? N env t with
-      | some a, some b => if a + b < N then some (a + b) else none
-      | some _, none => none
-      | none, some _ => none
-      | none, none => none
-  | .mul s t => match evalT? N env s, evalT? N env t with
-      | some a, some b => if a * b < N then some (a * b) else none
-      | some _, none => none
-      | none, some _ => none
-      | none, none => none
-
-/-- Formulas in the frame `W_N`: an atom with an undefined term is false, a bounded quantifier is guarded by
-the definedness of its bound (the transcription `φ*` of the paper). -/
-def evalF? (N : Nat) (env : Nat → Nat) : Form → Bool
-  | .eq s t => match evalT? N env s, evalT? N env t with
-      | some a, some b => decide (a = b)
-      | some _, none => false
-      | none, some _ => false
-      | none, none => false
-  | .lt s t => match evalT? N env s, evalT? N env t with
-      | some a, some b => decide (a < b)
-      | some _, none => false
-      | none, some _ => false
-      | none, none => false
-  | .neg φ => !(evalF? N env φ)
-  | .conj φ ψ => evalF? N env φ && evalF? N env ψ
-  | .ball t φ => match evalT? N env t with
-      | some b => allBelow (fun x => evalF? N (cons x env) φ) (b + 1)
-      | none => false
-
-/-- The largest value a term's evaluation touches. -/
-def boundT (env : Nat → Nat) : Term → Nat
-  | .var i => env i
-  | .zero => 0
-  | .one => 1
-  | .add s t => mx (mx (boundT env s) (boundT env t)) (evalT env s + evalT env t)
-  | .mul s t => mx (mx (boundT env s) (boundT env t)) (evalT env s * evalT env t)
-
-/-- `max (f 0, …, f (n − 1))`. -/
-def maxBelow (f : Nat → Nat) : Nat → Nat
-  | 0 => 0
-  | n + 1 => mx (f n) (maxBelow f n)
-
-/-- `t(φ)`, the largest integer referenced in the evaluation of `φ` over `ℕ`. -/
-def boundF (env : Nat → Nat) : Form → Nat
-  | .eq s t => mx (boundT env s) (boundT env t)
-  | .lt s t => mx (boundT env s) (boundT env t)
-  | .neg φ => boundF env φ
-  | .conj φ ψ => mx (boundF env φ) (boundF env ψ)
-  | .ball t φ => mx (boundT env t) (maxBelow (fun x => boundF (cons x env) φ) (evalT env t + 1))
-
-theorem le_maxBelow (f : Nat → Nat) : ∀ {n x : Nat}, x < n → f x ≤ maxBelow f n
-  | 0, x, hx => absurd hx (Nat.not_lt_zero x)
-  | n + 1, x, hx =>
-    match Nat.decEq x n with
-    | isTrue e => by rw [e]; exact le_mx_left _ _
-    | isFalse e =>
-      have hlt : x < n := Nat.lt_of_le_of_ne (Nat.le_of_lt_succ hx) e
-      Nat.le_trans (le_maxBelow f hlt) (le_mx_right _ _)
-
-theorem allBelow_congr {f g : Nat → Bool} : ∀ {n : Nat}, (∀ x, x < n → f x = g x) → allBelow f n = allBelow g n
-  | 0, _ => rfl
-  | n + 1, h => by
-    show (f n && allBelow f n) = (g n && allBelow g n)
-    rw [h n (Nat.lt_succ_self n), allBelow_congr (fun x hx => h x (Nat.lt_succ_of_lt hx))]
-
-/-- 5:B6 (terms) — below its bound a term is defined in the frame, with its standard value. -/
-theorem evalT_frame (N : Nat) (env : Nat → Nat) : ∀ (t : Term), boundT env t < N → evalT? N env t = some (evalT env t)
-  | .var i, h => by
-    have h' : env i < N := h
-    show (if env i < N then some (env i) else none) = some (env i); rw [ite_eq_left h']
-  | .zero, h => by
-    have h' : 0 < N := h
-    show (if 0 < N then some 0 else none) = some 0; rw [ite_eq_left h']
-  | .one, h => by
-    have h' : 1 < N := h
-    show (if 1 < N then some 1 else none) = some 1; rw [ite_eq_left h']
-  | .add s t, h => by
-    have hs := evalT_frame N env s (lt_of_mx_lt_left (lt_of_mx_lt_left h))
-    have ht := evalT_frame N env t (lt_of_mx_lt_right (lt_of_mx_lt_left h))
-    show (match evalT? N env s, evalT? N env t with
-      | some a, some b => if a + b < N then some (a + b) else none
-      | some _, none => none
-      | none, some _ => none
-      | none, none => none) = some (evalT env s + evalT env t)
-    rw [hs, ht]
-    show (if evalT env s + evalT env t < N then some (evalT env s + evalT env t) else none) = some (evalT env s + evalT env t)
-    rw [ite_eq_left (lt_of_mx_lt_right h)]
-  | .mul s t, h => by
-    have hs := evalT_frame N env s (lt_of_mx_lt_left (lt_of_mx_lt_left h))
-    have ht := evalT_frame N env t (lt_of_mx_lt_right (lt_of_mx_lt_left h))
-    show (match evalT? N env s, evalT? N env t with
-      | some a, some b => if a * b < N then some (a * b) else none
-      | some _, none => none
-      | none, some _ => none
-      | none, none => none) = some (evalT env s * evalT env t)
-    rw [hs, ht]
-    show (if evalT env s * evalT env t < N then some (evalT env s * evalT env t) else none) = some (evalT env s * evalT env t)
-    rw [ite_eq_left (lt_of_mx_lt_right h)]
-
-/-- 5:B6 (Theorem stability, schema form) — every `Δ₀` formula takes its standard value in every frame `W_N`
-with `N > t(φ)`: `W_N ⊨ φ* ⟺ ℕ ⊨ φ`, for every environment, by induction on the formula. -/
-theorem stable (N : Nat) : ∀ (φ : Form) (env : Nat → Nat), boundF env φ < N → evalF? N env φ = evalF env φ
-  | .eq s t, env, h => by
-    show (match evalT? N env s, evalT? N env t with
-      | some a, some b => decide (a = b)
-      | some _, none => false
-      | none, some _ => false
-      | none, none => false) = decide (evalT env s = evalT env t)
-    rw [evalT_frame N env s (lt_of_mx_lt_left h), evalT_frame N env t (lt_of_mx_lt_right h)]
-  | .lt s t, env, h => by
-    show (match evalT? N env s, evalT? N env t with
-      | some a, some b => decide (a < b)
-      | some _, none => false
-      | none, some _ => false
-      | none, none => false) = decide (evalT env s < evalT env t)
-    rw [evalT_frame N env s (lt_of_mx_lt_left h), evalT_frame N env t (lt_of_mx_lt_right h)]
-  | .neg φ, env, h => by
-    show (!(evalF? N env φ)) = !(evalF env φ)
-    rw [stable N φ env h]
-  | .conj φ ψ, env, h => by
-    show (evalF? N env φ && evalF? N env ψ) = (evalF env φ && evalF env ψ)
-    rw [stable N φ env (lt_of_mx_lt_left h), stable N ψ env (lt_of_mx_lt_right h)]
-  | .ball t φ, env, h => by
-    show (match evalT? N env t with
-      | some b => allBelow (fun x => evalF? N (cons x env) φ) (b + 1)
-      | none => false) = allBelow (fun x => evalF (cons x env) φ) (evalT env t + 1)
-    rw [evalT_frame N env t (lt_of_mx_lt_left h)]
-    show allBelow (fun x => evalF? N (cons x env) φ) (evalT env t + 1) = allBelow (fun x => evalF (cons x env) φ) (evalT env t + 1)
-    exact allBelow_congr (fun x hx =>
-      stable N φ (cons x env) (Nat.lt_of_le_of_lt (le_maxBelow (fun x => boundF (cons x env) φ) hx) (lt_of_mx_lt_right h)))
-
+section
+open FRC.Logic
 
 /-! ### 5:B6 — the worked instance: Goldbach below 10 in the frames -/
 
@@ -5278,205 +6220,6 @@ theorem goldbach_ten_frame : evalF? 101 (fun _ => 0) (goldbach 10) = true := by 
 theorem goldbach_ten_stable (N : Nat) (hN : 100 < N) : evalF? N (fun _ => 0) (goldbach 10) = true := by
   rw [stable N (goldbach 10) (fun _ => 0) (goldbach_ten_bound ▸ hN)]; exact goldbach_ten
 
-/-! ### 5:C2 — records and the mirror -/
-
-/-- The number of strings of length at most `K` over `s` letters, `Σ_{i ≤ K} s^i`. -/
-def records (s : Nat) : Nat → Nat
-  | 0 => 1
-  | K + 1 => records s K + s ^ (K + 1)
-
-/-- 5:C2 (the count) — fewer than `s^(K+1)` records exist for an alphabet of `s ≥ 2` letters. -/
-theorem records_lt (s : Nat) (hs : 2 ≤ s) : ∀ K, records s K < s ^ (K + 1)
-  | 0 => by
-    show 1 < s ^ 1
-    rw [Nat.pow_succ, Nat.pow_zero, Nat.one_mul]
-    exact Nat.lt_of_lt_of_le (Nat.lt_succ_self 1) hs
-  | K + 1 => by
-    show records s K + s ^ (K + 1) < s ^ (K + 1 + 1)
-    have h1 : records s K + s ^ (K + 1) < s ^ (K + 1) + s ^ (K + 1) := Nat.add_lt_add_right (records_lt s hs K) _
-    have h2 : s ^ (K + 1) + s ^ (K + 1) ≤ s ^ (K + 1) * s := by
-      rw [← Nat.mul_two]; exact Nat.mul_le_mul_left _ hs
-    exact Nat.lt_of_lt_of_le h1 h2
-
-/-- 5:C2 (Proposition mirror) — a part with fewer records than the frame has elements holds no injective
-representation of the frame's domain: no `f : [0, N) → [0, R)` is injective when `R < N`. -/
-theorem no_mirror {N R : Nat} (hR : R < N) (f : Nat → Nat) (hf : ∀ i, i < N → f i < R)
-    (hinj : ∀ i j, i < N → j < N → f i = f j → i = j) : False :=
-  have hnd := FRC.Shell.imageList_nodup hinj (Nat.le_refl N)
-  have hlen := FRC.Shell.imageList_length f N
-  have hb : ∀ e, Pigeonhole.mem e (FRC.Shell.imageList f N) → e < R := fun _ he =>
-    match FRC.Shell.mem_imageList he with
-    | ⟨j, hj, ej⟩ => ej ▸ hf j hj
-  have := Pigeonhole.length_le_of_nodup_lt R _ hnd hb
-  Nat.lt_irrefl N (Nat.lt_of_le_of_lt (hlen ▸ this) hR)
-
-/-! ### 5:C5, 5:E5 — an iteration on finitely many states repeats: periodic König and bounded halting -/
-
-/-- `iter f x k = f^k x`. -/
-def iter (f : Nat → Nat) (x : Nat) : Nat → Nat
-  | 0 => x
-  | k + 1 => f (iter f x k)
-
-theorem iter_lt (f : Nat → Nat) {n : Nat} (hf : ∀ y, y < n → f y < n) {x : Nat} (hx : x < n) :
-    ∀ k, iter f x k < n
-  | 0 => hx
-  | k + 1 => hf _ (iter_lt f hf hx k)
-
-theorem iter_add (f : Nat → Nat) (x : Nat) (i : Nat) : ∀ k, iter f x (i + k) = iter f (iter f x i) k
-  | 0 => rfl
-  | k + 1 => by show f (iter f x (i + k)) = f (iter f (iter f x i) k); rw [iter_add f x i k]
-
-/-- 5:E5, 5:C5 (Lemma periodic König, the pigeonhole) — on `n` states the iteration from `x` revisits a state within
-`n` steps: some `i < j ≤ n` have `f^i x = f^j x`. -/
-theorem repeat_below (f : Nat → Nat) (n : Nat) (hf : ∀ y, y < n → f y < n) (x : Nat) (hx : x < n) :
-    ∃ i j, i < j ∧ j ≤ n ∧ iter f x i = iter f x j :=
-  have dec : Decidable (∃ j, j < n + 1 ∧ ∃ i, i < j ∧ iter f x i = iter f x j) :=
-    @FRC.Shell.decExistsLT (fun j => ∃ i, i < j ∧ iter f x i = iter f x j)
-      (fun j => FRC.Shell.decExistsLT (fun i => iter f x i = iter f x j) j) (n + 1)
-  match dec with
-  | isTrue ⟨j, hj, i, hij, e⟩ => ⟨i, j, hij, Nat.le_of_lt_succ hj, e⟩
-  | isFalse hno =>
-    have hinj : ∀ i j, i < n + 1 → j < n + 1 → iter f x i = iter f x j → i = j := fun i j hi hj e =>
-      match Nat.lt_or_ge i j with
-      | Or.inl hlt => absurd ⟨j, hj, i, hlt, e⟩ hno
-      | Or.inr hge => match Nat.lt_or_ge j i with
-        | Or.inl hlt => absurd ⟨i, hi, j, hlt, e.symm⟩ hno
-        | Or.inr hge' => Nat.le_antisymm hge' hge
-    have hnd := FRC.Shell.imageList_nodup hinj (Nat.le_refl (n + 1))
-    have hb : ∀ e, Pigeonhole.mem e (FRC.Shell.imageList (iter f x) (n + 1)) → e < n := fun _ he =>
-      match FRC.Shell.mem_imageList he with
-      | ⟨k, _, ek⟩ => ek ▸ iter_lt f hf hx k
-    have := Pigeonhole.length_le_of_nodup_lt n _ hnd hb
-    by rw [FRC.Shell.imageList_length] at this; exact absurd this (Nat.not_succ_le_self n)
-
-theorem sub_pos {i j : Nat} (h : i < j) : 0 < j - i :=
-  match Nat.decEq (j - i) 0 with
-  | isTrue e =>
-    have hj : j = i := by rw [← FRC.Nat.add_sub_of_le (Nat.le_of_lt h), e, Nat.add_zero]
-    absurd (hj ▸ h) (Nat.lt_irrefl i)
-  | isFalse e => Nat.pos_of_ne_zero e
-
-/-- 5:E5 — the walk is eventually periodic: from step `i` on, period `p = j − i` with `0 < p ≤ n`,
-`f^(i+k+p) x = f^(i+k) x` for every `k`. -/
-theorem eventually_periodic (f : Nat → Nat) (n : Nat) (hf : ∀ y, y < n → f y < n) (x : Nat) (hx : x < n) :
-    ∃ i p, 0 < p ∧ p ≤ n ∧ ∀ k, iter f x (i + k + p) = iter f x (i + k) :=
-  match repeat_below f n hf x hx with
-  | ⟨i, j, hij, hjn, e⟩ =>
-    ⟨i, j - i, sub_pos hij, Nat.le_trans (Nat.sub_le j i) hjn, fun k => by
-      rw [Nat.add_right_comm, FRC.Nat.add_sub_of_le (Nat.le_of_lt hij), iter_add f x j k, iter_add f x i k, e]⟩
-
-/-- 5:C5 (horizon separation) — a run on `n` states reaches a state `h` iff it reaches it within `n` steps: halting for bounded space is decided from above by `n` steps of simulation. -/
-theorem halts_iff_halts_below (f : Nat → Nat) (n : Nat) (hf : ∀ y, y < n → f y < n) (h : Nat)
-    (x : Nat) (hx : x < n) : (∃ k, iter f x k = h) ↔ ∃ k, k ≤ n ∧ iter f x k = h :=
-  ⟨fun ⟨k, hk⟩ =>
-    match repeat_below f n hf x hx with
-    | ⟨i, j, hij, hjn, e⟩ =>
-      match Nat.lt_or_ge k j with
-      | Or.inl hkj => ⟨k, Nat.le_of_lt (Nat.lt_of_lt_of_le hkj hjn), hk⟩
-      | Or.inr hjk =>
-        -- the run is periodic from `i` with period `p = j − i`; reduce `k − i` modulo `p`
-        have hp : 0 < j - i := sub_pos hij
-        have per : ∀ q r, iter f x (i + (r + (j - i) * q)) = iter f x (i + r) := fun q r => by
-          induction q with
-          | zero => rw [Nat.mul_zero, Nat.add_zero]
-          | succ q ih =>
-            rw [Nat.mul_succ, ← Nat.add_assoc r ((j - i) * q) (j - i), Nat.add_comm (r + (j - i) * q) (j - i),
-              ← Nat.add_assoc i (j - i) (r + (j - i) * q), FRC.Nat.add_sub_of_le (Nat.le_of_lt hij), iter_add f x j,
-              ← e, ← iter_add f x i, ih]
-        match FRC.Nat.mod_spec (j - i) hp (k - i) with
-        | ⟨q, hq⟩ =>
-          have hr : (k - i) % (j - i) < j - i := Nat.mod_lt _ hp
-          have hk' : k = i + ((k - i) % (j - i) + (j - i) * q) := by
-            rw [Nat.add_comm ((k - i) % (j - i)) _, ← hq, FRC.Nat.add_sub_of_le (Nat.le_trans (Nat.le_of_lt hij) hjk)]
-          ⟨i + (k - i) % (j - i),
-            Nat.le_of_lt (Nat.lt_of_lt_of_le (Nat.add_lt_add_left hr i)
-              (by rw [FRC.Nat.add_sub_of_le (Nat.le_of_lt hij)]; exact hjn)),
-            by rw [← per q, ← hk']; exact hk⟩,
-   fun ⟨k, _, hk⟩ => ⟨k, hk⟩⟩
-
-/-! ### 5:D3 — Cantor's theorem on the finite frame -/
-
-/-- 5:D3 (Remark, the external diagonal) — Cantor's theorem holds in every finite frame: `n < 2^n`. -/
-theorem cantor_finite (n : Nat) : n < 2 ^ n := Nat.lt_two_pow_self
-
-/-! ### 5:E1, 5:E2 — definable choice by the least element -/
-
-/-- The least `x < n` with `P x`, if any: the choice function `ch(A) = min A` of Definition global-choice. -/
-def leastBelow (P : Nat → Bool) : Nat → Option Nat
-  | 0 => none
-  | n + 1 => match leastBelow P n with
-    | some x => some x
-    | none => if P n then some n else none
-
-/-- 5:E1 — a nonempty family has a choice: if some `x < n` has `P x`, `leastBelow P n` is defined. -/
-theorem leastBelow_some (P : Nat → Bool) : ∀ (n x : Nat), x < n → P x = true → ∃ y, leastBelow P n = some y
-  | 0, x, hx, _ => absurd hx (Nat.not_lt_zero x)
-  | n + 1, x, hx, hP =>
-    match hl : leastBelow P n with
-    | some y => ⟨y, by
-        show (match leastBelow P n with
-          | some x => some x
-          | none => if P n then some n else none) = some y
-        rw [hl]⟩
-    | none =>
-      match Nat.decEq x n with
-      | isTrue e => ⟨n, by
-          show (match leastBelow P n with
-            | some x => some x
-            | none => if P n then some n else none) = some n
-          rw [hl]
-          show (if P n then some n else none) = some n
-          have hPn : P n = true := e ▸ hP
-          rw [hPn, ite_eq_left rfl]⟩
-      | isFalse e =>
-        absurd (leastBelow_some P n x (Nat.lt_of_le_of_ne (Nat.le_of_lt_succ hx) e) hP)
-          (fun ⟨z, hz⟩ => nomatch (hl ▸ hz : (none : Option Nat) = some z))
-
-/-- 5:E1 (Proposition finite-choice) — the choice is a member, below the bound, and the least one. -/
-theorem leastBelow_spec (P : Nat → Bool) : ∀ (n x : Nat), leastBelow P n = some x →
-    x < n ∧ P x = true ∧ ∀ y, y < x → P y = false
-  | 0, x, h => nomatch (h : (none : Option Nat) = some x)
-  | n + 1, x, h => by
-    have h' : (match leastBelow P n with
-      | some x => some x
-      | none => if P n then some n else none) = some x := h
-    clear h
-    revert h'
-    match hl : leastBelow P n with
-    | some y =>
-      intro h'
-      have e : y = x := Option.some.inj h'
-      have := leastBelow_spec P n y hl
-      exact ⟨Nat.lt_succ_of_lt (e ▸ this.1), e ▸ this.2.1, e ▸ this.2.2⟩
-    | none =>
-      intro h'
-      have h'' : (if P n then some n else none) = some x := h'
-      match hP : P n with
-      | true =>
-        rw [hP, ite_eq_left rfl] at h''
-        have e : n = x := Option.some.inj h''
-        refine ⟨Nat.lt_succ_of_le (Nat.le_of_eq e.symm), e ▸ hP, fun y hy => ?_⟩
-        match hPy : P y with
-        | false => rfl
-        | true =>
-          exact absurd (leastBelow_some P n y (e.symm ▸ hy) hPy)
-            (fun ⟨z, hz⟩ => nomatch (hl ▸ hz : (none : Option Nat) = some z))
-      | false =>
-        rw [hP, ite_eq_right Bool.false_ne_true] at h''
-        exact nomatch (h'' : (none : Option Nat) = some x)
-
-/-- 5:E2 (Lemma periodic choice) — the choice depends on the set alone: pointwise equal families choose alike,
-so an equality-periodic family `A_{i+N} = A_i` has a choice function of the same period. -/
-theorem leastBelow_congr {P Q : Nat → Bool} : ∀ {n : Nat}, (∀ x, x < n → P x = Q x) → leastBelow P n = leastBelow Q n
-  | 0, _ => rfl
-  | n + 1, h => by
-    show (match leastBelow P n with
-      | some x => some x
-      | none => if P n then some n else none) = (match leastBelow Q n with
-      | some x => some x
-      | none => if Q n then some n else none)
-    rw [leastBelow_congr (fun x hx => h x (Nat.lt_succ_of_lt hx)), h n (Nat.lt_succ_self n)]
-
 /-! ### 5:E4 — the equivariant obstruction on `𝔽₅` -/
 
 /-- 5:E4 (Example basis-obstruction) — on the line over `𝔽₅` the map `v ↦ −v` fixes no basis: `−v ≠ v` for every
@@ -5484,6 +6227,157 @@ theorem leastBelow_congr {P Q : Nat → Bool} : ∀ {n : Nat}, (∀ x, x < n →
 theorem obstruction_five :
     (-(1 : Shell 5) ≠ 1) ∧ (-(2 : Shell 5) ≠ 2) ∧ (-(3 : Shell 5) ≠ 3) ∧ (-(4 : Shell 5) ≠ 4) ∧ (-(1 : Shell 2) = 1) := by
   decide
+
+/-! ## Old names (ledger migration, task LM17): the declarations moved to the themes, each under its old name -/
+end
+
+section aliases
+variable {p : Nat} [Pos p] {κ : Nat} {g : Shell p}
+
+/-- `mx a b`, the larger of two naturals, with its two bounds proved from the definition. -/
+@[reducible] def mx (a b : Nat) : Nat :=
+  FRC.Logic.mx a b
+
+theorem le_mx_left (a b : Nat) : a ≤ mx a b :=
+  FRC.Logic.le_mx_left a b
+
+theorem le_mx_right (a b : Nat) : b ≤ mx a b :=
+  FRC.Logic.le_mx_right a b
+
+theorem lt_of_mx_lt_left {a b N : Nat} (h : mx a b < N) : a < N :=
+  FRC.Logic.lt_of_mx_lt_left h
+
+theorem lt_of_mx_lt_right {a b N : Nat} (h : mx a b < N) : b < N :=
+  FRC.Logic.lt_of_mx_lt_right h
+
+/-- Terms: variables (de Bruijn indices), `0`, `1`, sum, product. -/
+@[reducible] def Term := @FRC.Logic.Term
+
+/-- `Δ₀` formulas: atoms `s = t`, `s < t`, negation, conjunction, and the bounded quantifier `∀ x ≤ t, φ`
+(`x` is variable `0` in `φ`, the other variables shift up; `t` is read in the outer environment). -/
+@[reducible] def Form := @FRC.Logic.Form
+
+/-- The environment extended by a value for variable `0`. -/
+@[reducible] def cons (x : Nat) (env : Nat → Nat) : Nat → Nat :=
+  FRC.Logic.cons x env
+
+/-- Terms over `ℕ`. -/
+@[reducible] def evalT (env : Nat → Nat) : Term → Nat :=
+  FRC.Logic.evalT env
+
+/-- `f 0 && … && f (n − 1)`. -/
+@[reducible] def allBelow (f : Nat → Bool) : Nat → Bool :=
+  FRC.Logic.allBelow f
+
+/-- Formulas over `ℕ` (the standard value). -/
+@[reducible] def evalF (env : Nat → Nat) : Form → Bool :=
+  FRC.Logic.evalF env
+
+/-- Terms in the frame `W_N`: a value is defined only while every intermediate value stays below `N`
+(overflow: `A(x, y, z)` fails for `x + y ≥ N`). -/
+@[reducible] def evalT? (N : Nat) (env : Nat → Nat) : Term → Option Nat :=
+  FRC.Logic.evalT? N env
+
+/-- Formulas in the frame `W_N`: an atom with an undefined term is false, a bounded quantifier is guarded by
+the definedness of its bound (the transcription `φ*` of the paper). -/
+@[reducible] def evalF? (N : Nat) (env : Nat → Nat) : Form → Bool :=
+  FRC.Logic.evalF? N env
+
+/-- The largest value a term's evaluation touches. -/
+@[reducible] def boundT (env : Nat → Nat) : Term → Nat :=
+  FRC.Logic.boundT env
+
+/-- `max (f 0, …, f (n − 1))`. -/
+@[reducible] def maxBelow (f : Nat → Nat) : Nat → Nat :=
+  FRC.Logic.maxBelow f
+
+/-- `t(φ)`, the largest integer referenced in the evaluation of `φ` over `ℕ`. -/
+@[reducible] def boundF (env : Nat → Nat) : Form → Nat :=
+  FRC.Logic.boundF env
+
+theorem le_maxBelow (f : Nat → Nat) : ∀ {n x : Nat}, x < n → f x ≤ maxBelow f n :=
+  FRC.Logic.le_maxBelow f
+
+theorem allBelow_congr {f g : Nat → Bool} : ∀ {n : Nat}, (∀ x, x < n → f x = g x) → allBelow f n = allBelow g n :=
+  FRC.Logic.allBelow_congr
+
+/-- 5:B6 (terms) — below its bound a term is defined in the frame, with its standard value. -/
+theorem evalT_frame (N : Nat) (env : Nat → Nat) : ∀ (t : Term), boundT env t < N → evalT? N env t = some (evalT env t) :=
+  FRC.Logic.evalT_frame N env
+
+/-- 5:B6 (Theorem stability, schema form) — every `Δ₀` formula takes its standard value in every frame `W_N`
+with `N > t(φ)`: `W_N ⊨ φ* ⟺ ℕ ⊨ φ`, for every environment, by induction on the formula. -/
+theorem stable (N : Nat) : ∀ (φ : Form) (env : Nat → Nat), boundF env φ < N → evalF? N env φ = evalF env φ :=
+  FRC.Logic.stable N
+
+/-- The number of strings of length at most `K` over `s` letters, `Σ_{i ≤ K} s^i`. -/
+@[reducible] def records (s : Nat) : Nat → Nat :=
+  FRC.Logic.records s
+
+/-- 5:C2 (the count) — fewer than `s^(K+1)` records exist for an alphabet of `s ≥ 2` letters. -/
+theorem records_lt (s : Nat) (hs : 2 ≤ s) : ∀ K, records s K < s ^ (K + 1) :=
+  FRC.Logic.records_lt s hs
+
+/-- 5:C2 (Proposition mirror) — a part with fewer records than the frame has elements holds no injective
+representation of the frame's domain: no `f : [0, N) → [0, R)` is injective when `R < N`. -/
+theorem no_mirror {N R : Nat} (hR : R < N) (f : Nat → Nat) (hf : ∀ i, i < N → f i < R)
+    (hinj : ∀ i j, i < N → j < N → f i = f j → i = j) : False :=
+  FRC.Logic.no_mirror hR f hf hinj
+
+/-- `iter f x k = f^k x`. -/
+@[reducible] def iter (f : Nat → Nat) (x : Nat) : Nat → Nat :=
+  FRC.Logic.iter f x
+
+theorem iter_lt (f : Nat → Nat) {n : Nat} (hf : ∀ y, y < n → f y < n) {x : Nat} (hx : x < n) :
+    ∀ k, iter f x k < n :=
+  FRC.Logic.iter_lt f hf hx
+
+theorem iter_add (f : Nat → Nat) (x : Nat) (i : Nat) : ∀ k, iter f x (i + k) = iter f (iter f x i) k :=
+  FRC.Logic.iter_add f x i
+
+/-- 5:E5, 5:C5 (Lemma periodic König, the pigeonhole) — on `n` states the iteration from `x` revisits a state within
+`n` steps: some `i < j ≤ n` have `f^i x = f^j x`. -/
+theorem repeat_below (f : Nat → Nat) (n : Nat) (hf : ∀ y, y < n → f y < n) (x : Nat) (hx : x < n) :
+    ∃ i j, i < j ∧ j ≤ n ∧ iter f x i = iter f x j :=
+  FRC.Logic.repeat_below f n hf x hx
+
+theorem sub_pos {i j : Nat} (h : i < j) : 0 < j - i :=
+  FRC.Logic.sub_pos h
+
+/-- 5:E5 — the walk is eventually periodic: from step `i` on, period `p = j − i` with `0 < p ≤ n`,
+`f^(i+k+p) x = f^(i+k) x` for every `k`. -/
+theorem eventually_periodic (f : Nat → Nat) (n : Nat) (hf : ∀ y, y < n → f y < n) (x : Nat) (hx : x < n) :
+    ∃ i p, 0 < p ∧ p ≤ n ∧ ∀ k, iter f x (i + k + p) = iter f x (i + k) :=
+  FRC.Logic.eventually_periodic f n hf x hx
+
+/-- 5:C5 (horizon separation) — a run on `n` states reaches a state `h` iff it reaches it within `n` steps: halting for bounded space is decided from above by `n` steps of simulation. -/
+theorem halts_iff_halts_below (f : Nat → Nat) (n : Nat) (hf : ∀ y, y < n → f y < n) (h : Nat)
+    (x : Nat) (hx : x < n) : (∃ k, iter f x k = h) ↔ ∃ k, k ≤ n ∧ iter f x k = h :=
+  FRC.Logic.halts_iff_halts_below f n hf h x hx
+
+/-- 5:D3 (Remark, the external diagonal) — Cantor's theorem holds in every finite frame: `n < 2^n`. -/
+theorem cantor_finite (n : Nat) : n < 2 ^ n :=
+  FRC.Logic.cantor_finite n
+
+/-- The least `x < n` with `P x`, if any: the choice function `ch(A) = min A` of Definition global-choice. -/
+@[reducible] def leastBelow (P : Nat → Bool) : Nat → Option Nat :=
+  FRC.Logic.leastBelow P
+
+/-- 5:E1 — a nonempty family has a choice: if some `x < n` has `P x`, `leastBelow P n` is defined. -/
+theorem leastBelow_some (P : Nat → Bool) : ∀ (n x : Nat), x < n → P x = true → ∃ y, leastBelow P n = some y :=
+  FRC.Logic.leastBelow_some P
+
+/-- 5:E1 (Proposition finite-choice) — the choice is a member, below the bound, and the least one. -/
+theorem leastBelow_spec (P : Nat → Bool) : ∀ (n x : Nat), leastBelow P n = some x →
+    x < n ∧ P x = true ∧ ∀ y, y < x → P y = false :=
+  FRC.Logic.leastBelow_spec P
+
+/-- 5:E2 (Lemma periodic choice) — the choice depends on the set alone: pointwise equal families choose alike,
+so an equality-periodic family `A_{i+N} = A_i` has a choice function of the same period. -/
+theorem leastBelow_congr {P Q : Nat → Bool} : ∀ {n : Nat}, (∀ x, x < n → P x = Q x) → leastBelow P n = leastBelow Q n :=
+  FRC.Logic.leastBelow_congr
+
+end aliases
 
 -- Ledger predicates of 5-reductio (generated by make_predicates.py from docs/5-reductio/5-reductio-ledger.json; edit the ledger, not this section)
 /-- 5:B6 (p05010) — Bounded stability, schema form: a $\Delta_0$ sentence $\varphi$ with bound $t(\varphi)$ has $W_N\models\varphi^{*}\iff\N\models\varphi$ for every $N>t(\varphi)$, each instance $\mathrm{St}(\varphi,M)$ a finite conjunction of finite checks; proved for an explicit $\Delta_0$ language with $t(\varphi)$ computed; Goldbach below $20$ has $t=400$ and value true (below $10$, $t=100$, decided by the kernel). -/
@@ -5538,54 +6432,21 @@ about a fixed finite structure is finite mathematics, and its counting core is p
 
 The formulas are those of the signature of `M_p` (`0`, `1`, `+`, `×`). Every declaration prints "does not depend
 on any axioms".
+
+Since the ledger migration (task LM17) the counting core (25:C1, C5, D1, F4 and the Boolean bookkeeping) lives in the
+logic theme (`Theme/Logic.lean`, namespace `FRC.Logic`); every old name stays as an alias.
 -/
 
 namespace FRC.Godel
 
-open FRC.Reductio (allBelow allBelow_congr cons)
+section
+open FRC.Logic
 
 /-! ### Boolean bookkeeping, from the definitions -/
 
-theorem or_intro_left {a b : Bool} (h : a = true) : (a || b) = true := by rw [h]; rfl
-theorem or_intro_right {a b : Bool} (h : b = true) : (a || b) = true := by rw [h]; cases a <;> rfl
-theorem and_true' (c : Bool) : (c && true) = c := by cases c <;> rfl
-theorem and_false' (c : Bool) : (c && false) = false := by cases c <;> rfl
-theorem and_self' (c : Bool) : (c && c) = c := by cases c <;> rfl
-theorem or_false' (c : Bool) : (c || false) = c := by cases c <;> rfl
-theorem and_assoc' (a b c : Bool) : ((a && b) && c) = (a && (b && c)) := by cases a <;> rfl
-
 /-! ### 25:C1 — on a finite carrier an injective map is onto -/
 
-/-- 25:C1 (Proposition noQ, the pigeonhole) — on `[0, n)` an injective map is onto: every `z < n` is a value. -/
-theorem inj_onto (n : Nat) (S : Nat → Nat) (hS : ∀ x, x < n → S x < n)
-    (hinj : ∀ x y, x < n → y < n → S x = S y → x = y) (z : Nat) (hz : z < n) : ∃ x, x < n ∧ S x = z :=
-  have hnd := FRC.Shell.imageList_nodup hinj (Nat.le_refl n)
-  have hlen := FRC.Shell.imageList_length S n
-  have hb : ∀ e, Pigeonhole.mem e (FRC.Shell.imageList S n) → e < n := fun _ he =>
-    match FRC.Shell.mem_imageList he with
-    | ⟨j, hj, ej⟩ => ej ▸ hS j hj
-  FRC.Shell.mem_imageList (Pigeonhole.mem_of_nodup_of_length_lt n _ hnd hb hlen z hz)
-
-/-- 25:C1 (Proposition noQ) — no successor of `Q` on a finite carrier: no map of `[0, n)` into itself is
-injective and omits an element, so no finite structure is a model of `Q`. -/
-theorem no_finite_successor (n : Nat) (S : Nat → Nat) (hS : ∀ x, x < n → S x < n)
-    (hinj : ∀ x y, x < n → y < n → S x = S y → x = y) (z : Nat) (hz : z < n) : ¬ ∀ x, x < n → S x ≠ z :=
-  fun hmiss => match inj_onto n S hS hinj z hz with
-    | ⟨x, hx, e⟩ => hmiss x hx e
-
 /-! ### 25:D1 — the part cannot hold the whole -/
-
-/-- 25:D1 (Theorem part) — an agent with `R` storage states in a structure of `m > R` elements has no injective
-encoding: every reading `ρ : [0, m) → [0, R)` identifies two elements. -/
-theorem part_collides {m R : Nat} (hR : R < m) (ρ : Nat → Nat) (hρ : ∀ i, i < m → ρ i < R) :
-    ¬ ∀ i j, i < m → j < m → ρ i = ρ j → i = j :=
-  fun hinj => FRC.Reductio.no_mirror hR ρ hρ hinj
-
-/-- 25:C5 (Remark Tarski scoped, the count) — `m + 1` sentences, indexed `0, …, m` (the row's sentences
-`φ, ¬φ, …, ¬^m φ`), admit no injective numbering into a structure of `m` elements. -/
-theorem sentences_outnumber (m : Nat) (g : Nat → Nat) (hg : ∀ i, i < m + 1 → g i < m) :
-    ¬ ∀ i j, i < m + 1 → j < m + 1 → g i = g j → i = j :=
-  part_collides (Nat.lt_succ_self m) g hg
 
 /-! ### 25:D4, 25:E1 — closed terms, their values, and the entries an evaluation consults -/
 
@@ -5657,16 +6518,16 @@ theorem equal_leaves_equal_value (p : Nat) (hp : 0 < p) (s t : Tm) (h : leaves s
 
 /-- 25:E2 (Proposition reach, the count) — the records of length at most `B` over `a ≥ 2` letters number fewer
 than `a^(B+1)`. -/
-theorem records_lt (a : Nat) (ha : 2 ≤ a) (B : Nat) : FRC.Reductio.records a B < a ^ (B + 1) :=
-  FRC.Reductio.records_lt a ha B
+theorem records_lt (a : Nat) (ha : 2 ≤ a) (B : Nat) : FRC.Logic.records a B < a ^ (B + 1) :=
+  FRC.Logic.records_lt a ha B
 
 /-- 25:E2 (Proposition reach, the vanishing fraction in finite form) — against a cohort of `2^L` truths the
 records of length at most `B` certify a fraction below `1/N` once `L ≥ a^(B+1)·N`: their number times `N` is
 below `2^L`. -/
 theorem reach_vanishes (a : Nat) (ha : 2 ≤ a) (B N L : Nat) (h : a ^ (B + 1) * N ≤ L) :
-    FRC.Reductio.records a B * N < 2 ^ L :=
+    FRC.Logic.records a B * N < 2 ^ L :=
   Nat.lt_of_le_of_lt
-    (Nat.le_trans (Nat.mul_le_mul_right N (Nat.le_of_lt (FRC.Reductio.records_lt a ha B))) h)
+    (Nat.le_trans (Nat.mul_le_mul_right N (Nat.le_of_lt (FRC.Logic.records_lt a ha B))) h)
     Nat.lt_two_pow_self
 
 /-! ### 25:F1, 25:F3 — mention cost: truth depends only on variables that occur -/
@@ -5780,55 +6641,6 @@ theorem mention (p : Nat) (φ : Fm) (env : Nat → Nat) (i v : Nat)
 
 /-! #### counting the coordinates a formula can read -/
 
-/-- The number of `i < n` with `f i = true`. -/
-def count (f : Nat → Bool) : Nat → Nat
-  | 0 => 0
-  | n + 1 => count f n + cond (f n) 1 0
-
-theorem count_full {f : Nat → Bool} : ∀ {n : Nat}, (∀ i, i < n → f i = true) → count f n = n
-  | 0, _ => rfl
-  | n + 1, h => by
-    show count f n + cond (f n) 1 0 = n + 1
-    rw [h n (Nat.lt_succ_self n), count_full (fun i hi => h i (Nat.lt_succ_of_lt hi))]; rfl
-
-theorem cond_or_le (a b : Bool) : cond (a || b) 1 0 ≤ cond a 1 0 + cond b 1 0 := by
-  cases a <;> cases b <;> decide
-
-theorem count_or_le (f g : Nat → Bool) : ∀ n, count (fun i => f i || g i) n ≤ count f n + count g n
-  | 0 => Nat.le_refl 0
-  | n + 1 => by
-    show count (fun i => f i || g i) n + cond (f n || g n) 1 0 ≤ (count f n + cond (f n) 1 0) + (count g n + cond (g n) 1 0)
-    rw [FRC.Nat.add_add_add_comm (count f n) (cond (f n) 1 0) (count g n) (cond (g n) 1 0)]
-    exact Nat.add_le_add (count_or_le f g n) (cond_or_le (f n) (g n))
-
-theorem count_shift (f : Nat → Bool) : ∀ n, count (fun i => f (i + 1)) n ≤ count f (n + 1)
-  | 0 => Nat.zero_le _
-  | n + 1 => by
-    show count (fun i => f (i + 1)) n + cond (f (n + 1)) 1 0 ≤ count f (n + 1) + cond (f (n + 1)) 1 0
-    exact Nat.add_le_add_right (count_shift f n) _
-
-theorem count_false : ∀ n, count (fun _ => false) n = 0
-  | 0 => rfl
-  | n + 1 => by
-    show count (fun _ => false) n + 0 = 0
-    rw [count_false n]
-
-theorem count_single (j : Nat) : ∀ n, count (fun i => decide (j = i)) n ≤ 1 ∧ (n ≤ j → count (fun i => decide (j = i)) n = 0)
-  | 0 => ⟨Nat.zero_le 1, fun _ => rfl⟩
-  | n + 1 =>
-    match Nat.decEq j n with
-    | isTrue e => by
-      have h0 : count (fun i => decide (j = i)) n = 0 := (count_single j n).2 (e ▸ Nat.le_refl j)
-      refine ⟨?_, fun hle => absurd (e ▸ hle : n + 1 ≤ n) (Nat.not_succ_le_self n)⟩
-      show count (fun i => decide (j = i)) n + cond (decide (j = n)) 1 0 ≤ 1
-      rw [h0, decide_eq_true e]; exact Nat.le_refl 1
-    | isFalse e => by
-      refine ⟨?_, fun hle => ?_⟩
-      · show count (fun i => decide (j = i)) n + cond (decide (j = n)) 1 0 ≤ 1
-        rw [decide_eq_false e]; exact (count_single j n).1
-      · show count (fun i => decide (j = i)) n + cond (decide (j = n)) 1 0 = 0
-        rw [decide_eq_false e]; exact (count_single j n).2 (Nat.le_of_succ_le hle)
-
 theorem tcount_le : ∀ (t : VTm) (N : Nat), count (fun i => occT i t) N ≤ tsize t
   | .var j, N => (count_single j N).1
   | .zero, N => by show count (fun _ => false) N ≤ 1; rw [count_false N]; exact Nat.zero_le 1
@@ -5873,10 +6685,6 @@ theorem fcount_lt : ∀ (φ : Fm) (N : Nat), count (fun i => occ i φ) N < size 
       (Nat.add_le_add (Nat.le_of_lt (fcount_lt φ N)) (Nat.le_of_lt (fcount_lt ψ N))))
   | .all φ, N =>
     Nat.lt_succ_of_lt (Nat.lt_of_le_of_lt (count_shift (fun i => occ i φ) N) (fcount_lt φ (N + 1)))
-
-theorem count_shift_by : ∀ (j : Nat) (f : Nat → Bool) (N : Nat), count (fun i => f (i + j)) N ≤ count f (N + j)
-  | 0, _, _ => Nat.le_refl _
-  | j + 1, f, N => Nat.le_trans (count_shift_by j (fun k => f (k + 1)) N) (count_shift f (N + j))
 
 /-- 25:F3 (Corollary quotation, the arity) — a formula in which the `N` variables `j, …, j + N − 1` occur has more
 than `N` symbols: a formula's arity is below its length. -/
@@ -5967,88 +6775,7 @@ theorem split_scale (p N N₂ : Nat) (diag θ : Fm)
 
 /-! ### 25:F4 — density does not rescue the template -/
 
-/-- 25:F4 (Lemma density, the count) — an injective coding of the `a^n` strings of length `n` into `k`-tuples
-over `m` elements needs `a^n ≤ m^k`. -/
-theorem dense_coding {a n m k : Nat} (c : Nat → Nat) (hc : ∀ i, i < a ^ n → c i < m ^ k)
-    (hinj : ∀ i j, i < a ^ n → j < a ^ n → c i = c j → i = j) : a ^ n ≤ m ^ k :=
-  match Nat.lt_or_ge (m ^ k) (a ^ n) with
-  | Or.inl h => absurd hinj (part_collides h c hc)
-  | Or.inr h => h
-
-/-- A strict power step: `m < b` gives `m^(k+1) < b^(k+1)`. -/
-theorem pow_lt_pow_base {m b : Nat} (h : m < b) : ∀ k : Nat, m ^ (k + 1) < b ^ (k + 1)
-  | 0 => show m ^ 0 * m < b ^ 0 * b from Nat.mul_lt_mul_of_le_of_lt (Nat.le_refl 1) h (Nat.zero_lt_succ 0)
-  | k + 1 => show m ^ (k + 1) * m < b ^ (k + 1) * b from Nat.mul_lt_mul_of_lt_of_lt (pow_lt_pow_base h k) h
-
-/-- 25:F4 (Lemma density, the digit form) — if `m` has at most `d` digits in base `a` (`m < a^d`), a coding of
-the strings of length `n` by tuples of `k+1` coordinates with `a^n ≤ m^(k+1)` has `n < d·(k+1)`: a tuple carries
-fewer letters than `d` times its coordinates. -/
-theorem digit_bound {a n m k d : Nat} (ha : 0 < a) (hm : m < a ^ d) (h : a ^ n ≤ m ^ (k + 1)) :
-    n < d * (k + 1) :=
-  match Nat.lt_or_ge n (d * (k + 1)) with
-  | Or.inl hlt => hlt
-  | Or.inr hge =>
-    have h1 : m ^ (k + 1) < (a ^ d) ^ (k + 1) := pow_lt_pow_base hm k
-    have h2 : a ^ (d * (k + 1)) = (a ^ d) ^ (k + 1) := FRC.Nat.pow_mul a d (k + 1)
-    have h3 : a ^ (d * (k + 1)) ≤ a ^ n := Nat.pow_le_pow_right ha hge
-    absurd (Nat.lt_of_le_of_lt h (h2 ▸ h1)) (Nat.not_lt.mpr h3)
-
 /-! ### 25:G4 — the prefix simulation -/
-
-/-- `f 0 || … || f (n − 1)`. -/
-def anyBelow (f : Nat → Bool) : Nat → Bool
-  | 0 => false
-  | n + 1 => f n || anyBelow f n
-
-theorem anyBelow_congr {f g : Nat → Bool} : ∀ {n : Nat}, (∀ x, x < n → f x = g x) → anyBelow f n = anyBelow g n
-  | 0, _ => rfl
-  | n + 1, h => by
-    show (f n || anyBelow f n) = (g n || anyBelow g n)
-    rw [h n (Nat.lt_succ_self n), anyBelow_congr (fun x hx => h x (Nat.lt_succ_of_lt hx))]
-
-theorem anyBelow_false : ∀ n, anyBelow (fun _ => false) n = false
-  | 0 => rfl
-  | n + 1 => by
-    show (false || anyBelow (fun _ => false) n) = false
-    rw [anyBelow_false n]; rfl
-
-theorem allBelow_const (b : Bool) : ∀ n, 0 < n → allBelow (fun _ => b) n = b
-  | 0, h => absurd h (Nat.lt_irrefl 0)
-  | 1, _ => and_true' b
-  | n + 2, _ => by
-    show (b && allBelow (fun _ => b) (n + 1)) = b
-    rw [allBelow_const b (n + 1) (Nat.succ_pos n)]; exact and_self' b
-
-theorem anyBelow_and_const (c : Bool) (F : Nat → Bool) (n : Nat) :
-    anyBelow (fun x => c && F x) n = (c && anyBelow F n) := by
-  cases c
-  · exact anyBelow_false n
-  · rfl
-
-theorem allBelow_and_const (c : Bool) (F : Nat → Bool) (n : Nat) (hn : 0 < n) :
-    allBelow (fun y => c && F y) n = (c && allBelow F n) := by
-  cases c
-  · exact allBelow_const false n hn
-  · rfl
-
-/-- Among the `x < n`, the clause `x = y` picks `y`: `∃ x < n, (c ∧ x = y ∧ F x)` is `c ∧ F y` for `y < n`. -/
-theorem anyBelow_pick (c : Bool) (F : Nat → Bool) (y : Nat) :
-    ∀ n, anyBelow (fun x => (c && decide (x = y)) && F x) n = (if y < n then c && F y else false)
-  | 0 => rfl
-  | n + 1 => by
-    show (((c && decide (n = y)) && F n) || anyBelow (fun x => (c && decide (x = y)) && F x) n) = (if y < n + 1 then c && F y else false)
-    rw [anyBelow_pick c F y n]
-    exact match Nat.decEq n y with
-    | isTrue e => by
-      rw [decide_eq_true e, and_true' c, ite_eq_right (e ▸ Nat.lt_irrefl n : ¬ y < n), or_false', ite_eq_left (e ▸ Nat.lt_succ_self n : y < n + 1), e]
-    | isFalse e => by
-      rw [decide_eq_false e, and_false' c]
-      show (if y < n then c && F y else false) = (if y < n + 1 then c && F y else false)
-      exact match Nat.decLt y n with
-      | isTrue hlt => by rw [ite_eq_left hlt, ite_eq_left (Nat.lt_succ_of_lt hlt)]
-      | isFalse hge => by
-        have hne : ¬ y < n + 1 := fun h => hge (Nat.lt_of_le_of_ne (Nat.le_of_lt_succ h) (fun e' => e e'.symm))
-        rw [ite_eq_right hge, ite_eq_right hne]
 
 /-- The coded prefix evaluated directly over a structure of `m` elements: `true` codes `∀`, `false` codes `∃`;
 the matrix `ψ` reads the chosen values (the last chosen first). -/
@@ -6101,6 +6828,128 @@ theorem prefix_simulation_closed (m : Nat) (hm : 0 < m) (ψ : List Nat → Bool)
 
 
 
+/-! ## Old names (ledger migration, task LM17): the declarations moved to the themes, each under its old name -/
+end
+
+section aliases
+variable {p : Nat} [Pos p] {κ : Nat} {g : Shell p}
+
+open FRC.Logic (allBelow allBelow_congr cons)
+
+theorem or_intro_left {a b : Bool} (h : a = true) : (a || b) = true :=
+  FRC.Logic.or_intro_left h
+
+theorem or_intro_right {a b : Bool} (h : b = true) : (a || b) = true :=
+  FRC.Logic.or_intro_right h
+
+theorem and_true' (c : Bool) : (c && true) = c :=
+  FRC.Logic.and_true' c
+
+theorem and_false' (c : Bool) : (c && false) = false :=
+  FRC.Logic.and_false' c
+
+theorem and_self' (c : Bool) : (c && c) = c :=
+  FRC.Logic.and_self' c
+
+theorem or_false' (c : Bool) : (c || false) = c :=
+  FRC.Logic.or_false' c
+
+theorem and_assoc' (a b c : Bool) : ((a && b) && c) = (a && (b && c)) :=
+  FRC.Logic.and_assoc' a b c
+
+/-- 25:C1 (Proposition noQ, the pigeonhole) — on `[0, n)` an injective map is onto: every `z < n` is a value. -/
+theorem inj_onto (n : Nat) (S : Nat → Nat) (hS : ∀ x, x < n → S x < n)
+    (hinj : ∀ x y, x < n → y < n → S x = S y → x = y) (z : Nat) (hz : z < n) : ∃ x, x < n ∧ S x = z :=
+  FRC.Logic.inj_onto n S hS hinj z hz
+
+/-- 25:C1 (Proposition noQ) — no successor of `Q` on a finite carrier: no map of `[0, n)` into itself is
+injective and omits an element, so no finite structure is a model of `Q`. -/
+theorem no_finite_successor (n : Nat) (S : Nat → Nat) (hS : ∀ x, x < n → S x < n)
+    (hinj : ∀ x y, x < n → y < n → S x = S y → x = y) (z : Nat) (hz : z < n) : ¬ ∀ x, x < n → S x ≠ z :=
+  FRC.Logic.no_finite_successor n S hS hinj z hz
+
+/-- 25:D1 (Theorem part) — an agent with `R` storage states in a structure of `m > R` elements has no injective
+encoding: every reading `ρ : [0, m) → [0, R)` identifies two elements. -/
+theorem part_collides {m R : Nat} (hR : R < m) (ρ : Nat → Nat) (hρ : ∀ i, i < m → ρ i < R) :
+    ¬ ∀ i j, i < m → j < m → ρ i = ρ j → i = j :=
+  FRC.Logic.part_collides hR ρ hρ
+
+/-- 25:C5 (Remark Tarski scoped, the count) — `m + 1` sentences, indexed `0, …, m` (the row's sentences
+`φ, ¬φ, …, ¬^m φ`), admit no injective numbering into a structure of `m` elements. -/
+theorem sentences_outnumber (m : Nat) (g : Nat → Nat) (hg : ∀ i, i < m + 1 → g i < m) :
+    ¬ ∀ i j, i < m + 1 → j < m + 1 → g i = g j → i = j :=
+  FRC.Logic.sentences_outnumber m g hg
+
+/-- The number of `i < n` with `f i = true`. -/
+@[reducible] def count (f : Nat → Bool) : Nat → Nat :=
+  FRC.Logic.count f
+
+theorem count_full {f : Nat → Bool} : ∀ {n : Nat}, (∀ i, i < n → f i = true) → count f n = n :=
+  FRC.Logic.count_full
+
+theorem cond_or_le (a b : Bool) : cond (a || b) 1 0 ≤ cond a 1 0 + cond b 1 0 :=
+  FRC.Logic.cond_or_le a b
+
+theorem count_or_le (f g : Nat → Bool) : ∀ n, count (fun i => f i || g i) n ≤ count f n + count g n :=
+  FRC.Logic.count_or_le f g
+
+theorem count_shift (f : Nat → Bool) : ∀ n, count (fun i => f (i + 1)) n ≤ count f (n + 1) :=
+  FRC.Logic.count_shift f
+
+theorem count_false : ∀ n, count (fun _ => false) n = 0 :=
+  FRC.Logic.count_false
+
+theorem count_single (j : Nat) : ∀ n, count (fun i => decide (j = i)) n ≤ 1 ∧ (n ≤ j → count (fun i => decide (j = i)) n = 0) :=
+  FRC.Logic.count_single j
+
+theorem count_shift_by : ∀ (j : Nat) (f : Nat → Bool) (N : Nat), count (fun i => f (i + j)) N ≤ count f (N + j) :=
+  FRC.Logic.count_shift_by
+
+/-- 25:F4 (Lemma density, the count) — an injective coding of the `a^n` strings of length `n` into `k`-tuples
+over `m` elements needs `a^n ≤ m^k`. -/
+theorem dense_coding {a n m k : Nat} (c : Nat → Nat) (hc : ∀ i, i < a ^ n → c i < m ^ k)
+    (hinj : ∀ i j, i < a ^ n → j < a ^ n → c i = c j → i = j) : a ^ n ≤ m ^ k :=
+  FRC.Logic.dense_coding c hc hinj
+
+/-- A strict power step: `m < b` gives `m^(k+1) < b^(k+1)`. -/
+theorem pow_lt_pow_base {m b : Nat} (h : m < b) : ∀ k : Nat, m ^ (k + 1) < b ^ (k + 1) :=
+  FRC.Logic.pow_lt_pow_base h
+
+/-- 25:F4 (Lemma density, the digit form) — if `m` has at most `d` digits in base `a` (`m < a^d`), a coding of
+the strings of length `n` by tuples of `k+1` coordinates with `a^n ≤ m^(k+1)` has `n < d·(k+1)`: a tuple carries
+fewer letters than `d` times its coordinates. -/
+theorem digit_bound {a n m k d : Nat} (ha : 0 < a) (hm : m < a ^ d) (h : a ^ n ≤ m ^ (k + 1)) :
+    n < d * (k + 1) :=
+  FRC.Logic.digit_bound ha hm h
+
+/-- `f 0 || … || f (n − 1)`. -/
+@[reducible] def anyBelow (f : Nat → Bool) : Nat → Bool :=
+  FRC.Logic.anyBelow f
+
+theorem anyBelow_congr {f g : Nat → Bool} : ∀ {n : Nat}, (∀ x, x < n → f x = g x) → anyBelow f n = anyBelow g n :=
+  FRC.Logic.anyBelow_congr
+
+theorem anyBelow_false : ∀ n, anyBelow (fun _ => false) n = false :=
+  FRC.Logic.anyBelow_false
+
+theorem allBelow_const (b : Bool) : ∀ n, 0 < n → allBelow (fun _ => b) n = b :=
+  FRC.Logic.allBelow_const b
+
+theorem anyBelow_and_const (c : Bool) (F : Nat → Bool) (n : Nat) :
+    anyBelow (fun x => c && F x) n = (c && anyBelow F n) :=
+  FRC.Logic.anyBelow_and_const c F n
+
+theorem allBelow_and_const (c : Bool) (F : Nat → Bool) (n : Nat) (hn : 0 < n) :
+    allBelow (fun y => c && F y) n = (c && allBelow F n) :=
+  FRC.Logic.allBelow_and_const c F n hn
+
+/-- Among the `x < n`, the clause `x = y` picks `y`: `∃ x < n, (c ∧ x = y ∧ F x)` is `c ∧ F y` for `y < n`. -/
+theorem anyBelow_pick (c : Bool) (F : Nat → Bool) (y : Nat) :
+    ∀ n, anyBelow (fun x => (c && decide (x = y)) && F x) n = (if y < n then c && F y else false) :=
+  FRC.Logic.anyBelow_pick c F y
+
+end aliases
+
 -- Ledger predicates of 25-godel (generated by make_predicates.py from docs/25-godel/25-godel-ledger.json; edit the ledger, not this section)
 /-- 25:C1 (p25010) — No finite structure interprets $\mathsf{Q}$: a model of $\mathsf{Q}$ has an injective successor with $0$ outside its range, and on a finite set an injective map is onto. -/
 theorem p25010 : (∀ (n : Nat) (S : Nat → Nat), (∀ (x : Nat), x < n → S x < n) → (∀ (x y : Nat), x < n → y < n → S x = S y → x = y) → ∀ (z : Nat), z < n → ∃ x, x < n ∧ S x = z) ∧ ∀ (n : Nat) (S : Nat → Nat), (∀ (x : Nat), x < n → S x < n) → (∀ (x y : Nat), x < n → y < n → S x = S y → x = y) → ∀ (z : Nat), z < n → ¬∀ (x : Nat), x < n → S x ≠ z :=
@@ -6118,7 +6967,7 @@ theorem p25018 : (∀ (u : Nat) (f g : Nat → Nat → Nat) (t : FRC.Godel.Tm), 
 theorem p25019 : (∀ (p : Nat), (0 : Nat) < p → ∀ (t : FRC.Godel.Tm), FRC.Godel.val ((1 : Nat) % p) (fun x y => (x + y) % p) t = FRC.Godel.leaves t % p) ∧ ∀ (p : Nat), (0 : Nat) < p → ∀ (s t : FRC.Godel.Tm), FRC.Godel.leaves s = FRC.Godel.leaves t → FRC.Godel.val ((1 : Nat) % p) (fun x y => (x + y) % p) s = FRC.Godel.val ((1 : Nat) % p) (fun x y => (x + y) % p) t :=
   And.intro @FRC.Godel.value_leaves (@FRC.Godel.equal_leaves_equal_value)
 /-- 25:E2 (p25020) — Vanishing reach: an agent of capacity $(K,H)$ certifies at most $a^{B+1}$ sentences over all its runs, the records being strings of length at most $B$. The certified fraction of the truths of length at most $L$ (E1) is at most $a^{B+1}/2^{\alpha L}$, below $1/N$ for every $N$ once $L$ is large enough. -/
-theorem p25020 : (∀ (a : Nat), (2 : Nat) ≤ a → ∀ (B : Nat), FRC.Reductio.records a B < a ^ (B + (1 : Nat))) ∧ ∀ (a : Nat), (2 : Nat) ≤ a → ∀ (B N L : Nat), a ^ (B + (1 : Nat)) * N ≤ L → FRC.Reductio.records a B * N < (2 : Nat) ^ L :=
+theorem p25020 : (∀ (a : Nat), (2 : Nat) ≤ a → ∀ (B : Nat), FRC.Logic.records a B < a ^ (B + (1 : Nat))) ∧ ∀ (a : Nat), (2 : Nat) ≤ a → ∀ (B N L : Nat), a ^ (B + (1 : Nat)) * N ≤ L → FRC.Logic.records a B * N < (2 : Nat) ^ L :=
   And.intro @FRC.Godel.records_lt (@FRC.Godel.reach_vanishes)
 /-- 25:F1 (p25023) — Mention cost: if the truth of a formula in $\M$ depends on coordinate $i$ of a tuple of variables, then $v_{i}$ occurs in it. A formula whose truth depends on all $N$ coordinates has length at least $N$. A quantifier block binding an $N$-tuple contributes at least $N$ symbols. -/
 theorem p25023 : (∀ (p : Nat) (φ : FRC.Godel.Fm) {env env' : Nat → Nat}, (∀ (i : Nat), FRC.Godel.occ i φ = true → env i = env' i) → FRC.Godel.holds p env φ = FRC.Godel.holds p env' φ) ∧ (∀ (p : Nat) (φ : FRC.Godel.Fm) (env : Nat → Nat) (i v : Nat), FRC.Godel.holds p (FRC.Godel.upd env i v) φ ≠ FRC.Godel.holds p env φ → FRC.Godel.occ i φ = true) ∧ (∀ (φ : FRC.Godel.Fm) (N : Nat), (∀ (i : Nat), i < N → FRC.Godel.occ i φ = true) → N ≤ FRC.Godel.size φ) ∧ (∀ (p : Nat) (φ : FRC.Godel.Fm) (N : Nat), (∀ (i : Nat), i < N → ∃ env v, FRC.Godel.holds p (FRC.Godel.upd env i v) φ ≠ FRC.Godel.holds p env φ) → N ≤ FRC.Godel.size φ) ∧ ∀ (n : Nat) (φ : FRC.Godel.Fm), FRC.Godel.size (FRC.Godel.exBlock n φ) = FRC.Godel.size φ + (3 : Nat) * n :=
@@ -6569,6 +7418,12 @@ and on the Carrier alike (20:B2). On `𝔽₁₃` and `𝔽₅₃`, decided by t
 has `14` points and Frobenius `z ↦ z^{13}` is conjugation on all `169` of them, the Ramanujan sums of
 `𝔽₅₃` with `ω = 16` of order `13`, the constants of `𝔽₁₃(τ; 0, 1, 2)`, and the laboratory pair `(13, 233)`
 (20:B1). No axioms.
+
+Since the ledger migration (task LM17) the quadratic extension is the extension theme's `FRC.Extension.Ext p ν`
+(`Theme/Extension.lean`): 20-rh's pairs `Ext p`, with `ν` passed to each operation, became the one type with `ν` its
+parameter, and the product, powers and the norm became its instances. The half-turn, the critical line and the readout
+stay here on that type; `readout` takes `ν`. The sums, the counting lemmas and the deciders went to the frame theme.
+Every old name stays as an alias.
 -/
 
 namespace FRC.Rh
@@ -6576,20 +7431,6 @@ namespace FRC.Rh
 open FRC.Shell FRC.Shell.Frame
 
 variable {p : Nat} [Pos p]
-
-/-! ## Sums: peeling the first term -/
-
-/-- `Σ_{l<n+1} f l = f 0 + Σ_{l<n} f (l + 1)`. -/
-theorem sumRange_succ' (f : Nat → Shell p) : ∀ n, sumRange f (n + 1) = f 0 + sumRange (fun l => f (l + 1)) n
-  | 0 => by rw [sumRange_succ, sumRange_zero, sumRange_zero, zero_add, add_zero]
-  | n + 1 => by rw [sumRange_succ, sumRange_succ' f n, sumRange_succ, add_assoc]
-
-/-- `p ≡ 0` and `n + p ≡ n` on the shell. -/
-theorem ofNat_p : (ofNat p : Shell p) = 0 :=
-  ext (by rw [val_ofNat, val_zero, FRC.Nat.mod_self p Pos.pos])
-
-theorem ofNat_add_p (n : Nat) : (ofNat (n + p) : Shell p) = ofNat n := by
-  rw [← ofNat_add, ofNat_p, add_zero]
 
 /-- A residue `l + 1 < p` is nonzero. -/
 theorem ofNat_succ_ne_zero {l : Nat} (hl : l + 1 < p) : (ofNat (l + 1) : Shell p) ≠ 0 := fun h => by
@@ -6601,28 +7442,6 @@ section frame
 variable {κ : Nat} {g : Shell p}
 
 /-! ## The zero-slot and slot complementarity (20:B4, 20:B5) -/
-
-/-- The sum over the nonzero residues equals the sum over the powers of the drive: `x = g^m` reindexes. -/
-theorem sum_units_eq_sum_pow (F : Frame p κ g) (f : Shell p → Shell p) :
-    sumRange (fun l => f (ofNat (l + 1))) (p - 1) = sumRange (fun m => f (g ^ m)) (p - 1) := by
-  have hn : p = (p - 1) + 1 := (FRC.Nat.sub_add_cancel Pos.pos).symm
-  have hpos : ∀ m, 1 ≤ (g ^ m).val := fun m =>
-    Nat.pos_of_ne_zero (fun h0 => F.pow_ne_zero m (ext (by rw [h0, val_zero])))
-  have hlt : ∀ m, m < p - 1 → (g ^ m).val - 1 < p - 1 := fun m _ => by
-    have h1 : (g ^ m).val - 1 + 1 = (g ^ m).val := FRC.Nat.sub_add_cancel (hpos m)
-    have h2 : (g ^ m).val < (p - 1) + 1 := hn ▸ (g ^ m).lt
-    rw [← h1] at h2
-    exact Nat.lt_of_succ_lt_succ h2
-  have hinj : ∀ i j, i < p - 1 → j < p - 1 → (g ^ i).val - 1 = (g ^ j).val - 1 → i = j := fun i j hi hj h => by
-    apply F.pow_inj hi hj
-    apply ext
-    rw [← FRC.Nat.sub_add_cancel (hpos i), ← FRC.Nat.sub_add_cancel (hpos j), h]
-  have := sum_perm (fun l => f (ofNat (l + 1))) (fun m => (g ^ m).val - 1) (p - 1) hlt hinj
-  rw [← this]
-  apply sum_congr
-  intro m _
-  show f (ofNat ((g ^ m).val - 1 + 1)) = f (g ^ m)
-  rw [FRC.Nat.sub_add_cancel (hpos m), ofNat_val]
 
 /-- 20:B4 — the zero-slot on every shell: over the nonzero residues `x = l + 1`, `l < p − 1`,
 `Σ x^k = 0` for every nonterminal exponent `0 < k < p − 1`, and `Σ x^{p−1} = −1` on the full cycle. -/
@@ -6676,12 +7495,12 @@ theorem half_inverse (F : Frame p κ g) :
       _ = 1 + (4 * κ + 1) := by rw [Nat.add_comm 1, Nat.add_assoc]
   constructor
   · show ofNat 2 * ofNat (2 * κ + 1) = 1
-    rw [ofNat_mul, e, ofNat_add_p]
+    rw [ofNat_mul, e, ofNat_add_self]
     rfl
   · have e2 : 2 * κ + (2 * κ + 1) = p := by
       rw [← Nat.add_assoc, F.four_kappa]; exact FRC.Nat.sub_add_cancel Pos.pos
     have h : (ofNat (2 * κ) : Shell p) + ofNat (2 * κ + 1) = 0 := by
-      rw [ofNat_add, e2]; exact ofNat_p
+      rw [ofNat_add, e2]; exact ofNat_self
     exact (neg_eq_of_add_eq_zero h).symm
 
 /-- 20:B10 — `i = g^{−κ}`, read as `g^{3κ}` on the cycle of length `4κ`, is the quarter-turn `−g^κ`. -/
@@ -6715,25 +7534,6 @@ theorem constants13 :
 `(g^r x)^k = (g^r)^k · x^k`. -/
 theorem shift_power_character (r k : Nat) (x : Shell p) : (g ^ r * x) ^ k = (g ^ r) ^ k * x ^ k :=
   mul_pow _ _ _
-
-/-- Counting where nothing satisfies the predicate. -/
-theorem natCount_eq_zero (P : Nat → Prop) [DecidablePred P] : ∀ n, (∀ x, x < n → ¬ P x) → natCount P n = 0
-  | 0, _ => rfl
-  | n + 1, h => by
-    show natCount P n + (if P n then 1 else 0) = 0
-    rw [natCount_eq_zero P n (fun x hx => h x (Nat.lt_succ_of_lt hx)), ite_eq_right (h n (Nat.lt_succ_self n))]
-
-/-- Counting through an equivalent predicate. -/
-theorem natCount_congr (P Q : Nat → Prop) [DecidablePred P] [DecidablePred Q] :
-    ∀ n, (∀ x, x < n → (P x ↔ Q x)) → natCount P n = natCount Q n
-  | 0, _ => rfl
-  | n + 1, h => by
-    show natCount P n + (if P n then 1 else 0) = natCount Q n + (if Q n then 1 else 0)
-    rw [natCount_congr P Q n (fun x hx => h x (Nat.lt_succ_of_lt hx))]
-    have e := h n (Nat.lt_succ_self n)
-    match (inferInstance : Decidable (Q n)) with
-    | isTrue hq => rw [ite_eq_left hq, ite_eq_left (e.2 hq)]
-    | isFalse hq => rw [ite_eq_right hq, ite_eq_right (fun hp => hq (e.1 hp))]
 
 /-- 20:E12, 20:E1 — clause (iii) in the `𝔽_p` reading: the fixed-point count of the scale-shift, the trace of its
 permutation matrix: `x ↦ g^r x` fixes every nonzero residue when `(p − 1) ∣ r` and none otherwise,
@@ -6803,23 +7603,6 @@ theorem ramanujan_sum (F : Frame q κ' h) {m : Nat} (hm : 0 < m) {ω : Shell q} 
 theorem frame53 : Frame 53 13 (2 : Shell 53) ∧ IsPrimitive (16 : Shell 53) 13 ∧ (2 : Shell 53) ^ 4 = 16 :=
   ⟨⟨rfl, Nat.zero_lt_succ 12, by decide⟩, by decide, by decide⟩
 
-/-- Bounded universal quantifiers, decided by search (no axioms). -/
-def decForallLT (P : Nat → Prop) [DecidablePred P] : (n : Nat) → Decidable (∀ m, m < n → P m)
-  | 0 => isTrue (fun m hm => absurd hm (Nat.not_lt_zero m))
-  | n + 1 =>
-    match decForallLT P n with
-    | isFalse h => isFalse (fun hall => h (fun m hm => hall m (Nat.lt_succ_of_lt hm)))
-    | isTrue h =>
-      if hn : P n then
-        isTrue (fun m hm =>
-          match Nat.lt_or_ge m n with
-          | .inl hlt => h m hlt
-          | .inr hge => (Nat.le_antisymm (Nat.le_of_lt_succ hm) hge) ▸ hn)
-      else isFalse (fun hall => hn (hall n (Nat.lt_succ_self n)))
-
-instance instDecForallLT (P : Nat → Prop) [DecidablePred P] (n : Nat) : Decidable (∀ m, m < n → P m) :=
-  decForallLT P n
-
 /-- 20:B7 [value] — on `𝔽₅₃` with `ω = 16` of order `13`: `c_{13}(n) = Σ_{a=1}^{12} ω^{an} = −1` for every
 `0 < n < 13`, and `12 = m − 1` at `n = 0`. -/
 theorem ramanujan53 :
@@ -6830,92 +7613,34 @@ end ramanujan
 
 /-! ## The quadratic extension `F(η)`, `η² = ν`, as pairs of residues (20:B6, 20:B8, 20:B9) -/
 
-/-- An element `a + bη` of the quadratic extension of the shell. -/
-structure Ext (p : Nat) where
-  re : Shell p
-  im : Shell p
-
 namespace Ext
 
-omit [Pos p] in
-theorem ext {a b : Ext p} (h1 : a.re = b.re) (h2 : a.im = b.im) : a = b := by
-  match a, b, h1, h2 with
-  | ⟨_, _⟩, ⟨_, _⟩, rfl, rfl => rfl
-
-omit [Pos p] in
-theorem re_congr {a b : Ext p} (h : a = b) : a.re = b.re := by cases h; rfl
-omit [Pos p] in
-theorem im_congr {a b : Ext p} (h : a = b) : a.im = b.im := by cases h; rfl
-
-instance : DecidableEq (Ext p) := fun a b =>
-  if h : a.re = b.re ∧ a.im = b.im then isTrue (ext h.1 h.2)
-  else isFalse (fun e => h ⟨re_congr e, im_congr e⟩)
-
-/-- The product `(a + bη)(c + dη) = (ac + νbd) + (ad + bc)η`. -/
-def mul (ν : Shell p) (z w : Ext p) : Ext p :=
-  ⟨z.re * w.re + ν * (z.im * w.im), z.re * w.im + z.im * w.re⟩
-
-/-- The unit `1 + 0η`. -/
-def one : Ext p := ⟨1, 0⟩
-
-/-- Powers, by repeated multiplication. -/
-def pow (ν : Shell p) (z : Ext p) : Nat → Ext p
-  | 0 => one
-  | n + 1 => mul ν (pow ν z n) z
-
-/-- Conjugation `a + bη ↦ a − bη` (Frobenius on the extension). -/
-def conj (z : Ext p) : Ext p := ⟨z.re, -z.im⟩
-
-/-- The trace `Tr(a + bη) = 2a`. -/
-def trace (z : Ext p) : Shell p := z.re + z.re
-
-/-- The norm `N(a + bη) = a² − νb²`. -/
-def norm (ν : Shell p) (z : Ext p) : Shell p := z.re * z.re + -(ν * (z.im * z.im))
+open FRC.Extension (Ext)
+open FRC.Extension.Ext
+variable {ν : Shell p}
 
 /-- The functional-equation half-turn `ρ : z ↦ 1 − z`. -/
-def rho (z : Ext p) : Ext p := ⟨1 + -z.re, -z.im⟩
+def rho (z : Ext p ν) : Ext p ν := ⟨1 + -z.re, -z.im⟩
 
 /-- The product `σ = ρ ∘ φ : z ↦ 1 − z̄`. -/
-def sigma (z : Ext p) : Ext p := rho (conj z)
+def sigma (z : Ext p ν) : Ext p ν := rho (conj z)
 
 /-- 20:B9 — conjugation `φ` and the half-turn `ρ` generate a Klein four-group: both are involutions and they
 commute, `φ ρ = ρ φ = σ`. -/
-theorem klein_four (z : Ext p) :
+theorem klein_four (z : Ext p ν) :
     conj (conj z) = z ∧ rho (rho z) = z ∧ conj (rho z) = rho (conj z) := by
-  refine ⟨ext rfl (neg_neg z.im), ext ?_ (neg_neg z.im), rfl⟩
+  refine ⟨Ext.ext rfl (neg_neg z.im), Ext.ext ?_ (neg_neg z.im), rfl⟩
   show 1 + -(1 + -z.re) = z.re
   rw [neg_add_rev, neg_neg, ← add_assoc, add_neg, zero_add]
-
-/-- 20:B6 — `z z̄ = N(z)`: conjugation is inversion on the norm-one circle. -/
-theorem mul_conj (ν : Shell p) (z : Ext p) : mul ν z (conj z) = ⟨norm ν z, 0⟩ := by
-  apply ext
-  · show z.re * z.re + ν * (z.im * -z.im) = z.re * z.re + -(ν * (z.im * z.im))
-    rw [← mul_neg, ← mul_neg]
-  · show z.re * -z.im + z.im * z.re = 0
-    rw [← mul_neg, mul_comm z.im, neg_add]
-
-/-- 20:B6 — on the circle `N(z) = 1` the conjugate is the inverse: `z z̄ = 1`. -/
-theorem conj_inv_of_norm_one (ν : Shell p) (z : Ext p) (hz : norm ν z = 1) : mul ν z (conj z) = one := by
-  show mul ν z (conj z) = ⟨1, 0⟩
-  rw [mul_conj, hz]
 
 section frame
 variable {κ : Nat} {g : Shell p}
 
-/-- 20:B9 — the fixed locus of conjugation is the prime meridian: `z̄ = z ⟺ b = 0`. -/
-theorem fixed_conj (F : Frame p κ g) (z : Ext p) : conj z = z ↔ z.im = 0 := by
-  constructor
-  · intro h
-    have := im_congr h
-    exact F.eq_zero_of_eq_neg this.symm
-  · intro h
-    exact ext rfl (show -z.im = z.im by rw [h, neg_zero])
-
 /-- 20:B8, 20:B9 — the finite critical line: `Tr z = 1` exactly when `Re z = 2⁻¹ = 2κ + 1`; it is the fixed locus
 of `σ = ρ ∘ φ`; every `2⁻¹ + bη` lies on it, one point per residue `b` — `p` points. -/
-theorem critical_line (F : Frame p κ g) (z : Ext p) :
+theorem critical_line (F : Frame p κ g) (z : Ext p ν) :
     (trace z = 1 ↔ z.re = ofNat (2 * κ + 1)) ∧ (sigma z = z ↔ z.re = ofNat (2 * κ + 1)) ∧
-    ∀ b : Shell p, trace ⟨ofNat (2 * κ + 1), b⟩ = 1 := by
+    ∀ b : Shell p, trace (⟨ofNat (2 * κ + 1), b⟩ : Ext p ν) = 1 := by
   have hinv := (half_inverse F).1
   have key : z.re + z.re = 1 ↔ z.re = ofNat (2 * κ + 1) := by
     constructor
@@ -6933,7 +7658,7 @@ theorem critical_line (F : Frame p κ g) (z : Ext p) :
       calc z.re + z.re = (1 + -z.re) + z.re := by rw [h1]
         _ = 1 := by rw [add_assoc, neg_add, add_zero]
     · intro h
-      apply ext
+      apply Ext.ext
       · show 1 + -z.re = z.re
         have h1 := key.2 h
         calc 1 + -z.re = (z.re + z.re) + -z.re := by rw [h1]
@@ -6944,7 +7669,7 @@ theorem critical_line (F : Frame p κ g) (z : Ext p) :
 
 /-- 20:B9 — the fixed locus of the half-turn `ρ` is the single point `2⁻¹`, the meeting of the prime meridian
 and the critical line: `ρ z = z ⟺ (φ z = z ∧ σ z = z) ⟺ z = 2⁻¹ + 0η`. -/
-theorem fixed_half_turn (F : Frame p κ g) (z : Ext p) :
+theorem fixed_half_turn (F : Frame p κ g) (z : Ext p ν) :
     (rho z = z ↔ (conj z = z ∧ sigma z = z)) ∧ (rho z = z ↔ z = ⟨ofNat (2 * κ + 1), 0⟩) := by
   have hc := fixed_conj F z
   have hs := (critical_line F z).2.1
@@ -6954,26 +7679,26 @@ theorem fixed_half_turn (F : Frame p κ g) (z : Ext p) :
       have h1 := re_congr h
       have h2 := im_congr h
       refine ⟨F.eq_zero_of_eq_neg h2.symm, hs.1 ?_⟩
-      exact ext (show (sigma z).re = z.re from h1) (show (sigma z).im = z.im from neg_neg z.im)
+      exact Ext.ext (show (sigma z).re = z.re from h1) (show (sigma z).im = z.im from neg_neg z.im)
     · intro h
-      apply ext
+      apply Ext.ext
       · have := hs.2 h.2
         exact (re_congr this : (sigma z).re = z.re)
       · show -z.im = z.im
         rw [h.1, neg_zero]
   exact ⟨⟨fun h => ⟨hc.2 (hr.1 h).1, hs.2 (hr.1 h).2⟩, fun h => hr.2 ⟨hc.1 h.1, hs.1 h.2⟩⟩,
-    hr.trans ⟨fun h => ext h.2 h.1, fun h => ⟨im_congr h, re_congr h⟩⟩⟩
+    hr.trans ⟨fun h => Ext.ext h.2 h.1, fun h => ⟨im_congr h, re_congr h⟩⟩⟩
 
 /-- 20:E12, 20:B8 — the spectral readout in the core: the mode index `θ` is read at `z(θ) = 2⁻¹ + θη`,
 `2⁻¹ = 2κ + 1`. -/
-def readout (κ : Nat) (θ : Shell p) : Ext p := ⟨ofNat (2 * κ + 1), θ⟩
+def readout (ν : Shell p) (κ : Nat) (θ : Shell p) : Ext p ν := ⟨ofNat (2 * κ + 1), θ⟩
 
 /-- 20:E12, 20:B8 — clause (ii) of the shell theorem, no axioms: every readout lies on the trace-one line, its
 real part is the half-turn `2⁻¹ = 2κ + 1`, and `θ ↦ z(θ)` is injective. -/
-theorem readout_on_line (F : Frame p κ g) (θ : Shell p) :
-    trace (readout κ θ) = 1 ∧ (readout κ θ).re = ofNat (2 * κ + 1) ∧
-    ∀ θ' : Shell p, readout κ θ = readout κ θ' → θ = θ' := by
-  refine ⟨(critical_line F (readout κ θ)).2.2 θ, rfl, fun θ' h => im_congr h⟩
+theorem readout_on_line (F : Frame p κ g) (ν θ : Shell p) :
+    trace (readout ν κ θ) = 1 ∧ (readout ν κ θ).re = ofNat (2 * κ + 1) ∧
+    ∀ θ' : Shell p, readout ν κ θ = readout ν κ θ' → θ = θ' := by
+  refine ⟨(critical_line F (readout ν κ θ)).2.2 θ, rfl, fun θ' h => im_congr h⟩
 
 /-- 20:E12 — the slot index of a nontrivial slot: for `1 ≤ k ≤ p − 2` the index `θ = Φ(k) = −g^k` is neither
 `0` (the centre `2⁻¹`) nor `−1` (the full-cycle exponent), on every shell and with no axioms. -/
@@ -6994,8 +7719,8 @@ theorem readout_slot_index (F : Frame p κ g) (k : Nat) (hk1 : 1 ≤ k) (hk2 : k
     exact Nat.not_succ_le_zero 0 (by rw [hmod] at hk1; exact hk1)
 
 /-- 20:B8 — the energy on the critical line: `N(2⁻¹ + bη) = (2⁻¹)² − νb²`, with `2 · 2⁻¹ = 1`. -/
-theorem norm_on_line (F : Frame p κ g) (ν : Shell p) (z : Ext p) (hz : z.re = ofNat (2 * κ + 1)) :
-    norm ν z = ofNat (2 * κ + 1) * ofNat (2 * κ + 1) + -(ν * (z.im * z.im)) ∧
+theorem norm_on_line (F : Frame p κ g) (z : Ext p ν) (hz : z.re = ofNat (2 * κ + 1)) :
+    norm z = ofNat (2 * κ + 1) * ofNat (2 * κ + 1) + -(ν * (z.im * z.im)) ∧
     (2 : Shell p) * ofNat (2 * κ + 1) = 1 := by
   refine ⟨?_, (half_inverse F).1⟩
   show z.re * z.re + -(ν * (z.im * z.im)) = _
@@ -7004,12 +7729,12 @@ theorem norm_on_line (F : Frame p κ g) (ν : Shell p) (z : Ext p) (hz : z.re = 
 /-- 20:B6 — the quarter-turn `i = −g^κ`, as the element `i + 0η`, is fixed by conjugation and lies off the
 circle: `N(i) = i² = −1 ≠ 1`. -/
 theorem quarter_turn_off_circle (F : Frame p κ g) (ν : Shell p) :
-    conj ⟨quarterTurn g κ, 0⟩ = ⟨quarterTurn g κ, 0⟩ ∧ norm ν ⟨quarterTurn g κ, 0⟩ = -1 ∧
-    norm ν ⟨quarterTurn g κ, 0⟩ ≠ 1 := by
-  have hn : norm ν ⟨quarterTurn g κ, 0⟩ = -1 := by
+    conj (⟨quarterTurn g κ, 0⟩ : Ext p ν) = ⟨quarterTurn g κ, 0⟩ ∧ norm (⟨quarterTurn g κ, 0⟩ : Ext p ν) = -1 ∧
+    norm (⟨quarterTurn g κ, 0⟩ : Ext p ν) ≠ 1 := by
+  have hn : norm (⟨quarterTurn g κ, 0⟩ : Ext p ν) = -1 := by
     show quarterTurn g κ * quarterTurn g κ + -(ν * (0 * 0)) = -1
     rw [F.quarter_turn_sq, zero_mul, mul_zero, neg_zero, add_zero]
-  refine ⟨ext rfl neg_zero, hn, fun h => ?_⟩
+  refine ⟨Ext.ext rfl neg_zero, hn, fun h => ?_⟩
   rw [hn] at h
   exact F.one_ne_zero (F.eq_zero_of_eq_neg h.symm)
 
@@ -7018,8 +7743,8 @@ end frame
 /-- 20:B6 [value] — on `𝔽₁₃(√2)` (`2` a nonsquare mod `13`): the norm-one circle has `13 + 1 = 14` points
 among the `169` elements, and Frobenius `z ↦ z^{13}` is conjugation on every element. -/
 theorem circle13 :
-    natCount (fun k => norm (2 : Shell 13) ⟨ofNat (k / 13), ofNat (k % 13)⟩ = 1) 169 = 14 ∧
-    (∀ k, k < 169 → pow (2 : Shell 13) ⟨ofNat (k / 13), ofNat (k % 13)⟩ 13 =
+    natCount (fun k => norm (⟨ofNat (k / 13), ofNat (k % 13)⟩ : Ext 13 2) = 1) 169 = 14 ∧
+    (∀ k, k < 169 → (⟨ofNat (k / 13), ofNat (k % 13)⟩ : Ext 13 2) ^ 13 =
       conj ⟨ofNat (k / 13), ofNat (k % 13)⟩) ∧
     (∀ x : Nat, x < 13 → 0 < x → (ofNat x : Shell 13) * ofNat x ≠ 2) := by decide +kernel
 
@@ -7091,6 +7816,97 @@ theorem lab_pair :
     13 * 13 < 233 ∧ 12 % 4 = 0 ∧ 232 % 4 = 0 ∧ 232 % 3 ≠ 0 ∧ (5 : Shell 13) * 5 = -1 ∧
     (89 : Shell 233) * 89 = -1 ∧ 232 % 12 ≠ 0 ∧ 3 * 3 < 13 ∧ 3 * 3 < 233 := by decide
 
+/-! ## Old names (ledger migration, task LM17): the declarations moved to the themes, each under its old name -/
+section aliases
+variable {κ : Nat} {g : Shell p}
+
+/-- `p ≡ 0` on the shell (20-rh's name; the lemma is `FRC.Shell.Frame.ofNat_self`). -/
+theorem ofNat_p : (ofNat p : Shell p) = 0 :=
+  FRC.Shell.Frame.ofNat_self
+
+/-- `n + p ≡ n` on the shell (20-rh's name; the lemma is `FRC.Shell.Frame.ofNat_add_self`). -/
+theorem ofNat_add_p (n : Nat) : (ofNat (n + p) : Shell p) = ofNat n :=
+  FRC.Shell.Frame.ofNat_add_self n
+
+/-- Counting where nothing satisfies the predicate. -/
+theorem natCount_eq_zero (P : Nat → Prop) [DecidablePred P] : ∀ n, (∀ x, x < n → ¬ P x) → natCount P n = 0 :=
+  FRC.Shell.Frame.natCount_eq_zero P
+
+/-- Counting through an equivalent predicate. -/
+theorem natCount_congr (P Q : Nat → Prop) [DecidablePred P] [DecidablePred Q] :
+    ∀ n, (∀ x, x < n → (P x ↔ Q x)) → natCount P n = natCount Q n :=
+  FRC.Shell.Frame.natCount_congr P Q
+
+/-- `Σ_{l<n+1} f l = f 0 + Σ_{l<n} f (l + 1)`. -/
+theorem sumRange_succ' (f : Nat → Shell p) : ∀ n, sumRange f (n + 1) = f 0 + sumRange (fun l => f (l + 1)) n :=
+  FRC.Shell.sumRange_succ' f
+
+/-- The sum over the nonzero residues equals the sum over the powers of the drive: `x = g^m` reindexes. -/
+theorem sum_units_eq_sum_pow (F : Frame p κ g) (f : Shell p → Shell p) :
+    sumRange (fun l => f (ofNat (l + 1))) (p - 1) = sumRange (fun m => f (g ^ m)) (p - 1) :=
+  FRC.Shell.Frame.sum_units_eq_sum_pow F f
+
+/-- 20-rh's quadratic extension: `FRC.Extension.Ext p ν`, its `ν` now a parameter of the type. -/
+@[reducible] def Ext (p : Nat) [Pos p] (ν : Shell p) : Type := FRC.Extension.Ext p ν
+
+namespace Ext
+variable {ν : Shell p}
+open FRC.Extension.Ext (ofShell)
+
+theorem ext {z z' : Ext p ν} (h1 : z.re = z'.re) (h2 : z.im = z'.im) : z = z' :=
+  FRC.Extension.Ext.ext h1 h2
+
+theorem re_congr {a b : Ext p ν} (h : a = b) : a.re = b.re :=
+  FRC.Extension.Ext.re_congr h
+
+theorem im_congr {a b : Ext p ν} (h : a = b) : a.im = b.im :=
+  FRC.Extension.Ext.im_congr h
+
+/-- Conjugation `a + bη ↦ a − bη` (Frobenius on the extension). -/
+@[reducible] def conj (z : Ext p ν) : Ext p ν :=
+  FRC.Extension.Ext.conj z
+
+/-- The trace `Tr(a + bη) = 2a`. -/
+@[reducible] def trace (z : Ext p ν) : Shell p :=
+  FRC.Extension.Ext.trace z
+
+/-- The norm `N(a + bη) = a² − νb²`. -/
+@[reducible] def norm (z : Ext p ν) : Shell p :=
+  FRC.Extension.Ext.norm z
+
+/-- Powers, by repeated multiplication. -/
+@[reducible] def pow (z : Ext p ν) : Nat → Ext p ν :=
+  FRC.Extension.Ext.pow z
+
+/-- 20:B6 — `z z̄ = N(z)`: conjugation is inversion on the norm-one circle. -/
+theorem mul_conj (z : Ext p ν) : z * conj z = ofShell (norm z) :=
+  FRC.Extension.Ext.mul_conj z
+
+/-- 20:B6 — on the circle `N(z) = 1` the conjugate is the inverse: `z z̄ = 1`. -/
+theorem conj_inv_of_norm_one (z : Ext p ν) (hz : norm z = 1) : z * conj z = 1 :=
+  FRC.Extension.Ext.conj_inv_of_norm_one z hz
+
+/-- 20:B9 — the fixed locus of conjugation is the prime meridian: `z̄ = z ⟺ b = 0`. -/
+theorem fixed_conj (F : Frame p κ g) (z : Ext p ν) : conj z = z ↔ z.im = 0 :=
+  FRC.Extension.Ext.fixed_conj F z
+
+/-- 20-rh's product, the instance `z * w` of `FRC.Extension.Ext p ν`. -/
+@[reducible] def mul (z w : Ext p ν) : Ext p ν := z * w
+
+/-- 20-rh's unit, `1`. -/
+@[reducible] def one : Ext p ν := 1
+
+end Ext
+
+/-- Bounded universal quantifiers, decided by search (no axioms). -/
+@[reducible] def decForallLT (P : Nat → Prop) [DecidablePred P] : (n : Nat) → Decidable (∀ m, m < n → P m) :=
+  FRC.Shell.decForallLT P
+
+@[reducible] def instDecForallLT (P : Nat → Prop) [DecidablePred P] (n : Nat) : Decidable (∀ m, m < n → P m) :=
+  FRC.Shell.instDecForallLT P n
+
+end aliases
+
 -- Ledger predicates of 20-rh (generated by make_predicates.py from docs/20-rh/20-rh-ledger.json; edit the ledger, not this section)
 /-- 20:B1 (p20008) — The two frames on one substrate: the Carrier chart $\F_\Omega$, held by no embedded observer, and the Subject $\Fp$ embedded with $\Omega\gg p^{2}$; what they share is the quarter-turn core $Q_4$ and nothing else, on the laboratory pair $(13,233)$ the cycles $C_{12}$ and $C_{232}$ admit no projection ($12\nmid232$); hardness by register ($p$-hard, $\Omega$-hard). -/
 theorem p20008 : (13 : Nat) * (13 : Nat) < (233 : Nat) ∧ (12 : Nat) % (4 : Nat) = (0 : Nat) ∧ (232 : Nat) % (4 : Nat) = (0 : Nat) ∧ (232 : Nat) % (3 : Nat) ≠ (0 : Nat) ∧ (5 : FRC.Shell (13 : Nat)) * (5 : FRC.Shell (13 : Nat)) = (-1 : FRC.Shell (13 : Nat)) ∧ (89 : FRC.Shell (233 : Nat)) * (89 : FRC.Shell (233 : Nat)) = (-1 : FRC.Shell (233 : Nat)) ∧ (232 : Nat) % (12 : Nat) ≠ (0 : Nat) ∧ (3 : Nat) * (3 : Nat) < (13 : Nat) ∧ (3 : Nat) * (3 : Nat) < (233 : Nat) :=
@@ -7123,7 +7939,7 @@ theorem p20017 : (∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Sh
 theorem p20032 : (∀ {p : Nat} [FRC.Pos p] {g : FRC.Shell p} (r k : Nat) (x : FRC.Shell p), (g ^ r * x) ^ k = (g ^ r) ^ k * x ^ k) ∧ ∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → ∀ (r : Nat), FRC.Shell.Frame.natCount (fun x => x ≠ (0 : Nat) ∧ g ^ r * FRC.Shell.ofNat x = FRC.Shell.ofNat x) p = if r % (p - (1 : Nat)) = (0 : Nat) then p - (1 : Nat) else (0 : Nat) :=
   And.intro @FRC.Rh.shift_power_character (@FRC.Rh.shift_trace)
 /-- 20:E12 (p20043) — \textbf{The shell theorem.} On every shell, with no hypothesis: (i) $v$ expands in the constant mode and the nonterminal modes of the quarter-turn meridian; (ii) every readout lies on $\Tr=1$, real part $2^{-1}=2\kp+1=-\pi$; (iii) the scale-shift has the modes as eigenvectors, eigenphases $2\pi j/(p-1)$ independent of $v$. No off-line mode; true of every vector, the Davenport--Heilbronn vector included. -/
-theorem p20043 : (∀ {p : Nat} [FRC.Pos p] {g : FRC.Shell p} (r k : Nat) (x : FRC.Shell p), (g ^ r * x) ^ k = (g ^ r) ^ k * x ^ k) ∧ (∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → ∀ (r : Nat), FRC.Shell.Frame.natCount (fun x => x ≠ (0 : Nat) ∧ g ^ r * FRC.Shell.ofNat x = FRC.Shell.ofNat x) p = if r % (p - (1 : Nat)) = (0 : Nat) then p - (1 : Nat) else (0 : Nat)) ∧ (∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → ∀ (θ : FRC.Shell p), (FRC.Rh.Ext.readout κ θ).trace = (1 : FRC.Shell p) ∧ (FRC.Rh.Ext.readout κ θ).re = FRC.Shell.ofNat ((2 : Nat) * κ + (1 : Nat)) ∧ ∀ (θ' : FRC.Shell p), FRC.Rh.Ext.readout κ θ = FRC.Rh.Ext.readout κ θ' → θ = θ') ∧ ∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → ∀ (k : Nat), (1 : Nat) ≤ k → k ≤ p - (2 : Nat) → -g ^ k ≠ (0 : FRC.Shell p) ∧ -g ^ k ≠ (-1 : FRC.Shell p) :=
+theorem p20043 : (∀ {p : Nat} [FRC.Pos p] {g : FRC.Shell p} (r k : Nat) (x : FRC.Shell p), (g ^ r * x) ^ k = (g ^ r) ^ k * x ^ k) ∧ (∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → ∀ (r : Nat), FRC.Shell.Frame.natCount (fun x => x ≠ (0 : Nat) ∧ g ^ r * FRC.Shell.ofNat x = FRC.Shell.ofNat x) p = if r % (p - (1 : Nat)) = (0 : Nat) then p - (1 : Nat) else (0 : Nat)) ∧ (∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → ∀ (ν θ : FRC.Shell p), (FRC.Rh.Ext.readout ν κ θ).trace = (1 : FRC.Shell p) ∧ (FRC.Rh.Ext.readout ν κ θ).re = FRC.Shell.ofNat ((2 : Nat) * κ + (1 : Nat)) ∧ ∀ (θ' : FRC.Shell p), FRC.Rh.Ext.readout ν κ θ = FRC.Rh.Ext.readout ν κ θ' → θ = θ') ∧ ∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → ∀ (k : Nat), (1 : Nat) ≤ k → k ≤ p - (2 : Nat) → -g ^ k ≠ (0 : FRC.Shell p) ∧ -g ^ k ≠ (-1 : FRC.Shell p) :=
   And.intro @FRC.Rh.shift_power_character (And.intro @FRC.Rh.shift_trace (And.intro @FRC.Rh.Ext.readout_on_line (@FRC.Rh.Ext.readout_slot_index)))
 -- end ledger predicates
 
@@ -7151,11 +7967,17 @@ hydrogen, `12N + 1` prime at `N = 1, 3` and not at `N = 2` (C10, B10); the nesti
 the bound `N ≤ 3` on the laboratory Carrier (B10). The realisation premises of the octant lemma (A4, A5, B6,
 B7) are outside this module: it decides the lemma's arithmetic. Every declaration is checked to depend on no
 axiom (`check_core_axioms.py`).
+
+Since the ledger migration (task LM17) the octant character and its converse live in the frame theme (`Orbit.lean`)
+and `isPrime` in `Nat.lean`; every old name stays as an alias.
 -/
 
 namespace FRC.Entropy
 
 open FRC.Shell
+
+section
+open FRC.Shell.Frame (lit_mul add_one_add_one_neg even_capacity_powers octant_residue tsirelson_square two_is_square lit_add neg_one_ne_one neg_one_ne_zero octant_of_two_square even_of_order_eight even_capacity_of_octant octant_iff even_capacity_of_two_square two_is_square_iff)
 
 /-! ## The import and its congruences (14:A1, A2) -/
 section congruences
@@ -7205,200 +8027,6 @@ theorem closure_count (m x : Nat) : 2 * x ≤ 2 * m ↔ x ≤ m := by
 
 end congruences
 
-/-! ## The octant character on every framed shell of even capacity (14:C6, X4) -/
-section octant
-
-variable {p : Nat} [Pos p] {κ : Nat} {g : Shell p}
-
-/-- Literals multiply as their values: `a · b = ab` on every shell. -/
-theorem lit_mul (a b : Nat) : (OfNat.ofNat a : Shell p) * OfNat.ofNat b = (OfNat.ofNat (a * b) : Shell p) :=
-  Shell.ext (by
-    show (a % p * (b % p)) % p = (a * b) % p
-    exact (FRC.Nat.mul_mod a b p Pos.pos).symm)
-
-/-- `a + 1 + (1 − a) = 2` on every shell. -/
-theorem add_one_add_one_neg (a : Shell p) : a + 1 + (1 + -a) = 2 := by
-  rw [Shell.add_assoc, ← Shell.add_assoc 1 1 (-a), Shell.add_comm (1 + 1) (-a),
-    ← Shell.add_assoc a (-a) (1 + 1), Shell.add_neg a, Shell.zero_add]
-  exact Frame.two_eq_one_add_one.symm
-
-/-- On a frame of capacity `κ = 2m`: `g^{4m} = −1` (the half-period) and `g^{8m} = 1`. -/
-theorem even_capacity_powers (F : Frame p κ g) (m : Nat) (hm : κ = 2 * m) :
-    g ^ (4 * m) = -1 ∧ g ^ (8 * m) = 1 := by
-  have h4 : 4 * m = 2 * κ := by rw [hm, ← FRC.Nat.mul_assoc]
-  have h8 : 8 * m = p - 1 := by rw [F.n_eq, hm, ← FRC.Nat.mul_assoc]
-  exact ⟨by rw [h4]; exact F.half_period, by rw [h8]; exact F.pow_n⟩
-
-/-- 14:C6 — the octant character: on every frame `(τ; 0, 1, g)` of even capacity `κ = 2m`, `ζ = g^m` has
-`ζ⁴ = −1` and `ζ⁸ = 1` — the sector `C₈ ⊂ C_{4κ}` is realised and `ζ` is its residue `ζ₈`. -/
-theorem octant_residue (F : Frame p κ g) (m : Nat) (hm : κ = 2 * m) :
-    (g ^ m) ^ 4 = -1 ∧ (g ^ m) ^ 8 = 1 := by
-  obtain ⟨h4, h8⟩ := even_capacity_powers F m hm
-  constructor
-  · rw [← Shell.pow_mul, Nat.mul_comm m 4]; exact h4
-  · rw [← Shell.pow_mul, Nat.mul_comm m 8]; exact h8
-
-/-- 14:C6, 14:X4 — the Tsirelson square: with `ζ = g^m` and `ζ' = g^{7m}` its inverse (`ζζ' = 1`),
-`(ζ + ζ')² = 2` and `(2(ζ + ζ'))² = 8` on every frame of capacity `κ = 2m`; hence `2` is a square on every
-such shell — the direction "octant ⇒ c-square" of X4's second face (the converse is
-`even_capacity_of_two_square` below; the equivalence `two_is_square_iff`). -/
-theorem tsirelson_square (F : Frame p κ g) (m : Nat) (hm : κ = 2 * m) :
-    g ^ m * g ^ (7 * m) = 1 ∧ (g ^ m + g ^ (7 * m)) ^ 2 = 2 ∧
-    (2 * (g ^ m + g ^ (7 * m))) ^ 2 = 8 := by
-  obtain ⟨h4, h8⟩ := even_capacity_powers F m hm
-  have hz : g ^ m * g ^ (7 * m) = 1 := by
-    rw [← Shell.pow_add, show m + 7 * m = 8 * m by
-      rw [Nat.mul_comm 8 m, Nat.mul_succ, Nat.mul_comm m 7, Nat.add_comm]]
-    exact h8
-  -- `ζ'² = −ζ²`: `g^{14m} = g^{8m} g^{4m} g^{2m} = (−1) g^{2m}`
-  have h14 : 7 * m + 7 * m = 8 * m + (4 * m + (m + m)) := by
-    calc 7 * m + 7 * m = (7 + 7) * m := (FRC.Nat.add_mul 7 7 m).symm
-      _ = (8 + (4 + (1 + 1))) * m := rfl
-      _ = 8 * m + (4 * m + (1 * m + 1 * m)) := by
-        rw [FRC.Nat.add_mul, FRC.Nat.add_mul, FRC.Nat.add_mul]
-      _ = 8 * m + (4 * m + (m + m)) := by rw [Nat.one_mul]
-  have hz' : g ^ (7 * m) * g ^ (7 * m) = -(g ^ m * g ^ m) := by
-    rw [← Shell.pow_add, h14, Shell.pow_add, Shell.pow_add, Shell.pow_add, h8, h4, Shell.one_mul,
-      Shell.neg_one_mul]
-  -- `(ζ + ζ')² = ζ² + ζζ' + ζ'ζ + ζ'² = ζ² + 1 + (1 − ζ²) = 2`
-  have hsq : (g ^ m + g ^ (7 * m)) ^ 2 = 2 := by
-    rw [Shell.pow_two, Shell.left_distrib, Shell.right_distrib, Shell.right_distrib, hz,
-      Shell.mul_comm (g ^ (7 * m)) (g ^ m), hz, hz']
-    exact add_one_add_one_neg _
-  refine ⟨hz, hsq, ?_⟩
-  rw [Shell.mul_pow, hsq, Shell.pow_two, lit_mul 2 2, lit_mul 4 2]
-
-/-- 14:X4 — the direction "even capacity ⇒ `2` a square" at tier 0: on every frame of even capacity `2` is a
-square, `(ζ + ζ⁻¹)² = 2`; the converse is `even_capacity_of_two_square`, the equivalence `two_is_square_iff`. -/
-theorem two_is_square (F : Frame p κ g) (m : Nat) (hm : κ = 2 * m) : ∃ r : Shell p, r * r = 2 :=
-  ⟨g ^ m + g ^ (7 * m), by rw [← Shell.pow_two]; exact (tsirelson_square F m hm).2.1⟩
-
-end octant
-
-/-! ## The converse: `2` a square ⇒ even capacity, on every frame (14:X4) -/
-section converse
-
-variable {p : Nat} [Pos p] {κ : Nat} {g : Shell p}
-
-/-- `a b (c d) = a c (b d)` on every shell. -/
-theorem mul_mul_mul_comm (a b c d : Shell p) : a * b * (c * d) = a * c * (b * d) := by
-  rw [Shell.mul_assoc, Shell.mul_left_comm b c d, ← Shell.mul_assoc]
-
-/-- Literals add as their values: `a + b = (a + b)` on every shell. -/
-theorem lit_add (a b : Nat) : (OfNat.ofNat a : Shell p) + OfNat.ofNat b = (OfNat.ofNat (a + b) : Shell p) :=
-  Shell.ext (by
-    show (a % p + b % p) % p = (a + b) % p
-    exact (FRC.Nat.add_mod a b p Pos.pos).symm)
-
-/-- `−1 ≠ 1` on every frame (`2 ≠ 0`). -/
-theorem neg_one_ne_one (F : Frame p κ g) : (-1 : Shell p) ≠ 1 := fun h => by
-  have h2 : (1 : Shell p) + 1 = 0 := by
-    have := Shell.neg_add (1 : Shell p); rw [h] at this; exact this
-  exact F.two_ne_zero (by rw [Frame.two_eq_one_add_one]; exact h2)
-
-/-- `−1 ≠ 0` on every frame. -/
-theorem neg_one_ne_zero (F : Frame p κ g) : (-1 : Shell p) ≠ 0 := fun h => by
-  have : (1 : Shell p) = 0 := by
-    have h' : -(-1 : Shell p) = -0 := congrArg Neg.neg h
-    rw [Shell.neg_neg, Shell.neg_zero] at h'
-    exact h'
-  exact F.one_ne_zero this
-
-/-- A square root of `2` gives a square root of the quarter-turn: with `i² = −1`, `2h = 1` and `r² = 2`,
-`ζ = (r + i r) h` has `ζ² = i`, hence `ζ⁴ = −1` and `ζ⁸ = 1` — an element of order eight wherever `−1 ≠ 1`,
-that is on every frame. -/
-theorem octant_of_two_square {r i h : Shell p} (hr : r * r = 2) (hi : i * i = -1)
-    (hh : 2 * h = 1) :
-    ∃ ζ : Shell p, ζ * ζ = i ∧ ζ ^ 4 = -1 ∧ ζ ^ 8 = 1 := by
-  -- `(r + i r)² = 4 i`
-  have hA : (r + i * r) * (r + i * r) = i * 4 := by
-    rw [Shell.left_distrib, Shell.right_distrib, Shell.right_distrib, hr,
-      Shell.mul_assoc i r r, hr, Shell.mul_left_comm r i r, hr,
-      Shell.mul_assoc i r (i * r), Shell.mul_left_comm r i r, ← Shell.mul_assoc i i (r * r), hi, hr,
-      Shell.neg_one_mul, Shell.add_comm 2 (i * 2), Shell.add_assoc, Shell.add_comm 2 (i * 2 + -2),
-      Shell.add_assoc, Shell.neg_add, Shell.add_zero, ← Shell.left_distrib, lit_add 2 2]
-  -- `4 h² = (2h)² = 1`
-  have h4 : (4 : Shell p) * (h * h) = 1 := by
-    rw [← lit_mul 2 2, ← mul_mul_mul_comm, hh, Shell.one_mul]
-  have hz : ((r + i * r) * h) * ((r + i * r) * h) = i := by
-    rw [mul_mul_mul_comm, hA, Shell.mul_assoc, h4, Shell.mul_one]
-  refine ⟨(r + i * r) * h, hz, ?_, ?_⟩
-  · rw [show (4 : Nat) = 2 * 2 from rfl, Shell.pow_mul, Shell.pow_two, Shell.pow_two, hz, hi]
-  · rw [show (8 : Nat) = 2 * 2 * 2 from rfl, Shell.pow_mul, Shell.pow_mul, Shell.pow_two, Shell.pow_two,
-      Shell.pow_two, hz, hi, Shell.neg_mul_neg, Shell.one_mul]
-
-/-- The arithmetic of the order: `(k · 8) % 4κ = 0` and `(k · 4) % 4κ ≠ 0` force `κ` even (a divisor `4κ` of
-`8k` that misses `4k` cannot be `4 · odd`; `0 < κ` is only what `mod_spec` needs). -/
-theorem even_of_order_eight {κ k : Nat} (hκ : 0 < κ) (h8 : (k * 8) % (4 * κ) = 0)
-    (h4 : (k * 4) % (4 * κ) ≠ 0) : ∃ m, κ = 2 * m := by
-  have h4κ : 0 < 4 * κ := Nat.mul_pos (Nat.zero_lt_succ 3) hκ
-  obtain ⟨q, hq⟩ := FRC.Nat.mod_spec (4 * κ) h4κ (k * 8)
-  rw [h8, Nat.add_zero] at hq
-  -- `2k = κ q`
-  have h2k : 2 * k = κ * q := by
-    apply Nat.eq_of_mul_eq_mul_left (Nat.zero_lt_succ 3)
-    rw [← FRC.Nat.mul_assoc, ← FRC.Nat.mul_assoc, Nat.mul_comm 4 2, Nat.mul_comm (2 * 4) k, ← hq]
-  have h2 : 0 < 2 := Nat.zero_lt_succ 1
-  obtain ⟨m, hm⟩ := FRC.Nat.mod_spec 2 h2 κ
-  have hlt : κ % 2 < 2 := FRC.Nat.mod_lt' κ h2
-  match hκ2 : κ % 2 with
-  | 0 => rw [hκ2, Nat.add_zero] at hm; exact ⟨m, hm⟩
-  | 1 =>
-    -- `κ` odd: `q` is even, `k = κ q'`, so `4κ ∣ 4k`, contradicting `h4`
-    have hq2 : q % 2 = 0 := by
-      have e1 : (κ * q) % 2 = q % 2 := by
-        rw [FRC.Nat.mul_mod κ q 2 h2, hκ2, Nat.one_mul, FRC.Nat.mod_mod q 2 h2]
-      have e2 : (2 * k) % 2 = 0 := by
-        rw [Nat.mul_comm 2 k]
-        exact (FRC.Nat.mod_unique (Nat.zero_lt_succ 1) (by rw [Nat.add_zero, Nat.mul_comm k 2]) : (k * 2) % 2 = 0)
-      rw [← e1, ← h2k]; exact e2
-    obtain ⟨q', hq'⟩ := FRC.Nat.mod_spec 2 h2 q
-    rw [hq2, Nat.add_zero] at hq'
-    have hk : k = κ * q' := by
-      apply Nat.eq_of_mul_eq_mul_left h2
-      rw [h2k, hq', Nat.mul_left_comm κ 2 q']
-    exact absurd (FRC.Nat.mod_unique h4κ
-      (by rw [hk, Nat.add_zero, Nat.mul_comm (κ * q') 4, ← FRC.Nat.mul_assoc])) h4
-  | n + 2 => exact absurd hlt (by rw [hκ2]; exact Nat.not_lt_of_ge (Nat.le_add_left 2 n))
-
-/-- 14:C6 — the octant forces even capacity: on every frame, an element `ζ` with `ζ⁴ = −1` and `ζ⁸ = 1` (an
-element of order eight) gives `8 ∣ 4κ`, so the capacity is even. -/
-theorem even_capacity_of_octant (F : Frame p κ g) {ζ : Shell p} (hz4 : ζ ^ 4 = -1) (hz8 : ζ ^ 8 = 1) :
-    ∃ m, κ = 2 * m := by
-  have hζ0 : ζ ≠ 0 := fun h0 => by
-    rw [h0, show (4 : Nat) = 3 + 1 from rfl, Shell.pow_succ, Shell.mul_zero] at hz4
-    exact neg_one_ne_zero F hz4.symm
-  obtain ⟨k, hk, hgk⟩ := F.eq_pow_of_ne_zero hζ0
-  have e8 : (k * 8) % (p - 1) = 0 :=
-    F.mod_eq_zero_of_pow_eq_one (by rw [Shell.pow_mul, hgk]; exact hz8)
-  have e4 : (k * 4) % (p - 1) ≠ 0 := fun e => by
-    have := F.pow_eq_one_of_mod e
-    rw [Shell.pow_mul, hgk, hz4] at this
-    exact neg_one_ne_one F this
-  rw [F.n_eq] at e8 e4
-  exact even_of_order_eight F.cap_pos e8 e4
-
-/-- 14:C6 — the octant sector at tier 0, as an equivalence: on every frame, an element with `ζ⁴ = −1` and
-`ζ⁸ = 1` exists exactly when the capacity is even. -/
-theorem octant_iff (F : Frame p κ g) : (∃ ζ : Shell p, ζ ^ 4 = -1 ∧ ζ ^ 8 = 1) ↔ ∃ m, κ = 2 * m :=
-  ⟨fun ⟨_, h4, h8⟩ => even_capacity_of_octant F h4 h8,
-   fun ⟨m, hm⟩ => ⟨g ^ m, octant_residue F m hm⟩⟩
-
-/-- 14:X4 — the converse of the second face at tier 0: on every frame, a square root of `2` forces the
-capacity even — `ζ = (r + i r)/2` has `ζ² = i`, so an element of order eight exists and `8 ∣ 4κ`. -/
-theorem even_capacity_of_two_square (F : Frame p κ g) {r : Shell p} (hr : r * r = 2) :
-    ∃ m, κ = 2 * m := by
-  obtain ⟨h, hh⟩ := F.exists_inv F.two_ne_zero
-  obtain ⟨ζ, _, hz4, hz8⟩ := octant_of_two_square hr F.quarter_turn_sq hh
-  exact even_capacity_of_octant F hz4 hz8
-
-/-- 14:X4 — the second face as an equivalence at tier 0: on every frame `(τ; 0, 1, g)`, `2` is a square
-exactly when the capacity is even — the c-square congruence and the octant sector are one condition. -/
-theorem two_is_square_iff (F : Frame p κ g) : (∃ r : Shell p, r * r = 2) ↔ ∃ m, κ = 2 * m :=
-  ⟨fun ⟨_, hr⟩ => even_capacity_of_two_square F hr, fun ⟨m, hm⟩ => two_is_square F m hm⟩
-
-end converse
-
 /-! ## The nesting bound and trial division (14:B10) -/
 section nesting
 
@@ -7422,7 +8050,7 @@ theorem nesting_bound (q p Ω : Nat) (hq : q * q < p) (hp : p * p < Ω) : q * q 
 /-- Trial division up to `B` decides primality when `n < (B + 1)²`: a divisor `d ≥ 2` of `n` with
 `d > B` has a cofactor `q = n/d` with `2 ≤ q ≤ B`, itself a divisor. -/
 theorem isPrime_of_bounded (n B : Nat) (h2 : 2 ≤ n) (hB : n < (B + 1) * (B + 1))
-    (hd : ∀ d, d < B + 1 → 2 ≤ d → n % d ≠ 0) : Dimensions.isPrime n := by
+    (hd : ∀ d, d < B + 1 → 2 ≤ d → n % d ≠ 0) : FRC.Nat.isPrime n := by
   refine ⟨h2, fun d hdn hd2 hmod => ?_⟩
   have hd0 : 0 < d := Nat.lt_of_lt_of_le (Nat.zero_lt_succ 1) hd2
   obtain ⟨q, hq⟩ := FRC.Nat.mod_spec d hd0 n
@@ -7478,33 +8106,126 @@ theorem lab_carrier :
     (2 * ((1639587 : Shell 2408561) + 1111186)) ^ 2 = 8 := by decide +kernel
 
 /-- 14:A2 — the laboratory Carrier is prime: `2 408 561 < 1553²`, and no `d ≤ 1552` divides it. -/
-theorem carrierLab_prime : Dimensions.isPrime 2408561 :=
+theorem carrierLab_prime : FRC.Nat.isPrime 2408561 :=
   isPrime_of_bounded 2408561 1552 (by decide) (by decide) (by decide +kernel)
 
 /-- 14:C10, 14:B10 — the primality behind the capacity axis: `κ = 1` (the bare proton) is the shell `𝔽₅`, `κ = 2`
 has no shell (`9` composite), `κ_H = 3` (hydrogen, `N = 1`) is `𝔽₁₃`; the `3N` shell at `N = 3` (`37`), none at
 `N = 2` (`25`). -/
 theorem capacity_axis :
-    Dimensions.isPrime 5 ∧ ¬ Dimensions.isPrime 9 ∧ Dimensions.isPrime (12 * 1 + 1) ∧
-    ¬ Dimensions.isPrime (12 * 2 + 1) ∧ Dimensions.isPrime (12 * 3 + 1) := by decide +kernel
+    FRC.Nat.isPrime 5 ∧ ¬ FRC.Nat.isPrime 9 ∧ FRC.Nat.isPrime (12 * 1 + 1) ∧
+    ¬ FRC.Nat.isPrime (12 * 2 + 1) ∧ FRC.Nat.isPrime (12 * 3 + 1) := by decide +kernel
 
 /-- 14:B10 — the nesting on the laboratory Carrier: the capacity-`9` shell `q = 37` nests through the Subject
 `p = 1373 = 4 · 343 + 1`, prime (`1373 < 38²`, no `d ≤ 37` divides it), `37² < 1373`, `1373² < Ω`; and the bound
 `N ≤ 3`: `37⁴ < Ω < 49⁴`. -/
 theorem lab_nesting :
-    Dimensions.isPrime 1373 ∧ 1373 = 4 * 343 + 1 ∧ 37 * 37 < 1373 ∧ 1373 * 1373 < 2408561 ∧
+    FRC.Nat.isPrime 1373 ∧ 1373 = 4 * 343 + 1 ∧ 37 * 37 < 1373 ∧ 1373 * 1373 < 2408561 ∧
     37 * 37 * (37 * 37) < 2408561 ∧ 2408561 < 49 * 49 * (49 * 49) :=
   ⟨isPrime_of_bounded 1373 37 (by decide) (by decide) (by decide +kernel), by decide, by decide,
     by decide, by decide, by decide⟩
 
 end values
 
+/-! ## Old names (ledger migration, task LM17): the declarations moved to the themes, each under its old name -/
+end
+
+section aliases
+variable {p : Nat} [Pos p] {κ : Nat} {g : Shell p}
+
+/-- `a b (c d) = a c (b d)` on every shell. -/
+theorem mul_mul_mul_comm (a b c d : Shell p) : a * b * (c * d) = a * c * (b * d) :=
+  FRC.Shell.mul_mul_mul_comm a b c d
+
+/-- Literals multiply as their values: `a · b = ab` on every shell. -/
+theorem lit_mul (a b : Nat) : (OfNat.ofNat a : Shell p) * OfNat.ofNat b = (OfNat.ofNat (a * b) : Shell p) :=
+  FRC.Shell.Frame.lit_mul a b
+
+/-- `a + 1 + (1 − a) = 2` on every shell. -/
+theorem add_one_add_one_neg (a : Shell p) : a + 1 + (1 + -a) = 2 :=
+  FRC.Shell.Frame.add_one_add_one_neg a
+
+/-- On a frame of capacity `κ = 2m`: `g^{4m} = −1` (the half-period) and `g^{8m} = 1`. -/
+theorem even_capacity_powers (F : Frame p κ g) (m : Nat) (hm : κ = 2 * m) :
+    g ^ (4 * m) = -1 ∧ g ^ (8 * m) = 1 :=
+  FRC.Shell.Frame.even_capacity_powers F m hm
+
+/-- 14:C6 — the octant character: on every frame `(τ; 0, 1, g)` of even capacity `κ = 2m`, `ζ = g^m` has
+`ζ⁴ = −1` and `ζ⁸ = 1` — the sector `C₈ ⊂ C_{4κ}` is realised and `ζ` is its residue `ζ₈`. -/
+theorem octant_residue (F : Frame p κ g) (m : Nat) (hm : κ = 2 * m) :
+    (g ^ m) ^ 4 = -1 ∧ (g ^ m) ^ 8 = 1 :=
+  FRC.Shell.Frame.octant_residue F m hm
+
+/-- 14:C6, 14:X4 — the Tsirelson square: with `ζ = g^m` and `ζ' = g^{7m}` its inverse (`ζζ' = 1`),
+`(ζ + ζ')² = 2` and `(2(ζ + ζ'))² = 8` on every frame of capacity `κ = 2m`; hence `2` is a square on every
+such shell — the direction "octant ⇒ c-square" of X4's second face (the converse is
+`even_capacity_of_two_square` below; the equivalence `two_is_square_iff`). -/
+theorem tsirelson_square (F : Frame p κ g) (m : Nat) (hm : κ = 2 * m) :
+    g ^ m * g ^ (7 * m) = 1 ∧ (g ^ m + g ^ (7 * m)) ^ 2 = 2 ∧
+    (2 * (g ^ m + g ^ (7 * m))) ^ 2 = 8 :=
+  FRC.Shell.Frame.tsirelson_square F m hm
+
+/-- 14:X4 — the direction "even capacity ⇒ `2` a square" at tier 0: on every frame of even capacity `2` is a
+square, `(ζ + ζ⁻¹)² = 2`; the converse is `even_capacity_of_two_square`, the equivalence `two_is_square_iff`. -/
+theorem two_is_square (F : Frame p κ g) (m : Nat) (hm : κ = 2 * m) : ∃ r : Shell p, r * r = 2 :=
+  FRC.Shell.Frame.two_is_square F m hm
+
+/-- Literals add as their values: `a + b = (a + b)` on every shell. -/
+theorem lit_add (a b : Nat) : (OfNat.ofNat a : Shell p) + OfNat.ofNat b = (OfNat.ofNat (a + b) : Shell p) :=
+  FRC.Shell.Frame.lit_add a b
+
+/-- `−1 ≠ 1` on every frame (`2 ≠ 0`). -/
+theorem neg_one_ne_one (F : Frame p κ g) : (-1 : Shell p) ≠ 1 :=
+  FRC.Shell.Frame.neg_one_ne_one F
+
+/-- `−1 ≠ 0` on every frame. -/
+theorem neg_one_ne_zero (F : Frame p κ g) : (-1 : Shell p) ≠ 0 :=
+  FRC.Shell.Frame.neg_one_ne_zero F
+
+/-- A square root of `2` gives a square root of the quarter-turn: with `i² = −1`, `2h = 1` and `r² = 2`,
+`ζ = (r + i r) h` has `ζ² = i`, hence `ζ⁴ = −1` and `ζ⁸ = 1` — an element of order eight wherever `−1 ≠ 1`,
+that is on every frame. -/
+theorem octant_of_two_square {r i h : Shell p} (hr : r * r = 2) (hi : i * i = -1)
+    (hh : 2 * h = 1) :
+    ∃ ζ : Shell p, ζ * ζ = i ∧ ζ ^ 4 = -1 ∧ ζ ^ 8 = 1 :=
+  FRC.Shell.Frame.octant_of_two_square hr hi hh
+
+/-- The arithmetic of the order: `(k · 8) % 4κ = 0` and `(k · 4) % 4κ ≠ 0` force `κ` even (a divisor `4κ` of
+`8k` that misses `4k` cannot be `4 · odd`; `0 < κ` is only what `mod_spec` needs). -/
+theorem even_of_order_eight {κ k : Nat} (hκ : 0 < κ) (h8 : (k * 8) % (4 * κ) = 0)
+    (h4 : (k * 4) % (4 * κ) ≠ 0) : ∃ m, κ = 2 * m :=
+  FRC.Shell.Frame.even_of_order_eight hκ h8 h4
+
+/-- 14:C6 — the octant forces even capacity: on every frame, an element `ζ` with `ζ⁴ = −1` and `ζ⁸ = 1` (an
+element of order eight) gives `8 ∣ 4κ`, so the capacity is even. -/
+theorem even_capacity_of_octant (F : Frame p κ g) {ζ : Shell p} (hz4 : ζ ^ 4 = -1) (hz8 : ζ ^ 8 = 1) :
+    ∃ m, κ = 2 * m :=
+  FRC.Shell.Frame.even_capacity_of_octant F hz4 hz8
+
+/-- 14:C6 — the octant sector at tier 0, as an equivalence: on every frame, an element with `ζ⁴ = −1` and
+`ζ⁸ = 1` exists exactly when the capacity is even. -/
+theorem octant_iff (F : Frame p κ g) : (∃ ζ : Shell p, ζ ^ 4 = -1 ∧ ζ ^ 8 = 1) ↔ ∃ m, κ = 2 * m :=
+  FRC.Shell.Frame.octant_iff F
+
+/-- 14:X4 — the converse of the second face at tier 0: on every frame, a square root of `2` forces the
+capacity even — `ζ = (r + i r)/2` has `ζ² = i`, so an element of order eight exists and `8 ∣ 4κ`. -/
+theorem even_capacity_of_two_square (F : Frame p κ g) {r : Shell p} (hr : r * r = 2) :
+    ∃ m, κ = 2 * m :=
+  FRC.Shell.Frame.even_capacity_of_two_square F hr
+
+/-- 14:X4 — the second face as an equivalence at tier 0: on every frame `(τ; 0, 1, g)`, `2` is a square
+exactly when the capacity is even — the c-square congruence and the octant sector are one condition. -/
+theorem two_is_square_iff (F : Frame p κ g) : (∃ r : Shell p, r * r = 2) ↔ ∃ m, κ = 2 * m :=
+  FRC.Shell.Frame.two_is_square_iff F
+
+end aliases
+
 -- Ledger predicates of 14-entropy (generated by make_predicates.py from docs/14-entropy/14-entropy-ledger.json; edit the ledger, not this section)
 /-- 14:A1 (p14001) — The de Sitter entropy $\dS$, the single quantitative import, fixing the cardinality exactly, $\Om=4\dS+1$. -/
 theorem p14001 : ∀ (S : Nat), ((4 : Nat) * S + (1 : Nat)) % (4 : Nat) = (1 : Nat) ∧ (4 : Nat) * S + (1 : Nat) - (1 : Nat) = (4 : Nat) * S :=
   @FRC.Entropy.quarter_identity
 /-- 14:A2 (p14002) — The Carrier congruences, relations certified by the realisations (the $c$-square $\dS$ even, the triality centre $\dS\equiv1\pmod3$, completeness $4\dS+1$ prime); instantiated on the laboratory Carrier as host-decided values. -/
-theorem p14002 : FRC.Dimensions.isPrime (2408561 : Nat) :=
+theorem p14002 : FRC.Nat.isPrime (2408561 : Nat) :=
   @FRC.Entropy.carrierLab_prime
 /-- 14:B2 (p14010) — The angle--count dictionary: $2\pi$ the full cycle, $h=2\pi\hbar$; every angular numeral is the chart face of a count ($\pi/4\leftrightarrow\dS/2$ chronons). -/
 theorem p14010 : ∀ (S m : Nat), S = (2 : Nat) * m → (2 : Nat) * ((2 : Nat) * S) = (4 : Nat) * S ∧ (8 : Nat) * m = (4 : Nat) * S :=
@@ -7513,7 +8234,7 @@ theorem p14010 : ∀ (S m : Nat), S = (2 : Nat) * m → (2 : Nat) * ((2 : Nat) *
 theorem p14017 : ∀ (S : Nat), ((4 : Nat) * S + (1 : Nat)) % (4 : Nat) = (1 : Nat) ∧ (4 : Nat) * S + (1 : Nat) - (1 : Nat) = (4 : Nat) * S :=
   @FRC.Entropy.quarter_identity
 /-- 14:B10 (p14044) — The capacity axis counts hydrogen units (one gram at $N_A$ to $0.003$ dex \apx): a definition, not a registered shell. The least register window resolving the total winding of $N$ units is $3N$, a theorem about the observing Subject (00:F7); a phase-locked composite of like units is an aggregate, never one shell (00:F6; a shell of capacity $3N$ exists only when $12N+1$ is prime, none at $N=2$); the largest shell any Subject registers whole is the nesting bound $\mathsf{q}<\Om^{1/4}$, $N<(\Om^{1/4}-1)/12$ units, $8\times10^{2}$\,kg at $\dS=3.3\times10^{122}$ \apx{} ($\dS^{1/4}$ units overcounts by $12$); everything heavier an aggregate of locks; the proton's $1$ against $3$ compares a tower label with a chart count. -/
-theorem p14044 : (∀ (q p Ω : Nat), q * q < p → p * p < Ω → q * q * (q * q) < Ω) ∧ FRC.Dimensions.isPrime (1373 : Nat) ∧ (1373 : Nat) = (4 : Nat) * (343 : Nat) + (1 : Nat) ∧ (37 : Nat) * (37 : Nat) < (1373 : Nat) ∧ (1373 : Nat) * (1373 : Nat) < (2408561 : Nat) ∧ (37 : Nat) * (37 : Nat) * ((37 : Nat) * (37 : Nat)) < (2408561 : Nat) ∧ (2408561 : Nat) < (49 : Nat) * (49 : Nat) * ((49 : Nat) * (49 : Nat)) :=
+theorem p14044 : (∀ (q p Ω : Nat), q * q < p → p * p < Ω → q * q * (q * q) < Ω) ∧ FRC.Nat.isPrime (1373 : Nat) ∧ (1373 : Nat) = (4 : Nat) * (343 : Nat) + (1 : Nat) ∧ (37 : Nat) * (37 : Nat) < (1373 : Nat) ∧ (1373 : Nat) * (1373 : Nat) < (2408561 : Nat) ∧ (37 : Nat) * (37 : Nat) * ((37 : Nat) * (37 : Nat)) < (2408561 : Nat) ∧ (2408561 : Nat) < (49 : Nat) * (49 : Nat) * ((49 : Nat) * (49 : Nat)) :=
   And.intro @FRC.Entropy.nesting_bound (@FRC.Entropy.lab_nesting)
 /-- 14:C5 (p14022) — The octant lemma: the measured age is $\dS/2$ chronons, $(\pi/4)\,r_H/c$ in the chart \apx; the halving and the sector are exact through the enumerated realisation set $B_{\mathrm{oct}}=\{$A4, A5, B2, B3, B6, B7$\}$, the same class as the constants correspondence. -/
 theorem p14022 : (∀ (m x : Nat), (2 : Nat) * x ≤ (2 : Nat) * m ↔ x ≤ m) ∧ ∀ (S m : Nat), S = (2 : Nat) * m → (2 : Nat) * ((2 : Nat) * S) = (4 : Nat) * S ∧ (8 : Nat) * m = (4 : Nat) * S :=
@@ -7522,7 +8243,7 @@ theorem p14022 : (∀ (m x : Nat), (2 : Nat) * x ≤ (2 : Nat) * m ↔ x ≤ m) 
 theorem p14023 : (∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → ∀ (m : Nat), κ = (2 : Nat) * m → g ^ m * g ^ ((7 : Nat) * m) = (1 : FRC.Shell p) ∧ (g ^ m + g ^ ((7 : Nat) * m)) ^ (2 : Nat) = (2 : FRC.Shell p) ∧ ((2 : FRC.Shell p) * (g ^ m + g ^ ((7 : Nat) * m))) ^ (2 : Nat) = (8 : FRC.Shell p)) ∧ (∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → ((∃ ζ, ζ ^ (4 : Nat) = (-1 : FRC.Shell p) ∧ ζ ^ (8 : Nat) = (1 : FRC.Shell p)) ↔ ∃ m, κ = (2 : Nat) * m)) ∧ (4 : Nat) * (602140 : Nat) + (1 : Nat) = (2408561 : Nat) ∧ (602140 : Nat) % (2 : Nat) = (0 : Nat) ∧ (602140 : Nat) % (3 : Nat) = (1 : Nat) ∧ (1639587 : FRC.Shell (2408561 : Nat)) ^ (4 : Nat) = (-1 : FRC.Shell (2408561 : Nat)) ∧ (1639587 : FRC.Shell (2408561 : Nat)) ^ (8 : Nat) = (1 : FRC.Shell (2408561 : Nat)) ∧ (1639587 : FRC.Shell (2408561 : Nat)) * (1111186 : FRC.Shell (2408561 : Nat)) = (1 : FRC.Shell (2408561 : Nat)) ∧ ((1639587 : FRC.Shell (2408561 : Nat)) + (1111186 : FRC.Shell (2408561 : Nat))) ^ (2 : Nat) = (2 : FRC.Shell (2408561 : Nat)) ∧ ((2 : FRC.Shell (2408561 : Nat)) * ((1639587 : FRC.Shell (2408561 : Nat)) + (1111186 : FRC.Shell (2408561 : Nat)))) ^ (2 : Nat) = (8 : FRC.Shell (2408561 : Nat)) :=
   And.intro @FRC.Entropy.tsirelson_square (And.intro @FRC.Entropy.octant_iff (@FRC.Entropy.lab_carrier))
 /-- 14:C10 (p14027) — The capacity axis \apx: holographic ring capacity $\log_{10}\kap_{q}$, zero at hydrogen ($\kap_H=3$; $\kap_{q}=2$ has no shell), one dex per chart dex, terminating at the count face $\sqrt{\dS}$ --- the triangle's own sixty dex; the one-gram horizontal lands on $N_A$ to $0.0035$ dex (the $1.008$\,u offset), asserted before drawing. -/
-theorem p14027 : FRC.Dimensions.isPrime (5 : Nat) ∧ ¬FRC.Dimensions.isPrime (9 : Nat) ∧ FRC.Dimensions.isPrime ((12 : Nat) * (1 : Nat) + (1 : Nat)) ∧ ¬FRC.Dimensions.isPrime ((12 : Nat) * (2 : Nat) + (1 : Nat)) ∧ FRC.Dimensions.isPrime ((12 : Nat) * (3 : Nat) + (1 : Nat)) :=
+theorem p14027 : FRC.Nat.isPrime (5 : Nat) ∧ ¬FRC.Nat.isPrime (9 : Nat) ∧ FRC.Nat.isPrime ((12 : Nat) * (1 : Nat) + (1 : Nat)) ∧ ¬FRC.Nat.isPrime ((12 : Nat) * (2 : Nat) + (1 : Nat)) ∧ FRC.Nat.isPrime ((12 : Nat) * (3 : Nat) + (1 : Nat)) :=
   @FRC.Entropy.capacity_axis
 /-- 14:X4 (p14031) — \textbf{The congruence $\dS$ even} acquires a second physical face: it is the existence of the octant sector, hence the well-definedness of the measured age --- a structure of the Carrier's cycle lattice, certified by realisation and read as an observational condition, never an arithmetic property of the numeral. -/
 theorem p14031 : ∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → ((∃ r, r * r = (2 : FRC.Shell p)) ↔ ∃ m, κ = (2 : Nat) * m) :=
@@ -7634,7 +8355,7 @@ theorem hbar_root (F : Frame p κ g) :
     show ofNat 4 * ofNat κ = -1
     rw [ofNat_mul]; exact h4
   have h4r : (4 : Shell p) * ((g ^ κ * ofNat (2 * κ + 1)) * (g ^ κ * ofNat (2 * κ + 1))) = -1 := by
-    rw [show (4 : Shell p) = 2 * 2 from (ofNat_mul 2 2).symm, FRC.Entropy.mul_mul_mul_comm, h2r,
+    rw [show (4 : Shell p) = 2 * 2 from (ofNat_mul 2 2).symm, FRC.Shell.mul_mul_mul_comm, h2r,
       ← Shell.pow_two, hq]
   have key : (4 : Shell p) * ((g ^ κ * ofNat (2 * κ + 1)) * (g ^ κ * ofNat (2 * κ + 1)) + -ofNat κ) = 0 := by
     rw [Shell.left_distrib, h4r, ← Shell.mul_neg, h4κ, Shell.neg_neg]
@@ -7746,167 +8467,22 @@ propagators of order `14` on `𝔽₁₃` and `18` on `𝔽₁₇`, the least co
 counts `145`, `105` on `𝔽₅` and `2353`, `2041` on `𝔽₁₃` (B7); the unit-norm circle of `p − 1` points (F2); the
 minimal admissible shell `𝔽₁₇` (D12); the laboratory Carrier's `c = 171 106`, `c² = 2⁻¹`, `2⁻¹·12 = 6` (B4).
 Every declaration is checked to depend on no axiom (`check_core_axioms.py`).
+
+Since the ledger migration (task LM17) the coefficient field is the extension theme's `FRC.Extension.Ext p ν`
+(`Theme/Extension.lean`) and chronon parity is the frame theme's (`Orbit.lean`); every old name stays as an alias.
 -/
 
 namespace FRC.Dirac
 
 open FRC.Shell
 
-/-! ## The coefficient field `K = 𝔽_p[w]/(w² − ν)` on components (8:A2, B1) -/
-section ext
-variable {p : Nat} [Pos p]
-
-/-- 8:B1 — an element `a + b w` of the coefficient field, on components. -/
-structure Ext (p : Nat) [Pos p] (ν : Shell p) where
-  re : Shell p
-  im : Shell p
-
-namespace Ext
-variable {ν : Shell p}
-
-theorem ext' {z z' : Ext p ν} (h1 : z.re = z'.re) (h2 : z.im = z'.im) : z = z' := by
-  cases z; cases z'; cases h1; cases h2; rfl
-
-instance : DecidableEq (Ext p ν) := fun a b =>
-  if h1 : a.re = b.re then
-    if h2 : a.im = b.im then isTrue (ext' h1 h2) else isFalse (fun e => h2 (by cases e; rfl))
-  else isFalse (fun e => h1 (by cases e; rfl))
-
-/-- The base field inside `K`. -/
-def ofShell (a : Shell p) : Ext p ν := ⟨a, 0⟩
-/-- The adjoined root `w`, `w² = ν`. -/
-def w : Ext p ν := ⟨0, 1⟩
-instance (n : Nat) : OfNat (Ext p ν) n := ⟨ofShell (OfNat.ofNat n)⟩
-instance : Add (Ext p ν) := ⟨fun z z' => ⟨z.re + z'.re, z.im + z'.im⟩⟩
-instance : Neg (Ext p ν) := ⟨fun z => ⟨-z.re, -z.im⟩⟩
-instance : Mul (Ext p ν) := ⟨fun z z' => ⟨z.re * z'.re + ν * (z.im * z'.im), z.re * z'.im + z.im * z'.re⟩⟩
-/-- Frobenius conjugation `a + b w ↦ a − b w`. -/
-def conj (z : Ext p ν) : Ext p ν := ⟨z.re, -z.im⟩
-/-- The norm `N(z) = z z̄ = a² − ν b²`. -/
-def norm (z : Ext p ν) : Shell p := z.re * z.re + -(ν * (z.im * z.im))
-/-- Powers by structural recursion. -/
-def pow (z : Ext p ν) : Nat → Ext p ν
-  | 0 => 1
-  | n + 1 => pow z n * z
-instance : Pow (Ext p ν) Nat := ⟨pow⟩
-
-theorem mul_re (z z' : Ext p ν) : (z * z').re = z.re * z'.re + ν * (z.im * z'.im) := rfl
-theorem mul_im (z z' : Ext p ν) : (z * z').im = z.re * z'.im + z.im * z'.re := rfl
-theorem ofShell_re (a : Shell p) : (ofShell a : Ext p ν).re = a := rfl
-theorem ofShell_im (a : Shell p) : (ofShell a : Ext p ν).im = 0 := rfl
-theorem conj_re (z : Ext p ν) : (conj z).re = z.re := rfl
-theorem conj_im (z : Ext p ν) : (conj z).im = -z.im := rfl
-
-/-- 8:A2 — `w² = ν`. -/
-theorem w_sq : (w : Ext p ν) * w = ofShell ν :=
-  ext' (by show 0 * 0 + ν * (1 * 1) = ν; rw [Shell.zero_mul, Shell.one_mul, Shell.mul_one, Shell.zero_add])
-       (by show 0 * 1 + 1 * 0 = 0; rw [Shell.zero_mul, Shell.mul_zero, Shell.zero_add])
-
-/-- 8:A2 — the norm is the product with the conjugate: `z z̄ = N(z)`, a base-field element. -/
-theorem mul_conj (z : Ext p ν) : z * conj z = ofShell (norm z) :=
-  ext' (by show z.re * z.re + ν * (z.im * -z.im) = z.re * z.re + -(ν * (z.im * z.im))
-           rw [← Shell.mul_neg, ← Shell.mul_neg])
-       (by show z.re * -z.im + z.im * z.re = 0
-           rw [← Shell.mul_neg, Shell.mul_comm z.im z.re, Shell.neg_add])
-
-/-- 8:A2 — conjugation is multiplicative (the Frobenius involution is a ring map). -/
-theorem conj_mul (z z' : Ext p ν) : conj (z * z') = conj z * conj z' :=
-  ext' (by show z.re * z'.re + ν * (z.im * z'.im) = z.re * z'.re + ν * (-z.im * -z'.im)
-           rw [Shell.neg_mul_neg])
-       (by show -(z.re * z'.im + z.im * z'.re) = z.re * -z'.im + -z.im * z'.re
-           rw [Shell.neg_add_rev, ← Shell.mul_neg, ← Shell.neg_mul])
-
-/-- 8:B6 — norm growth: `N(c z) = c² N(z)` for every base residue `c`; one chronon of drive multiplies every
-norm by `g²`, a square. -/
-theorem norm_scale (c : Shell p) (z : Ext p ν) : norm (ofShell c * z) = c * c * norm z := by
-  unfold norm
-  rw [mul_re, mul_im, ofShell_re, ofShell_im, Shell.zero_mul, Shell.mul_zero, Shell.add_zero,
-    Shell.zero_mul, Shell.add_zero, FRC.Entropy.mul_mul_mul_comm, FRC.Entropy.mul_mul_mul_comm c z.im c z.im,
-    Shell.mul_left_comm ν (c * c), Shell.left_distrib, ← Shell.mul_neg]
-
-end Ext
-end ext
+section
+open FRC.Extension
+open FRC.Shell.Frame (two_mul_mod mod_two_of_mod_four_mul mod_n_mod_two parity_iff drive_nonsquare mod_two_cases succ_mod_two_eq_zero_iff inv_drive_odd inv_drive_nonsquare)
 
 /-! ## The square class is chronon parity (8:B5, B3, B4) -/
 section parity
 variable {p : Nat} [Pos p] {κ : Nat} {g : Shell p}
-
-theorem two_mul_mod (l : Nat) : (2 * l) % 2 = 0 := by
-  rw [← Nat.add_zero (2 * l)]; exact FRC.Nat.add_mul_mod_self_left 0 l 2 (Nat.zero_lt_succ 1)
-
-theorem mod_two_of_mod_four_mul (m q : Nat) : (4 * q + m) % 2 = m % 2 := by
-  have : 4 * q + m = 2 * (2 * q) + m := by rw [← FRC.Nat.mul_assoc]
-  rw [this, FRC.Nat.add_mul_mod_self_left m (2 * q) 2 (Nat.zero_lt_succ 1)]
-
-theorem mod_n_mod_two (F : Frame p κ g) (m : Nat) : (m % (p - 1)) % 2 = m % 2 := by
-  match FRC.Nat.mod_spec (p - 1) F.n_pos m with
-  | ⟨q, hq⟩ =>
-    have e : m = 4 * (κ * q) + m % (p - 1) := by
-      rw [← FRC.Nat.mul_assoc, ← F.n_eq]; exact hq
-    calc (m % (p - 1)) % 2 = (4 * (κ * q) + m % (p - 1)) % 2 := (mod_two_of_mod_four_mul _ _).symm
-      _ = m % 2 := by rw [← e]
-
-/-- 8:B5 — the square class is chronon parity: on every frame, `g^m` is a square exactly when the drive-step
-count `m` is even (Theorem `parity`). -/
-theorem parity_iff (F : Frame p κ g) (m : Nat) : (∃ y : Shell p, y * y = g ^ m) ↔ m % 2 = 0 := by
-  constructor
-  · rintro ⟨y, hy⟩
-    have hy0 : y ≠ 0 := fun h0 => F.pow_ne_zero m (by rw [← hy, h0, Shell.mul_zero])
-    obtain ⟨l, hl, hgl⟩ := F.eq_pow_of_ne_zero hy0
-    have h2 : g ^ (2 * l) = g ^ m := by
-      rw [Nat.mul_comm, Shell.pow_mul, Shell.pow_two, hgl]; exact hy
-    rw [F.pow_mod, F.pow_mod m] at h2
-    have h3 := F.pow_inj (Nat.mod_lt _ F.n_pos) (Nat.mod_lt _ F.n_pos) h2
-    rw [← mod_n_mod_two F m, ← h3, mod_n_mod_two F]
-    exact two_mul_mod l
-  · intro h
-    match FRC.Nat.mod_spec 2 (Nat.zero_lt_succ 1) m with
-    | ⟨q, hq⟩ =>
-      rw [h, Nat.add_zero] at hq
-      exact ⟨g ^ q, by rw [hq, Nat.mul_comm, Shell.pow_mul, Shell.pow_two]⟩
-
-/-- 8:B3 — the drive is a nonsquare on every frame (`m = 1`). -/
-theorem drive_nonsquare (F : Frame p κ g) : ¬ ∃ y : Shell p, y * y = g := fun ⟨y, hy⟩ =>
-  Nat.noConfusion ((parity_iff F 1).1 ⟨y, by rw [Shell.pow_one]; exact hy⟩)
-
-theorem mod_two_cases (m : Nat) : m % 2 = 0 ∨ m % 2 = 1 := by
-  have := Nat.mod_lt m (Nat.zero_lt_succ 1)
-  match m % 2, this with
-  | 0, _ => exact .inl rfl
-  | 1, _ => exact .inr rfl
-  | k + 2, hk => exact absurd hk (Nat.not_lt_of_le (Nat.le_add_left 2 k))
-
-theorem succ_mod_two_eq_zero_iff (m : Nat) : (m + 1) % 2 = 0 ↔ m % 2 = 1 := by
-  rw [FRC.Nat.add_mod m 1 2 (Nat.zero_lt_succ 1)]
-  rcases mod_two_cases m with h | h <;> rw [h]
-  · exact ⟨fun e => Nat.noConfusion e, fun e => Nat.noConfusion e⟩
-  · exact ⟨fun _ => rfl, fun _ => rfl⟩
-
-/-- The inverse of the drive is `g^{p−2}`: every `y` with `g y = 1` is an odd power of `g`. -/
-theorem inv_drive_odd (F : Frame p κ g) {y : Shell p} (hy : g * y = 1) :
-    ∃ l, l < p - 1 ∧ g ^ l = y ∧ l % 2 = 1 := by
-  have hy0 : y ≠ 0 := fun h0 => F.one_ne_zero (by rw [← hy, h0, Shell.mul_zero])
-  obtain ⟨l, hl, hgl⟩ := F.eq_pow_of_ne_zero hy0
-  refine ⟨l, hl, hgl, ?_⟩
-  have h1 : g ^ (l + 1) = 1 := by rw [Shell.pow_succ, hgl, Shell.mul_comm]; exact hy
-  have h2 := F.mod_eq_zero_of_pow_eq_one h1
-  have h3 : l + 1 = p - 1 := by
-    match Nat.lt_or_ge (l + 1) (p - 1) with
-    | .inl hlt => exact absurd (by rw [FRC.Nat.mod_eq_of_lt hlt] at h2; exact h2) (Nat.succ_ne_zero l)
-    | .inr hge => exact Nat.le_antisymm (Nat.succ_le_of_lt hl) hge
-  have h4 : (l + 1) % 2 = 0 := by
-    rw [h3, F.n_eq, ← Nat.add_zero (4 * κ), mod_two_of_mod_four_mul]
-  exact (succ_mod_two_eq_zero_iff l).1 h4
-
-/-- 8:B3, 8:B6 — the reframing flip preserves the class: the inverse of the drive is a nonsquare (an odd
-power of `g`), so `[g⁻¹] = [g]`. -/
-theorem inv_drive_nonsquare (F : Frame p κ g) {y : Shell p} (hy : g * y = 1) :
-    ¬ ∃ r : Shell p, r * r = y := fun h => by
-  obtain ⟨l, _, hgl, hodd⟩ := inv_drive_odd F hy
-  rw [← hgl] at h
-  have h2 := (parity_iff F l).1 h
-  rw [hodd] at h2
-  exact Nat.noConfusion h2
 
 /-- 8:B3 — the quarter-turn is `g^{3κ}` (`i = −g^κ`, `−1 = g^{2κ}`). -/
 theorem quarterTurn_eq_pow (F : Frame p κ g) : Frame.quarterTurn g κ = g ^ (3 * κ) := by
@@ -7930,7 +8506,7 @@ theorem two_class (F : Frame p κ g) {h : Shell p} (hh : 2 * h = 1) :
     ((∃ r : Shell p, r * r = 2) ↔ κ % 2 = 0) ∧ ((∃ r : Shell p, r * r = h) ↔ κ % 2 = 0) ∧
     ((∃ r : Shell p, r * r = -2) ↔ κ % 2 = 0) := by
   have key : (∃ r : Shell p, r * r = 2) ↔ κ % 2 = 0 := by
-    refine (FRC.Entropy.two_is_square_iff F).trans ?_
+    refine (FRC.Shell.Frame.two_is_square_iff F).trans ?_
     constructor
     · rintro ⟨m, hm⟩; rw [hm]; exact two_mul_mod m
     · intro h0
@@ -7942,20 +8518,20 @@ theorem two_class (F : Frame p κ g) {h : Shell p} (hh : 2 * h = 1) :
     constructor
     · rintro ⟨r, hr⟩
       refine ⟨2 * r, ?_⟩
-      rw [FRC.Entropy.mul_mul_mul_comm, hr, Shell.mul_assoc, hh, Shell.mul_one]
+      rw [FRC.Shell.mul_mul_mul_comm, hr, Shell.mul_assoc, hh, Shell.mul_one]
     · rintro ⟨r, hr⟩
       refine ⟨r * h, ?_⟩
-      rw [FRC.Entropy.mul_mul_mul_comm, hr]
+      rw [FRC.Shell.mul_mul_mul_comm, hr]
       calc (2 : Shell p) * (h * h) = 2 * h * h := (Shell.mul_assoc _ _ _).symm
         _ = h := by rw [hh, Shell.one_mul]
   · refine Iff.trans ?_ key
     constructor
     · rintro ⟨r, hr⟩
       refine ⟨g ^ κ * r, ?_⟩
-      rw [FRC.Entropy.mul_mul_mul_comm, hsq, hr, Shell.neg_mul_neg, Shell.one_mul]
+      rw [FRC.Shell.mul_mul_mul_comm, hsq, hr, Shell.neg_mul_neg, Shell.one_mul]
     · rintro ⟨r, hr⟩
       refine ⟨g ^ κ * r, ?_⟩
-      rw [FRC.Entropy.mul_mul_mul_comm, hsq, hr, Shell.neg_one_mul]
+      rw [FRC.Shell.mul_mul_mul_comm, hsq, hr, Shell.neg_one_mul]
 
 /-- 8:B4 — the factorisation of the coefficient: with `c² = 2⁻¹`, `ν = g = c²·(2g)` exactly on every shell,
 and the cofactor `2g` is a square exactly when `κ` is odd — the product `g` odd always (Corollary
@@ -8353,7 +8929,7 @@ theorem anchors :
       ∀ r : Shell 17, r * r ≠ 3) := by decide +kernel
 
 /-- 8:D12 — the shell admissibility congruences of the programme: `κ` even, `κ ≡ 1 (mod 3)`, `4κ + 1` prime. -/
-def shellAdmissible (κ : Nat) : Prop := κ % 2 = 0 ∧ κ % 3 = 1 ∧ FRC.Dimensions.isPrime (4 * κ + 1)
+def shellAdmissible (κ : Nat) : Prop := κ % 2 = 0 ∧ κ % 3 = 1 ∧ FRC.Nat.isPrime (4 * κ + 1)
 instance (κ : Nat) : Decidable (shellAdmissible κ) := by unfold shellAdmissible; exact inferInstance
 
 /-- 8:D12, 8:A5 [value] — `𝔽₁₇` (`κ = 4`) is the minimal admissible shell: `17 ≡ 5 (mod 12)`, and no capacity below
@@ -8368,6 +8944,115 @@ theorem carrier_constants :
     (1204281 : Shell 2408561) * 12 = 6 := by decide +kernel
 
 end matrices
+
+/-! ## Old names (ledger migration, task LM17): the declarations moved to the themes, each under its old name -/
+end
+
+section aliases
+variable {p : Nat} [Pos p] {κ : Nat} {g : Shell p}
+
+theorem two_mul_mod (l : Nat) : (2 * l) % 2 = 0 :=
+  FRC.Shell.Frame.two_mul_mod l
+
+theorem mod_two_of_mod_four_mul (m q : Nat) : (4 * q + m) % 2 = m % 2 :=
+  FRC.Shell.Frame.mod_two_of_mod_four_mul m q
+
+theorem mod_n_mod_two (F : Frame p κ g) (m : Nat) : (m % (p - 1)) % 2 = m % 2 :=
+  FRC.Shell.Frame.mod_n_mod_two F m
+
+/-- 8:B5 — the square class is chronon parity: on every frame, `g^m` is a square exactly when the drive-step
+count `m` is even (Theorem `parity`). -/
+theorem parity_iff (F : Frame p κ g) (m : Nat) : (∃ y : Shell p, y * y = g ^ m) ↔ m % 2 = 0 :=
+  FRC.Shell.Frame.parity_iff F m
+
+/-- 8:B3 — the drive is a nonsquare on every frame (`m = 1`). -/
+theorem drive_nonsquare (F : Frame p κ g) : ¬ ∃ y : Shell p, y * y = g :=
+  FRC.Shell.Frame.drive_nonsquare F
+
+theorem mod_two_cases (m : Nat) : m % 2 = 0 ∨ m % 2 = 1 :=
+  FRC.Shell.Frame.mod_two_cases m
+
+theorem succ_mod_two_eq_zero_iff (m : Nat) : (m + 1) % 2 = 0 ↔ m % 2 = 1 :=
+  FRC.Shell.Frame.succ_mod_two_eq_zero_iff m
+
+/-- The inverse of the drive is `g^{p−2}`: every `y` with `g y = 1` is an odd power of `g`. -/
+theorem inv_drive_odd (F : Frame p κ g) {y : Shell p} (hy : g * y = 1) :
+    ∃ l, l < p - 1 ∧ g ^ l = y ∧ l % 2 = 1 :=
+  FRC.Shell.Frame.inv_drive_odd F hy
+
+/-- 8:B3, 8:B6 — the reframing flip preserves the class: the inverse of the drive is a nonsquare (an odd
+power of `g`), so `[g⁻¹] = [g]`. -/
+theorem inv_drive_nonsquare (F : Frame p κ g) {y : Shell p} (hy : g * y = 1) :
+    ¬ ∃ r : Shell p, r * r = y :=
+  FRC.Shell.Frame.inv_drive_nonsquare F hy
+
+/-- 8:B1 — an element `a + b w` of the coefficient field, on components. -/
+@[reducible] def Ext := @FRC.Extension.Ext
+
+namespace Ext
+variable {ν : Shell p}
+
+theorem ext' {z z' : Ext p ν} (h1 : z.re = z'.re) (h2 : z.im = z'.im) : z = z' :=
+  FRC.Extension.Ext.ext h1 h2
+
+/-- The base field inside `K`. -/
+@[reducible] def ofShell (a : Shell p) : Ext p ν :=
+  FRC.Extension.Ext.ofShell a
+
+/-- The adjoined root `w`, `w² = ν`. -/
+@[reducible] def w : Ext p ν :=
+  FRC.Extension.Ext.w
+
+/-- Frobenius conjugation `a + b w ↦ a − b w`. -/
+@[reducible] def conj (z : Ext p ν) : Ext p ν :=
+  FRC.Extension.Ext.conj z
+
+/-- The norm `N(z) = z z̄ = a² − ν b²`. -/
+@[reducible] def norm (z : Ext p ν) : Shell p :=
+  FRC.Extension.Ext.norm z
+
+/-- Powers by structural recursion. -/
+@[reducible] def pow (z : Ext p ν) : Nat → Ext p ν :=
+  FRC.Extension.Ext.pow z
+
+theorem mul_re (z z' : Ext p ν) : (z * z').re = z.re * z'.re + ν * (z.im * z'.im) :=
+  FRC.Extension.Ext.mul_re z z'
+
+theorem mul_im (z z' : Ext p ν) : (z * z').im = z.re * z'.im + z.im * z'.re :=
+  FRC.Extension.Ext.mul_im z z'
+
+theorem ofShell_re (a : Shell p) : (ofShell a : Ext p ν).re = a :=
+  FRC.Extension.Ext.ofShell_re a
+
+theorem ofShell_im (a : Shell p) : (ofShell a : Ext p ν).im = 0 :=
+  FRC.Extension.Ext.ofShell_im a
+
+theorem conj_re (z : Ext p ν) : (conj z).re = z.re :=
+  FRC.Extension.Ext.conj_re z
+
+theorem conj_im (z : Ext p ν) : (conj z).im = -z.im :=
+  FRC.Extension.Ext.conj_im z
+
+/-- 8:A2 — `w² = ν`. -/
+theorem w_sq : (w : Ext p ν) * w = ofShell ν :=
+  FRC.Extension.Ext.w_sq
+
+/-- 8:A2 — the norm is the product with the conjugate: `z z̄ = N(z)`, a base-field element. -/
+theorem mul_conj (z : Ext p ν) : z * conj z = ofShell (norm z) :=
+  FRC.Extension.Ext.mul_conj z
+
+/-- 8:A2 — conjugation is multiplicative (the Frobenius involution is a ring map). -/
+theorem conj_mul (z z' : Ext p ν) : conj (z * z') = conj z * conj z' :=
+  FRC.Extension.Ext.conj_mul z z'
+
+/-- 8:B6 — norm growth: `N(c z) = c² N(z)` for every base residue `c`; one chronon of drive multiplies every
+norm by `g²`, a square. -/
+theorem norm_scale (c : Shell p) (z : Ext p ν) : norm (ofShell c * z) = c * c * norm z :=
+  FRC.Extension.Ext.norm_scale c z
+
+end Ext
+
+end aliases
 
 -- Ledger predicates of 8-dirac (generated by make_predicates.py from docs/8-dirac/8-dirac-ledger.json; edit the ledger, not this section)
 /-- 8:A2 (p08002) — Finite-field algebra: the quadratic extension $K=\Fp[\w]/(\w^{2}-\nu)$ with Frobenius conjugation and norm, Hilbert's Theorem~90, the square classes by Euler's criterion, the unitary group of a nondegenerate Hermitian form over a finite field. -/
