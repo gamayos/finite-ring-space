@@ -440,7 +440,7 @@
    {
     "name": "FRC.Shell.Frame.euler_identity",
     "module": "FrcCore/Frame",
-    "line": 328,
+    "line": 301,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -451,7 +451,7 @@
    {
     "name": "FRC.Shell.Frame.orientation_class",
     "module": "FrcCore/Frame",
-    "line": 300,
+    "line": 273,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -475,7 +475,7 @@
    {
     "name": "FRC.Shell.Frame.W_sq'",
     "module": "FrcCore/Sum",
-    "line": 303,
+    "line": 223,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -484,7 +484,7 @@
    {
     "name": "FRC.Shell.Frame.F_sq",
     "module": "FrcCore/Sum",
-    "line": 318,
+    "line": 238,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -493,7 +493,7 @@
    {
     "name": "FRC.Shell.Frame.J_sq",
     "module": "FrcCore/Sum",
-    "line": 307,
+    "line": 227,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -504,7 +504,7 @@
    {
     "name": "FRC.Shell.Frame.ofNat_n",
     "module": "FrcCore/Sum",
-    "line": 122,
+    "line": 42,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -528,7 +528,7 @@
    {
     "name": "FRC.Shell.Frame.W_J_comm",
     "module": "FrcCore/Sum",
-    "line": 326,
+    "line": 246,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -537,7 +537,7 @@
    {
     "name": "FRC.Shell.Frame.symm_antisymm_decomp",
     "module": "FrcCore/Sum",
-    "line": 627,
+    "line": 464,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -546,7 +546,7 @@
    {
     "name": "FRC.Shell.Frame.symm_antisymm_unique",
     "module": "FrcCore/Sum",
-    "line": 642,
+    "line": 479,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -555,7 +555,7 @@
    {
     "name": "FRC.Shell.Frame.symm_determined",
     "module": "FrcCore/Sum",
-    "line": 484,
+    "line": 321,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -564,7 +564,7 @@
    {
     "name": "FRC.Shell.Frame.antisymm_determined",
     "module": "FrcCore/Sum",
-    "line": 549,
+    "line": 386,
     "axioms": [],
     "tier": 0,
     "ok": true,

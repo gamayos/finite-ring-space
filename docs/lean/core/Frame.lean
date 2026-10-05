@@ -1,5 +1,6 @@
 import FrcCore.Shell
 import FrcCore.Pigeonhole
+import FrcCore.Series
 
 /-!
 # FrcCore.Frame — the frame `(τ; 0, 1, g)` and the Euclidean datum, from first principles
@@ -19,8 +20,8 @@ of one (`sq_eq_one`), the half-period `g^{2κ} = −1` (2:D1, 00:C1), the quarte
 Since the ledger migration (task LM17) it also holds the frame's arithmetic from 1-algebra (scale periodicity, the affine
 frame, the window law and its read-backs, `ofNat_add`, `ofNat_mul`, the quarter-turn and the fourth roots, the meridian
 involution, the complex chart, Theorem approx, `natCount`), `ofNat_self` and `ofNat_add_self` (from 13-epi), the root pair
-(from 10-dimensions), the bounded quantifiers' deciders (from 10-dimensions and 20-rh) and the counting lemmas of 20-rh,
-all under their old names in `FRC.Shell` and `FRC.Shell.Frame`.
+(from 10-dimensions), the bounded quantifiers' deciders (from 10-dimensions and 20-rh; in `Series.lean` since task LM22)
+and the counting lemmas of 20-rh, all under their old names in `FRC.Shell` and `FRC.Shell.Frame`.
 -/
 
 namespace FRC
@@ -39,20 +40,6 @@ instance (g : Shell p) (n : Nat) : Decidable (IsPrimitive g n) := by
 def Generates (g : Shell p) (n : Nat) : Prop :=
   ∀ v, v < p → 0 < v → ∃ m, m < n ∧ (g ^ m).val = v
 
-/-- Bounded existence `∃ m < n, P m`, decided by search — Lean's own `Nat.decidableExistsLT` carries
-`propext` and `Quot.sound`; this one carries nothing. -/
-def decExistsLT (P : Nat → Prop) [DecidablePred P] : (n : Nat) → Decidable (∃ m, m < n ∧ P m)
-  | 0 => isFalse (fun ⟨m, hm, _⟩ => Nat.not_lt_zero m hm)
-  | n + 1 =>
-    match decExistsLT P n with
-    | isTrue h => isTrue (match h with | ⟨m, hm, hp⟩ => ⟨m, Nat.lt_succ_of_lt hm, hp⟩)
-    | isFalse hno =>
-      if h : P n then isTrue ⟨n, Nat.lt_succ_self n, h⟩
-      else isFalse (fun ⟨m, hm, hp⟩ =>
-        match Nat.lt_or_ge m n with
-        | .inl hlt => hno ⟨m, hlt, hp⟩
-        | .inr hge => h ((Nat.le_antisymm (Nat.le_of_lt_succ hm) hge) ▸ hp))
-
 instance (g : Shell p) (n : Nat) : Decidable (Generates g n) := by
   unfold Generates
   have : ∀ v, Decidable (∃ m, m < n ∧ (g ^ m).val = v) := fun v => decExistsLT (fun m => (g ^ m).val = v) n
@@ -64,20 +51,6 @@ structure Frame (p : Nat) [Pos p] (κ : Nat) (g : Shell p) : Prop where
   cap : p = 4 * κ + 1
   cap_pos : 0 < κ
   prim : IsPrimitive g (p - 1)
-
-/-- `∀ m < n, P m`, decided by recursion on `n` — Lean's own instance carries `propext`; this one nothing. -/
-def decForallLT (P : Nat → Prop) [DecidablePred P] : (n : Nat) → Decidable (∀ m, m < n → P m)
-  | 0 => isTrue (fun m hm => absurd hm (Nat.not_lt_zero m))
-  | n + 1 =>
-    match decForallLT P n with
-    | isFalse h => isFalse (fun hall => h (fun m hm => hall m (Nat.lt_succ_of_lt hm)))
-    | isTrue h =>
-      if hn : P n then
-        isTrue (fun m hm =>
-          match Nat.lt_or_ge m n with
-          | .inl hlt => h m hlt
-          | .inr hge => (Nat.le_antisymm (Nat.le_of_lt_succ hm) hge) ▸ hn)
-      else isFalse (fun hall => hn (hall n (Nat.lt_succ_self n)))
 
 instance instDecForallLT (P : Nat → Prop) [DecidablePred P] (n : Nat) : Decidable (∀ m, m < n → P m) :=
   decForallLT P n

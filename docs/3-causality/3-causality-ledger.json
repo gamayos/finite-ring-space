@@ -238,7 +238,7 @@
    {
     "name": "FRC.Causality.no_causal_root",
     "module": "FrcLedger/Causality",
-    "line": 17,
+    "line": 24,
     "axioms": [
      "Quot.sound",
      "propext"
@@ -250,7 +250,7 @@
    {
     "name": "FRC.Causality.neg_sq_is_square",
     "module": "FrcLedger/Causality",
-    "line": 21,
+    "line": 29,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -262,8 +262,8 @@
    },
    {
     "name": "FRC.Shell.Frame.no_causal_root",
-    "module": "FrcCore/Causality",
-    "line": 28,
+    "module": "FrcCore/Theme/Extension",
+    "line": 433,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -271,8 +271,8 @@
    },
    {
     "name": "FRC.Shell.Frame.neg_sq_is_square",
-    "module": "FrcCore/Causality",
-    "line": 34,
+    "module": "FrcCore/Theme/Extension",
+    "line": 439,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -283,7 +283,7 @@
    {
     "name": "FRC.Causality.absorb",
     "module": "FrcLedger/Causality",
-    "line": 26,
+    "line": 33,
     "axioms": [
      "Quot.sound",
      "propext"
@@ -294,8 +294,8 @@
    },
    {
     "name": "FRC.Shell.Frame.absorb",
-    "module": "FrcCore/Causality",
-    "line": 43,
+    "module": "FrcCore/Theme/Extension",
+    "line": 448,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -305,8 +305,8 @@
   "B4": [
    {
     "name": "FRC.Shell.Frame.null13",
-    "module": "FrcCore/Causality",
-    "line": 223,
+    "module": "FrcCore/Theme/Extension",
+    "line": 628,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -314,8 +314,8 @@
    },
    {
     "name": "FRC.Shell.Frame.euclid13",
-    "module": "FrcCore/Causality",
-    "line": 225,
+    "module": "FrcCore/Theme/Extension",
+    "line": 630,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -323,8 +323,8 @@
    },
    {
     "name": "FRC.Shell.Frame.null5",
-    "module": "FrcCore/Causality",
-    "line": 227,
+    "module": "FrcCore/Theme/Extension",
+    "line": 632,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -332,8 +332,8 @@
    },
    {
     "name": "FRC.Shell.Frame.null17",
-    "module": "FrcCore/Causality",
-    "line": 229,
+    "module": "FrcCore/Theme/Extension",
+    "line": 634,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -344,7 +344,7 @@
    {
     "name": "FRC.Causality.aniso_tx",
     "module": "FrcLedger/Causality",
-    "line": 33,
+    "line": 40,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -356,8 +356,8 @@
    },
    {
     "name": "FRC.Shell.Frame.aniso_tx",
-    "module": "FrcCore/Causality",
-    "line": 58,
+    "module": "FrcCore/Theme/Extension",
+    "line": 463,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -365,8 +365,8 @@
    },
    {
     "name": "FRC.Shell.Frame.null_yz",
-    "module": "FrcCore/Causality",
-    "line": 77,
+    "module": "FrcCore/Theme/Extension",
+    "line": 482,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -374,8 +374,8 @@
    },
    {
     "name": "FRC.Shell.Frame.null_tx_of_square",
-    "module": "FrcCore/Causality",
-    "line": 82,
+    "module": "FrcCore/Theme/Extension",
+    "line": 487,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -386,7 +386,7 @@
    {
     "name": "FRC.Causality.boost_preserves",
     "module": "FrcLedger/Causality",
-    "line": 39,
+    "line": 44,
     "axioms": [
      "Quot.sound",
      "propext"
@@ -398,7 +398,7 @@
    {
     "name": "FRC.Causality.boost_comp",
     "module": "FrcLedger/Causality",
-    "line": 44,
+    "line": 49,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -411,7 +411,7 @@
    {
     "name": "FRC.Causality.boost_orthogonal",
     "module": "FrcLedger/Causality",
-    "line": 50,
+    "line": 55,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -423,8 +423,8 @@
    },
    {
     "name": "FRC.Shell.Frame.boost_preserves",
-    "module": "FrcCore/Causality",
-    "line": 116,
+    "module": "FrcCore/Theme/Extension",
+    "line": 521,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -432,8 +432,8 @@
    },
    {
     "name": "FRC.Shell.Frame.boost_comp_t",
-    "module": "FrcCore/Causality",
-    "line": 125,
+    "module": "FrcCore/Theme/Extension",
+    "line": 530,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -441,8 +441,8 @@
    },
    {
     "name": "FRC.Shell.Frame.boost_comp_x",
-    "module": "FrcCore/Causality",
-    "line": 134,
+    "module": "FrcCore/Theme/Extension",
+    "line": 539,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -450,8 +450,8 @@
    },
    {
     "name": "FRC.Shell.Frame.norm_one_mul",
-    "module": "FrcCore/Causality",
-    "line": 144,
+    "module": "FrcCore/Theme/Extension",
+    "line": 549,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -459,8 +459,8 @@
    },
    {
     "name": "FRC.Shell.Frame.normOne_values",
-    "module": "FrcCore/Causality",
-    "line": 231,
+    "module": "FrcCore/Theme/Extension",
+    "line": 636,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -471,7 +471,7 @@
    {
     "name": "FRC.Causality.gamma_ne_zero",
     "module": "FrcLedger/Causality",
-    "line": 56,
+    "line": 60,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -508,8 +508,8 @@
    },
    {
     "name": "FRC.Shell.Frame.gamma_ne_zero",
-    "module": "FrcCore/Causality",
-    "line": 154,
+    "module": "FrcCore/Theme/Extension",
+    "line": 559,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -517,8 +517,8 @@
    },
    {
     "name": "FRC.Shell.Frame.gamma_velocity",
-    "module": "FrcCore/Causality",
-    "line": 172,
+    "module": "FrcCore/Theme/Extension",
+    "line": 577,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -526,8 +526,8 @@
    },
    {
     "name": "FRC.Shell.Frame.velocity_addition",
-    "module": "FrcCore/Causality",
-    "line": 183,
+    "module": "FrcCore/Theme/Extension",
+    "line": 588,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -537,8 +537,8 @@
   "D1": [
    {
     "name": "FRC.Shell.Frame.null13",
-    "module": "FrcCore/Causality",
-    "line": 223,
+    "module": "FrcCore/Theme/Extension",
+    "line": 628,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -546,8 +546,8 @@
    },
    {
     "name": "FRC.Shell.Frame.normOne_values",
-    "module": "FrcCore/Causality",
-    "line": 231,
+    "module": "FrcCore/Theme/Extension",
+    "line": 636,
     "axioms": [],
     "tier": 0,
     "ok": true,

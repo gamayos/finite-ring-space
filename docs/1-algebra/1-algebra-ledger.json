@@ -329,7 +329,7 @@
    {
     "name": "FRC.Shell.Frame.quarter_turn_exists",
     "module": "FrcCore/Frame",
-    "line": 459,
+    "line": 432,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -338,7 +338,7 @@
    {
     "name": "FRC.Shell.Frame.fourth_roots",
     "module": "FrcCore/Frame",
-    "line": 463,
+    "line": 436,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -410,7 +410,7 @@
    {
     "name": "FRC.Shell.Frame.quarter_turn_sq",
     "module": "FrcCore/Frame",
-    "line": 287,
+    "line": 260,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -443,7 +443,7 @@
    {
     "name": "FRC.Shell.Frame.affine_frame_unit",
     "module": "FrcCore/Frame",
-    "line": 394,
+    "line": 367,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -487,7 +487,7 @@
    {
     "name": "FRC.Shell.Frame.meridian_involution",
     "module": "FrcCore/Frame",
-    "line": 495,
+    "line": 468,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -511,7 +511,7 @@
    {
     "name": "FRC.Shell.Frame.window_injective",
     "module": "FrcCore/Frame",
-    "line": 402,
+    "line": 375,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -520,7 +520,7 @@
    {
     "name": "FRC.Shell.Frame.window_signed",
     "module": "FrcCore/Frame",
-    "line": 439,
+    "line": 412,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -529,7 +529,7 @@
    {
     "name": "FRC.Shell.Frame.window_add_readback",
     "module": "FrcCore/Frame",
-    "line": 425,
+    "line": 398,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -538,7 +538,7 @@
    {
     "name": "FRC.Shell.Frame.window_mul_readback",
     "module": "FrcCore/Frame",
-    "line": 432,
+    "line": 405,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -562,7 +562,7 @@
    {
     "name": "FRC.Shell.Frame.scale_periodic",
     "module": "FrcCore/Frame",
-    "line": 384,
+    "line": 357,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -601,7 +601,7 @@
    {
     "name": "FRC.Shell.Frame.complex_chart_zero_divisor",
     "module": "FrcCore/Frame",
-    "line": 506,
+    "line": 479,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -624,8 +624,8 @@
    },
    {
     "name": "FRC.Shell.Poly.Frame.root_iff_common_factor",
-    "module": "FrcCore/Poly",
-    "line": 350,
+    "module": "FrcCore/Theme/Numbers",
+    "line": 81,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -633,8 +633,8 @@
    },
    {
     "name": "FRC.Shell.Poly.Frame.root_bound",
-    "module": "FrcCore/Poly",
-    "line": 252,
+    "module": "FrcCore/Theme/Numbers",
+    "line": 27,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -820,7 +820,7 @@
    {
     "name": "FRC.Shell.Frame.nrm_mul",
     "module": "FrcCore/Theme/Extension",
-    "line": 409,
+    "line": 413,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -870,7 +870,7 @@
    {
     "name": "FRC.Shell.Frame.no_south_pole",
     "module": "FrcCore/Frame",
-    "line": 375,
+    "line": 348,
     "axioms": [],
     "tier": 0,
     "ok": true,

@@ -355,7 +355,7 @@
    {
     "name": "FRC.Geometry.rho_adj_iff",
     "module": "FrcCore/Geometry",
-    "line": 85,
+    "line": 86,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -387,7 +387,7 @@
    {
     "name": "FRC.Geometry.euler_characteristic",
     "module": "FrcCore/Geometry",
-    "line": 22,
+    "line": 23,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -445,7 +445,7 @@
    {
     "name": "FRC.Geometry.label_covariance",
     "module": "FrcCore/Geometry",
-    "line": 183,
+    "line": 184,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -478,7 +478,7 @@
    {
     "name": "FRC.Shell.Frame.half_period",
     "module": "FrcCore/Frame",
-    "line": 280,
+    "line": 253,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -502,7 +502,7 @@
    {
     "name": "FRC.Shell.Frame.quarter_turn_order",
     "module": "FrcCore/Frame",
-    "line": 292,
+    "line": 265,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -537,7 +537,7 @@
    {
     "name": "FRC.Shell.Frame.orientation_class",
     "module": "FrcCore/Frame",
-    "line": 300,
+    "line": 273,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -561,7 +561,7 @@
    {
     "name": "FRC.Shell.Frame.euler_identity",
     "module": "FrcCore/Frame",
-    "line": 328,
+    "line": 301,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -636,7 +636,7 @@
    {
     "name": "FRC.Geometry.fixed_shell_bound",
     "module": "FrcCore/Geometry",
-    "line": 48,
+    "line": 49,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -645,7 +645,7 @@
    {
     "name": "FRC.Geometry.fixed_shell_gap",
     "module": "FrcCore/Geometry",
-    "line": 33,
+    "line": 34,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -669,7 +669,7 @@
    {
     "name": "FRC.Shell.Frame.principal_root",
     "module": "FrcCore/Sum",
-    "line": 129,
+    "line": 49,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -693,7 +693,7 @@
    {
     "name": "FRC.Shell.Frame.dft_inverse",
     "module": "FrcCore/Sum",
-    "line": 172,
+    "line": 92,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -704,7 +704,7 @@
    {
     "name": "FRC.Shell.Frame.dft_eq_polyEval",
     "module": "FrcCore/Sum",
-    "line": 438,
+    "line": 275,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -715,7 +715,7 @@
    {
     "name": "FRC.Shell.Frame.dft_covariance",
     "module": "FrcCore/Sum",
-    "line": 461,
+    "line": 298,
     "axioms": [],
     "tier": 0,
     "ok": true,

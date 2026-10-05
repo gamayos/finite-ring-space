@@ -441,7 +441,7 @@
    {
     "name": "FRC.Entropy.quarter_identity",
     "module": "FrcCore/Entropy",
-    "line": 42,
+    "line": 44,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -465,7 +465,7 @@
    {
     "name": "FRC.Entropy.carrierLab_prime",
     "module": "FrcCore/Entropy",
-    "line": 164,
+    "line": 145,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -515,7 +515,7 @@
    {
     "name": "FRC.Entropy.octant_count",
     "module": "FrcCore/Entropy",
-    "line": 66,
+    "line": 68,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -567,7 +567,7 @@
    {
     "name": "FRC.Entropy.quarter_identity",
     "module": "FrcCore/Entropy",
-    "line": 42,
+    "line": 44,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -604,7 +604,7 @@
    {
     "name": "FRC.Entropy.nesting_bound",
     "module": "FrcCore/Entropy",
-    "line": 91,
+    "line": 93,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -613,7 +613,7 @@
    {
     "name": "FRC.Entropy.lab_nesting",
     "module": "FrcCore/Entropy",
-    "line": 177,
+    "line": 158,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -706,7 +706,7 @@
    {
     "name": "FRC.Entropy.closure_count",
     "module": "FrcCore/Entropy",
-    "line": 72,
+    "line": 74,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -715,7 +715,7 @@
    {
     "name": "FRC.Entropy.octant_count",
     "module": "FrcCore/Entropy",
-    "line": 66,
+    "line": 68,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -752,7 +752,7 @@
    {
     "name": "FRC.Entropy.tsirelson_square",
     "module": "FrcCore/Entropy",
-    "line": 218,
+    "line": 199,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -761,7 +761,7 @@
    {
     "name": "FRC.Entropy.octant_iff",
     "module": "FrcCore/Entropy",
-    "line": 262,
+    "line": 243,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -770,7 +770,7 @@
    {
     "name": "FRC.Entropy.lab_carrier",
     "module": "FrcCore/Entropy",
-    "line": 157,
+    "line": 138,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -878,7 +878,7 @@
    {
     "name": "FRC.Entropy.capacity_axis",
     "module": "FrcCore/Entropy",
-    "line": 170,
+    "line": 151,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -958,7 +958,7 @@
    {
     "name": "FRC.Entropy.two_is_square_iff",
     "module": "FrcCore/Entropy",
-    "line": 273,
+    "line": 254,
     "axioms": [],
     "tier": 0,
     "ok": true,

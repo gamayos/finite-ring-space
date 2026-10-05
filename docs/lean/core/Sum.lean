@@ -1,3 +1,4 @@
+import FrcCore.Series
 import FrcCore.Frame
 import FrcCore.Orbit
 
@@ -11,96 +12,15 @@ inversion of the shell Fourier matrix `W k j = g^{jk}`: `Σ_l W k l · (−g^{�
 Prop. 6.3; 6:B5 in matrix form). No axioms.
 
 Since the ledger migration (task LM17) it also holds 20-rh's sums: peeling the first term, and the sum over the
-nonzero residues reindexed by the drive.
+nonzero residues reindexed by the drive. Since task LM22 the sums that need no frame (`sumRange` and its lemmas, the
+geometric sum, the sums over lists and `sum_perm`) are in `Series.lean`, under their names; this module keeps the
+frame's: the principal root, the Fourier inversion, the reversal and the eigenspaces.
 -/
 
 namespace FRC
 namespace Shell
 
 variable {p : Nat} [Pos p]
-
-/-- `sumRange f n = f 0 + f 1 + ⋯ + f (n−1)`. -/
-def sumRange (f : Nat → Shell p) : Nat → Shell p
-  | 0 => 0
-  | n + 1 => sumRange f n + f n
-
-theorem sumRange_zero (f : Nat → Shell p) : sumRange f 0 = 0 := rfl
-theorem sumRange_succ (f : Nat → Shell p) (n : Nat) : sumRange f (n + 1) = sumRange f n + f n := rfl
-
-theorem sum_congr {f h : Nat → Shell p} (n : Nat) (e : ∀ l, l < n → f l = h l) :
-    sumRange f n = sumRange h n := by
-  induction n with
-  | zero => rfl
-  | succ n ih =>
-    rw [sumRange_succ, sumRange_succ, ih (fun l hl => e l (Nat.lt_succ_of_lt hl)),
-      e n (Nat.lt_succ_self n)]
-
-theorem sum_add (f h : Nat → Shell p) (n : Nat) :
-    sumRange (fun l => f l + h l) n = sumRange f n + sumRange h n := by
-  induction n with
-  | zero => rw [sumRange_zero, sumRange_zero, sumRange_zero, add_zero]
-  | succ n ih =>
-    rw [sumRange_succ, sumRange_succ, sumRange_succ, ih, add_add_add_comm]
-
-theorem sum_mul_right (f : Nat → Shell p) (c : Shell p) (n : Nat) :
-    sumRange (fun l => f l * c) n = sumRange f n * c := by
-  induction n with
-  | zero => rw [sumRange_zero, sumRange_zero, zero_mul]
-  | succ n ih => rw [sumRange_succ, sumRange_succ, ih, right_distrib]
-
-theorem sum_mul_left (f : Nat → Shell p) (c : Shell p) (n : Nat) :
-    sumRange (fun l => c * f l) n = c * sumRange f n := by
-  induction n with
-  | zero => rw [sumRange_zero, sumRange_zero, mul_zero]
-  | succ n ih => rw [sumRange_succ, sumRange_succ, ih, left_distrib]
-
-theorem sum_neg (f : Nat → Shell p) (n : Nat) : sumRange (fun l => -(f l)) n = -(sumRange f n) := by
-  induction n with
-  | zero => rw [sumRange_zero, sumRange_zero, neg_zero]
-  | succ n ih => rw [sumRange_succ, sumRange_succ, ih, neg_add_rev]
-
-theorem sum_const (c : Shell p) (n : Nat) : sumRange (fun _ => c) n = ofNat n * c := by
-  induction n with
-  | zero => rw [sumRange_zero]; exact (zero_mul c).symm
-  | succ n ih =>
-    rw [sumRange_succ, ih]
-    have : (ofNat (n + 1) : Shell p) = ofNat n + 1 := ext (by
-      rw [val_ofNat, val_add, val_ofNat, val_one, FRC.Nat.mod_add_mod _ _ _ hp, FRC.Nat.add_mod_mod _ _ _ hp])
-    rw [this, right_distrib, one_mul]
-
-theorem sum_zero {f : Nat → Shell p} (n : Nat) (h : ∀ l, l < n → f l = 0) : sumRange f n = 0 := by
-  induction n with
-  | zero => rfl
-  | succ n ih => rw [sumRange_succ, ih (fun l hl => h l (Nat.lt_succ_of_lt hl)), h n (Nat.lt_succ_self n), add_zero]
-
-/-- A sum with a single nonzero term. -/
-theorem sum_eq_single {f : Nat → Shell p} {l₀ : Nat} : ∀ {n : Nat}, l₀ < n → (∀ l, l < n → l ≠ l₀ → f l = 0) →
-    sumRange f n = f l₀
-  | 0, h, _ => absurd h (Nat.not_lt_zero _)
-  | n + 1, hl₀, h => by
-    rw [sumRange_succ]
-    exact match Nat.decEq l₀ n with
-      | isTrue e => by
-          rw [sum_zero n (fun l hl => h l (Nat.lt_succ_of_lt hl) (fun e' => absurd hl (by rw [e', e]; exact Nat.lt_irrefl n))),
-            zero_add, e]
-      | isFalse e => by
-          rw [sum_eq_single (Nat.lt_of_le_of_ne (Nat.le_of_lt_succ hl₀) (fun e' => e e')) (fun l hl hne => h l (Nat.lt_succ_of_lt hl) hne),
-            h n (Nat.lt_succ_self n) (fun e' => e e'.symm), add_zero]
-
-/-- The telescoping geometric sum: `(Σ_{l<n} x^l)·(x − 1) = x^n − 1`. -/
-theorem geom_sum_mul (x : Shell p) (n : Nat) :
-    sumRange (fun l => x ^ l) n * (x + -1) = x ^ n + -1 := by
-  induction n with
-  | zero => rw [sumRange_zero, zero_mul, pow_zero, add_neg]
-  | succ n ih =>
-    rw [sumRange_succ, right_distrib, ih, left_distrib, ← mul_neg, mul_one, ← pow_succ]
-    rw [add_add_add_comm, add_comm (x ^ n) (x ^ (n + 1)), add_comm (-1) (-(x ^ n)), add_assoc,
-      ← add_assoc (x ^ n), add_neg, zero_add]
-
-/-- `Σ_{l<n+1} f l = f 0 + Σ_{l<n} f (l + 1)`. -/
-theorem sumRange_succ' (f : Nat → Shell p) : ∀ n, sumRange f (n + 1) = f 0 + sumRange (fun l => f (l + 1)) n
-  | 0 => by rw [sumRange_succ, sumRange_zero, sumRange_zero, zero_add, add_zero]
-  | n + 1 => by rw [sumRange_succ, sumRange_succ' f n, sumRange_succ, add_assoc]
 
 namespace Frame
 variable {κ : Nat} {g : Shell p}
@@ -340,90 +260,7 @@ theorem W_J_comm (F : Frame p κ g) {k j : Nat} (hk : k < p - 1) (hj : j < p - 1
   · rw [← pow_add, ← Nat.left_distrib, F.pow_mod, ← FRC.Nat.mul_mod_mod _ _ _ hn, rev_add_mod hk, Nat.mul_zero,
       FRC.Nat.zero_mod, pow_zero]
 
-/-! ### Sums over lists, permutation invariance (the reindexing `j ↦ u·j` of 2:F5) -/
-
 end Frame
-
-/-- The sum of `F` over a list of indices. -/
-def sumList (F : Nat → Shell p) : List Nat → Shell p
-  | [] => 0
-  | a :: l => F a + sumList F l
-
-/-- `[n−1, …, 0]`. -/
-def listRange : Nat → List Nat
-  | 0 => []
-  | n + 1 => n :: listRange n
-
-/-- `[σ (n−1), …, σ 0]`. -/
-def imageList (σ : Nat → Nat) : Nat → List Nat
-  | 0 => []
-  | n + 1 => σ n :: imageList σ n
-
-theorem sumList_imageList (F : Nat → Shell p) (σ : Nat → Nat) (n : Nat) :
-    sumList F (imageList σ n) = sumRange (fun j => F (σ j)) n := by
-  induction n with
-  | zero => rfl
-  | succ n ih => show F (σ n) + sumList F (imageList σ n) = sumRange (fun j => F (σ j)) n + F (σ n); rw [ih, add_comm]
-
-theorem sumList_erase (F : Nat → Shell p) {v : Nat} : ∀ {l : List Nat}, Pigeonhole.mem v l →
-    sumList F l = F v + sumList F (Pigeonhole.erase v l)
-  | [], h => absurd h id
-  | a :: l, h => by
-    exact match Nat.decEq a v with
-      | isTrue e => by rw [show Pigeonhole.erase v (a :: l) = l from ite_eq_left e, e]; rfl
-      | isFalse e => by
-          rw [show Pigeonhole.erase v (a :: l) = a :: Pigeonhole.erase v l from ite_eq_right e]
-          have hm : Pigeonhole.mem v l := match h with
-            | Or.inl h' => absurd h'.symm e
-            | Or.inr h' => h'
-          show F a + sumList F l = F v + (F a + sumList F (Pigeonhole.erase v l))
-          rw [sumList_erase F hm, add_left_comm]
-
-theorem imageList_length (σ : Nat → Nat) (n : Nat) : (imageList σ n).length = n := by
-  induction n with
-  | zero => rfl
-  | succ n ih => show (imageList σ n).length + 1 = n + 1; rw [ih]
-
-theorem mem_imageList {σ : Nat → Nat} {v : Nat} : ∀ {n : Nat}, Pigeonhole.mem v (imageList σ n) → ∃ j, j < n ∧ σ j = v
-  | 0, h => absurd h id
-  | n + 1, h => match h with
-    | Or.inl e => ⟨n, Nat.lt_succ_self n, e.symm⟩
-    | Or.inr h' => match mem_imageList h' with
-      | ⟨j, hj, e⟩ => ⟨j, Nat.lt_succ_of_lt hj, e⟩
-
-theorem imageList_nodup {σ : Nat → Nat} {n : Nat} (hinj : ∀ i j, i < n → j < n → σ i = σ j → i = j) :
-    ∀ {m : Nat}, m ≤ n → Pigeonhole.NoDup (imageList σ m)
-  | 0, _ => trivial
-  | m + 1, hm => ⟨fun h => match mem_imageList h with
-      | ⟨j, hj, e⟩ => Nat.lt_irrefl j (hinj j m (Nat.lt_of_lt_of_le hj (Nat.le_of_lt hm)) hm e ▸ hj),
-    imageList_nodup hinj (Nat.le_of_lt hm)⟩
-
-/-- A sum over any list of `n` distinct indices below `n` is the sum over `0, …, n−1`. -/
-theorem sumList_eq_sumRange (F : Nat → Shell p) : ∀ (n : Nat) (l : List Nat), Pigeonhole.NoDup l →
-    (∀ e, Pigeonhole.mem e l → e < n) → l.length = n → sumList F l = sumRange F n
-  | 0, [], _, _, _ => rfl
-  | 0, a :: l, _, hb, _ => absurd (hb a (Or.inl rfl)) (Nat.not_lt_zero a)
-  | n + 1, l, hnd, hb, hlen => by
-    have hm : Pigeonhole.mem n l := Pigeonhole.mem_of_nodup_of_length_lt (n + 1) l hnd hb hlen n (Nat.lt_succ_self n)
-    rw [sumList_erase F hm, sumRange_succ, add_comm]
-    have hb' : ∀ e, Pigeonhole.mem e (Pigeonhole.erase n l) → e < n := fun e he =>
-      match Nat.lt_or_ge e n with
-      | Or.inl hlt => hlt
-      | Or.inr hge =>
-        have : e = n := Nat.le_antisymm (Nat.le_of_lt_succ (hb e (Pigeonhole.mem_of_mem_erase he))) hge
-        absurd (this ▸ he) (Pigeonhole.not_mem_erase_self n hnd)
-    have hlen' : (Pigeonhole.erase n l).length = n := by
-      have := Pigeonhole.length_erase_of_mem hm; rw [hlen] at this; exact Nat.succ.inj this
-    rw [sumList_eq_sumRange F n (Pigeonhole.erase n l) (Pigeonhole.nodup_erase n hnd) hb' hlen']
-
-/-- Permutation invariance: for `σ` injective on `[0, n)` with values below `n`,
-`Σ_{j<n} F (σ j) = Σ_{l<n} F l`. -/
-theorem sum_perm (F : Nat → Shell p) (σ : Nat → Nat) (n : Nat) (hlt : ∀ j, j < n → σ j < n)
-    (hinj : ∀ i j, i < n → j < n → σ i = σ j → i = j) :
-    sumRange (fun j => F (σ j)) n = sumRange F n := by
-  rw [← sumList_imageList]
-  exact sumList_eq_sumRange F n (imageList σ n) (imageList_nodup hinj (Nat.le_refl n))
-    (fun e he => match mem_imageList he with | ⟨j, hj, e'⟩ => e' ▸ hlt j hj) (imageList_length σ n)
 
 namespace Frame
 variable {κ : Nat} {g : Shell p}

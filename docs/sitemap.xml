@@ -85,6 +85,10 @@
     <lastmod>2026-10-05</lastmod>
   </url>
   <url>
+    <loc>https://finitering.space/frc/ledgers/master/carrier.html</loc>
+    <lastmod>2026-10-05</lastmod>
+  </url>
+  <url>
     <loc>https://finitering.space/</loc>
     <lastmod>2026-10-05</lastmod>
   </url>
@@ -193,6 +197,34 @@
     <lastmod>2026-10-05</lastmod>
   </url>
   <url>
+    <loc>https://finitering.space/lean/core/Keys.Carrier.html</loc>
+    <lastmod>2026-10-05</lastmod>
+  </url>
+  <url>
+    <loc>https://finitering.space/lean/core/Keys.Extension.html</loc>
+    <lastmod>2026-10-05</lastmod>
+  </url>
+  <url>
+    <loc>https://finitering.space/lean/core/Keys.Fourier.html</loc>
+    <lastmod>2026-10-05</lastmod>
+  </url>
+  <url>
+    <loc>https://finitering.space/lean/core/Keys.Frame.html</loc>
+    <lastmod>2026-10-05</lastmod>
+  </url>
+  <url>
+    <loc>https://finitering.space/lean/core/Keys.Logic.html</loc>
+    <lastmod>2026-10-05</lastmod>
+  </url>
+  <url>
+    <loc>https://finitering.space/lean/core/Keys.Numbers.html</loc>
+    <lastmod>2026-10-05</lastmod>
+  </url>
+  <url>
+    <loc>https://finitering.space/lean/core/Keys.Projective.html</loc>
+    <lastmod>2026-10-05</lastmod>
+  </url>
+  <url>
     <loc>https://finitering.space/lean/core/Meridian.html</loc>
     <lastmod>2026-10-05</lastmod>
   </url>
@@ -229,6 +261,10 @@
     <lastmod>2026-10-05</lastmod>
   </url>
   <url>
+    <loc>https://finitering.space/lean/core/Series.html</loc>
+    <lastmod>2026-10-05</lastmod>
+  </url>
+  <url>
     <loc>https://finitering.space/lean/core/Shell.html</loc>
     <lastmod>2026-10-05</lastmod>
   </url>
@@ -237,11 +273,23 @@
     <lastmod>2026-10-05</lastmod>
   </url>
   <url>
+    <loc>https://finitering.space/lean/core/Theme.Carrier.html</loc>
+    <lastmod>2026-10-05</lastmod>
+  </url>
+  <url>
     <loc>https://finitering.space/lean/core/Theme.Extension.html</loc>
     <lastmod>2026-10-05</lastmod>
   </url>
   <url>
+    <loc>https://finitering.space/lean/core/Theme.Foundation.html</loc>
+    <lastmod>2026-10-05</lastmod>
+  </url>
+  <url>
     <loc>https://finitering.space/lean/core/Theme.Logic.html</loc>
+    <lastmod>2026-10-05</lastmod>
+  </url>
+  <url>
+    <loc>https://finitering.space/lean/core/Theme.Numbers.html</loc>
     <lastmod>2026-10-05</lastmod>
   </url>
   <url>

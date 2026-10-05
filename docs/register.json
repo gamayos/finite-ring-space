@@ -1721,11 +1721,20 @@
    "statement": "\\textbf{The substrate residue}: the quarter-turn ($4\\mid\\Om-1$, B3) and the triality centre ($3\\mid\\Om+1$, B4) jointly hold iff $\\Om\\equiv5\\pmod{12}$. Both are relations certified by realisations, never properties of an integer: $Q_4$ by the quantum realisation (D4), the triality centre by the strong realisation (D6). The inference runs structure $\\to$ congruence (A3); a laboratory pattern instantiates the residue or does not (10:E9).",
    "origin_row": "00:B5",
    "tag": "T",
-   "tier": null,
+   "tier": 0,
    "check": {
-    "script": "27:p11.py"
+    "href": "frc/ledgers/master/carrier.html#p00015",
+    "script": "frc/ledgers/master/carrier.py",
+    "line": 93,
+    "verdict": "pass"
    },
-   "declarations": [],
+   "declarations": [
+    {
+     "lib": "FrcCore",
+     "module": "FrcCore/Keys/Carrier",
+     "name": "FRC.Ledger.p00015"
+    }
+   ],
    "aliases": [],
    "rows": [
     "00:B5"
@@ -1755,11 +1764,20 @@
    "statement": "\\textbf{Physical constants are definite Carrier residues}: the register $\\{\\dS,\\Om,c,\\hbar,G,k_B\\}$ is generator-free in $\\dS$ alone --- $G=2\\dS=-c^2$, $c^2=2^{-1}$, $\\hbar^2=-1$, $k_B^2=-2$, $|k_B|=\\hbar/c$; the defining congruences are the observer's complete certificates, $G$ exact, the rest up to sign (B10); $h:=-\\hbar$ is the root-pair partner of $\\hbar$ (B3, D7). No Subject counterpart of $G$ or $\\hbar$; no fifth constant (C1).",
    "origin_row": "00:B7",
    "tag": "T",
-   "tier": null,
+   "tier": 0,
    "check": {
-    "script": "37:constants.py"
+    "href": "frc/ledgers/master/carrier.html#p00165",
+    "script": "frc/ledgers/master/carrier.py",
+    "line": 119,
+    "verdict": "pass"
    },
-   "declarations": [],
+   "declarations": [
+    {
+     "lib": "FrcCore",
+     "module": "FrcCore/Keys/Carrier",
+     "name": "FRC.Ledger.p00165"
+    }
+   ],
    "aliases": [],
    "rows": [
     "00:B7"
@@ -1774,11 +1792,20 @@
    "statement": "\\textbf{The window ladder}: a nested Subject, $\\p^2<\\Om$, has its own horizon below the Carrier's quarter-root, $\\sqrt\\p<\\Om^{1/4}$, and its shell below the coherence horizon, $\\p<\\Om^{1/2}$; the saturating Subject ($\\p^2\\to\\Om$) locks the ladder $\\mathrm{small}<\\Om^{1/4}<\\p\\text{-hard}<\\Om^{1/2}<\\Om\\text{-hard}<\\Om$, one square-root horizon per embedding (the bands: B12). Lab-verified ($\\Om=2{,}408{,}561$).",
    "origin_row": "00:B8",
    "tag": "T",
-   "tier": null,
+   "tier": 0,
    "check": {
-    "script": "13:epi.py"
+    "href": "frc/ledgers/master/carrier.html#p00166",
+    "script": "frc/ledgers/master/carrier.py",
+    "line": 163,
+    "verdict": "pass"
    },
-   "declarations": [],
+   "declarations": [
+    {
+     "lib": "FrcCore",
+     "module": "FrcCore/Keys/Carrier",
+     "name": "FRC.Ledger.p00166"
+    }
+   ],
    "aliases": [],
    "rows": [
     "00:B8"
@@ -1807,9 +1834,20 @@
    "statement": "\\textbf{One gauge bit closes the sign sector}: no C14-type marker exists --- $-1$ is a square on admissible $\\Om$, so square class is pair-blind, and integer parity is frame data (A8). Registered faces are pair-invariant: $c^2$, the one-way member synchronisation gauge (C8); $|k_B|$ (C12); $\\{\\hbar,h\\}$ the two named unit faces (B7).",
    "origin_row": "00:B10",
    "tag": "T",
-   "tier": null,
-   "check": null,
-   "declarations": [],
+   "tier": 0,
+   "check": {
+    "href": "frc/ledgers/master/carrier.html#p00168",
+    "script": "frc/ledgers/master/carrier.py",
+    "line": 191,
+    "verdict": "pass"
+   },
+   "declarations": [
+    {
+     "lib": "FrcCore",
+     "module": "FrcCore/Keys/Carrier",
+     "name": "FRC.Ledger.p00168"
+    }
+   ],
    "aliases": [],
    "rows": [
     "00:B10"
@@ -1850,9 +1888,20 @@
    "statement": "\\textbf{The octant sector}: $C_8\\subset C_{4\\dS}$ exists exactly when $\\dS$ is even (14:C6).",
    "origin_row": "00:B14",
    "tag": "T",
-   "tier": null,
-   "check": null,
-   "declarations": [],
+   "tier": 0,
+   "check": {
+    "href": "frc/ledgers/master/carrier.html#p00170",
+    "script": "frc/ledgers/master/carrier.py",
+    "line": 213,
+    "verdict": "pass"
+   },
+   "declarations": [
+    {
+     "lib": "FrcCore",
+     "module": "FrcCore/Keys/Carrier",
+     "name": "FRC.Ledger.p00170"
+    }
+   ],
    "aliases": [],
    "rows": [
     "00:B14"
@@ -4013,12 +4062,12 @@
     },
     {
      "lib": "FrcCore",
-     "module": "FrcCore/Poly",
+     "module": "FrcCore/Theme/Numbers",
      "name": "FRC.Shell.Poly.Frame.root_iff_common_factor"
     },
     {
      "lib": "FrcCore",
-     "module": "FrcCore/Poly",
+     "module": "FrcCore/Theme/Numbers",
      "name": "FRC.Shell.Poly.Frame.root_bound"
     },
     {
@@ -5150,12 +5199,12 @@
     },
     {
      "lib": "FrcCore",
-     "module": "FrcCore/Causality",
+     "module": "FrcCore/Theme/Extension",
      "name": "FRC.Shell.Frame.no_causal_root"
     },
     {
      "lib": "FrcCore",
-     "module": "FrcCore/Causality",
+     "module": "FrcCore/Theme/Extension",
      "name": "FRC.Shell.Frame.neg_sq_is_square"
     }
    ],
@@ -5186,7 +5235,7 @@
     },
     {
      "lib": "FrcCore",
-     "module": "FrcCore/Causality",
+     "module": "FrcCore/Theme/Extension",
      "name": "FRC.Shell.Frame.absorb"
     }
    ],
@@ -5212,22 +5261,22 @@
    "declarations": [
     {
      "lib": "FrcCore",
-     "module": "FrcCore/Causality",
+     "module": "FrcCore/Theme/Extension",
      "name": "FRC.Shell.Frame.null13"
     },
     {
      "lib": "FrcCore",
-     "module": "FrcCore/Causality",
+     "module": "FrcCore/Theme/Extension",
      "name": "FRC.Shell.Frame.euclid13"
     },
     {
      "lib": "FrcCore",
-     "module": "FrcCore/Causality",
+     "module": "FrcCore/Theme/Extension",
      "name": "FRC.Shell.Frame.null5"
     },
     {
      "lib": "FrcCore",
-     "module": "FrcCore/Causality",
+     "module": "FrcCore/Theme/Extension",
      "name": "FRC.Shell.Frame.null17"
     }
    ],
@@ -5258,17 +5307,17 @@
     },
     {
      "lib": "FrcCore",
-     "module": "FrcCore/Causality",
+     "module": "FrcCore/Theme/Extension",
      "name": "FRC.Shell.Frame.aniso_tx"
     },
     {
      "lib": "FrcCore",
-     "module": "FrcCore/Causality",
+     "module": "FrcCore/Theme/Extension",
      "name": "FRC.Shell.Frame.null_yz"
     },
     {
      "lib": "FrcCore",
-     "module": "FrcCore/Causality",
+     "module": "FrcCore/Theme/Extension",
      "name": "FRC.Shell.Frame.null_tx_of_square"
     }
    ],
@@ -5363,27 +5412,27 @@
     },
     {
      "lib": "FrcCore",
-     "module": "FrcCore/Causality",
+     "module": "FrcCore/Theme/Extension",
      "name": "FRC.Shell.Frame.boost_preserves"
     },
     {
      "lib": "FrcCore",
-     "module": "FrcCore/Causality",
+     "module": "FrcCore/Theme/Extension",
      "name": "FRC.Shell.Frame.boost_comp_t"
     },
     {
      "lib": "FrcCore",
-     "module": "FrcCore/Causality",
+     "module": "FrcCore/Theme/Extension",
      "name": "FRC.Shell.Frame.boost_comp_x"
     },
     {
      "lib": "FrcCore",
-     "module": "FrcCore/Causality",
+     "module": "FrcCore/Theme/Extension",
      "name": "FRC.Shell.Frame.norm_one_mul"
     },
     {
      "lib": "FrcCore",
-     "module": "FrcCore/Causality",
+     "module": "FrcCore/Theme/Extension",
      "name": "FRC.Shell.Frame.normOne_values"
     }
    ],
@@ -5424,17 +5473,17 @@
     },
     {
      "lib": "FrcCore",
-     "module": "FrcCore/Causality",
+     "module": "FrcCore/Theme/Extension",
      "name": "FRC.Shell.Frame.gamma_ne_zero"
     },
     {
      "lib": "FrcCore",
-     "module": "FrcCore/Causality",
+     "module": "FrcCore/Theme/Extension",
      "name": "FRC.Shell.Frame.gamma_velocity"
     },
     {
      "lib": "FrcCore",
-     "module": "FrcCore/Causality",
+     "module": "FrcCore/Theme/Extension",
      "name": "FRC.Shell.Frame.velocity_addition"
     }
    ],
@@ -5502,12 +5551,12 @@
    "declarations": [
     {
      "lib": "FrcCore",
-     "module": "FrcCore/Causality",
+     "module": "FrcCore/Theme/Extension",
      "name": "FRC.Shell.Frame.null13"
     },
     {
      "lib": "FrcCore",
-     "module": "FrcCore/Causality",
+     "module": "FrcCore/Theme/Extension",
      "name": "FRC.Shell.Frame.normOne_values"
     }
    ],
@@ -22169,8 +22218,22 @@
    "page": "00-ledger.html#B5",
    "witness": {
     "script": "27:p11.py",
-    "py": null,
-    "lean": []
+    "py": {
+     "href": "frc/ledgers/master/carrier.html#p00015",
+     "script": "frc/ledgers/master/carrier.py",
+     "line": 93,
+     "verdict": "pass"
+    },
+    "lean": [
+     {
+      "lib": "FrcCore",
+      "module": "FrcCore/Keys/Carrier",
+      "name": "FRC.Ledger.p00015",
+      "tier": 0,
+      "ok": true,
+      "page": "lean/core/Keys.Carrier.html#FRC.Ledger.p00015"
+     }
+    ]
    },
    "refs": [
     "p00003",
@@ -22223,8 +22286,22 @@
    "page": "00-ledger.html#B7",
    "witness": {
     "script": "37:constants.py",
-    "py": null,
-    "lean": []
+    "py": {
+     "href": "frc/ledgers/master/carrier.html#p00165",
+     "script": "frc/ledgers/master/carrier.py",
+     "line": 119,
+     "verdict": "pass"
+    },
+    "lean": [
+     {
+      "lib": "FrcCore",
+      "module": "FrcCore/Keys/Carrier",
+      "name": "FRC.Ledger.p00165",
+      "tier": 0,
+      "ok": true,
+      "page": "lean/core/Keys.Carrier.html#FRC.Ledger.p00165"
+     }
+    ]
    },
    "refs": [
     "p00013",
@@ -22253,8 +22330,22 @@
    "page": "00-ledger.html#B8",
    "witness": {
     "script": "13:epi.py",
-    "py": null,
-    "lean": []
+    "py": {
+     "href": "frc/ledgers/master/carrier.html#p00166",
+     "script": "frc/ledgers/master/carrier.py",
+     "line": 163,
+     "verdict": "pass"
+    },
+    "lean": [
+     {
+      "lib": "FrcCore",
+      "module": "FrcCore/Keys/Carrier",
+      "name": "FRC.Ledger.p00166",
+      "tier": 0,
+      "ok": true,
+      "page": "lean/core/Keys.Carrier.html#FRC.Ledger.p00166"
+     }
+    ]
    },
    "refs": [
     "p00167"
@@ -22309,8 +22400,22 @@
    "page": "00-ledger.html#B10",
    "witness": {
     "script": null,
-    "py": null,
-    "lean": []
+    "py": {
+     "href": "frc/ledgers/master/carrier.html#p00168",
+     "script": "frc/ledgers/master/carrier.py",
+     "line": 191,
+     "verdict": "pass"
+    },
+    "lean": [
+     {
+      "lib": "FrcCore",
+      "module": "FrcCore/Keys/Carrier",
+      "name": "FRC.Ledger.p00168",
+      "tier": 0,
+      "ok": true,
+      "page": "lean/core/Keys.Carrier.html#FRC.Ledger.p00168"
+     }
+    ]
    },
    "refs": [
     "p00008",
@@ -22394,8 +22499,22 @@
    "page": "00-ledger.html#B14",
    "witness": {
     "script": null,
-    "py": null,
-    "lean": []
+    "py": {
+     "href": "frc/ledgers/master/carrier.html#p00170",
+     "script": "frc/ledgers/master/carrier.py",
+     "line": 213,
+     "verdict": "pass"
+    },
+    "lean": [
+     {
+      "lib": "FrcCore",
+      "module": "FrcCore/Keys/Carrier",
+      "name": "FRC.Ledger.p00170",
+      "tier": 0,
+      "ok": true,
+      "page": "lean/core/Keys.Carrier.html#FRC.Ledger.p00170"
+     }
+    ]
    },
    "refs": [
     "p14023"
@@ -25758,19 +25877,19 @@
      },
      {
       "lib": "FrcCore",
-      "module": "FrcCore/Poly",
+      "module": "FrcCore/Theme/Numbers",
       "name": "FRC.Shell.Poly.Frame.root_iff_common_factor",
       "tier": 0,
       "ok": true,
-      "page": "lean/core/Poly.html#FRC.Shell.Poly.Frame.root_iff_common_factor"
+      "page": "lean/core/Theme.html#FRC.Shell.Poly.Frame.root_iff_common_factor"
      },
      {
       "lib": "FrcCore",
-      "module": "FrcCore/Poly",
+      "module": "FrcCore/Theme/Numbers",
       "name": "FRC.Shell.Poly.Frame.root_bound",
       "tier": 0,
       "ok": true,
-      "page": "lean/core/Poly.html#FRC.Shell.Poly.Frame.root_bound"
+      "page": "lean/core/Theme.html#FRC.Shell.Poly.Frame.root_bound"
      },
      {
       "lib": "FrcCore",
@@ -27357,19 +27476,19 @@
      },
      {
       "lib": "FrcCore",
-      "module": "FrcCore/Causality",
+      "module": "FrcCore/Theme/Extension",
       "name": "FRC.Shell.Frame.no_causal_root",
       "tier": 0,
       "ok": true,
-      "page": "lean/core/Causality.html#FRC.Shell.Frame.no_causal_root"
+      "page": "lean/core/Theme.html#FRC.Shell.Frame.no_causal_root"
      },
      {
       "lib": "FrcCore",
-      "module": "FrcCore/Causality",
+      "module": "FrcCore/Theme/Extension",
       "name": "FRC.Shell.Frame.neg_sq_is_square",
       "tier": 0,
       "ok": true,
-      "page": "lean/core/Causality.html#FRC.Shell.Frame.neg_sq_is_square"
+      "page": "lean/core/Theme.html#FRC.Shell.Frame.neg_sq_is_square"
      }
     ]
    },
@@ -27408,11 +27527,11 @@
      },
      {
       "lib": "FrcCore",
-      "module": "FrcCore/Causality",
+      "module": "FrcCore/Theme/Extension",
       "name": "FRC.Shell.Frame.absorb",
       "tier": 0,
       "ok": true,
-      "page": "lean/core/Causality.html#FRC.Shell.Frame.absorb"
+      "page": "lean/core/Theme.html#FRC.Shell.Frame.absorb"
      }
     ]
    },
@@ -27441,35 +27560,35 @@
     "lean": [
      {
       "lib": "FrcCore",
-      "module": "FrcCore/Causality",
+      "module": "FrcCore/Theme/Extension",
       "name": "FRC.Shell.Frame.null13",
       "tier": 0,
       "ok": true,
-      "page": "lean/core/Causality.html#FRC.Shell.Frame.null13"
+      "page": "lean/core/Theme.html#FRC.Shell.Frame.null13"
      },
      {
       "lib": "FrcCore",
-      "module": "FrcCore/Causality",
+      "module": "FrcCore/Theme/Extension",
       "name": "FRC.Shell.Frame.euclid13",
       "tier": 0,
       "ok": true,
-      "page": "lean/core/Causality.html#FRC.Shell.Frame.euclid13"
+      "page": "lean/core/Theme.html#FRC.Shell.Frame.euclid13"
      },
      {
       "lib": "FrcCore",
-      "module": "FrcCore/Causality",
+      "module": "FrcCore/Theme/Extension",
       "name": "FRC.Shell.Frame.null5",
       "tier": 0,
       "ok": true,
-      "page": "lean/core/Causality.html#FRC.Shell.Frame.null5"
+      "page": "lean/core/Theme.html#FRC.Shell.Frame.null5"
      },
      {
       "lib": "FrcCore",
-      "module": "FrcCore/Causality",
+      "module": "FrcCore/Theme/Extension",
       "name": "FRC.Shell.Frame.null17",
       "tier": 0,
       "ok": true,
-      "page": "lean/core/Causality.html#FRC.Shell.Frame.null17"
+      "page": "lean/core/Theme.html#FRC.Shell.Frame.null17"
      }
     ]
    },
@@ -27509,27 +27628,27 @@
      },
      {
       "lib": "FrcCore",
-      "module": "FrcCore/Causality",
+      "module": "FrcCore/Theme/Extension",
       "name": "FRC.Shell.Frame.aniso_tx",
       "tier": 0,
       "ok": true,
-      "page": "lean/core/Causality.html#FRC.Shell.Frame.aniso_tx"
+      "page": "lean/core/Theme.html#FRC.Shell.Frame.aniso_tx"
      },
      {
       "lib": "FrcCore",
-      "module": "FrcCore/Causality",
+      "module": "FrcCore/Theme/Extension",
       "name": "FRC.Shell.Frame.null_yz",
       "tier": 0,
       "ok": true,
-      "page": "lean/core/Causality.html#FRC.Shell.Frame.null_yz"
+      "page": "lean/core/Theme.html#FRC.Shell.Frame.null_yz"
      },
      {
       "lib": "FrcCore",
-      "module": "FrcCore/Causality",
+      "module": "FrcCore/Theme/Extension",
       "name": "FRC.Shell.Frame.null_tx_of_square",
       "tier": 0,
       "ok": true,
-      "page": "lean/core/Causality.html#FRC.Shell.Frame.null_tx_of_square"
+      "page": "lean/core/Theme.html#FRC.Shell.Frame.null_tx_of_square"
      }
     ]
    },
@@ -27654,43 +27773,43 @@
      },
      {
       "lib": "FrcCore",
-      "module": "FrcCore/Causality",
+      "module": "FrcCore/Theme/Extension",
       "name": "FRC.Shell.Frame.boost_preserves",
       "tier": 0,
       "ok": true,
-      "page": "lean/core/Causality.html#FRC.Shell.Frame.boost_preserves"
+      "page": "lean/core/Theme.html#FRC.Shell.Frame.boost_preserves"
      },
      {
       "lib": "FrcCore",
-      "module": "FrcCore/Causality",
+      "module": "FrcCore/Theme/Extension",
       "name": "FRC.Shell.Frame.boost_comp_t",
       "tier": 0,
       "ok": true,
-      "page": "lean/core/Causality.html#FRC.Shell.Frame.boost_comp_t"
+      "page": "lean/core/Theme.html#FRC.Shell.Frame.boost_comp_t"
      },
      {
       "lib": "FrcCore",
-      "module": "FrcCore/Causality",
+      "module": "FrcCore/Theme/Extension",
       "name": "FRC.Shell.Frame.boost_comp_x",
       "tier": 0,
       "ok": true,
-      "page": "lean/core/Causality.html#FRC.Shell.Frame.boost_comp_x"
+      "page": "lean/core/Theme.html#FRC.Shell.Frame.boost_comp_x"
      },
      {
       "lib": "FrcCore",
-      "module": "FrcCore/Causality",
+      "module": "FrcCore/Theme/Extension",
       "name": "FRC.Shell.Frame.norm_one_mul",
       "tier": 0,
       "ok": true,
-      "page": "lean/core/Causality.html#FRC.Shell.Frame.norm_one_mul"
+      "page": "lean/core/Theme.html#FRC.Shell.Frame.norm_one_mul"
      },
      {
       "lib": "FrcCore",
-      "module": "FrcCore/Causality",
+      "module": "FrcCore/Theme/Extension",
       "name": "FRC.Shell.Frame.normOne_values",
       "tier": 0,
       "ok": true,
-      "page": "lean/core/Causality.html#FRC.Shell.Frame.normOne_values"
+      "page": "lean/core/Theme.html#FRC.Shell.Frame.normOne_values"
      }
     ]
    },
@@ -27745,27 +27864,27 @@
      },
      {
       "lib": "FrcCore",
-      "module": "FrcCore/Causality",
+      "module": "FrcCore/Theme/Extension",
       "name": "FRC.Shell.Frame.gamma_ne_zero",
       "tier": 0,
       "ok": true,
-      "page": "lean/core/Causality.html#FRC.Shell.Frame.gamma_ne_zero"
+      "page": "lean/core/Theme.html#FRC.Shell.Frame.gamma_ne_zero"
      },
      {
       "lib": "FrcCore",
-      "module": "FrcCore/Causality",
+      "module": "FrcCore/Theme/Extension",
       "name": "FRC.Shell.Frame.gamma_velocity",
       "tier": 0,
       "ok": true,
-      "page": "lean/core/Causality.html#FRC.Shell.Frame.gamma_velocity"
+      "page": "lean/core/Theme.html#FRC.Shell.Frame.gamma_velocity"
      },
      {
       "lib": "FrcCore",
-      "module": "FrcCore/Causality",
+      "module": "FrcCore/Theme/Extension",
       "name": "FRC.Shell.Frame.velocity_addition",
       "tier": 0,
       "ok": true,
-      "page": "lean/core/Causality.html#FRC.Shell.Frame.velocity_addition"
+      "page": "lean/core/Theme.html#FRC.Shell.Frame.velocity_addition"
      }
     ]
    },
@@ -27846,19 +27965,19 @@
     "lean": [
      {
       "lib": "FrcCore",
-      "module": "FrcCore/Causality",
+      "module": "FrcCore/Theme/Extension",
       "name": "FRC.Shell.Frame.null13",
       "tier": 0,
       "ok": true,
-      "page": "lean/core/Causality.html#FRC.Shell.Frame.null13"
+      "page": "lean/core/Theme.html#FRC.Shell.Frame.null13"
      },
      {
       "lib": "FrcCore",
-      "module": "FrcCore/Causality",
+      "module": "FrcCore/Theme/Extension",
       "name": "FRC.Shell.Frame.normOne_values",
       "tier": 0,
       "ok": true,
-      "page": "lean/core/Causality.html#FRC.Shell.Frame.normOne_values"
+      "page": "lean/core/Theme.html#FRC.Shell.Frame.normOne_values"
      }
     ]
    },
