@@ -1,5 +1,5 @@
 import Mathlib
-import FrcLedger.Reductio
+import FrcLedger.Theme.Logic
 
 /-!
 # 25-göd — incompleteness without infinity: the ledger predicates on Mathlib
@@ -53,7 +53,7 @@ theorem theory_complete [Nonempty M] : (L.completeTheory M).IsComplete := comple
 the theory is decided by evaluating the sentence, each quantifier ranging over the finitely many elements. -/
 @[instance_reducible] def decTheory [Fintype M] [DecidableEq M]
     (hR : ∀ (n : ℕ) (R : L.Relations n) (x : Fin n → M), Decidable (Structure.RelMap R x)) :
-    DecidablePred (· ∈ L.completeTheory M) := FRC.Reductio.decTheory hR
+    DecidablePred (· ∈ L.completeTheory M) := FRC.Logic.decTheory hR
 
 /-- The sentences `⊥, ¬⊥, ¬¬⊥, …`. -/
 def nots (L : Language) : ℕ → L.Sentence

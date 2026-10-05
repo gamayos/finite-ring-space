@@ -1,9 +1,8 @@
 import FrcCore.Frame
+import FrcCore.Orbit
 import FrcCore.Sum
-import FrcCore.Algebra
-import FrcCore.Dimensions
-import FrcCore.Entropy
 import FrcCore.Instances
+import FrcCore.Theme.Extension
 
 /-!
 # 8-dirac — the square-class arithmetic, the coefficient field and the worked shells, no axioms
@@ -29,167 +28,22 @@ propagators of order `14` on `𝔽₁₃` and `18` on `𝔽₁₇`, the least co
 counts `145`, `105` on `𝔽₅` and `2353`, `2041` on `𝔽₁₃` (B7); the unit-norm circle of `p − 1` points (F2); the
 minimal admissible shell `𝔽₁₇` (D12); the laboratory Carrier's `c = 171 106`, `c² = 2⁻¹`, `2⁻¹·12 = 6` (B4).
 Every declaration is checked to depend on no axiom (`check_core_axioms.py`).
+
+Since the ledger migration (task LM17) the coefficient field is the extension theme's `FRC.Extension.Ext p ν`
+(`Theme/Extension.lean`) and chronon parity is the frame theme's (`Orbit.lean`); every old name stays as an alias.
 -/
 
 namespace FRC.Dirac
 
 open FRC.Shell
 
-/-! ## The coefficient field `K = 𝔽_p[w]/(w² − ν)` on components (8:A2, B1) -/
-section ext
-variable {p : Nat} [Pos p]
-
-/-- 8:B1 — an element `a + b w` of the coefficient field, on components. -/
-structure Ext (p : Nat) [Pos p] (ν : Shell p) where
-  re : Shell p
-  im : Shell p
-
-namespace Ext
-variable {ν : Shell p}
-
-theorem ext' {z z' : Ext p ν} (h1 : z.re = z'.re) (h2 : z.im = z'.im) : z = z' := by
-  cases z; cases z'; cases h1; cases h2; rfl
-
-instance : DecidableEq (Ext p ν) := fun a b =>
-  if h1 : a.re = b.re then
-    if h2 : a.im = b.im then isTrue (ext' h1 h2) else isFalse (fun e => h2 (by cases e; rfl))
-  else isFalse (fun e => h1 (by cases e; rfl))
-
-/-- The base field inside `K`. -/
-def ofShell (a : Shell p) : Ext p ν := ⟨a, 0⟩
-/-- The adjoined root `w`, `w² = ν`. -/
-def w : Ext p ν := ⟨0, 1⟩
-instance (n : Nat) : OfNat (Ext p ν) n := ⟨ofShell (OfNat.ofNat n)⟩
-instance : Add (Ext p ν) := ⟨fun z z' => ⟨z.re + z'.re, z.im + z'.im⟩⟩
-instance : Neg (Ext p ν) := ⟨fun z => ⟨-z.re, -z.im⟩⟩
-instance : Mul (Ext p ν) := ⟨fun z z' => ⟨z.re * z'.re + ν * (z.im * z'.im), z.re * z'.im + z.im * z'.re⟩⟩
-/-- Frobenius conjugation `a + b w ↦ a − b w`. -/
-def conj (z : Ext p ν) : Ext p ν := ⟨z.re, -z.im⟩
-/-- The norm `N(z) = z z̄ = a² − ν b²`. -/
-def norm (z : Ext p ν) : Shell p := z.re * z.re + -(ν * (z.im * z.im))
-/-- Powers by structural recursion. -/
-def pow (z : Ext p ν) : Nat → Ext p ν
-  | 0 => 1
-  | n + 1 => pow z n * z
-instance : Pow (Ext p ν) Nat := ⟨pow⟩
-
-theorem mul_re (z z' : Ext p ν) : (z * z').re = z.re * z'.re + ν * (z.im * z'.im) := rfl
-theorem mul_im (z z' : Ext p ν) : (z * z').im = z.re * z'.im + z.im * z'.re := rfl
-theorem ofShell_re (a : Shell p) : (ofShell a : Ext p ν).re = a := rfl
-theorem ofShell_im (a : Shell p) : (ofShell a : Ext p ν).im = 0 := rfl
-theorem conj_re (z : Ext p ν) : (conj z).re = z.re := rfl
-theorem conj_im (z : Ext p ν) : (conj z).im = -z.im := rfl
-
-/-- 8:A2 — `w² = ν`. -/
-theorem w_sq : (w : Ext p ν) * w = ofShell ν :=
-  ext' (by show 0 * 0 + ν * (1 * 1) = ν; rw [Shell.zero_mul, Shell.one_mul, Shell.mul_one, Shell.zero_add])
-       (by show 0 * 1 + 1 * 0 = 0; rw [Shell.zero_mul, Shell.mul_zero, Shell.zero_add])
-
-/-- 8:A2 — the norm is the product with the conjugate: `z z̄ = N(z)`, a base-field element. -/
-theorem mul_conj (z : Ext p ν) : z * conj z = ofShell (norm z) :=
-  ext' (by show z.re * z.re + ν * (z.im * -z.im) = z.re * z.re + -(ν * (z.im * z.im))
-           rw [← Shell.mul_neg, ← Shell.mul_neg])
-       (by show z.re * -z.im + z.im * z.re = 0
-           rw [← Shell.mul_neg, Shell.mul_comm z.im z.re, Shell.neg_add])
-
-/-- 8:A2 — conjugation is multiplicative (the Frobenius involution is a ring map). -/
-theorem conj_mul (z z' : Ext p ν) : conj (z * z') = conj z * conj z' :=
-  ext' (by show z.re * z'.re + ν * (z.im * z'.im) = z.re * z'.re + ν * (-z.im * -z'.im)
-           rw [Shell.neg_mul_neg])
-       (by show -(z.re * z'.im + z.im * z'.re) = z.re * -z'.im + -z.im * z'.re
-           rw [Shell.neg_add_rev, ← Shell.mul_neg, ← Shell.neg_mul])
-
-/-- 8:B6 — norm growth: `N(c z) = c² N(z)` for every base residue `c`; one chronon of drive multiplies every
-norm by `g²`, a square. -/
-theorem norm_scale (c : Shell p) (z : Ext p ν) : norm (ofShell c * z) = c * c * norm z := by
-  unfold norm
-  rw [mul_re, mul_im, ofShell_re, ofShell_im, Shell.zero_mul, Shell.mul_zero, Shell.add_zero,
-    Shell.zero_mul, Shell.add_zero, FRC.Entropy.mul_mul_mul_comm, FRC.Entropy.mul_mul_mul_comm c z.im c z.im,
-    Shell.mul_left_comm ν (c * c), Shell.left_distrib, ← Shell.mul_neg]
-
-end Ext
-end ext
+section
+open FRC.Extension
+open FRC.Shell.Frame (two_mul_mod mod_two_of_mod_four_mul mod_n_mod_two parity_iff drive_nonsquare mod_two_cases succ_mod_two_eq_zero_iff inv_drive_odd inv_drive_nonsquare)
 
 /-! ## The square class is chronon parity (8:B5, B3, B4) -/
 section parity
 variable {p : Nat} [Pos p] {κ : Nat} {g : Shell p}
-
-theorem two_mul_mod (l : Nat) : (2 * l) % 2 = 0 := by
-  rw [← Nat.add_zero (2 * l)]; exact FRC.Nat.add_mul_mod_self_left 0 l 2 (Nat.zero_lt_succ 1)
-
-theorem mod_two_of_mod_four_mul (m q : Nat) : (4 * q + m) % 2 = m % 2 := by
-  have : 4 * q + m = 2 * (2 * q) + m := by rw [← FRC.Nat.mul_assoc]
-  rw [this, FRC.Nat.add_mul_mod_self_left m (2 * q) 2 (Nat.zero_lt_succ 1)]
-
-theorem mod_n_mod_two (F : Frame p κ g) (m : Nat) : (m % (p - 1)) % 2 = m % 2 := by
-  match FRC.Nat.mod_spec (p - 1) F.n_pos m with
-  | ⟨q, hq⟩ =>
-    have e : m = 4 * (κ * q) + m % (p - 1) := by
-      rw [← FRC.Nat.mul_assoc, ← F.n_eq]; exact hq
-    calc (m % (p - 1)) % 2 = (4 * (κ * q) + m % (p - 1)) % 2 := (mod_two_of_mod_four_mul _ _).symm
-      _ = m % 2 := by rw [← e]
-
-/-- 8:B5 — the square class is chronon parity: on every frame, `g^m` is a square exactly when the drive-step
-count `m` is even (Theorem `parity`). -/
-theorem parity_iff (F : Frame p κ g) (m : Nat) : (∃ y : Shell p, y * y = g ^ m) ↔ m % 2 = 0 := by
-  constructor
-  · rintro ⟨y, hy⟩
-    have hy0 : y ≠ 0 := fun h0 => F.pow_ne_zero m (by rw [← hy, h0, Shell.mul_zero])
-    obtain ⟨l, hl, hgl⟩ := F.eq_pow_of_ne_zero hy0
-    have h2 : g ^ (2 * l) = g ^ m := by
-      rw [Nat.mul_comm, Shell.pow_mul, Shell.pow_two, hgl]; exact hy
-    rw [F.pow_mod, F.pow_mod m] at h2
-    have h3 := F.pow_inj (Nat.mod_lt _ F.n_pos) (Nat.mod_lt _ F.n_pos) h2
-    rw [← mod_n_mod_two F m, ← h3, mod_n_mod_two F]
-    exact two_mul_mod l
-  · intro h
-    match FRC.Nat.mod_spec 2 (Nat.zero_lt_succ 1) m with
-    | ⟨q, hq⟩ =>
-      rw [h, Nat.add_zero] at hq
-      exact ⟨g ^ q, by rw [hq, Nat.mul_comm, Shell.pow_mul, Shell.pow_two]⟩
-
-/-- 8:B3 — the drive is a nonsquare on every frame (`m = 1`). -/
-theorem drive_nonsquare (F : Frame p κ g) : ¬ ∃ y : Shell p, y * y = g := fun ⟨y, hy⟩ =>
-  Nat.noConfusion ((parity_iff F 1).1 ⟨y, by rw [Shell.pow_one]; exact hy⟩)
-
-theorem mod_two_cases (m : Nat) : m % 2 = 0 ∨ m % 2 = 1 := by
-  have := Nat.mod_lt m (Nat.zero_lt_succ 1)
-  match m % 2, this with
-  | 0, _ => exact .inl rfl
-  | 1, _ => exact .inr rfl
-  | k + 2, hk => exact absurd hk (Nat.not_lt_of_le (Nat.le_add_left 2 k))
-
-theorem succ_mod_two_eq_zero_iff (m : Nat) : (m + 1) % 2 = 0 ↔ m % 2 = 1 := by
-  rw [FRC.Nat.add_mod m 1 2 (Nat.zero_lt_succ 1)]
-  rcases mod_two_cases m with h | h <;> rw [h]
-  · exact ⟨fun e => Nat.noConfusion e, fun e => Nat.noConfusion e⟩
-  · exact ⟨fun _ => rfl, fun _ => rfl⟩
-
-/-- The inverse of the drive is `g^{p−2}`: every `y` with `g y = 1` is an odd power of `g`. -/
-theorem inv_drive_odd (F : Frame p κ g) {y : Shell p} (hy : g * y = 1) :
-    ∃ l, l < p - 1 ∧ g ^ l = y ∧ l % 2 = 1 := by
-  have hy0 : y ≠ 0 := fun h0 => F.one_ne_zero (by rw [← hy, h0, Shell.mul_zero])
-  obtain ⟨l, hl, hgl⟩ := F.eq_pow_of_ne_zero hy0
-  refine ⟨l, hl, hgl, ?_⟩
-  have h1 : g ^ (l + 1) = 1 := by rw [Shell.pow_succ, hgl, Shell.mul_comm]; exact hy
-  have h2 := F.mod_eq_zero_of_pow_eq_one h1
-  have h3 : l + 1 = p - 1 := by
-    match Nat.lt_or_ge (l + 1) (p - 1) with
-    | .inl hlt => exact absurd (by rw [FRC.Nat.mod_eq_of_lt hlt] at h2; exact h2) (Nat.succ_ne_zero l)
-    | .inr hge => exact Nat.le_antisymm (Nat.succ_le_of_lt hl) hge
-  have h4 : (l + 1) % 2 = 0 := by
-    rw [h3, F.n_eq, ← Nat.add_zero (4 * κ), mod_two_of_mod_four_mul]
-  exact (succ_mod_two_eq_zero_iff l).1 h4
-
-/-- 8:B3, 8:B6 — the reframing flip preserves the class: the inverse of the drive is a nonsquare (an odd
-power of `g`), so `[g⁻¹] = [g]`. -/
-theorem inv_drive_nonsquare (F : Frame p κ g) {y : Shell p} (hy : g * y = 1) :
-    ¬ ∃ r : Shell p, r * r = y := fun h => by
-  obtain ⟨l, _, hgl, hodd⟩ := inv_drive_odd F hy
-  rw [← hgl] at h
-  have h2 := (parity_iff F l).1 h
-  rw [hodd] at h2
-  exact Nat.noConfusion h2
 
 /-- 8:B3 — the quarter-turn is `g^{3κ}` (`i = −g^κ`, `−1 = g^{2κ}`). -/
 theorem quarterTurn_eq_pow (F : Frame p κ g) : Frame.quarterTurn g κ = g ^ (3 * κ) := by
@@ -213,7 +67,7 @@ theorem two_class (F : Frame p κ g) {h : Shell p} (hh : 2 * h = 1) :
     ((∃ r : Shell p, r * r = 2) ↔ κ % 2 = 0) ∧ ((∃ r : Shell p, r * r = h) ↔ κ % 2 = 0) ∧
     ((∃ r : Shell p, r * r = -2) ↔ κ % 2 = 0) := by
   have key : (∃ r : Shell p, r * r = 2) ↔ κ % 2 = 0 := by
-    refine (FRC.Entropy.two_is_square_iff F).trans ?_
+    refine (FRC.Shell.Frame.two_is_square_iff F).trans ?_
     constructor
     · rintro ⟨m, hm⟩; rw [hm]; exact two_mul_mod m
     · intro h0
@@ -225,20 +79,20 @@ theorem two_class (F : Frame p κ g) {h : Shell p} (hh : 2 * h = 1) :
     constructor
     · rintro ⟨r, hr⟩
       refine ⟨2 * r, ?_⟩
-      rw [FRC.Entropy.mul_mul_mul_comm, hr, Shell.mul_assoc, hh, Shell.mul_one]
+      rw [FRC.Shell.mul_mul_mul_comm, hr, Shell.mul_assoc, hh, Shell.mul_one]
     · rintro ⟨r, hr⟩
       refine ⟨r * h, ?_⟩
-      rw [FRC.Entropy.mul_mul_mul_comm, hr]
+      rw [FRC.Shell.mul_mul_mul_comm, hr]
       calc (2 : Shell p) * (h * h) = 2 * h * h := (Shell.mul_assoc _ _ _).symm
         _ = h := by rw [hh, Shell.one_mul]
   · refine Iff.trans ?_ key
     constructor
     · rintro ⟨r, hr⟩
       refine ⟨g ^ κ * r, ?_⟩
-      rw [FRC.Entropy.mul_mul_mul_comm, hsq, hr, Shell.neg_mul_neg, Shell.one_mul]
+      rw [FRC.Shell.mul_mul_mul_comm, hsq, hr, Shell.neg_mul_neg, Shell.one_mul]
     · rintro ⟨r, hr⟩
       refine ⟨g ^ κ * r, ?_⟩
-      rw [FRC.Entropy.mul_mul_mul_comm, hsq, hr, Shell.neg_one_mul]
+      rw [FRC.Shell.mul_mul_mul_comm, hsq, hr, Shell.neg_one_mul]
 
 /-- 8:B4 — the factorisation of the coefficient: with `c² = 2⁻¹`, `ν = g = c²·(2g)` exactly on every shell,
 and the cofactor `2g` is a square exactly when `κ` is odd — the product `g` odd always (Corollary
@@ -636,7 +490,7 @@ theorem anchors :
       ∀ r : Shell 17, r * r ≠ 3) := by decide +kernel
 
 /-- 8:D12 — the shell admissibility congruences of the programme: `κ` even, `κ ≡ 1 (mod 3)`, `4κ + 1` prime. -/
-def shellAdmissible (κ : Nat) : Prop := κ % 2 = 0 ∧ κ % 3 = 1 ∧ FRC.Dimensions.isPrime (4 * κ + 1)
+def shellAdmissible (κ : Nat) : Prop := κ % 2 = 0 ∧ κ % 3 = 1 ∧ FRC.Nat.isPrime (4 * κ + 1)
 instance (κ : Nat) : Decidable (shellAdmissible κ) := by unfold shellAdmissible; exact inferInstance
 
 /-- 8:D12, 8:A5 [value] — `𝔽₁₇` (`κ = 4`) is the minimal admissible shell: `17 ≡ 5 (mod 12)`, and no capacity below
@@ -651,6 +505,115 @@ theorem carrier_constants :
     (1204281 : Shell 2408561) * 12 = 6 := by decide +kernel
 
 end matrices
+
+/-! ## Old names (ledger migration, task LM17): the declarations moved to the themes, each under its old name -/
+end
+
+section aliases
+variable {p : Nat} [Pos p] {κ : Nat} {g : Shell p}
+
+theorem two_mul_mod (l : Nat) : (2 * l) % 2 = 0 :=
+  FRC.Shell.Frame.two_mul_mod l
+
+theorem mod_two_of_mod_four_mul (m q : Nat) : (4 * q + m) % 2 = m % 2 :=
+  FRC.Shell.Frame.mod_two_of_mod_four_mul m q
+
+theorem mod_n_mod_two (F : Frame p κ g) (m : Nat) : (m % (p - 1)) % 2 = m % 2 :=
+  FRC.Shell.Frame.mod_n_mod_two F m
+
+/-- 8:B5 — the square class is chronon parity: on every frame, `g^m` is a square exactly when the drive-step
+count `m` is even (Theorem `parity`). -/
+theorem parity_iff (F : Frame p κ g) (m : Nat) : (∃ y : Shell p, y * y = g ^ m) ↔ m % 2 = 0 :=
+  FRC.Shell.Frame.parity_iff F m
+
+/-- 8:B3 — the drive is a nonsquare on every frame (`m = 1`). -/
+theorem drive_nonsquare (F : Frame p κ g) : ¬ ∃ y : Shell p, y * y = g :=
+  FRC.Shell.Frame.drive_nonsquare F
+
+theorem mod_two_cases (m : Nat) : m % 2 = 0 ∨ m % 2 = 1 :=
+  FRC.Shell.Frame.mod_two_cases m
+
+theorem succ_mod_two_eq_zero_iff (m : Nat) : (m + 1) % 2 = 0 ↔ m % 2 = 1 :=
+  FRC.Shell.Frame.succ_mod_two_eq_zero_iff m
+
+/-- The inverse of the drive is `g^{p−2}`: every `y` with `g y = 1` is an odd power of `g`. -/
+theorem inv_drive_odd (F : Frame p κ g) {y : Shell p} (hy : g * y = 1) :
+    ∃ l, l < p - 1 ∧ g ^ l = y ∧ l % 2 = 1 :=
+  FRC.Shell.Frame.inv_drive_odd F hy
+
+/-- 8:B3, 8:B6 — the reframing flip preserves the class: the inverse of the drive is a nonsquare (an odd
+power of `g`), so `[g⁻¹] = [g]`. -/
+theorem inv_drive_nonsquare (F : Frame p κ g) {y : Shell p} (hy : g * y = 1) :
+    ¬ ∃ r : Shell p, r * r = y :=
+  FRC.Shell.Frame.inv_drive_nonsquare F hy
+
+/-- 8:B1 — an element `a + b w` of the coefficient field, on components. -/
+@[reducible] def Ext := @FRC.Extension.Ext
+
+namespace Ext
+variable {ν : Shell p}
+
+theorem ext' {z z' : Ext p ν} (h1 : z.re = z'.re) (h2 : z.im = z'.im) : z = z' :=
+  FRC.Extension.Ext.ext h1 h2
+
+/-- The base field inside `K`. -/
+@[reducible] def ofShell (a : Shell p) : Ext p ν :=
+  FRC.Extension.Ext.ofShell a
+
+/-- The adjoined root `w`, `w² = ν`. -/
+@[reducible] def w : Ext p ν :=
+  FRC.Extension.Ext.w
+
+/-- Frobenius conjugation `a + b w ↦ a − b w`. -/
+@[reducible] def conj (z : Ext p ν) : Ext p ν :=
+  FRC.Extension.Ext.conj z
+
+/-- The norm `N(z) = z z̄ = a² − ν b²`. -/
+@[reducible] def norm (z : Ext p ν) : Shell p :=
+  FRC.Extension.Ext.norm z
+
+/-- Powers by structural recursion. -/
+@[reducible] def pow (z : Ext p ν) : Nat → Ext p ν :=
+  FRC.Extension.Ext.pow z
+
+theorem mul_re (z z' : Ext p ν) : (z * z').re = z.re * z'.re + ν * (z.im * z'.im) :=
+  FRC.Extension.Ext.mul_re z z'
+
+theorem mul_im (z z' : Ext p ν) : (z * z').im = z.re * z'.im + z.im * z'.re :=
+  FRC.Extension.Ext.mul_im z z'
+
+theorem ofShell_re (a : Shell p) : (ofShell a : Ext p ν).re = a :=
+  FRC.Extension.Ext.ofShell_re a
+
+theorem ofShell_im (a : Shell p) : (ofShell a : Ext p ν).im = 0 :=
+  FRC.Extension.Ext.ofShell_im a
+
+theorem conj_re (z : Ext p ν) : (conj z).re = z.re :=
+  FRC.Extension.Ext.conj_re z
+
+theorem conj_im (z : Ext p ν) : (conj z).im = -z.im :=
+  FRC.Extension.Ext.conj_im z
+
+/-- 8:A2 — `w² = ν`. -/
+theorem w_sq : (w : Ext p ν) * w = ofShell ν :=
+  FRC.Extension.Ext.w_sq
+
+/-- 8:A2 — the norm is the product with the conjugate: `z z̄ = N(z)`, a base-field element. -/
+theorem mul_conj (z : Ext p ν) : z * conj z = ofShell (norm z) :=
+  FRC.Extension.Ext.mul_conj z
+
+/-- 8:A2 — conjugation is multiplicative (the Frobenius involution is a ring map). -/
+theorem conj_mul (z z' : Ext p ν) : conj (z * z') = conj z * conj z' :=
+  FRC.Extension.Ext.conj_mul z z'
+
+/-- 8:B6 — norm growth: `N(c z) = c² N(z)` for every base residue `c`; one chronon of drive multiplies every
+norm by `g²`, a square. -/
+theorem norm_scale (c : Shell p) (z : Ext p ν) : norm (ofShell c * z) = c * c * norm z :=
+  FRC.Extension.Ext.norm_scale c z
+
+end Ext
+
+end aliases
 
 -- Ledger predicates of 8-dirac (generated by make_predicates.py from docs/8-dirac/8-dirac-ledger.json; edit the ledger, not this section)
 /-- 8:A2 (p08002) — Finite-field algebra: the quadratic extension $K=\Fp[\w]/(\w^{2}-\nu)$ with Frobenius conjugation and norm, Hilbert's Theorem~90, the square classes by Euler's criterion, the unitary group of a nondegenerate Hermitian form over a finite field. -/

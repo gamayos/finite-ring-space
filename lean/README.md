@@ -54,6 +54,9 @@ algorithm from the definition of `Nat.mod`.
 | `FrcCore/Frame.lean` | 00:A8, 00:C1, 00:C7, 00:C14; 1:B3, F1; 2:D1, D2, D5, D6; 13:B2, H2, I4, J2 | `IsPrimitive`, `Generates`, `Frame`, `generates` (the pigeonhole), `pow_inj`, `exists_inv`, `mul_eq_zero`, `sq_eq_one`, `half_period`, `quarter_turn_sq`, `quarter_turn_order`, `orientation_class`, `euler_identity`, `two_pi`, `no_south_pole` |
 | `FrcCore/Orbit.lean` | 1:E3; 2:B3 | `generator_orbit`, `fermat` |
 | `FrcCore/Sum.lean` | 2:F1, F3, F4, F5; 6:B5, B6, B7 | `sumRange`, `geom_sum_mul`, `principal_root`, `dft_inverse`, `W_sq`, `J_sq`, `F_sq`, `W_J_comm`, `sum_perm`, `dft_eq_polyEval`, `dft_covariance`, the `V = V⁺ ⊕ V⁻` decomposition |
+| `FrcCore/Theme/Projective.lean` | (1:C2, 4:C5, cited by full name) | the projective theme: the affine group `Affine` (the Borel subgroup of `PGL₂` on the affine line): `Affine.comp_assoc`, `Affine.comp_inv`, `Affine.simply_transitive`, `frame_count` (moved from `Algebra`, names unchanged) |
+| `FrcCore/Theme/Extension.lean` | (8:A2, B6; 20:B6, B9; 1:E8) | the extension theme: one quadratic extension `FRC.Extension.Ext p ν` (8-dirac's coefficient field and 20-rh's pairs merged): `mul_conj`, `conj_mul`, `conj_conj`, `norm_scale`, `conj_inv_of_norm_one`, `fixed_conj`; the quaternions over the shell, the ring normaliser and `nrm_mul` (moved from `Quaternion`, names unchanged) |
+| `FrcCore/Theme/Logic.lean` | (5:B6, C2, C5, D3, E1, E2, E5; 25:C1, C5, D1, F4) | the logic theme, `FRC.Logic`: 5-reductio's Δ₀ language, its two evaluators and the stability schema, the records and the mirror, iteration on finitely many states, Cantor, the least element; 25-godel's counting core: `inj_onto`, `part_collides`, `sentences_outnumber`, `count`, `dense_coding`, `digit_bound` |
 | `FrcCore/Meridian.lean` | 6:D4, D5 | the meridian ladder as lists: `meridian`, `scale`, `meridian_scale` (the scale-shift is re-indexing), `meridian_step` (the effective step `g^m`), `scale_periodic`; `ladder13` (the zoom ladder of `𝔽₁₃`, `g = 2`, by `decide`) |
 | `FrcCore/Fourier.lean` | 6:B2, B3, B5–B7, D4, D5 | the 6-fourier predicates named by their accession keys (`p06009`, …), each the conjunction of the core theorems that prove it in `Frame`, `Sum` and `Meridian`; no proof of its own |
 | `FrcCore/Epi.lean` | 13:B2, F3, F7, J1; B3, F2, F4, F6, G1, G5, G8 [value] | the derangement numbers by recurrence: `dr_succ`, `dr_antiperiodic`, `tower_e_exact`; `orientation_transport` (no third case); `wrap_free`; on `𝔽₁₃` and the wall shells by `decide`: `coincidence13`, `terminal13`, `residue_line_e13`, `residue_line_pi13`, `revivals13`, `kurepa_alt_values` |
@@ -77,6 +80,8 @@ The core in one file for the web editor, on plain Lean 4.34.0 (no Mathlib to loa
 `https://live.lean-lang.org/#project=lean-v4.34.0&url=https://raw.githubusercontent.com/gamayos/finite-ring-space/main/lean/web/FrcCore.lean`
 (`make_core_web.py` regenerates it). The ledgers cite core declarations by full name
 (`\lean{FRC.Shell.Frame.half_period}`); the rendered modules are under `docs/lean/core/`.
+
+**Themes (ledger migration, task LM17).** Declarations that several papers use live in theme modules, and each paper's module imports themes only (task LM18; gate G09 of `../ci/gates.py`). In the core the frame theme's files took 1-algebra's frame arithmetic and Klein orbits (`Frame`, `Orbit`), 14-entropy's octant character of `2` and 8-dirac's parity of the drive (`Orbit`), 10-dimensions' root pair and deciders and 20-rh's counting lemmas (`Frame`), 20-rh's sums (`Sum`); the base took `isPrime` (`Nat`) and `mul_mul_mul_comm` (`Shell`); `Theme/Projective`, `Theme/Extension` and `Theme/Logic` are new. On Mathlib `FrcLedger/Theme/` holds the shell DFT (`Fourier`, namespace `FRC.DFT`), truth in a finite structure (`Logic`), the quadratic extension (`Extension`) and the square classes and the root pair (`Frame`). A declaration that changed namespace keeps its old name in the paper's module, as a theorem restating its statement or a reducible definition, so every `\lean{}` cell and every predicate declaration resolves as before. The map of themes, tiers and allowed imports is `../frc/themes.py`.
 
 ## Read it, run it
 
@@ -127,6 +132,8 @@ master, informationally, so a breaking change upstream is seen before the pin is
 ```
 lean-toolchain, lakefile.toml, lake-manifest.json   the pins (Lean v4.34.0; Mathlib by commit)
 FrcLedger.lean, FrcLedger/<Module>.lean            the modules, one per paper
+FrcLedger/Theme/<Theme>.lean                        the themes the paper modules import (Fourier, Logic, Extension, Frame)
+FrcCore.lean, FrcCore/<Module>.lean, FrcCore/Theme/  the core: base, frame theme and paper modules; the core's themes
 web/<Module>.lean                                   generated single-file copies for the web editor
 axioms.log                                          generated, committed: one line per declaration
 check_axioms.py, make_web.py, make_notebook.py      the generators and the gate

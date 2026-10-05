@@ -1,5 +1,4 @@
 import Mathlib
-import FrcLedger.Fourier
 
 /-!
 # 3-causality — the Euclidean–Lorentzian dichotomy, Mathlib witnesses

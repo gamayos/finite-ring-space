@@ -11,6 +11,8 @@ nonsquare `ν` (the Witt kernel of the Lorentzian form), while `y² + z²` and `
 is multiplicative), boosts compose as norm-one elements multiply, `γ` is never zero, and the velocities
 `v = −νb/γ` obey the Einstein addition law exactly.  The counts — the null cone `p³ − p² + p` on the Lorentzian form,
 `p³ + p² − p` on the Euclidean one, `p + 1` boosts — are decided by the kernel on `𝔽₅`, `𝔽₁₃`, `𝔽₁₇`.  No axioms.
+
+Since the ledger migration (task LM17) `mul_mul_mul_comm` lives in `Shell.lean`; the old name stays as an alias.
 -/
 
 namespace FRC
@@ -24,9 +26,6 @@ def IsSquare (x : Shell p) : Prop := ∃ y : Shell p, y * y = x
 
 /-- 3:B2 (Thm. nonexistence, first clause) — `c² = ν` makes `ν` a square, so a nonsquare `ν` has no root `c`. -/
 theorem no_causal_root {ν : Shell p} (h : ¬IsSquare ν) (c : Shell p) : c * c ≠ ν := fun e => h ⟨c, e⟩
-
-theorem mul_mul_mul_comm (a b c d : Shell p) : (a * b) * (c * d) = (a * c) * (b * d) := by
-  rw [mul_assoc, mul_left_comm b, ← mul_assoc]
 
 theorem sq_mul (a b : Shell p) : (a * b) * (a * b) = (a * a) * (b * b) := mul_mul_mul_comm a b a b
 
@@ -231,6 +230,15 @@ theorem null17 : nullCount 17 3 = 4641 := by decide +kernel
 /-- 3:C2, 3:D1 [value] — the boosts number `p + 1`: `6`, `14`, `18`, `30` on `𝔽₅`, `𝔽₁₃`, `𝔽₁₇`, `𝔽₂₉`. -/
 theorem normOne_values : normOneCount 5 2 = 6 ∧ normOneCount 13 2 = 14 ∧ normOneCount 17 3 = 18 ∧
     normOneCount 29 2 = 30 := by decide +kernel
+
+/-! ## Old names (ledger migration, task LM17): the declarations moved to the themes, each under its old name -/
+section aliases
+variable {p : Nat} [Pos p] {κ : Nat} {g : Shell p}
+
+theorem mul_mul_mul_comm (a b c d : Shell p) : (a * b) * (c * d) = (a * c) * (b * d) :=
+  FRC.Shell.mul_mul_mul_comm a b c d
+
+end aliases
 
 end Frame
 end Shell

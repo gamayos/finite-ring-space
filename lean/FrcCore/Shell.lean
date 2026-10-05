@@ -11,6 +11,8 @@ kernel's accelerated `Nat` arithmetic, and every theorem is checked to depend on
 The ring laws are derived from `FrcCore.Nat`'s division algorithm (`mod_unique`); negation is
 characterised by `add_neg : a + -a = 0`, and everything about `-` follows from the uniqueness of
 additive inverses (`neg_unique`), never from `Nat` subtraction.
+
+Since the ledger migration (task LM17) it also holds `mul_mul_mul_comm` (from 14-entropy and 3-causality).
 -/
 
 namespace FRC
@@ -232,6 +234,10 @@ theorem neg_one_pow (n : Nat) : (-1 : Shell p) ^ n = if n % 2 = 0 then 1 else -1
           have : (n + 1) % 2 = 0 := by
             rw [← FRC.Nat.mod_add_mod _ _ _ (Nat.zero_lt_succ 1), h1]
           rw [ite_eq_left this]
+
+/-- `a b (c d) = a c (b d)` on every shell (14-entropy and 3-causality's lemma, moved by task LM17). -/
+theorem mul_mul_mul_comm (a b c d : Shell p) : a * b * (c * d) = a * c * (b * d) := by
+  rw [mul_assoc, mul_left_comm b c d, ← mul_assoc]
 
 end ops
 

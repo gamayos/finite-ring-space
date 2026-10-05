@@ -1,0 +1,27 @@
+name: framework
+
+# The framework's tests and gates (ledger migration, Phase 3; tasks LM14 and LM15). The unit tests check frc/ — exact
+# arithmetic computed two ways, the registry, the theme map — with the standard library only. ci/gates.py enforces the
+# theme map of frc/themes.py: G09 (imports follow the layers; the exact tiers have no float and no third-party import),
+# G10 (size budgets) and G19 (no core statement asserts unboundedness). The Lean build and the axiom gates stay in lean.yml.
+
+on:
+  push:
+    paths: ["frc/**", "ci/**", "lean/FrcCore/**", "lean/FrcLedger/**", ".github/workflows/framework.yml"]
+  pull_request:
+    paths: ["frc/**", "ci/**", "lean/FrcCore/**", "lean/FrcLedger/**", ".github/workflows/framework.yml"]
+  workflow_dispatch:
+
+jobs:
+  gates:
+    name: tests · gates G09, G10, G19
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.10"
+      - name: unit tests (standard library only)
+        run: python -B -m unittest discover -s frc/tests -t . -v
+      - name: gates G09, G10, G19
+        run: python -B ci/gates.py all

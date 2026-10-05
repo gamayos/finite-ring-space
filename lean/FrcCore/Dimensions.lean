@@ -1,6 +1,9 @@
 import FrcCore.Frame
+import FrcCore.Orbit
+import FrcCore.Sum
+import FrcCore.Instances
+import FrcCore.Poly
 import FrcCore.Meridian
-import FrcCore.Epi
 
 /-!
 # 10-dimensions — the domain lattice, the unit flag and the Carrier residues, no axioms
@@ -19,11 +22,16 @@ realized on `𝔽₁₃` and the energy–momentum relation among them (F2–F4,
 its absence on the even capacities (F5); the window ladder by integer squares (G2); the roundings of the resolution floor on the
 chart value, its bits and the clock-bound crossover (G5, P1); the linear pin and the root pair as the content of the constancy
 prediction (P2). Every declaration is checked to depend on no axiom (`check_core_axioms.py`).
+
+Since the ledger migration (task LM17) `isPrime` lives in `Nat.lean`, the root pair and the bounded quantifiers'
+deciders in `Frame.lean`; every old name stays as an alias.
 -/
 
 namespace FRC.Dimensions
 
 open FRC.Shell
+open FRC.Nat (isPrime)
+open FRC.Shell.Frame (root_pair)
 
 /-! ## The domain lattice as pairs of residues (10:C1, C2, C3) -/
 
@@ -121,30 +129,6 @@ end Dom
 
 /-! ## Bounded universal quantifiers, decided by search (no axioms) -/
 
-/-- `∀ m < n, P m`, decided by recursion on `n` — Lean's own instance carries `propext`; this one nothing. -/
-def decForallLT (P : Nat → Prop) [DecidablePred P] : (n : Nat) → Decidable (∀ m, m < n → P m)
-  | 0 => isTrue (fun m hm => absurd hm (Nat.not_lt_zero m))
-  | n + 1 =>
-    match decForallLT P n with
-    | isFalse h => isFalse (fun hall => h (fun m hm => hall m (Nat.lt_succ_of_lt hm)))
-    | isTrue h =>
-      if hn : P n then
-        isTrue (fun m hm =>
-          match Nat.lt_or_ge m n with
-          | .inl hlt => h m hlt
-          | .inr hge => (Nat.le_antisymm (Nat.le_of_lt_succ hm) hge) ▸ hn)
-      else isFalse (fun hall => hn (hall n (Nat.lt_succ_self n)))
-
-instance instDecForallLT (P : Nat → Prop) [DecidablePred P] (n : Nat) : Decidable (∀ m, m < n → P m) :=
-  decForallLT P n
-
-/-- `∀ x : Shell p, P x`, decided through the representatives. -/
-instance instDecForallShell {p : Nat} [Pos p] (P : Shell p → Prop) [DecidablePred P] :
-    Decidable (∀ x, P x) :=
-  match decForallLT (fun v => P (ofNat v)) p with
-  | isTrue h => isTrue (fun x => ofNat_val x ▸ h x.val x.lt)
-  | isFalse h => isFalse (fun hall => h (fun v _ => hall (ofNat v)))
-
 /-- `∀ x : Dom p n, P x`, decided componentwise. -/
 instance instDecForallDom {p n : Nat} [Pos p] [Pos n] (P : Dom p n → Prop) [DecidablePred P] :
     Decidable (∀ x, P x) :=
@@ -202,7 +186,7 @@ theorem ofNat_three_kappa_ne_zero : (ofNat (3 * κ) : Shell (4 * κ)) ≠ 0 := f
   exact Nat.ne_of_gt (Nat.mul_pos (Nat.zero_lt_succ 2) Pos.pos) hv
 
 /-- `4κ ≡ 0` in `C_{4κ}`. -/
-theorem ofNat_four_kappa : (ofNat (4 * κ) : Shell (4 * κ)) = 0 := Epi.ofNat_self
+theorem ofNat_four_kappa : (ofNat (4 * κ) : Shell (4 * κ)) = 0 := FRC.Shell.Frame.ofNat_self
 
 theorem flag_pow (m : Nat) : flag κ ^ m = ⟨0, ofNat (m * κ)⟩ := by
   rw [Dom.pow_eq]
@@ -257,7 +241,7 @@ theorem meridian_transport : (L κ * T κ ^ κ) ^ (4 * κ + 1) = flag κ := by
   rw [flag_eq_pow, Dom.pow_eq]
   refine Dom.ext ?_ ?_
   · show ofNat (4 * κ + 1) * (1 + 0) = 0
-    rw [Shell.add_zero, Shell.mul_one]; exact Epi.ofNat_self
+    rw [Shell.add_zero, Shell.mul_one]; exact FRC.Shell.Frame.ofNat_self
   · show ofNat (4 * κ + 1) * (0 + ofNat κ) = ofNat κ
     rw [Shell.zero_add, Frame.ofNat_mul, FRC.Nat.add_mul (4 * κ) 1 κ, Nat.one_mul,
       Nat.mul_comm (4 * κ) κ, Nat.add_comm]
@@ -266,7 +250,7 @@ theorem meridian_transport : (L κ * T κ ^ κ) ^ (4 * κ + 1) = flag κ := by
   ofNat_add_mul_self (a : Nat) : ∀ m : Nat, (ofNat (a + m * (4 * κ)) : Shell (4 * κ)) = ofNat a
     | 0 => by rw [Nat.zero_mul, Nat.add_zero]
     | m + 1 => by
-      rw [FRC.Nat.add_mul m 1 (4 * κ), Nat.one_mul, ← Nat.add_assoc, Epi.ofNat_add_self,
+      rw [FRC.Nat.add_mul m 1 (4 * κ), Nat.one_mul, ← Nat.add_assoc, FRC.Shell.Frame.ofNat_add_self,
         ofNat_add_mul_self a m]
 
 /-- 10:D1 — the crossed duality is an involution, `δ_C(δ_C D) = D`, and carries `[L] ↦ [p]`, `[T] ↦ [E]`. -/
@@ -316,7 +300,7 @@ variable {Ω : Nat} [Pos Ω] {S : Nat} {g : Shell Ω}
 /-- 10:E4, 10:P2 — the linear pin: on a framed Carrier `Ω = 4S + 1`, `2G + 1 = 0` has the unique solution
 `G = 2S`, the half-cycle. -/
 theorem G_unique (F : Frame Ω S g) (x : Shell Ω) : 2 * x + 1 = 0 ↔ x = ofNat (2 * S) := by
-  have hΩ : (ofNat (4 * S + 1) : Shell Ω) = 0 := by rw [← F.cap]; exact Epi.ofNat_self
+  have hΩ : (ofNat (4 * S + 1) : Shell Ω) = 0 := by rw [← F.cap]; exact FRC.Shell.Frame.ofNat_self
   have h2S : (2 : Shell Ω) * ofNat (2 * S) + 1 = 0 := by
     rw [Frame.two_mul', Frame.ofNat_add, show (1 : Shell Ω) = ofNat 1 from rfl, Frame.ofNat_add,
       ← Nat.two_mul, ← FRC.Nat.mul_assoc]
@@ -327,22 +311,6 @@ theorem G_unique (F : Frame Ω S g) (x : Shell Ω) : 2 * x + 1 = 0 ↔ x = ofNat
     apply Shell.add_right_cancel (c := 1)
     rw [h, h2S]
   · intro h; rw [h]; exact h2S
-
-/-- 10:E4, 10:P2 — the root pair: if `x² = a` with `x ≠ 0` then `y² = a` iff `y = x` or `y = −x`, and `−x ≠ x`;
-each quadratic defining congruence has exactly two roots on a framed Carrier. -/
-theorem root_pair (F : Frame Ω S g) (a x : Shell Ω) (hx : x * x = a) (hx0 : x ≠ 0) :
-    (∀ y : Shell Ω, y * y = a ↔ (y = x ∨ y = -x)) ∧ -x ≠ x := by
-  refine ⟨fun y => ⟨fun hy => ?_, fun hy => ?_⟩, fun h => hx0 (F.eq_zero_of_eq_neg h.symm)⟩
-  · have h0 : (y + -x) * (y + x) = 0 := by
-      rw [Shell.right_distrib, Shell.left_distrib, Shell.left_distrib, ← Shell.neg_mul, ← Shell.neg_mul,
-        Shell.mul_comm y x, Shell.add_assoc, ← Shell.add_assoc (x * y), Shell.add_neg, Shell.zero_add,
-        hy, hx, Shell.add_neg]
-    rcases F.mul_eq_zero h0 with h | h
-    · left; exact (Shell.eq_neg_of_add_eq_zero h).trans (Shell.neg_neg x)
-    · right; exact Shell.eq_neg_of_add_eq_zero h
-  · rcases hy with rfl | rfl
-    · exact hx
-    · rw [Shell.neg_mul_neg]; exact hx
 
 /-- 10:E4, 10:E5 — the linkage at pair level and the pair consequences, on a framed Carrier: from
 `2G + 1 = 0`, `2c² = 1`, `ħ² = −1`, `k_B² = −2`: `(k_B c)² = −1`, so `k_B c = ħ` or `k_B c = −ħ`
@@ -397,10 +365,6 @@ theorem carrierLab :
     (1880160 : Shell 2408561) * 171106 = -18688 ∧ (2389873 : Shell 2408561) = -18688 ∧
     (1204280 : Shell 2408561) = -(171106 * 171106) ∧
     (18688 : Shell 2408561) * 171106 = 1880160 * 1204280 := by decide +kernel
-
-/-- Primality by trial division, decidable. -/
-def isPrime (n : Nat) : Prop := 2 ≤ n ∧ ∀ d, d < n → 2 ≤ d → n % d ≠ 0
-instance (n : Nat) : Decidable (isPrime n) := by unfold isPrime; exact inferInstance
 
 /-- 10:E9 — the admissibility predicate of the programme on `(p, Ω) = (4κ + 1, 4S + 1)`: `p` prime,
 `κ > 1`; `Ω` prime, `S` even, `S ≡ 1 (mod 3)`; `p² < Ω`. -/
@@ -513,6 +477,34 @@ theorem no_charge17 : ∀ x : DomK 4, x * x ≠ energy 4 * L 4 := by decide
 theorem no_charge41 : ∀ x : DomK 10, x * x ≠ energy 10 * L 10 := by decide
 
 end values
+
+/-! ## Old names (ledger migration, task LM17): the declarations moved to the themes, each under its old name -/
+section aliases
+variable {p : Nat} [Pos p] {κ : Nat} {g : Shell p}
+
+/-- Primality by trial division, decidable. -/
+@[reducible] def isPrime (n : Nat) : Prop :=
+  FRC.Nat.isPrime n
+
+/-- 10:E4, 10:P2 — the root pair: if `x² = a` with `x ≠ 0` then `y² = a` iff `y = x` or `y = −x`, and `−x ≠ x`;
+each quadratic defining congruence has exactly two roots on a framed Carrier. -/
+theorem root_pair (F : Frame p κ g) (a x : Shell p) (hx : x * x = a) (hx0 : x ≠ 0) :
+    (∀ y : Shell p, y * y = a ↔ (y = x ∨ y = -x)) ∧ -x ≠ x :=
+  FRC.Shell.Frame.root_pair F a x hx hx0
+
+/-- `∀ m < n, P m`, decided by recursion on `n` — Lean's own instance carries `propext`; this one nothing. -/
+@[reducible] def decForallLT (P : Nat → Prop) [DecidablePred P] : (n : Nat) → Decidable (∀ m, m < n → P m) :=
+  FRC.Shell.decForallLT P
+
+@[reducible] def instDecForallLT (P : Nat → Prop) [DecidablePred P] (n : Nat) : Decidable (∀ m, m < n → P m) :=
+  FRC.Shell.instDecForallLT P n
+
+/-- `∀ x : Shell p, P x`, decided through the representatives. -/
+@[reducible] def instDecForallShell {p : Nat} [Pos p] (P : Shell p → Prop) [DecidablePred P] :
+    Decidable (∀ x, P x) :=
+  FRC.Shell.instDecForallShell P
+
+end aliases
 
 -- Ledger predicates of 10-dimensions (generated by make_predicates.py from docs/10-dimensions/10-dimensions-ledger.json; edit the ledger, not this section)
 /-- 10:C2 (p10012) — The modular unit-domain group and the grading: $\{U_{r,s}\}$ is a finite abelian group isomorphic to $\Dp$ under $U_{r,s}U_{r',s'}=U_{r+r',s+s'}$, and $\Ap$ is $\Dp$-graded, $\Ap^{(r,s)}\Ap^{(r',s')}\subseteq\Ap^{(r+r',s+s')}$. -/

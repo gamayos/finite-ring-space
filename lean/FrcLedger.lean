@@ -1,3 +1,7 @@
+import FrcLedger.Theme.Fourier
+import FrcLedger.Theme.Frame
+import FrcLedger.Theme.Extension
+import FrcLedger.Theme.Logic
 import FrcLedger.Fourier
 import FrcLedger.Algebra
 import FrcLedger.Geometry

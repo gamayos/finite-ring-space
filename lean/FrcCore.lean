@@ -4,6 +4,9 @@ import FrcCore.Shell
 import FrcCore.Frame
 import FrcCore.Orbit
 import FrcCore.Sum
+import FrcCore.Theme.Projective
+import FrcCore.Theme.Extension
+import FrcCore.Theme.Logic
 import FrcCore.Meridian
 import FrcCore.Fourier
 import FrcCore.Algebra

@@ -34,13 +34,17 @@ LIBS = ("FrcCore", "FrcLedger")
 DECL = re.compile(r"^(?:@\[[^\]]*\]\s*)?(?:noncomputable\s+|protected\s+|private\s+)*(theorem|lemma|def|abbrev|instance|structure|inductive)\s+([A-Za-z_][A-Za-z0-9_'.]*)")
 END = "-- end ledger predicates"                    # the section opens "-- Ledger predicates of <pkg> (generated …" and closes here
 
+def mpath(lib, mod):
+    """A module's file: Theme.Logic is <lib>/Theme/Logic.lean."""
+    return ROOT / lib / (mod.replace(".", "/") + ".lean")
+
 def imports_of(lib, mod):
-    return re.findall(r"^import %s\.(\w+)" % lib, (ROOT / lib / f"{mod}.lean").read_text(encoding="utf-8"), re.M)
+    return re.findall(r"^import %s\.([\w.]+)" % lib, mpath(lib, mod).read_text(encoding="utf-8"), re.M)
 
 def closure(lib, mod, seen=None):
     seen = set() if seen is None else seen
     for d in imports_of(lib, mod):
-        if d not in seen and (ROOT / lib / f"{d}.lean").exists(): seen.add(d); closure(lib, d, seen)
+        if d not in seen and mpath(lib, d).exists(): seen.add(d); closure(lib, d, seen)
     return seen
 
 def host_of(lib, module, cited_mods):
@@ -52,7 +56,7 @@ def host_of(lib, module, cited_mods):
     return None
 
 def add_imports(lib, host, needed):
-    path = ROOT / lib / f"{host}.lean"; src = path.read_text(encoding="utf-8"); have = set(imports_of(lib, host)) | closure(lib, host)
+    path = mpath(lib, host); src = path.read_text(encoding="utf-8"); have = set(imports_of(lib, host)) | closure(lib, host)
     new = [m for m in sorted(needed) if m != host and m not in have]
     if not new: return []
     lines = src.split("\n"); k = max((i for i, l in enumerate(lines) if l.startswith("import ")), default=-1)
@@ -167,9 +171,9 @@ def main():
             cites = [x for x in data["lean"].get(label, []) if x["module"].split("/")[0] == lib and (lib == "FrcCore" or x["module"] == f"{lib}/{a.module}")]
             if not cites: continue
             if not keys.get(label): print(f"{lib}: {paper_no}:{label} has no accession key — no declaration (site_build.py --assign-keys)"); continue
-            mods = {x["module"].split("/")[1] for x in cites}
+            mods = {x["module"].split("/", 1)[1].replace("/", ".") for x in cites}                 # FrcCore/Theme/Extension: Theme.Extension
             kmap = {}
-            for m in mods: kmap.update(kinds(ROOT / lib / f"{m}.lean"))
+            for m in mods: kmap.update(kinds(mpath(lib, m)))
             thms = [x["name"] for x in cites if kmap.get(x["name"]) in ("theorem", "lemma")]
             defs = [x["name"] for x in cites if kmap.get(x["name"]) not in ("theorem", "lemma")]
             if not thms: print(f"{lib}: {paper_no}:{label} cites only definitions ({', '.join(defs)}) — no predicate declaration"); continue
@@ -177,7 +181,7 @@ def main():
             if host is None: print(f"{lib}: {paper_no}:{label} cites {', '.join(sorted(mods))}, no module can host the predicate — skipped"); continue
             by_host.setdefault(host, []).append((f"{paper_no}:{label}", preds[label], thms, defs, keys[label], mods))
         for host, rows in by_host.items():
-            hpath = ROOT / lib / f"{host}.lean"
+            hpath = mpath(lib, host)
             needed = set().union(*(r[5] for r in rows))
             if not a.check:
                 added = add_imports(lib, host, needed)

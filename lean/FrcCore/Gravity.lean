@@ -1,5 +1,5 @@
 import FrcCore.Frame
-import FrcCore.Entropy
+import FrcCore.Orbit
 import FrcCore.Instances
 
 /-!
@@ -103,7 +103,7 @@ theorem hbar_root (F : Frame p κ g) :
     show ofNat 4 * ofNat κ = -1
     rw [ofNat_mul]; exact h4
   have h4r : (4 : Shell p) * ((g ^ κ * ofNat (2 * κ + 1)) * (g ^ κ * ofNat (2 * κ + 1))) = -1 := by
-    rw [show (4 : Shell p) = 2 * 2 from (ofNat_mul 2 2).symm, FRC.Entropy.mul_mul_mul_comm, h2r,
+    rw [show (4 : Shell p) = 2 * 2 from (ofNat_mul 2 2).symm, FRC.Shell.mul_mul_mul_comm, h2r,
       ← Shell.pow_two, hq]
   have key : (4 : Shell p) * ((g ^ κ * ofNat (2 * κ + 1)) * (g ^ κ * ofNat (2 * κ + 1)) + -ofNat κ) = 0 := by
     rw [Shell.left_distrib, h4r, ← Shell.mul_neg, h4κ, Shell.neg_neg]

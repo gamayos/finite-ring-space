@@ -44,7 +44,7 @@ def gate(log_text):
 
 def main():
     if "--log-only" not in sys.argv:
-        names = [d for f in sorted((ROOT / "FrcLedger").glob("*.lean")) for d in declarations(f)]
+        names = [d for f in sorted((ROOT / "FrcLedger").rglob("*.lean")) for d in declarations(f)]   # the themes under Theme/ too
         (ROOT / "Axioms.lean").write_text("import FrcLedger\n" + "".join(f"#print axioms {n}\n" for n in names), encoding="utf-8")
         print(f"Axioms.lean: {len(names)} declarations")
         r = subprocess.run(["lake", "env", "lean", "Axioms.lean"], cwd=ROOT, capture_output=True, text=True)
