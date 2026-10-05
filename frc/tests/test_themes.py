@@ -1,6 +1,6 @@
 """The theme map and its gates (task LM14): the map is consistent, frc/README.md prints it, and ci/gates.py catches each
 kind of breach in a scratch tree."""
-import os, shutil, subprocess, sys, tempfile, unittest
+import json, os, shutil, subprocess, sys, tempfile, unittest
 from pathlib import Path
 from frc import themes as TM
 
@@ -54,7 +54,7 @@ class GateTest(unittest.TestCase):
 
     def scratch(self):
         d = tempfile.mkdtemp()
-        shutil.copytree(ROOT / "frc", Path(d) / "frc", ignore=shutil.ignore_patterns("tests", "__pycache__"))
+        shutil.copytree(ROOT / "frc", Path(d) / "frc", ignore=shutil.ignore_patterns("tests", "__pycache__", "ledgers"))
         (Path(d) / "lean" / "FrcCore" / "Theme").mkdir(parents=True)
         (Path(d) / "lean" / "FrcLedger" / "Theme").mkdir(parents=True)
         (Path(d) / "frc" / "ledgers").mkdir(exist_ok=True)
@@ -78,6 +78,36 @@ class GateTest(unittest.TestCase):
                 self.assertEqual(code, 1, f"{name}: {out}")
                 self.assertIn(f"FAIL {gate}", out, name)
             finally: shutil.rmtree(d)
+
+    def test_g13_catches_a_cell_without_its_key(self):
+        d = self.scratch()
+        try:
+            shutil.copytree(ROOT / "frc" / "ledgers", Path(d) / "frc" / "ledgers", dirs_exist_ok=True, ignore=shutil.ignore_patterns("__pycache__"))
+            for nbp in (Path(d) / "frc" / "ledgers").glob("p*.ipynb"):
+                nb = json.loads(nbp.read_text(encoding="utf-8"))
+                cell = next(c for c in nb["cells"] if c["cell_type"] == "code")
+                cell["id"] = "renamed"; nbp.write_text(json.dumps(nb), encoding="utf-8")
+            code, out = self.run_gates(d)
+            self.assertEqual(code, 1, out)
+            self.assertIn("FAIL G13", out)
+        finally: shutil.rmtree(d)
+
+    def test_g12_catches_a_declaration_without_its_marker(self):
+        d = self.scratch()
+        try:
+            shutil.copytree(ROOT / "frc" / "ledgers", Path(d) / "frc" / "ledgers", dirs_exist_ok=True, ignore=shutil.ignore_patterns("__pycache__"))
+            shutil.copytree(ROOT / "lean", Path(d) / "lean", dirs_exist_ok=True, ignore=shutil.ignore_patterns(".lake", "web", "_to_delete", "__pycache__"))
+            (Path(d) / "docs").mkdir()
+            for led in (ROOT / "docs").glob("*/*-ledger.json"):
+                (Path(d) / "docs" / led.parent.name).mkdir(); shutil.copyfile(led, Path(d) / "docs" / led.parent.name / led.name)
+            code, out = self.run_gates(d)
+            self.assertEqual(code, 0, out)                                     # the copy is green
+            f = Path(d) / "frc" / "ledgers" / "p03_causality.py"
+            f.write_text(f.read_text(encoding="utf-8").replace("    # 3:B3 (p03007)\n", ""), encoding="utf-8")
+            code, out = self.run_gates(d)
+            self.assertEqual(code, 1, out)
+            self.assertIn("FAIL G12: p03_causality.py: 3:B3 (p03007) has no marker", out)
+        finally: shutil.rmtree(d)
 
     def test_the_repository_is_green(self):
         code, out = self.run_gates(ROOT)

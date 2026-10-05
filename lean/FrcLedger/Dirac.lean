@@ -1,6 +1,7 @@
 import Mathlib
 import FrcLedger.Theme.Extension
 import FrcLedger.Theme.Frame
+import FrcLedger.Keys.Frame
 
 /-!
 # 8-dirac — Schrödinger and Dirac dynamics over the finite substrate: the ledger predicates in Lean (2026-09-20)
@@ -1495,7 +1496,7 @@ theorem p08010 : (∀ {K : Type u_1} [Field K] (g : K), (2 : K) ≠ (0 : K) → 
   And.intro @FRC.Dirac.nu_factorisation (And.intro @FRC.Dirac.two_g_class (And.intro @FRC.Dirac.named_residues (And.intro @FRC.Dirac.shell13 (@FRC.Dirac.carrier_constants))))
 /-- 8:B5 (p08011) — The square class is chronon parity: the squares are $\langle g^{2}\rangle$, a residue's class is the parity of its drive-step count; on $\kap$-even shells every element of $Q_4=\{1,\It,-1,-\It\}$ is a square, so the order-four chart grading carries no signature. Exhaustive over every primitive root of $\F_{13}$, $\F_{17}$; Euler form on $\p<2000$. -/
 theorem p08011 : ∀ {p : ℕ} [hp : Fact (Nat.Prime p)] {g : ZMod p}, orderOf g = p - (1 : ℕ) → p % (2 : ℕ) = (1 : ℕ) → ∀ (k : ℕ), IsSquare (g ^ k) ↔ Even k :=
-  @FRC.Dirac.parity_iff
+  @FRC.LedgerML.p08011
 /-- 8:B6 (p08012) — Norm growth and parity: $N(gz)=g^{2}N(z)$ with $g^{2}$ a square, the single-chronon multiplier $g$ odd, $x^{2}=\nu$ unsolvable in $\Fp$; the flip $g\mapsto g^{-1}$ preserves the parity class. -/
 theorem p08012 : ∀ {K : Type u_1} [Field K] {ν : K} (g : K) (z : FRC.Dirac.Ext K ν), (FRC.Dirac.Ext.ofBase g * z).norm = g ^ (2 : ℕ) * z.norm :=
   @FRC.Dirac.norm_growth

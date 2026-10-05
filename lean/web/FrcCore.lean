@@ -1,5 +1,5 @@
 /-! FrcCore — the FRC substrate from first principles, one file for the live instance (no Mathlib,
-no axioms). Generated from FrcCore/*.lean in dependency order (Nat, Pigeonhole, Shell, Frame, Orbit, Sum, Theme.Projective, Theme.Extension, Theme.Logic, Meridian, Fourier, Instances, Poly, Algebra, Epi, Dimensions, Quaternion, Causality, Representation, Reductio, Godel, Geometry, Complex, Rh, Entropy, Gravity, Dirac)
+no axioms). Generated from FrcCore/*.lean in dependency order (Nat, Pigeonhole, Shell, Frame, Orbit, Sum, Theme.Projective, Theme.Extension, Theme.Logic, Meridian, Keys.Fourier, Instances, Keys.Frame, Fourier, Poly, Keys.Numbers, Keys.Projective, Algebra, Epi, Dimensions, Quaternion, Keys.Extension, Causality, Representation, Keys.Logic, Reductio, Godel, Geometry, Complex, Rh, Entropy, Gravity, Dirac)
 by make_core_web.py; the modules' own headers follow. Check any declaration with `#print axioms`. -/
 
 /-! inlined: FrcCore/Nat.lean -/
@@ -2623,7 +2623,10 @@ end FRC
 conjugate is the inverse, and conjugation fixes exactly the prime meridian. One structure for 8-dirac's coefficient
 field and 20-rh's extension, which keep their old names as aliases. Then the quaternions over the shell, the
 Hamilton product, conjugation and the norm, with the normaliser that decides ring identities on the shell and the
-multiplicativity of the norm `N(qr) = N(q) N(r)` (1-algebra's Quaternion.lean, names unchanged). No axioms.
+multiplicativity of the norm `N(qr) = N(q) N(r)` (1-algebra's Quaternion.lean, names unchanged). Last, the
+Lorentzian plane of the shell: the square classes, the diagonal form `Q_ν = −ν t² + x² + y² + z²`, the boosts
+`Λ(γ, b)` with `γ² − νb² = 1` (the norm-one elements of `𝔽_p(√ν)`), their velocities and the counts of the null cone
+and of the boosts (3-causality's Causality.lean, task LM20, names unchanged). No axioms.
 -/
 
 namespace FRC.Extension
@@ -3022,6 +3025,229 @@ theorem QR.sound (env : Nat → Shell p) (l r : QR) (h : QR.check l r = true) : 
 /-- 1:E8, the norm is multiplicative: `N(qr) = N(q) N(r)`. -/
 theorem nrm_mul (q r : Quat p) : Quat.nrm (Quat.mul q r) = Quat.nrm q * Quat.nrm r :=
   RE.sound (look [q.a, q.b, q.c, q.d, r.a, r.b, r.c, r.d]) (QR.nrm (QR.mul (QR.v 0) (QR.v 4))) (.mul (QR.nrm (QR.v 0)) (QR.nrm (QR.v 4))) (by decide +kernel)
+
+end Frame
+end Shell
+end FRC
+
+/-! ## The Lorentzian plane of the shell: the square classes, the diagonal form and the boosts (3-causality's
+`Causality.lean`, moved by the ledger migration, task LM20, names unchanged) -/
+
+namespace FRC
+namespace Shell
+namespace Frame
+
+variable {p : Nat} [Pos p] {κ : Nat} {g : Shell p}
+
+/-- `x` is a square: `x = y·y` for some residue `y`. -/
+def IsSquare (x : Shell p) : Prop := ∃ y : Shell p, y * y = x
+
+/-- 3:B2 (Thm. nonexistence, first clause) — `c² = ν` makes `ν` a square, so a nonsquare `ν` has no root `c`. -/
+theorem no_causal_root {ν : Shell p} (h : ¬IsSquare ν) (c : Shell p) : c * c ≠ ν := fun e => h ⟨c, e⟩
+
+theorem sq_mul (a b : Shell p) : (a * b) * (a * b) = (a * a) * (b * b) := mul_mul_mul_comm a b a b
+
+/-- 3:B2 (Thm. nonexistence, the consequence) — `−c²` is a square on every shell: `−c² = (i·c)²` with `i² = −1`;
+so with `c ≠ 0` every coefficient of `−c² t² + x² + y² + z²` is a square and the form is Euclidean. -/
+theorem neg_sq_is_square (F : Frame p κ g) (c : Shell p) : IsSquare (-(c * c)) :=
+  ⟨quarterTurn g κ * c, by rw [sq_mul, F.quarter_turn_sq, neg_one_mul]⟩
+
+/-- 3:B2 — `−1` itself is a square (`i²`): the paper's hypothesis `p ≡ 1 (mod 4)` in the shell's own terms. -/
+theorem neg_one_is_square (F : Frame p κ g) : IsSquare (-1 : Shell p) := ⟨quarterTurn g κ, F.quarter_turn_sq⟩
+
+/-- 3:B3 (Lemma absorption) — if `a_i = w_i² a_0` for `i = 1, 2, 3` then
+`a_0 x_0² + a_1 x_1² + a_2 x_2² + a_3 x_3² = a_0 (x_0² + (w_1 x_1)² + (w_2 x_2)² + (w_3 x_3)²)`: a common square
+class is absorbed by the rescaling `x_i ↦ w_i x_i`, with no square root of `a_0` itself required. -/
+theorem absorb (a0 a1 a2 a3 w1 w2 w3 x0 x1 x2 x3 : Shell p) (h1 : w1 * w1 * a0 = a1) (h2 : w2 * w2 * a0 = a2)
+    (h3 : w3 * w3 * a0 = a3) :
+    a0 * (x0 * x0) + a1 * (x1 * x1) + a2 * (x2 * x2) + a3 * (x3 * x3) =
+    a0 * (x0 * x0 + (w1 * x1) * (w1 * x1) + (w2 * x2) * (w2 * x2) + (w3 * x3) * (w3 * x3)) := by
+  rw [← h1, ← h2, ← h3, sq_mul w1 x1, sq_mul w2 x2, sq_mul w3 x3, left_distrib, left_distrib, left_distrib,
+    mul_left_comm a0 (w1 * w1), mul_left_comm a0 (w2 * w2), mul_left_comm a0 (w3 * w3),
+    mul_assoc (w1 * w1), mul_assoc (w2 * w2), mul_assoc (w3 * w3)]
+
+/-! ### The binary form `x² − ν t²`, the norm of `K = F_p(√ν)` -/
+
+/-- The `(t, x)`-plane form `Q₂(t, x) = x² − ν t²`, the norm `N(x + t√ν)`. -/
+def Q2 (ν t x : Shell p) : Shell p := x * x + -(ν * (t * t))
+
+/-- 3:B5 — the plane `x² − ν t²` is anisotropic when `ν` is a nonsquare: `x² = ν t²` forces `t = x = 0`
+(else `ν = (x/t)²`).  This is the Witt kernel of the Lorentzian form, its index one. -/
+theorem aniso_tx (F : Frame p κ g) {ν : Shell p} (h : ¬IsSquare ν) {t x : Shell p} (e : x * x = ν * (t * t)) :
+    t = 0 ∧ x = 0 := by
+  match Shell.instDecidableEq t 0 with
+  | .isTrue ht =>
+    refine ⟨ht, ?_⟩
+    rw [ht, mul_zero, mul_zero] at e
+    match F.mul_eq_zero e with
+    | .inl hx => exact hx
+    | .inr hx => exact hx
+  | .isFalse ht =>
+    match F.exists_inv ht with
+    | ⟨s, hs⟩ =>
+      exact absurd ⟨x * s, by
+        calc (x * s) * (x * s) = (x * x) * (s * s) := sq_mul x s
+          _ = ν * ((t * t) * (s * s)) := by rw [e, mul_assoc]
+          _ = ν * ((t * s) * (t * s)) := by rw [sq_mul t s]
+          _ = ν := by rw [hs, one_mul, mul_one]⟩ h
+
+/-- 3:B5 — the `(y, z)`-plane `y² + z²` is hyperbolic on every shell: `(1, i)` is null. -/
+theorem null_yz (F : Frame p κ g) : (1 : Shell p) * 1 + quarterTurn g κ * quarterTurn g κ = 0 := by
+  rw [F.quarter_turn_sq, one_mul, add_neg]
+
+/-- 3:B5 — for a square `ν = w²` the `(t, x)`-plane is hyperbolic too: `(1, w)` is null; the form is then
+`H ⊥ H`, Witt index two — the Euclidean type. -/
+theorem null_tx_of_square (w : Shell p) : Q2 (w * w) 1 w = 0 := by
+  unfold Q2; rw [mul_one, mul_one, add_neg]
+
+/-! ### The boosts -/
+
+theorem sq_add (u v : Shell p) : (u + v) * (u + v) = u * u + (u * v + u * v) + v * v := by
+  rw [right_distrib, left_distrib, left_distrib, mul_comm v u, ← add_assoc, add_assoc (u * u)]
+
+theorem regroup (P R S T X : Shell p) : P + (X + X) + R + (S + -(X + X) + T) = P + S + T + R := by
+  rw [add_add_add_comm, add_assoc P, add_left_comm (X + X), add_neg, add_zero, add_comm R T, ← add_assoc]
+
+/-- The norm is multiplicative: `N((a + b√ν)(c + d√ν)) = N(a + b√ν) N(c + d√ν)`, i.e.
+`(ac + νbd)² − ν(ad + bc)² = (a² − νb²)(c² − νd²)` — the identity behind every boost. -/
+theorem norm_mul (ν a b c d : Shell p) :
+    Q2 ν (a * d + b * c) (a * c + ν * (b * d)) = (a * a + -(ν * (b * b))) * (c * c + -(ν * (d * d))) := by
+  unfold Q2
+  have cross : (a * c) * (b * d) = (a * d) * (b * c) := by
+    rw [mul_assoc, mul_left_comm c, ← mul_assoc, mul_assoc a d, mul_left_comm d, ← mul_assoc a b (d * c), mul_comm d c]
+  have e1 : (a * c + ν * (b * d)) * (a * c + ν * (b * d)) =
+      (a * c) * (a * c) + (ν * ((a * c) * (b * d)) + ν * ((a * c) * (b * d))) + (ν * ν) * ((b * d) * (b * d)) := by
+    rw [sq_add, mul_left_comm (a * c) ν (b * d), sq_mul ν (b * d)]
+  have e2 : -(ν * ((a * d + b * c) * (a * d + b * c))) =
+      -(ν * ((a * d) * (a * d))) + -(ν * ((a * d) * (b * c)) + ν * ((a * d) * (b * c))) + -(ν * ((b * c) * (b * c))) := by
+    rw [sq_add, left_distrib, left_distrib, left_distrib, neg_add_rev, neg_add_rev]
+  rw [e1, e2, cross, regroup]
+  rw [right_distrib, left_distrib, left_distrib, ← mul_neg, ← neg_mul, neg_mul_neg, ← add_assoc,
+    ← sq_mul a c, mul_left_comm (a * a) ν (d * d), ← sq_mul a d, mul_assoc ν (b * b) (c * c), ← sq_mul b c,
+    mul_assoc ν (b * b) (ν * (d * d)), mul_left_comm (b * b) ν (d * d), ← mul_assoc ν ν, ← sq_mul b d]
+
+/-- The boost `Λ(γ, b)` of `(t, x)`: `t ↦ γ t + b x`, `x ↦ γ x + ν b t` (multiplication by `γ + b√ν` in `K`). -/
+def boostT (_ν γ b t x : Shell p) : Shell p := γ * t + b * x
+def boostX (ν γ b t x : Shell p) : Shell p := γ * x + ν * (b * t)
+
+/-- 3:C2 (the finite Lorentz boost) — with `γ² − νb² = 1`, `Λ(γ, b)` preserves `x² − ν t²` exactly, on every shell. -/
+theorem boost_preserves {ν γ b : Shell p} (h : γ * γ + -(ν * (b * b)) = 1) (t x : Shell p) :
+    Q2 ν (boostT ν γ b t x) (boostX ν γ b t x) = Q2 ν t x := by
+  unfold boostT boostX
+  have := norm_mul ν γ b x t
+  unfold Q2 at this ⊢
+  rw [this, h, one_mul]
+
+/-- 3:C2 — boosts compose as their parameters multiply in `K`:
+`Λ(γ₁, b₁) Λ(γ₂, b₂) = Λ(γ₁γ₂ + νb₁b₂, γ₁b₂ + b₁γ₂)`, the `t`-row. -/
+theorem boost_comp_t (ν γ1 b1 γ2 b2 t x : Shell p) :
+    boostT ν γ1 b1 (boostT ν γ2 b2 t x) (boostX ν γ2 b2 t x) =
+    boostT ν (γ1 * γ2 + ν * (b1 * b2)) (γ1 * b2 + b1 * γ2) t x := by
+  unfold boostT boostX
+  rw [left_distrib, left_distrib, right_distrib, right_distrib, ← mul_assoc γ1 γ2 t, ← mul_assoc γ1 b2 x,
+    ← mul_assoc b1 γ2 x, mul_left_comm b1 ν (b2 * t), ← mul_assoc b1 b2 t, ← mul_assoc ν (b1 * b2) t,
+    add_comm (b1 * γ2 * x) (ν * (b1 * b2) * t), add_add_add_comm]
+
+/-- 3:C2 — the composition, the `x`-row. -/
+theorem boost_comp_x (ν γ1 b1 γ2 b2 t x : Shell p) :
+    boostX ν γ1 b1 (boostT ν γ2 b2 t x) (boostX ν γ2 b2 t x) =
+    boostX ν (γ1 * γ2 + ν * (b1 * b2)) (γ1 * b2 + b1 * γ2) t x := by
+  unfold boostT boostX
+  rw [left_distrib, left_distrib, left_distrib, right_distrib, right_distrib, left_distrib,
+    ← mul_assoc γ1 γ2 x, mul_left_comm γ1 ν (b2 * t), ← mul_assoc γ1 b2 t, ← mul_assoc b1 γ2 t,
+    ← mul_assoc b1 b2 x, ← mul_assoc ν (b1 * b2) x,
+    add_comm (ν * (b1 * γ2 * t)) (ν * (b1 * b2) * x), add_add_add_comm]
+
+/-- 3:C2 — the norm-one elements form a group: `N(z₁z₂) = N(z₁)N(z₂) = 1`. -/
+theorem norm_one_mul {ν γ1 b1 γ2 b2 : Shell p} (h1 : γ1 * γ1 + -(ν * (b1 * b1)) = 1)
+    (h2 : γ2 * γ2 + -(ν * (b2 * b2)) = 1) :
+    (γ1 * γ2 + ν * (b1 * b2)) * (γ1 * γ2 + ν * (b1 * b2)) +
+      -(ν * ((γ1 * b2 + b1 * γ2) * (γ1 * b2 + b1 * γ2))) = 1 := by
+  have := norm_mul ν γ1 b1 γ2 b2
+  unfold Q2 at this
+  rw [this, h1, h2, one_mul]
+
+/-- 3:C3 — `γ ≠ 0` on every boost of the Lorentzian plane: `γ = 0` would give `ν b² = −1`, i.e.
+`ν = (i/b)²`, a square. -/
+theorem gamma_ne_zero (F : Frame p κ g) {ν γ b : Shell p} (hν : ¬IsSquare ν) (h : γ * γ + -(ν * (b * b)) = 1) :
+    γ ≠ 0 := fun hγ => by
+  rw [hγ, mul_zero, zero_add] at h
+  have hb : b ≠ 0 := fun hb => by
+    rw [hb, mul_zero, mul_zero, neg_zero] at h
+    exact F.one_ne_zero h.symm
+  have hνb : ν * (b * b) = -1 := by rw [← neg_neg (ν * (b * b)), h]
+  match F.exists_inv hb with
+  | ⟨s, hs⟩ =>
+    exact hν ⟨quarterTurn g κ * s, by
+      calc quarterTurn g κ * s * (quarterTurn g κ * s) = (quarterTurn g κ * quarterTurn g κ) * (s * s) := sq_mul _ _
+        _ = -1 * (s * s) := by rw [F.quarter_turn_sq]
+        _ = (ν * (b * b)) * (s * s) := by rw [hνb]
+        _ = ν * ((b * s) * (b * s)) := by rw [mul_assoc, sq_mul b s]
+        _ = ν := by rw [hs, one_mul, mul_one]⟩
+
+/-- 3:C3 — the velocity of the boost, `v = −νb/γ` (`vγ = −νb`), satisfies `γ² (ν − v²) = ν`: the finite form of
+`γ = 1/√(1 − β²)` with `β² = v²/ν`. -/
+theorem gamma_velocity {ν γ b v : Shell p} (hz : γ * γ + -(ν * (b * b)) = 1) (hv : v * γ = -(ν * b)) :
+    γ * γ * (ν + -(v * v)) = ν := by
+  calc γ * γ * (ν + -(v * v)) = γ * γ * ν + -((v * γ) * (v * γ)) := by
+        rw [left_distrib, ← mul_neg, sq_mul v γ, mul_comm (v * v)]
+    _ = ν * (γ * γ) + -(ν * (ν * (b * b))) := by
+        rw [hv, neg_mul_neg, sq_mul ν b, mul_assoc ν ν (b * b), mul_comm (γ * γ) ν]
+    _ = ν * (γ * γ + -(ν * (b * b))) := by rw [left_distrib, ← mul_neg]
+    _ = ν := by rw [hz, mul_one]
+
+/-- 3:C3 (the velocity addition law) — for boosts with velocities `v₁, v₂` (`v_i γ_i = −ν b_i`) and the composed
+boost's velocity `v₁₂`, `v₁₂ (ν + v₁v₂) = ν (v₁ + v₂)`: Einstein's law `v₁₂ = (v₁ + v₂)/(1 + v₁v₂/ν)`, exact. -/
+theorem velocity_addition (F : Frame p κ g) {ν γ1 b1 γ2 b2 v1 v2 v12 : Shell p} (hν : ¬IsSquare ν)
+    (hz1 : γ1 * γ1 + -(ν * (b1 * b1)) = 1) (hz2 : γ2 * γ2 + -(ν * (b2 * b2)) = 1)
+    (hv1 : v1 * γ1 = -(ν * b1)) (hv2 : v2 * γ2 = -(ν * b2))
+    (hv12 : v12 * (γ1 * γ2 + ν * (b1 * b2)) = -(ν * (γ1 * b2 + b1 * γ2))) :
+    v12 * (ν + v1 * v2) = ν * (v1 + v2) := by
+  have hγ : γ1 * γ2 ≠ 0 := F.mul_ne_zero (gamma_ne_zero F hν hz1) (gamma_ne_zero F hν hz2)
+  apply F.mul_left_cancel hγ
+  calc γ1 * γ2 * (v12 * (ν + v1 * v2)) = v12 * (γ1 * γ2 * ν + (v1 * γ1) * (v2 * γ2)) := by
+        rw [mul_left_comm (γ1 * γ2) v12, left_distrib, mul_mul_mul_comm γ1 γ2 v1 v2, mul_comm γ1 v1, mul_comm γ2 v2]
+    _ = v12 * (ν * (γ1 * γ2 + ν * (b1 * b2))) := by
+        rw [hv1, hv2, neg_mul_neg, mul_mul_mul_comm ν b1 ν b2, mul_assoc ν ν (b1 * b2), mul_comm (γ1 * γ2) ν,
+          ← left_distrib]
+    _ = ν * (v12 * (γ1 * γ2 + ν * (b1 * b2))) := mul_left_comm _ _ _
+    _ = -(ν * (ν * (γ1 * b2 + b1 * γ2))) := by rw [hv12, ← mul_neg]
+    _ = ν * (-(γ2 * (ν * b1)) + -(γ1 * (ν * b2))) := by
+        rw [mul_left_comm γ2 ν b1, mul_left_comm γ1 ν b2, ← neg_add_rev, ← left_distrib, mul_comm γ2 b1, ← mul_neg,
+          add_comm (b1 * γ2) (γ1 * b2)]
+    _ = ν * (γ2 * (v1 * γ1) + γ1 * (v2 * γ2)) := by rw [hv1, hv2, ← mul_neg, ← mul_neg]
+    _ = γ1 * γ2 * (ν * (v1 + v2)) := by
+        rw [mul_left_comm (γ1 * γ2) ν]
+        refine congrArg (ν * ·) ?_
+        rw [left_distrib, mul_comm v1 γ1, mul_comm v2 γ2, ← mul_assoc γ2 γ1 v1, mul_comm γ2 γ1, ← mul_assoc γ1 γ2 v2]
+
+/-! ### The counts, decided by the kernel -/
+
+/-- `Σ_{i<n} f i` on naturals. -/
+def sumTo (f : Nat → Nat) : Nat → Nat
+  | 0 => 0
+  | n + 1 => sumTo f n + f n
+
+/-- The number of `(t, x, y, z) ∈ [0, p)⁴` with `−ν t² + x² + y² + z² ≡ 0 (mod p)`. -/
+def nullCount (p ν : Nat) : Nat :=
+  sumTo (fun t => sumTo (fun x => sumTo (fun y => sumTo (fun z =>
+    if (x * x + y * y + z * z + (p - ν) * (t * t)) % p = 0 then 1 else 0) p) p) p) p
+
+/-- The number of `(γ, b) ∈ [0, p)²` with `γ² − ν b² ≡ 1 (mod p)`: the boosts. -/
+def normOneCount (p ν : Nat) : Nat :=
+  sumTo (fun γ => sumTo (fun b => if (γ * γ + (p - ν) * (b * b)) % p = 1 then 1 else 0) p) p
+
+/-- 3:B4, 3:D1 [value] — the null cone of `Q_2` on `𝔽₁₃` has `2041 = 13³ − 13² + 13` points: the elliptic type. -/
+theorem null13 : nullCount 13 2 = 2041 := by decide +kernel
+/-- 3:B4 [value] — the Euclidean form (`ν = 1`) on `𝔽₁₃` has `2353 = 13³ + 13² − 13` zeros: the hyperbolic type. -/
+theorem euclid13 : nullCount 13 1 = 2353 := by decide +kernel
+/-- 3:B4 [value] — `𝔽₅`, `ν = 2`: `105 = 5³ − 5² + 5` null points; `ν = 1`: `145`. -/
+theorem null5 : nullCount 5 2 = 105 ∧ nullCount 5 1 = 145 := by decide +kernel
+/-- 3:B4 [value] — `𝔽₁₇`, `ν = 3`: `4641 = 17³ − 17² + 17` null points. -/
+theorem null17 : nullCount 17 3 = 4641 := by decide +kernel
+/-- 3:C2, 3:D1 [value] — the boosts number `p + 1`: `6`, `14`, `18`, `30` on `𝔽₅`, `𝔽₁₃`, `𝔽₁₇`, `𝔽₂₉`. -/
+theorem normOne_values : normOneCount 5 2 = 6 ∧ normOneCount 13 2 = 14 ∧ normOneCount 17 3 = 18 ∧
+    normOneCount 29 2 = 30 := by decide +kernel
 
 end Frame
 end Shell
@@ -3696,48 +3922,28 @@ theorem ladder13 :
 
 end FRC.Shell
 
-/-! inlined: FrcCore/Fourier.lean -/
+/-! inlined: FrcCore/Keys/Fourier.lean -/
 
 /-!
-# FrcCore.Fourier — 6-fourier predicates on the core
+# FrcCore.Keys.Fourier — the keyed theorems of the fourier theme (ledger migration, task LM19)
 
-The predicates of *Scale-Shift and Fractional Fourier Transform as Rotations over Finite Holographic Substrate*
-(6-fourier) that the core proves with no axioms, named by their accession keys below and proved in the modules this
-one imports: 6:B2 (the Euler identity `e^{iπ} = −1` exactly on the odd quarter-turn, `Frame.euler_identity`),
-6:B3 (the conjugate reframing toggles the parity, `Frame.orientation_class`), 6:B5 (`W² = −J`, `F² = J`, `J² = I`;
-`Sum`), 6:B6 (`n = −1` on the shell, `Frame.ofNat_n`), 6:B7 (`W J = J W` and the symmetric–antisymmetric
-decomposition; `Sum`), 6:D4 (the meridian scale law `S_r M_m = M_{m+r}`, its step and its periodicity; `Meridian`),
-6:D5 (the `p = 13` ladder, `ladder13`). The Mathlib statements of the same predicates, for every shell, are in
-`FrcLedger/Fourier.lean`; the paper's python witness checks them on six shells.
+One declaration per key, `FRC.Ledger.p<key>`, generated by `make_keys.py` from the ledgers' Lean bindings: the theorem
+that every row carrying the key asserts, proved from the themes alone. The paper's module keeps its declaration
+`FRC.<Module>.p<key>` as an alias. Every declaration has no axioms (`check_core_axioms.py`).
 -/
 
-namespace FRC.Fourier
+namespace FRC.Ledger
 
--- Ledger predicates of 6-fourier (generated by make_predicates.py from docs/6-fourier/6-fourier-ledger.json; edit the ledger, not this section)
-/-- 6:B2 (p06009) — The Euler identity is a property of the chart class: $e^{\im\pi}=\gen^{2\kap(\im\bmod2)}\equiv-1$ exactly when the quarter-turn residue is odd; the conjugate reframing $(\gen,\im)\mapsto(\gen^{-1},-\im)$ toggles the parity, so one member of each conjugate pair carries it; on $\F_{13}(\chron;0,1,2)$, $\im=5$ and $6^{6}=-1$. Every primitive frame of the six shells. -/
-theorem p06009 : ∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → ∀ (i : Nat), (g ^ i) ^ (i * ((2 : Nat) * κ)) = if i % (2 : Nat) = (0 : Nat) then (1 : FRC.Shell p) else (-1 : FRC.Shell p) :=
-  @FRC.Shell.Frame.euler_identity
-/-- 6:B3 (p06010) — Chart covariance: under $\gen'=\gen^{u}$, $u\in\Zp^{\times}$, the quarter-turn name flips exactly on $u\equiv3\pmod4$ and the exponential-unit name moves already at $u\equiv1\pmod4$ whenever $\im(u-1)\not\equiv0\pmod{4\kap}$ ($\p=13$, $u=5$: $e'=2\neq6$); the registered objects (C3, C4, C9, F3) are invariant. -/
-theorem p06010 : ∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → ∀ (u : Nat), (u % (4 : Nat) = (1 : Nat) → -(g ^ u) ^ κ = -g ^ κ) ∧ (u % (4 : Nat) = (3 : Nat) → -(g ^ u) ^ κ = - -g ^ κ) :=
-  @FRC.Shell.Frame.orientation_class
-/-- 6:B5 (p06012) — $\Wt^{2}=-J$, $\Ft^{2}=J$, $\Ft^{4}=I$: the normalized operator generates the four-cycle, on the six shells of Table~\ref{tab:checks}. -/
-theorem p06012 : (∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → ∀ (k j : Nat), FRC.Shell.sumRange (fun l => FRC.Shell.Frame.W g k l * FRC.Shell.Frame.W g l j) (p - (1 : Nat)) = -FRC.Shell.Frame.J (p - (1 : Nat)) k j) ∧ (∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → ∀ (k j : Nat), FRC.Shell.sumRange (fun l => FRC.Shell.Frame.Fmat g κ k l * FRC.Shell.Frame.Fmat g κ l j) (p - (1 : Nat)) = FRC.Shell.Frame.J (p - (1 : Nat)) k j) ∧ ∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → ∀ {k j : Nat}, k < p - (1 : Nat) → j < p - (1 : Nat) → FRC.Shell.sumRange (fun l => FRC.Shell.Frame.J (p - (1 : Nat)) k l * FRC.Shell.Frame.J (p - (1 : Nat)) l j) (p - (1 : Nat)) = if k = j then (1 : FRC.Shell p) else (0 : FRC.Shell p) :=
-  And.intro @FRC.Shell.Frame.W_sq' (And.intro @FRC.Shell.Frame.F_sq (@FRC.Shell.Frame.J_sq))
-/-- 6:B6 (p06013) — The normalization is the unitary constant read in the field: $1/n\equiv-1$, its square roots in $\Fp$ are exactly $\pm\im$, and $(c\Wt)^{2}=J$ if and only if $c=\pm\im$. -/
-theorem p06013 : ∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → FRC.Shell.ofNat (p - (1 : Nat)) = (-1 : FRC.Shell p) :=
-  @FRC.Shell.Frame.ofNat_n
-/-- 6:B7 (p06014) — $\Wt J=J\Wt$, hence $\Ft J=J\Ft$; $\Vt=V^{+}\oplus V^{-}$ with $\dim V^{+}=2\kap+1$, $\dim V^{-}=2\kap-1$. -/
-theorem p06014 : (∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → ∀ {k j : Nat}, k < p - (1 : Nat) → j < p - (1 : Nat) → FRC.Shell.sumRange (fun l => FRC.Shell.Frame.W g k l * FRC.Shell.Frame.J (p - (1 : Nat)) l j) (p - (1 : Nat)) = FRC.Shell.sumRange (fun l => FRC.Shell.Frame.J (p - (1 : Nat)) k l * FRC.Shell.Frame.W g l j) (p - (1 : Nat))) ∧ (∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → ∀ (v : Nat → FRC.Shell p), ∃ vp vm, FRC.Shell.Frame.Symm (p - (1 : Nat)) vp ∧ FRC.Shell.Frame.Antisymm (p - (1 : Nat)) vm ∧ ∀ (k : Nat), k < p - (1 : Nat) → v k = vp k + vm k) ∧ (∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → ∀ {a b : Nat → FRC.Shell p}, FRC.Shell.Frame.Symm (p - (1 : Nat)) a → FRC.Shell.Frame.Antisymm (p - (1 : Nat)) b → (∀ (k : Nat), k < p - (1 : Nat) → a k + b k = (0 : FRC.Shell p)) → ∀ (k : Nat), k < p - (1 : Nat) → a k = (0 : FRC.Shell p) ∧ b k = (0 : FRC.Shell p)) ∧ (∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → ∀ {v w : Nat → FRC.Shell p}, FRC.Shell.Frame.Symm (p - (1 : Nat)) v → FRC.Shell.Frame.Symm (p - (1 : Nat)) w → (∀ (k : Nat), k ≤ (2 : Nat) * κ → v k = w k) → ∀ (k : Nat), k < p - (1 : Nat) → v k = w k) ∧ ∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → ∀ {v w : Nat → FRC.Shell p}, FRC.Shell.Frame.Antisymm (p - (1 : Nat)) v → FRC.Shell.Frame.Antisymm (p - (1 : Nat)) w → (∀ (k : Nat), (0 : Nat) < k → k < (2 : Nat) * κ → v k = w k) → ∀ (k : Nat), k < p - (1 : Nat) → v k = w k :=
-  And.intro @FRC.Shell.Frame.W_J_comm (And.intro @FRC.Shell.Frame.symm_antisymm_decomp (And.intro @FRC.Shell.Frame.symm_antisymm_unique (And.intro @FRC.Shell.Frame.symm_determined (@FRC.Shell.Frame.antisymm_determined))))
-/-- 6:D4 (p06027) — Meridian-scale covariance: $S_r(M_m)=M_{m+r}$ for every $(m,r)$, as ordered lists; consecutive entries of $M_m$ differ by the effective step $\gen^{m}$; $S_{r+(\p-1)}=S_r$, the periodicity of A5 in meridian form. -/
+-- Keys of the fourier theme (generated by make_keys.py from the ledgers' Lean bindings; edit the ledgers, not this file)
+/-- p06027 — 6:D4. Meridian-scale covariance: $S_r(M_m)=M_{m+r}$ for every $(m,r)$, as ordered lists; consecutive entries of $M_m$ differ by the effective step $\gen^{m}$; $S_{r+(\p-1)}=S_r$, the periodicity of A5 in meridian form. -/
 theorem p06027 : (∀ {p : Nat} [FRC.Pos p] (g : FRC.Shell p) (κ m r : Nat), List.map (g.scale r) (g.meridian κ m) = g.meridian κ (m + r)) ∧ (∀ {p : Nat} [FRC.Pos p] (g : FRC.Shell p) (m a : Nat), FRC.Shell.ofNat (a + (1 : Nat)) * g ^ m = FRC.Shell.ofNat a * g ^ m + g ^ m) ∧ ∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → ∀ (r : Nat) (x : FRC.Shell p), g.scale (r + (p - (1 : Nat))) x = g.scale r x :=
   And.intro @FRC.Shell.meridian_scale (And.intro @FRC.Shell.meridian_step (@FRC.Shell.scale_periodic))
-/-- 6:D5 (p06028) — Meridian zoom [chart]: $M_m$ reads the meridian-coordinate vector at step $\lambda^{\tilde m}$, the forward shift zoom-out and the inverse shift zoom-in, the seam an aliasing return; at $\p=13$, $\gen=2$ the ladder $M_0,\dots,M_3$ at steps $1,2,4,8$, unwrapped within $w\gen^{r}<\p$ ($w=\pi=6$: $r\le1$) and wrapping from $M_2$. -/
+/-- p06028 — 6:D5. Meridian zoom [chart]: $M_m$ reads the meridian-coordinate vector at step $\lambda^{\tilde m}$, the forward shift zoom-out and the inverse shift zoom-in, the seam an aliasing return; at $\p=13$, $\gen=2$ the ladder $M_0,\dots,M_3$ at steps $1,2,4,8$, unwrapped within $w\gen^{r}<\p$ ($w=\pi=6$: $r\le1$) and wrapping from $M_2$. -/
 theorem p06028 : FRC.Shell.meridian (2 : FRC.Shell (13 : Nat)) (3 : Nat) (0 : Nat) = [(0 : FRC.Shell (13 : Nat)), (1 : FRC.Shell (13 : Nat)), (2 : FRC.Shell (13 : Nat)), (3 : FRC.Shell (13 : Nat)), (4 : FRC.Shell (13 : Nat)), (5 : FRC.Shell (13 : Nat)), (6 : FRC.Shell (13 : Nat))] ∧ FRC.Shell.meridian (2 : FRC.Shell (13 : Nat)) (3 : Nat) (1 : Nat) = [(0 : FRC.Shell (13 : Nat)), (2 : FRC.Shell (13 : Nat)), (4 : FRC.Shell (13 : Nat)), (6 : FRC.Shell (13 : Nat)), (8 : FRC.Shell (13 : Nat)), (10 : FRC.Shell (13 : Nat)), (12 : FRC.Shell (13 : Nat))] ∧ FRC.Shell.meridian (2 : FRC.Shell (13 : Nat)) (3 : Nat) (2 : Nat) = [(0 : FRC.Shell (13 : Nat)), (4 : FRC.Shell (13 : Nat)), (8 : FRC.Shell (13 : Nat)), (12 : FRC.Shell (13 : Nat)), (3 : FRC.Shell (13 : Nat)), (7 : FRC.Shell (13 : Nat)), (11 : FRC.Shell (13 : Nat))] ∧ FRC.Shell.meridian (2 : FRC.Shell (13 : Nat)) (3 : Nat) (3 : Nat) = [(0 : FRC.Shell (13 : Nat)), (8 : FRC.Shell (13 : Nat)), (3 : FRC.Shell (13 : Nat)), (11 : FRC.Shell (13 : Nat)), (6 : FRC.Shell (13 : Nat)), (1 : FRC.Shell (13 : Nat)), (9 : FRC.Shell (13 : Nat))] ∧ (6 : Nat) * (2 : Nat) ^ (1 : Nat) < (13 : Nat) ∧ ¬(6 : Nat) * (2 : Nat) ^ (2 : Nat) < (13 : Nat) :=
   @FRC.Shell.ladder13
--- end ledger predicates
+-- end keys
 
-end FRC.Fourier
+end FRC.Ledger
 
 /-! inlined: FrcCore/Instances.lean -/
 
@@ -3796,6 +4002,153 @@ theorem s13_orbit :
 
 end Shell
 end FRC
+
+/-! inlined: FrcCore/Keys/Frame.lean -/
+
+/-!
+# FrcCore.Keys.Frame — the keyed theorems of the frame theme (ledger migration, task LM19)
+
+One declaration per key, `FRC.Ledger.p<key>`, generated by `make_keys.py` from the ledgers' Lean bindings: the theorem
+that every row carrying the key asserts, proved from the themes alone. The paper's module keeps its declaration
+`FRC.<Module>.p<key>` as an alias. Every declaration has no axioms (`check_core_axioms.py`).
+-/
+
+namespace FRC.Ledger
+
+-- Keys of the frame theme (generated by make_keys.py from the ledgers' Lean bindings; edit the ledgers, not this file)
+/-- p01004 — 1:B2. Symmetry completeness (Thm.~\ref{thm:symmetric-completeness}): the fourth roots of unity form the unique order-four subgroup $Q_4=\{1,\im,-1,-\im\}$; under the Klein four-group $\langle x\mapsto-x,\,x\mapsto x^{-1}\rangle$, $Q_4$ is the union of the two size-two orbits $\{\pm1\}$, $\{\pm\im\}$, and $\Fpx\setminus Q_4$ splits into exactly $\kap-1$ orbits of size four. For $\p\equiv3\pmod4$ no $\im$ exists. -/
+theorem p01004 : (∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → ∃ u, u * u = (-1 : FRC.Shell p)) ∧ (∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → ∀ (x : FRC.Shell p), x ^ (4 : Nat) = (1 : FRC.Shell p) ↔ x = (1 : FRC.Shell p) ∨ x = (-1 : FRC.Shell p) ∨ x = FRC.Shell.Frame.quarterTurn g κ ∨ x = -FRC.Shell.Frame.quarterTurn g κ) ∧ (∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → ∀ {x y : FRC.Shell p}, x * y = (1 : FRC.Shell p) → x ^ (4 : Nat) ≠ (1 : FRC.Shell p) → x ≠ -x ∧ x ≠ y ∧ x ≠ -y ∧ -x ≠ y ∧ -x ≠ -y ∧ y ≠ -y) ∧ (∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → ∀ {x : FRC.Shell p}, x ≠ (0 : FRC.Shell p) → x ^ (4 : Nat) ≠ (1 : FRC.Shell p) → ∃ r, (1 : Nat) ≤ r ∧ r < κ ∧ FRC.Shell.Frame.InOrbit (g ^ r) x) ∧ (∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → ∀ {r r' : Nat}, (1 : Nat) ≤ r → r < κ → (1 : Nat) ≤ r' → r' < κ → ∀ {x : FRC.Shell p}, FRC.Shell.Frame.InOrbit (g ^ r) x → FRC.Shell.Frame.InOrbit (g ^ r') x → r = r') ∧ (∀ (x : Fin (13 : Nat)), ↑x = (1 : Nat) ∨ ↑x = (5 : Nat) ∨ ↑x = (12 : Nat) ∨ ↑x = (8 : Nat) ↔ FRC.Shell.ofNat ↑x ^ (4 : Nat) = (1 : FRC.Shell (13 : Nat))) ∧ (2 : FRC.Shell (13 : Nat)) * (7 : FRC.Shell (13 : Nat)) = (1 : FRC.Shell (13 : Nat)) ∧ (3 : FRC.Shell (13 : Nat)) * (9 : FRC.Shell (13 : Nat)) = (1 : FRC.Shell (13 : Nat)) :=
+  And.intro @FRC.Shell.Frame.quarter_turn_exists (And.intro @FRC.Shell.Frame.fourth_roots (And.intro @FRC.Shell.Frame.klein_orbit_four (And.intro @FRC.Shell.Frame.orbit_rep (And.intro @FRC.Shell.Frame.orbit_rep_unique (@FRC.Shell.s13_klein)))))
+/-- p01005 — 1:B3. The oriented quarter-turn: $\im=-\gen^{\kap}$ satisfies $\im^{2}=-1$ for every primitive root $\gen$; the two square roots of $-1$ are $\{-\gen^{\kap},\gen^{\kap}\}$, so the drive fixes which is $\im$. On $\F_{13}$, $\gen=2$: $\im=5$. -/
+theorem p01005 : (∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → FRC.Shell.Frame.quarterTurn g κ * FRC.Shell.Frame.quarterTurn g κ = (-1 : FRC.Shell p)) ∧ FRC.Shell.Frame.quarterTurn (2 : FRC.Shell (13 : Nat)) (3 : Nat) = (5 : FRC.Shell (13 : Nat)) ∧ (5 : FRC.Shell (13 : Nat)) * (5 : FRC.Shell (13 : Nat)) = (-1 : FRC.Shell (13 : Nat)) ∧ (-5 : FRC.Shell (13 : Nat)) = (8 : FRC.Shell (13 : Nat)) ∧ (2 : FRC.Shell (13 : Nat)) ^ (6 : Nat) = (-1 : FRC.Shell (13 : Nat)) ∧ (2 : FRC.Shell (13 : Nat)) ^ (5 : Nat) = (6 : FRC.Shell (13 : Nat)) :=
+  And.intro @FRC.Shell.Frame.quarter_turn_sq (@FRC.Shell.s13_datum)
+/-- p01006 — 1:B4. Affine reframing (Def.~\ref{def:framed-field}, Lemma~\ref{lem:affine-invariance}): $\varphi_{a,b}(x)=a+bx$, $b\neq0$, is a ring isomorphism $(\Fp,+,\cdot)\to(\Fp,\oplus,\otimes)$ with origin $a$ and unit $a+b$; every polynomial identity is frame-covariant. -/
+theorem p01006 : ∀ {p : Nat} [FRC.Pos p] {a b y : FRC.Shell p}, b * y = (1 : FRC.Shell p) → ∀ (z : FRC.Shell p), FRC.Shell.Frame.affineMul a b y (a + b) z = z :=
+  @FRC.Shell.Frame.affine_frame_unit
+/-- p01011 — 1:C4. Involutions and counts (Def.~\ref{def:orbit-sphere}\,(a)--(c)): $M_n(a)=M_{n+2\kap}(-a)$ and $L_a(m)=L_{-a}(m+2\kap)$ since $\gen^{2\kap}=-1$; $\p-1$ distinct meridian lists in $2\kap$ great circles; $2\kap$ latitude pairs; one-sided vertex count $(\p-1)^{2}/2+1$, the double cover $(\p-1)^{2}$ (00:B11). -/
+theorem p01011 : ∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → ∀ (a : FRC.Shell p) (n : Nat), -a * g ^ (n + (2 : Nat) * κ) = a * g ^ n :=
+  @FRC.Shell.Frame.meridian_involution
+set_option linter.defProp false in
+/-- p01013 — 1:D2. The window law: $z\mapsto z\bmod\p$ is injective on $W_H$ when $2H<\p$; for $x,y\in W_H$ the residue of $x\pm y$ reads back the integer when $4H<\p$, and that of $xy$ when $2H^{2}<\p$ (the same injectivity on the windows $2H$ and $H^{2}$). -/
+def p01013 := And.intro @FRC.Shell.Frame.window_injective (And.intro @FRC.Shell.Frame.window_signed (And.intro @FRC.Shell.Frame.window_add_readback (@FRC.Shell.Frame.window_mul_readback)))
+/-- p01015 — 1:D4. Scale-periodicity (Lemma~\ref{thm:scale-periodicity}, in the field): $S_n(x)=x\gen^{-n}$ satisfies $S_{n+(\p-1)}=S_n$; the grids $G_n$ are $(\p-1)$-periodic as ordered lists; the zoom $[x,n]\mapsto[x,n+1]$ has order $\p-1$. As lists of rationals $x/\gen^{n}$ ($\gen$ lifted to $\Z$) the grids are not periodic: the periodicity is a relation of the field. -/
+theorem p01015 : ∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → ∀ (x : FRC.Shell p) (n : Nat), x * g ^ (n + (p - (1 : Nat))) = x * g ^ n :=
+  @FRC.Shell.Frame.scale_periodic
+/-- p01019 — 1:E2. The extension by $X^{2}+1$ is trivial (Prop.~\ref{prop:Cp-field} reversed): on the shell $\Fp[X]/(X^{2}+1)\cong\Fp\times\Fp$ has zero divisors, $(X+\im)(X-\im)=0$, so it is not a field; $\Fp[X]/(X^{2}+1)$ is a field exactly when $\p\equiv3\pmod4$; the quadratic extension of the shell is $\Fp[\eta]$, $\eta^{2}=\nu$ a non-square (8-dirac B6). -/
+theorem p01019 : ∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → FRC.Shell.Frame.cmul (FRC.Shell.Frame.quarterTurn g κ, (1 : FRC.Shell p)) (-FRC.Shell.Frame.quarterTurn g κ, (1 : FRC.Shell p)) = ((0 : FRC.Shell p), (0 : FRC.Shell p)) ∧ (FRC.Shell.Frame.quarterTurn g κ, (1 : FRC.Shell p)) ≠ ((0 : FRC.Shell p), (0 : FRC.Shell p)) ∧ (-FRC.Shell.Frame.quarterTurn g κ, (1 : FRC.Shell p)) ≠ ((0 : FRC.Shell p), (0 : FRC.Shell p)) :=
+  @FRC.Shell.Frame.complex_chart_zero_divisor
+/-- p01020 — 1:Z1. No element of additive order two (Thm.~\ref{thm:no-south-pole}): $2s=0$ forces $s=0$; the antipode of the origin on the additive cycle is not a residue; it sits between $2\kap=(\p-1)/2$ and $2\kap+1=(\p+1)/2=2^{-1}$ (20-rh B8). -/
+theorem p01020 : ∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → ∀ (s : FRC.Shell p), (2 : FRC.Shell p) * s = (0 : FRC.Shell p) → s = (0 : FRC.Shell p) :=
+  @FRC.Shell.Frame.no_south_pole
+/-- p02007 — 2:B3. Primitive generators form one orbit: every generator is $\gen^{u}$ with $u\in\Zp^{\times}$, a torsor for $\operatorname{Aut}(C_{\p-1})$ (Props.~\ref{prop:primitive-orbit}, \ref{prop:no-canonical-e}). -/
+theorem p02007 : (∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → ∀ (h : FRC.Shell p), h.IsPrimitive (p - (1 : Nat)) ↔ ∃ u, u < p - (1 : Nat) ∧ FRC.Shell.Coprime u (p - (1 : Nat)) ∧ h = g ^ u) ∧ FRC.Shell.Coprime (5 : Nat) (12 : Nat) ∧ FRC.Shell.Coprime (7 : Nat) (12 : Nat) ∧ FRC.Shell.Coprime (11 : Nat) (12 : Nat) ∧ ¬FRC.Shell.Coprime (2 : Nat) (12 : Nat) ∧ FRC.Shell.IsPrimitive (6 : FRC.Shell (13 : Nat)) (12 : Nat) ∧ ¬FRC.Shell.IsPrimitive (4 : FRC.Shell (13 : Nat)) (12 : Nat) ∧ (2 : FRC.Shell (13 : Nat)) ^ (5 : Nat) = (6 : FRC.Shell (13 : Nat)) :=
+  And.intro @FRC.Shell.Frame.generator_orbit (@FRC.Shell.s13_orbit)
+/-- p02013 — 2:D1. The half-period: $\gen^{\pi}=-1$ for every primitive $\gen$, $\pi=2\kap$ (Prop.~\ref{prop:half-period}); $2\pi\equiv-1$ (00:C1). -/
+theorem p02013 : ∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → g ^ ((2 : Nat) * κ) = (-1 : FRC.Shell p) :=
+  @FRC.Shell.Frame.half_period
+/-- p02014 — 2:D2. The quarter-turn subgroup $\Qp=\{x:x^{4}=1\}$ is the unique subgroup of order four; $\gen^{\kap}$ has order four with $(\gen^{\kap})^{2}=-1$; $\Qp=\{\pm1,\pm\im\}$ (Def.~\ref{def:quarter-turn-subgroup}, Prop.~\ref{prop:quarter-turn}; 1:B2). -/
+theorem p02014 : ∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → (g ^ κ) ^ (2 : Nat) = (-1 : FRC.Shell p) ∧ (g ^ κ) ^ (4 : Nat) = (1 : FRC.Shell p) :=
+  @FRC.Shell.Frame.quarter_turn_order
+/-- p02015 — 2:D3. The oriented quarter-turn $\im=-\gen^{\kap}=\gen^{-\kap}$, $\im^{2}=-1$, orientation by A2 (Rem.~\ref{rem:observer-canonical-e}); on $\F_{13}(\chron;0,1,2)$: $\im=5$, $-\im=8$, $\pi=6$ [value] (Fig.~\ref{fig:f13-constant-datum}). -/
+theorem p02015 : FRC.Shell.Frame.quarterTurn (2 : FRC.Shell (13 : Nat)) (3 : Nat) = (5 : FRC.Shell (13 : Nat)) ∧ (5 : FRC.Shell (13 : Nat)) * (5 : FRC.Shell (13 : Nat)) = (-1 : FRC.Shell (13 : Nat)) ∧ (-5 : FRC.Shell (13 : Nat)) = (8 : FRC.Shell (13 : Nat)) ∧ (2 : FRC.Shell (13 : Nat)) ^ (6 : Nat) = (-1 : FRC.Shell (13 : Nat)) ∧ (2 : FRC.Shell (13 : Nat)) ^ (5 : Nat) = (6 : FRC.Shell (13 : Nat)) :=
+  @FRC.Shell.s13_datum
+/-- p02017 — 2:D5. Orientation classes: for $\gen'=\gen^{u}$, $\im'=-\gen'^{\kap}$ equals $\im$ when $u\equiv1\pmod4$ and $-\im$ when $u\equiv3\pmod4$; the oriented quarter-turn is frame-covariant within one class of generators, not under every generator change. -/
+theorem p02017 : ∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → ∀ (u : Nat), (u % (4 : Nat) = (1 : Nat) → -(g ^ u) ^ κ = -g ^ κ) ∧ (u % (4 : Nat) = (3 : Nat) → -(g ^ u) ^ κ = - -g ^ κ) :=
+  @FRC.Shell.Frame.orientation_class
+/-- p02018 — 2:D6. The Euler identity on the shell: $\eu^{\im\pi}=\gen^{2\kap\im^{2}}=(-1)^{\im}$, equal to $-1$ exactly when the representative of $\im$ is odd (00:C14); the oriented frames of a shell are those with $-\gen^{\kap}$ odd --- on $\F_{13}$, $\gen=2$ ($\im=5$) is one, on $\F_{17}$, $\gen=3$ ($\im=4$) is not. -/
+theorem p02018 : (∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → ∀ (i : Nat), (g ^ i) ^ (i * ((2 : Nat) * κ)) = if i % (2 : Nat) = (0 : Nat) then (1 : FRC.Shell p) else (-1 : FRC.Shell p)) ∧ FRC.Shell.Frame.quarterTurn (3 : FRC.Shell (17 : Nat)) (4 : Nat) = (4 : FRC.Shell (17 : Nat)) ∧ FRC.Shell.Frame.quarterTurn (6 : FRC.Shell (17 : Nat)) (4 : Nat) = (13 : FRC.Shell (17 : Nat)) ∧ ((3 : FRC.Shell (17 : Nat)) ^ (4 : Nat)) ^ ((4 : Nat) * (8 : Nat)) = (1 : FRC.Shell (17 : Nat)) ∧ ((6 : FRC.Shell (17 : Nat)) ^ (13 : Nat)) ^ ((13 : Nat) * (8 : Nat)) = (-1 : FRC.Shell (17 : Nat)) ∧ (3 : FRC.Shell (17 : Nat)) ^ (15 : Nat) = (6 : FRC.Shell (17 : Nat)) :=
+  And.intro @FRC.Shell.Frame.euler_identity (@FRC.Shell.s17_orientation)
+/-- p02019 — 2:D7. Negation $R(x)=-x$ and inversion $I(x)=x^{-1}$ are commuting involutions; off $\Qp$ the $\langle R,I\rangle$-orbit $\{x,-x,x^{-1},-x^{-1}\}$ has four elements, and $\Fpx\setminus\Qp$ splits into $\kap-1$ such orbits (Props.~\ref{prop:shell-negation}, \ref{prop:k4-shell}; 1:B2). -/
+theorem p02019 : (∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → ∀ {x y : FRC.Shell p}, x * y = (1 : FRC.Shell p) → x ^ (4 : Nat) ≠ (1 : FRC.Shell p) → x ≠ -x ∧ x ≠ y ∧ x ≠ -y ∧ -x ≠ y ∧ -x ≠ -y ∧ y ≠ -y) ∧ (∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → ∀ {x : FRC.Shell p}, x ≠ (0 : FRC.Shell p) → x ^ (4 : Nat) ≠ (1 : FRC.Shell p) → ∃ r, (1 : Nat) ≤ r ∧ r < κ ∧ FRC.Shell.Frame.InOrbit (g ^ r) x) ∧ ∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → ∀ {r r' : Nat}, (1 : Nat) ≤ r → r < κ → (1 : Nat) ≤ r' → r' < κ → ∀ {x : FRC.Shell p}, FRC.Shell.Frame.InOrbit (g ^ r) x → FRC.Shell.Frame.InOrbit (g ^ r') x → r = r' :=
+  And.intro @FRC.Shell.Frame.klein_orbit_four (And.intro @FRC.Shell.Frame.orbit_rep (@FRC.Shell.Frame.orbit_rep_unique))
+/-- p02025 — 2:F1. $\gen$ is a principal $n$-th root of unity, $n=\p-1$: $\gen^{n}=1$, $\sum_{j<n}\gen^{jk}=0$ for $0<k<n$, and $n^{-1}=-1$ in $\Fp$ (Prop.~\ref{prop:principal-root}; $2\pi\equiv-1$). -/
+theorem p02025 : ∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → ∀ (k : Nat), (0 : Nat) < k → k < p - (1 : Nat) → g ^ (p - (1 : Nat)) = (1 : FRC.Shell p) ∧ FRC.Shell.sumRange (fun j => (g ^ k) ^ j) (p - (1 : Nat)) = (0 : FRC.Shell p) ∧ FRC.Shell.ofNat (p - (1 : Nat)) = (-1 : FRC.Shell p) :=
+  @FRC.Shell.Frame.principal_root
+/-- p02027 — 2:F3. Inversion: $v_{j}=-\sum_{k<n}\mathcal F_{\gen}(v)_{k}\gen^{-jk}$, i.e.\ $W_{\gen}^{-1}=-(\gen^{-jk})_{jk}=-W_{\gen}J$ (Prop.~\ref{prop:ring-dft-inverse}; 6:B5), exact on every shell. -/
+theorem p02027 : ∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → ∀ {k j : Nat}, k < p - (1 : Nat) → j < p - (1 : Nat) → FRC.Shell.sumRange (fun l => g ^ (l * k) * -g ^ ((p - (1 : Nat) - j) * l)) (p - (1 : Nat)) = if k = j then (1 : FRC.Shell p) else (0 : FRC.Shell p) :=
+  @FRC.Shell.Frame.dft_inverse
+/-- p02028 — 2:F4. Polynomial reading: $\mathcal F_{\gen}(v)_{k}=P_{v}(\gen^{k})$ with $P_{v}=\sum_{j}v_{j}X^{j}$; the transform exchanges coefficients with values on the phase cycle (Prop.~\ref{prop:polynomial-form}). -/
+theorem p02028 : ∀ {p : Nat} [FRC.Pos p] (g : FRC.Shell p) (n : Nat) (v : Nat → FRC.Shell p) (k : Nat), FRC.Shell.Frame.dft g n v k = FRC.Shell.Frame.polyEval n v (g ^ k) :=
+  @FRC.Shell.Frame.dft_eq_polyEval
+/-- p02029 — 2:F5. Covariance under generator change: for $\gen'=\gen^{u}$, $v^{(\gen')}_{j}=v^{(\gen)}_{uj}$ and $\mathcal F_{\gen'}(v^{(\gen')})=\mathcal F_{\gen}(v^{(\gen)})$ (Prop.~\ref{prop:ring-dft-covariance}). -/
+theorem p02029 : ∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → ∀ {u : Nat}, FRC.Shell.Coprime u (p - (1 : Nat)) → ∀ (v : Nat → FRC.Shell p) (k : Nat), FRC.Shell.Frame.dft (g ^ u) (p - (1 : Nat)) (fun j => v (u * j % (p - (1 : Nat)))) k = FRC.Shell.Frame.dft g (p - (1 : Nat)) v k :=
+  @FRC.Shell.Frame.dft_covariance
+/-- p06009 — 6:B2. The Euler identity is a property of the chart class: $e^{\im\pi}=\gen^{2\kap(\im\bmod2)}\equiv-1$ exactly when the quarter-turn residue is odd; the conjugate reframing $(\gen,\im)\mapsto(\gen^{-1},-\im)$ toggles the parity, so one member of each conjugate pair carries it; on $\F_{13}(\chron;0,1,2)$, $\im=5$ and $6^{6}=-1$. Every primitive frame of the six shells. -/
+theorem p06009 : ∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → ∀ (i : Nat), (g ^ i) ^ (i * ((2 : Nat) * κ)) = if i % (2 : Nat) = (0 : Nat) then (1 : FRC.Shell p) else (-1 : FRC.Shell p) :=
+  @FRC.Shell.Frame.euler_identity
+/-- p06010 — 6:B3. Chart covariance: under $\gen'=\gen^{u}$, $u\in\Zp^{\times}$, the quarter-turn name flips exactly on $u\equiv3\pmod4$ and the exponential-unit name moves already at $u\equiv1\pmod4$ whenever $\im(u-1)\not\equiv0\pmod{4\kap}$ ($\p=13$, $u=5$: $e'=2\neq6$); the registered objects (C3, C4, C9, F3) are invariant. -/
+theorem p06010 : ∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → ∀ (u : Nat), (u % (4 : Nat) = (1 : Nat) → -(g ^ u) ^ κ = -g ^ κ) ∧ (u % (4 : Nat) = (3 : Nat) → -(g ^ u) ^ κ = - -g ^ κ) :=
+  @FRC.Shell.Frame.orientation_class
+/-- p06012 — 6:B5. $\Wt^{2}=-J$, $\Ft^{2}=J$, $\Ft^{4}=I$: the normalized operator generates the four-cycle, on the six shells of Table~\ref{tab:checks}. -/
+theorem p06012 : (∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → ∀ (k j : Nat), FRC.Shell.sumRange (fun l => FRC.Shell.Frame.W g k l * FRC.Shell.Frame.W g l j) (p - (1 : Nat)) = -FRC.Shell.Frame.J (p - (1 : Nat)) k j) ∧ (∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → ∀ (k j : Nat), FRC.Shell.sumRange (fun l => FRC.Shell.Frame.Fmat g κ k l * FRC.Shell.Frame.Fmat g κ l j) (p - (1 : Nat)) = FRC.Shell.Frame.J (p - (1 : Nat)) k j) ∧ ∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → ∀ {k j : Nat}, k < p - (1 : Nat) → j < p - (1 : Nat) → FRC.Shell.sumRange (fun l => FRC.Shell.Frame.J (p - (1 : Nat)) k l * FRC.Shell.Frame.J (p - (1 : Nat)) l j) (p - (1 : Nat)) = if k = j then (1 : FRC.Shell p) else (0 : FRC.Shell p) :=
+  And.intro @FRC.Shell.Frame.W_sq' (And.intro @FRC.Shell.Frame.F_sq (@FRC.Shell.Frame.J_sq))
+/-- p06013 — 6:B6. The normalization is the unitary constant read in the field: $1/n\equiv-1$, its square roots in $\Fp$ are exactly $\pm\im$, and $(c\Wt)^{2}=J$ if and only if $c=\pm\im$. -/
+theorem p06013 : ∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → FRC.Shell.ofNat (p - (1 : Nat)) = (-1 : FRC.Shell p) :=
+  @FRC.Shell.Frame.ofNat_n
+/-- p06014 — 6:B7. $\Wt J=J\Wt$, hence $\Ft J=J\Ft$; $\Vt=V^{+}\oplus V^{-}$ with $\dim V^{+}=2\kap+1$, $\dim V^{-}=2\kap-1$. -/
+theorem p06014 : (∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → ∀ {k j : Nat}, k < p - (1 : Nat) → j < p - (1 : Nat) → FRC.Shell.sumRange (fun l => FRC.Shell.Frame.W g k l * FRC.Shell.Frame.J (p - (1 : Nat)) l j) (p - (1 : Nat)) = FRC.Shell.sumRange (fun l => FRC.Shell.Frame.J (p - (1 : Nat)) k l * FRC.Shell.Frame.W g l j) (p - (1 : Nat))) ∧ (∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → ∀ (v : Nat → FRC.Shell p), ∃ vp vm, FRC.Shell.Frame.Symm (p - (1 : Nat)) vp ∧ FRC.Shell.Frame.Antisymm (p - (1 : Nat)) vm ∧ ∀ (k : Nat), k < p - (1 : Nat) → v k = vp k + vm k) ∧ (∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → ∀ {a b : Nat → FRC.Shell p}, FRC.Shell.Frame.Symm (p - (1 : Nat)) a → FRC.Shell.Frame.Antisymm (p - (1 : Nat)) b → (∀ (k : Nat), k < p - (1 : Nat) → a k + b k = (0 : FRC.Shell p)) → ∀ (k : Nat), k < p - (1 : Nat) → a k = (0 : FRC.Shell p) ∧ b k = (0 : FRC.Shell p)) ∧ (∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → ∀ {v w : Nat → FRC.Shell p}, FRC.Shell.Frame.Symm (p - (1 : Nat)) v → FRC.Shell.Frame.Symm (p - (1 : Nat)) w → (∀ (k : Nat), k ≤ (2 : Nat) * κ → v k = w k) → ∀ (k : Nat), k < p - (1 : Nat) → v k = w k) ∧ ∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → ∀ {v w : Nat → FRC.Shell p}, FRC.Shell.Frame.Antisymm (p - (1 : Nat)) v → FRC.Shell.Frame.Antisymm (p - (1 : Nat)) w → (∀ (k : Nat), (0 : Nat) < k → k < (2 : Nat) * κ → v k = w k) → ∀ (k : Nat), k < p - (1 : Nat) → v k = w k :=
+  And.intro @FRC.Shell.Frame.W_J_comm (And.intro @FRC.Shell.Frame.symm_antisymm_decomp (And.intro @FRC.Shell.Frame.symm_antisymm_unique (And.intro @FRC.Shell.Frame.symm_determined (@FRC.Shell.Frame.antisymm_determined))))
+/-- p08011 — 8:B5. The square class is chronon parity: the squares are $\langle g^{2}\rangle$, a residue's class is the parity of its drive-step count; on $\kap$-even shells every element of $Q_4=\{1,\im,-1,-\im\}$ is a square, so the order-four chart grading carries no signature. Exhaustive over every primitive root of $\F_{13}$, $\F_{17}$; Euler form on $\p<2000$. -/
+theorem p08011 : ∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → ∀ (m : Nat), (∃ y, y * y = g ^ m) ↔ m % (2 : Nat) = (0 : Nat) :=
+  @FRC.Shell.Frame.parity_iff
+/-- p13044 — 13:H2. The exact angular carrier of $\pi$: $\chi(-1)=e^{\imR\piR}$ exactly in every shell, for every generator and either chirality, since $-1=\gen^{(\p-1)/2}$ sits at arc fraction one half --- Euler's identity as the half-turn tautology $\gen^{2\kap}=-1$ under the dictionary, with no calibration and no error term. -/
+theorem p13044 : ∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → g ^ ((2 : Nat) * κ) = (-1 : FRC.Shell p) :=
+  @FRC.Shell.Frame.half_period
+/-- p13051 — 13:I4. CRT stability: under the composite lift to $q=\prod\p_i$ the half-wall invariant of $\pi$ glues to $-2$ modulo every $q$, since $2\piA\equiv-1$ holds in every fibre, while the terminal content of $e$, $(-(\Ku{\p_i})^{-1})_i$, varies fibrewise. The two selectors resolve the $\p=13$ coincidence: the same residue $6$ reaches $\piR$ through C4 and $\eR$ through C1. -/
+theorem p13051 : ∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → FRC.Shell.ofNat ((2 : Nat) * FRC.Shell.Frame.halfPeriod κ) = (-1 : FRC.Shell p) :=
+  @FRC.Shell.Frame.two_pi
+/-- p13053 — 13:J2. Calibration pinning: the half-period satisfies the height-two relation $2\piA+1\equiv0$, the shell calibration $\p=4\kap+1$ itself, so the observer holds an exact short certificate of an entity it never accesses as a tally; the same pinning covers the quarter-turn ($\im^{2}+1\equiv0$) and the residue web of G2; the pin holds on every one of the $500$ shells $\p\le8009$ with $H(\piA)=2$. -/
+theorem p13053 : (∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → FRC.Shell.ofNat ((2 : Nat) * FRC.Shell.Frame.halfPeriod κ) = (-1 : FRC.Shell p)) ∧ ∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → FRC.Shell.Frame.quarterTurn g κ * FRC.Shell.Frame.quarterTurn g κ = (-1 : FRC.Shell p) :=
+  And.intro @FRC.Shell.Frame.two_pi (@FRC.Shell.Frame.quarter_turn_sq)
+/-- p14031 — 14:X4. \textbf{The congruence $\dS$ even} acquires a second physical face: it is the existence of the octant sector, hence the well-definedness of the measured age --- a structure of the Carrier's cycle lattice, certified by realisation and read as an observational condition, never an arithmetic property of the numeral. -/
+theorem p14031 : ∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → ((∃ r, r * r = (2 : FRC.Shell p)) ↔ ∃ m, κ = (2 : Nat) * m) :=
+  @FRC.Shell.Frame.two_is_square_iff
+-- end keys
+
+end FRC.Ledger
+
+/-! inlined: FrcCore/Fourier.lean -/
+
+/-!
+# FrcCore.Fourier — 6-fourier predicates on the core
+
+The predicates of *Scale-Shift and Fractional Fourier Transform as Rotations over Finite Holographic Substrate*
+(6-fourier) that the core proves with no axioms, named by their accession keys below and proved in the modules this
+one imports: 6:B2 (the Euler identity `e^{iπ} = −1` exactly on the odd quarter-turn, `Frame.euler_identity`),
+6:B3 (the conjugate reframing toggles the parity, `Frame.orientation_class`), 6:B5 (`W² = −J`, `F² = J`, `J² = I`;
+`Sum`), 6:B6 (`n = −1` on the shell, `Frame.ofNat_n`), 6:B7 (`W J = J W` and the symmetric–antisymmetric
+decomposition; `Sum`), 6:D4 (the meridian scale law `S_r M_m = M_{m+r}`, its step and its periodicity; `Meridian`),
+6:D5 (the `p = 13` ladder, `ladder13`). The Mathlib statements of the same predicates, for every shell, are in
+`FrcLedger/Fourier.lean`; the paper's python witness checks them on six shells.
+-/
+
+namespace FRC.Fourier
+
+-- Ledger predicates of 6-fourier (generated by make_predicates.py from docs/6-fourier/6-fourier-ledger.json; edit the ledger, not this section)
+/-- 6:B2 (p06009) — The Euler identity is a property of the chart class: $e^{\im\pi}=\gen^{2\kap(\im\bmod2)}\equiv-1$ exactly when the quarter-turn residue is odd; the conjugate reframing $(\gen,\im)\mapsto(\gen^{-1},-\im)$ toggles the parity, so one member of each conjugate pair carries it; on $\F_{13}(\chron;0,1,2)$, $\im=5$ and $6^{6}=-1$. Every primitive frame of the six shells. -/
+theorem p06009 : ∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → ∀ (i : Nat), (g ^ i) ^ (i * ((2 : Nat) * κ)) = if i % (2 : Nat) = (0 : Nat) then (1 : FRC.Shell p) else (-1 : FRC.Shell p) :=
+  @FRC.Ledger.p06009
+/-- 6:B3 (p06010) — Chart covariance: under $\gen'=\gen^{u}$, $u\in\Zp^{\times}$, the quarter-turn name flips exactly on $u\equiv3\pmod4$ and the exponential-unit name moves already at $u\equiv1\pmod4$ whenever $\im(u-1)\not\equiv0\pmod{4\kap}$ ($\p=13$, $u=5$: $e'=2\neq6$); the registered objects (C3, C4, C9, F3) are invariant. -/
+theorem p06010 : ∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → ∀ (u : Nat), (u % (4 : Nat) = (1 : Nat) → -(g ^ u) ^ κ = -g ^ κ) ∧ (u % (4 : Nat) = (3 : Nat) → -(g ^ u) ^ κ = - -g ^ κ) :=
+  @FRC.Ledger.p06010
+/-- 6:B5 (p06012) — $\Wt^{2}=-J$, $\Ft^{2}=J$, $\Ft^{4}=I$: the normalized operator generates the four-cycle, on the six shells of Table~\ref{tab:checks}. -/
+theorem p06012 : (∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → ∀ (k j : Nat), FRC.Shell.sumRange (fun l => FRC.Shell.Frame.W g k l * FRC.Shell.Frame.W g l j) (p - (1 : Nat)) = -FRC.Shell.Frame.J (p - (1 : Nat)) k j) ∧ (∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → ∀ (k j : Nat), FRC.Shell.sumRange (fun l => FRC.Shell.Frame.Fmat g κ k l * FRC.Shell.Frame.Fmat g κ l j) (p - (1 : Nat)) = FRC.Shell.Frame.J (p - (1 : Nat)) k j) ∧ ∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → ∀ {k j : Nat}, k < p - (1 : Nat) → j < p - (1 : Nat) → FRC.Shell.sumRange (fun l => FRC.Shell.Frame.J (p - (1 : Nat)) k l * FRC.Shell.Frame.J (p - (1 : Nat)) l j) (p - (1 : Nat)) = if k = j then (1 : FRC.Shell p) else (0 : FRC.Shell p) :=
+  @FRC.Ledger.p06012
+/-- 6:B6 (p06013) — The normalization is the unitary constant read in the field: $1/n\equiv-1$, its square roots in $\Fp$ are exactly $\pm\im$, and $(c\Wt)^{2}=J$ if and only if $c=\pm\im$. -/
+theorem p06013 : ∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → FRC.Shell.ofNat (p - (1 : Nat)) = (-1 : FRC.Shell p) :=
+  @FRC.Ledger.p06013
+/-- 6:B7 (p06014) — $\Wt J=J\Wt$, hence $\Ft J=J\Ft$; $\Vt=V^{+}\oplus V^{-}$ with $\dim V^{+}=2\kap+1$, $\dim V^{-}=2\kap-1$. -/
+theorem p06014 : (∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → ∀ {k j : Nat}, k < p - (1 : Nat) → j < p - (1 : Nat) → FRC.Shell.sumRange (fun l => FRC.Shell.Frame.W g k l * FRC.Shell.Frame.J (p - (1 : Nat)) l j) (p - (1 : Nat)) = FRC.Shell.sumRange (fun l => FRC.Shell.Frame.J (p - (1 : Nat)) k l * FRC.Shell.Frame.W g l j) (p - (1 : Nat))) ∧ (∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → ∀ (v : Nat → FRC.Shell p), ∃ vp vm, FRC.Shell.Frame.Symm (p - (1 : Nat)) vp ∧ FRC.Shell.Frame.Antisymm (p - (1 : Nat)) vm ∧ ∀ (k : Nat), k < p - (1 : Nat) → v k = vp k + vm k) ∧ (∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → ∀ {a b : Nat → FRC.Shell p}, FRC.Shell.Frame.Symm (p - (1 : Nat)) a → FRC.Shell.Frame.Antisymm (p - (1 : Nat)) b → (∀ (k : Nat), k < p - (1 : Nat) → a k + b k = (0 : FRC.Shell p)) → ∀ (k : Nat), k < p - (1 : Nat) → a k = (0 : FRC.Shell p) ∧ b k = (0 : FRC.Shell p)) ∧ (∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → ∀ {v w : Nat → FRC.Shell p}, FRC.Shell.Frame.Symm (p - (1 : Nat)) v → FRC.Shell.Frame.Symm (p - (1 : Nat)) w → (∀ (k : Nat), k ≤ (2 : Nat) * κ → v k = w k) → ∀ (k : Nat), k < p - (1 : Nat) → v k = w k) ∧ ∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → ∀ {v w : Nat → FRC.Shell p}, FRC.Shell.Frame.Antisymm (p - (1 : Nat)) v → FRC.Shell.Frame.Antisymm (p - (1 : Nat)) w → (∀ (k : Nat), (0 : Nat) < k → k < (2 : Nat) * κ → v k = w k) → ∀ (k : Nat), k < p - (1 : Nat) → v k = w k :=
+  @FRC.Ledger.p06014
+/-- 6:D4 (p06027) — Meridian-scale covariance: $S_r(M_m)=M_{m+r}$ for every $(m,r)$, as ordered lists; consecutive entries of $M_m$ differ by the effective step $\gen^{m}$; $S_{r+(\p-1)}=S_r$, the periodicity of A5 in meridian form. -/
+theorem p06027 : (∀ {p : Nat} [FRC.Pos p] (g : FRC.Shell p) (κ m r : Nat), List.map (g.scale r) (g.meridian κ m) = g.meridian κ (m + r)) ∧ (∀ {p : Nat} [FRC.Pos p] (g : FRC.Shell p) (m a : Nat), FRC.Shell.ofNat (a + (1 : Nat)) * g ^ m = FRC.Shell.ofNat a * g ^ m + g ^ m) ∧ ∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → ∀ (r : Nat) (x : FRC.Shell p), g.scale (r + (p - (1 : Nat))) x = g.scale r x :=
+  @FRC.Ledger.p06027
+/-- 6:D5 (p06028) — Meridian zoom [chart]: $M_m$ reads the meridian-coordinate vector at step $\lambda^{\tilde m}$, the forward shift zoom-out and the inverse shift zoom-in, the seam an aliasing return; at $\p=13$, $\gen=2$ the ladder $M_0,\dots,M_3$ at steps $1,2,4,8$, unwrapped within $w\gen^{r}<\p$ ($w=\pi=6$: $r\le1$) and wrapping from $M_2$. -/
+theorem p06028 : FRC.Shell.meridian (2 : FRC.Shell (13 : Nat)) (3 : Nat) (0 : Nat) = [(0 : FRC.Shell (13 : Nat)), (1 : FRC.Shell (13 : Nat)), (2 : FRC.Shell (13 : Nat)), (3 : FRC.Shell (13 : Nat)), (4 : FRC.Shell (13 : Nat)), (5 : FRC.Shell (13 : Nat)), (6 : FRC.Shell (13 : Nat))] ∧ FRC.Shell.meridian (2 : FRC.Shell (13 : Nat)) (3 : Nat) (1 : Nat) = [(0 : FRC.Shell (13 : Nat)), (2 : FRC.Shell (13 : Nat)), (4 : FRC.Shell (13 : Nat)), (6 : FRC.Shell (13 : Nat)), (8 : FRC.Shell (13 : Nat)), (10 : FRC.Shell (13 : Nat)), (12 : FRC.Shell (13 : Nat))] ∧ FRC.Shell.meridian (2 : FRC.Shell (13 : Nat)) (3 : Nat) (2 : Nat) = [(0 : FRC.Shell (13 : Nat)), (4 : FRC.Shell (13 : Nat)), (8 : FRC.Shell (13 : Nat)), (12 : FRC.Shell (13 : Nat)), (3 : FRC.Shell (13 : Nat)), (7 : FRC.Shell (13 : Nat)), (11 : FRC.Shell (13 : Nat))] ∧ FRC.Shell.meridian (2 : FRC.Shell (13 : Nat)) (3 : Nat) (3 : Nat) = [(0 : FRC.Shell (13 : Nat)), (8 : FRC.Shell (13 : Nat)), (3 : FRC.Shell (13 : Nat)), (11 : FRC.Shell (13 : Nat)), (6 : FRC.Shell (13 : Nat)), (1 : FRC.Shell (13 : Nat)), (9 : FRC.Shell (13 : Nat))] ∧ (6 : Nat) * (2 : Nat) ^ (1 : Nat) < (13 : Nat) ∧ ¬(6 : Nat) * (2 : Nat) ^ (2 : Nat) < (13 : Nat) :=
+  @FRC.Ledger.p06028
+-- end ledger predicates
+
+end FRC.Fourier
 
 /-! inlined: FrcCore/Poly.lean -/
 
@@ -4192,6 +4545,49 @@ end Poly
 end Shell
 end FRC
 
+/-! inlined: FrcCore/Keys/Numbers.lean -/
+
+/-!
+# FrcCore.Keys.Numbers — the keyed theorems of the numbers theme (ledger migration, task LM19)
+
+One declaration per key, `FRC.Ledger.p<key>`, generated by `make_keys.py` from the ledgers' Lean bindings: the theorem
+that every row carrying the key asserts, proved from the themes alone. The paper's module keeps its declaration
+`FRC.<Module>.p<key>` as an alias. Every declaration has no axioms (`check_core_axioms.py`).
+-/
+
+namespace FRC.Ledger
+
+-- Keys of the numbers theme (generated by make_keys.py from the ledgers' Lean bindings; edit the ledgers, not this file)
+/-- p01026 — 1:E3. Solving in the substrate (first clause): $f\in\Fp[X]$ has a root in $\Fp$ iff $f$ and $X^{\p}-X=\prod_{a}(X-a)$ are not coprime; the gcd counts the distinct roots and Cantor--Zassenhaus splitting finds them, exactly. An equation without a root in $\Fp$ is recognised, not extended (E2). -/
+theorem p01026 : (∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → ∀ {f : FRC.Shell.Poly p} {n : Nat}, f.Bound n → ((∃ a, f.eval n a = (0 : FRC.Shell p)) ↔ FRC.Shell.Poly.Frame.CommonFactor f n FRC.Shell.Poly.xpx p)) ∧ (∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → ∀ (n : Nat) (f : FRC.Shell.Poly p), f.Bound n → ∀ (r : Nat → FRC.Shell p), (∀ (i j : Nat), i ≤ n → j ≤ n → r i = r j → i = j) → (∀ (i : Nat), i ≤ n → f.eval n (r i) = (0 : FRC.Shell p)) → ∀ (i : Nat), f i = (0 : FRC.Shell p)) ∧ ∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → ∀ (x : FRC.Shell p), x ^ p = x :=
+  And.intro @FRC.Shell.Poly.Frame.root_iff_common_factor (And.intro @FRC.Shell.Poly.Frame.root_bound (@FRC.Shell.Frame.fermat))
+-- end keys
+
+end FRC.Ledger
+
+/-! inlined: FrcCore/Keys/Projective.lean -/
+
+/-!
+# FrcCore.Keys.Projective — the keyed theorems of the projective theme (ledger migration, task LM19)
+
+One declaration per key, `FRC.Ledger.p<key>`, generated by `make_keys.py` from the ledgers' Lean bindings: the theorem
+that every row carrying the key asserts, proved from the themes alone. The paper's module keeps its declaration
+`FRC.<Module>.p<key>` as an alias. Every declaration has no axioms (`check_core_axioms.py`).
+-/
+
+namespace FRC.Ledger
+
+-- Keys of the projective theme (generated by make_keys.py from the ledgers' Lean bindings; edit the ledgers, not this file)
+set_option linter.defProp false in
+/-- p01009 — 1:C2. The frame group (Prop.~\ref{prop:frame-group}): $\langle T_a,S_m\rangle$ is the affine group of order $\p(\p-1)$, acting simply transitively on the frames $(a,b)$, $b\neq0$; the set of frames is a torsor under it (00:C5, 00:D13). -/
+def p01009 := And.intro @FRC.Shell.Frame.Affine.simply_transitive (@FRC.Shell.Frame.frame_count)
+set_option linter.defProp false in
+/-- p04015 — 4:C5. Charts of the shell itself: for $\mathcal Z=\Fp$ the charts respecting the arithmetic are the frames $x\mapsto a+bx$ (1:C2), $\p(\p-1)$ of them, and $\Psi_{m\to n}$ between two frames is the one affine map carrying the first to the second (simply transitive) --- the corpus's coordinate systems are the paper's charts. -/
+def p04015 := And.intro @FRC.Shell.Frame.Affine.simply_transitive (@FRC.Shell.Frame.frame_count)
+-- end keys
+
+end FRC.Ledger
+
 /-! inlined: FrcCore/Algebra.lean -/
 
 /-!
@@ -4210,34 +4606,34 @@ namespace FRC.Algebra
 -- Ledger predicates of 1-algebra (generated by make_predicates.py from docs/1-algebra/1-algebra-ledger.json; edit the ledger, not this section)
 /-- 1:B2 (p01004) — Symmetry completeness (Thm.~\ref{thm:symmetric-completeness}): the fourth roots of unity form the unique order-four subgroup $Q_4=\{1,\im,-1,-\im\}$; under the Klein four-group $\langle x\mapsto-x,\,x\mapsto x^{-1}\rangle$, $Q_4$ is the union of the two size-two orbits $\{\pm1\}$, $\{\pm\im\}$, and $\Fpx\setminus Q_4$ splits into exactly $\kap-1$ orbits of size four. For $\p\equiv3\pmod4$ no $\im$ exists. -/
 theorem p01004 : (∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → ∃ u, u * u = (-1 : FRC.Shell p)) ∧ (∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → ∀ (x : FRC.Shell p), x ^ (4 : Nat) = (1 : FRC.Shell p) ↔ x = (1 : FRC.Shell p) ∨ x = (-1 : FRC.Shell p) ∨ x = FRC.Shell.Frame.quarterTurn g κ ∨ x = -FRC.Shell.Frame.quarterTurn g κ) ∧ (∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → ∀ {x y : FRC.Shell p}, x * y = (1 : FRC.Shell p) → x ^ (4 : Nat) ≠ (1 : FRC.Shell p) → x ≠ -x ∧ x ≠ y ∧ x ≠ -y ∧ -x ≠ y ∧ -x ≠ -y ∧ y ≠ -y) ∧ (∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → ∀ {x : FRC.Shell p}, x ≠ (0 : FRC.Shell p) → x ^ (4 : Nat) ≠ (1 : FRC.Shell p) → ∃ r, (1 : Nat) ≤ r ∧ r < κ ∧ FRC.Shell.Frame.InOrbit (g ^ r) x) ∧ (∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → ∀ {r r' : Nat}, (1 : Nat) ≤ r → r < κ → (1 : Nat) ≤ r' → r' < κ → ∀ {x : FRC.Shell p}, FRC.Shell.Frame.InOrbit (g ^ r) x → FRC.Shell.Frame.InOrbit (g ^ r') x → r = r') ∧ (∀ (x : Fin (13 : Nat)), ↑x = (1 : Nat) ∨ ↑x = (5 : Nat) ∨ ↑x = (12 : Nat) ∨ ↑x = (8 : Nat) ↔ FRC.Shell.ofNat ↑x ^ (4 : Nat) = (1 : FRC.Shell (13 : Nat))) ∧ (2 : FRC.Shell (13 : Nat)) * (7 : FRC.Shell (13 : Nat)) = (1 : FRC.Shell (13 : Nat)) ∧ (3 : FRC.Shell (13 : Nat)) * (9 : FRC.Shell (13 : Nat)) = (1 : FRC.Shell (13 : Nat)) :=
-  And.intro @FRC.Shell.Frame.quarter_turn_exists (And.intro @FRC.Shell.Frame.fourth_roots (And.intro @FRC.Shell.Frame.klein_orbit_four (And.intro @FRC.Shell.Frame.orbit_rep (And.intro @FRC.Shell.Frame.orbit_rep_unique (@FRC.Shell.s13_klein)))))
+  @FRC.Ledger.p01004
 /-- 1:B3 (p01005) — The oriented quarter-turn: $\im=-\gen^{\kap}$ satisfies $\im^{2}=-1$ for every primitive root $\gen$; the two square roots of $-1$ are $\{-\gen^{\kap},\gen^{\kap}\}$, so the drive fixes which is $\im$. On $\F_{13}$, $\gen=2$: $\im=5$. -/
 theorem p01005 : (∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → FRC.Shell.Frame.quarterTurn g κ * FRC.Shell.Frame.quarterTurn g κ = (-1 : FRC.Shell p)) ∧ FRC.Shell.Frame.quarterTurn (2 : FRC.Shell (13 : Nat)) (3 : Nat) = (5 : FRC.Shell (13 : Nat)) ∧ (5 : FRC.Shell (13 : Nat)) * (5 : FRC.Shell (13 : Nat)) = (-1 : FRC.Shell (13 : Nat)) ∧ (-5 : FRC.Shell (13 : Nat)) = (8 : FRC.Shell (13 : Nat)) ∧ (2 : FRC.Shell (13 : Nat)) ^ (6 : Nat) = (-1 : FRC.Shell (13 : Nat)) ∧ (2 : FRC.Shell (13 : Nat)) ^ (5 : Nat) = (6 : FRC.Shell (13 : Nat)) :=
-  And.intro @FRC.Shell.Frame.quarter_turn_sq (@FRC.Shell.s13_datum)
+  @FRC.Ledger.p01005
 /-- 1:B4 (p01006) — Affine reframing (Def.~\ref{def:framed-field}, Lemma~\ref{lem:affine-invariance}): $\varphi_{a,b}(x)=a+bx$, $b\neq0$, is a ring isomorphism $(\Fp,+,\cdot)\to(\Fp,\oplus,\otimes)$ with origin $a$ and unit $a+b$; every polynomial identity is frame-covariant. -/
 theorem p01006 : ∀ {p : Nat} [FRC.Pos p] {a b y : FRC.Shell p}, b * y = (1 : FRC.Shell p) → ∀ (z : FRC.Shell p), FRC.Shell.Frame.affineMul a b y (a + b) z = z :=
-  @FRC.Shell.Frame.affine_frame_unit
+  @FRC.Ledger.p01006
 set_option linter.defProp false in
 /-- 1:C2 (p01009) — The frame group (Prop.~\ref{prop:frame-group}): $\langle T_a,S_m\rangle$ is the affine group of order $\p(\p-1)$, acting simply transitively on the frames $(a,b)$, $b\neq0$; the set of frames is a torsor under it (00:C5, 00:D13). -/
-def p01009 := And.intro @FRC.Shell.Frame.Affine.simply_transitive (@FRC.Shell.Frame.frame_count)
+def p01009 := @FRC.Ledger.p01009
 /-- 1:C4 (p01011) — Involutions and counts (Def.~\ref{def:orbit-sphere}\,(a)--(c)): $M_n(a)=M_{n+2\kap}(-a)$ and $L_a(m)=L_{-a}(m+2\kap)$ since $\gen^{2\kap}=-1$; $\p-1$ distinct meridian lists in $2\kap$ great circles; $2\kap$ latitude pairs; one-sided vertex count $(\p-1)^{2}/2+1$, the double cover $(\p-1)^{2}$ (00:B11). -/
 theorem p01011 : ∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → ∀ (a : FRC.Shell p) (n : Nat), -a * g ^ (n + (2 : Nat) * κ) = a * g ^ n :=
-  @FRC.Shell.Frame.meridian_involution
+  @FRC.Ledger.p01011
 set_option linter.defProp false in
 /-- 1:D2 (p01013) — The window law: $z\mapsto z\bmod\p$ is injective on $W_H$ when $2H<\p$; for $x,y\in W_H$ the residue of $x\pm y$ reads back the integer when $4H<\p$, and that of $xy$ when $2H^{2}<\p$ (the same injectivity on the windows $2H$ and $H^{2}$). -/
-def p01013 := And.intro @FRC.Shell.Frame.window_injective (And.intro @FRC.Shell.Frame.window_signed (And.intro @FRC.Shell.Frame.window_add_readback (@FRC.Shell.Frame.window_mul_readback)))
+def p01013 := @FRC.Ledger.p01013
 /-- 1:D4 (p01015) — Scale-periodicity (Lemma~\ref{thm:scale-periodicity}, in the field): $S_n(x)=x\gen^{-n}$ satisfies $S_{n+(\p-1)}=S_n$; the grids $G_n$ are $(\p-1)$-periodic as ordered lists; the zoom $[x,n]\mapsto[x,n+1]$ has order $\p-1$. As lists of rationals $x/\gen^{n}$ ($\gen$ lifted to $\Z$) the grids are not periodic: the periodicity is a relation of the field. -/
 theorem p01015 : ∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → ∀ (x : FRC.Shell p) (n : Nat), x * g ^ (n + (p - (1 : Nat))) = x * g ^ n :=
-  @FRC.Shell.Frame.scale_periodic
+  @FRC.Ledger.p01015
 /-- 1:E2 (p01019) — The extension by $X^{2}+1$ is trivial (Prop.~\ref{prop:Cp-field} reversed): on the shell $\Fp[X]/(X^{2}+1)\cong\Fp\times\Fp$ has zero divisors, $(X+\im)(X-\im)=0$, so it is not a field; $\Fp[X]/(X^{2}+1)$ is a field exactly when $\p\equiv3\pmod4$; the quadratic extension of the shell is $\Fp[\eta]$, $\eta^{2}=\nu$ a non-square (8-dirac B6). -/
 theorem p01019 : ∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → FRC.Shell.Frame.cmul (FRC.Shell.Frame.quarterTurn g κ, (1 : FRC.Shell p)) (-FRC.Shell.Frame.quarterTurn g κ, (1 : FRC.Shell p)) = ((0 : FRC.Shell p), (0 : FRC.Shell p)) ∧ (FRC.Shell.Frame.quarterTurn g κ, (1 : FRC.Shell p)) ≠ ((0 : FRC.Shell p), (0 : FRC.Shell p)) ∧ (-FRC.Shell.Frame.quarterTurn g κ, (1 : FRC.Shell p)) ≠ ((0 : FRC.Shell p), (0 : FRC.Shell p)) :=
-  @FRC.Shell.Frame.complex_chart_zero_divisor
+  @FRC.Ledger.p01019
 /-- 1:E3 (p01026) — Solving in the substrate (first clause): $f\in\Fp[X]$ has a root in $\Fp$ iff $f$ and $X^{\p}-X=\prod_{a}(X-a)$ are not coprime; the gcd counts the distinct roots and Cantor--Zassenhaus splitting finds them, exactly. An equation without a root in $\Fp$ is recognised, not extended (E2). -/
 theorem p01026 : (∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → ∀ {f : FRC.Shell.Poly p} {n : Nat}, f.Bound n → ((∃ a, f.eval n a = (0 : FRC.Shell p)) ↔ FRC.Shell.Poly.Frame.CommonFactor f n FRC.Shell.Poly.xpx p)) ∧ (∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → ∀ (n : Nat) (f : FRC.Shell.Poly p), f.Bound n → ∀ (r : Nat → FRC.Shell p), (∀ (i j : Nat), i ≤ n → j ≤ n → r i = r j → i = j) → (∀ (i : Nat), i ≤ n → f.eval n (r i) = (0 : FRC.Shell p)) → ∀ (i : Nat), f i = (0 : FRC.Shell p)) ∧ ∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → ∀ (x : FRC.Shell p), x ^ p = x :=
-  And.intro @FRC.Shell.Poly.Frame.root_iff_common_factor (And.intro @FRC.Shell.Poly.Frame.root_bound (@FRC.Shell.Frame.fermat))
+  @FRC.Ledger.p01026
 /-- 1:Z1 (p01020) — No element of additive order two (Thm.~\ref{thm:no-south-pole}): $2s=0$ forces $s=0$; the antipode of the origin on the additive cycle is not a residue; it sits between $2\kap=(\p-1)/2$ and $2\kap+1=(\p+1)/2=2^{-1}$ (20-rh B8). -/
 theorem p01020 : ∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → ∀ (s : FRC.Shell p), (2 : FRC.Shell p) * s = (0 : FRC.Shell p) → s = (0 : FRC.Shell p) :=
-  @FRC.Shell.Frame.no_south_pole
+  @FRC.Ledger.p01020
 -- end ledger predicates
 end FRC.Algebra
 
@@ -4589,16 +4985,16 @@ theorem p13041 : List.map (fun k => FRC.Epi.readW (k + (1 : Nat))) (List.range (
   @FRC.Epi.residue_line_pi13
 /-- 13:H2 (p13044) — The exact angular carrier of $\pi$: $\chi(-1)=e^{\imR\piR}$ exactly in every shell, for every generator and either chirality, since $-1=\gen^{(\p-1)/2}$ sits at arc fraction one half --- Euler's identity as the half-turn tautology $\gen^{2\kap}=-1$ under the dictionary, with no calibration and no error term. -/
 theorem p13044 : ∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → g ^ ((2 : Nat) * κ) = (-1 : FRC.Shell p) :=
-  @FRC.Shell.Frame.half_period
+  @FRC.Ledger.p13044
 /-- 13:I4 (p13051) — CRT stability: under the composite lift to $q=\prod\p_i$ the half-wall invariant of $\pi$ glues to $-2$ modulo every $q$, since $2\piA\equiv-1$ holds in every fibre, while the terminal content of $e$, $(-(\Ku{\p_i})^{-1})_i$, varies fibrewise. The two selectors resolve the $\p=13$ coincidence: the same residue $6$ reaches $\piR$ through C4 and $\eR$ through C1. -/
 theorem p13051 : ∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → FRC.Shell.ofNat ((2 : Nat) * FRC.Shell.Frame.halfPeriod κ) = (-1 : FRC.Shell p) :=
-  @FRC.Shell.Frame.two_pi
+  @FRC.Ledger.p13051
 /-- 13:J1 (p13052) — The wrap-free window: an entity of the shell is $\p$-hard when it lies beyond the observer's horizon $\sqrt\p$; the accessible smalls are the natural counts below $\sqrt\p$, where sums and products of two accessible counts do not wrap, so primality, parity and order are wrap-invariant there and only there. -/
 theorem p13052 : ∀ {a b p : Nat}, a * a < p → b * b < p → a * b < p ∧ ((4 : Nat) ≤ p → a + b < p) :=
   @FRC.Epi.wrap_free
 /-- 13:J2 (p13053) — Calibration pinning: the half-period satisfies the height-two relation $2\piA+1\equiv0$, the shell calibration $\p=4\kap+1$ itself, so the observer holds an exact short certificate of an entity it never accesses as a tally; the same pinning covers the quarter-turn ($\im^{2}+1\equiv0$) and the residue web of G2; the pin holds on every one of the $500$ shells $\p\le8009$ with $H(\piA)=2$. -/
 theorem p13053 : (∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → FRC.Shell.ofNat ((2 : Nat) * FRC.Shell.Frame.halfPeriod κ) = (-1 : FRC.Shell p)) ∧ ∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → FRC.Shell.Frame.quarterTurn g κ * FRC.Shell.Frame.quarterTurn g κ = (-1 : FRC.Shell p) :=
-  And.intro @FRC.Shell.Frame.two_pi (@FRC.Shell.Frame.quarter_turn_sq)
+  @FRC.Ledger.p13053
 -- end ledger predicates
 
 end FRC.Epi
@@ -5658,10 +6054,58 @@ theorem p01033 : (∀ {p : Nat} [FRC.Pos p] (u w x : FRC.Shell.Frame.Quat p), u.
 -- end ledger predicates
 end FRC.Algebra
 
+/-! inlined: FrcCore/Keys/Extension.lean -/
+
+/-!
+# FrcCore.Keys.Extension — the keyed theorems of the extension theme (ledger migration, task LM19)
+
+One declaration per key, `FRC.Ledger.p<key>`, generated by `make_keys.py` from the ledgers' Lean bindings: the theorem
+that every row carrying the key asserts, proved from the themes alone. The paper's module keeps its declaration
+`FRC.<Module>.p<key>` as an alias. Every declaration has no axioms (`check_core_axioms.py`).
+-/
+
+namespace FRC.Ledger
+
+-- Keys of the extension theme (generated by make_keys.py from the ledgers' Lean bindings; edit the ledgers, not this file)
+/-- p03006 — 3:B2. Nonexistence of a causal square root: no $c\in\Fp$ has $c^{2}=\nu$ for $\nu\in N$; for $c\in\Fpx$ every coefficient of $-c^{2}t^{2}+x^{2}+y^{2}+z^{2}$ is a square ($-1=\im^{2}$), the form Euclidean with $\p^{3}+\p^{2}-\p$ zeros; $c=0$ gives a degenerate form. -/
+theorem p03006 : (∀ {p : Nat} [FRC.Pos p] {ν : FRC.Shell p}, ¬FRC.Shell.Frame.IsSquare ν → ∀ (c : FRC.Shell p), c * c ≠ ν) ∧ ∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → ∀ (c : FRC.Shell p), FRC.Shell.Frame.IsSquare (-(c * c)) :=
+  And.intro @FRC.Shell.Frame.no_causal_root (@FRC.Shell.Frame.neg_sq_is_square)
+/-- p03007 — 3:B3. Square-class absorption: if $a_{i}/a_{0}\in S$ for all $\im$ then $Q\simeq a_{0}\sum Y_{i}^{2}$ by $Y_{i}=w_{i}X_{i}$, $w_{i}^{2}=a_{i}/a_{0}$; no root of $a_{0}$ is needed, and none exists for $a_{0}\in N$ ($-a_{0}$ is a nonsquare with it). -/
+theorem p03007 : ∀ {p : Nat} [FRC.Pos p] (a0 a1 a2 a3 w1 w2 w3 x0 x1 x2 x3 : FRC.Shell p), w1 * w1 * a0 = a1 → w2 * w2 * a0 = a2 → w3 * w3 * a0 = a3 → a0 * (x0 * x0) + a1 * (x1 * x1) + a2 * (x2 * x2) + a3 * (x3 * x3) = a0 * (x0 * x0 + w1 * x1 * (w1 * x1) + w2 * x2 * (w2 * x2) + w3 * x3 * (w3 * x3)) :=
+  @FRC.Shell.Frame.absorb
+/-- p03008 — 3:B4. The dichotomy lives on the shell: $\operatorname{disc}Q_{\nu}\equiv\nu$ (as $-1\in S$); for $\nu\in N$ the form is elliptic, Witt index one, with $\p^{3}-\p^{2}+\p$ null points; for $\nu\in S$ hyperbolic, Witt index two, $\p^{3}+\p^{2}-\p$; every $\nu$ on $\p\le41$ ($2041$ and $2353$ at $13$; 8:B7). -/
+theorem p03008 : FRC.Shell.Frame.nullCount (13 : Nat) (2 : Nat) = (2041 : Nat) ∧ FRC.Shell.Frame.nullCount (13 : Nat) (1 : Nat) = (2353 : Nat) ∧ (FRC.Shell.Frame.nullCount (5 : Nat) (2 : Nat) = (105 : Nat) ∧ FRC.Shell.Frame.nullCount (5 : Nat) (1 : Nat) = (145 : Nat)) ∧ FRC.Shell.Frame.nullCount (17 : Nat) (3 : Nat) = (4641 : Nat) :=
+  And.intro @FRC.Shell.Frame.null13 (And.intro @FRC.Shell.Frame.euclid13 (And.intro @FRC.Shell.Frame.null5 (@FRC.Shell.Frame.null17)))
+/-- p03009 — 3:B5. The Witt decomposition: for $\nu\in N$ the plane $x^{2}-\nu t^{2}$ (the norm of $\Fpq$) is anisotropic and $y^{2}+z^{2}=(y+iz)(y-iz)$ hyperbolic, so $Q_{\nu}=H\perp\langle1,-\nu\rangle$, index one; for $\nu=w^{2}$ the $(t,x)$-plane is hyperbolic too, $H\perp H$. Over $\Fpq$, $\nu=c^{2}$ and $Q_{\nu}\simeq\sum X_{i}^{2}$: hyperbolic ($16\,225$ zeros at $q=25$); the extension dissolves the split. -/
+theorem p03009 : (∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → ∀ {ν : FRC.Shell p}, ¬FRC.Shell.Frame.IsSquare ν → ∀ {t x : FRC.Shell p}, x * x = ν * (t * t) → t = (0 : FRC.Shell p) ∧ x = (0 : FRC.Shell p)) ∧ (∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → (1 : FRC.Shell p) * (1 : FRC.Shell p) + FRC.Shell.Frame.quarterTurn g κ * FRC.Shell.Frame.quarterTurn g κ = (0 : FRC.Shell p)) ∧ ∀ {p : Nat} [FRC.Pos p] (w : FRC.Shell p), FRC.Shell.Frame.Q2 (w * w) (1 : FRC.Shell p) w = (0 : FRC.Shell p) :=
+  And.intro @FRC.Shell.Frame.aniso_tx (And.intro @FRC.Shell.Frame.null_yz (@FRC.Shell.Frame.null_tx_of_square))
+/-- p03013 — 3:C2. $\Lambda(\gamma,b)$ preserves $-\nu t^{2}+x^{2}$ exactly and $\Lambda(z_{1})\Lambda(z_{2})=\Lambda(z_{1}z_{2})$: the boosts are the norm-one cycle $N^{1}\simeq C_{\p+1}$, the non-split torus, and exhaust $SO(Q_{\nu},\Fp)$ in dimension $1{+}1$ ($6$, $14$, $18$ at $5$, $13$, $17$); with $\nu\in S$ the same construction is the split torus $C_{\p-1}$ --- the two tori are the two signatures (00:C3). -/
+theorem p03013 : (∀ {p : Nat} [FRC.Pos p] {ν γ b : FRC.Shell p}, γ * γ + -(ν * (b * b)) = (1 : FRC.Shell p) → ∀ (t x : FRC.Shell p), FRC.Shell.Frame.Q2 ν (FRC.Shell.Frame.boostT ν γ b t x) (FRC.Shell.Frame.boostX ν γ b t x) = FRC.Shell.Frame.Q2 ν t x) ∧ (∀ {p : Nat} [FRC.Pos p] (ν γ1 b1 γ2 b2 t x : FRC.Shell p), FRC.Shell.Frame.boostT ν γ1 b1 (FRC.Shell.Frame.boostT ν γ2 b2 t x) (FRC.Shell.Frame.boostX ν γ2 b2 t x) = FRC.Shell.Frame.boostT ν (γ1 * γ2 + ν * (b1 * b2)) (γ1 * b2 + b1 * γ2) t x) ∧ (∀ {p : Nat} [FRC.Pos p] (ν γ1 b1 γ2 b2 t x : FRC.Shell p), FRC.Shell.Frame.boostX ν γ1 b1 (FRC.Shell.Frame.boostT ν γ2 b2 t x) (FRC.Shell.Frame.boostX ν γ2 b2 t x) = FRC.Shell.Frame.boostX ν (γ1 * γ2 + ν * (b1 * b2)) (γ1 * b2 + b1 * γ2) t x) ∧ (∀ {p : Nat} [FRC.Pos p] {ν γ1 b1 γ2 b2 : FRC.Shell p}, γ1 * γ1 + -(ν * (b1 * b1)) = (1 : FRC.Shell p) → γ2 * γ2 + -(ν * (b2 * b2)) = (1 : FRC.Shell p) → (γ1 * γ2 + ν * (b1 * b2)) * (γ1 * γ2 + ν * (b1 * b2)) + -(ν * ((γ1 * b2 + b1 * γ2) * (γ1 * b2 + b1 * γ2))) = (1 : FRC.Shell p)) ∧ FRC.Shell.Frame.normOneCount (5 : Nat) (2 : Nat) = (6 : Nat) ∧ FRC.Shell.Frame.normOneCount (13 : Nat) (2 : Nat) = (14 : Nat) ∧ FRC.Shell.Frame.normOneCount (17 : Nat) (3 : Nat) = (18 : Nat) ∧ FRC.Shell.Frame.normOneCount (29 : Nat) (2 : Nat) = (30 : Nat) :=
+  And.intro @FRC.Shell.Frame.boost_preserves (And.intro @FRC.Shell.Frame.boost_comp_t (And.intro @FRC.Shell.Frame.boost_comp_x (And.intro @FRC.Shell.Frame.norm_one_mul (@FRC.Shell.Frame.normOne_values))))
+/-- p03014 — 3:C3. Velocity: $\gamma\neq0$ on every boost; $v=-\nu b/\gamma\in\Fp$; $\gamma^{2}(\nu-v^{2})=\nu$, the finite $\gamma=1/\sqrt{1-\beta^{2}}$ with $\beta^{2}=v^{2}/\nu$ ($\beta$ itself is no shell quantity, 8:B8); Einstein's law $v_{12}=(v_{1}+v_{2})/(1+v_{1}v_{2}/\nu)$ exact, the denominator never zero; $v$ is two-to-one on $N^{1}$. -/
+theorem p03014 : (∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → ∀ {ν γ b : FRC.Shell p}, ¬FRC.Shell.Frame.IsSquare ν → γ * γ + -(ν * (b * b)) = (1 : FRC.Shell p) → γ ≠ (0 : FRC.Shell p)) ∧ (∀ {p : Nat} [FRC.Pos p] {ν γ b v : FRC.Shell p}, γ * γ + -(ν * (b * b)) = (1 : FRC.Shell p) → v * γ = -(ν * b) → γ * γ * (ν + -(v * v)) = ν) ∧ ∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → ∀ {ν γ1 b1 γ2 b2 v1 v2 v12 : FRC.Shell p}, ¬FRC.Shell.Frame.IsSquare ν → γ1 * γ1 + -(ν * (b1 * b1)) = (1 : FRC.Shell p) → γ2 * γ2 + -(ν * (b2 * b2)) = (1 : FRC.Shell p) → v1 * γ1 = -(ν * b1) → v2 * γ2 = -(ν * b2) → v12 * (γ1 * γ2 + ν * (b1 * b2)) = -(ν * (γ1 * b2 + b1 * γ2)) → v12 * (ν + v1 * v2) = ν * (v1 + v2) :=
+  And.intro @FRC.Shell.Frame.gamma_ne_zero (And.intro @FRC.Shell.Frame.gamma_velocity (@FRC.Shell.Frame.velocity_addition))
+/-- p03017 — 3:D1. $\F_{13}$ [value]: $S=\{1,3,4,9,10,12\}$, $N=\{2,5,6,7,8,11\}$; $\nu=2=\g$; $X^{2}-2$ irreducible, $c=\sqrt2\in K\setminus\F_{13}$; $2041$ null points of $Q_{2}$ on the shell, $4\,855\,201$ over $K$; $14$ boosts $(\gamma,b)$ with the $7$ velocities $\{0,2,3,6,7,10,11\}$; $\Lambda(u)$ at $u=2$ has $a=-5/(2c)\notin\F_{13}$. -/
+theorem p03017 : FRC.Shell.Frame.nullCount (13 : Nat) (2 : Nat) = (2041 : Nat) ∧ FRC.Shell.Frame.normOneCount (5 : Nat) (2 : Nat) = (6 : Nat) ∧ FRC.Shell.Frame.normOneCount (13 : Nat) (2 : Nat) = (14 : Nat) ∧ FRC.Shell.Frame.normOneCount (17 : Nat) (3 : Nat) = (18 : Nat) ∧ FRC.Shell.Frame.normOneCount (29 : Nat) (2 : Nat) = (30 : Nat) :=
+  And.intro @FRC.Shell.Frame.null13 (@FRC.Shell.Frame.normOne_values)
+/-- p08002 — 8:A2. Finite-field algebra: the quadratic extension $K=\Fp[\w]/(\w^{2}-\nu)$ with Frobenius conjugation and norm, Hilbert's Theorem~90, the square classes by Euler's criterion, the unitary group of a nondegenerate Hermitian form over a finite field. -/
+theorem p08002 : ∀ {p : Nat} [FRC.Pos p] {ν : FRC.Shell p} (z : FRC.Extension.Ext p ν), z * z.conj = FRC.Extension.Ext.ofShell z.norm :=
+  @FRC.Extension.Ext.mul_conj
+/-- p08012 — 8:B6. Norm growth and parity: $N(gz)=g^{2}N(z)$ with $g^{2}$ a square, the single-chronon multiplier $g$ odd, $x^{2}=\nu$ unsolvable in $\Fp$; the flip $g\mapsto g^{-1}$ preserves the parity class. -/
+theorem p08012 : (∀ {p : Nat} [FRC.Pos p] {ν : FRC.Shell p} (c : FRC.Shell p) (z : FRC.Extension.Ext p ν), (FRC.Extension.Ext.ofShell c * z).norm = c * c * z.norm) ∧ ∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → ∀ {y : FRC.Shell p}, g * y = (1 : FRC.Shell p) → ¬∃ r, r * r = y :=
+  And.intro @FRC.Extension.Ext.norm_scale (@FRC.Shell.Frame.inv_drive_nonsquare)
+-- end keys
+
+end FRC.Ledger
+
 /-! inlined: FrcCore/Causality.lean -/
 
 /-!
 # FrcCore.Causality — the Euclidean–Lorentzian dichotomy on the shell (3-causality)
+
+Since the ledger migration (task LM20) the theorems below live in the extension theme, `FrcCore/Theme/Extension.lean`,
+under the same names (`FRC.Shell.Frame.*`); this module keeps the ledger's predicate declarations, each the alias of
+its key in `FrcCore/Keys/Extension.lean`. What the theorems state:
 
 The square classes of the shell, the diagonal form `Q_ν = −ν t² + x² + y² + z²`, and the boosts of its `(t, x)`
 plane, from first principles.  3:B2: a nonsquare `ν` has no root, and with `c ≠ 0` the coefficient `−c²` is a square
@@ -5678,218 +6122,6 @@ Since the ledger migration (task LM17) `mul_mul_mul_comm` lives in `Shell.lean`;
 namespace FRC
 namespace Shell
 namespace Frame
-
-variable {p : Nat} [Pos p] {κ : Nat} {g : Shell p}
-
-/-- `x` is a square: `x = y·y` for some residue `y`. -/
-def IsSquare (x : Shell p) : Prop := ∃ y : Shell p, y * y = x
-
-/-- 3:B2 (Thm. nonexistence, first clause) — `c² = ν` makes `ν` a square, so a nonsquare `ν` has no root `c`. -/
-theorem no_causal_root {ν : Shell p} (h : ¬IsSquare ν) (c : Shell p) : c * c ≠ ν := fun e => h ⟨c, e⟩
-
-theorem sq_mul (a b : Shell p) : (a * b) * (a * b) = (a * a) * (b * b) := mul_mul_mul_comm a b a b
-
-/-- 3:B2 (Thm. nonexistence, the consequence) — `−c²` is a square on every shell: `−c² = (i·c)²` with `i² = −1`;
-so with `c ≠ 0` every coefficient of `−c² t² + x² + y² + z²` is a square and the form is Euclidean. -/
-theorem neg_sq_is_square (F : Frame p κ g) (c : Shell p) : IsSquare (-(c * c)) :=
-  ⟨quarterTurn g κ * c, by rw [sq_mul, F.quarter_turn_sq, neg_one_mul]⟩
-
-/-- 3:B2 — `−1` itself is a square (`i²`): the paper's hypothesis `p ≡ 1 (mod 4)` in the shell's own terms. -/
-theorem neg_one_is_square (F : Frame p κ g) : IsSquare (-1 : Shell p) := ⟨quarterTurn g κ, F.quarter_turn_sq⟩
-
-/-- 3:B3 (Lemma absorption) — if `a_i = w_i² a_0` for `i = 1, 2, 3` then
-`a_0 x_0² + a_1 x_1² + a_2 x_2² + a_3 x_3² = a_0 (x_0² + (w_1 x_1)² + (w_2 x_2)² + (w_3 x_3)²)`: a common square
-class is absorbed by the rescaling `x_i ↦ w_i x_i`, with no square root of `a_0` itself required. -/
-theorem absorb (a0 a1 a2 a3 w1 w2 w3 x0 x1 x2 x3 : Shell p) (h1 : w1 * w1 * a0 = a1) (h2 : w2 * w2 * a0 = a2)
-    (h3 : w3 * w3 * a0 = a3) :
-    a0 * (x0 * x0) + a1 * (x1 * x1) + a2 * (x2 * x2) + a3 * (x3 * x3) =
-    a0 * (x0 * x0 + (w1 * x1) * (w1 * x1) + (w2 * x2) * (w2 * x2) + (w3 * x3) * (w3 * x3)) := by
-  rw [← h1, ← h2, ← h3, sq_mul w1 x1, sq_mul w2 x2, sq_mul w3 x3, left_distrib, left_distrib, left_distrib,
-    mul_left_comm a0 (w1 * w1), mul_left_comm a0 (w2 * w2), mul_left_comm a0 (w3 * w3),
-    mul_assoc (w1 * w1), mul_assoc (w2 * w2), mul_assoc (w3 * w3)]
-
-/-! ### The binary form `x² − ν t²`, the norm of `K = F_p(√ν)` -/
-
-/-- The `(t, x)`-plane form `Q₂(t, x) = x² − ν t²`, the norm `N(x + t√ν)`. -/
-def Q2 (ν t x : Shell p) : Shell p := x * x + -(ν * (t * t))
-
-/-- 3:B5 — the plane `x² − ν t²` is anisotropic when `ν` is a nonsquare: `x² = ν t²` forces `t = x = 0`
-(else `ν = (x/t)²`).  This is the Witt kernel of the Lorentzian form, its index one. -/
-theorem aniso_tx (F : Frame p κ g) {ν : Shell p} (h : ¬IsSquare ν) {t x : Shell p} (e : x * x = ν * (t * t)) :
-    t = 0 ∧ x = 0 := by
-  match Shell.instDecidableEq t 0 with
-  | .isTrue ht =>
-    refine ⟨ht, ?_⟩
-    rw [ht, mul_zero, mul_zero] at e
-    match F.mul_eq_zero e with
-    | .inl hx => exact hx
-    | .inr hx => exact hx
-  | .isFalse ht =>
-    match F.exists_inv ht with
-    | ⟨s, hs⟩ =>
-      exact absurd ⟨x * s, by
-        calc (x * s) * (x * s) = (x * x) * (s * s) := sq_mul x s
-          _ = ν * ((t * t) * (s * s)) := by rw [e, mul_assoc]
-          _ = ν * ((t * s) * (t * s)) := by rw [sq_mul t s]
-          _ = ν := by rw [hs, one_mul, mul_one]⟩ h
-
-/-- 3:B5 — the `(y, z)`-plane `y² + z²` is hyperbolic on every shell: `(1, i)` is null. -/
-theorem null_yz (F : Frame p κ g) : (1 : Shell p) * 1 + quarterTurn g κ * quarterTurn g κ = 0 := by
-  rw [F.quarter_turn_sq, one_mul, add_neg]
-
-/-- 3:B5 — for a square `ν = w²` the `(t, x)`-plane is hyperbolic too: `(1, w)` is null; the form is then
-`H ⊥ H`, Witt index two — the Euclidean type. -/
-theorem null_tx_of_square (w : Shell p) : Q2 (w * w) 1 w = 0 := by
-  unfold Q2; rw [mul_one, mul_one, add_neg]
-
-/-! ### The boosts -/
-
-theorem sq_add (u v : Shell p) : (u + v) * (u + v) = u * u + (u * v + u * v) + v * v := by
-  rw [right_distrib, left_distrib, left_distrib, mul_comm v u, ← add_assoc, add_assoc (u * u)]
-
-theorem regroup (P R S T X : Shell p) : P + (X + X) + R + (S + -(X + X) + T) = P + S + T + R := by
-  rw [add_add_add_comm, add_assoc P, add_left_comm (X + X), add_neg, add_zero, add_comm R T, ← add_assoc]
-
-/-- The norm is multiplicative: `N((a + b√ν)(c + d√ν)) = N(a + b√ν) N(c + d√ν)`, i.e.
-`(ac + νbd)² − ν(ad + bc)² = (a² − νb²)(c² − νd²)` — the identity behind every boost. -/
-theorem norm_mul (ν a b c d : Shell p) :
-    Q2 ν (a * d + b * c) (a * c + ν * (b * d)) = (a * a + -(ν * (b * b))) * (c * c + -(ν * (d * d))) := by
-  unfold Q2
-  have cross : (a * c) * (b * d) = (a * d) * (b * c) := by
-    rw [mul_assoc, mul_left_comm c, ← mul_assoc, mul_assoc a d, mul_left_comm d, ← mul_assoc a b (d * c), mul_comm d c]
-  have e1 : (a * c + ν * (b * d)) * (a * c + ν * (b * d)) =
-      (a * c) * (a * c) + (ν * ((a * c) * (b * d)) + ν * ((a * c) * (b * d))) + (ν * ν) * ((b * d) * (b * d)) := by
-    rw [sq_add, mul_left_comm (a * c) ν (b * d), sq_mul ν (b * d)]
-  have e2 : -(ν * ((a * d + b * c) * (a * d + b * c))) =
-      -(ν * ((a * d) * (a * d))) + -(ν * ((a * d) * (b * c)) + ν * ((a * d) * (b * c))) + -(ν * ((b * c) * (b * c))) := by
-    rw [sq_add, left_distrib, left_distrib, left_distrib, neg_add_rev, neg_add_rev]
-  rw [e1, e2, cross, regroup]
-  rw [right_distrib, left_distrib, left_distrib, ← mul_neg, ← neg_mul, neg_mul_neg, ← add_assoc,
-    ← sq_mul a c, mul_left_comm (a * a) ν (d * d), ← sq_mul a d, mul_assoc ν (b * b) (c * c), ← sq_mul b c,
-    mul_assoc ν (b * b) (ν * (d * d)), mul_left_comm (b * b) ν (d * d), ← mul_assoc ν ν, ← sq_mul b d]
-
-/-- The boost `Λ(γ, b)` of `(t, x)`: `t ↦ γ t + b x`, `x ↦ γ x + ν b t` (multiplication by `γ + b√ν` in `K`). -/
-def boostT (_ν γ b t x : Shell p) : Shell p := γ * t + b * x
-def boostX (ν γ b t x : Shell p) : Shell p := γ * x + ν * (b * t)
-
-/-- 3:C2 (the finite Lorentz boost) — with `γ² − νb² = 1`, `Λ(γ, b)` preserves `x² − ν t²` exactly, on every shell. -/
-theorem boost_preserves {ν γ b : Shell p} (h : γ * γ + -(ν * (b * b)) = 1) (t x : Shell p) :
-    Q2 ν (boostT ν γ b t x) (boostX ν γ b t x) = Q2 ν t x := by
-  unfold boostT boostX
-  have := norm_mul ν γ b x t
-  unfold Q2 at this ⊢
-  rw [this, h, one_mul]
-
-/-- 3:C2 — boosts compose as their parameters multiply in `K`:
-`Λ(γ₁, b₁) Λ(γ₂, b₂) = Λ(γ₁γ₂ + νb₁b₂, γ₁b₂ + b₁γ₂)`, the `t`-row. -/
-theorem boost_comp_t (ν γ1 b1 γ2 b2 t x : Shell p) :
-    boostT ν γ1 b1 (boostT ν γ2 b2 t x) (boostX ν γ2 b2 t x) =
-    boostT ν (γ1 * γ2 + ν * (b1 * b2)) (γ1 * b2 + b1 * γ2) t x := by
-  unfold boostT boostX
-  rw [left_distrib, left_distrib, right_distrib, right_distrib, ← mul_assoc γ1 γ2 t, ← mul_assoc γ1 b2 x,
-    ← mul_assoc b1 γ2 x, mul_left_comm b1 ν (b2 * t), ← mul_assoc b1 b2 t, ← mul_assoc ν (b1 * b2) t,
-    add_comm (b1 * γ2 * x) (ν * (b1 * b2) * t), add_add_add_comm]
-
-/-- 3:C2 — the composition, the `x`-row. -/
-theorem boost_comp_x (ν γ1 b1 γ2 b2 t x : Shell p) :
-    boostX ν γ1 b1 (boostT ν γ2 b2 t x) (boostX ν γ2 b2 t x) =
-    boostX ν (γ1 * γ2 + ν * (b1 * b2)) (γ1 * b2 + b1 * γ2) t x := by
-  unfold boostT boostX
-  rw [left_distrib, left_distrib, left_distrib, right_distrib, right_distrib, left_distrib,
-    ← mul_assoc γ1 γ2 x, mul_left_comm γ1 ν (b2 * t), ← mul_assoc γ1 b2 t, ← mul_assoc b1 γ2 t,
-    ← mul_assoc b1 b2 x, ← mul_assoc ν (b1 * b2) x,
-    add_comm (ν * (b1 * γ2 * t)) (ν * (b1 * b2) * x), add_add_add_comm]
-
-/-- 3:C2 — the norm-one elements form a group: `N(z₁z₂) = N(z₁)N(z₂) = 1`. -/
-theorem norm_one_mul {ν γ1 b1 γ2 b2 : Shell p} (h1 : γ1 * γ1 + -(ν * (b1 * b1)) = 1)
-    (h2 : γ2 * γ2 + -(ν * (b2 * b2)) = 1) :
-    (γ1 * γ2 + ν * (b1 * b2)) * (γ1 * γ2 + ν * (b1 * b2)) +
-      -(ν * ((γ1 * b2 + b1 * γ2) * (γ1 * b2 + b1 * γ2))) = 1 := by
-  have := norm_mul ν γ1 b1 γ2 b2
-  unfold Q2 at this
-  rw [this, h1, h2, one_mul]
-
-/-- 3:C3 — `γ ≠ 0` on every boost of the Lorentzian plane: `γ = 0` would give `ν b² = −1`, i.e.
-`ν = (i/b)²`, a square. -/
-theorem gamma_ne_zero (F : Frame p κ g) {ν γ b : Shell p} (hν : ¬IsSquare ν) (h : γ * γ + -(ν * (b * b)) = 1) :
-    γ ≠ 0 := fun hγ => by
-  rw [hγ, mul_zero, zero_add] at h
-  have hb : b ≠ 0 := fun hb => by
-    rw [hb, mul_zero, mul_zero, neg_zero] at h
-    exact F.one_ne_zero h.symm
-  have hνb : ν * (b * b) = -1 := by rw [← neg_neg (ν * (b * b)), h]
-  match F.exists_inv hb with
-  | ⟨s, hs⟩ =>
-    exact hν ⟨quarterTurn g κ * s, by
-      calc quarterTurn g κ * s * (quarterTurn g κ * s) = (quarterTurn g κ * quarterTurn g κ) * (s * s) := sq_mul _ _
-        _ = -1 * (s * s) := by rw [F.quarter_turn_sq]
-        _ = (ν * (b * b)) * (s * s) := by rw [hνb]
-        _ = ν * ((b * s) * (b * s)) := by rw [mul_assoc, sq_mul b s]
-        _ = ν := by rw [hs, one_mul, mul_one]⟩
-
-/-- 3:C3 — the velocity of the boost, `v = −νb/γ` (`vγ = −νb`), satisfies `γ² (ν − v²) = ν`: the finite form of
-`γ = 1/√(1 − β²)` with `β² = v²/ν`. -/
-theorem gamma_velocity {ν γ b v : Shell p} (hz : γ * γ + -(ν * (b * b)) = 1) (hv : v * γ = -(ν * b)) :
-    γ * γ * (ν + -(v * v)) = ν := by
-  calc γ * γ * (ν + -(v * v)) = γ * γ * ν + -((v * γ) * (v * γ)) := by
-        rw [left_distrib, ← mul_neg, sq_mul v γ, mul_comm (v * v)]
-    _ = ν * (γ * γ) + -(ν * (ν * (b * b))) := by
-        rw [hv, neg_mul_neg, sq_mul ν b, mul_assoc ν ν (b * b), mul_comm (γ * γ) ν]
-    _ = ν * (γ * γ + -(ν * (b * b))) := by rw [left_distrib, ← mul_neg]
-    _ = ν := by rw [hz, mul_one]
-
-/-- 3:C3 (the velocity addition law) — for boosts with velocities `v₁, v₂` (`v_i γ_i = −ν b_i`) and the composed
-boost's velocity `v₁₂`, `v₁₂ (ν + v₁v₂) = ν (v₁ + v₂)`: Einstein's law `v₁₂ = (v₁ + v₂)/(1 + v₁v₂/ν)`, exact. -/
-theorem velocity_addition (F : Frame p κ g) {ν γ1 b1 γ2 b2 v1 v2 v12 : Shell p} (hν : ¬IsSquare ν)
-    (hz1 : γ1 * γ1 + -(ν * (b1 * b1)) = 1) (hz2 : γ2 * γ2 + -(ν * (b2 * b2)) = 1)
-    (hv1 : v1 * γ1 = -(ν * b1)) (hv2 : v2 * γ2 = -(ν * b2))
-    (hv12 : v12 * (γ1 * γ2 + ν * (b1 * b2)) = -(ν * (γ1 * b2 + b1 * γ2))) :
-    v12 * (ν + v1 * v2) = ν * (v1 + v2) := by
-  have hγ : γ1 * γ2 ≠ 0 := F.mul_ne_zero (gamma_ne_zero F hν hz1) (gamma_ne_zero F hν hz2)
-  apply F.mul_left_cancel hγ
-  calc γ1 * γ2 * (v12 * (ν + v1 * v2)) = v12 * (γ1 * γ2 * ν + (v1 * γ1) * (v2 * γ2)) := by
-        rw [mul_left_comm (γ1 * γ2) v12, left_distrib, mul_mul_mul_comm γ1 γ2 v1 v2, mul_comm γ1 v1, mul_comm γ2 v2]
-    _ = v12 * (ν * (γ1 * γ2 + ν * (b1 * b2))) := by
-        rw [hv1, hv2, neg_mul_neg, mul_mul_mul_comm ν b1 ν b2, mul_assoc ν ν (b1 * b2), mul_comm (γ1 * γ2) ν,
-          ← left_distrib]
-    _ = ν * (v12 * (γ1 * γ2 + ν * (b1 * b2))) := mul_left_comm _ _ _
-    _ = -(ν * (ν * (γ1 * b2 + b1 * γ2))) := by rw [hv12, ← mul_neg]
-    _ = ν * (-(γ2 * (ν * b1)) + -(γ1 * (ν * b2))) := by
-        rw [mul_left_comm γ2 ν b1, mul_left_comm γ1 ν b2, ← neg_add_rev, ← left_distrib, mul_comm γ2 b1, ← mul_neg,
-          add_comm (b1 * γ2) (γ1 * b2)]
-    _ = ν * (γ2 * (v1 * γ1) + γ1 * (v2 * γ2)) := by rw [hv1, hv2, ← mul_neg, ← mul_neg]
-    _ = γ1 * γ2 * (ν * (v1 + v2)) := by
-        rw [mul_left_comm (γ1 * γ2) ν]
-        refine congrArg (ν * ·) ?_
-        rw [left_distrib, mul_comm v1 γ1, mul_comm v2 γ2, ← mul_assoc γ2 γ1 v1, mul_comm γ2 γ1, ← mul_assoc γ1 γ2 v2]
-
-/-! ### The counts, decided by the kernel -/
-
-/-- `Σ_{i<n} f i` on naturals. -/
-def sumTo (f : Nat → Nat) : Nat → Nat
-  | 0 => 0
-  | n + 1 => sumTo f n + f n
-
-/-- The number of `(t, x, y, z) ∈ [0, p)⁴` with `−ν t² + x² + y² + z² ≡ 0 (mod p)`. -/
-def nullCount (p ν : Nat) : Nat :=
-  sumTo (fun t => sumTo (fun x => sumTo (fun y => sumTo (fun z =>
-    if (x * x + y * y + z * z + (p - ν) * (t * t)) % p = 0 then 1 else 0) p) p) p) p
-
-/-- The number of `(γ, b) ∈ [0, p)²` with `γ² − ν b² ≡ 1 (mod p)`: the boosts. -/
-def normOneCount (p ν : Nat) : Nat :=
-  sumTo (fun γ => sumTo (fun b => if (γ * γ + (p - ν) * (b * b)) % p = 1 then 1 else 0) p) p
-
-/-- 3:B4, 3:D1 [value] — the null cone of `Q_2` on `𝔽₁₃` has `2041 = 13³ − 13² + 13` points: the elliptic type. -/
-theorem null13 : nullCount 13 2 = 2041 := by decide +kernel
-/-- 3:B4 [value] — the Euclidean form (`ν = 1`) on `𝔽₁₃` has `2353 = 13³ + 13² − 13` zeros: the hyperbolic type. -/
-theorem euclid13 : nullCount 13 1 = 2353 := by decide +kernel
-/-- 3:B4 [value] — `𝔽₅`, `ν = 2`: `105 = 5³ − 5² + 5` null points; `ν = 1`: `145`. -/
-theorem null5 : nullCount 5 2 = 105 ∧ nullCount 5 1 = 145 := by decide +kernel
-/-- 3:B4 [value] — `𝔽₁₇`, `ν = 3`: `4641 = 17³ − 17² + 17` null points. -/
-theorem null17 : nullCount 17 3 = 4641 := by decide +kernel
-/-- 3:C2, 3:D1 [value] — the boosts number `p + 1`: `6`, `14`, `18`, `30` on `𝔽₅`, `𝔽₁₃`, `𝔽₁₇`, `𝔽₂₉`. -/
-theorem normOne_values : normOneCount 5 2 = 6 ∧ normOneCount 13 2 = 14 ∧ normOneCount 17 3 = 18 ∧
-    normOneCount 29 2 = 30 := by decide +kernel
 
 /-! ## Old names (ledger migration, task LM17): the declarations moved to the themes, each under its old name -/
 section aliases
@@ -5908,25 +6140,25 @@ namespace FRC.Causality
 -- Ledger predicates of 3-causality (generated by make_predicates.py from docs/3-causality/3-causality-ledger.json; edit the ledger, not this section)
 /-- 3:B2 (p03006) — Nonexistence of a causal square root: no $c\in\Fp$ has $c^{2}=\nu$ for $\nu\in N$; for $c\in\Fpx$ every coefficient of $-c^{2}t^{2}+x^{2}+y^{2}+z^{2}$ is a square ($-1=i^{2}$), the form Euclidean with $\p^{3}+\p^{2}-\p$ zeros; $c=0$ gives a degenerate form. -/
 theorem p03006 : (∀ {p : Nat} [FRC.Pos p] {ν : FRC.Shell p}, ¬FRC.Shell.Frame.IsSquare ν → ∀ (c : FRC.Shell p), c * c ≠ ν) ∧ ∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → ∀ (c : FRC.Shell p), FRC.Shell.Frame.IsSquare (-(c * c)) :=
-  And.intro @FRC.Shell.Frame.no_causal_root (@FRC.Shell.Frame.neg_sq_is_square)
+  @FRC.Ledger.p03006
 /-- 3:B3 (p03007) — Square-class absorption: if $a_{i}/a_{0}\in S$ for all $i$ then $Q\simeq a_{0}\sum Y_{i}^{2}$ by $Y_{i}=w_{i}X_{i}$, $w_{i}^{2}=a_{i}/a_{0}$; no root of $a_{0}$ is needed, and none exists for $a_{0}\in N$ ($-a_{0}$ is a nonsquare with it). -/
 theorem p03007 : ∀ {p : Nat} [FRC.Pos p] (a0 a1 a2 a3 w1 w2 w3 x0 x1 x2 x3 : FRC.Shell p), w1 * w1 * a0 = a1 → w2 * w2 * a0 = a2 → w3 * w3 * a0 = a3 → a0 * (x0 * x0) + a1 * (x1 * x1) + a2 * (x2 * x2) + a3 * (x3 * x3) = a0 * (x0 * x0 + w1 * x1 * (w1 * x1) + w2 * x2 * (w2 * x2) + w3 * x3 * (w3 * x3)) :=
-  @FRC.Shell.Frame.absorb
+  @FRC.Ledger.p03007
 /-- 3:B4 (p03008) — The dichotomy lives on the shell: $\operatorname{disc}Q_{\nu}\equiv\nu$ (as $-1\in S$); for $\nu\in N$ the form is elliptic, Witt index one, with $\p^{3}-\p^{2}+\p$ null points; for $\nu\in S$ hyperbolic, Witt index two, $\p^{3}+\p^{2}-\p$; every $\nu$ on $\p\le41$ ($2041$ and $2353$ at $13$; 8:B7). -/
 theorem p03008 : FRC.Shell.Frame.nullCount (13 : Nat) (2 : Nat) = (2041 : Nat) ∧ FRC.Shell.Frame.nullCount (13 : Nat) (1 : Nat) = (2353 : Nat) ∧ (FRC.Shell.Frame.nullCount (5 : Nat) (2 : Nat) = (105 : Nat) ∧ FRC.Shell.Frame.nullCount (5 : Nat) (1 : Nat) = (145 : Nat)) ∧ FRC.Shell.Frame.nullCount (17 : Nat) (3 : Nat) = (4641 : Nat) :=
-  And.intro @FRC.Shell.Frame.null13 (And.intro @FRC.Shell.Frame.euclid13 (And.intro @FRC.Shell.Frame.null5 (@FRC.Shell.Frame.null17)))
+  @FRC.Ledger.p03008
 /-- 3:B5 (p03009) — The Witt decomposition: for $\nu\in N$ the plane $x^{2}-\nu t^{2}$ (the norm of $\Fpq$) is anisotropic and $y^{2}+z^{2}=(y+iz)(y-iz)$ hyperbolic, so $Q_{\nu}=H\perp\langle1,-\nu\rangle$, index one; for $\nu=w^{2}$ the $(t,x)$-plane is hyperbolic too, $H\perp H$. Over $\Fpq$, $\nu=c^{2}$ and $Q_{\nu}\simeq\sum X_{i}^{2}$: hyperbolic ($16\,225$ zeros at $q=25$); the extension dissolves the split. -/
 theorem p03009 : (∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → ∀ {ν : FRC.Shell p}, ¬FRC.Shell.Frame.IsSquare ν → ∀ {t x : FRC.Shell p}, x * x = ν * (t * t) → t = (0 : FRC.Shell p) ∧ x = (0 : FRC.Shell p)) ∧ (∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → (1 : FRC.Shell p) * (1 : FRC.Shell p) + FRC.Shell.Frame.quarterTurn g κ * FRC.Shell.Frame.quarterTurn g κ = (0 : FRC.Shell p)) ∧ ∀ {p : Nat} [FRC.Pos p] (w : FRC.Shell p), FRC.Shell.Frame.Q2 (w * w) (1 : FRC.Shell p) w = (0 : FRC.Shell p) :=
-  And.intro @FRC.Shell.Frame.aniso_tx (And.intro @FRC.Shell.Frame.null_yz (@FRC.Shell.Frame.null_tx_of_square))
+  @FRC.Ledger.p03009
 /-- 3:C2 (p03013) — $\Lambda(\gamma,b)$ preserves $-\nu t^{2}+x^{2}$ exactly and $\Lambda(z_{1})\Lambda(z_{2})=\Lambda(z_{1}z_{2})$: the boosts are the norm-one cycle $N^{1}\simeq C_{\p+1}$, the non-split torus, and exhaust $SO(Q_{\nu},\Fp)$ in dimension $1{+}1$ ($6$, $14$, $18$ at $5$, $13$, $17$); with $\nu\in S$ the same construction is the split torus $C_{\p-1}$ --- the two tori are the two signatures (00:C3). -/
 theorem p03013 : (∀ {p : Nat} [FRC.Pos p] {ν γ b : FRC.Shell p}, γ * γ + -(ν * (b * b)) = (1 : FRC.Shell p) → ∀ (t x : FRC.Shell p), FRC.Shell.Frame.Q2 ν (FRC.Shell.Frame.boostT ν γ b t x) (FRC.Shell.Frame.boostX ν γ b t x) = FRC.Shell.Frame.Q2 ν t x) ∧ (∀ {p : Nat} [FRC.Pos p] (ν γ1 b1 γ2 b2 t x : FRC.Shell p), FRC.Shell.Frame.boostT ν γ1 b1 (FRC.Shell.Frame.boostT ν γ2 b2 t x) (FRC.Shell.Frame.boostX ν γ2 b2 t x) = FRC.Shell.Frame.boostT ν (γ1 * γ2 + ν * (b1 * b2)) (γ1 * b2 + b1 * γ2) t x) ∧ (∀ {p : Nat} [FRC.Pos p] (ν γ1 b1 γ2 b2 t x : FRC.Shell p), FRC.Shell.Frame.boostX ν γ1 b1 (FRC.Shell.Frame.boostT ν γ2 b2 t x) (FRC.Shell.Frame.boostX ν γ2 b2 t x) = FRC.Shell.Frame.boostX ν (γ1 * γ2 + ν * (b1 * b2)) (γ1 * b2 + b1 * γ2) t x) ∧ (∀ {p : Nat} [FRC.Pos p] {ν γ1 b1 γ2 b2 : FRC.Shell p}, γ1 * γ1 + -(ν * (b1 * b1)) = (1 : FRC.Shell p) → γ2 * γ2 + -(ν * (b2 * b2)) = (1 : FRC.Shell p) → (γ1 * γ2 + ν * (b1 * b2)) * (γ1 * γ2 + ν * (b1 * b2)) + -(ν * ((γ1 * b2 + b1 * γ2) * (γ1 * b2 + b1 * γ2))) = (1 : FRC.Shell p)) ∧ FRC.Shell.Frame.normOneCount (5 : Nat) (2 : Nat) = (6 : Nat) ∧ FRC.Shell.Frame.normOneCount (13 : Nat) (2 : Nat) = (14 : Nat) ∧ FRC.Shell.Frame.normOneCount (17 : Nat) (3 : Nat) = (18 : Nat) ∧ FRC.Shell.Frame.normOneCount (29 : Nat) (2 : Nat) = (30 : Nat) :=
-  And.intro @FRC.Shell.Frame.boost_preserves (And.intro @FRC.Shell.Frame.boost_comp_t (And.intro @FRC.Shell.Frame.boost_comp_x (And.intro @FRC.Shell.Frame.norm_one_mul (@FRC.Shell.Frame.normOne_values))))
+  @FRC.Ledger.p03013
 /-- 3:C3 (p03014) — Velocity: $\gamma\neq0$ on every boost; $v=-\nu b/\gamma\in\Fp$; $\gamma^{2}(\nu-v^{2})=\nu$, the finite $\gamma=1/\sqrt{1-\beta^{2}}$ with $\beta^{2}=v^{2}/\nu$ ($\beta$ itself is no shell quantity, 8:B8); Einstein's law $v_{12}=(v_{1}+v_{2})/(1+v_{1}v_{2}/\nu)$ exact, the denominator never zero; $v$ is two-to-one on $N^{1}$. -/
 theorem p03014 : (∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → ∀ {ν γ b : FRC.Shell p}, ¬FRC.Shell.Frame.IsSquare ν → γ * γ + -(ν * (b * b)) = (1 : FRC.Shell p) → γ ≠ (0 : FRC.Shell p)) ∧ (∀ {p : Nat} [FRC.Pos p] {ν γ b v : FRC.Shell p}, γ * γ + -(ν * (b * b)) = (1 : FRC.Shell p) → v * γ = -(ν * b) → γ * γ * (ν + -(v * v)) = ν) ∧ ∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → ∀ {ν γ1 b1 γ2 b2 v1 v2 v12 : FRC.Shell p}, ¬FRC.Shell.Frame.IsSquare ν → γ1 * γ1 + -(ν * (b1 * b1)) = (1 : FRC.Shell p) → γ2 * γ2 + -(ν * (b2 * b2)) = (1 : FRC.Shell p) → v1 * γ1 = -(ν * b1) → v2 * γ2 = -(ν * b2) → v12 * (γ1 * γ2 + ν * (b1 * b2)) = -(ν * (γ1 * b2 + b1 * γ2)) → v12 * (ν + v1 * v2) = ν * (v1 + v2) :=
-  And.intro @FRC.Shell.Frame.gamma_ne_zero (And.intro @FRC.Shell.Frame.gamma_velocity (@FRC.Shell.Frame.velocity_addition))
+  @FRC.Ledger.p03014
 /-- 3:D1 (p03017) — $\F_{13}$ [value]: $S=\{1,3,4,9,10,12\}$, $N=\{2,5,6,7,8,11\}$; $\nu=2=\g$; $X^{2}-2$ irreducible, $c=\sqrt2\in K\setminus\F_{13}$; $2041$ null points of $Q_{2}$ on the shell, $4\,855\,201$ over $K$; $14$ boosts $(\gamma,b)$ with the $7$ velocities $\{0,2,3,6,7,10,11\}$; $\Lambda(u)$ at $u=2$ has $a=-5/(2c)\notin\F_{13}$. -/
 theorem p03017 : FRC.Shell.Frame.nullCount (13 : Nat) (2 : Nat) = (2041 : Nat) ∧ FRC.Shell.Frame.normOneCount (5 : Nat) (2 : Nat) = (6 : Nat) ∧ FRC.Shell.Frame.normOneCount (13 : Nat) (2 : Nat) = (14 : Nat) ∧ FRC.Shell.Frame.normOneCount (17 : Nat) (3 : Nat) = (18 : Nat) ∧ FRC.Shell.Frame.normOneCount (29 : Nat) (2 : Nat) = (30 : Nat) :=
-  And.intro @FRC.Shell.Frame.null13 (@FRC.Shell.Frame.normOne_values)
+  @FRC.Ledger.p03017
 -- end ledger predicates
 end FRC.Causality
 
@@ -6144,7 +6376,7 @@ theorem p04014 : ∀ {Z U Xm Xn Wm Wn : Type} {gm : Z → Xm} {gn : Z → Xn} {E
   @FRC.Representation.consistency
 set_option linter.defProp false in
 /-- 4:C5 (p04015) — Charts of the shell itself: for $\mathcal Z=\Fp$ the charts respecting the arithmetic are the frames $x\mapsto a+bx$ (1:C2), $\p(\p-1)$ of them, and $\Psi_{m\to n}$ between two frames is the one affine map carrying the first to the second (simply transitive) --- the corpus's coordinate systems are the paper's charts. -/
-def p04015 := And.intro @FRC.Shell.Frame.Affine.simply_transitive (@FRC.Shell.Frame.frame_count)
+def p04015 := @FRC.Ledger.p04015
 /-- 4:E1 (p04018) — The hypersphere [chart]: a Euclidean chart $\mathrm{Emb}:\mathcal Z\to\R^{d}$ equivariant for a symmetry acting transitively on $\mathcal Z$ and orthogonally on $\R^{d}$ has constant norm --- $\mathrm{Emb}(\mathcal Z)\subset S^{d-1}$. The shell's character chart $z\mapsto(\cos2\pi kz/\p,\sin2\pi kz/\p)_{k}$ is such a chart under translation, $\|\mathrm{Emb}(z)\|^{2}=\p-1$; in the shell's arithmetic $\sum_{k}\g^{kz}\g^{k(n-z)}=n$ for every $z$. -/
 theorem p04018 : (∀ {p : Nat} [FRC.Pos p] (g : FRC.Shell p) (z a k : Nat), FRC.Representation.Shell.charChart g (z + a) k = g ^ (k * a) * FRC.Representation.Shell.charChart g z k) ∧ ∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → ∀ (z : Nat), z ≤ p - (1 : Nat) → FRC.Shell.sumRange (fun k => FRC.Representation.Shell.charChart g z k * FRC.Representation.Shell.charChart g (p - (1 : Nat) - z) k) (p - (1 : Nat)) = FRC.Shell.ofNat (p - (1 : Nat)) :=
   And.intro @FRC.Representation.Shell.charChart_shift (@FRC.Representation.Shell.charChart_norm)
@@ -6154,6 +6386,53 @@ theorem p04020 : (∀ (a c b d : Nat), (2 : Nat) ^ a * (3 : Nat) ^ b = (2 : Nat)
 -- end ledger predicates
 
 end FRC.Representation
+
+/-! inlined: FrcCore/Keys/Logic.lean -/
+
+/-!
+# FrcCore.Keys.Logic — the keyed theorems of the logic theme (ledger migration, task LM19)
+
+One declaration per key, `FRC.Ledger.p<key>`, generated by `make_keys.py` from the ledgers' Lean bindings: the theorem
+that every row carrying the key asserts, proved from the themes alone. The paper's module keeps its declaration
+`FRC.<Module>.p<key>` as an alias. Every declaration has no axioms (`check_core_axioms.py`).
+-/
+
+namespace FRC.Ledger
+
+-- Keys of the logic theme (generated by make_keys.py from the ledgers' Lean bindings; edit the ledgers, not this file)
+/-- p05013 — 5:C2. No internal mirror: fewer than $s^{K+1}$ records exist, so an agent with $s^{K+1}<N$ holds no injective representation of the domain of $W_N$ --- a proper part cannot mirror the whole (pigeonhole). -/
+theorem p05013 : (∀ (s : Nat), (2 : Nat) ≤ s → ∀ (K : Nat), FRC.Logic.records s K < s ^ (K + (1 : Nat))) ∧ ∀ {N R : Nat}, R < N → ∀ (f : Nat → Nat), (∀ (i : Nat), i < N → f i < R) → (∀ (i j : Nat), i < N → j < N → f i = f j → i = j) → False :=
+  And.intro @FRC.Logic.records_lt (@FRC.Logic.no_mirror)
+/-- p05016 — 5:C5. Horizon separation: halting for machines of bounded space $K$ is decided from above within $|Q|\,K\,s^{K}$ steps (a configuration repeats) and never from within (diagonalisation); Turing's theorem is an external non-existence theorem, classified with Cantor's, not an instance of the bundle. -/
+theorem p05016 : (∀ (f : Nat → Nat) (n : Nat), (∀ (y : Nat), y < n → f y < n) → ∀ (x : Nat), x < n → ∃ i j, i < j ∧ j ≤ n ∧ FRC.Logic.iter f x i = FRC.Logic.iter f x j) ∧ ∀ (f : Nat → Nat) (n : Nat), (∀ (y : Nat), y < n → f y < n) → ∀ (h x : Nat), x < n → ((∃ k, FRC.Logic.iter f x k = h) ↔ ∃ k, k ≤ n ∧ FRC.Logic.iter f x k = h) :=
+  And.intro @FRC.Logic.repeat_below (@FRC.Logic.halts_iff_halts_below)
+/-- p05019 — 5:D3. Diagonal normal form: $\{$Eff, Cns, Cmp, IR$\}$ inconsistent (B2), Tarski a variant with the truth predicate for Cmp; the diagonal is a theorem when external --- Cantor's theorem, $n<2^{n}$ on every frame, uncountability, halting --- and a paradox engine only over an internalised registry with completeness demanded. -/
+theorem p05019 : ∀ (n : Nat), n < (2 : Nat) ^ n :=
+  @FRC.Logic.cantor_finite
+/-- p05027 — 5:E1. Global choice on a finite universe: with a canonical order, $\operatorname{ch}(A)=\min A$ is a uniform pointwise choice rule; over a fixed finite base AC is a definable theorem; finite products are nonempty without it. -/
+theorem p05027 : (∀ (P : Nat → Bool) (n x : Nat), FRC.Logic.leastBelow P n = some x → x < n ∧ P x = true ∧ ∀ (y : Nat), y < x → P y = false) ∧ ∀ (P : Nat → Bool) (n x : Nat), x < n → P x = true → ∃ y, FRC.Logic.leastBelow P n = some y :=
+  And.intro @FRC.Logic.leastBelow_spec (@FRC.Logic.leastBelow_some)
+/-- p05028 — 5:E2. Periodic choice: an equality-periodic family $A_{i+N}=A_i$ has the choice $f(i)=\operatorname{ch}(A_i)$ of the same period; group-periodic families as equivariant surjections $\pi:A\to I$ with equivariant sections. -/
+theorem p05028 : ∀ {P Q : Nat → Bool} {n : Nat}, (∀ (x : Nat), x < n → P x = Q x) → FRC.Logic.leastBelow P n = FRC.Logic.leastBelow Q n :=
+  @FRC.Logic.leastBelow_congr
+/-- p05031 — 5:E5. Periodic K\H{o}nig: in a finite digraph with out-degree $\ge1$ the greedy walk repeats a vertex within $|D|+1$ steps and is eventually periodic with period $\le|D|$ --- the pigeonhole on an iteration over finitely many states. -/
+theorem p05031 : (∀ (f : Nat → Nat) (n : Nat), (∀ (y : Nat), y < n → f y < n) → ∀ (x : Nat), x < n → ∃ i j, i < j ∧ j ≤ n ∧ FRC.Logic.iter f x i = FRC.Logic.iter f x j) ∧ ∀ (f : Nat → Nat) (n : Nat), (∀ (y : Nat), y < n → f y < n) → ∀ (x : Nat), x < n → ∃ i p, (0 : Nat) < p ∧ p ≤ n ∧ ∀ (k : Nat), FRC.Logic.iter f x (i + k + p) = FRC.Logic.iter f x (i + k) :=
+  And.intro @FRC.Logic.repeat_below (@FRC.Logic.eventually_periodic)
+/-- p25010 — 25:C1. No finite structure interprets $\mathsf{Q}$: a model of $\mathsf{Q}$ has an injective successor with $0$ outside its range, and on a finite set an injective map is onto. -/
+theorem p25010 : (∀ (n : Nat) (S : Nat → Nat), (∀ (x : Nat), x < n → S x < n) → (∀ (x y : Nat), x < n → y < n → S x = S y → x = y) → ∀ (z : Nat), z < n → ∃ x, x < n ∧ S x = z) ∧ ∀ (n : Nat) (S : Nat → Nat), (∀ (x : Nat), x < n → S x < n) → (∀ (x y : Nat), x < n → y < n → S x = S y → x = y) → ∀ (z : Nat), z < n → ¬∀ (x : Nat), x < n → S x ≠ z :=
+  And.intro @FRC.Logic.inj_onto (@FRC.Logic.no_finite_successor)
+/-- p25014 — 25:C5. Tarski scoped: the $m+1$ sentences $\varphi,\neg\varphi,\dots,\neg^{m}\varphi$ outnumber the $m$ elements of $\M$, so every numbering of the sentences by elements of $\M$ gives two of them the same number. Truth in $\M$ is defined externally by a finite table with the evaluation procedure of C2. What fails is the internalisation of truth. -/
+theorem p25014 : ∀ (m : Nat) (g : Nat → Nat), (∀ (i : Nat), i < m + (1 : Nat) → g i < m) → ¬∀ (i j : Nat), i < m + (1 : Nat) → j < m + (1 : Nat) → g i = g j → i = j :=
+  @FRC.Logic.sentences_outnumber
+/-- p25015 — 25:D1. Relational diagonal: an agent of storage capacity $K$ with $a^{K}<m$ has no injective encoding of the elements of $\M$ into its storage states. Every internal representation identifies distinct elements. A fortiori the agent holds no faithful model of $\M$ that also represents the model's own encoding map. -/
+theorem p25015 : ∀ {m R : Nat}, R < m → ∀ (ρ : Nat → Nat), (∀ (i : Nat), i < m → ρ i < R) → ¬∀ (i j : Nat), i < m → j < m → ρ i = ρ j → i = j :=
+  @FRC.Logic.part_collides
+/-- p25048 — 25:F4. Density: $m$ has $d$ base-$a$ digits. An injective coding of length-$n$ strings by $k$-tuples, $k\ge1$, needs $m^{k}\ge a^{n}$, so $n<dk$. In F2's $\delta(u)=\exists v\,(\mathrm{Diag}(u,v)\wedge\theta(v))$ let $v$ have $k$ coordinates and $u$ have $k_{1}$. Each coordinate of $v$ is named three times, each of $u$ once. So $\lvert\delta\rvert\ge2c(k)+c(k+k_{1})$, and $\lambda=\delta(\ulcorner\delta\urcorner)$ has $\lvert\lambda\rvert\ge3c(k)+k_{1}$, $c(j)$ the total length of the $j$ shortest names. -/
+theorem p25048 : (∀ {a n m k : Nat} (c : Nat → Nat), (∀ (i : Nat), i < a ^ n → c i < m ^ k) → (∀ (i j : Nat), i < a ^ n → j < a ^ n → c i = c j → i = j) → a ^ n ≤ m ^ k) ∧ ∀ {a n m k d : Nat}, (0 : Nat) < a → m < a ^ d → a ^ n ≤ m ^ (k + (1 : Nat)) → n < d * (k + (1 : Nat)) :=
+  And.intro @FRC.Logic.dense_coding (@FRC.Logic.digit_bound)
+-- end keys
+
+end FRC.Ledger
 
 /-! inlined: FrcCore/Reductio.lean -/
 
@@ -6385,25 +6664,25 @@ theorem p05010 : (∀ (N : Nat) (φ : FRC.Reductio.Form) (env : Nat → Nat), FR
   And.intro @FRC.Reductio.stable (And.intro @FRC.Reductio.evalT_frame (@FRC.Reductio.goldbach_ten_stable))
 /-- 5:C2 (p05013) — No internal mirror: fewer than $s^{K+1}$ records exist, so an agent with $s^{K+1}<N$ holds no injective representation of the domain of $W_N$ --- a proper part cannot mirror the whole (pigeonhole). -/
 theorem p05013 : (∀ (s : Nat), (2 : Nat) ≤ s → ∀ (K : Nat), FRC.Reductio.records s K < s ^ (K + (1 : Nat))) ∧ ∀ {N R : Nat}, R < N → ∀ (f : Nat → Nat), (∀ (i : Nat), i < N → f i < R) → (∀ (i j : Nat), i < N → j < N → f i = f j → i = j) → False :=
-  And.intro @FRC.Reductio.records_lt (@FRC.Reductio.no_mirror)
+  @FRC.Ledger.p05013
 /-- 5:C5 (p05016) — Horizon separation: halting for machines of bounded space $K$ is decided from above within $|Q|\,K\,s^{K}$ steps (a configuration repeats) and never from within (diagonalisation); Turing's theorem is an external non-existence theorem, classified with Cantor's, not an instance of the bundle. -/
 theorem p05016 : (∀ (f : Nat → Nat) (n : Nat), (∀ (y : Nat), y < n → f y < n) → ∀ (x : Nat), x < n → ∃ i j, i < j ∧ j ≤ n ∧ FRC.Reductio.iter f x i = FRC.Reductio.iter f x j) ∧ ∀ (f : Nat → Nat) (n : Nat), (∀ (y : Nat), y < n → f y < n) → ∀ (h x : Nat), x < n → ((∃ k, FRC.Reductio.iter f x k = h) ↔ ∃ k, k ≤ n ∧ FRC.Reductio.iter f x k = h) :=
-  And.intro @FRC.Reductio.repeat_below (@FRC.Reductio.halts_iff_halts_below)
+  @FRC.Ledger.p05016
 /-- 5:D3 (p05019) — Diagonal normal form: $\{$Eff, Cns, Cmp, IR$\}$ inconsistent (B2), Tarski a variant with the truth predicate for Cmp; the diagonal is a theorem when external --- Cantor's theorem, $n<2^{n}$ on every frame, uncountability, halting --- and a paradox engine only over an internalised registry with completeness demanded. -/
 theorem p05019 : ∀ (n : Nat), n < (2 : Nat) ^ n :=
-  @FRC.Reductio.cantor_finite
+  @FRC.Ledger.p05019
 /-- 5:E1 (p05027) — Global choice on a finite universe: with a canonical order, $\operatorname{ch}(A)=\min A$ is a uniform pointwise choice rule; over a fixed finite base AC is a definable theorem; finite products are nonempty without it. -/
 theorem p05027 : (∀ (P : Nat → Bool) (n x : Nat), FRC.Reductio.leastBelow P n = some x → x < n ∧ P x = true ∧ ∀ (y : Nat), y < x → P y = false) ∧ ∀ (P : Nat → Bool) (n x : Nat), x < n → P x = true → ∃ y, FRC.Reductio.leastBelow P n = some y :=
-  And.intro @FRC.Reductio.leastBelow_spec (@FRC.Reductio.leastBelow_some)
+  @FRC.Ledger.p05027
 /-- 5:E2 (p05028) — Periodic choice: an equality-periodic family $A_{i+N}=A_i$ has the choice $f(i)=\operatorname{ch}(A_i)$ of the same period; group-periodic families as equivariant surjections $\pi:A\to I$ with equivariant sections. -/
 theorem p05028 : ∀ {P Q : Nat → Bool} {n : Nat}, (∀ (x : Nat), x < n → P x = Q x) → FRC.Reductio.leastBelow P n = FRC.Reductio.leastBelow Q n :=
-  @FRC.Reductio.leastBelow_congr
+  @FRC.Ledger.p05028
 /-- 5:E4 (p05030) — The definable basis: every subspace of a finite vector space has the greedy $\min$-basis, one definable function on all subspaces; the equivariant obstruction --- $\Z/2$ acting by $v\mapsto-v$ on the line over $\F_5$ fixes no basis ($-v\neq v$), over $\F_2$ it does: arithmetic, not formal. -/
 theorem p05030 : (-1 : FRC.Shell (5 : Nat)) ≠ (1 : FRC.Shell (5 : Nat)) ∧ (-2 : FRC.Shell (5 : Nat)) ≠ (2 : FRC.Shell (5 : Nat)) ∧ (-3 : FRC.Shell (5 : Nat)) ≠ (3 : FRC.Shell (5 : Nat)) ∧ (-4 : FRC.Shell (5 : Nat)) ≠ (4 : FRC.Shell (5 : Nat)) ∧ (-1 : FRC.Shell (2 : Nat)) = (1 : FRC.Shell (2 : Nat)) :=
   @FRC.Reductio.obstruction_five
 /-- 5:E5 (p05031) — Periodic K\H{o}nig: in a finite digraph with out-degree $\ge1$ the greedy walk repeats a vertex within $|D|+1$ steps and is eventually periodic with period $\le|D|$ --- the pigeonhole on an iteration over finitely many states. -/
 theorem p05031 : (∀ (f : Nat → Nat) (n : Nat), (∀ (y : Nat), y < n → f y < n) → ∀ (x : Nat), x < n → ∃ i j, i < j ∧ j ≤ n ∧ FRC.Reductio.iter f x i = FRC.Reductio.iter f x j) ∧ ∀ (f : Nat → Nat) (n : Nat), (∀ (y : Nat), y < n → f y < n) → ∀ (x : Nat), x < n → ∃ i p, (0 : Nat) < p ∧ p ≤ n ∧ ∀ (k : Nat), FRC.Reductio.iter f x (i + k + p) = FRC.Reductio.iter f x (i + k) :=
-  And.intro @FRC.Reductio.repeat_below (@FRC.Reductio.eventually_periodic)
+  @FRC.Ledger.p05031
 -- end ledger predicates
 
 end FRC.Reductio
@@ -6953,13 +7232,13 @@ end aliases
 -- Ledger predicates of 25-godel (generated by make_predicates.py from docs/25-godel/25-godel-ledger.json; edit the ledger, not this section)
 /-- 25:C1 (p25010) — No finite structure interprets $\mathsf{Q}$: a model of $\mathsf{Q}$ has an injective successor with $0$ outside its range, and on a finite set an injective map is onto. -/
 theorem p25010 : (∀ (n : Nat) (S : Nat → Nat), (∀ (x : Nat), x < n → S x < n) → (∀ (x y : Nat), x < n → y < n → S x = S y → x = y) → ∀ (z : Nat), z < n → ∃ x, x < n ∧ S x = z) ∧ ∀ (n : Nat) (S : Nat → Nat), (∀ (x : Nat), x < n → S x < n) → (∀ (x y : Nat), x < n → y < n → S x = S y → x = y) → ∀ (z : Nat), z < n → ¬∀ (x : Nat), x < n → S x ≠ z :=
-  And.intro @FRC.Godel.inj_onto (@FRC.Godel.no_finite_successor)
+  @FRC.Ledger.p25010
 /-- 25:C5 (p25014) — Tarski scoped: the $m+1$ sentences $\varphi,\neg\varphi,\dots,\neg^{m}\varphi$ outnumber the $m$ elements of $\M$, so every numbering of the sentences by elements of $\M$ gives two of them the same number. Truth in $\M$ is defined externally by a finite table with the evaluation procedure of C2. What fails is the internalisation of truth. -/
 theorem p25014 : ∀ (m : Nat) (g : Nat → Nat), (∀ (i : Nat), i < m + (1 : Nat) → g i < m) → ¬∀ (i j : Nat), i < m + (1 : Nat) → j < m + (1 : Nat) → g i = g j → i = j :=
-  @FRC.Godel.sentences_outnumber
+  @FRC.Ledger.p25014
 /-- 25:D1 (p25015) — Relational diagonal: an agent of storage capacity $K$ with $a^{K}<m$ has no injective encoding of the elements of $\M$ into its storage states. Every internal representation identifies distinct elements. A fortiori the agent holds no faithful model of $\M$ that also represents the model's own encoding map. -/
 theorem p25015 : ∀ {m R : Nat}, R < m → ∀ (ρ : Nat → Nat), (∀ (i : Nat), i < m → ρ i < R) → ¬∀ (i j : Nat), i < m → j < m → ρ i = ρ j → i = j :=
-  @FRC.Godel.part_collides
+  @FRC.Ledger.p25015
 /-- 25:D4 (p25018) — Wrap, no internal trace: the steps that verify a certificate succeed in a finite $\M'$ built on its cited table entries, $\lvert \M'\rvert\le(r+1)\,p_{\D}(B)$, $r$ the largest arity. Under locally sound rules its end sentence is true there. An axiom asserted on syntactic recognition transports as a record, not as a truth. If $(r+1)\,p_{\D}(B)\le a^{K}$, no certificate marks a reading exact. -/
 theorem p25018 : (∀ (u : Nat) (f g : Nat → Nat → Nat) (t : FRC.Godel.Tm), FRC.Godel.Agree u f g t → FRC.Godel.val u g t = FRC.Godel.val u f t) ∧ (∀ (u : Nat) (f g : Nat → Nat → Nat) (s t : FRC.Godel.Tm), FRC.Godel.Agree u f g s → FRC.Godel.Agree u f g t → FRC.Godel.val u f s = FRC.Godel.val u f t → FRC.Godel.val u g s = FRC.Godel.val u g t) ∧ ∀ (t : FRC.Godel.Tm), FRC.Godel.lookups t + (1 : Nat) = FRC.Godel.leaves t :=
   And.intro @FRC.Godel.trace_transport (And.intro @FRC.Godel.wrap_equation (@FRC.Godel.lookups_succ))
@@ -6980,7 +7259,7 @@ theorem p25025 : (∀ (φ : FRC.Godel.Fm) (j N : Nat), (∀ (i : Nat), i < N →
   And.intro @FRC.Godel.arity_lt_size (And.intro @FRC.Godel.mention_cost_lt (@FRC.Godel.no_self_reading))
 /-- 25:F4 (p25048) — Density: $m$ has $d$ base-$a$ digits. An injective coding of length-$n$ strings by $k$-tuples, $k\ge1$, needs $m^{k}\ge a^{n}$, so $n<dk$. In F2's $\delta(u)=\exists v\,(\mathrm{Diag}(u,v)\wedge\theta(v))$ let $v$ have $k$ coordinates and $u$ have $k_{1}$. Each coordinate of $v$ is named three times, each of $u$ once. So $\lvert\delta\rvert\ge2c(k)+c(k+k_{1})$, and $\lambda=\delta(\ulcorner\delta\urcorner)$ has $\lvert\lambda\rvert\ge3c(k)+k_{1}$, $c(j)$ the total length of the $j$ shortest names. -/
 theorem p25048 : (∀ {a n m k : Nat} (c : Nat → Nat), (∀ (i : Nat), i < a ^ n → c i < m ^ k) → (∀ (i j : Nat), i < a ^ n → j < a ^ n → c i = c j → i = j) → a ^ n ≤ m ^ k) ∧ ∀ {a n m k d : Nat}, (0 : Nat) < a → m < a ^ d → a ^ n ≤ m ^ (k + (1 : Nat)) → n < d * (k + (1 : Nat)) :=
-  And.intro @FRC.Godel.dense_coding (@FRC.Godel.digit_bound)
+  @FRC.Ledger.p25048
 /-- 25:G4 (p25031) — Prefix simulation: $Q_{1}z_{1}\cdots Q_{d}z_{d}\,\psi(\bar z)$ holds in $\M$ exactly when $\forall y_{1}\exists x_{1}\cdots\forall y_{d}\exists x_{d}\,[\bigwedge_{i:Q_{i}=\forall}x_{i}=y_{i}\wedge\psi(\bar x)]$ does: one uniform prefix simulates every coded quantifier pattern. -/
 theorem p25031 : (∀ (m : Nat), (0 : Nat) < m → ∀ (ψ : List Nat → Bool) (pat : List Bool) (acc : List Nat) (c : Bool), FRC.Godel.paired m ψ pat acc c = (c && FRC.Godel.direct m ψ pat acc)) ∧ ∀ (m : Nat), (0 : Nat) < m → ∀ (ψ : List Nat → Bool) (pat : List Bool), FRC.Godel.paired m ψ pat [] true = FRC.Godel.direct m ψ pat [] :=
   And.intro @FRC.Godel.prefix_simulation (@FRC.Godel.prefix_simulation_closed)
@@ -7179,40 +7458,40 @@ namespace FRC.Geometry
 -- Ledger predicates of 2-geometry (generated by make_predicates.py from docs/2-geometry/2-geometry-ledger.json; edit the ledger, not this section)
 /-- 2:B3 (p02007) — Primitive generators form one orbit: every generator is $\gen^{u}$ with $u\in\Z_{\p-1}^{\times}$, a torsor for $\operatorname{Aut}(C_{\p-1})$ (Props.~\ref{prop:primitive-orbit}, \ref{prop:no-canonical-e}). -/
 theorem p02007 : (∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → ∀ (h : FRC.Shell p), h.IsPrimitive (p - (1 : Nat)) ↔ ∃ u, u < p - (1 : Nat) ∧ FRC.Shell.Coprime u (p - (1 : Nat)) ∧ h = g ^ u) ∧ FRC.Shell.Coprime (5 : Nat) (12 : Nat) ∧ FRC.Shell.Coprime (7 : Nat) (12 : Nat) ∧ FRC.Shell.Coprime (11 : Nat) (12 : Nat) ∧ ¬FRC.Shell.Coprime (2 : Nat) (12 : Nat) ∧ FRC.Shell.IsPrimitive (6 : FRC.Shell (13 : Nat)) (12 : Nat) ∧ ¬FRC.Shell.IsPrimitive (4 : FRC.Shell (13 : Nat)) (12 : Nat) ∧ (2 : FRC.Shell (13 : Nat)) ^ (5 : Nat) = (6 : FRC.Shell (13 : Nat)) :=
-  And.intro @FRC.Shell.Frame.generator_orbit (@FRC.Shell.s13_orbit)
+  @FRC.Ledger.p02007
 /-- 2:D1 (p02013) — The half-period: $\gen^{\pi}=-1$ for every primitive $\gen$, $\pi=2\kap$ (Prop.~\ref{prop:half-period}); $2\pi\equiv-1$ (00:C1). -/
 theorem p02013 : ∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → g ^ ((2 : Nat) * κ) = (-1 : FRC.Shell p) :=
-  @FRC.Shell.Frame.half_period
+  @FRC.Ledger.p02013
 /-- 2:D2 (p02014) — The quarter-turn subgroup $\Qp=\{x:x^{4}=1\}$ is the unique subgroup of order four; $\gen^{\kap}$ has order four with $(\gen^{\kap})^{2}=-1$; $\Qp=\{\pm1,\pm\It\}$ (Def.~\ref{def:quarter-turn-subgroup}, Prop.~\ref{prop:quarter-turn}; 1:B2). -/
 theorem p02014 : ∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → (g ^ κ) ^ (2 : Nat) = (-1 : FRC.Shell p) ∧ (g ^ κ) ^ (4 : Nat) = (1 : FRC.Shell p) :=
-  @FRC.Shell.Frame.quarter_turn_order
+  @FRC.Ledger.p02014
 /-- 2:D3 (p02015) — The oriented quarter-turn $\It=-\gen^{\kap}=\gen^{-\kap}$, $\It^{2}=-1$, orientation by A2 (Rem.~\ref{rem:observer-canonical-e}); on $\F_{13}(\chron;0,1,2)$: $\It=5$, $-\It=8$, $\pi=6$ [value] (Fig.~\ref{fig:f13-constant-datum}). -/
 theorem p02015 : FRC.Shell.Frame.quarterTurn (2 : FRC.Shell (13 : Nat)) (3 : Nat) = (5 : FRC.Shell (13 : Nat)) ∧ (5 : FRC.Shell (13 : Nat)) * (5 : FRC.Shell (13 : Nat)) = (-1 : FRC.Shell (13 : Nat)) ∧ (-5 : FRC.Shell (13 : Nat)) = (8 : FRC.Shell (13 : Nat)) ∧ (2 : FRC.Shell (13 : Nat)) ^ (6 : Nat) = (-1 : FRC.Shell (13 : Nat)) ∧ (2 : FRC.Shell (13 : Nat)) ^ (5 : Nat) = (6 : FRC.Shell (13 : Nat)) :=
-  @FRC.Shell.s13_datum
+  @FRC.Ledger.p02015
 /-- 2:D5 (p02017) — Orientation classes: for $\gen'=\gen^{u}$, $\It'=-\gen'^{\kap}$ equals $\It$ when $u\equiv1\pmod4$ and $-\It$ when $u\equiv3\pmod4$; the oriented quarter-turn is frame-covariant within one class of generators, not under every generator change. -/
 theorem p02017 : ∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → ∀ (u : Nat), (u % (4 : Nat) = (1 : Nat) → -(g ^ u) ^ κ = -g ^ κ) ∧ (u % (4 : Nat) = (3 : Nat) → -(g ^ u) ^ κ = - -g ^ κ) :=
-  @FRC.Shell.Frame.orientation_class
+  @FRC.Ledger.p02017
 /-- 2:D6 (p02018) — The Euler identity on the shell: $\eu^{\It\pi}=\gen^{2\kap\It^{2}}=(-1)^{\It}$, equal to $-1$ exactly when the representative of $\It$ is odd (00:C14); the oriented frames of a shell are those with $-\gen^{\kap}$ odd --- on $\F_{13}$, $\gen=2$ ($\It=5$) is one, on $\F_{17}$, $\gen=3$ ($\It=4$) is not. -/
 theorem p02018 : (∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → ∀ (i : Nat), (g ^ i) ^ (i * ((2 : Nat) * κ)) = if i % (2 : Nat) = (0 : Nat) then (1 : FRC.Shell p) else (-1 : FRC.Shell p)) ∧ FRC.Shell.Frame.quarterTurn (3 : FRC.Shell (17 : Nat)) (4 : Nat) = (4 : FRC.Shell (17 : Nat)) ∧ FRC.Shell.Frame.quarterTurn (6 : FRC.Shell (17 : Nat)) (4 : Nat) = (13 : FRC.Shell (17 : Nat)) ∧ ((3 : FRC.Shell (17 : Nat)) ^ (4 : Nat)) ^ ((4 : Nat) * (8 : Nat)) = (1 : FRC.Shell (17 : Nat)) ∧ ((6 : FRC.Shell (17 : Nat)) ^ (13 : Nat)) ^ ((13 : Nat) * (8 : Nat)) = (-1 : FRC.Shell (17 : Nat)) ∧ (3 : FRC.Shell (17 : Nat)) ^ (15 : Nat) = (6 : FRC.Shell (17 : Nat)) :=
-  And.intro @FRC.Shell.Frame.euler_identity (@FRC.Shell.s17_orientation)
+  @FRC.Ledger.p02018
 /-- 2:D7 (p02019) — Negation $R(x)=-x$ and inversion $I(x)=x^{-1}$ are commuting involutions; off $\Qp$ the $\langle R,I\rangle$-orbit $\{x,-x,x^{-1},-x^{-1}\}$ has four elements, and $\Fpx\setminus\Qp$ splits into $\kap-1$ such orbits (Props.~\ref{prop:shell-negation}, \ref{prop:k4-shell}; 1:B2). -/
 theorem p02019 : (∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → ∀ {x y : FRC.Shell p}, x * y = (1 : FRC.Shell p) → x ^ (4 : Nat) ≠ (1 : FRC.Shell p) → x ≠ -x ∧ x ≠ y ∧ x ≠ -y ∧ -x ≠ y ∧ -x ≠ -y ∧ y ≠ -y) ∧ (∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → ∀ {x : FRC.Shell p}, x ≠ (0 : FRC.Shell p) → x ^ (4 : Nat) ≠ (1 : FRC.Shell p) → ∃ r, (1 : Nat) ≤ r ∧ r < κ ∧ FRC.Shell.Frame.InOrbit (g ^ r) x) ∧ ∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → ∀ {r r' : Nat}, (1 : Nat) ≤ r → r < κ → (1 : Nat) ≤ r' → r' < κ → ∀ {x : FRC.Shell p}, FRC.Shell.Frame.InOrbit (g ^ r) x → FRC.Shell.Frame.InOrbit (g ^ r') x → r = r' :=
-  And.intro @FRC.Shell.Frame.klein_orbit_four (And.intro @FRC.Shell.Frame.orbit_rep (@FRC.Shell.Frame.orbit_rep_unique))
+  @FRC.Ledger.p02019
 /-- 2:E3 (p02023) — Fixed-shell refinement is bounded: with $m=\lfloor\log_{\gen}(2\kap+1)\rfloor$ no point $x/\gen^{n}$, $|x|\le2\kap$, lies in $(\max(1-\gen^{-m},2\kap\gen^{-m-1}),1)$ at any depth, so the covering radius of the scale grid in $[0,1]$ is $\ge\tfrac12\min(\gen^{-m},1-2\kap\gen^{-m-1})$ for every $N$: $1/8$ at $(13,2)$, $5/22$ at $(13,11)$. -/
 theorem p02023 : (∀ (g κ m n x : Nat), (2 : Nat) ≤ g → x ≤ (2 : Nat) * κ → x < g ^ n → x * g ^ m + g ^ n ≤ g ^ m * g ^ n ∨ x * g ^ (m + (1 : Nat)) ≤ (2 : Nat) * κ * g ^ n) ∧ ∀ (n x : Nat), x ≤ (6 : Nat) → ¬((3 : Nat) * (2 : Nat) ^ n < (4 : Nat) * x ∧ x < (2 : Nat) ^ n) :=
   And.intro @FRC.Geometry.fixed_shell_bound (@FRC.Geometry.fixed_shell_gap)
 /-- 2:F1 (p02025) — $\gen$ is a principal $n$-th root of unity, $n=\p-1$: $\gen^{n}=1$, $\sum_{j<n}\gen^{jk}=0$ for $0<k<n$, and $n^{-1}=-1$ in $\Fp$ (Prop.~\ref{prop:principal-root}; $2\pi\equiv-1$). -/
 theorem p02025 : ∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → ∀ (k : Nat), (0 : Nat) < k → k < p - (1 : Nat) → g ^ (p - (1 : Nat)) = (1 : FRC.Shell p) ∧ FRC.Shell.sumRange (fun j => (g ^ k) ^ j) (p - (1 : Nat)) = (0 : FRC.Shell p) ∧ FRC.Shell.ofNat (p - (1 : Nat)) = (-1 : FRC.Shell p) :=
-  @FRC.Shell.Frame.principal_root
+  @FRC.Ledger.p02025
 /-- 2:F3 (p02027) — Inversion: $v_{j}=-\sum_{k<n}\mathcal F_{\gen}(v)_{k}\gen^{-jk}$, i.e.\ $W_{\gen}^{-1}=-(\gen^{-jk})_{jk}=-W_{\gen}J$ (Prop.~\ref{prop:ring-dft-inverse}; 6:B5), exact on every shell. -/
 theorem p02027 : ∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → ∀ {k j : Nat}, k < p - (1 : Nat) → j < p - (1 : Nat) → FRC.Shell.sumRange (fun l => g ^ (l * k) * -g ^ ((p - (1 : Nat) - j) * l)) (p - (1 : Nat)) = if k = j then (1 : FRC.Shell p) else (0 : FRC.Shell p) :=
-  @FRC.Shell.Frame.dft_inverse
+  @FRC.Ledger.p02027
 /-- 2:F4 (p02028) — Polynomial reading: $\mathcal F_{\gen}(v)_{k}=P_{v}(\gen^{k})$ with $P_{v}=\sum_{j}v_{j}X^{j}$; the transform exchanges coefficients with values on the phase cycle (Prop.~\ref{prop:polynomial-form}). -/
 theorem p02028 : ∀ {p : Nat} [FRC.Pos p] (g : FRC.Shell p) (n : Nat) (v : Nat → FRC.Shell p) (k : Nat), FRC.Shell.Frame.dft g n v k = FRC.Shell.Frame.polyEval n v (g ^ k) :=
-  @FRC.Shell.Frame.dft_eq_polyEval
+  @FRC.Ledger.p02028
 /-- 2:F5 (p02029) — Covariance under generator change: for $\gen'=\gen^{u}$, $v^{(\gen')}_{j}=v^{(\gen)}_{uj}$ and $\mathcal F_{\gen'}(v^{(\gen')})=\mathcal F_{\gen}(v^{(\gen)})$ (Prop.~\ref{prop:ring-dft-covariance}). -/
 theorem p02029 : ∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → ∀ {u : Nat}, FRC.Shell.Coprime u (p - (1 : Nat)) → ∀ (v : Nat → FRC.Shell p) (k : Nat), FRC.Shell.Frame.dft (g ^ u) (p - (1 : Nat)) (fun j => v (u * j % (p - (1 : Nat)))) k = FRC.Shell.Frame.dft g (p - (1 : Nat)) v k :=
-  @FRC.Shell.Frame.dft_covariance
+  @FRC.Ledger.p02029
 -- end ledger predicates
 end FRC.Geometry
 
@@ -8247,7 +8526,7 @@ theorem p14027 : FRC.Nat.isPrime (5 : Nat) ∧ ¬FRC.Nat.isPrime (9 : Nat) ∧ F
   @FRC.Entropy.capacity_axis
 /-- 14:X4 (p14031) — \textbf{The congruence $\dS$ even} acquires a second physical face: it is the existence of the octant sector, hence the well-definedness of the measured age --- a structure of the Carrier's cycle lattice, certified by realisation and read as an observational condition, never an arithmetic property of the numeral. -/
 theorem p14031 : ∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → ((∃ r, r * r = (2 : FRC.Shell p)) ↔ ∃ m, κ = (2 : Nat) * m) :=
-  @FRC.Entropy.two_is_square_iff
+  @FRC.Ledger.p14031
 -- end ledger predicates
 
 end FRC.Entropy
@@ -9057,7 +9336,7 @@ end aliases
 -- Ledger predicates of 8-dirac (generated by make_predicates.py from docs/8-dirac/8-dirac-ledger.json; edit the ledger, not this section)
 /-- 8:A2 (p08002) — Finite-field algebra: the quadratic extension $K=\Fp[\w]/(\w^{2}-\nu)$ with Frobenius conjugation and norm, Hilbert's Theorem~90, the square classes by Euler's criterion, the unitary group of a nondegenerate Hermitian form over a finite field. -/
 theorem p08002 : ∀ {p : Nat} [FRC.Pos p] {ν : FRC.Shell p} (z : FRC.Dirac.Ext p ν), z * z.conj = FRC.Dirac.Ext.ofShell z.norm :=
-  @FRC.Dirac.Ext.mul_conj
+  @FRC.Ledger.p08002
 /-- 8:A5 (p08005) — The programme's admissibility congruences ($\kap$ even, $\kap\equiv1\pmod3$, $\p\equiv5\pmod{12}$), the laboratory Carrier $\Omega=2\,408\,561$ with $S=602\,140$, and the constants web ($c^{2}=2^{-1}$, $\hbar=\It$). -/
 theorem p08005 : (FRC.Dirac.shellAdmissible (4 : Nat) ∧ (∀ (κ : Nat), κ < (4 : Nat) → ¬FRC.Dirac.shellAdmissible κ) ∧ (17 : Nat) % (12 : Nat) = (5 : Nat)) ∧ (171106 : FRC.Shell (2408561 : Nat)) * (171106 : FRC.Shell (2408561 : Nat)) = (1204281 : FRC.Shell (2408561 : Nat)) ∧ (2 : FRC.Shell (2408561 : Nat)) * (1204281 : FRC.Shell (2408561 : Nat)) = (1 : FRC.Shell (2408561 : Nat)) ∧ (1204281 : FRC.Shell (2408561 : Nat)) * (12 : FRC.Shell (2408561 : Nat)) = (6 : FRC.Shell (2408561 : Nat)) :=
   And.intro @FRC.Dirac.minimal_admissible (@FRC.Dirac.carrier_constants)
@@ -9069,10 +9348,10 @@ theorem p08010 : (∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Sh
   And.intro @FRC.Dirac.nu_factorisation (@FRC.Dirac.carrier_constants)
 /-- 8:B5 (p08011) — The square class is chronon parity: the squares are $\langle g^{2}\rangle$, a residue's class is the parity of its drive-step count; on $\kap$-even shells every element of $Q_4=\{1,\It,-1,-\It\}$ is a square, so the order-four chart grading carries no signature. Exhaustive over every primitive root of $\F_{13}$, $\F_{17}$; Euler form on $\p<2000$. -/
 theorem p08011 : ∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → ∀ (m : Nat), (∃ y, y * y = g ^ m) ↔ m % (2 : Nat) = (0 : Nat) :=
-  @FRC.Dirac.parity_iff
+  @FRC.Ledger.p08011
 /-- 8:B6 (p08012) — Norm growth and parity: $N(gz)=g^{2}N(z)$ with $g^{2}$ a square, the single-chronon multiplier $g$ odd, $x^{2}=\nu$ unsolvable in $\Fp$; the flip $g\mapsto g^{-1}$ preserves the parity class. -/
 theorem p08012 : (∀ {p : Nat} [FRC.Pos p] {ν : FRC.Shell p} (c : FRC.Shell p) (z : FRC.Dirac.Ext p ν), (FRC.Dirac.Ext.ofShell c * z).norm = c * c * z.norm) ∧ ∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → ∀ {y : FRC.Shell p}, g * y = (1 : FRC.Shell p) → ¬∃ r, r * r = y :=
-  And.intro @FRC.Dirac.Ext.norm_scale (@FRC.Dirac.inv_drive_nonsquare)
+  @FRC.Ledger.p08012
 /-- 8:B7 (p08013) — Signature lives on $\Fp$: the Euclidean form has $\p^{3}+\p^{2}-\p$ zeros (hyperbolic, Witt index two), $Q_\nu$ has $\p^{3}-\p^{2}+\p$ (elliptic, Witt index one) on every symmetry-complete $\p<60$; $2353$ and $2041$ at $\p=13$; over $K$ every element of $\Fp$ is a square and the dichotomy collapses. -/
 theorem p08013 : (FRC.Dirac.euclidZeros (5 : Nat) = (145 : Nat) ∧ FRC.Dirac.lorentzZeros (5 : Nat) (2 : FRC.Shell (5 : Nat)) = (105 : Nat)) ∧ FRC.Dirac.euclidZeros (13 : Nat) = (2353 : Nat) ∧ FRC.Dirac.lorentzZeros (13 : Nat) (2 : FRC.Shell (13 : Nat)) = (2041 : Nat) :=
   And.intro @FRC.Dirac.zeros5 (@FRC.Dirac.zeros13)

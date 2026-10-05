@@ -2,6 +2,7 @@ import FrcCore.Sum
 import FrcCore.Instances
 import FrcCore.Poly
 import FrcCore.Meridian
+import FrcCore.Keys.Frame
 
 /-!
 # FrcCore.Epi — the classical constants on the shell, with no axioms (13-epi)
@@ -349,16 +350,16 @@ theorem p13041 : List.map (fun k => FRC.Epi.readW (k + (1 : Nat))) (List.range (
   @FRC.Epi.residue_line_pi13
 /-- 13:H2 (p13044) — The exact angular carrier of $\pi$: $\chi(-1)=e^{\imR\piR}$ exactly in every shell, for every generator and either chirality, since $-1=\gen^{(\p-1)/2}$ sits at arc fraction one half --- Euler's identity as the half-turn tautology $\gen^{2\kap}=-1$ under the dictionary, with no calibration and no error term. -/
 theorem p13044 : ∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → g ^ ((2 : Nat) * κ) = (-1 : FRC.Shell p) :=
-  @FRC.Shell.Frame.half_period
+  @FRC.Ledger.p13044
 /-- 13:I4 (p13051) — CRT stability: under the composite lift to $q=\prod\p_i$ the half-wall invariant of $\pi$ glues to $-2$ modulo every $q$, since $2\piA\equiv-1$ holds in every fibre, while the terminal content of $e$, $(-(\Ku{\p_i})^{-1})_i$, varies fibrewise. The two selectors resolve the $\p=13$ coincidence: the same residue $6$ reaches $\piR$ through C4 and $\eR$ through C1. -/
 theorem p13051 : ∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → FRC.Shell.ofNat ((2 : Nat) * FRC.Shell.Frame.halfPeriod κ) = (-1 : FRC.Shell p) :=
-  @FRC.Shell.Frame.two_pi
+  @FRC.Ledger.p13051
 /-- 13:J1 (p13052) — The wrap-free window: an entity of the shell is $\p$-hard when it lies beyond the observer's horizon $\sqrt\p$; the accessible smalls are the natural counts below $\sqrt\p$, where sums and products of two accessible counts do not wrap, so primality, parity and order are wrap-invariant there and only there. -/
 theorem p13052 : ∀ {a b p : Nat}, a * a < p → b * b < p → a * b < p ∧ ((4 : Nat) ≤ p → a + b < p) :=
   @FRC.Epi.wrap_free
 /-- 13:J2 (p13053) — Calibration pinning: the half-period satisfies the height-two relation $2\piA+1\equiv0$, the shell calibration $\p=4\kap+1$ itself, so the observer holds an exact short certificate of an entity it never accesses as a tally; the same pinning covers the quarter-turn ($\im^{2}+1\equiv0$) and the residue web of G2; the pin holds on every one of the $500$ shells $\p\le8009$ with $H(\piA)=2$. -/
 theorem p13053 : (∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → FRC.Shell.ofNat ((2 : Nat) * FRC.Shell.Frame.halfPeriod κ) = (-1 : FRC.Shell p)) ∧ ∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → FRC.Shell.Frame.quarterTurn g κ * FRC.Shell.Frame.quarterTurn g κ = (-1 : FRC.Shell p) :=
-  And.intro @FRC.Shell.Frame.two_pi (@FRC.Shell.Frame.quarter_turn_sq)
+  @FRC.Ledger.p13053
 -- end ledger predicates
 
 end FRC.Epi

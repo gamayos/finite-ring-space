@@ -1,6 +1,7 @@
 import FrcCore.Frame
 import FrcCore.Orbit
 import FrcCore.Instances
+import FrcCore.Keys.Frame
 
 /-!
 # 14-entropy — the import's congruences, the octant sector and the laboratory Carrier, no axioms
@@ -302,7 +303,7 @@ theorem p14027 : FRC.Nat.isPrime (5 : Nat) ∧ ¬FRC.Nat.isPrime (9 : Nat) ∧ F
   @FRC.Entropy.capacity_axis
 /-- 14:X4 (p14031) — \textbf{The congruence $\dS$ even} acquires a second physical face: it is the existence of the octant sector, hence the well-definedness of the measured age --- a structure of the Carrier's cycle lattice, certified by realisation and read as an observational condition, never an arithmetic property of the numeral. -/
 theorem p14031 : ∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → ((∃ r, r * r = (2 : FRC.Shell p)) ↔ ∃ m, κ = (2 : Nat) * m) :=
-  @FRC.Entropy.two_is_square_iff
+  @FRC.Ledger.p14031
 -- end ledger predicates
 
 end FRC.Entropy

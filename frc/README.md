@@ -13,10 +13,16 @@ released, pinned in their dated archives, until their papers migrate.
 
 **Rules.** A file imports only files of lower rank, or the files listed before it in its own theme. The base, structure
 and programme tiers are exact: integers and fractions, the standard library only. Floats and the reals appear in the
-chart tier alone. `ci/gates.py` enforces the map (gates G09, G10 and G19), and the workflow `framework` runs it with the
-tests on every push.
+chart tier alone. `ci/gates.py` enforces the map (gates G09, G10 and G19), checks the migrated ledgers' coverage (gate G12)
+and executes their notebooks (gate G13); the workflow `framework` runs it with the tests on every push.
 
 **Run.** `python3 -m unittest discover -s frc/tests -t .` and `python3 ci/gates.py`, from the repository root.
+
+**Ledger files.** `frc/ledgers/p<NN>_<topic>.py` binds one paper's ledger to the themes: the table of its keys, its
+shells and its checks, each check marked by the predicates it decides. `ci/make_ledgers.py` generates the table from the
+ledger, the notebook beside the file (one cell per predicate, its id the key) and the Lean certificates
+(`lean/FrcCore/Ledgers/`, `lean/FrcLedger/Ledgers/`). Migrated so far: 3-causality, `p03_causality.py` (task LM20).
+One ledger runs with `python3 -m frc.ledgers.p03_causality`.
 
 ## The theme map
 

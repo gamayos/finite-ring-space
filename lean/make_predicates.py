@@ -22,6 +22,10 @@ the statement is then read back from the compiled module (`#check`, the numerals
 re-elaborate keeps the `def` form (the explicit form `pp.explicit` is tried in between). `#print axioms` reads the predicate's
 axioms off either form. V rows are not predicates and get no declaration. The executable web copies (make_web.py, make_core_web.py) append `#print axioms` for every predicate declaration.
 
+A key whose theorem lives in a key file (`<lib>/Keys/<Theme>.lean`, written by make_keys.py; ledger migration, task LM19) is
+not proved here again: the predicate's declaration is the key's alias, `theorem p01004 : <statement> := @FRC.Ledger.p01004`
+(`FRC.LedgerML` on Mathlib), hosted by the paper's module, which imports the key file. Run make_keys.py first.
+
     python3 make_predicates.py --module Dimensions --json ../docs/10-dimensions/10-dimensions-ledger.json
     python3 make_predicates.py --module Dimensions --json … --typed      # then restate as theorems (needs the library built: lake build)
     python3 make_predicates.py --module Dimensions --json … --check      # exit 1 if a library's section is stale
@@ -33,6 +37,15 @@ ROOT = Path(__file__).resolve().parent
 LIBS = ("FrcCore", "FrcLedger")
 DECL = re.compile(r"^(?:@\[[^\]]*\]\s*)?(?:noncomputable\s+|protected\s+|private\s+)*(theorem|lemma|def|abbrev|instance|structure|inductive)\s+([A-Za-z_][A-Za-z0-9_'.]*)")
 END = "-- end ledger predicates"                    # the section opens "-- Ledger predicates of <pkg> (generated …" and closes here
+
+KEYNS = {"FrcCore": "FRC.Ledger", "FrcLedger": "FRC.LedgerML"}   # the namespaces of the key files (decision Q13)
+
+def keyed(lib):
+    """The keys of the library's key files (make_keys.py): key -> the key file's module (Keys.Frame)."""
+    d = ROOT / lib / "Keys"; out = {}
+    for p in sorted(d.glob("*.lean")) if d.exists() else []:
+        for k in re.findall(r"^(?:theorem|def) (p\d{5})\b", p.read_text(encoding="utf-8"), re.M): out[k] = f"Keys.{p.stem}"
+    return out
 
 def mpath(lib, mod):
     """A module's file: Theme.Logic is <lib>/Theme/Logic.lean."""
@@ -73,6 +86,15 @@ def kinds(path):
         if m and stack and stack[-1] == m.group(1): stack.pop(); continue
         m = DECL.match(line)
         if m: out[".".join(stack + [m.group(2)])] = m.group(1)
+    return out
+
+def declared(lib):
+    """fully qualified name -> (module, kind) over every module of the library (Theme/Extension.lean: Theme.Extension)."""
+    out = {}
+    for f in sorted((ROOT / lib).rglob("*.lean")):
+        if "_to_delete" in f.parts: continue
+        mod = str(f.relative_to(ROOT / lib))[:-5].replace("/", ".")
+        for n, k in kinds(f).items(): out[n] = (mod, k)
     return out
 
 def doc_text(pred):
@@ -166,17 +188,19 @@ def main():
         path = ROOT / lib / f"{a.module}.lean"
         if not path.exists(): continue
         by_host = {}                                                   # host module -> predicates (the paper's module, or a cited one that imports it)
+        kd = keyed(lib)
+        where = declared(lib)                                          # where the library declares each name today: the ledger JSON's modules date from the last site build
         for label in [r["label"] for b in data["blocks"] for r in b["rows"]]:
             if label.startswith("V"): continue
             cites = [x for x in data["lean"].get(label, []) if x["module"].split("/")[0] == lib and (lib == "FrcCore" or x["module"] == f"{lib}/{a.module}")]
             if not cites: continue
             if not keys.get(label): print(f"{lib}: {paper_no}:{label} has no accession key — no declaration (site_build.py --assign-keys)"); continue
-            mods = {x["module"].split("/", 1)[1].replace("/", ".") for x in cites}                 # FrcCore/Theme/Extension: Theme.Extension
-            kmap = {}
-            for m in mods: kmap.update(kinds(mpath(lib, m)))
+            mods = {where[x["name"]][0] if x["name"] in where else x["module"].split("/", 1)[1].replace("/", ".") for x in cites}   # Theme.Extension
+            kmap = {x["name"]: where[x["name"]][1] for x in cites if x["name"] in where}
             thms = [x["name"] for x in cites if kmap.get(x["name"]) in ("theorem", "lemma")]
             defs = [x["name"] for x in cites if kmap.get(x["name"]) not in ("theorem", "lemma")]
             if not thms: print(f"{lib}: {paper_no}:{label} cites only definitions ({', '.join(defs)}) — no predicate declaration"); continue
+            if keys[label] in kd: thms, mods = [f"{KEYNS[lib]}.{keys[label]}"], {kd[keys[label]]}   # the key's alias, hosted by the paper's module
             host = host_of(lib, a.module, mods)
             if host is None: print(f"{lib}: {paper_no}:{label} cites {', '.join(sorted(mods))}, no module can host the predicate — skipped"); continue
             by_host.setdefault(host, []).append((f"{paper_no}:{label}", preds[label], thms, defs, keys[label], mods))

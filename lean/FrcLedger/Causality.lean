@@ -1,4 +1,6 @@
 import Mathlib
+import FrcLedger.Theme.Extension
+import FrcLedger.Keys.Extension
 
 /-!
 # 3-causality — the Euclidean–Lorentzian dichotomy, Mathlib witnesses
@@ -6,94 +8,87 @@ import Mathlib
 Rows of the predicate ledger of *Euclidean–Lorentzian Dichotomy and Algebraic Causality in Finite Ring Continuum*
 (Entropy 2025, 27, 1098; tree `3-causality-20260510`), over an arbitrary finite
 field `F` with `card F ≢ 3 (mod 4)` (so `−1` is a square, the shells `p = 4κ + 1` among them).  Classical
-(tier 2) on Mathlib's hierarchy; the same rows are proved with no axioms in `FrcCore/Causality.lean`.
+(tier 2) on Mathlib's hierarchy; the same rows are proved with no axioms in the core. Since the ledger migration
+(task LM20) the theorems live in the extension theme, `FrcLedger/Theme/Extension.lean`, as `FRC.Extension.*`; the
+old names below are aliases, and the predicate declarations are the aliases of their keys.
 -/
 
 namespace FRC.Causality
 
 variable {F : Type*} [Field F]
 
+/-! ## Old names (ledger migration, task LM20): the theorems moved to the extension theme (`FRC.Extension`,
+`FrcLedger/Theme/Extension.lean`), each under its old name -/
+
 /-- 3:B2 (Thm. nonexistence, first clause): `c² = ν` makes `ν` a square, so a nonsquare `ν` has no root. -/
-theorem no_causal_root (ν c : F) (h : ¬IsSquare ν) : c ^ 2 ≠ ν := fun e => h ⟨c, by rw [← e, sq]⟩
+theorem no_causal_root (ν c : F) (h : ¬IsSquare ν) : c ^ 2 ≠ ν :=
+  FRC.Extension.no_causal_root ν c h
 
 /-- 3:B2 (the consequence): when `−1` is a square (`card F ≢ 3 mod 4`) so is `−c²`, and every coefficient of
 `−c² t² + x² + y² + z²` lies in the class of squares — a Euclidean form for every `c ≠ 0`. -/
-theorem neg_sq_is_square [Fintype F] (hF : Fintype.card F % 4 ≠ 3) (c : F) : IsSquare (-(c ^ 2)) := by
-  obtain ⟨i, hi⟩ := FiniteField.isSquare_neg_one_iff.mpr hF
-  exact ⟨i * c, by rw [show -(c ^ 2) = (-1) * c ^ 2 by ring, hi]; ring⟩
+theorem neg_sq_is_square [Fintype F] (hF : Fintype.card F % 4 ≠ 3) (c : F) : IsSquare (-(c ^ 2)) :=
+  FRC.Extension.neg_sq_is_square hF c
 
 /-- 3:B3 (Lemma absorption): coefficients `a_i = w_i² a_0` are absorbed by `x_i ↦ w_i x_i`. -/
 theorem absorb (a0 a1 a2 a3 w1 w2 w3 x0 x1 x2 x3 : F) (h1 : w1 ^ 2 * a0 = a1) (h2 : w2 ^ 2 * a0 = a2)
     (h3 : w3 ^ 2 * a0 = a3) :
     a0 * x0 ^ 2 + a1 * x1 ^ 2 + a2 * x2 ^ 2 + a3 * x3 ^ 2 =
-    a0 * (x0 ^ 2 + (w1 * x1) ^ 2 + (w2 * x2) ^ 2 + (w3 * x3) ^ 2) := by
-  rw [← h1, ← h2, ← h3]; ring
+    a0 * (x0 ^ 2 + (w1 * x1) ^ 2 + (w2 * x2) ^ 2 + (w3 * x3) ^ 2) :=
+  FRC.Extension.absorb a0 a1 a2 a3 w1 w2 w3 x0 x1 x2 x3 h1 h2 h3
 
 /-- 3:B5: `x² − ν t²` is anisotropic for a nonsquare `ν`. -/
-theorem aniso_tx (ν t x : F) (hν : ¬IsSquare ν) (e : x ^ 2 = ν * t ^ 2) : t = 0 ∧ x = 0 := by
-  by_cases ht : t = 0
-  · subst ht; simp at e; exact ⟨rfl, e⟩
-  · exact absurd ⟨x / t, by field_simp; linear_combination (-1 : F) * e⟩ hν
+theorem aniso_tx (ν t x : F) (hν : ¬IsSquare ν) (e : x ^ 2 = ν * t ^ 2) : t = 0 ∧ x = 0 :=
+  FRC.Extension.aniso_tx ν t x hν e
 
 /-- 3:C2 (the finite Lorentz boost): `Λ(γ, b) = !![γ, b; νb, γ]` with `γ² − νb² = 1` preserves `x² − ν t²`. -/
 theorem boost_preserves (ν γ b t x : F) (h : γ ^ 2 - ν * b ^ 2 = 1) :
-    (γ * x + ν * b * t) ^ 2 - ν * (γ * t + b * x) ^ 2 = x ^ 2 - ν * t ^ 2 := by
-  linear_combination (x ^ 2 - ν * t ^ 2) * h
+    (γ * x + ν * b * t) ^ 2 - ν * (γ * t + b * x) ^ 2 = x ^ 2 - ν * t ^ 2 :=
+  FRC.Extension.boost_preserves ν γ b t x h
 
 /-- 3:C2: the boosts compose as the norm-one elements of `F(√ν)` multiply. -/
 theorem boost_comp (ν γ1 b1 γ2 b2 : F) :
     !![γ1, b1; ν * b1, γ1] * !![γ2, b2; ν * b2, γ2] =
-    !![γ1 * γ2 + ν * (b1 * b2), γ1 * b2 + b1 * γ2; ν * (γ1 * b2 + b1 * γ2), γ1 * γ2 + ν * (b1 * b2)] := by
-  ext i j; fin_cases i <;> fin_cases j <;> simp [Matrix.mul_apply, Fin.sum_univ_two] <;> ring
+    !![γ1 * γ2 + ν * (b1 * b2), γ1 * b2 + b1 * γ2; ν * (γ1 * b2 + b1 * γ2), γ1 * γ2 + ν * (b1 * b2)] :=
+  FRC.Extension.boost_comp ν γ1 b1 γ2 b2
 
 /-- 3:C2: `Λ(γ, b)` is orthogonal for the Gram matrix `diag(−ν, 1)` of `Q_ν`: `Λᵀ G Λ = G`. -/
 theorem boost_orthogonal (ν γ b : F) (h : γ ^ 2 - ν * b ^ 2 = 1) :
-    (!![γ, b; ν * b, γ]).transpose * !![-ν, 0; 0, 1] * !![γ, b; ν * b, γ] = !![-ν, 0; 0, 1] := by
-  ext i j; fin_cases i <;> fin_cases j <;> simp [Matrix.mul_apply, Fin.sum_univ_two] <;>
-    first | ring1 | linear_combination (-ν) * h | linear_combination h
+    (!![γ, b; ν * b, γ]).transpose * !![-ν, 0; 0, 1] * !![γ, b; ν * b, γ] = !![-ν, 0; 0, 1] :=
+  FRC.Extension.boost_orthogonal ν γ b h
 
 /-- 3:C3: `γ ≠ 0` on every boost of the Lorentzian plane (`γ = 0` would make `ν = (i/b)²`). -/
 theorem gamma_ne_zero [Fintype F] (hF : Fintype.card F % 4 ≠ 3) (ν γ b : F) (hν : ¬IsSquare ν)
-    (h : γ ^ 2 - ν * b ^ 2 = 1) : γ ≠ 0 := by
-  rintro rfl
-  obtain ⟨i, hi⟩ := FiniteField.isSquare_neg_one_iff.mpr hF
-  have hb : b ≠ 0 := by rintro rfl; simp at h
-  have hνb : ν * b ^ 2 = -1 := by linear_combination -h
-  exact hν ⟨i / b, by field_simp; linear_combination hνb + hi⟩
+    (h : γ ^ 2 - ν * b ^ 2 = 1) : γ ≠ 0 :=
+  FRC.Extension.gamma_ne_zero hF ν γ b hν h
 
 /-- 3:C3: the velocity `v = −νb/γ` satisfies `γ² (ν − v²) = ν` — `γ = 1/√(1 − β²)` with `β² = v²/ν`. -/
 theorem gamma_velocity (ν γ b v : F) (h : γ ^ 2 - ν * b ^ 2 = 1) (hv : v * γ = -(ν * b)) :
-    γ ^ 2 * (ν - v ^ 2) = ν := by
-  linear_combination ν * h - (v * γ - ν * b) * hv
+    γ ^ 2 * (ν - v ^ 2) = ν :=
+  FRC.Extension.gamma_velocity ν γ b v h hv
 
 /-- 3:C3 (Einstein's addition law, exact): `v₁₂ (ν + v₁v₂) = ν (v₁ + v₂)`. -/
 theorem velocity_addition (ν γ1 b1 γ2 b2 v1 v2 v12 : F) (hγ : γ1 * γ2 ≠ 0)
     (hv1 : v1 * γ1 = -(ν * b1)) (hv2 : v2 * γ2 = -(ν * b2))
     (hv12 : v12 * (γ1 * γ2 + ν * (b1 * b2)) = -(ν * (γ1 * b2 + b1 * γ2))) :
-    v12 * (ν + v1 * v2) = ν * (v1 + v2) := by
-  have : γ1 * γ2 * (v12 * (ν + v1 * v2) - ν * (v1 + v2)) = 0 := by
-    linear_combination ν * hv12 + (-v12 * ν * b2 - ν * γ2 + v12 * (v2 * γ2 + ν * b2)) * hv1 +
-      (-v12 * ν * b1 - ν * γ1) * hv2
-  rcases mul_eq_zero.mp this with h | h
-  · exact absurd h hγ
-  · exact sub_eq_zero.mp h
+    v12 * (ν + v1 * v2) = ν * (v1 + v2) :=
+  FRC.Extension.velocity_addition ν γ1 b1 γ2 b2 v1 v2 v12 hγ hv1 hv2 hv12
 
 -- Ledger predicates of 3-causality (generated by make_predicates.py from docs/3-causality/3-causality-ledger.json; edit the ledger, not this section)
 /-- 3:B2 (p03006) — Nonexistence of a causal square root: no $c\in\Fp$ has $c^{2}=\nu$ for $\nu\in N$; for $c\in\Fpx$ every coefficient of $-c^{2}t^{2}+x^{2}+y^{2}+z^{2}$ is a square ($-1=i^{2}$), the form Euclidean with $\p^{3}+\p^{2}-\p$ zeros; $c=0$ gives a degenerate form. -/
 theorem p03006 : (∀ {F : Type u_1} [Field F] (ν c : F), ¬IsSquare ν → c ^ (2 : ℕ) ≠ ν) ∧ ∀ {F : Type u_2} [Field F] [Fintype F], Fintype.card F % (4 : ℕ) ≠ (3 : ℕ) → ∀ (c : F), IsSquare (-c ^ (2 : ℕ)) :=
-  And.intro @FRC.Causality.no_causal_root (@FRC.Causality.neg_sq_is_square)
+  @FRC.LedgerML.p03006
 /-- 3:B3 (p03007) — Square-class absorption: if $a_{i}/a_{0}\in S$ for all $i$ then $Q\simeq a_{0}\sum Y_{i}^{2}$ by $Y_{i}=w_{i}X_{i}$, $w_{i}^{2}=a_{i}/a_{0}$; no root of $a_{0}$ is needed, and none exists for $a_{0}\in N$ ($-a_{0}$ is a nonsquare with it). -/
 theorem p03007 : ∀ {F : Type u_1} [Field F] (a0 a1 a2 a3 w1 w2 w3 x0 x1 x2 x3 : F), w1 ^ (2 : ℕ) * a0 = a1 → w2 ^ (2 : ℕ) * a0 = a2 → w3 ^ (2 : ℕ) * a0 = a3 → a0 * x0 ^ (2 : ℕ) + a1 * x1 ^ (2 : ℕ) + a2 * x2 ^ (2 : ℕ) + a3 * x3 ^ (2 : ℕ) = a0 * (x0 ^ (2 : ℕ) + (w1 * x1) ^ (2 : ℕ) + (w2 * x2) ^ (2 : ℕ) + (w3 * x3) ^ (2 : ℕ)) :=
-  @FRC.Causality.absorb
+  @FRC.LedgerML.p03007
 /-- 3:B5 (p03009) — The Witt decomposition: for $\nu\in N$ the plane $x^{2}-\nu t^{2}$ (the norm of $\Fpq$) is anisotropic and $y^{2}+z^{2}=(y+iz)(y-iz)$ hyperbolic, so $Q_{\nu}=H\perp\langle1,-\nu\rangle$, index one; for $\nu=w^{2}$ the $(t,x)$-plane is hyperbolic too, $H\perp H$. Over $\Fpq$, $\nu=c^{2}$ and $Q_{\nu}\simeq\sum X_{i}^{2}$: hyperbolic ($16\,225$ zeros at $q=25$); the extension dissolves the split. -/
 theorem p03009 : ∀ {F : Type u_1} [Field F] (ν t x : F), ¬IsSquare ν → x ^ (2 : ℕ) = ν * t ^ (2 : ℕ) → t = (0 : F) ∧ x = (0 : F) :=
-  @FRC.Causality.aniso_tx
+  @FRC.LedgerML.p03009
 /-- 3:C2 (p03013) — $\Lambda(\gamma,b)$ preserves $-\nu t^{2}+x^{2}$ exactly and $\Lambda(z_{1})\Lambda(z_{2})=\Lambda(z_{1}z_{2})$: the boosts are the norm-one cycle $N^{1}\simeq C_{\p+1}$, the non-split torus, and exhaust $SO(Q_{\nu},\Fp)$ in dimension $1{+}1$ ($6$, $14$, $18$ at $5$, $13$, $17$); with $\nu\in S$ the same construction is the split torus $C_{\p-1}$ --- the two tori are the two signatures (00:C3). -/
 theorem p03013 : (∀ {F : Type u_1} [Field F] (ν γ b t x : F), γ ^ (2 : ℕ) - ν * b ^ (2 : ℕ) = (1 : F) → (γ * x + ν * b * t) ^ (2 : ℕ) - ν * (γ * t + b * x) ^ (2 : ℕ) = x ^ (2 : ℕ) - ν * t ^ (2 : ℕ)) ∧ (∀ {F : Type u_2} [Field F] (ν γ1 b1 γ2 b2 : F), !![γ1, b1; ν * b1, γ1] * !![γ2, b2; ν * b2, γ2] = !![γ1 * γ2 + ν * (b1 * b2), γ1 * b2 + b1 * γ2; ν * (γ1 * b2 + b1 * γ2), γ1 * γ2 + ν * (b1 * b2)]) ∧ ∀ {F : Type u_3} [Field F] (ν γ b : F), γ ^ (2 : ℕ) - ν * b ^ (2 : ℕ) = (1 : F) → !![γ, b; ν * b, γ].transpose * !![-ν, (0 : F); (0 : F), (1 : F)] * !![γ, b; ν * b, γ] = !![-ν, (0 : F); (0 : F), (1 : F)] :=
-  And.intro @FRC.Causality.boost_preserves (And.intro @FRC.Causality.boost_comp (@FRC.Causality.boost_orthogonal))
+  @FRC.LedgerML.p03013
 /-- 3:C3 (p03014) — Velocity: $\gamma\neq0$ on every boost; $v=-\nu b/\gamma\in\Fp$; $\gamma^{2}(\nu-v^{2})=\nu$, the finite $\gamma=1/\sqrt{1-\beta^{2}}$ with $\beta^{2}=v^{2}/\nu$ ($\beta$ itself is no shell quantity, 8:B8); Einstein's law $v_{12}=(v_{1}+v_{2})/(1+v_{1}v_{2}/\nu)$ exact, the denominator never zero; $v$ is two-to-one on $N^{1}$. -/
 theorem p03014 : (∀ {F : Type u_1} [Field F] [Fintype F], Fintype.card F % (4 : ℕ) ≠ (3 : ℕ) → ∀ (ν γ b : F), ¬IsSquare ν → γ ^ (2 : ℕ) - ν * b ^ (2 : ℕ) = (1 : F) → γ ≠ (0 : F)) ∧ (∀ {F : Type u_2} [Field F] (ν γ b v : F), γ ^ (2 : ℕ) - ν * b ^ (2 : ℕ) = (1 : F) → v * γ = -(ν * b) → γ ^ (2 : ℕ) * (ν - v ^ (2 : ℕ)) = ν) ∧ ∀ {F : Type u_3} [Field F] (ν γ1 b1 γ2 b2 v1 v2 v12 : F), γ1 * γ2 ≠ (0 : F) → v1 * γ1 = -(ν * b1) → v2 * γ2 = -(ν * b2) → v12 * (γ1 * γ2 + ν * (b1 * b2)) = -(ν * (γ1 * b2 + b1 * γ2)) → v12 * (ν + v1 * v2) = ν * (v1 + v2) :=
-  And.intro @FRC.Causality.gamma_ne_zero (And.intro @FRC.Causality.gamma_velocity (@FRC.Causality.velocity_addition))
+  @FRC.LedgerML.p03014
 -- end ledger predicates
 
 end FRC.Causality

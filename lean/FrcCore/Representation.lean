@@ -3,6 +3,7 @@ import FrcCore.Shell
 import FrcCore.Frame
 import FrcCore.Sum
 import FrcCore.Theme.Projective
+import FrcCore.Keys.Projective
 
 /-!
 # 4-rep — universal latent representation: the ledger predicates with no axioms
@@ -216,7 +217,7 @@ theorem p04014 : ∀ {Z U Xm Xn Wm Wn : Type} {gm : Z → Xm} {gn : Z → Xn} {E
   @FRC.Representation.consistency
 set_option linter.defProp false in
 /-- 4:C5 (p04015) — Charts of the shell itself: for $\mathcal Z=\Fp$ the charts respecting the arithmetic are the frames $x\mapsto a+bx$ (1:C2), $\p(\p-1)$ of them, and $\Psi_{m\to n}$ between two frames is the one affine map carrying the first to the second (simply transitive) --- the corpus's coordinate systems are the paper's charts. -/
-def p04015 := And.intro @FRC.Shell.Frame.Affine.simply_transitive (@FRC.Shell.Frame.frame_count)
+def p04015 := @FRC.Ledger.p04015
 /-- 4:E1 (p04018) — The hypersphere [chart]: a Euclidean chart $\mathrm{Emb}:\mathcal Z\to\R^{d}$ equivariant for a symmetry acting transitively on $\mathcal Z$ and orthogonally on $\R^{d}$ has constant norm --- $\mathrm{Emb}(\mathcal Z)\subset S^{d-1}$. The shell's character chart $z\mapsto(\cos2\pi kz/\p,\sin2\pi kz/\p)_{k}$ is such a chart under translation, $\|\mathrm{Emb}(z)\|^{2}=\p-1$; in the shell's arithmetic $\sum_{k}\g^{kz}\g^{k(n-z)}=n$ for every $z$. -/
 theorem p04018 : (∀ {p : Nat} [FRC.Pos p] (g : FRC.Shell p) (z a k : Nat), FRC.Representation.Shell.charChart g (z + a) k = g ^ (k * a) * FRC.Representation.Shell.charChart g z k) ∧ ∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → ∀ (z : Nat), z ≤ p - (1 : Nat) → FRC.Shell.sumRange (fun k => FRC.Representation.Shell.charChart g z k * FRC.Representation.Shell.charChart g (p - (1 : Nat) - z) k) (p - (1 : Nat)) = FRC.Shell.ofNat (p - (1 : Nat)) :=
   And.intro @FRC.Representation.Shell.charChart_shift (@FRC.Representation.Shell.charChart_norm)

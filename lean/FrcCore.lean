@@ -7,6 +7,12 @@ import FrcCore.Sum
 import FrcCore.Theme.Projective
 import FrcCore.Theme.Extension
 import FrcCore.Theme.Logic
+import FrcCore.Keys.Frame
+import FrcCore.Keys.Extension
+import FrcCore.Keys.Projective
+import FrcCore.Keys.Fourier
+import FrcCore.Keys.Numbers
+import FrcCore.Keys.Logic
 import FrcCore.Meridian
 import FrcCore.Fourier
 import FrcCore.Algebra

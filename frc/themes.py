@@ -75,14 +75,15 @@ THEMES = {
                   content="readings against the continuum: the cosmology section, the constants' charts; floats and ℝ allowed here only"),
 }
 
-# The generated and the binding files (tasks LM19 and LM20): their patterns, ranks above every theme.
+# The generated and the binding files (tasks LM19 and LM20): their patterns, ranks above every theme. The key files are
+# written by lean/make_keys.py (LM19): a key whose cited theorems all live in themes, in the file of its highest theme.
 KEYS = dict(tier="keys", rank=40, core="lean/FrcCore/Keys/{theme}.lean", ml="lean/FrcLedger/Keys/{theme}.lean",
             names=("FRC.Ledger.p{key}", "FRC.LedgerML.p{key}"))
 LEDGERS = dict(tier="ledgers", rank=50, py_paper="frc/ledgers/p{nn}_{topic}.py", py_master="frc/ledgers/master/{theme}.py",
                core="lean/FrcCore/Ledgers/{ledger}.lean", ml="lean/FrcLedger/Ledgers/{ledger}.lean")
 
 # The paper modules of today and where their generic content went (tasks LM17, LM18). They become ledger files when
-# their paper migrates (LM35, LM36). A paper module imports themes and its own paper's modules only.
+# their paper migrates (LM35, LM36). A paper module imports themes, key files and its own paper's modules only.
 LEGACY = {
     "lean/FrcCore/Algebra.lean": ("1-algebra", ["frame", "numbers"]),
     "lean/FrcCore/Quaternion.lean": ("1-algebra", ["extension"]),

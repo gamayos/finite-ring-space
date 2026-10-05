@@ -1,20 +1,23 @@
 name: framework
 
-# The framework's tests and gates (ledger migration, Phase 3; tasks LM14 and LM15). The unit tests check frc/ — exact
-# arithmetic computed two ways, the registry, the theme map — with the standard library only. ci/gates.py enforces the
-# theme map of frc/themes.py: G09 (imports follow the layers; the exact tiers have no float and no third-party import),
-# G10 (size budgets) and G19 (no core statement asserts unboundedness). The Lean build and the axiom gates stay in lean.yml.
+# The framework's tests and gates (ledger migration, Phase 3; tasks LM14, LM15, LM20 and LM21). The unit tests check frc/
+# — exact arithmetic computed two ways, the registry, the themes, the theme map — with the standard library only.
+# ci/gates.py enforces the theme map of frc/themes.py: G09 (imports follow the layers; the exact tiers have no float and
+# no third-party import), G10 (size budgets) and G19 (no core statement asserts unboundedness); and the migrated ledgers:
+# G12 (every keyed declaration has a python marker and a notebook cell, or is declared Lean-only; the parts
+# ci/make_ledgers.py generates are current) and G13 (every migrated ledger's notebook executes green, with cell ids
+# equal to keys). The Lean build and the axiom gates stay in lean.yml.
 
 on:
   push:
-    paths: ["frc/**", "ci/**", "lean/FrcCore/**", "lean/FrcLedger/**", ".github/workflows/framework.yml"]
+    paths: ["frc/**", "ci/**", "lean/FrcCore/**", "lean/FrcLedger/**", "docs/*/*-ledger.json", ".github/workflows/framework.yml"]
   pull_request:
-    paths: ["frc/**", "ci/**", "lean/FrcCore/**", "lean/FrcLedger/**", ".github/workflows/framework.yml"]
+    paths: ["frc/**", "ci/**", "lean/FrcCore/**", "lean/FrcLedger/**", "docs/*/*-ledger.json", ".github/workflows/framework.yml"]
   workflow_dispatch:
 
 jobs:
   gates:
-    name: tests · gates G09, G10, G19
+    name: tests · gates G09, G10, G12, G13, G19
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -23,5 +26,5 @@ jobs:
           python-version: "3.10"
       - name: unit tests (standard library only)
         run: python -B -m unittest discover -s frc/tests -t . -v
-      - name: gates G09, G10, G19
+      - name: gates G09, G10, G12, G13, G19
         run: python -B ci/gates.py all
