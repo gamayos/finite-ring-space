@@ -1,4 +1,4 @@
-import FrcCore.Sum
+import FrcCore.Series
 
 /-!
 # FrcCore.Poly — polynomials over the shell and the root criterion (1:E3)
@@ -6,10 +6,13 @@ import FrcCore.Sum
 A polynomial is its coefficient sequence `Nat → Shell p` with a degree bound (`Bound f n`: the coefficients
 beyond `n` vanish); equality is coefficientwise, so no function extensionality is needed.  The Cauchy
 product, evaluation as a finite sum, the evaluation homomorphism (`eval_mul`, by a triangular reindexing of
-sums), synthetic division by `X − a` at a root (`quot_linear_spec`), the root bound (a polynomial of degree
-`n` vanishing at `n + 1` distinct points is zero, `root_bound`), and 1:E3's criterion: `f` has a root iff `f`
-and `X^p − X` share a factor of positive degree (`root_iff_common_factor`).  The reverse direction is
-constructive — the root is found by deciding `∃ i < p, d(i) = 0`.  No axioms.
+sums), synthetic division by `X − a` at a root (`quot_linear_spec`), and the root bound over any shell without
+zero divisors (a polynomial of degree `n` vanishing at `n + 1` distinct points is zero, `root_bound_of`).  No
+axioms.
+
+Since task LM22 the module stands on `Series.lean` alone, without the frame: the frame's root bound
+(`Frame.root_bound`) and 1:E3's criterion (`root_iff_common_factor`) are in the numbers theme's
+`Theme/Numbers.lean`, under their names.
 -/
 
 namespace FRC
@@ -244,13 +247,12 @@ theorem eval_mul_linear {q : Poly p} {n : Nat} (hq : Bound q n) (a b : Shell p) 
     eval (mul (linear a) q) (n + 1) b = (b + -a) * eval q n b := by
   rw [Nat.add_comm n 1, eval_mul (linear_bound a) hq, eval_linear]
 
-namespace Frame
-variable {κ : Nat} {g : Shell p}
-
-/-- 1:E3, the root bound — a polynomial of degree at most `n` that vanishes at `n + 1` distinct points is
-zero: the distinct roots are counted by the degree. -/
-theorem root_bound (F : Frame p κ g) : ∀ (n : Nat) (f : Poly p), Bound f n → ∀ (r : Nat → Shell p),
-    (∀ i j, i ≤ n → j ≤ n → r i = r j → i = j) → (∀ i, i ≤ n → eval f n (r i) = 0) → ∀ i, f i = 0 := by
+/-- The root bound over any shell without zero divisors (task LM22): a polynomial of degree at most `n` that
+vanishes at `n + 1` distinct points is zero. `Frame.root_bound` is its case of a frame; the prime shell's
+(`Theme/Foundation`) needs no generator. -/
+theorem root_bound_of (hzd : ∀ {a b : Shell p}, a * b = 0 → a = 0 ∨ b = 0) : ∀ (n : Nat) (f : Poly p), Bound f n →
+    ∀ (r : Nat → Shell p), (∀ i j, i ≤ n → j ≤ n → r i = r j → i = j) → (∀ i, i ≤ n → eval f n (r i) = 0) →
+    ∀ i, f i = 0 := by
   intro n
   induction n with
   | zero =>
@@ -277,7 +279,7 @@ theorem root_bound (F : Frame p κ g) : ∀ (n : Nat) (f : Poly p), Bound f n �
       · intro k hk
         have h := hroot (k + 1) (Nat.succ_le_succ hk)
         rw [hf'] at h
-        match F.mul_eq_zero h with
+        match hzd h with
         | .inl e =>
           have : r (k + 1) = r 0 := by
             calc r (k + 1) = r (k + 1) + 0 := (add_zero _).symm
@@ -292,101 +294,12 @@ theorem root_bound (F : Frame p κ g) : ∀ (n : Nat) (f : Poly p), Bound f n �
     | 0 => rw [mul_linear_zero, hz, mul_zero, neg_zero]
     | i + 1 => rw [mul_linear_succ, hz, hz, mul_zero, neg_zero, add_zero]
 
-theorem xpx_bound : Bound (xpx : Poly p) p := by
-  intro i hi
-  show (if i = p then 1 else if i = 1 then -1 else 0 : Shell p) = 0
-  rw [ite_eq_right (Nat.ne_of_gt hi), ite_eq_right (fun e => absurd hi (by rw [e]; exact Nat.not_lt_of_le (Pos.pos : 0 < p)))]
-
-theorem xpx_p : (xpx : Poly p) p = 1 := by
-  show (if p = p then 1 else if p = 1 then -1 else 0 : Shell p) = 1
-  rw [ite_eq_left rfl]
-
-/-- `X^p − X` vanishes everywhere: Fermat. -/
-theorem eval_xpx (F : Frame p κ g) (a : Shell p) : eval (xpx : Poly p) p a = 0 := by
-  have h2 : 2 ≤ p := Nat.le_of_lt F.two_lt_p
-  have e : p + 1 = 2 + (p - 1) := by
-    calc p + 1 = 1 + (p - 1) + 1 := by rw [FRC.Nat.add_sub_of_le Pos.pos]
-      _ = 2 + (p - 1) := by rw [Nat.add_right_comm]
-  unfold eval
-  rw [e, sum_split, sumRange_succ, sumRange_succ, sumRange_zero, zero_add]
-  have hp1 : p ≠ 1 := fun h => absurd (h ▸ h2 : 2 ≤ 1) (Nat.not_le_of_lt (Nat.lt_succ_self 1))
-  have t0 : (xpx : Poly p) 0 * a ^ 0 = 0 := by
-    show (if 0 = p then 1 else if 0 = 1 then -1 else 0 : Shell p) * a ^ 0 = 0
-    rw [ite_eq_right (fun h => by have := (Pos.pos : 0 < p); rw [← h] at this; exact Nat.lt_irrefl 0 this),
-      ite_eq_right (fun h => FRC.Nat.succ_ne_zero 0 h.symm), zero_mul]
-  have t1 : (xpx : Poly p) 1 * a ^ 1 = -a := by
-    show (if 1 = p then 1 else if 1 = 1 then -1 else 0 : Shell p) * a ^ 1 = -a
-    rw [ite_eq_right (fun h => hp1 h.symm), ite_eq_left rfl, pow_one, neg_one_mul]
-  have t2 : sumRange (fun t => (xpx : Poly p) (2 + t) * a ^ (2 + t)) (p - 1) = a ^ p := by
-    have hl : p - 2 < p - 1 := by
-      have e : p = (p - 2) + 2 := (FRC.Nat.sub_add_cancel h2).symm
-      rw [e]
-      exact Nat.lt_succ_self (p - 2)
-    rw [sum_eq_single hl (fun t _ ht => by
-      show (if 2 + t = p then 1 else if 2 + t = 1 then -1 else 0 : Shell p) * a ^ (2 + t) = 0
-      rw [ite_eq_right (fun h => ht (by rw [← h, Nat.add_comm, FRC.Nat.add_sub_cancel])),
-        ite_eq_right (fun h => FRC.Nat.succ_ne_zero t (Nat.succ.inj (by rw [Nat.add_comm] at h; exact h))), zero_mul])]
-    show (if 2 + (p - 2) = p then 1 else if 2 + (p - 2) = 1 then -1 else 0 : Shell p) * a ^ (2 + (p - 2)) = a ^ p
-    rw [FRC.Nat.add_sub_of_le h2, ite_eq_left rfl, one_mul]
-  show (xpx : Poly p) 0 * a ^ 0 + (xpx : Poly p) 1 * a ^ 1 + sumRange (fun t => (xpx : Poly p) (2 + t) * a ^ (2 + t)) (p - 1) = 0
-  rw [t0, t1, t2, zero_add, F.fermat, neg_add]
-
-/-- A common factor of positive degree `m`: `d` with `d m ≠ 0` dividing both, with cofactors of the
-complementary degrees. -/
-def CommonFactor (f : Poly p) (n : Nat) (h : Poly p) (k : Nat) : Prop :=
-  ∃ (d : Poly p) (m : Nat) (q1 q2 : Poly p), 1 ≤ m ∧ Bound d m ∧ d m ≠ 0 ∧ Bound q1 (n - m) ∧
-    Bound q2 (k - m) ∧ (∀ i, f i = mul d q1 i) ∧ (∀ i, h i = mul d q2 i)
+namespace Frame
 
 theorem ofNat_inj_lt {i j : Nat} (hi : i < p) (hj : j < p) (h : (ofNat i : Shell p) = ofNat j) : i = j := by
   have := val_injective h
   rw [val_ofNat, val_ofNat, FRC.Nat.mod_eq_of_lt hi, FRC.Nat.mod_eq_of_lt hj] at this
   exact this
-
-/-- 1:E3, the root criterion — `f` has a root in the shell iff `f` and `X^p − X` share a factor of positive
-degree.  Forward: the factor is `X − a` (synthetic division, Fermat).  Backward: a common factor `d` of
-degree `m ≥ 1` with no root would force its cofactor in `X^p − X`, of degree `p − m < p`, to vanish at
-all `p` residues, hence to be zero (`root_bound`), against `X^p − X ≠ 0`; the root of `d` is found by
-deciding `∃ i < p, d(i) = 0`. -/
-theorem root_iff_common_factor (F : Frame p κ g) {f : Poly p} {n : Nat} (hf : Bound f n) :
-    (∃ a, eval f n a = 0) ↔ CommonFactor f n (xpx : Poly p) p := by
-  constructor
-  · intro ⟨a, ha⟩
-    have s1 := quot_linear_spec hf ha
-    have s2 := quot_linear_spec (xpx_bound (p := p)) (eval_xpx F a)
-    exact ⟨linear a, 1, quotLinear f n a, quotLinear xpx p a, Nat.le_refl 1, linear_bound a, F.one_ne_zero,
-      s1.1, s2.1, s1.2, s2.2⟩
-  · intro ⟨d, m, q1, q2, hm, hd, hdm, hq1, hq2, e1, e2⟩
-    -- every residue is a root of `d · q2`
-    have hprod : ∀ a, eval d m a * eval q2 (p - m) a = 0 := fun a => by
-      rw [← eval_mul hd hq2, ← eval_bound (mul_bound hd hq2) (Nat.add_le_add_left (Nat.sub_le p m) m) a,
-        ← eval_congr e2, eval_bound xpx_bound (Nat.le_add_left p m), eval_xpx F]
-    have : ∀ v, Decidable (∃ i, i < p ∧ eval d m (ofNat i) = v) :=
-      fun v => decExistsLT (fun i => eval d m (ofNat i) = v) p
-    match this 0 with
-    | .isTrue ⟨i, _, hi⟩ =>
-      refine ⟨ofNat i, ?_⟩
-      rw [← eval_bound hf (Nat.le_add_right n m), eval_congr e1,
-        eval_bound (mul_bound hd hq1) (by rw [Nat.add_comm n m]; exact Nat.add_le_add_left (Nat.sub_le n m) m),
-        eval_mul hd hq1, hi, zero_mul]
-    | .isFalse hno =>
-      -- `q2` vanishes at the `p − m + 1 ≤ p` residues `0, …, p − m`, so it is zero
-      have hk : p - m < p := Nat.sub_lt Pos.pos hm
-      have hz : ∀ i, q2 i = 0 := by
-        apply root_bound F (p - m) q2 hq2 (fun i => ofNat i)
-        · intro i j hi hj e
-          exact ofNat_inj_lt (Nat.lt_of_le_of_lt hi hk) (Nat.lt_of_le_of_lt hj hk) e
-        · intro i hi
-          match F.mul_eq_zero (hprod (ofNat i)) with
-          | .inl e => exact absurd ⟨i, Nat.lt_of_le_of_lt hi hk, e⟩ hno
-          | .inr e => exact e
-      have : (xpx : Poly p) p = 0 := by
-        rw [e2 p]
-        apply sum_zero
-        intro j _
-        show d j * q2 (p - j) = 0
-        rw [hz, mul_zero]
-      rw [xpx_p] at this
-      exact absurd this F.one_ne_zero
 
 end Frame
 end Poly

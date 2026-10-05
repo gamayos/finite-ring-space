@@ -1,5 +1,5 @@
 name = "frcledger"
-defaultTargets = ["FrcLedger", "FrcCore"]
+defaultTargets = ["FrcLedger", "FrcCore", "FrcBridge"]
 
 [[require]]
 name = "mathlib"
@@ -10,3 +10,6 @@ name = "FrcLedger"
 
 [[lean_lib]]
 name = "FrcCore"          # the substrate from first principles: imports nothing, proves with no axioms (check_core_axioms.py)
+
+[[lean_lib]]
+name = "FrcBridge"        # the bridges of the counterpart pairs (task LM34): the clause two rows share, derived from each side's core key; no axioms

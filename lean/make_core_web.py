@@ -7,7 +7,7 @@ each key file (web/core/Keys.<Theme>.lean, one `#print axioms` per key). --check
 import re, sys
 from pathlib import Path
 ROOT = Path(__file__).resolve().parent
-ORDER = ["Nat", "Pigeonhole", "Shell", "Frame", "Orbit", "Sum", "Theme.Projective", "Theme.Extension", "Theme.Logic", "Meridian", "Fourier", "Algebra", "Epi", "Dimensions", "Poly", "Quaternion", "Causality", "Representation", "Reductio", "Godel", "Geometry", "Complex", "Instances", "Rh", "Entropy", "Gravity", "Dirac"]
+ORDER = ["Nat", "Pigeonhole", "Shell", "Series", "Frame", "Orbit", "Sum", "Theme.Projective", "Theme.Extension", "Theme.Numbers", "Theme.Logic", "Theme.Foundation", "Theme.Carrier", "Meridian", "Fourier", "Algebra", "Epi", "Dimensions", "Poly", "Quaternion", "Causality", "Representation", "Reductio", "Godel", "Geometry", "Complex", "Instances", "Rh", "Entropy", "Gravity", "Dirac"]
 ORDER += ["Keys." + p.stem for p in sorted((ROOT / "FrcCore" / "Keys").glob("*.lean"))]   # the key files (make_keys.py, task LM19): after the themes they import
 PAPERS = ["Algebra", "Fourier", "Geometry", "Causality", "Representation", "Reductio", "Godel", "Epi", "Dimensions", "Rh", "Entropy", "Gravity", "Dirac"]   # the modules that are a paper's
 

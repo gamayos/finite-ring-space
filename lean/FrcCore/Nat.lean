@@ -12,7 +12,8 @@ around `Nat.modCore`, itself a fuel recursion): `mod_eq_of_lt`, `mod_eq_sub_mod`
 (`x = p·q + x % p`) and `mod_unique` (the remainder is determined by any such decomposition). Everything
 about residues mod `p` follows from those four.
 
-Since the ledger migration (task LM17) it also holds `isPrime`, primality by trial division (from 10-dimensions).
+Since the ledger migration (task LM17) it also holds `isPrime`, primality by trial division (from 10-dimensions),
+and since task LM22 `isPrime_of_bounded`, trial division up to the square root (from 14-entropy).
 -/
 
 namespace FRC.Nat
@@ -266,5 +267,33 @@ theorem pos_pow_of_pos {a : Nat} (n : Nat) (h : 0 < a) : 0 < a ^ n := Nat.pow_po
 /-- Primality by trial division, decidable. -/
 def isPrime (n : Nat) : Prop := 2 ≤ n ∧ ∀ d, d < n → 2 ≤ d → n % d ≠ 0
 instance (n : Nat) : Decidable (isPrime n) := by unfold isPrime; exact inferInstance
+
+/-- Trial division up to `B` decides primality when `n < (B + 1)²`: a divisor `d ≥ 2` of `n` with
+`d > B` has a cofactor `q = n/d` with `2 ≤ q ≤ B`, itself a divisor. (From 14-entropy, moved by task LM22.) -/
+theorem isPrime_of_bounded (n B : Nat) (h2 : 2 ≤ n) (hB : n < (B + 1) * (B + 1))
+    (hd : ∀ d, d < B + 1 → 2 ≤ d → n % d ≠ 0) : isPrime n := by
+  refine ⟨h2, fun d hdn hd2 hmod => ?_⟩
+  have hd0 : 0 < d := Nat.lt_of_lt_of_le (Nat.zero_lt_succ 1) hd2
+  obtain ⟨q, hq⟩ := mod_spec d hd0 n
+  rw [hmod, Nat.add_zero] at hq
+  match Nat.lt_or_ge d (B + 1) with
+  | .inl hlt => exact hd d hlt hd2 hmod
+  | .inr hge =>
+    -- the cofactor `q`: `n = d q`, `q ≥ 2` (else `n = 0` or `n = d`), and `q ≤ B` (else `d q ≥ (B+1)²`)
+    have hq2 : 2 ≤ q := by
+      match q with
+      | 0 => rw [Nat.mul_zero] at hq; exact absurd (hq ▸ h2) (Nat.not_succ_le_zero 1)
+      | 1 => rw [Nat.mul_one] at hq; exact absurd (hq ▸ hdn) (Nat.lt_irrefl d)
+      | q + 2 => exact Nat.le_add_left 2 q
+    have hqB : q < B + 1 := by
+      match Nat.lt_or_ge q (B + 1) with
+      | .inl h => exact h
+      | .inr hqge =>
+        have : (B + 1) * (B + 1) ≤ d * q := Nat.mul_le_mul hge hqge
+        exact absurd (Nat.lt_of_lt_of_le hB this) (hq ▸ Nat.lt_irrefl n)
+    have hq0 : 0 < q := Nat.lt_of_lt_of_le (Nat.zero_lt_succ 1) hq2
+    have hmodq : n % q = 0 :=
+      mod_unique hq0 (by rw [hq, Nat.mul_comm d q, Nat.add_zero])
+    exact hd q hqB hq2 hmodq
 
 end FRC.Nat

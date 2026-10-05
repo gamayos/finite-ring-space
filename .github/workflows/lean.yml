@@ -7,15 +7,18 @@ name: lean
 # (lean/FrcCore, no Mathlib) is built and audited for zero axioms over the modules check_core_axioms.py discovers (gate
 # G11).  The framework's tiers are checked with it (ledger migration, task LM21): the themes build with their libraries,
 # the key files are current against the ledgers (make_keys.py), the core's web copies are current, and every migrated
-# ledger's certificate builds, each key's axioms guarded by the message it must print.  The weekly job builds against
+# ledger's certificate builds, each key's axioms guarded by the message it must print. Since task LM22 the master's
+# block files (frc/ledgers/master/, whose PROOFS bind the master's rows to the keys) and docs/00-ledger.json trigger it,
+# the bridges (lean/FrcBridge, no axioms) build and are audited with the core, and the certificates under
+# Ledgers/Master/ build too.  The weekly job builds against
 # Mathlib master so a toolchain or Mathlib change that breaks the modules is a scheduled failure, not a surprise for a
 # reader; it never moves the pin.
 
 on:
   push:
-    paths: ["lean/**", "docs/*/*-ledger.json", ".github/workflows/lean.yml"]
+    paths: ["lean/**", "docs/*/*-ledger.json", "docs/00-ledger.json", "frc/ledgers/master/**", ".github/workflows/lean.yml"]
   pull_request:
-    paths: ["lean/**", "docs/*/*-ledger.json", ".github/workflows/lean.yml"]
+    paths: ["lean/**", "docs/*/*-ledger.json", "docs/00-ledger.json", "frc/ledgers/master/**", ".github/workflows/lean.yml"]
   workflow_dispatch:
   schedule:
     - cron: "0 6 * * 1"
@@ -35,17 +38,17 @@ jobs:
           leanchecker: "true"
           leanchecker-args: "FrcLedger"
           axiom-audit: "true"
-          axiom-audit-root: "FRC"
+          axiom-audit-root: "FrcLedger"          # a module root: the tool imports it (the namespace FRC is no module); FrcCore has its own gate below
           axiom-audit-allow: "propext,Classical.choice,Quot.sound"
       - name: axioms.log current (one line per declaration, rendered on the ledger pages)
         working-directory: lean
         run: |
           ~/.elan/bin/lake env python3 check_axioms.py
           git diff --exit-code axioms.log || { echo "axioms.log changed: run check_axioms.py locally and commit it"; exit 1; }
-      - name: the core builds and proves with no axioms, over the modules discovered (FrcCore, no Mathlib; gate G11)
+      - name: the core and the bridges build and prove with no axioms, over the modules discovered (FrcCore, FrcBridge, no Mathlib; gate G11)
         working-directory: lean
         run: |
-          ~/.elan/bin/lake build FrcCore
+          ~/.elan/bin/lake build FrcCore FrcBridge
           ~/.elan/bin/lake env python3 check_core_axioms.py
           git diff --exit-code FrcCore/axioms.log || { echo "FrcCore/axioms.log changed: run check_core_axioms.py locally and commit it"; exit 1; }
       - name: the key files current (one declaration per key, from the ledgers' Lean bindings)
@@ -54,8 +57,7 @@ jobs:
       - name: the migrated ledgers' certificates build (each key's axioms guarded)
         working-directory: lean
         run: |
-          for f in FrcCore/Ledgers/*.lean FrcLedger/Ledgers/*.lean; do
-            [ -e "$f" ] || continue
+          for f in $(find FrcCore/Ledgers FrcLedger/Ledgers -name '*.lean' -not -path '*/_to_delete/*' 2>/dev/null | sort); do
             m="${f%.lean}"; m="${m//\//.}"; echo "== $m"; ~/.elan/bin/lake build "$m"
           done
       - name: web copies current

@@ -13,7 +13,9 @@ base, structure and programme tiers are exact: no float and no third-party impor
 against the continuum, the only place where floats and the reals appear.
 
 The Lean files that exist today keep their paths. `Frame`, `Orbit`, `Instances`, `Sum`, `Meridian` and `Poly` are
-assigned to their themes in place. New theme files go under `Theme/`, since `FrcCore/Fourier.lean` and
+assigned to their themes in place. Since task LM22 the base holds `Series` (bounded search, sums and products, from
+`Frame` and `Sum`), and the numbers theme's `Theme/Numbers` holds the frame's root criterion (from `Poly`), so that the
+programme themes stand on the prime shell without the frame. New theme files go under `Theme/`, since `FrcCore/Fourier.lean` and
 `FrcCore/Gravity.lean` are paper modules (6-fourier and 21-gravity). Since task LM18 (5 October 2026) the paper modules
 (`LEGACY`) import themes only, and gate G09 fails a cross-paper import.
 """
@@ -25,8 +27,8 @@ TIERS = ("base", "structure", "programme", "chart", "keys", "ledgers")
 THEMES = {
     "base": dict(tier="base", rank=0, exact=True,
                  py=["frc/registry.py", "frc/arith.py"],
-                 core=["lean/FrcCore/Nat.lean", "lean/FrcCore/Pigeonhole.lean", "lean/FrcCore/Shell.lean"], ml=[],
-                 content="the registry of checks; exact integer arithmetic; the naturals, the pigeonhole and the shell's residues"),
+                 core=["lean/FrcCore/Nat.lean", "lean/FrcCore/Pigeonhole.lean", "lean/FrcCore/Shell.lean", "lean/FrcCore/Series.lean"], ml=[],
+                 content="the registry of checks; exact integer arithmetic; the naturals, the pigeonhole and the shell's residues; bounded search, finite sums and products"),
     "frame": dict(tier="structure", rank=10, exact=True,
                   py=["frc/shell.py"],
                   core=["lean/FrcCore/Frame.lean", "lean/FrcCore/Orbit.lean", "lean/FrcCore/Instances.lean", "lean/FrcCore/Sum.lean"],

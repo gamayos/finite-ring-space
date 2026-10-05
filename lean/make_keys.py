@@ -2,7 +2,8 @@
 """make_keys.py — the keyed theorems, one Lean declaration per key (ledger migration, task LM19; run from lean/).
 
 A paper's ledger binds each predicate to the Lean declarations that prove it (docs/<pkg>/<pkg>-ledger.json, field
-"lean"); make_predicates.py turns each binding into the predicate's declaration `FRC.<Module>.p<key>`. When every
+"lean"); make_predicates.py turns each binding into the predicate's declaration `FRC.<Module>.p<key>`. A master block's
+ledger file binds its rows the same way (frc/ledgers/master/<theme>.py, PROOFS; task LM22), over docs/00-ledger.json. When every
 theorem a predicate cites lives in the themes (frc/themes.py), after a moved name is followed to its theme, the key's
 proof needs no paper module. This tool then writes the key once, in the theme's key file:
 
@@ -22,7 +23,7 @@ the key files are kept, so --check needs no Lean run.
     python3 make_keys.py --docs ../docs --check     # exit 1 if a key file is stale or a keyable predicate has no key
     python3 make_keys.py --docs ../docs --list      # the keys, their themes and their sources
 """
-import argparse, json, re, subprocess, sys, tempfile
+import argparse, ast, json, re, subprocess, sys, tempfile
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent
@@ -86,7 +87,25 @@ def ledgers(docs):
                 if r.get("key"): rows.setdefault(r["key"], []).append(f"{data['paper'].split('-')[0]}:{r['label']}")
         if data.get("lean") and mod: out.append((pkg, mod, data))
     for k, v in mrows.items(): rows.setdefault(k, []).extend(v)
+    out += master_blocks(master)
     return out, rows
+
+
+def master_blocks(master):
+    """The master's block files (frc/ledgers/master/<theme>.py, task LM22) as ledgers: the block's rows from
+    docs/00-ledger.json and the Lean proofs of the file's PROOFS as the rows' Lean cells."""
+    d = ROOT.parent / "frc" / "ledgers" / "master"; out = []
+    if not (master.exists() and d.exists()): return out
+    m = json.loads(master.read_text(encoding="utf-8")); where = MP.declared("FrcCore")
+    for f in sorted(p for p in d.glob("*.py") if p.name != "__init__.py"):
+        text = f.read_text(encoding="utf-8")
+        b = re.search(r'^BLOCK = "([A-Z])"', text, re.M); pm = re.search(r"^PROOFS = (\{.*?^\})", text, re.M | re.S)
+        if not (b and pm): continue
+        rows = [{"label": r["label"], "key": r["key"], "tag": r["tag"], "predicate": r["statement"]} for r in m["rows"] if r["block"] == b.group(1)]
+        lean = {label: [{"name": n, "module": "FrcCore/" + where.get(n, ("?",))[0].replace(".", "/")} for n in names]
+                for label, names in ast.literal_eval(pm.group(1)).items()}
+        out.append((f"00-ledger/{f.stem}", None, {"paper": "00-ledger", "blocks": [{"rows": rows}], "lean": lean}))
+    return out
 
 
 def keyable(docs):

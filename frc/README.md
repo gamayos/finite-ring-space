@@ -24,13 +24,19 @@ ledger, the notebook beside the file (one cell per predicate, its id the key) an
 (`lean/FrcCore/Ledgers/`, `lean/FrcLedger/Ledgers/`). Migrated so far: 3-causality, `p03_causality.py` (task LM20).
 One ledger runs with `python3 -m frc.ledgers.p03_causality`.
 
+**Master blocks.** `frc/ledgers/master/<theme>.py` binds one block of the master ledger the same way. Its table is
+generated from `docs/00-ledger.json` (the block's rows); the Lean theorems each row's key conjoins are written in the
+file (`PROOFS`), since the master has no Lean cells; `lean/make_keys.py` writes the keys from them, and
+`ci/make_ledgers.py` the notebook and the certificate `lean/FrcCore/Ledgers/Master/<Theme>.lean`. The first is the
+Carrier's, block B, `master/carrier.py` (task LM22): `python3 -m frc.ledgers.master.carrier`.
+
 ## The theme map
 
 Generated from `frc/themes.py` (`python3 -m frc.themes`).
 
 | theme | tier | rank | exact | python | Lean core | Lean Mathlib | content |
 |---|---|---|---|---|---|---|---|
-| base | base | 0 | yes | `registry.py`, `arith.py` | `Nat.lean`, `Pigeonhole.lean`, `Shell.lean` | — | the registry of checks; exact integer arithmetic; the naturals, the pigeonhole and the shell's residues |
+| base | base | 0 | yes | `registry.py`, `arith.py` | `Nat.lean`, `Pigeonhole.lean`, `Shell.lean`, `Series.lean` | — | the registry of checks; exact integer arithmetic; the naturals, the pigeonhole and the shell's residues; bounded search, finite sums and products |
 | frame | structure | 10 | yes | `shell.py` | `Frame.lean`, `Orbit.lean`, `Instances.lean`, `Sum.lean` | `Theme/Frame.lean` | the frame (τ; 0, 1, g), the drive and its orbit, the quarter-turn, the lift; finite sums; concrete shells |
 | extension | structure | 11 | yes | `extension.py` | `Theme/Extension.lean` | `Theme/Extension.lean` | the quadratic extension F_{p²}, its norm and conjugation, the norm-one torus and the boost; the quaternion norm |
 | projective | structure | 12 | yes | `projective.py` | `Theme/Projective.lean` | `Theme/Projective.lean` | PGL₂ and SL₂ by elements, the Borel subgroup, the split and non-split tori |
@@ -49,6 +55,7 @@ Generated from `frc/themes.py` (`python3 -m frc.themes`).
 | ledgers | ledgers | 50 | yes | `ledgers/p<NN>_<topic>.py`, `ledgers/master/<theme>.py` | `Ledgers/<ledger>.lean` | `Ledgers/<ledger>.lean` | one file per paper and per master block: predicates bound to themes |
 
 The Lean files that exist today keep their paths: `Frame`, `Orbit`, `Instances` and `Sum` form the frame theme, `Meridian`
-belongs to the Fourier theme and `Poly` to the numbers theme. New theme files go under `Theme/`, since `FrcCore/Fourier.lean`
+belongs to the Fourier theme and `Poly` to the numbers theme. Since task LM22 `Series` (bounded search, sums and
+products) is in the base, `Poly` stands on it without the frame, and the frame's root criterion is `Theme/Numbers`. New theme files go under `Theme/`, since `FrcCore/Fourier.lean`
 and `FrcCore/Gravity.lean` hold the papers 6-fourier and 21-gravity. Since task LM18 the paper modules of today import
 themes only (and their own paper's modules), and gate G09 fails a cross-paper import.

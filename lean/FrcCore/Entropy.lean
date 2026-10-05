@@ -25,7 +25,8 @@ B7) are outside this module: it decides the lemma's arithmetic. Every declaratio
 axiom (`check_core_axioms.py`).
 
 Since the ledger migration (task LM17) the octant character and its converse live in the frame theme (`Orbit.lean`)
-and `isPrime` in `Nat.lean`; every old name stays as an alias.
+and `isPrime` in `Nat.lean`; since task LM22 `isPrime_of_bounded` lives in `Nat.lean` too. Every old name stays as
+an alias.
 -/
 
 namespace FRC.Entropy
@@ -104,32 +105,11 @@ theorem nesting_bound (q p Ω : Nat) (hq : q * q < p) (hp : p * p < Ω) : q * q 
   exact Nat.lt_trans h1 hp
 
 /-- Trial division up to `B` decides primality when `n < (B + 1)²`: a divisor `d ≥ 2` of `n` with
-`d > B` has a cofactor `q = n/d` with `2 ≤ q ≤ B`, itself a divisor. -/
+`d > B` has a cofactor `q = n/d` with `2 ≤ q ≤ B`, itself a divisor. Since task LM22 the base theme's
+`FRC.Nat.isPrime_of_bounded`, under its old name. -/
 theorem isPrime_of_bounded (n B : Nat) (h2 : 2 ≤ n) (hB : n < (B + 1) * (B + 1))
-    (hd : ∀ d, d < B + 1 → 2 ≤ d → n % d ≠ 0) : FRC.Nat.isPrime n := by
-  refine ⟨h2, fun d hdn hd2 hmod => ?_⟩
-  have hd0 : 0 < d := Nat.lt_of_lt_of_le (Nat.zero_lt_succ 1) hd2
-  obtain ⟨q, hq⟩ := FRC.Nat.mod_spec d hd0 n
-  rw [hmod, Nat.add_zero] at hq
-  match Nat.lt_or_ge d (B + 1) with
-  | .inl hlt => exact hd d hlt hd2 hmod
-  | .inr hge =>
-    -- the cofactor `q`: `n = d q`, `q ≥ 2` (else `n = 0` or `n = d`), and `q ≤ B` (else `d q ≥ (B+1)²`)
-    have hq2 : 2 ≤ q := by
-      match q with
-      | 0 => rw [Nat.mul_zero] at hq; exact absurd (hq ▸ h2) (Nat.not_succ_le_zero 1)
-      | 1 => rw [Nat.mul_one] at hq; exact absurd (hq ▸ hdn) (Nat.lt_irrefl d)
-      | q + 2 => exact Nat.le_add_left 2 q
-    have hqB : q < B + 1 := by
-      match Nat.lt_or_ge q (B + 1) with
-      | .inl h => exact h
-      | .inr hqge =>
-        have : (B + 1) * (B + 1) ≤ d * q := Nat.mul_le_mul hge hqge
-        exact absurd (Nat.lt_of_lt_of_le hB this) (hq ▸ Nat.lt_irrefl n)
-    have hq0 : 0 < q := Nat.lt_of_lt_of_le (Nat.zero_lt_succ 1) hq2
-    have hmodq : n % q = 0 :=
-      FRC.Nat.mod_unique hq0 (by rw [hq, Nat.mul_comm d q, Nat.add_zero])
-    exact hd q hqB hq2 hmodq
+    (hd : ∀ d, d < B + 1 → 2 ≤ d → n % d ≠ 0) : FRC.Nat.isPrime n :=
+  FRC.Nat.isPrime_of_bounded n B h2 hB hd
 
 end nesting
 

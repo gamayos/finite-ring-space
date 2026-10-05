@@ -13,6 +13,11 @@ ledger (docs/<paper>/<paper>-ledger.json, field "lean" for the Lean bindings) th
     ledger has content in that library: the key files the ledger needs, and one `#print axioms` per key, guarded by the
     message it must print (`#guard_msgs`), taken from the axiom logs; the build fails if a key's axioms change.
 
+A master block's ledger file, frc/ledgers/master/<theme>.py (task LM22), is generated the same way from the master's
+data (docs/00-ledger.json, the rows of its BLOCK) and its own PROOFS, the Lean theorems each row's key conjoins: the
+table KEYS and LEAN over the block's rows, the notebook frc/ledgers/master/<theme>.ipynb, and the certificate
+lean/FrcCore/Ledgers/Master/<Theme>.lean.
+
 A ledger file is migrated when it carries the generated table's two marker lines; the tool leaves the others alone.
 Every Lean declaration of a migrated ledger must be a key of the key files (lean/make_keys.py): a certificate imports
 key files only (gate G09). Run lean/make_keys.py, lean/make_predicates.py and the axiom checks first.
@@ -20,7 +25,7 @@ key files only (gate G09). Run lean/make_keys.py, lean/make_predicates.py and th
     python3 ci/make_ledgers.py            write the generated parts, execute the notebooks
     python3 ci/make_ledgers.py --check    exit 1 if a generated part is stale (no execution; gate G12 runs the same check)
 """
-import contextlib, importlib, importlib.util, io, json, os, re, sys, traceback
+import ast, contextlib, importlib, importlib.util, io, json, os, re, sys, traceback
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
@@ -36,12 +41,37 @@ def make_predicates():
 
 
 def ledger_files():
+    """The paper ledger files frc/ledgers/p*.py, then the master's block files frc/ledgers/master/*.py."""
     d = ROOT / "frc" / "ledgers"
-    return sorted(p for p in d.glob("p*.py")) if d.exists() else []
+    if not d.exists(): return []
+    return sorted(d.glob("p*.py")) + sorted(p for p in (d / "master").glob("*.py") if p.name != "__init__.py")
+
+
+def is_master(f):
+    return f.parent.name == "master"
+
+
+def module_name(f):
+    """frc.ledgers.p03_causality, frc.ledgers.master.carrier"""
+    return "frc.ledgers." + ("master." if is_master(f) else "") + f.stem
+
+
+def master_data(block, proofs, MP):
+    """The master's block as a paper ledger's data: its rows (label, key, tag, predicate) and the Lean proofs of PROOFS
+    as the ledger's "lean" cells ({label: [{name, module}]}, the module where the core declares the name)."""
+    m = json.loads((ROOT / "docs" / "00-ledger.json").read_text(encoding="utf-8"))
+    rows = [{"label": r["label"], "key": r["key"], "tag": r["tag"], "predicate": r["statement"]} for r in m["rows"] if r["block"] == block]
+    where = MP.declared("FrcCore")
+    lean = {label: [{"name": n, "module": "FrcCore/" + where[n][0].replace(".", "/") if n in where else "FrcCore/?"} for n in names]
+            for label, names in proofs.items()}
+    title = (m.get("blocks") or {}).get(block, "")
+    return {"paper": "00-ledger", "block": block, "title": f"The FRC master predicate ledger, block {block}: {title}",
+            "blocks": [{"letter": block, "rows": rows}], "lean": lean}
 
 
 def lean_name(stem):
-    """p03_causality -> P03Causality"""
+    """p03_causality -> P03Causality; a master block file carrier -> Master/Carrier (its module FrcCore.Ledgers.Master.Carrier)"""
+    if "_" not in stem: return "Master/" + stem.capitalize()
     num, topic = stem.split("_", 1)
     return num.upper() + "".join(w.capitalize() for w in topic.split("_"))
 
@@ -69,8 +99,9 @@ def table(paper, data, lean):
     k = ", ".join(f'"{l}": "{key}"' for l, key in rows)
     ln = ", ".join(f'"{l}": "{", ".join(LIBS[lib][0] for lib in LIBS if lib in libs)}"' for l, libs in
                    sorted(lean.items(), key=lambda kv: [x for x, _ in rows].index(kv[0])))
-    return (f'PAPER = "{paper}"\n'
-            f"KEYS = {{{k}}}       # every row of the ledger: its label and its accession key\n"
+    head = f'BLOCK = "{data["block"]}"\n' if data.get("block") else f'PAPER = "{paper}"\n'
+    return (head +
+            f"KEYS = {{{k}}}       # every row of the {'block' if data.get('block') else 'ledger'}: its label and its accession key\n"
             f"LEAN = {{{ln}}}       # the rows with a Lean declaration: the libraries whose key files prove them\n")
 
 
@@ -82,33 +113,42 @@ def wrap(text, width=110, lead="#"):
     lines.append(cur); return "\n".join(lines)
 
 
-def boot(stem):
+def boot(mod):
     return ("import os, sys; ROOT = os.environ.get(\"FRC_ROOT\", \"/content/finite-ring-space\")   # the framework: this checkout, or a clone on Colab\n"
             f"if not os.path.isdir(ROOT + \"/frc\"): os.system(f\"git clone -q --depth 1 {REPO} {{ROOT}}\")\n"
             "if ROOT not in sys.path: sys.path.insert(0, ROOT)\n"
-            f"from frc.ledgers.{stem} import R\n")
+            f"from {mod} import R\n")
 
 
-def notebook(stem, L, data):
-    paper, num = L.PAPER, data["paper"].split("-")[0]
+def notebook(f, L, data):
+    mod, rel = module_name(f), f.relative_to(ROOT)
+    num = data["paper"].split("-")[0]
     rows = [r for b in data["blocks"] for r in b["rows"]]
     witnessed = [r for r in rows if f"{num}:{r['label']}" in L.R.predicates and r.get("key")]
     cells = []
     def md(s, cid): cells.append({"cell_type": "markdown", "id": cid, "metadata": {"id": cid}, "source": s})
     def code(s, cid): cells.append({"cell_type": "code", "id": cid, "metadata": {"id": cid}, "execution_count": None, "outputs": [], "source": s})
-    doi = data.get("doi")
-    md(f"## {data['title']}" + (f", [doi {doi.split('doi.org/')[-1]}]({doi})" if doi else "") + "\n\n"
-       f"Each cell below verifies one predicate of the paper's predicate ledger ([{SITE[8:]}/{paper}/]({SITE}/{paper}/)) on the FRC "
-       f"framework: it runs the blocks of the ledger file `frc/ledgers/{stem}.py` whose checks cite the predicate, prints the check "
-       "that decides it and lists every record that cites it with its verdict. The cell's id is the predicate's accession key. "
-       "Any cell can be run first: its first lines make the framework importable (this checkout, or a clone on Colab).", "header")
+    if data.get("block"):
+        md(f"## {data['title']}\n\n"
+           f"Each cell below verifies one row of the master predicate ledger ([{SITE[8:]}/00-ledger.html]({SITE}/00-ledger.html)), block "
+           f"{data['block']}, on the FRC framework: it runs the blocks of the ledger file `{rel}` whose checks cite the row, prints the check "
+           "that decides it and lists every record that cites it with its verdict. The cell's id is the row's accession key. The row's "
+           "theorem is proved in Lean, on the Carrier's chart without a generator; the cells check it on the shells and by search. "
+           "Any cell can be run first: its first lines make the framework importable (this checkout, or a clone on Colab).", "header")
+    else:
+        paper, doi = L.PAPER, data.get("doi")
+        md(f"## {data['title']}" + (f", [doi {doi.split('doi.org/')[-1]}]({doi})" if doi else "") + "\n\n"
+           f"Each cell below verifies one predicate of the paper's predicate ledger ([{SITE[8:]}/{paper}/]({SITE}/{paper}/)) on the FRC "
+           f"framework: it runs the blocks of the ledger file `{rel}` whose checks cite the predicate, prints the check "
+           "that decides it and lists every record that cites it with its verdict. The cell's id is the predicate's accession key. "
+           "Any cell can be run first: its first lines make the framework importable (this checkout, or a clone on Colab).", "header")
     for r in witnessed:
         lab = f"{num}:{r['label']}"
-        code(boot(stem) + f"# {lab} ({r['key']}) [{r['tag']}] — the deciding check {L.R.predicates[lab]}\n{wrap(r['predicate'])}\n"
+        code(boot(mod) + f"# {lab} ({r['key']}) [{r['tag']}] — the deciding check {L.R.predicates[lab]}\n{wrap(r['predicate'])}\n"
              f"assert R.predicate(\"{lab}\")", r["key"])
-    md(f"## Summary\n\nThe cells above are the ledger's python-witnessed predicates. The whole ledger file, check by check, is "
-       f"`python3 -m frc.ledgers.{stem}` from the framework's root ({len(L.LEDGER)} checks).", "summary")
-    code(boot(stem) + "assert R.verify_all(), \"a check failed\"\nprint(\"all checks pass\")", "run-all")
+    md(f"## Summary\n\nThe cells above are the {'block' if data.get('block') else 'ledger'}'s python-witnessed {'rows' if data.get('block') else 'predicates'}. "
+       f"The whole ledger file, check by check, is `python3 -m {mod}` from the framework's root ({len(L.LEDGER)} checks).", "summary")
+    code(boot(mod) + "assert R.verify_all(), \"a check failed\"\nprint(\"all checks pass\")", "run-all")
     return {"cells": cells, "metadata": {"colab": {"provenance": [], "toc_visible": True},
             "kernelspec": {"display_name": "Python 3", "language": "python", "name": "python3"}, "language_info": {"name": "python"}},
             "nbformat": 4, "nbformat_minor": 5}
@@ -151,10 +191,12 @@ def certificate(lib, stem, paper, data, lean, MP):
     for line in (ROOT / "lean" / log).read_text(encoding="utf-8").splitlines():
         m = re.match(r"^'(.+?)' ", line)
         if m: axioms[m.group(1)] = line.strip()
-    name = lean_name(stem); tier = "no axioms" if lib == "FrcCore" else "the axioms of Mathlib's hierarchy at most"
+    name = lean_name(stem).replace("/", "."); tier = "no axioms" if lib == "FrcCore" else "the axioms of Mathlib's hierarchy at most"
+    whose, src, task = ((f"the master's block {data['block']}", "the master's data (`docs/00-ledger.json`), the ledger file's `PROOFS`", "LM22") if data.get("block")
+                        else (f"the ledger of {paper}", f"the ledger (`docs/{paper}/{paper}-ledger.json`)", "LM20"))
     out = [f"import {lib}.{m}" for m in mods] + ["", "/-!",
-           f"# {lib}.Ledgers.{name} — the certificate of the ledger of {paper}, {'core' if lib == 'FrcCore' else 'Mathlib'} (ledger migration, task LM20)", "",
-           f"Generated by `ci/make_ledgers.py` from the ledger (`docs/{paper}/{paper}-ledger.json`) and the key files. One",
+           f"# {lib}.Ledgers.{name} — the certificate of {whose}, {'core' if lib == 'FrcCore' else 'Mathlib'} (ledger migration, task {task})", "",
+           f"Generated by `ci/make_ledgers.py` from {src} and the key files. One",
            "`#print axioms` per key of the ledger that this library proves, guarded by the message it must print: the build",
            f"fails if a key's axioms change ({tier}). Nothing imports this file; `lake build {lib}.Ledgers.{name}` checks it.",
            "-/", ""]
@@ -176,10 +218,18 @@ def run(check):
     MP = make_predicates(); stale, failed, problems = [], [], []
     for f in ledger_files():
         stem = f.stem; text = f.read_text(encoding="utf-8")
-        m = re.search(r'^PAPER = "([^"]+)"', text, re.M); t = TABLE.search(text)
+        t = TABLE.search(text)
         if not t: continue                                         # not migrated yet: the generated table's two marker lines opt a file in
-        if not m: problems.append(f"{f.name}: no PAPER"); continue
-        paper = m.group(1); data = json.loads((ROOT / "docs" / paper / f"{paper}-ledger.json").read_text(encoding="utf-8"))
+        if is_master(f):
+            m = re.search(r'^BLOCK = "([A-Z])"', text, re.M)
+            if not m: problems.append(f"master/{f.name}: no BLOCK"); continue
+            pm = re.search(r"^PROOFS = (\{.*?^\})", text, re.M | re.S)
+            proofs = ast.literal_eval(pm.group(1)) if pm else {}
+            paper = "00-ledger"; data = master_data(m.group(1), proofs, MP)
+        else:
+            m = re.search(r'^PAPER = "([^"]+)"', text, re.M)
+            if not m: problems.append(f"{f.name}: no PAPER"); continue
+            paper = m.group(1); data = json.loads((ROOT / "docs" / paper / f"{paper}-ledger.json").read_text(encoding="utf-8"))
         lean, missing = bindings(MP, data, paper)
         if missing: problems.append(f"{stem}: Lean declarations that no key file proves, so the ledger cannot migrate: {', '.join(missing)}"); continue
         new = text[:t.start(2)] + table(paper, data, lean) + text[t.end(2):]
@@ -195,9 +245,9 @@ def run(check):
             if check: stale.append(str(p.relative_to(ROOT)))
             else: p.parent.mkdir(parents=True, exist_ok=True); p.write_text(t2, encoding="utf-8"); print(f"{p.relative_to(ROOT)}: written")
         nbp = f.with_suffix(".ipynb")
-        sys.modules.pop(f"frc.ledgers.{stem}", None)
-        L = importlib.import_module(f"frc.ledgers.{stem}")
-        nb = notebook(stem, L, data)
+        sys.modules.pop(module_name(f), None)
+        L = importlib.import_module(module_name(f))
+        nb = notebook(f, L, data)
         old = json.loads(nbp.read_text(encoding="utf-8")) if nbp.exists() else None
         if old is not None and [(c["id"], c["source"]) for c in old["cells"]] == [(c["id"], c["source"]) for c in nb["cells"]]: continue
         if check: stale.append(str(nbp.relative_to(ROOT))); continue
@@ -212,7 +262,7 @@ def main():
     if problems: sys.exit("; ".join(problems))
     if stale: sys.exit("ledger files stale: " + "; ".join(stale) + " — run ci/make_ledgers.py")
     if failed: sys.exit("notebook cells failed: " + ", ".join(failed))
-    print(f"ledger files current: {', '.join(f.stem for f in ledger_files()) or 'none'}")
+    print(f"ledger files current: {', '.join(('master/' if is_master(f) else '') + f.stem for f in ledger_files()) or 'none'}")
 
 
 if __name__ == "__main__":

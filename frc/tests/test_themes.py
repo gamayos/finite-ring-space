@@ -97,7 +97,7 @@ class GateTest(unittest.TestCase):
         try:
             shutil.copytree(ROOT / "frc" / "ledgers", Path(d) / "frc" / "ledgers", dirs_exist_ok=True, ignore=shutil.ignore_patterns("__pycache__"))
             shutil.copytree(ROOT / "lean", Path(d) / "lean", dirs_exist_ok=True, ignore=shutil.ignore_patterns(".lake", "web", "_to_delete", "__pycache__"))
-            (Path(d) / "docs").mkdir()
+            (Path(d) / "docs").mkdir(); shutil.copyfile(ROOT / "docs" / "00-ledger.json", Path(d) / "docs" / "00-ledger.json")   # the master's blocks (LM22)
             for led in (ROOT / "docs").glob("*/*-ledger.json"):
                 (Path(d) / "docs" / led.parent.name).mkdir(); shutil.copyfile(led, Path(d) / "docs" / led.parent.name / led.name)
             code, out = self.run_gates(d)

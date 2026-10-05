@@ -6,13 +6,14 @@ name: framework
 # no third-party import), G10 (size budgets) and G19 (no core statement asserts unboundedness); and the migrated ledgers:
 # G12 (every keyed declaration has a python marker and a notebook cell, or is declared Lean-only; the parts
 # ci/make_ledgers.py generates are current) and G13 (every migrated ledger's notebook executes green, with cell ids
-# equal to keys). The Lean build and the axiom gates stay in lean.yml.
+# equal to keys), over the papers' ledger files and, since task LM22, the master's block files (frc/ledgers/master/), whose
+# tables are generated from docs/00-ledger.json. The Lean build and the axiom gates stay in lean.yml.
 
 on:
   push:
-    paths: ["frc/**", "ci/**", "lean/FrcCore/**", "lean/FrcLedger/**", "docs/*/*-ledger.json", ".github/workflows/framework.yml"]
+    paths: ["frc/**", "ci/**", "lean/FrcCore/**", "lean/FrcLedger/**", "docs/*/*-ledger.json", "docs/00-ledger.json", ".github/workflows/framework.yml"]
   pull_request:
-    paths: ["frc/**", "ci/**", "lean/FrcCore/**", "lean/FrcLedger/**", "docs/*/*-ledger.json", ".github/workflows/framework.yml"]
+    paths: ["frc/**", "ci/**", "lean/FrcCore/**", "lean/FrcLedger/**", "docs/*/*-ledger.json", "docs/00-ledger.json", ".github/workflows/framework.yml"]
   workflow_dispatch:
 
 jobs:
