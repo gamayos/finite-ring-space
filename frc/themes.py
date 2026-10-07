@@ -15,7 +15,22 @@ against the continuum, the only place where floats and the reals appear.
 The Lean files that exist today keep their paths. `Frame`, `Orbit`, `Instances`, `Sum`, `Meridian` and `Poly` are
 assigned to their themes in place. Since task LM22 the base holds `Series` (bounded search, sums and products, from
 `Frame` and `Sum`), and the numbers theme's `Theme/Numbers` holds the frame's root criterion (from `Poly`), so that the
-programme themes stand on the prime shell without the frame. New theme files go under `Theme/`, since `FrcCore/Fourier.lean` and
+programme themes stand on the prime shell without the frame. Since task LM24 (the author's decision of 5 October: split
+the frame and extension themes, keep the budget) the frame theme opens with `FrameCore` (the frame itself) and `Parity`
+(the square class), the extension theme with `Theme/Quadratic` (the quadratic extension, frame-free), and the base holds
+`Ring` (the normaliser of ring identities, from `Theme/Extension`), so that a theme takes the frame without its
+arithmetic and the extension without the frame; the foundation theme opens with `Theme/Field` (the prime field, split
+from `Theme/Foundation` the same day), so that the Subject takes the field without the foundation's rows. Since task LM25
+the frame theme's `Transform` holds the transform on the cycle (split from `Sum`), so that the fourier theme takes it
+without the orbits; and a master block may be bound by several block files, one per theme whose key file proves its rows. Since task LM26
+the horizon theme's `Theme/Horizon` holds the shell theorem (from 20-rh's `Rh`, the home of 00:Z10), and the logic
+theme's `Theme/Logic` the first-order theory of a finite structure (00:Z1). Since task LM27 the gravity theme's
+`Theme/Gravity` holds the horizon's count (the registration sphere, the record, the merger law; 00:E6, E7), and
+21-gravity's `count_identity` moved there. Since task LM28 the quantum theme's `Theme/Quantum` holds the unequal-cycle
+composite (the joint recurrence, the gcd offset, the dephasing; 00:F2), and since task LM29 the interactions theme's
+`Theme/Interactions` one generation and the Koide form (00:G11, G12, G16). Since task LM30 the chart theme's `Theme/Chart`
+(Mathlib) and `chart.py` hold the readings against the continuum that the master's L1, L3, L8 and P1 stake: the
+octant's chart theorems moved there from 14-entropy and the floor's from 21-gravity, under their old names as aliases. New theme files go under `Theme/`, since `FrcCore/Fourier.lean` and
 `FrcCore/Gravity.lean` are paper modules (6-fourier and 21-gravity). Since task LM18 (5 October 2026) the paper modules
 (`LEGACY`) import themes only, and gate G09 fails a cross-paper import.
 """
@@ -27,15 +42,15 @@ TIERS = ("base", "structure", "programme", "chart", "keys", "ledgers")
 THEMES = {
     "base": dict(tier="base", rank=0, exact=True,
                  py=["frc/registry.py", "frc/arith.py"],
-                 core=["lean/FrcCore/Nat.lean", "lean/FrcCore/Pigeonhole.lean", "lean/FrcCore/Shell.lean", "lean/FrcCore/Series.lean"], ml=[],
-                 content="the registry of checks; exact integer arithmetic; the naturals, the pigeonhole and the shell's residues; bounded search, finite sums and products"),
+                 core=["lean/FrcCore/Nat.lean", "lean/FrcCore/Pigeonhole.lean", "lean/FrcCore/Shell.lean", "lean/FrcCore/Series.lean", "lean/FrcCore/Ring.lean"], ml=[],
+                 content="the registry of checks; exact integer arithmetic; the naturals, the pigeonhole and the shell's residues; bounded search, finite sums and products; the normaliser of ring identities"),
     "frame": dict(tier="structure", rank=10, exact=True,
                   py=["frc/shell.py"],
-                  core=["lean/FrcCore/Frame.lean", "lean/FrcCore/Orbit.lean", "lean/FrcCore/Instances.lean", "lean/FrcCore/Sum.lean"],
+                  core=["lean/FrcCore/FrameCore.lean", "lean/FrcCore/Frame.lean", "lean/FrcCore/Parity.lean", "lean/FrcCore/Transform.lean", "lean/FrcCore/Orbit.lean", "lean/FrcCore/Instances.lean", "lean/FrcCore/Sum.lean"],
                   ml=["lean/FrcLedger/Theme/Frame.lean"],
                   content="the frame (τ; 0, 1, g), the drive and its orbit, the quarter-turn, the lift; finite sums; concrete shells"),
     "extension": dict(tier="structure", rank=11, exact=True,
-                      py=["frc/extension.py"], core=["lean/FrcCore/Theme/Extension.lean"], ml=["lean/FrcLedger/Theme/Extension.lean"],
+                      py=["frc/extension.py"], core=["lean/FrcCore/Theme/Quadratic.lean", "lean/FrcCore/Theme/Extension.lean"], ml=["lean/FrcLedger/Theme/Extension.lean"],
                       content="the quadratic extension F_{p²}, its norm and conjugation, the norm-one torus and the boost; the quaternion norm"),
     "projective": dict(tier="structure", rank=12, exact=True,
                        py=["frc/projective.py"], core=["lean/FrcCore/Theme/Projective.lean"], ml=["lean/FrcLedger/Theme/Projective.lean"],
@@ -52,8 +67,8 @@ THEMES = {
                   py=["frc/logic.py"], core=["lean/FrcCore/Theme/Logic.lean"], ml=["lean/FrcLedger/Theme/Logic.lean"],
                   content="the bounded (Δ₀) language over a finite structure, evaluation, finite Gödel; the counting core of 5-reductio and 25-godel"),
     "foundation": dict(tier="programme", rank=20, exact=True,
-                       py=["frc/foundation.py"], core=["lean/FrcCore/Theme/Foundation.lean"], ml=[],
-                       content="master block A: the ground, the pillars' formal shadows, the trusted base; completeness is primality"),
+                       py=["frc/foundation.py"], core=["lean/FrcCore/Theme/Field.lean", "lean/FrcCore/Theme/Foundation.lean", "lean/FrcCore/Theme/Drive.lean"], ml=[],
+                       content="master block A: the ground, the pillars' formal shadows, the trusted base; completeness is primality; every prime carries a frame"),
     "carrier": dict(tier="programme", rank=21, exact=True,
                     py=["frc/carrier.py"], core=["lean/FrcCore/Theme/Carrier.lean"], ml=[],
                     content="master block B: the Carrier and its constants; the window ladder; the octant"),
@@ -99,8 +114,8 @@ LEGACY = {
     "lean/FrcCore/Dimensions.lean": ("10-dimensions", ["frame"]),
     "lean/FrcCore/Epi.lean": ("13-epi", ["numbers"]),
     "lean/FrcCore/Entropy.lean": ("14-entropy", []),
-    "lean/FrcCore/Rh.lean": ("20-rh", ["extension"]),
-    "lean/FrcCore/Gravity.lean": ("21-gravity", []),
+    "lean/FrcCore/Rh.lean": ("20-rh", ["extension", "horizon"]),
+    "lean/FrcCore/Gravity.lean": ("21-gravity", ["gravity"]),
     "lean/FrcCore/Godel.lean": ("25-godel", ["logic"]),
     "lean/FrcLedger/Algebra.lean": ("1-algebra", []),
     "lean/FrcLedger/Geometry.lean": ("2-geometry", []),

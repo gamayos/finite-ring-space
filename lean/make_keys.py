@@ -3,7 +3,9 @@
 
 A paper's ledger binds each predicate to the Lean declarations that prove it (docs/<pkg>/<pkg>-ledger.json, field
 "lean"); make_predicates.py turns each binding into the predicate's declaration `FRC.<Module>.p<key>`. A master block's
-ledger file binds its rows the same way (frc/ledgers/master/<theme>.py, PROOFS; task LM22), over docs/00-ledger.json. When every
+ledger file binds its rows the same way (frc/ledgers/master/<theme>.py, PROOFS; task LM22), over docs/00-ledger.json; the chart
+theme's file binds the chart clauses of its rows to Mathlib theorems (CHART; task LM30), its prediction rows read from
+docs/predictions.json. When every
 theorem a predicate cites lives in the themes (frc/themes.py), after a moved name is followed to its theme, the key's
 proof needs no paper module. This tool then writes the key once, in the theme's key file:
 
@@ -76,9 +78,8 @@ def ledgers(docs):
     """[(pkg, module, data)] for every paper ledger with Lean bindings, and key -> [ledger:label] over all ledgers."""
     out, rows, mrows = [], {}, {}; reg = json.loads((ROOT / "predicates.json").read_text(encoding="utf-8"))
     master = Path(docs) / "00-ledger.json"
-    if master.exists():
-        for r in json.loads(master.read_text(encoding="utf-8"))["rows"]:
-            if r.get("key"): mrows.setdefault(r["key"], []).append(f"00:{r['label']}")
+    for r in master_rows(Path(docs)):
+        if r.get("key"): mrows.setdefault(r["key"], []).append(f"00:{r['label']}")
     for f in sorted(Path(docs).glob("*/*-ledger.json"), key=lambda f: int(f.parent.name.split("-")[0])):
         data = json.loads(f.read_text(encoding="utf-8")); pkg = f.parent.name
         mod = (reg.get(pkg) or {}).get("module") or next((Path(m).stem for m, (paper, _) in TM.LEGACY.items() if paper == pkg), None)
@@ -91,19 +92,38 @@ def ledgers(docs):
     return out, rows
 
 
+def master_rows(docs):
+    """The master's rows: docs/00-ledger.json, and its prediction rows (block P), which the site lists on the
+    Predictions tab only, from docs/predictions.json (task LM30). Each row: label, key, tag, block, statement."""
+    out, master, pred = [], docs / "00-ledger.json", docs / "predictions.json"
+    if master.exists(): out += json.loads(master.read_text(encoding="utf-8"))["rows"]
+    have = {r["label"] for r in out}
+    if pred.exists():
+        out += [{"label": r["label"], "key": r["key"], "tag": r["tag"], "block": re.match(r"[A-Z]+", r["label"]).group(0), "statement": r["predicate"]}
+                for r in json.loads(pred.read_text(encoding="utf-8"))["rows"] if r["paper"] == "00" and r["label"] not in have]
+    return out
+
+
 def master_blocks(master):
-    """The master's block files (frc/ledgers/master/<theme>.py, task LM22) as ledgers: the block's rows from
-    docs/00-ledger.json and the Lean proofs of the file's PROOFS as the rows' Lean cells."""
+    """The master's block files (frc/ledgers/master/<theme>.py, task LM22) as ledgers: the rows of the file's BLOCK
+    (one letter, or several for the chart theme's file, task LM30) and, as the rows' Lean cells, the core theorems of
+    the file's PROOFS and the Mathlib theorems of its CHART."""
     d = ROOT.parent / "frc" / "ledgers" / "master"; out = []
     if not (master.exists() and d.exists()): return out
-    m = json.loads(master.read_text(encoding="utf-8")); where = MP.declared("FrcCore")
+    rows_all = master_rows(master.parent); where = {lib: MP.declared(lib) for lib in ("FrcCore", "FrcLedger")}
+    def module(n):
+        lib = "FrcCore" if n in where["FrcCore"] else "FrcLedger" if n in where["FrcLedger"] else "FrcCore"
+        return f"{lib}/" + where[lib].get(n, ("?",))[0].replace(".", "/")
     for f in sorted(p for p in d.glob("*.py") if p.name != "__init__.py"):
         text = f.read_text(encoding="utf-8")
-        b = re.search(r'^BLOCK = "([A-Z])"', text, re.M); pm = re.search(r"^PROOFS = (\{.*?^\})", text, re.M | re.S)
-        if not (b and pm): continue
-        rows = [{"label": r["label"], "key": r["key"], "tag": r["tag"], "predicate": r["statement"]} for r in m["rows"] if r["block"] == b.group(1)]
-        lean = {label: [{"name": n, "module": "FrcCore/" + where.get(n, ("?",))[0].replace(".", "/")} for n in names]
-                for label, names in ast.literal_eval(pm.group(1)).items()}
+        b = re.search(r'^BLOCK = "([A-Z]+)"', text, re.M)
+        cells = {}
+        for name in ("PROOFS", "CHART"):
+            pm = re.search(rf"^{name} = (\{{.*?^\}})", text, re.M | re.S)
+            for label, names in (ast.literal_eval(pm.group(1)).items() if pm else ()): cells.setdefault(label, []).extend(names)
+        if not (b and cells): continue
+        rows = [{"label": r["label"], "key": r["key"], "tag": r["tag"], "predicate": r["statement"]} for r in rows_all if r["block"] in b.group(1)]
+        lean = {label: [{"name": n, "module": module(n)} for n in names] for label, names in cells.items()}
         out.append((f"00-ledger/{f.stem}", None, {"paper": "00-ledger", "blocks": [{"rows": rows}], "lean": lean}))
     return out
 
@@ -117,7 +137,7 @@ def keyable(docs):
             preds = {r["label"]: r for b in data["blocks"] for r in b["rows"]}
             for label, cites in data["lean"].items():
                 if label.startswith("V") or not preds.get(label, {}).get("key"): continue
-                cs = [x for x in cites if x["module"].split("/")[0] == lib and (lib == "FrcCore" or x["module"] == f"{lib}/{module}")]
+                cs = [x for x in cites if x["module"].split("/")[0] == lib and (lib == "FrcCore" or module is None or x["module"] == f"{lib}/{module}")]
                 if not cs: continue
                 full = lambda n: n if n.startswith("FRC.") else "FRC." + n
                 thms, defs, mods, ok = [], [], [], True

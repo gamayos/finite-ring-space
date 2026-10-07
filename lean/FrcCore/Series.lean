@@ -10,8 +10,9 @@ linearity, the single-term and the geometric sum; sums and products over lists o
 under a permutation of `[0, n)` (`sum_perm`, `prod_perm`). No `Finset`, no quotient, no function extensionality.
 
 Moved here by task LM22 from `Frame.lean` (the two deciders) and `Sum.lean` (the sums and the lists), so that the
-prime shell's toolkit (`Theme/Foundation.lean`) stands without the frame; every name is unchanged. The products are
-LM22's. No axioms.
+prime shell's toolkit (`Theme/Field.lean`) stands without the frame; every name is unchanged. The products are
+LM22's. Task LM23 moved the pigeonhole on maps, `FRC.Logic.no_mirror` (5:C2), here from `Theme/Logic.lean`, under its
+old name. No axioms.
 -/
 
 namespace FRC
@@ -291,4 +292,21 @@ theorem prod_perm (F : Nat → Shell p) (σ : Nat → Nat) (n : Nat) (hlt : ∀ 
     (fun e he => match mem_imageList he with | ⟨j, hj, e'⟩ => e' ▸ hlt j hj) (imageList_length σ n)
 
 end Shell
+
+namespace Logic
+
+/-- 5:C2 (Proposition mirror) — a part with fewer records than the frame has elements holds no injective
+representation of the frame's domain: no `f : [0, N) → [0, R)` is injective when `R < N`. In the base since task LM23
+(from `Theme/Logic.lean`, under its old name), so that the foundation's A5 stands on it. -/
+theorem no_mirror {N R : Nat} (hR : R < N) (f : Nat → Nat) (hf : ∀ i, i < N → f i < R)
+    (hinj : ∀ i j, i < N → j < N → f i = f j → i = j) : False :=
+  have hnd := FRC.Shell.imageList_nodup hinj (Nat.le_refl N)
+  have hlen := FRC.Shell.imageList_length f N
+  have hb : ∀ e, Pigeonhole.mem e (FRC.Shell.imageList f N) → e < R := fun _ he =>
+    match FRC.Shell.mem_imageList he with
+    | ⟨j, hj, ej⟩ => ej ▸ hf j hj
+  have := Pigeonhole.length_le_of_nodup_lt R _ hnd hb
+  Nat.lt_irrefl N (Nat.lt_of_le_of_lt (hlen ▸ this) hR)
+
+end Logic
 end FRC

@@ -2,9 +2,11 @@ import FrcLedger.Theme.Fourier
 import FrcLedger.Theme.Frame
 import FrcLedger.Theme.Extension
 import FrcLedger.Theme.Logic
+import FrcLedger.Theme.Chart
 import FrcLedger.Keys.Frame
 import FrcLedger.Keys.Extension
 import FrcLedger.Keys.Logic
+import FrcLedger.Keys.Chart
 import FrcLedger.Fourier
 import FrcLedger.Algebra
 import FrcLedger.Geometry

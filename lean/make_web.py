@@ -6,6 +6,9 @@ FrcLedger/<M>.lean this writes web/<M>.lean: the module with every `import FrcLe
 body of X (recursively, each module once, in dependency order).  Module bodies are self-contained
 (their own `namespace … end`), so concatenation is valid Lean; the header records the provenance.
 
+Besides the paper modules (FrcLedger/*.lean), the chart theme's file and its key file are written too (task LM30):
+web/Theme.Chart.lean and web/Keys.Chart.lean, the files the site's pages of the master's chart rows open (SERVED).
+
     python3 make_web.py            # (re)write web/*.lean for every module
     python3 make_web.py --check    # exit 1 if any web/*.lean differs from what would be written (CI)
 """
@@ -15,6 +18,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parent
 SRC, OUT = ROOT / "FrcLedger", ROOT / "web"
 IMPORT = re.compile(r"^import FrcLedger\.([\w.]+)\s*$", re.M)
+SERVED = ("Theme.Chart", "Keys.Chart")          # the theme and key files below FrcLedger/ that the site serves (LM30)
 
 def module(name):
     return (SRC / f"{name.replace('.', '/')}.lean").read_text(encoding="utf-8")   # Theme.Fourier: FrcLedger/Theme/Fourier.lean
@@ -40,14 +44,15 @@ def web(name):
         parts.append(f"\n/-! inlined: FrcLedger/{d.replace('.', '/')}.lean (verbatim, minus its import lines) -/\n\n" + body(d))
     parts.append(f"\n/-! FrcLedger/{name}.lean -/\n\n" + body(name))
     rows = re.findall(r"^(?:theorem|def) (p\d{5})\b", module(name), re.M)     # the ledger predicates: their axioms computed in the editor
-    if rows: parts.append("\n-- Ledger predicates: axioms (each predicate's, computed here)\n" + "".join(f"#print axioms FRC.{name}.{r}\n" for r in rows))
+    ns = "FRC.LedgerML" if name.startswith("Keys.") else f"FRC.{name}"           # a key file declares FRC.LedgerML.p<key>
+    if rows: parts.append("\n-- Ledger predicates: axioms (each predicate's, computed here)\n" + "".join(f"#print axioms {ns}.{r}\n" for r in rows))
     return "".join(parts)
 
 def main():
     check = "--check" in sys.argv
     OUT.mkdir(exist_ok=True); bad = []
-    for f in sorted(SRC.glob("*.lean")):
-        name = f.stem; text = web(name); target = OUT / f"{name}.lean"
+    for name in [f.stem for f in sorted(SRC.glob("*.lean"))] + list(SERVED):
+        text = web(name); target = OUT / f"{name}.lean"
         if check:
             if not target.exists() or target.read_text(encoding="utf-8") != text: bad.append(name)
         else:

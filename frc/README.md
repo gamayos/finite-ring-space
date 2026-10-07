@@ -28,7 +28,18 @@ One ledger runs with `python3 -m frc.ledgers.p03_causality`.
 generated from `docs/00-ledger.json` (the block's rows); the Lean theorems each row's key conjoins are written in the
 file (`PROOFS`), since the master has no Lean cells; `lean/make_keys.py` writes the keys from them, and
 `ci/make_ledgers.py` the notebook and the certificate `lean/FrcCore/Ledgers/Master/<Theme>.lean`. The first is the
-Carrier's, block B, `master/carrier.py` (task LM22): `python3 -m frc.ledgers.master.carrier`.
+Carrier's, block B, `master/carrier.py` (task LM22): `python3 -m frc.ledgers.master.carrier`. The second is the
+Foundation's, block A, `master/foundation.py` (task LM23): `python3 -m frc.ledgers.master.foundation`. The third is the
+Subject's, block C, `master/subject.py` (task LM24): `python3 -m frc.ledgers.master.subject`. A block is bound by one
+file per theme whose key file proves its rows (task LM25): block C also by `master/fourier.py` (C2, C7) and
+`master/projective.py` (C19). Block Z is bound by `master/horizon.py` (Z10, the shell theorem) and `master/logic.py`
+(Z1, Gödel vacuous over a finite structure) (task LM26), on the themes' python `frc/horizon.py` and `frc/logic.py`.
+Block E is bound by `master/gravity.py` (E6, E7, the horizon's count) (task LM27), on `frc/gravity.py`, and block F by
+`master/quantum.py` (F2, the unequal-cycle composite) (task LM28), on `frc/quantum.py`, and block G by
+`master/interactions.py` (G11, G12, G16, one generation and the Koide form) (task LM29), on `frc/interactions.py`.
+The chart theme's `master/chart.py` (task LM30) binds the chart clauses of L1, L3, L8 and P1, rows of blocks L and P
+(`BLOCK = "LP"`), in `CHART`, on `frc/chart.py`: each row decided by a certified bracket in rational arithmetic and
+corroborated in floating point.
 
 ## The theme map
 
@@ -36,14 +47,14 @@ Generated from `frc/themes.py` (`python3 -m frc.themes`).
 
 | theme | tier | rank | exact | python | Lean core | Lean Mathlib | content |
 |---|---|---|---|---|---|---|---|
-| base | base | 0 | yes | `registry.py`, `arith.py` | `Nat.lean`, `Pigeonhole.lean`, `Shell.lean`, `Series.lean` | — | the registry of checks; exact integer arithmetic; the naturals, the pigeonhole and the shell's residues; bounded search, finite sums and products |
-| frame | structure | 10 | yes | `shell.py` | `Frame.lean`, `Orbit.lean`, `Instances.lean`, `Sum.lean` | `Theme/Frame.lean` | the frame (τ; 0, 1, g), the drive and its orbit, the quarter-turn, the lift; finite sums; concrete shells |
-| extension | structure | 11 | yes | `extension.py` | `Theme/Extension.lean` | `Theme/Extension.lean` | the quadratic extension F_{p²}, its norm and conjugation, the norm-one torus and the boost; the quaternion norm |
+| base | base | 0 | yes | `registry.py`, `arith.py` | `Nat.lean`, `Pigeonhole.lean`, `Shell.lean`, `Series.lean`, `Ring.lean` | — | the registry of checks; exact integer arithmetic; the naturals, the pigeonhole and the shell's residues; bounded search, finite sums and products; the normaliser of ring identities |
+| frame | structure | 10 | yes | `shell.py` | `FrameCore.lean`, `Frame.lean`, `Parity.lean`, `Transform.lean`, `Orbit.lean`, `Instances.lean`, `Sum.lean` | `Theme/Frame.lean` | the frame (τ; 0, 1, g), the drive and its orbit, the quarter-turn, the lift; finite sums; concrete shells |
+| extension | structure | 11 | yes | `extension.py` | `Theme/Quadratic.lean`, `Theme/Extension.lean` | `Theme/Extension.lean` | the quadratic extension F_{p²}, its norm and conjugation, the norm-one torus and the boost; the quaternion norm |
 | projective | structure | 12 | yes | `projective.py` | `Theme/Projective.lean` | `Theme/Projective.lean` | PGL₂ and SL₂ by elements, the Borel subgroup, the split and non-split tori |
 | fourier | structure | 13 | yes | `fourier.py` | `Meridian.lean`, `Theme/Fourier.lean` | `Theme/Fourier.lean` | the shell DFT and its inversion, the fractional family, the meridians and the scale-shift |
 | numbers | structure | 14 | yes | `numbers.py` | `Poly.lean`, `Theme/Numbers.lean` | `Theme/Numbers.lean` | polynomials over the shell and the root criterion; the walls of π and e; the comb |
 | logic | structure | 15 | yes | `logic.py` | `Theme/Logic.lean` | `Theme/Logic.lean` | the bounded (Δ₀) language over a finite structure, evaluation, finite Gödel; the counting core of 5-reductio and 25-godel |
-| foundation | programme | 20 | yes | `foundation.py` | `Theme/Foundation.lean` | — | master block A: the ground, the pillars' formal shadows, the trusted base; completeness is primality |
+| foundation | programme | 20 | yes | `foundation.py` | `Theme/Field.lean`, `Theme/Foundation.lean`, `Theme/Drive.lean` | — | master block A: the ground, the pillars' formal shadows, the trusted base; completeness is primality; every prime carries a frame |
 | carrier | programme | 21 | yes | `carrier.py` | `Theme/Carrier.lean` | — | master block B: the Carrier and its constants; the window ladder; the octant |
 | subject | programme | 22 | yes | `subject.py` | `Theme/Subject.lean` | — | master block C: the Subject, the frame group, the registration |
 | gravity | programme | 23 | yes | `gravity.py` | `Theme/Gravity.lean` | — | master block E: gravity on the lattice; the count face |
@@ -56,6 +67,17 @@ Generated from `frc/themes.py` (`python3 -m frc.themes`).
 
 The Lean files that exist today keep their paths: `Frame`, `Orbit`, `Instances` and `Sum` form the frame theme, `Meridian`
 belongs to the Fourier theme and `Poly` to the numbers theme. Since task LM22 `Series` (bounded search, sums and
-products) is in the base, `Poly` stands on it without the frame, and the frame's root criterion is `Theme/Numbers`. New theme files go under `Theme/`, since `FrcCore/Fourier.lean`
+products) is in the base, `Poly` stands on it without the frame, and the frame's root criterion is `Theme/Numbers`.
+Since task LM24 (the author's decision of 5 October: split the frame and extension themes, keep the budget) the frame
+theme opens with `FrameCore` (the frame) and `Parity` (the square class), the extension theme with `Theme/Quadratic`
+(the quadratic extension without a frame), the base holds `Ring` (the normaliser of ring identities), and the foundation
+theme opens with `Theme/Field` (the prime field), so that a programme theme takes what it needs under the budget (G10).
+Since task LM25 the frame theme's `Transform` holds the transform on the cycle (`W`, `J`, `F`), split from `Sum`.
+Since task LM26 the horizon theme's `Theme/Horizon` holds the shell theorem (from 20-rh's `Rh`, which keeps every old
+name), and `Theme/Logic` the first-order theory of a finite structure. Since task LM27 the gravity theme's
+`Theme/Gravity` holds the horizon's count, with 21-gravity's `count_identity`, and since task LM28 the quantum theme's
+`Theme/Quantum` the unequal-cycle composite, and since task LM29 the interactions theme's `Theme/Interactions` one
+generation and the Koide form. Since task LM30 the chart theme's Mathlib file `FrcLedger/Theme/Chart.lean` holds the
+octant's readings (from 14-entropy) and the floor's (from 21-gravity), with the tilt and the running floor. New theme files go under `Theme/`, since `FrcCore/Fourier.lean`
 and `FrcCore/Gravity.lean` hold the papers 6-fourier and 21-gravity. Since task LM18 the paper modules of today import
 themes only (and their own paper's modules), and gate G09 fails a cross-paper import.

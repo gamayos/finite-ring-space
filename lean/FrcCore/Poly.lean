@@ -249,7 +249,7 @@ theorem eval_mul_linear {q : Poly p} {n : Nat} (hq : Bound q n) (a b : Shell p) 
 
 /-- The root bound over any shell without zero divisors (task LM22): a polynomial of degree at most `n` that
 vanishes at `n + 1` distinct points is zero. `Frame.root_bound` is its case of a frame; the prime shell's
-(`Theme/Foundation`) needs no generator. -/
+(`Theme/Field`) needs no generator. -/
 theorem root_bound_of (hzd : ∀ {a b : Shell p}, a * b = 0 → a = 0 ∨ b = 0) : ∀ (n : Nat) (f : Poly p), Bound f n →
     ∀ (r : Nat → Shell p), (∀ i j, i ≤ n → j ≤ n → r i = r j → i = j) → (∀ i, i ≤ n → eval f n (r i) = 0) →
     ∀ i, f i = 0 := by

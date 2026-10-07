@@ -1,19 +1,19 @@
 import FrcCore.Nat
 import FrcCore.Pigeonhole
 import FrcCore.Shell
-import FrcCore.Sum
+import FrcCore.Series
 
 /-!
 # FrcCore.Theme.Logic — the bounded language over a finite structure and its counting (the logic theme, task LM17)
 
 An explicit language of `Δ₀` formulas with two evaluators, over `ℕ` and in a frame `W_N` where overflow makes an atom
-false, and the bounded stability schema: every formula takes its standard value in every frame above its bound
-(5:B6). The counting behind the paradoxes of infinity and finite Gödel: fewer than `s^(K+1)` records of length
-`≤ K` and no mirror of a larger frame (5:C2); an iteration on `n` states repeats within `n` steps (5:C5, 5:E5);
-Cantor on the finite frame (5:D3); the least element (5:E1, 5:E2); on a finite carrier an injective map is onto, a
-part with fewer states identifies two elements, `m + 1` sentences outnumber `m` elements (25:C1, 25:C5, 25:D1); the
-count of a Boolean predicate; dense codings need `a^n ≤ m^k` (25:F4). Moved from 5-reductio and 25-godel, whose
-modules keep every old name. No axioms.
+false, and the bounded stability schema: every formula takes its standard value in every frame above its bound (5:B6).
+The counting behind the paradoxes of infinity and finite Gödel: fewer than `s^(K+1)` records of length `≤ K` and no
+mirror of a larger frame (5:C2; `no_mirror` is in the base's `Series.lean` since task LM23); an iteration on `n`
+states repeats within `n` steps (5:C5, 5:E5); Cantor on the finite frame (5:D3); the least element (5:E1, 5:E2); on a
+finite carrier an injective map is onto, a part with fewer states identifies two elements, `m + 1` sentences outnumber
+`m` elements (25:C1, 25:C5, 25:D1); the count of a Boolean predicate; dense codings need `a^n ≤ m^k` (25:F4). Moved
+from 5-reductio and 25-godel, whose modules keep every old name. No axioms.
 -/
 
 namespace FRC.Logic
@@ -240,18 +240,6 @@ theorem records_lt (s : Nat) (hs : 2 ≤ s) : ∀ K, records s K < s ^ (K + 1)
     have h2 : s ^ (K + 1) + s ^ (K + 1) ≤ s ^ (K + 1) * s := by
       rw [← Nat.mul_two]; exact Nat.mul_le_mul_left _ hs
     exact Nat.lt_of_lt_of_le h1 h2
-
-/-- 5:C2 (Proposition mirror) — a part with fewer records than the frame has elements holds no injective
-representation of the frame's domain: no `f : [0, N) → [0, R)` is injective when `R < N`. -/
-theorem no_mirror {N R : Nat} (hR : R < N) (f : Nat → Nat) (hf : ∀ i, i < N → f i < R)
-    (hinj : ∀ i j, i < N → j < N → f i = f j → i = j) : False :=
-  have hnd := FRC.Shell.imageList_nodup hinj (Nat.le_refl N)
-  have hlen := FRC.Shell.imageList_length f N
-  have hb : ∀ e, Pigeonhole.mem e (FRC.Shell.imageList f N) → e < R := fun _ he =>
-    match FRC.Shell.mem_imageList he with
-    | ⟨j, hj, ej⟩ => ej ▸ hf j hj
-  have := Pigeonhole.length_le_of_nodup_lt R _ hnd hb
-  Nat.lt_irrefl N (Nat.lt_of_le_of_lt (hlen ▸ this) hR)
 
 /-! ### 5:C5, 5:E5 — an iteration on finitely many states repeats: periodic König and bounded halting -/
 
@@ -598,5 +586,85 @@ theorem anyBelow_pick (c : Bool) (F : Nat → Bool) (y : Nat) :
       | isFalse hge => by
         have hne : ¬ y < n + 1 := fun h => hge (Nat.lt_of_le_of_ne (Nat.le_of_lt_succ h) (fun e' => e e'.symm))
         rw [ite_eq_right hge, ite_eq_right hne]
+
+/-! ### 25:C2, 25:C3, 00:Z1 — the first-order theory of a finite structure: decidable, complete, consistent -/
+
+/-- A finite relational structure: the elements `0, …, m − 1` and decidable relations, `rel r xs` the truth of the
+relation symbol `r` on the arguments `xs`. A function symbol enters through its graph. -/
+structure FinStr where
+  m : Nat
+  rel : Nat → List Nat → Bool
+
+/-- First-order formulas over a relational signature: the atoms `R_r(x_{i₁}, …)` and `x_i = x_j` (variables as de
+Bruijn indices), negation, conjunction and the quantifier `∀`, which binds variable `0`. -/
+inductive FForm where
+  | rel : Nat → List Nat → FForm
+  | eq : Nat → Nat → FForm
+  | neg : FForm → FForm
+  | conj : FForm → FForm → FForm
+  | all : FForm → FForm
+
+/-- Satisfaction, the standard semantics: the quantifier ranges over the structure's elements. -/
+def Sat (M : FinStr) : (Nat → Nat) → FForm → Prop
+  | env, .rel r xs => M.rel r (xs.map env) = true
+  | env, .eq i j => env i = env j
+  | env, .neg φ => ¬ Sat M env φ
+  | env, .conj φ ψ => Sat M env φ ∧ Sat M env ψ
+  | env, .all φ => ∀ x, x < M.m → Sat M (cons x env) φ
+
+/-- Exhaustive evaluation: each quantifier tries the `m` elements. -/
+def fval (M : FinStr) : (Nat → Nat) → FForm → Bool
+  | env, .rel r xs => M.rel r (xs.map env)
+  | env, .eq i j => decide (env i = env j)
+  | env, .neg φ => !(fval M env φ)
+  | env, .conj φ ψ => fval M env φ && fval M env ψ
+  | env, .all φ => allBelow (fun x => fval M (cons x env) φ) M.m
+
+theorem allBelow_iff (f : Nat → Bool) : ∀ n, allBelow f n = true ↔ ∀ x, x < n → f x = true
+  | 0 => ⟨fun _ _ h => absurd h (Nat.not_lt_zero _), fun _ => rfl⟩
+  | n + 1 => by
+    show (f n && allBelow f n) = true ↔ _
+    have ih := allBelow_iff f n
+    match hf : f n with
+    | true => exact ⟨fun h x hx => match Nat.lt_or_ge x n with
+        | .inl hlt => ih.1 h x hlt
+        | .inr hge => (Nat.le_antisymm (Nat.le_of_lt_succ hx) hge) ▸ hf,
+        fun h => ih.2 (fun x hx => h x (Nat.lt_succ_of_lt hx))⟩
+    | false => exact ⟨fun h => Bool.noConfusion h, fun h => Bool.noConfusion (hf ▸ h n (Nat.lt_succ_self n))⟩
+
+/-- 25:C2, Z1 — decidable by exhaustive evaluation: a formula holds in the finite structure exactly when its
+evaluation is `true`. -/
+theorem fin_theory_decidable (M : FinStr) : ∀ (φ : FForm) (env : Nat → Nat), fval M env φ = true ↔ Sat M env φ
+  | .rel _ _, _ => Iff.rfl
+  | .eq i j, env => show decide (env i = env j) = true ↔ env i = env j from ⟨of_decide_eq_true, decide_eq_true⟩
+  | .neg φ, env => by
+    show (!(fval M env φ)) = true ↔ ¬ Sat M env φ
+    have ih := fin_theory_decidable M φ env
+    match h : fval M env φ with
+    | true => exact ⟨fun e => Bool.noConfusion e, fun hn => absurd (ih.1 h) hn⟩
+    | false => exact ⟨fun _ hs => Bool.noConfusion (h ▸ ih.2 hs), fun _ => rfl⟩
+  | .conj φ ψ, env => by
+    show (fval M env φ && fval M env ψ) = true ↔ Sat M env φ ∧ Sat M env ψ
+    have i1 := fin_theory_decidable M φ env
+    have i2 := fin_theory_decidable M ψ env
+    match h1 : fval M env φ, h2 : fval M env ψ with
+    | true, true => exact ⟨fun _ => ⟨i1.1 h1, i2.1 h2⟩, fun _ => rfl⟩
+    | true, false => exact ⟨fun e => Bool.noConfusion e, fun hs => Bool.noConfusion (h2 ▸ i2.2 hs.2)⟩
+    | false, _ => exact ⟨fun e => Bool.noConfusion e, fun hs => Bool.noConfusion (h1 ▸ i1.2 hs.1)⟩
+  | .all φ, env => by
+    show allBelow (fun x => fval M (cons x env) φ) M.m = true ↔ ∀ x, x < M.m → Sat M (cons x env) φ
+    exact (allBelow_iff _ M.m).trans ⟨fun h x hx => (fin_theory_decidable M φ (cons x env)).1 (h x hx),
+      fun h x hx => (fin_theory_decidable M φ (cons x env)).2 (h x hx)⟩
+
+/-- 25:C2, Z1 — the theory is complete: every formula or its negation holds, decided by the evaluation, with no
+appeal to excluded middle. -/
+theorem fin_theory_complete (M : FinStr) (φ : FForm) (env : Nat → Nat) : Sat M env φ ∨ Sat M env (.neg φ) :=
+  match h : fval M env φ with
+  | true => .inl ((fin_theory_decidable M φ env).1 h)
+  | false => .inr (fun hs => Bool.noConfusion (h ▸ (fin_theory_decidable M φ env).2 hs))
+
+/-- 25:C2, 25:C3, Z1 — the theory is consistent: no formula holds together with its negation. -/
+theorem fin_theory_consistent (M : FinStr) (φ : FForm) (env : Nat → Nat) : ¬ (Sat M env φ ∧ Sat M env (.neg φ)) :=
+  fun h => h.2 h.1
 
 end FRC.Logic

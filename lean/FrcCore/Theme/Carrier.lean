@@ -1,10 +1,10 @@
-import FrcCore.Theme.Foundation
+import FrcCore.Theme.Field
 
 /-!
 # FrcCore.Theme.Carrier — the Carrier on its chart, without a generator (the carrier theme, task LM22)
 
 Master block B on the Carrier's chart `Ω = 4S + 1`, `Ω` prime (`FRC.Nat.isPrime`), and no drive assumed. Every
-residue below is found by the prime shell's arithmetic (`Theme/Foundation.lean`): Fermat's little theorem, the root
+residue below is found by the prime shell's arithmetic (`Theme/Field.lean`): Fermat's little theorem, the root
 bound, the quarter-turn criterion.
 
 * **B5, the substrate residue.** `4 ∣ Ω − 1` and `3 ∣ Ω + 1` jointly hold iff `Ω ≡ 5 (mod 12)`; on a prime
@@ -19,6 +19,8 @@ bound, the quarter-turn criterion.
   the faces `x²` pair-invariant and `{ħ, −ħ}` two distinct roots of `−1`.
 * **B14, the octant sector.** An element of order eight exists iff `S` is even.
 
+Since task LM24 the chart's generic lemmas (`chart_gt_two`, the octant sector, the Tsirelson square, the half-square
+behind `c_exists_iff`, the parity flip) are `Shell.Prime`'s in `Theme/Field.lean`; the old names here are aliases.
 No axioms.
 -/
 
@@ -179,68 +181,6 @@ theorem substrate_residue :
       (((∃ ħ : Shell Ω, ħ * ħ = -1) ∧ ¬ ∃ ω : Shell Ω, ω * ω + ω + 1 = 0) ↔ Ω % 12 = 5) :=
   ⟨substrate_arith, fun hp h3 => substrate_shell hp h3⟩
 
-/-! ## The chart `Ω = 4S + 1` -/
-
-omit [Pos Ω] in
-theorem chart_gt_two (hp : FRC.Nat.isPrime Ω) {S : Nat} (hS : Ω = 4 * S + 1) : 2 < Ω := by
-  match S, hS with
-  | 0, hS => have h := hp.1; rw [hS] at h; exact absurd h (by decide)
-  | k + 1, hS =>
-    rw [hS, Nat.left_distrib]
-    exact Nat.lt_of_lt_of_le (by decide : 2 < 5) (Nat.le_add_left 5 (4 * k))
-
-/-- `2 = 1 + 1` on every shell. -/
-theorem two_eq : (2 : Shell Ω) = 1 + 1 :=
-  ext (by show 2 % Ω = (1 % Ω + 1 % Ω) % Ω; rw [← FRC.Nat.add_mod _ _ _ Pos.pos])
-
-/-- `a + 1 + (1 − a) = 1 + 1`. -/
-theorem add_one_add_one_neg (a : Shell Ω) : a + 1 + (1 + -a) = 1 + 1 := by
-  rw [add_assoc, ← add_assoc 1 1 (-a), add_comm (1 + 1) (-a), ← add_assoc a (-a) (1 + 1), add_neg, zero_add]
-
-/-! ## B14: the octant sector -/
-
-/-- **B14 (p00170), the octant sector.** On the chart `Ω = 4S + 1`, an element of order eight (`ζ⁸ = 1`,
-`ζ⁴ ≠ 1`) exists iff `S` is even: `C₈ ⊂ C_{4S}` exactly when `8 ∣ 4S`. Forward, `ζ⁴ = −1` and Fermat give
-`ζ^{4S} = 1`, which an odd `S = 2m + 1` turns into `ζ⁴ = 1`; backward, `ζ = a^{S/2}` with `a^{2S} = −1`. -/
-theorem octant_sector (hp : FRC.Nat.isPrime Ω) {S : Nat} (hS : Ω = 4 * S + 1) :
-    (∃ ζ : Shell Ω, ζ ^ 8 = 1 ∧ ζ ^ 4 ≠ 1) ↔ S % 2 = 0 := by
-  have h2 := chart_gt_two hp hS
-  constructor
-  · intro ⟨ζ, h8, h4⟩
-    have hz0 : ζ ≠ 0 := fun e => by
-      rw [e, show (8 : Nat) = 7 + 1 from rfl, pow_succ, mul_zero] at h8; exact one_ne_zero hp h8.symm
-    have h4' : ζ ^ 4 = -1 :=
-      match sq_eq_one hp (by rw [← pow_add]; exact h8 : ζ ^ 4 * ζ ^ 4 = 1) with
-      | .inl e => absurd e h4
-      | .inr e => e
-    match FRC.Nat.mod_two_cases S with
-    | .inl e => exact e
-    | .inr e =>
-      obtain ⟨m, hm⟩ := FRC.Nat.mod_spec 2 (by decide) S
-      rw [e] at hm
-      have hf := fermat hp hz0
-      have hΩ1 : Ω - 1 = 8 * m + 4 := by
-        rw [hS, FRC.Nat.add_sub_cancel, hm, Nat.left_distrib, ← FRC.Nat.mul_assoc]
-      rw [hΩ1, pow_add, pow_mul, h8, one_pow, one_mul, h4'] at hf
-      exact absurd hf (neg_one_ne_one h2)
-  · intro he
-    obtain ⟨m, hm⟩ := FRC.Nat.mod_spec 2 (by decide) S
-    rw [he, Nat.add_zero] at hm
-    obtain ⟨a, ha⟩ := exists_pow_half hp (n := 2 * S) (by rw [hS, ← FRC.Nat.mul_assoc])
-    have h4 : (a ^ m) ^ 4 = -1 := by
-      rw [← pow_mul, show m * 4 = 2 * S by rw [hm, ← FRC.Nat.mul_assoc, Nat.mul_comm m 4]]; exact ha
-    exact ⟨a ^ m, by rw [show (8 : Nat) = 4 * 2 from rfl, pow_mul, h4, pow_two, neg_mul_neg, mul_one],
-      by rw [h4]; exact neg_one_ne_one h2⟩
-
-/-- The Tsirelson square without a generator: `ζ⁴ = −1` gives `(ζ + ζ⁷)² = 2`. -/
-theorem tsirelson {ζ : Shell Ω} (h4 : ζ ^ 4 = -1) : (ζ + ζ ^ 7) * (ζ + ζ ^ 7) = 2 := by
-  have h8 : ζ ^ 8 = 1 := by rw [show (8 : Nat) = 4 + 4 from rfl, pow_add, h4, neg_mul_neg, mul_one]
-  have hz : ζ * ζ ^ 7 = 1 := by rw [mul_comm, ← pow_succ]; exact h8
-  have h14 : ζ ^ 7 * ζ ^ 7 = -(ζ * ζ) := by
-    rw [← pow_add, show 7 + 7 = 8 + (4 + 2) from rfl, pow_add, pow_add, h8, h4, one_mul, neg_one_mul, pow_two]
-  rw [left_distrib, right_distrib, right_distrib, hz, mul_comm (ζ ^ 7) ζ, hz, h14, two_eq]
-  exact add_one_add_one_neg _
-
 /-! ## B7: the register in `S` alone -/
 
 /-- `G := 2S`, the Carrier's half-period, as a residue of the chart `Ω = 4S + 1`. -/
@@ -291,35 +231,11 @@ theorem partner (hp : FRC.Nat.isPrime Ω) (h2 : 2 < Ω) {ħ : Shell Ω} (hh : ħ
   | .inl e1 => exact neg_one_ne_one h2 (neg_eq_of_add_eq_zero e1)
   | .inr e2 => exact h0 e2
 
-/-- `c` exists iff `S` is even: a root `c` of `c² = 2⁻¹` gives `ζ = c (1 + i)` with `ζ² = i`, an element of
-order eight; conversely the octant's `ζ` gives `(ζ + ζ⁷)² = 2` and `c = (ζ + ζ⁷)/2`. -/
+/-- `c` exists iff `S` is even (`Shell.Prime.half_square_iff`, task LM24): a root `c` of `c² = 2⁻¹` gives `ζ = c (1 + i)`
+with `ζ² = i`, an element of order eight; conversely the octant's `ζ` gives `(ζ + ζ⁷)² = 2` and `c = (ζ + ζ⁷)/2`. -/
 theorem c_exists_iff (hp : FRC.Nat.isPrime Ω) {S : Nat} (hS : Ω = 4 * S + 1) :
-    (∃ c : Shell Ω, c * c = csq Ω S) ↔ S % 2 = 0 := by
-  have h2 := chart_gt_two hp hS
-  have hh := two_mul_half hS
-  constructor
-  · intro ⟨c, hc⟩
-    -- with `i² = −1`, `ζ = c (1 + i)` has `ζ² = c² · 2i = i`: an element of order eight
-    obtain ⟨i, hi⟩ := exists_quarter_turn hp hS
-    have hh' : csq Ω S * (1 + 1) = 1 := by rw [mul_comm, ← two_eq]; exact hh
-    have e : (1 + i) * (1 + i) = (1 + 1) * i := by
-      rw [left_distrib, right_distrib, right_distrib, one_mul, one_mul, mul_one, hi, right_distrib, one_mul,
-        add_comm i (-1), add_add_add_comm, add_neg, zero_add]
-    have hz : (c * (1 + i)) * (c * (1 + i)) = i := by
-      rw [mul_mul_mul_comm, hc, e, ← mul_assoc, hh', one_mul]
-    have hz4 : (c * (1 + i)) ^ 4 = -1 := by
-      rw [show (4 : Nat) = 2 * 2 from rfl, pow_mul, pow_two (c * (1 + i)), hz, pow_two, hi]
-    exact (octant_sector hp hS).1 ⟨c * (1 + i), by
-      rw [show (8 : Nat) = 4 * 2 from rfl, pow_mul, hz4, pow_two, neg_mul_neg, mul_one],
-      by rw [hz4]; exact neg_one_ne_one h2⟩
-  · intro he
-    obtain ⟨ζ, h8, h4⟩ := (octant_sector hp hS).2 he
-    have h4' : ζ ^ 4 = -1 :=
-      match sq_eq_one hp (by rw [← pow_add]; exact h8 : ζ ^ 4 * ζ ^ 4 = 1) with
-      | .inl e => absurd e h4
-      | .inr e => e
-    refine ⟨(ζ + ζ ^ 7) * csq Ω S, ?_⟩
-    rw [mul_mul_mul_comm, tsirelson h4', ← mul_assoc, hh, one_mul]
+    (∃ c : Shell Ω, c * c = csq Ω S) ↔ S % 2 = 0 :=
+  half_square_iff hp hS
 
 /-- **B7 (p00165), the register in `S` alone**, on the chart `Ω = 4S + 1`, `Ω` prime, without a generator:
 `c² := 2S + 1` (`csq`) is `2⁻¹`; `G := 2S` (`grav`) is `−c²`, `2G = −1`, and `G` is the only solution (exact);
@@ -396,16 +312,6 @@ theorem square_pair_blind (hp : FRC.Nat.isPrime Ω) {S : Nat} (hS : Ω = 4 * S +
   exact ⟨fun ⟨y, hy⟩ => ⟨h * y, by rw [mul_mul_mul_comm, hh, hy, neg_one_mul]⟩,
     fun ⟨y, hy⟩ => ⟨h * y, by rw [mul_mul_mul_comm, hh, hy, neg_one_mul, neg_neg]⟩⟩
 
-/-- Integer parity is frame data: on an odd shell the pair `x ↔ −x` flips the parity of the representative. -/
-theorem parity_flips {S : Nat} (hS : Ω = 4 * S + 1) {x : Shell Ω} (hx : x ≠ 0) :
-    x.val % 2 = 0 ↔ ¬ (-x).val % 2 = 0 := by
-  have hneg : (-x).val = Ω - x.val := by
-    show (Ω - x.val) % Ω = Ω - x.val
-    exact FRC.Nat.mod_eq_of_lt (Nat.sub_lt Pos.pos (val_pos hx))
-  rw [hneg]
-  exact FRC.Nat.parity_split (n := 2 * S)
-    (by rw [FRC.Nat.add_sub_of_le (Nat.le_of_lt x.lt), hS, ← FRC.Nat.mul_assoc])
-
 /-- **B10 (p00168), one gauge bit closes the sign sector**, on the chart `Ω = 4S + 1`, `Ω` prime: `−1` is a
 square; the square class is blind to the pair `x ↔ −x`; integer parity is flipped by it, so it is frame data; the
 registered faces are pair-invariant, `(−x)² = x²`, and `{ħ, −ħ}` are two distinct roots of `−1`. -/
@@ -422,6 +328,18 @@ theorem sign_sector {Ω : Nat} [Pos Ω] (S : Nat) (hp : FRC.Nat.isPrime Ω) (hS 
 theorem octant {Ω : Nat} [Pos Ω] (S : Nat) (hp : FRC.Nat.isPrime Ω) (hS : Ω = 4 * S + 1) :
     (∃ ζ : Shell Ω, ζ ^ 8 = 1 ∧ ζ ^ 4 ≠ 1) ↔ S % 2 = 0 :=
   octant_sector hp hS
+
+/-! ## Old names (task LM24): the chart's lemmas are `Shell.Prime`'s, in `Theme/Field.lean` -/
+
+omit [Pos Ω] in
+theorem chart_gt_two (hp : FRC.Nat.isPrime Ω) {S : Nat} (hS : Ω = 4 * S + 1) : 2 < Ω := Prime.chart_gt_two hp hS
+theorem two_eq : (2 : Shell Ω) = 1 + 1 := Prime.two_eq
+theorem add_one_add_one_neg (a : Shell Ω) : a + 1 + (1 + -a) = 1 + 1 := Prime.add_one_add_one_neg a
+theorem octant_sector (hp : FRC.Nat.isPrime Ω) {S : Nat} (hS : Ω = 4 * S + 1) :
+    (∃ ζ : Shell Ω, ζ ^ 8 = 1 ∧ ζ ^ 4 ≠ 1) ↔ S % 2 = 0 := Prime.octant_sector hp hS
+theorem tsirelson {ζ : Shell Ω} (h4 : ζ ^ 4 = -1) : (ζ + ζ ^ 7) * (ζ + ζ ^ 7) = 2 := Prime.tsirelson h4
+theorem parity_flips {S : Nat} (hS : Ω = 4 * S + 1) {x : Shell Ω} (hx : x ≠ 0) :
+    x.val % 2 = 0 ↔ ¬ (-x).val % 2 = 0 := Prime.parity_flips hS hx
 
 end Carrier
 end FRC

@@ -16,7 +16,9 @@ ledger (docs/<paper>/<paper>-ledger.json, field "lean" for the Lean bindings) th
 A master block's ledger file, frc/ledgers/master/<theme>.py (task LM22), is generated the same way from the master's
 data (docs/00-ledger.json, the rows of its BLOCK) and its own PROOFS, the Lean theorems each row's key conjoins: the
 table KEYS and LEAN over the block's rows, the notebook frc/ledgers/master/<theme>.ipynb, and the certificate
-lean/FrcCore/Ledgers/Master/<Theme>.lean.
+lean/FrcCore/Ledgers/Master/<Theme>.lean. The chart theme's file (task LM30) binds the chart clauses of rows of several
+blocks (BLOCK = "LP") to Mathlib theorems (CHART), the prediction rows read from docs/predictions.json; its certificate is
+lean/FrcLedger/Ledgers/Master/Chart.lean.
 
 A ledger file is migrated when it carries the generated table's two marker lines; the tool leaves the others alone.
 Every Lean declaration of a migrated ledger must be a key of the key files (lean/make_keys.py): a certificate imports
@@ -56,16 +58,30 @@ def module_name(f):
     return "frc.ledgers." + ("master." if is_master(f) else "") + f.stem
 
 
-def master_data(block, proofs, MP):
+def master_data(block, proofs, MP, chart=None):
     """The master's block as a paper ledger's data: its rows (label, key, tag, predicate) and the Lean proofs of PROOFS
-    as the ledger's "lean" cells ({label: [{name, module}]}, the module where the core declares the name)."""
+    (the core) and CHART (Mathlib, the chart theme's file; task LM30) as the ledger's "lean" cells ({label: [{name,
+    module}]}, the module where the library declares the name). `block` is one letter, or several for the chart theme's
+    file; the prediction rows (block P) come from docs/predictions.json, since the site lists them on their own tab."""
     m = json.loads((ROOT / "docs" / "00-ledger.json").read_text(encoding="utf-8"))
-    rows = [{"label": r["label"], "key": r["key"], "tag": r["tag"], "predicate": r["statement"]} for r in m["rows"] if r["block"] == block]
-    where = MP.declared("FrcCore")
-    lean = {label: [{"name": n, "module": "FrcCore/" + where[n][0].replace(".", "/") if n in where else "FrcCore/?"} for n in names]
-            for label, names in proofs.items()}
-    title = (m.get("blocks") or {}).get(block, "")
-    return {"paper": "00-ledger", "block": block, "title": f"The FRC master predicate ledger, block {block}: {title}",
+    rows = [{"label": r["label"], "key": r["key"], "tag": r["tag"], "predicate": r["statement"]} for r in m["rows"] if r["block"] in block]
+    pred, have = ROOT / "docs" / "predictions.json", {r["label"] for r in rows}
+    if pred.exists():
+        rows += [{"label": r["label"], "key": r["key"], "tag": r["tag"], "predicate": r["predicate"]} for r in json.loads(pred.read_text(encoding="utf-8"))["rows"]
+                 if r["paper"] == "00" and re.match(r"[A-Z]+", r["label"]).group(0) in block and r["label"] not in have]
+    where = {lib: MP.declared(lib) for lib in LIBS}
+    def module(n):
+        for lib in LIBS:
+            if n in where[lib]: return f"{lib}/" + where[lib][n][0].replace(".", "/")
+        return "FrcCore/?"
+    cells = {}
+    for src in (proofs, chart or {}):
+        for label, names in src.items(): cells.setdefault(label, []).extend(names)
+    lean = {label: [{"name": n, "module": module(n)} for n in names] for label, names in cells.items()}
+    titles = [(m.get("blocks") or {}).get(b, "") for b in block]
+    title = (f"block {block}: {titles[0]}" if len(block) == 1 else
+             "blocks " + " and ".join(f"{b} ({t})" for b, t in zip(block, titles)) + ", the chart clauses")
+    return {"paper": "00-ledger", "block": block, "chart": bool(chart), "title": f"The FRC master predicate ledger, {title}",
             "blocks": [{"letter": block, "rows": rows}], "lean": lean}
 
 
@@ -87,7 +103,7 @@ def bindings(MP, data, paper):
         where, kd = MP.declared(lib), MP.keyed(lib)
         for label, cites in (data.get("lean") or {}).items():
             if label.startswith("V") or not keys.get(label): continue
-            cs = [x for x in cites if x["module"].split("/")[0] == lib and (lib == "FrcCore" or x["module"] == f"{lib}/{module}")]
+            cs = [x for x in cites if x["module"].split("/")[0] == lib and (lib == "FrcCore" or module is None or x["module"] == f"{lib}/{module}")]
             if not any(where.get(x["name"], (None, None))[1] in ("theorem", "lemma") for x in cs): continue
             if keys[label] in kd: out.setdefault(label, {})[lib] = keys[label]
             else: missing.append(f"{lib}: {label} ({keys[label]})")
@@ -101,7 +117,7 @@ def table(paper, data, lean):
                    sorted(lean.items(), key=lambda kv: [x for x, _ in rows].index(kv[0])))
     head = f'BLOCK = "{data["block"]}"\n' if data.get("block") else f'PAPER = "{paper}"\n'
     return (head +
-            f"KEYS = {{{k}}}       # every row of the {'block' if data.get('block') else 'ledger'}: its label and its accession key\n"
+            f"KEYS = {{{k}}}       # every row of the {('blocks' if len(data['block']) > 1 else 'block') if data.get('block') else 'ledger'}: its label and its accession key\n"
             f"LEAN = {{{ln}}}       # the rows with a Lean declaration: the libraries whose key files prove them\n")
 
 
@@ -130,10 +146,11 @@ def notebook(f, L, data):
     def code(s, cid): cells.append({"cell_type": "code", "id": cid, "metadata": {"id": cid}, "execution_count": None, "outputs": [], "source": s})
     if data.get("block"):
         md(f"## {data['title']}\n\n"
-           f"Each cell below verifies one row of the master predicate ledger ([{SITE[8:]}/00-ledger.html]({SITE}/00-ledger.html)), block "
-           f"{data['block']}, on the FRC framework: it runs the blocks of the ledger file `{rel}` whose checks cite the row, prints the check "
-           "that decides it and lists every record that cites it with its verdict. The cell's id is the row's accession key. The row's "
-           "theorem is proved in Lean, on the Carrier's chart without a generator; the cells check it on the shells and by search. "
+           f"Each cell below verifies one row of the master predicate ledger ([{SITE[8:]}/00-ledger.html]({SITE}/00-ledger.html)), "
+           f"{'blocks ' + ' and '.join(data['block']) if len(data['block']) > 1 else 'block ' + data['block']}, on the FRC framework: it runs the blocks of the ledger file `{rel}` whose checks cite the row, prints the check "
+           "that decides it and lists every record that cites it with its verdict. The cell's id is the row's accession key. "
+           + ("The row's chart clauses are proved in Lean on Mathlib's reals; the cells check them in exact rational arithmetic and in floating point. "
+              if data.get("chart") else "The row's theorem is proved in Lean, on the Carrier's chart without a generator; the cells check it on the shells and by search. ") +
            "Any cell can be run first: its first lines make the framework importable (this checkout, or a clone on Colab).", "header")
     else:
         paper, doi = L.PAPER, data.get("doi")
@@ -192,7 +209,8 @@ def certificate(lib, stem, paper, data, lean, MP):
         m = re.match(r"^'(.+?)' ", line)
         if m: axioms[m.group(1)] = line.strip()
     name = lean_name(stem).replace("/", "."); tier = "no axioms" if lib == "FrcCore" else "the axioms of Mathlib's hierarchy at most"
-    whose, src, task = ((f"the master's block {data['block']}", "the master's data (`docs/00-ledger.json`), the ledger file's `PROOFS`", "LM22") if data.get("block")
+    whose, src, task = ((f"the master's blocks {' and '.join(data['block'])}, the chart clauses", "the master's data (`docs/00-ledger.json`, `docs/predictions.json`), the ledger file's `CHART`", "LM30") if data.get("chart")
+                        else (f"the master's block {data['block']}", "the master's data (`docs/00-ledger.json`), the ledger file's `PROOFS`", "LM22") if data.get("block")
                         else (f"the ledger of {paper}", f"the ledger (`docs/{paper}/{paper}-ledger.json`)", "LM20"))
     out = [f"import {lib}.{m}" for m in mods] + ["", "/-!",
            f"# {lib}.Ledgers.{name} — the certificate of {whose}, {'core' if lib == 'FrcCore' else 'Mathlib'} (ledger migration, task {task})", "",
@@ -221,11 +239,11 @@ def run(check):
         t = TABLE.search(text)
         if not t: continue                                         # not migrated yet: the generated table's two marker lines opt a file in
         if is_master(f):
-            m = re.search(r'^BLOCK = "([A-Z])"', text, re.M)
+            m = re.search(r'^BLOCK = "([A-Z]+)"', text, re.M)
             if not m: problems.append(f"master/{f.name}: no BLOCK"); continue
-            pm = re.search(r"^PROOFS = (\{.*?^\})", text, re.M | re.S)
+            pm = re.search(r"^PROOFS = (\{.*?^\})", text, re.M | re.S); cm = re.search(r"^CHART = (\{.*?^\})", text, re.M | re.S)
             proofs = ast.literal_eval(pm.group(1)) if pm else {}
-            paper = "00-ledger"; data = master_data(m.group(1), proofs, MP)
+            paper = "00-ledger"; data = master_data(m.group(1), proofs, MP, ast.literal_eval(cm.group(1)) if cm else None)
         else:
             m = re.search(r'^PAPER = "([^"]+)"', text, re.M)
             if not m: problems.append(f"{f.name}: no PAPER"); continue

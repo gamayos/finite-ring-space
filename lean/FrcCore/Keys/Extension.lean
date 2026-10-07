@@ -1,4 +1,5 @@
-import FrcCore.Orbit
+import FrcCore.Parity
+import FrcCore.Theme.Quadratic
 import FrcCore.Theme.Extension
 
 /-!

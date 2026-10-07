@@ -1,9 +1,12 @@
-"""The foundation and carrier themes' python (frc/foundation.py, frc/carrier.py; task LM22): each value computed two
-ways, by the theme's generator-free construction and by search, on every prime below a bound; and the master's
-Carrier block file green, its markers on its deciding checks."""
+"""The foundation and carrier themes' python (frc/foundation.py, frc/carrier.py; tasks LM22 and LM23): each value
+computed two ways, by the theme's generator-free construction and by search, on every prime below a bound; and the
+master's Carrier and Foundation block files green, their markers on their deciding checks."""
 import unittest
+from math import gcd
 from frc import arith
 from frc.foundation import half_power, quarter_turn, quarter_turns, square_roots, fermat_holds
+from frc.foundation import (successor_orbit, principal_ideal, is_complete, zero_divisors, element_order, drive,
+                            collision)
 from frc.carrier import capacity, register, octant, tsirelson, triality_roots, horizon, quarter_root, coherence
 
 PRIMES = [p for p in range(3, 1200) if arith.is_prime(p)]
@@ -24,6 +27,39 @@ class FoundationTest(unittest.TestCase):
     def test_fermat(self):
         for p in PRIMES[:60]: self.assertTrue(fermat_holds(p))
         self.assertFalse(fermat_holds(15))
+
+    def test_successor_cycle(self):
+        for q in range(1, 300):
+            for x in (0, q // 2, q - 1):
+                orb = successor_orbit(q, x)
+                self.assertEqual(orb, [(x + k) % q for k in range(q)])                          # closed form
+                self.assertEqual(sorted(orb), list(range(q)))
+
+    def test_completeness(self):
+        for q in range(2, 200):
+            self.assertEqual(is_complete(q), arith.is_prime(q))
+            self.assertEqual(not zero_divisors(q), arith.is_prime(q))
+            for a in (1, 2, q - 1):
+                ideal = principal_ideal(a, q)
+                self.assertEqual(ideal, list(range(0, q, gcd(a, q))))                              # the multiples of gcd(a, q)
+
+    def test_order_and_drive(self):
+        for p in PRIMES[:120]:
+            for x in range(1, min(p, 60)):
+                self.assertEqual(element_order(x, p), arith.order(x, p))                       # iteration against factorisation
+            g = drive(p)
+            self.assertTrue(arith.is_primitive_root(g, p))
+            self.assertEqual(sorted(pow(g, m, p) for m in range(p - 1)), list(range(1, p)))
+        self.assertEqual(drive(2), 1)
+        self.assertRaises(ValueError, drive, 91)
+        self.assertRaises(ValueError, element_order, 6, 9)
+
+    def test_collision(self):
+        self.assertIsNone(collision(lambda x: x, 10))
+        self.assertEqual(collision(lambda x: x % 3, 10), (0, 3))
+        for n in range(2, 40):
+            i, j = collision(lambda x: x * x % (n - 1), n)
+            self.assertTrue(i < j < n and (i * i - j * j) % (n - 1) == 0)
 
 
 class CarrierTest(unittest.TestCase):
@@ -64,6 +100,15 @@ class MasterCarrierTest(unittest.TestCase):
         for lab, pid in L.R.predicates.items():
             self.assertIn(lab, marks)
         self.assertEqual(sorted(L.PROOFS), sorted(L.LEAN))                                   # every bound row has its key in the key file
+
+    def test_foundation_block_file(self):
+        from frc.ledgers.master import foundation as L
+        self.assertTrue(L.R.verify_all())
+        marks = L.R.markers()
+        for lab, pid in L.R.predicates.items():
+            self.assertIn(lab, marks)
+        self.assertEqual(sorted(L.PROOFS), sorted(L.LEAN))
+        self.assertEqual(L.BLOCK, "A")
 
 
 if __name__ == "__main__":
