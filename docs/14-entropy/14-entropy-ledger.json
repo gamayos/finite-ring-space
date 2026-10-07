@@ -2,7 +2,7 @@
  "paper": "14-entr",
  "title": "De Sitter Entropy Estimates over Finite Holographic Substrate",
  "doi": "https://doi.org/10.20944/preprints202608.0310.v1",
- "generated": "5 October 2026",
+ "generated": "7 October 2026",
  "blocks": [
   {
    "letter": "A",
@@ -429,7 +429,7 @@
    {
     "name": "FRC.Entropy.cardinality",
     "module": "FrcLedger/Entropy",
-    "line": 43,
+    "line": 47,
     "axioms": [
      "Quot.sound",
      "propext"
@@ -452,7 +452,7 @@
    {
     "name": "FRC.Entropy.carrierLab",
     "module": "FrcLedger/Entropy",
-    "line": 121,
+    "line": 125,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -474,7 +474,7 @@
    {
     "name": "FRC.Entropy.c_square",
     "module": "FrcLedger/Entropy",
-    "line": 100,
+    "line": 104,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -487,7 +487,7 @@
    {
     "name": "FRC.Entropy.triality_centre",
     "module": "FrcLedger/Entropy",
-    "line": 90,
+    "line": 94,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -502,7 +502,7 @@
    {
     "name": "FRC.Entropy.dictionary",
     "module": "FrcLedger/Entropy",
-    "line": 140,
+    "line": 144,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -526,7 +526,7 @@
    {
     "name": "FRC.Entropy.fluid_w",
     "module": "FrcLedger/Entropy",
-    "line": 302,
+    "line": 284,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -541,7 +541,7 @@
    {
     "name": "FRC.Entropy.quarter_turn",
     "module": "FrcLedger/Entropy",
-    "line": 60,
+    "line": 64,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -554,7 +554,7 @@
    {
     "name": "FRC.Entropy.area_law_chart",
     "module": "FrcLedger/Entropy",
-    "line": 83,
+    "line": 87,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -578,7 +578,7 @@
    {
     "name": "FRC.Entropy.hydrogen_units",
     "module": "FrcLedger/Entropy",
-    "line": 619,
+    "line": 528,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -591,7 +591,7 @@
    {
     "name": "FRC.Entropy.nesting_lab",
     "module": "FrcLedger/Entropy",
-    "line": 630,
+    "line": 539,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -624,7 +624,7 @@
    {
     "name": "FRC.Entropy.horizon_quarter_closure",
     "module": "FrcLedger/Entropy",
-    "line": 128,
+    "line": 132,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -639,7 +639,7 @@
    {
     "name": "FRC.Entropy.lcdmAge",
     "module": "FrcLedger/Entropy",
-    "line": 228,
+    "line": 224,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -652,7 +652,7 @@
    {
     "name": "FRC.Entropy.lcdm_age",
     "module": "FrcLedger/Entropy",
-    "line": 496,
+    "line": 405,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -665,7 +665,7 @@
    {
     "name": "FRC.Entropy.age_bracket",
     "module": "FrcLedger/Entropy",
-    "line": 564,
+    "line": 473,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -680,7 +680,7 @@
    {
     "name": "FRC.Entropy.octant_chart",
     "module": "FrcLedger/Entropy",
-    "line": 148,
+    "line": 554,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -688,12 +688,12 @@
     ],
     "tier": 2,
     "ok": true,
-    "doc": "14:C5 [chart] — clause (iv), the chart conversion of the octant: the count `S/2` out of the `4S`-cycle, read on the meridian circle `2π r_H/c`, is the depth `(π/4) r_H/c`."
+    "doc": "14:C5 [chart] — the chart conversion of the octant: `(S/2)/(4S) · 2π r_H/c = (π/4) r_H/c`."
    },
    {
     "name": "FRC.Entropy.closure_budget",
     "module": "FrcLedger/Entropy",
-    "line": 175,
+    "line": 171,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -726,7 +726,7 @@
    {
     "name": "FRC.Entropy.octant_exists_iff",
     "module": "FrcLedger/Entropy",
-    "line": 196,
+    "line": 192,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -739,7 +739,7 @@
    {
     "name": "FRC.Entropy.octant_character",
     "module": "FrcLedger/Entropy",
-    "line": 182,
+    "line": 178,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -781,7 +781,7 @@
    {
     "name": "FRC.Entropy.octant_inversion",
     "module": "FrcLedger/Entropy",
-    "line": 238,
+    "line": 229,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -794,7 +794,7 @@
    {
     "name": "FRC.Entropy.landing_bracket",
     "module": "FrcLedger/Entropy",
-    "line": 391,
+    "line": 589,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -802,14 +802,14 @@
     ],
     "tier": 2,
     "ok": true,
-    "doc": "14:C7, 14:X3 — the landing bracketed: `0.68368 < tanh²(3π/8) < 0.68369` (the numeral `0.6837`) is certified from `π` to six places, `e` to nine and the Taylor tail; and, with the Planck numerals `0.685 ± 0.007` taken as data (A8), the deviation lies between `0.18σ` and `0.19σ`."
+    "doc": "14:C7, 14:X3 — `0.68368 < tanh²(3π/8) < 0.68369`, a deviation between `0.18σ` and `0.19σ` from `0.685 ± 0.007`."
    }
   ],
   "C8": [
    {
     "name": "FRC.Entropy.channel_one_consistency",
     "module": "FrcLedger/Entropy",
-    "line": 267,
+    "line": 249,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -822,7 +822,7 @@
    {
     "name": "FRC.Entropy.channel_one_numeral",
     "module": "FrcLedger/Entropy",
-    "line": 376,
+    "line": 299,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -835,7 +835,7 @@
    {
     "name": "FRC.Entropy.cluster_identity",
     "module": "FrcLedger/Entropy",
-    "line": 287,
+    "line": 269,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -850,7 +850,7 @@
    {
     "name": "FRC.Entropy.count_face",
     "module": "FrcLedger/Entropy",
-    "line": 602,
+    "line": 511,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -865,7 +865,7 @@
    {
     "name": "FRC.Entropy.capacity_zero",
     "module": "FrcLedger/Entropy",
-    "line": 612,
+    "line": 521,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -889,7 +889,7 @@
    {
     "name": "FRC.Entropy.milgrom_rebooking",
     "module": "FrcLedger/Entropy",
-    "line": 157,
+    "line": 153,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -904,7 +904,7 @@
    {
     "name": "FRC.Entropy.octant_inversion",
     "module": "FrcLedger/Entropy",
-    "line": 238,
+    "line": 229,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -917,7 +917,7 @@
    {
     "name": "FRC.Entropy.landing_bracket",
     "module": "FrcLedger/Entropy",
-    "line": 391,
+    "line": 589,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -925,14 +925,14 @@
     ],
     "tier": 2,
     "ok": true,
-    "doc": "14:C7, 14:X3 — the landing bracketed: `0.68368 < tanh²(3π/8) < 0.68369` (the numeral `0.6837`) is certified from `π` to six places, `e` to nine and the Taylor tail; and, with the Planck numerals `0.685 ± 0.007` taken as data (A8), the deviation lies between `0.18σ` and `0.19σ`."
+    "doc": "14:C7, 14:X3 — `0.68368 < tanh²(3π/8) < 0.68369`, a deviation between `0.18σ` and `0.19σ` from `0.685 ± 0.007`."
    }
   ],
   "X4": [
    {
     "name": "FRC.Entropy.octant_second_face",
     "module": "FrcLedger/Entropy",
-    "line": 213,
+    "line": 209,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -945,7 +945,7 @@
    {
     "name": "FRC.Entropy.octant_sector_iff",
     "module": "FrcLedger/Entropy",
-    "line": 169,
+    "line": 165,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -969,7 +969,7 @@
    {
     "name": "FRC.Entropy.age_rate_locus",
     "module": "FrcLedger/Entropy",
-    "line": 258,
+    "line": 563,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -977,12 +977,12 @@
     ],
     "tier": 2,
     "ok": true,
-    "doc": "14:P3 [ΛCDM] — the algebraic locus: with `t H_Λ = π/4` (the octant), `H_Λ = H₀ √Ω_Λ` and `Ω_Λ = tanh²(3π/8)`, `t H₀ = (π/4)/tanh(3π/8)`; the numeral `0.950` is bracketed in `locus_bracket`; the stellar-age reading `H₀ = 68.2 ± 1.7` and its confrontations are not formalised."
+    "doc": "14:P3 [ΛCDM] — the algebraic locus `t H₀ = (π/4)/tanh(3π/8)`."
    },
    {
     "name": "FRC.Entropy.locus_bracket",
     "module": "FrcLedger/Entropy",
-    "line": 364,
+    "line": 585,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -990,14 +990,14 @@
     ],
     "tier": 2,
     "ok": true,
-    "doc": "14:P3 — the locus's numeral bracketed: `0.9498 < (π/4)/tanh(3π/8) < 0.9499`, the paper's `0.950`."
+    "doc": "14:P3 — `0.9498 < (π/4)/tanh(3π/8) < 0.9499`."
    }
   ],
   "P4": [
    {
     "name": "FRC.Entropy.fluid_w",
     "module": "FrcLedger/Entropy",
-    "line": 302,
+    "line": 284,
     "axioms": [
      "Classical.choice",
      "Quot.sound",

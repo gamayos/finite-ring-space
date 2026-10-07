@@ -1,6 +1,7 @@
 import FrcCore.Frame
 import FrcCore.Orbit
 import FrcCore.Instances
+import FrcCore.Theme.Gravity
 
 /-!
 # 21-gravity — the Carrier register and the count face on every frame, no axioms
@@ -18,8 +19,9 @@ by the kernel: the register on `𝔽₁₃` (`κ = 3`, drive `2`) and `𝔽₁�
 instance `27 811 + 1 596 → 29 407` with `ΔA = 88 772 712` (C13), and the laboratory Carrier `Ω = 2 408 561`:
 `4S = 2 408 560 = −1`, `(4S)² = 1`, `G = 1 204 280` with `2G = −1`, `(−2) G = 1`, the Gauss count, `ħ = 18 688`
 with `ħ² = −1`, `ħ = 2 · 9 344` and `9 344² = S = 602 140` (C2, C5, C16; the residues `c = 171 106` and
-`G = −c²` are `Dimensions.carrierLab`). Every declaration is checked to depend on no axiom
-(`check_core_axioms.py`).
+`G = −c²` are `Dimensions.carrierLab`). Since task LM27 the count face's identities are the gravity theme's
+`FRC.Grav.count_identity` (`Theme/Gravity.lean`), and `count_identity` here is its alias. Every declaration is checked
+to depend on no axiom (`check_core_axioms.py`).
 -/
 
 namespace FRC.Gravity
@@ -119,31 +121,6 @@ end register
 /-! ## The count face (21:A9, C13) -/
 section count
 
-/-- 21:C13 — the count face of the area law on `p = 4κ + 1`: `S = κ(4κ + 2)` has `4S + 1 = p²`
-(`S = (p² − 1)/4`), and with the coordinate area `A = p(p + 1)`: `Sp = κA` (`S/A = κ/p`) and `4Sp = A(p − 1)`
-(`S = (A/4)(1 − 1/p)`). -/
-theorem count_identity (κ : Nat) :
-    4 * (κ * (4 * κ + 2)) + 1 = (4 * κ + 1) * (4 * κ + 1) ∧
-    κ * (4 * κ + 2) * (4 * κ + 1) = κ * ((4 * κ + 1) * (4 * κ + 2)) ∧
-    4 * (κ * (4 * κ + 2)) * (4 * κ + 1) = ((4 * κ + 1) * (4 * κ + 2)) * (4 * κ) := by
-  refine ⟨?_, ?_, ?_⟩
-  · calc 4 * (κ * (4 * κ + 2)) + 1
-        = 4 * (κ * (4 * κ) + κ * 2) + 1 := by rw [Nat.mul_add κ]
-      _ = (4 * (κ * (4 * κ)) + 4 * (κ * 2)) + 1 := by rw [Nat.mul_add 4]
-      _ = (4 * κ * (4 * κ) + 4 * κ * 2) + 1 := by rw [Nat.mul_assoc 4 κ (4 * κ), Nat.mul_assoc 4 κ 2]
-      _ = (4 * κ * (4 * κ) + (4 * κ + 4 * κ)) + 1 := by rw [Nat.mul_two]
-      _ = 4 * κ * (4 * κ) + 4 * κ + (4 * κ + 1) := by
-          rw [Nat.add_assoc (4 * κ * (4 * κ)) (4 * κ + 4 * κ) 1, Nat.add_assoc (4 * κ) (4 * κ) 1,
-            Nat.add_assoc (4 * κ * (4 * κ)) (4 * κ) (4 * κ + 1)]
-      _ = (4 * κ + 1) * (4 * κ) + (4 * κ + 1) * 1 := by rw [Nat.add_mul, Nat.one_mul, Nat.mul_one]
-      _ = (4 * κ + 1) * (4 * κ + 1) := by rw [← Nat.mul_add]
-  · rw [Nat.mul_assoc, Nat.mul_comm (4 * κ + 2)]
-  · calc 4 * (κ * (4 * κ + 2)) * (4 * κ + 1)
-        = (4 * κ + 1) * (4 * (κ * (4 * κ + 2))) := Nat.mul_comm _ _
-      _ = (4 * κ + 1) * ((4 * κ + 2) * (4 * κ)) := by
-          rw [← Nat.mul_assoc 4 κ, Nat.mul_comm (4 * κ) (4 * κ + 2)]
-      _ = (4 * κ + 1) * (4 * κ + 2) * (4 * κ) := (Nat.mul_assoc _ _ _).symm
-
 /-- 21:A9 — the two-face count: the angular face `κ/S` against the temporal face `κ/(2S)` has ratio `2`
 (`κ · 2S = 2 · κS`), and the registration fibre product has `(p − 1)(Ω − 1) = 4 · 4κS` for `p = 4κ + 1`,
 `Ω = 4S + 1`. -/
@@ -186,5 +163,15 @@ theorem lab_register :
     (9344 : Shell 2408561) * 9344 = 602140 := by decide +kernel
 
 end values
+
+/-! ## Old names (ledger migration, task LM27): the declarations moved to the themes, each under its old name -/
+
+/-- 21:C13 — the count face of the area law on `p = 4κ + 1` (21-gravity's name; the theorem is
+`FRC.Grav.count_identity` in `Theme/Gravity.lean`, task LM27): `4S + 1 = p²`, `Sp = κA`, `4Sp = A(p − 1)`. -/
+theorem count_identity (κ : Nat) :
+    4 * (κ * (4 * κ + 2)) + 1 = (4 * κ + 1) * (4 * κ + 1) ∧
+    κ * (4 * κ + 2) * (4 * κ + 1) = κ * ((4 * κ + 1) * (4 * κ + 2)) ∧
+    4 * (κ * (4 * κ + 2)) * (4 * κ + 1) = ((4 * κ + 1) * (4 * κ + 2)) * (4 * κ) :=
+  FRC.Grav.count_identity κ
 
 end FRC.Gravity

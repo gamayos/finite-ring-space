@@ -2,7 +2,7 @@
  "paper": "21-grav",
  "title": "Gravitation as Phase Synchronisation",
  "doi": "https://doi.org/10.20944/preprints202606.1018.v2",
- "generated": "5 October 2026",
+ "generated": "7 October 2026",
  "blocks": [
   {
    "letter": "A",
@@ -579,7 +579,7 @@
    {
     "name": "FRC.Gravity.calibration_congruence",
     "module": "FrcLedger/Gravity",
-    "line": 55,
+    "line": 58,
     "axioms": [
      "Quot.sound",
      "propext"
@@ -591,7 +591,7 @@
    {
     "name": "FRC.Gravity.hbar_register",
     "module": "FrcLedger/Gravity",
-    "line": 102,
+    "line": 105,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -604,7 +604,7 @@
    {
     "name": "FRC.Gravity.calibration",
     "module": "FrcCore/Gravity",
-    "line": 51,
+    "line": 53,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -615,7 +615,7 @@
    {
     "name": "FRC.Gravity.cover_forcing",
     "module": "FrcLedger/Gravity",
-    "line": 147,
+    "line": 150,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -628,7 +628,7 @@
    {
     "name": "FRC.Gravity.channel_q4",
     "module": "FrcLedger/Gravity",
-    "line": 159,
+    "line": 162,
     "axioms": [
      "Quot.sound",
      "propext"
@@ -640,7 +640,7 @@
    {
     "name": "FRC.Gravity.two_face_count",
     "module": "FrcCore/Gravity",
-    "line": 150,
+    "line": 127,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -651,7 +651,7 @@
    {
     "name": "FRC.Gravity.locked_sum",
     "module": "FrcLedger/Gravity",
-    "line": 657,
+    "line": 638,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -666,7 +666,7 @@
    {
     "name": "FRC.Gravity.newton_register",
     "module": "FrcLedger/Gravity",
-    "line": 64,
+    "line": 67,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -679,7 +679,7 @@
    {
     "name": "FRC.Gravity.newton_residue",
     "module": "FrcCore/Gravity",
-    "line": 63,
+    "line": 65,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -690,7 +690,7 @@
    {
     "name": "FRC.Gravity.redshift_linear",
     "module": "FrcLedger/Gravity",
-    "line": 336,
+    "line": 339,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -705,7 +705,7 @@
    {
     "name": "FRC.Gravity.hbar_register",
     "module": "FrcLedger/Gravity",
-    "line": 102,
+    "line": 105,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -718,7 +718,7 @@
    {
     "name": "FRC.Gravity.hbar_root",
     "module": "FrcCore/Gravity",
-    "line": 89,
+    "line": 91,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -729,7 +729,7 @@
    {
     "name": "FRC.Gravity.cover_forcing",
     "module": "FrcLedger/Gravity",
-    "line": 147,
+    "line": 150,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -744,7 +744,7 @@
    {
     "name": "FRC.Gravity.cover_forcing",
     "module": "FrcLedger/Gravity",
-    "line": 147,
+    "line": 150,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -757,7 +757,7 @@
    {
     "name": "FRC.Gravity.pn_series",
     "module": "FrcLedger/Gravity",
-    "line": 685,
+    "line": 666,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -772,7 +772,7 @@
    {
     "name": "FRC.Gravity.central_difference_adjoint",
     "module": "FrcLedger/Gravity",
-    "line": 597,
+    "line": 578,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -787,7 +787,7 @@
    {
     "name": "FRC.Gravity.exponential_reading",
     "module": "FrcLedger/Gravity",
-    "line": 668,
+    "line": 649,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -802,7 +802,7 @@
    {
     "name": "FRC.Gravity.operational_cut",
     "module": "FrcLedger/Gravity",
-    "line": 173,
+    "line": 176,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -817,7 +817,7 @@
    {
     "name": "FRC.Gravity.count_face",
     "module": "FrcLedger/Gravity",
-    "line": 121,
+    "line": 124,
     "axioms": [
      "propext"
     ],
@@ -828,7 +828,7 @@
    {
     "name": "FRC.Gravity.merger_area_law",
     "module": "FrcLedger/Gravity",
-    "line": 132,
+    "line": 135,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -841,7 +841,7 @@
    {
     "name": "FRC.Gravity.capacity_ratio",
     "module": "FrcLedger/Gravity",
-    "line": 328,
+    "line": 331,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -854,16 +854,16 @@
    {
     "name": "FRC.Gravity.count_identity",
     "module": "FrcCore/Gravity",
-    "line": 125,
+    "line": 171,
     "axioms": [],
     "tier": 0,
     "ok": true,
-    "doc": "21:C13 — the count face of the area law on `p = 4κ + 1`: `S = κ(4κ + 2)` has `4S + 1 = p²` (`S = (p² − 1)/4`), and with the coordinate area `A = p(p + 1)`: `Sp = κA` (`S/A = κ/p`) and `4Sp = A(p − 1)` (`S = (A/4)(1 − 1/p)`)."
+    "doc": "21:C13 — the count face of the area law on `p = 4κ + 1` (21-gravity's name; the theorem is `FRC.Grav.count_identity` in `Theme/Gravity.lean`, task LM27): `4S + 1 = p²`, `Sp = κA`, `4Sp = A(p − 1)`."
    },
    {
     "name": "FRC.Gravity.merger_instance",
     "module": "FrcCore/Gravity",
-    "line": 173,
+    "line": 150,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -874,7 +874,7 @@
    {
     "name": "FRC.Gravity.calibration_congruence",
     "module": "FrcLedger/Gravity",
-    "line": 55,
+    "line": 58,
     "axioms": [
      "Quot.sound",
      "propext"
@@ -886,7 +886,7 @@
    {
     "name": "FRC.Gravity.newton_register",
     "module": "FrcLedger/Gravity",
-    "line": 64,
+    "line": 67,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -899,7 +899,7 @@
    {
     "name": "FRC.Gravity.calibration",
     "module": "FrcCore/Gravity",
-    "line": 51,
+    "line": 53,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -908,7 +908,7 @@
    {
     "name": "FRC.Gravity.lab_register",
     "module": "FrcCore/Gravity",
-    "line": 180,
+    "line": 157,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -919,7 +919,7 @@
    {
     "name": "FRC.Gravity.scale_invariance_iff",
     "module": "FrcLedger/Gravity",
-    "line": 511,
+    "line": 492,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -932,7 +932,7 @@
    {
     "name": "FRC.Gravity.tilt_bracket",
     "module": "FrcLedger/Gravity",
-    "line": 566,
+    "line": 547,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -947,7 +947,7 @@
    {
     "name": "FRC.Gravity.registration_root",
     "module": "FrcLedger/Gravity",
-    "line": 373,
+    "line": 354,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -960,7 +960,7 @@
    {
     "name": "FRC.Gravity.crossover_limits",
     "module": "FrcLedger/Gravity",
-    "line": 411,
+    "line": 392,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -973,7 +973,7 @@
    {
     "name": "FRC.Gravity.crossover_deep_limit",
     "module": "FrcLedger/Gravity",
-    "line": 440,
+    "line": 421,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -988,7 +988,7 @@
    {
     "name": "FRC.Gravity.shift_theorem",
     "module": "FrcLedger/Gravity",
-    "line": 628,
+    "line": 609,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -1003,7 +1003,7 @@
    {
     "name": "FRC.Gravity.cover_forcing",
     "module": "FrcLedger/Gravity",
-    "line": 147,
+    "line": 150,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -1018,7 +1018,7 @@
    {
     "name": "FRC.Gravity.crossover_deep_limit",
     "module": "FrcLedger/Gravity",
-    "line": 440,
+    "line": 421,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -1033,7 +1033,7 @@
    {
     "name": "FRC.Gravity.dilution",
     "module": "FrcLedger/Gravity",
-    "line": 110,
+    "line": 113,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -1048,7 +1048,7 @@
    {
     "name": "FRC.Gravity.photon_sphere",
     "module": "FrcLedger/Gravity",
-    "line": 187,
+    "line": 190,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -1061,7 +1061,7 @@
    {
     "name": "FRC.Gravity.shadow_bracket",
     "module": "FrcLedger/Gravity",
-    "line": 226,
+    "line": 229,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -1074,7 +1074,7 @@
    {
     "name": "FRC.Gravity.isco",
     "module": "FrcLedger/Gravity",
-    "line": 246,
+    "line": 249,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -1087,7 +1087,7 @@
    {
     "name": "FRC.Gravity.isco_efficiency",
     "module": "FrcLedger/Gravity",
-    "line": 301,
+    "line": 304,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -1102,7 +1102,7 @@
    {
     "name": "FRC.Gravity.operational_cut",
     "module": "FrcLedger/Gravity",
-    "line": 173,
+    "line": 176,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -1117,7 +1117,7 @@
    {
     "name": "FRC.Gravity.tilt_bracket",
     "module": "FrcLedger/Gravity",
-    "line": 566,
+    "line": 547,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -1132,7 +1132,7 @@
    {
     "name": "FRC.Gravity.preferred_frame_scale",
     "module": "FrcLedger/Gravity",
-    "line": 736,
+    "line": 717,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -1147,7 +1147,7 @@
    {
     "name": "FRC.Gravity.floor_value",
     "module": "FrcLedger/Gravity",
-    "line": 351,
+    "line": 728,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -1155,14 +1155,14 @@
     ],
     "tier": 2,
     "ok": true,
-    "doc": "21:P3 — the weak-acceleration floor `a₀ = cH₀/2π` at the entailed `H₀ = 67.4 km s⁻¹ Mpc⁻¹` (the `H₀` of `\\cite{entropy}`, the speed of light and the megaparsec all declared numerals [data]): `a₀` lies between `1.04` and `1.05 × 10⁻¹⁰ m s⁻²`; against the fitted `1.20 × 10⁻¹⁰` it is between `13.0 %` and `13.2 %` low, and the deficit is between `0.65` and `0.67` of the systematic `0.24 × 10⁻¹⁰` (the text's `13 %`, `0.7σ`)."
+    "doc": "21:P3 — the floor `a₀ = cH₀/2π` at the entailed `H₀ = 67.4`: between `1.04` and `1.05 × 10⁻¹⁰ m s⁻²`, `13 %` low and `0.7σ` against the fitted `1.20 ± 0.24 × 10⁻¹⁰`."
    }
   ],
   "P4": [
    {
     "name": "FRC.Gravity.crossover_limits",
     "module": "FrcLedger/Gravity",
-    "line": 411,
+    "line": 392,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -1175,7 +1175,7 @@
    {
     "name": "FRC.Gravity.registration_root",
     "module": "FrcLedger/Gravity",
-    "line": 373,
+    "line": 354,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -1188,7 +1188,7 @@
    {
     "name": "FRC.Gravity.interpolant_discriminant",
     "module": "FrcLedger/Gravity",
-    "line": 479,
+    "line": 460,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -1203,7 +1203,7 @@
    {
     "name": "FRC.Gravity.pn_series",
     "module": "FrcLedger/Gravity",
-    "line": 685,
+    "line": 666,
     "axioms": [
      "Classical.choice",
      "Quot.sound",

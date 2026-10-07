@@ -2,7 +2,7 @@
  "paper": "13-epi",
  "title": "Finite Field Realisation of π and e",
  "doi": "https://doi.org/10.20944/preprints202607.1141.v1",
- "generated": "5 October 2026",
+ "generated": "7 October 2026",
  "blocks": [
   {
    "letter": "A",
@@ -573,8 +573,8 @@
    },
    {
     "name": "FRC.Shell.Frame.orientation_class",
-    "module": "FrcCore/Frame",
-    "line": 273,
+    "module": "FrcCore/FrameCore",
+    "line": 278,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -1057,8 +1057,8 @@
   "H2": [
    {
     "name": "FRC.Shell.Frame.half_period",
-    "module": "FrcCore/Frame",
-    "line": 253,
+    "module": "FrcCore/FrameCore",
+    "line": 258,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -1124,8 +1124,8 @@
   "I4": [
    {
     "name": "FRC.Shell.Frame.two_pi",
-    "module": "FrcCore/Frame",
-    "line": 311,
+    "module": "FrcCore/FrameCore",
+    "line": 316,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -1146,8 +1146,8 @@
   "J2": [
    {
     "name": "FRC.Shell.Frame.two_pi",
-    "module": "FrcCore/Frame",
-    "line": 311,
+    "module": "FrcCore/FrameCore",
+    "line": 316,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -1155,8 +1155,8 @@
    },
    {
     "name": "FRC.Shell.Frame.quarter_turn_sq",
-    "module": "FrcCore/Frame",
-    "line": 260,
+    "module": "FrcCore/FrameCore",
+    "line": 265,
     "axioms": [],
     "tier": 0,
     "ok": true,

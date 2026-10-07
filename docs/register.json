@@ -1,6 +1,6 @@
 {
  "header": {
-  "generated": "5 October 2026",
+  "generated": "7 October 2026",
   "schema": "frc-register/2",
   "rows": 1005,
   "theorems": 999,
@@ -1518,9 +1518,20 @@
    "statement": "A bounded observer is a proper part, $|O|<\\Om$: it holds no injective encoding of the totality into its own states (25:D1, 5:C2). The limitative content of the classical theorems lives at the comprehension horizon (Z1, Z9).",
    "origin_row": "00:A5",
    "tag": "T",
-   "tier": null,
-   "check": null,
-   "declarations": [],
+   "tier": 0,
+   "check": {
+    "href": "frc/ledgers/master/foundation.html#p00159",
+    "script": "frc/ledgers/master/foundation.py",
+    "line": 91,
+    "verdict": "pass"
+   },
+   "declarations": [
+    {
+     "lib": "FrcCore",
+     "module": "FrcCore/Keys/Foundation",
+     "name": "FRC.Ledger.p00159"
+    }
+   ],
    "aliases": [],
    "rows": [
     "00:A5"
@@ -1547,9 +1558,20 @@
    "statement": "Counting closes by return: the successor $C_q:x\\mapsto x{+}1\\ (\\mathrm{mod}\\ q)$ on $q$ points is one $q$-cycle with no fixed point, so iteration is bounded and cyclic; its interpretation is A2's.",
    "origin_row": "00:A7",
    "tag": "T",
-   "tier": null,
-   "check": null,
-   "declarations": [],
+   "tier": 0,
+   "check": {
+    "href": "frc/ledgers/master/foundation.html#p00160",
+    "script": "frc/ledgers/master/foundation.py",
+    "line": 126,
+    "verdict": "pass"
+   },
+   "declarations": [
+    {
+     "lib": "FrcCore",
+     "module": "FrcCore/Keys/Foundation",
+     "name": "FRC.Ledger.p00160"
+    }
+   ],
    "aliases": [],
    "rows": [
     "00:A7"
@@ -1620,9 +1642,20 @@
    "statement": "\\textbf{Completeness is primality}: the residues of a count $q\\ge2$ have no proper nonzero ideal iff $q$ is prime, so the arithmetic of a counting cycle is complete exactly on prime cycles (the formal shadow of A4).",
    "origin_row": "00:A12",
    "tag": "T",
-   "tier": null,
-   "check": null,
-   "declarations": [],
+   "tier": 0,
+   "check": {
+    "href": "frc/ledgers/master/foundation.html#p00162",
+    "script": "frc/ledgers/master/foundation.py",
+    "line": 167,
+    "verdict": "pass"
+   },
+   "declarations": [
+    {
+     "lib": "FrcCore",
+     "module": "FrcCore/Keys/Foundation",
+     "name": "FRC.Ledger.p00162"
+    }
+   ],
    "aliases": [],
    "rows": [
     "00:A12"
@@ -1635,9 +1668,20 @@
    "statement": "\\textbf{The quarter-turn exists iff $\\p\\equiv1\\pmod4$}: for an odd prime $\\p$, $-1$ is a square in $\\F_\\p$ iff $\\p\\equiv1\\pmod4$ (the formal shadow of B3).",
    "origin_row": "00:A13",
    "tag": "T",
-   "tier": null,
-   "check": null,
-   "declarations": [],
+   "tier": 0,
+   "check": {
+    "href": "frc/ledgers/master/foundation.html#p00163",
+    "script": "frc/ledgers/master/foundation.py",
+    "line": 188,
+    "verdict": "pass"
+   },
+   "declarations": [
+    {
+     "lib": "FrcCore",
+     "module": "FrcCore/Keys/Foundation",
+     "name": "FRC.Ledger.p00163"
+    }
+   ],
    "aliases": [],
    "rows": [
     "00:A13"
@@ -1650,9 +1694,20 @@
    "statement": "\\textbf{Every prime carries a frame}: every prime field $\\F_\\p$ has a primitive root, so a drive $\\gen$ with $\\langle\\gen\\rangle=\\F_\\p^{\\times}$ exists (the formal shadow of C1).",
    "origin_row": "00:A14",
    "tag": "T",
-   "tier": null,
-   "check": null,
-   "declarations": [],
+   "tier": 0,
+   "check": {
+    "href": "frc/ledgers/master/foundation.html#p00164",
+    "script": "frc/ledgers/master/foundation.py",
+    "line": 213,
+    "verdict": "pass"
+   },
+   "declarations": [
+    {
+     "lib": "FrcCore",
+     "module": "FrcCore/Keys/Foundation",
+     "name": "FRC.Ledger.p00164"
+    }
+   ],
    "aliases": [],
    "rows": [
     "00:A14"
@@ -1914,9 +1969,20 @@
    "statement": "The frame, Subject-only: $(\\chron;0,1,\\gen)$, origin, unit and the drive $x\\mapsto gx$ (A8). Shell data, capacity-first: $\\kap $ primitive, $\\p =4\\kap +1$, $\\im=-\\gen^\\kap $ (C7), $\\pi=2\\kap $, $e=\\gen^{\\,\\im}$; $\\gen$ the one nonsquare frame datum (C3, C8). Exponents of $\\gen$ are taken in $\\Zp$, a residue in an exponent standing for its lift $\\iota:\\F_\\p\\to\\{0,\\dots,\\p-1\\}$. The web closes on every shell: $2\\pi\\equiv-1$, $\\gen^{\\,\\pi}\\equiv-1$, $-\\pi=2^{-1}$ (N2).",
    "origin_row": "00:C1",
    "tag": "T",
-   "tier": null,
-   "check": null,
-   "declarations": [],
+   "tier": 0,
+   "check": {
+    "href": "frc/ledgers/master/subject.html#p00021",
+    "script": "frc/ledgers/master/subject.py",
+    "line": 115,
+    "verdict": "pass"
+   },
+   "declarations": [
+    {
+     "lib": "FrcCore",
+     "module": "FrcCore/Keys/Subject",
+     "name": "FRC.Ledger.p00021"
+    }
+   ],
    "aliases": [],
    "rows": [
     "00:C1"
@@ -1929,11 +1995,20 @@
    "statement": "Scale-shift duality: dilation $x\\mapsto gx$ is phase evolution of the frame, advancing $t$; over the cycle it is the fractional Fourier transform, whose quarter-turn $Q_4$ is the discrete Fourier transform.",
    "origin_row": "00:C2",
    "tag": "T",
-   "tier": null,
+   "tier": 0,
    "check": {
-    "script": "6:fourier.py"
+    "href": "frc/ledgers/master/fourier.html#p00022",
+    "script": "frc/ledgers/master/fourier.py",
+    "line": 88,
+    "verdict": "pass"
    },
-   "declarations": [],
+   "declarations": [
+    {
+     "lib": "FrcCore",
+     "module": "FrcCore/Keys/Fourier",
+     "name": "FRC.Ledger.p00022"
+    }
+   ],
    "aliases": [],
    "rows": [
     "00:C2"
@@ -1946,9 +2021,20 @@
    "statement": "The drive fixes a Lorentzian time axis, causal order is algebraic, the split and non-split tori the two signatures. The signature is the square class of the temporal coefficient $\\nu=\\gen$ (C1); in $\\F_\\p$, $\\nu=2^{-1}\\cdot(2\\gen)$, both classes fixed by the parity of $\\kap$ (8:B3). In the Carrier $c^2=2^{-1}$ is a square (C8), and $\\eta_{00}=-c^2$ is a chart artifact.",
    "origin_row": "00:C3",
    "tag": "T",
-   "tier": null,
-   "check": null,
-   "declarations": [],
+   "tier": 0,
+   "check": {
+    "href": "frc/ledgers/master/subject.html#p00150",
+    "script": "frc/ledgers/master/subject.py",
+    "line": 145,
+    "verdict": "pass"
+   },
+   "declarations": [
+    {
+     "lib": "FrcCore",
+     "module": "FrcCore/Keys/Subject",
+     "name": "FRC.Ledger.p00150"
+    }
+   ],
    "aliases": [],
    "rows": [
     "00:C3"
@@ -2003,9 +2089,20 @@
    "statement": "\\textbf{Orientation is derived, not conventional}: the $c$-square congruence ($\\dS$ even, C8) annihilates orientation transport on every Carrier carrying it ($\\im^{\\dS}\\in\\{\\pm1\\}$); pullback covariance and count positivity fix the oriented quarter-turn $\\im=-\\gen^\\kap $; the joint flip $(\\gen,\\im,s)\\mapsto(\\gen^{-1},-\\im,-s)$ preserves every registered count. The constants' derivation consumes no selection (B7). Parity marker: C14. The selection by matter content: D16.",
    "origin_row": "00:C7",
    "tag": "T",
-   "tier": null,
-   "check": null,
-   "declarations": [],
+   "tier": 0,
+   "check": {
+    "href": "frc/ledgers/master/fourier.html#p00172",
+    "script": "frc/ledgers/master/fourier.py",
+    "line": 132,
+    "verdict": "pass"
+   },
+   "declarations": [
+    {
+     "lib": "FrcCore",
+     "module": "FrcCore/Keys/Fourier",
+     "name": "FRC.Ledger.p00172"
+    }
+   ],
    "aliases": [],
    "rows": [
     "00:C7"
@@ -2020,9 +2117,20 @@
    "statement": "For a primitive drive the squares are $\\langle \\gen^2\\rangle$: a residue's quadratic class is its drive-step parity. Registered transport is even, the one-way multiplier $\\gen$ odd, so the one-way speed is gauge and the two-way constant invariant. $[c^2]$ is even iff $\\dS$ is even, a relation certified by the unit realisation (D7). The Tsirelson $\\sqrt2=\\zeta_8+\\zeta_8^{-1}$ is its two-way symmetrisation.",
    "origin_row": "00:C8",
    "tag": "T",
-   "tier": null,
-   "check": null,
-   "declarations": [],
+   "tier": 0,
+   "check": {
+    "href": "frc/ledgers/master/subject.html#p00028",
+    "script": "frc/ledgers/master/subject.py",
+    "line": 184,
+    "verdict": "pass"
+   },
+   "declarations": [
+    {
+     "lib": "FrcCore",
+     "module": "FrcCore/Keys/Subject",
+     "name": "FRC.Ledger.p00028"
+    }
+   ],
    "aliases": [],
    "rows": [
     "00:C8"
@@ -2107,11 +2215,20 @@
    "statement": "\\textbf{The quarter-turn is the odd member of the $\\pm\\sqrt{-1}$ pair}: the two representatives have opposite integer parity (distinct from chronon parity, C8), and $e^{\\,\\im\\pi}:=\\gen^{\\,2\\kap\\,\\iota(\\im)^{2}}\\equiv(-1)^{\\iota(\\im)}$ (the lift $\\iota$ of C1), so $e^{\\,\\im\\pi}\\equiv-1$ holds exactly on the odd member. The conjugate chart toggles it: the parity names the matter--antimatter gauge (C7), and the selection is generator-independent within the chirality.",
    "origin_row": "00:C14",
    "tag": "T",
-   "tier": null,
+   "tier": 0,
    "check": {
-    "script": "13:epi.py, 6:fourier.py"
+    "href": "frc/ledgers/master/subject.html#p00034",
+    "script": "frc/ledgers/master/subject.py",
+    "line": 234,
+    "verdict": "pass"
    },
-   "declarations": [],
+   "declarations": [
+    {
+     "lib": "FrcCore",
+     "module": "FrcCore/Keys/Subject",
+     "name": "FRC.Ledger.p00034"
+    }
+   ],
    "aliases": [],
    "rows": [
     "00:C14"
@@ -2124,11 +2241,20 @@
    "statement": "\\textbf{The spinor dichotomy}: $\\kap$ odd $\\Leftrightarrow$ $C_{\\p-1}\\cong C_4\\times C_\\kap$ $\\Leftrightarrow$ $v_2(\\p-1)=2$ $\\Leftrightarrow$ $3\\kap r+4s\\equiv1\\ (\\mathrm{mod}\\ 4\\kap)$ is solvable: the spinor class. Shell and Carrier share the $2$-part $C_{2^m}$, $m=\\min(v_2(\\p-1),v_2(\\Om-1))$, and the shell closes on a cover of degree $2^{v_2(\\Om-1)-m}$; the shared order times the cover degree is the Carrier's $2$-part, $8$ exactly when $\\dS\\equiv2\\ (\\mathrm{mod}\\ 4)$. The midpoint event of a $\\kap$-odd shell: C18.",
    "origin_row": "00:C16",
    "tag": "T",
-   "tier": null,
+   "tier": 0,
    "check": {
-    "script": "00:check_c16.py"
+    "href": "frc/ledgers/master/subject.html#p00151",
+    "script": "frc/ledgers/master/subject.py",
+    "line": 258,
+    "verdict": "pass"
    },
-   "declarations": [],
+   "declarations": [
+    {
+     "lib": "FrcCore",
+     "module": "FrcCore/Keys/Subject",
+     "name": "FRC.Ledger.p00151"
+    }
+   ],
    "aliases": [],
    "rows": [
     "00:C16"
@@ -2160,11 +2286,20 @@
    "statement": "\\textbf{The Hopf section}: in the observable frame group $\\mathrm{PGL}_2$ the boost torus $C_{\\p +1}$ is fixed-point-free on $\\mathbb{P}^1$ and meets the Borel trivially, so every frame factors uniquely as (cone-chart event)$\\times$(boost): the cone chart is a global section of the non-split fibration (C22), $\\p (\\p -1)$ fibres of $\\p +1$; the spin cover $\\mathrm{SL}_2$ obstructs at $-1$.",
    "origin_row": "00:C19",
    "tag": "T",
-   "tier": null,
+   "tier": 0,
    "check": {
-    "script": "38:check_s13.js"
+    "href": "frc/ledgers/master/projective.html#p00039",
+    "script": "frc/ledgers/master/projective.py",
+    "line": 88,
+    "verdict": "pass"
    },
-   "declarations": [],
+   "declarations": [
+    {
+     "lib": "FrcCore",
+     "module": "FrcCore/Keys/Projective",
+     "name": "FRC.Ledger.p00039"
+    }
+   ],
    "aliases": [],
    "rows": [
     "00:C19"
@@ -2177,11 +2312,20 @@
    "statement": "\\textbf{The mass--energy channel}: the winding sector $C_{\\p -1}$ meets the boost base $C_{\\p +1}$ in the sign alone and the spinor cover $C_{2(\\p +1)}$ in exactly $Q_4$, every $\\p =4\\kap +1$; the quarter is spinorial, $N(\\im)=\\im^{2}=-1$: the mass transport crosses the sheet; mass phase $=$ winding rate, one $Q_4$ datum (D2); Carrier instance $78^{58}=89=h$ on $\\Om =233$ (38:A4).",
    "origin_row": "00:C20",
    "tag": "T",
-   "tier": null,
+   "tier": 0,
    "check": {
-    "script": "00:check_y5.js"
+    "href": "frc/ledgers/master/subject.html#p00040",
+    "script": "frc/ledgers/master/subject.py",
+    "line": 301,
+    "verdict": "pass"
    },
-   "declarations": [],
+   "declarations": [
+    {
+     "lib": "FrcCore",
+     "module": "FrcCore/Keys/Subject",
+     "name": "FRC.Ledger.p00040"
+    }
+   ],
    "aliases": [],
    "rows": [
     "00:C20"
@@ -2265,11 +2409,20 @@
    "statement": "For $w^2=\\nu$ a nonsquare, the torsor map $\\mathbb{P}^1(\\F_\\p)\\to C_{\\p +1}$, $P\\mapsto u_P/\\bar u_P$ with $u_P$ the unique boost carrying $0$ to $P$, is equivariant and sends the origin to $1$ and the horizon $[1{:}0]$ to $-1=\\zeta^{(\\p +1)/2}$. Origin and horizon are the sign pair $C_{\\p -1}\\cap C_{\\p +1}$ (C20), exchanged by the torus's unique involution $q\\mapsto\\nu/q$. On the additive cycle the antipode is the seam $\\p/2$ (1:Z1, 1:Z2).",
    "origin_row": "00:C25",
    "tag": "T",
-   "tier": null,
+   "tier": 0,
    "check": {
-    "script": "38:verify-hopf.js, 00:check_c25.py"
+    "href": "frc/ledgers/master/subject.html#p00139",
+    "script": "frc/ledgers/master/subject.py",
+    "line": 365,
+    "verdict": "pass"
    },
-   "declarations": [],
+   "declarations": [
+    {
+     "lib": "FrcCore",
+     "module": "FrcCore/Keys/Subject",
+     "name": "FRC.Ledger.p00139"
+    }
+   ],
    "aliases": [],
    "rows": [
     "00:C25"
@@ -2607,11 +2760,20 @@
    "statement": "\\textbf{Gravity} (horizon count): the registration sphere of a shell has area $A=\\p(\\p+1)$ and record $\\kap(\\p+1)$, so $\\kap(\\p+1)/A=\\kap/\\p$ exactly, the $Q_4$ gauge quotient, and closes the calibration: at the coherence horizon $\\p^2\\to\\Om$ the record law returns $(\\Om-1)/4=\\dS$, the imported entropy (A9). The chart reading $S=\\tfrac14A/\\ell_P^2$ is D15's. Corollary: the merger area law $\\Delta A=2M_1M_2$, saturated (37-sim). Triple: E7.",
    "origin_row": "00:E6",
    "tag": "T",
-   "tier": null,
+   "tier": 0,
    "check": {
-    "script": "37:w2b_bridges.py"
+    "href": "frc/ledgers/master/gravity.html#p00176",
+    "script": "frc/ledgers/master/gravity.py",
+    "line": 68,
+    "verdict": "pass"
    },
-   "declarations": [],
+   "declarations": [
+    {
+     "lib": "FrcCore",
+     "module": "FrcCore/Keys/Gravity",
+     "name": "FRC.Ledger.p00176"
+    }
+   ],
    "aliases": [],
    "rows": [
     "00:E6"
@@ -2626,11 +2788,20 @@
    "statement": "\\textbf{Gravity} (horizon triple): the record is the registered state count $\\kap(\\p+1)=(A/4)(1-1/\\p )=M(M-1)$ (37:B5, 37:C7) on the rate face $M=(\\p +1)/2$ (D2, D14; $\\p =2M-1$ the count face), $d[\\kap(\\p+1)]/dM=\\p$ exactly. The temperature has two exact faces, the registration rate $T=(\\p +1)/\\p ^2$ (E5) and the response $T_{\\mathrm{resp}}=(d[\\kap(\\p+1)]/dM)^{-1}=1/\\p$, split by $1+1/\\p$. First law $dM=T_{\\mathrm{resp}}\\,d[\\kap(\\p+1)]=T\\,d[\\kap(\\p+1)]/(1+1/\\p )$; Smarr $2T_{\\mathrm{resp}}\\kap(\\p+1)=M(1-1/\\p )$, $2T\\kap(\\p+1)=M(1-1/\\p ^2)$; the chart's $dM=T\\,dS_{\\mathrm{th}}$, $M=2TS_{\\mathrm{th}}$ [import] to order $1/\\p$ (D15).",
    "origin_row": "00:E7",
    "tag": "T",
-   "tier": null,
+   "tier": 0,
    "check": {
-    "script": "37:horizon_thermo.py, 00:check_d15.py"
+    "href": "frc/ledgers/master/gravity.html#p00058",
+    "script": "frc/ledgers/master/gravity.py",
+    "line": 106,
+    "verdict": "pass"
    },
-   "declarations": [],
+   "declarations": [
+    {
+     "lib": "FrcCore",
+     "module": "FrcCore/Keys/Gravity",
+     "name": "FRC.Ledger.p00058"
+    }
+   ],
    "aliases": [],
    "rows": [
     "00:E7"
@@ -2679,11 +2850,20 @@
    "statement": "\\textbf{Multi-body registration}: an unequal-cycle composite's joint recurrence is the lcm of its parts' registration periods; each pair's conserved offset lives on the $\\gcd$ cycle (the quotient $A/\\langle v\\rangle$), and dephasing over the product period is exact, extending the Born-rule count (F1) verbatim to unequal cycles (37-sim: joint recurrence derived and verified, 1400/1400 characters cancel).",
    "origin_row": "00:F2",
    "tag": "T",
-   "tier": null,
+   "tier": 0,
    "check": {
-    "script": "22:synchronisation.py"
+    "href": "frc/ledgers/master/quantum.html#p00060",
+    "script": "frc/ledgers/master/quantum.py",
+    "line": 62,
+    "verdict": "pass"
    },
-   "declarations": [],
+   "declarations": [
+    {
+     "lib": "FrcCore",
+     "module": "FrcCore/Keys/Quantum",
+     "name": "FRC.Ledger.p00060"
+    }
+   ],
    "aliases": [],
    "rows": [
     "00:F2"
@@ -2937,11 +3117,20 @@
    "statement": "One complete Standard-Model generation as the spinor $\\mathbf{16}$ of the rank-five frame: field content, hypercharges, charges, and full anomaly freedom; the imported $\\SO(10)$ template (A4) evaluated on the realisation B5 (\\src{fld.\\allowbreak generation}).",
    "origin_row": "27:C8",
    "tag": "T",
-   "tier": null,
+   "tier": 0,
    "check": {
-    "script": "27:generation.py"
+    "href": "frc/ledgers/master/interactions.html#p27020",
+    "script": "frc/ledgers/master/interactions.py",
+    "line": 83,
+    "verdict": "pass"
    },
-   "declarations": [],
+   "declarations": [
+    {
+     "lib": "FrcCore",
+     "module": "FrcCore/Keys/Interactions",
+     "name": "FRC.Ledger.p27020"
+    }
+   ],
    "aliases": [
     "p00076"
    ],
@@ -2959,9 +3148,20 @@
    "statement": "Read with the quarter-turn ($4\\mid\\Om-1$), the Carrier's four representation charts are four directions; their reflection algebra has basis $e_S$, $S\\subseteq\\{1,2,3,4\\}$, $16$ elements, $e_Se_T=\\pm e_{S\\cup T}$ for disjoint $S,T$, else $0$. The quarter-turn as fifth direction maps $e_S\\mapsto e_S$ ($|S|$ even), $e_Se_5$ ($|S|$ odd) onto the even basis of five directions: the chiral spinor $\\mathbf{16}$. On the realisation 27:B5 matter is this spinor.",
    "origin_row": "00:G12",
    "tag": "T",
-   "tier": null,
-   "check": null,
-   "declarations": [],
+   "tier": 0,
+   "check": {
+    "href": "frc/ledgers/master/interactions.html#p00155",
+    "script": "frc/ledgers/master/interactions.py",
+    "line": 59,
+    "verdict": "pass"
+   },
+   "declarations": [
+    {
+     "lib": "FrcCore",
+     "module": "FrcCore/Keys/Interactions",
+     "name": "FRC.Ledger.p00155"
+    }
+   ],
    "aliases": [],
    "rows": [
     "00:G12"
@@ -3023,11 +3223,20 @@
    "statement": "\\textbf{Flavour} (Koide): the charged-lepton ratio $Q=2/3$ is the cube-root generation orbit at the self-dual quarter-turn, $Q=\\tfrac13+\\tfrac23\\rho^2$ exact, the value $\\rho^2=2^{-1}$ the quarter-turn realisation (28-flav B5; falsifier: $Q_\\ell$ off $\\tfrac23$ beyond the $\\tau$-mass tolerance $\\pm7\\times10^{-6}$); the winding-phase selection onto that orientation is bedrock, $\\Om$-hard in magnitude, its $\\Z_2$ sign the derived drive orientation (C7); the sub-horizon reading is $\\delta_0=Q/3=2/9$ (radians).",
    "origin_row": "00:G16",
    "tag": "T",
-   "tier": null,
+   "tier": 0,
    "check": {
-    "script": "27:koide.py"
+    "href": "frc/ledgers/master/interactions.html#p00081",
+    "script": "frc/ledgers/master/interactions.py",
+    "line": 114,
+    "verdict": "pass"
    },
-   "declarations": [],
+   "declarations": [
+    {
+     "lib": "FrcCore",
+     "module": "FrcCore/Keys/Interactions",
+     "name": "FRC.Ledger.p00081"
+    }
+   ],
    "aliases": [],
    "rows": [
     "00:G16"
@@ -3118,11 +3327,20 @@
    "statement": "The synchronisation floor $a_0=cH_0/2\\pi$ fixes the acceleration scale parameter-free: the $2\\pi$ by the angle--count dictionary (14:B2), the threshold one cycle per drive period (32:B3), $1.04\\times10^{-10}$ [chart] at the entailed $H_0$ (L3), tied to $H(z)$, not $\\Lambda$ (P1; 21:X1). Below the floor the amplitude reading, given the barrier identification (32:B8, 21:C19), gives the radial acceleration relation unfitted. Falsifiers: 32:B3, 21:P4.",
    "origin_row": "00:L1",
    "tag": "R",
-   "tier": null,
+   "tier": 2,
    "check": {
-    "script": "21:validate_rar.py"
+    "href": "frc/ledgers/master/chart.html#p00084",
+    "script": "frc/ledgers/master/chart.py",
+    "line": 74,
+    "verdict": "pass"
    },
-   "declarations": [],
+   "declarations": [
+    {
+     "lib": "FrcLedger",
+     "module": "FrcLedger/Keys/Chart",
+     "name": "FRC.LedgerML.p00084"
+    }
+   ],
    "aliases": [],
    "rows": [
     "00:L1"
@@ -3150,11 +3368,20 @@
    "statement": "\\textbf{The octant record depth and its outputs}: the record depth is bounded by the octant, $\\dS/2$ chronons $=13.79$ Gyr ($(\\pi/4)r_H/c$, chart), on the octant sector of B14. Zero-freedom: $\\Omega_\\Lambda=\\tanh^2(3\\pi/8)=0.684$ (chart; $0.19\\sigma$), $H_0=67.4\\pm0.7$ ($4.6\\sigma$ adverse disclosed), $w=-1$ rigid --- a confirmed drift falsifies $\\Lambda\\sim1/\\Om$. Falsifiers: octant-capped ages, the running floor $a_0(z)\\propto H(z)$ (Z7), the ladder bias.",
    "origin_row": "00:L3",
    "tag": "R",
-   "tier": null,
+   "tier": 2,
    "check": {
-    "script": "14:entropy.py [mixed]"
+    "href": "frc/ledgers/master/chart.html#p00181",
+    "script": "frc/ledgers/master/chart.py",
+    "line": 97,
+    "verdict": "pass"
    },
-   "declarations": [],
+   "declarations": [
+    {
+     "lib": "FrcLedger",
+     "module": "FrcLedger/Keys/Chart",
+     "name": "FRC.LedgerML.p00181"
+    }
+   ],
    "aliases": [],
    "rows": [
     "00:L3"
@@ -3199,11 +3426,20 @@
    "statement": "$n_s=1$ is the scale-dilation fixed point (Harrison--Zel'dovich [import]). The tilt's committed form is $n_s-1=-\\pi^2/\\ln\\Om$ [chart], $\\ln\\Om$ the e-fold count of the frame's scale range from $1/\\sqrt\\Om$ to $\\sqrt\\Om$, a realisation fixed by the measured tilt: $-0.0348$ [approx] at $\\ln\\Om=283.5$ (A9), $+0.07\\sigma$ from Planck 2018's $-0.0351\\pm0.0042$ [import]. The count $\\tfrac12\\ln\\Om$ is excluded at $8.2\\sigma$. Falsifier: a Planck-resolution deviation from $-\\pi^2/\\ln\\Om$.",
    "origin_row": "00:L8",
    "tag": "R",
-   "tier": null,
+   "tier": 2,
    "check": {
-    "script": "21:validate_primordial.py, 00:check_l8.py"
+    "href": "frc/ledgers/master/chart.html#p00148",
+    "script": "frc/ledgers/master/chart.py",
+    "line": 129,
+    "verdict": "pass"
    },
-   "declarations": [],
+   "declarations": [
+    {
+     "lib": "FrcLedger",
+     "module": "FrcLedger/Keys/Chart",
+     "name": "FRC.LedgerML.p00148"
+    }
+   ],
    "aliases": [],
    "rows": [
     "00:L8"
@@ -3247,9 +3483,20 @@
    "statement": "The acceleration floor tracks the drive rate, $a_0(z)\\propto H(z)$: a relation, $\\Om$-blind, derived from L1 under the gravity realisation (D5); the knee shifts and the Tully--Fisher zero-point evolves as $E(z)^{1/4}$. Falsifier: a floor constant in redshift, or tracking other than $H(z)$. Confrontation (43-muse): MUSE-DARK III excludes a constant floor to $z=1.3$; RC100 implies the local floor by $z\\simeq2$, pending refit.",
    "origin_row": "00:P1",
    "tag": "T",
-   "tier": null,
-   "check": null,
-   "declarations": [],
+   "tier": 2,
+   "check": {
+    "href": "frc/ledgers/master/chart.html#p00133",
+    "script": "frc/ledgers/master/chart.py",
+    "line": 156,
+    "verdict": "pass"
+   },
+   "declarations": [
+    {
+     "lib": "FrcLedger",
+     "module": "FrcLedger/Keys/Chart",
+     "name": "FRC.LedgerML.p00133"
+    }
+   ],
    "aliases": [],
    "rows": [
     "00:P1"
@@ -3341,9 +3588,20 @@
    "statement": "G\\\"odel is vacuous over the finite $\\Om$: its theory is complete and decidable, and neither incompleteness theorem has an instance, since $\\Om$ interprets no Robinson $\\mathsf{Q}$ (25:C1, 25:C2, 25:C3). Incompleteness migrates to the comprehension horizon, the \\emph{horizon clause}, as a decomposition (25:G7). Its complexity face is imported (25:G3), its uniform certificate $\\Om$-hard (Z3), and its diagonal confined below $t(\\M)$ (Z9).",
    "origin_row": "00:Z1",
    "tag": "T",
-   "tier": null,
-   "check": null,
-   "declarations": [],
+   "tier": 0,
+   "check": {
+    "href": "frc/ledgers/master/logic.html#p00186",
+    "script": "frc/ledgers/master/logic.py",
+    "line": 68,
+    "verdict": "pass"
+   },
+   "declarations": [
+    {
+     "lib": "FrcCore",
+     "module": "FrcCore/Keys/Logic",
+     "name": "FRC.Ledger.p00186"
+    }
+   ],
    "aliases": [],
    "rows": [
     "00:Z1"
@@ -3484,6 +3742,11 @@
     "verdict": "pass"
    },
    "declarations": [
+    {
+     "lib": "FrcCore",
+     "module": "FrcCore/Keys/Horizon",
+     "name": "FRC.Ledger.p20043"
+    },
     {
      "lib": "FrcLedger",
      "module": "FrcLedger/Rh",
@@ -3699,7 +3962,7 @@
     },
     {
      "lib": "FrcCore",
-     "module": "FrcCore/Frame",
+     "module": "FrcCore/FrameCore",
      "name": "FRC.Shell.Frame.quarter_turn_sq"
     },
     {
@@ -4302,7 +4565,7 @@
     },
     {
      "lib": "FrcCore",
-     "module": "FrcCore/Frame",
+     "module": "FrcCore/FrameCore",
      "name": "FRC.Shell.Frame.no_south_pole"
     }
    ],
@@ -4620,7 +4883,7 @@
     },
     {
      "lib": "FrcCore",
-     "module": "FrcCore/Frame",
+     "module": "FrcCore/FrameCore",
      "name": "FRC.Shell.Frame.half_period"
     }
    ],
@@ -4651,7 +4914,7 @@
     },
     {
      "lib": "FrcCore",
-     "module": "FrcCore/Frame",
+     "module": "FrcCore/FrameCore",
      "name": "FRC.Shell.Frame.quarter_turn_order"
     }
    ],
@@ -4726,7 +4989,7 @@
     },
     {
      "lib": "FrcCore",
-     "module": "FrcCore/Frame",
+     "module": "FrcCore/FrameCore",
      "name": "FRC.Shell.Frame.orientation_class"
     }
    ],
@@ -4757,7 +5020,7 @@
     },
     {
      "lib": "FrcCore",
-     "module": "FrcCore/Frame",
+     "module": "FrcCore/FrameCore",
      "name": "FRC.Shell.Frame.euler_identity"
     },
     {
@@ -4943,7 +5206,7 @@
     },
     {
      "lib": "FrcCore",
-     "module": "FrcCore/Sum",
+     "module": "FrcCore/Transform",
      "name": "FRC.Shell.Frame.principal_root"
     }
    ],
@@ -4988,7 +5251,7 @@
     },
     {
      "lib": "FrcCore",
-     "module": "FrcCore/Sum",
+     "module": "FrcCore/Transform",
      "name": "FRC.Shell.Frame.dft_inverse"
     }
    ],
@@ -7124,7 +7387,7 @@
    "declarations": [
     {
      "lib": "FrcCore",
-     "module": "FrcCore/Frame",
+     "module": "FrcCore/FrameCore",
      "name": "FRC.Shell.Frame.euler_identity"
     }
    ],
@@ -7150,7 +7413,7 @@
    "declarations": [
     {
      "lib": "FrcCore",
-     "module": "FrcCore/Frame",
+     "module": "FrcCore/FrameCore",
      "name": "FRC.Shell.Frame.orientation_class"
     }
    ],
@@ -7195,17 +7458,17 @@
     },
     {
      "lib": "FrcCore",
-     "module": "FrcCore/Sum",
+     "module": "FrcCore/Transform",
      "name": "FRC.Shell.Frame.W_sq'"
     },
     {
      "lib": "FrcCore",
-     "module": "FrcCore/Sum",
+     "module": "FrcCore/Transform",
      "name": "FRC.Shell.Frame.F_sq"
     },
     {
      "lib": "FrcCore",
-     "module": "FrcCore/Sum",
+     "module": "FrcCore/Transform",
      "name": "FRC.Shell.Frame.J_sq"
     }
    ],
@@ -7231,7 +7494,7 @@
    "declarations": [
     {
      "lib": "FrcCore",
-     "module": "FrcCore/Sum",
+     "module": "FrcCore/Transform",
      "name": "FRC.Shell.Frame.ofNat_n"
     }
    ],
@@ -7262,7 +7525,7 @@
     },
     {
      "lib": "FrcCore",
-     "module": "FrcCore/Sum",
+     "module": "FrcCore/Transform",
      "name": "FRC.Shell.Frame.W_J_comm"
     },
     {
@@ -11051,7 +11314,7 @@
     },
     {
      "lib": "FrcCore",
-     "module": "FrcCore/Frame",
+     "module": "FrcCore/FrameCore",
      "name": "FRC.Shell.Frame.orientation_class"
     }
    ],
@@ -11948,7 +12211,7 @@
    "declarations": [
     {
      "lib": "FrcCore",
-     "module": "FrcCore/Frame",
+     "module": "FrcCore/FrameCore",
      "name": "FRC.Shell.Frame.half_period"
     }
    ],
@@ -12100,7 +12363,7 @@
    "declarations": [
     {
      "lib": "FrcCore",
-     "module": "FrcCore/Frame",
+     "module": "FrcCore/FrameCore",
      "name": "FRC.Shell.Frame.two_pi"
     }
    ],
@@ -12172,12 +12435,12 @@
    "declarations": [
     {
      "lib": "FrcCore",
-     "module": "FrcCore/Frame",
+     "module": "FrcCore/FrameCore",
      "name": "FRC.Shell.Frame.two_pi"
     },
     {
      "lib": "FrcCore",
-     "module": "FrcCore/Frame",
+     "module": "FrcCore/FrameCore",
      "name": "FRC.Shell.Frame.quarter_turn_sq"
     }
    ],
@@ -21846,8 +22109,22 @@
    "page": "00-ledger.html#A5",
    "witness": {
     "script": null,
-    "py": null,
-    "lean": []
+    "py": {
+     "href": "frc/ledgers/master/foundation.html#p00159",
+     "script": "frc/ledgers/master/foundation.py",
+     "line": 91,
+     "verdict": "pass"
+    },
+    "lean": [
+     {
+      "lib": "FrcCore",
+      "module": "FrcCore/Keys/Foundation",
+      "name": "FRC.Ledger.p00159",
+      "tier": 0,
+      "ok": true,
+      "page": "lean/core/Keys.Foundation.html#FRC.Ledger.p00159"
+     }
+    ]
    },
    "refs": [
     "p00186",
@@ -21901,8 +22178,22 @@
    "page": "00-ledger.html#A7",
    "witness": {
     "script": null,
-    "py": null,
-    "lean": []
+    "py": {
+     "href": "frc/ledgers/master/foundation.html#p00160",
+     "script": "frc/ledgers/master/foundation.py",
+     "line": 126,
+     "verdict": "pass"
+    },
+    "lean": [
+     {
+      "lib": "FrcCore",
+      "module": "FrcCore/Keys/Foundation",
+      "name": "FRC.Ledger.p00160",
+      "tier": 0,
+      "ok": true,
+      "page": "lean/core/Keys.Foundation.html#FRC.Ledger.p00160"
+     }
+    ]
    },
    "refs": [
     "p00002"
@@ -22035,8 +22326,22 @@
    "page": "00-ledger.html#A12",
    "witness": {
     "script": null,
-    "py": null,
-    "lean": []
+    "py": {
+     "href": "frc/ledgers/master/foundation.html#p00162",
+     "script": "frc/ledgers/master/foundation.py",
+     "line": 167,
+     "verdict": "pass"
+    },
+    "lean": [
+     {
+      "lib": "FrcCore",
+      "module": "FrcCore/Keys/Foundation",
+      "name": "FRC.Ledger.p00162",
+      "tier": 0,
+      "ok": true,
+      "page": "lean/core/Keys.Foundation.html#FRC.Ledger.p00162"
+     }
+    ]
    },
    "refs": [
     "p00004"
@@ -22060,8 +22365,22 @@
    "page": "00-ledger.html#A13",
    "witness": {
     "script": null,
-    "py": null,
-    "lean": []
+    "py": {
+     "href": "frc/ledgers/master/foundation.html#p00163",
+     "script": "frc/ledgers/master/foundation.py",
+     "line": 188,
+     "verdict": "pass"
+    },
+    "lean": [
+     {
+      "lib": "FrcCore",
+      "module": "FrcCore/Keys/Foundation",
+      "name": "FRC.Ledger.p00163",
+      "tier": 0,
+      "ok": true,
+      "page": "lean/core/Keys.Foundation.html#FRC.Ledger.p00163"
+     }
+    ]
    },
    "refs": [
     "p00013"
@@ -22085,8 +22404,22 @@
    "page": "00-ledger.html#A14",
    "witness": {
     "script": null,
-    "py": null,
-    "lean": []
+    "py": {
+     "href": "frc/ledgers/master/foundation.html#p00164",
+     "script": "frc/ledgers/master/foundation.py",
+     "line": 213,
+     "verdict": "pass"
+    },
+    "lean": [
+     {
+      "lib": "FrcCore",
+      "module": "FrcCore/Keys/Foundation",
+      "name": "FRC.Ledger.p00164",
+      "tier": 0,
+      "ok": true,
+      "page": "lean/core/Keys.Foundation.html#FRC.Ledger.p00164"
+     }
+    ]
    },
    "refs": [
     "p00021"
@@ -22538,8 +22871,22 @@
    "page": "00-ledger.html#C1",
    "witness": {
     "script": null,
-    "py": null,
-    "lean": []
+    "py": {
+     "href": "frc/ledgers/master/subject.html#p00021",
+     "script": "frc/ledgers/master/subject.py",
+     "line": 115,
+     "verdict": "pass"
+    },
+    "lean": [
+     {
+      "lib": "FrcCore",
+      "module": "FrcCore/Keys/Subject",
+      "name": "FRC.Ledger.p00021",
+      "tier": 0,
+      "ok": true,
+      "page": "lean/core/Keys.Subject.html#FRC.Ledger.p00021"
+     }
+    ]
    },
    "refs": [
     "p00008",
@@ -22570,8 +22917,22 @@
    "page": "00-ledger.html#C2",
    "witness": {
     "script": "6:fourier.py",
-    "py": null,
-    "lean": []
+    "py": {
+     "href": "frc/ledgers/master/fourier.html#p00022",
+     "script": "frc/ledgers/master/fourier.py",
+     "line": 88,
+     "verdict": "pass"
+    },
+    "lean": [
+     {
+      "lib": "FrcCore",
+      "module": "FrcCore/Keys/Fourier",
+      "name": "FRC.Ledger.p00022",
+      "tier": 0,
+      "ok": true,
+      "page": "lean/core/Keys.Fourier.html#FRC.Ledger.p00022"
+     }
+    ]
    },
    "refs": [],
    "sources": [
@@ -22593,8 +22954,22 @@
    "page": "00-ledger.html#C3",
    "witness": {
     "script": null,
-    "py": null,
-    "lean": []
+    "py": {
+     "href": "frc/ledgers/master/subject.html#p00150",
+     "script": "frc/ledgers/master/subject.py",
+     "line": 145,
+     "verdict": "pass"
+    },
+    "lean": [
+     {
+      "lib": "FrcCore",
+      "module": "FrcCore/Keys/Subject",
+      "name": "FRC.Ledger.p00150",
+      "tier": 0,
+      "ok": true,
+      "page": "lean/core/Keys.Subject.html#FRC.Ledger.p00150"
+     }
+    ]
    },
    "refs": [
     "p00021",
@@ -22698,8 +23073,22 @@
    "page": "00-ledger.html#C7",
    "witness": {
     "script": null,
-    "py": null,
-    "lean": []
+    "py": {
+     "href": "frc/ledgers/master/fourier.html#p00172",
+     "script": "frc/ledgers/master/fourier.py",
+     "line": 132,
+     "verdict": "pass"
+    },
+    "lean": [
+     {
+      "lib": "FrcCore",
+      "module": "FrcCore/Keys/Fourier",
+      "name": "FRC.Ledger.p00172",
+      "tier": 0,
+      "ok": true,
+      "page": "lean/core/Keys.Fourier.html#FRC.Ledger.p00172"
+     }
+    ]
    },
    "refs": [
     "p00028",
@@ -22728,8 +23117,22 @@
    "page": "00-ledger.html#C8",
    "witness": {
     "script": null,
-    "py": null,
-    "lean": []
+    "py": {
+     "href": "frc/ledgers/master/subject.html#p00028",
+     "script": "frc/ledgers/master/subject.py",
+     "line": 184,
+     "verdict": "pass"
+    },
+    "lean": [
+     {
+      "lib": "FrcCore",
+      "module": "FrcCore/Keys/Subject",
+      "name": "FRC.Ledger.p00028",
+      "tier": 0,
+      "ok": true,
+      "page": "lean/core/Keys.Subject.html#FRC.Ledger.p00028"
+     }
+    ]
    },
    "refs": [
     "p00048"
@@ -22859,8 +23262,22 @@
    "page": "00-ledger.html#C14",
    "witness": {
     "script": "13:epi.py, 6:fourier.py",
-    "py": null,
-    "lean": []
+    "py": {
+     "href": "frc/ledgers/master/subject.html#p00034",
+     "script": "frc/ledgers/master/subject.py",
+     "line": 234,
+     "verdict": "pass"
+    },
+    "lean": [
+     {
+      "lib": "FrcCore",
+      "module": "FrcCore/Keys/Subject",
+      "name": "FRC.Ledger.p00034",
+      "tier": 0,
+      "ok": true,
+      "page": "lean/core/Keys.Subject.html#FRC.Ledger.p00034"
+     }
+    ]
    },
    "refs": [
     "p00021",
@@ -22888,8 +23305,22 @@
    "page": "00-ledger.html#C16",
    "witness": {
     "script": "00:check_c16.py",
-    "py": null,
-    "lean": []
+    "py": {
+     "href": "frc/ledgers/master/subject.html#p00151",
+     "script": "frc/ledgers/master/subject.py",
+     "line": 258,
+     "verdict": "pass"
+    },
+    "lean": [
+     {
+      "lib": "FrcCore",
+      "module": "FrcCore/Keys/Subject",
+      "name": "FRC.Ledger.p00151",
+      "tier": 0,
+      "ok": true,
+      "page": "lean/core/Keys.Subject.html#FRC.Ledger.p00151"
+     }
+    ]
    },
    "refs": [
     "p00038"
@@ -22940,8 +23371,22 @@
    "page": "00-ledger.html#C19",
    "witness": {
     "script": "38:check_s13.js",
-    "py": null,
-    "lean": []
+    "py": {
+     "href": "frc/ledgers/master/projective.html#p00039",
+     "script": "frc/ledgers/master/projective.py",
+     "line": 88,
+     "verdict": "pass"
+    },
+    "lean": [
+     {
+      "lib": "FrcCore",
+      "module": "FrcCore/Keys/Projective",
+      "name": "FRC.Ledger.p00039",
+      "tier": 0,
+      "ok": true,
+      "page": "lean/core/Keys.Projective.html#FRC.Ledger.p00039"
+     }
+    ]
    },
    "refs": [
     "p00152"
@@ -22965,8 +23410,22 @@
    "page": "00-ledger.html#C20",
    "witness": {
     "script": "00:check_y5.js",
-    "py": null,
-    "lean": []
+    "py": {
+     "href": "frc/ledgers/master/subject.html#p00040",
+     "script": "frc/ledgers/master/subject.py",
+     "line": 301,
+     "verdict": "pass"
+    },
+    "lean": [
+     {
+      "lib": "FrcCore",
+      "module": "FrcCore/Keys/Subject",
+      "name": "FRC.Ledger.p00040",
+      "tier": 0,
+      "ok": true,
+      "page": "lean/core/Keys.Subject.html#FRC.Ledger.p00040"
+     }
+    ]
    },
    "refs": [
     "p00043",
@@ -23093,8 +23552,22 @@
    "page": "00-ledger.html#C25",
    "witness": {
     "script": "38:verify-hopf.js, 00:check_c25.py",
-    "py": null,
-    "lean": []
+    "py": {
+     "href": "frc/ledgers/master/subject.html#p00139",
+     "script": "frc/ledgers/master/subject.py",
+     "line": 365,
+     "verdict": "pass"
+    },
+    "lean": [
+     {
+      "lib": "FrcCore",
+      "module": "FrcCore/Keys/Subject",
+      "name": "FRC.Ledger.p00139",
+      "tier": 0,
+      "ok": true,
+      "page": "lean/core/Keys.Subject.html#FRC.Ledger.p00139"
+     }
+    ]
    },
    "refs": [
     "p00040",
@@ -23675,8 +24148,22 @@
    "page": "00-ledger.html#E6",
    "witness": {
     "script": "37:w2b_bridges.py",
-    "py": null,
-    "lean": []
+    "py": {
+     "href": "frc/ledgers/master/gravity.html#p00176",
+     "script": "frc/ledgers/master/gravity.py",
+     "line": 68,
+     "verdict": "pass"
+    },
+    "lean": [
+     {
+      "lib": "FrcCore",
+      "module": "FrcCore/Keys/Gravity",
+      "name": "FRC.Ledger.p00176",
+      "tier": 0,
+      "ok": true,
+      "page": "lean/core/Keys.Gravity.html#FRC.Ledger.p00176"
+     }
+    ]
    },
    "refs": [
     "p00009",
@@ -23704,8 +24191,22 @@
    "page": "00-ledger.html#E7",
    "witness": {
     "script": "37:horizon_thermo.py, 00:check_d15.py",
-    "py": null,
-    "lean": []
+    "py": {
+     "href": "frc/ledgers/master/gravity.html#p00058",
+     "script": "frc/ledgers/master/gravity.py",
+     "line": 106,
+     "verdict": "pass"
+    },
+    "lean": [
+     {
+      "lib": "FrcCore",
+      "module": "FrcCore/Keys/Gravity",
+      "name": "FRC.Ledger.p00058",
+      "tier": 0,
+      "ok": true,
+      "page": "lean/core/Keys.Gravity.html#FRC.Ledger.p00058"
+     }
+    ]
    },
    "refs": [
     "p00043",
@@ -23785,8 +24286,22 @@
    "page": "00-ledger.html#F2",
    "witness": {
     "script": "22:synchronisation.py",
-    "py": null,
-    "lean": []
+    "py": {
+     "href": "frc/ledgers/master/quantum.html#p00060",
+     "script": "frc/ledgers/master/quantum.py",
+     "line": 62,
+     "verdict": "pass"
+    },
+    "lean": [
+     {
+      "lib": "FrcCore",
+      "module": "FrcCore/Keys/Quantum",
+      "name": "FRC.Ledger.p00060",
+      "tier": 0,
+      "ok": true,
+      "page": "lean/core/Keys.Quantum.html#FRC.Ledger.p00060"
+     }
+    ]
    },
    "refs": [
     "p00059"
@@ -24180,8 +24695,22 @@
    "page": "00-ledger.html#G11",
    "witness": {
     "script": "27:generation.py",
-    "py": null,
-    "lean": []
+    "py": {
+     "href": "frc/ledgers/master/interactions.html#p27020",
+     "script": "frc/ledgers/master/interactions.py",
+     "line": 83,
+     "verdict": "pass"
+    },
+    "lean": [
+     {
+      "lib": "FrcCore",
+      "module": "FrcCore/Keys/Interactions",
+      "name": "FRC.Ledger.p27020",
+      "tier": 0,
+      "ok": true,
+      "page": "lean/core/Keys.Interactions.html#FRC.Ledger.p27020"
+     }
+    ]
    },
    "refs": [
     "p00015"
@@ -24206,8 +24735,22 @@
    "page": "00-ledger.html#G12",
    "witness": {
     "script": null,
-    "py": null,
-    "lean": []
+    "py": {
+     "href": "frc/ledgers/master/interactions.html#p00155",
+     "script": "frc/ledgers/master/interactions.py",
+     "line": 59,
+     "verdict": "pass"
+    },
+    "lean": [
+     {
+      "lib": "FrcCore",
+      "module": "FrcCore/Keys/Interactions",
+      "name": "FRC.Ledger.p00155",
+      "tier": 0,
+      "ok": true,
+      "page": "lean/core/Keys.Interactions.html#FRC.Ledger.p00155"
+     }
+    ]
    },
    "refs": [
     "p27011"
@@ -24314,8 +24857,22 @@
    "page": "00-ledger.html#G16",
    "witness": {
     "script": "27:koide.py",
-    "py": null,
-    "lean": []
+    "py": {
+     "href": "frc/ledgers/master/interactions.html#p00081",
+     "script": "frc/ledgers/master/interactions.py",
+     "line": 114,
+     "verdict": "pass"
+    },
+    "lean": [
+     {
+      "lib": "FrcCore",
+      "module": "FrcCore/Keys/Interactions",
+      "name": "FRC.Ledger.p00081",
+      "tier": 0,
+      "ok": true,
+      "page": "lean/core/Keys.Interactions.html#FRC.Ledger.p00081"
+     }
+    ]
    },
    "refs": [
     "p00015",
@@ -24472,8 +25029,22 @@
    "page": "00-ledger.html#L1",
    "witness": {
     "script": "21:validate_rar.py",
-    "py": null,
-    "lean": []
+    "py": {
+     "href": "frc/ledgers/master/chart.html#p00084",
+     "script": "frc/ledgers/master/chart.py",
+     "line": 74,
+     "verdict": "pass"
+    },
+    "lean": [
+     {
+      "lib": "FrcLedger",
+      "module": "FrcLedger/Keys/Chart",
+      "name": "FRC.LedgerML.p00084",
+      "tier": 2,
+      "ok": true,
+      "page": "lean/Keys.Chart.html#FRC.LedgerML.p00084"
+     }
+    ]
    },
    "refs": [
     "p00133",
@@ -24529,8 +25100,22 @@
    "page": "00-ledger.html#L3",
    "witness": {
     "script": "14:entropy.py [mixed]",
-    "py": null,
-    "lean": []
+    "py": {
+     "href": "frc/ledgers/master/chart.html#p00181",
+     "script": "frc/ledgers/master/chart.py",
+     "line": 97,
+     "verdict": "pass"
+    },
+    "lean": [
+     {
+      "lib": "FrcLedger",
+      "module": "FrcLedger/Keys/Chart",
+      "name": "FRC.LedgerML.p00181",
+      "tier": 2,
+      "ok": true,
+      "page": "lean/Keys.Chart.html#FRC.LedgerML.p00181"
+     }
+    ]
    },
    "refs": [
     "p00115",
@@ -24607,8 +25192,22 @@
    "page": "00-ledger.html#L8",
    "witness": {
     "script": "21:validate_primordial.py, 00:check_l8.py",
-    "py": null,
-    "lean": []
+    "py": {
+     "href": "frc/ledgers/master/chart.html#p00148",
+     "script": "frc/ledgers/master/chart.py",
+     "line": 129,
+     "verdict": "pass"
+    },
+    "lean": [
+     {
+      "lib": "FrcLedger",
+      "module": "FrcLedger/Keys/Chart",
+      "name": "FRC.LedgerML.p00148",
+      "tier": 2,
+      "ok": true,
+      "page": "lean/Keys.Chart.html#FRC.LedgerML.p00148"
+     }
+    ]
    },
    "refs": [
     "p00009"
@@ -24684,8 +25283,22 @@
    "page": "predictions.html#P1",
    "witness": {
     "script": null,
-    "py": null,
-    "lean": []
+    "py": {
+     "href": "frc/ledgers/master/chart.html#p00133",
+     "script": "frc/ledgers/master/chart.py",
+     "line": 156,
+     "verdict": "pass"
+    },
+    "lean": [
+     {
+      "lib": "FrcLedger",
+      "module": "FrcLedger/Keys/Chart",
+      "name": "FRC.LedgerML.p00133",
+      "tier": 2,
+      "ok": true,
+      "page": "lean/Keys.Chart.html#FRC.LedgerML.p00133"
+     }
+    ]
    },
    "refs": [
     "p00046",
@@ -24835,8 +25448,22 @@
    "page": "00-ledger.html#Z1",
    "witness": {
     "script": null,
-    "py": null,
-    "lean": []
+    "py": {
+     "href": "frc/ledgers/master/logic.html#p00186",
+     "script": "frc/ledgers/master/logic.py",
+     "line": 68,
+     "verdict": "pass"
+    },
+    "lean": [
+     {
+      "lib": "FrcCore",
+      "module": "FrcCore/Keys/Logic",
+      "name": "FRC.Ledger.p00186",
+      "tier": 0,
+      "ok": true,
+      "page": "lean/core/Keys.Logic.html#FRC.Ledger.p00186"
+     }
+    ]
    },
    "refs": [
     "p00111",
@@ -25112,8 +25739,22 @@
    "page": "00-ledger.html#Z10",
    "witness": {
     "script": "00:check_rh_shell.py",
-    "py": null,
-    "lean": []
+    "py": {
+     "href": "frc/ledgers/master/horizon.html#p20043",
+     "script": "frc/ledgers/master/horizon.py",
+     "line": 90,
+     "verdict": "pass"
+    },
+    "lean": [
+     {
+      "lib": "FrcCore",
+      "module": "FrcCore/Keys/Horizon",
+      "name": "FRC.Ledger.p20043",
+      "tier": 0,
+      "ok": true,
+      "page": "lean/core/Keys.Horizon.html#FRC.Ledger.p20043"
+     }
+    ]
    },
    "refs": [
     "p20040",
@@ -25370,11 +26011,11 @@
      },
      {
       "lib": "FrcCore",
-      "module": "FrcCore/Frame",
+      "module": "FrcCore/FrameCore",
       "name": "FRC.Shell.Frame.quarter_turn_sq",
       "tier": 0,
       "ok": true,
-      "page": "lean/core/Frame.html#FRC.Shell.Frame.quarter_turn_sq"
+      "page": "lean/core/FrameCore.html#FRC.Shell.Frame.quarter_turn_sq"
      },
      {
       "lib": "FrcCore",
@@ -26223,11 +26864,11 @@
      },
      {
       "lib": "FrcCore",
-      "module": "FrcCore/Frame",
+      "module": "FrcCore/FrameCore",
       "name": "FRC.Shell.Frame.no_south_pole",
       "tier": 0,
       "ok": true,
-      "page": "lean/core/Frame.html#FRC.Shell.Frame.no_south_pole"
+      "page": "lean/core/FrameCore.html#FRC.Shell.Frame.no_south_pole"
      }
     ]
    },
@@ -26674,11 +27315,11 @@
      },
      {
       "lib": "FrcCore",
-      "module": "FrcCore/Frame",
+      "module": "FrcCore/FrameCore",
       "name": "FRC.Shell.Frame.half_period",
       "tier": 0,
       "ok": true,
-      "page": "lean/core/Frame.html#FRC.Shell.Frame.half_period"
+      "page": "lean/core/FrameCore.html#FRC.Shell.Frame.half_period"
      }
     ]
    },
@@ -26717,11 +27358,11 @@
      },
      {
       "lib": "FrcCore",
-      "module": "FrcCore/Frame",
+      "module": "FrcCore/FrameCore",
       "name": "FRC.Shell.Frame.quarter_turn_order",
       "tier": 0,
       "ok": true,
-      "page": "lean/core/Frame.html#FRC.Shell.Frame.quarter_turn_order"
+      "page": "lean/core/FrameCore.html#FRC.Shell.Frame.quarter_turn_order"
      }
     ]
    },
@@ -26823,11 +27464,11 @@
      },
      {
       "lib": "FrcCore",
-      "module": "FrcCore/Frame",
+      "module": "FrcCore/FrameCore",
       "name": "FRC.Shell.Frame.orientation_class",
       "tier": 0,
       "ok": true,
-      "page": "lean/core/Frame.html#FRC.Shell.Frame.orientation_class"
+      "page": "lean/core/FrameCore.html#FRC.Shell.Frame.orientation_class"
      }
     ]
    },
@@ -26864,11 +27505,11 @@
      },
      {
       "lib": "FrcCore",
-      "module": "FrcCore/Frame",
+      "module": "FrcCore/FrameCore",
       "name": "FRC.Shell.Frame.euler_identity",
       "tier": 0,
       "ok": true,
-      "page": "lean/core/Frame.html#FRC.Shell.Frame.euler_identity"
+      "page": "lean/core/FrameCore.html#FRC.Shell.Frame.euler_identity"
      },
      {
       "lib": "FrcCore",
@@ -27122,11 +27763,11 @@
      },
      {
       "lib": "FrcCore",
-      "module": "FrcCore/Sum",
+      "module": "FrcCore/Transform",
       "name": "FRC.Shell.Frame.principal_root",
       "tier": 0,
       "ok": true,
-      "page": "lean/core/Sum.html#FRC.Shell.Frame.principal_root"
+      "page": "lean/core/Transform.html#FRC.Shell.Frame.principal_root"
      }
     ]
    },
@@ -27182,11 +27823,11 @@
      },
      {
       "lib": "FrcCore",
-      "module": "FrcCore/Sum",
+      "module": "FrcCore/Transform",
       "name": "FRC.Shell.Frame.dft_inverse",
       "tier": 0,
       "ok": true,
-      "page": "lean/core/Sum.html#FRC.Shell.Frame.dft_inverse"
+      "page": "lean/core/Transform.html#FRC.Shell.Frame.dft_inverse"
      }
     ]
    },
@@ -30149,11 +30790,11 @@
     "lean": [
      {
       "lib": "FrcCore",
-      "module": "FrcCore/Frame",
+      "module": "FrcCore/FrameCore",
       "name": "FRC.Shell.Frame.euler_identity",
       "tier": 0,
       "ok": true,
-      "page": "lean/core/Frame.html#FRC.Shell.Frame.euler_identity"
+      "page": "lean/core/FrameCore.html#FRC.Shell.Frame.euler_identity"
      }
     ]
    },
@@ -30184,11 +30825,11 @@
     "lean": [
      {
       "lib": "FrcCore",
-      "module": "FrcCore/Frame",
+      "module": "FrcCore/FrameCore",
       "name": "FRC.Shell.Frame.orientation_class",
       "tier": 0,
       "ok": true,
-      "page": "lean/core/Frame.html#FRC.Shell.Frame.orientation_class"
+      "page": "lean/core/FrameCore.html#FRC.Shell.Frame.orientation_class"
      }
     ]
    },
@@ -30249,27 +30890,27 @@
      },
      {
       "lib": "FrcCore",
-      "module": "FrcCore/Sum",
+      "module": "FrcCore/Transform",
       "name": "FRC.Shell.Frame.W_sq'",
       "tier": 0,
       "ok": true,
-      "page": "lean/core/Sum.html#FRC.Shell.Frame.W_sq'"
+      "page": "lean/core/Transform.html#FRC.Shell.Frame.W_sq'"
      },
      {
       "lib": "FrcCore",
-      "module": "FrcCore/Sum",
+      "module": "FrcCore/Transform",
       "name": "FRC.Shell.Frame.F_sq",
       "tier": 0,
       "ok": true,
-      "page": "lean/core/Sum.html#FRC.Shell.Frame.F_sq"
+      "page": "lean/core/Transform.html#FRC.Shell.Frame.F_sq"
      },
      {
       "lib": "FrcCore",
-      "module": "FrcCore/Sum",
+      "module": "FrcCore/Transform",
       "name": "FRC.Shell.Frame.J_sq",
       "tier": 0,
       "ok": true,
-      "page": "lean/core/Sum.html#FRC.Shell.Frame.J_sq"
+      "page": "lean/core/Transform.html#FRC.Shell.Frame.J_sq"
      }
     ]
    },
@@ -30300,11 +30941,11 @@
     "lean": [
      {
       "lib": "FrcCore",
-      "module": "FrcCore/Sum",
+      "module": "FrcCore/Transform",
       "name": "FRC.Shell.Frame.ofNat_n",
       "tier": 0,
       "ok": true,
-      "page": "lean/core/Sum.html#FRC.Shell.Frame.ofNat_n"
+      "page": "lean/core/Transform.html#FRC.Shell.Frame.ofNat_n"
      }
     ]
    },
@@ -30341,11 +30982,11 @@
      },
      {
       "lib": "FrcCore",
-      "module": "FrcCore/Sum",
+      "module": "FrcCore/Transform",
       "name": "FRC.Shell.Frame.W_J_comm",
       "tier": 0,
       "ok": true,
-      "page": "lean/core/Sum.html#FRC.Shell.Frame.W_J_comm"
+      "page": "lean/core/Transform.html#FRC.Shell.Frame.W_J_comm"
      },
      {
       "lib": "FrcCore",
@@ -35641,11 +36282,11 @@
      },
      {
       "lib": "FrcCore",
-      "module": "FrcCore/Frame",
+      "module": "FrcCore/FrameCore",
       "name": "FRC.Shell.Frame.orientation_class",
       "tier": 0,
       "ok": true,
-      "page": "lean/core/Frame.html#FRC.Shell.Frame.orientation_class"
+      "page": "lean/core/FrameCore.html#FRC.Shell.Frame.orientation_class"
      }
     ]
    },
@@ -36845,11 +37486,11 @@
     "lean": [
      {
       "lib": "FrcCore",
-      "module": "FrcCore/Frame",
+      "module": "FrcCore/FrameCore",
       "name": "FRC.Shell.Frame.half_period",
       "tier": 0,
       "ok": true,
-      "page": "lean/core/Frame.html#FRC.Shell.Frame.half_period"
+      "page": "lean/core/FrameCore.html#FRC.Shell.Frame.half_period"
      }
     ]
    },
@@ -37059,11 +37700,11 @@
     "lean": [
      {
       "lib": "FrcCore",
-      "module": "FrcCore/Frame",
+      "module": "FrcCore/FrameCore",
       "name": "FRC.Shell.Frame.two_pi",
       "tier": 0,
       "ok": true,
-      "page": "lean/core/Frame.html#FRC.Shell.Frame.two_pi"
+      "page": "lean/core/FrameCore.html#FRC.Shell.Frame.two_pi"
      }
     ]
    },
@@ -37158,19 +37799,19 @@
     "lean": [
      {
       "lib": "FrcCore",
-      "module": "FrcCore/Frame",
+      "module": "FrcCore/FrameCore",
       "name": "FRC.Shell.Frame.two_pi",
       "tier": 0,
       "ok": true,
-      "page": "lean/core/Frame.html#FRC.Shell.Frame.two_pi"
+      "page": "lean/core/FrameCore.html#FRC.Shell.Frame.two_pi"
      },
      {
       "lib": "FrcCore",
-      "module": "FrcCore/Frame",
+      "module": "FrcCore/FrameCore",
       "name": "FRC.Shell.Frame.quarter_turn_sq",
       "tier": 0,
       "ok": true,
-      "page": "lean/core/Frame.html#FRC.Shell.Frame.quarter_turn_sq"
+      "page": "lean/core/FrameCore.html#FRC.Shell.Frame.quarter_turn_sq"
      }
     ]
    },

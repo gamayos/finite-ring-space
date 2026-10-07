@@ -1,4 +1,5 @@
 import Mathlib
+import FrcLedger.Theme.Chart
 
 /-!
 # 21-gravity — the Carrier register, the count face, the strong field and the floor: the ledger predicates in Lean (2026-09-20)
@@ -34,7 +35,9 @@ the composition law (C11); the post-Newtonian Taylor brackets — `A − A_S = U
 — the single-potential inputs shared through 1PN and parting at 2PN (C8, P6); the numeral behind P2's
 preferred-frame scale, `1/√Ω = 10⁻⁶¹`. Classical (tier 2) on Mathlib's hierarchy; the finite content — the
 register on every frame, the count face, the merger instance, the laboratory Carrier decided by the kernel — is
-proved with no axioms in `FrcCore/Gravity.lean`. Outside both modules: the realisations of block B, the synchronisation dynamics (the
+proved with no axioms in `FrcCore/Gravity.lean`. Since the ledger migration (task LM30) the floor's value,
+`floor_value`, lives in the chart theme, `FrcLedger/Theme/Chart.lean`, as `FRC.Chart.floor_value`; the old name
+below is an alias. Outside both modules: the realisations of block B, the synchronisation dynamics (the
 Kuramoto relaxation, C1's gradient flow, C21, C22), the four-term Fierz–Pauli functional itself (the package's
 exact integer identity), the orbit equations behind the ISCO, the two-body sector of C23, the rotating solution
 and the wave equation beyond their symbols, and every comparison with measured data, which enters below only as
@@ -343,28 +346,6 @@ end strongfield
 
 /-! ## The floor and the registration crossover (21:C19, P3, P4, X2) -/
 section floor
-
-/-- 21:P3 — the weak-acceleration floor `a₀ = cH₀/2π` at the entailed `H₀ = 67.4 km s⁻¹ Mpc⁻¹` (the `H₀` of
-`\cite{entropy}`, the speed of light and the megaparsec all declared numerals [data]): `a₀` lies between `1.04` and `1.05 × 10⁻¹⁰
-m s⁻²`; against the fitted `1.20 × 10⁻¹⁰` it is between `13.0 %` and `13.2 %` low, and the deficit is between
-`0.65` and `0.67` of the systematic `0.24 × 10⁻¹⁰` (the text's `13 %`, `0.7σ`). -/
-theorem floor_value (c H0 : ℝ) (hc : c = 299792458) (hH : H0 = 67.4e3 / 3.0856775814913673e22) :
-    (1.04e-10 : ℝ) < c * H0 / (2 * π) ∧ c * H0 / (2 * π) < 1.05e-10 ∧
-    (0.868 : ℝ) < c * H0 / (2 * π) / 1.2e-10 ∧ c * H0 / (2 * π) / 1.2e-10 < 0.870 ∧
-    (0.65 : ℝ) < (1.2e-10 - c * H0 / (2 * π)) / 0.24e-10 ∧
-    (1.2e-10 - c * H0 / (2 * π)) / 0.24e-10 < 0.67 := by
-  have hpi1 := Real.pi_gt_d6
-  have hpi2 := Real.pi_lt_d6
-  subst hc hH
-  have hA : (1.042e-10 : ℝ) < 299792458 * (67.4e3 / 3.0856775814913673e22) / (2 * π) := by
-    rw [lt_div_iff₀ (by positivity)]; nlinarith
-  have hB : 299792458 * (67.4e3 / 3.0856775814913673e22) / (2 * π) < (1.0423e-10 : ℝ) := by
-    rw [div_lt_iff₀ (by positivity)]; nlinarith
-  refine ⟨by linarith, by linarith, ?_, ?_, ?_, ?_⟩
-  · rw [lt_div_iff₀ (by norm_num)]; linarith
-  · rw [div_lt_iff₀ (by norm_num)]; linarith
-  · rw [lt_div_iff₀ (by norm_num)]; linarith
-  · rw [div_lt_iff₀ (by norm_num)]; linarith
 
 /-- 21:C19, 21:P4 — the registration root: for `0 < w < 1` the quadratic `wη² − 2η + w = 0` (rational in the
 paper's `w`, here over `ℝ`) has
@@ -738,5 +719,17 @@ theorem preferred_frame_scale : 1 / √((10 : ℝ) ^ 122) = 10 ^ (-61 : ℤ) := 
   norm_num
 
 end series
+
+/-! ## Old names (ledger migration, task LM30): the theorems moved to the chart theme (`FRC.Chart`,
+`FrcLedger/Theme/Chart.lean`), each under its old name -/
+
+/-- 21:P3 — the floor `a₀ = cH₀/2π` at the entailed `H₀ = 67.4`: between `1.04` and `1.05 × 10⁻¹⁰ m s⁻²`, `13 %`
+low and `0.7σ` against the fitted `1.20 ± 0.24 × 10⁻¹⁰`. -/
+theorem floor_value (c H0 : ℝ) (hc : c = 299792458) (hH : H0 = 67.4e3 / 3.0856775814913673e22) :
+    (1.04e-10 : ℝ) < c * H0 / (2 * π) ∧ c * H0 / (2 * π) < 1.05e-10 ∧
+    (0.868 : ℝ) < c * H0 / (2 * π) / 1.2e-10 ∧ c * H0 / (2 * π) / 1.2e-10 < 0.870 ∧
+    (0.65 : ℝ) < (1.2e-10 - c * H0 / (2 * π)) / 0.24e-10 ∧
+    (1.2e-10 - c * H0 / (2 * π)) / 0.24e-10 < 0.67 :=
+  FRC.Chart.floor_value c H0 hc hH
 
 end FRC.Gravity

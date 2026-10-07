@@ -2,7 +2,7 @@
  "paper": "20-rh",
  "title": "Riemann Hypothesis over the Holographic Substrate",
  "doi": "https://doi.org/10.20944/preprints202606.0768.v1",
- "generated": "5 October 2026",
+ "generated": "7 October 2026",
  "blocks": [
   {
    "letter": "A",
@@ -540,7 +540,7 @@
    {
     "name": "FRC.Rh.lab_pair",
     "module": "FrcCore/Rh",
-    "line": 421,
+    "line": 324,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -588,7 +588,7 @@
    {
     "name": "FRC.Rh.window_readback",
     "module": "FrcCore/Rh",
-    "line": 371,
+    "line": 274,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -597,7 +597,7 @@
    {
     "name": "FRC.Rh.factorisation_iff",
     "module": "FrcCore/Rh",
-    "line": 382,
+    "line": 285,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -606,7 +606,7 @@
    {
     "name": "FRC.Rh.frame_coincidence",
     "module": "FrcCore/Rh",
-    "line": 408,
+    "line": 311,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -630,11 +630,11 @@
    {
     "name": "FRC.Rh.zero_slot",
     "module": "FrcCore/Rh",
-    "line": 54,
+    "line": 359,
     "axioms": [],
     "tier": 0,
     "ok": true,
-    "doc": "20:B4 — the zero-slot on every shell: over the nonzero residues `x = l + 1`, `l < p − 1`, `Σ x^k = 0` for every nonterminal exponent `0 < k < p − 1`, and `Σ x^{p−1} = −1` on the full cycle."
+    "doc": "20:B4 — the zero-slot (20-rh's name; the theorem is `FRC.Horizon.zero_slot`, LM26)."
    }
   ],
   "B5": [
@@ -654,7 +654,7 @@
    {
     "name": "FRC.Rh.slot_complementarity",
     "module": "FrcCore/Rh",
-    "line": 72,
+    "line": 58,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -717,7 +717,7 @@
    {
     "name": "FRC.Rh.Ext.mul_conj",
     "module": "FrcCore/Rh",
-    "line": 488,
+    "line": 413,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -726,7 +726,7 @@
    {
     "name": "FRC.Rh.Ext.conj_inv_of_norm_one",
     "module": "FrcCore/Rh",
-    "line": 492,
+    "line": 417,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -735,7 +735,7 @@
    {
     "name": "FRC.Rh.Ext.quarter_turn_off_circle",
     "module": "FrcCore/Rh",
-    "line": 337,
+    "line": 240,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -744,7 +744,7 @@
    {
     "name": "FRC.Rh.Ext.circle13",
     "module": "FrcCore/Rh",
-    "line": 351,
+    "line": 254,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -768,7 +768,7 @@
    {
     "name": "FRC.Rh.ramanujan_sum",
     "module": "FrcCore/Rh",
-    "line": 192,
+    "line": 124,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -777,7 +777,7 @@
    {
     "name": "FRC.Rh.ramanujan53",
     "module": "FrcCore/Rh",
-    "line": 214,
+    "line": 146,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -840,16 +840,16 @@
    {
     "name": "FRC.Rh.half_inverse",
     "module": "FrcCore/Rh",
-    "line": 95,
+    "line": 365,
     "axioms": [],
     "tier": 0,
     "ok": true,
-    "doc": "20:B8 — `2⁻¹ = 2κ + 1 = −π` on every shell: `2·(2κ + 1) = 1` and `2κ + 1 = −(2κ)`."
+    "doc": "20:B8 — `2⁻¹ = 2κ + 1 = −π` (20-rh's name; the theorem is `FRC.Horizon.half_inverse`, LM26)."
    },
    {
     "name": "FRC.Rh.Ext.critical_line",
     "module": "FrcCore/Rh",
-    "line": 247,
+    "line": 179,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -858,7 +858,7 @@
    {
     "name": "FRC.Rh.Ext.norm_on_line",
     "module": "FrcCore/Rh",
-    "line": 328,
+    "line": 231,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -921,7 +921,7 @@
    {
     "name": "FRC.Rh.Ext.klein_four",
     "module": "FrcCore/Rh",
-    "line": 236,
+    "line": 168,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -930,7 +930,7 @@
    {
     "name": "FRC.Rh.Ext.fixed_conj",
     "module": "FrcCore/Rh",
-    "line": 496,
+    "line": 421,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -939,7 +939,7 @@
    {
     "name": "FRC.Rh.Ext.critical_line",
     "module": "FrcCore/Rh",
-    "line": 247,
+    "line": 179,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -948,7 +948,7 @@
    {
     "name": "FRC.Rh.Ext.fixed_half_turn",
     "module": "FrcCore/Rh",
-    "line": 278,
+    "line": 210,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -984,7 +984,7 @@
    {
     "name": "FRC.Rh.subject_constants",
     "module": "FrcCore/Rh",
-    "line": 122,
+    "line": 90,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -993,7 +993,7 @@
    {
     "name": "FRC.Rh.constants13",
     "module": "FrcCore/Rh",
-    "line": 132,
+    "line": 100,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -1095,20 +1095,20 @@
    {
     "name": "FRC.Rh.shift_power_character",
     "module": "FrcCore/Rh",
-    "line": 141,
+    "line": 371,
     "axioms": [],
     "tier": 0,
     "ok": true,
-    "doc": "20:E1, 20:E12 — the power characters are eigenvectors of the scale-shift `x ↦ g^r x` in the `𝔽_p` reading: `(g^r x)^k = (g^r)^k · x^k`."
+    "doc": "20:E1, 20:E12 — the power characters under the scale-shift (20-rh's name; the theorem is `FRC.Horizon.shift_power_character`, LM26)."
    },
    {
     "name": "FRC.Rh.shift_trace",
     "module": "FrcCore/Rh",
-    "line": 147,
+    "line": 376,
     "axioms": [],
     "tier": 0,
     "ok": true,
-    "doc": "20:E12, 20:E1 — clause (iii) in the `𝔽_p` reading: the fixed-point count of the scale-shift, the trace of its permutation matrix: `x ↦ g^r x` fixes every nonzero residue when `(p − 1) ∣ r` and none otherwise, `Tr S^r = (p − 1)·[(p − 1) ∣ r]`; the shell's trace carries no prime data."
+    "doc": "20:E12, 20:E1 — the fixed-point count of the scale-shift (20-rh's name; the theorem is `FRC.Horizon.shift_trace`, LM26)."
    }
   ],
   "E12": [
@@ -1154,20 +1154,20 @@
    {
     "name": "FRC.Rh.shift_power_character",
     "module": "FrcCore/Rh",
-    "line": 141,
+    "line": 371,
     "axioms": [],
     "tier": 0,
     "ok": true,
-    "doc": "20:E1, 20:E12 — the power characters are eigenvectors of the scale-shift `x ↦ g^r x` in the `𝔽_p` reading: `(g^r x)^k = (g^r)^k · x^k`."
+    "doc": "20:E1, 20:E12 — the power characters under the scale-shift (20-rh's name; the theorem is `FRC.Horizon.shift_power_character`, LM26)."
    },
    {
     "name": "FRC.Rh.shift_trace",
     "module": "FrcCore/Rh",
-    "line": 147,
+    "line": 376,
     "axioms": [],
     "tier": 0,
     "ok": true,
-    "doc": "20:E12, 20:E1 — clause (iii) in the `𝔽_p` reading: the fixed-point count of the scale-shift, the trace of its permutation matrix: `x ↦ g^r x` fixes every nonzero residue when `(p − 1) ∣ r` and none otherwise, `Tr S^r = (p − 1)·[(p − 1) ∣ r]`; the shell's trace carries no prime data."
+    "doc": "20:E12, 20:E1 — the fixed-point count of the scale-shift (20-rh's name; the theorem is `FRC.Horizon.shift_trace`, LM26)."
    },
    {
     "name": "FRC.Rh.readout_on_line",
@@ -1198,20 +1198,20 @@
    {
     "name": "FRC.Rh.Ext.readout_on_line",
     "module": "FrcCore/Rh",
-    "line": 304,
+    "line": 434,
     "axioms": [],
     "tier": 0,
     "ok": true,
-    "doc": "20:E12, 20:B8 — clause (ii) of the shell theorem, no axioms: every readout lies on the trace-one line, its real part is the half-turn `2⁻¹ = 2κ + 1`, and `θ ↦ z(θ)` is injective."
+    "doc": "20:E12 (ii) — every readout on the trace-one line (20-rh's name; the theorem is `FRC.Horizon.readout_on_line`, LM26)."
    },
    {
     "name": "FRC.Rh.Ext.readout_slot_index",
     "module": "FrcCore/Rh",
-    "line": 311,
+    "line": 440,
     "axioms": [],
     "tier": 0,
     "ok": true,
-    "doc": "20:E12 — the slot index of a nontrivial slot: for `1 ≤ k ≤ p − 2` the index `θ = Φ(k) = −g^k` is neither `0` (the centre `2⁻¹`) nor `−1` (the full-cycle exponent), on every shell and with no axioms."
+    "doc": "20:E12 — the slot index of a nontrivial slot (20-rh's name; the theorem is `FRC.Horizon.readout_slot_index`, LM26)."
    }
   ],
   "E13": [

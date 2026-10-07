@@ -1,4 +1,6 @@
 import Mathlib
+import FrcLedger.Theme.Chart
+import FrcLedger.Keys.Chart
 
 /-!
 # 14-entropy — the de Sitter import, the octant and the age–rate locus: the ledger predicates in Lean (2026-09-19)
@@ -24,7 +26,9 @@ effective-fluid reading `w = −1` (B8, P4); the count face and its chart dress 
 `κ = 2` has no shell, hydrogen at `κ = 3`, the `3N` shell exactly when `12N + 1` is prime and none at `N = 2`,
 the nesting bound `q⁴ < Ω` with `N ≤ 3` on the laboratory Carrier (C10, B10). Classical (tier 2) on Mathlib's
 hierarchy; the finite content — the congruences, the octant on every framed shell, the Carrier and the nesting
-decided by the kernel — is proved with no axioms in `FrcCore/Entropy.lean`. What is outside both modules: the
+decided by the kernel — is proved with no axioms in `FrcCore/Entropy.lean`. Since the ledger migration (task LM30) the
+octant's chart theorems — the conversion, the brackets of `tanh(3π/8)`, the landing and the locus — live in the
+chart theme, `FrcLedger/Theme/Chart.lean`, as `FRC.Chart.*`; the old names below are aliases. What is outside both modules: the
 realisation premises of the octant lemma (A4 reciprocity, A5 the equatorial horizon, B6 the closure budget, B7
 the depth rule) — the modules decide the lemma's arithmetic, clause (iv) and the closure count, not its
 realisation content; and the chart identities marked [chart] or [ΛCDM] below are identities of the continuum
@@ -143,14 +147,6 @@ theorem dictionary (S : ℝ) :
   have := Real.pi_ne_zero
   refine ⟨?_, ?_, ?_⟩ <;> field_simp <;> ring
 
-/-- 14:C5 [chart] — clause (iv), the chart conversion of the octant: the count `S/2` out of the `4S`-cycle,
-read on the meridian circle `2π r_H/c`, is the depth `(π/4) r_H/c`. -/
-theorem octant_chart (S r c : ℝ) (hS : S ≠ 0) :
-    (S / 2) / (4 * S) * (2 * π * r / c) = (π / 4) * r / c := by
-  rcases eq_or_ne c 0 with rfl | hc
-  · simp
-  · field_simp
-
 /-- 14:X2 [chart] — Milgrom's rebooking, the substitution `h = 2πħ`: the floor `a₀ = cH/2π` is `cHħ/h`, the
 per-cycle rate budget per step. That the `2π` carries zero freedom is X2's realisation clause (B2 fixes the
 convention), not formal content. -/
@@ -227,18 +223,13 @@ not formalised). That a landing of it on `π/4` restates the fit is C3's judgmen
 content. -/
 noncomputable def lcdmAge (Ω : ℝ) : ℝ := 2 / 3 * artanh (√Ω)
 
-/-- The octant's rate factor `tanh(3π/8)` is positive. -/
-theorem tanh_octant_pos : 0 < tanh (3 * π / 8) := by
-  rw [Real.tanh_eq_sinh_div_cosh]
-  exact div_pos (Real.sinh_pos_iff.2 (by positivity)) (Real.cosh_pos _)
-
 /-- 14:C7, 14:X3 [ΛCDM] — the octant inversion: given the octant's `π/4` (C5, whose realisation content is not
 formalised here), the rival chart's identity gives `t₀H_Λ = π/4` at `Ω_Λ = tanh²(3π/8)` and, for
 `0 ≤ Ω_Λ < 1`, only there. -/
 theorem octant_inversion :
     lcdmAge (tanh (3 * π / 8) ^ 2) = π / 4 ∧
     ∀ Ω : ℝ, 0 ≤ Ω → Ω < 1 → lcdmAge Ω = π / 4 → Ω = tanh (3 * π / 8) ^ 2 := by
-  have hpos := tanh_octant_pos
+  have hpos := FRC.Chart.tanh_octant_pos
   constructor
   · unfold lcdmAge
     rw [Real.sqrt_sq hpos.le, Real.artanh_tanh]; ring
@@ -252,22 +243,13 @@ theorem octant_inversion :
     rw [hart] at this
     rw [this, Real.sq_sqrt h0]
 
-/-- 14:P3 [ΛCDM] — the algebraic locus: with `t H_Λ = π/4` (the octant), `H_Λ = H₀ √Ω_Λ` and
-`Ω_Λ = tanh²(3π/8)`, `t H₀ = (π/4)/tanh(3π/8)`; the numeral `0.950` is bracketed in `locus_bracket`; the
-stellar-age reading `H₀ = 68.2 ± 1.7` and its confrontations are not formalised. -/
-theorem age_rate_locus (t H0 HΛ Ω : ℝ) (hoct : t * HΛ = π / 4) (hΛ : HΛ = H0 * √Ω)
-    (hΩ : Ω = tanh (3 * π / 8) ^ 2) : t * H0 = (π / 4) / tanh (3 * π / 8) := by
-  have hpos := tanh_octant_pos
-  rw [hΩ, Real.sqrt_sq hpos.le] at hΛ
-  rw [eq_div_iff hpos.ne', ← hoct, hΛ]; ring
-
 /-- 14:C8 [ΛCDM] — the channel-1 consistency: with `Λ = 3Ω_Λ H₀²/c²` (the definition of `Ω_Λ`) the asymptotic
 rate is `H_Λ = c√(Λ/3) = H₀√Ω_Λ`, and the locus read on it, `H_Λ/tanh(3π/8)`, returns `H₀` exactly when
 `Ω_Λ = tanh²(3π/8)`; at the fitted `0.685` the return is within `0.1 %` (`channel_one_numeral`). -/
 theorem channel_one_consistency (H0 c Ω Λ : ℝ) (hH0 : 0 < H0) (hc : 0 < c) (hΩ : 0 ≤ Ω)
     (hΛ : Λ = 3 * Ω * H0 ^ 2 / c ^ 2) :
     c * √(Λ / 3) = H0 * √Ω ∧ (H0 * √Ω / tanh (3 * π / 8) = H0 ↔ Ω = tanh (3 * π / 8) ^ 2) := by
-  have hpos := tanh_octant_pos
+  have hpos := FRC.Chart.tanh_octant_pos
   constructor
   · rw [hΛ, show 3 * Ω * H0 ^ 2 / c ^ 2 / 3 = Ω * (H0 / c) ^ 2 by field_simp,
       Real.sqrt_mul hΩ, Real.sqrt_sq (by positivity)]
@@ -311,71 +293,12 @@ theorem fluid_w (H ρ p ρ' : ℝ) (hH : H ≠ 0) (hρ : ρ ≠ 0) (hρ' : ρ' =
   exact ⟨hp, by rw [hp, neg_div, div_self hρ]⟩
 
 
-/-- `tanh x = (e^{2x} − 1)/(e^{2x} + 1)`. -/
-theorem tanh_eq_exp_two_mul (x : ℝ) : tanh x = (exp (2 * x) - 1) / (exp (2 * x) + 1) := by
-  rw [Real.tanh_eq, Real.exp_neg, two_mul, Real.exp_add]
-  have h := Real.exp_pos x
-  field_simp
-
-/-- The Taylor brackets of `e^t` at the two ends of `t = 3π/4 − 2`: seven terms of the series with the tail
-bound of Mathlib's `Real.exp_bound`. -/
-theorem exp_tail_bounds :
-    (1.427884 : ℝ) < exp 0.356194 ∧ exp (0.35619475 : ℝ) < 1.4278857 := by
-  constructor
-  · have h := abs_le.1 (Real.exp_bound (x := 0.356194) (by rw [abs_of_pos (by norm_num)]; norm_num)
-      (n := 7) (by norm_num))
-    rw [abs_of_pos (by norm_num : (0 : ℝ) < 0.356194)] at h
-    have h1 := h.1
-    norm_num [Finset.sum_range_succ, Nat.factorial] at h1 ⊢
-    linarith
-  · have h := Real.exp_bound' (x := 0.35619475) (by norm_num) (by norm_num) (n := 7) (by norm_num)
-    norm_num [Finset.sum_range_succ, Nat.factorial] at h ⊢
-    linarith
-
-/-- `e^{3π/4}` bracketed: `10.55071 < e^{3π/4} < 10.55073`, from `π` to six places, `e` to nine, and the
-Taylor tail. -/
-theorem exp_three_pi_four_bounds : (10.55071 : ℝ) < exp (3 * π / 4) ∧ exp (3 * π / 4) < 10.55073 := by
-  have hpi1 := Real.pi_gt_d6
-  have hpi2 := Real.pi_lt_d6
-  have he1 := Real.exp_one_gt_d9
-  have he2 := Real.exp_one_lt_d9
-  have ht := exp_tail_bounds
-  have hsplit : exp (3 * π / 4) = exp 1 * exp 1 * exp (3 * π / 4 - 2) := by
-    rw [← Real.exp_add, ← Real.exp_add]; congr 1; ring
-  have hlo : exp 0.356194 < exp (3 * π / 4 - 2) := Real.exp_lt_exp.2 (by linarith)
-  have hhi : exp (3 * π / 4 - 2) < exp 0.35619475 := Real.exp_lt_exp.2 (by linarith)
-  have hpos : (0 : ℝ) < exp 1 := Real.exp_pos 1
-  rw [hsplit]
-  constructor
-  · nlinarith [mul_pos hpos hpos, Real.exp_pos (3 * π / 4 - 2)]
-  · nlinarith [mul_pos hpos hpos, Real.exp_pos (3 * π / 4 - 2)]
-
-/-- `tanh(3π/8)` bracketed: `0.82685 < tanh(3π/8) < 0.826851`, from `exp_three_pi_four_bounds`. -/
-theorem tanh_octant_bounds : (0.82685 : ℝ) < tanh (3 * π / 8) ∧ tanh (3 * π / 8) < 0.826851 := by
-  obtain ⟨hE1, hE2⟩ := exp_three_pi_four_bounds
-  have htanh : tanh (3 * π / 8) = (exp (3 * π / 4) - 1) / (exp (3 * π / 4) + 1) := by
-    rw [tanh_eq_exp_two_mul]; congr 2 <;> ring_nf
-  have hden : (0 : ℝ) < exp (3 * π / 4) + 1 := by linarith
-  constructor
-  · rw [htanh, lt_div_iff₀ hden]; linarith
-  · rw [htanh, div_lt_iff₀ hden]; linarith
-
-/-- 14:P3 — the locus's numeral bracketed: `0.9498 < (π/4)/tanh(3π/8) < 0.9499`, the paper's `0.950`. -/
-theorem locus_bracket : (0.9498 : ℝ) < (π / 4) / tanh (3 * π / 8) ∧ (π / 4) / tanh (3 * π / 8) < 0.9499 := by
-  obtain ⟨hl, hu⟩ := tanh_octant_bounds
-  have hpi1 := Real.pi_gt_d6
-  have hpi2 := Real.pi_lt_d6
-  have hpos : (0 : ℝ) < tanh (3 * π / 8) := by linarith
-  constructor
-  · rw [lt_div_iff₀ hpos]; nlinarith
-  · rw [div_lt_iff₀ hpos]; nlinarith
-
 /-- 14:C8 — the channel-1 return bracketed: at the fitted `Ω_Λ = 0.685` (A8, taken as data) the locus returns
 `H_Λ/tanh(3π/8) = H₀ √0.685/tanh(3π/8)` with `1 < √0.685/tanh(3π/8) < 1.001` — the channel-1 `H₀` to
 `0.1 %`. -/
 theorem channel_one_numeral :
     (1 : ℝ) < √0.685 / tanh (3 * π / 8) ∧ √0.685 / tanh (3 * π / 8) < 1.001 := by
-  obtain ⟨hl, hu⟩ := tanh_octant_bounds
+  obtain ⟨hl, hu⟩ := FRC.Chart.tanh_octant_bounds
   have hpos : (0 : ℝ) < tanh (3 * π / 8) := by linarith
   have hs1 : (0.82764 : ℝ) < √0.685 := by
     rw [Real.lt_sqrt (by norm_num)]; norm_num
@@ -384,20 +307,6 @@ theorem channel_one_numeral :
   constructor
   · rw [lt_div_iff₀ hpos]; linarith
   · rw [div_lt_iff₀ hpos]; linarith
-
-/-- 14:C7, 14:X3 — the landing bracketed: `0.68368 < tanh²(3π/8) < 0.68369` (the numeral `0.6837`) is
-certified from `π` to six places, `e` to nine and the Taylor tail; and, with the Planck numerals
-`0.685 ± 0.007` taken as data (A8), the deviation lies between `0.18σ` and `0.19σ`. -/
-theorem landing_bracket :
-    (0.68368 : ℝ) < tanh (3 * π / 8) ^ 2 ∧ tanh (3 * π / 8) ^ 2 < 0.68369 ∧
-    0.18 * 0.007 < 0.685 - tanh (3 * π / 8) ^ 2 ∧ 0.685 - tanh (3 * π / 8) ^ 2 < 0.19 * 0.007 := by
-  obtain ⟨hl, hu⟩ := tanh_octant_bounds
-  have hsq1 : (0.82685 : ℝ) ^ 2 < tanh (3 * π / 8) ^ 2 := by
-    apply pow_lt_pow_left₀ hl (by norm_num) (by norm_num)
-  have hsq2 : tanh (3 * π / 8) ^ 2 < (0.826851 : ℝ) ^ 2 := by
-    apply pow_lt_pow_left₀ hu (by linarith) (by norm_num)
-  norm_num at hsq1 hsq2
-  refine ⟨by linarith, by linarith, by linarith, by linarith⟩
 
 end age
 
@@ -638,6 +547,50 @@ theorem nesting_lab :
 
 end triangle
 
+/-! ## Old names (ledger migration, task LM30): the theorems moved to the chart theme (`FRC.Chart`,
+`FrcLedger/Theme/Chart.lean`), each under its old name -/
+
+/-- 14:C5 [chart] — the chart conversion of the octant: `(S/2)/(4S) · 2π r_H/c = (π/4) r_H/c`. -/
+theorem octant_chart (S r c : ℝ) (hS : S ≠ 0) :
+    (S / 2) / (4 * S) * (2 * π * r / c) = (π / 4) * r / c :=
+  FRC.Chart.octant_chart S r c hS
+
+/-- The octant's rate factor `tanh(3π/8)` is positive. -/
+theorem tanh_octant_pos : 0 < tanh (3 * π / 8) :=
+  FRC.Chart.tanh_octant_pos
+
+/-- 14:P3 [ΛCDM] — the algebraic locus `t H₀ = (π/4)/tanh(3π/8)`. -/
+theorem age_rate_locus (t H0 HΛ Ω : ℝ) (hoct : t * HΛ = π / 4) (hΛ : HΛ = H0 * √Ω)
+    (hΩ : Ω = tanh (3 * π / 8) ^ 2) : t * H0 = (π / 4) / tanh (3 * π / 8) :=
+  FRC.Chart.age_rate_locus t H0 HΛ Ω hoct hΛ hΩ
+
+/-- `tanh x = (e^{2x} − 1)/(e^{2x} + 1)`. -/
+theorem tanh_eq_exp_two_mul (x : ℝ) : tanh x = (exp (2 * x) - 1) / (exp (2 * x) + 1) :=
+  FRC.Chart.tanh_eq_exp_two_mul x
+
+/-- The Taylor brackets of `e^t` at the two ends of `t = 3π/4 − 2`. -/
+theorem exp_tail_bounds :
+    (1.427884 : ℝ) < exp 0.356194 ∧ exp (0.35619475 : ℝ) < 1.4278857 :=
+  FRC.Chart.exp_tail_bounds
+
+/-- `10.55071 < e^{3π/4} < 10.55073`. -/
+theorem exp_three_pi_four_bounds : (10.55071 : ℝ) < exp (3 * π / 4) ∧ exp (3 * π / 4) < 10.55073 :=
+  FRC.Chart.exp_three_pi_four_bounds
+
+/-- `0.82685 < tanh(3π/8) < 0.826851`. -/
+theorem tanh_octant_bounds : (0.82685 : ℝ) < tanh (3 * π / 8) ∧ tanh (3 * π / 8) < 0.826851 :=
+  FRC.Chart.tanh_octant_bounds
+
+/-- 14:P3 — `0.9498 < (π/4)/tanh(3π/8) < 0.9499`. -/
+theorem locus_bracket : (0.9498 : ℝ) < (π / 4) / tanh (3 * π / 8) ∧ (π / 4) / tanh (3 * π / 8) < 0.9499 :=
+  FRC.Chart.locus_bracket
+
+/-- 14:C7, 14:X3 — `0.68368 < tanh²(3π/8) < 0.68369`, a deviation between `0.18σ` and `0.19σ` from `0.685 ± 0.007`. -/
+theorem landing_bracket :
+    (0.68368 : ℝ) < tanh (3 * π / 8) ^ 2 ∧ tanh (3 * π / 8) ^ 2 < 0.68369 ∧
+    0.18 * 0.007 < 0.685 - tanh (3 * π / 8) ^ 2 ∧ 0.685 - tanh (3 * π / 8) ^ 2 < 0.19 * 0.007 :=
+  FRC.Chart.landing_bracket
+
 -- Ledger predicates of 14-entropy (generated by make_predicates.py from docs/14-entropy/14-entropy-ledger.json; edit the ledger, not this section)
 /-- 14:A1 (p14001) — The de Sitter entropy $\dS$, the single quantitative import, fixing the cardinality exactly, $\Om=4\dS+1$. -/
 theorem p14001 : ∀ {Ω S : ℕ}, Ω = (4 : ℕ) * S + (1 : ℕ) → S = (Ω - (1 : ℕ)) / (4 : ℕ) ∧ (4 : ℕ) ∣ Ω - (1 : ℕ) ∧ Ω % (4 : ℕ) = (1 : ℕ) ∧ (4 : ℕ) * S = Ω - (1 : ℕ) :=
@@ -692,7 +645,7 @@ set_option linter.defProp false in
 def p14031 := And.intro @FRC.Entropy.octant_second_face (@FRC.Entropy.octant_sector_iff)
 /-- 14:P3 (p14038) — The age--rate locus $t_{\mathrm{age}}H_0=(\pi/4)/\tanh(3\pi/8)=0.950$, exact for the realisation set. Read on the fit-independent stellar age ($13.61\pm0.34$ Gyr): $H_0=68.2\pm1.7$ km/s/Mpc \apx, $0.5\sigma$ from Planck, $0.65\sigma$ from TRGB, $2.4\sigma$ from the Cepheid ladder --- the framework favours the CMB/TRGB value at that significance, and forbids the $\Omega_\Lambda\approx0.76$ by which the rival chart would accommodate the ladder value at the same age. Read on the channel-1 $\Lambda$ it returns the channel-1 $H_0$ (to $0.1\%$): a consistency, not a prediction (C8). Falsifier: a confirmed ladder $H_0$ with the stellar age standing ($t_\star H_0\ge1.0$ against $0.950$). -/
 theorem p14038 : (∀ (t H0 HΛ Ω : ℝ), t * HΛ = Real.pi / (4 : ℝ) → HΛ = H0 * √Ω → Ω = Real.tanh ((3 : ℝ) * Real.pi / (8 : ℝ)) ^ (2 : ℕ) → t * H0 = Real.pi / (4 : ℝ) / Real.tanh ((3 : ℝ) * Real.pi / (8 : ℝ))) ∧ 0.9498 < Real.pi / (4 : ℝ) / Real.tanh ((3 : ℝ) * Real.pi / (8 : ℝ)) ∧ Real.pi / (4 : ℝ) / Real.tanh ((3 : ℝ) * Real.pi / (8 : ℝ)) < 0.9499 :=
-  And.intro @FRC.Entropy.age_rate_locus (@FRC.Entropy.locus_bracket)
+  @FRC.LedgerML.p14038
 /-- 14:P4 (p14039) — \textbf{(Lead; grade \tT$\,\vert\,$\tR.)} The dark-energy equation of state is rigid: $\Lambda$ is the curvature face of the fixed cardinality, constant, its effective-fluid reading $w=-1$ exactly with no $w_0w_a$ freedom; the fluid statement consumes the conservation-law correspondence and the single-component clause (B8), hence the realisation grade. Status: DESI-era combined fits prefer evolving dark energy at $3$--$4.2\sigma$ \citep{desi2025}, contested by reanalyses (\S\ref{sec:import}). Falsifier: confirmed evolution of $w$, which kills $\Lambda\sim1/\Om$ outright and exposes P2 through $\Lambda$. -/
 theorem p14039 : ∀ (H ρ p ρ' : ℝ), H ≠ (0 : ℝ) → ρ ≠ (0 : ℝ) → ρ' = (0 : ℝ) → ρ' + (3 : ℝ) * H * (ρ + p) = (0 : ℝ) → p = -ρ ∧ p / ρ = (-1 : ℝ) :=
   @FRC.Entropy.fluid_w

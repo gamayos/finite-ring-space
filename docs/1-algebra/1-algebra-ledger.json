@@ -2,7 +2,7 @@
  "paper": "1-alg",
  "title": "Relativistic Algebra over Finite Ring Continuum",
  "doi": "https://doi.org/10.3390/axioms14080636",
- "generated": "5 October 2026",
+ "generated": "7 October 2026",
  "blocks": [
   {
    "letter": "A",
@@ -329,7 +329,7 @@
    {
     "name": "FRC.Shell.Frame.quarter_turn_exists",
     "module": "FrcCore/Frame",
-    "line": 432,
+    "line": 104,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -338,7 +338,7 @@
    {
     "name": "FRC.Shell.Frame.fourth_roots",
     "module": "FrcCore/Frame",
-    "line": 436,
+    "line": 108,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -347,7 +347,7 @@
    {
     "name": "FRC.Shell.Frame.klein_orbit_four",
     "module": "FrcCore/Orbit",
-    "line": 94,
+    "line": 95,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -356,7 +356,7 @@
    {
     "name": "FRC.Shell.Frame.orbit_rep",
     "module": "FrcCore/Orbit",
-    "line": 178,
+    "line": 174,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -365,7 +365,7 @@
    {
     "name": "FRC.Shell.Frame.orbit_rep_unique",
     "module": "FrcCore/Orbit",
-    "line": 261,
+    "line": 257,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -409,8 +409,8 @@
    },
    {
     "name": "FRC.Shell.Frame.quarter_turn_sq",
-    "module": "FrcCore/Frame",
-    "line": 260,
+    "module": "FrcCore/FrameCore",
+    "line": 265,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -443,7 +443,7 @@
    {
     "name": "FRC.Shell.Frame.affine_frame_unit",
     "module": "FrcCore/Frame",
-    "line": 367,
+    "line": 39,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -454,7 +454,7 @@
    {
     "name": "FRC.Shell.Frame.Affine.simply_transitive",
     "module": "FrcCore/Theme/Projective",
-    "line": 65,
+    "line": 66,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -463,7 +463,7 @@
    {
     "name": "FRC.Shell.Frame.frame_count",
     "module": "FrcCore/Theme/Projective",
-    "line": 94,
+    "line": 95,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -487,7 +487,7 @@
    {
     "name": "FRC.Shell.Frame.meridian_involution",
     "module": "FrcCore/Frame",
-    "line": 468,
+    "line": 140,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -511,7 +511,7 @@
    {
     "name": "FRC.Shell.Frame.window_injective",
     "module": "FrcCore/Frame",
-    "line": 375,
+    "line": 47,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -520,7 +520,7 @@
    {
     "name": "FRC.Shell.Frame.window_signed",
     "module": "FrcCore/Frame",
-    "line": 412,
+    "line": 84,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -529,7 +529,7 @@
    {
     "name": "FRC.Shell.Frame.window_add_readback",
     "module": "FrcCore/Frame",
-    "line": 398,
+    "line": 70,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -538,7 +538,7 @@
    {
     "name": "FRC.Shell.Frame.window_mul_readback",
     "module": "FrcCore/Frame",
-    "line": 405,
+    "line": 77,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -562,7 +562,7 @@
    {
     "name": "FRC.Shell.Frame.scale_periodic",
     "module": "FrcCore/Frame",
-    "line": 357,
+    "line": 29,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -601,7 +601,7 @@
    {
     "name": "FRC.Shell.Frame.complex_chart_zero_divisor",
     "module": "FrcCore/Frame",
-    "line": 479,
+    "line": 151,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -643,7 +643,7 @@
    {
     "name": "FRC.Shell.Frame.fermat",
     "module": "FrcCore/Orbit",
-    "line": 80,
+    "line": 81,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -820,7 +820,7 @@
    {
     "name": "FRC.Shell.Frame.nrm_mul",
     "module": "FrcCore/Theme/Extension",
-    "line": 413,
+    "line": 123,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -869,8 +869,8 @@
    },
    {
     "name": "FRC.Shell.Frame.no_south_pole",
-    "module": "FrcCore/Frame",
-    "line": 348,
+    "module": "FrcCore/FrameCore",
+    "line": 353,
     "axioms": [],
     "tier": 0,
     "ok": true,

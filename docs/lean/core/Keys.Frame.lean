@@ -1,4 +1,7 @@
+import FrcCore.FrameCore
 import FrcCore.Frame
+import FrcCore.Parity
+import FrcCore.Transform
 import FrcCore.Orbit
 import FrcCore.Instances
 import FrcCore.Sum

@@ -2,6 +2,8 @@ import FrcCore.Sum
 import FrcCore.Instances
 import FrcCore.Poly
 import FrcCore.Theme.Extension
+import FrcCore.Theme.Horizon
+import FrcCore.Keys.Horizon
 
 /-!
 # FrcCore.Rh — the shell predicates of 20-rh with no axioms
@@ -29,7 +31,9 @@ Since the ledger migration (task LM17) the quadratic extension is the extension 
 (`Theme/Extension.lean`): 20-rh's pairs `Ext p`, with `ν` passed to each operation, became the one type with `ν` its
 parameter, and the product, powers and the norm became its instances. The half-turn, the critical line and the readout
 stay here on that type; `readout` takes `ν`. The sums, the counting lemmas and the deciders went to the frame theme.
-Every old name stays as an alias.
+Since task LM26 the shell theorem's clauses (the zero-slot, the half-turn `2⁻¹ = 2κ + 1`, the scale-shift's characters and
+trace, the readout on the trace-one line and the slot index) live in the horizon theme (`Theme/Horizon.lean`), the home of
+00:Z10. Every old name stays as an alias.
 -/
 
 namespace FRC.Rh
@@ -48,24 +52,6 @@ section frame
 variable {κ : Nat} {g : Shell p}
 
 /-! ## The zero-slot and slot complementarity (20:B4, 20:B5) -/
-
-/-- 20:B4 — the zero-slot on every shell: over the nonzero residues `x = l + 1`, `l < p − 1`,
-`Σ x^k = 0` for every nonterminal exponent `0 < k < p − 1`, and `Σ x^{p−1} = −1` on the full cycle. -/
-theorem zero_slot (F : Frame p κ g) :
-    (∀ k, 0 < k → k < p - 1 → sumRange (fun l => (ofNat (l + 1) : Shell p) ^ k) (p - 1) = 0) ∧
-    sumRange (fun l => (ofNat (l + 1) : Shell p) ^ (p - 1)) (p - 1) = -1 := by
-  constructor
-  · intro k hk0 hk
-    rw [sum_units_eq_sum_pow F (fun x => x ^ k)]
-    have e : ∀ m, m < p - 1 → (fun m => (g ^ m) ^ k) m = (fun m => (g ^ k) ^ m) m := fun m _ =>
-      pow_mul_comm g m k
-    rw [sum_congr (p - 1) e]
-    exact (F.principal_root k hk0 hk).2.1
-  · rw [sum_units_eq_sum_pow F (fun x => x ^ (p - 1))]
-    have e : ∀ m, m < p - 1 → (fun m => (g ^ m) ^ (p - 1)) m = (fun _ => (1 : Shell p)) m := fun m _ => by
-      show (g ^ m) ^ (p - 1) = 1
-      rw [pow_mul_comm, F.pow_n, one_pow]
-    rw [sum_congr (p - 1) e, sum_const, mul_one, F.ofNat_n]
 
 /-- 20:B5 — slot complementarity on every shell: `Φ(k) = −g^k` is injective on the nontrivial spectral slots
 `0 < k < p − 1`, its values avoid `0` and `−1`, and every residue off `{0, −1}` is `Φ(k)` for one such `k`. -/
@@ -91,24 +77,6 @@ theorem slot_complementarity (F : Frame p κ g) :
 
 /-! ## The half-turn arithmetic and the Subject constants (20:B8, 20:B10) -/
 
-/-- 20:B8 — `2⁻¹ = 2κ + 1 = −π` on every shell: `2·(2κ + 1) = 1` and `2κ + 1 = −(2κ)`. -/
-theorem half_inverse (F : Frame p κ g) :
-    (2 : Shell p) * ofNat (2 * κ + 1) = 1 ∧ (ofNat (2 * κ + 1) : Shell p) = -(ofNat (2 * κ)) := by
-  have e : 2 * (2 * κ + 1) = 1 + p := by
-    rw [F.cap]
-    calc 2 * (2 * κ + 1) = 2 * (2 * κ) + 2 * 1 := Nat.mul_add 2 (2 * κ) 1
-      _ = 4 * κ + 2 := by rw [← FRC.Nat.mul_assoc]
-      _ = 1 + (4 * κ + 1) := by rw [Nat.add_comm 1, Nat.add_assoc]
-  constructor
-  · show ofNat 2 * ofNat (2 * κ + 1) = 1
-    rw [ofNat_mul, e, ofNat_add_self]
-    rfl
-  · have e2 : 2 * κ + (2 * κ + 1) = p := by
-      rw [← Nat.add_assoc, F.four_kappa]; exact FRC.Nat.sub_add_cancel Pos.pos
-    have h : (ofNat (2 * κ) : Shell p) + ofNat (2 * κ + 1) = 0 := by
-      rw [ofNat_add, e2]; exact ofNat_self
-    exact (neg_eq_of_add_eq_zero h).symm
-
 /-- 20:B10 — `i = g^{−κ}`, read as `g^{3κ}` on the cycle of length `4κ`, is the quarter-turn `−g^κ`. -/
 theorem quarter_turn_eq_pow (F : Frame p κ g) : g ^ (3 * κ) = quarterTurn g κ := by
   unfold quarterTurn
@@ -133,42 +101,6 @@ theorem constants13 :
     (2 : Shell 13) * 6 = -1 ∧ (2 : Shell 13) ^ 9 = 5 ∧ quarterTurn (2 : Shell 13) 3 = 5 ∧
     (5 : Shell 13) * 5 = -1 ∧ (2 : Shell 13) ^ 5 = 6 ∧ (2 : Shell 13) ^ 6 = -1 ∧
     (6 : Shell 13) ^ (5 * 6) = -1 := by decide
-
-/-! ## The scale-shift in the `𝔽_p` reading (20:E1, 20:E12 (iii)) -/
-
-/-- 20:E1, 20:E12 — the power characters are eigenvectors of the scale-shift `x ↦ g^r x` in the `𝔽_p` reading:
-`(g^r x)^k = (g^r)^k · x^k`. -/
-theorem shift_power_character (r k : Nat) (x : Shell p) : (g ^ r * x) ^ k = (g ^ r) ^ k * x ^ k :=
-  mul_pow _ _ _
-
-/-- 20:E12, 20:E1 — clause (iii) in the `𝔽_p` reading: the fixed-point count of the scale-shift, the trace of its
-permutation matrix: `x ↦ g^r x` fixes every nonzero residue when `(p − 1) ∣ r` and none otherwise,
-`Tr S^r = (p − 1)·[(p − 1) ∣ r]`; the shell's trace carries no prime data. -/
-theorem shift_trace (F : Frame p κ g) (r : Nat) :
-    natCount (fun x => x ≠ 0 ∧ g ^ r * ofNat x = ofNat x) p = if r % (p - 1) = 0 then p - 1 else 0 := by
-  have hn : p = (p - 1) + 1 := (FRC.Nat.sub_add_cancel Pos.pos).symm
-  match (inferInstance : Decidable (r % (p - 1) = 0)) with
-  | isTrue h =>
-    rw [ite_eq_left h]
-    have h1 : g ^ r = 1 := F.pow_eq_one_of_mod h
-    have e : ∀ x, x < p → ((x ≠ 0 ∧ g ^ r * ofNat x = ofNat x) ↔ x ≠ 0) := fun x _ =>
-      ⟨fun h => h.1, fun h => ⟨h, by rw [h1, one_mul]⟩⟩
-    have hc := natCount_ne_zero (p - 1)
-    rw [← hn] at hc
-    rw [natCount_congr _ _ p e]
-    exact hc
-  | isFalse h =>
-    rw [ite_eq_right h]
-    apply natCount_eq_zero
-    intro x hx hP
-    apply h
-    apply F.mod_eq_zero_of_pow_eq_one
-    have hx0 : (ofNat x : Shell p) ≠ 0 := fun h0 => by
-      have := val_injective h0
-      rw [val_ofNat, val_zero, FRC.Nat.mod_eq_of_lt hx] at this
-      exact hP.1 this
-    apply F.mul_left_cancel hx0
-    rw [mul_comm, hP.2, mul_one]
 
 end frame
 
@@ -247,7 +179,7 @@ of `σ = ρ ∘ φ`; every `2⁻¹ + bη` lies on it, one point per residue `b` 
 theorem critical_line (F : Frame p κ g) (z : Ext p ν) :
     (trace z = 1 ↔ z.re = ofNat (2 * κ + 1)) ∧ (sigma z = z ↔ z.re = ofNat (2 * κ + 1)) ∧
     ∀ b : Shell p, trace (⟨ofNat (2 * κ + 1), b⟩ : Ext p ν) = 1 := by
-  have hinv := (half_inverse F).1
+  have hinv := (FRC.Horizon.half_inverse F).1
   have key : z.re + z.re = 1 ↔ z.re = ofNat (2 * κ + 1) := by
     constructor
     · intro h
@@ -295,40 +227,11 @@ theorem fixed_half_turn (F : Frame p κ g) (z : Ext p ν) :
   exact ⟨⟨fun h => ⟨hc.2 (hr.1 h).1, hs.2 (hr.1 h).2⟩, fun h => hr.2 ⟨hc.1 h.1, hs.1 h.2⟩⟩,
     hr.trans ⟨fun h => Ext.ext h.2 h.1, fun h => ⟨im_congr h, re_congr h⟩⟩⟩
 
-/-- 20:E12, 20:B8 — the spectral readout in the core: the mode index `θ` is read at `z(θ) = 2⁻¹ + θη`,
-`2⁻¹ = 2κ + 1`. -/
-def readout (ν : Shell p) (κ : Nat) (θ : Shell p) : Ext p ν := ⟨ofNat (2 * κ + 1), θ⟩
-
-/-- 20:E12, 20:B8 — clause (ii) of the shell theorem, no axioms: every readout lies on the trace-one line, its
-real part is the half-turn `2⁻¹ = 2κ + 1`, and `θ ↦ z(θ)` is injective. -/
-theorem readout_on_line (F : Frame p κ g) (ν θ : Shell p) :
-    trace (readout ν κ θ) = 1 ∧ (readout ν κ θ).re = ofNat (2 * κ + 1) ∧
-    ∀ θ' : Shell p, readout ν κ θ = readout ν κ θ' → θ = θ' := by
-  refine ⟨(critical_line F (readout ν κ θ)).2.2 θ, rfl, fun θ' h => im_congr h⟩
-
-/-- 20:E12 — the slot index of a nontrivial slot: for `1 ≤ k ≤ p − 2` the index `θ = Φ(k) = −g^k` is neither
-`0` (the centre `2⁻¹`) nor `−1` (the full-cycle exponent), on every shell and with no axioms. -/
-theorem readout_slot_index (F : Frame p κ g) (k : Nat) (hk1 : 1 ≤ k) (hk2 : k ≤ p - 2) :
-    -(g ^ k) ≠ 0 ∧ -(g ^ k) ≠ -1 := by
-  refine ⟨fun h => F.pow_ne_zero k ?_, fun h => ?_⟩
-  · calc g ^ k = - -(g ^ k) := (neg_neg _).symm
-      _ = -0 := by rw [h]
-      _ = 0 := neg_zero
-  · have h1 : g ^ k = 1 := by
-      calc g ^ k = - -(g ^ k) := (neg_neg _).symm
-        _ = - -1 := by rw [h]
-        _ = 1 := neg_neg 1
-    have hmod := F.mod_eq_zero_of_pow_eq_one h1
-    have hlt : k < p - 1 :=
-      Nat.lt_of_le_of_lt hk2 (Nat.pred_lt (Nat.ne_of_gt F.n_pos))
-    rw [FRC.Nat.mod_eq_of_lt hlt] at hmod
-    exact Nat.not_succ_le_zero 0 (by rw [hmod] at hk1; exact hk1)
-
 /-- 20:B8 — the energy on the critical line: `N(2⁻¹ + bη) = (2⁻¹)² − νb²`, with `2 · 2⁻¹ = 1`. -/
 theorem norm_on_line (F : Frame p κ g) (z : Ext p ν) (hz : z.re = ofNat (2 * κ + 1)) :
     norm z = ofNat (2 * κ + 1) * ofNat (2 * κ + 1) + -(ν * (z.im * z.im)) ∧
     (2 : Shell p) * ofNat (2 * κ + 1) = 1 := by
-  refine ⟨?_, (half_inverse F).1⟩
+  refine ⟨?_, (FRC.Horizon.half_inverse F).1⟩
   show z.re * z.re + -(ν * (z.im * z.im)) = _
   rw [hz]
 
@@ -452,6 +355,28 @@ theorem sum_units_eq_sum_pow (F : Frame p κ g) (f : Shell p → Shell p) :
     sumRange (fun l => f (ofNat (l + 1))) (p - 1) = sumRange (fun m => f (g ^ m)) (p - 1) :=
   FRC.Shell.Frame.sum_units_eq_sum_pow F f
 
+/-- 20:B4 — the zero-slot (20-rh's name; the theorem is `FRC.Horizon.zero_slot`, LM26). -/
+theorem zero_slot (F : Frame p κ g) :
+    (∀ k, 0 < k → k < p - 1 → sumRange (fun l => (ofNat (l + 1) : Shell p) ^ k) (p - 1) = 0) ∧
+    sumRange (fun l => (ofNat (l + 1) : Shell p) ^ (p - 1)) (p - 1) = -1 :=
+  FRC.Horizon.zero_slot F
+
+/-- 20:B8 — `2⁻¹ = 2κ + 1 = −π` (20-rh's name; the theorem is `FRC.Horizon.half_inverse`, LM26). -/
+theorem half_inverse (F : Frame p κ g) :
+    (2 : Shell p) * ofNat (2 * κ + 1) = 1 ∧ (ofNat (2 * κ + 1) : Shell p) = -(ofNat (2 * κ)) :=
+  FRC.Horizon.half_inverse F
+
+/-- 20:E1, 20:E12 — the power characters under the scale-shift (20-rh's name; the theorem is
+`FRC.Horizon.shift_power_character`, LM26). -/
+theorem shift_power_character (r k : Nat) (x : Shell p) : (g ^ r * x) ^ k = (g ^ r) ^ k * x ^ k :=
+  FRC.Horizon.shift_power_character r k x
+
+/-- 20:E12, 20:E1 — the fixed-point count of the scale-shift (20-rh's name; the theorem is `FRC.Horizon.shift_trace`,
+LM26). -/
+theorem shift_trace (F : Frame p κ g) (r : Nat) :
+    natCount (fun x => x ≠ 0 ∧ g ^ r * ofNat x = ofNat x) p = if r % (p - 1) = 0 then p - 1 else 0 :=
+  FRC.Horizon.shift_trace F r
+
 /-- 20-rh's quadratic extension: `FRC.Extension.Ext p ν`, its `ν` now a parameter of the type. -/
 @[reducible] def Ext (p : Nat) [Pos p] (ν : Shell p) : Type := FRC.Extension.Ext p ν
 
@@ -502,6 +427,20 @@ theorem fixed_conj (F : Frame p κ g) (z : Ext p ν) : conj z = z ↔ z.im = 0 :
 /-- 20-rh's unit, `1`. -/
 @[reducible] def one : Ext p ν := 1
 
+/-- 20:E12, 20:B8 — the spectral readout (20-rh's name; the definition is `FRC.Horizon.readout`, LM26). -/
+@[reducible] def readout (ν : Shell p) (κ : Nat) (θ : Shell p) : Ext p ν := FRC.Horizon.readout ν κ θ
+
+/-- 20:E12 (ii) — every readout on the trace-one line (20-rh's name; the theorem is `FRC.Horizon.readout_on_line`, LM26). -/
+theorem readout_on_line {κ : Nat} {g : Shell p} (F : Frame p κ g) (ν θ : Shell p) :
+    trace (readout ν κ θ) = 1 ∧ (readout ν κ θ).re = ofNat (2 * κ + 1) ∧
+    ∀ θ' : Shell p, readout ν κ θ = readout ν κ θ' → θ = θ' :=
+  FRC.Horizon.readout_on_line F ν θ
+
+/-- 20:E12 — the slot index of a nontrivial slot (20-rh's name; the theorem is `FRC.Horizon.readout_slot_index`, LM26). -/
+theorem readout_slot_index {κ : Nat} {g : Shell p} (F : Frame p κ g) (k : Nat) (hk1 : 1 ≤ k) (hk2 : k ≤ p - 2) :
+    -(g ^ k) ≠ 0 ∧ -(g ^ k) ≠ -1 :=
+  FRC.Horizon.readout_slot_index F k hk1 hk2
+
 end Ext
 
 /-- Bounded universal quantifiers, decided by search (no axioms). -/
@@ -522,7 +461,7 @@ set_option linter.defProp false in
 def p20009 := And.intro @FRC.Rh.window_readback (And.intro @FRC.Rh.factorisation_iff (@FRC.Rh.frame_coincidence))
 /-- 20:B4 (p20011) — Zero-slot: $Z_\Omega(k)=\sum_{x\in\Fx{\Omega}}x^{k}$ vanishes on every nonterminal exponent $1\le k\le\Omega-2$ and equals $-1$ on the full cycle; the nonterminal slots are the universal mode basis. -/
 theorem p20011 : ∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → (∀ (k : Nat), (0 : Nat) < k → k < p - (1 : Nat) → FRC.Shell.sumRange (fun l => FRC.Shell.ofNat (l + (1 : Nat)) ^ k) (p - (1 : Nat)) = (0 : FRC.Shell p)) ∧ FRC.Shell.sumRange (fun l => FRC.Shell.ofNat (l + (1 : Nat)) ^ (p - (1 : Nat))) (p - (1 : Nat)) = (-1 : FRC.Shell p) :=
-  @FRC.Rh.zero_slot
+  @FRC.Ledger.p20011
 /-- 20:B5 (p20012) — Slot complementarity: $\Phi(k)=-\gen^{\,k}$ bijects the nontrivial spectral slots onto the nonterminal additive slots $\Fx{\Omega}\setminus\{-1\}$, the two removed points being $\mu_2$, the intertwiner the half-cycle element. -/
 theorem p20012 : ∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → (∀ (i j : Nat), i < p - (1 : Nat) → j < p - (1 : Nat) → -g ^ i = -g ^ j → i = j) ∧ (∀ (k : Nat), (0 : Nat) < k → k < p - (1 : Nat) → -g ^ k ≠ (0 : FRC.Shell p) ∧ -g ^ k ≠ (-1 : FRC.Shell p)) ∧ ∀ (y : FRC.Shell p), y ≠ (0 : FRC.Shell p) → y ≠ (-1 : FRC.Shell p) → ∃ k, (0 : Nat) < k ∧ k < p - (1 : Nat) ∧ -g ^ k = y :=
   @FRC.Rh.slot_complementarity
@@ -543,10 +482,10 @@ theorem p20017 : (∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Sh
   And.intro @FRC.Rh.subject_constants (And.intro @FRC.Rh.constants13 (@FRC.Shell.frame13))
 /-- 20:E1 (p20032) — The scale-evolution generator: on the shell the scale-shift $x\mapsto\gen^{\,r}x$ is a unitary permutation of $\Fx{p}$ with the complex characters as eigenvectors; in the analytic chart [chart] the dilation group $U_r=e^{ir\Hh}$ has the self-adjoint generator $\Hh=-i(x\partial_x+\half)$ with generalised eigenfunctions $x^{-\bar\rho}$, $\rho=\half+i\gamma$, the symmetrizing $\half$ the half-turn of B8; the chart assignment is used nowhere as a shell identity. -/
 theorem p20032 : (∀ {p : Nat} [FRC.Pos p] {g : FRC.Shell p} (r k : Nat) (x : FRC.Shell p), (g ^ r * x) ^ k = (g ^ r) ^ k * x ^ k) ∧ ∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → ∀ (r : Nat), FRC.Shell.Frame.natCount (fun x => x ≠ (0 : Nat) ∧ g ^ r * FRC.Shell.ofNat x = FRC.Shell.ofNat x) p = if r % (p - (1 : Nat)) = (0 : Nat) then p - (1 : Nat) else (0 : Nat) :=
-  And.intro @FRC.Rh.shift_power_character (@FRC.Rh.shift_trace)
+  @FRC.Ledger.p20032
 /-- 20:E12 (p20043) — \textbf{The shell theorem.} On every shell, with no hypothesis: (i) $v$ expands in the constant mode and the nonterminal modes of the quarter-turn meridian; (ii) every readout lies on $\Tr=1$, real part $2^{-1}=2\kp+1=-\pi$; (iii) the scale-shift has the modes as eigenvectors, eigenphases $2\pi j/(p-1)$ independent of $v$. No off-line mode; true of every vector, the Davenport--Heilbronn vector included. -/
-theorem p20043 : (∀ {p : Nat} [FRC.Pos p] {g : FRC.Shell p} (r k : Nat) (x : FRC.Shell p), (g ^ r * x) ^ k = (g ^ r) ^ k * x ^ k) ∧ (∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → ∀ (r : Nat), FRC.Shell.Frame.natCount (fun x => x ≠ (0 : Nat) ∧ g ^ r * FRC.Shell.ofNat x = FRC.Shell.ofNat x) p = if r % (p - (1 : Nat)) = (0 : Nat) then p - (1 : Nat) else (0 : Nat)) ∧ (∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → ∀ (ν θ : FRC.Shell p), (FRC.Rh.Ext.readout ν κ θ).trace = (1 : FRC.Shell p) ∧ (FRC.Rh.Ext.readout ν κ θ).re = FRC.Shell.ofNat ((2 : Nat) * κ + (1 : Nat)) ∧ ∀ (θ' : FRC.Shell p), FRC.Rh.Ext.readout ν κ θ = FRC.Rh.Ext.readout ν κ θ' → θ = θ') ∧ ∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → ∀ (k : Nat), (1 : Nat) ≤ k → k ≤ p - (2 : Nat) → -g ^ k ≠ (0 : FRC.Shell p) ∧ -g ^ k ≠ (-1 : FRC.Shell p) :=
-  And.intro @FRC.Rh.shift_power_character (And.intro @FRC.Rh.shift_trace (And.intro @FRC.Rh.Ext.readout_on_line (@FRC.Rh.Ext.readout_slot_index)))
+theorem p20043 : (∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → (∀ (k : Nat), (0 : Nat) < k → k < p - (1 : Nat) → FRC.Shell.sumRange (fun l => FRC.Shell.ofNat (l + (1 : Nat)) ^ k) (p - (1 : Nat)) = (0 : FRC.Shell p)) ∧ FRC.Shell.sumRange (fun l => FRC.Shell.ofNat (l + (1 : Nat)) ^ (p - (1 : Nat))) (p - (1 : Nat)) = (-1 : FRC.Shell p)) ∧ (∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → ∀ (v : Nat → FRC.Shell p) {j : Nat}, j < p - (1 : Nat) → v j = FRC.Shell.sumRange (fun k => FRC.Horizon.modeCoeff g v k * (g ^ j) ^ k) (p - (1 : Nat))) ∧ (∀ {p : Nat} [FRC.Pos p] {g : FRC.Shell p} (r k : Nat) (x : FRC.Shell p), (g ^ r * x) ^ k = (g ^ r) ^ k * x ^ k) ∧ (∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → ∀ (r k : Nat), ((g ^ r) ^ k) ^ (p - (1 : Nat)) = (1 : FRC.Shell p)) ∧ (∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → ∀ (r : Nat), FRC.Shell.Frame.natCount (fun x => x ≠ (0 : Nat) ∧ g ^ r * FRC.Shell.ofNat x = FRC.Shell.ofNat x) p = if r % (p - (1 : Nat)) = (0 : Nat) then p - (1 : Nat) else (0 : Nat)) ∧ (∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → ∀ (ν θ : FRC.Shell p), (FRC.Horizon.readout ν κ θ).trace = (1 : FRC.Shell p) ∧ (FRC.Horizon.readout ν κ θ).re = FRC.Shell.ofNat ((2 : Nat) * κ + (1 : Nat)) ∧ ∀ (θ' : FRC.Shell p), FRC.Horizon.readout ν κ θ = FRC.Horizon.readout ν κ θ' → θ = θ') ∧ ∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → ∀ (k : Nat), (1 : Nat) ≤ k → k ≤ p - (2 : Nat) → -g ^ k ≠ (0 : FRC.Shell p) ∧ -g ^ k ≠ (-1 : FRC.Shell p) :=
+  @FRC.Ledger.p20043
 -- end ledger predicates
 
 end FRC.Rh

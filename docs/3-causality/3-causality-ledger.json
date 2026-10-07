@@ -2,7 +2,7 @@
  "paper": "3-caus",
  "title": "Euclidean–Lorentzian Dichotomy and Algebraic Causality in Finite Ring Continuum",
  "doi": "https://doi.org/10.3390/e27111098",
- "generated": "5 October 2026",
+ "generated": "7 October 2026",
  "blocks": [
   {
    "letter": "A",
@@ -263,7 +263,7 @@
    {
     "name": "FRC.Shell.Frame.no_causal_root",
     "module": "FrcCore/Theme/Extension",
-    "line": 433,
+    "line": 143,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -272,7 +272,7 @@
    {
     "name": "FRC.Shell.Frame.neg_sq_is_square",
     "module": "FrcCore/Theme/Extension",
-    "line": 439,
+    "line": 149,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -295,7 +295,7 @@
    {
     "name": "FRC.Shell.Frame.absorb",
     "module": "FrcCore/Theme/Extension",
-    "line": 448,
+    "line": 158,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -306,7 +306,7 @@
    {
     "name": "FRC.Shell.Frame.null13",
     "module": "FrcCore/Theme/Extension",
-    "line": 628,
+    "line": 338,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -315,7 +315,7 @@
    {
     "name": "FRC.Shell.Frame.euclid13",
     "module": "FrcCore/Theme/Extension",
-    "line": 630,
+    "line": 340,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -324,7 +324,7 @@
    {
     "name": "FRC.Shell.Frame.null5",
     "module": "FrcCore/Theme/Extension",
-    "line": 632,
+    "line": 342,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -333,7 +333,7 @@
    {
     "name": "FRC.Shell.Frame.null17",
     "module": "FrcCore/Theme/Extension",
-    "line": 634,
+    "line": 344,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -357,7 +357,7 @@
    {
     "name": "FRC.Shell.Frame.aniso_tx",
     "module": "FrcCore/Theme/Extension",
-    "line": 463,
+    "line": 173,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -366,7 +366,7 @@
    {
     "name": "FRC.Shell.Frame.null_yz",
     "module": "FrcCore/Theme/Extension",
-    "line": 482,
+    "line": 192,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -375,7 +375,7 @@
    {
     "name": "FRC.Shell.Frame.null_tx_of_square",
     "module": "FrcCore/Theme/Extension",
-    "line": 487,
+    "line": 197,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -424,7 +424,7 @@
    {
     "name": "FRC.Shell.Frame.boost_preserves",
     "module": "FrcCore/Theme/Extension",
-    "line": 521,
+    "line": 231,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -433,7 +433,7 @@
    {
     "name": "FRC.Shell.Frame.boost_comp_t",
     "module": "FrcCore/Theme/Extension",
-    "line": 530,
+    "line": 240,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -442,7 +442,7 @@
    {
     "name": "FRC.Shell.Frame.boost_comp_x",
     "module": "FrcCore/Theme/Extension",
-    "line": 539,
+    "line": 249,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -451,7 +451,7 @@
    {
     "name": "FRC.Shell.Frame.norm_one_mul",
     "module": "FrcCore/Theme/Extension",
-    "line": 549,
+    "line": 259,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -460,7 +460,7 @@
    {
     "name": "FRC.Shell.Frame.normOne_values",
     "module": "FrcCore/Theme/Extension",
-    "line": 636,
+    "line": 346,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -509,7 +509,7 @@
    {
     "name": "FRC.Shell.Frame.gamma_ne_zero",
     "module": "FrcCore/Theme/Extension",
-    "line": 559,
+    "line": 269,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -518,7 +518,7 @@
    {
     "name": "FRC.Shell.Frame.gamma_velocity",
     "module": "FrcCore/Theme/Extension",
-    "line": 577,
+    "line": 287,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -527,7 +527,7 @@
    {
     "name": "FRC.Shell.Frame.velocity_addition",
     "module": "FrcCore/Theme/Extension",
-    "line": 588,
+    "line": 298,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -538,7 +538,7 @@
    {
     "name": "FRC.Shell.Frame.null13",
     "module": "FrcCore/Theme/Extension",
-    "line": 628,
+    "line": 338,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -547,7 +547,7 @@
    {
     "name": "FRC.Shell.Frame.normOne_values",
     "module": "FrcCore/Theme/Extension",
-    "line": 636,
+    "line": 346,
     "axioms": [],
     "tier": 0,
     "ok": true,
