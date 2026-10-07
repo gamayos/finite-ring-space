@@ -497,9 +497,6 @@
   }
  ],
  "master": {
-  "E12": [
-   "Z10"
-  ],
   "F1": [
    "Z11"
   ],
@@ -508,6 +505,9 @@
   ],
   "B1": [
    "C16"
+  ],
+  "E12": [
+   "Z10"
   ]
  },
  "lean": {
@@ -515,19 +515,19 @@
    {
     "name": "FRC.Rh.lab_pair",
     "module": "FrcLedger/Rh",
-    "line": 735,
+    "line": 268,
     "axioms": [
      "Quot.sound",
      "propext"
     ],
     "tier": 1,
     "ok": true,
-    "doc": "20:B1 [value] — the laboratory pair `(13, 233)`: nested, `13² < 233`; the two cycles share the quarter-turn core `Q₄` and nothing else, `gcd(12, 232) = 4`, with `5² = −1` on `𝔽₁₃` and `89² = −1` on `𝔽₂₃₃`; and `12 ∤ 232`."
+    "doc": "20:B1 [value] — 20-rh's name; the theorem is `FRC.HorizonML.lab_pair` (task LM36)."
    },
    {
     "name": "FRC.Rh.no_cycle_projection",
     "module": "FrcLedger/Rh",
-    "line": 741,
+    "line": 273,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -535,47 +535,47 @@
     ],
     "tier": 2,
     "ok": true,
-    "doc": "20:B1 — no projection of the Carrier's cycle onto the Subject's: there is no surjective homomorphism `C_{232} → C_{12}`, since `12 ∤ 232`."
+    "doc": "20:B1 — 20-rh's name; the theorem is `FRC.HorizonML.no_cycle_projection` (task LM36)."
    },
    {
     "name": "FRC.Rh.lab_pair",
     "module": "FrcCore/Rh",
-    "line": 324,
+    "line": 183,
     "axioms": [],
     "tier": 0,
     "ok": true,
-    "doc": "20:B1 [value] — the pair `(13, 233)`: nested, `13² < 233`; both cycles carry the quarter-turn core (`4 ∣ 12`, `4 ∣ 232`; `5² = −1` on `𝔽₁₃`, `89² = −1` on `𝔽₂₃₃`) and share nothing else (`3 ∤ 232`, so `gcd(12, 232) = 4`); the Carrier's cycle does not project onto the Subject's (`12 ∤ 232`); the horizon window `H = 3` is wrap-free on both (`9 < 13`, `9 < 233`)."
+    "doc": "20:B1 [value] — the laboratory pair (20-rh's name; the theorem is `FRC.Horizon.lab_pair`, LM36)."
    }
   ],
   "B2": [
    {
     "name": "FRC.Rh.window_readback",
     "module": "FrcLedger/Rh",
-    "line": 672,
+    "line": 248,
     "axioms": [
      "Quot.sound",
      "propext"
     ],
     "tier": 1,
     "ok": true,
-    "doc": "20:B2 — below the horizon the reading is frame-exact: on any shell `ZMod q` with `H² < q`, residues `n ≤ H` are the integers themselves and window products read back exactly, so the Subject `𝔽_p` and the Carrier `𝔽_Ω` agree on the window."
+    "doc": "20:B2 — 20-rh's name; the theorem is `FRC.HorizonML.window_readback` (task LM36)."
    },
    {
     "name": "FRC.Rh.prime_iff_window_irreducible",
     "module": "FrcLedger/Rh",
-    "line": 685,
+    "line": 254,
     "axioms": [
      "Quot.sound",
      "propext"
     ],
     "tier": 1,
     "ok": true,
-    "doc": "20:B2 — primality equals irreducibility in the window: for `2 ≤ m ≤ H` and any shell with `H² < q`, `m` is prime iff it admits no factorisation `a · b = m` with `2 ≤ a, b ≤ H` read on the shell."
+    "doc": "20:B2 — 20-rh's name; the theorem is `FRC.HorizonML.prime_iff_window_irreducible` (task LM36)."
    },
    {
     "name": "FRC.Rh.sqrt_sq_lt_prime",
     "module": "FrcLedger/Rh",
-    "line": 715,
+    "line": 260,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -583,41 +583,41 @@
     ],
     "tier": 2,
     "ok": true,
-    "doc": "20:B2 — `⌊√p⌋² < p` for a prime `p`: the horizon window `H = ⌊√p⌋` is wrap-free."
+    "doc": "20:B2 — 20-rh's name; the theorem is `FRC.HorizonML.sqrt_sq_lt_prime` (task LM36)."
    },
    {
     "name": "FRC.Rh.window_readback",
     "module": "FrcCore/Rh",
-    "line": 274,
+    "line": 164,
     "axioms": [],
     "tier": 0,
     "ok": true,
-    "doc": "20:B2 — below the horizon the reading is frame-exact: on any shell with `H² < p`, a residue `m ≤ H` is the integer `m`, and the product of two window residues reads back as the integer product."
+    "doc": "20:B2 — the window reads back (20-rh's name; the theorem is `FRC.Horizon.window_readback`, LM36)."
    },
    {
     "name": "FRC.Rh.factorisation_iff",
     "module": "FrcCore/Rh",
-    "line": 285,
+    "line": 171,
     "axioms": [],
     "tier": 0,
     "ok": true,
-    "doc": "20:B2 — primality equals irreducibility in the window: for `m ≤ H` on a shell with `H² < p`, `m` factors as `a · b` with `2 ≤ a, b ≤ H` read on the shell exactly when it factors so as an integer. The statement is the same on every shell above the window — the Subject `𝔽_p` and the Carrier `𝔽_Ω` read the same primes."
+    "doc": "20:B2 — primality equals irreducibility in the window (20-rh's name; the theorem is `FRC.Horizon.factorisation_iff`, LM36)."
    },
    {
     "name": "FRC.Rh.frame_coincidence",
     "module": "FrcCore/Rh",
-    "line": 311,
+    "line": 177,
     "axioms": [],
     "tier": 0,
     "ok": true,
-    "doc": "20:B2 — frame coincidence: on the Subject `𝔽_p` and the Carrier `𝔽_Ω`, both above the window `H² < p`, `H² < Ω`, a window residue factors on one shell exactly when it factors on the other."
+    "doc": "20:B2 — frame coincidence (20-rh's name; the theorem is `FRC.Horizon.frame_coincidence`, LM36)."
    }
   ],
   "B4": [
    {
     "name": "FRC.Rh.zero_slot",
     "module": "FrcLedger/Rh",
-    "line": 38,
+    "line": 35,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -625,12 +625,12 @@
     ],
     "tier": 2,
     "ok": true,
-    "doc": "20:B4 — zero-slot, every shell: `Σ_{x ∈ F^×} x^k = 0` on every nonterminal exponent `1 ≤ k ≤ p − 2`, and `= −1` on the full cycle `k = p − 1`."
+    "doc": "20:B4 — 20-rh's name; the theorem is `FRC.HorizonML.zero_slot` (task LM36)."
    },
    {
     "name": "FRC.Rh.zero_slot",
     "module": "FrcCore/Rh",
-    "line": 359,
+    "line": 93,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -641,7 +641,7 @@
    {
     "name": "FRC.Rh.slot_complementarity",
     "module": "FrcLedger/Rh",
-    "line": 51,
+    "line": 42,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -649,23 +649,23 @@
     ],
     "tier": 2,
     "ok": true,
-    "doc": "20:B5 — slot complementarity, every shell: `Φ(k) = −g^k` is injective on the nontrivial spectral slots `1 ≤ k ≤ p − 2` and maps them onto the nonterminal additive slots `F^× ∖ {−1}`."
+    "doc": "20:B5 — 20-rh's name; the theorem is `FRC.HorizonML.slot_complementarity` (task LM36)."
    },
    {
     "name": "FRC.Rh.slot_complementarity",
     "module": "FrcCore/Rh",
-    "line": 58,
+    "line": 118,
     "axioms": [],
     "tier": 0,
     "ok": true,
-    "doc": "20:B5 — slot complementarity on every shell: `Φ(k) = −g^k` is injective on the nontrivial spectral slots `0 < k < p − 1`, its values avoid `0` and `−1`, and every residue off `{0, −1}` is `Φ(k)` for one such `k`."
+    "doc": "20:B5 — slot complementarity (20-rh's name; the theorem is `FRC.Horizon.slot_complementarity`, LM36)."
    }
   ],
   "B6": [
    {
     "name": "FRC.Rh.phase_circle",
     "module": "FrcLedger/Rh",
-    "line": 414,
+    "line": 158,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -673,12 +673,12 @@
     ],
     "tier": 2,
     "ok": true,
-    "doc": "20:B6 — the phase circle `U_{p+1} = {z : N(z) = 1}` has exactly `p + 1` elements, and Frobenius is inversion on it: `z̄ = z⁻¹` for `N(z) = 1`."
+    "doc": "20:B6 — 20-rh's name; the theorem is `FRC.HorizonML.phase_circle` (task LM36)."
    },
    {
     "name": "FRC.Rh.frobenius_eq_star",
     "module": "FrcLedger/Rh",
-    "line": 379,
+    "line": 147,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -686,12 +686,12 @@
     ],
     "tier": 2,
     "ok": true,
-    "doc": "20:B6 — Frobenius on the extension is conjugation: `z^p = z̄` for every `z ∈ F(η)`."
+    "doc": "20:B6 — 20-rh's name; the theorem is `FRC.HorizonML.frobenius_eq_star` (task LM36)."
    },
    {
     "name": "FRC.Rh.norm_eq_pow",
     "module": "FrcLedger/Rh",
-    "line": 408,
+    "line": 153,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -699,12 +699,12 @@
     ],
     "tier": 2,
     "ok": true,
-    "doc": "20:B6 — the norm is the `(p+1)`-st power: `z^{p+1} = z z̄ = N(z)` in the extension."
+    "doc": "20:B6 — 20-rh's name; the theorem is `FRC.HorizonML.norm_eq_pow` (task LM36)."
    },
    {
     "name": "FRC.Rh.quarter_turn_off_circle",
     "module": "FrcLedger/Rh",
-    "line": 454,
+    "line": 166,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -712,12 +712,12 @@
     ],
     "tier": 2,
     "ok": true,
-    "doc": "20:B6 — the quarter-turn `i ∈ F` (`i² = −1`) is Frobenius-fixed and off the circle: `N(i) = −1 ≠ 1`."
+    "doc": "20:B6 — 20-rh's name; the theorem is `FRC.HorizonML.quarter_turn_off_circle` (task LM36)."
    },
    {
     "name": "FRC.Rh.Ext.mul_conj",
     "module": "FrcCore/Rh",
-    "line": 413,
+    "line": 221,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -726,7 +726,7 @@
    {
     "name": "FRC.Rh.Ext.conj_inv_of_norm_one",
     "module": "FrcCore/Rh",
-    "line": 417,
+    "line": 225,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -735,27 +735,27 @@
    {
     "name": "FRC.Rh.Ext.quarter_turn_off_circle",
     "module": "FrcCore/Rh",
-    "line": 240,
+    "line": 265,
     "axioms": [],
     "tier": 0,
     "ok": true,
-    "doc": "20:B6 — the quarter-turn `i = −g^κ`, as the element `i + 0η`, is fixed by conjugation and lies off the circle: `N(i) = i² = −1 ≠ 1`."
+    "doc": "20:B6 — the quarter-turn off the circle (20-rh's name; the theorem is `FRC.Horizon.quarter_turn_off_circle`, LM36)."
    },
    {
     "name": "FRC.Rh.Ext.circle13",
     "module": "FrcCore/Rh",
-    "line": 254,
+    "line": 272,
     "axioms": [],
     "tier": 0,
     "ok": true,
-    "doc": "20:B6 [value] — on `𝔽₁₃(√2)` (`2` a nonsquare mod `13`): the norm-one circle has `13 + 1 = 14` points among the `169` elements, and Frobenius `z ↦ z^{13}` is conjugation on every element."
+    "doc": "20:B6 [value] — the circle of `𝔽₁₃(√2)` (20-rh's name; the theorem is `FRC.Horizon.circle13`, LM36)."
    }
   ],
   "B7": [
    {
     "name": "FRC.Rh.ramanujan_sum",
     "module": "FrcLedger/Rh",
-    "line": 91,
+    "line": 54,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -763,32 +763,32 @@
     ],
     "tier": 2,
     "ok": true,
-    "doc": "20:B7 — the flat ground state, in any integral domain with a primitive `p`-th root of unity `ω` (the cyclotomic ledger, `𝔽_q` with `q ≡ 1 (mod p)`, or `ℂ`): the full-modulus Ramanujan sum `c_p(n) = Σ_{a=1}^{p−1} ω^{an}` equals `−1` for every `n ≢ 0 (mod p)`, and `p − 1` at the origin; the mode at the spectral origin carries no prime information."
+    "doc": "20:B7 — 20-rh's name; the theorem is `FRC.HorizonML.ramanujan_sum` (task LM36)."
    },
    {
     "name": "FRC.Rh.ramanujan_sum",
     "module": "FrcCore/Rh",
-    "line": 124,
+    "line": 148,
     "axioms": [],
     "tier": 0,
     "ok": true,
-    "doc": "20:B7 — the flat ground state: in a shell `𝔽_q` with a frame (no zero divisors) and an element `ω` of order exactly `m`, the Ramanujan sum `Σ_{a=1}^{m−1} ω^{an}` equals `−1` for every `n ≢ 0 (mod m)`. With `m = p` this is `c_p(n) ≡ −1`: the mode at the spectral origin carries no prime information."
+    "doc": "20:B7 — the Ramanujan sum (20-rh's name; the theorem is `FRC.Horizon.ramanujan_sum`, LM36)."
    },
    {
     "name": "FRC.Rh.ramanujan53",
     "module": "FrcCore/Rh",
-    "line": 146,
+    "line": 154,
     "axioms": [],
     "tier": 0,
     "ok": true,
-    "doc": "20:B7 [value] — on `𝔽₅₃` with `ω = 16` of order `13`: `c_{13}(n) = Σ_{a=1}^{12} ω^{an} = −1` for every `0 < n < 13`, and `12 = m − 1` at `n = 0`."
+    "doc": "20:B7 [value] — the Ramanujan sums of `𝔽₅₃` (20-rh's name; the theorem is `FRC.Horizon.ramanujan53`, LM36)."
    }
   ],
   "B8": [
    {
     "name": "FRC.Rh.half_turn",
     "module": "FrcLedger/Rh",
-    "line": 137,
+    "line": 66,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -796,12 +796,12 @@
     ],
     "tier": 2,
     "ok": true,
-    "doc": "20:B8, 20:B10 — the half-turn arithmetic on every shell of `4κ + 1` elements: `2π ≡ −1` with `π = 2κ`, and `2⁻¹ = 2κ + 1 = −π`."
+    "doc": "20:B8, 20:B10 — 20-rh's name; the theorem is `FRC.HorizonML.half_turn` (task LM36)."
    },
    {
     "name": "FRC.Rh.trace_eq_one_iff",
     "module": "FrcLedger/Rh",
-    "line": 235,
+    "line": 102,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -809,12 +809,12 @@
     ],
     "tier": 2,
     "ok": true,
-    "doc": "20:B8, 20:B9 — the finite critical line: `Tr z = 1` exactly when `Re z = 2⁻¹`; this locus is the fixed locus of `σ = ρ ∘ φ : z ↦ 1 − z̄`."
+    "doc": "20:B8, 20:B9 — 20-rh's name; the theorem is `FRC.HorizonML.trace_eq_one_iff` (task LM36)."
    },
    {
     "name": "FRC.Rh.card_critical_line",
     "module": "FrcLedger/Rh",
-    "line": 311,
+    "line": 125,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -822,12 +822,12 @@
     ],
     "tier": 2,
     "ok": true,
-    "doc": "20:B8 — the critical line carries exactly `p` points: `z = 2⁻¹ + bη`, one for each `b ∈ F`."
+    "doc": "20:B8 — 20-rh's name; the theorem is `FRC.HorizonML.card_critical_line` (task LM36)."
    },
    {
     "name": "FRC.Rh.norm_on_line",
     "module": "FrcLedger/Rh",
-    "line": 284,
+    "line": 112,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -835,12 +835,12 @@
     ],
     "tier": 2,
     "ok": true,
-    "doc": "20:B8 — on the critical line the energy is `N(z) = ¼ − νb²`."
+    "doc": "20:B8 — 20-rh's name; the theorem is `FRC.HorizonML.norm_on_line` (task LM36)."
    },
    {
     "name": "FRC.Rh.half_inverse",
     "module": "FrcCore/Rh",
-    "line": 365,
+    "line": 99,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -849,27 +849,27 @@
    {
     "name": "FRC.Rh.Ext.critical_line",
     "module": "FrcCore/Rh",
-    "line": 179,
+    "line": 245,
     "axioms": [],
     "tier": 0,
     "ok": true,
-    "doc": "20:B8, 20:B9 — the finite critical line: `Tr z = 1` exactly when `Re z = 2⁻¹ = 2κ + 1`; it is the fixed locus of `σ = ρ ∘ φ`; every `2⁻¹ + bη` lies on it, one point per residue `b` — `p` points."
+    "doc": "20:B8, 20:B9 — the finite critical line (20-rh's name; the theorem is `FRC.Horizon.critical_line`, LM36)."
    },
    {
     "name": "FRC.Rh.Ext.norm_on_line",
     "module": "FrcCore/Rh",
-    "line": 231,
+    "line": 258,
     "axioms": [],
     "tier": 0,
     "ok": true,
-    "doc": "20:B8 — the energy on the critical line: `N(2⁻¹ + bη) = (2⁻¹)² − νb²`, with `2 · 2⁻¹ = 1`."
+    "doc": "20:B8 — the energy on the critical line (20-rh's name; the theorem is `FRC.Horizon.norm_on_line`, LM36)."
    }
   ],
   "B9": [
    {
     "name": "FRC.Rh.klein_four",
     "module": "FrcLedger/Rh",
-    "line": 216,
+    "line": 93,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -877,12 +877,12 @@
     ],
     "tier": 2,
     "ok": true,
-    "doc": "20:B9 — Frobenius `φ = star` and the functional-equation half-turn `ρ : z ↦ 1 − z` generate a Klein four-group: both are involutions and they commute."
+    "doc": "20:B9 — 20-rh's name; the theorem is `FRC.HorizonML.klein_four` (task LM36)."
    },
    {
     "name": "FRC.Rh.fixed_frobenius",
     "module": "FrcLedger/Rh",
-    "line": 222,
+    "line": 98,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -890,12 +890,12 @@
     ],
     "tier": 2,
     "ok": true,
-    "doc": "20:B9 — the fixed locus of Frobenius is the prime meridian `F` (the elements with `b = 0`)."
+    "doc": "20:B9 — 20-rh's name; the theorem is `FRC.HorizonML.fixed_frobenius` (task LM36)."
    },
    {
     "name": "FRC.Rh.trace_eq_one_iff",
     "module": "FrcLedger/Rh",
-    "line": 235,
+    "line": 102,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -903,12 +903,12 @@
     ],
     "tier": 2,
     "ok": true,
-    "doc": "20:B8, 20:B9 — the finite critical line: `Tr z = 1` exactly when `Re z = 2⁻¹`; this locus is the fixed locus of `σ = ρ ∘ φ : z ↦ 1 − z̄`."
+    "doc": "20:B8, 20:B9 — 20-rh's name; the theorem is `FRC.HorizonML.trace_eq_one_iff` (task LM36)."
    },
    {
     "name": "FRC.Rh.fixed_half_turn",
     "module": "FrcLedger/Rh",
-    "line": 257,
+    "line": 107,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -916,21 +916,21 @@
     ],
     "tier": 2,
     "ok": true,
-    "doc": "20:B9 — the fixed locus of the half-turn `ρ` is the single point `2⁻¹`, the meeting of the prime meridian and the critical line."
+    "doc": "20:B9 — 20-rh's name; the theorem is `FRC.HorizonML.fixed_half_turn` (task LM36)."
    },
    {
     "name": "FRC.Rh.Ext.klein_four",
     "module": "FrcCore/Rh",
-    "line": 168,
+    "line": 239,
     "axioms": [],
     "tier": 0,
     "ok": true,
-    "doc": "20:B9 — conjugation `φ` and the half-turn `ρ` generate a Klein four-group: both are involutions and they commute, `φ ρ = ρ φ = σ`."
+    "doc": "20:B9 — the Klein four-group (20-rh's name; the theorem is `FRC.Horizon.klein_four`, LM36)."
    },
    {
     "name": "FRC.Rh.Ext.fixed_conj",
     "module": "FrcCore/Rh",
-    "line": 421,
+    "line": 229,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -939,27 +939,27 @@
    {
     "name": "FRC.Rh.Ext.critical_line",
     "module": "FrcCore/Rh",
-    "line": 179,
+    "line": 245,
     "axioms": [],
     "tier": 0,
     "ok": true,
-    "doc": "20:B8, 20:B9 — the finite critical line: `Tr z = 1` exactly when `Re z = 2⁻¹ = 2κ + 1`; it is the fixed locus of `σ = ρ ∘ φ`; every `2⁻¹ + bη` lies on it, one point per residue `b` — `p` points."
+    "doc": "20:B8, 20:B9 — the finite critical line (20-rh's name; the theorem is `FRC.Horizon.critical_line`, LM36)."
    },
    {
     "name": "FRC.Rh.Ext.fixed_half_turn",
     "module": "FrcCore/Rh",
-    "line": 210,
+    "line": 252,
     "axioms": [],
     "tier": 0,
     "ok": true,
-    "doc": "20:B9 — the fixed locus of the half-turn `ρ` is the single point `2⁻¹`, the meeting of the prime meridian and the critical line: `ρ z = z ⟺ (φ z = z ∧ σ z = z) ⟺ z = 2⁻¹ + 0η`."
+    "doc": "20:B9 — the fixed locus of the half-turn (20-rh's name; the theorem is `FRC.Horizon.fixed_half_turn`, LM36)."
    }
   ],
   "B10": [
    {
     "name": "FRC.Rh.subject_constants",
     "module": "FrcLedger/Rh",
-    "line": 171,
+    "line": 72,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -967,53 +967,53 @@
     ],
     "tier": 2,
     "ok": true,
-    "doc": "20:B10 — the Subject constants on every shell: `π = 2κ` with `2π = −1`; the quarter-turn `i = g^{−κ}` (read as `g^{3κ}`, since `g^{4κ} = 1`) equals `−g^κ` and squares to `−1`; `g^π = −1`; and the Euler identity `e^{iπ} = (g^m)^{m·π} = −1` for every odd `m` — the convention \"`e = g^m` on the odd representative `m` of `i`\" fixes the parity of the exponent, and the identity uses nothing else about `m`."
+    "doc": "20:B10 — 20-rh's name; the theorem is `FRC.HorizonML.subject_constants` (task LM36)."
    },
    {
     "name": "FRC.Rh.constants13",
     "module": "FrcLedger/Rh",
-    "line": 188,
+    "line": 79,
     "axioms": [
      "Quot.sound",
      "propext"
     ],
     "tier": 1,
     "ok": true,
-    "doc": "20:B10 [value] — on `𝔽₁₃(τ; 0, 1, 2)`: `κ = 3`, `π = 6`, `2π = −1`, `i = 2^{−3} = 2^9 = 5`, `i² = −1`, `e = 2^5 = 6` on the odd representative `5`, `2^π = −1`, `e^{iπ} = 6^{30} = −1`."
+    "doc": "20:B10 [value] — 20-rh's name; the theorem is `FRC.HorizonML.constants13` (task LM36)."
    },
    {
     "name": "FRC.Rh.subject_constants",
     "module": "FrcCore/Rh",
-    "line": 90,
+    "line": 129,
     "axioms": [],
     "tier": 0,
     "ok": true,
-    "doc": "20:B10 — the Subject constants on every shell: `2π = −1` with `π = 2κ`; `i = g^{−κ} = −g^κ` with `i² = −1`; `g^π = −1`; and `e^{iπ} = (g^m)^{m·π} = −1` for every odd `m` — the convention \"`e = g^m` on the odd representative `m` of `i`\" fixes the parity of the exponent, and the identity uses nothing else about `m`."
+    "doc": "20:B10 — the Subject constants (20-rh's name; the theorem is `FRC.Horizon.subject_constants`, LM36)."
    },
    {
     "name": "FRC.Rh.constants13",
     "module": "FrcCore/Rh",
-    "line": 100,
+    "line": 136,
     "axioms": [],
     "tier": 0,
     "ok": true,
-    "doc": "20:B10 [value] — on `𝔽₁₃(τ; 0, 1, 2)`: `π = 6`, `2π = −1`, `i = 2^9 = 5 = −2^3`, `i² = −1`, `e = 2^5 = 6`, `2^π = −1`, `e^{iπ} = 6^{30} = −1`."
+    "doc": "20:B10 [value] — the constants on `𝔽₁₃` (20-rh's name; the theorem is `FRC.Horizon.constants13`, LM36)."
    },
    {
     "name": "FRC.Shell.frame13",
-    "module": "FrcCore/Instances",
-    "line": 14,
+    "module": "FrcCore/Transform",
+    "line": 285,
     "axioms": [],
     "tier": 0,
     "ok": true,
-    "doc": "00:C1, 20:B10 on `𝔽₁₃`: the frame `(τ; 0, 1, 2)` of capacity `3` — `2` is primitive (decided)."
+    "doc": "00:C1, 20:B10 on `𝔽₁₃`: the frame `(τ; 0, 1, 2)` of capacity `3` — `2` is primitive (decided). Moved here from `Instances.lean` under its name (task LM36), so that the horizon theme takes it without the orbits."
    }
   ],
   "C2": [
    {
     "name": "FRC.Rh.vonMangoldt_moebius",
     "module": "FrcLedger/Rh",
-    "line": 652,
+    "line": 238,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -1021,14 +1021,14 @@
     ],
     "tier": 2,
     "ok": true,
-    "doc": "20:C2 — `Λ = μ ∗ log` exactly on the divisor lattice: `Λ(n) = Σ_{d ∣ n} μ(d) log(n/d)`; and the support of `Λ` is the prime powers. (Hardy's limit `R_L → (φ(n)/n) Λ(n)` is the import A3.)"
+    "doc": "20:C2 — 20-rh's name; the theorem is `FRC.Chart.vonMangoldt_moebius` (task LM36)."
    }
   ],
   "C5": [
    {
     "name": "FRC.Rh.chi_parseval",
     "module": "FrcLedger/Rh",
-    "line": 599,
+    "line": 221,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -1036,12 +1036,12 @@
     ],
     "tier": 2,
     "ok": true,
-    "doc": "20:E13, 20:C5 — Parseval on the cycle: `Σ_j |⟨v, χ_j⟩|² = n Σ_m |v(m)|²`; the chart modes are complete."
+    "doc": "20:E13, 20:C5 — 20-rh's name; the theorem is `FRC.Chart.chi_parseval` (task LM36)."
    },
    {
     "name": "FRC.Rh.flatness",
     "module": "FrcLedger/Rh",
-    "line": 626,
+    "line": 226,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -1049,14 +1049,14 @@
     ],
     "tier": 2,
     "ok": true,
-    "doc": "20:C5 — mean-square flatness: for a mean-removed vector `u ≠ 0` on the cycle (`Σ_m u(m) = 0`), the normalised correlations `r_j = |⟨u, χ_j⟩|/(‖u‖ ‖χ_j‖)` with the nonconstant modes satisfy `Σ_{j≠0} r_j² = 1` exactly, so their mean square over the `n − 1 = p − 2` nonconstant modes is `1/(p − 2)`: the root-mean-square correlation is `1/√(p − 2)`."
+    "doc": "20:C5 — 20-rh's name; the theorem is `FRC.Chart.flatness` (task LM36)."
    }
   ],
   "E1": [
    {
     "name": "FRC.Rh.scale_shift",
     "module": "FrcLedger/Rh",
-    "line": 478,
+    "line": 178,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -1064,12 +1064,12 @@
     ],
     "tier": 2,
     "ok": true,
-    "doc": "20:E1, 20:E12 — the scale-shift `S : x ↦ g^r x` is a permutation of `F^×` (a bijection, so its matrix on `ℓ²(F^×)` is a permutation matrix, hence unitary) with the power characters `x ↦ x^k` as eigenvectors in the `𝔽_p` reading, `S x^k = g^{rk} x^k`, and its fixed-point count — the trace of its permutation matrix — is `(p − 1)·[(p − 1) ∣ r]`, which carries no prime data."
+    "doc": "20:E1, 20:E12 — 20-rh's name; the theorem is `FRC.HorizonML.scale_shift` (task LM36)."
    },
    {
     "name": "FRC.Rh.character_eigen",
     "module": "FrcLedger/Rh",
-    "line": 513,
+    "line": 192,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -1077,12 +1077,12 @@
     ],
     "tier": 2,
     "ok": true,
-    "doc": "20:E12, 20:E1 — the multiplicative characters of the shell are eigenvectors of the scale-shift in the abstract reading: `χ(g^r x) = χ(g)^r χ(x)` for every `χ : F^× →* ℂ^×`."
+    "doc": "20:E12, 20:E1 — 20-rh's name; the theorem is `FRC.Chart.character_eigen` (task LM36)."
    },
    {
     "name": "FRC.Rh.chi_shift",
     "module": "FrcLedger/Rh",
-    "line": 552,
+    "line": 209,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -1090,12 +1090,12 @@
     ],
     "tier": 2,
     "ok": true,
-    "doc": "20:E12, 20:E1 — clause (iii): the scale-shift `m ↦ m + 1` (the residue `g^m ↦ g^{m+1}`) has every chart mode as an eigenvector, with eigenphase `e^{2πi·j/n}` independent of the vector: `χ_j(m + 1) = e^{2πi j/n} χ_j(m)`."
+    "doc": "20:E12, 20:E1 — 20-rh's name; the theorem is `FRC.Chart.chi_shift` (task LM36)."
    },
    {
     "name": "FRC.Rh.shift_power_character",
     "module": "FrcCore/Rh",
-    "line": 371,
+    "line": 105,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -1104,7 +1104,7 @@
    {
     "name": "FRC.Rh.shift_trace",
     "module": "FrcCore/Rh",
-    "line": 376,
+    "line": 110,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -1115,7 +1115,7 @@
    {
     "name": "FRC.Rh.chi_inversion",
     "module": "FrcLedger/Rh",
-    "line": 561,
+    "line": 215,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -1123,12 +1123,12 @@
     ],
     "tier": 2,
     "ok": true,
-    "doc": "20:E12, 20:E13 — clause (i): Fourier inversion on the cycle, `v = (1/n) Σ_j ⟨v, χ_j⟩ χ_j`, with the constant mode carrying the mean, `⟨v, χ_0⟩ = Σ_m v(m)`, so the nontrivial modes carry `v − v̄·1`."
+    "doc": "20:E12, 20:E13 — 20-rh's name; the theorem is `FRC.Chart.chi_inversion` (task LM36)."
    },
    {
     "name": "FRC.Rh.chi_shift",
     "module": "FrcLedger/Rh",
-    "line": 552,
+    "line": 209,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -1136,12 +1136,12 @@
     ],
     "tier": 2,
     "ok": true,
-    "doc": "20:E12, 20:E1 — clause (iii): the scale-shift `m ↦ m + 1` (the residue `g^m ↦ g^{m+1}`) has every chart mode as an eigenvector, with eigenphase `e^{2πi·j/n}` independent of the vector: `χ_j(m + 1) = e^{2πi j/n} χ_j(m)`."
+    "doc": "20:E12, 20:E1 — 20-rh's name; the theorem is `FRC.Chart.chi_shift` (task LM36)."
    },
    {
     "name": "FRC.Rh.scale_shift",
     "module": "FrcLedger/Rh",
-    "line": 478,
+    "line": 178,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -1149,12 +1149,12 @@
     ],
     "tier": 2,
     "ok": true,
-    "doc": "20:E1, 20:E12 — the scale-shift `S : x ↦ g^r x` is a permutation of `F^×` (a bijection, so its matrix on `ℓ²(F^×)` is a permutation matrix, hence unitary) with the power characters `x ↦ x^k` as eigenvectors in the `𝔽_p` reading, `S x^k = g^{rk} x^k`, and its fixed-point count — the trace of its permutation matrix — is `(p − 1)·[(p − 1) ∣ r]`, which carries no prime data."
+    "doc": "20:E1, 20:E12 — 20-rh's name; the theorem is `FRC.HorizonML.scale_shift` (task LM36)."
    },
    {
     "name": "FRC.Rh.shift_power_character",
     "module": "FrcCore/Rh",
-    "line": 371,
+    "line": 105,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -1163,7 +1163,7 @@
    {
     "name": "FRC.Rh.shift_trace",
     "module": "FrcCore/Rh",
-    "line": 376,
+    "line": 110,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -1172,7 +1172,7 @@
    {
     "name": "FRC.Rh.readout_on_line",
     "module": "FrcLedger/Rh",
-    "line": 297,
+    "line": 117,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -1180,12 +1180,12 @@
     ],
     "tier": 2,
     "ok": true,
-    "doc": "20:E12, 20:B8 — clause (ii) of the shell theorem: every readout `z(θ) = 2⁻¹ + θη` lies on the trace-one line, its real part is the half-turn `2⁻¹`, and `θ ↦ z(θ)` is injective (with `card_critical_line`, a bijection of `F` onto the line)."
+    "doc": "20:E12, 20:B8 — 20-rh's name; the theorem is `FRC.HorizonML.readout_on_line` (task LM36)."
    },
    {
     "name": "FRC.Rh.readout_slot_index",
     "module": "FrcLedger/Rh",
-    "line": 327,
+    "line": 131,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -1193,12 +1193,12 @@
     ],
     "tier": 2,
     "ok": true,
-    "doc": "20:E12 — the slot index of a nontrivial slot: for `1 ≤ k ≤ p − 2` the index `θ = Φ(k) = −g^k` at which slot `k` is read is neither `0` (the centre `2⁻¹`) nor `−1` (the full-cycle exponent)."
+    "doc": "20:E12 — 20-rh's name; the theorem is `FRC.HorizonML.readout_slot_index` (task LM36)."
    },
    {
     "name": "FRC.Rh.Ext.readout_on_line",
     "module": "FrcCore/Rh",
-    "line": 434,
+    "line": 289,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -1207,7 +1207,7 @@
    {
     "name": "FRC.Rh.Ext.readout_slot_index",
     "module": "FrcCore/Rh",
-    "line": 440,
+    "line": 295,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -1218,7 +1218,7 @@
    {
     "name": "FRC.Rh.chi_orthogonal",
     "module": "FrcLedger/Rh",
-    "line": 540,
+    "line": 204,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -1226,12 +1226,12 @@
     ],
     "tier": 2,
     "ok": true,
-    "doc": "20:E13 — orthogonality of the chart modes: `Σ_m χ_j(m) χ_k(m)̄ = n·[j = k]`, each of squared norm `n = p − 1` (with `chi_inversion`, the `p − 1` characters are an orthogonal basis of `ℂ^{F^×}`; the orthonormal system is `χ_j/√n`)."
+    "doc": "20:E13 — 20-rh's name; the theorem is `FRC.Chart.chi_orthogonal` (task LM36)."
    },
    {
     "name": "FRC.Rh.chi_parseval",
     "module": "FrcLedger/Rh",
-    "line": 599,
+    "line": 221,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -1239,12 +1239,12 @@
     ],
     "tier": 2,
     "ok": true,
-    "doc": "20:E13, 20:C5 — Parseval on the cycle: `Σ_j |⟨v, χ_j⟩|² = n Σ_m |v(m)|²`; the chart modes are complete."
+    "doc": "20:E13, 20:C5 — 20-rh's name; the theorem is `FRC.Chart.chi_parseval` (task LM36)."
    },
    {
     "name": "FRC.Rh.chi_inversion",
     "module": "FrcLedger/Rh",
-    "line": 561,
+    "line": 215,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -1252,12 +1252,12 @@
     ],
     "tier": 2,
     "ok": true,
-    "doc": "20:E12, 20:E13 — clause (i): Fourier inversion on the cycle, `v = (1/n) Σ_j ⟨v, χ_j⟩ χ_j`, with the constant mode carrying the mean, `⟨v, χ_0⟩ = Σ_m v(m)`, so the nontrivial modes carry `v − v̄·1`."
+    "doc": "20:E12, 20:E13 — 20-rh's name; the theorem is `FRC.Chart.chi_inversion` (task LM36)."
    },
    {
     "name": "FRC.Rh.power_characters_not_orthonormal",
     "module": "FrcLedger/Rh",
-    "line": 501,
+    "line": 186,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -1265,7 +1265,7 @@
     ],
     "tier": 2,
     "ok": true,
-    "doc": "20:E12, 20:E13 — the `𝔽_p`-valued power characters are never orthonormal: the self-pairing `Σ_{x ∈ F^×} x^j · x^j` is `0` or `−1`, never `1`, on every odd shell."
+    "doc": "20:E12, 20:E13 — 20-rh's name; the theorem is `FRC.HorizonML.power_characters_not_orthonormal` (task LM36)."
    }
   ]
  }

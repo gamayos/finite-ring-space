@@ -372,14 +372,42 @@
   "A2": [
    "A9"
   ],
-  "C4": [
+  "B5": [
    "L2"
   ],
-  "B5": [
+  "C4": [
    "L2"
   ],
   "Z1": [
    "L2"
+  ],
+  "C9": [
+   "L4"
+  ],
+  "B9": [
+   "L5"
+  ],
+  "B4": [
+   "P1"
+  ],
+  "P1": [
+   "P1"
+  ],
+  "C6": [
+   "B14",
+   "C16"
+  ],
+  "X4": [
+   "C16"
+  ],
+  "B10": [
+   "F7"
+  ],
+  "A6": [
+   "L1"
+  ],
+  "X2": [
+   "L1"
   ],
   "C5": [
    "L3"
@@ -395,33 +423,6 @@
   ],
   "P4": [
    "L3"
-  ],
-  "C9": [
-   "L4"
-  ],
-  "B9": [
-   "L5"
-  ],
-  "P1": [
-   "P1"
-  ],
-  "B4": [
-   "P1"
-  ],
-  "X2": [
-   "L1"
-  ],
-  "A6": [
-   "L1"
-  ],
-  "B10": [
-   "F7"
-  ],
-  "C6": [
-   "C16"
-  ],
-  "X4": [
-   "C16"
   ]
  },
  "lean": {
@@ -526,7 +527,7 @@
    {
     "name": "FRC.Entropy.fluid_w",
     "module": "FrcLedger/Entropy",
-    "line": 284,
+    "line": 270,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -578,7 +579,7 @@
    {
     "name": "FRC.Entropy.hydrogen_units",
     "module": "FrcLedger/Entropy",
-    "line": 528,
+    "line": 514,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -591,7 +592,7 @@
    {
     "name": "FRC.Entropy.nesting_lab",
     "module": "FrcLedger/Entropy",
-    "line": 539,
+    "line": 525,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -639,7 +640,7 @@
    {
     "name": "FRC.Entropy.lcdmAge",
     "module": "FrcLedger/Entropy",
-    "line": 224,
+    "line": 223,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -647,12 +648,12 @@
     ],
     "tier": 2,
     "ok": true,
-    "doc": "14:A8 [ΛCDM], consumed by 14:C3 — the rival chart's age identity as the import it is: in flat matter-plus-`Λ` the product of the age and the asymptotic rate is `t₀H_Λ = (2/3) artanh √Ω_Λ`, a function of the one fitted parameter; outside `[0, 1)` the value is junk. It is verified against the chart's own Friedmann equation in `lcdm_age` below (the closed-form solution reaches `1` exactly then; uniqueness of the solution is not formalised). That a landing of it on `π/4` restates the fit is C3's judgment under B5, not formal content."
+    "doc": "14:A8 [ΛCDM], consumed by 14:C3 — the rival chart's age identity as the import it is: in flat matter-plus-`Λ` the product of the age and the asymptotic rate is `t₀H_Λ = (2/3) artanh √Ω_Λ`. Moved to the chart theme (`FRC.Chart.lcdmAge`, 7 October 2026); this name is its alias. It is verified against the chart's own Friedmann equation in `lcdm_age` below. That a landing of it on `π/4` restates the fit is C3's judgment under B5, not formal content."
    },
    {
     "name": "FRC.Entropy.lcdm_age",
     "module": "FrcLedger/Entropy",
-    "line": 405,
+    "line": 391,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -665,7 +666,7 @@
    {
     "name": "FRC.Entropy.age_bracket",
     "module": "FrcLedger/Entropy",
-    "line": 473,
+    "line": 459,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -680,7 +681,7 @@
    {
     "name": "FRC.Entropy.octant_chart",
     "module": "FrcLedger/Entropy",
-    "line": 554,
+    "line": 540,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -781,7 +782,7 @@
    {
     "name": "FRC.Entropy.octant_inversion",
     "module": "FrcLedger/Entropy",
-    "line": 229,
+    "line": 227,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -789,12 +790,12 @@
     ],
     "tier": 2,
     "ok": true,
-    "doc": "14:C7, 14:X3 [ΛCDM] — the octant inversion: given the octant's `π/4` (C5, whose realisation content is not formalised here), the rival chart's identity gives `t₀H_Λ = π/4` at `Ω_Λ = tanh²(3π/8)` and, for `0 ≤ Ω_Λ < 1`, only there."
+    "doc": "14:C7, 14:X3 [ΛCDM] — the octant inversion, moved to the chart theme (`FRC.Chart.octant_inversion`); this name is its alias."
    },
    {
     "name": "FRC.Entropy.landing_bracket",
     "module": "FrcLedger/Entropy",
-    "line": 589,
+    "line": 575,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -809,7 +810,7 @@
    {
     "name": "FRC.Entropy.channel_one_consistency",
     "module": "FrcLedger/Entropy",
-    "line": 249,
+    "line": 235,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -822,7 +823,7 @@
    {
     "name": "FRC.Entropy.channel_one_numeral",
     "module": "FrcLedger/Entropy",
-    "line": 299,
+    "line": 285,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -835,7 +836,7 @@
    {
     "name": "FRC.Entropy.cluster_identity",
     "module": "FrcLedger/Entropy",
-    "line": 269,
+    "line": 255,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -850,7 +851,7 @@
    {
     "name": "FRC.Entropy.count_face",
     "module": "FrcLedger/Entropy",
-    "line": 511,
+    "line": 497,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -865,7 +866,7 @@
    {
     "name": "FRC.Entropy.capacity_zero",
     "module": "FrcLedger/Entropy",
-    "line": 521,
+    "line": 507,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -904,7 +905,7 @@
    {
     "name": "FRC.Entropy.octant_inversion",
     "module": "FrcLedger/Entropy",
-    "line": 229,
+    "line": 227,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -912,12 +913,12 @@
     ],
     "tier": 2,
     "ok": true,
-    "doc": "14:C7, 14:X3 [ΛCDM] — the octant inversion: given the octant's `π/4` (C5, whose realisation content is not formalised here), the rival chart's identity gives `t₀H_Λ = π/4` at `Ω_Λ = tanh²(3π/8)` and, for `0 ≤ Ω_Λ < 1`, only there."
+    "doc": "14:C7, 14:X3 [ΛCDM] — the octant inversion, moved to the chart theme (`FRC.Chart.octant_inversion`); this name is its alias."
    },
    {
     "name": "FRC.Entropy.landing_bracket",
     "module": "FrcLedger/Entropy",
-    "line": 589,
+    "line": 575,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -969,7 +970,7 @@
    {
     "name": "FRC.Entropy.age_rate_locus",
     "module": "FrcLedger/Entropy",
-    "line": 563,
+    "line": 549,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -982,7 +983,7 @@
    {
     "name": "FRC.Entropy.locus_bracket",
     "module": "FrcLedger/Entropy",
-    "line": 585,
+    "line": 571,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -997,7 +998,7 @@
    {
     "name": "FRC.Entropy.fluid_w",
     "module": "FrcLedger/Entropy",
-    "line": 284,
+    "line": 270,
     "axioms": [
      "Classical.choice",
      "Quot.sound",

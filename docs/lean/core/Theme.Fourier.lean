@@ -497,6 +497,22 @@ theorem scale_shift (F : Frame p κ g) {z : Shell p} (hz : g * z = 1) :
    fun k j => frft_cardinal F hz k j, fun k j hk hj => mm_GF F hk hj,
    fun k j hk hj => by rw [← frft_pow F hz 1 κ k j hk hj, Nat.mul_one]; exact (frft_cardinal F hz k j).2.1⟩
 
+/-- 00:C2 — the transform follows the dilation: `g^s = g^{s'}` gives `F^{[s]} = F^{[s']}`, so the fractional Fourier
+family is indexed by the dilations themselves. -/
+theorem frft_dilation (F : Frame p κ g) {z : Shell p} (hz : g * z = 1) {s s' : Nat} (h : g ^ s = g ^ s') (k j : Nat) :
+    frft g κ z s k j = frft g κ z s' k j := by
+  have hper : ∀ n u, frft g κ z (u + n * (p - 1)) k j = frft g κ z u k j := fun n u => by
+    induction n with
+    | zero => rw [Nat.zero_mul, Nat.add_zero]
+    | succ n ih => rw [Nat.succ_mul, ← Nat.add_assoc, frft_period F hz, ih]
+  have hred : ∀ u, frft g κ z u k j = frft g κ z (u % (p - 1)) k j := fun u => by
+    obtain ⟨q, hq⟩ := FRC.Nat.mod_spec (p - 1) F.n_pos u
+    conv => lhs; rw [hq, Nat.add_comm, Nat.mul_comm]
+    exact hper q _
+  have hm : s % (p - 1) = s' % (p - 1) :=
+    F.pow_inj (Nat.mod_lt _ F.n_pos) (Nat.mod_lt _ F.n_pos) (by rw [← F.pow_mod, ← F.pow_mod]; exact h)
+  rw [hred s, hred s', hm]
+
 /-! ## C7: the conjugate frame, and the Carrier's quarter-turn -/
 
 /-- The inverse drive is a frame. -/

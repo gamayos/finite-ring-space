@@ -17,8 +17,8 @@
     "I|T": 2,
     "O": 13,
     "P": 5,
-    "R": 82,
-    "T": 529,
+    "R": 83,
+    "T": 528,
     "T|D": 2,
     "T|R": 85,
     "T|Ω": 7,
@@ -1453,7 +1453,7 @@
    "theorems": "one entry per key (LM12): its canonical statement (the row of its ledger of origin, the key's prefix), the origin, the tag, the Lean tier, the deciding check and declarations, the aliases that resolve to it, the rows that write it, and for a theorem the realisations its statement names (Q21)",
    "superseded": "the keys that left the public ledgers (corrected, split, merged or returned home), each with its live successor keys and nothing else (decision Q19)"
   },
-  "superseded": 46
+  "superseded": 53
  },
  "theorems": [
   {
@@ -1553,14 +1553,14 @@
    ]
   },
   {
-   "key": "p00160",
+   "key": "p00188",
    "origin": "00",
-   "statement": "Counting closes by return: the successor $C_q:x\\mapsto x{+}1\\ (\\mathrm{mod}\\ q)$ on $q$ points is one $q$-cycle with no fixed point, so iteration is bounded and cyclic; its interpretation is A2's.",
+   "statement": "Counting closes by return: the successor $C_q:x\\mapsto x{+}1\\ (\\mathrm{mod}\\ q)$ on $q\\ge2$ points is one $q$-cycle with no fixed point, so iteration is bounded and cyclic; its interpretation is A2's.",
    "origin_row": "00:A7",
    "tag": "T",
    "tier": 0,
    "check": {
-    "href": "frc/ledgers/master/foundation.html#p00160",
+    "href": "frc/ledgers/master/foundation.html#p00188",
     "script": "frc/ledgers/master/foundation.py",
     "line": 126,
     "verdict": "pass"
@@ -1569,7 +1569,7 @@
     {
      "lib": "FrcCore",
      "module": "FrcCore/Keys/Foundation",
-     "name": "FRC.Ledger.p00160"
+     "name": "FRC.Ledger.p00188"
     }
    ],
    "aliases": [],
@@ -1780,7 +1780,7 @@
    "check": {
     "href": "frc/ledgers/master/carrier.html#p00015",
     "script": "frc/ledgers/master/carrier.py",
-    "line": 93,
+    "line": 94,
     "verdict": "pass"
    },
    "declarations": [
@@ -1816,14 +1816,14 @@
   {
    "key": "p00165",
    "origin": "00",
-   "statement": "\\textbf{Physical constants are definite Carrier residues}: the register $\\{\\dS,\\Om,c,\\hbar,G,k_B\\}$ is generator-free in $\\dS$ alone --- $G=2\\dS=-c^2$, $c^2=2^{-1}$, $\\hbar^2=-1$, $k_B^2=-2$, $|k_B|=\\hbar/c$; the defining congruences are the observer's complete certificates, $G$ exact, the rest up to sign (B10); $h:=-\\hbar$ is the root-pair partner of $\\hbar$ (B3, D7). No Subject counterpart of $G$ or $\\hbar$; no fifth constant (C1).",
+   "statement": "\\textbf{Physical constants are definite Carrier residues}: the register $\\{\\dS,\\Om,c,\\hbar,G,k_B\\}$ is generator-free in $\\dS$ alone --- $G=2\\dS=-c^2$, $c^2=2^{-1}$ (C8, D7), $\\hbar^2=-1$, $k_B^2=-2$, $|k_B|=\\hbar/c$; the defining congruences are the observer's complete certificates, $G$ exact, the rest up to sign (B10); $h:=-\\hbar$ is the root-pair partner of $\\hbar$ (B3, D7). No Subject counterpart of $G$ or $\\hbar$; no fifth constant (C1).",
    "origin_row": "00:B7",
    "tag": "T",
    "tier": 0,
    "check": {
     "href": "frc/ledgers/master/carrier.html#p00165",
     "script": "frc/ledgers/master/carrier.py",
-    "line": 119,
+    "line": 120,
     "verdict": "pass"
    },
    "declarations": [
@@ -1851,7 +1851,7 @@
    "check": {
     "href": "frc/ledgers/master/carrier.html#p00166",
     "script": "frc/ledgers/master/carrier.py",
-    "line": 163,
+    "line": 170,
     "verdict": "pass"
    },
    "declarations": [
@@ -1893,7 +1893,7 @@
    "check": {
     "href": "frc/ledgers/master/carrier.html#p00168",
     "script": "frc/ledgers/master/carrier.py",
-    "line": 191,
+    "line": 198,
     "verdict": "pass"
    },
    "declarations": [
@@ -1947,7 +1947,7 @@
    "check": {
     "href": "frc/ledgers/master/carrier.html#p00170",
     "script": "frc/ledgers/master/carrier.py",
-    "line": 213,
+    "line": 220,
     "verdict": "pass"
    },
    "declarations": [
@@ -2018,7 +2018,7 @@
   {
    "key": "p00150",
    "origin": "00",
-   "statement": "The drive fixes a Lorentzian time axis, causal order is algebraic, the split and non-split tori the two signatures. The signature is the square class of the temporal coefficient $\\nu=\\gen$ (C1); in $\\F_\\p$, $\\nu=2^{-1}\\cdot(2\\gen)$, both classes fixed by the parity of $\\kap$ (8:B3). In the Carrier $c^2=2^{-1}$ is a square (C8), and $\\eta_{00}=-c^2$ is a chart artifact.",
+   "statement": "The drive fixes a Lorentzian time axis, causal order is algebraic, the split and non-split tori the two signatures. The signature is the square class of the temporal coefficient $\\nu=\\gen$ (C1); in $\\F_\\p$, $\\nu=2^{-1}\\cdot(2\\gen)$, both classes fixed by the parity of $\\kap$ (8:B3). In the Carrier $c^2=2^{-1}$ is a square (C8, D7), and $\\eta_{00}=-c^2$ is a chart artifact.",
    "origin_row": "00:C3",
    "tag": "T",
    "tier": 0,
@@ -2039,7 +2039,9 @@
    "rows": [
     "00:C3"
    ],
-   "realisations": []
+   "realisations": [
+    "p00048"
+   ]
   },
   {
    "key": "p00024",
@@ -2084,14 +2086,14 @@
    ]
   },
   {
-   "key": "p00172",
+   "key": "p00189",
    "origin": "00",
-   "statement": "\\textbf{Orientation is derived, not conventional}: the $c$-square congruence ($\\dS$ even, C8) annihilates orientation transport on every Carrier carrying it ($\\im^{\\dS}\\in\\{\\pm1\\}$); pullback covariance and count positivity fix the oriented quarter-turn $\\im=-\\gen^\\kap $; the joint flip $(\\gen,\\im,s)\\mapsto(\\gen^{-1},-\\im,-s)$ preserves every registered count. The constants' derivation consumes no selection (B7). Parity marker: C14. The selection by matter content: D16.",
+   "statement": "\\textbf{Orientation is derived, not conventional}: the $c$-square congruence ($\\dS$ even, C8) annihilates orientation transport on every Carrier carrying it ($\\im^{\\dS}\\in\\{\\pm1\\}$); the oriented quarter-turn $\\im=-\\gen^\\kap $ is a selection, read by pullback covariance and count positivity; the joint flip $(\\gen,\\im,s)\\mapsto(\\gen^{-1},-\\im,-s)$ permutes the registration channels. The constants' derivation consumes no selection (B7). Parity marker: C14. The selection by matter content: D16.",
    "origin_row": "00:C7",
    "tag": "T",
    "tier": 0,
    "check": {
-    "href": "frc/ledgers/master/fourier.html#p00172",
+    "href": "frc/ledgers/master/fourier.html#p00189",
     "script": "frc/ledgers/master/fourier.py",
     "line": 132,
     "verdict": "pass"
@@ -2100,7 +2102,7 @@
     {
      "lib": "FrcCore",
      "module": "FrcCore/Keys/Fourier",
-     "name": "FRC.Ledger.p00172"
+     "name": "FRC.Ledger.p00189"
     }
    ],
    "aliases": [],
@@ -2281,14 +2283,14 @@
    ]
   },
   {
-   "key": "p00039",
+   "key": "p00190",
    "origin": "00",
-   "statement": "\\textbf{The Hopf section}: in the observable frame group $\\mathrm{PGL}_2$ the boost torus $C_{\\p +1}$ is fixed-point-free on $\\mathbb{P}^1$ and meets the Borel trivially, so every frame factors uniquely as (cone-chart event)$\\times$(boost): the cone chart is a global section of the non-split fibration (C22), $\\p (\\p -1)$ fibres of $\\p +1$; the spin cover $\\mathrm{SL}_2$ obstructs at $-1$.",
+   "statement": "\\textbf{The Hopf section}: on the frames by elements (no group counted, Q20) the boost torus $C_{\\p +1}$ is fixed-point-free on $\\mathbb{P}^1$ and meets the Borel trivially, so every frame factors uniquely as (cone-chart event)$\\times$(boost): the cone chart is a global section of the non-split fibration (C22), $\\p (\\p -1)$ fibres of $\\p +1$; $\\mathrm{SL}_2$ obstructs at $-1$.",
    "origin_row": "00:C19",
    "tag": "T",
    "tier": 0,
    "check": {
-    "href": "frc/ledgers/master/projective.html#p00039",
+    "href": "frc/ledgers/master/projective.html#p00190",
     "script": "frc/ledgers/master/projective.py",
     "line": 88,
     "verdict": "pass"
@@ -2297,7 +2299,7 @@
     {
      "lib": "FrcCore",
      "module": "FrcCore/Keys/Projective",
-     "name": "FRC.Ledger.p00039"
+     "name": "FRC.Ledger.p00190"
     }
    ],
    "aliases": [],
@@ -2845,14 +2847,14 @@
    ]
   },
   {
-   "key": "p00060",
+   "key": "p00191",
    "origin": "00",
-   "statement": "\\textbf{Multi-body registration}: an unequal-cycle composite's joint recurrence is the lcm of its parts' registration periods; each pair's conserved offset lives on the $\\gcd$ cycle (the quotient $A/\\langle v\\rangle$), and dephasing over the product period is exact, extending the Born-rule count (F1) verbatim to unequal cycles (37-sim: joint recurrence derived and verified, 1400/1400 characters cancel).",
+   "statement": "\\textbf{Multi-body registration}: an unequal-cycle composite returning below $\\Om$ (Q20) recurs jointly at the lcm of its parts' registration periods; each pair's conserved offset lives on the $\\gcd$ cycle (the quotient $A/\\langle v\\rangle$), and dephasing over every joint recurrence below $\\Om$ is exact, extending the Born-rule count (F1) verbatim to unequal cycles (37-sim: joint recurrence verified, 1400/1400 characters cancel).",
    "origin_row": "00:F2",
    "tag": "T",
    "tier": 0,
    "check": {
-    "href": "frc/ledgers/master/quantum.html#p00060",
+    "href": "frc/ledgers/master/quantum.html#p00191",
     "script": "frc/ledgers/master/quantum.py",
     "line": 62,
     "verdict": "pass"
@@ -2861,7 +2863,7 @@
     {
      "lib": "FrcCore",
      "module": "FrcCore/Keys/Quantum",
-     "name": "FRC.Ledger.p00060"
+     "name": "FRC.Ledger.p00191"
     }
    ],
    "aliases": [],
@@ -2888,9 +2890,9 @@
    "realisations": []
   },
   {
-   "key": "p00063",
+   "key": "p00194",
    "origin": "00",
-   "statement": "\\textbf{The graded registration law}: an Object component $\\ell^{a}$ registers at depth $d=\\mathrm{ord}_{\\ell^{a}}(\\p)$ --- $1$ absorbed (register, unique image), $2$ observable (boost torus, unique home), else beyond-quadratic; the sign always $\\{\\pm1\\}$. Visible iff $\\p^{d}<\\Om$; the cap is $2$ at saturating and minimal towers, $\\p^{2}<\\Om$ hosting the observable sector; opacity relational --- hydrogen's interior opaque/observable/absorbed at $173/181/197$. Controls: proton whole, $(5,13)$ refused.",
+   "statement": "\\textbf{The graded registration law}: an Object component $\\ell^{a}$ registers at depth $d=\\mathrm{ord}_{\\ell^{a}}(\\p)$ --- $1$ absorbed (register, unique image), $2$ observable (odd $\\ell$: boost torus, unique home; $2^{a}>4$: off both tori), else beyond-quadratic; the sign always $\\{\\pm1\\}$. Visible iff $\\p^{d}<\\Om$; the cap is $2$ at saturating and minimal towers; opacity relational --- hydrogen's interior opaque/observable/absorbed at $173/181/197$. Controls: proton whole, $(5,13)$ refused.",
    "origin_row": "00:F5",
    "tag": "T",
    "tier": null,
@@ -3121,7 +3123,7 @@
    "check": {
     "href": "frc/ledgers/master/interactions.html#p27020",
     "script": "frc/ledgers/master/interactions.py",
-    "line": 83,
+    "line": 85,
     "verdict": "pass"
    },
    "declarations": [
@@ -3152,7 +3154,7 @@
    "check": {
     "href": "frc/ledgers/master/interactions.html#p00155",
     "script": "frc/ledgers/master/interactions.py",
-    "line": 59,
+    "line": 61,
     "verdict": "pass"
    },
    "declarations": [
@@ -3227,7 +3229,7 @@
    "check": {
     "href": "frc/ledgers/master/interactions.html#p00081",
     "script": "frc/ledgers/master/interactions.py",
-    "line": 114,
+    "line": 122,
     "verdict": "pass"
    },
    "declarations": [
@@ -3322,14 +3324,14 @@
    ]
   },
   {
-   "key": "p00084",
+   "key": "p00192",
    "origin": "00",
-   "statement": "The synchronisation floor $a_0=cH_0/2\\pi$ fixes the acceleration scale parameter-free: the $2\\pi$ by the angle--count dictionary (14:B2), the threshold one cycle per drive period (32:B3), $1.04\\times10^{-10}$ [chart] at the entailed $H_0$ (L3), tied to $H(z)$, not $\\Lambda$ (P1; 21:X1). Below the floor the amplitude reading, given the barrier identification (32:B8, 21:C19), gives the radial acceleration relation unfitted. Falsifiers: 32:B3, 21:P4.",
+   "statement": "The synchronisation floor $a_0=cH_0/2\\pi$ fixes the acceleration scale parameter-free: the $2\\pi$ by the angle--count dictionary (14:B2), the threshold one cycle per drive period (32:B3), $1.04\\times10^{-10}$ [chart] at the channel-1 $H_0=67.4$ (L3), tied to $H(z)$, not $\\Lambda$ (P1; 21:X1). Below the floor the amplitude reading, given the barrier identification (32:B8, 21:C19), gives the radial acceleration relation unfitted. Falsifiers: 32:B3, 21:P4.",
    "origin_row": "00:L1",
    "tag": "R",
    "tier": 2,
    "check": {
-    "href": "frc/ledgers/master/chart.html#p00084",
+    "href": "frc/ledgers/master/chart.html#p00192",
     "script": "frc/ledgers/master/chart.py",
     "line": 74,
     "verdict": "pass"
@@ -3338,7 +3340,7 @@
     {
      "lib": "FrcLedger",
      "module": "FrcLedger/Keys/Chart",
-     "name": "FRC.LedgerML.p00084"
+     "name": "FRC.LedgerML.p00192"
     }
    ],
    "aliases": [],
@@ -3363,23 +3365,23 @@
    ]
   },
   {
-   "key": "p00181",
+   "key": "p00193",
    "origin": "00",
-   "statement": "\\textbf{The octant record depth and its outputs}: the record depth is bounded by the octant, $\\dS/2$ chronons $=13.79$ Gyr ($(\\pi/4)r_H/c$, chart), on the octant sector of B14. Zero-freedom: $\\Omega_\\Lambda=\\tanh^2(3\\pi/8)=0.684$ (chart; $0.19\\sigma$), $H_0=67.4\\pm0.7$ ($4.6\\sigma$ adverse disclosed), $w=-1$ rigid --- a confirmed drift falsifies $\\Lambda\\sim1/\\Om$. Falsifiers: octant-capped ages, the running floor $a_0(z)\\propto H(z)$ (Z7), the ladder bias.",
+   "statement": "\\textbf{The octant record depth and its outputs}: the record depth is bounded by the octant, $\\dS/2$ chronons $=13.79$ Gyr ($(\\pi/4)r_H/c$, chart), on the octant sector of B14. Zero-freedom: $\\Omega_\\Lambda=\\tanh^2(3\\pi/8)=0.684$ (chart; $0.19\\sigma$); on the stellar age $13.61\\pm0.34$ Gyr, $H_0=68.2\\pm1.7$ ($2.4\\sigma$ from the ladder); $w=-1$ rigid --- a confirmed drift falsifies $\\Lambda\\sim1/\\Om$. Falsifiers: octant-capped ages, the running floor $a_0(z)\\propto H(z)$ (Z7), the ladder bias.",
    "origin_row": "00:L3",
    "tag": "R",
    "tier": 2,
    "check": {
-    "href": "frc/ledgers/master/chart.html#p00181",
+    "href": "frc/ledgers/master/chart.html#p00193",
     "script": "frc/ledgers/master/chart.py",
-    "line": 97,
+    "line": 98,
     "verdict": "pass"
    },
    "declarations": [
     {
      "lib": "FrcLedger",
      "module": "FrcLedger/Keys/Chart",
-     "name": "FRC.LedgerML.p00181"
+     "name": "FRC.LedgerML.p00193"
     }
    ],
    "aliases": [],
@@ -3430,7 +3432,7 @@
    "check": {
     "href": "frc/ledgers/master/chart.html#p00148",
     "script": "frc/ledgers/master/chart.py",
-    "line": 129,
+    "line": 136,
     "verdict": "pass"
    },
    "declarations": [
@@ -3482,12 +3484,12 @@
    "origin": "00",
    "statement": "The acceleration floor tracks the drive rate, $a_0(z)\\propto H(z)$: a relation, $\\Om$-blind, derived from L1 under the gravity realisation (D5); the knee shifts and the Tully--Fisher zero-point evolves as $E(z)^{1/4}$. Falsifier: a floor constant in redshift, or tracking other than $H(z)$. Confrontation (43-muse): MUSE-DARK III excludes a constant floor to $z=1.3$; RC100 implies the local floor by $z\\simeq2$, pending refit.",
    "origin_row": "00:P1",
-   "tag": "T",
+   "tag": "R",
    "tier": 2,
    "check": {
     "href": "frc/ledgers/master/chart.html#p00133",
     "script": "frc/ledgers/master/chart.py",
-    "line": 156,
+    "line": 163,
     "verdict": "pass"
    },
    "declarations": [
@@ -3500,10 +3502,6 @@
    "aliases": [],
    "rows": [
     "00:P1"
-   ],
-   "realisations": [
-    "p00046",
-    "p00084"
    ]
   },
   {
@@ -14042,7 +14040,7 @@
     },
     {
      "lib": "FrcCore",
-     "module": "FrcCore/Instances",
+     "module": "FrcCore/Transform",
      "name": "FRC.Shell.frame13"
     }
    ],
@@ -19502,7 +19500,7 @@
     "32:C2"
    ],
    "realisations": [
-    "p00084"
+    "p00192"
    ]
   },
   {
@@ -19548,7 +19546,7 @@
     "32:C5"
    ],
    "realisations": [
-    "p00084"
+    "p00192"
    ]
   },
   {
@@ -21713,7 +21711,7 @@
    "key": "p00007",
    "successors": [
     "p00002",
-    "p00160"
+    "p00188"
    ]
   },
   {
@@ -21753,8 +21751,8 @@
   {
    "key": "p00027",
    "successors": [
-    "p00172",
-    "p00175"
+    "p00175",
+    "p00189"
    ]
   },
   {
@@ -21773,8 +21771,8 @@
   {
    "key": "p00035",
    "successors": [
-    "p00060",
-    "p00151"
+    "p00151",
+    "p00191"
    ]
   },
   {
@@ -21791,6 +21789,12 @@
    ]
   },
   {
+   "key": "p00039",
+   "successors": [
+    "p00190"
+   ]
+  },
+  {
    "key": "p00054",
    "successors": [
     "p00154"
@@ -21801,6 +21805,18 @@
    "successors": [
     "p00153",
     "p00176"
+   ]
+  },
+  {
+   "key": "p00060",
+   "successors": [
+    "p00191"
+   ]
+  },
+  {
+   "key": "p00063",
+   "successors": [
+    "p00194"
    ]
   },
   {
@@ -21844,10 +21860,16 @@
    ]
   },
   {
+   "key": "p00084",
+   "successors": [
+    "p00192"
+   ]
+  },
+  {
    "key": "p00086",
    "successors": [
     "p00170",
-    "p00181"
+    "p00193"
    ]
   },
   {
@@ -21975,10 +21997,28 @@
    ]
   },
   {
+   "key": "p00160",
+   "successors": [
+    "p00188"
+   ]
+  },
+  {
+   "key": "p00172",
+   "successors": [
+    "p00189"
+   ]
+  },
+  {
    "key": "p00173",
    "successors": [
     "p00182",
     "p00183"
+   ]
+  },
+  {
+   "key": "p00181",
+   "successors": [
+    "p00193"
    ]
   },
   {
@@ -22031,7 +22071,7 @@
     "lean": []
    },
    "refs": [
-    "p00160"
+    "p00188"
    ],
    "sources": [
     "5-red",
@@ -22168,18 +22208,18 @@
    "paper": "00",
    "no": 0,
    "rid": "00:A7",
-   "key": "p00160",
+   "key": "p00188",
    "label": "A7",
    "block": "A",
    "tag": "T",
    "name": "Counting closes by return",
-   "statement": "Counting closes by return: the successor $C_q:x\\mapsto x{+}1\\ (\\mathrm{mod}\\ q)$ on $q$ points is one $q$-cycle with no fixed point, so iteration is bounded and cyclic; its interpretation is A2's.",
+   "statement": "Counting closes by return: the successor $C_q:x\\mapsto x{+}1\\ (\\mathrm{mod}\\ q)$ on $q\\ge2$ points is one $q$-cycle with no fixed point, so iteration is bounded and cyclic; its interpretation is A2's.",
    "source": "11-ont, 5-red, 29-fin",
    "page": "00-ledger.html#A7",
    "witness": {
     "script": null,
     "py": {
-     "href": "frc/ledgers/master/foundation.html#p00160",
+     "href": "frc/ledgers/master/foundation.html#p00188",
      "script": "frc/ledgers/master/foundation.py",
      "line": 126,
      "verdict": "pass"
@@ -22188,10 +22228,10 @@
      {
       "lib": "FrcCore",
       "module": "FrcCore/Keys/Foundation",
-      "name": "FRC.Ledger.p00160",
+      "name": "FRC.Ledger.p00188",
       "tier": 0,
       "ok": true,
-      "page": "lean/core/Keys.Foundation.html#FRC.Ledger.p00160"
+      "page": "lean/core/Keys.Foundation.html#FRC.Ledger.p00188"
      }
     ]
    },
@@ -22203,7 +22243,7 @@
     "5-red",
     "29-fin"
    ],
-   "text": "Counting closes by return: Counting closes by return: the successor $C_q:x\\mapsto x{+}1 (\\mathrm{mod} q)$ on $q$ points is one $q$-cycle with no fixed point, so iteration is bounded and cyclic; its interpretation is A2's. 11-ont, 5-red, 29-fin"
+   "text": "Counting closes by return: Counting closes by return: the successor $C_q:x\\mapsto x{+}1 (\\mathrm{mod} q)$ on $q\\ge2$ points is one $q$-cycle with no fixed point, so iteration is bounded and cyclic; its interpretation is A2's. 11-ont, 5-red, 29-fin"
   },
   {
    "paper": "00",
@@ -22554,7 +22594,7 @@
     "py": {
      "href": "frc/ledgers/master/carrier.html#p00015",
      "script": "frc/ledgers/master/carrier.py",
-     "line": 93,
+     "line": 94,
      "verdict": "pass"
     },
     "lean": [
@@ -22614,7 +22654,7 @@
    "block": "B",
    "tag": "T",
    "name": "Physical constants are definite Carrier residues",
-   "statement": "\\textbf{Physical constants are definite Carrier residues}: the register $\\{\\dS,\\Om,c,\\hbar,G,k_B\\}$ is generator-free in $\\dS$ alone --- $G=2\\dS=-c^2$, $c^2=2^{-1}$, $\\hbar^2=-1$, $k_B^2=-2$, $|k_B|=\\hbar/c$; the defining congruences are the observer's complete certificates, $G$ exact, the rest up to sign (B10); $h:=-\\hbar$ is the root-pair partner of $\\hbar$ (B3, D7). No Subject counterpart of $G$ or $\\hbar$; no fifth constant (C1).",
+   "statement": "\\textbf{Physical constants are definite Carrier residues}: the register $\\{\\dS,\\Om,c,\\hbar,G,k_B\\}$ is generator-free in $\\dS$ alone --- $G=2\\dS=-c^2$, $c^2=2^{-1}$ (C8, D7), $\\hbar^2=-1$, $k_B^2=-2$, $|k_B|=\\hbar/c$; the defining congruences are the observer's complete certificates, $G$ exact, the rest up to sign (B10); $h:=-\\hbar$ is the root-pair partner of $\\hbar$ (B3, D7). No Subject counterpart of $G$ or $\\hbar$; no fifth constant (C1).",
    "source": "21-grav, 37-sim, 12-prim",
    "page": "00-ledger.html#B7",
    "witness": {
@@ -22622,7 +22662,7 @@
     "py": {
      "href": "frc/ledgers/master/carrier.html#p00165",
      "script": "frc/ledgers/master/carrier.py",
-     "line": 119,
+     "line": 120,
      "verdict": "pass"
     },
     "lean": [
@@ -22639,6 +22679,7 @@
    "refs": [
     "p00013",
     "p00021",
+    "p00028",
     "p00048",
     "p00168"
    ],
@@ -22647,7 +22688,7 @@
     "37-sim",
     "12-prim"
    ],
-   "text": "Physical constants are definite Carrier residues: Physical constants are definite Carrier residues: the register $\\{\\dS,\\Om,c,\\hbar,G,k_B\\}$ is generator-free in $\\dS$ alone — $G=2\\dS=-c^2$, $c^2=2^{-1}$, $\\hbar^2=-1$, $k_B^2=-2$, $|k_B|=\\hbar/c$; the defining congruences are the observer's complete certificates, $G$ exact, the rest up to sign (B10); $h:=-\\hbar$ is the root-pair partner of $\\hbar$ (B3, D7). No Subject counterpart of $G$ or $\\hbar$; no fifth constant (C1). 21-grav, 37-sim, 12-prim 37:constants.py"
+   "text": "Physical constants are definite Carrier residues: Physical constants are definite Carrier residues: the register $\\{\\dS,\\Om,c,\\hbar,G,k_B\\}$ is generator-free in $\\dS$ alone — $G=2\\dS=-c^2$, $c^2=2^{-1}$ (C8, D7), $\\hbar^2=-1$, $k_B^2=-2$, $|k_B|=\\hbar/c$; the defining congruences are the observer's complete certificates, $G$ exact, the rest up to sign (B10); $h:=-\\hbar$ is the root-pair partner of $\\hbar$ (B3, D7). No Subject counterpart of $G$ or $\\hbar$; no fifth constant (C1). 21-grav, 37-sim, 12-prim 37:constants.py"
   },
   {
    "paper": "00",
@@ -22666,7 +22707,7 @@
     "py": {
      "href": "frc/ledgers/master/carrier.html#p00166",
      "script": "frc/ledgers/master/carrier.py",
-     "line": 163,
+     "line": 170,
      "verdict": "pass"
     },
     "lean": [
@@ -22736,7 +22777,7 @@
     "py": {
      "href": "frc/ledgers/master/carrier.html#p00168",
      "script": "frc/ledgers/master/carrier.py",
-     "line": 191,
+     "line": 198,
      "verdict": "pass"
     },
     "lean": [
@@ -22835,7 +22876,7 @@
     "py": {
      "href": "frc/ledgers/master/carrier.html#p00170",
      "script": "frc/ledgers/master/carrier.py",
-     "line": 213,
+     "line": 220,
      "verdict": "pass"
     },
     "lean": [
@@ -22893,7 +22934,7 @@
     "p00028",
     "p00092",
     "p00150",
-    "p00172"
+    "p00189"
    ],
    "sources": [
     "2-geom",
@@ -22949,7 +22990,7 @@
    "block": "C",
    "tag": "T",
    "name": "Euclidean--Lorentzian dichotomy",
-   "statement": "The drive fixes a Lorentzian time axis, causal order is algebraic, the split and non-split tori the two signatures. The signature is the square class of the temporal coefficient $\\nu=\\gen$ (C1); in $\\F_\\p$, $\\nu=2^{-1}\\cdot(2\\gen)$, both classes fixed by the parity of $\\kap$ (8:B3). In the Carrier $c^2=2^{-1}$ is a square (C8), and $\\eta_{00}=-c^2$ is a chart artifact.",
+   "statement": "The drive fixes a Lorentzian time axis, causal order is algebraic, the split and non-split tori the two signatures. The signature is the square class of the temporal coefficient $\\nu=\\gen$ (C1); in $\\F_\\p$, $\\nu=2^{-1}\\cdot(2\\gen)$, both classes fixed by the parity of $\\kap$ (8:B3). In the Carrier $c^2=2^{-1}$ is a square (C8, D7), and $\\eta_{00}=-c^2$ is a chart artifact.",
    "source": "3-caus, 8-dirac",
    "page": "00-ledger.html#C3",
    "witness": {
@@ -22974,13 +23015,14 @@
    "refs": [
     "p00021",
     "p00028",
+    "p00048",
     "p08009"
    ],
    "sources": [
     "3-caus",
     "8-dirac"
    ],
-   "text": "Euclidean–Lorentzian dichotomy: The drive fixes a Lorentzian time axis, causal order is algebraic, the split and non-split tori the two signatures. The signature is the square class of the temporal coefficient $\\nu=\\gen$ (C1); in $\\F_\\p$, $\\nu=2^{-1}\\cdot(2\\gen)$, both classes fixed by the parity of $\\kap$ (8:B3). In the Carrier $c^2=2^{-1}$ is a square (C8), and $\\eta_{00}=-c^2$ is a chart artifact. 3-caus, 8-dirac"
+   "text": "Euclidean–Lorentzian dichotomy: The drive fixes a Lorentzian time axis, causal order is algebraic, the split and non-split tori the two signatures. The signature is the square class of the temporal coefficient $\\nu=\\gen$ (C1); in $\\F_\\p$, $\\nu=2^{-1}\\cdot(2\\gen)$, both classes fixed by the parity of $\\kap$ (8:B3). In the Carrier $c^2=2^{-1}$ is a square (C8, D7), and $\\eta_{00}=-c^2$ is a chart artifact. 3-caus, 8-dirac"
   },
   {
    "paper": "00",
@@ -23063,18 +23105,18 @@
    "paper": "00",
    "no": 0,
    "rid": "00:C7",
-   "key": "p00172",
+   "key": "p00189",
    "label": "C7",
    "block": "C",
    "tag": "T",
    "name": "Orientation is derived, not conventional",
-   "statement": "\\textbf{Orientation is derived, not conventional}: the $c$-square congruence ($\\dS$ even, C8) annihilates orientation transport on every Carrier carrying it ($\\im^{\\dS}\\in\\{\\pm1\\}$); pullback covariance and count positivity fix the oriented quarter-turn $\\im=-\\gen^\\kap $; the joint flip $(\\gen,\\im,s)\\mapsto(\\gen^{-1},-\\im,-s)$ preserves every registered count. The constants' derivation consumes no selection (B7). Parity marker: C14. The selection by matter content: D16.",
+   "statement": "\\textbf{Orientation is derived, not conventional}: the $c$-square congruence ($\\dS$ even, C8) annihilates orientation transport on every Carrier carrying it ($\\im^{\\dS}\\in\\{\\pm1\\}$); the oriented quarter-turn $\\im=-\\gen^\\kap $ is a selection, read by pullback covariance and count positivity; the joint flip $(\\gen,\\im,s)\\mapsto(\\gen^{-1},-\\im,-s)$ permutes the registration channels. The constants' derivation consumes no selection (B7). Parity marker: C14. The selection by matter content: D16.",
    "source": "12-prim, 28-flav, 22-qm",
    "page": "00-ledger.html#C7",
    "witness": {
     "script": null,
     "py": {
-     "href": "frc/ledgers/master/fourier.html#p00172",
+     "href": "frc/ledgers/master/fourier.html#p00189",
      "script": "frc/ledgers/master/fourier.py",
      "line": 132,
      "verdict": "pass"
@@ -23083,10 +23125,10 @@
      {
       "lib": "FrcCore",
       "module": "FrcCore/Keys/Fourier",
-      "name": "FRC.Ledger.p00172",
+      "name": "FRC.Ledger.p00189",
       "tier": 0,
       "ok": true,
-      "page": "lean/core/Keys.Fourier.html#FRC.Ledger.p00172"
+      "page": "lean/core/Keys.Fourier.html#FRC.Ledger.p00189"
      }
     ]
    },
@@ -23101,7 +23143,7 @@
     "28-flav",
     "22-qm"
    ],
-   "text": "Orientation is derived, not conventional: Orientation is derived, not conventional: the $c$-square congruence ($\\dS$ even, C8) annihilates orientation transport on every Carrier carrying it ($\\im^{\\dS}\\in\\{\\pm1\\}$); pullback covariance and count positivity fix the oriented quarter-turn $\\im=-\\gen^\\kap $; the joint flip $(\\gen,\\im,s)\\mapsto(\\gen^{-1},-\\im,-s)$ preserves every registered count. The constants' derivation consumes no selection (B7). Parity marker: C14. The selection by matter content: D16. 12-prim, 28-flav, 22-qm"
+   "text": "Orientation is derived, not conventional: Orientation is derived, not conventional: the $c$-square congruence ($\\dS$ even, C8) annihilates orientation transport on every Carrier carrying it ($\\im^{\\dS}\\in\\{\\pm1\\}$); the oriented quarter-turn $\\im=-\\gen^\\kap $ is a selection, read by pullback covariance and count positivity; the joint flip $(\\gen,\\im,s)\\mapsto(\\gen^{-1},-\\im,-s)$ permutes the registration channels. The constants' derivation consumes no selection (B7). Parity marker: C14. The selection by matter content: D16. 12-prim, 28-flav, 22-qm"
   },
   {
    "paper": "00",
@@ -23282,7 +23324,7 @@
    "refs": [
     "p00021",
     "p00028",
-    "p00172"
+    "p00189"
    ],
    "sources": [
     "6-four",
@@ -23361,18 +23403,18 @@
    "paper": "00",
    "no": 0,
    "rid": "00:C19",
-   "key": "p00039",
+   "key": "p00190",
    "label": "C19",
    "block": "C",
    "tag": "T",
    "name": "The Hopf section",
-   "statement": "\\textbf{The Hopf section}: in the observable frame group $\\mathrm{PGL}_2$ the boost torus $C_{\\p +1}$ is fixed-point-free on $\\mathbb{P}^1$ and meets the Borel trivially, so every frame factors uniquely as (cone-chart event)$\\times$(boost): the cone chart is a global section of the non-split fibration (C22), $\\p (\\p -1)$ fibres of $\\p +1$; the spin cover $\\mathrm{SL}_2$ obstructs at $-1$.",
+   "statement": "\\textbf{The Hopf section}: on the frames by elements (no group counted, Q20) the boost torus $C_{\\p +1}$ is fixed-point-free on $\\mathbb{P}^1$ and meets the Borel trivially, so every frame factors uniquely as (cone-chart event)$\\times$(boost): the cone chart is a global section of the non-split fibration (C22), $\\p (\\p -1)$ fibres of $\\p +1$; $\\mathrm{SL}_2$ obstructs at $-1$.",
    "source": "38-s13",
    "page": "00-ledger.html#C19",
    "witness": {
     "script": "38:check_s13.js",
     "py": {
-     "href": "frc/ledgers/master/projective.html#p00039",
+     "href": "frc/ledgers/master/projective.html#p00190",
      "script": "frc/ledgers/master/projective.py",
      "line": 88,
      "verdict": "pass"
@@ -23381,10 +23423,10 @@
      {
       "lib": "FrcCore",
       "module": "FrcCore/Keys/Projective",
-      "name": "FRC.Ledger.p00039",
+      "name": "FRC.Ledger.p00190",
       "tier": 0,
       "ok": true,
-      "page": "lean/core/Keys.Projective.html#FRC.Ledger.p00039"
+      "page": "lean/core/Keys.Projective.html#FRC.Ledger.p00190"
      }
     ]
    },
@@ -23394,7 +23436,7 @@
    "sources": [
     "38-s13"
    ],
-   "text": "The Hopf section: The Hopf section: in the observable frame group $\\mathrm{PGL}_2$ the boost torus $C_{\\p +1}$ is fixed-point-free on $\\mathbb{P}^1$ and meets the Borel trivially, so every frame factors uniquely as (cone-chart event)$\\times$(boost): the cone chart is a global section of the non-split fibration (C22), $\\p (\\p -1)$ fibres of $\\p +1$; the spin cover $\\mathrm{SL}_2$ obstructs at $-1$. 38-s13 38:check_s13.js"
+   "text": "The Hopf section: The Hopf section: on the frames by elements (no group counted, Q20) the boost torus $C_{\\p +1}$ is fixed-point-free on $\\mathbb{P}^1$ and meets the Borel trivially, so every frame factors uniquely as (cone-chart event)$\\times$(boost): the cone chart is a global section of the non-split fibration (C22), $\\p (\\p -1)$ fibres of $\\p +1$; $\\mathrm{SL}_2$ obstructs at $-1$. 38-s13 38:check_s13.js"
   },
   {
    "paper": "00",
@@ -23480,7 +23522,7 @@
     "lean": []
    },
    "refs": [
-    "p00039"
+    "p00190"
    ],
    "sources": [
     "38-s13"
@@ -23904,11 +23946,11 @@
     "lean": []
    },
    "refs": [
-    "p00039",
     "p00042",
     "p00044",
     "p00139",
-    "p00152"
+    "p00152",
+    "p00190"
    ],
    "sources": [
     "38-s13",
@@ -23934,9 +23976,9 @@
     "lean": []
    },
    "refs": [
-    "p00039",
     "p00040",
-    "p00043"
+    "p00043",
+    "p00190"
    ],
    "sources": [
     "38-s13",
@@ -23993,8 +24035,8 @@
     "p00067",
     "p00080",
     "p00081",
-    "p00172",
-    "p00179"
+    "p00179",
+    "p00189"
    ],
    "sources": [
     "12-prim",
@@ -24276,18 +24318,18 @@
    "paper": "00",
    "no": 0,
    "rid": "00:F2",
-   "key": "p00060",
+   "key": "p00191",
    "label": "F2",
    "block": "F",
    "tag": "T",
    "name": "Multi-body registration",
-   "statement": "\\textbf{Multi-body registration}: an unequal-cycle composite's joint recurrence is the lcm of its parts' registration periods; each pair's conserved offset lives on the $\\gcd$ cycle (the quotient $A/\\langle v\\rangle$), and dephasing over the product period is exact, extending the Born-rule count (F1) verbatim to unequal cycles (37-sim: joint recurrence derived and verified, 1400/1400 characters cancel).",
+   "statement": "\\textbf{Multi-body registration}: an unequal-cycle composite returning below $\\Om$ (Q20) recurs jointly at the lcm of its parts' registration periods; each pair's conserved offset lives on the $\\gcd$ cycle (the quotient $A/\\langle v\\rangle$), and dephasing over every joint recurrence below $\\Om$ is exact, extending the Born-rule count (F1) verbatim to unequal cycles (37-sim: joint recurrence verified, 1400/1400 characters cancel).",
    "source": "22-qm, 37-sim",
    "page": "00-ledger.html#F2",
    "witness": {
     "script": "22:synchronisation.py",
     "py": {
-     "href": "frc/ledgers/master/quantum.html#p00060",
+     "href": "frc/ledgers/master/quantum.html#p00191",
      "script": "frc/ledgers/master/quantum.py",
      "line": 62,
      "verdict": "pass"
@@ -24296,10 +24338,10 @@
      {
       "lib": "FrcCore",
       "module": "FrcCore/Keys/Quantum",
-      "name": "FRC.Ledger.p00060",
+      "name": "FRC.Ledger.p00191",
       "tier": 0,
       "ok": true,
-      "page": "lean/core/Keys.Quantum.html#FRC.Ledger.p00060"
+      "page": "lean/core/Keys.Quantum.html#FRC.Ledger.p00191"
      }
     ]
    },
@@ -24310,7 +24352,7 @@
     "22-qm",
     "37-sim"
    ],
-   "text": "Multi-body registration: Multi-body registration: an unequal-cycle composite's joint recurrence is the lcm of its parts' registration periods; each pair's conserved offset lives on the $\\gcd$ cycle (the quotient $A/\\langle v\\rangle$), and dephasing over the product period is exact, extending the Born-rule count (F1) verbatim to unequal cycles (37-sim: joint recurrence derived and verified, 1400/1400 characters cancel). 22-qm, 37-sim 22:synchronisation.py"
+   "text": "Multi-body registration: Multi-body registration: an unequal-cycle composite returning below $\\Om$ (Q20) recurs jointly at the lcm of its parts' registration periods; each pair's conserved offset lives on the $\\gcd$ cycle (the quotient $A/\\langle v\\rangle$), and dephasing over every joint recurrence below $\\Om$ is exact, extending the Born-rule count (F1) verbatim to unequal cycles (37-sim: joint recurrence verified, 1400/1400 characters cancel). 22-qm, 37-sim 22:synchronisation.py"
   },
   {
    "paper": "00",
@@ -24344,12 +24386,12 @@
    "paper": "00",
    "no": 0,
    "rid": "00:F5",
-   "key": "p00063",
+   "key": "p00194",
    "label": "F5",
    "block": "F",
    "tag": "T",
    "name": "The graded registration law",
-   "statement": "\\textbf{The graded registration law}: an Object component $\\ell^{a}$ registers at depth $d=\\mathrm{ord}_{\\ell^{a}}(\\p)$ --- $1$ absorbed (register, unique image), $2$ observable (boost torus, unique home), else beyond-quadratic; the sign always $\\{\\pm1\\}$. Visible iff $\\p^{d}<\\Om$; the cap is $2$ at saturating and minimal towers, $\\p^{2}<\\Om$ hosting the observable sector; opacity relational --- hydrogen's interior opaque/observable/absorbed at $173/181/197$. Controls: proton whole, $(5,13)$ refused.",
+   "statement": "\\textbf{The graded registration law}: an Object component $\\ell^{a}$ registers at depth $d=\\mathrm{ord}_{\\ell^{a}}(\\p)$ --- $1$ absorbed (register, unique image), $2$ observable (odd $\\ell$: boost torus, unique home; $2^{a}>4$: off both tori), else beyond-quadratic; the sign always $\\{\\pm1\\}$. Visible iff $\\p^{d}<\\Om$; the cap is $2$ at saturating and minimal towers; opacity relational --- hydrogen's interior opaque/observable/absorbed at $173/181/197$. Controls: proton whole, $(5,13)$ refused.",
    "source": "39-s173",
    "page": "00-ledger.html#F5",
    "witness": {
@@ -24361,7 +24403,7 @@
    "sources": [
     "39-s173"
    ],
-   "text": "The graded registration law: The graded registration law: an Object component $\\ell^{a}$ registers at depth $d=\\mathrm{ord}_{\\ell^{a}}(\\p)$ — $1$ absorbed (register, unique image), $2$ observable (boost torus, unique home), else beyond-quadratic; the sign always $\\{\\pm1\\}$. Visible iff $\\p^{d}<\\Om$; the cap is $2$ at saturating and minimal towers, $\\p^{2}<\\Om$ hosting the observable sector; opacity relational — hydrogen's interior opaque/observable/absorbed at $173/181/197$. Controls: proton whole, $(5,13)$ refused. 39-s173"
+   "text": "The graded registration law: The graded registration law: an Object component $\\ell^{a}$ registers at depth $d=\\mathrm{ord}_{\\ell^{a}}(\\p)$ — $1$ absorbed (register, unique image), $2$ observable (odd $\\ell$: boost torus, unique home; $2^{a}>4$: off both tori), else beyond-quadratic; the sign always $\\{\\pm1\\}$. Visible iff $\\p^{d}<\\Om$; the cap is $2$ at saturating and minimal towers; opacity relational — hydrogen's interior opaque/observable/absorbed at $173/181/197$. Controls: proton whole, $(5,13)$ refused. 39-s173"
   },
   {
    "paper": "00",
@@ -24382,8 +24424,8 @@
    },
    "refs": [
     "p00015",
-    "p00060",
-    "p00062"
+    "p00062",
+    "p00191"
    ],
    "sources": [
     "39-s173",
@@ -24412,9 +24454,9 @@
    "refs": [
     "p00009",
     "p00043",
-    "p00060",
     "p00064",
     "p00166",
+    "p00191",
     "p38008"
    ],
    "sources": [
@@ -24698,7 +24740,7 @@
     "py": {
      "href": "frc/ledgers/master/interactions.html#p27020",
      "script": "frc/ledgers/master/interactions.py",
-     "line": 83,
+     "line": 85,
      "verdict": "pass"
     },
     "lean": [
@@ -24738,7 +24780,7 @@
     "py": {
      "href": "frc/ledgers/master/interactions.html#p00155",
      "script": "frc/ledgers/master/interactions.py",
-     "line": 59,
+     "line": 61,
      "verdict": "pass"
     },
     "lean": [
@@ -24860,7 +24902,7 @@
     "py": {
      "href": "frc/ledgers/master/interactions.html#p00081",
      "script": "frc/ledgers/master/interactions.py",
-     "line": 114,
+     "line": 122,
      "verdict": "pass"
     },
     "lean": [
@@ -24876,7 +24918,7 @@
    },
    "refs": [
     "p00015",
-    "p00172"
+    "p00189"
    ],
    "sources": [
     "27-fld",
@@ -25019,18 +25061,18 @@
    "paper": "00",
    "no": 0,
    "rid": "00:L1",
-   "key": "p00084",
+   "key": "p00192",
    "label": "L1",
    "block": "L",
    "tag": "R",
    "name": "Cosmology (the dark sector)",
-   "statement": "The synchronisation floor $a_0=cH_0/2\\pi$ fixes the acceleration scale parameter-free: the $2\\pi$ by the angle--count dictionary (14:B2), the threshold one cycle per drive period (32:B3), $1.04\\times10^{-10}$ [chart] at the entailed $H_0$ (L3), tied to $H(z)$, not $\\Lambda$ (P1; 21:X1). Below the floor the amplitude reading, given the barrier identification (32:B8, 21:C19), gives the radial acceleration relation unfitted. Falsifiers: 32:B3, 21:P4.",
+   "statement": "The synchronisation floor $a_0=cH_0/2\\pi$ fixes the acceleration scale parameter-free: the $2\\pi$ by the angle--count dictionary (14:B2), the threshold one cycle per drive period (32:B3), $1.04\\times10^{-10}$ [chart] at the channel-1 $H_0=67.4$ (L3), tied to $H(z)$, not $\\Lambda$ (P1; 21:X1). Below the floor the amplitude reading, given the barrier identification (32:B8, 21:C19), gives the radial acceleration relation unfitted. Falsifiers: 32:B3, 21:P4.",
    "source": "32-dark, 21-grav, 37-sim",
    "page": "00-ledger.html#L1",
    "witness": {
     "script": "21:validate_rar.py",
     "py": {
-     "href": "frc/ledgers/master/chart.html#p00084",
+     "href": "frc/ledgers/master/chart.html#p00192",
      "script": "frc/ledgers/master/chart.py",
      "line": 74,
      "verdict": "pass"
@@ -25039,16 +25081,16 @@
      {
       "lib": "FrcLedger",
       "module": "FrcLedger/Keys/Chart",
-      "name": "FRC.LedgerML.p00084",
+      "name": "FRC.LedgerML.p00192",
       "tier": 2,
       "ok": true,
-      "page": "lean/Keys.Chart.html#FRC.LedgerML.p00084"
+      "page": "lean/Keys.Chart.html#FRC.LedgerML.p00192"
      }
     ]
    },
    "refs": [
     "p00133",
-    "p00181",
+    "p00193",
     "p14010",
     "p21034",
     "p21041",
@@ -25061,7 +25103,7 @@
     "21-grav",
     "37-sim"
    ],
-   "text": "Cosmology (the dark sector): The synchronisation floor $a_0=cH_0/2\\pi$ fixes the acceleration scale parameter-free: the $2\\pi$ by the angle–count dictionary (14:B2), the threshold one cycle per drive period (32:B3), $1.04\\times10^{-10}$ [chart] at the entailed $H_0$ (L3), tied to $H(z)$, not $\\Lambda$ (P1; 21:X1). Below the floor the amplitude reading, given the barrier identification (32:B8, 21:C19), gives the radial acceleration relation unfitted. Falsifiers: 32:B3, 21:P4. 32-dark, 21-grav, 37-sim 21:validate_rar.py"
+   "text": "Cosmology (the dark sector): The synchronisation floor $a_0=cH_0/2\\pi$ fixes the acceleration scale parameter-free: the $2\\pi$ by the angle–count dictionary (14:B2), the threshold one cycle per drive period (32:B3), $1.04\\times10^{-10}$ [chart] at the channel-1 $H_0=67.4$ (L3), tied to $H(z)$, not $\\Lambda$ (P1; 21:X1). Below the floor the amplitude reading, given the barrier identification (32:B8, 21:C19), gives the radial acceleration relation unfitted. Falsifiers: 32:B3, 21:P4. 32-dark, 21-grav, 37-sim 21:validate_rar.py"
   },
   {
    "paper": "00",
@@ -25090,30 +25132,30 @@
    "paper": "00",
    "no": 0,
    "rid": "00:L3",
-   "key": "p00181",
+   "key": "p00193",
    "label": "L3",
    "block": "L",
    "tag": "R",
    "name": "The octant record depth and its outputs",
-   "statement": "\\textbf{The octant record depth and its outputs}: the record depth is bounded by the octant, $\\dS/2$ chronons $=13.79$ Gyr ($(\\pi/4)r_H/c$, chart), on the octant sector of B14. Zero-freedom: $\\Omega_\\Lambda=\\tanh^2(3\\pi/8)=0.684$ (chart; $0.19\\sigma$), $H_0=67.4\\pm0.7$ ($4.6\\sigma$ adverse disclosed), $w=-1$ rigid --- a confirmed drift falsifies $\\Lambda\\sim1/\\Om$. Falsifiers: octant-capped ages, the running floor $a_0(z)\\propto H(z)$ (Z7), the ladder bias.",
+   "statement": "\\textbf{The octant record depth and its outputs}: the record depth is bounded by the octant, $\\dS/2$ chronons $=13.79$ Gyr ($(\\pi/4)r_H/c$, chart), on the octant sector of B14. Zero-freedom: $\\Omega_\\Lambda=\\tanh^2(3\\pi/8)=0.684$ (chart; $0.19\\sigma$); on the stellar age $13.61\\pm0.34$ Gyr, $H_0=68.2\\pm1.7$ ($2.4\\sigma$ from the ladder); $w=-1$ rigid --- a confirmed drift falsifies $\\Lambda\\sim1/\\Om$. Falsifiers: octant-capped ages, the running floor $a_0(z)\\propto H(z)$ (Z7), the ladder bias.",
    "source": "14-entr",
    "page": "00-ledger.html#L3",
    "witness": {
     "script": "14:entropy.py [mixed]",
     "py": {
-     "href": "frc/ledgers/master/chart.html#p00181",
+     "href": "frc/ledgers/master/chart.html#p00193",
      "script": "frc/ledgers/master/chart.py",
-     "line": 97,
+     "line": 98,
      "verdict": "pass"
     },
     "lean": [
      {
       "lib": "FrcLedger",
       "module": "FrcLedger/Keys/Chart",
-      "name": "FRC.LedgerML.p00181",
+      "name": "FRC.LedgerML.p00193",
       "tier": 2,
       "ok": true,
-      "page": "lean/Keys.Chart.html#FRC.LedgerML.p00181"
+      "page": "lean/Keys.Chart.html#FRC.LedgerML.p00193"
      }
     ]
    },
@@ -25124,7 +25166,7 @@
    "sources": [
     "14-entr"
    ],
-   "text": "The octant record depth and its outputs: The octant record depth and its outputs: the record depth is bounded by the octant, $\\dS/2$ chronons $=13.79$ Gyr ($(\\pi/4)r_H/c$, chart), on the octant sector of B14. Zero-freedom: $\\Omega_\\Lambda=\\tanh^2(3\\pi/8)=0.684$ (chart; $0.19\\sigma$), $H_0=67.4\\pm0.7$ ($4.6\\sigma$ adverse disclosed), $w=-1$ rigid — a confirmed drift falsifies $\\Lambda\\sim1/\\Om$. Falsifiers: octant-capped ages, the running floor $a_0(z)\\propto H(z)$ (Z7), the ladder bias. 14-entr 14:entropy.py [mixed]"
+   "text": "The octant record depth and its outputs: The octant record depth and its outputs: the record depth is bounded by the octant, $\\dS/2$ chronons $=13.79$ Gyr ($(\\pi/4)r_H/c$, chart), on the octant sector of B14. Zero-freedom: $\\Omega_\\Lambda=\\tanh^2(3\\pi/8)=0.684$ (chart; $0.19\\sigma$); on the stellar age $13.61\\pm0.34$ Gyr, $H_0=68.2\\pm1.7$ ($2.4\\sigma$ from the ladder); $w=-1$ rigid — a confirmed drift falsifies $\\Lambda\\sim1/\\Om$. Falsifiers: octant-capped ages, the running floor $a_0(z)\\propto H(z)$ (Z7), the ladder bias. 14-entr 14:entropy.py [mixed]"
   },
   {
    "paper": "00",
@@ -25195,7 +25237,7 @@
     "py": {
      "href": "frc/ledgers/master/chart.html#p00148",
      "script": "frc/ledgers/master/chart.py",
-     "line": 129,
+     "line": 136,
      "verdict": "pass"
     },
     "lean": [
@@ -25276,7 +25318,7 @@
    "key": "p00133",
    "label": "P1",
    "block": "P",
-   "tag": "T",
+   "tag": "R",
    "name": "The running floor: the shape a₀(z) ∝ H(z)",
    "statement": "The acceleration floor tracks the drive rate, $a_0(z)\\propto H(z)$: a relation, $\\Om$-blind, derived from L1 under the gravity realisation (D5); the knee shifts and the Tully--Fisher zero-point evolves as $E(z)^{1/4}$. Falsifier: a floor constant in redshift, or tracking other than $H(z)$. Confrontation (43-muse): MUSE-DARK III excludes a constant floor to $z=1.3$; RC100 implies the local floor by $z\\simeq2$, pending refit.",
    "source": "14-entr, 21-grav, 32-dark",
@@ -25286,7 +25328,7 @@
     "py": {
      "href": "frc/ledgers/master/chart.html#p00133",
      "script": "frc/ledgers/master/chart.py",
-     "line": 156,
+     "line": 163,
      "verdict": "pass"
     },
     "lean": [
@@ -25302,7 +25344,7 @@
    },
    "refs": [
     "p00046",
-    "p00084"
+    "p00192"
    ],
    "sources": [
     "14-entr",
@@ -25734,7 +25776,7 @@
    "block": "Z",
    "tag": "T",
    "name": "The shell theorem",
-   "statement": "On every shell $\\F_\\p\\subset\\F_{\\p^2}$, with no hypothesis, the prime vector's spectral content is the constant mode and the nonterminal quarter-turn modes, the finite zeta vanishing on each (20:E12, 20:E9). Every mode of every vector lies on the self-dual line $\\Tr=1$, an eigenvector of the scale-shift with a $(\\p-1)$-th root of unity as eigenvalue: no off-line mode, $\\Om$-blind.",
+   "statement": "On every shell $\\F_\\p\\subset\\F_{\\p^2}$, with no hypothesis, the prime vector's spectral content is the constant mode and the nonterminal quarter-turn modes, the finite zeta vanishing on each (20:E12, 20:B4). Every mode of every vector lies on the self-dual line $\\Tr=1$, an eigenvector of the scale-shift with a $(\\p-1)$-th root of unity as eigenvalue: no off-line mode, $\\Om$-blind.",
    "source": "20-rh",
    "page": "00-ledger.html#Z10",
    "witness": {
@@ -25757,13 +25799,13 @@
     ]
    },
    "refs": [
-    "p20040",
+    "p20011",
     "p20043"
    ],
    "sources": [
     "20-rh"
    ],
-   "text": "The shell theorem: On every shell $\\F_\\p\\subset\\F_{\\p^2}$, with no hypothesis, the prime vector's spectral content is the constant mode and the nonterminal quarter-turn modes, the finite zeta vanishing on each (20:E12, 20:E9). Every mode of every vector lies on the self-dual line $\\Tr=1$, an eigenvector of the scale-shift with a $(\\p-1)$-th root of unity as eigenvalue: no off-line mode, $\\Om$-blind. 20-rh 00:check_rh_shell.py"
+   "text": "The shell theorem: On every shell $\\F_\\p\\subset\\F_{\\p^2}$, with no hypothesis, the prime vector's spectral content is the constant mode and the nonterminal quarter-turn modes, the finite zeta vanishing on each (20:E12, 20:B4). Every mode of every vector lies on the self-dual line $\\Tr=1$, an eigenvector of the scale-shift with a $(\\p-1)$-th root of unity as eigenvalue: no off-line mode, $\\Om$-blind. 20-rh 00:check_rh_shell.py"
   },
   {
    "paper": "00",
@@ -25829,7 +25871,7 @@
     "lean": []
    },
    "refs": [
-    "p00172"
+    "p00189"
    ],
    "text": "The sign of the quarter-turn exponent: the oriented quarter-turn is $\\im=\\gen^{-\\kap}=-\\gen^{\\kap}$, the exponent negative by pullback covariance (00:C7); the positive-exponent reading is the conjugate chart. Declared here, derived in the corpus. 00:C7"
   },
@@ -26028,7 +26070,7 @@
     ]
    },
    "refs": [
-    "p00172"
+    "p00189"
    ],
    "text": "The oriented quarter-turn: $\\im=-\\gen^{\\kap}$ satisfies $\\im^{2}=-1$ for every primitive root $\\gen$; the two square roots of $-1$ are $\\{-\\gen^{\\kap},\\gen^{\\kap}\\}$, so the drive fixes which is $\\im$. On $\\F_{13}$, $\\gen=2$: $\\im=5$. p01005, FrcCore{B3}, FrcLedger{B3} Algebra.quarter_turn, Algebra.s13_quarter_turn, FRC.Shell.Frame.quarter_turn_sq, FRC.Shell.s13_datum"
   },
@@ -26936,7 +26978,7 @@
     "lean": []
    },
    "refs": [
-    "p00172",
+    "p00189",
     "p01002"
    ],
    "text": "The sign of the quarter-turn exponent: $\\im=\\gen^{-\\kap}=-\\gen^{\\kap}$, the exponent negative by pullback covariance (00:C7); the positive-exponent reading is the conjugate chart. Declared here, derived in the corpus. 00:C7; 1:A2"
@@ -27403,7 +27445,7 @@
    },
    "refs": [
     "p00021",
-    "p00172",
+    "p00189",
     "p02002"
    ],
    "text": "The oriented quarter-turn $\\im=-\\gen^{\\kap}=\\gen^{-\\kap}$, $\\im^{2}=-1$, orientation by A2 (Rem. rem:observer-canonical-e); on $\\F_{13}(\\chron;0,1,2)$: $\\im=5$, $-\\im=8$, $\\pi=6$ [value] (Fig. fig:f13-constant-datum). A2 p02015, FrcCore{D3} FRC.Shell.s13_datum"
@@ -28753,7 +28795,7 @@
     "p00013",
     "p00021",
     "p00149",
-    "p00160",
+    "p00188",
     "p01004",
     "p01009",
     "p03009",
@@ -29546,8 +29588,8 @@
     "p00111",
     "p00149",
     "p00159",
-    "p00160",
-    "p00186"
+    "p00186",
+    "p00188"
    ],
    "text": "The corpus: the totality finite and complete (00:A4), counting closes by return (00:A7), a bounded observer a proper part and every reading a projection (00:A5, A6), G\\\"odel vacuous over the finite $\\Omega$ (00:Z1), the $\\Omega$-hard demarcation (00:Z3); finite mathematics as ontologically primary (Lev, Zeilberger). [lev2020finite,Zeilberger2001,akhtman2025algebra]"
   },
@@ -31365,7 +31407,7 @@
     ]
    },
    "refs": [
-    "p00172",
+    "p00189",
     "p06021"
    ],
    "text": "The conjugate reframing $(\\gen,\\im)\\mapsto(\\gen^{-1},-\\im)$: exactly $\\Ft'=-\\Ft^{-1}$ and $\\Pi'_\\ell=\\Pi_{\\ell+2}$; the operator relations, cardinal values, additivity and faithfulness hold on the conjugate frame, and its multiplicity tuple is the other pattern of C7. Rem. rem:gt-covariance, Thm. thm:multiplicity p06023, FrcLedger{C9} Fourier.shell_conj"
@@ -38153,7 +38195,7 @@
     "lean": []
    },
    "refs": [
-    "p00084",
+    "p00192",
     "p14010",
     "p14011",
     "p14025"
@@ -38676,7 +38718,7 @@
     ]
    },
    "refs": [
-    "p00181",
+    "p00193",
     "p14004",
     "p14005",
     "p14010",
@@ -38749,7 +38791,8 @@
     ]
    },
    "refs": [
-    "p00151"
+    "p00151",
+    "p00170"
    ],
    "text": "The octant sector: $C_{8}\\subset C_{4\\dS}$ exists exactly when $\\dS$ is even, its character $\\zeta_8$ the residue the Tsirelson identity carries; the octant count $\\dS/2$ is an integer on every admissible Carrier. \\Ssec:registers, [akhtman2026quantum] p14023, FrcCore{C6}, FrcLedger{C6} Entropy.octant_exists_iff, Entropy.octant_character, FRC.Entropy.tsirelson_square, FRC.Entropy.octant_iff, FRC.Entropy.lab_carrier"
   },
@@ -38792,7 +38835,7 @@
     ]
    },
    "refs": [
-    "p00181"
+    "p00193"
    ],
    "text": "The dark-energy output: $\\Omega_\\Lambda=\\tanh^{2}(3\\pi/8)=0.6837$ \\lcdm{} against the fitted $0.685\\pm0.007$, a $0.19\\sigma$ landing — a zero-freedom derivation, not an independent measurement (two-register separation, \\Ssec:audit). Lem. lem:octant p14024, FrcLedger{C7} Entropy.octant_inversion, Entropy.landing_bracket"
   },
@@ -38974,7 +39017,7 @@
     "lean": []
    },
    "refs": [
-    "p00181",
+    "p00193",
     "p14035"
    ],
    "text": "The registered record depth is bounded by $(\\pi/4) r_H/c=13.79$ Gyr \\apx{} (channel-1 anchor) at every observational frame chronon, against a $\\Lambda$CDM $t_0$ that grows with chart time: degenerate to $0.2%$ now, separating at ${\\sim}7%$ per Gyr; the octant carries zero parameter freedom at fixed $\\Lambda$. Status [valcin2026]: the oldest cluster population $0.5\\sigma$ below the bound, the inferred age straddling it within $0.1\\sigma$ (\\Ssec:open). Falsifier: one well-dated object older than the octant value, in any frame — fit-independent, fatal; the same bound excludes interior-bounce black-hole cosmology (X8). Lem. lem:octant p14037"
@@ -39018,7 +39061,7 @@
     ]
    },
    "refs": [
-    "p00181",
+    "p00193",
     "p14025"
    ],
    "text": "The age–rate locus $t_{\\mathrm{age}}H_0=(\\pi/4)/\\tanh(3\\pi/8)=0.950$, exact for the realisation set. Read on the fit-independent stellar age ($13.61\\pm0.34$ Gyr): $H_0=68.2\\pm1.7$ km/s/Mpc \\apx, $0.5\\sigma$ from Planck, $0.65\\sigma$ from TRGB, $2.4\\sigma$ from the Cepheid ladder — the framework favours the CMB/TRGB value at that significance, and forbids the $\\Omega_\\Lambda\\approx0.76$ by which the rival chart would accommodate the ladder value at the same age. Read on the channel-1 $\\Lambda$ it returns the channel-1 $H_0$ (to $0.1%$): a consistency, not a prediction (C8). Falsifier: a confirmed ladder $H_0$ with the stellar age standing ($t_\\star H_0\\ge1.0$ against $0.950$). \\Ssec:open p14038, FrcLedger{P3} Entropy.age_rate_locus, Entropy.locus_bracket"
@@ -39049,7 +39092,7 @@
     ]
    },
    "refs": [
-    "p00181",
+    "p00193",
     "p14016",
     "p14037"
    ],
@@ -39105,7 +39148,7 @@
     ]
    },
    "refs": [
-    "p00084"
+    "p00192"
    ],
    "text": "Milgrom's coincidence $a_0\\approx cH_0/2\\pi$, on record since 1983, becomes a value with zero freedom: the $2\\pi$ is the fixed cycle convention, the reverse rebooking of $h=2\\pi\\hbar$, and the $H$ is the observer's registered rate. \\Ssec:open, [milgrom1983] p14029, FrcLedger{X2} Entropy.milgrom_rebooking"
   },
@@ -40099,11 +40142,11 @@
      },
      {
       "lib": "FrcCore",
-      "module": "FrcCore/Instances",
+      "module": "FrcCore/Transform",
       "name": "FRC.Shell.frame13",
       "tier": 0,
       "ok": true,
-      "page": "lean/core/Instances.html#FRC.Shell.frame13"
+      "page": "lean/core/Transform.html#FRC.Shell.frame13"
      }
     ]
    },
@@ -42207,7 +42250,7 @@
     ]
    },
    "refs": [
-    "p00084"
+    "p00192"
    ],
    "text": "The registration crossover made exact: the killed walk is the noise sector, first passage the masking event, the window attribution the framed-rational tally ratio $g_N/f$, and the orbital response now derived (Theorem thm:twoshift with the registered-inertia identity); the remaining declared content is the masking-barrier identification (barrier $=$ coincidence amplitude $\\sqrt x$) and the corpus's unified sampling clause, shared with [quantum]. Prop. prop:crossover; [quantum]; grav.deepregime, grav.deepregime_ orbit, grav.fluxnoise; Gravity.registration_root, Gravity.crossover_limits, Gravity.crossover_deep_limit"
   },
@@ -42437,7 +42480,7 @@
     ]
    },
    "refs": [
-    "p00084"
+    "p00192"
    ],
    "text": "The weak-acceleration floor $a_0=cH_0/2\\pi=1.04\\times10^{-10} \\mathrm{m s^{-2}}$ at the entailed $H_0=67.4$ [entropy], against the fitted $1.20\\pm0.24\\times10^{-10}$: $13%$ low, $0.7\\sigma$ of the systematic-dominated error, no free parameter; the $2\\pi$ the dictionary's full cycle [D], the one-cycle-per-period threshold the realisation [R] with its discrete falsifier. Prop. prop:afloor; grav.rar; Gravity.floor_value"
   },
@@ -43489,8 +43532,8 @@
     "lean": []
    },
    "refs": [
-    "p00060",
-    "p00153"
+    "p00153",
+    "p00191"
    ],
    "text": "The composite ledger and the conserved offset: synchronised orbits are the Bell states, the $m$-body locked cluster carries the offset as a conserved, drive-confined label (its ensemble diagonality a declared preparation clause). Prop. prop:offset, Lem. lem:mbody; qm.composite, qm. synchronisation"
   },
@@ -47885,8 +47928,8 @@
     "lean": []
    },
    "refs": [
-    "p00084",
-    "p00092"
+    "p00092",
+    "p00192"
    ],
    "text": "The acceleration floor $\\az=c\\Hzero/2\\pi$, parameter-free, $13%$ below the fitted value ($0.7\\sigma$ of its systematic band). Eq. eq:a0; dark.deep_mond, dark.rar_shape"
   },
@@ -47926,7 +47969,7 @@
     "lean": []
    },
    "refs": [
-    "p00084",
+    "p00192",
     "p32011"
    ],
    "text": "The deep-regime geometric mean $\\geff=\\sqrt{\\gb\\az}$, given the amplitude reading B4; the mean force of the link is Newtonian at every noise level (dark. deep_ regime; exactly, dark. deep_ regime_ fp), so the law is registration, not force modification; its instantiation by a transport run generating the registration rate is the sector's open gate. Eq. eq:spectral, \\Ssub:geomean; dark. deep_ regime, dark. deep_ regime_ fp, dark.deep_mond"
@@ -47948,7 +47991,7 @@
     "lean": []
    },
    "refs": [
-    "p00084"
+    "p00192"
    ],
    "text": "Flat rotation curves and the baryonic Tully–Fisher relation $v^4=GM\\az$. Eq. eq:btfr; dark.deep_mond"
   },
@@ -47969,7 +48012,7 @@
     "lean": []
    },
    "refs": [
-    "p00084",
+    "p00192",
     "p32015"
    ],
    "text": "The registration theorem: the finite coincidence count, its first-passage law, and flux conservation give the radial acceleration relation given B8; the fitting function of [mcgaugh2016] is this form with $g_\\dagger$ for $\\az$. Thm. thm:registration, Eq. eq:interp; dark. meridian_ walk, dark. interpolation, dark.rar_shape"
@@ -50002,8 +50045,8 @@
     "lean": []
    },
    "refs": [
-    "p00039",
-    "p00152"
+    "p00152",
+    "p00190"
    ],
    "text": "The frame counts: $2184=156\\times14=14\\times13\\times12$; $\\PGL_{2}=\\mathrm{SO}_{3}(\\F_{13})$, the norm-one sphere $\\SL_{2}$ its spin cover of $\\mathrm{PSL}_{2}$ ($1092$); $\\SL_{2}$ obstructs at $-1$ (Theorem th:hopf). s13. check_s13, s13. verify-hopf"
   },
@@ -50381,7 +50424,7 @@
     "lean": []
    },
    "refs": [
-    "p00084",
+    "p00192",
     "p38011",
     "p38022"
    ],
@@ -50698,7 +50741,7 @@
     "lean": []
    },
    "refs": [
-    "p00084",
+    "p00192",
     "p38045"
    ],
    "text": "The registration floor $a_{0}=cH_{0}/2\\pi$, read from the pair's $\\kap$-free per-chronon leak rate (C11): parameter-free, tracking $H(z)$. Falsifier: a measured floor off $cH_{0}/2\\pi$ beyond the $H_{0}$ uncertainty, or one not tracking $H(z)$ (\\Ssec:predictions, item 5; the dark sector's L1). \\Ssec:predictions"
@@ -50874,7 +50917,7 @@
     "lean": []
    },
    "refs": [
-    "p00084",
+    "p00192",
     "p38044",
     "p38045"
    ],

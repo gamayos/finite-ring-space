@@ -1,5 +1,6 @@
 import FrcCore.Frame
 import FrcCore.Ring
+import FrcCore.Theme.Quadratic
 
 /-!
 # FrcCore.Theme.Interactions — the interactions theme: one generation and the Koide form (ledger migration, task LM29)
@@ -60,10 +61,11 @@ def fifth (S : Nat) : Nat := if cnt S 0 4 % 2 == 0 then S else S + 16
 
 /-! ## The reflection algebra of four directions (00:G12) -/
 
-/-- 00:G12 — the reflection algebra of four directions: `16` basis elements `e_S`; the product is associative on
-the basis; distinct directions anticommute, `e_i e_j = −e_j e_i`, and each squares to zero. -/
+/-- 00:G12 — the reflection algebra of four directions: the `16` basis elements `e_S`, `S ⊆ {0, 1, 2, 3}`, close under
+the product; the product is associative on the basis; distinct directions anticommute, `e_i e_j = −e_j e_i`, and each
+squares to zero. -/
 theorem reflection_algebra :
-    (List.range 16).length = 16 ∧
+    (List.range 16).all (fun S => (List.range 16).all (fun T => decide ((emul S T).2 < 16))) = true ∧
     (List.range 16).all (fun S => (List.range 16).all (fun T => (List.range 16).all (fun U =>
       assocL S T U == assocR S T U))) = true ∧
     (List.range 4).all (fun i => (List.range 4).all (fun j =>
@@ -157,5 +159,64 @@ theorem koide_two_thirds (a₀ a₁ a₂ ω : Shell p) (hω : ω * ω + ω + 1 =
     rw [add_comm, h]
   · intro h
     rw [h]
+
+/-! ## The Koide form on every shell, the Carrier included (00:G16)
+
+The Carrier has no cube root of unity (`Ω ≡ 5 (mod 12)`, B5), so `koide_parseval` is vacuous there. The cube roots lie
+in the extension `𝔽_p[w]/(w² − ν)` at `ν = −3`: `ω = −h + h w` with `h = 1/2`. Read there, Parseval on `C₃` holds on
+every shell, and `â₁ â₂ = N(â₁)` is a residue of the shell. -/
+
+/-- `ω = −1/2 + (1/2) w`, a cube root of unity of the extension at `ν = −3` (`h = 1/2`). -/
+def omega3 (ν h : Shell p) : Extension.Ext p ν := ⟨-h, h⟩
+
+/-- `â₁ = a₀ + a₁ ω + a₂ ω²` and `â₂ = a₀ + a₁ ω² + a₂ ω`. -/
+def hat1 (ν h a₀ a₁ a₂ : Shell p) : Extension.Ext p ν :=
+  Extension.Ext.ofShell a₀ + Extension.Ext.ofShell a₁ * omega3 ν h + Extension.Ext.ofShell a₂ * (omega3 ν h * omega3 ν h)
+def hat2 (ν h a₀ a₁ a₂ : Shell p) : Extension.Ext p ν :=
+  Extension.Ext.ofShell a₀ + Extension.Ext.ofShell a₁ * (omega3 ν h * omega3 ν h) + Extension.Ext.ofShell a₂ * omega3 ν h
+
+theorem red2i {L R A B X Y : Shell p} (e : L = R + A * X + B * Y) (ha : A = 0) (hb : B = 0) : L = R := by
+  rw [ha, hb, zero_mul, zero_mul, add_zero, add_zero] at e; exact e
+
+/-- 00:G16 on every shell: with `h + h = 1` and `ν = −3`, `ω = −h + h w` has `ω² + ω + 1 = 0`; `â₂ = â̄₁`, so
+`â₁ â₂ = N(â₁)`; Parseval `3 Σ a_j² = â₀² + 2 N(â₁)`; and `Q = 2/3 ⟺ 2 N(â₁) = â₀²` (`ρ² = 1/2`). -/
+theorem koide_extension {ν h : Shell p} (hh : h + h = 1) (hν : ν + 1 + 1 + 1 = 0) (a₀ a₁ a₂ : Shell p) :
+    omega3 ν h * omega3 ν h + omega3 ν h + 1 = 0 ∧ hat2 ν h a₀ a₁ a₂ = Extension.Ext.conj (hat1 ν h a₀ a₁ a₂) ∧
+    hat1 ν h a₀ a₁ a₂ * hat2 ν h a₀ a₁ a₂ = Extension.Ext.ofShell (hat1 ν h a₀ a₁ a₂).norm ∧
+    3 * (a₀ * a₀ + a₁ * a₁ + a₂ * a₂) = (a₀ + a₁ + a₂) * (a₀ + a₁ + a₂) + 2 * (hat1 ν h a₀ a₁ a₂).norm ∧
+    (3 * (a₀ * a₀ + a₁ * a₁ + a₂ * a₂) = 2 * ((a₀ + a₁ + a₂) * (a₀ + a₁ + a₂)) ↔
+      2 * (hat1 ν h a₀ a₁ a₂).norm = (a₀ + a₁ + a₂) * (a₀ + a₁ + a₂)) := by
+  have hA : h + h + -1 = 0 := by rw [hh, add_neg]
+  have hB := hν
+  have hc : hat2 ν h a₀ a₁ a₂ = Extension.Ext.conj (hat1 ν h a₀ a₁ a₂) := Extension.Ext.ext
+    ((red2i (Shell.Frame.RE.sound (Shell.Frame.look [ν, h, a₀, a₁, a₂]) (.add (.add (.var 2) (.add (.mul (.var 3) (.add (.mul (.neg (.var 1)) (.neg (.var 1))) (.mul (.var 0) (.mul (.var 1) (.var 1))))) (.mul (.var 0) (.mul .zero (.add (.mul (.neg (.var 1)) (.var 1)) (.mul (.var 1) (.neg (.var 1)))))))) (.add (.mul (.var 4) (.neg (.var 1))) (.mul (.var 0) (.mul .zero (.var 1))))) (.add (.add (.add (.add (.var 2) (.add (.mul (.var 3) (.neg (.var 1))) (.mul (.var 0) (.mul .zero (.var 1))))) (.add (.mul (.var 4) (.add (.mul (.neg (.var 1)) (.neg (.var 1))) (.mul (.var 0) (.mul (.var 1) (.var 1))))) (.mul (.var 0) (.mul .zero (.add (.mul (.neg (.var 1)) (.var 1)) (.mul (.var 1) (.neg (.var 1)))))))) (.mul (.add (.add (.var 1) (.var 1)) (.neg .one)) (.add (.mul (.var 1) (.var 4)) (.neg (.mul (.var 1) (.var 3)))))) (.mul (.add (.add (.add (.var 0) .one) .one) .one) (.add (.mul (.mul (.var 3) (.var 1)) (.var 1)) (.neg (.mul (.mul (.var 4) (.var 1)) (.var 1)))))) (by decide +kernel)) hA hB : (a₀ + ((a₁ * (((-h) * (-h)) + (ν * (h * h)))) + (ν * (0 * (((-h) * h) + (h * (-h))))))) + ((a₂ * (-h)) + (ν * (0 * h))) = (a₀ + ((a₁ * (-h)) + (ν * (0 * h)))) + ((a₂ * (((-h) * (-h)) + (ν * (h * h)))) + (ν * (0 * (((-h) * h) + (h * (-h))))))))
+    ((red2i (Shell.Frame.RE.sound (Shell.Frame.look [ν, h, a₀, a₁, a₂]) (.add (.add .zero (.add (.mul (.var 3) (.add (.mul (.neg (.var 1)) (.var 1)) (.mul (.var 1) (.neg (.var 1))))) (.mul .zero (.add (.mul (.neg (.var 1)) (.neg (.var 1))) (.mul (.var 0) (.mul (.var 1) (.var 1))))))) (.add (.mul (.var 4) (.var 1)) (.mul .zero (.neg (.var 1))))) (.add (.add (.neg (.add (.add .zero (.add (.mul (.var 3) (.var 1)) (.mul .zero (.neg (.var 1))))) (.add (.mul (.var 4) (.add (.mul (.neg (.var 1)) (.var 1)) (.mul (.var 1) (.neg (.var 1))))) (.mul .zero (.add (.mul (.neg (.var 1)) (.neg (.var 1))) (.mul (.var 0) (.mul (.var 1) (.var 1)))))))) (.mul (.add (.add (.var 1) (.var 1)) (.neg .one)) (.add (.neg (.mul (.var 1) (.var 3))) (.neg (.mul (.var 1) (.var 4)))))) (.mul (.add (.add (.add (.var 0) .one) .one) .one) .zero)) (by decide +kernel)) hA hB : (0 + ((a₁ * (((-h) * h) + (h * (-h)))) + (0 * (((-h) * (-h)) + (ν * (h * h)))))) + ((a₂ * h) + (0 * (-h))) = -((0 + ((a₁ * h) + (0 * (-h)))) + ((a₂ * (((-h) * h) + (h * (-h)))) + (0 * (((-h) * (-h)) + (ν * (h * h))))))))
+  have hp : 3 * (a₀ * a₀ + a₁ * a₁ + a₂ * a₂) = (a₀ + a₁ + a₂) * (a₀ + a₁ + a₂) + 2 * (hat1 ν h a₀ a₁ a₂).norm := by
+    rw [three_eq, two_eq]
+    exact (red2i (Shell.Frame.RE.sound (Shell.Frame.look [ν, h, a₀, a₁, a₂]) (.mul (.add (.add .one .one) .one) (.add (.add (.mul (.var 2) (.var 2)) (.mul (.var 3) (.var 3))) (.mul (.var 4) (.var 4)))) (.add (.add (.add (.mul (.add (.add (.var 2) (.var 3)) (.var 4)) (.add (.add (.var 2) (.var 3)) (.var 4))) (.mul (.add .one .one) (.add (.mul (.add (.add (.var 2) (.add (.mul (.var 3) (.neg (.var 1))) (.mul (.var 0) (.mul .zero (.var 1))))) (.add (.mul (.var 4) (.add (.mul (.neg (.var 1)) (.neg (.var 1))) (.mul (.var 0) (.mul (.var 1) (.var 1))))) (.mul (.var 0) (.mul .zero (.add (.mul (.neg (.var 1)) (.var 1)) (.mul (.var 1) (.neg (.var 1)))))))) (.add (.add (.var 2) (.add (.mul (.var 3) (.neg (.var 1))) (.mul (.var 0) (.mul .zero (.var 1))))) (.add (.mul (.var 4) (.add (.mul (.neg (.var 1)) (.neg (.var 1))) (.mul (.var 0) (.mul (.var 1) (.var 1))))) (.mul (.var 0) (.mul .zero (.add (.mul (.neg (.var 1)) (.var 1)) (.mul (.var 1) (.neg (.var 1))))))))) (.neg (.mul (.var 0) (.mul (.add (.add .zero (.add (.mul (.var 3) (.var 1)) (.mul .zero (.neg (.var 1))))) (.add (.mul (.var 4) (.add (.mul (.neg (.var 1)) (.var 1)) (.mul (.var 1) (.neg (.var 1))))) (.mul .zero (.add (.mul (.neg (.var 1)) (.neg (.var 1))) (.mul (.var 0) (.mul (.var 1) (.var 1))))))) (.add (.add .zero (.add (.mul (.var 3) (.var 1)) (.mul .zero (.neg (.var 1))))) (.add (.mul (.var 4) (.add (.mul (.neg (.var 1)) (.var 1)) (.mul (.var 1) (.neg (.var 1))))) (.mul .zero (.add (.mul (.neg (.var 1)) (.neg (.var 1))) (.mul (.var 0) (.mul (.var 1) (.var 1))))))))))))) (.mul (.add (.add (.var 1) (.var 1)) (.neg .one)) (.add (.add (.add (.add (.add (.add (.add (.add (.add (.add (.add (.neg (.mul (.add .one .one) (.mul (.var 3) (.var 3)))) (.neg (.mul (.add .one .one) (.mul (.var 4) (.var 4))))) (.neg (.mul (.add (.add (.add (.add (.add (.add (.add (.add (.add (.add (.add (.add (.add (.add (.add .one .one) .one) .one) .one) .one) .one) .one) .one) .one) .one) .one) .one) .one) .one) .one) (.mul (.mul (.mul (.mul (.var 1) (.var 1)) (.var 1)) (.var 4)) (.var 4))))) (.neg (.mul (.add (.add (.add (.add (.add (.add (.add .one .one) .one) .one) .one) .one) .one) .one) (.mul (.mul (.mul (.var 1) (.var 1)) (.var 4)) (.var 4))))) (.neg (.mul (.add (.add (.add .one .one) .one) .one) (.mul (.mul (.var 1) (.var 3)) (.var 3))))) (.neg (.mul (.add (.add (.add .one .one) .one) .one) (.mul (.mul (.var 1) (.var 4)) (.var 4))))) (.mul (.add .one .one) (.mul (.var 2) (.var 3)))) (.mul (.add .one .one) (.mul (.var 2) (.var 4)))) (.mul (.add .one .one) (.mul (.var 3) (.var 4)))) (.mul (.add (.add (.add .one .one) .one) .one) (.mul (.mul (.var 1) (.var 2)) (.var 4)))) (.mul (.add (.add (.add .one .one) .one) .one) (.mul (.mul (.var 1) (.var 3)) (.var 4)))) (.mul (.add (.add (.add (.add (.add (.add (.add .one .one) .one) .one) .one) .one) .one) .one) (.mul (.mul (.mul (.var 3) (.var 4)) (.var 1)) (.var 1)))))) (.mul (.add (.add (.add (.var 0) .one) .one) .one) (.add (.add (.add (.add (.mul (.add .one .one) (.mul (.mul (.mul (.var 1) (.var 1)) (.var 3)) (.var 3))) (.mul (.add (.add (.add (.add (.add (.add (.add (.add (.add .one .one) .one) .one) .one) .one) .one) .one) .one) .one) (.mul (.mul (.mul (.mul (.mul (.var 1) (.var 1)) (.var 1)) (.var 1)) (.var 4)) (.var 4)))) (.neg (.mul (.add (.add (.add .one .one) .one) .one) (.mul (.mul (.mul (.var 2) (.var 4)) (.var 1)) (.var 1))))) (.neg (.mul (.add (.add (.add .one .one) .one) .one) (.mul (.mul (.mul (.mul (.var 3) (.var 4)) (.var 1)) (.var 1)) (.var 1))))) (.neg (.mul (.add .one .one) (.mul (.mul (.mul (.mul (.mul (.mul (.var 0) (.var 1)) (.var 1)) (.var 1)) (.var 1)) (.var 4)) (.var 4))))))) (by decide +kernel)) hA hB : ((1 + 1) + 1) * (((a₀ * a₀) + (a₁ * a₁)) + (a₂ * a₂)) = (((a₀ + a₁) + a₂) * ((a₀ + a₁) + a₂)) + ((1 + 1) * ((((a₀ + ((a₁ * (-h)) + (ν * (0 * h)))) + ((a₂ * (((-h) * (-h)) + (ν * (h * h)))) + (ν * (0 * (((-h) * h) + (h * (-h))))))) * ((a₀ + ((a₁ * (-h)) + (ν * (0 * h)))) + ((a₂ * (((-h) * (-h)) + (ν * (h * h)))) + (ν * (0 * (((-h) * h) + (h * (-h)))))))) + (-(ν * (((0 + ((a₁ * h) + (0 * (-h)))) + ((a₂ * (((-h) * h) + (h * (-h)))) + (0 * (((-h) * (-h)) + (ν * (h * h)))))) * ((0 + ((a₁ * h) + (0 * (-h)))) + ((a₂ * (((-h) * h) + (h * (-h)))) + (0 * (((-h) * (-h)) + (ν * (h * h))))))))))))
+  refine ⟨Extension.Ext.ext ((red2i (Shell.Frame.RE.sound (Shell.Frame.look [ν, h, a₀, a₁, a₂]) (.add (.add (.add (.mul (.neg (.var 1)) (.neg (.var 1))) (.mul (.var 0) (.mul (.var 1) (.var 1)))) (.neg (.var 1))) .one) (.add (.add .zero (.mul (.add (.add (.var 1) (.var 1)) (.neg .one)) (.add (.neg .one) (.neg (.var 1))))) (.mul (.add (.add (.add (.var 0) .one) .one) .one) (.mul (.var 1) (.var 1)))) (by decide +kernel)) hA hB : ((((-h) * (-h)) + (ν * (h * h))) + (-h)) + 1 = 0)) ((red2i (Shell.Frame.RE.sound (Shell.Frame.look [ν, h, a₀, a₁, a₂]) (.add (.add (.add (.mul (.neg (.var 1)) (.var 1)) (.mul (.var 1) (.neg (.var 1)))) (.var 1)) .zero) (.add (.add .zero (.mul (.add (.add (.var 1) (.var 1)) (.neg .one)) (.neg (.var 1)))) (.mul (.add (.add (.add (.var 0) .one) .one) .one) .zero)) (by decide +kernel)) hA hB : ((((-h) * h) + (h * (-h))) + h) + 0 = 0)), hc, by rw [hc]; exact Extension.Ext.mul_conj _, hp, ?_⟩
+  rw [hp, two_mul' ((a₀ + a₁ + a₂) * (a₀ + a₁ + a₂))]
+  constructor
+  · intro e
+    apply add_right_cancel (c := (a₀ + a₁ + a₂) * (a₀ + a₁ + a₂))
+    rw [add_comm, e]
+  · intro e
+    rw [e]
+
+/-- 00:G16 — the hypotheses of `koide_extension` hold on every frame `p = 4κ + 1`, the Carrier included:
+`h = 2κ + 1` has `h + h = 1`, and `ν = −3` has `ν + 3 = 0`. -/
+theorem koide_half {κ : Nat} (hκ : p = 4 * κ + 1) :
+    (ofNat (2 * κ + 1) : Shell p) + ofNat (2 * κ + 1) = 1 ∧ (-3 : Shell p) + 1 + 1 + 1 = 0 := by
+  refine ⟨Shell.ext ?_, ?_⟩
+  · show ((2 * κ + 1) % p + (2 * κ + 1) % p) % p = 1 % p
+    rw [← FRC.Nat.add_mod _ _ _ Pos.pos]
+    have e : (2 * κ + 1) + (2 * κ + 1) = p * 1 + 1 := by
+      rw [Nat.mul_one, hκ, show 4 * κ = 2 * κ + 2 * κ from FRC.Nat.add_mul 2 2 κ]
+      show Nat.succ ((2 * κ + 1) + 2 * κ) = Nat.succ (2 * κ + 2 * κ + 1)
+      rw [Nat.succ_add]
+    rw [e]; exact FRC.Nat.add_mul_mod_self_left 1 1 p Pos.pos
+  · rw [three_eq]
+    exact Shell.Frame.RE.sound (Shell.Frame.look ([] : List (Shell p)))
+      (.add (.add (.add (.neg (.add (.add .one .one) .one)) .one) .one) .one) .zero (by decide +kernel)
 
 end FRC.Interactions

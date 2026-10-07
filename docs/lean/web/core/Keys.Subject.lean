@@ -1872,6 +1872,17 @@ theorem norm_ofShell (c : Shell p) : norm (ofShell c : Ext p ν) = c * c := by
   show c * c + -(ν * (0 * 0)) = c * c
   rw [Shell.zero_mul, Shell.mul_zero, Shell.neg_zero, Shell.add_zero]
 
+theorem mul_one (z : Ext p ν) : z * 1 = z := by rw [mul_comm]; exact one_mul z
+
+theorem pow_add (z : Ext p ν) (m : Nat) : ∀ n : Nat, z ^ (m + n) = z ^ m * z ^ n
+  | 0 => (mul_one _).symm
+  | n + 1 => by show z ^ (m + n) * z = z ^ m * (z ^ n * z); rw [pow_add z m n, mul_assoc]
+
+/-- The norm of a power: `N(zⁿ) = N(z)ⁿ`. -/
+theorem norm_pow (z : Ext p ν) : ∀ n : Nat, norm (z ^ n) = norm z ^ n
+  | 0 => by show norm (ofShell 1 : Ext p ν) = 1; rw [norm_ofShell, Shell.one_mul]
+  | n + 1 => by show norm (z ^ n * z) = norm z ^ n * norm z; rw [norm_mul, norm_pow z n]
+
 end Ext
 
 end FRC.Extension
@@ -2440,14 +2451,6 @@ theorem neg_one_ne_zero (hp : FRC.Nat.isPrime p) : (-1 : Shell p) ≠ 0 := fun e
   have : (1 : Shell p) = 0 := by rw [← neg_neg (1 : Shell p), e, neg_zero]
   exact one_ne_zero hp this
 
-/-- The order divides the period: `z^d = 1` gives `z^{(p−1) mod d} = 1`. -/
-theorem pow_mod_eq_one (hp : FRC.Nat.isPrime p) {z : Shell p} (hz : z ≠ 0) {d : Nat} (hd0 : 0 < d)
-    (hd : z ^ d = 1) : z ^ ((p - 1) % d) = 1 := by
-  obtain ⟨q, hq⟩ := FRC.Nat.mod_spec d hd0 (p - 1)
-  have h := fermat hp hz
-  rw [hq, pow_add, pow_mul, hd, one_pow, one_mul] at h
-  exact h
-
 /-! ## The roots of `X^m − 1`, and the residues they miss -/
 
 /-- Some nonzero residue escapes `x^m = 1` when `0 < m < p − 1`: else `X^m − 1` had `m + 1` roots. -/
@@ -2482,42 +2485,13 @@ theorem exists_pow_half (hp : FRC.Nat.isPrime p) {n : Nat} (hn : p = 2 * n + 1) 
     | .inl e => absurd e han
     | .inr e => e⟩
 
-/-! ## The quarter-turn criterion: `−1` is a square iff `p ≡ 1 (mod 4)` -/
+/-! ## The quarter-turn on the chart `p = 4S + 1` (the criterion: `Theme/Foundation.lean`) -/
 
 /-- The quarter-turn on the chart `p = 4S + 1`, generator-free: `ħ = a^S` with `a^{2S} = −1`. -/
 theorem exists_quarter_turn (hp : FRC.Nat.isPrime p) {S : Nat} (hS : p = 4 * S + 1) :
     ∃ h : Shell p, h * h = -1 := by
   obtain ⟨a, ha⟩ := exists_pow_half hp (n := 2 * S) (by rw [hS, ← FRC.Nat.mul_assoc])
   exact ⟨a ^ S, by rw [← pow_add, ← Nat.two_mul, ha]⟩
-
-/-- The quarter-turn criterion on a prime `p > 2`: `x² = −1` is solvable iff `p ≡ 1 (mod 4)`. Forward, `ħ⁴ = 1`
-and `ħ^{(p−1) mod 4} = 1` leave only `(p − 1) mod 4 = 0`; backward, the chart. -/
-theorem quarter_turn_iff (hp : FRC.Nat.isPrime p) (h2 : 2 < p) : (∃ h : Shell p, h * h = -1) ↔ p % 4 = 1 := by
-  constructor
-  · intro ⟨h, hh⟩
-    have h0 : h ≠ 0 := ne_zero_of_mul_self (neg_one_ne_zero hp) hh
-    have h4 : h ^ 4 = 1 := by
-      rw [show (4 : Nat) = 2 + 2 from rfl, pow_add, pow_two, hh, neg_mul_neg, mul_one]
-    have hcase : (p - 1) % 4 = 0 := by
-      have hr := pow_mod_eq_one hp h0 (by decide : 0 < 4) h4
-      have hlt := Nat.mod_lt (p - 1) (by decide : 0 < 4)
-      generalize (p - 1) % 4 = r at hr hlt
-      match r, hr, hlt with
-      | 0, _, _ => rfl
-      | 1, hr, _ => rw [pow_one] at hr; rw [hr, mul_one] at hh; exact absurd hh.symm (neg_one_ne_one h2)
-      | 2, hr, _ => rw [pow_two, hh] at hr; exact absurd hr (neg_one_ne_one h2)
-      | 3, hr, _ =>
-        rw [show (4 : Nat) = 3 + 1 from rfl, pow_succ, hr, one_mul] at h4
-        rw [h4, mul_one] at hh; exact absurd hh.symm (neg_one_ne_one h2)
-      | k + 4, _, hlt => exact absurd hlt (Nat.not_lt_of_le (Nat.le_add_left 4 k))
-    obtain ⟨q, hq⟩ := FRC.Nat.mod_spec 4 (by decide) (p - 1)
-    rw [hcase, Nat.add_zero] at hq
-    exact FRC.Nat.mod_unique (by decide)
-      (by rw [← hq, FRC.Nat.sub_add_cancel (Nat.le_of_lt (Nat.lt_trans (Nat.lt_succ_self 1) h2))])
-  · intro h4
-    obtain ⟨S, hS⟩ := FRC.Nat.mod_spec 4 (by decide) p
-    rw [h4] at hS
-    exact exists_quarter_turn hp hS
 
 /-! ## A shell without zero divisors is prime -/
 
@@ -2546,14 +2520,8 @@ theorem isPrime_of_no_zero_divisors (h2 : 2 ≤ p) (hz : ∀ {a b : Shell p}, a 
   | .inl e1 => exact ofNat_ne_zero hd0 hdp e1
   | .inr e2 => exact ofNat_ne_zero hq0 hqp e2
 
-/-- Completeness is primality: for `p ≥ 2`, the shell has no zero divisors iff `p` is prime. -/
-theorem isPrime_iff_no_zero_divisors (h2 : 2 ≤ p) :
-    FRC.Nat.isPrime p ↔ ∀ a b : Shell p, a * b = 0 → a = 0 ∨ b = 0 :=
-  ⟨fun hp _ _ h => mul_eq_zero hp h, fun hz => isPrime_of_no_zero_divisors h2 (fun h => hz _ _ h)⟩
-
-/-! ## The chart `p = 4S + 1`: the octant sector, the half-square and the parity flip (moved from the Carrier's
-theme by task LM24, so that every programme theme stands on them without the Carrier; `FRC.Carrier` keeps the old
-names) -/
+/-! ## The chart `p = 4S + 1`: the half-square and the parity flip (moved from the Carrier's theme by task LM24, so that
+every programme theme stands on them without the Carrier; `FRC.Carrier` keeps the old names) -/
 
 omit [Pos p] in
 theorem chart_gt_two (hp : FRC.Nat.isPrime p) {S : Nat} (hS : p = 4 * S + 1) : 2 < p := by
@@ -2831,7 +2799,6 @@ theorem channel (hp : FRC.Nat.isPrime p) {h : Shell p} (hh : h * h = -1) :
 /-- C20's Carrier instance (38:A4): on `Ω = 233`, `78^58 = 89 = ħ`, a root of `−1`. -/
 theorem channel_233 : (78 : Shell 233) ^ 58 = 89 ∧ (89 : Shell 233) * 89 = -1 := by decide
 
-
 /-! ## C13's part 10:G2: the exponent-window ladder on every capacity -/
 
 /-- **10:G2 (p10038), the exponent-window ladder, on every capacity** (C13's first part; the key is paper 10's): coherence
@@ -3094,6 +3061,31 @@ theorem spinor {κ : Nat} {g : Shell p} (F : Frame p κ g) :
     | .inr h => h
     | .inl h => absurd hall (notinj h)⟩, surj, ⟨solv1, solv2⟩⟩
 
+/-- 00:C16, the converse — for `κ` even no isomorphism `C_{p−1} ≅ C₄ × C_κ` exists: a map `φ` from the nonzero residues
+to the pairs `(r mod 4, s mod κ)` that turns products into sums is never injective, since `2κ` kills `C₄ × C_κ`
+(`4 ∣ 2κ`) while `g^{2κ} = −1 ≠ 1`. -/
+theorem no_iso {κ : Nat} {g : Shell p} (F : Frame p κ g) (hκ : κ % 2 = 0) (φ : Shell p → Nat × Nat)
+    (hφ : ∀ x y : Shell p, x ≠ 0 → y ≠ 0 → φ (x * y) = (((φ x).1 + (φ y).1) % 4, ((φ x).2 + (φ y).2) % κ)) :
+    ¬ ∀ x y : Shell p, x ≠ 0 → y ≠ 0 → φ x = φ y → x = y := fun hinj => by
+  have hg0 : g ≠ 0 := by have := F.pow_ne_zero 1; rwa [pow_one] at this
+  have hpow : ∀ n, φ (g ^ (n + 2)) = (((n + 2) * (φ g).1) % 4, ((n + 2) * (φ g).2) % κ) := fun n => by
+    induction n with
+    | zero => show φ (g ^ 1 * g) = (((0 + 2) * (φ g).1) % 4, ((0 + 2) * (φ g).2) % κ); rw [pow_one, hφ g g hg0 hg0, Nat.zero_add, Nat.two_mul, Nat.two_mul]
+    | succ n ih =>
+      show φ (g ^ (n + 2) * g) = (((n + 1 + 2) * (φ g).1) % 4, ((n + 1 + 2) * (φ g).2) % κ)
+      rw [hφ _ g (F.pow_ne_zero _) hg0, ih, FRC.Nat.mod_add_mod _ _ _ (Nat.zero_lt_succ 3),
+        FRC.Nat.mod_add_mod _ _ _ F.cap_pos, Nat.succ_mul (n + 2) (φ g).1, Nat.succ_mul (n + 2) (φ g).2]
+  obtain ⟨t, ht⟩ := FRC.Nat.mod_spec 2 (Nat.zero_lt_succ 1) κ; rw [hκ, Nat.add_zero] at ht
+  have c1 : ((2 * κ + 2) * (φ g).1) % 4 = ((0 + 2) * (φ g).1) % 4 := by
+    rw [FRC.Nat.add_mul, ht, ← FRC.Nat.mul_assoc 2 2 t, FRC.Nat.mul_assoc (2 * 2) t, Nat.zero_add]
+    exact FRC.Nat.add_mul_mod_self_left _ (t * (φ g).1) 4 (Nat.zero_lt_succ 3)
+  have c2 : ((2 * κ + 2) * (φ g).2) % κ = ((0 + 2) * (φ g).2) % κ := by
+    rw [FRC.Nat.add_mul, Nat.mul_comm 2 κ, FRC.Nat.mul_assoc κ 2, Nat.zero_add]
+    exact FRC.Nat.add_mul_mod_self_left _ _ _ F.cap_pos
+  have he : φ (g ^ (2 * κ + 2)) = φ (g ^ (0 + 2)) := by rw [hpow, hpow, c1, c2]
+  have hg := hinj _ _ (F.pow_ne_zero _) (F.pow_ne_zero _) he; rw [pow_add, Nat.zero_add, F.half_period] at hg
+  have hc : g ^ 2 * -1 = g ^ 2 * 1 := by rw [mul_comm, hg, mul_one]
+  exact Prime.neg_one_ne_one F.two_lt_p (F.mul_left_cancel (F.pow_ne_zero 2) hc)
 
 /-- `2^k ∣ 2^a u` with `u` odd forces `k ≤ a`. -/
 theorem pow_dvd_odd {a k u : Nat} (hu : u % 2 = 1) : 2 ^ k ∣ 2 ^ a * u → k ≤ a
@@ -3398,6 +3390,32 @@ theorem horizon_antipode (hp : FRC.Nat.isPrime p) {κ : Nat} (hκ : p = 4 * κ +
     hsurj, h01, hm1, hord2, hrat, hinv, hwact,
     fun s hs => (Prime.mul_eq_zero hp hs).resolve_left h2, Prime.two_mul_chart_half hκ, hseam⟩
 
+/-- 00:C25 — the horizon is `ζ^{(p+1)/2}` for every generator `ζ` of the torus: a norm-one `ζ` of order exactly `p + 1`
+has `ζ^{2κ+1} = −1`, the torus's one element of order two. -/
+theorem horizon_generator (hp : FRC.Nat.isPrime p) {κ : Nat} (hκ : p = 4 * κ + 1) (hν : ¬ ∃ y : Shell p, y * y = ν)
+    (ζ : Extension.Ext p ν) (hn : ζ.norm = 1) (hζ : ζ ^ (p + 1) = 1)
+    (hmin : ∀ l, 0 < l → l < p + 1 → ζ ^ l ≠ 1) : ζ ^ (2 * κ + 1) = -1 := by
+  have hh : (2 * κ + 1) + (2 * κ + 1) = p + 1 := by
+    rw [hκ, show 4 * κ = 2 * κ + 2 * κ from FRC.Nat.add_mul 2 2 κ]; exact congrArg Nat.succ (Nat.succ_add _ _)
+  have hsq : ζ ^ (2 * κ + 1) * ζ ^ (2 * κ + 1) = 1 := by rw [← Extension.Ext.pow_add, hh, hζ]
+  have hnorm : (ζ ^ (2 * κ + 1)).norm = 1 := by rw [Extension.Ext.norm_pow, hn, one_pow]
+  have hlt : 2 * κ + 1 < p + 1 := by rw [← hh]; exact Nat.lt_add_of_pos_right (Nat.zero_lt_succ _)
+  match (horizon_antipode hp hκ hν).2.2.2.2.2.2.2.2.2.1 _ hnorm hsq with
+  | .inl e => exact absurd e (hmin _ (Nat.zero_lt_succ _) hlt)
+  | .inr e => exact e
+
+/-- 00:C25 — `u_P` is the unique boost carrying the origin to `P`: a boost `v` with `v · dir(0, 1) = c · dir(x, y)` is
+`(c/ν) · dir(x, y)`, so it is `dir(x, y)` up to a scalar, which acts trivially on `ℙ¹` and leaves the ratio unchanged. -/
+theorem boost_unique (hp : FRC.Nat.isPrime p) (hν : ¬ ∃ y : Shell p, y * y = ν) (v : Extension.Ext p ν) (c x y : Shell p)
+    (h : v * dir ν 0 1 = Extension.Ext.ofShell c * dir ν x y) :
+    v = Extension.Ext.ofShell (c * inv ν) * dir ν x y := by
+  have h0 : dir ν 0 1 = Extension.Ext.ofShell ν := Extension.Ext.ext (mul_one ν) rfl
+  have hi : (Extension.Ext.ofShell (inv ν) : Extension.Ext p ν) * Extension.Ext.ofShell ν = 1 := by
+    rw [Extension.Ext.ofShell_mul, mul_comm, mul_inv hp (nonsquare_ne_zero hν)]; rfl
+  calc v = Extension.Ext.ofShell (inv ν) * Extension.Ext.ofShell ν * v := by rw [hi, Extension.Ext.one_mul]
+    _ = Extension.Ext.ofShell (inv ν) * (v * dir ν 0 1) := by rw [h0, Extension.Ext.mul_assoc, Extension.Ext.mul_comm _ v]
+    _ = Extension.Ext.ofShell (c * inv ν) * dir ν x y := by rw [h, ← Extension.Ext.mul_assoc, Extension.Ext.ofShell_mul, mul_comm (inv ν) c]
+
 end torus
 
 end FRC.Subject
@@ -3419,8 +3437,8 @@ namespace FRC.Ledger
 theorem p00021 : ∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → FRC.Shell.ofNat ((2 : Nat) * FRC.Shell.Frame.halfPeriod κ) = (-1 : FRC.Shell p) ∧ g ^ FRC.Shell.Frame.halfPeriod κ = (-1 : FRC.Shell p) ∧ -FRC.Shell.ofNat (FRC.Shell.Frame.halfPeriod κ) * (2 : FRC.Shell p) = (1 : FRC.Shell p) ∧ FRC.Shell.Frame.quarterTurn g κ * FRC.Shell.Frame.quarterTurn g κ = (-1 : FRC.Shell p) ∧ (∃ y, y * y = (0 : FRC.Shell p)) ∧ (∃ y, y * y = (1 : FRC.Shell p)) ∧ ¬∃ y, y * y = g :=
   @FRC.Subject.frame_web
 /-- p00028 — 00:C8. For a primitive drive the squares are $\langle \gen^2\rangle$: a residue's quadratic class is its drive-step parity. Registered transport is even, the one-way multiplier $\gen$ odd, so the one-way speed is gauge and the two-way constant invariant. $[c^2]$ is even iff $\dS$ is even, a relation certified by the unit realisation (D7). The Tsirelson $\sqrt2=\zeta_8+\zeta_8^{-1}$ is its two-way symmetrisation. -/
-theorem p00028 : (∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → (∀ (m : Nat), (∃ y, y * y = g ^ m) ↔ m % (2 : Nat) = (0 : Nat)) ∧ (¬∃ y, y * y = g) ∧ (∀ (y : FRC.Shell p), g * y = (1 : FRC.Shell p) → ¬∃ r, r * r = y) ∧ ∃ y, y * y = g * g) ∧ (∀ {p : Nat} [FRC.Pos p], FRC.Nat.isPrime p → ∀ {S : Nat}, p = (4 : Nat) * S + (1 : Nat) → ∀ (h : FRC.Shell p), (2 : FRC.Shell p) * h = (1 : FRC.Shell p) → ((∃ c, c * c = h) ↔ S % (2 : Nat) = (0 : Nat))) ∧ ∀ {p : Nat} [FRC.Pos p] {ζ : FRC.Shell p}, ζ ^ (4 : Nat) = (-1 : FRC.Shell p) → (ζ + ζ ^ (7 : Nat)) * (ζ + ζ ^ (7 : Nat)) = (2 : FRC.Shell p) :=
-  And.intro @FRC.Subject.square_class (And.intro @FRC.Subject.half_class (@FRC.Shell.Prime.tsirelson))
+theorem p00028 : (∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → (∀ (m : Nat), (∃ y, y * y = g ^ m) ↔ m % (2 : Nat) = (0 : Nat)) ∧ (¬∃ y, y * y = g) ∧ (∀ (y : FRC.Shell p), g * y = (1 : FRC.Shell p) → ¬∃ r, r * r = y) ∧ ∃ y, y * y = g * g) ∧ (∀ {p : Nat} [FRC.Pos p], FRC.Nat.isPrime p → ∀ {S : Nat}, p = (4 : Nat) * S + (1 : Nat) → ∀ (h : FRC.Shell p), (2 : FRC.Shell p) * h = (1 : FRC.Shell p) → ((∃ c, c * c = h) ↔ S % (2 : Nat) = (0 : Nat))) ∧ (∀ {p : Nat} [FRC.Pos p] {ζ : FRC.Shell p}, ζ ^ (4 : Nat) = (-1 : FRC.Shell p) → (ζ + ζ ^ (7 : Nat)) * (ζ + ζ ^ (7 : Nat)) = (2 : FRC.Shell p)) ∧ ∀ {p : Nat} [FRC.Pos p] {ν : FRC.Shell p} (c : FRC.Shell p) (z : FRC.Extension.Ext p ν), (FRC.Extension.Ext.ofShell c * z).norm = c * c * z.norm :=
+  And.intro @FRC.Subject.square_class (And.intro @FRC.Subject.half_class (And.intro @FRC.Shell.Prime.tsirelson (@FRC.Extension.Ext.norm_scale)))
 /-- p00034 — 00:C14. \textbf{The quarter-turn is the odd member of the $\pm\sqrt{-1}$ pair}: the two representatives have opposite integer parity (distinct from chronon parity, C8), and $e^{\,\im\pi}:=\gen^{\,2\kap\,\iota(\im)^{2}}\equiv(-1)^{\iota(\im)}$ (the lift $\iota$ of C1), so $e^{\,\im\pi}\equiv-1$ holds exactly on the odd member. The conjugate chart toggles it: the parity names the matter--antimatter gauge (C7), and the selection is generator-independent within the chirality. -/
 theorem p00034 : ∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → (∀ (i : Nat), (g ^ i) ^ (i * ((2 : Nat) * κ)) = if i % (2 : Nat) = (0 : Nat) then (1 : FRC.Shell p) else (-1 : FRC.Shell p)) ∧ (∀ (h : FRC.Shell p), h * h = (-1 : FRC.Shell p) → (h.val % (2 : Nat) = (0 : Nat) ↔ ¬(-h).val % (2 : Nat) = (0 : Nat))) ∧ (∀ (h : FRC.Shell p), h * h = (-1 : FRC.Shell p) → ((g ^ h.val) ^ (h.val * ((2 : Nat) * κ)) = (-1 : FRC.Shell p) ↔ h.val % (2 : Nat) = (1 : Nat))) ∧ (∀ (y : FRC.Shell p), g * y = (1 : FRC.Shell p) → FRC.Shell.Frame p κ y ∧ FRC.Shell.Frame.quarterTurn y κ = -FRC.Shell.Frame.quarterTurn g κ) ∧ ∀ (g' : FRC.Shell p), FRC.Shell.Frame p κ g' → ∃ u, u < p - (1 : Nat) ∧ g ^ u = g' ∧ (u % (4 : Nat) = (1 : Nat) ∨ u % (4 : Nat) = (3 : Nat)) ∧ (u % (4 : Nat) = (1 : Nat) → FRC.Shell.Frame.quarterTurn g' κ = FRC.Shell.Frame.quarterTurn g κ) ∧ (u % (4 : Nat) = (3 : Nat) → FRC.Shell.Frame.quarterTurn g' κ = -FRC.Shell.Frame.quarterTurn g κ) ∧ ((FRC.Shell.Frame.quarterTurn g' κ).val % (2 : Nat) = (FRC.Shell.Frame.quarterTurn g κ).val % (2 : Nat) ↔ u % (4 : Nat) = (1 : Nat)) :=
   @FRC.Subject.quarter_turn_odd
@@ -3428,14 +3446,14 @@ theorem p00034 : ∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.She
 theorem p00040 : (∀ {p : Nat} [FRC.Pos p], FRC.Nat.isPrime p → ∀ {h : FRC.Shell p}, h * h = (-1 : FRC.Shell p) → (∀ (x : FRC.Shell p), x ≠ (0 : FRC.Shell p) → (x ^ (p + (1 : Nat)) = (1 : FRC.Shell p) ↔ x = (1 : FRC.Shell p) ∨ x = (-1 : FRC.Shell p))) ∧ (∀ (x : FRC.Shell p), x ≠ (0 : FRC.Shell p) → (x ^ ((2 : Nat) * (p + (1 : Nat))) = (1 : FRC.Shell p) ↔ x = (1 : FRC.Shell p) ∨ x = (-1 : FRC.Shell p) ∨ x = h ∨ x = -h)) ∧ h ^ (p + (1 : Nat)) = (-1 : FRC.Shell p)) ∧ (78 : FRC.Shell (233 : Nat)) ^ (58 : Nat) = (89 : FRC.Shell (233 : Nat)) ∧ (89 : FRC.Shell (233 : Nat)) * (89 : FRC.Shell (233 : Nat)) = (-1 : FRC.Shell (233 : Nat)) :=
   And.intro @FRC.Subject.channel (@FRC.Subject.channel_233)
 /-- p00139 — 00:C25. For $w^2=\nu$ a nonsquare, the torsor map $\mathbb{P}^1(\F_\p)\to C_{\p +1}$, $P\mapsto u_P/\bar u_P$ with $u_P$ the unique boost carrying $0$ to $P$, is equivariant and sends the origin to $1$ and the horizon $[1{:}0]$ to $-1=\zeta^{(\p +1)/2}$. Origin and horizon are the sign pair $C_{\p -1}\cap C_{\p +1}$ (C20), exchanged by the torus's unique involution $q\mapsto\nu/q$. On the additive cycle the antipode is the seam $\p/2$ (1:Z1, 1:Z2). -/
-theorem p00139 : ∀ {p : Nat} [FRC.Pos p] {ν : FRC.Shell p}, FRC.Nat.isPrime p → ∀ {κ : Nat}, p = (4 : Nat) * κ + (1 : Nat) → (¬∃ y, y * y = ν) → (∀ (x y : FRC.Shell p), x ≠ (0 : FRC.Shell p) ∨ y ≠ (0 : FRC.Shell p) → (FRC.Subject.dir ν x y).norm ≠ (0 : FRC.Shell p)) ∧ (∀ (v : FRC.Extension.Ext p ν) (x y : FRC.Shell p), v * FRC.Subject.dir ν x y = FRC.Subject.dir ν (v.re * x + ν * (v.im * y)) (v.re * y + v.im * x)) ∧ (∀ (u : FRC.Extension.Ext p ν), u.norm ≠ (0 : FRC.Shell p) → (FRC.Subject.ratio u).norm = (1 : FRC.Shell p)) ∧ (∀ (c : FRC.Shell p) (u : FRC.Extension.Ext p ν), c ≠ (0 : FRC.Shell p) → FRC.Subject.ratio (FRC.Extension.Ext.ofShell c * u) = FRC.Subject.ratio u) ∧ (∀ (u v : FRC.Extension.Ext p ν), FRC.Subject.ratio (v * u) = FRC.Subject.ratio v * FRC.Subject.ratio u) ∧ (∀ (x y x' y' : FRC.Shell p), x ≠ (0 : FRC.Shell p) ∨ y ≠ (0 : FRC.Shell p) → x' ≠ (0 : FRC.Shell p) ∨ y' ≠ (0 : FRC.Shell p) → (FRC.Subject.ratio (FRC.Subject.dir ν x y) = FRC.Subject.ratio (FRC.Subject.dir ν x' y') ↔ x * y' = x' * y)) ∧ (∀ (z : FRC.Extension.Ext p ν), z.norm = (1 : FRC.Shell p) → ∃ x y, (x ≠ (0 : FRC.Shell p) ∨ y ≠ (0 : FRC.Shell p)) ∧ FRC.Subject.ratio (FRC.Subject.dir ν x y) = z) ∧ FRC.Subject.ratio (FRC.Subject.dir ν (0 : FRC.Shell p) (1 : FRC.Shell p)) = (1 : FRC.Extension.Ext p ν) ∧ FRC.Subject.ratio (FRC.Subject.dir ν (1 : FRC.Shell p) (0 : FRC.Shell p)) = (-1 : FRC.Extension.Ext p ν) ∧ (∀ (z : FRC.Extension.Ext p ν), z.norm = (1 : FRC.Shell p) → z * z = (1 : FRC.Extension.Ext p ν) → z = (1 : FRC.Extension.Ext p ν) ∨ z = (-1 : FRC.Extension.Ext p ν)) ∧ (∀ (z : FRC.Extension.Ext p ν), z.im = (0 : FRC.Shell p) → (z.norm = (1 : FRC.Shell p) ↔ z = (1 : FRC.Extension.Ext p ν) ∨ z = (-1 : FRC.Extension.Ext p ν))) ∧ (∀ (v : FRC.Extension.Ext p ν), (v * v).im = (0 : FRC.Shell p) → v.im ≠ (0 : FRC.Shell p) → v.re = (0 : FRC.Shell p)) ∧ (∀ (x y : FRC.Shell p), FRC.Extension.Ext.w * FRC.Subject.dir ν x y = FRC.Subject.dir ν (ν * y) x) ∧ (∀ (s : FRC.Shell p), (2 : FRC.Shell p) * s = (0 : FRC.Shell p) → s = (0 : FRC.Shell p)) ∧ (2 : FRC.Shell p) * FRC.Shell.ofNat ((2 : Nat) * κ + (1 : Nat)) = (1 : FRC.Shell p) ∧ FRC.Shell.ofNat ((2 : Nat) * κ) + FRC.Shell.ofNat ((2 : Nat) * κ + (1 : Nat)) = (0 : FRC.Shell p) :=
-  @FRC.Subject.horizon_antipode
-/-- p00150 — 00:C3. The drive fixes a Lorentzian time axis, causal order is algebraic, the split and non-split tori the two signatures. The signature is the square class of the temporal coefficient $\nu=\gen$ (C1); in $\F_\p$, $\nu=2^{-1}\cdot(2\gen)$, both classes fixed by the parity of $\kap$ (8:B3). In the Carrier $c^2=2^{-1}$ is a square (C8), and $\eta_{00}=-c^2$ is a chart artifact. -/
+theorem p00139 : (∀ {p : Nat} [FRC.Pos p] {ν : FRC.Shell p}, FRC.Nat.isPrime p → ∀ {κ : Nat}, p = (4 : Nat) * κ + (1 : Nat) → (¬∃ y, y * y = ν) → (∀ (x y : FRC.Shell p), x ≠ (0 : FRC.Shell p) ∨ y ≠ (0 : FRC.Shell p) → (FRC.Subject.dir ν x y).norm ≠ (0 : FRC.Shell p)) ∧ (∀ (v : FRC.Extension.Ext p ν) (x y : FRC.Shell p), v * FRC.Subject.dir ν x y = FRC.Subject.dir ν (v.re * x + ν * (v.im * y)) (v.re * y + v.im * x)) ∧ (∀ (u : FRC.Extension.Ext p ν), u.norm ≠ (0 : FRC.Shell p) → (FRC.Subject.ratio u).norm = (1 : FRC.Shell p)) ∧ (∀ (c : FRC.Shell p) (u : FRC.Extension.Ext p ν), c ≠ (0 : FRC.Shell p) → FRC.Subject.ratio (FRC.Extension.Ext.ofShell c * u) = FRC.Subject.ratio u) ∧ (∀ (u v : FRC.Extension.Ext p ν), FRC.Subject.ratio (v * u) = FRC.Subject.ratio v * FRC.Subject.ratio u) ∧ (∀ (x y x' y' : FRC.Shell p), x ≠ (0 : FRC.Shell p) ∨ y ≠ (0 : FRC.Shell p) → x' ≠ (0 : FRC.Shell p) ∨ y' ≠ (0 : FRC.Shell p) → (FRC.Subject.ratio (FRC.Subject.dir ν x y) = FRC.Subject.ratio (FRC.Subject.dir ν x' y') ↔ x * y' = x' * y)) ∧ (∀ (z : FRC.Extension.Ext p ν), z.norm = (1 : FRC.Shell p) → ∃ x y, (x ≠ (0 : FRC.Shell p) ∨ y ≠ (0 : FRC.Shell p)) ∧ FRC.Subject.ratio (FRC.Subject.dir ν x y) = z) ∧ FRC.Subject.ratio (FRC.Subject.dir ν (0 : FRC.Shell p) (1 : FRC.Shell p)) = (1 : FRC.Extension.Ext p ν) ∧ FRC.Subject.ratio (FRC.Subject.dir ν (1 : FRC.Shell p) (0 : FRC.Shell p)) = (-1 : FRC.Extension.Ext p ν) ∧ (∀ (z : FRC.Extension.Ext p ν), z.norm = (1 : FRC.Shell p) → z * z = (1 : FRC.Extension.Ext p ν) → z = (1 : FRC.Extension.Ext p ν) ∨ z = (-1 : FRC.Extension.Ext p ν)) ∧ (∀ (z : FRC.Extension.Ext p ν), z.im = (0 : FRC.Shell p) → (z.norm = (1 : FRC.Shell p) ↔ z = (1 : FRC.Extension.Ext p ν) ∨ z = (-1 : FRC.Extension.Ext p ν))) ∧ (∀ (v : FRC.Extension.Ext p ν), (v * v).im = (0 : FRC.Shell p) → v.im ≠ (0 : FRC.Shell p) → v.re = (0 : FRC.Shell p)) ∧ (∀ (x y : FRC.Shell p), FRC.Extension.Ext.w * FRC.Subject.dir ν x y = FRC.Subject.dir ν (ν * y) x) ∧ (∀ (s : FRC.Shell p), (2 : FRC.Shell p) * s = (0 : FRC.Shell p) → s = (0 : FRC.Shell p)) ∧ (2 : FRC.Shell p) * FRC.Shell.ofNat ((2 : Nat) * κ + (1 : Nat)) = (1 : FRC.Shell p) ∧ FRC.Shell.ofNat ((2 : Nat) * κ) + FRC.Shell.ofNat ((2 : Nat) * κ + (1 : Nat)) = (0 : FRC.Shell p)) ∧ (∀ {p : Nat} [FRC.Pos p] {ν : FRC.Shell p}, FRC.Nat.isPrime p → ∀ {κ : Nat}, p = (4 : Nat) * κ + (1 : Nat) → (¬∃ y, y * y = ν) → ∀ (ζ : FRC.Extension.Ext p ν), ζ.norm = (1 : FRC.Shell p) → ζ ^ (p + (1 : Nat)) = (1 : FRC.Extension.Ext p ν) → (∀ (l : Nat), (0 : Nat) < l → l < p + (1 : Nat) → ζ ^ l ≠ (1 : FRC.Extension.Ext p ν)) → ζ ^ ((2 : Nat) * κ + (1 : Nat)) = (-1 : FRC.Extension.Ext p ν)) ∧ ∀ {p : Nat} [FRC.Pos p] {ν : FRC.Shell p}, FRC.Nat.isPrime p → (¬∃ y, y * y = ν) → ∀ (v : FRC.Extension.Ext p ν) (c x y : FRC.Shell p), v * FRC.Subject.dir ν (0 : FRC.Shell p) (1 : FRC.Shell p) = FRC.Extension.Ext.ofShell c * FRC.Subject.dir ν x y → v = FRC.Extension.Ext.ofShell (c * FRC.Subject.inv ν) * FRC.Subject.dir ν x y :=
+  And.intro @FRC.Subject.horizon_antipode (And.intro @FRC.Subject.horizon_generator (@FRC.Subject.boost_unique))
+/-- p00150 — 00:C3. The drive fixes a Lorentzian time axis, causal order is algebraic, the split and non-split tori the two signatures. The signature is the square class of the temporal coefficient $\nu=\gen$ (C1); in $\F_\p$, $\nu=2^{-1}\cdot(2\gen)$, both classes fixed by the parity of $\kap$ (8:B3). In the Carrier $c^2=2^{-1}$ is a square (C8, D7), and $\eta_{00}=-c^2$ is a chart artifact. -/
 theorem p00150 : (∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → (¬∃ y, y * y = g) ∧ (∀ (ν : FRC.Shell p), (∃ t x, t ≠ (0 : FRC.Shell p) ∧ x * x = ν * (t * t)) ↔ ∃ w, w * w = ν) ∧ ∀ (h : FRC.Shell p), (2 : FRC.Shell p) * h = (1 : FRC.Shell p) → h * ((2 : FRC.Shell p) * g) = g ∧ ((∃ r, r * r = h) ↔ κ % (2 : Nat) = (0 : Nat)) ∧ ((∃ r, r * r = (2 : FRC.Shell p) * g) ↔ κ % (2 : Nat) = (1 : Nat))) ∧ ∀ {p : Nat} [FRC.Pos p], FRC.Nat.isPrime p → ∀ {S : Nat}, p = (4 : Nat) * S + (1 : Nat) → ∀ (h : FRC.Shell p), (2 : FRC.Shell p) * h = (1 : FRC.Shell p) → ((∃ c, c * c = h) ↔ S % (2 : Nat) = (0 : Nat)) :=
   And.intro @FRC.Subject.signature (@FRC.Subject.half_class)
 /-- p00151 — 00:C16. \textbf{The spinor dichotomy}: $\kap$ odd $\Leftrightarrow$ $C_{\p-1}\cong C_4\times C_\kap$ $\Leftrightarrow$ $v_2(\p-1)=2$ $\Leftrightarrow$ $3\kap r+4s\equiv1\ (\mathrm{mod}\ 4\kap)$ is solvable: the spinor class. Shell and Carrier share the $2$-part $C_{2^m}$, $m=\min(v_2(\p-1),v_2(\Om-1))$, and the shell closes on a cover of degree $2^{v_2(\Om-1)-m}$; the shared order times the cover degree is the Carrier's $2$-part, $8$ exactly when $\dS\equiv2\ (\mathrm{mod}\ 4)$. The midpoint event of a $\kap$-odd shell: C18. -/
-theorem p00151 : (∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → (κ % (2 : Nat) = (1 : Nat) ↔ (p - (1 : Nat)) % (8 : Nat) ≠ (0 : Nat)) ∧ (κ % (2 : Nat) = (1 : Nat) ↔ ∀ (r s r' s' : Nat), r < (4 : Nat) → s < κ → r' < (4 : Nat) → s' < κ → FRC.Shell.Frame.quarterTurn g κ ^ r * (g ^ (4 : Nat)) ^ s = FRC.Shell.Frame.quarterTurn g κ ^ r' * (g ^ (4 : Nat)) ^ s' → r = r' ∧ s = s') ∧ (κ % (2 : Nat) = (1 : Nat) → ∀ (x : FRC.Shell p), x ≠ (0 : FRC.Shell p) → ∃ r s, r < (4 : Nat) ∧ s < κ ∧ FRC.Shell.Frame.quarterTurn g κ ^ r * (g ^ (4 : Nat)) ^ s = x) ∧ (κ % (2 : Nat) = (1 : Nat) ↔ ∃ r s, r < (4 : Nat) ∧ s < κ ∧ ((3 : Nat) * κ * r + (4 : Nat) * s) % ((4 : Nat) * κ) = (1 : Nat))) ∧ (∀ (a b u w m : Nat), u % (2 : Nat) = (1 : Nat) → w % (2 : Nat) = (1 : Nat) → m ≤ a → m ≤ b → m = a ∨ m = b → (2 : Nat) ^ m ∣ (2 : Nat) ^ a * u ∧ (2 : Nat) ^ m ∣ (2 : Nat) ^ b * w ∧ ¬((2 : Nat) ^ (m + (1 : Nat)) ∣ (2 : Nat) ^ a * u ∧ (2 : Nat) ^ (m + (1 : Nat)) ∣ (2 : Nat) ^ b * w) ∧ (2 : Nat) ^ m * (2 : Nat) ^ (b - m) = (2 : Nat) ^ b) ∧ ∀ (S b w : Nat), w % (2 : Nat) = (1 : Nat) → (4 : Nat) * S = (2 : Nat) ^ b * w → ((2 : Nat) ^ b = (8 : Nat) ↔ S % (4 : Nat) = (2 : Nat)) :=
-  And.intro @FRC.Subject.spinor (@FRC.Subject.two_part)
+theorem p00151 : (∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → (κ % (2 : Nat) = (1 : Nat) ↔ (p - (1 : Nat)) % (8 : Nat) ≠ (0 : Nat)) ∧ (κ % (2 : Nat) = (1 : Nat) ↔ ∀ (r s r' s' : Nat), r < (4 : Nat) → s < κ → r' < (4 : Nat) → s' < κ → FRC.Shell.Frame.quarterTurn g κ ^ r * (g ^ (4 : Nat)) ^ s = FRC.Shell.Frame.quarterTurn g κ ^ r' * (g ^ (4 : Nat)) ^ s' → r = r' ∧ s = s') ∧ (κ % (2 : Nat) = (1 : Nat) → ∀ (x : FRC.Shell p), x ≠ (0 : FRC.Shell p) → ∃ r s, r < (4 : Nat) ∧ s < κ ∧ FRC.Shell.Frame.quarterTurn g κ ^ r * (g ^ (4 : Nat)) ^ s = x) ∧ (κ % (2 : Nat) = (1 : Nat) ↔ ∃ r s, r < (4 : Nat) ∧ s < κ ∧ ((3 : Nat) * κ * r + (4 : Nat) * s) % ((4 : Nat) * κ) = (1 : Nat))) ∧ (∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → κ % (2 : Nat) = (0 : Nat) → ∀ (φ : FRC.Shell p → Nat × Nat), (∀ (x y : FRC.Shell p), x ≠ (0 : FRC.Shell p) → y ≠ (0 : FRC.Shell p) → φ (x * y) = (((φ x).fst + (φ y).fst) % (4 : Nat), ((φ x).snd + (φ y).snd) % κ)) → ¬∀ (x y : FRC.Shell p), x ≠ (0 : FRC.Shell p) → y ≠ (0 : FRC.Shell p) → φ x = φ y → x = y) ∧ (∀ (a b u w m : Nat), u % (2 : Nat) = (1 : Nat) → w % (2 : Nat) = (1 : Nat) → m ≤ a → m ≤ b → m = a ∨ m = b → (2 : Nat) ^ m ∣ (2 : Nat) ^ a * u ∧ (2 : Nat) ^ m ∣ (2 : Nat) ^ b * w ∧ ¬((2 : Nat) ^ (m + (1 : Nat)) ∣ (2 : Nat) ^ a * u ∧ (2 : Nat) ^ (m + (1 : Nat)) ∣ (2 : Nat) ^ b * w) ∧ (2 : Nat) ^ m * (2 : Nat) ^ (b - m) = (2 : Nat) ^ b) ∧ ∀ (S b w : Nat), w % (2 : Nat) = (1 : Nat) → (4 : Nat) * S = (2 : Nat) ^ b * w → ((2 : Nat) ^ b = (8 : Nat) ↔ S % (4 : Nat) = (2 : Nat)) :=
+  And.intro @FRC.Subject.spinor (And.intro @FRC.Subject.no_iso (@FRC.Subject.two_part))
 -- end keys
 
 end FRC.Ledger

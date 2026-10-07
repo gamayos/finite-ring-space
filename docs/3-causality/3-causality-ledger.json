@@ -209,6 +209,11 @@
   }
  ],
  "master": {
+  "A3": [
+   "C1",
+   "C8",
+   "C3"
+  ],
   "B4": [
    "C3"
   ],
@@ -217,11 +222,6 @@
   ],
   "E1": [
    "C3"
-  ],
-  "A3": [
-   "C1",
-   "C3",
-   "C8"
   ],
   "B1": [
    "C3"
@@ -263,7 +263,7 @@
    {
     "name": "FRC.Shell.Frame.no_causal_root",
     "module": "FrcCore/Theme/Extension",
-    "line": 143,
+    "line": 142,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -272,7 +272,7 @@
    {
     "name": "FRC.Shell.Frame.neg_sq_is_square",
     "module": "FrcCore/Theme/Extension",
-    "line": 149,
+    "line": 148,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -295,7 +295,7 @@
    {
     "name": "FRC.Shell.Frame.absorb",
     "module": "FrcCore/Theme/Extension",
-    "line": 158,
+    "line": 157,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -306,7 +306,7 @@
    {
     "name": "FRC.Shell.Frame.null13",
     "module": "FrcCore/Theme/Extension",
-    "line": 338,
+    "line": 337,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -315,7 +315,7 @@
    {
     "name": "FRC.Shell.Frame.euclid13",
     "module": "FrcCore/Theme/Extension",
-    "line": 340,
+    "line": 339,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -324,7 +324,7 @@
    {
     "name": "FRC.Shell.Frame.null5",
     "module": "FrcCore/Theme/Extension",
-    "line": 342,
+    "line": 341,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -333,7 +333,7 @@
    {
     "name": "FRC.Shell.Frame.null17",
     "module": "FrcCore/Theme/Extension",
-    "line": 344,
+    "line": 343,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -357,7 +357,7 @@
    {
     "name": "FRC.Shell.Frame.aniso_tx",
     "module": "FrcCore/Theme/Extension",
-    "line": 173,
+    "line": 172,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -366,7 +366,7 @@
    {
     "name": "FRC.Shell.Frame.null_yz",
     "module": "FrcCore/Theme/Extension",
-    "line": 192,
+    "line": 191,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -375,7 +375,7 @@
    {
     "name": "FRC.Shell.Frame.null_tx_of_square",
     "module": "FrcCore/Theme/Extension",
-    "line": 197,
+    "line": 196,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -424,7 +424,7 @@
    {
     "name": "FRC.Shell.Frame.boost_preserves",
     "module": "FrcCore/Theme/Extension",
-    "line": 231,
+    "line": 230,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -433,7 +433,7 @@
    {
     "name": "FRC.Shell.Frame.boost_comp_t",
     "module": "FrcCore/Theme/Extension",
-    "line": 240,
+    "line": 239,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -442,7 +442,7 @@
    {
     "name": "FRC.Shell.Frame.boost_comp_x",
     "module": "FrcCore/Theme/Extension",
-    "line": 249,
+    "line": 248,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -451,7 +451,7 @@
    {
     "name": "FRC.Shell.Frame.norm_one_mul",
     "module": "FrcCore/Theme/Extension",
-    "line": 259,
+    "line": 258,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -460,7 +460,7 @@
    {
     "name": "FRC.Shell.Frame.normOne_values",
     "module": "FrcCore/Theme/Extension",
-    "line": 346,
+    "line": 345,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -509,7 +509,7 @@
    {
     "name": "FRC.Shell.Frame.gamma_ne_zero",
     "module": "FrcCore/Theme/Extension",
-    "line": 269,
+    "line": 268,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -518,7 +518,7 @@
    {
     "name": "FRC.Shell.Frame.gamma_velocity",
     "module": "FrcCore/Theme/Extension",
-    "line": 287,
+    "line": 286,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -527,7 +527,7 @@
    {
     "name": "FRC.Shell.Frame.velocity_addition",
     "module": "FrcCore/Theme/Extension",
-    "line": 298,
+    "line": 297,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -538,7 +538,7 @@
    {
     "name": "FRC.Shell.Frame.null13",
     "module": "FrcCore/Theme/Extension",
-    "line": 338,
+    "line": 337,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -547,7 +547,7 @@
    {
     "name": "FRC.Shell.Frame.normOne_values",
     "module": "FrcCore/Theme/Extension",
-    "line": 346,
+    "line": 345,
     "axioms": [],
     "tier": 0,
     "ok": true,

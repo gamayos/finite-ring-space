@@ -141,6 +141,17 @@ theorem norm_ofShell (c : Shell p) : norm (ofShell c : Ext p ν) = c * c := by
   show c * c + -(ν * (0 * 0)) = c * c
   rw [Shell.zero_mul, Shell.mul_zero, Shell.neg_zero, Shell.add_zero]
 
+theorem mul_one (z : Ext p ν) : z * 1 = z := by rw [mul_comm]; exact one_mul z
+
+theorem pow_add (z : Ext p ν) (m : Nat) : ∀ n : Nat, z ^ (m + n) = z ^ m * z ^ n
+  | 0 => (mul_one _).symm
+  | n + 1 => by show z ^ (m + n) * z = z ^ m * (z ^ n * z); rw [pow_add z m n, mul_assoc]
+
+/-- The norm of a power: `N(zⁿ) = N(z)ⁿ`. -/
+theorem norm_pow (z : Ext p ν) : ∀ n : Nat, norm (z ^ n) = norm z ^ n
+  | 0 => by show norm (ofShell 1 : Ext p ν) = 1; rw [norm_ofShell, Shell.one_mul]
+  | n + 1 => by show norm (z ^ n * z) = norm z ^ n * norm z; rw [norm_mul, norm_pow z n]
+
 end Ext
 
 end FRC.Extension

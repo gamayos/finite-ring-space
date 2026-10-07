@@ -428,11 +428,11 @@
   "B2": [
    "C14"
   ],
-  "C9": [
-   "C7"
-  ],
   "A8": [
    "D15"
+  ],
+  "C9": [
+   "C7"
   ]
  },
  "lean": {
@@ -462,7 +462,7 @@
    {
     "name": "FRC.Fourier.shell_relations",
     "module": "FrcLedger/Fourier",
-    "line": 1595,
+    "line": 98,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -475,7 +475,7 @@
    {
     "name": "FRC.Shell.Frame.W_sq'",
     "module": "FrcCore/Transform",
-    "line": 217,
+    "line": 219,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -484,7 +484,7 @@
    {
     "name": "FRC.Shell.Frame.F_sq",
     "module": "FrcCore/Transform",
-    "line": 232,
+    "line": 234,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -493,7 +493,7 @@
    {
     "name": "FRC.Shell.Frame.J_sq",
     "module": "FrcCore/Transform",
-    "line": 221,
+    "line": 223,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -504,7 +504,7 @@
    {
     "name": "FRC.Shell.Frame.ofNat_n",
     "module": "FrcCore/Transform",
-    "line": 36,
+    "line": 38,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -515,7 +515,7 @@
    {
     "name": "FRC.Fourier.shell_relations",
     "module": "FrcLedger/Fourier",
-    "line": 1595,
+    "line": 98,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -528,7 +528,7 @@
    {
     "name": "FRC.Shell.Frame.W_J_comm",
     "module": "FrcCore/Transform",
-    "line": 240,
+    "line": 242,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -537,7 +537,7 @@
    {
     "name": "FRC.Shell.Frame.symm_antisymm_decomp",
     "module": "FrcCore/Sum",
-    "line": 225,
+    "line": 226,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -546,7 +546,7 @@
    {
     "name": "FRC.Shell.Frame.symm_antisymm_unique",
     "module": "FrcCore/Sum",
-    "line": 240,
+    "line": 241,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -555,7 +555,7 @@
    {
     "name": "FRC.Shell.Frame.symm_determined",
     "module": "FrcCore/Sum",
-    "line": 82,
+    "line": 83,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -564,7 +564,7 @@
    {
     "name": "FRC.Shell.Frame.antisymm_determined",
     "module": "FrcCore/Sum",
-    "line": 147,
+    "line": 148,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -575,7 +575,7 @@
    {
     "name": "FRC.Fourier.shell_proj",
     "module": "FrcLedger/Fourier",
-    "line": 954,
+    "line": 227,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -583,12 +583,12 @@
     ],
     "tier": 2,
     "ok": true,
-    "doc": "6:C2 — on every shell: `F Π_ℓ = i^ℓ Π_ℓ`, `Π_ℓ Π_m = [ℓ = m] Π_ℓ`, `Σ_ℓ Π_ℓ = 1`."
+    "doc": "6:C2 — 6-fourier's name; the theorem is `FRC.Fractional.shell_proj` (task LM36)."
    },
    {
     "name": "FRC.Fourier.proj_mul_proj",
     "module": "FrcLedger/Fourier",
-    "line": 120,
+    "line": 137,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -596,12 +596,12 @@
     ],
     "tier": 2,
     "ok": true,
-    "doc": "6:C2 — the projectors are pairwise orthogonal idempotents: `Π_ℓ Π_m = [ℓ = m] Π_ℓ`."
+    "doc": "6:C2 — 6-fourier's name; the theorem is `FRC.Fractional.proj_mul_proj` (task LM36)."
    },
    {
     "name": "FRC.Fourier.sum_proj",
     "module": "FrcLedger/Fourier",
-    "line": 156,
+    "line": 143,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -609,14 +609,14 @@
     ],
     "tier": 2,
     "ok": true,
-    "doc": "6:C2 — the projectors sum to the identity."
+    "doc": "6:C2 — 6-fourier's name; the theorem is `FRC.Fractional.sum_proj` (task LM36)."
    }
   ],
   "C3": [
    {
     "name": "FRC.Fourier.shell_frft_add",
     "module": "FrcLedger/Fourier",
-    "line": 964,
+    "line": 234,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -624,12 +624,12 @@
     ],
     "tier": 2,
     "ok": true,
-    "doc": "6:C3 — additivity on every shell: `F^{[s+r]} = F^{[s]} F^{[r]}`, a representation of `ZMod (4κ)`."
+    "doc": "6:C3 — 6-fourier's name; the theorem is `FRC.Fractional.shell_frft_add` (task LM36)."
    },
    {
     "name": "FRC.Fourier.shell_frft_cardinal",
     "module": "FrcLedger/Fourier",
-    "line": 971,
+    "line": 239,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -637,12 +637,12 @@
     ],
     "tier": 2,
     "ok": true,
-    "doc": "6:C3 — the cardinal values on every shell: `F^{[mκ]} = F^m`, so `F^{[0]} = 1`, `F^{[κ]} = F`, `F^{[2κ]} = J`, `F^{[3κ]} = F³ = F⁻¹`, `F^{[4κ]} = 1`."
+    "doc": "6:C3 — 6-fourier's name; the theorem is `FRC.Fractional.shell_frft_cardinal` (task LM36)."
    },
    {
     "name": "FRC.Fourier.shell_frft_values",
     "module": "FrcLedger/Fourier",
-    "line": 977,
+    "line": 244,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -650,14 +650,14 @@
     ],
     "tier": 2,
     "ok": true,
-    "doc": "6:C3 — `F^{[κ]} = F`, `F^{[2κ]} = J`, and the exact `κ`-th root `(F^{[1]})^κ = F`."
+    "doc": "6:C3 — 6-fourier's name; the theorem is `FRC.Fractional.shell_frft_values` (task LM36)."
    }
   ],
   "C4": [
    {
     "name": "FRC.Fourier.shell_frft_injective",
     "module": "FrcLedger/Fourier",
-    "line": 1214,
+    "line": 288,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -665,14 +665,14 @@
     ],
     "tier": 2,
     "ok": true,
-    "doc": "6:C4, 6:D2 — faithfulness on every shell: `s ↦ F^{[s]}` is injective on `ZMod (4κ)`, so the `4κ` fractional domains are distinct. For `κ ≥ 2` the odd projector `Π_1` is nonzero (C5); for `κ = 1` one of `Π_1`, `Π_3` is, and both indices are coprime to `4`."
+    "doc": "6:C4, 6:D2 — 6-fourier's name; the theorem is `FRC.Fractional.shell_frft_injective` (task LM36)."
    }
   ],
   "C5": [
    {
     "name": "FRC.Fourier.shell_odd_proj_ne_zero",
     "module": "FrcLedger/Fourier",
-    "line": 1156,
+    "line": 280,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -680,12 +680,12 @@
     ],
     "tier": 2,
     "ok": true,
-    "doc": "6:C5 — `Π_1 ≠ 0` and `Π_3 ≠ 0` for `κ ≥ 2`: otherwise `e_1 − e_{−1}` would be an eigenvector of `F`."
+    "doc": "6:C5 — 6-fourier's name; the theorem is `FRC.Fractional.shell_odd_proj_ne_zero` (task LM36)."
    },
    {
     "name": "FRC.Fourier.shell_even_proj_ne_zero",
     "module": "FrcLedger/Fourier",
-    "line": 1192,
+    "line": 284,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -693,12 +693,12 @@
     ],
     "tier": 2,
     "ok": true,
-    "doc": "6:C5 — `Π_0 ≠ 0` and `Π_2 ≠ 0` for every `κ ≥ 1`: otherwise `e_0` would be an eigenvector of `F`."
+    "doc": "6:C5 — 6-fourier's name; the theorem is `FRC.Fractional.shell_even_proj_ne_zero` (task LM36)."
    },
    {
     "name": "FRC.Fourier.shell_multiplicity_sums",
     "module": "FrcLedger/Fourier",
-    "line": 1463,
+    "line": 302,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -706,14 +706,14 @@
     ],
     "tier": 2,
     "ok": true,
-    "doc": "6:C5 — the multiplicity sums on the prime shell: `m_0 + m_2 = 2κ + 1` and `m_1 + m_3 = 2κ − 1`, with `m_ℓ = rank Π_ℓ`: the even and odd projector sums are the parity idempotents `(1 ± J)/2`, of traces `2κ + 1` and `2κ − 1`."
+    "doc": "6:C5 — 6-fourier's name; the theorem is `FRC.Fractional.shell_multiplicity_sums` (task LM36)."
    }
   ],
   "C7": [
    {
     "name": "FRC.Fourier.gauss_mul_gauss_inv",
     "module": "FrcLedger/Fourier",
-    "line": 654,
+    "line": 206,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -721,12 +721,12 @@
     ],
     "tier": 2,
     "ok": true,
-    "doc": "6:C7 — `G G* = −2` in the field: `Σ_{k,l} g^{k²−l²} = Σ_d g^{d²} Σ_l g^{2ld}`, the inner geometric sum vanishing unless `2d = 0`, i.e. `d ∈ {0, 2κ}`, where it is `n ≡ −1`."
+    "doc": "6:C7 — 6-fourier's name; the theorem is `FRC.Fractional.gauss_mul_gauss_inv` (task LM36)."
    },
    {
     "name": "FRC.Fourier.gauss_inv_of_sign",
     "module": "FrcLedger/Fourier",
-    "line": 715,
+    "line": 212,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -734,12 +734,12 @@
     ],
     "tier": 2,
     "ok": true,
-    "doc": "6:C7 — the conjugate frame's sign: with `G = ε(1 + i)`, `ε = ±1`, the conjugate Gauss sum is `G* = G(g⁻¹) = −ε(1 + i')` for the conjugate quarter-turn `i' = −i`, so `ε(g⁻¹) = −ε(g)`."
+    "doc": "6:C7 — 6-fourier's name; the theorem is `FRC.Fractional.gauss_inv_of_sign` (task LM36)."
    },
    {
     "name": "FRC.Fourier.shell_multiplicity_tuple",
     "module": "FrcLedger/Fourier",
-    "line": 1492,
+    "line": 308,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -747,14 +747,14 @@
     ],
     "tier": 2,
     "ok": true,
-    "doc": "6:C7 — the multiplicity tuple on the prime shell, as natural numbers: with `G = ε(1 + i)` (the classical evaluation, import A3), `(m_0, m_1, m_2, m_3) = (κ, κ, κ+1, κ−1)` for `ε = 1` and `(κ+1, κ−1, κ, κ)` for `ε = −1`."
+    "doc": "6:C7 — 6-fourier's name; the theorem is `FRC.Fractional.shell_multiplicity_tuple` (task LM36)."
    }
   ],
   "C8": [
    {
     "name": "FRC.Fourier.shell_frftLift",
     "module": "FrcLedger/Fourier",
-    "line": 993,
+    "line": 251,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -762,14 +762,14 @@
     ],
     "tier": 2,
     "ok": true,
-    "doc": "6:C8 — every exponent lift `a_ℓ ≡ ℓ (mod 4)` gives an additive family with the cardinal skeleton of the principal one, on every shell."
+    "doc": "6:C8 — 6-fourier's name; the theorem is `FRC.Fractional.shell_frftLift` (task LM36)."
    }
   ],
   "C9": [
    {
     "name": "FRC.Fourier.shell_conj",
     "module": "FrcLedger/Fourier",
-    "line": 1004,
+    "line": 258,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -777,14 +777,14 @@
     ],
     "tier": 2,
     "ok": true,
-    "doc": "6:C9 — the conjugate frame `(g⁻¹, −i)`: its transform is `F' = −F³ = −F⁻¹` (since `W(g⁻¹) = W J`), and its projectors are the shifted ones, `Π'_ℓ = Π_{ℓ+2}`."
+    "doc": "6:C9 — 6-fourier's name; the theorem is `FRC.Fractional.shell_conj` (task LM36)."
    }
   ],
   "D2": [
    {
     "name": "FRC.Fourier.shell_frft_injective",
     "module": "FrcLedger/Fourier",
-    "line": 1214,
+    "line": 288,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -792,12 +792,12 @@
     ],
     "tier": 2,
     "ok": true,
-    "doc": "6:C4, 6:D2 — faithfulness on every shell: `s ↦ F^{[s]}` is injective on `ZMod (4κ)`, so the `4κ` fractional domains are distinct. For `κ ≥ 2` the odd projector `Π_1` is nonzero (C5); for `κ = 1` one of `Π_1`, `Π_3` is, and both indices are coprime to `4`."
+    "doc": "6:C4, 6:D2 — 6-fourier's name; the theorem is `FRC.Fractional.shell_frft_injective` (task LM36)."
    },
    {
     "name": "FRC.Fourier.shell_frft_add_two_kappa",
     "module": "FrcLedger/Fourier",
-    "line": 1020,
+    "line": 264,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -805,12 +805,12 @@
     ],
     "tier": 2,
     "ok": true,
-    "doc": "6:D2 — `F^{[s+2κ]} = F^{[s]} J`: the framed domains `s` and `s + 2κ` differ by the parity involution, which permutes the standard basis (`mul_J_apply`), so they are one unordered measurement basis."
+    "doc": "6:D2 — 6-fourier's name; the theorem is `FRC.Fractional.shell_frft_add_two_kappa` (task LM36)."
    },
    {
     "name": "FRC.Fourier.mul_J_apply",
     "module": "FrcLedger/Fourier",
-    "line": 1564,
+    "line": 67,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -865,7 +865,7 @@
    {
     "name": "FRC.Fourier.circle",
     "module": "FrcLedger/Fourier",
-    "line": 463,
+    "line": 171,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -873,12 +873,12 @@
     ],
     "tier": 2,
     "ok": true,
-    "doc": "6:E2 — `R_s ∈ SO(2)`: `c² + d² = 1` for `z ≠ 0`, so `det R_s = 1` and `R_sᵀ R_s = 1`."
+    "doc": "6:E2 — 6-fourier's name; the theorem is `FRC.Fractional.circle` (task LM36)."
    },
    {
     "name": "FRC.Fourier.rot_mul",
     "module": "FrcLedger/Fourier",
-    "line": 502,
+    "line": 175,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -886,12 +886,12 @@
     ],
     "tier": 2,
     "ok": true,
-    "doc": "6:E2 — `s ↦ R_s` is a homomorphism of the meridian cycle: `R_{s+r} = R_s R_r` reads `rot (z w) = rot z * rot w` for `z = g^{−s}`, `w = g^{−r}`."
+    "doc": "6:E2 — 6-fourier's name; the theorem is `FRC.Fractional.rot_mul` (task LM36)."
    },
    {
     "name": "FRC.Fourier.unitsEquivCircle",
     "module": "FrcLedger/Fourier",
-    "line": 547,
+    "line": 190,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -899,12 +899,12 @@
     ],
     "tier": 2,
     "ok": true,
-    "doc": "6:E2 — the circle is the unit group: `u ↦ (c_u, d_u)` with inverse `(c, d) ↦ c + i d`, so `SO(2, K) ≃ K^×` when `K` has a quarter-turn."
+    "doc": "6:E2 — 6-fourier's name; the definition is `FRC.Fractional.unitsEquivCircle` (task LM36)."
    },
    {
     "name": "FRC.Fourier.card_circle",
     "module": "FrcLedger/Fourier",
-    "line": 575,
+    "line": 194,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -912,14 +912,14 @@
     ],
     "tier": 2,
     "ok": true,
-    "doc": "6:E2 — `|SO(2, K)| = |K| − 1` for a finite field with a quarter-turn: the rotation group of the `p²`-point plane has `p − 1 = 4κ` elements, the size of the meridian cycle."
+    "doc": "6:E2 — 6-fourier's name; the theorem is `FRC.Fractional.card_circle` (task LM36)."
    }
   ],
   "E3": [
    {
     "name": "FRC.Fourier.rot_cardinal",
     "module": "FrcLedger/Fourier",
-    "line": 511,
+    "line": 180,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -927,14 +927,14 @@
     ],
     "tier": 2,
     "ok": true,
-    "doc": "6:E3 — the cardinal values: `R_0 = 1` (`z = 1`), `R_κ = w = [[0, −1], [1, 0]]` (`z = i`), `R_{2κ} = −1` (`z = −1`), `R_{3κ} = w⁻¹` (`z = −i`)."
+    "doc": "6:E3 — 6-fourier's name; the theorem is `FRC.Fractional.rot_cardinal` (task LM36)."
    }
   ],
   "E5": [
    {
     "name": "FRC.Fourier.shell_spectral_obstruction",
     "module": "FrcLedger/Fourier",
-    "line": 1033,
+    "line": 275,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -942,14 +942,14 @@
     ],
     "tier": 2,
     "ok": true,
-    "doc": "6:E5 — the spectral obstruction: the shift has every unit of `𝔽_p` as an eigenvalue (eigenvector `(a^j)_j`), the family at most four; for `κ ≥ 2` no invertible `T` conjugates `σ` to `F^{[s]}`."
+    "doc": "6:E5 — 6-fourier's name; the theorem is `FRC.Fractional.shell_spectral_obstruction` (task LM36)."
    }
   ],
   "E6": [
    {
     "name": "FRC.Fourier.frft_mul_proj_one",
     "module": "FrcLedger/Fourier",
-    "line": 365,
+    "line": 157,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -957,12 +957,12 @@
     ],
     "tier": 2,
     "ok": true,
-    "doc": "6:E6 — the character sector: on `im Π_1` the family acts by the meridian character, `F^{[s]} Π_1 = z^{s} Π_1`; the intertwiner `F^{[s]} (x Π_1 v) = Π_1 ((z^s x) v)` is linearity."
+    "doc": "6:E6 — 6-fourier's name; the theorem is `FRC.Fractional.frft_mul_proj_one` (task LM36)."
    },
    {
     "name": "FRC.Fourier.rot_eigenline",
     "module": "FrcLedger/Fourier",
-    "line": 530,
+    "line": 185,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -970,14 +970,14 @@
     ],
     "tier": 2,
     "ok": true,
-    "doc": "6:E6 — the eigenline: `R_s (1, −i)ᵀ = z (1, −i)ᵀ`, the same character `z = g^{−s}` (Prop. charsector)."
+    "doc": "6:E6 — 6-fourier's name; the theorem is `FRC.Fractional.rot_eigenline` (task LM36)."
    }
   ],
   "E7": [
    {
     "name": "FRC.Fourier.shell_heisenberg",
     "module": "FrcLedger/Fourier",
-    "line": 1025,
+    "line": 269,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -985,7 +985,7 @@
     ],
     "tier": 2,
     "ok": true,
-    "doc": "6:E7 — on every shell: `F σ = D_1 F` and `F D_1 = σ⁻¹ F`, with `σ σ⁻¹ = 1`."
+    "doc": "6:E7 — 6-fourier's name; the theorem is `FRC.Fractional.shell_heisenberg` (task LM36)."
    }
   ]
  }

@@ -1720,7 +1720,9 @@ The geometric sum gives the principal-root identity (2:F1, Prop. 6.1 of 2-geomet
 shell Fourier matrix `W k j = g^{jk}`: `Σ_l W k l · (−g^{−lj}) = [k = j]` (2:F3, Prop. 6.3; 6:B5 in matrix form); the
 reversal `rev`, `J`, and the quarter-turn transform `F = i W` with `W² = −J`, `F² = J`, `J² = I` and `W J = J W` (6:B5,
 6:B7). Split from `Sum.lean` by the ledger migration (task LM25), every name unchanged, so that the fourier theme takes
-the transform without the orbits (gate G10). No axioms.
+the transform without the orbits (gate G10). Since task LM36 it also holds the sum over the nonzero residues reindexed by
+the drive (`sum_units_eq_sum_pow`, from `Sum.lean`) and the frame `frame13` (from `Instances.lean`), names unchanged,
+so that the horizon theme takes them without the orbits. No axioms.
 -/
 
 namespace FRC
@@ -1966,7 +1968,33 @@ theorem W_J_comm (F : Frame p κ g) {k j : Nat} (hk : k < p - 1) (hj : j < p - 1
   · rw [← pow_add, ← Nat.left_distrib, F.pow_mod, ← FRC.Nat.mul_mod_mod _ _ _ hn, rev_add_mod hk, Nat.mul_zero,
       FRC.Nat.zero_mod, pow_zero]
 
+/-- The sum over the nonzero residues equals the sum over the powers of the drive: `x = g^m` reindexes. -/
+theorem sum_units_eq_sum_pow (F : Frame p κ g) (f : Shell p → Shell p) :
+    sumRange (fun l => f (ofNat (l + 1))) (p - 1) = sumRange (fun m => f (g ^ m)) (p - 1) := by
+  have hn : p = (p - 1) + 1 := (FRC.Nat.sub_add_cancel Pos.pos).symm
+  have hpos : ∀ m, 1 ≤ (g ^ m).val := fun m =>
+    Nat.pos_of_ne_zero (fun h0 => F.pow_ne_zero m (ext (by rw [h0, val_zero])))
+  have hlt : ∀ m, m < p - 1 → (g ^ m).val - 1 < p - 1 := fun m _ => by
+    have h1 : (g ^ m).val - 1 + 1 = (g ^ m).val := FRC.Nat.sub_add_cancel (hpos m)
+    have h2 : (g ^ m).val < (p - 1) + 1 := hn ▸ (g ^ m).lt
+    rw [← h1] at h2
+    exact Nat.lt_of_succ_lt_succ h2
+  have hinj : ∀ i j, i < p - 1 → j < p - 1 → (g ^ i).val - 1 = (g ^ j).val - 1 → i = j := fun i j hi hj h => by
+    apply F.pow_inj hi hj
+    apply ext
+    rw [← FRC.Nat.sub_add_cancel (hpos i), ← FRC.Nat.sub_add_cancel (hpos j), h]
+  have := sum_perm (fun l => f (ofNat (l + 1))) (fun m => (g ^ m).val - 1) (p - 1) hlt hinj
+  rw [← this]
+  apply sum_congr
+  intro m _
+  show f (ofNat ((g ^ m).val - 1 + 1)) = f (g ^ m)
+  rw [FRC.Nat.sub_add_cancel (hpos m), ofNat_val]
+
 end Frame
+
+/-- 00:C1, 20:B10 on `𝔽₁₃`: the frame `(τ; 0, 1, 2)` of capacity `3` — `2` is primitive (decided). Moved here from
+`Instances.lean` under its name (task LM36), so that the horizon theme takes it without the orbits. -/
+theorem frame13 : Frame 13 3 (2 : Shell 13) := ⟨rfl, Nat.zero_lt_succ 2, by decide⟩
 
 end Shell
 end FRC
@@ -2456,7 +2484,8 @@ Since the ledger migration (task LM17) it also holds 20-rh's sums: peeling the f
 nonzero residues reindexed by the drive. Since task LM22 the sums that need no frame (`sumRange` and its lemmas, the
 geometric sum, the sums over lists and `sum_perm`) are in `Series.lean`, under their names; this module keeps the
 frame's: the principal root, the Fourier inversion, the reversal and the eigenspaces. Since task LM25 the transform
-(the principal root, the inversion, `rev`, `W`, `J`, `F` and their products) is in `Transform.lean`, names unchanged.
+(the principal root, the inversion, `rev`, `W`, `J`, `F` and their products) is in `Transform.lean`, names unchanged,
+and since task LM36 the reindexing by the drive (`sum_units_eq_sum_pow`) is there too.
 -/
 
 namespace FRC
@@ -2692,28 +2721,6 @@ theorem symm_antisymm_unique (F : Frame p κ g) {a b : Nat → Shell p} (ha : Sy
       _ = 0 := by rw [h1, h2, add_zero])
   refine ⟨ha0, ?_⟩
   rw [ha0, zero_add] at h1; exact h1
-
-/-- The sum over the nonzero residues equals the sum over the powers of the drive: `x = g^m` reindexes. -/
-theorem sum_units_eq_sum_pow (F : Frame p κ g) (f : Shell p → Shell p) :
-    sumRange (fun l => f (ofNat (l + 1))) (p - 1) = sumRange (fun m => f (g ^ m)) (p - 1) := by
-  have hn : p = (p - 1) + 1 := (FRC.Nat.sub_add_cancel Pos.pos).symm
-  have hpos : ∀ m, 1 ≤ (g ^ m).val := fun m =>
-    Nat.pos_of_ne_zero (fun h0 => F.pow_ne_zero m (ext (by rw [h0, val_zero])))
-  have hlt : ∀ m, m < p - 1 → (g ^ m).val - 1 < p - 1 := fun m _ => by
-    have h1 : (g ^ m).val - 1 + 1 = (g ^ m).val := FRC.Nat.sub_add_cancel (hpos m)
-    have h2 : (g ^ m).val < (p - 1) + 1 := hn ▸ (g ^ m).lt
-    rw [← h1] at h2
-    exact Nat.lt_of_succ_lt_succ h2
-  have hinj : ∀ i j, i < p - 1 → j < p - 1 → (g ^ i).val - 1 = (g ^ j).val - 1 → i = j := fun i j hi hj h => by
-    apply F.pow_inj hi hj
-    apply ext
-    rw [← FRC.Nat.sub_add_cancel (hpos i), ← FRC.Nat.sub_add_cancel (hpos j), h]
-  have := sum_perm (fun l => f (ofNat (l + 1))) (fun m => (g ^ m).val - 1) (p - 1) hlt hinj
-  rw [← this]
-  apply sum_congr
-  intro m _
-  show f (ofNat ((g ^ m).val - 1 + 1)) = f (g ^ m)
-  rw [FRC.Nat.sub_add_cancel (hpos m), ofNat_val]
 
 end Frame
 
@@ -3386,6 +3393,84 @@ theorem fin_theory_complete (M : FinStr) (φ : FForm) (env : Nat → Nat) : Sat 
 theorem fin_theory_consistent (M : FinStr) (φ : FForm) (env : Nat → Nat) : ¬ (Sat M env φ ∧ Sat M env (.neg φ)) :=
   fun h => h.2 h.1
 
+/-! ### 00:Z1 — no finite structure interprets Robinson's `Q` -/
+
+/-- The successor an interpretation defines: on the domain `D`, the least `y` in `D` with `Sg x y`; the identity off it. -/
+def succOf (D : Nat → Bool) (Sg : Nat → Nat → Bool) (n x : Nat) : Nat :=
+  if D x then (match leastBelow (fun y => D y && Sg x y) n with | some y => y | none => x) else x
+
+theorem band_l {a b : Bool} (h : (a && b) = true) : a = true := by cases a <;> cases b <;> first | rfl | exact h
+theorem band_r {a b : Bool} (h : (a && b) = true) : b = true := by cases a <;> cases b <;> first | rfl | exact h
+
+/-- 00:Z1, 25:C1 — no finite structure carries Robinson's successor: on `[0, n)`, a domain `D`, a successor relation
+`Sg` total on `D`, injective (Q2) and never reaching a zero `Z` of `D` (Q1) cannot exist. A `k`-dimensional
+interpretation is the case `n = mᵏ`, its tuples coded below `mᵏ`. -/
+theorem no_finite_Q (n : Nat) (D Z : Nat → Bool) (Sg : Nat → Nat → Bool)
+    (htot : ∀ x, x < n → D x = true → ∃ y, y < n ∧ D y = true ∧ Sg x y = true)
+    (hinj : ∀ x x' y, x < n → x' < n → D x = true → D x' = true → Sg x y = true → Sg x' y = true → x = x')
+    (hz : ∃ z, z < n ∧ D z = true ∧ Z z = true)
+    (h1 : ∀ x y, x < n → y < n → D x = true → D y = true → Sg x y = true → Z y = false) : False := by
+  have hS : ∀ x, x < n → D x = true →
+      ∃ y, y < n ∧ D y = true ∧ Sg x y = true ∧ succOf D Sg n x = y := fun x hx hD => by
+    obtain ⟨y, hy, hDy, hSy⟩ := htot x hx hD
+    obtain ⟨y0, h0⟩ := leastBelow_some (fun y => D y && Sg x y) n y hy (by rw [hDy, hSy]; rfl)
+    have sp := leastBelow_spec _ n y0 h0
+    refine ⟨y0, sp.1, band_l sp.2.1, band_r sp.2.1, ?_⟩
+    show (if D x = true then (match leastBelow (fun y => D y && Sg x y) n with | some y => y | none => x) else x) = y0
+    rw [ite_eq_left hD, h0]
+  have hoff : ∀ x, D x = false → succOf D Sg n x = x := fun x hD => by
+    show (if D x = true then _ else x) = x
+    rw [hD, ite_eq_right Bool.false_ne_true]
+  obtain ⟨z, hzn, hDz, hZz⟩ := hz
+  refine no_finite_successor n (succOf D Sg n) (fun x hx => ?_) (fun x x' hx hx' e => ?_) z hzn (fun x hx e => ?_)
+  · match hD : D x with
+    | true => obtain ⟨y, hy, _, _, ey⟩ := hS x hx hD; rw [ey]; exact hy
+    | false => rw [hoff x hD]; exact hx
+  · match hD : D x, hD' : D x' with
+    | true, true =>
+      obtain ⟨y, _, _, hSy, ey⟩ := hS x hx hD
+      obtain ⟨y', _, _, hSy', ey'⟩ := hS x' hx' hD'
+      rw [ey, ey'] at e
+      exact hinj x x' y hx hx' hD hD' hSy (e ▸ hSy')
+    | true, false =>
+      obtain ⟨y, _, hDy, _, ey⟩ := hS x hx hD
+      rw [ey, hoff x' hD'] at e
+      rw [e] at hDy; rw [hDy] at hD'; exact Bool.noConfusion hD'
+    | false, true =>
+      obtain ⟨y', _, hDy', _, ey'⟩ := hS x' hx' hD'
+      rw [ey', hoff x hD] at e
+      rw [← e] at hDy'; rw [hDy'] at hD; exact Bool.noConfusion hD
+    | false, false => rw [hoff x hD, hoff x' hD'] at e; exact e
+  · match hD : D x with
+    | true =>
+      obtain ⟨y, hy, hDy, hSy, ey⟩ := hS x hx hD
+      rw [ey] at e
+      have := h1 x y hx hy hD hDy hSy
+      rw [e, hZz] at this; exact Bool.noConfusion this
+    | false => rw [hoff x hD] at e; rw [e, hDz] at hD; exact Bool.noConfusion hD
+
+/-- 00:Z1, 25:C1 — a finite structure interprets no Robinson `Q`: for formulas `δ` (the domain, in variable `0`),
+`σ` (the successor's graph, `x` in variable `1` and `y` in `0`) and `ζ` (zero), the relativised successor axioms —
+`S` total on the domain, Q2 (`S x = S x' → x = x'`), a zero in the domain, and Q1 (`S x ≠ 0`) — never all hold. -/
+theorem no_interpretation (M : FinStr) (env : Nat → Nat) (δ σ ζ : FForm) :
+    ¬ ((∀ x, x < M.m → Sat M (cons x env) δ →
+        ∃ y, y < M.m ∧ Sat M (cons y env) δ ∧ Sat M (cons y (cons x env)) σ) ∧
+      (∀ x x' y, x < M.m → x' < M.m → Sat M (cons x env) δ → Sat M (cons x' env) δ →
+        Sat M (cons y (cons x env)) σ → Sat M (cons y (cons x' env)) σ → x = x') ∧
+      (∃ z, z < M.m ∧ Sat M (cons z env) δ ∧ Sat M (cons z env) ζ) ∧
+      (∀ x y, x < M.m → y < M.m → Sat M (cons x env) δ → Sat M (cons y env) δ → Sat M (cons y (cons x env)) σ →
+        ¬ Sat M (cons y env) ζ)) := fun ⟨htot, hinj, ⟨z, hz, hDz, hZz⟩, h1⟩ => by
+  have dec := fin_theory_decidable M
+  refine no_finite_Q M.m (fun x => fval M (cons x env) δ) (fun x => fval M (cons x env) ζ)
+    (fun x y => fval M (cons y (cons x env)) σ) (fun x hx hD => ?_) (fun x x' y hx hx' hD hD' hS hS' => ?_)
+    ⟨z, hz, (dec δ _).2 hDz, (dec ζ _).2 hZz⟩ (fun x y hx hy hD hDy hS => ?_)
+  · obtain ⟨y, hy, hDy, hSy⟩ := htot x hx ((dec δ _).1 hD)
+    exact ⟨y, hy, (dec δ _).2 hDy, (dec σ _).2 hSy⟩
+  · exact hinj x x' y hx hx' ((dec δ _).1 hD) ((dec δ _).1 hD') ((dec σ _).1 hS) ((dec σ _).1 hS')
+  · match hZ : fval M (cons y env) ζ with
+    | false => rfl
+    | true => exact absurd ((dec ζ _).1 hZ) (h1 x y hx hy ((dec δ _).1 hD) ((dec δ _).1 hDy) ((dec σ _).1 hS))
+
 end FRC.Logic
 
 /-! inlined: FrcCore/Keys/Logic.lean -/
@@ -3402,8 +3487,8 @@ namespace FRC.Ledger
 
 -- Keys of the logic theme (generated by make_keys.py from the ledgers' Lean bindings; edit the ledgers, not this file)
 /-- p00186 — 00:Z1. G\"odel is vacuous over the finite $\Om$: its theory is complete and decidable, and neither incompleteness theorem has an instance, since $\Om$ interprets no Robinson $\mathsf{Q}$ (25:C1, 25:C2, 25:C3). Incompleteness migrates to the comprehension horizon, the \emph{horizon clause}, as a decomposition (25:G7). Its complexity face is imported (25:G3), its uniform certificate $\Om$-hard (Z3), and its diagonal confined below $t(\M)$ (Z9). -/
-theorem p00186 : (∀ (n : Nat) (S : Nat → Nat), (∀ (x : Nat), x < n → S x < n) → (∀ (x y : Nat), x < n → y < n → S x = S y → x = y) → ∀ (z : Nat), z < n → ¬∀ (x : Nat), x < n → S x ≠ z) ∧ (∀ (M : FRC.Logic.FinStr) (φ : FRC.Logic.FForm) (env : Nat → Nat), FRC.Logic.fval M env φ = true ↔ FRC.Logic.Sat M env φ) ∧ (∀ (M : FRC.Logic.FinStr) (φ : FRC.Logic.FForm) (env : Nat → Nat), FRC.Logic.Sat M env φ ∨ FRC.Logic.Sat M env φ.neg) ∧ ∀ (M : FRC.Logic.FinStr) (φ : FRC.Logic.FForm) (env : Nat → Nat), ¬(FRC.Logic.Sat M env φ ∧ FRC.Logic.Sat M env φ.neg) :=
-  And.intro @FRC.Logic.no_finite_successor (And.intro @FRC.Logic.fin_theory_decidable (And.intro @FRC.Logic.fin_theory_complete (@FRC.Logic.fin_theory_consistent)))
+theorem p00186 : (∀ (n : Nat) (S : Nat → Nat), (∀ (x : Nat), x < n → S x < n) → (∀ (x y : Nat), x < n → y < n → S x = S y → x = y) → ∀ (z : Nat), z < n → ¬∀ (x : Nat), x < n → S x ≠ z) ∧ (∀ (n : Nat) (D Z : Nat → Bool) (Sg : Nat → Nat → Bool), (∀ (x : Nat), x < n → D x = true → ∃ y, y < n ∧ D y = true ∧ Sg x y = true) → (∀ (x x' y : Nat), x < n → x' < n → D x = true → D x' = true → Sg x y = true → Sg x' y = true → x = x') → (∃ z, z < n ∧ D z = true ∧ Z z = true) → (∀ (x y : Nat), x < n → y < n → D x = true → D y = true → Sg x y = true → Z y = false) → False) ∧ (∀ (M : FRC.Logic.FinStr) (env : Nat → Nat) (δ σ ζ : FRC.Logic.FForm), ¬((∀ (x : Nat), x < M.m → FRC.Logic.Sat M (FRC.Logic.cons x env) δ → ∃ y, y < M.m ∧ FRC.Logic.Sat M (FRC.Logic.cons y env) δ ∧ FRC.Logic.Sat M (FRC.Logic.cons y (FRC.Logic.cons x env)) σ) ∧ (∀ (x x' y : Nat), x < M.m → x' < M.m → FRC.Logic.Sat M (FRC.Logic.cons x env) δ → FRC.Logic.Sat M (FRC.Logic.cons x' env) δ → FRC.Logic.Sat M (FRC.Logic.cons y (FRC.Logic.cons x env)) σ → FRC.Logic.Sat M (FRC.Logic.cons y (FRC.Logic.cons x' env)) σ → x = x') ∧ (∃ z, z < M.m ∧ FRC.Logic.Sat M (FRC.Logic.cons z env) δ ∧ FRC.Logic.Sat M (FRC.Logic.cons z env) ζ) ∧ ∀ (x y : Nat), x < M.m → y < M.m → FRC.Logic.Sat M (FRC.Logic.cons x env) δ → FRC.Logic.Sat M (FRC.Logic.cons y env) δ → FRC.Logic.Sat M (FRC.Logic.cons y (FRC.Logic.cons x env)) σ → ¬FRC.Logic.Sat M (FRC.Logic.cons y env) ζ)) ∧ (∀ (M : FRC.Logic.FinStr) (φ : FRC.Logic.FForm) (env : Nat → Nat), FRC.Logic.fval M env φ = true ↔ FRC.Logic.Sat M env φ) ∧ (∀ (M : FRC.Logic.FinStr) (φ : FRC.Logic.FForm) (env : Nat → Nat), FRC.Logic.Sat M env φ ∨ FRC.Logic.Sat M env φ.neg) ∧ ∀ (M : FRC.Logic.FinStr) (φ : FRC.Logic.FForm) (env : Nat → Nat), ¬(FRC.Logic.Sat M env φ ∧ FRC.Logic.Sat M env φ.neg) :=
+  And.intro @FRC.Logic.no_finite_successor (And.intro @FRC.Logic.no_finite_Q (And.intro @FRC.Logic.no_interpretation (And.intro @FRC.Logic.fin_theory_decidable (And.intro @FRC.Logic.fin_theory_complete (@FRC.Logic.fin_theory_consistent)))))
 /-- p05013 — 5:C2. No internal mirror: fewer than $s^{K+1}$ records exist, so an agent with $s^{K+1}<N$ holds no injective representation of the domain of $W_N$ --- a proper part cannot mirror the whole (pigeonhole). -/
 theorem p05013 : (∀ (s : Nat), (2 : Nat) ≤ s → ∀ (K : Nat), FRC.Logic.records s K < s ^ (K + (1 : Nat))) ∧ ∀ {N R : Nat}, R < N → ∀ (f : Nat → Nat), (∀ (i : Nat), i < N → f i < R) → (∀ (i j : Nat), i < N → j < N → f i = f j → i = j) → False :=
   And.intro @FRC.Logic.records_lt (@FRC.Logic.no_mirror)

@@ -6,7 +6,7 @@
    "paper": "00",
    "label": "P1",
    "key": "p00133",
-   "tag": "T",
+   "tag": "R",
    "predicate": "The acceleration floor tracks the drive rate, $a_0(z)\\propto H(z)$: a relation, $\\Om$-blind, derived from L1 under the gravity realisation (D5); the knee shifts and the Tully--Fisher zero-point evolves as $E(z)^{1/4}$. Falsifier: a floor constant in redshift, or tracking other than $H(z)$. Confrontation (43-muse): MUSE-DARK III excludes a constant floor to $z=1.3$; RC100 implies the local floor by $z\\simeq2$, pending refit.",
    "source": "14-entr, 21-grav, 32-dark",
    "master": [],

@@ -2010,6 +2010,84 @@ theorem fin_theory_complete (M : FinStr) (φ : FForm) (env : Nat → Nat) : Sat 
 theorem fin_theory_consistent (M : FinStr) (φ : FForm) (env : Nat → Nat) : ¬ (Sat M env φ ∧ Sat M env (.neg φ)) :=
   fun h => h.2 h.1
 
+/-! ### 00:Z1 — no finite structure interprets Robinson's `Q` -/
+
+/-- The successor an interpretation defines: on the domain `D`, the least `y` in `D` with `Sg x y`; the identity off it. -/
+def succOf (D : Nat → Bool) (Sg : Nat → Nat → Bool) (n x : Nat) : Nat :=
+  if D x then (match leastBelow (fun y => D y && Sg x y) n with | some y => y | none => x) else x
+
+theorem band_l {a b : Bool} (h : (a && b) = true) : a = true := by cases a <;> cases b <;> first | rfl | exact h
+theorem band_r {a b : Bool} (h : (a && b) = true) : b = true := by cases a <;> cases b <;> first | rfl | exact h
+
+/-- 00:Z1, 25:C1 — no finite structure carries Robinson's successor: on `[0, n)`, a domain `D`, a successor relation
+`Sg` total on `D`, injective (Q2) and never reaching a zero `Z` of `D` (Q1) cannot exist. A `k`-dimensional
+interpretation is the case `n = mᵏ`, its tuples coded below `mᵏ`. -/
+theorem no_finite_Q (n : Nat) (D Z : Nat → Bool) (Sg : Nat → Nat → Bool)
+    (htot : ∀ x, x < n → D x = true → ∃ y, y < n ∧ D y = true ∧ Sg x y = true)
+    (hinj : ∀ x x' y, x < n → x' < n → D x = true → D x' = true → Sg x y = true → Sg x' y = true → x = x')
+    (hz : ∃ z, z < n ∧ D z = true ∧ Z z = true)
+    (h1 : ∀ x y, x < n → y < n → D x = true → D y = true → Sg x y = true → Z y = false) : False := by
+  have hS : ∀ x, x < n → D x = true →
+      ∃ y, y < n ∧ D y = true ∧ Sg x y = true ∧ succOf D Sg n x = y := fun x hx hD => by
+    obtain ⟨y, hy, hDy, hSy⟩ := htot x hx hD
+    obtain ⟨y0, h0⟩ := leastBelow_some (fun y => D y && Sg x y) n y hy (by rw [hDy, hSy]; rfl)
+    have sp := leastBelow_spec _ n y0 h0
+    refine ⟨y0, sp.1, band_l sp.2.1, band_r sp.2.1, ?_⟩
+    show (if D x = true then (match leastBelow (fun y => D y && Sg x y) n with | some y => y | none => x) else x) = y0
+    rw [ite_eq_left hD, h0]
+  have hoff : ∀ x, D x = false → succOf D Sg n x = x := fun x hD => by
+    show (if D x = true then _ else x) = x
+    rw [hD, ite_eq_right Bool.false_ne_true]
+  obtain ⟨z, hzn, hDz, hZz⟩ := hz
+  refine no_finite_successor n (succOf D Sg n) (fun x hx => ?_) (fun x x' hx hx' e => ?_) z hzn (fun x hx e => ?_)
+  · match hD : D x with
+    | true => obtain ⟨y, hy, _, _, ey⟩ := hS x hx hD; rw [ey]; exact hy
+    | false => rw [hoff x hD]; exact hx
+  · match hD : D x, hD' : D x' with
+    | true, true =>
+      obtain ⟨y, _, _, hSy, ey⟩ := hS x hx hD
+      obtain ⟨y', _, _, hSy', ey'⟩ := hS x' hx' hD'
+      rw [ey, ey'] at e
+      exact hinj x x' y hx hx' hD hD' hSy (e ▸ hSy')
+    | true, false =>
+      obtain ⟨y, _, hDy, _, ey⟩ := hS x hx hD
+      rw [ey, hoff x' hD'] at e
+      rw [e] at hDy; rw [hDy] at hD'; exact Bool.noConfusion hD'
+    | false, true =>
+      obtain ⟨y', _, hDy', _, ey'⟩ := hS x' hx' hD'
+      rw [ey', hoff x hD] at e
+      rw [← e] at hDy'; rw [hDy'] at hD; exact Bool.noConfusion hD
+    | false, false => rw [hoff x hD, hoff x' hD'] at e; exact e
+  · match hD : D x with
+    | true =>
+      obtain ⟨y, hy, hDy, hSy, ey⟩ := hS x hx hD
+      rw [ey] at e
+      have := h1 x y hx hy hD hDy hSy
+      rw [e, hZz] at this; exact Bool.noConfusion this
+    | false => rw [hoff x hD] at e; rw [e, hDz] at hD; exact Bool.noConfusion hD
+
+/-- 00:Z1, 25:C1 — a finite structure interprets no Robinson `Q`: for formulas `δ` (the domain, in variable `0`),
+`σ` (the successor's graph, `x` in variable `1` and `y` in `0`) and `ζ` (zero), the relativised successor axioms —
+`S` total on the domain, Q2 (`S x = S x' → x = x'`), a zero in the domain, and Q1 (`S x ≠ 0`) — never all hold. -/
+theorem no_interpretation (M : FinStr) (env : Nat → Nat) (δ σ ζ : FForm) :
+    ¬ ((∀ x, x < M.m → Sat M (cons x env) δ →
+        ∃ y, y < M.m ∧ Sat M (cons y env) δ ∧ Sat M (cons y (cons x env)) σ) ∧
+      (∀ x x' y, x < M.m → x' < M.m → Sat M (cons x env) δ → Sat M (cons x' env) δ →
+        Sat M (cons y (cons x env)) σ → Sat M (cons y (cons x' env)) σ → x = x') ∧
+      (∃ z, z < M.m ∧ Sat M (cons z env) δ ∧ Sat M (cons z env) ζ) ∧
+      (∀ x y, x < M.m → y < M.m → Sat M (cons x env) δ → Sat M (cons y env) δ → Sat M (cons y (cons x env)) σ →
+        ¬ Sat M (cons y env) ζ)) := fun ⟨htot, hinj, ⟨z, hz, hDz, hZz⟩, h1⟩ => by
+  have dec := fin_theory_decidable M
+  refine no_finite_Q M.m (fun x => fval M (cons x env) δ) (fun x => fval M (cons x env) ζ)
+    (fun x y => fval M (cons y (cons x env)) σ) (fun x hx hD => ?_) (fun x x' y hx hx' hD hD' hS hS' => ?_)
+    ⟨z, hz, (dec δ _).2 hDz, (dec ζ _).2 hZz⟩ (fun x y hx hy hD hDy hS => ?_)
+  · obtain ⟨y, hy, hDy, hSy⟩ := htot x hx ((dec δ _).1 hD)
+    exact ⟨y, hy, (dec δ _).2 hDy, (dec σ _).2 hSy⟩
+  · exact hinj x x' y hx hx' ((dec δ _).1 hD) ((dec δ _).1 hD') ((dec σ _).1 hS) ((dec σ _).1 hS')
+  · match hZ : fval M (cons y env) ζ with
+    | false => rfl
+    | true => exact absurd ((dec ζ _).1 hZ) (h1 x y hx hy ((dec δ _).1 hD) ((dec δ _).1 hDy) ((dec σ _).1 hS))
+
 end FRC.Logic
 
 /-! inlined: FrcCore/Theme/Field.lean -/
@@ -2268,14 +2346,6 @@ theorem neg_one_ne_zero (hp : FRC.Nat.isPrime p) : (-1 : Shell p) ≠ 0 := fun e
   have : (1 : Shell p) = 0 := by rw [← neg_neg (1 : Shell p), e, neg_zero]
   exact one_ne_zero hp this
 
-/-- The order divides the period: `z^d = 1` gives `z^{(p−1) mod d} = 1`. -/
-theorem pow_mod_eq_one (hp : FRC.Nat.isPrime p) {z : Shell p} (hz : z ≠ 0) {d : Nat} (hd0 : 0 < d)
-    (hd : z ^ d = 1) : z ^ ((p - 1) % d) = 1 := by
-  obtain ⟨q, hq⟩ := FRC.Nat.mod_spec d hd0 (p - 1)
-  have h := fermat hp hz
-  rw [hq, pow_add, pow_mul, hd, one_pow, one_mul] at h
-  exact h
-
 /-! ## The roots of `X^m − 1`, and the residues they miss -/
 
 /-- Some nonzero residue escapes `x^m = 1` when `0 < m < p − 1`: else `X^m − 1` had `m + 1` roots. -/
@@ -2310,42 +2380,13 @@ theorem exists_pow_half (hp : FRC.Nat.isPrime p) {n : Nat} (hn : p = 2 * n + 1) 
     | .inl e => absurd e han
     | .inr e => e⟩
 
-/-! ## The quarter-turn criterion: `−1` is a square iff `p ≡ 1 (mod 4)` -/
+/-! ## The quarter-turn on the chart `p = 4S + 1` (the criterion: `Theme/Foundation.lean`) -/
 
 /-- The quarter-turn on the chart `p = 4S + 1`, generator-free: `ħ = a^S` with `a^{2S} = −1`. -/
 theorem exists_quarter_turn (hp : FRC.Nat.isPrime p) {S : Nat} (hS : p = 4 * S + 1) :
     ∃ h : Shell p, h * h = -1 := by
   obtain ⟨a, ha⟩ := exists_pow_half hp (n := 2 * S) (by rw [hS, ← FRC.Nat.mul_assoc])
   exact ⟨a ^ S, by rw [← pow_add, ← Nat.two_mul, ha]⟩
-
-/-- The quarter-turn criterion on a prime `p > 2`: `x² = −1` is solvable iff `p ≡ 1 (mod 4)`. Forward, `ħ⁴ = 1`
-and `ħ^{(p−1) mod 4} = 1` leave only `(p − 1) mod 4 = 0`; backward, the chart. -/
-theorem quarter_turn_iff (hp : FRC.Nat.isPrime p) (h2 : 2 < p) : (∃ h : Shell p, h * h = -1) ↔ p % 4 = 1 := by
-  constructor
-  · intro ⟨h, hh⟩
-    have h0 : h ≠ 0 := ne_zero_of_mul_self (neg_one_ne_zero hp) hh
-    have h4 : h ^ 4 = 1 := by
-      rw [show (4 : Nat) = 2 + 2 from rfl, pow_add, pow_two, hh, neg_mul_neg, mul_one]
-    have hcase : (p - 1) % 4 = 0 := by
-      have hr := pow_mod_eq_one hp h0 (by decide : 0 < 4) h4
-      have hlt := Nat.mod_lt (p - 1) (by decide : 0 < 4)
-      generalize (p - 1) % 4 = r at hr hlt
-      match r, hr, hlt with
-      | 0, _, _ => rfl
-      | 1, hr, _ => rw [pow_one] at hr; rw [hr, mul_one] at hh; exact absurd hh.symm (neg_one_ne_one h2)
-      | 2, hr, _ => rw [pow_two, hh] at hr; exact absurd hr (neg_one_ne_one h2)
-      | 3, hr, _ =>
-        rw [show (4 : Nat) = 3 + 1 from rfl, pow_succ, hr, one_mul] at h4
-        rw [h4, mul_one] at hh; exact absurd hh.symm (neg_one_ne_one h2)
-      | k + 4, _, hlt => exact absurd hlt (Nat.not_lt_of_le (Nat.le_add_left 4 k))
-    obtain ⟨q, hq⟩ := FRC.Nat.mod_spec 4 (by decide) (p - 1)
-    rw [hcase, Nat.add_zero] at hq
-    exact FRC.Nat.mod_unique (by decide)
-      (by rw [← hq, FRC.Nat.sub_add_cancel (Nat.le_of_lt (Nat.lt_trans (Nat.lt_succ_self 1) h2))])
-  · intro h4
-    obtain ⟨S, hS⟩ := FRC.Nat.mod_spec 4 (by decide) p
-    rw [h4] at hS
-    exact exists_quarter_turn hp hS
 
 /-! ## A shell without zero divisors is prime -/
 
@@ -2374,14 +2415,8 @@ theorem isPrime_of_no_zero_divisors (h2 : 2 ≤ p) (hz : ∀ {a b : Shell p}, a 
   | .inl e1 => exact ofNat_ne_zero hd0 hdp e1
   | .inr e2 => exact ofNat_ne_zero hq0 hqp e2
 
-/-- Completeness is primality: for `p ≥ 2`, the shell has no zero divisors iff `p` is prime. -/
-theorem isPrime_iff_no_zero_divisors (h2 : 2 ≤ p) :
-    FRC.Nat.isPrime p ↔ ∀ a b : Shell p, a * b = 0 → a = 0 ∨ b = 0 :=
-  ⟨fun hp _ _ h => mul_eq_zero hp h, fun hz => isPrime_of_no_zero_divisors h2 (fun h => hz _ _ h)⟩
-
-/-! ## The chart `p = 4S + 1`: the octant sector, the half-square and the parity flip (moved from the Carrier's
-theme by task LM24, so that every programme theme stands on them without the Carrier; `FRC.Carrier` keeps the old
-names) -/
+/-! ## The chart `p = 4S + 1`: the half-square and the parity flip (moved from the Carrier's theme by task LM24, so that
+every programme theme stands on them without the Carrier; `FRC.Carrier` keeps the old names) -/
 
 omit [Pos p] in
 theorem chart_gt_two (hp : FRC.Nat.isPrime p) {S : Nat} (hS : p = 4 * S + 1) : 2 < p := by
@@ -2608,13 +2643,14 @@ theorem prodN_joint (n : Nat → Nat) (hn : ∀ j, 0 < n j) : ∀ m, Joint n m (
       rw [e]
       exact mod_zero_of_eq_mul (hn m) (Nat.mul_comm _ _)
 
-/-- 00:F2, 22:C26 — the joint recurrence of an unequal-cycle composite: the chronons at which all `m` parts return are
-exactly the multiples of one period `T > 0`, which divides the product of the periods. -/
-theorem joint_recurrence (n : Nat → Nat) (hn : ∀ j, 0 < n j) (m : Nat) :
-    ∃ T, 0 < T ∧ Joint n m T ∧ (∀ t, Joint n m t ↔ t % T = 0) ∧ (prodN n m) % T = 0 := by
+/-- 00:F2, 22:C26 — the joint recurrence of an unequal-cycle composite, found below a common multiple `L > 0` of the
+periods (on a shell, a joint return below `Ω`): the chronons at which all `m` parts return are exactly the multiples of
+one period `T`, `0 < T ≤ L`, which divides `L`. The search never passes `L` (Q20). -/
+theorem joint_recurrence (n : Nat → Nat) (hn : ∀ j, 0 < n j) (m L : Nat) (hL : 0 < L) (hLj : Joint n m L) :
+    ∃ T, T ≤ L ∧ 0 < T ∧ Joint n m T ∧ (∀ t, Joint n m t ↔ t % T = 0) ∧ L % T = 0 := by
   let P : Nat → Bool := fun t => decide (0 < t ∧ Joint n m t)
-  have hP : P (prodN n m) = true := decide_eq_true ⟨prodN_pos n hn m, prodN_joint n hn m⟩
-  match FRC.Logic.leastBelow_some P (prodN n m + 1) (prodN n m) (Nat.lt_succ_self _) hP with
+  have hP : P L = true := decide_eq_true ⟨hL, hLj⟩
+  match FRC.Logic.leastBelow_some P (L + 1) L (Nat.lt_succ_self _) hP with
   | ⟨T, hT⟩ =>
     have hs := FRC.Logic.leastBelow_spec P _ T hT
     have hT' : 0 < T ∧ Joint n m T := of_decide_eq_true hs.2.1
@@ -2636,7 +2672,7 @@ theorem joint_recurrence (n : Nat → Nat) (hn : ∀ j, 0 < n j) (m : Nat) :
       · intro ht j hj
         match eq_mul_of_mod_zero hT'.1 ht with
         | ⟨q, hq⟩ => rw [hq]; exact mul_mod_zero (hn j) (hT'.2 j hj) q
-    exact ⟨T, hT'.1, hT'.2, hiff, (hiff _).1 (prodN_joint n hn m)⟩
+    exact ⟨T, Nat.le_of_lt_succ hs.1, hT'.1, hT'.2, hiff, (hiff _).1 hLj⟩
 
 /-- The joint period is the least common multiple: no positive joint return comes earlier. -/
 theorem joint_least {n : Nat → Nat} {m T : Nat} (hiff : ∀ t, Joint n m t ↔ t % T = 0) (hT : 0 < T) :
@@ -2667,20 +2703,26 @@ theorem mulIdx_spec (g w j₀ : Nat) (h : g * j₀ = w) : ∀ N, j₀ < N → g 
       have ih := mulIdx_spec g w j₀ h N hlt
       exact ⟨ih.1, Nat.lt_succ_of_lt ih.2⟩
 
-/-- 00:F2, 22:C26 — two parts of periods `a`, `b` with joint period `T`: the number `g` with `g T = a b` divides both
-periods, and the joint drive carries `(x, y)` to `(x', y')` exactly when the offsets agree modulo `g` — the conserved
-offset on the gcd cycle, the orbits the quotient `A/⟨v⟩ ≅ ℤ/g`. -/
-theorem pair_offset {a b T : Nat} (ha : 0 < a) (hb : 0 < b) (hT : 0 < T)
-    (hiff : ∀ t, (t % a = 0 ∧ t % b = 0) ↔ t % T = 0) :
-    ∃ g, 0 < g ∧ g * T = a * b ∧ a % g = 0 ∧ b % g = 0 ∧
+/-- 00:F2, 22:C26 — two parts of periods `a`, `b` with joint period `T` (a common multiple, and no positive common
+multiple below it): the number `g` with `g T = a b` divides both periods, and every common divisor divides it (`g` is
+the gcd); the joint drive carries `(x, y)` to `(x', y')` within one joint period exactly when the offsets agree modulo
+`g` — the conserved offset on the gcd cycle, the orbits the quotient `A/⟨v⟩ ≅ ℤ/g`. -/
+theorem pair_offset {a b T : Nat} (ha : 0 < a) (hb : 0 < b) (hT : 0 < T) (hTa : T % a = 0) (hTb : T % b = 0)
+    (hleast : ∀ t, 0 < t → t < T → ¬ (t % a = 0 ∧ t % b = 0)) :
+    ∃ g, g ≤ a ∧ 0 < g ∧ g * T = a * b ∧ a % g = 0 ∧ b % g = 0 ∧ (∀ e, 0 < e → a % e = 0 → b % e = 0 → g % e = 0) ∧
       ∀ x y x' y', x < a → y < b → x' < a → y' < b →
-        ((∃ t, (x + t) % a = x' ∧ (y + t) % b = y') ↔ (x + y') % g = (x' + y) % g) := by
-  have hTa : T % a = 0 := ((hiff T).2 (FRC.Nat.mod_self T hT)).1
-  have hTb : T % b = 0 := ((hiff T).2 (FRC.Nat.mod_self T hT)).2
+        ((∃ t, t < T ∧ (x + t) % a = x' ∧ (y + t) % b = y') ↔ (x + y') % g = (x' + y) % g) := by
+  -- every common multiple is a multiple of `T`
+  have hcm : ∀ t, t % a = 0 → t % b = 0 → t % T = 0 := fun t hta htb => by
+    obtain ⟨q, hq⟩ := FRC.Nat.mod_spec T hT t
+    have hr : ∀ c, 0 < c → T % c = 0 → t % c = 0 → (t % T) % c = 0 := fun c hc hTc htc =>
+      mod_of_add_mod hc (by rw [← hq, htc]; exact (mul_mod_zero hc hTc q).symm)
+    match Nat.decEq (t % T) 0 with
+    | isTrue e => exact e
+    | isFalse e => exact absurd ⟨hr a ha hTa hta, hr b hb hTb htb⟩ (hleast _ (Nat.pos_of_ne_zero e) (Nat.mod_lt t hT))
   obtain ⟨ua, hua⟩ := eq_mul_of_mod_zero ha hTa
   obtain ⟨ub, hub⟩ := eq_mul_of_mod_zero hb hTb
-  have hab : (a * b) % T = 0 := (hiff (a * b)).1
-    ⟨mod_zero_of_eq_mul ha rfl, mod_zero_of_eq_mul hb (Nat.mul_comm a b)⟩
+  have hab : (a * b) % T = 0 := hcm (a * b) (mod_zero_of_eq_mul ha rfl) (mod_zero_of_eq_mul hb (Nat.mul_comm a b))
   obtain ⟨g, hg⟩ := eq_mul_of_mod_zero hT hab
   have hgT : g * T = a * b := by rw [Nat.mul_comm, ← hg]
   have hg0 : 0 < g := Nat.pos_of_ne_zero (fun e => by
@@ -2694,9 +2736,28 @@ theorem pair_offset {a b T : Nat} (ha : 0 < a) (hb : 0 < b) (hT : 0 < T)
       _ = b * (g * ub) := by rw [hub, Nat.mul_left_comm])
   have hag : a % g = 0 := mod_zero_of_eq_mul hg0 hga
   have hbg : b % g = 0 := mod_zero_of_eq_mul hg0 hgb
-  refine ⟨g, hg0, hgT, hag, hbg, fun x y x' y' hx hy hx' hy' => ⟨?_, ?_⟩⟩
+  have hgle : g ≤ a := by
+    match ub, hga with
+    | 0, e => rw [Nat.mul_zero] at e; rw [e] at ha; exact absurd ha (Nat.lt_irrefl 0)
+    | u + 1, e => rw [e, Nat.mul_succ]; exact Nat.le_add_left g (g * u)
+  -- `g` is the greatest common divisor: a common divisor `e` gives the common multiple `e a' b'`
+  have hgcd : ∀ e, 0 < e → a % e = 0 → b % e = 0 → g % e = 0 := fun e he hae hbe => by
+    obtain ⟨a', ha'⟩ := eq_mul_of_mod_zero he hae
+    obtain ⟨b', hb'⟩ := eq_mul_of_mod_zero he hbe
+    have hMa : (e * a' * b') % a = 0 := mod_zero_of_eq_mul ha (by rw [ha'])
+    have hMb : (e * a' * b') % b = 0 :=
+      mod_zero_of_eq_mul hb (by rw [hb', FRC.Nat.mul_assoc, Nat.mul_comm a' b', ← FRC.Nat.mul_assoc])
+    obtain ⟨c, hc⟩ := eq_mul_of_mod_zero hT (hcm _ hMa hMb)
+    have e1 : g * T = (e * c) * T :=
+      calc g * T = a * b := hgT
+        _ = e * (e * a' * b') := by
+          rw [ha', hb', FRC.Nat.mul_assoc e a' (e * b'), FRC.Nat.mul_left_comm a' e b', FRC.Nat.mul_assoc e a' b']
+        _ = e * (T * c) := by rw [hc]
+        _ = (e * c) * T := by rw [Nat.mul_comm T c, ← FRC.Nat.mul_assoc]
+    exact mod_zero_of_eq_mul he (Nat.eq_of_mul_eq_mul_right hT e1)
+  refine ⟨g, hgle, hg0, hgT, hag, hbg, hgcd, fun x y x' y' hx hy hx' hy' => ⟨?_, ?_⟩⟩
   · -- the offset is conserved
-    rintro ⟨t, ht1, ht2⟩
+    rintro ⟨t, _, ht1, ht2⟩
     calc (x + y') % g = (x + (y + t) % b) % g := by rw [ht2]
       _ = (x + (y + t) % b % g) % g := (FRC.Nat.add_mod_mod _ _ _ hg0).symm
       _ = (x + (y + t)) % g := by rw [mod_mod_of_dvd hg0 hb hbg, FRC.Nat.add_mod_mod _ _ _ hg0]
@@ -2744,7 +2805,7 @@ theorem pair_offset {a b T : Nat} (ha : 0 < a) (hb : 0 < b) (hT : 0 < T)
       have h1 : (y + d + a * k₁ + a * (k₂ - k₁)) % b = (y + d + a * k₁) % b := by
         rw [Nat.add_assoc, ← Nat.mul_add, FRC.Nat.add_sub_of_le (Nat.le_of_lt hlt)]; exact e.symm
       have h2 : (a * (k₂ - k₁)) % b = 0 := mod_of_add_mod hb h1
-      have h3 : (a * (k₂ - k₁)) % T = 0 := (hiff _).1 ⟨mod_zero_of_eq_mul ha rfl, h2⟩
+      have h3 : (a * (k₂ - k₁)) % T = 0 := hcm _ (mod_zero_of_eq_mul ha rfl) h2
       obtain ⟨q, hq⟩ := eq_mul_of_mod_zero hT h3
       rw [hua, FRC.Nat.mul_assoc] at hq
       have h4 : k₂ - k₁ = ua * q := Nat.eq_of_mul_eq_mul_left ha hq
@@ -2763,10 +2824,15 @@ theorem pair_offset {a b T : Nat} (ha : 0 < a) (hb : 0 < b) (hT : 0 < T)
       hw_inj k₁ k₂ h1 h2 (by
         rw [← FRC.Nat.sub_add_cancel (hS k₁).2.2, ← FRC.Nat.sub_add_cancel (hS k₂).2.2, ← (hS k₁).1, ← (hS k₂).1, e])
     have hy'g := hidx y' hy' rfl
-    obtain ⟨k, _, hk⟩ := FRC.Logic.inj_onto ua S (fun k _ => (hS k).2.1) hinj (mulIdx g (y' - r₀) ua) hy'g.2.1
+    obtain ⟨k, hku, hk⟩ := FRC.Logic.inj_onto ua S (fun k _ => (hS k).2.1) hinj (mulIdx g (y' - r₀) ua) hy'g.2.1
     have hwk : w k = y' := by
       rw [← FRC.Nat.sub_add_cancel (hS k).2.2, ← FRC.Nat.sub_add_cancel hy'g.2.2, ← (hS k).1, ← hy'g.1, hk]
-    refine ⟨d + a * k, ?_, ?_⟩
+    have hdT : d + a * k < T := by
+      rw [hua]
+      calc d + a * k < a + a * k := Nat.add_lt_add_right (Nat.mod_lt _ ha) (a * k)
+        _ = a * (k + 1) := by rw [Nat.add_comm, Nat.mul_succ]
+        _ ≤ a * ua := Nat.mul_le_mul_left a hku
+    refine ⟨d + a * k, hdT, ?_, ?_⟩
     · rw [← Nat.add_assoc, Nat.add_comm (x + d), FRC.Nat.add_mul_mod_self_left _ _ _ ha, hxd]
     · rw [← Nat.add_assoc]; exact hwk
 
@@ -2823,12 +2889,12 @@ that every row carrying the key asserts, proved from the themes alone. The paper
 namespace FRC.Ledger
 
 -- Keys of the quantum theme (generated by make_keys.py from the ledgers' Lean bindings; edit the ledgers, not this file)
-/-- p00060 — 00:F2. \textbf{Multi-body registration}: an unequal-cycle composite's joint recurrence is the lcm of its parts' registration periods; each pair's conserved offset lives on the $\gcd$ cycle (the quotient $A/\langle v\rangle$), and dephasing over the product period is exact, extending the Born-rule count (F1) verbatim to unequal cycles (37-sim: joint recurrence derived and verified, 1400/1400 characters cancel). -/
-theorem p00060 : (∀ (n : Nat → Nat), (∀ (j : Nat), (0 : Nat) < n j) → ∀ (m : Nat), ∃ T, (0 : Nat) < T ∧ FRC.Quantum.Joint n m T ∧ (∀ (t : Nat), FRC.Quantum.Joint n m t ↔ t % T = (0 : Nat)) ∧ FRC.Quantum.prodN n m % T = (0 : Nat)) ∧ (∀ {n : Nat → Nat} {m T : Nat}, (∀ (t : Nat), FRC.Quantum.Joint n m t ↔ t % T = (0 : Nat)) → (0 : Nat) < T → ∀ (t : Nat), (0 : Nat) < t → FRC.Quantum.Joint n m t → T ≤ t) ∧ (∀ {a b T : Nat}, (0 : Nat) < a → (0 : Nat) < b → (0 : Nat) < T → (∀ (t : Nat), t % a = (0 : Nat) ∧ t % b = (0 : Nat) ↔ t % T = (0 : Nat)) → ∃ g, (0 : Nat) < g ∧ g * T = a * b ∧ a % g = (0 : Nat) ∧ b % g = (0 : Nat) ∧ ∀ (x y x' y' : Nat), x < a → y < b → x' < a → y' < b → ((∃ t, (x + t) % a = x' ∧ (y + t) % b = y') ↔ (x + y') % g = (x' + y) % g)) ∧ ∀ {q : Nat} [FRC.Pos q], FRC.Nat.isPrime q → ∀ (n : Nat → Nat), (∀ (j : Nat), (0 : Nat) < n j) → ∀ (m : Nat) (ζ : Nat → FRC.Shell q), (∀ (j : Nat), j < m → ζ j ^ n j = (1 : FRC.Shell q)) → FRC.Shell.prodRange ζ m ≠ (1 : FRC.Shell q) → ∀ (M : Nat), FRC.Quantum.Joint n m M → FRC.Shell.sumRange (fun t => FRC.Shell.prodRange (fun j => ζ j ^ t) m) M = (0 : FRC.Shell q) :=
+/-- p00191 — 00:F2. \textbf{Multi-body registration}: an unequal-cycle composite returning below $\Om$ (Q20) recurs jointly at the lcm of its parts' registration periods; each pair's conserved offset lives on the $\gcd$ cycle (the quotient $A/\langle v\rangle$), and dephasing over every joint recurrence below $\Om$ is exact, extending the Born-rule count (F1) verbatim to unequal cycles (37-sim: joint recurrence verified, 1400/1400 characters cancel). -/
+theorem p00191 : (∀ (n : Nat → Nat), (∀ (j : Nat), (0 : Nat) < n j) → ∀ (m L : Nat), (0 : Nat) < L → FRC.Quantum.Joint n m L → ∃ T, T ≤ L ∧ (0 : Nat) < T ∧ FRC.Quantum.Joint n m T ∧ (∀ (t : Nat), FRC.Quantum.Joint n m t ↔ t % T = (0 : Nat)) ∧ L % T = (0 : Nat)) ∧ (∀ {n : Nat → Nat} {m T : Nat}, (∀ (t : Nat), FRC.Quantum.Joint n m t ↔ t % T = (0 : Nat)) → (0 : Nat) < T → ∀ (t : Nat), (0 : Nat) < t → FRC.Quantum.Joint n m t → T ≤ t) ∧ (∀ {a b T : Nat}, (0 : Nat) < a → (0 : Nat) < b → (0 : Nat) < T → T % a = (0 : Nat) → T % b = (0 : Nat) → (∀ (t : Nat), (0 : Nat) < t → t < T → ¬(t % a = (0 : Nat) ∧ t % b = (0 : Nat))) → ∃ g, g ≤ a ∧ (0 : Nat) < g ∧ g * T = a * b ∧ a % g = (0 : Nat) ∧ b % g = (0 : Nat) ∧ (∀ (e : Nat), (0 : Nat) < e → a % e = (0 : Nat) → b % e = (0 : Nat) → g % e = (0 : Nat)) ∧ ∀ (x y x' y' : Nat), x < a → y < b → x' < a → y' < b → ((∃ t, t < T ∧ (x + t) % a = x' ∧ (y + t) % b = y') ↔ (x + y') % g = (x' + y) % g)) ∧ ∀ {q : Nat} [FRC.Pos q], FRC.Nat.isPrime q → ∀ (n : Nat → Nat), (∀ (j : Nat), (0 : Nat) < n j) → ∀ (m : Nat) (ζ : Nat → FRC.Shell q), (∀ (j : Nat), j < m → ζ j ^ n j = (1 : FRC.Shell q)) → FRC.Shell.prodRange ζ m ≠ (1 : FRC.Shell q) → ∀ (M : Nat), FRC.Quantum.Joint n m M → FRC.Shell.sumRange (fun t => FRC.Shell.prodRange (fun j => ζ j ^ t) m) M = (0 : FRC.Shell q) :=
   And.intro @FRC.Quantum.joint_recurrence (And.intro @FRC.Quantum.joint_least (And.intro @FRC.Quantum.pair_offset (@FRC.Quantum.dephasing)))
 -- end keys
 
 end FRC.Ledger
 
 -- Ledger predicates: axioms (each predicate's, computed here)
-#print axioms FRC.Ledger.p00060
+#print axioms FRC.Ledger.p00191

@@ -1955,7 +1955,9 @@ The geometric sum gives the principal-root identity (2:F1, Prop. 6.1 of 2-geomet
 shell Fourier matrix `W k j = g^{jk}`: `Σ_l W k l · (−g^{−lj}) = [k = j]` (2:F3, Prop. 6.3; 6:B5 in matrix form); the
 reversal `rev`, `J`, and the quarter-turn transform `F = i W` with `W² = −J`, `F² = J`, `J² = I` and `W J = J W` (6:B5,
 6:B7). Split from `Sum.lean` by the ledger migration (task LM25), every name unchanged, so that the fourier theme takes
-the transform without the orbits (gate G10). No axioms.
+the transform without the orbits (gate G10). Since task LM36 it also holds the sum over the nonzero residues reindexed by
+the drive (`sum_units_eq_sum_pow`, from `Sum.lean`) and the frame `frame13` (from `Instances.lean`), names unchanged,
+so that the horizon theme takes them without the orbits. No axioms.
 -/
 
 namespace FRC
@@ -2201,7 +2203,33 @@ theorem W_J_comm (F : Frame p κ g) {k j : Nat} (hk : k < p - 1) (hj : j < p - 1
   · rw [← pow_add, ← Nat.left_distrib, F.pow_mod, ← FRC.Nat.mul_mod_mod _ _ _ hn, rev_add_mod hk, Nat.mul_zero,
       FRC.Nat.zero_mod, pow_zero]
 
+/-- The sum over the nonzero residues equals the sum over the powers of the drive: `x = g^m` reindexes. -/
+theorem sum_units_eq_sum_pow (F : Frame p κ g) (f : Shell p → Shell p) :
+    sumRange (fun l => f (ofNat (l + 1))) (p - 1) = sumRange (fun m => f (g ^ m)) (p - 1) := by
+  have hn : p = (p - 1) + 1 := (FRC.Nat.sub_add_cancel Pos.pos).symm
+  have hpos : ∀ m, 1 ≤ (g ^ m).val := fun m =>
+    Nat.pos_of_ne_zero (fun h0 => F.pow_ne_zero m (ext (by rw [h0, val_zero])))
+  have hlt : ∀ m, m < p - 1 → (g ^ m).val - 1 < p - 1 := fun m _ => by
+    have h1 : (g ^ m).val - 1 + 1 = (g ^ m).val := FRC.Nat.sub_add_cancel (hpos m)
+    have h2 : (g ^ m).val < (p - 1) + 1 := hn ▸ (g ^ m).lt
+    rw [← h1] at h2
+    exact Nat.lt_of_succ_lt_succ h2
+  have hinj : ∀ i j, i < p - 1 → j < p - 1 → (g ^ i).val - 1 = (g ^ j).val - 1 → i = j := fun i j hi hj h => by
+    apply F.pow_inj hi hj
+    apply ext
+    rw [← FRC.Nat.sub_add_cancel (hpos i), ← FRC.Nat.sub_add_cancel (hpos j), h]
+  have := sum_perm (fun l => f (ofNat (l + 1))) (fun m => (g ^ m).val - 1) (p - 1) hlt hinj
+  rw [← this]
+  apply sum_congr
+  intro m _
+  show f (ofNat ((g ^ m).val - 1 + 1)) = f (g ^ m)
+  rw [FRC.Nat.sub_add_cancel (hpos m), ofNat_val]
+
 end Frame
+
+/-- 00:C1, 20:B10 on `𝔽₁₃`: the frame `(τ; 0, 1, 2)` of capacity `3` — `2` is primitive (decided). Moved here from
+`Instances.lean` under its name (task LM36), so that the horizon theme takes it without the orbits. -/
+theorem frame13 : Frame 13 3 (2 : Shell 13) := ⟨rfl, Nat.zero_lt_succ 2, by decide⟩
 
 end Shell
 end FRC
@@ -2691,7 +2719,8 @@ Since the ledger migration (task LM17) it also holds 20-rh's sums: peeling the f
 nonzero residues reindexed by the drive. Since task LM22 the sums that need no frame (`sumRange` and its lemmas, the
 geometric sum, the sums over lists and `sum_perm`) are in `Series.lean`, under their names; this module keeps the
 frame's: the principal root, the Fourier inversion, the reversal and the eigenspaces. Since task LM25 the transform
-(the principal root, the inversion, `rev`, `W`, `J`, `F` and their products) is in `Transform.lean`, names unchanged.
+(the principal root, the inversion, `rev`, `W`, `J`, `F` and their products) is in `Transform.lean`, names unchanged,
+and since task LM36 the reindexing by the drive (`sum_units_eq_sum_pow`) is there too.
 -/
 
 namespace FRC
@@ -2928,28 +2957,6 @@ theorem symm_antisymm_unique (F : Frame p κ g) {a b : Nat → Shell p} (ha : Sy
   refine ⟨ha0, ?_⟩
   rw [ha0, zero_add] at h1; exact h1
 
-/-- The sum over the nonzero residues equals the sum over the powers of the drive: `x = g^m` reindexes. -/
-theorem sum_units_eq_sum_pow (F : Frame p κ g) (f : Shell p → Shell p) :
-    sumRange (fun l => f (ofNat (l + 1))) (p - 1) = sumRange (fun m => f (g ^ m)) (p - 1) := by
-  have hn : p = (p - 1) + 1 := (FRC.Nat.sub_add_cancel Pos.pos).symm
-  have hpos : ∀ m, 1 ≤ (g ^ m).val := fun m =>
-    Nat.pos_of_ne_zero (fun h0 => F.pow_ne_zero m (ext (by rw [h0, val_zero])))
-  have hlt : ∀ m, m < p - 1 → (g ^ m).val - 1 < p - 1 := fun m _ => by
-    have h1 : (g ^ m).val - 1 + 1 = (g ^ m).val := FRC.Nat.sub_add_cancel (hpos m)
-    have h2 : (g ^ m).val < (p - 1) + 1 := hn ▸ (g ^ m).lt
-    rw [← h1] at h2
-    exact Nat.lt_of_succ_lt_succ h2
-  have hinj : ∀ i j, i < p - 1 → j < p - 1 → (g ^ i).val - 1 = (g ^ j).val - 1 → i = j := fun i j hi hj h => by
-    apply F.pow_inj hi hj
-    apply ext
-    rw [← FRC.Nat.sub_add_cancel (hpos i), ← FRC.Nat.sub_add_cancel (hpos j), h]
-  have := sum_perm (fun l => f (ofNat (l + 1))) (fun m => (g ^ m).val - 1) (p - 1) hlt hinj
-  rw [← this]
-  apply sum_congr
-  intro m _
-  show f (ofNat ((g ^ m).val - 1 + 1)) = f (g ^ m)
-  rw [FRC.Nat.sub_add_cancel (hpos m), ofNat_val]
-
 end Frame
 
 end Shell
@@ -3097,6 +3104,17 @@ theorem norm_mul (z z' : Ext p ν) : norm (z * z') = norm z * norm z' :=
 theorem norm_ofShell (c : Shell p) : norm (ofShell c : Ext p ν) = c * c := by
   show c * c + -(ν * (0 * 0)) = c * c
   rw [Shell.zero_mul, Shell.mul_zero, Shell.neg_zero, Shell.add_zero]
+
+theorem mul_one (z : Ext p ν) : z * 1 = z := by rw [mul_comm]; exact one_mul z
+
+theorem pow_add (z : Ext p ν) (m : Nat) : ∀ n : Nat, z ^ (m + n) = z ^ m * z ^ n
+  | 0 => (mul_one _).symm
+  | n + 1 => by show z ^ (m + n) * z = z ^ m * (z ^ n * z); rw [pow_add z m n, mul_assoc]
+
+/-- The norm of a power: `N(zⁿ) = N(z)ⁿ`. -/
+theorem norm_pow (z : Ext p ν) : ∀ n : Nat, norm (z ^ n) = norm z ^ n
+  | 0 => by show norm (ofShell 1 : Ext p ν) = 1; rw [norm_ofShell, Shell.one_mul]
+  | n + 1 => by show norm (z ^ n * z) = norm z ^ n * norm z; rw [norm_mul, norm_pow z n]
 
 end Ext
 
@@ -3778,7 +3796,14 @@ The master's block Z, the limits of the bounded observer, where its rows are exa
 
 No hypothesis on the vector and none on the shell beyond the frame: no off-line mode, `Ω`-blind. `half_inverse`,
 `zero_slot`, `shift_power_character`, `shift_trace`, `readout`, `readout_on_line` and `readout_slot_index` moved here
-from `FrcCore/Rh.lean` (20-rh), which keeps each under its old name. No axioms.
+from `FrcCore/Rh.lean` (20-rh), which keeps each under its old name.
+
+Since task LM36 the theme also holds the rest of 20-rh's shell arithmetic, moved from `Rh.lean` under the same names
+(the extension's `Ext.*` without the prefix): slot complementarity (20:B5); the Subject constants (20:B10); the
+Ramanujan sum (20:B7); the half-turn `ρ`, the Klein four-group, the critical line, the fixed loci and the energy on the
+line in the quadratic extension, and the quarter-turn off the circle (20:B6, B8, B9); frame coincidence below the
+horizon (20:B2); and the values on `𝔽₁₃`, `𝔽₅₃` and the laboratory pair `(13, 233)` (20:B1). The theme imports the
+transform and the extension, not the orbits, so that its key file stays within the budget of gate G10. No axioms.
 -/
 
 namespace FRC.Horizon
@@ -3934,141 +3959,7 @@ theorem readout_slot_index (F : Frame p κ g) (k : Nat) (hk1 : 1 ≤ k) (hk2 : k
     rw [FRC.Nat.mod_eq_of_lt hlt] at hmod
     exact Nat.not_succ_le_zero 0 (by rw [hmod] at hk1; exact hk1)
 
-end FRC.Horizon
-
-/-! inlined: FrcCore/Instances.lean -/
-
-/-!
-# FrcCore.Instances — concrete shells, decided by computation
-
-Every statement here is closed by `decide`: the kernel evaluates the shell arithmetic (through its
-accelerated `Nat` operations) and the proof term is `of_decide_eq_true rfl`. No axiom, no library.
--/
-
-namespace FRC
-namespace Shell
-
-/-- 00:C1, 20:B10 on `𝔽₁₃`: the frame `(τ; 0, 1, 2)` of capacity `3` — `2` is primitive (decided). -/
-theorem frame13 : Frame 13 3 (2 : Shell 13) := ⟨rfl, Nat.zero_lt_succ 2, by decide⟩
-
-/-- 00:A8 on `𝔽₁₃`: the drive generates — checked directly, and proved for every frame by `Frame.generates`. -/
-theorem generates13 : Generates (2 : Shell 13) 12 := by decide
-
-/-- 1:B3, 2:D3 [value] — on `𝔽₁₃(τ; 0, 1, 2)`: `i = −2³ = 5`, `i² = −1`, `−i = 8`, `π = 6`, `2^6 = −1`,
-`e = 2^5 = 6`. -/
-theorem s13_datum :
-    Frame.quarterTurn (2 : Shell 13) 3 = 5 ∧ (5 : Shell 13) * 5 = -1 ∧ -(5 : Shell 13) = 8 ∧
-    (2 : Shell 13) ^ 6 = -1 ∧ (2 : Shell 13) ^ 5 = 6 := by decide
-
-/-- 2:D6 [value] — the Euler identity on `𝔽₁₃`: the representative `5` of `i` is odd, `e^{iπ} = −1`. -/
-theorem s13_euler : ((2 : Shell 13) ^ 5) ^ (5 * 6) = -1 := by decide
-
-/-- 00:C1 on `𝔽₁₇`: two frames, `g = 3` and `g = 6`. -/
-theorem frame17a : Frame 17 4 (3 : Shell 17) := ⟨rfl, Nat.zero_lt_succ 3, by decide⟩
-theorem frame17b : Frame 17 4 (6 : Shell 17) := ⟨rfl, Nat.zero_lt_succ 3, by decide⟩
-
-set_option maxRecDepth 20000 in
-/-- 2:D6 [value], 00:C14 — on `𝔽₁₇` the frame `g = 3` reads `i = 4` (even: `e^{iπ} = +1`) and the frame
-`g = 6` reads `i = 13` (odd: `e^{iπ} = −1`); `6 = 3^{15}` with `15 ≡ 3 (mod 4)` flips the orientation. -/
-theorem s17_orientation :
-    Frame.quarterTurn (3 : Shell 17) 4 = 4 ∧ Frame.quarterTurn (6 : Shell 17) 4 = 13 ∧
-    ((3 : Shell 17) ^ 4) ^ (4 * 8) = 1 ∧ ((6 : Shell 17) ^ 13) ^ (13 * 8) = -1 ∧
-    (3 : Shell 17) ^ 15 = 6 := by decide
-
-/-- 00:C1 on `𝔽₂₉`: the frame `(τ; 0, 1, 2)`, capacity `7`. -/
-theorem frame29 : Frame 29 7 (2 : Shell 29) := ⟨rfl, Nat.zero_lt_succ 6, by decide⟩
-
-/-- 1:B2 [value] — on `𝔽₁₃` the fourth roots of unity are `{1, 5, 12, 8}`, and every other nonzero
-residue has four distinct companions `{x, −x, x⁻¹, −x⁻¹}`: the two Klein orbits `{2, 11, 7, 6}` and
-`{3, 10, 9, 4}`. -/
-theorem s13_klein :
-    (∀ x : Fin 13, (x.val = 1 ∨ x.val = 5 ∨ x.val = 12 ∨ x.val = 8) ↔ (ofNat x.val : Shell 13) ^ 4 = 1) ∧
-    (2 : Shell 13) * 7 = 1 ∧ (3 : Shell 13) * 9 = 1 := by decide
-
-/-- 2:B3 [value] — on `𝔽₁₃` the generators are `2^u` with `u ∈ {1, 5, 7, 11}` (the units mod `12`): `6 = 2^5`
-is primitive, `4 = 2^2` is not; `5, 7, 11` are invertible mod `12`, `2` is not. -/
-theorem s13_orbit :
-    Coprime 5 12 ∧ Coprime 7 12 ∧ Coprime 11 12 ∧ ¬ Coprime 2 12 ∧
-    IsPrimitive (6 : Shell 13) 12 ∧ ¬ IsPrimitive (4 : Shell 13) 12 ∧ (2 : Shell 13) ^ 5 = 6 := by decide
-
-end Shell
-end FRC
-
-/-! inlined: FrcCore/Keys/Horizon.lean -/
-
-/-!
-# FrcCore.Keys.Horizon — the keyed theorems of the horizon theme (ledger migration, task LM19)
-
-One declaration per key, `FRC.Ledger.p<key>`, generated by `make_keys.py` from the ledgers' Lean bindings: the theorem
-that every row carrying the key asserts, proved from the themes alone. The paper's module keeps its declaration
-`FRC.<Module>.p<key>` as an alias. Every declaration has no axioms (`check_core_axioms.py`).
--/
-
-namespace FRC.Ledger
-
--- Keys of the horizon theme (generated by make_keys.py from the ledgers' Lean bindings; edit the ledgers, not this file)
-/-- p20011 — 20:B4. Zero-slot: $Z_\Omega(k)=\sum_{x\in\Fx{\Omega}}x^{k}$ vanishes on every nonterminal exponent $1\le k\le\Omega-2$ and equals $-1$ on the full cycle; the nonterminal slots are the universal mode basis. -/
-theorem p20011 : ∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → (∀ (k : Nat), (0 : Nat) < k → k < p - (1 : Nat) → FRC.Shell.sumRange (fun l => FRC.Shell.ofNat (l + (1 : Nat)) ^ k) (p - (1 : Nat)) = (0 : FRC.Shell p)) ∧ FRC.Shell.sumRange (fun l => FRC.Shell.ofNat (l + (1 : Nat)) ^ (p - (1 : Nat))) (p - (1 : Nat)) = (-1 : FRC.Shell p) :=
-  @FRC.Horizon.zero_slot
-/-- p20032 — 20:E1. The scale-evolution generator: on the shell the scale-shift $x\mapsto\gen^{\,r}x$ is a unitary permutation of $\Fx{\p}$ with the complex characters as eigenvectors; in the analytic chart [chart] the dilation group $U_r=e^{ir\Hh}$ has the self-adjoint generator $\Hh=-i(x\partial_x+\half)$ with generalised eigenfunctions $x^{-\bar\rho}$, $\rho=\half+i\gamma$, the symmetrizing $\half$ the half-turn of B8; the chart assignment is used nowhere as a shell identity. -/
-theorem p20032 : (∀ {p : Nat} [FRC.Pos p] {g : FRC.Shell p} (r k : Nat) (x : FRC.Shell p), (g ^ r * x) ^ k = (g ^ r) ^ k * x ^ k) ∧ ∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → ∀ (r : Nat), FRC.Shell.Frame.natCount (fun x => x ≠ (0 : Nat) ∧ g ^ r * FRC.Shell.ofNat x = FRC.Shell.ofNat x) p = if r % (p - (1 : Nat)) = (0 : Nat) then p - (1 : Nat) else (0 : Nat) :=
-  And.intro @FRC.Horizon.shift_power_character (@FRC.Horizon.shift_trace)
-/-- p20043 — 20:E12, 00:Z10. On every shell $\F_\p\subset\F_{\p^2}$, with no hypothesis, the prime vector's spectral content is the constant mode and the nonterminal quarter-turn modes, the finite zeta vanishing on each (20:E12, 20:E9). Every mode of every vector lies on the self-dual line $\Tr=1$, an eigenvector of the scale-shift with a $(\p-1)$-th root of unity as eigenvalue: no off-line mode, $\Om$-blind. -/
-theorem p20043 : (∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → (∀ (k : Nat), (0 : Nat) < k → k < p - (1 : Nat) → FRC.Shell.sumRange (fun l => FRC.Shell.ofNat (l + (1 : Nat)) ^ k) (p - (1 : Nat)) = (0 : FRC.Shell p)) ∧ FRC.Shell.sumRange (fun l => FRC.Shell.ofNat (l + (1 : Nat)) ^ (p - (1 : Nat))) (p - (1 : Nat)) = (-1 : FRC.Shell p)) ∧ (∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → ∀ (v : Nat → FRC.Shell p) {j : Nat}, j < p - (1 : Nat) → v j = FRC.Shell.sumRange (fun k => FRC.Horizon.modeCoeff g v k * (g ^ j) ^ k) (p - (1 : Nat))) ∧ (∀ {p : Nat} [FRC.Pos p] {g : FRC.Shell p} (r k : Nat) (x : FRC.Shell p), (g ^ r * x) ^ k = (g ^ r) ^ k * x ^ k) ∧ (∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → ∀ (r k : Nat), ((g ^ r) ^ k) ^ (p - (1 : Nat)) = (1 : FRC.Shell p)) ∧ (∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → ∀ (r : Nat), FRC.Shell.Frame.natCount (fun x => x ≠ (0 : Nat) ∧ g ^ r * FRC.Shell.ofNat x = FRC.Shell.ofNat x) p = if r % (p - (1 : Nat)) = (0 : Nat) then p - (1 : Nat) else (0 : Nat)) ∧ (∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → ∀ (ν θ : FRC.Shell p), (FRC.Horizon.readout ν κ θ).trace = (1 : FRC.Shell p) ∧ (FRC.Horizon.readout ν κ θ).re = FRC.Shell.ofNat ((2 : Nat) * κ + (1 : Nat)) ∧ ∀ (θ' : FRC.Shell p), FRC.Horizon.readout ν κ θ = FRC.Horizon.readout ν κ θ' → θ = θ') ∧ ∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → ∀ (k : Nat), (1 : Nat) ≤ k → k ≤ p - (2 : Nat) → -g ^ k ≠ (0 : FRC.Shell p) ∧ -g ^ k ≠ (-1 : FRC.Shell p) :=
-  And.intro @FRC.Horizon.zero_slot (And.intro @FRC.Horizon.mode_expansion (And.intro @FRC.Horizon.shift_power_character (And.intro @FRC.Horizon.eigenphase (And.intro @FRC.Horizon.shift_trace (And.intro @FRC.Horizon.readout_on_line (@FRC.Horizon.readout_slot_index))))))
--- end keys
-
-end FRC.Ledger
-
-/-! FrcCore/Rh.lean -/
-
-/-!
-# FrcCore.Rh — the shell predicates of 20-rh with no axioms
-
-The exact arithmetic of *Riemann Hypothesis over the Holographic Substrate* (20-rh), block B and the `𝔽_p`
-reading of the shell theorem, on the kernel alone. For every frame `(τ; 0, 1, g)` of capacity `κ`
-(`p = 4κ + 1`): the zero-slot `Σ_{x≠0} x^k = 0` on the nonterminal exponents and `−1` on the full cycle (20:B4);
-slot complementarity `k ↦ −g^k`, injective on the nontrivial spectral slots and onto `F^× ∖ {−1}` (20:B5);
-the half-turn arithmetic `2⁻¹ = 2κ + 1 = −π` (20:B8) and the Subject constants `π = 2κ`, `i = g^{−κ} = −g^κ`,
-`i² = −1`, `g^π = −1`, `e^{iπ} = −1` on every odd representative (20:B10); the scale-shift on the power
-characters and its fixed-point count `(p − 1)·[(p − 1) ∣ r]` — the `𝔽_p` reading of 20:E1 and 20:E12 (iii); the Ramanujan sum
-`c_p(n) = −1` off the origin in any shell carrying a root of unity of order `p` (20:B7); the quadratic
-extension `F(η)`, `η² = ν`, as pairs of residues — the Klein four-group of conjugation and the half-turn
-`z ↦ 1 − z` with its three fixed loci (20:B9, with Frobenius read as conjugation: `z^p = z̄` is decided on `𝔽₁₃`
-here and proved for every prime shell on Mathlib), the critical line `Tr z = 1 ⟺ Re z = 2⁻¹` with its energy
-`(2⁻¹)² − νb²` (20:B8), conjugation as inversion on the norm-one circle and the quarter-turn
-conjugation-fixed and off the circle (20:B6); frame coincidence below the horizon — window products read
-back exactly and a residue `m ≤ H` factors on the shell exactly when it factors as an integer, on the Subject
-and on the Carrier alike (20:B2). On `𝔽₁₃` and `𝔽₅₃`, decided by the kernel: the phase circle of `𝔽₁₃(√2)`
-has `14` points and Frobenius `z ↦ z^{13}` is conjugation on all `169` of them, the Ramanujan sums of
-`𝔽₅₃` with `ω = 16` of order `13`, the constants of `𝔽₁₃(τ; 0, 1, 2)`, and the laboratory pair `(13, 233)`
-(20:B1). No axioms.
-
-Since the ledger migration (task LM17) the quadratic extension is the extension theme's `FRC.Extension.Ext p ν`
-(`Theme/Extension.lean`): 20-rh's pairs `Ext p`, with `ν` passed to each operation, became the one type with `ν` its
-parameter, and the product, powers and the norm became its instances. The half-turn, the critical line and the readout
-stay here on that type; `readout` takes `ν`. The sums, the counting lemmas and the deciders went to the frame theme.
-Since task LM26 the shell theorem's clauses (the zero-slot, the half-turn `2⁻¹ = 2κ + 1`, the scale-shift's characters and
-trace, the readout on the trace-one line and the slot index) live in the horizon theme (`Theme/Horizon.lean`), the home of
-00:Z10. Every old name stays as an alias.
--/
-
-namespace FRC.Rh
-
-open FRC.Shell FRC.Shell.Frame
-
-variable {p : Nat} [Pos p]
-
-/-- A residue `l + 1 < p` is nonzero. -/
-theorem ofNat_succ_ne_zero {l : Nat} (hl : l + 1 < p) : (ofNat (l + 1) : Shell p) ≠ 0 := fun h => by
-  have := val_injective h
-  rw [val_ofNat, val_zero, FRC.Nat.mod_eq_of_lt hl] at this
-  exact Nat.noConfusion this
-
-section frame
-variable {κ : Nat} {g : Shell p}
-
-/-! ## The zero-slot and slot complementarity (20:B4, 20:B5) -/
+/-! ## 20-rh's shell arithmetic (task LM36): slot complementarity, the Subject constants (20:B5, 20:B10) -/
 
 /-- 20:B5 — slot complementarity on every shell: `Φ(k) = −g^k` is injective on the nontrivial spectral slots
 `0 < k < p − 1`, its values avoid `0` and `−1`, and every residue off `{0, −1}` is `Φ(k)` for one such `k`. -/
@@ -4091,8 +3982,6 @@ theorem slot_complementarity (F : Frame p κ g) :
       refine ⟨m, Nat.pos_of_ne_zero (fun h0 => ?_), hm, by rw [e, neg_neg]⟩
       rw [h0, pow_zero] at e
       exact hy1 (by rw [← neg_neg y, ← e])
-
-/-! ## The half-turn arithmetic and the Subject constants (20:B8, 20:B10) -/
 
 /-- 20:B10 — `i = g^{−κ}`, read as `g^{3κ}` on the cycle of length `4κ`, is the quarter-turn `−g^κ`. -/
 theorem quarter_turn_eq_pow (F : Frame p κ g) : g ^ (3 * κ) = quarterTurn g κ := by
@@ -4118,8 +4007,6 @@ theorem constants13 :
     (2 : Shell 13) * 6 = -1 ∧ (2 : Shell 13) ^ 9 = 5 ∧ quarterTurn (2 : Shell 13) 3 = 5 ∧
     (5 : Shell 13) * 5 = -1 ∧ (2 : Shell 13) ^ 5 = 6 ∧ (2 : Shell 13) ^ 6 = -1 ∧
     (6 : Shell 13) ^ (5 * 6) = -1 := by decide
-
-end frame
 
 /-! ## The Ramanujan sum (20:B7) -/
 
@@ -4154,10 +4041,6 @@ theorem ramanujan_sum (F : Frame q κ' h) {m : Nat} (hm : 0 < m) {ω : Shell q} 
   rw [add_comm] at h0
   exact eq_neg_of_add_eq_zero h0
 
-/-- 00:C1 on `𝔽₅₃`: the frame `(τ; 0, 1, 2)` of capacity `13`, and `ω = 2^4 = 16` of order `13`. -/
-theorem frame53 : Frame 53 13 (2 : Shell 53) ∧ IsPrimitive (16 : Shell 53) 13 ∧ (2 : Shell 53) ^ 4 = 16 :=
-  ⟨⟨rfl, Nat.zero_lt_succ 12, by decide⟩, by decide, by decide⟩
-
 /-- 20:B7 [value] — on `𝔽₅₃` with `ω = 16` of order `13`: `c_{13}(n) = Σ_{a=1}^{12} ω^{an} = −1` for every
 `0 < n < 13`, and `12 = m − 1` at `n = 0`. -/
 theorem ramanujan53 :
@@ -4166,13 +4049,10 @@ theorem ramanujan53 :
 
 end ramanujan
 
-/-! ## The quadratic extension `F(η)`, `η² = ν`, as pairs of residues (20:B6, 20:B8, 20:B9) -/
+/-! ## The quadratic extension: the half-turn, the critical line, the two loci of agreement (20:B6, 20:B8, 20:B9) -/
 
-namespace Ext
-
-open FRC.Extension (Ext)
+section extension
 open FRC.Extension.Ext
-variable {ν : Shell p}
 
 /-- The functional-equation half-turn `ρ : z ↦ 1 − z`. -/
 def rho (z : Ext p ν) : Ext p ν := ⟨1 + -z.re, -z.im⟩
@@ -4188,15 +4068,12 @@ theorem klein_four (z : Ext p ν) :
   show 1 + -(1 + -z.re) = z.re
   rw [neg_add_rev, neg_neg, ← add_assoc, add_neg, zero_add]
 
-section frame
-variable {κ : Nat} {g : Shell p}
-
 /-- 20:B8, 20:B9 — the finite critical line: `Tr z = 1` exactly when `Re z = 2⁻¹ = 2κ + 1`; it is the fixed locus
 of `σ = ρ ∘ φ`; every `2⁻¹ + bη` lies on it, one point per residue `b` — `p` points. -/
 theorem critical_line (F : Frame p κ g) (z : Ext p ν) :
     (trace z = 1 ↔ z.re = ofNat (2 * κ + 1)) ∧ (sigma z = z ↔ z.re = ofNat (2 * κ + 1)) ∧
     ∀ b : Shell p, trace (⟨ofNat (2 * κ + 1), b⟩ : Ext p ν) = 1 := by
-  have hinv := (FRC.Horizon.half_inverse F).1
+  have hinv := (half_inverse F).1
   have key : z.re + z.re = 1 ↔ z.re = ofNat (2 * κ + 1) := by
     constructor
     · intro h
@@ -4248,7 +4125,7 @@ theorem fixed_half_turn (F : Frame p κ g) (z : Ext p ν) :
 theorem norm_on_line (F : Frame p κ g) (z : Ext p ν) (hz : z.re = ofNat (2 * κ + 1)) :
     norm z = ofNat (2 * κ + 1) * ofNat (2 * κ + 1) + -(ν * (z.im * z.im)) ∧
     (2 : Shell p) * ofNat (2 * κ + 1) = 1 := by
-  refine ⟨?_, (FRC.Horizon.half_inverse F).1⟩
+  refine ⟨?_, (half_inverse F).1⟩
   show z.re * z.re + -(ν * (z.im * z.im)) = _
   rw [hz]
 
@@ -4264,8 +4141,6 @@ theorem quarter_turn_off_circle (F : Frame p κ g) (ν : Shell p) :
   rw [hn] at h
   exact F.one_ne_zero (F.eq_zero_of_eq_neg h.symm)
 
-end frame
-
 /-- 20:B6 [value] — on `𝔽₁₃(√2)` (`2` a nonsquare mod `13`): the norm-one circle has `13 + 1 = 14` points
 among the `169` elements, and Frobenius `z ↦ z^{13}` is conjugation on every element. -/
 theorem circle13 :
@@ -4274,7 +4149,7 @@ theorem circle13 :
       conj ⟨ofNat (k / 13), ofNat (k % 13)⟩) ∧
     (∀ x : Nat, x < 13 → 0 < x → (ofNat x : Shell 13) * ofNat x ≠ 2) := by decide +kernel
 
-end Ext
+end extension
 
 /-! ## Frame coincidence below the horizon (20:B2) -/
 
@@ -4342,6 +4217,171 @@ theorem lab_pair :
     13 * 13 < 233 ∧ 12 % 4 = 0 ∧ 232 % 4 = 0 ∧ 232 % 3 ≠ 0 ∧ (5 : Shell 13) * 5 = -1 ∧
     (89 : Shell 233) * 89 = -1 ∧ 232 % 12 ≠ 0 ∧ 3 * 3 < 13 ∧ 3 * 3 < 233 := by decide
 
+end FRC.Horizon
+
+/-! inlined: FrcCore/Instances.lean -/
+
+/-!
+# FrcCore.Instances — concrete shells, decided by computation
+
+Every statement here is closed by `decide`: the kernel evaluates the shell arithmetic (through its
+accelerated `Nat` operations) and the proof term is `of_decide_eq_true rfl`. No axiom, no library.
+-/
+
+namespace FRC
+namespace Shell
+
+-- `frame13` (00:C1, 20:B10, the frame `(τ; 0, 1, 2)` of `𝔽₁₃`) moved to `Transform.lean` under its name (task LM36).
+
+/-- 00:A8 on `𝔽₁₃`: the drive generates — checked directly, and proved for every frame by `Frame.generates`. -/
+theorem generates13 : Generates (2 : Shell 13) 12 := by decide
+
+/-- 1:B3, 2:D3 [value] — on `𝔽₁₃(τ; 0, 1, 2)`: `i = −2³ = 5`, `i² = −1`, `−i = 8`, `π = 6`, `2^6 = −1`,
+`e = 2^5 = 6`. -/
+theorem s13_datum :
+    Frame.quarterTurn (2 : Shell 13) 3 = 5 ∧ (5 : Shell 13) * 5 = -1 ∧ -(5 : Shell 13) = 8 ∧
+    (2 : Shell 13) ^ 6 = -1 ∧ (2 : Shell 13) ^ 5 = 6 := by decide
+
+/-- 2:D6 [value] — the Euler identity on `𝔽₁₃`: the representative `5` of `i` is odd, `e^{iπ} = −1`. -/
+theorem s13_euler : ((2 : Shell 13) ^ 5) ^ (5 * 6) = -1 := by decide
+
+/-- 00:C1 on `𝔽₁₇`: two frames, `g = 3` and `g = 6`. -/
+theorem frame17a : Frame 17 4 (3 : Shell 17) := ⟨rfl, Nat.zero_lt_succ 3, by decide⟩
+theorem frame17b : Frame 17 4 (6 : Shell 17) := ⟨rfl, Nat.zero_lt_succ 3, by decide⟩
+
+set_option maxRecDepth 20000 in
+/-- 2:D6 [value], 00:C14 — on `𝔽₁₇` the frame `g = 3` reads `i = 4` (even: `e^{iπ} = +1`) and the frame
+`g = 6` reads `i = 13` (odd: `e^{iπ} = −1`); `6 = 3^{15}` with `15 ≡ 3 (mod 4)` flips the orientation. -/
+theorem s17_orientation :
+    Frame.quarterTurn (3 : Shell 17) 4 = 4 ∧ Frame.quarterTurn (6 : Shell 17) 4 = 13 ∧
+    ((3 : Shell 17) ^ 4) ^ (4 * 8) = 1 ∧ ((6 : Shell 17) ^ 13) ^ (13 * 8) = -1 ∧
+    (3 : Shell 17) ^ 15 = 6 := by decide
+
+/-- 00:C1 on `𝔽₂₉`: the frame `(τ; 0, 1, 2)`, capacity `7`. -/
+theorem frame29 : Frame 29 7 (2 : Shell 29) := ⟨rfl, Nat.zero_lt_succ 6, by decide⟩
+
+/-- 1:B2 [value] — on `𝔽₁₃` the fourth roots of unity are `{1, 5, 12, 8}`, and every other nonzero
+residue has four distinct companions `{x, −x, x⁻¹, −x⁻¹}`: the two Klein orbits `{2, 11, 7, 6}` and
+`{3, 10, 9, 4}`. -/
+theorem s13_klein :
+    (∀ x : Fin 13, (x.val = 1 ∨ x.val = 5 ∨ x.val = 12 ∨ x.val = 8) ↔ (ofNat x.val : Shell 13) ^ 4 = 1) ∧
+    (2 : Shell 13) * 7 = 1 ∧ (3 : Shell 13) * 9 = 1 := by decide
+
+/-- 2:B3 [value] — on `𝔽₁₃` the generators are `2^u` with `u ∈ {1, 5, 7, 11}` (the units mod `12`): `6 = 2^5`
+is primitive, `4 = 2^2` is not; `5, 7, 11` are invertible mod `12`, `2` is not. -/
+theorem s13_orbit :
+    Coprime 5 12 ∧ Coprime 7 12 ∧ Coprime 11 12 ∧ ¬ Coprime 2 12 ∧
+    IsPrimitive (6 : Shell 13) 12 ∧ ¬ IsPrimitive (4 : Shell 13) 12 ∧ (2 : Shell 13) ^ 5 = 6 := by decide
+
+end Shell
+end FRC
+
+/-! inlined: FrcCore/Keys/Horizon.lean -/
+
+/-!
+# FrcCore.Keys.Horizon — the keyed theorems of the horizon theme (ledger migration, task LM19)
+
+One declaration per key, `FRC.Ledger.p<key>`, generated by `make_keys.py` from the ledgers' Lean bindings: the theorem
+that every row carrying the key asserts, proved from the themes alone. The paper's module keeps its declaration
+`FRC.<Module>.p<key>` as an alias. Every declaration has no axioms (`check_core_axioms.py`).
+-/
+
+namespace FRC.Ledger
+
+-- Keys of the horizon theme (generated by make_keys.py from the ledgers' Lean bindings; edit the ledgers, not this file)
+/-- p20008 — 20:B1. The two frames on one substrate: the Carrier chart $\F_\Omega$, held by no embedded observer, and the Subject $\Fp$ embedded with $\Omega\gg \p^{2}$; what they share is the quarter-turn core $Q_4$ and nothing else, on the laboratory pair $(13,233)$ the cycles $C_{12}$ and $C_{232}$ admit no projection ($12\nmid232$); hardness by register ($\p$-hard, $\Omega$-hard). -/
+theorem p20008 : (13 : Nat) * (13 : Nat) < (233 : Nat) ∧ (12 : Nat) % (4 : Nat) = (0 : Nat) ∧ (232 : Nat) % (4 : Nat) = (0 : Nat) ∧ (232 : Nat) % (3 : Nat) ≠ (0 : Nat) ∧ (5 : FRC.Shell (13 : Nat)) * (5 : FRC.Shell (13 : Nat)) = (-1 : FRC.Shell (13 : Nat)) ∧ (89 : FRC.Shell (233 : Nat)) * (89 : FRC.Shell (233 : Nat)) = (-1 : FRC.Shell (233 : Nat)) ∧ (232 : Nat) % (12 : Nat) ≠ (0 : Nat) ∧ (3 : Nat) * (3 : Nat) < (13 : Nat) ∧ (3 : Nat) * (3 : Nat) < (233 : Nat) :=
+  @FRC.Horizon.lab_pair
+set_option linter.defProp false in
+/-- p20009 — 20:B2. Frame coincidence below the horizon: for $n\le\sqrt \p$ the residue $n$ is the same integer in $\Fp$ and $\F_\Omega$, and primality of $n$ equals irreducibility in the Subject chart; the Subject-realised primes $\Pi_\p$ are the primes to $\sqrt \p$. -/
+def p20009 := And.intro @FRC.Horizon.window_readback (And.intro @FRC.Horizon.factorisation_iff (@FRC.Horizon.frame_coincidence))
+/-- p20011 — 20:B4. Zero-slot: $Z_\Omega(k)=\sum_{x\in\Fx{\Omega}}x^{k}$ vanishes on every nonterminal exponent $1\le k\le\Omega-2$ and equals $-1$ on the full cycle; the nonterminal slots are the universal mode basis. -/
+theorem p20011 : ∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → (∀ (k : Nat), (0 : Nat) < k → k < p - (1 : Nat) → FRC.Shell.sumRange (fun l => FRC.Shell.ofNat (l + (1 : Nat)) ^ k) (p - (1 : Nat)) = (0 : FRC.Shell p)) ∧ FRC.Shell.sumRange (fun l => FRC.Shell.ofNat (l + (1 : Nat)) ^ (p - (1 : Nat))) (p - (1 : Nat)) = (-1 : FRC.Shell p) :=
+  @FRC.Horizon.zero_slot
+/-- p20012 — 20:B5. Slot complementarity: $\Phi(k)=-\gen^{\,k}$ bijects the nontrivial spectral slots onto the nonterminal additive slots $\Fx{\Omega}\setminus\{-1\}$, the two removed points being $\mu_2$, the intertwiner the half-cycle element. -/
+theorem p20012 : ∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → (∀ (i j : Nat), i < p - (1 : Nat) → j < p - (1 : Nat) → -g ^ i = -g ^ j → i = j) ∧ (∀ (k : Nat), (0 : Nat) < k → k < p - (1 : Nat) → -g ^ k ≠ (0 : FRC.Shell p) ∧ -g ^ k ≠ (-1 : FRC.Shell p)) ∧ ∀ (y : FRC.Shell p), y ≠ (0 : FRC.Shell p) → y ≠ (-1 : FRC.Shell p) → ∃ k, (0 : Nat) < k ∧ k < p - (1 : Nat) ∧ -g ^ k = y :=
+  @FRC.Horizon.slot_complementarity
+set_option linter.defProp false in
+/-- p20013 — 20:B6. Hermitian phase calculus on $K=\F_{\p^{2}}$: norm and trace $\Fp$-valued, the phase circle $U_{\p+1}$ of order $\p+1$ with Frobenius as inversion, the quarter-turn $\im$ Frobenius-fixed and off the circle ($\Nm(\im)=-1$), the trace-zero $\eta$ with $\eta^{2}=\nu$ a nonsquare, $\Tr(a+b\eta)=2a$, $\Nm=a^{2}-\nu b^{2}$. -/
+def p20013 := And.intro @FRC.Extension.Ext.mul_conj (And.intro @FRC.Extension.Ext.conj_inv_of_norm_one (And.intro @FRC.Horizon.quarter_turn_off_circle (@FRC.Horizon.circle13)))
+/-- p20014 — 20:B7. Flat ground state: the full-modulus Ramanujan sum $c_\p(n)\equiv-1$ for every $n\not\equiv0$; the mode at the spectral origin carries no prime information. -/
+theorem p20014 : (∀ {q : Nat} [FRC.Pos q] {κ' : Nat} {h : FRC.Shell q}, FRC.Shell.Frame q κ' h → ∀ {m : Nat}, (0 : Nat) < m → ∀ {ω : FRC.Shell q}, ω.IsPrimitive m → ∀ (n : Nat), n % m ≠ (0 : Nat) → FRC.Shell.sumRange (fun a => ω ^ (n * (a + (1 : Nat)))) (m - (1 : Nat)) = (-1 : FRC.Shell q)) ∧ (∀ (n : Nat), n < (13 : Nat) → (0 : Nat) < n → FRC.Shell.sumRange (fun a => (16 : FRC.Shell (53 : Nat)) ^ (n * (a + (1 : Nat)))) (12 : Nat) = (-1 : FRC.Shell (53 : Nat))) ∧ FRC.Shell.sumRange (fun a => (16 : FRC.Shell (53 : Nat)) ^ ((0 : Nat) * (a + (1 : Nat)))) (12 : Nat) = (12 : FRC.Shell (53 : Nat)) :=
+  And.intro @FRC.Horizon.ramanujan_sum (@FRC.Horizon.ramanujan53)
+set_option linter.defProp false in
+/-- p20015 — 20:B8. The finite critical line: the half-turn $2^{-1}=2\kp+1=-\pi$; $\Tr(z)=1$ exactly on the $\p$ points $z=2^{-1}+\eta\theta$, with energy $\Nm(z)=\tfrac14-\nu\theta^{2}$; de-framed, $2^{-1}/\p=(2\kp+1)/\p\to\half$ from above [chart]. -/
+def p20015 := And.intro @FRC.Horizon.half_inverse (And.intro @FRC.Horizon.critical_line (@FRC.Horizon.norm_on_line))
+set_option linter.defProp false in
+/-- p20016 — 20:B9. The two agreement loci: the Klein four-group $\langle\phi,\rho\rangle$ of Frobenius and the functional-equation half-turn fixes exactly $\Fp$ (the prime meridian), $L_{1/2}$ (the critical line) and their meeting $\{2^{-1}\}$; no other line is fixed. -/
+def p20016 := And.intro @FRC.Horizon.klein_four (And.intro @FRC.Extension.Ext.fixed_conj (And.intro @FRC.Horizon.critical_line (@FRC.Horizon.fixed_half_turn)))
+/-- p20017 — 20:B10. The Subject constants on the shell: $\pi=2\kp$, $2\pi\equiv-1$, $\im=\gen^{-\kp}$, $\im^{2}\equiv-1$, $\E=\gen^{\,\im}$ on the odd lift, $\gen^{\,\pi}\equiv-1$, $\E^{\,\im\pi}\equiv-1$; on $\F_{13}$: $\gen=2$, $\im=5$, $\E=6$, $\pi=6$. -/
+theorem p20017 : (∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → FRC.Shell.ofNat ((2 : Nat) * FRC.Shell.Frame.halfPeriod κ) = (-1 : FRC.Shell p) ∧ g ^ ((3 : Nat) * κ) = FRC.Shell.Frame.quarterTurn g κ ∧ FRC.Shell.Frame.quarterTurn g κ * FRC.Shell.Frame.quarterTurn g κ = (-1 : FRC.Shell p) ∧ g ^ ((2 : Nat) * κ) = (-1 : FRC.Shell p) ∧ ∀ (m : Nat), m % (2 : Nat) = (1 : Nat) → (g ^ m) ^ (m * ((2 : Nat) * κ)) = (-1 : FRC.Shell p)) ∧ ((2 : FRC.Shell (13 : Nat)) * (6 : FRC.Shell (13 : Nat)) = (-1 : FRC.Shell (13 : Nat)) ∧ (2 : FRC.Shell (13 : Nat)) ^ (9 : Nat) = (5 : FRC.Shell (13 : Nat)) ∧ FRC.Shell.Frame.quarterTurn (2 : FRC.Shell (13 : Nat)) (3 : Nat) = (5 : FRC.Shell (13 : Nat)) ∧ (5 : FRC.Shell (13 : Nat)) * (5 : FRC.Shell (13 : Nat)) = (-1 : FRC.Shell (13 : Nat)) ∧ (2 : FRC.Shell (13 : Nat)) ^ (5 : Nat) = (6 : FRC.Shell (13 : Nat)) ∧ (2 : FRC.Shell (13 : Nat)) ^ (6 : Nat) = (-1 : FRC.Shell (13 : Nat)) ∧ (6 : FRC.Shell (13 : Nat)) ^ ((5 : Nat) * (6 : Nat)) = (-1 : FRC.Shell (13 : Nat))) ∧ FRC.Shell.Frame (13 : Nat) (3 : Nat) (2 : FRC.Shell (13 : Nat)) :=
+  And.intro @FRC.Horizon.subject_constants (And.intro @FRC.Horizon.constants13 (@FRC.Shell.frame13))
+/-- p20032 — 20:E1. The scale-evolution generator: on the shell the scale-shift $x\mapsto\gen^{\,r}x$ is a unitary permutation of $\Fx{\p}$ with the complex characters as eigenvectors; in the analytic chart [chart] the dilation group $U_r=e^{ir\Hh}$ has the self-adjoint generator $\Hh=-i(x\partial_x+\half)$ with generalised eigenfunctions $x^{-\bar\rho}$, $\rho=\half+i\gamma$, the symmetrizing $\half$ the half-turn of B8; the chart assignment is used nowhere as a shell identity. -/
+theorem p20032 : (∀ {p : Nat} [FRC.Pos p] {g : FRC.Shell p} (r k : Nat) (x : FRC.Shell p), (g ^ r * x) ^ k = (g ^ r) ^ k * x ^ k) ∧ ∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → ∀ (r : Nat), FRC.Shell.Frame.natCount (fun x => x ≠ (0 : Nat) ∧ g ^ r * FRC.Shell.ofNat x = FRC.Shell.ofNat x) p = if r % (p - (1 : Nat)) = (0 : Nat) then p - (1 : Nat) else (0 : Nat) :=
+  And.intro @FRC.Horizon.shift_power_character (@FRC.Horizon.shift_trace)
+/-- p20043 — 20:E12, 00:Z10. On every shell $\F_\p\subset\F_{\p^2}$, with no hypothesis, the prime vector's spectral content is the constant mode and the nonterminal quarter-turn modes, the finite zeta vanishing on each (20:E12, 20:B4). Every mode of every vector lies on the self-dual line $\Tr=1$, an eigenvector of the scale-shift with a $(\p-1)$-th root of unity as eigenvalue: no off-line mode, $\Om$-blind. -/
+theorem p20043 : (∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → (∀ (k : Nat), (0 : Nat) < k → k < p - (1 : Nat) → FRC.Shell.sumRange (fun l => FRC.Shell.ofNat (l + (1 : Nat)) ^ k) (p - (1 : Nat)) = (0 : FRC.Shell p)) ∧ FRC.Shell.sumRange (fun l => FRC.Shell.ofNat (l + (1 : Nat)) ^ (p - (1 : Nat))) (p - (1 : Nat)) = (-1 : FRC.Shell p)) ∧ (∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → ∀ (v : Nat → FRC.Shell p) {j : Nat}, j < p - (1 : Nat) → v j = FRC.Shell.sumRange (fun k => FRC.Horizon.modeCoeff g v k * (g ^ j) ^ k) (p - (1 : Nat))) ∧ (∀ {p : Nat} [FRC.Pos p] {g : FRC.Shell p} (r k : Nat) (x : FRC.Shell p), (g ^ r * x) ^ k = (g ^ r) ^ k * x ^ k) ∧ (∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → ∀ (r k : Nat), ((g ^ r) ^ k) ^ (p - (1 : Nat)) = (1 : FRC.Shell p)) ∧ (∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → ∀ (r : Nat), FRC.Shell.Frame.natCount (fun x => x ≠ (0 : Nat) ∧ g ^ r * FRC.Shell.ofNat x = FRC.Shell.ofNat x) p = if r % (p - (1 : Nat)) = (0 : Nat) then p - (1 : Nat) else (0 : Nat)) ∧ (∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → ∀ (ν θ : FRC.Shell p), (FRC.Horizon.readout ν κ θ).trace = (1 : FRC.Shell p) ∧ (FRC.Horizon.readout ν κ θ).re = FRC.Shell.ofNat ((2 : Nat) * κ + (1 : Nat)) ∧ ∀ (θ' : FRC.Shell p), FRC.Horizon.readout ν κ θ = FRC.Horizon.readout ν κ θ' → θ = θ') ∧ ∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → ∀ (k : Nat), (1 : Nat) ≤ k → k ≤ p - (2 : Nat) → -g ^ k ≠ (0 : FRC.Shell p) ∧ -g ^ k ≠ (-1 : FRC.Shell p) :=
+  And.intro @FRC.Horizon.zero_slot (And.intro @FRC.Horizon.mode_expansion (And.intro @FRC.Horizon.shift_power_character (And.intro @FRC.Horizon.eigenphase (And.intro @FRC.Horizon.shift_trace (And.intro @FRC.Horizon.readout_on_line (@FRC.Horizon.readout_slot_index))))))
+-- end keys
+
+end FRC.Ledger
+
+/-! FrcCore/Rh.lean -/
+
+/-!
+# FrcCore.Rh — the shell predicates of 20-rh with no axioms
+
+The exact arithmetic of *Riemann Hypothesis over the Holographic Substrate* (20-rh), block B and the `𝔽_p`
+reading of the shell theorem, on the kernel alone. For every frame `(τ; 0, 1, g)` of capacity `κ`
+(`p = 4κ + 1`): the zero-slot `Σ_{x≠0} x^k = 0` on the nonterminal exponents and `−1` on the full cycle (20:B4);
+slot complementarity `k ↦ −g^k`, injective on the nontrivial spectral slots and onto `F^× ∖ {−1}` (20:B5);
+the half-turn arithmetic `2⁻¹ = 2κ + 1 = −π` (20:B8) and the Subject constants `π = 2κ`, `i = g^{−κ} = −g^κ`,
+`i² = −1`, `g^π = −1`, `e^{iπ} = −1` on every odd representative (20:B10); the scale-shift on the power
+characters and its fixed-point count `(p − 1)·[(p − 1) ∣ r]` — the `𝔽_p` reading of 20:E1 and 20:E12 (iii); the Ramanujan sum
+`c_p(n) = −1` off the origin in any shell carrying a root of unity of order `p` (20:B7); the quadratic
+extension `F(η)`, `η² = ν`, as pairs of residues — the Klein four-group of conjugation and the half-turn
+`z ↦ 1 − z` with its three fixed loci (20:B9, with Frobenius read as conjugation: `z^p = z̄` is decided on `𝔽₁₃`
+here and proved for every prime shell on Mathlib), the critical line `Tr z = 1 ⟺ Re z = 2⁻¹` with its energy
+`(2⁻¹)² − νb²` (20:B8), conjugation as inversion on the norm-one circle and the quarter-turn
+conjugation-fixed and off the circle (20:B6); frame coincidence below the horizon — window products read
+back exactly and a residue `m ≤ H` factors on the shell exactly when it factors as an integer, on the Subject
+and on the Carrier alike (20:B2). On `𝔽₁₃` and `𝔽₅₃`, decided by the kernel: the phase circle of `𝔽₁₃(√2)`
+has `14` points and Frobenius `z ↦ z^{13}` is conjugation on all `169` of them, the Ramanujan sums of
+`𝔽₅₃` with `ω = 16` of order `13`, the constants of `𝔽₁₃(τ; 0, 1, 2)`, and the laboratory pair `(13, 233)`
+(20:B1). No axioms.
+
+Since the ledger migration (task LM17) the quadratic extension is the extension theme's `FRC.Extension.Ext p ν`
+(`Theme/Extension.lean`): 20-rh's pairs `Ext p`, with `ν` passed to each operation, became the one type with `ν` its
+parameter, and the product, powers and the norm became its instances. The half-turn, the critical line and the readout
+stay here on that type; `readout` takes `ν`. The sums, the counting lemmas and the deciders went to the frame theme.
+Since task LM26 the shell theorem's clauses (the zero-slot, the half-turn `2⁻¹ = 2κ + 1`, the scale-shift's characters and
+trace, the readout on the trace-one line and the slot index) live in the horizon theme (`Theme/Horizon.lean`), the home of
+00:Z10. Every old name stays as an alias. Since task LM36 (20-rh's ledger file) the rest of the paper's shell arithmetic
+lives there too: slot complementarity, the Subject constants, the Ramanujan sum, the half-turn, the Klein four-group, the
+critical line and its fixed loci, the quarter-turn off the circle, frame coincidence and the values on `𝔽₁₃`, `𝔽₅₃` and
+`(13, 233)`. This module keeps their old names as aliases, the frame of `𝔽₅₃`, and the predicate declarations, each the
+alias of its key.
+-/
+
+namespace FRC.Rh
+
+open FRC.Shell FRC.Shell.Frame
+
+variable {p : Nat} [Pos p]
+
+/-- A residue `l + 1 < p` is nonzero. -/
+theorem ofNat_succ_ne_zero {l : Nat} (hl : l + 1 < p) : (ofNat (l + 1) : Shell p) ≠ 0 := fun h => by
+  have := val_injective h
+  rw [val_ofNat, val_zero, FRC.Nat.mod_eq_of_lt hl] at this
+  exact Nat.noConfusion this
+
+/-! ## The frame of `𝔽₅₃` (00:C1) -/
+
+/-- 00:C1 on `𝔽₅₃`: the frame `(τ; 0, 1, 2)` of capacity `13`, and `ω = 2^4 = 16` of order `13`. -/
+theorem frame53 : Frame 53 13 (2 : Shell 53) ∧ IsPrimitive (16 : Shell 53) 13 ∧ (2 : Shell 53) ^ 4 = 16 :=
+  ⟨⟨rfl, Nat.zero_lt_succ 12, by decide⟩, by decide, by decide⟩
+
+
 /-! ## Old names (ledger migration, task LM17): the declarations moved to the themes, each under its old name -/
 section aliases
 variable {κ : Nat} {g : Shell p}
@@ -4394,6 +4434,80 @@ theorem shift_trace (F : Frame p κ g) (r : Nat) :
     natCount (fun x => x ≠ 0 ∧ g ^ r * ofNat x = ofNat x) p = if r % (p - 1) = 0 then p - 1 else 0 :=
   FRC.Horizon.shift_trace F r
 
+/-! The declarations moved to the horizon theme by task LM36 (`FRC.Horizon`, `Theme/Horizon.lean`), each under its old
+name: slot complementarity, the Subject constants, the Ramanujan sum, frame coincidence and the laboratory pair. -/
+
+/-- 20:B5 — slot complementarity (20-rh's name; the theorem is `FRC.Horizon.slot_complementarity`, LM36). -/
+theorem slot_complementarity (F : Frame p κ g) :
+    (∀ i j, i < p - 1 → j < p - 1 → -(g ^ i) = -(g ^ j) → i = j) ∧
+    (∀ k, 0 < k → k < p - 1 → -(g ^ k) ≠ 0 ∧ -(g ^ k) ≠ -1) ∧
+    (∀ y : Shell p, y ≠ 0 → y ≠ -1 → ∃ k, 0 < k ∧ k < p - 1 ∧ -(g ^ k) = y) :=
+  FRC.Horizon.slot_complementarity F
+
+/-- 20:B10 — `i = g^{−κ}` is `−g^κ` (20-rh's name; the theorem is `FRC.Horizon.quarter_turn_eq_pow`, LM36). -/
+theorem quarter_turn_eq_pow (F : Frame p κ g) : g ^ (3 * κ) = quarterTurn g κ :=
+  FRC.Horizon.quarter_turn_eq_pow F
+
+/-- 20:B10 — the Subject constants (20-rh's name; the theorem is `FRC.Horizon.subject_constants`, LM36). -/
+theorem subject_constants (F : Frame p κ g) :
+    (ofNat (2 * halfPeriod κ) : Shell p) = -1 ∧ g ^ (3 * κ) = quarterTurn g κ ∧
+    quarterTurn g κ * quarterTurn g κ = -1 ∧ g ^ (2 * κ) = -1 ∧
+    ∀ m : Nat, m % 2 = 1 → (g ^ m) ^ (m * (2 * κ)) = -1 :=
+  FRC.Horizon.subject_constants F
+
+/-- 20:B10 [value] — the constants on `𝔽₁₃` (20-rh's name; the theorem is `FRC.Horizon.constants13`, LM36). -/
+theorem constants13 :
+    (2 : Shell 13) * 6 = -1 ∧ (2 : Shell 13) ^ 9 = 5 ∧ quarterTurn (2 : Shell 13) 3 = 5 ∧
+    (5 : Shell 13) * 5 = -1 ∧ (2 : Shell 13) ^ 5 = 6 ∧ (2 : Shell 13) ^ 6 = -1 ∧
+    (6 : Shell 13) ^ (5 * 6) = -1 :=
+  FRC.Horizon.constants13
+
+/-- Powers reduce modulo the order (20-rh's name; the theorem is `FRC.Horizon.pow_mod_of_pow_eq_one`, LM36). -/
+theorem pow_mod_of_pow_eq_one {q : Nat} [Pos q] {ω : Shell q} {m : Nat} (hm : 0 < m) (hω : ω ^ m = 1) (l : Nat) :
+    ω ^ l = ω ^ (l % m) :=
+  FRC.Horizon.pow_mod_of_pow_eq_one hm hω l
+
+/-- 20:B7 — the Ramanujan sum (20-rh's name; the theorem is `FRC.Horizon.ramanujan_sum`, LM36). -/
+theorem ramanujan_sum {q : Nat} [Pos q] {κ' : Nat} {h : Shell q} (F : Frame q κ' h) {m : Nat} (hm : 0 < m)
+    {ω : Shell q} (hω : IsPrimitive ω m) (n : Nat) (hn : n % m ≠ 0) :
+    sumRange (fun a => ω ^ (n * (a + 1))) (m - 1) = -1 :=
+  FRC.Horizon.ramanujan_sum F hm hω n hn
+
+/-- 20:B7 [value] — the Ramanujan sums of `𝔽₅₃` (20-rh's name; the theorem is `FRC.Horizon.ramanujan53`, LM36). -/
+theorem ramanujan53 :
+    (∀ n, n < 13 → 0 < n → sumRange (fun a => (16 : Shell 53) ^ (n * (a + 1))) 12 = -1) ∧
+    sumRange (fun a => (16 : Shell 53) ^ (0 * (a + 1))) 12 = 12 :=
+  FRC.Horizon.ramanujan53
+
+/-- `H ≤ H²` (20-rh's name; the theorem is `FRC.Horizon.le_mul_self`, LM36). -/
+theorem le_mul_self (H : Nat) : H ≤ H * H :=
+  FRC.Horizon.le_mul_self H
+
+/-- 20:B2 — the window reads back (20-rh's name; the theorem is `FRC.Horizon.window_readback`, LM36). -/
+theorem window_readback {H : Nat} (hH : H * H < p) :
+    (∀ m, m ≤ H → (ofNat m : Shell p).val = m) ∧
+    ∀ a b, a ≤ H → b ≤ H → (ofNat a * ofNat b : Shell p).val = a * b :=
+  FRC.Horizon.window_readback hH
+
+/-- 20:B2 — primality equals irreducibility in the window (20-rh's name; the theorem is
+`FRC.Horizon.factorisation_iff`, LM36). -/
+theorem factorisation_iff {H : Nat} (hH : H * H < p) (m : Nat) (hm : m ≤ H) :
+    (∃ a b, 2 ≤ a ∧ 2 ≤ b ∧ a ≤ H ∧ b ≤ H ∧ (ofNat a * ofNat b : Shell p) = ofNat m) ↔
+    ∃ a b, 2 ≤ a ∧ 2 ≤ b ∧ a * b = m :=
+  FRC.Horizon.factorisation_iff hH m hm
+
+/-- 20:B2 — frame coincidence (20-rh's name; the theorem is `FRC.Horizon.frame_coincidence`, LM36). -/
+theorem frame_coincidence {Ω : Nat} [Pos Ω] {H : Nat} (hp : H * H < p) (hΩ : H * H < Ω) (m : Nat) (hm : m ≤ H) :
+    (∃ a b, 2 ≤ a ∧ 2 ≤ b ∧ a ≤ H ∧ b ≤ H ∧ (ofNat a * ofNat b : Shell p) = ofNat m) ↔
+    (∃ a b, 2 ≤ a ∧ 2 ≤ b ∧ a ≤ H ∧ b ≤ H ∧ (ofNat a * ofNat b : Shell Ω) = ofNat m) :=
+  FRC.Horizon.frame_coincidence hp hΩ m hm
+
+/-- 20:B1 [value] — the laboratory pair (20-rh's name; the theorem is `FRC.Horizon.lab_pair`, LM36). -/
+theorem lab_pair :
+    13 * 13 < 233 ∧ 12 % 4 = 0 ∧ 232 % 4 = 0 ∧ 232 % 3 ≠ 0 ∧ (5 : Shell 13) * 5 = -1 ∧
+    (89 : Shell 233) * 89 = -1 ∧ 232 % 12 ≠ 0 ∧ 3 * 3 < 13 ∧ 3 * 3 < 233 :=
+  FRC.Horizon.lab_pair
+
 /-- 20-rh's quadratic extension: `FRC.Extension.Ext p ν`, its `ν` now a parameter of the type. -/
 @[reducible] def Ext (p : Nat) [Pos p] (ν : Shell p) : Type := FRC.Extension.Ext p ν
 
@@ -4438,6 +4552,53 @@ theorem conj_inv_of_norm_one (z : Ext p ν) (hz : norm z = 1) : z * conj z = 1 :
 theorem fixed_conj (F : Frame p κ g) (z : Ext p ν) : conj z = z ↔ z.im = 0 :=
   FRC.Extension.Ext.fixed_conj F z
 
+/-- The functional-equation half-turn `ρ : z ↦ 1 − z` (20-rh's name; the definition is `FRC.Horizon.rho`, LM36). -/
+@[reducible] def rho (z : Ext p ν) : Ext p ν := FRC.Horizon.rho z
+
+/-- `σ = ρ ∘ φ : z ↦ 1 − z̄` (20-rh's name; the definition is `FRC.Horizon.sigma`, LM36). -/
+@[reducible] def sigma (z : Ext p ν) : Ext p ν := FRC.Horizon.sigma z
+
+/-- 20:B9 — the Klein four-group (20-rh's name; the theorem is `FRC.Horizon.klein_four`, LM36). -/
+theorem klein_four (z : Ext p ν) :
+    FRC.Extension.Ext.conj (FRC.Extension.Ext.conj z) = z ∧ FRC.Horizon.rho (FRC.Horizon.rho z) = z ∧
+    FRC.Extension.Ext.conj (FRC.Horizon.rho z) = FRC.Horizon.rho (FRC.Extension.Ext.conj z) :=
+  FRC.Horizon.klein_four z
+
+/-- 20:B8, 20:B9 — the finite critical line (20-rh's name; the theorem is `FRC.Horizon.critical_line`, LM36). -/
+theorem critical_line {κ : Nat} {g : Shell p} (F : Frame p κ g) (z : Ext p ν) :
+    (FRC.Extension.Ext.trace z = 1 ↔ z.re = ofNat (2 * κ + 1)) ∧
+    (FRC.Horizon.sigma z = z ↔ z.re = ofNat (2 * κ + 1)) ∧
+    ∀ b : Shell p, FRC.Extension.Ext.trace (⟨ofNat (2 * κ + 1), b⟩ : Ext p ν) = 1 :=
+  FRC.Horizon.critical_line F z
+
+/-- 20:B9 — the fixed locus of the half-turn (20-rh's name; the theorem is `FRC.Horizon.fixed_half_turn`, LM36). -/
+theorem fixed_half_turn {κ : Nat} {g : Shell p} (F : Frame p κ g) (z : Ext p ν) :
+    (FRC.Horizon.rho z = z ↔ (FRC.Extension.Ext.conj z = z ∧ FRC.Horizon.sigma z = z)) ∧
+    (FRC.Horizon.rho z = z ↔ z = ⟨ofNat (2 * κ + 1), 0⟩) :=
+  FRC.Horizon.fixed_half_turn F z
+
+/-- 20:B8 — the energy on the critical line (20-rh's name; the theorem is `FRC.Horizon.norm_on_line`, LM36). -/
+theorem norm_on_line {κ : Nat} {g : Shell p} (F : Frame p κ g) (z : Ext p ν) (hz : z.re = ofNat (2 * κ + 1)) :
+    FRC.Extension.Ext.norm z = ofNat (2 * κ + 1) * ofNat (2 * κ + 1) + -(ν * (z.im * z.im)) ∧
+    (2 : Shell p) * ofNat (2 * κ + 1) = 1 :=
+  FRC.Horizon.norm_on_line F z hz
+
+/-- 20:B6 — the quarter-turn off the circle (20-rh's name; the theorem is `FRC.Horizon.quarter_turn_off_circle`,
+LM36). -/
+theorem quarter_turn_off_circle {κ : Nat} {g : Shell p} (F : Frame p κ g) (ν : Shell p) :
+    FRC.Extension.Ext.conj (⟨quarterTurn g κ, 0⟩ : Ext p ν) = ⟨quarterTurn g κ, 0⟩ ∧
+    FRC.Extension.Ext.norm (⟨quarterTurn g κ, 0⟩ : Ext p ν) = -1 ∧
+    FRC.Extension.Ext.norm (⟨quarterTurn g κ, 0⟩ : Ext p ν) ≠ 1 :=
+  FRC.Horizon.quarter_turn_off_circle F ν
+
+/-- 20:B6 [value] — the circle of `𝔽₁₃(√2)` (20-rh's name; the theorem is `FRC.Horizon.circle13`, LM36). -/
+theorem circle13 :
+    natCount (fun k => FRC.Extension.Ext.norm (⟨ofNat (k / 13), ofNat (k % 13)⟩ : FRC.Extension.Ext 13 2) = 1) 169 = 14 ∧
+    (∀ k, k < 169 → (⟨ofNat (k / 13), ofNat (k % 13)⟩ : FRC.Extension.Ext 13 2) ^ 13 =
+      FRC.Extension.Ext.conj ⟨ofNat (k / 13), ofNat (k % 13)⟩) ∧
+    (∀ x : Nat, x < 13 → 0 < x → (ofNat x : Shell 13) * ofNat x ≠ 2) :=
+  FRC.Horizon.circle13
+
 /-- 20-rh's product, the instance `z * w` of `FRC.Extension.Ext p ν`. -/
 @[reducible] def mul (z w : Ext p ν) : Ext p ν := z * w
 
@@ -4470,37 +4631,37 @@ end Ext
 end aliases
 
 -- Ledger predicates of 20-rh (generated by make_predicates.py from docs/20-rh/20-rh-ledger.json; edit the ledger, not this section)
-/-- 20:B1 (p20008) — The two frames on one substrate: the Carrier chart $\F_\Omega$, held by no embedded observer, and the Subject $\Fp$ embedded with $\Omega\gg p^{2}$; what they share is the quarter-turn core $Q_4$ and nothing else, on the laboratory pair $(13,233)$ the cycles $C_{12}$ and $C_{232}$ admit no projection ($12\nmid232$); hardness by register ($p$-hard, $\Omega$-hard). -/
+/-- 20:B1 (p20008) — The two frames on one substrate: the Carrier chart $\F_\Omega$, held by no embedded observer, and the Subject $\Fp$ embedded with $\Omega\gg \p^{2}$; what they share is the quarter-turn core $Q_4$ and nothing else, on the laboratory pair $(13,233)$ the cycles $C_{12}$ and $C_{232}$ admit no projection ($12\nmid232$); hardness by register ($\p$-hard, $\Omega$-hard). -/
 theorem p20008 : (13 : Nat) * (13 : Nat) < (233 : Nat) ∧ (12 : Nat) % (4 : Nat) = (0 : Nat) ∧ (232 : Nat) % (4 : Nat) = (0 : Nat) ∧ (232 : Nat) % (3 : Nat) ≠ (0 : Nat) ∧ (5 : FRC.Shell (13 : Nat)) * (5 : FRC.Shell (13 : Nat)) = (-1 : FRC.Shell (13 : Nat)) ∧ (89 : FRC.Shell (233 : Nat)) * (89 : FRC.Shell (233 : Nat)) = (-1 : FRC.Shell (233 : Nat)) ∧ (232 : Nat) % (12 : Nat) ≠ (0 : Nat) ∧ (3 : Nat) * (3 : Nat) < (13 : Nat) ∧ (3 : Nat) * (3 : Nat) < (233 : Nat) :=
-  @FRC.Rh.lab_pair
+  @FRC.Ledger.p20008
 set_option linter.defProp false in
-/-- 20:B2 (p20009) — Frame coincidence below the horizon: for $n\le\sqrt p$ the residue $n$ is the same integer in $\Fp$ and $\F_\Omega$, and primality of $n$ equals irreducibility in the Subject chart; the Subject-realised primes $\Pi_p$ are the primes to $\sqrt p$. -/
-def p20009 := And.intro @FRC.Rh.window_readback (And.intro @FRC.Rh.factorisation_iff (@FRC.Rh.frame_coincidence))
+/-- 20:B2 (p20009) — Frame coincidence below the horizon: for $n\le\sqrt \p$ the residue $n$ is the same integer in $\Fp$ and $\F_\Omega$, and primality of $n$ equals irreducibility in the Subject chart; the Subject-realised primes $\Pi_\p$ are the primes to $\sqrt \p$. -/
+def p20009 := @FRC.Ledger.p20009
 /-- 20:B4 (p20011) — Zero-slot: $Z_\Omega(k)=\sum_{x\in\Fx{\Omega}}x^{k}$ vanishes on every nonterminal exponent $1\le k\le\Omega-2$ and equals $-1$ on the full cycle; the nonterminal slots are the universal mode basis. -/
 theorem p20011 : ∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → (∀ (k : Nat), (0 : Nat) < k → k < p - (1 : Nat) → FRC.Shell.sumRange (fun l => FRC.Shell.ofNat (l + (1 : Nat)) ^ k) (p - (1 : Nat)) = (0 : FRC.Shell p)) ∧ FRC.Shell.sumRange (fun l => FRC.Shell.ofNat (l + (1 : Nat)) ^ (p - (1 : Nat))) (p - (1 : Nat)) = (-1 : FRC.Shell p) :=
   @FRC.Ledger.p20011
 /-- 20:B5 (p20012) — Slot complementarity: $\Phi(k)=-\gen^{\,k}$ bijects the nontrivial spectral slots onto the nonterminal additive slots $\Fx{\Omega}\setminus\{-1\}$, the two removed points being $\mu_2$, the intertwiner the half-cycle element. -/
 theorem p20012 : ∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → (∀ (i j : Nat), i < p - (1 : Nat) → j < p - (1 : Nat) → -g ^ i = -g ^ j → i = j) ∧ (∀ (k : Nat), (0 : Nat) < k → k < p - (1 : Nat) → -g ^ k ≠ (0 : FRC.Shell p) ∧ -g ^ k ≠ (-1 : FRC.Shell p)) ∧ ∀ (y : FRC.Shell p), y ≠ (0 : FRC.Shell p) → y ≠ (-1 : FRC.Shell p) → ∃ k, (0 : Nat) < k ∧ k < p - (1 : Nat) ∧ -g ^ k = y :=
-  @FRC.Rh.slot_complementarity
+  @FRC.Ledger.p20012
 set_option linter.defProp false in
-/-- 20:B6 (p20013) — Hermitian phase calculus on $K=\F_{p^{2}}$: norm and trace $\F_p$-valued, the phase circle $U_{p+1}$ of order $p+1$ with Frobenius as inversion, the quarter-turn $\It$ Frobenius-fixed and off the circle ($\Nm(\It)=-1$), the trace-zero $\eta$ with $\eta^{2}=\nu$ a nonsquare, $\Tr(a+b\eta)=2a$, $\Nm=a^{2}-\nu b^{2}$. -/
-def p20013 := And.intro @FRC.Rh.Ext.mul_conj (And.intro @FRC.Rh.Ext.conj_inv_of_norm_one (And.intro @FRC.Rh.Ext.quarter_turn_off_circle (@FRC.Rh.Ext.circle13)))
-/-- 20:B7 (p20014) — Flat ground state: the full-modulus Ramanujan sum $c_p(n)\equiv-1$ for every $n\not\equiv0$; the mode at the spectral origin carries no prime information. -/
+/-- 20:B6 (p20013) — Hermitian phase calculus on $K=\F_{\p^{2}}$: norm and trace $\Fp$-valued, the phase circle $U_{\p+1}$ of order $\p+1$ with Frobenius as inversion, the quarter-turn $\im$ Frobenius-fixed and off the circle ($\Nm(\im)=-1$), the trace-zero $\eta$ with $\eta^{2}=\nu$ a nonsquare, $\Tr(a+b\eta)=2a$, $\Nm=a^{2}-\nu b^{2}$. -/
+def p20013 := @FRC.Ledger.p20013
+/-- 20:B7 (p20014) — Flat ground state: the full-modulus Ramanujan sum $c_\p(n)\equiv-1$ for every $n\not\equiv0$; the mode at the spectral origin carries no prime information. -/
 theorem p20014 : (∀ {q : Nat} [FRC.Pos q] {κ' : Nat} {h : FRC.Shell q}, FRC.Shell.Frame q κ' h → ∀ {m : Nat}, (0 : Nat) < m → ∀ {ω : FRC.Shell q}, ω.IsPrimitive m → ∀ (n : Nat), n % m ≠ (0 : Nat) → FRC.Shell.sumRange (fun a => ω ^ (n * (a + (1 : Nat)))) (m - (1 : Nat)) = (-1 : FRC.Shell q)) ∧ (∀ (n : Nat), n < (13 : Nat) → (0 : Nat) < n → FRC.Shell.sumRange (fun a => (16 : FRC.Shell (53 : Nat)) ^ (n * (a + (1 : Nat)))) (12 : Nat) = (-1 : FRC.Shell (53 : Nat))) ∧ FRC.Shell.sumRange (fun a => (16 : FRC.Shell (53 : Nat)) ^ ((0 : Nat) * (a + (1 : Nat)))) (12 : Nat) = (12 : FRC.Shell (53 : Nat)) :=
-  And.intro @FRC.Rh.ramanujan_sum (@FRC.Rh.ramanujan53)
+  @FRC.Ledger.p20014
 set_option linter.defProp false in
-/-- 20:B8 (p20015) — The finite critical line: the half-turn $2^{-1}=2\kp+1=-\pi$; $\Tr(z)=1$ exactly on the $p$ points $z=2^{-1}+\eta\theta$, with energy $\Nm(z)=\tfrac14-\nu\theta^{2}$; de-framed, $2^{-1}/p=(2\kp+1)/p\to\half$ from above [chart]. -/
-def p20015 := And.intro @FRC.Rh.half_inverse (And.intro @FRC.Rh.Ext.critical_line (@FRC.Rh.Ext.norm_on_line))
+/-- 20:B8 (p20015) — The finite critical line: the half-turn $2^{-1}=2\kp+1=-\pi$; $\Tr(z)=1$ exactly on the $\p$ points $z=2^{-1}+\eta\theta$, with energy $\Nm(z)=\tfrac14-\nu\theta^{2}$; de-framed, $2^{-1}/\p=(2\kp+1)/\p\to\half$ from above [chart]. -/
+def p20015 := @FRC.Ledger.p20015
 set_option linter.defProp false in
-/-- 20:B9 (p20016) — The two agreement loci: the Klein four-group $\langle\phi,\rho\rangle$ of Frobenius and the functional-equation half-turn fixes exactly $\F_p$ (the prime meridian), $L_{1/2}$ (the critical line) and their meeting $\{2^{-1}\}$; no other line is fixed. -/
-def p20016 := And.intro @FRC.Rh.Ext.klein_four (And.intro @FRC.Rh.Ext.fixed_conj (And.intro @FRC.Rh.Ext.critical_line (@FRC.Rh.Ext.fixed_half_turn)))
-/-- 20:B10 (p20017) — The Subject constants on the shell: $\pi=2\kp$, $2\pi\equiv-1$, $\It=\gen^{-\kp}$, $\It^{2}\equiv-1$, $\Et=\gen^{\,\It}$ on the odd lift, $\gen^{\,\pi}\equiv-1$, $\Et^{\,\It\pi}\equiv-1$; on $\F_{13}$: $\gen=2$, $\It=5$, $\Et=6$, $\pi=6$. -/
+/-- 20:B9 (p20016) — The two agreement loci: the Klein four-group $\langle\phi,\rho\rangle$ of Frobenius and the functional-equation half-turn fixes exactly $\Fp$ (the prime meridian), $L_{1/2}$ (the critical line) and their meeting $\{2^{-1}\}$; no other line is fixed. -/
+def p20016 := @FRC.Ledger.p20016
+/-- 20:B10 (p20017) — The Subject constants on the shell: $\pi=2\kp$, $2\pi\equiv-1$, $\im=\gen^{-\kp}$, $\im^{2}\equiv-1$, $\E=\gen^{\,\im}$ on the odd lift, $\gen^{\,\pi}\equiv-1$, $\E^{\,\im\pi}\equiv-1$; on $\F_{13}$: $\gen=2$, $\im=5$, $\E=6$, $\pi=6$. -/
 theorem p20017 : (∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → FRC.Shell.ofNat ((2 : Nat) * FRC.Shell.Frame.halfPeriod κ) = (-1 : FRC.Shell p) ∧ g ^ ((3 : Nat) * κ) = FRC.Shell.Frame.quarterTurn g κ ∧ FRC.Shell.Frame.quarterTurn g κ * FRC.Shell.Frame.quarterTurn g κ = (-1 : FRC.Shell p) ∧ g ^ ((2 : Nat) * κ) = (-1 : FRC.Shell p) ∧ ∀ (m : Nat), m % (2 : Nat) = (1 : Nat) → (g ^ m) ^ (m * ((2 : Nat) * κ)) = (-1 : FRC.Shell p)) ∧ ((2 : FRC.Shell (13 : Nat)) * (6 : FRC.Shell (13 : Nat)) = (-1 : FRC.Shell (13 : Nat)) ∧ (2 : FRC.Shell (13 : Nat)) ^ (9 : Nat) = (5 : FRC.Shell (13 : Nat)) ∧ FRC.Shell.Frame.quarterTurn (2 : FRC.Shell (13 : Nat)) (3 : Nat) = (5 : FRC.Shell (13 : Nat)) ∧ (5 : FRC.Shell (13 : Nat)) * (5 : FRC.Shell (13 : Nat)) = (-1 : FRC.Shell (13 : Nat)) ∧ (2 : FRC.Shell (13 : Nat)) ^ (5 : Nat) = (6 : FRC.Shell (13 : Nat)) ∧ (2 : FRC.Shell (13 : Nat)) ^ (6 : Nat) = (-1 : FRC.Shell (13 : Nat)) ∧ (6 : FRC.Shell (13 : Nat)) ^ ((5 : Nat) * (6 : Nat)) = (-1 : FRC.Shell (13 : Nat))) ∧ FRC.Shell.Frame (13 : Nat) (3 : Nat) (2 : FRC.Shell (13 : Nat)) :=
-  And.intro @FRC.Rh.subject_constants (And.intro @FRC.Rh.constants13 (@FRC.Shell.frame13))
-/-- 20:E1 (p20032) — The scale-evolution generator: on the shell the scale-shift $x\mapsto\gen^{\,r}x$ is a unitary permutation of $\Fx{p}$ with the complex characters as eigenvectors; in the analytic chart [chart] the dilation group $U_r=e^{ir\Hh}$ has the self-adjoint generator $\Hh=-i(x\partial_x+\half)$ with generalised eigenfunctions $x^{-\bar\rho}$, $\rho=\half+i\gamma$, the symmetrizing $\half$ the half-turn of B8; the chart assignment is used nowhere as a shell identity. -/
+  @FRC.Ledger.p20017
+/-- 20:E1 (p20032) — The scale-evolution generator: on the shell the scale-shift $x\mapsto\gen^{\,r}x$ is a unitary permutation of $\Fx{\p}$ with the complex characters as eigenvectors; in the analytic chart [chart] the dilation group $U_r=e^{ir\Hh}$ has the self-adjoint generator $\Hh=-i(x\partial_x+\half)$ with generalised eigenfunctions $x^{-\bar\rho}$, $\rho=\half+i\gamma$, the symmetrizing $\half$ the half-turn of B8; the chart assignment is used nowhere as a shell identity. -/
 theorem p20032 : (∀ {p : Nat} [FRC.Pos p] {g : FRC.Shell p} (r k : Nat) (x : FRC.Shell p), (g ^ r * x) ^ k = (g ^ r) ^ k * x ^ k) ∧ ∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → ∀ (r : Nat), FRC.Shell.Frame.natCount (fun x => x ≠ (0 : Nat) ∧ g ^ r * FRC.Shell.ofNat x = FRC.Shell.ofNat x) p = if r % (p - (1 : Nat)) = (0 : Nat) then p - (1 : Nat) else (0 : Nat) :=
   @FRC.Ledger.p20032
-/-- 20:E12 (p20043) — \textbf{The shell theorem.} On every shell, with no hypothesis: (i) $v$ expands in the constant mode and the nonterminal modes of the quarter-turn meridian; (ii) every readout lies on $\Tr=1$, real part $2^{-1}=2\kp+1=-\pi$; (iii) the scale-shift has the modes as eigenvectors, eigenphases $2\pi j/(p-1)$ independent of $v$. No off-line mode; true of every vector, the Davenport--Heilbronn vector included. -/
+/-- 20:E12 (p20043) — \textbf{The shell theorem.} On every shell, with no hypothesis: (i) $v$ expands in the constant mode and the nonterminal modes of the quarter-turn meridian; (ii) every readout lies on $\Tr=1$, real part $2^{-1}=2\kp+1=-\pi$; (iii) the scale-shift has the modes as eigenvectors, eigenphases $2\pi j/(\p-1)$ independent of $v$. No off-line mode; true of every vector, the Davenport--Heilbronn vector included. -/
 theorem p20043 : (∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → (∀ (k : Nat), (0 : Nat) < k → k < p - (1 : Nat) → FRC.Shell.sumRange (fun l => FRC.Shell.ofNat (l + (1 : Nat)) ^ k) (p - (1 : Nat)) = (0 : FRC.Shell p)) ∧ FRC.Shell.sumRange (fun l => FRC.Shell.ofNat (l + (1 : Nat)) ^ (p - (1 : Nat))) (p - (1 : Nat)) = (-1 : FRC.Shell p)) ∧ (∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → ∀ (v : Nat → FRC.Shell p) {j : Nat}, j < p - (1 : Nat) → v j = FRC.Shell.sumRange (fun k => FRC.Horizon.modeCoeff g v k * (g ^ j) ^ k) (p - (1 : Nat))) ∧ (∀ {p : Nat} [FRC.Pos p] {g : FRC.Shell p} (r k : Nat) (x : FRC.Shell p), (g ^ r * x) ^ k = (g ^ r) ^ k * x ^ k) ∧ (∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → ∀ (r k : Nat), ((g ^ r) ^ k) ^ (p - (1 : Nat)) = (1 : FRC.Shell p)) ∧ (∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → ∀ (r : Nat), FRC.Shell.Frame.natCount (fun x => x ≠ (0 : Nat) ∧ g ^ r * FRC.Shell.ofNat x = FRC.Shell.ofNat x) p = if r % (p - (1 : Nat)) = (0 : Nat) then p - (1 : Nat) else (0 : Nat)) ∧ (∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → ∀ (ν θ : FRC.Shell p), (FRC.Horizon.readout ν κ θ).trace = (1 : FRC.Shell p) ∧ (FRC.Horizon.readout ν κ θ).re = FRC.Shell.ofNat ((2 : Nat) * κ + (1 : Nat)) ∧ ∀ (θ' : FRC.Shell p), FRC.Horizon.readout ν κ θ = FRC.Horizon.readout ν κ θ' → θ = θ') ∧ ∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → ∀ (k : Nat), (1 : Nat) ≤ k → k ≤ p - (2 : Nat) → -g ^ k ≠ (0 : FRC.Shell p) ∧ -g ^ k ≠ (-1 : FRC.Shell p) :=
   @FRC.Ledger.p20043
 -- end ledger predicates

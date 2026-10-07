@@ -1,6 +1,5 @@
 import FrcCore.Ring
 import FrcCore.Frame
-import FrcCore.Orbit
 import FrcCore.Theme.Quadratic
 
 /-!

@@ -70,8 +70,9 @@ LEDGER = {
 BLOCKS = {"S": "the substrate residue", "R": "the register in S alone", "W": "the window ladder",
           "V": "one gauge bit closes the sign sector", "O": "the octant sector"}
 
-# the deciding check of each row: the three Carriers; the sweeps and the comparisons corroborate
-PREDICATES = {"00:B5": "S1", "00:B7": "R1", "00:B8": "W1", "00:B10": "V1", "00:B14": "O1"}
+# the deciding check of each row: the three Carriers; for B5 and B14, whose rows are equivalences, the sweeps, which meet
+# both sides of the iff (every Carrier has Ω ≡ 5 (mod 12) and S even); the comparisons corroborate
+PREDICATES = {"00:B5": "S2", "00:B7": "R1", "00:B8": "W1", "00:B10": "V1", "00:B14": "O2"}
 
 R = Registry("00", "carrier", LEDGER, PREDICATES, sources=[__file__])
 
@@ -126,9 +127,15 @@ def block_R():
                and hb * hb % Om == Om - 1 and h * h % Om == Om - 1 and h != hb
                and S % 2 == 0 and c is not None and c * c % Om == c2
                and kB * c % Om == hb and kB * kB % Om == Om - 2)
+        # the rest up to sign: each defining square's root x has the partner −x ≠ x, and a third root y would give
+        # (y − x)(y + x) = 0 with both factors nonzero in the field, so on the Carriers below 10⁵ the roots are found by search
+        for x, a in ((c, c2), (hb, Om - 1), (kB, Om - 2)):
+            ok &= (Om - x) % Om != x and (Om - x) * (Om - x) % Om == a
+            if Om < 10 ** 5: ok &= sorted(square_roots(a, Om)) == sorted([x, (Om - x) % Om])
         det.append(f"Ω={Om}: G={G}, c²={c2}, ħ={hb}, h={h}, c={c}, k_B={kB}")
     R.check("R1", "on the three Carriers, generator-free in S: 2c² = 1, G = 2S = −c², 2G = −1 uniquely, ħ² = h² = −1 with h = −ħ ≠ ħ, "
-            "S even and c² = 2S + 1 solved, k_B c = ħ, k_B² = −2", ok, "; ".join(det))
+            "S even and c² = 2S + 1 solved, k_B c = ħ, k_B² = −2; the rest up to sign: c, ħ and k_B each with the distinct "
+            "partner −x, the only other root (by search below 10⁵)", ok, "; ".join(det))
     # R2 c exists iff S even, by search on every prime Ω = 4S + 1 < SWEEP
     bad = [Om for Om in _primes(5, SWEEP) if Om % 4 == 1
            and bool(square_roots((Om + 1) // 2, Om)) != (((Om - 1) // 4) % 2 == 0)]

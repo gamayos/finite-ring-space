@@ -114,13 +114,14 @@ theorem prodN_joint (n : Nat → Nat) (hn : ∀ j, 0 < n j) : ∀ m, Joint n m (
       rw [e]
       exact mod_zero_of_eq_mul (hn m) (Nat.mul_comm _ _)
 
-/-- 00:F2, 22:C26 — the joint recurrence of an unequal-cycle composite: the chronons at which all `m` parts return are
-exactly the multiples of one period `T > 0`, which divides the product of the periods. -/
-theorem joint_recurrence (n : Nat → Nat) (hn : ∀ j, 0 < n j) (m : Nat) :
-    ∃ T, 0 < T ∧ Joint n m T ∧ (∀ t, Joint n m t ↔ t % T = 0) ∧ (prodN n m) % T = 0 := by
+/-- 00:F2, 22:C26 — the joint recurrence of an unequal-cycle composite, found below a common multiple `L > 0` of the
+periods (on a shell, a joint return below `Ω`): the chronons at which all `m` parts return are exactly the multiples of
+one period `T`, `0 < T ≤ L`, which divides `L`. The search never passes `L` (Q20). -/
+theorem joint_recurrence (n : Nat → Nat) (hn : ∀ j, 0 < n j) (m L : Nat) (hL : 0 < L) (hLj : Joint n m L) :
+    ∃ T, T ≤ L ∧ 0 < T ∧ Joint n m T ∧ (∀ t, Joint n m t ↔ t % T = 0) ∧ L % T = 0 := by
   let P : Nat → Bool := fun t => decide (0 < t ∧ Joint n m t)
-  have hP : P (prodN n m) = true := decide_eq_true ⟨prodN_pos n hn m, prodN_joint n hn m⟩
-  match FRC.Logic.leastBelow_some P (prodN n m + 1) (prodN n m) (Nat.lt_succ_self _) hP with
+  have hP : P L = true := decide_eq_true ⟨hL, hLj⟩
+  match FRC.Logic.leastBelow_some P (L + 1) L (Nat.lt_succ_self _) hP with
   | ⟨T, hT⟩ =>
     have hs := FRC.Logic.leastBelow_spec P _ T hT
     have hT' : 0 < T ∧ Joint n m T := of_decide_eq_true hs.2.1
@@ -142,7 +143,7 @@ theorem joint_recurrence (n : Nat → Nat) (hn : ∀ j, 0 < n j) (m : Nat) :
       · intro ht j hj
         match eq_mul_of_mod_zero hT'.1 ht with
         | ⟨q, hq⟩ => rw [hq]; exact mul_mod_zero (hn j) (hT'.2 j hj) q
-    exact ⟨T, hT'.1, hT'.2, hiff, (hiff _).1 (prodN_joint n hn m)⟩
+    exact ⟨T, Nat.le_of_lt_succ hs.1, hT'.1, hT'.2, hiff, (hiff _).1 hLj⟩
 
 /-- The joint period is the least common multiple: no positive joint return comes earlier. -/
 theorem joint_least {n : Nat → Nat} {m T : Nat} (hiff : ∀ t, Joint n m t ↔ t % T = 0) (hT : 0 < T) :
@@ -173,20 +174,26 @@ theorem mulIdx_spec (g w j₀ : Nat) (h : g * j₀ = w) : ∀ N, j₀ < N → g 
       have ih := mulIdx_spec g w j₀ h N hlt
       exact ⟨ih.1, Nat.lt_succ_of_lt ih.2⟩
 
-/-- 00:F2, 22:C26 — two parts of periods `a`, `b` with joint period `T`: the number `g` with `g T = a b` divides both
-periods, and the joint drive carries `(x, y)` to `(x', y')` exactly when the offsets agree modulo `g` — the conserved
-offset on the gcd cycle, the orbits the quotient `A/⟨v⟩ ≅ ℤ/g`. -/
-theorem pair_offset {a b T : Nat} (ha : 0 < a) (hb : 0 < b) (hT : 0 < T)
-    (hiff : ∀ t, (t % a = 0 ∧ t % b = 0) ↔ t % T = 0) :
-    ∃ g, 0 < g ∧ g * T = a * b ∧ a % g = 0 ∧ b % g = 0 ∧
+/-- 00:F2, 22:C26 — two parts of periods `a`, `b` with joint period `T` (a common multiple, and no positive common
+multiple below it): the number `g` with `g T = a b` divides both periods, and every common divisor divides it (`g` is
+the gcd); the joint drive carries `(x, y)` to `(x', y')` within one joint period exactly when the offsets agree modulo
+`g` — the conserved offset on the gcd cycle, the orbits the quotient `A/⟨v⟩ ≅ ℤ/g`. -/
+theorem pair_offset {a b T : Nat} (ha : 0 < a) (hb : 0 < b) (hT : 0 < T) (hTa : T % a = 0) (hTb : T % b = 0)
+    (hleast : ∀ t, 0 < t → t < T → ¬ (t % a = 0 ∧ t % b = 0)) :
+    ∃ g, g ≤ a ∧ 0 < g ∧ g * T = a * b ∧ a % g = 0 ∧ b % g = 0 ∧ (∀ e, 0 < e → a % e = 0 → b % e = 0 → g % e = 0) ∧
       ∀ x y x' y', x < a → y < b → x' < a → y' < b →
-        ((∃ t, (x + t) % a = x' ∧ (y + t) % b = y') ↔ (x + y') % g = (x' + y) % g) := by
-  have hTa : T % a = 0 := ((hiff T).2 (FRC.Nat.mod_self T hT)).1
-  have hTb : T % b = 0 := ((hiff T).2 (FRC.Nat.mod_self T hT)).2
+        ((∃ t, t < T ∧ (x + t) % a = x' ∧ (y + t) % b = y') ↔ (x + y') % g = (x' + y) % g) := by
+  -- every common multiple is a multiple of `T`
+  have hcm : ∀ t, t % a = 0 → t % b = 0 → t % T = 0 := fun t hta htb => by
+    obtain ⟨q, hq⟩ := FRC.Nat.mod_spec T hT t
+    have hr : ∀ c, 0 < c → T % c = 0 → t % c = 0 → (t % T) % c = 0 := fun c hc hTc htc =>
+      mod_of_add_mod hc (by rw [← hq, htc]; exact (mul_mod_zero hc hTc q).symm)
+    match Nat.decEq (t % T) 0 with
+    | isTrue e => exact e
+    | isFalse e => exact absurd ⟨hr a ha hTa hta, hr b hb hTb htb⟩ (hleast _ (Nat.pos_of_ne_zero e) (Nat.mod_lt t hT))
   obtain ⟨ua, hua⟩ := eq_mul_of_mod_zero ha hTa
   obtain ⟨ub, hub⟩ := eq_mul_of_mod_zero hb hTb
-  have hab : (a * b) % T = 0 := (hiff (a * b)).1
-    ⟨mod_zero_of_eq_mul ha rfl, mod_zero_of_eq_mul hb (Nat.mul_comm a b)⟩
+  have hab : (a * b) % T = 0 := hcm (a * b) (mod_zero_of_eq_mul ha rfl) (mod_zero_of_eq_mul hb (Nat.mul_comm a b))
   obtain ⟨g, hg⟩ := eq_mul_of_mod_zero hT hab
   have hgT : g * T = a * b := by rw [Nat.mul_comm, ← hg]
   have hg0 : 0 < g := Nat.pos_of_ne_zero (fun e => by
@@ -200,9 +207,28 @@ theorem pair_offset {a b T : Nat} (ha : 0 < a) (hb : 0 < b) (hT : 0 < T)
       _ = b * (g * ub) := by rw [hub, Nat.mul_left_comm])
   have hag : a % g = 0 := mod_zero_of_eq_mul hg0 hga
   have hbg : b % g = 0 := mod_zero_of_eq_mul hg0 hgb
-  refine ⟨g, hg0, hgT, hag, hbg, fun x y x' y' hx hy hx' hy' => ⟨?_, ?_⟩⟩
+  have hgle : g ≤ a := by
+    match ub, hga with
+    | 0, e => rw [Nat.mul_zero] at e; rw [e] at ha; exact absurd ha (Nat.lt_irrefl 0)
+    | u + 1, e => rw [e, Nat.mul_succ]; exact Nat.le_add_left g (g * u)
+  -- `g` is the greatest common divisor: a common divisor `e` gives the common multiple `e a' b'`
+  have hgcd : ∀ e, 0 < e → a % e = 0 → b % e = 0 → g % e = 0 := fun e he hae hbe => by
+    obtain ⟨a', ha'⟩ := eq_mul_of_mod_zero he hae
+    obtain ⟨b', hb'⟩ := eq_mul_of_mod_zero he hbe
+    have hMa : (e * a' * b') % a = 0 := mod_zero_of_eq_mul ha (by rw [ha'])
+    have hMb : (e * a' * b') % b = 0 :=
+      mod_zero_of_eq_mul hb (by rw [hb', FRC.Nat.mul_assoc, Nat.mul_comm a' b', ← FRC.Nat.mul_assoc])
+    obtain ⟨c, hc⟩ := eq_mul_of_mod_zero hT (hcm _ hMa hMb)
+    have e1 : g * T = (e * c) * T :=
+      calc g * T = a * b := hgT
+        _ = e * (e * a' * b') := by
+          rw [ha', hb', FRC.Nat.mul_assoc e a' (e * b'), FRC.Nat.mul_left_comm a' e b', FRC.Nat.mul_assoc e a' b']
+        _ = e * (T * c) := by rw [hc]
+        _ = (e * c) * T := by rw [Nat.mul_comm T c, ← FRC.Nat.mul_assoc]
+    exact mod_zero_of_eq_mul he (Nat.eq_of_mul_eq_mul_right hT e1)
+  refine ⟨g, hgle, hg0, hgT, hag, hbg, hgcd, fun x y x' y' hx hy hx' hy' => ⟨?_, ?_⟩⟩
   · -- the offset is conserved
-    rintro ⟨t, ht1, ht2⟩
+    rintro ⟨t, _, ht1, ht2⟩
     calc (x + y') % g = (x + (y + t) % b) % g := by rw [ht2]
       _ = (x + (y + t) % b % g) % g := (FRC.Nat.add_mod_mod _ _ _ hg0).symm
       _ = (x + (y + t)) % g := by rw [mod_mod_of_dvd hg0 hb hbg, FRC.Nat.add_mod_mod _ _ _ hg0]
@@ -250,7 +276,7 @@ theorem pair_offset {a b T : Nat} (ha : 0 < a) (hb : 0 < b) (hT : 0 < T)
       have h1 : (y + d + a * k₁ + a * (k₂ - k₁)) % b = (y + d + a * k₁) % b := by
         rw [Nat.add_assoc, ← Nat.mul_add, FRC.Nat.add_sub_of_le (Nat.le_of_lt hlt)]; exact e.symm
       have h2 : (a * (k₂ - k₁)) % b = 0 := mod_of_add_mod hb h1
-      have h3 : (a * (k₂ - k₁)) % T = 0 := (hiff _).1 ⟨mod_zero_of_eq_mul ha rfl, h2⟩
+      have h3 : (a * (k₂ - k₁)) % T = 0 := hcm _ (mod_zero_of_eq_mul ha rfl) h2
       obtain ⟨q, hq⟩ := eq_mul_of_mod_zero hT h3
       rw [hua, FRC.Nat.mul_assoc] at hq
       have h4 : k₂ - k₁ = ua * q := Nat.eq_of_mul_eq_mul_left ha hq
@@ -269,10 +295,15 @@ theorem pair_offset {a b T : Nat} (ha : 0 < a) (hb : 0 < b) (hT : 0 < T)
       hw_inj k₁ k₂ h1 h2 (by
         rw [← FRC.Nat.sub_add_cancel (hS k₁).2.2, ← FRC.Nat.sub_add_cancel (hS k₂).2.2, ← (hS k₁).1, ← (hS k₂).1, e])
     have hy'g := hidx y' hy' rfl
-    obtain ⟨k, _, hk⟩ := FRC.Logic.inj_onto ua S (fun k _ => (hS k).2.1) hinj (mulIdx g (y' - r₀) ua) hy'g.2.1
+    obtain ⟨k, hku, hk⟩ := FRC.Logic.inj_onto ua S (fun k _ => (hS k).2.1) hinj (mulIdx g (y' - r₀) ua) hy'g.2.1
     have hwk : w k = y' := by
       rw [← FRC.Nat.sub_add_cancel (hS k).2.2, ← FRC.Nat.sub_add_cancel hy'g.2.2, ← (hS k).1, ← hy'g.1, hk]
-    refine ⟨d + a * k, ?_, ?_⟩
+    have hdT : d + a * k < T := by
+      rw [hua]
+      calc d + a * k < a + a * k := Nat.add_lt_add_right (Nat.mod_lt _ ha) (a * k)
+        _ = a * (k + 1) := by rw [Nat.add_comm, Nat.mul_succ]
+        _ ≤ a * ua := Nat.mul_le_mul_left a hku
+    refine ⟨d + a * k, hdT, ?_, ?_⟩
     · rw [← Nat.add_assoc, Nat.add_comm (x + d), FRC.Nat.add_mul_mod_self_left _ _ _ ha, hxd]
     · rw [← Nat.add_assoc]; exact hwk
 

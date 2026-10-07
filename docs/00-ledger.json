@@ -54,7 +54,7 @@
    "refs": [
     {
      "label": "A7",
-     "key": "p00160"
+     "key": "p00188"
     }
    ],
    "statement": "Infinity is incoherent in both forms, as an ontological posit. The actual: no coherent model is exhibited; the completed totality forbids its own totality as an object, and its consistency is unprovable from within (5-red, Prop.~9). The potential: the undeclared \\emph{freshness} posit, never registered (29-fin). The successor act wraps (A7); the schema over finite instances is retained."
@@ -156,7 +156,7 @@
    "label": "A7",
    "name": "Counting closes by return",
    "block": "A",
-   "key": "p00160",
+   "key": "p00188",
    "tag": "T",
    "sources": [
     "11-ont",
@@ -170,7 +170,7 @@
      "key": "p00002"
     }
    ],
-   "statement": "Counting closes by return: the successor $C_q:x\\mapsto x{+}1\\ (\\mathrm{mod}\\ q)$ on $q$ points is one $q$-cycle with no fixed point, so iteration is bounded and cyclic; its interpretation is A2's."
+   "statement": "Counting closes by return: the successor $C_q:x\\mapsto x{+}1\\ (\\mathrm{mod}\\ q)$ on $q\\ge2$ points is one $q$-cycle with no fixed point, so iteration is bounded and cyclic; its interpretation is A2's."
   },
   {
    "label": "A8",
@@ -480,11 +480,15 @@
      "key": "p00021"
     },
     {
+     "label": "C8",
+     "key": "p00028"
+    },
+    {
      "label": "D7",
      "key": "p00048"
     }
    ],
-   "statement": "\\textbf{Physical constants are definite Carrier residues}: the register $\\{\\dS,\\Om,c,\\hbar,G,k_B\\}$ is generator-free in $\\dS$ alone --- $G=2\\dS=-c^2$, $c^2=2^{-1}$, $\\hbar^2=-1$, $k_B^2=-2$, $|k_B|=\\hbar/c$; the defining congruences are the observer's complete certificates, $G$ exact, the rest up to sign (B10); $h:=-\\hbar$ is the root-pair partner of $\\hbar$ (B3, D7). No Subject counterpart of $G$ or $\\hbar$; no fifth constant (C1)."
+   "statement": "\\textbf{Physical constants are definite Carrier residues}: the register $\\{\\dS,\\Om,c,\\hbar,G,k_B\\}$ is generator-free in $\\dS$ alone --- $G=2\\dS=-c^2$, $c^2=2^{-1}$ (C8, D7), $\\hbar^2=-1$, $k_B^2=-2$, $|k_B|=\\hbar/c$; the defining congruences are the observer's complete certificates, $G$ exact, the rest up to sign (B10); $h:=-\\hbar$ is the root-pair partner of $\\hbar$ (B3, D7). No Subject counterpart of $G$ or $\\hbar$; no fifth constant (C1)."
   },
   {
    "label": "B8",
@@ -650,7 +654,7 @@
     },
     {
      "label": "C7",
-     "key": "p00172"
+     "key": "p00189"
     },
     {
      "label": "C8",
@@ -695,9 +699,13 @@
     {
      "label": "C8",
      "key": "p00028"
+    },
+    {
+     "label": "D7",
+     "key": "p00048"
     }
    ],
-   "statement": "The drive fixes a Lorentzian time axis, causal order is algebraic, the split and non-split tori the two signatures. The signature is the square class of the temporal coefficient $\\nu=\\gen$ (C1); in $\\F_\\p$, $\\nu=2^{-1}\\cdot(2\\gen)$, both classes fixed by the parity of $\\kap$ (8:B3). In the Carrier $c^2=2^{-1}$ is a square (C8), and $\\eta_{00}=-c^2$ is a chart artifact."
+   "statement": "The drive fixes a Lorentzian time axis, causal order is algebraic, the split and non-split tori the two signatures. The signature is the square class of the temporal coefficient $\\nu=\\gen$ (C1); in $\\F_\\p$, $\\nu=2^{-1}\\cdot(2\\gen)$, both classes fixed by the parity of $\\kap$ (8:B3). In the Carrier $c^2=2^{-1}$ is a square (C8, D7), and $\\eta_{00}=-c^2$ is a chart artifact."
   },
   {
    "label": "C4",
@@ -759,7 +767,7 @@
    "label": "C7",
    "name": "Orientation is derived, not conventional",
    "block": "C",
-   "key": "p00172",
+   "key": "p00189",
    "tag": "T",
    "sources": [
     "12-prim",
@@ -785,7 +793,7 @@
      "key": "p00175"
     }
    ],
-   "statement": "\\textbf{Orientation is derived, not conventional}: the $c$-square congruence ($\\dS$ even, C8) annihilates orientation transport on every Carrier carrying it ($\\im^{\\dS}\\in\\{\\pm1\\}$); pullback covariance and count positivity fix the oriented quarter-turn $\\im=-\\gen^\\kap $; the joint flip $(\\gen,\\im,s)\\mapsto(\\gen^{-1},-\\im,-s)$ preserves every registered count. The constants' derivation consumes no selection (B7). Parity marker: C14. The selection by matter content: D16."
+   "statement": "\\textbf{Orientation is derived, not conventional}: the $c$-square congruence ($\\dS$ even, C8) annihilates orientation transport on every Carrier carrying it ($\\im^{\\dS}\\in\\{\\pm1\\}$); the oriented quarter-turn $\\im=-\\gen^\\kap $ is a selection, read by pullback covariance and count positivity; the joint flip $(\\gen,\\im,s)\\mapsto(\\gen^{-1},-\\im,-s)$ permutes the registration channels. The constants' derivation consumes no selection (B7). Parity marker: C14. The selection by matter content: D16."
   },
   {
    "label": "C8",
@@ -905,7 +913,7 @@
     },
     {
      "label": "C7",
-     "key": "p00172"
+     "key": "p00189"
     },
     {
      "label": "C8",
@@ -962,7 +970,7 @@
    "label": "C19",
    "name": "The Hopf section",
    "block": "C",
-   "key": "p00039",
+   "key": "p00190",
    "tag": "T",
    "sources": [
     "38-s13"
@@ -974,7 +982,7 @@
      "key": "p00152"
     }
    ],
-   "statement": "\\textbf{The Hopf section}: in the observable frame group $\\mathrm{PGL}_2$ the boost torus $C_{\\p +1}$ is fixed-point-free on $\\mathbb{P}^1$ and meets the Borel trivially, so every frame factors uniquely as (cone-chart event)$\\times$(boost): the cone chart is a global section of the non-split fibration (C22), $\\p (\\p -1)$ fibres of $\\p +1$; the spin cover $\\mathrm{SL}_2$ obstructs at $-1$."
+   "statement": "\\textbf{The Hopf section}: on the frames by elements (no group counted, Q20) the boost torus $C_{\\p +1}$ is fixed-point-free on $\\mathbb{P}^1$ and meets the Borel trivially, so every frame factors uniquely as (cone-chart event)$\\times$(boost): the cone chart is a global section of the non-split fibration (C22), $\\p (\\p -1)$ fibres of $\\p +1$; $\\mathrm{SL}_2$ obstructs at $-1$."
   },
   {
    "label": "C20",
@@ -1026,7 +1034,7 @@
    "refs": [
     {
      "label": "C19",
-     "key": "p00039"
+     "key": "p00190"
     }
    ],
    "statement": "$\\mathrm{PGL}_2(\\F_\\p)\\cong\\mathrm{SO}_3(\\F_\\p)$, and the norm-one sphere is $\\mathrm{SL}_2$, the spin cover of its rotation half $\\mathrm{PSL}_2$. For every $\\p=4\\kap+1$ each frame is uniquely one direction in $\\mathbb{P}^1$, one shell cell and one drive phase. Two fibrations partition the frames: non-split $C_{\\p +1}$ over $\\p (\\p -1)$, with the cone-chart section (C19); split $C_{\\p -1}$ over $\\p (\\p +1)$, with no subgroup section."
@@ -1297,7 +1305,7 @@
    "refs": [
     {
      "label": "C19",
-     "key": "p00039"
+     "key": "p00190"
     },
     {
      "label": "C22",
@@ -1333,7 +1341,7 @@
    "refs": [
     {
      "label": "C19",
-     "key": "p00039"
+     "key": "p00190"
     },
     {
      "label": "C20",
@@ -1381,7 +1389,7 @@
    "refs": [
     {
      "label": "C7",
-     "key": "p00172"
+     "key": "p00189"
     },
     {
      "label": "G2",
@@ -1597,7 +1605,7 @@
    "label": "F2",
    "name": "Multi-body registration",
    "block": "F",
-   "key": "p00060",
+   "key": "p00191",
    "tag": "T",
    "sources": [
     "22-qm",
@@ -1610,7 +1618,7 @@
      "key": "p00059"
     }
    ],
-   "statement": "\\textbf{Multi-body registration}: an unequal-cycle composite's joint recurrence is the lcm of its parts' registration periods; each pair's conserved offset lives on the $\\gcd$ cycle (the quotient $A/\\langle v\\rangle$), and dephasing over the product period is exact, extending the Born-rule count (F1) verbatim to unequal cycles (37-sim: joint recurrence derived and verified, 1400/1400 characters cancel)."
+   "statement": "\\textbf{Multi-body registration}: an unequal-cycle composite returning below $\\Om$ (Q20) recurs jointly at the lcm of its parts' registration periods; each pair's conserved offset lives on the $\\gcd$ cycle (the quotient $A/\\langle v\\rangle$), and dephasing over every joint recurrence below $\\Om$ is exact, extending the Born-rule count (F1) verbatim to unequal cycles (37-sim: joint recurrence verified, 1400/1400 characters cancel)."
   },
   {
    "label": "F4",
@@ -1639,14 +1647,14 @@
    "label": "F5",
    "name": "The graded registration law",
    "block": "F",
-   "key": "p00063",
+   "key": "p00194",
    "tag": "T",
    "sources": [
     "39-s173"
    ],
    "witness": null,
    "refs": [],
-   "statement": "\\textbf{The graded registration law}: an Object component $\\ell^{a}$ registers at depth $d=\\mathrm{ord}_{\\ell^{a}}(\\p)$ --- $1$ absorbed (register, unique image), $2$ observable (boost torus, unique home), else beyond-quadratic; the sign always $\\{\\pm1\\}$. Visible iff $\\p^{d}<\\Om$; the cap is $2$ at saturating and minimal towers, $\\p^{2}<\\Om$ hosting the observable sector; opacity relational --- hydrogen's interior opaque/observable/absorbed at $173/181/197$. Controls: proton whole, $(5,13)$ refused."
+   "statement": "\\textbf{The graded registration law}: an Object component $\\ell^{a}$ registers at depth $d=\\mathrm{ord}_{\\ell^{a}}(\\p)$ --- $1$ absorbed (register, unique image), $2$ observable (odd $\\ell$: boost torus, unique home; $2^{a}>4$: off both tori), else beyond-quadratic; the sign always $\\{\\pm1\\}$. Visible iff $\\p^{d}<\\Om$; the cap is $2$ at saturating and minimal towers; opacity relational --- hydrogen's interior opaque/observable/absorbed at $173/181/197$. Controls: proton whole, $(5,13)$ refused."
   },
   {
    "label": "F6",
@@ -1663,7 +1671,7 @@
    "refs": [
     {
      "label": "F2",
-     "key": "p00060"
+     "key": "p00191"
     },
     {
      "label": "F4",
@@ -1699,7 +1707,7 @@
     },
     {
      "label": "F2",
-     "key": "p00060"
+     "key": "p00191"
     },
     {
      "label": "F6",
@@ -2020,7 +2028,7 @@
    "refs": [
     {
      "label": "C7",
-     "key": "p00172"
+     "key": "p00189"
     }
    ],
    "statement": "\\textbf{Flavour} (Koide): the charged-lepton ratio $Q=2/3$ is the cube-root generation orbit at the self-dual quarter-turn, $Q=\\tfrac13+\\tfrac23\\rho^2$ exact, the value $\\rho^2=2^{-1}$ the quarter-turn realisation (28-flav B5; falsifier: $Q_\\ell$ off $\\tfrac23$ beyond the $\\tau$-mass tolerance $\\pm7\\times10^{-6}$); the winding-phase selection onto that orientation is bedrock, $\\Om$-hard in magnitude, its $\\Z_2$ sign the derived drive orientation (C7); the sub-horizon reading is $\\delta_0=Q/3=2/9$ (radians)."
@@ -2136,7 +2144,7 @@
    "label": "L1",
    "name": "Cosmology (the dark sector)",
    "block": "L",
-   "key": "p00084",
+   "key": "p00192",
    "tag": "R",
    "sources": [
     "32-dark",
@@ -2147,14 +2155,14 @@
    "refs": [
     {
      "label": "L3",
-     "key": "p00181"
+     "key": "p00193"
     },
     {
      "label": "P1",
      "key": "p00133"
     }
    ],
-   "statement": "The synchronisation floor $a_0=cH_0/2\\pi$ fixes the acceleration scale parameter-free: the $2\\pi$ by the angle--count dictionary (14:B2), the threshold one cycle per drive period (32:B3), $1.04\\times10^{-10}$ [chart] at the entailed $H_0$ (L3), tied to $H(z)$, not $\\Lambda$ (P1; 21:X1). Below the floor the amplitude reading, given the barrier identification (32:B8, 21:C19), gives the radial acceleration relation unfitted. Falsifiers: 32:B3, 21:P4."
+   "statement": "The synchronisation floor $a_0=cH_0/2\\pi$ fixes the acceleration scale parameter-free: the $2\\pi$ by the angle--count dictionary (14:B2), the threshold one cycle per drive period (32:B3), $1.04\\times10^{-10}$ [chart] at the channel-1 $H_0=67.4$ (L3), tied to $H(z)$, not $\\Lambda$ (P1; 21:X1). Below the floor the amplitude reading, given the barrier identification (32:B8, 21:C19), gives the radial acceleration relation unfitted. Falsifiers: 32:B3, 21:P4."
   },
   {
    "label": "L2",
@@ -2173,7 +2181,7 @@
    "label": "L3",
    "name": "The octant record depth and its outputs",
    "block": "L",
-   "key": "p00181",
+   "key": "p00193",
    "tag": "R",
    "sources": [
     "14-entr"
@@ -2189,7 +2197,7 @@
      "key": "p00115"
     }
    ],
-   "statement": "\\textbf{The octant record depth and its outputs}: the record depth is bounded by the octant, $\\dS/2$ chronons $=13.79$ Gyr ($(\\pi/4)r_H/c$, chart), on the octant sector of B14. Zero-freedom: $\\Omega_\\Lambda=\\tanh^2(3\\pi/8)=0.684$ (chart; $0.19\\sigma$), $H_0=67.4\\pm0.7$ ($4.6\\sigma$ adverse disclosed), $w=-1$ rigid --- a confirmed drift falsifies $\\Lambda\\sim1/\\Om$. Falsifiers: octant-capped ages, the running floor $a_0(z)\\propto H(z)$ (Z7), the ladder bias."
+   "statement": "\\textbf{The octant record depth and its outputs}: the record depth is bounded by the octant, $\\dS/2$ chronons $=13.79$ Gyr ($(\\pi/4)r_H/c$, chart), on the octant sector of B14. Zero-freedom: $\\Omega_\\Lambda=\\tanh^2(3\\pi/8)=0.684$ (chart; $0.19\\sigma$); on the stellar age $13.61\\pm0.34$ Gyr, $H_0=68.2\\pm1.7$ ($2.4\\sigma$ from the ladder); $w=-1$ rigid --- a confirmed drift falsifies $\\Lambda\\sim1/\\Om$. Falsifiers: octant-capped ages, the running floor $a_0(z)\\propto H(z)$ (Z7), the ladder bias."
   },
   {
    "label": "L4",
@@ -2599,7 +2607,7 @@
    ],
    "witness": "00:check_rh_shell.py",
    "refs": [],
-   "statement": "On every shell $\\F_\\p\\subset\\F_{\\p^2}$, with no hypothesis, the prime vector's spectral content is the constant mode and the nonterminal quarter-turn modes, the finite zeta vanishing on each (20:E12, 20:E9). Every mode of every vector lies on the self-dual line $\\Tr=1$, an eigenvector of the scale-shift with a $(\\p-1)$-th root of unity as eigenvalue: no off-line mode, $\\Om$-blind."
+   "statement": "On every shell $\\F_\\p\\subset\\F_{\\p^2}$, with no hypothesis, the prime vector's spectral content is the constant mode and the nonterminal quarter-turn modes, the finite zeta vanishing on each (20:E12, 20:B4). Every mode of every vector lies on the self-dual line $\\Tr=1$, an eigenvector of the scale-shift with a $(\\p-1)$-th root of unity as eigenvalue: no off-line mode, $\\Om$-blind."
   },
   {
    "label": "Z11",

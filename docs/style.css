@@ -186,6 +186,7 @@ table.ledger td.pred .name { display: block; font-weight: 600; margin-bottom: 0.
 table.ledger td.src { font-size: 0.82rem; color: var(--ink-soft); }
 table.ledger td.src code, table.ledger td.src .wit { font-family: var(--mono); font-size: 0.78rem; }
 table.ledger tr.blockhead td { background: var(--rule-soft); padding: 0.55rem 0.6rem; font-size: 0.9rem; }
+table.ledger tr.blockhead .bbadges { float: right; display: inline-flex; gap: .3rem; flex-wrap: wrap; } table.ledger tr.blockhead a.badge { border-bottom: none; line-height: 0; display: inline-block; } table.ledger tr.blockhead a.badge svg { display: block; }   /* the master's block badges (LM32) */
 table.ledger tr.target td { background: var(--sub-bg); }
 .tag { display: inline-block; min-width: 1.4em; padding: 0.05rem 0.4rem; border-radius: 0.3rem; font-family: var(--mono); font-size: 0.78rem; font-weight: 600; text-align: center; }
 .tag.t { color: var(--pub); background: var(--pub-bg); }   .tag.d { color: var(--dra); background: var(--dra-bg); }
