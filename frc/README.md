@@ -14,14 +14,17 @@ released, pinned in their dated archives, until their papers migrate.
 **Rules.** A file imports only files of lower rank, or the files listed before it in its own theme. The base, structure
 and programme tiers are exact: integers and fractions, the standard library only. Floats and the reals appear in the
 chart tier alone. `ci/gates.py` enforces the map (gates G09, G10 and G19), checks the migrated ledgers' coverage (gate G12)
-and executes their notebooks (gate G13); the workflow `framework` runs it with the tests on every push.
+and executes their notebooks (gate G13), and keeps the bridge inventory complete (gate G14; `ci/bridges.py` runs the bridged
+pairs' python witnesses), and checks that every published paper pins a served release (gate G15; `ci/release.py`
+cuts a release at a paper milestone and serves its archive, web copies and pinned sdists under `docs/releases/`); the workflow `framework` runs it with the tests on every push.
 
 **Run.** `python3 -m unittest discover -s frc/tests -t .` and `python3 ci/gates.py`, from the repository root.
 
 **Ledger files.** `frc/ledgers/p<NN>_<topic>.py` binds one paper's ledger to the themes: the table of its keys, its
 shells and its checks, each check marked by the predicates it decides. `ci/make_ledgers.py` generates the table from the
 ledger, the notebook beside the file (one cell per predicate, its id the key) and the Lean certificates
-(`lean/FrcCore/Ledgers/`, `lean/FrcLedger/Ledgers/`). Migrated so far: 3-causality, `p03_causality.py` (task LM20).
+(`lean/FrcCore/Ledgers/`, `lean/FrcLedger/Ledgers/`). Migrated so far: 3-causality, `p03_causality.py` (task LM20); 22-quantum, `p22_quantum.py`, and 27-fields,
+`p27_fields.py` (task LM35), whose readings against the continuum sit in the chart tier's `chart_quantum.py` and `chart_fields.py`.
 One ledger runs with `python3 -m frc.ledgers.p03_causality`.
 
 **Master blocks.** `frc/ledgers/master/<theme>.py` binds one block of the master ledger the same way. Its table is
@@ -48,20 +51,20 @@ Generated from `frc/themes.py` (`python3 -m frc.themes`).
 | theme | tier | rank | exact | python | Lean core | Lean Mathlib | content |
 |---|---|---|---|---|---|---|---|
 | base | base | 0 | yes | `registry.py`, `arith.py` | `Nat.lean`, `Pigeonhole.lean`, `Shell.lean`, `Series.lean`, `Ring.lean` | — | the registry of checks; exact integer arithmetic; the naturals, the pigeonhole and the shell's residues; bounded search, finite sums and products; the normaliser of ring identities |
-| frame | structure | 10 | yes | `shell.py` | `FrameCore.lean`, `Frame.lean`, `Parity.lean`, `Transform.lean`, `Orbit.lean`, `Instances.lean`, `Sum.lean` | `Theme/Frame.lean` | the frame (τ; 0, 1, g), the drive and its orbit, the quarter-turn, the lift; finite sums; concrete shells |
+| frame | structure | 10 | yes | `shell.py` | `FrameCore.lean`, `Frame.lean`, `Parity.lean`, `Transform.lean`, `Orbit.lean`, `Instances.lean`, `Sum.lean`, `Meridian.lean` | `Theme/Frame.lean` | the frame (τ; 0, 1, g), the drive and its orbit, the quarter-turn, the lift; finite sums; concrete shells |
 | extension | structure | 11 | yes | `extension.py` | `Theme/Quadratic.lean`, `Theme/Extension.lean` | `Theme/Extension.lean` | the quadratic extension F_{p²}, its norm and conjugation, the norm-one torus and the boost; the quaternion norm |
 | projective | structure | 12 | yes | `projective.py` | `Theme/Projective.lean` | `Theme/Projective.lean` | PGL₂ and SL₂ by elements, the Borel subgroup, the split and non-split tori |
-| fourier | structure | 13 | yes | `fourier.py` | `Meridian.lean`, `Theme/Fourier.lean` | `Theme/Fourier.lean` | the shell DFT and its inversion, the fractional family, the meridians and the scale-shift |
+| fourier | structure | 13 | yes | `fourier.py` | `Theme/Fourier.lean` | `Theme/Fourier.lean`, `Theme/Fractional.lean` | the shell DFT and its inversion, the fractional family, the meridians and the scale-shift |
 | numbers | structure | 14 | yes | `numbers.py` | `Poly.lean`, `Theme/Numbers.lean` | `Theme/Numbers.lean` | polynomials over the shell and the root criterion; the walls of π and e; the comb |
 | logic | structure | 15 | yes | `logic.py` | `Theme/Logic.lean` | `Theme/Logic.lean` | the bounded (Δ₀) language over a finite structure, evaluation, finite Gödel; the counting core of 5-reductio and 25-godel |
 | foundation | programme | 20 | yes | `foundation.py` | `Theme/Field.lean`, `Theme/Foundation.lean`, `Theme/Drive.lean` | — | master block A: the ground, the pillars' formal shadows, the trusted base; completeness is primality; every prime carries a frame |
 | carrier | programme | 21 | yes | `carrier.py` | `Theme/Carrier.lean` | — | master block B: the Carrier and its constants; the window ladder; the octant |
 | subject | programme | 22 | yes | `subject.py` | `Theme/Subject.lean` | — | master block C: the Subject, the frame group, the registration |
-| gravity | programme | 23 | yes | `gravity.py` | `Theme/Gravity.lean` | — | master block E: gravity on the lattice; the count face |
+| gravity | programme | 23 | yes | `gravity.py` | `Theme/Symbol.lean`, `Theme/Gravity.lean` | — | master block E: gravity on the lattice; the count face |
 | quantum | programme | 24 | yes | `quantum.py` | `Theme/Quantum.lean` | — | master block F: the quantum rows |
-| interactions | programme | 25 | yes | `interactions.py` | `Theme/Interactions.lean` | — | master block G: electromagnetism, the weak and strong forces, matter, flavour |
-| horizon | programme | 26 | yes | `horizon.py` | `Theme/Horizon.lean` | — | master block Z: the horizon; the shell theorem; finite Gödel at the totality |
-| chart | chart | 30 | no | `chart.py` | — | `Theme/Chart.lean` | readings against the continuum: the cosmology section, the constants' charts; floats and ℝ allowed here only |
+| interactions | programme | 25 | yes | `interactions.py` | `Theme/Unitary.lean`, `Theme/Interactions.lean` | — | master block G: electromagnetism, the weak and strong forces, matter, flavour |
+| horizon | programme | 26 | yes | `horizon.py` | `Theme/Horizon.lean` | `Theme/Horizon.lean` | master block Z: the horizon; the shell theorem; finite Gödel at the totality |
+| chart | chart | 30 | no | `chart.py`, `chart_quantum.py`, `chart_fields.py`, `chart_rh.py`, `chart_fourier.py` | — | `Theme/Chart.lean` | readings against the continuum: the cosmology section, the constants' charts; floats and ℝ allowed here only |
 | keys | keys | 40 | yes | — | `Keys/<Theme>.lean` | `Keys/<Theme>.lean` | one declaration per key: `FRC.Ledger.p{key}` and `FRC.LedgerML.p{key}` (generated) |
 | ledgers | ledgers | 50 | yes | `ledgers/p<NN>_<topic>.py`, `ledgers/master/<theme>.py` | `Ledgers/<ledger>.lean` | `Ledgers/<ledger>.lean` | one file per paper and per master block: predicates bound to themes |
 

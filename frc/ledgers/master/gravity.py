@@ -35,7 +35,7 @@ LEAN = {"E6": "core", "E7": "core"}       # the rows with a Lean declaration: th
 PROOFS = {
     "E6": ["FRC.Grav.sphere_area", "FRC.Grav.sphere_area_rung", "FRC.Grav.count_identity", "FRC.Grav.merger_area"],
     "E7": ["FRC.Grav.count_identity", "FRC.Grav.record_mass", "FRC.Grav.record_response", "FRC.Grav.temperature_rate",
-           "FRC.Grav.smarr"],
+           "FRC.Grav.smarr", "FRC.Grav.record_response_rate"],
 }
 
 LEAN_ONLY = ()                  # the rows with a Lean declaration and no python check (gate G12): none

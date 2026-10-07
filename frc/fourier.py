@@ -67,3 +67,34 @@ def frft(p, g, s, P=None):
 def meridian(p, g, kappa, m):
     """M_m = (a g^m mod p) for a = 0..2κ."""
     return [a * pow(g, m, p) % p for a in range(2 * kappa + 1)]
+
+
+# ---- 6-fourier's ledger file (frc/ledgers/p06_fourier.py, task LM36): ranks, the shift, monomial matrices ---------------
+def rank_mod(M, p):
+    """The rank of the matrix M over F_p, by Gauss–Jordan elimination."""
+    A = [[x % p for x in row] for row in M]
+    n, m = len(A), len(A[0]) if A else 0
+    r = 0
+    for col in range(m):
+        piv = next((i for i in range(r, n) if A[i][col]), None)
+        if piv is None: continue
+        A[r], A[piv] = A[piv], A[r]
+        inv = pow(A[r][col], -1, p)
+        A[r] = [x * inv % p for x in A[r]]
+        for i in range(n):
+            if i != r and A[i][col]:
+                c = A[i][col]
+                A[i] = [(x - c * y) % p for x, y in zip(A[i], A[r])]
+        r += 1
+        if r == n: break
+    return r
+
+
+def shift_matrix(n):
+    """The exponent shift σ: (σ v)_k = v_{k−1}, as a permutation matrix."""
+    return [[1 if j == (k - 1) % n else 0 for j in range(n)] for k in range(n)]
+
+
+def is_monomial(M):
+    """Exactly one nonzero entry in every row and every column."""
+    return all(sum(1 for x in row if x) == 1 for row in M) and all(sum(1 for x in col if x) == 1 for col in zip(*M))

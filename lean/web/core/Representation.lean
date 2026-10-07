@@ -1955,7 +1955,9 @@ The geometric sum gives the principal-root identity (2:F1, Prop. 6.1 of 2-geomet
 shell Fourier matrix `W k j = g^{jk}`: `Σ_l W k l · (−g^{−lj}) = [k = j]` (2:F3, Prop. 6.3; 6:B5 in matrix form); the
 reversal `rev`, `J`, and the quarter-turn transform `F = i W` with `W² = −J`, `F² = J`, `J² = I` and `W J = J W` (6:B5,
 6:B7). Split from `Sum.lean` by the ledger migration (task LM25), every name unchanged, so that the fourier theme takes
-the transform without the orbits (gate G10). No axioms.
+the transform without the orbits (gate G10). Since task LM36 it also holds the sum over the nonzero residues reindexed by
+the drive (`sum_units_eq_sum_pow`, from `Sum.lean`) and the frame `frame13` (from `Instances.lean`), names unchanged,
+so that the horizon theme takes them without the orbits. No axioms.
 -/
 
 namespace FRC
@@ -2201,7 +2203,33 @@ theorem W_J_comm (F : Frame p κ g) {k j : Nat} (hk : k < p - 1) (hj : j < p - 1
   · rw [← pow_add, ← Nat.left_distrib, F.pow_mod, ← FRC.Nat.mul_mod_mod _ _ _ hn, rev_add_mod hk, Nat.mul_zero,
       FRC.Nat.zero_mod, pow_zero]
 
+/-- The sum over the nonzero residues equals the sum over the powers of the drive: `x = g^m` reindexes. -/
+theorem sum_units_eq_sum_pow (F : Frame p κ g) (f : Shell p → Shell p) :
+    sumRange (fun l => f (ofNat (l + 1))) (p - 1) = sumRange (fun m => f (g ^ m)) (p - 1) := by
+  have hn : p = (p - 1) + 1 := (FRC.Nat.sub_add_cancel Pos.pos).symm
+  have hpos : ∀ m, 1 ≤ (g ^ m).val := fun m =>
+    Nat.pos_of_ne_zero (fun h0 => F.pow_ne_zero m (ext (by rw [h0, val_zero])))
+  have hlt : ∀ m, m < p - 1 → (g ^ m).val - 1 < p - 1 := fun m _ => by
+    have h1 : (g ^ m).val - 1 + 1 = (g ^ m).val := FRC.Nat.sub_add_cancel (hpos m)
+    have h2 : (g ^ m).val < (p - 1) + 1 := hn ▸ (g ^ m).lt
+    rw [← h1] at h2
+    exact Nat.lt_of_succ_lt_succ h2
+  have hinj : ∀ i j, i < p - 1 → j < p - 1 → (g ^ i).val - 1 = (g ^ j).val - 1 → i = j := fun i j hi hj h => by
+    apply F.pow_inj hi hj
+    apply ext
+    rw [← FRC.Nat.sub_add_cancel (hpos i), ← FRC.Nat.sub_add_cancel (hpos j), h]
+  have := sum_perm (fun l => f (ofNat (l + 1))) (fun m => (g ^ m).val - 1) (p - 1) hlt hinj
+  rw [← this]
+  apply sum_congr
+  intro m _
+  show f (ofNat ((g ^ m).val - 1 + 1)) = f (g ^ m)
+  rw [FRC.Nat.sub_add_cancel (hpos m), ofNat_val]
+
 end Frame
+
+/-- 00:C1, 20:B10 on `𝔽₁₃`: the frame `(τ; 0, 1, 2)` of capacity `3` — `2` is primitive (decided). Moved here from
+`Instances.lean` under its name (task LM36), so that the horizon theme takes it without the orbits. -/
+theorem frame13 : Frame 13 3 (2 : Shell 13) := ⟨rfl, Nat.zero_lt_succ 2, by decide⟩
 
 end Shell
 end FRC
@@ -2691,7 +2719,8 @@ Since the ledger migration (task LM17) it also holds 20-rh's sums: peeling the f
 nonzero residues reindexed by the drive. Since task LM22 the sums that need no frame (`sumRange` and its lemmas, the
 geometric sum, the sums over lists and `sum_perm`) are in `Series.lean`, under their names; this module keeps the
 frame's: the principal root, the Fourier inversion, the reversal and the eigenspaces. Since task LM25 the transform
-(the principal root, the inversion, `rev`, `W`, `J`, `F` and their products) is in `Transform.lean`, names unchanged.
+(the principal root, the inversion, `rev`, `W`, `J`, `F` and their products) is in `Transform.lean`, names unchanged,
+and since task LM36 the reindexing by the drive (`sum_units_eq_sum_pow`) is there too.
 -/
 
 namespace FRC
@@ -2928,28 +2957,6 @@ theorem symm_antisymm_unique (F : Frame p κ g) {a b : Nat → Shell p} (ha : Sy
   refine ⟨ha0, ?_⟩
   rw [ha0, zero_add] at h1; exact h1
 
-/-- The sum over the nonzero residues equals the sum over the powers of the drive: `x = g^m` reindexes. -/
-theorem sum_units_eq_sum_pow (F : Frame p κ g) (f : Shell p → Shell p) :
-    sumRange (fun l => f (ofNat (l + 1))) (p - 1) = sumRange (fun m => f (g ^ m)) (p - 1) := by
-  have hn : p = (p - 1) + 1 := (FRC.Nat.sub_add_cancel Pos.pos).symm
-  have hpos : ∀ m, 1 ≤ (g ^ m).val := fun m =>
-    Nat.pos_of_ne_zero (fun h0 => F.pow_ne_zero m (ext (by rw [h0, val_zero])))
-  have hlt : ∀ m, m < p - 1 → (g ^ m).val - 1 < p - 1 := fun m _ => by
-    have h1 : (g ^ m).val - 1 + 1 = (g ^ m).val := FRC.Nat.sub_add_cancel (hpos m)
-    have h2 : (g ^ m).val < (p - 1) + 1 := hn ▸ (g ^ m).lt
-    rw [← h1] at h2
-    exact Nat.lt_of_succ_lt_succ h2
-  have hinj : ∀ i j, i < p - 1 → j < p - 1 → (g ^ i).val - 1 = (g ^ j).val - 1 → i = j := fun i j hi hj h => by
-    apply F.pow_inj hi hj
-    apply ext
-    rw [← FRC.Nat.sub_add_cancel (hpos i), ← FRC.Nat.sub_add_cancel (hpos j), h]
-  have := sum_perm (fun l => f (ofNat (l + 1))) (fun m => (g ^ m).val - 1) (p - 1) hlt hinj
-  rw [← this]
-  apply sum_congr
-  intro m _
-  show f (ofNat ((g ^ m).val - 1 + 1)) = f (g ^ m)
-  rw [FRC.Nat.sub_add_cancel (hpos m), ofNat_val]
-
 end Frame
 
 end Shell
@@ -3081,6 +3088,11 @@ theorem ext' {M N : M2 p} (ha : M.a = N.a) (hb : M.b = N.b) (hc : M.c = N.c) (hd
   cases M; cases N; cases ha; cases hb; cases hc; cases hd; rfl
 
 /-- The product. -/
+theorem ext'_a {M N : M2 p} (h : M = N) : M.a = N.a := by cases h; rfl
+theorem ext'_b {M N : M2 p} (h : M = N) : M.b = N.b := by cases h; rfl
+theorem ext'_c {M N : M2 p} (h : M = N) : M.c = N.c := by cases h; rfl
+theorem ext'_d {M N : M2 p} (h : M = N) : M.d = N.d := by cases h; rfl
+
 def mul (M N : M2 p) : M2 p :=
   ⟨M.a * N.a + M.b * N.c, M.a * N.b + M.b * N.d, M.c * N.a + M.d * N.c, M.c * N.b + M.d * N.d⟩
 
@@ -3289,6 +3301,73 @@ theorem hopf_section (F : Frame p κ g) {ν : Shell p} (hν : ¬ ∃ y : Shell p
         (.add (.mul (.mul (.neg .one) (.var 2)) (.mul (.neg .one) (.var 5))) (.mul (.mul (.neg .one) (.var 3)) (.mul (.neg .one) (.var 7))))
         (.add (.mul (.var 2) (.var 5)) (.mul (.var 3) (.var 7))) (by decide +kernel)
 
+/-- 00:C19 — the fibration counted by representatives. Every Borel class (an upper-triangular `[[a, b], [0, e]]`,
+`a e ≠ 0`, up to a nonzero scalar) has exactly one representative `[[i, j], [0, 1]]` with `i, j < p` and `i ≠ 0`, and
+these number `p (p − 1)`. Every boost class has exactly one representative among `[[i, ν], [1, i]]` (`i < p`) and the
+identity `[[1, 0], [0, 1]]`, and these number `p + 1`. With the factorisation (`hopf_section`), the frames are
+`p (p − 1)` fibres of `p + 1`. -/
+theorem hopf_counts (F : Frame p κ g) (ν : Shell p) :
+    (∀ a b e : Shell p, a * e ≠ 0 → ∃ i j : Nat, i < p ∧ j < p ∧ i ≠ 0 ∧
+      ∃ l : Shell p, l ≠ 0 ∧ M2.smul l (borel a b e) = borel (ofNat i) (ofNat j) 1) ∧
+    (∀ i j i' j' : Nat, i < p → j < p → i' < p → j' < p → ∀ l : Shell p,
+      M2.smul l (borel (ofNat i) (ofNat j) 1) = borel (ofNat i') (ofNat j') 1 → i = i' ∧ j = j') ∧
+    natCount (fun _ => True) p * natCount (fun b => b ≠ 0) p = p * (p - 1) ∧
+    (∀ α β : Shell p, (α ≠ 0 ∨ β ≠ 0) →
+      (∃ i : Nat, i < p ∧ ∃ μ : Shell p, μ ≠ 0 ∧ M2.smul μ (boost ν α β) = boost ν (ofNat i) 1) ∨
+      (∃ μ : Shell p, μ ≠ 0 ∧ M2.smul μ (boost ν α β) = boost ν 1 0)) ∧
+    (∀ i i' : Nat, i < p → i' < p → ∀ μ : Shell p, M2.smul μ (boost ν (ofNat i) 1) = boost ν (ofNat i') 1 → i = i') ∧
+    (∀ i : Nat, ∀ μ : Shell p, μ ≠ 0 → M2.smul μ (boost ν (ofNat i) 1) ≠ boost ν 1 0) ∧
+    (∀ i : Nat, ∀ μ : Shell p, M2.smul μ (boost ν 1 0) ≠ boost ν (ofNat i) 1) ∧
+    natCount (fun _ => True) p + 1 = p + 1 := by
+  have hT : ∀ n, natCount (fun _ => True) n = n := fun n => by
+    induction n with
+    | zero => rfl
+    | succ n ih => show natCount (fun _ => True) n + (if True then 1 else 0) = n + 1; rw [ih, ite_eq_left trivial]
+  have ofNat_inj : ∀ {i j : Nat}, i < p → j < p → (ofNat i : Shell p) = ofNat j → i = j := fun hi hj h => by
+    have := val_injective h
+    rw [val_ofNat, val_ofNat, FRC.Nat.mod_eq_of_lt hi, FRC.Nat.mod_eq_of_lt hj] at this
+    exact this
+  have hval : ∀ x : Shell p, x ≠ 0 → x.val ≠ 0 := fun x hx h0 => hx (by rw [← ofNat_val x, h0]; rfl)
+  have hl1 : ∀ l : Shell p, l * 1 = 1 → l = 1 := fun l h => by rw [mul_one] at h; exact h
+  -- the boost scaled: `μ · [[α, νβ], [β, α]] = [[μα, ν(μβ)], [μβ, μα]]`
+  have hsb : ∀ μ α β : Shell p, M2.smul μ (boost ν α β) = boost ν (μ * α) (μ * β) := fun μ α β =>
+    M2.ext' rfl (by show μ * (ν * β) = ν * (μ * β); rw [mul_left_comm]) rfl rfl
+  refine ⟨fun a b e hae => ?_, fun i j i' j' hi hj hi' hj' l h => ?_, frame_count F, fun α β hαβ => ?_,
+    fun i i' hi hi' μ h => ?_, fun i μ hμ h => ?_, fun i μ h => ?_, by rw [hT]⟩
+  · have he : e ≠ 0 := fun h0 => hae (by rw [h0, mul_zero])
+    have ha : a ≠ 0 := fun h0 => hae (by rw [h0, zero_mul])
+    obtain ⟨y, hy⟩ := F.exists_inv he
+    have hy0 : y ≠ 0 := fun h0 => F.one_ne_zero (by rw [← hy, h0, mul_zero])
+    refine ⟨(y * a).val, (y * b).val, (y * a).lt, (y * b).lt, hval _ (F.mul_ne_zero hy0 ha), y, hy0, ?_⟩
+    rw [ofNat_val, ofNat_val]
+    exact M2.ext' rfl rfl (mul_zero y) (by show y * e = 1; rw [mul_comm]; exact hy)
+  · have hl : l = 1 := hl1 l (M2.ext'_d h)
+    rw [hl] at h
+    have ha : 1 * ofNat i = (ofNat i' : Shell p) := M2.ext'_a h
+    have hb : 1 * ofNat j = (ofNat j' : Shell p) := M2.ext'_b h
+    rw [one_mul] at ha hb
+    exact ⟨ofNat_inj hi hi' ha, ofNat_inj hj hj' hb⟩
+  · match Shell.instDecidableEq β 0 with
+    | .isFalse hβ =>
+      obtain ⟨y, hy⟩ := F.exists_inv hβ
+      have hy0 : y ≠ 0 := fun h0 => F.one_ne_zero (by rw [← hy, h0, mul_zero])
+      refine .inl ⟨(y * α).val, (y * α).lt, y, hy0, ?_⟩
+      rw [hsb, ofNat_val, mul_comm y β, hy]
+    | .isTrue hβ =>
+      have hα : α ≠ 0 := match hαβ with | .inl h => h | .inr h => absurd hβ h
+      obtain ⟨y, hy⟩ := F.exists_inv hα
+      have hy0 : y ≠ 0 := fun h0 => F.one_ne_zero (by rw [← hy, h0, mul_zero])
+      refine .inr ⟨y, hy0, ?_⟩
+      rw [hsb, hβ, mul_zero, mul_comm y α, hy]
+  · rw [hsb] at h
+    have hμ : μ = 1 := hl1 μ (M2.ext'_c h)
+    rw [hμ, one_mul] at h
+    exact ofNat_inj hi hi' (M2.ext'_a h)
+  · rw [hsb] at h
+    exact hμ (by have := M2.ext'_c h; rwa [mul_one] at this)
+  · rw [hsb, mul_zero] at h
+    exact F.one_ne_zero (M2.ext'_c h).symm
+
 end Frame
 end Shell
 end FRC
@@ -3306,9 +3385,9 @@ that every row carrying the key asserts, proved from the themes alone. The paper
 namespace FRC.Ledger
 
 -- Keys of the projective theme (generated by make_keys.py from the ledgers' Lean bindings; edit the ledgers, not this file)
-/-- p00039 — 00:C19. \textbf{The Hopf section}: in the observable frame group $\mathrm{PGL}_2$ the boost torus $C_{\p +1}$ is fixed-point-free on $\mathbb{P}^1$ and meets the Borel trivially, so every frame factors uniquely as (cone-chart event)$\times$(boost): the cone chart is a global section of the non-split fibration (C22), $\p (\p -1)$ fibres of $\p +1$; the spin cover $\mathrm{SL}_2$ obstructs at $-1$. -/
-theorem p00039 : ∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → ∀ {ν : FRC.Shell p}, (¬∃ y, y * y = ν) → (∀ (α β x y : FRC.Shell p), β ≠ (0 : FRC.Shell p) → x ≠ (0 : FRC.Shell p) ∨ y ≠ (0 : FRC.Shell p) → ¬FRC.Shell.Frame.PEq ((FRC.Shell.Frame.boost ν α β).act x y) (x, y)) ∧ (∀ (α β a b e l : FRC.Shell p), FRC.Shell.Frame.boost ν α β = FRC.Shell.Frame.M2.smul l (FRC.Shell.Frame.borel a b e) → β = (0 : FRC.Shell p)) ∧ (∀ (M : FRC.Shell.Frame.M2 p), M.det ≠ (0 : FRC.Shell p) → ∃ N a b e α β, N ≠ (0 : FRC.Shell p) ∧ a * e ≠ (0 : FRC.Shell p) ∧ (α ≠ (0 : FRC.Shell p) ∨ β ≠ (0 : FRC.Shell p)) ∧ FRC.Shell.Frame.M2.smul N M = (FRC.Shell.Frame.borel a b e).mul (FRC.Shell.Frame.boost ν α β)) ∧ (∀ (l a1 b1 e1 α1 β1 a2 b2 e2 α2 β2 : FRC.Shell p), l ≠ (0 : FRC.Shell p) → e2 ≠ (0 : FRC.Shell p) → α1 ≠ (0 : FRC.Shell p) ∨ β1 ≠ (0 : FRC.Shell p) → FRC.Shell.Frame.M2.smul l ((FRC.Shell.Frame.borel a1 b1 e1).mul (FRC.Shell.Frame.boost ν α1 β1)) = (FRC.Shell.Frame.borel a2 b2 e2).mul (FRC.Shell.Frame.boost ν α2 β2) → α1 * β2 = α2 * β1 ∧ e2 * a1 = e1 * a2 ∧ e2 * b1 = e1 * b2) ∧ (∀ (α β α' β' : FRC.Shell p), α ≠ (0 : FRC.Shell p) ∨ β ≠ (0 : FRC.Shell p) → α' ≠ (0 : FRC.Shell p) ∨ β' ≠ (0 : FRC.Shell p) → ((∃ μ, μ ≠ (0 : FRC.Shell p) ∧ FRC.Shell.Frame.boost ν α' β' = FRC.Shell.Frame.M2.smul μ (FRC.Shell.Frame.boost ν α β)) ↔ α * β' = α' * β)) ∧ FRC.Shell.Frame.natCount (fun x => True) p * FRC.Shell.Frame.natCount (fun b => b ≠ (0 : Nat)) p = p * (p - (1 : Nat)) ∧ FRC.Shell.Frame.boost ν (-1 : FRC.Shell p) (0 : FRC.Shell p) = FRC.Shell.Frame.borel (-1 : FRC.Shell p) (0 : FRC.Shell p) (-1 : FRC.Shell p) ∧ (-1 : FRC.Shell p) * (-1 : FRC.Shell p) + -(ν * ((0 : FRC.Shell p) * (0 : FRC.Shell p))) = (1 : FRC.Shell p) ∧ (-1 : FRC.Shell p) * (-1 : FRC.Shell p) = (1 : FRC.Shell p) ∧ (∀ (α β a b e : FRC.Shell p), FRC.Shell.Frame.boost ν α β = FRC.Shell.Frame.borel a b e → α * α + -(ν * (β * β)) = (1 : FRC.Shell p) → β = (0 : FRC.Shell p) ∧ (α = (1 : FRC.Shell p) ∨ α = (-1 : FRC.Shell p))) ∧ ∀ (M N : FRC.Shell.Frame.M2 p), (FRC.Shell.Frame.M2.smul (-1 : FRC.Shell p) M).mul (FRC.Shell.Frame.M2.smul (-1 : FRC.Shell p) N) = M.mul N :=
-  @FRC.Shell.Frame.hopf_section
+/-- p00190 — 00:C19. \textbf{The Hopf section}: on the frames by elements (no group counted, Q20) the boost torus $C_{\p +1}$ is fixed-point-free on $\mathbb{P}^1$ and meets the Borel trivially, so every frame factors uniquely as (cone-chart event)$\times$(boost): the cone chart is a global section of the non-split fibration (C22), $\p (\p -1)$ fibres of $\p +1$; $\mathrm{SL}_2$ obstructs at $-1$. -/
+theorem p00190 : (∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → ∀ {ν : FRC.Shell p}, (¬∃ y, y * y = ν) → (∀ (α β x y : FRC.Shell p), β ≠ (0 : FRC.Shell p) → x ≠ (0 : FRC.Shell p) ∨ y ≠ (0 : FRC.Shell p) → ¬FRC.Shell.Frame.PEq ((FRC.Shell.Frame.boost ν α β).act x y) (x, y)) ∧ (∀ (α β a b e l : FRC.Shell p), FRC.Shell.Frame.boost ν α β = FRC.Shell.Frame.M2.smul l (FRC.Shell.Frame.borel a b e) → β = (0 : FRC.Shell p)) ∧ (∀ (M : FRC.Shell.Frame.M2 p), M.det ≠ (0 : FRC.Shell p) → ∃ N a b e α β, N ≠ (0 : FRC.Shell p) ∧ a * e ≠ (0 : FRC.Shell p) ∧ (α ≠ (0 : FRC.Shell p) ∨ β ≠ (0 : FRC.Shell p)) ∧ FRC.Shell.Frame.M2.smul N M = (FRC.Shell.Frame.borel a b e).mul (FRC.Shell.Frame.boost ν α β)) ∧ (∀ (l a1 b1 e1 α1 β1 a2 b2 e2 α2 β2 : FRC.Shell p), l ≠ (0 : FRC.Shell p) → e2 ≠ (0 : FRC.Shell p) → α1 ≠ (0 : FRC.Shell p) ∨ β1 ≠ (0 : FRC.Shell p) → FRC.Shell.Frame.M2.smul l ((FRC.Shell.Frame.borel a1 b1 e1).mul (FRC.Shell.Frame.boost ν α1 β1)) = (FRC.Shell.Frame.borel a2 b2 e2).mul (FRC.Shell.Frame.boost ν α2 β2) → α1 * β2 = α2 * β1 ∧ e2 * a1 = e1 * a2 ∧ e2 * b1 = e1 * b2) ∧ (∀ (α β α' β' : FRC.Shell p), α ≠ (0 : FRC.Shell p) ∨ β ≠ (0 : FRC.Shell p) → α' ≠ (0 : FRC.Shell p) ∨ β' ≠ (0 : FRC.Shell p) → ((∃ μ, μ ≠ (0 : FRC.Shell p) ∧ FRC.Shell.Frame.boost ν α' β' = FRC.Shell.Frame.M2.smul μ (FRC.Shell.Frame.boost ν α β)) ↔ α * β' = α' * β)) ∧ FRC.Shell.Frame.natCount (fun x => True) p * FRC.Shell.Frame.natCount (fun b => b ≠ (0 : Nat)) p = p * (p - (1 : Nat)) ∧ FRC.Shell.Frame.boost ν (-1 : FRC.Shell p) (0 : FRC.Shell p) = FRC.Shell.Frame.borel (-1 : FRC.Shell p) (0 : FRC.Shell p) (-1 : FRC.Shell p) ∧ (-1 : FRC.Shell p) * (-1 : FRC.Shell p) + -(ν * ((0 : FRC.Shell p) * (0 : FRC.Shell p))) = (1 : FRC.Shell p) ∧ (-1 : FRC.Shell p) * (-1 : FRC.Shell p) = (1 : FRC.Shell p) ∧ (∀ (α β a b e : FRC.Shell p), FRC.Shell.Frame.boost ν α β = FRC.Shell.Frame.borel a b e → α * α + -(ν * (β * β)) = (1 : FRC.Shell p) → β = (0 : FRC.Shell p) ∧ (α = (1 : FRC.Shell p) ∨ α = (-1 : FRC.Shell p))) ∧ ∀ (M N : FRC.Shell.Frame.M2 p), (FRC.Shell.Frame.M2.smul (-1 : FRC.Shell p) M).mul (FRC.Shell.Frame.M2.smul (-1 : FRC.Shell p) N) = M.mul N) ∧ ∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → ∀ (ν : FRC.Shell p), (∀ (a b e : FRC.Shell p), a * e ≠ (0 : FRC.Shell p) → ∃ i j, i < p ∧ j < p ∧ i ≠ (0 : Nat) ∧ ∃ l, l ≠ (0 : FRC.Shell p) ∧ FRC.Shell.Frame.M2.smul l (FRC.Shell.Frame.borel a b e) = FRC.Shell.Frame.borel (FRC.Shell.ofNat i) (FRC.Shell.ofNat j) (1 : FRC.Shell p)) ∧ (∀ (i j i' j' : Nat), i < p → j < p → i' < p → j' < p → ∀ (l : FRC.Shell p), FRC.Shell.Frame.M2.smul l (FRC.Shell.Frame.borel (FRC.Shell.ofNat i) (FRC.Shell.ofNat j) (1 : FRC.Shell p)) = FRC.Shell.Frame.borel (FRC.Shell.ofNat i') (FRC.Shell.ofNat j') (1 : FRC.Shell p) → i = i' ∧ j = j') ∧ FRC.Shell.Frame.natCount (fun x => True) p * FRC.Shell.Frame.natCount (fun b => b ≠ (0 : Nat)) p = p * (p - (1 : Nat)) ∧ (∀ (α β : FRC.Shell p), α ≠ (0 : FRC.Shell p) ∨ β ≠ (0 : FRC.Shell p) → (∃ i, i < p ∧ ∃ μ, μ ≠ (0 : FRC.Shell p) ∧ FRC.Shell.Frame.M2.smul μ (FRC.Shell.Frame.boost ν α β) = FRC.Shell.Frame.boost ν (FRC.Shell.ofNat i) (1 : FRC.Shell p)) ∨ ∃ μ, μ ≠ (0 : FRC.Shell p) ∧ FRC.Shell.Frame.M2.smul μ (FRC.Shell.Frame.boost ν α β) = FRC.Shell.Frame.boost ν (1 : FRC.Shell p) (0 : FRC.Shell p)) ∧ (∀ (i i' : Nat), i < p → i' < p → ∀ (μ : FRC.Shell p), FRC.Shell.Frame.M2.smul μ (FRC.Shell.Frame.boost ν (FRC.Shell.ofNat i) (1 : FRC.Shell p)) = FRC.Shell.Frame.boost ν (FRC.Shell.ofNat i') (1 : FRC.Shell p) → i = i') ∧ (∀ (i : Nat) (μ : FRC.Shell p), μ ≠ (0 : FRC.Shell p) → FRC.Shell.Frame.M2.smul μ (FRC.Shell.Frame.boost ν (FRC.Shell.ofNat i) (1 : FRC.Shell p)) ≠ FRC.Shell.Frame.boost ν (1 : FRC.Shell p) (0 : FRC.Shell p)) ∧ (∀ (i : Nat) (μ : FRC.Shell p), FRC.Shell.Frame.M2.smul μ (FRC.Shell.Frame.boost ν (1 : FRC.Shell p) (0 : FRC.Shell p)) ≠ FRC.Shell.Frame.boost ν (FRC.Shell.ofNat i) (1 : FRC.Shell p)) ∧ FRC.Shell.Frame.natCount (fun x => True) p + (1 : Nat) = p + (1 : Nat) :=
+  And.intro @FRC.Shell.Frame.hopf_section (@FRC.Shell.Frame.hopf_counts)
 set_option linter.defProp false in
 /-- p01009 — 1:C2. The frame group (Prop.~\ref{prop:frame-group}): $\langle T_a,S_m\rangle$ is the affine group of order $\p(\p-1)$, acting simply transitively on the frames $(a,b)$, $b\neq0$; the set of frames is a torsor under it (00:C5, 00:D13). -/
 def p01009 := And.intro @FRC.Shell.Frame.Affine.simply_transitive (@FRC.Shell.Frame.frame_count)

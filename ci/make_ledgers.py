@@ -150,7 +150,7 @@ def notebook(f, L, data):
            f"{'blocks ' + ' and '.join(data['block']) if len(data['block']) > 1 else 'block ' + data['block']}, on the FRC framework: it runs the blocks of the ledger file `{rel}` whose checks cite the row, prints the check "
            "that decides it and lists every record that cites it with its verdict. The cell's id is the row's accession key. "
            + ("The row's chart clauses are proved in Lean on Mathlib's reals; the cells check them in exact rational arithmetic and in floating point. "
-              if data.get("chart") else "The row's theorem is proved in Lean, on the Carrier's chart without a generator; the cells check it on the shells and by search. ") +
+              if data.get("chart") else "The row's theorem is proved in Lean from the themes alone, with no axioms (its key's hypotheses are those its statement names); the cells check it on the shells and by search. ") +
            "Any cell can be run first: its first lines make the framework importable (this checkout, or a clone on Colab).", "header")
     else:
         paper, doi = L.PAPER, data.get("doi")

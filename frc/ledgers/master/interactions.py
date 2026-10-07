@@ -17,6 +17,7 @@ The notebook frc/ledgers/master/interactions.ipynb runs one row per cell, the ce
 import random
 import sys
 from fractions import Fraction
+from math import comb
 
 from frc import arith
 from frc.registry import Registry
@@ -33,12 +34,13 @@ LEAN = {"G11": "core", "G12": "core", "G16": "core"}       # the rows with a Lea
 PROOFS = {
     "G11": ["FRC.Interactions.one_generation"],
     "G12": ["FRC.Interactions.reflection_algebra", "FRC.Interactions.fifth_direction"],
-    "G16": ["FRC.Interactions.koide_parseval", "FRC.Interactions.koide_two_thirds"],
+    "G16": ["FRC.Interactions.koide_parseval", "FRC.Interactions.koide_two_thirds", "FRC.Interactions.koide_extension",
+            "FRC.Interactions.koide_half"],
 }
 
 LEAN_ONLY = ()                  # the rows with a Lean declaration and no python check (gate G12): none
 
-LEDGER = {"H1": "00:G12", "H2": "00:G11", "H3": "00:G11", "K1": "00:G16", "K2": "00:G16"}
+LEDGER = {"H1": "00:G12", "H2": "00:G11", "H3": "00:G11", "K1": "00:G16", "K2": "00:G16", "K3": "00:G16"}
 BLOCKS = {"H": "one generation: the reflection algebra, the fifth direction, the 16 read 3 + 2",
           "K": "the Koide form on the cube-root orbit"}
 PREDICATES = {"00:G12": "H1", "00:G11": "H2", "00:G16": "K1"}
@@ -83,17 +85,23 @@ def block_H():
     # 00:G11 (p27020)
     g = gen16()
     content = {}
+    # the colour type by triality: the centre ω·1 of SU(3) acts on Λᵏ(ℂ³) as ωᵏ, so k ≡ 0, 1, 2 (mod 3) is the
+    # singlet, the 3 and the 3̄ (Λ² ≅ 3̄ by the volume form); the weak type by Λᵏ(ℂ²): k = 1 the doublet, else a singlet
+    # (the template Λᵏ(ℂⁿ) for the k-th fundamental is imported)
+    TRIALITY = {0: "1", 1: "3", 2: "3b"}
     for S in g:
         c, w = col(S), wk(S)
-        rep = ({0: "1", 1: "3", 2: "3b", 3: "1"}[c], {0: "1", 1: "2", 2: "1"}[w], Fraction(y6(S), 6))
+        rep = (TRIALITY[c % 3], {0: "1", 1: "2", 2: "1"}[w], Fraction(y6(S), 6))
         content[rep] = content.get(rep, 0) + 1
     want = {(c, w, y): DIM[c] * DIM[w] for c, w, y in SM.values()}
     ok = content == want
+    ok &= all(comb(3, k) == DIM[TRIALITY[k % 3]] for k in range(4)) and all(comb(2, k) == DIM[{0: "1", 1: "2", 2: "1"}[k]] for k in range(3))
     ok &= sum(y6(S) for S in g) == 0 and sum(y6(S) ** 3 for S in g) == 0
     ok &= sum(y6(S) for S in g if col(S) in (1, 2)) == 0 and sum(y6(S) for S in g if wk(S) == 1) == 0
     ok &= sorted(Fraction(q6(S), 6) for S in g) == sorted([Fraction(0), Fraction(0)] + [Fraction(2, 3)] * 3 + [Fraction(-2, 3)] * 3
                                                             + [Fraction(-1, 3)] * 3 + [Fraction(1, 3)] * 3 + [Fraction(1), Fraction(-1)])
-    R.check("H2", "the 16 read 3 + 2: the content ν^c + u^c + Q + e^c + L + d^c with their hypercharges, by name against the "
+    R.check("H2", "the 16 read 3 + 2, the colour type by triality (k mod 3 on Λᵏ(ℂ³)) and the weak type by Λᵏ(ℂ²), dimensions "
+            "binom(3, k) and binom(2, k): the content ν^c + u^c + Q + e^c + L + d^c with their hypercharges, by name against the "
             "Standard-Model table; Σ Y = Σ Y³ = 0, SU(3)²Y = SU(2)²Y = 0; the charges 0, 0, ±2/3 ×3, ±1/3 ×3, ±1", ok,
             f"content {dict((f'{k[0]},{k[1]},{k[2]}', v) for k, v in content.items())}")
     # H3 a second method: the anomaly sums by multiplet, from the table
@@ -110,7 +118,7 @@ def block_H():
 # block K: the Koide form (00:G16)
 @R.block("K", BLOCKS["K"])
 def block_K():
-    """Block K — the Koide form (EXACT): K1–K2."""
+    """Block K — the Koide form (EXACT): K1–K3."""
     # 00:G16 (p00081)
     bad = []
     for p in [q for q in range(7, 400) if q % 3 == 1 and arith.is_prime(q)]:
@@ -136,6 +144,26 @@ def block_K():
     R.check("K2", "every prime p ≡ 1 (mod 3) below 400: on the cube-root orbit a_k = 1 + ρ(z ω^k + z⁻¹ ω^{−k}), Σ a = 3 and "
             "Σ a² = 3 + 6ρ² for every ρ and seven z, so Q = (3 + 6ρ²)/9 = 1/3 + 2ρ²/3, and Q = 2/3 at ρ² = 1/2",
             not bad, f"exceptions {bad[:3]}")
+    # K3 every shell, the Carriers included: in the extension 𝔽_p[w]/(w² + 3), ω = −h + h w (h = 1/2) is a cube root of
+    # unity, â₂ = â̄₁, and 3 Σ a² = â₀² + 2 N(â₁) with N(x + y w) = x² + 3 y² (Interactions.lean: koide_extension, koide_half)
+    def emul3(z, u, p): return ((z[0] * u[0] - 3 * z[1] * u[1]) % p, (z[0] * u[1] + z[1] * u[0]) % p)
+    bad = []
+    for p in [q for q in range(5, 400) if q % 3 == 2 and arith.is_prime(q)] + [233, 30089, 2408561]:
+        h = (p + 1) // 2
+        om = ((-h) % p, h)
+        om2 = emul3(om, om, p)
+        if ((om2[0] + om[0] + 1) % p, (om2[1] + om[1]) % p) != (0, 0) or emul3(om2, om, p) != (1, 0): bad.append(p); continue
+        rng = random.Random(p)
+        for _ in range(30):
+            a = [rng.randrange(p) for _ in range(3)]
+            hat1 = ((a[0] + a[1] * om[0] + a[2] * om2[0]) % p, (a[1] * om[1] + a[2] * om2[1]) % p)
+            hat2 = ((a[0] + a[1] * om2[0] + a[2] * om[0]) % p, (a[1] * om2[1] + a[2] * om[1]) % p)
+            nrm = (hat1[0] ** 2 + 3 * hat1[1] ** 2) % p
+            if hat2 != (hat1[0], (-hat1[1]) % p) or emul3(hat1, hat2, p) != (nrm, 0): bad.append(p); break
+            if (3 * sum(x * x for x in a) - sum(a) ** 2 - 2 * nrm) % p: bad.append(p); break
+    R.check("K3", "every prime p ≡ 2 (mod 3) below 400 and the Carriers 233, 30 089, 2 408 561 (no cube root of unity in "
+            "𝔽_p): in 𝔽_p[w]/(w² + 3), ω = −1/2 + w/2 has ω² + ω + 1 = 0 and ω³ = 1; for 30 random amplitude vectors "
+            "â₂ = â̄₁, â₁â₂ = N(â₁), and 3 Σ a² = â₀² + 2 N(â₁)", not bad, f"exceptions {bad[:3]}")
 
 if __name__ == "__main__":
     blocks = [a for a in sys.argv[1:] if a in R.blocks]

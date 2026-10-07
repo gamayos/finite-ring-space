@@ -1868,7 +1868,7 @@ The master's block E where its rows are exact. On a frame `(τ; 0, 1, g)` of cap
 
 The counts are natural numbers: `count P` counts the residues satisfying `P`, and `nsum` adds natural numbers; both are
 invariant under a bijection of the residues (`count_bij`, `nsum_perm`). The identities between natural numbers are
-decided by the ring normaliser read in a shell above both sides (`nat_sound`). No axioms.
+decided by the ring normaliser, read in the natural numbers (`nat_sound`): no shell is built for them. No axioms.
 -/
 
 namespace FRC.Grav
@@ -1901,31 +1901,112 @@ def nlook : List Nat → Nat → Nat
   | x :: _, 0 => x
   | _ :: l, n + 1 => nlook l n
 
-theorem ofNat_natEval {q : Nat} [Pos q] (env : Nat → Nat) :
-    ∀ e : RE, negFree e = true → (ofNat (natEval env e) : Shell q) = e.eval (fun i => ofNat (env i))
+/-- A monomial and a polynomial read in the natural numbers. -/
+def mEvalN (env : Nat → Nat) : List Nat → Nat
+  | [] => 1
+  | i :: m => env i * mEvalN env m
+
+def pEvalN (env : Nat → Nat) : List (List Nat) → Nat
+  | [] => 0
+  | m :: P => mEvalN env m + pEvalN env P
+
+theorem mEvalN_append (env : Nat → Nat) (m n : List Nat) : mEvalN env (m ++ n) = mEvalN env m * mEvalN env n := by
+  induction m with
+  | nil => exact (Nat.one_mul _).symm
+  | cons i m ih => show env i * mEvalN env (m ++ n) = env i * mEvalN env m * mEvalN env n; rw [ih, FRC.Nat.mul_assoc]
+
+theorem pEvalN_append (env : Nat → Nat) (P Q : List (List Nat)) : pEvalN env (P ++ Q) = pEvalN env P + pEvalN env Q := by
+  induction P with
+  | nil => exact (Nat.zero_add _).symm
+  | cons m P ih => show mEvalN env m + pEvalN env (P ++ Q) = mEvalN env m + pEvalN env P + pEvalN env Q; rw [ih, Nat.add_assoc]
+
+theorem pEvalN_row (env : Nat → Nat) (m : List Nat) (Q : List (List Nat)) : pEvalN env (pRow m Q) = mEvalN env m * pEvalN env Q := by
+  induction Q with
+  | nil => exact (Nat.mul_zero _).symm
+  | cons n Q ih =>
+    show mEvalN env (m ++ n) + pEvalN env (pRow m Q) = mEvalN env m * (mEvalN env n + pEvalN env Q)
+    rw [ih, mEvalN_append, Nat.left_distrib]
+
+theorem pEvalN_mul (env : Nat → Nat) (P Q : List (List Nat)) : pEvalN env (pMul P Q) = pEvalN env P * pEvalN env Q := by
+  induction P with
+  | nil => exact (Nat.zero_mul _).symm
+  | cons m P ih =>
+    show pEvalN env (pRow m Q ++ pMul P Q) = (mEvalN env m + pEvalN env P) * pEvalN env Q
+    rw [pEvalN_append, pEvalN_row, ih, FRC.Nat.add_mul]
+
+theorem pMul_nil : ∀ P : List (List Nat), pMul P [] = []
+  | [] => rfl
+  | _ :: P => by show [] ++ pMul P [] = []; rw [pMul_nil P]; rfl
+
+theorem toP_neg_nil : ∀ e : RE, negFree e = true → e.toP.2 = []
   | .var _, _ => rfl
   | .zero, _ => rfl
   | .one, _ => rfl
   | .add a b, h => by
-    show ofNat (natEval env a + natEval env b) = a.eval _ + b.eval _
-    rw [← ofNat_natEval env a (and_true_left h), ← ofNat_natEval env b (and_true_right h)]
-    exact (ofNat_add _ _).symm
+    show a.toP.2 ++ b.toP.2 = []
+    rw [toP_neg_nil a (and_true_left h), toP_neg_nil b (and_true_right h)]; rfl
   | .mul a b, h => by
-    show ofNat (natEval env a * natEval env b) = a.eval _ * b.eval _
-    rw [← ofNat_natEval env a (and_true_left h), ← ofNat_natEval env b (and_true_right h)]
-    exact (ofNat_mul _ _).symm
+    show pMul a.toP.1 b.toP.2 ++ pMul a.toP.2 b.toP.1 = []
+    rw [toP_neg_nil a (and_true_left h), toP_neg_nil b (and_true_right h), pMul_nil]; rfl
   | .neg _, h => Bool.noConfusion h
 
-/-- The normaliser's soundness on the natural numbers: an identity it decides holds between natural numbers, read in a
-shell above both sides. -/
+theorem natEval_toP (env : Nat → Nat) : ∀ e : RE, negFree e = true → natEval env e = pEvalN env e.toP.1
+  | .var i, _ => by show env i = env i * 1 + 0; rw [Nat.mul_one, Nat.add_zero]
+  | .zero, _ => rfl
+  | .one, _ => rfl
+  | .add a b, h => by
+    show natEval env a + natEval env b = pEvalN env (a.toP.1 ++ b.toP.1)
+    rw [pEvalN_append, ← natEval_toP env a (and_true_left h), ← natEval_toP env b (and_true_right h)]
+  | .mul a b, h => by
+    show natEval env a * natEval env b = pEvalN env (pMul a.toP.1 b.toP.1 ++ pMul a.toP.2 b.toP.2)
+    rw [toP_neg_nil a (and_true_left h), pEvalN_append, pEvalN_mul, ← natEval_toP env a (and_true_left h),
+      ← natEval_toP env b (and_true_right h)]
+    show _ = _ + pEvalN env (pMul [] b.toP.2)
+    rfl
+
+theorem mEvalN_insM (env : Nat → Nat) (i : Nat) (m : List Nat) : mEvalN env (insM i m) = env i * mEvalN env m := by
+  induction m with
+  | nil => rfl
+  | cons j m ih =>
+    show mEvalN env (if Nat.ble i j then i :: j :: m else j :: insM i m) = env i * (env j * mEvalN env m)
+    cases Nat.ble i j with
+    | true => rfl
+    | false => show env j * mEvalN env (insM i m) = _; rw [ih, FRC.Nat.mul_left_comm]
+
+theorem mEvalN_sortM (env : Nat → Nat) (m : List Nat) : mEvalN env (sortM m) = mEvalN env m := by
+  induction m with
+  | nil => rfl
+  | cons i m ih => show mEvalN env (insM i (sortM m)) = env i * mEvalN env m; rw [mEvalN_insM, ih]
+
+theorem add_left_comm' (a b c : Nat) : a + (b + c) = b + (a + c) := by
+  rw [← Nat.add_assoc, Nat.add_comm a b, Nat.add_assoc]
+
+theorem pEvalN_insP (env : Nat → Nat) (m : List Nat) (P : List (List Nat)) : pEvalN env (insP m P) = mEvalN env m + pEvalN env P := by
+  induction P with
+  | nil => rfl
+  | cons n P ih =>
+    show pEvalN env (if lexLe m n then m :: n :: P else n :: insP m P) = mEvalN env m + (mEvalN env n + pEvalN env P)
+    cases lexLe m n with
+    | true => rfl
+    | false => show mEvalN env n + pEvalN env (insP m P) = _; rw [ih, add_left_comm']
+
+theorem pEvalN_nfP (env : Nat → Nat) (P : List (List Nat)) : pEvalN env (nfP P) = pEvalN env P := by
+  induction P with
+  | nil => rfl
+  | cons m P ih => show pEvalN env (insP (sortM m) (nfP P)) = mEvalN env m + pEvalN env P; rw [pEvalN_insP, ih, mEvalN_sortM]
+
+/-- The normaliser's soundness on the natural numbers, read in the naturals themselves. No shell is built, and the
+kernel's decision runs over the expressions' monomials, never over the values of their variables (Q20). -/
 theorem nat_sound (env : Nat → Nat) (l r : RE) (hl : negFree l = true) (hr : negFree r = true)
     (hb : RE.check l r = true) : natEval env l = natEval env r := by
-  have e := RE.sound (p := natEval env l + natEval env r + 1) (fun i => ofNat (env i)) l r hb
-  rw [← ofNat_natEval env l hl, ← ofNat_natEval env r hr] at e
-  have h := val_injective e
-  rw [val_ofNat, val_ofNat, FRC.Nat.mod_eq_of_lt (Nat.lt_succ_of_le (Nat.le_add_right _ _)),
-    FRC.Nat.mod_eq_of_lt (Nat.lt_succ_of_le (Nat.le_add_left _ _))] at h
-  exact h
+  have h := pbeq_eq hb
+  have e := congrArg (pEvalN env) h
+  rw [pEvalN_nfP, pEvalN_nfP, pEvalN_append, pEvalN_append] at e
+  have zl : pEvalN env l.toP.2 = 0 := congrArg (pEvalN env) (toP_neg_nil l hl)
+  have zr : pEvalN env r.toP.2 = 0 := congrArg (pEvalN env) (toP_neg_nil r hr)
+  rw [zl, zr, Nat.add_zero, Nat.add_zero] at e
+  rw [natEval_toP env l hl, natEval_toP env r hr]
+  exact e
 
 /-! ## Sums of natural numbers -/
 
@@ -2290,6 +2371,15 @@ rate face `M = 2κ + 1` the coefficient `2M − 1` is `p`: `dS/dM = p` exactly, 
 theorem record_response (m h : Nat) : (m + 1 + h) * (m + h) = (m + 1) * m + (2 * m + 1) * h + h * h :=
   nat_sound (nlook [m, h]) (.mul (.add (.add (.var 0) .one) (.var 1)) (.add (.var 0) (.var 1))) (.add (.add (.mul (.add (.var 0) .one) (.var 0)) (.mul (.add (.mul (.add .one .one) (.var 0)) .one) (.var 1))) (.mul (.var 1) (.var 1))) rfl rfl (by decide +kernel)
 
+/-- 00:E7 — the response on the rate face `M = 2κ + 1` (`m = 2κ`): the coefficient of `h` is `p = 4κ + 1`, so
+`dS/dM = p` exactly and `T_resp = 1/p`. -/
+theorem record_response_rate (κ h : Nat) :
+    (2 * κ + 1 + h) * (2 * κ + h) = (2 * κ + 1) * (2 * κ) + (4 * κ + 1) * h + h * h := by
+  have e := record_response (2 * κ) h
+  have c : 2 * (2 * κ) + 1 = 4 * κ + 1 := by rw [← FRC.Nat.mul_assoc]
+  rw [c] at e
+  exact e
+
 /-- 00:E7 — the registration rate `T = A/p³` is `(p + 1)/p²`: `A p² = (p + 1) p³`. -/
 theorem temperature_rate (κ : Nat) :
     ((4 * κ + 1) * (4 * κ + 2)) * ((4 * κ + 1) * (4 * κ + 1)) = (4 * κ + 2) * ((4 * κ + 1) * (4 * κ + 1) * (4 * κ + 1)) :=
@@ -2324,8 +2414,8 @@ namespace FRC.Ledger
 
 -- Keys of the gravity theme (generated by make_keys.py from the ledgers' Lean bindings; edit the ledgers, not this file)
 /-- p00058 — 00:E7. \textbf{Gravity} (horizon triple): the record is the registered state count $\kap(\p+1)=(A/4)(1-1/\p )=M(M-1)$ (37:B5, 37:C7) on the rate face $M=(\p +1)/2$ (D2, D14; $\p =2M-1$ the count face), $d[\kap(\p+1)]/dM=\p$ exactly. The temperature has two exact faces, the registration rate $T=(\p +1)/\p ^2$ (E5) and the response $T_{\mathrm{resp}}=(d[\kap(\p+1)]/dM)^{-1}=1/\p$, split by $1+1/\p$. First law $dM=T_{\mathrm{resp}}\,d[\kap(\p+1)]=T\,d[\kap(\p+1)]/(1+1/\p )$; Smarr $2T_{\mathrm{resp}}\kap(\p+1)=M(1-1/\p )$, $2T\kap(\p+1)=M(1-1/\p ^2)$; the chart's $dM=T\,dS_{\mathrm{th}}$, $M=2TS_{\mathrm{th}}$ [import] to order $1/\p$ (D15). -/
-theorem p00058 : (∀ (κ : Nat), (4 : Nat) * (κ * ((4 : Nat) * κ + (2 : Nat))) + (1 : Nat) = ((4 : Nat) * κ + (1 : Nat)) * ((4 : Nat) * κ + (1 : Nat)) ∧ κ * ((4 : Nat) * κ + (2 : Nat)) * ((4 : Nat) * κ + (1 : Nat)) = κ * (((4 : Nat) * κ + (1 : Nat)) * ((4 : Nat) * κ + (2 : Nat))) ∧ (4 : Nat) * (κ * ((4 : Nat) * κ + (2 : Nat))) * ((4 : Nat) * κ + (1 : Nat)) = ((4 : Nat) * κ + (1 : Nat)) * ((4 : Nat) * κ + (2 : Nat)) * ((4 : Nat) * κ)) ∧ (∀ (κ : Nat), κ * ((4 : Nat) * κ + (2 : Nat)) = ((2 : Nat) * κ + (1 : Nat)) * ((2 : Nat) * κ)) ∧ (∀ (m h : Nat), (m + (1 : Nat) + h) * (m + h) = (m + (1 : Nat)) * m + ((2 : Nat) * m + (1 : Nat)) * h + h * h) ∧ (∀ (κ : Nat), ((4 : Nat) * κ + (1 : Nat)) * ((4 : Nat) * κ + (2 : Nat)) * (((4 : Nat) * κ + (1 : Nat)) * ((4 : Nat) * κ + (1 : Nat))) = ((4 : Nat) * κ + (2 : Nat)) * (((4 : Nat) * κ + (1 : Nat)) * ((4 : Nat) * κ + (1 : Nat)) * ((4 : Nat) * κ + (1 : Nat)))) ∧ ∀ (κ : Nat), (2 : Nat) * (κ * ((4 : Nat) * κ + (2 : Nat))) = ((2 : Nat) * κ + (1 : Nat)) * ((4 : Nat) * κ) ∧ (2 : Nat) * ((4 : Nat) * κ + (2 : Nat)) * (κ * ((4 : Nat) * κ + (2 : Nat))) = ((2 : Nat) * κ + (1 : Nat)) * ((4 : Nat) * κ * ((4 : Nat) * κ + (2 : Nat))) :=
-  And.intro @FRC.Grav.count_identity (And.intro @FRC.Grav.record_mass (And.intro @FRC.Grav.record_response (And.intro @FRC.Grav.temperature_rate (@FRC.Grav.smarr))))
+theorem p00058 : (∀ (κ : Nat), (4 : Nat) * (κ * ((4 : Nat) * κ + (2 : Nat))) + (1 : Nat) = ((4 : Nat) * κ + (1 : Nat)) * ((4 : Nat) * κ + (1 : Nat)) ∧ κ * ((4 : Nat) * κ + (2 : Nat)) * ((4 : Nat) * κ + (1 : Nat)) = κ * (((4 : Nat) * κ + (1 : Nat)) * ((4 : Nat) * κ + (2 : Nat))) ∧ (4 : Nat) * (κ * ((4 : Nat) * κ + (2 : Nat))) * ((4 : Nat) * κ + (1 : Nat)) = ((4 : Nat) * κ + (1 : Nat)) * ((4 : Nat) * κ + (2 : Nat)) * ((4 : Nat) * κ)) ∧ (∀ (κ : Nat), κ * ((4 : Nat) * κ + (2 : Nat)) = ((2 : Nat) * κ + (1 : Nat)) * ((2 : Nat) * κ)) ∧ (∀ (m h : Nat), (m + (1 : Nat) + h) * (m + h) = (m + (1 : Nat)) * m + ((2 : Nat) * m + (1 : Nat)) * h + h * h) ∧ (∀ (κ : Nat), ((4 : Nat) * κ + (1 : Nat)) * ((4 : Nat) * κ + (2 : Nat)) * (((4 : Nat) * κ + (1 : Nat)) * ((4 : Nat) * κ + (1 : Nat))) = ((4 : Nat) * κ + (2 : Nat)) * (((4 : Nat) * κ + (1 : Nat)) * ((4 : Nat) * κ + (1 : Nat)) * ((4 : Nat) * κ + (1 : Nat)))) ∧ (∀ (κ : Nat), (2 : Nat) * (κ * ((4 : Nat) * κ + (2 : Nat))) = ((2 : Nat) * κ + (1 : Nat)) * ((4 : Nat) * κ) ∧ (2 : Nat) * ((4 : Nat) * κ + (2 : Nat)) * (κ * ((4 : Nat) * κ + (2 : Nat))) = ((2 : Nat) * κ + (1 : Nat)) * ((4 : Nat) * κ * ((4 : Nat) * κ + (2 : Nat)))) ∧ ∀ (κ h : Nat), ((2 : Nat) * κ + (1 : Nat) + h) * ((2 : Nat) * κ + h) = ((2 : Nat) * κ + (1 : Nat)) * ((2 : Nat) * κ) + ((4 : Nat) * κ + (1 : Nat)) * h + h * h :=
+  And.intro @FRC.Grav.count_identity (And.intro @FRC.Grav.record_mass (And.intro @FRC.Grav.record_response (And.intro @FRC.Grav.temperature_rate (And.intro @FRC.Grav.smarr (@FRC.Grav.record_response_rate)))))
 /-- p00176 — 00:E6. \textbf{Gravity} (horizon count): the registration sphere of a shell has area $A=\p(\p+1)$ and record $\kap(\p+1)$, so $\kap(\p+1)/A=\kap/\p$ exactly, the $Q_4$ gauge quotient, and closes the calibration: at the coherence horizon $\p^2\to\Om$ the record law returns $(\Om-1)/4=\dS$, the imported entropy (A9). The chart reading $S=\tfrac14A/\ell_P^2$ is D15's. Corollary: the merger area law $\Delta A=2M_1M_2$, saturated (37-sim). Triple: E7. -/
 theorem p00176 : (∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → FRC.Grav.sphereCount p (FRC.Shell.ofNat κ * FRC.Shell.ofNat κ) = p * (p + (1 : Nat))) ∧ (∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → ∀ {b : FRC.Shell p}, b ≠ (0 : FRC.Shell p) → FRC.Grav.sphereCount p (b * b) = p * (p + (1 : Nat))) ∧ (∀ (κ : Nat), (4 : Nat) * (κ * ((4 : Nat) * κ + (2 : Nat))) + (1 : Nat) = ((4 : Nat) * κ + (1 : Nat)) * ((4 : Nat) * κ + (1 : Nat)) ∧ κ * ((4 : Nat) * κ + (2 : Nat)) * ((4 : Nat) * κ + (1 : Nat)) = κ * (((4 : Nat) * κ + (1 : Nat)) * ((4 : Nat) * κ + (2 : Nat))) ∧ (4 : Nat) * (κ * ((4 : Nat) * κ + (2 : Nat))) * ((4 : Nat) * κ + (1 : Nat)) = ((4 : Nat) * κ + (1 : Nat)) * ((4 : Nat) * κ + (2 : Nat)) * ((4 : Nat) * κ)) ∧ ∀ (M₁ M₂ : Nat), (M₁ + M₂) * (M₁ + M₂ + (1 : Nat)) = M₁ * (M₁ + (1 : Nat)) + M₂ * (M₂ + (1 : Nat)) + (2 : Nat) * (M₁ * M₂) :=
   And.intro @FRC.Grav.sphere_area (And.intro @FRC.Grav.sphere_area_rung (And.intro @FRC.Grav.count_identity (@FRC.Grav.merger_area)))

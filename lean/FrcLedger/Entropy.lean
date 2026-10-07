@@ -216,32 +216,18 @@ end octant
 section age
 
 /-- 14:A8 [ΛCDM], consumed by 14:C3 — the rival chart's age identity as the import it is: in flat
-matter-plus-`Λ` the product of the age and the asymptotic rate is `t₀H_Λ = (2/3) artanh √Ω_Λ`, a function of
-the one fitted parameter; outside `[0, 1)` the value is junk. It is verified against the chart's own Friedmann
-equation in `lcdm_age` below (the closed-form solution reaches `1` exactly then; uniqueness of the solution is
-not formalised). That a landing of it on `π/4` restates the fit is C3's judgment under B5, not formal
+matter-plus-`Λ` the product of the age and the asymptotic rate is `t₀H_Λ = (2/3) artanh √Ω_Λ`. Moved to the chart
+theme (`FRC.Chart.lcdmAge`, 7 October 2026); this name is its alias. It is verified against the chart's own Friedmann
+equation in `lcdm_age` below. That a landing of it on `π/4` restates the fit is C3's judgment under B5, not formal
 content. -/
-noncomputable def lcdmAge (Ω : ℝ) : ℝ := 2 / 3 * artanh (√Ω)
+noncomputable def lcdmAge (Ω : ℝ) : ℝ := FRC.Chart.lcdmAge Ω
 
-/-- 14:C7, 14:X3 [ΛCDM] — the octant inversion: given the octant's `π/4` (C5, whose realisation content is not
-formalised here), the rival chart's identity gives `t₀H_Λ = π/4` at `Ω_Λ = tanh²(3π/8)` and, for
-`0 ≤ Ω_Λ < 1`, only there. -/
+/-- 14:C7, 14:X3 [ΛCDM] — the octant inversion, moved to the chart theme (`FRC.Chart.octant_inversion`); this name
+is its alias. -/
 theorem octant_inversion :
     lcdmAge (tanh (3 * π / 8) ^ 2) = π / 4 ∧
-    ∀ Ω : ℝ, 0 ≤ Ω → Ω < 1 → lcdmAge Ω = π / 4 → Ω = tanh (3 * π / 8) ^ 2 := by
-  have hpos := FRC.Chart.tanh_octant_pos
-  constructor
-  · unfold lcdmAge
-    rw [Real.sqrt_sq hpos.le, Real.artanh_tanh]; ring
-  · intro Ω h0 h1 h
-    unfold lcdmAge at h
-    have hart : artanh (√Ω) = 3 * π / 8 := by linarith
-    have hΩ : √Ω ∈ Set.Ioo (-1 : ℝ) 1 := by
-      refine ⟨by linarith [Real.sqrt_nonneg Ω], ?_⟩
-      rw [Real.sqrt_lt' one_pos]; simpa using h1
-    have := Real.tanh_artanh hΩ
-    rw [hart] at this
-    rw [this, Real.sq_sqrt h0]
+    ∀ Ω : ℝ, 0 ≤ Ω → Ω < 1 → lcdmAge Ω = π / 4 → Ω = tanh (3 * π / 8) ^ 2 :=
+  FRC.Chart.octant_inversion
 
 /-- 14:C8 [ΛCDM] — the channel-1 consistency: with `Λ = 3Ω_Λ H₀²/c²` (the definition of `Ω_Λ`) the asymptotic
 rate is `H_Λ = c√(Λ/3) = H₀√Ω_Λ`, and the locus read on it, `H_Λ/tanh(3π/8)`, returns `H₀` exactly when
@@ -416,7 +402,7 @@ theorem lcdm_age (Ωm ΩΛ H0 t : ℝ) (hm : 0 < Ωm) (hΛ : 0 < ΩΛ) (hsum : �
     rw [Real.sqrt_lt' one_pos]; linarith
   rw [lcdmScale_eq_one_iff Ωm ΩΛ HΛ t hm hΛ hHpos ht]
   have hx' : t * HΛ = lcdmAge ΩΛ ↔ x = artanh √ΩΛ := by
-    unfold lcdmAge; rw [hx]; constructor <;> intro h <;> linarith
+    unfold lcdmAge FRC.Chart.lcdmAge; rw [hx]; constructor <;> intro h <;> linarith
   rw [hx']
   constructor
   · intro h
@@ -476,7 +462,7 @@ theorem age_bracket :
   have hs1 : (0.82764 : ℝ) < √0.685 := by rw [Real.lt_sqrt (by norm_num)]; norm_num
   have hs2 : √(0.685 : ℝ) < 0.82765 := by rw [Real.sqrt_lt' (by norm_num)]; norm_num
   have hlog : lcdmAge 0.685 = 2 / 3 * (1 / 2 * log ((1 + √0.685) / (1 - √0.685))) := by
-    unfold lcdmAge; rw [Real.artanh_eq_half_log ⟨by linarith, by linarith⟩]
+    unfold lcdmAge FRC.Chart.lcdmAge; rw [Real.artanh_eq_half_log ⟨by linarith, by linarith⟩]
   have hy1 : (10.6036 : ℝ) < (1 + √0.685) / (1 - √0.685) := by
     rw [lt_div_iff₀ (by linarith)]; linarith
   have hy2 : (1 + √0.685) / (1 - √0.685) < 10.6044 := by

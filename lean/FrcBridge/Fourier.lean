@@ -26,7 +26,7 @@ def Clause (p κ : Nat) [Pos p] (g : Shell p) : Prop :=
 /-- From the master's key `FRC.Ledger.p00022` (00:C2): `F^{[κ]} F^{[κ]} = F^{[2κ]}` with the cardinal values. -/
 theorem from_master {p κ : Nat} [Pos p] {g : Shell p} (F : Frame p κ g) : Clause p κ g := fun k j hk hj => by
   obtain ⟨z, hz⟩ := F.exists_inv F.g_ne_zero
-  have K := FRC.Ledger.p00022 F hz
+  have K := FRC.Ledger.p00022.1 F hz
   have e := K.2.2.1 κ κ k j hk hj
   rw [← Nat.two_mul, (K.2.2.2.2.1 k j).2.2.1] at e
   rw [e]
@@ -47,7 +47,7 @@ def Clause (p κ : Nat) [Pos p] (g : Shell p) : Prop :=
 /-- From the master's key `FRC.Ledger.p00022` (00:C2). -/
 theorem from_master {p κ : Nat} [Pos p] {g : Shell p} (F : Frame p κ g) : Clause p κ g := by
   obtain ⟨z, hz⟩ := F.exists_inv F.g_ne_zero
-  exact (FRC.Ledger.p00022 F hz).1
+  exact (FRC.Ledger.p00022.1 F hz).1
 
 /-- From the paper's key `FRC.Ledger.p06027` (6:D4). -/
 theorem from_paper {p κ : Nat} [Pos p] {g : Shell p} (_F : Frame p κ g) : Clause p κ g :=
@@ -60,10 +60,10 @@ namespace C7_1B3
 /-- The clause 00:C7 and 1:B3 share: the oriented quarter-turn `i = −g^κ` squares to `−1`. -/
 def Clause (p κ : Nat) [Pos p] (g : Shell p) : Prop := Frame.quarterTurn g κ * Frame.quarterTurn g κ = -1
 
-/-- From the master's key `FRC.Ledger.p00172` (00:C7): `i = (g⁻¹)^κ`, so `g^κ i = 1` and `i = −g^κ`. -/
+/-- From the master's key `FRC.Ledger.p00189` (00:C7): `i = (g⁻¹)^κ`, so `g^κ i = 1` and `i = −g^κ`. -/
 theorem from_master {p κ : Nat} [Pos p] {g : Shell p} (F : Frame p κ g) : Clause p κ g := by
   obtain ⟨z, hz⟩ := F.exists_inv F.g_ne_zero
-  have hzk := (FRC.Ledger.p00172 F hz).2.1
+  have hzk := (FRC.Ledger.p00189 F hz).2.1
   have e : g ^ κ * z ^ κ = 1 := by rw [← mul_pow, hz, one_pow]
   rw [hzk] at e
   show -(g ^ κ) * -(g ^ κ) = -1

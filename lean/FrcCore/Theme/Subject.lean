@@ -167,7 +167,6 @@ theorem channel (hp : FRC.Nat.isPrime p) {h : Shell p} (hh : h * h = -1) :
 /-- C20's Carrier instance (38:A4): on `Ω = 233`, `78^58 = 89 = ħ`, a root of `−1`. -/
 theorem channel_233 : (78 : Shell 233) ^ 58 = 89 ∧ (89 : Shell 233) * 89 = -1 := by decide
 
-
 /-! ## C13's part 10:G2: the exponent-window ladder on every capacity -/
 
 /-- **10:G2 (p10038), the exponent-window ladder, on every capacity** (C13's first part; the key is paper 10's): coherence
@@ -430,6 +429,31 @@ theorem spinor {κ : Nat} {g : Shell p} (F : Frame p κ g) :
     | .inr h => h
     | .inl h => absurd hall (notinj h)⟩, surj, ⟨solv1, solv2⟩⟩
 
+/-- 00:C16, the converse — for `κ` even no isomorphism `C_{p−1} ≅ C₄ × C_κ` exists: a map `φ` from the nonzero residues
+to the pairs `(r mod 4, s mod κ)` that turns products into sums is never injective, since `2κ` kills `C₄ × C_κ`
+(`4 ∣ 2κ`) while `g^{2κ} = −1 ≠ 1`. -/
+theorem no_iso {κ : Nat} {g : Shell p} (F : Frame p κ g) (hκ : κ % 2 = 0) (φ : Shell p → Nat × Nat)
+    (hφ : ∀ x y : Shell p, x ≠ 0 → y ≠ 0 → φ (x * y) = (((φ x).1 + (φ y).1) % 4, ((φ x).2 + (φ y).2) % κ)) :
+    ¬ ∀ x y : Shell p, x ≠ 0 → y ≠ 0 → φ x = φ y → x = y := fun hinj => by
+  have hg0 : g ≠ 0 := by have := F.pow_ne_zero 1; rwa [pow_one] at this
+  have hpow : ∀ n, φ (g ^ (n + 2)) = (((n + 2) * (φ g).1) % 4, ((n + 2) * (φ g).2) % κ) := fun n => by
+    induction n with
+    | zero => show φ (g ^ 1 * g) = (((0 + 2) * (φ g).1) % 4, ((0 + 2) * (φ g).2) % κ); rw [pow_one, hφ g g hg0 hg0, Nat.zero_add, Nat.two_mul, Nat.two_mul]
+    | succ n ih =>
+      show φ (g ^ (n + 2) * g) = (((n + 1 + 2) * (φ g).1) % 4, ((n + 1 + 2) * (φ g).2) % κ)
+      rw [hφ _ g (F.pow_ne_zero _) hg0, ih, FRC.Nat.mod_add_mod _ _ _ (Nat.zero_lt_succ 3),
+        FRC.Nat.mod_add_mod _ _ _ F.cap_pos, Nat.succ_mul (n + 2) (φ g).1, Nat.succ_mul (n + 2) (φ g).2]
+  obtain ⟨t, ht⟩ := FRC.Nat.mod_spec 2 (Nat.zero_lt_succ 1) κ; rw [hκ, Nat.add_zero] at ht
+  have c1 : ((2 * κ + 2) * (φ g).1) % 4 = ((0 + 2) * (φ g).1) % 4 := by
+    rw [FRC.Nat.add_mul, ht, ← FRC.Nat.mul_assoc 2 2 t, FRC.Nat.mul_assoc (2 * 2) t, Nat.zero_add]
+    exact FRC.Nat.add_mul_mod_self_left _ (t * (φ g).1) 4 (Nat.zero_lt_succ 3)
+  have c2 : ((2 * κ + 2) * (φ g).2) % κ = ((0 + 2) * (φ g).2) % κ := by
+    rw [FRC.Nat.add_mul, Nat.mul_comm 2 κ, FRC.Nat.mul_assoc κ 2, Nat.zero_add]
+    exact FRC.Nat.add_mul_mod_self_left _ _ _ F.cap_pos
+  have he : φ (g ^ (2 * κ + 2)) = φ (g ^ (0 + 2)) := by rw [hpow, hpow, c1, c2]
+  have hg := hinj _ _ (F.pow_ne_zero _) (F.pow_ne_zero _) he; rw [pow_add, Nat.zero_add, F.half_period] at hg
+  have hc : g ^ 2 * -1 = g ^ 2 * 1 := by rw [mul_comm, hg, mul_one]
+  exact Prime.neg_one_ne_one F.two_lt_p (F.mul_left_cancel (F.pow_ne_zero 2) hc)
 
 /-- `2^k ∣ 2^a u` with `u` odd forces `k ≤ a`. -/
 theorem pow_dvd_odd {a k u : Nat} (hu : u % 2 = 1) : 2 ^ k ∣ 2 ^ a * u → k ≤ a
@@ -733,6 +757,32 @@ theorem horizon_antipode (hp : FRC.Nat.isPrime p) {κ : Nat} (hκ : p = 4 * κ +
   exact ⟨hne, hact, fun u hu => norm_ratio hp hu, fun c u hc => ratio_scale hp hc u, fun u v => ratio_mul u v, hinj,
     hsurj, h01, hm1, hord2, hrat, hinv, hwact,
     fun s hs => (Prime.mul_eq_zero hp hs).resolve_left h2, Prime.two_mul_chart_half hκ, hseam⟩
+
+/-- 00:C25 — the horizon is `ζ^{(p+1)/2}` for every generator `ζ` of the torus: a norm-one `ζ` of order exactly `p + 1`
+has `ζ^{2κ+1} = −1`, the torus's one element of order two. -/
+theorem horizon_generator (hp : FRC.Nat.isPrime p) {κ : Nat} (hκ : p = 4 * κ + 1) (hν : ¬ ∃ y : Shell p, y * y = ν)
+    (ζ : Extension.Ext p ν) (hn : ζ.norm = 1) (hζ : ζ ^ (p + 1) = 1)
+    (hmin : ∀ l, 0 < l → l < p + 1 → ζ ^ l ≠ 1) : ζ ^ (2 * κ + 1) = -1 := by
+  have hh : (2 * κ + 1) + (2 * κ + 1) = p + 1 := by
+    rw [hκ, show 4 * κ = 2 * κ + 2 * κ from FRC.Nat.add_mul 2 2 κ]; exact congrArg Nat.succ (Nat.succ_add _ _)
+  have hsq : ζ ^ (2 * κ + 1) * ζ ^ (2 * κ + 1) = 1 := by rw [← Extension.Ext.pow_add, hh, hζ]
+  have hnorm : (ζ ^ (2 * κ + 1)).norm = 1 := by rw [Extension.Ext.norm_pow, hn, one_pow]
+  have hlt : 2 * κ + 1 < p + 1 := by rw [← hh]; exact Nat.lt_add_of_pos_right (Nat.zero_lt_succ _)
+  match (horizon_antipode hp hκ hν).2.2.2.2.2.2.2.2.2.1 _ hnorm hsq with
+  | .inl e => exact absurd e (hmin _ (Nat.zero_lt_succ _) hlt)
+  | .inr e => exact e
+
+/-- 00:C25 — `u_P` is the unique boost carrying the origin to `P`: a boost `v` with `v · dir(0, 1) = c · dir(x, y)` is
+`(c/ν) · dir(x, y)`, so it is `dir(x, y)` up to a scalar, which acts trivially on `ℙ¹` and leaves the ratio unchanged. -/
+theorem boost_unique (hp : FRC.Nat.isPrime p) (hν : ¬ ∃ y : Shell p, y * y = ν) (v : Extension.Ext p ν) (c x y : Shell p)
+    (h : v * dir ν 0 1 = Extension.Ext.ofShell c * dir ν x y) :
+    v = Extension.Ext.ofShell (c * inv ν) * dir ν x y := by
+  have h0 : dir ν 0 1 = Extension.Ext.ofShell ν := Extension.Ext.ext (mul_one ν) rfl
+  have hi : (Extension.Ext.ofShell (inv ν) : Extension.Ext p ν) * Extension.Ext.ofShell ν = 1 := by
+    rw [Extension.Ext.ofShell_mul, mul_comm, mul_inv hp (nonsquare_ne_zero hν)]; rfl
+  calc v = Extension.Ext.ofShell (inv ν) * Extension.Ext.ofShell ν * v := by rw [hi, Extension.Ext.one_mul]
+    _ = Extension.Ext.ofShell (inv ν) * (v * dir ν 0 1) := by rw [h0, Extension.Ext.mul_assoc, Extension.Ext.mul_comm _ v]
+    _ = Extension.Ext.ofShell (c * inv ν) * dir ν x y := by rw [h, ← Extension.Ext.mul_assoc, Extension.Ext.ofShell_mul, mul_comm (inv ν) c]
 
 end torus
 

@@ -1,0 +1,260 @@
+{
+ "schema": "frc-bridges/1",
+ "task": "LM34",
+ "date": "2026-10-07",
+ "rule": "Gate G14 (ci/gates.py): every counterpart pair that differs and has core proofs on both sides (a master row bound to a core key in its block file's PROOFS, a paper row whose Lean cells cite FrcCore; pairs that share one key, import rows and open rows excluded) has an entry here. A bridged pair names its namespace in lean/FrcBridge, which states the shared Clause and derives it from each side's key (from_master, from_paper), or a theorem deriving one key from the other. A pair that waits is reported until its paper migrates (LM36); a missing pair fails.",
+ "statuses": {
+  "bridged": "a bridge in lean/FrcBridge",
+  "no shared clause": "the two keys share no Lean clause (the reason given)",
+  "shared theorem": "the shared clause is one theorem both keys conjoin",
+  "definition": "the paper row is a definition",
+  "waits": "waits for the paper's migration; reported, not failed"
+ },
+ "pairs": [
+  {
+   "master": "A5",
+   "paper": "25:D1",
+   "status": "bridged",
+   "lean": "FRC.Bridge.A5_25D1",
+   "note": "LM23: the same clause against 25:D1's storage bound"
+  },
+  {
+   "master": "A5",
+   "paper": "5:C2",
+   "status": "bridged",
+   "lean": "FRC.Bridge.A5_5C2",
+   "note": "LM23: a part with fewer states than the whole holds no injective representation of it"
+  },
+  {
+   "master": "B7",
+   "paper": "10:E4",
+   "status": "bridged",
+   "lean": "FRC.Bridge.B7_10E4",
+   "note": "LM22: on a frame of capacity S, 2x + 1 = 0 iff x = 2S, and x² = y² ⇒ x = ±y"
+  },
+  {
+   "master": "B10",
+   "paper": "10:E5",
+   "status": "waits",
+   "lean": null,
+   "note": "LM22: 10:E5's core key carries the linkage and two instances and no clause of B10; its sign assignments are on Mathlib only; the bridge waits for 10-dimensions' migration (LM36)"
+  },
+  {
+   "master": "B14",
+   "paper": "14:C6",
+   "status": "bridged",
+   "lean": "FRC.Bridge.B14_14C6",
+   "note": "LM22: an element with ζ⁴ = −1 and ζ⁸ = 1 exists iff the capacity is even; and 14:C6 ⇒ B14 (b14_of_14C6, the Phase 4 audit's M4)"
+  },
+  {
+   "master": "C1",
+   "paper": "2:D1",
+   "status": "bridged",
+   "lean": "FRC.Bridge.C1_2D1",
+   "note": "LM24: g^{2κ} = −1"
+  },
+  {
+   "master": "C1",
+   "paper": "2:D3",
+   "status": "definition",
+   "lean": null,
+   "note": "2:D3 is a definition row (the oriented quarter-turn); nothing to derive"
+  },
+  {
+   "master": "C2",
+   "paper": "6:B5",
+   "status": "bridged",
+   "lean": "FRC.Bridge.C2_6B5",
+   "note": "LM25: F^{[κ]} F^{[κ]} = F^{[2κ]} with the cardinal values"
+  },
+  {
+   "master": "C2",
+   "paper": "6:D4",
+   "status": "bridged",
+   "lean": "FRC.Bridge.C2_6D4",
+   "note": "LM25: the transform's cardinal values"
+  },
+  {
+   "master": "C3",
+   "paper": "3:B2",
+   "status": "no shared clause",
+   "lean": null,
+   "note": "LM24: on a frame the shared clause is C3's own first clause; a bridge would restate it"
+  },
+  {
+   "master": "C3",
+   "paper": "3:B4",
+   "status": "no shared clause",
+   "lean": null,
+   "note": "LM24: 3:B4's key counts zeros and tori on fixed shells; C3's key has no count"
+  },
+  {
+   "master": "C3",
+   "paper": "3:C2",
+   "status": "no shared clause",
+   "lean": null,
+   "note": "LM24: 3:C2's key states the boosts and their composition; C3's key states no torus"
+  },
+  {
+   "master": "C3",
+   "paper": "8:B3",
+   "status": "bridged",
+   "lean": "FRC.Bridge.C3_8B3",
+   "note": "LM24: g is a nonsquare; 2⁻¹ is a square iff κ is even"
+  },
+  {
+   "master": "C3",
+   "paper": "8:B4",
+   "status": "bridged",
+   "lean": "FRC.Bridge.C3_8B4",
+   "note": "LM24: 2⁻¹ · (2g) = g; 2g is a square iff κ is odd"
+  },
+  {
+   "master": "C3",
+   "paper": "8:B6",
+   "status": "no shared clause",
+   "lean": null,
+   "note": "LM24: 8:B6's norm law joins C8's key (the Phase 4 repairs); its inverse-drive clause is bridged under C8"
+  },
+  {
+   "master": "C3",
+   "paper": "8:B7",
+   "status": "no shared clause",
+   "lean": null,
+   "note": "LM24: the same"
+  },
+  {
+   "master": "C3",
+   "paper": "8:D5",
+   "status": "no shared clause",
+   "lean": null,
+   "note": "LM24: the same"
+  },
+  {
+   "master": "C7",
+   "paper": "1:B3",
+   "status": "bridged",
+   "lean": "FRC.Bridge.C7_1B3",
+   "note": "LM25: i = (g⁻¹)^κ, so g^κ i = 1 and i = −g^κ"
+  },
+  {
+   "master": "C7",
+   "paper": "2:D3",
+   "status": "definition",
+   "lean": null,
+   "note": "the same"
+  },
+  {
+   "master": "C8",
+   "paper": "10:E4",
+   "status": "no shared clause",
+   "lean": null,
+   "note": "LM24: 'S even makes 2⁻¹ a square' is in 10:E4's text, not its key"
+  },
+  {
+   "master": "C8",
+   "paper": "8:B5",
+   "status": "bridged",
+   "lean": "FRC.Bridge.C8_8B5",
+   "note": "LM24: g^m is a square iff m is even"
+  },
+  {
+   "master": "C8",
+   "paper": "8:B6",
+   "status": "bridged",
+   "lean": "FRC.Bridge.C8_8B6",
+   "note": "LM24: g⁻¹ is a nonsquare"
+  },
+  {
+   "master": "C14",
+   "paper": "13:B2",
+   "status": "bridged",
+   "lean": "FRC.Bridge.C14_13B2",
+   "note": "LM24: every frame is g^u, its quarter-turn i when u ≡ 1 (mod 4) and −i when u ≡ 3"
+  },
+  {
+   "master": "C14",
+   "paper": "2:D6",
+   "status": "bridged",
+   "lean": "FRC.Bridge.C14_Euler",
+   "note": "LM24: (gⁱ)^{2κi} = (−1)ⁱ"
+  },
+  {
+   "master": "C14",
+   "paper": "6:B2",
+   "status": "bridged",
+   "lean": "FRC.Bridge.C14_Euler",
+   "note": "LM24: the same clause"
+  },
+  {
+   "master": "C16",
+   "paper": "14:C6",
+   "status": "no shared clause",
+   "lean": null,
+   "note": "LM24: by the octant"
+  },
+  {
+   "master": "C16",
+   "paper": "14:X4",
+   "status": "no shared clause",
+   "lean": null,
+   "note": "LM24: by the class of 2"
+  },
+  {
+   "master": "C16",
+   "paper": "20:B1",
+   "status": "definition",
+   "lean": null,
+   "note": "20:B1 is a definition row"
+  },
+  {
+   "master": "C16",
+   "paper": "8:B3",
+   "status": "no shared clause",
+   "lean": null,
+   "note": "LM24: 8:B3's key decides κ's parity by the class of i; C16's by 8 ∤ p − 1 and the fold"
+  },
+  {
+   "master": "C16",
+   "paper": "8:B5",
+   "status": "no shared clause",
+   "lean": null,
+   "note": "LM24: by the square class"
+  },
+  {
+   "master": "C20",
+   "paper": "8:F4",
+   "status": "bridged",
+   "lean": "FRC.Bridge.C20_8F4",
+   "note": "LM24: x ≠ 0 with x^{p+1} = 1 is ±1"
+  },
+  {
+   "master": "E6",
+   "paper": "21:C13",
+   "status": "shared theorem",
+   "lean": "FRC.Grav.count_identity",
+   "note": "LM27: the shared clause is one theorem, which both keys conjoin"
+  },
+  {
+   "master": "E7",
+   "paper": "21:C13",
+   "status": "shared theorem",
+   "lean": "FRC.Grav.count_identity",
+   "note": "LM27: the same"
+  },
+  {
+   "master": "Z1",
+   "paper": "25:C1",
+   "status": "bridged",
+   "lean": "FRC.Bridge.Z1_25C1",
+   "note": "LM26: no finite successor misses an element"
+  },
+  {
+   "master": "Z10",
+   "paper": "20:E12",
+   "status": "shared theorem",
+   "lean": "FRC.Horizon.shift_power_character, FRC.Horizon.shift_trace, FRC.Horizon.readout_on_line, FRC.Horizon.readout_slot_index",
+   "note": "LM26: Z10's key conjoins the theorems 20:E12's core cells name (20-rh's names are aliases of these); 20:E12's binding takes Z10's conjuncts (propagation list)"
+  }
+ ]
+}

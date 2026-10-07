@@ -10,7 +10,7 @@ brackets follow the Lean theorems of lean/FrcLedger/Theme/Chart.lean, which cert
 places, e to nine and the Taylor tail. A bracket is a pair (lo, hi) of Fractions with lo < value < hi.
 
 The chart's numerals are declared data: the speed of light, the megaparsec, the Julian year, the octant depth of the
-channel-1 anchor, the ledger's ln Ω, the fitted values and their errors. That the octant is the record depth, that the
+row's depth numeral, the stellar age, the ledger's ln Ω, the fitted values and their errors. That the octant is the record depth, that the
 floor is the synchronisation threshold and that ln Ω is the tilt's e-fold count are the rows' realisation clauses.
 """
 import math
@@ -20,12 +20,13 @@ from fractions import Fraction as Q
 C_LIGHT = 299792458                       # m s⁻¹, exact (SI)
 MPC_KM = Q("3.0856775814913673e19")       # km per megaparsec (IAU 2015)
 JULIAN_YEAR = Q(36525, 100) * 86400       # s
-AGE_GYR = Q("13.79")                      # the octant depth read in the chart, Gyr (the channel-1 anchor; 00:L3, 14:P2)
+AGE_GYR = Q("13.79")                      # the row's octant depth numeral, Gyr: the channel-1 consistency reading (00:L3, 14:P3)
+STELLAR_AGE = (Q("13.61"), Q("0.34"))     # the fit-independent stellar age and its error, Gyr (14:P3, 14:A8)
 H0_ENTAILED = Q("67.4")                   # the entailed rate, km s⁻¹ Mpc⁻¹ (00:L1, 00:L3, 21:P3)
 OMEGA_L_FIT = (Q("0.685"), Q("0.007"))    # Planck 2018 Ω_Λ and its error (14:A8)
 A0_FIT = (Q("1.20e-10"), Q("0.24e-10"))   # the fitted floor and its systematic, m s⁻² (21:P3)
 TILT_FIT = (Q("-0.0351"), Q("0.0042"))    # Planck 2018 n_s − 1 and its error (00:L8)
-H0_ERR = Q("0.7")                         # 14-entropy's error on the entailed rate (independent errors, ±0.65 rounded)
+H0_ERR = Q("1.7")                         # the stellar age's error carried to the rate, rounded (14:P3)
 LADDER_FIT = (Q("73.0"), Q("1.0"))        # the Cepheid ladder's H₀ (Riess 2022), km s⁻¹ Mpc⁻¹ (00:L3, 14-entropy)
 LN_OMEGA = Q("283.5")                     # the ledger's ln Ω (00:A9, 00:L8)
 
@@ -153,10 +154,16 @@ def show(x, spec):
     return format(float(x), spec)
 
 
-def ladder_pull_bracket(age_gyr=AGE_GYR):
-    """(H_ladder − H₀)/√(0.7² + 1.0²), the ladder's pull on the entailed rate with the errors combined, over the bracket
-    of H₀; the square root bracketed by (1.2206, 1.2207), whose squares straddle 1.49."""
-    s_lo, s_hi = Q("1.2206"), Q("1.2207")
+def rate_error_bracket(age=STELLAR_AGE):
+    """The age's error carried to the rate read on it: H₀ · σ_t/t over the bracket of H₀ (00:L3, 14:P3)."""
+    lo, hi = hubble_bracket(age[0])
+    return (lo * age[1] / age[0], hi * age[1] / age[0])
+
+
+def ladder_pull_bracket(age_gyr=STELLAR_AGE[0]):
+    """(H_ladder − H₀)/√(1.7² + 1.0²), the ladder's pull on the rate read on the stellar age, errors combined, over the
+    bracket of H₀; the square root bracketed by (1.9723, 1.9724), whose squares straddle 3.89."""
+    s_lo, s_hi = Q("1.9723"), Q("1.9724")
     assert s_lo ** 2 < H0_ERR ** 2 + LADDER_FIT[1] ** 2 < s_hi ** 2
     lo, hi = hubble_bracket(age_gyr)
     return ((LADDER_FIT[0] - hi) / s_hi, (LADDER_FIT[0] - lo) / s_lo)

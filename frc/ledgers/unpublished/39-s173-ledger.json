@@ -1,0 +1,292 @@
+{
+ "paper": "39-s173",
+ "status": "unpublished",
+ "title": "Numeric Observation of Hydrogen on the $(173,30089)$ Holographic Substrate",
+ "source": "39-s173-20260808/ledger/s173-ledger.tex",
+ "note": "Unpublished (decision Q04, 7 October 2026): no page, no link and no accession key until the paper is posted; the master rows that cite it name it without a link.",
+ "blocks": [
+  {
+   "letter": "A",
+   "title": "the tower certificate",
+   "rows": [
+    {
+     "label": "A1",
+     "predicate": "\\textbf{The tower.} $\\q=13=4\\kap_{\\q}+1$ ($\\kap_{\\q}=3$), $\\p=173=4\\kap+1$ ($\\kap=43$), $\\Om=30089=4\\dS+1$ ($\\dS=7522=2\\cdot3761$, $3761$ prime); all three prime. $\\gen=2$ generates $\\F_{173}^{\\times}$ (order $172$); $i=\\gen^{-\\kap} =\\gen^{129}=93$, $i^{2}=-1$; $-\\gen^{43}=-80=93$ (heights mod $\\p-1=172$).",
+     "tag": "T",
+     "source": "\\src{verify-}\\allowbreak\\src{tower}",
+     "key": null
+    },
+    {
+     "label": "A2",
+     "predicate": "\\textbf{Subject minimality.} $173$ is the first prime above $\\q^{2}=169$ ($170,171,172$ composite) and is admissible at first strike: $\\kap=43$ odd (00:C16). No candidate is skipped; the Subject is forced.",
+     "tag": "T",
+     "source": "\\src{verify-}\\allowbreak\\src{tower}",
+     "key": null
+    },
+    {
+     "label": "A3",
+     "predicate": "\\textbf{Carrier minimality.} Of the eleven primes in $(29929,30089]$, ten fail the admissibility predicate (seven are $\\equiv3\\bmod4$; three have $\\dS\\not\\equiv2\\bmod4$); $30089$ passes all: $\\dS\\equiv2\\ (4)$, $\\dS\\equiv1\\ (3)$, $\\Om\\equiv41\\ (48)$, $\\p^{2}=29929<30089$.",
+     "tag": "T",
+     "source": "\\src{verify-}\\allowbreak\\src{tower}",
+     "key": null
+    },
+    {
+     "label": "A4",
+     "predicate": "\\textbf{Joint minimality.} The next admissible Subject is $181$ ($\\kap=45$ odd); $181^{2}=32761>30089$: no larger Subject yields a smaller Carrier. The pair $(173,30089)$ is minimal in both coordinates.",
+     "tag": "T",
+     "source": "\\src{verify-}\\allowbreak\\src{tower}",
+     "key": null
+    },
+    {
+     "label": "A5",
+     "predicate": "\\textbf{The graded tower.} The Subject role reads $(n-1)/4$ odd; the Carrier role reads $(n-1)/4\\equiv2\\ (4)$; both read the same number, so no shell holds both roles at full predicate. Only the horizon clause transports down: the Object clause is $\\q^{2}<\\p$ alone, with no parity condition on the $(\\q,\\p)$ pair.",
+     "tag": "T",
+     "source": "\\src{verify-}\\allowbreak\\src{tower}",
+     "key": null
+    },
+    {
+     "label": "A6",
+     "predicate": "\\textbf{The admissibility criteria} (the gate this certificate runs): shells prime, $4k+1$; $\\kap$ odd (00:C16); $\\dS\\equiv2\\ (4)\\wedge\\dS\\equiv1\\ (3)$ (\\src{38-s13}); coherence horizon $\\p^{2}<\\Om$; Object-in-Subject $\\q^{2}<\\p$ --- the horizon clause transported down one register (author doctrine 3 Aug 2026; master promotion queued). $\\kap_{\\q}=3$ is the first non-trivial Object shell: $\\kap_{\\q}=2$ gives $9$, composite (00:Y1).",
+     "tag": "D",
+     "source": "\\src{38-s13,}\\newline\\src{00-}\\allowbreak\\src{ledger}",
+     "key": null
+    },
+    {
+     "label": "A7",
+     "predicate": "\\textbf{The drive factorisation at $\\kap=43$.} $C_{172}=C_{4}\\times C_{43}$; quarter $i=\\gen^{129}=93$; rung part $r=\\gen^{4\\cdot(4^{-1}\\bmod43)}=\\gen^{44} =16^{11}=160$, eleven elementary rungs ($(\\kap+1)/4=11$); the drive factors $\\gen=i\\cdot r$: $93\\cdot160\\equiv2$. The unit-exponent privilege of the minimal Subject (00:A2, 38:A2) fails here exactly as the general law requires. The spinor clock $\\eta=\\sqrt{\\gen}$ has order $2(\\p-1)=344$ ($2$ a non-residue: $2^{86}=-1$).",
+     "tag": "T",
+     "source": "\\src{verify-}\\allowbreak\\src{tower}",
+     "key": null
+    },
+    {
+     "label": "A8",
+     "predicate": "\\textbf{The registration gcds.} Hydrogen into the Subject: quarter $\\gcd(\\q-1,\\p-1)=\\gcd(12,172)=4$; sign $\\gcd(\\q+1,\\p+1)=\\gcd(14,174)=2$; triality $3\\nmid172$, $3\\parallel174$ --- a split registration; the $7$-torsion of $C_{14}$ registers nowhere in the quadratic frame layer ($7\\nmid\\p^{2}-1=29928$). The proton ($\\q=5$, $25<173$, co-resident) registers whole on both faces: $\\gcd(4,172)=4$, $6\\mid174$. The proton Subject divides the hydrogen Subject's boost torus: $29\\mid174$.",
+     "tag": "T",
+     "source": "\\src{verify-}\\allowbreak\\src{tower}",
+     "key": null
+    },
+    {
+     "label": "A9",
+     "predicate": "\\textbf{Carrier structure.} $\\Om-1=2^{3}\\cdot3761$ ($3761$ prime), $\\dS=2\\cdot3761$, $\\Om+1=30090=2\\cdot3\\cdot5\\cdot17\\cdot59$. Triality is exact on both new shells ($3\\parallel174$, $3\\parallel30090$) against none at the Objectless pair ($13+1=14=2\\cdot7$).",
+     "tag": "T",
+     "source": "\\src{verify-}\\allowbreak\\src{tower}",
+     "key": null
+    }
+   ]
+  },
+  {
+   "letter": "B",
+   "title": "registration and visibility (ex-O1; 00:F5)",
+   "rows": [
+    {
+     "label": "B1",
+     "predicate": "\\textbf{The graded registration law.} Every primary component $\\ell^{a}$ of the Object's phase faces $C_{\\q-1}$, $C_{\\q+1}$ registers in the Subject's frame tower at depth exactly $d=\\mathrm{ord}_{\\ell^{a}}(\\p)$: $d=1$ absorbed into the register $C_{\\p-1}$ (the image its unique $C_{\\ell^{a}}$; the quarter of any $\\q\\equiv1\\ (4)$ Object always absorbs, $4\\mid\\p-1$); $d=2$ observable on the boost torus $C_{\\p+1}$ (the home unique: $\\gcd(\\p-1,\\p+1)=2$); $d>2$ beyond the quadratic frame, registering first in $\\F_{\\p^{d}}$. The sign registers always, in the two faces' intersection $\\{\\pm1\\}$.",
+     "tag": "T",
+     "source": "\\src{verify-}\\allowbreak\\src{regmap-}\\allowbreak\\src{general}",
+     "key": null
+    },
+    {
+     "label": "B2",
+     "predicate": "\\textbf{The instance registration.} Hydrogen at $\\p=173$: the quarter absorbed with images $\\{1,80,93,172\\}$; the triality observable at $\\omega=86+155j$ ($\\omega^{2}=86+18j$, $j^{2}=2$); the interior $7$-torsion at depth $6$. The drawn registration surface carries exactly this split.",
+     "tag": "T",
+     "source": "\\src{verify-}\\allowbreak\\src{registration}",
+     "key": null
+    },
+    {
+     "label": "B3",
+     "predicate": "\\textbf{The controls.} The proton registers whole ($d\\le2$ throughout); $(5,13)$ is refused by the horizon clause before any map is computed.",
+     "tag": "T",
+     "source": "\\src{verify-}\\allowbreak\\src{regmap-}\\allowbreak\\src{general}",
+     "key": null
+    },
+    {
+     "label": "B4",
+     "predicate": "\\textbf{The visibility law.} A component is visible iff $\\p^{d}<\\Om$; the capacity bound on frame depth $K=\\max\\{k:\\p^{k}<\\Om\\}$ equals $2$ at every saturating and every minimal tower: the admitting clause $\\p^{2}<\\Om$ is also the clause hosting the observable sector.",
+     "tag": "T",
+     "source": "\\src{verify-}\\allowbreak\\src{y1-}\\allowbreak\\src{horizon}",
+     "key": null
+    },
+    {
+     "label": "B5",
+     "predicate": "\\textbf{Opacity is relational.} The intrinsic-opacity candidate is killed by admissible witnesses: $d(7,173)=6$ (opaque; a hosting Carrier needs $\\Om>173^{6}=26{,}808{,}753{,}332{,}089$), $d(7,181)=2$ (observable), $d(7,197)=1$ (absorbed). Among the $129$ admissible Subjects below $2000$ the interior is absorbed at $19$, observable at $24$, opaque at $86$. Opacity is a joint datum of Object, Subject, and Carrier.",
+     "tag": "T",
+     "source": "\\src{verify-}\\allowbreak\\src{regmap-}\\allowbreak\\src{general}",
+     "key": null
+    }
+   ]
+  },
+  {
+   "letter": "C",
+   "title": "binding (the binding face of 00:Y1; 00:F6)",
+   "rows": [
+    {
+     "label": "C1",
+     "predicate": "\\textbf{The fusion criterion.} A registered pair fuses precisely when its cycles are coprime with unit windings (exhaustively swept to $20$); non-coprime pairs never fuse. The deuteron is the $(4,4)$ obstruction --- spectrumless exactly.",
+     "tag": "T",
+     "source": "\\src{verify-}\\allowbreak\\src{y1-}\\allowbreak\\src{binding}",
+     "key": null
+    },
+    {
+     "label": "C2",
+     "predicate": "\\textbf{The binding lift.} Fusion carries the half-driven pair's offset classes $A/\\langle(1,0)\\rangle\\cong C_{3}$ (the unbound electron's coordinate) isomorphically onto the core rungs: superselection labels become outcome channels. Hydrogen $(4,3)\\to C_{12}=C_{4}\\times C_{3}$, the product exactly when $\\kap_{\\q}$ is odd.",
+     "tag": "T",
+     "source": "\\src{verify-}\\allowbreak\\src{y1-}\\allowbreak\\src{binding}",
+     "key": null
+    },
+    {
+     "label": "C3",
+     "predicate": "\\textbf{The core ladder.} Cores $=$ the odd part of $\\q-1$: trivial at $\\q=5,17$; first non-trivial at $\\q=13$ --- hydrogen is the minimal Object with a spectrum.",
+     "tag": "T",
+     "source": "\\src{verify-}\\allowbreak\\src{y1-}\\allowbreak\\src{binding}",
+     "key": null
+    }
+   ]
+  },
+  {
+   "letter": "D",
+   "title": "observation (ex-O2)",
+   "rows": [
+    {
+     "label": "D1",
+     "predicate": "\\textbf{Pointer channels are forced.} The absorbed class is gauge ($1+i+i^{2}+i^{3}\\equiv0\\bmod173$, the fibre coherence identity); the torus core is gauge-disjoint ($C_{3}\\cap\\F_{173}^{\\times}=\\{1\\}$): the pointer channels are the registered core's characters $\\{1,\\omega,\\omega^{2}\\}$, with no further choice.",
+     "tag": "T",
+     "source": "\\src{verify-}\\allowbreak\\src{y1-}\\allowbreak\\src{channels}",
+     "key": null
+    },
+    {
+     "label": "D2",
+     "predicate": "\\textbf{The realisation, constitutive.} \\emph{The wave function of a bound Object is the Subject's record of registered coincidences} --- the state is the amplitude tuple $c_s$ on the pointer channels; the amplitude face the coherent class-fibre sum, the tally face the incoherent channel count ($1+\\omega+\\omega^{2}=0$, $T'=516$). Falsifiers, fixed before drawing: dephasing residue, census deviation, rate deviation, station offsets.",
+     "tag": "R",
+     "source": "\\src{verify-}\\allowbreak\\src{o2-}\\allowbreak\\src{ledger}",
+     "key": null
+    },
+    {
+     "label": "D3",
+     "predicate": "\\textbf{The census weight law.} A registration event is a sign coincidence in the faces' intersection; $W_s\\propto\\gcd(s,3)$ --- rates $3{:}1{:}1$ ($\\{6,2,2\\}/516$ per node), the ground state fully coherent, each lift dephased to a third. The census is exactly uniform per shell and per row (full enumeration, $14{,}792\\times516$; totals $88{,}752=3\\times29{,}584$): the ground state is uniform on the light cone at triple rate; radial profiles are deep-tower content, by doctrine.",
+     "tag": "T",
+     "source": "\\src{verify-}\\allowbreak\\src{o2-}\\allowbreak\\src{ledger}",
+     "key": null
+    }
+   ]
+  },
+  {
+   "letter": "E",
+   "title": "the spectrum (ex-O3)",
+   "rows": [
+    {
+     "label": "E1",
+     "predicate": "\\textbf{The ladder.} $E_s=s\\,h/3$ (energy is winding; $E=hf$ an identity), drawn as the station offsets $\\{0,58,116\\}$ on the boost clock ($174=3\\cdot58$). The rung-resolved census is drawn as station multiplicity $=$ the weight $\\gcd(s,3)$ --- the ground rung three marks to each lift's one, the exact rates of D3 on both sky views, certified.",
+     "tag": "T",
+     "source": "\\src{verify-}\\allowbreak\\src{y1-}\\allowbreak\\src{channels,}\\allowbreak\\src{-173page}",
+     "key": null
+    },
+    {
+     "label": "E2",
+     "predicate": "\\textbf{The kill test.} Any rung structure indistinct from proto-transport kills the hydrogen clause; passed: the ladder nondegenerate, the proton coreless.",
+     "tag": "T",
+     "source": "\\src{verify-}\\allowbreak\\src{y1-}\\allowbreak\\src{channels}",
+     "key": null
+    },
+    {
+     "label": "E3",
+     "predicate": "\\textbf{The $\\Om$-hard face.} The absolute rung energies --- the Rydberg profile --- are the deep-tower shadow, decided by the totality: a demarcation stated as a result, not an open item.",
+     "tag": "Ω",
+     "source": "\\src{00-}\\allowbreak\\src{ledger}",
+     "key": null
+    }
+   ]
+  },
+  {
+   "letter": "F",
+   "title": "interaction (ex-O4)",
+   "rows": [
+    {
+     "label": "F1",
+     "predicate": "\\textbf{The structural theorem.} Co-resident proton and hydrogen interact by joint channel occupancy in shared unique homes; no fusion ($\\gcd(4,12)=4$): the quarter offset $\\delta\\in C_{4}$ is conserved and superselects, giving twelve sectors with $\\varepsilon$; the floor shell is channel-trivial; the joint cycle closes at $T=516$ ($4$ of the $48$ characters orbit-trivial).",
+     "tag": "T",
+     "source": "\\src{verify-}\\allowbreak\\src{o4-}\\allowbreak\\src{interaction}",
+     "key": null
+    },
+    {
+     "label": "F2",
+     "predicate": "\\textbf{The proton-conditioned census.} Supported on exactly the even-height nodes --- half the support (00:C14's fold in the counting); per-shell $1032/344/344$.",
+     "tag": "T",
+     "source": "\\src{verify-}\\allowbreak\\src{o4-}\\allowbreak\\src{interaction}",
+     "key": null
+    },
+    {
+     "label": "F3",
+     "predicate": "\\textbf{The exchange dynamics.} The second conserved offset $\\varepsilon=\\pi_p-s_h$ on the one shared torus $C_{3}$; the elementary exchange $(\\pi_p{+}1,s_h{-}1)$ conserves $\\sigma=\\pi_p+s_h$ --- the $h/3$ quantum moves between residents, energy conservation as torus arithmetic --- and steps $\\varepsilon$: the dynamics is a walk on the three values of $\\varepsilon$; exchanges are parity-gated.",
+     "tag": "T",
+     "source": "\\src{verify-}\\allowbreak\\src{o4-}\\allowbreak\\src{exchange}",
+     "key": null
+    },
+    {
+     "label": "F4",
+     "predicate": "\\textbf{The frozen quarter.} $\\delta$ is uncarriable: $v_{2}(174)=1$ --- the observable torus has no $C_{4}$ --- so quarter phase is conserved by arithmetic, not decree. The exchange kernel is $\\{1,\\tfrac13,\\tfrac13\\}$: the gcd counting law, one law across channels, sectors, and exchanges; no further selection rules.",
+     "tag": "T",
+     "source": "\\src{verify-}\\allowbreak\\src{o4-}\\allowbreak\\src{exchange}",
+     "key": null
+    },
+    {
+     "label": "F5",
+     "predicate": "\\textbf{The declared import.} Channel-selectivity (00:C11) is the one imported premise of blocks D--F, carried from the published prior and cited, never re-proved.",
+     "tag": "D",
+     "source": "\\src{22-qm}",
+     "key": null
+    }
+   ]
+  },
+  {
+   "letter": "V",
+   "title": "audits",
+   "rows": [
+    {
+     "label": "V1",
+     "predicate": "\\textbf{Suite 0}: \\src{validation/verify-tower.js}, $25$ integer-exact checks, all passing (8 Aug 2026). Scope: the Object shell (00:Y1 floor), Subject and Carrier minimality scans, joint minimality, role disjointness, the proton-tower control $(5\\subset29\\subset857)$ under the same code, instance factorizations, the registration gcds, the drive factorisation and spinor-clock order at $\\kap=43$. No float in any asserted check.",
+     "tag": "T",
+     "source": "\\src{verify-}\\allowbreak\\src{tower}",
+     "key": null
+    },
+    {
+     "label": "V2",
+     "predicate": "\\textbf{The theory suites.} \\src{verify-regmap-general} ($16$), \\src{verify-registration} ($14$), \\src{verify-y1-horizon} ($8$), \\src{verify-y1-binding} ($7$), \\src{verify-y1-channels} ($8$), \\src{verify-o2-ledger} ($8$, incl.\\ the full $14{,}792\\times516$ enumeration), \\src{verify-o4-interaction} ($7$), \\src{verify-o4-exchange} ($6$): with suite 0, $99$ integer-exact checks, all passing (11 Aug 2026).",
+     "tag": "T",
+     "source": "all",
+     "key": null
+    },
+    {
+     "label": "V3",
+     "predicate": "\\textbf{The page gate.} \\src{verify-173page.js} ($84$ rendering checks: the residue law on all sites, the register field census, the census rings, the FPV perspective and furniture grades) with the port oracle \\src{verify-skyport.js} (op-stream identity against the frozen $(13,233)$ page).",
+     "tag": "T",
+     "source": "\\src{verify-}\\allowbreak\\src{173page}",
+     "key": null
+    },
+    {
+     "label": "V4",
+     "predicate": "\\textbf{The manuscript gate.} \\src{verify-manuscript.js} ($13$ checks): every staked number of \\src{main.tex} against its certified value; the banned tokens and unapproved coinages absent; the realisation grammar constitutive; the import declared.",
+     "tag": "T",
+     "source": "\\src{verify-}\\allowbreak\\src{manuscript}",
+     "key": null
+    }
+   ]
+  }
+ ],
+ "master": {
+  "B1": [
+   "F5"
+  ],
+  "B2": [
+   "F5"
+  ],
+  "B3": [
+   "F5"
+  ],
+  "B4": [
+   "F5"
+  ],
+  "B5": [
+   "F5"
+  ]
+ }
+}

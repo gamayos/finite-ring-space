@@ -1,4 +1,3 @@
-import FrcCore.Theme.Field
 import FrcCore.Theme.Foundation
 import FrcCore.Theme.Drive
 
@@ -16,9 +15,6 @@ namespace FRC.Ledger
 /-- p00159 — 00:A5. A bounded observer is a proper part, $|O|<\Om$: it holds no injective encoding of the totality into its own states (25:D1, 5:C2). The limitative content of the classical theorems lives at the comprehension horizon (Z1, Z9). -/
 theorem p00159 : ∀ {Ω o : Nat} [FRC.Pos Ω], o < Ω → ∀ (ρ : FRC.Shell Ω → Nat), (∀ (x : FRC.Shell Ω), ρ x < o) → ∃ x y, x ≠ y ∧ ρ x = ρ y :=
   @FRC.Foundation.observer_part
-/-- p00160 — 00:A7. Counting closes by return: the successor $C_q:x\mapsto x{+}1\ (\mathrm{mod}\ q)$ on $q$ points is one $q$-cycle with no fixed point, so iteration is bounded and cyclic; its interpretation is A2's. -/
-theorem p00160 : ∀ {q : Nat} [FRC.Pos q], (2 : Nat) ≤ q → (∀ (x : FRC.Shell q), x + (1 : FRC.Shell q) ≠ x) ∧ (∀ (x : FRC.Shell q) (k : Nat), FRC.Foundation.succIter x k = x ↔ k % q = (0 : Nat)) ∧ ∀ (x y : FRC.Shell q), ∃ k, k < q ∧ FRC.Foundation.succIter x k = y :=
-  @FRC.Foundation.successor_cycle
 /-- p00162 — 00:A12. \textbf{Completeness is primality}: the residues of a count $q\ge2$ have no proper nonzero ideal iff $q$ is prime, so the arithmetic of a counting cycle is complete exactly on prime cycles (the formal shadow of A4). -/
 theorem p00162 : ∀ {p : Nat} [FRC.Pos p], (2 : Nat) ≤ p → (FRC.Nat.isPrime p ↔ ∀ (I : FRC.Shell p → Prop), I (0 : FRC.Shell p) → (∀ (a b : FRC.Shell p), I a → I b → I (a + b)) → (∀ (r a : FRC.Shell p), I a → I (r * a)) → (∃ a, I a ∧ a ≠ (0 : FRC.Shell p)) → ∀ (x : FRC.Shell p), I x) :=
   @FRC.Shell.Prime.isPrime_iff_complete
@@ -28,6 +24,9 @@ theorem p00163 : ∀ {p : Nat} [FRC.Pos p], FRC.Nat.isPrime p → (2 : Nat) < p 
 /-- p00164 — 00:A14. \textbf{Every prime carries a frame}: every prime field $\F_\p$ has a primitive root, so a drive $\gen$ with $\langle\gen\rangle=\F_\p^{\times}$ exists (the formal shadow of C1). -/
 theorem p00164 : ∀ {p : Nat} [FRC.Pos p], FRC.Nat.isPrime p → ∃ g, (g ^ (p - (1 : Nat)) = (1 : FRC.Shell p) ∧ ∀ (l : Nat), l < p - (1 : Nat) → (0 : Nat) < l → g ^ l ≠ (1 : FRC.Shell p)) ∧ ∀ (v : Nat), v < p → (0 : Nat) < v → ∃ m, m < p - (1 : Nat) ∧ (g ^ m).val = v :=
   @FRC.Shell.Prime.exists_drive
+/-- p00188 — 00:A7. Counting closes by return: the successor $C_q:x\mapsto x{+}1\ (\mathrm{mod}\ q)$ on $q\ge2$ points is one $q$-cycle with no fixed point, so iteration is bounded and cyclic; its interpretation is A2's. -/
+theorem p00188 : ∀ {q : Nat} [FRC.Pos q], (2 : Nat) ≤ q → (∀ (x : FRC.Shell q), x + (1 : FRC.Shell q) ≠ x) ∧ (∀ (x : FRC.Shell q) (k : Nat), FRC.Foundation.succIter x k = x ↔ k % q = (0 : Nat)) ∧ ∀ (x y : FRC.Shell q), ∃ k, k < q ∧ FRC.Foundation.succIter x k = y :=
+  @FRC.Foundation.successor_cycle
 -- end keys
 
 end FRC.Ledger

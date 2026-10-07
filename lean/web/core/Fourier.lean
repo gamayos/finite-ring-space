@@ -1955,7 +1955,9 @@ The geometric sum gives the principal-root identity (2:F1, Prop. 6.1 of 2-geomet
 shell Fourier matrix `W k j = g^{jk}`: `Σ_l W k l · (−g^{−lj}) = [k = j]` (2:F3, Prop. 6.3; 6:B5 in matrix form); the
 reversal `rev`, `J`, and the quarter-turn transform `F = i W` with `W² = −J`, `F² = J`, `J² = I` and `W J = J W` (6:B5,
 6:B7). Split from `Sum.lean` by the ledger migration (task LM25), every name unchanged, so that the fourier theme takes
-the transform without the orbits (gate G10). No axioms.
+the transform without the orbits (gate G10). Since task LM36 it also holds the sum over the nonzero residues reindexed by
+the drive (`sum_units_eq_sum_pow`, from `Sum.lean`) and the frame `frame13` (from `Instances.lean`), names unchanged,
+so that the horizon theme takes them without the orbits. No axioms.
 -/
 
 namespace FRC
@@ -2201,7 +2203,33 @@ theorem W_J_comm (F : Frame p κ g) {k j : Nat} (hk : k < p - 1) (hj : j < p - 1
   · rw [← pow_add, ← Nat.left_distrib, F.pow_mod, ← FRC.Nat.mul_mod_mod _ _ _ hn, rev_add_mod hk, Nat.mul_zero,
       FRC.Nat.zero_mod, pow_zero]
 
+/-- The sum over the nonzero residues equals the sum over the powers of the drive: `x = g^m` reindexes. -/
+theorem sum_units_eq_sum_pow (F : Frame p κ g) (f : Shell p → Shell p) :
+    sumRange (fun l => f (ofNat (l + 1))) (p - 1) = sumRange (fun m => f (g ^ m)) (p - 1) := by
+  have hn : p = (p - 1) + 1 := (FRC.Nat.sub_add_cancel Pos.pos).symm
+  have hpos : ∀ m, 1 ≤ (g ^ m).val := fun m =>
+    Nat.pos_of_ne_zero (fun h0 => F.pow_ne_zero m (ext (by rw [h0, val_zero])))
+  have hlt : ∀ m, m < p - 1 → (g ^ m).val - 1 < p - 1 := fun m _ => by
+    have h1 : (g ^ m).val - 1 + 1 = (g ^ m).val := FRC.Nat.sub_add_cancel (hpos m)
+    have h2 : (g ^ m).val < (p - 1) + 1 := hn ▸ (g ^ m).lt
+    rw [← h1] at h2
+    exact Nat.lt_of_succ_lt_succ h2
+  have hinj : ∀ i j, i < p - 1 → j < p - 1 → (g ^ i).val - 1 = (g ^ j).val - 1 → i = j := fun i j hi hj h => by
+    apply F.pow_inj hi hj
+    apply ext
+    rw [← FRC.Nat.sub_add_cancel (hpos i), ← FRC.Nat.sub_add_cancel (hpos j), h]
+  have := sum_perm (fun l => f (ofNat (l + 1))) (fun m => (g ^ m).val - 1) (p - 1) hlt hinj
+  rw [← this]
+  apply sum_congr
+  intro m _
+  show f (ofNat ((g ^ m).val - 1 + 1)) = f (g ^ m)
+  rw [FRC.Nat.sub_add_cancel (hpos m), ofNat_val]
+
 end Frame
+
+/-- 00:C1, 20:B10 on `𝔽₁₃`: the frame `(τ; 0, 1, 2)` of capacity `3` — `2` is primitive (decided). Moved here from
+`Instances.lean` under its name (task LM36), so that the horizon theme takes it without the orbits. -/
+theorem frame13 : Frame 13 3 (2 : Shell 13) := ⟨rfl, Nat.zero_lt_succ 2, by decide⟩
 
 end Shell
 end FRC
@@ -2691,7 +2719,8 @@ Since the ledger migration (task LM17) it also holds 20-rh's sums: peeling the f
 nonzero residues reindexed by the drive. Since task LM22 the sums that need no frame (`sumRange` and its lemmas, the
 geometric sum, the sums over lists and `sum_perm`) are in `Series.lean`, under their names; this module keeps the
 frame's: the principal root, the Fourier inversion, the reversal and the eigenspaces. Since task LM25 the transform
-(the principal root, the inversion, `rev`, `W`, `J`, `F` and their products) is in `Transform.lean`, names unchanged.
+(the principal root, the inversion, `rev`, `W`, `J`, `F` and their products) is in `Transform.lean`, names unchanged,
+and since task LM36 the reindexing by the drive (`sum_units_eq_sum_pow`) is there too.
 -/
 
 namespace FRC
@@ -2927,28 +2956,6 @@ theorem symm_antisymm_unique (F : Frame p κ g) {a b : Nat → Shell p} (ha : Sy
       _ = 0 := by rw [h1, h2, add_zero])
   refine ⟨ha0, ?_⟩
   rw [ha0, zero_add] at h1; exact h1
-
-/-- The sum over the nonzero residues equals the sum over the powers of the drive: `x = g^m` reindexes. -/
-theorem sum_units_eq_sum_pow (F : Frame p κ g) (f : Shell p → Shell p) :
-    sumRange (fun l => f (ofNat (l + 1))) (p - 1) = sumRange (fun m => f (g ^ m)) (p - 1) := by
-  have hn : p = (p - 1) + 1 := (FRC.Nat.sub_add_cancel Pos.pos).symm
-  have hpos : ∀ m, 1 ≤ (g ^ m).val := fun m =>
-    Nat.pos_of_ne_zero (fun h0 => F.pow_ne_zero m (ext (by rw [h0, val_zero])))
-  have hlt : ∀ m, m < p - 1 → (g ^ m).val - 1 < p - 1 := fun m _ => by
-    have h1 : (g ^ m).val - 1 + 1 = (g ^ m).val := FRC.Nat.sub_add_cancel (hpos m)
-    have h2 : (g ^ m).val < (p - 1) + 1 := hn ▸ (g ^ m).lt
-    rw [← h1] at h2
-    exact Nat.lt_of_succ_lt_succ h2
-  have hinj : ∀ i j, i < p - 1 → j < p - 1 → (g ^ i).val - 1 = (g ^ j).val - 1 → i = j := fun i j hi hj h => by
-    apply F.pow_inj hi hj
-    apply ext
-    rw [← FRC.Nat.sub_add_cancel (hpos i), ← FRC.Nat.sub_add_cancel (hpos j), h]
-  have := sum_perm (fun l => f (ofNat (l + 1))) (fun m => (g ^ m).val - 1) (p - 1) hlt hinj
-  rw [← this]
-  apply sum_congr
-  intro m _
-  show f (ofNat ((g ^ m).val - 1 + 1)) = f (g ^ m)
-  rw [FRC.Nat.sub_add_cancel (hpos m), ofNat_val]
 
 end Frame
 
@@ -3521,6 +3528,22 @@ theorem scale_shift (F : Frame p κ g) {z : Shell p} (hz : g * z = 1) :
    fun k j => frft_cardinal F hz k j, fun k j hk hj => mm_GF F hk hj,
    fun k j hk hj => by rw [← frft_pow F hz 1 κ k j hk hj, Nat.mul_one]; exact (frft_cardinal F hz k j).2.1⟩
 
+/-- 00:C2 — the transform follows the dilation: `g^s = g^{s'}` gives `F^{[s]} = F^{[s']}`, so the fractional Fourier
+family is indexed by the dilations themselves. -/
+theorem frft_dilation (F : Frame p κ g) {z : Shell p} (hz : g * z = 1) {s s' : Nat} (h : g ^ s = g ^ s') (k j : Nat) :
+    frft g κ z s k j = frft g κ z s' k j := by
+  have hper : ∀ n u, frft g κ z (u + n * (p - 1)) k j = frft g κ z u k j := fun n u => by
+    induction n with
+    | zero => rw [Nat.zero_mul, Nat.add_zero]
+    | succ n ih => rw [Nat.succ_mul, ← Nat.add_assoc, frft_period F hz, ih]
+  have hred : ∀ u, frft g κ z u k j = frft g κ z (u % (p - 1)) k j := fun u => by
+    obtain ⟨q, hq⟩ := FRC.Nat.mod_spec (p - 1) F.n_pos u
+    conv => lhs; rw [hq, Nat.add_comm, Nat.mul_comm]
+    exact hper q _
+  have hm : s % (p - 1) = s' % (p - 1) :=
+    F.pow_inj (Nat.mod_lt _ F.n_pos) (Nat.mod_lt _ F.n_pos) (by rw [← F.pow_mod, ← F.pow_mod]; exact h)
+  rw [hred s, hred s', hm]
+
 /-! ## C7: the conjugate frame, and the Carrier's quarter-turn -/
 
 /-- The inverse drive is a frame. -/
@@ -3619,17 +3642,11 @@ namespace FRC.Ledger
 
 -- Keys of the fourier theme (generated by make_keys.py from the ledgers' Lean bindings; edit the ledgers, not this file)
 /-- p00022 — 00:C2. Scale-shift duality: dilation $x\mapsto gx$ is phase evolution of the frame, advancing $t$; over the cycle it is the fractional Fourier transform, whose quarter-turn $Q_4$ is the discrete Fourier transform. -/
-theorem p00022 : ∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → ∀ {z : FRC.Shell p}, g * z = (1 : FRC.Shell p) → (∀ (m r : Nat), List.map (g.scale r) (g.meridian κ m) = g.meridian κ (m + r)) ∧ (∀ (r : Nat) (x : FRC.Shell p), g.scale (r + (p - (1 : Nat))) x = g.scale r x) ∧ (∀ (s r k j : Nat), k < p - (1 : Nat) → j < p - (1 : Nat) → FRC.Shell.Frame.frft g κ z (s + r) k j = FRC.Shell.sumRange (fun l => FRC.Shell.Frame.frft g κ z s k l * FRC.Shell.Frame.frft g κ z r l j) (p - (1 : Nat))) ∧ (∀ (s k j : Nat), FRC.Shell.Frame.frft g κ z (s + (p - (1 : Nat))) k j = FRC.Shell.Frame.frft g κ z s k j) ∧ (∀ (k j : Nat), FRC.Shell.Frame.frft g κ z (0 : Nat) k j = FRC.Shell.Frame.idm k j ∧ FRC.Shell.Frame.frft g κ z κ k j = FRC.Shell.Frame.Fmat g κ k j ∧ FRC.Shell.Frame.frft g κ z ((2 : Nat) * κ) k j = FRC.Shell.Frame.J (p - (1 : Nat)) k j ∧ FRC.Shell.Frame.frft g κ z ((3 : Nat) * κ) k j = FRC.Shell.Frame.FJ g κ k j) ∧ (∀ (k j : Nat), k < p - (1 : Nat) → j < p - (1 : Nat) → FRC.Shell.sumRange (fun l => FRC.Shell.Frame.FJ g κ k l * FRC.Shell.Frame.Fmat g κ l j) (p - (1 : Nat)) = FRC.Shell.Frame.idm k j) ∧ ∀ (k j : Nat), k < p - (1 : Nat) → j < p - (1 : Nat) → FRC.Shell.Frame.mpow (FRC.Shell.Frame.frft g κ z (1 : Nat)) κ k j = FRC.Shell.Frame.Fmat g κ k j :=
-  @FRC.Shell.Frame.scale_shift
-/-- p00172 — 00:C7. \textbf{Orientation is derived, not conventional}: the $c$-square congruence ($\dS$ even, C8) annihilates orientation transport on every Carrier carrying it ($\im^{\dS}\in\{\pm1\}$); pullback covariance and count positivity fix the oriented quarter-turn $\im=-\gen^\kap $; the joint flip $(\gen,\im,s)\mapsto(\gen^{-1},-\im,-s)$ preserves every registered count. The constants' derivation consumes no selection (B7). Parity marker: C14. The selection by matter content: D16. -/
-theorem p00172 : ∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → ∀ {z : FRC.Shell p}, g * z = (1 : FRC.Shell p) → (∀ {Ω : Nat} [FRC.Pos Ω] (h : FRC.Shell Ω) (S : Nat), h * h = (-1 : FRC.Shell Ω) → S % (2 : Nat) = (0 : Nat) → h ^ S = (1 : FRC.Shell Ω) ∨ h ^ S = (-1 : FRC.Shell Ω)) ∧ z ^ κ = FRC.Shell.Frame.quarterTurn g κ ∧ FRC.Shell.Frame p κ z ∧ FRC.Shell.Frame.quarterTurn z κ = -FRC.Shell.Frame.quarterTurn g κ ∧ (∀ (k j : Nat), k < p - (1 : Nat) → j < p - (1 : Nat) → FRC.Shell.Frame.Fmat z κ k j = -FRC.Shell.Frame.FJ g κ k j) ∧ ∀ (ℓ k j : Nat), k < p - (1 : Nat) → j < p - (1 : Nat) → FRC.Shell.Frame.proj z κ ℓ k j = FRC.Shell.Frame.proj g κ (ℓ + (2 : Nat)) k j :=
+theorem p00022 : (∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → ∀ {z : FRC.Shell p}, g * z = (1 : FRC.Shell p) → (∀ (m r : Nat), List.map (g.scale r) (g.meridian κ m) = g.meridian κ (m + r)) ∧ (∀ (r : Nat) (x : FRC.Shell p), g.scale (r + (p - (1 : Nat))) x = g.scale r x) ∧ (∀ (s r k j : Nat), k < p - (1 : Nat) → j < p - (1 : Nat) → FRC.Shell.Frame.frft g κ z (s + r) k j = FRC.Shell.sumRange (fun l => FRC.Shell.Frame.frft g κ z s k l * FRC.Shell.Frame.frft g κ z r l j) (p - (1 : Nat))) ∧ (∀ (s k j : Nat), FRC.Shell.Frame.frft g κ z (s + (p - (1 : Nat))) k j = FRC.Shell.Frame.frft g κ z s k j) ∧ (∀ (k j : Nat), FRC.Shell.Frame.frft g κ z (0 : Nat) k j = FRC.Shell.Frame.idm k j ∧ FRC.Shell.Frame.frft g κ z κ k j = FRC.Shell.Frame.Fmat g κ k j ∧ FRC.Shell.Frame.frft g κ z ((2 : Nat) * κ) k j = FRC.Shell.Frame.J (p - (1 : Nat)) k j ∧ FRC.Shell.Frame.frft g κ z ((3 : Nat) * κ) k j = FRC.Shell.Frame.FJ g κ k j) ∧ (∀ (k j : Nat), k < p - (1 : Nat) → j < p - (1 : Nat) → FRC.Shell.sumRange (fun l => FRC.Shell.Frame.FJ g κ k l * FRC.Shell.Frame.Fmat g κ l j) (p - (1 : Nat)) = FRC.Shell.Frame.idm k j) ∧ ∀ (k j : Nat), k < p - (1 : Nat) → j < p - (1 : Nat) → FRC.Shell.Frame.mpow (FRC.Shell.Frame.frft g κ z (1 : Nat)) κ k j = FRC.Shell.Frame.Fmat g κ k j) ∧ ∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → ∀ {z : FRC.Shell p}, g * z = (1 : FRC.Shell p) → ∀ {s s' : Nat}, g ^ s = g ^ s' → ∀ (k j : Nat), FRC.Shell.Frame.frft g κ z s k j = FRC.Shell.Frame.frft g κ z s' k j :=
+  And.intro @FRC.Shell.Frame.scale_shift (@FRC.Shell.Frame.frft_dilation)
+/-- p00189 — 00:C7. \textbf{Orientation is derived, not conventional}: the $c$-square congruence ($\dS$ even, C8) annihilates orientation transport on every Carrier carrying it ($\im^{\dS}\in\{\pm1\}$); the oriented quarter-turn $\im=-\gen^\kap $ is a selection, read by pullback covariance and count positivity; the joint flip $(\gen,\im,s)\mapsto(\gen^{-1},-\im,-s)$ permutes the registration channels. The constants' derivation consumes no selection (B7). Parity marker: C14. The selection by matter content: D16. -/
+theorem p00189 : ∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → ∀ {z : FRC.Shell p}, g * z = (1 : FRC.Shell p) → (∀ {Ω : Nat} [FRC.Pos Ω] (h : FRC.Shell Ω) (S : Nat), h * h = (-1 : FRC.Shell Ω) → S % (2 : Nat) = (0 : Nat) → h ^ S = (1 : FRC.Shell Ω) ∨ h ^ S = (-1 : FRC.Shell Ω)) ∧ z ^ κ = FRC.Shell.Frame.quarterTurn g κ ∧ FRC.Shell.Frame p κ z ∧ FRC.Shell.Frame.quarterTurn z κ = -FRC.Shell.Frame.quarterTurn g κ ∧ (∀ (k j : Nat), k < p - (1 : Nat) → j < p - (1 : Nat) → FRC.Shell.Frame.Fmat z κ k j = -FRC.Shell.Frame.FJ g κ k j) ∧ ∀ (ℓ k j : Nat), k < p - (1 : Nat) → j < p - (1 : Nat) → FRC.Shell.Frame.proj z κ ℓ k j = FRC.Shell.Frame.proj g κ (ℓ + (2 : Nat)) k j :=
   @FRC.Shell.Frame.orientation
-/-- p06027 — 6:D4. Meridian-scale covariance: $S_r(M_m)=M_{m+r}$ for every $(m,r)$, as ordered lists; consecutive entries of $M_m$ differ by the effective step $\gen^{m}$; $S_{r+(\p-1)}=S_r$, the periodicity of A5 in meridian form. -/
-theorem p06027 : (∀ {p : Nat} [FRC.Pos p] (g : FRC.Shell p) (κ m r : Nat), List.map (g.scale r) (g.meridian κ m) = g.meridian κ (m + r)) ∧ (∀ {p : Nat} [FRC.Pos p] (g : FRC.Shell p) (m a : Nat), FRC.Shell.ofNat (a + (1 : Nat)) * g ^ m = FRC.Shell.ofNat a * g ^ m + g ^ m) ∧ ∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → ∀ (r : Nat) (x : FRC.Shell p), g.scale (r + (p - (1 : Nat))) x = g.scale r x :=
-  And.intro @FRC.Shell.meridian_scale (And.intro @FRC.Shell.meridian_step (@FRC.Shell.scale_periodic))
-/-- p06028 — 6:D5. Meridian zoom [chart]: $M_m$ reads the meridian-coordinate vector at step $\lambda^{\tilde m}$, the forward shift zoom-out and the inverse shift zoom-in, the seam an aliasing return; at $\p=13$, $\gen=2$ the ladder $M_0,\dots,M_3$ at steps $1,2,4,8$, unwrapped within $w\gen^{r}<\p$ ($w=\pi=6$: $r\le1$) and wrapping from $M_2$. -/
-theorem p06028 : FRC.Shell.meridian (2 : FRC.Shell (13 : Nat)) (3 : Nat) (0 : Nat) = [(0 : FRC.Shell (13 : Nat)), (1 : FRC.Shell (13 : Nat)), (2 : FRC.Shell (13 : Nat)), (3 : FRC.Shell (13 : Nat)), (4 : FRC.Shell (13 : Nat)), (5 : FRC.Shell (13 : Nat)), (6 : FRC.Shell (13 : Nat))] ∧ FRC.Shell.meridian (2 : FRC.Shell (13 : Nat)) (3 : Nat) (1 : Nat) = [(0 : FRC.Shell (13 : Nat)), (2 : FRC.Shell (13 : Nat)), (4 : FRC.Shell (13 : Nat)), (6 : FRC.Shell (13 : Nat)), (8 : FRC.Shell (13 : Nat)), (10 : FRC.Shell (13 : Nat)), (12 : FRC.Shell (13 : Nat))] ∧ FRC.Shell.meridian (2 : FRC.Shell (13 : Nat)) (3 : Nat) (2 : Nat) = [(0 : FRC.Shell (13 : Nat)), (4 : FRC.Shell (13 : Nat)), (8 : FRC.Shell (13 : Nat)), (12 : FRC.Shell (13 : Nat)), (3 : FRC.Shell (13 : Nat)), (7 : FRC.Shell (13 : Nat)), (11 : FRC.Shell (13 : Nat))] ∧ FRC.Shell.meridian (2 : FRC.Shell (13 : Nat)) (3 : Nat) (3 : Nat) = [(0 : FRC.Shell (13 : Nat)), (8 : FRC.Shell (13 : Nat)), (3 : FRC.Shell (13 : Nat)), (11 : FRC.Shell (13 : Nat)), (6 : FRC.Shell (13 : Nat)), (1 : FRC.Shell (13 : Nat)), (9 : FRC.Shell (13 : Nat))] ∧ (6 : Nat) * (2 : Nat) ^ (1 : Nat) < (13 : Nat) ∧ ¬(6 : Nat) * (2 : Nat) ^ (2 : Nat) < (13 : Nat) :=
-  @FRC.Shell.ladder13
 -- end keys
 
 end FRC.Ledger
@@ -3646,8 +3663,7 @@ accelerated `Nat` operations) and the proof term is `of_decide_eq_true rfl`. No 
 namespace FRC
 namespace Shell
 
-/-- 00:C1, 20:B10 on `𝔽₁₃`: the frame `(τ; 0, 1, 2)` of capacity `3` — `2` is primitive (decided). -/
-theorem frame13 : Frame 13 3 (2 : Shell 13) := ⟨rfl, Nat.zero_lt_succ 2, by decide⟩
+-- `frame13` (00:C1, 20:B10, the frame `(τ; 0, 1, 2)` of `𝔽₁₃`) moved to `Transform.lean` under its name (task LM36).
 
 /-- 00:A8 on `𝔽₁₃`: the drive generates — checked directly, and proved for every frame by `Frame.generates`. -/
 theorem generates13 : Generates (2 : Shell 13) 12 := by decide
@@ -3777,6 +3793,12 @@ theorem p06013 : ∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.She
 /-- p06014 — 6:B7. $\Wt J=J\Wt$, hence $\Ft J=J\Ft$; $\Vt=V^{+}\oplus V^{-}$ with $\dim V^{+}=2\kap+1$, $\dim V^{-}=2\kap-1$. -/
 theorem p06014 : (∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → ∀ {k j : Nat}, k < p - (1 : Nat) → j < p - (1 : Nat) → FRC.Shell.sumRange (fun l => FRC.Shell.Frame.W g k l * FRC.Shell.Frame.J (p - (1 : Nat)) l j) (p - (1 : Nat)) = FRC.Shell.sumRange (fun l => FRC.Shell.Frame.J (p - (1 : Nat)) k l * FRC.Shell.Frame.W g l j) (p - (1 : Nat))) ∧ (∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → ∀ (v : Nat → FRC.Shell p), ∃ vp vm, FRC.Shell.Frame.Symm (p - (1 : Nat)) vp ∧ FRC.Shell.Frame.Antisymm (p - (1 : Nat)) vm ∧ ∀ (k : Nat), k < p - (1 : Nat) → v k = vp k + vm k) ∧ (∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → ∀ {a b : Nat → FRC.Shell p}, FRC.Shell.Frame.Symm (p - (1 : Nat)) a → FRC.Shell.Frame.Antisymm (p - (1 : Nat)) b → (∀ (k : Nat), k < p - (1 : Nat) → a k + b k = (0 : FRC.Shell p)) → ∀ (k : Nat), k < p - (1 : Nat) → a k = (0 : FRC.Shell p) ∧ b k = (0 : FRC.Shell p)) ∧ (∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → ∀ {v w : Nat → FRC.Shell p}, FRC.Shell.Frame.Symm (p - (1 : Nat)) v → FRC.Shell.Frame.Symm (p - (1 : Nat)) w → (∀ (k : Nat), k ≤ (2 : Nat) * κ → v k = w k) → ∀ (k : Nat), k < p - (1 : Nat) → v k = w k) ∧ ∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → ∀ {v w : Nat → FRC.Shell p}, FRC.Shell.Frame.Antisymm (p - (1 : Nat)) v → FRC.Shell.Frame.Antisymm (p - (1 : Nat)) w → (∀ (k : Nat), (0 : Nat) < k → k < (2 : Nat) * κ → v k = w k) → ∀ (k : Nat), k < p - (1 : Nat) → v k = w k :=
   And.intro @FRC.Shell.Frame.W_J_comm (And.intro @FRC.Shell.Frame.symm_antisymm_decomp (And.intro @FRC.Shell.Frame.symm_antisymm_unique (And.intro @FRC.Shell.Frame.symm_determined (@FRC.Shell.Frame.antisymm_determined))))
+/-- p06027 — 6:D4. Meridian-scale covariance: $S_r(M_m)=M_{m+r}$ for every $(m,r)$, as ordered lists; consecutive entries of $M_m$ differ by the effective step $\gen^{m}$; $S_{r+(\p-1)}=S_r$, the periodicity of A5 in meridian form. -/
+theorem p06027 : (∀ {p : Nat} [FRC.Pos p] (g : FRC.Shell p) (κ m r : Nat), List.map (g.scale r) (g.meridian κ m) = g.meridian κ (m + r)) ∧ (∀ {p : Nat} [FRC.Pos p] (g : FRC.Shell p) (m a : Nat), FRC.Shell.ofNat (a + (1 : Nat)) * g ^ m = FRC.Shell.ofNat a * g ^ m + g ^ m) ∧ ∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → ∀ (r : Nat) (x : FRC.Shell p), g.scale (r + (p - (1 : Nat))) x = g.scale r x :=
+  And.intro @FRC.Shell.meridian_scale (And.intro @FRC.Shell.meridian_step (@FRC.Shell.scale_periodic))
+/-- p06028 — 6:D5. Meridian zoom [chart]: $M_m$ reads the meridian-coordinate vector at step $\lambda^{\tilde m}$, the forward shift zoom-out and the inverse shift zoom-in, the seam an aliasing return; at $\p=13$, $\gen=2$ the ladder $M_0,\dots,M_3$ at steps $1,2,4,8$, unwrapped within $w\gen^{r}<\p$ ($w=\pi=6$: $r\le1$) and wrapping from $M_2$. -/
+theorem p06028 : FRC.Shell.meridian (2 : FRC.Shell (13 : Nat)) (3 : Nat) (0 : Nat) = [(0 : FRC.Shell (13 : Nat)), (1 : FRC.Shell (13 : Nat)), (2 : FRC.Shell (13 : Nat)), (3 : FRC.Shell (13 : Nat)), (4 : FRC.Shell (13 : Nat)), (5 : FRC.Shell (13 : Nat)), (6 : FRC.Shell (13 : Nat))] ∧ FRC.Shell.meridian (2 : FRC.Shell (13 : Nat)) (3 : Nat) (1 : Nat) = [(0 : FRC.Shell (13 : Nat)), (2 : FRC.Shell (13 : Nat)), (4 : FRC.Shell (13 : Nat)), (6 : FRC.Shell (13 : Nat)), (8 : FRC.Shell (13 : Nat)), (10 : FRC.Shell (13 : Nat)), (12 : FRC.Shell (13 : Nat))] ∧ FRC.Shell.meridian (2 : FRC.Shell (13 : Nat)) (3 : Nat) (2 : Nat) = [(0 : FRC.Shell (13 : Nat)), (4 : FRC.Shell (13 : Nat)), (8 : FRC.Shell (13 : Nat)), (12 : FRC.Shell (13 : Nat)), (3 : FRC.Shell (13 : Nat)), (7 : FRC.Shell (13 : Nat)), (11 : FRC.Shell (13 : Nat))] ∧ FRC.Shell.meridian (2 : FRC.Shell (13 : Nat)) (3 : Nat) (3 : Nat) = [(0 : FRC.Shell (13 : Nat)), (8 : FRC.Shell (13 : Nat)), (3 : FRC.Shell (13 : Nat)), (11 : FRC.Shell (13 : Nat)), (6 : FRC.Shell (13 : Nat)), (1 : FRC.Shell (13 : Nat)), (9 : FRC.Shell (13 : Nat))] ∧ (6 : Nat) * (2 : Nat) ^ (1 : Nat) < (13 : Nat) ∧ ¬(6 : Nat) * (2 : Nat) ^ (2 : Nat) < (13 : Nat) :=
+  @FRC.Shell.ladder13
 /-- p08011 — 8:B5. The square class is chronon parity: the squares are $\langle g^{2}\rangle$, a residue's class is the parity of its drive-step count; on $\kap$-even shells every element of $Q_4=\{1,\im,-1,-\im\}$ is a square, so the order-four chart grading carries no signature. Exhaustive over every primitive root of $\F_{13}$, $\F_{17}$; Euler form on $\p<2000$. -/
 theorem p08011 : ∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → ∀ (m : Nat), (∃ y, y * y = g ^ m) ↔ m % (2 : Nat) = (0 : Nat) :=
   @FRC.Shell.Frame.parity_iff

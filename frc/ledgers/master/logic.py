@@ -29,8 +29,8 @@ LEAN = {"Z1": "core"}       # the rows with a Lean declaration: the libraries wh
 # The Lean proofs of the rows' keys: the theorems of the themes that each key conjoins (lean/make_keys.py writes the keys
 # FRC.Ledger.p<key> from them). The master's block file is the binding's source, as a paper's \lean{} cells are its own.
 PROOFS = {
-    "Z1": ["FRC.Logic.no_finite_successor", "FRC.Logic.fin_theory_decidable", "FRC.Logic.fin_theory_complete",
-           "FRC.Logic.fin_theory_consistent"],
+    "Z1": ["FRC.Logic.no_finite_successor", "FRC.Logic.no_finite_Q", "FRC.Logic.no_interpretation",
+           "FRC.Logic.fin_theory_decidable", "FRC.Logic.fin_theory_complete", "FRC.Logic.fin_theory_consistent"],
 }
 
 LEAN_ONLY = ()                  # the rows with a Lean declaration and no python check (gate G12): none

@@ -14,6 +14,10 @@ clause, `from_master` and `from_paper` its two derivations. No axioms (`check_co
   on `[0, N)` beside its record bound.
 * **00:A5 and 25:D1 (overlap, LM10).** The same clause against 25:D1's storage bound.
 
+* **14:C6 ⇒ 00:B14 (paper ⇒ master; the audit's M4, 7 October 2026).** B14 is 14:C6's first clause on the Carrier's
+  chart: with 00:A14's frame on every prime `Ω = 4S + 1`, 14:C6's key gives B14's key (`b14_of_14C6`). 14:C6 adds two
+  clauses (the Tsirelson square and the laboratory instance), so the converse does not hold.
+
 And the frame (00:A14 against the frame theme): every prime `p = 4κ + 1` carries a frame `(τ; 0, 1, g)` (`frame_exists`),
 and with `frame_isPrime` (Lehmer, `FrcBridge/Carrier.lean`) the classical equivalence that `Frame.lean` left for
 later: on `p = 4κ + 1`, a frame exists iff `p` is prime (`frame_iff_isPrime`).
@@ -71,5 +75,31 @@ theorem from_master : Clause := part_of_master
 theorem from_paper : Clause := fun hR f hf hinj => FRC.Ledger.p25015 hR f hf hinj
 
 end A5_25D1
+
+/-- 14:C6 ⇒ 00:B14: the master's key `FRC.Ledger.p00170` from the paper's key `FRC.Entropy.p14023` and 00:A14's frame
+(`frame_exists`): on a prime `Ω = 4S + 1` an element of order eight exists iff `S` is even. -/
+theorem b14_of_14C6 : ∀ {Ω : Nat} [Pos Ω] (S : Nat), FRC.Nat.isPrime Ω → Ω = 4 * S + 1 →
+    ((∃ ζ : Shell Ω, ζ ^ 8 = 1 ∧ ζ ^ 4 ≠ 1) ↔ S % 2 = 0) := by
+  intro Ω _ S hp hcap
+  have hS : 0 < S := by
+    match S, hcap with
+    | 0, e => rw [e] at hp; exact absurd hp.1 (by decide)
+    | k + 1, _ => exact Nat.zero_lt_succ k
+  obtain ⟨g, F⟩ := frame_exists hp hcap hS
+  have hk := FRC.Entropy.p14023.2.1 F
+  have hne := frame_neg_one_ne_one F
+  constructor
+  · intro ⟨ζ, h8, h4⟩
+    have h4' : ζ ^ 4 = -1 :=
+      match Prime.sq_eq_one hp (by rw [← pow_add]; exact h8 : ζ ^ 4 * ζ ^ 4 = 1) with
+      | .inl e => absurd e h4
+      | .inr e => e
+    obtain ⟨m, hm⟩ := hk.1 ⟨ζ, h4', h8⟩
+    exact FRC.Nat.mod_unique (by decide) (by rw [hm, Nat.add_zero])
+  · intro he
+    obtain ⟨m, hm⟩ := FRC.Nat.mod_spec 2 (by decide) S
+    rw [he, Nat.add_zero] at hm
+    obtain ⟨ζ, h4, h8⟩ := hk.2 ⟨m, hm⟩
+    exact ⟨ζ, h8, by rw [h4]; exact hne⟩
 
 end FRC.Bridge

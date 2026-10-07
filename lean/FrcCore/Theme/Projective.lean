@@ -125,6 +125,11 @@ theorem ext' {M N : M2 p} (ha : M.a = N.a) (hb : M.b = N.b) (hc : M.c = N.c) (hd
   cases M; cases N; cases ha; cases hb; cases hc; cases hd; rfl
 
 /-- The product. -/
+theorem ext'_a {M N : M2 p} (h : M = N) : M.a = N.a := by cases h; rfl
+theorem ext'_b {M N : M2 p} (h : M = N) : M.b = N.b := by cases h; rfl
+theorem ext'_c {M N : M2 p} (h : M = N) : M.c = N.c := by cases h; rfl
+theorem ext'_d {M N : M2 p} (h : M = N) : M.d = N.d := by cases h; rfl
+
 def mul (M N : M2 p) : M2 p :=
   ⟨M.a * N.a + M.b * N.c, M.a * N.b + M.b * N.d, M.c * N.a + M.d * N.c, M.c * N.b + M.d * N.d⟩
 
@@ -332,6 +337,73 @@ theorem hopf_section (F : Frame p κ g) {ν : Shell p} (hν : ¬ ∃ y : Shell p
     · exact Shell.Frame.RE.sound (Shell.Frame.look [M.a, M.b, M.c, M.d, N.a, N.b, N.c, N.d])
         (.add (.mul (.mul (.neg .one) (.var 2)) (.mul (.neg .one) (.var 5))) (.mul (.mul (.neg .one) (.var 3)) (.mul (.neg .one) (.var 7))))
         (.add (.mul (.var 2) (.var 5)) (.mul (.var 3) (.var 7))) (by decide +kernel)
+
+/-- 00:C19 — the fibration counted by representatives. Every Borel class (an upper-triangular `[[a, b], [0, e]]`,
+`a e ≠ 0`, up to a nonzero scalar) has exactly one representative `[[i, j], [0, 1]]` with `i, j < p` and `i ≠ 0`, and
+these number `p (p − 1)`. Every boost class has exactly one representative among `[[i, ν], [1, i]]` (`i < p`) and the
+identity `[[1, 0], [0, 1]]`, and these number `p + 1`. With the factorisation (`hopf_section`), the frames are
+`p (p − 1)` fibres of `p + 1`. -/
+theorem hopf_counts (F : Frame p κ g) (ν : Shell p) :
+    (∀ a b e : Shell p, a * e ≠ 0 → ∃ i j : Nat, i < p ∧ j < p ∧ i ≠ 0 ∧
+      ∃ l : Shell p, l ≠ 0 ∧ M2.smul l (borel a b e) = borel (ofNat i) (ofNat j) 1) ∧
+    (∀ i j i' j' : Nat, i < p → j < p → i' < p → j' < p → ∀ l : Shell p,
+      M2.smul l (borel (ofNat i) (ofNat j) 1) = borel (ofNat i') (ofNat j') 1 → i = i' ∧ j = j') ∧
+    natCount (fun _ => True) p * natCount (fun b => b ≠ 0) p = p * (p - 1) ∧
+    (∀ α β : Shell p, (α ≠ 0 ∨ β ≠ 0) →
+      (∃ i : Nat, i < p ∧ ∃ μ : Shell p, μ ≠ 0 ∧ M2.smul μ (boost ν α β) = boost ν (ofNat i) 1) ∨
+      (∃ μ : Shell p, μ ≠ 0 ∧ M2.smul μ (boost ν α β) = boost ν 1 0)) ∧
+    (∀ i i' : Nat, i < p → i' < p → ∀ μ : Shell p, M2.smul μ (boost ν (ofNat i) 1) = boost ν (ofNat i') 1 → i = i') ∧
+    (∀ i : Nat, ∀ μ : Shell p, μ ≠ 0 → M2.smul μ (boost ν (ofNat i) 1) ≠ boost ν 1 0) ∧
+    (∀ i : Nat, ∀ μ : Shell p, M2.smul μ (boost ν 1 0) ≠ boost ν (ofNat i) 1) ∧
+    natCount (fun _ => True) p + 1 = p + 1 := by
+  have hT : ∀ n, natCount (fun _ => True) n = n := fun n => by
+    induction n with
+    | zero => rfl
+    | succ n ih => show natCount (fun _ => True) n + (if True then 1 else 0) = n + 1; rw [ih, ite_eq_left trivial]
+  have ofNat_inj : ∀ {i j : Nat}, i < p → j < p → (ofNat i : Shell p) = ofNat j → i = j := fun hi hj h => by
+    have := val_injective h
+    rw [val_ofNat, val_ofNat, FRC.Nat.mod_eq_of_lt hi, FRC.Nat.mod_eq_of_lt hj] at this
+    exact this
+  have hval : ∀ x : Shell p, x ≠ 0 → x.val ≠ 0 := fun x hx h0 => hx (by rw [← ofNat_val x, h0]; rfl)
+  have hl1 : ∀ l : Shell p, l * 1 = 1 → l = 1 := fun l h => by rw [mul_one] at h; exact h
+  -- the boost scaled: `μ · [[α, νβ], [β, α]] = [[μα, ν(μβ)], [μβ, μα]]`
+  have hsb : ∀ μ α β : Shell p, M2.smul μ (boost ν α β) = boost ν (μ * α) (μ * β) := fun μ α β =>
+    M2.ext' rfl (by show μ * (ν * β) = ν * (μ * β); rw [mul_left_comm]) rfl rfl
+  refine ⟨fun a b e hae => ?_, fun i j i' j' hi hj hi' hj' l h => ?_, frame_count F, fun α β hαβ => ?_,
+    fun i i' hi hi' μ h => ?_, fun i μ hμ h => ?_, fun i μ h => ?_, by rw [hT]⟩
+  · have he : e ≠ 0 := fun h0 => hae (by rw [h0, mul_zero])
+    have ha : a ≠ 0 := fun h0 => hae (by rw [h0, zero_mul])
+    obtain ⟨y, hy⟩ := F.exists_inv he
+    have hy0 : y ≠ 0 := fun h0 => F.one_ne_zero (by rw [← hy, h0, mul_zero])
+    refine ⟨(y * a).val, (y * b).val, (y * a).lt, (y * b).lt, hval _ (F.mul_ne_zero hy0 ha), y, hy0, ?_⟩
+    rw [ofNat_val, ofNat_val]
+    exact M2.ext' rfl rfl (mul_zero y) (by show y * e = 1; rw [mul_comm]; exact hy)
+  · have hl : l = 1 := hl1 l (M2.ext'_d h)
+    rw [hl] at h
+    have ha : 1 * ofNat i = (ofNat i' : Shell p) := M2.ext'_a h
+    have hb : 1 * ofNat j = (ofNat j' : Shell p) := M2.ext'_b h
+    rw [one_mul] at ha hb
+    exact ⟨ofNat_inj hi hi' ha, ofNat_inj hj hj' hb⟩
+  · match Shell.instDecidableEq β 0 with
+    | .isFalse hβ =>
+      obtain ⟨y, hy⟩ := F.exists_inv hβ
+      have hy0 : y ≠ 0 := fun h0 => F.one_ne_zero (by rw [← hy, h0, mul_zero])
+      refine .inl ⟨(y * α).val, (y * α).lt, y, hy0, ?_⟩
+      rw [hsb, ofNat_val, mul_comm y β, hy]
+    | .isTrue hβ =>
+      have hα : α ≠ 0 := match hαβ with | .inl h => h | .inr h => absurd hβ h
+      obtain ⟨y, hy⟩ := F.exists_inv hα
+      have hy0 : y ≠ 0 := fun h0 => F.one_ne_zero (by rw [← hy, h0, mul_zero])
+      refine .inr ⟨y, hy0, ?_⟩
+      rw [hsb, hβ, mul_zero, mul_comm y α, hy]
+  · rw [hsb] at h
+    have hμ : μ = 1 := hl1 μ (M2.ext'_c h)
+    rw [hμ, one_mul] at h
+    exact ofNat_inj hi hi' (M2.ext'_a h)
+  · rw [hsb] at h
+    exact hμ (by have := M2.ext'_c h; rwa [mul_one] at this)
+  · rw [hsb, mul_zero] at h
+    exact F.one_ne_zero (M2.ext'_c h).symm
 
 end Frame
 end Shell

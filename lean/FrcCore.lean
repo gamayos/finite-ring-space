@@ -16,8 +16,10 @@ import FrcCore.Theme.Foundation
 import FrcCore.Theme.Drive
 import FrcCore.Theme.Carrier
 import FrcCore.Theme.Subject
+import FrcCore.Theme.Symbol
 import FrcCore.Theme.Gravity
 import FrcCore.Theme.Quantum
+import FrcCore.Theme.Unitary
 import FrcCore.Theme.Interactions
 import FrcCore.Theme.Horizon
 import FrcCore.Keys.Frame

@@ -4,7 +4,9 @@ import FrcCore.Theme.Field
 # FrcCore.Theme.Foundation — the rows of master block A on the prime shell (the foundation theme, tasks LM22–LM24)
 
 Completeness is primality in the ideal form (A12), counting closes by return (A7), and a bounded observer is a proper
-part (A5), on the field of `Theme/Field.lean` (split from this file by task LM24 under the size budget, G10). The
+part (A5), on the field of `Theme/Field.lean` (split from this file by task LM24 under the size budget, G10); the
+quarter-turn criterion (A13), the order-divides-period lemma and primality as no zero divisors, moved here from
+`Theme/Field.lean` by the Phase 4 repairs so that the Subject's closure keeps the budget (G10), names unchanged. The
 Carrier's rows (`Theme/Carrier.lean`) rest on the field and on the chart `Ω = 4S + 1` alone. No axioms.
 -/
 
@@ -42,6 +44,50 @@ theorem isPrime_iff_complete (h2 : 2 ≤ p) :
         (fun x y hx hy => by show (x + y) * b = 0; rw [right_distrib, hx, hy, add_zero])
         (fun r x hx => by show r * x * b = 0; rw [mul_assoc, hx, mul_zero]) ⟨a, hab, ha⟩ 1
       exact .inr (by rw [← one_mul b]; exact hall)
+
+/-- The order divides the period: `z^d = 1` gives `z^{(p−1) mod d} = 1`. -/
+theorem pow_mod_eq_one (hp : FRC.Nat.isPrime p) {z : Shell p} (hz : z ≠ 0) {d : Nat} (hd0 : 0 < d)
+    (hd : z ^ d = 1) : z ^ ((p - 1) % d) = 1 := by
+  obtain ⟨q, hq⟩ := FRC.Nat.mod_spec d hd0 (p - 1)
+  have h := fermat hp hz
+  rw [hq, pow_add, pow_mul, hd, one_pow, one_mul] at h
+  exact h
+
+/-! ## The quarter-turn criterion: `−1` is a square iff `p ≡ 1 (mod 4)` -/
+
+/-- The quarter-turn criterion on a prime `p > 2`: `x² = −1` is solvable iff `p ≡ 1 (mod 4)`. Forward, `ħ⁴ = 1`
+and `ħ^{(p−1) mod 4} = 1` leave only `(p − 1) mod 4 = 0`; backward, the chart. -/
+theorem quarter_turn_iff (hp : FRC.Nat.isPrime p) (h2 : 2 < p) : (∃ h : Shell p, h * h = -1) ↔ p % 4 = 1 := by
+  constructor
+  · intro ⟨h, hh⟩
+    have h0 : h ≠ 0 := ne_zero_of_mul_self (neg_one_ne_zero hp) hh
+    have h4 : h ^ 4 = 1 := by
+      rw [show (4 : Nat) = 2 + 2 from rfl, pow_add, pow_two, hh, neg_mul_neg, mul_one]
+    have hcase : (p - 1) % 4 = 0 := by
+      have hr := pow_mod_eq_one hp h0 (by decide : 0 < 4) h4
+      have hlt := Nat.mod_lt (p - 1) (by decide : 0 < 4)
+      generalize (p - 1) % 4 = r at hr hlt
+      match r, hr, hlt with
+      | 0, _, _ => rfl
+      | 1, hr, _ => rw [pow_one] at hr; rw [hr, mul_one] at hh; exact absurd hh.symm (neg_one_ne_one h2)
+      | 2, hr, _ => rw [pow_two, hh] at hr; exact absurd hr (neg_one_ne_one h2)
+      | 3, hr, _ =>
+        rw [show (4 : Nat) = 3 + 1 from rfl, pow_succ, hr, one_mul] at h4
+        rw [h4, mul_one] at hh; exact absurd hh.symm (neg_one_ne_one h2)
+      | k + 4, _, hlt => exact absurd hlt (Nat.not_lt_of_le (Nat.le_add_left 4 k))
+    obtain ⟨q, hq⟩ := FRC.Nat.mod_spec 4 (by decide) (p - 1)
+    rw [hcase, Nat.add_zero] at hq
+    exact FRC.Nat.mod_unique (by decide)
+      (by rw [← hq, FRC.Nat.sub_add_cancel (Nat.le_of_lt (Nat.lt_trans (Nat.lt_succ_self 1) h2))])
+  · intro h4
+    obtain ⟨S, hS⟩ := FRC.Nat.mod_spec 4 (by decide) p
+    rw [h4] at hS
+    exact exists_quarter_turn hp hS
+
+/-- Completeness is primality: for `p ≥ 2`, the shell has no zero divisors iff `p` is prime. -/
+theorem isPrime_iff_no_zero_divisors (h2 : 2 ≤ p) :
+    FRC.Nat.isPrime p ↔ ∀ a b : Shell p, a * b = 0 → a = 0 ∨ b = 0 :=
+  ⟨fun hp _ _ h => mul_eq_zero hp h, fun hz => isPrime_of_no_zero_divisors h2 (fun h => hz _ _ h)⟩
 
 end Prime
 end Shell

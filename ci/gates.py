@@ -1,7 +1,8 @@
 #!/usr/bin/env python3
-"""The framework's gates G09, G10, G12, G13 and G19 (ledger migration, tasks LM14, LM20 and LM21, 5 October 2026).
+"""The framework's gates G09, G10, G12, G13, G14, G15 and G19 (ledger migration, tasks LM14, LM20, LM21, LM33 and LM34,
+5–7 October 2026).
 
-    python3 ci/gates.py [all|g09|g10|g12|g13|g19] [--root PATH]
+    python3 ci/gates.py [all|g09|g10|g12|g13|g14|g15|g19] [--root=PATH] [--release=PAPER]
 
 G09  imports follow the layers of the theme map (frc/themes.py): a file imports only files of lower rank, or the files
      listed before it in its own theme; a ledger file imports themes; nothing imports a ledger file. The exact tiers have
@@ -17,8 +18,23 @@ G13  every migrated ledger's notebook executes green, with cell ids equal to key
      ledger file under frc/ledgers/ (a paper's) or frc/ledgers/master/ (a master block's, from LM22) with the table
      ci/make_ledgers.py generates; its notebook's code cells are one per
      predicate with a python check, each with the predicate's key as its id (and the closing run-all cell).
+G14  bridge coverage (task LM34): every counterpart pair that differs and has core proofs on both sides has an entry in
+     lean/FrcBridge/coverage.json. A pair is a master row bound to a core key (a block file's LEAN table) and a paper row
+     that names it in its ledger's master links (docs/<paper>/<paper>-ledger.json), whose Lean cells cite FrcCore; import
+     rows, open master rows and pairs that share one key are not pairs. A bridged entry names a namespace of FrcBridge
+     with from_master and from_paper (from_<paper><label> when several papers share it); a shared-theorem entry names core theorems that exist; a definition entry's paper row
+     is a D row. A missing pair fails. A pair that waits for its paper's migration is reported while the paper is in
+     revision and fails at its release (--release=PAPER).
+G15  every published paper pins a release and runs green against it (task LM33; decision Q06): in the latest manifest
+     releases/frc-*.json, every posted paper with a validation package is pinned, to a release whose manifest exists; the
+     pinned package's checks at the tag passed (the manifest's record, written by ci/release.py serve); the site serves the
+     release (docs/releases/<release>/: the archive, the web copies, each pinned sdist with its recorded SHA-256). Where git
+     holds the tag, the package's tree at the tag is the one pinned. A package changed since its pin is reported: the paper
+     is in revision and pins anew at its milestone.
 G19  no core statement asserts unboundedness: no theorem of FrcCore states a quantity above every bound (an existential
-     bounded below by a variable and above by nothing), and none names Infinite, Set.Infinite, Filter.atTop or Tendsto.
+     bounded below by a variable and above by nothing, or an existential over ℕ with no upper bound in its scope and no
+     equation fixing it from bounded data; the audit's M11), and none names Infinite, Set.Infinite, Filter.atTop or
+     Tendsto.
 
 Exit 1 when a gated check fails. Standard library only.
 """
@@ -250,23 +266,161 @@ def g13():
     return n
 
 
+# ---- G14 ------------------------------------------------------------------------------------------------------------
+def bridge_pairs():
+    """The counterpart pairs that differ and have core proofs on both sides: (master label, "<paper>:<label>", tag)."""
+    import json
+    docs = ROOT / "docs"
+    master = {r["label"]: r for r in json.loads((docs / "00-ledger.json").read_text(encoding="utf-8"))["rows"]}
+    core = {}
+    for f in sorted((ROOT / "frc" / "ledgers" / "master").glob("*.py")):
+        m = re.search(r"^LEAN = (\{.*?\})", f.read_text(encoding="utf-8"), re.M)
+        if m: core.update({k: f.stem for k, v in ast.literal_eval(m.group(1)).items() if v == "core"})
+    out = []
+    for f in sorted(docs.glob("*/*-ledger.json")):
+        d = json.loads(f.read_text(encoding="utf-8"))
+        rows = {r["label"]: r for b in d["blocks"] for r in b["rows"]}
+        num = d["paper"].split("-")[0]
+        for lab, ms in d.get("master", {}).items():
+            r, cells = rows.get(lab), d.get("lean", {}).get(lab, [])
+            for m in ms:
+                if m not in core or r is None or r["tag"] == "I" or master[m]["tag"] == "O": continue
+                if any(c["name"].rsplit(".", 1)[-1] == master[m]["key"] for c in cells): continue      # one key: no pair
+                if any(c["module"].startswith("FrcCore") for c in cells): out.append((m, f"{num}:{lab}", r["tag"]))
+    return out
+
+def lean_namespaces(lib):
+    """namespace -> the text between its namespace line and its end line, for every file of a Lean library; a nested
+    namespace is keyed by its full name (FRC.Bridge.C1_2D1)."""
+    out = {}
+    for p in sorted((ROOT / "lean" / lib).rglob("*.lean")):
+        body, stack = strip_lean(p.read_text(encoding="utf-8")), []
+        for m in re.finditer(r"^(namespace|end) (\S+)\s*$", body, re.M):
+            if m.group(1) == "namespace": stack.append((m.group(2), m.end()))
+            elif stack and stack[-1][0] == m.group(2):
+                name, start = stack.pop()
+                out[".".join([s for s, _ in stack] + [name])] = body[start:m.start()]
+    return out
+
+def g14(release=None):
+    import json
+    cov_path = ROOT / "lean" / "FrcBridge" / "coverage.json"
+    if not (ROOT / "docs" / "00-ledger.json").exists(): report("G14", "no docs/00-ledger.json in this tree: the pairs are not computed"); return 0
+    if not cov_path.exists(): fail("G14", "lean/FrcBridge/coverage.json is missing"); return 0
+    cov = json.loads(cov_path.read_text(encoding="utf-8"))
+    entries = {(e["master"], e["paper"]): e for e in cov["pairs"]}
+    pairs = bridge_pairs()
+    ns = lean_namespaces("FrcBridge")
+    core_text = "\n".join(strip_lean(p.read_text(encoding="utf-8")) for p in sorted((ROOT / "lean" / "FrcCore").rglob("*.lean")))
+    tags = {(m, p): t for m, p, t in pairs}
+    for key in sorted(set(tags) - set(entries)):
+        fail("G14", f"00:{key[0]} with {key[1]}: a pair with core proofs on both sides and no entry in coverage.json")
+    for key, e in sorted(entries.items()):
+        where = f"00:{key[0]} with {key[1]}"
+        st, lean = e["status"], e.get("lean")
+        if st not in cov["statuses"]: fail("G14", f"{where}: unknown status {st!r}"); continue
+        if st == "bridged":
+            body = ns.get(lean) if lean else None
+            if body is None: fail("G14", f"{where}: no namespace {lean} in lean/FrcBridge"); continue
+            if not re.search(r"^theorem from_master\b", body, re.M): fail("G14", f"{where}: {lean} has no theorem from_master")
+            side = "from_" + key[1].replace(":", "")                        # a bridge shared by several papers: from_2D6
+            if not re.search(rf"^theorem (?:from_paper|{side})\b", body, re.M): fail("G14", f"{where}: {lean} has no theorem from_paper or {side}")
+        elif st == "shared theorem":
+            for name in (lean or "").split(", "):
+                if not re.search(rf"^(?:theorem|lemma) {re.escape(name.rsplit('.', 1)[-1])}\b", core_text, re.M):
+                    fail("G14", f"{where}: the shared theorem {name} is not in FrcCore")
+        elif st == "definition":
+            if key in tags and "D" not in tags[key].split("|"): fail("G14", f"{where}: the paper row is {tags[key]}, not a definition")
+        elif st == "waits":
+            if release and key[1].split(":")[0] == release.split("-")[0]: fail("G14", f"{where}: waits at the release of {release}")
+            else: report("G14", f"{where}: waits for the paper's migration ({e['note'][:80]})")
+        if key not in tags and st != "bridged": fail("G14", f"{where}: an entry that is no longer a pair (status {st})")
+    return len(pairs)
+
+
+# ---- G15 ------------------------------------------------------------------------------------------------------------
+def g15():
+    import hashlib, json, subprocess
+    mans = {m.stem: json.loads(m.read_text(encoding="utf-8")) for m in sorted((ROOT / "releases").glob("frc-*.json"))} if (ROOT / "releases").is_dir() else {}
+    if not mans:
+        if (ROOT / "releases").is_dir(): fail("G15", "releases/ holds no manifest")
+        else: report("G15", "no releases/ in this tree: the pins are not checked")
+        return 0
+    latest = mans[sorted(mans)[-1]]
+    def at_tag(tag, path):
+        r = subprocess.run(["git", "-C", str(ROOT), "rev-parse", f"{tag}:{path}"], capture_output=True, text=True, env={"GIT_OPTIONAL_LOCKS": "0", "PATH": "/usr/bin:/bin:/usr/local/bin"})
+        return r.stdout.strip() if r.returncode == 0 else None
+    n = 0
+    for p in latest["papers"]:
+        if not (p.get("posted") and p.get("package")): continue
+        n += 1; key = p["key"]
+        if not p.get("pinned"): fail("G15", f"{key}: a posted paper with a package and no pinned release"); continue
+        rel = p.get("pinned_release", latest["release"])
+        man = mans.get(rel)
+        if man is None: fail("G15", f"{key}: pinned to {rel}, which has no manifest"); continue
+        pin = next((q for q in man["papers"] if q["key"] == key), None)
+        if pin is None or not pin.get("pinned"): fail("G15", f"{key}: {rel} does not pin it"); continue
+        res = pin.get("results")
+        if "results" not in pin: fail("G15", f"{key}: {rel} is not served (run ci/release.py serve {rel})")
+        elif res is None: report("G15", f"{key}: {p['package']} keeps no check records (results.json) at {rel}; it gains them when the paper migrates (LM36)")
+        elif res[0] != res[1]: fail("G15", f"{key}: {p['package']} at {rel} passes {res[0]} of {res[1]} checks")
+        out = ROOT / "docs" / "releases" / rel
+        if not (out / f"{rel}.tar.gz").exists() or not (out / "lean" / "web").is_dir(): fail("G15", f"{key}: the site does not serve {rel} (docs/releases/{rel}/)")
+        if pin.get("sdist"):
+            f = out / "pkg" / pin["sdist"]
+            if not f.exists(): fail("G15", f"{key}: the pinned sdist {pin['sdist']} is not served under docs/releases/{rel}/pkg/")
+            elif hashlib.sha256(f.read_bytes()).hexdigest() != pin["sdist_sha256"]: fail("G15", f"{key}: the served {pin['sdist']} differs from the pin")
+        tree = at_tag(man["tag"], p["package"])
+        if tree is None: report("G15", f"{key}: the tag {man['tag']} is not in this clone; the package tree is not rechecked")
+        elif tree != pin.get("package_tree"): fail("G15", f"{key}: {p['package']} at {man['tag']} is not the pinned tree")
+        head = at_tag("HEAD", p["package"])
+        if tree and head and head != tree: report("G15", f"{key}: {p['package']} changed since {rel} (in revision; it pins anew at its milestone)")
+    return n
+
+
 # ---- G19 ------------------------------------------------------------------------------------------------------------
 DECL = re.compile(r"^(?:@\[[^\]]*\]\s*)?(?:protected\s+|private\s+|noncomputable\s+)*(theorem|lemma)\s+([^\s:(\[{]+)", re.M)
 NAMES = re.compile(r"\bInfinite\b|Set\.Infinite|Filter\.atTop|\batTop\b|\bTendsto\b|¬\s*Finite\b")
 
+def _scope(stmt, start):
+    """The text a binder scopes over: from `start` to the closing bracket that ends it."""
+    depth, s = 0, stmt[start:]
+    for k, ch in enumerate(s):
+        depth += ch in "([{⟨"; depth -= ch in ")]}⟩"
+        if depth < 0: return s[:k]
+    return s
+
+
+def _determined(V, s):
+    """An equation in the scope that fixes the variable from bounded data: one side free of it, the other holding it
+    outside any remainder (`κ = 2 * m`, `t = a * q`, `x = p * q + r`), so the witness is at most that side."""
+    for eq in re.finditer(r"([^=∧∨↔→,]+?)\s=\s([^=∧∨↔→,]+)", s):
+        a, b = eq.group(1), eq.group(2)
+        ina, inb = re.search(rf"(?<![\w'.]){V}(?![\w'])", a), re.search(rf"(?<![\w'.]){V}(?![\w'])", b)
+        side = b if (inb and not ina) else a if (ina and not inb) else None
+        if side and not re.search(rf"%\s*\(?[^,]*?(?<![\w'.]){V}(?![\w'])|(?<![\w'.]){V}(?![\w'])[^,=]*?\)?\s*%", side): return True
+    return False
+
+
 def unbounded(stmt):
-    """An existential variable bounded below by a variable and above by nothing, in the conjunct after its binder."""
+    """An existential that can exceed every bound (gate G19; the audit's M11, 7 October 2026). Two cases fail:
+    a variable bounded below by a variable and above by nothing; and a variable over ℕ — annotated `Nat`/`ℕ`, or used as
+    an exponent, under a remainder or in an order relation — with no upper bound in its scope and no equation that fixes
+    it from bounded data. An existential over the residues of a shell is bounded by its type."""
     for q in re.finditer(r"∃\s*([^,]+?),", stmt):
-        names = [v for v in re.split(r"[\s()]+", q.group(1).split(":")[0]) if v and v != "_"]
-        depth, j, s = 0, q.end(), stmt[q.end():]
-        for k, ch in enumerate(s):                                         # the scope of the binder: to the closing bracket
-            depth += ch in "([{⟨"; depth -= ch in ")]}⟩"
-            if depth < 0: s = s[:k]; break
+        binder = q.group(1)
+        names = [v for v in re.split(r"[\s()]+", binder.split(":")[0]) if v and v != "_"]
+        typ = binder.split(":", 1)[1].strip() if ":" in binder else ""
+        s = _scope(stmt, q.end())
         for v in names:
             V = re.escape(v)
             lower = re.search(rf"(?<![\w'.]){V}(?![\w'])\s*(?:>|≥)\s*[A-Za-z_]|[A-Za-z_][\w']*\s*(?:<|≤)\s*{V}(?![\w'])", s)
             upper = re.search(rf"(?<![\w'.]){V}(?![\w'])\s*(?:<|≤)|(?:>|≥)\s*{V}(?![\w'])", s)
             if lower and not upper: return f"∃ {v}, bounded below by a variable and above by nothing"
+            if upper or re.search(rf"(?<![\w'.]){V}(?![\w'])\s*∣", s): continue           # bounded, or a divisor
+            nat = typ in ("Nat", "ℕ") or (not typ and re.search(
+                rf"\^\s*\(?{V}(?![\w'])|(?<![\w'.]){V}(?![\w'])\)?\s*%|%\s*\(?{V}(?![\w'])|(?<![\w'.]){V}(?![\w'])\s*(?:<|≤|>|≥|∣)|(?:<|≤|>|≥|∣)\s*{V}(?![\w'])", s))
+            if nat and not _determined(V, s): return f"∃ {v} over ℕ with no upper bound in its scope"
     return None
 
 def g19(fw):
@@ -293,10 +447,12 @@ def main():
     if which in ("all", "g10"): g10(fw)
     n12 = g12() if which in ("all", "g12") else 0
     n13 = g13() if which in ("all", "g13") else 0
+    n14 = g14(next((a.split("=", 1)[1] for a in sys.argv[1:] if a.startswith("--release=")), None)) if which in ("all", "g14") else 0
+    n15 = g15() if which in ("all", "g15") else 0
     n19 = g19(fw) if which in ("all", "g19") else 0
     for r in REPORTS: print(r)
     for f in FAILS: print("FAIL", f)
-    print(f"gates {which}: {len(fw)} framework files; {n12} migrated ledger(s) checked (G12); {n13} notebook(s) executed (G13); {n19} core theorems scanned (G19); {len(REPORTS)} report(s); "
+    print(f"gates {which}: {len(fw)} framework files; {n12} migrated ledger(s) checked (G12); {n13} notebook(s) executed (G13); {n14} bridge pair(s) covered (G14); {n15} pinned paper(s) (G15); {n19} core theorems scanned (G19); {len(REPORTS)} report(s); "
           + ("green" if not FAILS else f"{len(FAILS)} failure(s)"))
     sys.exit(1 if FAILS else 0)
 

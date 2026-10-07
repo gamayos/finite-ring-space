@@ -1,0 +1,515 @@
+{
+ "release": "frc-20261004",
+ "date": "2026-10-04",
+ "kind": "pre-migration release (reports/ledger-migration-20261003.md, task LM02)",
+ "repository": "finite-ring-space",
+ "tag": "frc-20261004",
+ "tag_object": "f5069b14a21d6486cfad7e4de54cc6e3344718d3",
+ "commit": "15cb5a62260b475e16cd916e54bc85b97815c56b",
+ "origin_main_at_cut": "55113165380089079d56df492f05c65b1e32e0a7",
+ "pushed": false,
+ "corpus": {
+  "repository": "finite-universe-3",
+  "tag": "premigration-20261004",
+  "commit": "bd230b4ccf29e3b21141a9528f8606122fc30b5e"
+ },
+ "lean": {
+  "toolchain": "leanprover/lean4:v4.34.0",
+  "mathlib": "695d840c1dabb4c98dc38ff1874d51e0d465d6a4",
+  "core_modules": [
+   "Algebra",
+   "Causality",
+   "Complex",
+   "Dimensions",
+   "Dirac",
+   "Entropy",
+   "Epi",
+   "Fourier",
+   "Frame",
+   "Geometry",
+   "Godel",
+   "Gravity",
+   "Instances",
+   "Meridian",
+   "Nat",
+   "Orbit",
+   "Pigeonhole",
+   "Poly",
+   "Quaternion",
+   "Reductio",
+   "Representation",
+   "Rh",
+   "Shell",
+   "Sum"
+  ],
+  "mathlib_modules": [
+   "Algebra",
+   "Causality",
+   "Dimensions",
+   "Dirac",
+   "Entropy",
+   "Epi",
+   "Fourier",
+   "Geometry",
+   "Godel",
+   "Gravity",
+   "Reductio",
+   "Representation",
+   "Rh"
+  ],
+  "core_axioms_log": {
+   "file": "lean/FrcCore/axioms.log",
+   "sha256": "9dc3161a97438f134a5ec799cb753e7059fffd0a5659a7c036df4c4be0e51670",
+   "lines": 957,
+   "axiom_free": 957
+  },
+  "mathlib_axioms_log": {
+   "file": "lean/axioms.log",
+   "sha256": "ebb24fde79f90d72da0b9ba78452164bed35c2037516fa2851822f227ef34150",
+   "lines": 916
+  }
+ },
+ "site": {
+  "docs_tree": "4a9b94667095732ef7c34dfd50b1f1ed30a31e51",
+  "served_from": "https://finitering.space/ (docs/ of main)"
+ },
+ "papers": [
+  {
+   "key": "1-alg",
+   "title": "Relativistic Algebra over Finite Ring Continuum",
+   "doi": "axioms14080636",
+   "status": "Axioms",
+   "posted": true,
+   "pinned": true,
+   "package": "src/1-algebra",
+   "package_tree": "9266a87bf3b083dc3983bb1fc0cd10b0814ae7bd",
+   "sdist": "frc-1-algebra-20260926.tar.gz",
+   "sdist_sha256": "28a08dccd33dc4c798678a1da9f109471e9421fcbaef70612140441f85a8d3b5",
+   "four_glyph": true,
+   "lean_core": "lean/FrcCore/Algebra.lean",
+   "lean_mathlib": "lean/FrcLedger/Algebra.lean",
+   "site": "docs/1-algebra/",
+   "results": [
+    16,
+    16
+   ]
+  },
+  {
+   "key": "2-geom",
+   "title": "Geometry and Constants in Finite Ring Continuum",
+   "doi": "sym18050751",
+   "status": "Symmetry",
+   "posted": true,
+   "pinned": true,
+   "package": "src/2-geometry",
+   "package_tree": "041fec4dc1e8c04b143cf228b22a456d2d06629e",
+   "sdist": "frc-2-geometry-20260926.tar.gz",
+   "sdist_sha256": "1c30280103d12879156b915a38e7b634d355f27930136b9b15bc49b66d202607",
+   "four_glyph": true,
+   "lean_core": "lean/FrcCore/Geometry.lean",
+   "lean_mathlib": "lean/FrcLedger/Geometry.lean",
+   "site": "docs/2-geometry/",
+   "results": [
+    18,
+    18
+   ]
+  },
+  {
+   "key": "3-caus",
+   "title": "Euclidean–Lorentzian Dichotomy and Algebraic Causality in Finite Ring Continuum",
+   "doi": "e27111098",
+   "status": "Entropy",
+   "posted": true,
+   "pinned": true,
+   "package": "src/3-causality",
+   "package_tree": "3927274bd3d54ce210e4062b1f0a6db54bb2b1d9",
+   "sdist": "frc-3-causality-20260926.tar.gz",
+   "sdist_sha256": "fef34fec7d254c4998200eb9f9ee1adb084de2068e4817cc7dad993110c6ab04",
+   "four_glyph": true,
+   "lean_core": "lean/FrcCore/Causality.lean",
+   "lean_mathlib": "lean/FrcLedger/Causality.lean",
+   "site": "docs/3-causality/",
+   "results": [
+    16,
+    16
+   ]
+  },
+  {
+   "key": "4-rep",
+   "title": "Universal Latent Representation in FRC",
+   "doi": "e28010040",
+   "status": "Entropy",
+   "posted": true,
+   "pinned": true,
+   "package": "src/4-representation",
+   "package_tree": "4c8c12c58e9fd5026e5aa334242381a3472c2fd9",
+   "sdist": "frc-4-representation-20260926.tar.gz",
+   "sdist_sha256": "bb7860c96bf102e0ad9ab881cdf5697cb06edb1d5fbda7c6c8886383d42f37b9",
+   "four_glyph": true,
+   "lean_core": "lean/FrcCore/Representation.lean",
+   "lean_mathlib": "lean/FrcLedger/Representation.lean",
+   "site": "docs/4-representation/",
+   "results": [
+    13,
+    13
+   ]
+  },
+  {
+   "key": "5-red",
+   "title": "Paradoxes of Infinity as Reductio ad Absurdum",
+   "doi": "pp202508.1744.v1",
+   "status": "?PhilMath",
+   "posted": true,
+   "pinned": true,
+   "package": "src/5-reductio",
+   "package_tree": "5c3505e1a2fc5ce8bdb96a2e6e29e258fb6dcb04",
+   "sdist": "frc-5-reductio-20260926.tar.gz",
+   "sdist_sha256": "e0b3768af72d1224f282b82b167fa84005c8909c29c321b0a45feef34aeaf3ce",
+   "four_glyph": true,
+   "lean_core": "lean/FrcCore/Reductio.lean",
+   "lean_mathlib": "lean/FrcLedger/Reductio.lean",
+   "site": "docs/5-reductio/",
+   "results": [
+    17,
+    17
+   ]
+  },
+  {
+   "key": "6-four",
+   "title": "Scale-Shift and Fractional Fourier Transform as Rotations over Finite Holographic Substrate",
+   "doi": "pp202606.0127.v1",
+   "status": "?Math",
+   "posted": true,
+   "pinned": true,
+   "package": "src/6-fourier",
+   "package_tree": "8e2a2dd62c5c9509a2ce171a25ed0714f3fb3bd4",
+   "sdist": "frc-6-fourier-20260926.tar.gz",
+   "sdist_sha256": "1499fe14c8874e989100eca951ab77e9ff03d7d1614724e6c6abd348955d5baa",
+   "four_glyph": true,
+   "lean_core": "lean/FrcCore/Fourier.lean",
+   "lean_mathlib": "lean/FrcLedger/Fourier.lean",
+   "site": "docs/6-fourier/",
+   "results": [
+    39,
+    39
+   ]
+  },
+  {
+   "key": "8-dirac",
+   "title": "Schrödinger and Dirac Dynamics",
+   "doi": "pp202510.1486.v2",
+   "status": "-RSPA",
+   "posted": true,
+   "pinned": true,
+   "package": "src/8-dirac",
+   "package_tree": "590c635853d9681a7546b307dcc12daa64e06cdf",
+   "sdist": "frc-8-dirac-20260926.tar.gz",
+   "sdist_sha256": "45ae534d1a59cd7fb3de92eb2b0b93a9b6b6a6a0affed4de7d4680ba8708e39f",
+   "four_glyph": true,
+   "lean_core": "lean/FrcCore/Dirac.lean",
+   "lean_mathlib": "lean/FrcLedger/Dirac.lean",
+   "site": "docs/8-dirac/",
+   "results": [
+    52,
+    52
+   ]
+  },
+  {
+   "key": "10-dim",
+   "title": "Dimensional Analysis over Finite Holographic Substrate",
+   "doi": "pp202605.0668.v1",
+   "status": "?Entropy",
+   "posted": true,
+   "pinned": true,
+   "package": "src/10-dimensions",
+   "package_tree": "6955101802944a3834bf92b6b1bb07e99202c61d",
+   "sdist": "frc-10-dimensions-20260926.tar.gz",
+   "sdist_sha256": "8b1e82fbbfb5d349767d8af3e586a2c27043347ba04c1b1780b424e45829cbd0",
+   "four_glyph": true,
+   "lean_core": "lean/FrcCore/Dimensions.lean",
+   "lean_mathlib": "lean/FrcLedger/Dimensions.lean",
+   "site": "docs/10-dimensions/",
+   "results": [
+    13,
+    13
+   ]
+  },
+  {
+   "key": "13-epi",
+   "title": "Finite Field Realisation of π and e",
+   "doi": "pp202607.1141.v1",
+   "status": "-FFA",
+   "posted": true,
+   "pinned": true,
+   "package": "src/13-epi",
+   "package_tree": "f329faff8f3bb718e44b30253bb2862aac19c1f2",
+   "sdist": "frc-13-epi-20260926.tar.gz",
+   "sdist_sha256": "4d6a985edf48089407c775e7a63ab252cd9716d08187d2880e9b02002fd319c6",
+   "four_glyph": true,
+   "lean_core": "lean/FrcCore/Epi.lean",
+   "lean_mathlib": "lean/FrcLedger/Epi.lean",
+   "site": "docs/13-epi/",
+   "results": [
+    41,
+    41
+   ]
+  },
+  {
+   "key": "14-entr",
+   "title": "De Sitter Entropy Estimates over Finite Holographic Substrate",
+   "doi": "pp202608.0310.v1",
+   "status": "preprint",
+   "posted": true,
+   "pinned": true,
+   "package": "src/14-entropy",
+   "package_tree": "a2c100962ffd3b472bb9a6f695abf2d44959e76b",
+   "sdist": "frc-14-entropy-20260926.tar.gz",
+   "sdist_sha256": "b2bd18910b7426f29d3c9e4e505ce895e50655e18f9ae71adfecbadb4cee00d9",
+   "four_glyph": true,
+   "lean_core": "lean/FrcCore/Entropy.lean",
+   "lean_mathlib": "lean/FrcLedger/Entropy.lean",
+   "site": "docs/14-entropy/",
+   "results": [
+    19,
+    19
+   ]
+  },
+  {
+   "key": "20-rh",
+   "title": "Riemann Hypothesis over the Holographic Substrate",
+   "doi": "pp202606.0768.v1",
+   "status": "preprint",
+   "posted": true,
+   "pinned": true,
+   "package": "src/20-rh",
+   "package_tree": "d24e28dbddc353923042c0891925f9c84ebd6e64",
+   "sdist": "frc-20-rh-20260926.tar.gz",
+   "sdist_sha256": "8d263e97363443a224b92fe8b87c8dd7b38ade85f3444f93c3f8bab841106555",
+   "four_glyph": true,
+   "lean_core": "lean/FrcCore/Rh.lean",
+   "lean_mathlib": "lean/FrcLedger/Rh.lean",
+   "site": "docs/20-rh/",
+   "results": [
+    95,
+    95
+   ]
+  },
+  {
+   "key": "21-grav",
+   "title": "Gravitation as Phase Synchronisation",
+   "doi": "pp202606.1018.v2",
+   "status": "-CQG",
+   "posted": true,
+   "pinned": true,
+   "package": "src/21-gravity",
+   "package_tree": "b8e882b1258fdb34e9bff575163d5d5445747231",
+   "sdist": null,
+   "sdist_sha256": null,
+   "four_glyph": false,
+   "lean_core": "lean/FrcCore/Gravity.lean",
+   "lean_mathlib": "lean/FrcLedger/Gravity.lean",
+   "site": "docs/21-gravity/",
+   "results": [
+    21,
+    21
+   ]
+  },
+  {
+   "key": "22-qm",
+   "title": "Quantum Observation over Finite Substrate",
+   "doi": "pp202606.1160.v2",
+   "status": "-QSMF",
+   "posted": true,
+   "pinned": true,
+   "package": "src/22-quantum",
+   "package_tree": "8eed868e94cd76e5c49a531245147d9d4b76e031",
+   "sdist": null,
+   "sdist_sha256": null,
+   "four_glyph": false,
+   "lean_core": null,
+   "lean_mathlib": null,
+   "site": "docs/22-quantum/",
+   "results": [
+    17,
+    17
+   ]
+  },
+  {
+   "key": "23-gold",
+   "title": "Binary Goldbach over Finite Substrate",
+   "doi": "pp202606.1552.v1",
+   "status": "-AnnMath",
+   "posted": true,
+   "pinned": true,
+   "package": "src/23-goldbach",
+   "package_tree": "251ee27d7c25f6bd1185fb5b585faeee4c45781d",
+   "sdist": null,
+   "sdist_sha256": null,
+   "four_glyph": false,
+   "lean_core": null,
+   "lean_mathlib": null,
+   "site": null,
+   "results": null
+  },
+  {
+   "key": "25-göd",
+   "title": "Incompleteness Without Infinity",
+   "doi": "pp202607.0850.v1",
+   "status": "?Studia",
+   "posted": true,
+   "pinned": true,
+   "package": "src/25-godel",
+   "package_tree": "3bbba8142e61b6fb4ef64057f6e852248df95793",
+   "sdist": "frc-25-godel-20261003.tar.gz",
+   "sdist_sha256": "e738cfc560f41be2836d3ad6f151836b5df5d2049e9a80431b83efbb1faea4d9",
+   "four_glyph": true,
+   "lean_core": "lean/FrcCore/Godel.lean",
+   "lean_mathlib": "lean/FrcLedger/Godel.lean",
+   "site": "docs/25-godel/",
+   "results": [
+    20,
+    20
+   ]
+  },
+  {
+   "key": "26-pnp",
+   "title": "P versus NP: Computation as Counting",
+   "doi": "pp202606.1781.v1",
+   "status": "preprint",
+   "posted": true,
+   "pinned": true,
+   "package": "src/26-pnp",
+   "package_tree": "811cf2540f04e2483a0648efc883535625381bcb",
+   "sdist": null,
+   "sdist_sha256": null,
+   "four_glyph": false,
+   "lean_core": null,
+   "lean_mathlib": null,
+   "site": null,
+   "results": null
+  },
+  {
+   "key": "27-fld",
+   "title": "Standard-Model Interactions over Finite Substrate",
+   "doi": "pp202606.1328.v1",
+   "status": "-SP.Phys",
+   "posted": true,
+   "pinned": true,
+   "package": "src/27-fields",
+   "package_tree": "5a0a5316943653fdb30959b597d6dbeaf263f292",
+   "sdist": null,
+   "sdist_sha256": null,
+   "four_glyph": false,
+   "lean_core": null,
+   "lean_mathlib": null,
+   "site": "docs/27-fields/",
+   "results": [
+    28,
+    28
+   ]
+  },
+  {
+   "key": "28-flav",
+   "title": "Fermion Flavour Sector over Finite Substrate",
+   "doi": "pp202606.2124.v1",
+   "status": "-EPJC",
+   "posted": true,
+   "pinned": true,
+   "package": "src/28-flavour",
+   "package_tree": "c1b84aa3c310b2aec14bb86c0658f6e9d69fa3c8",
+   "sdist": null,
+   "sdist_sha256": null,
+   "four_glyph": false,
+   "lean_core": null,
+   "lean_mathlib": null,
+   "site": "docs/28-flavour/",
+   "results": [
+    16,
+    16
+   ]
+  },
+  {
+   "key": "32-dark",
+   "title": "The Dark Sector over Finite Substrate",
+   "doi": "pp202606.1689.v1",
+   "status": "preprint",
+   "posted": true,
+   "pinned": true,
+   "package": "src/32-dark",
+   "package_tree": "eb66c0436d0e52facf540acc7c8c5eaaef6f4f57",
+   "sdist": null,
+   "sdist_sha256": null,
+   "four_glyph": false,
+   "lean_core": null,
+   "lean_mathlib": null,
+   "site": "docs/32-dark/",
+   "results": [
+    13,
+    13
+   ]
+  },
+  {
+   "key": "35-hadr",
+   "title": "Ground-State Light Hadron Spectroscopy over Finite Substrate",
+   "doi": "pp202506.1507.v2",
+   "status": "preprint",
+   "posted": true,
+   "pinned": true,
+   "package": "src/35-hadrons",
+   "package_tree": "b71ba24ad12a7004ffe6a84b3c33eb5a1690b889",
+   "sdist": null,
+   "sdist_sha256": null,
+   "four_glyph": false,
+   "lean_core": null,
+   "lean_mathlib": null,
+   "site": "docs/35-hadrons/",
+   "results": [
+    16,
+    16
+   ]
+  },
+  {
+   "key": "38-s13",
+   "title": "Exact Quantum Dynamics on (13,233)",
+   "doi": "pp202608.0390.v1",
+   "status": "?FoP",
+   "posted": true,
+   "pinned": true,
+   "package": "src/38-s13",
+   "package_tree": "d11f18516a9aff92bf7b699be8709df1219ad87a",
+   "sdist": null,
+   "sdist_sha256": null,
+   "four_glyph": false,
+   "lean_core": null,
+   "lean_mathlib": null,
+   "site": "docs/38-s13/",
+   "results": [
+    13,
+    13
+   ]
+  }
+ ],
+ "unpinned_packages": [
+  "28-spectrum"
+ ],
+ "served": {
+  "archive": "docs/releases/frc-20261004/frc-20261004.tar.gz",
+  "archive_sha256": "5036b1a26389a7cde550b1a6409c6f0cc07d4a02d2716aa13da0f8c5a1513a9e",
+  "archive_files": 58,
+  "web_copies": 29,
+  "sdists": [
+   "frc-1-algebra-20260926.tar.gz",
+   "frc-10-dimensions-20260926.tar.gz",
+   "frc-13-epi-20260926.tar.gz",
+   "frc-14-entropy-20260926.tar.gz",
+   "frc-2-geometry-20260926.tar.gz",
+   "frc-20-rh-20260926.tar.gz",
+   "frc-25-godel-20261003.tar.gz",
+   "frc-3-causality-20260926.tar.gz",
+   "frc-4-representation-20260926.tar.gz",
+   "frc-5-reductio-20260926.tar.gz",
+   "frc-6-fourier-20260926.tar.gz",
+   "frc-8-dirac-20260926.tar.gz"
+  ]
+ }
+}

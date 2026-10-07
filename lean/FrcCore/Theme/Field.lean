@@ -255,14 +255,6 @@ theorem neg_one_ne_zero (hp : FRC.Nat.isPrime p) : (-1 : Shell p) ≠ 0 := fun e
   have : (1 : Shell p) = 0 := by rw [← neg_neg (1 : Shell p), e, neg_zero]
   exact one_ne_zero hp this
 
-/-- The order divides the period: `z^d = 1` gives `z^{(p−1) mod d} = 1`. -/
-theorem pow_mod_eq_one (hp : FRC.Nat.isPrime p) {z : Shell p} (hz : z ≠ 0) {d : Nat} (hd0 : 0 < d)
-    (hd : z ^ d = 1) : z ^ ((p - 1) % d) = 1 := by
-  obtain ⟨q, hq⟩ := FRC.Nat.mod_spec d hd0 (p - 1)
-  have h := fermat hp hz
-  rw [hq, pow_add, pow_mul, hd, one_pow, one_mul] at h
-  exact h
-
 /-! ## The roots of `X^m − 1`, and the residues they miss -/
 
 /-- Some nonzero residue escapes `x^m = 1` when `0 < m < p − 1`: else `X^m − 1` had `m + 1` roots. -/
@@ -297,42 +289,13 @@ theorem exists_pow_half (hp : FRC.Nat.isPrime p) {n : Nat} (hn : p = 2 * n + 1) 
     | .inl e => absurd e han
     | .inr e => e⟩
 
-/-! ## The quarter-turn criterion: `−1` is a square iff `p ≡ 1 (mod 4)` -/
+/-! ## The quarter-turn on the chart `p = 4S + 1` (the criterion: `Theme/Foundation.lean`) -/
 
 /-- The quarter-turn on the chart `p = 4S + 1`, generator-free: `ħ = a^S` with `a^{2S} = −1`. -/
 theorem exists_quarter_turn (hp : FRC.Nat.isPrime p) {S : Nat} (hS : p = 4 * S + 1) :
     ∃ h : Shell p, h * h = -1 := by
   obtain ⟨a, ha⟩ := exists_pow_half hp (n := 2 * S) (by rw [hS, ← FRC.Nat.mul_assoc])
   exact ⟨a ^ S, by rw [← pow_add, ← Nat.two_mul, ha]⟩
-
-/-- The quarter-turn criterion on a prime `p > 2`: `x² = −1` is solvable iff `p ≡ 1 (mod 4)`. Forward, `ħ⁴ = 1`
-and `ħ^{(p−1) mod 4} = 1` leave only `(p − 1) mod 4 = 0`; backward, the chart. -/
-theorem quarter_turn_iff (hp : FRC.Nat.isPrime p) (h2 : 2 < p) : (∃ h : Shell p, h * h = -1) ↔ p % 4 = 1 := by
-  constructor
-  · intro ⟨h, hh⟩
-    have h0 : h ≠ 0 := ne_zero_of_mul_self (neg_one_ne_zero hp) hh
-    have h4 : h ^ 4 = 1 := by
-      rw [show (4 : Nat) = 2 + 2 from rfl, pow_add, pow_two, hh, neg_mul_neg, mul_one]
-    have hcase : (p - 1) % 4 = 0 := by
-      have hr := pow_mod_eq_one hp h0 (by decide : 0 < 4) h4
-      have hlt := Nat.mod_lt (p - 1) (by decide : 0 < 4)
-      generalize (p - 1) % 4 = r at hr hlt
-      match r, hr, hlt with
-      | 0, _, _ => rfl
-      | 1, hr, _ => rw [pow_one] at hr; rw [hr, mul_one] at hh; exact absurd hh.symm (neg_one_ne_one h2)
-      | 2, hr, _ => rw [pow_two, hh] at hr; exact absurd hr (neg_one_ne_one h2)
-      | 3, hr, _ =>
-        rw [show (4 : Nat) = 3 + 1 from rfl, pow_succ, hr, one_mul] at h4
-        rw [h4, mul_one] at hh; exact absurd hh.symm (neg_one_ne_one h2)
-      | k + 4, _, hlt => exact absurd hlt (Nat.not_lt_of_le (Nat.le_add_left 4 k))
-    obtain ⟨q, hq⟩ := FRC.Nat.mod_spec 4 (by decide) (p - 1)
-    rw [hcase, Nat.add_zero] at hq
-    exact FRC.Nat.mod_unique (by decide)
-      (by rw [← hq, FRC.Nat.sub_add_cancel (Nat.le_of_lt (Nat.lt_trans (Nat.lt_succ_self 1) h2))])
-  · intro h4
-    obtain ⟨S, hS⟩ := FRC.Nat.mod_spec 4 (by decide) p
-    rw [h4] at hS
-    exact exists_quarter_turn hp hS
 
 /-! ## A shell without zero divisors is prime -/
 
@@ -361,14 +324,8 @@ theorem isPrime_of_no_zero_divisors (h2 : 2 ≤ p) (hz : ∀ {a b : Shell p}, a 
   | .inl e1 => exact ofNat_ne_zero hd0 hdp e1
   | .inr e2 => exact ofNat_ne_zero hq0 hqp e2
 
-/-- Completeness is primality: for `p ≥ 2`, the shell has no zero divisors iff `p` is prime. -/
-theorem isPrime_iff_no_zero_divisors (h2 : 2 ≤ p) :
-    FRC.Nat.isPrime p ↔ ∀ a b : Shell p, a * b = 0 → a = 0 ∨ b = 0 :=
-  ⟨fun hp _ _ h => mul_eq_zero hp h, fun hz => isPrime_of_no_zero_divisors h2 (fun h => hz _ _ h)⟩
-
-/-! ## The chart `p = 4S + 1`: the octant sector, the half-square and the parity flip (moved from the Carrier's
-theme by task LM24, so that every programme theme stands on them without the Carrier; `FRC.Carrier` keeps the old
-names) -/
+/-! ## The chart `p = 4S + 1`: the half-square and the parity flip (moved from the Carrier's theme by task LM24, so that
+every programme theme stands on them without the Carrier; `FRC.Carrier` keeps the old names) -/
 
 omit [Pos p] in
 theorem chart_gt_two (hp : FRC.Nat.isPrime p) {S : Nat} (hS : p = 4 * S + 1) : 2 < p := by

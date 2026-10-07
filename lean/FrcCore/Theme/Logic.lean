@@ -667,4 +667,82 @@ theorem fin_theory_complete (M : FinStr) (φ : FForm) (env : Nat → Nat) : Sat 
 theorem fin_theory_consistent (M : FinStr) (φ : FForm) (env : Nat → Nat) : ¬ (Sat M env φ ∧ Sat M env (.neg φ)) :=
   fun h => h.2 h.1
 
+/-! ### 00:Z1 — no finite structure interprets Robinson's `Q` -/
+
+/-- The successor an interpretation defines: on the domain `D`, the least `y` in `D` with `Sg x y`; the identity off it. -/
+def succOf (D : Nat → Bool) (Sg : Nat → Nat → Bool) (n x : Nat) : Nat :=
+  if D x then (match leastBelow (fun y => D y && Sg x y) n with | some y => y | none => x) else x
+
+theorem band_l {a b : Bool} (h : (a && b) = true) : a = true := by cases a <;> cases b <;> first | rfl | exact h
+theorem band_r {a b : Bool} (h : (a && b) = true) : b = true := by cases a <;> cases b <;> first | rfl | exact h
+
+/-- 00:Z1, 25:C1 — no finite structure carries Robinson's successor: on `[0, n)`, a domain `D`, a successor relation
+`Sg` total on `D`, injective (Q2) and never reaching a zero `Z` of `D` (Q1) cannot exist. A `k`-dimensional
+interpretation is the case `n = mᵏ`, its tuples coded below `mᵏ`. -/
+theorem no_finite_Q (n : Nat) (D Z : Nat → Bool) (Sg : Nat → Nat → Bool)
+    (htot : ∀ x, x < n → D x = true → ∃ y, y < n ∧ D y = true ∧ Sg x y = true)
+    (hinj : ∀ x x' y, x < n → x' < n → D x = true → D x' = true → Sg x y = true → Sg x' y = true → x = x')
+    (hz : ∃ z, z < n ∧ D z = true ∧ Z z = true)
+    (h1 : ∀ x y, x < n → y < n → D x = true → D y = true → Sg x y = true → Z y = false) : False := by
+  have hS : ∀ x, x < n → D x = true →
+      ∃ y, y < n ∧ D y = true ∧ Sg x y = true ∧ succOf D Sg n x = y := fun x hx hD => by
+    obtain ⟨y, hy, hDy, hSy⟩ := htot x hx hD
+    obtain ⟨y0, h0⟩ := leastBelow_some (fun y => D y && Sg x y) n y hy (by rw [hDy, hSy]; rfl)
+    have sp := leastBelow_spec _ n y0 h0
+    refine ⟨y0, sp.1, band_l sp.2.1, band_r sp.2.1, ?_⟩
+    show (if D x = true then (match leastBelow (fun y => D y && Sg x y) n with | some y => y | none => x) else x) = y0
+    rw [ite_eq_left hD, h0]
+  have hoff : ∀ x, D x = false → succOf D Sg n x = x := fun x hD => by
+    show (if D x = true then _ else x) = x
+    rw [hD, ite_eq_right Bool.false_ne_true]
+  obtain ⟨z, hzn, hDz, hZz⟩ := hz
+  refine no_finite_successor n (succOf D Sg n) (fun x hx => ?_) (fun x x' hx hx' e => ?_) z hzn (fun x hx e => ?_)
+  · match hD : D x with
+    | true => obtain ⟨y, hy, _, _, ey⟩ := hS x hx hD; rw [ey]; exact hy
+    | false => rw [hoff x hD]; exact hx
+  · match hD : D x, hD' : D x' with
+    | true, true =>
+      obtain ⟨y, _, _, hSy, ey⟩ := hS x hx hD
+      obtain ⟨y', _, _, hSy', ey'⟩ := hS x' hx' hD'
+      rw [ey, ey'] at e
+      exact hinj x x' y hx hx' hD hD' hSy (e ▸ hSy')
+    | true, false =>
+      obtain ⟨y, _, hDy, _, ey⟩ := hS x hx hD
+      rw [ey, hoff x' hD'] at e
+      rw [e] at hDy; rw [hDy] at hD'; exact Bool.noConfusion hD'
+    | false, true =>
+      obtain ⟨y', _, hDy', _, ey'⟩ := hS x' hx' hD'
+      rw [ey', hoff x hD] at e
+      rw [← e] at hDy'; rw [hDy'] at hD; exact Bool.noConfusion hD
+    | false, false => rw [hoff x hD, hoff x' hD'] at e; exact e
+  · match hD : D x with
+    | true =>
+      obtain ⟨y, hy, hDy, hSy, ey⟩ := hS x hx hD
+      rw [ey] at e
+      have := h1 x y hx hy hD hDy hSy
+      rw [e, hZz] at this; exact Bool.noConfusion this
+    | false => rw [hoff x hD] at e; rw [e, hDz] at hD; exact Bool.noConfusion hD
+
+/-- 00:Z1, 25:C1 — a finite structure interprets no Robinson `Q`: for formulas `δ` (the domain, in variable `0`),
+`σ` (the successor's graph, `x` in variable `1` and `y` in `0`) and `ζ` (zero), the relativised successor axioms —
+`S` total on the domain, Q2 (`S x = S x' → x = x'`), a zero in the domain, and Q1 (`S x ≠ 0`) — never all hold. -/
+theorem no_interpretation (M : FinStr) (env : Nat → Nat) (δ σ ζ : FForm) :
+    ¬ ((∀ x, x < M.m → Sat M (cons x env) δ →
+        ∃ y, y < M.m ∧ Sat M (cons y env) δ ∧ Sat M (cons y (cons x env)) σ) ∧
+      (∀ x x' y, x < M.m → x' < M.m → Sat M (cons x env) δ → Sat M (cons x' env) δ →
+        Sat M (cons y (cons x env)) σ → Sat M (cons y (cons x' env)) σ → x = x') ∧
+      (∃ z, z < M.m ∧ Sat M (cons z env) δ ∧ Sat M (cons z env) ζ) ∧
+      (∀ x y, x < M.m → y < M.m → Sat M (cons x env) δ → Sat M (cons y env) δ → Sat M (cons y (cons x env)) σ →
+        ¬ Sat M (cons y env) ζ)) := fun ⟨htot, hinj, ⟨z, hz, hDz, hZz⟩, h1⟩ => by
+  have dec := fin_theory_decidable M
+  refine no_finite_Q M.m (fun x => fval M (cons x env) δ) (fun x => fval M (cons x env) ζ)
+    (fun x y => fval M (cons y (cons x env)) σ) (fun x hx hD => ?_) (fun x x' y hx hx' hD hD' hS hS' => ?_)
+    ⟨z, hz, (dec δ _).2 hDz, (dec ζ _).2 hZz⟩ (fun x y hx hy hD hDy hS => ?_)
+  · obtain ⟨y, hy, hDy, hSy⟩ := htot x hx ((dec δ _).1 hD)
+    exact ⟨y, hy, (dec δ _).2 hDy, (dec σ _).2 hSy⟩
+  · exact hinj x x' y hx hx' ((dec δ _).1 hD) ((dec δ _).1 hD') ((dec σ _).1 hS) ((dec σ _).1 hS')
+  · match hZ : fval M (cons y env) ζ with
+    | false => rfl
+    | true => exact absurd ((dec ζ _).1 hZ) (h1 x y hx hy ((dec δ _).1 hD) ((dec δ _).1 hDy) ((dec σ _).1 hS))
+
 end FRC.Logic

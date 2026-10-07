@@ -30,7 +30,13 @@ theme's `Theme/Logic` the first-order theory of a finite structure (00:Z1). Sinc
 composite (the joint recurrence, the gcd offset, the dephasing; 00:F2), and since task LM29 the interactions theme's
 `Theme/Interactions` one generation and the Koide form (00:G11, G12, G16). Since task LM30 the chart theme's `Theme/Chart`
 (Mathlib) and `chart.py` hold the readings against the continuum that the master's L1, L3, L8 and P1 stake: the
-octant's chart theorems moved there from 14-entropy and the floor's from 21-gravity, under their old names as aliases. New theme files go under `Theme/`, since `FrcCore/Fourier.lean` and
+octant's chart theorems moved there from 14-entropy and the floor's from 21-gravity, under their old names as aliases. Since
+task LM36 the horizon theme's Mathlib `Theme/Horizon` holds 20-rh's shell arithmetic on Mathlib, the core `Theme/Horizon`
+the rest of 20-rh's core arithmetic, and the chart theme's `Theme/Chart` and `chart_rh.py` its readings with the reals and
+in floating point; `Rh` keeps every old name as an alias. The same day the fourier theme's Mathlib `Theme/Fractional` took 6-fourier's
+fractional family from its `Fourier` module, old names kept as aliases, and `chart_fourier.py` its observer readout in
+floating point. `Meridian` (the meridians and the scale map, on the frame alone) joined the frame theme, so
+that 6-fourier's certificate takes its keys from one key file within the budget of gate G10. New theme files go under `Theme/`, since `FrcCore/Fourier.lean` and
 `FrcCore/Gravity.lean` are paper modules (6-fourier and 21-gravity). Since task LM18 (5 October 2026) the paper modules
 (`LEGACY`) import themes only, and gate G09 fails a cross-paper import.
 """
@@ -46,7 +52,7 @@ THEMES = {
                  content="the registry of checks; exact integer arithmetic; the naturals, the pigeonhole and the shell's residues; bounded search, finite sums and products; the normaliser of ring identities"),
     "frame": dict(tier="structure", rank=10, exact=True,
                   py=["frc/shell.py"],
-                  core=["lean/FrcCore/FrameCore.lean", "lean/FrcCore/Frame.lean", "lean/FrcCore/Parity.lean", "lean/FrcCore/Transform.lean", "lean/FrcCore/Orbit.lean", "lean/FrcCore/Instances.lean", "lean/FrcCore/Sum.lean"],
+                  core=["lean/FrcCore/FrameCore.lean", "lean/FrcCore/Frame.lean", "lean/FrcCore/Parity.lean", "lean/FrcCore/Transform.lean", "lean/FrcCore/Orbit.lean", "lean/FrcCore/Instances.lean", "lean/FrcCore/Sum.lean", "lean/FrcCore/Meridian.lean"],
                   ml=["lean/FrcLedger/Theme/Frame.lean"],
                   content="the frame (τ; 0, 1, g), the drive and its orbit, the quarter-turn, the lift; finite sums; concrete shells"),
     "extension": dict(tier="structure", rank=11, exact=True,
@@ -56,8 +62,8 @@ THEMES = {
                        py=["frc/projective.py"], core=["lean/FrcCore/Theme/Projective.lean"], ml=["lean/FrcLedger/Theme/Projective.lean"],
                        content="PGL₂ and SL₂ by elements, the Borel subgroup, the split and non-split tori"),
     "fourier": dict(tier="structure", rank=13, exact=True,
-                    py=["frc/fourier.py"], core=["lean/FrcCore/Meridian.lean", "lean/FrcCore/Theme/Fourier.lean"],
-                    ml=["lean/FrcLedger/Theme/Fourier.lean"],
+                    py=["frc/fourier.py"], core=["lean/FrcCore/Theme/Fourier.lean"],
+                    ml=["lean/FrcLedger/Theme/Fourier.lean", "lean/FrcLedger/Theme/Fractional.lean"],
                     content="the shell DFT and its inversion, the fractional family, the meridians and the scale-shift"),
     "numbers": dict(tier="structure", rank=14, exact=True,
                     py=["frc/numbers.py"], core=["lean/FrcCore/Poly.lean", "lean/FrcCore/Theme/Numbers.lean"],
@@ -76,19 +82,19 @@ THEMES = {
                     py=["frc/subject.py"], core=["lean/FrcCore/Theme/Subject.lean"], ml=[],
                     content="master block C: the Subject, the frame group, the registration"),
     "gravity": dict(tier="programme", rank=23, exact=True,
-                    py=["frc/gravity.py"], core=["lean/FrcCore/Theme/Gravity.lean"], ml=[],
+                    py=["frc/gravity.py"], core=["lean/FrcCore/Theme/Symbol.lean", "lean/FrcCore/Theme/Gravity.lean"], ml=[],
                     content="master block E: gravity on the lattice; the count face"),
     "quantum": dict(tier="programme", rank=24, exact=True,
                     py=["frc/quantum.py"], core=["lean/FrcCore/Theme/Quantum.lean"], ml=[],
                     content="master block F: the quantum rows"),
     "interactions": dict(tier="programme", rank=25, exact=True,
-                         py=["frc/interactions.py"], core=["lean/FrcCore/Theme/Interactions.lean"], ml=[],
+                         py=["frc/interactions.py"], core=["lean/FrcCore/Theme/Unitary.lean", "lean/FrcCore/Theme/Interactions.lean"], ml=[],
                          content="master block G: electromagnetism, the weak and strong forces, matter, flavour"),
     "horizon": dict(tier="programme", rank=26, exact=True,
-                    py=["frc/horizon.py"], core=["lean/FrcCore/Theme/Horizon.lean"], ml=[],
+                    py=["frc/horizon.py"], core=["lean/FrcCore/Theme/Horizon.lean"], ml=["lean/FrcLedger/Theme/Horizon.lean"],
                     content="master block Z: the horizon; the shell theorem; finite Gödel at the totality"),
     "chart": dict(tier="chart", rank=30, exact=False,
-                  py=["frc/chart.py"], core=[], ml=["lean/FrcLedger/Theme/Chart.lean"],
+                  py=["frc/chart.py", "frc/chart_quantum.py", "frc/chart_fields.py", "frc/chart_rh.py", "frc/chart_fourier.py"], core=[], ml=["lean/FrcLedger/Theme/Chart.lean"],
                   content="readings against the continuum: the cosmology section, the constants' charts; floats and ℝ allowed here only"),
 }
 

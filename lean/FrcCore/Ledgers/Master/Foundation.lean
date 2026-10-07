@@ -13,10 +13,10 @@ fails if a key's axioms change (no axioms). Nothing imports this file; `lake bui
 #guard_msgs in
 #print axioms FRC.Ledger.p00159
 
--- 00:A7 (p00160)
-/-- info: 'FRC.Ledger.p00160' does not depend on any axioms -/
+-- 00:A7 (p00188)
+/-- info: 'FRC.Ledger.p00188' does not depend on any axioms -/
 #guard_msgs in
-#print axioms FRC.Ledger.p00160
+#print axioms FRC.Ledger.p00188
 
 -- 00:A12 (p00162)
 /-- info: 'FRC.Ledger.p00162' does not depend on any axioms -/
