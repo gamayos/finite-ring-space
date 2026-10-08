@@ -186,7 +186,14 @@ table.ledger td.pred .name { display: block; font-weight: 600; margin-bottom: 0.
 table.ledger td.src { font-size: 0.82rem; color: var(--ink-soft); }
 table.ledger td.src code, table.ledger td.src .wit { font-family: var(--mono); font-size: 0.78rem; }
 table.ledger tr.blockhead td { background: var(--rule-soft); padding: 0.55rem 0.6rem; font-size: 0.9rem; }
-table.ledger tr.blockhead .bbadges { float: right; display: inline-flex; gap: .3rem; flex-wrap: wrap; } table.ledger tr.blockhead a.badge { border-bottom: none; line-height: 0; display: inline-block; } table.ledger tr.blockhead a.badge svg { display: block; }   /* the master's block badges (LM32) */
+table.ledger tr.blockhead .bglyphs { float: right; display: inline-flex; align-items: center; gap: 0; }   /* the block head's glyphs and counts (8 October 2026): the menu totals' form */
+.wrap table.ledger tr.blockhead .bglyphs a.sum, .wrap table.ledger tr.blockhead .bglyphs a.sum:visited { display: inline-flex; align-items: center; gap: .2rem; height: 22px; padding: 0 .25rem 0 .14rem; margin: 0 0 0 .2rem; border: 0; border-radius: 4px; font-family: var(--mono); font-size: .85rem; text-decoration: none; }
+.wrap table.ledger tr.blockhead .bglyphs a.sum:hover { background: color-mix(in srgb, var(--ink) 8%, transparent); border: 0; }
+table.ledger tr.blockhead .bglyphs .n { line-height: 1; min-width: 1.4em; color: #419457; font-weight: 400; } table.ledger tr.blockhead .bglyphs a.sum.py .n { color: #a27900; } table.ledger tr.blockhead .bglyphs a.sum.ml .n { color: #7974c6; } table.ledger tr.blockhead .bglyphs a.sum.fail .n { color: #c04a4a; }
+table.ledger tr.blockhead .bglyphs img.leanico, table.ledger tr.blockhead .bglyphs img.runico { width: 16px; height: 16px; display: block; }
+table.ledger tr.blockhead .bglyphs a.sum.py.ok img.runico.pysrc { filter: brightness(0) saturate(100%) invert(64%) sepia(85%) saturate(6488%) hue-rotate(38deg) brightness(103%) contrast(106%); }
+table.ledger tr.blockhead .bglyphs a.sum.py.fail img.runico.pysrc { filter: brightness(0) saturate(100%) invert(24%) sepia(41%) saturate(6155%) hue-rotate(347deg) brightness(93%) contrast(59%); }
+@media (prefers-color-scheme: dark) { table.ledger tr.blockhead .bglyphs img, table.ledger tr.blockhead .bglyphs .n { opacity: .85; } }
 table.ledger tr.target td { background: var(--sub-bg); }
 .tag { display: inline-block; min-width: 1.4em; padding: 0.05rem 0.4rem; border-radius: 0.3rem; font-family: var(--mono); font-size: 0.78rem; font-weight: 600; text-align: center; }
 .tag.t { color: var(--pub); background: var(--pub-bg); }   .tag.d { color: var(--dra); background: var(--dra-bg); }
@@ -326,6 +333,7 @@ mjx-container { max-width: 100%; overflow-x: auto; overflow-y: hidden; }
 td.links a.sum, .wrap td.links a.sum, .wrap td.links a.sum:visited { display: inline-flex; align-items: center; gap: .2rem; width: auto; height: 22px; padding: 0 .25rem 0 .14rem; margin-right: .2rem; border: 0; border-radius: 4px; color: #419457; font-family: var(--mono); font-size: .78rem; text-decoration: none; }   /* the Publications table: a glyph and its count */
 .wrap td.links a.sum .n, .wrap td.links a.sum:hover .n { color: #419457; } .wrap td.links a.sum.py .n, .wrap td.links a.sum.py:hover .n { color: #a27900; } .wrap td.links a.sum.ml .n, .wrap td.links a.sum.ml:hover .n { color: #7974c6; } .wrap td.links a.sum.fail .n, .wrap td.links a.sum.fail:hover .n { color: #c04a4a; } .wrap td.links a.ico.sum:hover { background: var(--rule-soft); }   /* the count is set on its own span in the glyph's own colour (gold the python count, green the core's, violet Mathlib's, red a failure), so neither the .ico/.lean.ico hover rules (accent) nor the python glyph's --pub reach it: hover shows the pill only, as the ledger's glyphs do */
 .wrap td.links a.sum .n { line-height: 1; min-width: 1.4em; } td.links { white-space: nowrap; }
+nav .meta .totals { display: inline-flex; align-items: center; }   /* a paper page: its witnesses as glyph and count beside the DOI badge (8 October 2026) */
 nav .meta.totals { gap: 0; }   /* the corpus totals at the right end of the menu line of the five top-level pages (the slot of a paper page's badges): the same badges as the Publications rows, each opening Publications */
 .wrap nav .totals a.sum, .wrap nav .totals a.sum:visited { display: inline-flex; width: auto; height: 22px; align-items: center; gap: .2rem; padding: 0 .25rem 0 .14rem; margin: 0 0 0 .2rem; border: 0; border-radius: 4px; font-family: var(--mono); font-size: .78rem; font-weight: 400; text-decoration: none; color: #419457; }   /* width auto: the .ico rules fix 20px */
 .wrap nav .totals a.sum:hover { background: var(--rule-soft); border: 0; }

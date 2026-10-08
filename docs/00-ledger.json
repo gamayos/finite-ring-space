@@ -33,8 +33,7 @@
    "key": "p00001",
    "tag": "G",
    "sources": [
-    "0-exist",
-    "11-ont"
+    "0-exist"
    ],
    "witness": null,
    "refs": [],
@@ -107,8 +106,7 @@
    "key": "p00195",
    "tag": "P",
    "sources": [
-    "25-göd",
-    "11-ont"
+    "25-göd"
    ],
    "witness": null,
    "refs": [
@@ -126,7 +124,6 @@
    "key": "p00188",
    "tag": "T",
    "sources": [
-    "11-ont",
     "5-red",
     "29-fin"
    ],
@@ -147,9 +144,7 @@
    "tag": "D",
    "sources": [
     "1-alg",
-    "11-ont",
-    "9-uniq",
-    "12-prim"
+    "9-uniq"
    ],
    "witness": null,
    "refs": [
@@ -172,8 +167,7 @@
    "tag": "I",
    "sources": [
     "21-grav",
-    "14-entr",
-    "12-prim"
+    "14-entr"
    ],
    "witness": "14:entropy.py [mixed]",
    "refs": [
@@ -199,7 +193,6 @@
    "key": "p00010",
    "tag": "D",
    "sources": [
-    "11-ont",
     "9-uniq"
    ],
    "witness": null,
@@ -285,7 +278,6 @@
    "key": "p00196",
    "tag": "D",
    "sources": [
-    "11-ont",
     "25-göd"
    ],
    "witness": null,
@@ -328,8 +320,7 @@
    "key": "p00012",
    "tag": "D",
    "sources": [
-    "27-fld",
-    "12-prim"
+    "27-fld"
    ],
    "witness": null,
    "refs": [],
@@ -342,8 +333,7 @@
    "key": "p00013",
    "tag": "D",
    "sources": [
-    "27-fld",
-    "11-ont"
+    "27-fld"
    ],
    "witness": null,
    "refs": [
@@ -447,11 +437,9 @@
    "key": "p00165",
    "tag": "T",
    "sources": [
-    "21-grav",
-    "37-sim",
-    "12-prim"
+    "21-grav"
    ],
-   "witness": "37:constants.py",
+   "witness": null,
    "refs": [
     {
      "label": "B3",
@@ -504,8 +492,7 @@
    "tag": "D",
    "sources": [
     "13-epi",
-    "22-qm",
-    "37-sim"
+    "22-qm"
    ],
    "witness": "13:epi.py",
    "refs": [
@@ -531,7 +518,6 @@
    "key": "p00168",
    "tag": "T",
    "sources": [
-    "37-sim",
     "10-dim",
     "8-dirac"
    ],
@@ -591,7 +577,6 @@
    "key": "p00169",
    "tag": "D",
    "sources": [
-    "37-sim",
     "10-dim"
    ],
    "witness": null,
@@ -624,8 +609,6 @@
    "tag": "T",
    "sources": [
     "2-geom",
-    "12-prim",
-    "37-sim",
     "22-qm"
    ],
    "witness": null,
@@ -756,7 +739,6 @@
    "key": "p00189",
    "tag": "T",
    "sources": [
-    "12-prim",
     "28-flav",
     "22-qm"
    ],
@@ -917,7 +899,7 @@
    "sources": [
     "38-s13"
    ],
-   "witness": "00:check_c16.py",
+   "witness": null,
    "refs": [
     {
      "label": "C18",
@@ -980,7 +962,7 @@
     "38-s13",
     "22-qm"
    ],
-   "witness": "00:check_y5.js",
+   "witness": null,
    "refs": [
     {
      "label": "D2",
@@ -998,7 +980,7 @@
    "sources": [
     "21-grav"
    ],
-   "witness": "00:check_c21.py",
+   "witness": null,
    "refs": [
     {
      "label": "C20",
@@ -1016,7 +998,7 @@
    "sources": [
     "38-s13"
    ],
-   "witness": "38:verify-hopf.js, 00:check_c22.py",
+   "witness": "38:verify-hopf.js",
    "refs": [
     {
      "label": "C19",
@@ -1035,7 +1017,7 @@
     "20-rh",
     "38-s13"
    ],
-   "witness": "00:check_c23.py",
+   "witness": null,
    "refs": [
     {
      "label": "A8",
@@ -1061,7 +1043,7 @@
    "sources": [
     "13-epi"
    ],
-   "witness": "13:epi.py, 00:check_t8.py",
+   "witness": "13:epi.py",
    "refs": [],
    "statement": "\\textbf{The third-order wall of $\\pi$}: for every prime $\\p\\ge5$, $\\sigma_\\p=\\sum_{k<(\\p-1)/2}\\binom{2k}{k}/((2k+1)16^{k})$ satisfies $\\sigma_\\p\\equiv0\\ (\\mathrm{mod}\\ \\p^{2})$ (Sun, JNT \\textbf{131} (2011), (1.4)) and $\\sigma_\\p/\\p^{2}\\equiv(-1)^{(\\p+1)/2}B_{\\p-3}/36\\ (\\mathrm{mod}\\ \\p)$: Sun's Conjecture 5.1, $\\sigma_\\p\\equiv(-1)^{(\\p-1)/2}(H_{\\p-1}/12+3\\p^{4}B_{\\p-5}/160)\\ (\\mathrm{mod}\\ \\p^{5})$ for $\\p>5$, proved by Hessami Pilehrood, Hessami Pilehrood and Tauraso (Int.\\ J.\\ Number Theory \\textbf{8} (2012), Thm.\\ 5 (44)), reduced mod $\\p^{3}$ with Glaisher's $H_{\\p-1}\\equiv-\\p^{2}B_{\\p-3}/3\\ (\\mathrm{mod}\\ \\p^{3})$; $\\p=5$ direct. Re-verified for all primes below $10^{4}$."
   },
@@ -1075,7 +1057,7 @@
     "38-s13",
     "1-alg"
    ],
-   "witness": "38:verify-hopf.js, 00:check_c25.py",
+   "witness": "38:verify-hopf.js",
    "refs": [
     {
      "label": "C20",
@@ -1093,7 +1075,7 @@
    "sources": [
     "13-epi"
    ],
-   "witness": "13:epi.py, 00:check_c26.py",
+   "witness": "13:epi.py",
    "refs": [],
    "statement": "The derangement chain $D_n/n!=\\sum_{k\\le n}(-1)^{k}/k!$ is the partial-sum chain of the E-function $e^{-z}$ at $1$; the arcsin and Machin chains are those of the G-functions $\\arcsin z$ at $1/2$ and $\\arctan z$ at $1/5$, $1/239$; $e^{\\pm1}\\in\\mathcal E$ and $\\pi,1/\\pi\\in\\mathcal G$, both rings (Fischler--Rivoal) [import]. The factorial rate $\\Theta(k/\\log k)$ against the geometric rate $\\Theta(k)$ of 13-epi E5 is that of E- against G-partial sums."
   },
@@ -1107,7 +1089,7 @@
     "20-rh",
     "38-s13"
    ],
-   "witness": "00:check_c23.py",
+   "witness": null,
    "refs": [],
    "statement": "\\textbf{The frame group has one form}: on every shell $\\mathrm{SU}_2(\\F_{\\p^2}/\\F_\\p)=\\mathrm{SL}_2(\\F_\\p)$ for the Hermitian form $wJ$, $w^{\\p}=-w$, every element of finite order; the sphere $x^2+y^2+z^2+w^2=1$ and $ad-bc=1$ correspond point by point through the quarter-turn."
   },
@@ -1212,8 +1194,7 @@
    "sources": [
     "10-dim",
     "20-rh",
-    "22-qm",
-    "12-prim"
+    "22-qm"
    ],
    "witness": "10:dimensions.py",
    "refs": [
@@ -1232,8 +1213,7 @@
    "tag": "R",
    "sources": [
     "28-flav",
-    "27-fld",
-    "37-sim"
+    "27-fld"
    ],
    "witness": null,
    "refs": [
@@ -1256,10 +1236,9 @@
    "tag": "R",
    "sources": [
     "27-fld",
-    "28-flav",
-    "33-fus"
+    "28-flav"
    ],
-   "witness": "33:nuclear_residue_test.py [approx]",
+   "witness": null,
    "refs": [],
    "statement": "\\textbf{The observable is a small residue}: a bounded observer reads only small residues, so an observable stable object carries a small exact residue (particle $+$ binding wrap) --- the confined hadron, the light nucleus, the stable atom; decay is frame-normalisation toward it. Falsifier: a stable observable object carrying no small exact residue --- a stable coloured state, or strong/electromagnetic proton decay."
   },
@@ -1323,7 +1302,7 @@
     "22-qm",
     "21-grav"
    ],
-   "witness": "00:check_y5.js, 00:check_d14.py",
+   "witness": null,
    "refs": [
     {
      "label": "C19",
@@ -1348,10 +1327,9 @@
    "tag": "R",
    "sources": [
     "21-grav",
-    "37-sim",
     "22-qm"
    ],
-   "witness": "37:horizon_thermo.py, 00:check_d15.py",
+   "witness": null,
    "refs": [
     {
      "label": "E7",
@@ -1367,7 +1345,6 @@
    "key": "p00175",
    "tag": "R",
    "sources": [
-    "12-prim",
     "28-flav",
     "22-qm"
    ],
@@ -1406,7 +1383,7 @@
     "38-s13",
     "21-grav"
    ],
-   "witness": "00:check_y5.js, 00:check_c21.py, 00:check_d14.py",
+   "witness": null,
    "refs": [
     {
      "label": "C21",
@@ -1496,10 +1473,9 @@
    "tag": "T",
    "sources": [
     "21-grav",
-    "22-qm",
-    "37-sim"
+    "22-qm"
    ],
-   "witness": "37:w2b_bridges.py",
+   "witness": null,
    "refs": [
     {
      "label": "A8",
@@ -1524,10 +1500,9 @@
    "tag": "T",
    "sources": [
     "21-grav",
-    "22-qm",
-    "37-sim"
+    "22-qm"
    ],
-   "witness": "37:horizon_thermo.py, 00:check_d15.py",
+   "witness": null,
    "refs": [
     {
      "label": "D2",
@@ -1557,7 +1532,7 @@
    "sources": [
     "21-grav"
    ],
-   "witness": "21:validate_fold_echo.py, 00:check_e10.py",
+   "witness": "21:validate_fold_echo.py",
    "refs": [],
    "statement": "\\textbf{The fold is a chart projection}: the substrate coordinate $r$ is the decoherence count, the exponential reading the character $\\gen^{-\\Delta n(r)}$, and the exact datum at a shell of the radial partition is the pair $(r,\\gen^{-\\Delta n(r)})$, injective in $r$; the areal reading $R=re^{M/r}$ [chart] multiplies the count by the lifted character and forgets $r$ --- its two branches are two Carrier data (the residue product $r\\gen^{\\Delta}$ collides at $\\p =13,17,29$, the pair never), and the cut current $p_r=Q_r/A_r$ recovers $r$ from any exterior reading ($A_r=6(2r^2+2r+1)$ on $\\mathbb Z^3$, monotone). The fold-return average is fold-independent: $P_EFU^nF^{-1}P_E=P_EU^nP_E$ for every interior chart $F$, the period average $N^{-1}J_E$ (not $N_I^{-1}$), $P_EU^NP_E=P_E$ --- no echo criterion. The $r_f$-anchored statements are made in the substrate coordinate, $r_*<r_f<M$ for $M>(\\ln\\Om /2)^2$ Planck masses [chart]."
   },
@@ -1594,8 +1569,7 @@
    "key": "p00191",
    "tag": "T",
    "sources": [
-    "22-qm",
-    "37-sim"
+    "22-qm"
    ],
    "witness": "22:synchronisation.py",
    "refs": [
@@ -1613,8 +1587,7 @@
    "key": "p00062",
    "tag": "T",
    "sources": [
-    "22-qm",
-    "37-sim"
+    "22-qm"
    ],
    "witness": null,
    "refs": [
@@ -1635,9 +1608,7 @@
    "block": "F",
    "key": "p00194",
    "tag": "T",
-   "sources": [
-    "39-s173"
-   ],
+   "sources": [],
    "witness": null,
    "refs": [],
    "statement": "\\textbf{The graded registration law}: an Object component $\\ell^{a}$ registers at depth $d=\\mathrm{ord}_{\\ell^{a}}(\\p)$ --- $1$ absorbed (register, unique image), $2$ observable (odd $\\ell$: boost torus, unique home; $2^{a}>4$: off both tori), else beyond-quadratic; the sign always $\\{\\pm1\\}$. Visible iff $\\p^{d}<\\Om$; the cap is $2$ at saturating and minimal towers; opacity relational --- hydrogen's interior opaque/observable/absorbed at $173/181/197$. Controls: proton whole, $(5,13)$ refused."
@@ -1649,8 +1620,6 @@
    "key": "p00064",
    "tag": "T",
    "sources": [
-    "39-s173",
-    "37-sim",
     "22-qm"
    ],
    "witness": null,
@@ -1674,10 +1643,9 @@
    "tag": "T",
    "sources": [
     "38-s13 (A7)",
-    "39-s173",
     "14-entr"
    ],
-   "witness": "00:check_f7.py, 38:check_s13.js",
+   "witness": "38:check_s13.js",
    "refs": [
     {
      "label": "A8",
@@ -1870,8 +1838,7 @@
    "tag": "T",
    "sources": [
     "35-hadr",
-    "27-fld",
-    "33-fus"
+    "27-fld"
    ],
    "witness": "35:carrier_residue.py",
    "refs": [
@@ -2075,9 +2042,7 @@
    "block": "G",
    "key": "p00088",
    "tag": "T",
-   "sources": [
-    "34-super"
-   ],
+   "sources": [],
    "witness": null,
    "refs": [
     {
@@ -2093,9 +2058,7 @@
    "block": "G",
    "key": "p00089",
    "tag": "T",
-   "sources": [
-    "34-super"
-   ],
+   "sources": [],
    "witness": null,
    "refs": [],
    "statement": "\\textbf{Superconductivity} (duality): the electric--magnetic duality is the $Q_4$ quarter-turn on the charge-flux lattice (charge$\\leftrightarrow$flux, Josephson$\\leftrightarrow$phase-slip), predicting an Airy vortex-core spectrum and a quantum current standard whose metrology triangle closes on $q_c^2=4$."
@@ -2106,9 +2069,7 @@
    "block": "G",
    "key": "p00090",
    "tag": "Ω",
-   "sources": [
-    "34-super"
-   ],
+   "sources": [],
    "witness": null,
    "refs": [
     {
@@ -2134,8 +2095,7 @@
    "tag": "R",
    "sources": [
     "32-dark",
-    "21-grav",
-    "37-sim"
+    "21-grav"
    ],
    "witness": "21:validate_rar.py",
    "refs": [
@@ -2234,7 +2194,7 @@
    "sources": [
     "21-grav"
    ],
-   "witness": "21:validate_primordial.py, 00:check_l8.py",
+   "witness": "21:validate_primordial.py",
    "refs": [
     {
      "label": "A8",
@@ -2252,9 +2212,7 @@
    "sources": [
     "21-grav",
     "27-fld",
-    "32-dark",
-    "37-sim",
-    "12-prim"
+    "32-dark"
    ],
    "witness": "21:validate_orderone.py",
    "refs": [
@@ -2271,10 +2229,8 @@
    "block": "N",
    "key": "p00156",
    "tag": "D",
-   "sources": [
-    "37-sim"
-   ],
-   "witness": "37:w4_projection.py",
+   "sources": [],
+   "witness": null,
    "refs": [],
    "statement": "The master's rows are verdicted row by row, in exact arithmetic, on one instantiated Carrier, $\\Om=2{,}408{,}561$ (37-sim), at a dated snapshot. Those that hold there hold jointly in one finite structure: a consistency witness for the projection, not a proof of the physical case. Rows without an instance, or added or restated after the snapshot, are not exercised."
   },
@@ -2369,7 +2325,6 @@
     "20-rh",
     "23-gold",
     "26-pnp",
-    "37-sim",
     "25-göd",
     "29-fin"
    ],
@@ -2591,7 +2546,7 @@
    "sources": [
     "20-rh"
    ],
-   "witness": "00:check_rh_shell.py",
+   "witness": null,
    "refs": [],
    "statement": "On every shell $\\F_\\p\\subset\\F_{\\p^2}$, with no hypothesis, the prime vector's spectral content is the constant mode and the nonterminal quarter-turn modes, the finite zeta vanishing on each (20:E12, 20:B4). Every mode of every vector lies on the self-dual line $\\Tr=1$, an eigenvector of the scale-shift with a $(\\p-1)$-th root of unity as eigenvalue: no off-line mode, $\\Om$-blind."
   },
