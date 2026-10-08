@@ -4208,7 +4208,9 @@ the quaternions over the shell, the Hamilton product, conjugation and the norm, 
 `N(qr) = N(q) N(r)` (1-algebra's Quaternion.lean, names unchanged); and the Lorentzian plane of the shell: the square
 classes, the diagonal form `Q_ν = −ν t² + x² + y² + z²`, the boosts `Λ(γ, b)` with `γ² − νb² = 1` (the norm-one elements
 of `𝔽_p(√ν)`), their velocities and the counts of the null cone and of the boosts (3-causality's Causality.lean, task
-LM20, names unchanged). No axioms.
+LM20, names unchanged); and the two strata of probability (00:C10, 8 October 2026): the tally line, the conjugate-pair
+trace tally and the dial-ensemble Parseval tally in the extension, the engineered-core weights and the framed readout.
+No axioms.
 -/
 
 namespace FRC.Extension
@@ -4544,6 +4546,218 @@ theorem normOne_values : normOneCount 5 2 = 6 ∧ normOneCount 13 2 = 14 ∧ nor
 end Frame
 end Shell
 end FRC
+
+/-! ## The two strata of probability (00:C10; the push of 8 October 2026)
+
+A structural weight is an element of the quadratic extension `𝔽_p[w]/(w² − ν)` (`Ext`); a registered value lies on the
+tally line, the elements `a + 0 w`. The two reductions that join the strata on the stationary core-valued sector
+(22-quantum, Rem. strata; the witness `22:stratum.py`, S9 and S10): the conjugate-pair trace tally,
+`z^k z̄^(k+m) + z̄^k z^(k+m) = N(z)^k · tr(z^m)`, core-valued for every weight `z`, with the trace sequence's
+recurrence `t_{m+2} + N(z) t_m = tr(z) t_{m+1}`; and the dial-ensemble Parseval tally, `Σ_θ w±(θ) = Σ_θ w₊ w₋ = 2N`
+over a complete dial of `N` settings, the cross terms cancelling by the complete character sums. The engineered-core
+weights `W± = 2 ± w`, `w² = 2`, have `W₊ + W₋ = 4` and `W₊ W₋ = 2`, on `Ω = 641` as residues (S2); the framed
+readout's instances are decided by the kernel (S5–S7). The frame supplies the odd prime where one is needed. -/
+
+namespace FRC.Extension
+
+open FRC.Shell
+
+section strata
+variable {p : Nat} [Pos p] {ν : Shell p} {κ : Nat} {g : Shell p}
+
+theorem lit_add (a b : Nat) : (ofNat a : Shell p) + ofNat b = ofNat (a + b) :=
+  Shell.ext (show (a % p + b % p) % p = (a + b) % p from (FRC.Nat.add_mod a b p Pos.pos).symm)
+
+theorem two_eq : (2 : Shell p) = 1 + 1 := (lit_add 1 1).symm
+
+theorem ext_add_comm (z z' : Ext p ν) : z + z' = z' + z :=
+  Ext.ext (Shell.add_comm z.re z'.re) (Shell.add_comm z.im z'.im)
+
+theorem ext_mul_add (u a b : Ext p ν) : u * (a + b) = u * a + u * b :=
+  Ext.ext (Shell.Frame.RE.sound (Shell.Frame.look [ν, u.re, u.im, a.re, a.im, b.re, b.im])
+      (.add (.mul (.var 1) (.add (.var 3) (.var 5))) (.mul (.var 0) (.mul (.var 2) (.add (.var 4) (.var 6)))))
+      (.add (.add (.mul (.var 1) (.var 3)) (.mul (.var 0) (.mul (.var 2) (.var 4)))) (.add (.mul (.var 1) (.var 5)) (.mul (.var 0) (.mul (.var 2) (.var 6)))))
+      (by decide +kernel))
+    (Shell.Frame.RE.sound (Shell.Frame.look [ν, u.re, u.im, a.re, a.im, b.re, b.im])
+      (.add (.mul (.var 1) (.add (.var 4) (.var 6))) (.mul (.var 2) (.add (.var 3) (.var 5))))
+      (.add (.add (.mul (.var 1) (.var 4)) (.mul (.var 2) (.var 3))) (.add (.mul (.var 1) (.var 6)) (.mul (.var 2) (.var 5))))
+      (by decide +kernel))
+
+theorem ext_conj_one : Ext.conj (1 : Ext p ν) = 1 := Ext.ext rfl Shell.neg_zero
+
+/-- The symmetrised weight is core-valued: `z + z̄ = tr(z)` on the tally line. -/
+theorem ext_tally_line (u : Ext p ν) : u + Ext.conj u = Ext.ofShell (Ext.trace u) := Ext.ext rfl (Shell.add_neg u.im)
+
+theorem ext_conj_pow (z : Ext p ν) : ∀ n : Nat, Ext.conj (z ^ n) = Ext.conj z ^ n
+  | 0 => ext_conj_one
+  | n + 1 => by show Ext.conj (z ^ n * z) = Ext.conj z ^ n * Ext.conj z; rw [Ext.conj_mul, ext_conj_pow z n]
+
+theorem ext_mul_pow (z z' : Ext p ν) : ∀ n : Nat, (z * z') ^ n = z ^ n * z' ^ n
+  | 0 => (Ext.mul_one 1).symm
+  | n + 1 => by
+    show (z * z') ^ n * (z * z') = z ^ n * z * (z' ^ n * z')
+    rw [ext_mul_pow z z' n, Ext.mul_assoc, ← Ext.mul_assoc (z' ^ n), Ext.mul_comm (z' ^ n) z, Ext.mul_assoc (z ^ n),
+      Ext.mul_assoc z]
+
+theorem ext_ofShell_pow (c : Shell p) : ∀ n : Nat, (Ext.ofShell c : Ext p ν) ^ n = Ext.ofShell (c ^ n)
+  | 0 => rfl
+  | n + 1 => by
+    show (Ext.ofShell c : Ext p ν) ^ n * Ext.ofShell c = Ext.ofShell (c ^ n * c)
+    rw [ext_ofShell_pow c n, Ext.ofShell_mul]
+
+theorem ext_trace_add (u v : Ext p ν) : Ext.trace (u + v) = Ext.trace u + Ext.trace v :=
+  Shell.add_add_add_comm u.re v.re u.re v.re
+
+theorem ext_trace_smul (c : Shell p) (u : Ext p ν) : Ext.trace (Ext.ofShell c * u) = c * Ext.trace u :=
+  Shell.Frame.RE.sound (Shell.Frame.look [ν, c, u.re, u.im])
+    (.add (.add (.mul (.var 1) (.var 2)) (.mul (.var 0) (.mul .zero (.var 3)))) (.add (.mul (.var 1) (.var 2)) (.mul (.var 0) (.mul .zero (.var 3)))))
+    (.mul (.var 1) (.add (.var 2) (.var 2)))
+    (by decide +kernel)
+
+/-- Cayley–Hamilton in the extension: `z² + N(z) = tr(z) z`. -/
+theorem ext_cayley_hamilton (z : Ext p ν) : z * z + Ext.ofShell (Ext.norm z) = Ext.ofShell (Ext.trace z) * z :=
+  Ext.ext (Shell.Frame.RE.sound (Shell.Frame.look [ν, z.re, z.im])
+      (.add (.add (.mul (.var 1) (.var 1)) (.mul (.var 0) (.mul (.var 2) (.var 2)))) (.add (.mul (.var 1) (.var 1)) (.neg (.mul (.var 0) (.mul (.var 2) (.var 2))))))
+      (.add (.mul (.add (.var 1) (.var 1)) (.var 1)) (.mul (.var 0) (.mul .zero (.var 2))))
+      (by decide +kernel))
+    (Shell.Frame.RE.sound (Shell.Frame.look [ν, z.re, z.im])
+      (.add (.add (.mul (.var 1) (.var 2)) (.mul (.var 2) (.var 1))) .zero)
+      (.add (.mul (.add (.var 1) (.var 1)) (.var 2)) (.mul .zero (.var 1)))
+      (by decide +kernel))
+
+/-- 00:C10 (S1) — the two-way part of the ledger is the tally line: a weight `z` of the extension is its own conjugate
+exactly when its `w`-component vanishes (the frame's odd prime), and the symmetrised weight `z + z̄` is the tally-line
+element `tr(z)`. -/
+theorem two_way_tally (F : Frame p κ g) (z : Ext p ν) :
+    (Ext.conj z = z ↔ z.im = 0) ∧ z + Ext.conj z = Ext.ofShell (Ext.trace z) :=
+  ⟨⟨fun h => F.eq_zero_of_eq_neg (Ext.im_congr h).symm, fun h => Ext.ext rfl (by show -z.im = z.im; rw [h, Shell.neg_zero])⟩,
+    ext_tally_line z⟩
+
+/-- The engineered-core weight `W₊ = 2 + w` in `𝔽_p[w]/(w² − 2)`; `W₋ = W̄₊ = 2 − w`. -/
+def Wp : Ext p 2 := ⟨2, 1⟩
+
+/-- 00:C10 (S2) — the engineered-core weights reduce to the core: `W₊ + W₋ = 4` and `W₊ W₋ = 2` in every
+`𝔽_p[w]/(w² − 2)`, and on `Ω = 641` (`641 ≡ 1 (mod 8)`) as residues, `r = 67`, `r² = 2`, `W± = 2 ± r`. -/
+theorem core_weights :
+    ((Wp : Ext p 2) + Ext.conj Wp = Ext.ofShell 4 ∧ (Wp : Ext p 2) * Ext.conj Wp = Ext.ofShell 2 ∧
+      Ext.trace (Wp : Ext p 2) = 4 ∧ Ext.norm (Wp : Ext p 2) = 2) ∧
+    (641 % 8 = 1 ∧ (67 : Shell 641) * 67 = 2 ∧ (2 + 67 : Shell 641) + (2 + -67) = 4 ∧
+      (2 + 67 : Shell 641) * (2 + -67) = 2) := by
+  have hn : Ext.norm (Wp : Ext p 2) = 2 := by
+    show (2 : Shell p) * 2 + -(2 * (1 * 1)) = 2
+    have h4 : (2 : Shell p) * 2 = 2 + 2 := by rw [two_eq, Shell.right_distrib, Shell.one_mul]
+    rw [Shell.one_mul, Shell.mul_one, h4, Shell.add_assoc, Shell.add_neg, Shell.add_zero]
+  refine ⟨⟨Ext.ext (lit_add 2 2) (Shell.add_neg 1), by rw [Ext.mul_conj, hn], lit_add 2 2, hn⟩, by decide,
+    by decide +kernel, by decide +kernel, by decide +kernel⟩
+
+/-- 00:C10 (S9) — the conjugate-pair trace tally: a flip-summed pair of conjugate string weights is core-valued,
+`z^k z̄^(k+m) + z̄^k z^(k+m) = N(z)^k · tr(z^m)` on the tally line, for every weight `z` of every quadratic extension. -/
+theorem conjugate_pair_tally (z : Ext p ν) (k m : Nat) :
+    z ^ k * Ext.conj z ^ (k + m) + Ext.conj z ^ k * z ^ (k + m) = Ext.ofShell (Ext.norm z ^ k * Ext.trace (z ^ m)) := by
+  rw [Ext.pow_add, Ext.pow_add, ← Ext.mul_assoc, ← Ext.mul_assoc, ← ext_mul_pow, ← ext_mul_pow, Ext.mul_conj,
+    Ext.mul_comm (Ext.conj z) z, Ext.mul_conj, ext_ofShell_pow, ← ext_mul_add, ← ext_conj_pow, ext_add_comm,
+    ext_tally_line (z ^ m), Ext.ofShell_mul]
+
+/-- 00:C10 (S9) — the trace sequence `t_m = tr(z^m)` obeys `t_{m+2} + N(z) t_m = tr(z) t_{m+1}`; for `W₊` (`tr = 4`,
+`N = 2`): `t_0 = 2`, `t_1 = 4`, `t_{m+2} = 4 t_{m+1} − 2 t_m`, so `t_2 = 12`, `t_3 = 40` (on `Ω = 641`). -/
+theorem trace_recurrence :
+    (∀ (z : Ext p ν) (m : Nat), Ext.trace (z ^ (m + 2)) + Ext.norm z * Ext.trace (z ^ m) = Ext.trace z * Ext.trace (z ^ (m + 1))) ∧
+    (Ext.trace ((Wp : Ext p 2) ^ 0) = 2 ∧ Ext.trace ((Wp : Ext p 2) ^ 1) = 4) ∧
+    (Ext.trace ((Wp : Ext 641 2) ^ 2) = 12 ∧ Ext.trace ((Wp : Ext 641 2) ^ 3) = 40) := by
+  refine ⟨fun z m => ?_, ⟨lit_add 1 1, by show Ext.trace (1 * Wp) = 4; rw [Ext.one_mul]; exact lit_add 2 2⟩,
+    by decide +kernel, by decide +kernel⟩
+  have h : z ^ (m + 2) + Ext.ofShell (Ext.norm z) * z ^ m = Ext.ofShell (Ext.trace z) * z ^ (m + 1) := by
+    calc z ^ (m + 2) + Ext.ofShell (Ext.norm z) * z ^ m
+        = z ^ m * (z * z) + z ^ m * Ext.ofShell (Ext.norm z) := by
+          rw [Ext.mul_comm (Ext.ofShell _)]; show z ^ m * z * z + _ = _; rw [Ext.mul_assoc]
+      _ = z ^ m * (z * z + Ext.ofShell (Ext.norm z)) := (ext_mul_add _ _ _).symm
+      _ = z ^ m * (Ext.ofShell (Ext.trace z) * z) := by rw [ext_cayley_hamilton]
+      _ = Ext.ofShell (Ext.trace z) * z ^ (m + 1) := by
+          show z ^ m * (Ext.ofShell (Ext.trace z) * z) = Ext.ofShell (Ext.trace z) * (z ^ m * z)
+          rw [← Ext.mul_assoc, Ext.mul_comm (z ^ m), Ext.mul_assoc]
+  have := congrArg Ext.trace h
+  rw [ext_trace_add, ext_trace_smul, ext_trace_smul] at this
+  exact this
+
+theorem geom_sum_zero (F : Frame p κ g) {x : Shell p} (n : Nat) (hn : x ^ n = 1) (hx : x ≠ 1) :
+    sumRange (fun l => x ^ l) n = 0 := by
+  have hg := geom_sum_mul x n
+  rw [hn, add_neg] at hg
+  match F.mul_eq_zero hg with
+  | .inl h => exact h
+  | .inr h => exact absurd (by
+      calc x = x + 0 := (add_zero x).symm
+        _ = x + (-1 + 1) := by rw [neg_add]
+        _ = (x + -1) + 1 := (add_assoc _ _ _).symm
+        _ = 1 := by rw [h, zero_add]) hx
+
+/-- 00:C10 (S10) — the dial-ensemble Parseval tally: over a complete dial of `N` settings on a prime shell (`ζ^N = 1`,
+`ζ² ≠ 1`, `η = ζ⁻¹`), the weights `w±(θ) = 2 ± (ζ^θ + η^θ)` sum to `2N`, and so do the products `w₊(θ) w₋(θ)`:
+the cross terms cancel by the complete character sums (the frame: no zero divisors). -/
+theorem dial_tally (F : Frame p κ g) {ζ η : Shell p} (N : Nat) (hN : ζ ^ N = 1) (hζη : ζ * η = 1) (h2 : ζ * ζ ≠ 1) :
+    sumRange (fun θ => 2 + (ζ ^ θ + η ^ θ)) N = ofNat N * 2 ∧
+    sumRange (fun θ => 2 + -(ζ ^ θ + η ^ θ)) N = ofNat N * 2 ∧
+    sumRange (fun θ => (2 + (ζ ^ θ + η ^ θ)) * (2 + -(ζ ^ θ + η ^ θ))) N = ofNat N * 2 := by
+  have hζ1 : ζ ≠ 1 := fun h => h2 (by rw [h, Shell.one_mul])
+  have hηN : η ^ N = 1 := by
+    have : (ζ * η) ^ N = 1 := by rw [hζη, one_pow]
+    rw [mul_pow, hN, Shell.one_mul] at this; exact this
+  have hη1 : η ≠ 1 := fun h => hζ1 (calc ζ = ζ * 1 := (Shell.mul_one ζ).symm
+    _ = ζ * η := by rw [h]
+    _ = 1 := hζη)
+  have hζ2N : (ζ * ζ) ^ N = 1 := by rw [mul_pow, hN, Shell.one_mul]
+  have hη2N : (η * η) ^ N = 1 := by rw [mul_pow, hηN, Shell.one_mul]
+  have hη2 : η * η ≠ 1 := fun h => h2 (by
+    calc ζ * ζ = ζ * ζ * (η * η) := by rw [h, Shell.mul_one]
+      _ = (ζ * η) * (ζ * η) := Shell.Frame.RE.sound (Shell.Frame.look [ζ, η])
+            (.mul (.mul (.var 0) (.var 0)) (.mul (.var 1) (.var 1))) (.mul (.mul (.var 0) (.var 1)) (.mul (.var 0) (.var 1)))
+            (by decide +kernel)
+      _ = 1 := by rw [hζη, Shell.mul_one])
+  have gζ := geom_sum_zero F N hN hζ1
+  have gη := geom_sum_zero F N hηN hη1
+  have gζ2 := geom_sum_zero F N hζ2N h2
+  have gη2 := geom_sum_zero F N hη2N hη2
+  have term : ∀ θ, θ < N → (2 + (ζ ^ θ + η ^ θ)) * (2 + -(ζ ^ θ + η ^ θ)) = 2 + -((ζ * ζ) ^ θ + (η * η) ^ θ) := by
+    intro θ _
+    have hab : ζ ^ θ * η ^ θ = 1 := by rw [← mul_pow, hζη, one_pow]
+    rw [mul_pow, mul_pow, two_eq]
+    calc (1 + 1 + (ζ ^ θ + η ^ θ)) * (1 + 1 + -(ζ ^ θ + η ^ θ))
+        = (1 + 1 + -(ζ ^ θ * ζ ^ θ + η ^ θ * η ^ θ)) + (1 + 1 + -(ζ ^ θ * η ^ θ + ζ ^ θ * η ^ θ)) :=
+          Shell.Frame.RE.sound (Shell.Frame.look [ζ ^ θ, η ^ θ])
+            (.mul (.add (.add .one .one) (.add (.var 0) (.var 1))) (.add (.add .one .one) (.neg (.add (.var 0) (.var 1)))))
+            (.add (.add (.add .one .one) (.neg (.add (.mul (.var 0) (.var 0)) (.mul (.var 1) (.var 1)))))
+              (.add (.add .one .one) (.neg (.add (.mul (.var 0) (.var 1)) (.mul (.var 0) (.var 1))))))
+            (by decide +kernel)
+      _ = 1 + 1 + -(ζ ^ θ * ζ ^ θ + η ^ θ * η ^ θ) := by rw [hab, add_neg, add_zero]
+  refine ⟨?_, ?_, ?_⟩
+  · rw [sum_add (fun _ => (2 : Shell p)) (fun θ => ζ ^ θ + η ^ θ) N, sum_const, sum_add (fun θ => ζ ^ θ) (fun θ => η ^ θ) N,
+      gζ, gη, add_zero, add_zero]
+  · rw [sum_add (fun _ => (2 : Shell p)) (fun θ => -(ζ ^ θ + η ^ θ)) N, sum_const, sum_neg (fun θ => ζ ^ θ + η ^ θ) N,
+      sum_add (fun θ => ζ ^ θ) (fun θ => η ^ θ) N, gζ, gη, add_zero, neg_zero, add_zero]
+  · rw [sum_congr N term, sum_add (fun _ => (2 : Shell p)) (fun θ => -((ζ * ζ) ^ θ + (η * η) ^ θ)) N, sum_const,
+      sum_neg (fun θ => (ζ * ζ) ^ θ + (η * η) ^ θ) N, sum_add (fun θ => (ζ * ζ) ^ θ) (fun θ => (η * η) ^ θ) N,
+      gζ2, gη2, add_zero, neg_zero, add_zero]
+
+/-- The framed grid points `s_n = ⌊√(2 · 9ⁿ)⌋`, `n ≤ 8`, of the Subject chart with generator `g = 3`. -/
+def gridPoint : Nat → Nat
+  | 0 => 1 | 1 => 4 | 2 => 12 | 3 => 38 | 4 => 114 | 5 => 343 | 6 => 1030 | 7 => 3092 | 8 => 9278 | _ => 0
+
+/-- 00:C10 (S5–S7) — a registered probability is a framed rational, decided by the kernel: the grid bound
+`s_n² ≤ 2 · 9ⁿ < (s_n + 1)²` at every scale `n ≤ 8` and the readouts nest, `3 s_n ≤ s_{n+1} ≤ 3 s_n + 3`; the readout
+`R_4((2 + √2)/8) = (2 · 3⁴ + 114)/(8 · 3⁴) = 23/54`; the `√3` instance `s_3 = 46`; the largest-remainder allocation at
+`B = 81` of `(23/54, 23/54, 2/27, 2/27)`: provisional `34 + 34 + 6 + 6`, one seat to the first remainder `27/54`,
+final `35 + 34 + 6 + 6 = 81`. -/
+theorem framed_readout :
+    (∀ n, n < 9 → gridPoint n * gridPoint n ≤ 2 * 9 ^ n ∧ 2 * 9 ^ n < (gridPoint n + 1) * (gridPoint n + 1)) ∧
+    (∀ n, n < 8 → 3 * gridPoint n ≤ gridPoint (n + 1) ∧ gridPoint (n + 1) ≤ 3 * gridPoint n + 3) ∧
+    (2 * 3 ^ 4 + gridPoint 4) * 54 = 23 * (8 * 3 ^ 4) ∧ (46 * 46 ≤ 3 * 3 ^ 6 ∧ 3 * 3 ^ 6 < 47 * 47) ∧
+    (23 * 27 + 23 * 27 + 2 * 54 + 2 * 54 = 54 * 27 ∧ 81 * 23 / 54 = 34 ∧ 81 * 23 % 54 = 27 ∧ 81 * 2 / 27 = 6 ∧
+      81 * 2 % 27 = 0 ∧ 34 + 34 + 6 + 6 + 1 = 81 ∧ 35 + 34 + 6 + 6 = 81) := by
+  refine ⟨by decide, by decide, by decide, by decide, by decide⟩
+
+end strata
+
+end FRC.Extension
 
 /-! inlined: FrcCore/Poly.lean -/
 
@@ -12355,6 +12569,9 @@ that every row carrying the key asserts, proved from the themes alone. The paper
 namespace FRC.Ledger
 
 -- Keys of the extension theme (generated by make_keys.py from the ledgers' Lean bindings; edit the ledgers, not this file)
+/-- p00030 — 00:C10. A registered probability is a framed rational; a structural weight is an element of the parity-even cyclotomic subring. The strata coincide exactly on the stationary core-valued $Q_4$ sector, joined by two proved reductions and the stratum-sampling clause (D10). On a single Object the weights are uniform over the fibres (22-qm Rem.~borndomain); non-uniform statistics arrive through the engineered-core readout. -/
+theorem p00030 : (∀ {p : Nat} [FRC.Pos p] {ν : FRC.Shell p} {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → ∀ (z : FRC.Extension.Ext p ν), (z.conj = z ↔ z.im = (0 : FRC.Shell p)) ∧ z + z.conj = FRC.Extension.Ext.ofShell z.trace) ∧ (∀ {p : Nat} [FRC.Pos p], (FRC.Extension.Wp + FRC.Extension.Wp.conj = FRC.Extension.Ext.ofShell (4 : FRC.Shell p) ∧ FRC.Extension.Wp * FRC.Extension.Wp.conj = FRC.Extension.Ext.ofShell (2 : FRC.Shell p) ∧ FRC.Extension.Wp.trace = (4 : FRC.Shell p) ∧ FRC.Extension.Wp.norm = (2 : FRC.Shell p)) ∧ (641 : Nat) % (8 : Nat) = (1 : Nat) ∧ (67 : FRC.Shell (641 : Nat)) * (67 : FRC.Shell (641 : Nat)) = (2 : FRC.Shell (641 : Nat)) ∧ (2 : FRC.Shell (641 : Nat)) + (67 : FRC.Shell (641 : Nat)) + ((2 : FRC.Shell (641 : Nat)) + (-67 : FRC.Shell (641 : Nat))) = (4 : FRC.Shell (641 : Nat)) ∧ ((2 : FRC.Shell (641 : Nat)) + (67 : FRC.Shell (641 : Nat))) * ((2 : FRC.Shell (641 : Nat)) + (-67 : FRC.Shell (641 : Nat))) = (2 : FRC.Shell (641 : Nat))) ∧ (∀ {p : Nat} [FRC.Pos p] {ν : FRC.Shell p} (z : FRC.Extension.Ext p ν) (k m : Nat), z ^ k * z.conj ^ (k + m) + z.conj ^ k * z ^ (k + m) = FRC.Extension.Ext.ofShell (z.norm ^ k * (z ^ m).trace)) ∧ (∀ {p : Nat} [FRC.Pos p] {ν : FRC.Shell p}, (∀ (z : FRC.Extension.Ext p ν) (m : Nat), (z ^ (m + (2 : Nat))).trace + z.norm * (z ^ m).trace = z.trace * (z ^ (m + (1 : Nat))).trace) ∧ ((FRC.Extension.Wp ^ (0 : Nat)).trace = (2 : FRC.Shell p) ∧ (FRC.Extension.Wp ^ (1 : Nat)).trace = (4 : FRC.Shell p)) ∧ (FRC.Extension.Wp ^ (2 : Nat)).trace = (12 : FRC.Shell (641 : Nat)) ∧ (FRC.Extension.Wp ^ (3 : Nat)).trace = (40 : FRC.Shell (641 : Nat))) ∧ (∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → ∀ {ζ η : FRC.Shell p} (N : Nat), ζ ^ N = (1 : FRC.Shell p) → ζ * η = (1 : FRC.Shell p) → ζ * ζ ≠ (1 : FRC.Shell p) → FRC.Shell.sumRange (fun θ => (2 : FRC.Shell p) + (ζ ^ θ + η ^ θ)) N = FRC.Shell.ofNat N * (2 : FRC.Shell p) ∧ FRC.Shell.sumRange (fun θ => (2 : FRC.Shell p) + -(ζ ^ θ + η ^ θ)) N = FRC.Shell.ofNat N * (2 : FRC.Shell p) ∧ FRC.Shell.sumRange (fun θ => ((2 : FRC.Shell p) + (ζ ^ θ + η ^ θ)) * ((2 : FRC.Shell p) + -(ζ ^ θ + η ^ θ))) N = FRC.Shell.ofNat N * (2 : FRC.Shell p)) ∧ (∀ (n : Nat), n < (9 : Nat) → FRC.Extension.gridPoint n * FRC.Extension.gridPoint n ≤ (2 : Nat) * (9 : Nat) ^ n ∧ (2 : Nat) * (9 : Nat) ^ n < (FRC.Extension.gridPoint n + (1 : Nat)) * (FRC.Extension.gridPoint n + (1 : Nat))) ∧ (∀ (n : Nat), n < (8 : Nat) → (3 : Nat) * FRC.Extension.gridPoint n ≤ FRC.Extension.gridPoint (n + (1 : Nat)) ∧ FRC.Extension.gridPoint (n + (1 : Nat)) ≤ (3 : Nat) * FRC.Extension.gridPoint n + (3 : Nat)) ∧ ((2 : Nat) * (3 : Nat) ^ (4 : Nat) + FRC.Extension.gridPoint (4 : Nat)) * (54 : Nat) = (23 : Nat) * ((8 : Nat) * (3 : Nat) ^ (4 : Nat)) ∧ ((46 : Nat) * (46 : Nat) ≤ (3 : Nat) * (3 : Nat) ^ (6 : Nat) ∧ (3 : Nat) * (3 : Nat) ^ (6 : Nat) < (47 : Nat) * (47 : Nat)) ∧ (23 : Nat) * (27 : Nat) + (23 : Nat) * (27 : Nat) + (2 : Nat) * (54 : Nat) + (2 : Nat) * (54 : Nat) = (54 : Nat) * (27 : Nat) ∧ (81 : Nat) * (23 : Nat) / (54 : Nat) = (34 : Nat) ∧ (81 : Nat) * (23 : Nat) % (54 : Nat) = (27 : Nat) ∧ (81 : Nat) * (2 : Nat) / (27 : Nat) = (6 : Nat) ∧ (81 : Nat) * (2 : Nat) % (27 : Nat) = (0 : Nat) ∧ (34 : Nat) + (34 : Nat) + (6 : Nat) + (6 : Nat) + (1 : Nat) = (81 : Nat) ∧ (35 : Nat) + (34 : Nat) + (6 : Nat) + (6 : Nat) = (81 : Nat) :=
+  And.intro @FRC.Extension.two_way_tally (And.intro @FRC.Extension.core_weights (And.intro @FRC.Extension.conjugate_pair_tally (And.intro @FRC.Extension.trace_recurrence (And.intro @FRC.Extension.dial_tally (@FRC.Extension.framed_readout)))))
 /-- p03006 — 3:B2. Nonexistence of a causal square root: no $c\in\Fp$ has $c^{2}=\nu$ for $\nu\in N$; for $c\in\Fpx$ every coefficient of $-c^{2}t^{2}+x^{2}+y^{2}+z^{2}$ is a square ($-1=\im^{2}$), the form Euclidean with $\p^{3}+\p^{2}-\p$ zeros; $c=0$ gives a degenerate form. -/
 theorem p03006 : (∀ {p : Nat} [FRC.Pos p] {ν : FRC.Shell p}, ¬FRC.Shell.Frame.IsSquare ν → ∀ (c : FRC.Shell p), c * c ≠ ν) ∧ ∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → ∀ (c : FRC.Shell p), FRC.Shell.Frame.IsSquare (-(c * c)) :=
   And.intro @FRC.Shell.Frame.no_causal_root (@FRC.Shell.Frame.neg_sq_is_square)

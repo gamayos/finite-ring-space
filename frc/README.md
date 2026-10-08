@@ -34,8 +34,9 @@ file (`PROOFS`), since the master has no Lean cells; `lean/make_keys.py` writes 
 Carrier's, block B, `master/carrier.py` (task LM22): `python3 -m frc.ledgers.master.carrier`. The second is the
 Foundation's, block A, `master/foundation.py` (task LM23): `python3 -m frc.ledgers.master.foundation`. The third is the
 Subject's, block C, `master/subject.py` (task LM24): `python3 -m frc.ledgers.master.subject`. A block is bound by one
-file per theme whose key file proves its rows (task LM25): block C also by `master/fourier.py` (C2, C7) and
-`master/projective.py` (C19). Block Z is bound by `master/horizon.py` (Z10, the shell theorem) and `master/logic.py`
+file per theme whose key file proves its rows (task LM25): block C also by `master/fourier.py` (C2, C7),
+`master/projective.py` (C19) and `master/extension.py` (C10, the two strata of probability, on `frc/extension.py`'s
+quadratic ring; the push of 8 October 2026). Block Z is bound by `master/horizon.py` (Z10, the shell theorem) and `master/logic.py`
 (Z1, Gödel vacuous over a finite structure) (task LM26), on the themes' python `frc/horizon.py` and `frc/logic.py`.
 Block E is bound by `master/gravity.py` (E6, E7, the horizon's count) (task LM27), on `frc/gravity.py`, and block F by
 `master/quantum.py` (F2, the unequal-cycle composite) (task LM28), on `frc/quantum.py`, and block G by

@@ -9,8 +9,17 @@ it was 3-causality (task LM20).
                                                is_square_ext, norm_one
     ext_value_counts, ext_orthogonal_order     a diagonal form over K: its value distribution and |O(Q, K)|
     boost(g, b, nu, p)                         Λ(γ, b) as a matrix over F_p
+
+The two strata of probability (00:C10, the witness 22:stratum.py; the master's block file master/extension.py, 8 October
+2026): the ring ℤ[w]/(w² − ν) or 𝔽_p[w]/(w² − ν) for any ν (split when ν is a square, as w² = 2 on Ω = 641), the python
+side of Theme/Quadratic.lean's `Ext p ν` and of Theme/Extension.lean's strata section:
+    Quad(nu, p=None)            the ring: el, add, neg, mul, conj, trace, norm, pow, on_line (the tally line b = 0)
+    pair_tally(Q, z, k, m)      z^k z̄^(k+m) + z̄^k z^(k+m), the conjugate-pair trace tally, and its tally-line value
+                                (N(z)^k · tr(z^m), 0)
+    trace_seq(Q, z, n)          t_0 … t_n, t_m = tr(z^m); t_{m+2} + N(z) t_m = tr(z) t_{m+1}
+    dial_tally(q, N)            over 𝔽_q with ζ of order N | q − 1: Σ_θ w±(θ), Σ_θ w₊ w₋ for w±(θ) = 2 ± (ζ^θ + ζ^−θ)
 """
-from frc.shell import is_square
+from frc.shell import is_square, generators
 
 
 class Ext:
@@ -75,3 +84,55 @@ def ext_orthogonal_order(K, coeffs):
 def boost(g, b, nu, p):
     """The boost Λ(γ, b) = [[γ, b], [νb, γ]] over F_p; it preserves x² − ν t² when γ² − νb² = 1."""
     return ((g % p, b % p), (nu * b % p, g % p))
+
+
+# ------------------------------------------------------------------------------------------------------------
+# the two strata of probability (00:C10): the quadratic ring and the two reductions
+
+class Quad:
+    """The ring ℤ[w]/(w² − ν) (p None) or 𝔽_p[w]/(w² − ν), ν a square or not: elements are pairs (a, b) = a + b w.
+    The python side of lean/FrcCore/Theme/Quadratic.lean's `Ext p ν`; the tally line is the elements (a, 0)."""
+
+    def __init__(self, nu, p=None):
+        self.nu, self.p = nu, p
+
+    def red(self, x): return x % self.p if self.p else x
+    def el(self, a, b=0): return (self.red(a), self.red(b))
+    def add(self, x, y): return self.el(x[0] + y[0], x[1] + y[1])
+    def neg(self, x): return self.el(-x[0], -x[1])
+    def mul(self, x, y): return self.el(x[0] * y[0] + self.nu * x[1] * y[1], x[0] * y[1] + x[1] * y[0])
+    def conj(self, x): return self.el(x[0], -x[1])
+    def trace(self, x): return self.red(2 * x[0])
+    def norm(self, x): return self.red(x[0] * x[0] - self.nu * x[1] * x[1])
+    def on_line(self, x): return x[1] == 0
+
+    def pow(self, x, n):
+        out = self.el(1)
+        for _ in range(n): out = self.mul(out, x)
+        return out
+
+
+def pair_tally(Q, z, k, m):
+    """The conjugate-pair trace tally z^k z̄^(k+m) + z̄^k z^(k+m) in Q, and the tally-line element (N(z)^k · tr(z^m), 0)
+    it equals (Extension.lean: conjugate_pair_tally)."""
+    zb = Q.conj(z)
+    lhs = Q.add(Q.mul(Q.pow(z, k), Q.pow(zb, k + m)), Q.mul(Q.pow(zb, k), Q.pow(z, k + m)))
+    return lhs, Q.el(Q.red(Q.norm(z) ** k) * Q.trace(Q.pow(z, m)))
+
+
+def trace_seq(Q, z, n):
+    """t_0 … t_n, t_m = tr(z^m); t_{m+2} + N(z) t_m = tr(z) t_{m+1} (Extension.lean: trace_recurrence)."""
+    return [Q.trace(Q.pow(z, m)) for m in range(n + 1)]
+
+
+def dial_tally(q, N):
+    """Over 𝔽_q with ζ of order N (N | q − 1): the dial-ensemble sums Σ_θ w₊(θ), Σ_θ w₋(θ), Σ_θ w₊(θ) w₋(θ) for
+    w±(θ) = 2 ± (ζ^θ + ζ^−θ), θ < N, as residues (Extension.lean: dial_tally); the complete character sums cancel."""
+    if (q - 1) % N: raise ValueError(f"dial_tally: {N} does not divide {q} - 1")
+    z = pow(generators(q)[0], (q - 1) // N, q); zi = pow(z, N - 1, q)
+    sp = sm = spm = 0
+    for t in range(N):
+        c = (pow(z, t, q) + pow(zi, t, q)) % q
+        wp, wm = (2 + c) % q, (2 - c) % q
+        sp, sm, spm = (sp + wp) % q, (sm + wm) % q, (spm + wp * wm) % q
+    return sp, sm, spm
