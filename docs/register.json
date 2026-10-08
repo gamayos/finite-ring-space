@@ -1,6 +1,6 @@
 {
  "header": {
-  "generated": "7 October 2026",
+  "generated": "8 October 2026",
   "schema": "frc-register/2",
   "rows": 1005,
   "theorems": 999,
@@ -2856,7 +2856,7 @@
    "check": {
     "href": "frc/ledgers/master/quantum.html#p00191",
     "script": "frc/ledgers/master/quantum.py",
-    "line": 62,
+    "line": 69,
     "verdict": "pass"
    },
    "declarations": [
@@ -2895,9 +2895,20 @@
    "statement": "\\textbf{The graded registration law}: an Object component $\\ell^{a}$ registers at depth $d=\\mathrm{ord}_{\\ell^{a}}(\\p)$ --- $1$ absorbed (register, unique image), $2$ observable (odd $\\ell$: boost torus, unique home; $2^{a}>4$: off both tori), else beyond-quadratic; the sign always $\\{\\pm1\\}$. Visible iff $\\p^{d}<\\Om$; the cap is $2$ at saturating and minimal towers; opacity relational --- hydrogen's interior opaque/observable/absorbed at $173/181/197$. Controls: proton whole, $(5,13)$ refused.",
    "origin_row": "00:F5",
    "tag": "T",
-   "tier": null,
-   "check": null,
-   "declarations": [],
+   "tier": 0,
+   "check": {
+    "href": "frc/ledgers/master/quantum.html#p00194",
+    "script": "frc/ledgers/master/quantum.py",
+    "line": 123,
+    "verdict": "pass"
+   },
+   "declarations": [
+    {
+     "lib": "FrcCore",
+     "module": "FrcCore/Keys/Quantum",
+     "name": "FRC.Ledger.p00194"
+    }
+   ],
    "aliases": [],
    "rows": [
     "00:F5"
@@ -24331,7 +24342,7 @@
     "py": {
      "href": "frc/ledgers/master/quantum.html#p00191",
      "script": "frc/ledgers/master/quantum.py",
-     "line": 62,
+     "line": 69,
      "verdict": "pass"
     },
     "lean": [
@@ -24396,8 +24407,22 @@
    "page": "00-ledger.html#F5",
    "witness": {
     "script": null,
-    "py": null,
-    "lean": []
+    "py": {
+     "href": "frc/ledgers/master/quantum.html#p00194",
+     "script": "frc/ledgers/master/quantum.py",
+     "line": 123,
+     "verdict": "pass"
+    },
+    "lean": [
+     {
+      "lib": "FrcCore",
+      "module": "FrcCore/Keys/Quantum",
+      "name": "FRC.Ledger.p00194",
+      "tier": 0,
+      "ok": true,
+      "page": "lean/core/Keys.Quantum.html#FRC.Ledger.p00194"
+     }
+    ]
    },
    "refs": [],
    "sources": [
