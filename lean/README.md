@@ -33,9 +33,10 @@ depends on. `sorryAx` (an unfinished proof) and `Lean.ofReduceBool` (`native_dec
 
 FRC is meant to be built from its first principles with no axioms at all, and the ledgers say per declaration
 how far a witness is from that: **tier 0** — no axioms: a consequence of the definitions by the kernel's
-computation and induction alone (green); **tier 1** — `propext` and `Quot.sound` only, extensionality and
-quotients, constructive (teal); **tier 2** — the proof reaches `Classical.choice`: a correct classical theorem,
-not yet the finitist witness (amber); red — anything else. On Mathlib every statement about a `Field` or a
+computation and induction alone; **tier 1** — `propext` and `Quot.sound` only, extensionality and
+quotients, constructive; **tier 2** — the proof reaches `Classical.choice`: a correct classical theorem,
+not yet the finitist witness; red — anything else. On the site a declaration's mark carries its library's
+colour, green the core and violet Mathlib, red a proof the gate rejects; the tier is in the hover (8 October 2026). On Mathlib every statement about a `Field` or a
 `Fintype` is tier 2 by inheritance (its instances reach choice), so `FrcLedger/` — the modules above — is tier 2
 throughout, and the substrate is built a second time without it:
 
