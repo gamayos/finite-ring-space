@@ -1567,7 +1567,7 @@
   {
    "key": "p00008",
    "origin": "00",
-   "statement": "The Carrier $\\Car$: a timeless torsor of $\\Om$ points, its cardinality its only absolute characteristic; reframings $x\\mapsto ax+b$ are automorphisms, so $0,1,-1$ are frame data; a Subject's frame charts it as the prime field $\\F_\\Om$ --- the frame's chart, never the Carrier (C1). Arena and numbers: B1.",
+   "statement": "A timeless torsor of $\\Om$ elements, its cardinality is its only absolute characteristic; reframings $x\\mapsto ax+b$ are automorphisms, so $0,1,-1$ are frame data; a Subject's frame charts it as the prime field $\\F_\\Om$ --- the frame's chart, never the Carrier (C1). Arena and numbers: B1.",
    "origin_row": "00:A7",
    "tag": "D",
    "tier": null,
@@ -1584,11 +1584,20 @@
    "statement": "Scale, the sole quantitative import: the de Sitter entropy of the observable universe fixes the cardinality exactly, $\\Om=4\\dS+1$. Its chart numeral is $\\dS=\\pi(r_H/\\ell_P)^2=3.3\\times10^{122}$ [chart] at $r_H=c/H_\\Lambda$ (14-entr), so $\\Om=1.3\\times10^{123}$ and $\\ln\\Om=283.5$ [chart], the numeral of every chart reading in the ledger. The Carrier congruences are certified by the realisations (B5, C8), not imported. Metrology: L2.",
    "origin_row": "00:A8",
    "tag": "I",
-   "tier": null,
+   "tier": 2,
    "check": {
-    "script": "14:entropy.py [mixed]"
+    "href": "frc/ledgers/master/chart.html#p00009",
+    "script": "frc/ledgers/master/chart.py",
+    "line": 79,
+    "verdict": "pass"
    },
-   "declarations": [],
+   "declarations": [
+    {
+     "lib": "FrcLedger",
+     "module": "FrcLedger/Keys/Chart",
+     "name": "FRC.LedgerML.p00009"
+    }
+   ],
    "aliases": [],
    "rows": [
     "00:A8"
@@ -2161,11 +2170,20 @@
    "statement": "A registered probability is a framed rational; a structural weight is an element of the parity-even cyclotomic subring. The strata coincide exactly on the stationary core-valued $Q_4$ sector, joined by two proved reductions and the stratum-sampling clause (D10). On a single Object the weights are uniform over the fibres (22-qm Rem.~borndomain); non-uniform statistics arrive through the engineered-core readout.",
    "origin_row": "00:C10",
    "tag": "T",
-   "tier": null,
+   "tier": 0,
    "check": {
-    "script": "22:stratum.py"
+    "href": "frc/ledgers/master/extension.html#p00030",
+    "script": "frc/ledgers/master/extension.py",
+    "line": 82,
+    "verdict": "pass"
    },
-   "declarations": [],
+   "declarations": [
+    {
+     "lib": "FrcCore",
+     "module": "FrcCore/Keys/Extension",
+     "name": "FRC.Ledger.p00030"
+    }
+   ],
    "aliases": [],
    "rows": [
     "00:C10"
@@ -3330,7 +3348,7 @@
    "check": {
     "href": "frc/ledgers/master/chart.html#p00192",
     "script": "frc/ledgers/master/chart.py",
-    "line": 74,
+    "line": 108,
     "verdict": "pass"
    },
    "declarations": [
@@ -3371,7 +3389,7 @@
    "check": {
     "href": "frc/ledgers/master/chart.html#p00193",
     "script": "frc/ledgers/master/chart.py",
-    "line": 98,
+    "line": 132,
     "verdict": "pass"
    },
    "declarations": [
@@ -3429,7 +3447,7 @@
    "check": {
     "href": "frc/ledgers/master/chart.html#p00148",
     "script": "frc/ledgers/master/chart.py",
-    "line": 136,
+    "line": 170,
     "verdict": "pass"
    },
    "declarations": [
@@ -3484,7 +3502,7 @@
    "check": {
     "href": "frc/ledgers/master/chart.html#p00133",
     "script": "frc/ledgers/master/chart.py",
-    "line": 163,
+    "line": 197,
     "verdict": "pass"
    },
    "declarations": [
@@ -22230,8 +22248,8 @@
    "label": "A7",
    "block": "A",
    "tag": "D",
-   "name": "The Carrier C: a timeless torsor of Ω points",
-   "statement": "The Carrier $\\Car$: a timeless torsor of $\\Om$ points, its cardinality its only absolute characteristic; reframings $x\\mapsto ax+b$ are automorphisms, so $0,1,-1$ are frame data; a Subject's frame charts it as the prime field $\\F_\\Om$ --- the frame's chart, never the Carrier (C1). Arena and numbers: B1.",
+   "name": "The Carrier C",
+   "statement": "A timeless torsor of $\\Om$ elements, its cardinality is its only absolute characteristic; reframings $x\\mapsto ax+b$ are automorphisms, so $0,1,-1$ are frame data; a Subject's frame charts it as the prime field $\\F_\\Om$ --- the frame's chart, never the Carrier (C1). Arena and numbers: B1.",
    "source": "1-alg, 9-uniq",
    "page": "00-ledger.html#A7",
    "witness": {
@@ -22247,7 +22265,7 @@
     "1-alg",
     "9-uniq"
    ],
-   "text": "The Carrier C: a timeless torsor of Ω points: The Carrier $\\Car$: a timeless torsor of $\\Om$ points, its cardinality its only absolute characteristic; reframings $x\\mapsto ax+b$ are automorphisms, so $0,1,-1$ are frame data; a Subject's frame charts it as the prime field $\\F_\\Om$ — the frame's chart, never the Carrier (C1). Arena and numbers: B1. 1-alg, 9-uniq"
+   "text": "The Carrier C: A timeless torsor of $\\Om$ elements, its cardinality is its only absolute characteristic; reframings $x\\mapsto ax+b$ are automorphisms, so $0,1,-1$ are frame data; a Subject's frame charts it as the prime field $\\F_\\Om$ — the frame's chart, never the Carrier (C1). Arena and numbers: B1. 1-alg, 9-uniq"
   },
   {
    "paper": "00",
@@ -22262,9 +22280,23 @@
    "source": "21-grav, 14-entr",
    "page": "00-ledger.html#A8",
    "witness": {
-    "script": "14:entropy.py [mixed]",
-    "py": null,
-    "lean": []
+    "script": null,
+    "py": {
+     "href": "frc/ledgers/master/chart.html#p00009",
+     "script": "frc/ledgers/master/chart.py",
+     "line": 79,
+     "verdict": "pass"
+    },
+    "lean": [
+     {
+      "lib": "FrcLedger",
+      "module": "FrcLedger/Keys/Chart",
+      "name": "FRC.LedgerML.p00009",
+      "tier": 2,
+      "ok": true,
+      "page": "lean/ml/Keys.Chart.html#FRC.LedgerML.p00009"
+     }
+    ]
    },
    "refs": [
     "p00015",
@@ -22275,7 +22307,7 @@
     "21-grav",
     "14-entr"
    ],
-   "text": "Scale, the sole quantitative import: Scale, the sole quantitative import: the de Sitter entropy of the observable universe fixes the cardinality exactly, $\\Om=4\\dS+1$. Its chart numeral is $\\dS=\\pi(r_H/\\ell_P)^2=3.3\\times10^{122}$ [chart] at $r_H=c/H_\\Lambda$ (14-entr), so $\\Om=1.3\\times10^{123}$ and $\\ln\\Om=283.5$ [chart], the numeral of every chart reading in the ledger. The Carrier congruences are certified by the realisations (B5, C8), not imported. Metrology: L2. 21-grav, 14-entr 14:entropy.py [mixed]"
+   "text": "Scale, the sole quantitative import: Scale, the sole quantitative import: the de Sitter entropy of the observable universe fixes the cardinality exactly, $\\Om=4\\dS+1$. Its chart numeral is $\\dS=\\pi(r_H/\\ell_P)^2=3.3\\times10^{122}$ [chart] at $r_H=c/H_\\Lambda$ (14-entr), so $\\Om=1.3\\times10^{123}$ and $\\ln\\Om=283.5$ [chart], the numeral of every chart reading in the ledger. The Carrier congruences are certified by the realisations (B5, C8), not imported. Metrology: L2. 21-grav, 14-entr"
   },
   {
    "paper": "00",
@@ -23218,8 +23250,22 @@
    "page": "00-ledger.html#C10",
    "witness": {
     "script": "22:stratum.py",
-    "py": null,
-    "lean": []
+    "py": {
+     "href": "frc/ledgers/master/extension.html#p00030",
+     "script": "frc/ledgers/master/extension.py",
+     "line": 82,
+     "verdict": "pass"
+    },
+    "lean": [
+     {
+      "lib": "FrcCore",
+      "module": "FrcCore/Keys/Extension",
+      "name": "FRC.Ledger.p00030",
+      "tier": 0,
+      "ok": true,
+      "page": "lean/core/Keys.Extension.html#FRC.Ledger.p00030"
+     }
+    ]
    },
    "refs": [
     "p00051"
@@ -25056,7 +25102,7 @@
     "py": {
      "href": "frc/ledgers/master/chart.html#p00192",
      "script": "frc/ledgers/master/chart.py",
-     "line": 74,
+     "line": 108,
      "verdict": "pass"
     },
     "lean": [
@@ -25126,7 +25172,7 @@
     "py": {
      "href": "frc/ledgers/master/chart.html#p00193",
      "script": "frc/ledgers/master/chart.py",
-     "line": 98,
+     "line": 132,
      "verdict": "pass"
     },
     "lean": [
@@ -25218,7 +25264,7 @@
     "py": {
      "href": "frc/ledgers/master/chart.html#p00148",
      "script": "frc/ledgers/master/chart.py",
-     "line": 136,
+     "line": 170,
      "verdict": "pass"
     },
     "lean": [
@@ -25305,7 +25351,7 @@
     "py": {
      "href": "frc/ledgers/master/chart.html#p00133",
      "script": "frc/ledgers/master/chart.py",
-     "line": 163,
+     "line": 197,
      "verdict": "pass"
     },
     "lean": [

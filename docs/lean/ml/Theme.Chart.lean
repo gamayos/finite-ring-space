@@ -21,6 +21,57 @@ namespace FRC.Chart
 
 open Real
 
+/-! ## The scale import's chart numerals (00:A8; 14:A1, C1) -/
+section scale
+
+set_option exponentiation.threshold 512 in
+/-- 00:A8 [chart] — the scale import's numerals: with the fit's `Λ = 1.088 × 10⁻⁵² m⁻²` (Planck 2018) and the Planck
+length `ℓ_P = 1.616255 × 10⁻³⁵ m` declared [data], the de Sitter radius `r_H = c/H_Λ`, `r_H² = 3/Λ`, gives
+`S = π (r_H/ℓ_P)²` between `3.31` and `3.32 × 10¹²²` (the row's `3.3 × 10¹²²`), `Ω = 4S + 1` between `1.32` and
+`1.33 × 10¹²³` (the row's `1.3 × 10¹²³`) and `ln Ω` between `283.50` and `283.51` (the row's `283.5`, the numeral
+every chart reading of the ledger consumes). The logarithm is bracketed by `409 ln 2` (`Real.log_two_gt_d9`,
+`log_two_lt_d9`) and `1 − 1/m ≤ ln m ≤ m − 1` on the mantissa `m = Ω/2⁴⁰⁹`. That the datum fixes the cardinality
+is the import; nothing here derives the datum. -/
+theorem scale_import (Λ ℓP r S Ω : ℝ) (hΛ : Λ = 1.088e-52) (hℓ : ℓP = 1.616255e-35)
+    (hr2 : r ^ 2 = 3 / Λ) (hS : S = π * (r / ℓP) ^ 2) (hΩ : Ω = 4 * S + 1) :
+    (3.31e122 : ℝ) < S ∧ S < 3.32e122 ∧ (1.32e123 : ℝ) < Ω ∧ Ω < 1.33e123 ∧
+    (283.50 : ℝ) < Real.log Ω ∧ Real.log Ω < 283.51 := by
+  have hpi1 := Real.pi_gt_d6
+  have hpi2 := Real.pi_lt_d6
+  have hK : S = π * (3 / (Λ * ℓP ^ 2)) := by
+    rw [hS, div_pow, hr2]; subst hΛ hℓ; field_simp
+  subst hΛ hℓ
+  have hKpos : (0 : ℝ) < 3 / (1.088e-52 * (1.616255e-35) ^ 2) := by positivity
+  have hSlo : (3.3160599e122 : ℝ) < S := by
+    rw [hK]; have := mul_lt_mul_of_pos_right hpi1 hKpos; norm_num at this ⊢; linarith
+  have hShi : S < (3.3160611e122 : ℝ) := by
+    rw [hK]; have := mul_lt_mul_of_pos_right hpi2 hKpos; norm_num at this ⊢; linarith
+  subst hΩ
+  have hΩpos : (0 : ℝ) < 4 * S + 1 := by linarith
+  have hmpos : (0 : ℝ) < (4 * S + 1) / 2 ^ 409 := by positivity
+  have hlog : Real.log (4 * S + 1) = 409 * Real.log 2 + Real.log ((4 * S + 1) / 2 ^ 409) := by
+    have e : (4 * S + 1 : ℝ) = 2 ^ 409 * ((4 * S + 1) / 2 ^ 409) := by field_simp
+    conv_lhs => rw [e]
+    rw [Real.log_mul (by positivity) (by positivity), Real.log_pow]; push_cast; ring
+  have hl1 := Real.log_two_gt_d9
+  have hl2 := Real.log_two_lt_d9
+  have hm1 : (1.0032614 : ℝ) < (4 * S + 1) / 2 ^ 409 := by
+    rw [lt_div_iff₀ (by positivity)]; norm_num; linarith
+  have hm2 : (4 * S + 1) / 2 ^ 409 < (1.0032619 : ℝ) := by
+    rw [div_lt_iff₀ (by positivity)]; norm_num; linarith
+  have hup := Real.log_le_sub_one_of_pos hmpos
+  have hlo := Real.one_sub_inv_le_log_of_pos hmpos
+  have hinv : 1 / ((4 * S + 1) / 2 ^ 409) < 1 / (1.0032614 : ℝ) := one_div_lt_one_div_of_lt (by norm_num) hm1
+  rw [inv_eq_one_div] at hlo
+  have hA : (0.00325 : ℝ) < Real.log ((4 * S + 1) / 2 ^ 409) := by
+    have : (1 : ℝ) - 1 / 1.0032614 > 0.00325 := by norm_num
+    linarith
+  have hB : Real.log ((4 * S + 1) / 2 ^ 409) < (0.003262 : ℝ) := by linarith
+  rw [hlog]
+  refine ⟨by linarith, by linarith, by linarith, by linarith, by linarith, by linarith⟩
+
+end scale
+
 /-! ## The octant record depth and its outputs (00:L3; 14:C5, C7, P3) -/
 section octant
 

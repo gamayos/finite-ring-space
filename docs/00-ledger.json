@@ -138,7 +138,7 @@
   },
   {
    "label": "A7",
-   "name": "The Carrier C: a timeless torsor of Ω points",
+   "name": "The Carrier C",
    "block": "A",
    "key": "p00008",
    "tag": "D",
@@ -157,7 +157,7 @@
      "key": "p00021"
     }
    ],
-   "statement": "The Carrier $\\Car$: a timeless torsor of $\\Om$ points, its cardinality its only absolute characteristic; reframings $x\\mapsto ax+b$ are automorphisms, so $0,1,-1$ are frame data; a Subject's frame charts it as the prime field $\\F_\\Om$ --- the frame's chart, never the Carrier (C1). Arena and numbers: B1."
+   "statement": "A timeless torsor of $\\Om$ elements, its cardinality is its only absolute characteristic; reframings $x\\mapsto ax+b$ are automorphisms, so $0,1,-1$ are frame data; a Subject's frame charts it as the prime field $\\F_\\Om$ --- the frame's chart, never the Carrier (C1). Arena and numbers: B1."
   },
   {
    "label": "A8",
@@ -169,7 +169,7 @@
     "21-grav",
     "14-entr"
    ],
-   "witness": "14:entropy.py [mixed]",
+   "witness": null,
    "refs": [
     {
      "label": "B5",
