@@ -2,7 +2,7 @@
 
 The chart theme is the one python theme with floats (frc/themes.py, rank 30): the readings of the finite results
 against the continuum. Its cosmology section serves the chart clauses of the master's rows A8 (the scale import's
-numerals S, Ω and ln Ω), L1 (the floor), L3 (the octant record depth and its outputs), L8 (the primordial tilt) and
+numerals S and Ω; the ledger's ln Ω for L8), L1 (the floor), L3 (the octant record depth and its outputs), L8 (the primordial tilt) and
 P1 (the running floor).
 
 Each reading is computed twice: in floating point (`math`), and as a certified bracket in exact rational arithmetic,
