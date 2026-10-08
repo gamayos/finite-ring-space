@@ -116,8 +116,8 @@
     {
      "label": "B6",
      "predicate": "The Hopf representation: node-on-fiber exact; foliation depth $=$ rung ladder; the drawn leaves are the continuum foliation by the unit $\\im$, the chart face of the count of A9, distinguishing neither fibration [chart].",
-     "tag": "D|T",
-     "source": "\\src{s13.\\allowbreak verify-render}",
+     "tag": "T",
+     "source": "\\src{s13.\\allowbreak verify-render}; rests on V2",
      "key": "p38014"
     },
     {
@@ -184,8 +184,8 @@
     },
     {
      "label": "C8",
-     "predicate": "The face-ratio identity, orbit-free (both sides' scales cancel): the pair's two faces (C7) have ratio exactly $2$ (\\tT); matched against the declared comparison chart, the parametrised isotropic metric (\\tD, [approx: continuum chart]), the identity forces $2\\gamma-\\beta=1$, a combination measured to $10^{-4}$ (Cassini, lunar laser ranging) and so discriminating no metric the data have not already selected; Brans--Dicke's $2\\gamma-\\beta-1=-2/(2+\\omega)$ is the same fact read in one family.",
-     "tag": "D|T",
+     "predicate": "The face-ratio identity, orbit-free (both sides' scales cancel): the pair's two faces (C7) have ratio exactly $2$; read in the comparison chart of the laboratory dictionary (C12), the parametrised isotropic metric [approx: continuum chart], the identity forces $2\\gamma-\\beta=1$, a combination measured to $10^{-4}$ (Cassini, lunar laser ranging) and so discriminating no metric the data have not already selected; Brans--Dicke's $2\\gamma-\\beta-1=-2/(2+\\omega)$ is the same fact read in one family.",
+     "tag": "T",
      "source": "\\src{s13.\\allowbreak check\\_o1}, \\src{s13.\\allowbreak o1\\_gr\\_chart}",
      "key": "p38023"
     },
@@ -232,16 +232,16 @@
     },
     {
      "label": "D2",
-     "predicate": "The step law $\\tfrac{11\\pi}{12}+\\tfrac{\\pi}{13}+\\tfrac{\\pi}{232}$ and the leak $\\pi/156-\\pi/232$ on the space trace: exact rationals of the chart angle (\\tT), the angle itself the declared chart unit (\\tD).",
-     "tag": "D|T",
-     "source": "\\src{s13.\\allowbreak check\\_s13}",
+     "predicate": "The step law $\\tfrac{11\\pi}{12}+\\tfrac{\\pi}{13}+\\tfrac{\\pi}{232}$ and the leak $\\pi/156-\\pi/232$ on the space trace: exact rationals of the chart angle, the angle itself the declared chart unit (V2).",
+     "tag": "T",
+     "source": "\\src{s13.\\allowbreak check\\_s13}; rests on B3, B7",
      "key": "p38026"
     },
     {
      "label": "D3",
-     "predicate": "The scale-tower circuit: the period at the FRC algebra half (\\tT); the radius $R\\lvert\\sin(2a\\pi/13)\\rvert$ the declared drawing chart (\\tD, [approx]).",
-     "tag": "D|T",
-     "source": "\\src{s13.\\allowbreak verify-render}",
+     "predicate": "The scale-tower circuit: the period at the FRC algebra half; the radius $R\\lvert\\sin(2a\\pi/13)\\rvert$ the declared drawing chart (V2, [approx]).",
+     "tag": "T",
+     "source": "\\src{s13.\\allowbreak verify-render}; rests on A6, B2",
      "key": "p38027"
     },
     {
@@ -336,8 +336,8 @@
     },
     {
      "label": "X3",
-     "predicate": "\\textbf{The acceleration floor $a_{0}=cH_{0}/2\\pi$ is the drive seen in the chart}: the leak's cyclic rate is the drive's own, one cycle per drive period $\\Om-1$ chronons $=2\\pi/H_{0}$, and its acceleration face is the floor (C10, the theorem; C11, the declared realisation); at the instance $a_{0}=c/(\\Om-1)$.",
-     "tag": "T|R",
+     "predicate": "\\textbf{The acceleration floor $a_{0}=cH_{0}/2\\pi$ is the drive seen in the chart}: the leak's cyclic rate is the drive's own, one cycle per drive period $\\Om-1$ chronons $=2\\pi/H_{0}$, and its acceleration face is the floor (C10; C11, the realisation); at the instance $a_{0}=c/(\\Om-1)$.",
+     "tag": "T",
      "source": "\\src{s13.\\allowbreak check\\_s13} (C10, C11)",
      "key": "p38048"
     },
@@ -357,8 +357,8 @@
     {
      "label": "P1",
      "predicate": "The registration floor $a_{0}=cH_{0}/2\\pi$, read from the pair's $\\kap$-free per-chronon leak rate (C11): parameter-free, tracking $H(z)$. Falsifier: a measured floor off $cH_{0}/2\\pi$ beyond the $H_{0}$ uncertainty, or one not tracking $H(z)$ (\\S\\ref{sec:predictions}, item 5; the dark sector's L1).",
-     "tag": "T|R",
-     "source": "\\S\\ref{sec:predictions}",
+     "tag": "T",
+     "source": "\\S\\ref{sec:predictions}; rests on C10, 00:L1",
      "key": "p38049"
     }
    ]
@@ -429,19 +429,9 @@
    "text": "The row states what a physical term denotes in the substrate: constitutive, not interpretive, defended by the totality of its registered consequences."
   },
   {
-   "tag": "T|R",
-   "name": "Theorem on a realisation",
-   "text": "A theorem consumed through a declared realisation: in block P the paper's predictions, each derived and witnessed, stated with its falsifier and its present confrontation; a refuted confrontation fires the realisation's falsifier, not the theorem."
-  },
-  {
    "tag": "O",
    "name": "Open (conjecture)",
    "text": "Stated ahead of derivation, carrying its exposure and its falsifier; a derivation re-homes the row."
-  },
-  {
-   "tag": "D|T",
-   "name": "Definition with its theorem",
-   "text": "A declared chart (a comparison metric, a drawing angle or radius) together with the exact statement carried on it; the parts are separately citable."
   }
  ],
  "master": {

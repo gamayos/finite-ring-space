@@ -39,7 +39,7 @@
     },
     {
      "label": "A5",
-     "predicate": "The Deligne--Lusztig / Weil character equidistribution invoked for the high-curvature extension of the correspondence.",
+     "predicate": "The Deligne--Lusztig / Weil character-sum bounds, which hold on each shell, their equidistribution the reading over large shells, invoked for the high-curvature extension of the correspondence.",
      "tag": "I",
      "source": "\\citep{weil1964}",
      "key": "p27005"
@@ -122,8 +122,8 @@
     {
      "label": "C3",
      "predicate": "The Coulomb law and Maxwell dynamics, as corollaries of the correspondence on the resolvable window.",
-     "tag": "T|R",
-     "source": "Prop.~\\ref{prop:coulomb}; \\src{fld.\\allowbreak em1\\_\\allowbreak prototype}, \\src{fld.\\allowbreak audit\\_\\allowbreak finitism}",
+     "tag": "T",
+     "source": "Prop.~\\ref{prop:coulomb}; \\src{fld.\\allowbreak em1\\_\\allowbreak prototype}, \\src{fld.\\allowbreak audit\\_\\allowbreak finitism}; rests on B2, C1, C2",
      "key": "p27015"
     },
     {
@@ -136,14 +136,14 @@
     {
      "label": "C5",
      "predicate": "The propagating neutral spectrum and custodial $\\rho=1$: the Hessian of $S_\\rho$ at the broken vacuum gives massive $W^\\pm,Z$ against a massless photon, $\\rho=1$ as $\\det\\equiv0$, $M_W^2/M_Z^2=\\cos^2\\sW$, which is $5/8$ at the unification point (Prop.~\\ref{prop:running}); the imported electroweak template (A4) evaluated on the realisation B3 (\\src{fld.\\allowbreak weak\\_\\allowbreak spectrum}, \\src{fld.ew1}).",
-     "tag": "T|R",
-     "source": "Prop.~\\ref{prop:rho}; \\src{fld.ew1}, \\src{fld.\\allowbreak weak\\_\\allowbreak spectrum}",
+     "tag": "T",
+     "source": "Prop.~\\ref{prop:rho}; \\src{fld.ew1}, \\src{fld.\\allowbreak weak\\_\\allowbreak spectrum}; rests on C4",
      "key": "p27017"
     },
     {
      "label": "C6",
      "predicate": "The Weinberg trace formula $\\sin^2\\sW=\\Tr(T_3^2)/\\Tr(Q^2)=3/8$ for a complete generation, the unification-point value, and the four-fermion amplitude with $G_F=1/(\\sqrt2\\,v^2)$; the imported template (A4) evaluated on the realisations B3, B5 (\\src{fld.ew1}, \\src{fld.\\allowbreak weak\\_\\allowbreak current}).",
-     "tag": "T|R",
+     "tag": "T",
      "source": "Prop.~\\ref{prop:angle}, Cor.~\\ref{cor:fermi}; \\src{fld.ew1}, \\src{fld.\\allowbreak weak\\_\\allowbreak current}, \\src{fld.\\allowbreak generation}, \\src{fld.p1}",
      "key": "p27018"
     },
@@ -157,22 +157,22 @@
     {
      "label": "C8",
      "predicate": "One complete Standard-Model generation as the spinor $\\mathbf{16}$ of the rank-five frame: field content, hypercharges, charges, and full anomaly freedom; the imported $\\SO(10)$ template (A4) evaluated on the realisation B5 (\\src{fld.\\allowbreak generation}).",
-     "tag": "T|R",
-     "source": "Thm.~\\ref{thm:gen}; \\src{fld.\\allowbreak missing\\_\\allowbreak rank}, \\src{fld.\\allowbreak generation}",
+     "tag": "T",
+     "source": "Thm.~\\ref{thm:gen}; \\src{fld.\\allowbreak missing\\_\\allowbreak rank}, \\src{fld.\\allowbreak generation}; rests on 00:G12",
      "key": "p27020"
     },
     {
      "label": "C9",
      "predicate": "Simple $\\SO(10)$ unification forced: the colour--isospin off-block reframings are gauge automorphisms, the $3+2$ torsion sitting at carrier scale above the coherence horizon $\\sqrt\\Omega$.",
-     "tag": "T|R",
-     "source": "Prop.~\\ref{prop:unify}; \\src{fld.p8}, \\src{fld.p8b}",
+     "tag": "T",
+     "source": "Prop.~\\ref{prop:unify}; \\src{fld.p8}, \\src{fld.p8b}; rests on B1, B5, B6, 00:D8",
      "key": "p27021"
     },
     {
      "label": "C10",
      "predicate": "The closure of the four primitive roles ($5\\!\\to\\!1$): four interactions and no fifth, three generations and no fourth, the boson/fermion split, and the generation ordering, given the role-to-matter realisation (B6).",
-     "tag": "T|R",
-     "source": "Prop.~\\ref{prop:threegen}, Prop.~\\ref{prop:chiralsel}; \\src{fld.p10}, \\src{fld.p9}, \\src{fld.p9b}",
+     "tag": "T",
+     "source": "Prop.~\\ref{prop:threegen}, Prop.~\\ref{prop:chiralsel}; \\src{fld.p10}, \\src{fld.p9}, \\src{fld.p9b}; rests on A4",
      "key": "p27022"
     },
     {
@@ -274,64 +274,64 @@
     {
      "label": "P1",
      "predicate": "\\textbf{No fourth generation and no fifth interaction} \\emph{[forced]}. The role ladder closes, the fifth step returns to counting, and the Carrier is the entire substrate, so a fourth chiral family and a fifth fundamental force are forbidden, not merely absent (Tier~4). \\emph{Falsifier:} any fourth-generation fermion, or any new fundamental interaction.",
-     "tag": "T|R",
-     "source": "Prop.~\\ref{prop:threegen}; \\src{fld.p9b}",
+     "tag": "T",
+     "source": "Prop.~\\ref{prop:threegen}; \\src{fld.p9b}; rests on A1, B6, C10, 00:A3",
      "key": "p27035"
     },
     {
      "label": "P2",
      "predicate": "\\textbf{A desert to the substrate scale} \\emph{[forced]}. The gauge group is exactly $\\SU(3)\\times\\SU(2)\\times\\U(1)$ until the substrate resolves the colour--isospin split; no new gauge boson, vector-like fermion, or extra scalar lies between the electroweak and substrate ($\\sim10^{16}$--$10^{19}\\,$GeV) scales. \\emph{Falsifier:} a $Z'$, $W'$, leptoquark, second Higgs doublet, or compositeness signature at the LHC or a future collider. This is the sharpest divergence from supersymmetry, extra dimensions, and composite-Higgs scenarios.",
-     "tag": "T|R",
-     "source": "Prop.~\\ref{prop:unify}",
+     "tag": "T",
+     "source": "Prop.~\\ref{prop:unify}; rests on B1, B5, C9",
      "key": "p27036"
     },
     {
      "label": "P3",
      "predicate": "\\textbf{No TeV supersymmetry} \\emph{[forced]}. The ${\\sim}13\\%$ three-coupling near-miss is closed by the $X,Y$ completion at the substrate scale, with the running carried by purely Standard-Model content; there are no superpartners enforcing exact low-scale unification. \\emph{Falsifier:} discovery of superpartners, or evidence that unification demands TeV-scale thresholds.",
-     "tag": "T|R",
-     "source": "Prop.~\\ref{prop:running}; \\src{fld.p1}",
+     "tag": "T",
+     "source": "Prop.~\\ref{prop:running}; \\src{fld.p1}; rests on A3, A6, C9",
      "key": "p27037"
     },
     {
      "label": "P4",
      "predicate": "\\textbf{The proton is effectively stable, $\\tau_p\\gtrsim10^{45}\\,$yr} \\emph{[forced]}. The $X,Y$ leptoquarks acquire mass at the substrate scale, not at $\\sim10^{16}\\,$GeV, so $\\tau_p\\sim M_X^4/(\\al_{\\mathrm{GUT}}^2 m_p^5)$ reaches $10^{45}$--$10^{47}\\,$yr for $M_X$ near the Planck scale, orders beyond the $\\sim10^{36}\\,$yr of supersymmetric $\\SO(10)$ and the $\\sim10^{35}\\,$yr reach of Hyper-Kamiokande. \\emph{Falsifier:} observation of $p\\to e^+\\pi^0$ near $10^{34}$--$10^{35}\\,$yr in Hyper-Kamiokande, DUNE, or JUNO, against the current bound \\cite{superk2017}. The programme predicts these searches find nothing.",
-     "tag": "T|R",
-     "source": "Prop.~\\ref{prop:unify}; \\src{fld.p8}",
+     "tag": "T",
+     "source": "Prop.~\\ref{prop:unify}; \\src{fld.p8}; rests on A3, A6, C9",
      "key": "p27038"
     },
     {
      "label": "P5",
      "predicate": "\\textbf{Majorana neutrinos, heavy singlets, no light sterile neutrino} \\emph{[sector]}. The $\\nu^c$ is the gauge-singlet $\\Lam^0$ of the generation, so it takes a Majorana mass at unification and drives the seesaw, the three right-handed states sitting at $\\sim10^{14}$--$10^{15}\\,$GeV. \\emph{Falsifier:} a confirmed eV-scale sterile neutrino, or evidence that the light neutrinos are Dirac. This diverges from Dirac-neutrino and sterile-neutrino interpretations and is consistent with $N_{\\mathrm{eff}}=3$.",
-     "tag": "T|R",
-     "source": "Thm.~\\ref{thm:gen}, Prop.~\\ref{prop:mass}; \\src{fld.p7}",
+     "tag": "T",
+     "source": "Thm.~\\ref{thm:gen}, Prop.~\\ref{prop:mass}; \\src{fld.p7}; rests on A4, B5, C8",
      "key": "p27039"
     },
     {
      "label": "P6",
      "predicate": "\\textbf{No new particle of dark matter} \\emph{[sector]}. The matter content is exactly one Standard-Model generation, triplicated, with heavy $\\nu^c$; the construction contains no weakly-interacting massive particle and no axion. \\emph{Falsifier:} a positive signal in a direct-detection (LZ, XENONnT) or axion (ADMX) experiment. Dark matter, if not a Standard-Model state, must then reside in the gravitational/substrate sector, a residual burden of the programme.",
-     "tag": "T|R",
-     "source": "Thm.~\\ref{thm:gen}",
+     "tag": "T",
+     "source": "Thm.~\\ref{thm:gen}; rests on B5, B6, C8, C10",
      "key": "p27040"
     },
     {
      "label": "P7",
      "predicate": "\\textbf{No new-physics contribution to the muon anomaly} \\emph{[sector]}. With no states beyond the Standard Model, $(g-2)_\\mu$ must be accounted for by Standard-Model (notably hadronic) contributions. \\emph{Falsifier:} a robustly established beyond-Standard-Model excess; the current lattice and experimental trend toward the Standard-Model value favours this prediction.",
-     "tag": "T|R",
-     "source": "Thm.~\\ref{thm:gen}",
+     "tag": "T",
+     "source": "Thm.~\\ref{thm:gen}; rests on C8, C10",
      "key": "p27041"
     },
     {
      "label": "P8",
-     "predicate": "\\textbf{The charged-lepton Koide relation is exactly $2/3$} \\emph{[structural, $T\\mid\\Omega$]}: $(m_e+m_\\mu+m_\\tau)/(\\sqrt{m_e}+\\sqrt{m_\\mu}+\\sqrt{m_\\tau})^2=2/3$, empirically to one part in $10^{5}$, is the cube-root generation orbit at the self-dual value $\\rho^2=2^{-1}$ --- $Q=\\tfrac13+\\tfrac23\\rho^2$ exact, $\\rho^2$ the quarter-turn ($4\\mid\\Omega-1$) self-dual amplitude on the cubic ($3\\mid\\Omega+1$) plane. Form and value derived; the selection of the mass vector onto that orientation is the $\\Omega$-hard flavour residual (Z1). \\emph{Falsifier:} a measured $Q$ displaced from $2/3$ beyond the per-mille winding-phase corrections.",
-     "tag": "T|R",
-     "source": "Prop.~\\ref{prop:koide}; \\src{fld.koide}",
+     "predicate": "\\textbf{The charged-lepton Koide relation is exactly $2/3$} \\emph{[structural]}: $(m_e+m_\\mu+m_\\tau)/(\\sqrt{m_e}+\\sqrt{m_\\mu}+\\sqrt{m_\\tau})^2=2/3$, empirically to one part in $10^{5}$, is the cube-root generation orbit at the self-dual value $\\rho^2=2^{-1}$ --- $Q=\\tfrac13+\\tfrac23\\rho^2$ exact, $\\rho^2$ the quarter-turn ($4\\mid\\Omega-1$) self-dual amplitude on the cubic ($3\\mid\\Omega+1$) plane. Form and value derived; the selection of the mass vector onto that orientation is the $\\Omega$-hard flavour residual (28:Z1). \\emph{Falsifier:} a measured $Q$ displaced from $2/3$ beyond the per-mille winding-phase corrections.",
+     "tag": "T",
+     "source": "Prop.~\\ref{prop:koide}; \\src{fld.koide}; rests on B5, C11, 00:G16",
      "key": "p27042"
     },
     {
      "label": "P9",
-     "predicate": "\\textbf{Vanishing strong-CP angle without an axion} \\emph{[structural, $T\\mid R$]}. The QCD vacuum angle vanishes on the substrate, $\\bar\\theta=0$ with no axion: the colour action carries no topological term and colour is drive-invariant, so the bare $\\theta=0$, and the Hermitian quark mass matrices have real determinant, so $\\arg\\det M_q=0$, while the Cabibbo--Kobayashi--Maskawa phase sits in the up--down misalignment. \\emph{Falsifier:} a neutron electric dipole moment above the QCD floor, or a discovered axion.",
-     "tag": "T|R",
-     "source": "Prop.~\\ref{prop:strongcp}; \\src{fld.strongcp}",
+     "predicate": "\\textbf{Vanishing strong-CP angle without an axion} \\emph{[structural]}. The QCD vacuum angle vanishes on the substrate, $\\bar\\theta=0$ with no axion: the colour action carries no topological term and colour is drive-invariant, so the bare $\\theta=0$, and the Hermitian quark mass matrices have real determinant, so $\\arg\\det M_q=0$, while the Cabibbo--Kobayashi--Maskawa phase sits in the up--down misalignment. \\emph{Falsifier:} a neutron electric dipole moment above the QCD floor, or a discovered axion.",
+     "tag": "T",
+     "source": "Prop.~\\ref{prop:strongcp}; \\src{fld.strongcp}; rests on A6, B4, C7",
      "key": "p27043"
     }
    ]
@@ -410,11 +410,6 @@
    "tag": "T",
    "name": "Theorem",
    "text": "Derived within this paper from the rows above it; where a family identifier is named, its content is verified by the validation package."
-  },
-  {
-   "tag": "T|R",
-   "name": "Theorem on a realisation",
-   "text": "A theorem consumed through a declared realisation: in block P the paper's predictions, each derived and witnessed, stated with its falsifier and its present confrontation; a refuted confrontation fires the realisation's falsifier, not the theorem."
   },
   {
    "tag": "Ω",

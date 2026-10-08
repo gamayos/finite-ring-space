@@ -205,9 +205,9 @@
     },
     {
      "label": "C11",
-     "predicate": "The engineered-core readout: registered frequencies are framed rationals reading the two-way structural weight through Definition~\\ref{def:readout}; two reductions are proved (the conjugate-pair trace tally and the setting-ensemble Parseval tally, Remark~\\ref{rem:strata}), and the stratum-sampling clause --- a fixed-setting protocol samples one stratum of the drive-presented ensemble --- is the residual realisation content.",
-     "tag": "T|R",
-     "source": "Prop.~\\ref{prop:strata}, Rem.~\\ref{rem:strata}; \\src{qm.stratum}",
+     "predicate": "The engineered-core readout: registered frequencies are framed rationals reading the two-way structural weight through Definition~\\ref{def:readout}; two reductions are proved (the conjugate-pair trace tally and the setting-ensemble Parseval tally, Remark~\\ref{rem:strata}), given the stratum-sampling clause, the unified sampling clause of master D10.",
+     "tag": "T",
+     "source": "Prop.~\\ref{prop:strata}, Rem.~\\ref{rem:strata}; \\src{qm.stratum}; rests on B4, C10, 00:D10",
      "key": "p22027"
     },
     {
@@ -275,9 +275,9 @@
     },
     {
      "label": "C21",
-     "predicate": "The coherent-fraction channel: force by full masses, entanglement by coherent fractions; the declared identification is reciprocal synchronisation, and the fully incoherent channel is separable at generic (nondegenerate) geometry.",
-     "tag": "T|R",
-     "source": "Prop.~\\ref{prop:fcoh}; \\src{qm.gravfraction}",
+     "predicate": "The coherent-fraction channel: force by full masses, entanglement by coherent fractions; the identification reciprocal synchronisation (B8), and the fully incoherent channel is separable at generic (nondegenerate) geometry.",
+     "tag": "T",
+     "source": "Prop.~\\ref{prop:fcoh}; \\src{qm.gravfraction}; rests on A4, C19, C22",
      "key": "p22037"
     },
     {
@@ -304,8 +304,8 @@
     {
      "label": "C25",
      "predicate": "The measurement problem dissolved: Kochen--Specker poses no separate threat because values exist only as Subject-relative quotient phases, carried together with the Tsirelson strength $2\\sqrt2$.",
-     "tag": "T|R",
-     "source": "\\S\\ref{sec:dividends}",
+     "tag": "T",
+     "source": "\\S\\ref{sec:dividends}; rests on A7, B3, B6, C17",
      "key": "p22041"
     },
     {
@@ -393,36 +393,36 @@
     {
      "label": "P1",
      "predicate": "Gravitationally induced entanglement at exactly the Newtonian rate, $V^2+C^2=1$ on the pure channel: equal force but unequal entanglement --- a source gravitates by its full mass while the systematic conditional phase, the calibrated discriminator, is carried by the coherent sectors alone, the fully incoherent channel separable at generic (nondegenerate) geometry. The one dated forward prediction.",
-     "tag": "T|R",
-     "source": "Rem.~\\ref{rem:bmvpred}; \\src{qm.bmv}",
+     "tag": "T",
+     "source": "Rem.~\\ref{rem:bmvpred}; \\src{qm.bmv}; rests on A4, B8, C19, C21",
      "key": "p22052"
     },
     {
      "label": "P2",
      "predicate": "Third-order interference exactly zero at every accessible scale, any wrap quantised to a multiple of $\\Omega$: a single confirmed small $I_3\\neq0$ falsifies outright.",
-     "tag": "T|R",
-     "source": "Cor.~\\ref{cor:sorkin}, Rem.~\\ref{rem:horizon}; \\src{qm.sorkin}",
+     "tag": "T",
+     "source": "Cor.~\\ref{cor:sorkin}, Rem.~\\ref{rem:horizon}; \\src{qm.sorkin}; rests on B1, C8",
      "key": "p22053"
     },
     {
      "label": "P3",
      "predicate": "The Tsirelson value $S=2\\sqrt2$ exact and the network behaviour of complex (not real) quantum theory: vacuum dispersion, $S\\neq2\\sqrt2$, or non-quantum network behaviour each falsify.",
-     "tag": "T|R",
-     "source": "Thm.~\\ref{thm:tsirelson},~\\ref{thm:table}; \\src{qm.composite}, \\src{qm.renou}",
+     "tag": "T",
+     "source": "Thm.~\\ref{thm:tsirelson},~\\ref{thm:table}; \\src{qm.composite}, \\src{qm.renou}; rests on B2, B5, C17, C18",
      "key": "p22054"
     },
     {
      "label": "P4",
      "predicate": "No vacuum dispersion at any sub-horizon order (the finite double cover accumulates nothing): the gamma-ray-burst time-of-flight bounds leave the framework untouched.",
-     "tag": "T|R",
-     "source": "Rem.~\\ref{rem:doublecover}; \\src{qm.dispersion}",
+     "tag": "T",
+     "source": "Rem.~\\ref{rem:doublecover}; \\src{qm.dispersion}; rests on A2, B2",
      "key": "p22055"
     },
     {
      "label": "P5",
      "predicate": "Quantum computation succeeds as standard quantum mechanics prescribes at every accessible depth; the first deviation, if any, is quantised at the unit-core ceiling $k^*=404$ ($202$ for $\\sqrt\\Omega$), not gradual.",
-     "tag": "T|R",
-     "source": "Prop.~\\ref{prop:granularity}; \\src{qm.granularity}",
+     "tag": "T",
+     "source": "Prop.~\\ref{prop:granularity}; \\src{qm.granularity}; rests on A5, C14",
      "key": "p22056"
     }
    ]
@@ -495,11 +495,6 @@
    "tag": "T",
    "name": "Theorem",
    "text": "Derived within this paper from the rows above it; where a family identifier is named, its content is verified by the validation package in exact arithmetic."
-  },
-  {
-   "tag": "T|R",
-   "name": "Theorem on a realisation",
-   "text": "A theorem consumed through a declared realisation: in block P the paper's predictions, each derived and witnessed, stated with its falsifier and its present confrontation; a refuted confrontation fires the realisation's falsifier, not the theorem."
   },
   {
    "tag": "Ω",

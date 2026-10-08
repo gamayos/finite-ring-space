@@ -91,6 +91,13 @@
      "tag": "R",
      "source": "\\cite{akhtman2026fields}",
      "key": "p28011"
+    },
+    {
+     "label": "B6",
+     "predicate": "Drive-invariant boundary branch: the lightest colourless neutrino sits at the quarter-turn zero (as the electron), selecting the normal near-$m_1{=}0$ branch. Falsifier: inverted ordering.",
+     "tag": "R",
+     "source": "\\S\\ref{sec:neutrino}",
+     "key": "p28051"
     }
    ]
   },
@@ -108,8 +115,8 @@
     {
      "label": "C2",
      "predicate": "$Q=2/3\\Leftrightarrow r=\\sqrt2\\Leftrightarrow\\rho^2=\\tfrac12$ (the equivalence an identity); the value $\\rho^2=\\tfrac12$ is the realisation B5.",
-     "tag": "T|R",
-     "source": "\\S\\ref{sec:koide}; \\src{flv.\\allowbreak exact\\_\\allowbreak core}, \\src{flv.\\allowbreak framed\\_\\allowbreak koide}, \\src{flv.tier\\_b}, \\src{flv.m10}",
+     "tag": "T",
+     "source": "\\S\\ref{sec:koide}; \\src{flv.\\allowbreak exact\\_\\allowbreak core}, \\src{flv.\\allowbreak framed\\_\\allowbreak koide}, \\src{flv.tier\\_b}, \\src{flv.m10}; rests on C1",
      "key": "p28013"
     },
     {
@@ -122,8 +129,8 @@
     {
      "label": "C4",
      "predicate": "The squared amplitudes are the cyclotomic norms $r_\\ell^2=N(1-i)=2$, $r_u^2=N(1-\\omega)=3$ (on B5), hence $Q_\\ell=\\tfrac23$, $Q_u=\\tfrac56$ in framed arithmetic ($Q_u=0.849$ in the working scheme, band $0.83$--$0.89$); the down sector is the GJ-dressed intermediate.",
-     "tag": "T|R",
-     "source": "Rem.~\\ref{rem:23tori}; \\src{flv.\\allowbreak exact\\_\\allowbreak core}, \\src{flv.\\allowbreak quark\\_\\allowbreak amp}",
+     "tag": "T",
+     "source": "Rem.~\\ref{rem:23tori}; \\src{flv.\\allowbreak exact\\_\\allowbreak core}, \\src{flv.\\allowbreak quark\\_\\allowbreak amp}; rests on B4",
      "key": "p28015"
     },
     {
@@ -170,17 +177,17 @@
     },
     {
      "label": "C11",
-     "predicate": "Seesaw of circulants $\\Rightarrow$ Koide-form (theorem); with $M_R\\propto m_D$ ($\\overline{\\mathbf{126}}$ alignment, a realisation) the seesaw gives $m_\\nu=m_D^{\\mathsf T}$, $r_\\nu=\\sqrt2$ (transpose fixed point).",
-     "tag": "T|R",
-     "source": "Prop.~\\ref{prop:seesaw},\\,\\ref{prop:transpose}; \\src{flv.neutrino}",
+     "predicate": "Seesaw of circulants $\\Rightarrow$ Koide-form (theorem); with $M_R\\propto m_D$ (Y1) the seesaw gives $m_\\nu=m_D^{\\mathsf T}$, $r_\\nu=\\sqrt2$ (transpose fixed point).",
+     "tag": "T",
+     "source": "Prop.~\\ref{prop:seesaw},\\,\\ref{prop:transpose}; \\src{flv.neutrino}; rests on A5, B1, B5, C1",
      "key": "p28022"
     },
     {
      "label": "C11b",
-     "predicate": "Drive-invariant boundary branch: the lightest colourless neutrino sits at the quarter-turn zero (as the electron), selecting the normal near-$m_1{=}0$ branch; the signed $r_\\nu=\\sqrt2$ circulant solves both orderings exactly, so the branch is the sole ordering assumption. Falsifier: inverted ordering.",
-     "tag": "T|R",
-     "source": "\\S\\ref{sec:neutrino}; \\src{flv.\\allowbreak revision\\_\\allowbreak checks}, \\src{flv.neutrino}",
-     "key": "p28023"
+     "predicate": "Both orderings solved: the signed $r_\\nu=\\sqrt2$ circulant solves both neutrino orderings exactly, so the boundary branch (B6) is the sole ordering assumption.",
+     "tag": "T",
+     "source": "\\S\\ref{sec:neutrino}; \\src{flv.\\allowbreak revision\\_\\allowbreak checks}, \\src{flv.neutrino}; rests on B5, C11",
+     "key": "p28050"
     },
     {
      "label": "C12",
@@ -267,7 +274,7 @@
     },
     {
      "label": "X11",
-     "predicate": "\\textbf{The neutrino spectrum} (a near-massless lightest state, $\\sum m_\\nu\\simeq59\\,$meV on the normal branch) follows from colourlessness fixing $Q_\\nu=2/3$, the transpose fixed point $M_R\\propto m_D$ and the boundary-branch realisation that selects the ordering, rather than three independent neutrino masses.",
+     "predicate": "\\textbf{The neutrino spectrum} (a near-massless lightest state, $\\sum m_\\nu\\simeq59\\,$meV on the normal branch) follows from colourlessness fixing $Q_\\nu=2/3$, the transpose fixed point under the alignment $M_R\\propto m_D$ (Y1) and the boundary branch that selects the ordering (B6), rather than three independent neutrino masses.",
      "tag": "T",
      "source": "Proposition~\\ref{prop:transpose}, \\S\\ref{sec:neutrino}; \\src{flv.neutrino}",
      "key": "p28035"
@@ -281,50 +288,50 @@
     {
      "label": "P1",
      "predicate": "Charged-lepton Koide $Q_\\ell=2/3$ exact on B5 (measured $0.666661\\pm0.000007$); $m_e=0.5106$ vs $0.5110$ MeV. Falsifier: a lepton-mass shift of $Q_\\ell$ off $2/3$ beyond the $\\tau$-mass tolerance.",
-     "tag": "T|R",
-     "source": "C2, B5; \\src{flv.tier\\_b}",
+     "tag": "T",
+     "source": "C2, B5; \\src{flv.tier\\_b}; rests on A6",
      "key": "p28036"
     },
     {
      "label": "P2",
      "predicate": "Up-quark Koide $Q_u=5/6$ in framed arithmetic, $r_u^2=N(1-\\omega)=3$; continuum $0.849$ in the working scheme, $0.832$ with pole masses, band $0.83$--$0.89$. Falsifier: up/charm/top masses moving $Q_u$ outside the band in every standard scheme.",
-     "tag": "T|R",
-     "source": "C4; \\src{flv.\\allowbreak revision\\_\\allowbreak checks}, \\src{flv.\\allowbreak quark\\_\\allowbreak amp}",
+     "tag": "T",
+     "source": "C4; \\src{flv.\\allowbreak revision\\_\\allowbreak checks}, \\src{flv.\\allowbreak quark\\_\\allowbreak amp}; rests on B4, B5",
      "key": "p28037"
     },
     {
      "label": "P3",
      "predicate": "Cabibbo $V_{us}=|\\sqrt{m_d/m_s}-e^{i\\varphi}\\sqrt{m_u/m_c}|$: leading term $0.224^{+0.011}_{-0.004}$ vs $0.2243$ ($0.3\\%$), the up term $\\pm0.04$ with $\\varphi$ open. Falsifier: no $\\varphi$ satisfying the relation within the input band.",
-     "tag": "T|R",
-     "source": "C6",
+     "tag": "T",
+     "source": "C6; rests on B3",
      "key": "p28038"
     },
     {
      "label": "P5",
-     "predicate": "Normal neutrino ordering, from $Q_\\nu=2/3$, the two $\\Delta m^2$ and the boundary branch (C11b); the signed circulant solves both orderings. Falsifier: inverted ordering.",
-     "tag": "T|R",
-     "source": "\\S\\ref{sec:neutrino}; \\src{flv.neutrino}",
+     "predicate": "Normal neutrino ordering, from $Q_\\nu=2/3$, the two $\\Delta m^2$ and the boundary branch (B6); the signed circulant solves both orderings (C11b). Falsifier: inverted ordering.",
+     "tag": "T",
+     "source": "\\S\\ref{sec:neutrino}; \\src{flv.neutrino}; rests on A6, B5, C11",
      "key": "p28039"
     },
     {
      "label": "P6",
      "predicate": "Mass-sum floor $\\sum m_\\nu=58.7$ meV ($m_1{\\simeq}0$, $m_2{\\simeq}8.6$, $m_3{\\simeq}50$ meV; $58.8$ at NuFIT~6.0), the $m_1=0$ normal-ordering floor. Falsifier: a cosmological $\\sum m_\\nu<0.058$ eV.",
-     "tag": "T|R",
-     "source": "\\S\\ref{sec:neutrino}; \\src{flv.neutrino}",
+     "tag": "T",
+     "source": "\\S\\ref{sec:neutrino}; \\src{flv.neutrino}; rests on A6, B5, B6, C11, Y1",
      "key": "p28040"
     },
     {
      "label": "P7",
      "predicate": "Effective Majorana mass $m_{\\beta\\beta}{\\simeq}1.5$--$3.7$ meV (NO, $m_1{\\simeq}0$, circulant phase). Falsifier: a $0\\nu\\beta\\beta$ signal at the inverted scale $15$--$50$ meV.",
-     "tag": "T|R",
-     "source": "C11",
+     "tag": "T",
+     "source": "C11; rests on B6, Y1",
      "key": "p28041"
     },
     {
      "label": "P8",
      "predicate": "Leptonic CP locked to the octant by \\eqref{eq:tm2}: $\\delta_{\\mathrm{CP}}\\in(204^\\circ,310^\\circ)$ over the $3\\sigma$ $\\theta_{23}$ range, $\\pm124^\\circ$/$\\pm74^\\circ$ at the NuFIT~6.0 best fits, $\\sin\\delta_{\\mathrm{CP}}{<}0$, $J=1/(6\\sqrt3)$. Falsifier: CP-conserving $\\delta_{\\mathrm{CP}}$, $\\sin\\delta_{\\mathrm{CP}}{>}0$, or $(\\theta_{23},\\delta_{\\mathrm{CP}})$ off the relation.",
-     "tag": "T|R",
-     "source": "C10; \\src{flv.pmns\\_cp}, \\src{flv.\\allowbreak tm2\\_\\allowbreak jointfit}",
+     "tag": "T",
+     "source": "C10; \\src{flv.pmns\\_cp}, \\src{flv.\\allowbreak tm2\\_\\allowbreak jointfit}; rests on B2",
      "key": "p28042"
     }
    ]
@@ -362,16 +369,16 @@
    "rows": [
     {
      "label": "Z1",
-     "predicate": "The lepton winding phase $\\delta_0$: the one $\\Om$-hard drive-orientation residue. Neither a geometric nor a profinite derivation fixes it, the drive-orientation Gauss sum equidistributing. Sub-horizon reading $\\delta_0=Q/3=2/9$ ($3\\delta_0=Q$); leading $\\delta_{\\mathrm{LO}}=\\tfrac38-\\tfrac13$ framed-rational (C3); phase residue carried by $\\mathrm{Re}(b^{3})$.",
+     "predicate": "The lepton winding phase $\\delta_0$: the one $\\Om$-hard drive-orientation residue. Neither a geometric nor a profinite derivation fixes it, the drive-orientation Gauss sum's phase taking no fixed value across the shells of the totality, equidistributed in its large-shell reading. Sub-horizon reading $\\delta_0=Q/3=2/9$ ($3\\delta_0=Q$); leading $\\delta_{\\mathrm{LO}}=\\tfrac38-\\tfrac13$ framed-rational (C3); phase residue carried by $\\mathrm{Re}(b^{3})$.",
      "tag": "Ω",
      "source": "\\S\\ref{sec:winding},\\,\\S\\ref{sec:status}; \\src{flv.\\allowbreak exact\\_\\allowbreak core}, \\src{flv.delta}, \\src{flv.\\allowbreak revision\\_\\allowbreak checks}, \\src{flv.spurion}",
      "key": "p28046"
     },
     {
      "label": "Z2",
-     "predicate": "The quark phases $\\delta_d=\\delta_0/2$, $\\delta_u=\\delta_0/3$ locked to $\\delta_0$ (C5); the neutrino phase $\\delta_\\nu\\simeq0.48$, which the seesaw resets, and the quark CP phase are independent $\\Om$-hard residues.",
-     "tag": "T|Ω",
-     "source": "C5,\\,C11; \\src{flv.delta}",
+     "predicate": "With the quark phases locked to $\\delta_0$ by C5 ($\\delta_d=\\delta_0/2$, $\\delta_u=\\delta_0/3$), the neutrino phase $\\delta_\\nu\\simeq0.48$, which the seesaw resets, and the quark CP phase are independent $\\Om$-hard residues.",
+     "tag": "Ω",
+     "source": "C5,\\,C11; \\src{flv.delta}; rests on Z1",
      "key": "p28047"
     },
     {
@@ -387,6 +394,19 @@
      "tag": "Ω",
      "source": "App.~\\ref{app:status}, AL; \\src{flv.\\allowbreak coupling\\_\\allowbreak anchor}, \\src{flv.\\allowbreak alpha\\_\\allowbreak probe}",
      "key": "p28049"
+    }
+   ]
+  },
+  {
+   "letter": "Y",
+   "title": "Hypotheses: stated ahead of their test",
+   "rows": [
+    {
+     "label": "Y1",
+     "predicate": "The $\\overline{\\mathbf{126}}$ alignment, $M_R\\propto m_D$, on which the seesaw's transpose fixed point rests (C11): a hypothesis stated ahead of its test; no falsifier that tests it alone is yet stated.",
+     "tag": "O",
+     "source": "Prop.~\\ref{prop:transpose}",
+     "key": "p28052"
     }
    ]
   }
@@ -413,9 +433,9 @@
    "text": "Derived within this paper from the rows above it; where a family identifier is named, its content is verified by the validation package."
   },
   {
-   "tag": "T|R",
-   "name": "Theorem on a realisation",
-   "text": "A theorem consumed through a declared realisation: in block P the paper's predictions, each derived and witnessed, stated with its falsifier and its present confrontation; a refuted confrontation fires the realisation's falsifier, not the theorem."
+   "tag": "O",
+   "name": "Open",
+   "text": "A hypothesis stated ahead of its test; a row that rests on it names it."
   },
   {
    "tag": "Ω",

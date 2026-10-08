@@ -136,3 +136,52 @@ def dial_tally(q, N):
         wp, wm = (2 + c) % q, (2 - c) % q
         sp, sm, spm = (sp + wp) % q, (sm + wm) % q, (spm + wp * wm) % q
     return sp, sm, spm
+
+
+# ---- the pair tally on the Q₄ core (00:C11; 22-quantum Prop. gleason, Extension.lean section Tally) ----
+GI = Quad(-1)                    # ℤ[i] as pairs (a, b)
+
+
+def ipow(n):
+    """i^n in ℤ[i]."""
+    return [(1, 0), (0, 1), (-1, 0), (0, -1)][n % 4]
+
+
+def q4_kernel(c):
+    """K_c(d) = Σ_r c_r i^{rd}, the tally combination of the four characters, as the list K_c(0..3)."""
+    return [GI.el(sum(cr * ipow(r * d)[0] for r, cr in enumerate(c)), sum(cr * ipow(r * d)[1] for r, cr in enumerate(c))) for d in range(4)]
+
+
+def q4_winding(k):
+    """The pure winding ψ_k(u) = i^{ku} restricted to the fibre."""
+    return [ipow(k * u) for u in range(4)]
+
+
+def q4_tally(K, psi):
+    """F(K, ψ) = Σ_{u,v} K(v − u) ψ_u conj(ψ_v) on one fibre of four points."""
+    tot = GI.el(0)
+    for u in range(4):
+        for v in range(4):
+            tot = GI.add(tot, GI.mul(GI.mul(K[(v - u) % 4], psi[u]), GI.conj(psi[v])))
+    return tot
+
+
+def q4_inversion(K, r):
+    """Σ_d K(d) i^{−rd}: four times the coefficient c_r of an admissible kernel."""
+    tot = GI.el(0)
+    for d in range(4): tot = GI.add(tot, GI.mul(K[d], ipow(-r * d)))
+    return tot
+
+
+def q4_dft_det():
+    """The determinant of the core DFT matrix (i^{ru})_{r,u<4} in ℤ[i], by the Leibniz expansion."""
+    import itertools
+    M = [[ipow(r * u) for u in range(4)] for r in range(4)]
+    det = GI.el(0)
+    for perm in itertools.permutations(range(4)):
+        sign = (-1) ** sum(1 for a in range(4) for b in range(a + 1, 4) if perm[a] > perm[b])
+        term = GI.el(sign)
+        for r in range(4): term = GI.mul(term, M[r][perm[r]])
+        det = GI.add(det, term)
+    return det
+

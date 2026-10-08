@@ -115,7 +115,7 @@
      "key": "p00003"
     }
    ],
-   "statement": "\\textbf{Registration}: every reading is a registration by a bounded proper part --- whatever reads the totality is a framed shell embedded within it (A3) and is not the whole; the totality has no frame and no reader of its own; nothing accesses it except by such a registration."
+   "statement": "\\textbf{Registration}: every observation is an incomplete registration by a bounded proper part --- whatever reads the totality is a framed observer embedded within it (A3) and is not the whole; the totality has no frame and no reader of its own."
   },
   {
    "label": "A6",
@@ -157,7 +157,7 @@
      "key": "p00021"
     }
    ],
-   "statement": "A timeless torsor of $\\Om$ elements, its cardinality is its only absolute characteristic; reframings $x\\mapsto ax+b$ are automorphisms, so $0,1,-1$ are frame data; a Subject's frame charts it as the prime field $\\F_\\Om$ --- the frame's chart, never the Carrier (C1). Arena and numbers: B1."
+   "statement": "\\textbf{The Carrier C}: A timeless torsor of $\\Om$ elements, its cardinality is its only absolute characteristic; reframings $x\\mapsto ax+b$ are automorphisms, so $0,1,-1$ are frame data; a Subject's frame charts it as the prime field $\\F_\\Om$ --- the frame's chart, never the Carrier (C1). Arena and numbers: B1."
   },
   {
    "label": "A8",
@@ -269,7 +269,7 @@
      "key": "p00021"
     }
    ],
-   "statement": "\\textbf{Every prime carries a frame}: every prime field $\\F_\\p$ has a primitive root, so a drive $\\gen$ with $\\langle\\gen\\rangle=\\F_\\p^{\\times}$ exists (the formal shadow of C1)."
+   "statement": "\\textbf{Every prime carries a frame}: every prime field $\\F_\\p$ of the totality has a primitive root, so a drive $\\gen$ with $\\langle\\gen\\rangle=\\F_\\p^{\\times}$ exists (the formal shadow of C1)."
   },
   {
    "label": "A14",
@@ -1005,7 +1005,7 @@
      "key": "p00190"
     }
    ],
-   "statement": "$\\mathrm{PGL}_2(\\F_\\p)\\cong\\mathrm{SO}_3(\\F_\\p)$, and the norm-one sphere is $\\mathrm{SL}_2$, the spin cover of its rotation half $\\mathrm{PSL}_2$. For every $\\p=4\\kap+1$ each frame is uniquely one direction in $\\mathbb{P}^1$, one shell cell and one drive phase. Two fibrations partition the frames: non-split $C_{\\p +1}$ over $\\p (\\p -1)$, with the cone-chart section (C19); split $C_{\\p -1}$ over $\\p (\\p +1)$, with no subgroup section."
+   "statement": "$\\mathrm{PGL}_2(\\F_\\p)\\cong\\mathrm{SO}_3(\\F_\\p)$, and the norm-one sphere is $\\mathrm{SL}_2$, the spin cover of its rotation half $\\mathrm{PSL}_2$. For every $\\p=4\\kap+1$ of the totality each frame is uniquely one direction in $\\mathbb{P}^1$, one shell cell and one drive phase. Two fibrations partition the frames: non-split $C_{\\p +1}$ over $\\p (\\p -1)$, with the cone-chart section (C19); split $C_{\\p -1}$ over $\\p (\\p +1)$, with no subgroup section."
   },
   {
    "label": "C23",
@@ -1045,7 +1045,7 @@
    ],
    "witness": "13:epi.py",
    "refs": [],
-   "statement": "\\textbf{The third-order wall of $\\pi$}: for every prime $\\p\\ge5$, $\\sigma_\\p=\\sum_{k<(\\p-1)/2}\\binom{2k}{k}/((2k+1)16^{k})$ satisfies $\\sigma_\\p\\equiv0\\ (\\mathrm{mod}\\ \\p^{2})$ (Sun, JNT \\textbf{131} (2011), (1.4)) and $\\sigma_\\p/\\p^{2}\\equiv(-1)^{(\\p+1)/2}B_{\\p-3}/36\\ (\\mathrm{mod}\\ \\p)$: Sun's Conjecture 5.1, $\\sigma_\\p\\equiv(-1)^{(\\p-1)/2}(H_{\\p-1}/12+3\\p^{4}B_{\\p-5}/160)\\ (\\mathrm{mod}\\ \\p^{5})$ for $\\p>5$, proved by Hessami Pilehrood, Hessami Pilehrood and Tauraso (Int.\\ J.\\ Number Theory \\textbf{8} (2012), Thm.\\ 5 (44)), reduced mod $\\p^{3}$ with Glaisher's $H_{\\p-1}\\equiv-\\p^{2}B_{\\p-3}/3\\ (\\mathrm{mod}\\ \\p^{3})$; $\\p=5$ direct. Re-verified for all primes below $10^{4}$."
+   "statement": "\\textbf{The third-order wall of $\\pi$}: for every prime $\\p\\ge5$ of the totality, $\\sigma_\\p=\\sum_{k<(\\p-1)/2}\\binom{2k}{k}/((2k+1)16^{k})$ satisfies $\\sigma_\\p\\equiv0\\ (\\mathrm{mod}\\ \\p^{2})$ (Sun, JNT \\textbf{131} (2011), (1.4)) and $\\sigma_\\p/\\p^{2}\\equiv(-1)^{(\\p+1)/2}B_{\\p-3}/36\\ (\\mathrm{mod}\\ \\p)$: Sun's Conjecture 5.1, $\\sigma_\\p\\equiv(-1)^{(\\p-1)/2}(H_{\\p-1}/12+3\\p^{4}B_{\\p-5}/160)\\ (\\mathrm{mod}\\ \\p^{5})$ for $\\p>5$, proved by Hessami Pilehrood, Hessami Pilehrood and Tauraso (Int.\\ J.\\ Number Theory \\textbf{8} (2012), Thm.\\ 5 (44)), reduced mod $\\p^{3}$ with Glaisher's $H_{\\p-1}\\equiv-\\p^{2}B_{\\p-3}/3\\ (\\mathrm{mod}\\ \\p^{3})$; $\\p=5$ direct. Re-verified for all primes below $10^{4}$."
   },
   {
    "label": "C25",
@@ -1482,15 +1482,15 @@
      "key": "p00009"
     },
     {
-     "label": "D15",
-     "key": "p00153"
-    },
-    {
      "label": "E7",
      "key": "p00058"
+    },
+    {
+     "label": "L5",
+     "key": "p00130"
     }
    ],
-   "statement": "\\textbf{Gravity} (horizon count): the registration sphere of a shell has area $A=\\p(\\p+1)$ and record $\\kap(\\p+1)$, so $\\kap(\\p+1)/A=\\kap/\\p$ exactly, the $Q_4$ gauge quotient, and closes the calibration: at the coherence horizon $\\p^2\\to\\Om$ the record law returns $(\\Om-1)/4=\\dS$, the imported entropy (A8). The chart reading $S=\\tfrac14A/\\ell_P^2$ is D15's. Corollary: the merger area law $\\Delta A=2M_1M_2$, saturated (37-sim). Triple: E7."
+   "statement": "\\textbf{Gravity} (horizon count): the registration sphere of a shell has area $A=\\p(\\p+1)$ and record $\\kap(\\p+1)$, so $\\kap(\\p+1)/A=\\kap/\\p$ exactly, the $Q_4$ gauge quotient, and closes the calibration: at the coherence horizon $\\p^2\\to\\Om$ the record law returns $(\\Om-1)/4=\\dS$, the imported entropy (A8). The chart reading $S=\\tfrac14A/\\ell_P^2$ is L5's. Corollary: the merger area law $\\Delta A=2M_1M_2$, saturated (37-sim). Triple: E7."
   },
   {
    "label": "E7",
@@ -2108,7 +2108,7 @@
      "key": "p00133"
     }
    ],
-   "statement": "The synchronisation floor $a_0=cH_0/2\\pi$ fixes the acceleration scale parameter-free: the $2\\pi$ by the angle--count dictionary (14:B2), the threshold one cycle per drive period (32:B3), $1.04\\times10^{-10}$ [chart] at the channel-1 $H_0=67.4$ (L3), tied to $H(z)$, not $\\Lambda$ (P1; 21:X1). Below the floor the amplitude reading, given the barrier identification (32:B8, 21:C19), gives the radial acceleration relation unfitted. Falsifiers: 32:B3, 21:P4."
+   "statement": "The synchronisation floor $a_0=cH_0/2\\pi$ fixes the acceleration scale parameter-free: the $2\\pi$ by the angle--count dictionary (14:B2), the threshold one cycle per drive period (32:B3), $1.04\\times10^{-10}$ [chart] at the channel-1 $H_0=67.4$ (L3), tied to $H(z)$, not $\\Lambda$ (P1; 21:X1). Below the floor the amplitude reading, given the barrier identification (32:B8, 21:B9), gives the radial acceleration relation unfitted. Falsifiers: 32:B3, 21:P4."
   },
   {
    "label": "L2",
@@ -2370,7 +2370,7 @@
    "name": "The horizon forces structure, not only leaves it open",
    "block": "Z",
    "key": "p27021",
-   "tag": "D",
+   "tag": "T",
    "sources": [
     "27-fld",
     "20-rh"

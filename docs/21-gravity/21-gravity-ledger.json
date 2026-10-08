@@ -119,6 +119,27 @@
      "tag": "R",
      "source": "Prop.~\\ref{prop:gaugeact}",
      "key": "p21015"
+    },
+    {
+     "label": "B7",
+     "predicate": "The count of the registration set at the operational cut is the coordinate area in Planck cells, $|R_\\partial|=4\\pi r_f^{2}/\\ell_P^{2}$ up to the solid-angle recalibration of the chart. Falsifier: a collapsed object whose externally resolvable capacity is measured at the Bekenstein--Hawking value.",
+     "tag": "R",
+     "source": "Prop.~\\ref{prop:area}",
+     "key": "p21065"
+    },
+    {
+     "label": "B8",
+     "predicate": "The cosmological constant is the curvature of the wrapped finite chart (32:B7). Falsifier: $w\\neq-1$, or a negative or scale-varying $\\Lambda$.",
+     "tag": "R",
+     "source": "\\S\\ref{sub:explicability}",
+     "key": "p32014"
+    },
+    {
+     "label": "B9",
+     "predicate": "The masking barrier is the coincidence amplitude: registration fails when the killed noise walk first traverses the signal's amplitude $\\sqrt x$, coefficient one (32:B8). Falsifier: an approach to Newton departing from $1-e^{-\\sqrt x}$ beyond the binned-RAR uncertainty, or a knee displaced from $cH_0/2\\pi$.",
+     "tag": "R",
+     "source": "Prop.~\\ref{prop:crossover}",
+     "key": "p32015"
     }
    ]
   },
@@ -212,52 +233,52 @@
     },
     {
      "label": "C13",
-     "predicate": "Area-law entropy $S=c_S'A_f/\\ell_P^2$: the $\\tfrac14$ the $Q_4$ gauge quotient counted on the shell ($S/A=\\kap/\\p $ exactly), the Carrier identity $S=(\\Omega-1)/4$ at the coherence-horizon shell the same quarter (a consistency, not a closure); the count identified with the coordinate area at the operational cut (the identification a realisation with the capacity prediction as its falsifier); the $k_B\\ln W$ identification a realisation with its own falsifier (master D15); an exact merger area law $\\Delta A=2M_1M_2$ on the count face of the mass; a phase-slip (Hawking-scaling) emission suppressed below one quantum per Hubble time.",
-     "tag": "T|R",
-     "source": "Prop.~\\ref{prop:area}; \\src{grav.strongfield}, \\src{grav.orderone}; \\lean{Gravity.count\\_face, Gravity.merger\\_area\\_law, Gravity.capacity\\_ratio, FRC.Gravity.count\\_identity, FRC.Gravity.merger\\_instance}",
-     "key": "p21028"
+     "predicate": "Area-law entropy $S=c_S'A_f/\\ell_P^2$: the $\\tfrac14$ the $Q_4$ gauge quotient counted on the shell ($S/A=\\kap/\\p $ exactly), the Carrier identity $S=(\\Omega-1)/4$ at the coherence-horizon shell the same quarter (a consistency, not a closure); the count read as the coordinate area at the operational cut (B7); the identification of the entropy with the channel count (master D15); an exact merger area law $\\Delta A=2M_1M_2$ on the count face of the mass; a phase-slip (Hawking-scaling) emission suppressed below one quantum per Hubble time.",
+     "tag": "T",
+     "source": "Prop.~\\ref{prop:area}; \\src{grav.strongfield}, \\src{grav.orderone}; \\lean{Gravity.count\\_face, Gravity.merger\\_area\\_law, Gravity.capacity\\_ratio, FRC.Gravity.count\\_identity, FRC.Gravity.merger\\_instance}; rests on A1, B2, C12, 00:D15",
+     "key": "p21062"
     },
     {
      "label": "C14",
-     "predicate": "Dark energy as the curvature of the finite chart, $\\Lambda\\sim1/\\Omega$ (the fine-tuning problem unasked), and the CMB large-angle anomaly as the wrapped-chart signature.",
-     "tag": "T|R",
-     "source": "\\S\\ref{sub:explicability}",
-     "key": "p21029"
+     "predicate": "The magnitude of dark energy, $\\Lambda\\sim1/\\Omega$ in Planck units, the curvature of the finite chart (B8), the fine-tuning problem unasked; the CMB large-angle anomaly the wrapped-chart signature (C18).",
+     "tag": "T",
+     "source": "\\S\\ref{sub:explicability}; rests on A1, A2",
+     "key": "p21063"
     },
     {
      "label": "C15",
      "predicate": "The radiative sector: the quarter-turn conjugate momentum makes the dynamics a wave equation: two helicity-$\\pm2$ gravitons at speed $c$, quadrupole radiation; gauge leaves two polarisations.",
-     "tag": "T|R",
-     "source": "Prop.~\\ref{prop:wave},~\\ref{prop:graviton}; \\src{grav.radiative}",
+     "tag": "T",
+     "source": "Prop.~\\ref{prop:wave},~\\ref{prop:graviton}; \\src{grav.radiative}; rests on A1, B1, B6, C9, 00:C9",
      "key": "p21030"
     },
     {
      "label": "C16",
-     "predicate": "The order-one constants are determined: $c_S'=\\tfrac14$ (the $Q_4$ gauge quotient, counted on an instantiated shell and carried by the Carrier identity), the floor's $2\\pi$ the full cycle of the angle--count dictionary [\\textsf{D}], its threshold the realisation [\\textsf{R}], the recurring constant the solid angle $4\\pi$, reducing in the Carrier register to the calibration congruence $(4S)^{2}\\equiv1$ (one residue relation).",
-     "tag": "T|R",
-     "source": "Prop.~\\ref{prop:area},~\\ref{prop:afloor}; \\src{grav.orderone}; \\lean{Gravity.calibration\\_congruence, Gravity.newton\\_register, FRC.Gravity.calibration, FRC.Gravity.lab\\_register}",
+     "predicate": "The order-one constants are determined: $c_S'=\\tfrac14$ (the $Q_4$ gauge quotient, counted on an instantiated shell and carried by the Carrier identity), the floor's $2\\pi$ the full cycle of the angle--count dictionary (14:B2), its threshold the realisation 32:B3, the recurring constant the solid angle $4\\pi$, reducing in the Carrier register to the calibration congruence $(4S)^{2}\\equiv1$ (one residue relation).",
+     "tag": "T",
+     "source": "Prop.~\\ref{prop:area},~\\ref{prop:afloor}; \\src{grav.orderone}; \\lean{Gravity.calibration\\_congruence, Gravity.newton\\_register, FRC.Gravity.calibration, FRC.Gravity.lab\\_register}; rests on A1, C13, 00:L1, 00:N2",
      "key": "p21031"
     },
     {
      "label": "C17",
      "predicate": "The rotating solution as the gravitomagnetic (quarter-turn) dual: frame-dragging $=$ Lense--Thirring, horizonless, shadow split at $O(a)$; the ergoregion is an $O(a^2)$ feature of the rapid-rotation residue.",
-     "tag": "T|R",
-     "source": "Prop.~\\ref{prop:rotating}; \\src{grav.rotating}",
+     "tag": "T",
+     "source": "Prop.~\\ref{prop:rotating}; \\src{grav.rotating}; rests on B6, C10, C11, C12",
      "key": "p21032"
     },
     {
      "label": "C18",
-     "predicate": "The primordial spectrum: $n_s=1$ the scale-dilation fixed point; the tilt's committed form $-\\pi^{2}/\\ln\\Omega$ a realisation, $\\ln\\Omega$ the e-fold count of the frame's scale range, with the measured tilt its falsifier ($\\tfrac12\\ln\\Omega$ excluded at $8.4\\sigma$; the linearity condition undefined on a shell; master L8); the wrapped chart fixing the low large-angle power.",
-     "tag": "T|R",
-     "source": "Prop.~\\ref{prop:primordial}; \\src{grav.primordial}; \\lean{Gravity.scale\\_invariance\\_iff, Gravity.tilt\\_bracket}",
+     "predicate": "The primordial spectrum: $n_s=1$ the scale-dilation fixed point; the tilt's committed form $-\\pi^{2}/\\ln\\Omega$, $\\ln\\Omega$ the e-fold count of the frame's scale range, the realisation of master L8, with the measured tilt its falsifier ($\\tfrac12\\ln\\Omega$ excluded at $8.4\\sigma$; the linearity condition undefined on a shell); the wrapped chart fixing the low large-angle power.",
+     "tag": "T",
+     "source": "Prop.~\\ref{prop:primordial}; \\src{grav.primordial}; \\lean{Gravity.scale\\_invariance\\_iff, Gravity.tilt\\_bracket}; rests on A1, 00:L8",
      "key": "p21033"
     },
     {
      "label": "C19",
-     "predicate": "The registration crossover made exact: the killed walk is the noise sector, first passage the masking event, the window attribution the framed-rational tally ratio $g_N/f$, and the orbital response now derived (Theorem~\\ref{thm:twoshift} with the registered-inertia identity); the remaining declared content is the masking-barrier identification (barrier $=$ coincidence amplitude $\\sqrt x$) and the corpus's unified sampling clause, shared with \\citep{quantum}.",
-     "tag": "T|R",
-     "source": "Prop.~\\ref{prop:crossover}; \\citep{quantum}; \\src{grav.deepregime}, \\src{grav.deepregime\\_\\allowbreak orbit}, \\src{grav.fluxnoise}; \\lean{Gravity.registration\\_root, Gravity.crossover\\_limits, Gravity.crossover\\_deep\\_limit}",
-     "key": "p21034"
+     "predicate": "The registration crossover made exact: the killed walk is the noise sector, first passage the masking event, the window attribution the framed-rational tally ratio $g_N/f$, and the orbital response now derived (Theorem~\\ref{thm:twoshift} with the registered-inertia identity); it rests on the masking barrier (B9) and the corpus's unified sampling clause (master D10), shared with \\citep{quantum}.",
+     "tag": "T",
+     "source": "Prop.~\\ref{prop:crossover}; \\citep{quantum}; \\src{grav.deepregime}, \\src{grav.deepregime\\_\\allowbreak orbit}, \\src{grav.fluxnoise}; \\lean{Gravity.registration\\_root, Gravity.crossover\\_limits, Gravity.crossover\\_deep\\_limit}; rests on A4, C20, 00:D10",
+     "key": "p21064"
     },
     {
      "label": "C20",
@@ -303,22 +324,22 @@
     {
      "label": "X1",
      "predicate": "\\textbf{The cosmological-constant magnitude.} $\\Lambda\\sim1/\\Omega$ in Planck units is the curvature of the closed chart, the totality datum, not a vacuum energy requiring cancellation across $122$ orders. The fine-tuning problem is not solved but unasked.",
-     "tag": "T|R",
-     "source": "\\S\\ref{sec:intro}",
+     "tag": "T",
+     "source": "\\S\\ref{sec:intro}; rests on A1, B8, C14",
      "key": "p21041"
     },
     {
      "label": "X2",
      "predicate": "\\textbf{No dark-matter particle.} The radial acceleration relation is a registration crossover of the resolution floor, not evidence for undetected mass: galactic dynamics require no dark sector beyond the floor already fixed by $\\Omega$.",
-     "tag": "T|R",
-     "source": "Prop.~\\ref{prop:crossover},~\\ref{prop:afloor}; \\src{grav.deepregime}; \\lean{Gravity.crossover\\_deep\\_limit}",
+     "tag": "T",
+     "source": "Prop.~\\ref{prop:crossover},~\\ref{prop:afloor}; \\src{grav.deepregime}; \\lean{Gravity.crossover\\_deep\\_limit}; rests on A1, B9, C19, 00:L1",
      "key": "p21042"
     },
     {
      "label": "X3",
      "predicate": "\\textbf{No horizons, no singularities, no information loss.} Collapse ends in a horizonless body, operationally black at $r_f$ (C12), with an exact saturating interior profile --- and information conservation is a theorem citation, not an absence claim: interior data live in offset sectors the drive confines exactly \\citep{quantum}: the theory never forfeits predictivity.",
-     "tag": "T|R",
-     "source": "Prop.~\\ref{prop:operational},~\\ref{prop:exactprofile}",
+     "tag": "T",
+     "source": "Prop.~\\ref{prop:operational},~\\ref{prop:exactprofile}; rests on 22:C15",
      "key": "p21043"
     },
     {
@@ -331,15 +352,15 @@
     {
      "label": "X5",
      "predicate": "\\textbf{No graviton quantisation problem.} The radiative field is collective phase synchronisation, not a propagating fundamental quantum: there is no separate field left over to quantise.",
-     "tag": "T|R",
-     "source": "\\S\\ref{sub:radiative}",
+     "tag": "T",
+     "source": "\\S\\ref{sub:radiative}; rests on B1, C15",
      "key": "p21045"
     },
     {
      "label": "X6",
      "predicate": "\\textbf{The large-angle microwave anomaly.} The anomalously low large-angle correlation ($p\\sim1\\%$ \\cite{schwarz}) is the signature of the wrapped chart: super-horizon modes are identified, not populated, truncating correlations beyond the horizon scale. This consonance is a number, the primordial spectrum being structural, not transported.",
-     "tag": "T|R",
-     "source": "Prop.~\\ref{prop:primordial}; \\src{grav.primordial}",
+     "tag": "T",
+     "source": "Prop.~\\ref{prop:primordial}; \\src{grav.primordial}; rests on A2, C14, C18",
      "key": "p21046"
     },
     {
@@ -365,57 +386,57 @@
     {
      "label": "P1",
      "predicate": "Strong-field signatures at or outside the photon sphere: shadow $+4.6\\%$, ringdown $-4.4\\%$, ISCO frequency $-6.9\\%$ with accretion efficiency $5.48\\%$ (against $5.72\\%$): one origin, jointly falsifiable, conditional on Theorem~\\ref{thm:branch}'s inputs alone.",
-     "tag": "T|R",
-     "source": "\\S\\ref{sub:strongdata}, Prop.~\\ref{prop:shadow},~\\ref{prop:isco}; \\src{grav.strongfield}; \\lean{Gravity.photon\\_sphere, Gravity.shadow\\_bracket, Gravity.isco, Gravity.isco\\_efficiency}",
+     "tag": "T",
+     "source": "\\S\\ref{sub:strongdata}, Prop.~\\ref{prop:shadow},~\\ref{prop:isco}; \\src{grav.strongfield}; \\lean{Gravity.photon\\_sphere, Gravity.shadow\\_bracket, Gravity.isco, Gravity.isco\\_efficiency}; rests on B2, C11, C12, 00:E4",
      "key": "p21049"
     },
     {
      "label": "P7",
      "predicate": "Floor-surface signatures: no prompt echoes (the exact profile horizonless with no reflecting surface, C12; the round-trip delay to $r_f$ carrying $e^{2u(r_f)}=\\Omega$) and no evaporation bursts; a reported echo detection at the stated precision falsifies the construction.",
-     "tag": "T|R",
-     "source": "\\S\\ref{sub:strongdata}, Rem.~\\ref{rem:exponential},~\\ref{rem:hawking}; \\src{grav.strongfield}; \\lean{Gravity.operational\\_cut}",
+     "tag": "T",
+     "source": "\\S\\ref{sub:strongdata}, Rem.~\\ref{rem:exponential},~\\ref{rem:hawking}; \\src{grav.strongfield}; \\lean{Gravity.operational\\_cut}; rests on C13, 00:E5",
      "key": "p21050"
     },
     {
      "label": "P8",
      "predicate": "The primordial tilt $n_s-1=-\\pi^{2}/\\ln\\Omega=-0.0351$ [approx] at $\\ln\\Omega=281$, against Planck 2018 $-0.0351\\pm0.0042$; $0.25\\%$ per factor two in $S$; the neighbouring count $\\tfrac12\\ln\\Omega$ excluded at $8.4\\sigma$.",
-     "tag": "T|R",
-     "source": "Prop.~\\ref{prop:primordial}; \\src{grav.primordial}; \\lean{Gravity.tilt\\_bracket}",
+     "tag": "T",
+     "source": "Prop.~\\ref{prop:primordial}; \\src{grav.primordial}; \\lean{Gravity.tilt\\_bracket}; rests on A8, C18, 00:L8",
      "key": "p21060"
     },
     {
      "label": "P2",
      "predicate": "Preferred-frame effects at $O(10^{-61})$: the drive's in-principle signature, far below current $10^{-5}$ bounds.",
-     "tag": "T|R",
-     "source": "Prop.~\\ref{prop:dragging}; \\lean{Gravity.preferred\\_frame\\_scale}",
+     "tag": "T",
+     "source": "Prop.~\\ref{prop:dragging}; \\lean{Gravity.preferred\\_frame\\_scale}; rests on A1, C10, 00:E5",
      "key": "p21051"
     },
     {
      "label": "P3",
-     "predicate": "The weak-acceleration floor $a_0=cH_0/2\\pi=1.04\\times10^{-10}\\,\\mathrm{m\\,s^{-2}}$ at the entailed $H_0=67.4$ \\cite{entropy}, against the fitted $1.20\\pm0.24\\times10^{-10}$: $13\\%$ low, $0.7\\sigma$ of the systematic-dominated error, no free parameter; the $2\\pi$ the dictionary's full cycle [\\textsf{D}], the one-cycle-per-period threshold the realisation [\\textsf{R}] with its discrete falsifier.",
-     "tag": "T|R",
-     "source": "Prop.~\\ref{prop:afloor}; \\src{grav.rar}; \\lean{Gravity.floor\\_value}",
+     "predicate": "The weak-acceleration floor $a_0=cH_0/2\\pi=1.04\\times10^{-10}\\,\\mathrm{m\\,s^{-2}}$ at the entailed $H_0=67.4$ \\cite{entropy}, against the fitted $1.20\\pm0.24\\times10^{-10}$: $13\\%$ low, $0.7\\sigma$ of the systematic-dominated error, no free parameter; the $2\\pi$ the dictionary's full cycle (14:B2), the one-cycle-per-period threshold the realisation 32:B3 with its discrete falsifier.",
+     "tag": "T",
+     "source": "Prop.~\\ref{prop:afloor}; \\src{grav.rar}; \\lean{Gravity.floor\\_value}; rests on A8, C16, 14:C8, 00:L1",
      "key": "p21052"
     },
     {
      "label": "P4",
-     "predicate": "The radial acceleration relation, $g_{\\mathrm{obs}}=g_N/(1-e^{-\\sqrt{g_N/a_0}})$, no fitted function beyond the declared barrier identification (C19), the form the data selected across the four observed acceleration decades, its approach to Newton the discriminant ($0.05$ at $g_N\\approx5a_0$ against the simple rational interpolant); the deep limit gives the baryonic Tully--Fisher relation $v^4=GMa_0$.",
-     "tag": "T|R",
-     "source": "Prop.~\\ref{prop:crossover}; \\src{grav.deepregime}; \\lean{Gravity.crossover\\_limits, Gravity.registration\\_root, Gravity.interpolant\\_discriminant}",
+     "predicate": "The radial acceleration relation, $g_{\\mathrm{obs}}=g_N/(1-e^{-\\sqrt{g_N/a_0}})$, no fitted function beyond the barrier identification (B9), the form the data selected across the four observed acceleration decades, its approach to Newton the discriminant ($0.05$ at $g_N\\approx5a_0$ against the simple rational interpolant); the deep limit gives the baryonic Tully--Fisher relation $v^4=GMa_0$.",
+     "tag": "T",
+     "source": "Prop.~\\ref{prop:crossover}; \\src{grav.deepregime}; \\lean{Gravity.crossover\\_limits, Gravity.registration\\_root, Gravity.interpolant\\_discriminant}; rests on A8, C16, C19",
      "key": "p21053"
     },
     {
      "label": "P5",
      "predicate": "The floor tracks the expansion, $a_0(z)\\propto H(z)$ (BTFR zero-point $\\propto E(z)^{1/4}$); high-$z$ rotation curves decisive.",
-     "tag": "T|R",
-     "source": "\\S\\ref{sub:rar}, \\citep{dark}",
+     "tag": "T",
+     "source": "\\S\\ref{sub:rar}, \\citep{dark}; rests on 14:B4, 32:B3, 00:L1",
      "key": "p21054"
     },
     {
      "label": "P6",
      "predicate": "The 2PN periastron excess $\\delta\\dot\\omega/\\dot\\omega\\approx1.5\\times10^{-6}$ for PSR~J0737$-$3039, today degenerate with the mass refit; decisive either way once an independent observable fixes $M_{\\mathrm{tot}}$ at $10^{-6}$. Independent of the coherent-fraction falsifier of \\citep{quantum}; the ledger carries both.",
-     "tag": "T|R",
-     "source": "\\S\\ref{sub:2pn}; \\src{grav.2pn}; \\lean{Gravity.pn\\_series}",
+     "tag": "T",
+     "source": "\\S\\ref{sub:2pn}; \\src{grav.2pn}; \\lean{Gravity.pn\\_series}; rests on A8, C8, C23",
      "key": "p21055"
     }
    ]
@@ -488,11 +509,6 @@
    "tag": "T",
    "name": "Theorem",
    "text": "Derived within this paper from the rows above it; where a family identifier is named, its content is reproduced by the validation package."
-  },
-  {
-   "tag": "T|R",
-   "name": "Theorem on a realisation",
-   "text": "A theorem consumed through a declared realisation: in block P the paper's predictions, each derived and witnessed, stated with its falsifier and its present confrontation; a refuted confrontation fires the realisation's falsifier, not the theorem."
   },
   {
    "tag": "Ω",

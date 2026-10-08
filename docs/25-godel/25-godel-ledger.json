@@ -168,7 +168,7 @@
     },
     {
      "label": "E2",
-     "predicate": "Vanishing reach: an agent of capacity $(K,H)$ certifies at most $a^{B+1}$ sentences over all its runs, the records being strings of length at most $B$. The certified fraction of the truths of length at most $L$ (E1) is at most $a^{B+1}/2^{\\alpha L}$, below $1/N$ for every $N$ once $L$ is large enough.",
+     "predicate": "Vanishing reach: an agent of capacity $(K,H)$ certifies at most $a^{B+1}$ sentences over all its runs, the records being strings of length at most $B$. The certified fraction of the truths of length at most $L$ (E1) is at most $a^{B+1}/2^{\\alpha L}$, below $1/N$ as soon as $\\alpha L>(B+1)\\log_2a+\\log_2N$.",
      "tag": "T",
      "source": "Prop.~\\ref{prop:reach}; E1\\newline \\pywit{godel}{p25020}{E2}, \\leanwit{FrcCore}{p25020}{E2}, \\leanwit{FrcLedger}{p25020}{E2} \\lean{Godel.records\\_lt, FRC.Godel.records\\_lt, FRC.Godel.reach\\_vanishes}",
      "key": "p25020"

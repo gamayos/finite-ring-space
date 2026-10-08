@@ -2,7 +2,7 @@
 (function () {
   "use strict";
   var BLOCKS = {X: "Explanation", P: "Prediction", Z: "Horizon", T: "Task", Y: "Hypothesis"}, BLOCK_ORDER = ["X", "P", "Z", "T", "Y"];
-  var FORCED_TAG = {X: "T", T: "O", Y: "O"};                               /* the rule: choosing X sets the status to theorem, T or Y to open; P keeps every status (T and R, Q21) */
+  var FORCED_TAG = {X: "T", P: "T", T: "O", Y: "O"};                       /* the rule: choosing X or P sets the status to theorem (Q23), T or Y to open */
   function setBlock(b) { st.block = b; if (FORCED_TAG[b]) st.tag = FORCED_TAG[b]; }
   var TAGS = {G: "ground", P: "pillar", T: "theorem", D: "definition", R: "realisation", I: "import", "Ω": "Ω-hard", O: "open"};
   var st = {paper: "all", block: "T", tag: "all", q: ""};

@@ -130,8 +130,8 @@
     {
      "label": "B9",
      "predicate": "The area law: the projected horizon area in Planck cells is the full phase cycle, $A=4\\dS$ \\apx{} at the horizon ($4\\pi n_A=4\\dS$, $n_A=(r_H/\\lP)^{2}$ \\apx); the Bekenstein--Hawking quarter $\\dS=A/4$ is the quarter-turn $Q_4$, the generative four of $\\Om=4\\dS+1$ and $\\p=4\\kap+1$; area is a Subject-projection property, the Carrier carrying none.",
-     "tag": "T|R",
-     "source": "\\S\\ref{sec:registers}\\newline \\pywit{entropy}{p14017}{B9}, \\leanwit{FrcCore}{p14017}{B9}, \\leanwit{FrcLedger}{p14017}{B9} \\lean{Entropy.quarter\\_turn, Entropy.area\\_law\\_chart, FRC.Entropy.quarter\\_identity}",
+     "tag": "D",
+     "source": "\\S\\ref{sec:registers}; rests on A1, A5\\newline \\pywit{entropy}{p14017}{B9}, \\leanwit{FrcCore}{p14017}{B9}, \\leanwit{FrcLedger}{p14017}{B9} \\lean{Entropy.quarter\\_turn, Entropy.area\\_law\\_chart, FRC.Entropy.quarter\\_identity}",
      "key": "p14017"
     },
     {
@@ -178,7 +178,7 @@
     {
      "label": "C5",
      "predicate": "The octant lemma: the measured age is $\\dS/2$ chronons, $(\\pi/4)\\,r_H/c$ in the chart \\apx; the halving and the sector are exact through the enumerated realisation set $B_{\\mathrm{oct}}=\\{$A4, A5, B2, B3, B6, B7$\\}$, the same class as the constants correspondence.",
-     "tag": "T|R",
+     "tag": "T",
      "source": "Lem.~\\ref{lem:octant}\\newline \\pywit{entropy}{p14022}{C5}, \\leanwit{FrcCore}{p14022}{C5}, \\leanwit{FrcLedger}{p14022}{C5} \\lean{Entropy.octant\\_chart, Entropy.closure\\_budget, FRC.Entropy.closure\\_count, FRC.Entropy.octant\\_count}",
      "key": "p14022"
     },
@@ -192,15 +192,15 @@
     {
      "label": "C7",
      "predicate": "The dark-energy output: $\\Omega_\\Lambda=\\tanh^{2}(3\\pi/8)=0.6837$ \\lcdm{} against the fitted $0.685\\pm0.007$, a $0.19\\sigma$ landing --- a zero-freedom derivation, not an independent measurement (two-register separation, \\S\\ref{sec:audit}).",
-     "tag": "T|R",
-     "source": "Lem.~\\ref{lem:octant}\\newline \\pywit{entropy}{p14024}{C7}, \\leanwit{FrcLedger}{p14024}{C7} \\lean{Entropy.octant\\_inversion, Entropy.landing\\_bracket}",
+     "tag": "T",
+     "source": "Lem.~\\ref{lem:octant}; rests on A8, C5\\newline \\pywit{entropy}{p14024}{C7}, \\leanwit{FrcLedger}{p14024}{C7} \\lean{Entropy.octant\\_inversion, Entropy.landing\\_bracket}",
      "key": "p14024"
     },
     {
      "label": "C8",
      "predicate": "The entailed-rate consistency: with the channel-1 $\\Lambda$ the age--rate locus returns the channel-1 $H_0$ (to $0.1\\%$), same-channel by the definition $\\Lambda=3\\Omega_\\Lambda H_0^{2}/c^{2}$, a corollary of C7 and not a prediction --- the floor value itself consumed as import (A6) under the role realisation (B4), not derived here; the two-cluster ratio is the chart identity $(H_{\\mathrm{rate}}/H_0)^2/\\Omega_\\Lambda$, displayed, not claimed.",
-     "tag": "T|R",
-     "source": "\\S\\ref{sec:open}\\newline \\pywit{entropy}{p14025}{C8}, \\leanwit{FrcLedger}{p14025}{C8} \\lean{Entropy.channel\\_one\\_consistency, Entropy.channel\\_one\\_numeral, Entropy.cluster\\_identity}",
+     "tag": "T",
+     "source": "\\S\\ref{sec:open}; rests on A8\\newline \\pywit{entropy}{p14025}{C8}, \\leanwit{FrcLedger}{p14025}{C8} \\lean{Entropy.channel\\_one\\_consistency, Entropy.channel\\_one\\_numeral, Entropy.cluster\\_identity}",
      "key": "p14025"
     },
     {
@@ -233,15 +233,15 @@
     {
      "label": "X2",
      "predicate": "\\textbf{Milgrom's coincidence} $a_0\\approx cH_0/2\\pi$, on record since 1983, becomes a value with zero freedom: the $2\\pi$ is the fixed cycle convention, the reverse rebooking of $h=2\\pi\\hbar$, and the $H$ is the observer's registered rate.",
-     "tag": "T|R",
-     "source": "\\S\\ref{sec:open}, \\citep{milgrom1983}\\newline \\pywit{entropy}{p14029}{X2}, \\leanwit{FrcLedger}{p14029}{X2} \\lean{Entropy.milgrom\\_rebooking}",
+     "tag": "T",
+     "source": "\\S\\ref{sec:open}, \\citep{milgrom1983}; rests on A6, B2, B4\\newline \\pywit{entropy}{p14029}{X2}, \\leanwit{FrcLedger}{p14029}{X2} \\lean{Entropy.milgrom\\_rebooking}",
      "key": "p14029"
     },
     {
      "label": "X3",
      "predicate": "\\textbf{The age coincidence} $t_0H_\\Lambda\\approx\\pi/4$ becomes the octant: $\\Omega_\\Lambda=\\tanh^{2}(3\\pi/8)=0.6837$ \\lcdm{} is an output of the realisation set, landing at $0.19\\sigma$ on the fitted $0.685\\pm0.007$ --- never an independent measurement of $\\dS$ (same-channel, X6), a zero-freedom derivation in full standing; the $(\\Lambda,H_0)$ entailment at the channel-1 $\\Lambda$ is this same landing read on $H_0$, not a further prediction.",
-     "tag": "T|R",
-     "source": "Lem.~\\ref{lem:octant}\\newline \\pywit{entropy}{p14030}{X3}, \\leanwit{FrcLedger}{p14030}{X3} \\lean{Entropy.octant\\_inversion, Entropy.landing\\_bracket}",
+     "tag": "T",
+     "source": "Lem.~\\ref{lem:octant}; rests on C5, C7, C8\\newline \\pywit{entropy}{p14030}{X3}, \\leanwit{FrcLedger}{p14030}{X3} \\lean{Entropy.octant\\_inversion, Entropy.landing\\_bracket}",
      "key": "p14030"
     },
     {
@@ -288,29 +288,29 @@
     {
      "label": "P1",
      "predicate": "\\textbf{(Lead.)} The floor runs with the registered rate, $a_0(z)\\propto H(z)$, the role statement of the floor closure, against both a constant fundamental $a_0$ and feedback-emergent scaling. Status: the constant-floor branch is excluded --- four redshift bins rising from $1.99$ to $2.71\\times10^{-10}\\,\\mathrm{m/s^2}$ over $z=0.50$--$1.28$ \\citep{ciocan2026}, $\\Delta\\chi^2=23$ against $A\\,H(z)/H_0$ \\lcdm{} --- and the running form fits the bins at free amplitude ($A=1.39\\pm0.03$, $\\chi^2=5.4/3$); the binned rate sits on the $\\propto H(z)$ chord while the authors' global linear fit runs above it, so the shape waits on the likelihood refit of the resolved tracks, and the amplitude's $0.12$\\,dex excess over $cH_0/2\\pi$ lies inside the $0.2$\\,dex gas systematic. Falsifier: a likelihood refit or a wider-redshift sample excluding the $\\propto H(z)$ form after the baryonic-mass and pressure-support systematics close.",
-     "tag": "T|R",
-     "source": "\\S\\ref{sec:open}\\newline \\pywit{entropy}{p14036}{P1}",
+     "tag": "T",
+     "source": "\\S\\ref{sec:open}; rests on A6, A8, B4\\newline \\pywit{entropy}{p14036}{P1}",
      "key": "p14036"
     },
     {
      "label": "P2",
      "predicate": "The registered record depth is bounded by $(\\pi/4)\\,r_H/c=13.79$ Gyr \\apx{} (channel-1 anchor) at every observational frame chronon, against a $\\Lambda$CDM $t_0$ that grows with chart time: degenerate to $0.2\\%$ now, separating at ${\\sim}7\\%$ per Gyr; the octant carries zero parameter freedom at fixed $\\Lambda$. Status \\citep{valcin2026}: the oldest cluster population $0.5\\sigma$ below the bound, the inferred age straddling it within $0.1\\sigma$ (\\S\\ref{sec:open}). Falsifier: one well-dated object older than the octant value, in any frame --- fit-independent, fatal; the same bound excludes interior-bounce black-hole cosmology (X8).",
-     "tag": "T|R",
-     "source": "Lem.~\\ref{lem:octant}\\newline \\pywit{entropy}{p14037}{P2}",
+     "tag": "T",
+     "source": "Lem.~\\ref{lem:octant}; rests on A8, B3, C5\\newline \\pywit{entropy}{p14037}{P2}",
      "key": "p14037"
     },
     {
      "label": "P3",
      "predicate": "The age--rate locus $t_{\\mathrm{age}}H_0=(\\pi/4)/\\tanh(3\\pi/8)=0.950$, exact for the realisation set. Read on the fit-independent stellar age ($13.61\\pm0.34$ Gyr): $H_0=68.2\\pm1.7$ km/s/Mpc \\apx, $0.5\\sigma$ from Planck, $0.65\\sigma$ from TRGB, $2.4\\sigma$ from the Cepheid ladder --- the framework favours the CMB/TRGB value at that significance, and forbids the $\\Omega_\\Lambda\\approx0.76$ by which the rival chart would accommodate the ladder value at the same age. Read on the channel-1 $\\Lambda$ it returns the channel-1 $H_0$ (to $0.1\\%$): a consistency, not a prediction (C8). Falsifier: a confirmed ladder $H_0$ with the stellar age standing ($t_\\star H_0\\ge1.0$ against $0.950$).",
-     "tag": "T|R",
-     "source": "\\S\\ref{sec:open}\\newline \\pywit{entropy}{p14038}{P3}, \\leanwit{FrcLedger}{p14038}{P3} \\lean{Entropy.age\\_rate\\_locus, Entropy.locus\\_bracket}",
+     "tag": "T",
+     "source": "\\S\\ref{sec:open}; rests on A8, B3, C5, C7\\newline \\pywit{entropy}{p14038}{P3}, \\leanwit{FrcLedger}{p14038}{P3} \\lean{Entropy.age\\_rate\\_locus, Entropy.locus\\_bracket}",
      "key": "p14038"
     },
     {
      "label": "P4",
-     "predicate": "\\textbf{(Lead; grade \\tT$\\,\\vert\\,$\\tR.)} The dark-energy equation of state is rigid: $\\Lambda$ is the curvature face of the fixed cardinality, constant, its effective-fluid reading $w=-1$ exactly with no $w_0w_a$ freedom; the fluid statement consumes the conservation-law correspondence and the single-component clause (B8), hence the realisation grade. Status: DESI-era combined fits prefer evolving dark energy at $3$--$4.2\\sigma$ \\citep{desi2025}, contested by reanalyses (\\S\\ref{sec:import}). Falsifier: confirmed evolution of $w$, which kills $\\Lambda\\sim1/\\Om$ outright and exposes P2 through $\\Lambda$.",
-     "tag": "T|R",
-     "source": "\\S\\ref{sec:import}\\newline \\leanwit{FrcLedger}{p14039}{P4} \\lean{Entropy.fluid\\_w}",
+     "predicate": "\\textbf{(Lead.)} The dark-energy equation of state is rigid: $\\Lambda$ is the curvature face of the fixed cardinality, constant, its effective-fluid reading $w=-1$ exactly with no $w_0w_a$ freedom; the fluid statement consumes the conservation-law correspondence and the single-component clause (B8). Status: DESI-era combined fits prefer evolving dark energy at $3$--$4.2\\sigma$ \\citep{desi2025}, contested by reanalyses (\\S\\ref{sec:import}). Falsifier: confirmed evolution of $w$, which kills $\\Lambda\\sim1/\\Om$ outright and exposes P2 through $\\Lambda$.",
+     "tag": "T",
+     "source": "\\S\\ref{sec:import}; rests on A1, A8, B1\\newline \\leanwit{FrcLedger}{p14039}{P4} \\lean{Entropy.fluid\\_w}",
      "key": "p14039"
     }
    ]
@@ -349,11 +349,6 @@
    "tag": "T",
    "name": "Theorem",
    "text": "Derived within this paper from the rows above it; where the source column links the validation package, its numerals are reproduced by the linked check."
-  },
-  {
-   "tag": "T|R",
-   "name": "Theorem on a realisation",
-   "text": "A theorem consumed through a declared realisation: in block P the paper's predictions, each derived and witnessed, stated with its falsifier and its present confrontation; a refuted confrontation fires the realisation's falsifier, not the theorem."
   },
   {
    "tag": "O",

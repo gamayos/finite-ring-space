@@ -62,7 +62,7 @@
   },
   {
    "letter": "B",
-   "title": "Realisations: mathematics $\\to$ physics (the forced identifications, each with its falsifier)",
+   "title": "Realisations and conventions: mathematics $\\to$ physics (the forced identifications, each with its falsifier, and one definition)",
    "rows": [
     {
      "label": "B1",
@@ -119,6 +119,13 @@
      "tag": "R",
      "source": "Prop.~\\ref{prop:passage}, Eq.~\\eqref{eq:norm}; \\src{dark.\\allowbreak firstpassage\\_\\allowbreak finite}, \\src{dark.\\allowbreak meridian\\_\\allowbreak walk}, \\src{dark.\\allowbreak interpolation}, \\src{dark.rar\\_shape}",
      "key": "p32015"
+    },
+    {
+     "label": "B9",
+     "predicate": "The bulk-coherence weight of a component $c$, $w_c=\\bigl|\\langle e^{i\\theta}\\rangle_c\\bigr|^{2}/\\langle|e^{i\\theta}|^{2}\\rangle_c\\in[0,1]$: unity for a virialised clump whose constituents share a bulk phase, near zero for gas a merger shock has randomised.",
+     "tag": "D",
+     "source": "Eq.~\\eqref{eq:cohweight}",
+     "key": "p32051"
     }
    ]
   },
@@ -150,8 +157,8 @@
     {
      "label": "C4",
      "predicate": "The deep-regime geometric mean $\\geff=\\sqrt{\\gb\\az}$, given the amplitude reading B4; the mean force of the link is Newtonian at every noise level (\\src{dark.\\allowbreak deep\\_\\allowbreak regime}; exactly, \\src{dark.\\allowbreak deep\\_\\allowbreak regime\\_\\allowbreak fp}), so the law is registration, not force modification; its instantiation by a transport run generating the registration rate is the sector's open gate.",
-     "tag": "T|R",
-     "source": "Eq.~\\eqref{eq:spectral}, \\S\\ref{sub:geomean}; \\src{dark.\\allowbreak deep\\_\\allowbreak regime}, \\src{dark.\\allowbreak deep\\_\\allowbreak regime\\_\\allowbreak fp}, \\src{dark.deep\\_mond}",
+     "tag": "T",
+     "source": "Eq.~\\eqref{eq:spectral}, \\S\\ref{sub:geomean}; \\src{dark.\\allowbreak deep\\_\\allowbreak regime}, \\src{dark.\\allowbreak deep\\_\\allowbreak regime\\_\\allowbreak fp}, \\src{dark.deep\\_mond}; rests on A5, C3",
      "key": "p32019"
     },
     {
@@ -164,8 +171,8 @@
     {
      "label": "C6",
      "predicate": "The registration theorem: the finite coincidence count, its first-passage law, and flux conservation give the radial acceleration relation given B8; the fitting function of \\citet{mcgaugh2016} is this form with $g_\\dagger$ for $\\az$.",
-     "tag": "T|R",
-     "source": "Thm.~\\ref{thm:registration}, Eq.~\\eqref{eq:interp}; \\src{dark.\\allowbreak meridian\\_\\allowbreak walk}, \\src{dark.\\allowbreak interpolation}, \\src{dark.rar\\_shape}",
+     "tag": "T",
+     "source": "Thm.~\\ref{thm:registration}, Eq.~\\eqref{eq:interp}; \\src{dark.\\allowbreak meridian\\_\\allowbreak walk}, \\src{dark.\\allowbreak interpolation}, \\src{dark.rar\\_shape}; rests on C3, C7",
      "key": "p32021"
     },
     {
@@ -191,16 +198,16 @@
     },
     {
      "label": "C10",
-     "predicate": "The bulk-coherence weight $w_c$ and the merging-cluster lensing offset onto the coherent component.",
-     "tag": "D|T",
+     "predicate": "The merging-cluster lensing offset onto the coherent component, the enhancement sourced by $\\sum_c w_c\\Sigma_c$ (B6, B9).",
+     "tag": "T",
      "source": "Eq.~\\eqref{eq:cohweight}, \\S\\ref{sub:bullet}; \\src{dark.\\allowbreak cluster\\_\\allowbreak coherent}",
-     "key": "p32025"
+     "key": "p32050"
     },
     {
      "label": "C11",
      "predicate": "The cosmological constant $\\Lambda\\sim1/\\Om$, sign positive, $w=-1$ de Sitter section; no $120$-order cancellation.",
-     "tag": "T|R",
-     "source": "\\S\\ref{sub:lambda}",
+     "tag": "T",
+     "source": "\\S\\ref{sub:lambda}; rests on A1, B7",
      "key": "p32026"
     }
    ]
@@ -295,43 +302,43 @@
     {
      "label": "P1",
      "predicate": "The redshift law $\\az(z)=cH(z)/2\\pi$: the knee shifts and the Tully--Fisher zero-point evolves, $v_{\\mathrm{flat}}\\propto E(z)^{1/4}$ ($+7\\%$, $+15\\%$, $+31\\%$ at $z=0.5,1,2$), parameter-free; shape resolvable, value in Z1. Falsifier: a high-$z$ knee away from $cH(z)/2\\pi$, or a non-evolving Tully--Fisher zero-point.",
-     "tag": "T|R",
-     "source": "\\S\\ref{sec:predictions}; \\src{dark.\\allowbreak predictions}",
+     "tag": "T",
+     "source": "\\S\\ref{sec:predictions}; \\src{dark.\\allowbreak predictions}; rests on B2, B3, C2",
      "key": "p32038"
     },
     {
      "label": "P2",
      "predicate": "The scatter is the two-variable form $\\sigma=(2\\tan\\alpha/\\ln10)\\,\\delta\\alpha$, vanishing for cold high-$x$ systems and rising as $x^{-1/4}$; SPARC at fixed $\\az$: intrinsic $0.038$\\,dex overall, $0.04$ at the knee, $0.13$ at $x\\simeq0.02$, bounding $\\delta\\alpha\\lesssim3.5^{\\circ}$. Falsifier: a deep-regime intrinsic scatter that does not rise, or a measured collective spread the scatter does not track.",
-     "tag": "T|R",
-     "source": "\\S\\ref{sub:scatterderiv}, \\S\\ref{sec:predictions}; \\src{dark.\\allowbreak rar\\_\\allowbreak scatter}, \\src{dark.\\allowbreak predictions}",
+     "tag": "T",
+     "source": "\\S\\ref{sub:scatterderiv}, \\S\\ref{sec:predictions}; \\src{dark.\\allowbreak rar\\_\\allowbreak scatter}, \\src{dark.\\allowbreak predictions}; rests on B5, C8",
      "key": "p32039"
     },
     {
      "label": "P3",
      "predicate": "Wide binaries ($\\gtrsim10$\\,kAU) follow $\\gb/(1-e^{-\\sqrt{x}})$ with the global $\\az$ and the vector Galactic field $\\gext\\simeq1.8\\az$: a $10$--$30\\%$ velocity enhancement ($12$--$16\\%$ at $10$--$40$\\,kAU on the collinear estimate), the exponential knee distinct from Newtonian and rational forms. Falsifier: Newtonian wide-binary motion, or a knee of the wrong shape.",
-     "tag": "T|R",
-     "source": "\\S\\ref{sec:predictions}; \\src{dark.\\allowbreak predictions}",
+     "tag": "T",
+     "source": "\\S\\ref{sec:predictions}; \\src{dark.\\allowbreak predictions}; rests on B4, B8, C6, C9",
      "key": "p32040"
     },
     {
      "label": "P4",
      "predicate": "Pressure-supported systems (ellipticals, dSphs, UDGs) lie below the cold-disk relation by the coherence factor $\\sqrt{w}$, $w=1/(1+(\\sigma_v/v)^{2})$, by $0.05$--$0.15$\\,dex for $\\sigma_v/v=0.5$--$1$, correlating with $\\sigma_v/v$. Falsifier: pressure-supported systems on the cold-disk relation.",
-     "tag": "T|R",
-     "source": "\\S\\ref{sec:predictions}; \\src{dark.\\allowbreak predictions}",
+     "tag": "T",
+     "source": "\\S\\ref{sec:predictions}; \\src{dark.\\allowbreak predictions}; rests on B4, B6, C10",
      "key": "p32041"
     },
     {
      "label": "P5",
      "predicate": "Coherence-state cluster gas: the X-ray gas gravitates only when bulk-coherent, contributing in a relaxed cluster ($C_{ij}\\to1$) and dropping out of a merger ($C_{ij}\\to0$), the lensing displacement growing with the shock Mach number; the quantitative core residual of the same law is the conjecture Y1. Falsifier: a merger lensing peak tracking the shocked gas, or no relaxed-versus-merging difference.",
-     "tag": "T|R",
-     "source": "Eq.~\\eqref{eq:cohsum}, \\S\\ref{sec:predictions}",
+     "tag": "T",
+     "source": "Eq.~\\eqref{eq:cohsum}, \\S\\ref{sec:predictions}; rests on B6, C10",
      "key": "p32042"
     },
     {
      "label": "P6",
      "predicate": "A global, isotropic scale and no dark substructure: the floor is the global drive rate, identical in every direction and environment once the external-field correction is made; no new dark-matter state and no dark subhaloes, so stream perturbations and the satellite abundance trace baryons alone. Falsifier: a directional or density dependence of $\\az$ beyond the external-field effect, or stream gaps and substructure lensing with no baryonic counterpart.",
-     "tag": "T|R",
-     "source": "B1, B3; \\S\\ref{sec:predictions}",
+     "tag": "T",
+     "source": "B1, B3; \\S\\ref{sec:predictions}; rests on C9",
      "key": "p32043"
     }
    ]
@@ -417,11 +424,6 @@
    "tag": "T",
    "name": "Theorem",
    "text": "Derived within this paper from the rows above it; where a family identifier is named, its content is verified by the validation package."
-  },
-  {
-   "tag": "T|R",
-   "name": "Theorem on a realisation",
-   "text": "A theorem consumed through a declared realisation: in block P the paper's predictions, each derived and witnessed, stated with its falsifier and its present confrontation; a refuted confrontation fires the realisation's falsifier, not the theorem."
   },
   {
    "tag": "Ω",

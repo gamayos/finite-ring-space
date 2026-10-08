@@ -39,10 +39,10 @@
     },
     {
      "label": "A5",
-     "predicate": "The Davenport--Heilbronn function: a Dirichlet series with the functional equation and no Euler product, with infinitely many off-line zeros, the first pair at $0.8085171825+85.6993484854\\,i$ and $1-\\bar s$; the treatment of linear combinations of $L$-functions by smoothed Euler products.",
+     "predicate": "The Davenport--Heilbronn function: a Dirichlet series with the functional equation and no Euler product, with zeros off the line, the first pair at $0.8085171825+85.6993484854\\,i$ and $1-\\bar s$; the treatment of linear combinations of $L$-functions by smoothed Euler products.",
      "tag": "I",
      "source": "\\citep{davenport1936,titchmarsh1986,gonek2012}",
-     "key": "p20005"
+     "key": "p20078"
     },
     {
      "label": "A6",
@@ -440,7 +440,7 @@
     },
     {
      "label": "F8",
-     "predicate": "\\textbf{The smoothed explicit formula.} Under the hypothesis of no zero to the right of the line, $\\sum_{n\\le N}\\Lambda(n)w(n)n^{-s}/\\log n=\\Pi_N(s)+J_N(s)$ exactly, $\\Pi_N$ explicit and unbounded, $J_N(s)\\to G(s)=\\log((s-1)\\zeta(s)/s)$ off the zeros: the pole-corrected count converges to $\\mathcal N(T)$. An off-line zero adds an explicit term $-\\Pi^{(\\rho)}_N$ (Rem.~\\ref{rem:combsettle}), not summed over infinitely many. Observed: the corrected counts settle (D2f, D2g, D3) [approx].",
+     "predicate": "\\textbf{The smoothed explicit formula.} Under the hypothesis of no zero to the right of the line, $\\sum_{n\\le N}\\Lambda(n)w(n)n^{-s}/\\log n=\\Pi_N(s)+J_N(s)$ exactly, $\\Pi_N$ explicit and growing with $N$, $J_N(s)\\to G(s)=\\log((s-1)\\zeta(s)/s)$ off the zeros: the pole-corrected count converges to $\\mathcal N(T)$. An off-line zero adds an explicit term $-\\Pi^{(\\rho)}_N$ (Rem.~\\ref{rem:combsettle}); a collection of such zeros growing with the depth is not summed. Observed: the corrected counts settle (D2f, D2g, D3) [approx].",
      "tag": "T",
      "source": "Prop.~\\ref{prop:combformula}, Rem.~\\ref{rem:combsettle}, Obs.~\\ref{obs:dh}\\newline \\pywit{rh}{p20069}{F8}",
      "key": "p20069"

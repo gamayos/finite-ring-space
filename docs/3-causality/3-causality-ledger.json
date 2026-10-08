@@ -174,7 +174,7 @@
    "rows": [
     {
      "label": "Y1",
-     "predicate": "The large-$\\p$ correspondence of Remark~\\ref{rem:local-correspondence}: whether the window points of the shell's null cone approach the real light cone with density and equidistribution as $\\p\\to\\infty$; named by the paper as future work, not claimed, no witness.",
+     "predicate": "The large-$\\p$ correspondence of Remark~\\ref{rem:local-correspondence}: whether the window points of the shell's null cone approach the real light cone with density and equidistribution as $\\p$ grows through the shells of the totality; named by the paper as future work, not claimed, no witness.",
      "tag": "O",
      "source": "Rem.~\\ref{rem:local-correspondence}",
      "key": "p03022"
