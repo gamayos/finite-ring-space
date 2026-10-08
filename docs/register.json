@@ -25109,7 +25109,7 @@
       "name": "FRC.LedgerML.p00192",
       "tier": 2,
       "ok": true,
-      "page": "lean/Keys.Chart.html#FRC.LedgerML.p00192"
+      "page": "lean/ml/Keys.Chart.html#FRC.LedgerML.p00192"
      }
     ]
    },
@@ -25180,7 +25180,7 @@
       "name": "FRC.LedgerML.p00193",
       "tier": 2,
       "ok": true,
-      "page": "lean/Keys.Chart.html#FRC.LedgerML.p00193"
+      "page": "lean/ml/Keys.Chart.html#FRC.LedgerML.p00193"
      }
     ]
    },
@@ -25272,7 +25272,7 @@
       "name": "FRC.LedgerML.p00148",
       "tier": 2,
       "ok": true,
-      "page": "lean/Keys.Chart.html#FRC.LedgerML.p00148"
+      "page": "lean/ml/Keys.Chart.html#FRC.LedgerML.p00148"
      }
     ]
    },
@@ -25363,7 +25363,7 @@
       "name": "FRC.LedgerML.p00133",
       "tier": 2,
       "ok": true,
-      "page": "lean/Keys.Chart.html#FRC.LedgerML.p00133"
+      "page": "lean/ml/Keys.Chart.html#FRC.LedgerML.p00133"
      }
     ]
    },
@@ -25969,7 +25969,7 @@
       "name": "FRC.Algebra.quarter_turn_exists",
       "tier": 2,
       "ok": true,
-      "page": "lean/Algebra.html#FRC.Algebra.quarter_turn_exists"
+      "page": "lean/ml/Algebra.html#FRC.Algebra.quarter_turn_exists"
      },
      {
       "lib": "FrcLedger",
@@ -25977,7 +25977,7 @@
       "name": "FRC.Algebra.klein_orbit_four",
       "tier": 2,
       "ok": true,
-      "page": "lean/Algebra.html#FRC.Algebra.klein_orbit_four"
+      "page": "lean/ml/Algebra.html#FRC.Algebra.klein_orbit_four"
      },
      {
       "lib": "FrcLedger",
@@ -25985,7 +25985,7 @@
       "name": "FRC.Algebra.card_fourth_roots",
       "tier": 2,
       "ok": true,
-      "page": "lean/Algebra.html#FRC.Algebra.card_fourth_roots"
+      "page": "lean/ml/Algebra.html#FRC.Algebra.card_fourth_roots"
      },
      {
       "lib": "FrcCore",
@@ -26066,7 +26066,7 @@
       "name": "FRC.Algebra.quarter_turn",
       "tier": 2,
       "ok": true,
-      "page": "lean/Algebra.html#FRC.Algebra.quarter_turn"
+      "page": "lean/ml/Algebra.html#FRC.Algebra.quarter_turn"
      },
      {
       "lib": "FrcLedger",
@@ -26074,7 +26074,7 @@
       "name": "FRC.Algebra.s13_quarter_turn",
       "tier": 1,
       "ok": true,
-      "page": "lean/Algebra.html#FRC.Algebra.s13_quarter_turn"
+      "page": "lean/ml/Algebra.html#FRC.Algebra.s13_quarter_turn"
      },
      {
       "lib": "FrcCore",
@@ -26125,7 +26125,7 @@
       "name": "FRC.Algebra.affine_frame",
       "tier": 2,
       "ok": true,
-      "page": "lean/Algebra.html#FRC.Algebra.affine_frame"
+      "page": "lean/ml/Algebra.html#FRC.Algebra.affine_frame"
      },
      {
       "lib": "FrcCore",
@@ -26274,7 +26274,7 @@
       "name": "FRC.Algebra.meridian_involution",
       "tier": 2,
       "ok": true,
-      "page": "lean/Algebra.html#FRC.Algebra.meridian_involution"
+      "page": "lean/ml/Algebra.html#FRC.Algebra.meridian_involution"
      },
      {
       "lib": "FrcCore",
@@ -26336,7 +26336,7 @@
       "name": "FRC.Algebra.framed_integer_window",
       "tier": 2,
       "ok": true,
-      "page": "lean/Algebra.html#FRC.Algebra.framed_integer_window"
+      "page": "lean/ml/Algebra.html#FRC.Algebra.framed_integer_window"
      },
      {
       "lib": "FrcCore",
@@ -26424,7 +26424,7 @@
       "name": "FRC.Algebra.scale_periodic",
       "tier": 2,
       "ok": true,
-      "page": "lean/Algebra.html#FRC.Algebra.scale_periodic"
+      "page": "lean/ml/Algebra.html#FRC.Algebra.scale_periodic"
      },
      {
       "lib": "FrcCore",
@@ -26488,7 +26488,7 @@
       "name": "FRC.Algebra.tower_density",
       "tier": 2,
       "ok": true,
-      "page": "lean/Algebra.html#FRC.Algebra.tower_density"
+      "page": "lean/ml/Algebra.html#FRC.Algebra.tower_density"
      }
     ]
    },
@@ -26540,7 +26540,7 @@
       "name": "FRC.Algebra.complex_chart_zero_divisor",
       "tier": 2,
       "ok": true,
-      "page": "lean/Algebra.html#FRC.Algebra.complex_chart_zero_divisor"
+      "page": "lean/ml/Algebra.html#FRC.Algebra.complex_chart_zero_divisor"
      },
      {
       "lib": "FrcCore",
@@ -26581,7 +26581,7 @@
       "name": "FRC.Algebra.root_iff_not_coprime",
       "tier": 2,
       "ok": true,
-      "page": "lean/Algebra.html#FRC.Algebra.root_iff_not_coprime"
+      "page": "lean/ml/Algebra.html#FRC.Algebra.root_iff_not_coprime"
      },
      {
       "lib": "FrcCore",
@@ -26640,7 +26640,7 @@
       "name": "FRC.Algebra.circle_net",
       "tier": 2,
       "ok": true,
-      "page": "lean/Algebra.html#FRC.Algebra.circle_net"
+      "page": "lean/ml/Algebra.html#FRC.Algebra.circle_net"
      },
      {
       "lib": "FrcLedger",
@@ -26648,7 +26648,7 @@
       "name": "FRC.Algebra.group_law_defect",
       "tier": 2,
       "ok": true,
-      "page": "lean/Algebra.html#FRC.Algebra.group_law_defect"
+      "page": "lean/ml/Algebra.html#FRC.Algebra.group_law_defect"
      }
     ]
    },
@@ -26791,7 +26791,7 @@
       "name": "FRC.Algebra.axis_group",
       "tier": 2,
       "ok": true,
-      "page": "lean/Algebra.html#FRC.Algebra.axis_group"
+      "page": "lean/ml/Algebra.html#FRC.Algebra.axis_group"
      },
      {
       "lib": "FrcLedger",
@@ -26799,7 +26799,7 @@
       "name": "FRC.Algebra.card_image_le_of_neg",
       "tier": 2,
       "ok": true,
-      "page": "lean/Algebra.html#FRC.Algebra.card_image_le_of_neg"
+      "page": "lean/ml/Algebra.html#FRC.Algebra.card_image_le_of_neg"
      }
     ]
    },
@@ -26884,7 +26884,7 @@
       "name": "FRC.Algebra.quat_pow_height",
       "tier": 2,
       "ok": true,
-      "page": "lean/Algebra.html#FRC.Algebra.quat_pow_height"
+      "page": "lean/ml/Algebra.html#FRC.Algebra.quat_pow_height"
      },
      {
       "lib": "FrcLedger",
@@ -26892,7 +26892,7 @@
       "name": "FRC.Algebra.readback_iff",
       "tier": 2,
       "ok": true,
-      "page": "lean/Algebra.html#FRC.Algebra.readback_iff"
+      "page": "lean/ml/Algebra.html#FRC.Algebra.readback_iff"
      }
     ]
    },
@@ -26927,7 +26927,7 @@
       "name": "FRC.Algebra.no_south_pole",
       "tier": 2,
       "ok": true,
-      "page": "lean/Algebra.html#FRC.Algebra.no_south_pole"
+      "page": "lean/ml/Algebra.html#FRC.Algebra.no_south_pole"
      },
      {
       "lib": "FrcCore",
@@ -27116,7 +27116,7 @@
       "name": "FRC.Geometry.generator_orbit",
       "tier": 2,
       "ok": true,
-      "page": "lean/Geometry.html#FRC.Geometry.generator_orbit"
+      "page": "lean/ml/Geometry.html#FRC.Geometry.generator_orbit"
      },
      {
       "lib": "FrcCore",
@@ -27229,7 +27229,7 @@
       "name": "FRC.Geometry.euler_characteristic",
       "tier": 1,
       "ok": true,
-      "page": "lean/Geometry.html#FRC.Geometry.euler_characteristic"
+      "page": "lean/ml/Geometry.html#FRC.Geometry.euler_characteristic"
      },
      {
       "lib": "FrcCore",
@@ -27378,7 +27378,7 @@
       "name": "FRC.Geometry.half_period",
       "tier": 2,
       "ok": true,
-      "page": "lean/Geometry.html#FRC.Geometry.half_period"
+      "page": "lean/ml/Geometry.html#FRC.Geometry.half_period"
      },
      {
       "lib": "FrcCore",
@@ -27421,7 +27421,7 @@
       "name": "FRC.Geometry.quarter_turn_order",
       "tier": 2,
       "ok": true,
-      "page": "lean/Geometry.html#FRC.Geometry.quarter_turn_order"
+      "page": "lean/ml/Geometry.html#FRC.Geometry.quarter_turn_order"
      },
      {
       "lib": "FrcCore",
@@ -27527,7 +27527,7 @@
       "name": "FRC.Geometry.orientation_class",
       "tier": 2,
       "ok": true,
-      "page": "lean/Geometry.html#FRC.Geometry.orientation_class"
+      "page": "lean/ml/Geometry.html#FRC.Geometry.orientation_class"
      },
      {
       "lib": "FrcCore",
@@ -27568,7 +27568,7 @@
       "name": "FRC.Geometry.euler_identity",
       "tier": 2,
       "ok": true,
-      "page": "lean/Geometry.html#FRC.Geometry.euler_identity"
+      "page": "lean/ml/Geometry.html#FRC.Geometry.euler_identity"
      },
      {
       "lib": "FrcCore",
@@ -27619,7 +27619,7 @@
       "name": "FRC.Algebra.klein_orbit_four",
       "tier": 2,
       "ok": true,
-      "page": "lean/Algebra.html#FRC.Algebra.klein_orbit_four"
+      "page": "lean/ml/Algebra.html#FRC.Algebra.klein_orbit_four"
      },
      {
       "lib": "FrcCore",
@@ -27749,7 +27749,7 @@
       "name": "FRC.Geometry.fixed_shell_bound",
       "tier": 2,
       "ok": true,
-      "page": "lean/Geometry.html#FRC.Geometry.fixed_shell_bound"
+      "page": "lean/ml/Geometry.html#FRC.Geometry.fixed_shell_bound"
      },
      {
       "lib": "FrcCore",
@@ -27826,7 +27826,7 @@
       "name": "FRC.Geometry.principal_root",
       "tier": 2,
       "ok": true,
-      "page": "lean/Geometry.html#FRC.Geometry.principal_root"
+      "page": "lean/ml/Geometry.html#FRC.Geometry.principal_root"
      },
      {
       "lib": "FrcCore",
@@ -27886,7 +27886,7 @@
       "name": "FRC.Geometry.dft_inverse",
       "tier": 2,
       "ok": true,
-      "page": "lean/Geometry.html#FRC.Geometry.dft_inverse"
+      "page": "lean/ml/Geometry.html#FRC.Geometry.dft_inverse"
      },
      {
       "lib": "FrcCore",
@@ -28172,7 +28172,7 @@
       "name": "FRC.Causality.no_causal_root",
       "tier": 1,
       "ok": true,
-      "page": "lean/Causality.html#FRC.Causality.no_causal_root"
+      "page": "lean/ml/Causality.html#FRC.Causality.no_causal_root"
      },
      {
       "lib": "FrcLedger",
@@ -28180,7 +28180,7 @@
       "name": "FRC.Causality.neg_sq_is_square",
       "tier": 2,
       "ok": true,
-      "page": "lean/Causality.html#FRC.Causality.neg_sq_is_square"
+      "page": "lean/ml/Causality.html#FRC.Causality.neg_sq_is_square"
      },
      {
       "lib": "FrcCore",
@@ -28231,7 +28231,7 @@
       "name": "FRC.Causality.absorb",
       "tier": 1,
       "ok": true,
-      "page": "lean/Causality.html#FRC.Causality.absorb"
+      "page": "lean/ml/Causality.html#FRC.Causality.absorb"
      },
      {
       "lib": "FrcCore",
@@ -28332,7 +28332,7 @@
       "name": "FRC.Causality.aniso_tx",
       "tier": 2,
       "ok": true,
-      "page": "lean/Causality.html#FRC.Causality.aniso_tx"
+      "page": "lean/ml/Causality.html#FRC.Causality.aniso_tx"
      },
      {
       "lib": "FrcCore",
@@ -28461,7 +28461,7 @@
       "name": "FRC.Causality.boost_preserves",
       "tier": 1,
       "ok": true,
-      "page": "lean/Causality.html#FRC.Causality.boost_preserves"
+      "page": "lean/ml/Causality.html#FRC.Causality.boost_preserves"
      },
      {
       "lib": "FrcLedger",
@@ -28469,7 +28469,7 @@
       "name": "FRC.Causality.boost_comp",
       "tier": 2,
       "ok": true,
-      "page": "lean/Causality.html#FRC.Causality.boost_comp"
+      "page": "lean/ml/Causality.html#FRC.Causality.boost_comp"
      },
      {
       "lib": "FrcLedger",
@@ -28477,7 +28477,7 @@
       "name": "FRC.Causality.boost_orthogonal",
       "tier": 2,
       "ok": true,
-      "page": "lean/Causality.html#FRC.Causality.boost_orthogonal"
+      "page": "lean/ml/Causality.html#FRC.Causality.boost_orthogonal"
      },
      {
       "lib": "FrcCore",
@@ -28552,7 +28552,7 @@
       "name": "FRC.Causality.gamma_ne_zero",
       "tier": 2,
       "ok": true,
-      "page": "lean/Causality.html#FRC.Causality.gamma_ne_zero"
+      "page": "lean/ml/Causality.html#FRC.Causality.gamma_ne_zero"
      },
      {
       "lib": "FrcLedger",
@@ -28560,7 +28560,7 @@
       "name": "FRC.Causality.gamma_velocity",
       "tier": 1,
       "ok": true,
-      "page": "lean/Causality.html#FRC.Causality.gamma_velocity"
+      "page": "lean/ml/Causality.html#FRC.Causality.gamma_velocity"
      },
      {
       "lib": "FrcLedger",
@@ -28568,7 +28568,7 @@
       "name": "FRC.Causality.velocity_addition",
       "tier": 2,
       "ok": true,
-      "page": "lean/Causality.html#FRC.Causality.velocity_addition"
+      "page": "lean/ml/Causality.html#FRC.Causality.velocity_addition"
      },
      {
       "lib": "FrcCore",
@@ -28932,7 +28932,7 @@
       "name": "FRC.Representation.adequate_inj",
       "tier": 0,
       "ok": true,
-      "page": "lean/Representation.html#FRC.Representation.adequate_inj"
+      "page": "lean/ml/Representation.html#FRC.Representation.adequate_inj"
      },
      {
       "lib": "FrcCore",
@@ -28973,7 +28973,7 @@
       "name": "FRC.Representation.transition_exists",
       "tier": 2,
       "ok": true,
-      "page": "lean/Representation.html#FRC.Representation.transition_exists"
+      "page": "lean/ml/Representation.html#FRC.Representation.transition_exists"
      },
      {
       "lib": "FrcLedger",
@@ -28981,7 +28981,7 @@
       "name": "FRC.Representation.transition_unique",
       "tier": 1,
       "ok": true,
-      "page": "lean/Representation.html#FRC.Representation.transition_unique"
+      "page": "lean/ml/Representation.html#FRC.Representation.transition_unique"
      },
      {
       "lib": "FrcCore",
@@ -29038,7 +29038,7 @@
       "name": "FRC.Representation.embeds_in_shell",
       "tier": 2,
       "ok": true,
-      "page": "lean/Representation.html#FRC.Representation.embeds_in_shell"
+      "page": "lean/ml/Representation.html#FRC.Representation.embeds_in_shell"
      },
      {
       "lib": "FrcLedger",
@@ -29046,7 +29046,7 @@
       "name": "FRC.Representation.canonical_iota",
       "tier": 2,
       "ok": true,
-      "page": "lean/Representation.html#FRC.Representation.canonical_iota"
+      "page": "lean/ml/Representation.html#FRC.Representation.canonical_iota"
      },
      {
       "lib": "FrcCore",
@@ -29087,7 +29087,7 @@
       "name": "FRC.Representation.chart_injective",
       "tier": 0,
       "ok": true,
-      "page": "lean/Representation.html#FRC.Representation.chart_injective"
+      "page": "lean/ml/Representation.html#FRC.Representation.chart_injective"
      },
      {
       "lib": "FrcLedger",
@@ -29095,7 +29095,7 @@
       "name": "FRC.Representation.transition_images",
       "tier": 2,
       "ok": true,
-      "page": "lean/Representation.html#FRC.Representation.transition_images"
+      "page": "lean/ml/Representation.html#FRC.Representation.transition_images"
      },
      {
       "lib": "FrcCore",
@@ -29144,7 +29144,7 @@
       "name": "FRC.Representation.canonical_iota",
       "tier": 2,
       "ok": true,
-      "page": "lean/Representation.html#FRC.Representation.canonical_iota"
+      "page": "lean/ml/Representation.html#FRC.Representation.canonical_iota"
      },
      {
       "lib": "FrcCore",
@@ -29185,7 +29185,7 @@
       "name": "FRC.Representation.lift",
       "tier": 2,
       "ok": true,
-      "page": "lean/Representation.html#FRC.Representation.lift"
+      "page": "lean/ml/Representation.html#FRC.Representation.lift"
      },
      {
       "lib": "FrcCore",
@@ -29234,7 +29234,7 @@
       "name": "FRC.Representation.consistency",
       "tier": 2,
       "ok": true,
-      "page": "lean/Representation.html#FRC.Representation.consistency"
+      "page": "lean/ml/Representation.html#FRC.Representation.consistency"
      },
      {
       "lib": "FrcCore",
@@ -29363,7 +29363,7 @@
       "name": "FRC.Representation.sphere_of_equivariant",
       "tier": 2,
       "ok": true,
-      "page": "lean/Representation.html#FRC.Representation.sphere_of_equivariant"
+      "page": "lean/ml/Representation.html#FRC.Representation.sphere_of_equivariant"
      },
      {
       "lib": "FrcCore",
@@ -29436,7 +29436,7 @@
       "name": "FRC.Representation.godel_injective",
       "tier": 2,
       "ok": true,
-      "page": "lean/Representation.html#FRC.Representation.godel_injective"
+      "page": "lean/ml/Representation.html#FRC.Representation.godel_injective"
      },
      {
       "lib": "FrcLedger",
@@ -29444,7 +29444,7 @@
       "name": "FRC.Representation.mod_injective",
       "tier": 1,
       "ok": true,
-      "page": "lean/Representation.html#FRC.Representation.mod_injective"
+      "page": "lean/ml/Representation.html#FRC.Representation.mod_injective"
      },
      {
       "lib": "FrcLedger",
@@ -29452,7 +29452,7 @@
       "name": "FRC.Representation.godel_instance",
       "tier": 2,
       "ok": true,
-      "page": "lean/Representation.html#FRC.Representation.godel_instance"
+      "page": "lean/ml/Representation.html#FRC.Representation.godel_instance"
      },
      {
       "lib": "FrcCore",
@@ -29682,7 +29682,7 @@
       "name": "FRC.Reductio.infinite_of_succ",
       "tier": 2,
       "ok": true,
-      "page": "lean/Reductio.html#FRC.Reductio.infinite_of_succ"
+      "page": "lean/ml/Reductio.html#FRC.Reductio.infinite_of_succ"
      },
      {
       "lib": "FrcLedger",
@@ -29690,7 +29690,7 @@
       "name": "FRC.Reductio.theory_complete",
       "tier": 2,
       "ok": true,
-      "page": "lean/Reductio.html#FRC.Reductio.theory_complete"
+      "page": "lean/ml/Reductio.html#FRC.Reductio.theory_complete"
      }
     ]
    },
@@ -29744,7 +29744,7 @@
       "name": "FRC.Reductio.theory_complete",
       "tier": 2,
       "ok": true,
-      "page": "lean/Reductio.html#FRC.Reductio.theory_complete"
+      "page": "lean/ml/Reductio.html#FRC.Reductio.theory_complete"
      },
      {
       "lib": "FrcLedger",
@@ -29752,7 +29752,7 @@
       "name": "FRC.Reductio.decRealize",
       "tier": 2,
       "ok": true,
-      "page": "lean/Reductio.html#FRC.Reductio.decRealize"
+      "page": "lean/ml/Reductio.html#FRC.Reductio.decRealize"
      },
      {
       "lib": "FrcLedger",
@@ -29760,7 +29760,7 @@
       "name": "FRC.Reductio.decTheory",
       "tier": 2,
       "ok": true,
-      "page": "lean/Reductio.html#FRC.Reductio.decTheory"
+      "page": "lean/ml/Reductio.html#FRC.Reductio.decTheory"
      }
     ]
    },
@@ -29885,7 +29885,7 @@
       "name": "FRC.Reductio.records_lt",
       "tier": 2,
       "ok": true,
-      "page": "lean/Reductio.html#FRC.Reductio.records_lt"
+      "page": "lean/ml/Reductio.html#FRC.Reductio.records_lt"
      },
      {
       "lib": "FrcLedger",
@@ -29893,7 +29893,7 @@
       "name": "FRC.Reductio.no_mirror",
       "tier": 2,
       "ok": true,
-      "page": "lean/Reductio.html#FRC.Reductio.no_mirror"
+      "page": "lean/ml/Reductio.html#FRC.Reductio.no_mirror"
      },
      {
       "lib": "FrcCore",
@@ -29945,7 +29945,7 @@
       "name": "FRC.Reductio.certified_fraction_tendsto",
       "tier": 2,
       "ok": true,
-      "page": "lean/Reductio.html#FRC.Reductio.certified_fraction_tendsto"
+      "page": "lean/ml/Reductio.html#FRC.Reductio.certified_fraction_tendsto"
      }
     ]
    },
@@ -30083,7 +30083,7 @@
       "name": "FRC.Reductio.cantor",
       "tier": 0,
       "ok": true,
-      "page": "lean/Reductio.html#FRC.Reductio.cantor"
+      "page": "lean/ml/Reductio.html#FRC.Reductio.cantor"
      },
      {
       "lib": "FrcLedger",
@@ -30091,7 +30091,7 @@
       "name": "FRC.Reductio.cantor_finite",
       "tier": 1,
       "ok": true,
-      "page": "lean/Reductio.html#FRC.Reductio.cantor_finite"
+      "page": "lean/ml/Reductio.html#FRC.Reductio.cantor_finite"
      },
      {
       "lib": "FrcCore",
@@ -30222,7 +30222,7 @@
       "name": "FRC.Reductio.decideAllSubsets",
       "tier": 2,
       "ok": true,
-      "page": "lean/Reductio.html#FRC.Reductio.decideAllSubsets"
+      "page": "lean/ml/Reductio.html#FRC.Reductio.decideAllSubsets"
      },
      {
       "lib": "FrcLedger",
@@ -30230,7 +30230,7 @@
       "name": "FRC.Reductio.nat_embeds",
       "tier": 2,
       "ok": true,
-      "page": "lean/Reductio.html#FRC.Reductio.nat_embeds"
+      "page": "lean/ml/Reductio.html#FRC.Reductio.nat_embeds"
      }
     ]
    },
@@ -30310,7 +30310,7 @@
       "name": "FRC.Reductio.finite_choice",
       "tier": 2,
       "ok": true,
-      "page": "lean/Reductio.html#FRC.Reductio.finite_choice"
+      "page": "lean/ml/Reductio.html#FRC.Reductio.finite_choice"
      },
      {
       "lib": "FrcCore",
@@ -30359,7 +30359,7 @@
       "name": "FRC.Reductio.periodic_choice",
       "tier": 2,
       "ok": true,
-      "page": "lean/Reductio.html#FRC.Reductio.periodic_choice"
+      "page": "lean/ml/Reductio.html#FRC.Reductio.periodic_choice"
      },
      {
       "lib": "FrcCore",
@@ -30400,7 +30400,7 @@
       "name": "FRC.Reductio.equivariant_section_iff",
       "tier": 2,
       "ok": true,
-      "page": "lean/Reductio.html#FRC.Reductio.equivariant_section_iff"
+      "page": "lean/ml/Reductio.html#FRC.Reductio.equivariant_section_iff"
      }
     ]
    },
@@ -30433,7 +30433,7 @@
       "name": "FRC.Reductio.obstruction_five",
       "tier": 2,
       "ok": true,
-      "page": "lean/Reductio.html#FRC.Reductio.obstruction_five"
+      "page": "lean/ml/Reductio.html#FRC.Reductio.obstruction_five"
      },
      {
       "lib": "FrcCore",
@@ -30562,7 +30562,7 @@
       "name": "FRC.Reductio.no_doubling",
       "tier": 2,
       "ok": true,
-      "page": "lean/Reductio.html#FRC.Reductio.no_doubling"
+      "page": "lean/ml/Reductio.html#FRC.Reductio.no_doubling"
      },
      {
       "lib": "FrcLedger",
@@ -30570,7 +30570,7 @@
       "name": "FRC.Reductio.ultrafilter_principal",
       "tier": 2,
       "ok": true,
-      "page": "lean/Reductio.html#FRC.Reductio.ultrafilter_principal"
+      "page": "lean/ml/Reductio.html#FRC.Reductio.ultrafilter_principal"
      }
     ]
    },
@@ -30953,7 +30953,7 @@
       "name": "FRC.Fourier.shell_relations",
       "tier": 2,
       "ok": true,
-      "page": "lean/Fourier.html#FRC.Fourier.shell_relations"
+      "page": "lean/ml/Fourier.html#FRC.Fourier.shell_relations"
      },
      {
       "lib": "FrcCore",
@@ -31045,7 +31045,7 @@
       "name": "FRC.Fourier.shell_relations",
       "tier": 2,
       "ok": true,
-      "page": "lean/Fourier.html#FRC.Fourier.shell_relations"
+      "page": "lean/ml/Fourier.html#FRC.Fourier.shell_relations"
      },
      {
       "lib": "FrcCore",
@@ -31137,7 +31137,7 @@
       "name": "FRC.Fourier.shell_proj",
       "tier": 2,
       "ok": true,
-      "page": "lean/Fourier.html#FRC.Fourier.shell_proj"
+      "page": "lean/ml/Fourier.html#FRC.Fourier.shell_proj"
      },
      {
       "lib": "FrcLedger",
@@ -31145,7 +31145,7 @@
       "name": "FRC.Fourier.proj_mul_proj",
       "tier": 2,
       "ok": true,
-      "page": "lean/Fourier.html#FRC.Fourier.proj_mul_proj"
+      "page": "lean/ml/Fourier.html#FRC.Fourier.proj_mul_proj"
      },
      {
       "lib": "FrcLedger",
@@ -31153,7 +31153,7 @@
       "name": "FRC.Fourier.sum_proj",
       "tier": 2,
       "ok": true,
-      "page": "lean/Fourier.html#FRC.Fourier.sum_proj"
+      "page": "lean/ml/Fourier.html#FRC.Fourier.sum_proj"
      }
     ]
    },
@@ -31186,7 +31186,7 @@
       "name": "FRC.Fourier.shell_frft_add",
       "tier": 2,
       "ok": true,
-      "page": "lean/Fourier.html#FRC.Fourier.shell_frft_add"
+      "page": "lean/ml/Fourier.html#FRC.Fourier.shell_frft_add"
      },
      {
       "lib": "FrcLedger",
@@ -31194,7 +31194,7 @@
       "name": "FRC.Fourier.shell_frft_cardinal",
       "tier": 2,
       "ok": true,
-      "page": "lean/Fourier.html#FRC.Fourier.shell_frft_cardinal"
+      "page": "lean/ml/Fourier.html#FRC.Fourier.shell_frft_cardinal"
      },
      {
       "lib": "FrcLedger",
@@ -31202,7 +31202,7 @@
       "name": "FRC.Fourier.shell_frft_values",
       "tier": 2,
       "ok": true,
-      "page": "lean/Fourier.html#FRC.Fourier.shell_frft_values"
+      "page": "lean/ml/Fourier.html#FRC.Fourier.shell_frft_values"
      }
     ]
    },
@@ -31237,7 +31237,7 @@
       "name": "FRC.Fourier.shell_frft_injective",
       "tier": 2,
       "ok": true,
-      "page": "lean/Fourier.html#FRC.Fourier.shell_frft_injective"
+      "page": "lean/ml/Fourier.html#FRC.Fourier.shell_frft_injective"
      }
     ]
    },
@@ -31270,7 +31270,7 @@
       "name": "FRC.Fourier.shell_odd_proj_ne_zero",
       "tier": 2,
       "ok": true,
-      "page": "lean/Fourier.html#FRC.Fourier.shell_odd_proj_ne_zero"
+      "page": "lean/ml/Fourier.html#FRC.Fourier.shell_odd_proj_ne_zero"
      },
      {
       "lib": "FrcLedger",
@@ -31278,7 +31278,7 @@
       "name": "FRC.Fourier.shell_even_proj_ne_zero",
       "tier": 2,
       "ok": true,
-      "page": "lean/Fourier.html#FRC.Fourier.shell_even_proj_ne_zero"
+      "page": "lean/ml/Fourier.html#FRC.Fourier.shell_even_proj_ne_zero"
      },
      {
       "lib": "FrcLedger",
@@ -31286,7 +31286,7 @@
       "name": "FRC.Fourier.shell_multiplicity_sums",
       "tier": 2,
       "ok": true,
-      "page": "lean/Fourier.html#FRC.Fourier.shell_multiplicity_sums"
+      "page": "lean/ml/Fourier.html#FRC.Fourier.shell_multiplicity_sums"
      }
     ]
    },
@@ -31343,7 +31343,7 @@
       "name": "FRC.Fourier.gauss_mul_gauss_inv",
       "tier": 2,
       "ok": true,
-      "page": "lean/Fourier.html#FRC.Fourier.gauss_mul_gauss_inv"
+      "page": "lean/ml/Fourier.html#FRC.Fourier.gauss_mul_gauss_inv"
      },
      {
       "lib": "FrcLedger",
@@ -31351,7 +31351,7 @@
       "name": "FRC.Fourier.gauss_inv_of_sign",
       "tier": 2,
       "ok": true,
-      "page": "lean/Fourier.html#FRC.Fourier.gauss_inv_of_sign"
+      "page": "lean/ml/Fourier.html#FRC.Fourier.gauss_inv_of_sign"
      },
      {
       "lib": "FrcLedger",
@@ -31359,7 +31359,7 @@
       "name": "FRC.Fourier.shell_multiplicity_tuple",
       "tier": 2,
       "ok": true,
-      "page": "lean/Fourier.html#FRC.Fourier.shell_multiplicity_tuple"
+      "page": "lean/ml/Fourier.html#FRC.Fourier.shell_multiplicity_tuple"
      }
     ]
    },
@@ -31394,7 +31394,7 @@
       "name": "FRC.Fourier.shell_frftLift",
       "tier": 2,
       "ok": true,
-      "page": "lean/Fourier.html#FRC.Fourier.shell_frftLift"
+      "page": "lean/ml/Fourier.html#FRC.Fourier.shell_frftLift"
      }
     ]
    },
@@ -31427,7 +31427,7 @@
       "name": "FRC.Fourier.shell_conj",
       "tier": 2,
       "ok": true,
-      "page": "lean/Fourier.html#FRC.Fourier.shell_conj"
+      "page": "lean/ml/Fourier.html#FRC.Fourier.shell_conj"
      }
     ]
    },
@@ -31537,7 +31537,7 @@
       "name": "FRC.Fourier.shell_frft_injective",
       "tier": 2,
       "ok": true,
-      "page": "lean/Fourier.html#FRC.Fourier.shell_frft_injective"
+      "page": "lean/ml/Fourier.html#FRC.Fourier.shell_frft_injective"
      },
      {
       "lib": "FrcLedger",
@@ -31545,7 +31545,7 @@
       "name": "FRC.Fourier.shell_frft_add_two_kappa",
       "tier": 2,
       "ok": true,
-      "page": "lean/Fourier.html#FRC.Fourier.shell_frft_add_two_kappa"
+      "page": "lean/ml/Fourier.html#FRC.Fourier.shell_frft_add_two_kappa"
      },
      {
       "lib": "FrcLedger",
@@ -31553,7 +31553,7 @@
       "name": "FRC.Fourier.mul_J_apply",
       "tier": 2,
       "ok": true,
-      "page": "lean/Fourier.html#FRC.Fourier.mul_J_apply"
+      "page": "lean/ml/Fourier.html#FRC.Fourier.mul_J_apply"
      }
     ]
    },
@@ -31755,7 +31755,7 @@
       "name": "FRC.Fourier.circle",
       "tier": 2,
       "ok": true,
-      "page": "lean/Fourier.html#FRC.Fourier.circle"
+      "page": "lean/ml/Fourier.html#FRC.Fourier.circle"
      },
      {
       "lib": "FrcLedger",
@@ -31763,7 +31763,7 @@
       "name": "FRC.Fourier.rot_mul",
       "tier": 2,
       "ok": true,
-      "page": "lean/Fourier.html#FRC.Fourier.rot_mul"
+      "page": "lean/ml/Fourier.html#FRC.Fourier.rot_mul"
      },
      {
       "lib": "FrcLedger",
@@ -31771,7 +31771,7 @@
       "name": "FRC.Fourier.unitsEquivCircle",
       "tier": 2,
       "ok": true,
-      "page": "lean/Fourier.html#FRC.Fourier.unitsEquivCircle"
+      "page": "lean/ml/Fourier.html#FRC.Fourier.unitsEquivCircle"
      },
      {
       "lib": "FrcLedger",
@@ -31779,7 +31779,7 @@
       "name": "FRC.Fourier.card_circle",
       "tier": 2,
       "ok": true,
-      "page": "lean/Fourier.html#FRC.Fourier.card_circle"
+      "page": "lean/ml/Fourier.html#FRC.Fourier.card_circle"
      }
     ]
    },
@@ -31812,7 +31812,7 @@
       "name": "FRC.Fourier.rot_cardinal",
       "tier": 2,
       "ok": true,
-      "page": "lean/Fourier.html#FRC.Fourier.rot_cardinal"
+      "page": "lean/ml/Fourier.html#FRC.Fourier.rot_cardinal"
      }
     ]
    },
@@ -31866,7 +31866,7 @@
       "name": "FRC.Fourier.shell_spectral_obstruction",
       "tier": 2,
       "ok": true,
-      "page": "lean/Fourier.html#FRC.Fourier.shell_spectral_obstruction"
+      "page": "lean/ml/Fourier.html#FRC.Fourier.shell_spectral_obstruction"
      }
     ]
    },
@@ -31899,7 +31899,7 @@
       "name": "FRC.Fourier.frft_mul_proj_one",
       "tier": 2,
       "ok": true,
-      "page": "lean/Fourier.html#FRC.Fourier.frft_mul_proj_one"
+      "page": "lean/ml/Fourier.html#FRC.Fourier.frft_mul_proj_one"
      },
      {
       "lib": "FrcLedger",
@@ -31907,7 +31907,7 @@
       "name": "FRC.Fourier.rot_eigenline",
       "tier": 2,
       "ok": true,
-      "page": "lean/Fourier.html#FRC.Fourier.rot_eigenline"
+      "page": "lean/ml/Fourier.html#FRC.Fourier.rot_eigenline"
      }
     ]
    },
@@ -31940,7 +31940,7 @@
       "name": "FRC.Fourier.shell_heisenberg",
       "tier": 2,
       "ok": true,
-      "page": "lean/Fourier.html#FRC.Fourier.shell_heisenberg"
+      "page": "lean/ml/Fourier.html#FRC.Fourier.shell_heisenberg"
      }
     ]
    },
@@ -32250,7 +32250,7 @@
       "name": "FRC.Dirac.Ext.field",
       "tier": 2,
       "ok": true,
-      "page": "lean/Dirac.html#FRC.Dirac.Ext.field"
+      "page": "lean/ml/Dirac.html#FRC.Dirac.Ext.field"
      },
      {
       "lib": "FrcLedger",
@@ -32258,7 +32258,7 @@
       "name": "FRC.Dirac.Ext.norm_mul",
       "tier": 1,
       "ok": true,
-      "page": "lean/Dirac.html#FRC.Dirac.Ext.norm_mul"
+      "page": "lean/ml/Dirac.html#FRC.Dirac.Ext.norm_mul"
      },
      {
       "lib": "FrcLedger",
@@ -32266,7 +32266,7 @@
       "name": "FRC.Dirac.Ext.exists_boost_eq",
       "tier": 2,
       "ok": true,
-      "page": "lean/Dirac.html#FRC.Dirac.Ext.exists_boost_eq"
+      "page": "lean/ml/Dirac.html#FRC.Dirac.Ext.exists_boost_eq"
      },
      {
       "lib": "FrcCore",
@@ -32340,7 +32340,7 @@
       "name": "FRC.Dirac.carrier_constants",
       "tier": 2,
       "ok": true,
-      "page": "lean/Dirac.html#FRC.Dirac.carrier_constants"
+      "page": "lean/ml/Dirac.html#FRC.Dirac.carrier_constants"
      },
      {
       "lib": "FrcCore",
@@ -32429,7 +32429,7 @@
       "name": "FRC.Dirac.class_datum",
       "tier": 2,
       "ok": true,
-      "page": "lean/Dirac.html#FRC.Dirac.class_datum"
+      "page": "lean/ml/Dirac.html#FRC.Dirac.class_datum"
      },
      {
       "lib": "FrcLedger",
@@ -32437,7 +32437,7 @@
       "name": "FRC.Dirac.form_class",
       "tier": 1,
       "ok": true,
-      "page": "lean/Dirac.html#FRC.Dirac.form_class"
+      "page": "lean/ml/Dirac.html#FRC.Dirac.form_class"
      }
     ]
    },
@@ -32472,7 +32472,7 @@
       "name": "FRC.Dirac.drive_nonsquare",
       "tier": 2,
       "ok": true,
-      "page": "lean/Dirac.html#FRC.Dirac.drive_nonsquare"
+      "page": "lean/ml/Dirac.html#FRC.Dirac.drive_nonsquare"
      },
      {
       "lib": "FrcLedger",
@@ -32480,7 +32480,7 @@
       "name": "FRC.Dirac.named_residues",
       "tier": 2,
       "ok": true,
-      "page": "lean/Dirac.html#FRC.Dirac.named_residues"
+      "page": "lean/ml/Dirac.html#FRC.Dirac.named_residues"
      },
      {
       "lib": "FrcLedger",
@@ -32488,7 +32488,7 @@
       "name": "FRC.Dirac.shell13",
       "tier": 2,
       "ok": true,
-      "page": "lean/Dirac.html#FRC.Dirac.shell13"
+      "page": "lean/ml/Dirac.html#FRC.Dirac.shell13"
      },
      {
       "lib": "FrcLedger",
@@ -32496,7 +32496,7 @@
       "name": "FRC.Dirac.shell17",
       "tier": 2,
       "ok": true,
-      "page": "lean/Dirac.html#FRC.Dirac.shell17"
+      "page": "lean/ml/Dirac.html#FRC.Dirac.shell17"
      },
      {
       "lib": "FrcCore",
@@ -32572,7 +32572,7 @@
       "name": "FRC.Dirac.nu_factorisation",
       "tier": 2,
       "ok": true,
-      "page": "lean/Dirac.html#FRC.Dirac.nu_factorisation"
+      "page": "lean/ml/Dirac.html#FRC.Dirac.nu_factorisation"
      },
      {
       "lib": "FrcLedger",
@@ -32580,7 +32580,7 @@
       "name": "FRC.Dirac.two_g_class",
       "tier": 2,
       "ok": true,
-      "page": "lean/Dirac.html#FRC.Dirac.two_g_class"
+      "page": "lean/ml/Dirac.html#FRC.Dirac.two_g_class"
      },
      {
       "lib": "FrcLedger",
@@ -32588,7 +32588,7 @@
       "name": "FRC.Dirac.named_residues",
       "tier": 2,
       "ok": true,
-      "page": "lean/Dirac.html#FRC.Dirac.named_residues"
+      "page": "lean/ml/Dirac.html#FRC.Dirac.named_residues"
      },
      {
       "lib": "FrcLedger",
@@ -32596,7 +32596,7 @@
       "name": "FRC.Dirac.shell13",
       "tier": 2,
       "ok": true,
-      "page": "lean/Dirac.html#FRC.Dirac.shell13"
+      "page": "lean/ml/Dirac.html#FRC.Dirac.shell13"
      },
      {
       "lib": "FrcLedger",
@@ -32604,7 +32604,7 @@
       "name": "FRC.Dirac.carrier_constants",
       "tier": 2,
       "ok": true,
-      "page": "lean/Dirac.html#FRC.Dirac.carrier_constants"
+      "page": "lean/ml/Dirac.html#FRC.Dirac.carrier_constants"
      },
      {
       "lib": "FrcCore",
@@ -32655,7 +32655,7 @@
       "name": "FRC.Dirac.parity_iff",
       "tier": 2,
       "ok": true,
-      "page": "lean/Dirac.html#FRC.Dirac.parity_iff"
+      "page": "lean/ml/Dirac.html#FRC.Dirac.parity_iff"
      },
      {
       "lib": "FrcCore",
@@ -32699,7 +32699,7 @@
       "name": "FRC.Dirac.norm_growth",
       "tier": 1,
       "ok": true,
-      "page": "lean/Dirac.html#FRC.Dirac.norm_growth"
+      "page": "lean/ml/Dirac.html#FRC.Dirac.norm_growth"
      },
      {
       "lib": "FrcCore",
@@ -32751,7 +32751,7 @@
       "name": "FRC.Dirac.ext_square",
       "tier": 2,
       "ok": true,
-      "page": "lean/Dirac.html#FRC.Dirac.ext_square"
+      "page": "lean/ml/Dirac.html#FRC.Dirac.ext_square"
      },
      {
       "lib": "FrcCore",
@@ -32837,7 +32837,7 @@
       "name": "FRC.Dirac.herm_star",
       "tier": 2,
       "ok": true,
-      "page": "lean/Dirac.html#FRC.Dirac.herm_star"
+      "page": "lean/ml/Dirac.html#FRC.Dirac.herm_star"
      },
      {
       "lib": "FrcLedger",
@@ -32845,7 +32845,7 @@
       "name": "FRC.Dirac.herm_nondegenerate",
       "tier": 2,
       "ok": true,
-      "page": "lean/Dirac.html#FRC.Dirac.herm_nondegenerate"
+      "page": "lean/ml/Dirac.html#FRC.Dirac.herm_nondegenerate"
      },
      {
       "lib": "FrcLedger",
@@ -32853,7 +32853,7 @@
       "name": "FRC.Dirac.herm_translate",
       "tier": 2,
       "ok": true,
-      "page": "lean/Dirac.html#FRC.Dirac.herm_translate"
+      "page": "lean/ml/Dirac.html#FRC.Dirac.herm_translate"
      },
      {
       "lib": "FrcLedger",
@@ -32861,7 +32861,7 @@
       "name": "FRC.Dirac.herm_translate_adjoint",
       "tier": 2,
       "ok": true,
-      "page": "lean/Dirac.html#FRC.Dirac.herm_translate_adjoint"
+      "page": "lean/ml/Dirac.html#FRC.Dirac.herm_translate_adjoint"
      },
      {
       "lib": "FrcLedger",
@@ -32869,7 +32869,7 @@
       "name": "FRC.Dirac.herm_laplacian",
       "tier": 2,
       "ok": true,
-      "page": "lean/Dirac.html#FRC.Dirac.herm_laplacian"
+      "page": "lean/ml/Dirac.html#FRC.Dirac.herm_laplacian"
      },
      {
       "lib": "FrcLedger",
@@ -32877,7 +32877,7 @@
       "name": "FRC.Dirac.herm_hamiltonian",
       "tier": 2,
       "ok": true,
-      "page": "lean/Dirac.html#FRC.Dirac.herm_hamiltonian"
+      "page": "lean/ml/Dirac.html#FRC.Dirac.herm_hamiltonian"
      }
     ]
    },
@@ -32929,7 +32929,7 @@
       "name": "FRC.Dirac.cayley_unitary",
       "tier": 2,
       "ok": true,
-      "page": "lean/Dirac.html#FRC.Dirac.cayley_unitary"
+      "page": "lean/ml/Dirac.html#FRC.Dirac.cayley_unitary"
      },
      {
       "lib": "FrcLedger",
@@ -32937,7 +32937,7 @@
       "name": "FRC.Dirac.cayley_periodic",
       "tier": 2,
       "ok": true,
-      "page": "lean/Dirac.html#FRC.Dirac.cayley_periodic"
+      "page": "lean/ml/Dirac.html#FRC.Dirac.cayley_periodic"
      }
     ]
    },
@@ -32970,7 +32970,7 @@
       "name": "FRC.Dirac.Ext.cayley_norm",
       "tier": 2,
       "ok": true,
-      "page": "lean/Dirac.html#FRC.Dirac.Ext.cayley_norm"
+      "page": "lean/ml/Dirac.html#FRC.Dirac.Ext.cayley_norm"
      },
      {
       "lib": "FrcLedger",
@@ -32978,7 +32978,7 @@
       "name": "FRC.Dirac.Ext.cayley_injective",
       "tier": 2,
       "ok": true,
-      "page": "lean/Dirac.html#FRC.Dirac.Ext.cayley_injective"
+      "page": "lean/ml/Dirac.html#FRC.Dirac.Ext.cayley_injective"
      },
      {
       "lib": "FrcLedger",
@@ -32986,7 +32986,7 @@
       "name": "FRC.Dirac.Ext.card_normOneGroup",
       "tier": 2,
       "ok": true,
-      "page": "lean/Dirac.html#FRC.Dirac.Ext.card_normOneGroup"
+      "page": "lean/ml/Dirac.html#FRC.Dirac.Ext.card_normOneGroup"
      },
      {
       "lib": "FrcLedger",
@@ -32994,7 +32994,7 @@
       "name": "FRC.Dirac.Ext.cayley_gauge",
       "tier": 2,
       "ok": true,
-      "page": "lean/Dirac.html#FRC.Dirac.Ext.cayley_gauge"
+      "page": "lean/ml/Dirac.html#FRC.Dirac.Ext.cayley_gauge"
      },
      {
       "lib": "FrcCore",
@@ -33035,7 +33035,7 @@
       "name": "FRC.Dirac.kinetic_nilpotent",
       "tier": 2,
       "ok": true,
-      "page": "lean/Dirac.html#FRC.Dirac.kinetic_nilpotent"
+      "page": "lean/ml/Dirac.html#FRC.Dirac.kinetic_nilpotent"
      },
      {
       "lib": "FrcLedger",
@@ -33043,7 +33043,7 @@
       "name": "FRC.Dirac.cayley_period",
       "tier": 2,
       "ok": true,
-      "page": "lean/Dirac.html#FRC.Dirac.cayley_period"
+      "page": "lean/ml/Dirac.html#FRC.Dirac.cayley_period"
      },
      {
       "lib": "FrcCore",
@@ -33103,7 +33103,7 @@
       "name": "FRC.Dirac.clifford",
       "tier": 2,
       "ok": true,
-      "page": "lean/Dirac.html#FRC.Dirac.clifford"
+      "page": "lean/ml/Dirac.html#FRC.Dirac.clifford"
      },
      {
       "lib": "FrcLedger",
@@ -33111,7 +33111,7 @@
       "name": "FRC.Dirac.pauli",
       "tier": 2,
       "ok": true,
-      "page": "lean/Dirac.html#FRC.Dirac.pauli"
+      "page": "lean/ml/Dirac.html#FRC.Dirac.pauli"
      },
      {
       "lib": "FrcCore",
@@ -33190,7 +33190,7 @@
       "name": "FRC.Dirac.boost_entries",
       "tier": 2,
       "ok": true,
-      "page": "lean/Dirac.html#FRC.Dirac.boost_entries"
+      "page": "lean/ml/Dirac.html#FRC.Dirac.boost_entries"
      },
      {
       "lib": "FrcLedger",
@@ -33198,7 +33198,7 @@
       "name": "FRC.Dirac.Ext.boost_mem",
       "tier": 2,
       "ok": true,
-      "page": "lean/Dirac.html#FRC.Dirac.Ext.boost_mem"
+      "page": "lean/ml/Dirac.html#FRC.Dirac.Ext.boost_mem"
      },
      {
       "lib": "FrcLedger",
@@ -33206,7 +33206,7 @@
       "name": "FRC.Dirac.Ext.boost_eq_one_iff",
       "tier": 1,
       "ok": true,
-      "page": "lean/Dirac.html#FRC.Dirac.Ext.boost_eq_one_iff"
+      "page": "lean/ml/Dirac.html#FRC.Dirac.Ext.boost_eq_one_iff"
      },
      {
       "lib": "FrcLedger",
@@ -33214,7 +33214,7 @@
       "name": "FRC.Dirac.Ext.boost_range",
       "tier": 2,
       "ok": true,
-      "page": "lean/Dirac.html#FRC.Dirac.Ext.boost_range"
+      "page": "lean/ml/Dirac.html#FRC.Dirac.Ext.boost_range"
      },
      {
       "lib": "FrcLedger",
@@ -33222,7 +33222,7 @@
       "name": "FRC.Dirac.Ext.card_normOneGroup",
       "tier": 2,
       "ok": true,
-      "page": "lean/Dirac.html#FRC.Dirac.Ext.card_normOneGroup"
+      "page": "lean/ml/Dirac.html#FRC.Dirac.Ext.card_normOneGroup"
      },
      {
       "lib": "FrcLedger",
@@ -33230,7 +33230,7 @@
       "name": "FRC.Dirac.Ext.normOne_cyclic",
       "tier": 2,
       "ok": true,
-      "page": "lean/Dirac.html#FRC.Dirac.Ext.normOne_cyclic"
+      "page": "lean/ml/Dirac.html#FRC.Dirac.Ext.normOne_cyclic"
      },
      {
       "lib": "FrcLedger",
@@ -33238,7 +33238,7 @@
       "name": "FRC.Dirac.Ext.order_three_iff",
       "tier": 2,
       "ok": true,
-      "page": "lean/Dirac.html#FRC.Dirac.Ext.order_three_iff"
+      "page": "lean/ml/Dirac.html#FRC.Dirac.Ext.order_three_iff"
      },
      {
       "lib": "FrcCore",
@@ -33289,7 +33289,7 @@
       "name": "FRC.Dirac.spin_conjugation",
       "tier": 2,
       "ok": true,
-      "page": "lean/Dirac.html#FRC.Dirac.spin_conjugation"
+      "page": "lean/ml/Dirac.html#FRC.Dirac.spin_conjugation"
      },
      {
       "lib": "FrcLedger",
@@ -33297,7 +33297,7 @@
       "name": "FRC.Dirac.spin_conjugation_AB",
       "tier": 2,
       "ok": true,
-      "page": "lean/Dirac.html#FRC.Dirac.spin_conjugation_AB"
+      "page": "lean/ml/Dirac.html#FRC.Dirac.spin_conjugation_AB"
      },
      {
       "lib": "FrcCore",
@@ -33338,7 +33338,7 @@
       "name": "FRC.Dirac.spin_conjugation",
       "tier": 2,
       "ok": true,
-      "page": "lean/Dirac.html#FRC.Dirac.spin_conjugation"
+      "page": "lean/ml/Dirac.html#FRC.Dirac.spin_conjugation"
      },
      {
       "lib": "FrcLedger",
@@ -33346,7 +33346,7 @@
       "name": "FRC.Dirac.boost_entries",
       "tier": 2,
       "ok": true,
-      "page": "lean/Dirac.html#FRC.Dirac.boost_entries"
+      "page": "lean/ml/Dirac.html#FRC.Dirac.boost_entries"
      },
      {
       "lib": "FrcCore",
@@ -33411,7 +33411,7 @@
       "name": "FRC.Dirac.spinor_twist",
       "tier": 2,
       "ok": true,
-      "page": "lean/Dirac.html#FRC.Dirac.spinor_twist"
+      "page": "lean/ml/Dirac.html#FRC.Dirac.spinor_twist"
      },
      {
       "lib": "FrcLedger",
@@ -33419,7 +33419,7 @@
       "name": "FRC.Dirac.gamma_dagger",
       "tier": 2,
       "ok": true,
-      "page": "lean/Dirac.html#FRC.Dirac.gamma_dagger"
+      "page": "lean/ml/Dirac.html#FRC.Dirac.gamma_dagger"
      },
      {
       "lib": "FrcLedger",
@@ -33427,7 +33427,7 @@
       "name": "FRC.Dirac.twist_adjoint",
       "tier": 2,
       "ok": true,
-      "page": "lean/Dirac.html#FRC.Dirac.twist_adjoint"
+      "page": "lean/ml/Dirac.html#FRC.Dirac.twist_adjoint"
      },
      {
       "lib": "FrcCore",
@@ -33468,7 +33468,7 @@
       "name": "FRC.Dirac.cayley_unitary",
       "tier": 2,
       "ok": true,
-      "page": "lean/Dirac.html#FRC.Dirac.cayley_unitary"
+      "page": "lean/ml/Dirac.html#FRC.Dirac.cayley_unitary"
      },
      {
       "lib": "FrcLedger",
@@ -33476,7 +33476,7 @@
       "name": "FRC.Dirac.translation_nilpotent",
       "tier": 2,
       "ok": true,
-      "page": "lean/Dirac.html#FRC.Dirac.translation_nilpotent"
+      "page": "lean/ml/Dirac.html#FRC.Dirac.translation_nilpotent"
      }
     ]
    },
@@ -33509,7 +33509,7 @@
       "name": "FRC.Dirac.lift_adjoint",
       "tier": 2,
       "ok": true,
-      "page": "lean/Dirac.html#FRC.Dirac.lift_adjoint"
+      "page": "lean/ml/Dirac.html#FRC.Dirac.lift_adjoint"
      },
      {
       "lib": "FrcLedger",
@@ -33517,7 +33517,7 @@
       "name": "FRC.Dirac.lift_transport",
       "tier": 2,
       "ok": true,
-      "page": "lean/Dirac.html#FRC.Dirac.lift_transport"
+      "page": "lean/ml/Dirac.html#FRC.Dirac.lift_transport"
      }
     ]
    },
@@ -33550,7 +33550,7 @@
       "name": "FRC.Dirac.shell13",
       "tier": 2,
       "ok": true,
-      "page": "lean/Dirac.html#FRC.Dirac.shell13"
+      "page": "lean/ml/Dirac.html#FRC.Dirac.shell13"
      },
      {
       "lib": "FrcLedger",
@@ -33558,7 +33558,7 @@
       "name": "FRC.Dirac.shell17",
       "tier": 2,
       "ok": true,
-      "page": "lean/Dirac.html#FRC.Dirac.shell17"
+      "page": "lean/ml/Dirac.html#FRC.Dirac.shell17"
      },
      {
       "lib": "FrcCore",
@@ -33661,7 +33661,7 @@
       "name": "FRC.Dirac.loss_factor_one",
       "tier": 2,
       "ok": true,
-      "page": "lean/Dirac.html#FRC.Dirac.loss_factor_one"
+      "page": "lean/ml/Dirac.html#FRC.Dirac.loss_factor_one"
      },
      {
       "lib": "FrcLedger",
@@ -33669,7 +33669,7 @@
       "name": "FRC.Dirac.power_map_count",
       "tier": 2,
       "ok": true,
-      "page": "lean/Dirac.html#FRC.Dirac.power_map_count"
+      "page": "lean/ml/Dirac.html#FRC.Dirac.power_map_count"
      },
      {
       "lib": "FrcCore",
@@ -33710,7 +33710,7 @@
       "name": "FRC.Dirac.unit_loss_factor_one",
       "tier": 1,
       "ok": true,
-      "page": "lean/Dirac.html#FRC.Dirac.unit_loss_factor_one"
+      "page": "lean/ml/Dirac.html#FRC.Dirac.unit_loss_factor_one"
      }
     ]
    },
@@ -33743,7 +33743,7 @@
       "name": "FRC.Dirac.cayley_period",
       "tier": 2,
       "ok": true,
-      "page": "lean/Dirac.html#FRC.Dirac.cayley_period"
+      "page": "lean/ml/Dirac.html#FRC.Dirac.cayley_period"
      },
      {
       "lib": "FrcLedger",
@@ -33751,7 +33751,7 @@
       "name": "FRC.Dirac.kinetic_nilpotent",
       "tier": 2,
       "ok": true,
-      "page": "lean/Dirac.html#FRC.Dirac.kinetic_nilpotent"
+      "page": "lean/ml/Dirac.html#FRC.Dirac.kinetic_nilpotent"
      },
      {
       "lib": "FrcLedger",
@@ -33759,7 +33759,7 @@
       "name": "FRC.Dirac.Ext.torus_period",
       "tier": 2,
       "ok": true,
-      "page": "lean/Dirac.html#FRC.Dirac.Ext.torus_period"
+      "page": "lean/ml/Dirac.html#FRC.Dirac.Ext.torus_period"
      },
      {
       "lib": "FrcCore",
@@ -33827,7 +33827,7 @@
       "name": "FRC.Dirac.latitude_identities",
       "tier": 2,
       "ok": true,
-      "page": "lean/Dirac.html#FRC.Dirac.latitude_identities"
+      "page": "lean/ml/Dirac.html#FRC.Dirac.latitude_identities"
      },
      {
       "lib": "FrcCore",
@@ -33892,7 +33892,7 @@
       "name": "FRC.Dirac.drive_chi",
       "tier": 2,
       "ok": true,
-      "page": "lean/Dirac.html#FRC.Dirac.drive_chi"
+      "page": "lean/ml/Dirac.html#FRC.Dirac.drive_chi"
      },
      {
       "lib": "FrcLedger",
@@ -33900,7 +33900,7 @@
       "name": "FRC.Dirac.drive_sum",
       "tier": 2,
       "ok": true,
-      "page": "lean/Dirac.html#FRC.Dirac.drive_sum"
+      "page": "lean/ml/Dirac.html#FRC.Dirac.drive_sum"
      },
      {
       "lib": "FrcLedger",
@@ -33908,7 +33908,7 @@
       "name": "FRC.Dirac.chi_isotropy",
       "tier": 2,
       "ok": true,
-      "page": "lean/Dirac.html#FRC.Dirac.chi_isotropy"
+      "page": "lean/ml/Dirac.html#FRC.Dirac.chi_isotropy"
      },
      {
       "lib": "FrcLedger",
@@ -33916,7 +33916,7 @@
       "name": "FRC.Dirac.exceptional_eigen",
       "tier": 2,
       "ok": true,
-      "page": "lean/Dirac.html#FRC.Dirac.exceptional_eigen"
+      "page": "lean/ml/Dirac.html#FRC.Dirac.exceptional_eigen"
      },
      {
       "lib": "FrcCore",
@@ -33973,7 +33973,7 @@
       "name": "FRC.Dirac.sector_separation",
       "tier": 2,
       "ok": true,
-      "page": "lean/Dirac.html#FRC.Dirac.sector_separation"
+      "page": "lean/ml/Dirac.html#FRC.Dirac.sector_separation"
      },
      {
       "lib": "FrcLedger",
@@ -33981,7 +33981,7 @@
       "name": "FRC.Dirac.dispersion",
       "tier": 2,
       "ok": true,
-      "page": "lean/Dirac.html#FRC.Dirac.dispersion"
+      "page": "lean/ml/Dirac.html#FRC.Dirac.dispersion"
      },
      {
       "lib": "FrcLedger",
@@ -33989,7 +33989,7 @@
       "name": "FRC.Dirac.exceptional_eigen",
       "tier": 2,
       "ok": true,
-      "page": "lean/Dirac.html#FRC.Dirac.exceptional_eigen"
+      "page": "lean/ml/Dirac.html#FRC.Dirac.exceptional_eigen"
      },
      {
       "lib": "FrcCore",
@@ -34287,7 +34287,7 @@
       "name": "FRC.Dimensions.U_mul",
       "tier": 2,
       "ok": true,
-      "page": "lean/Dimensions.html#FRC.Dimensions.U_mul"
+      "page": "lean/ml/Dimensions.html#FRC.Dimensions.U_mul"
      },
      {
       "lib": "FrcLedger",
@@ -34295,7 +34295,7 @@
       "name": "FRC.Dimensions.Uhom_injective",
       "tier": 2,
       "ok": true,
-      "page": "lean/Dimensions.html#FRC.Dimensions.Uhom_injective"
+      "page": "lean/ml/Dimensions.html#FRC.Dimensions.Uhom_injective"
      },
      {
       "lib": "FrcLedger",
@@ -34303,7 +34303,7 @@
       "name": "FRC.Dimensions.graded",
       "tier": 2,
       "ok": true,
-      "page": "lean/Dimensions.html#FRC.Dimensions.graded"
+      "page": "lean/ml/Dimensions.html#FRC.Dimensions.graded"
      },
      {
       "lib": "FrcCore",
@@ -34344,7 +34344,7 @@
       "name": "FRC.Dimensions.fibre_add",
       "tier": 2,
       "ok": true,
-      "page": "lean/Dimensions.html#FRC.Dimensions.fibre_add"
+      "page": "lean/ml/Dimensions.html#FRC.Dimensions.fibre_add"
      },
      {
       "lib": "FrcLedger",
@@ -34352,7 +34352,7 @@
       "name": "FRC.Dimensions.coeff_sum_single",
       "tier": 2,
       "ok": true,
-      "page": "lean/Dimensions.html#FRC.Dimensions.coeff_sum_single"
+      "page": "lean/ml/Dimensions.html#FRC.Dimensions.coeff_sum_single"
      },
      {
       "lib": "FrcLedger",
@@ -34360,7 +34360,7 @@
       "name": "FRC.Dimensions.monomial_units",
       "tier": 2,
       "ok": true,
-      "page": "lean/Dimensions.html#FRC.Dimensions.monomial_units"
+      "page": "lean/ml/Dimensions.html#FRC.Dimensions.monomial_units"
      },
      {
       "lib": "FrcLedger",
@@ -34368,7 +34368,7 @@
       "name": "FRC.Dimensions.single_mem_grade_iff",
       "tier": 2,
       "ok": true,
-      "page": "lean/Dimensions.html#FRC.Dimensions.single_mem_grade_iff"
+      "page": "lean/ml/Dimensions.html#FRC.Dimensions.single_mem_grade_iff"
      },
      {
       "lib": "FrcCore",
@@ -34428,7 +34428,7 @@
       "name": "FRC.Dimensions.dilation_character",
       "tier": 2,
       "ok": true,
-      "page": "lean/Dimensions.html#FRC.Dimensions.dilation_character"
+      "page": "lean/ml/Dimensions.html#FRC.Dimensions.dilation_character"
      },
      {
       "lib": "FrcLedger",
@@ -34436,7 +34436,7 @@
       "name": "FRC.Dimensions.invariant_iff",
       "tier": 2,
       "ok": true,
-      "page": "lean/Dimensions.html#FRC.Dimensions.invariant_iff"
+      "page": "lean/ml/Dimensions.html#FRC.Dimensions.invariant_iff"
      },
      {
       "lib": "FrcLedger",
@@ -34444,7 +34444,7 @@
       "name": "FRC.Dimensions.quarter_turn_law",
       "tier": 2,
       "ok": true,
-      "page": "lean/Dimensions.html#FRC.Dimensions.quarter_turn_law"
+      "page": "lean/ml/Dimensions.html#FRC.Dimensions.quarter_turn_law"
      },
      {
       "lib": "FrcLedger",
@@ -34452,7 +34452,7 @@
       "name": "FRC.Dimensions.sigma_twist",
       "tier": 2,
       "ok": true,
-      "page": "lean/Dimensions.html#FRC.Dimensions.sigma_twist"
+      "page": "lean/ml/Dimensions.html#FRC.Dimensions.sigma_twist"
      },
      {
       "lib": "FrcLedger",
@@ -34460,7 +34460,7 @@
       "name": "FRC.Dimensions.half_period_invariant_not_neutral",
       "tier": 2,
       "ok": true,
-      "page": "lean/Dimensions.html#FRC.Dimensions.half_period_invariant_not_neutral"
+      "page": "lean/ml/Dimensions.html#FRC.Dimensions.half_period_invariant_not_neutral"
      },
      {
       "lib": "FrcLedger",
@@ -34468,7 +34468,7 @@
       "name": "FRC.Dimensions.flag_moves",
       "tier": 2,
       "ok": true,
-      "page": "lean/Dimensions.html#FRC.Dimensions.flag_moves"
+      "page": "lean/ml/Dimensions.html#FRC.Dimensions.flag_moves"
      },
      {
       "lib": "FrcLedger",
@@ -34476,7 +34476,7 @@
       "name": "FRC.Dimensions.witnesses13",
       "tier": 1,
       "ok": true,
-      "page": "lean/Dimensions.html#FRC.Dimensions.witnesses13"
+      "page": "lean/ml/Dimensions.html#FRC.Dimensions.witnesses13"
      }
     ]
    },
@@ -34504,7 +34504,7 @@
       "name": "FRC.Dimensions.meridian_transport",
       "tier": 1,
       "ok": true,
-      "page": "lean/Dimensions.html#FRC.Dimensions.meridian_transport"
+      "page": "lean/ml/Dimensions.html#FRC.Dimensions.meridian_transport"
      },
      {
       "lib": "FrcCore",
@@ -34547,7 +34547,7 @@
       "name": "FRC.Dimensions.deltaS_involutive",
       "tier": 1,
       "ok": true,
-      "page": "lean/Dimensions.html#FRC.Dimensions.deltaS_involutive"
+      "page": "lean/ml/Dimensions.html#FRC.Dimensions.deltaS_involutive"
      },
      {
       "lib": "FrcLedger",
@@ -34555,7 +34555,7 @@
       "name": "FRC.Dimensions.four_domains",
       "tier": 1,
       "ok": true,
-      "page": "lean/Dimensions.html#FRC.Dimensions.four_domains"
+      "page": "lean/ml/Dimensions.html#FRC.Dimensions.four_domains"
      },
      {
       "lib": "FrcLedger",
@@ -34563,7 +34563,7 @@
       "name": "FRC.Dimensions.deltaC_involutive",
       "tier": 1,
       "ok": true,
-      "page": "lean/Dimensions.html#FRC.Dimensions.deltaC_involutive"
+      "page": "lean/ml/Dimensions.html#FRC.Dimensions.deltaC_involutive"
      },
      {
       "lib": "FrcLedger",
@@ -34571,7 +34571,7 @@
       "name": "FRC.Dimensions.deltaC_generators",
       "tier": 1,
       "ok": true,
-      "page": "lean/Dimensions.html#FRC.Dimensions.deltaC_generators"
+      "page": "lean/ml/Dimensions.html#FRC.Dimensions.deltaC_generators"
      },
      {
       "lib": "FrcCore",
@@ -34620,7 +34620,7 @@
       "name": "FRC.Dimensions.order_four_iff",
       "tier": 2,
       "ok": true,
-      "page": "lean/Dimensions.html#FRC.Dimensions.order_four_iff"
+      "page": "lean/ml/Dimensions.html#FRC.Dimensions.order_four_iff"
      },
      {
       "lib": "FrcLedger",
@@ -34628,7 +34628,7 @@
       "name": "FRC.Dimensions.unique_order_four_subgroup",
       "tier": 2,
       "ok": true,
-      "page": "lean/Dimensions.html#FRC.Dimensions.unique_order_four_subgroup"
+      "page": "lean/ml/Dimensions.html#FRC.Dimensions.unique_order_four_subgroup"
      },
      {
       "lib": "FrcLedger",
@@ -34636,7 +34636,7 @@
       "name": "FRC.Dimensions.no_flag_of_space",
       "tier": 2,
       "ok": true,
-      "page": "lean/Dimensions.html#FRC.Dimensions.no_flag_of_space"
+      "page": "lean/ml/Dimensions.html#FRC.Dimensions.no_flag_of_space"
      },
      {
       "lib": "FrcLedger",
@@ -34644,7 +34644,7 @@
       "name": "FRC.Dimensions.order_two_iff",
       "tier": 2,
       "ok": true,
-      "page": "lean/Dimensions.html#FRC.Dimensions.order_two_iff"
+      "page": "lean/ml/Dimensions.html#FRC.Dimensions.order_two_iff"
      },
      {
       "lib": "FrcLedger",
@@ -34652,7 +34652,7 @@
       "name": "FRC.Dimensions.meridian_transport",
       "tier": 1,
       "ok": true,
-      "page": "lean/Dimensions.html#FRC.Dimensions.meridian_transport"
+      "page": "lean/ml/Dimensions.html#FRC.Dimensions.meridian_transport"
      },
      {
       "lib": "FrcLedger",
@@ -34660,7 +34660,7 @@
       "name": "FRC.Dimensions.quarter_turn_law",
       "tier": 2,
       "ok": true,
-      "page": "lean/Dimensions.html#FRC.Dimensions.quarter_turn_law"
+      "page": "lean/ml/Dimensions.html#FRC.Dimensions.quarter_turn_law"
      },
      {
       "lib": "FrcCore",
@@ -34717,7 +34717,7 @@
       "name": "FRC.Dimensions.operator_four_cycle",
       "tier": 2,
       "ok": true,
-      "page": "lean/Dimensions.html#FRC.Dimensions.operator_four_cycle"
+      "page": "lean/ml/Dimensions.html#FRC.Dimensions.operator_four_cycle"
      },
      {
       "lib": "FrcLedger",
@@ -34725,7 +34725,7 @@
       "name": "FRC.Dimensions.record_injective",
       "tier": 2,
       "ok": true,
-      "page": "lean/Dimensions.html#FRC.Dimensions.record_injective"
+      "page": "lean/ml/Dimensions.html#FRC.Dimensions.record_injective"
      },
      {
       "lib": "FrcLedger",
@@ -34733,7 +34733,7 @@
       "name": "FRC.Dimensions.record_range",
       "tier": 2,
       "ok": true,
-      "page": "lean/Dimensions.html#FRC.Dimensions.record_range"
+      "page": "lean/ml/Dimensions.html#FRC.Dimensions.record_range"
      },
      {
       "lib": "FrcLedger",
@@ -34741,7 +34741,7 @@
       "name": "FRC.Dimensions.record_mem_parity_iff",
       "tier": 2,
       "ok": true,
-      "page": "lean/Dimensions.html#FRC.Dimensions.record_mem_parity_iff"
+      "page": "lean/ml/Dimensions.html#FRC.Dimensions.record_mem_parity_iff"
      },
      {
       "lib": "FrcLedger",
@@ -34749,7 +34749,7 @@
       "name": "FRC.Dimensions.crossing_order_four",
       "tier": 1,
       "ok": true,
-      "page": "lean/Dimensions.html#FRC.Dimensions.crossing_order_four"
+      "page": "lean/ml/Dimensions.html#FRC.Dimensions.crossing_order_four"
      },
      {
       "lib": "FrcCore",
@@ -34828,7 +34828,7 @@
       "name": "FRC.Dimensions.flagged_readings",
       "tier": 1,
       "ok": true,
-      "page": "lean/Dimensions.html#FRC.Dimensions.flagged_readings"
+      "page": "lean/ml/Dimensions.html#FRC.Dimensions.flagged_readings"
      },
      {
       "lib": "FrcLedger",
@@ -34836,7 +34836,7 @@
       "name": "FRC.Dimensions.flag_inaccessible",
       "tier": 2,
       "ok": true,
-      "page": "lean/Dimensions.html#FRC.Dimensions.flag_inaccessible"
+      "page": "lean/ml/Dimensions.html#FRC.Dimensions.flag_inaccessible"
      },
      {
       "lib": "FrcCore",
@@ -34925,7 +34925,7 @@
       "name": "FRC.Dimensions.action_identity",
       "tier": 2,
       "ok": true,
-      "page": "lean/Dimensions.html#FRC.Dimensions.action_identity"
+      "page": "lean/ml/Dimensions.html#FRC.Dimensions.action_identity"
      },
      {
       "lib": "FrcLedger",
@@ -34933,7 +34933,7 @@
       "name": "FRC.Dimensions.quartet_param",
       "tier": 2,
       "ok": true,
-      "page": "lean/Dimensions.html#FRC.Dimensions.quartet_param"
+      "page": "lean/ml/Dimensions.html#FRC.Dimensions.quartet_param"
      },
      {
       "lib": "FrcLedger",
@@ -34941,7 +34941,7 @@
       "name": "FRC.Dimensions.pairing_closure",
       "tier": 2,
       "ok": true,
-      "page": "lean/Dimensions.html#FRC.Dimensions.pairing_closure"
+      "page": "lean/ml/Dimensions.html#FRC.Dimensions.pairing_closure"
      },
      {
       "lib": "FrcLedger",
@@ -34949,7 +34949,7 @@
       "name": "FRC.Dimensions.normalisation",
       "tier": 2,
       "ok": true,
-      "page": "lean/Dimensions.html#FRC.Dimensions.normalisation"
+      "page": "lean/ml/Dimensions.html#FRC.Dimensions.normalisation"
      },
      {
       "lib": "FrcLedger",
@@ -34957,7 +34957,7 @@
       "name": "FRC.Dimensions.index_two",
       "tier": 2,
       "ok": true,
-      "page": "lean/Dimensions.html#FRC.Dimensions.index_two"
+      "page": "lean/ml/Dimensions.html#FRC.Dimensions.index_two"
      },
      {
       "lib": "FrcLedger",
@@ -34965,7 +34965,7 @@
       "name": "FRC.Dimensions.scale_from_constants",
       "tier": 2,
       "ok": true,
-      "page": "lean/Dimensions.html#FRC.Dimensions.scale_from_constants"
+      "page": "lean/ml/Dimensions.html#FRC.Dimensions.scale_from_constants"
      },
      {
       "lib": "FrcLedger",
@@ -34973,7 +34973,7 @@
       "name": "FRC.Dimensions.exponent_faces",
       "tier": 2,
       "ok": true,
-      "page": "lean/Dimensions.html#FRC.Dimensions.exponent_faces"
+      "page": "lean/ml/Dimensions.html#FRC.Dimensions.exponent_faces"
      }
     ]
    },
@@ -35006,7 +35006,7 @@
       "name": "FRC.Dimensions.cancellation",
       "tier": 2,
       "ok": true,
-      "page": "lean/Dimensions.html#FRC.Dimensions.cancellation"
+      "page": "lean/ml/Dimensions.html#FRC.Dimensions.cancellation"
      },
      {
       "lib": "FrcLedger",
@@ -35014,7 +35014,7 @@
       "name": "FRC.Dimensions.quartet_flags",
       "tier": 1,
       "ok": true,
-      "page": "lean/Dimensions.html#FRC.Dimensions.quartet_flags"
+      "page": "lean/ml/Dimensions.html#FRC.Dimensions.quartet_flags"
      }
     ]
    },
@@ -35047,7 +35047,7 @@
       "name": "FRC.Dimensions.G_unique",
       "tier": 2,
       "ok": true,
-      "page": "lean/Dimensions.html#FRC.Dimensions.G_unique"
+      "page": "lean/ml/Dimensions.html#FRC.Dimensions.G_unique"
      },
      {
       "lib": "FrcLedger",
@@ -35055,7 +35055,7 @@
       "name": "FRC.Dimensions.root_pair",
       "tier": 2,
       "ok": true,
-      "page": "lean/Dimensions.html#FRC.Dimensions.root_pair"
+      "page": "lean/ml/Dimensions.html#FRC.Dimensions.root_pair"
      },
      {
       "lib": "FrcLedger",
@@ -35063,7 +35063,7 @@
       "name": "FRC.Dimensions.linkage",
       "tier": 2,
       "ok": true,
-      "page": "lean/Dimensions.html#FRC.Dimensions.linkage"
+      "page": "lean/ml/Dimensions.html#FRC.Dimensions.linkage"
      },
      {
       "lib": "FrcLedger",
@@ -35071,7 +35071,7 @@
       "name": "FRC.Dimensions.residues_exist",
       "tier": 2,
       "ok": true,
-      "page": "lean/Dimensions.html#FRC.Dimensions.residues_exist"
+      "page": "lean/ml/Dimensions.html#FRC.Dimensions.residues_exist"
      },
      {
       "lib": "FrcLedger",
@@ -35079,7 +35079,7 @@
       "name": "FRC.Dimensions.h_form",
       "tier": 1,
       "ok": true,
-      "page": "lean/Dimensions.html#FRC.Dimensions.h_form"
+      "page": "lean/ml/Dimensions.html#FRC.Dimensions.h_form"
      },
      {
       "lib": "FrcLedger",
@@ -35087,7 +35087,7 @@
       "name": "FRC.Dimensions.carrier233",
       "tier": 2,
       "ok": true,
-      "page": "lean/Dimensions.html#FRC.Dimensions.carrier233"
+      "page": "lean/ml/Dimensions.html#FRC.Dimensions.carrier233"
      },
      {
       "lib": "FrcLedger",
@@ -35095,7 +35095,7 @@
       "name": "FRC.Dimensions.carrierLab",
       "tier": 2,
       "ok": true,
-      "page": "lean/Dimensions.html#FRC.Dimensions.carrierLab"
+      "page": "lean/ml/Dimensions.html#FRC.Dimensions.carrierLab"
      },
      {
       "lib": "FrcCore",
@@ -35171,7 +35171,7 @@
       "name": "FRC.Dimensions.pair_consequences",
       "tier": 2,
       "ok": true,
-      "page": "lean/Dimensions.html#FRC.Dimensions.pair_consequences"
+      "page": "lean/ml/Dimensions.html#FRC.Dimensions.pair_consequences"
      },
      {
       "lib": "FrcLedger",
@@ -35179,7 +35179,7 @@
       "name": "FRC.Dimensions.sign_assignments",
       "tier": 2,
       "ok": true,
-      "page": "lean/Dimensions.html#FRC.Dimensions.sign_assignments"
+      "page": "lean/ml/Dimensions.html#FRC.Dimensions.sign_assignments"
      },
      {
       "lib": "FrcLedger",
@@ -35187,7 +35187,7 @@
       "name": "FRC.Dimensions.carrier233",
       "tier": 2,
       "ok": true,
-      "page": "lean/Dimensions.html#FRC.Dimensions.carrier233"
+      "page": "lean/ml/Dimensions.html#FRC.Dimensions.carrier233"
      },
      {
       "lib": "FrcLedger",
@@ -35195,7 +35195,7 @@
       "name": "FRC.Dimensions.carrierLab",
       "tier": 2,
       "ok": true,
-      "page": "lean/Dimensions.html#FRC.Dimensions.carrierLab"
+      "page": "lean/ml/Dimensions.html#FRC.Dimensions.carrierLab"
      },
      {
       "lib": "FrcCore",
@@ -35366,7 +35366,7 @@
       "name": "FRC.Dimensions.mechanical_domains",
       "tier": 1,
       "ok": true,
-      "page": "lean/Dimensions.html#FRC.Dimensions.mechanical_domains"
+      "page": "lean/ml/Dimensions.html#FRC.Dimensions.mechanical_domains"
      },
      {
       "lib": "FrcLedger",
@@ -35374,7 +35374,7 @@
       "name": "FRC.Dimensions.geometric_conversions",
       "tier": 1,
       "ok": true,
-      "page": "lean/Dimensions.html#FRC.Dimensions.geometric_conversions"
+      "page": "lean/ml/Dimensions.html#FRC.Dimensions.geometric_conversions"
      },
      {
       "lib": "FrcCore",
@@ -35415,7 +35415,7 @@
       "name": "FRC.Dimensions.temperature_domain",
       "tier": 0,
       "ok": true,
-      "page": "lean/Dimensions.html#FRC.Dimensions.temperature_domain"
+      "page": "lean/ml/Dimensions.html#FRC.Dimensions.temperature_domain"
      },
      {
       "lib": "FrcCore",
@@ -35458,7 +35458,7 @@
       "name": "FRC.Dimensions.equal_crossing_flag_free",
       "tier": 1,
       "ok": true,
-      "page": "lean/Dimensions.html#FRC.Dimensions.equal_crossing_flag_free"
+      "page": "lean/ml/Dimensions.html#FRC.Dimensions.equal_crossing_flag_free"
      },
      {
       "lib": "FrcLedger",
@@ -35466,7 +35466,7 @@
       "name": "FRC.Dimensions.comparison_examples",
       "tier": 1,
       "ok": true,
-      "page": "lean/Dimensions.html#FRC.Dimensions.comparison_examples"
+      "page": "lean/ml/Dimensions.html#FRC.Dimensions.comparison_examples"
      },
      {
       "lib": "FrcCore",
@@ -35566,7 +35566,7 @@
       "name": "FRC.Dimensions.local_recovery",
       "tier": 2,
       "ok": true,
-      "page": "lean/Dimensions.html#FRC.Dimensions.local_recovery"
+      "page": "lean/ml/Dimensions.html#FRC.Dimensions.local_recovery"
      },
      {
       "lib": "FrcLedger",
@@ -35574,7 +35574,7 @@
       "name": "FRC.Dimensions.embed_injective",
       "tier": 2,
       "ok": true,
-      "page": "lean/Dimensions.html#FRC.Dimensions.embed_injective"
+      "page": "lean/ml/Dimensions.html#FRC.Dimensions.embed_injective"
      },
      {
       "lib": "FrcLedger",
@@ -35582,7 +35582,7 @@
       "name": "FRC.Dimensions.realize_faithful",
       "tier": 2,
       "ok": true,
-      "page": "lean/Dimensions.html#FRC.Dimensions.realize_faithful"
+      "page": "lean/ml/Dimensions.html#FRC.Dimensions.realize_faithful"
      },
      {
       "lib": "FrcCore",
@@ -35623,7 +35623,7 @@
       "name": "FRC.Dimensions.window_ladder",
       "tier": 2,
       "ok": true,
-      "page": "lean/Dimensions.html#FRC.Dimensions.window_ladder"
+      "page": "lean/ml/Dimensions.html#FRC.Dimensions.window_ladder"
      },
      {
       "lib": "FrcCore",
@@ -35664,7 +35664,7 @@
       "name": "FRC.Dimensions.examples13",
       "tier": 2,
       "ok": true,
-      "page": "lean/Dimensions.html#FRC.Dimensions.examples13"
+      "page": "lean/ml/Dimensions.html#FRC.Dimensions.examples13"
      },
      {
       "lib": "FrcLedger",
@@ -35672,7 +35672,7 @@
       "name": "FRC.Dimensions.recovery13",
       "tier": 2,
       "ok": true,
-      "page": "lean/Dimensions.html#FRC.Dimensions.recovery13"
+      "page": "lean/ml/Dimensions.html#FRC.Dimensions.recovery13"
      },
      {
       "lib": "FrcLedger",
@@ -35680,7 +35680,7 @@
       "name": "FRC.Dimensions.energy_momentum",
       "tier": 2,
       "ok": true,
-      "page": "lean/Dimensions.html#FRC.Dimensions.energy_momentum"
+      "page": "lean/ml/Dimensions.html#FRC.Dimensions.energy_momentum"
      },
      {
       "lib": "FrcCore",
@@ -35737,7 +35737,7 @@
       "name": "FRC.Dimensions.monomial_units",
       "tier": 2,
       "ok": true,
-      "page": "lean/Dimensions.html#FRC.Dimensions.monomial_units"
+      "page": "lean/ml/Dimensions.html#FRC.Dimensions.monomial_units"
      },
      {
       "lib": "FrcLedger",
@@ -35745,7 +35745,7 @@
       "name": "FRC.Dimensions.embed_injective",
       "tier": 2,
       "ok": true,
-      "page": "lean/Dimensions.html#FRC.Dimensions.embed_injective"
+      "page": "lean/ml/Dimensions.html#FRC.Dimensions.embed_injective"
      },
      {
       "lib": "FrcLedger",
@@ -35753,7 +35753,7 @@
       "name": "FRC.Dimensions.window_neutrality",
       "tier": 2,
       "ok": true,
-      "page": "lean/Dimensions.html#FRC.Dimensions.window_neutrality"
+      "page": "lean/ml/Dimensions.html#FRC.Dimensions.window_neutrality"
      },
      {
       "lib": "FrcLedger",
@@ -35761,7 +35761,7 @@
       "name": "FRC.Dimensions.pendulum_kernel",
       "tier": 2,
       "ok": true,
-      "page": "lean/Dimensions.html#FRC.Dimensions.pendulum_kernel"
+      "page": "lean/ml/Dimensions.html#FRC.Dimensions.pendulum_kernel"
      }
     ]
    },
@@ -35915,7 +35915,7 @@
       "name": "FRC.Dimensions.quartet_param",
       "tier": 2,
       "ok": true,
-      "page": "lean/Dimensions.html#FRC.Dimensions.quartet_param"
+      "page": "lean/ml/Dimensions.html#FRC.Dimensions.quartet_param"
      },
      {
       "lib": "FrcLedger",
@@ -35923,7 +35923,7 @@
       "name": "FRC.Dimensions.scale_from_constants",
       "tier": 2,
       "ok": true,
-      "page": "lean/Dimensions.html#FRC.Dimensions.scale_from_constants"
+      "page": "lean/ml/Dimensions.html#FRC.Dimensions.scale_from_constants"
      },
      {
       "lib": "FrcLedger",
@@ -35931,7 +35931,7 @@
       "name": "FRC.Dimensions.cancellation",
       "tier": 2,
       "ok": true,
-      "page": "lean/Dimensions.html#FRC.Dimensions.cancellation"
+      "page": "lean/ml/Dimensions.html#FRC.Dimensions.cancellation"
      },
      {
       "lib": "FrcLedger",
@@ -35939,7 +35939,7 @@
       "name": "FRC.Dimensions.mechanical_domains",
       "tier": 1,
       "ok": true,
-      "page": "lean/Dimensions.html#FRC.Dimensions.mechanical_domains"
+      "page": "lean/ml/Dimensions.html#FRC.Dimensions.mechanical_domains"
      },
      {
       "lib": "FrcCore",
@@ -35984,7 +35984,7 @@
       "name": "FRC.Dimensions.cancellation",
       "tier": 2,
       "ok": true,
-      "page": "lean/Dimensions.html#FRC.Dimensions.cancellation"
+      "page": "lean/ml/Dimensions.html#FRC.Dimensions.cancellation"
      },
      {
       "lib": "FrcLedger",
@@ -35992,7 +35992,7 @@
       "name": "FRC.Dimensions.temperature_domain",
       "tier": 0,
       "ok": true,
-      "page": "lean/Dimensions.html#FRC.Dimensions.temperature_domain"
+      "page": "lean/ml/Dimensions.html#FRC.Dimensions.temperature_domain"
      },
      {
       "lib": "FrcCore",
@@ -36036,7 +36036,7 @@
       "name": "FRC.Dimensions.unique_order_four_subgroup",
       "tier": 2,
       "ok": true,
-      "page": "lean/Dimensions.html#FRC.Dimensions.unique_order_four_subgroup"
+      "page": "lean/ml/Dimensions.html#FRC.Dimensions.unique_order_four_subgroup"
      },
      {
       "lib": "FrcLedger",
@@ -36044,7 +36044,7 @@
       "name": "FRC.Dimensions.no_flag_of_space",
       "tier": 2,
       "ok": true,
-      "page": "lean/Dimensions.html#FRC.Dimensions.no_flag_of_space"
+      "page": "lean/ml/Dimensions.html#FRC.Dimensions.no_flag_of_space"
      },
      {
       "lib": "FrcLedger",
@@ -36052,7 +36052,7 @@
       "name": "FRC.Dimensions.action_identity",
       "tier": 2,
       "ok": true,
-      "page": "lean/Dimensions.html#FRC.Dimensions.action_identity"
+      "page": "lean/ml/Dimensions.html#FRC.Dimensions.action_identity"
      },
      {
       "lib": "FrcCore",
@@ -36480,7 +36480,7 @@
       "name": "FRC.Epi.cayley_values",
       "tier": 2,
       "ok": true,
-      "page": "lean/Epi.html#FRC.Epi.cayley_values"
+      "page": "lean/ml/Epi.html#FRC.Epi.cayley_values"
      },
      {
       "lib": "FrcLedger",
@@ -36488,7 +36488,7 @@
       "name": "FRC.Epi.cayley_mul",
       "tier": 2,
       "ok": true,
-      "page": "lean/Epi.html#FRC.Epi.cayley_mul"
+      "page": "lean/ml/Epi.html#FRC.Epi.cayley_mul"
      }
     ]
    },
@@ -36697,7 +36697,7 @@
       "name": "FRC.Epi.wallis_enclosure",
       "tier": 2,
       "ok": true,
-      "page": "lean/Epi.html#FRC.Epi.wallis_enclosure"
+      "page": "lean/ml/Epi.html#FRC.Epi.wallis_enclosure"
      },
      {
       "lib": "FrcLedger",
@@ -36705,7 +36705,7 @@
       "name": "FRC.Epi.wallis_width",
       "tier": 2,
       "ok": true,
-      "page": "lean/Epi.html#FRC.Epi.wallis_width"
+      "page": "lean/ml/Epi.html#FRC.Epi.wallis_width"
      },
      {
       "lib": "FrcLedger",
@@ -36713,7 +36713,7 @@
       "name": "FRC.Epi.wallisV_strictMono",
       "tier": 2,
       "ok": true,
-      "page": "lean/Epi.html#FRC.Epi.wallisV_strictMono"
+      "page": "lean/ml/Epi.html#FRC.Epi.wallisV_strictMono"
      },
      {
       "lib": "FrcLedger",
@@ -36721,7 +36721,7 @@
       "name": "FRC.Epi.wallisW_strictAnti",
       "tier": 2,
       "ok": true,
-      "page": "lean/Epi.html#FRC.Epi.wallisW_strictAnti"
+      "page": "lean/ml/Epi.html#FRC.Epi.wallisW_strictAnti"
      }
     ]
    },
@@ -36830,7 +36830,7 @@
       "name": "FRC.Epi.wilson_reflection_zmod",
       "tier": 2,
       "ok": true,
-      "page": "lean/Epi.html#FRC.Epi.wilson_reflection_zmod"
+      "page": "lean/ml/Epi.html#FRC.Epi.wilson_reflection_zmod"
      }
     ]
    },
@@ -36863,7 +36863,7 @@
       "name": "FRC.Epi.derangements_wall_zmod",
       "tier": 2,
       "ok": true,
-      "page": "lean/Epi.html#FRC.Epi.derangements_wall_zmod"
+      "page": "lean/ml/Epi.html#FRC.Epi.derangements_wall_zmod"
      },
      {
       "lib": "FrcLedger",
@@ -36871,7 +36871,7 @@
       "name": "FRC.Epi.terminal_residue",
       "tier": 2,
       "ok": true,
-      "page": "lean/Epi.html#FRC.Epi.terminal_residue"
+      "page": "lean/ml/Epi.html#FRC.Epi.terminal_residue"
      },
      {
       "lib": "FrcCore",
@@ -36915,7 +36915,7 @@
       "name": "FRC.Epi.derangements_antiperiodic_zmod",
       "tier": 2,
       "ok": true,
-      "page": "lean/Epi.html#FRC.Epi.derangements_antiperiodic_zmod"
+      "page": "lean/ml/Epi.html#FRC.Epi.derangements_antiperiodic_zmod"
      },
      {
       "lib": "FrcCore",
@@ -36964,7 +36964,7 @@
       "name": "FRC.Epi.series_duals_zmod",
       "tier": 2,
       "ok": true,
-      "page": "lean/Epi.html#FRC.Epi.series_duals_zmod"
+      "page": "lean/ml/Epi.html#FRC.Epi.series_duals_zmod"
      },
      {
       "lib": "FrcCore",
@@ -37074,7 +37074,7 @@
       "name": "FRC.Epi.tower_e_exact_zmod",
       "tier": 2,
       "ok": true,
-      "page": "lean/Epi.html#FRC.Epi.tower_e_exact_zmod"
+      "page": "lean/ml/Epi.html#FRC.Epi.tower_e_exact_zmod"
      },
      {
       "lib": "FrcCore",
@@ -37117,7 +37117,7 @@
       "name": "FRC.Epi.tail_identity_zmod",
       "tier": 2,
       "ok": true,
-      "page": "lean/Epi.html#FRC.Epi.tail_identity_zmod"
+      "page": "lean/ml/Epi.html#FRC.Epi.tail_identity_zmod"
      },
      {
       "lib": "FrcLedger",
@@ -37125,7 +37125,7 @@
       "name": "FRC.Epi.blind_iff_collision",
       "tier": 2,
       "ok": true,
-      "page": "lean/Epi.html#FRC.Epi.blind_iff_collision"
+      "page": "lean/ml/Epi.html#FRC.Epi.blind_iff_collision"
      }
     ]
    },
@@ -37160,7 +37160,7 @@
       "name": "FRC.Epi.legibility_window",
       "tier": 2,
       "ok": true,
-      "page": "lean/Epi.html#FRC.Epi.legibility_window"
+      "page": "lean/ml/Epi.html#FRC.Epi.legibility_window"
      },
      {
       "lib": "FrcCore",
@@ -37203,7 +37203,7 @@
       "name": "FRC.Epi.half_wall_terminus",
       "tier": 2,
       "ok": true,
-      "page": "lean/Epi.html#FRC.Epi.half_wall_terminus"
+      "page": "lean/ml/Epi.html#FRC.Epi.half_wall_terminus"
      }
     ]
    },
@@ -37236,7 +37236,7 @@
       "name": "FRC.Epi.quarter_wall_invariant",
       "tier": 2,
       "ok": true,
-      "page": "lean/Epi.html#FRC.Epi.quarter_wall_invariant"
+      "page": "lean/ml/Epi.html#FRC.Epi.quarter_wall_invariant"
      }
     ]
    },
@@ -37271,7 +37271,7 @@
       "name": "FRC.Epi.half_wall_second_order",
       "tier": 2,
       "ok": true,
-      "page": "lean/Epi.html#FRC.Epi.half_wall_second_order"
+      "page": "lean/ml/Epi.html#FRC.Epi.half_wall_second_order"
      }
     ]
    },
@@ -37307,7 +37307,7 @@
       "name": "FRC.Epi.first_revival",
       "tier": 2,
       "ok": true,
-      "page": "lean/Epi.html#FRC.Epi.first_revival"
+      "page": "lean/ml/Epi.html#FRC.Epi.first_revival"
      },
      {
       "lib": "FrcLedger",
@@ -37315,7 +37315,7 @@
       "name": "FRC.Epi.choose_two_mul_pow",
       "tier": 2,
       "ok": true,
-      "page": "lean/Epi.html#FRC.Epi.choose_two_mul_pow"
+      "page": "lean/ml/Epi.html#FRC.Epi.choose_two_mul_pow"
      },
      {
       "lib": "FrcCore",
@@ -37440,7 +37440,7 @@
       "name": "FRC.Epi.tower_pi_exact",
       "tier": 2,
       "ok": true,
-      "page": "lean/Epi.html#FRC.Epi.tower_pi_exact"
+      "page": "lean/ml/Epi.html#FRC.Epi.tower_pi_exact"
      },
      {
       "lib": "FrcLedger",
@@ -37448,7 +37448,7 @@
       "name": "FRC.Epi.choose_two_mul_pow",
       "tier": 2,
       "ok": true,
-      "page": "lean/Epi.html#FRC.Epi.choose_two_mul_pow"
+      "page": "lean/ml/Epi.html#FRC.Epi.choose_two_mul_pow"
      }
     ]
    },
@@ -37481,7 +37481,7 @@
       "name": "FRC.Epi.piWieferich_iff",
       "tier": 2,
       "ok": true,
-      "page": "lean/Epi.html#FRC.Epi.piWieferich_iff"
+      "page": "lean/ml/Epi.html#FRC.Epi.piWieferich_iff"
      },
      {
       "lib": "FrcLedger",
@@ -37489,7 +37489,7 @@
       "name": "FRC.Epi.eisenstein",
       "tier": 2,
       "ok": true,
-      "page": "lean/Epi.html#FRC.Epi.eisenstein"
+      "page": "lean/ml/Epi.html#FRC.Epi.eisenstein"
      },
      {
       "lib": "FrcLedger",
@@ -37497,7 +37497,7 @@
       "name": "FRC.Epi.piWieferich_iff_harmonic",
       "tier": 2,
       "ok": true,
-      "page": "lean/Epi.html#FRC.Epi.piWieferich_iff_harmonic"
+      "page": "lean/ml/Epi.html#FRC.Epi.piWieferich_iff_harmonic"
      },
      {
       "lib": "FrcLedger",
@@ -37505,7 +37505,7 @@
       "name": "FRC.Epi.piWieferich_iff_oeis",
       "tier": 2,
       "ok": true,
-      "page": "lean/Epi.html#FRC.Epi.piWieferich_iff_oeis"
+      "page": "lean/ml/Epi.html#FRC.Epi.piWieferich_iff_oeis"
      }
     ]
    },
@@ -37585,7 +37585,7 @@
       "name": "FRC.Epi.calibration_ne_one",
       "tier": 2,
       "ok": true,
-      "page": "lean/Epi.html#FRC.Epi.calibration_ne_one"
+      "page": "lean/ml/Epi.html#FRC.Epi.calibration_ne_one"
      },
      {
       "lib": "FrcLedger",
@@ -37593,7 +37593,7 @@
       "name": "FRC.Epi.exp_I_ne_one",
       "tier": 2,
       "ok": true,
-      "page": "lean/Epi.html#FRC.Epi.exp_I_ne_one"
+      "page": "lean/ml/Epi.html#FRC.Epi.exp_I_ne_one"
      }
     ]
    },
@@ -37650,7 +37650,7 @@
       "name": "FRC.Epi.index_condition_shell",
       "tier": 2,
       "ok": true,
-      "page": "lean/Epi.html#FRC.Epi.index_condition_shell"
+      "page": "lean/ml/Epi.html#FRC.Epi.index_condition_shell"
      },
      {
       "lib": "FrcLedger",
@@ -37658,7 +37658,7 @@
       "name": "FRC.Epi.index_condition",
       "tier": 2,
       "ok": true,
-      "page": "lean/Epi.html#FRC.Epi.index_condition"
+      "page": "lean/ml/Epi.html#FRC.Epi.index_condition"
      }
     ]
    },
@@ -38070,7 +38070,7 @@
       "name": "FRC.Entropy.cardinality",
       "tier": 1,
       "ok": true,
-      "page": "lean/Entropy.html#FRC.Entropy.cardinality"
+      "page": "lean/ml/Entropy.html#FRC.Entropy.cardinality"
      },
      {
       "lib": "FrcCore",
@@ -38113,7 +38113,7 @@
       "name": "FRC.Entropy.carrierLab",
       "tier": 2,
       "ok": true,
-      "page": "lean/Entropy.html#FRC.Entropy.carrierLab"
+      "page": "lean/ml/Entropy.html#FRC.Entropy.carrierLab"
      },
      {
       "lib": "FrcCore",
@@ -38129,7 +38129,7 @@
       "name": "FRC.Entropy.c_square",
       "tier": 2,
       "ok": true,
-      "page": "lean/Entropy.html#FRC.Entropy.c_square"
+      "page": "lean/ml/Entropy.html#FRC.Entropy.c_square"
      },
      {
       "lib": "FrcLedger",
@@ -38137,7 +38137,7 @@
       "name": "FRC.Entropy.triality_centre",
       "tier": 2,
       "ok": true,
-      "page": "lean/Entropy.html#FRC.Entropy.triality_centre"
+      "page": "lean/ml/Entropy.html#FRC.Entropy.triality_centre"
      }
     ]
    },
@@ -38305,7 +38305,7 @@
       "name": "FRC.Entropy.dictionary",
       "tier": 2,
       "ok": true,
-      "page": "lean/Entropy.html#FRC.Entropy.dictionary"
+      "page": "lean/ml/Entropy.html#FRC.Entropy.dictionary"
      },
      {
       "lib": "FrcCore",
@@ -38444,7 +38444,7 @@
       "name": "FRC.Entropy.fluid_w",
       "tier": 2,
       "ok": true,
-      "page": "lean/Entropy.html#FRC.Entropy.fluid_w"
+      "page": "lean/ml/Entropy.html#FRC.Entropy.fluid_w"
      }
     ]
    },
@@ -38479,7 +38479,7 @@
       "name": "FRC.Entropy.quarter_turn",
       "tier": 2,
       "ok": true,
-      "page": "lean/Entropy.html#FRC.Entropy.quarter_turn"
+      "page": "lean/ml/Entropy.html#FRC.Entropy.quarter_turn"
      },
      {
       "lib": "FrcLedger",
@@ -38487,7 +38487,7 @@
       "name": "FRC.Entropy.area_law_chart",
       "tier": 2,
       "ok": true,
-      "page": "lean/Entropy.html#FRC.Entropy.area_law_chart"
+      "page": "lean/ml/Entropy.html#FRC.Entropy.area_law_chart"
      },
      {
       "lib": "FrcCore",
@@ -38525,7 +38525,7 @@
       "name": "FRC.Entropy.hydrogen_units",
       "tier": 2,
       "ok": true,
-      "page": "lean/Entropy.html#FRC.Entropy.hydrogen_units"
+      "page": "lean/ml/Entropy.html#FRC.Entropy.hydrogen_units"
      },
      {
       "lib": "FrcLedger",
@@ -38533,7 +38533,7 @@
       "name": "FRC.Entropy.nesting_lab",
       "tier": 2,
       "ok": true,
-      "page": "lean/Entropy.html#FRC.Entropy.nesting_lab"
+      "page": "lean/ml/Entropy.html#FRC.Entropy.nesting_lab"
      },
      {
       "lib": "FrcCore",
@@ -38604,7 +38604,7 @@
       "name": "FRC.Entropy.horizon_quarter_closure",
       "tier": 2,
       "ok": true,
-      "page": "lean/Entropy.html#FRC.Entropy.horizon_quarter_closure"
+      "page": "lean/ml/Entropy.html#FRC.Entropy.horizon_quarter_closure"
      }
     ]
    },
@@ -38637,7 +38637,7 @@
       "name": "FRC.Entropy.lcdmAge",
       "tier": 2,
       "ok": true,
-      "page": "lean/Entropy.html#FRC.Entropy.lcdmAge"
+      "page": "lean/ml/Entropy.html#FRC.Entropy.lcdmAge"
      },
      {
       "lib": "FrcLedger",
@@ -38645,7 +38645,7 @@
       "name": "FRC.Entropy.lcdm_age",
       "tier": 2,
       "ok": true,
-      "page": "lean/Entropy.html#FRC.Entropy.lcdm_age"
+      "page": "lean/ml/Entropy.html#FRC.Entropy.lcdm_age"
      },
      {
       "lib": "FrcLedger",
@@ -38653,7 +38653,7 @@
       "name": "FRC.Entropy.age_bracket",
       "tier": 2,
       "ok": true,
-      "page": "lean/Entropy.html#FRC.Entropy.age_bracket"
+      "page": "lean/ml/Entropy.html#FRC.Entropy.age_bracket"
      }
     ]
    },
@@ -38714,7 +38714,7 @@
       "name": "FRC.Entropy.octant_chart",
       "tier": 2,
       "ok": true,
-      "page": "lean/Entropy.html#FRC.Entropy.octant_chart"
+      "page": "lean/ml/Entropy.html#FRC.Entropy.octant_chart"
      },
      {
       "lib": "FrcLedger",
@@ -38722,7 +38722,7 @@
       "name": "FRC.Entropy.closure_budget",
       "tier": 2,
       "ok": true,
-      "page": "lean/Entropy.html#FRC.Entropy.closure_budget"
+      "page": "lean/ml/Entropy.html#FRC.Entropy.closure_budget"
      },
      {
       "lib": "FrcCore",
@@ -38779,7 +38779,7 @@
       "name": "FRC.Entropy.octant_exists_iff",
       "tier": 2,
       "ok": true,
-      "page": "lean/Entropy.html#FRC.Entropy.octant_exists_iff"
+      "page": "lean/ml/Entropy.html#FRC.Entropy.octant_exists_iff"
      },
      {
       "lib": "FrcLedger",
@@ -38787,7 +38787,7 @@
       "name": "FRC.Entropy.octant_character",
       "tier": 2,
       "ok": true,
-      "page": "lean/Entropy.html#FRC.Entropy.octant_character"
+      "page": "lean/ml/Entropy.html#FRC.Entropy.octant_character"
      },
      {
       "lib": "FrcCore",
@@ -38847,7 +38847,7 @@
       "name": "FRC.Entropy.octant_inversion",
       "tier": 2,
       "ok": true,
-      "page": "lean/Entropy.html#FRC.Entropy.octant_inversion"
+      "page": "lean/ml/Entropy.html#FRC.Entropy.octant_inversion"
      },
      {
       "lib": "FrcLedger",
@@ -38855,7 +38855,7 @@
       "name": "FRC.Entropy.landing_bracket",
       "tier": 2,
       "ok": true,
-      "page": "lean/Entropy.html#FRC.Entropy.landing_bracket"
+      "page": "lean/ml/Entropy.html#FRC.Entropy.landing_bracket"
      }
     ]
    },
@@ -38890,7 +38890,7 @@
       "name": "FRC.Entropy.channel_one_consistency",
       "tier": 2,
       "ok": true,
-      "page": "lean/Entropy.html#FRC.Entropy.channel_one_consistency"
+      "page": "lean/ml/Entropy.html#FRC.Entropy.channel_one_consistency"
      },
      {
       "lib": "FrcLedger",
@@ -38898,7 +38898,7 @@
       "name": "FRC.Entropy.channel_one_numeral",
       "tier": 2,
       "ok": true,
-      "page": "lean/Entropy.html#FRC.Entropy.channel_one_numeral"
+      "page": "lean/ml/Entropy.html#FRC.Entropy.channel_one_numeral"
      },
      {
       "lib": "FrcLedger",
@@ -38906,7 +38906,7 @@
       "name": "FRC.Entropy.cluster_identity",
       "tier": 2,
       "ok": true,
-      "page": "lean/Entropy.html#FRC.Entropy.cluster_identity"
+      "page": "lean/ml/Entropy.html#FRC.Entropy.cluster_identity"
      }
     ]
    },
@@ -38943,7 +38943,7 @@
       "name": "FRC.Entropy.count_face",
       "tier": 2,
       "ok": true,
-      "page": "lean/Entropy.html#FRC.Entropy.count_face"
+      "page": "lean/ml/Entropy.html#FRC.Entropy.count_face"
      }
     ]
    },
@@ -38979,7 +38979,7 @@
       "name": "FRC.Entropy.capacity_zero",
       "tier": 2,
       "ok": true,
-      "page": "lean/Entropy.html#FRC.Entropy.capacity_zero"
+      "page": "lean/ml/Entropy.html#FRC.Entropy.capacity_zero"
      },
      {
       "lib": "FrcCore",
@@ -39073,7 +39073,7 @@
       "name": "FRC.Entropy.age_rate_locus",
       "tier": 2,
       "ok": true,
-      "page": "lean/Entropy.html#FRC.Entropy.age_rate_locus"
+      "page": "lean/ml/Entropy.html#FRC.Entropy.age_rate_locus"
      },
      {
       "lib": "FrcLedger",
@@ -39081,7 +39081,7 @@
       "name": "FRC.Entropy.locus_bracket",
       "tier": 2,
       "ok": true,
-      "page": "lean/Entropy.html#FRC.Entropy.locus_bracket"
+      "page": "lean/ml/Entropy.html#FRC.Entropy.locus_bracket"
      }
     ]
    },
@@ -39112,7 +39112,7 @@
       "name": "FRC.Entropy.fluid_w",
       "tier": 2,
       "ok": true,
-      "page": "lean/Entropy.html#FRC.Entropy.fluid_w"
+      "page": "lean/ml/Entropy.html#FRC.Entropy.fluid_w"
      }
     ]
    },
@@ -39168,7 +39168,7 @@
       "name": "FRC.Entropy.milgrom_rebooking",
       "tier": 2,
       "ok": true,
-      "page": "lean/Entropy.html#FRC.Entropy.milgrom_rebooking"
+      "page": "lean/ml/Entropy.html#FRC.Entropy.milgrom_rebooking"
      }
     ]
    },
@@ -39203,7 +39203,7 @@
       "name": "FRC.Entropy.octant_inversion",
       "tier": 2,
       "ok": true,
-      "page": "lean/Entropy.html#FRC.Entropy.octant_inversion"
+      "page": "lean/ml/Entropy.html#FRC.Entropy.octant_inversion"
      },
      {
       "lib": "FrcLedger",
@@ -39211,7 +39211,7 @@
       "name": "FRC.Entropy.landing_bracket",
       "tier": 2,
       "ok": true,
-      "page": "lean/Entropy.html#FRC.Entropy.landing_bracket"
+      "page": "lean/ml/Entropy.html#FRC.Entropy.landing_bracket"
      }
     ]
    },
@@ -39241,7 +39241,7 @@
       "name": "FRC.Entropy.octant_second_face",
       "tier": 2,
       "ok": true,
-      "page": "lean/Entropy.html#FRC.Entropy.octant_second_face"
+      "page": "lean/ml/Entropy.html#FRC.Entropy.octant_second_face"
      },
      {
       "lib": "FrcLedger",
@@ -39249,7 +39249,7 @@
       "name": "FRC.Entropy.octant_sector_iff",
       "tier": 2,
       "ok": true,
-      "page": "lean/Entropy.html#FRC.Entropy.octant_sector_iff"
+      "page": "lean/ml/Entropy.html#FRC.Entropy.octant_sector_iff"
      },
      {
       "lib": "FrcCore",
@@ -39606,7 +39606,7 @@
       "name": "FRC.Rh.lab_pair",
       "tier": 1,
       "ok": true,
-      "page": "lean/Rh.html#FRC.Rh.lab_pair"
+      "page": "lean/ml/Rh.html#FRC.Rh.lab_pair"
      },
      {
       "lib": "FrcLedger",
@@ -39614,7 +39614,7 @@
       "name": "FRC.Rh.no_cycle_projection",
       "tier": 2,
       "ok": true,
-      "page": "lean/Rh.html#FRC.Rh.no_cycle_projection"
+      "page": "lean/ml/Rh.html#FRC.Rh.no_cycle_projection"
      },
      {
       "lib": "FrcCore",
@@ -39657,7 +39657,7 @@
       "name": "FRC.Rh.window_readback",
       "tier": 1,
       "ok": true,
-      "page": "lean/Rh.html#FRC.Rh.window_readback"
+      "page": "lean/ml/Rh.html#FRC.Rh.window_readback"
      },
      {
       "lib": "FrcLedger",
@@ -39665,7 +39665,7 @@
       "name": "FRC.Rh.prime_iff_window_irreducible",
       "tier": 1,
       "ok": true,
-      "page": "lean/Rh.html#FRC.Rh.prime_iff_window_irreducible"
+      "page": "lean/ml/Rh.html#FRC.Rh.prime_iff_window_irreducible"
      },
      {
       "lib": "FrcLedger",
@@ -39673,7 +39673,7 @@
       "name": "FRC.Rh.sqrt_sq_lt_prime",
       "tier": 2,
       "ok": true,
-      "page": "lean/Rh.html#FRC.Rh.sqrt_sq_lt_prime"
+      "page": "lean/ml/Rh.html#FRC.Rh.sqrt_sq_lt_prime"
      },
      {
       "lib": "FrcCore",
@@ -39749,7 +39749,7 @@
       "name": "FRC.Rh.zero_slot",
       "tier": 2,
       "ok": true,
-      "page": "lean/Rh.html#FRC.Rh.zero_slot"
+      "page": "lean/ml/Rh.html#FRC.Rh.zero_slot"
      },
      {
       "lib": "FrcCore",
@@ -39790,7 +39790,7 @@
       "name": "FRC.Rh.slot_complementarity",
       "tier": 2,
       "ok": true,
-      "page": "lean/Rh.html#FRC.Rh.slot_complementarity"
+      "page": "lean/ml/Rh.html#FRC.Rh.slot_complementarity"
      },
      {
       "lib": "FrcCore",
@@ -39831,7 +39831,7 @@
       "name": "FRC.Rh.phase_circle",
       "tier": 2,
       "ok": true,
-      "page": "lean/Rh.html#FRC.Rh.phase_circle"
+      "page": "lean/ml/Rh.html#FRC.Rh.phase_circle"
      },
      {
       "lib": "FrcLedger",
@@ -39839,7 +39839,7 @@
       "name": "FRC.Rh.frobenius_eq_star",
       "tier": 2,
       "ok": true,
-      "page": "lean/Rh.html#FRC.Rh.frobenius_eq_star"
+      "page": "lean/ml/Rh.html#FRC.Rh.frobenius_eq_star"
      },
      {
       "lib": "FrcLedger",
@@ -39847,7 +39847,7 @@
       "name": "FRC.Rh.norm_eq_pow",
       "tier": 2,
       "ok": true,
-      "page": "lean/Rh.html#FRC.Rh.norm_eq_pow"
+      "page": "lean/ml/Rh.html#FRC.Rh.norm_eq_pow"
      },
      {
       "lib": "FrcLedger",
@@ -39855,7 +39855,7 @@
       "name": "FRC.Rh.quarter_turn_off_circle",
       "tier": 2,
       "ok": true,
-      "page": "lean/Rh.html#FRC.Rh.quarter_turn_off_circle"
+      "page": "lean/ml/Rh.html#FRC.Rh.quarter_turn_off_circle"
      },
      {
       "lib": "FrcCore",
@@ -39920,7 +39920,7 @@
       "name": "FRC.Rh.ramanujan_sum",
       "tier": 2,
       "ok": true,
-      "page": "lean/Rh.html#FRC.Rh.ramanujan_sum"
+      "page": "lean/ml/Rh.html#FRC.Rh.ramanujan_sum"
      },
      {
       "lib": "FrcCore",
@@ -39969,7 +39969,7 @@
       "name": "FRC.Rh.half_turn",
       "tier": 2,
       "ok": true,
-      "page": "lean/Rh.html#FRC.Rh.half_turn"
+      "page": "lean/ml/Rh.html#FRC.Rh.half_turn"
      },
      {
       "lib": "FrcLedger",
@@ -39977,7 +39977,7 @@
       "name": "FRC.Rh.trace_eq_one_iff",
       "tier": 2,
       "ok": true,
-      "page": "lean/Rh.html#FRC.Rh.trace_eq_one_iff"
+      "page": "lean/ml/Rh.html#FRC.Rh.trace_eq_one_iff"
      },
      {
       "lib": "FrcLedger",
@@ -39985,7 +39985,7 @@
       "name": "FRC.Rh.card_critical_line",
       "tier": 2,
       "ok": true,
-      "page": "lean/Rh.html#FRC.Rh.card_critical_line"
+      "page": "lean/ml/Rh.html#FRC.Rh.card_critical_line"
      },
      {
       "lib": "FrcLedger",
@@ -39993,7 +39993,7 @@
       "name": "FRC.Rh.norm_on_line",
       "tier": 2,
       "ok": true,
-      "page": "lean/Rh.html#FRC.Rh.norm_on_line"
+      "page": "lean/ml/Rh.html#FRC.Rh.norm_on_line"
      },
      {
       "lib": "FrcCore",
@@ -40050,7 +40050,7 @@
       "name": "FRC.Rh.klein_four",
       "tier": 2,
       "ok": true,
-      "page": "lean/Rh.html#FRC.Rh.klein_four"
+      "page": "lean/ml/Rh.html#FRC.Rh.klein_four"
      },
      {
       "lib": "FrcLedger",
@@ -40058,7 +40058,7 @@
       "name": "FRC.Rh.fixed_frobenius",
       "tier": 2,
       "ok": true,
-      "page": "lean/Rh.html#FRC.Rh.fixed_frobenius"
+      "page": "lean/ml/Rh.html#FRC.Rh.fixed_frobenius"
      },
      {
       "lib": "FrcLedger",
@@ -40066,7 +40066,7 @@
       "name": "FRC.Rh.trace_eq_one_iff",
       "tier": 2,
       "ok": true,
-      "page": "lean/Rh.html#FRC.Rh.trace_eq_one_iff"
+      "page": "lean/ml/Rh.html#FRC.Rh.trace_eq_one_iff"
      },
      {
       "lib": "FrcLedger",
@@ -40074,7 +40074,7 @@
       "name": "FRC.Rh.fixed_half_turn",
       "tier": 2,
       "ok": true,
-      "page": "lean/Rh.html#FRC.Rh.fixed_half_turn"
+      "page": "lean/ml/Rh.html#FRC.Rh.fixed_half_turn"
      },
      {
       "lib": "FrcCore",
@@ -40139,7 +40139,7 @@
       "name": "FRC.Rh.subject_constants",
       "tier": 2,
       "ok": true,
-      "page": "lean/Rh.html#FRC.Rh.subject_constants"
+      "page": "lean/ml/Rh.html#FRC.Rh.subject_constants"
      },
      {
       "lib": "FrcLedger",
@@ -40147,7 +40147,7 @@
       "name": "FRC.Rh.constants13",
       "tier": 1,
       "ok": true,
-      "page": "lean/Rh.html#FRC.Rh.constants13"
+      "page": "lean/ml/Rh.html#FRC.Rh.constants13"
      },
      {
       "lib": "FrcCore",
@@ -40247,7 +40247,7 @@
       "name": "FRC.Rh.vonMangoldt_moebius",
       "tier": 2,
       "ok": true,
-      "page": "lean/Rh.html#FRC.Rh.vonMangoldt_moebius"
+      "page": "lean/ml/Rh.html#FRC.Rh.vonMangoldt_moebius"
      }
     ]
    },
@@ -40325,7 +40325,7 @@
       "name": "FRC.Rh.chi_parseval",
       "tier": 2,
       "ok": true,
-      "page": "lean/Rh.html#FRC.Rh.chi_parseval"
+      "page": "lean/ml/Rh.html#FRC.Rh.chi_parseval"
      },
      {
       "lib": "FrcLedger",
@@ -40333,7 +40333,7 @@
       "name": "FRC.Rh.flatness",
       "tier": 2,
       "ok": true,
-      "page": "lean/Rh.html#FRC.Rh.flatness"
+      "page": "lean/ml/Rh.html#FRC.Rh.flatness"
      }
     ]
    },
@@ -40550,7 +40550,7 @@
       "name": "FRC.Rh.scale_shift",
       "tier": 2,
       "ok": true,
-      "page": "lean/Rh.html#FRC.Rh.scale_shift"
+      "page": "lean/ml/Rh.html#FRC.Rh.scale_shift"
      },
      {
       "lib": "FrcLedger",
@@ -40558,7 +40558,7 @@
       "name": "FRC.Rh.character_eigen",
       "tier": 2,
       "ok": true,
-      "page": "lean/Rh.html#FRC.Rh.character_eigen"
+      "page": "lean/ml/Rh.html#FRC.Rh.character_eigen"
      },
      {
       "lib": "FrcLedger",
@@ -40566,7 +40566,7 @@
       "name": "FRC.Rh.chi_shift",
       "tier": 2,
       "ok": true,
-      "page": "lean/Rh.html#FRC.Rh.chi_shift"
+      "page": "lean/ml/Rh.html#FRC.Rh.chi_shift"
      },
      {
       "lib": "FrcCore",
@@ -40855,7 +40855,7 @@
       "name": "FRC.Rh.chi_inversion",
       "tier": 2,
       "ok": true,
-      "page": "lean/Rh.html#FRC.Rh.chi_inversion"
+      "page": "lean/ml/Rh.html#FRC.Rh.chi_inversion"
      },
      {
       "lib": "FrcLedger",
@@ -40863,7 +40863,7 @@
       "name": "FRC.Rh.chi_shift",
       "tier": 2,
       "ok": true,
-      "page": "lean/Rh.html#FRC.Rh.chi_shift"
+      "page": "lean/ml/Rh.html#FRC.Rh.chi_shift"
      },
      {
       "lib": "FrcLedger",
@@ -40871,7 +40871,7 @@
       "name": "FRC.Rh.scale_shift",
       "tier": 2,
       "ok": true,
-      "page": "lean/Rh.html#FRC.Rh.scale_shift"
+      "page": "lean/ml/Rh.html#FRC.Rh.scale_shift"
      },
      {
       "lib": "FrcCore",
@@ -40895,7 +40895,7 @@
       "name": "FRC.Rh.readout_on_line",
       "tier": 2,
       "ok": true,
-      "page": "lean/Rh.html#FRC.Rh.readout_on_line"
+      "page": "lean/ml/Rh.html#FRC.Rh.readout_on_line"
      },
      {
       "lib": "FrcLedger",
@@ -40903,7 +40903,7 @@
       "name": "FRC.Rh.readout_slot_index",
       "tier": 2,
       "ok": true,
-      "page": "lean/Rh.html#FRC.Rh.readout_slot_index"
+      "page": "lean/ml/Rh.html#FRC.Rh.readout_slot_index"
      },
      {
       "lib": "FrcCore",
@@ -40954,7 +40954,7 @@
       "name": "FRC.Rh.chi_orthogonal",
       "tier": 2,
       "ok": true,
-      "page": "lean/Rh.html#FRC.Rh.chi_orthogonal"
+      "page": "lean/ml/Rh.html#FRC.Rh.chi_orthogonal"
      },
      {
       "lib": "FrcLedger",
@@ -40962,7 +40962,7 @@
       "name": "FRC.Rh.chi_parseval",
       "tier": 2,
       "ok": true,
-      "page": "lean/Rh.html#FRC.Rh.chi_parseval"
+      "page": "lean/ml/Rh.html#FRC.Rh.chi_parseval"
      },
      {
       "lib": "FrcLedger",
@@ -40970,7 +40970,7 @@
       "name": "FRC.Rh.chi_inversion",
       "tier": 2,
       "ok": true,
-      "page": "lean/Rh.html#FRC.Rh.chi_inversion"
+      "page": "lean/ml/Rh.html#FRC.Rh.chi_inversion"
      },
      {
       "lib": "FrcLedger",
@@ -40978,7 +40978,7 @@
       "name": "FRC.Rh.power_characters_not_orthonormal",
       "tier": 2,
       "ok": true,
-      "page": "lean/Rh.html#FRC.Rh.power_characters_not_orthonormal"
+      "page": "lean/ml/Rh.html#FRC.Rh.power_characters_not_orthonormal"
      }
     ]
    },
@@ -41345,7 +41345,7 @@
       "name": "FRC.Gravity.calibration_congruence",
       "tier": 1,
       "ok": true,
-      "page": "lean/Gravity.html#FRC.Gravity.calibration_congruence"
+      "page": "lean/ml/Gravity.html#FRC.Gravity.calibration_congruence"
      },
      {
       "lib": "FrcLedger",
@@ -41353,7 +41353,7 @@
       "name": "FRC.Gravity.hbar_register",
       "tier": 2,
       "ok": true,
-      "page": "lean/Gravity.html#FRC.Gravity.hbar_register"
+      "page": "lean/ml/Gravity.html#FRC.Gravity.hbar_register"
      },
      {
       "lib": "FrcCore",
@@ -41527,7 +41527,7 @@
       "name": "FRC.Gravity.cover_forcing",
       "tier": 2,
       "ok": true,
-      "page": "lean/Gravity.html#FRC.Gravity.cover_forcing"
+      "page": "lean/ml/Gravity.html#FRC.Gravity.cover_forcing"
      },
      {
       "lib": "FrcLedger",
@@ -41535,7 +41535,7 @@
       "name": "FRC.Gravity.channel_q4",
       "tier": 1,
       "ok": true,
-      "page": "lean/Gravity.html#FRC.Gravity.channel_q4"
+      "page": "lean/ml/Gravity.html#FRC.Gravity.channel_q4"
      },
      {
       "lib": "FrcCore",
@@ -41696,7 +41696,7 @@
       "name": "FRC.Gravity.locked_sum",
       "tier": 2,
       "ok": true,
-      "page": "lean/Gravity.html#FRC.Gravity.locked_sum"
+      "page": "lean/ml/Gravity.html#FRC.Gravity.locked_sum"
      }
     ]
    },
@@ -41724,7 +41724,7 @@
       "name": "FRC.Gravity.newton_register",
       "tier": 2,
       "ok": true,
-      "page": "lean/Gravity.html#FRC.Gravity.newton_register"
+      "page": "lean/ml/Gravity.html#FRC.Gravity.newton_register"
      },
      {
       "lib": "FrcCore",
@@ -41783,7 +41783,7 @@
       "name": "FRC.Gravity.redshift_linear",
       "tier": 2,
       "ok": true,
-      "page": "lean/Gravity.html#FRC.Gravity.redshift_linear"
+      "page": "lean/ml/Gravity.html#FRC.Gravity.redshift_linear"
      }
     ]
    },
@@ -41811,7 +41811,7 @@
       "name": "FRC.Gravity.hbar_register",
       "tier": 2,
       "ok": true,
-      "page": "lean/Gravity.html#FRC.Gravity.hbar_register"
+      "page": "lean/ml/Gravity.html#FRC.Gravity.hbar_register"
      },
      {
       "lib": "FrcCore",
@@ -41866,7 +41866,7 @@
       "name": "FRC.Gravity.cover_forcing",
       "tier": 2,
       "ok": true,
-      "page": "lean/Gravity.html#FRC.Gravity.cover_forcing"
+      "page": "lean/ml/Gravity.html#FRC.Gravity.cover_forcing"
      }
     ]
    },
@@ -41894,7 +41894,7 @@
       "name": "FRC.Gravity.cover_forcing",
       "tier": 2,
       "ok": true,
-      "page": "lean/Gravity.html#FRC.Gravity.cover_forcing"
+      "page": "lean/ml/Gravity.html#FRC.Gravity.cover_forcing"
      },
      {
       "lib": "FrcLedger",
@@ -41902,7 +41902,7 @@
       "name": "FRC.Gravity.pn_series",
       "tier": 2,
       "ok": true,
-      "page": "lean/Gravity.html#FRC.Gravity.pn_series"
+      "page": "lean/ml/Gravity.html#FRC.Gravity.pn_series"
      }
     ]
    },
@@ -41930,7 +41930,7 @@
       "name": "FRC.Gravity.central_difference_adjoint",
       "tier": 2,
       "ok": true,
-      "page": "lean/Gravity.html#FRC.Gravity.central_difference_adjoint"
+      "page": "lean/ml/Gravity.html#FRC.Gravity.central_difference_adjoint"
      }
     ]
    },
@@ -41980,7 +41980,7 @@
       "name": "FRC.Gravity.exponential_reading",
       "tier": 2,
       "ok": true,
-      "page": "lean/Gravity.html#FRC.Gravity.exponential_reading"
+      "page": "lean/ml/Gravity.html#FRC.Gravity.exponential_reading"
      }
     ]
    },
@@ -42010,7 +42010,7 @@
       "name": "FRC.Gravity.operational_cut",
       "tier": 2,
       "ok": true,
-      "page": "lean/Gravity.html#FRC.Gravity.operational_cut"
+      "page": "lean/ml/Gravity.html#FRC.Gravity.operational_cut"
      }
     ]
    },
@@ -42041,7 +42041,7 @@
       "name": "FRC.Gravity.count_face",
       "tier": 1,
       "ok": true,
-      "page": "lean/Gravity.html#FRC.Gravity.count_face"
+      "page": "lean/ml/Gravity.html#FRC.Gravity.count_face"
      },
      {
       "lib": "FrcLedger",
@@ -42049,7 +42049,7 @@
       "name": "FRC.Gravity.merger_area_law",
       "tier": 2,
       "ok": true,
-      "page": "lean/Gravity.html#FRC.Gravity.merger_area_law"
+      "page": "lean/ml/Gravity.html#FRC.Gravity.merger_area_law"
      },
      {
       "lib": "FrcLedger",
@@ -42057,7 +42057,7 @@
       "name": "FRC.Gravity.capacity_ratio",
       "tier": 2,
       "ok": true,
-      "page": "lean/Gravity.html#FRC.Gravity.capacity_ratio"
+      "page": "lean/ml/Gravity.html#FRC.Gravity.capacity_ratio"
      },
      {
       "lib": "FrcCore",
@@ -42143,7 +42143,7 @@
       "name": "FRC.Gravity.calibration_congruence",
       "tier": 1,
       "ok": true,
-      "page": "lean/Gravity.html#FRC.Gravity.calibration_congruence"
+      "page": "lean/ml/Gravity.html#FRC.Gravity.calibration_congruence"
      },
      {
       "lib": "FrcLedger",
@@ -42151,7 +42151,7 @@
       "name": "FRC.Gravity.newton_register",
       "tier": 2,
       "ok": true,
-      "page": "lean/Gravity.html#FRC.Gravity.newton_register"
+      "page": "lean/ml/Gravity.html#FRC.Gravity.newton_register"
      },
      {
       "lib": "FrcCore",
@@ -42216,7 +42216,7 @@
       "name": "FRC.Gravity.scale_invariance_iff",
       "tier": 2,
       "ok": true,
-      "page": "lean/Gravity.html#FRC.Gravity.scale_invariance_iff"
+      "page": "lean/ml/Gravity.html#FRC.Gravity.scale_invariance_iff"
      },
      {
       "lib": "FrcLedger",
@@ -42224,7 +42224,7 @@
       "name": "FRC.Gravity.tilt_bracket",
       "tier": 2,
       "ok": true,
-      "page": "lean/Gravity.html#FRC.Gravity.tilt_bracket"
+      "page": "lean/ml/Gravity.html#FRC.Gravity.tilt_bracket"
      }
     ]
    },
@@ -42254,7 +42254,7 @@
       "name": "FRC.Gravity.registration_root",
       "tier": 2,
       "ok": true,
-      "page": "lean/Gravity.html#FRC.Gravity.registration_root"
+      "page": "lean/ml/Gravity.html#FRC.Gravity.registration_root"
      },
      {
       "lib": "FrcLedger",
@@ -42262,7 +42262,7 @@
       "name": "FRC.Gravity.crossover_limits",
       "tier": 2,
       "ok": true,
-      "page": "lean/Gravity.html#FRC.Gravity.crossover_limits"
+      "page": "lean/ml/Gravity.html#FRC.Gravity.crossover_limits"
      },
      {
       "lib": "FrcLedger",
@@ -42270,7 +42270,7 @@
       "name": "FRC.Gravity.crossover_deep_limit",
       "tier": 2,
       "ok": true,
-      "page": "lean/Gravity.html#FRC.Gravity.crossover_deep_limit"
+      "page": "lean/ml/Gravity.html#FRC.Gravity.crossover_deep_limit"
      }
     ]
    },
@@ -42300,7 +42300,7 @@
       "name": "FRC.Gravity.shift_theorem",
       "tier": 2,
       "ok": true,
-      "page": "lean/Gravity.html#FRC.Gravity.shift_theorem"
+      "page": "lean/ml/Gravity.html#FRC.Gravity.shift_theorem"
      }
     ]
    },
@@ -42389,7 +42389,7 @@
       "name": "FRC.Gravity.cover_forcing",
       "tier": 2,
       "ok": true,
-      "page": "lean/Gravity.html#FRC.Gravity.cover_forcing"
+      "page": "lean/ml/Gravity.html#FRC.Gravity.cover_forcing"
      }
     ]
    },
@@ -42420,7 +42420,7 @@
       "name": "FRC.Gravity.photon_sphere",
       "tier": 2,
       "ok": true,
-      "page": "lean/Gravity.html#FRC.Gravity.photon_sphere"
+      "page": "lean/ml/Gravity.html#FRC.Gravity.photon_sphere"
      },
      {
       "lib": "FrcLedger",
@@ -42428,7 +42428,7 @@
       "name": "FRC.Gravity.shadow_bracket",
       "tier": 2,
       "ok": true,
-      "page": "lean/Gravity.html#FRC.Gravity.shadow_bracket"
+      "page": "lean/ml/Gravity.html#FRC.Gravity.shadow_bracket"
      },
      {
       "lib": "FrcLedger",
@@ -42436,7 +42436,7 @@
       "name": "FRC.Gravity.isco",
       "tier": 2,
       "ok": true,
-      "page": "lean/Gravity.html#FRC.Gravity.isco"
+      "page": "lean/ml/Gravity.html#FRC.Gravity.isco"
      },
      {
       "lib": "FrcLedger",
@@ -42444,7 +42444,7 @@
       "name": "FRC.Gravity.isco_efficiency",
       "tier": 2,
       "ok": true,
-      "page": "lean/Gravity.html#FRC.Gravity.isco_efficiency"
+      "page": "lean/ml/Gravity.html#FRC.Gravity.isco_efficiency"
      }
     ]
    },
@@ -42472,7 +42472,7 @@
       "name": "FRC.Gravity.preferred_frame_scale",
       "tier": 2,
       "ok": true,
-      "page": "lean/Gravity.html#FRC.Gravity.preferred_frame_scale"
+      "page": "lean/ml/Gravity.html#FRC.Gravity.preferred_frame_scale"
      }
     ]
    },
@@ -42500,7 +42500,7 @@
       "name": "FRC.Gravity.floor_value",
       "tier": 2,
       "ok": true,
-      "page": "lean/Gravity.html#FRC.Gravity.floor_value"
+      "page": "lean/ml/Gravity.html#FRC.Gravity.floor_value"
      }
     ]
    },
@@ -42530,7 +42530,7 @@
       "name": "FRC.Gravity.crossover_limits",
       "tier": 2,
       "ok": true,
-      "page": "lean/Gravity.html#FRC.Gravity.crossover_limits"
+      "page": "lean/ml/Gravity.html#FRC.Gravity.crossover_limits"
      },
      {
       "lib": "FrcLedger",
@@ -42538,7 +42538,7 @@
       "name": "FRC.Gravity.registration_root",
       "tier": 2,
       "ok": true,
-      "page": "lean/Gravity.html#FRC.Gravity.registration_root"
+      "page": "lean/ml/Gravity.html#FRC.Gravity.registration_root"
      },
      {
       "lib": "FrcLedger",
@@ -42546,7 +42546,7 @@
       "name": "FRC.Gravity.interpolant_discriminant",
       "tier": 2,
       "ok": true,
-      "page": "lean/Gravity.html#FRC.Gravity.interpolant_discriminant"
+      "page": "lean/ml/Gravity.html#FRC.Gravity.interpolant_discriminant"
      }
     ]
    },
@@ -42597,7 +42597,7 @@
       "name": "FRC.Gravity.pn_series",
       "tier": 2,
       "ok": true,
-      "page": "lean/Gravity.html#FRC.Gravity.pn_series"
+      "page": "lean/ml/Gravity.html#FRC.Gravity.pn_series"
      }
     ]
    },
@@ -42625,7 +42625,7 @@
       "name": "FRC.Gravity.operational_cut",
       "tier": 2,
       "ok": true,
-      "page": "lean/Gravity.html#FRC.Gravity.operational_cut"
+      "page": "lean/ml/Gravity.html#FRC.Gravity.operational_cut"
      }
     ]
    },
@@ -42655,7 +42655,7 @@
       "name": "FRC.Gravity.tilt_bracket",
       "tier": 2,
       "ok": true,
-      "page": "lean/Gravity.html#FRC.Gravity.tilt_bracket"
+      "page": "lean/ml/Gravity.html#FRC.Gravity.tilt_bracket"
      }
     ]
    },
@@ -42782,7 +42782,7 @@
       "name": "FRC.Gravity.crossover_deep_limit",
       "tier": 2,
       "ok": true,
-      "page": "lean/Gravity.html#FRC.Gravity.crossover_deep_limit"
+      "page": "lean/ml/Gravity.html#FRC.Gravity.crossover_deep_limit"
      }
     ]
    },
@@ -42908,7 +42908,7 @@
       "name": "FRC.Gravity.dilution",
       "tier": 2,
       "ok": true,
-      "page": "lean/Gravity.html#FRC.Gravity.dilution"
+      "page": "lean/ml/Gravity.html#FRC.Gravity.dilution"
      }
     ]
    },
@@ -44347,7 +44347,7 @@
       "name": "FRC.Godel.finite_succ_onto",
       "tier": 2,
       "ok": true,
-      "page": "lean/Godel.html#FRC.Godel.finite_succ_onto"
+      "page": "lean/ml/Godel.html#FRC.Godel.finite_succ_onto"
      },
      {
       "lib": "FrcLedger",
@@ -44355,7 +44355,7 @@
       "name": "FRC.Godel.infinite_of_succ",
       "tier": 2,
       "ok": true,
-      "page": "lean/Godel.html#FRC.Godel.infinite_of_succ"
+      "page": "lean/ml/Godel.html#FRC.Godel.infinite_of_succ"
      },
      {
       "lib": "FrcCore",
@@ -44406,7 +44406,7 @@
       "name": "FRC.Godel.theory_complete",
       "tier": 2,
       "ok": true,
-      "page": "lean/Godel.html#FRC.Godel.theory_complete"
+      "page": "lean/ml/Godel.html#FRC.Godel.theory_complete"
      },
      {
       "lib": "FrcLedger",
@@ -44414,7 +44414,7 @@
       "name": "FRC.Godel.decTheory",
       "tier": 2,
       "ok": true,
-      "page": "lean/Godel.html#FRC.Godel.decTheory"
+      "page": "lean/ml/Godel.html#FRC.Godel.decTheory"
      }
     ]
    },
@@ -44494,7 +44494,7 @@
       "name": "FRC.Godel.nots_collide",
       "tier": 2,
       "ok": true,
-      "page": "lean/Godel.html#FRC.Godel.nots_collide"
+      "page": "lean/ml/Godel.html#FRC.Godel.nots_collide"
      },
      {
       "lib": "FrcCore",
@@ -44537,7 +44537,7 @@
       "name": "FRC.Godel.no_injective_encoding",
       "tier": 2,
       "ok": true,
-      "page": "lean/Godel.html#FRC.Godel.no_injective_encoding"
+      "page": "lean/ml/Godel.html#FRC.Godel.no_injective_encoding"
      },
      {
       "lib": "FrcCore",
@@ -44602,7 +44602,7 @@
       "name": "FRC.Godel.reading_identifies",
       "tier": 2,
       "ok": true,
-      "page": "lean/Godel.html#FRC.Godel.reading_identifies"
+      "page": "lean/ml/Godel.html#FRC.Godel.reading_identifies"
      },
      {
       "lib": "FrcLedger",
@@ -44610,7 +44610,7 @@
       "name": "FRC.Godel.alias_fibre",
       "tier": 2,
       "ok": true,
-      "page": "lean/Godel.html#FRC.Godel.alias_fibre"
+      "page": "lean/ml/Godel.html#FRC.Godel.alias_fibre"
      },
      {
       "lib": "FrcLedger",
@@ -44618,7 +44618,7 @@
       "name": "FRC.Godel.alias_two",
       "tier": 2,
       "ok": true,
-      "page": "lean/Godel.html#FRC.Godel.alias_two"
+      "page": "lean/ml/Godel.html#FRC.Godel.alias_two"
      },
      {
       "lib": "FrcLedger",
@@ -44626,7 +44626,7 @@
       "name": "FRC.Godel.alias_outside",
       "tier": 2,
       "ok": true,
-      "page": "lean/Godel.html#FRC.Godel.alias_outside"
+      "page": "lean/ml/Godel.html#FRC.Godel.alias_outside"
      }
     ]
    },
@@ -44710,7 +44710,7 @@
       "name": "FRC.Godel.two_pow_le_catalan",
       "tier": 2,
       "ok": true,
-      "page": "lean/Godel.html#FRC.Godel.two_pow_le_catalan"
+      "page": "lean/ml/Godel.html#FRC.Godel.two_pow_le_catalan"
      },
      {
       "lib": "FrcLedger",
@@ -44718,7 +44718,7 @@
       "name": "FRC.Godel.cohort_lower",
       "tier": 2,
       "ok": true,
-      "page": "lean/Godel.html#FRC.Godel.cohort_lower"
+      "page": "lean/ml/Godel.html#FRC.Godel.cohort_lower"
      },
      {
       "lib": "FrcLedger",
@@ -44726,7 +44726,7 @@
       "name": "FRC.Godel.abundance",
       "tier": 2,
       "ok": true,
-      "page": "lean/Godel.html#FRC.Godel.abundance"
+      "page": "lean/ml/Godel.html#FRC.Godel.abundance"
      },
      {
       "lib": "FrcCore",
@@ -44775,7 +44775,7 @@
       "name": "FRC.Godel.records_lt",
       "tier": 2,
       "ok": true,
-      "page": "lean/Godel.html#FRC.Godel.records_lt"
+      "page": "lean/ml/Godel.html#FRC.Godel.records_lt"
      },
      {
       "lib": "FrcCore",
@@ -45046,7 +45046,7 @@
       "name": "FRC.Godel.dense_coding",
       "tier": 2,
       "ok": true,
-      "page": "lean/Godel.html#FRC.Godel.dense_coding"
+      "page": "lean/ml/Godel.html#FRC.Godel.dense_coding"
      },
      {
       "lib": "FrcCore",
@@ -45451,7 +45451,7 @@
       "name": "FRC.Godel.card_relations",
       "tier": 2,
       "ok": true,
-      "page": "lean/Godel.html#FRC.Godel.card_relations"
+      "page": "lean/ml/Godel.html#FRC.Godel.card_relations"
      },
      {
       "lib": "FrcLedger",
@@ -45459,7 +45459,7 @@
       "name": "FRC.Godel.decideAllRelations",
       "tier": 2,
       "ok": true,
-      "page": "lean/Godel.html#FRC.Godel.decideAllRelations"
+      "page": "lean/ml/Godel.html#FRC.Godel.decideAllRelations"
      }
     ]
    },
