@@ -9,14 +9,14 @@
    "rows": 1005,
    "shared": 6,
    "by_tag": {
-    "D": 122,
+    "D": 124,
     "D|R": 1,
     "D|T": 5,
     "G": 1,
     "I": 119,
     "I|T": 2,
     "O": 13,
-    "P": 5,
+    "P": 3,
     "R": 83,
     "T": 528,
     "T|D": 2,
@@ -1453,7 +1453,7 @@
    "theorems": "one entry per key (LM12): its canonical statement (the row of its ledger of origin, the key's prefix), the origin, the tag, the Lean tier, the deciding check and declarations, the aliases that resolve to it, the rows that write it, and for a theorem the realisations its statement names (Q21)",
    "superseded": "the keys that left the public ledgers (corrected, split, merged or returned home), each with its live successor keys and nothing else (decision Q19)"
   },
-  "superseded": 53
+  "superseded": 55
  },
  "theorems": [
   {
@@ -1471,23 +1471,9 @@
    ]
   },
   {
-   "key": "p00002",
-   "origin": "00",
-   "statement": "Infinity is incoherent in both forms, as an ontological posit. The actual: no coherent model is exhibited; the completed totality forbids its own totality as an object, and its consistency is unprovable from within (5-red, Prop.~9). The potential: the undeclared \\emph{freshness} posit, never registered (29-fin). The successor act wraps (A7); the schema over finite instances is retained.",
-   "origin_row": "00:A2",
-   "tag": "P",
-   "tier": null,
-   "check": null,
-   "declarations": [],
-   "aliases": [],
-   "rows": [
-    "00:A2"
-   ]
-  },
-  {
    "key": "p00003",
    "origin": "00",
-   "statement": "The totality has no outside and is unique, so it is complete (observers are shells embedded \\emph{within}, not parallel carriers).",
+   "statement": "\\textbf{The Completeness pillar: the totality is complete}: the totality has no outside, so whatever exists is a part of it, and it has no host. It is unique, since two totalities would each lie within the other. Observers are shells embedded \\emph{within}, not parallel carriers.",
    "origin_row": "00:A3",
    "tag": "P",
    "tier": null,
@@ -1501,7 +1487,7 @@
   {
    "key": "p00004",
    "origin": "00",
-   "statement": "\\textbf{The first pillar: the totality is finite and complete}: finite by A2, complete by A3. By the ground (A1) and the second pillar (A6) a distinction with no registered residue is no distinction (A10), and no registered residue distinguishes the infinite from the large finite (idleness). Finiteness is the audit's verdict, not a premise (29-fin; 5-red Prop.~9).",
+   "statement": "\\textbf{The Finitude pillar: the totality is finite}: a count of $\\Om$ elements. Infinity as an ontological posit is incoherent (no model is exhibited; the completed totality forbids its own totality as an object; its consistency is unprovable within, 5-red Prop.~9), unverifiable (idleness, 29-fin) and redundant (every certificate is finite, 5-red).",
    "origin_row": "00:A4",
    "tag": "P",
    "tier": null,
@@ -1515,7 +1501,7 @@
   {
    "key": "p00159",
    "origin": "00",
-   "statement": "A bounded observer is a proper part, $|O|<\\Om$: it holds no injective encoding of the totality into its own states (25:D1, 5:C2). The limitative content of the classical theorems lives at the comprehension horizon (Z1, Z9).",
+   "statement": "A bounded observer is a proper part, $|O|<\\Om$: by A4 and A6 its states are fewer than the totality's, so no injective encoding of the totality into its states exists (25:D1, 5:C2); every reading $\\Pi_i{:}\\Om\\to\\mathcal D_i$ is an incomplete projection, its image strictly smaller than the whole. The limitative content lives at the comprehension horizon (Z1, Z9).",
    "origin_row": "00:A5",
    "tag": "T",
    "tier": 0,
@@ -1539,9 +1525,9 @@
    "realisations": []
   },
   {
-   "key": "p00149",
+   "key": "p00195",
    "origin": "00",
-   "statement": "\\textbf{The second pillar: every reading is an incomplete projection} $\\Pi_i{:}\\Om\\to\\mathcal D_i$, its image strictly smaller than the whole; forced by A5. A reading's labels $\\mathcal L_i$ count distinctions only through their support $\\rho_i{:}\\mathcal L_i\\to\\Om$: labels with one support are one distinction, so the distinctions realised are the quotient $\\mathcal L_i/{\\sim_i}$, and labels may outnumber them without adding one.",
+   "statement": "\\textbf{The Registration pillar: every reading is a registration by a bounded proper part}: whatever reads the totality is a framed shell embedded within it (A3) and is not the whole; the totality has no frame and no reader of its own; nothing accesses it except by such a registration.",
    "origin_row": "00:A6",
    "tag": "P",
    "tier": null,
@@ -1555,7 +1541,7 @@
   {
    "key": "p00188",
    "origin": "00",
-   "statement": "Counting closes by return: the successor $C_q:x\\mapsto x{+}1\\ (\\mathrm{mod}\\ q)$ on $q\\ge2$ points is one $q$-cycle with no fixed point, so iteration is bounded and cyclic; its interpretation is A2's.",
+   "statement": "Counting closes by return: the successor $C_q:x\\mapsto x{+}1\\ (\\mathrm{mod}\\ q)$ on $q\\ge2$ points is one $q$-cycle with no fixed point, so iteration is bounded and cyclic; its interpretation is A4's.",
    "origin_row": "00:A7",
    "tag": "T",
    "tier": 0,
@@ -1611,9 +1597,9 @@
   {
    "key": "p00010",
    "origin": "00",
-   "statement": "\\textbf{The third pillar: realisation, not correspondence}: a sufficiently expressive, predictive, registration-complete structure \\emph{is} its subject, not an abstraction of it. By the second pillar (A6) no registration reaches an unregistered reality, so a distinction with no registered residue is no distinction. Identification rows (\\tR) are therefore constitutive: defended by the totality of registered consequences, killed by explicit falsifiers.",
+   "statement": "\\textbf{Realisation, not correspondence}: a sufficiently expressive, predictive, registration-complete structure \\emph{is} its subject, not an abstraction of it. By the Registration pillar (A6) no registration reaches an unregistered reality, so a distinction with no registered residue is no distinction. Identification rows (\\tR) are therefore constitutive: defended by the totality of registered consequences, killed by explicit falsifiers.",
    "origin_row": "00:A10",
-   "tag": "P",
+   "tag": "D",
    "tier": null,
    "check": null,
    "declarations": [],
@@ -1639,7 +1625,7 @@
   {
    "key": "p00162",
    "origin": "00",
-   "statement": "\\textbf{Completeness is primality}: the residues of a count $q\\ge2$ have no proper nonzero ideal iff $q$ is prime, so the arithmetic of a counting cycle is complete exactly on prime cycles (the formal shadow of A4).",
+   "statement": "\\textbf{Completeness is primality}: the residues of a count $q\\ge2$ have no proper nonzero ideal iff $q$ is prime, so the arithmetic of a counting cycle is complete exactly on prime cycles --- the formal shadow of A3, since a proper closed substructure of the totality would be a second totality within it.",
    "origin_row": "00:A12",
    "tag": "T",
    "tier": 0,
@@ -1713,6 +1699,20 @@
     "00:A14"
    ],
    "realisations": []
+  },
+  {
+   "key": "p00196",
+   "origin": "00",
+   "statement": "\\textbf{Registration}: a reading's labels $\\mathcal L_i$ count distinctions only through their support $\\rho_i{:}\\mathcal L_i\\to\\Om$; labels with one support are one distinction, so the distinctions realised are the quotient $\\mathcal L_i/{\\sim_i}$, and labels may outnumber them without adding one (A6).",
+   "origin_row": "00:A15",
+   "tag": "D",
+   "tier": null,
+   "check": null,
+   "declarations": [],
+   "aliases": [],
+   "rows": [
+    "00:A15"
+   ]
   },
   {
    "key": "p00011",
@@ -3403,7 +3403,7 @@
   {
    "key": "p00087",
    "origin": "00",
-   "statement": "The mass--radius chart between the Compton and Schwarzschild walls, closed by the Planck apex and the totality wall $r_H$: the totality on its own horizon, the black-hole reading dissolved (A2). Width $61.0$ dex. The over-closure bound ${\\sim}1.8\\times10^{8}M_\\odot$ is the chart's one derived quantity, a bound, predicting no observed scale (14:C9, X5). A consistency chart, not a channel (L2).",
+   "statement": "The mass--radius chart between the Compton and Schwarzschild walls, closed by the Planck apex and the totality wall $r_H$: the totality on its own horizon, the black-hole reading dissolved (A4). Width $61.0$ dex. The over-closure bound ${\\sim}1.8\\times10^{8}M_\\odot$ is the chart's one derived quantity, a bound, predicting no observed scale (14:C9, X5). A consistency chart, not a channel (L2).",
    "origin_row": "00:L4",
    "tag": "T",
    "tier": null,
@@ -21707,6 +21707,12 @@
  ],
  "superseded": [
   {
+   "key": "p00002",
+   "successors": [
+    "p00004"
+   ]
+  },
+  {
    "key": "p00005",
    "successors": [
     "p00159"
@@ -21715,13 +21721,15 @@
   {
    "key": "p00006",
    "successors": [
-    "p00149"
+    "p00159",
+    "p00195",
+    "p00196"
    ]
   },
   {
    "key": "p00007",
    "successors": [
-    "p00002",
+    "p00004",
     "p00188"
    ]
   },
@@ -21996,6 +22004,14 @@
    ]
   },
   {
+   "key": "p00149",
+   "successors": [
+    "p00159",
+    "p00195",
+    "p00196"
+   ]
+  },
+  {
    "key": "p00157",
    "successors": [
     "p00186"
@@ -22067,39 +22083,13 @@
   {
    "paper": "00",
    "no": 0,
-   "rid": "00:A2",
-   "key": "p00002",
-   "label": "A2",
-   "block": "A",
-   "tag": "P",
-   "name": "Infinity is incoherent in both forms",
-   "statement": "Infinity is incoherent in both forms, as an ontological posit. The actual: no coherent model is exhibited; the completed totality forbids its own totality as an object, and its consistency is unprovable from within (5-red, Prop.~9). The potential: the undeclared \\emph{freshness} posit, never registered (29-fin). The successor act wraps (A7); the schema over finite instances is retained.",
-   "source": "5-red, 29-fin",
-   "page": "00-ledger.html#A2",
-   "witness": {
-    "script": null,
-    "py": null,
-    "lean": []
-   },
-   "refs": [
-    "p00188"
-   ],
-   "sources": [
-    "5-red",
-    "29-fin"
-   ],
-   "text": "Infinity is incoherent in both forms: Infinity is incoherent in both forms, as an ontological posit. The actual: no coherent model is exhibited; the completed totality forbids its own totality as an object, and its consistency is unprovable from within (5-red, Prop. 9). The potential: the undeclared freshness posit, never registered (29-fin). The successor act wraps (A7); the schema over finite instances is retained. 5-red, 29-fin"
-  },
-  {
-   "paper": "00",
-   "no": 0,
    "rid": "00:A3",
    "key": "p00003",
    "label": "A3",
    "block": "A",
    "tag": "P",
-   "name": "The totality has no outside and is unique",
-   "statement": "The totality has no outside and is unique, so it is complete (observers are shells embedded \\emph{within}, not parallel carriers).",
+   "name": "The Completeness pillar: the totality is complete",
+   "statement": "\\textbf{The Completeness pillar: the totality is complete}: the totality has no outside, so whatever exists is a part of it, and it has no host. It is unique, since two totalities would each lie within the other. Observers are shells embedded \\emph{within}, not parallel carriers.",
    "source": "9-uniq, 25-göd",
    "page": "00-ledger.html#A3",
    "witness": {
@@ -22112,7 +22102,7 @@
     "9-uniq",
     "25-göd"
    ],
-   "text": "The totality has no outside and is unique: The totality has no outside and is unique, so it is complete (observers are shells embedded within, not parallel carriers). 9-uniq, 25-göd"
+   "text": "The Completeness pillar: the totality is complete: The Completeness pillar: the totality is complete: the totality has no outside, so whatever exists is a part of it, and it has no host. It is unique, since two totalities would each lie within the other. Observers are shells embedded within, not parallel carriers. 9-uniq, 25-göd"
   },
   {
    "paper": "00",
@@ -22122,29 +22112,22 @@
    "label": "A4",
    "block": "A",
    "tag": "P",
-   "name": "The first pillar: the totality is finite and complete",
-   "statement": "\\textbf{The first pillar: the totality is finite and complete}: finite by A2, complete by A3. By the ground (A1) and the second pillar (A6) a distinction with no registered residue is no distinction (A10), and no registered residue distinguishes the infinite from the large finite (idleness). Finiteness is the audit's verdict, not a premise (29-fin; 5-red Prop.~9).",
-   "source": "5-red, 29-fin, 9-uniq, m04",
+   "name": "The Finitude pillar: the totality is finite",
+   "statement": "\\textbf{The Finitude pillar: the totality is finite}: a count of $\\Om$ elements. Infinity as an ontological posit is incoherent (no model is exhibited; the completed totality forbids its own totality as an object; its consistency is unprovable within, 5-red Prop.~9), unverifiable (idleness, 29-fin) and redundant (every certificate is finite, 5-red).",
+   "source": "5-red, 29-fin, m04",
    "page": "00-ledger.html#A4",
    "witness": {
     "script": null,
     "py": null,
     "lean": []
    },
-   "refs": [
-    "p00001",
-    "p00002",
-    "p00003",
-    "p00010",
-    "p00149"
-   ],
+   "refs": [],
    "sources": [
     "5-red",
     "29-fin",
-    "9-uniq",
     "m04"
    ],
-   "text": "The first pillar: the totality is finite and complete: The first pillar: the totality is finite and complete: finite by A2, complete by A3. By the ground (A1) and the second pillar (A6) a distinction with no registered residue is no distinction (A10), and no registered residue distinguishes the infinite from the large finite (idleness). Finiteness is the audit's verdict, not a premise (29-fin; 5-red Prop. 9). 5-red, 29-fin, 9-uniq, m04"
+   "text": "The Finitude pillar: the totality is finite: The Finitude pillar: the totality is finite: a count of $\\Om$ elements. Infinity as an ontological posit is incoherent (no model is exhibited; the completed totality forbids its own totality as an object; its consistency is unprovable within, 5-red Prop. 9), unverifiable (idleness, 29-fin) and redundant (every certificate is finite, 5-red). 5-red, 29-fin, m04"
   },
   {
    "paper": "00",
@@ -22155,7 +22138,7 @@
    "block": "A",
    "tag": "T",
    "name": "A bounded observer is a proper part",
-   "statement": "A bounded observer is a proper part, $|O|<\\Om$: it holds no injective encoding of the totality into its own states (25:D1, 5:C2). The limitative content of the classical theorems lives at the comprehension horizon (Z1, Z9).",
+   "statement": "A bounded observer is a proper part, $|O|<\\Om$: by A4 and A6 its states are fewer than the totality's, so no injective encoding of the totality into its states exists (25:D1, 5:C2); every reading $\\Pi_i{:}\\Om\\to\\mathcal D_i$ is an incomplete projection, its image strictly smaller than the whole. The limitative content lives at the comprehension horizon (Z1, Z9).",
    "source": "25-göd, 5-red",
    "page": "00-ledger.html#A5",
    "witness": {
@@ -22178,8 +22161,10 @@
     ]
    },
    "refs": [
+    "p00004",
     "p00186",
     "p00187",
+    "p00195",
     "p05013",
     "p25015"
    ],
@@ -22187,18 +22172,18 @@
     "25-göd",
     "5-red"
    ],
-   "text": "A bounded observer is a proper part: A bounded observer is a proper part, $|O|<\\Om$: it holds no injective encoding of the totality into its own states (25:D1, 5:C2). The limitative content of the classical theorems lives at the comprehension horizon (Z1, Z9). 25-göd, 5-red"
+   "text": "A bounded observer is a proper part: A bounded observer is a proper part, $|O|<\\Om$: by A4 and A6 its states are fewer than the totality's, so no injective encoding of the totality into its states exists (25:D1, 5:C2); every reading $\\Pi_i{:}\\Om\\to\\mathcal D_i$ is an incomplete projection, its image strictly smaller than the whole. The limitative content lives at the comprehension horizon (Z1, Z9). 25-göd, 5-red"
   },
   {
    "paper": "00",
    "no": 0,
    "rid": "00:A6",
-   "key": "p00149",
+   "key": "p00195",
    "label": "A6",
    "block": "A",
    "tag": "P",
-   "name": "The second pillar: every reading is an incomplete projection",
-   "statement": "\\textbf{The second pillar: every reading is an incomplete projection} $\\Pi_i{:}\\Om\\to\\mathcal D_i$, its image strictly smaller than the whole; forced by A5. A reading's labels $\\mathcal L_i$ count distinctions only through their support $\\rho_i{:}\\mathcal L_i\\to\\Om$: labels with one support are one distinction, so the distinctions realised are the quotient $\\mathcal L_i/{\\sim_i}$, and labels may outnumber them without adding one.",
+   "name": "The Registration pillar: every reading is a registration by a bounded proper part",
+   "statement": "\\textbf{The Registration pillar: every reading is a registration by a bounded proper part}: whatever reads the totality is a framed shell embedded within it (A3) and is not the whole; the totality has no frame and no reader of its own; nothing accesses it except by such a registration.",
    "source": "25-göd, 11-ont",
    "page": "00-ledger.html#A6",
    "witness": {
@@ -22207,13 +22192,13 @@
     "lean": []
    },
    "refs": [
-    "p00159"
+    "p00003"
    ],
    "sources": [
     "25-göd",
     "11-ont"
    ],
-   "text": "The second pillar: every reading is an incomplete projection: The second pillar: every reading is an incomplete projection $\\Pi_i{:}\\Om\\to\\mathcal D_i$, its image strictly smaller than the whole; forced by A5. A reading's labels $\\mathcal L_i$ count distinctions only through their support $\\rho_i{:}\\mathcal L_i\\to\\Om$: labels with one support are one distinction, so the distinctions realised are the quotient $\\mathcal L_i/{\\sim_i}$, and labels may outnumber them without adding one. 25-göd, 11-ont"
+   "text": "The Registration pillar: every reading is a registration by a bounded proper part: The Registration pillar: every reading is a registration by a bounded proper part: whatever reads the totality is a framed shell embedded within it (A3) and is not the whole; the totality has no frame and no reader of its own; nothing accesses it except by such a registration. 25-göd, 11-ont"
   },
   {
    "paper": "00",
@@ -22224,7 +22209,7 @@
    "block": "A",
    "tag": "T",
    "name": "Counting closes by return",
-   "statement": "Counting closes by return: the successor $C_q:x\\mapsto x{+}1\\ (\\mathrm{mod}\\ q)$ on $q\\ge2$ points is one $q$-cycle with no fixed point, so iteration is bounded and cyclic; its interpretation is A2's.",
+   "statement": "Counting closes by return: the successor $C_q:x\\mapsto x{+}1\\ (\\mathrm{mod}\\ q)$ on $q\\ge2$ points is one $q$-cycle with no fixed point, so iteration is bounded and cyclic; its interpretation is A4's.",
    "source": "11-ont, 5-red, 29-fin",
    "page": "00-ledger.html#A7",
    "witness": {
@@ -22247,14 +22232,14 @@
     ]
    },
    "refs": [
-    "p00002"
+    "p00004"
    ],
    "sources": [
     "11-ont",
     "5-red",
     "29-fin"
    ],
-   "text": "Counting closes by return: Counting closes by return: the successor $C_q:x\\mapsto x{+}1 (\\mathrm{mod} q)$ on $q\\ge2$ points is one $q$-cycle with no fixed point, so iteration is bounded and cyclic; its interpretation is A2's. 11-ont, 5-red, 29-fin"
+   "text": "Counting closes by return: Counting closes by return: the successor $C_q:x\\mapsto x{+}1 (\\mathrm{mod} q)$ on $q\\ge2$ points is one $q$-cycle with no fixed point, so iteration is bounded and cyclic; its interpretation is A4's. 11-ont, 5-red, 29-fin"
   },
   {
    "paper": "00",
@@ -22321,9 +22306,9 @@
    "key": "p00010",
    "label": "A10",
    "block": "A",
-   "tag": "P",
-   "name": "The third pillar: realisation, not correspondence",
-   "statement": "\\textbf{The third pillar: realisation, not correspondence}: a sufficiently expressive, predictive, registration-complete structure \\emph{is} its subject, not an abstraction of it. By the second pillar (A6) no registration reaches an unregistered reality, so a distinction with no registered residue is no distinction. Identification rows (\\tR) are therefore constitutive: defended by the totality of registered consequences, killed by explicit falsifiers.",
+   "tag": "D",
+   "name": "Realisation, not correspondence",
+   "statement": "\\textbf{Realisation, not correspondence}: a sufficiently expressive, predictive, registration-complete structure \\emph{is} its subject, not an abstraction of it. By the Registration pillar (A6) no registration reaches an unregistered reality, so a distinction with no registered residue is no distinction. Identification rows (\\tR) are therefore constitutive: defended by the totality of registered consequences, killed by explicit falsifiers.",
    "source": "11-ont, 9-uniq",
    "page": "00-ledger.html#A10",
    "witness": {
@@ -22332,13 +22317,13 @@
     "lean": []
    },
    "refs": [
-    "p00149"
+    "p00195"
    ],
    "sources": [
     "11-ont",
     "9-uniq"
    ],
-   "text": "The third pillar: realisation, not correspondence: The third pillar: realisation, not correspondence: a sufficiently expressive, predictive, registration-complete structure is its subject, not an abstraction of it. By the second pillar (A6) no registration reaches an unregistered reality, so a distinction with no registered residue is no distinction. Identification rows (R) are therefore constitutive: defended by the totality of registered consequences, killed by explicit falsifiers. 11-ont, 9-uniq"
+   "text": "Realisation, not correspondence: Realisation, not correspondence: a sufficiently expressive, predictive, registration-complete structure is its subject, not an abstraction of it. By the Registration pillar (A6) no registration reaches an unregistered reality, so a distinction with no registered residue is no distinction. Identification rows (R) are therefore constitutive: defended by the totality of registered consequences, killed by explicit falsifiers. 11-ont, 9-uniq"
   },
   {
    "paper": "00",
@@ -22372,7 +22357,7 @@
    "block": "A",
    "tag": "T",
    "name": "Completeness is primality",
-   "statement": "\\textbf{Completeness is primality}: the residues of a count $q\\ge2$ have no proper nonzero ideal iff $q$ is prime, so the arithmetic of a counting cycle is complete exactly on prime cycles (the formal shadow of A4).",
+   "statement": "\\textbf{Completeness is primality}: the residues of a count $q\\ge2$ have no proper nonzero ideal iff $q$ is prime, so the arithmetic of a counting cycle is complete exactly on prime cycles --- the formal shadow of A3, since a proper closed substructure of the totality would be a second totality within it.",
    "source": "1-alg",
    "page": "00-ledger.html#A12",
    "witness": {
@@ -22395,12 +22380,12 @@
     ]
    },
    "refs": [
-    "p00004"
+    "p00003"
    ],
    "sources": [
     "1-alg"
    ],
-   "text": "Completeness is primality: Completeness is primality: the residues of a count $q\\ge2$ have no proper nonzero ideal iff $q$ is prime, so the arithmetic of a counting cycle is complete exactly on prime cycles (the formal shadow of A4). 1-alg"
+   "text": "Completeness is primality: Completeness is primality: the residues of a count $q\\ge2$ have no proper nonzero ideal iff $q$ is prime, so the arithmetic of a counting cycle is complete exactly on prime cycles — the formal shadow of A3, since a proper closed substructure of the totality would be a second totality within it. 1-alg"
   },
   {
    "paper": "00",
@@ -22479,6 +22464,32 @@
     "1-alg"
    ],
    "text": "Every prime carries a frame: Every prime carries a frame: every prime field $\\F_\\p$ has a primitive root, so a drive $\\gen$ with $\\langle\\gen\\rangle=\\F_\\p^{\\times}$ exists (the formal shadow of C1). 1-alg"
+  },
+  {
+   "paper": "00",
+   "no": 0,
+   "rid": "00:A15",
+   "key": "p00196",
+   "label": "A15",
+   "block": "A",
+   "tag": "D",
+   "name": "Registration",
+   "statement": "\\textbf{Registration}: a reading's labels $\\mathcal L_i$ count distinctions only through their support $\\rho_i{:}\\mathcal L_i\\to\\Om$; labels with one support are one distinction, so the distinctions realised are the quotient $\\mathcal L_i/{\\sim_i}$, and labels may outnumber them without adding one (A6).",
+   "source": "11-ont, 25-göd",
+   "page": "00-ledger.html#A15",
+   "witness": {
+    "script": null,
+    "py": null,
+    "lean": []
+   },
+   "refs": [
+    "p00195"
+   ],
+   "sources": [
+    "11-ont",
+    "25-göd"
+   ],
+   "text": "Registration: Registration: a reading's labels $\\mathcal L_i$ count distinctions only through their support $\\rho_i{:}\\mathcal L_i\\to\\Om$; labels with one support are one distinction, so the distinctions realised are the quotient $\\mathcal L_i/{\\sim_i}$, and labels may outnumber them without adding one (A6). 11-ont, 25-göd"
   },
   {
    "paper": "00",
@@ -25202,7 +25213,7 @@
    "block": "L",
    "tag": "T",
    "name": "The registrable triangle",
-   "statement": "The mass--radius chart between the Compton and Schwarzschild walls, closed by the Planck apex and the totality wall $r_H$: the totality on its own horizon, the black-hole reading dissolved (A2). Width $61.0$ dex. The over-closure bound ${\\sim}1.8\\times10^{8}M_\\odot$ is the chart's one derived quantity, a bound, predicting no observed scale (14:C9, X5). A consistency chart, not a channel (L2).",
+   "statement": "The mass--radius chart between the Compton and Schwarzschild walls, closed by the Planck apex and the totality wall $r_H$: the totality on its own horizon, the black-hole reading dissolved (A4). Width $61.0$ dex. The over-closure bound ${\\sim}1.8\\times10^{8}M_\\odot$ is the chart's one derived quantity, a bound, predicting no observed scale (14:C9, X5). A consistency chart, not a channel (L2).",
    "source": "14-entr",
    "page": "00-ledger.html#L4",
    "witness": {
@@ -25211,14 +25222,14 @@
     "lean": []
    },
    "refs": [
-    "p00002",
+    "p00004",
     "p00085",
     "p14026"
    ],
    "sources": [
     "14-entr"
    ],
-   "text": "The registrable triangle: The mass–radius chart between the Compton and Schwarzschild walls, closed by the Planck apex and the totality wall $r_H$: the totality on its own horizon, the black-hole reading dissolved (A2). Width $61.0$ dex. The over-closure bound ${\\sim}1.8\\times10^{8}M_\\odot$ is the chart's one derived quantity, a bound, predicting no observed scale (14:C9, X5). A consistency chart, not a channel (L2). 14-entr 14:entropy.py [mixed]"
+   "text": "The registrable triangle: The mass–radius chart between the Compton and Schwarzschild walls, closed by the Planck apex and the totality wall $r_H$: the totality on its own horizon, the black-hole reading dissolved (A4). Width $61.0$ dex. The over-closure bound ${\\sim}1.8\\times10^{8}M_\\odot$ is the chart's one derived quantity, a bound, predicting no observed scale (14:C9, X5). A consistency chart, not a channel (L2). 14-entr 14:entropy.py [mixed]"
   },
   {
    "paper": "00",
@@ -25645,7 +25656,7 @@
    "block": "Z",
    "tag": "D",
    "name": "The horizon forces structure, not only leaves it open",
-   "statement": "The horizon \\emph{forces} structure, not only leaves it open: the $3+2$ split is beyond the horizon (above $\\sqrt{\\Om}$), so the off-block reframings are gauge and unification is the simple $\\SO(10)$ (G14); the automorphism lemma reduces to the second pillar (A6).",
+   "statement": "The horizon \\emph{forces} structure, not only leaves it open: the $3+2$ split is beyond the horizon (above $\\sqrt{\\Om}$), so the off-block reframings are gauge and unification is the simple $\\SO(10)$ (G14); the automorphism lemma reduces to the Registration pillar (A6).",
    "source": "27-fld, 20-rh",
    "page": "00-ledger.html#Z5",
    "witness": {
@@ -25655,13 +25666,13 @@
    },
    "refs": [
     "p00079",
-    "p00149"
+    "p00195"
    ],
    "sources": [
     "27-fld",
     "20-rh"
    ],
-   "text": "The horizon forces structure, not only leaves it open: The horizon forces structure, not only leaves it open: the $3+2$ split is beyond the horizon (above $\\sqrt{\\Om}$), so the off-block reframings are gauge and unification is the simple $\\SO(10)$ (G14); the automorphism lemma reduces to the second pillar (A6). 27-fld, 20-rh"
+   "text": "The horizon forces structure, not only leaves it open: The horizon forces structure, not only leaves it open: the $3+2$ split is beyond the horizon (above $\\sqrt{\\Om}$), so the off-block reframings are gauge and unification is the simple $\\SO(10)$ (G14); the automorphism lemma reduces to the Registration pillar (A6). 27-fld, 20-rh"
   },
   {
    "paper": "00",
@@ -28819,8 +28830,8 @@
     "p00008",
     "p00013",
     "p00021",
-    "p00149",
     "p00188",
+    "p00195",
     "p01004",
     "p01009",
     "p03009",
@@ -28864,7 +28875,7 @@
     "lean": []
    },
    "refs": [
-    "p00149"
+    "p00195"
    ],
    "text": "The latent domain: a finite set $\\mathcal Z\\subset\\mathcal U_t=\\Fp$, the complete relational domain a model reconstructs from its data; the shell is the ambient set and a reading of it is a projection (00:A6). Def. def:latent; Section sec:framework"
   },
@@ -29611,10 +29622,10 @@
    "refs": [
     "p00004",
     "p00111",
-    "p00149",
     "p00159",
     "p00186",
-    "p00188"
+    "p00188",
+    "p00195"
    ],
    "text": "The corpus: the totality finite and complete (00:A4), counting closes by return (00:A7), a bounded observer a proper part and every reading a projection (00:A5, A6), G\\\"odel vacuous over the finite $\\Omega$ (00:Z1), the $\\Omega$-hard demarcation (00:Z3); finite mathematics as ontologically primary (Lev, Zeilberger). [lev2020finite,Zeilberger2001,akhtman2025algebra]"
   },
@@ -29914,7 +29925,6 @@
     ]
    },
    "refs": [
-    "p00149",
     "p00159"
    ],
    "text": "No internal mirror: fewer than $s^{K+1}$ records exist, so an agent with $s^{K+1}<N$ holds no injective representation of the domain of $W_N$ — a proper part cannot mirror the whole (pigeonhole). Prop. prop:mirror p05013, FrcCore{C2}, FrcLedger{C2} Reductio.records_lt, Reductio.no_mirror, FRC.Reductio.records_lt, FRC.Reductio.no_mirror"
@@ -30191,7 +30201,6 @@
     "lean": []
    },
    "refs": [
-    "p00004",
     "p05006"
    ],
    "text": "Forced exit: Det supplies Eff and Cmp, so $\\{$Cns, Det, IR$\\}$ is inconsistent and, Cns and Det being constitutive, the reductio is forced against IR — no determinate totality internalises an unbounded registry; the four-clause bundle condenses to this triad. Conditional on Det. Prop. prop:forced; B2"
@@ -30234,9 +30243,7 @@
      }
     ]
    },
-   "refs": [
-    "p00004"
-   ],
+   "refs": [],
    "text": "Finiteness of determinate totalities: in ZF with every infinite set Dedekind-infinite, a structure satisfies Det iff it is finite — finite: the full higher-order theory decided by exhaustive evaluation; infinite: a copy of $\\N$ inside gives an effective reduction of true second-order arithmetic, which is not arithmetical. The real field's first-order tameness is silence about its subsets. Prop. prop:finiteness p05024, FrcLedger{D8} Reductio.decideAllSubsets, Reductio.nat_embeds"
   },
   {
@@ -30594,7 +30601,7 @@
     "lean": []
    },
    "refs": [
-    "p00002"
+    "p00004"
    ],
    "text": "Ontology and conservativeness: actual infinity is an idealisation of the finite; the bounded fragment is kept exactly, the unbounded fragment in schema form; analysis as approximation over finite grids; choice in the small. Positioning: finitism, intuitionism, ultrafinitism, structuralism; the potential-infinity rule retained at the meta-level as a commitment, not a neutrality. \\Ssubsec:ontology; \\Ssubsec:conservativeness; \\Ssubsec:positions; 00:A2"
   },
@@ -32380,7 +32387,7 @@
     "lean": []
    },
    "refs": [
-    "p00149"
+    "p00159"
    ],
    "text": "The programme position: the primary object a finite symmetry space of algebraic possibilities, every description an incomplete projection; the theorems of the paper stand independently of it. [Akhtman2025Axioms], \\Ssec:shell-reading"
   },
@@ -44212,10 +44219,10 @@
    "refs": [
     "p00003",
     "p00004",
-    "p00149",
     "p00159",
     "p00186",
     "p00187",
+    "p00195",
     "p05024"
    ],
    "text": "The corpus: effective determinacy characterises the finite structures, proved also as 5:D8. No bounded agent certifies that its universe is infinite: every bounded record consistent with an infinite domain is realised in all sufficiently large finite structures. The master rows naming this paper as a source are 00:A3, 00:A5, 00:A6, 00:Z1–00:Z3 and 00:Z9. [akhtman2026paradoxes,akhtman2026finitism]"
@@ -44550,7 +44557,6 @@
     ]
    },
    "refs": [
-    "p00149",
     "p00159"
    ],
    "text": "Relational diagonal: an agent of storage capacity $K$ with $a^{K}<m$ has no injective encoding of the elements of $\\M$ into its storage states. Every internal representation identifies distinct elements. A fortiori the agent holds no faithful model of $\\M$ that also represents the model's own encoding map. Thm. thm:part p25015, FrcCore{D1}, FrcLedger{D1} Godel.no_injective_encoding, FRC.Godel.part_collides"
@@ -44572,7 +44578,7 @@
     "lean": []
    },
    "refs": [
-    "p00149"
+    "p00159"
    ],
    "text": "The limitation relocated: the diagonal's limitative role passes from the provability of truths to the representability of the totality by a part. Tarski undefinability relocates the same way in its representational face: truth of $\\M$ is externally a table, internally unrepresentable by a smaller part. Rem. rem:diagonal"
   },
@@ -44631,7 +44637,7 @@
     ]
    },
    "refs": [
-    "p00149"
+    "p00159"
    ],
    "text": "Wrap, aliasing: every total assignment of storage readings to the elements of $\\M$ identifies distinct elements when $a^{K}<m$. Some reading stands for at least $\\lceil m/a^{K}\\rceil\\ge2$ elements. Every element outside a maximal faithfully represented range is read as an alias of one inside it. Lem. lem:wrap(1) p25017, FrcLedger{D3} Godel.reading_identifies, Godel.alias_fibre, Godel.alias_two, Godel.alias_outside"
   },
