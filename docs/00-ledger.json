@@ -41,20 +41,6 @@
    "statement": "\\textbf{The Universe exists}: the sole indubitable given (``I think, therefore the Universe is''). Neither axiom nor assumption."
   },
   {
-   "label": "A3",
-   "name": "Completeness",
-   "block": "A",
-   "key": "p00003",
-   "tag": "P",
-   "sources": [
-    "9-uniq",
-    "25-göd"
-   ],
-   "witness": null,
-   "refs": [],
-   "statement": "\\textbf{Completeness}: the totality has no outside, so whatever exists is a part of it, and it has no host. It is unique, since two totalities would each lie within the other. Observers are shells embedded \\emph{within}, not parallel carriers."
-  },
-  {
    "label": "A2",
    "name": "Finitude",
    "block": "A",
@@ -68,6 +54,20 @@
    "witness": null,
    "refs": [],
    "statement": "\\textbf{Finitude}: the totality is finite, a count of $\\Om$ elements. Infinity as an ontological posit is incoherent (no model is exhibited; the completed totality forbids its own totality as an object; its consistency is unprovable within, 5-red Prop.~9), unverifiable (idleness, 29-fin) and redundant (every certificate is finite, 5-red)."
+  },
+  {
+   "label": "A3",
+   "name": "Completeness",
+   "block": "A",
+   "key": "p00003",
+   "tag": "P",
+   "sources": [
+    "9-uniq",
+    "25-göd"
+   ],
+   "witness": null,
+   "refs": [],
+   "statement": "\\textbf{Completeness}: the totality has no outside, so whatever exists is a part of it, and it has no host. It is unique, since two totalities would each lie within the other. Observers are shells embedded \\emph{within}, not parallel carriers."
   },
   {
    "label": "A4",
