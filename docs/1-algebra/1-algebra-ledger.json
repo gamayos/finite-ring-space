@@ -1,5 +1,6 @@
 {
  "paper": "1-alg",
+ "tree": "1-algebra-axioms",
  "title": "Relativistic Algebra over Finite Ring Continuum",
  "doi": "https://doi.org/10.3390/axioms14080636",
  "generated": "8 October 2026",
@@ -256,7 +257,7 @@
  ],
  "master": {
   "B4": [
-   "A8"
+   "A7"
   ],
   "D1": [
    "B1"

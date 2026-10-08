@@ -12,18 +12,18 @@
  },
  "pairs": [
   {
-   "master": "A5",
+   "master": "A4",
    "paper": "25:D1",
    "status": "bridged",
    "lean": "FRC.Bridge.A5_25D1",
-   "note": "LM23: the same clause against 25:D1's storage bound"
+   "note": "LM23: the same clause against 25:D1's storage bound (the master row A5 until the relabel of 8 October 2026; the namespace keeps its name)"
   },
   {
-   "master": "A5",
+   "master": "A4",
    "paper": "5:C2",
    "status": "bridged",
    "lean": "FRC.Bridge.A5_5C2",
-   "note": "LM23: a part with fewer states than the whole holds no injective representation of it"
+   "note": "LM23: a part with fewer states than the whole holds no injective representation of it (the master row A5 until the relabel of 8 October 2026; the namespace keeps its name)"
   },
   {
    "master": "B7",

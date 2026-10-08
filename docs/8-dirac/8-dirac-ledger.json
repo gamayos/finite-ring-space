@@ -1,5 +1,6 @@
 {
  "paper": "8-dirac",
+ "tree": "8-dirac-20260709",
  "title": "Schrödinger and Dirac Dynamics",
  "doi": "https://doi.org/10.20944/preprints202510.1486.v2",
  "generated": "8 October 2026",
@@ -404,7 +405,7 @@
    "C3"
   ],
   "A6": [
-   "A5"
+   "A4"
   ]
  },
  "lean": {

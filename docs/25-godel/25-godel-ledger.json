@@ -1,5 +1,6 @@
 {
  "paper": "25-göd",
+ "tree": "25-godel-20260614",
  "title": "Incompleteness Without Infinity",
  "doi": "https://doi.org/10.20944/preprints202607.0850.v1",
  "generated": "8 October 2026",
@@ -414,10 +415,10 @@
  ],
  "master": {
   "A4": [
-   "A4"
+   "A2"
   ],
   "D1": [
-   "A5"
+   "A4"
   ],
   "C1": [
    "Z1"
@@ -461,10 +462,10 @@
    "Z9"
   ],
   "D3": [
-   "A5"
+   "A4"
   ],
   "D2": [
-   "A5"
+   "A4"
   ]
  },
  "lean": {

@@ -1471,9 +1471,23 @@
    ]
   },
   {
+   "key": "p00004",
+   "origin": "00",
+   "statement": "\\textbf{Finitude}: the totality is finite, a count of $\\Om$ elements. Infinity as an ontological posit is incoherent (no model is exhibited; the completed totality forbids its own totality as an object; its consistency is unprovable within, 5-red Prop.~9), unverifiable (idleness, 29-fin) and redundant (every certificate is finite, 5-red).",
+   "origin_row": "00:A2",
+   "tag": "P",
+   "tier": null,
+   "check": null,
+   "declarations": [],
+   "aliases": [],
+   "rows": [
+    "00:A2"
+   ]
+  },
+  {
    "key": "p00003",
    "origin": "00",
-   "statement": "\\textbf{The Completeness pillar: the totality is complete}: the totality has no outside, so whatever exists is a part of it, and it has no host. It is unique, since two totalities would each lie within the other. Observers are shells embedded \\emph{within}, not parallel carriers.",
+   "statement": "\\textbf{Completeness}: the totality has no outside, so whatever exists is a part of it, and it has no host. It is unique, since two totalities would each lie within the other. Observers are shells embedded \\emph{within}, not parallel carriers.",
    "origin_row": "00:A3",
    "tag": "P",
    "tier": null,
@@ -1485,24 +1499,10 @@
    ]
   },
   {
-   "key": "p00004",
-   "origin": "00",
-   "statement": "\\textbf{The Finitude pillar: the totality is finite}: a count of $\\Om$ elements. Infinity as an ontological posit is incoherent (no model is exhibited; the completed totality forbids its own totality as an object; its consistency is unprovable within, 5-red Prop.~9), unverifiable (idleness, 29-fin) and redundant (every certificate is finite, 5-red).",
-   "origin_row": "00:A4",
-   "tag": "P",
-   "tier": null,
-   "check": null,
-   "declarations": [],
-   "aliases": [],
-   "rows": [
-    "00:A4"
-   ]
-  },
-  {
    "key": "p00159",
    "origin": "00",
-   "statement": "A bounded observer is a proper part, $|O|<\\Om$: by A4 and A6 its states are fewer than the totality's, so no injective encoding of the totality into its states exists (25:D1, 5:C2); every reading $\\Pi_i{:}\\Om\\to\\mathcal D_i$ is an incomplete projection, its image strictly smaller than the whole. The limitative content lives at the comprehension horizon (Z1, Z9).",
-   "origin_row": "00:A5",
+   "statement": "A bounded observer is a proper part, $|O|<\\Om$: by A2 and A5 its states are fewer than the totality's, so no injective encoding of the totality into its states exists (25:D1, 5:C2); every reading $\\Pi_i{:}\\Om\\to\\mathcal D_i$ is an incomplete projection, its image strictly smaller than the whole. The limitative content lives at the comprehension horizon (Z1, Z9).",
+   "origin_row": "00:A4",
    "tag": "T",
    "tier": 0,
    "check": {
@@ -1520,29 +1520,29 @@
    ],
    "aliases": [],
    "rows": [
-    "00:A5"
+    "00:A4"
    ],
    "realisations": []
   },
   {
    "key": "p00195",
    "origin": "00",
-   "statement": "\\textbf{The Registration pillar: every reading is a registration by a bounded proper part}: whatever reads the totality is a framed shell embedded within it (A3) and is not the whole; the totality has no frame and no reader of its own; nothing accesses it except by such a registration.",
-   "origin_row": "00:A6",
+   "statement": "\\textbf{Registration}: every reading is a registration by a bounded proper part --- whatever reads the totality is a framed shell embedded within it (A3) and is not the whole; the totality has no frame and no reader of its own; nothing accesses it except by such a registration.",
+   "origin_row": "00:A5",
    "tag": "P",
    "tier": null,
    "check": null,
    "declarations": [],
    "aliases": [],
    "rows": [
-    "00:A6"
+    "00:A5"
    ]
   },
   {
    "key": "p00188",
    "origin": "00",
-   "statement": "Counting closes by return: the successor $C_q:x\\mapsto x{+}1\\ (\\mathrm{mod}\\ q)$ on $q\\ge2$ points is one $q$-cycle with no fixed point, so iteration is bounded and cyclic; its interpretation is A4's.",
-   "origin_row": "00:A7",
+   "statement": "Counting closes by return: the successor $C_q:x\\mapsto x{+}1\\ (\\mathrm{mod}\\ q)$ on $q\\ge2$ points is one $q$-cycle with no fixed point, so iteration is bounded and cyclic; its interpretation is A2's.",
+   "origin_row": "00:A6",
    "tag": "T",
    "tier": 0,
    "check": {
@@ -1560,7 +1560,7 @@
    ],
    "aliases": [],
    "rows": [
-    "00:A7"
+    "00:A6"
    ],
    "realisations": []
   },
@@ -1568,21 +1568,21 @@
    "key": "p00008",
    "origin": "00",
    "statement": "The Carrier $\\Car$: a timeless torsor of $\\Om$ points, its cardinality its only absolute characteristic; reframings $x\\mapsto ax+b$ are automorphisms, so $0,1,-1$ are frame data; a Subject's frame charts it as the prime field $\\F_\\Om$ --- the frame's chart, never the Carrier (C1). Arena and numbers: B1.",
-   "origin_row": "00:A8",
+   "origin_row": "00:A7",
    "tag": "D",
    "tier": null,
    "check": null,
    "declarations": [],
    "aliases": [],
    "rows": [
-    "00:A8"
+    "00:A7"
    ]
   },
   {
    "key": "p00009",
    "origin": "00",
    "statement": "Scale, the sole quantitative import: the de Sitter entropy of the observable universe fixes the cardinality exactly, $\\Om=4\\dS+1$. Its chart numeral is $\\dS=\\pi(r_H/\\ell_P)^2=3.3\\times10^{122}$ [chart] at $r_H=c/H_\\Lambda$ (14-entr), so $\\Om=1.3\\times10^{123}$ and $\\ln\\Om=283.5$ [chart], the numeral of every chart reading in the ledger. The Carrier congruences are certified by the realisations (B5, C8), not imported. Metrology: L2.",
-   "origin_row": "00:A9",
+   "origin_row": "00:A8",
    "tag": "I",
    "tier": null,
    "check": {
@@ -1591,13 +1591,27 @@
    "declarations": [],
    "aliases": [],
    "rows": [
-    "00:A9"
+    "00:A8"
    ]
   },
   {
    "key": "p00010",
    "origin": "00",
-   "statement": "\\textbf{Realisation, not correspondence}: a sufficiently expressive, predictive, registration-complete structure \\emph{is} its subject, not an abstraction of it. By the Registration pillar (A6) no registration reaches an unregistered reality, so a distinction with no registered residue is no distinction. Identification rows (\\tR) are therefore constitutive: defended by the totality of registered consequences, killed by explicit falsifiers.",
+   "statement": "\\textbf{Realisation, not correspondence}: a sufficiently expressive, predictive, registration-complete structure \\emph{is} its subject, not an abstraction of it. By the Registration pillar (A5) no registration reaches an unregistered reality, so a distinction with no registered residue is no distinction. Identification rows (\\tR) are therefore constitutive: defended by the totality of registered consequences, killed by explicit falsifiers.",
+   "origin_row": "00:A9",
+   "tag": "D",
+   "tier": null,
+   "check": null,
+   "declarations": [],
+   "aliases": [],
+   "rows": [
+    "00:A9"
+   ]
+  },
+  {
+   "key": "p00161",
+   "origin": "00",
+   "statement": "\\textbf{The trusted base}: the kernel's type theory, with the prelude's natural numbers read as the index of shells; no core statement asserts unboundedness, and no step of a certificate computes a count above $\\Om$ at any admissible instance.",
    "origin_row": "00:A10",
    "tag": "D",
    "tier": null,
@@ -1609,24 +1623,10 @@
    ]
   },
   {
-   "key": "p00161",
-   "origin": "00",
-   "statement": "\\textbf{The trusted base}: the kernel's type theory, with the prelude's natural numbers read as the index of shells; no core statement asserts unboundedness, and no step of a certificate computes a count above $\\Om$ at any admissible instance.",
-   "origin_row": "00:A11",
-   "tag": "D",
-   "tier": null,
-   "check": null,
-   "declarations": [],
-   "aliases": [],
-   "rows": [
-    "00:A11"
-   ]
-  },
-  {
    "key": "p00162",
    "origin": "00",
    "statement": "\\textbf{Completeness is primality}: the residues of a count $q\\ge2$ have no proper nonzero ideal iff $q$ is prime, so the arithmetic of a counting cycle is complete exactly on prime cycles --- the formal shadow of A3, since a proper closed substructure of the totality would be a second totality within it.",
-   "origin_row": "00:A12",
+   "origin_row": "00:A11",
    "tag": "T",
    "tier": 0,
    "check": {
@@ -1644,7 +1644,7 @@
    ],
    "aliases": [],
    "rows": [
-    "00:A12"
+    "00:A11"
    ],
    "realisations": []
   },
@@ -1652,7 +1652,7 @@
    "key": "p00163",
    "origin": "00",
    "statement": "\\textbf{The quarter-turn exists iff $\\p\\equiv1\\pmod4$}: for an odd prime $\\p$, $-1$ is a square in $\\F_\\p$ iff $\\p\\equiv1\\pmod4$ (the formal shadow of B3).",
-   "origin_row": "00:A13",
+   "origin_row": "00:A12",
    "tag": "T",
    "tier": 0,
    "check": {
@@ -1670,7 +1670,7 @@
    ],
    "aliases": [],
    "rows": [
-    "00:A13"
+    "00:A12"
    ],
    "realisations": []
   },
@@ -1678,7 +1678,7 @@
    "key": "p00164",
    "origin": "00",
    "statement": "\\textbf{Every prime carries a frame}: every prime field $\\F_\\p$ has a primitive root, so a drive $\\gen$ with $\\langle\\gen\\rangle=\\F_\\p^{\\times}$ exists (the formal shadow of C1).",
-   "origin_row": "00:A14",
+   "origin_row": "00:A13",
    "tag": "T",
    "tier": 0,
    "check": {
@@ -1696,22 +1696,22 @@
    ],
    "aliases": [],
    "rows": [
-    "00:A14"
+    "00:A13"
    ],
    "realisations": []
   },
   {
    "key": "p00196",
    "origin": "00",
-   "statement": "\\textbf{Registration}: a reading's labels $\\mathcal L_i$ count distinctions only through their support $\\rho_i{:}\\mathcal L_i\\to\\Om$; labels with one support are one distinction, so the distinctions realised are the quotient $\\mathcal L_i/{\\sim_i}$, and labels may outnumber them without adding one (A6).",
-   "origin_row": "00:A15",
+   "statement": "\\textbf{Labels and support}: a reading's labels $\\mathcal L_i$ count distinctions only through their support $\\rho_i{:}\\mathcal L_i\\to\\Om$; labels with one support are one distinction, so the distinctions realised are the quotient $\\mathcal L_i/{\\sim_i}$, and labels may outnumber them without adding one (A5).",
+   "origin_row": "00:A14",
    "tag": "D",
    "tier": null,
    "check": null,
    "declarations": [],
    "aliases": [],
    "rows": [
-    "00:A15"
+    "00:A14"
    ]
   },
   {
@@ -1745,7 +1745,7 @@
   {
    "key": "p00013",
    "origin": "00",
-   "statement": "Quarter-turn torsion: $4\\mid\\Om-1$ by construction ($\\Om=4\\dS+1$, A9), so the split torus carries a unique order-four subgroup --- the Carrier's $Q_4$ core $\\{1,\\hbar,-1,h\\}$ ($\\hbar^2\\equiv-1$, $h:=-\\hbar$ the root-pair partner of $\\hbar$, B7), the symmetry-complete condition. The Subject's labels $\\{1,\\im,-1,-\\im\\}$ are frame data (C1), the two quarter-turns distinct objects (D7).",
+   "statement": "Quarter-turn torsion: $4\\mid\\Om-1$ by construction ($\\Om=4\\dS+1$, A8), so the split torus carries a unique order-four subgroup --- the Carrier's $Q_4$ core $\\{1,\\hbar,-1,h\\}$ ($\\hbar^2\\equiv-1$, $h:=-\\hbar$ the root-pair partner of $\\hbar$, B7), the symmetry-complete condition. The Subject's labels $\\{1,\\im,-1,-\\im\\}$ are frame data (C1), the two quarter-turns distinct objects (D7).",
    "origin_row": "00:B3",
    "tag": "D",
    "tier": null,
@@ -1886,7 +1886,7 @@
   {
    "key": "p00168",
    "origin": "00",
-   "statement": "\\textbf{One gauge bit closes the sign sector}: no C14-type marker exists --- $-1$ is a square on admissible $\\Om$, so square class is pair-blind, and integer parity is frame data (A8). Registered faces are pair-invariant: $c^2$, the one-way member synchronisation gauge (C8); $|k_B|$ (C12); $\\{\\hbar,h\\}$ the two named unit faces (B7).",
+   "statement": "\\textbf{One gauge bit closes the sign sector}: no C14-type marker exists --- $-1$ is a square on admissible $\\Om$, so square class is pair-blind, and integer parity is frame data (A7). Registered faces are pair-invariant: $c^2$, the one-way member synchronisation gauge (C8); $|k_B|$ (C12); $\\{\\hbar,h\\}$ the two named unit faces (B7).",
    "origin_row": "00:B10",
    "tag": "T",
    "tier": 0,
@@ -1966,7 +1966,7 @@
   {
    "key": "p00021",
    "origin": "00",
-   "statement": "The frame, Subject-only: $(\\chron;0,1,\\gen)$, origin, unit and the drive $x\\mapsto gx$ (A8). Shell data, capacity-first: $\\kap $ primitive, $\\p =4\\kap +1$, $\\im=-\\gen^\\kap $ (C7), $\\pi=2\\kap $, $e=\\gen^{\\,\\im}$; $\\gen$ the one nonsquare frame datum (C3, C8). Exponents of $\\gen$ are taken in $\\Zp$, a residue in an exponent standing for its lift $\\iota:\\F_\\p\\to\\{0,\\dots,\\p-1\\}$. The web closes on every shell: $2\\pi\\equiv-1$, $\\gen^{\\,\\pi}\\equiv-1$, $-\\pi=2^{-1}$ (N2).",
+   "statement": "The frame, Subject-only: $(\\chron;0,1,\\gen)$, origin, unit and the drive $x\\mapsto gx$ (A7). Shell data, capacity-first: $\\kap $ primitive, $\\p =4\\kap +1$, $\\im=-\\gen^\\kap $ (C7), $\\pi=2\\kap $, $e=\\gen^{\\,\\im}$; $\\gen$ the one nonsquare frame datum (C3, C8). Exponents of $\\gen$ are taken in $\\Zp$, a residue in an exponent standing for its lift $\\iota:\\F_\\p\\to\\{0,\\dots,\\p-1\\}$. The web closes on every shell: $2\\pi\\equiv-1$, $\\gen^{\\,\\pi}\\equiv-1$, $-\\pi=2^{-1}$ (N2).",
    "origin_row": "00:C1",
    "tag": "T",
    "tier": 0,
@@ -2373,7 +2373,7 @@
   {
    "key": "p00182",
    "origin": "00",
-   "statement": "$SU(2)=S^3$ is declared the continuum chart of the frame group (C27) [chart]. The group has the three element types of $\\mathrm{SL}_2(\\mathbb{R})$, $SU(2)$ only one; no finite datum marks the compact real form, and cycle closure selects none. Then the spinor sign gives $S^3$, not $SO(3)$ (C22), uniqueness is Poincar\\'e--Perelman [import], and de Sitter slicing has $S^3$ sections [import] (A9).",
+   "statement": "$SU(2)=S^3$ is declared the continuum chart of the frame group (C27) [chart]. The group has the three element types of $\\mathrm{SL}_2(\\mathbb{R})$, $SU(2)$ only one; no finite datum marks the compact real form, and cycle closure selects none. Then the spinor sign gives $S^3$, not $SO(3)$ (C22), uniqueness is Poincar\\'e--Perelman [import], and de Sitter slicing has $S^3$ sections [import] (A8).",
    "origin_row": "00:C23",
    "tag": "D",
    "tier": null,
@@ -2759,7 +2759,7 @@
   {
    "key": "p00176",
    "origin": "00",
-   "statement": "\\textbf{Gravity} (horizon count): the registration sphere of a shell has area $A=\\p(\\p+1)$ and record $\\kap(\\p+1)$, so $\\kap(\\p+1)/A=\\kap/\\p$ exactly, the $Q_4$ gauge quotient, and closes the calibration: at the coherence horizon $\\p^2\\to\\Om$ the record law returns $(\\Om-1)/4=\\dS$, the imported entropy (A9). The chart reading $S=\\tfrac14A/\\ell_P^2$ is D15's. Corollary: the merger area law $\\Delta A=2M_1M_2$, saturated (37-sim). Triple: E7.",
+   "statement": "\\textbf{Gravity} (horizon count): the registration sphere of a shell has area $A=\\p(\\p+1)$ and record $\\kap(\\p+1)$, so $\\kap(\\p+1)/A=\\kap/\\p$ exactly, the $Q_4$ gauge quotient, and closes the calibration: at the coherence horizon $\\p^2\\to\\Om$ the record law returns $(\\Om-1)/4=\\dS$, the imported entropy (A8). The chart reading $S=\\tfrac14A/\\ell_P^2$ is D15's. Corollary: the merger area law $\\Delta A=2M_1M_2$, saturated (37-sim). Triple: E7.",
    "origin_row": "00:E6",
    "tag": "T",
    "tier": 0,
@@ -2933,7 +2933,7 @@
   {
    "key": "p00177",
    "origin": "00",
-   "statement": "\\textbf{The additive window}: for $N$ modes at resolvable heights $|\\hat h_i|\\le\\kap_i$ (38:A8) the total winding satisfies $|\\sum_i\\hat h_i|\\le\\sum_i\\kap_i$, attained, every total occurring, so the least register window resolving the total exactly is the capacity sum $\\sum\\kap_i$ --- $3N$ for $N$ hydrogen units --- a capacity of the observing Subject, not a shell of the composite. A lock of $N$ like units never fuses (F6, $\\gcd(12,12)=12$): it is F2's joint registration on $C_{12}$, recurrence $12$, one superselected $C_{12}$ offset per further unit, an aggregate; a shell of capacity $3N$ exists iff $12N+1$ is prime ($N=1,3,5,6,8,9$; none at $N=2$, $25=5^{2}$) and is not the lock's register; fusion (coprime cycles) is multiplicative, $\\kap =n_{1}n_{2}/4$, hydrogen $(4,3)\\to3$. The largest shell a Subject of the Carrier registers whole is $\\q<\\Om^{1/4}$ ($\\q^{2}<\\p$, $\\p^{2}<\\Om$; B8): $13$ on $30089$, $37$ on $2{,}408{,}561$, none on $233$; in hydrogen units $N<(\\Om^{1/4}-1)/12$, $8\\times10^{2}$ kg at the ledger's $\\Om$ (A9), on the 14-entr diagonal at $0.95$ m [approx]. The 14-entr capacity axis counts hydrogen units, one gram at $N_A$ [approx]: a definition (D2), not a registered shell; a lock's capacity against its wall displacement compares a shell label with a chart count and is no relation.",
+   "statement": "\\textbf{The additive window}: for $N$ modes at resolvable heights $|\\hat h_i|\\le\\kap_i$ (38:A8) the total winding satisfies $|\\sum_i\\hat h_i|\\le\\sum_i\\kap_i$, attained, every total occurring, so the least register window resolving the total exactly is the capacity sum $\\sum\\kap_i$ --- $3N$ for $N$ hydrogen units --- a capacity of the observing Subject, not a shell of the composite. A lock of $N$ like units never fuses (F6, $\\gcd(12,12)=12$): it is F2's joint registration on $C_{12}$, recurrence $12$, one superselected $C_{12}$ offset per further unit, an aggregate; a shell of capacity $3N$ exists iff $12N+1$ is prime ($N=1,3,5,6,8,9$; none at $N=2$, $25=5^{2}$) and is not the lock's register; fusion (coprime cycles) is multiplicative, $\\kap =n_{1}n_{2}/4$, hydrogen $(4,3)\\to3$. The largest shell a Subject of the Carrier registers whole is $\\q<\\Om^{1/4}$ ($\\q^{2}<\\p$, $\\p^{2}<\\Om$; B8): $13$ on $30089$, $37$ on $2{,}408{,}561$, none on $233$; in hydrogen units $N<(\\Om^{1/4}-1)/12$, $8\\times10^{2}$ kg at the ledger's $\\Om$ (A8), on the 14-entr diagonal at $0.95$ m [approx]. The 14-entr capacity axis counts hydrogen units, one gram at $N_A$ [approx]: a definition (D2), not a registered shell; a lock's capacity against its wall displacement compares a shell label with a chart count and is no relation.",
    "origin_row": "00:F7",
    "tag": "T",
    "tier": null,
@@ -3403,7 +3403,7 @@
   {
    "key": "p00087",
    "origin": "00",
-   "statement": "The mass--radius chart between the Compton and Schwarzschild walls, closed by the Planck apex and the totality wall $r_H$: the totality on its own horizon, the black-hole reading dissolved (A4). Width $61.0$ dex. The over-closure bound ${\\sim}1.8\\times10^{8}M_\\odot$ is the chart's one derived quantity, a bound, predicting no observed scale (14:C9, X5). A consistency chart, not a channel (L2).",
+   "statement": "The mass--radius chart between the Compton and Schwarzschild walls, closed by the Planck apex and the totality wall $r_H$: the totality on its own horizon, the black-hole reading dissolved (A2). Width $61.0$ dex. The over-closure bound ${\\sim}1.8\\times10^{8}M_\\odot$ is the chart's one derived quantity, a bound, predicting no observed scale (14:C9, X5). A consistency chart, not a channel (L2).",
    "origin_row": "00:L4",
    "tag": "T",
    "tier": null,
@@ -3436,7 +3436,7 @@
   {
    "key": "p00148",
    "origin": "00",
-   "statement": "$n_s=1$ is the scale-dilation fixed point (Harrison--Zel'dovich [import]). The tilt's committed form is $n_s-1=-\\pi^2/\\ln\\Om$ [chart], $\\ln\\Om$ the e-fold count of the frame's scale range from $1/\\sqrt\\Om$ to $\\sqrt\\Om$, a realisation fixed by the measured tilt: $-0.0348$ [approx] at $\\ln\\Om=283.5$ (A9), $+0.07\\sigma$ from Planck 2018's $-0.0351\\pm0.0042$ [import]. The count $\\tfrac12\\ln\\Om$ is excluded at $8.2\\sigma$. Falsifier: a Planck-resolution deviation from $-\\pi^2/\\ln\\Om$.",
+   "statement": "$n_s=1$ is the scale-dilation fixed point (Harrison--Zel'dovich [import]). The tilt's committed form is $n_s-1=-\\pi^2/\\ln\\Om$ [chart], $\\ln\\Om$ the e-fold count of the frame's scale range from $1/\\sqrt\\Om$ to $\\sqrt\\Om$, a realisation fixed by the measured tilt: $-0.0348$ [approx] at $\\ln\\Om=283.5$ (A8), $+0.07\\sigma$ from Planck 2018's $-0.0351\\pm0.0042$ [import]. The count $\\tfrac12\\ln\\Om$ is excluded at $8.2\\sigma$. Falsifier: a Planck-resolution deviation from $-\\pi^2/\\ln\\Om$.",
    "origin_row": "00:L8",
    "tag": "R",
    "tier": 2,
@@ -3709,7 +3709,7 @@
   {
    "key": "p00116",
    "origin": "00",
-   "statement": "The fine-structure constant is the \\emph{electromagnetic} face of the scale operator: $\\alpha^{-1}(0)=4\\pi+\\sum_f\\tfrac{b_f}{2\\pi}\\ln(M_P/m_f)+\\Delta\\alpha_{\\mathrm{had}}$, $\\Om$-hard --- the bare $1/4\\pi$ framed-exact (the Gauss solid angle), the digit a log over the $\\Om$-hard masses (Z6) with cutoff $M_P$ tied to $\\Om$ (A9). The physical digit is in no embedded reader's window; the bare value and the sum's form are $\\Om$-blind. Of the family Z2/Z6/Z7/G3/G6.",
+   "statement": "The fine-structure constant is the \\emph{electromagnetic} face of the scale operator: $\\alpha^{-1}(0)=4\\pi+\\sum_f\\tfrac{b_f}{2\\pi}\\ln(M_P/m_f)+\\Delta\\alpha_{\\mathrm{had}}$, $\\Om$-hard --- the bare $1/4\\pi$ framed-exact (the Gauss solid angle), the digit a log over the $\\Om$-hard masses (Z6) with cutoff $M_P$ tied to $\\Om$ (A8). The physical digit is in no embedded reader's window; the bare value and the sum's form are $\\Om$-blind. Of the family Z2/Z6/Z7/G3/G6.",
    "origin_row": "00:Z8",
    "tag": "Ω",
    "tier": null,
@@ -3725,7 +3725,7 @@
   {
    "key": "p00187",
    "origin": "00",
-   "statement": "\\textbf{No compression}: the diagonal has no instance per symbol (25:F2), nor, coded a base-$a$ digit per symbol, from length $t(\\M)=d\\,k^{*}(\\M)<|\\M|$ on (25:F6). Below $t(\\M)$, decoders over $(\\F_\\p,+,\\times)$ give one coded 1024 base-32 symbols per element, more than $\\Om$'s elements hold (25:F7, 25:F8, A9). There fragment truth is definable from above (the Tarski reversal, 25:G5), and not from far below (25:G8).",
+   "statement": "\\textbf{No compression}: the diagonal has no instance per symbol (25:F2), nor, coded a base-$a$ digit per symbol, from length $t(\\M)=d\\,k^{*}(\\M)<|\\M|$ on (25:F6). Below $t(\\M)$, decoders over $(\\F_\\p,+,\\times)$ give one coded 1024 base-32 symbols per element, more than $\\Om$'s elements hold (25:F7, 25:F8, A8). There fragment truth is definable from above (the Tarski reversal, 25:G5), and not from far below (25:G8).",
    "origin_row": "00:Z9",
    "tag": "T",
    "tier": null,
@@ -22083,13 +22083,38 @@
   {
    "paper": "00",
    "no": 0,
+   "rid": "00:A2",
+   "key": "p00004",
+   "label": "A2",
+   "block": "A",
+   "tag": "P",
+   "name": "Finitude",
+   "statement": "\\textbf{Finitude}: the totality is finite, a count of $\\Om$ elements. Infinity as an ontological posit is incoherent (no model is exhibited; the completed totality forbids its own totality as an object; its consistency is unprovable within, 5-red Prop.~9), unverifiable (idleness, 29-fin) and redundant (every certificate is finite, 5-red).",
+   "source": "5-red, 29-fin, m04",
+   "page": "00-ledger.html#A2",
+   "witness": {
+    "script": null,
+    "py": null,
+    "lean": []
+   },
+   "refs": [],
+   "sources": [
+    "5-red",
+    "29-fin",
+    "m04"
+   ],
+   "text": "Finitude: Finitude: the totality is finite, a count of $\\Om$ elements. Infinity as an ontological posit is incoherent (no model is exhibited; the completed totality forbids its own totality as an object; its consistency is unprovable within, 5-red Prop. 9), unverifiable (idleness, 29-fin) and redundant (every certificate is finite, 5-red). 5-red, 29-fin, m04"
+  },
+  {
+   "paper": "00",
+   "no": 0,
    "rid": "00:A3",
    "key": "p00003",
    "label": "A3",
    "block": "A",
    "tag": "P",
-   "name": "The Completeness pillar: the totality is complete",
-   "statement": "\\textbf{The Completeness pillar: the totality is complete}: the totality has no outside, so whatever exists is a part of it, and it has no host. It is unique, since two totalities would each lie within the other. Observers are shells embedded \\emph{within}, not parallel carriers.",
+   "name": "Completeness",
+   "statement": "\\textbf{Completeness}: the totality has no outside, so whatever exists is a part of it, and it has no host. It is unique, since two totalities would each lie within the other. Observers are shells embedded \\emph{within}, not parallel carriers.",
    "source": "9-uniq, 25-göd",
    "page": "00-ledger.html#A3",
    "witness": {
@@ -22102,45 +22127,20 @@
     "9-uniq",
     "25-göd"
    ],
-   "text": "The Completeness pillar: the totality is complete: The Completeness pillar: the totality is complete: the totality has no outside, so whatever exists is a part of it, and it has no host. It is unique, since two totalities would each lie within the other. Observers are shells embedded within, not parallel carriers. 9-uniq, 25-göd"
+   "text": "Completeness: Completeness: the totality has no outside, so whatever exists is a part of it, and it has no host. It is unique, since two totalities would each lie within the other. Observers are shells embedded within, not parallel carriers. 9-uniq, 25-göd"
   },
   {
    "paper": "00",
    "no": 0,
    "rid": "00:A4",
-   "key": "p00004",
-   "label": "A4",
-   "block": "A",
-   "tag": "P",
-   "name": "The Finitude pillar: the totality is finite",
-   "statement": "\\textbf{The Finitude pillar: the totality is finite}: a count of $\\Om$ elements. Infinity as an ontological posit is incoherent (no model is exhibited; the completed totality forbids its own totality as an object; its consistency is unprovable within, 5-red Prop.~9), unverifiable (idleness, 29-fin) and redundant (every certificate is finite, 5-red).",
-   "source": "5-red, 29-fin, m04",
-   "page": "00-ledger.html#A4",
-   "witness": {
-    "script": null,
-    "py": null,
-    "lean": []
-   },
-   "refs": [],
-   "sources": [
-    "5-red",
-    "29-fin",
-    "m04"
-   ],
-   "text": "The Finitude pillar: the totality is finite: The Finitude pillar: the totality is finite: a count of $\\Om$ elements. Infinity as an ontological posit is incoherent (no model is exhibited; the completed totality forbids its own totality as an object; its consistency is unprovable within, 5-red Prop. 9), unverifiable (idleness, 29-fin) and redundant (every certificate is finite, 5-red). 5-red, 29-fin, m04"
-  },
-  {
-   "paper": "00",
-   "no": 0,
-   "rid": "00:A5",
    "key": "p00159",
-   "label": "A5",
+   "label": "A4",
    "block": "A",
    "tag": "T",
    "name": "A bounded observer is a proper part",
-   "statement": "A bounded observer is a proper part, $|O|<\\Om$: by A4 and A6 its states are fewer than the totality's, so no injective encoding of the totality into its states exists (25:D1, 5:C2); every reading $\\Pi_i{:}\\Om\\to\\mathcal D_i$ is an incomplete projection, its image strictly smaller than the whole. The limitative content lives at the comprehension horizon (Z1, Z9).",
+   "statement": "A bounded observer is a proper part, $|O|<\\Om$: by A2 and A5 its states are fewer than the totality's, so no injective encoding of the totality into its states exists (25:D1, 5:C2); every reading $\\Pi_i{:}\\Om\\to\\mathcal D_i$ is an incomplete projection, its image strictly smaller than the whole. The limitative content lives at the comprehension horizon (Z1, Z9).",
    "source": "25-göd, 5-red",
-   "page": "00-ledger.html#A5",
+   "page": "00-ledger.html#A4",
    "witness": {
     "script": null,
     "py": {
@@ -22172,20 +22172,20 @@
     "25-göd",
     "5-red"
    ],
-   "text": "A bounded observer is a proper part: A bounded observer is a proper part, $|O|<\\Om$: by A4 and A6 its states are fewer than the totality's, so no injective encoding of the totality into its states exists (25:D1, 5:C2); every reading $\\Pi_i{:}\\Om\\to\\mathcal D_i$ is an incomplete projection, its image strictly smaller than the whole. The limitative content lives at the comprehension horizon (Z1, Z9). 25-göd, 5-red"
+   "text": "A bounded observer is a proper part: A bounded observer is a proper part, $|O|<\\Om$: by A2 and A5 its states are fewer than the totality's, so no injective encoding of the totality into its states exists (25:D1, 5:C2); every reading $\\Pi_i{:}\\Om\\to\\mathcal D_i$ is an incomplete projection, its image strictly smaller than the whole. The limitative content lives at the comprehension horizon (Z1, Z9). 25-göd, 5-red"
   },
   {
    "paper": "00",
    "no": 0,
-   "rid": "00:A6",
+   "rid": "00:A5",
    "key": "p00195",
-   "label": "A6",
+   "label": "A5",
    "block": "A",
    "tag": "P",
-   "name": "The Registration pillar: every reading is a registration by a bounded proper part",
-   "statement": "\\textbf{The Registration pillar: every reading is a registration by a bounded proper part}: whatever reads the totality is a framed shell embedded within it (A3) and is not the whole; the totality has no frame and no reader of its own; nothing accesses it except by such a registration.",
+   "name": "Registration",
+   "statement": "\\textbf{Registration}: every reading is a registration by a bounded proper part --- whatever reads the totality is a framed shell embedded within it (A3) and is not the whole; the totality has no frame and no reader of its own; nothing accesses it except by such a registration.",
    "source": "25-göd, 11-ont",
-   "page": "00-ledger.html#A6",
+   "page": "00-ledger.html#A5",
    "witness": {
     "script": null,
     "py": null,
@@ -22198,20 +22198,20 @@
     "25-göd",
     "11-ont"
    ],
-   "text": "The Registration pillar: every reading is a registration by a bounded proper part: The Registration pillar: every reading is a registration by a bounded proper part: whatever reads the totality is a framed shell embedded within it (A3) and is not the whole; the totality has no frame and no reader of its own; nothing accesses it except by such a registration. 25-göd, 11-ont"
+   "text": "Registration: Registration: every reading is a registration by a bounded proper part — whatever reads the totality is a framed shell embedded within it (A3) and is not the whole; the totality has no frame and no reader of its own; nothing accesses it except by such a registration. 25-göd, 11-ont"
   },
   {
    "paper": "00",
    "no": 0,
-   "rid": "00:A7",
+   "rid": "00:A6",
    "key": "p00188",
-   "label": "A7",
+   "label": "A6",
    "block": "A",
    "tag": "T",
    "name": "Counting closes by return",
-   "statement": "Counting closes by return: the successor $C_q:x\\mapsto x{+}1\\ (\\mathrm{mod}\\ q)$ on $q\\ge2$ points is one $q$-cycle with no fixed point, so iteration is bounded and cyclic; its interpretation is A4's.",
+   "statement": "Counting closes by return: the successor $C_q:x\\mapsto x{+}1\\ (\\mathrm{mod}\\ q)$ on $q\\ge2$ points is one $q$-cycle with no fixed point, so iteration is bounded and cyclic; its interpretation is A2's.",
    "source": "11-ont, 5-red, 29-fin",
-   "page": "00-ledger.html#A7",
+   "page": "00-ledger.html#A6",
    "witness": {
     "script": null,
     "py": {
@@ -22239,20 +22239,20 @@
     "5-red",
     "29-fin"
    ],
-   "text": "Counting closes by return: Counting closes by return: the successor $C_q:x\\mapsto x{+}1 (\\mathrm{mod} q)$ on $q\\ge2$ points is one $q$-cycle with no fixed point, so iteration is bounded and cyclic; its interpretation is A4's. 11-ont, 5-red, 29-fin"
+   "text": "Counting closes by return: Counting closes by return: the successor $C_q:x\\mapsto x{+}1 (\\mathrm{mod} q)$ on $q\\ge2$ points is one $q$-cycle with no fixed point, so iteration is bounded and cyclic; its interpretation is A2's. 11-ont, 5-red, 29-fin"
   },
   {
    "paper": "00",
    "no": 0,
-   "rid": "00:A8",
+   "rid": "00:A7",
    "key": "p00008",
-   "label": "A8",
+   "label": "A7",
    "block": "A",
    "tag": "D",
    "name": "The Carrier C: a timeless torsor of Ω points",
    "statement": "The Carrier $\\Car$: a timeless torsor of $\\Om$ points, its cardinality its only absolute characteristic; reframings $x\\mapsto ax+b$ are automorphisms, so $0,1,-1$ are frame data; a Subject's frame charts it as the prime field $\\F_\\Om$ --- the frame's chart, never the Carrier (C1). Arena and numbers: B1.",
    "source": "1-alg, 11-ont, 9-uniq, 12-prim",
-   "page": "00-ledger.html#A8",
+   "page": "00-ledger.html#A7",
    "witness": {
     "script": null,
     "py": null,
@@ -22273,15 +22273,15 @@
   {
    "paper": "00",
    "no": 0,
-   "rid": "00:A9",
+   "rid": "00:A8",
    "key": "p00009",
-   "label": "A9",
+   "label": "A8",
    "block": "A",
    "tag": "I",
    "name": "Scale, the sole quantitative import",
    "statement": "Scale, the sole quantitative import: the de Sitter entropy of the observable universe fixes the cardinality exactly, $\\Om=4\\dS+1$. Its chart numeral is $\\dS=\\pi(r_H/\\ell_P)^2=3.3\\times10^{122}$ [chart] at $r_H=c/H_\\Lambda$ (14-entr), so $\\Om=1.3\\times10^{123}$ and $\\ln\\Om=283.5$ [chart], the numeral of every chart reading in the ledger. The Carrier congruences are certified by the realisations (B5, C8), not imported. Metrology: L2.",
    "source": "21-grav, 14-entr, 12-prim",
-   "page": "00-ledger.html#A9",
+   "page": "00-ledger.html#A8",
    "witness": {
     "script": "14:entropy.py [mixed]",
     "py": null,
@@ -22302,15 +22302,15 @@
   {
    "paper": "00",
    "no": 0,
-   "rid": "00:A10",
+   "rid": "00:A9",
    "key": "p00010",
-   "label": "A10",
+   "label": "A9",
    "block": "A",
    "tag": "D",
    "name": "Realisation, not correspondence",
-   "statement": "\\textbf{Realisation, not correspondence}: a sufficiently expressive, predictive, registration-complete structure \\emph{is} its subject, not an abstraction of it. By the Registration pillar (A6) no registration reaches an unregistered reality, so a distinction with no registered residue is no distinction. Identification rows (\\tR) are therefore constitutive: defended by the totality of registered consequences, killed by explicit falsifiers.",
+   "statement": "\\textbf{Realisation, not correspondence}: a sufficiently expressive, predictive, registration-complete structure \\emph{is} its subject, not an abstraction of it. By the Registration pillar (A5) no registration reaches an unregistered reality, so a distinction with no registered residue is no distinction. Identification rows (\\tR) are therefore constitutive: defended by the totality of registered consequences, killed by explicit falsifiers.",
    "source": "11-ont, 9-uniq",
-   "page": "00-ledger.html#A10",
+   "page": "00-ledger.html#A9",
    "witness": {
     "script": null,
     "py": null,
@@ -22323,20 +22323,20 @@
     "11-ont",
     "9-uniq"
    ],
-   "text": "Realisation, not correspondence: Realisation, not correspondence: a sufficiently expressive, predictive, registration-complete structure is its subject, not an abstraction of it. By the Registration pillar (A6) no registration reaches an unregistered reality, so a distinction with no registered residue is no distinction. Identification rows (R) are therefore constitutive: defended by the totality of registered consequences, killed by explicit falsifiers. 11-ont, 9-uniq"
+   "text": "Realisation, not correspondence: Realisation, not correspondence: a sufficiently expressive, predictive, registration-complete structure is its subject, not an abstraction of it. By the Registration pillar (A5) no registration reaches an unregistered reality, so a distinction with no registered residue is no distinction. Identification rows (R) are therefore constitutive: defended by the totality of registered consequences, killed by explicit falsifiers. 11-ont, 9-uniq"
   },
   {
    "paper": "00",
    "no": 0,
-   "rid": "00:A11",
+   "rid": "00:A10",
    "key": "p00161",
-   "label": "A11",
+   "label": "A10",
    "block": "A",
    "tag": "D",
    "name": "The trusted base",
    "statement": "\\textbf{The trusted base}: the kernel's type theory, with the prelude's natural numbers read as the index of shells; no core statement asserts unboundedness, and no step of a certificate computes a count above $\\Om$ at any admissible instance.",
    "source": "1-alg",
-   "page": "00-ledger.html#A11",
+   "page": "00-ledger.html#A10",
    "witness": {
     "script": null,
     "py": null,
@@ -22351,15 +22351,15 @@
   {
    "paper": "00",
    "no": 0,
-   "rid": "00:A12",
+   "rid": "00:A11",
    "key": "p00162",
-   "label": "A12",
+   "label": "A11",
    "block": "A",
    "tag": "T",
    "name": "Completeness is primality",
    "statement": "\\textbf{Completeness is primality}: the residues of a count $q\\ge2$ have no proper nonzero ideal iff $q$ is prime, so the arithmetic of a counting cycle is complete exactly on prime cycles --- the formal shadow of A3, since a proper closed substructure of the totality would be a second totality within it.",
    "source": "1-alg",
-   "page": "00-ledger.html#A12",
+   "page": "00-ledger.html#A11",
    "witness": {
     "script": null,
     "py": {
@@ -22390,15 +22390,15 @@
   {
    "paper": "00",
    "no": 0,
-   "rid": "00:A13",
+   "rid": "00:A12",
    "key": "p00163",
-   "label": "A13",
+   "label": "A12",
    "block": "A",
    "tag": "T",
    "name": "The quarter-turn exists iff p ≡ 1 (mod 4)",
    "statement": "\\textbf{The quarter-turn exists iff $\\p\\equiv1\\pmod4$}: for an odd prime $\\p$, $-1$ is a square in $\\F_\\p$ iff $\\p\\equiv1\\pmod4$ (the formal shadow of B3).",
    "source": "1-alg",
-   "page": "00-ledger.html#A13",
+   "page": "00-ledger.html#A12",
    "witness": {
     "script": null,
     "py": {
@@ -22429,15 +22429,15 @@
   {
    "paper": "00",
    "no": 0,
-   "rid": "00:A14",
+   "rid": "00:A13",
    "key": "p00164",
-   "label": "A14",
+   "label": "A13",
    "block": "A",
    "tag": "T",
    "name": "Every prime carries a frame",
    "statement": "\\textbf{Every prime carries a frame}: every prime field $\\F_\\p$ has a primitive root, so a drive $\\gen$ with $\\langle\\gen\\rangle=\\F_\\p^{\\times}$ exists (the formal shadow of C1).",
    "source": "1-alg",
-   "page": "00-ledger.html#A14",
+   "page": "00-ledger.html#A13",
    "witness": {
     "script": null,
     "py": {
@@ -22468,15 +22468,15 @@
   {
    "paper": "00",
    "no": 0,
-   "rid": "00:A15",
+   "rid": "00:A14",
    "key": "p00196",
-   "label": "A15",
+   "label": "A14",
    "block": "A",
    "tag": "D",
-   "name": "Registration",
-   "statement": "\\textbf{Registration}: a reading's labels $\\mathcal L_i$ count distinctions only through their support $\\rho_i{:}\\mathcal L_i\\to\\Om$; labels with one support are one distinction, so the distinctions realised are the quotient $\\mathcal L_i/{\\sim_i}$, and labels may outnumber them without adding one (A6).",
+   "name": "Labels and support",
+   "statement": "\\textbf{Labels and support}: a reading's labels $\\mathcal L_i$ count distinctions only through their support $\\rho_i{:}\\mathcal L_i\\to\\Om$; labels with one support are one distinction, so the distinctions realised are the quotient $\\mathcal L_i/{\\sim_i}$, and labels may outnumber them without adding one (A5).",
    "source": "11-ont, 25-göd",
-   "page": "00-ledger.html#A15",
+   "page": "00-ledger.html#A14",
    "witness": {
     "script": null,
     "py": null,
@@ -22489,7 +22489,7 @@
     "11-ont",
     "25-göd"
    ],
-   "text": "Registration: Registration: a reading's labels $\\mathcal L_i$ count distinctions only through their support $\\rho_i{:}\\mathcal L_i\\to\\Om$; labels with one support are one distinction, so the distinctions realised are the quotient $\\mathcal L_i/{\\sim_i}$, and labels may outnumber them without adding one (A6). 11-ont, 25-göd"
+   "text": "Labels and support: Labels and support: a reading's labels $\\mathcal L_i$ count distinctions only through their support $\\rho_i{:}\\mathcal L_i\\to\\Om$; labels with one support are one distinction, so the distinctions realised are the quotient $\\mathcal L_i/{\\sim_i}$, and labels may outnumber them without adding one (A5). 11-ont, 25-göd"
   },
   {
    "paper": "00",
@@ -22552,7 +22552,7 @@
    "block": "B",
    "tag": "D",
    "name": "Quarter-turn torsion: 4|Ω-1 by construction (Ω=4S+1",
-   "statement": "Quarter-turn torsion: $4\\mid\\Om-1$ by construction ($\\Om=4\\dS+1$, A9), so the split torus carries a unique order-four subgroup --- the Carrier's $Q_4$ core $\\{1,\\hbar,-1,h\\}$ ($\\hbar^2\\equiv-1$, $h:=-\\hbar$ the root-pair partner of $\\hbar$, B7), the symmetry-complete condition. The Subject's labels $\\{1,\\im,-1,-\\im\\}$ are frame data (C1), the two quarter-turns distinct objects (D7).",
+   "statement": "Quarter-turn torsion: $4\\mid\\Om-1$ by construction ($\\Om=4\\dS+1$, A8), so the split torus carries a unique order-four subgroup --- the Carrier's $Q_4$ core $\\{1,\\hbar,-1,h\\}$ ($\\hbar^2\\equiv-1$, $h:=-\\hbar$ the root-pair partner of $\\hbar$, B7), the symmetry-complete condition. The Subject's labels $\\{1,\\im,-1,-\\im\\}$ are frame data (C1), the two quarter-turns distinct objects (D7).",
    "source": "27-fld, 11-ont",
    "page": "00-ledger.html#B3",
    "witness": {
@@ -22570,7 +22570,7 @@
     "27-fld",
     "11-ont"
    ],
-   "text": "Quarter-turn torsion: 4|Ω-1 by construction (Ω=4S+1: Quarter-turn torsion: $4\\mid\\Om-1$ by construction ($\\Om=4\\dS+1$, A9), so the split torus carries a unique order-four subgroup — the Carrier's $Q_4$ core $\\{1,\\hbar,-1,h\\}$ ($\\hbar^2\\equiv-1$, $h:=-\\hbar$ the root-pair partner of $\\hbar$, B7), the symmetry-complete condition. The Subject's labels $\\{1,\\im,-1,-\\im\\}$ are frame data (C1), the two quarter-turns distinct objects (D7). 27-fld, 11-ont"
+   "text": "Quarter-turn torsion: 4|Ω-1 by construction (Ω=4S+1: Quarter-turn torsion: $4\\mid\\Om-1$ by construction ($\\Om=4\\dS+1$, A8), so the split torus carries a unique order-four subgroup — the Carrier's $Q_4$ core $\\{1,\\hbar,-1,h\\}$ ($\\hbar^2\\equiv-1$, $h:=-\\hbar$ the root-pair partner of $\\hbar$, B7), the symmetry-complete condition. The Subject's labels $\\{1,\\im,-1,-\\im\\}$ are frame data (C1), the two quarter-turns distinct objects (D7). 27-fld, 11-ont"
   },
   {
    "paper": "00",
@@ -22791,7 +22791,7 @@
    "block": "B",
    "tag": "T",
    "name": "One gauge bit closes the sign sector",
-   "statement": "\\textbf{One gauge bit closes the sign sector}: no C14-type marker exists --- $-1$ is a square on admissible $\\Om$, so square class is pair-blind, and integer parity is frame data (A8). Registered faces are pair-invariant: $c^2$, the one-way member synchronisation gauge (C8); $|k_B|$ (C12); $\\{\\hbar,h\\}$ the two named unit faces (B7).",
+   "statement": "\\textbf{One gauge bit closes the sign sector}: no C14-type marker exists --- $-1$ is a square on admissible $\\Om$, so square class is pair-blind, and integer parity is frame data (A7). Registered faces are pair-invariant: $c^2$, the one-way member synchronisation gauge (C8); $|k_B|$ (C12); $\\{\\hbar,h\\}$ the two named unit faces (B7).",
    "source": "37-sim, 10-dim, 8-dirac",
    "page": "00-ledger.html#B10",
    "witness": {
@@ -22825,7 +22825,7 @@
     "10-dim",
     "8-dirac"
    ],
-   "text": "One gauge bit closes the sign sector: One gauge bit closes the sign sector: no C14-type marker exists — $-1$ is a square on admissible $\\Om$, so square class is pair-blind, and integer parity is frame data (A8). Registered faces are pair-invariant: $c^2$, the one-way member synchronisation gauge (C8); $|k_B|$ (C12); $\\{\\hbar,h\\}$ the two named unit faces (B7). 37-sim, 10-dim, 8-dirac"
+   "text": "One gauge bit closes the sign sector: One gauge bit closes the sign sector: no C14-type marker exists — $-1$ is a square on admissible $\\Om$, so square class is pair-blind, and integer parity is frame data (A7). Registered faces are pair-invariant: $c^2$, the one-way member synchronisation gauge (C8); $|k_B|$ (C12); $\\{\\hbar,h\\}$ the two named unit faces (B7). 37-sim, 10-dim, 8-dirac"
   },
   {
    "paper": "00",
@@ -22929,7 +22929,7 @@
    "block": "C",
    "tag": "T",
    "name": "The frame, Subject-only: (τ;0,1,g)",
-   "statement": "The frame, Subject-only: $(\\chron;0,1,\\gen)$, origin, unit and the drive $x\\mapsto gx$ (A8). Shell data, capacity-first: $\\kap $ primitive, $\\p =4\\kap +1$, $\\im=-\\gen^\\kap $ (C7), $\\pi=2\\kap $, $e=\\gen^{\\,\\im}$; $\\gen$ the one nonsquare frame datum (C3, C8). Exponents of $\\gen$ are taken in $\\Zp$, a residue in an exponent standing for its lift $\\iota:\\F_\\p\\to\\{0,\\dots,\\p-1\\}$. The web closes on every shell: $2\\pi\\equiv-1$, $\\gen^{\\,\\pi}\\equiv-1$, $-\\pi=2^{-1}$ (N2).",
+   "statement": "The frame, Subject-only: $(\\chron;0,1,\\gen)$, origin, unit and the drive $x\\mapsto gx$ (A7). Shell data, capacity-first: $\\kap $ primitive, $\\p =4\\kap +1$, $\\im=-\\gen^\\kap $ (C7), $\\pi=2\\kap $, $e=\\gen^{\\,\\im}$; $\\gen$ the one nonsquare frame datum (C3, C8). Exponents of $\\gen$ are taken in $\\Zp$, a residue in an exponent standing for its lift $\\iota:\\F_\\p\\to\\{0,\\dots,\\p-1\\}$. The web closes on every shell: $2\\pi\\equiv-1$, $\\gen^{\\,\\pi}\\equiv-1$, $-\\pi=2^{-1}$ (N2).",
    "source": "2-geom, 12-prim, 37-sim, 22-qm",
    "page": "00-ledger.html#C1",
    "witness": {
@@ -22964,7 +22964,7 @@
     "37-sim",
     "22-qm"
    ],
-   "text": "The frame, Subject-only: (τ;0,1,g): The frame, Subject-only: $(\\chron;0,1,\\gen)$, origin, unit and the drive $x\\mapsto gx$ (A8). Shell data, capacity-first: $\\kap $ primitive, $\\p =4\\kap +1$, $\\im=-\\gen^\\kap $ (C7), $\\pi=2\\kap $, $e=\\gen^{ \\im}$; $\\gen$ the one nonsquare frame datum (C3, C8). Exponents of $\\gen$ are taken in $\\Zp$, a residue in an exponent standing for its lift $\\iota:\\F_\\p\\to\\{0,\\dots,\\p-1\\}$. The web closes on every shell: $2\\pi\\equiv-1$, $\\gen^{ \\pi}\\equiv-1$, $-\\pi=2^{-1}$ (N2). 2-geom, 12-prim, 37-sim, 22-qm"
+   "text": "The frame, Subject-only: (τ;0,1,g): The frame, Subject-only: $(\\chron;0,1,\\gen)$, origin, unit and the drive $x\\mapsto gx$ (A7). Shell data, capacity-first: $\\kap $ primitive, $\\p =4\\kap +1$, $\\im=-\\gen^\\kap $ (C7), $\\pi=2\\kap $, $e=\\gen^{ \\im}$; $\\gen$ the one nonsquare frame datum (C3, C8). Exponents of $\\gen$ are taken in $\\Zp$, a residue in an exponent standing for its lift $\\iota:\\F_\\p\\to\\{0,\\dots,\\p-1\\}$. The web closes on every shell: $2\\pi\\equiv-1$, $\\gen^{ \\pi}\\equiv-1$, $-\\pi=2^{-1}$ (N2). 2-geom, 12-prim, 37-sim, 22-qm"
   },
   {
    "paper": "00",
@@ -23560,7 +23560,7 @@
    "block": "C",
    "tag": "D",
    "name": "The spatial chart is the 3-sphere (declared)",
-   "statement": "$SU(2)=S^3$ is declared the continuum chart of the frame group (C27) [chart]. The group has the three element types of $\\mathrm{SL}_2(\\mathbb{R})$, $SU(2)$ only one; no finite datum marks the compact real form, and cycle closure selects none. Then the spinor sign gives $S^3$, not $SO(3)$ (C22), uniqueness is Poincar\\'e--Perelman [import], and de Sitter slicing has $S^3$ sections [import] (A9).",
+   "statement": "$SU(2)=S^3$ is declared the continuum chart of the frame group (C27) [chart]. The group has the three element types of $\\mathrm{SL}_2(\\mathbb{R})$, $SU(2)$ only one; no finite datum marks the compact real form, and cycle closure selects none. Then the spinor sign gives $S^3$, not $SO(3)$ (C22), uniqueness is Poincar\\'e--Perelman [import], and de Sitter slicing has $S^3$ sections [import] (A8).",
    "source": "20-rh, 38-s13",
    "page": "00-ledger.html#C23",
    "witness": {
@@ -23577,7 +23577,7 @@
     "20-rh",
     "38-s13"
    ],
-   "text": "The spatial chart is the 3-sphere (declared): $SU(2)=S^3$ is declared the continuum chart of the frame group (C27) [chart]. The group has the three element types of $\\mathrm{SL}_2(\\mathbb{R})$, $SU(2)$ only one; no finite datum marks the compact real form, and cycle closure selects none. Then the spinor sign gives $S^3$, not $SO(3)$ (C22), uniqueness is Poincar\\'e–Perelman [import], and de Sitter slicing has $S^3$ sections [import] (A9). 20-rh, 38-s13 00:check_c23.py"
+   "text": "The spatial chart is the 3-sphere (declared): $SU(2)=S^3$ is declared the continuum chart of the frame group (C27) [chart]. The group has the three element types of $\\mathrm{SL}_2(\\mathbb{R})$, $SU(2)$ only one; no finite datum marks the compact real form, and cycle closure selects none. Then the spinor sign gives $S^3$, not $SO(3)$ (C22), uniqueness is Poincar\\'e–Perelman [import], and de Sitter slicing has $S^3$ sections [import] (A8). 20-rh, 38-s13 00:check_c23.py"
   },
   {
    "paper": "00",
@@ -24207,7 +24207,7 @@
    "block": "E",
    "tag": "T",
    "name": "Gravity (horizon count)",
-   "statement": "\\textbf{Gravity} (horizon count): the registration sphere of a shell has area $A=\\p(\\p+1)$ and record $\\kap(\\p+1)$, so $\\kap(\\p+1)/A=\\kap/\\p$ exactly, the $Q_4$ gauge quotient, and closes the calibration: at the coherence horizon $\\p^2\\to\\Om$ the record law returns $(\\Om-1)/4=\\dS$, the imported entropy (A9). The chart reading $S=\\tfrac14A/\\ell_P^2$ is D15's. Corollary: the merger area law $\\Delta A=2M_1M_2$, saturated (37-sim). Triple: E7.",
+   "statement": "\\textbf{Gravity} (horizon count): the registration sphere of a shell has area $A=\\p(\\p+1)$ and record $\\kap(\\p+1)$, so $\\kap(\\p+1)/A=\\kap/\\p$ exactly, the $Q_4$ gauge quotient, and closes the calibration: at the coherence horizon $\\p^2\\to\\Om$ the record law returns $(\\Om-1)/4=\\dS$, the imported entropy (A8). The chart reading $S=\\tfrac14A/\\ell_P^2$ is D15's. Corollary: the merger area law $\\Delta A=2M_1M_2$, saturated (37-sim). Triple: E7.",
    "source": "21-grav, 22-qm, 37-sim",
    "page": "00-ledger.html#E6",
    "witness": {
@@ -24239,7 +24239,7 @@
     "22-qm",
     "37-sim"
    ],
-   "text": "Gravity (horizon count): Gravity (horizon count): the registration sphere of a shell has area $A=\\p(\\p+1)$ and record $\\kap(\\p+1)$, so $\\kap(\\p+1)/A=\\kap/\\p$ exactly, the $Q_4$ gauge quotient, and closes the calibration: at the coherence horizon $\\p^2\\to\\Om$ the record law returns $(\\Om-1)/4=\\dS$, the imported entropy (A9). The chart reading $S=\\tfrac14A/\\ell_P^2$ is D15's. Corollary: the merger area law $\\Delta A=2M_1M_2$, saturated (37-sim). Triple: E7. 21-grav, 22-qm, 37-sim 37:w2b_bridges.py"
+   "text": "Gravity (horizon count): Gravity (horizon count): the registration sphere of a shell has area $A=\\p(\\p+1)$ and record $\\kap(\\p+1)$, so $\\kap(\\p+1)/A=\\kap/\\p$ exactly, the $Q_4$ gauge quotient, and closes the calibration: at the coherence horizon $\\p^2\\to\\Om$ the record law returns $(\\Om-1)/4=\\dS$, the imported entropy (A8). The chart reading $S=\\tfrac14A/\\ell_P^2$ is D15's. Corollary: the merger area law $\\Delta A=2M_1M_2$, saturated (37-sim). Triple: E7. 21-grav, 22-qm, 37-sim 37:w2b_bridges.py"
   },
   {
    "paper": "00",
@@ -24479,8 +24479,8 @@
    "block": "F",
    "tag": "T",
    "name": "The additive window",
-   "statement": "\\textbf{The additive window}: for $N$ modes at resolvable heights $|\\hat h_i|\\le\\kap_i$ (38:A8) the total winding satisfies $|\\sum_i\\hat h_i|\\le\\sum_i\\kap_i$, attained, every total occurring, so the least register window resolving the total exactly is the capacity sum $\\sum\\kap_i$ --- $3N$ for $N$ hydrogen units --- a capacity of the observing Subject, not a shell of the composite. A lock of $N$ like units never fuses (F6, $\\gcd(12,12)=12$): it is F2's joint registration on $C_{12}$, recurrence $12$, one superselected $C_{12}$ offset per further unit, an aggregate; a shell of capacity $3N$ exists iff $12N+1$ is prime ($N=1,3,5,6,8,9$; none at $N=2$, $25=5^{2}$) and is not the lock's register; fusion (coprime cycles) is multiplicative, $\\kap =n_{1}n_{2}/4$, hydrogen $(4,3)\\to3$. The largest shell a Subject of the Carrier registers whole is $\\q<\\Om^{1/4}$ ($\\q^{2}<\\p$, $\\p^{2}<\\Om$; B8): $13$ on $30089$, $37$ on $2{,}408{,}561$, none on $233$; in hydrogen units $N<(\\Om^{1/4}-1)/12$, $8\\times10^{2}$ kg at the ledger's $\\Om$ (A9), on the 14-entr diagonal at $0.95$ m [approx]. The 14-entr capacity axis counts hydrogen units, one gram at $N_A$ [approx]: a definition (D2), not a registered shell; a lock's capacity against its wall displacement compares a shell label with a chart count and is no relation.",
-   "source": "38-s13 (A8), 39-s173, 14-entr",
+   "statement": "\\textbf{The additive window}: for $N$ modes at resolvable heights $|\\hat h_i|\\le\\kap_i$ (38:A8) the total winding satisfies $|\\sum_i\\hat h_i|\\le\\sum_i\\kap_i$, attained, every total occurring, so the least register window resolving the total exactly is the capacity sum $\\sum\\kap_i$ --- $3N$ for $N$ hydrogen units --- a capacity of the observing Subject, not a shell of the composite. A lock of $N$ like units never fuses (F6, $\\gcd(12,12)=12$): it is F2's joint registration on $C_{12}$, recurrence $12$, one superselected $C_{12}$ offset per further unit, an aggregate; a shell of capacity $3N$ exists iff $12N+1$ is prime ($N=1,3,5,6,8,9$; none at $N=2$, $25=5^{2}$) and is not the lock's register; fusion (coprime cycles) is multiplicative, $\\kap =n_{1}n_{2}/4$, hydrogen $(4,3)\\to3$. The largest shell a Subject of the Carrier registers whole is $\\q<\\Om^{1/4}$ ($\\q^{2}<\\p$, $\\p^{2}<\\Om$; B8): $13$ on $30089$, $37$ on $2{,}408{,}561$, none on $233$; in hydrogen units $N<(\\Om^{1/4}-1)/12$, $8\\times10^{2}$ kg at the ledger's $\\Om$ (A8), on the 14-entr diagonal at $0.95$ m [approx]. The 14-entr capacity axis counts hydrogen units, one gram at $N_A$ [approx]: a definition (D2), not a registered shell; a lock's capacity against its wall displacement compares a shell label with a chart count and is no relation.",
+   "source": "38-s13 (A7), 39-s173, 14-entr",
    "page": "00-ledger.html#F7",
    "witness": {
     "script": "00:check_f7.py, 38:check_s13.js",
@@ -24493,6 +24493,7 @@
     "p00064",
     "p00166",
     "p00191",
+    "p38007",
     "p38008"
    ],
    "sources": [
@@ -24500,7 +24501,7 @@
     "39-s173",
     "14-entr"
    ],
-   "text": "The additive window: The additive window: for $N$ modes at resolvable heights $|\\hat h_i|\\le\\kap_i$ (38:A8) the total winding satisfies $|\\sum_i\\hat h_i|\\le\\sum_i\\kap_i$, attained, every total occurring, so the least register window resolving the total exactly is the capacity sum $\\sum\\kap_i$ — $3N$ for $N$ hydrogen units — a capacity of the observing Subject, not a shell of the composite. A lock of $N$ like units never fuses (F6, $\\gcd(12,12)=12$): it is F2's joint registration on $C_{12}$, recurrence $12$, one superselected $C_{12}$ offset per further unit, an aggregate; a shell of capacity $3N$ exists iff $12N+1$ is prime ($N=1,3,5,6,8,9$; none at $N=2$, $25=5^{2}$) and is not the lock's register; fusion (coprime cycles) is multiplicative, $\\kap =n_{1}n_{2}/4$, hydrogen $(4,3)\\to3$. The largest shell a Subject of the Carrier registers whole is $\\q<\\Om^{1/4}$ ($\\q^{2}<\\p$, $\\p^{2}<\\Om$; B8): $13$ on $30089$, $37$ on $2{,}408{,}561$, none on $233$; in hydrogen units $N<(\\Om^{1/4}-1)/12$, $8\\times10^{2}$ kg at the ledger's $\\Om$ (A9), on the 14-entr diagonal at $0.95$ m [approx]. The 14-entr capacity axis counts hydrogen units, one gram at $N_A$ [approx]: a definition (D2), not a registered shell; a lock's capacity against its wall displacement compares a shell label with a chart count and is no relation. 38-s13 (A8), 39-s173, 14-entr 00:check_f7.py, 38:check_s13.js"
+   "text": "The additive window: The additive window: for $N$ modes at resolvable heights $|\\hat h_i|\\le\\kap_i$ (38:A8) the total winding satisfies $|\\sum_i\\hat h_i|\\le\\sum_i\\kap_i$, attained, every total occurring, so the least register window resolving the total exactly is the capacity sum $\\sum\\kap_i$ — $3N$ for $N$ hydrogen units — a capacity of the observing Subject, not a shell of the composite. A lock of $N$ like units never fuses (F6, $\\gcd(12,12)=12$): it is F2's joint registration on $C_{12}$, recurrence $12$, one superselected $C_{12}$ offset per further unit, an aggregate; a shell of capacity $3N$ exists iff $12N+1$ is prime ($N=1,3,5,6,8,9$; none at $N=2$, $25=5^{2}$) and is not the lock's register; fusion (coprime cycles) is multiplicative, $\\kap =n_{1}n_{2}/4$, hydrogen $(4,3)\\to3$. The largest shell a Subject of the Carrier registers whole is $\\q<\\Om^{1/4}$ ($\\q^{2}<\\p$, $\\p^{2}<\\Om$; B8): $13$ on $30089$, $37$ on $2{,}408{,}561$, none on $233$; in hydrogen units $N<(\\Om^{1/4}-1)/12$, $8\\times10^{2}$ kg at the ledger's $\\Om$ (A8), on the 14-entr diagonal at $0.95$ m [approx]. The 14-entr capacity axis counts hydrogen units, one gram at $N_A$ [approx]: a definition (D2), not a registered shell; a lock's capacity against its wall displacement compares a shell label with a chart count and is no relation. 38-s13 (A7), 39-s173, 14-entr 00:check_f7.py, 38:check_s13.js"
   },
   {
    "paper": "00",
@@ -25213,7 +25214,7 @@
    "block": "L",
    "tag": "T",
    "name": "The registrable triangle",
-   "statement": "The mass--radius chart between the Compton and Schwarzschild walls, closed by the Planck apex and the totality wall $r_H$: the totality on its own horizon, the black-hole reading dissolved (A4). Width $61.0$ dex. The over-closure bound ${\\sim}1.8\\times10^{8}M_\\odot$ is the chart's one derived quantity, a bound, predicting no observed scale (14:C9, X5). A consistency chart, not a channel (L2).",
+   "statement": "The mass--radius chart between the Compton and Schwarzschild walls, closed by the Planck apex and the totality wall $r_H$: the totality on its own horizon, the black-hole reading dissolved (A2). Width $61.0$ dex. The over-closure bound ${\\sim}1.8\\times10^{8}M_\\odot$ is the chart's one derived quantity, a bound, predicting no observed scale (14:C9, X5). A consistency chart, not a channel (L2).",
    "source": "14-entr",
    "page": "00-ledger.html#L4",
    "witness": {
@@ -25229,7 +25230,7 @@
    "sources": [
     "14-entr"
    ],
-   "text": "The registrable triangle: The mass–radius chart between the Compton and Schwarzschild walls, closed by the Planck apex and the totality wall $r_H$: the totality on its own horizon, the black-hole reading dissolved (A4). Width $61.0$ dex. The over-closure bound ${\\sim}1.8\\times10^{8}M_\\odot$ is the chart's one derived quantity, a bound, predicting no observed scale (14:C9, X5). A consistency chart, not a channel (L2). 14-entr 14:entropy.py [mixed]"
+   "text": "The registrable triangle: The mass–radius chart between the Compton and Schwarzschild walls, closed by the Planck apex and the totality wall $r_H$: the totality on its own horizon, the black-hole reading dissolved (A2). Width $61.0$ dex. The over-closure bound ${\\sim}1.8\\times10^{8}M_\\odot$ is the chart's one derived quantity, a bound, predicting no observed scale (14:C9, X5). A consistency chart, not a channel (L2). 14-entr 14:entropy.py [mixed]"
   },
   {
    "paper": "00",
@@ -25265,7 +25266,7 @@
    "block": "L",
    "tag": "R",
    "name": "The primordial tilt",
-   "statement": "$n_s=1$ is the scale-dilation fixed point (Harrison--Zel'dovich [import]). The tilt's committed form is $n_s-1=-\\pi^2/\\ln\\Om$ [chart], $\\ln\\Om$ the e-fold count of the frame's scale range from $1/\\sqrt\\Om$ to $\\sqrt\\Om$, a realisation fixed by the measured tilt: $-0.0348$ [approx] at $\\ln\\Om=283.5$ (A9), $+0.07\\sigma$ from Planck 2018's $-0.0351\\pm0.0042$ [import]. The count $\\tfrac12\\ln\\Om$ is excluded at $8.2\\sigma$. Falsifier: a Planck-resolution deviation from $-\\pi^2/\\ln\\Om$.",
+   "statement": "$n_s=1$ is the scale-dilation fixed point (Harrison--Zel'dovich [import]). The tilt's committed form is $n_s-1=-\\pi^2/\\ln\\Om$ [chart], $\\ln\\Om$ the e-fold count of the frame's scale range from $1/\\sqrt\\Om$ to $\\sqrt\\Om$, a realisation fixed by the measured tilt: $-0.0348$ [approx] at $\\ln\\Om=283.5$ (A8), $+0.07\\sigma$ from Planck 2018's $-0.0351\\pm0.0042$ [import]. The count $\\tfrac12\\ln\\Om$ is excluded at $8.2\\sigma$. Falsifier: a Planck-resolution deviation from $-\\pi^2/\\ln\\Om$.",
    "source": "21-grav",
    "page": "00-ledger.html#L8",
    "witness": {
@@ -25293,7 +25294,7 @@
    "sources": [
     "21-grav"
    ],
-   "text": "The primordial tilt: $n_s=1$ is the scale-dilation fixed point (Harrison–Zel'dovich [import]). The tilt's committed form is $n_s-1=-\\pi^2/\\ln\\Om$ [chart], $\\ln\\Om$ the e-fold count of the frame's scale range from $1/\\sqrt\\Om$ to $\\sqrt\\Om$, a realisation fixed by the measured tilt: $-0.0348$ [approx] at $\\ln\\Om=283.5$ (A9), $+0.07\\sigma$ from Planck 2018's $-0.0351\\pm0.0042$ [import]. The count $\\tfrac12\\ln\\Om$ is excluded at $8.2\\sigma$. Falsifier: a Planck-resolution deviation from $-\\pi^2/\\ln\\Om$. 21-grav 21:validate_primordial.py, 00:check_l8.py"
+   "text": "The primordial tilt: $n_s=1$ is the scale-dilation fixed point (Harrison–Zel'dovich [import]). The tilt's committed form is $n_s-1=-\\pi^2/\\ln\\Om$ [chart], $\\ln\\Om$ the e-fold count of the frame's scale range from $1/\\sqrt\\Om$ to $\\sqrt\\Om$, a realisation fixed by the measured tilt: $-0.0348$ [approx] at $\\ln\\Om=283.5$ (A8), $+0.07\\sigma$ from Planck 2018's $-0.0351\\pm0.0042$ [import]. The count $\\tfrac12\\ln\\Om$ is excluded at $8.2\\sigma$. Falsifier: a Planck-resolution deviation from $-\\pi^2/\\ln\\Om$. 21-grav 21:validate_primordial.py, 00:check_l8.py"
   },
   {
    "paper": "00",
@@ -25656,7 +25657,7 @@
    "block": "Z",
    "tag": "D",
    "name": "The horizon forces structure, not only leaves it open",
-   "statement": "The horizon \\emph{forces} structure, not only leaves it open: the $3+2$ split is beyond the horizon (above $\\sqrt{\\Om}$), so the off-block reframings are gauge and unification is the simple $\\SO(10)$ (G14); the automorphism lemma reduces to the Registration pillar (A6).",
+   "statement": "The horizon \\emph{forces} structure, not only leaves it open: the $3+2$ split is beyond the horizon (above $\\sqrt{\\Om}$), so the off-block reframings are gauge and unification is the simple $\\SO(10)$ (G14); the automorphism lemma reduces to the Registration pillar (A5).",
    "source": "27-fld, 20-rh",
    "page": "00-ledger.html#Z5",
    "witness": {
@@ -25672,7 +25673,7 @@
     "27-fld",
     "20-rh"
    ],
-   "text": "The horizon forces structure, not only leaves it open: The horizon forces structure, not only leaves it open: the $3+2$ split is beyond the horizon (above $\\sqrt{\\Om}$), so the off-block reframings are gauge and unification is the simple $\\SO(10)$ (G14); the automorphism lemma reduces to the Registration pillar (A6). 27-fld, 20-rh"
+   "text": "The horizon forces structure, not only leaves it open: The horizon forces structure, not only leaves it open: the $3+2$ split is beyond the horizon (above $\\sqrt{\\Om}$), so the off-block reframings are gauge and unification is the simple $\\SO(10)$ (G14); the automorphism lemma reduces to the Registration pillar (A5). 27-fld, 20-rh"
   },
   {
    "paper": "00",
@@ -25750,7 +25751,7 @@
    "block": "Z",
    "tag": "Ω",
    "name": "The fine-structure constant is the electromagnetic face",
-   "statement": "The fine-structure constant is the \\emph{electromagnetic} face of the scale operator: $\\alpha^{-1}(0)=4\\pi+\\sum_f\\tfrac{b_f}{2\\pi}\\ln(M_P/m_f)+\\Delta\\alpha_{\\mathrm{had}}$, $\\Om$-hard --- the bare $1/4\\pi$ framed-exact (the Gauss solid angle), the digit a log over the $\\Om$-hard masses (Z6) with cutoff $M_P$ tied to $\\Om$ (A9). The physical digit is in no embedded reader's window; the bare value and the sum's form are $\\Om$-blind. Of the family Z2/Z6/Z7/G3/G6.",
+   "statement": "The fine-structure constant is the \\emph{electromagnetic} face of the scale operator: $\\alpha^{-1}(0)=4\\pi+\\sum_f\\tfrac{b_f}{2\\pi}\\ln(M_P/m_f)+\\Delta\\alpha_{\\mathrm{had}}$, $\\Om$-hard --- the bare $1/4\\pi$ framed-exact (the Gauss solid angle), the digit a log over the $\\Om$-hard masses (Z6) with cutoff $M_P$ tied to $\\Om$ (A8). The physical digit is in no embedded reader's window; the bare value and the sum's form are $\\Om$-blind. Of the family Z2/Z6/Z7/G3/G6.",
    "source": "28-flav, 27-fld",
    "page": "00-ledger.html#Z8",
    "witness": {
@@ -25770,7 +25771,7 @@
     "28-flav",
     "27-fld"
    ],
-   "text": "The fine-structure constant is the electromagnetic face: The fine-structure constant is the electromagnetic face of the scale operator: $\\alpha^{-1}(0)=4\\pi+\\sum_f\\tfrac{b_f}{2\\pi}\\ln(M_P/m_f)+\\Delta\\alpha_{\\mathrm{had}}$, $\\Om$-hard — the bare $1/4\\pi$ framed-exact (the Gauss solid angle), the digit a log over the $\\Om$-hard masses (Z6) with cutoff $M_P$ tied to $\\Om$ (A9). The physical digit is in no embedded reader's window; the bare value and the sum's form are $\\Om$-blind. Of the family Z2/Z6/Z7/G3/G6. 28-flav, 27-fld 28:alpha_probe.py [approx]"
+   "text": "The fine-structure constant is the electromagnetic face: The fine-structure constant is the electromagnetic face of the scale operator: $\\alpha^{-1}(0)=4\\pi+\\sum_f\\tfrac{b_f}{2\\pi}\\ln(M_P/m_f)+\\Delta\\alpha_{\\mathrm{had}}$, $\\Om$-hard — the bare $1/4\\pi$ framed-exact (the Gauss solid angle), the digit a log over the $\\Om$-hard masses (Z6) with cutoff $M_P$ tied to $\\Om$ (A8). The physical digit is in no embedded reader's window; the bare value and the sum's form are $\\Om$-blind. Of the family Z2/Z6/Z7/G3/G6. 28-flav, 27-fld 28:alpha_probe.py [approx]"
   },
   {
    "paper": "00",
@@ -25781,7 +25782,7 @@
    "block": "Z",
    "tag": "T",
    "name": "No compression",
-   "statement": "\\textbf{No compression}: the diagonal has no instance per symbol (25:F2), nor, coded a base-$a$ digit per symbol, from length $t(\\M)=d\\,k^{*}(\\M)<|\\M|$ on (25:F6). Below $t(\\M)$, decoders over $(\\F_\\p,+,\\times)$ give one coded 1024 base-32 symbols per element, more than $\\Om$'s elements hold (25:F7, 25:F8, A9). There fragment truth is definable from above (the Tarski reversal, 25:G5), and not from far below (25:G8).",
+   "statement": "\\textbf{No compression}: the diagonal has no instance per symbol (25:F2), nor, coded a base-$a$ digit per symbol, from length $t(\\M)=d\\,k^{*}(\\M)<|\\M|$ on (25:F6). Below $t(\\M)$, decoders over $(\\F_\\p,+,\\times)$ give one coded 1024 base-32 symbols per element, more than $\\Om$'s elements hold (25:F7, 25:F8, A8). There fragment truth is definable from above (the Tarski reversal, 25:G5), and not from far below (25:G8).",
    "source": "25-göd",
    "page": "00-ledger.html#Z9",
    "witness": {
@@ -25801,7 +25802,7 @@
    "sources": [
     "25-göd"
    ],
-   "text": "No compression: No compression: the diagonal has no instance per symbol (25:F2), nor, coded a base-$a$ digit per symbol, from length $t(\\M)=d k^{*}(\\M)<|\\M|$ on (25:F6). Below $t(\\M)$, decoders over $(\\F_\\p,+,\\times)$ give one coded 1024 base-32 symbols per element, more than $\\Om$'s elements hold (25:F7, 25:F8, A9). There fragment truth is definable from above (the Tarski reversal, 25:G5), and not from far below (25:G8). 25-göd"
+   "text": "No compression: No compression: the diagonal has no instance per symbol (25:F2), nor, coded a base-$a$ digit per symbol, from length $t(\\M)=d k^{*}(\\M)<|\\M|$ on (25:F6). Below $t(\\M)$, decoders over $(\\F_\\p,+,\\times)$ give one coded 1024 base-32 symbols per element, more than $\\Om$'s elements hold (25:F7, 25:F8, A8). There fragment truth is definable from above (the Tarski reversal, 25:G5), and not from far below (25:G8). 25-göd"
   },
   {
    "paper": "00",
@@ -26170,7 +26171,7 @@
     "lean": []
    },
    "refs": [
-    "p00008",
+    "p00009",
     "p00021",
     "p00166",
     "p00167"

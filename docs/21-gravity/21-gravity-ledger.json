@@ -1,5 +1,6 @@
 {
  "paper": "21-grav",
+ "tree": "21-gravity-20260623",
  "title": "Gravitation as Phase Synchronisation",
  "doi": "https://doi.org/10.20944/preprints202606.1018.v2",
  "generated": "8 October 2026",
@@ -501,7 +502,7 @@
  ],
  "master": {
   "A1": [
-   "A9",
+   "A8",
    "D1"
   ],
   "A9": [

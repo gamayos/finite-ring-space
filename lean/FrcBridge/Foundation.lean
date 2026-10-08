@@ -9,16 +9,16 @@ A bridge states the clause two rows share and derives it from each row's core ke
 it (`FrcBridge/Carrier.lean` sets the form). One namespace per pair, `FRC.Bridge.<master>_<paper>`: `Clause` the shared
 clause, `from_master` and `from_paper` its two derivations. No axioms (`check_core_axioms.py`).
 
-* **00:A5 and 5:C2 (overlap, LM10).** A part with fewer states than the whole holds no injective representation of
+* **00:A4 and 5:C2 (overlap, LM10).** A part with fewer states than the whole holds no injective representation of
   it. The master's key reads the Carrier's points and finds two of them identified; the paper's states the pigeonhole
   on `[0, N)` beside its record bound.
-* **00:A5 and 25:D1 (overlap, LM10).** The same clause against 25:D1's storage bound.
+* **00:A4 and 25:D1 (overlap, LM10).** The same clause against 25:D1's storage bound.
 
 * **14:C6 ⇒ 00:B14 (paper ⇒ master; the audit's M4, 7 October 2026).** B14 is 14:C6's first clause on the Carrier's
-  chart: with 00:A14's frame on every prime `Ω = 4S + 1`, 14:C6's key gives B14's key (`b14_of_14C6`). 14:C6 adds two
+  chart: with 00:A13's frame on every prime `Ω = 4S + 1`, 14:C6's key gives B14's key (`b14_of_14C6`). 14:C6 adds two
   clauses (the Tsirelson square and the laboratory instance), so the converse does not hold.
 
-And the frame (00:A14 against the frame theme): every prime `p = 4κ + 1` carries a frame `(τ; 0, 1, g)` (`frame_exists`),
+And the frame (00:A13 against the frame theme): every prime `p = 4κ + 1` carries a frame `(τ; 0, 1, g)` (`frame_exists`),
 and with `frame_isPrime` (Lehmer, `FrcBridge/Carrier.lean`) the classical equivalence that `Frame.lean` left for
 later: on `p = 4κ + 1`, a frame exists iff `p` is prime (`frame_iff_isPrime`).
 -/
@@ -27,7 +27,7 @@ namespace FRC.Bridge
 
 open FRC.Shell
 
-/-- Every prime `p = 4κ + 1`, `κ > 0`, carries a frame: 00:A14's drive is primitive of order `p − 1`. -/
+/-- Every prime `p = 4κ + 1`, `κ > 0`, carries a frame: 00:A13's drive is primitive of order `p − 1`. -/
 theorem frame_exists {p κ : Nat} [Pos p] (hp : FRC.Nat.isPrime p) (hcap : p = 4 * κ + 1) (hκ : 0 < κ) :
     ∃ g : Shell p, Frame p κ g :=
   match FRC.Ledger.p00164 hp with
@@ -43,7 +43,7 @@ theorem frame_iff_isPrime {p κ : Nat} [Pos p] (hcap : p = 4 * κ + 1) (hκ : 0 
 def PartClause : Prop :=
   ∀ {N R : Nat}, R < N → ∀ f : Nat → Nat, (∀ i, i < N → f i < R) → ¬ ∀ i j, i < N → j < N → f i = f j → i = j
 
-/-- The clause from the master's key `FRC.Ledger.p00159` (00:A5): read `f` on the `N` points of the shell `𝔽_N`; the
+/-- The clause from the master's key `FRC.Ledger.p00159` (00:A4): read `f` on the `N` points of the shell `𝔽_N`; the
 two points the key finds are distinct and identified. -/
 theorem part_of_master : PartClause := fun {N R} hR f hf hinj =>
   match @FRC.Ledger.p00159 N R ⟨Nat.lt_of_le_of_lt (Nat.zero_le R) hR⟩ hR (fun x => f x.val) (fun x => hf x.val x.lt) with
@@ -51,10 +51,10 @@ theorem part_of_master : PartClause := fun {N R} hR f hf hinj =>
 
 namespace A5_5C2
 
-/-- The clause 00:A5 and 5:C2 share: a bounded part cannot mirror the whole. -/
+/-- The clause 00:A4 and 5:C2 share: a bounded part cannot mirror the whole. -/
 def Clause : Prop := PartClause
 
-/-- From the master's key `FRC.Ledger.p00159` (00:A5). -/
+/-- From the master's key `FRC.Ledger.p00159` (00:A4). -/
 theorem from_master : Clause := part_of_master
 
 /-- From the paper's key `FRC.Ledger.p05013` (5:C2, alias `FRC.Reductio.p05013`): its second clause. -/
@@ -64,11 +64,11 @@ end A5_5C2
 
 namespace A5_25D1
 
-/-- The clause 00:A5 and 25:D1 share: a bounded agent has no faithful (injective) internal representation of the
+/-- The clause 00:A4 and 25:D1 share: a bounded agent has no faithful (injective) internal representation of the
 domain. -/
 def Clause : Prop := PartClause
 
-/-- From the master's key `FRC.Ledger.p00159` (00:A5). -/
+/-- From the master's key `FRC.Ledger.p00159` (00:A4). -/
 theorem from_master : Clause := part_of_master
 
 /-- From the paper's key `FRC.Ledger.p25015` (25:D1, alias `FRC.Godel.p25015`). -/
@@ -76,7 +76,7 @@ theorem from_paper : Clause := fun hR f hf hinj => FRC.Ledger.p25015 hR f hf hin
 
 end A5_25D1
 
-/-- 14:C6 ⇒ 00:B14: the master's key `FRC.Ledger.p00170` from the paper's key `FRC.Entropy.p14023` and 00:A14's frame
+/-- 14:C6 ⇒ 00:B14: the master's key `FRC.Ledger.p00170` from the paper's key `FRC.Entropy.p14023` and 00:A13's frame
 (`frame_exists`): on a prime `Ω = 4S + 1` an element of order eight exists iff `S` is even. -/
 theorem b14_of_14C6 : ∀ {Ω : Nat} [Pos Ω] (S : Nat), FRC.Nat.isPrime Ω → Ω = 4 * S + 1 →
     ((∃ ζ : Shell Ω, ζ ^ 8 = 1 ∧ ζ ^ 4 ≠ 1) ↔ S % 2 = 0) := by
