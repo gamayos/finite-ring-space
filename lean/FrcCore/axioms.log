@@ -433,11 +433,16 @@
 'FRC.Extension.two_way_tally' does not depend on any axioms
 'FRC.Extension.Wp' does not depend on any axioms
 'FRC.Extension.core_weights' does not depend on any axioms
+'FRC.Extension.root_two_two_way' does not depend on any axioms
 'FRC.Extension.conjugate_pair_tally' does not depend on any axioms
 'FRC.Extension.trace_recurrence' does not depend on any axioms
 'FRC.Extension.geom_sum_zero' does not depend on any axioms
+'FRC.Extension.dial_shift' does not depend on any axioms
 'FRC.Extension.dial_tally' does not depend on any axioms
 'FRC.Extension.gridPoint' does not depend on any axioms
+'FRC.Extension.nth' does not depend on any axioms
+'FRC.Extension.remainderRank' does not depend on any axioms
+'FRC.Extension.largestRemainder' does not depend on any axioms
 'FRC.Extension.framed_readout' does not depend on any axioms
 'FRC.Shell.Poly.Frame.root_bound' does not depend on any axioms
 'FRC.Shell.Poly.Frame.xpx_bound' does not depend on any axioms

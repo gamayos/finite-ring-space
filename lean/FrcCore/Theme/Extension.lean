@@ -354,13 +354,18 @@ end FRC
 /-! ## The two strata of probability (00:C10; the push of 8 October 2026)
 
 A structural weight is an element of the quadratic extension `𝔽_p[w]/(w² − ν)` (`Ext`); a registered value lies on the
-tally line, the elements `a + 0 w`. The two reductions that join the strata on the stationary core-valued sector
+tally line, the elements `a + 0 w`, the part fixed by the extension's conjugation. The paper's two-way subring is the
+part of the cyclotomic ring fixed by `ζ ↦ ζ⁻¹`: for `ℤ[i]` it is the tally line (`ν = −1`), and for `ν = 2` it holds
+`w = √2 = ζ₈ + ζ₈⁻¹` itself (`root_two_two_way`), so the engineered-core weights `2 ± w` are two-way, and `w ↦ −w` is
+the conjugate-pair involution `W₊ ↔ W₋`. The two reductions that join the strata on the stationary core-valued sector
 (22-quantum, Rem. strata; the witness `22:stratum.py`, S9 and S10): the conjugate-pair trace tally,
 `z^k z̄^(k+m) + z̄^k z^(k+m) = N(z)^k · tr(z^m)`, core-valued for every weight `z`, with the trace sequence's
-recurrence `t_{m+2} + N(z) t_m = tr(z) t_{m+1}`; and the dial-ensemble Parseval tally, `Σ_θ w±(θ) = Σ_θ w₊ w₋ = 2N`
-over a complete dial of `N` settings, the cross terms cancelling by the complete character sums. The engineered-core
-weights `W± = 2 ± w`, `w² = 2`, have `W₊ + W₋ = 4` and `W₊ W₋ = 2`, on `Ω = 641` as residues (S2); the framed
-readout's instances are decided by the kernel (S5–S7). The frame supplies the odd prime where one is needed. -/
+recurrence `t_{m+2} + N(z) t_m = tr(z) t_{m+1}` and the dial-shift conjugation `w₊(M − θ) = w₋(θ)`; and the
+dial-ensemble Parseval tally, `Σ_θ w±(θ) = Σ_θ w₊ w₋ = 2N` over a dial of `N` settings closed under `ζ`, the cross
+terms cancelling by the character sums. The engineered-core weights `W± = 2 ± w`, `w² = 2`, have `W₊ + W₋ = 4` and
+`W₊ W₋ = 2`, on `Ω = 641` as residues (S2, S4); the framed readout's instances are decided by the kernel (S5–S7): a
+readout computation over the naturals of the laboratory host in which the paper's Carrier `Ω = 641` is observed, as
+decision Q20 allows, not a count of the totality. The frame supplies the odd prime where one is needed. -/
 
 namespace FRC.Extension
 
@@ -429,9 +434,9 @@ theorem ext_cayley_hamilton (z : Ext p ν) : z * z + Ext.ofShell (Ext.norm z) = 
       (.add (.mul (.add (.var 1) (.var 1)) (.var 2)) (.mul .zero (.var 1)))
       (by decide +kernel))
 
-/-- 00:C10 (S1) — the two-way part of the ledger is the tally line: a weight `z` of the extension is its own conjugate
-exactly when its `w`-component vanishes (the frame's odd prime), and the symmetrised weight `z + z̄` is the tally-line
-element `tr(z)`. -/
+/-- 00:C10 (S1) — the part of the extension fixed by its conjugation is the tally line: a weight `z` is its own
+conjugate exactly when its `w`-component vanishes (the frame's odd prime), and the symmetrised weight `z + z̄` is the
+tally-line element `tr(z)`. For `ℤ[i]`, `ν = −1`, this is the paper's two-way subring. -/
 theorem two_way_tally (F : Frame p κ g) (z : Ext p ν) :
     (Ext.conj z = z ↔ z.im = 0) ∧ z + Ext.conj z = Ext.ofShell (Ext.trace z) :=
   ⟨⟨fun h => F.eq_zero_of_eq_neg (Ext.im_congr h).symm, fun h => Ext.ext rfl (by show -z.im = z.im; rw [h, Shell.neg_zero])⟩,
@@ -440,19 +445,40 @@ theorem two_way_tally (F : Frame p κ g) (z : Ext p ν) :
 /-- The engineered-core weight `W₊ = 2 + w` in `𝔽_p[w]/(w² − 2)`; `W₋ = W̄₊ = 2 − w`. -/
 def Wp : Ext p 2 := ⟨2, 1⟩
 
-/-- 00:C10 (S2) — the engineered-core weights reduce to the core: `W₊ + W₋ = 4` and `W₊ W₋ = 2` in every
-`𝔽_p[w]/(w² − 2)`, and on `Ω = 641` (`641 ≡ 1 (mod 8)`) as residues, `r = 67`, `r² = 2`, `W± = 2 ± r`. -/
+/-- 00:C10 (S2, S4) — the engineered-core weights reduce to the core: `W₊ + W₋ = 4` and `W₊ W₋ = 2` in every
+`𝔽_p[w]/(w² − 2)`, and on `Ω = 641` (`641 ≡ 1 (mod 8)`) as residues, `r = 67`, `r² = 2`, `W± = 2 ± r`, with `r` a
+grid point of the Subject chart of generator `3`, `r = 3⁵⁵⁵` (S4). -/
 theorem core_weights :
     ((Wp : Ext p 2) + Ext.conj Wp = Ext.ofShell 4 ∧ (Wp : Ext p 2) * Ext.conj Wp = Ext.ofShell 2 ∧
       Ext.trace (Wp : Ext p 2) = 4 ∧ Ext.norm (Wp : Ext p 2) = 2) ∧
     (641 % 8 = 1 ∧ (67 : Shell 641) * 67 = 2 ∧ (2 + 67 : Shell 641) + (2 + -67) = 4 ∧
-      (2 + 67 : Shell 641) * (2 + -67) = 2) := by
+      (2 + 67 : Shell 641) * (2 + -67) = 2 ∧ (3 : Shell 641) ^ 555 = 67) := by
   have hn : Ext.norm (Wp : Ext p 2) = 2 := by
     show (2 : Shell p) * 2 + -(2 * (1 * 1)) = 2
     have h4 : (2 : Shell p) * 2 = 2 + 2 := by rw [two_eq, Shell.right_distrib, Shell.one_mul]
     rw [Shell.one_mul, Shell.mul_one, h4, Shell.add_assoc, Shell.add_neg, Shell.add_zero]
   refine ⟨⟨Ext.ext (lit_add 2 2) (Shell.add_neg 1), by rw [Ext.mul_conj, hn], lit_add 2 2, hn⟩, by decide,
-    by decide +kernel, by decide +kernel, by decide +kernel⟩
+    by decide +kernel, by decide +kernel, by decide +kernel, by decide +kernel⟩
+
+/-- 00:C10 (S2) — the two-way root of two: on a frame, for `ζ` of order `8` (`ζ⁸ = 1`, `ζ⁴ ≠ 1`) and `η = ζ⁻¹`,
+`(ζ + η)² = 2`. So `w = ζ₈ + ζ₈⁻¹` lies in the paper's two-way subring, the part of the cyclotomic ring fixed by
+`ζ ↦ ζ⁻¹`, and the engineered-core weights `2 ± w` are two-way (on `641`: `ζ₈ = 318`, `ζ₈ + ζ₈⁻¹ = 574 = −67`). -/
+theorem root_two_two_way (F : Frame p κ g) {ζ η : Shell p} (h8 : ζ ^ 8 = 1) (h4 : ζ ^ 4 ≠ 1) (hζη : ζ * η = 1) :
+    (ζ + η) * (ζ + η) = 2 := by
+  have hsq : ζ ^ 4 * ζ ^ 4 = 1 := by rw [← pow_add]; exact h8
+  have hm1 : ζ ^ 4 = -1 := match F.sq_eq_one hsq with
+    | .inl h => absurd h h4
+    | .inr h => h
+  have h22 : ζ ^ 2 * ζ ^ 2 = -1 := by rw [← pow_add]; exact hm1
+  have hη2 : ζ ^ 2 * η ^ 2 = 1 := by rw [← mul_pow, hζη, one_pow]
+  have hzero : ζ ^ 2 + η ^ 2 = 0 := by
+    calc ζ ^ 2 + η ^ 2 = η ^ 2 * (ζ ^ 2 * ζ ^ 2) + η ^ 2 := by
+          rw [← mul_assoc, mul_comm (η ^ 2) (ζ ^ 2), hη2, one_mul]
+      _ = η ^ 2 * -1 + η ^ 2 := by rw [h22]
+      _ = 0 := by rw [← mul_neg, mul_one, neg_add]
+  rw [right_distrib, left_distrib, left_distrib, hζη, mul_comm η ζ, hζη, add_comm 1 (η * η), add_add_add_comm,
+    ← pow_two ζ, ← pow_two η, hzero, zero_add]
+  exact two_eq.symm
 
 /-- 00:C10 (S9) — the conjugate-pair trace tally: a flip-summed pair of conjugate string weights is core-valued,
 `z^k z̄^(k+m) + z̄^k z^(k+m) = N(z)^k · tr(z^m)` on the tally line, for every weight `z` of every quadratic extension. -/
@@ -495,9 +521,35 @@ theorem geom_sum_zero (F : Frame p κ g) {x : Shell p} (n : Nat) (hn : x ^ n = 1
         _ = (x + -1) + 1 := (add_assoc _ _ _).symm
         _ = 1 := by rw [h, zero_add]) hx
 
-/-- 00:C10 (S10) — the dial-ensemble Parseval tally: over a complete dial of `N` settings on a prime shell (`ζ^N = 1`,
-`ζ² ≠ 1`, `η = ζ⁻¹`), the weights `w±(θ) = 2 ± (ζ^θ + η^θ)` sum to `2N`, and so do the products `w₊(θ) w₋(θ)`:
-the cross terms cancel by the complete character sums (the frame: no zero divisors). -/
+/-- 00:C10 (S9) — the dial-shift conjugation: on a dial of `2M` settings (`ζ^(2M) = 1`, `ζ^M ≠ 1`, `η = ζ⁻¹`), the
+weight at the shifted setting is the conjugate weight, `w₊(M − θ) = w₋(θ)` for `θ ≤ M` (the witness: `M = 40` in
+`ℤ[x]/(x⁴⁰ + 1)`, `w₊(40 − D) = w₋(D)`). -/
+theorem dial_shift (F : Frame p κ g) {ζ η : Shell p} (M : Nat) (h2M : ζ ^ (2 * M) = 1) (hM : ζ ^ M ≠ 1)
+    (hζη : ζ * η = 1) (θ : Nat) (hθ : θ ≤ M) :
+    2 + (ζ ^ (M - θ) + η ^ (M - θ)) = 2 + -(ζ ^ θ + η ^ θ) := by
+  have hsq : ζ ^ M * ζ ^ M = 1 := by rw [← pow_add, ← Nat.two_mul]; exact h2M
+  have hζM : ζ ^ M = -1 := match F.sq_eq_one hsq with
+    | .inl h => absurd h hM
+    | .inr h => h
+  have hηM : η ^ M = -1 := by
+    have h1 : ζ ^ M * η ^ M = 1 := by rw [← mul_pow, hζη, one_pow]
+    rw [hζM] at h1
+    calc η ^ M = -(-1 * η ^ M) := by rw [neg_mul, neg_neg, one_mul]
+      _ = -1 := by rw [h1]
+  have hθη : ζ ^ θ * η ^ θ = 1 := by rw [← mul_pow, hζη, one_pow]
+  have e1 : ζ ^ (M - θ) = -(η ^ θ) := by
+    calc ζ ^ (M - θ) = ζ ^ (M - θ) * (ζ ^ θ * η ^ θ) := by rw [hθη, mul_one]
+      _ = ζ ^ M * η ^ θ := by rw [← mul_assoc, ← pow_add, FRC.Nat.sub_add_cancel hθ]
+      _ = -(η ^ θ) := by rw [hζM, neg_one_mul]
+  have e2 : η ^ (M - θ) = -(ζ ^ θ) := by
+    calc η ^ (M - θ) = η ^ (M - θ) * (η ^ θ * ζ ^ θ) := by rw [mul_comm (η ^ θ), hθη, mul_one]
+      _ = η ^ M * ζ ^ θ := by rw [← mul_assoc, ← pow_add, FRC.Nat.sub_add_cancel hθ]
+      _ = -(ζ ^ θ) := by rw [hηM, neg_one_mul]
+  rw [e1, e2, neg_add_rev, add_comm (-(ζ ^ θ))]
+
+/-- 00:C10 (S10) — the dial-ensemble Parseval tally: over a dial of `N` settings closed under `ζ` (`ζ^N = 1`,
+`ζ² ≠ 1`, `η = ζ⁻¹`) on a frame, the weights `w±(θ) = 2 ± (ζ^θ + η^θ)` sum to `2N`, and so do the products
+`w₊(θ) w₋(θ)`: the cross terms cancel by the character sums (the frame: no zero divisors). -/
 theorem dial_tally (F : Frame p κ g) {ζ η : Shell p} (N : Nat) (hN : ζ ^ N = 1) (hζη : ζ * η = 1) (h2 : ζ * ζ ≠ 1) :
     sumRange (fun θ => 2 + (ζ ^ θ + η ^ θ)) N = ofNat N * 2 ∧
     sumRange (fun θ => 2 + -(ζ ^ θ + η ^ θ)) N = ofNat N * 2 ∧
@@ -546,17 +598,38 @@ theorem dial_tally (F : Frame p κ g) {ζ η : Shell p} (N : Nat) (hN : ζ ^ N =
 def gridPoint : Nat → Nat
   | 0 => 1 | 1 => 4 | 2 => 12 | 3 => 38 | 4 => 114 | 5 => 343 | 6 => 1030 | 7 => 3092 | 8 => 9278 | _ => 0
 
+/-- The `i`-th entry of a list of naturals, `0` past its end (the core's `getD` carries `propext`). -/
+def nth : List Nat → Nat → Nat
+  | [], _ => 0
+  | x :: _, 0 => x
+  | _ :: xs, i + 1 => nth xs i
+
+/-- The rank of the `i`-th remainder among `rems`: the number of remainders that precede it, the larger first and, at a
+tie, the earlier index. -/
+def remainderRank (rems : List Nat) (i : Nat) : Nat := go 0 rems
+where
+  go : Nat → List Nat → Nat
+    | _, [] => 0
+    | j, r :: rs => (if r > nth rems i ∨ (r = nth rems i ∧ j < i) then 1 else 0) + go (j + 1) rs
+
+/-- The largest-remainder allocation of `B` counts to the probabilities `nums / den`: each takes its floor, and the
+seats left go one each to the largest remainders, ties by index. -/
+def largestRemainder (B den : Nat) (nums : List Nat) : List Nat :=
+  let floors := nums.map (fun n => B * n / den)
+  let rems := nums.map (fun n => B * n % den)
+  let seats := B - floors.foldl (· + ·) 0
+  (List.range nums.length).map (fun i => nth floors i + if remainderRank rems i < seats then 1 else 0)
+
 /-- 00:C10 (S5–S7) — a registered probability is a framed rational, decided by the kernel: the grid bound
-`s_n² ≤ 2 · 9ⁿ < (s_n + 1)²` at every scale `n ≤ 8` and the readouts nest, `3 s_n ≤ s_{n+1} ≤ 3 s_n + 3`; the readout
+`s_n² ≤ 2 · 9ⁿ < (s_n + 1)²` at every scale `n ≤ 8` and the readouts nest, `3 s_n ≤ s_{n+1} ≤ 3 s_n + 2`; the readout
 `R_4((2 + √2)/8) = (2 · 3⁴ + 114)/(8 · 3⁴) = 23/54`; the `√3` instance `s_3 = 46`; the largest-remainder allocation at
-`B = 81` of `(23/54, 23/54, 2/27, 2/27)`: provisional `34 + 34 + 6 + 6`, one seat to the first remainder `27/54`,
-final `35 + 34 + 6 + 6 = 81`. -/
+`B = 81` of `(23/54, 23/54, 4/54, 4/54)` is `35 + 34 + 6 + 6` (the floors `34 + 34 + 6 + 6`, the one seat left to the
+first of the two remainders `27/54`). A readout computation over the naturals of the laboratory host (decision Q20). -/
 theorem framed_readout :
     (∀ n, n < 9 → gridPoint n * gridPoint n ≤ 2 * 9 ^ n ∧ 2 * 9 ^ n < (gridPoint n + 1) * (gridPoint n + 1)) ∧
-    (∀ n, n < 8 → 3 * gridPoint n ≤ gridPoint (n + 1) ∧ gridPoint (n + 1) ≤ 3 * gridPoint n + 3) ∧
+    (∀ n, n < 8 → 3 * gridPoint n ≤ gridPoint (n + 1) ∧ gridPoint (n + 1) ≤ 3 * gridPoint n + 2) ∧
     (2 * 3 ^ 4 + gridPoint 4) * 54 = 23 * (8 * 3 ^ 4) ∧ (46 * 46 ≤ 3 * 3 ^ 6 ∧ 3 * 3 ^ 6 < 47 * 47) ∧
-    (23 * 27 + 23 * 27 + 2 * 54 + 2 * 54 = 54 * 27 ∧ 81 * 23 / 54 = 34 ∧ 81 * 23 % 54 = 27 ∧ 81 * 2 / 27 = 6 ∧
-      81 * 2 % 27 = 0 ∧ 34 + 34 + 6 + 6 + 1 = 81 ∧ 35 + 34 + 6 + 6 = 81) := by
+    (23 + 23 + 4 + 4 = 54 ∧ largestRemainder 81 54 [23, 23, 4, 4] = [35, 34, 6, 6]) := by
   refine ⟨by decide, by decide, by decide, by decide, by decide⟩
 
 end strata

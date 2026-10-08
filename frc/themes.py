@@ -57,7 +57,7 @@ THEMES = {
                   content="the frame (τ; 0, 1, g), the drive and its orbit, the quarter-turn, the lift; finite sums; concrete shells"),
     "extension": dict(tier="structure", rank=11, exact=True,
                       py=["frc/extension.py"], core=["lean/FrcCore/Theme/Quadratic.lean", "lean/FrcCore/Theme/Extension.lean"], ml=["lean/FrcLedger/Theme/Extension.lean"],
-                      content="the quadratic extension F_{p²}, its norm and conjugation, the norm-one torus and the boost; the quaternion norm"),
+                      content="the quadratic extension F_{p²}, its norm and conjugation, the norm-one torus and the boost; the quaternion norm; the two strata of probability (00:C10)"),
     "projective": dict(tier="structure", rank=12, exact=True,
                        py=["frc/projective.py"], core=["lean/FrcCore/Theme/Projective.lean"], ml=["lean/FrcLedger/Theme/Projective.lean"],
                        content="PGL₂ and SL₂ by elements, the Borel subgroup, the split and non-split tori"),
