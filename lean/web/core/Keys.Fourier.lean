@@ -3036,6 +3036,42 @@ theorem half_id (q : Shell p) :
     (.mul (.add .one .one) (.add (.var 0) (.var 0)))
     (.add .one (.mul (.add (.mul (.add (.add (.add .one .one) .one) .one) (.var 0)) (.neg .one)) .one)) (by decide +kernel)
 
+theorem frft_mul_id (v0 v1 v2 v3 P0 P1 P2 P3 Q : Shell p) :
+    (v0 * P0 + v1 * P1 + v2 * P2 + v3 * P3) * Q = v0 * (P0 * Q) + v1 * (P1 * Q) + v2 * (P2 * Q) + v3 * (P3 * Q) :=
+  RE.sound (look [v0, v1, v2, v3, P0, P1, P2, P3, Q])
+    (.mul (.add (.add (.add (.mul (.var 0) (.var 4)) (.mul (.var 1) (.var 5))) (.mul (.var 2) (.var 6))) (.mul (.var 3) (.var 7))) (.var 8))
+    (.add (.add (.add (.mul (.var 0) (.mul (.var 4) (.var 8))) (.mul (.var 1) (.mul (.var 5) (.var 8)))) (.mul (.var 2) (.mul (.var 6) (.var 8)))) (.mul (.var 3) (.mul (.var 7) (.var 8)))) (by decide +kernel)
+
+theorem entry21_one (q i A B : Shell p) :
+    q * 0 + (q * -i) * (i * A) + -(-q) * 0 + -(q * -i) * (i * B) = q * (A + -B) + (i * i + 1) * (-(q * A) + q * B) :=
+  RE.sound (look [q, i, A, B])
+    (.add (.add (.add (.mul (.var 0) .zero) (.mul (.mul (.var 0) (.neg (.var 1))) (.mul (.var 1) (.var 2)))) (.mul (.neg (.neg (.var 0))) .zero)) (.mul (.neg (.mul (.var 0) (.neg (.var 1)))) (.mul (.var 1) (.var 3))))
+    (.add (.mul (.var 0) (.add (.var 2) (.neg (.var 3)))) (.mul (.add (.mul (.var 1) (.var 1)) .one) (.add (.neg (.mul (.var 0) (.var 2))) (.mul (.var 0) (.var 3))))) (by decide +kernel)
+
+theorem entry21_three (q i A B : Shell p) :
+    q * 0 + -(q * -i) * (i * A) + -(-q) * 0 + (q * -i) * (i * B) = -(q * (A + -B)) + (i * i + 1) * (q * A + -(q * B)) :=
+  RE.sound (look [q, i, A, B])
+    (.add (.add (.add (.mul (.var 0) .zero) (.mul (.neg (.mul (.var 0) (.neg (.var 1)))) (.mul (.var 1) (.var 2)))) (.mul (.neg (.neg (.var 0))) .zero)) (.mul (.mul (.var 0) (.neg (.var 1))) (.mul (.var 1) (.var 3))))
+    (.add (.neg (.mul (.var 0) (.add (.var 2) (.neg (.var 3))))) (.mul (.add (.mul (.var 1) (.var 1)) .one) (.add (.mul (.var 0) (.var 2)) (.neg (.mul (.var 0) (.var 3)))))) (by decide +kernel)
+
+theorem entry00_zero (q i : Shell p) :
+    q * 1 + q * i + q * 1 + q * i = (q + q) * (1 + i) :=
+  RE.sound (look [q, i])
+    (.add (.add (.add (.mul (.var 0) .one) (.mul (.var 0) (.var 1))) (.mul (.var 0) .one)) (.mul (.var 0) (.var 1)))
+    (.mul (.add (.var 0) (.var 0)) (.add .one (.var 1))) (by decide +kernel)
+
+theorem entry00_two (q i : Shell p) :
+    q * 1 + -q * i + q * 1 + -q * i = (q + q) * (1 + -i) :=
+  RE.sound (look [q, i])
+    (.add (.add (.add (.mul (.var 0) .one) (.mul (.neg (.var 0)) (.var 1))) (.mul (.var 0) .one)) (.mul (.neg (.var 0)) (.var 1)))
+    (.mul (.add (.var 0) (.var 0)) (.add .one (.neg (.var 1)))) (by decide +kernel)
+
+theorem row_zero_id (q jj u i : Shell p) :
+    NF0 q jj u * 0 + NF1 q jj u * i + NF2 q jj u * 0 + NF3 q jj u * i = (q + q) * (1 + -(u * u)) * i :=
+  RE.sound (look [q, jj, u, i])
+    (.add (.add (.add (.mul (.mul (.var 0) (.add (.add (.add .one (.var 2)) (.mul (.var 2) (.var 2))) (.mul (.mul (.var 2) (.var 2)) (.var 2)))) .zero) (.mul (.mul (.var 0) (.add (.add (.add .one (.mul (.var 1) (.var 2))) (.neg (.mul (.var 2) (.var 2)))) (.neg (.mul (.var 1) (.mul (.mul (.var 2) (.var 2)) (.var 2)))))) (.var 3))) (.mul (.mul (.var 0) (.add (.add (.add .one (.neg (.var 2))) (.mul (.var 2) (.var 2))) (.neg (.mul (.mul (.var 2) (.var 2)) (.var 2))))) .zero)) (.mul (.mul (.var 0) (.add (.add (.add .one (.neg (.mul (.var 1) (.var 2)))) (.neg (.mul (.var 2) (.var 2)))) (.mul (.var 1) (.mul (.mul (.var 2) (.var 2)) (.var 2))))) (.var 3)))
+    (.mul (.mul (.add (.var 0) (.var 0)) (.add .one (.neg (.mul (.var 2) (.var 2))))) (.var 3)) (by decide +kernel)
+
 /-! ## The algebra of combinations -/
 
 variable {κ : Nat} {g : Shell p}
@@ -3238,6 +3274,233 @@ theorem proj_odd_sum (F : Frame p κ g) (k j : Nat) :
 theorem half (F : Frame p κ g) : (1 + 1 : Shell p) * (-(ofNat κ) + -(ofNat κ)) = 1 :=
   red1 (half_id (-(ofNat κ))) (hq F)
 
+/-! ## The character sector, nonvanishing, faithfulness and the domains (T03) -/
+
+theorem proj_mul (F : Frame p κ g) {ℓ m : Nat} (hℓ : ℓ < 4) (hm : m < 4) {k j : Nat} (hk : k < p - 1) (hj : j < p - 1) :
+    sumRange (fun l => proj g κ ℓ k l * proj g κ m l j) (p - 1) = if ℓ = m then proj g κ ℓ k j else 0 :=
+  match Nat.decEq ℓ m with
+  | isTrue e => by rw [ite_eq_left e]; subst e; exact proj_mul_self F ℓ hk hj
+  | isFalse e => by rw [ite_eq_right e]; exact proj_mul_ne F hℓ hm e hk hj
+
+theorem frft_mul_pt (z : Shell p) (s m k j l : Nat) :
+    frft g κ z s k l * proj g κ m l j =
+      (z ^ s) ^ 0 * (proj g κ 0 k l * proj g κ m l j) + (z ^ s) ^ 1 * (proj g κ 1 k l * proj g κ m l j) +
+      (z ^ s) ^ 2 * (proj g κ 2 k l * proj g κ m l j) + (z ^ s) ^ 3 * (proj g κ 3 k l * proj g κ m l j) :=
+  frft_mul_id _ _ _ _ _ _ _ _ _
+
+/-- 6:C4, 6:E6, the character sector: `F^{[s]} Π_m = (z^s)^m Π_m` on every projector, `m < 4`; the family acts on
+`Π_m`'s range by the character `s ↦ z^{ms}`. -/
+theorem frft_proj (F : Frame p κ g) (z : Shell p) (s : Nat) {m : Nat} (hm : m < 4) {k j : Nat} (hk : k < p - 1)
+    (hj : j < p - 1) :
+    sumRange (fun l => frft g κ z s k l * proj g κ m l j) (p - 1) = (z ^ s) ^ m * proj g κ m k j := by
+  rw [sum_congr _ (fun l _ => frft_mul_pt z s m k j l), sum_add, sum_add, sum_add, sum_mul_left, sum_mul_left,
+    sum_mul_left, sum_mul_left, proj_mul F (Nat.zero_lt_succ 3) hm hk hj, proj_mul F (by decide : (1 : Nat) < 4) hm hk hj,
+    proj_mul F (by decide : (2 : Nat) < 4) hm hk hj, proj_mul F (by decide : (3 : Nat) < 4) hm hk hj]
+  match m, hm with
+  | 0, _ => rw [ite_eq_left rfl, ite_eq_right (by decide), ite_eq_right (by decide), ite_eq_right (by decide),
+      mul_zero, mul_zero, mul_zero, add_zero, add_zero, add_zero]
+  | 1, _ => rw [ite_eq_right (by decide), ite_eq_left rfl, ite_eq_right (by decide), ite_eq_right (by decide),
+      mul_zero, mul_zero, mul_zero, zero_add, add_zero, add_zero]
+  | 2, _ => rw [ite_eq_right (by decide), ite_eq_right (by decide), ite_eq_left rfl, ite_eq_right (by decide),
+      mul_zero, mul_zero, mul_zero, zero_add, zero_add, add_zero]
+  | 3, _ => rw [ite_eq_right (by decide), ite_eq_right (by decide), ite_eq_right (by decide), ite_eq_left rfl,
+      mul_zero, mul_zero, mul_zero, zero_add, zero_add, zero_add]
+  | n + 4, h => exact absurd (Nat.lt_of_lt_of_le h (Nat.le_add_left 4 n)) (Nat.lt_irrefl _)
+
+/-! The basis entries the nonvanishing reads. -/
+
+theorem idm_ne {k j : Nat} (h : k ≠ j) : (idm k j : Shell p) = 0 := ite_eq_right h
+theorem idm_self (k : Nat) : (idm k k : Shell p) = 1 := ite_eq_left rfl
+
+theorem Fmat_zero_row (g : Shell p) (κ j : Nat) : Fmat g κ 0 j = quarterTurn g κ := by
+  show quarterTurn g κ * g ^ (j * 0) = _
+  rw [Nat.mul_zero, pow_zero, mul_one]
+
+theorem FJ_zero_row (g : Shell p) (κ j : Nat) : FJ g κ 0 j = quarterTurn g κ := by
+  show quarterTurn g κ * g ^ (rev (p - 1) j * 0) = _
+  rw [Nat.mul_zero, pow_zero, mul_one]
+
+theorem J_zero_zero : (J (p - 1) 0 0 : Shell p) = 1 := ite_eq_left (FRC.Nat.zero_mod _)
+
+theorem J_zero_row {j : Nat} (hj0 : 0 < j) (hj : j < p - 1) : (J (p - 1) 0 j : Shell p) = 0 :=
+  ite_eq_right (fun e => by
+    rw [Nat.zero_add, FRC.Nat.mod_eq_of_lt hj] at e
+    exact Nat.lt_irrefl 0 (e ▸ hj0))
+
+theorem three_lt_n (F : Frame p κ g) : 2 + 1 < p - 1 := by
+  rw [F.n_eq]; exact Nat.lt_of_lt_of_le (by decide) (Nat.mul_le_mul_left 4 F.cap_pos)
+
+theorem J_two_one (F : Frame p κ g) : (J (p - 1) 2 1 : Shell p) = 0 :=
+  ite_eq_right (fun e => by rw [FRC.Nat.mod_eq_of_lt (three_lt_n F)] at e; exact absurd e (by decide))
+
+theorem hii (F : Frame p κ g) : quarterTurn g κ * quarterTurn g κ + 1 = 0 := by
+  rw [F.quarter_turn_sq, neg_add]
+
+theorem q_ne_zero (F : Frame p κ g) : -(ofNat κ) ≠ (0 : Shell p) := fun h =>
+  F.one_ne_zero (by
+    have e := hq F
+    rw [h, mul_zero, zero_add] at e
+    rw [← neg_neg (1 : Shell p), e, neg_zero])
+
+theorem half_ne_zero (F : Frame p κ g) : -(ofNat κ) + -(ofNat κ) ≠ (0 : Shell p) := fun h =>
+  F.one_ne_zero (by rw [← half F, h, mul_zero])
+
+theorem quarter_ne_zero (F : Frame p κ g) : quarterTurn g κ ≠ 0 := fun h =>
+  F.one_ne_zero (by rw [← neg_neg (1 : Shell p), ← F.quarter_turn_sq, h, mul_zero, neg_zero])
+
+theorem one_add_quarter_ne_zero (F : Frame p κ g) : 1 + quarterTurn g κ ≠ 0 := fun h =>
+  F.neg_one_ne_one (by rw [← F.quarter_turn_sq, ← neg_eq_of_add_eq_zero h, neg_mul_neg, one_mul])
+
+theorem one_sub_quarter_ne_zero (F : Frame p κ g) : 1 + -(quarterTurn g κ) ≠ 0 := fun h => by
+  have hi : quarterTurn g κ = 1 := by rw [← neg_neg (quarterTurn g κ), ← neg_eq_of_add_eq_zero h, neg_neg]
+  exact F.neg_one_ne_one (by rw [← F.quarter_turn_sq, hi, one_mul])
+
+/-- 6:C5, the entry `(0, 0)` of the even projectors: `(Π₀)₀₀ = (q + q)(1 + i)` and `(Π₂)₀₀ = (q + q)(1 − i)`. -/
+theorem even_proj_entry (F : Frame p κ g) :
+    proj g κ 0 0 0 = (-(ofNat κ) + -(ofNat κ)) * (1 + quarterTurn g κ) ∧
+      proj g κ 2 0 0 = (-(ofNat κ) + -(ofNat κ)) * (1 + -(quarterTurn g κ)) := by
+  rw [proj_zero_eq, proj_two_eq F]
+  show -(ofNat κ) * idm 0 0 + -(ofNat κ) * Fmat g κ 0 0 + -(ofNat κ) * J (p - 1) 0 0 + -(ofNat κ) * FJ g κ 0 0 = _ ∧
+    -(ofNat κ) * idm 0 0 + -(-(ofNat κ)) * Fmat g κ 0 0 + -(ofNat κ) * J (p - 1) 0 0 + -(-(ofNat κ)) * FJ g κ 0 0 = _
+  rw [idm_self, Fmat_zero_row, FJ_zero_row, J_zero_zero]
+  exact ⟨entry00_zero _ _, entry00_two _ _⟩
+
+/-- 6:C5, the even projectors never vanish: `(Π₀)₀₀ ≠ 0` and `(Π₂)₀₀ ≠ 0` on every frame, since `q + q = 2⁻¹` and
+`1 ± i` are nonzero. -/
+theorem even_proj_ne_zero (F : Frame p κ g) : proj g κ 0 0 0 ≠ 0 ∧ proj g κ 2 0 0 ≠ 0 := by
+  rw [(even_proj_entry F).1, (even_proj_entry F).2]
+  exact ⟨F.mul_ne_zero (half_ne_zero F) (one_add_quarter_ne_zero F),
+    F.mul_ne_zero (half_ne_zero F) (one_sub_quarter_ne_zero F)⟩
+
+/-- 6:C5, the odd projectors at the entry `(2, 1)`: `(Π₁)₂₁ = q (g² − g^{−2})` and `(Π₃)₂₁ = −q (g² − g^{−2})`,
+with `g^{−2}` read as `g^{2 (n−1)}`. -/
+theorem odd_proj_entry (F : Frame p κ g) :
+    proj g κ 1 2 1 = -(ofNat κ) * (g ^ (1 * 2) + -(g ^ (rev (p - 1) 1 * 2))) ∧
+      proj g κ 3 2 1 = -(-(ofNat κ) * (g ^ (1 * 2) + -(g ^ (rev (p - 1) 1 * 2)))) := by
+  rw [proj_one_eq F, proj_three_eq F]
+  show -(ofNat κ) * idm 2 1 + -(ofNat κ) * -(quarterTurn g κ) * Fmat g κ 2 1 + -(-(ofNat κ)) * J (p - 1) 2 1 +
+      -(-(ofNat κ) * -(quarterTurn g κ)) * FJ g κ 2 1 = _ ∧
+    -(ofNat κ) * idm 2 1 + -(-(ofNat κ) * -(quarterTurn g κ)) * Fmat g κ 2 1 + -(-(ofNat κ)) * J (p - 1) 2 1 +
+      -(ofNat κ) * -(quarterTurn g κ) * FJ g κ 2 1 = _
+  rw [idm_ne (by decide), J_two_one F]
+  exact ⟨red1 (entry21_one _ _ _ _) (hii F), red1 (entry21_three _ _ _ _) (hii F)⟩
+
+theorem four_lt_n (F : Frame p κ g) (hκ : 2 ≤ κ) : 4 < p - 1 := by
+  rw [F.n_eq]; exact Nat.lt_of_lt_of_le (by decide) (Nat.mul_le_mul_left 4 hκ)
+
+/-- `g² ≠ g^{−2}` for `κ ≥ 2`: otherwise `g⁴ = 1` below the order `4κ`. -/
+theorem sq_ne_inv_sq (F : Frame p κ g) (hκ : 2 ≤ κ) : g ^ (1 * 2) + -(g ^ (rev (p - 1) 1 * 2)) ≠ 0 := fun h => by
+  have hn := F.n_pos
+  have h1 : 1 < p - 1 := Nat.lt_trans (by decide) (four_lt_n F hκ)
+  have e : g ^ (1 * 2) = g ^ (rev (p - 1) 1 * 2) := by rw [eq_neg_of_add_eq_zero h, neg_neg]
+  have e1 : g ^ (rev (p - 1) 1 * 2) * g ^ (1 * 2) = 1 := by
+    rw [← pow_add, ← FRC.Nat.add_mul]
+    exact F.pow_eq_one_of_mod (by rw [FRC.Nat.mul_mod_left' _ _ _ hn, rev_add_mod h1, Nat.zero_mul]; rfl)
+  rw [← e, ← pow_add] at e1
+  exact F.prim.2 4 (four_lt_n F hκ) (by decide) e1
+
+/-- 6:C5, the odd projectors do not vanish for `κ ≥ 2`: the entry `(2, 1)` of each is `±q (g² − g^{−2}) ≠ 0`. -/
+theorem odd_proj_ne_zero (F : Frame p κ g) (hκ : 2 ≤ κ) : proj g κ 1 2 1 ≠ 0 ∧ proj g κ 3 2 1 ≠ 0 := by
+  rw [(odd_proj_entry F).1, (odd_proj_entry F).2]
+  have h := F.mul_ne_zero (q_ne_zero F) (sq_ne_inv_sq F hκ)
+  exact ⟨h, fun e => h (by rw [← neg_neg (-(ofNat κ) * _), e, neg_zero])⟩
+
+/-- 6:C4, 6:D2, faithfulness: `F^{[s]} = F^{[r]}` entrywise forces `s = r` below the period, for `κ ≥ 2`. The entry
+`(2, 1)` of `F^{[s]} Π₁ = z^s Π₁` reads `z^s (Π₁)₂₁` with `(Π₁)₂₁ ≠ 0`, so `z^s = z^r` and `z` has order `4κ`. -/
+theorem frft_injective (F : Frame p κ g) (hκ : 2 ≤ κ) {z : Shell p} (hz : g * z = 1) {s r : Nat} (hs : s < p - 1)
+    (hr : r < p - 1) (h : ∀ k j, k < p - 1 → j < p - 1 → frft g κ z s k j = frft g κ z r k j) : s = r := by
+  have h2 : 2 < p - 1 := Nat.lt_trans (by decide) (four_lt_n F hκ)
+  have h1 : 1 < p - 1 := Nat.lt_trans (by decide) h2
+  have es := frft_proj F z s (by decide : (1 : Nat) < 4) h2 h1
+  have er := frft_proj F z r (by decide : (1 : Nat) < 4) h2 h1
+  have hsum : sumRange (fun l => frft g κ z s 2 l * proj g κ 1 l 1) (p - 1) =
+      sumRange (fun l => frft g κ z r 2 l * proj g κ 1 l 1) (p - 1) :=
+    sum_congr _ (fun l hl => by rw [h 2 l h2 hl])
+  rw [es, er, pow_one, pow_one] at hsum
+  have hz' : z ^ s = z ^ r :=
+    (inv_frame F hz).mul_left_cancel (odd_proj_ne_zero F hκ).1
+      ((mul_comm _ _).trans (hsum.trans (mul_comm _ _)))
+  exact (inv_frame F hz).pow_inj hs hr hz'
+
+/-! The shell `p = 5` (`κ = 1`), its two frames `g = 2, 3`, decided by the kernel. -/
+
+theorem frame5_two : Frame 5 1 (2 : Shell 5) := ⟨rfl, Nat.zero_lt_succ 0, by decide⟩
+theorem frame5_three : Frame 5 1 (3 : Shell 5) := ⟨rfl, Nat.zero_lt_succ 0, by decide⟩
+
+/-- 6:C5, 6:C4, at `p = 5` exactly one odd projector vanishes: `Π₁ = 0 ≠ Π₃` at `g = 2`, `Π₃ = 0 ≠ Π₁` at `g = 3`;
+the surviving odd projector carries the faithful character `s ↦ z^{ms}`, `m` its index. -/
+theorem five_odd_proj :
+    (∀ k, k < 4 → ∀ j, j < 4 → proj (2 : Shell 5) 1 1 k j = 0) ∧ proj (2 : Shell 5) 1 3 1 1 ≠ 0 ∧
+    (∀ k, k < 4 → ∀ j, j < 4 → proj (3 : Shell 5) 1 3 k j = 0) ∧ proj (3 : Shell 5) 1 1 1 1 ≠ 0 ∧
+    (∀ s, s < 4 → ∀ r, r < 4 → (3 : Shell 5) ^ (3 * s) = 3 ^ (3 * r) → s = r) ∧
+    (∀ s, s < 4 → ∀ r, r < 4 → (2 : Shell 5) ^ (1 * s) = 2 ^ (1 * r) → s = r) := by decide +kernel
+
+/-- 6:C4, faithfulness at `p = 5` on both frames (`z = g⁻¹`: `3` for `g = 2`, `2` for `g = 3`). -/
+theorem five_faithful :
+    (∀ s, s < 4 → ∀ r, r < 4 → (∀ k, k < 4 → ∀ j, j < 4 → frft (2 : Shell 5) 1 3 s k j = frft (2 : Shell 5) 1 3 r k j) →
+      s = r) ∧
+    (∀ s, s < 4 → ∀ r, r < 4 → (∀ k, k < 4 → ∀ j, j < 4 → frft (3 : Shell 5) 1 2 s k j = frft (3 : Shell 5) 1 2 r k j) →
+      s = r) := by decide +kernel
+
+/-! The domains (6:D1, 6:D2, 6:D7). -/
+
+/-- 6:D1, every `F^{[s]}` is invertible: `F^{[s]} F^{[n−s]} = I = F^{[n−s]} F^{[s]}` for `s ≤ n = p − 1`. -/
+theorem frft_inverse (F : Frame p κ g) {z : Shell p} (hz : g * z = 1) {s : Nat} (hs : s ≤ p - 1) {k j : Nat}
+    (hk : k < p - 1) (hj : j < p - 1) :
+    sumRange (fun l => frft g κ z s k l * frft g κ z (p - 1 - s) l j) (p - 1) = idm k j ∧
+      sumRange (fun l => frft g κ z (p - 1 - s) k l * frft g κ z s l j) (p - 1) = idm k j := by
+  have hn : frft g κ z (p - 1) k j = idm k j := by
+    have e := frft_period F hz 0 k j
+    rw [Nat.zero_add] at e
+    rw [e]; exact (frft_cardinal F hz k j).1
+  constructor
+  · rw [← frft_add F z s (p - 1 - s) hk hj, FRC.Nat.add_sub_of_le hs]; exact hn
+  · rw [← frft_add F z (p - 1 - s) s hk hj, FRC.Nat.sub_add_cancel hs]; exact hn
+
+/-- 6:D2, the half-turn is the reversal: `F^{[s + 2κ]} = F^{[s]} J`, entrywise `F^{[s+2κ]}_{kj} = F^{[s]}_{k, rev j}`,
+so the framed bases `B_{s+2κ}` and `B_s` agree as unordered bases. -/
+theorem frft_half_turn (F : Frame p κ g) {z : Shell p} (hz : g * z = 1) (s : Nat) {k j : Nat} (hk : k < p - 1)
+    (hj : j < p - 1) : frft g κ z (s + 2 * κ) k j = frft g κ z s k (rev (p - 1) j) := by
+  rw [frft_add F z s (2 * κ) hk hj, sum_congr _ (fun l _ => by rw [(frft_cardinal F hz l j).2.2.1])]
+  exact mm_X_J (frft g κ z s) hj
+
+/-- 6:D7, the row-0 entries of `F^{[t]}` off the site `j = 0`: `F^{[t]}_{0j} = (q + q)(1 − z^{2t}) i = (i/2)(1 − g^{−2t})`,
+the same value at every `0 < j < n`. -/
+theorem frft_row_zero (F : Frame p κ g) (z : Shell p) (t : Nat) {j : Nat} (hj0 : 0 < j) (hj : j < p - 1) :
+    frft g κ z t 0 j = (-(ofNat κ) + -(ofNat κ)) * (1 + -(z ^ t * z ^ t)) * quarterTurn g κ := by
+  rw [frft_eq F z t 0 j]
+  show NF0 (-(ofNat κ)) (-(quarterTurn g κ)) (z ^ t) * idm 0 j + NF1 (-(ofNat κ)) (-(quarterTurn g κ)) (z ^ t) * Fmat g κ 0 j +
+    NF2 (-(ofNat κ)) (-(quarterTurn g κ)) (z ^ t) * J (p - 1) 0 j + NF3 (-(ofNat κ)) (-(quarterTurn g κ)) (z ^ t) * FJ g κ 0 j = _
+  rw [idm_ne (fun (e : 0 = j) => Nat.lt_irrefl j (e ▸ hj0)), J_zero_row hj0 hj, Fmat_zero_row, FJ_zero_row]
+  exact row_zero_id _ _ _ _
+
+/-- `t + t ≡ 0 (mod n)` below `n = 2κ + 2κ` forces `t = 0` or `t = 2κ`. -/
+theorem double_mod_n (F : Frame p κ g) {t : Nat} (ht : t < p - 1) (h : (t + t) % (p - 1) = 0) : t = 0 ∨ t = 2 * κ := by
+  have hn := F.n_pos
+  obtain ⟨c, hc⟩ := FRC.Nat.mod_spec (p - 1) hn (t + t)
+  rw [h, Nat.add_zero] at hc
+  match c, hc with
+  | 0, hc => exact Or.inl (match t, hc with | 0, _ => rfl | t + 1, hc => Nat.noConfusion hc)
+  | 1, hc =>
+    rw [Nat.mul_one, ← F.four_kappa, ← Nat.two_mul, ← Nat.two_mul] at hc
+    exact Or.inr (Nat.eq_of_mul_eq_mul_left (by decide) hc)
+  | c + 2, hc =>
+    have : t + t < (p - 1) * (c + 2) :=
+      Nat.lt_of_lt_of_le (Nat.add_lt_add ht ht) (by rw [Nat.mul_add, Nat.mul_two]; exact Nat.le_add_left _ _)
+    exact absurd hc (Nat.ne_of_lt this)
+
+/-- 6:D7, the row-0 entries are nonzero for `t ∉ {0, 2κ}`, so `F^{[t]}` is not monomial and `B_{s+t} ≠ B_s`: exactly
+`2κ` measurement bases on the cycle. -/
+theorem frft_row_zero_ne_zero (F : Frame p κ g) {z : Shell p} (hz : g * z = 1) {t : Nat} (ht : t < p - 1) (h0 : t ≠ 0)
+    (h2 : t ≠ 2 * κ) {j : Nat} (hj0 : 0 < j) (hj : j < p - 1) : frft g κ z t 0 j ≠ 0 := by
+  rw [frft_row_zero F z t hj0 hj]
+  refine F.mul_ne_zero (F.mul_ne_zero (half_ne_zero F) ?_) (quarter_ne_zero F)
+  intro e
+  have e1 : z ^ (t + t) = 1 := by rw [pow_add, ← neg_neg (z ^ t * z ^ t), ← neg_eq_of_add_eq_zero e, neg_neg]
+  match double_mod_n F ht ((inv_frame F hz).mod_eq_zero_of_pow_eq_one e1) with
+  | Or.inl e0 => exact h0 e0
+  | Or.inr e2 => exact h2 e2
+
 end Frame
 end Shell
 end FRC
@@ -3267,9 +3530,24 @@ theorem p06016 : (∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Sh
 /-- p06017 — 6:C3. The exact finite-field FrFT: $s\mapsto\Ft^{[s]}$ is a representation of $\Phit$, $\Ft^{[s+r]}=\Ft^{[s]}\Ft^{[r]}$ on every pair of the six shells, with the cardinal values $\Ft^{[0]}=I$, $\Ft^{[\kap]}=\Ft$, $\Ft^{[2\kap]}=J$, $\Ft^{[3\kap]}=\Ft^{-1}$, and $(\Ft^{[1]})^{\kap}=\Ft$. -/
 theorem p06017 : (∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → ∀ (z : FRC.Shell p) (s r : Nat) {k j : Nat}, k < p - (1 : Nat) → j < p - (1 : Nat) → FRC.Shell.Frame.frft g κ z (s + r) k j = FRC.Shell.sumRange (fun l => FRC.Shell.Frame.frft g κ z s k l * FRC.Shell.Frame.frft g κ z r l j) (p - (1 : Nat))) ∧ (∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → ∀ {z : FRC.Shell p}, g * z = (1 : FRC.Shell p) → ∀ (k j : Nat), FRC.Shell.Frame.frft g κ z (0 : Nat) k j = FRC.Shell.Frame.idm k j ∧ FRC.Shell.Frame.frft g κ z κ k j = FRC.Shell.Frame.Fmat g κ k j ∧ FRC.Shell.Frame.frft g κ z ((2 : Nat) * κ) k j = FRC.Shell.Frame.J (p - (1 : Nat)) k j ∧ FRC.Shell.Frame.frft g κ z ((3 : Nat) * κ) k j = FRC.Shell.Frame.FJ g κ k j) ∧ (∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → ∀ {z : FRC.Shell p}, g * z = (1 : FRC.Shell p) → ∀ (s k j : Nat), FRC.Shell.Frame.frft g κ z (s + (p - (1 : Nat))) k j = FRC.Shell.Frame.frft g κ z s k j) ∧ ∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → ∀ {z : FRC.Shell p}, g * z = (1 : FRC.Shell p) → ∀ (s m k j : Nat), k < p - (1 : Nat) → j < p - (1 : Nat) → FRC.Shell.Frame.frft g κ z (m * s) k j = FRC.Shell.Frame.mpow (FRC.Shell.Frame.frft g κ z s) m k j :=
   And.intro @FRC.Shell.Frame.frft_add (And.intro @FRC.Shell.Frame.frft_cardinal (And.intro @FRC.Shell.Frame.frft_period (@FRC.Shell.Frame.frft_pow)))
+/-- p06018 — 6:C4. Faithfulness: $s\mapsto\Ft^{[s]}$ is injective on $\Z_{4\kap}$ for every $\kap\ge1$; at $\p=5$ the surviving odd projector carries the faithful character. -/
+theorem p06018 : (∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → (2 : Nat) ≤ κ → ∀ {z : FRC.Shell p}, g * z = (1 : FRC.Shell p) → ∀ {s r : Nat}, s < p - (1 : Nat) → r < p - (1 : Nat) → (∀ (k j : Nat), k < p - (1 : Nat) → j < p - (1 : Nat) → FRC.Shell.Frame.frft g κ z s k j = FRC.Shell.Frame.frft g κ z r k j) → s = r) ∧ ((∀ (s : Nat), s < (4 : Nat) → ∀ (r : Nat), r < (4 : Nat) → (∀ (k : Nat), k < (4 : Nat) → ∀ (j : Nat), j < (4 : Nat) → FRC.Shell.Frame.frft (2 : FRC.Shell (5 : Nat)) (1 : Nat) (3 : FRC.Shell (5 : Nat)) s k j = FRC.Shell.Frame.frft (2 : FRC.Shell (5 : Nat)) (1 : Nat) (3 : FRC.Shell (5 : Nat)) r k j) → s = r) ∧ ∀ (s : Nat), s < (4 : Nat) → ∀ (r : Nat), r < (4 : Nat) → (∀ (k : Nat), k < (4 : Nat) → ∀ (j : Nat), j < (4 : Nat) → FRC.Shell.Frame.frft (3 : FRC.Shell (5 : Nat)) (1 : Nat) (2 : FRC.Shell (5 : Nat)) s k j = FRC.Shell.Frame.frft (3 : FRC.Shell (5 : Nat)) (1 : Nat) (2 : FRC.Shell (5 : Nat)) r k j) → s = r) ∧ (∀ (k : Nat), k < (4 : Nat) → ∀ (j : Nat), j < (4 : Nat) → FRC.Shell.Frame.proj (2 : FRC.Shell (5 : Nat)) (1 : Nat) (1 : Nat) k j = (0 : FRC.Shell (5 : Nat))) ∧ FRC.Shell.Frame.proj (2 : FRC.Shell (5 : Nat)) (1 : Nat) (3 : Nat) (1 : Nat) (1 : Nat) ≠ (0 : FRC.Shell (5 : Nat)) ∧ (∀ (k : Nat), k < (4 : Nat) → ∀ (j : Nat), j < (4 : Nat) → FRC.Shell.Frame.proj (3 : FRC.Shell (5 : Nat)) (1 : Nat) (3 : Nat) k j = (0 : FRC.Shell (5 : Nat))) ∧ FRC.Shell.Frame.proj (3 : FRC.Shell (5 : Nat)) (1 : Nat) (1 : Nat) (1 : Nat) (1 : Nat) ≠ (0 : FRC.Shell (5 : Nat)) ∧ (∀ (s : Nat), s < (4 : Nat) → ∀ (r : Nat), r < (4 : Nat) → (3 : FRC.Shell (5 : Nat)) ^ ((3 : Nat) * s) = (3 : FRC.Shell (5 : Nat)) ^ ((3 : Nat) * r) → s = r) ∧ ∀ (s : Nat), s < (4 : Nat) → ∀ (r : Nat), r < (4 : Nat) → (2 : FRC.Shell (5 : Nat)) ^ ((1 : Nat) * s) = (2 : FRC.Shell (5 : Nat)) ^ ((1 : Nat) * r) → s = r :=
+  And.intro @FRC.Shell.Frame.frft_injective (And.intro @FRC.Shell.Frame.five_faithful (@FRC.Shell.Frame.five_odd_proj))
+/-- p06019 — 6:C5. The projector sums $\Pi_0+\Pi_2=\tfrac12(I+J)$ and $\Pi_1+\Pi_3=\tfrac12(I-J)$; $\Pi_0,\Pi_2\neq0$ for every $\kap\ge1$ and $\Pi_1,\Pi_3\neq0$ for $\kap\ge2$, each by one explicit entry; at $\p=5$ exactly one of $\Pi_1,\Pi_3$ vanishes. -/
+theorem p06019 : (∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → ∀ (k j : Nat), FRC.Shell.Frame.proj g κ (0 : Nat) k j + FRC.Shell.Frame.proj g κ (2 : Nat) k j = (-FRC.Shell.ofNat κ + -FRC.Shell.ofNat κ) * (FRC.Shell.Frame.idm k j + FRC.Shell.Frame.J (p - (1 : Nat)) k j)) ∧ (∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → ∀ (k j : Nat), FRC.Shell.Frame.proj g κ (1 : Nat) k j + FRC.Shell.Frame.proj g κ (3 : Nat) k j = (-FRC.Shell.ofNat κ + -FRC.Shell.ofNat κ) * (FRC.Shell.Frame.idm k j + -FRC.Shell.Frame.J (p - (1 : Nat)) k j)) ∧ (∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → ((1 : FRC.Shell p) + (1 : FRC.Shell p)) * (-FRC.Shell.ofNat κ + -FRC.Shell.ofNat κ) = (1 : FRC.Shell p)) ∧ (∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → FRC.Shell.Frame.proj g κ (0 : Nat) (0 : Nat) (0 : Nat) ≠ (0 : FRC.Shell p) ∧ FRC.Shell.Frame.proj g κ (2 : Nat) (0 : Nat) (0 : Nat) ≠ (0 : FRC.Shell p)) ∧ (∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → (2 : Nat) ≤ κ → FRC.Shell.Frame.proj g κ (1 : Nat) (2 : Nat) (1 : Nat) ≠ (0 : FRC.Shell p) ∧ FRC.Shell.Frame.proj g κ (3 : Nat) (2 : Nat) (1 : Nat) ≠ (0 : FRC.Shell p)) ∧ (∀ (k : Nat), k < (4 : Nat) → ∀ (j : Nat), j < (4 : Nat) → FRC.Shell.Frame.proj (2 : FRC.Shell (5 : Nat)) (1 : Nat) (1 : Nat) k j = (0 : FRC.Shell (5 : Nat))) ∧ FRC.Shell.Frame.proj (2 : FRC.Shell (5 : Nat)) (1 : Nat) (3 : Nat) (1 : Nat) (1 : Nat) ≠ (0 : FRC.Shell (5 : Nat)) ∧ (∀ (k : Nat), k < (4 : Nat) → ∀ (j : Nat), j < (4 : Nat) → FRC.Shell.Frame.proj (3 : FRC.Shell (5 : Nat)) (1 : Nat) (3 : Nat) k j = (0 : FRC.Shell (5 : Nat))) ∧ FRC.Shell.Frame.proj (3 : FRC.Shell (5 : Nat)) (1 : Nat) (1 : Nat) (1 : Nat) (1 : Nat) ≠ (0 : FRC.Shell (5 : Nat)) ∧ (∀ (s : Nat), s < (4 : Nat) → ∀ (r : Nat), r < (4 : Nat) → (3 : FRC.Shell (5 : Nat)) ^ ((3 : Nat) * s) = (3 : FRC.Shell (5 : Nat)) ^ ((3 : Nat) * r) → s = r) ∧ ∀ (s : Nat), s < (4 : Nat) → ∀ (r : Nat), r < (4 : Nat) → (2 : FRC.Shell (5 : Nat)) ^ ((1 : Nat) * s) = (2 : FRC.Shell (5 : Nat)) ^ ((1 : Nat) * r) → s = r :=
+  And.intro @FRC.Shell.Frame.proj_even_sum (And.intro @FRC.Shell.Frame.proj_odd_sum (And.intro @FRC.Shell.Frame.half (And.intro @FRC.Shell.Frame.even_proj_ne_zero (And.intro @FRC.Shell.Frame.odd_proj_ne_zero (@FRC.Shell.Frame.five_odd_proj)))))
 /-- p06023 — 6:C9. The conjugate reframing $(\gen,\im)\mapsto(\gen^{-1},-\im)$: exactly $\Ft'=-\Ft^{-1}$ and $\Pi'_\ell=\Pi_{\ell+2}$; the operator relations, cardinal values, additivity and faithfulness hold on the conjugate frame, and its multiplicity tuple is the other pattern of C7. -/
 theorem p06023 : (∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → ∀ {z : FRC.Shell p}, g * z = (1 : FRC.Shell p) → FRC.Shell.Frame p κ z) ∧ (∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → ∀ {z : FRC.Shell p}, g * z = (1 : FRC.Shell p) → ∀ {k j : Nat}, k < p - (1 : Nat) → j < p - (1 : Nat) → FRC.Shell.Frame.Fmat z κ k j = -FRC.Shell.Frame.FJ g κ k j) ∧ ∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → ∀ {z : FRC.Shell p}, g * z = (1 : FRC.Shell p) → ∀ (ℓ : Nat) {k j : Nat}, k < p - (1 : Nat) → j < p - (1 : Nat) → FRC.Shell.Frame.proj z κ ℓ k j = FRC.Shell.Frame.proj g κ (ℓ + (2 : Nat)) k j :=
   And.intro @FRC.Shell.Frame.inv_frame (And.intro @FRC.Shell.Frame.Fmat_conj (@FRC.Shell.Frame.proj_conj))
+/-- p06024 — 6:D1. The meridional representation domain $D_s=(\Vt,\mathcal B_s)$, $\mathcal B_s=\Ft^{[s]}\mathcal B_0$, every $\Ft^{[s]}$ invertible; the cardinal domains spatial, spectral, parity, inverse-spectral. -/
+theorem p06024 : ∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → ∀ {z : FRC.Shell p}, g * z = (1 : FRC.Shell p) → ∀ {s : Nat}, s ≤ p - (1 : Nat) → ∀ {k j : Nat}, k < p - (1 : Nat) → j < p - (1 : Nat) → FRC.Shell.sumRange (fun l => FRC.Shell.Frame.frft g κ z s k l * FRC.Shell.Frame.frft g κ z (p - (1 : Nat) - s) l j) (p - (1 : Nat)) = FRC.Shell.Frame.idm k j ∧ FRC.Shell.sumRange (fun l => FRC.Shell.Frame.frft g κ z (p - (1 : Nat) - s) k l * FRC.Shell.Frame.frft g κ z s l j) (p - (1 : Nat)) = FRC.Shell.Frame.idm k j :=
+  @FRC.Shell.Frame.frft_inverse
+/-- p06025 — 6:D2. The $4\kap$ framed domains are pairwise distinct; read as unordered measurement bases $B_{s+2\kap}=B_s$, since $\Ft^{[s+2\kap]}=\Ft^{[s]}J$ and $J$ permutes the standard basis. -/
+theorem p06025 : (∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → (2 : Nat) ≤ κ → ∀ {z : FRC.Shell p}, g * z = (1 : FRC.Shell p) → ∀ {s r : Nat}, s < p - (1 : Nat) → r < p - (1 : Nat) → (∀ (k j : Nat), k < p - (1 : Nat) → j < p - (1 : Nat) → FRC.Shell.Frame.frft g κ z s k j = FRC.Shell.Frame.frft g κ z r k j) → s = r) ∧ ∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → ∀ {z : FRC.Shell p}, g * z = (1 : FRC.Shell p) → ∀ (s : Nat) {k j : Nat}, k < p - (1 : Nat) → j < p - (1 : Nat) → FRC.Shell.Frame.frft g κ z (s + (2 : Nat) * κ) k j = FRC.Shell.Frame.frft g κ z s k (FRC.Shell.Frame.rev (p - (1 : Nat)) j) :=
+  And.intro @FRC.Shell.Frame.frft_injective (@FRC.Shell.Frame.frft_half_turn)
+/-- p06053 — 6:D7. The cycle carries exactly $2\kap$ measurement bases: $B_{s+t}\neq B_s$ for $t\notin\{0,2\kap\}$, since every off-site entry of row $0$ of $\Ft^{[t]}$ is $\tfrac{\im}{2}(1-\gen^{-2t})\neq0$ and $\Ft^{[t]}$ is not monomial; the six shells of Table~\ref{tab:checks}. -/
+theorem p06053 : (∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → ∀ (z : FRC.Shell p) (t : Nat) {j : Nat}, (0 : Nat) < j → j < p - (1 : Nat) → FRC.Shell.Frame.frft g κ z t (0 : Nat) j = (-FRC.Shell.ofNat κ + -FRC.Shell.ofNat κ) * ((1 : FRC.Shell p) + -(z ^ t * z ^ t)) * FRC.Shell.Frame.quarterTurn g κ) ∧ ∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → ∀ {z : FRC.Shell p}, g * z = (1 : FRC.Shell p) → ∀ {t : Nat}, t < p - (1 : Nat) → t ≠ (0 : Nat) → t ≠ (2 : Nat) * κ → ∀ {j : Nat}, (0 : Nat) < j → j < p - (1 : Nat) → FRC.Shell.Frame.frft g κ z t (0 : Nat) j ≠ (0 : FRC.Shell p) :=
+  And.intro @FRC.Shell.Frame.frft_row_zero (@FRC.Shell.Frame.frft_row_zero_ne_zero)
 -- end keys
 
 end FRC.Ledger
@@ -3279,4 +3557,9 @@ end FRC.Ledger
 #print axioms FRC.Ledger.p00189
 #print axioms FRC.Ledger.p06016
 #print axioms FRC.Ledger.p06017
+#print axioms FRC.Ledger.p06018
+#print axioms FRC.Ledger.p06019
 #print axioms FRC.Ledger.p06023
+#print axioms FRC.Ledger.p06024
+#print axioms FRC.Ledger.p06025
+#print axioms FRC.Ledger.p06053

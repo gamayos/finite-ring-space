@@ -151,14 +151,14 @@
      "label": "C4",
      "predicate": "Faithfulness: $s\\mapsto\\Ft^{[s]}$ is injective on $\\Z_{4\\kap}$ for every $\\kap\\ge1$; at $\\p=5$ the surviving odd projector carries the faithful character.",
      "tag": "T",
-     "source": "Thm.~\\ref{thm:faithful}\\newline \\pywit{fourier}{p06018}{C4}, \\leanwit{FrcLedger}{p06018}{C4} \\lean{Fourier.shell\\_frft\\_injective}",
+     "source": "Thm.~\\ref{thm:faithful}\\newline \\pywit{fourier}{p06018}{C4}, \\leanwit{FrcCore}{p06018}{C4}, \\leanwit{FrcLedger}{p06018}{C4} \\lean{Fourier.shell\\_frft\\_injective, FRC.Shell.Frame.frft\\_injective, FRC.Shell.Frame.five\\_faithful, FRC.Shell.Frame.five\\_odd\\_proj}",
      "key": "p06018"
     },
     {
      "label": "C5",
-     "predicate": "The multiplicities $m_\\ell=\\operatorname{rank}\\Pi_\\ell=\\dim\\ker(\\Ft-\\im^{\\ell}I)$: $m_0+m_2=2\\kap+1$, $m_1+m_3=2\\kap-1$; $m_0,m_2\\ge1$; $m_1,m_3\\ge1$ for $\\kap\\ge2$; at $\\p=5$ exactly one of $\\Pi_1,\\Pi_3$ vanishes.",
+     "predicate": "The projector sums $\\Pi_0+\\Pi_2=\\tfrac12(I+J)$ and $\\Pi_1+\\Pi_3=\\tfrac12(I-J)$; $\\Pi_0,\\Pi_2\\neq0$ for every $\\kap\\ge1$ and $\\Pi_1,\\Pi_3\\neq0$ for $\\kap\\ge2$, each by one explicit entry; at $\\p=5$ exactly one of $\\Pi_1,\\Pi_3$ vanishes.",
      "tag": "T",
-     "source": "Lem.~\\ref{lem:multiplicity}\\newline \\pywit{fourier}{p06019}{C5}, \\leanwit{FrcLedger}{p06019}{C5} \\lean{Fourier.shell\\_odd\\_proj\\_ne\\_zero, Fourier.shell\\_even\\_proj\\_ne\\_zero, Fourier.shell\\_multiplicity\\_sums}",
+     "source": "Lem.~\\ref{lem:multiplicity}\\newline \\pywit{fourier}{p06019}{C5}, \\leanwit{FrcCore}{p06019}{C5}, \\leanwit{FrcLedger}{p06019}{C5} \\lean{Fourier.shell\\_odd\\_proj\\_ne\\_zero, Fourier.shell\\_even\\_proj\\_ne\\_zero, Fourier.shell\\_multiplicity\\_sums, FRC.Shell.Frame.proj\\_even\\_sum, FRC.Shell.Frame.proj\\_odd\\_sum, FRC.Shell.Frame.half, FRC.Shell.Frame.even\\_proj\\_ne\\_zero, FRC.Shell.Frame.odd\\_proj\\_ne\\_zero, FRC.Shell.Frame.five\\_odd\\_proj}",
      "key": "p06019"
     },
     {
@@ -213,14 +213,14 @@
      "label": "D1",
      "predicate": "The meridional representation domain $D_s=(\\Vt,\\mathcal B_s)$, $\\mathcal B_s=\\Ft^{[s]}\\mathcal B_0$, every $\\Ft^{[s]}$ invertible; the cardinal domains spatial, spectral, parity, inverse-spectral.",
      "tag": "D",
-     "source": "Def.~\\ref{def:domain}, Cor.~\\ref{cor:cardinal-domains}\\newline \\pywit{fourier}{p06024}{D1}",
+     "source": "Def.~\\ref{def:domain}, Cor.~\\ref{cor:cardinal-domains}\\newline \\pywit{fourier}{p06024}{D1}, \\leanwit{FrcCore}{p06024}{D1} \\lean{FRC.Shell.Frame.frft\\_inverse}",
      "key": "p06024"
     },
     {
      "label": "D2",
      "predicate": "The $4\\kap$ framed domains are pairwise distinct; read as unordered measurement bases $B_{s+2\\kap}=B_s$, since $\\Ft^{[s+2\\kap]}=\\Ft^{[s]}J$ and $J$ permutes the standard basis.",
      "tag": "T",
-     "source": "Cor.~\\ref{cor:distinct-domains}, Rem.~\\ref{rem:ordered-bases}\\newline \\pywit{fourier}{p06025}{D2}, \\leanwit{FrcLedger}{p06025}{D2} \\lean{Fourier.shell\\_frft\\_injective, Fourier.shell\\_frft\\_add\\_two\\_kappa, Fourier.mul\\_J\\_apply}",
+     "source": "Cor.~\\ref{cor:distinct-domains}, Rem.~\\ref{rem:ordered-bases}\\newline \\pywit{fourier}{p06025}{D2}, \\leanwit{FrcCore}{p06025}{D2}, \\leanwit{FrcLedger}{p06025}{D2} \\lean{Fourier.shell\\_frft\\_injective, Fourier.shell\\_frft\\_add\\_two\\_kappa, Fourier.mul\\_J\\_apply, FRC.Shell.Frame.frft\\_injective, FRC.Shell.Frame.frft\\_half\\_turn}",
      "key": "p06025"
     },
     {
@@ -255,7 +255,7 @@
      "label": "D7",
      "predicate": "The cycle carries exactly $2\\kap$ measurement bases: $B_{s+t}\\neq B_s$ for $t\\notin\\{0,2\\kap\\}$, since every off-site entry of row $0$ of $\\Ft^{[t]}$ is $\\tfrac{\\im}{2}(1-\\gen^{-2t})\\neq0$ and $\\Ft^{[t]}$ is not monomial; the six shells of Table~\\ref{tab:checks}.",
      "tag": "T",
-     "source": "Rem.~\\ref{rem:ordered-bases}\\newline \\pywit{fourier}{p06053}{D7}",
+     "source": "Rem.~\\ref{rem:ordered-bases}\\newline \\pywit{fourier}{p06053}{D7}, \\leanwit{FrcCore}{p06053}{D7} \\lean{FRC.Shell.Frame.frft\\_row\\_zero, FRC.Shell.Frame.frft\\_row\\_zero\\_ne\\_zero}",
      "key": "p06053"
     }
    ]
@@ -739,6 +739,33 @@
     "tier": 2,
     "ok": true,
     "doc": "6:C4, 6:D2 — 6-fourier's name; the theorem is `FRC.Fractional.shell_frft_injective` (task LM36)."
+   },
+   {
+    "name": "FRC.Shell.Frame.frft_injective",
+    "module": "FrcCore/Theme/Fractional",
+    "line": 607,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "6:C4, 6:D2, faithfulness: `F^{[s]} = F^{[r]}` entrywise forces `s = r` below the period, for `κ ≥ 2`. The entry `(2, 1)` of `F^{[s]} Π₁ = z^s Π₁` reads `z^s (Π₁)₂₁` with `(Π₁)₂₁ ≠ 0`, so `z^s = z^r` and `z` has order `4κ`."
+   },
+   {
+    "name": "FRC.Shell.Frame.five_faithful",
+    "module": "FrcCore/Theme/Fractional",
+    "line": 636,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "6:C4, faithfulness at `p = 5` on both frames (`z = g⁻¹`: `3` for `g = 2`, `2` for `g = 3`)."
+   },
+   {
+    "name": "FRC.Shell.Frame.five_odd_proj",
+    "module": "FrcCore/Theme/Fractional",
+    "line": 629,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "6:C5, 6:C4, at `p = 5` exactly one odd projector vanishes: `Π₁ = 0 ≠ Π₃` at `g = 2`, `Π₃ = 0 ≠ Π₁` at `g = 3`; the surviving odd projector carries the faithful character `s ↦ z^{ms}`, `m` its index."
    }
   ],
   "C5": [
@@ -780,6 +807,60 @@
     "tier": 2,
     "ok": true,
     "doc": "6:C5 — 6-fourier's name; the theorem is `FRC.Fractional.shell_multiplicity_sums` (task LM36)."
+   },
+   {
+    "name": "FRC.Shell.Frame.proj_even_sum",
+    "module": "FrcCore/Theme/Fractional",
+    "line": 459,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "6:C5, the even sum: `Π₀ + Π₂ = (q + q)(I + J)`, with `q + q = 2⁻¹` (`half`)."
+   },
+   {
+    "name": "FRC.Shell.Frame.proj_odd_sum",
+    "module": "FrcCore/Theme/Fractional",
+    "line": 465,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "6:C5, the odd sum: `Π₁ + Π₃ = (q + q)(I − J)`."
+   },
+   {
+    "name": "FRC.Shell.Frame.half",
+    "module": "FrcCore/Theme/Fractional",
+    "line": 471,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "6:C5, the half: `2 (q + q) = 1`, so `q + q = 2⁻¹ = −2κ`."
+   },
+   {
+    "name": "FRC.Shell.Frame.even_proj_ne_zero",
+    "module": "FrcCore/Theme/Fractional",
+    "line": 567,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "6:C5, the even projectors never vanish: `(Π₀)₀₀ ≠ 0` and `(Π₂)₀₀ ≠ 0` on every frame, since `q + q = 2⁻¹` and `1 ± i` are nonzero."
+   },
+   {
+    "name": "FRC.Shell.Frame.odd_proj_ne_zero",
+    "module": "FrcCore/Theme/Fractional",
+    "line": 600,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "6:C5, the odd projectors do not vanish for `κ ≥ 2`: the entry `(2, 1)` of each is `±q (g² − g^{−2}) ≠ 0`."
+   },
+   {
+    "name": "FRC.Shell.Frame.five_odd_proj",
+    "module": "FrcCore/Theme/Fractional",
+    "line": 629,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "6:C5, 6:C4, at `p = 5` exactly one odd projector vanishes: `Π₁ = 0 ≠ Π₃` at `g = 2`, `Π₃ = 0 ≠ Π₁` at `g = 3`; the surviving odd projector carries the faithful character `s ↦ z^{ms}`, `m` its index."
    }
   ],
   "C7": [
@@ -919,6 +1000,24 @@
     "tier": 2,
     "ok": true,
     "doc": "6:D2 — `J` is a permutation matrix: `(M J) k j = M k (−j)`, so `M J` has the columns of `M`, reindexed by the parity involution `j ↦ −j`."
+   },
+   {
+    "name": "FRC.Shell.Frame.frft_injective",
+    "module": "FrcCore/Theme/Fractional",
+    "line": 607,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "6:C4, 6:D2, faithfulness: `F^{[s]} = F^{[r]}` entrywise forces `s = r` below the period, for `κ ≥ 2`. The entry `(2, 1)` of `F^{[s]} Π₁ = z^s Π₁` reads `z^s (Π₁)₂₁` with `(Π₁)₂₁ ≠ 0`, so `z^s = z^r` and `z` has order `4κ`."
+   },
+   {
+    "name": "FRC.Shell.Frame.frft_half_turn",
+    "module": "FrcCore/Theme/Fractional",
+    "line": 659,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "6:D2, the half-turn is the reversal: `F^{[s + 2κ]} = F^{[s]} J`, entrywise `F^{[s+2κ]}_{kj} = F^{[s]}_{k, rev j}`, so the framed bases `B_{s+2κ}` and `B_s` agree as unordered bases."
    }
   ],
   "D4": [
@@ -1086,6 +1185,37 @@
     "tier": 2,
     "ok": true,
     "doc": "6:E7 — 6-fourier's name; the theorem is `FRC.Fractional.shell_heisenberg` (task LM36)."
+   }
+  ],
+  "D1": [
+   {
+    "name": "FRC.Shell.Frame.frft_inverse",
+    "module": "FrcCore/Theme/Fractional",
+    "line": 645,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "6:D1, every `F^{[s]}` is invertible: `F^{[s]} F^{[n−s]} = I = F^{[n−s]} F^{[s]}` for `s ≤ n = p − 1`."
+   }
+  ],
+  "D7": [
+   {
+    "name": "FRC.Shell.Frame.frft_row_zero",
+    "module": "FrcCore/Theme/Fractional",
+    "line": 666,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "6:D7, the row-0 entries of `F^{[t]}` off the site `j = 0`: `F^{[t]}_{0j} = (q + q)(1 − z^{2t}) i = (i/2)(1 − g^{−2t})`, the same value at every `0 < j < n`."
+   },
+   {
+    "name": "FRC.Shell.Frame.frft_row_zero_ne_zero",
+    "module": "FrcCore/Theme/Fractional",
+    "line": 691,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "6:D7, the row-0 entries are nonzero for `t ∉ {0, 2κ}`, so `F^{[t]}` is not monomial and `B_{s+t} ≠ B_s`: exactly `2κ` measurement bases on the cycle."
    }
   ]
  }
