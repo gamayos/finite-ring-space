@@ -255,6 +255,13 @@
    "status": "shared theorem",
    "lean": "FRC.Horizon.shift_power_character, FRC.Horizon.shift_trace, FRC.Horizon.readout_on_line, FRC.Horizon.readout_slot_index",
    "note": "LM26: Z10's key conjoins the theorems 20:E12's core cells name (20-rh's names are aliases of these); 20:E12's binding takes Z10's conjuncts (propagation list)"
+  },
+  {
+   "master": "C12",
+   "paper": "10:F3",
+   "status": "waits",
+   "lean": null,
+   "note": "the push of 8 October 2026: C12's core key is the lift lattice (Theme/Domain.lean, the torsion-free shadow: temperature is acceleration, the Unruh closure, the classical dictionary); 10:F3's is in the paper module Dimensions.lean on the modular group Dom; the bridge, the lift's evaluation into Dom, waits for 10-dimensions' migration (LM36)"
   }
  ]
 }
