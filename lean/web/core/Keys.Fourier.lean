@@ -2669,12 +2669,12 @@ theorem frft_add (F : Frame p κ g) (z : Shell p) (s r : Nat) {k j : Nat} (hk : 
   rw [sum_congr _ (fun l _ => by rw [frft_eq F z s k l, frft_eq F z r l j]), comb_mul F hk hj, frft_eq F z (s + r) k j,
     pow_add, conv0 (hjj F) (hq F), conv1 (hjj F) (hq F), conv2 (hjj F) (hq F), conv3 (hjj F) (hq F)]
 
-/-- The family is periodic over the cycle: `F^{[s + (p−1)]} = F^{[s]}`. -/
+/-- 6:C3, the period: the family is periodic over the cycle, `F^{[s + (p−1)]} = F^{[s]}`, so `F^{[4κ]} = I`. -/
 theorem frft_period (F : Frame p κ g) {z : Shell p} (hz : g * z = 1) (s k j : Nat) :
     frft g κ z (s + (p - 1)) k j = frft g κ z s k j := by
   unfold frft; rw [pow_add, inv_pow_n F hz, mul_one]
 
-/-- `F^{[m s]} = (F^{[s]})^m`; in particular `(F^{[1]})^κ = F^{[κ]} = F`. -/
+/-- 6:C3, the root: `F^{[m s]} = (F^{[s]})^m`; in particular `(F^{[1]})^κ = F^{[κ]} = F`. -/
 theorem frft_pow (F : Frame p κ g) {z : Shell p} (hz : g * z = 1) (s : Nat) :
     ∀ m k j, k < p - 1 → j < p - 1 → frft g κ z (m * s) k j = mpow (frft g κ z s) m k j
   | 0, k, j, _, _ => by rw [Nat.zero_mul]; exact (frft_cardinal F hz k j).1
@@ -2719,7 +2719,7 @@ theorem frft_dilation (F : Frame p κ g) {z : Shell p} (hz : g * z = 1) {s s' : 
 
 /-! ## C7: the conjugate frame, and the Carrier's quarter-turn -/
 
-/-- The inverse drive is a frame. -/
+/-- 6:C9, the conjugate frame: the inverse drive `g⁻¹` is a frame of the same shell and capacity. -/
 theorem inv_frame (F : Frame p κ g) {z : Shell p} (hz : g * z = 1) : Frame p κ z := by
   have hpow : ∀ l, g ^ l * z ^ l = 1 := fun l => by rw [← mul_pow, hz, one_pow]
   exact ⟨F.cap, F.cap_pos, ⟨by have := hpow (p - 1); rwa [F.pow_n, one_mul] at this,
@@ -2820,6 +2820,12 @@ theorem p00022 : (∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Sh
 /-- p00189 — 00:C7. \textbf{Orientation is derived, not conventional}: the $c$-square congruence ($\dS$ even, C8) annihilates orientation transport on every Carrier carrying it ($\im^{\dS}\in\{\pm1\}$); the oriented quarter-turn $\im=-\gen^\kap $ is a selection, read by pullback covariance and count positivity; the joint flip $(\gen,\im,s)\mapsto(\gen^{-1},-\im,-s)$ permutes the registration channels. The constants' derivation consumes no selection (B7). Parity marker: C14. The selection by matter content: D16. -/
 theorem p00189 : ∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → ∀ {z : FRC.Shell p}, g * z = (1 : FRC.Shell p) → (∀ {Ω : Nat} [FRC.Pos Ω] (h : FRC.Shell Ω) (S : Nat), h * h = (-1 : FRC.Shell Ω) → S % (2 : Nat) = (0 : Nat) → h ^ S = (1 : FRC.Shell Ω) ∨ h ^ S = (-1 : FRC.Shell Ω)) ∧ z ^ κ = FRC.Shell.Frame.quarterTurn g κ ∧ FRC.Shell.Frame p κ z ∧ FRC.Shell.Frame.quarterTurn z κ = -FRC.Shell.Frame.quarterTurn g κ ∧ (∀ (k j : Nat), k < p - (1 : Nat) → j < p - (1 : Nat) → FRC.Shell.Frame.Fmat z κ k j = -FRC.Shell.Frame.FJ g κ k j) ∧ ∀ (ℓ k j : Nat), k < p - (1 : Nat) → j < p - (1 : Nat) → FRC.Shell.Frame.proj z κ ℓ k j = FRC.Shell.Frame.proj g κ (ℓ + (2 : Nat)) k j :=
   @FRC.Shell.Frame.orientation
+/-- p06017 — 6:C3. The exact finite-field FrFT: $s\mapsto\Ft^{[s]}$ is a representation of $\Phit$, $\Ft^{[s+r]}=\Ft^{[s]}\Ft^{[r]}$ on every pair of the six shells, with the cardinal values $\Ft^{[0]}=I$, $\Ft^{[\kap]}=\Ft$, $\Ft^{[2\kap]}=J$, $\Ft^{[3\kap]}=\Ft^{-1}$, and $(\Ft^{[1]})^{\kap}=\Ft$. -/
+theorem p06017 : (∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → ∀ (z : FRC.Shell p) (s r : Nat) {k j : Nat}, k < p - (1 : Nat) → j < p - (1 : Nat) → FRC.Shell.Frame.frft g κ z (s + r) k j = FRC.Shell.sumRange (fun l => FRC.Shell.Frame.frft g κ z s k l * FRC.Shell.Frame.frft g κ z r l j) (p - (1 : Nat))) ∧ (∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → ∀ {z : FRC.Shell p}, g * z = (1 : FRC.Shell p) → ∀ (k j : Nat), FRC.Shell.Frame.frft g κ z (0 : Nat) k j = FRC.Shell.Frame.idm k j ∧ FRC.Shell.Frame.frft g κ z κ k j = FRC.Shell.Frame.Fmat g κ k j ∧ FRC.Shell.Frame.frft g κ z ((2 : Nat) * κ) k j = FRC.Shell.Frame.J (p - (1 : Nat)) k j ∧ FRC.Shell.Frame.frft g κ z ((3 : Nat) * κ) k j = FRC.Shell.Frame.FJ g κ k j) ∧ (∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → ∀ {z : FRC.Shell p}, g * z = (1 : FRC.Shell p) → ∀ (s k j : Nat), FRC.Shell.Frame.frft g κ z (s + (p - (1 : Nat))) k j = FRC.Shell.Frame.frft g κ z s k j) ∧ ∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → ∀ {z : FRC.Shell p}, g * z = (1 : FRC.Shell p) → ∀ (s m k j : Nat), k < p - (1 : Nat) → j < p - (1 : Nat) → FRC.Shell.Frame.frft g κ z (m * s) k j = FRC.Shell.Frame.mpow (FRC.Shell.Frame.frft g κ z s) m k j :=
+  And.intro @FRC.Shell.Frame.frft_add (And.intro @FRC.Shell.Frame.frft_cardinal (And.intro @FRC.Shell.Frame.frft_period (@FRC.Shell.Frame.frft_pow)))
+/-- p06023 — 6:C9. The conjugate reframing $(\gen,\im)\mapsto(\gen^{-1},-\im)$: exactly $\Ft'=-\Ft^{-1}$ and $\Pi'_\ell=\Pi_{\ell+2}$; the operator relations, cardinal values, additivity and faithfulness hold on the conjugate frame, and its multiplicity tuple is the other pattern of C7. -/
+theorem p06023 : (∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → ∀ {z : FRC.Shell p}, g * z = (1 : FRC.Shell p) → FRC.Shell.Frame p κ z) ∧ (∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → ∀ {z : FRC.Shell p}, g * z = (1 : FRC.Shell p) → ∀ {k j : Nat}, k < p - (1 : Nat) → j < p - (1 : Nat) → FRC.Shell.Frame.Fmat z κ k j = -FRC.Shell.Frame.FJ g κ k j) ∧ ∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → ∀ {z : FRC.Shell p}, g * z = (1 : FRC.Shell p) → ∀ (ℓ : Nat) {k j : Nat}, k < p - (1 : Nat) → j < p - (1 : Nat) → FRC.Shell.Frame.proj z κ ℓ k j = FRC.Shell.Frame.proj g κ (ℓ + (2 : Nat)) k j :=
+  And.intro @FRC.Shell.Frame.inv_frame (And.intro @FRC.Shell.Frame.Fmat_conj (@FRC.Shell.Frame.proj_conj))
 -- end keys
 
 end FRC.Ledger
@@ -2827,3 +2833,5 @@ end FRC.Ledger
 -- Ledger predicates: axioms (each predicate's, computed here)
 #print axioms FRC.Ledger.p00022
 #print axioms FRC.Ledger.p00189
+#print axioms FRC.Ledger.p06017
+#print axioms FRC.Ledger.p06023

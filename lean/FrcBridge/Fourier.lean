@@ -55,6 +55,24 @@ theorem from_paper {p κ : Nat} [Pos p] {g : Shell p} (_F : Frame p κ g) : Clau
 
 end C2_6D4
 
+namespace C2_6C3
+
+/-- The clause 00:C2 and 6:C3 share: on the inverse-generator base, the fractional family is additive on the cycle,
+`F^{[s+r]} = F^{[s]} F^{[r]}` (the paper's key proves it for every base `z`; the master's for the inverse base). -/
+def Clause (p κ : Nat) [Pos p] (g : Shell p) : Prop :=
+  ∀ {z : Shell p}, g * z = 1 → ∀ (s r : Nat) {k j : Nat}, k < p - 1 → j < p - 1 →
+    Frame.frft g κ z (s + r) k j = sumRange (fun l => Frame.frft g κ z s k l * Frame.frft g κ z r l j) (p - 1)
+
+/-- From the master's key `FRC.Ledger.p00022` (00:C2). -/
+theorem from_master {p κ : Nat} [Pos p] {g : Shell p} (F : Frame p κ g) : Clause p κ g :=
+  fun {_z} hz s r {k j} hk hj => (FRC.Ledger.p00022.1 F hz).2.2.1 s r k j hk hj
+
+/-- From the paper's key `FRC.Ledger.p06017` (6:C3), bound on 8 October 2026 (T01 of 6-fourier's blueprint). -/
+theorem from_paper {p κ : Nat} [Pos p] {g : Shell p} (F : Frame p κ g) : Clause p κ g :=
+  fun {z} _ s r {_k _j} hk hj => FRC.Ledger.p06017.1 F z s r hk hj
+
+end C2_6C3
+
 namespace C7_1B3
 
 /-- The clause 00:C7 and 1:B3 share: the oriented quarter-turn `i = −g^κ` squares to `−1`. -/

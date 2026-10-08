@@ -465,12 +465,12 @@ theorem frft_add (F : Frame p κ g) (z : Shell p) (s r : Nat) {k j : Nat} (hk : 
   rw [sum_congr _ (fun l _ => by rw [frft_eq F z s k l, frft_eq F z r l j]), comb_mul F hk hj, frft_eq F z (s + r) k j,
     pow_add, conv0 (hjj F) (hq F), conv1 (hjj F) (hq F), conv2 (hjj F) (hq F), conv3 (hjj F) (hq F)]
 
-/-- The family is periodic over the cycle: `F^{[s + (p−1)]} = F^{[s]}`. -/
+/-- 6:C3, the period: the family is periodic over the cycle, `F^{[s + (p−1)]} = F^{[s]}`, so `F^{[4κ]} = I`. -/
 theorem frft_period (F : Frame p κ g) {z : Shell p} (hz : g * z = 1) (s k j : Nat) :
     frft g κ z (s + (p - 1)) k j = frft g κ z s k j := by
   unfold frft; rw [pow_add, inv_pow_n F hz, mul_one]
 
-/-- `F^{[m s]} = (F^{[s]})^m`; in particular `(F^{[1]})^κ = F^{[κ]} = F`. -/
+/-- 6:C3, the root: `F^{[m s]} = (F^{[s]})^m`; in particular `(F^{[1]})^κ = F^{[κ]} = F`. -/
 theorem frft_pow (F : Frame p κ g) {z : Shell p} (hz : g * z = 1) (s : Nat) :
     ∀ m k j, k < p - 1 → j < p - 1 → frft g κ z (m * s) k j = mpow (frft g κ z s) m k j
   | 0, k, j, _, _ => by rw [Nat.zero_mul]; exact (frft_cardinal F hz k j).1
@@ -515,7 +515,7 @@ theorem frft_dilation (F : Frame p κ g) {z : Shell p} (hz : g * z = 1) {s s' : 
 
 /-! ## C7: the conjugate frame, and the Carrier's quarter-turn -/
 
-/-- The inverse drive is a frame. -/
+/-- 6:C9, the conjugate frame: the inverse drive `g⁻¹` is a frame of the same shell and capacity. -/
 theorem inv_frame (F : Frame p κ g) {z : Shell p} (hz : g * z = 1) : Frame p κ z := by
   have hpow : ∀ l, g ^ l * z ^ l = 1 := fun l => by rw [← mul_pow, hz, one_pow]
   exact ⟨F.cap, F.cap_pos, ⟨by have := hpow (p - 1); rwa [F.pow_n, one_mul] at this,

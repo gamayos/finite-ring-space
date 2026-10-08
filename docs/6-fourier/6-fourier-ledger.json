@@ -144,7 +144,7 @@
      "label": "C3",
      "predicate": "The exact finite-field FrFT: $s\\mapsto\\Ft^{[s]}$ is a representation of $\\Phit$, $\\Ft^{[s+r]}=\\Ft^{[s]}\\Ft^{[r]}$ on every pair of the six shells, with the cardinal values $\\Ft^{[0]}=I$, $\\Ft^{[\\kap]}=\\Ft$, $\\Ft^{[2\\kap]}=J$, $\\Ft^{[3\\kap]}=\\Ft^{-1}$, and $(\\Ft^{[1]})^{\\kap}=\\Ft$.",
      "tag": "T",
-     "source": "Thm.~\\ref{thm:FRC-FrFT}\\newline \\pywit{fourier}{p06017}{C3}, \\leanwit{FrcLedger}{p06017}{C3} \\lean{Fourier.shell\\_frft\\_add, Fourier.shell\\_frft\\_cardinal, Fourier.shell\\_frft\\_values}",
+     "source": "Thm.~\\ref{thm:FRC-FrFT}\\newline \\pywit{fourier}{p06017}{C3}, \\leanwit{FrcCore}{p06017}{C3}, \\leanwit{FrcLedger}{p06017}{C3} \\lean{Fourier.shell\\_frft\\_add, Fourier.shell\\_frft\\_cardinal, Fourier.shell\\_frft\\_values, FRC.Shell.Frame.frft\\_add, FRC.Shell.Frame.frft\\_cardinal, FRC.Shell.Frame.frft\\_period, FRC.Shell.Frame.frft\\_pow}",
      "key": "p06017"
     },
     {
@@ -186,7 +186,7 @@
      "label": "C9",
      "predicate": "The conjugate reframing $(\\gen,\\im)\\mapsto(\\gen^{-1},-\\im)$: exactly $\\Ft'=-\\Ft^{-1}$ and $\\Pi'_\\ell=\\Pi_{\\ell+2}$; the operator relations, cardinal values, additivity and faithfulness hold on the conjugate frame, and its multiplicity tuple is the other pattern of C7.",
      "tag": "T",
-     "source": "Rem.~\\ref{rem:gt-covariance}, Thm.~\\ref{thm:multiplicity}\\newline \\pywit{fourier}{p06023}{C9}, \\leanwit{FrcLedger}{p06023}{C9} \\lean{Fourier.shell\\_conj}",
+     "source": "Rem.~\\ref{rem:gt-covariance}, Thm.~\\ref{thm:multiplicity}\\newline \\pywit{fourier}{p06023}{C9}, \\leanwit{FrcCore}{p06023}{C9}, \\leanwit{FrcLedger}{p06023}{C9} \\lean{Fourier.shell\\_conj, FRC.Shell.Frame.inv\\_frame, FRC.Shell.Frame.Fmat\\_conj, FRC.Shell.Frame.proj\\_conj}",
      "key": "p06023"
     },
     {
@@ -652,6 +652,42 @@
     "tier": 2,
     "ok": true,
     "doc": "6:C3 — 6-fourier's name; the theorem is `FRC.Fractional.shell_frft_values` (task LM36)."
+   },
+   {
+    "name": "FRC.Shell.Frame.frft_add",
+    "module": "FrcCore/Theme/Fourier",
+    "line": 463,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "6:C3, additivity: `F^{[s+r]} = F^{[s]} F^{[r]}` on the cycle, a representation of `ℤ/(p−1)`."
+   },
+   {
+    "name": "FRC.Shell.Frame.frft_cardinal",
+    "module": "FrcCore/Theme/Fourier",
+    "line": 435,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "6:C3, the cardinal values: `F^{[0]} = I`, `F^{[κ]} = F`, `F^{[2κ]} = J`, `F^{[3κ]} = F J`."
+   },
+   {
+    "name": "FRC.Shell.Frame.frft_period",
+    "module": "FrcCore/Theme/Fourier",
+    "line": 469,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "The family is periodic over the cycle: `F^{[s + (p−1)]} = F^{[s]}`."
+   },
+   {
+    "name": "FRC.Shell.Frame.frft_pow",
+    "module": "FrcCore/Theme/Fourier",
+    "line": 474,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "`F^{[m s]} = (F^{[s]})^m`; in particular `(F^{[1]})^κ = F^{[κ]} = F`."
    }
   ],
   "C4": [
@@ -779,6 +815,33 @@
     "tier": 2,
     "ok": true,
     "doc": "6:C9 — 6-fourier's name; the theorem is `FRC.Fractional.shell_conj` (task LM36)."
+   },
+   {
+    "name": "FRC.Shell.Frame.inv_frame",
+    "module": "FrcCore/Theme/Fourier",
+    "line": 519,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "The inverse drive is a frame."
+   },
+   {
+    "name": "FRC.Shell.Frame.Fmat_conj",
+    "module": "FrcCore/Theme/Fourier",
+    "line": 529,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "The conjugate frame's transform is `−F J = −F⁻¹` (6:C9)."
+   },
+   {
+    "name": "FRC.Shell.Frame.proj_conj",
+    "module": "FrcCore/Theme/Fourier",
+    "line": 565,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "The conjugate frame's projectors are the shifted ones, `Π'_ℓ = Π_{ℓ+2}` (6:C9)."
    }
   ],
   "D2": [

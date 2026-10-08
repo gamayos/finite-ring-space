@@ -1090,6 +1090,8 @@
 'FRC.Ledger.p04015' does not depend on any axioms
 'FRC.Ledger.p00022' does not depend on any axioms
 'FRC.Ledger.p00189' does not depend on any axioms
+'FRC.Ledger.p06017' does not depend on any axioms
+'FRC.Ledger.p06023' does not depend on any axioms
 'FRC.Ledger.p01026' does not depend on any axioms
 'FRC.Ledger.p00186' does not depend on any axioms
 'FRC.Ledger.p05013' does not depend on any axioms
@@ -1150,6 +1152,8 @@
 'FRC.Fourier.p06012' does not depend on any axioms
 'FRC.Fourier.p06013' does not depend on any axioms
 'FRC.Fourier.p06014' does not depend on any axioms
+'FRC.Fourier.p06017' does not depend on any axioms
+'FRC.Fourier.p06023' does not depend on any axioms
 'FRC.Fourier.p06027' does not depend on any axioms
 'FRC.Fourier.p06028' does not depend on any axioms
 'FRC.Algebra.p01004' does not depend on any axioms
@@ -1973,6 +1977,9 @@
 'FRC.Bridge.C2_6D4.Clause' does not depend on any axioms
 'FRC.Bridge.C2_6D4.from_master' does not depend on any axioms
 'FRC.Bridge.C2_6D4.from_paper' does not depend on any axioms
+'FRC.Bridge.C2_6C3.Clause' does not depend on any axioms
+'FRC.Bridge.C2_6C3.from_master' does not depend on any axioms
+'FRC.Bridge.C2_6C3.from_paper' does not depend on any axioms
 'FRC.Bridge.C7_1B3.Clause' does not depend on any axioms
 'FRC.Bridge.C7_1B3.from_master' does not depend on any axioms
 'FRC.Bridge.C7_1B3.from_paper' does not depend on any axioms

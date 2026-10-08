@@ -75,6 +75,20 @@
    "note": "LM25: the transform's cardinal values"
   },
   {
+   "master": "C2",
+   "paper": "6:C3",
+   "status": "bridged",
+   "lean": "FRC.Bridge.C2_6C3",
+   "note": "T01 of 6-fourier's blueprint (8 October 2026): the family's additivity on the cycle, the paper's key for every base and the master's for the inverse base"
+  },
+  {
+   "master": "C7",
+   "paper": "6:C9",
+   "status": "shared theorem",
+   "lean": "FRC.Shell.Frame.inv_frame, FRC.Shell.Frame.Fmat_conj, FRC.Shell.Frame.proj_conj",
+   "note": "T01 of 6-fourier's blueprint (8 October 2026): the conjugate frame, its transform and its projectors. The paper key conjoins the three theorems. The master key's orientation is assembled from them."
+  },
+  {
    "master": "C3",
    "paper": "3:B2",
    "status": "no shared clause",
