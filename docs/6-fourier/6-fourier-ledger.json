@@ -137,7 +137,7 @@
      "label": "C2",
      "predicate": "$\\Pi_\\ell^{2}=\\Pi_\\ell$, $\\Pi_\\ell\\Pi_m=0$ for $\\ell\\neq m$, $\\sum_\\ell\\Pi_\\ell=I$, $\\Ft\\Pi_\\ell=\\im^{\\ell}\\Pi_\\ell$.",
      "tag": "T",
-     "source": "Lem.~\\ref{lem:projectors}\\newline \\pywit{fourier}{p06016}{C2}, \\leanwit{FrcLedger}{p06016}{C2} \\lean{Fourier.shell\\_proj, Fourier.proj\\_mul\\_proj, Fourier.sum\\_proj}",
+     "source": "Lem.~\\ref{lem:projectors}\\newline \\pywit{fourier}{p06016}{C2}, \\leanwit{FrcCore}{p06016}{C2}, \\leanwit{FrcLedger}{p06016}{C2} \\lean{Fourier.shell\\_proj, Fourier.proj\\_mul\\_proj, Fourier.sum\\_proj, FRC.Shell.Frame.proj\\_mul\\_self, FRC.Shell.Frame.proj\\_mul\\_ne, FRC.Shell.Frame.sum\\_proj, FRC.Shell.Frame.Fmat\\_proj}",
      "key": "p06016"
     },
     {
@@ -611,6 +611,42 @@
     "tier": 2,
     "ok": true,
     "doc": "6:C2 — 6-fourier's name; the theorem is `FRC.Fractional.sum_proj` (task LM36)."
+   },
+   {
+    "name": "FRC.Shell.Frame.proj_mul_self",
+    "module": "FrcCore/Theme/Fractional",
+    "line": 378,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "6:C2, the idempotence: `Π_ℓ Π_ℓ = Π_ℓ`, the four coefficients `q² Σ u^a u^{r−a} = q u^r` with `u⁴ = 1`, `4q = 1`."
+   },
+   {
+    "name": "FRC.Shell.Frame.proj_mul_ne",
+    "module": "FrcCore/Theme/Fractional",
+    "line": 387,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "6:C2, the orthogonality: `Π_ℓ Π_m = 0` for `ℓ ≠ m` below 4, each coefficient `q² v^r (1 + x + x² + x³)` with `x = u v³` a nontrivial fourth root of unity."
+   },
+   {
+    "name": "FRC.Shell.Frame.sum_proj",
+    "module": "FrcCore/Theme/Fractional",
+    "line": 397,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "6:C2, the resolution of the identity: `Π₀ + Π₁ + Π₂ + Π₃ = I`."
+   },
+   {
+    "name": "FRC.Shell.Frame.Fmat_proj",
+    "module": "FrcCore/Theme/Fractional",
+    "line": 414,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "6:C2, the eigen-relation: `F Π_ℓ = i^ℓ Π_ℓ`, the coefficients of `F Π_ℓ` the cyclic shift of `Π_ℓ`'s and `i^ℓ = u³` with `u = w^ℓ`."
    }
   ],
   "C3": [
@@ -678,7 +714,7 @@
     "axioms": [],
     "tier": 0,
     "ok": true,
-    "doc": "The family is periodic over the cycle: `F^{[s + (p−1)]} = F^{[s]}`."
+    "doc": "6:C3, the period: the family is periodic over the cycle, `F^{[s + (p−1)]} = F^{[s]}`, so `F^{[4κ]} = I`."
    },
    {
     "name": "FRC.Shell.Frame.frft_pow",
@@ -687,7 +723,7 @@
     "axioms": [],
     "tier": 0,
     "ok": true,
-    "doc": "`F^{[m s]} = (F^{[s]})^m`; in particular `(F^{[1]})^κ = F^{[κ]} = F`."
+    "doc": "6:C3, the root: `F^{[m s]} = (F^{[s]})^m`; in particular `(F^{[1]})^κ = F^{[κ]} = F`."
    }
   ],
   "C4": [
@@ -823,7 +859,7 @@
     "axioms": [],
     "tier": 0,
     "ok": true,
-    "doc": "The inverse drive is a frame."
+    "doc": "6:C9, the conjugate frame: the inverse drive `g⁻¹` is a frame of the same shell and capacity."
    },
    {
     "name": "FRC.Shell.Frame.Fmat_conj",

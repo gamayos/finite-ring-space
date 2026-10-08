@@ -9,6 +9,7 @@ import FrcCore.Sum
 import FrcCore.Theme.Domain
 import FrcCore.Theme.Projective
 import FrcCore.Theme.Fourier
+import FrcCore.Theme.Fractional
 import FrcCore.Theme.Extension
 import FrcCore.Theme.Tally
 import FrcCore.Theme.Numbers
