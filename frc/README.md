@@ -41,9 +41,11 @@ quadratic ring; the push of 8 October 2026). Block Z is bound by `master/horizon
 Block E is bound by `master/gravity.py` (E6, E7, the horizon's count) (task LM27), on `frc/gravity.py`, and block F by
 `master/quantum.py` (F2, the unequal-cycle composite) (task LM28), on `frc/quantum.py`, and block G by
 `master/interactions.py` (G11, G12, G16, one generation and the Koide form) (task LM29), on `frc/interactions.py`.
-The chart theme's `master/chart.py` (task LM30) binds the chart clauses of L1, L3, L8 and P1, rows of blocks L and P
-(`BLOCK = "LP"`), in `CHART`, on `frc/chart.py`: each row decided by a certified bracket in rational arithmetic and
-corroborated in floating point.
+The chart theme's `master/chart.py` (task LM30) binds the chart clauses of L1, L3, L8 and P1, rows of blocks L and P,
+and since 8 October 2026 the scale import A8 (`BLOCK = "ALP"`), in `CHART`, on `frc/chart.py`: each row decided by a
+certified bracket in rational arithmetic and corroborated in floating point. Block C is bound by one file per theme: `master/subject.py`, `master/fourier.py` (C2, C7), `master/projective.py` (C19),
+`master/extension.py` (C10, the two strata; C11, the pair tally on the Q₄ core) and, since 8 October 2026, `master/frame.py`
+(C12, the unit-domain lattice).
 
 ## The theme map
 
@@ -52,8 +54,8 @@ Generated from `frc/themes.py` (`python3 -m frc.themes`).
 | theme | tier | rank | exact | python | Lean core | Lean Mathlib | content |
 |---|---|---|---|---|---|---|---|
 | base | base | 0 | yes | `registry.py`, `arith.py` | `Nat.lean`, `Pigeonhole.lean`, `Shell.lean`, `Series.lean`, `Ring.lean` | — | the registry of checks; exact integer arithmetic; the naturals, the pigeonhole and the shell's residues; bounded search, finite sums and products; the normaliser of ring identities |
-| frame | structure | 10 | yes | `shell.py` | `FrameCore.lean`, `Frame.lean`, `Parity.lean`, `Transform.lean`, `Orbit.lean`, `Instances.lean`, `Sum.lean`, `Meridian.lean` | `Theme/Frame.lean` | the frame (τ; 0, 1, g), the drive and its orbit, the quarter-turn, the lift; finite sums; concrete shells |
-| extension | structure | 11 | yes | `extension.py` | `Theme/Quadratic.lean`, `Theme/Extension.lean` | `Theme/Extension.lean` | the quadratic extension F_{p²}, its norm and conjugation, the norm-one torus and the boost; the quaternion norm; the two strata of probability (00:C10) |
+| frame | structure | 10 | yes | `shell.py` | `FrameCore.lean`, `Frame.lean`, `Parity.lean`, `Transform.lean`, `Orbit.lean`, `Instances.lean`, `Sum.lean`, `Meridian.lean`, `Theme/Domain.lean` | `Theme/Frame.lean` | the frame (τ; 0, 1, g), the drive and its orbit, the quarter-turn, the lift; finite sums; concrete shells; the unit-domain lattice on the frame's two charts (00:C12) |
+| extension | structure | 11 | yes | `extension.py` | `Theme/Quadratic.lean`, `Theme/Extension.lean`, `Theme/Tally.lean` | `Theme/Extension.lean` | the quadratic extension F_{p²}, its norm and conjugation, the norm-one torus and the boost; the quaternion norm; the two strata of probability (00:C10); the pair tally on the Q₄ core (00:C11) |
 | projective | structure | 12 | yes | `projective.py` | `Theme/Projective.lean` | `Theme/Projective.lean` | PGL₂ and SL₂ by elements, the Borel subgroup, the split and non-split tori |
 | fourier | structure | 13 | yes | `fourier.py` | `Theme/Fourier.lean` | `Theme/Fourier.lean`, `Theme/Fractional.lean` | the shell DFT and its inversion, the fractional family, the meridians and the scale-shift |
 | numbers | structure | 14 | yes | `numbers.py` | `Poly.lean`, `Theme/Numbers.lean` | `Theme/Numbers.lean` | polynomials over the shell and the root criterion; the walls of π and e; the comb |

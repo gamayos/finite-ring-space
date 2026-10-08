@@ -5,13 +5,14 @@ Block C is bound by one file per theme whose key file proves its rows (subject.p
 file). This file binds C10, the two strata of probability (its witness 22:stratum.py), and C11, the uniqueness of the pair
 tally on the Q₄ core (its witness 22:gleason.py): the table of keys (generated from
 docs/00-ledger.json by ci/make_ledgers.py), the Lean proofs its key conjoins (PROOFS), the rings, and the checks, which
-call the extension theme (frc/extension.py). The Lean side is lean/FrcCore/Theme/Extension.lean (the strata section;
-the extension itself is Theme/Quadratic.lean), the key file lean/FrcCore/Keys/Extension.lean and the certificate
-lean/FrcCore/Ledgers/Master/Extension.lean.
+call the extension theme (frc/extension.py). The Lean side is lean/FrcCore/Theme/Extension.lean for C10 (the strata section;
+the extension itself is Theme/Quadratic.lean) and lean/FrcCore/Theme/Tally.lean for C11 (a file of its own), the key file
+lean/FrcCore/Keys/Extension.lean and the certificate lean/FrcCore/Ledgers/Master/Extension.lean.
 
     python3 -m frc.ledgers.master.extension        every block, the census; exit 1 if a check fails
 
 Blocks:  T  the two strata of probability: the tally line, the two reductions, the framed readout   EXACT  (00:C10)
+         G  the pair tally on the Q₄ core: the character cone fixed by the pure windings, the Born ray EXACT  (00:C11)
 
 The notebook frc/ledgers/master/extension.ipynb runs one row per cell, the cell's id its key (gate G13).
 """
@@ -37,8 +38,9 @@ PROOFS = {
     "C10": ["FRC.Extension.two_way_tally", "FRC.Extension.core_weights", "FRC.Extension.root_two_two_way",
             "FRC.Extension.conjugate_pair_tally", "FRC.Extension.trace_recurrence", "FRC.Extension.dial_shift",
             "FRC.Extension.dial_tally", "FRC.Extension.framed_readout"],
-    "C11": ["FRC.Extension.Tally.winding_fixing", "FRC.Extension.Tally.two_way", "FRC.Extension.Tally.fourier_inversion",
-            "FRC.Extension.Tally.channel_selectivity", "FRC.Extension.Tally.dft_det", "FRC.Extension.Tally.linear_exclusion"],
+    "C11": ["FRC.Extension.Tally.winding_fixing", "FRC.Extension.Tally.tally_criterion", "FRC.Extension.Tally.two_way",
+            "FRC.Extension.Tally.fourier_inversion", "FRC.Extension.Tally.channel_selectivity", "FRC.Extension.Tally.dft_det",
+            "FRC.Extension.Tally.cone_boundary", "FRC.Extension.Tally.linear_exclusion"],
 }
 
 LEAN_ONLY = ()                  # the rows with a Lean declaration and no python check (gate G12): none
@@ -199,24 +201,28 @@ def block_T():
 # K_c = Σ_r c_r η_r of the four characters η_r(d) = i^{rd}; the pair tally F(K, ψ) = Σ_{u,v} K(v − u) ψ_u conj ψ_v on
 # the pure winding ψ_k reads the coefficient, F(K_c, ψ_k) = 16 c_k (the tallies fixed in-sector); Fourier inversion
 # recovers c; channel-selectivity (one responding channel) is a scaled unit vector, the Born ray; the core DFT has
-# determinant −16i; a linear functional leaves the tally cone (Extension.lean, section Tally: winding_fixing, two_way,
-# fourier_inversion, channel_selectivity, dft_det, linear_exclusion — the coefficient cube 0..3 exhausted by the kernel).
+# determinant −16i; a linear functional and an unconjugated bilinear form leave the tally cone (Theme/Tally.lean:
+# winding_fixing and tally_criterion on the box −1..3, two_way, fourier_inversion and channel_selectivity on the cube
+# 0..3, cone_boundary, dft_det, linear_exclusion — exhausted by the kernel).
 @R.block("G", BLOCKS["G"])
 def block_G():
     """Block G — the pair tally on the Q₄ core (EXACT): G1–G4."""
-    from frc.extension import GI, ipow, q4_kernel, q4_winding, q4_tally, q4_inversion, q4_dft_det
+    from frc.extension import GI, ipow, q4_kernel, q4_winding, q4_tally, q4_inversion, q4_bilinear, q4_dft_det
     cube = list(itertools.product(range(4), repeat=4))
+    box = list(itertools.product(range(-1, 4), repeat=4))
     # 00:C11 (p22028)
     ok, n = True, 0
-    for c in cube:
+    for c in box:
         K = q4_kernel(c)
         for k in range(4):
             n += 1
-            ok &= q4_tally(K, q4_winding(k)) == GI.el(16 * c[k])
+            val = q4_tally(K, q4_winding(k))
+            ok &= val == GI.el(16 * c[k]) and ((GI.on_line(val) and val[0] >= 0) == (c[k] >= 0))
     neg = q4_tally(q4_kernel((1, -1, 1, 0)), q4_winding(1))
-    R.check("G1", "the pure windings fix the tallies: F(K_c, ψ_k) = 16 c_k for every kernel of the coefficient cube 0..3 and every "
-            "channel k (exhaustive, in-sector), so a tally-valued functional has nonnegative coefficients — a negative c₁ is "
-            "witnessed by its own winding, F = −16", ok and neg == GI.el(-16), f"{n} evaluations; F(K_(1,−1,1,0), ψ₁) = {neg}")
+    R.check("G1", "the pure windings fix the tallies on the box −1..3 (negative coefficients included): F(K_c, ψ_k) = 16 c_k for "
+            "every kernel and every channel k, and the value is a tally (a nonnegative integer) iff c_k ≥ 0 — on the box, a "
+            "tally-valued functional is a nonnegative combination of the characters, and a negative c₁ is excluded by its own "
+            "winding, F = −16", ok and neg == GI.el(-16), f"{n} evaluations on {len(box)} kernels; F(K_(1,−1,1,0), ψ₁) = {neg}")
     # G2 two-way and tally-valued on the windings; Fourier inversion recovers c
     ok = True
     for c in cube:
@@ -247,6 +253,14 @@ def block_G():
     ok = det == GI.el(0, -16)
     ok &= all(sum(ipow(k * u)[0] for u in range(4)) == 0 and sum(ipow(k * u)[1] for u in range(4)) == 0 for k in range(1, 4))
     ok &= all(not GI.on_line(GI.mul(GI.el(0, 1), GI.el(4 * c))) for c in range(1, 5))
+    # the unconjugated bilinear form leaves the tally line on Gaussian-lattice states where the conjugated form stays
+    psi_a = [GI.el(1, 1), GI.el(0), GI.el(0), GI.el(0)]                 # (1 + i) e₀
+    psi_b = [GI.el(1), GI.el(0, 1), GI.el(0), GI.el(0)]                 # e₀ + i e₁
+    shift = [GI.el(0), GI.el(1), GI.el(0), GI.el(0)]                    # [d = 1]
+    bil = (q4_bilinear(Kfn, psi_a) == GI.el(0, 2) and q4_tally(Kfn, psi_a) == GI.el(2)
+           and q4_bilinear(shift, psi_b) == GI.el(0, 1) and q4_bilinear(q4_kernel((1, 1, 0, 0)), psi_a) == GI.el(0, 4)
+           and q4_tally(q4_kernel((1, 1, 0, 0)), psi_a) == GI.el(4))
+    ok &= bil
     seen, pol = {}, True
     for c in itertools.product(range(3), repeat=4):
         K = q4_kernel(c)
@@ -254,8 +268,10 @@ def block_G():
         if key in seen and seen[key] != tuple(K): pol = False
         seen[key] = tuple(K)
     R.check("G4", "the core DFT (i^{ru}) has determinant −16i, so the windings span the fibre and equal responses force equal "
-            "kernels (exhaustive on 0..2); the minimal degree is forced: the complete character sums vanish on k = 1, 2, 3 and "
-            "i · (4c, 0) = (0, 4c) is no tally for c = 1..4", ok and pol, f"det = {det}, {len(seen)} response patterns")
+            "kernels (exhaustive on 0..2); the minimal degree is forced: the complete character sums vanish on k = 1, 2, 3, "
+            "i · (4c, 0) = (0, 4c) is no tally for c = 1..4, and the unconjugated bilinear form leaves the tally line — "
+            "B([d=0], (1+i)e₀) = 2i against F = 2, B([d=1], e₀+ie₁) = i, B(K_(1,1,0,0), (1+i)e₀) = 4i against F = 4",
+            ok and pol, f"det = {det}, {len(seen)} response patterns")
 
 
 if __name__ == "__main__":

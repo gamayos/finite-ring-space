@@ -10,6 +10,12 @@ the theme when the first ledger that uses it migrates (task LM16); the first was
     Q, value_counts, isotropic_count           a diagonal form Σ a_i x_i², its value distribution, its zeros
     orthogonal_order, o_plus_4, o_minus_4      |O(Q)| by orthogonal frames; |O_4^±(q)|
     mat_mul, preserves, closure                matrices over F_p: products, the isometries of Q, the group generated
+
+The unit-domain lattice (00:C12; 10-dimensions C1, F2, F3; lean/FrcCore/Theme/Domain.lean, the frame theme):
+    dom(*terms)                 the product of domains as exponent triples (r, s, j) of L^r T^s Iq^j
+    L, T, FLAG, SPEED, ACCEL, ENERGY, HBAR, KB, TEMP, MASS, DOMAINS, CLASSICAL
+    classical(a, b, c, d)       the classical M^a L^b T^c Θ^d read in the lift: M ↦ Iq L⁻² T, Θ ↦ L T⁻²
+    modular(triple, p, kappa)   the image in D_p = C_p × C_{4κ}: (r mod p, s + jκ mod 4κ)
 """
 import itertools
 

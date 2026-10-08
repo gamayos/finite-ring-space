@@ -18,7 +18,17 @@ side of Theme/Quadratic.lean's `Ext p ν` and of Theme/Extension.lean's strata s
                                 (N(z)^k · tr(z^m), 0)
     trace_seq(Q, z, n)          t_0 … t_n, t_m = tr(z^m); t_{m+2} + N(z) t_m = tr(z) t_{m+1}
     dial_tally(q, N)            over 𝔽_q with ζ of order N | q − 1: Σ_θ w±(θ), Σ_θ w₊ w₋ for w±(θ) = 2 ± (ζ^θ + ζ^−θ)
+
+The pair tally on the Q₄ core (00:C11, the witness 22:gleason.py; the master's block G of master/extension.py and
+lean/FrcCore/Theme/Tally.lean, 8 October 2026): ℤ[i] as GI = Quad(−1):
+    ipow(n)                     i^n
+    q4_kernel(c)                K_c(d) = Σ_r c_r i^{rd}, the tally combination of the four characters, d < 4
+    q4_winding(k)               the pure winding ψ_k(u) = i^{ku} on the fibre
+    q4_tally(K, psi)            F(K, ψ) = Σ_{u,v} K(v − u) ψ_u conj(ψ_v); q4_bilinear(K, psi) the unconjugated form
+    q4_inversion(K, r)          Σ_d K(d) i^{−rd} = 4 c_r on an admissible kernel
+    q4_dft_det()                det (i^{ru}) = −16i
 """
+
 from frc.shell import is_square, generators
 
 
@@ -138,7 +148,7 @@ def dial_tally(q, N):
     return sp, sm, spm
 
 
-# ---- the pair tally on the Q₄ core (00:C11; 22-quantum Prop. gleason, Extension.lean section Tally) ----
+# ---- the pair tally on the Q₄ core (00:C11; 22-quantum Prop. gleason; lean/FrcCore/Theme/Tally.lean) ----
 GI = Quad(-1)                    # ℤ[i] as pairs (a, b)
 
 
@@ -170,6 +180,16 @@ def q4_inversion(K, r):
     """Σ_d K(d) i^{−rd}: four times the coefficient c_r of an admissible kernel."""
     tot = GI.el(0)
     for d in range(4): tot = GI.add(tot, GI.mul(K[d], ipow(-r * d)))
+    return tot
+
+
+def q4_bilinear(K, psi):
+    """The unconjugated bilinear form B(K, ψ) = Σ_{u,v} K(v − u) ψ_u ψ_v of the same kernel (22-quantum Lemma degree: it
+    leaves the tally line on Gaussian-lattice states where the conjugated form stays on it)."""
+    tot = GI.el(0)
+    for u in range(4):
+        for v in range(4):
+            tot = GI.add(tot, GI.mul(GI.mul(K[(v - u) % 4], psi[u]), psi[v]))
     return tot
 
 

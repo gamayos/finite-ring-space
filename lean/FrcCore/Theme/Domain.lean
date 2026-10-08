@@ -83,8 +83,10 @@ theorem temp_flag_free : temp.j = 0 ∧ energy.j = 1 ∧ hbar.j = 1 ∧ kB.j = 1
 theorem unruh_closes : unruh = temp ∧ unruh.j = 0 := by decide
 
 /-- 00:C12 — neither mass nor temperature is primitive: each is a monomial in the two generators and the flag, and
-the Planck temperature `Θ_P = E_P/|k_B|` carries the temperature domain by the same identity. -/
-theorem not_primitive : mass = ⟨-2, 1, 1⟩ ∧ temp = L * T⁻¹ * T⁻¹ ∧ energy * kB⁻¹ = temp := by decide
+the Planck temperature `Θ_P = E_P/|k_B|`, written out from the energy and the linkage `[k_B] = [ħ][c]⁻¹`, is the
+acceleration domain, flag-free. -/
+theorem not_primitive : mass = ⟨-2, 1, 1⟩ ∧ temp = L * T⁻¹ * T⁻¹ ∧
+    energy * (hbar * speed⁻¹)⁻¹ = accel ∧ (energy * (hbar * speed⁻¹)⁻¹).j = 0 := by decide
 
 /-- 00:C12 — classical dimensional analysis recovered in exponents: the classical `M`-`L`-`T`-`Θ` exponents of the
 mechanical, gravitational and thermal quantities (10:F2, F3) map to their domains under the dictionary. -/
@@ -95,12 +97,37 @@ theorem classical_exponents :
     classical (-1) 3 (-2) 0 = G ∧ classical 1 2 (-2) (-1) = kB ∧ classical 0 0 0 1 = temp := by decide
 
 /-- 00:C12 — recovered in arity: the classical four symbols generate the lift's three (two generators and the
-flag) — `L`, `T` and the flag are classical monomials — with the one relation `Θ = L T⁻²`, so temperature is not a
-fourth generator; and the flag's fourth power is the trivial domain's shadow only modulo `4κ`, which the lift does not
-carry: `flag⁴ ≠ 1` in the lattice. -/
+flag) — `L`, `T` and the flag are classical monomials, the kernel's generator `Θ L⁻¹ T²` maps to the trivial domain,
+and the `M`-`L`-`T` block of the dictionary, the determinant of the images of `M`, `L`, `T`, is unimodular (determinant 1) — with the one relation `Θ = L T⁻²`, so
+temperature is not a fourth generator; the flag's fourth power is the trivial domain only modulo `4κ`, which the
+lift does not carry: `flag⁴ ≠ 1` in the lattice. -/
 theorem classical_arity :
     classical 0 1 0 0 = L ∧ classical 0 0 1 0 = T ∧ classical 1 2 (-1) 0 = flag ∧
-    classical 0 0 0 1 = classical 0 1 (-2) 0 ∧ flag * flag * flag * flag ≠ 1 := by decide
+    classical 0 0 0 1 = classical 0 1 (-2) 0 ∧ classical 0 (-1) 2 1 = 1 ∧
+    (classical 1 0 0 0).r * ((classical 0 1 0 0).s * (classical 0 0 1 0).j - (classical 0 1 0 0).j * (classical 0 0 1 0).s)
+      - (classical 1 0 0 0).s * ((classical 0 1 0 0).r * (classical 0 0 1 0).j - (classical 0 1 0 0).j * (classical 0 0 1 0).r)
+      + (classical 1 0 0 0).j * ((classical 0 1 0 0).r * (classical 0 0 1 0).s - (classical 0 1 0 0).s * (classical 0 0 1 0).r) = 1 ∧
+    flag * flag * flag * flag ≠ 1 := by decide
+
+/-- The modular image of a lift triple in the Subject's domain group `D_p = C_p × C_{4κ}`: `(r mod p, s + κj mod 4κ)`,
+the flag `Iq = T^κ` folded into the time exponent. -/
+def reduce (p κ : Nat) (a : Lift) : Int × Int := (a.r % (p : Int), (a.s + (κ : Int) * a.j) % (4 * κ : Int))
+
+/-- 00:C12 — the torsion-free shadow: on the three Subjects `p = 13, 173, 1373` (`κ = 3, 43, 343`) the identities hold
+in the modular group `C_p × C_{4κ}` of 10-dimensions, the flag reduces to `T^κ`, its fourth power to the trivial domain
+while its first three powers reduce to `(0, κ)`, `(0, 2κ)`, `(0, 3κ)`, and the mass and temperature domains reduce to their
+residues. -/
+theorem modular_shadow :
+    reduce 13 3 temp = reduce 13 3 accel ∧ reduce 13 3 unruh = reduce 13 3 temp ∧ reduce 13 3 temp = (1, 10) ∧
+    reduce 13 3 flag = (0, 3) ∧ reduce 13 3 (T * T * T) = (0, 3) ∧ reduce 13 3 (flag * flag * flag * flag) = (0, 0) ∧
+    reduce 13 3 flag ≠ (0, 0) ∧ reduce 13 3 (flag * flag) ≠ (0, 0) ∧ reduce 13 3 (flag * flag * flag) ≠ (0, 0) ∧
+    reduce 13 3 mass = (11, 4) ∧
+    reduce 173 43 temp = reduce 173 43 accel ∧ reduce 173 43 unruh = reduce 173 43 temp ∧ reduce 173 43 temp = (1, 170) ∧
+    reduce 173 43 flag = (0, 43) ∧ reduce 173 43 (flag * flag * flag * flag) = (0, 0) ∧ reduce 173 43 (flag * flag) = (0, 86) ∧
+    reduce 173 43 (flag * flag * flag) = (0, 129) ∧ reduce 173 43 mass = (171, 44) ∧
+    reduce 1373 343 temp = reduce 1373 343 accel ∧ reduce 1373 343 unruh = reduce 1373 343 temp ∧
+    reduce 1373 343 flag = (0, 343) ∧ reduce 1373 343 (flag * flag * flag * flag) = (0, 0) ∧ reduce 1373 343 (flag * flag) = (0, 686) ∧
+    reduce 1373 343 (flag * flag * flag) = (0, 1029) ∧ reduce 1373 343 mass = (1371, 344) := by decide
 
 end Lift
 

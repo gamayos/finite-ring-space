@@ -7,7 +7,8 @@ import Mathlib
 # FrcLedger.Theme.Chart — the chart theme: the readings against the continuum (ledger migration, task LM30)
 
 The chart theme holds the readings of the finite results against the continuum, the only theme with the reals
-(`frc/themes.py`, rank 30). It serves the chart clauses of the master's cosmology and prediction rows: the
+(`frc/themes.py`, rank 30). It serves the chart clauses of the master's scale import (00:A8, `scale_import`), its cosmology
+and prediction rows: the
 floor `a₀ = cH₀/2π` (00:L1), the octant record depth and its outputs (00:L3), the primordial tilt (00:L8) and the
 running floor (00:P1). The chart's numerals — the speed of light, the megaparsec, the Julian year, the fitted
 values and their errors — are declared data. The octant's theorems moved here from 14-entropy and the floor's
@@ -317,7 +318,7 @@ end floor
 /-! ## The primordial tilt (00:L8) -/
 section tilt
 
-/-- 00:L8 [chart] — the tilt at the ledger's `ln Ω = 283.5` (00:A9; data): `n_s − 1 = −π²/ln Ω` has magnitude
+/-- 00:L8 [chart] — the tilt at the ledger's `ln Ω = 283.5` (00:A8, `scale_import`; data): `n_s − 1 = −π²/ln Ω` has magnitude
 between `0.03481` and `0.03482` (the row's `−0.0348`); against Planck 2018's `−0.0351 ± 0.0042` (data) the
 deviation is between `+0.068σ` and `+0.069σ` (the row's `+0.07σ`); the count `½ ln Ω` gives `−π²/(ln Ω/2)`, off
 by between `8.2σ` and `8.25σ` (the row's exclusion at `8.2σ`). That `ln Ω` is the e-fold count of the frame's scale

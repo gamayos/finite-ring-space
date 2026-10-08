@@ -6,6 +6,7 @@ import FrcCore.Frame
 import FrcCore.Transform
 import FrcCore.Orbit
 import FrcCore.Sum
+import FrcCore.Theme.Domain
 import FrcCore.Theme.Projective
 import FrcCore.Theme.Fourier
 import FrcCore.Theme.Extension
@@ -17,7 +18,6 @@ import FrcCore.Theme.Foundation
 import FrcCore.Theme.Drive
 import FrcCore.Theme.Carrier
 import FrcCore.Theme.Subject
-import FrcCore.Theme.Domain
 import FrcCore.Theme.Symbol
 import FrcCore.Theme.Gravity
 import FrcCore.Theme.Quantum
