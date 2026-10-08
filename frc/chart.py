@@ -1,8 +1,9 @@
 """frc.chart — the chart theme: the readings against the continuum (ledger migration, task LM30, 6 October 2026).
 
 The chart theme is the one python theme with floats (frc/themes.py, rank 30): the readings of the finite results
-against the continuum. Its cosmology section serves the chart clauses of the master's rows L1 (the floor), L3 (the
-octant record depth and its outputs), L8 (the primordial tilt) and P1 (the running floor).
+against the continuum. Its cosmology section serves the chart clauses of the master's rows A8 (the scale import's
+numerals S, Ω and ln Ω), L1 (the floor), L3 (the octant record depth and its outputs), L8 (the primordial tilt) and
+P1 (the running floor).
 
 Each reading is computed twice: in floating point (`math`), and as a certified bracket in exact rational arithmetic,
 π from Machin's formula with the alternating-series remainder and e^x from its Taylor series with the tail bound. The
@@ -28,7 +29,9 @@ A0_FIT = (Q("1.20e-10"), Q("0.24e-10"))   # the fitted floor and its systematic,
 TILT_FIT = (Q("-0.0351"), Q("0.0042"))    # Planck 2018 n_s − 1 and its error (00:L8)
 H0_ERR = Q("1.7")                         # the stellar age's error carried to the rate, rounded (14:P3)
 LADDER_FIT = (Q("73.0"), Q("1.0"))        # the Cepheid ladder's H₀ (Riess 2022), km s⁻¹ Mpc⁻¹ (00:L3, 14-entropy)
-LN_OMEGA = Q("283.5")                     # the ledger's ln Ω (00:A9, 00:L8)
+LAMBDA_FIT = Q("1.088e-52")              # Planck 2018 Λ, m⁻², the fit's cosmological constant (14:A1, 14:C1; 00:A8)
+PLANCK_LENGTH = Q("1.616255e-35")         # ℓ_P, m (CODATA 2018; 00:A8)
+LN_OMEGA = Q("283.5")                     # the ledger's ln Ω, the numeral of every chart reading (00:A8, 00:L8); recomputed from Λ and ℓ_P by ln_omega_bracket
 
 
 # ---- floating point --------------------------------------------------------------------------------------------------
@@ -147,6 +150,79 @@ def tilt_bracket(ln_omega=LN_OMEGA):
     """The magnitude π²/ln Ω of the tilt."""
     p_lo, p_hi = pi_bracket()
     return (p_lo ** 2 / ln_omega, p_hi ** 2 / ln_omega)
+
+
+def _atanh_bracket(t, n):
+    """artanh(t) for a rational 0 < t < 1: the partial sum of Σ t^{2k+1}/(2k+1) to n terms, and the sum plus the tail
+    bound t^{2n+1}/((2n+1)(1 − t²))."""
+    s, term = Q(0), t
+    for k in range(n):
+        s += term / (2 * k + 1)
+        term *= t * t
+    return (s, s + term / ((2 * n + 1) * (1 - t * t)))
+
+
+def log_bracket(x, n=20):
+    """ln x for a rational x > 0: 2 artanh((x − 1)/(x + 1)) from the artanh bracket; (lo, hi) with lo < ln x < hi."""
+    t = (x - 1) / (x + 1)
+    if t == 0: return (Q(0), Q(0))
+    lo, hi = _atanh_bracket(abs(t), n)
+    return (2 * lo, 2 * hi) if t > 0 else (-2 * hi, -2 * lo)
+
+
+def log10_bracket():
+    """ln 10 = 3 ln 2 + ln(5/4)."""
+    (a, b), (c, d) = log_bracket(Q(2)), log_bracket(Q(5, 4))
+    return (3 * a + c, 3 * b + d)
+
+
+def sqrt_bracket(q, digits=40):
+    """√q for a rational q > 0: the integer square root at `digits` decimals, (lo, hi) with lo ≤ √q < hi."""
+    N = 10 ** digits
+    n = math.isqrt(int(q * N * N))
+    return (Q(n, N), Q(n + 1, N))
+
+
+def horizon_radius_bracket(lam=LAMBDA_FIT):
+    """r_H = c/H_Λ = √(3/Λ) in m: the de Sitter radius of the fit's Λ (14-entr's Λ face, instrument 1)."""
+    return sqrt_bracket(3 / lam)
+
+
+def hubble_lambda_bracket(lam=LAMBDA_FIT):
+    """H_Λ = c√(Λ/3) in km s⁻¹ Mpc⁻¹."""
+    lo, hi = sqrt_bracket(lam / 3)
+    return (C_LIGHT * lo * MPC_KM, C_LIGHT * hi * MPC_KM)            # s⁻¹ times the megaparsec in km
+
+
+def entropy_bracket(lam=LAMBDA_FIT, lp=PLANCK_LENGTH):
+    """S = π (r_H/ℓ_P)² = 3π/(Λ ℓ_P²): the de Sitter entropy of the import, in Planck units; the bracket is π's."""
+    p_lo, p_hi = pi_bracket()
+    r2 = 3 / lam / lp ** 2
+    return (p_lo * r2, p_hi * r2)
+
+
+def omega_bracket(lam=LAMBDA_FIT, lp=PLANCK_LENGTH):
+    """Ω = 4S + 1 on the chart."""
+    lo, hi = entropy_bracket(lam, lp)
+    return (4 * lo + 1, 4 * hi + 1)
+
+
+def ln_omega_bracket(lam=LAMBDA_FIT, lp=PLANCK_LENGTH):
+    """ln Ω = ln(Ω/10¹²³) + 123 ln 10, the mantissa's logarithm from the artanh series."""
+    lo, hi = omega_bracket(lam, lp)
+    (a, b), (c, d) = log_bracket(lo / 10 ** 123), log_bracket(hi / 10 ** 123)
+    l10 = log10_bracket()
+    return (a + 123 * l10[0], d + 123 * l10[1])
+
+
+def entropy(lam=LAMBDA_FIT, lp=PLANCK_LENGTH):
+    """S in floating point."""
+    return math.pi * (math.sqrt(3 / float(lam)) / float(lp)) ** 2
+
+
+def ln_omega(lam=LAMBDA_FIT, lp=PLANCK_LENGTH):
+    """ln(4S + 1) in floating point."""
+    return math.log(4 * entropy(lam, lp) + 1)
 
 
 def show(x, spec):
