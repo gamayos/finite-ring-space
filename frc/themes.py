@@ -62,7 +62,7 @@ THEMES = {
                        py=["frc/projective.py"], core=["lean/FrcCore/Theme/Projective.lean"], ml=["lean/FrcLedger/Theme/Projective.lean"],
                        content="PGL₂ and SL₂ by elements, the Borel subgroup, the split and non-split tori"),
     "fourier": dict(tier="structure", rank=13, exact=True,
-                    py=["frc/fourier.py"], core=["lean/FrcCore/Theme/Fourier.lean", "lean/FrcCore/Theme/Fractional.lean", "lean/FrcCore/Theme/Lifts.lean", "lean/FrcCore/Theme/Dichotomy.lean"],
+                    py=["frc/fourier.py"], core=["lean/FrcCore/Theme/Fourier.lean", "lean/FrcCore/Theme/Fractional.lean", "lean/FrcCore/Theme/Lifts.lean", "lean/FrcCore/Theme/Dichotomy.lean", "lean/FrcCore/Theme/Rotations.lean"],
                     ml=["lean/FrcLedger/Theme/Fourier.lean", "lean/FrcLedger/Theme/Fractional.lean"],
                     content="the shell DFT and its inversion, the fractional family, the meridians and the scale-shift"),
     "numbers": dict(tier="structure", rank=14, exact=True,

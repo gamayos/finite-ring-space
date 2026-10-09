@@ -275,14 +275,14 @@
      "label": "E2",
      "predicate": "$R_s\\in SO(2,\\Fp)$, and $s\\mapsto R_s$ is an isomorphism $\\Phit\\simeq SO(2,\\Fp)$ with $|SO(2,\\Fp)|=\\p-1=4\\kap$: the full rotation group of the $\\p^{2}$-point plane is the meridian cycle.",
      "tag": "T",
-     "source": "Lem.~\\ref{lem:Rs-rotation}, Prop.~\\ref{prop:rotation-isom}\\newline \\pywit{fourier}{p06031}{E2}, \\leanwit{FrcLedger}{p06031}{E2} \\lean{Fourier.circle, Fourier.rot\\_mul, Fourier.unitsEquivCircle, Fourier.card\\_circle}",
+     "source": "Lem.~\\ref{lem:Rs-rotation}, Prop.~\\ref{prop:rotation-isom}\\newline \\pywit{fourier}{p06031}{E2}, \\leanwit{FrcCore}{p06031}{E2}, \\leanwit{FrcLedger}{p06031}{E2} \\lean{Fourier.circle, Fourier.rot\\_mul, Fourier.unitsEquivCircle, Fourier.card\\_circle, FRC.Shell.Frame.rot\\_circle, FRC.Shell.Frame.rot\\_hom, FRC.Shell.Frame.rot\\_inj, FRC.Shell.Frame.rot\\_surj, FRC.Shell.Frame.six\\_circles}",
      "key": "p06031"
     },
     {
      "label": "E3",
-     "predicate": "The cardinal-skeleton dictionary $M_s\\leftrightarrow s\\leftrightarrow z_s\\leftrightarrow R_s$ with $R_0=I$, $R_\\kap=w$, $R_{2\\kap}=-I$, $R_{3\\kap}=w^{-1}$ (the $R_\\kap$ column of Table~\\ref{tab:checks}), $z_\\kap=\\im$; the FRC-native and Weil families stand in cardinal Weil correspondence, the Weil side by the normalization of A2.",
+     "predicate": "The cardinal-skeleton dictionary $M_s\\leftrightarrow s\\leftrightarrow z_s\\leftrightarrow R_s$ with $R_0=I$, $R_\\kap=w$, $R_{2\\kap}=-I$, $R_{3\\kap}=w^{-1}$ (the $R_\\kap$ column of Table~\\ref{tab:checks}), $z_\\kap=\\im$; the FRC-native and Weil families stand in cardinal Weil correspondence, the Weil side by the normalization of A2 (an import).",
      "tag": "T",
-     "source": "Thm.~\\ref{thm:Weil-equivalence}\\newline \\pywit{fourier}{p06032}{E3}, \\leanwit{FrcLedger}{p06032}{E3} \\lean{Fourier.rot\\_cardinal}",
+     "source": "Thm.~\\ref{thm:Weil-equivalence}\\newline \\pywit{fourier}{p06032}{E3}, \\leanwit{FrcCore}{p06032}{E3}, \\leanwit{FrcLedger}{p06032}{E3} \\lean{Fourier.rot\\_cardinal, FRC.Shell.Frame.rot\\_cardinal}",
      "key": "p06032"
     },
     {
@@ -329,9 +329,9 @@
     },
     {
      "label": "E10",
-     "predicate": "The plane as orbits of the cycle: $|SO(2,\\Fp)|=4\\kap$; $\\Fp^{2}$ is its origin and $4\\kap+2$ free orbits of the rotation group, the $4\\kap$ circles of nonzero norm and the two isotropic lines, $\\p^{2}=1+(4\\kap+2)\\,4\\kap$; $\\dim\\Vt=4\\kap$.",
+     "predicate": "The plane as orbits of the cycle: $R_s$ scales $u=x+\\im y$ by $z_s$ and $v=x-\\im y$ by $z_s^{-1}$, so every point off the origin has a free orbit of size $4\\kap=|SO(2,\\Fp)|$, and $\\p^{2}=1+(4\\kap+2)\\,4\\kap$ is the count of the origin and $4\\kap+2$ orbits (the $4\\kap$ circles of nonzero norm and the two isotropic lines: the paper's reading of the identity); $\\dim\\Vt=4\\kap$.",
      "tag": "T",
-     "source": "Cor.~\\ref{cor:boundary}\\newline \\pywit{fourier}{p06056}{E10}",
+     "source": "Cor.~\\ref{cor:boundary}\\newline \\pywit{fourier}{p06056}{E10}, \\leanwit{FrcCore}{p06056}{E10} \\lean{FRC.Shell.Frame.rot\\_uv, FRC.Shell.Frame.orbit\\_free, FRC.Shell.Frame.plane\\_count, FRC.Shell.Frame.six\\_circles}",
      "key": "p06056"
     }
    ]
@@ -1287,6 +1287,51 @@
     "tier": 2,
     "ok": true,
     "doc": "6:E2 — 6-fourier's name; the theorem is `FRC.Fractional.card_circle` (task LM36)."
+   },
+   {
+    "name": "FRC.Shell.Frame.rot_circle",
+    "module": "FrcCore/Theme/Rotations",
+    "line": 153,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "6:E2, `R_s ∈ SO(2, 𝔽_p)`: `c_s² + d_s² = 1` (the determinant), since `z_s z_s⁻¹ = 1`."
+   },
+   {
+    "name": "FRC.Shell.Frame.rot_hom",
+    "module": "FrcCore/Theme/Rotations",
+    "line": 158,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "6:E2, `s ↦ R_s` is a homomorphism: `R_{s+r} = R_s R_r` entrywise."
+   },
+   {
+    "name": "FRC.Shell.Frame.rot_inj",
+    "module": "FrcCore/Theme/Rotations",
+    "line": 168,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "6:E2, injectivity below the period: `R_s = R_r` forces `s = r`, since `c + i d = z^s` and `z` has order `4κ`."
+   },
+   {
+    "name": "FRC.Shell.Frame.rot_surj",
+    "module": "FrcCore/Theme/Rotations",
+    "line": 175,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "6:E2, surjectivity: every point of the circle `c² + d² = 1` is a rotation `R_s`, `s < 4κ`: `c + i d ≠ 0` is a power `z^s` of the generator, and then `c = c_s`, `d = d_s`."
+   },
+   {
+    "name": "FRC.Shell.Frame.six_circles",
+    "module": "FrcCore/Theme/Rotations",
+    "line": 288,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "6:E2, 6:E10, the circle has `4κ` points on the six shells: `4, 12, 16, 28, 36, 40`."
    }
   ],
   "E3": [
@@ -1302,6 +1347,15 @@
     "tier": 2,
     "ok": true,
     "doc": "6:E3 — 6-fourier's name; the theorem is `FRC.Fractional.rot_cardinal` (task LM36)."
+   },
+   {
+    "name": "FRC.Shell.Frame.rot_cardinal",
+    "module": "FrcCore/Theme/Rotations",
+    "line": 192,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "6:E3, the four cardinal rotations and `z_κ = i`: `R_0 = I`, `R_κ = [[0, −1], [1, 0]]`, `R_{2κ} = −I`, `R_{3κ} = [[0, 1], [−1, 0]]`."
    }
   ],
   "E5": [
@@ -1418,6 +1472,44 @@
     "tier": 0,
     "ok": true,
     "doc": "6:C11, the non-commutation: when `u² ≢ 1 (mod n)` the entry `(−u, 1)` of `W · W(g^u)` is `−1` and that of `W(g^u) · W` is `0`, so the chart `g^u` does not commute with the frame's `W`."
+   }
+  ],
+  "E10": [
+   {
+    "name": "FRC.Shell.Frame.rot_uv",
+    "module": "FrcCore/Theme/Rotations",
+    "line": 227,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "6:E10, the rotation on the plane in the coordinates `u = x + i y`, `v = x − i y`: `R_s` scales `u` by `z_s` and `v` by `z_s⁻¹`."
+   },
+   {
+    "name": "FRC.Shell.Frame.orbit_free",
+    "module": "FrcCore/Theme/Rotations",
+    "line": 237,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "6:E10, the orbits off the origin are free: a rotation `R_s`, `s < 4κ`, fixing a point `(x, y) ≠ (0, 0)` is the identity, `s = 0`."
+   },
+   {
+    "name": "FRC.Shell.Frame.plane_count",
+    "module": "FrcCore/Theme/Rotations",
+    "line": 272,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "6:E10, the count `p² = 1 + (4κ + 2) · 4κ` (the paper reads it as the origin and `4κ + 2` free orbits of size `4κ`)."
+   },
+   {
+    "name": "FRC.Shell.Frame.six_circles",
+    "module": "FrcCore/Theme/Rotations",
+    "line": 288,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "6:E2, 6:E10, the circle has `4κ` points on the six shells: `4, 12, 16, 28, 36, 40`."
    }
   ]
  }
