@@ -13,9 +13,8 @@
     "G": 1,
     "I": 119,
     "O": 14,
-    "P": 3,
     "R": 81,
-    "T": 635,
+    "T": 638,
     "Ω": 27
    }
   },
@@ -1466,35 +1465,37 @@
   {
    "key": "p00004",
    "origin": "00",
-   "statement": "\\textbf{Finitude}: the totality is finite, a count of $\\Om$ elements. Infinity as an ontological posit is incoherent (no model is exhibited; the completed totality forbids its own totality as an object; its consistency is unprovable within, 5-red Prop.~9), unverifiable (idleness, 29-fin) and redundant (every certificate is finite, 5-red).",
+   "statement": "\\textbf{Finitude}: the Universe is the totality of its registrations (A9), one coherent plurality, its distinctness one registration's (A7), hence finite: a plurality of capacity $R$ embeds in the shell of $R$ members, and an agent of capacity $K$ determines fewer than $s^{K+1}$ (5:C2, 29:C1); an unlimited supply is determined by no registration (29:C2, 29:C4). Count $\\Om$: A8.",
    "origin_row": "00:A2",
-   "tag": "P",
+   "tag": "T",
    "tier": null,
    "check": null,
    "declarations": [],
    "aliases": [],
    "rows": [
     "00:A2"
-   ]
+   ],
+   "realisations": []
   },
   {
    "key": "p00003",
    "origin": "00",
-   "statement": "\\textbf{Completeness}: the totality has no outside, so whatever exists is a part of it, and it has no host. It is unique, since two totalities would each lie within the other. Observers are shells embedded \\emph{within}, not parallel carriers.",
+   "statement": "\\textbf{Completeness}: whatever exists is registered (A9), hence within the one plurality: no outside, no host. Unique: two totalities each registered within the other have one count (5:C2 both ways), and one count is one Carrier (A7). Its arithmetic has no proper closed substructure (A11). Observers are parts within (A5).",
    "origin_row": "00:A3",
-   "tag": "P",
+   "tag": "T",
    "tier": null,
    "check": null,
    "declarations": [],
    "aliases": [],
    "rows": [
     "00:A3"
-   ]
+   ],
+   "realisations": []
   },
   {
    "key": "p00159",
    "origin": "00",
-   "statement": "A bounded observer is a proper part, $|O|<\\Om$: by A2 and A5 its states are fewer than the totality's, so no injective encoding of the totality into its states exists (25:D1, 5:C2); every reading $\\Pi_i{:}\\Om\\to\\mathcal D_i$ is an incomplete projection, its image strictly smaller than the whole. The limitative content lives at the comprehension horizon (Z1, Z9).",
+   "statement": "A bounded observer is a proper part, $|O|<\\Om$: by A7 and C4 its states are fewer than the Carrier's, so no injective encoding of the totality into its states exists (25:D1, 5:C2); every reading $\\Pi_i{:}\\Om\\to\\mathcal D_i$ is an incomplete projection, its image strictly smaller than the whole. The limitative content lives at the comprehension horizon (Z1, Z9).",
    "origin_row": "00:A4",
    "tag": "T",
    "tier": 0,
@@ -1520,16 +1521,17 @@
   {
    "key": "p00195",
    "origin": "00",
-   "statement": "\\textbf{Registration}: every observation is an incomplete registration by a bounded proper part --- whatever reads the totality is a framed observer embedded within it (A3) and is not the whole; the totality has no frame and no reader of its own.",
+   "statement": "\\textbf{Registration}: every observation is a registration by an embedded part (C4, A14); a part of $o<\\Om$ states identifies two members under every reading (A4); a complete reading needs the whole count. No frame is the Carrier's own: one translation carries each member to each (A7), one affine map each frame to each (1:C2); so no reader is its own.",
    "origin_row": "00:A5",
-   "tag": "P",
+   "tag": "T",
    "tier": null,
    "check": null,
    "declarations": [],
    "aliases": [],
    "rows": [
     "00:A5"
-   ]
+   ],
+   "realisations": []
   },
   {
    "key": "p00188",
@@ -1599,7 +1601,7 @@
   {
    "key": "p00010",
    "origin": "00",
-   "statement": "\\textbf{Realisation, not correspondence}: a sufficiently expressive, predictive, registration-complete structure \\emph{is} its subject, not an abstraction of it. By the Registration pillar (A5) no registration reaches an unregistered reality, so a distinction with no registered residue is no distinction. Identification rows (\\tR) are therefore constitutive: defended by the totality of registered consequences, killed by explicit falsifiers.",
+   "statement": "\\textbf{Realisation, not correspondence}: a sufficiently expressive, predictive, registration-complete structure \\emph{is} its subject, not an abstraction of it. By Registration (A5) no registration reaches an unregistered reality, so a distinction with no registered residue is no distinction. Identification rows (\\tR) are therefore constitutive: defended by the totality of registered consequences, killed by explicit falsifiers.",
    "origin_row": "00:A9",
    "tag": "D",
    "tier": null,
@@ -23377,9 +23379,9 @@
    "key": "p00004",
    "label": "A2",
    "block": "A",
-   "tag": "P",
+   "tag": "T",
    "name": "Finitude",
-   "statement": "\\textbf{Finitude}: the totality is finite, a count of $\\Om$ elements. Infinity as an ontological posit is incoherent (no model is exhibited; the completed totality forbids its own totality as an object; its consistency is unprovable within, 5-red Prop.~9), unverifiable (idleness, 29-fin) and redundant (every certificate is finite, 5-red).",
+   "statement": "\\textbf{Finitude}: the Universe is the totality of its registrations (A9), one coherent plurality, its distinctness one registration's (A7), hence finite: a plurality of capacity $R$ embeds in the shell of $R$ members, and an agent of capacity $K$ determines fewer than $s^{K+1}$ (5:C2, 29:C1); an unlimited supply is determined by no registration (29:C2, 29:C4). Count $\\Om$: A8.",
    "source": "5-red, 29-fin, m04",
    "page": "00-ledger.html#A2",
    "witness": {
@@ -23387,13 +23389,21 @@
     "py": null,
     "lean": []
    },
-   "refs": [],
+   "refs": [
+    "p00008",
+    "p00009",
+    "p00010",
+    "p05013",
+    "p29009",
+    "p29010",
+    "p29012"
+   ],
    "sources": [
     "5-red",
     "29-fin",
     "m04"
    ],
-   "text": "Finitude: Finitude: the totality is finite, a count of $\\Om$ elements. Infinity as an ontological posit is incoherent (no model is exhibited; the completed totality forbids its own totality as an object; its consistency is unprovable within, 5-red Prop. 9), unverifiable (idleness, 29-fin) and redundant (every certificate is finite, 5-red). 5-red, 29-fin, m04"
+   "text": "Finitude: Finitude: the Universe is the totality of its registrations (A9), one coherent plurality, its distinctness one registration's (A7), hence finite: a plurality of capacity $R$ embeds in the shell of $R$ members, and an agent of capacity $K$ determines fewer than $s^{K+1}$ (5:C2, 29:C1); an unlimited supply is determined by no registration (29:C2, 29:C4). Count $\\Om$: A8. 5-red, 29-fin, m04"
   },
   {
    "paper": "00",
@@ -23402,9 +23412,9 @@
    "key": "p00003",
    "label": "A3",
    "block": "A",
-   "tag": "P",
+   "tag": "T",
    "name": "Completeness",
-   "statement": "\\textbf{Completeness}: the totality has no outside, so whatever exists is a part of it, and it has no host. It is unique, since two totalities would each lie within the other. Observers are shells embedded \\emph{within}, not parallel carriers.",
+   "statement": "\\textbf{Completeness}: whatever exists is registered (A9), hence within the one plurality: no outside, no host. Unique: two totalities each registered within the other have one count (5:C2 both ways), and one count is one Carrier (A7). Its arithmetic has no proper closed substructure (A11). Observers are parts within (A5).",
    "source": "9-uniq, 25-göd",
    "page": "00-ledger.html#A3",
    "witness": {
@@ -23412,12 +23422,18 @@
     "py": null,
     "lean": []
    },
-   "refs": [],
+   "refs": [
+    "p00008",
+    "p00010",
+    "p00162",
+    "p00195",
+    "p05013"
+   ],
    "sources": [
     "9-uniq",
     "25-göd"
    ],
-   "text": "Completeness: Completeness: the totality has no outside, so whatever exists is a part of it, and it has no host. It is unique, since two totalities would each lie within the other. Observers are shells embedded within, not parallel carriers. 9-uniq, 25-göd"
+   "text": "Completeness: Completeness: whatever exists is registered (A9), hence within the one plurality: no outside, no host. Unique: two totalities each registered within the other have one count (5:C2 both ways), and one count is one Carrier (A7). Its arithmetic has no proper closed substructure (A11). Observers are parts within (A5). 9-uniq, 25-göd"
   },
   {
    "paper": "00",
@@ -23428,7 +23444,7 @@
    "block": "A",
    "tag": "T",
    "name": "A bounded observer is a proper part",
-   "statement": "A bounded observer is a proper part, $|O|<\\Om$: by A2 and A5 its states are fewer than the totality's, so no injective encoding of the totality into its states exists (25:D1, 5:C2); every reading $\\Pi_i{:}\\Om\\to\\mathcal D_i$ is an incomplete projection, its image strictly smaller than the whole. The limitative content lives at the comprehension horizon (Z1, Z9).",
+   "statement": "A bounded observer is a proper part, $|O|<\\Om$: by A7 and C4 its states are fewer than the Carrier's, so no injective encoding of the totality into its states exists (25:D1, 5:C2); every reading $\\Pi_i{:}\\Om\\to\\mathcal D_i$ is an incomplete projection, its image strictly smaller than the whole. The limitative content lives at the comprehension horizon (Z1, Z9).",
    "source": "25-göd, 5-red",
    "page": "00-ledger.html#A4",
    "witness": {
@@ -23451,10 +23467,10 @@
     ]
    },
    "refs": [
-    "p00004",
+    "p00008",
+    "p00024",
     "p00186",
     "p00187",
-    "p00195",
     "p05013",
     "p25015"
    ],
@@ -23462,7 +23478,7 @@
     "25-göd",
     "5-red"
    ],
-   "text": "A bounded observer is a proper part: A bounded observer is a proper part, $|O|<\\Om$: by A2 and A5 its states are fewer than the totality's, so no injective encoding of the totality into its states exists (25:D1, 5:C2); every reading $\\Pi_i{:}\\Om\\to\\mathcal D_i$ is an incomplete projection, its image strictly smaller than the whole. The limitative content lives at the comprehension horizon (Z1, Z9). 25-göd, 5-red"
+   "text": "A bounded observer is a proper part: A bounded observer is a proper part, $|O|<\\Om$: by A7 and C4 its states are fewer than the Carrier's, so no injective encoding of the totality into its states exists (25:D1, 5:C2); every reading $\\Pi_i{:}\\Om\\to\\mathcal D_i$ is an incomplete projection, its image strictly smaller than the whole. The limitative content lives at the comprehension horizon (Z1, Z9). 25-göd, 5-red"
   },
   {
    "paper": "00",
@@ -23471,9 +23487,9 @@
    "key": "p00195",
    "label": "A5",
    "block": "A",
-   "tag": "P",
+   "tag": "T",
    "name": "Registration",
-   "statement": "\\textbf{Registration}: every observation is an incomplete registration by a bounded proper part --- whatever reads the totality is a framed observer embedded within it (A3) and is not the whole; the totality has no frame and no reader of its own.",
+   "statement": "\\textbf{Registration}: every observation is a registration by an embedded part (C4, A14); a part of $o<\\Om$ states identifies two members under every reading (A4); a complete reading needs the whole count. No frame is the Carrier's own: one translation carries each member to each (A7), one affine map each frame to each (1:C2); so no reader is its own.",
    "source": "25-göd",
    "page": "00-ledger.html#A5",
    "witness": {
@@ -23482,12 +23498,16 @@
     "lean": []
    },
    "refs": [
-    "p00003"
+    "p00008",
+    "p00024",
+    "p00159",
+    "p00196",
+    "p01009"
    ],
    "sources": [
     "25-göd"
    ],
-   "text": "Registration: Registration: every observation is an incomplete registration by a bounded proper part — whatever reads the totality is a framed observer embedded within it (A3) and is not the whole; the totality has no frame and no reader of its own. 25-göd"
+   "text": "Registration: Registration: every observation is a registration by an embedded part (C4, A14); a part of $o<\\Om$ states identifies two members under every reading (A4); a complete reading needs the whole count. No frame is the Carrier's own: one translation carries each member to each (A7), one affine map each frame to each (1:C2); so no reader is its own. 25-göd"
   },
   {
    "paper": "00",
@@ -23607,7 +23627,7 @@
    "block": "A",
    "tag": "D",
    "name": "Realisation, not correspondence",
-   "statement": "\\textbf{Realisation, not correspondence}: a sufficiently expressive, predictive, registration-complete structure \\emph{is} its subject, not an abstraction of it. By the Registration pillar (A5) no registration reaches an unregistered reality, so a distinction with no registered residue is no distinction. Identification rows (\\tR) are therefore constitutive: defended by the totality of registered consequences, killed by explicit falsifiers.",
+   "statement": "\\textbf{Realisation, not correspondence}: a sufficiently expressive, predictive, registration-complete structure \\emph{is} its subject, not an abstraction of it. By Registration (A5) no registration reaches an unregistered reality, so a distinction with no registered residue is no distinction. Identification rows (\\tR) are therefore constitutive: defended by the totality of registered consequences, killed by explicit falsifiers.",
    "source": "9-uniq",
    "page": "00-ledger.html#A9",
    "witness": {
@@ -23621,7 +23641,7 @@
    "sources": [
     "9-uniq"
    ],
-   "text": "Realisation, not correspondence: Realisation, not correspondence: a sufficiently expressive, predictive, registration-complete structure is its subject, not an abstraction of it. By the Registration pillar (A5) no registration reaches an unregistered reality, so a distinction with no registered residue is no distinction. Identification rows (R) are therefore constitutive: defended by the totality of registered consequences, killed by explicit falsifiers. 9-uniq"
+   "text": "Realisation, not correspondence: Realisation, not correspondence: a sufficiently expressive, predictive, registration-complete structure is its subject, not an abstraction of it. By Registration (A5) no registration reaches an unregistered reality, so a distinction with no registered residue is no distinction. Identification rows (R) are therefore constitutive: defended by the totality of registered consequences, killed by explicit falsifiers. 9-uniq"
   },
   {
    "paper": "00",
@@ -26969,7 +26989,7 @@
    "block": "Z",
    "tag": "T",
    "name": "The horizon forces structure, not only leaves it open",
-   "statement": "The horizon \\emph{forces} structure, not only leaves it open: the $3+2$ split is beyond the horizon (above $\\sqrt{\\Om}$), so the off-block reframings are gauge and unification is the simple $\\SO(10)$ (G14); the automorphism lemma reduces to the Registration pillar (A5).",
+   "statement": "The horizon \\emph{forces} structure, not only leaves it open: the $3+2$ split is beyond the horizon (above $\\sqrt{\\Om}$), so the off-block reframings are gauge and unification is the simple $\\SO(10)$ (G14); the automorphism lemma reduces to Registration (A5).",
    "source": "27-fld, 20-rh",
    "page": "00-ledger.html#Z5",
    "witness": {
@@ -26985,7 +27005,7 @@
     "27-fld",
     "20-rh"
    ],
-   "text": "The horizon forces structure, not only leaves it open: The horizon forces structure, not only leaves it open: the $3+2$ split is beyond the horizon (above $\\sqrt{\\Om}$), so the off-block reframings are gauge and unification is the simple $\\SO(10)$ (G14); the automorphism lemma reduces to the Registration pillar (A5). 27-fld, 20-rh"
+   "text": "The horizon forces structure, not only leaves it open: The horizon forces structure, not only leaves it open: the $3+2$ split is beyond the horizon (above $\\sqrt{\\Om}$), so the off-block reframings are gauge and unification is the simple $\\SO(10)$ (G14); the automorphism lemma reduces to Registration (A5). 27-fld, 20-rh"
   },
   {
    "paper": "00",

@@ -17,7 +17,6 @@
  },
  "tags": {
   "G": "ground — the single given that conditions the discourse",
-  "P": "pillar — a forced foundational proposition",
   "T": "theorem — derived within the framework",
   "D": "definition — a naming or set-up move, no empirical content",
   "R": "realisation — what a physical term denotes in the substrate; forced (A9), each row stating the falsifier that kills it",
@@ -44,29 +43,59 @@
    "name": "Finitude",
    "block": "A",
    "key": "p00004",
-   "tag": "P",
+   "tag": "T",
    "sources": [
     "5-red",
     "29-fin",
     "m04"
    ],
    "witness": null,
-   "refs": [],
-   "statement": "\\textbf{Finitude}: the totality is finite, a count of $\\Om$ elements. Infinity as an ontological posit is incoherent (no model is exhibited; the completed totality forbids its own totality as an object; its consistency is unprovable within, 5-red Prop.~9), unverifiable (idleness, 29-fin) and redundant (every certificate is finite, 5-red)."
+   "refs": [
+    {
+     "label": "A7",
+     "key": "p00008"
+    },
+    {
+     "label": "A8",
+     "key": "p00009"
+    },
+    {
+     "label": "A9",
+     "key": "p00010"
+    }
+   ],
+   "statement": "\\textbf{Finitude}: the Universe is the totality of its registrations (A9), one coherent plurality, its distinctness one registration's (A7), hence finite: a plurality of capacity $R$ embeds in the shell of $R$ members, and an agent of capacity $K$ determines fewer than $s^{K+1}$ (5:C2, 29:C1); an unlimited supply is determined by no registration (29:C2, 29:C4). Count $\\Om$: A8."
   },
   {
    "label": "A3",
    "name": "Completeness",
    "block": "A",
    "key": "p00003",
-   "tag": "P",
+   "tag": "T",
    "sources": [
     "9-uniq",
     "25-göd"
    ],
    "witness": null,
-   "refs": [],
-   "statement": "\\textbf{Completeness}: the totality has no outside, so whatever exists is a part of it, and it has no host. It is unique, since two totalities would each lie within the other. Observers are shells embedded \\emph{within}, not parallel carriers."
+   "refs": [
+    {
+     "label": "A5",
+     "key": "p00195"
+    },
+    {
+     "label": "A7",
+     "key": "p00008"
+    },
+    {
+     "label": "A9",
+     "key": "p00010"
+    },
+    {
+     "label": "A11",
+     "key": "p00162"
+    }
+   ],
+   "statement": "\\textbf{Completeness}: whatever exists is registered (A9), hence within the one plurality: no outside, no host. Unique: two totalities each registered within the other have one count (5:C2 both ways), and one count is one Carrier (A7). Its arithmetic has no proper closed substructure (A11). Observers are parts within (A5)."
   },
   {
    "label": "A4",
@@ -81,12 +110,12 @@
    "witness": null,
    "refs": [
     {
-     "label": "A2",
-     "key": "p00004"
+     "label": "A7",
+     "key": "p00008"
     },
     {
-     "label": "A5",
-     "key": "p00195"
+     "label": "C4",
+     "key": "p00024"
     },
     {
      "label": "Z1",
@@ -97,25 +126,37 @@
      "key": "p00187"
     }
    ],
-   "statement": "A bounded observer is a proper part, $|O|<\\Om$: by A2 and A5 its states are fewer than the totality's, so no injective encoding of the totality into its states exists (25:D1, 5:C2); every reading $\\Pi_i{:}\\Om\\to\\mathcal D_i$ is an incomplete projection, its image strictly smaller than the whole. The limitative content lives at the comprehension horizon (Z1, Z9)."
+   "statement": "A bounded observer is a proper part, $|O|<\\Om$: by A7 and C4 its states are fewer than the Carrier's, so no injective encoding of the totality into its states exists (25:D1, 5:C2); every reading $\\Pi_i{:}\\Om\\to\\mathcal D_i$ is an incomplete projection, its image strictly smaller than the whole. The limitative content lives at the comprehension horizon (Z1, Z9)."
   },
   {
    "label": "A5",
    "name": "Registration",
    "block": "A",
    "key": "p00195",
-   "tag": "P",
+   "tag": "T",
    "sources": [
     "25-göd"
    ],
    "witness": null,
    "refs": [
     {
-     "label": "A3",
-     "key": "p00003"
+     "label": "A4",
+     "key": "p00159"
+    },
+    {
+     "label": "A7",
+     "key": "p00008"
+    },
+    {
+     "label": "A14",
+     "key": "p00196"
+    },
+    {
+     "label": "C4",
+     "key": "p00024"
     }
    ],
-   "statement": "\\textbf{Registration}: every observation is an incomplete registration by a bounded proper part --- whatever reads the totality is a framed observer embedded within it (A3) and is not the whole; the totality has no frame and no reader of its own."
+   "statement": "\\textbf{Registration}: every observation is a registration by an embedded part (C4, A14); a part of $o<\\Om$ states identifies two members under every reading (A4); a complete reading needs the whole count. No frame is the Carrier's own: one translation carries each member to each (A7), one affine map each frame to each (1:C2); so no reader is its own."
   },
   {
    "label": "A6",
@@ -202,7 +243,7 @@
      "key": "p00195"
     }
    ],
-   "statement": "\\textbf{Realisation, not correspondence}: a sufficiently expressive, predictive, registration-complete structure \\emph{is} its subject, not an abstraction of it. By the Registration pillar (A5) no registration reaches an unregistered reality, so a distinction with no registered residue is no distinction. Identification rows (\\tR) are therefore constitutive: defended by the totality of registered consequences, killed by explicit falsifiers."
+   "statement": "\\textbf{Realisation, not correspondence}: a sufficiently expressive, predictive, registration-complete structure \\emph{is} its subject, not an abstraction of it. By Registration (A5) no registration reaches an unregistered reality, so a distinction with no registered residue is no distinction. Identification rows (\\tR) are therefore constitutive: defended by the totality of registered consequences, killed by explicit falsifiers."
   },
   {
    "label": "A10",
@@ -2386,7 +2427,7 @@
      "key": "p00079"
     }
    ],
-   "statement": "The horizon \\emph{forces} structure, not only leaves it open: the $3+2$ split is beyond the horizon (above $\\sqrt{\\Om}$), so the off-block reframings are gauge and unification is the simple $\\SO(10)$ (G14); the automorphism lemma reduces to the Registration pillar (A5)."
+   "statement": "The horizon \\emph{forces} structure, not only leaves it open: the $3+2$ split is beyond the horizon (above $\\sqrt{\\Om}$), so the off-block reframings are gauge and unification is the simple $\\SO(10)$ (G14); the automorphism lemma reduces to Registration (A5)."
   },
   {
    "label": "Z6",
