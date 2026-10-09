@@ -276,6 +276,34 @@
    "status": "waits",
    "lean": null,
    "note": "the push of 8 October 2026: C12's core key is the lift lattice (Theme/Domain.lean, the torsion-free shadow: temperature is acceleration, the Unruh closure, the classical dictionary); 10:F3's is in the paper module Dimensions.lean on the modular group Dom; the bridge, the lift's evaluation into Dom, waits for 10-dimensions' migration (LM36)"
+  },
+  {
+   "master": "A2",
+   "paper": "29:C2",
+   "status": "no shared clause",
+   "lean": null,
+   "note": "9 October 2026 (the three pillars as theorems): A2's key is the agent's bound (agent_bound: a shell read whole into records(s, K) records has at most records(s, K) members, fewer than s^(K+1), 5:C2's records_lt); 29:C2's key is the idleness theorem on the formation model (Theme/Formation.lean: realized, minimal_size, minimal_closed). No theorem is shared: A2's text consumes 29:C2's clause — no unbounded supply is certified — by reference, as A3 consumes A11"
+  },
+  {
+   "master": "A4",
+   "paper": "29:C10",
+   "status": "bridged",
+   "lean": "FRC.Bridge.A5_5C2",
+   "note": "9 October 2026: 29:C10 shares 5:C2's key p05013, so the bridge A5_5C2 (from_master from p00159, from_paper from p05013) is this pair's bridge; the namespace keeps the name of the master row A5 until the relabel of 8 October 2026"
+  },
+  {
+   "master": "A6",
+   "paper": "29:B4",
+   "status": "bridged",
+   "lean": "FRC.Bridge.A6_29B4",
+   "note": "9 October 2026 (the G18 audit of A2, A3, A5; the referee's bridge): the shared clause is the return after n steps, (x + n) % n = x, from p00188's return clause and from p29006's cyc_return through cyc_iter"
+  },
+  {
+   "master": "Z1",
+   "paper": "29:B5",
+   "status": "bridged",
+   "lean": "FRC.Bridge.Z1_25C1",
+   "note": "9 October 2026: 29:B5 shares 25:C1's key p25010, so the bridge Z1_25C1 (from_master from p00186, from_paper from p25010) is this pair's bridge"
   }
  ]
 }

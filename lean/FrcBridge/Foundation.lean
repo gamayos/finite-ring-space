@@ -13,6 +13,8 @@ clause, `from_master` and `from_paper` its two derivations. No axioms (`check_co
   it. The master's key reads the Carrier's points and finds two of them identified; the paper's states the pigeonhole
   on `[0, N)` beside its record bound.
 * **00:A4 and 25:D1 (overlap, LM10).** The same clause against 25:D1's storage bound.
+* **00:A6 and 29:B4 (the G18 audit of A2, A3 and A5, 9 October 2026).** The successor act on `n ≥ 2` points returns to
+  its start after `n` steps: from A6's return clause and from 29:B4's `cyc_return` on the formation model (`A6_29B4`).
 
 * **14:C6 ⇒ 00:B14 (paper ⇒ master; the audit's M4, 7 October 2026).** B14 is 14:C6's first clause on the Carrier's
   chart: with 00:A13's frame on every prime `Ω = 4S + 1`, 14:C6's key gives B14's key (`b14_of_14C6`). 14:C6 adds two
@@ -101,5 +103,33 @@ theorem b14_of_14C6 : ∀ {Ω : Nat} [Pos Ω] (S : Nat), FRC.Nat.isPrime Ω → 
     rw [he, Nat.add_zero] at hm
     obtain ⟨ζ, h4, h8⟩ := hk.2 ⟨m, hm⟩
     exact ⟨ζ, h8, by rw [h4]; exact hne⟩
+
+namespace A6_29B4
+
+/-- The clause 00:A6 and 29:B4 share, on the `n` points `[0, n)` with `n ≥ 2`: the successor act returns to its start
+after `n` steps, `(x + n) % n = x` (A6's return clause at `k = n`; 29:B4's `cyc_return`). Written at the G18 audit of
+9 October 2026 (the referee's bridge). -/
+def Clause : Prop :=
+  ∀ n, 2 ≤ n → ∀ x, x < n → (x + n) % n = x
+
+theorem succIter_val {n : Nat} [Pos n] (x k : Nat) :
+    (FRC.Foundation.succIter (ofNat x : Shell n) k).val = (x + k) % n := by
+  rw [FRC.Foundation.succIter_eq, FRC.Foundation.ofNat_add]; rfl
+
+/-- From the master's key `FRC.Ledger.p00188` (00:A6), read on `Shell n`. -/
+theorem from_master : Clause := fun n h2 x hx =>
+  have _ : Pos n := ⟨Nat.lt_of_lt_of_le (by decide) h2⟩
+  have hret := (FRC.Ledger.p00188 h2).2.1 (ofNat x : Shell n) n
+  have e : FRC.Foundation.succIter (ofNat x : Shell n) n = ofNat x := hret.2 (FRC.Nat.mod_self n Pos.pos)
+  have hv : (FRC.Foundation.succIter (ofNat x : Shell n) n).val = (ofNat x : Shell n).val := congrArg Shell.val e
+  have hs : (FRC.Foundation.succIter (ofNat x : Shell n) n).val = (x + n) % n := succIter_val (n := n) x n
+  (hs.symm.trans hv).trans (FRC.Nat.mod_eq_of_lt hx)
+
+/-- From the paper's key `FRC.Ledger.p29006` (29:B4): `cyc_return`, through `cyc_iter`. -/
+theorem from_paper : Clause := fun n h2 x hx =>
+  have hn : 0 < n := Nat.lt_of_lt_of_le (by decide) h2
+  (FRC.Formation.cyc_iter n hn x hx n).symm.trans ((FRC.Ledger.p29006).2.2.2.2.1 n hn x hx)
+
+end A6_29B4
 
 end FRC.Bridge

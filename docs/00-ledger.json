@@ -47,10 +47,15 @@
    "sources": [
     "5-red",
     "29-fin",
+    "11-ont",
     "m04"
    ],
    "witness": null,
    "refs": [
+    {
+     "label": "A5",
+     "key": "p00195"
+    },
     {
      "label": "A7",
      "key": "p00008"
@@ -62,9 +67,13 @@
     {
      "label": "A9",
      "key": "p00010"
+    },
+    {
+     "label": "A14",
+     "key": "p00196"
     }
    ],
-   "statement": "\\textbf{Finitude}: the Universe is the totality of its registrations (A9), one coherent plurality, its distinctness one registration's (A7), hence finite: a plurality of capacity $R$ embeds in the shell of $R$ members, and an agent of capacity $K$ determines fewer than $s^{K+1}$ (5:C2, 29:C1); an unlimited supply is determined by no registration (29:C2, 29:C4). Count $\\Om$: A8."
+   "statement": "\\textbf{Finitude}: the Universe is the totality of its registrations (A9), one coherent plurality (A7, A14), finite by that identification; a shell read whole into $R$ records has at most $R$ members (A5), and an agent of capacity $K$ determines fewer than $s^{K+1}$ (5:C2, 29:C1); an unlimited supply is determined by no registration (29:C2, 29:C4). Count $\\Om$: A8."
   },
   {
    "label": "A3",
@@ -74,10 +83,16 @@
    "tag": "T",
    "sources": [
     "9-uniq",
-    "25-göd"
+    "25-göd",
+    "11-ont",
+    "5-red"
    ],
    "witness": null,
    "refs": [
+    {
+     "label": "A2",
+     "key": "p00004"
+    },
     {
      "label": "A5",
      "key": "p00195"
@@ -95,7 +110,7 @@
      "key": "p00162"
     }
    ],
-   "statement": "\\textbf{Completeness}: whatever exists is registered (A9), hence within the one plurality: no outside, no host. Unique: two totalities each registered within the other have one count (5:C2 both ways), and one count is one Carrier (A7). Its arithmetic has no proper closed substructure (A11). Observers are parts within (A5)."
+   "statement": "\\textbf{Completeness}: whatever exists is registered (A9), hence within the one plurality (A2): no outside, no host. Unique: two totalities each registered whole within the other have one count (5:C2 both ways), and one count is one Carrier (A7). Its arithmetic has no proper closed substructure (A11). Observers are parts within (A5)."
   },
   {
    "label": "A4",
@@ -135,7 +150,9 @@
    "key": "p00195",
    "tag": "T",
    "sources": [
-    "25-göd"
+    "25-göd",
+    "11-ont",
+    "1-alg"
    ],
    "witness": null,
    "refs": [
@@ -156,7 +173,7 @@
      "key": "p00024"
     }
    ],
-   "statement": "\\textbf{Registration}: every observation is a registration by an embedded part (C4, A14); a part of $o<\\Om$ states identifies two members under every reading (A4); a complete reading needs the whole count. No frame is the Carrier's own: one translation carries each member to each (A7), one affine map each frame to each (1:C2); so no reader is its own."
+   "statement": "\\textbf{Registration}: every observation is a registration by an embedded part (C4, A14); a part of $o<\\Om$ states identifies two members under every reading (A4): a complete reading needs the whole count. No frame is the Carrier's own: one translation carries each member to each (A7), one affine map each frame to each (1:C2); so no reader (C4) is its own."
   },
   {
    "label": "A6",
@@ -234,6 +251,7 @@
    "key": "p00010",
    "tag": "D",
    "sources": [
+    "11-ont",
     "9-uniq"
    ],
    "witness": null,

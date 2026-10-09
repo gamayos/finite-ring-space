@@ -988,6 +988,10 @@
 'FRC.Foundation.add_eq_self_iff' does not depend on any axioms
 'FRC.Foundation.successor_cycle' does not depend on any axioms
 'FRC.Foundation.observer_part' does not depend on any axioms
+'FRC.Foundation.complete_needs_whole' does not depend on any axioms
+'FRC.Foundation.agent_bound' does not depend on any axioms
+'FRC.Foundation.mutual_registration_count' does not depend on any axioms
+'FRC.Foundation.translation_torsor' does not depend on any axioms
 'FRC.Nat.dvd_trans'' does not depend on any axioms
 'FRC.Nat.pos_of_dvd' does not depend on any axioms
 'FRC.Nat.le_of_dvd'' does not depend on any axioms
@@ -1482,11 +1486,14 @@
 'FRC.Ledger.p29024' does not depend on any axioms
 'FRC.Ledger.p29026' does not depend on any axioms
 'FRC.Ledger.p29027' does not depend on any axioms
+'FRC.Ledger.p00003' does not depend on any axioms
+'FRC.Ledger.p00004' does not depend on any axioms
 'FRC.Ledger.p00159' does not depend on any axioms
 'FRC.Ledger.p00162' does not depend on any axioms
 'FRC.Ledger.p00163' does not depend on any axioms
 'FRC.Ledger.p00164' does not depend on any axioms
 'FRC.Ledger.p00188' does not depend on any axioms
+'FRC.Ledger.p00195' does not depend on any axioms
 'FRC.Ledger.p00015' does not depend on any axioms
 'FRC.Ledger.p00165' does not depend on any axioms
 'FRC.Ledger.p00166' does not depend on any axioms
@@ -2380,6 +2387,10 @@
 'FRC.Bridge.A5_25D1.from_master' does not depend on any axioms
 'FRC.Bridge.A5_25D1.from_paper' does not depend on any axioms
 'FRC.Bridge.b14_of_14C6' does not depend on any axioms
+'FRC.Bridge.A6_29B4.Clause' does not depend on any axioms
+'FRC.Bridge.A6_29B4.succIter_val' does not depend on any axioms
+'FRC.Bridge.A6_29B4.from_master' does not depend on any axioms
+'FRC.Bridge.A6_29B4.from_paper' does not depend on any axioms
 'FRC.Bridge.C2_6B5.Clause' does not depend on any axioms
 'FRC.Bridge.C2_6B5.from_master' does not depend on any axioms
 'FRC.Bridge.C2_6B5.from_paper' does not depend on any axioms

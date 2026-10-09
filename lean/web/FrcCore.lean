@@ -9472,11 +9472,14 @@ end FRC
 /-!
 # FrcCore.Theme.Foundation — the rows of master block A on the prime shell (the foundation theme, tasks LM22–LM24)
 
-Completeness is primality in the ideal form (A12), counting closes by return (A7), and a bounded observer is a proper
-part (A5), on the field of `Theme/Field.lean` (split from this file by task LM24 under the size budget, G10); the
-quarter-turn criterion (A13), the order-divides-period lemma and primality as no zero divisors, moved here from
+Completeness is primality in the ideal form (A11), counting closes by return (A6), and a bounded observer is a proper
+part (A4), on the field of `Theme/Field.lean` (split from this file by task LM24 under the size budget, G10); the
+quarter-turn criterion (A12), the order-divides-period lemma and primality as no zero divisors, moved here from
 `Theme/Field.lean` by the Phase 4 repairs so that the Subject's closure keeps the budget (G10), names unchanged. The
-Carrier's rows (`Theme/Carrier.lean`) rest on the field and on the chart `Ω = 4S + 1` alone. No axioms.
+Carrier's rows (`Theme/Carrier.lean`) rest on the field and on the chart `Ω = 4S + 1` alone. The three former pillars
+as theorems (9 October 2026, with review): whatever a bounded agent determines is bounded by its records (A2, on
+`Theme/Logic.lean`'s `records`), two totalities each registered whole within the other have one count (A3), a
+complete reading needs the whole count and the Carrier is a translation torsor (A5). No axioms.
 -/
 
 namespace FRC
@@ -9487,7 +9490,7 @@ variable {p : Nat} [Pos p]
 
 namespace Prime
 
-/-- Completeness is primality, in the ideal form (A12): for `p ≥ 2`, every ideal of the shell that holds a nonzero
+/-- Completeness is primality, in the ideal form (A11): for `p ≥ 2`, every ideal of the shell that holds a nonzero
 residue holds every residue iff `p` is prime. An ideal `I` holds `0` and is closed under addition and under
 multiplication by any residue. Forward, a nonzero `a ∈ I` has the inverse `a^{p−2}` (Fermat), so `1 ∈ I` and then
 `x = x · 1 ∈ I`. Backward, the annihilator `{x : x b = 0}` of `b` is an ideal, so `a b = 0` with `a ≠ 0` puts `1` in
@@ -9561,7 +9564,7 @@ theorem isPrime_iff_no_zero_divisors (h2 : 2 ≤ p) :
 end Prime
 end Shell
 
-/-! ## Counting closes by return (A7), and a bounded observer is a proper part (A5) -/
+/-! ## Counting closes by return (A6), and a bounded observer is a proper part (A4) -/
 
 namespace Foundation
 
@@ -9590,7 +9593,7 @@ theorem ofNat_eq_zero_iff (k : Nat) : (ofNat k : Shell q) = 0 ↔ k % q = 0 :=
 theorem add_eq_self_iff (x a : Shell q) : x + a = x ↔ a = 0 :=
   ⟨fun h => add_right_cancel (by rw [add_comm, h, zero_add] : a + x = 0 + x), fun h => by rw [h, add_zero]⟩
 
-/-- A7 — counting closes by return: on `q ≥ 2` points the successor `x ↦ x + 1` has no fixed point, returns to its
+/-- A6 — counting closes by return: on `q ≥ 2` points the successor `x ↦ x + 1` has no fixed point, returns to its
 start after exactly the multiples of `q` steps, and reaches every point from every point within `q` steps. It is one
 `q`-cycle, so iteration is bounded and cyclic. -/
 theorem successor_cycle (h2 : 2 ≤ q) :
@@ -9604,7 +9607,7 @@ theorem successor_cycle (h2 : 2 ≤ q) :
     exact absurd h1 (by decide)
   · rw [succIter_eq, ofNat_val, add_comm y, ← add_assoc, add_neg, zero_add]
 
-/-- A5, the finite part — a bounded observer is a proper part: an observer with `o < Ω` states holds no injective
+/-- A4 — a bounded observer is a proper part: an observer with `o < Ω` states holds no injective
 encoding of the Carrier's `Ω` points, and every reading `ρ` into its states identifies two distinct points (the
 pigeonhole, `FRC.Logic.no_mirror`; 25:D1, 5:C2). The two points are found by search. -/
 theorem observer_part {Ω o : Nat} [Pos Ω] (ho : o < Ω) (ρ : Shell Ω → Nat) (hρ : ∀ x, ρ x < o) :
@@ -9619,6 +9622,48 @@ theorem observer_part {Ω o : Nat} [Pos Ω] (ho : o < Ω) (ρ : Shell Ω → Nat
       | .inr hge => match Nat.lt_or_ge j i with
         | .inl hlt => absurd ⟨i, hi, j, hlt, e.symm⟩ hno
         | .inr hge' => Nat.le_antisymm hge' hge)).elim
+
+/-! ## The three former pillars as theorems (A2, A3, A5; 9 October 2026) -/
+
+/-- A5 — a complete reading needs the whole count: a reading of the `Ω` points into `o` records that identifies no two
+points has `Ω ≤ o` (the contrapositive of `observer_part`). A reader that is not the whole reads incompletely. -/
+theorem complete_needs_whole {Ω o : Nat} [Pos Ω] (ρ : Shell Ω → Nat) (hρ : ∀ x, ρ x < o)
+    (hinj : ∀ x y, ρ x = ρ y → x = y) : Ω ≤ o :=
+  match Nat.lt_or_ge o Ω with
+  | .inl hlt => match observer_part hlt ρ hρ with
+    | ⟨x, y, hxy, e⟩ => (hxy (hinj x y e)).elim
+  | .inr hge => hge
+
+/-- A2 — the agent's bound: a shell read whole — injectively — into the records of an agent of capacity `K` over
+`s ≥ 2` symbols has at most `records s K` members, fewer than `s^(K+1)` (5:C2, 29:C1: `records_lt`). The finitude of
+the Universe is the identification's (A7, A14, read by A9); what the row proves is that whatever a bounded agent
+determines is bounded by its records. That an unlimited supply is determined by no registration is 29:C2 and 29:C4,
+consumed by the row, not proved here. -/
+theorem agent_bound (s K : Nat) (hs : 2 ≤ s) {N : Nat} [Pos N] (ρ : Shell N → Nat)
+    (hρ : ∀ x, ρ x < FRC.Logic.records s K) (hinj : ∀ x y, ρ x = ρ y → x = y) :
+    N ≤ FRC.Logic.records s K ∧ FRC.Logic.records s K < s ^ (K + 1) :=
+  ⟨complete_needs_whole ρ hρ hinj, FRC.Logic.records_lt s hs K⟩
+
+/-- A3 — two totalities each registered whole within the other have one count: injections both ways between shells
+force `m = n` (the pigeonhole `FRC.Logic.no_mirror`, 5:C2, both ways). With A7, one count is one Carrier. Silent
+on a host: a shell with more points registers a shell with fewer. -/
+theorem mutual_registration_count (m n : Nat) [Pos m] [Pos n]
+    (f : Shell m → Shell n) (hf : ∀ x y, f x = f y → x = y)
+    (g : Shell n → Shell m) (hg : ∀ x y, g x = g y → x = y) : m = n :=
+  have h1 : ∀ {a b : Nat} [Pos a] [Pos b] (f : Shell a → Shell b), (∀ x y, f x = f y → x = y) → a ≤ b :=
+    fun {a b} _ _ f hf => match Nat.lt_or_ge b a with
+      | .inl hlt => (FRC.Logic.no_mirror hlt (fun i => (f (ofNat i)).val) (fun _ _ => (f _).lt)
+          (fun _ _ hi hj e => Poly.Frame.ofNat_inj_lt hi hj (hf _ _ (ext e)))).elim
+      | .inr hge => hge
+  Nat.le_antisymm (h1 f hf) (h1 g hg)
+
+/-- A5 — the Carrier is a translation torsor (A7): exactly one translation carries each member to each. The origin
+is frame data: the shell's `0` is the chart's, and the translation carrying `0` to `x` makes `x` an origin as good;
+the affine frames are a torsor under the frame group (1:C2, `simply_transitive`). -/
+theorem translation_torsor {Ω : Nat} [Pos Ω] (x y : Shell Ω) :
+    ∃ t : Shell Ω, x + t = y ∧ ∀ t', x + t' = y → t' = t :=
+  ⟨y + -x, by rw [add_comm y, ← add_assoc, add_neg, zero_add],
+    fun t' h => add_right_cancel (c := x) (by rw [add_comm t', h, add_assoc, neg_add, add_zero])⟩
 
 end Foundation
 end FRC
@@ -17325,7 +17370,13 @@ that every row carrying the key asserts, proved from the themes alone. The paper
 namespace FRC.Ledger
 
 -- Keys of the foundation theme (generated by make_keys.py from the ledgers' Lean bindings; edit the ledgers, not this file)
-/-- p00159 — 00:A4. A bounded observer is a proper part, $|O|<\Om$: by A2 and A5 its states are fewer than the totality's, so no injective encoding of the totality into its states exists (25:D1, 5:C2); every reading $\Pi_i{:}\Om\to\mathcal D_i$ is an incomplete projection, its image strictly smaller than the whole. The limitative content lives at the comprehension horizon (Z1, Z9). -/
+/-- p00003 — 00:A3. \textbf{Completeness}: whatever exists is registered (A9), hence within the one plurality (A2): no outside, no host. Unique: two totalities each registered whole within the other have one count (5:C2 both ways), and one count is one Carrier (A7). Its arithmetic has no proper closed substructure (A11). Observers are parts within (A5). -/
+theorem p00003 : ∀ (m n : Nat) [FRC.Pos m] [FRC.Pos n] (f : FRC.Shell m → FRC.Shell n), (∀ (x y : FRC.Shell m), f x = f y → x = y) → ∀ (g : FRC.Shell n → FRC.Shell m), (∀ (x y : FRC.Shell n), g x = g y → x = y) → m = n :=
+  @FRC.Foundation.mutual_registration_count
+/-- p00004 — 00:A2. \textbf{Finitude}: the Universe is the totality of its registrations (A9), one coherent plurality (A7, A14), finite by that identification; a shell read whole into $R$ records has at most $R$ members (A5), and an agent of capacity $K$ determines fewer than $s^{K+1}$ (5:C2, 29:C1); an unlimited supply is determined by no registration (29:C2, 29:C4). Count $\Om$: A8. -/
+theorem p00004 : ∀ (s K : Nat), (2 : Nat) ≤ s → ∀ {N : Nat} [FRC.Pos N] (ρ : FRC.Shell N → Nat), (∀ (x : FRC.Shell N), ρ x < FRC.Logic.records s K) → (∀ (x y : FRC.Shell N), ρ x = ρ y → x = y) → N ≤ FRC.Logic.records s K ∧ FRC.Logic.records s K < s ^ (K + (1 : Nat)) :=
+  @FRC.Foundation.agent_bound
+/-- p00159 — 00:A4. A bounded observer is a proper part, $|O|<\Om$: by A7 and C4 its states are fewer than the Carrier's, so no injective encoding of the totality into its states exists (25:D1, 5:C2); every reading $\Pi_i{:}\Om\to\mathcal D_i$ is an incomplete projection, its image strictly smaller than the whole. The limitative content lives at the comprehension horizon (Z1, Z9). -/
 theorem p00159 : ∀ {Ω o : Nat} [FRC.Pos Ω], o < Ω → ∀ (ρ : FRC.Shell Ω → Nat), (∀ (x : FRC.Shell Ω), ρ x < o) → ∃ x y, x ≠ y ∧ ρ x = ρ y :=
   @FRC.Foundation.observer_part
 /-- p00162 — 00:A11. \textbf{Completeness is primality}: the residues of a count $q\ge2$ have no proper nonzero ideal iff $q$ is prime, so the arithmetic of a counting cycle is complete exactly on prime cycles --- the formal shadow of A3, since a proper closed substructure of the totality would be a second totality within it. -/
@@ -17340,6 +17391,9 @@ theorem p00164 : ∀ {p : Nat} [FRC.Pos p], FRC.Nat.isPrime p → ∃ g, (g ^ (p
 /-- p00188 — 00:A6. Counting closes by return: the successor $C_q:x\mapsto x{+}1\ (\mathrm{mod}\ q)$ on $q\ge2$ points is one $q$-cycle with no fixed point, so iteration is bounded and cyclic; its interpretation is A2's. -/
 theorem p00188 : ∀ {q : Nat} [FRC.Pos q], (2 : Nat) ≤ q → (∀ (x : FRC.Shell q), x + (1 : FRC.Shell q) ≠ x) ∧ (∀ (x : FRC.Shell q) (k : Nat), FRC.Foundation.succIter x k = x ↔ k % q = (0 : Nat)) ∧ ∀ (x y : FRC.Shell q), ∃ k, k < q ∧ FRC.Foundation.succIter x k = y :=
   @FRC.Foundation.successor_cycle
+/-- p00195 — 00:A5. \textbf{Registration}: every observation is a registration by an embedded part (C4, A14); a part of $o<\Om$ states identifies two members under every reading (A4): a complete reading needs the whole count. No frame is the Carrier's own: one translation carries each member to each (A7), one affine map each frame to each (1:C2); so no reader (C4) is its own. -/
+theorem p00195 : (∀ {Ω o : Nat} [FRC.Pos Ω] (ρ : FRC.Shell Ω → Nat), (∀ (x : FRC.Shell Ω), ρ x < o) → (∀ (x y : FRC.Shell Ω), ρ x = ρ y → x = y) → Ω ≤ o) ∧ ∀ {Ω : Nat} [FRC.Pos Ω] (x y : FRC.Shell Ω), ∃ t, x + t = y ∧ ∀ (t' : FRC.Shell Ω), x + t' = y → t' = t :=
+  And.intro @FRC.Foundation.complete_needs_whole (@FRC.Foundation.translation_torsor)
 -- end keys
 
 end FRC.Ledger
