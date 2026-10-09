@@ -111,7 +111,7 @@ def Clause (p κ : Nat) [Pos p] (g : Shell p) : Prop :=
   ∀ i : Nat, (g ^ i) ^ (i * (2 * κ)) = if i % 2 = 0 then 1 else -1
 
 /-- From the master's key `FRC.Ledger.p00034` (00:C14). -/
-theorem from_master {p κ : Nat} [Pos p] {g : Shell p} (F : Frame p κ g) : Clause p κ g := (FRC.Ledger.p00034 F).1
+theorem from_master {p κ : Nat} [Pos p] {g : Shell p} (F : Frame p κ g) : Clause p κ g := (FRC.Ledger.p00034.1 F).1   -- the key's first conjunct since C14's rebinding of 9 October 2026
 
 /-- From 2:D6's key `FRC.Geometry.p02018`. -/
 theorem from_2D6 {p κ : Nat} [Pos p] {g : Shell p} (F : Frame p κ g) : Clause p κ g := FRC.Geometry.p02018.1 F
@@ -132,7 +132,7 @@ def Clause (p κ : Nat) [Pos p] (g : Shell p) : Prop :=
 
 /-- From the master's key `FRC.Ledger.p00034` (00:C14). -/
 theorem from_master {p κ : Nat} [Pos p] {g : Shell p} (F : Frame p κ g) : Clause p κ g := fun g' F' => by
-  obtain ⟨u, _, e, _, h1, h3, _⟩ := (FRC.Ledger.p00034 F).2.2.2.2 g' F'
+  obtain ⟨u, _, e, _, h1, h3, _⟩ := (FRC.Ledger.p00034.1 F).2.2.2.2 g' F'
   exact ⟨u, e, h1, h3⟩
 
 /-- From the paper's key `FRC.Epi.p13009` (13:B2), its orientation class, with `g' = g^u` found on the frame. -/

@@ -81,7 +81,7 @@ def Clause (p κ : Nat) [Pos p] (g : Shell p) : Prop := Frame.quarterTurn g κ *
 /-- From the master's key `FRC.Ledger.p00189` (00:C7): `i = (g⁻¹)^κ`, so `g^κ i = 1` and `i = −g^κ`. -/
 theorem from_master {p κ : Nat} [Pos p] {g : Shell p} (F : Frame p κ g) : Clause p κ g := by
   obtain ⟨z, hz⟩ := F.exists_inv F.g_ne_zero
-  have hzk := (FRC.Ledger.p00189 F hz).2.1
+  have hzk := (FRC.Ledger.p00189.1 F hz).2.1   -- the key's first conjunct since C7's rebinding of 9 October 2026
   have e : g ^ κ * z ^ κ = 1 := by rw [← mul_pow, hz, one_pow]
   rw [hzk] at e
   show -(g ^ κ) * -(g ^ κ) = -1
