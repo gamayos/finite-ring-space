@@ -3,7 +3,8 @@ migration, task LM25, 6 October 2026).
 
 Block C is bound by one file per theme whose key file proves its rows: frc/ledgers/master/subject.py (the subject theme,
 task LM24), this file (the fourier theme) and frc/ledgers/master/projective.py (the projective theme). This file binds C2
-and C7: the table of keys (generated from docs/00-ledger.json by ci/make_ledgers.py), the Lean proofs each key conjoins
+and C7 (since 9 October 2026 their keys also conjoin the declarations of 6-fourier's rows B5, C3, D4 and C9, the
+paper's propagation list row 5): the table of keys (generated from docs/00-ledger.json by ci/make_ledgers.py), the Lean proofs each key conjoins
 (PROOFS), the shells, and the checks, which call the fourier theme (frc/fourier.py). Each check names the rows it decides
 or corroborates (LEDGER), under a `# 00:C2 (p00022)` marker on the check that decides the row (PREDICATES). The Lean side
 is lean/FrcCore/Theme/Fourier.lean, the key file lean/FrcCore/Keys/Fourier.lean and the certificate
@@ -33,8 +34,16 @@ LEAN = {"C2": "core", "C7": "core"}       # the rows with a Lean declaration: th
 # The Lean proofs of the rows' keys: the theorems of the themes that each key conjoins (lean/make_keys.py writes the keys
 # FRC.Ledger.p<key> from them). The master's block file is the binding's source, as a paper's \lean{} cells are its own.
 PROOFS = {
-    "C2": ["FRC.Shell.Frame.scale_shift", "FRC.Shell.Frame.frft_dilation"],
-    "C7": ["FRC.Shell.Frame.orientation"],
+    "C2": ["FRC.Shell.Frame.scale_shift", "FRC.Shell.Frame.frft_dilation",
+           # the paper's declarations the row cites (6-fourier's propagation list, row 5; 9 October 2026): 6:B5 (p06012),
+           # the operator relations; 6:C3 (p06017), the fractional family's additivity, cardinal values, period and powers;
+           # 6:D4 (p06027), the meridian-scale covariance with its p = 13 ladder
+           "FRC.Shell.Frame.W_sq'", "FRC.Shell.Frame.F_sq", "FRC.Shell.Frame.J_sq",
+           "FRC.Shell.Frame.frft_add", "FRC.Shell.Frame.frft_cardinal", "FRC.Shell.Frame.frft_period", "FRC.Shell.Frame.frft_pow",
+           "FRC.Shell.meridian_scale", "FRC.Shell.meridian_step", "FRC.Shell.scale_periodic", "FRC.Shell.ladder13"],
+    "C7": ["FRC.Shell.Frame.orientation",
+           # 6:C9 (p06023), the conjugate frame: its Fourier matrix, its projectors (the same propagation row)
+           "FRC.Shell.Frame.inv_frame", "FRC.Shell.Frame.Fmat_conj", "FRC.Shell.Frame.proj_conj"],
 }
 
 LEAN_ONLY = ()                  # the rows with a Lean declaration and no python check (gate G12): none

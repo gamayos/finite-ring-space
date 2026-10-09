@@ -49,7 +49,8 @@ PROOFS = {
     "C1": ["FRC.Subject.frame_web"],
     "C3": ["FRC.Subject.signature", "FRC.Subject.half_class"],
     "C8": ["FRC.Subject.square_class", "FRC.Subject.half_class", "FRC.Shell.Prime.tsirelson", "FRC.Extension.Ext.norm_scale"],
-    "C14": ["FRC.Subject.quarter_turn_odd"],
+    "C14": ["FRC.Subject.quarter_turn_odd",
+            "FRC.Shell.Frame.euler_identity"],      # 6:B2 (p06009), the Euler identity as a chart-class property (6-fourier's propagation list, row 5; 9 October 2026)
     "C16": ["FRC.Subject.spinor", "FRC.Subject.no_iso", "FRC.Subject.two_part"],
     "C20": ["FRC.Subject.channel", "FRC.Subject.channel_233"],
     "C25": ["FRC.Subject.horizon_antipode", "FRC.Subject.horizon_generator", "FRC.Subject.boost_unique"],
