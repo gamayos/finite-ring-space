@@ -295,7 +295,7 @@ end Shell
 
 namespace Logic
 
-/-- 5:C2 (Proposition mirror) — a part with fewer records than the frame has elements holds no injective
+/-- 5:C2, 29:C10 (Proposition mirror) — a part with fewer records than the frame has elements holds no injective
 representation of the frame's domain: no `f : [0, N) → [0, R)` is injective when `R < N`. In the base since task LM23
 (from `Theme/Logic.lean`, under its old name), so that the foundation's A5 stands on it. -/
 theorem no_mirror {N R : Nat} (hR : R < N) (f : Nat → Nat) (hf : ∀ i, i < N → f i < R)

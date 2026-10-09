@@ -25,6 +25,8 @@ shells and its checks, each check marked by the predicates it decides. `ci/make_
 ledger, the notebook beside the file (one cell per predicate, its id the key) and the Lean certificates
 (`lean/FrcCore/Ledgers/`, `lean/FrcLedger/Ledgers/`). Migrated so far: 3-causality, `p03_causality.py` (task LM20); 22-quantum, `p22_quantum.py`, and 27-fields,
 `p27_fields.py` (task LM35), whose readings against the continuum sit in the chart tier's `chart_quantum.py` and `chart_fields.py`.
+29-finitism, `p29_finitism.py` (9 October 2026), the first ledger file of a paper with no package under `src/`: its checks run
+from the ledger file alone, and the site's ledger-file page serves it (`docs/frc/ledgers/p29_finitism.html`).
 One ledger runs with `python3 -m frc.ledgers.p03_causality`.
 
 **Master blocks.** `frc/ledgers/master/<theme>.py` binds one block of the master ledger the same way. Its table is
@@ -59,7 +61,7 @@ Generated from `frc/themes.py` (`python3 -m frc.themes`).
 | projective | structure | 12 | yes | `projective.py` | `Theme/Projective.lean` | `Theme/Projective.lean` | PGL₂ and SL₂ by elements, the Borel subgroup, the split and non-split tori |
 | fourier | structure | 13 | yes | `fourier.py` | `Theme/Fourier.lean`, `Theme/Fractional.lean`, `Theme/Lifts.lean`, `Theme/Dichotomy.lean`, `Theme/Rotations.lean`, `Theme/Heisenberg.lean`, `Theme/Spectra.lean`, `Theme/Exclusivity.lean` | `Theme/Fourier.lean`, `Theme/Fractional.lean` | the shell DFT and its inversion, the fractional family, the meridians and the scale-shift |
 | numbers | structure | 14 | yes | `numbers.py` | `Poly.lean`, `Theme/Numbers.lean` | `Theme/Numbers.lean` | polynomials over the shell and the root criterion; the walls of π and e; the comb |
-| logic | structure | 15 | yes | `logic.py` | `Theme/Logic.lean` | `Theme/Logic.lean` | the bounded (Δ₀) language over a finite structure, evaluation, finite Gödel; the counting core of 5-reductio and 25-godel |
+| logic | structure | 15 | yes | `logic.py`, `formation.py` | `Theme/Logic.lean`, `Theme/SecondOrder.lean`, `Theme/Formation.lean` | `Theme/Logic.lean` | the bounded (Δ₀) language over a finite structure, evaluation, finite Gödel; the counting core of 5-reductio and 25-godel; the full second-order theory of a finite structure, and formation universes, traces and bounded certificates (29-finitism) |
 | foundation | programme | 20 | yes | `foundation.py` | `Theme/Field.lean`, `Theme/Foundation.lean`, `Theme/Drive.lean` | — | master block A: the ground, the pillars' formal shadows, the trusted base; completeness is primality; every prime carries a frame |
 | carrier | programme | 21 | yes | `carrier.py` | `Theme/Carrier.lean` | — | master block B: the Carrier and its constants; the window ladder; the octant |
 | subject | programme | 22 | yes | `subject.py` | `Theme/Subject.lean` | — | master block C: the Subject, the frame group, the registration |
@@ -86,4 +88,6 @@ name), and `Theme/Logic` the first-order theory of a finite structure. Since tas
 generation and the Koide form. Since task LM30 the chart theme's Mathlib file `FrcLedger/Theme/Chart.lean` holds the
 octant's readings (from 14-entropy) and the floor's (from 21-gravity), with the tilt and the running floor. New theme files go under `Theme/`, since `FrcCore/Fourier.lean`
 and `FrcCore/Gravity.lean` hold the papers 6-fourier and 21-gravity. Since task LM18 the paper modules of today import
-themes only (and their own paper's modules), and gate G09 fails a cross-paper import.
+themes only (and their own paper's modules), and gate G09 fails a cross-paper import. Since 9 October 2026 (29-finitism) the logic
+theme also holds `Theme/SecondOrder` (the full second-order theory of a finite structure) and `Theme/Formation`
+(formation universes, traces and bounded certificates), with the python `frc/formation.py`.

@@ -17,7 +17,7 @@ theorem p05007 : (∀ {A : Type u_1} (S : A → A) (z : A), Function.Injective S
 /-- p05009 — 5:B5. Per-frame completeness: $\mathrm{Th}(W_N)$ is consistent, complete and decidable, axiomatised by the categorical sentence $\sigma_N$; truth in any finite structure is decided by evaluation, and the theory of any structure is complete. Cited definitions (not proofs): FRC.Logic.decRealize, FRC.Logic.decTheory. -/
 theorem p05009 : ∀ {L : FirstOrder.Language} {M : Type u_3} [L.Structure M] [Nonempty M], (L.completeTheory M).IsComplete :=
   @FRC.Logic.theory_complete
-/-- p05013 — 5:C2. No internal mirror: fewer than $s^{K+1}$ records exist, so an agent with $s^{K+1}<N$ holds no injective representation of the domain of $W_N$ --- a proper part cannot mirror the whole (pigeonhole). -/
+/-- p05013 — 5:C2, 29:C10. No internal mirror: fewer than $s^{K+1}$ records exist, so an agent with $s^{K+1}<N$ holds no injective representation of the domain of $W_N$ --- a proper part cannot mirror the whole (pigeonhole). -/
 theorem p05013 : (∀ (s K : ℕ), (2 : ℕ) ≤ s → ∑ i ∈ Finset.range (K + (1 : ℕ)), s ^ i < s ^ (K + (1 : ℕ))) ∧ ∀ {A : Type u_1} {R : Type u_2} [Fintype A] [Fintype R], Fintype.card R < Fintype.card A → ∀ (f : A → R), ¬Function.Injective f :=
   And.intro @FRC.Logic.records_lt (@FRC.Logic.no_mirror)
 /-- p05019 — 5:D3. Diagonal normal form: $\{$Eff, Cns, Cmp, IR$\}$ inconsistent (B2), Tarski a variant with the truth predicate for Cmp; the diagonal is a theorem when external --- Cantor's theorem, $n<2^{n}$ on every frame, uncountability, halting --- and a paradox engine only over an internalised registry with completeness demanded. -/

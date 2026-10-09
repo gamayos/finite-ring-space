@@ -20,6 +20,8 @@ import FrcCore.Theme.Extension
 import FrcCore.Theme.Tally
 import FrcCore.Theme.Numbers
 import FrcCore.Theme.Logic
+import FrcCore.Theme.SecondOrder
+import FrcCore.Theme.Formation
 import FrcCore.Theme.Field
 import FrcCore.Theme.Foundation
 import FrcCore.Theme.Drive
@@ -55,6 +57,7 @@ import FrcCore.Causality
 import FrcCore.Representation
 import FrcCore.Reductio
 import FrcCore.Godel
+import FrcCore.Finitism
 import FrcCore.Geometry
 import FrcCore.Complex
 import FrcCore.Instances

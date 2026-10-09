@@ -421,5 +421,24 @@
    "25:F4": "Godel",
    "25:H2": "Godel"
   }
+ },
+ "29-finitism": {
+  "module": "Finitism",
+  "FrcCore": {
+   "29:B4": "Finitism",
+   "29:B5": "Finitism",
+   "29:B6": "Finitism",
+   "29:C10": "Finitism",
+   "29:C2": "Finitism",
+   "29:C3": "Finitism",
+   "29:C4": "Finitism",
+   "29:C6": "Finitism",
+   "29:C7": "Finitism",
+   "29:C8": "Finitism",
+   "29:E2": "Finitism",
+   "29:E4": "Finitism",
+   "29:X1": "Finitism",
+   "29:X2": "Finitism"
+  }
  }
 }
