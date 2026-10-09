@@ -525,7 +525,7 @@ theorem inv_quarter (F : Frame p κ g) {z : Shell p} (hz : g * z = 1) : quarterT
   show -(z ^ κ) = -quarterTurn g κ
   rw [inv_pow_kappa F hz]
 
-/-- The conjugate frame's transform is `−F J = −F⁻¹` (6:C9). -/
+/-- 6:C9, the conjugate frame's transform is `−F J = −F⁻¹`. -/
 theorem Fmat_conj (F : Frame p κ g) {z : Shell p} (hz : g * z = 1) {k j : Nat} (_hk : k < p - 1) (hj : j < p - 1) :
     Fmat z κ k j = -(FJ g κ k j) := by
   have hn := F.n_pos
@@ -561,7 +561,7 @@ theorem cube_pow {i : Shell p} (h : i * i = -1) : i ^ 3 = -i := by
 theorem neg_cube_pow {i : Shell p} (h : i * i = -1) : (-i) ^ 3 = i := by
   rw [pow_succ, neg_sq_pow h, neg_mul_neg, one_mul]
 
-/-- The conjugate frame's projectors are the shifted ones, `Π'_ℓ = Π_{ℓ+2}` (6:C9). -/
+/-- 6:C9, the conjugate frame's projectors are the shifted ones, `Π'_ℓ = Π_{ℓ+2}`. -/
 theorem proj_conj (F : Frame p κ g) {z : Shell p} (hz : g * z = 1) (ℓ : Nat) {k j : Nat} (hk : k < p - 1)
     (hj : j < p - 1) : proj z κ ℓ k j = proj g κ (ℓ + 2) k j := by
   have h := F.quarter_turn_sq

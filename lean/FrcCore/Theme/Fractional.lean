@@ -313,7 +313,7 @@ theorem w_pow_mod (F : Frame p κ g) (l : Nat) : (-(quarterTurn g κ)) ^ l = (-(
   obtain ⟨m, hm⟩ := FRC.Nat.mod_spec 4 (by decide) l
   rw [congrArg (fun e => (-(quarterTurn g κ)) ^ e) hm, pow_add, pow_mul, w_four F, one_pow, one_mul]
 
-theorem neg_one_ne_one (F : Frame p κ g) : (-1 : Shell p) ≠ 1 := fun h => F.two_ne_zero (by
+theorem minus_one_ne_one (F : Frame p κ g) : (-1 : Shell p) ≠ 1 := fun h => F.two_ne_zero (by
   rw [two_eq_one_add_one]
   calc (1 : Shell p) + 1 = 1 + -1 := by rw [h]
     _ = 0 := add_neg 1)
@@ -330,14 +330,14 @@ theorem quarter_pow (F : Frame p κ g) (ℓ : Nat) :
   (congrArg (· ^ ℓ) (quarter_eq F)).trans (by rw [mul_pow, mul_pow])
 
 theorem w_ne_one (F : Frame p κ g) : -(quarterTurn g κ) ≠ 1 := fun h =>
-  F.neg_one_ne_one (by rw [← w_sq F, h, mul_one])
+  F.minus_one_ne_one (by rw [← w_sq F, h, mul_one])
 
 theorem w_sq_ne_one (F : Frame p κ g) : -(quarterTurn g κ) * -(quarterTurn g κ) ≠ 1 := by
-  rw [w_sq F]; exact F.neg_one_ne_one
+  rw [w_sq F]; exact F.minus_one_ne_one
 
 theorem w_cube_ne_one (F : Frame p κ g) : -(quarterTurn g κ) * -(quarterTurn g κ) * -(quarterTurn g κ) ≠ 1 := fun h => by
   have hw : -(quarterTurn g κ) = -1 := by rw [← neg_neg (-(quarterTurn g κ)), neg_w F, h]
-  exact F.neg_one_ne_one (by rw [← w_sq F, hw, neg_mul_neg, one_mul])
+  exact F.minus_one_ne_one (by rw [← w_sq F, hw, neg_mul_neg, one_mul])
 
 /-- The nontrivial fourth roots: `w^r ≠ 1` for `0 < r < 4`. -/
 theorem w_pow_ne_one (F : Frame p κ g) : ∀ {r : Nat}, 0 < r → r < 4 → (-(quarterTurn g κ)) ^ r ≠ 1
@@ -546,11 +546,11 @@ theorem quarter_ne_zero (F : Frame p κ g) : quarterTurn g κ ≠ 0 := fun h =>
   F.one_ne_zero (by rw [← neg_neg (1 : Shell p), ← F.quarter_turn_sq, h, mul_zero, neg_zero])
 
 theorem one_add_quarter_ne_zero (F : Frame p κ g) : 1 + quarterTurn g κ ≠ 0 := fun h =>
-  F.neg_one_ne_one (by rw [← F.quarter_turn_sq, ← neg_eq_of_add_eq_zero h, neg_mul_neg, one_mul])
+  F.minus_one_ne_one (by rw [← F.quarter_turn_sq, ← neg_eq_of_add_eq_zero h, neg_mul_neg, one_mul])
 
 theorem one_sub_quarter_ne_zero (F : Frame p κ g) : 1 + -(quarterTurn g κ) ≠ 0 := fun h => by
   have hi : quarterTurn g κ = 1 := by rw [← neg_neg (quarterTurn g κ), ← neg_eq_of_add_eq_zero h, neg_neg]
-  exact F.neg_one_ne_one (by rw [← F.quarter_turn_sq, hi, one_mul])
+  exact F.minus_one_ne_one (by rw [← F.quarter_turn_sq, hi, one_mul])
 
 /-- 6:C5, the entry `(0, 0)` of the even projectors: `(Π₀)₀₀ = (q + q)(1 + i)` and `(Π₂)₀₀ = (q + q)(1 − i)`. -/
 theorem even_proj_entry (F : Frame p κ g) :
@@ -624,6 +624,9 @@ theorem frft_injective (F : Frame p κ g) (hκ : 2 ≤ κ) {z : Shell p} (hz : g
 theorem frame5_two : Frame 5 1 (2 : Shell 5) := ⟨rfl, Nat.zero_lt_succ 0, by decide⟩
 theorem frame5_three : Frame 5 1 (3 : Shell 5) := ⟨rfl, Nat.zero_lt_succ 0, by decide⟩
 
+/-- 6:C4, 6:C5, 6:D2, the shell `p = 5` has exactly the two frames `g = 2` and `g = 3`. -/
+theorem five_frames : ∀ g : Shell 5, IsPrimitive g 4 → g = 2 ∨ g = 3 := by decide +kernel
+
 /-- 6:C5, 6:C4, at `p = 5` exactly one odd projector vanishes: `Π₁ = 0 ≠ Π₃` at `g = 2`, `Π₃ = 0 ≠ Π₁` at `g = 3`;
 the surviving odd projector carries the faithful character `s ↦ z^{ms}`, `m` its index. -/
 theorem five_odd_proj :
@@ -632,7 +635,7 @@ theorem five_odd_proj :
     (∀ s, s < 4 → ∀ r, r < 4 → (3 : Shell 5) ^ (3 * s) = 3 ^ (3 * r) → s = r) ∧
     (∀ s, s < 4 → ∀ r, r < 4 → (2 : Shell 5) ^ (1 * s) = 2 ^ (1 * r) → s = r) := by decide +kernel
 
-/-- 6:C4, faithfulness at `p = 5` on both frames (`z = g⁻¹`: `3` for `g = 2`, `2` for `g = 3`). -/
+/-- 6:C4, 6:D2, faithfulness at `p = 5` on both frames (`z = g⁻¹`: `3` for `g = 2`, `2` for `g = 3`). -/
 theorem five_faithful :
     (∀ s, s < 4 → ∀ r, r < 4 → (∀ k, k < 4 → ∀ j, j < 4 → frft (2 : Shell 5) 1 3 s k j = frft (2 : Shell 5) 1 3 r k j) →
       s = r) ∧
@@ -686,8 +689,8 @@ theorem double_mod_n (F : Frame p κ g) {t : Nat} (ht : t < p - 1) (h : (t + t) 
       Nat.lt_of_lt_of_le (Nat.add_lt_add ht ht) (by rw [Nat.mul_add, Nat.mul_two]; exact Nat.le_add_left _ _)
     exact absurd hc (Nat.ne_of_lt this)
 
-/-- 6:D7, the row-0 entries are nonzero for `t ∉ {0, 2κ}`, so `F^{[t]}` is not monomial and `B_{s+t} ≠ B_s`: exactly
-`2κ` measurement bases on the cycle. -/
+/-- 6:D7, the row-0 entries off the site are nonzero for `t ∉ {0, 2κ}` (the paper reads: `F^{[t]}` is not monomial,
+`B_{s+t} ≠ B_s`, exactly `2κ` measurement bases). -/
 theorem frft_row_zero_ne_zero (F : Frame p κ g) {z : Shell p} (hz : g * z = 1) {t : Nat} (ht : t < p - 1) (h0 : t ≠ 0)
     (h2 : t ≠ 2 * κ) {j : Nat} (hj0 : 0 < j) (hj : j < p - 1) : frft g κ z t 0 j ≠ 0 := by
   rw [frft_row_zero F z t hj0 hj]

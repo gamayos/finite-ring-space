@@ -110,7 +110,7 @@
      "label": "B6",
      "predicate": "The normalization is the unitary constant read in the field: $1/n\\equiv-1$, its square roots in $\\Fp$ are exactly $\\pm\\im$, and $(c\\Wt)^{2}=J$ if and only if $c=\\pm\\im$.",
      "tag": "T",
-     "source": "Rem.~\\ref{rem:unitary-norm}\\newline \\pywit{fourier}{p06013}{B6}, \\leanwit{FrcCore}{p06013}{B6} \\lean{FRC.Shell.Frame.ofNat\\_n}",
+     "source": "Rem.~\\ref{rem:unitary-norm}\\newline \\pywit{fourier}{p06013}{B6}, \\leanwit{FrcCore}{p06013}{B6} \\lean{FRC.Shell.Frame.ofNat\\_n, FRC.Shell.Frame.sqrt\\_neg\\_one, FRC.Shell.Frame.scaled\\_W\\_sq\\_iff}",
      "key": "p06013"
     },
     {
@@ -151,21 +151,21 @@
      "label": "C4",
      "predicate": "Faithfulness: $s\\mapsto\\Ft^{[s]}$ is injective on $\\Z_{4\\kap}$ for every $\\kap\\ge1$; at $\\p=5$ the surviving odd projector carries the faithful character.",
      "tag": "T",
-     "source": "Thm.~\\ref{thm:faithful}\\newline \\pywit{fourier}{p06018}{C4}, \\leanwit{FrcCore}{p06018}{C4}, \\leanwit{FrcLedger}{p06018}{C4} \\lean{Fourier.shell\\_frft\\_injective, FRC.Shell.Frame.frft\\_injective, FRC.Shell.Frame.five\\_faithful, FRC.Shell.Frame.five\\_odd\\_proj}",
+     "source": "Thm.~\\ref{thm:faithful}\\newline \\pywit{fourier}{p06018}{C4}, \\leanwit{FrcCore}{p06018}{C4}, \\leanwit{FrcLedger}{p06018}{C4} \\lean{Fourier.shell\\_frft\\_injective, FRC.Shell.Frame.frft\\_injective, FRC.Shell.Frame.five\\_frames, FRC.Shell.Frame.five\\_faithful, FRC.Shell.Frame.five\\_odd\\_proj}",
      "key": "p06018"
     },
     {
      "label": "C5",
      "predicate": "The projector sums $\\Pi_0+\\Pi_2=\\tfrac12(I+J)$ and $\\Pi_1+\\Pi_3=\\tfrac12(I-J)$; $\\Pi_0,\\Pi_2\\neq0$ for every $\\kap\\ge1$ and $\\Pi_1,\\Pi_3\\neq0$ for $\\kap\\ge2$, each by one explicit entry; at $\\p=5$ exactly one of $\\Pi_1,\\Pi_3$ vanishes.",
      "tag": "T",
-     "source": "Lem.~\\ref{lem:multiplicity}\\newline \\pywit{fourier}{p06019}{C5}, \\leanwit{FrcCore}{p06019}{C5}, \\leanwit{FrcLedger}{p06019}{C5} \\lean{Fourier.shell\\_odd\\_proj\\_ne\\_zero, Fourier.shell\\_even\\_proj\\_ne\\_zero, Fourier.shell\\_multiplicity\\_sums, FRC.Shell.Frame.proj\\_even\\_sum, FRC.Shell.Frame.proj\\_odd\\_sum, FRC.Shell.Frame.half, FRC.Shell.Frame.even\\_proj\\_ne\\_zero, FRC.Shell.Frame.odd\\_proj\\_ne\\_zero, FRC.Shell.Frame.five\\_odd\\_proj}",
+     "source": "Lem.~\\ref{lem:multiplicity}\\newline \\pywit{fourier}{p06019}{C5}, \\leanwit{FrcCore}{p06019}{C5}, \\leanwit{FrcLedger}{p06019}{C5} \\lean{Fourier.shell\\_odd\\_proj\\_ne\\_zero, Fourier.shell\\_even\\_proj\\_ne\\_zero, Fourier.shell\\_multiplicity\\_sums, FRC.Shell.Frame.proj\\_even\\_sum, FRC.Shell.Frame.proj\\_odd\\_sum, FRC.Shell.Frame.half, FRC.Shell.Frame.even\\_proj\\_ne\\_zero, FRC.Shell.Frame.odd\\_proj\\_ne\\_zero, FRC.Shell.Frame.five\\_frames, FRC.Shell.Frame.five\\_odd\\_proj}",
      "key": "p06019"
     },
     {
      "label": "C6",
-     "predicate": "Multiplicities are chart data: the vertex relabelling $m\\mapsto um$ carries $\\Ft(\\gen)$ to $\\Ft(\\gen^{u^{2}})$ by a coordinate permutation; at $\\p=13$ the frames $\\gen=2$ and $\\gen=6$ give $(3,3,4,2)$ and $(4,2,3,3)$, traces $4$ and $9$.",
+     "predicate": "Multiplicities are chart data: for $u$ odd and a unit mod $4\\kap$ the vertex relabelling $m\\mapsto um$ carries $\\Ft(\\gen)$ to $\\Ft(\\gen^{u^{2}})$ by a coordinate permutation, $\\Ft(\\gen^{u^{2}})_{kj}=\\Ft(\\gen)_{uk,uj}$; at $\\p=13$ the frames $\\gen=2$ and $\\gen=6$ give the tuples $(3,3,4,2)$ and $(4,2,3,3)$, read as the traces of the projectors, with $\\operatorname{Tr}\\Ft=4,9$.",
      "tag": "T",
-     "source": "Rem.~\\ref{rem:multiplicities}\\newline \\pywit{fourier}{p06020}{C6}",
+     "source": "Rem.~\\ref{rem:multiplicities}\\newline \\pywit{fourier}{p06020}{C6}, \\leanwit{FrcCore}{p06020}{C6} \\lean{FRC.Shell.Frame.Fmat\\_chart, FRC.Shell.Frame.thirteen\\_tuples}",
      "key": "p06020"
     },
     {
@@ -179,7 +179,7 @@
      "label": "C8",
      "predicate": "Exponent lifts: every lift $a_\\ell\\equiv\\ell\\pmod4$, $U^{(a)}_s=\\sum_\\ell\\gen^{-a_\\ell s}\\Pi_\\ell$, is additive with the same cardinal skeleton, $U^{(a)}_{s+r}=U^{(a)}_sU^{(a)}_r$ and $U^{(a)}_{m\\kap}=\\Ft^{m}$.",
      "tag": "T",
-     "source": "Rem.~\\ref{rem:classification}\\newline \\pywit{fourier}{p06022}{C8}, \\leanwit{FrcLedger}{p06022}{C8} \\lean{Fourier.shell\\_frftLift}",
+     "source": "Rem.~\\ref{rem:classification}\\newline \\pywit{fourier}{p06022}{C8}, \\leanwit{FrcCore}{p06022}{C8}, \\leanwit{FrcLedger}{p06022}{C8} \\lean{Fourier.shell\\_frftLift, FRC.Shell.Frame.lift\\_add, FRC.Shell.Frame.lift\\_cardinal, FRC.Shell.Frame.lift\\_pow}",
      "key": "p06022"
     },
     {
@@ -198,9 +198,9 @@
     },
     {
      "label": "C11",
-     "predicate": "Charts outside the classified set: a family canonical in the chart $\\gen^{u}$ with $u^{2}\\not\\equiv1\\pmod{4\\kap}$ does not commute with $\\Ft$, on every shell --- $\\Wt(\\gen^{u})=\\Wt P_u$ with $P_u$ the site relabelling $j\\mapsto uj$, so $\\Wt\\,\\Wt(\\gen^{u})=-JP_u$ and $\\Wt(\\gen^{u})\\,\\Wt=-JP_{u^{-1}}$, equal exactly when $u^{2}\\equiv1$, and the chart's normalized operator $\\Ft'=\\im'\\Wt(\\gen^{u})$ and its $\\Ft'^{[1]}$ are polynomials in each other; $\\p=29$, $u=5$, and every such chart of the six shells of Table~\\ref{tab:checks} checked.",
+     "predicate": "Charts outside the classified set: for $u$ a unit mod $4\\kap$, $\\Wt(\\gen^{u})=\\Wt P_u$ with $P_u$ the site relabelling $j\\mapsto uj$, so $\\Wt\\,\\Wt(\\gen^{u})=-JP_u$ and $\\Wt(\\gen^{u})\\,\\Wt=-JP_{u^{-1}}$, and the two differ at the entry $(-u,1)$ when $u^{2}\\not\\equiv1\\pmod{4\\kap}$: a family canonical in such a chart does not commute with $\\Ft$; $\\p=29$, $u=5$, and every such chart of the six shells of Table~\\ref{tab:checks} checked.",
      "tag": "T",
-     "source": "Rem.~\\ref{rem:classification}\\newline \\pywit{fourier}{p06052}{C11}",
+     "source": "Rem.~\\ref{rem:classification}\\newline \\pywit{fourier}{p06052}{C11}, \\leanwit{FrcCore}{p06052}{C11} \\lean{FRC.Shell.Frame.W\\_chart, FRC.Shell.Frame.W\\_mul\\_chart, FRC.Shell.Frame.chart\\_mul\\_W, FRC.Shell.Frame.chart\\_noncommute}",
      "key": "p06052"
     }
    ]
@@ -220,7 +220,7 @@
      "label": "D2",
      "predicate": "The $4\\kap$ framed domains are pairwise distinct; read as unordered measurement bases $B_{s+2\\kap}=B_s$, since $\\Ft^{[s+2\\kap]}=\\Ft^{[s]}J$ and $J$ permutes the standard basis.",
      "tag": "T",
-     "source": "Cor.~\\ref{cor:distinct-domains}, Rem.~\\ref{rem:ordered-bases}\\newline \\pywit{fourier}{p06025}{D2}, \\leanwit{FrcCore}{p06025}{D2}, \\leanwit{FrcLedger}{p06025}{D2} \\lean{Fourier.shell\\_frft\\_injective, Fourier.shell\\_frft\\_add\\_two\\_kappa, Fourier.mul\\_J\\_apply, FRC.Shell.Frame.frft\\_injective, FRC.Shell.Frame.frft\\_half\\_turn}",
+     "source": "Cor.~\\ref{cor:distinct-domains}, Rem.~\\ref{rem:ordered-bases}\\newline \\pywit{fourier}{p06025}{D2}, \\leanwit{FrcCore}{p06025}{D2}, \\leanwit{FrcLedger}{p06025}{D2} \\lean{Fourier.shell\\_frft\\_injective, Fourier.shell\\_frft\\_add\\_two\\_kappa, Fourier.mul\\_J\\_apply, FRC.Shell.Frame.frft\\_injective, FRC.Shell.Frame.five\\_frames, FRC.Shell.Frame.five\\_faithful, FRC.Shell.Frame.frft\\_half\\_turn}",
      "key": "p06025"
     },
     {
@@ -253,7 +253,7 @@
     },
     {
      "label": "D7",
-     "predicate": "The cycle carries exactly $2\\kap$ measurement bases: $B_{s+t}\\neq B_s$ for $t\\notin\\{0,2\\kap\\}$, since every off-site entry of row $0$ of $\\Ft^{[t]}$ is $\\tfrac{\\im}{2}(1-\\gen^{-2t})\\neq0$ and $\\Ft^{[t]}$ is not monomial; the six shells of Table~\\ref{tab:checks}.",
+     "predicate": "The cycle carries exactly $2\\kap$ measurement bases: every off-site entry of row $0$ of $\\Ft^{[t]}$ is $\\tfrac{\\im}{2}(1-\\gen^{-2t})$, nonzero for $t\\notin\\{0,2\\kap\\}$, so $\\Ft^{[t]}$ is not monomial and $B_{s+t}\\neq B_s$; the six shells of Table~\\ref{tab:checks}.",
      "tag": "T",
      "source": "Rem.~\\ref{rem:ordered-bases}\\newline \\pywit{fourier}{p06053}{D7}, \\leanwit{FrcCore}{p06053}{D7} \\lean{FRC.Shell.Frame.frft\\_row\\_zero, FRC.Shell.Frame.frft\\_row\\_zero\\_ne\\_zero}",
      "key": "p06053"
@@ -510,6 +510,24 @@
     "tier": 0,
     "ok": true,
     "doc": "6:B6 — the normalization constant read in the field: `n = p − 1 ≡ −1`."
+   },
+   {
+    "name": "FRC.Shell.Frame.sqrt_neg_one",
+    "module": "FrcCore/Theme/Lifts",
+    "line": 232,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "6:B6, the square roots of `−1 = 1/n` in the field are exactly `±i`."
+   },
+   {
+    "name": "FRC.Shell.Frame.scaled_W_sq_iff",
+    "module": "FrcCore/Theme/Lifts",
+    "line": 247,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "6:B6, `(c W)² = J` exactly when `c = ±i`: `(cW)² = c² W² = −c² J`."
    }
   ],
   "B7": [
@@ -615,7 +633,7 @@
    {
     "name": "FRC.Shell.Frame.proj_mul_self",
     "module": "FrcCore/Theme/Fractional",
-    "line": 378,
+    "line": 414,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -624,7 +642,7 @@
    {
     "name": "FRC.Shell.Frame.proj_mul_ne",
     "module": "FrcCore/Theme/Fractional",
-    "line": 387,
+    "line": 423,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -633,7 +651,7 @@
    {
     "name": "FRC.Shell.Frame.sum_proj",
     "module": "FrcCore/Theme/Fractional",
-    "line": 397,
+    "line": 433,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -642,7 +660,7 @@
    {
     "name": "FRC.Shell.Frame.Fmat_proj",
     "module": "FrcCore/Theme/Fractional",
-    "line": 414,
+    "line": 450,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -750,18 +768,27 @@
     "doc": "6:C4, 6:D2, faithfulness: `F^{[s]} = F^{[r]}` entrywise forces `s = r` below the period, for `κ ≥ 2`. The entry `(2, 1)` of `F^{[s]} Π₁ = z^s Π₁` reads `z^s (Π₁)₂₁` with `(Π₁)₂₁ ≠ 0`, so `z^s = z^r` and `z` has order `4κ`."
    },
    {
-    "name": "FRC.Shell.Frame.five_faithful",
+    "name": "FRC.Shell.Frame.five_frames",
     "module": "FrcCore/Theme/Fractional",
-    "line": 636,
+    "line": 628,
     "axioms": [],
     "tier": 0,
     "ok": true,
-    "doc": "6:C4, faithfulness at `p = 5` on both frames (`z = g⁻¹`: `3` for `g = 2`, `2` for `g = 3`)."
+    "doc": "6:C4, 6:C5, 6:D2, the shell `p = 5` has exactly the two frames `g = 2` and `g = 3`."
+   },
+   {
+    "name": "FRC.Shell.Frame.five_faithful",
+    "module": "FrcCore/Theme/Fractional",
+    "line": 639,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "6:C4, 6:D2, faithfulness at `p = 5` on both frames (`z = g⁻¹`: `3` for `g = 2`, `2` for `g = 3`)."
    },
    {
     "name": "FRC.Shell.Frame.five_odd_proj",
     "module": "FrcCore/Theme/Fractional",
-    "line": 629,
+    "line": 632,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -854,9 +881,18 @@
     "doc": "6:C5, the odd projectors do not vanish for `κ ≥ 2`: the entry `(2, 1)` of each is `±q (g² − g^{−2}) ≠ 0`."
    },
    {
+    "name": "FRC.Shell.Frame.five_frames",
+    "module": "FrcCore/Theme/Fractional",
+    "line": 628,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "6:C4, 6:C5, 6:D2, the shell `p = 5` has exactly the two frames `g = 2` and `g = 3`."
+   },
+   {
     "name": "FRC.Shell.Frame.five_odd_proj",
     "module": "FrcCore/Theme/Fractional",
-    "line": 629,
+    "line": 632,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -917,6 +953,33 @@
     "tier": 2,
     "ok": true,
     "doc": "6:C8 — 6-fourier's name; the theorem is `FRC.Fractional.shell_frftLift` (task LM36)."
+   },
+   {
+    "name": "FRC.Shell.Frame.lift_add",
+    "module": "FrcCore/Theme/Lifts",
+    "line": 105,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "6:C8, every lift is additive: `U^{(a)}_{s+r} = U^{(a)}_s U^{(a)}_r`, by the projector algebra alone."
+   },
+   {
+    "name": "FRC.Shell.Frame.lift_cardinal",
+    "module": "FrcCore/Theme/Lifts",
+    "line": 118,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "6:C8, the cardinal skeleton: with `a_ℓ ≡ ℓ (mod 4)` the lift agrees with the family at the multiples of `κ`, `U^{(a)}_{mκ} = F^{[mκ]} = F^m` (`frft_pow`, `frft_cardinal`), since `z^{mκ} = i^m` is a fourth root of unity."
+   },
+   {
+    "name": "FRC.Shell.Frame.lift_pow",
+    "module": "FrcCore/Theme/Lifts",
+    "line": 130,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "6:C8, the lift at the multiples of `κ` is the power of the transform: `U^{(a)}_{mκ} = F^m`."
    }
   ],
   "C9": [
@@ -959,6 +1022,17 @@
     "tier": 0,
     "ok": true,
     "doc": "The conjugate frame's projectors are the shifted ones, `Π'_ℓ = Π_{ℓ+2}` (6:C9)."
+   }
+  ],
+  "D1": [
+   {
+    "name": "FRC.Shell.Frame.frft_inverse",
+    "module": "FrcCore/Theme/Fractional",
+    "line": 645,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "6:D1, every `F^{[s]}` is invertible: `F^{[s]} F^{[n−s]} = I = F^{[n−s]} F^{[s]}` for `s ≤ n = p − 1`."
    }
   ],
   "D2": [
@@ -1011,9 +1085,27 @@
     "doc": "6:C4, 6:D2, faithfulness: `F^{[s]} = F^{[r]}` entrywise forces `s = r` below the period, for `κ ≥ 2`. The entry `(2, 1)` of `F^{[s]} Π₁ = z^s Π₁` reads `z^s (Π₁)₂₁` with `(Π₁)₂₁ ≠ 0`, so `z^s = z^r` and `z` has order `4κ`."
    },
    {
+    "name": "FRC.Shell.Frame.five_frames",
+    "module": "FrcCore/Theme/Fractional",
+    "line": 628,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "6:C4, 6:C5, 6:D2, the shell `p = 5` has exactly the two frames `g = 2` and `g = 3`."
+   },
+   {
+    "name": "FRC.Shell.Frame.five_faithful",
+    "module": "FrcCore/Theme/Fractional",
+    "line": 639,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "6:C4, 6:D2, faithfulness at `p = 5` on both frames (`z = g⁻¹`: `3` for `g = 2`, `2` for `g = 3`)."
+   },
+   {
     "name": "FRC.Shell.Frame.frft_half_turn",
     "module": "FrcCore/Theme/Fractional",
-    "line": 659,
+    "line": 662,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -1058,6 +1150,26 @@
     "tier": 0,
     "ok": true,
     "doc": "6:D5 — the `p = 13`, `g = 2`, `κ = 3` ladder: `M_0, M_1, M_2, M_3` at the effective steps `1, 2, 4, 8`; `M_0` and `M_1` are unwrapped (`π g^r = 6 g^r < 13` for `r ≤ 1`), `M_2` wraps (`6 · 4 = 24 ≥ 13`: its entries `0, 4, 8, 12, 3, 7, 11` return through the seam)."
+   }
+  ],
+  "D7": [
+   {
+    "name": "FRC.Shell.Frame.frft_row_zero",
+    "module": "FrcCore/Theme/Fractional",
+    "line": 669,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "6:D7, the row-0 entries of `F^{[t]}` off the site `j = 0`: `F^{[t]}_{0j} = (q + q)(1 − z^{2t}) i = (i/2)(1 − g^{−2t})`, the same value at every `0 < j < n`."
+   },
+   {
+    "name": "FRC.Shell.Frame.frft_row_zero_ne_zero",
+    "module": "FrcCore/Theme/Fractional",
+    "line": 694,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "6:D7, the row-0 entries off the site are nonzero for `t ∉ {0, 2κ}` (the paper reads: `F^{[t]}` is not monomial, `B_{s+t} ≠ B_s`, exactly `2κ` measurement bases)."
    }
   ],
   "E2": [
@@ -1187,35 +1299,62 @@
     "doc": "6:E7 — 6-fourier's name; the theorem is `FRC.Fractional.shell_heisenberg` (task LM36)."
    }
   ],
-  "D1": [
+  "C6": [
    {
-    "name": "FRC.Shell.Frame.frft_inverse",
-    "module": "FrcCore/Theme/Fractional",
-    "line": 645,
+    "name": "FRC.Shell.Frame.Fmat_chart",
+    "module": "FrcCore/Theme/Lifts",
+    "line": 203,
     "axioms": [],
     "tier": 0,
     "ok": true,
-    "doc": "6:D1, every `F^{[s]}` is invertible: `F^{[s]} F^{[n−s]} = I = F^{[n−s]} F^{[s]}` for `s ≤ n = p − 1`."
-   }
-  ],
-  "D7": [
-   {
-    "name": "FRC.Shell.Frame.frft_row_zero",
-    "module": "FrcCore/Theme/Fractional",
-    "line": 666,
-    "axioms": [],
-    "tier": 0,
-    "ok": true,
-    "doc": "6:D7, the row-0 entries of `F^{[t]}` off the site `j = 0`: `F^{[t]}_{0j} = (q + q)(1 − z^{2t}) i = (i/2)(1 − g^{−2t})`, the same value at every `0 < j < n`."
+    "doc": "6:C6, the chart `g^{u²}` of an odd `u` is the coordinate relabelling `m ↦ um`: `F(g^{u²})_{kj} = F(g)_{uk, uj}`, the indices read mod `n`; the quarter-turn is unchanged since `u² ≡ 1 (mod 4)`."
    },
    {
-    "name": "FRC.Shell.Frame.frft_row_zero_ne_zero",
-    "module": "FrcCore/Theme/Fractional",
-    "line": 691,
+    "name": "FRC.Shell.Frame.thirteen_tuples",
+    "module": "FrcCore/Theme/Lifts",
+    "line": 222,
     "axioms": [],
     "tier": 0,
     "ok": true,
-    "doc": "6:D7, the row-0 entries are nonzero for `t ∉ {0, 2κ}`, so `F^{[t]}` is not monomial and `B_{s+t} ≠ B_s`: exactly `2κ` measurement bases on the cycle."
+    "doc": "6:C6, the two frames `g = 2` and `g = 6` of `p = 13`: the traces of the projectors read `(3, 3, 4, 2)` and `(4, 2, 3, 3)`, the multiplicity tuples, and `Tr F = 4, 9`."
+   }
+  ],
+  "C11": [
+   {
+    "name": "FRC.Shell.Frame.W_chart",
+    "module": "FrcCore/Theme/Lifts",
+    "line": 146,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "6:C11, the chart's Fourier matrix is the relabelled one: `W(g^u)_{kj} = W(g)_{k, uj}`, the index read mod `n` (`W(g^u) = W P_u`)."
+   },
+   {
+    "name": "FRC.Shell.Frame.W_mul_chart",
+    "module": "FrcCore/Theme/Lifts",
+    "line": 152,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "6:C11, `W · W(g^u) = −J P_u`: entrywise `−[k + uj ≡ 0 (mod n)]`, by the geometric sum."
+   },
+   {
+    "name": "FRC.Shell.Frame.chart_mul_W",
+    "module": "FrcCore/Theme/Lifts",
+    "line": 160,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "6:C11, `W(g^u) · W = −J P_{u⁻¹}`: entrywise `−[uk + j ≡ 0 (mod n)]`."
+   },
+   {
+    "name": "FRC.Shell.Frame.chart_noncommute",
+    "module": "FrcCore/Theme/Lifts",
+    "line": 175,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "6:C11, the non-commutation: when `u² ≢ 1 (mod n)` the entry `(−u, 1)` of `W · W(g^u)` is `−1` and that of `W(g^u) · W` is `0`, so the chart `g^u` does not commute with the frame's `W`."
    }
   ]
  }
