@@ -1,6 +1,6 @@
 {
  "header": {
-  "generated": "8 October 2026",
+  "generated": "9 October 2026",
   "schema": "frc-register/2",
   "rows": 1012,
   "theorems": 1004,
@@ -1524,14 +1524,14 @@
   {
    "key": "p00009",
    "origin": "00",
-   "statement": "Scale, the sole quantitative import: the de Sitter entropy of the observable universe fixes the cardinality exactly, $\\Om=4\\dS+1$. Its chart numeral is $\\dS=\\pi(r_H/\\ell_P)^2=3.3\\times10^{122}$ [chart] at $r_H=c/H_\\Lambda$ (14-entr), so $\\Om=1.3\\times10^{123}$ and $\\ln\\Om=283.5$ [chart], the numeral of every chart reading in the ledger. The Carrier congruences are certified by the realisations (B5, C8), not imported. Metrology: L2.",
+   "statement": "Scale, the sole quantitative import: the de Sitter entropy of the observable universe fixes the cardinality exactly, $\\Om=4\\dS+1$. Its chart numeral is $\\dS=\\pi(r_H/\\ell_P)^2=3.3\\times10^{122}$ [chart] at $r_H=c/H_\\Lambda$ (14-entr), so $\\Om=1.3\\times10^{123}$ [chart]. The Carrier congruences are certified by the realisations (B5, C8), not imported. Metrology: L2.",
    "origin_row": "00:A8",
    "tag": "I",
    "tier": 2,
    "check": {
     "href": "frc/ledgers/master/chart.html#p00009",
     "script": "frc/ledgers/master/chart.py",
-    "line": 79,
+    "line": 80,
     "verdict": "pass"
    },
    "declarations": [
@@ -2117,7 +2117,7 @@
    "check": {
     "href": "frc/ledgers/master/extension.html#p00030",
     "script": "frc/ledgers/master/extension.py",
-    "line": 82,
+    "line": 90,
     "verdict": "pass"
    },
    "declarations": [
@@ -2141,11 +2141,20 @@
    "statement": "Uniqueness of the pair tally on the stationary core-valued $\\Qf$ sector: tally-valued, fibre-additive, drive-invariant, two-way registration functionals form the $d^2c$-realized character cone, the degree itself forced (Lemma~\\ref{lem:degree}); channel selectivity picks the Born ray.",
    "origin_row": "22:C12",
    "tag": "T",
-   "tier": null,
+   "tier": 0,
    "check": {
-    "script": "22:gleason.py"
+    "href": "frc/ledgers/master/extension.html#p22028",
+    "script": "frc/ledgers/master/extension.py",
+    "line": 213,
+    "verdict": "pass"
    },
-   "declarations": [],
+   "declarations": [
+    {
+     "lib": "FrcCore",
+     "module": "FrcCore/Keys/Extension",
+     "name": "FRC.Ledger.p22028"
+    }
+   ],
    "aliases": [
     "p00031"
    ],
@@ -2163,9 +2172,20 @@
    "statement": "\\textbf{Temperature and the classical arity, derived}: the temperature domain is acceleration, $[\\Theta]=[E][k_B]^{-1}=[L][T]^{-2}$, flag-free, $\\Theta_P=E_P/|k_B|$, Unruh closing as a domain identity; neither mass nor temperature is primitive --- $M$-$L$-$T$-plus-thermal is the torsion-free shadow of the two-generators-plus-flag system (the mass primitive standing in for the flag, the thermal for $k_B$), classical dimensional analysis recovered in exponents and arity.",
    "origin_row": "00:C12",
    "tag": "T",
-   "tier": null,
-   "check": null,
-   "declarations": [],
+   "tier": 0,
+   "check": {
+    "href": "frc/ledgers/master/frame.html#p00032",
+    "script": "frc/ledgers/master/frame.py",
+    "line": 57,
+    "verdict": "pass"
+   },
+   "declarations": [
+    {
+     "lib": "FrcCore",
+     "module": "FrcCore/Keys/Frame",
+     "name": "FRC.Ledger.p00032"
+    }
+   ],
    "aliases": [],
    "rows": [
     "00:C12"
@@ -3291,7 +3311,7 @@
    "check": {
     "href": "frc/ledgers/master/chart.html#p00192",
     "script": "frc/ledgers/master/chart.py",
-    "line": 108,
+    "line": 112,
     "verdict": "pass"
    },
    "declarations": [
@@ -3332,7 +3352,7 @@
    "check": {
     "href": "frc/ledgers/master/chart.html#p00193",
     "script": "frc/ledgers/master/chart.py",
-    "line": 132,
+    "line": 136,
     "verdict": "pass"
    },
    "declarations": [
@@ -3390,7 +3410,7 @@
    "check": {
     "href": "frc/ledgers/master/chart.html#p00148",
     "script": "frc/ledgers/master/chart.py",
-    "line": 170,
+    "line": 174,
     "verdict": "pass"
    },
    "declarations": [
@@ -3445,7 +3465,7 @@
    "check": {
     "href": "frc/ledgers/master/chart.html#p00133",
     "script": "frc/ledgers/master/chart.py",
-    "line": 197,
+    "line": 201,
     "verdict": "pass"
    },
    "declarations": [
@@ -7473,6 +7493,16 @@
      "lib": "FrcCore",
      "module": "FrcCore/Transform",
      "name": "FRC.Shell.Frame.ofNat_n"
+    },
+    {
+     "lib": "FrcCore",
+     "module": "FrcCore/Theme/Lifts",
+     "name": "FRC.Shell.Frame.sqrt_neg_one"
+    },
+    {
+     "lib": "FrcCore",
+     "module": "FrcCore/Theme/Lifts",
+     "name": "FRC.Shell.Frame.scaled_W_sq_iff"
     }
    ],
    "aliases": [],
@@ -7552,7 +7582,7 @@
    "statement": "$\\Pi_\\ell^{2}=\\Pi_\\ell$, $\\Pi_\\ell\\Pi_m=0$ for $\\ell\\neq m$, $\\sum_\\ell\\Pi_\\ell=I$, $\\Ft\\Pi_\\ell=\\im^{\\ell}\\Pi_\\ell$.",
    "origin_row": "6:C2",
    "tag": "T",
-   "tier": 2,
+   "tier": 0,
    "check": {
     "href": "src/6-fourier/#p06016",
     "script": "fourier.py",
@@ -7574,6 +7604,26 @@
      "lib": "FrcLedger",
      "module": "FrcLedger/Fourier",
      "name": "FRC.Fourier.sum_proj"
+    },
+    {
+     "lib": "FrcCore",
+     "module": "FrcCore/Theme/Fractional",
+     "name": "FRC.Shell.Frame.proj_mul_self"
+    },
+    {
+     "lib": "FrcCore",
+     "module": "FrcCore/Theme/Fractional",
+     "name": "FRC.Shell.Frame.proj_mul_ne"
+    },
+    {
+     "lib": "FrcCore",
+     "module": "FrcCore/Theme/Fractional",
+     "name": "FRC.Shell.Frame.sum_proj"
+    },
+    {
+     "lib": "FrcCore",
+     "module": "FrcCore/Theme/Fractional",
+     "name": "FRC.Shell.Frame.Fmat_proj"
     }
    ],
    "aliases": [],
@@ -7588,7 +7638,7 @@
    "statement": "The exact finite-field FrFT: $s\\mapsto\\Ft^{[s]}$ is a representation of $\\Phit$, $\\Ft^{[s+r]}=\\Ft^{[s]}\\Ft^{[r]}$ on every pair of the six shells, with the cardinal values $\\Ft^{[0]}=I$, $\\Ft^{[\\kap]}=\\Ft$, $\\Ft^{[2\\kap]}=J$, $\\Ft^{[3\\kap]}=\\Ft^{-1}$, and $(\\Ft^{[1]})^{\\kap}=\\Ft$.",
    "origin_row": "6:C3",
    "tag": "T",
-   "tier": 2,
+   "tier": 0,
    "check": {
     "href": "src/6-fourier/#p06017",
     "script": "fourier.py",
@@ -7610,6 +7660,26 @@
      "lib": "FrcLedger",
      "module": "FrcLedger/Fourier",
      "name": "FRC.Fourier.shell_frft_values"
+    },
+    {
+     "lib": "FrcCore",
+     "module": "FrcCore/Theme/Fourier",
+     "name": "FRC.Shell.Frame.frft_add"
+    },
+    {
+     "lib": "FrcCore",
+     "module": "FrcCore/Theme/Fourier",
+     "name": "FRC.Shell.Frame.frft_cardinal"
+    },
+    {
+     "lib": "FrcCore",
+     "module": "FrcCore/Theme/Fourier",
+     "name": "FRC.Shell.Frame.frft_period"
+    },
+    {
+     "lib": "FrcCore",
+     "module": "FrcCore/Theme/Fourier",
+     "name": "FRC.Shell.Frame.frft_pow"
     }
    ],
    "aliases": [],
@@ -7624,7 +7694,7 @@
    "statement": "Faithfulness: $s\\mapsto\\Ft^{[s]}$ is injective on $\\Z_{4\\kap}$ for every $\\kap\\ge1$; at $\\p=5$ the surviving odd projector carries the faithful character.",
    "origin_row": "6:C4",
    "tag": "T",
-   "tier": 2,
+   "tier": 0,
    "check": {
     "href": "src/6-fourier/#p06018",
     "script": "fourier.py",
@@ -7636,6 +7706,26 @@
      "lib": "FrcLedger",
      "module": "FrcLedger/Fourier",
      "name": "FRC.Fourier.shell_frft_injective"
+    },
+    {
+     "lib": "FrcCore",
+     "module": "FrcCore/Theme/Fractional",
+     "name": "FRC.Shell.Frame.frft_injective"
+    },
+    {
+     "lib": "FrcCore",
+     "module": "FrcCore/Theme/Fractional",
+     "name": "FRC.Shell.Frame.five_frames"
+    },
+    {
+     "lib": "FrcCore",
+     "module": "FrcCore/Theme/Fractional",
+     "name": "FRC.Shell.Frame.five_faithful"
+    },
+    {
+     "lib": "FrcCore",
+     "module": "FrcCore/Theme/Fractional",
+     "name": "FRC.Shell.Frame.five_odd_proj"
     }
    ],
    "aliases": [],
@@ -7647,10 +7737,10 @@
   {
    "key": "p06019",
    "origin": "06",
-   "statement": "The multiplicities $m_\\ell=\\operatorname{rank}\\Pi_\\ell=\\dim\\ker(\\Ft-\\im^{\\ell}I)$: $m_0+m_2=2\\kap+1$, $m_1+m_3=2\\kap-1$; $m_0,m_2\\ge1$; $m_1,m_3\\ge1$ for $\\kap\\ge2$; at $\\p=5$ exactly one of $\\Pi_1,\\Pi_3$ vanishes.",
+   "statement": "The projector sums $\\Pi_0+\\Pi_2=\\tfrac12(I+J)$ and $\\Pi_1+\\Pi_3=\\tfrac12(I-J)$; $\\Pi_0,\\Pi_2\\neq0$ for every $\\kap\\ge1$ and $\\Pi_1,\\Pi_3\\neq0$ for $\\kap\\ge2$, each by one explicit entry; at $\\p=5$ exactly one of $\\Pi_1,\\Pi_3$ vanishes.",
    "origin_row": "6:C5",
    "tag": "T",
-   "tier": 2,
+   "tier": 0,
    "check": {
     "href": "src/6-fourier/#p06019",
     "script": "fourier.py",
@@ -7672,6 +7762,41 @@
      "lib": "FrcLedger",
      "module": "FrcLedger/Fourier",
      "name": "FRC.Fourier.shell_multiplicity_sums"
+    },
+    {
+     "lib": "FrcCore",
+     "module": "FrcCore/Theme/Fractional",
+     "name": "FRC.Shell.Frame.proj_even_sum"
+    },
+    {
+     "lib": "FrcCore",
+     "module": "FrcCore/Theme/Fractional",
+     "name": "FRC.Shell.Frame.proj_odd_sum"
+    },
+    {
+     "lib": "FrcCore",
+     "module": "FrcCore/Theme/Fractional",
+     "name": "FRC.Shell.Frame.half"
+    },
+    {
+     "lib": "FrcCore",
+     "module": "FrcCore/Theme/Fractional",
+     "name": "FRC.Shell.Frame.even_proj_ne_zero"
+    },
+    {
+     "lib": "FrcCore",
+     "module": "FrcCore/Theme/Fractional",
+     "name": "FRC.Shell.Frame.odd_proj_ne_zero"
+    },
+    {
+     "lib": "FrcCore",
+     "module": "FrcCore/Theme/Fractional",
+     "name": "FRC.Shell.Frame.five_frames"
+    },
+    {
+     "lib": "FrcCore",
+     "module": "FrcCore/Theme/Fractional",
+     "name": "FRC.Shell.Frame.five_odd_proj"
     }
    ],
    "aliases": [],
@@ -7683,17 +7808,28 @@
   {
    "key": "p06020",
    "origin": "06",
-   "statement": "Multiplicities are chart data: the vertex relabelling $m\\mapsto um$ carries $\\Ft(\\gen)$ to $\\Ft(\\gen^{u^{2}})$ by a coordinate permutation; at $\\p=13$ the frames $\\gen=2$ and $\\gen=6$ give $(3,3,4,2)$ and $(4,2,3,3)$, traces $4$ and $9$.",
+   "statement": "Multiplicities are chart data: for $u$ odd and a unit mod $4\\kap$ the vertex relabelling $m\\mapsto um$ carries $\\Ft(\\gen)$ to $\\Ft(\\gen^{u^{2}})$ by a coordinate permutation, $\\Ft(\\gen^{u^{2}})_{kj}=\\Ft(\\gen)_{uk,uj}$; at $\\p=13$ the frames $\\gen=2$ and $\\gen=6$ give the tuples $(3,3,4,2)$ and $(4,2,3,3)$, read as the traces of the projectors, with $\\operatorname{Tr}\\Ft=4,9$.",
    "origin_row": "6:C6",
    "tag": "T",
-   "tier": null,
+   "tier": 0,
    "check": {
     "href": "src/6-fourier/#p06020",
     "script": "fourier.py",
     "line": 541,
     "verdict": "pass"
    },
-   "declarations": [],
+   "declarations": [
+    {
+     "lib": "FrcCore",
+     "module": "FrcCore/Theme/Lifts",
+     "name": "FRC.Shell.Frame.Fmat_chart"
+    },
+    {
+     "lib": "FrcCore",
+     "module": "FrcCore/Theme/Lifts",
+     "name": "FRC.Shell.Frame.thirteen_tuples"
+    }
+   ],
    "aliases": [],
    "rows": [
     "6:C6"
@@ -7703,10 +7839,10 @@
   {
    "key": "p06021",
    "origin": "06",
-   "statement": "The multiplicity dichotomy: with $G=\\sum_{k}\\gen^{k^{2}}=\\varepsilon(1+\\im)$ (A3), the tuple is $(\\kap,\\kap,\\kap+1,\\kap-1)$ for $\\varepsilon=+1$ and $(\\kap+1,\\kap-1,\\kap,\\kap)$ for $\\varepsilon=-1$; $GG^{*}=-2$ and $\\varepsilon(\\gen^{-1})=-\\varepsilon(\\gen)$. Exact on the $38$ primitive frames of $\\p\\in\\{5,13,17,29,37\\}$ and the $16$ of $\\p=41$.",
+   "statement": "The multiplicity dichotomy in trace form: with $G=\\sum_{k}\\gen^{k^{2}}$ and $G^{*}=\\sum_k\\gen^{-k^{2}}$ the traces are $\\operatorname{Tr}\\Ft=\\im G$, $\\operatorname{Tr}\\Ft^{2}=2$, $\\operatorname{Tr}\\Ft^{3}=\\im G^{*}$ and $\\operatorname{Tr}\\Pi_\\ell=\\tfrac14\\sum_r\\im^{-\\ell r}\\operatorname{Tr}\\Ft^{r}$; $GG^{*}=-2$ and $\\varepsilon(\\gen^{-1})=-\\varepsilon(\\gen)$; when $G=\\varepsilon(1+\\im)$ (A3) the tuple of traces is $(\\kap,\\kap,\\kap+1,\\kap-1)$ for $\\varepsilon=+1$ and $(\\kap+1,\\kap-1,\\kap,\\kap)$ for $\\varepsilon=-1$, read in $\\Fp$; the sign and the tuples on the six shells of Table~\\ref{tab:checks}. Exact on the $38$ primitive frames of $\\p\\in\\{5,13,17,29,37\\}$ and the $16$ of $\\p=41$.",
    "origin_row": "6:C7",
    "tag": "T",
-   "tier": 2,
+   "tier": 0,
    "check": {
     "href": "src/6-fourier/#p06021",
     "script": "fourier.py",
@@ -7728,6 +7864,41 @@
      "lib": "FrcLedger",
      "module": "FrcLedger/Fourier",
      "name": "FRC.Fourier.shell_multiplicity_tuple"
+    },
+    {
+     "lib": "FrcCore",
+     "module": "FrcCore/Theme/Dichotomy",
+     "name": "FRC.Shell.Frame.trace_powers"
+    },
+    {
+     "lib": "FrcCore",
+     "module": "FrcCore/Theme/Dichotomy",
+     "name": "FRC.Shell.Frame.trace_proj"
+    },
+    {
+     "lib": "FrcCore",
+     "module": "FrcCore/Theme/Dichotomy",
+     "name": "FRC.Shell.Frame.gauss_mul"
+    },
+    {
+     "lib": "FrcCore",
+     "module": "FrcCore/Theme/Dichotomy",
+     "name": "FRC.Shell.Frame.gauss_conj"
+    },
+    {
+     "lib": "FrcCore",
+     "module": "FrcCore/Theme/Dichotomy",
+     "name": "FRC.Shell.Frame.trace_tuples"
+    },
+    {
+     "lib": "FrcCore",
+     "module": "FrcCore/Theme/Dichotomy",
+     "name": "FRC.Shell.Frame.six_signs"
+    },
+    {
+     "lib": "FrcCore",
+     "module": "FrcCore/Theme/Dichotomy",
+     "name": "FRC.Shell.Frame.six_tuples"
     }
    ],
    "aliases": [],
@@ -7742,7 +7913,7 @@
    "statement": "Exponent lifts: every lift $a_\\ell\\equiv\\ell\\pmod4$, $U^{(a)}_s=\\sum_\\ell\\gen^{-a_\\ell s}\\Pi_\\ell$, is additive with the same cardinal skeleton, $U^{(a)}_{s+r}=U^{(a)}_sU^{(a)}_r$ and $U^{(a)}_{m\\kap}=\\Ft^{m}$.",
    "origin_row": "6:C8",
    "tag": "T",
-   "tier": 2,
+   "tier": 0,
    "check": {
     "href": "src/6-fourier/#p06022",
     "script": "fourier.py",
@@ -7754,6 +7925,21 @@
      "lib": "FrcLedger",
      "module": "FrcLedger/Fourier",
      "name": "FRC.Fourier.shell_frftLift"
+    },
+    {
+     "lib": "FrcCore",
+     "module": "FrcCore/Theme/Lifts",
+     "name": "FRC.Shell.Frame.lift_add"
+    },
+    {
+     "lib": "FrcCore",
+     "module": "FrcCore/Theme/Lifts",
+     "name": "FRC.Shell.Frame.lift_cardinal"
+    },
+    {
+     "lib": "FrcCore",
+     "module": "FrcCore/Theme/Lifts",
+     "name": "FRC.Shell.Frame.lift_pow"
     }
    ],
    "aliases": [],
@@ -7768,7 +7954,7 @@
    "statement": "The conjugate reframing $(\\gen,\\im)\\mapsto(\\gen^{-1},-\\im)$: exactly $\\Ft'=-\\Ft^{-1}$ and $\\Pi'_\\ell=\\Pi_{\\ell+2}$; the operator relations, cardinal values, additivity and faithfulness hold on the conjugate frame, and its multiplicity tuple is the other pattern of C7.",
    "origin_row": "6:C9",
    "tag": "T",
-   "tier": 2,
+   "tier": 0,
    "check": {
     "href": "src/6-fourier/#p06023",
     "script": "fourier.py",
@@ -7780,6 +7966,21 @@
      "lib": "FrcLedger",
      "module": "FrcLedger/Fourier",
      "name": "FRC.Fourier.shell_conj"
+    },
+    {
+     "lib": "FrcCore",
+     "module": "FrcCore/Theme/Fourier",
+     "name": "FRC.Shell.Frame.inv_frame"
+    },
+    {
+     "lib": "FrcCore",
+     "module": "FrcCore/Theme/Fourier",
+     "name": "FRC.Shell.Frame.Fmat_conj"
+    },
+    {
+     "lib": "FrcCore",
+     "module": "FrcCore/Theme/Fourier",
+     "name": "FRC.Shell.Frame.proj_conj"
     }
    ],
    "aliases": [],
@@ -7811,17 +8012,38 @@
   {
    "key": "p06052",
    "origin": "06",
-   "statement": "Charts outside the classified set: a family canonical in the chart $\\gen^{u}$ with $u^{2}\\not\\equiv1\\pmod{4\\kap}$ does not commute with $\\Ft$, on every shell --- $\\Wt(\\gen^{u})=\\Wt P_u$ with $P_u$ the site relabelling $j\\mapsto uj$, so $\\Wt\\,\\Wt(\\gen^{u})=-JP_u$ and $\\Wt(\\gen^{u})\\,\\Wt=-JP_{u^{-1}}$, equal exactly when $u^{2}\\equiv1$, and the chart's normalized operator $\\Ft'=\\im'\\Wt(\\gen^{u})$ and its $\\Ft'^{[1]}$ are polynomials in each other; $\\p=29$, $u=5$, and every such chart of the six shells of Table~\\ref{tab:checks} checked.",
+   "statement": "Charts outside the classified set: for $u$ a unit mod $4\\kap$, $\\Wt(\\gen^{u})=\\Wt P_u$ with $P_u$ the site relabelling $j\\mapsto uj$, so $\\Wt\\,\\Wt(\\gen^{u})=-JP_u$ and $\\Wt(\\gen^{u})\\,\\Wt=-JP_{u^{-1}}$, and the two differ at the entry $(-u,1)$ when $u^{2}\\not\\equiv1\\pmod{4\\kap}$: a family canonical in such a chart does not commute with $\\Ft$; $\\p=29$, $u=5$, and every such chart of the six shells of Table~\\ref{tab:checks} checked.",
    "origin_row": "6:C11",
    "tag": "T",
-   "tier": null,
+   "tier": 0,
    "check": {
     "href": "src/6-fourier/#p06052",
     "script": "fourier.py",
     "line": 607,
     "verdict": "pass"
    },
-   "declarations": [],
+   "declarations": [
+    {
+     "lib": "FrcCore",
+     "module": "FrcCore/Theme/Lifts",
+     "name": "FRC.Shell.Frame.W_chart"
+    },
+    {
+     "lib": "FrcCore",
+     "module": "FrcCore/Theme/Lifts",
+     "name": "FRC.Shell.Frame.W_mul_chart"
+    },
+    {
+     "lib": "FrcCore",
+     "module": "FrcCore/Theme/Lifts",
+     "name": "FRC.Shell.Frame.chart_mul_W"
+    },
+    {
+     "lib": "FrcCore",
+     "module": "FrcCore/Theme/Lifts",
+     "name": "FRC.Shell.Frame.chart_noncommute"
+    }
+   ],
    "aliases": [],
    "rows": [
     "6:C11"
@@ -7834,14 +8056,20 @@
    "statement": "The meridional representation domain $D_s=(\\Vt,\\mathcal B_s)$, $\\mathcal B_s=\\Ft^{[s]}\\mathcal B_0$, every $\\Ft^{[s]}$ invertible; the cardinal domains spatial, spectral, parity, inverse-spectral.",
    "origin_row": "6:D1",
    "tag": "D",
-   "tier": null,
+   "tier": 0,
    "check": {
     "href": "src/6-fourier/#p06024",
     "script": "fourier.py",
     "line": 662,
     "verdict": "pass"
    },
-   "declarations": [],
+   "declarations": [
+    {
+     "lib": "FrcCore",
+     "module": "FrcCore/Theme/Fractional",
+     "name": "FRC.Shell.Frame.frft_inverse"
+    }
+   ],
    "aliases": [],
    "rows": [
     "6:D1"
@@ -7853,7 +8081,7 @@
    "statement": "The $4\\kap$ framed domains are pairwise distinct; read as unordered measurement bases $B_{s+2\\kap}=B_s$, since $\\Ft^{[s+2\\kap]}=\\Ft^{[s]}J$ and $J$ permutes the standard basis.",
    "origin_row": "6:D2",
    "tag": "T",
-   "tier": 2,
+   "tier": 0,
    "check": {
     "href": "src/6-fourier/#p06025",
     "script": "fourier.py",
@@ -7875,6 +8103,26 @@
      "lib": "FrcLedger",
      "module": "FrcLedger/Fourier",
      "name": "FRC.Fourier.mul_J_apply"
+    },
+    {
+     "lib": "FrcCore",
+     "module": "FrcCore/Theme/Fractional",
+     "name": "FRC.Shell.Frame.frft_injective"
+    },
+    {
+     "lib": "FrcCore",
+     "module": "FrcCore/Theme/Fractional",
+     "name": "FRC.Shell.Frame.five_frames"
+    },
+    {
+     "lib": "FrcCore",
+     "module": "FrcCore/Theme/Fractional",
+     "name": "FRC.Shell.Frame.five_faithful"
+    },
+    {
+     "lib": "FrcCore",
+     "module": "FrcCore/Theme/Fractional",
+     "name": "FRC.Shell.Frame.frft_half_turn"
     }
    ],
    "aliases": [],
@@ -7976,17 +8224,28 @@
   {
    "key": "p06053",
    "origin": "06",
-   "statement": "The cycle carries exactly $2\\kap$ measurement bases: $B_{s+t}\\neq B_s$ for $t\\notin\\{0,2\\kap\\}$, since every off-site entry of row $0$ of $\\Ft^{[t]}$ is $\\tfrac{\\im}{2}(1-\\gen^{-2t})\\neq0$ and $\\Ft^{[t]}$ is not monomial; the six shells of Table~\\ref{tab:checks}.",
+   "statement": "The cycle carries exactly $2\\kap$ measurement bases: every off-site entry of row $0$ of $\\Ft^{[t]}$ is $\\tfrac{\\im}{2}(1-\\gen^{-2t})$, nonzero for $t\\notin\\{0,2\\kap\\}$, so $\\Ft^{[t]}$ is not monomial and $B_{s+t}\\neq B_s$; the six shells of Table~\\ref{tab:checks}.",
    "origin_row": "6:D7",
    "tag": "T",
-   "tier": null,
+   "tier": 0,
    "check": {
     "href": "src/6-fourier/#p06053",
     "script": "fourier.py",
     "line": 689,
     "verdict": "pass"
    },
-   "declarations": [],
+   "declarations": [
+    {
+     "lib": "FrcCore",
+     "module": "FrcCore/Theme/Fractional",
+     "name": "FRC.Shell.Frame.frft_row_zero"
+    },
+    {
+     "lib": "FrcCore",
+     "module": "FrcCore/Theme/Fractional",
+     "name": "FRC.Shell.Frame.frft_row_zero_ne_zero"
+    }
+   ],
    "aliases": [],
    "rows": [
     "6:D7"
@@ -8013,7 +8272,7 @@
    "statement": "$R_s\\in SO(2,\\Fp)$, and $s\\mapsto R_s$ is an isomorphism $\\Phit\\simeq SO(2,\\Fp)$ with $|SO(2,\\Fp)|=\\p-1=4\\kap$: the full rotation group of the $\\p^{2}$-point plane is the meridian cycle.",
    "origin_row": "6:E2",
    "tag": "T",
-   "tier": 2,
+   "tier": 0,
    "check": {
     "href": "src/6-fourier/#p06031",
     "script": "fourier.py",
@@ -8040,6 +8299,31 @@
      "lib": "FrcLedger",
      "module": "FrcLedger/Fourier",
      "name": "FRC.Fourier.card_circle"
+    },
+    {
+     "lib": "FrcCore",
+     "module": "FrcCore/Theme/Rotations",
+     "name": "FRC.Shell.Frame.rot_circle"
+    },
+    {
+     "lib": "FrcCore",
+     "module": "FrcCore/Theme/Rotations",
+     "name": "FRC.Shell.Frame.rot_hom"
+    },
+    {
+     "lib": "FrcCore",
+     "module": "FrcCore/Theme/Rotations",
+     "name": "FRC.Shell.Frame.rot_inj"
+    },
+    {
+     "lib": "FrcCore",
+     "module": "FrcCore/Theme/Rotations",
+     "name": "FRC.Shell.Frame.rot_surj"
+    },
+    {
+     "lib": "FrcCore",
+     "module": "FrcCore/Theme/Rotations",
+     "name": "FRC.Shell.Frame.six_circles"
     }
    ],
    "aliases": [],
@@ -8051,10 +8335,10 @@
   {
    "key": "p06032",
    "origin": "06",
-   "statement": "The cardinal-skeleton dictionary $M_s\\leftrightarrow s\\leftrightarrow z_s\\leftrightarrow R_s$ with $R_0=I$, $R_\\kap=w$, $R_{2\\kap}=-I$, $R_{3\\kap}=w^{-1}$ (the $R_\\kap$ column of Table~\\ref{tab:checks}), $z_\\kap=\\im$; the FRC-native and Weil families stand in cardinal Weil correspondence, the Weil side by the normalization of A2.",
+   "statement": "The cardinal-skeleton dictionary $M_s\\leftrightarrow s\\leftrightarrow z_s\\leftrightarrow R_s$ with $R_0=I$, $R_\\kap=w$, $R_{2\\kap}=-I$, $R_{3\\kap}=w^{-1}$ (the $R_\\kap$ column of Table~\\ref{tab:checks}), $z_\\kap=\\im$; the FRC-native and Weil families stand in cardinal Weil correspondence, the Weil side by the normalization of A2 (an import).",
    "origin_row": "6:E3",
    "tag": "T",
-   "tier": 2,
+   "tier": 0,
    "check": {
     "href": "src/6-fourier/#p06032",
     "script": "fourier.py",
@@ -8066,6 +8350,11 @@
      "lib": "FrcLedger",
      "module": "FrcLedger/Fourier",
      "name": "FRC.Fourier.rot_cardinal"
+    },
+    {
+     "lib": "FrcCore",
+     "module": "FrcCore/Theme/Rotations",
+     "name": "FRC.Shell.Frame.rot_cardinal"
     }
    ],
    "aliases": [],
@@ -8091,10 +8380,10 @@
   {
    "key": "p06034",
    "origin": "06",
-   "statement": "Spectral obstruction: for $\\kap\\ge2$ no invertible $T$ on $\\Vt$ satisfies $T\\sigma T^{-1}=\\Ft^{[s]}$ for any $s$; the cyclic groups $\\langle\\sigma\\rangle$ and $\\langle\\Ft^{[1]}\\rangle$, of the same order $4\\kap$, are not conjugate.",
+   "statement": "Spectral obstruction: for $\\kap\\ge2$ no invertible $T$ on $\\Vt$ satisfies $T\\sigma T^{-1}=\\Ft^{[s]}$ for any $s$; the cyclic groups $\\langle\\sigma\\rangle$ and $\\langle\\Ft^{[1]}\\rangle$, each of order $4\\kap$ ($\\Ft^{[1]}$ by C4; $\\sigma$ permutes the $4\\kap$ labels cyclically), are not conjugate.",
    "origin_row": "6:E5",
    "tag": "T",
-   "tier": 2,
+   "tier": 0,
    "check": {
     "href": "src/6-fourier/#p06034",
     "script": "fourier.py",
@@ -8106,6 +8395,11 @@
      "lib": "FrcLedger",
      "module": "FrcLedger/Fourier",
      "name": "FRC.Fourier.shell_spectral_obstruction"
+    },
+    {
+     "lib": "FrcCore",
+     "module": "FrcCore/Theme/Spectra",
+     "name": "FRC.Shell.Frame.spectral_obstruction"
     }
    ],
    "aliases": [],
@@ -8120,7 +8414,7 @@
    "statement": "Common character sector: on $E_1=\\operatorname{im}\\Pi_1\\neq0$ ($\\kap\\ge2$) $\\Ft^{[s]}=\\gen^{-s}I$, the intertwiner $\\Ft^{[s]}T_v=T_vS_{-s}$ on every $x\\in\\Fp$ and $s$, and $R_s(1,-\\im)^{\\mathsf T}=\\gen^{-s}(1,-\\im)^{\\mathsf T}$.",
    "origin_row": "6:E6",
    "tag": "T",
-   "tier": 2,
+   "tier": 0,
    "check": {
     "href": "src/6-fourier/#p06035",
     "script": "fourier.py",
@@ -8137,6 +8431,21 @@
      "lib": "FrcLedger",
      "module": "FrcLedger/Fourier",
      "name": "FRC.Fourier.rot_eigenline"
+    },
+    {
+     "lib": "FrcCore",
+     "module": "FrcCore/Theme/Fractional",
+     "name": "FRC.Shell.Frame.frft_proj"
+    },
+    {
+     "lib": "FrcCore",
+     "module": "FrcCore/Theme/Heisenberg",
+     "name": "FRC.Shell.Frame.frft_intertwine"
+    },
+    {
+     "lib": "FrcCore",
+     "module": "FrcCore/Theme/Heisenberg",
+     "name": "FRC.Shell.Frame.rot_eigenline"
     }
    ],
    "aliases": [],
@@ -8148,10 +8457,10 @@
   {
    "key": "p06036",
    "origin": "06",
-   "statement": "Cardinal Heisenberg covariance: $\\Ft\\sigma\\Ft^{-1}=D_1$, $\\Ft D_1\\Ft^{-1}=\\sigma^{-1}$; $\\Ft^{r}\\sigma=\\sigma_r\\Ft^{r}$ with $(\\sigma,D_1,\\sigma^{-1},D_1^{-1})$; the expansion \\eqref{eq:conj-expansion}; $\\Ft^{[s]}\\sigma\\Ft^{[s]-1}$ monomial exactly at the four cardinal indices and non-monomial at every one of the $112$ intermediate indices of $\\p\\in\\{13,17,29,37,41\\}$.",
+   "statement": "Cardinal Heisenberg covariance: $\\Ft\\sigma\\Ft^{-1}=D_1$, $\\Ft D_1\\Ft^{-1}=\\sigma^{-1}$; $\\Ft^{r}\\sigma=\\sigma_r\\Ft^{r}$ with $(\\sigma,D_1,\\sigma^{-1},D_1^{-1})$; the expansion \\eqref{eq:conj-expansion}, $\\Ft^{[s]}=\\sum_r c_r(s)\\Ft^{r}$ with $c_r(s)=\\tfrac14\\sum_\\ell(\\gen^{r\\kap-s})^{\\ell}$.",
    "origin_row": "6:E7",
    "tag": "T",
-   "tier": 2,
+   "tier": 0,
    "check": {
     "href": "src/6-fourier/#p06036",
     "script": "fourier.py",
@@ -8163,6 +8472,31 @@
      "lib": "FrcLedger",
      "module": "FrcLedger/Fourier",
      "name": "FRC.Fourier.shell_heisenberg"
+    },
+    {
+     "lib": "FrcCore",
+     "module": "FrcCore/Theme/Heisenberg",
+     "name": "FRC.Shell.Frame.shift_inverse"
+    },
+    {
+     "lib": "FrcCore",
+     "module": "FrcCore/Theme/Heisenberg",
+     "name": "FRC.Shell.Frame.heisenberg"
+    },
+    {
+     "lib": "FrcCore",
+     "module": "FrcCore/Theme/Fourier",
+     "name": "FRC.Shell.Frame.frft_eq"
+    },
+    {
+     "lib": "FrcCore",
+     "module": "FrcCore/Theme/Heisenberg",
+     "name": "FRC.Shell.Frame.frft_coeff"
+    },
+    {
+     "lib": "FrcCore",
+     "module": "FrcCore/Theme/Heisenberg",
+     "name": "FRC.Shell.Frame.w_eq_pow_kappa"
     }
    ],
    "aliases": [],
@@ -8174,17 +8508,43 @@
   {
    "key": "p06050",
    "origin": "06",
-   "statement": "Cardinal exclusivity: for every $s\\notin\\{0,\\kap,2\\kap,3\\kap\\}$ the operator \\eqref{eq:conj-expansion} is not monomial --- off $j\\in\\{-1,0,1\\}$ its row $0$ is $x^{-1}$ times a quadratic in $x=\\gen^{j}$ with leading coefficient $\\im\\,[c_0(s)+c_2(s)]\\,c_3(-s)\\neq0$, $c_0(s)+c_2(s)=\\tfrac12(1+\\gen^{-2s})$, so the row has at least $4\\kap-5$ nonzero entries; the count checked on every shell below $200$.",
+   "statement": "Cardinal exclusivity: for every $s\\notin\\{0,\\kap,2\\kap,3\\kap\\}$ the conjugate $\\Ft^{[s]}\\sigma\\Ft^{[s]\\,-1}$ of \\eqref{eq:conj-expansion} is not monomial --- off $j\\in\\{-1,0,1\\}$ its row $0$ is $x^{-1}$ times a quadratic in $x=\\gen^{j}$ with leading coefficient $\\im\\,[c_0(s)+c_2(s)]\\,c_3(-s)\\neq0$, $c_0(s)+c_2(s)=\\tfrac12(1+\\gen^{-2s})$, so the row vanishes at no three distinct indices off the sites and, by counting, has at least $4\\kap-5$ nonzero entries; the count checked on every shell below $200$.",
    "origin_row": "6:E8",
    "tag": "T",
-   "tier": null,
+   "tier": 0,
    "check": {
     "href": "src/6-fourier/#p06050",
     "script": "fourier.py",
     "line": 903,
     "verdict": "pass"
    },
-   "declarations": [],
+   "declarations": [
+    {
+     "lib": "FrcCore",
+     "module": "FrcCore/Theme/Exclusivity",
+     "name": "FRC.Shell.Frame.row_entry"
+    },
+    {
+     "lib": "FrcCore",
+     "module": "FrcCore/Theme/Exclusivity",
+     "name": "FRC.Shell.Frame.even_coeff_id"
+    },
+    {
+     "lib": "FrcCore",
+     "module": "FrcCore/Theme/Exclusivity",
+     "name": "FRC.Shell.Frame.even_coeff_ne_zero"
+    },
+    {
+     "lib": "FrcCore",
+     "module": "FrcCore/Theme/Exclusivity",
+     "name": "FRC.Shell.Frame.odd_coeff_ne_zero"
+    },
+    {
+     "lib": "FrcCore",
+     "module": "FrcCore/Theme/Exclusivity",
+     "name": "FRC.Shell.Frame.exclusivity"
+    }
+   ],
    "aliases": [],
    "rows": [
     "6:E8"
@@ -8194,17 +8554,28 @@
   {
    "key": "p06054",
    "origin": "06",
-   "statement": "The spectra behind E5: $\\sigma$ is diagonalizable over $\\Fp$ with the $4\\kap$ simple eigenvalues $\\Fpx$; $\\Ft^{[s]}=\\sum_\\ell\\gen^{-\\ell s}\\Pi_\\ell$ has at most four, among the $\\gen^{-\\ell s}$ ($\\Ft^{[1]}$ on the six shells).",
+   "statement": "The spectra behind E5: every nonzero residue $b$ is an eigenvalue of $\\sigma$, with the geometric eigenvector $(b^{-j})_j$ (so $\\sigma$ is diagonalizable over $\\Fp$ with the $4\\kap$ simple eigenvalues $\\Fpx$, the Mathlib reading); an eigenvalue of $\\Ft^{[s]}=\\sum_\\ell\\gen^{-\\ell s}\\Pi_\\ell$ is one of the four $\\gen^{-\\ell s}$ ($\\Ft^{[1]}$ on the six shells).",
    "origin_row": "6:E9",
    "tag": "T",
-   "tier": null,
+   "tier": 0,
    "check": {
     "href": "src/6-fourier/#p06054",
     "script": "fourier.py",
     "line": 812,
     "verdict": "pass"
    },
-   "declarations": [],
+   "declarations": [
+    {
+     "lib": "FrcCore",
+     "module": "FrcCore/Theme/Spectra",
+     "name": "FRC.Shell.Frame.shift_eigen"
+    },
+    {
+     "lib": "FrcCore",
+     "module": "FrcCore/Theme/Spectra",
+     "name": "FRC.Shell.Frame.frft_eigen"
+    }
+   ],
    "aliases": [],
    "rows": [
     "6:E9"
@@ -8214,17 +8585,38 @@
   {
    "key": "p06056",
    "origin": "06",
-   "statement": "The plane as orbits of the cycle: $|SO(2,\\Fp)|=4\\kap$; $\\Fp^{2}$ is its origin and $4\\kap+2$ free orbits of the rotation group, the $4\\kap$ circles of nonzero norm and the two isotropic lines, $\\p^{2}=1+(4\\kap+2)\\,4\\kap$; $\\dim\\Vt=4\\kap$.",
+   "statement": "The plane as orbits of the cycle: $R_s$ scales $u=x+\\im y$ by $z_s$ and $v=x-\\im y$ by $z_s^{-1}$, so every point off the origin has a free orbit of size $4\\kap=|SO(2,\\Fp)|$, and $\\p^{2}=1+(4\\kap+2)\\,4\\kap$ is the count of the origin and $4\\kap+2$ orbits (the $4\\kap$ circles of nonzero norm and the two isotropic lines: the paper's reading of the identity); $\\dim\\Vt=4\\kap$.",
    "origin_row": "6:E10",
    "tag": "T",
-   "tier": null,
+   "tier": 0,
    "check": {
     "href": "src/6-fourier/#p06056",
     "script": "fourier.py",
     "line": 938,
     "verdict": "pass"
    },
-   "declarations": [],
+   "declarations": [
+    {
+     "lib": "FrcCore",
+     "module": "FrcCore/Theme/Rotations",
+     "name": "FRC.Shell.Frame.rot_uv"
+    },
+    {
+     "lib": "FrcCore",
+     "module": "FrcCore/Theme/Rotations",
+     "name": "FRC.Shell.Frame.orbit_free"
+    },
+    {
+     "lib": "FrcCore",
+     "module": "FrcCore/Theme/Rotations",
+     "name": "FRC.Shell.Frame.plane_count"
+    },
+    {
+     "lib": "FrcCore",
+     "module": "FrcCore/Theme/Rotations",
+     "name": "FRC.Shell.Frame.six_circles"
+    }
+   ],
    "aliases": [],
    "rows": [
     "6:E10"
@@ -22661,7 +23053,7 @@
    "block": "A",
    "tag": "I",
    "name": "Scale, the sole quantitative import",
-   "statement": "Scale, the sole quantitative import: the de Sitter entropy of the observable universe fixes the cardinality exactly, $\\Om=4\\dS+1$. Its chart numeral is $\\dS=\\pi(r_H/\\ell_P)^2=3.3\\times10^{122}$ [chart] at $r_H=c/H_\\Lambda$ (14-entr), so $\\Om=1.3\\times10^{123}$ and $\\ln\\Om=283.5$ [chart], the numeral of every chart reading in the ledger. The Carrier congruences are certified by the realisations (B5, C8), not imported. Metrology: L2.",
+   "statement": "Scale, the sole quantitative import: the de Sitter entropy of the observable universe fixes the cardinality exactly, $\\Om=4\\dS+1$. Its chart numeral is $\\dS=\\pi(r_H/\\ell_P)^2=3.3\\times10^{122}$ [chart] at $r_H=c/H_\\Lambda$ (14-entr), so $\\Om=1.3\\times10^{123}$ [chart]. The Carrier congruences are certified by the realisations (B5, C8), not imported. Metrology: L2.",
    "source": "21-grav, 14-entr",
    "page": "00-ledger.html#A8",
    "witness": {
@@ -22669,7 +23061,7 @@
     "py": {
      "href": "frc/ledgers/master/chart.html#p00009",
      "script": "frc/ledgers/master/chart.py",
-     "line": 79,
+     "line": 80,
      "verdict": "pass"
     },
     "lean": [
@@ -22692,7 +23084,7 @@
     "21-grav",
     "14-entr"
    ],
-   "text": "Scale, the sole quantitative import: Scale, the sole quantitative import: the de Sitter entropy of the observable universe fixes the cardinality exactly, $\\Om=4\\dS+1$. Its chart numeral is $\\dS=\\pi(r_H/\\ell_P)^2=3.3\\times10^{122}$ [chart] at $r_H=c/H_\\Lambda$ (14-entr), so $\\Om=1.3\\times10^{123}$ and $\\ln\\Om=283.5$ [chart], the numeral of every chart reading in the ledger. The Carrier congruences are certified by the realisations (B5, C8), not imported. Metrology: L2. 21-grav, 14-entr"
+   "text": "Scale, the sole quantitative import: Scale, the sole quantitative import: the de Sitter entropy of the observable universe fixes the cardinality exactly, $\\Om=4\\dS+1$. Its chart numeral is $\\dS=\\pi(r_H/\\ell_P)^2=3.3\\times10^{122}$ [chart] at $r_H=c/H_\\Lambda$ (14-entr), so $\\Om=1.3\\times10^{123}$ [chart]. The Carrier congruences are certified by the realisations (B5, C8), not imported. Metrology: L2. 21-grav, 14-entr"
   },
   {
    "paper": "00",
@@ -23638,7 +24030,7 @@
     "py": {
      "href": "frc/ledgers/master/extension.html#p00030",
      "script": "frc/ledgers/master/extension.py",
-     "line": 82,
+     "line": 90,
      "verdict": "pass"
     },
     "lean": [
@@ -23675,8 +24067,22 @@
    "page": "00-ledger.html#C11",
    "witness": {
     "script": "22:gleason.py",
-    "py": null,
-    "lean": []
+    "py": {
+     "href": "frc/ledgers/master/extension.html#p22028",
+     "script": "frc/ledgers/master/extension.py",
+     "line": 213,
+     "verdict": "pass"
+    },
+    "lean": [
+     {
+      "lib": "FrcCore",
+      "module": "FrcCore/Keys/Extension",
+      "name": "FRC.Ledger.p22028",
+      "tier": 0,
+      "ok": true,
+      "page": "lean/core/Keys.Extension.html#FRC.Ledger.p22028"
+     }
+    ]
    },
    "refs": [
     "p00051"
@@ -23700,8 +24106,22 @@
    "page": "00-ledger.html#C12",
    "witness": {
     "script": null,
-    "py": null,
-    "lean": []
+    "py": {
+     "href": "frc/ledgers/master/frame.html#p00032",
+     "script": "frc/ledgers/master/frame.py",
+     "line": 57,
+     "verdict": "pass"
+    },
+    "lean": [
+     {
+      "lib": "FrcCore",
+      "module": "FrcCore/Keys/Frame",
+      "name": "FRC.Ledger.p00032",
+      "tier": 0,
+      "ok": true,
+      "page": "lean/core/Keys.Frame.html#FRC.Ledger.p00032"
+     }
+    ]
    },
    "refs": [],
    "sources": [
@@ -25487,7 +25907,7 @@
     "py": {
      "href": "frc/ledgers/master/chart.html#p00192",
      "script": "frc/ledgers/master/chart.py",
-     "line": 108,
+     "line": 112,
      "verdict": "pass"
     },
     "lean": [
@@ -25556,7 +25976,7 @@
     "py": {
      "href": "frc/ledgers/master/chart.html#p00193",
      "script": "frc/ledgers/master/chart.py",
-     "line": 132,
+     "line": 136,
      "verdict": "pass"
     },
     "lean": [
@@ -25648,7 +26068,7 @@
     "py": {
      "href": "frc/ledgers/master/chart.html#p00148",
      "script": "frc/ledgers/master/chart.py",
-     "line": 170,
+     "line": 174,
      "verdict": "pass"
     },
     "lean": [
@@ -25735,7 +26155,7 @@
     "py": {
      "href": "frc/ledgers/master/chart.html#p00133",
      "script": "frc/ledgers/master/chart.py",
-     "line": 197,
+     "line": 201,
      "verdict": "pass"
     },
     "lean": [
@@ -31384,7 +31804,7 @@
    "tag": "T",
    "name": null,
    "statement": "The normalization is the unitary constant read in the field: $1/n\\equiv-1$, its square roots in $\\Fp$ are exactly $\\pm\\im$, and $(c\\Wt)^{2}=J$ if and only if $c=\\pm\\im$.",
-   "source": "Rem.~\\ref{rem:unitary-norm}\\newline \\pywit{fourier}{p06013}{B6}, \\leanwit{FrcCore}{p06013}{B6} \\lean{FRC.Shell.Frame.ofNat\\_n}",
+   "source": "Rem.~\\ref{rem:unitary-norm}\\newline \\pywit{fourier}{p06013}{B6}, \\leanwit{FrcCore}{p06013}{B6} \\lean{FRC.Shell.Frame.ofNat\\_n, FRC.Shell.Frame.sqrt\\_neg\\_one, FRC.Shell.Frame.scaled\\_W\\_sq\\_iff}",
    "page": "6-fourier/index.html#B6",
    "witness": {
     "py": {
@@ -31401,11 +31821,27 @@
       "tier": 0,
       "ok": true,
       "page": "lean/core/Transform.html#FRC.Shell.Frame.ofNat_n"
+     },
+     {
+      "lib": "FrcCore",
+      "module": "FrcCore/Theme/Lifts",
+      "name": "FRC.Shell.Frame.sqrt_neg_one",
+      "tier": 0,
+      "ok": true,
+      "page": "lean/core/Theme.html#FRC.Shell.Frame.sqrt_neg_one"
+     },
+     {
+      "lib": "FrcCore",
+      "module": "FrcCore/Theme/Lifts",
+      "name": "FRC.Shell.Frame.scaled_W_sq_iff",
+      "tier": 0,
+      "ok": true,
+      "page": "lean/core/Theme.html#FRC.Shell.Frame.scaled_W_sq_iff"
      }
     ]
    },
    "refs": [],
-   "text": "The normalization is the unitary constant read in the field: $1/n\\equiv-1$, its square roots in $\\Fp$ are exactly $\\pm\\im$, and $(c\\Wt)^{2}=J$ if and only if $c=\\pm\\im$. Rem. rem:unitary-norm p06013, FrcCore{B6} FRC.Shell.Frame.ofNat_n"
+   "text": "The normalization is the unitary constant read in the field: $1/n\\equiv-1$, its square roots in $\\Fp$ are exactly $\\pm\\im$, and $(c\\Wt)^{2}=J$ if and only if $c=\\pm\\im$. Rem. rem:unitary-norm p06013, FrcCore{B6} FRC.Shell.Frame.ofNat_n, FRC.Shell.Frame.sqrt_neg_one, FRC.Shell.Frame.scaled_W_sq_iff"
   },
   {
    "paper": "6-four",
@@ -31509,7 +31945,7 @@
    "tag": "T",
    "name": null,
    "statement": "$\\Pi_\\ell^{2}=\\Pi_\\ell$, $\\Pi_\\ell\\Pi_m=0$ for $\\ell\\neq m$, $\\sum_\\ell\\Pi_\\ell=I$, $\\Ft\\Pi_\\ell=\\im^{\\ell}\\Pi_\\ell$.",
-   "source": "Lem.~\\ref{lem:projectors}\\newline \\pywit{fourier}{p06016}{C2}, \\leanwit{FrcLedger}{p06016}{C2} \\lean{Fourier.shell\\_proj, Fourier.proj\\_mul\\_proj, Fourier.sum\\_proj}",
+   "source": "Lem.~\\ref{lem:projectors}\\newline \\pywit{fourier}{p06016}{C2}, \\leanwit{FrcCore}{p06016}{C2}, \\leanwit{FrcLedger}{p06016}{C2} \\lean{Fourier.shell\\_proj, Fourier.proj\\_mul\\_proj, Fourier.sum\\_proj, FRC.Shell.Frame.proj\\_mul\\_self, FRC.Shell.Frame.proj\\_mul\\_ne, FRC.Shell.Frame.sum\\_proj, FRC.Shell.Frame.Fmat\\_proj}",
    "page": "6-fourier/index.html#C2",
    "witness": {
     "py": {
@@ -31542,11 +31978,43 @@
       "tier": 2,
       "ok": true,
       "page": "lean/ml/Fourier.html#FRC.Fourier.sum_proj"
+     },
+     {
+      "lib": "FrcCore",
+      "module": "FrcCore/Theme/Fractional",
+      "name": "FRC.Shell.Frame.proj_mul_self",
+      "tier": 0,
+      "ok": true,
+      "page": "lean/core/Theme.html#FRC.Shell.Frame.proj_mul_self"
+     },
+     {
+      "lib": "FrcCore",
+      "module": "FrcCore/Theme/Fractional",
+      "name": "FRC.Shell.Frame.proj_mul_ne",
+      "tier": 0,
+      "ok": true,
+      "page": "lean/core/Theme.html#FRC.Shell.Frame.proj_mul_ne"
+     },
+     {
+      "lib": "FrcCore",
+      "module": "FrcCore/Theme/Fractional",
+      "name": "FRC.Shell.Frame.sum_proj",
+      "tier": 0,
+      "ok": true,
+      "page": "lean/core/Theme.html#FRC.Shell.Frame.sum_proj"
+     },
+     {
+      "lib": "FrcCore",
+      "module": "FrcCore/Theme/Fractional",
+      "name": "FRC.Shell.Frame.Fmat_proj",
+      "tier": 0,
+      "ok": true,
+      "page": "lean/core/Theme.html#FRC.Shell.Frame.Fmat_proj"
      }
     ]
    },
    "refs": [],
-   "text": "$\\Pi_\\ell^{2}=\\Pi_\\ell$, $\\Pi_\\ell\\Pi_m=0$ for $\\ell\\neq m$, $\\sum_\\ell\\Pi_\\ell=I$, $\\Ft\\Pi_\\ell=\\im^{\\ell}\\Pi_\\ell$. Lem. lem:projectors p06016, FrcLedger{C2} Fourier.shell_proj, Fourier.proj_mul_proj, Fourier.sum_proj"
+   "text": "$\\Pi_\\ell^{2}=\\Pi_\\ell$, $\\Pi_\\ell\\Pi_m=0$ for $\\ell\\neq m$, $\\sum_\\ell\\Pi_\\ell=I$, $\\Ft\\Pi_\\ell=\\im^{\\ell}\\Pi_\\ell$. Lem. lem:projectors p06016, FrcCore{C2}, FrcLedger{C2} Fourier.shell_proj, Fourier.proj_mul_proj, Fourier.sum_proj, FRC.Shell.Frame.proj_mul_self, FRC.Shell.Frame.proj_mul_ne, FRC.Shell.Frame.sum_proj, FRC.Shell.Frame.Fmat_proj"
   },
   {
    "paper": "6-four",
@@ -31558,7 +32026,7 @@
    "tag": "T",
    "name": null,
    "statement": "The exact finite-field FrFT: $s\\mapsto\\Ft^{[s]}$ is a representation of $\\Phit$, $\\Ft^{[s+r]}=\\Ft^{[s]}\\Ft^{[r]}$ on every pair of the six shells, with the cardinal values $\\Ft^{[0]}=I$, $\\Ft^{[\\kap]}=\\Ft$, $\\Ft^{[2\\kap]}=J$, $\\Ft^{[3\\kap]}=\\Ft^{-1}$, and $(\\Ft^{[1]})^{\\kap}=\\Ft$.",
-   "source": "Thm.~\\ref{thm:FRC-FrFT}\\newline \\pywit{fourier}{p06017}{C3}, \\leanwit{FrcLedger}{p06017}{C3} \\lean{Fourier.shell\\_frft\\_add, Fourier.shell\\_frft\\_cardinal, Fourier.shell\\_frft\\_values}",
+   "source": "Thm.~\\ref{thm:FRC-FrFT}\\newline \\pywit{fourier}{p06017}{C3}, \\leanwit{FrcCore}{p06017}{C3}, \\leanwit{FrcLedger}{p06017}{C3} \\lean{Fourier.shell\\_frft\\_add, Fourier.shell\\_frft\\_cardinal, Fourier.shell\\_frft\\_values, FRC.Shell.Frame.frft\\_add, FRC.Shell.Frame.frft\\_cardinal, FRC.Shell.Frame.frft\\_period, FRC.Shell.Frame.frft\\_pow}",
    "page": "6-fourier/index.html#C3",
    "witness": {
     "py": {
@@ -31591,13 +32059,45 @@
       "tier": 2,
       "ok": true,
       "page": "lean/ml/Fourier.html#FRC.Fourier.shell_frft_values"
+     },
+     {
+      "lib": "FrcCore",
+      "module": "FrcCore/Theme/Fourier",
+      "name": "FRC.Shell.Frame.frft_add",
+      "tier": 0,
+      "ok": true,
+      "page": "lean/core/Theme.html#FRC.Shell.Frame.frft_add"
+     },
+     {
+      "lib": "FrcCore",
+      "module": "FrcCore/Theme/Fourier",
+      "name": "FRC.Shell.Frame.frft_cardinal",
+      "tier": 0,
+      "ok": true,
+      "page": "lean/core/Theme.html#FRC.Shell.Frame.frft_cardinal"
+     },
+     {
+      "lib": "FrcCore",
+      "module": "FrcCore/Theme/Fourier",
+      "name": "FRC.Shell.Frame.frft_period",
+      "tier": 0,
+      "ok": true,
+      "page": "lean/core/Theme.html#FRC.Shell.Frame.frft_period"
+     },
+     {
+      "lib": "FrcCore",
+      "module": "FrcCore/Theme/Fourier",
+      "name": "FRC.Shell.Frame.frft_pow",
+      "tier": 0,
+      "ok": true,
+      "page": "lean/core/Theme.html#FRC.Shell.Frame.frft_pow"
      }
     ]
    },
    "refs": [
     "p00022"
    ],
-   "text": "The exact finite-field FrFT: $s\\mapsto\\Ft^{[s]}$ is a representation of $\\Phit$, $\\Ft^{[s+r]}=\\Ft^{[s]}\\Ft^{[r]}$ on every pair of the six shells, with the cardinal values $\\Ft^{[0]}=I$, $\\Ft^{[\\kap]}=\\Ft$, $\\Ft^{[2\\kap]}=J$, $\\Ft^{[3\\kap]}=\\Ft^{-1}$, and $(\\Ft^{[1]})^{\\kap}=\\Ft$. Thm. thm:FRC-FrFT p06017, FrcLedger{C3} Fourier.shell_frft_add, Fourier.shell_frft_cardinal, Fourier.shell_frft_values"
+   "text": "The exact finite-field FrFT: $s\\mapsto\\Ft^{[s]}$ is a representation of $\\Phit$, $\\Ft^{[s+r]}=\\Ft^{[s]}\\Ft^{[r]}$ on every pair of the six shells, with the cardinal values $\\Ft^{[0]}=I$, $\\Ft^{[\\kap]}=\\Ft$, $\\Ft^{[2\\kap]}=J$, $\\Ft^{[3\\kap]}=\\Ft^{-1}$, and $(\\Ft^{[1]})^{\\kap}=\\Ft$. Thm. thm:FRC-FrFT p06017, FrcCore{C3}, FrcLedger{C3} Fourier.shell_frft_add, Fourier.shell_frft_cardinal, Fourier.shell_frft_values, FRC.Shell.Frame.frft_add, FRC.Shell.Frame.frft_cardinal, FRC.Shell.Frame.frft_period, FRC.Shell.Frame.frft_pow"
   },
   {
    "paper": "6-four",
@@ -31609,7 +32109,7 @@
    "tag": "T",
    "name": null,
    "statement": "Faithfulness: $s\\mapsto\\Ft^{[s]}$ is injective on $\\Z_{4\\kap}$ for every $\\kap\\ge1$; at $\\p=5$ the surviving odd projector carries the faithful character.",
-   "source": "Thm.~\\ref{thm:faithful}\\newline \\pywit{fourier}{p06018}{C4}, \\leanwit{FrcLedger}{p06018}{C4} \\lean{Fourier.shell\\_frft\\_injective}",
+   "source": "Thm.~\\ref{thm:faithful}\\newline \\pywit{fourier}{p06018}{C4}, \\leanwit{FrcCore}{p06018}{C4}, \\leanwit{FrcLedger}{p06018}{C4} \\lean{Fourier.shell\\_frft\\_injective, FRC.Shell.Frame.frft\\_injective, FRC.Shell.Frame.five\\_frames, FRC.Shell.Frame.five\\_faithful, FRC.Shell.Frame.five\\_odd\\_proj}",
    "page": "6-fourier/index.html#C4",
    "witness": {
     "py": {
@@ -31626,11 +32126,43 @@
       "tier": 2,
       "ok": true,
       "page": "lean/ml/Fourier.html#FRC.Fourier.shell_frft_injective"
+     },
+     {
+      "lib": "FrcCore",
+      "module": "FrcCore/Theme/Fractional",
+      "name": "FRC.Shell.Frame.frft_injective",
+      "tier": 0,
+      "ok": true,
+      "page": "lean/core/Theme.html#FRC.Shell.Frame.frft_injective"
+     },
+     {
+      "lib": "FrcCore",
+      "module": "FrcCore/Theme/Fractional",
+      "name": "FRC.Shell.Frame.five_frames",
+      "tier": 0,
+      "ok": true,
+      "page": "lean/core/Theme.html#FRC.Shell.Frame.five_frames"
+     },
+     {
+      "lib": "FrcCore",
+      "module": "FrcCore/Theme/Fractional",
+      "name": "FRC.Shell.Frame.five_faithful",
+      "tier": 0,
+      "ok": true,
+      "page": "lean/core/Theme.html#FRC.Shell.Frame.five_faithful"
+     },
+     {
+      "lib": "FrcCore",
+      "module": "FrcCore/Theme/Fractional",
+      "name": "FRC.Shell.Frame.five_odd_proj",
+      "tier": 0,
+      "ok": true,
+      "page": "lean/core/Theme.html#FRC.Shell.Frame.five_odd_proj"
      }
     ]
    },
    "refs": [],
-   "text": "Faithfulness: $s\\mapsto\\Ft^{[s]}$ is injective on $\\Z_{4\\kap}$ for every $\\kap\\ge1$; at $\\p=5$ the surviving odd projector carries the faithful character. Thm. thm:faithful p06018, FrcLedger{C4} Fourier.shell_frft_injective"
+   "text": "Faithfulness: $s\\mapsto\\Ft^{[s]}$ is injective on $\\Z_{4\\kap}$ for every $\\kap\\ge1$; at $\\p=5$ the surviving odd projector carries the faithful character. Thm. thm:faithful p06018, FrcCore{C4}, FrcLedger{C4} Fourier.shell_frft_injective, FRC.Shell.Frame.frft_injective, FRC.Shell.Frame.five_frames, FRC.Shell.Frame.five_faithful, FRC.Shell.Frame.five_odd_proj"
   },
   {
    "paper": "6-four",
@@ -31641,8 +32173,8 @@
    "block": "C",
    "tag": "T",
    "name": null,
-   "statement": "The multiplicities $m_\\ell=\\operatorname{rank}\\Pi_\\ell=\\dim\\ker(\\Ft-\\im^{\\ell}I)$: $m_0+m_2=2\\kap+1$, $m_1+m_3=2\\kap-1$; $m_0,m_2\\ge1$; $m_1,m_3\\ge1$ for $\\kap\\ge2$; at $\\p=5$ exactly one of $\\Pi_1,\\Pi_3$ vanishes.",
-   "source": "Lem.~\\ref{lem:multiplicity}\\newline \\pywit{fourier}{p06019}{C5}, \\leanwit{FrcLedger}{p06019}{C5} \\lean{Fourier.shell\\_odd\\_proj\\_ne\\_zero, Fourier.shell\\_even\\_proj\\_ne\\_zero, Fourier.shell\\_multiplicity\\_sums}",
+   "statement": "The projector sums $\\Pi_0+\\Pi_2=\\tfrac12(I+J)$ and $\\Pi_1+\\Pi_3=\\tfrac12(I-J)$; $\\Pi_0,\\Pi_2\\neq0$ for every $\\kap\\ge1$ and $\\Pi_1,\\Pi_3\\neq0$ for $\\kap\\ge2$, each by one explicit entry; at $\\p=5$ exactly one of $\\Pi_1,\\Pi_3$ vanishes.",
+   "source": "Lem.~\\ref{lem:multiplicity}\\newline \\pywit{fourier}{p06019}{C5}, \\leanwit{FrcCore}{p06019}{C5}, \\leanwit{FrcLedger}{p06019}{C5} \\lean{Fourier.shell\\_odd\\_proj\\_ne\\_zero, Fourier.shell\\_even\\_proj\\_ne\\_zero, Fourier.shell\\_multiplicity\\_sums, FRC.Shell.Frame.proj\\_even\\_sum, FRC.Shell.Frame.proj\\_odd\\_sum, FRC.Shell.Frame.half, FRC.Shell.Frame.even\\_proj\\_ne\\_zero, FRC.Shell.Frame.odd\\_proj\\_ne\\_zero, FRC.Shell.Frame.five\\_frames, FRC.Shell.Frame.five\\_odd\\_proj}",
    "page": "6-fourier/index.html#C5",
    "witness": {
     "py": {
@@ -31675,11 +32207,67 @@
       "tier": 2,
       "ok": true,
       "page": "lean/ml/Fourier.html#FRC.Fourier.shell_multiplicity_sums"
+     },
+     {
+      "lib": "FrcCore",
+      "module": "FrcCore/Theme/Fractional",
+      "name": "FRC.Shell.Frame.proj_even_sum",
+      "tier": 0,
+      "ok": true,
+      "page": "lean/core/Theme.html#FRC.Shell.Frame.proj_even_sum"
+     },
+     {
+      "lib": "FrcCore",
+      "module": "FrcCore/Theme/Fractional",
+      "name": "FRC.Shell.Frame.proj_odd_sum",
+      "tier": 0,
+      "ok": true,
+      "page": "lean/core/Theme.html#FRC.Shell.Frame.proj_odd_sum"
+     },
+     {
+      "lib": "FrcCore",
+      "module": "FrcCore/Theme/Fractional",
+      "name": "FRC.Shell.Frame.half",
+      "tier": 0,
+      "ok": true,
+      "page": "lean/core/Theme.html#FRC.Shell.Frame.half"
+     },
+     {
+      "lib": "FrcCore",
+      "module": "FrcCore/Theme/Fractional",
+      "name": "FRC.Shell.Frame.even_proj_ne_zero",
+      "tier": 0,
+      "ok": true,
+      "page": "lean/core/Theme.html#FRC.Shell.Frame.even_proj_ne_zero"
+     },
+     {
+      "lib": "FrcCore",
+      "module": "FrcCore/Theme/Fractional",
+      "name": "FRC.Shell.Frame.odd_proj_ne_zero",
+      "tier": 0,
+      "ok": true,
+      "page": "lean/core/Theme.html#FRC.Shell.Frame.odd_proj_ne_zero"
+     },
+     {
+      "lib": "FrcCore",
+      "module": "FrcCore/Theme/Fractional",
+      "name": "FRC.Shell.Frame.five_frames",
+      "tier": 0,
+      "ok": true,
+      "page": "lean/core/Theme.html#FRC.Shell.Frame.five_frames"
+     },
+     {
+      "lib": "FrcCore",
+      "module": "FrcCore/Theme/Fractional",
+      "name": "FRC.Shell.Frame.five_odd_proj",
+      "tier": 0,
+      "ok": true,
+      "page": "lean/core/Theme.html#FRC.Shell.Frame.five_odd_proj"
      }
     ]
    },
    "refs": [],
-   "text": "The multiplicities $m_\\ell=\\operatorname{rank}\\Pi_\\ell=\\dim\\ker(\\Ft-\\im^{\\ell}I)$: $m_0+m_2=2\\kap+1$, $m_1+m_3=2\\kap-1$; $m_0,m_2\\ge1$; $m_1,m_3\\ge1$ for $\\kap\\ge2$; at $\\p=5$ exactly one of $\\Pi_1,\\Pi_3$ vanishes. Lem. lem:multiplicity p06019, FrcLedger{C5} Fourier.shell_odd_proj_ne_zero, Fourier.shell_even_proj_ne_zero, Fourier.shell_multiplicity_sums"
+   "text": "The projector sums $\\Pi_0+\\Pi_2=\\tfrac12(I+J)$ and $\\Pi_1+\\Pi_3=\\tfrac12(I-J)$; $\\Pi_0,\\Pi_2\\neq0$ for every $\\kap\\ge1$ and $\\Pi_1,\\Pi_3\\neq0$ for $\\kap\\ge2$, each by one explicit entry; at $\\p=5$ exactly one of $\\Pi_1,\\Pi_3$ vanishes. Lem. lem:multiplicity p06019, FrcCore{C5}, FrcLedger{C5} Fourier.shell_odd_proj_ne_zero, Fourier.shell_even_proj_ne_zero, Fourier.shell_multiplicity_sums, FRC.Shell.Frame.proj_even_sum, FRC.Shell.Frame.proj_odd_sum, FRC.Shell.Frame.half, FRC.Shell.Frame.even_proj_ne_zero, FRC.Shell.Frame.odd_proj_ne_zero, FRC.Shell.Frame.five_frames, FRC.Shell.Frame.five_odd_proj"
   },
   {
    "paper": "6-four",
@@ -31690,8 +32278,8 @@
    "block": "C",
    "tag": "T",
    "name": null,
-   "statement": "Multiplicities are chart data: the vertex relabelling $m\\mapsto um$ carries $\\Ft(\\gen)$ to $\\Ft(\\gen^{u^{2}})$ by a coordinate permutation; at $\\p=13$ the frames $\\gen=2$ and $\\gen=6$ give $(3,3,4,2)$ and $(4,2,3,3)$, traces $4$ and $9$.",
-   "source": "Rem.~\\ref{rem:multiplicities}\\newline \\pywit{fourier}{p06020}{C6}",
+   "statement": "Multiplicities are chart data: for $u$ odd and a unit mod $4\\kap$ the vertex relabelling $m\\mapsto um$ carries $\\Ft(\\gen)$ to $\\Ft(\\gen^{u^{2}})$ by a coordinate permutation, $\\Ft(\\gen^{u^{2}})_{kj}=\\Ft(\\gen)_{uk,uj}$; at $\\p=13$ the frames $\\gen=2$ and $\\gen=6$ give the tuples $(3,3,4,2)$ and $(4,2,3,3)$, read as the traces of the projectors, with $\\operatorname{Tr}\\Ft=4,9$.",
+   "source": "Rem.~\\ref{rem:multiplicities}\\newline \\pywit{fourier}{p06020}{C6}, \\leanwit{FrcCore}{p06020}{C6} \\lean{FRC.Shell.Frame.Fmat\\_chart, FRC.Shell.Frame.thirteen\\_tuples}",
    "page": "6-fourier/index.html#C6",
    "witness": {
     "py": {
@@ -31700,10 +32288,27 @@
      "line": 541,
      "verdict": "pass"
     },
-    "lean": []
+    "lean": [
+     {
+      "lib": "FrcCore",
+      "module": "FrcCore/Theme/Lifts",
+      "name": "FRC.Shell.Frame.Fmat_chart",
+      "tier": 0,
+      "ok": true,
+      "page": "lean/core/Theme.html#FRC.Shell.Frame.Fmat_chart"
+     },
+     {
+      "lib": "FrcCore",
+      "module": "FrcCore/Theme/Lifts",
+      "name": "FRC.Shell.Frame.thirteen_tuples",
+      "tier": 0,
+      "ok": true,
+      "page": "lean/core/Theme.html#FRC.Shell.Frame.thirteen_tuples"
+     }
+    ]
    },
    "refs": [],
-   "text": "Multiplicities are chart data: the vertex relabelling $m\\mapsto um$ carries $\\Ft(\\gen)$ to $\\Ft(\\gen^{u^{2}})$ by a coordinate permutation; at $\\p=13$ the frames $\\gen=2$ and $\\gen=6$ give $(3,3,4,2)$ and $(4,2,3,3)$, traces $4$ and $9$. Rem. rem:multiplicities p06020"
+   "text": "Multiplicities are chart data: for $u$ odd and a unit mod $4\\kap$ the vertex relabelling $m\\mapsto um$ carries $\\Ft(\\gen)$ to $\\Ft(\\gen^{u^{2}})$ by a coordinate permutation, $\\Ft(\\gen^{u^{2}})_{kj}=\\Ft(\\gen)_{uk,uj}$; at $\\p=13$ the frames $\\gen=2$ and $\\gen=6$ give the tuples $(3,3,4,2)$ and $(4,2,3,3)$, read as the traces of the projectors, with $\\operatorname{Tr}\\Ft=4,9$. Rem. rem:multiplicities p06020, FrcCore{C6} FRC.Shell.Frame.Fmat_chart, FRC.Shell.Frame.thirteen_tuples"
   },
   {
    "paper": "6-four",
@@ -31714,8 +32319,8 @@
    "block": "C",
    "tag": "T",
    "name": null,
-   "statement": "The multiplicity dichotomy: with $G=\\sum_{k}\\gen^{k^{2}}=\\varepsilon(1+\\im)$ (A3), the tuple is $(\\kap,\\kap,\\kap+1,\\kap-1)$ for $\\varepsilon=+1$ and $(\\kap+1,\\kap-1,\\kap,\\kap)$ for $\\varepsilon=-1$; $GG^{*}=-2$ and $\\varepsilon(\\gen^{-1})=-\\varepsilon(\\gen)$. Exact on the $38$ primitive frames of $\\p\\in\\{5,13,17,29,37\\}$ and the $16$ of $\\p=41$.",
-   "source": "Thm.~\\ref{thm:multiplicity}\\newline \\pywit{fourier}{p06021}{C7}, \\leanwit{FrcLedger}{p06021}{C7} \\lean{Fourier.gauss\\_mul\\_gauss\\_inv, Fourier.gauss\\_inv\\_of\\_sign, Fourier.shell\\_multiplicity\\_tuple}",
+   "statement": "The multiplicity dichotomy in trace form: with $G=\\sum_{k}\\gen^{k^{2}}$ and $G^{*}=\\sum_k\\gen^{-k^{2}}$ the traces are $\\operatorname{Tr}\\Ft=\\im G$, $\\operatorname{Tr}\\Ft^{2}=2$, $\\operatorname{Tr}\\Ft^{3}=\\im G^{*}$ and $\\operatorname{Tr}\\Pi_\\ell=\\tfrac14\\sum_r\\im^{-\\ell r}\\operatorname{Tr}\\Ft^{r}$; $GG^{*}=-2$ and $\\varepsilon(\\gen^{-1})=-\\varepsilon(\\gen)$; when $G=\\varepsilon(1+\\im)$ (A3) the tuple of traces is $(\\kap,\\kap,\\kap+1,\\kap-1)$ for $\\varepsilon=+1$ and $(\\kap+1,\\kap-1,\\kap,\\kap)$ for $\\varepsilon=-1$, read in $\\Fp$; the sign and the tuples on the six shells of Table~\\ref{tab:checks}. Exact on the $38$ primitive frames of $\\p\\in\\{5,13,17,29,37\\}$ and the $16$ of $\\p=41$.",
+   "source": "Thm.~\\ref{thm:multiplicity}\\newline \\pywit{fourier}{p06021}{C7}, \\leanwit{FrcCore}{p06021}{C7}, \\leanwit{FrcLedger}{p06021}{C7} \\lean{Fourier.gauss\\_mul\\_gauss\\_inv, Fourier.gauss\\_inv\\_of\\_sign, Fourier.shell\\_multiplicity\\_tuple, FRC.Shell.Frame.trace\\_powers, FRC.Shell.Frame.trace\\_proj, FRC.Shell.Frame.gauss\\_mul, FRC.Shell.Frame.gauss\\_conj, FRC.Shell.Frame.trace\\_tuples, FRC.Shell.Frame.six\\_signs, FRC.Shell.Frame.six\\_tuples}",
    "page": "6-fourier/index.html#C7",
    "witness": {
     "py": {
@@ -31748,13 +32353,69 @@
       "tier": 2,
       "ok": true,
       "page": "lean/ml/Fourier.html#FRC.Fourier.shell_multiplicity_tuple"
+     },
+     {
+      "lib": "FrcCore",
+      "module": "FrcCore/Theme/Dichotomy",
+      "name": "FRC.Shell.Frame.trace_powers",
+      "tier": 0,
+      "ok": true,
+      "page": "lean/core/Theme.html#FRC.Shell.Frame.trace_powers"
+     },
+     {
+      "lib": "FrcCore",
+      "module": "FrcCore/Theme/Dichotomy",
+      "name": "FRC.Shell.Frame.trace_proj",
+      "tier": 0,
+      "ok": true,
+      "page": "lean/core/Theme.html#FRC.Shell.Frame.trace_proj"
+     },
+     {
+      "lib": "FrcCore",
+      "module": "FrcCore/Theme/Dichotomy",
+      "name": "FRC.Shell.Frame.gauss_mul",
+      "tier": 0,
+      "ok": true,
+      "page": "lean/core/Theme.html#FRC.Shell.Frame.gauss_mul"
+     },
+     {
+      "lib": "FrcCore",
+      "module": "FrcCore/Theme/Dichotomy",
+      "name": "FRC.Shell.Frame.gauss_conj",
+      "tier": 0,
+      "ok": true,
+      "page": "lean/core/Theme.html#FRC.Shell.Frame.gauss_conj"
+     },
+     {
+      "lib": "FrcCore",
+      "module": "FrcCore/Theme/Dichotomy",
+      "name": "FRC.Shell.Frame.trace_tuples",
+      "tier": 0,
+      "ok": true,
+      "page": "lean/core/Theme.html#FRC.Shell.Frame.trace_tuples"
+     },
+     {
+      "lib": "FrcCore",
+      "module": "FrcCore/Theme/Dichotomy",
+      "name": "FRC.Shell.Frame.six_signs",
+      "tier": 0,
+      "ok": true,
+      "page": "lean/core/Theme.html#FRC.Shell.Frame.six_signs"
+     },
+     {
+      "lib": "FrcCore",
+      "module": "FrcCore/Theme/Dichotomy",
+      "name": "FRC.Shell.Frame.six_tuples",
+      "tier": 0,
+      "ok": true,
+      "page": "lean/core/Theme.html#FRC.Shell.Frame.six_tuples"
      }
     ]
    },
    "refs": [
     "p06003"
    ],
-   "text": "The multiplicity dichotomy: with $G=\\sum_{k}\\gen^{k^{2}}=\\varepsilon(1+\\im)$ (A3), the tuple is $(\\kap,\\kap,\\kap+1,\\kap-1)$ for $\\varepsilon=+1$ and $(\\kap+1,\\kap-1,\\kap,\\kap)$ for $\\varepsilon=-1$; $GG^{*}=-2$ and $\\varepsilon(\\gen^{-1})=-\\varepsilon(\\gen)$. Exact on the $38$ primitive frames of $\\p\\in\\{5,13,17,29,37\\}$ and the $16$ of $\\p=41$. Thm. thm:multiplicity p06021, FrcLedger{C7} Fourier.gauss_mul_gauss_inv, Fourier.gauss_inv_of_sign, Fourier.shell_multiplicity_tuple"
+   "text": "The multiplicity dichotomy in trace form: with $G=\\sum_{k}\\gen^{k^{2}}$ and $G^{*}=\\sum_k\\gen^{-k^{2}}$ the traces are $\\operatorname{Tr}\\Ft=\\im G$, $\\operatorname{Tr}\\Ft^{2}=2$, $\\operatorname{Tr}\\Ft^{3}=\\im G^{*}$ and $\\operatorname{Tr}\\Pi_\\ell=\\tfrac14\\sum_r\\im^{-\\ell r}\\operatorname{Tr}\\Ft^{r}$; $GG^{*}=-2$ and $\\varepsilon(\\gen^{-1})=-\\varepsilon(\\gen)$; when $G=\\varepsilon(1+\\im)$ (A3) the tuple of traces is $(\\kap,\\kap,\\kap+1,\\kap-1)$ for $\\varepsilon=+1$ and $(\\kap+1,\\kap-1,\\kap,\\kap)$ for $\\varepsilon=-1$, read in $\\Fp$; the sign and the tuples on the six shells of Table tab:checks. Exact on the $38$ primitive frames of $\\p\\in\\{5,13,17,29,37\\}$ and the $16$ of $\\p=41$. Thm. thm:multiplicity p06021, FrcCore{C7}, FrcLedger{C7} Fourier.gauss_mul_gauss_inv, Fourier.gauss_inv_of_sign, Fourier.shell_multiplicity_tuple, FRC.Shell.Frame.trace_powers, FRC.Shell.Frame.trace_proj, FRC.Shell.Frame.gauss_mul, FRC.Shell.Frame.gauss_conj, FRC.Shell.Frame.trace_tuples, FRC.Shell.Frame.six_signs, FRC.Shell.Frame.six_tuples"
   },
   {
    "paper": "6-four",
@@ -31766,7 +32427,7 @@
    "tag": "T",
    "name": null,
    "statement": "Exponent lifts: every lift $a_\\ell\\equiv\\ell\\pmod4$, $U^{(a)}_s=\\sum_\\ell\\gen^{-a_\\ell s}\\Pi_\\ell$, is additive with the same cardinal skeleton, $U^{(a)}_{s+r}=U^{(a)}_sU^{(a)}_r$ and $U^{(a)}_{m\\kap}=\\Ft^{m}$.",
-   "source": "Rem.~\\ref{rem:classification}\\newline \\pywit{fourier}{p06022}{C8}, \\leanwit{FrcLedger}{p06022}{C8} \\lean{Fourier.shell\\_frftLift}",
+   "source": "Rem.~\\ref{rem:classification}\\newline \\pywit{fourier}{p06022}{C8}, \\leanwit{FrcCore}{p06022}{C8}, \\leanwit{FrcLedger}{p06022}{C8} \\lean{Fourier.shell\\_frftLift, FRC.Shell.Frame.lift\\_add, FRC.Shell.Frame.lift\\_cardinal, FRC.Shell.Frame.lift\\_pow}",
    "page": "6-fourier/index.html#C8",
    "witness": {
     "py": {
@@ -31783,11 +32444,35 @@
       "tier": 2,
       "ok": true,
       "page": "lean/ml/Fourier.html#FRC.Fourier.shell_frftLift"
+     },
+     {
+      "lib": "FrcCore",
+      "module": "FrcCore/Theme/Lifts",
+      "name": "FRC.Shell.Frame.lift_add",
+      "tier": 0,
+      "ok": true,
+      "page": "lean/core/Theme.html#FRC.Shell.Frame.lift_add"
+     },
+     {
+      "lib": "FrcCore",
+      "module": "FrcCore/Theme/Lifts",
+      "name": "FRC.Shell.Frame.lift_cardinal",
+      "tier": 0,
+      "ok": true,
+      "page": "lean/core/Theme.html#FRC.Shell.Frame.lift_cardinal"
+     },
+     {
+      "lib": "FrcCore",
+      "module": "FrcCore/Theme/Lifts",
+      "name": "FRC.Shell.Frame.lift_pow",
+      "tier": 0,
+      "ok": true,
+      "page": "lean/core/Theme.html#FRC.Shell.Frame.lift_pow"
      }
     ]
    },
    "refs": [],
-   "text": "Exponent lifts: every lift $a_\\ell\\equiv\\ell\\pmod4$, $U^{(a)}_s=\\sum_\\ell\\gen^{-a_\\ell s}\\Pi_\\ell$, is additive with the same cardinal skeleton, $U^{(a)}_{s+r}=U^{(a)}_sU^{(a)}_r$ and $U^{(a)}_{m\\kap}=\\Ft^{m}$. Rem. rem:classification p06022, FrcLedger{C8} Fourier.shell_frftLift"
+   "text": "Exponent lifts: every lift $a_\\ell\\equiv\\ell\\pmod4$, $U^{(a)}_s=\\sum_\\ell\\gen^{-a_\\ell s}\\Pi_\\ell$, is additive with the same cardinal skeleton, $U^{(a)}_{s+r}=U^{(a)}_sU^{(a)}_r$ and $U^{(a)}_{m\\kap}=\\Ft^{m}$. Rem. rem:classification p06022, FrcCore{C8}, FrcLedger{C8} Fourier.shell_frftLift, FRC.Shell.Frame.lift_add, FRC.Shell.Frame.lift_cardinal, FRC.Shell.Frame.lift_pow"
   },
   {
    "paper": "6-four",
@@ -31799,7 +32484,7 @@
    "tag": "T",
    "name": null,
    "statement": "The conjugate reframing $(\\gen,\\im)\\mapsto(\\gen^{-1},-\\im)$: exactly $\\Ft'=-\\Ft^{-1}$ and $\\Pi'_\\ell=\\Pi_{\\ell+2}$; the operator relations, cardinal values, additivity and faithfulness hold on the conjugate frame, and its multiplicity tuple is the other pattern of C7.",
-   "source": "Rem.~\\ref{rem:gt-covariance}, Thm.~\\ref{thm:multiplicity}\\newline \\pywit{fourier}{p06023}{C9}, \\leanwit{FrcLedger}{p06023}{C9} \\lean{Fourier.shell\\_conj}",
+   "source": "Rem.~\\ref{rem:gt-covariance}, Thm.~\\ref{thm:multiplicity}\\newline \\pywit{fourier}{p06023}{C9}, \\leanwit{FrcCore}{p06023}{C9}, \\leanwit{FrcLedger}{p06023}{C9} \\lean{Fourier.shell\\_conj, FRC.Shell.Frame.inv\\_frame, FRC.Shell.Frame.Fmat\\_conj, FRC.Shell.Frame.proj\\_conj}",
    "page": "6-fourier/index.html#C9",
    "witness": {
     "py": {
@@ -31816,6 +32501,30 @@
       "tier": 2,
       "ok": true,
       "page": "lean/ml/Fourier.html#FRC.Fourier.shell_conj"
+     },
+     {
+      "lib": "FrcCore",
+      "module": "FrcCore/Theme/Fourier",
+      "name": "FRC.Shell.Frame.inv_frame",
+      "tier": 0,
+      "ok": true,
+      "page": "lean/core/Theme.html#FRC.Shell.Frame.inv_frame"
+     },
+     {
+      "lib": "FrcCore",
+      "module": "FrcCore/Theme/Fourier",
+      "name": "FRC.Shell.Frame.Fmat_conj",
+      "tier": 0,
+      "ok": true,
+      "page": "lean/core/Theme.html#FRC.Shell.Frame.Fmat_conj"
+     },
+     {
+      "lib": "FrcCore",
+      "module": "FrcCore/Theme/Fourier",
+      "name": "FRC.Shell.Frame.proj_conj",
+      "tier": 0,
+      "ok": true,
+      "page": "lean/core/Theme.html#FRC.Shell.Frame.proj_conj"
      }
     ]
    },
@@ -31823,7 +32532,7 @@
     "p00189",
     "p06021"
    ],
-   "text": "The conjugate reframing $(\\gen,\\im)\\mapsto(\\gen^{-1},-\\im)$: exactly $\\Ft'=-\\Ft^{-1}$ and $\\Pi'_\\ell=\\Pi_{\\ell+2}$; the operator relations, cardinal values, additivity and faithfulness hold on the conjugate frame, and its multiplicity tuple is the other pattern of C7. Rem. rem:gt-covariance, Thm. thm:multiplicity p06023, FrcLedger{C9} Fourier.shell_conj"
+   "text": "The conjugate reframing $(\\gen,\\im)\\mapsto(\\gen^{-1},-\\im)$: exactly $\\Ft'=-\\Ft^{-1}$ and $\\Pi'_\\ell=\\Pi_{\\ell+2}$; the operator relations, cardinal values, additivity and faithfulness hold on the conjugate frame, and its multiplicity tuple is the other pattern of C7. Rem. rem:gt-covariance, Thm. thm:multiplicity p06023, FrcCore{C9}, FrcLedger{C9} Fourier.shell_conj, FRC.Shell.Frame.inv_frame, FRC.Shell.Frame.Fmat_conj, FRC.Shell.Frame.proj_conj"
   },
   {
    "paper": "6-four",
@@ -31860,8 +32569,8 @@
    "block": "C",
    "tag": "T",
    "name": null,
-   "statement": "Charts outside the classified set: a family canonical in the chart $\\gen^{u}$ with $u^{2}\\not\\equiv1\\pmod{4\\kap}$ does not commute with $\\Ft$, on every shell --- $\\Wt(\\gen^{u})=\\Wt P_u$ with $P_u$ the site relabelling $j\\mapsto uj$, so $\\Wt\\,\\Wt(\\gen^{u})=-JP_u$ and $\\Wt(\\gen^{u})\\,\\Wt=-JP_{u^{-1}}$, equal exactly when $u^{2}\\equiv1$, and the chart's normalized operator $\\Ft'=\\im'\\Wt(\\gen^{u})$ and its $\\Ft'^{[1]}$ are polynomials in each other; $\\p=29$, $u=5$, and every such chart of the six shells of Table~\\ref{tab:checks} checked.",
-   "source": "Rem.~\\ref{rem:classification}\\newline \\pywit{fourier}{p06052}{C11}",
+   "statement": "Charts outside the classified set: for $u$ a unit mod $4\\kap$, $\\Wt(\\gen^{u})=\\Wt P_u$ with $P_u$ the site relabelling $j\\mapsto uj$, so $\\Wt\\,\\Wt(\\gen^{u})=-JP_u$ and $\\Wt(\\gen^{u})\\,\\Wt=-JP_{u^{-1}}$, and the two differ at the entry $(-u,1)$ when $u^{2}\\not\\equiv1\\pmod{4\\kap}$: a family canonical in such a chart does not commute with $\\Ft$; $\\p=29$, $u=5$, and every such chart of the six shells of Table~\\ref{tab:checks} checked.",
+   "source": "Rem.~\\ref{rem:classification}\\newline \\pywit{fourier}{p06052}{C11}, \\leanwit{FrcCore}{p06052}{C11} \\lean{FRC.Shell.Frame.W\\_chart, FRC.Shell.Frame.W\\_mul\\_chart, FRC.Shell.Frame.chart\\_mul\\_W, FRC.Shell.Frame.chart\\_noncommute}",
    "page": "6-fourier/index.html#C11",
    "witness": {
     "py": {
@@ -31870,10 +32579,43 @@
      "line": 607,
      "verdict": "pass"
     },
-    "lean": []
+    "lean": [
+     {
+      "lib": "FrcCore",
+      "module": "FrcCore/Theme/Lifts",
+      "name": "FRC.Shell.Frame.W_chart",
+      "tier": 0,
+      "ok": true,
+      "page": "lean/core/Theme.html#FRC.Shell.Frame.W_chart"
+     },
+     {
+      "lib": "FrcCore",
+      "module": "FrcCore/Theme/Lifts",
+      "name": "FRC.Shell.Frame.W_mul_chart",
+      "tier": 0,
+      "ok": true,
+      "page": "lean/core/Theme.html#FRC.Shell.Frame.W_mul_chart"
+     },
+     {
+      "lib": "FrcCore",
+      "module": "FrcCore/Theme/Lifts",
+      "name": "FRC.Shell.Frame.chart_mul_W",
+      "tier": 0,
+      "ok": true,
+      "page": "lean/core/Theme.html#FRC.Shell.Frame.chart_mul_W"
+     },
+     {
+      "lib": "FrcCore",
+      "module": "FrcCore/Theme/Lifts",
+      "name": "FRC.Shell.Frame.chart_noncommute",
+      "tier": 0,
+      "ok": true,
+      "page": "lean/core/Theme.html#FRC.Shell.Frame.chart_noncommute"
+     }
+    ]
    },
    "refs": [],
-   "text": "Charts outside the classified set: a family canonical in the chart $\\gen^{u}$ with $u^{2}\\not\\equiv1\\pmod{4\\kap}$ does not commute with $\\Ft$, on every shell — $\\Wt(\\gen^{u})=\\Wt P_u$ with $P_u$ the site relabelling $j\\mapsto uj$, so $\\Wt \\Wt(\\gen^{u})=-JP_u$ and $\\Wt(\\gen^{u}) \\Wt=-JP_{u^{-1}}$, equal exactly when $u^{2}\\equiv1$, and the chart's normalized operator $\\Ft'=\\im'\\Wt(\\gen^{u})$ and its $\\Ft'^{[1]}$ are polynomials in each other; $\\p=29$, $u=5$, and every such chart of the six shells of Table tab:checks checked. Rem. rem:classification p06052"
+   "text": "Charts outside the classified set: for $u$ a unit mod $4\\kap$, $\\Wt(\\gen^{u})=\\Wt P_u$ with $P_u$ the site relabelling $j\\mapsto uj$, so $\\Wt \\Wt(\\gen^{u})=-JP_u$ and $\\Wt(\\gen^{u}) \\Wt=-JP_{u^{-1}}$, and the two differ at the entry $(-u,1)$ when $u^{2}\\not\\equiv1\\pmod{4\\kap}$: a family canonical in such a chart does not commute with $\\Ft$; $\\p=29$, $u=5$, and every such chart of the six shells of Table tab:checks checked. Rem. rem:classification p06052, FrcCore{C11} FRC.Shell.Frame.W_chart, FRC.Shell.Frame.W_mul_chart, FRC.Shell.Frame.chart_mul_W, FRC.Shell.Frame.chart_noncommute"
   },
   {
    "paper": "6-four",
@@ -31885,7 +32627,7 @@
    "tag": "D",
    "name": null,
    "statement": "The meridional representation domain $D_s=(\\Vt,\\mathcal B_s)$, $\\mathcal B_s=\\Ft^{[s]}\\mathcal B_0$, every $\\Ft^{[s]}$ invertible; the cardinal domains spatial, spectral, parity, inverse-spectral.",
-   "source": "Def.~\\ref{def:domain}, Cor.~\\ref{cor:cardinal-domains}\\newline \\pywit{fourier}{p06024}{D1}",
+   "source": "Def.~\\ref{def:domain}, Cor.~\\ref{cor:cardinal-domains}\\newline \\pywit{fourier}{p06024}{D1}, \\leanwit{FrcCore}{p06024}{D1} \\lean{FRC.Shell.Frame.frft\\_inverse}",
    "page": "6-fourier/index.html#D1",
    "witness": {
     "py": {
@@ -31894,10 +32636,19 @@
      "line": 662,
      "verdict": "pass"
     },
-    "lean": []
+    "lean": [
+     {
+      "lib": "FrcCore",
+      "module": "FrcCore/Theme/Fractional",
+      "name": "FRC.Shell.Frame.frft_inverse",
+      "tier": 0,
+      "ok": true,
+      "page": "lean/core/Theme.html#FRC.Shell.Frame.frft_inverse"
+     }
+    ]
    },
    "refs": [],
-   "text": "The meridional representation domain $D_s=(\\Vt,\\mathcal B_s)$, $\\mathcal B_s=\\Ft^{[s]}\\mathcal B_0$, every $\\Ft^{[s]}$ invertible; the cardinal domains spatial, spectral, parity, inverse-spectral. Def. def:domain, Cor. cor:cardinal-domains p06024"
+   "text": "The meridional representation domain $D_s=(\\Vt,\\mathcal B_s)$, $\\mathcal B_s=\\Ft^{[s]}\\mathcal B_0$, every $\\Ft^{[s]}$ invertible; the cardinal domains spatial, spectral, parity, inverse-spectral. Def. def:domain, Cor. cor:cardinal-domains p06024, FrcCore{D1} FRC.Shell.Frame.frft_inverse"
   },
   {
    "paper": "6-four",
@@ -31909,7 +32660,7 @@
    "tag": "T",
    "name": null,
    "statement": "The $4\\kap$ framed domains are pairwise distinct; read as unordered measurement bases $B_{s+2\\kap}=B_s$, since $\\Ft^{[s+2\\kap]}=\\Ft^{[s]}J$ and $J$ permutes the standard basis.",
-   "source": "Cor.~\\ref{cor:distinct-domains}, Rem.~\\ref{rem:ordered-bases}\\newline \\pywit{fourier}{p06025}{D2}, \\leanwit{FrcLedger}{p06025}{D2} \\lean{Fourier.shell\\_frft\\_injective, Fourier.shell\\_frft\\_add\\_two\\_kappa, Fourier.mul\\_J\\_apply}",
+   "source": "Cor.~\\ref{cor:distinct-domains}, Rem.~\\ref{rem:ordered-bases}\\newline \\pywit{fourier}{p06025}{D2}, \\leanwit{FrcCore}{p06025}{D2}, \\leanwit{FrcLedger}{p06025}{D2} \\lean{Fourier.shell\\_frft\\_injective, Fourier.shell\\_frft\\_add\\_two\\_kappa, Fourier.mul\\_J\\_apply, FRC.Shell.Frame.frft\\_injective, FRC.Shell.Frame.five\\_frames, FRC.Shell.Frame.five\\_faithful, FRC.Shell.Frame.frft\\_half\\_turn}",
    "page": "6-fourier/index.html#D2",
    "witness": {
     "py": {
@@ -31942,11 +32693,43 @@
       "tier": 2,
       "ok": true,
       "page": "lean/ml/Fourier.html#FRC.Fourier.mul_J_apply"
+     },
+     {
+      "lib": "FrcCore",
+      "module": "FrcCore/Theme/Fractional",
+      "name": "FRC.Shell.Frame.frft_injective",
+      "tier": 0,
+      "ok": true,
+      "page": "lean/core/Theme.html#FRC.Shell.Frame.frft_injective"
+     },
+     {
+      "lib": "FrcCore",
+      "module": "FrcCore/Theme/Fractional",
+      "name": "FRC.Shell.Frame.five_frames",
+      "tier": 0,
+      "ok": true,
+      "page": "lean/core/Theme.html#FRC.Shell.Frame.five_frames"
+     },
+     {
+      "lib": "FrcCore",
+      "module": "FrcCore/Theme/Fractional",
+      "name": "FRC.Shell.Frame.five_faithful",
+      "tier": 0,
+      "ok": true,
+      "page": "lean/core/Theme.html#FRC.Shell.Frame.five_faithful"
+     },
+     {
+      "lib": "FrcCore",
+      "module": "FrcCore/Theme/Fractional",
+      "name": "FRC.Shell.Frame.frft_half_turn",
+      "tier": 0,
+      "ok": true,
+      "page": "lean/core/Theme.html#FRC.Shell.Frame.frft_half_turn"
      }
     ]
    },
    "refs": [],
-   "text": "The $4\\kap$ framed domains are pairwise distinct; read as unordered measurement bases $B_{s+2\\kap}=B_s$, since $\\Ft^{[s+2\\kap]}=\\Ft^{[s]}J$ and $J$ permutes the standard basis. Cor. cor:distinct-domains, Rem. rem:ordered-bases p06025, FrcLedger{D2} Fourier.shell_frft_injective, Fourier.shell_frft_add_two_kappa, Fourier.mul_J_apply"
+   "text": "The $4\\kap$ framed domains are pairwise distinct; read as unordered measurement bases $B_{s+2\\kap}=B_s$, since $\\Ft^{[s+2\\kap]}=\\Ft^{[s]}J$ and $J$ permutes the standard basis. Cor. cor:distinct-domains, Rem. rem:ordered-bases p06025, FrcCore{D2}, FrcLedger{D2} Fourier.shell_frft_injective, Fourier.shell_frft_add_two_kappa, Fourier.mul_J_apply, FRC.Shell.Frame.frft_injective, FRC.Shell.Frame.five_frames, FRC.Shell.Frame.five_faithful, FRC.Shell.Frame.frft_half_turn"
   },
   {
    "paper": "6-four",
@@ -32083,8 +32866,8 @@
    "block": "D",
    "tag": "T",
    "name": null,
-   "statement": "The cycle carries exactly $2\\kap$ measurement bases: $B_{s+t}\\neq B_s$ for $t\\notin\\{0,2\\kap\\}$, since every off-site entry of row $0$ of $\\Ft^{[t]}$ is $\\tfrac{\\im}{2}(1-\\gen^{-2t})\\neq0$ and $\\Ft^{[t]}$ is not monomial; the six shells of Table~\\ref{tab:checks}.",
-   "source": "Rem.~\\ref{rem:ordered-bases}\\newline \\pywit{fourier}{p06053}{D7}",
+   "statement": "The cycle carries exactly $2\\kap$ measurement bases: every off-site entry of row $0$ of $\\Ft^{[t]}$ is $\\tfrac{\\im}{2}(1-\\gen^{-2t})$, nonzero for $t\\notin\\{0,2\\kap\\}$, so $\\Ft^{[t]}$ is not monomial and $B_{s+t}\\neq B_s$; the six shells of Table~\\ref{tab:checks}.",
+   "source": "Rem.~\\ref{rem:ordered-bases}\\newline \\pywit{fourier}{p06053}{D7}, \\leanwit{FrcCore}{p06053}{D7} \\lean{FRC.Shell.Frame.frft\\_row\\_zero, FRC.Shell.Frame.frft\\_row\\_zero\\_ne\\_zero}",
    "page": "6-fourier/index.html#D7",
    "witness": {
     "py": {
@@ -32093,10 +32876,27 @@
      "line": 689,
      "verdict": "pass"
     },
-    "lean": []
+    "lean": [
+     {
+      "lib": "FrcCore",
+      "module": "FrcCore/Theme/Fractional",
+      "name": "FRC.Shell.Frame.frft_row_zero",
+      "tier": 0,
+      "ok": true,
+      "page": "lean/core/Theme.html#FRC.Shell.Frame.frft_row_zero"
+     },
+     {
+      "lib": "FrcCore",
+      "module": "FrcCore/Theme/Fractional",
+      "name": "FRC.Shell.Frame.frft_row_zero_ne_zero",
+      "tier": 0,
+      "ok": true,
+      "page": "lean/core/Theme.html#FRC.Shell.Frame.frft_row_zero_ne_zero"
+     }
+    ]
    },
    "refs": [],
-   "text": "The cycle carries exactly $2\\kap$ measurement bases: $B_{s+t}\\neq B_s$ for $t\\notin\\{0,2\\kap\\}$, since every off-site entry of row $0$ of $\\Ft^{[t]}$ is $\\tfrac{\\im}{2}(1-\\gen^{-2t})\\neq0$ and $\\Ft^{[t]}$ is not monomial; the six shells of Table tab:checks. Rem. rem:ordered-bases p06053"
+   "text": "The cycle carries exactly $2\\kap$ measurement bases: every off-site entry of row $0$ of $\\Ft^{[t]}$ is $\\tfrac{\\im}{2}(1-\\gen^{-2t})$, nonzero for $t\\notin\\{0,2\\kap\\}$, so $\\Ft^{[t]}$ is not monomial and $B_{s+t}\\neq B_s$; the six shells of Table tab:checks. Rem. rem:ordered-bases p06053, FrcCore{D7} FRC.Shell.Frame.frft_row_zero, FRC.Shell.Frame.frft_row_zero_ne_zero"
   },
   {
    "paper": "6-four",
@@ -32127,7 +32927,7 @@
    "tag": "T",
    "name": null,
    "statement": "$R_s\\in SO(2,\\Fp)$, and $s\\mapsto R_s$ is an isomorphism $\\Phit\\simeq SO(2,\\Fp)$ with $|SO(2,\\Fp)|=\\p-1=4\\kap$: the full rotation group of the $\\p^{2}$-point plane is the meridian cycle.",
-   "source": "Lem.~\\ref{lem:Rs-rotation}, Prop.~\\ref{prop:rotation-isom}\\newline \\pywit{fourier}{p06031}{E2}, \\leanwit{FrcLedger}{p06031}{E2} \\lean{Fourier.circle, Fourier.rot\\_mul, Fourier.unitsEquivCircle, Fourier.card\\_circle}",
+   "source": "Lem.~\\ref{lem:Rs-rotation}, Prop.~\\ref{prop:rotation-isom}\\newline \\pywit{fourier}{p06031}{E2}, \\leanwit{FrcCore}{p06031}{E2}, \\leanwit{FrcLedger}{p06031}{E2} \\lean{Fourier.circle, Fourier.rot\\_mul, Fourier.unitsEquivCircle, Fourier.card\\_circle, FRC.Shell.Frame.rot\\_circle, FRC.Shell.Frame.rot\\_hom, FRC.Shell.Frame.rot\\_inj, FRC.Shell.Frame.rot\\_surj, FRC.Shell.Frame.six\\_circles}",
    "page": "6-fourier/index.html#E2",
    "witness": {
     "py": {
@@ -32168,11 +32968,51 @@
       "tier": 2,
       "ok": true,
       "page": "lean/ml/Fourier.html#FRC.Fourier.card_circle"
+     },
+     {
+      "lib": "FrcCore",
+      "module": "FrcCore/Theme/Rotations",
+      "name": "FRC.Shell.Frame.rot_circle",
+      "tier": 0,
+      "ok": true,
+      "page": "lean/core/Theme.html#FRC.Shell.Frame.rot_circle"
+     },
+     {
+      "lib": "FrcCore",
+      "module": "FrcCore/Theme/Rotations",
+      "name": "FRC.Shell.Frame.rot_hom",
+      "tier": 0,
+      "ok": true,
+      "page": "lean/core/Theme.html#FRC.Shell.Frame.rot_hom"
+     },
+     {
+      "lib": "FrcCore",
+      "module": "FrcCore/Theme/Rotations",
+      "name": "FRC.Shell.Frame.rot_inj",
+      "tier": 0,
+      "ok": true,
+      "page": "lean/core/Theme.html#FRC.Shell.Frame.rot_inj"
+     },
+     {
+      "lib": "FrcCore",
+      "module": "FrcCore/Theme/Rotations",
+      "name": "FRC.Shell.Frame.rot_surj",
+      "tier": 0,
+      "ok": true,
+      "page": "lean/core/Theme.html#FRC.Shell.Frame.rot_surj"
+     },
+     {
+      "lib": "FrcCore",
+      "module": "FrcCore/Theme/Rotations",
+      "name": "FRC.Shell.Frame.six_circles",
+      "tier": 0,
+      "ok": true,
+      "page": "lean/core/Theme.html#FRC.Shell.Frame.six_circles"
      }
     ]
    },
    "refs": [],
-   "text": "$R_s\\in SO(2,\\Fp)$, and $s\\mapsto R_s$ is an isomorphism $\\Phit\\simeq SO(2,\\Fp)$ with $|SO(2,\\Fp)|=\\p-1=4\\kap$: the full rotation group of the $\\p^{2}$-point plane is the meridian cycle. Lem. lem:Rs-rotation, Prop. prop:rotation-isom p06031, FrcLedger{E2} Fourier.circle, Fourier.rot_mul, Fourier.unitsEquivCircle, Fourier.card_circle"
+   "text": "$R_s\\in SO(2,\\Fp)$, and $s\\mapsto R_s$ is an isomorphism $\\Phit\\simeq SO(2,\\Fp)$ with $|SO(2,\\Fp)|=\\p-1=4\\kap$: the full rotation group of the $\\p^{2}$-point plane is the meridian cycle. Lem. lem:Rs-rotation, Prop. prop:rotation-isom p06031, FrcCore{E2}, FrcLedger{E2} Fourier.circle, Fourier.rot_mul, Fourier.unitsEquivCircle, Fourier.card_circle, FRC.Shell.Frame.rot_circle, FRC.Shell.Frame.rot_hom, FRC.Shell.Frame.rot_inj, FRC.Shell.Frame.rot_surj, FRC.Shell.Frame.six_circles"
   },
   {
    "paper": "6-four",
@@ -32183,8 +33023,8 @@
    "block": "E",
    "tag": "T",
    "name": null,
-   "statement": "The cardinal-skeleton dictionary $M_s\\leftrightarrow s\\leftrightarrow z_s\\leftrightarrow R_s$ with $R_0=I$, $R_\\kap=w$, $R_{2\\kap}=-I$, $R_{3\\kap}=w^{-1}$ (the $R_\\kap$ column of Table~\\ref{tab:checks}), $z_\\kap=\\im$; the FRC-native and Weil families stand in cardinal Weil correspondence, the Weil side by the normalization of A2.",
-   "source": "Thm.~\\ref{thm:Weil-equivalence}\\newline \\pywit{fourier}{p06032}{E3}, \\leanwit{FrcLedger}{p06032}{E3} \\lean{Fourier.rot\\_cardinal}",
+   "statement": "The cardinal-skeleton dictionary $M_s\\leftrightarrow s\\leftrightarrow z_s\\leftrightarrow R_s$ with $R_0=I$, $R_\\kap=w$, $R_{2\\kap}=-I$, $R_{3\\kap}=w^{-1}$ (the $R_\\kap$ column of Table~\\ref{tab:checks}), $z_\\kap=\\im$; the FRC-native and Weil families stand in cardinal Weil correspondence, the Weil side by the normalization of A2 (an import).",
+   "source": "Thm.~\\ref{thm:Weil-equivalence}\\newline \\pywit{fourier}{p06032}{E3}, \\leanwit{FrcCore}{p06032}{E3}, \\leanwit{FrcLedger}{p06032}{E3} \\lean{Fourier.rot\\_cardinal, FRC.Shell.Frame.rot\\_cardinal}",
    "page": "6-fourier/index.html#E3",
    "witness": {
     "py": {
@@ -32201,13 +33041,21 @@
       "tier": 2,
       "ok": true,
       "page": "lean/ml/Fourier.html#FRC.Fourier.rot_cardinal"
+     },
+     {
+      "lib": "FrcCore",
+      "module": "FrcCore/Theme/Rotations",
+      "name": "FRC.Shell.Frame.rot_cardinal",
+      "tier": 0,
+      "ok": true,
+      "page": "lean/core/Theme.html#FRC.Shell.Frame.rot_cardinal"
      }
     ]
    },
    "refs": [
     "p06002"
    ],
-   "text": "The cardinal-skeleton dictionary $M_s\\leftrightarrow s\\leftrightarrow z_s\\leftrightarrow R_s$ with $R_0=I$, $R_\\kap=w$, $R_{2\\kap}=-I$, $R_{3\\kap}=w^{-1}$ (the $R_\\kap$ column of Table tab:checks), $z_\\kap=\\im$; the FRC-native and Weil families stand in cardinal Weil correspondence, the Weil side by the normalization of A2. Thm. thm:Weil-equivalence p06032, FrcLedger{E3} Fourier.rot_cardinal"
+   "text": "The cardinal-skeleton dictionary $M_s\\leftrightarrow s\\leftrightarrow z_s\\leftrightarrow R_s$ with $R_0=I$, $R_\\kap=w$, $R_{2\\kap}=-I$, $R_{3\\kap}=w^{-1}$ (the $R_\\kap$ column of Table tab:checks), $z_\\kap=\\im$; the FRC-native and Weil families stand in cardinal Weil correspondence, the Weil side by the normalization of A2 (an import). Thm. thm:Weil-equivalence p06032, FrcCore{E3}, FrcLedger{E3} Fourier.rot_cardinal, FRC.Shell.Frame.rot_cardinal"
   },
   {
    "paper": "6-four",
@@ -32237,8 +33085,8 @@
    "block": "E",
    "tag": "T",
    "name": null,
-   "statement": "Spectral obstruction: for $\\kap\\ge2$ no invertible $T$ on $\\Vt$ satisfies $T\\sigma T^{-1}=\\Ft^{[s]}$ for any $s$; the cyclic groups $\\langle\\sigma\\rangle$ and $\\langle\\Ft^{[1]}\\rangle$, of the same order $4\\kap$, are not conjugate.",
-   "source": "Prop.~\\ref{prop:nogo}\\newline \\pywit{fourier}{p06034}{E5}, \\leanwit{FrcLedger}{p06034}{E5} \\lean{Fourier.shell\\_spectral\\_obstruction}",
+   "statement": "Spectral obstruction: for $\\kap\\ge2$ no invertible $T$ on $\\Vt$ satisfies $T\\sigma T^{-1}=\\Ft^{[s]}$ for any $s$; the cyclic groups $\\langle\\sigma\\rangle$ and $\\langle\\Ft^{[1]}\\rangle$, each of order $4\\kap$ ($\\Ft^{[1]}$ by C4; $\\sigma$ permutes the $4\\kap$ labels cyclically), are not conjugate.",
+   "source": "Prop.~\\ref{prop:nogo}\\newline \\pywit{fourier}{p06034}{E5}, \\leanwit{FrcCore}{p06034}{E5}, \\leanwit{FrcLedger}{p06034}{E5} \\lean{Fourier.shell\\_spectral\\_obstruction, FRC.Shell.Frame.spectral\\_obstruction}",
    "page": "6-fourier/index.html#E5",
    "witness": {
     "py": {
@@ -32255,11 +33103,21 @@
       "tier": 2,
       "ok": true,
       "page": "lean/ml/Fourier.html#FRC.Fourier.shell_spectral_obstruction"
+     },
+     {
+      "lib": "FrcCore",
+      "module": "FrcCore/Theme/Spectra",
+      "name": "FRC.Shell.Frame.spectral_obstruction",
+      "tier": 0,
+      "ok": true,
+      "page": "lean/core/Theme.html#FRC.Shell.Frame.spectral_obstruction"
      }
     ]
    },
-   "refs": [],
-   "text": "Spectral obstruction: for $\\kap\\ge2$ no invertible $T$ on $\\Vt$ satisfies $T\\sigma T^{-1}=\\Ft^{[s]}$ for any $s$; the cyclic groups $\\langle\\sigma\\rangle$ and $\\langle\\Ft^{[1]}\\rangle$, of the same order $4\\kap$, are not conjugate. Prop. prop:nogo p06034, FrcLedger{E5} Fourier.shell_spectral_obstruction"
+   "refs": [
+    "p06018"
+   ],
+   "text": "Spectral obstruction: for $\\kap\\ge2$ no invertible $T$ on $\\Vt$ satisfies $T\\sigma T^{-1}=\\Ft^{[s]}$ for any $s$; the cyclic groups $\\langle\\sigma\\rangle$ and $\\langle\\Ft^{[1]}\\rangle$, each of order $4\\kap$ ($\\Ft^{[1]}$ by C4; $\\sigma$ permutes the $4\\kap$ labels cyclically), are not conjugate. Prop. prop:nogo p06034, FrcCore{E5}, FrcLedger{E5} Fourier.shell_spectral_obstruction, FRC.Shell.Frame.spectral_obstruction"
   },
   {
    "paper": "6-four",
@@ -32271,7 +33129,7 @@
    "tag": "T",
    "name": null,
    "statement": "Common character sector: on $E_1=\\operatorname{im}\\Pi_1\\neq0$ ($\\kap\\ge2$) $\\Ft^{[s]}=\\gen^{-s}I$, the intertwiner $\\Ft^{[s]}T_v=T_vS_{-s}$ on every $x\\in\\Fp$ and $s$, and $R_s(1,-\\im)^{\\mathsf T}=\\gen^{-s}(1,-\\im)^{\\mathsf T}$.",
-   "source": "Prop.~\\ref{prop:charsector}\\newline \\pywit{fourier}{p06035}{E6}, \\leanwit{FrcLedger}{p06035}{E6} \\lean{Fourier.frft\\_mul\\_proj\\_one, Fourier.rot\\_eigenline}",
+   "source": "Prop.~\\ref{prop:charsector}\\newline \\pywit{fourier}{p06035}{E6}, \\leanwit{FrcCore}{p06035}{E6}, \\leanwit{FrcLedger}{p06035}{E6} \\lean{Fourier.frft\\_mul\\_proj\\_one, Fourier.rot\\_eigenline, FRC.Shell.Frame.frft\\_proj, FRC.Shell.Frame.frft\\_intertwine, FRC.Shell.Frame.rot\\_eigenline}",
    "page": "6-fourier/index.html#E6",
    "witness": {
     "py": {
@@ -32296,11 +33154,35 @@
       "tier": 2,
       "ok": true,
       "page": "lean/ml/Fourier.html#FRC.Fourier.rot_eigenline"
+     },
+     {
+      "lib": "FrcCore",
+      "module": "FrcCore/Theme/Fractional",
+      "name": "FRC.Shell.Frame.frft_proj",
+      "tier": 0,
+      "ok": true,
+      "page": "lean/core/Theme.html#FRC.Shell.Frame.frft_proj"
+     },
+     {
+      "lib": "FrcCore",
+      "module": "FrcCore/Theme/Heisenberg",
+      "name": "FRC.Shell.Frame.frft_intertwine",
+      "tier": 0,
+      "ok": true,
+      "page": "lean/core/Theme.html#FRC.Shell.Frame.frft_intertwine"
+     },
+     {
+      "lib": "FrcCore",
+      "module": "FrcCore/Theme/Heisenberg",
+      "name": "FRC.Shell.Frame.rot_eigenline",
+      "tier": 0,
+      "ok": true,
+      "page": "lean/core/Theme.html#FRC.Shell.Frame.rot_eigenline"
      }
     ]
    },
    "refs": [],
-   "text": "Common character sector: on $E_1=\\operatorname{im}\\Pi_1\\neq0$ ($\\kap\\ge2$) $\\Ft^{[s]}=\\gen^{-s}I$, the intertwiner $\\Ft^{[s]}T_v=T_vS_{-s}$ on every $x\\in\\Fp$ and $s$, and $R_s(1,-\\im)^{\\mathsf T}=\\gen^{-s}(1,-\\im)^{\\mathsf T}$. Prop. prop:charsector p06035, FrcLedger{E6} Fourier.frft_mul_proj_one, Fourier.rot_eigenline"
+   "text": "Common character sector: on $E_1=\\operatorname{im}\\Pi_1\\neq0$ ($\\kap\\ge2$) $\\Ft^{[s]}=\\gen^{-s}I$, the intertwiner $\\Ft^{[s]}T_v=T_vS_{-s}$ on every $x\\in\\Fp$ and $s$, and $R_s(1,-\\im)^{\\mathsf T}=\\gen^{-s}(1,-\\im)^{\\mathsf T}$. Prop. prop:charsector p06035, FrcCore{E6}, FrcLedger{E6} Fourier.frft_mul_proj_one, Fourier.rot_eigenline, FRC.Shell.Frame.frft_proj, FRC.Shell.Frame.frft_intertwine, FRC.Shell.Frame.rot_eigenline"
   },
   {
    "paper": "6-four",
@@ -32311,8 +33193,8 @@
    "block": "E",
    "tag": "T",
    "name": null,
-   "statement": "Cardinal Heisenberg covariance: $\\Ft\\sigma\\Ft^{-1}=D_1$, $\\Ft D_1\\Ft^{-1}=\\sigma^{-1}$; $\\Ft^{r}\\sigma=\\sigma_r\\Ft^{r}$ with $(\\sigma,D_1,\\sigma^{-1},D_1^{-1})$; the expansion \\eqref{eq:conj-expansion}; $\\Ft^{[s]}\\sigma\\Ft^{[s]-1}$ monomial exactly at the four cardinal indices and non-monomial at every one of the $112$ intermediate indices of $\\p\\in\\{13,17,29,37,41\\}$.",
-   "source": "Prop.~\\ref{prop:heisenberg}, \\S\\ref{sub:operator-comparison}\\newline \\pywit{fourier}{p06036}{E7}, \\leanwit{FrcLedger}{p06036}{E7} \\lean{Fourier.shell\\_heisenberg}",
+   "statement": "Cardinal Heisenberg covariance: $\\Ft\\sigma\\Ft^{-1}=D_1$, $\\Ft D_1\\Ft^{-1}=\\sigma^{-1}$; $\\Ft^{r}\\sigma=\\sigma_r\\Ft^{r}$ with $(\\sigma,D_1,\\sigma^{-1},D_1^{-1})$; the expansion \\eqref{eq:conj-expansion}, $\\Ft^{[s]}=\\sum_r c_r(s)\\Ft^{r}$ with $c_r(s)=\\tfrac14\\sum_\\ell(\\gen^{r\\kap-s})^{\\ell}$.",
+   "source": "Prop.~\\ref{prop:heisenberg}, \\S\\ref{sub:operator-comparison}\\newline \\pywit{fourier}{p06036}{E7}, \\leanwit{FrcCore}{p06036}{E7}, \\leanwit{FrcLedger}{p06036}{E7} \\lean{Fourier.shell\\_heisenberg, FRC.Shell.Frame.shift\\_inverse, FRC.Shell.Frame.heisenberg, FRC.Shell.Frame.frft\\_eq, FRC.Shell.Frame.frft\\_coeff, FRC.Shell.Frame.w\\_eq\\_pow\\_kappa}",
    "page": "6-fourier/index.html#E7",
    "witness": {
     "py": {
@@ -32329,11 +33211,51 @@
       "tier": 2,
       "ok": true,
       "page": "lean/ml/Fourier.html#FRC.Fourier.shell_heisenberg"
+     },
+     {
+      "lib": "FrcCore",
+      "module": "FrcCore/Theme/Heisenberg",
+      "name": "FRC.Shell.Frame.shift_inverse",
+      "tier": 0,
+      "ok": true,
+      "page": "lean/core/Theme.html#FRC.Shell.Frame.shift_inverse"
+     },
+     {
+      "lib": "FrcCore",
+      "module": "FrcCore/Theme/Heisenberg",
+      "name": "FRC.Shell.Frame.heisenberg",
+      "tier": 0,
+      "ok": true,
+      "page": "lean/core/Theme.html#FRC.Shell.Frame.heisenberg"
+     },
+     {
+      "lib": "FrcCore",
+      "module": "FrcCore/Theme/Fourier",
+      "name": "FRC.Shell.Frame.frft_eq",
+      "tier": 0,
+      "ok": true,
+      "page": "lean/core/Theme.html#FRC.Shell.Frame.frft_eq"
+     },
+     {
+      "lib": "FrcCore",
+      "module": "FrcCore/Theme/Heisenberg",
+      "name": "FRC.Shell.Frame.frft_coeff",
+      "tier": 0,
+      "ok": true,
+      "page": "lean/core/Theme.html#FRC.Shell.Frame.frft_coeff"
+     },
+     {
+      "lib": "FrcCore",
+      "module": "FrcCore/Theme/Heisenberg",
+      "name": "FRC.Shell.Frame.w_eq_pow_kappa",
+      "tier": 0,
+      "ok": true,
+      "page": "lean/core/Theme.html#FRC.Shell.Frame.w_eq_pow_kappa"
      }
     ]
    },
    "refs": [],
-   "text": "Cardinal Heisenberg covariance: $\\Ft\\sigma\\Ft^{-1}=D_1$, $\\Ft D_1\\Ft^{-1}=\\sigma^{-1}$; $\\Ft^{r}\\sigma=\\sigma_r\\Ft^{r}$ with $(\\sigma,D_1,\\sigma^{-1},D_1^{-1})$; the expansion eq:conj-expansion; $\\Ft^{[s]}\\sigma\\Ft^{[s]-1}$ monomial exactly at the four cardinal indices and non-monomial at every one of the $112$ intermediate indices of $\\p\\in\\{13,17,29,37,41\\}$. Prop. prop:heisenberg, \\Ssub:operator-comparison p06036, FrcLedger{E7} Fourier.shell_heisenberg"
+   "text": "Cardinal Heisenberg covariance: $\\Ft\\sigma\\Ft^{-1}=D_1$, $\\Ft D_1\\Ft^{-1}=\\sigma^{-1}$; $\\Ft^{r}\\sigma=\\sigma_r\\Ft^{r}$ with $(\\sigma,D_1,\\sigma^{-1},D_1^{-1})$; the expansion eq:conj-expansion, $\\Ft^{[s]}=\\sum_r c_r(s)\\Ft^{r}$ with $c_r(s)=\\tfrac14\\sum_\\ell(\\gen^{r\\kap-s})^{\\ell}$. Prop. prop:heisenberg, \\Ssub:operator-comparison p06036, FrcCore{E7}, FrcLedger{E7} Fourier.shell_heisenberg, FRC.Shell.Frame.shift_inverse, FRC.Shell.Frame.heisenberg, FRC.Shell.Frame.frft_eq, FRC.Shell.Frame.frft_coeff, FRC.Shell.Frame.w_eq_pow_kappa"
   },
   {
    "paper": "6-four",
@@ -32344,8 +33266,8 @@
    "block": "E",
    "tag": "T",
    "name": null,
-   "statement": "Cardinal exclusivity: for every $s\\notin\\{0,\\kap,2\\kap,3\\kap\\}$ the operator \\eqref{eq:conj-expansion} is not monomial --- off $j\\in\\{-1,0,1\\}$ its row $0$ is $x^{-1}$ times a quadratic in $x=\\gen^{j}$ with leading coefficient $\\im\\,[c_0(s)+c_2(s)]\\,c_3(-s)\\neq0$, $c_0(s)+c_2(s)=\\tfrac12(1+\\gen^{-2s})$, so the row has at least $4\\kap-5$ nonzero entries; the count checked on every shell below $200$.",
-   "source": "Thm.~\\ref{thm:monomial}\\newline \\pywit{fourier}{p06050}{E8}",
+   "statement": "Cardinal exclusivity: for every $s\\notin\\{0,\\kap,2\\kap,3\\kap\\}$ the conjugate $\\Ft^{[s]}\\sigma\\Ft^{[s]\\,-1}$ of \\eqref{eq:conj-expansion} is not monomial --- off $j\\in\\{-1,0,1\\}$ its row $0$ is $x^{-1}$ times a quadratic in $x=\\gen^{j}$ with leading coefficient $\\im\\,[c_0(s)+c_2(s)]\\,c_3(-s)\\neq0$, $c_0(s)+c_2(s)=\\tfrac12(1+\\gen^{-2s})$, so the row vanishes at no three distinct indices off the sites and, by counting, has at least $4\\kap-5$ nonzero entries; the count checked on every shell below $200$.",
+   "source": "Thm.~\\ref{thm:monomial}\\newline \\pywit{fourier}{p06050}{E8}, \\leanwit{FrcCore}{p06050}{E8} \\lean{FRC.Shell.Frame.row\\_entry, FRC.Shell.Frame.even\\_coeff\\_id, FRC.Shell.Frame.even\\_coeff\\_ne\\_zero, FRC.Shell.Frame.odd\\_coeff\\_ne\\_zero, FRC.Shell.Frame.exclusivity}",
    "page": "6-fourier/index.html#E8",
    "witness": {
     "py": {
@@ -32354,10 +33276,51 @@
      "line": 903,
      "verdict": "pass"
     },
-    "lean": []
+    "lean": [
+     {
+      "lib": "FrcCore",
+      "module": "FrcCore/Theme/Exclusivity",
+      "name": "FRC.Shell.Frame.row_entry",
+      "tier": 0,
+      "ok": true,
+      "page": "lean/core/Theme.html#FRC.Shell.Frame.row_entry"
+     },
+     {
+      "lib": "FrcCore",
+      "module": "FrcCore/Theme/Exclusivity",
+      "name": "FRC.Shell.Frame.even_coeff_id",
+      "tier": 0,
+      "ok": true,
+      "page": "lean/core/Theme.html#FRC.Shell.Frame.even_coeff_id"
+     },
+     {
+      "lib": "FrcCore",
+      "module": "FrcCore/Theme/Exclusivity",
+      "name": "FRC.Shell.Frame.even_coeff_ne_zero",
+      "tier": 0,
+      "ok": true,
+      "page": "lean/core/Theme.html#FRC.Shell.Frame.even_coeff_ne_zero"
+     },
+     {
+      "lib": "FrcCore",
+      "module": "FrcCore/Theme/Exclusivity",
+      "name": "FRC.Shell.Frame.odd_coeff_ne_zero",
+      "tier": 0,
+      "ok": true,
+      "page": "lean/core/Theme.html#FRC.Shell.Frame.odd_coeff_ne_zero"
+     },
+     {
+      "lib": "FrcCore",
+      "module": "FrcCore/Theme/Exclusivity",
+      "name": "FRC.Shell.Frame.exclusivity",
+      "tier": 0,
+      "ok": true,
+      "page": "lean/core/Theme.html#FRC.Shell.Frame.exclusivity"
+     }
+    ]
    },
    "refs": [],
-   "text": "Cardinal exclusivity: for every $s\\notin\\{0,\\kap,2\\kap,3\\kap\\}$ the operator eq:conj-expansion is not monomial — off $j\\in\\{-1,0,1\\}$ its row $0$ is $x^{-1}$ times a quadratic in $x=\\gen^{j}$ with leading coefficient $\\im [c_0(s)+c_2(s)] c_3(-s)\\neq0$, $c_0(s)+c_2(s)=\\tfrac12(1+\\gen^{-2s})$, so the row has at least $4\\kap-5$ nonzero entries; the count checked on every shell below $200$. Thm. thm:monomial p06050"
+   "text": "Cardinal exclusivity: for every $s\\notin\\{0,\\kap,2\\kap,3\\kap\\}$ the conjugate $\\Ft^{[s]}\\sigma\\Ft^{[s] -1}$ of eq:conj-expansion is not monomial — off $j\\in\\{-1,0,1\\}$ its row $0$ is $x^{-1}$ times a quadratic in $x=\\gen^{j}$ with leading coefficient $\\im [c_0(s)+c_2(s)] c_3(-s)\\neq0$, $c_0(s)+c_2(s)=\\tfrac12(1+\\gen^{-2s})$, so the row vanishes at no three distinct indices off the sites and, by counting, has at least $4\\kap-5$ nonzero entries; the count checked on every shell below $200$. Thm. thm:monomial p06050, FrcCore{E8} FRC.Shell.Frame.row_entry, FRC.Shell.Frame.even_coeff_id, FRC.Shell.Frame.even_coeff_ne_zero, FRC.Shell.Frame.odd_coeff_ne_zero, FRC.Shell.Frame.exclusivity"
   },
   {
    "paper": "6-four",
@@ -32368,8 +33331,8 @@
    "block": "E",
    "tag": "T",
    "name": null,
-   "statement": "The spectra behind E5: $\\sigma$ is diagonalizable over $\\Fp$ with the $4\\kap$ simple eigenvalues $\\Fpx$; $\\Ft^{[s]}=\\sum_\\ell\\gen^{-\\ell s}\\Pi_\\ell$ has at most four, among the $\\gen^{-\\ell s}$ ($\\Ft^{[1]}$ on the six shells).",
-   "source": "Prop.~\\ref{prop:nogo}\\newline \\pywit{fourier}{p06054}{E9}",
+   "statement": "The spectra behind E5: every nonzero residue $b$ is an eigenvalue of $\\sigma$, with the geometric eigenvector $(b^{-j})_j$ (so $\\sigma$ is diagonalizable over $\\Fp$ with the $4\\kap$ simple eigenvalues $\\Fpx$, the Mathlib reading); an eigenvalue of $\\Ft^{[s]}=\\sum_\\ell\\gen^{-\\ell s}\\Pi_\\ell$ is one of the four $\\gen^{-\\ell s}$ ($\\Ft^{[1]}$ on the six shells).",
+   "source": "Prop.~\\ref{prop:nogo}\\newline \\pywit{fourier}{p06054}{E9}, \\leanwit{FrcCore}{p06054}{E9} \\lean{FRC.Shell.Frame.shift\\_eigen, FRC.Shell.Frame.frft\\_eigen}",
    "page": "6-fourier/index.html#E9",
    "witness": {
     "py": {
@@ -32378,12 +33341,29 @@
      "line": 812,
      "verdict": "pass"
     },
-    "lean": []
+    "lean": [
+     {
+      "lib": "FrcCore",
+      "module": "FrcCore/Theme/Spectra",
+      "name": "FRC.Shell.Frame.shift_eigen",
+      "tier": 0,
+      "ok": true,
+      "page": "lean/core/Theme.html#FRC.Shell.Frame.shift_eigen"
+     },
+     {
+      "lib": "FrcCore",
+      "module": "FrcCore/Theme/Spectra",
+      "name": "FRC.Shell.Frame.frft_eigen",
+      "tier": 0,
+      "ok": true,
+      "page": "lean/core/Theme.html#FRC.Shell.Frame.frft_eigen"
+     }
+    ]
    },
    "refs": [
     "p06034"
    ],
-   "text": "The spectra behind E5: $\\sigma$ is diagonalizable over $\\Fp$ with the $4\\kap$ simple eigenvalues $\\Fpx$; $\\Ft^{[s]}=\\sum_\\ell\\gen^{-\\ell s}\\Pi_\\ell$ has at most four, among the $\\gen^{-\\ell s}$ ($\\Ft^{[1]}$ on the six shells). Prop. prop:nogo p06054"
+   "text": "The spectra behind E5: every nonzero residue $b$ is an eigenvalue of $\\sigma$, with the geometric eigenvector $(b^{-j})_j$ (so $\\sigma$ is diagonalizable over $\\Fp$ with the $4\\kap$ simple eigenvalues $\\Fpx$, the Mathlib reading); an eigenvalue of $\\Ft^{[s]}=\\sum_\\ell\\gen^{-\\ell s}\\Pi_\\ell$ is one of the four $\\gen^{-\\ell s}$ ($\\Ft^{[1]}$ on the six shells). Prop. prop:nogo p06054, FrcCore{E9} FRC.Shell.Frame.shift_eigen, FRC.Shell.Frame.frft_eigen"
   },
   {
    "paper": "6-four",
@@ -32394,8 +33374,8 @@
    "block": "E",
    "tag": "T",
    "name": null,
-   "statement": "The plane as orbits of the cycle: $|SO(2,\\Fp)|=4\\kap$; $\\Fp^{2}$ is its origin and $4\\kap+2$ free orbits of the rotation group, the $4\\kap$ circles of nonzero norm and the two isotropic lines, $\\p^{2}=1+(4\\kap+2)\\,4\\kap$; $\\dim\\Vt=4\\kap$.",
-   "source": "Cor.~\\ref{cor:boundary}\\newline \\pywit{fourier}{p06056}{E10}",
+   "statement": "The plane as orbits of the cycle: $R_s$ scales $u=x+\\im y$ by $z_s$ and $v=x-\\im y$ by $z_s^{-1}$, so every point off the origin has a free orbit of size $4\\kap=|SO(2,\\Fp)|$, and $\\p^{2}=1+(4\\kap+2)\\,4\\kap$ is the count of the origin and $4\\kap+2$ orbits (the $4\\kap$ circles of nonzero norm and the two isotropic lines: the paper's reading of the identity); $\\dim\\Vt=4\\kap$.",
+   "source": "Cor.~\\ref{cor:boundary}\\newline \\pywit{fourier}{p06056}{E10}, \\leanwit{FrcCore}{p06056}{E10} \\lean{FRC.Shell.Frame.rot\\_uv, FRC.Shell.Frame.orbit\\_free, FRC.Shell.Frame.plane\\_count, FRC.Shell.Frame.six\\_circles}",
    "page": "6-fourier/index.html#E10",
    "witness": {
     "py": {
@@ -32404,10 +33384,43 @@
      "line": 938,
      "verdict": "pass"
     },
-    "lean": []
+    "lean": [
+     {
+      "lib": "FrcCore",
+      "module": "FrcCore/Theme/Rotations",
+      "name": "FRC.Shell.Frame.rot_uv",
+      "tier": 0,
+      "ok": true,
+      "page": "lean/core/Theme.html#FRC.Shell.Frame.rot_uv"
+     },
+     {
+      "lib": "FrcCore",
+      "module": "FrcCore/Theme/Rotations",
+      "name": "FRC.Shell.Frame.orbit_free",
+      "tier": 0,
+      "ok": true,
+      "page": "lean/core/Theme.html#FRC.Shell.Frame.orbit_free"
+     },
+     {
+      "lib": "FrcCore",
+      "module": "FrcCore/Theme/Rotations",
+      "name": "FRC.Shell.Frame.plane_count",
+      "tier": 0,
+      "ok": true,
+      "page": "lean/core/Theme.html#FRC.Shell.Frame.plane_count"
+     },
+     {
+      "lib": "FrcCore",
+      "module": "FrcCore/Theme/Rotations",
+      "name": "FRC.Shell.Frame.six_circles",
+      "tier": 0,
+      "ok": true,
+      "page": "lean/core/Theme.html#FRC.Shell.Frame.six_circles"
+     }
+    ]
    },
    "refs": [],
-   "text": "The plane as orbits of the cycle: $|SO(2,\\Fp)|=4\\kap$; $\\Fp^{2}$ is its origin and $4\\kap+2$ free orbits of the rotation group, the $4\\kap$ circles of nonzero norm and the two isotropic lines, $\\p^{2}=1+(4\\kap+2) 4\\kap$; $\\dim\\Vt=4\\kap$. Cor. cor:boundary p06056"
+   "text": "The plane as orbits of the cycle: $R_s$ scales $u=x+\\im y$ by $z_s$ and $v=x-\\im y$ by $z_s^{-1}$, so every point off the origin has a free orbit of size $4\\kap=|SO(2,\\Fp)|$, and $\\p^{2}=1+(4\\kap+2) 4\\kap$ is the count of the origin and $4\\kap+2$ orbits (the $4\\kap$ circles of nonzero norm and the two isotropic lines: the paper's reading of the identity); $\\dim\\Vt=4\\kap$. Cor. cor:boundary p06056, FrcCore{E10} FRC.Shell.Frame.rot_uv, FRC.Shell.Frame.orbit_free, FRC.Shell.Frame.plane_count, FRC.Shell.Frame.six_circles"
   },
   {
    "paper": "6-four",

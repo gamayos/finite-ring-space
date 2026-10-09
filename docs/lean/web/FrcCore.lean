@@ -1,5 +1,5 @@
 /-! FrcCore — the FRC substrate from first principles, one file for the live instance (no Mathlib,
-no axioms). Generated from FrcCore/*.lean in dependency order (Nat, Pigeonhole, Shell, Series, Ring, FrameCore, Frame, Parity, Transform, Orbit, Sum, Theme.Projective, Meridian, Theme.Fourier, Theme.Quadratic, Theme.Extension, Poly, Theme.Numbers, Theme.Logic, Theme.Field, Theme.Foundation, Theme.Drive, Theme.Carrier, Theme.Subject, Theme.Symbol, Theme.Gravity, Theme.Quantum, Theme.Unitary, Theme.Interactions, Theme.Horizon, Keys.Fourier, Instances, Keys.Frame, Fourier, Keys.Numbers, Keys.Projective, Algebra, Epi, Dimensions, Quaternion, Keys.Extension, Causality, Representation, Keys.Logic, Reductio, Godel, Geometry, Complex, Keys.Horizon, Rh, Entropy, Gravity, Dirac, Keys.Carrier, Keys.Foundation, Keys.Gravity, Keys.Interactions, Keys.Quantum, Keys.Subject)
+no axioms). Generated from FrcCore/*.lean in dependency order (Nat, Pigeonhole, Shell, Series, Ring, FrameCore, Frame, Parity, Transform, Orbit, Sum, Theme.Projective, Meridian, Theme.Fourier, Theme.Fractional, Theme.Lifts, Theme.Dichotomy, Theme.Rotations, Theme.Heisenberg, Theme.Spectra, Theme.Exclusivity, Theme.Quadratic, Theme.Extension, Poly, Theme.Numbers, Theme.Logic, Theme.Field, Theme.Foundation, Theme.Drive, Theme.Carrier, Theme.Subject, Theme.Symbol, Theme.Gravity, Theme.Quantum, Theme.Unitary, Theme.Interactions, Theme.Horizon, Keys.Fourier, Instances, Theme.Domain, Keys.Frame, Fourier, Keys.Numbers, Keys.Projective, Algebra, Epi, Dimensions, Quaternion, Theme.Tally, Keys.Extension, Causality, Representation, Keys.Logic, Reductio, Godel, Geometry, Complex, Keys.Horizon, Rh, Entropy, Gravity, Dirac, Keys.Carrier, Keys.Foundation, Keys.Gravity, Keys.Interactions, Keys.Quantum, Keys.Subject)
 by make_core_web.py; the modules' own headers follow. Check any declaration with `#print axioms`. -/
 
 /-! inlined: FrcCore/Nat.lean -/
@@ -3801,6 +3801,8 @@ theorem hq (F : Frame p κ g) : (1 + 1 + 1 + 1 : Shell p) * -(ofNat κ) + -1 = 0
       ofNat_succ, show (ofNat 2 : Shell p) = ofNat (1 + 1) from rfl, ofNat_succ]; rfl
   rw [e4, ← mul_neg, ofNat_mul, ← F.n_eq, F.ofNat_n, neg_neg, add_neg]
 
+/-- 6:E7, the expansion `F^{[s]} = Σ_r c_r(s) F^r` in the basis `I, F, J, FJ`: the coefficients `c_r(s) = NF_r(z^s)`
+(their geometric-sum form is `frft_coeff` of `Theme/Heisenberg.lean`). -/
 theorem frft_eq (F : Frame p κ g) (z : Shell p) (s k j : Nat) :
     frft g κ z s k j = comb g κ (NF0 (-(ofNat κ)) (-(quarterTurn g κ)) (z ^ s)) (NF1 (-(ofNat κ)) (-(quarterTurn g κ)) (z ^ s))
       (NF2 (-(ofNat κ)) (-(quarterTurn g κ)) (z ^ s)) (NF3 (-(ofNat κ)) (-(quarterTurn g κ)) (z ^ s)) k j := by
@@ -3906,12 +3908,12 @@ theorem frft_add (F : Frame p κ g) (z : Shell p) (s r : Nat) {k j : Nat} (hk : 
   rw [sum_congr _ (fun l _ => by rw [frft_eq F z s k l, frft_eq F z r l j]), comb_mul F hk hj, frft_eq F z (s + r) k j,
     pow_add, conv0 (hjj F) (hq F), conv1 (hjj F) (hq F), conv2 (hjj F) (hq F), conv3 (hjj F) (hq F)]
 
-/-- The family is periodic over the cycle: `F^{[s + (p−1)]} = F^{[s]}`. -/
+/-- 6:C3, the period: the family is periodic over the cycle, `F^{[s + (p−1)]} = F^{[s]}`, so `F^{[4κ]} = I`. -/
 theorem frft_period (F : Frame p κ g) {z : Shell p} (hz : g * z = 1) (s k j : Nat) :
     frft g κ z (s + (p - 1)) k j = frft g κ z s k j := by
   unfold frft; rw [pow_add, inv_pow_n F hz, mul_one]
 
-/-- `F^{[m s]} = (F^{[s]})^m`; in particular `(F^{[1]})^κ = F^{[κ]} = F`. -/
+/-- 6:C3, the root: `F^{[m s]} = (F^{[s]})^m`; in particular `(F^{[1]})^κ = F^{[κ]} = F`. -/
 theorem frft_pow (F : Frame p κ g) {z : Shell p} (hz : g * z = 1) (s : Nat) :
     ∀ m k j, k < p - 1 → j < p - 1 → frft g κ z (m * s) k j = mpow (frft g κ z s) m k j
   | 0, k, j, _, _ => by rw [Nat.zero_mul]; exact (frft_cardinal F hz k j).1
@@ -3956,7 +3958,7 @@ theorem frft_dilation (F : Frame p κ g) {z : Shell p} (hz : g * z = 1) {s s' : 
 
 /-! ## C7: the conjugate frame, and the Carrier's quarter-turn -/
 
-/-- The inverse drive is a frame. -/
+/-- 6:C9, the conjugate frame: the inverse drive `g⁻¹` is a frame of the same shell and capacity. -/
 theorem inv_frame (F : Frame p κ g) {z : Shell p} (hz : g * z = 1) : Frame p κ z := by
   have hpow : ∀ l, g ^ l * z ^ l = 1 := fun l => by rw [← mul_pow, hz, one_pow]
   exact ⟨F.cap, F.cap_pos, ⟨by have := hpow (p - 1); rwa [F.pow_n, one_mul] at this,
@@ -3966,7 +3968,7 @@ theorem inv_quarter (F : Frame p κ g) {z : Shell p} (hz : g * z = 1) : quarterT
   show -(z ^ κ) = -quarterTurn g κ
   rw [inv_pow_kappa F hz]
 
-/-- The conjugate frame's transform is `−F J = −F⁻¹` (6:C9). -/
+/-- 6:C9, the conjugate frame's transform is `−F J = −F⁻¹`. -/
 theorem Fmat_conj (F : Frame p κ g) {z : Shell p} (hz : g * z = 1) {k j : Nat} (_hk : k < p - 1) (hj : j < p - 1) :
     Fmat z κ k j = -(FJ g κ k j) := by
   have hn := F.n_pos
@@ -4002,7 +4004,7 @@ theorem cube_pow {i : Shell p} (h : i * i = -1) : i ^ 3 = -i := by
 theorem neg_cube_pow {i : Shell p} (h : i * i = -1) : (-i) ^ 3 = i := by
   rw [pow_succ, neg_sq_pow h, neg_mul_neg, one_mul]
 
-/-- The conjugate frame's projectors are the shifted ones, `Π'_ℓ = Π_{ℓ+2}` (6:C9). -/
+/-- 6:C9, the conjugate frame's projectors are the shifted ones, `Π'_ℓ = Π_{ℓ+2}`. -/
 theorem proj_conj (F : Frame p κ g) {z : Shell p} (hz : g * z = 1) (ℓ : Nat) {k j : Nat} (hk : k < p - 1)
     (hj : j < p - 1) : proj z κ ℓ k j = proj g κ (ℓ + 2) k j := by
   have h := F.quarter_turn_sq
@@ -4033,6 +4035,2472 @@ theorem orientation (F : Frame p κ g) {z : Shell p} (hz : g * z = 1) :
   exact match Nat.decEq (m % 2) 0 with
     | isTrue e => .inl (by rw [ite_eq_left e])
     | isFalse e => .inr (by rw [ite_eq_right e])
+
+end Frame
+end Shell
+end FRC
+
+/-! inlined: FrcCore/Theme/Fractional.lean -/
+
+/-!
+# FrcCore.Theme.Fractional — the projector algebra of the fractional family (the fourier theme)
+
+The second file of the fourier theme (one theme; the 800-line limit of decision Q03 forces the file), opened for the
+revised 6-fourier of 8 October 2026 (`6-fourier-20260716/reports/blueprint-20261008.md`, task T02). Every projector
+`Π_ℓ = 4⁻¹ Σ_m i^{−ℓm} F^m` is a combination `c₀ I + c₁ F + c₂ J + c₃ F J` (`Theme/Fourier.lean`), and the product of
+two combinations is the cyclic convolution of their coefficients (`comb_mul`). So the algebra of the projectors is four
+coefficient identities per product, decided by the kernel through the normaliser `RE.sound` with the two relations
+`w² = −1` (`w = i⁻¹ = −i`) and `4 q = 1` (`q = 4⁻¹ = −κ`), and the orthogonality `Π_ℓ Π_m = 0` for `ℓ ≠ m` is the
+geometric sum `1 + x + x² + x³ = 0` of the nontrivial fourth root `x = i^{m−ℓ}`: `Π_ℓ Π_m = [ℓ = m] Π_ℓ`,
+`Σ_ℓ Π_ℓ = I`, `F Π_ℓ = i^ℓ Π_ℓ` (6:C2), and the two sums `Π₀ + Π₂ = (I + J)/2`, `Π₁ + Π₃ = (I − J)/2` (6:C5). No
+axioms.
+-/
+
+namespace FRC
+namespace Shell
+namespace Frame
+
+variable {p : Nat} [Pos p]
+
+/-! ## Ring identities (generated; `RE.sound`, decided by the kernel) -/
+
+theorem comb_add_id (a0 a1 a2 a3 b0 b1 b2 b3 I F J G : Shell p) :
+    a0 * I + a1 * F + a2 * J + a3 * G + (b0 * I + b1 * F + b2 * J + b3 * G) =
+      (a0 + b0) * I + (a1 + b1) * F + (a2 + b2) * J + (a3 + b3) * G :=
+  RE.sound (look [a0, a1, a2, a3, b0, b1, b2, b3, I, F, J, G])
+    (.add (.add (.add (.add (.mul (.var 0) (.var 8)) (.mul (.var 1) (.var 9))) (.mul (.var 2) (.var 10))) (.mul (.var 3) (.var 11))) (.add (.add (.add (.mul (.var 4) (.var 8)) (.mul (.var 5) (.var 9))) (.mul (.var 6) (.var 10))) (.mul (.var 7) (.var 11))))
+    (.add (.add (.add (.mul (.add (.var 0) (.var 4)) (.var 8)) (.mul (.add (.var 1) (.var 5)) (.var 9))) (.mul (.add (.var 2) (.var 6)) (.var 10))) (.mul (.add (.var 3) (.var 7)) (.var 11))) (by decide +kernel)
+
+theorem comb_smul_id (c a0 a1 a2 a3 I F J G : Shell p) :
+    c * (a0 * I + a1 * F + a2 * J + a3 * G) = c * a0 * I + c * a1 * F + c * a2 * J + c * a3 * G :=
+  RE.sound (look [c, a0, a1, a2, a3, I, F, J, G])
+    (.mul (.var 0) (.add (.add (.add (.mul (.var 1) (.var 5)) (.mul (.var 2) (.var 6))) (.mul (.var 3) (.var 7))) (.mul (.var 4) (.var 8))))
+    (.add (.add (.add (.mul (.mul (.var 0) (.var 1)) (.var 5)) (.mul (.mul (.var 0) (.var 2)) (.var 6))) (.mul (.mul (.var 0) (.var 3)) (.var 7))) (.mul (.mul (.var 0) (.var 4)) (.var 8))) (by decide +kernel)
+
+theorem comb_zero_id (I F J G : Shell p) :
+    0 * I + 0 * F + 0 * J + 0 * G = 0 :=
+  RE.sound (look [I, F, J, G])
+    (.add (.add (.add (.mul .zero (.var 0)) (.mul .zero (.var 1))) (.mul .zero (.var 2))) (.mul .zero (.var 3)))
+    .zero (by decide +kernel)
+
+theorem comb_idm_id (I F J G : Shell p) :
+    1 * I + 0 * F + 0 * J + 0 * G = I :=
+  RE.sound (look [I, F, J, G])
+    (.add (.add (.add (.mul .one (.var 0)) (.mul .zero (.var 1))) (.mul .zero (.var 2))) (.mul .zero (.var 3)))
+    (.var 0) (by decide +kernel)
+
+theorem comb_Fmat_id (I F J G : Shell p) :
+    0 * I + 1 * F + 0 * J + 0 * G = F :=
+  RE.sound (look [I, F, J, G])
+    (.add (.add (.add (.mul .zero (.var 0)) (.mul .one (.var 1))) (.mul .zero (.var 2))) (.mul .zero (.var 3)))
+    (.var 1) (by decide +kernel)
+
+theorem comb_J_id (I F J G : Shell p) :
+    0 * I + 0 * F + 1 * J + 0 * G = J :=
+  RE.sound (look [I, F, J, G])
+    (.add (.add (.add (.mul .zero (.var 0)) (.mul .zero (.var 1))) (.mul .one (.var 2))) (.mul .zero (.var 3)))
+    (.var 2) (by decide +kernel)
+
+theorem comb_FJ_id (I F J G : Shell p) :
+    0 * I + 0 * F + 0 * J + 1 * G = G :=
+  RE.sound (look [I, F, J, G])
+    (.add (.add (.add (.mul .zero (.var 0)) (.mul .zero (.var 1))) (.mul .zero (.var 2))) (.mul .one (.var 3)))
+    (.var 3) (by decide +kernel)
+
+theorem even_sum_id (q w I F J G : Shell p) :
+    (q + q) * I + (q + -q) * F + (q + q) * J + (q + -q) * G = (q + q) * (I + J) :=
+  RE.sound (look [q, w, I, F, J, G])
+    (.add (.add (.add (.mul (.add (.var 0) (.var 0)) (.var 2)) (.mul (.add (.var 0) (.neg (.var 0))) (.var 3))) (.mul (.add (.var 0) (.var 0)) (.var 4))) (.mul (.add (.var 0) (.neg (.var 0))) (.var 5)))
+    (.mul (.add (.var 0) (.var 0)) (.add (.var 2) (.var 4))) (by decide +kernel)
+
+theorem odd_sum_id (q w I F J G : Shell p) :
+    (q + q) * I + (q * w + -(q * w)) * F + (-q + -q) * J + (-(q * w) + q * w) * G = (q + q) * (I + -J) :=
+  RE.sound (look [q, w, I, F, J, G])
+    (.add (.add (.add (.mul (.add (.var 0) (.var 0)) (.var 2)) (.mul (.add (.mul (.var 0) (.var 1)) (.neg (.mul (.var 0) (.var 1)))) (.var 3))) (.mul (.add (.neg (.var 0)) (.neg (.var 0))) (.var 4))) (.mul (.add (.neg (.mul (.var 0) (.var 1))) (.mul (.var 0) (.var 1))) (.var 5)))
+    (.mul (.add (.var 0) (.var 0)) (.add (.var 2) (.neg (.var 4)))) (by decide +kernel)
+
+theorem proj1_c2 (q w : Shell p) :
+    q * (w * w) = -q + (w * w + 1) * (q) :=
+  RE.sound (look [q, w])
+    (.mul (.var 0) (.mul (.var 1) (.var 1)))
+    (.add (.neg (.var 0)) (.mul (.add (.mul (.var 1) (.var 1)) .one) (.var 0))) (by decide +kernel)
+
+theorem proj1_c3 (q w : Shell p) :
+    q * ((w * w) * w) = -(q * w) + (w * w + 1) * (q * w) :=
+  RE.sound (look [q, w])
+    (.mul (.var 0) (.mul (.mul (.var 1) (.var 1)) (.var 1)))
+    (.add (.neg (.mul (.var 0) (.var 1))) (.mul (.add (.mul (.var 1) (.var 1)) .one) (.mul (.var 0) (.var 1)))) (by decide +kernel)
+
+theorem proj2_c1 (q w : Shell p) :
+    q * (w * w) = -q + (w * w + 1) * (q) :=
+  RE.sound (look [q, w])
+    (.mul (.var 0) (.mul (.var 1) (.var 1)))
+    (.add (.neg (.var 0)) (.mul (.add (.mul (.var 1) (.var 1)) .one) (.var 0))) (by decide +kernel)
+
+theorem proj2_c2 (q w : Shell p) :
+    q * ((w * w) * (w * w)) = q + (w * w + 1) * (q * w * w + -q) :=
+  RE.sound (look [q, w])
+    (.mul (.var 0) (.mul (.mul (.var 1) (.var 1)) (.mul (.var 1) (.var 1))))
+    (.add (.var 0) (.mul (.add (.mul (.var 1) (.var 1)) .one) (.add (.mul (.mul (.var 0) (.var 1)) (.var 1)) (.neg (.var 0))))) (by decide +kernel)
+
+theorem proj2_c3 (q w : Shell p) :
+    q * (((w * w) * (w * w)) * (w * w)) = -q + (w * w + 1) * (q * w * w * w * w + -(q * w * w) + q) :=
+  RE.sound (look [q, w])
+    (.mul (.var 0) (.mul (.mul (.mul (.var 1) (.var 1)) (.mul (.var 1) (.var 1))) (.mul (.var 1) (.var 1))))
+    (.add (.neg (.var 0)) (.mul (.add (.mul (.var 1) (.var 1)) .one) (.add (.add (.mul (.mul (.mul (.mul (.var 0) (.var 1)) (.var 1)) (.var 1)) (.var 1)) (.neg (.mul (.mul (.var 0) (.var 1)) (.var 1)))) (.var 0)))) (by decide +kernel)
+
+theorem proj3_c1 (q w : Shell p) :
+    q * ((w * w) * w) = -(q * w) + (w * w + 1) * (q * w) :=
+  RE.sound (look [q, w])
+    (.mul (.var 0) (.mul (.mul (.var 1) (.var 1)) (.var 1)))
+    (.add (.neg (.mul (.var 0) (.var 1))) (.mul (.add (.mul (.var 1) (.var 1)) .one) (.mul (.var 0) (.var 1)))) (by decide +kernel)
+
+theorem proj3_c2 (q w : Shell p) :
+    q * (((w * w) * w) * ((w * w) * w)) = -q + (w * w + 1) * (q * w * w * w * w + -(q * w * w) + q) :=
+  RE.sound (look [q, w])
+    (.mul (.var 0) (.mul (.mul (.mul (.var 1) (.var 1)) (.var 1)) (.mul (.mul (.var 1) (.var 1)) (.var 1))))
+    (.add (.neg (.var 0)) (.mul (.add (.mul (.var 1) (.var 1)) .one) (.add (.add (.mul (.mul (.mul (.mul (.var 0) (.var 1)) (.var 1)) (.var 1)) (.var 1)) (.neg (.mul (.mul (.var 0) (.var 1)) (.var 1)))) (.var 0)))) (by decide +kernel)
+
+theorem proj3_c3 (q w : Shell p) :
+    q * ((((w * w) * w) * ((w * w) * w)) * ((w * w) * w)) = q * w + (w * w + 1) * (q * w * w * w * w * w * w * w + -(q * w * w * w * w * w) + q * w * w * w + -(q * w)) :=
+  RE.sound (look [q, w])
+    (.mul (.var 0) (.mul (.mul (.mul (.mul (.var 1) (.var 1)) (.var 1)) (.mul (.mul (.var 1) (.var 1)) (.var 1))) (.mul (.mul (.var 1) (.var 1)) (.var 1))))
+    (.add (.mul (.var 0) (.var 1)) (.mul (.add (.mul (.var 1) (.var 1)) .one) (.add (.add (.add (.mul (.mul (.mul (.mul (.mul (.mul (.mul (.var 0) (.var 1)) (.var 1)) (.var 1)) (.var 1)) (.var 1)) (.var 1)) (.var 1)) (.neg (.mul (.mul (.mul (.mul (.mul (.var 0) (.var 1)) (.var 1)) (.var 1)) (.var 1)) (.var 1)))) (.mul (.mul (.mul (.var 0) (.var 1)) (.var 1)) (.var 1))) (.neg (.mul (.var 0) (.var 1)))))) (by decide +kernel)
+
+theorem neg_w_id (q w : Shell p) :
+    -w = (w * w) * w + (w * w + 1) * (-w) :=
+  RE.sound (look [q, w])
+    (.neg (.var 1))
+    (.add (.mul (.mul (.var 1) (.var 1)) (.var 1)) (.mul (.add (.mul (.var 1) (.var 1)) .one) (.neg (.var 1)))) (by decide +kernel)
+
+theorem self_c0 (q u : Shell p) :
+    q * q + (q * u) * (q * ((u * u) * u)) + (q * (u * u)) * (q * (u * u)) + (q * ((u * u) * u)) * (q * u) = q + (u * u * u * u + -1) * ((1 + 1 + 1) * q * q) + ((1 + 1 + 1 + 1) * q + -1) * (q) :=
+  RE.sound (look [q, u])
+    (.add (.add (.add (.mul (.var 0) (.var 0)) (.mul (.mul (.var 0) (.var 1)) (.mul (.var 0) (.mul (.mul (.var 1) (.var 1)) (.var 1))))) (.mul (.mul (.var 0) (.mul (.var 1) (.var 1))) (.mul (.var 0) (.mul (.var 1) (.var 1))))) (.mul (.mul (.var 0) (.mul (.mul (.var 1) (.var 1)) (.var 1))) (.mul (.var 0) (.var 1))))
+    (.add (.add (.var 0) (.mul (.add (.mul (.mul (.mul (.var 1) (.var 1)) (.var 1)) (.var 1)) (.neg .one)) (.mul (.mul (.add (.add .one .one) .one) (.var 0)) (.var 0)))) (.mul (.add (.mul (.add (.add (.add .one .one) .one) .one) (.var 0)) (.neg .one)) (.var 0))) (by decide +kernel)
+
+theorem self_c1 (q u : Shell p) :
+    q * (q * u) + (q * u) * q + (q * (u * u)) * (q * ((u * u) * u)) + (q * ((u * u) * u)) * (q * (u * u)) = q * u + (u * u * u * u + -1) * ((1 + 1) * q * q * u) + ((1 + 1 + 1 + 1) * q + -1) * (q * u) :=
+  RE.sound (look [q, u])
+    (.add (.add (.add (.mul (.var 0) (.mul (.var 0) (.var 1))) (.mul (.mul (.var 0) (.var 1)) (.var 0))) (.mul (.mul (.var 0) (.mul (.var 1) (.var 1))) (.mul (.var 0) (.mul (.mul (.var 1) (.var 1)) (.var 1))))) (.mul (.mul (.var 0) (.mul (.mul (.var 1) (.var 1)) (.var 1))) (.mul (.var 0) (.mul (.var 1) (.var 1)))))
+    (.add (.add (.mul (.var 0) (.var 1)) (.mul (.add (.mul (.mul (.mul (.var 1) (.var 1)) (.var 1)) (.var 1)) (.neg .one)) (.mul (.mul (.mul (.add .one .one) (.var 0)) (.var 0)) (.var 1)))) (.mul (.add (.mul (.add (.add (.add .one .one) .one) .one) (.var 0)) (.neg .one)) (.mul (.var 0) (.var 1)))) (by decide +kernel)
+
+theorem self_c2 (q u : Shell p) :
+    q * (q * (u * u)) + (q * u) * (q * u) + (q * (u * u)) * q + (q * ((u * u) * u)) * (q * ((u * u) * u)) = q * (u * u) + (u * u * u * u + -1) * (q * q * u * u) + ((1 + 1 + 1 + 1) * q + -1) * (q * u * u) :=
+  RE.sound (look [q, u])
+    (.add (.add (.add (.mul (.var 0) (.mul (.var 0) (.mul (.var 1) (.var 1)))) (.mul (.mul (.var 0) (.var 1)) (.mul (.var 0) (.var 1)))) (.mul (.mul (.var 0) (.mul (.var 1) (.var 1))) (.var 0))) (.mul (.mul (.var 0) (.mul (.mul (.var 1) (.var 1)) (.var 1))) (.mul (.var 0) (.mul (.mul (.var 1) (.var 1)) (.var 1)))))
+    (.add (.add (.mul (.var 0) (.mul (.var 1) (.var 1))) (.mul (.add (.mul (.mul (.mul (.var 1) (.var 1)) (.var 1)) (.var 1)) (.neg .one)) (.mul (.mul (.mul (.var 0) (.var 0)) (.var 1)) (.var 1)))) (.mul (.add (.mul (.add (.add (.add .one .one) .one) .one) (.var 0)) (.neg .one)) (.mul (.mul (.var 0) (.var 1)) (.var 1)))) (by decide +kernel)
+
+theorem self_c3 (q u : Shell p) :
+    q * (q * ((u * u) * u)) + (q * u) * (q * (u * u)) + (q * (u * u)) * (q * u) + (q * ((u * u) * u)) * q = q * ((u * u) * u) + (u * u * u * u + -1) * (0) + ((1 + 1 + 1 + 1) * q + -1) * (q * u * u * u) :=
+  RE.sound (look [q, u])
+    (.add (.add (.add (.mul (.var 0) (.mul (.var 0) (.mul (.mul (.var 1) (.var 1)) (.var 1)))) (.mul (.mul (.var 0) (.var 1)) (.mul (.var 0) (.mul (.var 1) (.var 1))))) (.mul (.mul (.var 0) (.mul (.var 1) (.var 1))) (.mul (.var 0) (.var 1)))) (.mul (.mul (.var 0) (.mul (.mul (.var 1) (.var 1)) (.var 1))) (.var 0)))
+    (.add (.add (.mul (.var 0) (.mul (.mul (.var 1) (.var 1)) (.var 1))) (.mul (.add (.mul (.mul (.mul (.var 1) (.var 1)) (.var 1)) (.var 1)) (.neg .one)) .zero)) (.mul (.add (.mul (.add (.add (.add .one .one) .one) .one) (.var 0)) (.neg .one)) (.mul (.mul (.mul (.var 0) (.var 1)) (.var 1)) (.var 1)))) (by decide +kernel)
+
+theorem ne_c0 (q u v : Shell p) :
+    q * q + (q * u) * (q * ((v * v) * v)) + (q * (u * u)) * (q * (v * v)) + (q * ((u * u) * u)) * (q * v) = 0 + (v * v * v * v + -1) * (-(q * q * u * u * u * v * v * v * v * v) + -(q * q * u * u * u * v) + -(q * q * u * u * v * v)) + (1 + u * ((v * v) * v) + (u * ((v * v) * v)) * (u * ((v * v) * v)) + ((u * ((v * v) * v)) * (u * ((v * v) * v))) * (u * ((v * v) * v))) * (q * q) :=
+  RE.sound (look [q, u, v])
+    (.add (.add (.add (.mul (.var 0) (.var 0)) (.mul (.mul (.var 0) (.var 1)) (.mul (.var 0) (.mul (.mul (.var 2) (.var 2)) (.var 2))))) (.mul (.mul (.var 0) (.mul (.var 1) (.var 1))) (.mul (.var 0) (.mul (.var 2) (.var 2))))) (.mul (.mul (.var 0) (.mul (.mul (.var 1) (.var 1)) (.var 1))) (.mul (.var 0) (.var 2))))
+    (.add (.add .zero (.mul (.add (.mul (.mul (.mul (.var 2) (.var 2)) (.var 2)) (.var 2)) (.neg .one)) (.add (.add (.neg (.mul (.mul (.mul (.mul (.mul (.mul (.mul (.mul (.mul (.var 0) (.var 0)) (.var 1)) (.var 1)) (.var 1)) (.var 2)) (.var 2)) (.var 2)) (.var 2)) (.var 2))) (.neg (.mul (.mul (.mul (.mul (.mul (.var 0) (.var 0)) (.var 1)) (.var 1)) (.var 1)) (.var 2)))) (.neg (.mul (.mul (.mul (.mul (.mul (.var 0) (.var 0)) (.var 1)) (.var 1)) (.var 2)) (.var 2)))))) (.mul (.add (.add (.add .one (.mul (.var 1) (.mul (.mul (.var 2) (.var 2)) (.var 2)))) (.mul (.mul (.var 1) (.mul (.mul (.var 2) (.var 2)) (.var 2))) (.mul (.var 1) (.mul (.mul (.var 2) (.var 2)) (.var 2))))) (.mul (.mul (.mul (.var 1) (.mul (.mul (.var 2) (.var 2)) (.var 2))) (.mul (.var 1) (.mul (.mul (.var 2) (.var 2)) (.var 2)))) (.mul (.var 1) (.mul (.mul (.var 2) (.var 2)) (.var 2))))) (.mul (.var 0) (.var 0)))) (by decide +kernel)
+
+theorem ne_c1 (q u v : Shell p) :
+    q * (q * v) + (q * u) * q + (q * (u * u)) * (q * ((v * v) * v)) + (q * ((u * u) * u)) * (q * (v * v)) = 0 + (v * v * v * v + -1) * (-(q * q * u * u * u * v * v * v * v * v * v) + -(q * q * u * u * u * v * v) + -(q * q * u * u * v * v * v) + -(q * q * u)) + (1 + u * ((v * v) * v) + (u * ((v * v) * v)) * (u * ((v * v) * v)) + ((u * ((v * v) * v)) * (u * ((v * v) * v))) * (u * ((v * v) * v))) * ((q * q) * v) :=
+  RE.sound (look [q, u, v])
+    (.add (.add (.add (.mul (.var 0) (.mul (.var 0) (.var 2))) (.mul (.mul (.var 0) (.var 1)) (.var 0))) (.mul (.mul (.var 0) (.mul (.var 1) (.var 1))) (.mul (.var 0) (.mul (.mul (.var 2) (.var 2)) (.var 2))))) (.mul (.mul (.var 0) (.mul (.mul (.var 1) (.var 1)) (.var 1))) (.mul (.var 0) (.mul (.var 2) (.var 2)))))
+    (.add (.add .zero (.mul (.add (.mul (.mul (.mul (.var 2) (.var 2)) (.var 2)) (.var 2)) (.neg .one)) (.add (.add (.add (.neg (.mul (.mul (.mul (.mul (.mul (.mul (.mul (.mul (.mul (.mul (.var 0) (.var 0)) (.var 1)) (.var 1)) (.var 1)) (.var 2)) (.var 2)) (.var 2)) (.var 2)) (.var 2)) (.var 2))) (.neg (.mul (.mul (.mul (.mul (.mul (.mul (.var 0) (.var 0)) (.var 1)) (.var 1)) (.var 1)) (.var 2)) (.var 2)))) (.neg (.mul (.mul (.mul (.mul (.mul (.mul (.var 0) (.var 0)) (.var 1)) (.var 1)) (.var 2)) (.var 2)) (.var 2)))) (.neg (.mul (.mul (.var 0) (.var 0)) (.var 1)))))) (.mul (.add (.add (.add .one (.mul (.var 1) (.mul (.mul (.var 2) (.var 2)) (.var 2)))) (.mul (.mul (.var 1) (.mul (.mul (.var 2) (.var 2)) (.var 2))) (.mul (.var 1) (.mul (.mul (.var 2) (.var 2)) (.var 2))))) (.mul (.mul (.mul (.var 1) (.mul (.mul (.var 2) (.var 2)) (.var 2))) (.mul (.var 1) (.mul (.mul (.var 2) (.var 2)) (.var 2)))) (.mul (.var 1) (.mul (.mul (.var 2) (.var 2)) (.var 2))))) (.mul (.mul (.var 0) (.var 0)) (.var 2)))) (by decide +kernel)
+
+theorem ne_c2 (q u v : Shell p) :
+    q * (q * (v * v)) + (q * u) * (q * v) + (q * (u * u)) * q + (q * ((u * u) * u)) * (q * ((v * v) * v)) = 0 + (v * v * v * v + -1) * (-(q * q * u * u * u * v * v * v * v * v * v * v) + -(q * q * u * u * u * v * v * v) + -(q * q * u * u * v * v * v * v) + -(q * q * u * u) + -(q * q * u * v)) + (1 + u * ((v * v) * v) + (u * ((v * v) * v)) * (u * ((v * v) * v)) + ((u * ((v * v) * v)) * (u * ((v * v) * v))) * (u * ((v * v) * v))) * ((q * q) * (v * v)) :=
+  RE.sound (look [q, u, v])
+    (.add (.add (.add (.mul (.var 0) (.mul (.var 0) (.mul (.var 2) (.var 2)))) (.mul (.mul (.var 0) (.var 1)) (.mul (.var 0) (.var 2)))) (.mul (.mul (.var 0) (.mul (.var 1) (.var 1))) (.var 0))) (.mul (.mul (.var 0) (.mul (.mul (.var 1) (.var 1)) (.var 1))) (.mul (.var 0) (.mul (.mul (.var 2) (.var 2)) (.var 2)))))
+    (.add (.add .zero (.mul (.add (.mul (.mul (.mul (.var 2) (.var 2)) (.var 2)) (.var 2)) (.neg .one)) (.add (.add (.add (.add (.neg (.mul (.mul (.mul (.mul (.mul (.mul (.mul (.mul (.mul (.mul (.mul (.var 0) (.var 0)) (.var 1)) (.var 1)) (.var 1)) (.var 2)) (.var 2)) (.var 2)) (.var 2)) (.var 2)) (.var 2)) (.var 2))) (.neg (.mul (.mul (.mul (.mul (.mul (.mul (.mul (.var 0) (.var 0)) (.var 1)) (.var 1)) (.var 1)) (.var 2)) (.var 2)) (.var 2)))) (.neg (.mul (.mul (.mul (.mul (.mul (.mul (.mul (.var 0) (.var 0)) (.var 1)) (.var 1)) (.var 2)) (.var 2)) (.var 2)) (.var 2)))) (.neg (.mul (.mul (.mul (.var 0) (.var 0)) (.var 1)) (.var 1)))) (.neg (.mul (.mul (.mul (.var 0) (.var 0)) (.var 1)) (.var 2)))))) (.mul (.add (.add (.add .one (.mul (.var 1) (.mul (.mul (.var 2) (.var 2)) (.var 2)))) (.mul (.mul (.var 1) (.mul (.mul (.var 2) (.var 2)) (.var 2))) (.mul (.var 1) (.mul (.mul (.var 2) (.var 2)) (.var 2))))) (.mul (.mul (.mul (.var 1) (.mul (.mul (.var 2) (.var 2)) (.var 2))) (.mul (.var 1) (.mul (.mul (.var 2) (.var 2)) (.var 2)))) (.mul (.var 1) (.mul (.mul (.var 2) (.var 2)) (.var 2))))) (.mul (.mul (.var 0) (.var 0)) (.mul (.var 2) (.var 2))))) (by decide +kernel)
+
+theorem ne_c3 (q u v : Shell p) :
+    q * (q * ((v * v) * v)) + (q * u) * (q * (v * v)) + (q * (u * u)) * (q * v) + (q * ((u * u) * u)) * q = 0 + (v * v * v * v + -1) * (-(q * q * u * u * u * v * v * v * v * v * v * v * v) + -(q * q * u * u * u * v * v * v * v) + -(q * q * u * u * v * v * v * v * v) + -(q * q * u * u * u) + -(q * q * u * u * v) + -(q * q * u * v * v)) + (1 + u * ((v * v) * v) + (u * ((v * v) * v)) * (u * ((v * v) * v)) + ((u * ((v * v) * v)) * (u * ((v * v) * v))) * (u * ((v * v) * v))) * ((q * q) * ((v * v) * v)) :=
+  RE.sound (look [q, u, v])
+    (.add (.add (.add (.mul (.var 0) (.mul (.var 0) (.mul (.mul (.var 2) (.var 2)) (.var 2)))) (.mul (.mul (.var 0) (.var 1)) (.mul (.var 0) (.mul (.var 2) (.var 2))))) (.mul (.mul (.var 0) (.mul (.var 1) (.var 1))) (.mul (.var 0) (.var 2)))) (.mul (.mul (.var 0) (.mul (.mul (.var 1) (.var 1)) (.var 1))) (.var 0)))
+    (.add (.add .zero (.mul (.add (.mul (.mul (.mul (.var 2) (.var 2)) (.var 2)) (.var 2)) (.neg .one)) (.add (.add (.add (.add (.add (.neg (.mul (.mul (.mul (.mul (.mul (.mul (.mul (.mul (.mul (.mul (.mul (.mul (.var 0) (.var 0)) (.var 1)) (.var 1)) (.var 1)) (.var 2)) (.var 2)) (.var 2)) (.var 2)) (.var 2)) (.var 2)) (.var 2)) (.var 2))) (.neg (.mul (.mul (.mul (.mul (.mul (.mul (.mul (.mul (.var 0) (.var 0)) (.var 1)) (.var 1)) (.var 1)) (.var 2)) (.var 2)) (.var 2)) (.var 2)))) (.neg (.mul (.mul (.mul (.mul (.mul (.mul (.mul (.mul (.var 0) (.var 0)) (.var 1)) (.var 1)) (.var 2)) (.var 2)) (.var 2)) (.var 2)) (.var 2)))) (.neg (.mul (.mul (.mul (.mul (.var 0) (.var 0)) (.var 1)) (.var 1)) (.var 1)))) (.neg (.mul (.mul (.mul (.mul (.var 0) (.var 0)) (.var 1)) (.var 1)) (.var 2)))) (.neg (.mul (.mul (.mul (.mul (.var 0) (.var 0)) (.var 1)) (.var 2)) (.var 2)))))) (.mul (.add (.add (.add .one (.mul (.var 1) (.mul (.mul (.var 2) (.var 2)) (.var 2)))) (.mul (.mul (.var 1) (.mul (.mul (.var 2) (.var 2)) (.var 2))) (.mul (.var 1) (.mul (.mul (.var 2) (.var 2)) (.var 2))))) (.mul (.mul (.mul (.var 1) (.mul (.mul (.var 2) (.var 2)) (.var 2))) (.mul (.var 1) (.mul (.mul (.var 2) (.var 2)) (.var 2)))) (.mul (.var 1) (.mul (.mul (.var 2) (.var 2)) (.var 2))))) (.mul (.mul (.var 0) (.var 0)) (.mul (.mul (.var 2) (.var 2)) (.var 2))))) (by decide +kernel)
+
+theorem F_c0 (q u : Shell p) :
+    0 * q + 1 * (q * ((u * u) * u)) + 0 * (q * (u * u)) + 0 * (q * u) = ((u * u) * u) * q + (u * u * u * u + -1) * (0) :=
+  RE.sound (look [q, u])
+    (.add (.add (.add (.mul .zero (.var 0)) (.mul .one (.mul (.var 0) (.mul (.mul (.var 1) (.var 1)) (.var 1))))) (.mul .zero (.mul (.var 0) (.mul (.var 1) (.var 1))))) (.mul .zero (.mul (.var 0) (.var 1))))
+    (.add (.mul (.mul (.mul (.var 1) (.var 1)) (.var 1)) (.var 0)) (.mul (.add (.mul (.mul (.mul (.var 1) (.var 1)) (.var 1)) (.var 1)) (.neg .one)) .zero)) (by decide +kernel)
+
+theorem F_c1 (q u : Shell p) :
+    0 * (q * u) + 1 * q + 0 * (q * ((u * u) * u)) + 0 * (q * (u * u)) = ((u * u) * u) * (q * u) + (u * u * u * u + -1) * (-q) :=
+  RE.sound (look [q, u])
+    (.add (.add (.add (.mul .zero (.mul (.var 0) (.var 1))) (.mul .one (.var 0))) (.mul .zero (.mul (.var 0) (.mul (.mul (.var 1) (.var 1)) (.var 1))))) (.mul .zero (.mul (.var 0) (.mul (.var 1) (.var 1)))))
+    (.add (.mul (.mul (.mul (.var 1) (.var 1)) (.var 1)) (.mul (.var 0) (.var 1))) (.mul (.add (.mul (.mul (.mul (.var 1) (.var 1)) (.var 1)) (.var 1)) (.neg .one)) (.neg (.var 0)))) (by decide +kernel)
+
+theorem F_c2 (q u : Shell p) :
+    0 * (q * (u * u)) + 1 * (q * u) + 0 * q + 0 * (q * ((u * u) * u)) = ((u * u) * u) * (q * (u * u)) + (u * u * u * u + -1) * (-(q * u)) :=
+  RE.sound (look [q, u])
+    (.add (.add (.add (.mul .zero (.mul (.var 0) (.mul (.var 1) (.var 1)))) (.mul .one (.mul (.var 0) (.var 1)))) (.mul .zero (.var 0))) (.mul .zero (.mul (.var 0) (.mul (.mul (.var 1) (.var 1)) (.var 1)))))
+    (.add (.mul (.mul (.mul (.var 1) (.var 1)) (.var 1)) (.mul (.var 0) (.mul (.var 1) (.var 1)))) (.mul (.add (.mul (.mul (.mul (.var 1) (.var 1)) (.var 1)) (.var 1)) (.neg .one)) (.neg (.mul (.var 0) (.var 1))))) (by decide +kernel)
+
+theorem F_c3 (q u : Shell p) :
+    0 * (q * ((u * u) * u)) + 1 * (q * (u * u)) + 0 * (q * u) + 0 * q = ((u * u) * u) * (q * ((u * u) * u)) + (u * u * u * u + -1) * (-(q * u * u)) :=
+  RE.sound (look [q, u])
+    (.add (.add (.add (.mul .zero (.mul (.var 0) (.mul (.mul (.var 1) (.var 1)) (.var 1)))) (.mul .one (.mul (.var 0) (.mul (.var 1) (.var 1))))) (.mul .zero (.mul (.var 0) (.var 1)))) (.mul .zero (.var 0)))
+    (.add (.mul (.mul (.mul (.var 1) (.var 1)) (.var 1)) (.mul (.var 0) (.mul (.mul (.var 1) (.var 1)) (.var 1)))) (.mul (.add (.mul (.mul (.mul (.var 1) (.var 1)) (.var 1)) (.var 1)) (.neg .one)) (.neg (.mul (.mul (.var 0) (.var 1)) (.var 1))))) (by decide +kernel)
+
+theorem sum_c0 (q w : Shell p) :
+    q + q + q + q = 1 + ((1 + 1 + 1 + 1) * q + -1) * (1) :=
+  RE.sound (look [q, w])
+    (.add (.add (.add (.var 0) (.var 0)) (.var 0)) (.var 0))
+    (.add .one (.mul (.add (.mul (.add (.add (.add .one .one) .one) .one) (.var 0)) (.neg .one)) .one)) (by decide +kernel)
+
+theorem sum_c1 (q w : Shell p) :
+    q + q * w + -q + -(q * w) = 0 + ((1 + 1 + 1 + 1) * q + -1) * (0) :=
+  RE.sound (look [q, w])
+    (.add (.add (.add (.var 0) (.mul (.var 0) (.var 1))) (.neg (.var 0))) (.neg (.mul (.var 0) (.var 1))))
+    (.add .zero (.mul (.add (.mul (.add (.add (.add .one .one) .one) .one) (.var 0)) (.neg .one)) .zero)) (by decide +kernel)
+
+theorem sum_c2 (q w : Shell p) :
+    q + -q + q + -q = 0 + ((1 + 1 + 1 + 1) * q + -1) * (0) :=
+  RE.sound (look [q, w])
+    (.add (.add (.add (.var 0) (.neg (.var 0))) (.var 0)) (.neg (.var 0)))
+    (.add .zero (.mul (.add (.mul (.add (.add (.add .one .one) .one) .one) (.var 0)) (.neg .one)) .zero)) (by decide +kernel)
+
+theorem sum_c3 (q w : Shell p) :
+    q + -(q * w) + -q + q * w = 0 + ((1 + 1 + 1 + 1) * q + -1) * (0) :=
+  RE.sound (look [q, w])
+    (.add (.add (.add (.var 0) (.neg (.mul (.var 0) (.var 1)))) (.neg (.var 0))) (.mul (.var 0) (.var 1)))
+    (.add .zero (.mul (.add (.mul (.add (.add (.add .one .one) .one) .one) (.var 0)) (.neg .one)) .zero)) (by decide +kernel)
+
+theorem half_id (q : Shell p) :
+    (1 + 1) * (q + q) = 1 + ((1 + 1 + 1 + 1) * q + -1) * (1) :=
+  RE.sound (look [q])
+    (.mul (.add .one .one) (.add (.var 0) (.var 0)))
+    (.add .one (.mul (.add (.mul (.add (.add (.add .one .one) .one) .one) (.var 0)) (.neg .one)) .one)) (by decide +kernel)
+
+theorem frft_mul_id (v0 v1 v2 v3 P0 P1 P2 P3 Q : Shell p) :
+    (v0 * P0 + v1 * P1 + v2 * P2 + v3 * P3) * Q = v0 * (P0 * Q) + v1 * (P1 * Q) + v2 * (P2 * Q) + v3 * (P3 * Q) :=
+  RE.sound (look [v0, v1, v2, v3, P0, P1, P2, P3, Q])
+    (.mul (.add (.add (.add (.mul (.var 0) (.var 4)) (.mul (.var 1) (.var 5))) (.mul (.var 2) (.var 6))) (.mul (.var 3) (.var 7))) (.var 8))
+    (.add (.add (.add (.mul (.var 0) (.mul (.var 4) (.var 8))) (.mul (.var 1) (.mul (.var 5) (.var 8)))) (.mul (.var 2) (.mul (.var 6) (.var 8)))) (.mul (.var 3) (.mul (.var 7) (.var 8)))) (by decide +kernel)
+
+theorem entry21_one (q i A B : Shell p) :
+    q * 0 + (q * -i) * (i * A) + -(-q) * 0 + -(q * -i) * (i * B) = q * (A + -B) + (i * i + 1) * (-(q * A) + q * B) :=
+  RE.sound (look [q, i, A, B])
+    (.add (.add (.add (.mul (.var 0) .zero) (.mul (.mul (.var 0) (.neg (.var 1))) (.mul (.var 1) (.var 2)))) (.mul (.neg (.neg (.var 0))) .zero)) (.mul (.neg (.mul (.var 0) (.neg (.var 1)))) (.mul (.var 1) (.var 3))))
+    (.add (.mul (.var 0) (.add (.var 2) (.neg (.var 3)))) (.mul (.add (.mul (.var 1) (.var 1)) .one) (.add (.neg (.mul (.var 0) (.var 2))) (.mul (.var 0) (.var 3))))) (by decide +kernel)
+
+theorem entry21_three (q i A B : Shell p) :
+    q * 0 + -(q * -i) * (i * A) + -(-q) * 0 + (q * -i) * (i * B) = -(q * (A + -B)) + (i * i + 1) * (q * A + -(q * B)) :=
+  RE.sound (look [q, i, A, B])
+    (.add (.add (.add (.mul (.var 0) .zero) (.mul (.neg (.mul (.var 0) (.neg (.var 1)))) (.mul (.var 1) (.var 2)))) (.mul (.neg (.neg (.var 0))) .zero)) (.mul (.mul (.var 0) (.neg (.var 1))) (.mul (.var 1) (.var 3))))
+    (.add (.neg (.mul (.var 0) (.add (.var 2) (.neg (.var 3))))) (.mul (.add (.mul (.var 1) (.var 1)) .one) (.add (.mul (.var 0) (.var 2)) (.neg (.mul (.var 0) (.var 3)))))) (by decide +kernel)
+
+theorem entry00_zero (q i : Shell p) :
+    q * 1 + q * i + q * 1 + q * i = (q + q) * (1 + i) :=
+  RE.sound (look [q, i])
+    (.add (.add (.add (.mul (.var 0) .one) (.mul (.var 0) (.var 1))) (.mul (.var 0) .one)) (.mul (.var 0) (.var 1)))
+    (.mul (.add (.var 0) (.var 0)) (.add .one (.var 1))) (by decide +kernel)
+
+theorem entry00_two (q i : Shell p) :
+    q * 1 + -q * i + q * 1 + -q * i = (q + q) * (1 + -i) :=
+  RE.sound (look [q, i])
+    (.add (.add (.add (.mul (.var 0) .one) (.mul (.neg (.var 0)) (.var 1))) (.mul (.var 0) .one)) (.mul (.neg (.var 0)) (.var 1)))
+    (.mul (.add (.var 0) (.var 0)) (.add .one (.neg (.var 1)))) (by decide +kernel)
+
+theorem row_zero_id (q jj u i : Shell p) :
+    NF0 q jj u * 0 + NF1 q jj u * i + NF2 q jj u * 0 + NF3 q jj u * i = (q + q) * (1 + -(u * u)) * i :=
+  RE.sound (look [q, jj, u, i])
+    (.add (.add (.add (.mul (.mul (.var 0) (.add (.add (.add .one (.var 2)) (.mul (.var 2) (.var 2))) (.mul (.mul (.var 2) (.var 2)) (.var 2)))) .zero) (.mul (.mul (.var 0) (.add (.add (.add .one (.mul (.var 1) (.var 2))) (.neg (.mul (.var 2) (.var 2)))) (.neg (.mul (.var 1) (.mul (.mul (.var 2) (.var 2)) (.var 2)))))) (.var 3))) (.mul (.mul (.var 0) (.add (.add (.add .one (.neg (.var 2))) (.mul (.var 2) (.var 2))) (.neg (.mul (.mul (.var 2) (.var 2)) (.var 2))))) .zero)) (.mul (.mul (.var 0) (.add (.add (.add .one (.neg (.mul (.var 1) (.var 2)))) (.neg (.mul (.var 2) (.var 2)))) (.mul (.var 1) (.mul (.mul (.var 2) (.var 2)) (.var 2))))) (.var 3)))
+    (.mul (.mul (.add (.var 0) (.var 0)) (.add .one (.neg (.mul (.var 2) (.var 2))))) (.var 3)) (by decide +kernel)
+
+/-! ## The algebra of combinations -/
+
+variable {κ : Nat} {g : Shell p}
+
+theorem comb_add (a0 a1 a2 a3 b0 b1 b2 b3 : Shell p) (k j : Nat) :
+    comb g κ a0 a1 a2 a3 k j + comb g κ b0 b1 b2 b3 k j = comb g κ (a0 + b0) (a1 + b1) (a2 + b2) (a3 + b3) k j :=
+  comb_add_id a0 a1 a2 a3 b0 b1 b2 b3 _ _ _ _
+
+theorem comb_smul (c a0 a1 a2 a3 : Shell p) (k j : Nat) :
+    c * comb g κ a0 a1 a2 a3 k j = comb g κ (c * a0) (c * a1) (c * a2) (c * a3) k j :=
+  comb_smul_id c a0 a1 a2 a3 _ _ _ _
+
+theorem comb_zero (k j : Nat) : comb g κ 0 0 0 0 k j = 0 := comb_zero_id _ _ _ _
+theorem comb_idm (k j : Nat) : comb g κ 1 0 0 0 k j = idm k j := comb_idm_id _ _ _ _
+theorem comb_Fmat (k j : Nat) : comb g κ 0 1 0 0 k j = Fmat g κ k j := comb_Fmat_id _ _ _ _
+theorem comb_J (k j : Nat) : comb g κ 0 0 1 0 k j = J (p - 1) k j := comb_J_id _ _ _ _
+theorem comb_FJ (k j : Nat) : comb g κ 0 0 0 1 k j = FJ g κ k j := comb_FJ_id _ _ _ _
+
+/-! ## The constants `w = −i` and `q = −κ` -/
+
+theorem pow_two_mul (a : Shell p) (n : Nat) : a ^ (2 * n) = a ^ n * a ^ n := by
+  rw [pow_mul, pow_mul_comm, pow_two]
+
+theorem pow_three_mul (a : Shell p) (n : Nat) : a ^ (3 * n) = a ^ n * a ^ n * a ^ n := by
+  rw [pow_mul, pow_mul_comm, pow_succ, pow_two]
+
+theorem w_sq (F : Frame p κ g) : -(quarterTurn g κ) * -(quarterTurn g κ) = -1 := by
+  rw [neg_mul_neg, F.quarter_turn_sq]
+
+theorem w_four (F : Frame p κ g) : (-(quarterTurn g κ)) ^ 4 = 1 := by
+  rw [show (4 : Nat) = 2 * 2 from rfl, pow_mul, pow_two, pow_two, w_sq F, neg_mul_neg, one_mul]
+
+/-- `w^ℓ` is a fourth root of unity, in the form the normaliser takes. -/
+theorem u_four (F : Frame p κ g) (ℓ : Nat) :
+    (-(quarterTurn g κ)) ^ ℓ * (-(quarterTurn g κ)) ^ ℓ * (-(quarterTurn g κ)) ^ ℓ * (-(quarterTurn g κ)) ^ ℓ + -1 = 0 := by
+  have e : ((-(quarterTurn g κ)) ^ ℓ) ^ 4 = (-(quarterTurn g κ)) ^ ℓ * (-(quarterTurn g κ)) ^ ℓ *
+      (-(quarterTurn g κ)) ^ ℓ * (-(quarterTurn g κ)) ^ ℓ := by
+    rw [pow_succ, pow_succ, pow_succ, pow_one]
+  rw [← e, pow_mul_comm, w_four F, one_pow, add_neg]
+
+theorem w_pow_mod (F : Frame p κ g) (l : Nat) : (-(quarterTurn g κ)) ^ l = (-(quarterTurn g κ)) ^ (l % 4) := by
+  obtain ⟨m, hm⟩ := FRC.Nat.mod_spec 4 (by decide) l
+  rw [congrArg (fun e => (-(quarterTurn g κ)) ^ e) hm, pow_add, pow_mul, w_four F, one_pow, one_mul]
+
+theorem minus_one_ne_one (F : Frame p κ g) : (-1 : Shell p) ≠ 1 := fun h => F.two_ne_zero (by
+  rw [two_eq_one_add_one]
+  calc (1 : Shell p) + 1 = 1 + -1 := by rw [h]
+    _ = 0 := add_neg 1)
+
+theorem neg_w (F : Frame p κ g) : -(-(quarterTurn g κ)) = -(quarterTurn g κ) * -(quarterTurn g κ) * -(quarterTurn g κ) :=
+  red1 (neg_w_id (-(ofNat κ)) (-(quarterTurn g κ))) (hjj F)
+
+/-- `i = w³`: the quarter-turn is the cube of its inverse. -/
+theorem quarter_eq (F : Frame p κ g) : quarterTurn g κ = -(quarterTurn g κ) * -(quarterTurn g κ) * -(quarterTurn g κ) := by
+  rw [← neg_w F, neg_neg]
+
+theorem quarter_pow (F : Frame p κ g) (ℓ : Nat) :
+    quarterTurn g κ ^ ℓ = (-(quarterTurn g κ)) ^ ℓ * (-(quarterTurn g κ)) ^ ℓ * (-(quarterTurn g κ)) ^ ℓ :=
+  (congrArg (· ^ ℓ) (quarter_eq F)).trans (by rw [mul_pow, mul_pow])
+
+theorem w_ne_one (F : Frame p κ g) : -(quarterTurn g κ) ≠ 1 := fun h =>
+  F.minus_one_ne_one (by rw [← w_sq F, h, mul_one])
+
+theorem w_sq_ne_one (F : Frame p κ g) : -(quarterTurn g κ) * -(quarterTurn g κ) ≠ 1 := by
+  rw [w_sq F]; exact F.minus_one_ne_one
+
+theorem w_cube_ne_one (F : Frame p κ g) : -(quarterTurn g κ) * -(quarterTurn g κ) * -(quarterTurn g κ) ≠ 1 := fun h => by
+  have hw : -(quarterTurn g κ) = -1 := by rw [← neg_neg (-(quarterTurn g κ)), neg_w F, h]
+  exact F.minus_one_ne_one (by rw [← w_sq F, hw, neg_mul_neg, one_mul])
+
+/-- The nontrivial fourth roots: `w^r ≠ 1` for `0 < r < 4`. -/
+theorem w_pow_ne_one (F : Frame p κ g) : ∀ {r : Nat}, 0 < r → r < 4 → (-(quarterTurn g κ)) ^ r ≠ 1
+  | 0, h, _ => absurd h (Nat.lt_irrefl 0)
+  | 1, _, _ => by rw [pow_one]; exact w_ne_one F
+  | 2, _, _ => by rw [pow_two]; exact w_sq_ne_one F
+  | 3, _, _ => by rw [pow_succ, pow_two]; exact w_cube_ne_one F
+  | n + 4, _, h => absurd (Nat.lt_of_lt_of_le h (Nat.le_add_left 4 n)) (Nat.lt_irrefl _)
+
+theorem orth_index : ∀ ℓ, ℓ < 4 → ∀ m, m < 4 → ℓ ≠ m → 0 < (ℓ + 3 * m) % 4 := by decide
+
+/-- The geometric sum of the nontrivial fourth root `x = w^ℓ (w^m)³ = i^{m−ℓ}`, `ℓ ≠ m` below 4. -/
+theorem geo_zero (F : Frame p κ g) {ℓ m : Nat} (hℓ : ℓ < 4) (hm : m < 4) (hne : ℓ ≠ m) :
+    1 + (-(quarterTurn g κ)) ^ ℓ * ((-(quarterTurn g κ)) ^ m * (-(quarterTurn g κ)) ^ m * (-(quarterTurn g κ)) ^ m) +
+      (-(quarterTurn g κ)) ^ ℓ * ((-(quarterTurn g κ)) ^ m * (-(quarterTurn g κ)) ^ m * (-(quarterTurn g κ)) ^ m) *
+        ((-(quarterTurn g κ)) ^ ℓ * ((-(quarterTurn g κ)) ^ m * (-(quarterTurn g κ)) ^ m * (-(quarterTurn g κ)) ^ m)) +
+      (-(quarterTurn g κ)) ^ ℓ * ((-(quarterTurn g κ)) ^ m * (-(quarterTurn g κ)) ^ m * (-(quarterTurn g κ)) ^ m) *
+        ((-(quarterTurn g κ)) ^ ℓ * ((-(quarterTurn g κ)) ^ m * (-(quarterTurn g κ)) ^ m * (-(quarterTurn g κ)) ^ m)) *
+        ((-(quarterTurn g κ)) ^ ℓ * ((-(quarterTurn g κ)) ^ m * (-(quarterTurn g κ)) ^ m * (-(quarterTurn g κ)) ^ m)) = 0 := by
+  have ex : (-(quarterTurn g κ)) ^ ℓ * ((-(quarterTurn g κ)) ^ m * (-(quarterTurn g κ)) ^ m * (-(quarterTurn g κ)) ^ m) =
+      (-(quarterTurn g κ)) ^ (ℓ + 3 * m) := by
+    rw [pow_add, pow_mul, pow_mul_comm, pow_succ, pow_two]
+  have hx4 : ((-(quarterTurn g κ)) ^ (ℓ + 3 * m)) ^ 4 = 1 := by rw [pow_mul_comm, w_four F, one_pow]
+  have hx1 : (-(quarterTurn g κ)) ^ (ℓ + 3 * m) ≠ 1 := by
+    rw [w_pow_mod F]
+    exact w_pow_ne_one F (orth_index ℓ hℓ m hm hne) (Nat.mod_lt _ (by decide))
+  have h4 : (0 : Shell p) + ((-(quarterTurn g κ)) ^ (ℓ + 3 * m)) ^ 0 + ((-(quarterTurn g κ)) ^ (ℓ + 3 * m)) ^ 1 +
+      ((-(quarterTurn g κ)) ^ (ℓ + 3 * m)) ^ 2 + ((-(quarterTurn g κ)) ^ (ℓ + 3 * m)) ^ 3 = 0 :=
+    F.geom_sum_eq_zero 4 hx4 hx1
+  rw [zero_add, pow_zero, pow_one, pow_two, pow_succ, pow_two] at h4
+  rw [ex]; exact h4
+
+/-! ## The projectors in coefficient form -/
+
+/-- `Π_ℓ = q (I + u F + u² J + u³ F J)` with `u = w^ℓ`. -/
+theorem proj_eq (ℓ k j : Nat) :
+    proj g κ ℓ k j = comb g κ (-(ofNat κ)) (-(ofNat κ) * (-(quarterTurn g κ)) ^ ℓ)
+      (-(ofNat κ) * ((-(quarterTurn g κ)) ^ ℓ * (-(quarterTurn g κ)) ^ ℓ))
+      (-(ofNat κ) * ((-(quarterTurn g κ)) ^ ℓ * (-(quarterTurn g κ)) ^ ℓ * (-(quarterTurn g κ)) ^ ℓ)) k j := by
+  show comb g κ (-(ofNat κ)) (-(ofNat κ) * (-(quarterTurn g κ)) ^ ℓ) (-(ofNat κ) * (-(quarterTurn g κ)) ^ (2 * ℓ))
+    (-(ofNat κ) * (-(quarterTurn g κ)) ^ (3 * ℓ)) k j = _
+  rw [pow_two_mul, pow_three_mul]
+
+theorem proj_zero_eq (k j : Nat) : proj g κ 0 k j = comb g κ (-(ofNat κ)) (-(ofNat κ)) (-(ofNat κ)) (-(ofNat κ)) k j := by
+  rw [proj_eq, pow_zero, one_mul, one_mul, mul_one]
+
+theorem proj_one_eq (F : Frame p κ g) (k j : Nat) :
+    proj g κ 1 k j = comb g κ (-(ofNat κ)) (-(ofNat κ) * -(quarterTurn g κ)) (-(-(ofNat κ)))
+      (-(-(ofNat κ) * -(quarterTurn g κ))) k j := by
+  rw [proj_eq, pow_one, red1 (proj1_c2 _ _) (hjj F), red1 (proj1_c3 _ _) (hjj F)]
+
+theorem proj_two_eq (F : Frame p κ g) (k j : Nat) :
+    proj g κ 2 k j = comb g κ (-(ofNat κ)) (-(-(ofNat κ))) (-(ofNat κ)) (-(-(ofNat κ))) k j := by
+  rw [proj_eq, pow_two, red1 (proj2_c1 _ _) (hjj F), red1 (proj2_c2 _ _) (hjj F), red1 (proj2_c3 _ _) (hjj F)]
+
+theorem proj_three_eq (F : Frame p κ g) (k j : Nat) :
+    proj g κ 3 k j = comb g κ (-(ofNat κ)) (-(-(ofNat κ) * -(quarterTurn g κ))) (-(-(ofNat κ)))
+      (-(ofNat κ) * -(quarterTurn g κ)) k j := by
+  rw [proj_eq, pow_succ, pow_two, red1 (proj3_c1 _ _) (hjj F), red1 (proj3_c2 _ _) (hjj F), red1 (proj3_c3 _ _) (hjj F)]
+
+/-! ## The projector algebra (6:C2) -/
+
+theorem proj_mul_pt (ℓ m k j l : Nat) :
+    proj g κ ℓ k l * proj g κ m l j =
+      comb g κ (-(ofNat κ)) (-(ofNat κ) * (-(quarterTurn g κ)) ^ ℓ)
+        (-(ofNat κ) * ((-(quarterTurn g κ)) ^ ℓ * (-(quarterTurn g κ)) ^ ℓ))
+        (-(ofNat κ) * ((-(quarterTurn g κ)) ^ ℓ * (-(quarterTurn g κ)) ^ ℓ * (-(quarterTurn g κ)) ^ ℓ)) k l *
+      comb g κ (-(ofNat κ)) (-(ofNat κ) * (-(quarterTurn g κ)) ^ m)
+        (-(ofNat κ) * ((-(quarterTurn g κ)) ^ m * (-(quarterTurn g κ)) ^ m))
+        (-(ofNat κ) * ((-(quarterTurn g κ)) ^ m * (-(quarterTurn g κ)) ^ m * (-(quarterTurn g κ)) ^ m)) l j := by
+  rw [proj_eq, proj_eq]
+
+/-- 6:C2, the idempotence: `Π_ℓ Π_ℓ = Π_ℓ`, the four coefficients `q² Σ u^a u^{r−a} = q u^r` with `u⁴ = 1`, `4q = 1`. -/
+theorem proj_mul_self (F : Frame p κ g) (ℓ : Nat) {k j : Nat} (hk : k < p - 1) (hj : j < p - 1) :
+    sumRange (fun l => proj g κ ℓ k l * proj g κ ℓ l j) (p - 1) = proj g κ ℓ k j := by
+  have hu := u_four F ℓ
+  have hq := hq F
+  rw [sum_congr _ (fun l _ => proj_mul_pt ℓ ℓ k j l), comb_mul F hk hj, proj_eq,
+    red2 (self_c0 _ _) hu hq, red2 (self_c1 _ _) hu hq, red2 (self_c2 _ _) hu hq, red2 (self_c3 _ _) hu hq]
+
+/-- 6:C2, the orthogonality: `Π_ℓ Π_m = 0` for `ℓ ≠ m` below 4, each coefficient `q² v^r (1 + x + x² + x³)` with
+`x = u v³` a nontrivial fourth root of unity. -/
+theorem proj_mul_ne (F : Frame p κ g) {ℓ m : Nat} (hℓ : ℓ < 4) (hm : m < 4) (hne : ℓ ≠ m) {k j : Nat}
+    (hk : k < p - 1) (hj : j < p - 1) :
+    sumRange (fun l => proj g κ ℓ k l * proj g κ m l j) (p - 1) = 0 := by
+  have hv := u_four F m
+  have hx := geo_zero F hℓ hm hne
+  rw [sum_congr _ (fun l _ => proj_mul_pt ℓ m k j l), comb_mul F hk hj,
+    red2 (ne_c0 _ _ _) hv hx, red2 (ne_c1 _ _ _) hv hx, red2 (ne_c2 _ _ _) hv hx, red2 (ne_c3 _ _ _) hv hx]
+  exact comb_zero k j
+
+/-- 6:C2, the resolution of the identity: `Π₀ + Π₁ + Π₂ + Π₃ = I`. -/
+theorem sum_proj (F : Frame p κ g) (k j : Nat) :
+    proj g κ 0 k j + proj g κ 1 k j + proj g κ 2 k j + proj g κ 3 k j = idm k j := by
+  rw [proj_zero_eq, proj_one_eq F, proj_two_eq F, proj_three_eq F, comb_add, comb_add, comb_add,
+    red1 (sum_c0 (-(ofNat κ)) (-(quarterTurn g κ))) (hq F), red1 (sum_c1 _ _) (hq F),
+    red1 (sum_c2 (-(ofNat κ)) (-(quarterTurn g κ))) (hq F), red1 (sum_c3 _ _) (hq F)]
+  exact comb_idm k j
+
+theorem Fmat_proj_pt (ℓ k j l : Nat) :
+    Fmat g κ k l * proj g κ ℓ l j =
+      comb g κ 0 1 0 0 k l *
+      comb g κ (-(ofNat κ)) (-(ofNat κ) * (-(quarterTurn g κ)) ^ ℓ)
+        (-(ofNat κ) * ((-(quarterTurn g κ)) ^ ℓ * (-(quarterTurn g κ)) ^ ℓ))
+        (-(ofNat κ) * ((-(quarterTurn g κ)) ^ ℓ * (-(quarterTurn g κ)) ^ ℓ * (-(quarterTurn g κ)) ^ ℓ)) l j := by
+  rw [comb_Fmat, proj_eq]
+
+/-- 6:C2, the eigen-relation: `F Π_ℓ = i^ℓ Π_ℓ`, the coefficients of `F Π_ℓ` the cyclic shift of `Π_ℓ`'s and
+`i^ℓ = u³` with `u = w^ℓ`. -/
+theorem Fmat_proj (F : Frame p κ g) (ℓ : Nat) {k j : Nat} (hk : k < p - 1) (hj : j < p - 1) :
+    sumRange (fun l => Fmat g κ k l * proj g κ ℓ l j) (p - 1) = quarterTurn g κ ^ ℓ * proj g κ ℓ k j := by
+  have hu := u_four F ℓ
+  rw [sum_congr _ (fun l _ => Fmat_proj_pt ℓ k j l), comb_mul F hk hj, quarter_pow F ℓ, proj_eq, comb_smul,
+    red1 (F_c0 _ _) hu, red1 (F_c1 _ _) hu, red1 (F_c2 _ _) hu, red1 (F_c3 _ _) hu]
+
+/-! ## The two sums (6:C5) -/
+
+/-- 6:C5, the even sum: `Π₀ + Π₂ = (q + q)(I + J)`, with `q + q = 2⁻¹` (`half`). -/
+theorem proj_even_sum (F : Frame p κ g) (k j : Nat) :
+    proj g κ 0 k j + proj g κ 2 k j = (-(ofNat κ) + -(ofNat κ)) * (idm k j + J (p - 1) k j) := by
+  rw [proj_zero_eq, proj_two_eq F, comb_add]
+  exact even_sum_id (-(ofNat κ)) (-(quarterTurn g κ)) _ _ _ _
+
+/-- 6:C5, the odd sum: `Π₁ + Π₃ = (q + q)(I − J)`. -/
+theorem proj_odd_sum (F : Frame p κ g) (k j : Nat) :
+    proj g κ 1 k j + proj g κ 3 k j = (-(ofNat κ) + -(ofNat κ)) * (idm k j + -(J (p - 1) k j)) := by
+  rw [proj_one_eq F, proj_three_eq F, comb_add]
+  exact odd_sum_id (-(ofNat κ)) (-(quarterTurn g κ)) _ _ _ _
+
+/-- 6:C5, the half: `2 (q + q) = 1`, so `q + q = 2⁻¹ = −2κ`. -/
+theorem half (F : Frame p κ g) : (1 + 1 : Shell p) * (-(ofNat κ) + -(ofNat κ)) = 1 :=
+  red1 (half_id (-(ofNat κ))) (hq F)
+
+/-! ## The character sector, nonvanishing, faithfulness and the domains (T03) -/
+
+theorem proj_mul (F : Frame p κ g) {ℓ m : Nat} (hℓ : ℓ < 4) (hm : m < 4) {k j : Nat} (hk : k < p - 1) (hj : j < p - 1) :
+    sumRange (fun l => proj g κ ℓ k l * proj g κ m l j) (p - 1) = if ℓ = m then proj g κ ℓ k j else 0 :=
+  match Nat.decEq ℓ m with
+  | isTrue e => by rw [ite_eq_left e]; subst e; exact proj_mul_self F ℓ hk hj
+  | isFalse e => by rw [ite_eq_right e]; exact proj_mul_ne F hℓ hm e hk hj
+
+theorem frft_mul_pt (z : Shell p) (s m k j l : Nat) :
+    frft g κ z s k l * proj g κ m l j =
+      (z ^ s) ^ 0 * (proj g κ 0 k l * proj g κ m l j) + (z ^ s) ^ 1 * (proj g κ 1 k l * proj g κ m l j) +
+      (z ^ s) ^ 2 * (proj g κ 2 k l * proj g κ m l j) + (z ^ s) ^ 3 * (proj g κ 3 k l * proj g κ m l j) :=
+  frft_mul_id _ _ _ _ _ _ _ _ _
+
+/-- 6:C4, 6:E6, the character sector: `F^{[s]} Π_m = (z^s)^m Π_m` on every projector, `m < 4`; the family acts on
+`Π_m`'s range by the character `s ↦ z^{ms}`. -/
+theorem frft_proj (F : Frame p κ g) (z : Shell p) (s : Nat) {m : Nat} (hm : m < 4) {k j : Nat} (hk : k < p - 1)
+    (hj : j < p - 1) :
+    sumRange (fun l => frft g κ z s k l * proj g κ m l j) (p - 1) = (z ^ s) ^ m * proj g κ m k j := by
+  rw [sum_congr _ (fun l _ => frft_mul_pt z s m k j l), sum_add, sum_add, sum_add, sum_mul_left, sum_mul_left,
+    sum_mul_left, sum_mul_left, proj_mul F (Nat.zero_lt_succ 3) hm hk hj, proj_mul F (by decide : (1 : Nat) < 4) hm hk hj,
+    proj_mul F (by decide : (2 : Nat) < 4) hm hk hj, proj_mul F (by decide : (3 : Nat) < 4) hm hk hj]
+  match m, hm with
+  | 0, _ => rw [ite_eq_left rfl, ite_eq_right (by decide), ite_eq_right (by decide), ite_eq_right (by decide),
+      mul_zero, mul_zero, mul_zero, add_zero, add_zero, add_zero]
+  | 1, _ => rw [ite_eq_right (by decide), ite_eq_left rfl, ite_eq_right (by decide), ite_eq_right (by decide),
+      mul_zero, mul_zero, mul_zero, zero_add, add_zero, add_zero]
+  | 2, _ => rw [ite_eq_right (by decide), ite_eq_right (by decide), ite_eq_left rfl, ite_eq_right (by decide),
+      mul_zero, mul_zero, mul_zero, zero_add, zero_add, add_zero]
+  | 3, _ => rw [ite_eq_right (by decide), ite_eq_right (by decide), ite_eq_right (by decide), ite_eq_left rfl,
+      mul_zero, mul_zero, mul_zero, zero_add, zero_add, zero_add]
+  | n + 4, h => exact absurd (Nat.lt_of_lt_of_le h (Nat.le_add_left 4 n)) (Nat.lt_irrefl _)
+
+/-! The basis entries the nonvanishing reads. -/
+
+theorem idm_ne {k j : Nat} (h : k ≠ j) : (idm k j : Shell p) = 0 := ite_eq_right h
+theorem idm_self (k : Nat) : (idm k k : Shell p) = 1 := ite_eq_left rfl
+
+theorem Fmat_zero_row (g : Shell p) (κ j : Nat) : Fmat g κ 0 j = quarterTurn g κ := by
+  show quarterTurn g κ * g ^ (j * 0) = _
+  rw [Nat.mul_zero, pow_zero, mul_one]
+
+theorem FJ_zero_row (g : Shell p) (κ j : Nat) : FJ g κ 0 j = quarterTurn g κ := by
+  show quarterTurn g κ * g ^ (rev (p - 1) j * 0) = _
+  rw [Nat.mul_zero, pow_zero, mul_one]
+
+theorem J_zero_zero : (J (p - 1) 0 0 : Shell p) = 1 := ite_eq_left (FRC.Nat.zero_mod _)
+
+theorem J_zero_row {j : Nat} (hj0 : 0 < j) (hj : j < p - 1) : (J (p - 1) 0 j : Shell p) = 0 :=
+  ite_eq_right (fun e => by
+    rw [Nat.zero_add, FRC.Nat.mod_eq_of_lt hj] at e
+    exact Nat.lt_irrefl 0 (e ▸ hj0))
+
+theorem three_lt_n (F : Frame p κ g) : 2 + 1 < p - 1 := by
+  rw [F.n_eq]; exact Nat.lt_of_lt_of_le (by decide) (Nat.mul_le_mul_left 4 F.cap_pos)
+
+theorem J_two_one (F : Frame p κ g) : (J (p - 1) 2 1 : Shell p) = 0 :=
+  ite_eq_right (fun e => by rw [FRC.Nat.mod_eq_of_lt (three_lt_n F)] at e; exact absurd e (by decide))
+
+theorem hii (F : Frame p κ g) : quarterTurn g κ * quarterTurn g κ + 1 = 0 := by
+  rw [F.quarter_turn_sq, neg_add]
+
+theorem q_ne_zero (F : Frame p κ g) : -(ofNat κ) ≠ (0 : Shell p) := fun h =>
+  F.one_ne_zero (by
+    have e := hq F
+    rw [h, mul_zero, zero_add] at e
+    rw [← neg_neg (1 : Shell p), e, neg_zero])
+
+theorem half_ne_zero (F : Frame p κ g) : -(ofNat κ) + -(ofNat κ) ≠ (0 : Shell p) := fun h =>
+  F.one_ne_zero (by rw [← half F, h, mul_zero])
+
+theorem quarter_ne_zero (F : Frame p κ g) : quarterTurn g κ ≠ 0 := fun h =>
+  F.one_ne_zero (by rw [← neg_neg (1 : Shell p), ← F.quarter_turn_sq, h, mul_zero, neg_zero])
+
+theorem one_add_quarter_ne_zero (F : Frame p κ g) : 1 + quarterTurn g κ ≠ 0 := fun h =>
+  F.minus_one_ne_one (by rw [← F.quarter_turn_sq, ← neg_eq_of_add_eq_zero h, neg_mul_neg, one_mul])
+
+theorem one_sub_quarter_ne_zero (F : Frame p κ g) : 1 + -(quarterTurn g κ) ≠ 0 := fun h => by
+  have hi : quarterTurn g κ = 1 := by rw [← neg_neg (quarterTurn g κ), ← neg_eq_of_add_eq_zero h, neg_neg]
+  exact F.minus_one_ne_one (by rw [← F.quarter_turn_sq, hi, one_mul])
+
+/-- 6:C5, the entry `(0, 0)` of the even projectors: `(Π₀)₀₀ = (q + q)(1 + i)` and `(Π₂)₀₀ = (q + q)(1 − i)`. -/
+theorem even_proj_entry (F : Frame p κ g) :
+    proj g κ 0 0 0 = (-(ofNat κ) + -(ofNat κ)) * (1 + quarterTurn g κ) ∧
+      proj g κ 2 0 0 = (-(ofNat κ) + -(ofNat κ)) * (1 + -(quarterTurn g κ)) := by
+  rw [proj_zero_eq, proj_two_eq F]
+  show -(ofNat κ) * idm 0 0 + -(ofNat κ) * Fmat g κ 0 0 + -(ofNat κ) * J (p - 1) 0 0 + -(ofNat κ) * FJ g κ 0 0 = _ ∧
+    -(ofNat κ) * idm 0 0 + -(-(ofNat κ)) * Fmat g κ 0 0 + -(ofNat κ) * J (p - 1) 0 0 + -(-(ofNat κ)) * FJ g κ 0 0 = _
+  rw [idm_self, Fmat_zero_row, FJ_zero_row, J_zero_zero]
+  exact ⟨entry00_zero _ _, entry00_two _ _⟩
+
+/-- 6:C5, the even projectors never vanish: `(Π₀)₀₀ ≠ 0` and `(Π₂)₀₀ ≠ 0` on every frame, since `q + q = 2⁻¹` and
+`1 ± i` are nonzero. -/
+theorem even_proj_ne_zero (F : Frame p κ g) : proj g κ 0 0 0 ≠ 0 ∧ proj g κ 2 0 0 ≠ 0 := by
+  rw [(even_proj_entry F).1, (even_proj_entry F).2]
+  exact ⟨F.mul_ne_zero (half_ne_zero F) (one_add_quarter_ne_zero F),
+    F.mul_ne_zero (half_ne_zero F) (one_sub_quarter_ne_zero F)⟩
+
+/-- 6:C5, the odd projectors at the entry `(2, 1)`: `(Π₁)₂₁ = q (g² − g^{−2})` and `(Π₃)₂₁ = −q (g² − g^{−2})`,
+with `g^{−2}` read as `g^{2 (n−1)}`. -/
+theorem odd_proj_entry (F : Frame p κ g) :
+    proj g κ 1 2 1 = -(ofNat κ) * (g ^ (1 * 2) + -(g ^ (rev (p - 1) 1 * 2))) ∧
+      proj g κ 3 2 1 = -(-(ofNat κ) * (g ^ (1 * 2) + -(g ^ (rev (p - 1) 1 * 2)))) := by
+  rw [proj_one_eq F, proj_three_eq F]
+  show -(ofNat κ) * idm 2 1 + -(ofNat κ) * -(quarterTurn g κ) * Fmat g κ 2 1 + -(-(ofNat κ)) * J (p - 1) 2 1 +
+      -(-(ofNat κ) * -(quarterTurn g κ)) * FJ g κ 2 1 = _ ∧
+    -(ofNat κ) * idm 2 1 + -(-(ofNat κ) * -(quarterTurn g κ)) * Fmat g κ 2 1 + -(-(ofNat κ)) * J (p - 1) 2 1 +
+      -(ofNat κ) * -(quarterTurn g κ) * FJ g κ 2 1 = _
+  rw [idm_ne (by decide), J_two_one F]
+  exact ⟨red1 (entry21_one _ _ _ _) (hii F), red1 (entry21_three _ _ _ _) (hii F)⟩
+
+theorem four_lt_n (F : Frame p κ g) (hκ : 2 ≤ κ) : 4 < p - 1 := by
+  rw [F.n_eq]; exact Nat.lt_of_lt_of_le (by decide) (Nat.mul_le_mul_left 4 hκ)
+
+/-- `g² ≠ g^{−2}` for `κ ≥ 2`: otherwise `g⁴ = 1` below the order `4κ`. -/
+theorem sq_ne_inv_sq (F : Frame p κ g) (hκ : 2 ≤ κ) : g ^ (1 * 2) + -(g ^ (rev (p - 1) 1 * 2)) ≠ 0 := fun h => by
+  have hn := F.n_pos
+  have h1 : 1 < p - 1 := Nat.lt_trans (by decide) (four_lt_n F hκ)
+  have e : g ^ (1 * 2) = g ^ (rev (p - 1) 1 * 2) := by rw [eq_neg_of_add_eq_zero h, neg_neg]
+  have e1 : g ^ (rev (p - 1) 1 * 2) * g ^ (1 * 2) = 1 := by
+    rw [← pow_add, ← FRC.Nat.add_mul]
+    exact F.pow_eq_one_of_mod (by rw [FRC.Nat.mul_mod_left' _ _ _ hn, rev_add_mod h1, Nat.zero_mul]; rfl)
+  rw [← e, ← pow_add] at e1
+  exact F.prim.2 4 (four_lt_n F hκ) (by decide) e1
+
+/-- 6:C5, the odd projectors do not vanish for `κ ≥ 2`: the entry `(2, 1)` of each is `±q (g² − g^{−2}) ≠ 0`. -/
+theorem odd_proj_ne_zero (F : Frame p κ g) (hκ : 2 ≤ κ) : proj g κ 1 2 1 ≠ 0 ∧ proj g κ 3 2 1 ≠ 0 := by
+  rw [(odd_proj_entry F).1, (odd_proj_entry F).2]
+  have h := F.mul_ne_zero (q_ne_zero F) (sq_ne_inv_sq F hκ)
+  exact ⟨h, fun e => h (by rw [← neg_neg (-(ofNat κ) * _), e, neg_zero])⟩
+
+/-- 6:C4, 6:D2, faithfulness: `F^{[s]} = F^{[r]}` entrywise forces `s = r` below the period, for `κ ≥ 2`. The entry
+`(2, 1)` of `F^{[s]} Π₁ = z^s Π₁` reads `z^s (Π₁)₂₁` with `(Π₁)₂₁ ≠ 0`, so `z^s = z^r` and `z` has order `4κ`. -/
+theorem frft_injective (F : Frame p κ g) (hκ : 2 ≤ κ) {z : Shell p} (hz : g * z = 1) {s r : Nat} (hs : s < p - 1)
+    (hr : r < p - 1) (h : ∀ k j, k < p - 1 → j < p - 1 → frft g κ z s k j = frft g κ z r k j) : s = r := by
+  have h2 : 2 < p - 1 := Nat.lt_trans (by decide) (four_lt_n F hκ)
+  have h1 : 1 < p - 1 := Nat.lt_trans (by decide) h2
+  have es := frft_proj F z s (by decide : (1 : Nat) < 4) h2 h1
+  have er := frft_proj F z r (by decide : (1 : Nat) < 4) h2 h1
+  have hsum : sumRange (fun l => frft g κ z s 2 l * proj g κ 1 l 1) (p - 1) =
+      sumRange (fun l => frft g κ z r 2 l * proj g κ 1 l 1) (p - 1) :=
+    sum_congr _ (fun l hl => by rw [h 2 l h2 hl])
+  rw [es, er, pow_one, pow_one] at hsum
+  have hz' : z ^ s = z ^ r :=
+    (inv_frame F hz).mul_left_cancel (odd_proj_ne_zero F hκ).1
+      ((mul_comm _ _).trans (hsum.trans (mul_comm _ _)))
+  exact (inv_frame F hz).pow_inj hs hr hz'
+
+/-! The shell `p = 5` (`κ = 1`), its two frames `g = 2, 3`, decided by the kernel. -/
+
+theorem frame5_two : Frame 5 1 (2 : Shell 5) := ⟨rfl, Nat.zero_lt_succ 0, by decide⟩
+theorem frame5_three : Frame 5 1 (3 : Shell 5) := ⟨rfl, Nat.zero_lt_succ 0, by decide⟩
+
+/-- 6:C4, 6:C5, 6:D2, the shell `p = 5` has exactly the two frames `g = 2` and `g = 3`. -/
+theorem five_frames : ∀ g : Shell 5, IsPrimitive g 4 → g = 2 ∨ g = 3 := by decide +kernel
+
+/-- 6:C5, 6:C4, at `p = 5` exactly one odd projector vanishes: `Π₁ = 0 ≠ Π₃` at `g = 2`, `Π₃ = 0 ≠ Π₁` at `g = 3`;
+the surviving odd projector carries the faithful character `s ↦ z^{ms}`, `m` its index. -/
+theorem five_odd_proj :
+    (∀ k, k < 4 → ∀ j, j < 4 → proj (2 : Shell 5) 1 1 k j = 0) ∧ proj (2 : Shell 5) 1 3 1 1 ≠ 0 ∧
+    (∀ k, k < 4 → ∀ j, j < 4 → proj (3 : Shell 5) 1 3 k j = 0) ∧ proj (3 : Shell 5) 1 1 1 1 ≠ 0 ∧
+    (∀ s, s < 4 → ∀ r, r < 4 → (3 : Shell 5) ^ (3 * s) = 3 ^ (3 * r) → s = r) ∧
+    (∀ s, s < 4 → ∀ r, r < 4 → (2 : Shell 5) ^ (1 * s) = 2 ^ (1 * r) → s = r) := by decide +kernel
+
+/-- 6:C4, 6:D2, faithfulness at `p = 5` on both frames (`z = g⁻¹`: `3` for `g = 2`, `2` for `g = 3`). -/
+theorem five_faithful :
+    (∀ s, s < 4 → ∀ r, r < 4 → (∀ k, k < 4 → ∀ j, j < 4 → frft (2 : Shell 5) 1 3 s k j = frft (2 : Shell 5) 1 3 r k j) →
+      s = r) ∧
+    (∀ s, s < 4 → ∀ r, r < 4 → (∀ k, k < 4 → ∀ j, j < 4 → frft (3 : Shell 5) 1 2 s k j = frft (3 : Shell 5) 1 2 r k j) →
+      s = r) := by decide +kernel
+
+/-! The domains (6:D1, 6:D2, 6:D7). -/
+
+/-- 6:D1, every `F^{[s]}` is invertible: `F^{[s]} F^{[n−s]} = I = F^{[n−s]} F^{[s]}` for `s ≤ n = p − 1`. -/
+theorem frft_inverse (F : Frame p κ g) {z : Shell p} (hz : g * z = 1) {s : Nat} (hs : s ≤ p - 1) {k j : Nat}
+    (hk : k < p - 1) (hj : j < p - 1) :
+    sumRange (fun l => frft g κ z s k l * frft g κ z (p - 1 - s) l j) (p - 1) = idm k j ∧
+      sumRange (fun l => frft g κ z (p - 1 - s) k l * frft g κ z s l j) (p - 1) = idm k j := by
+  have hn : frft g κ z (p - 1) k j = idm k j := by
+    have e := frft_period F hz 0 k j
+    rw [Nat.zero_add] at e
+    rw [e]; exact (frft_cardinal F hz k j).1
+  constructor
+  · rw [← frft_add F z s (p - 1 - s) hk hj, FRC.Nat.add_sub_of_le hs]; exact hn
+  · rw [← frft_add F z (p - 1 - s) s hk hj, FRC.Nat.sub_add_cancel hs]; exact hn
+
+/-- 6:D2, the half-turn is the reversal: `F^{[s + 2κ]} = F^{[s]} J`, entrywise `F^{[s+2κ]}_{kj} = F^{[s]}_{k, rev j}`,
+so the framed bases `B_{s+2κ}` and `B_s` agree as unordered bases. -/
+theorem frft_half_turn (F : Frame p κ g) {z : Shell p} (hz : g * z = 1) (s : Nat) {k j : Nat} (hk : k < p - 1)
+    (hj : j < p - 1) : frft g κ z (s + 2 * κ) k j = frft g κ z s k (rev (p - 1) j) := by
+  rw [frft_add F z s (2 * κ) hk hj, sum_congr _ (fun l _ => by rw [(frft_cardinal F hz l j).2.2.1])]
+  exact mm_X_J (frft g κ z s) hj
+
+/-- 6:D7, the row-0 entries of `F^{[t]}` off the site `j = 0`: `F^{[t]}_{0j} = (q + q)(1 − z^{2t}) i = (i/2)(1 − g^{−2t})`,
+the same value at every `0 < j < n`. -/
+theorem frft_row_zero (F : Frame p κ g) (z : Shell p) (t : Nat) {j : Nat} (hj0 : 0 < j) (hj : j < p - 1) :
+    frft g κ z t 0 j = (-(ofNat κ) + -(ofNat κ)) * (1 + -(z ^ t * z ^ t)) * quarterTurn g κ := by
+  rw [frft_eq F z t 0 j]
+  show NF0 (-(ofNat κ)) (-(quarterTurn g κ)) (z ^ t) * idm 0 j + NF1 (-(ofNat κ)) (-(quarterTurn g κ)) (z ^ t) * Fmat g κ 0 j +
+    NF2 (-(ofNat κ)) (-(quarterTurn g κ)) (z ^ t) * J (p - 1) 0 j + NF3 (-(ofNat κ)) (-(quarterTurn g κ)) (z ^ t) * FJ g κ 0 j = _
+  rw [idm_ne (fun (e : 0 = j) => Nat.lt_irrefl j (e ▸ hj0)), J_zero_row hj0 hj, Fmat_zero_row, FJ_zero_row]
+  exact row_zero_id _ _ _ _
+
+/-- `t + t ≡ 0 (mod n)` below `n = 2κ + 2κ` forces `t = 0` or `t = 2κ`. -/
+theorem double_mod_n (F : Frame p κ g) {t : Nat} (ht : t < p - 1) (h : (t + t) % (p - 1) = 0) : t = 0 ∨ t = 2 * κ := by
+  have hn := F.n_pos
+  obtain ⟨c, hc⟩ := FRC.Nat.mod_spec (p - 1) hn (t + t)
+  rw [h, Nat.add_zero] at hc
+  match c, hc with
+  | 0, hc => exact Or.inl (match t, hc with | 0, _ => rfl | t + 1, hc => Nat.noConfusion hc)
+  | 1, hc =>
+    rw [Nat.mul_one, ← F.four_kappa, ← Nat.two_mul, ← Nat.two_mul] at hc
+    exact Or.inr (Nat.eq_of_mul_eq_mul_left (by decide) hc)
+  | c + 2, hc =>
+    have : t + t < (p - 1) * (c + 2) :=
+      Nat.lt_of_lt_of_le (Nat.add_lt_add ht ht) (by rw [Nat.mul_add, Nat.mul_two]; exact Nat.le_add_left _ _)
+    exact absurd hc (Nat.ne_of_lt this)
+
+/-- 6:D7, the row-0 entries off the site are nonzero for `t ∉ {0, 2κ}` (the paper reads: `F^{[t]}` is not monomial,
+`B_{s+t} ≠ B_s`, exactly `2κ` measurement bases). -/
+theorem frft_row_zero_ne_zero (F : Frame p κ g) {z : Shell p} (hz : g * z = 1) {t : Nat} (ht : t < p - 1) (h0 : t ≠ 0)
+    (h2 : t ≠ 2 * κ) {j : Nat} (hj0 : 0 < j) (hj : j < p - 1) : frft g κ z t 0 j ≠ 0 := by
+  rw [frft_row_zero F z t hj0 hj]
+  refine F.mul_ne_zero (F.mul_ne_zero (half_ne_zero F) ?_) (quarter_ne_zero F)
+  intro e
+  have e1 : z ^ (t + t) = 1 := by rw [pow_add, ← neg_neg (z ^ t * z ^ t), ← neg_eq_of_add_eq_zero e, neg_neg]
+  match double_mod_n F ht ((inv_frame F hz).mod_eq_zero_of_pow_eq_one e1) with
+  | Or.inl e0 => exact h0 e0
+  | Or.inr e2 => exact h2 e2
+
+end Frame
+end Shell
+end FRC
+
+/-! inlined: FrcCore/Theme/Lifts.lean -/
+
+/-!
+# FrcCore.Theme.Lifts — exponent lifts, charts and the normalization constant (the fourier theme)
+
+The third file of the fourier theme (6-fourier's blueprint of 8 October 2026, task T04). The exponent lifts
+`U^{(a)}_s = Σ_ℓ z^{a_ℓ s} Π_ℓ` of the fractional family are additive for every choice of exponents, by the projector
+algebra of `Theme/Fractional.lean`, and have the family's cardinal skeleton when `a_ℓ ≡ ℓ (mod 4)` (6:C8). The chart
+`g^u` has the Fourier matrix `W(g^u) = W P_u` (the site relabelling `j ↦ uj`), `W · W(g^u) = −J P_u` and
+`W(g^u) · W = −J P_{u⁻¹}` by the geometric sum, so the two do not commute when `u² ≢ 1 (mod 4κ)` (6:C11); the chart
+`g^{u²}` of an odd `u` is the coordinate relabelling `m ↦ um` of `F` (6:C6), and the frames `g = 2, 6` of `p = 13`
+carry the two multiplicity tuples, read as traces by the kernel. The normalization: the square roots of `−1 = 1/n`
+in the field are exactly `±i`, and `(cW)² = J` exactly when `c = ±i` (6:B6). No axioms.
+-/
+
+namespace FRC
+namespace Shell
+namespace Frame
+
+variable {p : Nat} [Pos p]
+
+/-! ## Ring identities (generated; `RE.sound`, decided by the kernel) -/
+
+theorem mul_lift_id (X d0 d1 d2 d3 P0 P1 P2 P3 : Shell p) :
+    X * (d0 * P0 + d1 * P1 + d2 * P2 + d3 * P3) = d0 * (X * P0) + d1 * (X * P1) + d2 * (X * P2) + d3 * (X * P3) :=
+  RE.sound (look [X, d0, d1, d2, d3, P0, P1, P2, P3])
+    (.mul (.var 0) (.add (.add (.add (.mul (.var 1) (.var 5)) (.mul (.var 2) (.var 6))) (.mul (.var 3) (.var 7))) (.mul (.var 4) (.var 8))))
+    (.add (.add (.add (.mul (.var 1) (.mul (.var 0) (.var 5))) (.mul (.var 2) (.mul (.var 0) (.var 6)))) (.mul (.var 3) (.mul (.var 0) (.var 7)))) (.mul (.var 4) (.mul (.var 0) (.var 8)))) (by decide +kernel)
+
+theorem lift_add_id (c0 c1 c2 c3 d0 d1 d2 d3 P0 P1 P2 P3 : Shell p) :
+    d0 * (c0 * P0) + d1 * (c1 * P1) + d2 * (c2 * P2) + d3 * (c3 * P3) = (c0 * d0) * P0 + (c1 * d1) * P1 + (c2 * d2) * P2 + (c3 * d3) * P3 :=
+  RE.sound (look [c0, c1, c2, c3, d0, d1, d2, d3, P0, P1, P2, P3])
+    (.add (.add (.add (.mul (.var 4) (.mul (.var 0) (.var 8))) (.mul (.var 5) (.mul (.var 1) (.var 9)))) (.mul (.var 6) (.mul (.var 2) (.var 10)))) (.mul (.var 7) (.mul (.var 3) (.var 11))))
+    (.add (.add (.add (.mul (.mul (.var 0) (.var 4)) (.var 8)) (.mul (.mul (.var 1) (.var 5)) (.var 9))) (.mul (.mul (.var 2) (.var 6)) (.var 10))) (.mul (.mul (.var 3) (.var 7)) (.var 11))) (by decide +kernel)
+
+theorem scaled_id (c a b : Shell p) :
+    (c * a) * (c * b) = (c * c) * (a * b) :=
+  RE.sound (look [c, a, b])
+    (.mul (.mul (.var 0) (.var 1)) (.mul (.var 0) (.var 2)))
+    (.mul (.mul (.var 0) (.var 0)) (.mul (.var 1) (.var 2))) (by decide +kernel)
+
+theorem diff_sq_id (x i : Shell p) :
+    (x + -i) * (x + i) = x * x + -(i * i) :=
+  RE.sound (look [x, i])
+    (.mul (.add (.var 0) (.neg (.var 1))) (.add (.var 0) (.var 1)))
+    (.add (.mul (.var 0) (.var 0)) (.neg (.mul (.var 1) (.var 1)))) (by decide +kernel)
+
+variable {κ : Nat} {g : Shell p}
+
+/-- A fourth root of unity's powers repeat with period 4. -/
+theorem pow_four_mod {x : Shell p} (hx : x ^ 4 = 1) (l : Nat) : x ^ l = x ^ (l % 4) := by
+  obtain ⟨m, hm⟩ := FRC.Nat.mod_spec 4 (by decide) l
+  rw [congrArg (fun e => x ^ e) hm, pow_add, pow_mul, hx, one_pow, one_mul]
+
+theorem quarter_four (F : Frame p κ g) : quarterTurn g κ ^ 4 = 1 := by
+  rw [show (4 : Nat) = 2 * 2 from rfl, pow_mul, pow_two, pow_two, F.quarter_turn_sq, neg_mul_neg, one_mul]
+
+/-- The selection of the `m`-th term of a four-term sum with `[ℓ = m]` factors, `m < 4`. -/
+theorem four_select (c P : Nat → Shell p) : ∀ {m : Nat}, m < 4 →
+    c 0 * (if 0 = m then P 0 else 0) + c 1 * (if 1 = m then P 1 else 0) + c 2 * (if 2 = m then P 2 else 0) +
+      c 3 * (if 3 = m then P 3 else 0) = c m * P m
+  | 0, _ => by
+    rw [ite_eq_left rfl, ite_eq_right (by decide), ite_eq_right (by decide), ite_eq_right (by decide), mul_zero, mul_zero,
+      mul_zero, add_zero, add_zero, add_zero]
+  | 1, _ => by
+    rw [ite_eq_right (by decide), ite_eq_left rfl, ite_eq_right (by decide), ite_eq_right (by decide), mul_zero, mul_zero,
+      mul_zero, zero_add, add_zero, add_zero]
+  | 2, _ => by
+    rw [ite_eq_right (by decide), ite_eq_right (by decide), ite_eq_left rfl, ite_eq_right (by decide), mul_zero, mul_zero,
+      mul_zero, zero_add, zero_add, add_zero]
+  | 3, _ => by
+    rw [ite_eq_right (by decide), ite_eq_right (by decide), ite_eq_right (by decide), ite_eq_left rfl, mul_zero, mul_zero,
+      mul_zero, zero_add, zero_add, zero_add]
+  | n + 4, h => absurd (Nat.lt_of_lt_of_le h (Nat.le_add_left 4 n)) (Nat.lt_irrefl _)
+
+/-! ## Exponent lifts (6:C8) -/
+
+/-- The lift `U^{(a)}_s = Σ_ℓ z^{a_ℓ s} Π_ℓ` of the family by the exponents `a`; the family itself is `a = id`. -/
+def lift (g : Shell p) (κ : Nat) (z : Shell p) (a : Nat → Nat) (s : Nat) (k j : Nat) : Shell p :=
+  (z ^ s) ^ a 0 * proj g κ 0 k j + (z ^ s) ^ a 1 * proj g κ 1 k j + (z ^ s) ^ a 2 * proj g κ 2 k j +
+    (z ^ s) ^ a 3 * proj g κ 3 k j
+
+theorem lift_mul_pt (z : Shell p) (a : Nat → Nat) (s m k j l : Nat) :
+    lift g κ z a s k l * proj g κ m l j =
+      (z ^ s) ^ a 0 * (proj g κ 0 k l * proj g κ m l j) + (z ^ s) ^ a 1 * (proj g κ 1 k l * proj g κ m l j) +
+      (z ^ s) ^ a 2 * (proj g κ 2 k l * proj g κ m l j) + (z ^ s) ^ a 3 * (proj g κ 3 k l * proj g κ m l j) :=
+  frft_mul_id _ _ _ _ _ _ _ _ _
+
+/-- The lift acts on `Π_m` by `z^{a_m s}`. -/
+theorem lift_proj (F : Frame p κ g) (z : Shell p) (a : Nat → Nat) (s : Nat) {m : Nat} (hm : m < 4) {k j : Nat}
+    (hk : k < p - 1) (hj : j < p - 1) :
+    sumRange (fun l => lift g κ z a s k l * proj g κ m l j) (p - 1) = (z ^ s) ^ a m * proj g κ m k j := by
+  rw [sum_congr _ (fun l _ => lift_mul_pt z a s m k j l), sum_add, sum_add, sum_add, sum_mul_left, sum_mul_left,
+    sum_mul_left, sum_mul_left, proj_mul F (Nat.zero_lt_succ 3) hm hk hj, proj_mul F (by decide : (1 : Nat) < 4) hm hk hj,
+    proj_mul F (by decide : (2 : Nat) < 4) hm hk hj, proj_mul F (by decide : (3 : Nat) < 4) hm hk hj]
+  exact four_select (fun ℓ => (z ^ s) ^ a ℓ) (fun ℓ => proj g κ ℓ k j) hm
+
+theorem lift_mul_lift_pt (z : Shell p) (a : Nat → Nat) (s r k j l : Nat) :
+    lift g κ z a s k l * lift g κ z a r l j =
+      (z ^ r) ^ a 0 * (lift g κ z a s k l * proj g κ 0 l j) + (z ^ r) ^ a 1 * (lift g κ z a s k l * proj g κ 1 l j) +
+      (z ^ r) ^ a 2 * (lift g κ z a s k l * proj g κ 2 l j) + (z ^ r) ^ a 3 * (lift g κ z a s k l * proj g κ 3 l j) :=
+  mul_lift_id _ _ _ _ _ _ _ _ _
+
+/-- 6:C8, every lift is additive: `U^{(a)}_{s+r} = U^{(a)}_s U^{(a)}_r`, by the projector algebra alone. -/
+theorem lift_add (F : Frame p κ g) (z : Shell p) (a : Nat → Nat) (s r : Nat) {k j : Nat} (hk : k < p - 1)
+    (hj : j < p - 1) :
+    sumRange (fun l => lift g κ z a s k l * lift g κ z a r l j) (p - 1) = lift g κ z a (s + r) k j := by
+  rw [sum_congr _ (fun l _ => lift_mul_lift_pt z a s r k j l), sum_add, sum_add, sum_add, sum_mul_left, sum_mul_left, sum_mul_left, sum_mul_left,
+    lift_proj F z a s (Nat.zero_lt_succ 3) hk hj, lift_proj F z a s (by decide : (1 : Nat) < 4) hk hj,
+    lift_proj F z a s (by decide : (2 : Nat) < 4) hk hj, lift_proj F z a s (by decide : (3 : Nat) < 4) hk hj]
+  show _ = (z ^ (s + r)) ^ a 0 * proj g κ 0 k j + (z ^ (s + r)) ^ a 1 * proj g κ 1 k j +
+    (z ^ (s + r)) ^ a 2 * proj g κ 2 k j + (z ^ (s + r)) ^ a 3 * proj g κ 3 k j
+  rw [pow_add, mul_pow, mul_pow, mul_pow, mul_pow]
+  exact lift_add_id _ _ _ _ _ _ _ _ _ _ _ _
+
+/-- 6:C8, the cardinal skeleton: with `a_ℓ ≡ ℓ (mod 4)` the lift agrees with the family at the multiples of `κ`,
+`U^{(a)}_{mκ} = F^{[mκ]} = F^m` (`frft_pow`, `frft_cardinal`), since `z^{mκ} = i^m` is a fourth root of unity. -/
+theorem lift_cardinal (F : Frame p κ g) {z : Shell p} (hz : g * z = 1) (a : Nat → Nat)
+    (ha : ∀ ℓ, ℓ < 4 → a ℓ % 4 = ℓ) (m k j : Nat) : lift g κ z a (m * κ) k j = frft g κ z (m * κ) k j := by
+  have hx : (z ^ (m * κ)) ^ 4 = 1 := by
+    rw [Nat.mul_comm, pow_mul, inv_pow_kappa F hz, pow_mul_comm, quarter_four F, one_pow]
+  show (z ^ (m * κ)) ^ a 0 * proj g κ 0 k j + (z ^ (m * κ)) ^ a 1 * proj g κ 1 k j +
+      (z ^ (m * κ)) ^ a 2 * proj g κ 2 k j + (z ^ (m * κ)) ^ a 3 * proj g κ 3 k j =
+    (z ^ (m * κ)) ^ 0 * proj g κ 0 k j + (z ^ (m * κ)) ^ 1 * proj g κ 1 k j +
+      (z ^ (m * κ)) ^ 2 * proj g κ 2 k j + (z ^ (m * κ)) ^ 3 * proj g κ 3 k j
+  rw [pow_four_mod hx (a 0), pow_four_mod hx (a 1), pow_four_mod hx (a 2), pow_four_mod hx (a 3),
+    ha 0 (by decide), ha 1 (by decide), ha 2 (by decide), ha 3 (by decide)]
+
+/-- 6:C8, the lift at the multiples of `κ` is the power of the transform: `U^{(a)}_{mκ} = F^m`. -/
+theorem lift_pow (F : Frame p κ g) {z : Shell p} (hz : g * z = 1) (a : Nat → Nat) (ha : ∀ ℓ, ℓ < 4 → a ℓ % 4 = ℓ)
+    (m : Nat) {k j : Nat} (hk : k < p - 1) (hj : j < p - 1) : lift g κ z a (m * κ) k j = mpow (Fmat g κ) m k j := by
+  rw [lift_cardinal F hz a ha m k j, frft_pow F hz κ m k j hk hj]
+  exact mpow_congr (fun k j hk hj => (frft_cardinal F hz k j).2.1) m k j hk hj
+where
+  mpow_congr {A B : Nat → Nat → Shell p} (e : ∀ k j, k < p - 1 → j < p - 1 → A k j = B k j) :
+      ∀ m k j, k < p - 1 → j < p - 1 → mpow A m k j = mpow B m k j
+    | 0, _, _, _, _ => rfl
+    | m + 1, k, j, hk, hj => by
+      show sumRange (fun l => mpow A m k l * A l j) (p - 1) = sumRange (fun l => mpow B m k l * B l j) (p - 1)
+      exact sum_congr _ (fun l hl => by rw [mpow_congr e m k l hk hl, e l j hl hj])
+
+/-! ## Charts: the relabelling `j ↦ uj` (6:C11, 6:C6) -/
+
+/-- 6:C11, the chart's Fourier matrix is the relabelled one: `W(g^u)_{kj} = W(g)_{k, uj}`, the index read mod `n`
+(`W(g^u) = W P_u`). -/
+theorem W_chart (F : Frame p κ g) (u k j : Nat) : W (g ^ u) k j = W g k ((u * j) % (p - 1)) := by
+  show (g ^ u) ^ (j * k) = g ^ ((u * j) % (p - 1) * k)
+  rw [← pow_mul, F.pow_mod (u * (j * k)), F.pow_mod ((u * j) % (p - 1) * k), FRC.Nat.mod_mul_mod _ _ _ F.n_pos,
+    Nat.mul_assoc]
+
+/-- 6:C11, `W · W(g^u) = −J P_u`: entrywise `−[k + uj ≡ 0 (mod n)]`, by the geometric sum. -/
+theorem W_mul_chart (F : Frame p κ g) (u k j : Nat) :
+    sumRange (fun l => W g k l * W (g ^ u) l j) (p - 1) = -(if (k + u * j) % (p - 1) = 0 then 1 else 0) := by
+  rw [sum_congr _ (fun l _ => by
+    show g ^ (l * k) * (g ^ u) ^ (j * l) = g ^ (l * k) * g ^ (u * j * l)
+    rw [← pow_mul, ← Nat.mul_assoc])]
+  exact F.W_sq k (u * j)
+
+/-- 6:C11, `W(g^u) · W = −J P_{u⁻¹}` for `u` a unit mod `4κ`: entrywise `−[uk + j ≡ 0 (mod n)]`, for every `u`. -/
+theorem chart_mul_W (F : Frame p κ g) (u k j : Nat) :
+    sumRange (fun l => W (g ^ u) k l * W g l j) (p - 1) = -(if (u * k + j) % (p - 1) = 0 then 1 else 0) := by
+  rw [sum_congr _ (fun l _ => by
+    show (g ^ u) ^ (l * k) * g ^ (j * l) = g ^ (l * (u * k)) * g ^ (j * l)
+    rw [← pow_mul, Nat.mul_left_comm])]
+  exact F.W_sq (u * k) j
+
+theorem one_lt_n (F : Frame p κ g) : 1 < p - 1 := by
+  rw [F.n_eq]; exact Nat.lt_of_lt_of_le (by decide) (Nat.mul_le_mul_left 4 F.cap_pos)
+
+theorem minus_one_ne_zero (F : Frame p κ g) : (-1 : Shell p) ≠ 0 := fun h =>
+  F.one_ne_zero (by rw [← neg_neg (1 : Shell p), h, neg_zero])
+
+/-- 6:C11, the non-commutation: when `u² ≢ 1 (mod n)` the entry `(−u, 1)` of `W · W(g^u)` is `−1` and that of
+`W(g^u) · W` is `0`, so the chart `g^u` does not commute with the frame's `W`. -/
+theorem chart_noncommute (F : Frame p κ g) {u : Nat} (hu : (u * u) % (p - 1) ≠ 1) :
+    sumRange (fun l => W g (rev (p - 1) (u % (p - 1))) l * W (g ^ u) l 1) (p - 1) ≠
+      sumRange (fun l => W (g ^ u) (rev (p - 1) (u % (p - 1))) l * W g l 1) (p - 1) := by
+  have hn := F.n_pos
+  have hr : u % (p - 1) < p - 1 := FRC.Nat.mod_lt' u hn
+  rw [W_mul_chart F, chart_mul_W F]
+  have e1 : (rev (p - 1) (u % (p - 1)) + u * 1) % (p - 1) = 0 := by
+    rw [Nat.mul_one, ← FRC.Nat.add_mod_mod _ _ _ hn, rev_add_mod hr]
+  have e2 : (u * rev (p - 1) (u % (p - 1)) + 1) % (p - 1) ≠ 0 := fun h => hu (by
+    have hsum : (u * rev (p - 1) (u % (p - 1)) + 1 + u * (u % (p - 1))) % (p - 1) = 1 := by
+      rw [Nat.add_right_comm, ← Nat.mul_add, ← FRC.Nat.mod_add_mod _ _ _ hn, ← FRC.Nat.mul_mod_mod _ _ _ hn,
+        rev_add_mod hr, Nat.mul_zero, FRC.Nat.zero_mod, Nat.zero_add, FRC.Nat.mod_eq_of_lt (one_lt_n F)]
+    rw [← FRC.Nat.mod_add_mod _ _ _ hn, h, Nat.zero_add, FRC.Nat.mul_mod_mod _ _ _ hn] at hsum
+    exact hsum)
+  rw [ite_eq_left e1, ite_eq_right e2, neg_zero]
+  exact minus_one_ne_zero F
+
+/-- An odd `u` has `u² ≡ 1 (mod 4)`. -/
+theorem odd_sq_mod_four {u : Nat} (hu : u % 2 = 1) : (u * u) % 4 = 1 := by
+  obtain ⟨m, hm⟩ := FRC.Nat.mod_spec 2 (by decide) u
+  rw [hu] at hm
+  apply FRC.Nat.mod_unique (by decide : 1 < 4) (q := m * m + m)
+  rw [hm, Nat.mul_add, Nat.add_mul, Nat.add_mul, Nat.mul_one, Nat.one_mul, Nat.mul_add, Nat.mul_assoc 2 m,
+    Nat.mul_left_comm m 2 m, ← Nat.mul_assoc 2 2, ← Nat.add_assoc, Nat.add_assoc (2 * 2 * (m * m)), ← Nat.two_mul,
+    ← Nat.mul_assoc 2 2]
+
+/-- 6:C6, the chart `g^{u²}` of an odd `u` is the coordinate relabelling `m ↦ um`: `F(g^{u²})_{kj} = F(g)_{uk, uj}`,
+the indices read mod `n`; the quarter-turn is unchanged since `u² ≡ 1 (mod 4)`. -/
+theorem Fmat_chart (F : Frame p κ g) {u : Nat} (hu : u % 2 = 1) (k j : Nat) :
+    Fmat (g ^ (u * u)) κ k j = Fmat g κ ((u * k) % (p - 1)) ((u * j) % (p - 1)) := by
+  have hn := F.n_pos
+  have hq : quarterTurn (g ^ (u * u)) κ = quarterTurn g κ := by
+    show -((g ^ (u * u)) ^ κ) = -(g ^ κ)
+    rw [pow_mul_comm, pow_four_mod F.quarter_turn_order.2 (u * u), odd_sq_mod_four hu, pow_one]
+  show quarterTurn (g ^ (u * u)) κ * (g ^ (u * u)) ^ (j * k) =
+    quarterTurn g κ * g ^ ((u * j) % (p - 1) * ((u * k) % (p - 1)))
+  rw [hq, ← pow_mul, F.pow_mod (u * u * (j * k)), F.pow_mod ((u * j) % (p - 1) * ((u * k) % (p - 1))),
+    FRC.Nat.mod_mul_mod _ _ _ hn, FRC.Nat.mul_mod_mod _ _ _ hn, Nat.mul_assoc u u, Nat.mul_left_comm u j k,
+    Nat.mul_assoc u j]
+
+/-- The trace on the cycle. -/
+def trace (A : Nat → Nat → Shell p) (n : Nat) : Shell p := sumRange (fun k => A k k) n
+
+theorem frame13_six : Frame 13 3 (6 : Shell 13) := ⟨rfl, Nat.zero_lt_succ 2, by decide⟩
+
+/-- 6:C6, the two frames `g = 2` and `g = 6` of `p = 13`: the traces of the projectors read `(3, 3, 4, 2)` and
+`(4, 2, 3, 3)`, the multiplicity tuples, and `Tr F = 4, 9`. -/
+theorem thirteen_tuples :
+    trace (proj (2 : Shell 13) 3 0) 12 = 3 ∧ trace (proj (2 : Shell 13) 3 1) 12 = 3 ∧
+    trace (proj (2 : Shell 13) 3 2) 12 = 4 ∧ trace (proj (2 : Shell 13) 3 3) 12 = 2 ∧
+    trace (proj (6 : Shell 13) 3 0) 12 = 4 ∧ trace (proj (6 : Shell 13) 3 1) 12 = 2 ∧
+    trace (proj (6 : Shell 13) 3 2) 12 = 3 ∧ trace (proj (6 : Shell 13) 3 3) 12 = 3 ∧
+    trace (Fmat (2 : Shell 13) 3) 12 = 4 ∧ trace (Fmat (6 : Shell 13) 3) 12 = 9 := by decide +kernel
+
+/-! ## The normalization constant (6:B6) -/
+
+/-- 6:B6, the square roots of `−1 = 1/n` in the field are exactly `±i`. -/
+theorem sqrt_neg_one (F : Frame p κ g) (x : Shell p) :
+    x * x = -1 ↔ x = quarterTurn g κ ∨ x = -(quarterTurn g κ) := by
+  constructor
+  · intro h
+    have e : (x + -(quarterTurn g κ)) * (x + quarterTurn g κ) = 0 := by
+      rw [diff_sq_id, h, F.quarter_turn_sq, neg_neg, neg_add]
+    match F.mul_eq_zero e with
+    | Or.inl e1 => exact Or.inl (by rw [← neg_neg (quarterTurn g κ)]; exact eq_neg_of_add_eq_zero e1)
+    | Or.inr e2 => exact Or.inr (eq_neg_of_add_eq_zero e2)
+  · intro h
+    match h with
+    | Or.inl e => rw [e]; exact F.quarter_turn_sq
+    | Or.inr e => rw [e, neg_mul_neg]; exact F.quarter_turn_sq
+
+/-- 6:B6, `(c W)² = J` exactly when `c = ±i`: `(cW)² = c² W² = −c² J`. -/
+theorem scaled_W_sq_iff (F : Frame p κ g) (c : Shell p) :
+    (∀ k j, k < p - 1 → j < p - 1 → sumRange (fun l => c * W g k l * (c * W g l j)) (p - 1) = J (p - 1) k j) ↔
+      (c = quarterTurn g κ ∨ c = -(quarterTurn g κ)) := by
+  have key : ∀ k j, sumRange (fun l => c * W g k l * (c * W g l j)) (p - 1) = c * c * -(J (p - 1) k j) :=
+    fun k j => by rw [sum_congr _ (fun l _ => scaled_id c (W g k l) (W g l j)), sum_mul_left, F.W_sq' k j]
+  constructor
+  · intro h
+    have h00 := h 0 0 F.n_pos F.n_pos
+    rw [key, J_zero_zero, ← mul_neg, mul_one] at h00
+    exact (sqrt_neg_one F c).1 (by rw [← neg_neg (c * c), h00])
+  · intro h k j _ _
+    rw [key, (sqrt_neg_one F c).2 h, neg_mul_neg, one_mul]
+
+end Frame
+end Shell
+end FRC
+
+/-! inlined: FrcCore/Theme/Dichotomy.lean -/
+
+/-!
+# FrcCore.Theme.Dichotomy — the multiplicity dichotomy in trace form (the fourier theme)
+
+The fourth file of the fourier theme (6-fourier's blueprint of 8 October 2026, task T05). With the Gauss sum
+`G = Σ_k g^{k²}` over the cycle and its conjugate `Ḡ = Σ_k z^{k²}` (`z = g⁻¹`), the traces of the cardinal powers are
+`Tr I = n = −1`, `Tr F = i G`, `Tr F² = Tr J = 2`, `Tr F³ = Tr FJ = i Ḡ`, and the trace of a projector is
+`Tr Π_ℓ = q Σ_r w^{ℓr} Tr F^r` (`q = 4⁻¹`, `w = i⁻¹`). The product `G Ḡ = −2` comes from the substitution
+`k = l + d` and the geometric sum. When `G = ε (1 + i)` with `ε = ±1` (the sign of the Gauss sum, the paper's import A3,
+decided by the kernel on the six shells of its table), the conjugate sum is `Ḡ = −ε (1 − i)` (the conjugate law
+`ε(g⁻¹) = −ε(g)`) and the four traces are `(κ, κ, κ+1, κ−1)` for `ε = 1` and `(κ+1, κ−1, κ, κ)` for `ε = −1`, read in
+the field (6:C7). No axioms.
+-/
+
+namespace FRC
+namespace Shell
+namespace Frame
+
+variable {p : Nat} [Pos p]
+
+/-! ## Ring identities (generated; `RE.sound`, decided by the kernel) -/
+
+theorem gauss_pt_id (A B D E : Shell p) :
+    ((A * B) * (B * D)) * E = D * (B * B) + (A * E + -1) * ((D * B) * B) :=
+  RE.sound (look [A, B, D, E])
+    (.mul (.mul (.mul (.var 0) (.var 1)) (.mul (.var 1) (.var 2))) (.var 3))
+    (.add (.mul (.var 2) (.mul (.var 1) (.var 1))) (.mul (.add (.mul (.var 0) (.var 3)) (.neg .one)) (.mul (.mul (.var 2) (.var 1)) (.var 1)))) (by decide +kernel)
+
+theorem one_add_i_mul (i : Shell p) :
+    (1 + i) * (1 + -i) = 1 + 1 + (i * i + 1) * (-1) :=
+  RE.sound (look [i])
+    (.mul (.add .one (.var 0)) (.add .one (.neg (.var 0))))
+    (.add (.add .one .one) (.mul (.add (.mul (.var 0) (.var 0)) .one) (.neg .one))) (by decide +kernel)
+
+theorem conj_sign_id (e i : Shell p) :
+    (e * (1 + i)) * -(e * (1 + -i)) = -(1 + 1) + (e * e + -1) * -(1 + 1) + (i * i + 1) * (e * e) :=
+  RE.sound (look [e, i])
+    (.mul (.mul (.var 0) (.add .one (.var 1))) (.neg (.mul (.var 0) (.add .one (.neg (.var 1))))))
+    (.add (.add (.neg (.add .one .one)) (.mul (.add (.mul (.var 0) (.var 0)) (.neg .one)) (.neg (.add .one .one)))) (.mul (.add (.mul (.var 1) (.var 1)) .one) (.mul (.var 0) (.var 0)))) (by decide +kernel)
+
+theorem tuple_plus_0 (q i : Shell p) :
+    q * -1 + (q * 1) * (i * (1 * (1 + i))) + (q * (1 * 1)) * (1 + 1) + (q * ((1 * 1) * 1)) * (i * -(1 * (1 + -i))) = -q + (i * i + 1) * ((1 + 1) * q) + ((1 + 1 + 1 + 1) * q + -1) * (0) :=
+  RE.sound (look [q, i])
+    (.add (.add (.add (.mul (.var 0) (.neg .one)) (.mul (.mul (.var 0) .one) (.mul (.var 1) (.mul .one (.add .one (.var 1)))))) (.mul (.mul (.var 0) (.mul .one .one)) (.add .one .one))) (.mul (.mul (.var 0) (.mul (.mul .one .one) .one)) (.mul (.var 1) (.neg (.mul .one (.add .one (.neg (.var 1))))))))
+    (.add (.add (.neg (.var 0)) (.mul (.add (.mul (.var 1) (.var 1)) .one) (.mul (.add .one .one) (.var 0)))) (.mul (.add (.mul (.add (.add (.add .one .one) .one) .one) (.var 0)) (.neg .one)) .zero)) (by decide +kernel)
+
+theorem tuple_plus_1 (q i : Shell p) :
+    q * -1 + (q * -i) * (i * (1 * (1 + i))) + (q * (-i * -i)) * (1 + 1) + (q * ((-i * -i) * -i)) * (i * -(1 * (1 + -i))) = -q + (i * i + 1) * (-(q * i * i * i) + q * i * i) + ((1 + 1 + 1 + 1) * q + -1) * (0) :=
+  RE.sound (look [q, i])
+    (.add (.add (.add (.mul (.var 0) (.neg .one)) (.mul (.mul (.var 0) (.neg (.var 1))) (.mul (.var 1) (.mul .one (.add .one (.var 1)))))) (.mul (.mul (.var 0) (.mul (.neg (.var 1)) (.neg (.var 1)))) (.add .one .one))) (.mul (.mul (.var 0) (.mul (.mul (.neg (.var 1)) (.neg (.var 1))) (.neg (.var 1)))) (.mul (.var 1) (.neg (.mul .one (.add .one (.neg (.var 1))))))))
+    (.add (.add (.neg (.var 0)) (.mul (.add (.mul (.var 1) (.var 1)) .one) (.add (.neg (.mul (.mul (.mul (.var 0) (.var 1)) (.var 1)) (.var 1))) (.mul (.mul (.var 0) (.var 1)) (.var 1))))) (.mul (.add (.mul (.add (.add (.add .one .one) .one) .one) (.var 0)) (.neg .one)) .zero)) (by decide +kernel)
+
+theorem tuple_plus_2 (q i : Shell p) :
+    q * -1 + (q * (-i * -i)) * (i * (1 * (1 + i))) + (q * ((-i * -i) * (-i * -i))) * (1 + 1) + (q * (((-i * -i) * (-i * -i)) * (-i * -i))) * (i * -(1 * (1 + -i))) = -q + 1 + (i * i + 1) * (q * i * i * i * i * i * i + -(q * i * i * i * i * i) + -(q * i * i * i * i) + q * i * i * i + (1 + 1 + 1 + 1) * q * i * i + -((1 + 1 + 1 + 1) * q)) + ((1 + 1 + 1 + 1) * q + -1) * (1) :=
+  RE.sound (look [q, i])
+    (.add (.add (.add (.mul (.var 0) (.neg .one)) (.mul (.mul (.var 0) (.mul (.neg (.var 1)) (.neg (.var 1)))) (.mul (.var 1) (.mul .one (.add .one (.var 1)))))) (.mul (.mul (.var 0) (.mul (.mul (.neg (.var 1)) (.neg (.var 1))) (.mul (.neg (.var 1)) (.neg (.var 1))))) (.add .one .one))) (.mul (.mul (.var 0) (.mul (.mul (.mul (.neg (.var 1)) (.neg (.var 1))) (.mul (.neg (.var 1)) (.neg (.var 1)))) (.mul (.neg (.var 1)) (.neg (.var 1))))) (.mul (.var 1) (.neg (.mul .one (.add .one (.neg (.var 1))))))))
+    (.add (.add (.add (.neg (.var 0)) .one) (.mul (.add (.mul (.var 1) (.var 1)) .one) (.add (.add (.add (.add (.add (.mul (.mul (.mul (.mul (.mul (.mul (.var 0) (.var 1)) (.var 1)) (.var 1)) (.var 1)) (.var 1)) (.var 1)) (.neg (.mul (.mul (.mul (.mul (.mul (.var 0) (.var 1)) (.var 1)) (.var 1)) (.var 1)) (.var 1)))) (.neg (.mul (.mul (.mul (.mul (.var 0) (.var 1)) (.var 1)) (.var 1)) (.var 1)))) (.mul (.mul (.mul (.var 0) (.var 1)) (.var 1)) (.var 1))) (.mul (.mul (.mul (.add (.add (.add .one .one) .one) .one) (.var 0)) (.var 1)) (.var 1))) (.neg (.mul (.add (.add (.add .one .one) .one) .one) (.var 0)))))) (.mul (.add (.mul (.add (.add (.add .one .one) .one) .one) (.var 0)) (.neg .one)) .one)) (by decide +kernel)
+
+theorem tuple_plus_3 (q i : Shell p) :
+    q * -1 + (q * ((-i * -i) * -i)) * (i * (1 * (1 + i))) + (q * (((-i * -i) * -i) * ((-i * -i) * -i))) * (1 + 1) + (q * ((((-i * -i) * -i) * ((-i * -i) * -i)) * ((-i * -i) * -i))) * (i * -(1 * (1 + -i))) = -q + -1 + (i * i + 1) * (-(q * i * i * i * i * i * i * i * i * i) + q * i * i * i * i * i * i * i * i + q * i * i * i * i * i * i * i + -(q * i * i * i * i * i * i) + -(q * i * i * i * i * i) + (1 + 1 + 1) * q * i * i * i * i + -((1 + 1 + 1 + 1) * q * i * i) + (1 + 1 + 1 + 1) * q) + ((1 + 1 + 1 + 1) * q + -1) * (-1) :=
+  RE.sound (look [q, i])
+    (.add (.add (.add (.mul (.var 0) (.neg .one)) (.mul (.mul (.var 0) (.mul (.mul (.neg (.var 1)) (.neg (.var 1))) (.neg (.var 1)))) (.mul (.var 1) (.mul .one (.add .one (.var 1)))))) (.mul (.mul (.var 0) (.mul (.mul (.mul (.neg (.var 1)) (.neg (.var 1))) (.neg (.var 1))) (.mul (.mul (.neg (.var 1)) (.neg (.var 1))) (.neg (.var 1))))) (.add .one .one))) (.mul (.mul (.var 0) (.mul (.mul (.mul (.mul (.neg (.var 1)) (.neg (.var 1))) (.neg (.var 1))) (.mul (.mul (.neg (.var 1)) (.neg (.var 1))) (.neg (.var 1)))) (.mul (.mul (.neg (.var 1)) (.neg (.var 1))) (.neg (.var 1))))) (.mul (.var 1) (.neg (.mul .one (.add .one (.neg (.var 1))))))))
+    (.add (.add (.add (.neg (.var 0)) (.neg .one)) (.mul (.add (.mul (.var 1) (.var 1)) .one) (.add (.add (.add (.add (.add (.add (.add (.neg (.mul (.mul (.mul (.mul (.mul (.mul (.mul (.mul (.mul (.var 0) (.var 1)) (.var 1)) (.var 1)) (.var 1)) (.var 1)) (.var 1)) (.var 1)) (.var 1)) (.var 1))) (.mul (.mul (.mul (.mul (.mul (.mul (.mul (.mul (.var 0) (.var 1)) (.var 1)) (.var 1)) (.var 1)) (.var 1)) (.var 1)) (.var 1)) (.var 1))) (.mul (.mul (.mul (.mul (.mul (.mul (.mul (.var 0) (.var 1)) (.var 1)) (.var 1)) (.var 1)) (.var 1)) (.var 1)) (.var 1))) (.neg (.mul (.mul (.mul (.mul (.mul (.mul (.var 0) (.var 1)) (.var 1)) (.var 1)) (.var 1)) (.var 1)) (.var 1)))) (.neg (.mul (.mul (.mul (.mul (.mul (.var 0) (.var 1)) (.var 1)) (.var 1)) (.var 1)) (.var 1)))) (.mul (.mul (.mul (.mul (.mul (.add (.add .one .one) .one) (.var 0)) (.var 1)) (.var 1)) (.var 1)) (.var 1))) (.neg (.mul (.mul (.mul (.add (.add (.add .one .one) .one) .one) (.var 0)) (.var 1)) (.var 1)))) (.mul (.add (.add (.add .one .one) .one) .one) (.var 0))))) (.mul (.add (.mul (.add (.add (.add .one .one) .one) .one) (.var 0)) (.neg .one)) (.neg .one))) (by decide +kernel)
+
+theorem tuple_minus_0 (q i : Shell p) :
+    q * -1 + (q * 1) * (i * (-1 * (1 + i))) + (q * (1 * 1)) * (1 + 1) + (q * ((1 * 1) * 1)) * (i * -(-1 * (1 + -i))) = -q + 1 + (i * i + 1) * (-((1 + 1) * q)) + ((1 + 1 + 1 + 1) * q + -1) * (1) :=
+  RE.sound (look [q, i])
+    (.add (.add (.add (.mul (.var 0) (.neg .one)) (.mul (.mul (.var 0) .one) (.mul (.var 1) (.mul (.neg .one) (.add .one (.var 1)))))) (.mul (.mul (.var 0) (.mul .one .one)) (.add .one .one))) (.mul (.mul (.var 0) (.mul (.mul .one .one) .one)) (.mul (.var 1) (.neg (.mul (.neg .one) (.add .one (.neg (.var 1))))))))
+    (.add (.add (.add (.neg (.var 0)) .one) (.mul (.add (.mul (.var 1) (.var 1)) .one) (.neg (.mul (.add .one .one) (.var 0))))) (.mul (.add (.mul (.add (.add (.add .one .one) .one) .one) (.var 0)) (.neg .one)) .one)) (by decide +kernel)
+
+theorem tuple_minus_1 (q i : Shell p) :
+    q * -1 + (q * -i) * (i * (-1 * (1 + i))) + (q * (-i * -i)) * (1 + 1) + (q * ((-i * -i) * -i)) * (i * -(-1 * (1 + -i))) = -q + -1 + (i * i + 1) * (q * i * i * i + -(q * i * i) + (1 + 1 + 1 + 1) * q) + ((1 + 1 + 1 + 1) * q + -1) * (-1) :=
+  RE.sound (look [q, i])
+    (.add (.add (.add (.mul (.var 0) (.neg .one)) (.mul (.mul (.var 0) (.neg (.var 1))) (.mul (.var 1) (.mul (.neg .one) (.add .one (.var 1)))))) (.mul (.mul (.var 0) (.mul (.neg (.var 1)) (.neg (.var 1)))) (.add .one .one))) (.mul (.mul (.var 0) (.mul (.mul (.neg (.var 1)) (.neg (.var 1))) (.neg (.var 1)))) (.mul (.var 1) (.neg (.mul (.neg .one) (.add .one (.neg (.var 1))))))))
+    (.add (.add (.add (.neg (.var 0)) (.neg .one)) (.mul (.add (.mul (.var 1) (.var 1)) .one) (.add (.add (.mul (.mul (.mul (.var 0) (.var 1)) (.var 1)) (.var 1)) (.neg (.mul (.mul (.var 0) (.var 1)) (.var 1)))) (.mul (.add (.add (.add .one .one) .one) .one) (.var 0))))) (.mul (.add (.mul (.add (.add (.add .one .one) .one) .one) (.var 0)) (.neg .one)) (.neg .one))) (by decide +kernel)
+
+theorem tuple_minus_2 (q i : Shell p) :
+    q * -1 + (q * (-i * -i)) * (i * (-1 * (1 + i))) + (q * ((-i * -i) * (-i * -i))) * (1 + 1) + (q * (((-i * -i) * (-i * -i)) * (-i * -i))) * (i * -(-1 * (1 + -i))) = -q + (i * i + 1) * (-(q * i * i * i * i * i * i) + q * i * i * i * i * i + q * i * i * i * i + -(q * i * i * i)) + ((1 + 1 + 1 + 1) * q + -1) * (0) :=
+  RE.sound (look [q, i])
+    (.add (.add (.add (.mul (.var 0) (.neg .one)) (.mul (.mul (.var 0) (.mul (.neg (.var 1)) (.neg (.var 1)))) (.mul (.var 1) (.mul (.neg .one) (.add .one (.var 1)))))) (.mul (.mul (.var 0) (.mul (.mul (.neg (.var 1)) (.neg (.var 1))) (.mul (.neg (.var 1)) (.neg (.var 1))))) (.add .one .one))) (.mul (.mul (.var 0) (.mul (.mul (.mul (.neg (.var 1)) (.neg (.var 1))) (.mul (.neg (.var 1)) (.neg (.var 1)))) (.mul (.neg (.var 1)) (.neg (.var 1))))) (.mul (.var 1) (.neg (.mul (.neg .one) (.add .one (.neg (.var 1))))))))
+    (.add (.add (.neg (.var 0)) (.mul (.add (.mul (.var 1) (.var 1)) .one) (.add (.add (.add (.neg (.mul (.mul (.mul (.mul (.mul (.mul (.var 0) (.var 1)) (.var 1)) (.var 1)) (.var 1)) (.var 1)) (.var 1))) (.mul (.mul (.mul (.mul (.mul (.var 0) (.var 1)) (.var 1)) (.var 1)) (.var 1)) (.var 1))) (.mul (.mul (.mul (.mul (.var 0) (.var 1)) (.var 1)) (.var 1)) (.var 1))) (.neg (.mul (.mul (.mul (.var 0) (.var 1)) (.var 1)) (.var 1)))))) (.mul (.add (.mul (.add (.add (.add .one .one) .one) .one) (.var 0)) (.neg .one)) .zero)) (by decide +kernel)
+
+theorem tuple_minus_3 (q i : Shell p) :
+    q * -1 + (q * ((-i * -i) * -i)) * (i * (-1 * (1 + i))) + (q * (((-i * -i) * -i) * ((-i * -i) * -i))) * (1 + 1) + (q * ((((-i * -i) * -i) * ((-i * -i) * -i)) * ((-i * -i) * -i))) * (i * -(-1 * (1 + -i))) = -q + (i * i + 1) * (q * i * i * i * i * i * i * i * i * i + -(q * i * i * i * i * i * i * i * i) + -(q * i * i * i * i * i * i * i) + q * i * i * i * i * i * i + q * i * i * i * i * i + q * i * i * i * i) + ((1 + 1 + 1 + 1) * q + -1) * (0) :=
+  RE.sound (look [q, i])
+    (.add (.add (.add (.mul (.var 0) (.neg .one)) (.mul (.mul (.var 0) (.mul (.mul (.neg (.var 1)) (.neg (.var 1))) (.neg (.var 1)))) (.mul (.var 1) (.mul (.neg .one) (.add .one (.var 1)))))) (.mul (.mul (.var 0) (.mul (.mul (.mul (.neg (.var 1)) (.neg (.var 1))) (.neg (.var 1))) (.mul (.mul (.neg (.var 1)) (.neg (.var 1))) (.neg (.var 1))))) (.add .one .one))) (.mul (.mul (.var 0) (.mul (.mul (.mul (.mul (.neg (.var 1)) (.neg (.var 1))) (.neg (.var 1))) (.mul (.mul (.neg (.var 1)) (.neg (.var 1))) (.neg (.var 1)))) (.mul (.mul (.neg (.var 1)) (.neg (.var 1))) (.neg (.var 1))))) (.mul (.var 1) (.neg (.mul (.neg .one) (.add .one (.neg (.var 1))))))))
+    (.add (.add (.neg (.var 0)) (.mul (.add (.mul (.var 1) (.var 1)) .one) (.add (.add (.add (.add (.add (.mul (.mul (.mul (.mul (.mul (.mul (.mul (.mul (.mul (.var 0) (.var 1)) (.var 1)) (.var 1)) (.var 1)) (.var 1)) (.var 1)) (.var 1)) (.var 1)) (.var 1)) (.neg (.mul (.mul (.mul (.mul (.mul (.mul (.mul (.mul (.var 0) (.var 1)) (.var 1)) (.var 1)) (.var 1)) (.var 1)) (.var 1)) (.var 1)) (.var 1)))) (.neg (.mul (.mul (.mul (.mul (.mul (.mul (.mul (.var 0) (.var 1)) (.var 1)) (.var 1)) (.var 1)) (.var 1)) (.var 1)) (.var 1)))) (.mul (.mul (.mul (.mul (.mul (.mul (.var 0) (.var 1)) (.var 1)) (.var 1)) (.var 1)) (.var 1)) (.var 1))) (.mul (.mul (.mul (.mul (.mul (.var 0) (.var 1)) (.var 1)) (.var 1)) (.var 1)) (.var 1))) (.mul (.mul (.mul (.mul (.var 0) (.var 1)) (.var 1)) (.var 1)) (.var 1))))) (.mul (.add (.mul (.add (.add (.add .one .one) .one) .one) (.var 0)) (.neg .one)) .zero)) (by decide +kernel)
+
+variable {κ : Nat} {g : Shell p}
+
+/-- The quadratic Gauss sum over the cycle, `G = Σ_{k<n} g^{k²}`; `Tr W = G`. -/
+def gauss (g : Shell p) (n : Nat) : Shell p := sumRange (fun k => g ^ (k * k)) n
+
+/-! ## The traces of the four basis matrices -/
+
+theorem trace_comb (c0 c1 c2 c3 : Shell p) :
+    sumRange (fun k => comb g κ c0 c1 c2 c3 k k) (p - 1) =
+      c0 * trace (idm : Nat → Nat → Shell p) (p - 1) + c1 * trace (Fmat g κ) (p - 1) +
+        c2 * trace (J (p - 1) : Nat → Nat → Shell p) (p - 1) + c3 * trace (FJ g κ) (p - 1) := by
+  show sumRange (fun k => c0 * idm k k + c1 * Fmat g κ k k + c2 * J (p - 1) k k + c3 * FJ g κ k k) (p - 1) =
+    c0 * sumRange (fun k => idm k k) (p - 1) + c1 * sumRange (fun k => Fmat g κ k k) (p - 1) +
+      c2 * sumRange (fun k => J (p - 1) k k) (p - 1) + c3 * sumRange (fun k => FJ g κ k k) (p - 1)
+  rw [sum_add, sum_add, sum_add, sum_mul_left, sum_mul_left, sum_mul_left, sum_mul_left]
+
+theorem trace_idm (F : Frame p κ g) : trace (idm : Nat → Nat → Shell p) (p - 1) = -1 := by
+  show sumRange (fun k => idm k k) (p - 1) = -1
+  rw [sum_congr _ (fun k _ => idm_self k), sum_const, mul_one, F.ofNat_n]
+
+theorem trace_Fmat : trace (Fmat g κ) (p - 1) = quarterTurn g κ * gauss g (p - 1) :=
+  sum_mul_left (fun k => g ^ (k * k)) (quarterTurn g κ) (p - 1)
+
+theorem J_diag (F : Frame p κ g) {k : Nat} (hk : k < p - 1) : (J (p - 1) k k : Shell p) = idm k 0 + idm k (2 * κ) := by
+  show (if (k + k) % (p - 1) = 0 then (1 : Shell p) else 0) = (if k = 0 then 1 else 0) + (if k = 2 * κ then 1 else 0)
+  match Nat.decEq ((k + k) % (p - 1)) 0 with
+  | isTrue h =>
+    rw [ite_eq_left h]
+    match double_mod_n F hk h with
+    | Or.inl e =>
+      rw [ite_eq_left e, ite_eq_right (fun e2 => absurd F.two_kappa_pos (by rw [← e2, e]; exact Nat.lt_irrefl 0)), add_zero]
+    | Or.inr e =>
+      rw [ite_eq_right (fun e0 => absurd F.two_kappa_pos (by rw [← e, e0]; exact Nat.lt_irrefl 0)), ite_eq_left e, zero_add]
+  | isFalse h =>
+    rw [ite_eq_right h, ite_eq_right (fun e => h (by rw [e]; exact FRC.Nat.zero_mod _)),
+      ite_eq_right (fun e => h (by rw [e, F.four_kappa]; exact FRC.Nat.mod_self _ F.n_pos)), add_zero]
+
+/-- `Tr J = 2`: the reversal fixes the two sites `0` and `2κ`. -/
+theorem trace_J (F : Frame p κ g) : trace (J (p - 1) : Nat → Nat → Shell p) (p - 1) = 1 + 1 := by
+  show sumRange (fun k => (J (p - 1) k k : Shell p)) (p - 1) = 1 + 1
+  rw [sum_congr _ (fun k hk => J_diag F hk), sum_add, sum_eq_single F.n_pos (fun l _ hne => idm_ne hne),
+    sum_eq_single F.two_kappa_lt (fun l _ hne => idm_ne hne), idm_self, idm_self]
+
+/-- `g^{(−k) k} = z^{k²}`: the reversed exponent is the conjugate's. -/
+theorem W_rev_diag (F : Frame p κ g) {z : Shell p} (hz : g * z = 1) {k : Nat} (hk : k < p - 1) :
+    g ^ (rev (p - 1) k * k) = z ^ (k * k) := by
+  have hn := F.n_pos
+  apply inv_unique (y := g ^ (k * k))
+  · rw [← pow_add, ← FRC.Nat.add_mul, F.pow_mod, ← FRC.Nat.mod_mul_mod _ _ _ hn, rev_add_mod hk, Nat.zero_mul,
+      FRC.Nat.zero_mod, pow_zero]
+  · rw [← mul_pow, mul_comm, hz, one_pow]
+
+theorem trace_FJ (F : Frame p κ g) {z : Shell p} (hz : g * z = 1) :
+    trace (FJ g κ) (p - 1) = quarterTurn g κ * gauss z (p - 1) := by
+  show sumRange (fun k => quarterTurn g κ * g ^ (rev (p - 1) k * k)) (p - 1) =
+    quarterTurn g κ * sumRange (fun k => z ^ (k * k)) (p - 1)
+  rw [sum_congr _ (fun k hk => by rw [W_rev_diag F hz hk])]
+  exact sum_mul_left _ _ _
+
+/-- 6:C7, the traces of the cardinal powers: `Tr I = −1`, `Tr F = i G`, `Tr F² = Tr J = 2`, `Tr F³ = Tr FJ = i Ḡ`. -/
+theorem trace_powers (F : Frame p κ g) {z : Shell p} (hz : g * z = 1) :
+    trace (idm : Nat → Nat → Shell p) (p - 1) = -1 ∧ trace (Fmat g κ) (p - 1) = quarterTurn g κ * gauss g (p - 1) ∧
+      trace (J (p - 1) : Nat → Nat → Shell p) (p - 1) = 1 + 1 ∧
+      trace (FJ g κ) (p - 1) = quarterTurn g κ * gauss z (p - 1) :=
+  ⟨trace_idm F, trace_Fmat, trace_J F, trace_FJ F hz⟩
+
+/-- 6:C7, the trace of a projector in trace form: `Tr Π_ℓ = q (Tr I + u Tr F + u² Tr J + u³ Tr FJ)`, `u = w^ℓ`, i.e.
+`Tr Π_ℓ = ¼ Σ_r i^{−ℓr} Tr F^r`. -/
+theorem trace_proj (F : Frame p κ g) {z : Shell p} (hz : g * z = 1) (ℓ : Nat) :
+    trace (proj g κ ℓ) (p - 1) =
+      -(ofNat κ) * -1 + -(ofNat κ) * (-(quarterTurn g κ)) ^ ℓ * (quarterTurn g κ * gauss g (p - 1)) +
+        -(ofNat κ) * ((-(quarterTurn g κ)) ^ ℓ * (-(quarterTurn g κ)) ^ ℓ) * (1 + 1) +
+        -(ofNat κ) * ((-(quarterTurn g κ)) ^ ℓ * (-(quarterTurn g κ)) ^ ℓ * (-(quarterTurn g κ)) ^ ℓ) *
+          (quarterTurn g κ * gauss z (p - 1)) := by
+  show sumRange (fun k => proj g κ ℓ k k) (p - 1) = _
+  rw [sum_congr _ (fun k _ => proj_eq ℓ k k), trace_comb, trace_idm F, trace_Fmat, trace_J F, trace_FJ F hz]
+
+/-! ## `G Ḡ = −2` -/
+
+/-- The sums commute. -/
+theorem sum_swap (f : Nat → Nat → Shell p) (n : Nat) : ∀ m : Nat,
+    sumRange (fun l => sumRange (fun d => f l d) n) m = sumRange (fun d => sumRange (fun l => f l d) m) n
+  | 0 => (sum_zero n (fun _ _ => rfl)).symm
+  | m + 1 => by
+    show sumRange (fun l => sumRange (fun d => f l d) n) m + sumRange (fun d => f m d) n =
+      sumRange (fun d => sumRange (fun l => f l d) m + f m d) n
+    rw [sum_swap f n m, ← sum_add]
+
+/-- The shift `d ↦ (l + d) % n` is injective on the cycle. -/
+theorem shift_inj (F : Frame p κ g) {l : Nat} (hl : l < p - 1) (i j : Nat) (hi : i < p - 1) (hj : j < p - 1)
+    (h : (l + i) % (p - 1) = (l + j) % (p - 1)) : i = j := by
+  have hn := F.n_pos
+  have key : ∀ i, i < p - 1 → i = (rev (p - 1) l + (l + i) % (p - 1)) % (p - 1) := fun i hi => by
+    rw [FRC.Nat.add_mod_mod _ _ _ hn, ← Nat.add_assoc, ← FRC.Nat.mod_add_mod _ _ _ hn, rev_add_mod hl, Nat.zero_add,
+      FRC.Nat.mod_eq_of_lt hi]
+  rw [key i hi, key j hj, h]
+
+/-- The term of the double sum after the substitution `k = l + d`: `g^{(l+d)²} z^{l²} = g^{d²} (g^{2d})^l`. -/
+theorem gauss_pt {z : Shell p} (hz : g * z = 1) (l d : Nat) :
+    g ^ ((l + d) * (l + d)) * z ^ (l * l) = g ^ (d * d) * (g ^ (d + d)) ^ l := by
+  have hAE : g ^ (l * l) * z ^ (l * l) + -1 = 0 := by rw [← mul_pow, hz, one_pow, add_neg]
+  rw [Nat.add_mul, pow_add g (l * (l + d)), Nat.mul_add, Nat.mul_add, pow_add g (l * l), pow_add g (d * l),
+    ← pow_mul g (d + d) l, Nat.add_mul d d l, pow_add g (d * l), Nat.mul_comm l d]
+  exact red1 (gauss_pt_id _ _ _ _) hAE
+
+/-- The inner geometric sum: `Σ_{l<n} (g^{2d})^l` is `−1` at `d ∈ {0, 2κ}` and `0` elsewhere. -/
+theorem gauss_inner (F : Frame p κ g) {d : Nat} (hd : d < p - 1) :
+    g ^ (d * d) * sumRange (fun l => (g ^ (d + d)) ^ l) (p - 1) = -(idm d 0 + idm d (2 * κ)) := by
+  match Nat.decEq ((d + d) % (p - 1)) 0 with
+  | isTrue h =>
+    have h1 : g ^ (d + d) = 1 := F.pow_eq_one_of_mod h
+    have hs : sumRange (fun l => (g ^ (d + d)) ^ l) (p - 1) = -1 := by
+      rw [sum_congr _ (fun l _ => by rw [h1, one_pow]), sum_const, mul_one, F.ofNat_n]
+    rw [hs]
+    match double_mod_n F hd h with
+    | Or.inl e =>
+      rw [e, idm_self, idm_ne (fun e2 => absurd F.two_kappa_pos (by rw [← e2]; exact Nat.lt_irrefl 0)), add_zero,
+        Nat.mul_zero, pow_zero, one_mul]
+    | Or.inr e =>
+      rw [e, idm_ne (fun e0 => absurd F.two_kappa_pos (by rw [e0]; exact Nat.lt_irrefl 0)), idm_self, zero_add,
+        pow_mul, F.half_period, pow_mul, pow_two, neg_mul_neg, one_mul, one_pow, one_mul]
+  | isFalse h =>
+    rw [F.geom_sum_eq_zero _ (by rw [pow_mul_comm, F.pow_n, one_pow]) (fun e => h (F.mod_eq_zero_of_pow_eq_one e)),
+      mul_zero, idm_ne (fun e => h (by rw [e]; exact FRC.Nat.zero_mod _)),
+      idm_ne (fun e => h (by rw [e, F.four_kappa]; exact FRC.Nat.mod_self _ F.n_pos)), add_zero, neg_zero]
+
+/-- 6:C7, `G Ḡ = −2`: the substitution `k = l + d` and the geometric sum over `l`. -/
+theorem gauss_mul (F : Frame p κ g) {z : Shell p} (hz : g * z = 1) :
+    gauss g (p - 1) * gauss z (p - 1) = -(1 + 1) := by
+  have hn := F.n_pos
+  show sumRange (fun k => g ^ (k * k)) (p - 1) * sumRange (fun l => z ^ (l * l)) (p - 1) = -(1 + 1)
+  rw [← sum_mul_left]
+  rw [sum_congr _ (fun l hl => by
+    show sumRange (fun k => g ^ (k * k)) (p - 1) * z ^ (l * l) =
+      sumRange (fun d => g ^ (d * d) * (g ^ (d + d)) ^ l) (p - 1)
+    rw [← sum_mul_right, ← sum_perm (fun k => g ^ (k * k) * z ^ (l * l)) (fun d => (l + d) % (p - 1)) (p - 1)
+      (fun d _ => FRC.Nat.mod_lt' _ hn) (shift_inj F hl)]
+    exact sum_congr _ (fun d _ => by
+      show g ^ ((l + d) % (p - 1) * ((l + d) % (p - 1))) * z ^ (l * l) = g ^ (d * d) * (g ^ (d + d)) ^ l
+      rw [F.pow_mod ((l + d) % (p - 1) * ((l + d) % (p - 1))), FRC.Nat.mod_mul_mod _ _ _ hn,
+        FRC.Nat.mul_mod_mod _ _ _ hn, ← F.pow_mod, gauss_pt hz l d]))]
+  rw [sum_swap (fun l d => g ^ (d * d) * (g ^ (d + d)) ^ l) (p - 1) (p - 1)]
+  rw [sum_congr _ (fun d hd => by rw [sum_mul_left, gauss_inner F hd]), sum_neg, sum_add,
+    sum_eq_single F.n_pos (fun l _ hne => idm_ne hne), sum_eq_single F.two_kappa_lt (fun l _ hne => idm_ne hne),
+    idm_self, idm_self]
+
+/-! ## The sign and the two tuples (6:C7) -/
+
+/-- `G ≠ 0`, since `G Ḡ = −2`. -/
+theorem gauss_ne_zero (F : Frame p κ g) {z : Shell p} (hz : g * z = 1) : gauss g (p - 1) ≠ 0 := fun h =>
+  F.two_ne_zero (by
+    have e := gauss_mul F hz
+    rw [h, zero_mul] at e
+    rw [two_eq_one_add_one (p := p), ← neg_neg (1 + 1 : Shell p), ← e, neg_zero])
+
+/-- 6:C7, the conjugate law: when `G = ε (1 + i)` with `ε² = 1`, the conjugate frame's Gauss sum is
+`Ḡ = −ε (1 − i)`, i.e. `ε(g⁻¹) = −ε(g)`. -/
+theorem gauss_conj (F : Frame p κ g) {z : Shell p} (hz : g * z = 1) {ε : Shell p} (hε : ε * ε = 1)
+    (hG : gauss g (p - 1) = ε * (1 + quarterTurn g κ)) :
+    gauss z (p - 1) = -(ε * (1 + -(quarterTurn g κ))) := by
+  apply F.mul_left_cancel (gauss_ne_zero F hz)
+  rw [gauss_mul F hz, hG, conj_sign_id, hε, add_neg, zero_mul, add_zero, hii F, zero_mul, add_zero]
+
+theorem sign_sq {ε : Shell p} (h : ε = 1 ∨ ε = -1) : ε * ε = 1 := by
+  match h with
+  | Or.inl e => rw [e, one_mul]
+  | Or.inr e => rw [e, neg_mul_neg, one_mul]
+
+/-- 6:C7, the dichotomy: under `G = ε (1 + i)` the traces of the projectors are `(κ, κ, κ+1, κ−1)` for `ε = 1` and
+`(κ+1, κ−1, κ, κ)` for `ε = −1`, read in the field. -/
+theorem trace_tuples (F : Frame p κ g) {z : Shell p} (hz : g * z = 1) {ε : Shell p} (hε : ε = 1 ∨ ε = -1)
+    (hG : gauss g (p - 1) = ε * (1 + quarterTurn g κ)) :
+    (ε = 1 ∧ trace (proj g κ 0) (p - 1) = ofNat κ ∧ trace (proj g κ 1) (p - 1) = ofNat κ ∧
+        trace (proj g κ 2) (p - 1) = ofNat κ + 1 ∧ trace (proj g κ 3) (p - 1) = ofNat κ + -1) ∨
+      (ε = -1 ∧ trace (proj g κ 0) (p - 1) = ofNat κ + 1 ∧ trace (proj g κ 1) (p - 1) = ofNat κ + -1 ∧
+        trace (proj g κ 2) (p - 1) = ofNat κ ∧ trace (proj g κ 3) (p - 1) = ofNat κ) := by
+  have hGb := gauss_conj F hz (sign_sq hε) hG
+  have t0 := trace_proj F hz 0
+  have t1 := trace_proj F hz 1
+  have t2 := trace_proj F hz 2
+  have t3 := trace_proj F hz 3
+  rw [pow_zero, hG, hGb] at t0
+  rw [pow_one, hG, hGb] at t1
+  rw [pow_two, hG, hGb] at t2
+  rw [pow_succ, pow_two, hG, hGb] at t3
+  have hq := hq F
+  have hi := hii F
+  have nn : ∀ b : Shell p, -(-(ofNat κ)) + b = ofNat κ + b := fun b => by rw [neg_neg]
+  match hε with
+  | Or.inl e =>
+    subst e
+    refine Or.inl ⟨rfl, ?_, ?_, ?_, ?_⟩
+    · rw [t0]; exact (red2 (tuple_plus_0 _ _) hi hq).trans (neg_neg _)
+    · rw [t1]; exact (red2 (tuple_plus_1 _ _) hi hq).trans (neg_neg _)
+    · rw [t2]; exact (red2 (tuple_plus_2 _ _) hi hq).trans (nn 1)
+    · rw [t3]; exact (red2 (tuple_plus_3 _ _) hi hq).trans (nn (-1))
+  | Or.inr e =>
+    subst e
+    refine Or.inr ⟨rfl, ?_, ?_, ?_, ?_⟩
+    · rw [t0]; exact (red2 (tuple_minus_0 _ _) hi hq).trans (nn 1)
+    · rw [t1]; exact (red2 (tuple_minus_1 _ _) hi hq).trans (nn (-1))
+    · rw [t2]; exact (red2 (tuple_minus_2 _ _) hi hq).trans (neg_neg _)
+    · rw [t3]; exact (red2 (tuple_minus_3 _ _) hi hq).trans (neg_neg _)
+
+/-! The six shells of the paper's table, decided by the kernel: the sign of the Gauss sum and the tuple of traces. -/
+
+theorem frame17_three : Frame 17 4 (3 : Shell 17) := ⟨rfl, Nat.zero_lt_succ 3, by decide⟩
+theorem frame29_two : Frame 29 7 (2 : Shell 29) := ⟨rfl, Nat.zero_lt_succ 6, by decide⟩
+theorem frame37_two : Frame 37 9 (2 : Shell 37) := ⟨rfl, Nat.zero_lt_succ 8, by decide⟩
+theorem frame41_six : Frame 41 10 (6 : Shell 41) := ⟨rfl, Nat.zero_lt_succ 9, by decide⟩
+
+/-- 6:C7, the sign on the six shells: `G = ε (1 + i)` with `ε = −1` at `(5, 2)` and `ε = +1` at `(13, 2)`, `(17, 3)`,
+`(29, 2)`, `(37, 2)`, `(41, 6)`. -/
+theorem six_signs :
+    gauss (2 : Shell 5) 4 = -1 * (1 + quarterTurn 2 1) ∧ gauss (2 : Shell 13) 12 = 1 * (1 + quarterTurn 2 3) ∧
+    gauss (3 : Shell 17) 16 = 1 * (1 + quarterTurn 3 4) ∧ gauss (2 : Shell 29) 28 = 1 * (1 + quarterTurn 2 7) ∧
+    gauss (2 : Shell 37) 36 = 1 * (1 + quarterTurn 2 9) ∧ gauss (6 : Shell 41) 40 = 1 * (1 + quarterTurn 6 10) := by
+  decide +kernel
+
+/-- 6:C7, the tuples on the six shells: `(2, 0, 1, 1)` at `p = 5` (`ε = −1`) and `(κ, κ, κ+1, κ−1)` at the five others. -/
+theorem six_tuples :
+    (trace (proj (2 : Shell 5) 1 0) 4 = 2 ∧ trace (proj (2 : Shell 5) 1 1) 4 = 0 ∧
+      trace (proj (2 : Shell 5) 1 2) 4 = 1 ∧ trace (proj (2 : Shell 5) 1 3) 4 = 1) ∧
+    (trace (proj (2 : Shell 13) 3 0) 12 = 3 ∧ trace (proj (2 : Shell 13) 3 1) 12 = 3 ∧
+      trace (proj (2 : Shell 13) 3 2) 12 = 4 ∧ trace (proj (2 : Shell 13) 3 3) 12 = 2) ∧
+    (trace (proj (3 : Shell 17) 4 0) 16 = 4 ∧ trace (proj (3 : Shell 17) 4 1) 16 = 4 ∧
+      trace (proj (3 : Shell 17) 4 2) 16 = 5 ∧ trace (proj (3 : Shell 17) 4 3) 16 = 3) ∧
+    (trace (proj (2 : Shell 29) 7 0) 28 = 7 ∧ trace (proj (2 : Shell 29) 7 1) 28 = 7 ∧
+      trace (proj (2 : Shell 29) 7 2) 28 = 8 ∧ trace (proj (2 : Shell 29) 7 3) 28 = 6) ∧
+    (trace (proj (2 : Shell 37) 9 0) 36 = 9 ∧ trace (proj (2 : Shell 37) 9 1) 36 = 9 ∧
+      trace (proj (2 : Shell 37) 9 2) 36 = 10 ∧ trace (proj (2 : Shell 37) 9 3) 36 = 8) ∧
+    (trace (proj (6 : Shell 41) 10 0) 40 = 10 ∧ trace (proj (6 : Shell 41) 10 1) 40 = 10 ∧
+      trace (proj (6 : Shell 41) 10 2) 40 = 11 ∧ trace (proj (6 : Shell 41) 10 3) 40 = 9) := by
+  decide +kernel
+
+end Frame
+end Shell
+end FRC
+
+/-! inlined: FrcCore/Theme/Rotations.lean -/
+
+/-!
+# FrcCore.Theme.Rotations — the meridian cycle as the rotation group of the label plane (the fourier theme)
+
+The fifth file of the fourier theme (6-fourier's blueprint of 8 October 2026, task T06). With `z_s = g^{−s} = z^s`,
+`c_s = (z_s + z_s⁻¹)/2` and `d_s = (z_s − z_s⁻¹)/(2i)`, the rotation `R_s = [[c_s, −d_s], [d_s, c_s]]` has
+`c_s² + d_s² = 1` and `R_{s+r} = R_s R_r`; the change of variables `c + i d = z_s` (and `c − i d = z_s⁻¹`) makes
+`s ↦ R_s` injective below the period and onto the circle `c² + d² = 1`, so the cycle `ℤ/4κ` is `SO(2, 𝔽_p)` (6:E2),
+with the four cardinal rotations `R_0 = I`, `R_κ = [[0, −1], [1, 0]]`, `R_{2κ} = −I`, `R_{3κ} = [[0, 1], [−1, 0]]` and
+`z_κ = i` (6:E3). On the plane the rotation scales `u = x + i y` by `z_s` and `v = x − i y` by `z_s⁻¹`, so every orbit
+off the origin is free; `plane_count` is the arithmetic identity `p² = 1 + (4κ + 2) · 4κ`, which the paper reads as the
+origin and `4κ + 2` orbits of size `4κ` (the orbit count is not stated here) (6:E10). The size of the circle on the six
+shells of the paper's table is decided by the kernel. No axioms.
+-/
+
+namespace FRC
+namespace Shell
+namespace Frame
+
+variable {p : Nat} [Pos p]
+
+theorem red3 {L T a b c X Y Z : Shell p} (h : L = T + a * X + b * Y + c * Z) (ha : a = 0) (hb : b = 0) (hc : c = 0) :
+    L = T := by
+  rw [h, ha, hb, hc, zero_mul, zero_mul, zero_mul, add_zero, add_zero, add_zero]
+
+/-! ## Ring identities (generated; `RE.sound`, decided by the kernel) -/
+
+theorem rot_eq_id (q i Z G : Shell p) :
+    (q + q) * (Z + G) + (i * (((q + q) * -i) * (Z + -G))) = Z + (i * i + 1) * (-((1 + 1) * q * Z) + (1 + 1) * q * G) + ((1 + 1 + 1 + 1) * q + -1) * (Z) :=
+  RE.sound (look [q, i, Z, G])
+    (.add (.mul (.add (.var 0) (.var 0)) (.add (.var 2) (.var 3))) (.mul (.var 1) (.mul (.mul (.add (.var 0) (.var 0)) (.neg (.var 1))) (.add (.var 2) (.neg (.var 3))))))
+    (.add (.add (.var 2) (.mul (.add (.mul (.var 1) (.var 1)) .one) (.add (.neg (.mul (.mul (.add .one .one) (.var 0)) (.var 2))) (.mul (.mul (.add .one .one) (.var 0)) (.var 3))))) (.mul (.add (.mul (.add (.add (.add .one .one) .one) .one) (.var 0)) (.neg .one)) (.var 2))) (by decide +kernel)
+
+theorem rot_conj_id (q i Z G : Shell p) :
+    (q + q) * (Z + G) + -(i * (((q + q) * -i) * (Z + -G))) = G + (i * i + 1) * ((1 + 1) * q * Z + -((1 + 1) * q * G)) + ((1 + 1 + 1 + 1) * q + -1) * (G) :=
+  RE.sound (look [q, i, Z, G])
+    (.add (.mul (.add (.var 0) (.var 0)) (.add (.var 2) (.var 3))) (.neg (.mul (.var 1) (.mul (.mul (.add (.var 0) (.var 0)) (.neg (.var 1))) (.add (.var 2) (.neg (.var 3)))))))
+    (.add (.add (.var 3) (.mul (.add (.mul (.var 1) (.var 1)) .one) (.add (.mul (.mul (.add .one .one) (.var 0)) (.var 2)) (.neg (.mul (.mul (.add .one .one) (.var 0)) (.var 3)))))) (.mul (.add (.mul (.add (.add (.add .one .one) .one) .one) (.var 0)) (.neg .one)) (.var 3))) (by decide +kernel)
+
+theorem rot_circle_id (q i Z G : Shell p) :
+    ((q + q) * (Z + G)) * ((q + q) * (Z + G)) + ((((q + q) * -i) * (Z + -G)) * (((q + q) * -i) * (Z + -G))) = 1 + (Z * G + -1) * (-((1 + 1 + 1 + 1 + 1 + 1 + 1 + 1) * q * q * i * i) + (1 + 1 + 1 + 1 + 1 + 1 + 1 + 1) * q * q) + (i * i + 1) * ((1 + 1 + 1 + 1) * q * q * Z * Z + (1 + 1 + 1 + 1) * q * q * G * G + -((1 + 1 + 1 + 1 + 1 + 1 + 1 + 1) * q * q)) + ((1 + 1 + 1 + 1) * q + -1) * ((1 + 1 + 1 + 1) * q + 1) :=
+  RE.sound (look [q, i, Z, G])
+    (.add (.mul (.mul (.add (.var 0) (.var 0)) (.add (.var 2) (.var 3))) (.mul (.add (.var 0) (.var 0)) (.add (.var 2) (.var 3)))) (.mul (.mul (.mul (.add (.var 0) (.var 0)) (.neg (.var 1))) (.add (.var 2) (.neg (.var 3)))) (.mul (.mul (.add (.var 0) (.var 0)) (.neg (.var 1))) (.add (.var 2) (.neg (.var 3))))))
+    (.add (.add (.add .one (.mul (.add (.mul (.var 2) (.var 3)) (.neg .one)) (.add (.neg (.mul (.mul (.mul (.mul (.add (.add (.add (.add (.add (.add (.add .one .one) .one) .one) .one) .one) .one) .one) (.var 0)) (.var 0)) (.var 1)) (.var 1))) (.mul (.mul (.add (.add (.add (.add (.add (.add (.add .one .one) .one) .one) .one) .one) .one) .one) (.var 0)) (.var 0))))) (.mul (.add (.mul (.var 1) (.var 1)) .one) (.add (.add (.mul (.mul (.mul (.mul (.add (.add (.add .one .one) .one) .one) (.var 0)) (.var 0)) (.var 2)) (.var 2)) (.mul (.mul (.mul (.mul (.add (.add (.add .one .one) .one) .one) (.var 0)) (.var 0)) (.var 3)) (.var 3))) (.neg (.mul (.mul (.add (.add (.add (.add (.add (.add (.add .one .one) .one) .one) .one) .one) .one) .one) (.var 0)) (.var 0)))))) (.mul (.add (.mul (.add (.add (.add .one .one) .one) .one) (.var 0)) (.neg .one)) (.add (.mul (.add (.add (.add .one .one) .one) .one) (.var 0)) .one))) (by decide +kernel)
+
+theorem rot_mul_c_id (q i Zs Gs Zr Gr : Shell p) :
+    (q + q) * (Zs * Zr + Gs * Gr) = ((q + q) * (Zs + Gs)) * ((q + q) * (Zr + Gr)) + -((((q + q) * -i) * (Zs + -Gs)) * (((q + q) * -i) * (Zr + -Gr))) + (i * i + 1) * ((1 + 1 + 1 + 1) * q * q * Zs * Zr + -((1 + 1 + 1 + 1) * q * q * Zs * Gr) + -((1 + 1 + 1 + 1) * q * q * Gs * Zr) + (1 + 1 + 1 + 1) * q * q * Gs * Gr) + ((1 + 1 + 1 + 1) * q + -1) * (-((1 + 1) * q * Zs * Zr) + -((1 + 1) * q * Gs * Gr)) :=
+  RE.sound (look [q, i, Zs, Gs, Zr, Gr])
+    (.mul (.add (.var 0) (.var 0)) (.add (.mul (.var 2) (.var 4)) (.mul (.var 3) (.var 5))))
+    (.add (.add (.add (.mul (.mul (.add (.var 0) (.var 0)) (.add (.var 2) (.var 3))) (.mul (.add (.var 0) (.var 0)) (.add (.var 4) (.var 5)))) (.neg (.mul (.mul (.mul (.add (.var 0) (.var 0)) (.neg (.var 1))) (.add (.var 2) (.neg (.var 3)))) (.mul (.mul (.add (.var 0) (.var 0)) (.neg (.var 1))) (.add (.var 4) (.neg (.var 5))))))) (.mul (.add (.mul (.var 1) (.var 1)) .one) (.add (.add (.add (.mul (.mul (.mul (.mul (.add (.add (.add .one .one) .one) .one) (.var 0)) (.var 0)) (.var 2)) (.var 4)) (.neg (.mul (.mul (.mul (.mul (.add (.add (.add .one .one) .one) .one) (.var 0)) (.var 0)) (.var 2)) (.var 5)))) (.neg (.mul (.mul (.mul (.mul (.add (.add (.add .one .one) .one) .one) (.var 0)) (.var 0)) (.var 3)) (.var 4)))) (.mul (.mul (.mul (.mul (.add (.add (.add .one .one) .one) .one) (.var 0)) (.var 0)) (.var 3)) (.var 5))))) (.mul (.add (.mul (.add (.add (.add .one .one) .one) .one) (.var 0)) (.neg .one)) (.add (.neg (.mul (.mul (.mul (.add .one .one) (.var 0)) (.var 2)) (.var 4))) (.neg (.mul (.mul (.mul (.add .one .one) (.var 0)) (.var 3)) (.var 5)))))) (by decide +kernel)
+
+theorem rot_mul_d_id (q i Zs Gs Zr Gr : Shell p) :
+    ((q + q) * -i) * (Zs * Zr + -(Gs * Gr)) = ((q + q) * (Zs + Gs)) * (((q + q) * -i) * (Zr + -Gr)) + ((((q + q) * -i) * (Zs + -Gs)) * ((q + q) * (Zr + Gr))) + (i * i + 1) * (0) + ((1 + 1 + 1 + 1) * q + -1) * ((1 + 1) * q * i * Zs * Zr + -((1 + 1) * q * i * Gs * Gr)) :=
+  RE.sound (look [q, i, Zs, Gs, Zr, Gr])
+    (.mul (.mul (.add (.var 0) (.var 0)) (.neg (.var 1))) (.add (.mul (.var 2) (.var 4)) (.neg (.mul (.var 3) (.var 5)))))
+    (.add (.add (.add (.mul (.mul (.add (.var 0) (.var 0)) (.add (.var 2) (.var 3))) (.mul (.mul (.add (.var 0) (.var 0)) (.neg (.var 1))) (.add (.var 4) (.neg (.var 5))))) (.mul (.mul (.mul (.add (.var 0) (.var 0)) (.neg (.var 1))) (.add (.var 2) (.neg (.var 3)))) (.mul (.add (.var 0) (.var 0)) (.add (.var 4) (.var 5))))) (.mul (.add (.mul (.var 1) (.var 1)) .one) .zero)) (.mul (.add (.mul (.add (.add (.add .one .one) .one) .one) (.var 0)) (.neg .one)) (.add (.mul (.mul (.mul (.mul (.add .one .one) (.var 0)) (.var 1)) (.var 2)) (.var 4)) (.neg (.mul (.mul (.mul (.mul (.add .one .one) (.var 0)) (.var 1)) (.var 3)) (.var 5)))))) (by decide +kernel)
+
+theorem card_c_zero (q i : Shell p) :
+    (q + q) * (1 + 1) = 1 + (i * i + 1) * (0) + ((1 + 1 + 1 + 1) * q + -1) * (1) :=
+  RE.sound (look [q, i])
+    (.mul (.add (.var 0) (.var 0)) (.add .one .one))
+    (.add (.add .one (.mul (.add (.mul (.var 1) (.var 1)) .one) .zero)) (.mul (.add (.mul (.add (.add (.add .one .one) .one) .one) (.var 0)) (.neg .one)) .one)) (by decide +kernel)
+
+theorem card_d_zero (q i : Shell p) :
+    ((q + q) * -i) * (1 + -1) = 0 + (i * i + 1) * (0) + ((1 + 1 + 1 + 1) * q + -1) * (0) :=
+  RE.sound (look [q, i])
+    (.mul (.mul (.add (.var 0) (.var 0)) (.neg (.var 1))) (.add .one (.neg .one)))
+    (.add (.add .zero (.mul (.add (.mul (.var 1) (.var 1)) .one) .zero)) (.mul (.add (.mul (.add (.add (.add .one .one) .one) .one) (.var 0)) (.neg .one)) .zero)) (by decide +kernel)
+
+theorem card_c_kappa (q i : Shell p) :
+    (q + q) * (i + -i) = 0 + (i * i + 1) * (0) + ((1 + 1 + 1 + 1) * q + -1) * (0) :=
+  RE.sound (look [q, i])
+    (.mul (.add (.var 0) (.var 0)) (.add (.var 1) (.neg (.var 1))))
+    (.add (.add .zero (.mul (.add (.mul (.var 1) (.var 1)) .one) .zero)) (.mul (.add (.mul (.add (.add (.add .one .one) .one) .one) (.var 0)) (.neg .one)) .zero)) (by decide +kernel)
+
+theorem card_d_kappa (q i : Shell p) :
+    ((q + q) * -i) * (i + -(-i)) = 1 + (i * i + 1) * (-((1 + 1 + 1 + 1) * q)) + ((1 + 1 + 1 + 1) * q + -1) * (1) :=
+  RE.sound (look [q, i])
+    (.mul (.mul (.add (.var 0) (.var 0)) (.neg (.var 1))) (.add (.var 1) (.neg (.neg (.var 1)))))
+    (.add (.add .one (.mul (.add (.mul (.var 1) (.var 1)) .one) (.neg (.mul (.add (.add (.add .one .one) .one) .one) (.var 0))))) (.mul (.add (.mul (.add (.add (.add .one .one) .one) .one) (.var 0)) (.neg .one)) .one)) (by decide +kernel)
+
+theorem card_c_two (q i : Shell p) :
+    (q + q) * (i * i + -i * -i) = -1 + (i * i + 1) * ((1 + 1 + 1 + 1) * q) + ((1 + 1 + 1 + 1) * q + -1) * (-1) :=
+  RE.sound (look [q, i])
+    (.mul (.add (.var 0) (.var 0)) (.add (.mul (.var 1) (.var 1)) (.mul (.neg (.var 1)) (.neg (.var 1)))))
+    (.add (.add (.neg .one) (.mul (.add (.mul (.var 1) (.var 1)) .one) (.mul (.add (.add (.add .one .one) .one) .one) (.var 0)))) (.mul (.add (.mul (.add (.add (.add .one .one) .one) .one) (.var 0)) (.neg .one)) (.neg .one))) (by decide +kernel)
+
+theorem card_d_two (q i : Shell p) :
+    ((q + q) * -i) * (i * i + -(-i * -i)) = 0 + (i * i + 1) * (0) + ((1 + 1 + 1 + 1) * q + -1) * (0) :=
+  RE.sound (look [q, i])
+    (.mul (.mul (.add (.var 0) (.var 0)) (.neg (.var 1))) (.add (.mul (.var 1) (.var 1)) (.neg (.mul (.neg (.var 1)) (.neg (.var 1))))))
+    (.add (.add .zero (.mul (.add (.mul (.var 1) (.var 1)) .one) .zero)) (.mul (.add (.mul (.add (.add (.add .one .one) .one) .one) (.var 0)) (.neg .one)) .zero)) (by decide +kernel)
+
+theorem card_c_three (q i : Shell p) :
+    (q + q) * ((i * i) * i + (-i * -i) * -i) = 0 + (i * i + 1) * (0) + ((1 + 1 + 1 + 1) * q + -1) * (0) :=
+  RE.sound (look [q, i])
+    (.mul (.add (.var 0) (.var 0)) (.add (.mul (.mul (.var 1) (.var 1)) (.var 1)) (.mul (.mul (.neg (.var 1)) (.neg (.var 1))) (.neg (.var 1)))))
+    (.add (.add .zero (.mul (.add (.mul (.var 1) (.var 1)) .one) .zero)) (.mul (.add (.mul (.add (.add (.add .one .one) .one) .one) (.var 0)) (.neg .one)) .zero)) (by decide +kernel)
+
+theorem card_d_three (q i : Shell p) :
+    ((q + q) * -i) * ((i * i) * i + -((-i * -i) * -i)) = -1 + (i * i + 1) * (-((1 + 1 + 1 + 1) * q * i * i) + (1 + 1 + 1 + 1) * q) + ((1 + 1 + 1 + 1) * q + -1) * (-1) :=
+  RE.sound (look [q, i])
+    (.mul (.mul (.add (.var 0) (.var 0)) (.neg (.var 1))) (.add (.mul (.mul (.var 1) (.var 1)) (.var 1)) (.neg (.mul (.mul (.neg (.var 1)) (.neg (.var 1))) (.neg (.var 1))))))
+    (.add (.add (.neg .one) (.mul (.add (.mul (.var 1) (.var 1)) .one) (.add (.neg (.mul (.mul (.mul (.add (.add (.add .one .one) .one) .one) (.var 0)) (.var 1)) (.var 1))) (.mul (.add (.add (.add .one .one) .one) .one) (.var 0))))) (.mul (.add (.mul (.add (.add (.add .one .one) .one) .one) (.var 0)) (.neg .one)) (.neg .one))) (by decide +kernel)
+
+theorem orbit_u_id (i c d x y : Shell p) :
+    c * x + -(d * y) + (i * (d * x + c * y)) = (c + i * d) * (x + i * y) + (i * i + 1) * (-(d * y)) :=
+  RE.sound (look [i, c, d, x, y])
+    (.add (.add (.mul (.var 1) (.var 3)) (.neg (.mul (.var 2) (.var 4)))) (.mul (.var 0) (.add (.mul (.var 2) (.var 3)) (.mul (.var 1) (.var 4)))))
+    (.add (.mul (.add (.var 1) (.mul (.var 0) (.var 2))) (.add (.var 3) (.mul (.var 0) (.var 4)))) (.mul (.add (.mul (.var 0) (.var 0)) .one) (.neg (.mul (.var 2) (.var 4))))) (by decide +kernel)
+
+theorem orbit_v_id (i c d x y : Shell p) :
+    c * x + -(d * y) + -(i * (d * x + c * y)) = (c + -(i * d)) * (x + -(i * y)) + (i * i + 1) * (-(d * y)) :=
+  RE.sound (look [i, c, d, x, y])
+    (.add (.add (.mul (.var 1) (.var 3)) (.neg (.mul (.var 2) (.var 4)))) (.neg (.mul (.var 0) (.add (.mul (.var 2) (.var 3)) (.mul (.var 1) (.var 4))))))
+    (.add (.mul (.add (.var 1) (.neg (.mul (.var 0) (.var 2)))) (.add (.var 3) (.neg (.mul (.var 0) (.var 4))))) (.mul (.add (.mul (.var 0) (.var 0)) .one) (.neg (.mul (.var 2) (.var 4))))) (by decide +kernel)
+
+theorem surj_c_id (q i c d : Shell p) :
+    (q + q) * (c + i * d + (c + -(i * d))) = c + (i * i + 1) * (0) + ((1 + 1 + 1 + 1) * q + -1) * (c) :=
+  RE.sound (look [q, i, c, d])
+    (.mul (.add (.var 0) (.var 0)) (.add (.add (.var 2) (.mul (.var 1) (.var 3))) (.add (.var 2) (.neg (.mul (.var 1) (.var 3))))))
+    (.add (.add (.var 2) (.mul (.add (.mul (.var 1) (.var 1)) .one) .zero)) (.mul (.add (.mul (.add (.add (.add .one .one) .one) .one) (.var 0)) (.neg .one)) (.var 2))) (by decide +kernel)
+
+theorem surj_d_id (q i c d : Shell p) :
+    ((q + q) * -i) * (c + i * d + -(c + -(i * d))) = d + (i * i + 1) * (-((1 + 1 + 1 + 1) * q * d)) + ((1 + 1 + 1 + 1) * q + -1) * (d) :=
+  RE.sound (look [q, i, c, d])
+    (.mul (.mul (.add (.var 0) (.var 0)) (.neg (.var 1))) (.add (.add (.var 2) (.mul (.var 1) (.var 3))) (.neg (.add (.var 2) (.neg (.mul (.var 1) (.var 3)))))))
+    (.add (.add (.var 3) (.mul (.add (.mul (.var 1) (.var 1)) .one) (.neg (.mul (.mul (.add (.add (.add .one .one) .one) .one) (.var 0)) (.var 3))))) (.mul (.add (.mul (.add (.add (.add .one .one) .one) .one) (.var 0)) (.neg .one)) (.var 3))) (by decide +kernel)
+
+theorem norm_id (q i c d : Shell p) :
+    (c + i * d) * (c + -(i * d)) = c * c + d * d + (i * i + 1) * (-(d * d)) :=
+  RE.sound (look [q, i, c, d])
+    (.mul (.add (.var 2) (.mul (.var 1) (.var 3))) (.add (.var 2) (.neg (.mul (.var 1) (.var 3)))))
+    (.add (.add (.mul (.var 2) (.var 2)) (.mul (.var 3) (.var 3))) (.mul (.add (.mul (.var 1) (.var 1)) .one) (.neg (.mul (.var 3) (.var 3))))) (by decide +kernel)
+
+variable {κ : Nat} {g : Shell p}
+
+/-! ## The rotation `R_s` -/
+
+/-- `c_s = (z_s + z_s⁻¹)/2`, with `z_s = z^s`, `z_s⁻¹ = g^s` and `1/2 = q + q`. -/
+def cs (g : Shell p) (κ : Nat) (z : Shell p) (s : Nat) : Shell p := (-(ofNat κ) + -(ofNat κ)) * (z ^ s + g ^ s)
+
+/-- `d_s = (z_s − z_s⁻¹)/(2i)`, with `1/i = −i`. -/
+def ds (g : Shell p) (κ : Nat) (z : Shell p) (s : Nat) : Shell p :=
+  (-(ofNat κ) + -(ofNat κ)) * -(quarterTurn g κ) * (z ^ s + -(g ^ s))
+
+/-- The change of variables: `c_s + i d_s = z_s` and `c_s − i d_s = z_s⁻¹ = g^s`. -/
+theorem rot_eq (F : Frame p κ g) (z : Shell p) (s : Nat) :
+    cs g κ z s + quarterTurn g κ * ds g κ z s = z ^ s ∧ cs g κ z s + -(quarterTurn g κ * ds g κ z s) = g ^ s :=
+  ⟨red2 (rot_eq_id _ _ _ _) (hii F) (hq F), red2 (rot_conj_id _ _ _ _) (hii F) (hq F)⟩
+
+/-- 6:E2, `R_s ∈ SO(2, 𝔽_p)`: `c_s² + d_s² = 1` (the determinant), since `z_s z_s⁻¹ = 1`. -/
+theorem rot_circle (F : Frame p κ g) {z : Shell p} (hz : g * z = 1) (s : Nat) :
+    cs g κ z s * cs g κ z s + ds g κ z s * ds g κ z s = 1 :=
+  red3 (rot_circle_id _ _ _ _) (by rw [← mul_pow, mul_comm, hz, one_pow, add_neg]) (hii F) (hq F)
+
+/-- 6:E2, `s ↦ R_s` is a homomorphism: `R_{s+r} = R_s R_r` entrywise. -/
+theorem rot_hom (F : Frame p κ g) (z : Shell p) (s r : Nat) :
+    cs g κ z (s + r) = cs g κ z s * cs g κ z r + -(ds g κ z s * ds g κ z r) ∧
+      ds g κ z (s + r) = cs g κ z s * ds g κ z r + ds g κ z s * cs g κ z r := by
+  constructor
+  · show (-(ofNat κ) + -(ofNat κ)) * (z ^ (s + r) + g ^ (s + r)) = _
+    rw [pow_add, pow_add]; exact red2 (rot_mul_c_id _ _ _ _ _ _) (hii F) (hq F)
+  · show (-(ofNat κ) + -(ofNat κ)) * -(quarterTurn g κ) * (z ^ (s + r) + -(g ^ (s + r))) = _
+    rw [pow_add, pow_add]; exact red2 (rot_mul_d_id _ _ _ _ _ _) (hii F) (hq F)
+
+/-- 6:E2, injectivity below the period: `R_s = R_r` forces `s = r`, since `c + i d = z^s` and `z` has order `4κ`. -/
+theorem rot_inj (F : Frame p κ g) {z : Shell p} (hz : g * z = 1) {s r : Nat} (hs : s < p - 1) (hr : r < p - 1)
+    (hc : cs g κ z s = cs g κ z r) (hd : ds g κ z s = ds g κ z r) : s = r := by
+  apply (inv_frame F hz).pow_inj hs hr
+  rw [← (rot_eq F z s).1, ← (rot_eq F z r).1, hc, hd]
+
+/-- 6:E2, surjectivity: every point of the circle `c² + d² = 1` is a rotation `R_s`, `s < 4κ`: `c + i d ≠ 0` is a
+power `z^s` of the generator, and then `c = c_s`, `d = d_s`. -/
+theorem rot_surj (F : Frame p κ g) {z : Shell p} (hz : g * z = 1) {c d : Shell p} (h : c * c + d * d = 1) :
+    ∃ s, s < p - 1 ∧ c = cs g κ z s ∧ d = ds g κ z s := by
+  have hn : (c + quarterTurn g κ * d) * (c + -(quarterTurn g κ * d)) = 1 := by
+    rw [red1 (norm_id (-(ofNat κ)) _ _ _) (hii F), h]
+  have hu : c + quarterTurn g κ * d ≠ 0 := fun e => F.one_ne_zero (by rw [← hn, e, zero_mul])
+  obtain ⟨s, hs, hu⟩ := (inv_frame F hz).eq_pow_of_ne_zero hu
+  have hv : c + -(quarterTurn g κ * d) = g ^ s :=
+    inv_unique (x := c + -(quarterTurn g κ * d)) (y := z ^ s) (by rw [hu, mul_comm]; exact hn)
+      (by rw [← mul_pow, hz, one_pow])
+  refine ⟨s, hs, ?_, ?_⟩
+  · show c = (-(ofNat κ) + -(ofNat κ)) * (z ^ s + g ^ s)
+    rw [hu, ← hv]; exact (red2 (surj_c_id _ _ _ _) (hii F) (hq F)).symm
+  · show d = (-(ofNat κ) + -(ofNat κ)) * -(quarterTurn g κ) * (z ^ s + -(g ^ s))
+    rw [hu, ← hv]; exact (red2 (surj_d_id _ _ _ _) (hii F) (hq F)).symm
+
+/-- 6:E3, the four cardinal rotations and `z_κ = i`: `R_0 = I`, `R_κ = [[0, −1], [1, 0]]`, `R_{2κ} = −I`,
+`R_{3κ} = [[0, 1], [−1, 0]]`. -/
+theorem rot_cardinal (F : Frame p κ g) {z : Shell p} (hz : g * z = 1) :
+    (cs g κ z 0 = 1 ∧ ds g κ z 0 = 0) ∧ (cs g κ z κ = 0 ∧ ds g κ z κ = 1) ∧
+      (cs g κ z (2 * κ) = -1 ∧ ds g κ z (2 * κ) = 0) ∧ (cs g κ z (3 * κ) = 0 ∧ ds g κ z (3 * κ) = -1) ∧
+      z ^ κ = quarterTurn g κ := by
+  have hzk := inv_pow_kappa F hz
+  have hgk : g ^ κ = -(quarterTurn g κ) := (neg_neg _).symm
+  have hi := hii F
+  have hq := hq F
+  refine ⟨⟨?_, ?_⟩, ⟨?_, ?_⟩, ⟨?_, ?_⟩, ⟨?_, ?_⟩, hzk⟩
+  · show (-(ofNat κ) + -(ofNat κ)) * (z ^ 0 + g ^ 0) = 1
+    rw [pow_zero, pow_zero]; exact red2 (card_c_zero _ (quarterTurn g κ)) hi hq
+  · show (-(ofNat κ) + -(ofNat κ)) * -(quarterTurn g κ) * (z ^ 0 + -(g ^ 0)) = 0
+    rw [pow_zero, pow_zero]; exact red2 (card_d_zero _ _) hi hq
+  · show (-(ofNat κ) + -(ofNat κ)) * (z ^ κ + g ^ κ) = 0
+    rw [hzk, hgk]; exact red2 (card_c_kappa _ _) hi hq
+  · show (-(ofNat κ) + -(ofNat κ)) * -(quarterTurn g κ) * (z ^ κ + -(g ^ κ)) = 1
+    rw [hzk, hgk]; exact red2 (card_d_kappa _ _) hi hq
+  · show (-(ofNat κ) + -(ofNat κ)) * (z ^ (2 * κ) + g ^ (2 * κ)) = -1
+    rw [pow_mul_comm' z, pow_mul_comm' g, hzk, hgk, pow_two, pow_two]; exact red2 (card_c_two _ _) hi hq
+  · show (-(ofNat κ) + -(ofNat κ)) * -(quarterTurn g κ) * (z ^ (2 * κ) + -(g ^ (2 * κ))) = 0
+    rw [pow_mul_comm' z, pow_mul_comm' g, hzk, hgk, pow_two, pow_two]; exact red2 (card_d_two _ _) hi hq
+  · show (-(ofNat κ) + -(ofNat κ)) * (z ^ (3 * κ) + g ^ (3 * κ)) = 0
+    rw [pow_mul_comm' z, pow_mul_comm' g, hzk, hgk, pow_succ, pow_two, pow_succ, pow_two]
+    exact red2 (card_c_three _ _) hi hq
+  · show (-(ofNat κ) + -(ofNat κ)) * -(quarterTurn g κ) * (z ^ (3 * κ) + -(g ^ (3 * κ))) = -1
+    rw [pow_mul_comm' z, pow_mul_comm' g, hzk, hgk, pow_succ, pow_two, pow_succ, pow_two]
+    exact red2 (card_d_three _ _) hi hq
+where
+  /-- `a^(m κ) = (a^κ)^m`. -/
+  pow_mul_comm' (a : Shell p) {m : Nat} : a ^ (m * κ) = (a ^ κ) ^ m := by rw [pow_mul, pow_mul_comm]
+
+/-! ## The plane as orbits of the cycle (6:E10) -/
+
+/-- 6:E10, the rotation on the plane in the coordinates `u = x + i y`, `v = x − i y`: `R_s` scales `u` by `z_s` and `v`
+by `z_s⁻¹`. -/
+theorem rot_uv (F : Frame p κ g) (z : Shell p) (s : Nat) (x y : Shell p) :
+    (cs g κ z s * x + -(ds g κ z s * y)) + quarterTurn g κ * (ds g κ z s * x + cs g κ z s * y) =
+        z ^ s * (x + quarterTurn g κ * y) ∧
+      (cs g κ z s * x + -(ds g κ z s * y)) + -(quarterTurn g κ * (ds g κ z s * x + cs g κ z s * y)) =
+        g ^ s * (x + -(quarterTurn g κ * y)) :=
+  ⟨by rw [red1 (orbit_u_id _ _ _ _ _) (hii F), (rot_eq F z s).1],
+   by rw [red1 (orbit_v_id _ _ _ _ _) (hii F), (rot_eq F z s).2]⟩
+
+/-- 6:E10, the orbits off the origin are free: a rotation `R_s`, `s < 4κ`, fixing a point `(x, y) ≠ (0, 0)` is the
+identity, `s = 0`. -/
+theorem orbit_free (F : Frame p κ g) {z : Shell p} (hz : g * z = 1) {x y : Shell p} (hxy : ¬(x = 0 ∧ y = 0))
+    {s : Nat} (hs : s < p - 1) (hfix : cs g κ z s * x + -(ds g κ z s * y) = x ∧ ds g κ z s * x + cs g κ z s * y = y) :
+    s = 0 := by
+  have hu := (rot_uv F z s x y).1
+  have hv := (rot_uv F z s x y).2
+  rw [hfix.1, hfix.2] at hu hv
+  have key : ∀ {a : Shell p} {t : Shell p}, t ≠ 0 → a * t = t → a = 1 := fun {a t} ht e =>
+    F.mul_left_cancel ht (by rw [mul_comm, e, mul_one])
+  match Nat.decEq s 0 with
+  | isTrue e => exact e
+  | isFalse hs0 =>
+    exfalso
+    have hz1 : z ^ s ≠ 1 := (inv_frame F hz).prim.2 s hs (Nat.pos_of_ne_zero hs0)
+    have hg1 : g ^ s ≠ 1 := F.prim.2 s hs (Nat.pos_of_ne_zero hs0)
+    have hu0 : x + quarterTurn g κ * y = 0 := match Decidable.em (x + quarterTurn g κ * y = 0) with
+      | Or.inl e => e
+      | Or.inr ne => absurd (key ne hu.symm) hz1
+    have hv0 : x + -(quarterTurn g κ * y) = 0 := match Decidable.em (x + -(quarterTurn g κ * y) = 0) with
+      | Or.inl e => e
+      | Or.inr ne => absurd (key ne hv.symm) hg1
+    have hx : x = 0 := F.no_south_pole x (by rw [two_mul']; exact uv_sum hu0 hv0)
+    have hy : y = 0 := by
+      rw [hx, zero_add] at hu0
+      match F.mul_eq_zero hu0 with
+      | Or.inl e => exact absurd e (quarter_ne_zero F)
+      | Or.inr e => exact e
+    exact hxy ⟨hx, hy⟩
+where
+  uv_sum {x w : Shell p} (h1 : x + w = 0) (h2 : x + -w = 0) : x + x = 0 := by
+    have e : x + x = (x + w) + (x + -w) :=
+      RE.sound (look [x, w]) (.add (.var 0) (.var 0)) (.add (.add (.var 0) (.var 1)) (.add (.var 0) (.neg (.var 1))))
+        (by decide +kernel)
+    rw [e, h1, h2, add_zero]
+
+/-- 6:E10, the count `p² = 1 + (4κ + 2) · 4κ` (the paper reads it as the origin and `4κ + 2` free orbits of size `4κ`). -/
+theorem plane_count (F : Frame p κ g) : p * p = 1 + (4 * κ + 2) * (4 * κ) := by
+  rw [F.cap, Nat.add_mul, Nat.mul_add, Nat.mul_add, Nat.mul_one, Nat.one_mul, Nat.add_mul, Nat.two_mul, Nat.mul_one,
+    ← Nat.add_assoc (4 * κ * (4 * κ) + 4 * κ) (4 * κ) 1, Nat.add_comm 1 (4 * κ * (4 * κ) + (4 * κ + 4 * κ)),
+    ← Nat.add_assoc (4 * κ * (4 * κ)) (4 * κ) (4 * κ)]
+
+/-! The circle on the six shells of the paper's table: `|SO(2, 𝔽_p)| = 4κ`, decided by the kernel. -/
+
+/-- `countRow p a b`: the number of `b' < b` with `a² + b'² = 1` in the shell, for the fixed `a`; `countCircle p a` sums
+`countRow p a' p` over `a' < a`, so `countCircle p p` counts the circle. -/
+def countRow (p : Nat) [Pos p] (a : Nat) : Nat → Nat
+  | 0 => 0
+  | b + 1 => countRow p a b + (if (ofNat a : Shell p) * ofNat a + ofNat b * ofNat b = 1 then 1 else 0)
+def countCircle (p : Nat) [Pos p] : Nat → Nat
+  | 0 => 0
+  | a + 1 => countCircle p a + countRow p a p
+
+/-- 6:E2, 6:E10, the circle has `4κ` points on the six shells: `4, 12, 16, 28, 36, 40`. -/
+theorem six_circles :
+    countCircle 5 5 = 4 ∧ countCircle 13 13 = 12 ∧ countCircle 17 17 = 16 ∧ countCircle 29 29 = 28 ∧
+      countCircle 37 37 = 36 ∧ countCircle 41 41 = 40 := by decide +kernel
+
+end Frame
+end Shell
+end FRC
+
+/-! inlined: FrcCore/Theme/Heisenberg.lean -/
+
+/-!
+# FrcCore.Theme.Heisenberg — the character sector and the cardinal Heisenberg covariance (the fourier theme)
+
+The sixth file of the fourier theme (6-fourier's blueprint of 8 October 2026, task T07). On the range of `Π₁` the
+family acts by the meridian character, `F^{[s]} Π₁ = z^s Π₁` (`frft_proj`), so `F^{[s]} T_v = T_v S_{−s}` for
+`T_v(x) = x v`, and the rotation `R_s` carries the same character on its eigenline `(1, −i)` (6:E6). The shift
+`(σ v)_k = v_{k−1}` and the modulation `D₁ = diag(g^k)` are intertwined by the cardinal skeleton: `F σ = D₁ F`,
+`F D₁ = σ⁻¹ F`, `J σ = σ⁻¹ J`, `F J σ = D₁⁻¹ F J`, the quarter-rotation `σ ↦ D₁ ↦ σ⁻¹ ↦ D₁⁻¹` (6:E7); and
+`F^{[s]} = Σ_r c_r(s) F^r` with `c_r(s) = ¼ Σ_ℓ (g^{rκ−s})^ℓ` is `frft_eq` of `Theme/Fourier.lean` with its
+coefficients written as geometric sums. No axioms.
+-/
+
+namespace FRC
+namespace Shell
+namespace Frame
+
+variable {p : Nat} [Pos p]
+
+/-! ## Ring identities (generated; `RE.sound`, decided by the kernel) -/
+
+theorem shift_id (i A B : Shell p) :
+    i * (A * B) = B * (i * A) :=
+  RE.sound (look [i, A, B])
+    (.mul (.var 0) (.mul (.var 1) (.var 2)))
+    (.mul (.var 2) (.mul (.var 0) (.var 1))) (by decide +kernel)
+
+theorem modul_id (i A B : Shell p) :
+    (i * A) * B = 1 * (i * (A * B)) :=
+  RE.sound (look [i, A, B])
+    (.mul (.mul (.var 0) (.var 1)) (.var 2))
+    (.mul .one (.mul (.var 0) (.mul (.var 1) (.var 2)))) (by decide +kernel)
+
+theorem assoc4_id (Z A B C : Shell p) :
+    (Z * A) * (B * C) = (Z * C) * (A * B) :=
+  RE.sound (look [Z, A, B, C])
+    (.mul (.mul (.var 0) (.var 1)) (.mul (.var 2) (.var 3)))
+    (.mul (.mul (.var 0) (.var 3)) (.mul (.var 1) (.var 2))) (by decide +kernel)
+
+theorem coeff1_id (q i u : Shell p) :
+    q * (1 + -i * u + -(u * u) + -(-i * ((u * u) * u))) = q * (1 + u * -i + (u * -i) * (u * -i) + ((u * -i) * (u * -i)) * (u * -i)) + (i * i + 1) * (q * i * u * u * u + -(q * u * u)) :=
+  RE.sound (look [q, i, u])
+    (.mul (.var 0) (.add (.add (.add .one (.mul (.neg (.var 1)) (.var 2))) (.neg (.mul (.var 2) (.var 2)))) (.neg (.mul (.neg (.var 1)) (.mul (.mul (.var 2) (.var 2)) (.var 2))))))
+    (.add (.mul (.var 0) (.add (.add (.add .one (.mul (.var 2) (.neg (.var 1)))) (.mul (.mul (.var 2) (.neg (.var 1))) (.mul (.var 2) (.neg (.var 1))))) (.mul (.mul (.mul (.var 2) (.neg (.var 1))) (.mul (.var 2) (.neg (.var 1)))) (.mul (.var 2) (.neg (.var 1)))))) (.mul (.add (.mul (.var 1) (.var 1)) .one) (.add (.mul (.mul (.mul (.mul (.var 0) (.var 1)) (.var 2)) (.var 2)) (.var 2)) (.neg (.mul (.mul (.var 0) (.var 2)) (.var 2)))))) (by decide +kernel)
+
+theorem coeff2_id (q i u : Shell p) :
+    q * (1 + -u + u * u + -((u * u) * u)) = q * (1 + u * (-i * -i) + (u * (-i * -i)) * (u * (-i * -i)) + ((u * (-i * -i)) * (u * (-i * -i))) * (u * (-i * -i))) + (i * i + 1) * (-(q * i * i * i * i * u * u * u) + q * i * i * u * u * u + -(q * i * i * u * u) + -(q * u * u * u) + q * u * u + -(q * u)) :=
+  RE.sound (look [q, i, u])
+    (.mul (.var 0) (.add (.add (.add .one (.neg (.var 2))) (.mul (.var 2) (.var 2))) (.neg (.mul (.mul (.var 2) (.var 2)) (.var 2)))))
+    (.add (.mul (.var 0) (.add (.add (.add .one (.mul (.var 2) (.mul (.neg (.var 1)) (.neg (.var 1))))) (.mul (.mul (.var 2) (.mul (.neg (.var 1)) (.neg (.var 1)))) (.mul (.var 2) (.mul (.neg (.var 1)) (.neg (.var 1)))))) (.mul (.mul (.mul (.var 2) (.mul (.neg (.var 1)) (.neg (.var 1)))) (.mul (.var 2) (.mul (.neg (.var 1)) (.neg (.var 1))))) (.mul (.var 2) (.mul (.neg (.var 1)) (.neg (.var 1))))))) (.mul (.add (.mul (.var 1) (.var 1)) .one) (.add (.add (.add (.add (.add (.neg (.mul (.mul (.mul (.mul (.mul (.mul (.mul (.var 0) (.var 1)) (.var 1)) (.var 1)) (.var 1)) (.var 2)) (.var 2)) (.var 2))) (.mul (.mul (.mul (.mul (.mul (.var 0) (.var 1)) (.var 1)) (.var 2)) (.var 2)) (.var 2))) (.neg (.mul (.mul (.mul (.mul (.var 0) (.var 1)) (.var 1)) (.var 2)) (.var 2)))) (.neg (.mul (.mul (.mul (.var 0) (.var 2)) (.var 2)) (.var 2)))) (.mul (.mul (.var 0) (.var 2)) (.var 2))) (.neg (.mul (.var 0) (.var 2)))))) (by decide +kernel)
+
+theorem coeff3_id (q i u : Shell p) :
+    q * (1 + -(-i * u) + -(u * u) + -i * ((u * u) * u)) = q * (1 + u * ((-i * -i) * -i) + (u * ((-i * -i) * -i)) * (u * ((-i * -i) * -i)) + ((u * ((-i * -i) * -i)) * (u * ((-i * -i) * -i))) * (u * ((-i * -i) * -i))) + (i * i + 1) * (q * i * i * i * i * i * i * i * u * u * u + -(q * i * i * i * i * i * u * u * u) + -(q * i * i * i * i * u * u) + q * i * i * i * u * u * u + q * i * i * u * u + -(q * i * u * u * u) + q * i * u + -(q * u * u)) :=
+  RE.sound (look [q, i, u])
+    (.mul (.var 0) (.add (.add (.add .one (.neg (.mul (.neg (.var 1)) (.var 2)))) (.neg (.mul (.var 2) (.var 2)))) (.mul (.neg (.var 1)) (.mul (.mul (.var 2) (.var 2)) (.var 2)))))
+    (.add (.mul (.var 0) (.add (.add (.add .one (.mul (.var 2) (.mul (.mul (.neg (.var 1)) (.neg (.var 1))) (.neg (.var 1))))) (.mul (.mul (.var 2) (.mul (.mul (.neg (.var 1)) (.neg (.var 1))) (.neg (.var 1)))) (.mul (.var 2) (.mul (.mul (.neg (.var 1)) (.neg (.var 1))) (.neg (.var 1)))))) (.mul (.mul (.mul (.var 2) (.mul (.mul (.neg (.var 1)) (.neg (.var 1))) (.neg (.var 1)))) (.mul (.var 2) (.mul (.mul (.neg (.var 1)) (.neg (.var 1))) (.neg (.var 1))))) (.mul (.var 2) (.mul (.mul (.neg (.var 1)) (.neg (.var 1))) (.neg (.var 1))))))) (.mul (.add (.mul (.var 1) (.var 1)) .one) (.add (.add (.add (.add (.add (.add (.add (.mul (.mul (.mul (.mul (.mul (.mul (.mul (.mul (.mul (.mul (.var 0) (.var 1)) (.var 1)) (.var 1)) (.var 1)) (.var 1)) (.var 1)) (.var 1)) (.var 2)) (.var 2)) (.var 2)) (.neg (.mul (.mul (.mul (.mul (.mul (.mul (.mul (.mul (.var 0) (.var 1)) (.var 1)) (.var 1)) (.var 1)) (.var 1)) (.var 2)) (.var 2)) (.var 2)))) (.neg (.mul (.mul (.mul (.mul (.mul (.mul (.var 0) (.var 1)) (.var 1)) (.var 1)) (.var 1)) (.var 2)) (.var 2)))) (.mul (.mul (.mul (.mul (.mul (.mul (.var 0) (.var 1)) (.var 1)) (.var 1)) (.var 2)) (.var 2)) (.var 2))) (.mul (.mul (.mul (.mul (.var 0) (.var 1)) (.var 1)) (.var 2)) (.var 2))) (.neg (.mul (.mul (.mul (.mul (.var 0) (.var 1)) (.var 2)) (.var 2)) (.var 2)))) (.mul (.mul (.var 0) (.var 1)) (.var 2))) (.neg (.mul (.mul (.var 0) (.var 2)) (.var 2)))))) (by decide +kernel)
+
+theorem eigenline_a_id (i c d : Shell p) :
+    c * 1 + -(d * -i) = (c + i * d) * 1 :=
+  RE.sound (look [i, c, d])
+    (.add (.mul (.var 1) .one) (.neg (.mul (.var 2) (.neg (.var 0)))))
+    (.mul (.add (.var 1) (.mul (.var 0) (.var 2))) .one) (by decide +kernel)
+
+theorem eigenline_b_id (i c d : Shell p) :
+    d * 1 + c * -i = (c + i * d) * -i + (i * i + 1) * (d) :=
+  RE.sound (look [i, c, d])
+    (.add (.mul (.var 2) .one) (.mul (.var 1) (.neg (.var 0))))
+    (.add (.mul (.add (.var 1) (.mul (.var 0) (.var 2))) (.neg (.var 0))) (.mul (.add (.mul (.var 0) (.var 0)) .one) (.var 2))) (by decide +kernel)
+
+variable {κ : Nat} {g : Shell p}
+
+/-! ## The common character sector (6:E6) -/
+
+/-- 6:E6, the intertwiner: `F^{[s]} T_v = T_v S_{−s}` with `v` a column of `Π₁` and `T_v(x) = x v`, `S_{−s} x = z^s x`. -/
+theorem frft_intertwine (F : Frame p κ g) (z : Shell p) (s : Nat) (x : Shell p) {k j : Nat} (hk : k < p - 1)
+    (hj : j < p - 1) :
+    sumRange (fun l => frft g κ z s k l * (x * proj g κ 1 l j)) (p - 1) = x * (z ^ s * proj g κ 1 k j) := by
+  rw [sum_congr _ (fun l _ => mul_left_comm (frft g κ z s k l) x (proj g κ 1 l j)), sum_mul_left,
+    frft_proj F z s (by decide : (1 : Nat) < 4) hk hj, pow_one]
+
+/-- 6:E6, the eigenline: `R_s (1, −i)ᵀ = z_s (1, −i)ᵀ`. -/
+theorem rot_eigenline (F : Frame p κ g) (z : Shell p) (s : Nat) :
+    cs g κ z s * 1 + -(ds g κ z s * -(quarterTurn g κ)) = z ^ s * 1 ∧
+      ds g κ z s * 1 + cs g κ z s * -(quarterTurn g κ) = z ^ s * -(quarterTurn g κ) :=
+  ⟨by rw [eigenline_a_id, (rot_eq F z s).1], by rw [red1 (eigenline_b_id _ _ _) (hii F), (rot_eq F z s).1]⟩
+
+/-! ## The shift and the modulation -/
+
+/-- The shift `(σ v)_k = v_{k−1}`: `σ_{kj} = [j + 1 ≡ k]`. -/
+def shift (p : Nat) [Pos p] (k j : Nat) : Shell p := if (j + 1) % (p - 1) = k then 1 else 0
+
+/-- Its inverse `(σ⁻¹ v)_k = v_{k+1}`: `σ⁻¹_{kj} = [k + 1 ≡ j]`. -/
+def shiftInv (p : Nat) [Pos p] (k j : Nat) : Shell p := if (k + 1) % (p - 1) = j then 1 else 0
+
+/-- The modulation `D₁ = diag(g^k)`; `D₁⁻¹ = diag(z^k)` is `modul z`. -/
+def modul (g : Shell p) (k j : Nat) : Shell p := if k = j then g ^ k else 0
+
+theorem shift_single (F : Frame p κ g) (X : Nat → Nat → Shell p) (k j : Nat) :
+    sumRange (fun l => X k l * shift p l j) (p - 1) = X k ((j + 1) % (p - 1)) := by
+  rw [sum_eq_single (FRC.Nat.mod_lt' _ F.n_pos) (fun l _ hne => by
+    show X k l * (if (j + 1) % (p - 1) = l then 1 else 0) = 0
+    rw [ite_eq_right (fun e => hne e.symm), mul_zero])]
+  show X k ((j + 1) % (p - 1)) * (if (j + 1) % (p - 1) = (j + 1) % (p - 1) then 1 else 0) = _
+  rw [ite_eq_left rfl, mul_one]
+
+theorem shiftInv_single (F : Frame p κ g) (X : Nat → Nat → Shell p) (k j : Nat) :
+    sumRange (fun l => shiftInv p k l * X l j) (p - 1) = X ((k + 1) % (p - 1)) j := by
+  rw [sum_eq_single (FRC.Nat.mod_lt' _ F.n_pos) (fun l _ hne => by
+    show (if (k + 1) % (p - 1) = l then 1 else 0) * X l j = 0
+    rw [ite_eq_right (fun e => hne e.symm), zero_mul])]
+  show (if (k + 1) % (p - 1) = (k + 1) % (p - 1) then 1 else 0) * X ((k + 1) % (p - 1)) j = _
+  rw [ite_eq_left rfl, one_mul]
+
+theorem modul_left (a : Shell p) (X : Nat → Nat → Shell p) {k : Nat} (hk : k < p - 1) (j : Nat) :
+    sumRange (fun l => modul a k l * X l j) (p - 1) = a ^ k * X k j := by
+  rw [sum_eq_single hk (fun l _ hne => by
+    show (if k = l then a ^ k else 0) * X l j = 0
+    rw [ite_eq_right (fun e => hne e.symm), zero_mul])]
+  show (if k = k then a ^ k else 0) * X k j = _
+  rw [ite_eq_left rfl]
+
+theorem modul_right (a : Shell p) (X : Nat → Nat → Shell p) (k : Nat) {j : Nat} (hj : j < p - 1) :
+    sumRange (fun l => X k l * modul a l j) (p - 1) = X k j * a ^ j := by
+  rw [sum_eq_single hj (fun l _ hne => by
+    show X k l * (if l = j then a ^ l else 0) = 0
+    rw [ite_eq_right hne, mul_zero])]
+  show X k j * (if j = j then a ^ j else 0) = _
+  rw [ite_eq_left rfl]
+
+theorem add_n_mod (F : Frame p κ g) {x : Nat} (hx : x < p - 1) : (x + (p - 1)) % (p - 1) = x := by
+  have e := FRC.Nat.add_mul_mod_self_left x 1 (p - 1) F.n_pos
+  rw [Nat.mul_one] at e
+  rw [Nat.add_comm, e, FRC.Nat.mod_eq_of_lt hx]
+
+theorem succ_pred_mod (F : Frame p κ g) {k : Nat} (hk : k < p - 1) : ((k + (p - 1 - 1)) % (p - 1) + 1) % (p - 1) = k := by
+  rw [FRC.Nat.mod_add_mod _ _ _ F.n_pos, Nat.add_assoc, FRC.Nat.sub_add_cancel F.n_pos, add_n_mod F hk]
+
+theorem pred_succ_mod (F : Frame p κ g) {l : Nat} (hl : l < p - 1) : ((l + 1) % (p - 1) + (p - 1 - 1)) % (p - 1) = l := by
+  rw [FRC.Nat.mod_add_mod _ _ _ F.n_pos, Nat.add_assoc, Nat.add_comm 1 (p - 1 - 1), FRC.Nat.sub_add_cancel F.n_pos,
+    add_n_mod F hl]
+
+/-- `g^{((j+1) mod n) k} = g^{jk} g^k`. -/
+theorem pow_succ_mod (F : Frame p κ g) (j k : Nat) : g ^ ((j + 1) % (p - 1) * k) = g ^ (j * k) * g ^ k := by
+  rw [F.pow_mod, FRC.Nat.mod_mul_mod _ _ _ F.n_pos, ← F.pow_mod, Nat.add_mul, Nat.one_mul, pow_add]
+
+/-- 6:E7, `F σ = D₁ F`: the transform turns the shift into the modulation. -/
+theorem Fmat_shift (F : Frame p κ g) {k j : Nat} (hk : k < p - 1) (_hj : j < p - 1) :
+    sumRange (fun l => Fmat g κ k l * shift p l j) (p - 1) = sumRange (fun l => modul g k l * Fmat g κ l j) (p - 1) := by
+  rw [shift_single F, modul_left g (Fmat g κ) hk j]
+  show quarterTurn g κ * g ^ ((j + 1) % (p - 1) * k) = g ^ k * (quarterTurn g κ * g ^ (j * k))
+  rw [pow_succ_mod F]; exact shift_id _ _ _
+
+/-- `g^{j ((k+1) mod n)} = g^{jk} g^j`. -/
+theorem pow_mod_succ (F : Frame p κ g) (j k : Nat) : g ^ (j * ((k + 1) % (p - 1))) = g ^ (j * k) * g ^ j := by
+  rw [F.pow_mod, FRC.Nat.mul_mod_mod _ _ _ F.n_pos, ← F.pow_mod, Nat.mul_add, Nat.mul_one, pow_add]
+
+/-- 6:E7, `F D₁ = σ⁻¹ F`: the transform turns the modulation into the inverse shift. -/
+theorem Fmat_modul (F : Frame p κ g) {k j : Nat} (_hk : k < p - 1) (hj : j < p - 1) :
+    sumRange (fun l => Fmat g κ k l * modul g l j) (p - 1) = sumRange (fun l => shiftInv p k l * Fmat g κ l j) (p - 1) := by
+  rw [modul_right g (Fmat g κ) k hj, shiftInv_single F]
+  show quarterTurn g κ * g ^ (j * k) * g ^ j = quarterTurn g κ * g ^ (j * ((k + 1) % (p - 1)))
+  rw [pow_mod_succ F]; exact (modul_id _ _ _).trans (one_mul _)
+
+theorem ite_iff {c1 c2 : Prop} [Decidable c1] [Decidable c2] (h : c1 ↔ c2) :
+    (if c1 then (1 : Shell p) else 0) = if c2 then 1 else 0 :=
+  match Decidable.em c1 with
+  | Or.inl e => by rw [ite_eq_left e, ite_eq_left (h.1 e)]
+  | Or.inr e => by rw [ite_eq_right e, ite_eq_right (fun e2 => e (h.2 e2))]
+
+/-- 6:E7, `J σ = σ⁻¹ J`: the reversal conjugates the shift to its inverse. -/
+theorem J_shift (F : Frame p κ g) {k j : Nat} (_hk : k < p - 1) (_hj : j < p - 1) :
+    sumRange (fun l => (J (p - 1) k l : Shell p) * shift p l j) (p - 1) =
+      sumRange (fun l => shiftInv p k l * J (p - 1) l j) (p - 1) := by
+  have hn := F.n_pos
+  rw [shift_single F (fun k l => (J (p - 1) k l : Shell p)), shiftInv_single F (fun l j => (J (p - 1) l j : Shell p))]
+  show (if (k + (j + 1) % (p - 1)) % (p - 1) = 0 then (1 : Shell p) else 0) =
+    if ((k + 1) % (p - 1) + j) % (p - 1) = 0 then 1 else 0
+  apply ite_iff
+  rw [FRC.Nat.add_mod_mod _ _ _ hn, FRC.Nat.mod_add_mod _ _ _ hn, ← Nat.add_assoc, Nat.add_right_comm k j 1]
+
+/-- 6:E7, `σ σ⁻¹ = I = σ⁻¹ σ` on the cycle: `shiftInv` is the inverse shift. -/
+theorem shift_inverse (F : Frame p κ g) {k j : Nat} (hk : k < p - 1) (hj : j < p - 1) :
+    sumRange (fun l => shift p k l * shiftInv p l j) (p - 1) = idm k j ∧
+      sumRange (fun l => shiftInv p k l * shift p l j) (p - 1) = idm k j := by
+  have hn := F.n_pos
+  constructor
+  · rw [sum_eq_single (l₀ := (k + (p - 1 - 1)) % (p - 1)) (FRC.Nat.mod_lt' _ hn) (fun l hl hne => by
+      show (if (l + 1) % (p - 1) = k then (1 : Shell p) else 0) * shiftInv p l j = 0
+      rw [ite_eq_right (fun e => hne (by rw [← pred_succ_mod F hl, e])), zero_mul])]
+    show (if ((k + (p - 1 - 1)) % (p - 1) + 1) % (p - 1) = k then (1 : Shell p) else 0) *
+      (if ((k + (p - 1 - 1)) % (p - 1) + 1) % (p - 1) = j then (1 : Shell p) else 0) = idm k j
+    rw [succ_pred_mod F hk, ite_eq_left rfl, one_mul]
+    rfl
+  · rw [shiftInv_single F (fun k l => shift p k l) k j]
+    show (if (j + 1) % (p - 1) = (k + 1) % (p - 1) then (1 : Shell p) else 0) = idm k j
+    exact ite_iff ⟨fun e => (shift_inj F (one_lt_n F) j k hj hk (by rw [Nat.add_comm 1 j, Nat.add_comm 1 k]; exact e)).symm,
+      fun e => by rw [e]⟩
+
+/-- `g^{(−a) k} g^{a k} = 1` for `a < n`, with `−a = rev a`. -/
+theorem pow_rev_mul (F : Frame p κ g) {a : Nat} (ha : a < p - 1) (k : Nat) :
+    g ^ (rev (p - 1) a * k) * g ^ (a * k) = 1 := by
+  rw [← pow_add, ← FRC.Nat.add_mul, F.pow_mod, ← FRC.Nat.mod_mul_mod _ _ _ F.n_pos, rev_add_mod ha, Nat.zero_mul,
+    FRC.Nat.zero_mod, pow_zero]
+
+/-- 6:E7, `F J σ = D₁⁻¹ F J`: the inverse transform turns the shift into the inverse modulation. -/
+theorem FJ_shift (F : Frame p κ g) {z : Shell p} (hz : g * z = 1) {k j : Nat} (hk : k < p - 1) (hj : j < p - 1) :
+    sumRange (fun l => FJ g κ k l * shift p l j) (p - 1) = sumRange (fun l => modul z k l * FJ g κ l j) (p - 1) := by
+  have hn := F.n_pos
+  rw [shift_single F, modul_left z (FJ g κ) hk j]
+  show quarterTurn g κ * g ^ (rev (p - 1) ((j + 1) % (p - 1)) * k) = z ^ k * (quarterTurn g κ * g ^ (rev (p - 1) j * k))
+  have e : g ^ (rev (p - 1) ((j + 1) % (p - 1)) * k) = z ^ k * g ^ (rev (p - 1) j * k) := by
+    apply inv_unique (y := g ^ ((j + 1) % (p - 1) * k))
+    · exact pow_rev_mul F (FRC.Nat.mod_lt' _ hn) k
+    · rw [pow_succ_mod F, assoc4_id, ← mul_pow, mul_comm z g, hz, one_pow, one_mul, pow_rev_mul F hj]
+  rw [e]; exact mul_left_comm _ _ _
+
+/-- 6:E7, the quarter-rotation of the Heisenberg pair: `F σ = D₁ F`, `F D₁ = σ⁻¹ F`, `J σ = σ⁻¹ J`, `FJ σ = D₁⁻¹ FJ`. -/
+theorem heisenberg (F : Frame p κ g) {z : Shell p} (hz : g * z = 1) {k j : Nat} (hk : k < p - 1) (hj : j < p - 1) :
+    sumRange (fun l => Fmat g κ k l * shift p l j) (p - 1) = sumRange (fun l => modul g k l * Fmat g κ l j) (p - 1) ∧
+    sumRange (fun l => Fmat g κ k l * modul g l j) (p - 1) = sumRange (fun l => shiftInv p k l * Fmat g κ l j) (p - 1) ∧
+    sumRange (fun l => (J (p - 1) k l : Shell p) * shift p l j) (p - 1) =
+      sumRange (fun l => shiftInv p k l * J (p - 1) l j) (p - 1) ∧
+    sumRange (fun l => FJ g κ k l * shift p l j) (p - 1) = sumRange (fun l => modul z k l * FJ g κ l j) (p - 1) :=
+  ⟨Fmat_shift F hk hj, Fmat_modul F hk hj, J_shift F hk hj, FJ_shift F hz hk hj⟩
+
+/-! ## The expansion `F^{[s]} = Σ_r c_r(s) F^r` -/
+
+/-- 6:E7, the coefficients of `frft_eq` are the geometric sums `c_r(s) = ¼ Σ_{ℓ<4} (u w^r)^ℓ`, `u = z^s`, `w = g^κ = −i`:
+`c_r(s) = ¼ Σ_ℓ (g^{rκ−s})^ℓ`. -/
+theorem frft_coeff (F : Frame p κ g) (u : Shell p) :
+    NF0 (-(ofNat κ)) (-(quarterTurn g κ)) u = -(ofNat κ) * (1 + u + u * u + u * u * u) ∧
+    NF1 (-(ofNat κ)) (-(quarterTurn g κ)) u =
+      -(ofNat κ) * (1 + u * -(quarterTurn g κ) + u * -(quarterTurn g κ) * (u * -(quarterTurn g κ)) +
+        u * -(quarterTurn g κ) * (u * -(quarterTurn g κ)) * (u * -(quarterTurn g κ))) ∧
+    NF2 (-(ofNat κ)) (-(quarterTurn g κ)) u =
+      -(ofNat κ) * (1 + u * (-(quarterTurn g κ) * -(quarterTurn g κ)) +
+        u * (-(quarterTurn g κ) * -(quarterTurn g κ)) * (u * (-(quarterTurn g κ) * -(quarterTurn g κ))) +
+        u * (-(quarterTurn g κ) * -(quarterTurn g κ)) * (u * (-(quarterTurn g κ) * -(quarterTurn g κ))) *
+          (u * (-(quarterTurn g κ) * -(quarterTurn g κ)))) ∧
+    NF3 (-(ofNat κ)) (-(quarterTurn g κ)) u =
+      -(ofNat κ) * (1 + u * (-(quarterTurn g κ) * -(quarterTurn g κ) * -(quarterTurn g κ)) +
+        u * (-(quarterTurn g κ) * -(quarterTurn g κ) * -(quarterTurn g κ)) *
+          (u * (-(quarterTurn g κ) * -(quarterTurn g κ) * -(quarterTurn g κ))) +
+        u * (-(quarterTurn g κ) * -(quarterTurn g κ) * -(quarterTurn g κ)) *
+          (u * (-(quarterTurn g κ) * -(quarterTurn g κ) * -(quarterTurn g κ))) *
+          (u * (-(quarterTurn g κ) * -(quarterTurn g κ) * -(quarterTurn g κ)))) :=
+  ⟨rfl, red1 (coeff1_id _ _ _) (hii F), red1 (coeff2_id _ _ _) (hii F), red1 (coeff3_id _ _ _) (hii F)⟩
+
+/-- 6:E7, `g^κ = −w = −i`: the coefficient base of `frft_coeff` is `u w^r = z^s (g^κ)^r = g^{rκ − s}`. -/
+theorem w_eq_pow_kappa : -(quarterTurn g κ) = g ^ κ := neg_neg _
+
+end Frame
+end Shell
+end FRC
+
+/-! inlined: FrcCore/Theme/Spectra.lean -/
+
+/-!
+# FrcCore.Theme.Spectra — the spectra of the shift and of the family: the obstruction (the fourier theme)
+
+The seventh file of the fourier theme (6-fourier's blueprint of 8 October 2026, task T08). Vectors on the cycle are
+`Nat → Shell p` and a matrix acts by `(A v)_k = Σ_{l<n} A_{kl} v_l`. The shift `σ` has every nonzero residue as an
+eigenvalue, with the geometric vector `(y^j)_j` for `b = y⁻¹` (Fermat: `y^n = 1`); an eigenvalue of `F^{[s]}` is one
+of the four `(z^s)^ℓ`, since `Π_m F^{[s]} = (z^s)^m Π_m` and `v = Σ_m Π_m v` (6:E9). So no invertible `T` has
+`T σ T⁻¹ = F^{[s]}` for `κ ≥ 2`: the `4κ` eigenvalues of `σ` would be eigenvalues of `F^{[s]}`, at most four, and
+`no_mirror` refuses the injection of `[0, 4κ)` into `[0, 4)` (6:E5). No axioms.
+-/
+
+namespace FRC
+namespace Shell
+namespace Frame
+
+variable {p : Nat} [Pos p]
+
+/-! ## Vectors and matrices on the cycle -/
+
+/-- `(A v)_k = Σ_{l<n} A_{kl} v_l`. -/
+def act (A : Nat → Nat → Shell p) (v : Nat → Shell p) (n k : Nat) : Shell p := sumRange (fun l => A k l * v l) n
+
+/-- `(A B)_{kj} = Σ_{l<n} A_{kl} B_{lj}`. -/
+def mmul (A B : Nat → Nat → Shell p) (n k j : Nat) : Shell p := sumRange (fun l => A k l * B l j) n
+
+/-- `v` is an eigenvector of `A` for the eigenvalue `lam`: nonzero on the cycle, with `A v = lam v` there. -/
+def IsEigen (A : Nat → Nat → Shell p) (n : Nat) (lam : Shell p) (v : Nat → Shell p) : Prop :=
+  (∃ k, k < n ∧ v k ≠ 0) ∧ ∀ k, k < n → act A v n k = lam * v k
+
+/-- `(A B) v = A (B v)`. -/
+theorem act_mmul (A B : Nat → Nat → Shell p) (v : Nat → Shell p) (n k : Nat) :
+    act (mmul A B n) v n k = act A (act B v n) n k := by
+  show sumRange (fun j => sumRange (fun l => A k l * B l j) n * v j) n =
+    sumRange (fun l => A k l * sumRange (fun j => B l j * v j) n) n
+  rw [sum_congr _ (fun j _ => (sum_mul_right _ _ _).symm), sum_swap (fun j l => A k l * B l j * v j) n n]
+  exact sum_congr _ (fun l _ => by
+    rw [← sum_mul_left]
+    exact sum_congr _ (fun j _ => mul_assoc _ _ _))
+
+theorem act_smul (A : Nat → Nat → Shell p) (v : Nat → Shell p) (c : Shell p) (n k : Nat) :
+    act A (fun l => c * v l) n k = c * act A v n k := by
+  show sumRange (fun l => A k l * (c * v l)) n = c * sumRange (fun l => A k l * v l) n
+  rw [sum_congr _ (fun l _ => mul_left_comm _ _ _), sum_mul_left]
+
+theorem act_idm (v : Nat → Shell p) {n k : Nat} (hk : k < n) : act idm v n k = v k := by
+  show sumRange (fun l => idm k l * v l) n = v k
+  rw [sum_eq_single hk (fun l _ hne => by rw [idm_ne (fun e => hne e.symm), zero_mul]), idm_self, one_mul]
+
+variable {κ : Nat} {g : Shell p}
+
+/-! ## The shift's spectrum (6:E9) -/
+
+/-- `(σ v)_k = v_{k−1}`, the index `k − 1` read as `(k + (n − 1)) mod n`. -/
+theorem shift_act (F : Frame p κ g) (v : Nat → Shell p) {k : Nat} (hk : k < p - 1) :
+    act (shift p) v (p - 1) k = v ((k + (p - 1 - 1)) % (p - 1)) := by
+  show sumRange (fun l => (if (l + 1) % (p - 1) = k then (1 : Shell p) else 0) * v l) (p - 1) = _
+  rw [sum_eq_single (FRC.Nat.mod_lt' _ F.n_pos) (fun l hl hne => by
+    rw [ite_eq_right (fun e => hne (by rw [← pred_succ_mod F hl, e])), zero_mul])]
+  rw [ite_eq_left (succ_pred_mod F hk), one_mul]
+
+/-- `y^l = y^{l mod n}` for an `n`-th root of unity. -/
+theorem pow_mod_of_root {y : Shell p} {n : Nat} (hn : 0 < n) (hy : y ^ n = 1) (l : Nat) : y ^ l = y ^ (l % n) := by
+  obtain ⟨c, hc⟩ := FRC.Nat.mod_spec n hn l
+  rw [congrArg (fun e => y ^ e) hc, pow_add, pow_mul, hy, one_pow, one_mul]
+
+/-- Fermat on the cycle: every unit has `y^{p−1} = 1`. -/
+theorem unit_pow_n (F : Frame p κ g) {y : Shell p} (hy : y ≠ 0) : y ^ (p - 1) = 1 := by
+  obtain ⟨m, _, e⟩ := F.eq_pow_of_ne_zero hy
+  rw [← e, pow_mul_comm, F.pow_n, one_pow]
+
+/-- 6:E9, every nonzero residue `b` is an eigenvalue of the shift, with the geometric eigenvector `(y^j)_j = (b^{−j})_j`,
+`b y = 1`: `(σ v)_k = y^{k−1} = b y^k`. -/
+theorem shift_eigen (F : Frame p κ g) {b : Shell p} (hb : b ≠ 0) :
+    ∃ y : Shell p, b * y = 1 ∧ IsEigen (shift p) (p - 1) b (fun j => y ^ j) := by
+  obtain ⟨y, hy⟩ := F.exists_inv hb
+  have hy0 : y ≠ 0 := fun e => F.one_ne_zero (by rw [← hy, e, mul_zero])
+  have hyn := unit_pow_n F hy0
+  refine ⟨y, hy, ⟨0, F.n_pos, by show y ^ 0 ≠ 0; rw [pow_zero]; exact F.one_ne_zero⟩, fun k hk => ?_⟩
+  rw [shift_act F _ hk]
+  show y ^ ((k + (p - 1 - 1)) % (p - 1)) = b * y ^ k
+  rw [← pow_mod_of_root F.n_pos hyn, pow_add, mul_comm]
+  congr 1
+  apply inv_unique (y := y)
+  · rw [← pow_succ, FRC.Nat.sub_add_cancel F.n_pos, hyn]
+  · exact hy
+
+/-- Every nonzero `b` has the inverse `y` that `shift_eigen` names: the eigenvector is `(y^j)_j`. -/
+theorem shift_eigen_exists (F : Frame p κ g) {b : Shell p} (hb : b ≠ 0) :
+    ∃ v : Nat → Shell p, IsEigen (shift p) (p - 1) b v :=
+  match shift_eigen F hb with
+  | ⟨_, _, h⟩ => ⟨_, h⟩
+
+/-! ## The family's spectrum (6:E9) -/
+
+/-- The selection of the `m`-th term with `[m = ℓ]` factors, `m < 4`. -/
+theorem four_select' (c : Nat → Shell p) (Q : Shell p) : ∀ {m : Nat}, m < 4 →
+    c 0 * (if m = 0 then Q else 0) + c 1 * (if m = 1 then Q else 0) + c 2 * (if m = 2 then Q else 0) +
+      c 3 * (if m = 3 then Q else 0) = c m * Q
+  | 0, _ => by
+    rw [ite_eq_left rfl, ite_eq_right (by decide), ite_eq_right (by decide), ite_eq_right (by decide), mul_zero, mul_zero,
+      mul_zero, add_zero, add_zero, add_zero]
+  | 1, _ => by
+    rw [ite_eq_right (by decide), ite_eq_left rfl, ite_eq_right (by decide), ite_eq_right (by decide), mul_zero, mul_zero,
+      mul_zero, zero_add, add_zero, add_zero]
+  | 2, _ => by
+    rw [ite_eq_right (by decide), ite_eq_right (by decide), ite_eq_left rfl, ite_eq_right (by decide), mul_zero, mul_zero,
+      mul_zero, zero_add, zero_add, add_zero]
+  | 3, _ => by
+    rw [ite_eq_right (by decide), ite_eq_right (by decide), ite_eq_right (by decide), ite_eq_left rfl, mul_zero, mul_zero,
+      mul_zero, zero_add, zero_add, zero_add]
+  | n + 4, h => absurd (Nat.lt_of_lt_of_le h (Nat.le_add_left 4 n)) (Nat.lt_irrefl _)
+
+theorem proj_frft_pt (z : Shell p) (s m k j l : Nat) :
+    proj g κ m k l * frft g κ z s l j =
+      (z ^ s) ^ 0 * (proj g κ m k l * proj g κ 0 l j) + (z ^ s) ^ 1 * (proj g κ m k l * proj g κ 1 l j) +
+      (z ^ s) ^ 2 * (proj g κ m k l * proj g κ 2 l j) + (z ^ s) ^ 3 * (proj g κ m k l * proj g κ 3 l j) :=
+  mul_lift_id _ _ _ _ _ _ _ _ _
+
+/-- `Π_m F^{[s]} = (z^s)^m Π_m`, the projector on the left. -/
+theorem proj_frft (F : Frame p κ g) (z : Shell p) (s : Nat) {m : Nat} (hm : m < 4) {k j : Nat} (hk : k < p - 1)
+    (hj : j < p - 1) :
+    sumRange (fun l => proj g κ m k l * frft g κ z s l j) (p - 1) = (z ^ s) ^ m * proj g κ m k j := by
+  rw [sum_congr _ (fun l _ => proj_frft_pt z s m k j l), sum_add, sum_add, sum_add, sum_mul_left, sum_mul_left, sum_mul_left, sum_mul_left,
+    proj_mul F hm (Nat.zero_lt_succ 3) hk hj, proj_mul F hm (by decide : (1 : Nat) < 4) hk hj,
+    proj_mul F hm (by decide : (2 : Nat) < 4) hk hj, proj_mul F hm (by decide : (3 : Nat) < 4) hk hj]
+  exact four_select' (fun ℓ => (z ^ s) ^ ℓ) (proj g κ m k j) hm
+
+/-- `v = Π₀ v + Π₁ v + Π₂ v + Π₃ v` on the cycle. -/
+theorem act_sum_proj (F : Frame p κ g) (v : Nat → Shell p) {k : Nat} (hk : k < p - 1) :
+    act (proj g κ 0) v (p - 1) k + act (proj g κ 1) v (p - 1) k + act (proj g κ 2) v (p - 1) k +
+      act (proj g κ 3) v (p - 1) k = v k := by
+  show sumRange (fun l => proj g κ 0 k l * v l) (p - 1) + sumRange (fun l => proj g κ 1 k l * v l) (p - 1) +
+    sumRange (fun l => proj g κ 2 k l * v l) (p - 1) + sumRange (fun l => proj g κ 3 k l * v l) (p - 1) = v k
+  rw [← sum_add, ← sum_add, ← sum_add, ← act_idm v hk]
+  exact sum_congr _ (fun l _ => by
+    show proj g κ 0 k l * v l + proj g κ 1 k l * v l + proj g κ 2 k l * v l + proj g κ 3 k l * v l = idm k l * v l
+    rw [← right_distrib, ← right_distrib, ← right_distrib, sum_proj F k l])
+
+/-- A sum of four that is nonzero has a nonzero term. -/
+theorem four_ne_zero {a : Nat → Shell p} (h : a 0 + a 1 + a 2 + a 3 ≠ 0) : ∃ m, m < 4 ∧ a m ≠ 0 :=
+  match Decidable.em (a 0 = 0), Decidable.em (a 1 = 0), Decidable.em (a 2 = 0), Decidable.em (a 3 = 0) with
+  | Or.inr h0, _, _, _ => ⟨0, by decide, h0⟩
+  | _, Or.inr h1, _, _ => ⟨1, by decide, h1⟩
+  | _, _, Or.inr h2, _ => ⟨2, by decide, h2⟩
+  | _, _, _, Or.inr h3 => ⟨3, by decide, h3⟩
+  | Or.inl h0, Or.inl h1, Or.inl h2, Or.inl h3 => absurd (by rw [h0, h1, h2, h3, add_zero, add_zero, add_zero]) h
+
+/-- 6:E9, an eigenvalue of `F^{[s]}` is one of the four `(z^s)^ℓ`: on an eigenvector `v`, `Π_m F^{[s]} v` reads both
+`lam Π_m v` and `(z^s)^m Π_m v`, and some `Π_m v` is nonzero since `v = Σ_m Π_m v`. -/
+theorem frft_eigen (F : Frame p κ g) (z : Shell p) (s : Nat) {lam : Shell p} {v : Nat → Shell p}
+    (h : IsEigen (frft g κ z s) (p - 1) lam v) : ∃ ℓ, ℓ < 4 ∧ lam = (z ^ s) ^ ℓ := by
+  obtain ⟨⟨k, hk, hv⟩, hact⟩ := h
+  have key : ∀ m, m < 4 → ∀ k, k < p - 1 → lam * act (proj g κ m) v (p - 1) k = (z ^ s) ^ m * act (proj g κ m) v (p - 1) k :=
+    fun m hm k hk => by
+      have e1 : act (proj g κ m) (act (frft g κ z s) v (p - 1)) (p - 1) k = lam * act (proj g κ m) v (p - 1) k := by
+        rw [← act_smul]
+        exact sum_congr _ (fun l hl => by rw [hact l hl])
+      have e2 : act (proj g κ m) (act (frft g κ z s) v (p - 1)) (p - 1) k = (z ^ s) ^ m * act (proj g κ m) v (p - 1) k := by
+        rw [← act_mmul]
+        show sumRange (fun l => mmul (proj g κ m) (frft g κ z s) (p - 1) k l * v l) (p - 1) =
+          (z ^ s) ^ m * sumRange (fun l => proj g κ m k l * v l) (p - 1)
+        rw [← sum_mul_left]
+        exact sum_congr _ (fun l hl => by
+          show mmul (proj g κ m) (frft g κ z s) (p - 1) k l * v l = (z ^ s) ^ m * (proj g κ m k l * v l)
+          rw [show mmul (proj g κ m) (frft g κ z s) (p - 1) k l = (z ^ s) ^ m * proj g κ m k l from
+            proj_frft F z s hm hk hl, mul_assoc])
+      rw [← e1, e2]
+  have hsum : act (proj g κ 0) v (p - 1) k + act (proj g κ 1) v (p - 1) k + act (proj g κ 2) v (p - 1) k +
+      act (proj g κ 3) v (p - 1) k ≠ 0 := by rw [act_sum_proj F v hk]; exact hv
+  obtain ⟨m, hm, hne⟩ := four_ne_zero (a := fun m => act (proj g κ m) v (p - 1) k) hsum
+  exact ⟨m, hm, F.mul_left_cancel hne (by rw [mul_comm, key m hm k hk, mul_comm])⟩
+
+/-! ## The obstruction (6:E5) -/
+
+/-- The least `ℓ < 4` with `P ℓ`, or `3`. -/
+def find4 (P : Nat → Prop) [DecidablePred P] : Nat := if P 0 then 0 else if P 1 then 1 else if P 2 then 2 else 3
+
+theorem find4_lt (P : Nat → Prop) [DecidablePred P] : find4 P < 4 := by
+  unfold find4
+  match Decidable.em (P 0), Decidable.em (P 1), Decidable.em (P 2) with
+  | Or.inl h, _, _ => rw [ite_eq_left h]; decide
+  | Or.inr h, Or.inl h1, _ => rw [ite_eq_right h, ite_eq_left h1]; decide
+  | Or.inr h, Or.inr h1, Or.inl h2 => rw [ite_eq_right h, ite_eq_right h1, ite_eq_left h2]; decide
+  | Or.inr h, Or.inr h1, Or.inr h2 => rw [ite_eq_right h, ite_eq_right h1, ite_eq_right h2]; decide
+
+theorem find4_spec (P : Nat → Prop) [DecidablePred P] (h : ∃ ℓ, ℓ < 4 ∧ P ℓ) : P (find4 P) := by
+  unfold find4
+  match Decidable.em (P 0), Decidable.em (P 1), Decidable.em (P 2) with
+  | Or.inl h0, _, _ => rw [ite_eq_left h0]; exact h0
+  | Or.inr h0, Or.inl h1, _ => rw [ite_eq_right h0, ite_eq_left h1]; exact h1
+  | Or.inr h0, Or.inr h1, Or.inl h2 => rw [ite_eq_right h0, ite_eq_right h1, ite_eq_left h2]; exact h2
+  | Or.inr h0, Or.inr h1, Or.inr h2 =>
+    rw [ite_eq_right h0, ite_eq_right h1, ite_eq_right h2]
+    obtain ⟨ℓ, hℓ, hP⟩ := h
+    match ℓ, hℓ, hP with
+    | 0, _, hP => exact absurd hP h0
+    | 1, _, hP => exact absurd hP h1
+    | 2, _, hP => exact absurd hP h2
+    | 3, _, hP => exact hP
+    | n + 4, hℓ, _ => exact absurd (Nat.lt_of_lt_of_le hℓ (Nat.le_add_left 4 n)) (Nat.lt_irrefl _)
+
+/-- 6:E5, the spectral obstruction: for `κ ≥ 2` no invertible `T` (with `T' T = I`) has `T σ T' = F^{[s]}`. Every
+nonzero residue is an eigenvalue of `σ`, hence of `T σ T'` on `T v`, hence one of the four `(z^s)^ℓ`: an injection of
+the `4κ` residues into four indices. -/
+theorem spectral_obstruction (F : Frame p κ g) (hκ : 2 ≤ κ) (z : Shell p) (s : Nat)
+    (T T' : Nat → Nat → Shell p) (hinv : ∀ k j, k < p - 1 → j < p - 1 → mmul T' T (p - 1) k j = idm k j)
+    (hconj : ∀ k j, k < p - 1 → j < p - 1 → mmul (mmul T (shift p) (p - 1)) T' (p - 1) k j = frft g κ z s k j) :
+    False := by
+  have hn := F.n_pos
+  -- every power g^m is an eigenvalue of F^[s]
+  have heig : ∀ m, ∃ ℓ, ℓ < 4 ∧ g ^ m = (z ^ s) ^ ℓ := fun m => by
+    obtain ⟨v, ⟨k0, hk0, hv0⟩, hσ⟩ := shift_eigen_exists F (F.pow_ne_zero m)
+    -- w = T v is an eigenvector of F^[s] for g^m
+    have hTv : ∀ k, k < p - 1 → act T' (act T v (p - 1)) (p - 1) k = v k := fun k hk => by
+      rw [← act_mmul, ← act_idm v hk]
+      exact sum_congr _ (fun l hl => by rw [hinv k l hk hl])
+    have hw : ∃ k, k < p - 1 ∧ act T v (p - 1) k ≠ 0 :=
+      match decExistsLT (fun k => act T v (p - 1) k ≠ 0) (p - 1) with
+      | isTrue e => e
+      | isFalse ne => absurd (by
+          rw [← hTv k0 hk0]
+          exact sum_zero _ (fun l hl => by
+            have e : act T v (p - 1) l = 0 := match Decidable.em (act T v (p - 1) l = 0) with
+              | Or.inl e => e
+              | Or.inr e => absurd ⟨l, hl, e⟩ ne
+            rw [e, mul_zero])) hv0
+    have hact : ∀ k, k < p - 1 → act (frft g κ z s) (act T v (p - 1)) (p - 1) k = g ^ m * act T v (p - 1) k :=
+      fun k hk => by
+        rw [show act (frft g κ z s) (act T v (p - 1)) (p - 1) k =
+            act (mmul (mmul T (shift p) (p - 1)) T' (p - 1)) (act T v (p - 1)) (p - 1) k from
+          sum_congr _ (fun l hl => by rw [hconj k l hk hl])]
+        rw [act_mmul, act_mmul, ← act_smul]
+        exact sum_congr _ (fun l hl => by
+          show T k l * act (shift p) (act T' (act T v (p - 1)) (p - 1)) (p - 1) l = T k l * (g ^ m * v l)
+          rw [← hσ l hl]
+          show T k l * act (shift p) (act T' (act T v (p - 1)) (p - 1)) (p - 1) l =
+            T k l * act (shift p) v (p - 1) l
+          rw [shift_act F _ hl, shift_act F _ hl, hTv _ (FRC.Nat.mod_lt' _ hn)])
+    exact frft_eigen F z s ⟨hw, hact⟩
+  -- the injection of [0, 4κ) into [0, 4)
+  have h4 : 4 < p - 1 := four_lt_n F hκ
+  exact FRC.Logic.no_mirror h4 (fun m => find4 (fun ℓ => (z ^ s) ^ ℓ = g ^ m)) (fun m _ => find4_lt _) (fun m m' hm hm' e =>
+    F.pow_inj hm hm' (by
+      have e1 := find4_spec (fun ℓ => (z ^ s) ^ ℓ = g ^ m) (match heig m with | ⟨ℓ, hℓ, e⟩ => ⟨ℓ, hℓ, e.symm⟩)
+      have e2 := find4_spec (fun ℓ => (z ^ s) ^ ℓ = g ^ m') (match heig m' with | ⟨ℓ, hℓ, e⟩ => ⟨ℓ, hℓ, e.symm⟩)
+      rw [← e1, ← e2, e]))
+
+end Frame
+end Shell
+end FRC
+
+/-! inlined: FrcCore/Theme/Exclusivity.lean -/
+
+/-!
+# FrcCore.Theme.Exclusivity — cardinal exclusivity: no intermediate conjugate of the shift is monomial (the fourier theme)
+
+The eighth file of the fourier theme (6-fourier's blueprint of 8 October 2026, task T09). With `F^{[s]} = Σ_r c_r F^r`
+(`frft_eq`) and `F^{[−s]} = F^{[n−s]} = Σ_r c'_r F^r`, the entry `(0, j)` of `F^{[s]} σ F^{[−s]}` off the three sites
+`j ∈ {n−1, 0, 1}` is `i [(c₀ + c₂)(c'₃ x + c'₁ x⁻¹) + (c₁ + c₃)(c'₀ + c'₂)]` with `x = g^j`: row 0 of `F^{[s]} σ` is
+`(c₀ + c₂) δ_{n−1} + (c₁ + c₃) i`, the last row of `F^{[−s]}` is `i (c'₁ x⁻¹ + c'₃ x)` off the sites, and its column
+sums are `c'₀ + c'₂` by the geometric sum. So `x` times the entry is a quadratic in `x` with leading coefficient
+`i (c₀ + c₂) c'₃`, nonzero for `s ∉ {0, κ, 2κ, 3κ}` (`c₀ + c₂ = ½ (1 + z_s²)` vanishes only at `z_s = ±i`; `c'₃` is a
+geometric sum of a nontrivial root), and a quadratic has at most two roots: the row vanishes at no three distinct indices
+off the sites (6:E8; the paper counts at least `4κ − 5` nonzero entries from this, a count not stated here). No axioms.
+-/
+
+namespace FRC
+namespace Shell
+namespace Frame
+
+variable {p : Nat} [Pos p]
+
+/-! ## Ring identities (generated; `RE.sound`, decided by the kernel) -/
+
+theorem quad_diff_id (a b c x1 x2 : Shell p) :
+    a * (x1 * x1) + b * x1 + c + -(a * (x2 * x2) + b * x2 + c) = (x1 + -x2) * (a * (x1 + x2) + b) :=
+  RE.sound (look [a, b, c, x1, x2])
+    (.add (.add (.add (.mul (.var 0) (.mul (.var 3) (.var 3))) (.mul (.var 1) (.var 3))) (.var 2)) (.neg (.add (.add (.mul (.var 0) (.mul (.var 4) (.var 4))) (.mul (.var 1) (.var 4))) (.var 2))))
+    (.mul (.add (.var 3) (.neg (.var 4))) (.add (.mul (.var 0) (.add (.var 3) (.var 4))) (.var 1))) (by decide +kernel)
+
+theorem quad_lin_id (a b x1 x2 x3 : Shell p) :
+    a * (x1 + x2) + b + -(a * (x1 + x3) + b) = a * (x2 + -x3) :=
+  RE.sound (look [a, b, x1, x2, x3])
+    (.add (.add (.mul (.var 0) (.add (.var 2) (.var 3))) (.var 1)) (.neg (.add (.mul (.var 0) (.add (.var 2) (.var 4))) (.var 1))))
+    (.mul (.var 0) (.add (.var 3) (.neg (.var 4)))) (by decide +kernel)
+
+theorem row_quad_id (i s0 s1 d0 d1 d3 Z G : Shell p) :
+    G * (s0 * ((d1 * i) * Z + (d3 * i) * G) + (s1 * i) * d0) = i * ((s0 * d3) * (G * G) + (s1 * d0) * G + s0 * d1) + (Z * G + -1) * (i * s0 * d1) :=
+  RE.sound (look [i, s0, s1, d0, d1, d3, Z, G])
+    (.mul (.var 7) (.add (.mul (.var 1) (.add (.mul (.mul (.var 4) (.var 0)) (.var 6)) (.mul (.mul (.var 5) (.var 0)) (.var 7)))) (.mul (.mul (.var 2) (.var 0)) (.var 3))))
+    (.add (.mul (.var 0) (.add (.add (.mul (.mul (.var 1) (.var 5)) (.mul (.var 7) (.var 7))) (.mul (.mul (.var 2) (.var 3)) (.var 7))) (.mul (.var 1) (.var 4)))) (.mul (.add (.mul (.var 6) (.var 7)) (.neg .one)) (.mul (.mul (.var 0) (.var 1)) (.var 4)))) (by decide +kernel)
+
+/-- 6:E8, `c₀ + c₂ = ½ (1 + u²)`, `u = z^s`, i.e. `½ (1 + g^{−2s})`. -/
+theorem even_coeff_id (q jj u : Shell p) :
+    NF0 q jj u + NF2 q jj u = (q + q) * (1 + u * u) :=
+  RE.sound (look [q, jj, u])
+    (.add (.mul (.var 0) (.add (.add (.add .one (.var 2)) (.mul (.var 2) (.var 2))) (.mul (.mul (.var 2) (.var 2)) (.var 2)))) (.mul (.var 0) (.add (.add (.add .one (.neg (.var 2))) (.mul (.var 2) (.var 2))) (.neg (.mul (.mul (.var 2) (.var 2)) (.var 2))))))
+    (.mul (.add (.var 0) (.var 0)) (.add .one (.mul (.var 2) (.var 2)))) (by decide +kernel)
+
+theorem odd_coeff_id (q jj u : Shell p) :
+    NF3 q jj u = q * (1 + u * ((jj * jj) * jj) + (u * ((jj * jj) * jj)) * (u * ((jj * jj) * jj)) + ((u * ((jj * jj) * jj)) * (u * ((jj * jj) * jj))) * (u * ((jj * jj) * jj))) + (jj * jj + 1) * (-(q * jj * jj * jj * jj * jj * jj * jj * u * u * u) + q * jj * jj * jj * jj * jj * u * u * u + -(q * jj * jj * jj * jj * u * u) + -(q * jj * jj * jj * u * u * u) + q * jj * jj * u * u + q * jj * u * u * u + -(q * jj * u) + -(q * u * u)) :=
+  RE.sound (look [q, jj, u])
+    (.mul (.var 0) (.add (.add (.add .one (.neg (.mul (.var 1) (.var 2)))) (.neg (.mul (.var 2) (.var 2)))) (.mul (.var 1) (.mul (.mul (.var 2) (.var 2)) (.var 2)))))
+    (.add (.mul (.var 0) (.add (.add (.add .one (.mul (.var 2) (.mul (.mul (.var 1) (.var 1)) (.var 1)))) (.mul (.mul (.var 2) (.mul (.mul (.var 1) (.var 1)) (.var 1))) (.mul (.var 2) (.mul (.mul (.var 1) (.var 1)) (.var 1))))) (.mul (.mul (.mul (.var 2) (.mul (.mul (.var 1) (.var 1)) (.var 1))) (.mul (.var 2) (.mul (.mul (.var 1) (.var 1)) (.var 1)))) (.mul (.var 2) (.mul (.mul (.var 1) (.var 1)) (.var 1)))))) (.mul (.add (.mul (.var 1) (.var 1)) .one) (.add (.add (.add (.add (.add (.add (.add (.neg (.mul (.mul (.mul (.mul (.mul (.mul (.mul (.mul (.mul (.mul (.var 0) (.var 1)) (.var 1)) (.var 1)) (.var 1)) (.var 1)) (.var 1)) (.var 1)) (.var 2)) (.var 2)) (.var 2))) (.mul (.mul (.mul (.mul (.mul (.mul (.mul (.mul (.var 0) (.var 1)) (.var 1)) (.var 1)) (.var 1)) (.var 1)) (.var 2)) (.var 2)) (.var 2))) (.neg (.mul (.mul (.mul (.mul (.mul (.mul (.var 0) (.var 1)) (.var 1)) (.var 1)) (.var 1)) (.var 2)) (.var 2)))) (.neg (.mul (.mul (.mul (.mul (.mul (.mul (.var 0) (.var 1)) (.var 1)) (.var 1)) (.var 2)) (.var 2)) (.var 2)))) (.mul (.mul (.mul (.mul (.var 0) (.var 1)) (.var 1)) (.var 2)) (.var 2))) (.mul (.mul (.mul (.mul (.var 0) (.var 1)) (.var 2)) (.var 2)) (.var 2))) (.neg (.mul (.mul (.var 0) (.var 1)) (.var 2)))) (.neg (.mul (.mul (.var 0) (.var 2)) (.var 2)))))) (by decide +kernel)
+
+theorem geom4_id (y : Shell p) :
+    (y + -1) * (1 + y + y * y + (y * y) * y) = ((y * y) * y) * y + -1 :=
+  RE.sound (look [y])
+    (.mul (.add (.var 0) (.neg .one)) (.add (.add (.add .one (.var 0)) (.mul (.var 0) (.var 0))) (.mul (.mul (.var 0) (.var 0)) (.var 0))))
+    (.add (.mul (.mul (.mul (.var 0) (.var 0)) (.var 0)) (.var 0)) (.neg .one)) (by decide +kernel)
+
+theorem row_comb_id (c0 c1 c2 c3 i d : Shell p) :
+    c0 * d + c1 * i + c2 * d + c3 * i = (c0 + c2) * d + ((c1 + c3) * i) :=
+  RE.sound (look [c0, c1, c2, c3, i, d])
+    (.add (.add (.add (.mul (.var 0) (.var 5)) (.mul (.var 1) (.var 4))) (.mul (.var 2) (.var 5))) (.mul (.var 3) (.var 4)))
+    (.add (.mul (.add (.var 0) (.var 2)) (.var 5)) (.mul (.add (.var 1) (.var 3)) (.var 4))) (by decide +kernel)
+
+theorem last_row_id (d0 d1 d2 d3 i Z G : Shell p) :
+    d0 * 0 + d1 * (i * Z) + d2 * 0 + d3 * (i * G) = (d1 * i) * Z + (d3 * i) * G :=
+  RE.sound (look [d0, d1, d2, d3, i, Z, G])
+    (.add (.add (.add (.mul (.var 0) .zero) (.mul (.var 1) (.mul (.var 4) (.var 5)))) (.mul (.var 2) .zero)) (.mul (.var 3) (.mul (.var 4) (.var 6))))
+    (.add (.mul (.mul (.var 1) (.var 4)) (.var 5)) (.mul (.mul (.var 3) (.var 4)) (.var 6))) (by decide +kernel)
+
+theorem col_sum_id (d0 d1 d2 d3 i : Shell p) :
+    d0 * 1 + d1 * 0 + d2 * 1 + d3 * 0 = d0 + d2 :=
+  RE.sound (look [d0, d1, d2, d3, i])
+    (.add (.add (.add (.mul (.var 0) .one) (.mul (.var 1) .zero)) (.mul (.var 2) .one)) (.mul (.var 3) .zero))
+    (.add (.var 0) (.var 2)) (by decide +kernel)
+
+variable {κ : Nat} {g : Shell p}
+
+/-! ## A quadratic has at most two roots -/
+
+/-- Three distinct roots of `a x² + b x + c` force `a = 0`. -/
+theorem quad_roots (F : Frame p κ g) {a b c x1 x2 x3 : Shell p} (ha : a ≠ 0)
+    (h1 : a * (x1 * x1) + b * x1 + c = 0) (h2 : a * (x2 * x2) + b * x2 + c = 0)
+    (h3 : a * (x3 * x3) + b * x3 + c = 0) (d12 : x1 ≠ x2) (d13 : x1 ≠ x3) (d23 : x2 ≠ x3) : False := by
+  have ne : ∀ {u v : Shell p}, u ≠ v → u + -v ≠ 0 := fun {u v} h e =>
+    h (by rw [eq_neg_of_add_eq_zero e, neg_neg])
+  have lin : ∀ {y : Shell p}, a * (y * y) + b * y + c = 0 → x1 ≠ y → a * (x1 + y) + b = 0 := fun {y} hy hne => by
+    have e : (x1 + -y) * (a * (x1 + y) + b) = 0 := by rw [← quad_diff_id, h1, hy, neg_zero, add_zero]
+    match F.mul_eq_zero e with
+    | Or.inl e1 => exact absurd e1 (ne hne)
+    | Or.inr e2 => exact e2
+  have e : a * (x2 + -x3) = 0 := by rw [← quad_lin_id, lin h2 d12, lin h3 d13, neg_zero, add_zero]
+  match F.mul_eq_zero e with
+  | Or.inl e1 => exact ha e1
+  | Or.inr e2 => exact ne d23 e2
+
+/-! ## The last row of `F^{[−s]}` and its column sums -/
+
+theorem last_lt (F : Frame p κ g) : p - 1 - 1 < p - 1 := Nat.sub_lt F.n_pos (Nat.zero_lt_succ 0)
+
+theorem last_pos (F : Frame p κ g) : 0 < p - 1 - 1 := FRC.Nat.le_sub_of_add_le (one_lt_n F)
+
+/-- `F_{n−1, j} = i z^j`: the last row of `F` is the conjugate's. -/
+theorem Fmat_last (F : Frame p κ g) {z : Shell p} (hz : g * z = 1) (j : Nat) :
+    Fmat g κ (p - 1 - 1) j = quarterTurn g κ * z ^ j := by
+  show quarterTurn g κ * g ^ (j * (p - 1 - 1)) = _
+  congr 1
+  apply inv_unique (y := g ^ j)
+  · rw [← pow_add, ← Nat.mul_succ, Nat.succ_eq_add_one, FRC.Nat.sub_add_cancel F.n_pos, pow_mul, pow_mul_comm, F.pow_n,
+      one_pow]
+  · rw [← mul_pow, mul_comm, hz, one_pow]
+
+/-- `(FJ)_{n−1, j} = i g^j`. -/
+theorem FJ_last (F : Frame p κ g) {j : Nat} (hj : j < p - 1) : FJ g κ (p - 1 - 1) j = quarterTurn g κ * g ^ j := by
+  show quarterTurn g κ * g ^ (rev (p - 1) j * (p - 1 - 1)) = _
+  congr 1
+  apply inv_unique (y := g ^ rev (p - 1) j)
+  · rw [← pow_add, ← Nat.mul_succ, Nat.succ_eq_add_one, FRC.Nat.sub_add_cancel F.n_pos, pow_mul, pow_mul_comm, F.pow_n,
+      one_pow]
+  · have e := pow_rev_mul F hj 1
+    rw [Nat.mul_one, Nat.mul_one, mul_comm] at e
+    exact e
+
+/-- `J_{n−1, j} = 0` off `j = 1`. -/
+theorem J_last (F : Frame p κ g) {j : Nat} (hj : j < p - 1) (hj1 : j ≠ 1) : (J (p - 1) (p - 1 - 1) j : Shell p) = 0 := by
+  show (if (p - 1 - 1 + j) % (p - 1) = 0 then (1 : Shell p) else 0) = 0
+  apply ite_eq_right
+  intro e
+  have hn := F.n_pos
+  match j, hj, hj1 with
+  | 0, _, _ =>
+    rw [Nat.add_zero, FRC.Nat.mod_eq_of_lt (last_lt F)] at e
+    exact Nat.lt_irrefl 0 (e ▸ last_pos F)
+  | 1, _, h1 => exact h1 rfl
+  | m + 2, hj, _ =>
+    have e2 := FRC.Nat.add_mul_mod_self_left (m + 1) 1 (p - 1) hn
+    rw [Nat.mul_one] at e2
+    change (p - 1 - 1 + (m + 1 + 1)) % (p - 1) = 0 at e
+    rw [Nat.add_left_comm, FRC.Nat.sub_add_cancel hn, Nat.add_comm, e2, FRC.Nat.mod_eq_of_lt (Nat.lt_of_succ_lt hj)] at e
+    exact Nat.noConfusion e
+
+theorem sum_idm_col {j : Nat} (hj : j < p - 1) : sumRange (fun l => (idm l j : Shell p)) (p - 1) = 1 := by
+  rw [sum_eq_single hj (fun l _ hne => idm_ne hne), idm_self]
+
+theorem sum_J_col {j : Nat} (hj : j < p - 1) : sumRange (fun l => (J (p - 1) l j : Shell p)) (p - 1) = 1 := by
+  rw [sum_congr _ (fun l _ => by
+    show (if (l + j) % (p - 1) = 0 then (1 : Shell p) else 0) = (J (p - 1) j l : Shell p) * 1
+    rw [mul_one, Nat.add_comm]; rfl)]
+  exact @mm_J_X p _ (fun _ _ => (1 : Shell p)) j 0 hj
+
+theorem sum_F_col (F : Frame p κ g) {j : Nat} (hj0 : 0 < j) (hj : j < p - 1) :
+    sumRange (fun l => Fmat g κ l j) (p - 1) = 0 := by
+  show sumRange (fun l => quarterTurn g κ * g ^ (j * l)) (p - 1) = 0
+  rw [sum_congr _ (fun l _ => by rw [pow_mul]), sum_mul_left,
+    F.geom_sum_eq_zero _ (by rw [pow_mul_comm, F.pow_n, one_pow]) (F.prim.2 j hj hj0), mul_zero]
+
+theorem sum_FJ_col (F : Frame p κ g) {j : Nat} (hj0 : 0 < j) (hj : j < p - 1) :
+    sumRange (fun l => FJ g κ l j) (p - 1) = 0 := by
+  have hn := F.n_pos
+  have hr : rev (p - 1) j = p - 1 - j := rev_of_pos hj hj0
+  have hr0 : 0 < rev (p - 1) j := by rw [hr]; exact FRC.Nat.le_sub_of_add_le (by rw [Nat.add_comm]; exact hj)
+  show sumRange (fun l => quarterTurn g κ * g ^ (rev (p - 1) j * l)) (p - 1) = 0
+  rw [sum_congr _ (fun l _ => by rw [pow_mul]), sum_mul_left,
+    F.geom_sum_eq_zero _ (by rw [pow_mul_comm, F.pow_n, one_pow]) (F.prim.2 _ (rev_lt hn j) hr0), mul_zero]
+
+/-- The column sums of `F^{[t]} = Σ_r c_r F^r` off `j = 0`: `c₀ + c₂`. -/
+theorem frft_col_sum (F : Frame p κ g) (z : Shell p) (t : Nat) {j : Nat} (hj0 : 0 < j) (hj : j < p - 1) :
+    sumRange (fun l => frft g κ z t l j) (p - 1) =
+      NF0 (-(ofNat κ)) (-(quarterTurn g κ)) (z ^ t) + NF2 (-(ofNat κ)) (-(quarterTurn g κ)) (z ^ t) := by
+  rw [sum_congr _ (fun l _ => frft_eq F z t l j)]
+  show sumRange (fun l => NF0 (-(ofNat κ)) (-(quarterTurn g κ)) (z ^ t) * idm l j +
+    NF1 (-(ofNat κ)) (-(quarterTurn g κ)) (z ^ t) * Fmat g κ l j + NF2 (-(ofNat κ)) (-(quarterTurn g κ)) (z ^ t) * J (p - 1) l j +
+    NF3 (-(ofNat κ)) (-(quarterTurn g κ)) (z ^ t) * FJ g κ l j) (p - 1) = _
+  rw [sum_add, sum_add, sum_add, sum_mul_left, sum_mul_left, sum_mul_left, sum_mul_left, sum_idm_col hj, sum_J_col hj,
+    sum_F_col F hj0 hj, sum_FJ_col F hj0 hj]
+  exact col_sum_id _ _ _ _ (quarterTurn g κ)
+
+/-- The last-row entry of `F^{[t]}` off `j ∈ {1, n−1}`: `i (c₁ z^j + c₃ g^j)`. -/
+theorem frft_last (F : Frame p κ g) {z : Shell p} (hz : g * z = 1) (t : Nat) {j : Nat} (hj : j < p - 1) (hj1 : j ≠ 1)
+    (hjn : j ≠ p - 1 - 1) :
+    frft g κ z t (p - 1 - 1) j =
+      NF1 (-(ofNat κ)) (-(quarterTurn g κ)) (z ^ t) * quarterTurn g κ * z ^ j +
+        NF3 (-(ofNat κ)) (-(quarterTurn g κ)) (z ^ t) * quarterTurn g κ * g ^ j := by
+  rw [frft_eq F z t]
+  show NF0 (-(ofNat κ)) (-(quarterTurn g κ)) (z ^ t) * idm (p - 1 - 1) j +
+    NF1 (-(ofNat κ)) (-(quarterTurn g κ)) (z ^ t) * Fmat g κ (p - 1 - 1) j +
+    NF2 (-(ofNat κ)) (-(quarterTurn g κ)) (z ^ t) * J (p - 1) (p - 1 - 1) j +
+    NF3 (-(ofNat κ)) (-(quarterTurn g κ)) (z ^ t) * FJ g κ (p - 1 - 1) j = _
+  rw [idm_ne (fun e => hjn e.symm), J_last F hj hj1, Fmat_last F hz, FJ_last F hj]
+  exact last_row_id _ _ _ _ _ _ _
+
+/-! ## Row 0 of `F^{[s]} σ` -/
+
+theorem succ_mod_zero (F : Frame p κ g) {l : Nat} (hl : l < p - 1) : (l + 1) % (p - 1) = 0 ↔ l = p - 1 - 1 := by
+  constructor
+  · intro h
+    match Nat.lt_or_ge (l + 1) (p - 1) with
+    | Or.inl hlt => rw [FRC.Nat.mod_eq_of_lt hlt] at h; exact Nat.noConfusion h
+    | Or.inr hge =>
+      have e : l + 1 = p - 1 := Nat.le_antisymm hl hge
+      rw [← e, FRC.Nat.add_sub_cancel]
+  · intro e
+    rw [e, FRC.Nat.sub_add_cancel F.n_pos]
+    exact FRC.Nat.mod_self _ F.n_pos
+
+/-- Row 0 of `F^{[s]} σ`: `(F^{[s]} σ)_{0l} = F^{[s]}_{0, l+1} = (c₀ + c₂) [l = n−1] + (c₁ + c₃) i`. -/
+theorem row_shift (F : Frame p κ g) (z : Shell p) (s : Nat) {l : Nat} (hl : l < p - 1) :
+    frft g κ z s 0 ((l + 1) % (p - 1)) =
+      (NF0 (-(ofNat κ)) (-(quarterTurn g κ)) (z ^ s) + NF2 (-(ofNat κ)) (-(quarterTurn g κ)) (z ^ s)) * idm l (p - 1 - 1) +
+        (NF1 (-(ofNat κ)) (-(quarterTurn g κ)) (z ^ s) + NF3 (-(ofNat κ)) (-(quarterTurn g κ)) (z ^ s)) * quarterTurn g κ := by
+  rw [frft_eq F z s]
+  show NF0 (-(ofNat κ)) (-(quarterTurn g κ)) (z ^ s) * idm 0 ((l + 1) % (p - 1)) +
+    NF1 (-(ofNat κ)) (-(quarterTurn g κ)) (z ^ s) * Fmat g κ 0 ((l + 1) % (p - 1)) +
+    NF2 (-(ofNat κ)) (-(quarterTurn g κ)) (z ^ s) * J (p - 1) 0 ((l + 1) % (p - 1)) +
+    NF3 (-(ofNat κ)) (-(quarterTurn g κ)) (z ^ s) * FJ g κ 0 ((l + 1) % (p - 1)) = _
+  have e1 : (idm 0 ((l + 1) % (p - 1)) : Shell p) = idm l (p - 1 - 1) :=
+    ite_iff (Iff.trans ⟨Eq.symm, Eq.symm⟩ (succ_mod_zero F hl))
+  have e2 : (J (p - 1) 0 ((l + 1) % (p - 1)) : Shell p) = idm l (p - 1 - 1) := by
+    show (if (0 + (l + 1) % (p - 1)) % (p - 1) = 0 then (1 : Shell p) else 0) = _
+    rw [Nat.zero_add, FRC.Nat.mod_mod _ _ F.n_pos]
+    exact ite_iff (succ_mod_zero F hl)
+  rw [e1, e2, Fmat_zero_row, FJ_zero_row]
+  exact row_comb_id _ _ _ _ _ _
+
+/-- 6:E8, the entry `(0, j)` of `F^{[s]} σ F^{[−s]}` off the three sites `j ∈ {0, 1, n−1}`, with `F^{[−s]} = F^{[n−s]}`
+(`n − s` the natural difference, so `s ≤ n` is the reading): `i [(c₀ + c₂)(c'₁ z^j + c'₃ g^j) + (c₁ + c₃)(c'₀ + c'₂)]`. -/
+theorem row_entry (F : Frame p κ g) {z : Shell p} (hz : g * z = 1) (s : Nat) {j : Nat} (hj : j < p - 1) (hj0 : j ≠ 0)
+    (hj1 : j ≠ 1) (hjn : j ≠ p - 1 - 1) :
+    mmul (mmul (frft g κ z s) (shift p) (p - 1)) (frft g κ z (p - 1 - s)) (p - 1) 0 j =
+      (NF0 (-(ofNat κ)) (-(quarterTurn g κ)) (z ^ s) + NF2 (-(ofNat κ)) (-(quarterTurn g κ)) (z ^ s)) *
+          (NF1 (-(ofNat κ)) (-(quarterTurn g κ)) (z ^ (p - 1 - s)) * quarterTurn g κ * z ^ j +
+            NF3 (-(ofNat κ)) (-(quarterTurn g κ)) (z ^ (p - 1 - s)) * quarterTurn g κ * g ^ j) +
+        (NF1 (-(ofNat κ)) (-(quarterTurn g κ)) (z ^ s) + NF3 (-(ofNat κ)) (-(quarterTurn g κ)) (z ^ s)) * quarterTurn g κ *
+          (NF0 (-(ofNat κ)) (-(quarterTurn g κ)) (z ^ (p - 1 - s)) + NF2 (-(ofNat κ)) (-(quarterTurn g κ)) (z ^ (p - 1 - s))) := by
+  have hj0' : 0 < j := Nat.pos_of_ne_zero hj0
+  show sumRange (fun l => mmul (frft g κ z s) (shift p) (p - 1) 0 l * frft g κ z (p - 1 - s) l j) (p - 1) = _
+  rw [sum_congr _ (fun l hl => by
+    rw [show mmul (frft g κ z s) (shift p) (p - 1) 0 l = frft g κ z s 0 ((l + 1) % (p - 1)) from
+      shift_single F (frft g κ z s) 0 l, row_shift F z s hl, right_distrib,
+      mul_assoc (NF0 (-(ofNat κ)) (-(quarterTurn g κ)) (z ^ s) + NF2 (-(ofNat κ)) (-(quarterTurn g κ)) (z ^ s))])]
+  rw [sum_add, sum_mul_left, sum_mul_left, sum_eq_single (last_lt F) (fun l _ hne => by rw [idm_ne hne, zero_mul]),
+    idm_self, one_mul, frft_last F hz _ hj hj1 hjn, frft_col_sum F z _ hj0' hj]
+
+/-! ## The coefficients off the cardinal indices -/
+
+theorem three_kappa_lt (F : Frame p κ g) : 3 * κ < p - 1 := by
+  rw [F.n_eq]; exact FRC.Nat.mul_lt_mul_of_lt_of_pos (by decide) F.cap_pos
+
+theorem kappa_lt_n (F : Frame p κ g) : κ < p - 1 := by
+  rw [F.n_eq]
+  have := FRC.Nat.mul_lt_mul_of_lt_of_pos (by decide : 1 < 4) F.cap_pos
+  rw [Nat.one_mul] at this
+  exact this
+
+/-- 6:E8, `c₀ + c₂ = ½ (1 + z_s²)` (`even_coeff_id`) is nonzero off `s ∈ {κ, 3κ}`, where `z_s = ±i`. -/
+theorem even_coeff_ne_zero (F : Frame p κ g) {z : Shell p} (hz : g * z = 1) {s : Nat} (hs : s < p - 1) (h1 : s ≠ κ)
+    (h3 : s ≠ 3 * κ) :
+    NF0 (-(ofNat κ)) (-(quarterTurn g κ)) (z ^ s) + NF2 (-(ofNat κ)) (-(quarterTurn g κ)) (z ^ s) ≠ 0 := by
+  rw [even_coeff_id]
+  refine F.mul_ne_zero (half_ne_zero F) (fun e => ?_)
+  have e2 : z ^ s * z ^ s = -1 := (neg_eq_of_add_eq_zero e).symm
+  have hzk := inv_pow_kappa F hz
+  match (sqrt_neg_one F (z ^ s)).1 e2 with
+  | Or.inl e3 => exact h1 ((inv_frame F hz).pow_inj hs (kappa_lt_n F) (by rw [e3, hzk]))
+  | Or.inr e3 => exact h3 ((inv_frame F hz).pow_inj hs (three_kappa_lt F) (by
+      rw [e3, pow_mul, pow_mul_comm, hzk, pow_succ, pow_two, F.quarter_turn_sq, neg_one_mul]))
+
+/-- `4t ≡ 0 (mod 4κ)` below `4κ` forces `t ∈ {0, κ, 2κ, 3κ}`. -/
+theorem quad_mod_n (F : Frame p κ g) {t : Nat} (ht : t < p - 1) (h : (4 * t) % (p - 1) = 0) :
+    t = 0 ∨ t = κ ∨ t = 2 * κ ∨ t = 3 * κ := by
+  obtain ⟨c, hc⟩ := FRC.Nat.mod_spec (p - 1) F.n_pos (4 * t)
+  rw [h, Nat.add_zero, F.n_eq, Nat.mul_assoc] at hc
+  have e : t = κ * c := Nat.eq_of_mul_eq_mul_left (by decide) hc
+  have hc4 : c < 4 := by
+    rw [F.n_eq, e] at ht
+    have ht' : κ * c < κ * 4 := by rw [Nat.mul_comm κ 4]; exact ht
+    match Nat.lt_or_ge c 4 with
+    | Or.inl h => exact h
+    | Or.inr h => exact absurd (Nat.lt_of_lt_of_le ht' (Nat.mul_le_mul_left κ h)) (Nat.lt_irrefl _)
+  match c, hc4, e with
+  | 0, _, e => exact Or.inl (by rw [e, Nat.mul_zero])
+  | 1, _, e => exact Or.inr (Or.inl (by rw [e, Nat.mul_one]))
+  | 2, _, e => exact Or.inr (Or.inr (Or.inl (by rw [e, Nat.mul_comm])))
+  | 3, _, e => exact Or.inr (Or.inr (Or.inr (by rw [e, Nat.mul_comm])))
+  | c + 4, hc4, _ => exact absurd (Nat.lt_of_lt_of_le hc4 (Nat.le_add_left 4 c)) (Nat.lt_irrefl _)
+
+/-- `z^{n−s} = g^s`: the conjugate family's base at `−s`. -/
+theorem pow_sub_eq (F : Frame p κ g) {z : Shell p} (hz : g * z = 1) {s : Nat} (hs : s ≤ p - 1) :
+    z ^ (p - 1 - s) = g ^ s := by
+  apply inv_unique (y := z ^ s)
+  · rw [← pow_add, FRC.Nat.sub_add_cancel hs, inv_pow_n F hz]
+  · rw [← mul_pow, hz, one_pow]
+
+/-- 6:E8, `c'₃ = c₃(−s) = ¼ Σ_ℓ y^ℓ` with `y = g^s i = g^{s + 3κ}`, nonzero off the cardinal indices: `y ≠ 1` (else
+`s = κ`) and `y⁴ = g^{4s} ≠ 1` (else `κ ∣ s`); with `even_coeff_ne_zero`, the leading coefficient `i (c₀ + c₂) c'₃ ≠ 0`. -/
+theorem odd_coeff_ne_zero (F : Frame p κ g) {z : Shell p} (hz : g * z = 1) {s : Nat} (hs : s < p - 1) (h0 : s ≠ 0)
+    (h1 : s ≠ κ) (h2 : s ≠ 2 * κ) (h3 : s ≠ 3 * κ) :
+    NF3 (-(ofNat κ)) (-(quarterTurn g κ)) (z ^ (p - 1 - s)) ≠ 0 := by
+  rw [red1 (odd_coeff_id _ _ _) (hjj F), ← neg_w F, neg_neg, pow_sub_eq F hz (Nat.le_of_lt hs)]
+  refine F.mul_ne_zero (q_ne_zero F) (fun e => ?_)
+  have hy1 : g ^ s * quarterTurn g κ ≠ 1 := fun e1 => h1 (F.pow_inj hs (kappa_lt_n F) (inv_unique (y := quarterTurn g κ) e1 (by
+        show g ^ κ * -(g ^ κ) = 1
+        rw [← mul_neg, ← pow_two, F.quarter_turn_order.1, neg_neg])))
+  have hy4 : g ^ s * quarterTurn g κ * (g ^ s * quarterTurn g κ) * (g ^ s * quarterTurn g κ) * (g ^ s * quarterTurn g κ) ≠ 1 :=
+    fun e4 => by
+      have e5 : g ^ (4 * s) = 1 := by
+        rw [show (4 : Nat) = 2 * 2 from rfl, Nat.mul_assoc, pow_mul, pow_two, pow_mul, pow_two, ← e4]
+        rw [show g ^ s * quarterTurn g κ * (g ^ s * quarterTurn g κ) * (g ^ s * quarterTurn g κ) * (g ^ s * quarterTurn g κ) =
+          (g ^ s * g ^ s) * (g ^ s * g ^ s) * (quarterTurn g κ * quarterTurn g κ * (quarterTurn g κ * quarterTurn g κ)) from
+          RE.sound (look [g ^ s, quarterTurn g κ]) (.mul (.mul (.mul (.mul (.var 0) (.var 1)) (.mul (.var 0) (.var 1))) (.mul (.var 0) (.var 1))) (.mul (.var 0) (.var 1)))
+            (.mul (.mul (.mul (.var 0) (.var 0)) (.mul (.var 0) (.var 0))) (.mul (.mul (.var 1) (.var 1)) (.mul (.var 1) (.var 1)))) (by decide +kernel),
+          F.quarter_turn_sq, neg_mul_neg, one_mul, mul_one, mul_pow, mul_pow]
+      match quad_mod_n F hs (F.mod_eq_zero_of_pow_eq_one e5) with
+      | Or.inl e => exact h0 e
+      | Or.inr (Or.inl e) => exact h1 e
+      | Or.inr (Or.inr (Or.inl e)) => exact h2 e
+      | Or.inr (Or.inr (Or.inr e)) => exact h3 e
+  have e6 : (g ^ s * quarterTurn g κ + -1) * (1 + g ^ s * quarterTurn g κ + g ^ s * quarterTurn g κ * (g ^ s * quarterTurn g κ) +
+      g ^ s * quarterTurn g κ * (g ^ s * quarterTurn g κ) * (g ^ s * quarterTurn g κ)) = 0 := by rw [e, mul_zero]
+  rw [geom4_id] at e6
+  exact hy4 (by rw [eq_neg_of_add_eq_zero e6, neg_neg])
+
+/-! ## Cardinal exclusivity (6:E8) -/
+
+/-- 6:E8, cardinal exclusivity: for `s ∉ {0, κ, 2κ, 3κ}` the row `0` of `F^{[s]} σ F^{[−s]}` vanishes at no three
+distinct indices off the sites `{0, 1, n−1}`: `x = g^j` times the entry is a quadratic in `x` with leading coefficient
+`i (c₀ + c₂) c'₃ ≠ 0` (the paper counts: at least `4κ − 5` nonzero entries, so the conjugate is not monomial). -/
+theorem exclusivity (F : Frame p κ g) {z : Shell p} (hz : g * z = 1) {s : Nat} (hs : s < p - 1) (h0 : s ≠ 0)
+    (h1 : s ≠ κ) (h2 : s ≠ 2 * κ) (h3 : s ≠ 3 * κ) {j1 j2 j3 : Nat}
+    (hj1 : j1 < p - 1) (hj2 : j2 < p - 1) (hj3 : j3 < p - 1)
+    (o1 : j1 ≠ 0 ∧ j1 ≠ 1 ∧ j1 ≠ p - 1 - 1) (o2 : j2 ≠ 0 ∧ j2 ≠ 1 ∧ j2 ≠ p - 1 - 1)
+    (o3 : j3 ≠ 0 ∧ j3 ≠ 1 ∧ j3 ≠ p - 1 - 1) (d12 : j1 ≠ j2) (d13 : j1 ≠ j3) (d23 : j2 ≠ j3) :
+    ¬(mmul (mmul (frft g κ z s) (shift p) (p - 1)) (frft g κ z (p - 1 - s)) (p - 1) 0 j1 = 0 ∧
+      mmul (mmul (frft g κ z s) (shift p) (p - 1)) (frft g κ z (p - 1 - s)) (p - 1) 0 j2 = 0 ∧
+      mmul (mmul (frft g κ z s) (shift p) (p - 1)) (frft g κ z (p - 1 - s)) (p - 1) 0 j3 = 0) := by
+  intro ⟨e1, e2, e3⟩
+  have quad : ∀ {j : Nat}, j < p - 1 → j ≠ 0 → j ≠ 1 → j ≠ p - 1 - 1 →
+      mmul (mmul (frft g κ z s) (shift p) (p - 1)) (frft g κ z (p - 1 - s)) (p - 1) 0 j = 0 →
+      (NF0 (-(ofNat κ)) (-(quarterTurn g κ)) (z ^ s) + NF2 (-(ofNat κ)) (-(quarterTurn g κ)) (z ^ s)) *
+          NF3 (-(ofNat κ)) (-(quarterTurn g κ)) (z ^ (p - 1 - s)) * (g ^ j * g ^ j) +
+        (NF1 (-(ofNat κ)) (-(quarterTurn g κ)) (z ^ s) + NF3 (-(ofNat κ)) (-(quarterTurn g κ)) (z ^ s)) *
+          (NF0 (-(ofNat κ)) (-(quarterTurn g κ)) (z ^ (p - 1 - s)) + NF2 (-(ofNat κ)) (-(quarterTurn g κ)) (z ^ (p - 1 - s))) *
+          g ^ j +
+        (NF0 (-(ofNat κ)) (-(quarterTurn g κ)) (z ^ s) + NF2 (-(ofNat κ)) (-(quarterTurn g κ)) (z ^ s)) *
+          NF1 (-(ofNat κ)) (-(quarterTurn g κ)) (z ^ (p - 1 - s)) = 0 := fun {j} hj hj0 hj1 hjn e => by
+    rw [row_entry F hz s hj hj0 hj1 hjn] at e
+    have e' := congrArg (fun x => g ^ j * x) e
+    rw [mul_zero, row_quad_id, show z ^ j * g ^ j = 1 by rw [← mul_pow, mul_comm, hz, one_pow], add_neg, zero_mul,
+      add_zero] at e'
+    match F.mul_eq_zero e' with
+    | Or.inl e0 => exact absurd e0 (quarter_ne_zero F)
+    | Or.inr e0 => exact e0
+  have ha := F.mul_ne_zero (even_coeff_ne_zero F hz hs h1 h3) (odd_coeff_ne_zero F hz hs h0 h1 h2 h3)
+  exact quad_roots F ha (quad hj1 o1.1 o1.2.1 o1.2.2 e1) (quad hj2 o2.1 o2.2.1 o2.2.2 e2) (quad hj3 o3.1 o3.2.1 o3.2.2 e3)
+    (fun e => d12 (F.pow_inj hj1 hj2 e)) (fun e => d13 (F.pow_inj hj1 hj3 e)) (fun e => d23 (F.pow_inj hj2 hj3 e))
 
 end Frame
 end Shell
@@ -10903,6 +13371,69 @@ theorem p00022 : (∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Sh
 /-- p00189 — 00:C7. \textbf{Orientation is derived, not conventional}: the $c$-square congruence ($\dS$ even, C8) annihilates orientation transport on every Carrier carrying it ($\im^{\dS}\in\{\pm1\}$); the oriented quarter-turn $\im=-\gen^\kap $ is a selection, read by pullback covariance and count positivity; the joint flip $(\gen,\im,s)\mapsto(\gen^{-1},-\im,-s)$ permutes the registration channels. The constants' derivation consumes no selection (B7). Parity marker: C14. The selection by matter content: D16. -/
 theorem p00189 : ∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → ∀ {z : FRC.Shell p}, g * z = (1 : FRC.Shell p) → (∀ {Ω : Nat} [FRC.Pos Ω] (h : FRC.Shell Ω) (S : Nat), h * h = (-1 : FRC.Shell Ω) → S % (2 : Nat) = (0 : Nat) → h ^ S = (1 : FRC.Shell Ω) ∨ h ^ S = (-1 : FRC.Shell Ω)) ∧ z ^ κ = FRC.Shell.Frame.quarterTurn g κ ∧ FRC.Shell.Frame p κ z ∧ FRC.Shell.Frame.quarterTurn z κ = -FRC.Shell.Frame.quarterTurn g κ ∧ (∀ (k j : Nat), k < p - (1 : Nat) → j < p - (1 : Nat) → FRC.Shell.Frame.Fmat z κ k j = -FRC.Shell.Frame.FJ g κ k j) ∧ ∀ (ℓ k j : Nat), k < p - (1 : Nat) → j < p - (1 : Nat) → FRC.Shell.Frame.proj z κ ℓ k j = FRC.Shell.Frame.proj g κ (ℓ + (2 : Nat)) k j :=
   @FRC.Shell.Frame.orientation
+/-- p06013 — 6:B6. The normalization is the unitary constant read in the field: $1/n\equiv-1$, its square roots in $\Fp$ are exactly $\pm\im$, and $(c\Wt)^{2}=J$ if and only if $c=\pm\im$. -/
+theorem p06013 : (∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → FRC.Shell.ofNat (p - (1 : Nat)) = (-1 : FRC.Shell p)) ∧ (∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → ∀ (x : FRC.Shell p), x * x = (-1 : FRC.Shell p) ↔ x = FRC.Shell.Frame.quarterTurn g κ ∨ x = -FRC.Shell.Frame.quarterTurn g κ) ∧ ∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → ∀ (c : FRC.Shell p), (∀ (k j : Nat), k < p - (1 : Nat) → j < p - (1 : Nat) → FRC.Shell.sumRange (fun l => c * FRC.Shell.Frame.W g k l * (c * FRC.Shell.Frame.W g l j)) (p - (1 : Nat)) = FRC.Shell.Frame.J (p - (1 : Nat)) k j) ↔ c = FRC.Shell.Frame.quarterTurn g κ ∨ c = -FRC.Shell.Frame.quarterTurn g κ :=
+  And.intro @FRC.Shell.Frame.ofNat_n (And.intro @FRC.Shell.Frame.sqrt_neg_one (@FRC.Shell.Frame.scaled_W_sq_iff))
+/-- p06016 — 6:C2. $\Pi_\ell^{2}=\Pi_\ell$, $\Pi_\ell\Pi_m=0$ for $\ell\neq m$, $\sum_\ell\Pi_\ell=I$, $\Ft\Pi_\ell=\im^{\ell}\Pi_\ell$. -/
+theorem p06016 : (∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → ∀ (ℓ : Nat) {k j : Nat}, k < p - (1 : Nat) → j < p - (1 : Nat) → FRC.Shell.sumRange (fun l => FRC.Shell.Frame.proj g κ ℓ k l * FRC.Shell.Frame.proj g κ ℓ l j) (p - (1 : Nat)) = FRC.Shell.Frame.proj g κ ℓ k j) ∧ (∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → ∀ {ℓ m : Nat}, ℓ < (4 : Nat) → m < (4 : Nat) → ℓ ≠ m → ∀ {k j : Nat}, k < p - (1 : Nat) → j < p - (1 : Nat) → FRC.Shell.sumRange (fun l => FRC.Shell.Frame.proj g κ ℓ k l * FRC.Shell.Frame.proj g κ m l j) (p - (1 : Nat)) = (0 : FRC.Shell p)) ∧ (∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → ∀ (k j : Nat), FRC.Shell.Frame.proj g κ (0 : Nat) k j + FRC.Shell.Frame.proj g κ (1 : Nat) k j + FRC.Shell.Frame.proj g κ (2 : Nat) k j + FRC.Shell.Frame.proj g κ (3 : Nat) k j = FRC.Shell.Frame.idm k j) ∧ ∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → ∀ (ℓ : Nat) {k j : Nat}, k < p - (1 : Nat) → j < p - (1 : Nat) → FRC.Shell.sumRange (fun l => FRC.Shell.Frame.Fmat g κ k l * FRC.Shell.Frame.proj g κ ℓ l j) (p - (1 : Nat)) = FRC.Shell.Frame.quarterTurn g κ ^ ℓ * FRC.Shell.Frame.proj g κ ℓ k j :=
+  And.intro @FRC.Shell.Frame.proj_mul_self (And.intro @FRC.Shell.Frame.proj_mul_ne (And.intro @FRC.Shell.Frame.sum_proj (@FRC.Shell.Frame.Fmat_proj)))
+/-- p06017 — 6:C3. The exact finite-field FrFT: $s\mapsto\Ft^{[s]}$ is a representation of $\Phit$, $\Ft^{[s+r]}=\Ft^{[s]}\Ft^{[r]}$ on every pair of the six shells, with the cardinal values $\Ft^{[0]}=I$, $\Ft^{[\kap]}=\Ft$, $\Ft^{[2\kap]}=J$, $\Ft^{[3\kap]}=\Ft^{-1}$, and $(\Ft^{[1]})^{\kap}=\Ft$. -/
+theorem p06017 : (∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → ∀ (z : FRC.Shell p) (s r : Nat) {k j : Nat}, k < p - (1 : Nat) → j < p - (1 : Nat) → FRC.Shell.Frame.frft g κ z (s + r) k j = FRC.Shell.sumRange (fun l => FRC.Shell.Frame.frft g κ z s k l * FRC.Shell.Frame.frft g κ z r l j) (p - (1 : Nat))) ∧ (∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → ∀ {z : FRC.Shell p}, g * z = (1 : FRC.Shell p) → ∀ (k j : Nat), FRC.Shell.Frame.frft g κ z (0 : Nat) k j = FRC.Shell.Frame.idm k j ∧ FRC.Shell.Frame.frft g κ z κ k j = FRC.Shell.Frame.Fmat g κ k j ∧ FRC.Shell.Frame.frft g κ z ((2 : Nat) * κ) k j = FRC.Shell.Frame.J (p - (1 : Nat)) k j ∧ FRC.Shell.Frame.frft g κ z ((3 : Nat) * κ) k j = FRC.Shell.Frame.FJ g κ k j) ∧ (∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → ∀ {z : FRC.Shell p}, g * z = (1 : FRC.Shell p) → ∀ (s k j : Nat), FRC.Shell.Frame.frft g κ z (s + (p - (1 : Nat))) k j = FRC.Shell.Frame.frft g κ z s k j) ∧ ∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → ∀ {z : FRC.Shell p}, g * z = (1 : FRC.Shell p) → ∀ (s m k j : Nat), k < p - (1 : Nat) → j < p - (1 : Nat) → FRC.Shell.Frame.frft g κ z (m * s) k j = FRC.Shell.Frame.mpow (FRC.Shell.Frame.frft g κ z s) m k j :=
+  And.intro @FRC.Shell.Frame.frft_add (And.intro @FRC.Shell.Frame.frft_cardinal (And.intro @FRC.Shell.Frame.frft_period (@FRC.Shell.Frame.frft_pow)))
+/-- p06018 — 6:C4. Faithfulness: $s\mapsto\Ft^{[s]}$ is injective on $\Z_{4\kap}$ for every $\kap\ge1$; at $\p=5$ the surviving odd projector carries the faithful character. -/
+theorem p06018 : (∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → (2 : Nat) ≤ κ → ∀ {z : FRC.Shell p}, g * z = (1 : FRC.Shell p) → ∀ {s r : Nat}, s < p - (1 : Nat) → r < p - (1 : Nat) → (∀ (k j : Nat), k < p - (1 : Nat) → j < p - (1 : Nat) → FRC.Shell.Frame.frft g κ z s k j = FRC.Shell.Frame.frft g κ z r k j) → s = r) ∧ (∀ (g : FRC.Shell (5 : Nat)), g.IsPrimitive (4 : Nat) → g = (2 : FRC.Shell (5 : Nat)) ∨ g = (3 : FRC.Shell (5 : Nat))) ∧ ((∀ (s : Nat), s < (4 : Nat) → ∀ (r : Nat), r < (4 : Nat) → (∀ (k : Nat), k < (4 : Nat) → ∀ (j : Nat), j < (4 : Nat) → FRC.Shell.Frame.frft (2 : FRC.Shell (5 : Nat)) (1 : Nat) (3 : FRC.Shell (5 : Nat)) s k j = FRC.Shell.Frame.frft (2 : FRC.Shell (5 : Nat)) (1 : Nat) (3 : FRC.Shell (5 : Nat)) r k j) → s = r) ∧ ∀ (s : Nat), s < (4 : Nat) → ∀ (r : Nat), r < (4 : Nat) → (∀ (k : Nat), k < (4 : Nat) → ∀ (j : Nat), j < (4 : Nat) → FRC.Shell.Frame.frft (3 : FRC.Shell (5 : Nat)) (1 : Nat) (2 : FRC.Shell (5 : Nat)) s k j = FRC.Shell.Frame.frft (3 : FRC.Shell (5 : Nat)) (1 : Nat) (2 : FRC.Shell (5 : Nat)) r k j) → s = r) ∧ (∀ (k : Nat), k < (4 : Nat) → ∀ (j : Nat), j < (4 : Nat) → FRC.Shell.Frame.proj (2 : FRC.Shell (5 : Nat)) (1 : Nat) (1 : Nat) k j = (0 : FRC.Shell (5 : Nat))) ∧ FRC.Shell.Frame.proj (2 : FRC.Shell (5 : Nat)) (1 : Nat) (3 : Nat) (1 : Nat) (1 : Nat) ≠ (0 : FRC.Shell (5 : Nat)) ∧ (∀ (k : Nat), k < (4 : Nat) → ∀ (j : Nat), j < (4 : Nat) → FRC.Shell.Frame.proj (3 : FRC.Shell (5 : Nat)) (1 : Nat) (3 : Nat) k j = (0 : FRC.Shell (5 : Nat))) ∧ FRC.Shell.Frame.proj (3 : FRC.Shell (5 : Nat)) (1 : Nat) (1 : Nat) (1 : Nat) (1 : Nat) ≠ (0 : FRC.Shell (5 : Nat)) ∧ (∀ (s : Nat), s < (4 : Nat) → ∀ (r : Nat), r < (4 : Nat) → (3 : FRC.Shell (5 : Nat)) ^ ((3 : Nat) * s) = (3 : FRC.Shell (5 : Nat)) ^ ((3 : Nat) * r) → s = r) ∧ ∀ (s : Nat), s < (4 : Nat) → ∀ (r : Nat), r < (4 : Nat) → (2 : FRC.Shell (5 : Nat)) ^ ((1 : Nat) * s) = (2 : FRC.Shell (5 : Nat)) ^ ((1 : Nat) * r) → s = r :=
+  And.intro @FRC.Shell.Frame.frft_injective (And.intro @FRC.Shell.Frame.five_frames (And.intro @FRC.Shell.Frame.five_faithful (@FRC.Shell.Frame.five_odd_proj)))
+/-- p06019 — 6:C5. The projector sums $\Pi_0+\Pi_2=\tfrac12(I+J)$ and $\Pi_1+\Pi_3=\tfrac12(I-J)$; $\Pi_0,\Pi_2\neq0$ for every $\kap\ge1$ and $\Pi_1,\Pi_3\neq0$ for $\kap\ge2$, each by one explicit entry; at $\p=5$ exactly one of $\Pi_1,\Pi_3$ vanishes. -/
+theorem p06019 : (∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → ∀ (k j : Nat), FRC.Shell.Frame.proj g κ (0 : Nat) k j + FRC.Shell.Frame.proj g κ (2 : Nat) k j = (-FRC.Shell.ofNat κ + -FRC.Shell.ofNat κ) * (FRC.Shell.Frame.idm k j + FRC.Shell.Frame.J (p - (1 : Nat)) k j)) ∧ (∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → ∀ (k j : Nat), FRC.Shell.Frame.proj g κ (1 : Nat) k j + FRC.Shell.Frame.proj g κ (3 : Nat) k j = (-FRC.Shell.ofNat κ + -FRC.Shell.ofNat κ) * (FRC.Shell.Frame.idm k j + -FRC.Shell.Frame.J (p - (1 : Nat)) k j)) ∧ (∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → ((1 : FRC.Shell p) + (1 : FRC.Shell p)) * (-FRC.Shell.ofNat κ + -FRC.Shell.ofNat κ) = (1 : FRC.Shell p)) ∧ (∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → FRC.Shell.Frame.proj g κ (0 : Nat) (0 : Nat) (0 : Nat) ≠ (0 : FRC.Shell p) ∧ FRC.Shell.Frame.proj g κ (2 : Nat) (0 : Nat) (0 : Nat) ≠ (0 : FRC.Shell p)) ∧ (∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → (2 : Nat) ≤ κ → FRC.Shell.Frame.proj g κ (1 : Nat) (2 : Nat) (1 : Nat) ≠ (0 : FRC.Shell p) ∧ FRC.Shell.Frame.proj g κ (3 : Nat) (2 : Nat) (1 : Nat) ≠ (0 : FRC.Shell p)) ∧ (∀ (g : FRC.Shell (5 : Nat)), g.IsPrimitive (4 : Nat) → g = (2 : FRC.Shell (5 : Nat)) ∨ g = (3 : FRC.Shell (5 : Nat))) ∧ (∀ (k : Nat), k < (4 : Nat) → ∀ (j : Nat), j < (4 : Nat) → FRC.Shell.Frame.proj (2 : FRC.Shell (5 : Nat)) (1 : Nat) (1 : Nat) k j = (0 : FRC.Shell (5 : Nat))) ∧ FRC.Shell.Frame.proj (2 : FRC.Shell (5 : Nat)) (1 : Nat) (3 : Nat) (1 : Nat) (1 : Nat) ≠ (0 : FRC.Shell (5 : Nat)) ∧ (∀ (k : Nat), k < (4 : Nat) → ∀ (j : Nat), j < (4 : Nat) → FRC.Shell.Frame.proj (3 : FRC.Shell (5 : Nat)) (1 : Nat) (3 : Nat) k j = (0 : FRC.Shell (5 : Nat))) ∧ FRC.Shell.Frame.proj (3 : FRC.Shell (5 : Nat)) (1 : Nat) (1 : Nat) (1 : Nat) (1 : Nat) ≠ (0 : FRC.Shell (5 : Nat)) ∧ (∀ (s : Nat), s < (4 : Nat) → ∀ (r : Nat), r < (4 : Nat) → (3 : FRC.Shell (5 : Nat)) ^ ((3 : Nat) * s) = (3 : FRC.Shell (5 : Nat)) ^ ((3 : Nat) * r) → s = r) ∧ ∀ (s : Nat), s < (4 : Nat) → ∀ (r : Nat), r < (4 : Nat) → (2 : FRC.Shell (5 : Nat)) ^ ((1 : Nat) * s) = (2 : FRC.Shell (5 : Nat)) ^ ((1 : Nat) * r) → s = r :=
+  And.intro @FRC.Shell.Frame.proj_even_sum (And.intro @FRC.Shell.Frame.proj_odd_sum (And.intro @FRC.Shell.Frame.half (And.intro @FRC.Shell.Frame.even_proj_ne_zero (And.intro @FRC.Shell.Frame.odd_proj_ne_zero (And.intro @FRC.Shell.Frame.five_frames (@FRC.Shell.Frame.five_odd_proj))))))
+/-- p06020 — 6:C6. Multiplicities are chart data: for $u$ odd and a unit mod $4\kap$ the vertex relabelling $m\mapsto um$ carries $\Ft(\gen)$ to $\Ft(\gen^{u^{2}})$ by a coordinate permutation, $\Ft(\gen^{u^{2}})_{kj}=\Ft(\gen)_{uk,uj}$; at $\p=13$ the frames $\gen=2$ and $\gen=6$ give the tuples $(3,3,4,2)$ and $(4,2,3,3)$, read as the traces of the projectors, with $\operatorname{Tr}\Ft=4,9$. -/
+theorem p06020 : (∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → ∀ {u : Nat}, u % (2 : Nat) = (1 : Nat) → ∀ (k j : Nat), FRC.Shell.Frame.Fmat (g ^ (u * u)) κ k j = FRC.Shell.Frame.Fmat g κ (u * k % (p - (1 : Nat))) (u * j % (p - (1 : Nat)))) ∧ FRC.Shell.Frame.trace (FRC.Shell.Frame.proj (2 : FRC.Shell (13 : Nat)) (3 : Nat) (0 : Nat)) (12 : Nat) = (3 : FRC.Shell (13 : Nat)) ∧ FRC.Shell.Frame.trace (FRC.Shell.Frame.proj (2 : FRC.Shell (13 : Nat)) (3 : Nat) (1 : Nat)) (12 : Nat) = (3 : FRC.Shell (13 : Nat)) ∧ FRC.Shell.Frame.trace (FRC.Shell.Frame.proj (2 : FRC.Shell (13 : Nat)) (3 : Nat) (2 : Nat)) (12 : Nat) = (4 : FRC.Shell (13 : Nat)) ∧ FRC.Shell.Frame.trace (FRC.Shell.Frame.proj (2 : FRC.Shell (13 : Nat)) (3 : Nat) (3 : Nat)) (12 : Nat) = (2 : FRC.Shell (13 : Nat)) ∧ FRC.Shell.Frame.trace (FRC.Shell.Frame.proj (6 : FRC.Shell (13 : Nat)) (3 : Nat) (0 : Nat)) (12 : Nat) = (4 : FRC.Shell (13 : Nat)) ∧ FRC.Shell.Frame.trace (FRC.Shell.Frame.proj (6 : FRC.Shell (13 : Nat)) (3 : Nat) (1 : Nat)) (12 : Nat) = (2 : FRC.Shell (13 : Nat)) ∧ FRC.Shell.Frame.trace (FRC.Shell.Frame.proj (6 : FRC.Shell (13 : Nat)) (3 : Nat) (2 : Nat)) (12 : Nat) = (3 : FRC.Shell (13 : Nat)) ∧ FRC.Shell.Frame.trace (FRC.Shell.Frame.proj (6 : FRC.Shell (13 : Nat)) (3 : Nat) (3 : Nat)) (12 : Nat) = (3 : FRC.Shell (13 : Nat)) ∧ FRC.Shell.Frame.trace (FRC.Shell.Frame.Fmat (2 : FRC.Shell (13 : Nat)) (3 : Nat)) (12 : Nat) = (4 : FRC.Shell (13 : Nat)) ∧ FRC.Shell.Frame.trace (FRC.Shell.Frame.Fmat (6 : FRC.Shell (13 : Nat)) (3 : Nat)) (12 : Nat) = (9 : FRC.Shell (13 : Nat)) :=
+  And.intro @FRC.Shell.Frame.Fmat_chart (@FRC.Shell.Frame.thirteen_tuples)
+/-- p06021 — 6:C7. The multiplicity dichotomy in trace form: with $G=\sum_{k}\gen^{k^{2}}$ and $G^{*}=\sum_k\gen^{-k^{2}}$ the traces are $\operatorname{Tr}\Ft=\im G$, $\operatorname{Tr}\Ft^{2}=2$, $\operatorname{Tr}\Ft^{3}=\im G^{*}$ and $\operatorname{Tr}\Pi_\ell=\tfrac14\sum_r\im^{-\ell r}\operatorname{Tr}\Ft^{r}$; $GG^{*}=-2$ and $\varepsilon(\gen^{-1})=-\varepsilon(\gen)$; when $G=\varepsilon(1+\im)$ (A3) the tuple of traces is $(\kap,\kap,\kap+1,\kap-1)$ for $\varepsilon=+1$ and $(\kap+1,\kap-1,\kap,\kap)$ for $\varepsilon=-1$, read in $\Fp$; the sign and the tuples on the six shells of Table~\ref{tab:checks}. Exact on the $38$ primitive frames of $\p\in\{5,13,17,29,37\}$ and the $16$ of $\p=41$. -/
+theorem p06021 : (∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → ∀ {z : FRC.Shell p}, g * z = (1 : FRC.Shell p) → FRC.Shell.Frame.trace FRC.Shell.Frame.idm (p - (1 : Nat)) = (-1 : FRC.Shell p) ∧ FRC.Shell.Frame.trace (FRC.Shell.Frame.Fmat g κ) (p - (1 : Nat)) = FRC.Shell.Frame.quarterTurn g κ * FRC.Shell.Frame.gauss g (p - (1 : Nat)) ∧ FRC.Shell.Frame.trace (FRC.Shell.Frame.J (p - (1 : Nat))) (p - (1 : Nat)) = (1 : FRC.Shell p) + (1 : FRC.Shell p) ∧ FRC.Shell.Frame.trace (FRC.Shell.Frame.FJ g κ) (p - (1 : Nat)) = FRC.Shell.Frame.quarterTurn g κ * FRC.Shell.Frame.gauss z (p - (1 : Nat))) ∧ (∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → ∀ {z : FRC.Shell p}, g * z = (1 : FRC.Shell p) → ∀ (ℓ : Nat), FRC.Shell.Frame.trace (FRC.Shell.Frame.proj g κ ℓ) (p - (1 : Nat)) = -FRC.Shell.ofNat κ * (-1 : FRC.Shell p) + -FRC.Shell.ofNat κ * (-FRC.Shell.Frame.quarterTurn g κ) ^ ℓ * (FRC.Shell.Frame.quarterTurn g κ * FRC.Shell.Frame.gauss g (p - (1 : Nat))) + -FRC.Shell.ofNat κ * ((-FRC.Shell.Frame.quarterTurn g κ) ^ ℓ * (-FRC.Shell.Frame.quarterTurn g κ) ^ ℓ) * ((1 : FRC.Shell p) + (1 : FRC.Shell p)) + -FRC.Shell.ofNat κ * ((-FRC.Shell.Frame.quarterTurn g κ) ^ ℓ * (-FRC.Shell.Frame.quarterTurn g κ) ^ ℓ * (-FRC.Shell.Frame.quarterTurn g κ) ^ ℓ) * (FRC.Shell.Frame.quarterTurn g κ * FRC.Shell.Frame.gauss z (p - (1 : Nat)))) ∧ (∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → ∀ {z : FRC.Shell p}, g * z = (1 : FRC.Shell p) → FRC.Shell.Frame.gauss g (p - (1 : Nat)) * FRC.Shell.Frame.gauss z (p - (1 : Nat)) = -((1 : FRC.Shell p) + (1 : FRC.Shell p))) ∧ (∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → ∀ {z : FRC.Shell p}, g * z = (1 : FRC.Shell p) → ∀ {ε : FRC.Shell p}, ε * ε = (1 : FRC.Shell p) → FRC.Shell.Frame.gauss g (p - (1 : Nat)) = ε * ((1 : FRC.Shell p) + FRC.Shell.Frame.quarterTurn g κ) → FRC.Shell.Frame.gauss z (p - (1 : Nat)) = -(ε * ((1 : FRC.Shell p) + -FRC.Shell.Frame.quarterTurn g κ))) ∧ (∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → ∀ {z : FRC.Shell p}, g * z = (1 : FRC.Shell p) → ∀ {ε : FRC.Shell p}, ε = (1 : FRC.Shell p) ∨ ε = (-1 : FRC.Shell p) → FRC.Shell.Frame.gauss g (p - (1 : Nat)) = ε * ((1 : FRC.Shell p) + FRC.Shell.Frame.quarterTurn g κ) → ε = (1 : FRC.Shell p) ∧ FRC.Shell.Frame.trace (FRC.Shell.Frame.proj g κ (0 : Nat)) (p - (1 : Nat)) = FRC.Shell.ofNat κ ∧ FRC.Shell.Frame.trace (FRC.Shell.Frame.proj g κ (1 : Nat)) (p - (1 : Nat)) = FRC.Shell.ofNat κ ∧ FRC.Shell.Frame.trace (FRC.Shell.Frame.proj g κ (2 : Nat)) (p - (1 : Nat)) = FRC.Shell.ofNat κ + (1 : FRC.Shell p) ∧ FRC.Shell.Frame.trace (FRC.Shell.Frame.proj g κ (3 : Nat)) (p - (1 : Nat)) = FRC.Shell.ofNat κ + (-1 : FRC.Shell p) ∨ ε = (-1 : FRC.Shell p) ∧ FRC.Shell.Frame.trace (FRC.Shell.Frame.proj g κ (0 : Nat)) (p - (1 : Nat)) = FRC.Shell.ofNat κ + (1 : FRC.Shell p) ∧ FRC.Shell.Frame.trace (FRC.Shell.Frame.proj g κ (1 : Nat)) (p - (1 : Nat)) = FRC.Shell.ofNat κ + (-1 : FRC.Shell p) ∧ FRC.Shell.Frame.trace (FRC.Shell.Frame.proj g κ (2 : Nat)) (p - (1 : Nat)) = FRC.Shell.ofNat κ ∧ FRC.Shell.Frame.trace (FRC.Shell.Frame.proj g κ (3 : Nat)) (p - (1 : Nat)) = FRC.Shell.ofNat κ) ∧ (FRC.Shell.Frame.gauss (2 : FRC.Shell (5 : Nat)) (4 : Nat) = (-1 : FRC.Shell (5 : Nat)) * ((1 : FRC.Shell (5 : Nat)) + FRC.Shell.Frame.quarterTurn (2 : FRC.Shell (5 : Nat)) (1 : Nat)) ∧ FRC.Shell.Frame.gauss (2 : FRC.Shell (13 : Nat)) (12 : Nat) = (1 : FRC.Shell (13 : Nat)) * ((1 : FRC.Shell (13 : Nat)) + FRC.Shell.Frame.quarterTurn (2 : FRC.Shell (13 : Nat)) (3 : Nat)) ∧ FRC.Shell.Frame.gauss (3 : FRC.Shell (17 : Nat)) (16 : Nat) = (1 : FRC.Shell (17 : Nat)) * ((1 : FRC.Shell (17 : Nat)) + FRC.Shell.Frame.quarterTurn (3 : FRC.Shell (17 : Nat)) (4 : Nat)) ∧ FRC.Shell.Frame.gauss (2 : FRC.Shell (29 : Nat)) (28 : Nat) = (1 : FRC.Shell (29 : Nat)) * ((1 : FRC.Shell (29 : Nat)) + FRC.Shell.Frame.quarterTurn (2 : FRC.Shell (29 : Nat)) (7 : Nat)) ∧ FRC.Shell.Frame.gauss (2 : FRC.Shell (37 : Nat)) (36 : Nat) = (1 : FRC.Shell (37 : Nat)) * ((1 : FRC.Shell (37 : Nat)) + FRC.Shell.Frame.quarterTurn (2 : FRC.Shell (37 : Nat)) (9 : Nat)) ∧ FRC.Shell.Frame.gauss (6 : FRC.Shell (41 : Nat)) (40 : Nat) = (1 : FRC.Shell (41 : Nat)) * ((1 : FRC.Shell (41 : Nat)) + FRC.Shell.Frame.quarterTurn (6 : FRC.Shell (41 : Nat)) (10 : Nat))) ∧ (FRC.Shell.Frame.trace (FRC.Shell.Frame.proj (2 : FRC.Shell (5 : Nat)) (1 : Nat) (0 : Nat)) (4 : Nat) = (2 : FRC.Shell (5 : Nat)) ∧ FRC.Shell.Frame.trace (FRC.Shell.Frame.proj (2 : FRC.Shell (5 : Nat)) (1 : Nat) (1 : Nat)) (4 : Nat) = (0 : FRC.Shell (5 : Nat)) ∧ FRC.Shell.Frame.trace (FRC.Shell.Frame.proj (2 : FRC.Shell (5 : Nat)) (1 : Nat) (2 : Nat)) (4 : Nat) = (1 : FRC.Shell (5 : Nat)) ∧ FRC.Shell.Frame.trace (FRC.Shell.Frame.proj (2 : FRC.Shell (5 : Nat)) (1 : Nat) (3 : Nat)) (4 : Nat) = (1 : FRC.Shell (5 : Nat))) ∧ (FRC.Shell.Frame.trace (FRC.Shell.Frame.proj (2 : FRC.Shell (13 : Nat)) (3 : Nat) (0 : Nat)) (12 : Nat) = (3 : FRC.Shell (13 : Nat)) ∧ FRC.Shell.Frame.trace (FRC.Shell.Frame.proj (2 : FRC.Shell (13 : Nat)) (3 : Nat) (1 : Nat)) (12 : Nat) = (3 : FRC.Shell (13 : Nat)) ∧ FRC.Shell.Frame.trace (FRC.Shell.Frame.proj (2 : FRC.Shell (13 : Nat)) (3 : Nat) (2 : Nat)) (12 : Nat) = (4 : FRC.Shell (13 : Nat)) ∧ FRC.Shell.Frame.trace (FRC.Shell.Frame.proj (2 : FRC.Shell (13 : Nat)) (3 : Nat) (3 : Nat)) (12 : Nat) = (2 : FRC.Shell (13 : Nat))) ∧ (FRC.Shell.Frame.trace (FRC.Shell.Frame.proj (3 : FRC.Shell (17 : Nat)) (4 : Nat) (0 : Nat)) (16 : Nat) = (4 : FRC.Shell (17 : Nat)) ∧ FRC.Shell.Frame.trace (FRC.Shell.Frame.proj (3 : FRC.Shell (17 : Nat)) (4 : Nat) (1 : Nat)) (16 : Nat) = (4 : FRC.Shell (17 : Nat)) ∧ FRC.Shell.Frame.trace (FRC.Shell.Frame.proj (3 : FRC.Shell (17 : Nat)) (4 : Nat) (2 : Nat)) (16 : Nat) = (5 : FRC.Shell (17 : Nat)) ∧ FRC.Shell.Frame.trace (FRC.Shell.Frame.proj (3 : FRC.Shell (17 : Nat)) (4 : Nat) (3 : Nat)) (16 : Nat) = (3 : FRC.Shell (17 : Nat))) ∧ (FRC.Shell.Frame.trace (FRC.Shell.Frame.proj (2 : FRC.Shell (29 : Nat)) (7 : Nat) (0 : Nat)) (28 : Nat) = (7 : FRC.Shell (29 : Nat)) ∧ FRC.Shell.Frame.trace (FRC.Shell.Frame.proj (2 : FRC.Shell (29 : Nat)) (7 : Nat) (1 : Nat)) (28 : Nat) = (7 : FRC.Shell (29 : Nat)) ∧ FRC.Shell.Frame.trace (FRC.Shell.Frame.proj (2 : FRC.Shell (29 : Nat)) (7 : Nat) (2 : Nat)) (28 : Nat) = (8 : FRC.Shell (29 : Nat)) ∧ FRC.Shell.Frame.trace (FRC.Shell.Frame.proj (2 : FRC.Shell (29 : Nat)) (7 : Nat) (3 : Nat)) (28 : Nat) = (6 : FRC.Shell (29 : Nat))) ∧ (FRC.Shell.Frame.trace (FRC.Shell.Frame.proj (2 : FRC.Shell (37 : Nat)) (9 : Nat) (0 : Nat)) (36 : Nat) = (9 : FRC.Shell (37 : Nat)) ∧ FRC.Shell.Frame.trace (FRC.Shell.Frame.proj (2 : FRC.Shell (37 : Nat)) (9 : Nat) (1 : Nat)) (36 : Nat) = (9 : FRC.Shell (37 : Nat)) ∧ FRC.Shell.Frame.trace (FRC.Shell.Frame.proj (2 : FRC.Shell (37 : Nat)) (9 : Nat) (2 : Nat)) (36 : Nat) = (10 : FRC.Shell (37 : Nat)) ∧ FRC.Shell.Frame.trace (FRC.Shell.Frame.proj (2 : FRC.Shell (37 : Nat)) (9 : Nat) (3 : Nat)) (36 : Nat) = (8 : FRC.Shell (37 : Nat))) ∧ FRC.Shell.Frame.trace (FRC.Shell.Frame.proj (6 : FRC.Shell (41 : Nat)) (10 : Nat) (0 : Nat)) (40 : Nat) = (10 : FRC.Shell (41 : Nat)) ∧ FRC.Shell.Frame.trace (FRC.Shell.Frame.proj (6 : FRC.Shell (41 : Nat)) (10 : Nat) (1 : Nat)) (40 : Nat) = (10 : FRC.Shell (41 : Nat)) ∧ FRC.Shell.Frame.trace (FRC.Shell.Frame.proj (6 : FRC.Shell (41 : Nat)) (10 : Nat) (2 : Nat)) (40 : Nat) = (11 : FRC.Shell (41 : Nat)) ∧ FRC.Shell.Frame.trace (FRC.Shell.Frame.proj (6 : FRC.Shell (41 : Nat)) (10 : Nat) (3 : Nat)) (40 : Nat) = (9 : FRC.Shell (41 : Nat)) :=
+  And.intro @FRC.Shell.Frame.trace_powers (And.intro @FRC.Shell.Frame.trace_proj (And.intro @FRC.Shell.Frame.gauss_mul (And.intro @FRC.Shell.Frame.gauss_conj (And.intro @FRC.Shell.Frame.trace_tuples (And.intro @FRC.Shell.Frame.six_signs (@FRC.Shell.Frame.six_tuples))))))
+/-- p06022 — 6:C8. Exponent lifts: every lift $a_\ell\equiv\ell\pmod4$, $U^{(a)}_s=\sum_\ell\gen^{-a_\ell s}\Pi_\ell$, is additive with the same cardinal skeleton, $U^{(a)}_{s+r}=U^{(a)}_sU^{(a)}_r$ and $U^{(a)}_{m\kap}=\Ft^{m}$. -/
+theorem p06022 : (∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → ∀ (z : FRC.Shell p) (a : Nat → Nat) (s r : Nat) {k j : Nat}, k < p - (1 : Nat) → j < p - (1 : Nat) → FRC.Shell.sumRange (fun l => FRC.Shell.Frame.lift g κ z a s k l * FRC.Shell.Frame.lift g κ z a r l j) (p - (1 : Nat)) = FRC.Shell.Frame.lift g κ z a (s + r) k j) ∧ (∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → ∀ {z : FRC.Shell p}, g * z = (1 : FRC.Shell p) → ∀ (a : Nat → Nat), (∀ (ℓ : Nat), ℓ < (4 : Nat) → a ℓ % (4 : Nat) = ℓ) → ∀ (m k j : Nat), FRC.Shell.Frame.lift g κ z a (m * κ) k j = FRC.Shell.Frame.frft g κ z (m * κ) k j) ∧ ∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → ∀ {z : FRC.Shell p}, g * z = (1 : FRC.Shell p) → ∀ (a : Nat → Nat), (∀ (ℓ : Nat), ℓ < (4 : Nat) → a ℓ % (4 : Nat) = ℓ) → ∀ (m : Nat) {k j : Nat}, k < p - (1 : Nat) → j < p - (1 : Nat) → FRC.Shell.Frame.lift g κ z a (m * κ) k j = FRC.Shell.Frame.mpow (FRC.Shell.Frame.Fmat g κ) m k j :=
+  And.intro @FRC.Shell.Frame.lift_add (And.intro @FRC.Shell.Frame.lift_cardinal (@FRC.Shell.Frame.lift_pow))
+/-- p06023 — 6:C9. The conjugate reframing $(\gen,\im)\mapsto(\gen^{-1},-\im)$: exactly $\Ft'=-\Ft^{-1}$ and $\Pi'_\ell=\Pi_{\ell+2}$; the operator relations, cardinal values, additivity and faithfulness hold on the conjugate frame, and its multiplicity tuple is the other pattern of C7. -/
+theorem p06023 : (∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → ∀ {z : FRC.Shell p}, g * z = (1 : FRC.Shell p) → FRC.Shell.Frame p κ z) ∧ (∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → ∀ {z : FRC.Shell p}, g * z = (1 : FRC.Shell p) → ∀ {k j : Nat}, k < p - (1 : Nat) → j < p - (1 : Nat) → FRC.Shell.Frame.Fmat z κ k j = -FRC.Shell.Frame.FJ g κ k j) ∧ ∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → ∀ {z : FRC.Shell p}, g * z = (1 : FRC.Shell p) → ∀ (ℓ : Nat) {k j : Nat}, k < p - (1 : Nat) → j < p - (1 : Nat) → FRC.Shell.Frame.proj z κ ℓ k j = FRC.Shell.Frame.proj g κ (ℓ + (2 : Nat)) k j :=
+  And.intro @FRC.Shell.Frame.inv_frame (And.intro @FRC.Shell.Frame.Fmat_conj (@FRC.Shell.Frame.proj_conj))
+/-- p06024 — 6:D1. The meridional representation domain $D_s=(\Vt,\mathcal B_s)$, $\mathcal B_s=\Ft^{[s]}\mathcal B_0$, every $\Ft^{[s]}$ invertible; the cardinal domains spatial, spectral, parity, inverse-spectral. -/
+theorem p06024 : ∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → ∀ {z : FRC.Shell p}, g * z = (1 : FRC.Shell p) → ∀ {s : Nat}, s ≤ p - (1 : Nat) → ∀ {k j : Nat}, k < p - (1 : Nat) → j < p - (1 : Nat) → FRC.Shell.sumRange (fun l => FRC.Shell.Frame.frft g κ z s k l * FRC.Shell.Frame.frft g κ z (p - (1 : Nat) - s) l j) (p - (1 : Nat)) = FRC.Shell.Frame.idm k j ∧ FRC.Shell.sumRange (fun l => FRC.Shell.Frame.frft g κ z (p - (1 : Nat) - s) k l * FRC.Shell.Frame.frft g κ z s l j) (p - (1 : Nat)) = FRC.Shell.Frame.idm k j :=
+  @FRC.Shell.Frame.frft_inverse
+/-- p06025 — 6:D2. The $4\kap$ framed domains are pairwise distinct; read as unordered measurement bases $B_{s+2\kap}=B_s$, since $\Ft^{[s+2\kap]}=\Ft^{[s]}J$ and $J$ permutes the standard basis. -/
+theorem p06025 : (∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → (2 : Nat) ≤ κ → ∀ {z : FRC.Shell p}, g * z = (1 : FRC.Shell p) → ∀ {s r : Nat}, s < p - (1 : Nat) → r < p - (1 : Nat) → (∀ (k j : Nat), k < p - (1 : Nat) → j < p - (1 : Nat) → FRC.Shell.Frame.frft g κ z s k j = FRC.Shell.Frame.frft g κ z r k j) → s = r) ∧ (∀ (g : FRC.Shell (5 : Nat)), g.IsPrimitive (4 : Nat) → g = (2 : FRC.Shell (5 : Nat)) ∨ g = (3 : FRC.Shell (5 : Nat))) ∧ ((∀ (s : Nat), s < (4 : Nat) → ∀ (r : Nat), r < (4 : Nat) → (∀ (k : Nat), k < (4 : Nat) → ∀ (j : Nat), j < (4 : Nat) → FRC.Shell.Frame.frft (2 : FRC.Shell (5 : Nat)) (1 : Nat) (3 : FRC.Shell (5 : Nat)) s k j = FRC.Shell.Frame.frft (2 : FRC.Shell (5 : Nat)) (1 : Nat) (3 : FRC.Shell (5 : Nat)) r k j) → s = r) ∧ ∀ (s : Nat), s < (4 : Nat) → ∀ (r : Nat), r < (4 : Nat) → (∀ (k : Nat), k < (4 : Nat) → ∀ (j : Nat), j < (4 : Nat) → FRC.Shell.Frame.frft (3 : FRC.Shell (5 : Nat)) (1 : Nat) (2 : FRC.Shell (5 : Nat)) s k j = FRC.Shell.Frame.frft (3 : FRC.Shell (5 : Nat)) (1 : Nat) (2 : FRC.Shell (5 : Nat)) r k j) → s = r) ∧ ∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → ∀ {z : FRC.Shell p}, g * z = (1 : FRC.Shell p) → ∀ (s : Nat) {k j : Nat}, k < p - (1 : Nat) → j < p - (1 : Nat) → FRC.Shell.Frame.frft g κ z (s + (2 : Nat) * κ) k j = FRC.Shell.Frame.frft g κ z s k (FRC.Shell.Frame.rev (p - (1 : Nat)) j) :=
+  And.intro @FRC.Shell.Frame.frft_injective (And.intro @FRC.Shell.Frame.five_frames (And.intro @FRC.Shell.Frame.five_faithful (@FRC.Shell.Frame.frft_half_turn)))
+/-- p06031 — 6:E2. $R_s\in SO(2,\Fp)$, and $s\mapsto R_s$ is an isomorphism $\Phit\simeq SO(2,\Fp)$ with $|SO(2,\Fp)|=\p-1=4\kap$: the full rotation group of the $\p^{2}$-point plane is the meridian cycle. -/
+theorem p06031 : (∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → ∀ {z : FRC.Shell p}, g * z = (1 : FRC.Shell p) → ∀ (s : Nat), FRC.Shell.Frame.cs g κ z s * FRC.Shell.Frame.cs g κ z s + FRC.Shell.Frame.ds g κ z s * FRC.Shell.Frame.ds g κ z s = (1 : FRC.Shell p)) ∧ (∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → ∀ (z : FRC.Shell p) (s r : Nat), FRC.Shell.Frame.cs g κ z (s + r) = FRC.Shell.Frame.cs g κ z s * FRC.Shell.Frame.cs g κ z r + -(FRC.Shell.Frame.ds g κ z s * FRC.Shell.Frame.ds g κ z r) ∧ FRC.Shell.Frame.ds g κ z (s + r) = FRC.Shell.Frame.cs g κ z s * FRC.Shell.Frame.ds g κ z r + FRC.Shell.Frame.ds g κ z s * FRC.Shell.Frame.cs g κ z r) ∧ (∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → ∀ {z : FRC.Shell p}, g * z = (1 : FRC.Shell p) → ∀ {s r : Nat}, s < p - (1 : Nat) → r < p - (1 : Nat) → FRC.Shell.Frame.cs g κ z s = FRC.Shell.Frame.cs g κ z r → FRC.Shell.Frame.ds g κ z s = FRC.Shell.Frame.ds g κ z r → s = r) ∧ (∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → ∀ {z : FRC.Shell p}, g * z = (1 : FRC.Shell p) → ∀ {c d : FRC.Shell p}, c * c + d * d = (1 : FRC.Shell p) → ∃ s, s < p - (1 : Nat) ∧ c = FRC.Shell.Frame.cs g κ z s ∧ d = FRC.Shell.Frame.ds g κ z s) ∧ FRC.Shell.Frame.countCircle (5 : Nat) (5 : Nat) = (4 : Nat) ∧ FRC.Shell.Frame.countCircle (13 : Nat) (13 : Nat) = (12 : Nat) ∧ FRC.Shell.Frame.countCircle (17 : Nat) (17 : Nat) = (16 : Nat) ∧ FRC.Shell.Frame.countCircle (29 : Nat) (29 : Nat) = (28 : Nat) ∧ FRC.Shell.Frame.countCircle (37 : Nat) (37 : Nat) = (36 : Nat) ∧ FRC.Shell.Frame.countCircle (41 : Nat) (41 : Nat) = (40 : Nat) :=
+  And.intro @FRC.Shell.Frame.rot_circle (And.intro @FRC.Shell.Frame.rot_hom (And.intro @FRC.Shell.Frame.rot_inj (And.intro @FRC.Shell.Frame.rot_surj (@FRC.Shell.Frame.six_circles))))
+/-- p06032 — 6:E3. The cardinal-skeleton dictionary $M_s\leftrightarrow s\leftrightarrow z_s\leftrightarrow R_s$ with $R_0=I$, $R_\kap=w$, $R_{2\kap}=-I$, $R_{3\kap}=w^{-1}$ (the $R_\kap$ column of Table~\ref{tab:checks}), $z_\kap=\im$; the FRC-native and Weil families stand in cardinal Weil correspondence, the Weil side by the normalization of A2 (an import). -/
+theorem p06032 : ∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → ∀ {z : FRC.Shell p}, g * z = (1 : FRC.Shell p) → (FRC.Shell.Frame.cs g κ z (0 : Nat) = (1 : FRC.Shell p) ∧ FRC.Shell.Frame.ds g κ z (0 : Nat) = (0 : FRC.Shell p)) ∧ (FRC.Shell.Frame.cs g κ z κ = (0 : FRC.Shell p) ∧ FRC.Shell.Frame.ds g κ z κ = (1 : FRC.Shell p)) ∧ (FRC.Shell.Frame.cs g κ z ((2 : Nat) * κ) = (-1 : FRC.Shell p) ∧ FRC.Shell.Frame.ds g κ z ((2 : Nat) * κ) = (0 : FRC.Shell p)) ∧ (FRC.Shell.Frame.cs g κ z ((3 : Nat) * κ) = (0 : FRC.Shell p) ∧ FRC.Shell.Frame.ds g κ z ((3 : Nat) * κ) = (-1 : FRC.Shell p)) ∧ z ^ κ = FRC.Shell.Frame.quarterTurn g κ :=
+  @FRC.Shell.Frame.rot_cardinal
+/-- p06034 — 6:E5. Spectral obstruction: for $\kap\ge2$ no invertible $T$ on $\Vt$ satisfies $T\sigma T^{-1}=\Ft^{[s]}$ for any $s$; the cyclic groups $\langle\sigma\rangle$ and $\langle\Ft^{[1]}\rangle$, each of order $4\kap$ ($\Ft^{[1]}$ by C4; $\sigma$ permutes the $4\kap$ labels cyclically), are not conjugate. -/
+theorem p06034 : ∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → (2 : Nat) ≤ κ → ∀ (z : FRC.Shell p) (s : Nat) (T T' : Nat → Nat → FRC.Shell p), (∀ (k j : Nat), k < p - (1 : Nat) → j < p - (1 : Nat) → FRC.Shell.Frame.mmul T' T (p - (1 : Nat)) k j = FRC.Shell.Frame.idm k j) → (∀ (k j : Nat), k < p - (1 : Nat) → j < p - (1 : Nat) → FRC.Shell.Frame.mmul (FRC.Shell.Frame.mmul T (FRC.Shell.Frame.shift p) (p - (1 : Nat))) T' (p - (1 : Nat)) k j = FRC.Shell.Frame.frft g κ z s k j) → False :=
+  @FRC.Shell.Frame.spectral_obstruction
+/-- p06035 — 6:E6. Common character sector: on $E_1=\operatorname{im}\Pi_1\neq0$ ($\kap\ge2$) $\Ft^{[s]}=\gen^{-s}I$, the intertwiner $\Ft^{[s]}T_v=T_vS_{-s}$ on every $x\in\Fp$ and $s$, and $R_s(1,-\im)^{\mathsf T}=\gen^{-s}(1,-\im)^{\mathsf T}$. -/
+theorem p06035 : (∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → ∀ (z : FRC.Shell p) (s : Nat) {m : Nat}, m < (4 : Nat) → ∀ {k j : Nat}, k < p - (1 : Nat) → j < p - (1 : Nat) → FRC.Shell.sumRange (fun l => FRC.Shell.Frame.frft g κ z s k l * FRC.Shell.Frame.proj g κ m l j) (p - (1 : Nat)) = (z ^ s) ^ m * FRC.Shell.Frame.proj g κ m k j) ∧ (∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → ∀ (z : FRC.Shell p) (s : Nat) (x : FRC.Shell p) {k j : Nat}, k < p - (1 : Nat) → j < p - (1 : Nat) → FRC.Shell.sumRange (fun l => FRC.Shell.Frame.frft g κ z s k l * (x * FRC.Shell.Frame.proj g κ (1 : Nat) l j)) (p - (1 : Nat)) = x * (z ^ s * FRC.Shell.Frame.proj g κ (1 : Nat) k j)) ∧ ∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → ∀ (z : FRC.Shell p) (s : Nat), FRC.Shell.Frame.cs g κ z s * (1 : FRC.Shell p) + -(FRC.Shell.Frame.ds g κ z s * -FRC.Shell.Frame.quarterTurn g κ) = z ^ s * (1 : FRC.Shell p) ∧ FRC.Shell.Frame.ds g κ z s * (1 : FRC.Shell p) + FRC.Shell.Frame.cs g κ z s * -FRC.Shell.Frame.quarterTurn g κ = z ^ s * -FRC.Shell.Frame.quarterTurn g κ :=
+  And.intro @FRC.Shell.Frame.frft_proj (And.intro @FRC.Shell.Frame.frft_intertwine (@FRC.Shell.Frame.rot_eigenline))
+/-- p06036 — 6:E7. Cardinal Heisenberg covariance: $\Ft\sigma\Ft^{-1}=D_1$, $\Ft D_1\Ft^{-1}=\sigma^{-1}$; $\Ft^{r}\sigma=\sigma_r\Ft^{r}$ with $(\sigma,D_1,\sigma^{-1},D_1^{-1})$; the expansion \eqref{eq:conj-expansion}, $\Ft^{[s]}=\sum_r c_r(s)\Ft^{r}$ with $c_r(s)=\tfrac14\sum_\ell(\gen^{r\kap-s})^{\ell}$. -/
+theorem p06036 : (∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → ∀ {k j : Nat}, k < p - (1 : Nat) → j < p - (1 : Nat) → FRC.Shell.sumRange (fun l => FRC.Shell.Frame.shift p k l * FRC.Shell.Frame.shiftInv p l j) (p - (1 : Nat)) = FRC.Shell.Frame.idm k j ∧ FRC.Shell.sumRange (fun l => FRC.Shell.Frame.shiftInv p k l * FRC.Shell.Frame.shift p l j) (p - (1 : Nat)) = FRC.Shell.Frame.idm k j) ∧ (∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → ∀ {z : FRC.Shell p}, g * z = (1 : FRC.Shell p) → ∀ {k j : Nat}, k < p - (1 : Nat) → j < p - (1 : Nat) → FRC.Shell.sumRange (fun l => FRC.Shell.Frame.Fmat g κ k l * FRC.Shell.Frame.shift p l j) (p - (1 : Nat)) = FRC.Shell.sumRange (fun l => FRC.Shell.Frame.modul g k l * FRC.Shell.Frame.Fmat g κ l j) (p - (1 : Nat)) ∧ FRC.Shell.sumRange (fun l => FRC.Shell.Frame.Fmat g κ k l * FRC.Shell.Frame.modul g l j) (p - (1 : Nat)) = FRC.Shell.sumRange (fun l => FRC.Shell.Frame.shiftInv p k l * FRC.Shell.Frame.Fmat g κ l j) (p - (1 : Nat)) ∧ FRC.Shell.sumRange (fun l => FRC.Shell.Frame.J (p - (1 : Nat)) k l * FRC.Shell.Frame.shift p l j) (p - (1 : Nat)) = FRC.Shell.sumRange (fun l => FRC.Shell.Frame.shiftInv p k l * FRC.Shell.Frame.J (p - (1 : Nat)) l j) (p - (1 : Nat)) ∧ FRC.Shell.sumRange (fun l => FRC.Shell.Frame.FJ g κ k l * FRC.Shell.Frame.shift p l j) (p - (1 : Nat)) = FRC.Shell.sumRange (fun l => FRC.Shell.Frame.modul z k l * FRC.Shell.Frame.FJ g κ l j) (p - (1 : Nat))) ∧ (∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → ∀ (z : FRC.Shell p) (s k j : Nat), FRC.Shell.Frame.frft g κ z s k j = FRC.Shell.Frame.comb g κ (FRC.Shell.Frame.NF0 (-FRC.Shell.ofNat κ) (-FRC.Shell.Frame.quarterTurn g κ) (z ^ s)) (FRC.Shell.Frame.NF1 (-FRC.Shell.ofNat κ) (-FRC.Shell.Frame.quarterTurn g κ) (z ^ s)) (FRC.Shell.Frame.NF2 (-FRC.Shell.ofNat κ) (-FRC.Shell.Frame.quarterTurn g κ) (z ^ s)) (FRC.Shell.Frame.NF3 (-FRC.Shell.ofNat κ) (-FRC.Shell.Frame.quarterTurn g κ) (z ^ s)) k j) ∧ (∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → ∀ (u : FRC.Shell p), FRC.Shell.Frame.NF0 (-FRC.Shell.ofNat κ) (-FRC.Shell.Frame.quarterTurn g κ) u = -FRC.Shell.ofNat κ * ((1 : FRC.Shell p) + u + u * u + u * u * u) ∧ FRC.Shell.Frame.NF1 (-FRC.Shell.ofNat κ) (-FRC.Shell.Frame.quarterTurn g κ) u = -FRC.Shell.ofNat κ * ((1 : FRC.Shell p) + u * -FRC.Shell.Frame.quarterTurn g κ + u * -FRC.Shell.Frame.quarterTurn g κ * (u * -FRC.Shell.Frame.quarterTurn g κ) + u * -FRC.Shell.Frame.quarterTurn g κ * (u * -FRC.Shell.Frame.quarterTurn g κ) * (u * -FRC.Shell.Frame.quarterTurn g κ)) ∧ FRC.Shell.Frame.NF2 (-FRC.Shell.ofNat κ) (-FRC.Shell.Frame.quarterTurn g κ) u = -FRC.Shell.ofNat κ * ((1 : FRC.Shell p) + u * (-FRC.Shell.Frame.quarterTurn g κ * -FRC.Shell.Frame.quarterTurn g κ) + u * (-FRC.Shell.Frame.quarterTurn g κ * -FRC.Shell.Frame.quarterTurn g κ) * (u * (-FRC.Shell.Frame.quarterTurn g κ * -FRC.Shell.Frame.quarterTurn g κ)) + u * (-FRC.Shell.Frame.quarterTurn g κ * -FRC.Shell.Frame.quarterTurn g κ) * (u * (-FRC.Shell.Frame.quarterTurn g κ * -FRC.Shell.Frame.quarterTurn g κ)) * (u * (-FRC.Shell.Frame.quarterTurn g κ * -FRC.Shell.Frame.quarterTurn g κ))) ∧ FRC.Shell.Frame.NF3 (-FRC.Shell.ofNat κ) (-FRC.Shell.Frame.quarterTurn g κ) u = -FRC.Shell.ofNat κ * ((1 : FRC.Shell p) + u * (-FRC.Shell.Frame.quarterTurn g κ * -FRC.Shell.Frame.quarterTurn g κ * -FRC.Shell.Frame.quarterTurn g κ) + u * (-FRC.Shell.Frame.quarterTurn g κ * -FRC.Shell.Frame.quarterTurn g κ * -FRC.Shell.Frame.quarterTurn g κ) * (u * (-FRC.Shell.Frame.quarterTurn g κ * -FRC.Shell.Frame.quarterTurn g κ * -FRC.Shell.Frame.quarterTurn g κ)) + u * (-FRC.Shell.Frame.quarterTurn g κ * -FRC.Shell.Frame.quarterTurn g κ * -FRC.Shell.Frame.quarterTurn g κ) * (u * (-FRC.Shell.Frame.quarterTurn g κ * -FRC.Shell.Frame.quarterTurn g κ * -FRC.Shell.Frame.quarterTurn g κ)) * (u * (-FRC.Shell.Frame.quarterTurn g κ * -FRC.Shell.Frame.quarterTurn g κ * -FRC.Shell.Frame.quarterTurn g κ)))) ∧ ∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, -FRC.Shell.Frame.quarterTurn g κ = g ^ κ :=
+  And.intro @FRC.Shell.Frame.shift_inverse (And.intro @FRC.Shell.Frame.heisenberg (And.intro @FRC.Shell.Frame.frft_eq (And.intro @FRC.Shell.Frame.frft_coeff (@FRC.Shell.Frame.w_eq_pow_kappa))))
+/-- p06050 — 6:E8. Cardinal exclusivity: for every $s\notin\{0,\kap,2\kap,3\kap\}$ the conjugate $\Ft^{[s]}\sigma\Ft^{[s]\,-1}$ of \eqref{eq:conj-expansion} is not monomial --- off $j\in\{-1,0,1\}$ its row $0$ is $x^{-1}$ times a quadratic in $x=\gen^{j}$ with leading coefficient $\im\,[c_0(s)+c_2(s)]\,c_3(-s)\neq0$, $c_0(s)+c_2(s)=\tfrac12(1+\gen^{-2s})$, so the row vanishes at no three distinct indices off the sites and, by counting, has at least $4\kap-5$ nonzero entries; the count checked on every shell below $200$. -/
+theorem p06050 : (∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → ∀ {z : FRC.Shell p}, g * z = (1 : FRC.Shell p) → ∀ (s : Nat) {j : Nat}, j < p - (1 : Nat) → j ≠ (0 : Nat) → j ≠ (1 : Nat) → j ≠ p - (1 : Nat) - (1 : Nat) → FRC.Shell.Frame.mmul (FRC.Shell.Frame.mmul (FRC.Shell.Frame.frft g κ z s) (FRC.Shell.Frame.shift p) (p - (1 : Nat))) (FRC.Shell.Frame.frft g κ z (p - (1 : Nat) - s)) (p - (1 : Nat)) (0 : Nat) j = (FRC.Shell.Frame.NF0 (-FRC.Shell.ofNat κ) (-FRC.Shell.Frame.quarterTurn g κ) (z ^ s) + FRC.Shell.Frame.NF2 (-FRC.Shell.ofNat κ) (-FRC.Shell.Frame.quarterTurn g κ) (z ^ s)) * (FRC.Shell.Frame.NF1 (-FRC.Shell.ofNat κ) (-FRC.Shell.Frame.quarterTurn g κ) (z ^ (p - (1 : Nat) - s)) * FRC.Shell.Frame.quarterTurn g κ * z ^ j + FRC.Shell.Frame.NF3 (-FRC.Shell.ofNat κ) (-FRC.Shell.Frame.quarterTurn g κ) (z ^ (p - (1 : Nat) - s)) * FRC.Shell.Frame.quarterTurn g κ * g ^ j) + (FRC.Shell.Frame.NF1 (-FRC.Shell.ofNat κ) (-FRC.Shell.Frame.quarterTurn g κ) (z ^ s) + FRC.Shell.Frame.NF3 (-FRC.Shell.ofNat κ) (-FRC.Shell.Frame.quarterTurn g κ) (z ^ s)) * FRC.Shell.Frame.quarterTurn g κ * (FRC.Shell.Frame.NF0 (-FRC.Shell.ofNat κ) (-FRC.Shell.Frame.quarterTurn g κ) (z ^ (p - (1 : Nat) - s)) + FRC.Shell.Frame.NF2 (-FRC.Shell.ofNat κ) (-FRC.Shell.Frame.quarterTurn g κ) (z ^ (p - (1 : Nat) - s)))) ∧ (∀ {p : Nat} [FRC.Pos p] (q jj u : FRC.Shell p), FRC.Shell.Frame.NF0 q jj u + FRC.Shell.Frame.NF2 q jj u = (q + q) * ((1 : FRC.Shell p) + u * u)) ∧ (∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → ∀ {z : FRC.Shell p}, g * z = (1 : FRC.Shell p) → ∀ {s : Nat}, s < p - (1 : Nat) → s ≠ κ → s ≠ (3 : Nat) * κ → FRC.Shell.Frame.NF0 (-FRC.Shell.ofNat κ) (-FRC.Shell.Frame.quarterTurn g κ) (z ^ s) + FRC.Shell.Frame.NF2 (-FRC.Shell.ofNat κ) (-FRC.Shell.Frame.quarterTurn g κ) (z ^ s) ≠ (0 : FRC.Shell p)) ∧ (∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → ∀ {z : FRC.Shell p}, g * z = (1 : FRC.Shell p) → ∀ {s : Nat}, s < p - (1 : Nat) → s ≠ (0 : Nat) → s ≠ κ → s ≠ (2 : Nat) * κ → s ≠ (3 : Nat) * κ → FRC.Shell.Frame.NF3 (-FRC.Shell.ofNat κ) (-FRC.Shell.Frame.quarterTurn g κ) (z ^ (p - (1 : Nat) - s)) ≠ (0 : FRC.Shell p)) ∧ ∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → ∀ {z : FRC.Shell p}, g * z = (1 : FRC.Shell p) → ∀ {s : Nat}, s < p - (1 : Nat) → s ≠ (0 : Nat) → s ≠ κ → s ≠ (2 : Nat) * κ → s ≠ (3 : Nat) * κ → ∀ {j1 j2 j3 : Nat}, j1 < p - (1 : Nat) → j2 < p - (1 : Nat) → j3 < p - (1 : Nat) → j1 ≠ (0 : Nat) ∧ j1 ≠ (1 : Nat) ∧ j1 ≠ p - (1 : Nat) - (1 : Nat) → j2 ≠ (0 : Nat) ∧ j2 ≠ (1 : Nat) ∧ j2 ≠ p - (1 : Nat) - (1 : Nat) → j3 ≠ (0 : Nat) ∧ j3 ≠ (1 : Nat) ∧ j3 ≠ p - (1 : Nat) - (1 : Nat) → j1 ≠ j2 → j1 ≠ j3 → j2 ≠ j3 → ¬(FRC.Shell.Frame.mmul (FRC.Shell.Frame.mmul (FRC.Shell.Frame.frft g κ z s) (FRC.Shell.Frame.shift p) (p - (1 : Nat))) (FRC.Shell.Frame.frft g κ z (p - (1 : Nat) - s)) (p - (1 : Nat)) (0 : Nat) j1 = (0 : FRC.Shell p) ∧ FRC.Shell.Frame.mmul (FRC.Shell.Frame.mmul (FRC.Shell.Frame.frft g κ z s) (FRC.Shell.Frame.shift p) (p - (1 : Nat))) (FRC.Shell.Frame.frft g κ z (p - (1 : Nat) - s)) (p - (1 : Nat)) (0 : Nat) j2 = (0 : FRC.Shell p) ∧ FRC.Shell.Frame.mmul (FRC.Shell.Frame.mmul (FRC.Shell.Frame.frft g κ z s) (FRC.Shell.Frame.shift p) (p - (1 : Nat))) (FRC.Shell.Frame.frft g κ z (p - (1 : Nat) - s)) (p - (1 : Nat)) (0 : Nat) j3 = (0 : FRC.Shell p)) :=
+  And.intro @FRC.Shell.Frame.row_entry (And.intro @FRC.Shell.Frame.even_coeff_id (And.intro @FRC.Shell.Frame.even_coeff_ne_zero (And.intro @FRC.Shell.Frame.odd_coeff_ne_zero (@FRC.Shell.Frame.exclusivity))))
+/-- p06052 — 6:C11. Charts outside the classified set: for $u$ a unit mod $4\kap$, $\Wt(\gen^{u})=\Wt P_u$ with $P_u$ the site relabelling $j\mapsto uj$, so $\Wt\,\Wt(\gen^{u})=-JP_u$ and $\Wt(\gen^{u})\,\Wt=-JP_{u^{-1}}$, and the two differ at the entry $(-u,1)$ when $u^{2}\not\equiv1\pmod{4\kap}$: a family canonical in such a chart does not commute with $\Ft$; $\p=29$, $u=5$, and every such chart of the six shells of Table~\ref{tab:checks} checked. -/
+theorem p06052 : (∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → ∀ (u k j : Nat), FRC.Shell.Frame.W (g ^ u) k j = FRC.Shell.Frame.W g k (u * j % (p - (1 : Nat)))) ∧ (∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → ∀ (u k j : Nat), FRC.Shell.sumRange (fun l => FRC.Shell.Frame.W g k l * FRC.Shell.Frame.W (g ^ u) l j) (p - (1 : Nat)) = -if (k + u * j) % (p - (1 : Nat)) = (0 : Nat) then (1 : FRC.Shell p) else (0 : FRC.Shell p)) ∧ (∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → ∀ (u k j : Nat), FRC.Shell.sumRange (fun l => FRC.Shell.Frame.W (g ^ u) k l * FRC.Shell.Frame.W g l j) (p - (1 : Nat)) = -if (u * k + j) % (p - (1 : Nat)) = (0 : Nat) then (1 : FRC.Shell p) else (0 : FRC.Shell p)) ∧ ∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → ∀ {u : Nat}, u * u % (p - (1 : Nat)) ≠ (1 : Nat) → FRC.Shell.sumRange (fun l => FRC.Shell.Frame.W g (FRC.Shell.Frame.rev (p - (1 : Nat)) (u % (p - (1 : Nat)))) l * FRC.Shell.Frame.W (g ^ u) l (1 : Nat)) (p - (1 : Nat)) ≠ FRC.Shell.sumRange (fun l => FRC.Shell.Frame.W (g ^ u) (FRC.Shell.Frame.rev (p - (1 : Nat)) (u % (p - (1 : Nat)))) l * FRC.Shell.Frame.W g l (1 : Nat)) (p - (1 : Nat)) :=
+  And.intro @FRC.Shell.Frame.W_chart (And.intro @FRC.Shell.Frame.W_mul_chart (And.intro @FRC.Shell.Frame.chart_mul_W (@FRC.Shell.Frame.chart_noncommute)))
+/-- p06053 — 6:D7. The cycle carries exactly $2\kap$ measurement bases: every off-site entry of row $0$ of $\Ft^{[t]}$ is $\tfrac{\im}{2}(1-\gen^{-2t})$, nonzero for $t\notin\{0,2\kap\}$, so $\Ft^{[t]}$ is not monomial and $B_{s+t}\neq B_s$; the six shells of Table~\ref{tab:checks}. -/
+theorem p06053 : (∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → ∀ (z : FRC.Shell p) (t : Nat) {j : Nat}, (0 : Nat) < j → j < p - (1 : Nat) → FRC.Shell.Frame.frft g κ z t (0 : Nat) j = (-FRC.Shell.ofNat κ + -FRC.Shell.ofNat κ) * ((1 : FRC.Shell p) + -(z ^ t * z ^ t)) * FRC.Shell.Frame.quarterTurn g κ) ∧ ∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → ∀ {z : FRC.Shell p}, g * z = (1 : FRC.Shell p) → ∀ {t : Nat}, t < p - (1 : Nat) → t ≠ (0 : Nat) → t ≠ (2 : Nat) * κ → ∀ {j : Nat}, (0 : Nat) < j → j < p - (1 : Nat) → FRC.Shell.Frame.frft g κ z t (0 : Nat) j ≠ (0 : FRC.Shell p) :=
+  And.intro @FRC.Shell.Frame.frft_row_zero (@FRC.Shell.Frame.frft_row_zero_ne_zero)
+/-- p06054 — 6:E9. The spectra behind E5: every nonzero residue $b$ is an eigenvalue of $\sigma$, with the geometric eigenvector $(b^{-j})_j$ (so $\sigma$ is diagonalizable over $\Fp$ with the $4\kap$ simple eigenvalues $\Fpx$, the Mathlib reading); an eigenvalue of $\Ft^{[s]}=\sum_\ell\gen^{-\ell s}\Pi_\ell$ is one of the four $\gen^{-\ell s}$ ($\Ft^{[1]}$ on the six shells). -/
+theorem p06054 : (∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → ∀ {b : FRC.Shell p}, b ≠ (0 : FRC.Shell p) → ∃ y, b * y = (1 : FRC.Shell p) ∧ FRC.Shell.Frame.IsEigen (FRC.Shell.Frame.shift p) (p - (1 : Nat)) b fun j => y ^ j) ∧ ∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → ∀ (z : FRC.Shell p) (s : Nat) {lam : FRC.Shell p} {v : Nat → FRC.Shell p}, FRC.Shell.Frame.IsEigen (FRC.Shell.Frame.frft g κ z s) (p - (1 : Nat)) lam v → ∃ ℓ, ℓ < (4 : Nat) ∧ lam = (z ^ s) ^ ℓ :=
+  And.intro @FRC.Shell.Frame.shift_eigen (@FRC.Shell.Frame.frft_eigen)
+/-- p06056 — 6:E10. The plane as orbits of the cycle: $R_s$ scales $u=x+\im y$ by $z_s$ and $v=x-\im y$ by $z_s^{-1}$, so every point off the origin has a free orbit of size $4\kap=|SO(2,\Fp)|$, and $\p^{2}=1+(4\kap+2)\,4\kap$ is the count of the origin and $4\kap+2$ orbits (the $4\kap$ circles of nonzero norm and the two isotropic lines: the paper's reading of the identity); $\dim\Vt=4\kap$. -/
+theorem p06056 : (∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → ∀ (z : FRC.Shell p) (s : Nat) (x y : FRC.Shell p), FRC.Shell.Frame.cs g κ z s * x + -(FRC.Shell.Frame.ds g κ z s * y) + FRC.Shell.Frame.quarterTurn g κ * (FRC.Shell.Frame.ds g κ z s * x + FRC.Shell.Frame.cs g κ z s * y) = z ^ s * (x + FRC.Shell.Frame.quarterTurn g κ * y) ∧ FRC.Shell.Frame.cs g κ z s * x + -(FRC.Shell.Frame.ds g κ z s * y) + -(FRC.Shell.Frame.quarterTurn g κ * (FRC.Shell.Frame.ds g κ z s * x + FRC.Shell.Frame.cs g κ z s * y)) = g ^ s * (x + -(FRC.Shell.Frame.quarterTurn g κ * y))) ∧ (∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → ∀ {z : FRC.Shell p}, g * z = (1 : FRC.Shell p) → ∀ {x y : FRC.Shell p}, ¬(x = (0 : FRC.Shell p) ∧ y = (0 : FRC.Shell p)) → ∀ {s : Nat}, s < p - (1 : Nat) → FRC.Shell.Frame.cs g κ z s * x + -(FRC.Shell.Frame.ds g κ z s * y) = x ∧ FRC.Shell.Frame.ds g κ z s * x + FRC.Shell.Frame.cs g κ z s * y = y → s = (0 : Nat)) ∧ (∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → p * p = (1 : Nat) + ((4 : Nat) * κ + (2 : Nat)) * ((4 : Nat) * κ)) ∧ FRC.Shell.Frame.countCircle (5 : Nat) (5 : Nat) = (4 : Nat) ∧ FRC.Shell.Frame.countCircle (13 : Nat) (13 : Nat) = (12 : Nat) ∧ FRC.Shell.Frame.countCircle (17 : Nat) (17 : Nat) = (16 : Nat) ∧ FRC.Shell.Frame.countCircle (29 : Nat) (29 : Nat) = (28 : Nat) ∧ FRC.Shell.Frame.countCircle (37 : Nat) (37 : Nat) = (36 : Nat) ∧ FRC.Shell.Frame.countCircle (41 : Nat) (41 : Nat) = (40 : Nat) :=
+  And.intro @FRC.Shell.Frame.rot_uv (And.intro @FRC.Shell.Frame.orbit_free (And.intro @FRC.Shell.Frame.plane_count (@FRC.Shell.Frame.six_circles)))
 -- end keys
 
 end FRC.Ledger
@@ -10964,6 +13495,142 @@ theorem s13_orbit :
 end Shell
 end FRC
 
+/-! inlined: FrcCore/Theme/Domain.lean -/
+/-!
+# FrcCore.Theme.Domain — the unit-domain lattice: the torsion-free lift of the Subject's domain group (00:C12)
+
+The Subject's quantity algebra is graded by the modular domain group `D_p = C_p × C_{p−1}` of the labels
+`U_{r,s} = L^r T^s` (10-dimensions C1, C2): `L` attached to the additive meridian chart, `T` to the drive's phase chart,
+and the flag `Iq = T^κ` of order four. This file is the lattice above it — exponent triples `(r, s, j)` of `L`, `T`
+and the flag over the integers, the torsion-free shadow in which classical dimensional analysis lives — and the
+domain identities the master's row C12 states: the temperature domain is acceleration, `[Θ] = [E][k_B]⁻¹ = L T⁻²`,
+flag-free; the Unruh combination `ħ a/(c k_B)` closes on it; neither mass nor temperature is primitive, each a monomial
+in the two generators and the flag; and the classical `M`-`L`-`T`-`Θ` exponents of the mechanical, gravitational and
+thermal quantities (10:F2, F3) map to their domains under `M ↦ Iq L⁻² T`, `Θ ↦ L T⁻²`. Every statement is closed and
+decided by the kernel. No axioms.
+-/
+
+namespace FRC.Domain
+
+/-- An exponent triple `L^r T^s Iq^j` of the lift lattice. -/
+structure Lift where
+  r : Int
+  s : Int
+  j : Int
+deriving DecidableEq
+
+namespace Lift
+
+/-- The product of domains adds exponents. -/
+def mul (a b : Lift) : Lift := ⟨a.r + b.r, a.s + b.s, a.j + b.j⟩
+/-- The inverse domain. -/
+def inv (a : Lift) : Lift := ⟨-a.r, -a.s, -a.j⟩
+/-- The dimensionless domain. -/
+def one : Lift := ⟨0, 0, 0⟩
+
+instance : Mul Lift := ⟨mul⟩
+instance : Inv Lift := ⟨inv⟩
+instance : OfNat Lift 1 := ⟨one⟩
+
+/-- The length generator `L` (10:C1). -/
+def L : Lift := ⟨1, 0, 0⟩
+/-- The time generator `T` (10:C1). -/
+def T : Lift := ⟨0, 1, 0⟩
+/-- The flag `Iq = T^κ` (10:C4), the third coordinate of the lift. -/
+def flag : Lift := ⟨0, 0, 1⟩
+
+/-- `[v] = L T⁻¹` (10:F1). -/
+def speed : Lift := L * T⁻¹
+/-- `[a] = L T⁻²` (10:F2). -/
+def accel : Lift := L * T⁻¹ * T⁻¹
+/-- `[E] = Iq T⁻¹` (10:E, the energy face of the flag). -/
+def energy : Lift := flag * T⁻¹
+/-- `[ħ] = [E][T] = Iq`. -/
+def hbar : Lift := energy * T
+/-- `[k_B] = [ħ][c]⁻¹`: the Carrier linkage `k_B c = −ħ` (00:B7) read in domains, `Iq L⁻¹ T`. -/
+def kB : Lift := hbar * speed⁻¹
+/-- `[Θ] = [E][k_B]⁻¹` (10:F3). -/
+def temp : Lift := energy * kB⁻¹
+/-- `[m] = Iq L⁻² T` (10:F2), mass derived. -/
+def mass : Lift := flag * L⁻¹ * L⁻¹ * T
+/-- `[F] = [m][a]`. -/
+def force : Lift := mass * accel
+/-- `[p] = [m][v]`. -/
+def momentum : Lift := mass * speed
+/-- `[P] = [E][T]⁻¹`. -/
+def power : Lift := energy * T⁻¹
+/-- `[pressure] = [F][L]⁻²`. -/
+def pressure : Lift := force * L⁻¹ * L⁻¹
+/-- `[G] = [a][L]²[m]⁻¹`, from `a = G m / r²`. -/
+def G : Lift := accel * L * L * mass⁻¹
+/-- The Unruh combination `ħ a/(c k_B)`. -/
+def unruh : Lift := hbar * accel * speed⁻¹ * kB⁻¹
+
+/-- The classical dictionary: the exponent vector `M^a L^b T^c Θ^d` of classical dimensional analysis, read in the
+lift under `M ↦ Iq L⁻² T` (the mass primitive standing in for the flag) and `Θ ↦ L T⁻²`. -/
+def classical (a b c d : Int) : Lift := ⟨-2 * a + b + d, a + c - 2 * d, a⟩
+
+/-- 00:C12, 10:F3 — the temperature domain is acceleration: `[Θ] = [E][k_B]⁻¹ = L T⁻² = [a]`, and `[k_B] = Iq L⁻¹ T`. -/
+theorem temp_eq_accel : temp = accel ∧ temp = ⟨1, -2, 0⟩ ∧ kB = ⟨-1, 1, 1⟩ := by decide
+
+/-- 00:C12 — flag-free: the flag exponent of the temperature domain is zero, while energy, `ħ` and `k_B` each carry
+the flag once. -/
+theorem temp_flag_free : temp.j = 0 ∧ energy.j = 1 ∧ hbar.j = 1 ∧ kB.j = 1 := by decide
+
+/-- 00:C12 — the Unruh combination `ħ a/(c k_B)` closes as a domain identity: it is the temperature domain, flag-free. -/
+theorem unruh_closes : unruh = temp ∧ unruh.j = 0 := by decide
+
+/-- 00:C12 — neither mass nor temperature is primitive: each is a monomial in the two generators and the flag, and
+the Planck temperature `Θ_P = E_P/|k_B|`, written out from the energy and the linkage `[k_B] = [ħ][c]⁻¹`, is the
+acceleration domain, flag-free. -/
+theorem not_primitive : mass = ⟨-2, 1, 1⟩ ∧ temp = L * T⁻¹ * T⁻¹ ∧
+    energy * (hbar * speed⁻¹)⁻¹ = accel ∧ (energy * (hbar * speed⁻¹)⁻¹).j = 0 := by decide
+
+/-- 00:C12 — classical dimensional analysis recovered in exponents: the classical `M`-`L`-`T`-`Θ` exponents of the
+mechanical, gravitational and thermal quantities (10:F2, F3) map to their domains under the dictionary. -/
+theorem classical_exponents :
+    classical 1 0 0 0 = mass ∧ classical 0 1 (-1) 0 = speed ∧ classical 0 1 (-2) 0 = accel ∧
+    classical 1 2 (-2) 0 = energy ∧ classical 1 2 (-1) 0 = hbar ∧ classical 1 1 (-2) 0 = force ∧
+    classical 1 1 (-1) 0 = momentum ∧ classical 1 2 (-3) 0 = power ∧ classical 1 (-1) (-2) 0 = pressure ∧
+    classical (-1) 3 (-2) 0 = G ∧ classical 1 2 (-2) (-1) = kB ∧ classical 0 0 0 1 = temp := by decide
+
+/-- 00:C12 — recovered in arity: the classical four symbols generate the lift's three (two generators and the
+flag) — `L`, `T` and the flag are classical monomials, the kernel's generator `Θ L⁻¹ T²` maps to the trivial domain,
+and the `M`-`L`-`T` block of the dictionary, the determinant of the images of `M`, `L`, `T`, is unimodular (determinant 1) — with the one relation `Θ = L T⁻²`, so
+temperature is not a fourth generator; the flag's fourth power is the trivial domain only modulo `4κ`, which the
+lift does not carry: `flag⁴ ≠ 1` in the lattice. -/
+theorem classical_arity :
+    classical 0 1 0 0 = L ∧ classical 0 0 1 0 = T ∧ classical 1 2 (-1) 0 = flag ∧
+    classical 0 0 0 1 = classical 0 1 (-2) 0 ∧ classical 0 (-1) 2 1 = 1 ∧
+    (classical 1 0 0 0).r * ((classical 0 1 0 0).s * (classical 0 0 1 0).j - (classical 0 1 0 0).j * (classical 0 0 1 0).s)
+      - (classical 1 0 0 0).s * ((classical 0 1 0 0).r * (classical 0 0 1 0).j - (classical 0 1 0 0).j * (classical 0 0 1 0).r)
+      + (classical 1 0 0 0).j * ((classical 0 1 0 0).r * (classical 0 0 1 0).s - (classical 0 1 0 0).s * (classical 0 0 1 0).r) = 1 ∧
+    flag * flag * flag * flag ≠ 1 := by decide
+
+/-- The modular image of a lift triple in the Subject's domain group `D_p = C_p × C_{4κ}`: `(r mod p, s + κj mod 4κ)`,
+the flag `Iq = T^κ` folded into the time exponent. -/
+def reduce (p κ : Nat) (a : Lift) : Int × Int := (a.r % (p : Int), (a.s + (κ : Int) * a.j) % (4 * κ : Int))
+
+/-- 00:C12 — the torsion-free shadow: on the three Subjects `p = 13, 173, 1373` (`κ = 3, 43, 343`) the identities hold
+in the modular group `C_p × C_{4κ}` of 10-dimensions, the flag reduces to `T^κ`, its fourth power to the trivial domain
+while its first three powers reduce to `(0, κ)`, `(0, 2κ)`, `(0, 3κ)`, and the mass and temperature domains reduce to their
+residues. -/
+theorem modular_shadow :
+    reduce 13 3 temp = reduce 13 3 accel ∧ reduce 13 3 unruh = reduce 13 3 temp ∧ reduce 13 3 temp = (1, 10) ∧
+    reduce 13 3 flag = (0, 3) ∧ reduce 13 3 (T * T * T) = (0, 3) ∧ reduce 13 3 (flag * flag * flag * flag) = (0, 0) ∧
+    reduce 13 3 flag ≠ (0, 0) ∧ reduce 13 3 (flag * flag) ≠ (0, 0) ∧ reduce 13 3 (flag * flag * flag) ≠ (0, 0) ∧
+    reduce 13 3 mass = (11, 4) ∧
+    reduce 173 43 temp = reduce 173 43 accel ∧ reduce 173 43 unruh = reduce 173 43 temp ∧ reduce 173 43 temp = (1, 170) ∧
+    reduce 173 43 flag = (0, 43) ∧ reduce 173 43 (flag * flag * flag * flag) = (0, 0) ∧ reduce 173 43 (flag * flag) = (0, 86) ∧
+    reduce 173 43 (flag * flag * flag) = (0, 129) ∧ reduce 173 43 mass = (171, 44) ∧
+    reduce 1373 343 temp = reduce 1373 343 accel ∧ reduce 1373 343 unruh = reduce 1373 343 temp ∧
+    reduce 1373 343 flag = (0, 343) ∧ reduce 1373 343 (flag * flag * flag * flag) = (0, 0) ∧ reduce 1373 343 (flag * flag) = (0, 686) ∧
+    reduce 1373 343 (flag * flag * flag) = (0, 1029) ∧ reduce 1373 343 mass = (1371, 344) := by decide
+
+end Lift
+
+end FRC.Domain
+
 /-! inlined: FrcCore/Keys/Frame.lean -/
 
 /-!
@@ -10977,6 +13644,9 @@ that every row carrying the key asserts, proved from the themes alone. The paper
 namespace FRC.Ledger
 
 -- Keys of the frame theme (generated by make_keys.py from the ledgers' Lean bindings; edit the ledgers, not this file)
+/-- p00032 — 00:C12. \textbf{Temperature and the classical arity, derived}: the temperature domain is acceleration, $[\Theta]=[E][k_B]^{-1}=[L][T]^{-2}$, flag-free, $\Theta_P=E_P/|k_B|$, Unruh closing as a domain identity; neither mass nor temperature is primitive --- $M$-$L$-$T$-plus-thermal is the torsion-free shadow of the two-generators-plus-flag system (the mass primitive standing in for the flag, the thermal for $k_B$), classical dimensional analysis recovered in exponents and arity. -/
+theorem p00032 : (FRC.Domain.Lift.temp = FRC.Domain.Lift.accel ∧ FRC.Domain.Lift.temp = { r := (1 : Int), s := (-2 : Int), j := (0 : Int) } ∧ FRC.Domain.Lift.kB = { r := (-1 : Int), s := (1 : Int), j := (1 : Int) }) ∧ (FRC.Domain.Lift.temp.j = (0 : Int) ∧ FRC.Domain.Lift.energy.j = (1 : Int) ∧ FRC.Domain.Lift.hbar.j = (1 : Int) ∧ FRC.Domain.Lift.kB.j = (1 : Int)) ∧ (FRC.Domain.Lift.unruh = FRC.Domain.Lift.temp ∧ FRC.Domain.Lift.unruh.j = (0 : Int)) ∧ (FRC.Domain.Lift.mass = { r := (-2 : Int), s := (1 : Int), j := (1 : Int) } ∧ FRC.Domain.Lift.temp = FRC.Domain.Lift.L * FRC.Domain.Lift.T⁻¹ * FRC.Domain.Lift.T⁻¹ ∧ FRC.Domain.Lift.energy * (FRC.Domain.Lift.hbar * FRC.Domain.Lift.speed⁻¹)⁻¹ = FRC.Domain.Lift.accel ∧ (FRC.Domain.Lift.energy * (FRC.Domain.Lift.hbar * FRC.Domain.Lift.speed⁻¹)⁻¹).j = (0 : Int)) ∧ (FRC.Domain.Lift.classical (1 : Int) (0 : Int) (0 : Int) (0 : Int) = FRC.Domain.Lift.mass ∧ FRC.Domain.Lift.classical (0 : Int) (1 : Int) (-1 : Int) (0 : Int) = FRC.Domain.Lift.speed ∧ FRC.Domain.Lift.classical (0 : Int) (1 : Int) (-2 : Int) (0 : Int) = FRC.Domain.Lift.accel ∧ FRC.Domain.Lift.classical (1 : Int) (2 : Int) (-2 : Int) (0 : Int) = FRC.Domain.Lift.energy ∧ FRC.Domain.Lift.classical (1 : Int) (2 : Int) (-1 : Int) (0 : Int) = FRC.Domain.Lift.hbar ∧ FRC.Domain.Lift.classical (1 : Int) (1 : Int) (-2 : Int) (0 : Int) = FRC.Domain.Lift.force ∧ FRC.Domain.Lift.classical (1 : Int) (1 : Int) (-1 : Int) (0 : Int) = FRC.Domain.Lift.momentum ∧ FRC.Domain.Lift.classical (1 : Int) (2 : Int) (-3 : Int) (0 : Int) = FRC.Domain.Lift.power ∧ FRC.Domain.Lift.classical (1 : Int) (-1 : Int) (-2 : Int) (0 : Int) = FRC.Domain.Lift.pressure ∧ FRC.Domain.Lift.classical (-1 : Int) (3 : Int) (-2 : Int) (0 : Int) = FRC.Domain.Lift.G ∧ FRC.Domain.Lift.classical (1 : Int) (2 : Int) (-2 : Int) (-1 : Int) = FRC.Domain.Lift.kB ∧ FRC.Domain.Lift.classical (0 : Int) (0 : Int) (0 : Int) (1 : Int) = FRC.Domain.Lift.temp) ∧ (FRC.Domain.Lift.classical (0 : Int) (1 : Int) (0 : Int) (0 : Int) = FRC.Domain.Lift.L ∧ FRC.Domain.Lift.classical (0 : Int) (0 : Int) (1 : Int) (0 : Int) = FRC.Domain.Lift.T ∧ FRC.Domain.Lift.classical (1 : Int) (2 : Int) (-1 : Int) (0 : Int) = FRC.Domain.Lift.flag ∧ FRC.Domain.Lift.classical (0 : Int) (0 : Int) (0 : Int) (1 : Int) = FRC.Domain.Lift.classical (0 : Int) (1 : Int) (-2 : Int) (0 : Int) ∧ FRC.Domain.Lift.classical (0 : Int) (-1 : Int) (2 : Int) (1 : Int) = (1 : FRC.Domain.Lift) ∧ (FRC.Domain.Lift.classical (1 : Int) (0 : Int) (0 : Int) (0 : Int)).r * ((FRC.Domain.Lift.classical (0 : Int) (1 : Int) (0 : Int) (0 : Int)).s * (FRC.Domain.Lift.classical (0 : Int) (0 : Int) (1 : Int) (0 : Int)).j - (FRC.Domain.Lift.classical (0 : Int) (1 : Int) (0 : Int) (0 : Int)).j * (FRC.Domain.Lift.classical (0 : Int) (0 : Int) (1 : Int) (0 : Int)).s) - (FRC.Domain.Lift.classical (1 : Int) (0 : Int) (0 : Int) (0 : Int)).s * ((FRC.Domain.Lift.classical (0 : Int) (1 : Int) (0 : Int) (0 : Int)).r * (FRC.Domain.Lift.classical (0 : Int) (0 : Int) (1 : Int) (0 : Int)).j - (FRC.Domain.Lift.classical (0 : Int) (1 : Int) (0 : Int) (0 : Int)).j * (FRC.Domain.Lift.classical (0 : Int) (0 : Int) (1 : Int) (0 : Int)).r) + (FRC.Domain.Lift.classical (1 : Int) (0 : Int) (0 : Int) (0 : Int)).j * ((FRC.Domain.Lift.classical (0 : Int) (1 : Int) (0 : Int) (0 : Int)).r * (FRC.Domain.Lift.classical (0 : Int) (0 : Int) (1 : Int) (0 : Int)).s - (FRC.Domain.Lift.classical (0 : Int) (1 : Int) (0 : Int) (0 : Int)).s * (FRC.Domain.Lift.classical (0 : Int) (0 : Int) (1 : Int) (0 : Int)).r) = (1 : Int) ∧ FRC.Domain.Lift.flag * FRC.Domain.Lift.flag * FRC.Domain.Lift.flag * FRC.Domain.Lift.flag ≠ (1 : FRC.Domain.Lift)) ∧ FRC.Domain.Lift.reduce (13 : Nat) (3 : Nat) FRC.Domain.Lift.temp = FRC.Domain.Lift.reduce (13 : Nat) (3 : Nat) FRC.Domain.Lift.accel ∧ FRC.Domain.Lift.reduce (13 : Nat) (3 : Nat) FRC.Domain.Lift.unruh = FRC.Domain.Lift.reduce (13 : Nat) (3 : Nat) FRC.Domain.Lift.temp ∧ FRC.Domain.Lift.reduce (13 : Nat) (3 : Nat) FRC.Domain.Lift.temp = ((1 : Int), (10 : Int)) ∧ FRC.Domain.Lift.reduce (13 : Nat) (3 : Nat) FRC.Domain.Lift.flag = ((0 : Int), (3 : Int)) ∧ FRC.Domain.Lift.reduce (13 : Nat) (3 : Nat) (FRC.Domain.Lift.T * FRC.Domain.Lift.T * FRC.Domain.Lift.T) = ((0 : Int), (3 : Int)) ∧ FRC.Domain.Lift.reduce (13 : Nat) (3 : Nat) (FRC.Domain.Lift.flag * FRC.Domain.Lift.flag * FRC.Domain.Lift.flag * FRC.Domain.Lift.flag) = ((0 : Int), (0 : Int)) ∧ FRC.Domain.Lift.reduce (13 : Nat) (3 : Nat) FRC.Domain.Lift.flag ≠ ((0 : Int), (0 : Int)) ∧ FRC.Domain.Lift.reduce (13 : Nat) (3 : Nat) (FRC.Domain.Lift.flag * FRC.Domain.Lift.flag) ≠ ((0 : Int), (0 : Int)) ∧ FRC.Domain.Lift.reduce (13 : Nat) (3 : Nat) (FRC.Domain.Lift.flag * FRC.Domain.Lift.flag * FRC.Domain.Lift.flag) ≠ ((0 : Int), (0 : Int)) ∧ FRC.Domain.Lift.reduce (13 : Nat) (3 : Nat) FRC.Domain.Lift.mass = ((11 : Int), (4 : Int)) ∧ FRC.Domain.Lift.reduce (173 : Nat) (43 : Nat) FRC.Domain.Lift.temp = FRC.Domain.Lift.reduce (173 : Nat) (43 : Nat) FRC.Domain.Lift.accel ∧ FRC.Domain.Lift.reduce (173 : Nat) (43 : Nat) FRC.Domain.Lift.unruh = FRC.Domain.Lift.reduce (173 : Nat) (43 : Nat) FRC.Domain.Lift.temp ∧ FRC.Domain.Lift.reduce (173 : Nat) (43 : Nat) FRC.Domain.Lift.temp = ((1 : Int), (170 : Int)) ∧ FRC.Domain.Lift.reduce (173 : Nat) (43 : Nat) FRC.Domain.Lift.flag = ((0 : Int), (43 : Int)) ∧ FRC.Domain.Lift.reduce (173 : Nat) (43 : Nat) (FRC.Domain.Lift.flag * FRC.Domain.Lift.flag * FRC.Domain.Lift.flag * FRC.Domain.Lift.flag) = ((0 : Int), (0 : Int)) ∧ FRC.Domain.Lift.reduce (173 : Nat) (43 : Nat) (FRC.Domain.Lift.flag * FRC.Domain.Lift.flag) = ((0 : Int), (86 : Int)) ∧ FRC.Domain.Lift.reduce (173 : Nat) (43 : Nat) (FRC.Domain.Lift.flag * FRC.Domain.Lift.flag * FRC.Domain.Lift.flag) = ((0 : Int), (129 : Int)) ∧ FRC.Domain.Lift.reduce (173 : Nat) (43 : Nat) FRC.Domain.Lift.mass = ((171 : Int), (44 : Int)) ∧ FRC.Domain.Lift.reduce (1373 : Nat) (343 : Nat) FRC.Domain.Lift.temp = FRC.Domain.Lift.reduce (1373 : Nat) (343 : Nat) FRC.Domain.Lift.accel ∧ FRC.Domain.Lift.reduce (1373 : Nat) (343 : Nat) FRC.Domain.Lift.unruh = FRC.Domain.Lift.reduce (1373 : Nat) (343 : Nat) FRC.Domain.Lift.temp ∧ FRC.Domain.Lift.reduce (1373 : Nat) (343 : Nat) FRC.Domain.Lift.flag = ((0 : Int), (343 : Int)) ∧ FRC.Domain.Lift.reduce (1373 : Nat) (343 : Nat) (FRC.Domain.Lift.flag * FRC.Domain.Lift.flag * FRC.Domain.Lift.flag * FRC.Domain.Lift.flag) = ((0 : Int), (0 : Int)) ∧ FRC.Domain.Lift.reduce (1373 : Nat) (343 : Nat) (FRC.Domain.Lift.flag * FRC.Domain.Lift.flag) = ((0 : Int), (686 : Int)) ∧ FRC.Domain.Lift.reduce (1373 : Nat) (343 : Nat) (FRC.Domain.Lift.flag * FRC.Domain.Lift.flag * FRC.Domain.Lift.flag) = ((0 : Int), (1029 : Int)) ∧ FRC.Domain.Lift.reduce (1373 : Nat) (343 : Nat) FRC.Domain.Lift.mass = ((1371 : Int), (344 : Int)) :=
+  And.intro @FRC.Domain.Lift.temp_eq_accel (And.intro @FRC.Domain.Lift.temp_flag_free (And.intro @FRC.Domain.Lift.unruh_closes (And.intro @FRC.Domain.Lift.not_primitive (And.intro @FRC.Domain.Lift.classical_exponents (And.intro @FRC.Domain.Lift.classical_arity (@FRC.Domain.Lift.modular_shadow))))))
 /-- p01004 — 1:B2. Symmetry completeness (Thm.~\ref{thm:symmetric-completeness}): the fourth roots of unity form the unique order-four subgroup $Q_4=\{1,\im,-1,-\im\}$; under the Klein four-group $\langle x\mapsto-x,\,x\mapsto x^{-1}\rangle$, $Q_4$ is the union of the two size-two orbits $\{\pm1\}$, $\{\pm\im\}$, and $\Fpx\setminus Q_4$ splits into exactly $\kap-1$ orbits of size four. For $\p\equiv3\pmod4$ no $\im$ exists. -/
 theorem p01004 : (∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → ∃ u, u * u = (-1 : FRC.Shell p)) ∧ (∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → ∀ (x : FRC.Shell p), x ^ (4 : Nat) = (1 : FRC.Shell p) ↔ x = (1 : FRC.Shell p) ∨ x = (-1 : FRC.Shell p) ∨ x = FRC.Shell.Frame.quarterTurn g κ ∨ x = -FRC.Shell.Frame.quarterTurn g κ) ∧ (∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → ∀ {x y : FRC.Shell p}, x * y = (1 : FRC.Shell p) → x ^ (4 : Nat) ≠ (1 : FRC.Shell p) → x ≠ -x ∧ x ≠ y ∧ x ≠ -y ∧ -x ≠ y ∧ -x ≠ -y ∧ y ≠ -y) ∧ (∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → ∀ {x : FRC.Shell p}, x ≠ (0 : FRC.Shell p) → x ^ (4 : Nat) ≠ (1 : FRC.Shell p) → ∃ r, (1 : Nat) ≤ r ∧ r < κ ∧ FRC.Shell.Frame.InOrbit (g ^ r) x) ∧ (∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → ∀ {r r' : Nat}, (1 : Nat) ≤ r → r < κ → (1 : Nat) ≤ r' → r' < κ → ∀ {x : FRC.Shell p}, FRC.Shell.Frame.InOrbit (g ^ r) x → FRC.Shell.Frame.InOrbit (g ^ r') x → r = r') ∧ (∀ (x : Fin (13 : Nat)), ↑x = (1 : Nat) ∨ ↑x = (5 : Nat) ∨ ↑x = (12 : Nat) ∨ ↑x = (8 : Nat) ↔ FRC.Shell.ofNat ↑x ^ (4 : Nat) = (1 : FRC.Shell (13 : Nat))) ∧ (2 : FRC.Shell (13 : Nat)) * (7 : FRC.Shell (13 : Nat)) = (1 : FRC.Shell (13 : Nat)) ∧ (3 : FRC.Shell (13 : Nat)) * (9 : FRC.Shell (13 : Nat)) = (1 : FRC.Shell (13 : Nat)) :=
   And.intro @FRC.Shell.Frame.quarter_turn_exists (And.intro @FRC.Shell.Frame.fourth_roots (And.intro @FRC.Shell.Frame.klein_orbit_four (And.intro @FRC.Shell.Frame.orbit_rep (And.intro @FRC.Shell.Frame.orbit_rep_unique (@FRC.Shell.s13_klein)))))
@@ -11043,9 +13713,6 @@ theorem p06010 : ∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.She
 /-- p06012 — 6:B5. $\Wt^{2}=-J$, $\Ft^{2}=J$, $\Ft^{4}=I$: the normalized operator generates the four-cycle, on the six shells of Table~\ref{tab:checks}. -/
 theorem p06012 : (∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → ∀ (k j : Nat), FRC.Shell.sumRange (fun l => FRC.Shell.Frame.W g k l * FRC.Shell.Frame.W g l j) (p - (1 : Nat)) = -FRC.Shell.Frame.J (p - (1 : Nat)) k j) ∧ (∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → ∀ (k j : Nat), FRC.Shell.sumRange (fun l => FRC.Shell.Frame.Fmat g κ k l * FRC.Shell.Frame.Fmat g κ l j) (p - (1 : Nat)) = FRC.Shell.Frame.J (p - (1 : Nat)) k j) ∧ ∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → ∀ {k j : Nat}, k < p - (1 : Nat) → j < p - (1 : Nat) → FRC.Shell.sumRange (fun l => FRC.Shell.Frame.J (p - (1 : Nat)) k l * FRC.Shell.Frame.J (p - (1 : Nat)) l j) (p - (1 : Nat)) = if k = j then (1 : FRC.Shell p) else (0 : FRC.Shell p) :=
   And.intro @FRC.Shell.Frame.W_sq' (And.intro @FRC.Shell.Frame.F_sq (@FRC.Shell.Frame.J_sq))
-/-- p06013 — 6:B6. The normalization is the unitary constant read in the field: $1/n\equiv-1$, its square roots in $\Fp$ are exactly $\pm\im$, and $(c\Wt)^{2}=J$ if and only if $c=\pm\im$. -/
-theorem p06013 : ∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → FRC.Shell.ofNat (p - (1 : Nat)) = (-1 : FRC.Shell p) :=
-  @FRC.Shell.Frame.ofNat_n
 /-- p06014 — 6:B7. $\Wt J=J\Wt$, hence $\Ft J=J\Ft$; $\Vt=V^{+}\oplus V^{-}$ with $\dim V^{+}=2\kap+1$, $\dim V^{-}=2\kap-1$. -/
 theorem p06014 : (∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → ∀ {k j : Nat}, k < p - (1 : Nat) → j < p - (1 : Nat) → FRC.Shell.sumRange (fun l => FRC.Shell.Frame.W g k l * FRC.Shell.Frame.J (p - (1 : Nat)) l j) (p - (1 : Nat)) = FRC.Shell.sumRange (fun l => FRC.Shell.Frame.J (p - (1 : Nat)) k l * FRC.Shell.Frame.W g l j) (p - (1 : Nat))) ∧ (∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → ∀ (v : Nat → FRC.Shell p), ∃ vp vm, FRC.Shell.Frame.Symm (p - (1 : Nat)) vp ∧ FRC.Shell.Frame.Antisymm (p - (1 : Nat)) vm ∧ ∀ (k : Nat), k < p - (1 : Nat) → v k = vp k + vm k) ∧ (∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → ∀ {a b : Nat → FRC.Shell p}, FRC.Shell.Frame.Symm (p - (1 : Nat)) a → FRC.Shell.Frame.Antisymm (p - (1 : Nat)) b → (∀ (k : Nat), k < p - (1 : Nat) → a k + b k = (0 : FRC.Shell p)) → ∀ (k : Nat), k < p - (1 : Nat) → a k = (0 : FRC.Shell p) ∧ b k = (0 : FRC.Shell p)) ∧ (∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → ∀ {v w : Nat → FRC.Shell p}, FRC.Shell.Frame.Symm (p - (1 : Nat)) v → FRC.Shell.Frame.Symm (p - (1 : Nat)) w → (∀ (k : Nat), k ≤ (2 : Nat) * κ → v k = w k) → ∀ (k : Nat), k < p - (1 : Nat) → v k = w k) ∧ ∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → ∀ {v w : Nat → FRC.Shell p}, FRC.Shell.Frame.Antisymm (p - (1 : Nat)) v → FRC.Shell.Frame.Antisymm (p - (1 : Nat)) w → (∀ (k : Nat), (0 : Nat) < k → k < (2 : Nat) * κ → v k = w k) → ∀ (k : Nat), k < p - (1 : Nat) → v k = w k :=
   And.intro @FRC.Shell.Frame.W_J_comm (And.intro @FRC.Shell.Frame.symm_antisymm_decomp (And.intro @FRC.Shell.Frame.symm_antisymm_unique (And.intro @FRC.Shell.Frame.symm_determined (@FRC.Shell.Frame.antisymm_determined))))
@@ -11081,12 +13748,16 @@ end FRC.Ledger
 
 The predicates of *Scale-Shift and Fractional Fourier Transform as Rotations over Finite Holographic Substrate*
 (6-fourier) that the core proves with no axioms, named by their accession keys below and proved in the modules this
-one imports: 6:B2 (the Euler identity `e^{iπ} = −1` exactly on the odd quarter-turn, `Frame.euler_identity`),
-6:B3 (the conjugate reframing toggles the parity, `Frame.orientation_class`), 6:B5 (`W² = −J`, `F² = J`, `J² = I`;
-`Sum`), 6:B6 (`n = −1` on the shell, `Frame.ofNat_n`), 6:B7 (`W J = J W` and the symmetric–antisymmetric
-decomposition; `Sum`), 6:D4 (the meridian scale law `S_r M_m = M_{m+r}`, its step and its periodicity; `Meridian`),
-6:D5 (the `p = 13` ladder, `ladder13`). The Mathlib statements of the same predicates, for every shell, are in
-`FrcLedger/Fourier.lean`; the paper's python witness checks them on six shells.
+one imports through the key files: the frame theme's `Sum` and `Meridian` for 6:B2, 6:B3, 6:B5, 6:B7, 6:D4, 6:D5
+(the Euler identity, the orientation class, `W² = −J`, `W J = J W`, the meridian scale law, the `p = 13` ladder),
+and the fourier theme's eight files for the rest: `Theme/Fourier` (the shell DFT and the fractional family),
+`Theme/Fractional` (the projector algebra, faithfulness, the domains: 6:C2, 6:C4, 6:C5, 6:D1, 6:D2, 6:D7),
+`Theme/Lifts` (the exponent lifts, the charts, the normalization: 6:B6, 6:C6, 6:C8, 6:C11), `Theme/Dichotomy`
+(the multiplicity dichotomy in trace form, 6:C7), `Theme/Rotations` (the rotation group of the label plane: 6:E2,
+6:E3, 6:E10), `Theme/Heisenberg` (the character sector and the Heisenberg pair: 6:E6, 6:E7), `Theme/Spectra`
+(the spectra and the spectral obstruction: 6:E5, 6:E9) and `Theme/Exclusivity` (cardinal exclusivity, 6:E8);
+6:C3 and 6:C9 are `Theme/Fourier`'s. The Mathlib statements of fifteen of these predicates, for every shell, are
+in `FrcLedger/Fourier.lean`; the paper's python witness checks them on six shells.
 -/
 
 namespace FRC.Fourier
@@ -11102,17 +13773,77 @@ theorem p06010 : ∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.She
 theorem p06012 : (∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → ∀ (k j : Nat), FRC.Shell.sumRange (fun l => FRC.Shell.Frame.W g k l * FRC.Shell.Frame.W g l j) (p - (1 : Nat)) = -FRC.Shell.Frame.J (p - (1 : Nat)) k j) ∧ (∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → ∀ (k j : Nat), FRC.Shell.sumRange (fun l => FRC.Shell.Frame.Fmat g κ k l * FRC.Shell.Frame.Fmat g κ l j) (p - (1 : Nat)) = FRC.Shell.Frame.J (p - (1 : Nat)) k j) ∧ ∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → ∀ {k j : Nat}, k < p - (1 : Nat) → j < p - (1 : Nat) → FRC.Shell.sumRange (fun l => FRC.Shell.Frame.J (p - (1 : Nat)) k l * FRC.Shell.Frame.J (p - (1 : Nat)) l j) (p - (1 : Nat)) = if k = j then (1 : FRC.Shell p) else (0 : FRC.Shell p) :=
   @FRC.Ledger.p06012
 /-- 6:B6 (p06013) — The normalization is the unitary constant read in the field: $1/n\equiv-1$, its square roots in $\Fp$ are exactly $\pm\im$, and $(c\Wt)^{2}=J$ if and only if $c=\pm\im$. -/
-theorem p06013 : ∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → FRC.Shell.ofNat (p - (1 : Nat)) = (-1 : FRC.Shell p) :=
+theorem p06013 : (∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → FRC.Shell.ofNat (p - (1 : Nat)) = (-1 : FRC.Shell p)) ∧ (∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → ∀ (x : FRC.Shell p), x * x = (-1 : FRC.Shell p) ↔ x = FRC.Shell.Frame.quarterTurn g κ ∨ x = -FRC.Shell.Frame.quarterTurn g κ) ∧ ∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → ∀ (c : FRC.Shell p), (∀ (k j : Nat), k < p - (1 : Nat) → j < p - (1 : Nat) → FRC.Shell.sumRange (fun l => c * FRC.Shell.Frame.W g k l * (c * FRC.Shell.Frame.W g l j)) (p - (1 : Nat)) = FRC.Shell.Frame.J (p - (1 : Nat)) k j) ↔ c = FRC.Shell.Frame.quarterTurn g κ ∨ c = -FRC.Shell.Frame.quarterTurn g κ :=
   @FRC.Ledger.p06013
 /-- 6:B7 (p06014) — $\Wt J=J\Wt$, hence $\Ft J=J\Ft$; $\Vt=V^{+}\oplus V^{-}$ with $\dim V^{+}=2\kap+1$, $\dim V^{-}=2\kap-1$. -/
 theorem p06014 : (∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → ∀ {k j : Nat}, k < p - (1 : Nat) → j < p - (1 : Nat) → FRC.Shell.sumRange (fun l => FRC.Shell.Frame.W g k l * FRC.Shell.Frame.J (p - (1 : Nat)) l j) (p - (1 : Nat)) = FRC.Shell.sumRange (fun l => FRC.Shell.Frame.J (p - (1 : Nat)) k l * FRC.Shell.Frame.W g l j) (p - (1 : Nat))) ∧ (∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → ∀ (v : Nat → FRC.Shell p), ∃ vp vm, FRC.Shell.Frame.Symm (p - (1 : Nat)) vp ∧ FRC.Shell.Frame.Antisymm (p - (1 : Nat)) vm ∧ ∀ (k : Nat), k < p - (1 : Nat) → v k = vp k + vm k) ∧ (∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → ∀ {a b : Nat → FRC.Shell p}, FRC.Shell.Frame.Symm (p - (1 : Nat)) a → FRC.Shell.Frame.Antisymm (p - (1 : Nat)) b → (∀ (k : Nat), k < p - (1 : Nat) → a k + b k = (0 : FRC.Shell p)) → ∀ (k : Nat), k < p - (1 : Nat) → a k = (0 : FRC.Shell p) ∧ b k = (0 : FRC.Shell p)) ∧ (∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → ∀ {v w : Nat → FRC.Shell p}, FRC.Shell.Frame.Symm (p - (1 : Nat)) v → FRC.Shell.Frame.Symm (p - (1 : Nat)) w → (∀ (k : Nat), k ≤ (2 : Nat) * κ → v k = w k) → ∀ (k : Nat), k < p - (1 : Nat) → v k = w k) ∧ ∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → ∀ {v w : Nat → FRC.Shell p}, FRC.Shell.Frame.Antisymm (p - (1 : Nat)) v → FRC.Shell.Frame.Antisymm (p - (1 : Nat)) w → (∀ (k : Nat), (0 : Nat) < k → k < (2 : Nat) * κ → v k = w k) → ∀ (k : Nat), k < p - (1 : Nat) → v k = w k :=
   @FRC.Ledger.p06014
+/-- 6:C2 (p06016) — $\Pi_\ell^{2}=\Pi_\ell$, $\Pi_\ell\Pi_m=0$ for $\ell\neq m$, $\sum_\ell\Pi_\ell=I$, $\Ft\Pi_\ell=\im^{\ell}\Pi_\ell$. -/
+theorem p06016 : (∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → ∀ (ℓ : Nat) {k j : Nat}, k < p - (1 : Nat) → j < p - (1 : Nat) → FRC.Shell.sumRange (fun l => FRC.Shell.Frame.proj g κ ℓ k l * FRC.Shell.Frame.proj g κ ℓ l j) (p - (1 : Nat)) = FRC.Shell.Frame.proj g κ ℓ k j) ∧ (∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → ∀ {ℓ m : Nat}, ℓ < (4 : Nat) → m < (4 : Nat) → ℓ ≠ m → ∀ {k j : Nat}, k < p - (1 : Nat) → j < p - (1 : Nat) → FRC.Shell.sumRange (fun l => FRC.Shell.Frame.proj g κ ℓ k l * FRC.Shell.Frame.proj g κ m l j) (p - (1 : Nat)) = (0 : FRC.Shell p)) ∧ (∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → ∀ (k j : Nat), FRC.Shell.Frame.proj g κ (0 : Nat) k j + FRC.Shell.Frame.proj g κ (1 : Nat) k j + FRC.Shell.Frame.proj g κ (2 : Nat) k j + FRC.Shell.Frame.proj g κ (3 : Nat) k j = FRC.Shell.Frame.idm k j) ∧ ∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → ∀ (ℓ : Nat) {k j : Nat}, k < p - (1 : Nat) → j < p - (1 : Nat) → FRC.Shell.sumRange (fun l => FRC.Shell.Frame.Fmat g κ k l * FRC.Shell.Frame.proj g κ ℓ l j) (p - (1 : Nat)) = FRC.Shell.Frame.quarterTurn g κ ^ ℓ * FRC.Shell.Frame.proj g κ ℓ k j :=
+  @FRC.Ledger.p06016
+/-- 6:C3 (p06017) — The exact finite-field FrFT: $s\mapsto\Ft^{[s]}$ is a representation of $\Phit$, $\Ft^{[s+r]}=\Ft^{[s]}\Ft^{[r]}$ on every pair of the six shells, with the cardinal values $\Ft^{[0]}=I$, $\Ft^{[\kap]}=\Ft$, $\Ft^{[2\kap]}=J$, $\Ft^{[3\kap]}=\Ft^{-1}$, and $(\Ft^{[1]})^{\kap}=\Ft$. -/
+theorem p06017 : (∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → ∀ (z : FRC.Shell p) (s r : Nat) {k j : Nat}, k < p - (1 : Nat) → j < p - (1 : Nat) → FRC.Shell.Frame.frft g κ z (s + r) k j = FRC.Shell.sumRange (fun l => FRC.Shell.Frame.frft g κ z s k l * FRC.Shell.Frame.frft g κ z r l j) (p - (1 : Nat))) ∧ (∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → ∀ {z : FRC.Shell p}, g * z = (1 : FRC.Shell p) → ∀ (k j : Nat), FRC.Shell.Frame.frft g κ z (0 : Nat) k j = FRC.Shell.Frame.idm k j ∧ FRC.Shell.Frame.frft g κ z κ k j = FRC.Shell.Frame.Fmat g κ k j ∧ FRC.Shell.Frame.frft g κ z ((2 : Nat) * κ) k j = FRC.Shell.Frame.J (p - (1 : Nat)) k j ∧ FRC.Shell.Frame.frft g κ z ((3 : Nat) * κ) k j = FRC.Shell.Frame.FJ g κ k j) ∧ (∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → ∀ {z : FRC.Shell p}, g * z = (1 : FRC.Shell p) → ∀ (s k j : Nat), FRC.Shell.Frame.frft g κ z (s + (p - (1 : Nat))) k j = FRC.Shell.Frame.frft g κ z s k j) ∧ ∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → ∀ {z : FRC.Shell p}, g * z = (1 : FRC.Shell p) → ∀ (s m k j : Nat), k < p - (1 : Nat) → j < p - (1 : Nat) → FRC.Shell.Frame.frft g κ z (m * s) k j = FRC.Shell.Frame.mpow (FRC.Shell.Frame.frft g κ z s) m k j :=
+  @FRC.Ledger.p06017
+/-- 6:C4 (p06018) — Faithfulness: $s\mapsto\Ft^{[s]}$ is injective on $\Z_{4\kap}$ for every $\kap\ge1$; at $\p=5$ the surviving odd projector carries the faithful character. -/
+theorem p06018 : (∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → (2 : Nat) ≤ κ → ∀ {z : FRC.Shell p}, g * z = (1 : FRC.Shell p) → ∀ {s r : Nat}, s < p - (1 : Nat) → r < p - (1 : Nat) → (∀ (k j : Nat), k < p - (1 : Nat) → j < p - (1 : Nat) → FRC.Shell.Frame.frft g κ z s k j = FRC.Shell.Frame.frft g κ z r k j) → s = r) ∧ (∀ (g : FRC.Shell (5 : Nat)), g.IsPrimitive (4 : Nat) → g = (2 : FRC.Shell (5 : Nat)) ∨ g = (3 : FRC.Shell (5 : Nat))) ∧ ((∀ (s : Nat), s < (4 : Nat) → ∀ (r : Nat), r < (4 : Nat) → (∀ (k : Nat), k < (4 : Nat) → ∀ (j : Nat), j < (4 : Nat) → FRC.Shell.Frame.frft (2 : FRC.Shell (5 : Nat)) (1 : Nat) (3 : FRC.Shell (5 : Nat)) s k j = FRC.Shell.Frame.frft (2 : FRC.Shell (5 : Nat)) (1 : Nat) (3 : FRC.Shell (5 : Nat)) r k j) → s = r) ∧ ∀ (s : Nat), s < (4 : Nat) → ∀ (r : Nat), r < (4 : Nat) → (∀ (k : Nat), k < (4 : Nat) → ∀ (j : Nat), j < (4 : Nat) → FRC.Shell.Frame.frft (3 : FRC.Shell (5 : Nat)) (1 : Nat) (2 : FRC.Shell (5 : Nat)) s k j = FRC.Shell.Frame.frft (3 : FRC.Shell (5 : Nat)) (1 : Nat) (2 : FRC.Shell (5 : Nat)) r k j) → s = r) ∧ (∀ (k : Nat), k < (4 : Nat) → ∀ (j : Nat), j < (4 : Nat) → FRC.Shell.Frame.proj (2 : FRC.Shell (5 : Nat)) (1 : Nat) (1 : Nat) k j = (0 : FRC.Shell (5 : Nat))) ∧ FRC.Shell.Frame.proj (2 : FRC.Shell (5 : Nat)) (1 : Nat) (3 : Nat) (1 : Nat) (1 : Nat) ≠ (0 : FRC.Shell (5 : Nat)) ∧ (∀ (k : Nat), k < (4 : Nat) → ∀ (j : Nat), j < (4 : Nat) → FRC.Shell.Frame.proj (3 : FRC.Shell (5 : Nat)) (1 : Nat) (3 : Nat) k j = (0 : FRC.Shell (5 : Nat))) ∧ FRC.Shell.Frame.proj (3 : FRC.Shell (5 : Nat)) (1 : Nat) (1 : Nat) (1 : Nat) (1 : Nat) ≠ (0 : FRC.Shell (5 : Nat)) ∧ (∀ (s : Nat), s < (4 : Nat) → ∀ (r : Nat), r < (4 : Nat) → (3 : FRC.Shell (5 : Nat)) ^ ((3 : Nat) * s) = (3 : FRC.Shell (5 : Nat)) ^ ((3 : Nat) * r) → s = r) ∧ ∀ (s : Nat), s < (4 : Nat) → ∀ (r : Nat), r < (4 : Nat) → (2 : FRC.Shell (5 : Nat)) ^ ((1 : Nat) * s) = (2 : FRC.Shell (5 : Nat)) ^ ((1 : Nat) * r) → s = r :=
+  @FRC.Ledger.p06018
+/-- 6:C5 (p06019) — The projector sums $\Pi_0+\Pi_2=\tfrac12(I+J)$ and $\Pi_1+\Pi_3=\tfrac12(I-J)$; $\Pi_0,\Pi_2\neq0$ for every $\kap\ge1$ and $\Pi_1,\Pi_3\neq0$ for $\kap\ge2$, each by one explicit entry; at $\p=5$ exactly one of $\Pi_1,\Pi_3$ vanishes. -/
+theorem p06019 : (∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → ∀ (k j : Nat), FRC.Shell.Frame.proj g κ (0 : Nat) k j + FRC.Shell.Frame.proj g κ (2 : Nat) k j = (-FRC.Shell.ofNat κ + -FRC.Shell.ofNat κ) * (FRC.Shell.Frame.idm k j + FRC.Shell.Frame.J (p - (1 : Nat)) k j)) ∧ (∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → ∀ (k j : Nat), FRC.Shell.Frame.proj g κ (1 : Nat) k j + FRC.Shell.Frame.proj g κ (3 : Nat) k j = (-FRC.Shell.ofNat κ + -FRC.Shell.ofNat κ) * (FRC.Shell.Frame.idm k j + -FRC.Shell.Frame.J (p - (1 : Nat)) k j)) ∧ (∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → ((1 : FRC.Shell p) + (1 : FRC.Shell p)) * (-FRC.Shell.ofNat κ + -FRC.Shell.ofNat κ) = (1 : FRC.Shell p)) ∧ (∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → FRC.Shell.Frame.proj g κ (0 : Nat) (0 : Nat) (0 : Nat) ≠ (0 : FRC.Shell p) ∧ FRC.Shell.Frame.proj g κ (2 : Nat) (0 : Nat) (0 : Nat) ≠ (0 : FRC.Shell p)) ∧ (∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → (2 : Nat) ≤ κ → FRC.Shell.Frame.proj g κ (1 : Nat) (2 : Nat) (1 : Nat) ≠ (0 : FRC.Shell p) ∧ FRC.Shell.Frame.proj g κ (3 : Nat) (2 : Nat) (1 : Nat) ≠ (0 : FRC.Shell p)) ∧ (∀ (g : FRC.Shell (5 : Nat)), g.IsPrimitive (4 : Nat) → g = (2 : FRC.Shell (5 : Nat)) ∨ g = (3 : FRC.Shell (5 : Nat))) ∧ (∀ (k : Nat), k < (4 : Nat) → ∀ (j : Nat), j < (4 : Nat) → FRC.Shell.Frame.proj (2 : FRC.Shell (5 : Nat)) (1 : Nat) (1 : Nat) k j = (0 : FRC.Shell (5 : Nat))) ∧ FRC.Shell.Frame.proj (2 : FRC.Shell (5 : Nat)) (1 : Nat) (3 : Nat) (1 : Nat) (1 : Nat) ≠ (0 : FRC.Shell (5 : Nat)) ∧ (∀ (k : Nat), k < (4 : Nat) → ∀ (j : Nat), j < (4 : Nat) → FRC.Shell.Frame.proj (3 : FRC.Shell (5 : Nat)) (1 : Nat) (3 : Nat) k j = (0 : FRC.Shell (5 : Nat))) ∧ FRC.Shell.Frame.proj (3 : FRC.Shell (5 : Nat)) (1 : Nat) (1 : Nat) (1 : Nat) (1 : Nat) ≠ (0 : FRC.Shell (5 : Nat)) ∧ (∀ (s : Nat), s < (4 : Nat) → ∀ (r : Nat), r < (4 : Nat) → (3 : FRC.Shell (5 : Nat)) ^ ((3 : Nat) * s) = (3 : FRC.Shell (5 : Nat)) ^ ((3 : Nat) * r) → s = r) ∧ ∀ (s : Nat), s < (4 : Nat) → ∀ (r : Nat), r < (4 : Nat) → (2 : FRC.Shell (5 : Nat)) ^ ((1 : Nat) * s) = (2 : FRC.Shell (5 : Nat)) ^ ((1 : Nat) * r) → s = r :=
+  @FRC.Ledger.p06019
+/-- 6:C6 (p06020) — Multiplicities are chart data: for $u$ odd and a unit mod $4\kap$ the vertex relabelling $m\mapsto um$ carries $\Ft(\gen)$ to $\Ft(\gen^{u^{2}})$ by a coordinate permutation, $\Ft(\gen^{u^{2}})_{kj}=\Ft(\gen)_{uk,uj}$; at $\p=13$ the frames $\gen=2$ and $\gen=6$ give the tuples $(3,3,4,2)$ and $(4,2,3,3)$, read as the traces of the projectors, with $\operatorname{Tr}\Ft=4,9$. -/
+theorem p06020 : (∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → ∀ {u : Nat}, u % (2 : Nat) = (1 : Nat) → ∀ (k j : Nat), FRC.Shell.Frame.Fmat (g ^ (u * u)) κ k j = FRC.Shell.Frame.Fmat g κ (u * k % (p - (1 : Nat))) (u * j % (p - (1 : Nat)))) ∧ FRC.Shell.Frame.trace (FRC.Shell.Frame.proj (2 : FRC.Shell (13 : Nat)) (3 : Nat) (0 : Nat)) (12 : Nat) = (3 : FRC.Shell (13 : Nat)) ∧ FRC.Shell.Frame.trace (FRC.Shell.Frame.proj (2 : FRC.Shell (13 : Nat)) (3 : Nat) (1 : Nat)) (12 : Nat) = (3 : FRC.Shell (13 : Nat)) ∧ FRC.Shell.Frame.trace (FRC.Shell.Frame.proj (2 : FRC.Shell (13 : Nat)) (3 : Nat) (2 : Nat)) (12 : Nat) = (4 : FRC.Shell (13 : Nat)) ∧ FRC.Shell.Frame.trace (FRC.Shell.Frame.proj (2 : FRC.Shell (13 : Nat)) (3 : Nat) (3 : Nat)) (12 : Nat) = (2 : FRC.Shell (13 : Nat)) ∧ FRC.Shell.Frame.trace (FRC.Shell.Frame.proj (6 : FRC.Shell (13 : Nat)) (3 : Nat) (0 : Nat)) (12 : Nat) = (4 : FRC.Shell (13 : Nat)) ∧ FRC.Shell.Frame.trace (FRC.Shell.Frame.proj (6 : FRC.Shell (13 : Nat)) (3 : Nat) (1 : Nat)) (12 : Nat) = (2 : FRC.Shell (13 : Nat)) ∧ FRC.Shell.Frame.trace (FRC.Shell.Frame.proj (6 : FRC.Shell (13 : Nat)) (3 : Nat) (2 : Nat)) (12 : Nat) = (3 : FRC.Shell (13 : Nat)) ∧ FRC.Shell.Frame.trace (FRC.Shell.Frame.proj (6 : FRC.Shell (13 : Nat)) (3 : Nat) (3 : Nat)) (12 : Nat) = (3 : FRC.Shell (13 : Nat)) ∧ FRC.Shell.Frame.trace (FRC.Shell.Frame.Fmat (2 : FRC.Shell (13 : Nat)) (3 : Nat)) (12 : Nat) = (4 : FRC.Shell (13 : Nat)) ∧ FRC.Shell.Frame.trace (FRC.Shell.Frame.Fmat (6 : FRC.Shell (13 : Nat)) (3 : Nat)) (12 : Nat) = (9 : FRC.Shell (13 : Nat)) :=
+  @FRC.Ledger.p06020
+/-- 6:C7 (p06021) — The multiplicity dichotomy in trace form: with $G=\sum_{k}\gen^{k^{2}}$ and $G^{*}=\sum_k\gen^{-k^{2}}$ the traces are $\operatorname{Tr}\Ft=\im G$, $\operatorname{Tr}\Ft^{2}=2$, $\operatorname{Tr}\Ft^{3}=\im G^{*}$ and $\operatorname{Tr}\Pi_\ell=\tfrac14\sum_r\im^{-\ell r}\operatorname{Tr}\Ft^{r}$; $GG^{*}=-2$ and $\varepsilon(\gen^{-1})=-\varepsilon(\gen)$; when $G=\varepsilon(1+\im)$ (A3) the tuple of traces is $(\kap,\kap,\kap+1,\kap-1)$ for $\varepsilon=+1$ and $(\kap+1,\kap-1,\kap,\kap)$ for $\varepsilon=-1$, read in $\Fp$; the sign and the tuples on the six shells of Table~\ref{tab:checks}. Exact on the $38$ primitive frames of $\p\in\{5,13,17,29,37\}$ and the $16$ of $\p=41$. -/
+theorem p06021 : (∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → ∀ {z : FRC.Shell p}, g * z = (1 : FRC.Shell p) → FRC.Shell.Frame.trace FRC.Shell.Frame.idm (p - (1 : Nat)) = (-1 : FRC.Shell p) ∧ FRC.Shell.Frame.trace (FRC.Shell.Frame.Fmat g κ) (p - (1 : Nat)) = FRC.Shell.Frame.quarterTurn g κ * FRC.Shell.Frame.gauss g (p - (1 : Nat)) ∧ FRC.Shell.Frame.trace (FRC.Shell.Frame.J (p - (1 : Nat))) (p - (1 : Nat)) = (1 : FRC.Shell p) + (1 : FRC.Shell p) ∧ FRC.Shell.Frame.trace (FRC.Shell.Frame.FJ g κ) (p - (1 : Nat)) = FRC.Shell.Frame.quarterTurn g κ * FRC.Shell.Frame.gauss z (p - (1 : Nat))) ∧ (∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → ∀ {z : FRC.Shell p}, g * z = (1 : FRC.Shell p) → ∀ (ℓ : Nat), FRC.Shell.Frame.trace (FRC.Shell.Frame.proj g κ ℓ) (p - (1 : Nat)) = -FRC.Shell.ofNat κ * (-1 : FRC.Shell p) + -FRC.Shell.ofNat κ * (-FRC.Shell.Frame.quarterTurn g κ) ^ ℓ * (FRC.Shell.Frame.quarterTurn g κ * FRC.Shell.Frame.gauss g (p - (1 : Nat))) + -FRC.Shell.ofNat κ * ((-FRC.Shell.Frame.quarterTurn g κ) ^ ℓ * (-FRC.Shell.Frame.quarterTurn g κ) ^ ℓ) * ((1 : FRC.Shell p) + (1 : FRC.Shell p)) + -FRC.Shell.ofNat κ * ((-FRC.Shell.Frame.quarterTurn g κ) ^ ℓ * (-FRC.Shell.Frame.quarterTurn g κ) ^ ℓ * (-FRC.Shell.Frame.quarterTurn g κ) ^ ℓ) * (FRC.Shell.Frame.quarterTurn g κ * FRC.Shell.Frame.gauss z (p - (1 : Nat)))) ∧ (∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → ∀ {z : FRC.Shell p}, g * z = (1 : FRC.Shell p) → FRC.Shell.Frame.gauss g (p - (1 : Nat)) * FRC.Shell.Frame.gauss z (p - (1 : Nat)) = -((1 : FRC.Shell p) + (1 : FRC.Shell p))) ∧ (∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → ∀ {z : FRC.Shell p}, g * z = (1 : FRC.Shell p) → ∀ {ε : FRC.Shell p}, ε * ε = (1 : FRC.Shell p) → FRC.Shell.Frame.gauss g (p - (1 : Nat)) = ε * ((1 : FRC.Shell p) + FRC.Shell.Frame.quarterTurn g κ) → FRC.Shell.Frame.gauss z (p - (1 : Nat)) = -(ε * ((1 : FRC.Shell p) + -FRC.Shell.Frame.quarterTurn g κ))) ∧ (∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → ∀ {z : FRC.Shell p}, g * z = (1 : FRC.Shell p) → ∀ {ε : FRC.Shell p}, ε = (1 : FRC.Shell p) ∨ ε = (-1 : FRC.Shell p) → FRC.Shell.Frame.gauss g (p - (1 : Nat)) = ε * ((1 : FRC.Shell p) + FRC.Shell.Frame.quarterTurn g κ) → ε = (1 : FRC.Shell p) ∧ FRC.Shell.Frame.trace (FRC.Shell.Frame.proj g κ (0 : Nat)) (p - (1 : Nat)) = FRC.Shell.ofNat κ ∧ FRC.Shell.Frame.trace (FRC.Shell.Frame.proj g κ (1 : Nat)) (p - (1 : Nat)) = FRC.Shell.ofNat κ ∧ FRC.Shell.Frame.trace (FRC.Shell.Frame.proj g κ (2 : Nat)) (p - (1 : Nat)) = FRC.Shell.ofNat κ + (1 : FRC.Shell p) ∧ FRC.Shell.Frame.trace (FRC.Shell.Frame.proj g κ (3 : Nat)) (p - (1 : Nat)) = FRC.Shell.ofNat κ + (-1 : FRC.Shell p) ∨ ε = (-1 : FRC.Shell p) ∧ FRC.Shell.Frame.trace (FRC.Shell.Frame.proj g κ (0 : Nat)) (p - (1 : Nat)) = FRC.Shell.ofNat κ + (1 : FRC.Shell p) ∧ FRC.Shell.Frame.trace (FRC.Shell.Frame.proj g κ (1 : Nat)) (p - (1 : Nat)) = FRC.Shell.ofNat κ + (-1 : FRC.Shell p) ∧ FRC.Shell.Frame.trace (FRC.Shell.Frame.proj g κ (2 : Nat)) (p - (1 : Nat)) = FRC.Shell.ofNat κ ∧ FRC.Shell.Frame.trace (FRC.Shell.Frame.proj g κ (3 : Nat)) (p - (1 : Nat)) = FRC.Shell.ofNat κ) ∧ (FRC.Shell.Frame.gauss (2 : FRC.Shell (5 : Nat)) (4 : Nat) = (-1 : FRC.Shell (5 : Nat)) * ((1 : FRC.Shell (5 : Nat)) + FRC.Shell.Frame.quarterTurn (2 : FRC.Shell (5 : Nat)) (1 : Nat)) ∧ FRC.Shell.Frame.gauss (2 : FRC.Shell (13 : Nat)) (12 : Nat) = (1 : FRC.Shell (13 : Nat)) * ((1 : FRC.Shell (13 : Nat)) + FRC.Shell.Frame.quarterTurn (2 : FRC.Shell (13 : Nat)) (3 : Nat)) ∧ FRC.Shell.Frame.gauss (3 : FRC.Shell (17 : Nat)) (16 : Nat) = (1 : FRC.Shell (17 : Nat)) * ((1 : FRC.Shell (17 : Nat)) + FRC.Shell.Frame.quarterTurn (3 : FRC.Shell (17 : Nat)) (4 : Nat)) ∧ FRC.Shell.Frame.gauss (2 : FRC.Shell (29 : Nat)) (28 : Nat) = (1 : FRC.Shell (29 : Nat)) * ((1 : FRC.Shell (29 : Nat)) + FRC.Shell.Frame.quarterTurn (2 : FRC.Shell (29 : Nat)) (7 : Nat)) ∧ FRC.Shell.Frame.gauss (2 : FRC.Shell (37 : Nat)) (36 : Nat) = (1 : FRC.Shell (37 : Nat)) * ((1 : FRC.Shell (37 : Nat)) + FRC.Shell.Frame.quarterTurn (2 : FRC.Shell (37 : Nat)) (9 : Nat)) ∧ FRC.Shell.Frame.gauss (6 : FRC.Shell (41 : Nat)) (40 : Nat) = (1 : FRC.Shell (41 : Nat)) * ((1 : FRC.Shell (41 : Nat)) + FRC.Shell.Frame.quarterTurn (6 : FRC.Shell (41 : Nat)) (10 : Nat))) ∧ (FRC.Shell.Frame.trace (FRC.Shell.Frame.proj (2 : FRC.Shell (5 : Nat)) (1 : Nat) (0 : Nat)) (4 : Nat) = (2 : FRC.Shell (5 : Nat)) ∧ FRC.Shell.Frame.trace (FRC.Shell.Frame.proj (2 : FRC.Shell (5 : Nat)) (1 : Nat) (1 : Nat)) (4 : Nat) = (0 : FRC.Shell (5 : Nat)) ∧ FRC.Shell.Frame.trace (FRC.Shell.Frame.proj (2 : FRC.Shell (5 : Nat)) (1 : Nat) (2 : Nat)) (4 : Nat) = (1 : FRC.Shell (5 : Nat)) ∧ FRC.Shell.Frame.trace (FRC.Shell.Frame.proj (2 : FRC.Shell (5 : Nat)) (1 : Nat) (3 : Nat)) (4 : Nat) = (1 : FRC.Shell (5 : Nat))) ∧ (FRC.Shell.Frame.trace (FRC.Shell.Frame.proj (2 : FRC.Shell (13 : Nat)) (3 : Nat) (0 : Nat)) (12 : Nat) = (3 : FRC.Shell (13 : Nat)) ∧ FRC.Shell.Frame.trace (FRC.Shell.Frame.proj (2 : FRC.Shell (13 : Nat)) (3 : Nat) (1 : Nat)) (12 : Nat) = (3 : FRC.Shell (13 : Nat)) ∧ FRC.Shell.Frame.trace (FRC.Shell.Frame.proj (2 : FRC.Shell (13 : Nat)) (3 : Nat) (2 : Nat)) (12 : Nat) = (4 : FRC.Shell (13 : Nat)) ∧ FRC.Shell.Frame.trace (FRC.Shell.Frame.proj (2 : FRC.Shell (13 : Nat)) (3 : Nat) (3 : Nat)) (12 : Nat) = (2 : FRC.Shell (13 : Nat))) ∧ (FRC.Shell.Frame.trace (FRC.Shell.Frame.proj (3 : FRC.Shell (17 : Nat)) (4 : Nat) (0 : Nat)) (16 : Nat) = (4 : FRC.Shell (17 : Nat)) ∧ FRC.Shell.Frame.trace (FRC.Shell.Frame.proj (3 : FRC.Shell (17 : Nat)) (4 : Nat) (1 : Nat)) (16 : Nat) = (4 : FRC.Shell (17 : Nat)) ∧ FRC.Shell.Frame.trace (FRC.Shell.Frame.proj (3 : FRC.Shell (17 : Nat)) (4 : Nat) (2 : Nat)) (16 : Nat) = (5 : FRC.Shell (17 : Nat)) ∧ FRC.Shell.Frame.trace (FRC.Shell.Frame.proj (3 : FRC.Shell (17 : Nat)) (4 : Nat) (3 : Nat)) (16 : Nat) = (3 : FRC.Shell (17 : Nat))) ∧ (FRC.Shell.Frame.trace (FRC.Shell.Frame.proj (2 : FRC.Shell (29 : Nat)) (7 : Nat) (0 : Nat)) (28 : Nat) = (7 : FRC.Shell (29 : Nat)) ∧ FRC.Shell.Frame.trace (FRC.Shell.Frame.proj (2 : FRC.Shell (29 : Nat)) (7 : Nat) (1 : Nat)) (28 : Nat) = (7 : FRC.Shell (29 : Nat)) ∧ FRC.Shell.Frame.trace (FRC.Shell.Frame.proj (2 : FRC.Shell (29 : Nat)) (7 : Nat) (2 : Nat)) (28 : Nat) = (8 : FRC.Shell (29 : Nat)) ∧ FRC.Shell.Frame.trace (FRC.Shell.Frame.proj (2 : FRC.Shell (29 : Nat)) (7 : Nat) (3 : Nat)) (28 : Nat) = (6 : FRC.Shell (29 : Nat))) ∧ (FRC.Shell.Frame.trace (FRC.Shell.Frame.proj (2 : FRC.Shell (37 : Nat)) (9 : Nat) (0 : Nat)) (36 : Nat) = (9 : FRC.Shell (37 : Nat)) ∧ FRC.Shell.Frame.trace (FRC.Shell.Frame.proj (2 : FRC.Shell (37 : Nat)) (9 : Nat) (1 : Nat)) (36 : Nat) = (9 : FRC.Shell (37 : Nat)) ∧ FRC.Shell.Frame.trace (FRC.Shell.Frame.proj (2 : FRC.Shell (37 : Nat)) (9 : Nat) (2 : Nat)) (36 : Nat) = (10 : FRC.Shell (37 : Nat)) ∧ FRC.Shell.Frame.trace (FRC.Shell.Frame.proj (2 : FRC.Shell (37 : Nat)) (9 : Nat) (3 : Nat)) (36 : Nat) = (8 : FRC.Shell (37 : Nat))) ∧ FRC.Shell.Frame.trace (FRC.Shell.Frame.proj (6 : FRC.Shell (41 : Nat)) (10 : Nat) (0 : Nat)) (40 : Nat) = (10 : FRC.Shell (41 : Nat)) ∧ FRC.Shell.Frame.trace (FRC.Shell.Frame.proj (6 : FRC.Shell (41 : Nat)) (10 : Nat) (1 : Nat)) (40 : Nat) = (10 : FRC.Shell (41 : Nat)) ∧ FRC.Shell.Frame.trace (FRC.Shell.Frame.proj (6 : FRC.Shell (41 : Nat)) (10 : Nat) (2 : Nat)) (40 : Nat) = (11 : FRC.Shell (41 : Nat)) ∧ FRC.Shell.Frame.trace (FRC.Shell.Frame.proj (6 : FRC.Shell (41 : Nat)) (10 : Nat) (3 : Nat)) (40 : Nat) = (9 : FRC.Shell (41 : Nat)) :=
+  @FRC.Ledger.p06021
+/-- 6:C8 (p06022) — Exponent lifts: every lift $a_\ell\equiv\ell\pmod4$, $U^{(a)}_s=\sum_\ell\gen^{-a_\ell s}\Pi_\ell$, is additive with the same cardinal skeleton, $U^{(a)}_{s+r}=U^{(a)}_sU^{(a)}_r$ and $U^{(a)}_{m\kap}=\Ft^{m}$. -/
+theorem p06022 : (∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → ∀ (z : FRC.Shell p) (a : Nat → Nat) (s r : Nat) {k j : Nat}, k < p - (1 : Nat) → j < p - (1 : Nat) → FRC.Shell.sumRange (fun l => FRC.Shell.Frame.lift g κ z a s k l * FRC.Shell.Frame.lift g κ z a r l j) (p - (1 : Nat)) = FRC.Shell.Frame.lift g κ z a (s + r) k j) ∧ (∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → ∀ {z : FRC.Shell p}, g * z = (1 : FRC.Shell p) → ∀ (a : Nat → Nat), (∀ (ℓ : Nat), ℓ < (4 : Nat) → a ℓ % (4 : Nat) = ℓ) → ∀ (m k j : Nat), FRC.Shell.Frame.lift g κ z a (m * κ) k j = FRC.Shell.Frame.frft g κ z (m * κ) k j) ∧ ∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → ∀ {z : FRC.Shell p}, g * z = (1 : FRC.Shell p) → ∀ (a : Nat → Nat), (∀ (ℓ : Nat), ℓ < (4 : Nat) → a ℓ % (4 : Nat) = ℓ) → ∀ (m : Nat) {k j : Nat}, k < p - (1 : Nat) → j < p - (1 : Nat) → FRC.Shell.Frame.lift g κ z a (m * κ) k j = FRC.Shell.Frame.mpow (FRC.Shell.Frame.Fmat g κ) m k j :=
+  @FRC.Ledger.p06022
+/-- 6:C9 (p06023) — The conjugate reframing $(\gen,\im)\mapsto(\gen^{-1},-\im)$: exactly $\Ft'=-\Ft^{-1}$ and $\Pi'_\ell=\Pi_{\ell+2}$; the operator relations, cardinal values, additivity and faithfulness hold on the conjugate frame, and its multiplicity tuple is the other pattern of C7. -/
+theorem p06023 : (∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → ∀ {z : FRC.Shell p}, g * z = (1 : FRC.Shell p) → FRC.Shell.Frame p κ z) ∧ (∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → ∀ {z : FRC.Shell p}, g * z = (1 : FRC.Shell p) → ∀ {k j : Nat}, k < p - (1 : Nat) → j < p - (1 : Nat) → FRC.Shell.Frame.Fmat z κ k j = -FRC.Shell.Frame.FJ g κ k j) ∧ ∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → ∀ {z : FRC.Shell p}, g * z = (1 : FRC.Shell p) → ∀ (ℓ : Nat) {k j : Nat}, k < p - (1 : Nat) → j < p - (1 : Nat) → FRC.Shell.Frame.proj z κ ℓ k j = FRC.Shell.Frame.proj g κ (ℓ + (2 : Nat)) k j :=
+  @FRC.Ledger.p06023
+/-- 6:C11 (p06052) — Charts outside the classified set: for $u$ a unit mod $4\kap$, $\Wt(\gen^{u})=\Wt P_u$ with $P_u$ the site relabelling $j\mapsto uj$, so $\Wt\,\Wt(\gen^{u})=-JP_u$ and $\Wt(\gen^{u})\,\Wt=-JP_{u^{-1}}$, and the two differ at the entry $(-u,1)$ when $u^{2}\not\equiv1\pmod{4\kap}$: a family canonical in such a chart does not commute with $\Ft$; $\p=29$, $u=5$, and every such chart of the six shells of Table~\ref{tab:checks} checked. -/
+theorem p06052 : (∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → ∀ (u k j : Nat), FRC.Shell.Frame.W (g ^ u) k j = FRC.Shell.Frame.W g k (u * j % (p - (1 : Nat)))) ∧ (∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → ∀ (u k j : Nat), FRC.Shell.sumRange (fun l => FRC.Shell.Frame.W g k l * FRC.Shell.Frame.W (g ^ u) l j) (p - (1 : Nat)) = -if (k + u * j) % (p - (1 : Nat)) = (0 : Nat) then (1 : FRC.Shell p) else (0 : FRC.Shell p)) ∧ (∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → ∀ (u k j : Nat), FRC.Shell.sumRange (fun l => FRC.Shell.Frame.W (g ^ u) k l * FRC.Shell.Frame.W g l j) (p - (1 : Nat)) = -if (u * k + j) % (p - (1 : Nat)) = (0 : Nat) then (1 : FRC.Shell p) else (0 : FRC.Shell p)) ∧ ∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → ∀ {u : Nat}, u * u % (p - (1 : Nat)) ≠ (1 : Nat) → FRC.Shell.sumRange (fun l => FRC.Shell.Frame.W g (FRC.Shell.Frame.rev (p - (1 : Nat)) (u % (p - (1 : Nat)))) l * FRC.Shell.Frame.W (g ^ u) l (1 : Nat)) (p - (1 : Nat)) ≠ FRC.Shell.sumRange (fun l => FRC.Shell.Frame.W (g ^ u) (FRC.Shell.Frame.rev (p - (1 : Nat)) (u % (p - (1 : Nat)))) l * FRC.Shell.Frame.W g l (1 : Nat)) (p - (1 : Nat)) :=
+  @FRC.Ledger.p06052
+/-- 6:D1 (p06024) — The meridional representation domain $D_s=(\Vt,\mathcal B_s)$, $\mathcal B_s=\Ft^{[s]}\mathcal B_0$, every $\Ft^{[s]}$ invertible; the cardinal domains spatial, spectral, parity, inverse-spectral. -/
+theorem p06024 : ∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → ∀ {z : FRC.Shell p}, g * z = (1 : FRC.Shell p) → ∀ {s : Nat}, s ≤ p - (1 : Nat) → ∀ {k j : Nat}, k < p - (1 : Nat) → j < p - (1 : Nat) → FRC.Shell.sumRange (fun l => FRC.Shell.Frame.frft g κ z s k l * FRC.Shell.Frame.frft g κ z (p - (1 : Nat) - s) l j) (p - (1 : Nat)) = FRC.Shell.Frame.idm k j ∧ FRC.Shell.sumRange (fun l => FRC.Shell.Frame.frft g κ z (p - (1 : Nat) - s) k l * FRC.Shell.Frame.frft g κ z s l j) (p - (1 : Nat)) = FRC.Shell.Frame.idm k j :=
+  @FRC.Ledger.p06024
+/-- 6:D2 (p06025) — The $4\kap$ framed domains are pairwise distinct; read as unordered measurement bases $B_{s+2\kap}=B_s$, since $\Ft^{[s+2\kap]}=\Ft^{[s]}J$ and $J$ permutes the standard basis. -/
+theorem p06025 : (∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → (2 : Nat) ≤ κ → ∀ {z : FRC.Shell p}, g * z = (1 : FRC.Shell p) → ∀ {s r : Nat}, s < p - (1 : Nat) → r < p - (1 : Nat) → (∀ (k j : Nat), k < p - (1 : Nat) → j < p - (1 : Nat) → FRC.Shell.Frame.frft g κ z s k j = FRC.Shell.Frame.frft g κ z r k j) → s = r) ∧ (∀ (g : FRC.Shell (5 : Nat)), g.IsPrimitive (4 : Nat) → g = (2 : FRC.Shell (5 : Nat)) ∨ g = (3 : FRC.Shell (5 : Nat))) ∧ ((∀ (s : Nat), s < (4 : Nat) → ∀ (r : Nat), r < (4 : Nat) → (∀ (k : Nat), k < (4 : Nat) → ∀ (j : Nat), j < (4 : Nat) → FRC.Shell.Frame.frft (2 : FRC.Shell (5 : Nat)) (1 : Nat) (3 : FRC.Shell (5 : Nat)) s k j = FRC.Shell.Frame.frft (2 : FRC.Shell (5 : Nat)) (1 : Nat) (3 : FRC.Shell (5 : Nat)) r k j) → s = r) ∧ ∀ (s : Nat), s < (4 : Nat) → ∀ (r : Nat), r < (4 : Nat) → (∀ (k : Nat), k < (4 : Nat) → ∀ (j : Nat), j < (4 : Nat) → FRC.Shell.Frame.frft (3 : FRC.Shell (5 : Nat)) (1 : Nat) (2 : FRC.Shell (5 : Nat)) s k j = FRC.Shell.Frame.frft (3 : FRC.Shell (5 : Nat)) (1 : Nat) (2 : FRC.Shell (5 : Nat)) r k j) → s = r) ∧ ∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → ∀ {z : FRC.Shell p}, g * z = (1 : FRC.Shell p) → ∀ (s : Nat) {k j : Nat}, k < p - (1 : Nat) → j < p - (1 : Nat) → FRC.Shell.Frame.frft g κ z (s + (2 : Nat) * κ) k j = FRC.Shell.Frame.frft g κ z s k (FRC.Shell.Frame.rev (p - (1 : Nat)) j) :=
+  @FRC.Ledger.p06025
 /-- 6:D4 (p06027) — Meridian-scale covariance: $S_r(M_m)=M_{m+r}$ for every $(m,r)$, as ordered lists; consecutive entries of $M_m$ differ by the effective step $\gen^{m}$; $S_{r+(\p-1)}=S_r$, the periodicity of A5 in meridian form. -/
 theorem p06027 : (∀ {p : Nat} [FRC.Pos p] (g : FRC.Shell p) (κ m r : Nat), List.map (g.scale r) (g.meridian κ m) = g.meridian κ (m + r)) ∧ (∀ {p : Nat} [FRC.Pos p] (g : FRC.Shell p) (m a : Nat), FRC.Shell.ofNat (a + (1 : Nat)) * g ^ m = FRC.Shell.ofNat a * g ^ m + g ^ m) ∧ ∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → ∀ (r : Nat) (x : FRC.Shell p), g.scale (r + (p - (1 : Nat))) x = g.scale r x :=
   @FRC.Ledger.p06027
 /-- 6:D5 (p06028) — Meridian zoom [chart]: $M_m$ reads the meridian-coordinate vector at step $\lambda^{\tilde m}$, the forward shift zoom-out and the inverse shift zoom-in, the seam an aliasing return; at $\p=13$, $\gen=2$ the ladder $M_0,\dots,M_3$ at steps $1,2,4,8$, unwrapped within $w\gen^{r}<\p$ ($w=\pi=6$: $r\le1$) and wrapping from $M_2$. -/
 theorem p06028 : FRC.Shell.meridian (2 : FRC.Shell (13 : Nat)) (3 : Nat) (0 : Nat) = [(0 : FRC.Shell (13 : Nat)), (1 : FRC.Shell (13 : Nat)), (2 : FRC.Shell (13 : Nat)), (3 : FRC.Shell (13 : Nat)), (4 : FRC.Shell (13 : Nat)), (5 : FRC.Shell (13 : Nat)), (6 : FRC.Shell (13 : Nat))] ∧ FRC.Shell.meridian (2 : FRC.Shell (13 : Nat)) (3 : Nat) (1 : Nat) = [(0 : FRC.Shell (13 : Nat)), (2 : FRC.Shell (13 : Nat)), (4 : FRC.Shell (13 : Nat)), (6 : FRC.Shell (13 : Nat)), (8 : FRC.Shell (13 : Nat)), (10 : FRC.Shell (13 : Nat)), (12 : FRC.Shell (13 : Nat))] ∧ FRC.Shell.meridian (2 : FRC.Shell (13 : Nat)) (3 : Nat) (2 : Nat) = [(0 : FRC.Shell (13 : Nat)), (4 : FRC.Shell (13 : Nat)), (8 : FRC.Shell (13 : Nat)), (12 : FRC.Shell (13 : Nat)), (3 : FRC.Shell (13 : Nat)), (7 : FRC.Shell (13 : Nat)), (11 : FRC.Shell (13 : Nat))] ∧ FRC.Shell.meridian (2 : FRC.Shell (13 : Nat)) (3 : Nat) (3 : Nat) = [(0 : FRC.Shell (13 : Nat)), (8 : FRC.Shell (13 : Nat)), (3 : FRC.Shell (13 : Nat)), (11 : FRC.Shell (13 : Nat)), (6 : FRC.Shell (13 : Nat)), (1 : FRC.Shell (13 : Nat)), (9 : FRC.Shell (13 : Nat))] ∧ (6 : Nat) * (2 : Nat) ^ (1 : Nat) < (13 : Nat) ∧ ¬(6 : Nat) * (2 : Nat) ^ (2 : Nat) < (13 : Nat) :=
   @FRC.Ledger.p06028
+/-- 6:D7 (p06053) — The cycle carries exactly $2\kap$ measurement bases: every off-site entry of row $0$ of $\Ft^{[t]}$ is $\tfrac{\im}{2}(1-\gen^{-2t})$, nonzero for $t\notin\{0,2\kap\}$, so $\Ft^{[t]}$ is not monomial and $B_{s+t}\neq B_s$; the six shells of Table~\ref{tab:checks}. -/
+theorem p06053 : (∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → ∀ (z : FRC.Shell p) (t : Nat) {j : Nat}, (0 : Nat) < j → j < p - (1 : Nat) → FRC.Shell.Frame.frft g κ z t (0 : Nat) j = (-FRC.Shell.ofNat κ + -FRC.Shell.ofNat κ) * ((1 : FRC.Shell p) + -(z ^ t * z ^ t)) * FRC.Shell.Frame.quarterTurn g κ) ∧ ∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → ∀ {z : FRC.Shell p}, g * z = (1 : FRC.Shell p) → ∀ {t : Nat}, t < p - (1 : Nat) → t ≠ (0 : Nat) → t ≠ (2 : Nat) * κ → ∀ {j : Nat}, (0 : Nat) < j → j < p - (1 : Nat) → FRC.Shell.Frame.frft g κ z t (0 : Nat) j ≠ (0 : FRC.Shell p) :=
+  @FRC.Ledger.p06053
+/-- 6:E2 (p06031) — $R_s\in SO(2,\Fp)$, and $s\mapsto R_s$ is an isomorphism $\Phit\simeq SO(2,\Fp)$ with $|SO(2,\Fp)|=\p-1=4\kap$: the full rotation group of the $\p^{2}$-point plane is the meridian cycle. -/
+theorem p06031 : (∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → ∀ {z : FRC.Shell p}, g * z = (1 : FRC.Shell p) → ∀ (s : Nat), FRC.Shell.Frame.cs g κ z s * FRC.Shell.Frame.cs g κ z s + FRC.Shell.Frame.ds g κ z s * FRC.Shell.Frame.ds g κ z s = (1 : FRC.Shell p)) ∧ (∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → ∀ (z : FRC.Shell p) (s r : Nat), FRC.Shell.Frame.cs g κ z (s + r) = FRC.Shell.Frame.cs g κ z s * FRC.Shell.Frame.cs g κ z r + -(FRC.Shell.Frame.ds g κ z s * FRC.Shell.Frame.ds g κ z r) ∧ FRC.Shell.Frame.ds g κ z (s + r) = FRC.Shell.Frame.cs g κ z s * FRC.Shell.Frame.ds g κ z r + FRC.Shell.Frame.ds g κ z s * FRC.Shell.Frame.cs g κ z r) ∧ (∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → ∀ {z : FRC.Shell p}, g * z = (1 : FRC.Shell p) → ∀ {s r : Nat}, s < p - (1 : Nat) → r < p - (1 : Nat) → FRC.Shell.Frame.cs g κ z s = FRC.Shell.Frame.cs g κ z r → FRC.Shell.Frame.ds g κ z s = FRC.Shell.Frame.ds g κ z r → s = r) ∧ (∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → ∀ {z : FRC.Shell p}, g * z = (1 : FRC.Shell p) → ∀ {c d : FRC.Shell p}, c * c + d * d = (1 : FRC.Shell p) → ∃ s, s < p - (1 : Nat) ∧ c = FRC.Shell.Frame.cs g κ z s ∧ d = FRC.Shell.Frame.ds g κ z s) ∧ FRC.Shell.Frame.countCircle (5 : Nat) (5 : Nat) = (4 : Nat) ∧ FRC.Shell.Frame.countCircle (13 : Nat) (13 : Nat) = (12 : Nat) ∧ FRC.Shell.Frame.countCircle (17 : Nat) (17 : Nat) = (16 : Nat) ∧ FRC.Shell.Frame.countCircle (29 : Nat) (29 : Nat) = (28 : Nat) ∧ FRC.Shell.Frame.countCircle (37 : Nat) (37 : Nat) = (36 : Nat) ∧ FRC.Shell.Frame.countCircle (41 : Nat) (41 : Nat) = (40 : Nat) :=
+  @FRC.Ledger.p06031
+/-- 6:E3 (p06032) — The cardinal-skeleton dictionary $M_s\leftrightarrow s\leftrightarrow z_s\leftrightarrow R_s$ with $R_0=I$, $R_\kap=w$, $R_{2\kap}=-I$, $R_{3\kap}=w^{-1}$ (the $R_\kap$ column of Table~\ref{tab:checks}), $z_\kap=\im$; the FRC-native and Weil families stand in cardinal Weil correspondence, the Weil side by the normalization of A2 (an import). -/
+theorem p06032 : ∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → ∀ {z : FRC.Shell p}, g * z = (1 : FRC.Shell p) → (FRC.Shell.Frame.cs g κ z (0 : Nat) = (1 : FRC.Shell p) ∧ FRC.Shell.Frame.ds g κ z (0 : Nat) = (0 : FRC.Shell p)) ∧ (FRC.Shell.Frame.cs g κ z κ = (0 : FRC.Shell p) ∧ FRC.Shell.Frame.ds g κ z κ = (1 : FRC.Shell p)) ∧ (FRC.Shell.Frame.cs g κ z ((2 : Nat) * κ) = (-1 : FRC.Shell p) ∧ FRC.Shell.Frame.ds g κ z ((2 : Nat) * κ) = (0 : FRC.Shell p)) ∧ (FRC.Shell.Frame.cs g κ z ((3 : Nat) * κ) = (0 : FRC.Shell p) ∧ FRC.Shell.Frame.ds g κ z ((3 : Nat) * κ) = (-1 : FRC.Shell p)) ∧ z ^ κ = FRC.Shell.Frame.quarterTurn g κ :=
+  @FRC.Ledger.p06032
+/-- 6:E5 (p06034) — Spectral obstruction: for $\kap\ge2$ no invertible $T$ on $\Vt$ satisfies $T\sigma T^{-1}=\Ft^{[s]}$ for any $s$; the cyclic groups $\langle\sigma\rangle$ and $\langle\Ft^{[1]}\rangle$, each of order $4\kap$ ($\Ft^{[1]}$ by C4; $\sigma$ permutes the $4\kap$ labels cyclically), are not conjugate. -/
+theorem p06034 : ∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → (2 : Nat) ≤ κ → ∀ (z : FRC.Shell p) (s : Nat) (T T' : Nat → Nat → FRC.Shell p), (∀ (k j : Nat), k < p - (1 : Nat) → j < p - (1 : Nat) → FRC.Shell.Frame.mmul T' T (p - (1 : Nat)) k j = FRC.Shell.Frame.idm k j) → (∀ (k j : Nat), k < p - (1 : Nat) → j < p - (1 : Nat) → FRC.Shell.Frame.mmul (FRC.Shell.Frame.mmul T (FRC.Shell.Frame.shift p) (p - (1 : Nat))) T' (p - (1 : Nat)) k j = FRC.Shell.Frame.frft g κ z s k j) → False :=
+  @FRC.Ledger.p06034
+/-- 6:E6 (p06035) — Common character sector: on $E_1=\operatorname{im}\Pi_1\neq0$ ($\kap\ge2$) $\Ft^{[s]}=\gen^{-s}I$, the intertwiner $\Ft^{[s]}T_v=T_vS_{-s}$ on every $x\in\Fp$ and $s$, and $R_s(1,-\im)^{\mathsf T}=\gen^{-s}(1,-\im)^{\mathsf T}$. -/
+theorem p06035 : (∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → ∀ (z : FRC.Shell p) (s : Nat) {m : Nat}, m < (4 : Nat) → ∀ {k j : Nat}, k < p - (1 : Nat) → j < p - (1 : Nat) → FRC.Shell.sumRange (fun l => FRC.Shell.Frame.frft g κ z s k l * FRC.Shell.Frame.proj g κ m l j) (p - (1 : Nat)) = (z ^ s) ^ m * FRC.Shell.Frame.proj g κ m k j) ∧ (∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → ∀ (z : FRC.Shell p) (s : Nat) (x : FRC.Shell p) {k j : Nat}, k < p - (1 : Nat) → j < p - (1 : Nat) → FRC.Shell.sumRange (fun l => FRC.Shell.Frame.frft g κ z s k l * (x * FRC.Shell.Frame.proj g κ (1 : Nat) l j)) (p - (1 : Nat)) = x * (z ^ s * FRC.Shell.Frame.proj g κ (1 : Nat) k j)) ∧ ∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → ∀ (z : FRC.Shell p) (s : Nat), FRC.Shell.Frame.cs g κ z s * (1 : FRC.Shell p) + -(FRC.Shell.Frame.ds g κ z s * -FRC.Shell.Frame.quarterTurn g κ) = z ^ s * (1 : FRC.Shell p) ∧ FRC.Shell.Frame.ds g κ z s * (1 : FRC.Shell p) + FRC.Shell.Frame.cs g κ z s * -FRC.Shell.Frame.quarterTurn g κ = z ^ s * -FRC.Shell.Frame.quarterTurn g κ :=
+  @FRC.Ledger.p06035
+/-- 6:E7 (p06036) — Cardinal Heisenberg covariance: $\Ft\sigma\Ft^{-1}=D_1$, $\Ft D_1\Ft^{-1}=\sigma^{-1}$; $\Ft^{r}\sigma=\sigma_r\Ft^{r}$ with $(\sigma,D_1,\sigma^{-1},D_1^{-1})$; the expansion \eqref{eq:conj-expansion}, $\Ft^{[s]}=\sum_r c_r(s)\Ft^{r}$ with $c_r(s)=\tfrac14\sum_\ell(\gen^{r\kap-s})^{\ell}$. -/
+theorem p06036 : (∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → ∀ {k j : Nat}, k < p - (1 : Nat) → j < p - (1 : Nat) → FRC.Shell.sumRange (fun l => FRC.Shell.Frame.shift p k l * FRC.Shell.Frame.shiftInv p l j) (p - (1 : Nat)) = FRC.Shell.Frame.idm k j ∧ FRC.Shell.sumRange (fun l => FRC.Shell.Frame.shiftInv p k l * FRC.Shell.Frame.shift p l j) (p - (1 : Nat)) = FRC.Shell.Frame.idm k j) ∧ (∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → ∀ {z : FRC.Shell p}, g * z = (1 : FRC.Shell p) → ∀ {k j : Nat}, k < p - (1 : Nat) → j < p - (1 : Nat) → FRC.Shell.sumRange (fun l => FRC.Shell.Frame.Fmat g κ k l * FRC.Shell.Frame.shift p l j) (p - (1 : Nat)) = FRC.Shell.sumRange (fun l => FRC.Shell.Frame.modul g k l * FRC.Shell.Frame.Fmat g κ l j) (p - (1 : Nat)) ∧ FRC.Shell.sumRange (fun l => FRC.Shell.Frame.Fmat g κ k l * FRC.Shell.Frame.modul g l j) (p - (1 : Nat)) = FRC.Shell.sumRange (fun l => FRC.Shell.Frame.shiftInv p k l * FRC.Shell.Frame.Fmat g κ l j) (p - (1 : Nat)) ∧ FRC.Shell.sumRange (fun l => FRC.Shell.Frame.J (p - (1 : Nat)) k l * FRC.Shell.Frame.shift p l j) (p - (1 : Nat)) = FRC.Shell.sumRange (fun l => FRC.Shell.Frame.shiftInv p k l * FRC.Shell.Frame.J (p - (1 : Nat)) l j) (p - (1 : Nat)) ∧ FRC.Shell.sumRange (fun l => FRC.Shell.Frame.FJ g κ k l * FRC.Shell.Frame.shift p l j) (p - (1 : Nat)) = FRC.Shell.sumRange (fun l => FRC.Shell.Frame.modul z k l * FRC.Shell.Frame.FJ g κ l j) (p - (1 : Nat))) ∧ (∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → ∀ (z : FRC.Shell p) (s k j : Nat), FRC.Shell.Frame.frft g κ z s k j = FRC.Shell.Frame.comb g κ (FRC.Shell.Frame.NF0 (-FRC.Shell.ofNat κ) (-FRC.Shell.Frame.quarterTurn g κ) (z ^ s)) (FRC.Shell.Frame.NF1 (-FRC.Shell.ofNat κ) (-FRC.Shell.Frame.quarterTurn g κ) (z ^ s)) (FRC.Shell.Frame.NF2 (-FRC.Shell.ofNat κ) (-FRC.Shell.Frame.quarterTurn g κ) (z ^ s)) (FRC.Shell.Frame.NF3 (-FRC.Shell.ofNat κ) (-FRC.Shell.Frame.quarterTurn g κ) (z ^ s)) k j) ∧ (∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → ∀ (u : FRC.Shell p), FRC.Shell.Frame.NF0 (-FRC.Shell.ofNat κ) (-FRC.Shell.Frame.quarterTurn g κ) u = -FRC.Shell.ofNat κ * ((1 : FRC.Shell p) + u + u * u + u * u * u) ∧ FRC.Shell.Frame.NF1 (-FRC.Shell.ofNat κ) (-FRC.Shell.Frame.quarterTurn g κ) u = -FRC.Shell.ofNat κ * ((1 : FRC.Shell p) + u * -FRC.Shell.Frame.quarterTurn g κ + u * -FRC.Shell.Frame.quarterTurn g κ * (u * -FRC.Shell.Frame.quarterTurn g κ) + u * -FRC.Shell.Frame.quarterTurn g κ * (u * -FRC.Shell.Frame.quarterTurn g κ) * (u * -FRC.Shell.Frame.quarterTurn g κ)) ∧ FRC.Shell.Frame.NF2 (-FRC.Shell.ofNat κ) (-FRC.Shell.Frame.quarterTurn g κ) u = -FRC.Shell.ofNat κ * ((1 : FRC.Shell p) + u * (-FRC.Shell.Frame.quarterTurn g κ * -FRC.Shell.Frame.quarterTurn g κ) + u * (-FRC.Shell.Frame.quarterTurn g κ * -FRC.Shell.Frame.quarterTurn g κ) * (u * (-FRC.Shell.Frame.quarterTurn g κ * -FRC.Shell.Frame.quarterTurn g κ)) + u * (-FRC.Shell.Frame.quarterTurn g κ * -FRC.Shell.Frame.quarterTurn g κ) * (u * (-FRC.Shell.Frame.quarterTurn g κ * -FRC.Shell.Frame.quarterTurn g κ)) * (u * (-FRC.Shell.Frame.quarterTurn g κ * -FRC.Shell.Frame.quarterTurn g κ))) ∧ FRC.Shell.Frame.NF3 (-FRC.Shell.ofNat κ) (-FRC.Shell.Frame.quarterTurn g κ) u = -FRC.Shell.ofNat κ * ((1 : FRC.Shell p) + u * (-FRC.Shell.Frame.quarterTurn g κ * -FRC.Shell.Frame.quarterTurn g κ * -FRC.Shell.Frame.quarterTurn g κ) + u * (-FRC.Shell.Frame.quarterTurn g κ * -FRC.Shell.Frame.quarterTurn g κ * -FRC.Shell.Frame.quarterTurn g κ) * (u * (-FRC.Shell.Frame.quarterTurn g κ * -FRC.Shell.Frame.quarterTurn g κ * -FRC.Shell.Frame.quarterTurn g κ)) + u * (-FRC.Shell.Frame.quarterTurn g κ * -FRC.Shell.Frame.quarterTurn g κ * -FRC.Shell.Frame.quarterTurn g κ) * (u * (-FRC.Shell.Frame.quarterTurn g κ * -FRC.Shell.Frame.quarterTurn g κ * -FRC.Shell.Frame.quarterTurn g κ)) * (u * (-FRC.Shell.Frame.quarterTurn g κ * -FRC.Shell.Frame.quarterTurn g κ * -FRC.Shell.Frame.quarterTurn g κ)))) ∧ ∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, -FRC.Shell.Frame.quarterTurn g κ = g ^ κ :=
+  @FRC.Ledger.p06036
+/-- 6:E8 (p06050) — Cardinal exclusivity: for every $s\notin\{0,\kap,2\kap,3\kap\}$ the conjugate $\Ft^{[s]}\sigma\Ft^{[s]\,-1}$ of \eqref{eq:conj-expansion} is not monomial --- off $j\in\{-1,0,1\}$ its row $0$ is $x^{-1}$ times a quadratic in $x=\gen^{j}$ with leading coefficient $\im\,[c_0(s)+c_2(s)]\,c_3(-s)\neq0$, $c_0(s)+c_2(s)=\tfrac12(1+\gen^{-2s})$, so the row vanishes at no three distinct indices off the sites and, by counting, has at least $4\kap-5$ nonzero entries; the count checked on every shell below $200$. -/
+theorem p06050 : (∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → ∀ {z : FRC.Shell p}, g * z = (1 : FRC.Shell p) → ∀ (s : Nat) {j : Nat}, j < p - (1 : Nat) → j ≠ (0 : Nat) → j ≠ (1 : Nat) → j ≠ p - (1 : Nat) - (1 : Nat) → FRC.Shell.Frame.mmul (FRC.Shell.Frame.mmul (FRC.Shell.Frame.frft g κ z s) (FRC.Shell.Frame.shift p) (p - (1 : Nat))) (FRC.Shell.Frame.frft g κ z (p - (1 : Nat) - s)) (p - (1 : Nat)) (0 : Nat) j = (FRC.Shell.Frame.NF0 (-FRC.Shell.ofNat κ) (-FRC.Shell.Frame.quarterTurn g κ) (z ^ s) + FRC.Shell.Frame.NF2 (-FRC.Shell.ofNat κ) (-FRC.Shell.Frame.quarterTurn g κ) (z ^ s)) * (FRC.Shell.Frame.NF1 (-FRC.Shell.ofNat κ) (-FRC.Shell.Frame.quarterTurn g κ) (z ^ (p - (1 : Nat) - s)) * FRC.Shell.Frame.quarterTurn g κ * z ^ j + FRC.Shell.Frame.NF3 (-FRC.Shell.ofNat κ) (-FRC.Shell.Frame.quarterTurn g κ) (z ^ (p - (1 : Nat) - s)) * FRC.Shell.Frame.quarterTurn g κ * g ^ j) + (FRC.Shell.Frame.NF1 (-FRC.Shell.ofNat κ) (-FRC.Shell.Frame.quarterTurn g κ) (z ^ s) + FRC.Shell.Frame.NF3 (-FRC.Shell.ofNat κ) (-FRC.Shell.Frame.quarterTurn g κ) (z ^ s)) * FRC.Shell.Frame.quarterTurn g κ * (FRC.Shell.Frame.NF0 (-FRC.Shell.ofNat κ) (-FRC.Shell.Frame.quarterTurn g κ) (z ^ (p - (1 : Nat) - s)) + FRC.Shell.Frame.NF2 (-FRC.Shell.ofNat κ) (-FRC.Shell.Frame.quarterTurn g κ) (z ^ (p - (1 : Nat) - s)))) ∧ (∀ {p : Nat} [FRC.Pos p] (q jj u : FRC.Shell p), FRC.Shell.Frame.NF0 q jj u + FRC.Shell.Frame.NF2 q jj u = (q + q) * ((1 : FRC.Shell p) + u * u)) ∧ (∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → ∀ {z : FRC.Shell p}, g * z = (1 : FRC.Shell p) → ∀ {s : Nat}, s < p - (1 : Nat) → s ≠ κ → s ≠ (3 : Nat) * κ → FRC.Shell.Frame.NF0 (-FRC.Shell.ofNat κ) (-FRC.Shell.Frame.quarterTurn g κ) (z ^ s) + FRC.Shell.Frame.NF2 (-FRC.Shell.ofNat κ) (-FRC.Shell.Frame.quarterTurn g κ) (z ^ s) ≠ (0 : FRC.Shell p)) ∧ (∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → ∀ {z : FRC.Shell p}, g * z = (1 : FRC.Shell p) → ∀ {s : Nat}, s < p - (1 : Nat) → s ≠ (0 : Nat) → s ≠ κ → s ≠ (2 : Nat) * κ → s ≠ (3 : Nat) * κ → FRC.Shell.Frame.NF3 (-FRC.Shell.ofNat κ) (-FRC.Shell.Frame.quarterTurn g κ) (z ^ (p - (1 : Nat) - s)) ≠ (0 : FRC.Shell p)) ∧ ∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → ∀ {z : FRC.Shell p}, g * z = (1 : FRC.Shell p) → ∀ {s : Nat}, s < p - (1 : Nat) → s ≠ (0 : Nat) → s ≠ κ → s ≠ (2 : Nat) * κ → s ≠ (3 : Nat) * κ → ∀ {j1 j2 j3 : Nat}, j1 < p - (1 : Nat) → j2 < p - (1 : Nat) → j3 < p - (1 : Nat) → j1 ≠ (0 : Nat) ∧ j1 ≠ (1 : Nat) ∧ j1 ≠ p - (1 : Nat) - (1 : Nat) → j2 ≠ (0 : Nat) ∧ j2 ≠ (1 : Nat) ∧ j2 ≠ p - (1 : Nat) - (1 : Nat) → j3 ≠ (0 : Nat) ∧ j3 ≠ (1 : Nat) ∧ j3 ≠ p - (1 : Nat) - (1 : Nat) → j1 ≠ j2 → j1 ≠ j3 → j2 ≠ j3 → ¬(FRC.Shell.Frame.mmul (FRC.Shell.Frame.mmul (FRC.Shell.Frame.frft g κ z s) (FRC.Shell.Frame.shift p) (p - (1 : Nat))) (FRC.Shell.Frame.frft g κ z (p - (1 : Nat) - s)) (p - (1 : Nat)) (0 : Nat) j1 = (0 : FRC.Shell p) ∧ FRC.Shell.Frame.mmul (FRC.Shell.Frame.mmul (FRC.Shell.Frame.frft g κ z s) (FRC.Shell.Frame.shift p) (p - (1 : Nat))) (FRC.Shell.Frame.frft g κ z (p - (1 : Nat) - s)) (p - (1 : Nat)) (0 : Nat) j2 = (0 : FRC.Shell p) ∧ FRC.Shell.Frame.mmul (FRC.Shell.Frame.mmul (FRC.Shell.Frame.frft g κ z s) (FRC.Shell.Frame.shift p) (p - (1 : Nat))) (FRC.Shell.Frame.frft g κ z (p - (1 : Nat) - s)) (p - (1 : Nat)) (0 : Nat) j3 = (0 : FRC.Shell p)) :=
+  @FRC.Ledger.p06050
+/-- 6:E9 (p06054) — The spectra behind E5: every nonzero residue $b$ is an eigenvalue of $\sigma$, with the geometric eigenvector $(b^{-j})_j$ (so $\sigma$ is diagonalizable over $\Fp$ with the $4\kap$ simple eigenvalues $\Fpx$, the Mathlib reading); an eigenvalue of $\Ft^{[s]}=\sum_\ell\gen^{-\ell s}\Pi_\ell$ is one of the four $\gen^{-\ell s}$ ($\Ft^{[1]}$ on the six shells). -/
+theorem p06054 : (∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → ∀ {b : FRC.Shell p}, b ≠ (0 : FRC.Shell p) → ∃ y, b * y = (1 : FRC.Shell p) ∧ FRC.Shell.Frame.IsEigen (FRC.Shell.Frame.shift p) (p - (1 : Nat)) b fun j => y ^ j) ∧ ∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → ∀ (z : FRC.Shell p) (s : Nat) {lam : FRC.Shell p} {v : Nat → FRC.Shell p}, FRC.Shell.Frame.IsEigen (FRC.Shell.Frame.frft g κ z s) (p - (1 : Nat)) lam v → ∃ ℓ, ℓ < (4 : Nat) ∧ lam = (z ^ s) ^ ℓ :=
+  @FRC.Ledger.p06054
+/-- 6:E10 (p06056) — The plane as orbits of the cycle: $R_s$ scales $u=x+\im y$ by $z_s$ and $v=x-\im y$ by $z_s^{-1}$, so every point off the origin has a free orbit of size $4\kap=|SO(2,\Fp)|$, and $\p^{2}=1+(4\kap+2)\,4\kap$ is the count of the origin and $4\kap+2$ orbits (the $4\kap$ circles of nonzero norm and the two isotropic lines: the paper's reading of the identity); $\dim\Vt=4\kap$. -/
+theorem p06056 : (∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → ∀ (z : FRC.Shell p) (s : Nat) (x y : FRC.Shell p), FRC.Shell.Frame.cs g κ z s * x + -(FRC.Shell.Frame.ds g κ z s * y) + FRC.Shell.Frame.quarterTurn g κ * (FRC.Shell.Frame.ds g κ z s * x + FRC.Shell.Frame.cs g κ z s * y) = z ^ s * (x + FRC.Shell.Frame.quarterTurn g κ * y) ∧ FRC.Shell.Frame.cs g κ z s * x + -(FRC.Shell.Frame.ds g κ z s * y) + -(FRC.Shell.Frame.quarterTurn g κ * (FRC.Shell.Frame.ds g κ z s * x + FRC.Shell.Frame.cs g κ z s * y)) = g ^ s * (x + -(FRC.Shell.Frame.quarterTurn g κ * y))) ∧ (∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → ∀ {z : FRC.Shell p}, g * z = (1 : FRC.Shell p) → ∀ {x y : FRC.Shell p}, ¬(x = (0 : FRC.Shell p) ∧ y = (0 : FRC.Shell p)) → ∀ {s : Nat}, s < p - (1 : Nat) → FRC.Shell.Frame.cs g κ z s * x + -(FRC.Shell.Frame.ds g κ z s * y) = x ∧ FRC.Shell.Frame.ds g κ z s * x + FRC.Shell.Frame.cs g κ z s * y = y → s = (0 : Nat)) ∧ (∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → p * p = (1 : Nat) + ((4 : Nat) * κ + (2 : Nat)) * ((4 : Nat) * κ)) ∧ FRC.Shell.Frame.countCircle (5 : Nat) (5 : Nat) = (4 : Nat) ∧ FRC.Shell.Frame.countCircle (13 : Nat) (13 : Nat) = (12 : Nat) ∧ FRC.Shell.Frame.countCircle (17 : Nat) (17 : Nat) = (16 : Nat) ∧ FRC.Shell.Frame.countCircle (29 : Nat) (29 : Nat) = (28 : Nat) ∧ FRC.Shell.Frame.countCircle (37 : Nat) (37 : Nat) = (36 : Nat) ∧ FRC.Shell.Frame.countCircle (41 : Nat) (41 : Nat) = (40 : Nat) :=
+  @FRC.Ledger.p06056
 -- end ledger predicates
 
 end FRC.Fourier
@@ -12629,6 +15360,156 @@ theorem p01033 : (∀ {p : Nat} [FRC.Pos p] (u w x : FRC.Shell.Frame.Quat p), u.
 -- end ledger predicates
 end FRC.Algebra
 
+/-! inlined: FrcCore/Theme/Tally.lean -/
+/-!
+# FrcCore.Theme.Tally — the pair tally on the `Q₄` core (the extension theme; 00:C11, the push of 8 October 2026)
+
+A file of its own, importing nothing, so that the certificates whose closures reach the extension theme (20-rh) stay
+within the size budget of decision Q03. Its python side is `frc/extension.py` (`q4_kernel`, `q4_tally`, …).
+
+The stationary core-valued `Q₄` sector: kernels `K : Q₄ → ℤ[i]` with `K(−d) = conj K(d)` (two-way), tally-valued on
+the sector's states. The admissible kernels are the tally combinations `K = Σ_r c_r η_r` of the four characters
+`η_r(d) = i^{rd}`; the pair tally `F(K, ψ) = Σ_{u,v} K(v − u) ψ_u conj ψ_v` on a pure winding `ψ_k(u) = i^{ku}` reads the
+coefficient, `F(K_c, ψ_k) = 16 c_k`, so the tallies are fixed by the pure windings; Fourier inversion recovers every
+coefficient; a single-channel response (channel-selectivity) is a scaled unit coefficient vector, the Born ray; the
+core DFT has determinant `−16i`; and a linear functional leaves the tally cone on `i ψ₀`. The box `−1 ≤ c_r ≤ 3` of coefficients (negative ones included) is exhausted by the kernel for the fixing formula and
+the tally criterion, the cube `0 ≤ c_r ≤ 3` for the two-way, inversion and selectivity clauses, as the paper's witness
+exhausts it; the kernels, states and bilinear form the paper's Lemma degree and its witness U3, U5, U6a name are
+instances decided by the kernel. Gaussian integers as pairs. -/
+
+namespace FRC.Extension.Tally
+
+/-- A Gaussian integer `re + im·i`. -/
+structure GI where
+  re : Int
+  im : Int
+deriving DecidableEq
+
+namespace GI
+def add (x y : GI) : GI := ⟨x.re + y.re, x.im + y.im⟩
+def mul (x y : GI) : GI := ⟨x.re * y.re - x.im * y.im, x.re * y.im + x.im * y.re⟩
+def conj (x : GI) : GI := ⟨x.re, -x.im⟩
+def smul (c : Int) (x : GI) : GI := ⟨c * x.re, c * x.im⟩
+instance : Add GI := ⟨add⟩
+instance : Mul GI := ⟨mul⟩
+def zero : GI := ⟨0, 0⟩
+def i : GI := ⟨0, 1⟩
+/-- `i^n`. -/
+def ipow (n : Nat) : GI := match n % 4 with
+  | 0 => ⟨1, 0⟩ | 1 => ⟨0, 1⟩ | 2 => ⟨-1, 0⟩ | _ => ⟨0, -1⟩
+/-- A Gaussian integer is a tally when it is a nonnegative integer. -/
+def tally (x : GI) : Prop := x.im = 0 ∧ 0 ≤ x.re
+instance (x : GI) : Decidable (tally x) := inferInstanceAs (Decidable (_ ∧ _))
+end GI
+
+open GI
+
+/-- The sum of a function over `Q₄`. -/
+def sum4 (f : Nat → GI) : GI := f 0 + f 1 + f 2 + f 3
+/-- The character `η_r(d) = i^{rd}`. -/
+def eta (r d : Nat) : GI := ipow (r * d)
+/-- The kernel `K_c = Σ_r c_r η_r` with the coefficients `c = (c₀, c₁, c₂, c₃)`. -/
+def kernel (c₀ c₁ c₂ c₃ : Int) (d : Nat) : GI :=
+  smul c₀ (eta 0 d) + smul c₁ (eta 1 d) + smul c₂ (eta 2 d) + smul c₃ (eta 3 d)
+/-- The pure winding `ψ_k(u) = i^{ku}` restricted to the fibre. -/
+def psi (k u : Nat) : GI := ipow (k * u)
+/-- The pair tally `F(K, ψ) = Σ_{u,v} K(v − u) ψ_u conj ψ_v`, the offset read modulo four. -/
+def F (K : Nat → GI) (ψ : Nat → GI) : GI := sum4 fun u => sum4 fun v => K ((v + 4 - u) % 4) * ψ u * conj (ψ v)
+/-- The coefficient `c_k` of the cube point `(c₀, c₁, c₂, c₃)` at the channel `k`. -/
+def coeff (c₀ c₁ c₂ c₃ : Int) (k : Nat) : Int := match k % 4 with
+  | 0 => c₀ | 1 => c₁ | 2 => c₂ | _ => c₃
+/-- Fourier inversion: `Σ_d K(d) i^{−rd}`. -/
+def inversion (K : Nat → GI) (r : Nat) : GI := sum4 fun d => K d * ipow ((4 - r % 4) * d)
+/-- The number of channels `k < 4` on which the kernel responds. -/
+def responses (K : Nat → GI) : Nat :=
+  (if F K (psi 0) = zero then 0 else 1) + (if F K (psi 1) = zero then 0 else 1) +
+  (if F K (psi 2) = zero then 0 else 1) + (if F K (psi 3) = zero then 0 else 1)
+/-- The number of nonzero coefficients. -/
+def support (c₀ c₁ c₂ c₃ : Int) : Nat :=
+  (if c₀ = 0 then 0 else 1) + (if c₁ = 0 then 0 else 1) + (if c₂ = 0 then 0 else 1) + (if c₃ = 0 then 0 else 1)
+
+set_option maxRecDepth 4000 in
+/-- 00:C11 (i) — the pure windings fix the tallies on the box `−1 ≤ c_r ≤ 3` (the naturals `a, b, c, d < 5`, cast to
+`ℤ` and shifted by one), which contains negative coefficients: `F(K_c, ψ_k) = 16 c_k` for every kernel of the box and
+every channel `k`. -/
+theorem winding_fixing : ∀ a : Nat, a < 5 → ∀ b : Nat, b < 5 → ∀ c : Nat, c < 5 → ∀ d : Nat, d < 5 →
+    ∀ k : Nat, k < 4 →
+    F (kernel (Int.ofNat a - 1) (Int.ofNat b - 1) (Int.ofNat c - 1) (Int.ofNat d - 1)) (psi k) =
+      ⟨16 * coeff (Int.ofNat a - 1) (Int.ofNat b - 1) (Int.ofNat c - 1) (Int.ofNat d - 1) k, 0⟩ := by decide +kernel
+
+set_option maxRecDepth 4000 in
+/-- 00:C11 (i′) — the tally criterion on the box: the pair tally of `K_c` on `ψ_k` is a tally (a nonnegative integer)
+iff `0 ≤ c_k` — the cone's two halves: every tally combination is tally-valued on the windings, and a kernel with a
+negative coefficient is excluded by its own winding. -/
+theorem tally_criterion : ∀ a : Nat, a < 5 → ∀ b : Nat, b < 5 → ∀ c : Nat, c < 5 → ∀ d : Nat, d < 5 →
+    ∀ k : Nat, k < 4 →
+    (tally (F (kernel (Int.ofNat a - 1) (Int.ofNat b - 1) (Int.ofNat c - 1) (Int.ofNat d - 1)) (psi k)) ↔
+      (0 : Int) ≤ coeff (Int.ofNat a - 1) (Int.ofNat b - 1) (Int.ofNat c - 1) (Int.ofNat d - 1) k) := by decide +kernel
+
+/-- 00:C11 (ii) — every kernel of the cube is two-way, `K(−d) = conj K(d)`, and tally-valued on the pure windings. -/
+theorem two_way : ∀ a : Nat, a < 4 → ∀ b : Nat, b < 4 → ∀ c : Nat, c < 4 → ∀ d : Nat, d < 4 →
+    (∀ e, e < 4 → kernel (Int.ofNat a) (Int.ofNat b) (Int.ofNat c) (Int.ofNat d) ((4 - e) % 4) = conj (kernel (Int.ofNat a) (Int.ofNat b) (Int.ofNat c) (Int.ofNat d) e)) ∧
+    (∀ k, k < 4 → tally (F (kernel (Int.ofNat a) (Int.ofNat b) (Int.ofNat c) (Int.ofNat d)) (psi k))) := by decide
+
+/-- 00:C11 (iii) — Fourier inversion recovers every coefficient exactly: `Σ_d K(d) i^{−rd} = 4 c_r`. -/
+theorem fourier_inversion : ∀ a : Nat, a < 4 → ∀ b : Nat, b < 4 → ∀ c : Nat, c < 4 → ∀ d : Nat, d < 4 →
+    ∀ r, r < 4 → inversion (kernel (Int.ofNat a) (Int.ofNat b) (Int.ofNat c) (Int.ofNat d)) r = ⟨4 * coeff (Int.ofNat a) (Int.ofNat b) (Int.ofNat c) (Int.ofNat d) r, 0⟩ := by decide
+
+/-- 00:C11 (iv) — channel-selectivity picks the ray: a kernel of the cube responds on exactly one channel iff its
+coefficient vector is a scaled unit vector. -/
+theorem channel_selectivity : ∀ a : Nat, a < 4 → ∀ b : Nat, b < 4 → ∀ c : Nat, c < 4 → ∀ d : Nat, d < 4 →
+    (responses (kernel (Int.ofNat a) (Int.ofNat b) (Int.ofNat c) (Int.ofNat d)) = 1 ↔ support (Int.ofNat a) (Int.ofNat b) (Int.ofNat c) (Int.ofNat d) = 1) := by decide
+
+/-- 00:C11 (v) — the core DFT matrix `(i^{ru})` is invertible: its determinant is `−16i`. -/
+theorem dft_det :
+    let M := fun r u => ipow (r * u)
+    let d2 := fun a b c d : GI => a * d + smul (-1) (b * c)
+    let e := fun r => M r
+    let det3 := fun (f g h : Nat → GI) => f 1 * d2 (g 2) (g 3) (h 2) (h 3) + smul (-1) (f 2 * d2 (g 1) (g 3) (h 1) (h 3)) + f 3 * d2 (g 1) (g 2) (h 1) (h 2)
+    e 0 0 * det3 (e 1) (e 2) (e 3) + smul (-1) (e 1 0 * det3 (e 0) (e 2) (e 3)) +
+      e 2 0 * det3 (e 0) (e 1) (e 3) + smul (-1) (e 3 0 * det3 (e 0) (e 1) (e 2)) = ⟨0, -16⟩ := by decide
+
+/-- The unconjugated bilinear form `B(K, ψ) = Σ_{u,v} K(v − u) ψ_u ψ_v` of the same kernel. -/
+def B (K : Nat → GI) (ψ : Nat → GI) : GI := sum4 fun u => sum4 fun v => K ((v + 4 - u) % 4) * ψ u * ψ v
+/-- The fibre norm `K = [d = 0]`. -/
+def fibreNorm (d : Nat) : GI := if d % 4 = 0 then ⟨1, 0⟩ else ⟨0, 0⟩
+/-- A two-way kernel outside the box, `5η₁ − 2η₂ + η₃ = (4, 2 + 4i, −8, 2 − 4i)`. -/
+def kout (d : Nat) : GI := match d % 4 with
+  | 0 => ⟨4, 0⟩ | 1 => ⟨2, 4⟩ | 2 => ⟨-8, 0⟩ | _ => ⟨2, -4⟩
+/-- The Gaussian-lattice state `(1 + i) e₀`. -/
+def psiA (u : Nat) : GI := if u = 0 then ⟨1, 1⟩ else ⟨0, 0⟩
+/-- The Gaussian-lattice state `e₀ + i e₁`. -/
+def psiB (u : Nat) : GI := if u = 0 then ⟨1, 0⟩ else if u = 1 then ⟨0, 1⟩ else ⟨0, 0⟩
+
+/-- 00:C11 (vi) — the witnesses of the cone's boundary (22-quantum's U3, U5, U6a): the negative coefficient
+`c = (1, −1, 1, 0)` is excluded by its own winding, `F(K_c, ψ₁) = −16`; the two-way kernel `5η₁ − 2η₂ + η₃` outside the
+box is excluded on `ψ₂` and Fourier inversion recovers `4c = (0, 20, −8, 4)`; the fibre norm `[d = 0]` is two-way,
+responds `(4, 4, 4, 4)` with `4c_r = 1` on every channel (no tally combination) and fails channel-selectivity; the
+single character `η₁` responds `16` on its channel and `0` elsewhere, so `η₁/16` reads `1` (c = 1/16, no tally). -/
+theorem cone_boundary :
+    F (kernel 1 (-1) 1 0) (psi 1) = ⟨-16, 0⟩ ∧ ¬ tally (F (kernel 1 (-1) 1 0) (psi 1)) ∧
+    (∀ e, e < 4 → kout ((4 - e) % 4) = conj (kout e)) ∧ F kout (psi 2) = ⟨-32, 0⟩ ∧ ¬ tally (F kout (psi 2)) ∧
+    inversion kout 0 = ⟨0, 0⟩ ∧ inversion kout 1 = ⟨20, 0⟩ ∧ inversion kout 2 = ⟨-8, 0⟩ ∧ inversion kout 3 = ⟨4, 0⟩ ∧
+    (∀ d, d < 4 → smul 4 (kout d) = sum4 (fun r => inversion kout r * ipow (r * d))) ∧
+    (∀ e, e < 4 → fibreNorm ((4 - e) % 4) = conj (fibreNorm e)) ∧ (∀ k, k < 4 → F fibreNorm (psi k) = ⟨4, 0⟩) ∧
+    responses fibreNorm = 4 ∧ (∀ r, r < 4 → inversion fibreNorm r = ⟨1, 0⟩) ∧
+    F (kernel 0 1 0 0) (psi 1) = ⟨16, 0⟩ ∧ F (kernel 0 1 0 0) (psi 0) = ⟨0, 0⟩ ∧ responses (kernel 0 1 0 0) = 1 := by decide
+
+/-- 00:C11 (vii) — the minimal degree is forced (22-quantum Lemma degree): a linear functional constant on the orbit
+vanishes on every nontrivial winding (the complete character sums), and on the trivial winding `F(i ψ₀) = i F(ψ₀)`
+leaves the tally cone for every nonzero multiplier `c ≤ 4`; and the unconjugated bilinear form leaves the tally line
+on Gaussian-lattice states where the conjugated form of the same kernel stays on it: `B(fn, (1 + i)e₀) = 2i` against
+`F = 2`, `B([d = 1], e₀ + i e₁) = i`, and `B(K_(1,1,0,0), (1 + i)e₀) = 4i` against `F = 4`. -/
+theorem linear_exclusion :
+    (∀ k, k < 4 → 0 < k → sum4 (fun u => ipow (k * u)) = zero) ∧
+    (∀ c, c < 5 → 0 < c → ¬ tally (i * ⟨4 * Int.ofNat c, 0⟩)) ∧
+    B fibreNorm psiA = ⟨0, 2⟩ ∧ ¬ tally (B fibreNorm psiA) ∧ F fibreNorm psiA = ⟨2, 0⟩ ∧ tally (F fibreNorm psiA) ∧
+    B (fun d => if d % 4 = 1 then ⟨1, 0⟩ else ⟨0, 0⟩) psiB = ⟨0, 1⟩ ∧
+    ¬ tally (B (fun d => if d % 4 = 1 then ⟨1, 0⟩ else ⟨0, 0⟩) psiB) ∧
+    B (kernel 1 1 0 0) psiA = ⟨0, 4⟩ ∧ ¬ tally (B (kernel 1 1 0 0) psiA) ∧ F (kernel 1 1 0 0) psiA = ⟨4, 0⟩ := by decide
+
+end FRC.Extension.Tally
+
 /-! inlined: FrcCore/Keys/Extension.lean -/
 
 /-!
@@ -12672,6 +15553,9 @@ theorem p08002 : ∀ {p : Nat} [FRC.Pos p] {ν : FRC.Shell p} (z : FRC.Extension
 /-- p08012 — 8:B6. Norm growth and parity: $N(gz)=g^{2}N(z)$ with $g^{2}$ a square, the single-chronon multiplier $g$ odd, $x^{2}=\nu$ unsolvable in $\Fp$; the flip $g\mapsto g^{-1}$ preserves the parity class. -/
 theorem p08012 : (∀ {p : Nat} [FRC.Pos p] {ν : FRC.Shell p} (c : FRC.Shell p) (z : FRC.Extension.Ext p ν), (FRC.Extension.Ext.ofShell c * z).norm = c * c * z.norm) ∧ ∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → ∀ {y : FRC.Shell p}, g * y = (1 : FRC.Shell p) → ¬∃ r, r * r = y :=
   And.intro @FRC.Extension.Ext.norm_scale (@FRC.Shell.Frame.inv_drive_nonsquare)
+/-- p22028 — 22:C12, 00:C11. \textbf{Pair-tally uniqueness} (22-qm Prop.~gleason, the uniqueness of the pair tally on the stationary $Q_4$ sector): on the stationary core-valued $Q_4$ sector, tally-valued, fibre-additive, drive-invariant, parity-even registration functionals form the character cone fixed by the pure windings; adding channel-selectivity (assumed, not derived; the sampling clause D10) picks the Born ray. The minimal degree is forced; proof shape: 22-qm. -/
+theorem p22028 : (∀ (a : Nat), a < (5 : Nat) → ∀ (b : Nat), b < (5 : Nat) → ∀ (c : Nat), c < (5 : Nat) → ∀ (d : Nat), d < (5 : Nat) → ∀ (k : Nat), k < (4 : Nat) → FRC.Extension.Tally.F (FRC.Extension.Tally.kernel (Int.ofNat a - (1 : Int)) (Int.ofNat b - (1 : Int)) (Int.ofNat c - (1 : Int)) (Int.ofNat d - (1 : Int))) (FRC.Extension.Tally.psi k) = { re := (16 : Int) * FRC.Extension.Tally.coeff (Int.ofNat a - (1 : Int)) (Int.ofNat b - (1 : Int)) (Int.ofNat c - (1 : Int)) (Int.ofNat d - (1 : Int)) k, im := (0 : Int) }) ∧ (∀ (a : Nat), a < (5 : Nat) → ∀ (b : Nat), b < (5 : Nat) → ∀ (c : Nat), c < (5 : Nat) → ∀ (d : Nat), d < (5 : Nat) → ∀ (k : Nat), k < (4 : Nat) → ((FRC.Extension.Tally.F (FRC.Extension.Tally.kernel (Int.ofNat a - (1 : Int)) (Int.ofNat b - (1 : Int)) (Int.ofNat c - (1 : Int)) (Int.ofNat d - (1 : Int))) (FRC.Extension.Tally.psi k)).tally ↔ (0 : Int) ≤ FRC.Extension.Tally.coeff (Int.ofNat a - (1 : Int)) (Int.ofNat b - (1 : Int)) (Int.ofNat c - (1 : Int)) (Int.ofNat d - (1 : Int)) k)) ∧ (∀ (a : Nat), a < (4 : Nat) → ∀ (b : Nat), b < (4 : Nat) → ∀ (c : Nat), c < (4 : Nat) → ∀ (d : Nat), d < (4 : Nat) → (∀ (e : Nat), e < (4 : Nat) → FRC.Extension.Tally.kernel (Int.ofNat a) (Int.ofNat b) (Int.ofNat c) (Int.ofNat d) (((4 : Nat) - e) % (4 : Nat)) = (FRC.Extension.Tally.kernel (Int.ofNat a) (Int.ofNat b) (Int.ofNat c) (Int.ofNat d) e).conj) ∧ ∀ (k : Nat), k < (4 : Nat) → (FRC.Extension.Tally.F (FRC.Extension.Tally.kernel (Int.ofNat a) (Int.ofNat b) (Int.ofNat c) (Int.ofNat d)) (FRC.Extension.Tally.psi k)).tally) ∧ (∀ (a : Nat), a < (4 : Nat) → ∀ (b : Nat), b < (4 : Nat) → ∀ (c : Nat), c < (4 : Nat) → ∀ (d : Nat), d < (4 : Nat) → ∀ (r : Nat), r < (4 : Nat) → FRC.Extension.Tally.inversion (FRC.Extension.Tally.kernel (Int.ofNat a) (Int.ofNat b) (Int.ofNat c) (Int.ofNat d)) r = { re := (4 : Int) * FRC.Extension.Tally.coeff (Int.ofNat a) (Int.ofNat b) (Int.ofNat c) (Int.ofNat d) r, im := (0 : Int) }) ∧ (∀ (a : Nat), a < (4 : Nat) → ∀ (b : Nat), b < (4 : Nat) → ∀ (c : Nat), c < (4 : Nat) → ∀ (d : Nat), d < (4 : Nat) → (FRC.Extension.Tally.responses (FRC.Extension.Tally.kernel (Int.ofNat a) (Int.ofNat b) (Int.ofNat c) (Int.ofNat d)) = (1 : Nat) ↔ FRC.Extension.Tally.support (Int.ofNat a) (Int.ofNat b) (Int.ofNat c) (Int.ofNat d) = (1 : Nat))) ∧ (have M := fun r u => FRC.Extension.Tally.GI.ipow (r * u); have d2 := fun a b c d => a * d + FRC.Extension.Tally.GI.smul (-1 : Int) (b * c); have e := fun r => M r; have det3 := fun f g h => f (1 : Nat) * d2 (g (2 : Nat)) (g (3 : Nat)) (h (2 : Nat)) (h (3 : Nat)) + FRC.Extension.Tally.GI.smul (-1 : Int) (f (2 : Nat) * d2 (g (1 : Nat)) (g (3 : Nat)) (h (1 : Nat)) (h (3 : Nat))) + f (3 : Nat) * d2 (g (1 : Nat)) (g (2 : Nat)) (h (1 : Nat)) (h (2 : Nat)); e (0 : Nat) (0 : Nat) * det3 (e (1 : Nat)) (e (2 : Nat)) (e (3 : Nat)) + FRC.Extension.Tally.GI.smul (-1 : Int) (e (1 : Nat) (0 : Nat) * det3 (e (0 : Nat)) (e (2 : Nat)) (e (3 : Nat))) + e (2 : Nat) (0 : Nat) * det3 (e (0 : Nat)) (e (1 : Nat)) (e (3 : Nat)) + FRC.Extension.Tally.GI.smul (-1 : Int) (e (3 : Nat) (0 : Nat) * det3 (e (0 : Nat)) (e (1 : Nat)) (e (2 : Nat))) = { re := (0 : Int), im := (-16 : Int) }) ∧ (FRC.Extension.Tally.F (FRC.Extension.Tally.kernel (1 : Int) (-1 : Int) (1 : Int) (0 : Int)) (FRC.Extension.Tally.psi (1 : Nat)) = { re := (-16 : Int), im := (0 : Int) } ∧ ¬(FRC.Extension.Tally.F (FRC.Extension.Tally.kernel (1 : Int) (-1 : Int) (1 : Int) (0 : Int)) (FRC.Extension.Tally.psi (1 : Nat))).tally ∧ (∀ (e : Nat), e < (4 : Nat) → FRC.Extension.Tally.kout (((4 : Nat) - e) % (4 : Nat)) = (FRC.Extension.Tally.kout e).conj) ∧ FRC.Extension.Tally.F FRC.Extension.Tally.kout (FRC.Extension.Tally.psi (2 : Nat)) = { re := (-32 : Int), im := (0 : Int) } ∧ ¬(FRC.Extension.Tally.F FRC.Extension.Tally.kout (FRC.Extension.Tally.psi (2 : Nat))).tally ∧ FRC.Extension.Tally.inversion FRC.Extension.Tally.kout (0 : Nat) = { re := (0 : Int), im := (0 : Int) } ∧ FRC.Extension.Tally.inversion FRC.Extension.Tally.kout (1 : Nat) = { re := (20 : Int), im := (0 : Int) } ∧ FRC.Extension.Tally.inversion FRC.Extension.Tally.kout (2 : Nat) = { re := (-8 : Int), im := (0 : Int) } ∧ FRC.Extension.Tally.inversion FRC.Extension.Tally.kout (3 : Nat) = { re := (4 : Int), im := (0 : Int) } ∧ (∀ (d : Nat), d < (4 : Nat) → FRC.Extension.Tally.GI.smul (4 : Int) (FRC.Extension.Tally.kout d) = FRC.Extension.Tally.sum4 fun r => FRC.Extension.Tally.inversion FRC.Extension.Tally.kout r * FRC.Extension.Tally.GI.ipow (r * d)) ∧ (∀ (e : Nat), e < (4 : Nat) → FRC.Extension.Tally.fibreNorm (((4 : Nat) - e) % (4 : Nat)) = (FRC.Extension.Tally.fibreNorm e).conj) ∧ (∀ (k : Nat), k < (4 : Nat) → FRC.Extension.Tally.F FRC.Extension.Tally.fibreNorm (FRC.Extension.Tally.psi k) = { re := (4 : Int), im := (0 : Int) }) ∧ FRC.Extension.Tally.responses FRC.Extension.Tally.fibreNorm = (4 : Nat) ∧ (∀ (r : Nat), r < (4 : Nat) → FRC.Extension.Tally.inversion FRC.Extension.Tally.fibreNorm r = { re := (1 : Int), im := (0 : Int) }) ∧ FRC.Extension.Tally.F (FRC.Extension.Tally.kernel (0 : Int) (1 : Int) (0 : Int) (0 : Int)) (FRC.Extension.Tally.psi (1 : Nat)) = { re := (16 : Int), im := (0 : Int) } ∧ FRC.Extension.Tally.F (FRC.Extension.Tally.kernel (0 : Int) (1 : Int) (0 : Int) (0 : Int)) (FRC.Extension.Tally.psi (0 : Nat)) = { re := (0 : Int), im := (0 : Int) } ∧ FRC.Extension.Tally.responses (FRC.Extension.Tally.kernel (0 : Int) (1 : Int) (0 : Int) (0 : Int)) = (1 : Nat)) ∧ (∀ (k : Nat), k < (4 : Nat) → (0 : Nat) < k → (FRC.Extension.Tally.sum4 fun u => FRC.Extension.Tally.GI.ipow (k * u)) = FRC.Extension.Tally.GI.zero) ∧ (∀ (c : Nat), c < (5 : Nat) → (0 : Nat) < c → ¬(FRC.Extension.Tally.GI.i * { re := (4 : Int) * Int.ofNat c, im := (0 : Int) }).tally) ∧ FRC.Extension.Tally.B FRC.Extension.Tally.fibreNorm FRC.Extension.Tally.psiA = { re := (0 : Int), im := (2 : Int) } ∧ ¬(FRC.Extension.Tally.B FRC.Extension.Tally.fibreNorm FRC.Extension.Tally.psiA).tally ∧ FRC.Extension.Tally.F FRC.Extension.Tally.fibreNorm FRC.Extension.Tally.psiA = { re := (2 : Int), im := (0 : Int) } ∧ (FRC.Extension.Tally.F FRC.Extension.Tally.fibreNorm FRC.Extension.Tally.psiA).tally ∧ FRC.Extension.Tally.B (fun d => if d % (4 : Nat) = (1 : Nat) then { re := (1 : Int), im := (0 : Int) } else { re := (0 : Int), im := (0 : Int) }) FRC.Extension.Tally.psiB = { re := (0 : Int), im := (1 : Int) } ∧ ¬(FRC.Extension.Tally.B (fun d => if d % (4 : Nat) = (1 : Nat) then { re := (1 : Int), im := (0 : Int) } else { re := (0 : Int), im := (0 : Int) }) FRC.Extension.Tally.psiB).tally ∧ FRC.Extension.Tally.B (FRC.Extension.Tally.kernel (1 : Int) (1 : Int) (0 : Int) (0 : Int)) FRC.Extension.Tally.psiA = { re := (0 : Int), im := (4 : Int) } ∧ ¬(FRC.Extension.Tally.B (FRC.Extension.Tally.kernel (1 : Int) (1 : Int) (0 : Int) (0 : Int)) FRC.Extension.Tally.psiA).tally ∧ FRC.Extension.Tally.F (FRC.Extension.Tally.kernel (1 : Int) (1 : Int) (0 : Int) (0 : Int)) FRC.Extension.Tally.psiA = { re := (4 : Int), im := (0 : Int) } :=
+  And.intro @FRC.Extension.Tally.winding_fixing (And.intro @FRC.Extension.Tally.tally_criterion (And.intro @FRC.Extension.Tally.two_way (And.intro @FRC.Extension.Tally.fourier_inversion (And.intro @FRC.Extension.Tally.channel_selectivity (And.intro @FRC.Extension.Tally.dft_det (And.intro @FRC.Extension.Tally.cone_boundary (@FRC.Extension.Tally.linear_exclusion)))))))
 -- end keys
 
 end FRC.Ledger
@@ -15841,7 +18725,7 @@ theorem p00162 : ∀ {p : Nat} [FRC.Pos p], (2 : Nat) ≤ p → (FRC.Nat.isPrime
 /-- p00163 — 00:A12. \textbf{The quarter-turn exists iff $\p\equiv1\pmod4$}: for an odd prime $\p$, $-1$ is a square in $\F_\p$ iff $\p\equiv1\pmod4$ (the formal shadow of B3). -/
 theorem p00163 : ∀ {p : Nat} [FRC.Pos p], FRC.Nat.isPrime p → (2 : Nat) < p → ((∃ h, h * h = (-1 : FRC.Shell p)) ↔ p % (4 : Nat) = (1 : Nat)) :=
   @FRC.Shell.Prime.quarter_turn_iff
-/-- p00164 — 00:A13. \textbf{Every prime carries a frame}: every prime field $\F_\p$ has a primitive root, so a drive $\gen$ with $\langle\gen\rangle=\F_\p^{\times}$ exists (the formal shadow of C1). -/
+/-- p00164 — 00:A13. \textbf{Every prime carries a frame}: every prime field $\F_\p$ of the totality has a primitive root, so a drive $\gen$ with $\langle\gen\rangle=\F_\p^{\times}$ exists (the formal shadow of C1). -/
 theorem p00164 : ∀ {p : Nat} [FRC.Pos p], FRC.Nat.isPrime p → ∃ g, (g ^ (p - (1 : Nat)) = (1 : FRC.Shell p) ∧ ∀ (l : Nat), l < p - (1 : Nat) → (0 : Nat) < l → g ^ l ≠ (1 : FRC.Shell p)) ∧ ∀ (v : Nat), v < p → (0 : Nat) < v → ∃ m, m < p - (1 : Nat) ∧ (g ^ m).val = v :=
   @FRC.Shell.Prime.exists_drive
 /-- p00188 — 00:A6. Counting closes by return: the successor $C_q:x\mapsto x{+}1\ (\mathrm{mod}\ q)$ on $q\ge2$ points is one $q$-cycle with no fixed point, so iteration is bounded and cyclic; its interpretation is A2's. -/
@@ -15867,7 +18751,7 @@ namespace FRC.Ledger
 /-- p00058 — 00:E7. \textbf{Gravity} (horizon triple): the record is the registered state count $\kap(\p+1)=(A/4)(1-1/\p )=M(M-1)$ (37:B5, 37:C7) on the rate face $M=(\p +1)/2$ (D2, D14; $\p =2M-1$ the count face), $d[\kap(\p+1)]/dM=\p$ exactly. The temperature has two exact faces, the registration rate $T=(\p +1)/\p ^2$ (E5) and the response $T_{\mathrm{resp}}=(d[\kap(\p+1)]/dM)^{-1}=1/\p$, split by $1+1/\p$. First law $dM=T_{\mathrm{resp}}\,d[\kap(\p+1)]=T\,d[\kap(\p+1)]/(1+1/\p )$; Smarr $2T_{\mathrm{resp}}\kap(\p+1)=M(1-1/\p )$, $2T\kap(\p+1)=M(1-1/\p ^2)$; the chart's $dM=T\,dS_{\mathrm{th}}$, $M=2TS_{\mathrm{th}}$ [import] to order $1/\p$ (D15). -/
 theorem p00058 : (∀ (κ : Nat), (4 : Nat) * (κ * ((4 : Nat) * κ + (2 : Nat))) + (1 : Nat) = ((4 : Nat) * κ + (1 : Nat)) * ((4 : Nat) * κ + (1 : Nat)) ∧ κ * ((4 : Nat) * κ + (2 : Nat)) * ((4 : Nat) * κ + (1 : Nat)) = κ * (((4 : Nat) * κ + (1 : Nat)) * ((4 : Nat) * κ + (2 : Nat))) ∧ (4 : Nat) * (κ * ((4 : Nat) * κ + (2 : Nat))) * ((4 : Nat) * κ + (1 : Nat)) = ((4 : Nat) * κ + (1 : Nat)) * ((4 : Nat) * κ + (2 : Nat)) * ((4 : Nat) * κ)) ∧ (∀ (κ : Nat), κ * ((4 : Nat) * κ + (2 : Nat)) = ((2 : Nat) * κ + (1 : Nat)) * ((2 : Nat) * κ)) ∧ (∀ (m h : Nat), (m + (1 : Nat) + h) * (m + h) = (m + (1 : Nat)) * m + ((2 : Nat) * m + (1 : Nat)) * h + h * h) ∧ (∀ (κ : Nat), ((4 : Nat) * κ + (1 : Nat)) * ((4 : Nat) * κ + (2 : Nat)) * (((4 : Nat) * κ + (1 : Nat)) * ((4 : Nat) * κ + (1 : Nat))) = ((4 : Nat) * κ + (2 : Nat)) * (((4 : Nat) * κ + (1 : Nat)) * ((4 : Nat) * κ + (1 : Nat)) * ((4 : Nat) * κ + (1 : Nat)))) ∧ (∀ (κ : Nat), (2 : Nat) * (κ * ((4 : Nat) * κ + (2 : Nat))) = ((2 : Nat) * κ + (1 : Nat)) * ((4 : Nat) * κ) ∧ (2 : Nat) * ((4 : Nat) * κ + (2 : Nat)) * (κ * ((4 : Nat) * κ + (2 : Nat))) = ((2 : Nat) * κ + (1 : Nat)) * ((4 : Nat) * κ * ((4 : Nat) * κ + (2 : Nat)))) ∧ ∀ (κ h : Nat), ((2 : Nat) * κ + (1 : Nat) + h) * ((2 : Nat) * κ + h) = ((2 : Nat) * κ + (1 : Nat)) * ((2 : Nat) * κ) + ((4 : Nat) * κ + (1 : Nat)) * h + h * h :=
   And.intro @FRC.Grav.count_identity (And.intro @FRC.Grav.record_mass (And.intro @FRC.Grav.record_response (And.intro @FRC.Grav.temperature_rate (And.intro @FRC.Grav.smarr (@FRC.Grav.record_response_rate)))))
-/-- p00176 — 00:E6. \textbf{Gravity} (horizon count): the registration sphere of a shell has area $A=\p(\p+1)$ and record $\kap(\p+1)$, so $\kap(\p+1)/A=\kap/\p$ exactly, the $Q_4$ gauge quotient, and closes the calibration: at the coherence horizon $\p^2\to\Om$ the record law returns $(\Om-1)/4=\dS$, the imported entropy (A8). The chart reading $S=\tfrac14A/\ell_P^2$ is D15's. Corollary: the merger area law $\Delta A=2M_1M_2$, saturated (37-sim). Triple: E7. -/
+/-- p00176 — 00:E6. \textbf{Gravity} (horizon count): the registration sphere of a shell has area $A=\p(\p+1)$ and record $\kap(\p+1)$, so $\kap(\p+1)/A=\kap/\p$ exactly, the $Q_4$ gauge quotient, and closes the calibration: at the coherence horizon $\p^2\to\Om$ the record law returns $(\Om-1)/4=\dS$, the imported entropy (A8). The chart reading $S=\tfrac14A/\ell_P^2$ is L5's. Corollary: the merger area law $\Delta A=2M_1M_2$, saturated (37-sim). Triple: E7. -/
 theorem p00176 : (∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → FRC.Grav.sphereCount p (FRC.Shell.ofNat κ * FRC.Shell.ofNat κ) = p * (p + (1 : Nat))) ∧ (∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → ∀ {b : FRC.Shell p}, b ≠ (0 : FRC.Shell p) → FRC.Grav.sphereCount p (b * b) = p * (p + (1 : Nat))) ∧ (∀ (κ : Nat), (4 : Nat) * (κ * ((4 : Nat) * κ + (2 : Nat))) + (1 : Nat) = ((4 : Nat) * κ + (1 : Nat)) * ((4 : Nat) * κ + (1 : Nat)) ∧ κ * ((4 : Nat) * κ + (2 : Nat)) * ((4 : Nat) * κ + (1 : Nat)) = κ * (((4 : Nat) * κ + (1 : Nat)) * ((4 : Nat) * κ + (2 : Nat))) ∧ (4 : Nat) * (κ * ((4 : Nat) * κ + (2 : Nat))) * ((4 : Nat) * κ + (1 : Nat)) = ((4 : Nat) * κ + (1 : Nat)) * ((4 : Nat) * κ + (2 : Nat)) * ((4 : Nat) * κ)) ∧ ∀ (M₁ M₂ : Nat), (M₁ + M₂) * (M₁ + M₂ + (1 : Nat)) = M₁ * (M₁ + (1 : Nat)) + M₂ * (M₂ + (1 : Nat)) + (2 : Nat) * (M₁ * M₂) :=
   And.intro @FRC.Grav.sphere_area (And.intro @FRC.Grav.sphere_area_rung (And.intro @FRC.Grav.count_identity (@FRC.Grav.merger_area)))
 -- end keys

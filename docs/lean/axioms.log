@@ -881,6 +881,7 @@
 'FRC.Rh.p20043' depends on axioms: [propext, Classical.choice, Quot.sound]
 'FRC.Rh.p20044' depends on axioms: [propext, Classical.choice, Quot.sound]
 'FRC.Chart.scale_import' depends on axioms: [propext, Classical.choice, Quot.sound]
+'FRC.Chart.ln_omega_ledger' depends on axioms: [propext, Classical.choice, Quot.sound]
 'FRC.Chart.octant_chart' depends on axioms: [propext, Classical.choice, Quot.sound]
 'FRC.Chart.tanh_octant_pos' depends on axioms: [propext, Classical.choice, Quot.sound]
 'FRC.Chart.age_rate_locus' depends on axioms: [propext, Classical.choice, Quot.sound]

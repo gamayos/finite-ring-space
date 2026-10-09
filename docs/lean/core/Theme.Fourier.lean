@@ -360,6 +360,8 @@ theorem hq (F : Frame p κ g) : (1 + 1 + 1 + 1 : Shell p) * -(ofNat κ) + -1 = 0
       ofNat_succ, show (ofNat 2 : Shell p) = ofNat (1 + 1) from rfl, ofNat_succ]; rfl
   rw [e4, ← mul_neg, ofNat_mul, ← F.n_eq, F.ofNat_n, neg_neg, add_neg]
 
+/-- 6:E7, the expansion `F^{[s]} = Σ_r c_r(s) F^r` in the basis `I, F, J, FJ`: the coefficients `c_r(s) = NF_r(z^s)`
+(their geometric-sum form is `frft_coeff` of `Theme/Heisenberg.lean`). -/
 theorem frft_eq (F : Frame p κ g) (z : Shell p) (s k j : Nat) :
     frft g κ z s k j = comb g κ (NF0 (-(ofNat κ)) (-(quarterTurn g κ)) (z ^ s)) (NF1 (-(ofNat κ)) (-(quarterTurn g κ)) (z ^ s))
       (NF2 (-(ofNat κ)) (-(quarterTurn g κ)) (z ^ s)) (NF3 (-(ofNat κ)) (-(quarterTurn g κ)) (z ^ s)) k j := by
@@ -465,12 +467,12 @@ theorem frft_add (F : Frame p κ g) (z : Shell p) (s r : Nat) {k j : Nat} (hk : 
   rw [sum_congr _ (fun l _ => by rw [frft_eq F z s k l, frft_eq F z r l j]), comb_mul F hk hj, frft_eq F z (s + r) k j,
     pow_add, conv0 (hjj F) (hq F), conv1 (hjj F) (hq F), conv2 (hjj F) (hq F), conv3 (hjj F) (hq F)]
 
-/-- The family is periodic over the cycle: `F^{[s + (p−1)]} = F^{[s]}`. -/
+/-- 6:C3, the period: the family is periodic over the cycle, `F^{[s + (p−1)]} = F^{[s]}`, so `F^{[4κ]} = I`. -/
 theorem frft_period (F : Frame p κ g) {z : Shell p} (hz : g * z = 1) (s k j : Nat) :
     frft g κ z (s + (p - 1)) k j = frft g κ z s k j := by
   unfold frft; rw [pow_add, inv_pow_n F hz, mul_one]
 
-/-- `F^{[m s]} = (F^{[s]})^m`; in particular `(F^{[1]})^κ = F^{[κ]} = F`. -/
+/-- 6:C3, the root: `F^{[m s]} = (F^{[s]})^m`; in particular `(F^{[1]})^κ = F^{[κ]} = F`. -/
 theorem frft_pow (F : Frame p κ g) {z : Shell p} (hz : g * z = 1) (s : Nat) :
     ∀ m k j, k < p - 1 → j < p - 1 → frft g κ z (m * s) k j = mpow (frft g κ z s) m k j
   | 0, k, j, _, _ => by rw [Nat.zero_mul]; exact (frft_cardinal F hz k j).1
@@ -515,7 +517,7 @@ theorem frft_dilation (F : Frame p κ g) {z : Shell p} (hz : g * z = 1) {s s' : 
 
 /-! ## C7: the conjugate frame, and the Carrier's quarter-turn -/
 
-/-- The inverse drive is a frame. -/
+/-- 6:C9, the conjugate frame: the inverse drive `g⁻¹` is a frame of the same shell and capacity. -/
 theorem inv_frame (F : Frame p κ g) {z : Shell p} (hz : g * z = 1) : Frame p κ z := by
   have hpow : ∀ l, g ^ l * z ^ l = 1 := fun l => by rw [← mul_pow, hz, one_pow]
   exact ⟨F.cap, F.cap_pos, ⟨by have := hpow (p - 1); rwa [F.pow_n, one_mul] at this,
@@ -525,7 +527,7 @@ theorem inv_quarter (F : Frame p κ g) {z : Shell p} (hz : g * z = 1) : quarterT
   show -(z ^ κ) = -quarterTurn g κ
   rw [inv_pow_kappa F hz]
 
-/-- The conjugate frame's transform is `−F J = −F⁻¹` (6:C9). -/
+/-- 6:C9, the conjugate frame's transform is `−F J = −F⁻¹`. -/
 theorem Fmat_conj (F : Frame p κ g) {z : Shell p} (hz : g * z = 1) {k j : Nat} (_hk : k < p - 1) (hj : j < p - 1) :
     Fmat z κ k j = -(FJ g κ k j) := by
   have hn := F.n_pos
@@ -561,7 +563,7 @@ theorem cube_pow {i : Shell p} (h : i * i = -1) : i ^ 3 = -i := by
 theorem neg_cube_pow {i : Shell p} (h : i * i = -1) : (-i) ^ 3 = i := by
   rw [pow_succ, neg_sq_pow h, neg_mul_neg, one_mul]
 
-/-- The conjugate frame's projectors are the shifted ones, `Π'_ℓ = Π_{ℓ+2}` (6:C9). -/
+/-- 6:C9, the conjugate frame's projectors are the shifted ones, `Π'_ℓ = Π_{ℓ+2}`. -/
 theorem proj_conj (F : Frame p κ g) {z : Shell p} (hz : g * z = 1) (ℓ : Nat) {k j : Nat} (hk : k < p - 1)
     (hj : j < p - 1) : proj z κ ℓ k j = proj g κ (ℓ + 2) k j := by
   have h := F.quarter_turn_sq

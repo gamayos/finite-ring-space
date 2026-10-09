@@ -65,13 +65,13 @@ const PUBLICATIONS = [
         "href": "https://live.lean-lang.org/#project=lean-v4.34.0&url=https://finitering.space/lean/web/core/Algebra.lean",
         "label": "lean",
         "count": 13,
-        "title": "13 predicates proved in the core (no axioms), 11 of them also on Mathlib: the core module Algebra as one executable file (plain Lean, no Mathlib) in the Lean web editor"
+        "title": "13 predicates proved in the core (no axioms), 11 of them also on Mathlib: the core module Algebra as one executable file (plain Lean, no Mathlib) in Lean Live"
       },
       {
         "href": "https://live.lean-lang.org/#project=mathlib-stable&url=https://finitering.space/lean/web/ml/Algebra.lean",
         "label": "lean-mathlib",
         "count": 13,
-        "title": "13 predicates proved on Mathlib (classical), 11 of them also in the core: the module Algebra as one file on Mathlib in the Lean web editor"
+        "title": "13 predicates proved on Mathlib (classical), 11 of them also in the core: the module Algebra as one file on Mathlib in Lean Live"
       }
     ]
   },
@@ -98,13 +98,13 @@ const PUBLICATIONS = [
         "href": "https://live.lean-lang.org/#project=lean-v4.34.0&url=https://finitering.space/lean/web/core/Geometry.lean",
         "label": "lean",
         "count": 16,
-        "title": "16 predicates proved in the core (no axioms), 9 of them also on Mathlib: the core module Geometry as one executable file (plain Lean, no Mathlib) in the Lean web editor"
+        "title": "16 predicates proved in the core (no axioms), 9 of them also on Mathlib: the core module Geometry as one executable file (plain Lean, no Mathlib) in Lean Live"
       },
       {
         "href": "https://live.lean-lang.org/#project=mathlib-stable&url=https://finitering.space/lean/web/ml/Geometry.lean",
         "label": "lean-mathlib",
         "count": 9,
-        "title": "9 predicates proved on Mathlib (classical), 9 of them also in the core: the module Geometry as one file on Mathlib in the Lean web editor"
+        "title": "9 predicates proved on Mathlib (classical), 9 of them also in the core: the module Geometry as one file on Mathlib in Lean Live"
       }
     ]
   },
@@ -131,13 +131,13 @@ const PUBLICATIONS = [
         "href": "https://live.lean-lang.org/#project=lean-v4.34.0&url=https://finitering.space/lean/web/core/Causality.lean",
         "label": "lean",
         "count": 7,
-        "title": "7 predicates proved in the core (no axioms), 5 of them also on Mathlib: the core module Causality as one executable file (plain Lean, no Mathlib) in the Lean web editor"
+        "title": "7 predicates proved in the core (no axioms), 5 of them also on Mathlib: the core module Causality as one executable file (plain Lean, no Mathlib) in Lean Live"
       },
       {
         "href": "https://live.lean-lang.org/#project=mathlib-stable&url=https://finitering.space/lean/web/ml/Causality.lean",
         "label": "lean-mathlib",
         "count": 5,
-        "title": "5 predicates proved on Mathlib (classical), 5 of them also in the core: the module Causality as one file on Mathlib in the Lean web editor"
+        "title": "5 predicates proved on Mathlib (classical), 5 of them also in the core: the module Causality as one file on Mathlib in Lean Live"
       }
     ]
   },
@@ -164,13 +164,13 @@ const PUBLICATIONS = [
         "href": "https://live.lean-lang.org/#project=lean-v4.34.0&url=https://finitering.space/lean/web/core/Representation.lean",
         "label": "lean",
         "count": 10,
-        "title": "10 predicates proved in the core (no axioms), 9 of them also on Mathlib: the core module Representation as one executable file (plain Lean, no Mathlib) in the Lean web editor"
+        "title": "10 predicates proved in the core (no axioms), 9 of them also on Mathlib: the core module Representation as one executable file (plain Lean, no Mathlib) in Lean Live"
       },
       {
         "href": "https://live.lean-lang.org/#project=mathlib-stable&url=https://finitering.space/lean/web/ml/Representation.lean",
         "label": "lean-mathlib",
         "count": 9,
-        "title": "9 predicates proved on Mathlib (classical), 9 of them also in the core: the module Representation as one file on Mathlib in the Lean web editor"
+        "title": "9 predicates proved on Mathlib (classical), 9 of them also in the core: the module Representation as one file on Mathlib in Lean Live"
       }
     ]
   },
@@ -196,13 +196,13 @@ const PUBLICATIONS = [
         "href": "https://live.lean-lang.org/#project=lean-v4.34.0&url=https://finitering.space/lean/web/core/Reductio.lean",
         "label": "lean",
         "count": 8,
-        "title": "8 predicates proved in the core (no axioms), 5 of them also on Mathlib: the core module Reductio as one executable file (plain Lean, no Mathlib) in the Lean web editor"
+        "title": "8 predicates proved in the core (no axioms), 5 of them also on Mathlib: the core module Reductio as one executable file (plain Lean, no Mathlib) in Lean Live"
       },
       {
         "href": "https://live.lean-lang.org/#project=mathlib-stable&url=https://finitering.space/lean/web/ml/Reductio.lean",
         "label": "lean-mathlib",
         "count": 11,
-        "title": "11 predicates proved on Mathlib (classical), 5 of them also in the core: the module Reductio as one file on Mathlib in the Lean web editor"
+        "title": "11 predicates proved on Mathlib (classical), 5 of them also in the core: the module Reductio as one file on Mathlib in Lean Live"
       }
     ]
   },
@@ -227,14 +227,14 @@ const PUBLICATIONS = [
       {
         "href": "https://live.lean-lang.org/#project=lean-v4.34.0&url=https://finitering.space/lean/web/core/Fourier.lean",
         "label": "lean",
-        "count": 7,
-        "title": "7 predicates proved in the core (no axioms), 2 of them also on Mathlib: the core module Fourier as one executable file (plain Lean, no Mathlib) in the Lean web editor"
+        "count": 27,
+        "title": "27 predicates proved in the core (no axioms), 15 of them also on Mathlib: the core module Fourier as one executable file (plain Lean, no Mathlib) in Lean Live"
       },
       {
         "href": "https://live.lean-lang.org/#project=mathlib-stable&url=https://finitering.space/lean/web/ml/Fourier.lean",
         "label": "lean-mathlib",
         "count": 15,
-        "title": "15 predicates proved on Mathlib (classical), 2 of them also in the core: the module Fourier as one file on Mathlib in the Lean web editor"
+        "title": "15 predicates proved on Mathlib (classical), 15 of them also in the core: the module Fourier as one file on Mathlib in Lean Live"
       }
     ]
   },
@@ -260,13 +260,13 @@ const PUBLICATIONS = [
         "href": "https://live.lean-lang.org/#project=lean-v4.34.0&url=https://finitering.space/lean/web/core/Dirac.lean",
         "label": "lean",
         "count": 20,
-        "title": "20 predicates proved in the core (no axioms), 20 of them also on Mathlib: the core module Dirac as one executable file (plain Lean, no Mathlib) in the Lean web editor"
+        "title": "20 predicates proved in the core (no axioms), 20 of them also on Mathlib: the core module Dirac as one executable file (plain Lean, no Mathlib) in Lean Live"
       },
       {
         "href": "https://live.lean-lang.org/#project=mathlib-stable&url=https://finitering.space/lean/web/ml/Dirac.lean",
         "label": "lean-mathlib",
         "count": 26,
-        "title": "26 predicates proved on Mathlib (classical), 20 of them also in the core: the module Dirac as one file on Mathlib in the Lean web editor"
+        "title": "26 predicates proved on Mathlib (classical), 20 of them also in the core: the module Dirac as one file on Mathlib in Lean Live"
       }
     ]
   },
@@ -302,13 +302,13 @@ const PUBLICATIONS = [
         "href": "https://live.lean-lang.org/#project=lean-v4.34.0&url=https://finitering.space/lean/web/core/Dimensions.lean",
         "label": "lean",
         "count": 24,
-        "title": "24 predicates proved in the core (no axioms), 18 of them also on Mathlib: the core module Dimensions as one executable file (plain Lean, no Mathlib) in the Lean web editor"
+        "title": "24 predicates proved in the core (no axioms), 18 of them also on Mathlib: the core module Dimensions as one executable file (plain Lean, no Mathlib) in Lean Live"
       },
       {
         "href": "https://live.lean-lang.org/#project=mathlib-stable&url=https://finitering.space/lean/web/ml/Dimensions.lean",
         "label": "lean-mathlib",
         "count": 22,
-        "title": "22 predicates proved on Mathlib (classical), 18 of them also in the core: the module Dimensions as one file on Mathlib in the Lean web editor"
+        "title": "22 predicates proved on Mathlib (classical), 18 of them also in the core: the module Dimensions as one file on Mathlib in Lean Live"
       }
     ]
   },
@@ -334,13 +334,13 @@ const PUBLICATIONS = [
         "href": "https://live.lean-lang.org/#project=lean-v4.34.0&url=https://finitering.space/lean/web/core/Epi.lean",
         "label": "lean",
         "count": 14,
-        "title": "14 predicates proved in the core (no axioms), 6 of them also on Mathlib: the core module Epi as one executable file (plain Lean, no Mathlib) in the Lean web editor"
+        "title": "14 predicates proved in the core (no axioms), 6 of them also on Mathlib: the core module Epi as one executable file (plain Lean, no Mathlib) in Lean Live"
       },
       {
         "href": "https://live.lean-lang.org/#project=mathlib-stable&url=https://finitering.space/lean/web/ml/Epi.lean",
         "label": "lean-mathlib",
         "count": 17,
-        "title": "17 predicates proved on Mathlib (classical), 6 of them also in the core: the module Epi as one file on Mathlib in the Lean web editor"
+        "title": "17 predicates proved on Mathlib (classical), 6 of them also in the core: the module Epi as one file on Mathlib in Lean Live"
       }
     ]
   },
@@ -366,13 +366,13 @@ const PUBLICATIONS = [
         "href": "https://live.lean-lang.org/#project=lean-v4.34.0&url=https://finitering.space/lean/web/core/Entropy.lean",
         "label": "lean",
         "count": 9,
-        "title": "9 predicates proved in the core (no axioms), 9 of them also on Mathlib: the core module Entropy as one executable file (plain Lean, no Mathlib) in the Lean web editor"
+        "title": "9 predicates proved in the core (no axioms), 9 of them also on Mathlib: the core module Entropy as one executable file (plain Lean, no Mathlib) in Lean Live"
       },
       {
         "href": "https://live.lean-lang.org/#project=mathlib-stable&url=https://finitering.space/lean/web/ml/Entropy.lean",
         "label": "lean-mathlib",
         "count": 19,
-        "title": "19 predicates proved on Mathlib (classical), 9 of them also in the core: the module Entropy as one file on Mathlib in the Lean web editor"
+        "title": "19 predicates proved on Mathlib (classical), 9 of them also in the core: the module Entropy as one file on Mathlib in Lean Live"
       }
     ]
   },
@@ -398,13 +398,13 @@ const PUBLICATIONS = [
         "href": "https://live.lean-lang.org/#project=lean-v4.34.0&url=https://finitering.space/lean/web/core/Rh.lean",
         "label": "lean",
         "count": 11,
-        "title": "11 predicates proved in the core (no axioms), 11 of them also on Mathlib: the core module Rh as one executable file (plain Lean, no Mathlib) in the Lean web editor"
+        "title": "11 predicates proved in the core (no axioms), 11 of them also on Mathlib: the core module Rh as one executable file (plain Lean, no Mathlib) in Lean Live"
       },
       {
         "href": "https://live.lean-lang.org/#project=mathlib-stable&url=https://finitering.space/lean/web/ml/Rh.lean",
         "label": "lean-mathlib",
         "count": 14,
-        "title": "14 predicates proved on Mathlib (classical), 11 of them also in the core: the module Rh as one file on Mathlib in the Lean web editor"
+        "title": "14 predicates proved on Mathlib (classical), 11 of them also in the core: the module Rh as one file on Mathlib in Lean Live"
       }
     ]
   },
@@ -486,13 +486,13 @@ const PUBLICATIONS = [
         "href": "https://live.lean-lang.org/#project=lean-v4.34.0&url=https://finitering.space/lean/web/core/Godel.lean",
         "label": "lean",
         "count": 11,
-        "title": "11 predicates proved in the core (no axioms), 6 of them also on Mathlib: the core module Godel as one executable file (plain Lean, no Mathlib) in the Lean web editor"
+        "title": "11 predicates proved in the core (no axioms), 6 of them also on Mathlib: the core module Godel as one executable file (plain Lean, no Mathlib) in Lean Live"
       },
       {
         "href": "https://live.lean-lang.org/#project=mathlib-stable&url=https://finitering.space/lean/web/ml/Godel.lean",
         "label": "lean-mathlib",
         "count": 9,
-        "title": "9 predicates proved on Mathlib (classical), 6 of them also in the core: the module Godel as one file on Mathlib in the Lean web editor"
+        "title": "9 predicates proved on Mathlib (classical), 6 of them also in the core: the module Godel as one file on Mathlib in Lean Live"
       }
     ]
   },
@@ -718,4 +718,4 @@ const PUBLICATIONS = [
   }
 ];
 
-const GENERATED = "8 October 2026";
+const GENERATED = "9 October 2026";

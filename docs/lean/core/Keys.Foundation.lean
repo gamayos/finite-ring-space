@@ -21,7 +21,7 @@ theorem p00162 : ∀ {p : Nat} [FRC.Pos p], (2 : Nat) ≤ p → (FRC.Nat.isPrime
 /-- p00163 — 00:A12. \textbf{The quarter-turn exists iff $\p\equiv1\pmod4$}: for an odd prime $\p$, $-1$ is a square in $\F_\p$ iff $\p\equiv1\pmod4$ (the formal shadow of B3). -/
 theorem p00163 : ∀ {p : Nat} [FRC.Pos p], FRC.Nat.isPrime p → (2 : Nat) < p → ((∃ h, h * h = (-1 : FRC.Shell p)) ↔ p % (4 : Nat) = (1 : Nat)) :=
   @FRC.Shell.Prime.quarter_turn_iff
-/-- p00164 — 00:A13. \textbf{Every prime carries a frame}: every prime field $\F_\p$ has a primitive root, so a drive $\gen$ with $\langle\gen\rangle=\F_\p^{\times}$ exists (the formal shadow of C1). -/
+/-- p00164 — 00:A13. \textbf{Every prime carries a frame}: every prime field $\F_\p$ of the totality has a primitive root, so a drive $\gen$ with $\langle\gen\rangle=\F_\p^{\times}$ exists (the formal shadow of C1). -/
 theorem p00164 : ∀ {p : Nat} [FRC.Pos p], FRC.Nat.isPrime p → ∃ g, (g ^ (p - (1 : Nat)) = (1 : FRC.Shell p) ∧ ∀ (l : Nat), l < p - (1 : Nat) → (0 : Nat) < l → g ^ l ≠ (1 : FRC.Shell p)) ∧ ∀ (v : Nat), v < p → (0 : Nat) < v → ∃ m, m < p - (1 : Nat) ∧ (g ^ m).val = v :=
   @FRC.Shell.Prime.exists_drive
 /-- p00188 — 00:A6. Counting closes by return: the successor $C_q:x\mapsto x{+}1\ (\mathrm{mod}\ q)$ on $q\ge2$ points is one $q$-cycle with no fixed point, so iteration is bounded and cyclic; its interpretation is A2's. -/

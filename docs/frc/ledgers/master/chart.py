@@ -3,8 +3,8 @@ chart theme certifies (ledger migration, task LM30, 6 October 2026; A8 bound 8 O
 
 The chart theme serves the scale import, the cosmology rows and the prediction rows, so this file binds rows of three
 blocks, A, L and P (BLOCK = "ALP"). The rows are an import (A8), realisations (L1, L3, L8) and a prediction (P1): A8's
-datum is used without reproof and the file binds its chart numerals, S, Ω and ln Ω from the fit's Λ and the Planck
-length; each other row is staked by a chart computation, and the file binds that computation, not the realisation. It holds the table of keys (generated from docs/00-ledger.json and, for the
+datum is used without reproof and the file binds its chart numerals, S and Ω from the fit's Λ and the Planck length,
+and derives the ledger's ln Ω = 283.5, the numeral L8's tilt reads; each other row is staked by a chart computation, and the file binds that computation, not the realisation. It holds the table of keys (generated from docs/00-ledger.json and, for the
 prediction rows, docs/predictions.json by ci/make_ledgers.py), the Mathlib theorems each row's key conjoins (CHART), and
 the checks, which call the chart theme (frc/chart.py). The Lean side is lean/FrcLedger/Theme/Chart.lean, the key file
 lean/FrcLedger/Keys/Chart.lean and the certificate lean/FrcLedger/Ledgers/Master/Chart.lean (tier 2: Mathlib's reals).
@@ -12,7 +12,7 @@ lean/FrcLedger/Keys/Chart.lean and the certificate lean/FrcLedger/Ledgers/Master
     python3 -m frc.ledgers.master.chart        every block, the census; exit 1 if a check fails
     python3 -m frc.ledgers.master.chart B      one block (S, A, B, C or D)
 
-Blocks:  S  the scale import's numerals: S = 3π/(Λ ℓ_P²), Ω = 4S + 1, ln Ω               CHART  (00:A8)
+Blocks:  S  the scale import's numerals S = 3π/(Λ ℓ_P²), Ω = 4S + 1; the ledger's ln Ω   CHART  (00:A8, L8)
          A  the floor a₀ = cH₀/2π at the entailed rate                                CHART  (00:L1)
          B  the octant record depth and its outputs: Ω_Λ, the locus, H₀                CHART  (00:L3)
          C  the primordial tilt at the ledger's ln Ω                                   CHART  (00:L8)
@@ -70,32 +70,36 @@ def _near(x, centre, half):
 
 
 # ------------------------------------------------------------------------------------------------------------
-# block S: the scale import's chart numerals (00:A8)
+# block S: the scale import's chart numerals (00:A8) and the ledger's ln Ω (00:L8)
 # the datum is the fit's Λ = 1.088 × 10⁻⁵² m⁻² (Planck 2018) with ℓ_P = 1.616255 × 10⁻³⁵ m: r_H = c/H_Λ = √(3/Λ),
-# S = π (r_H/ℓ_P)² = 3π/(Λ ℓ_P²) = 3.3 × 10¹²², Ω = 4S + 1 = 1.3 × 10¹²³, ln Ω = 283.5, the numeral the chart rows read.
+# S = π (r_H/ℓ_P)² = 3π/(Λ ℓ_P²) = 3.3 × 10¹²², Ω = 4S + 1 = 1.3 × 10¹²³ (Chart.lean: scale_import); ln Ω = 283.5, the
+# numeral L8's tilt reads, derived from the same import (ln_omega_ledger).
 @R.block("S", BLOCKS["S"])
 def block_S():
     """Block S — the scale import's chart numerals (CHART): S1–S3."""
     # 00:A8 (p00009)
     S, Om, ln = C.entropy_bracket(), C.omega_bracket(), C.ln_omega_bracket()
     r, h = C.horizon_radius_bracket(), C.hubble_lambda_bracket()
-    ok = (_inside(S, Q("3.31e122"), Q("3.32e122")) and _inside(Om, Q("1.32e123"), Q("1.33e123")) and _inside(ln, Q("283.50"), Q("283.51"))
+    ok = (_inside(S, Q("3.31e122"), Q("3.32e122")) and _inside(Om, Q("1.32e123"), Q("1.33e123"))
           and _inside(r, Q("1.660e26"), Q("1.661e26")) and _inside(h, Q("55.70"), Q("55.71"))
           and Om[0] == 4 * S[0] + 1 and Om[1] == 4 * S[1] + 1)
-    R.check("S1", "in rational arithmetic (π by Machin, ln by the artanh series with the tail bound): from Λ = 1.088 × 10⁻⁵² m⁻² and "
-            "ℓ_P = 1.616255 × 10⁻³⁵ m, 1.660 < r_H/10²⁶ m < 1.661 and 55.70 < H_Λ < 55.71 km/s/Mpc; 3.31 < S/10¹²² = 3π/(Λ ℓ_P²)/10¹²² < 3.32, "
-            "the row's 3.3 × 10¹²²; Ω = 4S + 1 with 1.32 < Ω/10¹²³ < 1.33, the row's 1.3 × 10¹²³; 283.50 < ln Ω < 283.51, the row's 283.5",
-            ok, f"S in ({C.show(S[0], '.6e')}, {C.show(S[1], '.6e')}); ln Ω in ({C.show(ln[0], '.6f')}, {C.show(ln[1], '.6f')})", kind="CHART")
+    R.check("S1", "in rational arithmetic (π by Machin): from Λ = 1.088 × 10⁻⁵² m⁻² and ℓ_P = 1.616255 × 10⁻³⁵ m, 1.660 < r_H/10²⁶ m < 1.661 "
+            "and 55.70 < H_Λ < 55.71 km/s/Mpc; 3.31 < S/10¹²² = 3π/(Λ ℓ_P²)/10¹²² < 3.32, the row's 3.3 × 10¹²²; Ω = 4S + 1 with "
+            "1.32 < Ω/10¹²³ < 1.33, the row's 1.3 × 10¹²³",
+            ok, f"S in ({C.show(S[0], '.6e')}, {C.show(S[1], '.6e')}); Ω in ({C.show(Om[0], '.6e')}, {C.show(Om[1], '.6e')})", kind="CHART")
     # S2 floating point, and the paper's reading: 14-entropy's instrument 1 tabulates r_H = 1.66 × 10²⁶ m, S = 3.3 × 10¹²²
-    Sf, lnf = Q(C.entropy()), Q(C.ln_omega())
-    ok = (_near(Sf, S[0], S[0] / 10 ** 12) and _near(lnf, ln[0], Q(1, 10 ** 9)) and _near(Sf, Q("3.3e122"), Q("0.05e122"))
-          and _near(4 * Sf + 1, Q("1.3e123"), Q("0.05e123")) and _near(lnf, Q("283.5"), Q("0.05")))
-    R.check("S2", "floating point: S agrees with the rational bracket to 10⁻¹², ln(4S + 1) with its bracket to 10⁻⁹; within half a unit of "
-            "the row's rounded numerals 3.3 × 10¹²², 1.3 × 10¹²³ and 283.5", ok, f"S = {C.show(Sf, '.6e')}, ln Ω = {C.show(lnf, '.6f')}", kind="CHART")
-    # S3 the ledger's constant ln Ω = 283.5, which the tilt (00:L8) reads, is the rounded bracket
-    ok = _near(ln[0], C.LN_OMEGA, Q(5, 100)) and _near(ln[1], C.LN_OMEGA, Q(5, 100)) and C.LN_OMEGA == Q(2835, 10)
-    R.check("S3", "the ledger's ln Ω = 283.5 (frc/chart.py, LN_OMEGA), read by the tilt of 00:L8, is the bracket rounded to one decimal: "
-            "both ends within 0.05 of it", ok, f"LN_OMEGA = {C.show(C.LN_OMEGA, '.1f')}, bracket − LN_OMEGA in ({C.show(ln[0] - C.LN_OMEGA, '.2e')}, {C.show(ln[1] - C.LN_OMEGA, '.2e')})", kind="CHART")
+    Sf = Q(C.entropy())
+    ok = (_near(Sf, S[0], S[0] / 10 ** 12) and _near(Sf, Q("3.3e122"), Q("0.05e122")) and _near(4 * Sf + 1, Q("1.3e123"), Q("0.05e123")))
+    R.check("S2", "floating point: S agrees with the rational bracket to 10⁻¹²; within half a unit of the row's rounded numerals "
+            "3.3 × 10¹²² and 1.3 × 10¹²³", ok, f"S = {C.show(Sf, '.6e')}", kind="CHART")
+    # S3 (00:L8) the ledger's constant ln Ω = 283.5, which the tilt reads, derived from the import: the bracket in rational
+    # arithmetic (ln by the artanh series with the tail bound), the float to 10⁻⁹, and the constant as the bracket rounded
+    lnf = Q(C.ln_omega())
+    ok = (_inside(ln, Q("283.50"), Q("283.51")) and _near(lnf, ln[0], Q(1, 10 ** 9)) and _near(ln[0], C.LN_OMEGA, Q(5, 100))
+          and _near(ln[1], C.LN_OMEGA, Q(5, 100)) and C.LN_OMEGA == Q(2835, 10))
+    R.check("S3", "the ledger's ln Ω = 283.5 (frc/chart.py, LN_OMEGA), read by the tilt of 00:L8, derived from the import: in rational "
+            "arithmetic 283.50 < ln Ω = ln(4S + 1) < 283.51, the float agrees to 10⁻⁹, and the constant is the bracket rounded to "
+            "one decimal (both ends within 0.05)", ok, f"ln Ω in ({C.show(ln[0], '.6f')}, {C.show(ln[1], '.6f')}), LN_OMEGA = {C.show(C.LN_OMEGA, '.1f')}", kind="CHART")
 
 
 # ------------------------------------------------------------------------------------------------------------
