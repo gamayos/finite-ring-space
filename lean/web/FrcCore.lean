@@ -13748,12 +13748,16 @@ end FRC.Ledger
 
 The predicates of *Scale-Shift and Fractional Fourier Transform as Rotations over Finite Holographic Substrate*
 (6-fourier) that the core proves with no axioms, named by their accession keys below and proved in the modules this
-one imports: 6:B2 (the Euler identity `e^{iπ} = −1` exactly on the odd quarter-turn, `Frame.euler_identity`),
-6:B3 (the conjugate reframing toggles the parity, `Frame.orientation_class`), 6:B5 (`W² = −J`, `F² = J`, `J² = I`;
-`Sum`), 6:B6 (`n = −1` on the shell, `Frame.ofNat_n`), 6:B7 (`W J = J W` and the symmetric–antisymmetric
-decomposition; `Sum`), 6:D4 (the meridian scale law `S_r M_m = M_{m+r}`, its step and its periodicity; `Meridian`),
-6:D5 (the `p = 13` ladder, `ladder13`). The Mathlib statements of the same predicates, for every shell, are in
-`FrcLedger/Fourier.lean`; the paper's python witness checks them on six shells.
+one imports through the key files: the frame theme's `Sum` and `Meridian` for 6:B2, 6:B3, 6:B5, 6:B7, 6:D4, 6:D5
+(the Euler identity, the orientation class, `W² = −J`, `W J = J W`, the meridian scale law, the `p = 13` ladder),
+and the fourier theme's eight files for the rest: `Theme/Fourier` (the shell DFT and the fractional family),
+`Theme/Fractional` (the projector algebra, faithfulness, the domains: 6:C2, 6:C4, 6:C5, 6:D1, 6:D2, 6:D7),
+`Theme/Lifts` (the exponent lifts, the charts, the normalization: 6:B6, 6:C6, 6:C8, 6:C11), `Theme/Dichotomy`
+(the multiplicity dichotomy in trace form, 6:C7), `Theme/Rotations` (the rotation group of the label plane: 6:E2,
+6:E3, 6:E10), `Theme/Heisenberg` (the character sector and the Heisenberg pair: 6:E6, 6:E7), `Theme/Spectra`
+(the spectra and the spectral obstruction: 6:E5, 6:E9) and `Theme/Exclusivity` (cardinal exclusivity, 6:E8);
+6:C3 and 6:C9 are `Theme/Fourier`'s. The Mathlib statements of fifteen of these predicates, for every shell, are
+in `FrcLedger/Fourier.lean`; the paper's python witness checks them on six shells.
 -/
 
 namespace FRC.Fourier

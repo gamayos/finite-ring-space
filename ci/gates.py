@@ -10,7 +10,7 @@ G09  imports follow the layers of the theme map (frc/themes.py): a file imports 
      no reals. A paper module of today (LEGACY) imports themes, key files and its own paper's modules only (gated since LM18).
 G10  size budgets (decision Q03), on framework files and migrated ledgers only: a python file 1,800 lines, a core file
      800, a Mathlib file 1,800, and a file with its import closure 3,500, or a theme's own larger budget (frc/themes.py
-     EXECUTABLE_BUDGETS: the fourier theme 5,000, 8 October 2026) when the closure includes that theme's files.
+     EXECUTABLE_BUDGETS: the fourier theme 7,000, 9 October 2026) when the closure includes that theme's files.
 G12  every keyed declaration of a migrated ledger has a python marker and a notebook cell, or is declared Lean-only
      (task LM21): each row of the ledger file's table LEAN has its predicate in the registry's PREDICATES, a marker on
      the deciding check and a notebook cell with its key as id, unless LEAN_ONLY lists it; and the parts that

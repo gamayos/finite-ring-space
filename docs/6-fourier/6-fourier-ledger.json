@@ -3,7 +3,7 @@
  "tree": "6-fourier-20260716",
  "title": "Scale-Shift and Fractional Fourier Transform as Rotations over Finite Holographic Substrate",
  "doi": "https://doi.org/10.20944/preprints202606.0127.v1",
- "generated": "8 October 2026",
+ "generated": "9 October 2026",
  "blocks": [
   {
    "letter": "A",
@@ -710,7 +710,7 @@
    {
     "name": "FRC.Shell.Frame.frft_add",
     "module": "FrcCore/Theme/Fourier",
-    "line": 463,
+    "line": 465,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -719,7 +719,7 @@
    {
     "name": "FRC.Shell.Frame.frft_cardinal",
     "module": "FrcCore/Theme/Fourier",
-    "line": 435,
+    "line": 437,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -728,7 +728,7 @@
    {
     "name": "FRC.Shell.Frame.frft_period",
     "module": "FrcCore/Theme/Fourier",
-    "line": 469,
+    "line": 471,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -737,7 +737,7 @@
    {
     "name": "FRC.Shell.Frame.frft_pow",
     "module": "FrcCore/Theme/Fourier",
-    "line": 474,
+    "line": 476,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -897,6 +897,26 @@
     "tier": 0,
     "ok": true,
     "doc": "6:C5, 6:C4, at `p = 5` exactly one odd projector vanishes: `Π₁ = 0 ≠ Π₃` at `g = 2`, `Π₃ = 0 ≠ Π₁` at `g = 3`; the surviving odd projector carries the faithful character `s ↦ z^{ms}`, `m` its index."
+   }
+  ],
+  "C6": [
+   {
+    "name": "FRC.Shell.Frame.Fmat_chart",
+    "module": "FrcCore/Theme/Lifts",
+    "line": 203,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "6:C6, the chart `g^{u²}` of an odd `u` is the coordinate relabelling `m ↦ um`: `F(g^{u²})_{kj} = F(g)_{uk, uj}`, the indices read mod `n`; the quarter-turn is unchanged since `u² ≡ 1 (mod 4)`."
+   },
+   {
+    "name": "FRC.Shell.Frame.thirteen_tuples",
+    "module": "FrcCore/Theme/Lifts",
+    "line": 222,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "6:C6, the two frames `g = 2` and `g = 6` of `p = 13`: the traces of the projectors read `(3, 3, 4, 2)` and `(4, 2, 3, 3)`, the multiplicity tuples, and `Tr F = 4, 9`."
    }
   ],
   "C7": [
@@ -1062,7 +1082,7 @@
    {
     "name": "FRC.Shell.Frame.inv_frame",
     "module": "FrcCore/Theme/Fourier",
-    "line": 519,
+    "line": 521,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -1071,27 +1091,65 @@
    {
     "name": "FRC.Shell.Frame.Fmat_conj",
     "module": "FrcCore/Theme/Fourier",
-    "line": 529,
+    "line": 531,
     "axioms": [],
     "tier": 0,
     "ok": true,
-    "doc": "The conjugate frame's transform is `−F J = −F⁻¹` (6:C9)."
+    "doc": "6:C9, the conjugate frame's transform is `−F J = −F⁻¹`."
    },
    {
     "name": "FRC.Shell.Frame.proj_conj",
     "module": "FrcCore/Theme/Fourier",
-    "line": 565,
+    "line": 567,
     "axioms": [],
     "tier": 0,
     "ok": true,
-    "doc": "The conjugate frame's projectors are the shifted ones, `Π'_ℓ = Π_{ℓ+2}` (6:C9)."
+    "doc": "6:C9, the conjugate frame's projectors are the shifted ones, `Π'_ℓ = Π_{ℓ+2}`."
+   }
+  ],
+  "C11": [
+   {
+    "name": "FRC.Shell.Frame.W_chart",
+    "module": "FrcCore/Theme/Lifts",
+    "line": 146,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "6:C11, the chart's Fourier matrix is the relabelled one: `W(g^u)_{kj} = W(g)_{k, uj}`, the index read mod `n` (`W(g^u) = W P_u`)."
+   },
+   {
+    "name": "FRC.Shell.Frame.W_mul_chart",
+    "module": "FrcCore/Theme/Lifts",
+    "line": 152,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "6:C11, `W · W(g^u) = −J P_u`: entrywise `−[k + uj ≡ 0 (mod n)]`, by the geometric sum."
+   },
+   {
+    "name": "FRC.Shell.Frame.chart_mul_W",
+    "module": "FrcCore/Theme/Lifts",
+    "line": 160,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "6:C11, `W(g^u) · W = −J P_{u⁻¹}` for `u` a unit mod `4κ`: entrywise `−[uk + j ≡ 0 (mod n)]`, for every `u`."
+   },
+   {
+    "name": "FRC.Shell.Frame.chart_noncommute",
+    "module": "FrcCore/Theme/Lifts",
+    "line": 175,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "6:C11, the non-commutation: when `u² ≢ 1 (mod n)` the entry `(−u, 1)` of `W · W(g^u)` is `−1` and that of `W(g^u) · W` is `0`, so the chart `g^u` does not commute with the frame's `W`."
    }
   ],
   "D1": [
    {
     "name": "FRC.Shell.Frame.frft_inverse",
     "module": "FrcCore/Theme/Fractional",
-    "line": 645,
+    "line": 648,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -1291,7 +1349,7 @@
    {
     "name": "FRC.Shell.Frame.rot_circle",
     "module": "FrcCore/Theme/Rotations",
-    "line": 153,
+    "line": 154,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -1300,7 +1358,7 @@
    {
     "name": "FRC.Shell.Frame.rot_hom",
     "module": "FrcCore/Theme/Rotations",
-    "line": 158,
+    "line": 159,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -1309,7 +1367,7 @@
    {
     "name": "FRC.Shell.Frame.rot_inj",
     "module": "FrcCore/Theme/Rotations",
-    "line": 168,
+    "line": 169,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -1318,7 +1376,7 @@
    {
     "name": "FRC.Shell.Frame.rot_surj",
     "module": "FrcCore/Theme/Rotations",
-    "line": 175,
+    "line": 176,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -1327,7 +1385,7 @@
    {
     "name": "FRC.Shell.Frame.six_circles",
     "module": "FrcCore/Theme/Rotations",
-    "line": 288,
+    "line": 290,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -1351,7 +1409,7 @@
    {
     "name": "FRC.Shell.Frame.rot_cardinal",
     "module": "FrcCore/Theme/Rotations",
-    "line": 192,
+    "line": 193,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -1375,7 +1433,7 @@
    {
     "name": "FRC.Shell.Frame.spectral_obstruction",
     "module": "FrcCore/Theme/Spectra",
-    "line": 207,
+    "line": 208,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -1497,122 +1555,6 @@
     "doc": "6:E7, `g^κ = −w = −i`: the coefficient base of `frft_coeff` is `u w^r = z^s (g^κ)^r = g^{rκ − s}`."
    }
   ],
-  "C6": [
-   {
-    "name": "FRC.Shell.Frame.Fmat_chart",
-    "module": "FrcCore/Theme/Lifts",
-    "line": 203,
-    "axioms": [],
-    "tier": 0,
-    "ok": true,
-    "doc": "6:C6, the chart `g^{u²}` of an odd `u` is the coordinate relabelling `m ↦ um`: `F(g^{u²})_{kj} = F(g)_{uk, uj}`, the indices read mod `n`; the quarter-turn is unchanged since `u² ≡ 1 (mod 4)`."
-   },
-   {
-    "name": "FRC.Shell.Frame.thirteen_tuples",
-    "module": "FrcCore/Theme/Lifts",
-    "line": 222,
-    "axioms": [],
-    "tier": 0,
-    "ok": true,
-    "doc": "6:C6, the two frames `g = 2` and `g = 6` of `p = 13`: the traces of the projectors read `(3, 3, 4, 2)` and `(4, 2, 3, 3)`, the multiplicity tuples, and `Tr F = 4, 9`."
-   }
-  ],
-  "C11": [
-   {
-    "name": "FRC.Shell.Frame.W_chart",
-    "module": "FrcCore/Theme/Lifts",
-    "line": 146,
-    "axioms": [],
-    "tier": 0,
-    "ok": true,
-    "doc": "6:C11, the chart's Fourier matrix is the relabelled one: `W(g^u)_{kj} = W(g)_{k, uj}`, the index read mod `n` (`W(g^u) = W P_u`)."
-   },
-   {
-    "name": "FRC.Shell.Frame.W_mul_chart",
-    "module": "FrcCore/Theme/Lifts",
-    "line": 152,
-    "axioms": [],
-    "tier": 0,
-    "ok": true,
-    "doc": "6:C11, `W · W(g^u) = −J P_u`: entrywise `−[k + uj ≡ 0 (mod n)]`, by the geometric sum."
-   },
-   {
-    "name": "FRC.Shell.Frame.chart_mul_W",
-    "module": "FrcCore/Theme/Lifts",
-    "line": 160,
-    "axioms": [],
-    "tier": 0,
-    "ok": true,
-    "doc": "6:C11, `W(g^u) · W = −J P_{u⁻¹}`: entrywise `−[uk + j ≡ 0 (mod n)]`."
-   },
-   {
-    "name": "FRC.Shell.Frame.chart_noncommute",
-    "module": "FrcCore/Theme/Lifts",
-    "line": 175,
-    "axioms": [],
-    "tier": 0,
-    "ok": true,
-    "doc": "6:C11, the non-commutation: when `u² ≢ 1 (mod n)` the entry `(−u, 1)` of `W · W(g^u)` is `−1` and that of `W(g^u) · W` is `0`, so the chart `g^u` does not commute with the frame's `W`."
-   }
-  ],
-  "E10": [
-   {
-    "name": "FRC.Shell.Frame.rot_uv",
-    "module": "FrcCore/Theme/Rotations",
-    "line": 227,
-    "axioms": [],
-    "tier": 0,
-    "ok": true,
-    "doc": "6:E10, the rotation on the plane in the coordinates `u = x + i y`, `v = x − i y`: `R_s` scales `u` by `z_s` and `v` by `z_s⁻¹`."
-   },
-   {
-    "name": "FRC.Shell.Frame.orbit_free",
-    "module": "FrcCore/Theme/Rotations",
-    "line": 237,
-    "axioms": [],
-    "tier": 0,
-    "ok": true,
-    "doc": "6:E10, the orbits off the origin are free: a rotation `R_s`, `s < 4κ`, fixing a point `(x, y) ≠ (0, 0)` is the identity, `s = 0`."
-   },
-   {
-    "name": "FRC.Shell.Frame.plane_count",
-    "module": "FrcCore/Theme/Rotations",
-    "line": 272,
-    "axioms": [],
-    "tier": 0,
-    "ok": true,
-    "doc": "6:E10, the count `p² = 1 + (4κ + 2) · 4κ` (the paper reads it as the origin and `4κ + 2` free orbits of size `4κ`)."
-   },
-   {
-    "name": "FRC.Shell.Frame.six_circles",
-    "module": "FrcCore/Theme/Rotations",
-    "line": 288,
-    "axioms": [],
-    "tier": 0,
-    "ok": true,
-    "doc": "6:E2, 6:E10, the circle has `4κ` points on the six shells: `4, 12, 16, 28, 36, 40`."
-   }
-  ],
-  "E9": [
-   {
-    "name": "FRC.Shell.Frame.shift_eigen",
-    "module": "FrcCore/Theme/Spectra",
-    "line": 76,
-    "axioms": [],
-    "tier": 0,
-    "ok": true,
-    "doc": "6:E9, every nonzero residue `b` is an eigenvalue of the shift, with the geometric eigenvector `(y^j)_j = (b^{−j})_j`, `b y = 1`: `(σ v)_k = y^{k−1} = b y^k`."
-   },
-   {
-    "name": "FRC.Shell.Frame.frft_eigen",
-    "module": "FrcCore/Theme/Spectra",
-    "line": 152,
-    "axioms": [],
-    "tier": 0,
-    "ok": true,
-    "doc": "6:E9, an eigenvalue of `F^{[s]}` is one of the four `(z^s)^ℓ`: on an eigenvector `v`, `Π_m F^{[s]} v` reads both `lam Π_m v` and `(z^s)^m Π_m v`, and some `Π_m v` is nonzero since `v = Σ_m Π_m v`."
-   }
-  ],
   "E8": [
    {
     "name": "FRC.Shell.Frame.row_entry",
@@ -1658,6 +1600,64 @@
     "tier": 0,
     "ok": true,
     "doc": "6:E8, cardinal exclusivity: for `s ∉ {0, κ, 2κ, 3κ}` the row `0` of `F^{[s]} σ F^{[−s]}` vanishes at no three distinct indices off the sites `{0, 1, n−1}`: `x = g^j` times the entry is a quadratic in `x` with leading coefficient `i (c₀ + c₂) c'₃ ≠ 0` (the paper counts: at least `4κ − 5` nonzero entries, so the conjugate is not monomial)."
+   }
+  ],
+  "E9": [
+   {
+    "name": "FRC.Shell.Frame.shift_eigen",
+    "module": "FrcCore/Theme/Spectra",
+    "line": 76,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "6:E9, every nonzero residue `b` is an eigenvalue of the shift, with the geometric eigenvector `(y^j)_j = (b^{−j})_j`, `b y = 1`: `(σ v)_k = y^{k−1} = b y^k`."
+   },
+   {
+    "name": "FRC.Shell.Frame.frft_eigen",
+    "module": "FrcCore/Theme/Spectra",
+    "line": 153,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "6:E9, an eigenvalue of `F^{[s]}` is one of the four `(z^s)^ℓ`: on an eigenvector `v`, `Π_m F^{[s]} v` reads both `lam Π_m v` and `(z^s)^m Π_m v`, and some `Π_m v` is nonzero since `v = Σ_m Π_m v`."
+   }
+  ],
+  "E10": [
+   {
+    "name": "FRC.Shell.Frame.rot_uv",
+    "module": "FrcCore/Theme/Rotations",
+    "line": 228,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "6:E10, the rotation on the plane in the coordinates `u = x + i y`, `v = x − i y`: `R_s` scales `u` by `z_s` and `v` by `z_s⁻¹`."
+   },
+   {
+    "name": "FRC.Shell.Frame.orbit_free",
+    "module": "FrcCore/Theme/Rotations",
+    "line": 238,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "6:E10, the orbits off the origin are free: a rotation `R_s`, `s < 4κ`, fixing a point `(x, y) ≠ (0, 0)` is the identity, `s = 0`."
+   },
+   {
+    "name": "FRC.Shell.Frame.plane_count",
+    "module": "FrcCore/Theme/Rotations",
+    "line": 273,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "6:E10, the count `p² = 1 + (4κ + 2) · 4κ` (the paper reads it as the origin and `4κ + 2` free orbits of size `4κ`)."
+   },
+   {
+    "name": "FRC.Shell.Frame.six_circles",
+    "module": "FrcCore/Theme/Rotations",
+    "line": 290,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "6:E2, 6:E10, the circle has `4κ` points on the six shells: `4, 12, 16, 28, 36, 40`."
    }
   ]
  }

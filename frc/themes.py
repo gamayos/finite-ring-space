@@ -142,9 +142,10 @@ LEGACY_IMPORTS_ENFORCED = True          # set by LM18 (5 October 2026): the pape
 # Gate G10 (decision Q03): size budgets, on framework files and migrated ledgers only.
 BUDGETS = dict(python_file=1800, core_file=800, mathlib_file=1800, executable=3500)
 # A theme may carry a larger executable budget (the import closure of a file that includes one of its files): the fourier
-# theme at 5,000 lines, the author's decision of 8 October 2026 for 6-fourier's core proofs (6-fourier-20260716/reports/
-# blueprint-20261008.md). A file takes the largest budget among the themes in its closure; the file limits are unchanged.
-EXECUTABLE_BUDGETS = {"fourier": 5000}
+# theme at 7,000 lines, the author's decision of 9 October 2026 for 6-fourier's core proofs (6-fourier-20260716/reports/
+# blueprint-20261008.md set 5,000 on 8 October; the certificate's closure reached 6,629 at T09). A file takes the largest
+# budget among the themes in its closure; the file limits are unchanged.
+EXECUTABLE_BUDGETS = {"fourier": 7000}
 
 # Gate G09: what an exact python file may import, and the exact functions of `math`.
 EXACT_STDLIB = {"fractions", "itertools", "functools", "collections", "math", "json", "os", "re", "sys", "dataclasses",
