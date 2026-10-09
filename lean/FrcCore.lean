@@ -15,6 +15,7 @@ import FrcCore.Theme.Dichotomy
 import FrcCore.Theme.Rotations
 import FrcCore.Theme.Heisenberg
 import FrcCore.Theme.Spectra
+import FrcCore.Theme.Exclusivity
 import FrcCore.Theme.Extension
 import FrcCore.Theme.Tally
 import FrcCore.Theme.Numbers

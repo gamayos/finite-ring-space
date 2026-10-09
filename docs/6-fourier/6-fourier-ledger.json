@@ -315,9 +315,9 @@
     },
     {
      "label": "E8",
-     "predicate": "Cardinal exclusivity: for every $s\\notin\\{0,\\kap,2\\kap,3\\kap\\}$ the operator \\eqref{eq:conj-expansion} is not monomial --- off $j\\in\\{-1,0,1\\}$ its row $0$ is $x^{-1}$ times a quadratic in $x=\\gen^{j}$ with leading coefficient $\\im\\,[c_0(s)+c_2(s)]\\,c_3(-s)\\neq0$, $c_0(s)+c_2(s)=\\tfrac12(1+\\gen^{-2s})$, so the row has at least $4\\kap-5$ nonzero entries; the count checked on every shell below $200$.",
+     "predicate": "Cardinal exclusivity: for every $s\\notin\\{0,\\kap,2\\kap,3\\kap\\}$ the conjugate $\\Ft^{[s]}\\sigma\\Ft^{[s]\\,-1}$ of \\eqref{eq:conj-expansion} is not monomial --- off $j\\in\\{-1,0,1\\}$ its row $0$ is $x^{-1}$ times a quadratic in $x=\\gen^{j}$ with leading coefficient $\\im\\,[c_0(s)+c_2(s)]\\,c_3(-s)\\neq0$, $c_0(s)+c_2(s)=\\tfrac12(1+\\gen^{-2s})$, so the row vanishes at no three distinct indices off the sites and, by counting, has at least $4\\kap-5$ nonzero entries; the count checked on every shell below $200$.",
      "tag": "T",
-     "source": "Thm.~\\ref{thm:monomial}\\newline \\pywit{fourier}{p06050}{E8}",
+     "source": "Thm.~\\ref{thm:monomial}\\newline \\pywit{fourier}{p06050}{E8}, \\leanwit{FrcCore}{p06050}{E8} \\lean{FRC.Shell.Frame.row\\_entry, FRC.Shell.Frame.even\\_coeff\\_id, FRC.Shell.Frame.even\\_coeff\\_ne\\_zero, FRC.Shell.Frame.odd\\_coeff\\_ne\\_zero, FRC.Shell.Frame.exclusivity}",
      "key": "p06050"
     },
     {
@@ -1611,6 +1611,53 @@
     "tier": 0,
     "ok": true,
     "doc": "6:E9, an eigenvalue of `F^{[s]}` is one of the four `(z^s)^ℓ`: on an eigenvector `v`, `Π_m F^{[s]} v` reads both `lam Π_m v` and `(z^s)^m Π_m v`, and some `Π_m v` is nonzero since `v = Σ_m Π_m v`."
+   }
+  ],
+  "E8": [
+   {
+    "name": "FRC.Shell.Frame.row_entry",
+    "module": "FrcCore/Theme/Exclusivity",
+    "line": 229,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "6:E8, the entry `(0, j)` of `F^{[s]} σ F^{[−s]}` off the three sites `j ∈ {0, 1, n−1}`, with `F^{[−s]} = F^{[n−s]}` (`n − s` the natural difference, so `s ≤ n` is the reading): `i [(c₀ + c₂)(c'₁ z^j + c'₃ g^j) + (c₁ + c₃)(c'₀ + c'₂)]`."
+   },
+   {
+    "name": "FRC.Shell.Frame.even_coeff_id",
+    "module": "FrcCore/Theme/Exclusivity",
+    "line": 43,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "6:E8, `c₀ + c₂ = ½ (1 + u²)`, `u = z^s`, i.e. `½ (1 + g^{−2s})`."
+   },
+   {
+    "name": "FRC.Shell.Frame.even_coeff_ne_zero",
+    "module": "FrcCore/Theme/Exclusivity",
+    "line": 258,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "6:E8, `c₀ + c₂ = ½ (1 + z_s²)` (`even_coeff_id`) is nonzero off `s ∈ {κ, 3κ}`, where `z_s = ±i`."
+   },
+   {
+    "name": "FRC.Shell.Frame.odd_coeff_ne_zero",
+    "module": "FrcCore/Theme/Exclusivity",
+    "line": 298,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "6:E8, `c'₃ = c₃(−s) = ¼ Σ_ℓ y^ℓ` with `y = g^s i = g^{s + 3κ}`, nonzero off the cardinal indices: `y ≠ 1` (else `s = κ`) and `y⁴ = g^{4s} ≠ 1` (else `κ ∣ s`); with `even_coeff_ne_zero`, the leading coefficient `i (c₀ + c₂) c'₃ ≠ 0`."
+   },
+   {
+    "name": "FRC.Shell.Frame.exclusivity",
+    "module": "FrcCore/Theme/Exclusivity",
+    "line": 330,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "6:E8, cardinal exclusivity: for `s ∉ {0, κ, 2κ, 3κ}` the row `0` of `F^{[s]} σ F^{[−s]}` vanishes at no three distinct indices off the sites `{0, 1, n−1}`: `x = g^j` times the entry is a quadratic in `x` with leading coefficient `i (c₀ + c₂) c'₃ ≠ 0` (the paper counts: at least `4κ − 5` nonzero entries, so the conjugate is not monomial)."
    }
   ]
  }
