@@ -7373,7 +7373,7 @@
   {
    "key": "p06055",
    "origin": "06",
-   "statement": "The framework's definition of the substrate: a finite totality whose count bounds the label plane $\\Fp\\times\\Fp$ of an embedded observer, $\\p^{2}<\\Om$; the shell of capacity $\\kap$ as the substrate at one level, its meridian cycle of $4\\kap=\\p-1$ points read as the area.",
+   "statement": "The framework's definition of the substrate: a finite totality whose count bounds the label plane $\\Fp\\times\\Fp$ of an embedded observer, $\\p^{2}<\\Om$; the shell of capacity $\\kap$ as the observer's register, its meridian cycle of $4\\kap=\\p-1$ points read as the area.",
    "origin_row": "6:A8",
    "tag": "I",
    "tier": null,
@@ -32101,7 +32101,7 @@
    "block": "A",
    "tag": "I",
    "name": null,
-   "statement": "The framework's definition of the substrate: a finite totality whose count bounds the label plane $\\Fp\\times\\Fp$ of an embedded observer, $\\p^{2}<\\Om$; the shell of capacity $\\kap$ as the substrate at one level, its meridian cycle of $4\\kap=\\p-1$ points read as the area.",
+   "statement": "The framework's definition of the substrate: a finite totality whose count bounds the label plane $\\Fp\\times\\Fp$ of an embedded observer, $\\p^{2}<\\Om$; the shell of capacity $\\kap$ as the observer's register, its meridian cycle of $4\\kap=\\p-1$ points read as the area.",
    "source": "\\citep[\\S2]{Akhtman2026Dimensions}",
    "page": "6-fourier/index.html#A8",
    "witness": {
@@ -32111,7 +32111,7 @@
    "refs": [
     "p00153"
    ],
-   "text": "The framework's definition of the substrate: a finite totality whose count bounds the label plane $\\Fp\\times\\Fp$ of an embedded observer, $\\p^{2}<\\Om$; the shell of capacity $\\kap$ as the substrate at one level, its meridian cycle of $4\\kap=\\p-1$ points read as the area. \\citep[\\S2]{Akhtman2026Dimensions}"
+   "text": "The framework's definition of the substrate: a finite totality whose count bounds the label plane $\\Fp\\times\\Fp$ of an embedded observer, $\\p^{2}<\\Om$; the shell of capacity $\\kap$ as the observer's register, its meridian cycle of $4\\kap=\\p-1$ points read as the area. \\citep[\\S2]{Akhtman2026Dimensions}"
   },
   {
    "paper": "6-four",

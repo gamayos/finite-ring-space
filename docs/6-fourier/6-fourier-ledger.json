@@ -46,7 +46,7 @@
     },
     {
      "label": "A8",
-     "predicate": "The framework's definition of the substrate: a finite totality whose count bounds the label plane $\\Fp\\times\\Fp$ of an embedded observer, $\\p^{2}<\\Om$; the shell of capacity $\\kap$ as the substrate at one level, its meridian cycle of $4\\kap=\\p-1$ points read as the area.",
+     "predicate": "The framework's definition of the substrate: a finite totality whose count bounds the label plane $\\Fp\\times\\Fp$ of an embedded observer, $\\p^{2}<\\Om$; the shell of capacity $\\kap$ as the observer's register, its meridian cycle of $4\\kap=\\p-1$ points read as the area.",
      "tag": "I",
      "source": "\\citep[\\S2]{Akhtman2026Dimensions}",
      "key": "p06055"
