@@ -170,9 +170,9 @@
     },
     {
      "label": "C7",
-     "predicate": "The multiplicity dichotomy: with $G=\\sum_{k}\\gen^{k^{2}}=\\varepsilon(1+\\im)$ (A3), the tuple is $(\\kap,\\kap,\\kap+1,\\kap-1)$ for $\\varepsilon=+1$ and $(\\kap+1,\\kap-1,\\kap,\\kap)$ for $\\varepsilon=-1$; $GG^{*}=-2$ and $\\varepsilon(\\gen^{-1})=-\\varepsilon(\\gen)$. Exact on the $38$ primitive frames of $\\p\\in\\{5,13,17,29,37\\}$ and the $16$ of $\\p=41$.",
+     "predicate": "The multiplicity dichotomy in trace form: with $G=\\sum_{k}\\gen^{k^{2}}$ and $G^{*}=\\sum_k\\gen^{-k^{2}}$ the traces are $\\operatorname{Tr}\\Ft=\\im G$, $\\operatorname{Tr}\\Ft^{2}=2$, $\\operatorname{Tr}\\Ft^{3}=\\im G^{*}$ and $\\operatorname{Tr}\\Pi_\\ell=\\tfrac14\\sum_r\\im^{-\\ell r}\\operatorname{Tr}\\Ft^{r}$; $GG^{*}=-2$ and $\\varepsilon(\\gen^{-1})=-\\varepsilon(\\gen)$; when $G=\\varepsilon(1+\\im)$ (A3) the tuple of traces is $(\\kap,\\kap,\\kap+1,\\kap-1)$ for $\\varepsilon=+1$ and $(\\kap+1,\\kap-1,\\kap,\\kap)$ for $\\varepsilon=-1$, read in $\\Fp$; the sign and the tuples on the six shells of Table~\\ref{tab:checks}. Exact on the $38$ primitive frames of $\\p\\in\\{5,13,17,29,37\\}$ and the $16$ of $\\p=41$.",
      "tag": "T",
-     "source": "Thm.~\\ref{thm:multiplicity}\\newline \\pywit{fourier}{p06021}{C7}, \\leanwit{FrcLedger}{p06021}{C7} \\lean{Fourier.gauss\\_mul\\_gauss\\_inv, Fourier.gauss\\_inv\\_of\\_sign, Fourier.shell\\_multiplicity\\_tuple}",
+     "source": "Thm.~\\ref{thm:multiplicity}\\newline \\pywit{fourier}{p06021}{C7}, \\leanwit{FrcCore}{p06021}{C7}, \\leanwit{FrcLedger}{p06021}{C7} \\lean{Fourier.gauss\\_mul\\_gauss\\_inv, Fourier.gauss\\_inv\\_of\\_sign, Fourier.shell\\_multiplicity\\_tuple, FRC.Shell.Frame.trace\\_powers, FRC.Shell.Frame.trace\\_proj, FRC.Shell.Frame.gauss\\_mul, FRC.Shell.Frame.gauss\\_conj, FRC.Shell.Frame.trace\\_tuples, FRC.Shell.Frame.six\\_signs, FRC.Shell.Frame.six\\_tuples}",
      "key": "p06021"
     },
     {
@@ -938,6 +938,69 @@
     "tier": 2,
     "ok": true,
     "doc": "6:C7 — 6-fourier's name; the theorem is `FRC.Fractional.shell_multiplicity_tuple` (task LM36)."
+   },
+   {
+    "name": "FRC.Shell.Frame.trace_powers",
+    "module": "FrcCore/Theme/Dichotomy",
+    "line": 150,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "6:C7, the traces of the cardinal powers: `Tr I = −1`, `Tr F = i G`, `Tr F² = Tr J = 2`, `Tr F³ = Tr FJ = i Ḡ`."
+   },
+   {
+    "name": "FRC.Shell.Frame.trace_proj",
+    "module": "FrcCore/Theme/Dichotomy",
+    "line": 158,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "6:C7, the trace of a projector in trace form: `Tr Π_ℓ = q (Tr I + u Tr F + u² Tr J + u³ Tr FJ)`, `u = w^ℓ`, i.e. `Tr Π_ℓ = ¼ Σ_r i^{−ℓr} Tr F^r`."
+   },
+   {
+    "name": "FRC.Shell.Frame.gauss_mul",
+    "module": "FrcCore/Theme/Dichotomy",
+    "line": 217,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "6:C7, `G Ḡ = −2`: the substitution `k = l + d` and the geometric sum over `l`."
+   },
+   {
+    "name": "FRC.Shell.Frame.gauss_conj",
+    "module": "FrcCore/Theme/Dichotomy",
+    "line": 247,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "6:C7, the conjugate law: when `G = ε (1 + i)` with `ε² = 1`, the conjugate frame's Gauss sum is `Ḡ = −ε (1 − i)`, i.e. `ε(g⁻¹) = −ε(g)`."
+   },
+   {
+    "name": "FRC.Shell.Frame.trace_tuples",
+    "module": "FrcCore/Theme/Dichotomy",
+    "line": 260,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "6:C7, the dichotomy: under `G = ε (1 + i)` the traces of the projectors are `(κ, κ, κ+1, κ−1)` for `ε = 1` and `(κ+1, κ−1, κ, κ)` for `ε = −1`, read in the field."
+   },
+   {
+    "name": "FRC.Shell.Frame.six_signs",
+    "module": "FrcCore/Theme/Dichotomy",
+    "line": 303,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "6:C7, the sign on the six shells: `G = ε (1 + i)` with `ε = −1` at `(5, 2)` and `ε = +1` at `(13, 2)`, `(17, 3)`, `(29, 2)`, `(37, 2)`, `(41, 6)`."
+   },
+   {
+    "name": "FRC.Shell.Frame.six_tuples",
+    "module": "FrcCore/Theme/Dichotomy",
+    "line": 310,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "6:C7, the tuples on the six shells: `(2, 0, 1, 1)` at `p = 5` (`ε = −1`) and `(κ, κ, κ+1, κ−1)` at the five others."
    }
   ],
   "C8": [
