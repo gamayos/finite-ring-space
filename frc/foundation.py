@@ -11,13 +11,13 @@ LM16): the Carrier's block file (frc/ledgers/master/carrier.py), then the founda
     quarter_turns(p)         every root of x² = −1, by search (the second method)
     square_roots(a, p)       every root of x² = a, by search
     fermat_holds(p)          a^(p−1) = 1 for every nonzero a, by computation
-    successor_orbit(q, x)    the orbit of x under x ↦ x + 1 on [0, q), until it returns (A7)
-    principal_ideal(a, q)    the multiples of a mod q, the least ideal holding a (A12)
-    is_complete(q)           every nonzero residue's ideal holds 1, by search: no proper nonzero ideal (A12)
+    successor_orbit(q, x)    the orbit of x under x ↦ x + 1 on [0, q), until it returns (A5)
+    principal_ideal(a, q)    the multiples of a mod q, the least ideal holding a (A10)
+    is_complete(q)           every nonzero residue's ideal holds 1, by search: no proper nonzero ideal (A10)
     zero_divisors(q)         the pairs (a, b) of nonzero residues with a b = 0, by search
     element_order(x, p)      the least n ≥ 1 with xⁿ = 1, by iteration, no factorisation (Drive.lean, `exists_order`)
     drive(p)                 the primitive root the Lean proof builds, generator-free (Drive.lean, `exists_drive`)
-    collision(rho, n)        two points i < j < n with rho(i) = rho(j), by search, or None (A5, `observer_part`)
+    collision(rho, n)        two points i < j < n with rho(i) = rho(j), by search, or None (A4, `observer_part`)
 """
 from frc import arith
 

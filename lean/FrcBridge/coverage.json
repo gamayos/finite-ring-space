@@ -16,14 +16,14 @@
    "paper": "25:D1",
    "status": "bridged",
    "lean": "FRC.Bridge.A5_25D1",
-   "note": "LM23: the same clause against 25:D1's storage bound (the master row A5 until the relabel of 8 October 2026; the namespace keeps its name)"
+   "note": "LM23: the same clause against 25:D1's storage bound (the master row A5 until the relabel of 8 October 2026, A4 Observation with the key p00197 since the merge of 9 October; the namespace keeps its name)"
   },
   {
    "master": "A4",
    "paper": "5:C2",
    "status": "bridged",
    "lean": "FRC.Bridge.A5_5C2",
-   "note": "LM23: a part with fewer states than the whole holds no injective representation of it (the master row A5 until the relabel of 8 October 2026; the namespace keeps its name)"
+   "note": "LM23: a part with fewer states than the whole holds no injective representation of it (the master row A5 until the relabel of 8 October 2026, A4 Observation with the key p00197 since the merge of 9 October; the namespace keeps its name)"
   },
   {
    "master": "B7",
@@ -282,21 +282,21 @@
    "paper": "29:C2",
    "status": "no shared clause",
    "lean": null,
-   "note": "9 October 2026 (the three pillars as theorems): A2's key is the agent's bound (agent_bound: a shell read whole into records(s, K) records has at most records(s, K) members, fewer than s^(K+1), 5:C2's records_lt); 29:C2's key is the idleness theorem on the formation model (Theme/Formation.lean: realized, minimal_size, minimal_closed). No theorem is shared: A2's text consumes 29:C2's clause — no unbounded supply is certified — by reference, as A3 consumes A11"
+   "note": "9 October 2026: A2's key is registered_finite ∧ no_unlimited_supply ∧ agent_bound (the pigeonhole on an arbitrary totality: among any R + 1 members two share a residue); 29:C2's key is the idleness theorem on the formation model (realized, minimal_size, minimal_closed). No Lean clause is shared; the rows agree in words that no record certifies an unbounded supply, A2 in pigeonhole form, 29:C2 by idleness; A2 cites 29:C2 as a counterpart, as A3 cites A10 (the G18 referee's M3, the earlier note replaced)"
   },
   {
    "master": "A4",
    "paper": "29:C10",
    "status": "bridged",
    "lean": "FRC.Bridge.A5_5C2",
-   "note": "9 October 2026: 29:C10 shares 5:C2's key p05013, so the bridge A5_5C2 (from_master from p00159, from_paper from p05013) is this pair's bridge; the namespace keeps the name of the master row A5 until the relabel of 8 October 2026"
+   "note": "9 October 2026: 29:C10 shares 5:C2's key p05013, so the bridge A5_5C2 (from_master from p00197's first conjunct, p00159's observer_part until the merge of 9 October 2026; from_paper from p05013) is this pair's bridge; the namespace keeps the name of the master row A5 until the relabel of 8 October 2026"
   },
   {
-   "master": "A6",
+   "master": "A5",
    "paper": "29:B4",
    "status": "bridged",
    "lean": "FRC.Bridge.A6_29B4",
-   "note": "9 October 2026 (the G18 audit of A2, A3, A5; the referee's bridge): the shared clause is the return after n steps, (x + n) % n = x, from p00188's return clause and from p29006's cyc_return through cyc_iter"
+   "note": "9 October 2026 (the G18 audit of A2, A3 and A4 — p00195, the label A5 that morning; the referee's bridge): the shared clause is the return after n steps, (x + n) % n = x, from p00188's return clause and from p29006's cyc_return through cyc_iter; the master row A6 until the relabel of 9 October 2026 (A5 counting), the namespace keeps its name"
   },
   {
    "master": "Z1",

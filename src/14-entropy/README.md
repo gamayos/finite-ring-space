@@ -20,7 +20,7 @@ the deciding family's marker, `entropy.py#<key>` (the family checks are listed o
 Where a predicate is proved in Lean (`lean/FrcCore/Entropy.lean` with no axioms, or `lean/FrcLedger/Entropy.lean` on
 Mathlib — the congruences and the laboratory Carrier, the octant sector and its character, the rival chart's age
 identity verified against its own Friedmann equation with its numerals bracketed, the locus), the check here is the
-instance the reader can run. Master-ledger predicates of the corpus reached through the paper predicates: `00:A9`,
+instance the reader can run. Master-ledger predicates of the corpus reached through the paper predicates: `00:A7`,
 `00:L1`–`00:L7`, `00:F7`.
 
 [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/gamayos/finite-ring-space/blob/main/src/14-entropy/frc-14-entropy.ipynb)

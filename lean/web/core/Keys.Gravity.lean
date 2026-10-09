@@ -1022,7 +1022,7 @@ namespace Logic
 
 /-- 5:C2, 29:C10 (Proposition mirror) — a part with fewer records than the frame has elements holds no injective
 representation of the frame's domain: no `f : [0, N) → [0, R)` is injective when `R < N`. In the base since task LM23
-(from `Theme/Logic.lean`, under its old name), so that the foundation's A5 stands on it. -/
+(from `Theme/Logic.lean`, under its old name), so that the foundation's A4 (Observation; the bounded observer, A5 at task LM23) stands on it. -/
 theorem no_mirror {N R : Nat} (hR : R < N) (f : Nat → Nat) (hf : ∀ i, i < N → f i < R)
     (hinj : ∀ i j, i < N → j < N → f i = f j → i = j) : False :=
   have hnd := FRC.Shell.imageList_nodup hinj (Nat.le_refl N)
@@ -1276,7 +1276,7 @@ end FRC
 /-!
 # FrcCore.FrameCore — the frame `(τ; 0, 1, g)` and the Euclidean datum, from first principles (the frame theme)
 
-The shell of capacity `κ` has modulus `p = 4κ + 1`; its frame carries the drive `g` (00:A8, 00:C1).
+The shell of capacity `κ` has modulus `p = 4κ + 1`; its frame carries the drive `g` (00:A6, 00:A12, 00:C1; labels as of 9 October 2026).
 One decidable predicate states what the frame's generator is: `IsPrimitive g n` (`g^n = 1`, no positive
 power below `n` is `1`). That `g` then *generates* — every nonzero residue is a power of `g`
 (`Generates g n`, also decidable) — is proved by the pigeonhole (`FrcCore.Pigeonhole`): the `n` powers are
@@ -1298,14 +1298,14 @@ namespace Shell
 
 variable {p : Nat} [Pos p]
 
-/-- 00:A8 — the drive generator is primitive of order `n`: `g^n = 1` and `g^l ≠ 1` for `0 < l < n`. -/
+/-- 00:A12 — the drive generator is primitive of order `n`: `g^n = 1` and `g^l ≠ 1` for `0 < l < n`. -/
 def IsPrimitive (g : Shell p) (n : Nat) : Prop :=
   g ^ n = 1 ∧ ∀ l, l < n → 0 < l → g ^ l ≠ 1
 
 instance (g : Shell p) (n : Nat) : Decidable (IsPrimitive g n) := by
   unfold IsPrimitive; exact inferInstance
 
-/-- 00:A8 — the drive generates the shell: every nonzero residue `v < p` is `g^m` for some `m < n`. -/
+/-- 00:A12 — the drive generates the shell: every nonzero residue `v < p` is `g^m` for some `m < n`. -/
 def Generates (g : Shell p) (n : Nat) : Prop :=
   ∀ v, v < p → 0 < v → ∃ m, m < n ∧ (g ^ m).val = v
 
@@ -1442,7 +1442,7 @@ theorem powList_nodup (F : Frame p κ g) : ∀ {n : Nat}, n ≤ p - 1 → Pigeon
         Nat.lt_irrefl n (this ▸ hm),
     powList_nodup F (Nat.le_of_lt hn)⟩
 
-/-- 00:A8 — the drive generates: every nonzero residue is a power `g^m`, `m < p − 1` (the pigeonhole). -/
+/-- 00:A12 — the drive generates: every nonzero residue is a power `g^m`, `m < p − 1` (the pigeonhole). -/
 theorem generates (F : Frame p κ g) : Generates g (p - 1) := by
   intro v hv hv0
   have hb : ∀ e, Pigeonhole.mem e (powList g (p - 1)) → 1 ≤ e ∧ e ≤ p - 1 := fun e he =>
@@ -2416,7 +2416,7 @@ namespace FRC.Ledger
 /-- p00058 — 00:E7. \textbf{Gravity} (horizon triple): the record is the registered state count $\kap(\p+1)=(A/4)(1-1/\p )=M(M-1)$ (37:B5, 37:C7) on the rate face $M=(\p +1)/2$ (D2, D14; $\p =2M-1$ the count face), $d[\kap(\p+1)]/dM=\p$ exactly. The temperature has two exact faces, the registration rate $T=(\p +1)/\p ^2$ (E5) and the response $T_{\mathrm{resp}}=(d[\kap(\p+1)]/dM)^{-1}=1/\p$, split by $1+1/\p$. First law $dM=T_{\mathrm{resp}}\,d[\kap(\p+1)]=T\,d[\kap(\p+1)]/(1+1/\p )$; Smarr $2T_{\mathrm{resp}}\kap(\p+1)=M(1-1/\p )$, $2T\kap(\p+1)=M(1-1/\p ^2)$; the chart's $dM=T\,dS_{\mathrm{th}}$, $M=2TS_{\mathrm{th}}$ [import] to order $1/\p$ (D15). -/
 theorem p00058 : (∀ (κ : Nat), (4 : Nat) * (κ * ((4 : Nat) * κ + (2 : Nat))) + (1 : Nat) = ((4 : Nat) * κ + (1 : Nat)) * ((4 : Nat) * κ + (1 : Nat)) ∧ κ * ((4 : Nat) * κ + (2 : Nat)) * ((4 : Nat) * κ + (1 : Nat)) = κ * (((4 : Nat) * κ + (1 : Nat)) * ((4 : Nat) * κ + (2 : Nat))) ∧ (4 : Nat) * (κ * ((4 : Nat) * κ + (2 : Nat))) * ((4 : Nat) * κ + (1 : Nat)) = ((4 : Nat) * κ + (1 : Nat)) * ((4 : Nat) * κ + (2 : Nat)) * ((4 : Nat) * κ)) ∧ (∀ (κ : Nat), κ * ((4 : Nat) * κ + (2 : Nat)) = ((2 : Nat) * κ + (1 : Nat)) * ((2 : Nat) * κ)) ∧ (∀ (m h : Nat), (m + (1 : Nat) + h) * (m + h) = (m + (1 : Nat)) * m + ((2 : Nat) * m + (1 : Nat)) * h + h * h) ∧ (∀ (κ : Nat), ((4 : Nat) * κ + (1 : Nat)) * ((4 : Nat) * κ + (2 : Nat)) * (((4 : Nat) * κ + (1 : Nat)) * ((4 : Nat) * κ + (1 : Nat))) = ((4 : Nat) * κ + (2 : Nat)) * (((4 : Nat) * κ + (1 : Nat)) * ((4 : Nat) * κ + (1 : Nat)) * ((4 : Nat) * κ + (1 : Nat)))) ∧ (∀ (κ : Nat), (2 : Nat) * (κ * ((4 : Nat) * κ + (2 : Nat))) = ((2 : Nat) * κ + (1 : Nat)) * ((4 : Nat) * κ) ∧ (2 : Nat) * ((4 : Nat) * κ + (2 : Nat)) * (κ * ((4 : Nat) * κ + (2 : Nat))) = ((2 : Nat) * κ + (1 : Nat)) * ((4 : Nat) * κ * ((4 : Nat) * κ + (2 : Nat)))) ∧ ∀ (κ h : Nat), ((2 : Nat) * κ + (1 : Nat) + h) * ((2 : Nat) * κ + h) = ((2 : Nat) * κ + (1 : Nat)) * ((2 : Nat) * κ) + ((4 : Nat) * κ + (1 : Nat)) * h + h * h :=
   And.intro @FRC.Grav.count_identity (And.intro @FRC.Grav.record_mass (And.intro @FRC.Grav.record_response (And.intro @FRC.Grav.temperature_rate (And.intro @FRC.Grav.smarr (@FRC.Grav.record_response_rate)))))
-/-- p00176 — 00:E6. \textbf{Gravity} (horizon count): the registration sphere of a shell has area $A=\p(\p+1)$ and record $\kap(\p+1)$, so $\kap(\p+1)/A=\kap/\p$ exactly, the $Q_4$ gauge quotient, and closes the calibration: at the coherence horizon $\p^2\to\Om$ the record law returns $(\Om-1)/4=\dS$, the imported entropy (A8). The chart reading $S=\tfrac14A/\ell_P^2$ is L5's. Corollary: the merger area law $\Delta A=2M_1M_2$, saturated (37-sim). Triple: E7. -/
+/-- p00176 — 00:E6. \textbf{Gravity} (horizon count): the registration sphere of a shell has area $A=\p(\p+1)$ and record $\kap(\p+1)$, so $\kap(\p+1)/A=\kap/\p$ exactly, the $Q_4$ gauge quotient, and closes the calibration: at the coherence horizon $\p^2\to\Om$ the record law returns $(\Om-1)/4=\dS$, the imported entropy (A7). The chart reading $S=\tfrac14A/\ell_P^2$ is L5's. Corollary: the merger area law $\Delta A=2M_1M_2$, saturated (37-sim). Triple: E7. -/
 theorem p00176 : (∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → FRC.Grav.sphereCount p (FRC.Shell.ofNat κ * FRC.Shell.ofNat κ) = p * (p + (1 : Nat))) ∧ (∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → ∀ {b : FRC.Shell p}, b ≠ (0 : FRC.Shell p) → FRC.Grav.sphereCount p (b * b) = p * (p + (1 : Nat))) ∧ (∀ (κ : Nat), (4 : Nat) * (κ * ((4 : Nat) * κ + (2 : Nat))) + (1 : Nat) = ((4 : Nat) * κ + (1 : Nat)) * ((4 : Nat) * κ + (1 : Nat)) ∧ κ * ((4 : Nat) * κ + (2 : Nat)) * ((4 : Nat) * κ + (1 : Nat)) = κ * (((4 : Nat) * κ + (1 : Nat)) * ((4 : Nat) * κ + (2 : Nat))) ∧ (4 : Nat) * (κ * ((4 : Nat) * κ + (2 : Nat))) * ((4 : Nat) * κ + (1 : Nat)) = ((4 : Nat) * κ + (1 : Nat)) * ((4 : Nat) * κ + (2 : Nat)) * ((4 : Nat) * κ)) ∧ ∀ (M₁ M₂ : Nat), (M₁ + M₂) * (M₁ + M₂ + (1 : Nat)) = M₁ * (M₁ + (1 : Nat)) + M₂ * (M₂ + (1 : Nat)) + (2 : Nat) * (M₁ * M₂) :=
   And.intro @FRC.Grav.sphere_area (And.intro @FRC.Grav.sphere_area_rung (And.intro @FRC.Grav.count_identity (@FRC.Grav.merger_area)))
 -- end keys

@@ -988,6 +988,12 @@
 'FRC.Foundation.add_eq_self_iff' does not depend on any axioms
 'FRC.Foundation.successor_cycle' does not depend on any axioms
 'FRC.Foundation.observer_part' does not depend on any axioms
+'FRC.Foundation.Registered' does not depend on any axioms
+'FRC.Foundation.Registered.lt' does not depend on any axioms
+'FRC.Foundation.register' does not depend on any axioms
+'FRC.Foundation.registered_finite' does not depend on any axioms
+'FRC.Foundation.no_unlimited_supply' does not depend on any axioms
+'FRC.Foundation.registration_onto' does not depend on any axioms
 'FRC.Foundation.complete_needs_whole' does not depend on any axioms
 'FRC.Foundation.agent_bound' does not depend on any axioms
 'FRC.Foundation.mutual_registration_count' does not depend on any axioms
@@ -1488,12 +1494,11 @@
 'FRC.Ledger.p29027' does not depend on any axioms
 'FRC.Ledger.p00003' does not depend on any axioms
 'FRC.Ledger.p00004' does not depend on any axioms
-'FRC.Ledger.p00159' does not depend on any axioms
 'FRC.Ledger.p00162' does not depend on any axioms
 'FRC.Ledger.p00163' does not depend on any axioms
 'FRC.Ledger.p00164' does not depend on any axioms
 'FRC.Ledger.p00188' does not depend on any axioms
-'FRC.Ledger.p00195' does not depend on any axioms
+'FRC.Ledger.p00197' does not depend on any axioms
 'FRC.Ledger.p00015' does not depend on any axioms
 'FRC.Ledger.p00165' does not depend on any axioms
 'FRC.Ledger.p00166' does not depend on any axioms

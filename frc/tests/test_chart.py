@@ -48,7 +48,7 @@ class MasterChartTest(unittest.TestCase):
         marks = L.R.markers()
         for lab in L.R.predicates: self.assertIn(lab, marks)
         self.assertEqual(sorted(L.CHART), sorted(L.LEAN))
-        self.assertEqual(L.BLOCK, "ALP")                 # A8 bound since the push of 8 October 2026
+        self.assertEqual(L.BLOCK, "ALP")                 # A7 (the scale import; A8 until the relabel of 9 October) bound since the push of 8 October 2026
         self.assertFalse(hasattr(L, "PROOFS"))           # the chart rows are not bound as theorem rows (gate G08)
 
 

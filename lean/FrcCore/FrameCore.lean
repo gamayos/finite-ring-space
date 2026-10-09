@@ -5,7 +5,7 @@ import FrcCore.Series
 /-!
 # FrcCore.FrameCore — the frame `(τ; 0, 1, g)` and the Euclidean datum, from first principles (the frame theme)
 
-The shell of capacity `κ` has modulus `p = 4κ + 1`; its frame carries the drive `g` (00:A8, 00:C1).
+The shell of capacity `κ` has modulus `p = 4κ + 1`; its frame carries the drive `g` (00:A6, 00:A12, 00:C1; labels as of 9 October 2026).
 One decidable predicate states what the frame's generator is: `IsPrimitive g n` (`g^n = 1`, no positive
 power below `n` is `1`). That `g` then *generates* — every nonzero residue is a power of `g`
 (`Generates g n`, also decidable) — is proved by the pigeonhole (`FrcCore.Pigeonhole`): the `n` powers are
@@ -27,14 +27,14 @@ namespace Shell
 
 variable {p : Nat} [Pos p]
 
-/-- 00:A8 — the drive generator is primitive of order `n`: `g^n = 1` and `g^l ≠ 1` for `0 < l < n`. -/
+/-- 00:A12 — the drive generator is primitive of order `n`: `g^n = 1` and `g^l ≠ 1` for `0 < l < n`. -/
 def IsPrimitive (g : Shell p) (n : Nat) : Prop :=
   g ^ n = 1 ∧ ∀ l, l < n → 0 < l → g ^ l ≠ 1
 
 instance (g : Shell p) (n : Nat) : Decidable (IsPrimitive g n) := by
   unfold IsPrimitive; exact inferInstance
 
-/-- 00:A8 — the drive generates the shell: every nonzero residue `v < p` is `g^m` for some `m < n`. -/
+/-- 00:A12 — the drive generates the shell: every nonzero residue `v < p` is `g^m` for some `m < n`. -/
 def Generates (g : Shell p) (n : Nat) : Prop :=
   ∀ v, v < p → 0 < v → ∃ m, m < n ∧ (g ^ m).val = v
 
@@ -171,7 +171,7 @@ theorem powList_nodup (F : Frame p κ g) : ∀ {n : Nat}, n ≤ p - 1 → Pigeon
         Nat.lt_irrefl n (this ▸ hm),
     powList_nodup F (Nat.le_of_lt hn)⟩
 
-/-- 00:A8 — the drive generates: every nonzero residue is a power `g^m`, `m < p − 1` (the pigeonhole). -/
+/-- 00:A12 — the drive generates: every nonzero residue is a power `g^m`, `m < p − 1` (the pigeonhole). -/
 theorem generates (F : Frame p κ g) : Generates g (p - 1) := by
   intro v hv hv0
   have hb : ∀ e, Pigeonhole.mem e (powList g (p - 1)) → 1 ≤ e ∧ e ≤ p - 1 := fun e he =>

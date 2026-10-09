@@ -12,7 +12,7 @@ namespace Shell
 
 -- `frame13` (00:C1, 20:B10, the frame `(τ; 0, 1, 2)` of `𝔽₁₃`) moved to `Transform.lean` under its name (task LM36).
 
-/-- 00:A8 on `𝔽₁₃`: the drive generates — checked directly, and proved for every frame by `Frame.generates`. -/
+/-- 00:A12 on `𝔽₁₃`: the drive generates — checked directly, and proved for every frame by `Frame.generates`. -/
 theorem generates13 : Generates (2 : Shell 13) 12 := by decide
 
 /-- 1:B3, 2:D3 [value] — on `𝔽₁₃(τ; 0, 1, 2)`: `i = −2³ = 5`, `i² = −1`, `−i = 8`, `π = 6`, `2^6 = −1`,

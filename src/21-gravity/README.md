@@ -14,7 +14,7 @@ proved in Lean (`lean/FrcCore/Gravity.lean` with no axioms, or `lean/FrcLedger/G
 register, the count face and the merger law, the cover forcing, the operational cut and the photon sphere, the
 registration root and the crossover's limits, the shift theorem, with the shadow, ringdown, efficiency, floor, tilt and
 interpolant numerals bracketed), the check here is the instance the reader can run. Master-ledger
-rows of the corpus reached through the paper rows: `00:A9`, `00:D1`, `00:D3`, `00:D5`, `00:B7`, `00:E1`, `00:D15`, `00:E3`–`00:E7`,
+rows of the corpus reached through the paper rows: `00:A7`, `00:D1`, `00:D3`, `00:D5`, `00:B7`, `00:E1`, `00:D15`, `00:E3`–`00:E7`,
 `00:E10`, `00:L1`, `00:L7`, `00:L8`, `00:T1`, `00:T4`, `00:T5`, `00:Z7`.
 
 Three kinds, recorded per family in `results.json`: **EXACT** — decidable identities over finite fields, cyclotomic

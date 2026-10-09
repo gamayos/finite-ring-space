@@ -44,7 +44,7 @@ Block E is bound by `master/gravity.py` (E6, E7, the horizon's count) (task LM27
 `master/quantum.py` (F2, the unequal-cycle composite) (task LM28), on `frc/quantum.py`, and block G by
 `master/interactions.py` (G11, G12, G16, one generation and the Koide form) (task LM29), on `frc/interactions.py`.
 The chart theme's `master/chart.py` (task LM30) binds the chart clauses of L1, L3, L8 and P1, rows of blocks L and P,
-and since 8 October 2026 the scale import A8 (`BLOCK = "ALP"`), in `CHART`, on `frc/chart.py`: each row decided by a
+and since 8 October 2026 the scale import A7 (`BLOCK = "ALP"`), in `CHART`, on `frc/chart.py`: each row decided by a
 certified bracket in rational arithmetic and corroborated in floating point. Block C is bound by one file per theme: `master/subject.py`, `master/fourier.py` (C2, C7), `master/projective.py` (C19),
 `master/extension.py` (C10, the two strata; C11, the pair tally on the Q₄ core) and, since 8 October 2026, `master/frame.py`
 (C12, the unit-domain lattice).

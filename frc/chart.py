@@ -1,7 +1,7 @@
 """frc.chart — the chart theme: the readings against the continuum (ledger migration, task LM30, 6 October 2026).
 
 The chart theme is the one python theme with floats (frc/themes.py, rank 30): the readings of the finite results
-against the continuum. Its cosmology section serves the chart clauses of the master's rows A8 (the scale import's
+against the continuum. Its cosmology section serves the chart clauses of the master's rows A7 (the scale import's
 numerals S and Ω; the ledger's ln Ω for L8), L1 (the floor), L3 (the octant record depth and its outputs), L8 (the primordial tilt) and
 P1 (the running floor).
 
@@ -29,9 +29,9 @@ A0_FIT = (Q("1.20e-10"), Q("0.24e-10"))   # the fitted floor and its systematic,
 TILT_FIT = (Q("-0.0351"), Q("0.0042"))    # Planck 2018 n_s − 1 and its error (00:L8)
 H0_ERR = Q("1.7")                         # the stellar age's error carried to the rate, rounded (14:P3)
 LADDER_FIT = (Q("73.0"), Q("1.0"))        # the Cepheid ladder's H₀ (Riess 2022), km s⁻¹ Mpc⁻¹ (00:L3, 14-entropy)
-LAMBDA_FIT = Q("1.088e-52")              # Planck 2018 Λ, m⁻², the fit's cosmological constant (14:A1, 14:C1; 00:A8)
-PLANCK_LENGTH = Q("1.616255e-35")         # ℓ_P, m (CODATA 2018; 00:A8)
-LN_OMEGA = Q("283.5")                     # the ledger's ln Ω, the numeral of every chart reading (00:A8, 00:L8); recomputed from Λ and ℓ_P by ln_omega_bracket
+LAMBDA_FIT = Q("1.088e-52")              # Planck 2018 Λ, m⁻², the fit's cosmological constant (14:A1, 14:C1; 00:A7)
+PLANCK_LENGTH = Q("1.616255e-35")         # ℓ_P, m (CODATA 2018; 00:A7)
+LN_OMEGA = Q("283.5")                     # the ledger's ln Ω, the numeral of every chart reading (00:A7, 00:L8); recomputed from Λ and ℓ_P by ln_omega_bracket
 
 
 # ---- floating point --------------------------------------------------------------------------------------------------

@@ -18,7 +18,7 @@
     },
     {
      "label": "A2",
-     "predicate": "The corpus: the bounded agent and its record count (5:C1, 5:C2); bounded stability (5:B6); the finite frame's complete decidable theory (5:B5, 00:Z1); the finite direction of determinacy (5:D8); no finite model of $Q$ (25:C1); the reading of a part (25:D1, 00:A4); counting closes by return (00:A6).",
+     "predicate": "The corpus: the bounded agent and its record count (5:C1, 5:C2); bounded stability (5:B6); the finite frame's complete decidable theory (5:B5, 00:Z1); the finite direction of determinacy (5:D8); no finite model of $Q$ (25:C1); the reading of a part (25:D1, 00:A4); counting closes by return (00:A5).",
      "tag": "I",
      "source": "\\cite{akhtman2026paradoxes}",
      "key": "p29002"
@@ -189,7 +189,7 @@
    "rows": [
     {
      "label": "E1",
-     "predicate": "One finite frame; its cardinality determinate and not certifiable by its parts (C10); the license a rule exercised within it; the universal assertion false, its phenomenology derived (C8, C9); induction a theorem (B6); closures as schemas (E2). In the programme the frame is the Carrier, $\\Omega=4S+1$, $S\\sim10^{122}$ [chart] (00:A2, 00:A8).",
+     "predicate": "One finite frame; its cardinality determinate and not certifiable by its parts (C10); the license a rule exercised within it; the universal assertion false, its phenomenology derived (C8, C9); induction a theorem (B6); closures as schemas (E2). In the programme the frame is the Carrier, $\\Omega=4S+1$, $S\\sim10^{122}$ [chart] (00:A2, 00:A7).",
      "tag": "D",
      "source": "\\S\\ref{sec:actualism}",
      "key": "p29021"
@@ -271,7 +271,7 @@
    "Z3"
   ],
   "B4": [
-   "A6"
+   "A5"
   ],
   "B5": [
    "Z1"

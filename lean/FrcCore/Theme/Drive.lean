@@ -3,7 +3,7 @@ import FrcCore.Theme.Field
 /-!
 # FrcCore.Theme.Drive — every prime carries a frame (the foundation theme, task LM23)
 
-The formal shadow of C1 (master A14): every prime shell `𝔽_p` has a primitive root, a drive `g` of order `p − 1`, and
+The formal shadow of C1 (master A12, the label as of 9 October 2026): every prime shell `𝔽_p` has a primitive root, a drive `g` of order `p − 1`, and
 its powers reach every nonzero residue. No generator is assumed anywhere: the proof stands on `Theme/Field.lean`
 (Fermat's little theorem, no zero divisors, the root bound of `x^m − 1`) and on the naturals.
 
@@ -275,7 +275,7 @@ theorem primitive_pow_inj (hp : FRC.Nat.isPrime p) {g : Shell p} (hg0 : g ≠ 0)
     | .inl hlt => key (Nat.le_of_lt hlt) hj h
     | .inr hge => (key hge hi h.symm).symm
 
-/-- A14 — every prime carries a frame: the prime shell `𝔽_p` has a drive `g`, a primitive root of order `p − 1`, and
+/-- A12 — every prime carries a frame: the prime shell `𝔽_p` has a drive `g`, a primitive root of order `p − 1`, and
 its powers `g^m`, `m < p − 1`, reach every nonzero residue (`⟨g⟩ = 𝔽_p^×`, the pigeonhole). -/
 theorem exists_drive (hp : FRC.Nat.isPrime p) :
     ∃ g : Shell p, (g ^ (p - 1) = 1 ∧ ∀ l, l < p - 1 → 0 < l → g ^ l ≠ 1) ∧
