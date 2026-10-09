@@ -274,7 +274,9 @@
    "6:D7": "Fourier",
    "6:E10": "Fourier",
    "6:E2": "Fourier",
-   "6:E3": "Fourier"
+   "6:E3": "Fourier",
+   "6:E6": "Fourier",
+   "6:E7": "Fourier"
   },
   "FrcLedger": {
    "6:B5": "Fourier",

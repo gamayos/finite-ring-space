@@ -360,6 +360,8 @@ theorem hq (F : Frame p κ g) : (1 + 1 + 1 + 1 : Shell p) * -(ofNat κ) + -1 = 0
       ofNat_succ, show (ofNat 2 : Shell p) = ofNat (1 + 1) from rfl, ofNat_succ]; rfl
   rw [e4, ← mul_neg, ofNat_mul, ← F.n_eq, F.ofNat_n, neg_neg, add_neg]
 
+/-- 6:E7, the expansion `F^{[s]} = Σ_r c_r(s) F^r` in the basis `I, F, J, FJ`: the coefficients `c_r(s) = NF_r(z^s)`
+(their geometric-sum form is `frft_coeff` of `Theme/Heisenberg.lean`). -/
 theorem frft_eq (F : Frame p κ g) (z : Shell p) (s k j : Nat) :
     frft g κ z s k j = comb g κ (NF0 (-(ofNat κ)) (-(quarterTurn g κ)) (z ^ s)) (NF1 (-(ofNat κ)) (-(quarterTurn g κ)) (z ^ s))
       (NF2 (-(ofNat κ)) (-(quarterTurn g κ)) (z ^ s)) (NF3 (-(ofNat κ)) (-(quarterTurn g κ)) (z ^ s)) k j := by

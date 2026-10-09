@@ -13,6 +13,7 @@ import FrcCore.Theme.Fractional
 import FrcCore.Theme.Lifts
 import FrcCore.Theme.Dichotomy
 import FrcCore.Theme.Rotations
+import FrcCore.Theme.Heisenberg
 import FrcCore.Theme.Extension
 import FrcCore.Theme.Tally
 import FrcCore.Theme.Numbers

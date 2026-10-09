@@ -68,11 +68,6 @@ fails if a key's axioms change (the axioms of Mathlib's hierarchy at most). Noth
 #guard_msgs in
 #print axioms FRC.LedgerML.p06032
 
--- 6:E5 (p06034)
-/-- info: 'FRC.LedgerML.p06034' depends on axioms: [propext, Classical.choice, Quot.sound] -/
-#guard_msgs in
-#print axioms FRC.LedgerML.p06034
-
 -- 6:E6 (p06035)
 /-- info: 'FRC.LedgerML.p06035' depends on axioms: [propext, Classical.choice, Quot.sound] -/
 #guard_msgs in
@@ -82,3 +77,8 @@ fails if a key's axioms change (the axioms of Mathlib's hierarchy at most). Noth
 /-- info: 'FRC.LedgerML.p06036' depends on axioms: [propext, Classical.choice, Quot.sound] -/
 #guard_msgs in
 #print axioms FRC.LedgerML.p06036
+
+-- 6:E5 (p06034)
+/-- info: 'FRC.LedgerML.p06034' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in
+#print axioms FRC.LedgerML.p06034
