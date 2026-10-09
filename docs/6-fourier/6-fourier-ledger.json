@@ -294,9 +294,9 @@
     },
     {
      "label": "E5",
-     "predicate": "Spectral obstruction: for $\\kap\\ge2$ no invertible $T$ on $\\Vt$ satisfies $T\\sigma T^{-1}=\\Ft^{[s]}$ for any $s$; the cyclic groups $\\langle\\sigma\\rangle$ and $\\langle\\Ft^{[1]}\\rangle$, of the same order $4\\kap$, are not conjugate.",
+     "predicate": "Spectral obstruction: for $\\kap\\ge2$ no invertible $T$ on $\\Vt$ satisfies $T\\sigma T^{-1}=\\Ft^{[s]}$ for any $s$; the cyclic groups $\\langle\\sigma\\rangle$ and $\\langle\\Ft^{[1]}\\rangle$, each of order $4\\kap$ ($\\Ft^{[1]}$ by C4; $\\sigma$ permutes the $4\\kap$ labels cyclically), are not conjugate.",
      "tag": "T",
-     "source": "Prop.~\\ref{prop:nogo}\\newline \\pywit{fourier}{p06034}{E5}, \\leanwit{FrcLedger}{p06034}{E5} \\lean{Fourier.shell\\_spectral\\_obstruction}",
+     "source": "Prop.~\\ref{prop:nogo}\\newline \\pywit{fourier}{p06034}{E5}, \\leanwit{FrcCore}{p06034}{E5}, \\leanwit{FrcLedger}{p06034}{E5} \\lean{Fourier.shell\\_spectral\\_obstruction, FRC.Shell.Frame.spectral\\_obstruction}",
      "key": "p06034"
     },
     {
@@ -322,9 +322,9 @@
     },
     {
      "label": "E9",
-     "predicate": "The spectra behind E5: $\\sigma$ is diagonalizable over $\\Fp$ with the $4\\kap$ simple eigenvalues $\\Fpx$; $\\Ft^{[s]}=\\sum_\\ell\\gen^{-\\ell s}\\Pi_\\ell$ has at most four, among the $\\gen^{-\\ell s}$ ($\\Ft^{[1]}$ on the six shells).",
+     "predicate": "The spectra behind E5: every nonzero residue $b$ is an eigenvalue of $\\sigma$, with the geometric eigenvector $(b^{-j})_j$ (so $\\sigma$ is diagonalizable over $\\Fp$ with the $4\\kap$ simple eigenvalues $\\Fpx$, the Mathlib reading); an eigenvalue of $\\Ft^{[s]}=\\sum_\\ell\\gen^{-\\ell s}\\Pi_\\ell$ is one of the four $\\gen^{-\\ell s}$ ($\\Ft^{[1]}$ on the six shells).",
      "tag": "T",
-     "source": "Prop.~\\ref{prop:nogo}\\newline \\pywit{fourier}{p06054}{E9}",
+     "source": "Prop.~\\ref{prop:nogo}\\newline \\pywit{fourier}{p06054}{E9}, \\leanwit{FrcCore}{p06054}{E9} \\lean{FRC.Shell.Frame.shift\\_eigen, FRC.Shell.Frame.frft\\_eigen}",
      "key": "p06054"
     },
     {
@@ -1371,6 +1371,15 @@
     "tier": 2,
     "ok": true,
     "doc": "6:E5 — 6-fourier's name; the theorem is `FRC.Fractional.shell_spectral_obstruction` (task LM36)."
+   },
+   {
+    "name": "FRC.Shell.Frame.spectral_obstruction",
+    "module": "FrcCore/Theme/Spectra",
+    "line": 207,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "6:E5, the spectral obstruction: for `κ ≥ 2` no invertible `T` (with `T' T = I`) has `T σ T' = F^{[s]}`. Every nonzero residue is an eigenvalue of `σ`, hence of `T σ T'` on `T v`, hence one of the four `(z^s)^ℓ`: an injection of the `4κ` residues into four indices."
    }
   ],
   "E6": [
@@ -1582,6 +1591,26 @@
     "tier": 0,
     "ok": true,
     "doc": "6:E2, 6:E10, the circle has `4κ` points on the six shells: `4, 12, 16, 28, 36, 40`."
+   }
+  ],
+  "E9": [
+   {
+    "name": "FRC.Shell.Frame.shift_eigen",
+    "module": "FrcCore/Theme/Spectra",
+    "line": 76,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "6:E9, every nonzero residue `b` is an eigenvalue of the shift, with the geometric eigenvector `(y^j)_j = (b^{−j})_j`, `b y = 1`: `(σ v)_k = y^{k−1} = b y^k`."
+   },
+   {
+    "name": "FRC.Shell.Frame.frft_eigen",
+    "module": "FrcCore/Theme/Spectra",
+    "line": 152,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "6:E9, an eigenvalue of `F^{[s]}` is one of the four `(z^s)^ℓ`: on an eigenvector `v`, `Π_m F^{[s]} v` reads both `lam Π_m v` and `(z^s)^m Π_m v`, and some `Π_m v` is nonzero since `v = Σ_m Π_m v`."
    }
   ]
  }
