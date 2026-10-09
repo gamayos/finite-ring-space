@@ -690,7 +690,7 @@ theorem double_mod_n (F : Frame p κ g) {t : Nat} (ht : t < p - 1) (h : (t + t) 
     exact absurd hc (Nat.ne_of_lt this)
 
 /-- 6:D7, the row-0 entries off the site are nonzero for `t ∉ {0, 2κ}` (the paper reads: `F^{[t]}` is not monomial,
-`B_{s+t} ≠ B_s`, exactly `2κ` measurement bases). -/
+`B_{s+t} ≠ B_s`, exactly `2κ` unordered bases). -/
 theorem frft_row_zero_ne_zero (F : Frame p κ g) {z : Shell p} (hz : g * z = 1) {t : Nat} (ht : t < p - 1) (h0 : t ≠ 0)
     (h2 : t ≠ 2 * κ) {j : Nat} (hj0 : 0 < j) (hj : j < p - 1) : frft g κ z t 0 j ≠ 0 := by
   rw [frft_row_zero F z t hj0 hj]

@@ -1198,7 +1198,7 @@
     "axioms": [],
     "tier": 0,
     "ok": true,
-    "doc": "6:D7, the row-0 entries off the site are nonzero for `t ∉ {0, 2κ}` (the paper reads: `F^{[t]}` is not monomial, `B_{s+t} ≠ B_s`, exactly `2κ` measurement bases)."
+    "doc": "6:D7, the row-0 entries off the site are nonzero for `t ∉ {0, 2κ}` (the paper reads: `F^{[t]}` is not monomial, `B_{s+t} ≠ B_s`, exactly `2κ` unordered bases)."
    }
   ],
   "E2": [

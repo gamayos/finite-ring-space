@@ -221,14 +221,14 @@ const PUBLICATIONS = [
       {
         "href": "https://colab.research.google.com/github/gamayos/finite-ring-space/blob/main/src/6-fourier/frc-6-fourier.ipynb",
         "label": "python",
-        "count": 36,
-        "title": "36 predicates checked, all passing: the notebook frc-6-fourier.ipynb on Google Colab, one cell per predicate"
+        "count": 27,
+        "title": "27 predicates checked, all passing: the notebook frc-6-fourier.ipynb on Google Colab, one cell per predicate"
       },
       {
         "href": "https://live.lean-lang.org/#project=lean-v4.34.0&url=https://finitering.space/lean/web/core/Fourier.lean",
         "label": "lean",
-        "count": 27,
-        "title": "27 predicates proved in the core (no axioms), 15 of them also on Mathlib: the core module Fourier as one executable file (plain Lean, no Mathlib) in Lean Live"
+        "count": 26,
+        "title": "26 predicates proved in the core (no axioms), 15 of them also on Mathlib: the core module Fourier as one executable file (plain Lean, no Mathlib) in Lean Live"
       },
       {
         "href": "https://live.lean-lang.org/#project=mathlib-stable&url=https://finitering.space/lean/web/ml/Fourier.lean",

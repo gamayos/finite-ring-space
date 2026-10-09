@@ -2,24 +2,23 @@
 fourier.py — the validation package of "Scale-Shift and Fractional Fourier Transform as Rotations over Finite Holographic
 Substrate" (Akhtman, 2026; doi 10.20944/preprints202606.0127.v1), the paper 6-fourier of the FRC corpus
 (finite-ring-space/src/6-fourier), added with the paper's predicate ledger (13 September 2026; one script since
-24 September 2026, the five block scripts merged).
+24 September 2026, the five block scripts merged; the entropy block retired with the revision of 9 October 2026, reports/entropy-20261008.md of the paper).
 ========================================================================================================================
 
-One script, five blocks, thirty-nine checks, numpy (matplotlib for the one figure). Each check names the predicate(s) of the
+One script, four blocks, thirty-one checks, numpy. Each check names the predicate(s) of the
 paper's ledger it witnesses (LEDGER below; predicates cited as 6:XN) under a `# 6:XN (<key>)` marker, and the ledger's
 source column links the marker in return (finitering.space/src/6-fourier/#<key>). The paper \\label(s) a
 check decides are in the block banners. Three master-ledger predicates of the corpus are reached through the paper's:
 00:C2 (6:B5, 6:C3, 6:D4), 00:C14 (6:B2), 00:C7 on the transform layer (6:C9).
 
-    python3 fourier.py            every block, results.json written; exit 1 if a check fails (≈ 6 s)
-    python3 fourier.py D          one block (A, B, C, D or E); no results.json
+    python3 fourier.py            every block, results.json written; exit 1 if a check fails (≈ 5 s)
+    python3 fourier.py D          one block (A, B, C or D); no results.json
     from frc_6_fourier import predicate; predicate("6:C3")     one predicate: its block runs once per session
 
 Blocks:  A  the frame datum and the shell Fourier operator     EXACT            (6:B1–B3, B5–B7)
-         B  the fractional family F^[s]                        EXACT            (6:C2–C11)
-         C  representation domains and the coordinate zoom     EXACT            (6:D1, D2, D4, D5, D7)
+         B  the fractional family F^[s]                        EXACT            (6:C2–C9, C11)
+         C  representation domains and the coordinate zoom     EXACT            (6:D1, D2, D4, D7)
          D  the Weil dictionary, the operator-level comparison EXACT            (6:E2, E3, E5–E10)
-         E  the cyclotomic observer readout, the entropy cycle EXACT / [approx] (6:F2–F8)
 
 Everything the blocks share:
   * the frame datum of a shell: p = 4κ+1, the smallest primitive root g (the generators of Table `tab:checks`),
@@ -29,16 +28,14 @@ Everything the blocks share:
     the fractional family F^[s] = Σ_ℓ g^{−ℓs} Π_ℓ, rank mod p;
   * the PASS/FAIL registry every block reports into (results.json).
 
-Kinds: EXACT checks are integer-pinned computations in F_p (a pass is a proof on the tested instances); [approx] checks
-compare a floating-point observation with the value the paper states, to a stated tolerance (block E, the cyclotomic
-observer readout on C^n; E1 is exact integer polynomial arithmetic). Block E regenerates the paper's one numerical
-figure into FIGDIR (figures/, or $FOURIER_FIGDIR).
+Kinds: every check is EXACT, an integer-pinned computation in F_p (a pass is a proof on the tested instances). The
+[approx] checks of the retired block E, the cyclotomic observer readout on C^n, are kept with the paper's entropy report
+(_to_delete/fourier-pre-rewrite-20261009.py).
 """
 import os, json, sys, re
 import numpy as np
 
 SCRIPT = os.path.splitext(os.path.basename(__file__))[0]        # "fourier": the one script, the name results.json and the site pages carry
-FIGDIR = os.environ.get("FOURIER_FIGDIR", "figures")             # block E writes the figure here (created when the block runs)
 
 # The shells of Table tab:checks (p, κ, g, i); the package recomputes g and i and checks the table.
 TABLE = [(5, 1, 2, 3), (13, 3, 2, 5), (17, 4, 3, 4), (29, 7, 2, 17), (37, 9, 2, 6), (41, 10, 6, 9)]
@@ -50,11 +47,10 @@ RESULTS = []
 # The paper's predicate ledger (Appendix A, predicates cited as 6:XN): the predicate(s) each check witnesses.
 LEDGER = {
     "A1": "6:B1", "A2": "6:B2", "A3": "6:B3", "A4": "6:B5", "A5": "6:B6", "A6": "6:B7",
-    "B1": "6:C2", "B2": "6:C3", "B3": "6:C3", "B4": "6:C4", "B5": "6:C5", "B6": "6:C6", "B7": "6:C7, 6:C10", "B8": "6:C7, 6:C10",
+    "B1": "6:C2", "B2": "6:C3", "B3": "6:C3", "B4": "6:C4", "B5": "6:C5", "B6": "6:C6", "B7": "6:C7", "B8": "6:C7",
     "B9": "6:C8, 6:C11", "B10": "6:C9",
-    "C1": "6:D1", "C2": "6:D2", "C3": "6:D2, 6:D7", "C4": "6:D4", "C5": "6:D4", "C6": "6:D5",
-    "D1": "6:E2", "D2": "6:E2", "D3": "6:E3", "D4": "6:E5, 6:E9", "D5": "6:E6", "D6": "6:E7", "D7": "6:E7", "D8": "6:E8", "D9": "6:E10",
-    "E1": "6:F2", "E2": "6:F3", "E3": "6:F3", "E4": "6:F4", "E5": "6:F5", "E6": "6:F6", "E7": "6:F7", "E8": "6:F8",
+    "C1": "6:D1", "C2": "6:D2", "C3": "6:D2, 6:D7", "C4": "6:D4", "C5": "6:D4", "C6": "6:D4",
+    "D1": "6:E2", "D2": "6:E2", "D3": "6:E3", "D4": "6:E5, 6:E9", "D5": "6:E6", "D6": "6:E7", "D7": "6:E8", "D8": "6:E8", "D9": "6:E10",
 }
 # The master-ledger predicates of the corpus witnessed through the paper's: 00:C2 (6:B5, 6:C3, 6:D4), 00:C14 (6:B2),
 # 00:C7 on the transform layer (6:C9).
@@ -62,18 +58,17 @@ LEDGER = {
 BLOCK = {"A": "the frame datum and the shell Fourier operator",          # check-id prefix -> the block (the function block_<letter> below)
          "B": "the fractional family F^[s]",
          "C": "representation domains and the coordinate zoom",
-         "D": "the Weil dictionary and the operator-level comparison",
-         "E": "the cyclotomic observer readout and the entropy cycle"}
+         "D": "the Weil dictionary and the operator-level comparison"}
 
 # the deciding check of each witnessed predicate: the one whose verdict decides the predicate's statement (the other checks
 # that touch it are corroboration, listed by predicate() from the records): the first check of a two-check predicate, except
-# E2 (D2, the isomorphism and the count; D1's membership corroborates) and E7 (D6, the covariance identities; D7 the sweep)
+# E2 (D2, the isomorphism and the count; D1's membership corroborates) and E8 (D8, the theorem's row-0 argument; D7, the sweep on
+# the six shells, is its instance)
 PREDICATES = {
     "6:B1": "A1", "6:B2": "A2", "6:B3": "A3", "6:B5": "A4", "6:B6": "A5", "6:B7": "A6",
-    "6:C2": "B1", "6:C3": "B2", "6:C4": "B4", "6:C5": "B5", "6:C6": "B6", "6:C7": "B7", "6:C8": "B9", "6:C9": "B10", "6:C10": "B7", "6:C11": "B9",
-    "6:D1": "C1", "6:D2": "C2", "6:D4": "C4", "6:D5": "C6", "6:D7": "C3",
+    "6:C2": "B1", "6:C3": "B2", "6:C4": "B4", "6:C5": "B5", "6:C6": "B6", "6:C7": "B7", "6:C8": "B9", "6:C9": "B10", "6:C11": "B9",
+    "6:D1": "C1", "6:D2": "C2", "6:D4": "C4", "6:D7": "C3",
     "6:E2": "D2", "6:E3": "D3", "6:E5": "D4", "6:E6": "D5", "6:E7": "D6", "6:E8": "D8", "6:E9": "D4", "6:E10": "D9",
-    "6:F2": "E1", "6:F3": "E2", "6:F4": "E4", "6:F5": "E5", "6:F6": "E6", "6:F7": "E7", "6:F8": "E8",
 }
 _RAN = set()                                            # blocks already run in this session (predicate() runs each once)
 
@@ -304,28 +299,15 @@ def matpow(M, k, p):
         R = mm(R, M, p)
     return R
 
-def jacobi(a, n):
-    """The Jacobi symbol (a/n), n odd positive."""
-    assert n > 0 and n % 2 == 1
-    a %= n; result = 1
-    while a:
-        while a % 2 == 0:
-            a //= 2
-            if n % 8 in (3, 5): result = -result
-        a, n = n, a
-        if a % 4 == 3 and n % 4 == 3: result = -result
-        a %= n
-    return result if n == 1 else 0
-
 # ------------------------------------------------------------------------------------------------------------
 # Block A — the frame datum and the shell Fourier operator (EXACT, integer-pinned)
 # ================================================================================
 # Paper statements decided (Sections 3–4; master ledger rows 00:C2, 00:C14):
 #
-#   A1  §3 shell data, tab:checks   p = 4κ+1, the generator g of Table tab:checks is the smallest primitive
+#   A1  §2 shell data, tab:checks   p = 4κ+1, the generator g of Table tab:checks is the smallest primitive
 #                                    root, i = −g^κ = g^{−κ} = g^{3κ}, i² ≡ −1, π = 2κ, 2π ≡ −1, g^π ≡ −1,
 #                                    −π ≡ 2⁻¹, e = g^i; the table's (κ, g, i) on all six shells
-#   A2  §3 (Euler identity)          e^{iπ} = g^{2κ(i mod 2)} ≡ −1 exactly when the quarter-turn residue i is
+#   A2  §2 rem:euler                  e^{iπ} = g^{2κ(i mod 2)} ≡ −1 exactly when the quarter-turn residue i is
 #       00:C14                       odd; the conjugate reframing (g, i) ↦ (g⁻¹, −i) toggles the parity, so
 #                                    exactly one member of each conjugate pair carries e^{iπ} ≡ −1 — on every
 #                                    primitive frame of the six shells; anchor F_13(t;0,1,2): i = 5, 6^{iπ} ≡ −1
@@ -440,15 +422,16 @@ def block_A():
 #                             (F^[1])^κ = F                                                     (00:C2)
 #   B4  thm:faithful          s ↦ F^[s] injective on Z_{4κ} (p = 5 included: the surviving odd projector
 #                             carries a faithful character)
-#   B5  lem:multiplicity      m_ℓ = rank Π_ℓ = dim ker(F − i^ℓ I); m_0 + m_2 = 2κ+1, m_1 + m_3 = 2κ−1;
-#                             m_0, m_2 ≥ 1; m_1, m_3 ≥ 1 for κ ≥ 2; at p = 5 exactly one of Π_1, Π_3 is 0
+#   B5  lem:multiplicity      Π_0 + Π_2 = ½(I + J), Π_1 + Π_3 = ½(I − J); (Π_0)_{00}, (Π_2)_{00} ≠ 0; for κ ≥ 2
+#                             (Π_1)_{21} = ¼(g² − g⁻²) = −(Π_3)_{21} ≠ 0; the ranks m_ℓ = rank Π_ℓ = dim ker(F − i^ℓ I),
+#                             m_0 + m_2 = 2κ+1, m_1 + m_3 = 2κ−1; at p = 5 exactly one of Π_1, Π_3 is 0
 #   B6  rem:multiplicities    p = 13: g = 2 gives (3,3,4,2) with Tr F = 4, g = 6 gives (4,2,3,3) with Tr F = 9;
-#                             the vertex relabelling m ↦ um conjugates F(g) to F(g^{u²}) by a permutation
+#                             the site relabelling m ↦ um conjugates F(g) to F(g^{u²}) by a permutation
 #   B7  thm:multiplicity      G = Σ_k g^{k²} = ε(1+i); the two patterns (κ,κ,κ+1,κ−1) / (κ+1,κ−1,κ,κ);
-#                             ε(g⁻¹) = −ε(g); ε(g^u) = (κ/u) ε(g) for u ≡ 1 (mod 4); the classes equally
-#                             populated on every shell; the 38 primitive frames of p ∈ {5,13,17,29,37} (and
-#                             the 16 of p = 41); the table frames with κ ≥ 2 in class ε = +1; p = 5:
-#                             (2,0,1,1) at g = 2 (ε = −1), (1,1,2,0) at g = 3 (ε = +1)
+#                             ε(g⁻¹) = −ε(g); the 38 primitive frames of p ∈ {5,13,17,29,37} (and the 16 of
+#                             p = 41); the table frames with κ ≥ 2 in class ε = +1; p = 5: (2,0,1,1) at g = 2
+#                             (ε = −1), (1,1,2,0) at g = 3 (ε = +1). (The Jacobi law ε(g^u) = (κ/u) ε(g), the
+#                             retired row C10, is no longer checked: it is a statement of no row.)
 #   B8  thm:multiplicity      the proof's identities: G G* = −2, G² = 2i, Tr F = iG, Tr F² = 2, Tr F³ = iG*,
 #       (proof)               m_ℓ ≡ ¼ Σ_r i^{−ℓr} Tr F^r (mod p)
 #   B9  rem:classification    every exponent lift a_ℓ ≡ ℓ (mod 4) is additive with the same cardinal
@@ -512,17 +495,22 @@ def block_B():
     # 6:C4 (p06018)
     check("B4", "s ↦ F^[s] is injective on Z_{4κ}: the 4κ members are pairwise distinct (p = 5 included)", ok, f"p ∈ {SHELLS}")
 
-    # B5 — the multiplicity lemma
+    # B5 — the multiplicity lemma: the projector sums, the named entries, the ranks
     ok, det = True, []
     for p in SHELLS:
-        f = frames[p]; m = f.mults()
+        f = frames[p]; m = f.mults(); half = pow(2, p - 2, p)
+        ok &= eq((f.Pi[0] + f.Pi[2]) % p, (half * (f.I() + f.J)) % p, p) and eq((f.Pi[1] + f.Pi[3]) % p, (half * (f.I() - f.J)) % p, p)
+        ok &= (int(f.Pi[0][0, 0]) % p != 0 and int(f.Pi[2][0, 0]) % p != 0)
+        if f.kap >= 2:
+            e21 = f.inv4 * (f.gpow(2) - f.gpow(-2)) % p
+            ok &= (e21 != 0 and int(f.Pi[1][2, 1]) % p == e21 and int(f.Pi[3][2, 1]) % p == (-e21) % p)
         for l in range(4):
             ok &= (m[l] == f.n - rank_mod_p((f.F - pow(f.i, l, p) * f.I()) % p, p))
         ok &= (m[0] + m[2] == 2 * f.kap + 1 and m[1] + m[3] == 2 * f.kap - 1 and m[0] >= 1 and m[2] >= 1)
         ok &= (m[1] >= 1 and m[3] >= 1) if f.kap >= 2 else ((m[1] == 0) != (m[3] == 0))
         det.append(f"p={p}: {m}")
     # 6:C5 (p06019)
-    check("B5", "m_ℓ = rank Π_ℓ = dim ker(F − i^ℓ I); m_0+m_2 = 2κ+1, m_1+m_3 = 2κ−1; m_0, m_2 ≥ 1; m_1, m_3 ≥ 1 for κ ≥ 2; p = 5: one odd projector vanishes", ok, "; ".join(det))
+    check("B5", "Π_0+Π_2 = ½(I+J), Π_1+Π_3 = ½(I−J); (Π_0)_{00}, (Π_2)_{00} ≠ 0; κ ≥ 2: (Π_1)_{21} = ¼(g²−g⁻²) = −(Π_3)_{21} ≠ 0; m_ℓ = rank Π_ℓ = dim ker(F − i^ℓ I), m_0+m_2 = 2κ+1, m_1+m_3 = 2κ−1; p = 5: one odd projector vanishes", ok, "; ".join(det))
 
     # B6 — multiplicities are chart data
     f2, f6 = Frame(13, 2), Frame(13, 6)
@@ -555,10 +543,6 @@ def block_B():
             ok &= (f.mults() == want)
         for g in prims:
             ok &= (eps[pow(g, p - 2, p)] == -eps[g])                                     # conjugate law
-            for u in range(1, f0.n):
-                if np.gcd(u, f0.n) == 1 and u % 4 == 1:
-                    ok &= (eps[pow(g, u, p)] == jacobi(k, u) * eps[g])                # Jacobi law
-        ok &= (2 * sum(1 for g in prims if eps[g] == 1) == len(prims))                 # even split
         if k >= 2:
             ok &= (eps[f0.g] == 1)                                                       # the table frames
         if p != 41:
@@ -567,8 +551,8 @@ def block_B():
     ok &= (n38 == 38)
     ok &= (Frame(5, 2).mults() == (2, 0, 1, 1) and Frame(5, 2).epsilon() == -1)
     ok &= (Frame(5, 3).mults() == (1, 1, 2, 0) and Frame(5, 3).epsilon() == 1)
-    # 6:C7 (p06021), 6:C10 (p06051)
-    check("B7", "G = ε(1+i), the two patterns, ε(g⁻¹) = −ε(g), ε(g^u) = (κ/u) ε(g), classes equally populated; 38 frames of p ∈ {5,…,37} and 16 of p = 41; p = 5: (2,0,1,1) at g = 2, (1,1,2,0) at g = 3",
+    # 6:C7 (p06021)
+    check("B7", "G = ε(1+i), the two patterns, ε(g⁻¹) = −ε(g); 38 frames of p ∈ {5,…,37} and 16 of p = 41; the table frames with κ ≥ 2 in class ε = +1; p = 5: (2,0,1,1) at g = 2, (1,1,2,0) at g = 3",
           ok, "; ".join(det))
 
     # B8 — the proof's identities
@@ -631,20 +615,19 @@ def block_B():
 # ------------------------------------------------------------------------------------------------------------
 # Block C — representation domains and the coordinate-side zoom (EXACT, integer-pinned)
 # =====================================================================================
-# Paper statements decided (Sections 6–7; master ledger row 00:C2):
+# Paper statements decided (Sections 4–5 of the revision of 9 October 2026; master ledger row 00:C2):
 #
 #   C1  def:domain            every F^[s] is invertible (rank 4κ over F_p); its eigenvalues g^{−ℓs} are
 #                             nonzero, so the meridional bases B_s = F^[s] B_0 are bases
-#   C2  cor:distinct-domains  the 4κ framed (ordered) bases B_0, …, B_{4κ−1} are pairwise distinct
+#   C2  thm:faithful          the 4κ framed (ordered) bases B_0, …, B_{4κ−1} are pairwise distinct
 #   C3  rem:ordered-bases     B_{s+2κ} = B_s as unordered sets (F^[s+2κ] = F^[s] J, J a coordinate
 #                             permutation) and B_{s+t} ≠ B_s for t ∉ {0, 2κ} (row 0 of F^[t] is (i/2)(1 − g^{−2t}) off
-#                             site 0, so F^[t] is not monomial): the cycle carries exactly 2κ unordered measurement bases
+#                             site 0, so F^[t] is not monomial): the cycle carries exactly 2κ unordered bases
 #   C4  prop:meridian-scale   S_r(M_m) = M_{m+r} for every (m, r) ∈ Z_{4κ}², as ordered lists  (00:C2)
-#   C5  cor:effective-step    consecutive entries of M_m differ by g^m; S_{r+(p−1)} = S_r
-#       rem:framed-rational
-#   C6  ex:zoom-13            p = 13, g = 2: M_0 … M_3 as printed (steps 1, 2, 4, 8); the no-wrap window of
-#       thm:zoom, rem:two-    rem:two-layers — with w = π = 6 the listing stays unwrapped for w·2^r < 13, i.e.
-#       layers                r ≤ 1, and wraps from M_2 on
+#   C5  cor:effective-step    consecutive entries of M_m differ by g^m; S_{r+(p−1)} = S_r (A5)
+#   C6  sec:examples          p = 13, g = 2: M_0 … M_3 as printed (steps 1, 2, 4, 8); the no-wrap window of
+#       def:scale-chart       Definition scale-chart — with w = π = 6 the listing stays unwrapped for w·2^r < 13, i.e.
+#                             r ≤ 1, and wraps from M_2 on (the ladder is D4's kernel instance since the revision)
 #
 # Shells: p = 5, 13, 17, 29, 37, 41.
 def block_C():
@@ -719,15 +702,14 @@ def block_C():
     unwrapped = [m for m in range(f.n) if w * 2 ** m < 13]
     wraps = [m for m in range(4) if any(a * 2 ** m >= 13 for a in range(w + 1))]
     ok &= (unwrapped == [0, 1] and wraps == [2, 3])
-    # 6:D5 (p06028)
     check("C6", "p = 13, g = 2: M_0…M_3 = the printed ladder at steps 1, 2, 4, 8; the no-wrap window w·g^r < p with w = π = 6 holds for r ≤ 1 and the listing wraps from M_2", ok, f"unwrapped meridians {unwrapped}, wrapping {wraps}")
 
 # ------------------------------------------------------------------------------------------------------------
 # Block D — the Weil dictionary and the operator-level comparison (EXACT, integer-pinned)
 # =======================================================================================
-# Paper statements decided (Section 8):
+# Paper statements decided (Section 6 of the revision of 9 October 2026):
 #
-#   D1  lem:Rs-rotation       c_s² + d_s² = 1 and det R_s = 1 for every s: R_s ∈ SO(2, F_p)
+#   D1  prop:rotation-isom    c_s² + d_s² = 1 and det R_s = 1 for every s: R_s ∈ SO(2, F_p)
 #   D2  prop:rotation-isom    s ↦ R_s is a homomorphism Z_{4κ} → SO(2, F_p), injective, onto: |SO(2, F_p)| = p−1
 #   D3  thm:Weil-equivalence  the cardinal matrices R_0 = I, R_κ = w = [[0,−1],[1,0]] (the R_κ column of
 #       tab:checks            Table tab:checks), R_{2κ} = −I, R_{3κ} = w⁻¹; z_κ = i
@@ -739,9 +721,9 @@ def block_C():
 #   D6  prop:heisenberg       F σ F⁻¹ = D_1, F D_1 F⁻¹ = σ⁻¹ with D_1 = diag(g^k); F^r σ = σ_r F^r,
 #                             (σ_0, σ_1, σ_2, σ_3) = (σ, D_1, σ⁻¹, D_1⁻¹); the expansion eq:conj-expansion
 #                             F^[s] = Σ_r c_r(s) F^r with c_r(s) = ¼ Σ_ℓ (g^{rκ−s})^ℓ
-#   D7  prop:heisenberg       the sweep: F^[s] σ F^[s]⁻¹ monomial exactly at the four cardinal indices and
-#                             non-monomial at every one of the 112 intermediate indices over
-#                             p ∈ {13, 17, 29, 37, 41} (p = 5 has no intermediate index)
+#   D7  thm:monomial          the sweep on the six shells: F^[s] σ F^[s]⁻¹ monomial exactly at the four cardinal
+#                             indices, non-monomial at every one of the 112 intermediate indices over
+#                             p ∈ {13, 17, 29, 37, 41} (p = 5 has no intermediate index); E8's instance
 #   D8  thm:monomial          cardinal exclusivity: off j ∈ {−1, 0, 1} row 0 of F^[s] σ F^[s]⁻¹ is x⁻¹ times a
 #                             quadratic in x = g^j with leading coefficient i(c₀+c₂)c₃(−s) ≠ 0, so at least 4κ−5
 #                             nonzero entries for every non-cardinal s; every shell p ≡ 1 (mod 4) below 200
@@ -855,7 +837,7 @@ def block_D():
     # 6:E7 (p06036)
     check("D6", "F σ F⁻¹ = D_1, F D_1 F⁻¹ = σ⁻¹; F^r σ = σ_r F^r with (σ, D_1, σ⁻¹, D_1⁻¹); F^[s] = Σ_r c_r(s) F^r, c_r(s) = ¼ Σ_ℓ (g^{rκ−s})^ℓ", ok, f"p ∈ {SHELLS}")
 
-    # D7 — the monomial sweep
+    # D7 — the monomial sweep on the six shells (the instance of E8; D8 is the theorem's check)
     ok, n_int, n_card, det = True, 0, 0, []
     for p in SHELLS:
         f = frames[p]; n = f.n; k = f.kap
@@ -871,7 +853,7 @@ def block_D():
         n_card += 4
         det.append(f"p={p}: monomial at {sorted(s for s in range(n) if mono[s])}")
     ok &= (n_int == 112)
-    check("D7", "F^[s] σ F^[s]⁻¹ is monomial exactly at the four cardinal indices and non-monomial at every one of the 112 intermediate indices of p ∈ {13,17,29,37,41}", ok, "; ".join(det) + f"; {n_int} intermediate indices swept")
+    check("D7", "on the six shells F^[s] σ F^[s]⁻¹ is monomial exactly at the four cardinal indices: the 112 intermediate indices of p ∈ {13,17,29,37,41} all non-monomial (E8 on Table tab:checks)", ok, "; ".join(det) + f"; {n_int} intermediate indices swept")
 
     # D8 — cardinal exclusivity as a theorem (thm:monomial): off j ∈ {−1, 0, 1} row 0 of F^[s] σ F^[s]⁻¹ is
     # i[(c₀+c₂)(c'₃x + c'₁x⁻¹) + (c₁+c₃)(c'₀+c'₂)], x = g^j, c_r = c_r(s), c'_r = c_r(−s): x⁻¹ times a quadratic in x whose leading
@@ -938,310 +920,6 @@ def block_D():
     # 6:E10 (p06056)
     check("D9", "the plane as orbits of the cycle (cor:boundary): |SO(2,F_p)| = n = p−1 and it is {R_s}; F_p² = the origin + (n+2) free orbits (n circles of nonzero norm, two isotropic lines y = ±ix), p² = 1+(n+2)n; (u,v) ↦ (z_s u, z_s⁻¹ v); dim V = n",
           ok, "; ".join(det))
-
-# ------------------------------------------------------------------------------------------------------------
-# Block E — the cyclotomic observer readout and the entropy on the meridian cycle
-# ===============================================================================
-# Paper statements decided (Section 9, Subsection sec:entropy). The readout of Definition def:readout
-# realises the fractional family on C^n through the observer's continuum chart σ_C: X ↦ ζ_n, Y ↦ +√n —
-# the canonical DFT projectors with the eigenvalue refinement g^{−ℓs} ↦ ζ_n^{−ℓs}. Floating point
-# enters here and only here; the kinds are marked.
-#
-#   E1  def:readout          the readout algebra: Ĝ = Σ_k X^{k²} satisfies Ĝ² = 2n X^κ modulo Φ_n(X) —
-#       (EXACT)              exact integer polynomial arithmetic; and both specialisations: σ_C gives
-#                            (Σ ζ^{k²})² = 2n i, ρ gives G² = 2i in F_p (the reduction used in thm:multiplicity)
-#   E2  prop:entropy         H(0) = H(2κ) = 0, H(κ) = H(3κ) = log n for every site-localised input δ_j
-#   E3  prop:entropy         B_0 and B_κ mutually unbiased (every overlap 1/n); Maassen–Uffink
-#                            H_{B_0} + H_{B_κ} ≥ log n on random states, saturated by the localised states;
-#                            the comb (δ_0 + δ_6)/√2 at n = 12 gives log 2 + log 6 = log 12
-#   E4  prop:closedform      the readout of F^[s] δ_0 is two-valued, p_0 = 1 − (n−1)t_s/n, p_j = t_s/n, with
-#                            t_s = (2 − ζ^{2s} − ζ^{−2s})/4 = sin²(πs/2κ); H(s) the closed form; strictly
-#                            increasing on 0 ≤ s ≤ κ; two oscillations per cycle
-#   E5  §9 table, fig        p = 13: H(s)/log n = 0, .44, .91, 1, .91, .44, 0, .44, .91, 1, .91, .44;
-#       entropy13            regenerates figures/entropy-cycle-f13.{pdf,png}
-#   E6  rem:input-dep        δ_1 at p = 13: H(1)/log n = 0.55 against 0.44 for δ_0; δ_j meets Π_1, Π_3 exactly
-#                            when j ∉ {0, 2κ}; δ_{2κ} gives the δ_0 curve
-#   E7  prop:twist           the Galois twist X ↦ ζ^u leaves the cardinal values of every δ_j invariant and relabels
-#       def:readout          the curve of δ_j by s ↦ us whenever ηuj ≡ j (mod n), ηu ≡ 1 (mod 4) — the Born vectors
-#                            permuted by k ↦ ηuk: every cardinal site, every site for u = −1; off the cardinal sites a
-#                            twist u ≢ ±1 can change the curve (n = 12, u = 5: δ_1 0.55 ↦ 0.44, δ_3 0.42 unchanged)
-#   E8  prop:fractional-unc  the fractional uncertainty relation: c(s) = max |F^[s]_{jk}| satisfies
-#                            c(s)² ≥ max{1/n, 1 − (n−1)t_s/n}; c(s)² = 1/n exactly at s ∈ {κ, 3κ} (B_s mutually
-#                            unbiased to B_0 exactly there); c(s) = 1 at s ∈ {0, 2κ}; H_{B_0} + H_{B_s} ≥ −2 log c(s)
-#                            on random states; p = 13: −2 log c(s)/log n = 0, .10, .41, 1, .41, .10 per half-cycle
-#
-# Shells: n = 4, 12, 16, 28, 36, 40 (p = 5, 13, 17, 29, 37, 41).
-def cyclotomic(n):
-    """Φ_n(X) as an integer coefficient array (low to high), by exact division of X^n − 1."""
-    def polydiv_exact(a, b):                       # a / b, b monic, integer, exact
-        a = list(a); q = [0] * (len(a) - len(b) + 1)
-        for i in range(len(q) - 1, -1, -1):
-            q[i] = a[i + len(b) - 1]
-            for j in range(len(b)):
-                a[i + j] -= q[i] * b[j]
-        assert all(x == 0 for x in a[:len(b) - 1]), "inexact"
-        return q
-    poly = [-1] + [0] * (n - 1) + [1]               # X^n − 1
-    for d in range(1, n):
-        if n % d == 0:
-            poly = polydiv_exact(poly, cyclotomic(d))
-    return poly
-
-def polymod_cyc(a, n):
-    """Reduce a polynomial modulo X^n − 1 (exponents mod n)."""
-    r = [0] * n
-    for k, c in enumerate(a):
-        r[k % n] += c
-    return r
-
-def polymul_cyc(a, b, n):
-    r = [0] * n
-    for i, x in enumerate(a):
-        if x:
-            for j, y in enumerate(b):
-                if y:
-                    r[(i + j) % n] += x * y
-    return r
-
-def polyrem(a, b):
-    """Remainder of a modulo monic integer b (exact integer arithmetic)."""
-    a = list(a)
-    while len(a) >= len(b):
-        c = a[-1]
-        if c:
-            for j in range(len(b)):
-                a[len(a) - len(b) + j] -= c * b[j]
-        a.pop()
-    return a
-
-def dft_family(n, u=1):
-    """The readout family on C^n under the chart X ↦ ζ_n^u: the canonical DFT projectors and
-    F^[s] = Σ_ℓ ζ^{−uℓs} Π_ℓ (Definition def:readout; entropy_meridian_cycle.py of the paper's code/)."""
-    kap = n // 4
-    z = np.exp(2j * np.pi * u / n)
-    D = np.array([[z ** (j * k) for k in range(n)] for j in range(n)]) / np.sqrt(n)
-    iota = z ** (-kap)
-    Ds = [np.eye(n)]
-    for _ in range(3):
-        Ds.append(Ds[-1] @ D)
-    P = [sum(iota ** (-l * r) * Ds[r] for r in range(4)) / 4 for l in range(4)]
-    assert np.allclose(sum(P), np.eye(n)) and all(np.allclose(Pl @ Pl, Pl) for Pl in P)
-    return D, P, (lambda s: sum(z ** (-l * s) * P[l] for l in range(4)))
-
-def entropy(vec):
-    q = np.abs(vec) ** 2; q = q / q.sum(); q = q[q > 1e-15]
-    return float(-(q * np.log(q)).sum()) + 0.0          # (+0.0 clears a signed zero)
-
-def delta(n, j):
-    e = np.zeros(n); e[j] = 1.0
-    return e
-
-def block_E():
-    """Block E — the cyclotomic observer readout and the entropy on the meridian cycle: E1–E8."""
-    print("block E — the cyclotomic observer readout")
-    os.makedirs(FIGDIR, exist_ok=True)
-    frames = {p: Frame(p) for p in SHELLS}
-
-    # E1 — the readout algebra identity, exact
-    ok, det = True, []
-    for p in SHELLS:
-        f = frames[p]; n, k = f.n, f.kap
-        G = [0] * n
-        for kk in range(n):
-            G[(kk * kk) % n] += 1                                      # Ĝ = Σ_k X^{k²} mod X^n − 1
-        G2 = polymul_cyc(G, G, n)
-        G2[k] -= 2 * n                                                 # Ĝ² − 2n X^κ
-        rem = polyrem(G2, cyclotomic(n))
-        ok &= all(c == 0 for c in rem)
-        z = np.exp(2j * np.pi / n)
-        ok &= abs(sum(z ** (kk * kk) for kk in range(n)) ** 2 - 2 * n * 1j) < 1e-9
-        ok &= (f.gauss() ** 2 % p == 2 * f.i % p)
-        det.append(f"n={n}: deg Φ_n = {len(cyclotomic(n)) - 1}")
-    # 6:F2 (p06038)
-    check("E1", "Ĝ² = 2n X^κ modulo Φ_n(X) (exact integer arithmetic); under σ_C: (Σ ζ^{k²})² = 2n i; under ρ: G² = 2i in F_p", ok, "; ".join(det))
-
-    # E2 — cardinal values for every localised input
-    ok = True
-    for p in SHELLS:
-        f = frames[p]; n, k = f.n, f.kap
-        D, P, frft = dft_family(n)
-        for j in range(n):
-            e = delta(n, j)
-            ok &= abs(entropy(frft(0) @ e)) < 1e-9 and abs(entropy(frft(2 * k) @ e)) < 1e-9
-            ok &= abs(entropy(frft(k) @ e) - np.log(n)) < 1e-9 and abs(entropy(frft(3 * k) @ e) - np.log(n)) < 1e-9
-        ok &= np.allclose(frft(0), np.eye(n)) and np.allclose(frft(k), D) and np.allclose(frft(2 * k), D @ D)
-    # 6:F3 (p06039)
-    check("E2", "H(0) = H(2κ) = 0, H(κ) = H(3κ) = log n for every δ_j", ok, f"n ∈ {[p - 1 for p in SHELLS]}", kind="[approx]")
-
-    # E3 — mutually unbiased bases, Maassen–Uffink, the comb
-    ok, rng = True, np.random.default_rng(6)
-    for p in SHELLS:
-        n = p - 1; k = n // 4
-        D, P, frft = dft_family(n)
-        Bk = frft(k)                                                    # the columns of B_κ = F^[κ] B_0
-        ok &= np.allclose(np.abs(Bk) ** 2, 1.0 / n)                     # every overlap |<b_0,j|b_κ,l>|² = 1/n
-        for _ in range(200):
-            psi = rng.normal(size=n) + 1j * rng.normal(size=n); psi /= np.linalg.norm(psi)
-            ok &= entropy(psi) + entropy(Bk.conj().T @ psi) >= np.log(n) - 1e-9
-        e = delta(n, 0)
-        ok &= abs(entropy(e) + entropy(Bk.conj().T @ e) - np.log(n)) < 1e-9
-    D, P, frft = dft_family(12)
-    comb = (delta(12, 0) + delta(12, 6)) / np.sqrt(2)
-    h0, hk = entropy(comb), entropy(frft(3).conj().T @ comb)
-    ok &= abs(h0 - np.log(2)) < 1e-9 and abs(hk - np.log(6)) < 1e-9 and abs(h0 + hk - np.log(12)) < 1e-9
-    check("E3", "B_0, B_κ mutually unbiased (overlaps 1/n); H_{B_0} + H_{B_κ} ≥ log n on random states, saturated by δ_j; the comb (δ_0+δ_6)/√2 at n = 12: log 2 + log 6 = log 12",
-          ok, f"comb: H_0 = {h0:.4f} = log 2, H_κ = {hk:.4f} = log 6; 200 random states per shell", kind="[approx]")
-
-    # E4 — the closed form
-    ok = True
-    curves = {}
-    for p in SHELLS:
-        n = p - 1; k = n // 4
-        D, P, frft = dft_family(n)
-        z = np.exp(2j * np.pi / n)
-        H = []
-        for s in range(n):
-            psi = frft(s) @ delta(n, 0); q = np.abs(psi) ** 2
-            ts = ((2 - z ** (2 * s) - z ** (-2 * s)) / 4).real
-            ok &= abs(ts - np.sin(np.pi * s / (2 * k)) ** 2) < 1e-12
-            ok &= abs(q[0] - (1 - (n - 1) * ts / n)) < 1e-9 and np.allclose(q[1:], ts / n, atol=1e-9)
-            H.append(entropy(psi))
-            if 1e-15 < ts:
-                p0 = 1 - (n - 1) * ts / n
-                Hcf = -(p0 * np.log(p0) + (n - 1) * (ts / n) * np.log(ts / n))
-            else:
-                Hcf = 0.0
-            ok &= abs(Hcf - H[-1]) < 1e-9
-        H = np.array(H); curves[p] = H
-        ok &= all(H[s + 1] > H[s] + 1e-9 for s in range(k))               # strictly increasing on [0, κ]
-        ok &= np.allclose(H, H[(np.arange(n) + 2 * k) % n]) and np.allclose(H, H[(-np.arange(n)) % n])   # period 2κ, symmetric
-        ok &= all(1e-9 < H[s] < np.log(n) - 1e-9 for s in range(n) if s % k)                             # strictly intermediate
-    # 6:F4 (p06040)
-    check("E4", "F^[s] δ_0 has the two-valued readout p_0 = 1 − (n−1)t_s/n, p_j = t_s/n, t_s = (2−ζ^{2s}−ζ^{−2s})/4 = sin²(πs/2κ); H(s) the closed form, strictly increasing on [0, κ], period 2κ, strictly intermediate off the cardinal indices",
-          ok, f"n ∈ {[p - 1 for p in SHELLS]}", kind="[approx]")
-
-    # E5 — the p = 13 table and the figure
-    n = 12; H = curves[13]; Hn = H / np.log(n)
-    table = [0, .44, .91, 1, .91, .44, 0, .44, .91, 1, .91, .44]
-    ok = all(abs(round(float(Hn[s]), 2) - table[s]) < 1e-9 for s in range(n))
-    try:
-        import matplotlib
-        matplotlib.use("Agg")
-        import matplotlib.pyplot as plt
-        plt.rcParams.update({"font.family": "serif", "font.size": 11, "mathtext.fontset": "cm", "axes.linewidth": 0.8})
-        s = np.arange(n)
-        fig, ax = plt.subplots(figsize=(6.2, 3.5))
-        ax.axhline(1.0, ls="--", lw=0.8, color="0.5")
-        ax.text(n - 0.1, 1.005, r"$\log n$", ha="right", va="bottom", color="0.4", fontsize=10)
-        ax.plot(s, Hn, "-", color="0.25", lw=1.3, zorder=1)
-        ax.plot(s, Hn, "o", color="0.25", ms=4, zorder=2)
-        for kk, col in {0: "tab:blue", 3: "tab:red", 6: "tab:green", 9: "tab:orange"}.items():
-            ax.plot(kk, Hn[kk], "o", color=col, ms=8, zorder=3)
-        ax.annotate("$M_0$", (0, 0), textcoords="offset points", xytext=(2, 8), color="tab:blue")
-        ax.annotate("$M_{2\\kappa}$ (parity)", (6, 0), textcoords="offset points", xytext=(-6, 8), ha="center", color="tab:green")
-        ax.annotate("$M_\\kappa$ (Fourier)", (3, 1), textcoords="offset points", xytext=(0, -16), ha="center", color="tab:red")
-        ax.annotate("$M_{3\\kappa}$", (9, 1), textcoords="offset points", xytext=(0, -16), ha="center", color="tab:orange")
-        ax.set_xlabel(r"meridian index $s\in\mathbb{Z}_{4\kappa}$")
-        ax.set_ylabel(r"normalised entropy $H(s)/\log n$")
-        ax.set_xticks(range(n)); ax.set_ylim(-0.05, 1.12); ax.set_xlim(-0.4, n - 0.6)
-        ax.spines[["top", "right"]].set_visible(False)
-        fig.tight_layout()
-        for ext in ("pdf", "png"):
-            fig.savefig(os.path.join(FIGDIR, f"entropy-cycle-f13.{ext}"), bbox_inches="tight", dpi=150)
-        plt.close(fig)
-        figmsg = f"wrote {FIGDIR}/entropy-cycle-f13.pdf/.png"
-    except ImportError:
-        figmsg = "matplotlib absent: figure not written"
-    # 6:F5 (p06041)
-    check("E5", "p = 13: H(s)/log n = 0, .44, .91, 1, .91, .44, 0, .44, .91, 1, .91, .44 (fig:entropy13)", ok,
-          "H/log n = " + ", ".join(f"{x:.4f}" for x in Hn) + "; " + figmsg, kind="[approx]")
-
-    # E6 — input dependence
-    D, P, frft = dft_family(12)
-    H1 = np.array([entropy(frft(s) @ delta(12, 1)) for s in range(12)]) / np.log(12)
-    H6 = np.array([entropy(frft(s) @ delta(12, 6)) for s in range(12)]) / np.log(12)
-    ok = abs(round(float(H1[1]), 2) - 0.55) < 1e-9 and abs(round(float(Hn[1]), 2) - 0.44) < 1e-9
-    ok &= np.allclose(H6, Hn) and not np.allclose(H1, Hn)
-    for p in SHELLS:
-        nn = p - 1; kk = nn // 4
-        Dp, Pp, fr = dft_family(nn)
-        for j in range(nn):
-            odd = np.linalg.norm(Pp[1] @ delta(nn, j)) + np.linalg.norm(Pp[3] @ delta(nn, j))
-            ok &= ((odd < 1e-12) == (j in (0, 2 * kk)))
-    # 6:F6 (p06042)
-    check("E6", "δ_1 at p = 13: H(1)/log n = 0.55 against 0.44 for δ_0; δ_j meets the odd projectors exactly when j ∉ {0, 2κ}; δ_{2κ} reproduces the δ_0 curve",
-          ok, f"δ_1: H(1)/log n = {H1[1]:.4f}; δ_0: {Hn[1]:.4f}", kind="[approx]")
-
-    # E7 — the Galois twist
-    ok, n_units, n_pairs = True, 0, 0
-    for p in SHELLS:
-        nn = p - 1; kk = nn // 4
-        base = curves[p]
-        D1_, P1_, fr1 = dft_family(nn)
-        for u in range(1, nn):
-            if np.gcd(u, nn) != 1:
-                continue
-            Du, Pu, fru = dft_family(nn, u); n_units += 1
-            Hu = np.array([entropy(fru(s) @ delta(nn, 0)) for s in range(nn)])
-            ok &= np.allclose(Hu, base[(u * np.arange(nn)) % nn], atol=1e-9)             # s ↦ us on the δ_0 curve
-            for j in range(nn):
-                e = delta(nn, j)
-                ok &= abs(entropy(fru(0) @ e)) < 1e-9 and abs(entropy(fru(2 * kk) @ e)) < 1e-9
-                ok &= abs(entropy(fru(kk) @ e) - np.log(nn)) < 1e-9 and abs(entropy(fru(3 * kk) @ e) - np.log(nn)) < 1e-9
-                if u == nn - 1:                                                           # the conjugate twist relabels every input
-                    Hj = np.array([entropy(fr1(s) @ e) for s in range(nn)])
-                    ok &= np.allclose([entropy(fru(s) @ e) for s in range(nn)], Hj[(-np.arange(nn)) % nn], atol=1e-9)
-            eta = 1 if u % 4 == 1 else -1                                                 # prop:twist: ηu ≡ 1 (mod 4)
-            ok &= all((eta * u * j - j) % nn == 0 for j in (0, kk, 2 * kk, 3 * kk))         # the cardinal sites satisfy ηuj ≡ j
-            perm = [(eta * u * kk_) % nn for kk_ in range(nn)]
-            for j in range(nn):
-                if (eta * u * j - j) % nn:
-                    continue
-                e = delta(nn, j)
-                for s in range(nn):
-                    tw = np.abs(fru(s) @ e) ** 2; un = np.abs(fr1((u * s) % nn) @ e) ** 2
-                    ok &= np.allclose(tw / tw.sum(), (un / un.sum())[perm], atol=1e-9)    # the twisted Born vector at k is the untwisted one at ηuk
-                n_pairs += 1
-    ok &= n_pairs == 536                                                                  # 8 + 32 + 64 + 96 + 144 + 192 pairs over the six shells
-    D5, P5, fr5 = dft_family(12, 5)
-    D1_, P1_, fr12 = dft_family(12)
-    h5 = entropy(fr5(1) @ delta(12, 1)) / np.log(12)
-    ok &= abs(round(h5, 2) - 0.44) < 1e-9 and abs(round(float(H1[1]), 2) - 0.55) < 1e-9     # δ_1, u = 5: 0.55 ↦ 0.44
-    c1t = [entropy(fr5(s) @ delta(12, 1)) / np.log(12) for s in range(12)]
-    ok &= not any(np.allclose(c1t, H1[(v * np.arange(12)) % 12], atol=1e-9) for v in (1, 5, 7, 11))   # from every relabelling
-    c3 = [entropy(fr12(s) @ delta(12, 3)) for s in range(12)]; c3t = [entropy(fr5(s) @ delta(12, 3)) for s in range(12)]
-    h3 = c3[1] / np.log(12)
-    ok &= np.allclose(c3, c3t, atol=1e-9) and abs(round(h3, 2) - 0.42) < 1e-9             # δ_3 = δ_κ: the curve unchanged, 0.42 at s = 1
-    # 6:F7 (p06043)
-    check("E7", "X ↦ ζ^u leaves the cardinal values of every δ_j invariant and relabels the curve of δ_j by s ↦ us whenever ηuj ≡ j (mod n), ηu ≡ 1 (mod 4) — the Born vectors permuted by k ↦ ηuk: every cardinal site, every site for u = −1; n = 12, u = 5: δ_1 0.55 ↦ 0.44, from every relabelling; δ_3 unchanged at 0.42",
-          ok, f"{n_units} twists over the six shells, {n_pairs} (u, j) pairs relabelled; n = 12, u = 5, s = 1: δ_1 {h5:.4f}, δ_3 {h3:.4f}", kind="[approx]")
-
-    # E8 — the fractional uncertainty relation (prop:fractional-unc): the largest overlap between B_0 and B_s
-    ok, rng, det = True, np.random.default_rng(8), []
-    for p in SHELLS:
-        n = p - 1; k = n // 4
-        D, P, frft = dft_family(n)
-        z = np.exp(2j * np.pi / n)
-        for s in range(n):
-            Fs = frft(s); c2 = float(np.abs(Fs).max() ** 2)
-            ts = ((2 - z ** (2 * s) - z ** (-2 * s)) / 4).real
-            p0 = 1 - (n - 1) / n * ts
-            ok &= c2 >= max(1.0 / n, p0) - 1e-12                        # c(s)² ≥ max{1/n, 1 − (n−1)t_s/n}
-            ok &= abs(abs(Fs[0, 0]) ** 2 - p0) < 1e-9                    # the (0,0) entry is the localised amplitude at site 0
-            mub = abs(c2 - 1.0 / n) < 1e-9
-            ok &= mub == (s in (k, 3 * k))                               # mutually unbiased exactly at the Fourier meridians
-            ok &= (abs(c2 - 1.0) < 1e-9) == (s in (0, 2 * k))            # a permutation exactly at s ∈ {0, 2κ}
-            for _ in range(40):                                          # Maassen–Uffink on random states
-                psi = rng.normal(size=n) + 1j * rng.normal(size=n); psi /= np.linalg.norm(psi)
-                ok &= entropy(psi) + entropy(Fs.conj().T @ psi) >= -np.log(c2) - 1e-9
-    D, P, frft = dft_family(12)
-    bound = [-2 * np.log(np.abs(frft(s)).max()) / np.log(12) for s in range(12)]
-    stated = [0, .10, .41, 1, .41, .10] * 2
-    ok &= all(abs(round(b, 2) - t) < 1e-9 for b, t in zip(bound, stated))
-    det.append("p = 13: −2 log c(s)/log n = " + ", ".join(f"{b + 0.0:.3f}" for b in bound))
-    # 6:F8 (p06049)
-    check("E8", "c(s)² ≥ max{1/n, 1 − (n−1)t_s/n}; B_s mutually unbiased to B_0 exactly at s ∈ {κ, 3κ}; c(s) = 1 exactly at s ∈ {0, 2κ}; H_{B_0} + H_{B_s} ≥ −2 log c(s) on random states; p = 13: the bound 0, .10, .41, 1, .41, .10 per half-cycle",
-          ok, "; ".join(det) + "; 40 random states per (shell, s)", kind="[approx]")
 
 
 if __name__ == "__main__":
