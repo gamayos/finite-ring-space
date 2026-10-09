@@ -11,9 +11,9 @@
    "rows": [
     {
      "label": "A1",
-     "predicate": "The framed substrate: the Subject $\\Fp(\\chron;0,1,\\gen)$ with $\\p=4\\kap+1$, its register $\\pi=2\\kap$, $\\im=-\\gen^{\\kap}=\\gen^{-\\kap}$, $e=\\gen^{\\im}$; the frame-relative labels and the atlas of presentations $\\gen\\mapsto\\gen^{u}$; time as scale-dilation, the generator as the observer's own advance.",
+     "predicate": "The framed shell: $\\Fp(\\chron;0,1,\\gen)$ with $\\p=4\\kap+1$, its register $\\pi=2\\kap$, $\\im=-\\gen^{\\kap}=\\gen^{-\\kap}$, $e=\\gen^{\\im}$; the frame-relative labels and the atlas of presentations $\\gen\\mapsto\\gen^{u}$.",
      "tag": "I",
-     "source": "\\citep{Akhtman2025Algebra,Akhtman2026Geometry,Akhtman2025Lorentzian}",
+     "source": "\\citep{Akhtman2025Algebra,Akhtman2026Geometry}",
      "key": "p06001"
     },
     {
@@ -25,17 +25,10 @@
     },
     {
      "label": "A3",
-     "predicate": "The classical evaluation of the twisted quadratic Gauss sum for $4\\mid n$, $\\sum_k\\zeta_n^{uk^{2}}=\\bigl(\\tfrac{\\kap}{u}\\bigr)(1\\pm i)\\sqrt n$; the eigenvalue quartet of prime-modulus number-theoretic transforms; the multiplicity counts of the discrete Fourier eigenvalues; the Gauss sign through the Weil representation.",
+     "predicate": "The sign of the quadratic Gauss sum: $G=\\sum_k\\gen^{k^{2}}=\\varepsilon(1+\\im)$ for a sign $\\varepsilon\\in\\{\\pm1\\}$, the in-field form of the classical evaluation $\\sum_k\\zeta_n^{k^{2}}=(1+i)\\sqrt n$ for $4\\mid n$.",
      "tag": "I",
-     "source": "\\citep{BerndtEvansWilliams1998,Birtwistle1982,McClellanParks1972,GurevichHadaniHowe2010}",
+     "source": "\\citep{BerndtEvansWilliams1998,GurevichHadaniHowe2010}",
      "key": "p06003"
-    },
-    {
-     "label": "A4",
-     "predicate": "The entropic uncertainty relation for a pair of bases, $H_{B}+H_{B'}\\ge-2\\log c$, $c$ the maximal overlap, $c=n^{-1/2}$ for mutually unbiased bases, saturated by basis-localized states.",
-     "tag": "I",
-     "source": "\\citep{Hirschman1957,BialynickiBirula1975,MaassenUffink1988,WehnerWinter2010}",
-     "key": "p06004"
     },
     {
      "label": "A5",
@@ -45,24 +38,17 @@
      "key": "p06005"
     },
     {
-     "label": "A6",
-     "predicate": "The measurement layer: probabilities are structural weights of the cyclotomic stratum, the finite-field module carries no Born magnitude, and the readout is an observer-side declaration; the shell dynamics a bijection, entropy attaching to the readout.",
-     "tag": "I",
-     "source": "\\citep{Akhtman2026Quantum,Akhtman2025Lorentzian}",
-     "key": "p06006"
-    },
-    {
      "label": "A7",
-     "predicate": "The continuum fractional Fourier transform and the finite constructions the family is placed against: the eigenbasis transforms, the eigenvector-free and matrix-function transforms, the canonical DFT eigenbasis, the arithmetic FrFT of the rotation group, the harmonic-oscillator propagator reading.",
+     "predicate": "The continuum fractional Fourier transform and the finite constructions the family is placed against: the eigenbasis transforms, the eigenvector-free and matrix-function transforms, the canonical DFT eigenbasis, the arithmetic FrFT of the rotation group.",
      "tag": "I",
      "source": "\\citep{Namias1980,OzaktasBook2001,LimaCampello2012,PeiWenDing2011,LimaCampello2016,LimaCampello2017,GurevichHadani2009,FloratosPavlidis2024}",
      "key": "p06007"
     },
     {
      "label": "A8",
-     "predicate": "The framework's reading of the holographic principle: the capacity $\\dS$ of the totality as the count and the entropy, the area law $A=4\\dS$ read exactly as $A=\\Om-1$, the origin the one point no boundary chart registers; the totality a finite holographic substrate when the observer's label plane $\\Fp\\times\\Fp$ fits inside its count, $\\p^{2}<\\Om$; every substrate-anchored measure as boundary data.",
+     "predicate": "The framework's definition of the substrate: a finite totality whose count bounds the label plane $\\Fp\\times\\Fp$ of an embedded observer, $\\p^{2}<\\Om$; the shell of capacity $\\kap$ as the substrate at one level, its meridian cycle of $4\\kap=\\p-1$ points read as the area.",
      "tag": "I",
-     "source": "\\citep[\\S2, \\S6]{Akhtman2026Dimensions}",
+     "source": "\\citep[\\S2]{Akhtman2026Dimensions}",
      "key": "p06055"
     }
    ]
@@ -73,21 +59,21 @@
    "rows": [
     {
      "label": "B1",
-     "predicate": "Shell data, capacity-first: $\\kap$ primary, $\\p=4\\kap+1$, the meridian cycle $\\Phit=\\Z_{4\\kap}$, the oriented quarter-turn $\\im=-\\gen^{\\kap}$ (clockwise phase convention), $\\pi=2\\kap$, $e=\\gen^{\\im}$; the meridians $M_s=\\{a\\gen^{s}:a\\in I_\\p\\}$; the six shells of Table~\\ref{tab:checks} with their generators and quarter-turns.",
+     "predicate": "Shell data, capacity-first: $\\kap$ primary, $\\p=4\\kap+1$, the meridian cycle $\\Phit=\\Z_{4\\kap}$, the oriented quarter-turn $\\im=-\\gen^{\\kap}$ (clockwise phase convention), $\\pi=2\\kap$, $e=\\gen^{\\im}$; the meridians $M_s=\\{a\\gen^{s}:a\\in I_\\p\\}$; the six shells of Table~\\ref{tab:checks} with their roots and quarter-turns.",
      "tag": "D",
-     "source": "\\S\\ref{sec:shell-data}, \\eqref{eq:it-def}, \\eqref{eq:meridian-def}\\newline \\pywit{fourier}{p06008}{B1}",
+     "source": "\\S\\ref{sec:shell-data}, \\eqref{eq:it-def}, \\eqref{eq:meridian-def}, Def.~\\ref{def:cardinal}\\newline \\pywit{fourier}{p06008}{B1}",
      "key": "p06008"
     },
     {
      "label": "B2",
      "predicate": "The Euler identity is a property of the chart class: $e^{\\im\\pi}=\\gen^{2\\kap(\\im\\bmod2)}\\equiv-1$ exactly when the quarter-turn residue is odd; the conjugate reframing $(\\gen,\\im)\\mapsto(\\gen^{-1},-\\im)$ toggles the parity, so one member of each conjugate pair carries it; on $\\F_{13}(\\chron;0,1,2)$, $\\im=5$ and $6^{6}=-1$. Every primitive frame of the six shells.",
      "tag": "T",
-     "source": "\\S\\ref{sec:shell-data}\\newline \\pywit{fourier}{p06009}{B2}, \\leanwit{FrcCore}{p06009}{B2} \\lean{FRC.Shell.Frame.euler\\_identity}",
+     "source": "Rem.~\\ref{rem:euler}\\newline \\pywit{fourier}{p06009}{B2}, \\leanwit{FrcCore}{p06009}{B2} \\lean{FRC.Shell.Frame.euler\\_identity}",
      "key": "p06009"
     },
     {
      "label": "B3",
-     "predicate": "Chart covariance: under $\\gen'=\\gen^{u}$, $u\\in\\Zp^{\\times}$, the quarter-turn name flips exactly on $u\\equiv3\\pmod4$ and the exponential-unit name moves already at $u\\equiv1\\pmod4$ whenever $\\im(u-1)\\not\\equiv0\\pmod{4\\kap}$ ($\\p=13$, $u=5$: $e'=2\\neq6$); the registered objects (C3, C4, C9, F3) are invariant.",
+     "predicate": "Chart covariance: under $\\gen'=\\gen^{u}$, $u\\in\\Zp^{\\times}$, the quarter-turn name flips exactly on $u\\equiv3\\pmod4$ and the exponential-unit name moves already at $u\\equiv1\\pmod4$ whenever $\\im(u-1)\\not\\equiv0\\pmod{4\\kap}$ ($\\p=13$, $u=5$: $e'=2\\neq6$); the objects of C3, C4 and C9 are invariant.",
      "tag": "T",
      "source": "Rem.~\\ref{rem:gt-covariance}\\newline \\pywit{fourier}{p06010}{B3}, \\leanwit{FrcCore}{p06010}{B3} \\lean{FRC.Shell.Frame.orientation\\_class}",
      "key": "p06010"
@@ -96,7 +82,7 @@
      "label": "B4",
      "predicate": "The shell Fourier matrix $\\Wt_{kj}=\\gen^{jk}$ on $\\Vt=\\Fp^{\\Phit}$, the reversal $J$, the normalized shell Fourier operator $\\Ft=\\im\\Wt$.",
      "tag": "D",
-     "source": "\\eqref{eq:W-def}, \\eqref{eq:J-def}, \\eqref{eq:Ft-def}",
+     "source": "\\eqref{eq:W-def}, \\eqref{eq:J-def}, \\S\\ref{sec:operator}",
      "key": "p06011"
     },
     {
@@ -115,7 +101,7 @@
     },
     {
      "label": "B7",
-     "predicate": "$\\Wt J=J\\Wt$, hence $\\Ft J=J\\Ft$; $\\Vt=V^{+}\\oplus V^{-}$ with $\\dim V^{+}=2\\kap+1$, $\\dim V^{-}=2\\kap-1$.",
+     "predicate": "$\\Wt J=J\\Wt$, hence $\\Ft J=J\\Ft$; every $v$ is uniquely $v^{+}+v^{-}$ with $Jv^{\\pm}=\\pm v^{\\pm}$, a symmetric vector determined by its $2\\kap+1$ entries at $0,\\dots,2\\kap$ and an antisymmetric one by its $2\\kap-1$ entries at $1,\\dots,2\\kap-1$.",
      "tag": "T",
      "source": "Lem.~\\ref{lem:JF-decomp}\\newline \\pywit{fourier}{p06014}{B7}, \\leanwit{FrcCore}{p06014}{B7}, \\leanwit{FrcLedger}{p06014}{B7} \\lean{Fourier.shell\\_relations, FRC.Shell.Frame.W\\_J\\_comm, FRC.Shell.Frame.symm\\_antisymm\\_decomp, FRC.Shell.Frame.symm\\_antisymm\\_unique, FRC.Shell.Frame.symm\\_determined, FRC.Shell.Frame.antisymm\\_determined}",
      "key": "p06014"
@@ -128,7 +114,7 @@
    "rows": [
     {
      "label": "C1",
-     "predicate": "The projectors $\\Pi_\\ell=\\tfrac14\\sum_{r=0}^{3}\\im^{-\\ell r}\\Ft^{r}$ and the principal framed character lift $\\Ft^{[s]}=\\sum_\\ell\\gen^{-\\ell s}\\Pi_\\ell$, $s\\in\\Phit$: the refinement base is the inverse generator, $(\\gen^{-1})^{\\kap}=\\im$, each projector's character the $\\ell$-th power of the meridian phase $z_s=\\gen^{-s}$.",
+     "predicate": "The projectors $\\Pi_\\ell=\\tfrac14\\sum_{r=0}^{3}\\im^{-\\ell r}\\Ft^{r}$ and the principal framed character lift $\\Ft^{[s]}=\\sum_\\ell\\gen^{-\\ell s}\\Pi_\\ell$, $s\\in\\Phit$: the refinement base is the inverse root, $(\\gen^{-1})^{\\kap}=\\im$, each projector's character the $\\ell$-th power of the meridian phase $z_s=\\gen^{-s}$.",
      "tag": "D",
      "source": "\\eqref{eq:projector-def}, \\eqref{eq:FRC-FrFT-def}, Rem.~\\ref{rem:classification}",
      "key": "p06015"
@@ -142,7 +128,7 @@
     },
     {
      "label": "C3",
-     "predicate": "The exact finite-field FrFT: $s\\mapsto\\Ft^{[s]}$ is a representation of $\\Phit$, $\\Ft^{[s+r]}=\\Ft^{[s]}\\Ft^{[r]}$ on every pair of the six shells, with the cardinal values $\\Ft^{[0]}=I$, $\\Ft^{[\\kap]}=\\Ft$, $\\Ft^{[2\\kap]}=J$, $\\Ft^{[3\\kap]}=\\Ft^{-1}$, and $(\\Ft^{[1]})^{\\kap}=\\Ft$.",
+     "predicate": "The exact finite-field FrFT: $s\\mapsto\\Ft^{[s]}$ is a representation of $\\Phit$, $\\Ft^{[s+r]}=\\Ft^{[s]}\\Ft^{[r]}$ for all $s,r$ (every pair on the six shells by the package), with the cardinal values $\\Ft^{[0]}=I$, $\\Ft^{[\\kap]}=\\Ft$, $\\Ft^{[2\\kap]}=J$, $\\Ft^{[3\\kap]}=\\Ft^{-1}$, and $(\\Ft^{[1]})^{\\kap}=\\Ft$.",
      "tag": "T",
      "source": "Thm.~\\ref{thm:FRC-FrFT}\\newline \\pywit{fourier}{p06017}{C3}, \\leanwit{FrcCore}{p06017}{C3}, \\leanwit{FrcLedger}{p06017}{C3} \\lean{Fourier.shell\\_frft\\_add, Fourier.shell\\_frft\\_cardinal, Fourier.shell\\_frft\\_values, FRC.Shell.Frame.frft\\_add, FRC.Shell.Frame.frft\\_cardinal, FRC.Shell.Frame.frft\\_period, FRC.Shell.Frame.frft\\_pow}",
      "key": "p06017"
@@ -163,7 +149,7 @@
     },
     {
      "label": "C6",
-     "predicate": "Multiplicities are chart data: for $u$ odd and a unit mod $4\\kap$ the vertex relabelling $m\\mapsto um$ carries $\\Ft(\\gen)$ to $\\Ft(\\gen^{u^{2}})$ by a coordinate permutation, $\\Ft(\\gen^{u^{2}})_{kj}=\\Ft(\\gen)_{uk,uj}$; at $\\p=13$ the frames $\\gen=2$ and $\\gen=6$ give the tuples $(3,3,4,2)$ and $(4,2,3,3)$, read as the traces of the projectors, with $\\operatorname{Tr}\\Ft=4,9$.",
+     "predicate": "The projectors are chart data: for $u$ odd and a unit mod $4\\kap$ the site relabelling $m\\mapsto um$ carries $\\Ft(\\gen)$ to $\\Ft(\\gen^{u^{2}})$ by a coordinate permutation, $\\Ft(\\gen^{u^{2}})_{kj}=\\Ft(\\gen)_{uk,uj}$; at $\\p=13$ the frames $\\gen=2$ and $\\gen=6$ give the trace tuples $(3,3,4,2)$ and $(4,2,3,3)$, with $\\operatorname{Tr}\\Ft=4,9$.",
      "tag": "T",
      "source": "Rem.~\\ref{rem:multiplicities}\\newline \\pywit{fourier}{p06020}{C6}, \\leanwit{FrcCore}{p06020}{C6} \\lean{FRC.Shell.Frame.Fmat\\_chart, FRC.Shell.Frame.thirteen\\_tuples}",
      "key": "p06020"
@@ -184,17 +170,10 @@
     },
     {
      "label": "C9",
-     "predicate": "The conjugate reframing $(\\gen,\\im)\\mapsto(\\gen^{-1},-\\im)$: exactly $\\Ft'=-\\Ft^{-1}$ and $\\Pi'_\\ell=\\Pi_{\\ell+2}$; the operator relations, cardinal values, additivity and faithfulness hold on the conjugate frame, and its multiplicity tuple is the other pattern of C7.",
+     "predicate": "The conjugate reframing $(\\gen,\\im)\\mapsto(\\gen^{-1},-\\im)$: exactly $\\Ft'=-\\Ft^{-1}$ and $\\Pi'_\\ell=\\Pi_{\\ell+2}$; the operator relations, cardinal values, additivity and faithfulness hold on the conjugate frame, and its trace tuple is the other pattern of C7.",
      "tag": "T",
      "source": "Rem.~\\ref{rem:gt-covariance}, Thm.~\\ref{thm:multiplicity}\\newline \\pywit{fourier}{p06023}{C9}, \\leanwit{FrcCore}{p06023}{C9}, \\leanwit{FrcLedger}{p06023}{C9} \\lean{Fourier.shell\\_conj, FRC.Shell.Frame.inv\\_frame, FRC.Shell.Frame.Fmat\\_conj, FRC.Shell.Frame.proj\\_conj}",
      "key": "p06023"
-    },
-    {
-     "label": "C10",
-     "predicate": "The sign under chart change: $\\varepsilon(\\gen^{u})=\\bigl(\\tfrac{\\kap}{u}\\bigr)\\varepsilon(\\gen)$ for $u\\equiv1\\pmod4$, the two classes equally populated on every shell of Table~\\ref{tab:checks}; the identities $G^{2}=2\\im$, $\\operatorname{Tr}\\Ft=\\im G$, $\\operatorname{Tr}\\Ft^{2}=2$, $\\operatorname{Tr}\\Ft^{3}=\\im G^{*}$ of the proof of C7.",
-     "tag": "T",
-     "source": "Thm.~\\ref{thm:multiplicity}\\newline \\pywit{fourier}{p06051}{C10}",
-     "key": "p06051"
     },
     {
      "label": "C11",
@@ -207,53 +186,46 @@
   },
   {
    "letter": "D",
-   "title": "Representation domains and the coordinate-side zoom",
+   "title": "Representation domains and the scale-shift",
    "rows": [
     {
      "label": "D1",
-     "predicate": "The meridional representation domain $D_s=(\\Vt,\\mathcal B_s)$, $\\mathcal B_s=\\Ft^{[s]}\\mathcal B_0$, every $\\Ft^{[s]}$ invertible; the cardinal domains spatial, spectral, parity, inverse-spectral.",
+     "predicate": "The meridional representation domain $D_s=(\\Vt,\\mathcal B_s)$, $\\mathcal B_s=\\Ft^{[s]}\\mathcal B_0$, every $\\Ft^{[s]}$ invertible with inverse $\\Ft^{[n-s]}$; the cardinal domains spatial, spectral, parity, inverse-spectral.",
      "tag": "D",
-     "source": "Def.~\\ref{def:domain}, Cor.~\\ref{cor:cardinal-domains}\\newline \\pywit{fourier}{p06024}{D1}, \\leanwit{FrcCore}{p06024}{D1} \\lean{FRC.Shell.Frame.frft\\_inverse}",
+     "source": "Def.~\\ref{def:domain}\\newline \\pywit{fourier}{p06024}{D1}, \\leanwit{FrcCore}{p06024}{D1} \\lean{FRC.Shell.Frame.frft\\_inverse}",
      "key": "p06024"
     },
     {
      "label": "D2",
-     "predicate": "The $4\\kap$ framed domains are pairwise distinct; read as unordered measurement bases $B_{s+2\\kap}=B_s$, since $\\Ft^{[s+2\\kap]}=\\Ft^{[s]}J$ and $J$ permutes the standard basis.",
+     "predicate": "The $4\\kap$ framed domains are pairwise distinct; read as unordered bases $B_{s+2\\kap}=B_s$, since $\\Ft^{[s+2\\kap]}=\\Ft^{[s]}J$ and $J$ permutes the standard basis.",
      "tag": "T",
-     "source": "Cor.~\\ref{cor:distinct-domains}, Rem.~\\ref{rem:ordered-bases}\\newline \\pywit{fourier}{p06025}{D2}, \\leanwit{FrcCore}{p06025}{D2}, \\leanwit{FrcLedger}{p06025}{D2} \\lean{Fourier.shell\\_frft\\_injective, Fourier.shell\\_frft\\_add\\_two\\_kappa, Fourier.mul\\_J\\_apply, FRC.Shell.Frame.frft\\_injective, FRC.Shell.Frame.five\\_frames, FRC.Shell.Frame.five\\_faithful, FRC.Shell.Frame.frft\\_half\\_turn}",
+     "source": "Thm.~\\ref{thm:faithful}, Rem.~\\ref{rem:ordered-bases}\\newline \\pywit{fourier}{p06025}{D2}, \\leanwit{FrcCore}{p06025}{D2}, \\leanwit{FrcLedger}{p06025}{D2} \\lean{Fourier.shell\\_frft\\_injective, Fourier.shell\\_frft\\_add\\_two\\_kappa, Fourier.mul\\_J\\_apply, FRC.Shell.Frame.frft\\_injective, FRC.Shell.Frame.five\\_frames, FRC.Shell.Frame.five\\_faithful, FRC.Shell.Frame.frft\\_half\\_turn}",
      "key": "p06025"
     },
     {
      "label": "D3",
-     "predicate": "The meridian-step interval $I_\\p=\\{0,1,\\dots,\\pi\\}$, the meridian-scale map $S_r(x)=\\gen^{r}x$, and the local scale chart $\\gen\\mapsto\\lambda>1$ reading the effective step $\\gen^{m}$ as $\\lambda^{m}$ [chart].",
+     "predicate": "The meridian-step interval $I_\\p=\\{0,1,\\dots,\\pi\\}$, the meridian-scale map $S_r(x)=\\gen^{r}x$, and the local scale chart $\\gen\\mapsto\\lambda>1$ reading the effective step $\\gen^{m}$ as $\\lambda^{\\tilde m}$ [chart]: the forward shift a zoom-out and the inverse shift a zoom-in off the seam, the seam an aliasing return, the readings valid within the no-wrap window $w\\gen^{r}<\\p$.",
      "tag": "D",
      "source": "\\eqref{eq:Ip-zoom}, Def.~\\ref{def:scale-map}, Def.~\\ref{def:scale-chart}",
      "key": "p06026"
     },
     {
      "label": "D4",
-     "predicate": "Meridian-scale covariance: $S_r(M_m)=M_{m+r}$ for every $(m,r)$, as ordered lists; consecutive entries of $M_m$ differ by the effective step $\\gen^{m}$; $S_{r+(\\p-1)}=S_r$, the periodicity of A5 in meridian form.",
+     "predicate": "Meridian-scale covariance: $S_r(M_m)=M_{m+r}$ for every $(m,r)$, as ordered lists; consecutive entries of $M_m$ differ by the effective step $\\gen^{m}$; $S_{r+(\\p-1)}=S_r$, the periodicity of A5 in meridian form; at $\\p=13$, $\\gen=2$ the ladder $M_0,\\dots,M_3$ at the steps $1,2,4,8$ (Section~\\ref{sec:examples}).",
      "tag": "T",
-     "source": "Prop.~\\ref{prop:meridian-scale}, Cor.~\\ref{cor:effective-step}, Rem.~\\ref{rem:framed-rational}\\newline \\pywit{fourier}{p06027}{D4}, \\leanwit{FrcCore}{p06027}{D4} \\lean{FRC.Shell.meridian\\_scale, FRC.Shell.meridian\\_step, FRC.Shell.scale\\_periodic}",
+     "source": "Prop.~\\ref{prop:meridian-scale}, Cor.~\\ref{cor:effective-step}\\newline \\pywit{fourier}{p06027}{D4}, \\leanwit{FrcCore}{p06027}{D4} \\lean{FRC.Shell.meridian\\_scale, FRC.Shell.meridian\\_step, FRC.Shell.scale\\_periodic, FRC.Shell.ladder13}",
      "key": "p06027"
     },
     {
-     "label": "D5",
-     "predicate": "Meridian zoom [chart]: $M_m$ reads the meridian-coordinate vector at step $\\lambda^{\\tilde m}$, the forward shift zoom-out and the inverse shift zoom-in, the seam an aliasing return; at $\\p=13$, $\\gen=2$ the ladder $M_0,\\dots,M_3$ at steps $1,2,4,8$, unwrapped within $w\\gen^{r}<\\p$ ($w=\\pi=6$: $r\\le1$) and wrapping from $M_2$.",
-     "tag": "T",
-     "source": "Thm.~\\ref{thm:zoom}, Ex.~\\ref{ex:zoom-13}, Rem.~\\ref{rem:two-layers}\\newline \\pywit{fourier}{p06028}{D5}, \\leanwit{FrcCore}{p06028}{D5} \\lean{FRC.Shell.ladder13}",
-     "key": "p06028"
-    },
-    {
      "label": "D6",
-     "predicate": "Scope of the two readings: the representation-side rotation and the coordinate-side scale shift act on carriers of different dimension and are not equal as operators; they share the index group $\\Phit$ and the cardinal labels, and the operator-level relation is E5--E9.",
+     "predicate": "Scope of the two readings: the representation-side rotation and the coordinate-side scale-shift act on carriers of different dimension and are not equal as operators; they share the index group $\\Phit$ and the cardinal labels, and the operator-level relation is E5--E9.",
      "tag": "D",
      "source": "Rem.~\\ref{rem:two-layers}",
      "key": "p06029"
     },
     {
      "label": "D7",
-     "predicate": "The cycle carries exactly $2\\kap$ measurement bases: every off-site entry of row $0$ of $\\Ft^{[t]}$ is $\\tfrac{\\im}{2}(1-\\gen^{-2t})$, nonzero for $t\\notin\\{0,2\\kap\\}$, so $\\Ft^{[t]}$ is not monomial and $B_{s+t}\\neq B_s$; the six shells of Table~\\ref{tab:checks}.",
+     "predicate": "The cycle carries exactly $2\\kap$ unordered bases: every off-site entry of row $0$ of $\\Ft^{[t]}$ is $\\tfrac{\\im}{2}(1-\\gen^{-2t})$, nonzero for $t\\notin\\{0,2\\kap\\}$, so $\\Ft^{[t]}$ is not monomial and $B_{s+t}\\neq B_s$; the six shells of Table~\\ref{tab:checks}.",
      "tag": "T",
      "source": "Rem.~\\ref{rem:ordered-bases}\\newline \\pywit{fourier}{p06053}{D7}, \\leanwit{FrcCore}{p06053}{D7} \\lean{FRC.Shell.Frame.frft\\_row\\_zero, FRC.Shell.Frame.frft\\_row\\_zero\\_ne\\_zero}",
      "key": "p06053"
@@ -262,34 +234,34 @@
   },
   {
    "letter": "E",
-   "title": "The Weil dictionary and the operator-level comparison",
+   "title": "The rotations, the Weil dictionary and the operator-level comparison",
    "rows": [
     {
      "label": "E1",
      "predicate": "The Weil-side data: $z_s=\\gen^{-s}$, $c_s=(z_s+z_s^{-1})/2$, $d_s=(z_s-z_s^{-1})/(2\\im)$, the rotation $R_s$; the pulled-back family $\\operatorname{FrFT}^{\\rm Weil}_\\kap(s)=\\omega_\\p(R_s)$; cardinal Weil correspondence of two families.",
      "tag": "D",
-     "source": "\\eqref{eq:zs-def}--\\eqref{eq:Rs-def}, \\eqref{eq:WeilFrFT-def}, Def.~\\ref{def:cardinal-equiv}",
+     "source": "\\eqref{eq:zs-def}, Def.~\\ref{def:cardinal-equiv}",
      "key": "p06030"
     },
     {
      "label": "E2",
      "predicate": "$R_s\\in SO(2,\\Fp)$, and $s\\mapsto R_s$ is an isomorphism $\\Phit\\simeq SO(2,\\Fp)$ with $|SO(2,\\Fp)|=\\p-1=4\\kap$: the full rotation group of the $\\p^{2}$-point plane is the meridian cycle.",
      "tag": "T",
-     "source": "Lem.~\\ref{lem:Rs-rotation}, Prop.~\\ref{prop:rotation-isom}\\newline \\pywit{fourier}{p06031}{E2}, \\leanwit{FrcCore}{p06031}{E2}, \\leanwit{FrcLedger}{p06031}{E2} \\lean{Fourier.circle, Fourier.rot\\_mul, Fourier.unitsEquivCircle, Fourier.card\\_circle, FRC.Shell.Frame.rot\\_circle, FRC.Shell.Frame.rot\\_hom, FRC.Shell.Frame.rot\\_inj, FRC.Shell.Frame.rot\\_surj, FRC.Shell.Frame.six\\_circles}",
+     "source": "Prop.~\\ref{prop:rotation-isom}\\newline \\pywit{fourier}{p06031}{E2}, \\leanwit{FrcCore}{p06031}{E2}, \\leanwit{FrcLedger}{p06031}{E2} \\lean{Fourier.circle, Fourier.rot\\_mul, Fourier.unitsEquivCircle, Fourier.card\\_circle, FRC.Shell.Frame.rot\\_circle, FRC.Shell.Frame.rot\\_hom, FRC.Shell.Frame.rot\\_inj, FRC.Shell.Frame.rot\\_surj, FRC.Shell.Frame.six\\_circles}",
      "key": "p06031"
     },
     {
      "label": "E3",
-     "predicate": "The cardinal-skeleton dictionary $M_s\\leftrightarrow s\\leftrightarrow z_s\\leftrightarrow R_s$ with $R_0=I$, $R_\\kap=w$, $R_{2\\kap}=-I$, $R_{3\\kap}=w^{-1}$ (the $R_\\kap$ column of Table~\\ref{tab:checks}), $z_\\kap=\\im$; the FRC-native and Weil families stand in cardinal Weil correspondence, the Weil side by the normalization of A2 (an import).",
+     "predicate": "The cardinal-skeleton dictionary $M_s\\leftrightarrow s\\leftrightarrow z_s\\leftrightarrow R_s$ with $R_0=I$, $R_\\kap=w$, $R_{2\\kap}=-I$, $R_{3\\kap}=w^{-1}$ (the $R_\\kap$ column of Table~\\ref{tab:checks}), $z_\\kap=\\im$; the shell's family and the Weil family stand in cardinal Weil correspondence, the Weil side by the normalization of A2 (an import).",
      "tag": "T",
-     "source": "Thm.~\\ref{thm:Weil-equivalence}\\newline \\pywit{fourier}{p06032}{E3}, \\leanwit{FrcCore}{p06032}{E3}, \\leanwit{FrcLedger}{p06032}{E3} \\lean{Fourier.rot\\_cardinal, FRC.Shell.Frame.rot\\_cardinal}",
+     "source": "Thm.~\\ref{thm:Weil-equivalence} and the paragraph after it\\newline \\pywit{fourier}{p06032}{E3}, \\leanwit{FrcCore}{p06032}{E3}, \\leanwit{FrcLedger}{p06032}{E3} \\lean{Fourier.rot\\_cardinal, FRC.Shell.Frame.rot\\_cardinal}",
      "key": "p06032"
     },
     {
      "label": "E4",
-     "predicate": "Scope and reading of the dictionary: agreement on the four cardinal indices only, the two families on spaces of different dimension over different coefficient rings, the Weil model one dimension larger as a count; the holographic reading, the meridian cycle of $4\\kap=\\p-1$ points carrying the rotations of the label plane, the fractional index and the scale-shift, and bounding every readout's entropy.",
+     "predicate": "Scope of the dictionary: agreement on the four cardinal indices only, the two families on spaces of different dimension over different coefficient rings, the Weil model one dimension larger as a count; no relation at an intermediate index is asserted.",
      "tag": "D",
-     "source": "Rem.~\\ref{rem:dictionary-scope}, Rem.~\\ref{rem:holographic}",
+     "source": "Rem.~\\ref{rem:dictionary-scope}",
      "key": "p06033"
     },
     {
@@ -301,7 +273,7 @@
     },
     {
      "label": "E6",
-     "predicate": "Common character sector: on $E_1=\\operatorname{im}\\Pi_1\\neq0$ ($\\kap\\ge2$) $\\Ft^{[s]}=\\gen^{-s}I$, the intertwiner $\\Ft^{[s]}T_v=T_vS_{-s}$ on every $x\\in\\Fp$ and $s$, and $R_s(1,-\\im)^{\\mathsf T}=\\gen^{-s}(1,-\\im)^{\\mathsf T}$.",
+     "predicate": "Common character sector: $\\Ft^{[s]}\\Pi_1=\\gen^{-s}\\Pi_1$, so on $E_1=\\operatorname{im}\\Pi_1\\neq0$ ($\\kap\\ge2$) the family acts by the meridian character; the intertwiner $\\Ft^{[s]}T_v=T_vS_{-s}$ on every $x\\in\\Fp$ and $s$, and $R_s(1,-\\im)^{\\mathsf T}=\\gen^{-s}(1,-\\im)^{\\mathsf T}$.",
      "tag": "T",
      "source": "Prop.~\\ref{prop:charsector}\\newline \\pywit{fourier}{p06035}{E6}, \\leanwit{FrcCore}{p06035}{E6}, \\leanwit{FrcLedger}{p06035}{E6} \\lean{Fourier.frft\\_mul\\_proj\\_one, Fourier.rot\\_eigenline, FRC.Shell.Frame.frft\\_proj, FRC.Shell.Frame.frft\\_intertwine, FRC.Shell.Frame.rot\\_eigenline}",
      "key": "p06035"
@@ -315,7 +287,7 @@
     },
     {
      "label": "E8",
-     "predicate": "Cardinal exclusivity: for every $s\\notin\\{0,\\kap,2\\kap,3\\kap\\}$ the conjugate $\\Ft^{[s]}\\sigma\\Ft^{[s]\\,-1}$ of \\eqref{eq:conj-expansion} is not monomial --- off $j\\in\\{-1,0,1\\}$ its row $0$ is $x^{-1}$ times a quadratic in $x=\\gen^{j}$ with leading coefficient $\\im\\,[c_0(s)+c_2(s)]\\,c_3(-s)\\neq0$, $c_0(s)+c_2(s)=\\tfrac12(1+\\gen^{-2s})$, so the row vanishes at no three distinct indices off the sites and, by counting, has at least $4\\kap-5$ nonzero entries; the count checked on every shell below $200$.",
+     "predicate": "Cardinal exclusivity: the conjugate $\\Ft^{[s]}\\sigma\\Ft^{[s]\\,-1}$ of \\eqref{eq:conj-expansion} is not monomial for every $s\\notin\\{0,\\kap,2\\kap,3\\kap\\}$ --- off $j\\in\\{-1,0,1\\}$ its row $0$ is $x^{-1}$ times a quadratic in $x=\\gen^{j}$ with leading coefficient $\\im\\,[c_0(s)+c_2(s)]\\,c_3(-s)\\neq0$, $c_0(s)+c_2(s)=\\tfrac12(1+\\gen^{-2s})$, so the row vanishes at no three distinct indices off the sites and, by counting, has at least $4\\kap-5$ nonzero entries; the count checked on every shell below $200$.",
      "tag": "T",
      "source": "Thm.~\\ref{thm:monomial}\\newline \\pywit{fourier}{p06050}{E8}, \\leanwit{FrcCore}{p06050}{E8} \\lean{FRC.Shell.Frame.row\\_entry, FRC.Shell.Frame.even\\_coeff\\_id, FRC.Shell.Frame.even\\_coeff\\_ne\\_zero, FRC.Shell.Frame.odd\\_coeff\\_ne\\_zero, FRC.Shell.Frame.exclusivity}",
      "key": "p06050"
@@ -329,72 +301,10 @@
     },
     {
      "label": "E10",
-     "predicate": "The plane as orbits of the cycle: $R_s$ scales $u=x+\\im y$ by $z_s$ and $v=x-\\im y$ by $z_s^{-1}$, so every point off the origin has a free orbit of size $4\\kap=|SO(2,\\Fp)|$, and $\\p^{2}=1+(4\\kap+2)\\,4\\kap$ is the count of the origin and $4\\kap+2$ orbits (the $4\\kap$ circles of nonzero norm and the two isotropic lines: the paper's reading of the identity); $\\dim\\Vt=4\\kap$.",
+     "predicate": "The plane as orbits of the cycle: $R_s$ scales $u=x+\\im y$ by $z_s$ and $v=x-\\im y$ by $z_s^{-1}$, so every point off the origin has a free orbit of size $4\\kap=|SO(2,\\Fp)|$, and $\\p^{2}=1+(4\\kap+2)\\,4\\kap$ is the count of the origin and $4\\kap+2$ orbits (the $4\\kap$ circles of nonzero norm and the two isotropic lines, by counting); $\\dim\\Vt=4\\kap$.",
      "tag": "T",
      "source": "Cor.~\\ref{cor:boundary}\\newline \\pywit{fourier}{p06056}{E10}, \\leanwit{FrcCore}{p06056}{E10} \\lean{FRC.Shell.Frame.rot\\_uv, FRC.Shell.Frame.orbit\\_free, FRC.Shell.Frame.plane\\_count, FRC.Shell.Frame.six\\_circles}",
      "key": "p06056"
-    }
-   ]
-  },
-  {
-   "letter": "F",
-   "title": "The cyclotomic observer readout and the entropy cycle",
-   "rows": [
-    {
-     "label": "F1",
-     "predicate": "The readout algebra $A=\\Z[\\tfrac{1}{4n},X,Y,Y^{-1}]/(\\Phi_n(X),Y^{2}-n)$ with the continuum chart $\\sigma_\\C$ ($X\\mapsto\\zeta_n$, $Y\\mapsto+\\sqrt n$) and the framed reduction $\\rho$ ($X\\mapsto\\gen$, $Y\\mapsto-\\im$); the readout of a shell state as the Born vector of a selected lift, its Shannon entropy in nats, not thermodynamic.",
-     "tag": "D",
-     "source": "Def.~\\ref{def:readout}",
-     "key": "p06037"
-    },
-    {
-     "label": "F2",
-     "predicate": "$\\widehat G^{2}=2n\\,X^{\\kap}$ in $A$, exact modulo $\\Phi_n(X)$; under $\\sigma_\\C$, $(\\sum_k\\zeta_n^{k^{2}})^{2}=2n\\,i$; under $\\rho$, $G^{2}=2\\im$, the reduction the proof of C7 uses.",
-     "tag": "T",
-     "source": "Def.~\\ref{def:readout}, Thm.~\\ref{thm:multiplicity}\\newline \\pywit{fourier}{p06038}{F2}",
-     "key": "p06038"
-    },
-    {
-     "label": "F3",
-     "predicate": "Entropic cardinal values $H(0)=H(2\\kap)=0$, $H(\\kap)=H(3\\kap)=\\log n$ for every site-localized input; $B_0$ and $B_\\kap$ mutually unbiased, $H_{B_0}+H_{B_\\kap}\\ge\\log n$ saturated by the localized states and by the comb $(\\delta_0+\\delta_6)/\\sqrt2$ at $n=12$, $\\log2+\\log6=\\log12$ [approx].",
-     "tag": "T",
-     "source": "Prop.~\\ref{prop:entropy}\\newline \\pywit{fourier}{p06039}{F3}",
-     "key": "p06039"
-    },
-    {
-     "label": "F4",
-     "predicate": "The closed form for $\\delta_0$: $p_0=1-\\tfrac{n-1}{n}t_s$, $p_{j\\neq0}=t_s/n$, $t_s=(2-\\zeta_n^{2s}-\\zeta_n^{-2s})/4$, read as $\\sin^{2}(\\pi s/2\\kap)$; $H(s)$ strictly increasing on $[0,\\kap]$, two oscillations per cycle, strictly intermediate off the cardinal indices [approx].",
-     "tag": "T",
-     "source": "Prop.~\\ref{prop:closedform}\\newline \\pywit{fourier}{p06040}{F4}",
-     "key": "p06040"
-    },
-    {
-     "label": "F5",
-     "predicate": "$\\p=13$: $H(s)/\\log n=0,\\,.44,\\,.91,\\,1,\\,.91,\\,.44$ over each half-cycle; Figure~\\ref{fig:entropy13} regenerated [approx].",
-     "tag": "T",
-     "source": "\\S\\ref{sec:entropy}\\newline \\pywit{fourier}{p06041}{F5}",
-     "key": "p06041"
-    },
-    {
-     "label": "F6",
-     "predicate": "Input dependence: $\\delta_1$ gives $H(1)/\\log n=0.55$ against $0.44$ for $\\delta_0$; $\\delta_j$ meets the odd projectors exactly for $j\\notin\\{0,2\\kap\\}$, and $\\delta_{2\\kap}$ reproduces the $\\delta_0$ curve [approx].",
-     "tag": "T",
-     "source": "Rem.~\\ref{rem:input-dep}\\newline \\pywit{fourier}{p06042}{F6}",
-     "key": "p06042"
-    },
-    {
-     "label": "F7",
-     "predicate": "The Galois twist $X\\mapsto\\zeta_n^{u}$ leaves the cardinal values of every $\\delta_j$ invariant and relabels the curve of $\\delta_j$ by $s\\mapsto us$ whenever $\\eta uj\\equiv j\\pmod n$ ($\\eta u\\equiv1\\pmod4$): at every cardinal site, and at every site for $u=-1$; off the cardinal sites $u\\not\\equiv\\pm1$ can change the curve ($n=12$, $u=5$, $s=1$: $\\delta_1$ $0.55\\mapsto0.44$, $\\delta_3$ $0.42$ unchanged) [approx].",
-     "tag": "T",
-     "source": "Prop.~\\ref{prop:twist}\\newline \\pywit{fourier}{p06043}{F7}",
-     "key": "p06043"
-    },
-    {
-     "label": "F8",
-     "predicate": "Fractional uncertainty relation: $H_{B_0}+H_{B_s}\\ge-2\\log c(s)$, $c(s)$ the largest entry in magnitude of $\\Ft^{[s]}$ under the readout; $c(s)^{2}\\ge\\max\\{1/n,\\,1-\\tfrac{n-1}{n}t_s\\}$; $B_s$ is mutually unbiased to $B_0$ exactly at $s\\in\\{\\kap,3\\kap\\}$; at $\\p=13$ the bound is $0,.10,.41,1$ per quarter-cycle [approx].",
-     "tag": "T",
-     "source": "Prop.~\\ref{prop:fractional-unc}\\newline \\pywit{fourier}{p06049}{F8}",
-     "key": "p06049"
     }
    ]
   }
@@ -413,7 +323,7 @@
   {
    "tag": "T",
    "name": "Theorem",
-   "text": "Derived within this paper and machine-verified in exact arithmetic by the named witness, or observed and reproduced numerically to the stated tolerance."
+   "text": "Derived within this paper, checked in exact arithmetic by the named python check, and proved in Lean~4 in the framework's core library with no axioms."
   }
  ],
  "master": {
@@ -1260,9 +1170,7 @@
     "tier": 0,
     "ok": true,
     "doc": "6:D4 — `S_{r + (p−1)} = S_r`: the meridian-scale map is `(p − 1)`-periodic in `r` (the periodicity of the framed-rational zoom, A5)."
-   }
-  ],
-  "D5": [
+   },
    {
     "name": "FRC.Shell.ladder13",
     "module": "FrcCore/Meridian",
@@ -1270,7 +1178,7 @@
     "axioms": [],
     "tier": 0,
     "ok": true,
-    "doc": "6:D5 — the `p = 13`, `g = 2`, `κ = 3` ladder: `M_0, M_1, M_2, M_3` at the effective steps `1, 2, 4, 8`; `M_0` and `M_1` are unwrapped (`π g^r = 6 g^r < 13` for `r ≤ 1`), `M_2` wraps (`6 · 4 = 24 ≥ 13`: its entries `0, 4, 8, 12, 3, 7, 11` return through the seam)."
+    "doc": "6:D4 — the `p = 13`, `g = 2`, `κ = 3` ladder: `M_0, M_1, M_2, M_3` at the effective steps `1, 2, 4, 8`; `M_0` and `M_1` are unwrapped (`π g^r = 6 g^r < 13` for `r ≤ 1`), `M_2` wraps (`6 · 4 = 24 ≥ 13`: its entries `0, 4, 8, 12, 3, 7, 11` return through the seam)."
    }
   ],
   "D7": [

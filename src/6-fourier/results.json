@@ -104,7 +104,7 @@
   "rows": "6:C5",
   "block": "B",
   "script": "fourier",
-  "label": "m_\u2113 = rank \u03a0_\u2113 = dim ker(F \u2212 i^\u2113 I); m_0+m_2 = 2\u03ba+1, m_1+m_3 = 2\u03ba\u22121; m_0, m_2 \u2265 1; m_1, m_3 \u2265 1 for \u03ba \u2265 2; p = 5: one odd projector vanishes",
+  "label": "\u03a0_0+\u03a0_2 = \u00bd(I+J), \u03a0_1+\u03a0_3 = \u00bd(I\u2212J); (\u03a0_0)_{00}, (\u03a0_2)_{00} \u2260 0; \u03ba \u2265 2: (\u03a0_1)_{21} = \u00bc(g\u00b2\u2212g\u207b\u00b2) = \u2212(\u03a0_3)_{21} \u2260 0; m_\u2113 = rank \u03a0_\u2113 = dim ker(F \u2212 i^\u2113 I), m_0+m_2 = 2\u03ba+1, m_1+m_3 = 2\u03ba\u22121; p = 5: one odd projector vanishes",
   "ok": true,
   "detail": "p=5: (2, 0, 1, 1); p=13: (3, 3, 4, 2); p=17: (4, 4, 5, 3); p=29: (7, 7, 8, 6); p=37: (9, 9, 10, 8); p=41: (10, 10, 11, 9)",
   "kind": "EXACT"
@@ -121,17 +121,17 @@
  },
  {
   "id": "B7",
-  "rows": "6:C7, 6:C10",
+  "rows": "6:C7",
   "block": "B",
   "script": "fourier",
-  "label": "G = \u03b5(1+i), the two patterns, \u03b5(g\u207b\u00b9) = \u2212\u03b5(g), \u03b5(g^u) = (\u03ba/u) \u03b5(g), classes equally populated; 38 frames of p \u2208 {5,\u2026,37} and 16 of p = 41; p = 5: (2,0,1,1) at g = 2, (1,1,2,0) at g = 3",
+  "label": "G = \u03b5(1+i), the two patterns, \u03b5(g\u207b\u00b9) = \u2212\u03b5(g); 38 frames of p \u2208 {5,\u2026,37} and 16 of p = 41; the table frames with \u03ba \u2265 2 in class \u03b5 = +1; p = 5: (2,0,1,1) at g = 2, (1,1,2,0) at g = 3",
   "ok": true,
   "detail": "p=5: 2 frames, \u03b5=+1 on 1; p=13: 4 frames, \u03b5=+1 on 2; p=17: 8 frames, \u03b5=+1 on 4; p=29: 12 frames, \u03b5=+1 on 6; p=37: 12 frames, \u03b5=+1 on 6; p=41: 16 frames, \u03b5=+1 on 8",
   "kind": "EXACT"
  },
  {
   "id": "B8",
-  "rows": "6:C7, 6:C10",
+  "rows": "6:C7",
   "block": "B",
   "script": "fourier",
   "label": "G G* = \u22122, G\u00b2 = 2i, Tr F = iG, Tr F\u00b2 = 2, Tr F\u00b3 = iG*, m_\u2113 \u2261 \u00bc \u03a3_r i^{\u2212\u2113r} Tr F^r (mod p)",
@@ -211,7 +211,7 @@
  },
  {
   "id": "C6",
-  "rows": "6:D5",
+  "rows": "6:D4",
   "block": "C",
   "script": "fourier",
   "label": "p = 13, g = 2: M_0\u2026M_3 = the printed ladder at steps 1, 2, 4, 8; the no-wrap window w\u00b7g^r < p with w = \u03c0 = 6 holds for r \u2264 1 and the listing wraps from M_2",
@@ -281,10 +281,10 @@
  },
  {
   "id": "D7",
-  "rows": "6:E7",
+  "rows": "6:E8",
   "block": "D",
   "script": "fourier",
-  "label": "F^[s] \u03c3 F^[s]\u207b\u00b9 is monomial exactly at the four cardinal indices and non-monomial at every one of the 112 intermediate indices of p \u2208 {13,17,29,37,41}",
+  "label": "on the six shells F^[s] \u03c3 F^[s]\u207b\u00b9 is monomial exactly at the four cardinal indices: the 112 intermediate indices of p \u2208 {13,17,29,37,41} all non-monomial (E8 on Table tab:checks)",
   "ok": true,
   "detail": "p=5: monomial at [0, 1, 2, 3]; p=13: monomial at [0, 3, 6, 9]; p=17: monomial at [0, 4, 8, 12]; p=29: monomial at [0, 7, 14, 21]; p=37: monomial at [0, 9, 18, 27]; p=41: monomial at [0, 10, 20, 30]; 112 intermediate indices swept",
   "kind": "EXACT"
@@ -308,85 +308,5 @@
   "ok": true,
   "detail": "p=5: |SO(2)|=4, orbits 1+6\u00d74; p=13: |SO(2)|=12, orbits 1+14\u00d712; p=17: |SO(2)|=16, orbits 1+18\u00d716; p=29: |SO(2)|=28, orbits 1+30\u00d728; p=37: |SO(2)|=36, orbits 1+38\u00d736; p=41: |SO(2)|=40, orbits 1+42\u00d740",
   "kind": "EXACT"
- },
- {
-  "id": "E1",
-  "rows": "6:F2",
-  "block": "E",
-  "script": "fourier",
-  "label": "\u011c\u00b2 = 2n X^\u03ba modulo \u03a6_n(X) (exact integer arithmetic); under \u03c3_C: (\u03a3 \u03b6^{k\u00b2})\u00b2 = 2n i; under \u03c1: G\u00b2 = 2i in F_p",
-  "ok": true,
-  "detail": "n=4: deg \u03a6_n = 2; n=12: deg \u03a6_n = 4; n=16: deg \u03a6_n = 8; n=28: deg \u03a6_n = 12; n=36: deg \u03a6_n = 12; n=40: deg \u03a6_n = 16",
-  "kind": "EXACT"
- },
- {
-  "id": "E2",
-  "rows": "6:F3",
-  "block": "E",
-  "script": "fourier",
-  "label": "H(0) = H(2\u03ba) = 0, H(\u03ba) = H(3\u03ba) = log n for every \u03b4_j",
-  "ok": true,
-  "detail": "n \u2208 [4, 12, 16, 28, 36, 40]",
-  "kind": "[approx]"
- },
- {
-  "id": "E3",
-  "rows": "6:F3",
-  "block": "E",
-  "script": "fourier",
-  "label": "B_0, B_\u03ba mutually unbiased (overlaps 1/n); H_{B_0} + H_{B_\u03ba} \u2265 log n on random states, saturated by \u03b4_j; the comb (\u03b4_0+\u03b4_6)/\u221a2 at n = 12: log 2 + log 6 = log 12",
-  "ok": true,
-  "detail": "comb: H_0 = 0.6931 = log 2, H_\u03ba = 1.7918 = log 6; 200 random states per shell",
-  "kind": "[approx]"
- },
- {
-  "id": "E4",
-  "rows": "6:F4",
-  "block": "E",
-  "script": "fourier",
-  "label": "F^[s] \u03b4_0 has the two-valued readout p_0 = 1 \u2212 (n\u22121)t_s/n, p_j = t_s/n, t_s = (2\u2212\u03b6^{2s}\u2212\u03b6^{\u22122s})/4 = sin\u00b2(\u03c0s/2\u03ba); H(s) the closed form, strictly increasing on [0, \u03ba], period 2\u03ba, strictly intermediate off the cardinal indices",
-  "ok": true,
-  "detail": "n \u2208 [4, 12, 16, 28, 36, 40]",
-  "kind": "[approx]"
- },
- {
-  "id": "E5",
-  "rows": "6:F5",
-  "block": "E",
-  "script": "fourier",
-  "label": "p = 13: H(s)/log n = 0, .44, .91, 1, .91, .44, 0, .44, .91, 1, .91, .44 (fig:entropy13)",
-  "ok": true,
-  "detail": "H/log n = 0.0000, 0.4378, 0.9134, 1.0000, 0.9134, 0.4378, 0.0000, 0.4378, 0.9134, 1.0000, 0.9134, 0.4378; wrote figures/entropy-cycle-f13.pdf/.png",
-  "kind": "[approx]"
- },
- {
-  "id": "E6",
-  "rows": "6:F6",
-  "block": "E",
-  "script": "fourier",
-  "label": "\u03b4_1 at p = 13: H(1)/log n = 0.55 against 0.44 for \u03b4_0; \u03b4_j meets the odd projectors exactly when j \u2209 {0, 2\u03ba}; \u03b4_{2\u03ba} reproduces the \u03b4_0 curve",
-  "ok": true,
-  "detail": "\u03b4_1: H(1)/log n = 0.5499; \u03b4_0: 0.4378",
-  "kind": "[approx]"
- },
- {
-  "id": "E7",
-  "rows": "6:F7",
-  "block": "E",
-  "script": "fourier",
-  "label": "X \u21a6 \u03b6^u leaves the cardinal values of every \u03b4_j invariant and relabels the curve of \u03b4_j by s \u21a6 us whenever \u03b7uj \u2261 j (mod n), \u03b7u \u2261 1 (mod 4) \u2014 the Born vectors permuted by k \u21a6 \u03b7uk: every cardinal site, every site for u = \u22121; n = 12, u = 5: \u03b4_1 0.55 \u21a6 0.44, from every relabelling; \u03b4_3 unchanged at 0.42",
-  "ok": true,
-  "detail": "54 twists over the six shells, 536 (u, j) pairs relabelled; n = 12, u = 5, s = 1: \u03b4_1 0.4377, \u03b4_3 0.4180",
-  "kind": "[approx]"
- },
- {
-  "id": "E8",
-  "rows": "6:F8",
-  "block": "E",
-  "script": "fourier",
-  "label": "c(s)\u00b2 \u2265 max{1/n, 1 \u2212 (n\u22121)t_s/n}; B_s mutually unbiased to B_0 exactly at s \u2208 {\u03ba, 3\u03ba}; c(s) = 1 exactly at s \u2208 {0, 2\u03ba}; H_{B_0} + H_{B_s} \u2265 \u22122 log c(s) on random states; p = 13: the bound 0, .10, .41, 1, .41, .10 per half-cycle",
-  "ok": true,
-  "detail": "p = 13: \u22122 log c(s)/log n = -0.000, 0.098, 0.413, 1.000, 0.413, 0.098, -0.000, 0.098, 0.413, 1.000, 0.413, 0.098; 40 random states per (shell, s)",
-  "kind": "[approx]"
  }
 ]

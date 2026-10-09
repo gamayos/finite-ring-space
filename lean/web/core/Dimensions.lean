@@ -2730,7 +2730,7 @@ end FRC
 /-! inlined: FrcCore/Meridian.lean -/
 
 /-!
-# 6-fourier — the meridians and the meridian-scale map (predicates D4, D5), no axioms
+# 6-fourier — the meridians and the meridian-scale map (predicate D4), no axioms
 
 The meridian `M_m = (a g^m)_{a = 0..π}`, `π = 2κ`, as an ordered list of `2κ + 1` entries, and the
 meridian-scale map `S_r(x) = g^r x`: `S_r(M_m) = M_{m+r}` as ordered lists, consecutive entries of `M_m`
@@ -2783,7 +2783,7 @@ theorem scale_periodic {κ : Nat} {g : Shell p} (F : Frame p κ g) (r : Nat) (x 
   unfold scale
   rw [pow_add, F.pow_n, mul_one]
 
-/-- 6:D5 — the `p = 13`, `g = 2`, `κ = 3` ladder: `M_0, M_1, M_2, M_3` at the effective steps `1, 2, 4, 8`;
+/-- 6:D4 — the `p = 13`, `g = 2`, `κ = 3` ladder: `M_0, M_1, M_2, M_3` at the effective steps `1, 2, 4, 8`;
 `M_0` and `M_1` are unwrapped (`π g^r = 6 g^r < 13` for `r ≤ 1`), `M_2` wraps (`6 · 4 = 24 ≥ 13`: its entries
 `0, 4, 8, 12, 3, 7, 11` return through the seam). -/
 theorem ladder13 :
