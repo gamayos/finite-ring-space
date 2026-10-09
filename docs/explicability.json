@@ -46,7 +46,7 @@
    "label": "X4",
    "key": "p10051",
    "tag": "T",
-   "predicate": "Charge is an integer degree of the two generators on the shells of odd capacity, not a further primitive: with the Coulomb constant neutral (F5), $[q]^{2}=\\Iq\\unitL\\unitT^{-1}$, $q_P^{2}=\\hbar c$; the lift has no half root (the Gaussian exponents $M^{1/2}L^{3/2}T^{-1}$ are half-integers there), so torsion-free bookkeeping adjoins an electrical primitive as it adjoins mass; the fine-structure ratio stays a neutral count.",
+   "predicate": "Charge is an integer degree of the two generators on the shells of odd capacity, not a further primitive: with the Coulomb constant neutral (F6), $[q]^{2}=\\Iq\\unitL\\unitT^{-1}$, $q_P^{2}=\\hbar c$; the lift has no half root (the Gaussian exponents $M^{1/2}L^{3/2}T^{-1}$ are half-integers there), so torsion-free bookkeeping adjoins an electrical primitive as it adjoins mass; the fine-structure ratio stays a neutral count.",
    "source": "Rem.~\\ref{rem:electromagnetic} (restates F5)\\newline \\pywit{dimensions}{p10051}{X4}, \\leanwit{FrcCore}{p10051}{X4} \\lean{FRC.Dimensions.charge13, FRC.Dimensions.charge29, FRC.Dimensions.no\\_charge17, FRC.Dimensions.no\\_charge41}",
    "master": [],
    "restated": [],

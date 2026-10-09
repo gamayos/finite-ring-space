@@ -77,7 +77,7 @@
    "key": "p10054",
    "tag": "T",
    "predicate": "Constancy, staked: every dimensionless ratio of the constants is fixed in time and position, zero drift, zero dipole --- the totality timeless (B1), every constant a residue of it in the framework's realisation (A1; the quartet's, E1, E6; the charge's, Rem.~\\ref{rem:electromagnetic}), the quartet's fixed by the congruences given $\\dS$ (E4), selected once (E7). Falsifier: a detected variation (E1's). Confrontation: $\\dot\\alpha/\\alpha=1.8(2.5)\\times10^{-19}\\,\\mathrm{yr}^{-1}$ \\citep{Filzinger2023}, consistent with zero.",
-   "source": "\\S\\ref{sec:instantiation}, \\S\\ref{sec:discussion}\\newline \\pywit{dimensions}{p10054}{P2}, \\leanwit{FrcCore}{p10054}{P2} \\lean{FRC.Dimensions.G\\_unique, FRC.Dimensions.root\\_pair}",
+   "source": "\\S\\ref{sec:instantiation}, \\S\\ref{sec:discussion}; rests on F5\\newline \\pywit{dimensions}{p10054}{P2}, \\leanwit{FrcCore}{p10054}{P2} \\lean{FRC.Dimensions.G\\_unique, FRC.Dimensions.root\\_pair}",
    "master": [],
    "restated": [],
    "witnessed": false,

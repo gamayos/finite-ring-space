@@ -2,14 +2,14 @@
  "header": {
   "generated": "8 October 2026",
   "schema": "frc-register/2",
-  "rows": 1011,
-  "theorems": 1003,
+  "rows": 1012,
+  "theorems": 1004,
   "counts": {
-   "keys": 1003,
-   "rows": 1011,
+   "keys": 1004,
+   "rows": 1012,
    "shared": 8,
    "by_tag": {
-    "D": 126,
+    "D": 127,
     "G": 1,
     "I": 119,
     "O": 14,
@@ -596,7 +596,7 @@
       "text": "A value fixed by the totality, in no bounded observer's window; a demarcation of where the value is read, not an open item."
      }
     ],
-    "rows": 48
+    "rows": 49
    },
    {
     "key": "13-epi",
@@ -10003,7 +10003,7 @@
   {
    "key": "p10016",
    "origin": "10",
-   "statement": "What the action forces and what is declared: the time-exponent period $\\p-1$ is forced by the pushforward action of $\\Zp^{\\times}$, the space-exponent refinement to period $\\p$ is declared and carried by the transport theorem (D2); classical temporal unit change is nominal re-assignment within a fixed presentation, the chronon atomic.",
+   "statement": "What the action forces and what is declared: the time-exponent period $\\p-1$ is forced by the pushforward action of $\\Zp^{\\times}$, the space-exponent refinement to period $\\p$ is C1's declaration, carried by the transport theorem (D2); classical temporal unit change is nominal re-assignment within a fixed presentation, the chronon atomic.",
    "origin_row": "10:C6",
    "tag": "T",
    "tier": 0,
@@ -10518,7 +10518,7 @@
   {
    "key": "p10029",
    "origin": "10",
-   "statement": "The residue assignments: the unit face (the Planck chart, each horizon the unit of its domain; $c=1$, $\\hbar=1$ its labels) and the residue face (the square-root horizon band, $\\hbar^{2}=\\Om-1$, $k_B^{2}=\\Om-2$); the mass scale's two typed faces, the monomial $m_P^{2}=\\hbar c/G$ in $\\{\\pm k_B\\}$ and the horizon declaration $m_P^{2}\\,\\hat=\\,\\Om$, never composed.",
+   "statement": "The residue assignments: the unit face (the Planck chart, each horizon the unit of its domain as E1 realises it; $c=1$, $\\hbar=1$ its labels) and the residue face (the square-root horizon band, $\\hbar^{2}=\\Om-1$, $k_B^{2}=\\Om-2$); the mass scale's two typed faces, the monomial $m_P^{2}=\\hbar c/G$ in $\\{\\pm k_B\\}$ and the horizon declaration $m_P^{2}\\,\\hat=\\,\\Om$, never composed.",
    "origin_row": "10:E6",
    "tag": "D",
    "tier": null,
@@ -10703,7 +10703,7 @@
   {
    "key": "p10047",
    "origin": "10",
-   "statement": "The electromagnetic domain: with the Coulomb constant neutral (declared), $[q]^{2}=\\unitE\\unitL=\\Iq\\unitL\\unitT^{-1}$; charge is an integer degree on the lift realised as $\\unitL^{2\\kap+1}\\unitT^{(\\kap-1)/2}$, existing iff $\\kap$ is odd, unique up to $\\Iq^{2}$, never window-covariant ($|r|=2\\kap$); no further generator within C1's two charts; on the even capacities no label squares to $[q]^{2}$.",
+   "statement": "The electromagnetic domain: with the Coulomb constant neutral (F6), $[q]^{2}=\\unitE\\unitL=\\Iq\\unitL\\unitT^{-1}$; charge is an integer degree on the lift realised as $\\unitL^{2\\kap+1}\\unitT^{(\\kap-1)/2}$, existing iff $\\kap$ is odd, unique up to $\\Iq^{2}$, never window-covariant ($|r|=2\\kap$); no further generator within C1's two charts; on the even capacities no label squares to $[q]^{2}$.",
    "origin_row": "10:F5",
    "tag": "T",
    "tier": 0,
@@ -10740,6 +10740,20 @@
     "10:F5"
    ],
    "realisations": []
+  },
+  {
+   "key": "p10056",
+   "origin": "10",
+   "statement": "The Coulomb constant is neutral: its label is the unit of the domain group, so the charge's square is read in the domain of energy times length.",
+   "origin_row": "10:F6",
+   "tag": "D",
+   "tier": null,
+   "check": null,
+   "declarations": [],
+   "aliases": [],
+   "rows": [
+    "10:F6"
+   ]
   },
   {
    "key": "p10037",
@@ -11126,7 +11140,7 @@
   {
    "key": "p10051",
    "origin": "10",
-   "statement": "Charge is an integer degree of the two generators on the shells of odd capacity, not a further primitive: with the Coulomb constant neutral (F5), $[q]^{2}=\\Iq\\unitL\\unitT^{-1}$, $q_P^{2}=\\hbar c$; the lift has no half root (the Gaussian exponents $M^{1/2}L^{3/2}T^{-1}$ are half-integers there), so torsion-free bookkeeping adjoins an electrical primitive as it adjoins mass; the fine-structure ratio stays a neutral count.",
+   "statement": "Charge is an integer degree of the two generators on the shells of odd capacity, not a further primitive: with the Coulomb constant neutral (F6), $[q]^{2}=\\Iq\\unitL\\unitT^{-1}$, $q_P^{2}=\\hbar c$; the lift has no half root (the Gaussian exponents $M^{1/2}L^{3/2}T^{-1}$ are half-integers there), so torsion-free bookkeeping adjoins an electrical primitive as it adjoins mass; the fine-structure ratio stays a neutral count.",
    "origin_row": "10:X4",
    "tag": "T",
    "tier": 0,
@@ -34866,8 +34880,8 @@
    "block": "C",
    "tag": "T",
    "name": null,
-   "statement": "What the action forces and what is declared: the time-exponent period $\\p-1$ is forced by the pushforward action of $\\Zp^{\\times}$, the space-exponent refinement to period $\\p$ is declared and carried by the transport theorem (D2); classical temporal unit change is nominal re-assignment within a fixed presentation, the chronon atomic.",
-   "source": "Rems.~\\ref{rem:periods}, \\ref{rem:atomicity}, \\ref{rem:lattice-spacetime}, Prop.~\\ref{prop:meridian-transport}\\newline \\leanwit{FrcCore}{p10016}{C6}, \\leanwit{FrcLedger}{p10016}{C6} \\lean{Dimensions.meridian\\_transport, FRC.Dimensions.meridian\\_transport}",
+   "statement": "What the action forces and what is declared: the time-exponent period $\\p-1$ is forced by the pushforward action of $\\Zp^{\\times}$, the space-exponent refinement to period $\\p$ is C1's declaration, carried by the transport theorem (D2); classical temporal unit change is nominal re-assignment within a fixed presentation, the chronon atomic.",
+   "source": "Rems.~\\ref{rem:periods}, \\ref{rem:atomicity}, \\ref{rem:lattice-spacetime}, Prop.~\\ref{prop:meridian-transport}; rests on B3, C4\\newline \\leanwit{FrcCore}{p10016}{C6}, \\leanwit{FrcLedger}{p10016}{C6} \\lean{Dimensions.meridian\\_transport, FRC.Dimensions.meridian\\_transport}",
    "page": "10-dimensions/index.html#C6",
    "witness": {
     "py": null,
@@ -34891,9 +34905,12 @@
     ]
    },
    "refs": [
+    "p10009",
+    "p10011",
+    "p10014",
     "p10018"
    ],
-   "text": "What the action forces and what is declared: the time-exponent period $\\p-1$ is forced by the pushforward action of $\\Zp^{\\times}$, the space-exponent refinement to period $\\p$ is declared and carried by the transport theorem (D2); classical temporal unit change is nominal re-assignment within a fixed presentation, the chronon atomic. Rems. rem:periods, rem:atomicity, rem:lattice-spacetime, Prop. prop:meridian-transport FrcCore{C6}, FrcLedger{C6} Dimensions.meridian_transport, FRC.Dimensions.meridian_transport"
+   "text": "What the action forces and what is declared: the time-exponent period $\\p-1$ is forced by the pushforward action of $\\Zp^{\\times}$, the space-exponent refinement to period $\\p$ is C1's declaration, carried by the transport theorem (D2); classical temporal unit change is nominal re-assignment within a fixed presentation, the chronon atomic. Rems. rem:periods, rem:atomicity, rem:lattice-spacetime, Prop. prop:meridian-transport; rests on B3, C4 FrcCore{C6}, FrcLedger{C6} Dimensions.meridian_transport, FRC.Dimensions.meridian_transport"
   },
   {
    "paper": "10-dim",
@@ -35612,15 +35629,19 @@
    "block": "E",
    "tag": "D",
    "name": null,
-   "statement": "The residue assignments: the unit face (the Planck chart, each horizon the unit of its domain; $c=1$, $\\hbar=1$ its labels) and the residue face (the square-root horizon band, $\\hbar^{2}=\\Om-1$, $k_B^{2}=\\Om-2$); the mass scale's two typed faces, the monomial $m_P^{2}=\\hbar c/G$ in $\\{\\pm k_B\\}$ and the horizon declaration $m_P^{2}\\,\\hat=\\,\\Om$, never composed.",
-   "source": "\\S\\ref{sec:instantiation} (the residue assignments)",
+   "statement": "The residue assignments: the unit face (the Planck chart, each horizon the unit of its domain as E1 realises it; $c=1$, $\\hbar=1$ its labels) and the residue face (the square-root horizon band, $\\hbar^{2}=\\Om-1$, $k_B^{2}=\\Om-2$); the mass scale's two typed faces, the monomial $m_P^{2}=\\hbar c/G$ in $\\{\\pm k_B\\}$ and the horizon declaration $m_P^{2}\\,\\hat=\\,\\Om$, never composed.",
+   "source": "\\S\\ref{sec:instantiation} (the residue assignments); rests on E4, E5",
    "page": "10-dimensions/index.html#E6",
    "witness": {
     "py": null,
     "lean": []
    },
-   "refs": [],
-   "text": "The residue assignments: the unit face (the Planck chart, each horizon the unit of its domain; $c=1$, $\\hbar=1$ its labels) and the residue face (the square-root horizon band, $\\hbar^{2}=\\Om-1$, $k_B^{2}=\\Om-2$); the mass scale's two typed faces, the monomial $m_P^{2}=\\hbar c/G$ in $\\{\\pm k_B\\}$ and the horizon declaration $m_P^{2} \\hat= \\Om$, never composed. \\Ssec:instantiation (the residue assignments)"
+   "refs": [
+    "p10024",
+    "p10027",
+    "p10028"
+   ],
+   "text": "The residue assignments: the unit face (the Planck chart, each horizon the unit of its domain as E1 realises it; $c=1$, $\\hbar=1$ its labels) and the residue face (the square-root horizon band, $\\hbar^{2}=\\Om-1$, $k_B^{2}=\\Om-2$); the mass scale's two typed faces, the monomial $m_P^{2}=\\hbar c/G$ in $\\{\\pm k_B\\}$ and the horizon declaration $m_P^{2} \\hat= \\Om$, never composed. \\Ssec:instantiation (the residue assignments); rests on E4, E5"
   },
   {
    "paper": "10-dim",
@@ -35864,8 +35885,8 @@
    "block": "F",
    "tag": "T",
    "name": null,
-   "statement": "The electromagnetic domain: with the Coulomb constant neutral (declared), $[q]^{2}=\\unitE\\unitL=\\Iq\\unitL\\unitT^{-1}$; charge is an integer degree on the lift realised as $\\unitL^{2\\kap+1}\\unitT^{(\\kap-1)/2}$, existing iff $\\kap$ is odd, unique up to $\\Iq^{2}$, never window-covariant ($|r|=2\\kap$); no further generator within C1's two charts; on the even capacities no label squares to $[q]^{2}$.",
-   "source": "Rem.~\\ref{rem:electromagnetic}\\newline \\pywit{dimensions}{p10047}{F5}, \\leanwit{FrcCore}{p10047}{F5} \\lean{FRC.Dimensions.charge13, FRC.Dimensions.charge29, FRC.Dimensions.no\\_charge17, FRC.Dimensions.no\\_charge41}",
+   "statement": "The electromagnetic domain: with the Coulomb constant neutral (F6), $[q]^{2}=\\unitE\\unitL=\\Iq\\unitL\\unitT^{-1}$; charge is an integer degree on the lift realised as $\\unitL^{2\\kap+1}\\unitT^{(\\kap-1)/2}$, existing iff $\\kap$ is odd, unique up to $\\Iq^{2}$, never window-covariant ($|r|=2\\kap$); no further generator within C1's two charts; on the even capacities no label squares to $[q]^{2}$.",
+   "source": "Rem.~\\ref{rem:electromagnetic}; rests on D2, D4\\newline \\pywit{dimensions}{p10047}{F5}, \\leanwit{FrcCore}{p10047}{F5} \\lean{FRC.Dimensions.charge13, FRC.Dimensions.charge29, FRC.Dimensions.no\\_charge17, FRC.Dimensions.no\\_charge41}",
    "page": "10-dimensions/index.html#F5",
    "witness": {
     "py": {
@@ -35910,9 +35931,31 @@
     ]
    },
    "refs": [
-    "p10011"
+    "p10011",
+    "p10018",
+    "p10020",
+    "p10056"
    ],
-   "text": "The electromagnetic domain: with the Coulomb constant neutral (declared), $[q]^{2}=\\unitE\\unitL=\\Iq\\unitL\\unitT^{-1}$; charge is an integer degree on the lift realised as $\\unitL^{2\\kap+1}\\unitT^{(\\kap-1)/2}$, existing iff $\\kap$ is odd, unique up to $\\Iq^{2}$, never window-covariant ($|r|=2\\kap$); no further generator within C1's two charts; on the even capacities no label squares to $[q]^{2}$. Rem. rem:electromagnetic p10047, FrcCore{F5} FRC.Dimensions.charge13, FRC.Dimensions.charge29, FRC.Dimensions.no_charge17, FRC.Dimensions.no_charge41"
+   "text": "The electromagnetic domain: with the Coulomb constant neutral (F6), $[q]^{2}=\\unitE\\unitL=\\Iq\\unitL\\unitT^{-1}$; charge is an integer degree on the lift realised as $\\unitL^{2\\kap+1}\\unitT^{(\\kap-1)/2}$, existing iff $\\kap$ is odd, unique up to $\\Iq^{2}$, never window-covariant ($|r|=2\\kap$); no further generator within C1's two charts; on the even capacities no label squares to $[q]^{2}$. Rem. rem:electromagnetic; rests on D2, D4 p10047, FrcCore{F5} FRC.Dimensions.charge13, FRC.Dimensions.charge29, FRC.Dimensions.no_charge17, FRC.Dimensions.no_charge41"
+  },
+  {
+   "paper": "10-dim",
+   "no": 10,
+   "rid": "10:F6",
+   "key": "p10056",
+   "label": "F6",
+   "block": "F",
+   "tag": "D",
+   "name": null,
+   "statement": "The Coulomb constant is neutral: its label is the unit of the domain group, so the charge's square is read in the domain of energy times length.",
+   "source": "Rem.~\\ref{rem:electromagnetic}",
+   "page": "10-dimensions/index.html#F6",
+   "witness": {
+    "py": null,
+    "lean": []
+   },
+   "refs": [],
+   "text": "The Coulomb constant is neutral: its label is the unit of the domain group, so the charge's square is read in the domain of energy times length. Rem. rem:electromagnetic"
   },
   {
    "paper": "10-dim",
@@ -36225,7 +36268,7 @@
    "tag": "T",
    "name": null,
    "statement": "Constancy, staked: every dimensionless ratio of the constants is fixed in time and position, zero drift, zero dipole --- the totality timeless (B1), every constant a residue of it in the framework's realisation (A1; the quartet's, E1, E6; the charge's, Rem.~\\ref{rem:electromagnetic}), the quartet's fixed by the congruences given $\\dS$ (E4), selected once (E7). Falsifier: a detected variation (E1's). Confrontation: $\\dot\\alpha/\\alpha=1.8(2.5)\\times10^{-19}\\,\\mathrm{yr}^{-1}$ \\citep{Filzinger2023}, consistent with zero.",
-   "source": "\\S\\ref{sec:instantiation}, \\S\\ref{sec:discussion}\\newline \\pywit{dimensions}{p10054}{P2}, \\leanwit{FrcCore}{p10054}{P2} \\lean{FRC.Dimensions.G\\_unique, FRC.Dimensions.root\\_pair}",
+   "source": "\\S\\ref{sec:instantiation}, \\S\\ref{sec:discussion}; rests on F5\\newline \\pywit{dimensions}{p10054}{P2}, \\leanwit{FrcCore}{p10054}{P2} \\lean{FRC.Dimensions.G\\_unique, FRC.Dimensions.root\\_pair}",
    "page": "10-dimensions/index.html#P2",
    "witness": {
     "py": {
@@ -36259,9 +36302,10 @@
     "p10024",
     "p10027",
     "p10029",
-    "p10030"
+    "p10030",
+    "p10047"
    ],
-   "text": "Constancy, staked: every dimensionless ratio of the constants is fixed in time and position, zero drift, zero dipole — the totality timeless (B1), every constant a residue of it in the framework's realisation (A1; the quartet's, E1, E6; the charge's, Rem. rem:electromagnetic), the quartet's fixed by the congruences given $\\dS$ (E4), selected once (E7). Falsifier: a detected variation (E1's). Confrontation: $\\dot\\alpha/\\alpha=1.8(2.5)\\times10^{-19} \\mathrm{yr}^{-1}$ [Filzinger2023], consistent with zero. \\Ssec:instantiation, \\Ssec:discussion p10054, FrcCore{P2} FRC.Dimensions.G_unique, FRC.Dimensions.root_pair"
+   "text": "Constancy, staked: every dimensionless ratio of the constants is fixed in time and position, zero drift, zero dipole — the totality timeless (B1), every constant a residue of it in the framework's realisation (A1; the quartet's, E1, E6; the charge's, Rem. rem:electromagnetic), the quartet's fixed by the congruences given $\\dS$ (E4), selected once (E7). Falsifier: a detected variation (E1's). Confrontation: $\\dot\\alpha/\\alpha=1.8(2.5)\\times10^{-19} \\mathrm{yr}^{-1}$ [Filzinger2023], consistent with zero. \\Ssec:instantiation, \\Ssec:discussion; rests on F5 p10054, FrcCore{P2} FRC.Dimensions.G_unique, FRC.Dimensions.root_pair"
   },
   {
    "paper": "10-dim",
@@ -36469,7 +36513,7 @@
    "block": "X",
    "tag": "T",
    "name": null,
-   "statement": "Charge is an integer degree of the two generators on the shells of odd capacity, not a further primitive: with the Coulomb constant neutral (F5), $[q]^{2}=\\Iq\\unitL\\unitT^{-1}$, $q_P^{2}=\\hbar c$; the lift has no half root (the Gaussian exponents $M^{1/2}L^{3/2}T^{-1}$ are half-integers there), so torsion-free bookkeeping adjoins an electrical primitive as it adjoins mass; the fine-structure ratio stays a neutral count.",
+   "statement": "Charge is an integer degree of the two generators on the shells of odd capacity, not a further primitive: with the Coulomb constant neutral (F6), $[q]^{2}=\\Iq\\unitL\\unitT^{-1}$, $q_P^{2}=\\hbar c$; the lift has no half root (the Gaussian exponents $M^{1/2}L^{3/2}T^{-1}$ are half-integers there), so torsion-free bookkeeping adjoins an electrical primitive as it adjoins mass; the fine-structure ratio stays a neutral count.",
    "source": "Rem.~\\ref{rem:electromagnetic} (restates F5)\\newline \\pywit{dimensions}{p10051}{X4}, \\leanwit{FrcCore}{p10051}{X4} \\lean{FRC.Dimensions.charge13, FRC.Dimensions.charge29, FRC.Dimensions.no\\_charge17, FRC.Dimensions.no\\_charge41}",
    "page": "10-dimensions/index.html#X4",
    "witness": {
@@ -36515,9 +36559,10 @@
     ]
    },
    "refs": [
-    "p10047"
+    "p10047",
+    "p10056"
    ],
-   "text": "Charge is an integer degree of the two generators on the shells of odd capacity, not a further primitive: with the Coulomb constant neutral (F5), $[q]^{2}=\\Iq\\unitL\\unitT^{-1}$, $q_P^{2}=\\hbar c$; the lift has no half root (the Gaussian exponents $M^{1/2}L^{3/2}T^{-1}$ are half-integers there), so torsion-free bookkeeping adjoins an electrical primitive as it adjoins mass; the fine-structure ratio stays a neutral count. Rem. rem:electromagnetic (restates F5) p10051, FrcCore{X4} FRC.Dimensions.charge13, FRC.Dimensions.charge29, FRC.Dimensions.no_charge17, FRC.Dimensions.no_charge41"
+   "text": "Charge is an integer degree of the two generators on the shells of odd capacity, not a further primitive: with the Coulomb constant neutral (F6), $[q]^{2}=\\Iq\\unitL\\unitT^{-1}$, $q_P^{2}=\\hbar c$; the lift has no half root (the Gaussian exponents $M^{1/2}L^{3/2}T^{-1}$ are half-integers there), so torsion-free bookkeeping adjoins an electrical primitive as it adjoins mass; the fine-structure ratio stays a neutral count. Rem. rem:electromagnetic (restates F5) p10051, FrcCore{X4} FRC.Dimensions.charge13, FRC.Dimensions.charge29, FRC.Dimensions.no_charge17, FRC.Dimensions.no_charge41"
   },
   {
    "paper": "13-epi",
