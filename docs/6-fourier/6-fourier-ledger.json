@@ -46,7 +46,7 @@
     },
     {
      "label": "A8",
-     "predicate": "The framework's definition of the substrate: a finite totality whose count bounds the label plane $\\Fp\\times\\Fp$ of an embedded observer, $\\p^{2}<\\Om$; the shell of capacity $\\kap$ as the observer's register, its meridian cycle of $4\\kap=\\p-1$ points read as the area.",
+     "predicate": "The framework's definition of the substrate: the Carrier, a finite totality whose count bounds the coordinate plane $\\Fp\\times\\Fp$ of an embedded observer, $\\p^{2}<\\Om$; the shell of capacity $\\kap$ as the observer's register, its phase cycle of $4\\kap=\\p-1$ points read as the area.",
      "tag": "I",
      "source": "\\citep[\\S2]{Akhtman2026Dimensions}",
      "key": "p06055"
@@ -59,14 +59,14 @@
    "rows": [
     {
      "label": "B1",
-     "predicate": "Shell data, capacity-first: $\\kap$ primary, $\\p=4\\kap+1$, the meridian cycle $\\Phit=\\Z_{4\\kap}$, the oriented quarter-turn $\\im=-\\gen^{\\kap}$ (clockwise phase convention), $\\pi=2\\kap$, $e=\\gen^{\\im}$; the meridians $M_s=\\{a\\gen^{s}:a\\in I_\\p\\}$; the six shells of Table~\\ref{tab:checks} with their roots and quarter-turns.",
+     "predicate": "Shell data, capacity-first: $\\kap$ primary, $\\p=4\\kap+1$, the phase cycle $\\Phit=\\Z_{4\\kap}$, the oriented quarter-turn $\\im=-\\gen^{\\kap}$ (clockwise phase convention), $\\pi=2\\kap$, $e=\\gen^{\\im}$; the meridians $M_s=\\{a\\gen^{s}:a\\in I_\\p\\}$; the six shells of Table~\\ref{tab:checks} with their roots and quarter-turns.",
      "tag": "D",
      "source": "\\S\\ref{sec:shell-data}, \\eqref{eq:it-def}, \\eqref{eq:meridian-def}, Def.~\\ref{def:cardinal}\\newline \\pywit{fourier}{p06008}{B1}",
      "key": "p06008"
     },
     {
      "label": "B2",
-     "predicate": "The Euler identity is a property of the chart class: $e^{\\im\\pi}=\\gen^{2\\kap(\\im\\bmod2)}\\equiv-1$ exactly when the quarter-turn residue is odd; the conjugate reframing $(\\gen,\\im)\\mapsto(\\gen^{-1},-\\im)$ toggles the parity, so one member of each conjugate pair carries it; on $\\F_{13}(\\chron;0,1,2)$, $\\im=5$ and $6^{6}=-1$. Every primitive frame of the six shells.",
+     "predicate": "The Euler identity is a property of the chart class: $e^{\\im\\pi}=\\gen^{2\\kap(\\im\\bmod2)}\\equiv-1$ exactly when the quarter-turn residue is odd; the conjugate chart $(\\gen,\\im)\\mapsto(\\gen^{-1},-\\im)$ toggles the parity, so one member of each conjugate pair carries it; on $\\F_{13}(\\chron;0,1,2)$, $\\im=5$ and $6^{6}=-1$. Every primitive frame of the six shells.",
      "tag": "T",
      "source": "Rem.~\\ref{rem:euler}\\newline \\pywit{fourier}{p06009}{B2}, \\leanwit{FrcCore}{p06009}{B2} \\lean{FRC.Shell.Frame.euler\\_identity}",
      "key": "p06009"
@@ -149,7 +149,7 @@
     },
     {
      "label": "C6",
-     "predicate": "The projectors are chart data: for $u$ odd and a unit mod $4\\kap$ the site relabelling $m\\mapsto um$ carries $\\Ft(\\gen)$ to $\\Ft(\\gen^{u^{2}})$ by a coordinate permutation, $\\Ft(\\gen^{u^{2}})_{kj}=\\Ft(\\gen)_{uk,uj}$; at $\\p=13$ the frames $\\gen=2$ and $\\gen=6$ give the trace tuples $(3,3,4,2)$ and $(4,2,3,3)$, with $\\operatorname{Tr}\\Ft=4,9$.",
+     "predicate": "The projectors are chart data: for $u$ odd and a unit mod $4\\kap$ the index relabelling $m\\mapsto um$ carries $\\Ft(\\gen)$ to $\\Ft(\\gen^{u^{2}})$ by a coordinate permutation, $\\Ft(\\gen^{u^{2}})_{kj}=\\Ft(\\gen)_{uk,uj}$; at $\\p=13$ the frames $\\gen=2$ and $\\gen=6$ give the trace tuples $(3,3,4,2)$ and $(4,2,3,3)$, with $\\operatorname{Tr}\\Ft=4,9$.",
      "tag": "T",
      "source": "Rem.~\\ref{rem:multiplicities}\\newline \\pywit{fourier}{p06020}{C6}, \\leanwit{FrcCore}{p06020}{C6} \\lean{FRC.Shell.Frame.Fmat\\_chart, FRC.Shell.Frame.thirteen\\_tuples}",
      "key": "p06020"
@@ -170,14 +170,14 @@
     },
     {
      "label": "C9",
-     "predicate": "The conjugate reframing $(\\gen,\\im)\\mapsto(\\gen^{-1},-\\im)$: exactly $\\Ft'=-\\Ft^{-1}$ and $\\Pi'_\\ell=\\Pi_{\\ell+2}$; the operator relations, cardinal values, additivity and faithfulness hold on the conjugate frame, and its trace tuple is the other pattern of C7.",
+     "predicate": "The conjugate chart $(\\gen,\\im)\\mapsto(\\gen^{-1},-\\im)$: exactly $\\Ft'=-\\Ft^{-1}$ and $\\Pi'_\\ell=\\Pi_{\\ell+2}$; the operator relations, cardinal values, additivity and faithfulness hold on the conjugate frame, and its trace tuple is the other pattern of C7.",
      "tag": "T",
      "source": "Rem.~\\ref{rem:gt-covariance}, Thm.~\\ref{thm:multiplicity}\\newline \\pywit{fourier}{p06023}{C9}, \\leanwit{FrcCore}{p06023}{C9}, \\leanwit{FrcLedger}{p06023}{C9} \\lean{Fourier.shell\\_conj, FRC.Shell.Frame.inv\\_frame, FRC.Shell.Frame.Fmat\\_conj, FRC.Shell.Frame.proj\\_conj}",
      "key": "p06023"
     },
     {
      "label": "C11",
-     "predicate": "Charts outside the classified set: for $u$ a unit mod $4\\kap$, $\\Wt(\\gen^{u})=\\Wt P_u$ with $P_u$ the site relabelling $j\\mapsto uj$, so $\\Wt\\,\\Wt(\\gen^{u})=-JP_u$ and $\\Wt(\\gen^{u})\\,\\Wt=-JP_{u^{-1}}$, and the two differ at the entry $(-u,1)$ when $u^{2}\\not\\equiv1\\pmod{4\\kap}$: a family canonical in such a chart does not commute with $\\Ft$; $\\p=29$, $u=5$, and every such chart of the six shells of Table~\\ref{tab:checks} checked.",
+     "predicate": "Charts outside the classified lifts: for $u$ a unit mod $4\\kap$, $\\Wt(\\gen^{u})=\\Wt P_u$ with $P_u$ the index relabelling $j\\mapsto uj$, so $\\Wt\\,\\Wt(\\gen^{u})=-JP_u$ and $\\Wt(\\gen^{u})\\,\\Wt=-JP_{u^{-1}}$, and the two differ at the entry $(-u,1)$ when $u^{2}\\not\\equiv1\\pmod{4\\kap}$: a family canonical in such a chart does not commute with $\\Ft$; $\\p=29$, $u=5$, and every such chart of the six shells of Table~\\ref{tab:checks} checked.",
      "tag": "T",
      "source": "Rem.~\\ref{rem:classification}\\newline \\pywit{fourier}{p06052}{C11}, \\leanwit{FrcCore}{p06052}{C11} \\lean{FRC.Shell.Frame.W\\_chart, FRC.Shell.Frame.W\\_mul\\_chart, FRC.Shell.Frame.chart\\_mul\\_W, FRC.Shell.Frame.chart\\_noncommute}",
      "key": "p06052"
@@ -186,11 +186,11 @@
   },
   {
    "letter": "D",
-   "title": "Representation domains and the scale-shift",
+   "title": "Meridional domains and the scale-shift",
    "rows": [
     {
      "label": "D1",
-     "predicate": "The meridional representation domain $D_s=(\\Vt,\\mathcal B_s)$, $\\mathcal B_s=\\Ft^{[s]}\\mathcal B_0$, every $\\Ft^{[s]}$ invertible with inverse $\\Ft^{[n-s]}$; the cardinal domains spatial, spectral, parity, inverse-spectral.",
+     "predicate": "The meridional domain $D_s=(\\Vt,\\mathcal B_s)$, $\\mathcal B_s=\\Ft^{[s]}\\mathcal B_0$, every $\\Ft^{[s]}$ invertible with inverse $\\Ft^{[n-s]}$; the cardinal domains spatial, spectral, parity, inverse-spectral.",
      "tag": "D",
      "source": "Def.~\\ref{def:domain}\\newline \\pywit{fourier}{p06024}{D1}, \\leanwit{FrcCore}{p06024}{D1} \\lean{FRC.Shell.Frame.frft\\_inverse}",
      "key": "p06024"
@@ -204,14 +204,14 @@
     },
     {
      "label": "D3",
-     "predicate": "The meridian-step interval $I_\\p=\\{0,1,\\dots,\\pi\\}$, the meridian-scale map $S_r(x)=\\gen^{r}x$, and the local scale chart $\\gen\\mapsto\\lambda>1$ reading the effective step $\\gen^{m}$ as $\\lambda^{\\tilde m}$ [chart]: the forward shift a zoom-out and the inverse shift a zoom-in off the seam, the seam an aliasing return, the readings valid within the no-wrap window $w\\gen^{r}<\\p$.",
+     "predicate": "The meridian-step interval $I_\\p=\\{0,1,\\dots,\\pi\\}$, the scale-shift $S_r(x)=\\gen^{r}x$, the dilation by $\\gen^{r}$, and the local scale chart $\\gen\\mapsto\\lambda>1$ reading the effective step $\\gen^{m}$ as $\\lambda^{\\tilde m}$ [chart]: the forward shift a zoom-out and the inverse shift a zoom-in, the return of the lift the scale-periodicity of A5, the readings valid while $w\\gen^{r}<\\p$.",
      "tag": "D",
      "source": "\\eqref{eq:Ip-zoom}, Def.~\\ref{def:scale-map}, Def.~\\ref{def:scale-chart}",
      "key": "p06026"
     },
     {
      "label": "D4",
-     "predicate": "Meridian-scale covariance: $S_r(M_m)=M_{m+r}$ for every $(m,r)$, as ordered lists; consecutive entries of $M_m$ differ by the effective step $\\gen^{m}$; $S_{r+(\\p-1)}=S_r$, the periodicity of A5 in meridian form; at $\\p=13$, $\\gen=2$ the ladder $M_0,\\dots,M_3$ at the steps $1,2,4,8$ (Section~\\ref{sec:examples}).",
+     "predicate": "Scale-shift covariance: $S_r(M_m)=M_{m+r}$ for all $m$ and $r$, as ordered lists; consecutive entries of $M_m$ differ by the effective step $\\gen^{m}$; $S_{r+(\\p-1)}=S_r$, the periodicity of A5 in meridian form; at $\\p=13$, $\\gen=2$ the ladder $M_0,\\dots,M_3$ at the steps $1,2,4,8$ (Section~\\ref{sec:examples}).",
      "tag": "T",
      "source": "Prop.~\\ref{prop:meridian-scale}, Cor.~\\ref{cor:effective-step}\\newline \\pywit{fourier}{p06027}{D4}, \\leanwit{FrcCore}{p06027}{D4} \\lean{FRC.Shell.meridian\\_scale, FRC.Shell.meridian\\_step, FRC.Shell.scale\\_periodic, FRC.Shell.ladder13}",
      "key": "p06027"
@@ -225,7 +225,7 @@
     },
     {
      "label": "D7",
-     "predicate": "The cycle carries exactly $2\\kap$ unordered bases: every off-site entry of row $0$ of $\\Ft^{[t]}$ is $\\tfrac{\\im}{2}(1-\\gen^{-2t})$, nonzero for $t\\notin\\{0,2\\kap\\}$, so $\\Ft^{[t]}$ is not monomial and $B_{s+t}\\neq B_s$; the six shells of Table~\\ref{tab:checks}.",
+     "predicate": "The cycle carries exactly $2\\kap$ unordered bases: every entry $(0,k)$, $k\\neq0$, of $\\Ft^{[t]}$ is $\\tfrac{\\im}{2}(1-\\gen^{-2t})$, nonzero for $t\\notin\\{0,2\\kap\\}$, so $\\Ft^{[t]}$ is not monomial and $B_{s+t}\\neq B_s$; the six shells of Table~\\ref{tab:checks}.",
      "tag": "T",
      "source": "Rem.~\\ref{rem:ordered-bases}\\newline \\pywit{fourier}{p06053}{D7}, \\leanwit{FrcCore}{p06053}{D7} \\lean{FRC.Shell.Frame.frft\\_row\\_zero, FRC.Shell.Frame.frft\\_row\\_zero\\_ne\\_zero}",
      "key": "p06053"
@@ -245,7 +245,7 @@
     },
     {
      "label": "E2",
-     "predicate": "$R_s\\in SO(2,\\Fp)$, and $s\\mapsto R_s$ is an isomorphism $\\Phit\\simeq SO(2,\\Fp)$ with $|SO(2,\\Fp)|=\\p-1=4\\kap$: the full rotation group of the $\\p^{2}$-point plane is the meridian cycle.",
+     "predicate": "$R_s\\in SO(2,\\Fp)$, and $s\\mapsto R_s$ is an isomorphism $\\Phit\\simeq SO(2,\\Fp)$ with $|SO(2,\\Fp)|=\\p-1=4\\kap$: the full rotation group of the $\\p^{2}$-point plane is the phase cycle.",
      "tag": "T",
      "source": "Prop.~\\ref{prop:rotation-isom}\\newline \\pywit{fourier}{p06031}{E2}, \\leanwit{FrcCore}{p06031}{E2}, \\leanwit{FrcLedger}{p06031}{E2} \\lean{Fourier.circle, Fourier.rot\\_mul, Fourier.unitsEquivCircle, Fourier.card\\_circle, FRC.Shell.Frame.rot\\_circle, FRC.Shell.Frame.rot\\_hom, FRC.Shell.Frame.rot\\_inj, FRC.Shell.Frame.rot\\_surj, FRC.Shell.Frame.six\\_circles}",
      "key": "p06031"
@@ -287,7 +287,7 @@
     },
     {
      "label": "E8",
-     "predicate": "Cardinal exclusivity: the conjugate $\\Ft^{[s]}\\sigma\\Ft^{[s]\\,-1}$ of \\eqref{eq:conj-expansion} is not monomial for every $s\\notin\\{0,\\kap,2\\kap,3\\kap\\}$ --- off $j\\in\\{-1,0,1\\}$ its row $0$ is $x^{-1}$ times a quadratic in $x=\\gen^{j}$ with leading coefficient $\\im\\,[c_0(s)+c_2(s)]\\,c_3(-s)\\neq0$, $c_0(s)+c_2(s)=\\tfrac12(1+\\gen^{-2s})$, so the row vanishes at no three distinct indices off the sites and, by counting, has at least $4\\kap-5$ nonzero entries; the count checked on every shell below $200$.",
+     "predicate": "Cardinal exclusivity: the conjugate $\\Ft^{[s]}\\sigma\\Ft^{[s]\\,-1}$ of \\eqref{eq:conj-expansion} is not monomial for every $s\\notin\\{0,\\kap,2\\kap,3\\kap\\}$ --- off $j\\in\\{-1,0,1\\}$ its row $0$ is $x^{-1}$ times a quadratic in $x=\\gen^{j}$ with leading coefficient $\\im\\,[c_0(s)+c_2(s)]\\,c_3(-s)\\neq0$, $c_0(s)+c_2(s)=\\tfrac12(1+\\gen^{-2s})$, so the row vanishes at no three distinct indices off those three and, by counting, has at least $4\\kap-5$ nonzero entries; the count checked on every shell below $200$.",
      "tag": "T",
      "source": "Thm.~\\ref{thm:monomial}\\newline \\pywit{fourier}{p06050}{E8}, \\leanwit{FrcCore}{p06050}{E8} \\lean{FRC.Shell.Frame.row\\_entry, FRC.Shell.Frame.even\\_coeff\\_id, FRC.Shell.Frame.even\\_coeff\\_ne\\_zero, FRC.Shell.Frame.odd\\_coeff\\_ne\\_zero, FRC.Shell.Frame.exclusivity}",
      "key": "p06050"
@@ -1151,7 +1151,7 @@
     "axioms": [],
     "tier": 0,
     "ok": true,
-    "doc": "6:D4 — meridian-scale covariance: `S_r(M_m) = M_{m+r}` as ordered lists, for every `m, r`."
+    "doc": "6:D4 — scale-shift covariance: `S_r(M_m) = M_{m+r}` as ordered lists, for every `m, r`."
    },
    {
     "name": "FRC.Shell.meridian_step",
@@ -1169,7 +1169,7 @@
     "axioms": [],
     "tier": 0,
     "ok": true,
-    "doc": "6:D4 — `S_{r + (p−1)} = S_r`: the meridian-scale map is `(p − 1)`-periodic in `r` (the periodicity of the framed-rational zoom, A5)."
+    "doc": "6:D4 — `S_{r + (p−1)} = S_r`: the scale-shift (dilation) is `(p − 1)`-periodic in `r` (the periodicity of the framed-rational zoom, A5)."
    },
    {
     "name": "FRC.Shell.ladder13",

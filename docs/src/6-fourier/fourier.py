@@ -17,7 +17,7 @@ check decides are in the block banners. Three master-ledger predicates of the co
 
 Blocks:  A  the frame datum and the shell Fourier operator     EXACT            (6:B1–B3, B5–B7)
          B  the fractional family F^[s]                        EXACT            (6:C2–C9, C11)
-         C  representation domains and the coordinate zoom     EXACT            (6:D1, D2, D4, D7)
+         C  meridional domains and the coordinate zoom     EXACT            (6:D1, D2, D4, D7)
          D  the Weil dictionary, the operator-level comparison EXACT            (6:E2, E3, E5–E10)
 
 Everything the blocks share:
@@ -57,7 +57,7 @@ LEDGER = {
 
 BLOCK = {"A": "the frame datum and the shell Fourier operator",          # check-id prefix -> the block (the function block_<letter> below)
          "B": "the fractional family F^[s]",
-         "C": "representation domains and the coordinate zoom",
+         "C": "meridional domains and the coordinate zoom",
          "D": "the Weil dictionary and the operator-level comparison"}
 
 # the deciding check of each witnessed predicate: the one whose verdict decides the predicate's statement (the other checks
@@ -168,7 +168,7 @@ class Frame:
         self._W = self._F = self._Pi = None
 
     def conjugate(self):
-        """The conjugate reframing (g, i) ↦ (g⁻¹, −i)."""
+        """The conjugate chart (g, i) ↦ (g⁻¹, −i)."""
         return Frame(self.p, pow(self.g, self.p - 2, self.p))
 
     def gpow(self, k):
@@ -242,7 +242,7 @@ class Frame:
         return tuple((a * em) % self.p for a in range(self.pi + 1))
 
     def S(self, r, x):
-        """The meridian-scale map S_r(x) = g^r x (def:scale-map)."""
+        """The scale-shift (dilation) S_r(x) = g^r x (def:scale-map)."""
         return (self.gpow(r) * x) % self.p
 
     # --- the Weil side
@@ -308,7 +308,7 @@ def matpow(M, k, p):
 #                                    root, i = −g^κ = g^{−κ} = g^{3κ}, i² ≡ −1, π = 2κ, 2π ≡ −1, g^π ≡ −1,
 #                                    −π ≡ 2⁻¹, e = g^i; the table's (κ, g, i) on all six shells
 #   A2  §2 rem:euler                  e^{iπ} = g^{2κ(i mod 2)} ≡ −1 exactly when the quarter-turn residue i is
-#       00:C14                       odd; the conjugate reframing (g, i) ↦ (g⁻¹, −i) toggles the parity, so
+#       00:C14                       odd; the conjugate chart (g, i) ↦ (g⁻¹, −i) toggles the parity, so
 #                                    exactly one member of each conjugate pair carries e^{iπ} ≡ −1 — on every
 #                                    primitive frame of the six shells; anchor F_13(t;0,1,2): i = 5, 6^{iπ} ≡ −1
 #   A3  rem:gt-covariance            the relabelling g' = g^u, u ∈ Z_{4κ}^×: i' = i iff u ≡ 1 (mod 4), i' = −i
@@ -356,7 +356,7 @@ def block_A():
     f13 = frames[13]
     ok &= (f13.i == 5 and f13.e == 6 and pow(6, 5 * 6, 13) == 12 and pow(6, 6, 13) == 12)
     # 6:B2 (p06009)
-    check("A2", "e^{iπ} = g^{2κ(i mod 2)} ≡ −1 exactly on the odd quarter-turn; the conjugate reframing toggles it, one member of each pair carries it",
+    check("A2", "e^{iπ} = g^{2κ(i mod 2)} ≡ −1 exactly on the odd quarter-turn; the conjugate chart toggles it, one member of each pair carries it",
           ok, f"{n_frames} primitive frames of p ∈ {SHELLS}, {n_carry} carry e^{{iπ}} ≡ −1 (one per conjugate pair); F_13(t;0,1,2): i = 5, e = 6, 6^{{30}} = 6^{{6}} ≡ −1")
 
     # A3 — the u-relabelling
@@ -426,7 +426,7 @@ def block_A():
 #                             (Π_1)_{21} = ¼(g² − g⁻²) = −(Π_3)_{21} ≠ 0; the ranks m_ℓ = rank Π_ℓ = dim ker(F − i^ℓ I),
 #                             m_0 + m_2 = 2κ+1, m_1 + m_3 = 2κ−1; at p = 5 exactly one of Π_1, Π_3 is 0
 #   B6  rem:multiplicities    p = 13: g = 2 gives (3,3,4,2) with Tr F = 4, g = 6 gives (4,2,3,3) with Tr F = 9;
-#                             the site relabelling m ↦ um conjugates F(g) to F(g^{u²}) by a permutation
+#                             the index relabelling m ↦ um conjugates F(g) to F(g^{u²}) by a permutation
 #   B7  thm:multiplicity      G = Σ_k g^{k²} = ε(1+i); the two patterns (κ,κ,κ+1,κ−1) / (κ+1,κ−1,κ,κ);
 #                             ε(g⁻¹) = −ε(g); the 38 primitive frames of p ∈ {5,13,17,29,37} (and the 16 of
 #                             p = 41); the table frames with κ ≥ 2 in class ε = +1; p = 5: (2,0,1,1) at g = 2
@@ -437,7 +437,7 @@ def block_A():
 #   B9  rem:classification    every exponent lift a_ℓ ≡ ℓ (mod 4) is additive with the same cardinal
 #                             skeleton; the family canonical in the chart g^u with u² ≢ 1 (mod 4κ) does not
 #                             commute with F — at p = 29, u = 5 (u² = 25 ≢ 1 mod 28)
-#   B10 rem:gt-covariance     the conjugate reframing (g, i) ↦ (g⁻¹, −i): operator relations, cardinal
+#   B10 rem:gt-covariance     the conjugate chart (g, i) ↦ (g⁻¹, −i): operator relations, cardinal
 #       00:C7 (transform      values, additivity and faithfulness hold on the conjugate frame, while the
 #       layer)                multiplicity tuple flips between the two patterns (chart data); exactly
 #                             F' = −F⁻¹ and Π'_ℓ = Π_{ℓ+2}
@@ -592,7 +592,7 @@ def block_B():
     check("B9", "exponent lifts a_ℓ ≡ ℓ (mod 4) are additive with the cardinal skeleton (p = 13); the chart g^5 at p = 29 (u² ≢ 1 mod 28) does not commute with F, nor does any chart with u² ≢ 1 (mod 4κ) on the six shells",
           ok, f"non-commuting at p = 29, u = 5: {noncomm}; all charts with u² ≢ 1 (mod 4κ) on the six shells non-commuting: {all(x[2] for x in scan)} ({len(scan)} charts)")
 
-    # B10 — the conjugate reframing (00:C7, transform layer)
+    # B10 — the conjugate chart (00:C7, transform layer)
     ok, det = True, []
     for p in SHELLS:
         f = frames[p]; fc = f.conjugate(); k = f.kap
@@ -613,7 +613,7 @@ def block_B():
           ok, "; ".join(det))
 
 # ------------------------------------------------------------------------------------------------------------
-# Block C — representation domains and the coordinate-side zoom (EXACT, integer-pinned)
+# Block C — meridional domains and the coordinate-side zoom (EXACT, integer-pinned)
 # =====================================================================================
 # Paper statements decided (Sections 4–5 of the revision of 9 October 2026; master ledger row 00:C2):
 #
@@ -631,8 +631,8 @@ def block_B():
 #
 # Shells: p = 5, 13, 17, 29, 37, 41.
 def block_C():
-    """Block C — representation domains and the coordinate-side zoom (EXACT, integer-pinned): C1–C6."""
-    print("block C — representation domains and the coordinate-side zoom")
+    """Block C — meridional domains and the coordinate-side zoom (EXACT, integer-pinned): C1–C6."""
+    print("block C — meridional domains and the coordinate-side zoom")
     frames = {p: Frame(p) for p in SHELLS}
 
     # C1 — invertibility
@@ -672,7 +672,7 @@ def block_C():
     # 6:D7 (p06053)
     check("C3", "F^[s+2κ] = F^[s] J, so B_{s+2κ} = B_s as unordered bases, and B_{s+t} ≠ B_s for t ∉ {0,2κ}: every off-site entry of row 0 of F^[t] is (i/2)(1 − g^{−2t}) ≠ 0, F^[t] not monomial — 4κ framed domains, exactly 2κ measurement bases", ok, "; ".join(det))
 
-    # C4 — meridian-scale covariance
+    # C4 — scale-shift covariance
     ok, npairs = True, 0
     for p in SHELLS:
         f = frames[p]

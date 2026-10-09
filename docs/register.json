@@ -7373,7 +7373,7 @@
   {
    "key": "p06055",
    "origin": "06",
-   "statement": "The framework's definition of the substrate: a finite totality whose count bounds the label plane $\\Fp\\times\\Fp$ of an embedded observer, $\\p^{2}<\\Om$; the shell of capacity $\\kap$ as the observer's register, its meridian cycle of $4\\kap=\\p-1$ points read as the area.",
+   "statement": "The framework's definition of the substrate: the Carrier, a finite totality whose count bounds the coordinate plane $\\Fp\\times\\Fp$ of an embedded observer, $\\p^{2}<\\Om$; the shell of capacity $\\kap$ as the observer's register, its phase cycle of $4\\kap=\\p-1$ points read as the area.",
    "origin_row": "6:A8",
    "tag": "I",
    "tier": null,
@@ -7387,7 +7387,7 @@
   {
    "key": "p06008",
    "origin": "06",
-   "statement": "Shell data, capacity-first: $\\kap$ primary, $\\p=4\\kap+1$, the meridian cycle $\\Phit=\\Z_{4\\kap}$, the oriented quarter-turn $\\im=-\\gen^{\\kap}$ (clockwise phase convention), $\\pi=2\\kap$, $e=\\gen^{\\im}$; the meridians $M_s=\\{a\\gen^{s}:a\\in I_\\p\\}$; the six shells of Table~\\ref{tab:checks} with their roots and quarter-turns.",
+   "statement": "Shell data, capacity-first: $\\kap$ primary, $\\p=4\\kap+1$, the phase cycle $\\Phit=\\Z_{4\\kap}$, the oriented quarter-turn $\\im=-\\gen^{\\kap}$ (clockwise phase convention), $\\pi=2\\kap$, $e=\\gen^{\\im}$; the meridians $M_s=\\{a\\gen^{s}:a\\in I_\\p\\}$; the six shells of Table~\\ref{tab:checks} with their roots and quarter-turns.",
    "origin_row": "6:B1",
    "tag": "D",
    "tier": null,
@@ -7406,7 +7406,7 @@
   {
    "key": "p06009",
    "origin": "06",
-   "statement": "The Euler identity is a property of the chart class: $e^{\\im\\pi}=\\gen^{2\\kap(\\im\\bmod2)}\\equiv-1$ exactly when the quarter-turn residue is odd; the conjugate reframing $(\\gen,\\im)\\mapsto(\\gen^{-1},-\\im)$ toggles the parity, so one member of each conjugate pair carries it; on $\\F_{13}(\\chron;0,1,2)$, $\\im=5$ and $6^{6}=-1$. Every primitive frame of the six shells.",
+   "statement": "The Euler identity is a property of the chart class: $e^{\\im\\pi}=\\gen^{2\\kap(\\im\\bmod2)}\\equiv-1$ exactly when the quarter-turn residue is odd; the conjugate chart $(\\gen,\\im)\\mapsto(\\gen^{-1},-\\im)$ toggles the parity, so one member of each conjugate pair carries it; on $\\F_{13}(\\chron;0,1,2)$, $\\im=5$ and $6^{6}=-1$. Every primitive frame of the six shells.",
    "origin_row": "6:B2",
    "tag": "T",
    "tier": 0,
@@ -7843,7 +7843,7 @@
   {
    "key": "p06020",
    "origin": "06",
-   "statement": "The projectors are chart data: for $u$ odd and a unit mod $4\\kap$ the site relabelling $m\\mapsto um$ carries $\\Ft(\\gen)$ to $\\Ft(\\gen^{u^{2}})$ by a coordinate permutation, $\\Ft(\\gen^{u^{2}})_{kj}=\\Ft(\\gen)_{uk,uj}$; at $\\p=13$ the frames $\\gen=2$ and $\\gen=6$ give the trace tuples $(3,3,4,2)$ and $(4,2,3,3)$, with $\\operatorname{Tr}\\Ft=4,9$.",
+   "statement": "The projectors are chart data: for $u$ odd and a unit mod $4\\kap$ the index relabelling $m\\mapsto um$ carries $\\Ft(\\gen)$ to $\\Ft(\\gen^{u^{2}})$ by a coordinate permutation, $\\Ft(\\gen^{u^{2}})_{kj}=\\Ft(\\gen)_{uk,uj}$; at $\\p=13$ the frames $\\gen=2$ and $\\gen=6$ give the trace tuples $(3,3,4,2)$ and $(4,2,3,3)$, with $\\operatorname{Tr}\\Ft=4,9$.",
    "origin_row": "6:C6",
    "tag": "T",
    "tier": 0,
@@ -7986,7 +7986,7 @@
   {
    "key": "p06023",
    "origin": "06",
-   "statement": "The conjugate reframing $(\\gen,\\im)\\mapsto(\\gen^{-1},-\\im)$: exactly $\\Ft'=-\\Ft^{-1}$ and $\\Pi'_\\ell=\\Pi_{\\ell+2}$; the operator relations, cardinal values, additivity and faithfulness hold on the conjugate frame, and its trace tuple is the other pattern of C7.",
+   "statement": "The conjugate chart $(\\gen,\\im)\\mapsto(\\gen^{-1},-\\im)$: exactly $\\Ft'=-\\Ft^{-1}$ and $\\Pi'_\\ell=\\Pi_{\\ell+2}$; the operator relations, cardinal values, additivity and faithfulness hold on the conjugate frame, and its trace tuple is the other pattern of C7.",
    "origin_row": "6:C9",
    "tag": "T",
    "tier": 0,
@@ -8027,7 +8027,7 @@
   {
    "key": "p06052",
    "origin": "06",
-   "statement": "Charts outside the classified set: for $u$ a unit mod $4\\kap$, $\\Wt(\\gen^{u})=\\Wt P_u$ with $P_u$ the site relabelling $j\\mapsto uj$, so $\\Wt\\,\\Wt(\\gen^{u})=-JP_u$ and $\\Wt(\\gen^{u})\\,\\Wt=-JP_{u^{-1}}$, and the two differ at the entry $(-u,1)$ when $u^{2}\\not\\equiv1\\pmod{4\\kap}$: a family canonical in such a chart does not commute with $\\Ft$; $\\p=29$, $u=5$, and every such chart of the six shells of Table~\\ref{tab:checks} checked.",
+   "statement": "Charts outside the classified lifts: for $u$ a unit mod $4\\kap$, $\\Wt(\\gen^{u})=\\Wt P_u$ with $P_u$ the index relabelling $j\\mapsto uj$, so $\\Wt\\,\\Wt(\\gen^{u})=-JP_u$ and $\\Wt(\\gen^{u})\\,\\Wt=-JP_{u^{-1}}$, and the two differ at the entry $(-u,1)$ when $u^{2}\\not\\equiv1\\pmod{4\\kap}$: a family canonical in such a chart does not commute with $\\Ft$; $\\p=29$, $u=5$, and every such chart of the six shells of Table~\\ref{tab:checks} checked.",
    "origin_row": "6:C11",
    "tag": "T",
    "tier": 0,
@@ -8068,7 +8068,7 @@
   {
    "key": "p06024",
    "origin": "06",
-   "statement": "The meridional representation domain $D_s=(\\Vt,\\mathcal B_s)$, $\\mathcal B_s=\\Ft^{[s]}\\mathcal B_0$, every $\\Ft^{[s]}$ invertible with inverse $\\Ft^{[n-s]}$; the cardinal domains spatial, spectral, parity, inverse-spectral.",
+   "statement": "The meridional domain $D_s=(\\Vt,\\mathcal B_s)$, $\\mathcal B_s=\\Ft^{[s]}\\mathcal B_0$, every $\\Ft^{[s]}$ invertible with inverse $\\Ft^{[n-s]}$; the cardinal domains spatial, spectral, parity, inverse-spectral.",
    "origin_row": "6:D1",
    "tag": "D",
    "tier": 0,
@@ -8149,7 +8149,7 @@
   {
    "key": "p06026",
    "origin": "06",
-   "statement": "The meridian-step interval $I_\\p=\\{0,1,\\dots,\\pi\\}$, the meridian-scale map $S_r(x)=\\gen^{r}x$, and the local scale chart $\\gen\\mapsto\\lambda>1$ reading the effective step $\\gen^{m}$ as $\\lambda^{\\tilde m}$ [chart]: the forward shift a zoom-out and the inverse shift a zoom-in off the seam, the seam an aliasing return, the readings valid within the no-wrap window $w\\gen^{r}<\\p$.",
+   "statement": "The meridian-step interval $I_\\p=\\{0,1,\\dots,\\pi\\}$, the scale-shift $S_r(x)=\\gen^{r}x$, the dilation by $\\gen^{r}$, and the local scale chart $\\gen\\mapsto\\lambda>1$ reading the effective step $\\gen^{m}$ as $\\lambda^{\\tilde m}$ [chart]: the forward shift a zoom-out and the inverse shift a zoom-in, the return of the lift the scale-periodicity of A5, the readings valid while $w\\gen^{r}<\\p$.",
    "origin_row": "6:D3",
    "tag": "D",
    "tier": null,
@@ -8163,7 +8163,7 @@
   {
    "key": "p06027",
    "origin": "06",
-   "statement": "Meridian-scale covariance: $S_r(M_m)=M_{m+r}$ for every $(m,r)$, as ordered lists; consecutive entries of $M_m$ differ by the effective step $\\gen^{m}$; $S_{r+(\\p-1)}=S_r$, the periodicity of A5 in meridian form; at $\\p=13$, $\\gen=2$ the ladder $M_0,\\dots,M_3$ at the steps $1,2,4,8$ (Section~\\ref{sec:examples}).",
+   "statement": "Scale-shift covariance: $S_r(M_m)=M_{m+r}$ for all $m$ and $r$, as ordered lists; consecutive entries of $M_m$ differ by the effective step $\\gen^{m}$; $S_{r+(\\p-1)}=S_r$, the periodicity of A5 in meridian form; at $\\p=13$, $\\gen=2$ the ladder $M_0,\\dots,M_3$ at the steps $1,2,4,8$ (Section~\\ref{sec:examples}).",
    "origin_row": "6:D4",
    "tag": "T",
    "tier": 0,
@@ -8218,7 +8218,7 @@
   {
    "key": "p06053",
    "origin": "06",
-   "statement": "The cycle carries exactly $2\\kap$ unordered bases: every off-site entry of row $0$ of $\\Ft^{[t]}$ is $\\tfrac{\\im}{2}(1-\\gen^{-2t})$, nonzero for $t\\notin\\{0,2\\kap\\}$, so $\\Ft^{[t]}$ is not monomial and $B_{s+t}\\neq B_s$; the six shells of Table~\\ref{tab:checks}.",
+   "statement": "The cycle carries exactly $2\\kap$ unordered bases: every entry $(0,k)$, $k\\neq0$, of $\\Ft^{[t]}$ is $\\tfrac{\\im}{2}(1-\\gen^{-2t})$, nonzero for $t\\notin\\{0,2\\kap\\}$, so $\\Ft^{[t]}$ is not monomial and $B_{s+t}\\neq B_s$; the six shells of Table~\\ref{tab:checks}.",
    "origin_row": "6:D7",
    "tag": "T",
    "tier": 0,
@@ -8263,7 +8263,7 @@
   {
    "key": "p06031",
    "origin": "06",
-   "statement": "$R_s\\in SO(2,\\Fp)$, and $s\\mapsto R_s$ is an isomorphism $\\Phit\\simeq SO(2,\\Fp)$ with $|SO(2,\\Fp)|=\\p-1=4\\kap$: the full rotation group of the $\\p^{2}$-point plane is the meridian cycle.",
+   "statement": "$R_s\\in SO(2,\\Fp)$, and $s\\mapsto R_s$ is an isomorphism $\\Phit\\simeq SO(2,\\Fp)$ with $|SO(2,\\Fp)|=\\p-1=4\\kap$: the full rotation group of the $\\p^{2}$-point plane is the phase cycle.",
    "origin_row": "6:E2",
    "tag": "T",
    "tier": 0,
@@ -8502,7 +8502,7 @@
   {
    "key": "p06050",
    "origin": "06",
-   "statement": "Cardinal exclusivity: the conjugate $\\Ft^{[s]}\\sigma\\Ft^{[s]\\,-1}$ of \\eqref{eq:conj-expansion} is not monomial for every $s\\notin\\{0,\\kap,2\\kap,3\\kap\\}$ --- off $j\\in\\{-1,0,1\\}$ its row $0$ is $x^{-1}$ times a quadratic in $x=\\gen^{j}$ with leading coefficient $\\im\\,[c_0(s)+c_2(s)]\\,c_3(-s)\\neq0$, $c_0(s)+c_2(s)=\\tfrac12(1+\\gen^{-2s})$, so the row vanishes at no three distinct indices off the sites and, by counting, has at least $4\\kap-5$ nonzero entries; the count checked on every shell below $200$.",
+   "statement": "Cardinal exclusivity: the conjugate $\\Ft^{[s]}\\sigma\\Ft^{[s]\\,-1}$ of \\eqref{eq:conj-expansion} is not monomial for every $s\\notin\\{0,\\kap,2\\kap,3\\kap\\}$ --- off $j\\in\\{-1,0,1\\}$ its row $0$ is $x^{-1}$ times a quadratic in $x=\\gen^{j}$ with leading coefficient $\\im\\,[c_0(s)+c_2(s)]\\,c_3(-s)\\neq0$, $c_0(s)+c_2(s)=\\tfrac12(1+\\gen^{-2s})$, so the row vanishes at no three distinct indices off those three and, by counting, has at least $4\\kap-5$ nonzero entries; the count checked on every shell below $200$.",
    "origin_row": "6:E8",
    "tag": "T",
    "tier": 0,
@@ -32101,7 +32101,7 @@
    "block": "A",
    "tag": "I",
    "name": null,
-   "statement": "The framework's definition of the substrate: a finite totality whose count bounds the label plane $\\Fp\\times\\Fp$ of an embedded observer, $\\p^{2}<\\Om$; the shell of capacity $\\kap$ as the observer's register, its meridian cycle of $4\\kap=\\p-1$ points read as the area.",
+   "statement": "The framework's definition of the substrate: the Carrier, a finite totality whose count bounds the coordinate plane $\\Fp\\times\\Fp$ of an embedded observer, $\\p^{2}<\\Om$; the shell of capacity $\\kap$ as the observer's register, its phase cycle of $4\\kap=\\p-1$ points read as the area.",
    "source": "\\citep[\\S2]{Akhtman2026Dimensions}",
    "page": "6-fourier/index.html#A8",
    "witness": {
@@ -32111,7 +32111,7 @@
    "refs": [
     "p00153"
    ],
-   "text": "The framework's definition of the substrate: a finite totality whose count bounds the label plane $\\Fp\\times\\Fp$ of an embedded observer, $\\p^{2}<\\Om$; the shell of capacity $\\kap$ as the observer's register, its meridian cycle of $4\\kap=\\p-1$ points read as the area. \\citep[\\S2]{Akhtman2026Dimensions}"
+   "text": "The framework's definition of the substrate: the Carrier, a finite totality whose count bounds the coordinate plane $\\Fp\\times\\Fp$ of an embedded observer, $\\p^{2}<\\Om$; the shell of capacity $\\kap$ as the observer's register, its phase cycle of $4\\kap=\\p-1$ points read as the area. \\citep[\\S2]{Akhtman2026Dimensions}"
   },
   {
    "paper": "6-four",
@@ -32122,7 +32122,7 @@
    "block": "B",
    "tag": "D",
    "name": null,
-   "statement": "Shell data, capacity-first: $\\kap$ primary, $\\p=4\\kap+1$, the meridian cycle $\\Phit=\\Z_{4\\kap}$, the oriented quarter-turn $\\im=-\\gen^{\\kap}$ (clockwise phase convention), $\\pi=2\\kap$, $e=\\gen^{\\im}$; the meridians $M_s=\\{a\\gen^{s}:a\\in I_\\p\\}$; the six shells of Table~\\ref{tab:checks} with their roots and quarter-turns.",
+   "statement": "Shell data, capacity-first: $\\kap$ primary, $\\p=4\\kap+1$, the phase cycle $\\Phit=\\Z_{4\\kap}$, the oriented quarter-turn $\\im=-\\gen^{\\kap}$ (clockwise phase convention), $\\pi=2\\kap$, $e=\\gen^{\\im}$; the meridians $M_s=\\{a\\gen^{s}:a\\in I_\\p\\}$; the six shells of Table~\\ref{tab:checks} with their roots and quarter-turns.",
    "source": "\\S\\ref{sec:shell-data}, \\eqref{eq:it-def}, \\eqref{eq:meridian-def}, Def.~\\ref{def:cardinal}\\newline \\pywit{fourier}{p06008}{B1}",
    "page": "6-fourier/index.html#B1",
    "witness": {
@@ -32135,7 +32135,7 @@
     "lean": []
    },
    "refs": [],
-   "text": "Shell data, capacity-first: $\\kap$ primary, $\\p=4\\kap+1$, the meridian cycle $\\Phit=\\Z_{4\\kap}$, the oriented quarter-turn $\\im=-\\gen^{\\kap}$ (clockwise phase convention), $\\pi=2\\kap$, $e=\\gen^{\\im}$; the meridians $M_s=\\{a\\gen^{s}:a\\in I_\\p\\}$; the six shells of Table tab:checks with their roots and quarter-turns. \\Ssec:shell-data, eq:it-def, eq:meridian-def, Def. def:cardinal p06008"
+   "text": "Shell data, capacity-first: $\\kap$ primary, $\\p=4\\kap+1$, the phase cycle $\\Phit=\\Z_{4\\kap}$, the oriented quarter-turn $\\im=-\\gen^{\\kap}$ (clockwise phase convention), $\\pi=2\\kap$, $e=\\gen^{\\im}$; the meridians $M_s=\\{a\\gen^{s}:a\\in I_\\p\\}$; the six shells of Table tab:checks with their roots and quarter-turns. \\Ssec:shell-data, eq:it-def, eq:meridian-def, Def. def:cardinal p06008"
   },
   {
    "paper": "6-four",
@@ -32146,7 +32146,7 @@
    "block": "B",
    "tag": "T",
    "name": null,
-   "statement": "The Euler identity is a property of the chart class: $e^{\\im\\pi}=\\gen^{2\\kap(\\im\\bmod2)}\\equiv-1$ exactly when the quarter-turn residue is odd; the conjugate reframing $(\\gen,\\im)\\mapsto(\\gen^{-1},-\\im)$ toggles the parity, so one member of each conjugate pair carries it; on $\\F_{13}(\\chron;0,1,2)$, $\\im=5$ and $6^{6}=-1$. Every primitive frame of the six shells.",
+   "statement": "The Euler identity is a property of the chart class: $e^{\\im\\pi}=\\gen^{2\\kap(\\im\\bmod2)}\\equiv-1$ exactly when the quarter-turn residue is odd; the conjugate chart $(\\gen,\\im)\\mapsto(\\gen^{-1},-\\im)$ toggles the parity, so one member of each conjugate pair carries it; on $\\F_{13}(\\chron;0,1,2)$, $\\im=5$ and $6^{6}=-1$. Every primitive frame of the six shells.",
    "source": "Rem.~\\ref{rem:euler}\\newline \\pywit{fourier}{p06009}{B2}, \\leanwit{FrcCore}{p06009}{B2} \\lean{FRC.Shell.Frame.euler\\_identity}",
    "page": "6-fourier/index.html#B2",
    "witness": {
@@ -32170,7 +32170,7 @@
    "refs": [
     "p00034"
    ],
-   "text": "The Euler identity is a property of the chart class: $e^{\\im\\pi}=\\gen^{2\\kap(\\im\\bmod2)}\\equiv-1$ exactly when the quarter-turn residue is odd; the conjugate reframing $(\\gen,\\im)\\mapsto(\\gen^{-1},-\\im)$ toggles the parity, so one member of each conjugate pair carries it; on $\\F_{13}(\\chron;0,1,2)$, $\\im=5$ and $6^{6}=-1$. Every primitive frame of the six shells. Rem. rem:euler p06009, FrcCore{B2} FRC.Shell.Frame.euler_identity"
+   "text": "The Euler identity is a property of the chart class: $e^{\\im\\pi}=\\gen^{2\\kap(\\im\\bmod2)}\\equiv-1$ exactly when the quarter-turn residue is odd; the conjugate chart $(\\gen,\\im)\\mapsto(\\gen^{-1},-\\im)$ toggles the parity, so one member of each conjugate pair carries it; on $\\F_{13}(\\chron;0,1,2)$, $\\im=5$ and $6^{6}=-1$. Every primitive frame of the six shells. Rem. rem:euler p06009, FrcCore{B2} FRC.Shell.Frame.euler_identity"
   },
   {
    "paper": "6-four",
@@ -32771,7 +32771,7 @@
    "block": "C",
    "tag": "T",
    "name": null,
-   "statement": "The projectors are chart data: for $u$ odd and a unit mod $4\\kap$ the site relabelling $m\\mapsto um$ carries $\\Ft(\\gen)$ to $\\Ft(\\gen^{u^{2}})$ by a coordinate permutation, $\\Ft(\\gen^{u^{2}})_{kj}=\\Ft(\\gen)_{uk,uj}$; at $\\p=13$ the frames $\\gen=2$ and $\\gen=6$ give the trace tuples $(3,3,4,2)$ and $(4,2,3,3)$, with $\\operatorname{Tr}\\Ft=4,9$.",
+   "statement": "The projectors are chart data: for $u$ odd and a unit mod $4\\kap$ the index relabelling $m\\mapsto um$ carries $\\Ft(\\gen)$ to $\\Ft(\\gen^{u^{2}})$ by a coordinate permutation, $\\Ft(\\gen^{u^{2}})_{kj}=\\Ft(\\gen)_{uk,uj}$; at $\\p=13$ the frames $\\gen=2$ and $\\gen=6$ give the trace tuples $(3,3,4,2)$ and $(4,2,3,3)$, with $\\operatorname{Tr}\\Ft=4,9$.",
    "source": "Rem.~\\ref{rem:multiplicities}\\newline \\pywit{fourier}{p06020}{C6}, \\leanwit{FrcCore}{p06020}{C6} \\lean{FRC.Shell.Frame.Fmat\\_chart, FRC.Shell.Frame.thirteen\\_tuples}",
    "page": "6-fourier/index.html#C6",
    "witness": {
@@ -32801,7 +32801,7 @@
     ]
    },
    "refs": [],
-   "text": "The projectors are chart data: for $u$ odd and a unit mod $4\\kap$ the site relabelling $m\\mapsto um$ carries $\\Ft(\\gen)$ to $\\Ft(\\gen^{u^{2}})$ by a coordinate permutation, $\\Ft(\\gen^{u^{2}})_{kj}=\\Ft(\\gen)_{uk,uj}$; at $\\p=13$ the frames $\\gen=2$ and $\\gen=6$ give the trace tuples $(3,3,4,2)$ and $(4,2,3,3)$, with $\\operatorname{Tr}\\Ft=4,9$. Rem. rem:multiplicities p06020, FrcCore{C6} FRC.Shell.Frame.Fmat_chart, FRC.Shell.Frame.thirteen_tuples"
+   "text": "The projectors are chart data: for $u$ odd and a unit mod $4\\kap$ the index relabelling $m\\mapsto um$ carries $\\Ft(\\gen)$ to $\\Ft(\\gen^{u^{2}})$ by a coordinate permutation, $\\Ft(\\gen^{u^{2}})_{kj}=\\Ft(\\gen)_{uk,uj}$; at $\\p=13$ the frames $\\gen=2$ and $\\gen=6$ give the trace tuples $(3,3,4,2)$ and $(4,2,3,3)$, with $\\operatorname{Tr}\\Ft=4,9$. Rem. rem:multiplicities p06020, FrcCore{C6} FRC.Shell.Frame.Fmat_chart, FRC.Shell.Frame.thirteen_tuples"
   },
   {
    "paper": "6-four",
@@ -32976,7 +32976,7 @@
    "block": "C",
    "tag": "T",
    "name": null,
-   "statement": "The conjugate reframing $(\\gen,\\im)\\mapsto(\\gen^{-1},-\\im)$: exactly $\\Ft'=-\\Ft^{-1}$ and $\\Pi'_\\ell=\\Pi_{\\ell+2}$; the operator relations, cardinal values, additivity and faithfulness hold on the conjugate frame, and its trace tuple is the other pattern of C7.",
+   "statement": "The conjugate chart $(\\gen,\\im)\\mapsto(\\gen^{-1},-\\im)$: exactly $\\Ft'=-\\Ft^{-1}$ and $\\Pi'_\\ell=\\Pi_{\\ell+2}$; the operator relations, cardinal values, additivity and faithfulness hold on the conjugate frame, and its trace tuple is the other pattern of C7.",
    "source": "Rem.~\\ref{rem:gt-covariance}, Thm.~\\ref{thm:multiplicity}\\newline \\pywit{fourier}{p06023}{C9}, \\leanwit{FrcCore}{p06023}{C9}, \\leanwit{FrcLedger}{p06023}{C9} \\lean{Fourier.shell\\_conj, FRC.Shell.Frame.inv\\_frame, FRC.Shell.Frame.Fmat\\_conj, FRC.Shell.Frame.proj\\_conj}",
    "page": "6-fourier/index.html#C9",
    "witness": {
@@ -33025,7 +33025,7 @@
     "p00189",
     "p06021"
    ],
-   "text": "The conjugate reframing $(\\gen,\\im)\\mapsto(\\gen^{-1},-\\im)$: exactly $\\Ft'=-\\Ft^{-1}$ and $\\Pi'_\\ell=\\Pi_{\\ell+2}$; the operator relations, cardinal values, additivity and faithfulness hold on the conjugate frame, and its trace tuple is the other pattern of C7. Rem. rem:gt-covariance, Thm. thm:multiplicity p06023, FrcCore{C9}, FrcLedger{C9} Fourier.shell_conj, FRC.Shell.Frame.inv_frame, FRC.Shell.Frame.Fmat_conj, FRC.Shell.Frame.proj_conj"
+   "text": "The conjugate chart $(\\gen,\\im)\\mapsto(\\gen^{-1},-\\im)$: exactly $\\Ft'=-\\Ft^{-1}$ and $\\Pi'_\\ell=\\Pi_{\\ell+2}$; the operator relations, cardinal values, additivity and faithfulness hold on the conjugate frame, and its trace tuple is the other pattern of C7. Rem. rem:gt-covariance, Thm. thm:multiplicity p06023, FrcCore{C9}, FrcLedger{C9} Fourier.shell_conj, FRC.Shell.Frame.inv_frame, FRC.Shell.Frame.Fmat_conj, FRC.Shell.Frame.proj_conj"
   },
   {
    "paper": "6-four",
@@ -33036,7 +33036,7 @@
    "block": "C",
    "tag": "T",
    "name": null,
-   "statement": "Charts outside the classified set: for $u$ a unit mod $4\\kap$, $\\Wt(\\gen^{u})=\\Wt P_u$ with $P_u$ the site relabelling $j\\mapsto uj$, so $\\Wt\\,\\Wt(\\gen^{u})=-JP_u$ and $\\Wt(\\gen^{u})\\,\\Wt=-JP_{u^{-1}}$, and the two differ at the entry $(-u,1)$ when $u^{2}\\not\\equiv1\\pmod{4\\kap}$: a family canonical in such a chart does not commute with $\\Ft$; $\\p=29$, $u=5$, and every such chart of the six shells of Table~\\ref{tab:checks} checked.",
+   "statement": "Charts outside the classified lifts: for $u$ a unit mod $4\\kap$, $\\Wt(\\gen^{u})=\\Wt P_u$ with $P_u$ the index relabelling $j\\mapsto uj$, so $\\Wt\\,\\Wt(\\gen^{u})=-JP_u$ and $\\Wt(\\gen^{u})\\,\\Wt=-JP_{u^{-1}}$, and the two differ at the entry $(-u,1)$ when $u^{2}\\not\\equiv1\\pmod{4\\kap}$: a family canonical in such a chart does not commute with $\\Ft$; $\\p=29$, $u=5$, and every such chart of the six shells of Table~\\ref{tab:checks} checked.",
    "source": "Rem.~\\ref{rem:classification}\\newline \\pywit{fourier}{p06052}{C11}, \\leanwit{FrcCore}{p06052}{C11} \\lean{FRC.Shell.Frame.W\\_chart, FRC.Shell.Frame.W\\_mul\\_chart, FRC.Shell.Frame.chart\\_mul\\_W, FRC.Shell.Frame.chart\\_noncommute}",
    "page": "6-fourier/index.html#C11",
    "witness": {
@@ -33082,7 +33082,7 @@
     ]
    },
    "refs": [],
-   "text": "Charts outside the classified set: for $u$ a unit mod $4\\kap$, $\\Wt(\\gen^{u})=\\Wt P_u$ with $P_u$ the site relabelling $j\\mapsto uj$, so $\\Wt \\Wt(\\gen^{u})=-JP_u$ and $\\Wt(\\gen^{u}) \\Wt=-JP_{u^{-1}}$, and the two differ at the entry $(-u,1)$ when $u^{2}\\not\\equiv1\\pmod{4\\kap}$: a family canonical in such a chart does not commute with $\\Ft$; $\\p=29$, $u=5$, and every such chart of the six shells of Table tab:checks checked. Rem. rem:classification p06052, FrcCore{C11} FRC.Shell.Frame.W_chart, FRC.Shell.Frame.W_mul_chart, FRC.Shell.Frame.chart_mul_W, FRC.Shell.Frame.chart_noncommute"
+   "text": "Charts outside the classified lifts: for $u$ a unit mod $4\\kap$, $\\Wt(\\gen^{u})=\\Wt P_u$ with $P_u$ the index relabelling $j\\mapsto uj$, so $\\Wt \\Wt(\\gen^{u})=-JP_u$ and $\\Wt(\\gen^{u}) \\Wt=-JP_{u^{-1}}$, and the two differ at the entry $(-u,1)$ when $u^{2}\\not\\equiv1\\pmod{4\\kap}$: a family canonical in such a chart does not commute with $\\Ft$; $\\p=29$, $u=5$, and every such chart of the six shells of Table tab:checks checked. Rem. rem:classification p06052, FrcCore{C11} FRC.Shell.Frame.W_chart, FRC.Shell.Frame.W_mul_chart, FRC.Shell.Frame.chart_mul_W, FRC.Shell.Frame.chart_noncommute"
   },
   {
    "paper": "6-four",
@@ -33093,7 +33093,7 @@
    "block": "D",
    "tag": "D",
    "name": null,
-   "statement": "The meridional representation domain $D_s=(\\Vt,\\mathcal B_s)$, $\\mathcal B_s=\\Ft^{[s]}\\mathcal B_0$, every $\\Ft^{[s]}$ invertible with inverse $\\Ft^{[n-s]}$; the cardinal domains spatial, spectral, parity, inverse-spectral.",
+   "statement": "The meridional domain $D_s=(\\Vt,\\mathcal B_s)$, $\\mathcal B_s=\\Ft^{[s]}\\mathcal B_0$, every $\\Ft^{[s]}$ invertible with inverse $\\Ft^{[n-s]}$; the cardinal domains spatial, spectral, parity, inverse-spectral.",
    "source": "Def.~\\ref{def:domain}\\newline \\pywit{fourier}{p06024}{D1}, \\leanwit{FrcCore}{p06024}{D1} \\lean{FRC.Shell.Frame.frft\\_inverse}",
    "page": "6-fourier/index.html#D1",
    "witness": {
@@ -33115,7 +33115,7 @@
     ]
    },
    "refs": [],
-   "text": "The meridional representation domain $D_s=(\\Vt,\\mathcal B_s)$, $\\mathcal B_s=\\Ft^{[s]}\\mathcal B_0$, every $\\Ft^{[s]}$ invertible with inverse $\\Ft^{[n-s]}$; the cardinal domains spatial, spectral, parity, inverse-spectral. Def. def:domain p06024, FrcCore{D1} FRC.Shell.Frame.frft_inverse"
+   "text": "The meridional domain $D_s=(\\Vt,\\mathcal B_s)$, $\\mathcal B_s=\\Ft^{[s]}\\mathcal B_0$, every $\\Ft^{[s]}$ invertible with inverse $\\Ft^{[n-s]}$; the cardinal domains spatial, spectral, parity, inverse-spectral. Def. def:domain p06024, FrcCore{D1} FRC.Shell.Frame.frft_inverse"
   },
   {
    "paper": "6-four",
@@ -33207,15 +33207,17 @@
    "block": "D",
    "tag": "D",
    "name": null,
-   "statement": "The meridian-step interval $I_\\p=\\{0,1,\\dots,\\pi\\}$, the meridian-scale map $S_r(x)=\\gen^{r}x$, and the local scale chart $\\gen\\mapsto\\lambda>1$ reading the effective step $\\gen^{m}$ as $\\lambda^{\\tilde m}$ [chart]: the forward shift a zoom-out and the inverse shift a zoom-in off the seam, the seam an aliasing return, the readings valid within the no-wrap window $w\\gen^{r}<\\p$.",
+   "statement": "The meridian-step interval $I_\\p=\\{0,1,\\dots,\\pi\\}$, the scale-shift $S_r(x)=\\gen^{r}x$, the dilation by $\\gen^{r}$, and the local scale chart $\\gen\\mapsto\\lambda>1$ reading the effective step $\\gen^{m}$ as $\\lambda^{\\tilde m}$ [chart]: the forward shift a zoom-out and the inverse shift a zoom-in, the return of the lift the scale-periodicity of A5, the readings valid while $w\\gen^{r}<\\p$.",
    "source": "\\eqref{eq:Ip-zoom}, Def.~\\ref{def:scale-map}, Def.~\\ref{def:scale-chart}",
    "page": "6-fourier/index.html#D3",
    "witness": {
     "py": null,
     "lean": []
    },
-   "refs": [],
-   "text": "The meridian-step interval $I_\\p=\\{0,1,\\dots,\\pi\\}$, the meridian-scale map $S_r(x)=\\gen^{r}x$, and the local scale chart $\\gen\\mapsto\\lambda>1$ reading the effective step $\\gen^{m}$ as $\\lambda^{\\tilde m}$ [chart]: the forward shift a zoom-out and the inverse shift a zoom-in off the seam, the seam an aliasing return, the readings valid within the no-wrap window $w\\gen^{r}<\\p$. eq:Ip-zoom, Def. def:scale-map, Def. def:scale-chart"
+   "refs": [
+    "p06005"
+   ],
+   "text": "The meridian-step interval $I_\\p=\\{0,1,\\dots,\\pi\\}$, the scale-shift $S_r(x)=\\gen^{r}x$, the dilation by $\\gen^{r}$, and the local scale chart $\\gen\\mapsto\\lambda>1$ reading the effective step $\\gen^{m}$ as $\\lambda^{\\tilde m}$ [chart]: the forward shift a zoom-out and the inverse shift a zoom-in, the return of the lift the scale-periodicity of A5, the readings valid while $w\\gen^{r}<\\p$. eq:Ip-zoom, Def. def:scale-map, Def. def:scale-chart"
   },
   {
    "paper": "6-four",
@@ -33226,7 +33228,7 @@
    "block": "D",
    "tag": "T",
    "name": null,
-   "statement": "Meridian-scale covariance: $S_r(M_m)=M_{m+r}$ for every $(m,r)$, as ordered lists; consecutive entries of $M_m$ differ by the effective step $\\gen^{m}$; $S_{r+(\\p-1)}=S_r$, the periodicity of A5 in meridian form; at $\\p=13$, $\\gen=2$ the ladder $M_0,\\dots,M_3$ at the steps $1,2,4,8$ (Section~\\ref{sec:examples}).",
+   "statement": "Scale-shift covariance: $S_r(M_m)=M_{m+r}$ for all $m$ and $r$, as ordered lists; consecutive entries of $M_m$ differ by the effective step $\\gen^{m}$; $S_{r+(\\p-1)}=S_r$, the periodicity of A5 in meridian form; at $\\p=13$, $\\gen=2$ the ladder $M_0,\\dots,M_3$ at the steps $1,2,4,8$ (Section~\\ref{sec:examples}).",
    "source": "Prop.~\\ref{prop:meridian-scale}, Cor.~\\ref{cor:effective-step}\\newline \\pywit{fourier}{p06027}{D4}, \\leanwit{FrcCore}{p06027}{D4} \\lean{FRC.Shell.meridian\\_scale, FRC.Shell.meridian\\_step, FRC.Shell.scale\\_periodic, FRC.Shell.ladder13}",
    "page": "6-fourier/index.html#D4",
    "witness": {
@@ -33275,7 +33277,7 @@
     "p00022",
     "p06005"
    ],
-   "text": "Meridian-scale covariance: $S_r(M_m)=M_{m+r}$ for every $(m,r)$, as ordered lists; consecutive entries of $M_m$ differ by the effective step $\\gen^{m}$; $S_{r+(\\p-1)}=S_r$, the periodicity of A5 in meridian form; at $\\p=13$, $\\gen=2$ the ladder $M_0,\\dots,M_3$ at the steps $1,2,4,8$ (Section sec:examples). Prop. prop:meridian-scale, Cor. cor:effective-step p06027, FrcCore{D4} FRC.Shell.meridian_scale, FRC.Shell.meridian_step, FRC.Shell.scale_periodic, FRC.Shell.ladder13"
+   "text": "Scale-shift covariance: $S_r(M_m)=M_{m+r}$ for all $m$ and $r$, as ordered lists; consecutive entries of $M_m$ differ by the effective step $\\gen^{m}$; $S_{r+(\\p-1)}=S_r$, the periodicity of A5 in meridian form; at $\\p=13$, $\\gen=2$ the ladder $M_0,\\dots,M_3$ at the steps $1,2,4,8$ (Section sec:examples). Prop. prop:meridian-scale, Cor. cor:effective-step p06027, FrcCore{D4} FRC.Shell.meridian_scale, FRC.Shell.meridian_step, FRC.Shell.scale_periodic, FRC.Shell.ladder13"
   },
   {
    "paper": "6-four",
@@ -33308,7 +33310,7 @@
    "block": "D",
    "tag": "T",
    "name": null,
-   "statement": "The cycle carries exactly $2\\kap$ unordered bases: every off-site entry of row $0$ of $\\Ft^{[t]}$ is $\\tfrac{\\im}{2}(1-\\gen^{-2t})$, nonzero for $t\\notin\\{0,2\\kap\\}$, so $\\Ft^{[t]}$ is not monomial and $B_{s+t}\\neq B_s$; the six shells of Table~\\ref{tab:checks}.",
+   "statement": "The cycle carries exactly $2\\kap$ unordered bases: every entry $(0,k)$, $k\\neq0$, of $\\Ft^{[t]}$ is $\\tfrac{\\im}{2}(1-\\gen^{-2t})$, nonzero for $t\\notin\\{0,2\\kap\\}$, so $\\Ft^{[t]}$ is not monomial and $B_{s+t}\\neq B_s$; the six shells of Table~\\ref{tab:checks}.",
    "source": "Rem.~\\ref{rem:ordered-bases}\\newline \\pywit{fourier}{p06053}{D7}, \\leanwit{FrcCore}{p06053}{D7} \\lean{FRC.Shell.Frame.frft\\_row\\_zero, FRC.Shell.Frame.frft\\_row\\_zero\\_ne\\_zero}",
    "page": "6-fourier/index.html#D7",
    "witness": {
@@ -33338,7 +33340,7 @@
     ]
    },
    "refs": [],
-   "text": "The cycle carries exactly $2\\kap$ unordered bases: every off-site entry of row $0$ of $\\Ft^{[t]}$ is $\\tfrac{\\im}{2}(1-\\gen^{-2t})$, nonzero for $t\\notin\\{0,2\\kap\\}$, so $\\Ft^{[t]}$ is not monomial and $B_{s+t}\\neq B_s$; the six shells of Table tab:checks. Rem. rem:ordered-bases p06053, FrcCore{D7} FRC.Shell.Frame.frft_row_zero, FRC.Shell.Frame.frft_row_zero_ne_zero"
+   "text": "The cycle carries exactly $2\\kap$ unordered bases: every entry $(0,k)$, $k\\neq0$, of $\\Ft^{[t]}$ is $\\tfrac{\\im}{2}(1-\\gen^{-2t})$, nonzero for $t\\notin\\{0,2\\kap\\}$, so $\\Ft^{[t]}$ is not monomial and $B_{s+t}\\neq B_s$; the six shells of Table tab:checks. Rem. rem:ordered-bases p06053, FrcCore{D7} FRC.Shell.Frame.frft_row_zero, FRC.Shell.Frame.frft_row_zero_ne_zero"
   },
   {
    "paper": "6-four",
@@ -33368,7 +33370,7 @@
    "block": "E",
    "tag": "T",
    "name": null,
-   "statement": "$R_s\\in SO(2,\\Fp)$, and $s\\mapsto R_s$ is an isomorphism $\\Phit\\simeq SO(2,\\Fp)$ with $|SO(2,\\Fp)|=\\p-1=4\\kap$: the full rotation group of the $\\p^{2}$-point plane is the meridian cycle.",
+   "statement": "$R_s\\in SO(2,\\Fp)$, and $s\\mapsto R_s$ is an isomorphism $\\Phit\\simeq SO(2,\\Fp)$ with $|SO(2,\\Fp)|=\\p-1=4\\kap$: the full rotation group of the $\\p^{2}$-point plane is the phase cycle.",
    "source": "Prop.~\\ref{prop:rotation-isom}\\newline \\pywit{fourier}{p06031}{E2}, \\leanwit{FrcCore}{p06031}{E2}, \\leanwit{FrcLedger}{p06031}{E2} \\lean{Fourier.circle, Fourier.rot\\_mul, Fourier.unitsEquivCircle, Fourier.card\\_circle, FRC.Shell.Frame.rot\\_circle, FRC.Shell.Frame.rot\\_hom, FRC.Shell.Frame.rot\\_inj, FRC.Shell.Frame.rot\\_surj, FRC.Shell.Frame.six\\_circles}",
    "page": "6-fourier/index.html#E2",
    "witness": {
@@ -33454,7 +33456,7 @@
     ]
    },
    "refs": [],
-   "text": "$R_s\\in SO(2,\\Fp)$, and $s\\mapsto R_s$ is an isomorphism $\\Phit\\simeq SO(2,\\Fp)$ with $|SO(2,\\Fp)|=\\p-1=4\\kap$: the full rotation group of the $\\p^{2}$-point plane is the meridian cycle. Prop. prop:rotation-isom p06031, FrcCore{E2}, FrcLedger{E2} Fourier.circle, Fourier.rot_mul, Fourier.unitsEquivCircle, Fourier.card_circle, FRC.Shell.Frame.rot_circle, FRC.Shell.Frame.rot_hom, FRC.Shell.Frame.rot_inj, FRC.Shell.Frame.rot_surj, FRC.Shell.Frame.six_circles"
+   "text": "$R_s\\in SO(2,\\Fp)$, and $s\\mapsto R_s$ is an isomorphism $\\Phit\\simeq SO(2,\\Fp)$ with $|SO(2,\\Fp)|=\\p-1=4\\kap$: the full rotation group of the $\\p^{2}$-point plane is the phase cycle. Prop. prop:rotation-isom p06031, FrcCore{E2}, FrcLedger{E2} Fourier.circle, Fourier.rot_mul, Fourier.unitsEquivCircle, Fourier.card_circle, FRC.Shell.Frame.rot_circle, FRC.Shell.Frame.rot_hom, FRC.Shell.Frame.rot_inj, FRC.Shell.Frame.rot_surj, FRC.Shell.Frame.six_circles"
   },
   {
    "paper": "6-four",
@@ -33708,7 +33710,7 @@
    "block": "E",
    "tag": "T",
    "name": null,
-   "statement": "Cardinal exclusivity: the conjugate $\\Ft^{[s]}\\sigma\\Ft^{[s]\\,-1}$ of \\eqref{eq:conj-expansion} is not monomial for every $s\\notin\\{0,\\kap,2\\kap,3\\kap\\}$ --- off $j\\in\\{-1,0,1\\}$ its row $0$ is $x^{-1}$ times a quadratic in $x=\\gen^{j}$ with leading coefficient $\\im\\,[c_0(s)+c_2(s)]\\,c_3(-s)\\neq0$, $c_0(s)+c_2(s)=\\tfrac12(1+\\gen^{-2s})$, so the row vanishes at no three distinct indices off the sites and, by counting, has at least $4\\kap-5$ nonzero entries; the count checked on every shell below $200$.",
+   "statement": "Cardinal exclusivity: the conjugate $\\Ft^{[s]}\\sigma\\Ft^{[s]\\,-1}$ of \\eqref{eq:conj-expansion} is not monomial for every $s\\notin\\{0,\\kap,2\\kap,3\\kap\\}$ --- off $j\\in\\{-1,0,1\\}$ its row $0$ is $x^{-1}$ times a quadratic in $x=\\gen^{j}$ with leading coefficient $\\im\\,[c_0(s)+c_2(s)]\\,c_3(-s)\\neq0$, $c_0(s)+c_2(s)=\\tfrac12(1+\\gen^{-2s})$, so the row vanishes at no three distinct indices off those three and, by counting, has at least $4\\kap-5$ nonzero entries; the count checked on every shell below $200$.",
    "source": "Thm.~\\ref{thm:monomial}\\newline \\pywit{fourier}{p06050}{E8}, \\leanwit{FrcCore}{p06050}{E8} \\lean{FRC.Shell.Frame.row\\_entry, FRC.Shell.Frame.even\\_coeff\\_id, FRC.Shell.Frame.even\\_coeff\\_ne\\_zero, FRC.Shell.Frame.odd\\_coeff\\_ne\\_zero, FRC.Shell.Frame.exclusivity}",
    "page": "6-fourier/index.html#E8",
    "witness": {
@@ -33762,7 +33764,7 @@
     ]
    },
    "refs": [],
-   "text": "Cardinal exclusivity: the conjugate $\\Ft^{[s]}\\sigma\\Ft^{[s] -1}$ of eq:conj-expansion is not monomial for every $s\\notin\\{0,\\kap,2\\kap,3\\kap\\}$ — off $j\\in\\{-1,0,1\\}$ its row $0$ is $x^{-1}$ times a quadratic in $x=\\gen^{j}$ with leading coefficient $\\im [c_0(s)+c_2(s)] c_3(-s)\\neq0$, $c_0(s)+c_2(s)=\\tfrac12(1+\\gen^{-2s})$, so the row vanishes at no three distinct indices off the sites and, by counting, has at least $4\\kap-5$ nonzero entries; the count checked on every shell below $200$. Thm. thm:monomial p06050, FrcCore{E8} FRC.Shell.Frame.row_entry, FRC.Shell.Frame.even_coeff_id, FRC.Shell.Frame.even_coeff_ne_zero, FRC.Shell.Frame.odd_coeff_ne_zero, FRC.Shell.Frame.exclusivity"
+   "text": "Cardinal exclusivity: the conjugate $\\Ft^{[s]}\\sigma\\Ft^{[s] -1}$ of eq:conj-expansion is not monomial for every $s\\notin\\{0,\\kap,2\\kap,3\\kap\\}$ — off $j\\in\\{-1,0,1\\}$ its row $0$ is $x^{-1}$ times a quadratic in $x=\\gen^{j}$ with leading coefficient $\\im [c_0(s)+c_2(s)] c_3(-s)\\neq0$, $c_0(s)+c_2(s)=\\tfrac12(1+\\gen^{-2s})$, so the row vanishes at no three distinct indices off those three and, by counting, has at least $4\\kap-5$ nonzero entries; the count checked on every shell below $200$. Thm. thm:monomial p06050, FrcCore{E8} FRC.Shell.Frame.row_entry, FRC.Shell.Frame.even_coeff_id, FRC.Shell.Frame.even_coeff_ne_zero, FRC.Shell.Frame.odd_coeff_ne_zero, FRC.Shell.Frame.exclusivity"
   },
   {
    "paper": "6-four",

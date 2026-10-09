@@ -1,7 +1,7 @@
 import FrcCore.Theme.Fractional
 
 /-!
-# FrcCore.Theme.Rotations — the meridian cycle as the rotation group of the label plane (the fourier theme)
+# FrcCore.Theme.Rotations — the phase cycle as the rotation group of the coordinate plane (the fourier theme)
 
 The fifth file of the fourier theme (6-fourier's blueprint of 8 October 2026, task T06). With `z_s = g^{−s} = z^s`,
 `c_s = (z_s + z_s⁻¹)/2` and `d_s = (z_s − z_s⁻¹)/(2i)`, the rotation `R_s = [[c_s, −d_s], [d_s, c_s]]` has

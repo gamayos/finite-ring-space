@@ -6,7 +6,7 @@ import FrcCore.Theme.Fractional
 The third file of the fourier theme (6-fourier's blueprint of 8 October 2026, task T04). The exponent lifts
 `U^{(a)}_s = Σ_ℓ z^{a_ℓ s} Π_ℓ` of the fractional family are additive for every choice of exponents, by the projector
 algebra of `Theme/Fractional.lean`, and have the family's cardinal skeleton when `a_ℓ ≡ ℓ (mod 4)` (6:C8). The chart
-`g^u` has the Fourier matrix `W(g^u) = W P_u` (the site relabelling `j ↦ uj`), `W · W(g^u) = −J P_u` and
+`g^u` has the Fourier matrix `W(g^u) = W P_u` (the index relabelling `j ↦ uj`), `W · W(g^u) = −J P_u` and
 `W(g^u) · W = −J P_{u⁻¹}` by the geometric sum, so the two do not commute when `u² ≢ 1 (mod 4κ)` (6:C11); the chart
 `g^{u²}` of an odd `u` is the coordinate relabelling `m ↦ um` of `F` (6:C6), and the frames `g = 2, 6` of `p = 13`
 carry the two multiplicity tuples, read as traces by the kernel. The normalization: the square roots of `−1 = 1/n`
