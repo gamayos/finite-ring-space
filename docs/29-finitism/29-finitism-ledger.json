@@ -1,0 +1,724 @@
+{
+ "paper": "29-fin",
+ "tree": "29-finitism-20260708",
+ "title": "The Undeclared Posit of Potential Infinity",
+ "doi": "https://doi.org/10.20944/preprints202607.0670.v1",
+ "generated": "9 October 2026",
+ "blocks": [
+  {
+   "letter": "A",
+   "title": "Inputs",
+   "rows": [
+    {
+     "label": "A1",
+     "predicate": "The literature as stated: Robinson's $Q$ and its models; the rule form of the license; Dedekind's categoricity and the non-arithmetical second-order truth, cited as the classical position's own theorems; the potentialist semantics; truthmakers.",
+     "tag": "I",
+     "source": "\\cite{TarskiMostowskiRobinson1953,Hilbert1926,Tait1981,Shapiro1991,Linnebo2013,LinneboShapiro2019,Armstrong2004,Fine1994,Vetter2015}",
+     "key": "p29001"
+    },
+    {
+     "label": "A2",
+     "predicate": "The corpus: the bounded agent and its record count (5:C1, 5:C2); bounded stability (5:B6); the finite frame's complete decidable theory (5:B5, 00:Z1); the finite direction of determinacy (5:D8); no finite model of $Q$ (25:C1); the reading of a part (25:D1, 00:A4); counting closes by return (00:A6).",
+     "tag": "I",
+     "source": "\\cite{akhtman2026paradoxes}",
+     "key": "p29002"
+    }
+   ]
+  },
+  {
+   "letter": "B",
+   "title": "The audit and the license",
+   "rows": [
+    {
+     "label": "B1",
+     "predicate": "A formation act of bounded arity yields a new object distinct from its inputs; the paradigms $x\\mapsto\\{x\\}$ and the extension of a finite frame by one element. A configuration is finite and acyclic. In the core a universe is $\\mathit{size}$ objects with a formation image, none where the act fails; a trace is $t$ objects with asserted atoms.",
+     "tag": "D",
+     "source": "Def.~\\ref{def:formation}",
+     "key": "p29003"
+    },
+    {
+     "label": "B2",
+     "predicate": "A license is a rule, adopted or declined, asserting nothing. A supply is a proposition: the totality of objects obtainable by iteration exists. Iteration names repeated application under the license; induction names the closure over its results.",
+     "tag": "D",
+     "source": "Def.~\\ref{def:license}",
+     "key": "p29004"
+    },
+    {
+     "label": "B3",
+     "predicate": "The classical construction uses a medium, productivity and an unbounded license. The medium is a presupposition no position declines; productivity and the license are posits; the formalist reading declines productivity coherently. Ontological weight and formal innocence cannot both be claimed.",
+     "tag": "D",
+     "source": "Prop.~\\ref{prop:posits}; \\S\\ref{subsec:separability}",
+     "key": "p29005"
+    },
+    {
+     "label": "B4",
+     "predicate": "Declining the license is coherent: the finite initial segment with truncated successor, sum and product has a complete, decidable theory and no injective successor missing $0$; on the cycle of $n$ points the successor act is total, returns to its start after $n$ steps, and makes nothing new: every point is already an image.",
+     "tag": "T",
+     "source": "Prop.~\\ref{prop:posits}\\newline \\pywit{formation}{p29006}{B4}, \\leanwit{FrcCore}{p29006}{B4} \\lean{FRC.Logic.fin\\_theory\\_complete, FRC.Logic.fin\\_theory\\_decidable, FRC.Logic.no\\_finite\\_successor, FRC.Formation.cyc\\_lt, FRC.Formation.cyc\\_return, FRC.Formation.cyc\\_onto}",
+     "key": "p29006"
+    },
+    {
+     "label": "B5",
+     "predicate": "Lemma innocence (i): no finite structure interprets $Q$ --- a model of $Q$ has an injective successor with $0$ outside its range, and on a finite set an injective map is onto. $Q$'s successor axioms alone, with no induction, exclude every finite model.",
+     "tag": "T",
+     "source": "Lemma~\\ref{lem:innocence}\\newline \\pywit{formation}{p25010}{B5}, \\leanwit{FrcCore}{p25010}{B5} \\lean{FRC.Logic.inj\\_onto, FRC.Logic.no\\_finite\\_successor}",
+     "key": "p25010"
+    },
+    {
+     "label": "B6",
+     "predicate": "Lemma innocence (ii): on $[0,n)$ every nonempty subset has a least element, and a property true at $0$ and closed under successor below $n$ holds below $n$: induction is a theorem of every finite frame, for all subsets.",
+     "tag": "T",
+     "source": "Lemma~\\ref{lem:innocence}\\newline \\pywit{formation}{p29007}{B6}, \\leanwit{FrcCore}{p29007}{B6} \\lean{FRC.Logic.leastBelow\\_some, FRC.Logic.leastBelow\\_spec, FRC.Formation.finite\\_induction}",
+     "key": "p29007"
+    },
+    {
+     "label": "B7",
+     "predicate": "The modal ascent: asserted as true, the license quantifies over stages and possibilities; its truthmaker outruns every finite configuration, since every configuration is realized in a universe extending it by nothing (C2) and in universes of every larger size (C4). Rests on C2, C4.",
+     "tag": "D",
+     "source": "Prop.~\\ref{prop:ascent}",
+     "key": "p29008"
+    }
+   ]
+  },
+  {
+   "letter": "C",
+   "title": "Empirical idleness",
+   "rows": [
+    {
+     "label": "C1",
+     "predicate": "An agent of capacity $K$ over $s\\ge2$ letters holds records of at most $K$ symbols, fewer than $s^{K+1}$; certification is a retained record encoding a completed check with a bounded local trace; the locality and interface clauses. Extends 5:C1.",
+     "tag": "D",
+     "source": "Def.~\\ref{def:agent}; \\S\\ref{sec:idleness}",
+     "key": "p29009"
+    },
+    {
+     "label": "C2",
+     "predicate": "Theorem idleness: a check that passes in any universe passes, read by the identity, in the closed finite universe of its own trace, $t(r)$ objects. A record entails nothing that fails there: no count above $t(r)$, no unbounded supply. The sentence ``the universe of formations is infinite'' is certified by no agent at any capacity.",
+     "tag": "T",
+     "source": "Thm.~\\ref{thm:idleness}\\newline \\pywit{formation}{p29010}{C2}, \\leanwit{FrcCore}{p29010}{C2} \\lean{FRC.Formation.realized, FRC.Formation.minimal\\_size, FRC.Formation.minimal\\_closed}",
+     "key": "p29010"
+    },
+    {
+     "label": "C3",
+     "predicate": "The asymmetry: the check of a trace is decided by exhaustive evaluation of its $t^{2}$ atoms and terminates, and the trace is itself a record of $t^{2}$ symbols, retained when $t^{2}\\le K$; bounded structural facts are certifiable, the unbounded supply is not (C2).",
+     "tag": "T",
+     "source": "Cor.~\\ref{cor:asymmetry}\\newline \\pywit{formation}{p29011}{C3}, \\leanwit{FrcCore}{p29011}{C3} \\lean{FRC.Formation.record\\_length, FRC.Formation.record\\_square, FRC.Formation.decPasses}",
+     "key": "p29011"
+    },
+    {
+     "label": "C4",
+     "predicate": "Corollary symmetry, uncertifiability of the bound: a passed check passes after padding by any number $k$ of fresh formations, in a closed realizing universe of exactly $t+k$ objects, so the passing entails no upper bound; with C10, no record fixes the cardinality.",
+     "tag": "T",
+     "source": "Cor.~\\ref{cor:symmetry}\\newline \\pywit{formation}{p29012}{C4}, \\leanwit{FrcCore}{p29012}{C4} \\lean{FRC.Formation.passes\\_pad, FRC.Formation.realization\\_at\\_size}",
+     "key": "p29012"
+    },
+    {
+     "label": "C5",
+     "predicate": "No symmetry of standing: every realization of C2 and C4 is a model of the finite position, which asserts nothing beyond what such models exhibit. Uncertifiability of the bound is a statement about records; the selection between the positions is made at the level of models and costs (\\S\\ref{subsec:primitive}).",
+     "tag": "D",
+     "source": "Rem.~\\ref{rem:nosymmetry}",
+     "key": "p29013"
+    },
+    {
+     "label": "C6",
+     "predicate": "Lemma boundary, Case 1: the disjoint double of a closed universe carries the swap, an automorphism without fixed points, of order two; a condition invariant under the swap has an even number of satisfiers, never exactly one; the check passes in the double.",
+     "tag": "T",
+     "source": "Lemma~\\ref{lem:boundary}\\newline \\pywit{formation}{p29014}{C6}, \\leanwit{FrcCore}{p29014}{C6} \\lean{FRC.Formation.swap\\_form, FRC.Formation.swap\\_ne, FRC.Formation.swap\\_swap, FRC.Formation.passes\\_double, FRC.Formation.invariant\\_count\\_even, FRC.Formation.no\\_unique\\_invariant}",
+     "key": "p29014"
+    },
+    {
+     "label": "C7",
+     "predicate": "Lemma boundary, Case 2: the minimal realization holds the trace's objects and nothing else, and a datum the trace never forms has no preimage there: descriptive uniqueness is confined to trace-derived objects, so every presentable object is reachable.",
+     "tag": "T",
+     "source": "Lemma~\\ref{lem:boundary}\\newline \\pywit{formation}{p29015}{C7}, \\leanwit{FrcCore}{p29015}{C7} \\lean{FRC.Formation.minimal\\_size, FRC.Formation.no\\_preimage\\_in\\_minimal}",
+     "key": "p29015"
+    },
+    {
+     "label": "C8",
+     "predicate": "Proposition illusion (i), (ii): the buffer frame of $\\sigma$ seeds and $D$ rounds has $\\sigma(D+1)$ formations; every object below level $D$ has a fresh image one level up; $k$ acts from a seed reach level $k$ for $k\\le D$. Instance $\\sigma=2$, $D=17$: $M=36>2\\cdot2^{4}$, $D>2^{4}$.",
+     "tag": "T",
+     "source": "Prop.~\\ref{prop:illusion}\\newline \\pywit{formation}{p29016}{C8}, \\leanwit{FrcCore}{p29016}{C8} \\lean{FRC.Formation.buffer\\_forms, FRC.Formation.buffer\\_fresh, FRC.Formation.chain\\_level, FRC.Formation.illusion, FRC.Formation.illusion\\_instance}",
+     "key": "p29016"
+    },
+    {
+     "label": "C9",
+     "predicate": "Proposition illusion (iii): every completed check of the agent passes in buffered frames of every size above its trace (C4, C8) and in their doubles (C6), and no act on a presentable object fails (C7): no check separates the agent's frame from any larger one. The classical ``infinite universe'' is the chart reading. Potentiality is the inside view of finitude.",
+     "tag": "D",
+     "source": "Prop.~\\ref{prop:illusion}",
+     "key": "p29017"
+    },
+    {
+     "label": "C10",
+     "predicate": "The pigeonhole (O3): an agent with fewer than $s^{K+1}$ records in a frame of $M>s^{K+1}$ formations holds no injective representation of it, so the frame's cardinality is not certifiable from within. Counterparts 25:D1, 00:A4.",
+     "tag": "T",
+     "source": "\\S\\ref{sec:objections}, (O3)\\newline \\pywit{formation}{p05013}{C10}, \\leanwit{FrcCore}{p05013}{C10} \\lean{FRC.Logic.records\\_lt, FRC.Logic.no\\_mirror}",
+     "key": "p05013"
+    }
+   ]
+  },
+  {
+   "letter": "D",
+   "title": "The verdict",
+   "rows": [
+    {
+     "label": "D1",
+     "predicate": "The truthmaker demand, restricted: a foundational commitment that does ontological work owes an account of its carrier; truthmaker maximalism is not assumed; the deflationist reply is answered by idleness (C2).",
+     "tag": "D",
+     "source": "\\S\\ref{subsec:demand}",
+     "key": "p29018"
+    },
+    {
+     "label": "D2",
+     "predicate": "Under the demand the assertion faces three outcomes: a completed range (actualism, the reductio of 5-reductio, C2 verbatim); a modal realm --- articulated, borrowing the actualist semantics one level up; essence, horn (ii) renamed; primitive, met by declaration, operational content and cost (the fallback stated once); the finite stock, the survivor.",
+     "tag": "D",
+     "source": "\\S\\ref{subsec:horn1}--\\ref{subsec:horn3}",
+     "key": "p29019"
+    },
+    {
+     "label": "D3",
+     "predicate": "The objections O1--O7 and their replies: declaration (O1); induction untouched (B5, B6, E2; O2); the pigeonhole (C10; O3); not ultrafinitism (O4); the bound undecided by observation, the posit idle (C2, C4, C5; O5); the semantics engaged where the mirroring theorems live (O6); the free parameter (C2; O7).",
+     "tag": "D",
+     "source": "\\S\\ref{sec:objections}",
+     "key": "p29020"
+    }
+   ]
+  },
+  {
+   "letter": "E",
+   "title": "Bounded actualism",
+   "rows": [
+    {
+     "label": "E1",
+     "predicate": "One finite frame; its cardinality determinate and not certifiable by its parts (C10); the license a rule exercised within it; the universal assertion false, its phenomenology derived (C8, C9); induction a theorem (B6); closures as schemas (E2). In the programme the frame is the Carrier, $\\Omega=4S+1$, $S\\sim10^{122}$ [chart] (00:A2, 00:A8).",
+     "tag": "D",
+     "source": "\\S\\ref{sec:actualism}",
+     "key": "p29021"
+    },
+    {
+     "label": "E2",
+     "predicate": "Certificate conservativity: a $\\Delta_0$ sentence takes its standard value in every frame beyond its bound (5:B6); every instance of a schema below the bound is decided by evaluation; induction transfers instance-wise (B6). Derivations through infinitary principles are kept as derivability facts: a reading.",
+     "tag": "T",
+     "source": "Prop.~\\ref{prop:conservativeness}\\newline \\pywit{formation}{p29022}{E2}, \\leanwit{FrcCore}{p29022}{E2} \\lean{FRC.Logic.stable, FRC.Logic.fin\\_theory\\_decidable, FRC.Formation.finite\\_induction, FRC.Logic.leastBelow\\_spec}",
+     "key": "p29022"
+    },
+    {
+     "label": "E3",
+     "predicate": "Effective determinacy: a totality decides every well-posed question about itself, its subsets and relations included, each decision effectively producible; a property of the structure presented as a finite object, not of an agent inside it.",
+     "tag": "D",
+     "source": "Cor.~\\ref{cor:determinacy}",
+     "key": "p29023"
+    },
+    {
+     "label": "E4",
+     "predicate": "Effective determinacy on a finite frame: subsets and relations are finitely many, and the full second-order theory is decided by exhaustive evaluation over them. The finite direction of 5:D8.",
+     "tag": "T",
+     "source": "Cor.~\\ref{cor:determinacy}\\newline \\pywit{formation}{p29024}{E4}, \\leanwit{FrcCore}{p29024}{E4} \\lean{FRC.Logic.so\\_theory\\_decidable, FRC.Logic.so\\_theory\\_complete, FRC.Logic.so\\_theory\\_consistent}",
+     "key": "p29024"
+    },
+    {
+     "label": "E5",
+     "predicate": "The costs: universal generalizations in schema form (E2); the frame bound unknowable from within (C10); the verdict conditional on declining unanalyzable modal primitives (D2's fallback).",
+     "tag": "D",
+     "source": "\\S\\ref{sec:actualism}",
+     "key": "p29025"
+    }
+   ]
+  },
+  {
+   "letter": "X",
+   "title": "What the construction explains",
+   "rows": [
+    {
+     "label": "X1",
+     "predicate": "\\textbf{``One can always continue''} is derived, not posited: in a buffered finite frame every act on a reachable object succeeds and no enumeration below the horizon is exhausted (C8), while no check witnesses an end (C6, C7). Rests on C2, C6--C8.",
+     "tag": "T",
+     "source": "Prop.~\\ref{prop:illusion}\\newline \\pywit{formation}{p29026}{X1}, \\leanwit{FrcCore}{p29026}{X1} \\lean{FRC.Formation.illusion, FRC.Formation.no\\_unique\\_invariant, FRC.Formation.no\\_preimage\\_in\\_minimal}",
+     "key": "p29026"
+    },
+    {
+     "label": "X2",
+     "predicate": "\\textbf{The finite ontology loses no proof practice:} induction is a theorem of every finite frame (B6) and every executed verification is a bounded instance (E2). Rests on B6, E2.",
+     "tag": "T",
+     "source": "Lemma~\\ref{lem:innocence}; Prop.~\\ref{prop:conservativeness}\\newline \\pywit{formation}{p29027}{X2}, \\leanwit{FrcCore}{p29027}{X2} \\lean{FRC.Formation.finite\\_induction, FRC.Logic.stable}",
+     "key": "p29027"
+    }
+   ]
+  }
+ ],
+ "legend": [
+  {
+   "tag": "I",
+   "name": "Import",
+   "text": "A standard result, or a corpus result, used without reproof."
+  },
+  {
+   "tag": "D",
+   "name": "Definition",
+   "text": "A naming, a declared convention or a reading, carrying no claim of its own."
+  },
+  {
+   "tag": "T",
+   "name": "Theorem",
+   "text": "Derived in the paper, and machine-verified in exact arithmetic by the named witness."
+  }
+ ],
+ "master": {
+  "C2": [
+   "A2"
+  ],
+  "C10": [
+   "A4",
+   "Z3"
+  ],
+  "B4": [
+   "A6"
+  ],
+  "B5": [
+   "Z1"
+  ]
+ },
+ "lean": {
+  "B4": [
+   {
+    "name": "FRC.Logic.fin_theory_complete",
+    "module": "FrcCore/Theme/Logic",
+    "line": 661,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "25:C2, Z1, 29:B4 — the theory is complete: every formula or its negation holds, decided by the evaluation, with no appeal to excluded middle."
+   },
+   {
+    "name": "FRC.Logic.fin_theory_decidable",
+    "module": "FrcCore/Theme/Logic",
+    "line": 637,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "25:C2, Z1, 29:B4, 29:E2 — decidable by exhaustive evaluation: a formula holds in the finite structure exactly when its evaluation is `true`."
+   },
+   {
+    "name": "FRC.Logic.no_finite_successor",
+    "module": "FrcCore/Theme/Logic",
+    "line": 439,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "25:C1, 29:B4, 29:B5 (Proposition noQ) — no successor of `Q` on a finite carrier: no map of `[0, n)` into itself is injective and omits an element, so no finite structure is a model of `Q`."
+   },
+   {
+    "name": "FRC.Formation.cyc_lt",
+    "module": "FrcCore/Theme/Formation",
+    "line": 105,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "29:B4 — the act is total: it stays on the cycle."
+   },
+   {
+    "name": "FRC.Formation.cyc_return",
+    "module": "FrcCore/Theme/Formation",
+    "line": 116,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "29:B4 — the act returns to its start after `n` steps: the orbit is a cycle, so iteration makes nothing new."
+   },
+   {
+    "name": "FRC.Formation.cyc_onto",
+    "module": "FrcCore/Theme/Formation",
+    "line": 140,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "29:B4 — every point of the cycle is already an image: the act produces no new formation (the pigeonhole, `inj_onto`)."
+   }
+  ],
+  "B5": [
+   {
+    "name": "FRC.Logic.inj_onto",
+    "module": "FrcCore/Theme/Logic",
+    "line": 428,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "25:C1, 29:B5 (Proposition noQ, the pigeonhole) — on `[0, n)` an injective map is onto: every `z < n` is a value."
+   },
+   {
+    "name": "FRC.Logic.no_finite_successor",
+    "module": "FrcCore/Theme/Logic",
+    "line": 439,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "25:C1, 29:B4, 29:B5 (Proposition noQ) — no successor of `Q` on a finite carrier: no map of `[0, n)` into itself is injective and omits an element, so no finite structure is a model of `Q`."
+   }
+  ],
+  "B6": [
+   {
+    "name": "FRC.Logic.leastBelow_some",
+    "module": "FrcCore/Theme/Logic",
+    "line": 343,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "5:E1, 29:B6 — a nonempty family has a choice: if some `x < n` has `P x`, `leastBelow P n` is defined."
+   },
+   {
+    "name": "FRC.Logic.leastBelow_spec",
+    "module": "FrcCore/Theme/Logic",
+    "line": 367,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "5:E1, 29:B6, 29:E2 (Proposition finite-choice) — the choice is a member, below the bound, and the least one."
+   },
+   {
+    "name": "FRC.Formation.finite_induction",
+    "module": "FrcCore/Theme/Formation",
+    "line": 277,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "29:B6, 29:E2, 29:X2 — Lemma innocence (ii): on the finite frame `[0, n)` the induction schema holds for every property, from the least-number principle (`leastBelow`): a property true at `0` and closed under successor below `n` holds below `n`."
+   }
+  ],
+  "C2": [
+   {
+    "name": "FRC.Formation.realized",
+    "module": "FrcCore/Theme/Formation",
+    "line": 54,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "29:C2 — Theorem idleness (the core form): a check that passes anywhere passes in the finite universe of its own trace, read by the identity: `t(r)` objects suffice."
+   },
+   {
+    "name": "FRC.Formation.minimal_size",
+    "module": "FrcCore/Theme/Formation",
+    "line": 42,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "29:C2, 29:C7 — the minimal realization has exactly the trace's `t` objects."
+   },
+   {
+    "name": "FRC.Formation.minimal_closed",
+    "module": "FrcCore/Theme/Formation",
+    "line": 63,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "29:C2 — the minimal realization is closed: every image it assigns is one of its objects."
+   }
+  ],
+  "C3": [
+   {
+    "name": "FRC.Formation.record_length",
+    "module": "FrcCore/Theme/Formation",
+    "line": 416,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "29:C3 — Corollary asymmetry: a trace of `t` objects is a record of `t²` symbols, a bounded structural fact has a certifying record, retained by every agent whose capacity covers it."
+   },
+   {
+    "name": "FRC.Formation.record_square",
+    "module": "FrcCore/Theme/Formation",
+    "line": 423,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "29:C3 — the record of the whole trace has `t²` symbols."
+   },
+   {
+    "name": "FRC.Formation.decPasses",
+    "module": "FrcCore/Theme/Formation",
+    "line": 381,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "29:C3 — the check of a trace in a universe under a reading is decided by exhaustive evaluation over the `t` objects and the `t²` atoms: a completed check is a terminating computation."
+   }
+  ],
+  "C4": [
+   {
+    "name": "FRC.Formation.passes_pad",
+    "module": "FrcCore/Theme/Formation",
+    "line": 80,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "29:C4 — Corollary symmetry, the bound: a passed check passes unchanged after padding by any number of formations, so for every `B` there is a realizing universe of more than `B` objects and the passing entails no bound."
+   },
+   {
+    "name": "FRC.Formation.realization_at_size",
+    "module": "FrcCore/Theme/Formation",
+    "line": 87,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "29:C4 — the realization at every size: for every `k` the minimal realization padded by `k` fresh formations has exactly `t + k` objects, is closed, and the check passes in it read by the identity. No size is entailed."
+   }
+  ],
+  "C6": [
+   {
+    "name": "FRC.Formation.swap_form",
+    "module": "FrcCore/Theme/Formation",
+    "line": 203,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "29:C6 — the swap is an automorphism of the double: it commutes with formation."
+   },
+   {
+    "name": "FRC.Formation.swap_ne",
+    "module": "FrcCore/Theme/Formation",
+    "line": 173,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "29:C6 — the swap moves every object: no fixed point."
+   },
+   {
+    "name": "FRC.Formation.swap_swap",
+    "module": "FrcCore/Theme/Formation",
+    "line": 161,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "29:C6 — the swap is an involution."
+   },
+   {
+    "name": "FRC.Formation.passes_double",
+    "module": "FrcCore/Theme/Formation",
+    "line": 225,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "29:C6 — a passed check passes in the double, read in the first copy."
+   },
+   {
+    "name": "FRC.Formation.invariant_count_even",
+    "module": "FrcCore/Theme/Formation",
+    "line": 244,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "29:C6 — Lemma boundary, Case 1: a condition invariant under the swap has an even number of satisfiers in the double, its satisfiers come in pairs."
+   },
+   {
+    "name": "FRC.Formation.no_unique_invariant",
+    "module": "FrcCore/Theme/Formation",
+    "line": 255,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "29:C6, 29:X1 — a swap-invariant condition has zero or at least two satisfiers, never exactly one."
+   }
+  ],
+  "C7": [
+   {
+    "name": "FRC.Formation.minimal_size",
+    "module": "FrcCore/Theme/Formation",
+    "line": 42,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "29:C2, 29:C7 — the minimal realization has exactly the trace's `t` objects."
+   },
+   {
+    "name": "FRC.Formation.no_preimage_in_minimal",
+    "module": "FrcCore/Theme/Formation",
+    "line": 267,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "29:C7, 29:X1 — Lemma boundary, Case 2: in the minimal realization a datum the trace never forms has no preimage, so the backward condition \"the object whose formation image is `x`\" has zero satisfiers."
+   }
+  ],
+  "C8": [
+   {
+    "name": "FRC.Formation.buffer_forms",
+    "module": "FrcCore/Theme/Formation",
+    "line": 305,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "29:C8 — every object below the top level has a formation image: the act succeeds at every level `k < D`."
+   },
+   {
+    "name": "FRC.Formation.buffer_fresh",
+    "module": "FrcCore/Theme/Formation",
+    "line": 311,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "29:C8 — the image is fresh: one level up, inside the frame."
+   },
+   {
+    "name": "FRC.Formation.chain_level",
+    "module": "FrcCore/Theme/Formation",
+    "line": 337,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "29:C8 — `k` acts from seed `s` reach level `k`, for `k ≤ D`."
+   },
+   {
+    "name": "FRC.Formation.illusion",
+    "module": "FrcCore/Theme/Formation",
+    "line": 356,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "29:C8, 29:X1 — Proposition illusion (i), (ii) in the core: in the buffer frame of `σ` seeds and `D` rounds, every object reached by fewer than `D` acts from a seed has a formation image, and the image is one level further: no act on a reachable object fails and no enumeration below the horizon `D` is exhausted."
+   },
+   {
+    "name": "FRC.Formation.illusion_instance",
+    "module": "FrcCore/Theme/Formation",
+    "line": 375,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "29:C8 — the frame's cardinality clause of Proposition illusion at an instance: two seeds, `D = 17 > 2^4`, so `M = 36 > 2 · 2^{3+1}` for an agent of capacity `3` over two letters — decided by the kernel."
+   }
+  ],
+  "C10": [
+   {
+    "name": "FRC.Logic.records_lt",
+    "module": "FrcCore/Theme/Logic",
+    "line": 232,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "5:C2, 29:C10 (the count) — fewer than `s^(K+1)` records exist for an alphabet of `s ≥ 2` letters."
+   },
+   {
+    "name": "FRC.Logic.no_mirror",
+    "module": "FrcCore/Series",
+    "line": 301,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "5:C2, 29:C10 (Proposition mirror) — a part with fewer records than the frame has elements holds no injective representation of the frame's domain: no `f : [0, N) → [0, R)` is injective when `R < N`. In the base since task LM23 (from `Theme/Logic.lean`, under its old name), so that the foundation's A5 stands on it."
+   }
+  ],
+  "E2": [
+   {
+    "name": "FRC.Logic.stable",
+    "module": "FrcCore/Theme/Logic",
+    "line": 194,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "5:B6, 29:E2, 29:X2 (Theorem stability, schema form) — every `Δ₀` formula takes its standard value in every frame `W_N` with `N > t(φ)`: `W_N ⊨ φ* ⟺ ℕ ⊨ φ`, for every environment, by induction on the formula."
+   },
+   {
+    "name": "FRC.Logic.fin_theory_decidable",
+    "module": "FrcCore/Theme/Logic",
+    "line": 637,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "25:C2, Z1, 29:B4, 29:E2 — decidable by exhaustive evaluation: a formula holds in the finite structure exactly when its evaluation is `true`."
+   },
+   {
+    "name": "FRC.Formation.finite_induction",
+    "module": "FrcCore/Theme/Formation",
+    "line": 277,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "29:B6, 29:E2, 29:X2 — Lemma innocence (ii): on the finite frame `[0, n)` the induction schema holds for every property, from the least-number principle (`leastBelow`): a property true at `0` and closed under successor below `n` holds below `n`."
+   },
+   {
+    "name": "FRC.Logic.leastBelow_spec",
+    "module": "FrcCore/Theme/Logic",
+    "line": 367,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "5:E1, 29:B6, 29:E2 (Proposition finite-choice) — the choice is a member, below the bound, and the least one."
+   }
+  ],
+  "E4": [
+   {
+    "name": "FRC.Logic.so_theory_decidable",
+    "module": "FrcCore/Theme/SecondOrder",
+    "line": 66,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "29:E4 — Corollary determinacy, the finite direction (5:D8): the full second-order theory of a finite structure is decided by exhaustive evaluation, a formula holds exactly when its evaluation is `true`."
+   },
+   {
+    "name": "FRC.Logic.so_theory_complete",
+    "module": "FrcCore/Theme/SecondOrder",
+    "line": 103,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "29:E4 — Corollary determinacy, the finite direction: the full second-order theory is complete, every formula or its negation holds, decided by the evaluation."
+   },
+   {
+    "name": "FRC.Logic.so_theory_consistent",
+    "module": "FrcCore/Theme/SecondOrder",
+    "line": 110,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "29:E4 — the full second-order theory is consistent: no formula holds together with its negation."
+   }
+  ],
+  "X1": [
+   {
+    "name": "FRC.Formation.illusion",
+    "module": "FrcCore/Theme/Formation",
+    "line": 356,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "29:C8, 29:X1 — Proposition illusion (i), (ii) in the core: in the buffer frame of `σ` seeds and `D` rounds, every object reached by fewer than `D` acts from a seed has a formation image, and the image is one level further: no act on a reachable object fails and no enumeration below the horizon `D` is exhausted."
+   },
+   {
+    "name": "FRC.Formation.no_unique_invariant",
+    "module": "FrcCore/Theme/Formation",
+    "line": 255,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "29:C6, 29:X1 — a swap-invariant condition has zero or at least two satisfiers, never exactly one."
+   },
+   {
+    "name": "FRC.Formation.no_preimage_in_minimal",
+    "module": "FrcCore/Theme/Formation",
+    "line": 267,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "29:C7, 29:X1 — Lemma boundary, Case 2: in the minimal realization a datum the trace never forms has no preimage, so the backward condition \"the object whose formation image is `x`\" has zero satisfiers."
+   }
+  ],
+  "X2": [
+   {
+    "name": "FRC.Formation.finite_induction",
+    "module": "FrcCore/Theme/Formation",
+    "line": 277,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "29:B6, 29:E2, 29:X2 — Lemma innocence (ii): on the finite frame `[0, n)` the induction schema holds for every property, from the least-number principle (`leastBelow`): a property true at `0` and closed under successor below `n` holds below `n`."
+   },
+   {
+    "name": "FRC.Logic.stable",
+    "module": "FrcCore/Theme/Logic",
+    "line": 194,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "5:B6, 29:E2, 29:X2 (Theorem stability, schema form) — every `Δ₀` formula takes its standard value in every frame `W_N` with `N > t(φ)`: `W_N ⊨ φ* ⟺ ℕ ⊨ φ`, for every environment, by induction on the formula."
+   }
+  ]
+ }
+}

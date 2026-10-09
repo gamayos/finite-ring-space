@@ -628,6 +628,32 @@
    "page": "28-flavour/index.html"
   },
   {
+   "id": "29:X1",
+   "paper": "29-fin",
+   "label": "X1",
+   "key": "p29026",
+   "tag": "T",
+   "predicate": "\\textbf{``One can always continue''} is derived, not posited: in a buffered finite frame every act on a reachable object succeeds and no enumeration below the horizon is exhausted (C8), while no check witnesses an end (C6, C7). Rests on C2, C6--C8.",
+   "source": "Prop.~\\ref{prop:illusion}\\newline \\pywit{formation}{p29026}{X1}, \\leanwit{FrcCore}{p29026}{X1} \\lean{FRC.Formation.illusion, FRC.Formation.no\\_unique\\_invariant, FRC.Formation.no\\_preimage\\_in\\_minimal}",
+   "master": [],
+   "restated": [],
+   "witnessed": false,
+   "page": "29-finitism/index.html"
+  },
+  {
+   "id": "29:X2",
+   "paper": "29-fin",
+   "label": "X2",
+   "key": "p29027",
+   "tag": "T",
+   "predicate": "\\textbf{The finite ontology loses no proof practice:} induction is a theorem of every finite frame (B6) and every executed verification is a bounded instance (E2). Rests on B6, E2.",
+   "source": "Lemma~\\ref{lem:innocence}; Prop.~\\ref{prop:conservativeness}\\newline \\pywit{formation}{p29027}{X2}, \\leanwit{FrcCore}{p29027}{X2} \\lean{FRC.Formation.finite\\_induction, FRC.Logic.stable}",
+   "master": [],
+   "restated": [],
+   "witnessed": false,
+   "page": "29-finitism/index.html"
+  },
+  {
    "id": "32:X1",
    "paper": "32-dark",
    "label": "X1",

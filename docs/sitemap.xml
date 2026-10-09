@@ -45,6 +45,10 @@
     <lastmod>2026-10-09</lastmod>
   </url>
   <url>
+    <loc>https://finitering.space/29-finitism/</loc>
+    <lastmod>2026-10-09</lastmod>
+  </url>
+  <url>
     <loc>https://finitering.space/3-causality/</loc>
     <lastmod>2026-10-09</lastmod>
   </url>
@@ -137,6 +141,10 @@
     <lastmod>2026-10-07</lastmod>
   </url>
   <url>
+    <loc>https://finitering.space/frc/ledgers/p29_finitism.html</loc>
+    <lastmod>2026-10-09</lastmod>
+  </url>
+  <url>
     <loc>https://finitering.space/</loc>
     <lastmod>2026-10-09</lastmod>
   </url>
@@ -166,6 +174,10 @@
   </url>
   <url>
     <loc>https://finitering.space/lean/core/Epi.html</loc>
+    <lastmod>2026-10-09</lastmod>
+  </url>
+  <url>
+    <loc>https://finitering.space/lean/core/Finitism.html</loc>
     <lastmod>2026-10-09</lastmod>
   </url>
   <url>
@@ -329,6 +341,10 @@
     <lastmod>2026-10-09</lastmod>
   </url>
   <url>
+    <loc>https://finitering.space/lean/core/Theme.Formation.html</loc>
+    <lastmod>2026-10-09</lastmod>
+  </url>
+  <url>
     <loc>https://finitering.space/lean/core/Theme.Foundation.html</loc>
     <lastmod>2026-10-09</lastmod>
   </url>
@@ -382,6 +398,10 @@
   </url>
   <url>
     <loc>https://finitering.space/lean/core/Theme.Rotations.html</loc>
+    <lastmod>2026-10-09</lastmod>
+  </url>
+  <url>
+    <loc>https://finitering.space/lean/core/Theme.SecondOrder.html</loc>
     <lastmod>2026-10-09</lastmod>
   </url>
   <url>
@@ -486,7 +506,7 @@
   </url>
   <url>
     <loc>https://finitering.space/src/1-algebra/</loc>
-    <lastmod>2026-10-09</lastmod>
+    <lastmod>2026-10-04</lastmod>
   </url>
   <url>
     <loc>https://finitering.space/src/1-algebra/make_notebook.html</loc>
@@ -494,7 +514,7 @@
   </url>
   <url>
     <loc>https://finitering.space/src/10-dimensions/</loc>
-    <lastmod>2026-10-09</lastmod>
+    <lastmod>2026-10-04</lastmod>
   </url>
   <url>
     <loc>https://finitering.space/src/10-dimensions/make_notebook.html</loc>
@@ -502,7 +522,7 @@
   </url>
   <url>
     <loc>https://finitering.space/src/13-epi/</loc>
-    <lastmod>2026-10-09</lastmod>
+    <lastmod>2026-09-26</lastmod>
   </url>
   <url>
     <loc>https://finitering.space/src/13-epi/make_notebook.html</loc>
@@ -510,7 +530,7 @@
   </url>
   <url>
     <loc>https://finitering.space/src/14-entropy/</loc>
-    <lastmod>2026-10-09</lastmod>
+    <lastmod>2026-09-26</lastmod>
   </url>
   <url>
     <loc>https://finitering.space/src/14-entropy/make_notebook.html</loc>
@@ -518,7 +538,7 @@
   </url>
   <url>
     <loc>https://finitering.space/src/2-geometry/</loc>
-    <lastmod>2026-10-09</lastmod>
+    <lastmod>2026-10-04</lastmod>
   </url>
   <url>
     <loc>https://finitering.space/src/2-geometry/make_notebook.html</loc>
@@ -526,7 +546,7 @@
   </url>
   <url>
     <loc>https://finitering.space/src/20-rh/</loc>
-    <lastmod>2026-10-09</lastmod>
+    <lastmod>2026-09-26</lastmod>
   </url>
   <url>
     <loc>https://finitering.space/src/20-rh/make_notebook.html</loc>
@@ -886,7 +906,7 @@
   </url>
   <url>
     <loc>https://finitering.space/src/3-causality/</loc>
-    <lastmod>2026-10-09</lastmod>
+    <lastmod>2026-09-26</lastmod>
   </url>
   <url>
     <loc>https://finitering.space/src/3-causality/make_notebook.html</loc>
@@ -1054,7 +1074,7 @@
   </url>
   <url>
     <loc>https://finitering.space/src/4-representation/</loc>
-    <lastmod>2026-10-09</lastmod>
+    <lastmod>2026-09-26</lastmod>
   </url>
   <url>
     <loc>https://finitering.space/src/4-representation/make_notebook.html</loc>
@@ -1062,7 +1082,7 @@
   </url>
   <url>
     <loc>https://finitering.space/src/5-reductio/</loc>
-    <lastmod>2026-10-09</lastmod>
+    <lastmod>2026-09-26</lastmod>
   </url>
   <url>
     <loc>https://finitering.space/src/5-reductio/make_notebook.html</loc>
@@ -1070,7 +1090,7 @@
   </url>
   <url>
     <loc>https://finitering.space/src/6-fourier/</loc>
-    <lastmod>2026-10-09</lastmod>
+    <lastmod>2026-09-26</lastmod>
   </url>
   <url>
     <loc>https://finitering.space/src/6-fourier/make_f13_C_figure.html</loc>
@@ -1082,7 +1102,7 @@
   </url>
   <url>
     <loc>https://finitering.space/src/8-dirac/</loc>
-    <lastmod>2026-10-09</lastmod>
+    <lastmod>2026-09-26</lastmod>
   </url>
   <url>
     <loc>https://finitering.space/src/8-dirac/make_notebook.html</loc>

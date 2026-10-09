@@ -560,7 +560,23 @@ const PUBLICATIONS = [
       "kind": "preprint"
     },
     "doi": "https://doi.org/10.20944/preprints202607.0670.v1",
-    "doiLabel": "pp202607.0670.v1"
+    "doiLabel": "pp202607.0670.v1",
+    "ledger": "29-finitism/index.html",
+    "schema": true,
+    "links": [
+      {
+        "href": "https://colab.research.google.com/github/gamayos/finite-ring-space/blob/main/frc/ledgers/p29_finitism.ipynb",
+        "label": "python",
+        "count": 15,
+        "title": "15 predicates checked, all passing: the notebook p29_finitism.ipynb on Google Colab, one cell per predicate"
+      },
+      {
+        "href": "https://live.lean-lang.org/#project=lean-v4.34.0&url=https://finitering.space/lean/web/core/Finitism.lean",
+        "label": "lean",
+        "count": 14,
+        "title": "14 predicates proved in the core (no axioms): the core module Finitism as one executable file (plain Lean, no Mathlib) in Lean Live"
+      }
+    ]
   },
   {
     "key": "32-dark",

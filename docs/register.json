@@ -2,20 +2,20 @@
  "header": {
   "generated": "9 October 2026",
   "schema": "frc-register/2",
-  "rows": 1012,
-  "theorems": 1004,
+  "rows": 1041,
+  "theorems": 1031,
   "counts": {
-   "keys": 1004,
-   "rows": 1012,
-   "shared": 8,
+   "keys": 1031,
+   "rows": 1041,
+   "shared": 10,
    "by_tag": {
-    "D": 127,
+    "D": 140,
     "G": 1,
-    "I": 119,
+    "I": 121,
     "O": 14,
     "P": 3,
     "R": 81,
-    "T": 632,
+    "T": 644,
     "Ω": 27
    }
   },
@@ -1164,6 +1164,60 @@
      }
     ],
     "rows": 51
+   },
+   {
+    "key": "29-fin",
+    "dir": "29-finitism",
+    "no": 29,
+    "title": "The Undeclared Posit of Potential Infinity",
+    "status": {
+     "kind": "preprint"
+    },
+    "page": "29-finitism/index.html",
+    "blocks": [
+     {
+      "letter": "A",
+      "title": "Inputs"
+     },
+     {
+      "letter": "B",
+      "title": "The audit and the license"
+     },
+     {
+      "letter": "C",
+      "title": "Empirical idleness"
+     },
+     {
+      "letter": "D",
+      "title": "The verdict"
+     },
+     {
+      "letter": "E",
+      "title": "Bounded actualism"
+     },
+     {
+      "letter": "X",
+      "title": "What the construction explains"
+     }
+    ],
+    "legend": [
+     {
+      "tag": "I",
+      "name": "Import",
+      "text": "A standard result, or a corpus result, used without reproof."
+     },
+     {
+      "tag": "D",
+      "name": "Definition",
+      "text": "A naming, a declared convention or a reading, carrying no claim of its own."
+     },
+     {
+      "tag": "T",
+      "name": "Theorem",
+      "text": "Derived in the paper, and machine-verified in exact arithmetic by the named witness."
+     }
+    ],
+    "rows": 29
    },
    {
     "key": "32-dark",
@@ -6683,11 +6737,22 @@
      "lib": "FrcCore",
      "module": "FrcCore/Reductio",
      "name": "FRC.Reductio.no_mirror"
+    },
+    {
+     "lib": "FrcCore",
+     "module": "FrcCore/Theme/Logic",
+     "name": "FRC.Logic.records_lt"
+    },
+    {
+     "lib": "FrcCore",
+     "module": "FrcCore/Series",
+     "name": "FRC.Logic.no_mirror"
     }
    ],
    "aliases": [],
    "rows": [
-    "5:C2"
+    "5:C2",
+    "29:C10"
    ],
    "realisations": []
   },
@@ -17564,11 +17629,22 @@
      "lib": "FrcCore",
      "module": "FrcCore/Godel",
      "name": "FRC.Godel.no_finite_successor"
+    },
+    {
+     "lib": "FrcCore",
+     "module": "FrcCore/Theme/Logic",
+     "name": "FRC.Logic.inj_onto"
+    },
+    {
+     "lib": "FrcCore",
+     "module": "FrcCore/Theme/Logic",
+     "name": "FRC.Logic.no_finite_successor"
     }
    ],
    "aliases": [],
    "rows": [
-    "25:C1"
+    "25:C1",
+    "29:B5"
    ],
    "realisations": []
   },
@@ -19925,6 +20001,618 @@
    "rows": [
     "28:Z4"
    ]
+  },
+  {
+   "key": "p29001",
+   "origin": "29",
+   "statement": "The literature as stated: Robinson's $Q$ and its models; the rule form of the license; Dedekind's categoricity and the non-arithmetical second-order truth, cited as the classical position's own theorems; the potentialist semantics; truthmakers.",
+   "origin_row": "29:A1",
+   "tag": "I",
+   "tier": null,
+   "check": null,
+   "declarations": [],
+   "aliases": [],
+   "rows": [
+    "29:A1"
+   ]
+  },
+  {
+   "key": "p29002",
+   "origin": "29",
+   "statement": "The corpus: the bounded agent and its record count (5:C1, 5:C2); bounded stability (5:B6); the finite frame's complete decidable theory (5:B5, 00:Z1); the finite direction of determinacy (5:D8); no finite model of $Q$ (25:C1); the reading of a part (25:D1, 00:A4); counting closes by return (00:A6).",
+   "origin_row": "29:A2",
+   "tag": "I",
+   "tier": null,
+   "check": null,
+   "declarations": [],
+   "aliases": [],
+   "rows": [
+    "29:A2"
+   ]
+  },
+  {
+   "key": "p29003",
+   "origin": "29",
+   "statement": "A formation act of bounded arity yields a new object distinct from its inputs; the paradigms $x\\mapsto\\{x\\}$ and the extension of a finite frame by one element. A configuration is finite and acyclic. In the core a universe is $\\mathit{size}$ objects with a formation image, none where the act fails; a trace is $t$ objects with asserted atoms.",
+   "origin_row": "29:B1",
+   "tag": "D",
+   "tier": null,
+   "check": null,
+   "declarations": [],
+   "aliases": [],
+   "rows": [
+    "29:B1"
+   ]
+  },
+  {
+   "key": "p29004",
+   "origin": "29",
+   "statement": "A license is a rule, adopted or declined, asserting nothing. A supply is a proposition: the totality of objects obtainable by iteration exists. Iteration names repeated application under the license; induction names the closure over its results.",
+   "origin_row": "29:B2",
+   "tag": "D",
+   "tier": null,
+   "check": null,
+   "declarations": [],
+   "aliases": [],
+   "rows": [
+    "29:B2"
+   ]
+  },
+  {
+   "key": "p29005",
+   "origin": "29",
+   "statement": "The classical construction uses a medium, productivity and an unbounded license. The medium is a presupposition no position declines; productivity and the license are posits; the formalist reading declines productivity coherently. Ontological weight and formal innocence cannot both be claimed.",
+   "origin_row": "29:B3",
+   "tag": "D",
+   "tier": null,
+   "check": null,
+   "declarations": [],
+   "aliases": [],
+   "rows": [
+    "29:B3"
+   ]
+  },
+  {
+   "key": "p29006",
+   "origin": "29",
+   "statement": "Declining the license is coherent: the finite initial segment with truncated successor, sum and product has a complete, decidable theory and no injective successor missing $0$; on the cycle of $n$ points the successor act is total, returns to its start after $n$ steps, and makes nothing new: every point is already an image.",
+   "origin_row": "29:B4",
+   "tag": "T",
+   "tier": 0,
+   "check": null,
+   "declarations": [
+    {
+     "lib": "FrcCore",
+     "module": "FrcCore/Theme/Logic",
+     "name": "FRC.Logic.fin_theory_complete"
+    },
+    {
+     "lib": "FrcCore",
+     "module": "FrcCore/Theme/Logic",
+     "name": "FRC.Logic.fin_theory_decidable"
+    },
+    {
+     "lib": "FrcCore",
+     "module": "FrcCore/Theme/Logic",
+     "name": "FRC.Logic.no_finite_successor"
+    },
+    {
+     "lib": "FrcCore",
+     "module": "FrcCore/Theme/Formation",
+     "name": "FRC.Formation.cyc_lt"
+    },
+    {
+     "lib": "FrcCore",
+     "module": "FrcCore/Theme/Formation",
+     "name": "FRC.Formation.cyc_return"
+    },
+    {
+     "lib": "FrcCore",
+     "module": "FrcCore/Theme/Formation",
+     "name": "FRC.Formation.cyc_onto"
+    }
+   ],
+   "aliases": [],
+   "rows": [
+    "29:B4"
+   ],
+   "realisations": []
+  },
+  {
+   "key": "p29007",
+   "origin": "29",
+   "statement": "Lemma innocence (ii): on $[0,n)$ every nonempty subset has a least element, and a property true at $0$ and closed under successor below $n$ holds below $n$: induction is a theorem of every finite frame, for all subsets.",
+   "origin_row": "29:B6",
+   "tag": "T",
+   "tier": 0,
+   "check": null,
+   "declarations": [
+    {
+     "lib": "FrcCore",
+     "module": "FrcCore/Theme/Logic",
+     "name": "FRC.Logic.leastBelow_some"
+    },
+    {
+     "lib": "FrcCore",
+     "module": "FrcCore/Theme/Logic",
+     "name": "FRC.Logic.leastBelow_spec"
+    },
+    {
+     "lib": "FrcCore",
+     "module": "FrcCore/Theme/Formation",
+     "name": "FRC.Formation.finite_induction"
+    }
+   ],
+   "aliases": [],
+   "rows": [
+    "29:B6"
+   ],
+   "realisations": []
+  },
+  {
+   "key": "p29008",
+   "origin": "29",
+   "statement": "The modal ascent: asserted as true, the license quantifies over stages and possibilities; its truthmaker outruns every finite configuration, since every configuration is realized in a universe extending it by nothing (C2) and in universes of every larger size (C4). Rests on C2, C4.",
+   "origin_row": "29:B7",
+   "tag": "D",
+   "tier": null,
+   "check": null,
+   "declarations": [],
+   "aliases": [],
+   "rows": [
+    "29:B7"
+   ]
+  },
+  {
+   "key": "p29009",
+   "origin": "29",
+   "statement": "An agent of capacity $K$ over $s\\ge2$ letters holds records of at most $K$ symbols, fewer than $s^{K+1}$; certification is a retained record encoding a completed check with a bounded local trace; the locality and interface clauses. Extends 5:C1.",
+   "origin_row": "29:C1",
+   "tag": "D",
+   "tier": null,
+   "check": null,
+   "declarations": [],
+   "aliases": [],
+   "rows": [
+    "29:C1"
+   ]
+  },
+  {
+   "key": "p29010",
+   "origin": "29",
+   "statement": "Theorem idleness: a check that passes in any universe passes, read by the identity, in the closed finite universe of its own trace, $t(r)$ objects. A record entails nothing that fails there: no count above $t(r)$, no unbounded supply. The sentence ``the universe of formations is infinite'' is certified by no agent at any capacity.",
+   "origin_row": "29:C2",
+   "tag": "T",
+   "tier": 0,
+   "check": null,
+   "declarations": [
+    {
+     "lib": "FrcCore",
+     "module": "FrcCore/Theme/Formation",
+     "name": "FRC.Formation.realized"
+    },
+    {
+     "lib": "FrcCore",
+     "module": "FrcCore/Theme/Formation",
+     "name": "FRC.Formation.minimal_size"
+    },
+    {
+     "lib": "FrcCore",
+     "module": "FrcCore/Theme/Formation",
+     "name": "FRC.Formation.minimal_closed"
+    }
+   ],
+   "aliases": [],
+   "rows": [
+    "29:C2"
+   ],
+   "realisations": []
+  },
+  {
+   "key": "p29011",
+   "origin": "29",
+   "statement": "The asymmetry: the check of a trace is decided by exhaustive evaluation of its $t^{2}$ atoms and terminates, and the trace is itself a record of $t^{2}$ symbols, retained when $t^{2}\\le K$; bounded structural facts are certifiable, the unbounded supply is not (C2).",
+   "origin_row": "29:C3",
+   "tag": "T",
+   "tier": 0,
+   "check": null,
+   "declarations": [
+    {
+     "lib": "FrcCore",
+     "module": "FrcCore/Theme/Formation",
+     "name": "FRC.Formation.record_length"
+    },
+    {
+     "lib": "FrcCore",
+     "module": "FrcCore/Theme/Formation",
+     "name": "FRC.Formation.record_square"
+    },
+    {
+     "lib": "FrcCore",
+     "module": "FrcCore/Theme/Formation",
+     "name": "FRC.Formation.decPasses"
+    }
+   ],
+   "aliases": [],
+   "rows": [
+    "29:C3"
+   ],
+   "realisations": []
+  },
+  {
+   "key": "p29012",
+   "origin": "29",
+   "statement": "Corollary symmetry, uncertifiability of the bound: a passed check passes after padding by any number $k$ of fresh formations, in a closed realizing universe of exactly $t+k$ objects, so the passing entails no upper bound; with C10, no record fixes the cardinality.",
+   "origin_row": "29:C4",
+   "tag": "T",
+   "tier": 0,
+   "check": null,
+   "declarations": [
+    {
+     "lib": "FrcCore",
+     "module": "FrcCore/Theme/Formation",
+     "name": "FRC.Formation.passes_pad"
+    },
+    {
+     "lib": "FrcCore",
+     "module": "FrcCore/Theme/Formation",
+     "name": "FRC.Formation.realization_at_size"
+    }
+   ],
+   "aliases": [],
+   "rows": [
+    "29:C4"
+   ],
+   "realisations": []
+  },
+  {
+   "key": "p29013",
+   "origin": "29",
+   "statement": "No symmetry of standing: every realization of C2 and C4 is a model of the finite position, which asserts nothing beyond what such models exhibit. Uncertifiability of the bound is a statement about records; the selection between the positions is made at the level of models and costs (\\S\\ref{subsec:primitive}).",
+   "origin_row": "29:C5",
+   "tag": "D",
+   "tier": null,
+   "check": null,
+   "declarations": [],
+   "aliases": [],
+   "rows": [
+    "29:C5"
+   ]
+  },
+  {
+   "key": "p29014",
+   "origin": "29",
+   "statement": "Lemma boundary, Case 1: the disjoint double of a closed universe carries the swap, an automorphism without fixed points, of order two; a condition invariant under the swap has an even number of satisfiers, never exactly one; the check passes in the double.",
+   "origin_row": "29:C6",
+   "tag": "T",
+   "tier": 0,
+   "check": null,
+   "declarations": [
+    {
+     "lib": "FrcCore",
+     "module": "FrcCore/Theme/Formation",
+     "name": "FRC.Formation.swap_form"
+    },
+    {
+     "lib": "FrcCore",
+     "module": "FrcCore/Theme/Formation",
+     "name": "FRC.Formation.swap_ne"
+    },
+    {
+     "lib": "FrcCore",
+     "module": "FrcCore/Theme/Formation",
+     "name": "FRC.Formation.swap_swap"
+    },
+    {
+     "lib": "FrcCore",
+     "module": "FrcCore/Theme/Formation",
+     "name": "FRC.Formation.passes_double"
+    },
+    {
+     "lib": "FrcCore",
+     "module": "FrcCore/Theme/Formation",
+     "name": "FRC.Formation.invariant_count_even"
+    },
+    {
+     "lib": "FrcCore",
+     "module": "FrcCore/Theme/Formation",
+     "name": "FRC.Formation.no_unique_invariant"
+    }
+   ],
+   "aliases": [],
+   "rows": [
+    "29:C6"
+   ],
+   "realisations": []
+  },
+  {
+   "key": "p29015",
+   "origin": "29",
+   "statement": "Lemma boundary, Case 2: the minimal realization holds the trace's objects and nothing else, and a datum the trace never forms has no preimage there: descriptive uniqueness is confined to trace-derived objects, so every presentable object is reachable.",
+   "origin_row": "29:C7",
+   "tag": "T",
+   "tier": 0,
+   "check": null,
+   "declarations": [
+    {
+     "lib": "FrcCore",
+     "module": "FrcCore/Theme/Formation",
+     "name": "FRC.Formation.minimal_size"
+    },
+    {
+     "lib": "FrcCore",
+     "module": "FrcCore/Theme/Formation",
+     "name": "FRC.Formation.no_preimage_in_minimal"
+    }
+   ],
+   "aliases": [],
+   "rows": [
+    "29:C7"
+   ],
+   "realisations": []
+  },
+  {
+   "key": "p29016",
+   "origin": "29",
+   "statement": "Proposition illusion (i), (ii): the buffer frame of $\\sigma$ seeds and $D$ rounds has $\\sigma(D+1)$ formations; every object below level $D$ has a fresh image one level up; $k$ acts from a seed reach level $k$ for $k\\le D$. Instance $\\sigma=2$, $D=17$: $M=36>2\\cdot2^{4}$, $D>2^{4}$.",
+   "origin_row": "29:C8",
+   "tag": "T",
+   "tier": 0,
+   "check": null,
+   "declarations": [
+    {
+     "lib": "FrcCore",
+     "module": "FrcCore/Theme/Formation",
+     "name": "FRC.Formation.buffer_forms"
+    },
+    {
+     "lib": "FrcCore",
+     "module": "FrcCore/Theme/Formation",
+     "name": "FRC.Formation.buffer_fresh"
+    },
+    {
+     "lib": "FrcCore",
+     "module": "FrcCore/Theme/Formation",
+     "name": "FRC.Formation.chain_level"
+    },
+    {
+     "lib": "FrcCore",
+     "module": "FrcCore/Theme/Formation",
+     "name": "FRC.Formation.illusion"
+    },
+    {
+     "lib": "FrcCore",
+     "module": "FrcCore/Theme/Formation",
+     "name": "FRC.Formation.illusion_instance"
+    }
+   ],
+   "aliases": [],
+   "rows": [
+    "29:C8"
+   ],
+   "realisations": []
+  },
+  {
+   "key": "p29017",
+   "origin": "29",
+   "statement": "Proposition illusion (iii): every completed check of the agent passes in buffered frames of every size above its trace (C4, C8) and in their doubles (C6), and no act on a presentable object fails (C7): no check separates the agent's frame from any larger one. The classical ``infinite universe'' is the chart reading. Potentiality is the inside view of finitude.",
+   "origin_row": "29:C9",
+   "tag": "D",
+   "tier": null,
+   "check": null,
+   "declarations": [],
+   "aliases": [],
+   "rows": [
+    "29:C9"
+   ]
+  },
+  {
+   "key": "p29018",
+   "origin": "29",
+   "statement": "The truthmaker demand, restricted: a foundational commitment that does ontological work owes an account of its carrier; truthmaker maximalism is not assumed; the deflationist reply is answered by idleness (C2).",
+   "origin_row": "29:D1",
+   "tag": "D",
+   "tier": null,
+   "check": null,
+   "declarations": [],
+   "aliases": [],
+   "rows": [
+    "29:D1"
+   ]
+  },
+  {
+   "key": "p29019",
+   "origin": "29",
+   "statement": "Under the demand the assertion faces three outcomes: a completed range (actualism, the reductio of 5-reductio, C2 verbatim); a modal realm --- articulated, borrowing the actualist semantics one level up; essence, horn (ii) renamed; primitive, met by declaration, operational content and cost (the fallback stated once); the finite stock, the survivor.",
+   "origin_row": "29:D2",
+   "tag": "D",
+   "tier": null,
+   "check": null,
+   "declarations": [],
+   "aliases": [],
+   "rows": [
+    "29:D2"
+   ]
+  },
+  {
+   "key": "p29020",
+   "origin": "29",
+   "statement": "The objections O1--O7 and their replies: declaration (O1); induction untouched (B5, B6, E2; O2); the pigeonhole (C10; O3); not ultrafinitism (O4); the bound undecided by observation, the posit idle (C2, C4, C5; O5); the semantics engaged where the mirroring theorems live (O6); the free parameter (C2; O7).",
+   "origin_row": "29:D3",
+   "tag": "D",
+   "tier": null,
+   "check": null,
+   "declarations": [],
+   "aliases": [],
+   "rows": [
+    "29:D3"
+   ]
+  },
+  {
+   "key": "p29021",
+   "origin": "29",
+   "statement": "One finite frame; its cardinality determinate and not certifiable by its parts (C10); the license a rule exercised within it; the universal assertion false, its phenomenology derived (C8, C9); induction a theorem (B6); closures as schemas (E2). In the programme the frame is the Carrier, $\\Omega=4S+1$, $S\\sim10^{122}$ [chart] (00:A2, 00:A8).",
+   "origin_row": "29:E1",
+   "tag": "D",
+   "tier": null,
+   "check": null,
+   "declarations": [],
+   "aliases": [],
+   "rows": [
+    "29:E1"
+   ]
+  },
+  {
+   "key": "p29022",
+   "origin": "29",
+   "statement": "Certificate conservativity: a $\\Delta_0$ sentence takes its standard value in every frame beyond its bound (5:B6); every instance of a schema below the bound is decided by evaluation; induction transfers instance-wise (B6). Derivations through infinitary principles are kept as derivability facts: a reading.",
+   "origin_row": "29:E2",
+   "tag": "T",
+   "tier": 0,
+   "check": null,
+   "declarations": [
+    {
+     "lib": "FrcCore",
+     "module": "FrcCore/Theme/Logic",
+     "name": "FRC.Logic.stable"
+    },
+    {
+     "lib": "FrcCore",
+     "module": "FrcCore/Theme/Logic",
+     "name": "FRC.Logic.fin_theory_decidable"
+    },
+    {
+     "lib": "FrcCore",
+     "module": "FrcCore/Theme/Formation",
+     "name": "FRC.Formation.finite_induction"
+    },
+    {
+     "lib": "FrcCore",
+     "module": "FrcCore/Theme/Logic",
+     "name": "FRC.Logic.leastBelow_spec"
+    }
+   ],
+   "aliases": [],
+   "rows": [
+    "29:E2"
+   ],
+   "realisations": []
+  },
+  {
+   "key": "p29023",
+   "origin": "29",
+   "statement": "Effective determinacy: a totality decides every well-posed question about itself, its subsets and relations included, each decision effectively producible; a property of the structure presented as a finite object, not of an agent inside it.",
+   "origin_row": "29:E3",
+   "tag": "D",
+   "tier": null,
+   "check": null,
+   "declarations": [],
+   "aliases": [],
+   "rows": [
+    "29:E3"
+   ]
+  },
+  {
+   "key": "p29024",
+   "origin": "29",
+   "statement": "Effective determinacy on a finite frame: subsets and relations are finitely many, and the full second-order theory is decided by exhaustive evaluation over them. The finite direction of 5:D8.",
+   "origin_row": "29:E4",
+   "tag": "T",
+   "tier": 0,
+   "check": null,
+   "declarations": [
+    {
+     "lib": "FrcCore",
+     "module": "FrcCore/Theme/SecondOrder",
+     "name": "FRC.Logic.so_theory_decidable"
+    },
+    {
+     "lib": "FrcCore",
+     "module": "FrcCore/Theme/SecondOrder",
+     "name": "FRC.Logic.so_theory_complete"
+    },
+    {
+     "lib": "FrcCore",
+     "module": "FrcCore/Theme/SecondOrder",
+     "name": "FRC.Logic.so_theory_consistent"
+    }
+   ],
+   "aliases": [],
+   "rows": [
+    "29:E4"
+   ],
+   "realisations": []
+  },
+  {
+   "key": "p29025",
+   "origin": "29",
+   "statement": "The costs: universal generalizations in schema form (E2); the frame bound unknowable from within (C10); the verdict conditional on declining unanalyzable modal primitives (D2's fallback).",
+   "origin_row": "29:E5",
+   "tag": "D",
+   "tier": null,
+   "check": null,
+   "declarations": [],
+   "aliases": [],
+   "rows": [
+    "29:E5"
+   ]
+  },
+  {
+   "key": "p29026",
+   "origin": "29",
+   "statement": "\\textbf{``One can always continue''} is derived, not posited: in a buffered finite frame every act on a reachable object succeeds and no enumeration below the horizon is exhausted (C8), while no check witnesses an end (C6, C7). Rests on C2, C6--C8.",
+   "origin_row": "29:X1",
+   "tag": "T",
+   "tier": 0,
+   "check": null,
+   "declarations": [
+    {
+     "lib": "FrcCore",
+     "module": "FrcCore/Theme/Formation",
+     "name": "FRC.Formation.illusion"
+    },
+    {
+     "lib": "FrcCore",
+     "module": "FrcCore/Theme/Formation",
+     "name": "FRC.Formation.no_unique_invariant"
+    },
+    {
+     "lib": "FrcCore",
+     "module": "FrcCore/Theme/Formation",
+     "name": "FRC.Formation.no_preimage_in_minimal"
+    }
+   ],
+   "aliases": [],
+   "rows": [
+    "29:X1"
+   ],
+   "realisations": []
+  },
+  {
+   "key": "p29027",
+   "origin": "29",
+   "statement": "\\textbf{The finite ontology loses no proof practice:} induction is a theorem of every finite frame (B6) and every executed verification is a bounded instance (E2). Rests on B6, E2.",
+   "origin_row": "29:X2",
+   "tag": "T",
+   "tier": 0,
+   "check": null,
+   "declarations": [
+    {
+     "lib": "FrcCore",
+     "module": "FrcCore/Theme/Formation",
+     "name": "FRC.Formation.finite_induction"
+    },
+    {
+     "lib": "FrcCore",
+     "module": "FrcCore/Theme/Logic",
+     "name": "FRC.Logic.stable"
+    }
+   ],
+   "aliases": [],
+   "rows": [
+    "29:X2"
+   ],
+   "realisations": []
   },
   {
    "key": "p32001",
@@ -49352,6 +50040,1015 @@
     "p00116"
    ],
    "text": "$\\alpha^{-1}(0)$: the electromagnetic face of the scale operator, $\\Om$-hard (master ledger Z8). App. app:status, AL; flv. coupling_ anchor, flv. alpha_ probe"
+  },
+  {
+   "paper": "29-fin",
+   "no": 29,
+   "rid": "29:A1",
+   "key": "p29001",
+   "label": "A1",
+   "block": "A",
+   "tag": "I",
+   "name": null,
+   "statement": "The literature as stated: Robinson's $Q$ and its models; the rule form of the license; Dedekind's categoricity and the non-arithmetical second-order truth, cited as the classical position's own theorems; the potentialist semantics; truthmakers.",
+   "source": "\\cite{TarskiMostowskiRobinson1953,Hilbert1926,Tait1981,Shapiro1991,Linnebo2013,LinneboShapiro2019,Armstrong2004,Fine1994,Vetter2015}",
+   "page": "29-finitism/index.html#A1",
+   "witness": {
+    "py": null,
+    "lean": []
+   },
+   "refs": [],
+   "text": "The literature as stated: Robinson's $Q$ and its models; the rule form of the license; Dedekind's categoricity and the non-arithmetical second-order truth, cited as the classical position's own theorems; the potentialist semantics; truthmakers. [TarskiMostowskiRobinson1953,Hilbert1926,Tait1981,Shapiro1991,Linnebo2013,LinneboShapiro2019,Armstrong2004,Fine1994,Vetter2015]"
+  },
+  {
+   "paper": "29-fin",
+   "no": 29,
+   "rid": "29:A2",
+   "key": "p29002",
+   "label": "A2",
+   "block": "A",
+   "tag": "I",
+   "name": null,
+   "statement": "The corpus: the bounded agent and its record count (5:C1, 5:C2); bounded stability (5:B6); the finite frame's complete decidable theory (5:B5, 00:Z1); the finite direction of determinacy (5:D8); no finite model of $Q$ (25:C1); the reading of a part (25:D1, 00:A4); counting closes by return (00:A6).",
+   "source": "\\cite{akhtman2026paradoxes}",
+   "page": "29-finitism/index.html#A2",
+   "witness": {
+    "py": null,
+    "lean": []
+   },
+   "refs": [
+    "p00004",
+    "p00186",
+    "p00195",
+    "p05009",
+    "p05010",
+    "p05012",
+    "p05013",
+    "p05024",
+    "p25010",
+    "p25015"
+   ],
+   "text": "The corpus: the bounded agent and its record count (5:C1, 5:C2); bounded stability (5:B6); the finite frame's complete decidable theory (5:B5, 00:Z1); the finite direction of determinacy (5:D8); no finite model of $Q$ (25:C1); the reading of a part (25:D1, 00:A4); counting closes by return (00:A6). [akhtman2026paradoxes]"
+  },
+  {
+   "paper": "29-fin",
+   "no": 29,
+   "rid": "29:B1",
+   "key": "p29003",
+   "label": "B1",
+   "block": "B",
+   "tag": "D",
+   "name": null,
+   "statement": "A formation act of bounded arity yields a new object distinct from its inputs; the paradigms $x\\mapsto\\{x\\}$ and the extension of a finite frame by one element. A configuration is finite and acyclic. In the core a universe is $\\mathit{size}$ objects with a formation image, none where the act fails; a trace is $t$ objects with asserted atoms.",
+   "source": "Def.~\\ref{def:formation}",
+   "page": "29-finitism/index.html#B1",
+   "witness": {
+    "py": null,
+    "lean": []
+   },
+   "refs": [],
+   "text": "A formation act of bounded arity yields a new object distinct from its inputs; the paradigms $x\\mapsto\\{x\\}$ and the extension of a finite frame by one element. A configuration is finite and acyclic. In the core a universe is $\\mathit{size}$ objects with a formation image, none where the act fails; a trace is $t$ objects with asserted atoms. Def. def:formation"
+  },
+  {
+   "paper": "29-fin",
+   "no": 29,
+   "rid": "29:B2",
+   "key": "p29004",
+   "label": "B2",
+   "block": "B",
+   "tag": "D",
+   "name": null,
+   "statement": "A license is a rule, adopted or declined, asserting nothing. A supply is a proposition: the totality of objects obtainable by iteration exists. Iteration names repeated application under the license; induction names the closure over its results.",
+   "source": "Def.~\\ref{def:license}",
+   "page": "29-finitism/index.html#B2",
+   "witness": {
+    "py": null,
+    "lean": []
+   },
+   "refs": [],
+   "text": "A license is a rule, adopted or declined, asserting nothing. A supply is a proposition: the totality of objects obtainable by iteration exists. Iteration names repeated application under the license; induction names the closure over its results. Def. def:license"
+  },
+  {
+   "paper": "29-fin",
+   "no": 29,
+   "rid": "29:B3",
+   "key": "p29005",
+   "label": "B3",
+   "block": "B",
+   "tag": "D",
+   "name": null,
+   "statement": "The classical construction uses a medium, productivity and an unbounded license. The medium is a presupposition no position declines; productivity and the license are posits; the formalist reading declines productivity coherently. Ontological weight and formal innocence cannot both be claimed.",
+   "source": "Prop.~\\ref{prop:posits}; \\S\\ref{subsec:separability}",
+   "page": "29-finitism/index.html#B3",
+   "witness": {
+    "py": null,
+    "lean": []
+   },
+   "refs": [],
+   "text": "The classical construction uses a medium, productivity and an unbounded license. The medium is a presupposition no position declines; productivity and the license are posits; the formalist reading declines productivity coherently. Ontological weight and formal innocence cannot both be claimed. Prop. prop:posits; \\Ssubsec:separability"
+  },
+  {
+   "paper": "29-fin",
+   "no": 29,
+   "rid": "29:B4",
+   "key": "p29006",
+   "label": "B4",
+   "block": "B",
+   "tag": "T",
+   "name": null,
+   "statement": "Declining the license is coherent: the finite initial segment with truncated successor, sum and product has a complete, decidable theory and no injective successor missing $0$; on the cycle of $n$ points the successor act is total, returns to its start after $n$ steps, and makes nothing new: every point is already an image.",
+   "source": "Prop.~\\ref{prop:posits}\\newline \\pywit{formation}{p29006}{B4}, \\leanwit{FrcCore}{p29006}{B4} \\lean{FRC.Logic.fin\\_theory\\_complete, FRC.Logic.fin\\_theory\\_decidable, FRC.Logic.no\\_finite\\_successor, FRC.Formation.cyc\\_lt, FRC.Formation.cyc\\_return, FRC.Formation.cyc\\_onto}",
+   "page": "29-finitism/index.html#B4",
+   "witness": {
+    "py": null,
+    "lean": [
+     {
+      "lib": "FrcCore",
+      "module": "FrcCore/Theme/Logic",
+      "name": "FRC.Logic.fin_theory_complete",
+      "tier": 0,
+      "ok": true,
+      "page": "lean/core/Theme.html#FRC.Logic.fin_theory_complete"
+     },
+     {
+      "lib": "FrcCore",
+      "module": "FrcCore/Theme/Logic",
+      "name": "FRC.Logic.fin_theory_decidable",
+      "tier": 0,
+      "ok": true,
+      "page": "lean/core/Theme.html#FRC.Logic.fin_theory_decidable"
+     },
+     {
+      "lib": "FrcCore",
+      "module": "FrcCore/Theme/Logic",
+      "name": "FRC.Logic.no_finite_successor",
+      "tier": 0,
+      "ok": true,
+      "page": "lean/core/Theme.html#FRC.Logic.no_finite_successor"
+     },
+     {
+      "lib": "FrcCore",
+      "module": "FrcCore/Theme/Formation",
+      "name": "FRC.Formation.cyc_lt",
+      "tier": 0,
+      "ok": true,
+      "page": "lean/core/Theme.html#FRC.Formation.cyc_lt"
+     },
+     {
+      "lib": "FrcCore",
+      "module": "FrcCore/Theme/Formation",
+      "name": "FRC.Formation.cyc_return",
+      "tier": 0,
+      "ok": true,
+      "page": "lean/core/Theme.html#FRC.Formation.cyc_return"
+     },
+     {
+      "lib": "FrcCore",
+      "module": "FrcCore/Theme/Formation",
+      "name": "FRC.Formation.cyc_onto",
+      "tier": 0,
+      "ok": true,
+      "page": "lean/core/Theme.html#FRC.Formation.cyc_onto"
+     }
+    ]
+   },
+   "refs": [
+    "p00188"
+   ],
+   "text": "Declining the license is coherent: the finite initial segment with truncated successor, sum and product has a complete, decidable theory and no injective successor missing $0$; on the cycle of $n$ points the successor act is total, returns to its start after $n$ steps, and makes nothing new: every point is already an image. Prop. prop:posits p29006, FrcCore{B4} FRC.Logic.fin_theory_complete, FRC.Logic.fin_theory_decidable, FRC.Logic.no_finite_successor, FRC.Formation.cyc_lt, FRC.Formation.cyc_return, FRC.Formation.cyc_onto"
+  },
+  {
+   "paper": "29-fin",
+   "no": 29,
+   "rid": "29:B5",
+   "key": "p25010",
+   "label": "B5",
+   "block": "B",
+   "tag": "T",
+   "name": null,
+   "statement": "Lemma innocence (i): no finite structure interprets $Q$ --- a model of $Q$ has an injective successor with $0$ outside its range, and on a finite set an injective map is onto. $Q$'s successor axioms alone, with no induction, exclude every finite model.",
+   "source": "Lemma~\\ref{lem:innocence}\\newline \\pywit{formation}{p25010}{B5}, \\leanwit{FrcCore}{p25010}{B5} \\lean{FRC.Logic.inj\\_onto, FRC.Logic.no\\_finite\\_successor}",
+   "page": "29-finitism/index.html#B5",
+   "witness": {
+    "py": null,
+    "lean": [
+     {
+      "lib": "FrcCore",
+      "module": "FrcCore/Theme/Logic",
+      "name": "FRC.Logic.inj_onto",
+      "tier": 0,
+      "ok": true,
+      "page": "lean/core/Theme.html#FRC.Logic.inj_onto"
+     },
+     {
+      "lib": "FrcCore",
+      "module": "FrcCore/Theme/Logic",
+      "name": "FRC.Logic.no_finite_successor",
+      "tier": 0,
+      "ok": true,
+      "page": "lean/core/Theme.html#FRC.Logic.no_finite_successor"
+     }
+    ]
+   },
+   "refs": [
+    "p00186"
+   ],
+   "text": "Lemma innocence (i): no finite structure interprets $Q$ — a model of $Q$ has an injective successor with $0$ outside its range, and on a finite set an injective map is onto. $Q$'s successor axioms alone, with no induction, exclude every finite model. Lemma lem:innocence p25010, FrcCore{B5} FRC.Logic.inj_onto, FRC.Logic.no_finite_successor"
+  },
+  {
+   "paper": "29-fin",
+   "no": 29,
+   "rid": "29:B6",
+   "key": "p29007",
+   "label": "B6",
+   "block": "B",
+   "tag": "T",
+   "name": null,
+   "statement": "Lemma innocence (ii): on $[0,n)$ every nonempty subset has a least element, and a property true at $0$ and closed under successor below $n$ holds below $n$: induction is a theorem of every finite frame, for all subsets.",
+   "source": "Lemma~\\ref{lem:innocence}\\newline \\pywit{formation}{p29007}{B6}, \\leanwit{FrcCore}{p29007}{B6} \\lean{FRC.Logic.leastBelow\\_some, FRC.Logic.leastBelow\\_spec, FRC.Formation.finite\\_induction}",
+   "page": "29-finitism/index.html#B6",
+   "witness": {
+    "py": null,
+    "lean": [
+     {
+      "lib": "FrcCore",
+      "module": "FrcCore/Theme/Logic",
+      "name": "FRC.Logic.leastBelow_some",
+      "tier": 0,
+      "ok": true,
+      "page": "lean/core/Theme.html#FRC.Logic.leastBelow_some"
+     },
+     {
+      "lib": "FrcCore",
+      "module": "FrcCore/Theme/Logic",
+      "name": "FRC.Logic.leastBelow_spec",
+      "tier": 0,
+      "ok": true,
+      "page": "lean/core/Theme.html#FRC.Logic.leastBelow_spec"
+     },
+     {
+      "lib": "FrcCore",
+      "module": "FrcCore/Theme/Formation",
+      "name": "FRC.Formation.finite_induction",
+      "tier": 0,
+      "ok": true,
+      "page": "lean/core/Theme.html#FRC.Formation.finite_induction"
+     }
+    ]
+   },
+   "refs": [],
+   "text": "Lemma innocence (ii): on $[0,n)$ every nonempty subset has a least element, and a property true at $0$ and closed under successor below $n$ holds below $n$: induction is a theorem of every finite frame, for all subsets. Lemma lem:innocence p29007, FrcCore{B6} FRC.Logic.leastBelow_some, FRC.Logic.leastBelow_spec, FRC.Formation.finite_induction"
+  },
+  {
+   "paper": "29-fin",
+   "no": 29,
+   "rid": "29:B7",
+   "key": "p29008",
+   "label": "B7",
+   "block": "B",
+   "tag": "D",
+   "name": null,
+   "statement": "The modal ascent: asserted as true, the license quantifies over stages and possibilities; its truthmaker outruns every finite configuration, since every configuration is realized in a universe extending it by nothing (C2) and in universes of every larger size (C4). Rests on C2, C4.",
+   "source": "Prop.~\\ref{prop:ascent}",
+   "page": "29-finitism/index.html#B7",
+   "witness": {
+    "py": null,
+    "lean": []
+   },
+   "refs": [
+    "p29010",
+    "p29012"
+   ],
+   "text": "The modal ascent: asserted as true, the license quantifies over stages and possibilities; its truthmaker outruns every finite configuration, since every configuration is realized in a universe extending it by nothing (C2) and in universes of every larger size (C4). Rests on C2, C4. Prop. prop:ascent"
+  },
+  {
+   "paper": "29-fin",
+   "no": 29,
+   "rid": "29:C1",
+   "key": "p29009",
+   "label": "C1",
+   "block": "C",
+   "tag": "D",
+   "name": null,
+   "statement": "An agent of capacity $K$ over $s\\ge2$ letters holds records of at most $K$ symbols, fewer than $s^{K+1}$; certification is a retained record encoding a completed check with a bounded local trace; the locality and interface clauses. Extends 5:C1.",
+   "source": "Def.~\\ref{def:agent}; \\S\\ref{sec:idleness}",
+   "page": "29-finitism/index.html#C1",
+   "witness": {
+    "py": null,
+    "lean": []
+   },
+   "refs": [
+    "p05012"
+   ],
+   "text": "An agent of capacity $K$ over $s\\ge2$ letters holds records of at most $K$ symbols, fewer than $s^{K+1}$; certification is a retained record encoding a completed check with a bounded local trace; the locality and interface clauses. Extends 5:C1. Def. def:agent; \\Ssec:idleness"
+  },
+  {
+   "paper": "29-fin",
+   "no": 29,
+   "rid": "29:C2",
+   "key": "p29010",
+   "label": "C2",
+   "block": "C",
+   "tag": "T",
+   "name": null,
+   "statement": "Theorem idleness: a check that passes in any universe passes, read by the identity, in the closed finite universe of its own trace, $t(r)$ objects. A record entails nothing that fails there: no count above $t(r)$, no unbounded supply. The sentence ``the universe of formations is infinite'' is certified by no agent at any capacity.",
+   "source": "Thm.~\\ref{thm:idleness}\\newline \\pywit{formation}{p29010}{C2}, \\leanwit{FrcCore}{p29010}{C2} \\lean{FRC.Formation.realized, FRC.Formation.minimal\\_size, FRC.Formation.minimal\\_closed}",
+   "page": "29-finitism/index.html#C2",
+   "witness": {
+    "py": null,
+    "lean": [
+     {
+      "lib": "FrcCore",
+      "module": "FrcCore/Theme/Formation",
+      "name": "FRC.Formation.realized",
+      "tier": 0,
+      "ok": true,
+      "page": "lean/core/Theme.html#FRC.Formation.realized"
+     },
+     {
+      "lib": "FrcCore",
+      "module": "FrcCore/Theme/Formation",
+      "name": "FRC.Formation.minimal_size",
+      "tier": 0,
+      "ok": true,
+      "page": "lean/core/Theme.html#FRC.Formation.minimal_size"
+     },
+     {
+      "lib": "FrcCore",
+      "module": "FrcCore/Theme/Formation",
+      "name": "FRC.Formation.minimal_closed",
+      "tier": 0,
+      "ok": true,
+      "page": "lean/core/Theme.html#FRC.Formation.minimal_closed"
+     }
+    ]
+   },
+   "refs": [
+    "p00004"
+   ],
+   "text": "Theorem idleness: a check that passes in any universe passes, read by the identity, in the closed finite universe of its own trace, $t(r)$ objects. A record entails nothing that fails there: no count above $t(r)$, no unbounded supply. The sentence “the universe of formations is infinite” is certified by no agent at any capacity. Thm. thm:idleness p29010, FrcCore{C2} FRC.Formation.realized, FRC.Formation.minimal_size, FRC.Formation.minimal_closed"
+  },
+  {
+   "paper": "29-fin",
+   "no": 29,
+   "rid": "29:C3",
+   "key": "p29011",
+   "label": "C3",
+   "block": "C",
+   "tag": "T",
+   "name": null,
+   "statement": "The asymmetry: the check of a trace is decided by exhaustive evaluation of its $t^{2}$ atoms and terminates, and the trace is itself a record of $t^{2}$ symbols, retained when $t^{2}\\le K$; bounded structural facts are certifiable, the unbounded supply is not (C2).",
+   "source": "Cor.~\\ref{cor:asymmetry}\\newline \\pywit{formation}{p29011}{C3}, \\leanwit{FrcCore}{p29011}{C3} \\lean{FRC.Formation.record\\_length, FRC.Formation.record\\_square, FRC.Formation.decPasses}",
+   "page": "29-finitism/index.html#C3",
+   "witness": {
+    "py": null,
+    "lean": [
+     {
+      "lib": "FrcCore",
+      "module": "FrcCore/Theme/Formation",
+      "name": "FRC.Formation.record_length",
+      "tier": 0,
+      "ok": true,
+      "page": "lean/core/Theme.html#FRC.Formation.record_length"
+     },
+     {
+      "lib": "FrcCore",
+      "module": "FrcCore/Theme/Formation",
+      "name": "FRC.Formation.record_square",
+      "tier": 0,
+      "ok": true,
+      "page": "lean/core/Theme.html#FRC.Formation.record_square"
+     },
+     {
+      "lib": "FrcCore",
+      "module": "FrcCore/Theme/Formation",
+      "name": "FRC.Formation.decPasses",
+      "tier": 0,
+      "ok": true,
+      "page": "lean/core/Theme.html#FRC.Formation.decPasses"
+     }
+    ]
+   },
+   "refs": [
+    "p29010"
+   ],
+   "text": "The asymmetry: the check of a trace is decided by exhaustive evaluation of its $t^{2}$ atoms and terminates, and the trace is itself a record of $t^{2}$ symbols, retained when $t^{2}\\le K$; bounded structural facts are certifiable, the unbounded supply is not (C2). Cor. cor:asymmetry p29011, FrcCore{C3} FRC.Formation.record_length, FRC.Formation.record_square, FRC.Formation.decPasses"
+  },
+  {
+   "paper": "29-fin",
+   "no": 29,
+   "rid": "29:C4",
+   "key": "p29012",
+   "label": "C4",
+   "block": "C",
+   "tag": "T",
+   "name": null,
+   "statement": "Corollary symmetry, uncertifiability of the bound: a passed check passes after padding by any number $k$ of fresh formations, in a closed realizing universe of exactly $t+k$ objects, so the passing entails no upper bound; with C10, no record fixes the cardinality.",
+   "source": "Cor.~\\ref{cor:symmetry}\\newline \\pywit{formation}{p29012}{C4}, \\leanwit{FrcCore}{p29012}{C4} \\lean{FRC.Formation.passes\\_pad, FRC.Formation.realization\\_at\\_size}",
+   "page": "29-finitism/index.html#C4",
+   "witness": {
+    "py": null,
+    "lean": [
+     {
+      "lib": "FrcCore",
+      "module": "FrcCore/Theme/Formation",
+      "name": "FRC.Formation.passes_pad",
+      "tier": 0,
+      "ok": true,
+      "page": "lean/core/Theme.html#FRC.Formation.passes_pad"
+     },
+     {
+      "lib": "FrcCore",
+      "module": "FrcCore/Theme/Formation",
+      "name": "FRC.Formation.realization_at_size",
+      "tier": 0,
+      "ok": true,
+      "page": "lean/core/Theme.html#FRC.Formation.realization_at_size"
+     }
+    ]
+   },
+   "refs": [
+    "p05013"
+   ],
+   "text": "Corollary symmetry, uncertifiability of the bound: a passed check passes after padding by any number $k$ of fresh formations, in a closed realizing universe of exactly $t+k$ objects, so the passing entails no upper bound; with C10, no record fixes the cardinality. Cor. cor:symmetry p29012, FrcCore{C4} FRC.Formation.passes_pad, FRC.Formation.realization_at_size"
+  },
+  {
+   "paper": "29-fin",
+   "no": 29,
+   "rid": "29:C5",
+   "key": "p29013",
+   "label": "C5",
+   "block": "C",
+   "tag": "D",
+   "name": null,
+   "statement": "No symmetry of standing: every realization of C2 and C4 is a model of the finite position, which asserts nothing beyond what such models exhibit. Uncertifiability of the bound is a statement about records; the selection between the positions is made at the level of models and costs (\\S\\ref{subsec:primitive}).",
+   "source": "Rem.~\\ref{rem:nosymmetry}",
+   "page": "29-finitism/index.html#C5",
+   "witness": {
+    "py": null,
+    "lean": []
+   },
+   "refs": [
+    "p29010",
+    "p29012"
+   ],
+   "text": "No symmetry of standing: every realization of C2 and C4 is a model of the finite position, which asserts nothing beyond what such models exhibit. Uncertifiability of the bound is a statement about records; the selection between the positions is made at the level of models and costs (\\Ssubsec:primitive). Rem. rem:nosymmetry"
+  },
+  {
+   "paper": "29-fin",
+   "no": 29,
+   "rid": "29:C6",
+   "key": "p29014",
+   "label": "C6",
+   "block": "C",
+   "tag": "T",
+   "name": null,
+   "statement": "Lemma boundary, Case 1: the disjoint double of a closed universe carries the swap, an automorphism without fixed points, of order two; a condition invariant under the swap has an even number of satisfiers, never exactly one; the check passes in the double.",
+   "source": "Lemma~\\ref{lem:boundary}\\newline \\pywit{formation}{p29014}{C6}, \\leanwit{FrcCore}{p29014}{C6} \\lean{FRC.Formation.swap\\_form, FRC.Formation.swap\\_ne, FRC.Formation.swap\\_swap, FRC.Formation.passes\\_double, FRC.Formation.invariant\\_count\\_even, FRC.Formation.no\\_unique\\_invariant}",
+   "page": "29-finitism/index.html#C6",
+   "witness": {
+    "py": null,
+    "lean": [
+     {
+      "lib": "FrcCore",
+      "module": "FrcCore/Theme/Formation",
+      "name": "FRC.Formation.swap_form",
+      "tier": 0,
+      "ok": true,
+      "page": "lean/core/Theme.html#FRC.Formation.swap_form"
+     },
+     {
+      "lib": "FrcCore",
+      "module": "FrcCore/Theme/Formation",
+      "name": "FRC.Formation.swap_ne",
+      "tier": 0,
+      "ok": true,
+      "page": "lean/core/Theme.html#FRC.Formation.swap_ne"
+     },
+     {
+      "lib": "FrcCore",
+      "module": "FrcCore/Theme/Formation",
+      "name": "FRC.Formation.swap_swap",
+      "tier": 0,
+      "ok": true,
+      "page": "lean/core/Theme.html#FRC.Formation.swap_swap"
+     },
+     {
+      "lib": "FrcCore",
+      "module": "FrcCore/Theme/Formation",
+      "name": "FRC.Formation.passes_double",
+      "tier": 0,
+      "ok": true,
+      "page": "lean/core/Theme.html#FRC.Formation.passes_double"
+     },
+     {
+      "lib": "FrcCore",
+      "module": "FrcCore/Theme/Formation",
+      "name": "FRC.Formation.invariant_count_even",
+      "tier": 0,
+      "ok": true,
+      "page": "lean/core/Theme.html#FRC.Formation.invariant_count_even"
+     },
+     {
+      "lib": "FrcCore",
+      "module": "FrcCore/Theme/Formation",
+      "name": "FRC.Formation.no_unique_invariant",
+      "tier": 0,
+      "ok": true,
+      "page": "lean/core/Theme.html#FRC.Formation.no_unique_invariant"
+     }
+    ]
+   },
+   "refs": [],
+   "text": "Lemma boundary, Case 1: the disjoint double of a closed universe carries the swap, an automorphism without fixed points, of order two; a condition invariant under the swap has an even number of satisfiers, never exactly one; the check passes in the double. Lemma lem:boundary p29014, FrcCore{C6} FRC.Formation.swap_form, FRC.Formation.swap_ne, FRC.Formation.swap_swap, FRC.Formation.passes_double, FRC.Formation.invariant_count_even, FRC.Formation.no_unique_invariant"
+  },
+  {
+   "paper": "29-fin",
+   "no": 29,
+   "rid": "29:C7",
+   "key": "p29015",
+   "label": "C7",
+   "block": "C",
+   "tag": "T",
+   "name": null,
+   "statement": "Lemma boundary, Case 2: the minimal realization holds the trace's objects and nothing else, and a datum the trace never forms has no preimage there: descriptive uniqueness is confined to trace-derived objects, so every presentable object is reachable.",
+   "source": "Lemma~\\ref{lem:boundary}\\newline \\pywit{formation}{p29015}{C7}, \\leanwit{FrcCore}{p29015}{C7} \\lean{FRC.Formation.minimal\\_size, FRC.Formation.no\\_preimage\\_in\\_minimal}",
+   "page": "29-finitism/index.html#C7",
+   "witness": {
+    "py": null,
+    "lean": [
+     {
+      "lib": "FrcCore",
+      "module": "FrcCore/Theme/Formation",
+      "name": "FRC.Formation.minimal_size",
+      "tier": 0,
+      "ok": true,
+      "page": "lean/core/Theme.html#FRC.Formation.minimal_size"
+     },
+     {
+      "lib": "FrcCore",
+      "module": "FrcCore/Theme/Formation",
+      "name": "FRC.Formation.no_preimage_in_minimal",
+      "tier": 0,
+      "ok": true,
+      "page": "lean/core/Theme.html#FRC.Formation.no_preimage_in_minimal"
+     }
+    ]
+   },
+   "refs": [],
+   "text": "Lemma boundary, Case 2: the minimal realization holds the trace's objects and nothing else, and a datum the trace never forms has no preimage there: descriptive uniqueness is confined to trace-derived objects, so every presentable object is reachable. Lemma lem:boundary p29015, FrcCore{C7} FRC.Formation.minimal_size, FRC.Formation.no_preimage_in_minimal"
+  },
+  {
+   "paper": "29-fin",
+   "no": 29,
+   "rid": "29:C8",
+   "key": "p29016",
+   "label": "C8",
+   "block": "C",
+   "tag": "T",
+   "name": null,
+   "statement": "Proposition illusion (i), (ii): the buffer frame of $\\sigma$ seeds and $D$ rounds has $\\sigma(D+1)$ formations; every object below level $D$ has a fresh image one level up; $k$ acts from a seed reach level $k$ for $k\\le D$. Instance $\\sigma=2$, $D=17$: $M=36>2\\cdot2^{4}$, $D>2^{4}$.",
+   "source": "Prop.~\\ref{prop:illusion}\\newline \\pywit{formation}{p29016}{C8}, \\leanwit{FrcCore}{p29016}{C8} \\lean{FRC.Formation.buffer\\_forms, FRC.Formation.buffer\\_fresh, FRC.Formation.chain\\_level, FRC.Formation.illusion, FRC.Formation.illusion\\_instance}",
+   "page": "29-finitism/index.html#C8",
+   "witness": {
+    "py": null,
+    "lean": [
+     {
+      "lib": "FrcCore",
+      "module": "FrcCore/Theme/Formation",
+      "name": "FRC.Formation.buffer_forms",
+      "tier": 0,
+      "ok": true,
+      "page": "lean/core/Theme.html#FRC.Formation.buffer_forms"
+     },
+     {
+      "lib": "FrcCore",
+      "module": "FrcCore/Theme/Formation",
+      "name": "FRC.Formation.buffer_fresh",
+      "tier": 0,
+      "ok": true,
+      "page": "lean/core/Theme.html#FRC.Formation.buffer_fresh"
+     },
+     {
+      "lib": "FrcCore",
+      "module": "FrcCore/Theme/Formation",
+      "name": "FRC.Formation.chain_level",
+      "tier": 0,
+      "ok": true,
+      "page": "lean/core/Theme.html#FRC.Formation.chain_level"
+     },
+     {
+      "lib": "FrcCore",
+      "module": "FrcCore/Theme/Formation",
+      "name": "FRC.Formation.illusion",
+      "tier": 0,
+      "ok": true,
+      "page": "lean/core/Theme.html#FRC.Formation.illusion"
+     },
+     {
+      "lib": "FrcCore",
+      "module": "FrcCore/Theme/Formation",
+      "name": "FRC.Formation.illusion_instance",
+      "tier": 0,
+      "ok": true,
+      "page": "lean/core/Theme.html#FRC.Formation.illusion_instance"
+     }
+    ]
+   },
+   "refs": [],
+   "text": "Proposition illusion (i), (ii): the buffer frame of $\\sigma$ seeds and $D$ rounds has $\\sigma(D+1)$ formations; every object below level $D$ has a fresh image one level up; $k$ acts from a seed reach level $k$ for $k\\le D$. Instance $\\sigma=2$, $D=17$: $M=36>2\\cdot2^{4}$, $D>2^{4}$. Prop. prop:illusion p29016, FrcCore{C8} FRC.Formation.buffer_forms, FRC.Formation.buffer_fresh, FRC.Formation.chain_level, FRC.Formation.illusion, FRC.Formation.illusion_instance"
+  },
+  {
+   "paper": "29-fin",
+   "no": 29,
+   "rid": "29:C9",
+   "key": "p29017",
+   "label": "C9",
+   "block": "C",
+   "tag": "D",
+   "name": null,
+   "statement": "Proposition illusion (iii): every completed check of the agent passes in buffered frames of every size above its trace (C4, C8) and in their doubles (C6), and no act on a presentable object fails (C7): no check separates the agent's frame from any larger one. The classical ``infinite universe'' is the chart reading. Potentiality is the inside view of finitude.",
+   "source": "Prop.~\\ref{prop:illusion}",
+   "page": "29-finitism/index.html#C9",
+   "witness": {
+    "py": null,
+    "lean": []
+   },
+   "refs": [
+    "p29012",
+    "p29014",
+    "p29015",
+    "p29016"
+   ],
+   "text": "Proposition illusion (iii): every completed check of the agent passes in buffered frames of every size above its trace (C4, C8) and in their doubles (C6), and no act on a presentable object fails (C7): no check separates the agent's frame from any larger one. The classical “infinite universe” is the chart reading. Potentiality is the inside view of finitude. Prop. prop:illusion"
+  },
+  {
+   "paper": "29-fin",
+   "no": 29,
+   "rid": "29:C10",
+   "key": "p05013",
+   "label": "C10",
+   "block": "C",
+   "tag": "T",
+   "name": null,
+   "statement": "The pigeonhole (O3): an agent with fewer than $s^{K+1}$ records in a frame of $M>s^{K+1}$ formations holds no injective representation of it, so the frame's cardinality is not certifiable from within. Counterparts 25:D1, 00:A4.",
+   "source": "\\S\\ref{sec:objections}, (O3)\\newline \\pywit{formation}{p05013}{C10}, \\leanwit{FrcCore}{p05013}{C10} \\lean{FRC.Logic.records\\_lt, FRC.Logic.no\\_mirror}",
+   "page": "29-finitism/index.html#C10",
+   "witness": {
+    "py": null,
+    "lean": [
+     {
+      "lib": "FrcCore",
+      "module": "FrcCore/Theme/Logic",
+      "name": "FRC.Logic.records_lt",
+      "tier": 0,
+      "ok": true,
+      "page": "lean/core/Theme.html#FRC.Logic.records_lt"
+     },
+     {
+      "lib": "FrcCore",
+      "module": "FrcCore/Series",
+      "name": "FRC.Logic.no_mirror",
+      "tier": 0,
+      "ok": true,
+      "page": "lean/core/Series.html#FRC.Logic.no_mirror"
+     }
+    ]
+   },
+   "refs": [
+    "p00004",
+    "p00111",
+    "p00159",
+    "p25015"
+   ],
+   "text": "The pigeonhole (O3): an agent with fewer than $s^{K+1}$ records in a frame of $M>s^{K+1}$ formations holds no injective representation of it, so the frame's cardinality is not certifiable from within. Counterparts 25:D1, 00:A4. \\Ssec:objections, (O3) p05013, FrcCore{C10} FRC.Logic.records_lt, FRC.Logic.no_mirror"
+  },
+  {
+   "paper": "29-fin",
+   "no": 29,
+   "rid": "29:D1",
+   "key": "p29018",
+   "label": "D1",
+   "block": "D",
+   "tag": "D",
+   "name": null,
+   "statement": "The truthmaker demand, restricted: a foundational commitment that does ontological work owes an account of its carrier; truthmaker maximalism is not assumed; the deflationist reply is answered by idleness (C2).",
+   "source": "\\S\\ref{subsec:demand}",
+   "page": "29-finitism/index.html#D1",
+   "witness": {
+    "py": null,
+    "lean": []
+   },
+   "refs": [
+    "p29010"
+   ],
+   "text": "The truthmaker demand, restricted: a foundational commitment that does ontological work owes an account of its carrier; truthmaker maximalism is not assumed; the deflationist reply is answered by idleness (C2). \\Ssubsec:demand"
+  },
+  {
+   "paper": "29-fin",
+   "no": 29,
+   "rid": "29:D2",
+   "key": "p29019",
+   "label": "D2",
+   "block": "D",
+   "tag": "D",
+   "name": null,
+   "statement": "Under the demand the assertion faces three outcomes: a completed range (actualism, the reductio of 5-reductio, C2 verbatim); a modal realm --- articulated, borrowing the actualist semantics one level up; essence, horn (ii) renamed; primitive, met by declaration, operational content and cost (the fallback stated once); the finite stock, the survivor.",
+   "source": "\\S\\ref{subsec:horn1}--\\ref{subsec:horn3}",
+   "page": "29-finitism/index.html#D2",
+   "witness": {
+    "py": null,
+    "lean": []
+   },
+   "refs": [
+    "p29010"
+   ],
+   "text": "Under the demand the assertion faces three outcomes: a completed range (actualism, the reductio of 5-reductio, C2 verbatim); a modal realm — articulated, borrowing the actualist semantics one level up; essence, horn (ii) renamed; primitive, met by declaration, operational content and cost (the fallback stated once); the finite stock, the survivor. \\Ssubsec:horn1–subsec:horn3"
+  },
+  {
+   "paper": "29-fin",
+   "no": 29,
+   "rid": "29:D3",
+   "key": "p29020",
+   "label": "D3",
+   "block": "D",
+   "tag": "D",
+   "name": null,
+   "statement": "The objections O1--O7 and their replies: declaration (O1); induction untouched (B5, B6, E2; O2); the pigeonhole (C10; O3); not ultrafinitism (O4); the bound undecided by observation, the posit idle (C2, C4, C5; O5); the semantics engaged where the mirroring theorems live (O6); the free parameter (C2; O7).",
+   "source": "\\S\\ref{sec:objections}",
+   "page": "29-finitism/index.html#D3",
+   "witness": {
+    "py": null,
+    "lean": []
+   },
+   "refs": [
+    "p05013",
+    "p25010",
+    "p29007",
+    "p29010",
+    "p29012",
+    "p29013",
+    "p29022"
+   ],
+   "text": "The objections O1–O7 and their replies: declaration (O1); induction untouched (B5, B6, E2; O2); the pigeonhole (C10; O3); not ultrafinitism (O4); the bound undecided by observation, the posit idle (C2, C4, C5; O5); the semantics engaged where the mirroring theorems live (O6); the free parameter (C2; O7). \\Ssec:objections"
+  },
+  {
+   "paper": "29-fin",
+   "no": 29,
+   "rid": "29:E1",
+   "key": "p29021",
+   "label": "E1",
+   "block": "E",
+   "tag": "D",
+   "name": null,
+   "statement": "One finite frame; its cardinality determinate and not certifiable by its parts (C10); the license a rule exercised within it; the universal assertion false, its phenomenology derived (C8, C9); induction a theorem (B6); closures as schemas (E2). In the programme the frame is the Carrier, $\\Omega=4S+1$, $S\\sim10^{122}$ [chart] (00:A2, 00:A8).",
+   "source": "\\S\\ref{sec:actualism}",
+   "page": "29-finitism/index.html#E1",
+   "witness": {
+    "py": null,
+    "lean": []
+   },
+   "refs": [
+    "p00004",
+    "p00008",
+    "p05013",
+    "p29007",
+    "p29016",
+    "p29017",
+    "p29022"
+   ],
+   "text": "One finite frame; its cardinality determinate and not certifiable by its parts (C10); the license a rule exercised within it; the universal assertion false, its phenomenology derived (C8, C9); induction a theorem (B6); closures as schemas (E2). In the programme the frame is the Carrier, $\\Omega=4S+1$, $S\\sim10^{122}$ [chart] (00:A2, 00:A8). \\Ssec:actualism"
+  },
+  {
+   "paper": "29-fin",
+   "no": 29,
+   "rid": "29:E2",
+   "key": "p29022",
+   "label": "E2",
+   "block": "E",
+   "tag": "T",
+   "name": null,
+   "statement": "Certificate conservativity: a $\\Delta_0$ sentence takes its standard value in every frame beyond its bound (5:B6); every instance of a schema below the bound is decided by evaluation; induction transfers instance-wise (B6). Derivations through infinitary principles are kept as derivability facts: a reading.",
+   "source": "Prop.~\\ref{prop:conservativeness}\\newline \\pywit{formation}{p29022}{E2}, \\leanwit{FrcCore}{p29022}{E2} \\lean{FRC.Logic.stable, FRC.Logic.fin\\_theory\\_decidable, FRC.Formation.finite\\_induction, FRC.Logic.leastBelow\\_spec}",
+   "page": "29-finitism/index.html#E2",
+   "witness": {
+    "py": null,
+    "lean": [
+     {
+      "lib": "FrcCore",
+      "module": "FrcCore/Theme/Logic",
+      "name": "FRC.Logic.stable",
+      "tier": 0,
+      "ok": true,
+      "page": "lean/core/Theme.html#FRC.Logic.stable"
+     },
+     {
+      "lib": "FrcCore",
+      "module": "FrcCore/Theme/Logic",
+      "name": "FRC.Logic.fin_theory_decidable",
+      "tier": 0,
+      "ok": true,
+      "page": "lean/core/Theme.html#FRC.Logic.fin_theory_decidable"
+     },
+     {
+      "lib": "FrcCore",
+      "module": "FrcCore/Theme/Formation",
+      "name": "FRC.Formation.finite_induction",
+      "tier": 0,
+      "ok": true,
+      "page": "lean/core/Theme.html#FRC.Formation.finite_induction"
+     },
+     {
+      "lib": "FrcCore",
+      "module": "FrcCore/Theme/Logic",
+      "name": "FRC.Logic.leastBelow_spec",
+      "tier": 0,
+      "ok": true,
+      "page": "lean/core/Theme.html#FRC.Logic.leastBelow_spec"
+     }
+    ]
+   },
+   "refs": [
+    "p05010",
+    "p29007"
+   ],
+   "text": "Certificate conservativity: a $\\Delta_0$ sentence takes its standard value in every frame beyond its bound (5:B6); every instance of a schema below the bound is decided by evaluation; induction transfers instance-wise (B6). Derivations through infinitary principles are kept as derivability facts: a reading. Prop. prop:conservativeness p29022, FrcCore{E2} FRC.Logic.stable, FRC.Logic.fin_theory_decidable, FRC.Formation.finite_induction, FRC.Logic.leastBelow_spec"
+  },
+  {
+   "paper": "29-fin",
+   "no": 29,
+   "rid": "29:E3",
+   "key": "p29023",
+   "label": "E3",
+   "block": "E",
+   "tag": "D",
+   "name": null,
+   "statement": "Effective determinacy: a totality decides every well-posed question about itself, its subsets and relations included, each decision effectively producible; a property of the structure presented as a finite object, not of an agent inside it.",
+   "source": "Cor.~\\ref{cor:determinacy}",
+   "page": "29-finitism/index.html#E3",
+   "witness": {
+    "py": null,
+    "lean": []
+   },
+   "refs": [],
+   "text": "Effective determinacy: a totality decides every well-posed question about itself, its subsets and relations included, each decision effectively producible; a property of the structure presented as a finite object, not of an agent inside it. Cor. cor:determinacy"
+  },
+  {
+   "paper": "29-fin",
+   "no": 29,
+   "rid": "29:E4",
+   "key": "p29024",
+   "label": "E4",
+   "block": "E",
+   "tag": "T",
+   "name": null,
+   "statement": "Effective determinacy on a finite frame: subsets and relations are finitely many, and the full second-order theory is decided by exhaustive evaluation over them. The finite direction of 5:D8.",
+   "source": "Cor.~\\ref{cor:determinacy}\\newline \\pywit{formation}{p29024}{E4}, \\leanwit{FrcCore}{p29024}{E4} \\lean{FRC.Logic.so\\_theory\\_decidable, FRC.Logic.so\\_theory\\_complete, FRC.Logic.so\\_theory\\_consistent}",
+   "page": "29-finitism/index.html#E4",
+   "witness": {
+    "py": null,
+    "lean": [
+     {
+      "lib": "FrcCore",
+      "module": "FrcCore/Theme/SecondOrder",
+      "name": "FRC.Logic.so_theory_decidable",
+      "tier": 0,
+      "ok": true,
+      "page": "lean/core/Theme.html#FRC.Logic.so_theory_decidable"
+     },
+     {
+      "lib": "FrcCore",
+      "module": "FrcCore/Theme/SecondOrder",
+      "name": "FRC.Logic.so_theory_complete",
+      "tier": 0,
+      "ok": true,
+      "page": "lean/core/Theme.html#FRC.Logic.so_theory_complete"
+     },
+     {
+      "lib": "FrcCore",
+      "module": "FrcCore/Theme/SecondOrder",
+      "name": "FRC.Logic.so_theory_consistent",
+      "tier": 0,
+      "ok": true,
+      "page": "lean/core/Theme.html#FRC.Logic.so_theory_consistent"
+     }
+    ]
+   },
+   "refs": [
+    "p05024"
+   ],
+   "text": "Effective determinacy on a finite frame: subsets and relations are finitely many, and the full second-order theory is decided by exhaustive evaluation over them. The finite direction of 5:D8. Cor. cor:determinacy p29024, FrcCore{E4} FRC.Logic.so_theory_decidable, FRC.Logic.so_theory_complete, FRC.Logic.so_theory_consistent"
+  },
+  {
+   "paper": "29-fin",
+   "no": 29,
+   "rid": "29:E5",
+   "key": "p29025",
+   "label": "E5",
+   "block": "E",
+   "tag": "D",
+   "name": null,
+   "statement": "The costs: universal generalizations in schema form (E2); the frame bound unknowable from within (C10); the verdict conditional on declining unanalyzable modal primitives (D2's fallback).",
+   "source": "\\S\\ref{sec:actualism}",
+   "page": "29-finitism/index.html#E5",
+   "witness": {
+    "py": null,
+    "lean": []
+   },
+   "refs": [
+    "p05013",
+    "p29019",
+    "p29022"
+   ],
+   "text": "The costs: universal generalizations in schema form (E2); the frame bound unknowable from within (C10); the verdict conditional on declining unanalyzable modal primitives (D2's fallback). \\Ssec:actualism"
+  },
+  {
+   "paper": "29-fin",
+   "no": 29,
+   "rid": "29:X1",
+   "key": "p29026",
+   "label": "X1",
+   "block": "X",
+   "tag": "T",
+   "name": null,
+   "statement": "\\textbf{``One can always continue''} is derived, not posited: in a buffered finite frame every act on a reachable object succeeds and no enumeration below the horizon is exhausted (C8), while no check witnesses an end (C6, C7). Rests on C2, C6--C8.",
+   "source": "Prop.~\\ref{prop:illusion}\\newline \\pywit{formation}{p29026}{X1}, \\leanwit{FrcCore}{p29026}{X1} \\lean{FRC.Formation.illusion, FRC.Formation.no\\_unique\\_invariant, FRC.Formation.no\\_preimage\\_in\\_minimal}",
+   "page": "29-finitism/index.html#X1",
+   "witness": {
+    "py": null,
+    "lean": [
+     {
+      "lib": "FrcCore",
+      "module": "FrcCore/Theme/Formation",
+      "name": "FRC.Formation.illusion",
+      "tier": 0,
+      "ok": true,
+      "page": "lean/core/Theme.html#FRC.Formation.illusion"
+     },
+     {
+      "lib": "FrcCore",
+      "module": "FrcCore/Theme/Formation",
+      "name": "FRC.Formation.no_unique_invariant",
+      "tier": 0,
+      "ok": true,
+      "page": "lean/core/Theme.html#FRC.Formation.no_unique_invariant"
+     },
+     {
+      "lib": "FrcCore",
+      "module": "FrcCore/Theme/Formation",
+      "name": "FRC.Formation.no_preimage_in_minimal",
+      "tier": 0,
+      "ok": true,
+      "page": "lean/core/Theme.html#FRC.Formation.no_preimage_in_minimal"
+     }
+    ]
+   },
+   "refs": [
+    "p29010",
+    "p29014",
+    "p29015",
+    "p29016"
+   ],
+   "text": "“One can always continue” is derived, not posited: in a buffered finite frame every act on a reachable object succeeds and no enumeration below the horizon is exhausted (C8), while no check witnesses an end (C6, C7). Rests on C2, C6–C8. Prop. prop:illusion p29026, FrcCore{X1} FRC.Formation.illusion, FRC.Formation.no_unique_invariant, FRC.Formation.no_preimage_in_minimal"
+  },
+  {
+   "paper": "29-fin",
+   "no": 29,
+   "rid": "29:X2",
+   "key": "p29027",
+   "label": "X2",
+   "block": "X",
+   "tag": "T",
+   "name": null,
+   "statement": "\\textbf{The finite ontology loses no proof practice:} induction is a theorem of every finite frame (B6) and every executed verification is a bounded instance (E2). Rests on B6, E2.",
+   "source": "Lemma~\\ref{lem:innocence}; Prop.~\\ref{prop:conservativeness}\\newline \\pywit{formation}{p29027}{X2}, \\leanwit{FrcCore}{p29027}{X2} \\lean{FRC.Formation.finite\\_induction, FRC.Logic.stable}",
+   "page": "29-finitism/index.html#X2",
+   "witness": {
+    "py": null,
+    "lean": [
+     {
+      "lib": "FrcCore",
+      "module": "FrcCore/Theme/Formation",
+      "name": "FRC.Formation.finite_induction",
+      "tier": 0,
+      "ok": true,
+      "page": "lean/core/Theme.html#FRC.Formation.finite_induction"
+     },
+     {
+      "lib": "FrcCore",
+      "module": "FrcCore/Theme/Logic",
+      "name": "FRC.Logic.stable",
+      "tier": 0,
+      "ok": true,
+      "page": "lean/core/Theme.html#FRC.Logic.stable"
+     }
+    ]
+   },
+   "refs": [
+    "p29007",
+    "p29022"
+   ],
+   "text": "The finite ontology loses no proof practice: induction is a theorem of every finite frame (B6) and every executed verification is a bounded instance (E2). Rests on B6, E2. Lemma lem:innocence; Prop. prop:conservativeness p29027, FrcCore{X2} FRC.Formation.finite_induction, FRC.Logic.stable"
   },
   {
    "paper": "32-dark",

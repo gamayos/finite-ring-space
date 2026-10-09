@@ -1020,7 +1020,7 @@ end Shell
 
 namespace Logic
 
-/-- 5:C2 (Proposition mirror) — a part with fewer records than the frame has elements holds no injective
+/-- 5:C2, 29:C10 (Proposition mirror) — a part with fewer records than the frame has elements holds no injective
 representation of the frame's domain: no `f : [0, N) → [0, R)` is injective when `R < N`. In the base since task LM23
 (from `Theme/Logic.lean`, under its old name), so that the foundation's A5 stands on it. -/
 theorem no_mirror {N R : Nat} (hR : R < N) (f : Nat → Nat) (hf : ∀ i, i < N → f i < R)
@@ -1532,7 +1532,7 @@ theorem evalT_frame (N : Nat) (env : Nat → Nat) : ∀ (t : Term), boundT env t
     show (if evalT env s * evalT env t < N then some (evalT env s * evalT env t) else none) = some (evalT env s * evalT env t)
     rw [ite_eq_left (lt_of_mx_lt_right h)]
 
-/-- 5:B6 (Theorem stability, schema form) — every `Δ₀` formula takes its standard value in every frame `W_N`
+/-- 5:B6, 29:E2, 29:X2 (Theorem stability, schema form) — every `Δ₀` formula takes its standard value in every frame `W_N`
 with `N > t(φ)`: `W_N ⊨ φ* ⟺ ℕ ⊨ φ`, for every environment, by induction on the formula. -/
 theorem stable (N : Nat) : ∀ (φ : Form) (env : Nat → Nat), boundF env φ < N → evalF? N env φ = evalF env φ
   | .eq s t, env, h => by
@@ -1571,7 +1571,7 @@ def records (s : Nat) : Nat → Nat
   | 0 => 1
   | K + 1 => records s K + s ^ (K + 1)
 
-/-- 5:C2 (the count) — fewer than `s^(K+1)` records exist for an alphabet of `s ≥ 2` letters. -/
+/-- 5:C2, 29:C10 (the count) — fewer than `s^(K+1)` records exist for an alphabet of `s ≥ 2` letters. -/
 theorem records_lt (s : Nat) (hs : 2 ≤ s) : ∀ K, records s K < s ^ (K + 1)
   | 0 => by
     show 1 < s ^ 1
@@ -1682,7 +1682,7 @@ def leastBelow (P : Nat → Bool) : Nat → Option Nat
     | some x => some x
     | none => if P n then some n else none
 
-/-- 5:E1 — a nonempty family has a choice: if some `x < n` has `P x`, `leastBelow P n` is defined. -/
+/-- 5:E1, 29:B6 — a nonempty family has a choice: if some `x < n` has `P x`, `leastBelow P n` is defined. -/
 theorem leastBelow_some (P : Nat → Bool) : ∀ (n x : Nat), x < n → P x = true → ∃ y, leastBelow P n = some y
   | 0, x, hx, _ => absurd hx (Nat.not_lt_zero x)
   | n + 1, x, hx, hP =>
@@ -1706,7 +1706,7 @@ theorem leastBelow_some (P : Nat → Bool) : ∀ (n x : Nat), x < n → P x = tr
         absurd (leastBelow_some P n x (Nat.lt_of_le_of_ne (Nat.le_of_lt_succ hx) e) hP)
           (fun ⟨z, hz⟩ => nomatch (hl ▸ hz : (none : Option Nat) = some z))
 
-/-- 5:E1 (Proposition finite-choice) — the choice is a member, below the bound, and the least one. -/
+/-- 5:E1, 29:B6, 29:E2 (Proposition finite-choice) — the choice is a member, below the bound, and the least one. -/
 theorem leastBelow_spec (P : Nat → Bool) : ∀ (n x : Nat), leastBelow P n = some x →
     x < n ∧ P x = true ∧ ∀ y, y < x → P y = false
   | 0, x, h => nomatch (h : (none : Option Nat) = some x)
@@ -1767,7 +1767,7 @@ theorem or_false' (c : Bool) : (c || false) = c := by cases c <;> rfl
 
 theorem and_assoc' (a b c : Bool) : ((a && b) && c) = (a && (b && c)) := by cases a <;> rfl
 
-/-- 25:C1 (Proposition noQ, the pigeonhole) — on `[0, n)` an injective map is onto: every `z < n` is a value. -/
+/-- 25:C1, 29:B5 (Proposition noQ, the pigeonhole) — on `[0, n)` an injective map is onto: every `z < n` is a value. -/
 theorem inj_onto (n : Nat) (S : Nat → Nat) (hS : ∀ x, x < n → S x < n)
     (hinj : ∀ x y, x < n → y < n → S x = S y → x = y) (z : Nat) (hz : z < n) : ∃ x, x < n ∧ S x = z :=
   have hnd := FRC.Shell.imageList_nodup hinj (Nat.le_refl n)
@@ -1777,7 +1777,7 @@ theorem inj_onto (n : Nat) (S : Nat → Nat) (hS : ∀ x, x < n → S x < n)
     | ⟨j, hj, ej⟩ => ej ▸ hS j hj
   FRC.Shell.mem_imageList (Pigeonhole.mem_of_nodup_of_length_lt n _ hnd hb hlen z hz)
 
-/-- 25:C1 (Proposition noQ) — no successor of `Q` on a finite carrier: no map of `[0, n)` into itself is
+/-- 25:C1, 29:B4, 29:B5 (Proposition noQ) — no successor of `Q` on a finite carrier: no map of `[0, n)` into itself is
 injective and omits an element, so no finite structure is a model of `Q`. -/
 theorem no_finite_successor (n : Nat) (S : Nat → Nat) (hS : ∀ x, x < n → S x < n)
     (hinj : ∀ x y, x < n → y < n → S x = S y → x = y) (z : Nat) (hz : z < n) : ¬ ∀ x, x < n → S x ≠ z :=
@@ -1975,7 +1975,7 @@ theorem allBelow_iff (f : Nat → Bool) : ∀ n, allBelow f n = true ↔ ∀ x, 
         fun h => ih.2 (fun x hx => h x (Nat.lt_succ_of_lt hx))⟩
     | false => exact ⟨fun h => Bool.noConfusion h, fun h => Bool.noConfusion (hf ▸ h n (Nat.lt_succ_self n))⟩
 
-/-- 25:C2, Z1 — decidable by exhaustive evaluation: a formula holds in the finite structure exactly when its
+/-- 25:C2, Z1, 29:B4, 29:E2 — decidable by exhaustive evaluation: a formula holds in the finite structure exactly when its
 evaluation is `true`. -/
 theorem fin_theory_decidable (M : FinStr) : ∀ (φ : FForm) (env : Nat → Nat), fval M env φ = true ↔ Sat M env φ
   | .rel _ _, _ => Iff.rfl
@@ -1999,7 +1999,7 @@ theorem fin_theory_decidable (M : FinStr) : ∀ (φ : FForm) (env : Nat → Nat)
     exact (allBelow_iff _ M.m).trans ⟨fun h x hx => (fin_theory_decidable M φ (cons x env)).1 (h x hx),
       fun h x hx => (fin_theory_decidable M φ (cons x env)).2 (h x hx)⟩
 
-/-- 25:C2, Z1 — the theory is complete: every formula or its negation holds, decided by the evaluation, with no
+/-- 25:C2, Z1, 29:B4 — the theory is complete: every formula or its negation holds, decided by the evaluation, with no
 appeal to excluded middle. -/
 theorem fin_theory_complete (M : FinStr) (φ : FForm) (env : Nat → Nat) : Sat M env φ ∨ Sat M env (.neg φ) :=
   match h : fval M env φ with
