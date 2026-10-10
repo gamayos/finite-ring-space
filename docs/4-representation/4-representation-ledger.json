@@ -3,7 +3,7 @@
  "tree": "4-deepfrc-20251217",
  "title": "Universal Latent Representation in FRC",
  "doi": "https://doi.org/10.3390/e28010040",
- "generated": "9 October 2026",
+ "generated": "10 October 2026",
  "blocks": [
   {
    "letter": "A",
@@ -239,14 +239,14 @@
  "master": {
   "A3": [
    "A2",
-   "A7",
+   "A6",
    "B3",
    "C1",
-   "A5",
-   "A6"
+   "A4",
+   "A5"
   ],
   "B1": [
-   "A5"
+   "A4"
   ]
  },
  "lean": {

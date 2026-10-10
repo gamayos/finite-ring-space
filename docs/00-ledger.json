@@ -1,5 +1,5 @@
 {
- "generated": "9 October 2026",
+ "generated": "10 October 2026",
  "blocks": {
   "A": "Foundation: from existence to the finite carrier",
   "B": "The Carrier: the substrate structure",
@@ -77,7 +77,6 @@
    "key": "p00003",
    "tag": "T",
    "sources": [
-    "9-uniq",
     "25-göd",
     "5-red"
    ],
@@ -168,8 +167,7 @@
    "key": "p00008",
    "tag": "D",
    "sources": [
-    "1-alg",
-    "9-uniq"
+    "1-alg"
    ],
    "witness": null,
    "refs": [
@@ -217,9 +215,7 @@
    "block": "A",
    "key": "p00010",
    "tag": "D",
-   "sources": [
-    "9-uniq"
-   ],
+   "sources": [],
    "witness": null,
    "refs": [
     {

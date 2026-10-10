@@ -551,4 +551,119 @@ theorem merger_area (M₁ M₂ : Nat) :
     (M₁ + M₂) * (M₁ + M₂ + 1) = M₁ * (M₁ + 1) + M₂ * (M₂ + 1) + 2 * (M₁ * M₂) :=
   nat_sound (nlook [M₁, M₂]) (.mul (.add (.var 0) (.var 1)) (.add (.add (.var 0) (.var 1)) .one)) (.add (.add (.mul (.var 0) (.add (.var 0) .one)) (.mul (.var 1) (.add (.var 1) .one))) (.mul (.add .one .one) (.mul (.var 0) (.var 1)))) rfl rfl (by decide +kernel)
 
+/-! ## The register on every frame (21:A1, C2, C5, C16; 00:C1): moved from 21-gravity's `Gravity.lean`, 10 October 2026 -/
+section register
+variable {κ : Nat} {g : Shell p}
+
+/-- 21:C16, 21:A1 — the calibration congruence on every frame: the full cycle `2π ↦ 4κ = p − 1` is `−1`,
+and `(4κ)² = 1`. -/
+theorem calibration (F : Frame p κ g) :
+    (ofNat (4 * κ) : Shell p) = -1 ∧ (ofNat (4 * κ) : Shell p) * ofNat (4 * κ) = 1 := by
+  have h : (ofNat (4 * κ) : Shell p) = -1 := by
+    have h2 := F.two_pi
+    have e : 2 * Frame.halfPeriod κ = 4 * κ := (FRC.Nat.mul_assoc 2 2 κ).symm
+    rw [e] at h2
+    exact h2
+  exact ⟨h, by rw [h, Shell.neg_mul_neg, Shell.one_mul]⟩
+
+/-- 21:C2, 21:C5, 21:C16 — the register value of the Newton constant on every frame, `G = 2κ`, the half-cycle:
+`2G = −1`; `(−2) G = 1` (the face convention `4π ↦ −2`, `G = (−2)⁻¹`); the Gauss count `(2 · 4κ) G = 1`;
+`c² = 2⁻¹ = 2κ + 1` with `2c² = 1`; and `G = −c²`. -/
+theorem newton_residue (F : Frame p κ g) :
+    (2 : Shell p) * ofNat (2 * κ) = -1 ∧ (-2 : Shell p) * ofNat (2 * κ) = 1 ∧
+    (2 * ofNat (4 * κ) : Shell p) * ofNat (2 * κ) = 1 ∧
+    (2 : Shell p) * ofNat (2 * κ + 1) = 1 ∧ (ofNat (2 * κ) : Shell p) = -ofNat (2 * κ + 1) := by
+  obtain ⟨h4, _⟩ := calibration F
+  have hG : (2 : Shell p) * ofNat (2 * κ) = -1 := by
+    show ofNat 2 * ofNat (2 * κ) = -1
+    rw [Frame.ofNat_mul, ← FRC.Nat.mul_assoc]
+    exact h4
+  have hG' : (-2 : Shell p) * ofNat (2 * κ) = 1 := by
+    rw [← Shell.neg_mul, hG, Shell.neg_neg]
+  have hc : (2 : Shell p) * ofNat (2 * κ + 1) = 1 := by
+    show ofNat 2 * ofNat (2 * κ + 1) = 1
+    rw [Frame.ofNat_mul, Nat.mul_add, ← FRC.Nat.mul_assoc, Nat.mul_one, ← Frame.ofNat_add, h4]
+    show -1 + ofNat 2 = 1
+    rw [show (ofNat 2 : Shell p) = 1 + 1 from Frame.two_eq_one_add_one, ← Shell.add_assoc, Shell.neg_add,
+      Shell.zero_add]
+  refine ⟨hG, hG', ?_, hc, ?_⟩
+  · rw [h4, ← Shell.mul_neg, Shell.mul_one, hG']
+  · apply Shell.eq_neg_of_add_eq_zero
+    rw [Frame.ofNat_add, ← Nat.add_assoc, F.four_kappa, F.n_eq, ← F.cap]
+    exact Frame.ofNat_self
+
+/-- 21:C5 — the action quantum on every frame: `ħ = g^κ` is a member of the quarter-turn pair (`−i`, the
+frame's `quarterTurn` being `−g^κ`), `ħ² = −1`; with `c² = 2κ + 1` the residue `r = ħ c²` is a square root of
+the capacity, `r² = κ`, and `ħ = 2r` — the paper's `ħ = 2√S` read on the shell. -/
+theorem hbar_root (F : Frame p κ g) :
+    (g ^ κ) ^ 2 = -1 ∧ (g ^ κ * ofNat (2 * κ + 1)) * (g ^ κ * ofNat (2 * κ + 1)) = ofNat κ ∧
+    (2 : Shell p) * (g ^ κ * ofNat (2 * κ + 1)) = g ^ κ := by
+  obtain ⟨hq, _⟩ := F.quarter_turn_order
+  obtain ⟨_, _, _, hc, _⟩ := newton_residue F
+  obtain ⟨h4, _⟩ := calibration F
+  have h2r : (2 : Shell p) * (g ^ κ * ofNat (2 * κ + 1)) = g ^ κ := by
+    rw [Shell.mul_left_comm, hc, Shell.mul_one]
+  refine ⟨hq, ?_, h2r⟩
+  -- `4 (r² − κ) = (2r)² − 4κ = ħ² + 1 = 0`, and `4 ≠ 0` on the shell
+  have h4ne : (4 : Shell p) ≠ 0 := by
+    rw [show (4 : Shell p) = 2 * 2 from (Frame.ofNat_mul 2 2).symm]
+    exact F.mul_ne_zero F.two_ne_zero F.two_ne_zero
+  have h4κ : (4 : Shell p) * ofNat κ = -1 := by
+    show ofNat 4 * ofNat κ = -1
+    rw [Frame.ofNat_mul]; exact h4
+  have h4r : (4 : Shell p) * ((g ^ κ * ofNat (2 * κ + 1)) * (g ^ κ * ofNat (2 * κ + 1))) = -1 := by
+    rw [show (4 : Shell p) = 2 * 2 from (Frame.ofNat_mul 2 2).symm, FRC.Shell.mul_mul_mul_comm, h2r,
+      ← Shell.pow_two, hq]
+  have key : (4 : Shell p) * ((g ^ κ * ofNat (2 * κ + 1)) * (g ^ κ * ofNat (2 * κ + 1)) + -ofNat κ) = 0 := by
+    rw [Shell.left_distrib, h4r, ← Shell.mul_neg, h4κ, Shell.neg_neg]
+    exact Shell.neg_add 1
+  rcases F.mul_eq_zero key with h | h
+  · exact absurd h h4ne
+  · have := Shell.eq_neg_of_add_eq_zero h
+    rw [Shell.neg_neg] at this
+    exact this
+
+end register
+
+/-- 21:A9 — the two-face count: the angular face `κ/S` against the temporal face `κ/(2S)` has ratio `2`
+(`κ · 2S = 2 · κS`), and the registration fibre product has `(p − 1)(Ω − 1) = 4 · 4κS` for `p = 4κ + 1`,
+`Ω = 4S + 1`. -/
+theorem two_face_count (κ S : Nat) :
+    κ * (2 * S) = 2 * (κ * S) ∧ (4 * κ) * (4 * S) = 4 * (4 * (κ * S)) := by
+  refine ⟨Nat.mul_left_comm κ 2 S, ?_⟩
+  rw [Nat.mul_assoc 4 κ, Nat.mul_left_comm κ 4]
+
+/-! ## The values decided by the kernel (21:C2, C5, C13, C16): moved from 21-gravity's `Gravity.lean`, 10 October 2026 -/
+section values
+
+/-- 21:C2, 21:C5, 21:C16 — the register on `𝔽₁₃` (`κ = 3`, drive `2`): `4κ = 12 = −1`, `G = 6` with
+`2G = −1`, `c² = 7` with `2c² = 1`, `ħ = 2³ = 8 = −i` with `ħ² = −1` (the frame's `quarterTurn` is `5`), the root `r = 8 · 7 = 4` with `r² = 3 = κ` and
+`2r = ħ`; and on `𝔽₁₇` (`κ = 4`, drive `3`): `4κ = 16 = −1`, `G = 8`, `c² = 9`, `ħ = 3⁴ = 13 = −i` (`quarterTurn`
+`4`), `r = 15` with `r² = 4 = κ`, `2r = 13`. -/
+theorem register13_17 :
+    (12 : Shell 13) = -1 ∧ 2 * (6 : Shell 13) = -1 ∧ 2 * (7 : Shell 13) = 1 ∧ (6 : Shell 13) = -7 ∧
+    (2 : Shell 13) ^ 3 = 8 ∧ (8 : Shell 13) * 8 = -1 ∧ (4 : Shell 13) * 4 = 3 ∧ 2 * (4 : Shell 13) = 8 ∧
+    (16 : Shell 17) = -1 ∧ 2 * (8 : Shell 17) = -1 ∧ 2 * (9 : Shell 17) = 1 ∧ (8 : Shell 17) = -9 ∧
+    (3 : Shell 17) ^ 4 = 13 ∧ (13 : Shell 17) * 13 = -1 ∧ (15 : Shell 17) * 15 = 4 ∧
+    2 * (15 : Shell 17) = 13 := by decide +kernel
+
+/-- 21:C13 — the merger law's instance on the count face `A = M(M + 1)`: `27 811 + 1 596 → 29 407` gives
+`ΔA = 2 · 27 811 · 1 596 = 88 772 712`. -/
+theorem merger_instance :
+    29407 * (29407 + 1) = 27811 * (27811 + 1) + 1596 * (1596 + 1) + 88772712 ∧
+    2 * (27811 * 1596) = 88772712 ∧ 27811 + 1596 = 29407 := by decide
+
+/-- 21:C2, 21:C5, 21:C16 — the laboratory Carrier `Ω = 2 408 561` (`S = 602 140`), host-decided: `4S = 2 408 560 = −1`
+and `(4S)² = 1` (the calibration congruence); `G = 1 204 280 = 2S` with `2G = −1`, `(−2) G = 1` and the Gauss
+count `(2 · 4S) G = 1`; `ħ = 18 688` with `ħ² = −1`, `ħ = 2 · 9 344` and `9 344² = S`. -/
+theorem lab_register :
+    4 * 602140 = 2408560 ∧ (2408560 : Shell 2408561) = -1 ∧
+    (2408560 : Shell 2408561) * 2408560 = 1 ∧
+    2 * (1204280 : Shell 2408561) = -1 ∧ (-2 : Shell 2408561) * 1204280 = 1 ∧
+    (2 * (2408560 : Shell 2408561)) * 1204280 = 1 ∧
+    (18688 : Shell 2408561) * 18688 = -1 ∧ 2 * (9344 : Shell 2408561) = 18688 ∧
+    (9344 : Shell 2408561) * 9344 = 602140 := by decide +kernel
+
+end values
+
 end FRC.Grav

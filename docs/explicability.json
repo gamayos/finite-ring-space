@@ -1,5 +1,5 @@
 {
- "generated": "9 October 2026",
+ "generated": "10 October 2026",
  "rows": [
   {
    "id": "10:X1",
@@ -156,7 +156,7 @@
    "key": "p21042",
    "tag": "T",
    "predicate": "\\textbf{No dark-matter particle.} The radial acceleration relation is a registration crossover of the resolution floor, not evidence for undetected mass: galactic dynamics require no dark sector beyond the floor already fixed by $\\Omega$.",
-   "source": "Prop.~\\ref{prop:crossover},~\\ref{prop:afloor}; \\src{grav.deepregime}; \\lean{Gravity.crossover\\_deep\\_limit}; rests on A1, B9, C19, 00:L1",
+   "source": "Prop.~\\ref{prop:crossover},~\\ref{prop:afloor}\\newline \\pywit{gravity}{p21042}{X2}, \\leanwit{FrcLedger}{p21042}{X2}; rests on A1, B9, C19, 00:L1 \\lean{Gravity.crossover\\_deep\\_limit}",
    "master": [],
    "restated": [
     "32:X11"
@@ -212,7 +212,7 @@
    "key": "p21046",
    "tag": "T",
    "predicate": "\\textbf{The large-angle microwave anomaly.} The anomalously low large-angle correlation ($p\\sim1\\%$ \\cite{schwarz}) is the signature of the wrapped chart: super-horizon modes are identified, not populated, truncating correlations beyond the horizon scale. This consonance is a number, the primordial spectrum being structural, not transported.",
-   "source": "Prop.~\\ref{prop:primordial}; \\src{grav.primordial}; rests on A2, C14, C18",
+   "source": "Prop.~\\ref{prop:primordial}; rests on A2, C14, C18",
    "master": [],
    "restated": [],
    "witnessed": false,
@@ -238,7 +238,7 @@
    "key": "p21048",
    "tag": "T",
    "predicate": "\\textbf{The weakness of gravity} is cardinality dilution, not a hierarchy to be tuned.",
-   "source": "\\S\\ref{sub:G}; \\lean{Gravity.dilution}",
+   "source": "\\S\\ref{sub:G}\\newline \\pywit{gravity}{p21048}{X8}, \\leanwit{FrcLedger}{p21048}{X8} \\lean{Gravity.dilution}",
    "master": [],
    "restated": [
     "38:X1"

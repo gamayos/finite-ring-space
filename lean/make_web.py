@@ -7,7 +7,7 @@ body of X (recursively, each module once, in dependency order).  Module bodies a
 (their own `namespace … end`), so concatenation is valid Lean; the header records the provenance.
 
 Besides the paper modules (FrcLedger/*.lean), the chart theme's file and its key file are written too (task LM30):
-web/Theme.Chart.lean and web/Keys.Chart.lean, the files the site's pages of the master's chart rows open (SERVED).
+web/Theme.Chart.lean, web/Theme.Strong.lean, web/Theme.Gravity.lean, web/Keys.Chart.lean and web/Keys.Gravity.lean, the files the site's theme pages open (SERVED).
 
     python3 make_web.py            # (re)write web/*.lean for every module
     python3 make_web.py --check    # exit 1 if any web/*.lean differs from what would be written (CI)
@@ -18,7 +18,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parent
 SRC, OUT = ROOT / "FrcLedger", ROOT / "web"
 IMPORT = re.compile(r"^import FrcLedger\.([\w.]+)\s*$", re.M)
-SERVED = ("Theme.Chart", "Keys.Chart")          # the theme and key files below FrcLedger/ that the site serves (LM30)
+SERVED = ("Theme.Chart", "Theme.Strong", "Theme.Gravity", "Keys.Chart", "Keys.Gravity")          # the theme and key files below FrcLedger/ that the site serves (LM30; Theme.Strong, Theme.Gravity and Keys.Gravity since 10 October 2026, 21-gravity)
 
 def module(name):
     return (SRC / f"{name.replace('.', '/')}.lean").read_text(encoding="utf-8")   # Theme.Fourier: FrcLedger/Theme/Fourier.lean

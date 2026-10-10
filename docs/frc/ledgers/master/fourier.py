@@ -37,7 +37,7 @@ PROOFS = {
     "C2": ["FRC.Shell.Frame.scale_shift", "FRC.Shell.Frame.frft_dilation",
            # the paper's declarations the row cites (6-fourier's propagation list, row 5; 9 October 2026): 6:B5 (p06012),
            # the operator relations; 6:C3 (p06017), the fractional family's additivity, cardinal values, period and powers;
-           # 6:D4 (p06027), the scale-shift covariance with its p = 13 ladder
+           # 6:D4 (p06027), the meridian-scale covariance with its p = 13 ladder
            "FRC.Shell.Frame.W_sq'", "FRC.Shell.Frame.F_sq", "FRC.Shell.Frame.J_sq",
            "FRC.Shell.Frame.frft_add", "FRC.Shell.Frame.frft_cardinal", "FRC.Shell.Frame.frft_period", "FRC.Shell.Frame.frft_pow",
            "FRC.Shell.meridian_scale", "FRC.Shell.meridian_step", "FRC.Shell.scale_periodic", "FRC.Shell.ladder13"],
@@ -89,7 +89,7 @@ def _scale_shift(p, pairs=None):
 
 # ------------------------------------------------------------------------------------------------------------
 # block M: scale-shift duality (00:C2)
-# dilation x ↦ g x advances the longitude; over the cycle the fractional family F^[s] = Σ_ℓ z^(ℓs) Π_ℓ is a
+# dilation x ↦ g x advances the meridian index; over the cycle the fractional family F^[s] = Σ_ℓ z^(ℓs) Π_ℓ is a
 # representation of Z/(p−1) whose quarter-turn value F^[κ] is the transform F (Fourier.lean, scale_shift).
 @R.block("M", BLOCKS["M"])
 def block_M():

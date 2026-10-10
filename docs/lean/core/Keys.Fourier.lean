@@ -8,6 +8,7 @@ import FrcCore.Theme.Rotations
 import FrcCore.Theme.Heisenberg
 import FrcCore.Theme.Spectra
 import FrcCore.Theme.Exclusivity
+import FrcCore.Theme.Shift
 
 /-!
 # FrcCore.Keys.Fourier — the keyed theorems of the fourier theme (ledger migration, task LM19)
@@ -89,6 +90,9 @@ theorem p06054 : (∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Sh
 /-- p06056 — 6:E10. The plane as orbits of the cycle: $R_s$ scales $u=x+\im y$ by $z_s$ and $v=x-\im y$ by $z_s^{-1}$, so every point off the origin has a free orbit of size $4\kap=|SO(2,\Fp)|$, and $\p^{2}=1+(4\kap+2)\,4\kap$ is the count of the origin and $4\kap+2$ orbits (the $4\kap$ circles of nonzero norm and the two isotropic lines, by counting); $\dim\Vt=4\kap$. -/
 theorem p06056 : (∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → ∀ (z : FRC.Shell p) (s : Nat) (x y : FRC.Shell p), FRC.Shell.Frame.cs g κ z s * x + -(FRC.Shell.Frame.ds g κ z s * y) + FRC.Shell.Frame.quarterTurn g κ * (FRC.Shell.Frame.ds g κ z s * x + FRC.Shell.Frame.cs g κ z s * y) = z ^ s * (x + FRC.Shell.Frame.quarterTurn g κ * y) ∧ FRC.Shell.Frame.cs g κ z s * x + -(FRC.Shell.Frame.ds g κ z s * y) + -(FRC.Shell.Frame.quarterTurn g κ * (FRC.Shell.Frame.ds g κ z s * x + FRC.Shell.Frame.cs g κ z s * y)) = g ^ s * (x + -(FRC.Shell.Frame.quarterTurn g κ * y))) ∧ (∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → ∀ {z : FRC.Shell p}, g * z = (1 : FRC.Shell p) → ∀ {x y : FRC.Shell p}, ¬(x = (0 : FRC.Shell p) ∧ y = (0 : FRC.Shell p)) → ∀ {s : Nat}, s < p - (1 : Nat) → FRC.Shell.Frame.cs g κ z s * x + -(FRC.Shell.Frame.ds g κ z s * y) = x ∧ FRC.Shell.Frame.ds g κ z s * x + FRC.Shell.Frame.cs g κ z s * y = y → s = (0 : Nat)) ∧ (∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → p * p = (1 : Nat) + ((4 : Nat) * κ + (2 : Nat)) * ((4 : Nat) * κ)) ∧ FRC.Shell.Frame.countCircle (5 : Nat) (5 : Nat) = (4 : Nat) ∧ FRC.Shell.Frame.countCircle (13 : Nat) (13 : Nat) = (12 : Nat) ∧ FRC.Shell.Frame.countCircle (17 : Nat) (17 : Nat) = (16 : Nat) ∧ FRC.Shell.Frame.countCircle (29 : Nat) (29 : Nat) = (28 : Nat) ∧ FRC.Shell.Frame.countCircle (37 : Nat) (37 : Nat) = (36 : Nat) ∧ FRC.Shell.Frame.countCircle (41 : Nat) (41 : Nat) = (40 : Nat) :=
   And.intro @FRC.Shell.Frame.rot_uv (And.intro @FRC.Shell.Frame.orbit_free (And.intro @FRC.Shell.Frame.plane_count (@FRC.Shell.Frame.six_circles)))
+/-- p21035 — 21:C20. The two-shift update law: kick (finite Fourier shift by the source character) composed with metaplectic transport gives $\Delta^{2}_{\tau}q=-\nabla u$ with $m$ cancelling --- registered inertia and the equivalence principle inside one derived law. -/
+theorem p21035 : (∀ {p : Nat} [FRC.Pos p] (n : Nat), (0 : Nat) < n → ∀ {ζ : FRC.Shell p}, ζ ^ n = (1 : FRC.Shell p) → ∀ (f : Nat → FRC.Shell p) (a k : Nat), FRC.Cycle.dft n ζ (fun x => ζ ^ (a * x) * f x) k = FRC.Cycle.dft n ζ f (k + a)) ∧ ∀ {p : Nat} [FRC.Pos p] (n : Nat), (0 : Nat) < n → ∀ {ζ : FRC.Shell p}, ζ ^ n = (1 : FRC.Shell p) → ∀ (f : Nat → FRC.Shell p) (a k : Nat), a ≤ n → FRC.Cycle.dft n ζ (fun x => FRC.Cycle.cyc n f (x + (n - a))) k = ζ ^ (a * k) * FRC.Cycle.dft n ζ f k :=
+  And.intro @FRC.Cycle.dft_kick (@FRC.Cycle.dft_shift)
 -- end keys
 
 end FRC.Ledger

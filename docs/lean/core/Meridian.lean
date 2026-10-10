@@ -1,10 +1,10 @@
 import FrcCore.Frame
 
 /-!
-# 6-fourier — the meridians and the scale-shift (predicate D4), no axioms
+# 6-fourier — the meridians and the meridian-scale map (predicate D4), no axioms
 
 The meridian `M_m = (a g^m)_{a = 0..π}`, `π = 2κ`, as an ordered list of `2κ + 1` entries, and the
-scale-shift (dilation) `S_r(x) = g^r x`: `S_r(M_m) = M_{m+r}` as ordered lists, consecutive entries of `M_m`
+meridian-scale map `S_r(x) = g^r x`: `S_r(M_m) = M_{m+r}` as ordered lists, consecutive entries of `M_m`
 differ by the effective step `g^m`, and `S_{r + (p−1)} = S_r` (the `(p−1)`-periodicity of the framed-rational
 zoom). The `p = 13`, `g = 2` ladder `M_0, …, M_3` at steps `1, 2, 4, 8`, decided by computation: unwrapped
 while `π g^r < p` (`r ≤ 1`), wrapping from `M_2`.
@@ -18,7 +18,7 @@ variable {p : Nat} [Pos p]
 def meridian (g : Shell p) (κ m : Nat) : List (Shell p) :=
   (List.range (2 * κ + 1)).map (fun a => ofNat a * g ^ m)
 
-/-- 6:D3 — the scale-shift (dilation) `S_r(x) = g^r x`. -/
+/-- 6:D3 — the meridian-scale map `S_r(x) = g^r x`. -/
 def scale (g : Shell p) (r : Nat) (x : Shell p) : Shell p := g ^ r * x
 
 /-- The scale map on a list of multiples, entry by entry: `g^r (a g^m) = a g^{m+r}`. -/
@@ -30,7 +30,7 @@ theorem map_scale_aux (g : Shell p) (m r : Nat) : ∀ l : List Nat,
     show scale g r (ofNat a * g ^ m) :: _ = (ofNat a * g ^ (m + r)) :: _
     rw [scale, pow_add, mul_left_comm, mul_comm (g ^ m)]
 
-/-- 6:D4 — scale-shift covariance: `S_r(M_m) = M_{m+r}` as ordered lists, for every `m, r`. -/
+/-- 6:D4 — meridian-scale covariance: `S_r(M_m) = M_{m+r}` as ordered lists, for every `m, r`. -/
 theorem meridian_scale (g : Shell p) (κ m r : Nat) :
     (meridian g κ m).map (scale g r) = meridian g κ (m + r) :=
   map_scale_aux g m r (List.range (2 * κ + 1))
@@ -47,7 +47,7 @@ theorem meridian_step (g : Shell p) (m a : Nat) :
     (ofNat (a + 1) : Shell p) * g ^ m = ofNat a * g ^ m + g ^ m := by
   rw [ofNat_succ, right_distrib, one_mul]
 
-/-- 6:D4 — `S_{r + (p−1)} = S_r`: the scale-shift (dilation) is `(p − 1)`-periodic in `r` (the periodicity of the
+/-- 6:D4 — `S_{r + (p−1)} = S_r`: the meridian-scale map is `(p − 1)`-periodic in `r` (the periodicity of the
 framed-rational zoom, A5). -/
 theorem scale_periodic {κ : Nat} {g : Shell p} (F : Frame p κ g) (r : Nat) (x : Shell p) :
     scale g (r + (p - 1)) x = scale g r x := by

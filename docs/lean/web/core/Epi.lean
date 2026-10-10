@@ -1022,7 +1022,7 @@ namespace Logic
 
 /-- 5:C2, 29:C10 (Proposition mirror) — a part with fewer records than the frame has elements holds no injective
 representation of the frame's domain: no `f : [0, N) → [0, R)` is injective when `R < N`. In the base since task LM23
-(from `Theme/Logic.lean`, under its old name), so that the foundation's A5 stands on it. -/
+(from `Theme/Logic.lean`, under its old name), so that the foundation's A4 (Observation; the bounded observer, A5 at task LM23) stands on it. -/
 theorem no_mirror {N R : Nat} (hR : R < N) (f : Nat → Nat) (hf : ∀ i, i < N → f i < R)
     (hinj : ∀ i j, i < N → j < N → f i = f j → i = j) : False :=
   have hnd := FRC.Shell.imageList_nodup hinj (Nat.le_refl N)
@@ -1041,7 +1041,7 @@ end FRC
 /-!
 # FrcCore.FrameCore — the frame `(τ; 0, 1, g)` and the Euclidean datum, from first principles (the frame theme)
 
-The shell of capacity `κ` has modulus `p = 4κ + 1`; its frame carries the drive `g` (00:A8, 00:C1).
+The shell of capacity `κ` has modulus `p = 4κ + 1`; its frame carries the drive `g` (00:A6, 00:A12, 00:C1; labels as of 9 October 2026).
 One decidable predicate states what the frame's generator is: `IsPrimitive g n` (`g^n = 1`, no positive
 power below `n` is `1`). That `g` then *generates* — every nonzero residue is a power of `g`
 (`Generates g n`, also decidable) — is proved by the pigeonhole (`FrcCore.Pigeonhole`): the `n` powers are
@@ -1063,14 +1063,14 @@ namespace Shell
 
 variable {p : Nat} [Pos p]
 
-/-- 00:A8 — the drive generator is primitive of order `n`: `g^n = 1` and `g^l ≠ 1` for `0 < l < n`. -/
+/-- 00:A12 — the drive generator is primitive of order `n`: `g^n = 1` and `g^l ≠ 1` for `0 < l < n`. -/
 def IsPrimitive (g : Shell p) (n : Nat) : Prop :=
   g ^ n = 1 ∧ ∀ l, l < n → 0 < l → g ^ l ≠ 1
 
 instance (g : Shell p) (n : Nat) : Decidable (IsPrimitive g n) := by
   unfold IsPrimitive; exact inferInstance
 
-/-- 00:A8 — the drive generates the shell: every nonzero residue `v < p` is `g^m` for some `m < n`. -/
+/-- 00:A12 — the drive generates the shell: every nonzero residue `v < p` is `g^m` for some `m < n`. -/
 def Generates (g : Shell p) (n : Nat) : Prop :=
   ∀ v, v < p → 0 < v → ∃ m, m < n ∧ (g ^ m).val = v
 
@@ -1207,7 +1207,7 @@ theorem powList_nodup (F : Frame p κ g) : ∀ {n : Nat}, n ≤ p - 1 → Pigeon
         Nat.lt_irrefl n (this ▸ hm),
     powList_nodup F (Nat.le_of_lt hn)⟩
 
-/-- 00:A8 — the drive generates: every nonzero residue is a power `g^m`, `m < p − 1` (the pigeonhole). -/
+/-- 00:A12 — the drive generates: every nonzero residue is a power `g^m`, `m < p − 1` (the pigeonhole). -/
 theorem generates (F : Frame p κ g) : Generates g (p - 1) := by
   intro v hv hv0
   have hb : ∀ e, Pigeonhole.mem e (powList g (p - 1)) → 1 ≤ e ∧ e ≤ p - 1 := fun e he =>
@@ -2730,10 +2730,10 @@ end FRC
 /-! inlined: FrcCore/Meridian.lean -/
 
 /-!
-# 6-fourier — the meridians and the scale-shift (predicate D4), no axioms
+# 6-fourier — the meridians and the meridian-scale map (predicate D4), no axioms
 
 The meridian `M_m = (a g^m)_{a = 0..π}`, `π = 2κ`, as an ordered list of `2κ + 1` entries, and the
-scale-shift (dilation) `S_r(x) = g^r x`: `S_r(M_m) = M_{m+r}` as ordered lists, consecutive entries of `M_m`
+meridian-scale map `S_r(x) = g^r x`: `S_r(M_m) = M_{m+r}` as ordered lists, consecutive entries of `M_m`
 differ by the effective step `g^m`, and `S_{r + (p−1)} = S_r` (the `(p−1)`-periodicity of the framed-rational
 zoom). The `p = 13`, `g = 2` ladder `M_0, …, M_3` at steps `1, 2, 4, 8`, decided by computation: unwrapped
 while `π g^r < p` (`r ≤ 1`), wrapping from `M_2`.
@@ -2747,7 +2747,7 @@ variable {p : Nat} [Pos p]
 def meridian (g : Shell p) (κ m : Nat) : List (Shell p) :=
   (List.range (2 * κ + 1)).map (fun a => ofNat a * g ^ m)
 
-/-- 6:D3 — the scale-shift (dilation) `S_r(x) = g^r x`. -/
+/-- 6:D3 — the meridian-scale map `S_r(x) = g^r x`. -/
 def scale (g : Shell p) (r : Nat) (x : Shell p) : Shell p := g ^ r * x
 
 /-- The scale map on a list of multiples, entry by entry: `g^r (a g^m) = a g^{m+r}`. -/
@@ -2759,7 +2759,7 @@ theorem map_scale_aux (g : Shell p) (m r : Nat) : ∀ l : List Nat,
     show scale g r (ofNat a * g ^ m) :: _ = (ofNat a * g ^ (m + r)) :: _
     rw [scale, pow_add, mul_left_comm, mul_comm (g ^ m)]
 
-/-- 6:D4 — scale-shift covariance: `S_r(M_m) = M_{m+r}` as ordered lists, for every `m, r`. -/
+/-- 6:D4 — meridian-scale covariance: `S_r(M_m) = M_{m+r}` as ordered lists, for every `m, r`. -/
 theorem meridian_scale (g : Shell p) (κ m r : Nat) :
     (meridian g κ m).map (scale g r) = meridian g κ (m + r) :=
   map_scale_aux g m r (List.range (2 * κ + 1))
@@ -2776,7 +2776,7 @@ theorem meridian_step (g : Shell p) (m a : Nat) :
     (ofNat (a + 1) : Shell p) * g ^ m = ofNat a * g ^ m + g ^ m := by
   rw [ofNat_succ, right_distrib, one_mul]
 
-/-- 6:D4 — `S_{r + (p−1)} = S_r`: the scale-shift (dilation) is `(p − 1)`-periodic in `r` (the periodicity of the
+/-- 6:D4 — `S_{r + (p−1)} = S_r`: the meridian-scale map is `(p − 1)`-periodic in `r` (the periodicity of the
 framed-rational zoom, A5). -/
 theorem scale_periodic {κ : Nat} {g : Shell p} (F : Frame p κ g) (r : Nat) (x : Shell p) :
     scale g (r + (p - 1)) x = scale g r x := by
@@ -3118,7 +3118,7 @@ namespace Shell
 
 -- `frame13` (00:C1, 20:B10, the frame `(τ; 0, 1, 2)` of `𝔽₁₃`) moved to `Transform.lean` under its name (task LM36).
 
-/-- 00:A8 on `𝔽₁₃`: the drive generates — checked directly, and proved for every frame by `Frame.generates`. -/
+/-- 00:A12 on `𝔽₁₃`: the drive generates — checked directly, and proved for every frame by `Frame.generates`. -/
 theorem generates13 : Generates (2 : Shell 13) 12 := by decide
 
 /-- 1:B3, 2:D3 [value] — on `𝔽₁₃(τ; 0, 1, 2)`: `i = −2³ = 5`, `i² = −1`, `−i = 8`, `π = 6`, `2^6 = −1`,

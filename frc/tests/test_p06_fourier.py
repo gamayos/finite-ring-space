@@ -100,7 +100,7 @@ class LedgerTest(unittest.TestCase):
         from frc.registry import _ALIAS
         L = ledger()
         records = json.loads((ROOT / "src" / "6-fourier" / "results.json").read_text(encoding="utf-8"))
-        self.assertEqual(len(records), 39)
+        self.assertEqual(len(records), 31)                                  # the rewrite of 9 October 2026: thirty-one checks (the entropy block retired)
         self.assertEqual([(r["id"], r["rows"], r["ok"], _ALIAS.get(r["kind"], r["kind"]), r["label"]) for r in records],
                          [(r["id"], r["rows"], r["ok"], r["kind"], r["label"]) for r in L.R.results])
 

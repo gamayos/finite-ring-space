@@ -1,5 +1,5 @@
 {
- "generated": "9 October 2026",
+ "generated": "10 October 2026",
  "rows": [
   {
    "id": "00:P1",
@@ -135,7 +135,7 @@
    "key": "p21049",
    "tag": "T",
    "predicate": "Strong-field signatures at or outside the photon sphere: shadow $+4.6\\%$, ringdown $-4.4\\%$, ISCO frequency $-6.9\\%$ with accretion efficiency $5.48\\%$ (against $5.72\\%$): one origin, jointly falsifiable, conditional on Theorem~\\ref{thm:branch}'s inputs alone.",
-   "source": "\\S\\ref{sub:strongdata}, Prop.~\\ref{prop:shadow},~\\ref{prop:isco}; \\src{grav.strongfield}; \\lean{Gravity.photon\\_sphere, Gravity.shadow\\_bracket, Gravity.isco, Gravity.isco\\_efficiency}; rests on B2, C11, C12, 00:E4",
+   "source": "\\S\\ref{sub:strongdata}, Prop.~\\ref{prop:shadow},~\\ref{prop:isco}\\newline \\pywit{gravity}{p21049}{P1}, \\leanwit{FrcLedger}{p21049}{P1}; rests on B2, C11, C12, 00:E4 \\lean{Gravity.photon\\_sphere, Gravity.shadow\\_bracket, Gravity.isco, Gravity.isco\\_efficiency}",
    "master": [],
    "restated": [],
    "witnessed": false,
@@ -147,8 +147,8 @@
    "label": "P2",
    "key": "p21051",
    "tag": "T",
-   "predicate": "Preferred-frame effects at $O(10^{-61})$: the drive's in-principle signature, far below current $10^{-5}$ bounds.",
-   "source": "Prop.~\\ref{prop:dragging}; \\lean{Gravity.preferred\\_frame\\_scale}; rests on A1, C10, 00:E5",
+   "predicate": "Preferred-frame effects at $O(1/\\sqrt\\Omega)=O(10^{-62})$ ($3\\times10^{-62}$ at $\\Omega=1.3\\times10^{123}$): the drive's in-principle signature, far below current $10^{-5}$ bounds.",
+   "source": "Prop.~\\ref{prop:dragging}\\newline \\pywit{gravity}{p21051}{P2}, \\leanwit{FrcLedger}{p21051}{P2}; rests on A1, C10, 00:E5 \\lean{Gravity.preferred\\_frame\\_scale}",
    "master": [],
    "restated": [],
    "witnessed": false,
@@ -161,7 +161,7 @@
    "key": "p21052",
    "tag": "T",
    "predicate": "The weak-acceleration floor $a_0=cH_0/2\\pi=1.04\\times10^{-10}\\,\\mathrm{m\\,s^{-2}}$ at the entailed $H_0=67.4$ \\cite{entropy}, against the fitted $1.20\\pm0.24\\times10^{-10}$: $13\\%$ low, $0.7\\sigma$ of the systematic-dominated error, no free parameter; the $2\\pi$ the dictionary's full cycle (14:B2), the one-cycle-per-period threshold the realisation 32:B3 with its discrete falsifier.",
-   "source": "Prop.~\\ref{prop:afloor}; \\src{grav.rar}; \\lean{Gravity.floor\\_value}; rests on A8, C16, 14:C8, 00:L1",
+   "source": "Prop.~\\ref{prop:afloor}\\newline \\pywit{gravity}{p21052}{P3}, \\leanwit{FrcLedger}{p21052}{P3}; rests on A8, C16, 14:C8, 00:L1 \\lean{Gravity.floor\\_value}",
    "master": [
     "L1"
    ],
@@ -178,7 +178,7 @@
    "key": "p21053",
    "tag": "T",
    "predicate": "The radial acceleration relation, $g_{\\mathrm{obs}}=g_N/(1-e^{-\\sqrt{g_N/a_0}})$, no fitted function beyond the barrier identification (B9), the form the data selected across the four observed acceleration decades, its approach to Newton the discriminant ($0.05$ at $g_N\\approx5a_0$ against the simple rational interpolant); the deep limit gives the baryonic Tully--Fisher relation $v^4=GMa_0$.",
-   "source": "Prop.~\\ref{prop:crossover}; \\src{grav.deepregime}; \\lean{Gravity.crossover\\_limits, Gravity.registration\\_root, Gravity.interpolant\\_discriminant}; rests on A8, C16, C19",
+   "source": "Prop.~\\ref{prop:crossover}\\newline \\pywit{gravity}{p21053}{P4}, \\leanwit{FrcLedger}{p21053}{P4}; rests on A8, C16, C19 \\lean{Gravity.crossover\\_limits, Gravity.registration\\_root, Gravity.interpolant\\_discriminant}",
    "master": [],
    "restated": [],
    "witnessed": false,
@@ -191,7 +191,7 @@
    "key": "p21055",
    "tag": "T",
    "predicate": "The 2PN periastron excess $\\delta\\dot\\omega/\\dot\\omega\\approx1.5\\times10^{-6}$ for PSR~J0737$-$3039, today degenerate with the mass refit; decisive either way once an independent observable fixes $M_{\\mathrm{tot}}$ at $10^{-6}$. Independent of the coherent-fraction falsifier of \\citep{quantum}; the ledger carries both.",
-   "source": "\\S\\ref{sub:2pn}; \\src{grav.2pn}; \\lean{Gravity.pn\\_series}; rests on A8, C8, C23",
+   "source": "\\S\\ref{sub:2pn}\\newline \\pywit{gravity}{p21055}{P6}, \\leanwit{FrcCore}{p21055}{P6}, \\leanwit{FrcLedger}{p21055}{P6}; rests on A8, C8, C23 \\lean{Gravity.pn\\_series, FRC.Drift.pn\\_coefficients}",
    "master": [],
    "restated": [],
    "witnessed": false,
@@ -204,10 +204,10 @@
    "key": "p21050",
    "tag": "T",
    "predicate": "Floor-surface signatures: no prompt echoes (the exact profile horizonless with no reflecting surface, C12; the round-trip delay to $r_f$ carrying $e^{2u(r_f)}=\\Omega$) and no evaporation bursts; a reported echo detection at the stated precision falsifies the construction.",
-   "source": "\\S\\ref{sub:strongdata}, Rem.~\\ref{rem:exponential},~\\ref{rem:hawking}; \\src{grav.strongfield}; \\lean{Gravity.operational\\_cut}; rests on C13, 00:E5",
+   "source": "\\S\\ref{sub:strongdata}, Rem.~\\ref{rem:exponential},~\\ref{rem:hawking}\\newline \\pywit{gravity}{p21050}{P7}, \\leanwit{FrcLedger}{p21050}{P7}; rests on C13, 00:E5 \\lean{Gravity.operational\\_cut}",
    "master": [],
    "restated": [],
-   "witnessed": true,
+   "witnessed": false,
    "page": "21-gravity/index.html"
   },
   {
@@ -216,8 +216,8 @@
    "label": "P8",
    "key": "p21060",
    "tag": "T",
-   "predicate": "The primordial tilt $n_s-1=-\\pi^{2}/\\ln\\Omega=-0.0351$ [approx] at $\\ln\\Omega=281$, against Planck 2018 $-0.0351\\pm0.0042$; $0.25\\%$ per factor two in $S$; the neighbouring count $\\tfrac12\\ln\\Omega$ excluded at $8.4\\sigma$.",
-   "source": "Prop.~\\ref{prop:primordial}; \\src{grav.primordial}; \\lean{Gravity.tilt\\_bracket}; rests on A8, C18, 00:L8",
+   "predicate": "The primordial tilt $n_s-1=-\\pi^{2}/\\ln\\Omega=-0.0348$ [approx] at $\\ln\\Omega=283.5$ (the master's scale import), against Planck 2018 $-0.0351\\pm0.0042$ ($+0.07\\sigma$); $0.25\\%$ per factor two in $S$; the neighbouring count $\\tfrac12\\ln\\Omega$ excluded at $8.2\\sigma$.",
+   "source": "Prop.~\\ref{prop:primordial}\\newline \\pywit{gravity}{p21060}{P8}, \\leanwit{FrcLedger}{p21060}{P8}; rests on A8, C18, 00:L8 \\lean{Gravity.tilt\\_bracket}",
    "master": [
     "L8"
    ],

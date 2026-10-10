@@ -9,6 +9,7 @@ import FrcCore.Sum
 import FrcCore.Theme.Domain
 import FrcCore.Theme.Projective
 import FrcCore.Theme.Fourier
+import FrcCore.Theme.Shift
 import FrcCore.Theme.Fractional
 import FrcCore.Theme.Lifts
 import FrcCore.Theme.Dichotomy
@@ -29,6 +30,8 @@ import FrcCore.Theme.Carrier
 import FrcCore.Theme.Subject
 import FrcCore.Theme.Symbol
 import FrcCore.Theme.Gravity
+import FrcCore.Theme.Lattice
+import FrcCore.Theme.Drift
 import FrcCore.Theme.Quantum
 import FrcCore.Theme.Unitary
 import FrcCore.Theme.Interactions

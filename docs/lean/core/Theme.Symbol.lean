@@ -443,7 +443,7 @@ theorem fp_ring (S X₁ X₂ X₃ c : Shell p) :
     (.add (.add (.add (.var 0) (.mul (.add (.mul (.add .one .one) (.neg (.var 4))) (.mul (.add .one .one) (.var 4))) (.var 1))) (.mul (.add (.mul (.add .one .one) (.var 4)) (.neg (.mul (.add .one .one) (.var 4)))) (.var 2))) (.mul (.add (.neg (.mul (.add .one .one) (.var 4))) (.mul (.add .one .one) (.var 4))) (.var 3)))
     (.var 0) (by decide +kernel)
 
-/-- Spin 2: the Fierz–Pauli line `(−1, 2, −2, 1)` is gauge invariant on every shell, at every symbol. -/
+/-- 00:E1, 21:C9 — spin 2: the Fierz–Pauli line `(−1, 2, −2, 1)` is gauge invariant on every shell, at every symbol. -/
 theorem fierz_pauli_invariant (η : Nat → Shell p) (n : Nat) (c : Shell p) (k ξ : Nat → Shell p)
     {h : Nat → Nat → Shell p} (hs : ∀ μ ν, h μ ν = h ν μ) :
     tensForm η n (-c) ((1 + 1) * c) (-((1 + 1) * c)) c k (gauge h k ξ) =
@@ -521,9 +521,9 @@ theorem line_a2 (a₁ a₂ a₄ : Shell p) :
     (.var 1)
     (.add (.add (.mul (.add .one .one) (.var 2)) (.mul .one (.add (.mul (.add .one .one) (.var 0)) (.var 1)))) (.mul (.neg (.add .one .one)) (.add (.var 0) (.var 2)))) (by decide +kernel)
 
-/-- Spin 2 over all symbols: when `2` and the metric entries `η₀`, `η₁` are units (`n ≥ 2`), the combinations
-gauge invariant at every symbol, for every symmetric field and every gauge vector, are exactly the Fierz–Pauli line
-`(a₁, a₂, a₃, a₄) = c (−1, 2, −2, 1)`. -/
+/-- 00:E1, 21:C9 — spin 2 over all symbols: when `2` and the metric entries `η₀`, `η₁` are units (`n ≥ 2`), the
+combinations gauge invariant at every symbol, for every symmetric field and every gauge vector, are exactly the
+Fierz–Pauli line `(a₁, a₂, a₃, a₄) = c (−1, 2, −2, 1)`. -/
 theorem fierz_pauli_unique (η : Nat → Shell p) {n : Nat} {w₀ w₁ t : Shell p} (hn : 1 < n) (h₀ : η 0 * w₀ = 1)
     (h₁ : η 1 * w₁ = 1) (h₂ : (1 + 1) * t = 1) (a₁ a₂ a₃ a₄ : Shell p) :
     (∀ (k ξ : Nat → Shell p) (h : Nat → Nat → Shell p), (∀ μ ν, h μ ν = h ν μ) →

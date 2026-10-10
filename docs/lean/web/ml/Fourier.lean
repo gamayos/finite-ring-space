@@ -221,7 +221,7 @@ open FRC.DFT
 open Matrix hiding J
 open Finset
 
-/-! ## The fractional family, the rotation group and the readout of the phase cycle (predicates C2–C9, D2, E2–E7; 17 Sep 2026) -/
+/-! ## The fractional family, the rotation group and the readout of the meridian cycle (predicates C2–C9, D2, E2–E7; 17 Sep 2026) -/
 
 
 section characters
@@ -430,7 +430,7 @@ theorem chi_pow_three (hi2 : i ^ 2 = -1) (ℓ : ZMod 4) : chi i ℓ ^ 3 = chi (-
   congr 1
   linear_combination i * hi2
 
-/-- 6:C9 — the conjugate chart `(g, i) ↦ (g⁻¹, −i)`: the quarter-turn transform of the conjugate frame is
+/-- 6:C9 — the conjugate reframing `(g, i) ↦ (g⁻¹, −i)`: the quarter-turn transform of the conjugate frame is
 `F' = −F⁻¹ = −F³`, and its projectors are the shifted projectors, `Π'_ℓ = Π_{ℓ+2}`. -/
 theorem proj_conj (hi : i ^ 4 = 1) (hi2 : i ^ 2 = -1) (hne : ∀ d : ZMod 4, d ≠ 0 → chi i d ≠ 1)
     (h4 : (4 : K) ≠ 0) (hf : f ^ 4 = 1) (ℓ : ZMod 4) :
@@ -694,7 +694,7 @@ lemma dd_mul (hi : i ^ 2 = -1) (h2 : (2 : K) ≠ 0) (z w : K) (hz : z ≠ 0) (hw
   field_simp
   ring
 
-/-- 6:E2 — `s ↦ R_s` is a homomorphism of the phase cycle: `R_{s+r} = R_s R_r` reads
+/-- 6:E2 — `s ↦ R_s` is a homomorphism of the meridian cycle: `R_{s+r} = R_s R_r` reads
 `rot (z w) = rot z * rot w` for `z = g^{−s}`, `w = g^{−r}`. -/
 theorem rot_mul (hi : i ^ 2 = -1) (h2 : (2 : K) ≠ 0) (z w : K) (hz : z ≠ 0) (hw : w ≠ 0) :
     rot i (z * w) = rot i z * rot i w := by
@@ -768,7 +768,7 @@ def unitsEquivCircle (hi : i ^ 2 = -1) (h2 : (2 : K) ≠ 0) : Kˣ ≃ Circle K w
       field_simp; ring
 
 /-- 6:E2 — `|SO(2, K)| = |K| − 1` for a finite field with a quarter-turn: the rotation group of the
-`p²`-point plane has `p − 1 = 4κ` elements, the size of the phase cycle. -/
+`p²`-point plane has `p − 1 = 4κ` elements, the size of the meridian cycle. -/
 theorem card_circle [Fintype K] [DecidableEq K] (hi : i ^ 2 = -1) (h2 : (2 : K) ≠ 0) :
     Fintype.card (Circle K) = Fintype.card K - 1 := by
   rw [← Fintype.card_units, Fintype.card_congr (unitsEquivCircle i hi h2).symm]
@@ -1068,7 +1068,7 @@ section shellFamily
 variable {F : Type*} [Field F] [Fintype F] (κ : ℕ) [NeZero κ] (g : F)
 
 omit [NeZero κ] in
-/-- `4κ ≡ −1` in a field with `4κ + 1` elements (the normalisation of B6, on the phase cycle). -/
+/-- `4κ ≡ −1` in a field with `4κ + 1` elements (the normalisation of B6, on the meridian cycle). -/
 lemma natCast_four_mul_eq_neg_one (hκ : Fintype.card F = 4 * κ + 1) : ((4 * κ : ℕ) : F) = -1 := by
   have := natCast_card_pred_eq_neg_one (F := F)
   rwa [hκ, Nat.add_sub_cancel] at this
@@ -1126,7 +1126,7 @@ lemma chi_ne_one' (hg : IsPrimitiveRoot g (4 * κ)) : ∀ d : ZMod 4, d ≠ 0 �
 /-- 6:B4 — the quarter-turn transform `F = i W` as a `4κ × 4κ` matrix, `i = −g^κ`. -/
 def Fmat : Matrix (Fin (4 * κ)) (Fin (4 * κ)) F := (-(g ^ κ)) • W g
 
-/-- 6:B5 — `F² = J` and `F⁴ = 1` on the phase cycle (the form the fractional family consumes). -/
+/-- 6:B5 — `F² = J` and `F⁴ = 1` on the meridian cycle (the form the fractional family consumes). -/
 theorem Fmat_sq (hκ : Fintype.card F = 4 * κ + 1) (hg : IsPrimitiveRoot g (4 * κ)) : Fmat κ g ^ 2 = J := by
   unfold Fmat
   rw [smul_pow, W_sq g hg, natCast_four_mul_eq_neg_one κ hκ, quarter_turn_sq' κ g hg, neg_one_smul,
@@ -2125,13 +2125,13 @@ theorem p06021 : (∀ {K : Type u_1} [Field K] (κ : ℕ) [NeZero κ] (g : K), I
 set_option linter.defProp false in
 /-- 6:C8 (p06022) — Exponent lifts: every lift $a_\ell\equiv\ell\pmod4$, $U^{(a)}_s=\sum_\ell\gen^{-a_\ell s}\Pi_\ell$, is additive with the same cardinal skeleton, $U^{(a)}_{s+r}=U^{(a)}_sU^{(a)}_r$ and $U^{(a)}_{m\kap}=\Ft^{m}$. -/
 def p06022 := @FRC.LedgerML.p06022
-/-- 6:C9 (p06023) — The conjugate chart $(\gen,\im)\mapsto(\gen^{-1},-\im)$: exactly $\Ft'=-\Ft^{-1}$ and $\Pi'_\ell=\Pi_{\ell+2}$; the operator relations, cardinal values, additivity and faithfulness hold on the conjugate frame, and its trace tuple is the other pattern of C7. -/
+/-- 6:C9 (p06023) — The conjugate reframing $(\gen,\im)\mapsto(\gen^{-1},-\im)$: exactly $\Ft'=-\Ft^{-1}$ and $\Pi'_\ell=\Pi_{\ell+2}$; the operator relations, cardinal values, additivity and faithfulness hold on the conjugate frame, and its trace tuple is the other pattern of C7. -/
 theorem p06023 : ∀ {F : Type u_1} [Field F] [Fintype F] (κ : ℕ) [NeZero κ] (g : F), Fintype.card F = (4 : ℕ) * κ + (1 : ℕ) → IsPrimitiveRoot g ((4 : ℕ) * κ) → ∀ (ℓ : ZMod (4 : ℕ)), - -g ^ κ • FRC.DFT.W g⁻¹ = -FRC.Fractional.Fmat κ g ^ (3 : ℕ) ∧ FRC.Fractional.proj (- -g ^ κ) (-FRC.Fractional.Fmat κ g ^ (3 : ℕ)) ℓ = FRC.Fractional.shellProj κ g (ℓ + (2 : ZMod (4 : ℕ))) :=
   @FRC.LedgerML.p06023
 set_option linter.defProp false in
 /-- 6:D2 (p06025) — The $4\kap$ framed domains are pairwise distinct; read as unordered bases $B_{s+2\kap}=B_s$, since $\Ft^{[s+2\kap]}=\Ft^{[s]}J$ and $J$ permutes the standard basis. -/
 def p06025 := @FRC.LedgerML.p06025
-/-- 6:E2 (p06031) — $R_s\in SO(2,\Fp)$, and $s\mapsto R_s$ is an isomorphism $\Phit\simeq SO(2,\Fp)$ with $|SO(2,\Fp)|=\p-1=4\kap$: the full rotation group of the $\p^{2}$-point plane is the phase cycle. Cited definitions (not proofs): FRC.Fourier.unitsEquivCircle. -/
+/-- 6:E2 (p06031) — $R_s\in SO(2,\Fp)$, and $s\mapsto R_s$ is an isomorphism $\Phit\simeq SO(2,\Fp)$ with $|SO(2,\Fp)|=\p-1=4\kap$: the full rotation group of the $\p^{2}$-point plane is the meridian cycle. Cited definitions (not proofs): FRC.Fourier.unitsEquivCircle. -/
 theorem p06031 : (∀ {K : Type u_1} [Field K] (i : K), i ^ (2 : ℕ) = (-1 : K) → (2 : K) ≠ (0 : K) → ∀ (z : K), z ≠ (0 : K) → FRC.Fractional.cc z ^ (2 : ℕ) + FRC.Fractional.dd i z ^ (2 : ℕ) = (1 : K)) ∧ (∀ {K : Type u_2} [Field K] (i : K), i ^ (2 : ℕ) = (-1 : K) → (2 : K) ≠ (0 : K) → ∀ (z w : K), z ≠ (0 : K) → w ≠ (0 : K) → FRC.Fractional.rot i (z * w) = FRC.Fractional.rot i z * FRC.Fractional.rot i w) ∧ ∀ {K : Type u_3} [Field K] (i : K) [Fintype K] [DecidableEq K], i ^ (2 : ℕ) = (-1 : K) → (2 : K) ≠ (0 : K) → Fintype.card (FRC.Fractional.Circle K) = Fintype.card K - (1 : ℕ) :=
   @FRC.LedgerML.p06031
 /-- 6:E3 (p06032) — The cardinal-skeleton dictionary $M_s\leftrightarrow s\leftrightarrow z_s\leftrightarrow R_s$ with $R_0=I$, $R_\kap=w$, $R_{2\kap}=-I$, $R_{3\kap}=w^{-1}$ (the $R_\kap$ column of Table~\ref{tab:checks}), $z_\kap=\im$; the shell's family and the Weil family stand in cardinal Weil correspondence, the Weil side by the normalization of A2 (an import). -/

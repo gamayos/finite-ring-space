@@ -3,7 +3,7 @@
  "tree": "5-reductio-20260706",
  "title": "Paradoxes of Infinity as Reductio ad Absurdum",
  "doi": "https://doi.org/10.20944/preprints202508.1744.v1",
- "generated": "9 October 2026",
+ "generated": "10 October 2026",
  "blocks": [
   {
    "letter": "A",
@@ -339,17 +339,13 @@
  "master": {
   "A4": [
    "A2",
-   "A4",
    "Z3",
-   "A5",
+   "A4",
    "Z1",
-   "A6"
+   "A5"
   ],
   "B7": [
    "Z3"
-  ],
-  "C2": [
-   "A4"
   ],
   "C4": [
    "Z1"
@@ -362,6 +358,9 @@
   ],
   "F1": [
    "A2"
+  ],
+  "C2": [
+   "A4"
   ]
  },
  "lean": {

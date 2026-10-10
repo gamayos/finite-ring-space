@@ -3,7 +3,7 @@
  "tree": "6-fourier-20260716",
  "title": "Scale-Shift and Fractional Fourier Transform as Rotations over Finite Holographic Substrate",
  "doi": "https://doi.org/10.20944/preprints202606.0127.v1",
- "generated": "9 October 2026",
+ "generated": "10 October 2026",
  "blocks": [
   {
    "letter": "A",
@@ -1151,7 +1151,7 @@
     "axioms": [],
     "tier": 0,
     "ok": true,
-    "doc": "6:D4 — scale-shift covariance: `S_r(M_m) = M_{m+r}` as ordered lists, for every `m, r`."
+    "doc": "6:D4 — meridian-scale covariance: `S_r(M_m) = M_{m+r}` as ordered lists, for every `m, r`."
    },
    {
     "name": "FRC.Shell.meridian_step",
@@ -1169,7 +1169,7 @@
     "axioms": [],
     "tier": 0,
     "ok": true,
-    "doc": "6:D4 — `S_{r + (p−1)} = S_r`: the scale-shift (dilation) is `(p − 1)`-periodic in `r` (the periodicity of the framed-rational zoom, A5)."
+    "doc": "6:D4 — `S_{r + (p−1)} = S_r`: the meridian-scale map is `(p − 1)`-periodic in `r` (the periodicity of the framed-rational zoom, A5)."
    },
    {
     "name": "FRC.Shell.ladder13",

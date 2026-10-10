@@ -481,7 +481,7 @@ theorem frft_pow (F : Frame p κ g) {z : Shell p} (hz : g * z = 1) (s : Nat) :
     exact sum_congr _ (fun l hl => by rw [frft_pow F hz s m k l hk hl])
 
 /-- **C2 (p00022), scale-shift duality.** Dilation `x ↦ g x` is phase evolution of the frame: it advances the
-longitude (`S_r(M_m) = M_{m+r}`), with period `p − 1`; over the cycle it is the fractional Fourier family, a
+meridian index (`S_r(M_m) = M_{m+r}`), with period `p − 1`; over the cycle it is the fractional Fourier family, a
 representation of `ℤ/(p−1)` (`F^{[s+r]} = F^{[s]} F^{[r]}`, period `p − 1`) whose quarter-turn value `F^{[κ]}` is the
 transform `F` itself, with `F^{[0]} = I`, `F^{[2κ]} = J`, `F^{[3κ]} = F J = F⁻¹` and `(F^{[1]})^κ = F`. -/
 theorem scale_shift (F : Frame p κ g) {z : Shell p} (hz : g * z = 1) :

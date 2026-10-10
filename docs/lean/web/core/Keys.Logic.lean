@@ -1022,7 +1022,7 @@ namespace Logic
 
 /-- 5:C2, 29:C10 (Proposition mirror) — a part with fewer records than the frame has elements holds no injective
 representation of the frame's domain: no `f : [0, N) → [0, R)` is injective when `R < N`. In the base since task LM23
-(from `Theme/Logic.lean`, under its old name), so that the foundation's A5 stands on it. -/
+(from `Theme/Logic.lean`, under its old name), so that the foundation's A4 (Observation; the bounded observer, A5 at task LM23) stands on it. -/
 theorem no_mirror {N R : Nat} (hR : R < N) (f : Nat → Nat) (hf : ∀ i, i < N → f i < R)
     (hinj : ∀ i j, i < N → j < N → f i = f j → i = j) : False :=
   have hnd := FRC.Shell.imageList_nodup hinj (Nat.le_refl N)

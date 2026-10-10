@@ -3,7 +3,7 @@
  "tree": "25-godel-20260614",
  "title": "Incompleteness Without Infinity",
  "doi": "https://doi.org/10.20944/preprints202607.0850.v1",
- "generated": "9 October 2026",
+ "generated": "10 October 2026",
  "blocks": [
   {
    "letter": "A",
@@ -417,9 +417,6 @@
   "A4": [
    "A2"
   ],
-  "D1": [
-   "A4"
-  ],
   "C1": [
    "Z1"
   ],
@@ -460,6 +457,9 @@
   ],
   "G8": [
    "Z9"
+  ],
+  "D1": [
+   "A4"
   ],
   "D3": [
    "A4"

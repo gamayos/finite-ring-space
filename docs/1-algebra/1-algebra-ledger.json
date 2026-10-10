@@ -3,7 +3,7 @@
  "tree": "1-algebra-axioms",
  "title": "Relativistic Algebra over Finite Ring Continuum",
  "doi": "https://doi.org/10.3390/axioms14080636",
- "generated": "9 October 2026",
+ "generated": "10 October 2026",
  "blocks": [
   {
    "letter": "A",
@@ -257,7 +257,7 @@
  ],
  "master": {
   "B4": [
-   "A7"
+   "A6"
   ],
   "D1": [
    "B1"

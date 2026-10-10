@@ -271,16 +271,6 @@ const PUBLICATIONS = [
     ]
   },
   {
-    "key": "9-uniq",
-    "n": 9,
-    "title": "The Algebra of Being",
-    "status": {
-      "kind": "preprint"
-    },
-    "doi": "https://doi.org/10.20944/preprints202512.1260.v1",
-    "doiLabel": "pp202512.1260.v1"
-  },
-  {
     "key": "10-dim",
     "n": 10,
     "title": "Dimensional Analysis over Finite Holographic Substrate",
@@ -418,16 +408,25 @@ const PUBLICATIONS = [
     "doi": "https://doi.org/10.20944/preprints202606.1018.v2",
     "doiLabel": "pp202606.1018.v2",
     "ledger": "21-gravity/index.html",
+    "schema": true,
     "links": [
       {
-        "href": "21-gravity/index.html",
-        "label": "ledger",
-        "title": "the paper's predicate ledger"
+        "href": "https://colab.research.google.com/github/gamayos/finite-ring-space/blob/main/frc/ledgers/p21_gravity.ipynb",
+        "label": "python",
+        "count": 34,
+        "title": "34 predicates checked, all passing: the notebook p21_gravity.ipynb on Google Colab, one cell per predicate"
       },
       {
-        "href": "https://colab.research.google.com/github/gamayos/finite-ring-space/blob/main/src/21-gravity/21-gravity-main.ipynb",
-        "label": "notebook",
-        "title": "the validation notebook on Google Colab"
+        "href": "https://live.lean-lang.org/#project=lean-v4.34.0&url=https://finitering.space/lean/web/core/Gravity.lean",
+        "label": "lean",
+        "count": 18,
+        "title": "18 predicates proved in the core (no axioms), 16 of them also on Mathlib: the core module Gravity as one executable file (plain Lean, no Mathlib) in Lean Live"
+      },
+      {
+        "href": "https://live.lean-lang.org/#project=mathlib-stable&url=https://finitering.space/lean/web/ml/Gravity.lean",
+        "label": "lean-mathlib",
+        "count": 27,
+        "title": "27 predicates proved on Mathlib (classical), 16 of them also in the core: the module Gravity as one file on Mathlib in Lean Live"
       }
     ]
   },
@@ -734,4 +733,4 @@ const PUBLICATIONS = [
   }
 ];
 
-const GENERATED = "9 October 2026";
+const GENERATED = "10 October 2026";

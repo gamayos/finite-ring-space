@@ -439,5 +439,57 @@
    "29:X1": "Finitism",
    "29:X2": "Finitism"
   }
+ },
+ "21-gravity": {
+  "module": "Gravity",
+  "FrcCore": {
+   "21:A1": "Gravity",
+   "21:A9": "Gravity",
+   "21:C1": "Gravity",
+   "21:C11": "Gravity",
+   "21:C13": "Gravity",
+   "21:C15": "Gravity",
+   "21:C16": "Gravity",
+   "21:C19": "Gravity",
+   "21:C2": "Gravity",
+   "21:C20": "Gravity",
+   "21:C21": "Gravity",
+   "21:C25": "Gravity",
+   "21:C5": "Gravity",
+   "21:C6": "Gravity",
+   "21:C7": "Gravity",
+   "21:C8": "Gravity",
+   "21:C9": "Gravity",
+   "21:P6": "Gravity"
+  },
+  "FrcLedger": {
+   "21:A1": "Gravity",
+   "21:A9": "Gravity",
+   "21:C1": "Gravity",
+   "21:C11": "Gravity",
+   "21:C12": "Gravity",
+   "21:C13": "Gravity",
+   "21:C15": "Gravity",
+   "21:C16": "Gravity",
+   "21:C18": "Gravity",
+   "21:C19": "Gravity",
+   "21:C2": "Gravity",
+   "21:C20": "Gravity",
+   "21:C25": "Gravity",
+   "21:C4": "Gravity",
+   "21:C5": "Gravity",
+   "21:C7": "Gravity",
+   "21:C8": "Gravity",
+   "21:C9": "Gravity",
+   "21:P1": "Gravity",
+   "21:P2": "Gravity",
+   "21:P3": "Gravity",
+   "21:P4": "Gravity",
+   "21:P6": "Gravity",
+   "21:P7": "Gravity",
+   "21:P8": "Gravity",
+   "21:X2": "Gravity",
+   "21:X8": "Gravity"
+  }
  }
 }

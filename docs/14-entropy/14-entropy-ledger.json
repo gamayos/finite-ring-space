@@ -3,7 +3,7 @@
  "tree": "14-entropy-20260722",
  "title": "De Sitter Entropy Estimates over Finite Holographic Substrate",
  "doi": "https://doi.org/10.20944/preprints202608.0310.v1",
- "generated": "9 October 2026",
+ "generated": "10 October 2026",
  "blocks": [
   {
    "letter": "A",
@@ -363,10 +363,10 @@
  ],
  "master": {
   "A1": [
-   "A8"
+   "A7"
   ],
   "A2": [
-   "A8"
+   "A7"
   ],
   "B5": [
    "L2"

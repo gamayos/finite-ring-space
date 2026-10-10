@@ -3,7 +3,7 @@
  "tree": "29-finitism-20260708",
  "title": "The Undeclared Posit of Potential Infinity",
  "doi": "https://doi.org/10.20944/preprints202607.0670.v1",
- "generated": "9 October 2026",
+ "generated": "10 October 2026",
  "blocks": [
   {
    "letter": "A",
@@ -266,15 +266,15 @@
   "C2": [
    "A2"
   ],
-  "C10": [
-   "A4",
-   "Z3"
-  ],
   "B4": [
    "A5"
   ],
   "B5": [
    "Z1"
+  ],
+  "C10": [
+   "Z3",
+   "A4"
   ]
  },
  "lean": {
@@ -601,7 +601,7 @@
     "axioms": [],
     "tier": 0,
     "ok": true,
-    "doc": "5:C2, 29:C10 (Proposition mirror) — a part with fewer records than the frame has elements holds no injective representation of the frame's domain: no `f : [0, N) → [0, R)` is injective when `R < N`. In the base since task LM23 (from `Theme/Logic.lean`, under its old name), so that the foundation's A5 stands on it."
+    "doc": "5:C2, 29:C10 (Proposition mirror) — a part with fewer records than the frame has elements holds no injective representation of the frame's domain: no `f : [0, N) → [0, R)` is injective when `R < N`. In the base since task LM23 (from `Theme/Logic.lean`, under its old name), so that the foundation's A4 (Observation; the bounded observer, A5 at task LM23) stands on it."
    }
   ],
   "E2": [

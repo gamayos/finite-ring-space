@@ -4,7 +4,7 @@ import Mathlib
 # FrcLedger.Theme.Chart — the chart theme: the readings against the continuum (ledger migration, task LM30)
 
 The chart theme holds the readings of the finite results against the continuum, the only theme with the reals
-(`frc/themes.py`, rank 30). It serves the chart clauses of the master's scale import (00:A8, `scale_import`; the ledger's `ln Ω` for L8,
+(`frc/themes.py`, rank 30). It serves the chart clauses of the master's scale import (00:A7, `scale_import`; the ledger's `ln Ω` for L8,
 `ln_omega_ledger`), its cosmology and prediction rows: the
 floor `a₀ = cH₀/2π` (00:L1), the octant record depth and its outputs (00:L3), the primordial tilt (00:L8) and the
 running floor (00:P1). The chart's numerals — the speed of light, the megaparsec, the Julian year, the fitted
@@ -22,10 +22,10 @@ namespace FRC.Chart
 
 open Real
 
-/-! ## The scale import's chart numerals (00:A8; 14:A1, C1) -/
+/-! ## The scale import's chart numerals (00:A7; 14:A1, C1) -/
 section scale
 
-/-- 00:A8 [chart] — the scale import's numerals: with the fit's `Λ = 1.088 × 10⁻⁵² m⁻²` (Planck 2018) and the Planck
+/-- 00:A7 [chart] — the scale import's numerals: with the fit's `Λ = 1.088 × 10⁻⁵² m⁻²` (Planck 2018) and the Planck
 length `ℓ_P = 1.616255 × 10⁻³⁵ m` declared [data], the de Sitter radius `r_H = c/H_Λ`, `r_H² = 3/Λ`, gives
 `S = π (r_H/ℓ_P)²` between `3.31` and `3.32 × 10¹²²` (the row's `3.3 × 10¹²²`) and `Ω = 4S + 1` between `1.32` and
 `1.33 × 10¹²³` (the row's `1.3 × 10¹²³`). That the datum fixes the cardinality is the import; nothing here derives the
@@ -332,7 +332,7 @@ end floor
 /-! ## The primordial tilt (00:L8) -/
 section tilt
 
-/-- 00:L8 [chart] — the tilt at the ledger's `ln Ω = 283.5` (`ln_omega_ledger`, from the scale import 00:A8; data): `n_s − 1 = −π²/ln Ω` has magnitude
+/-- 00:L8 [chart] — the tilt at the ledger's `ln Ω = 283.5` (`ln_omega_ledger`, from the scale import 00:A7; data): `n_s − 1 = −π²/ln Ω` has magnitude
 between `0.03481` and `0.03482` (the row's `−0.0348`); against Planck 2018's `−0.0351 ± 0.0042` (data) the
 deviation is between `+0.068σ` and `+0.069σ` (the row's `+0.07σ`); the count `½ ln Ω` gives `−π²/(ln Ω/2)`, off
 by between `8.2σ` and `8.25σ` (the row's exclusion at `8.2σ`). That `ln Ω` is the e-fold count of the frame's scale
