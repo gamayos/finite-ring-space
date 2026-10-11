@@ -93,6 +93,13 @@ class SeriesTest(unittest.TestCase):
         self.assertEqual(D.binding(N=4, m1=2, m2=3), (True, True, True, True))
         self.assertTrue(D.fold_return(17, 8, 4))
 
+    def test_arrow_and_compression(self):
+        ok, order, fixed = D.single_arrow(13, 2)
+        self.assertTrue(ok); self.assertEqual(order, 14); self.assertEqual(fixed, [(1, 0), (12, 0)])   # ±1 fixed under conjugation
+        self.assertTrue(D.compression_identity(8, {1, 2, 3}))
+        ok, order = D.offset_return(12, {0, 5, 6, 7, 11})
+        self.assertTrue(ok); self.assertEqual(order, 12)
+
 
 if __name__ == "__main__":
     unittest.main()

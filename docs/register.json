@@ -1461,7 +1461,7 @@
   {
    "key": "p00004",
    "origin": "00",
-   "statement": "\\textbf{Finitude}: the Universe is the sum total of its manifestations (A8). For any totality and any reading of capacity $R$, the registered Universe embeds in the shell of $R$ members, and among any $R+1$ members two share a residue: no reading registers an unlimited supply (5:C2, 29:C1, 29:C2). One coherent plurality (A6, A13); its count $\\Om$: A7.",
+   "statement": "\\textbf{Finitude}: the Universe is the totality of its registered manifestations (A8); one coherent plurality, one registration (A6, A13). For any totality and any reading of capacity $R$, the registered Universe embeds in the shell of $R$ members, and among any $R+1$ members two share a residue (5:C2, 29:C1, 29:C2): the Universe is finite, its count $\\Om$ (A7).",
    "origin_row": "00:A2",
    "tag": "T",
    "tier": 0,
@@ -2735,11 +2735,20 @@
    "statement": "\\textbf{Gravity} (linear): the Coulomb law is gravity's own lattice Green's function; the field equation is the discrete Fierz--Pauli functional, the unique adjacency-local stiffness (E1). Universal attraction is the drive's single time arrow.",
    "origin_row": "00:E3",
    "tag": "T",
-   "tier": null,
+   "tier": 0,
    "check": {
-    "script": "21:validate_newton.py"
+    "href": "frc/ledgers/master/gravity.html#p00154",
+    "script": "frc/ledgers/master/gravity.py",
+    "line": 76,
+    "verdict": "pass"
    },
-   "declarations": [],
+   "declarations": [
+    {
+     "lib": "FrcCore",
+     "module": "FrcCore/Keys/Gravity",
+     "name": "FRC.Ledger.p00154"
+    }
+   ],
    "aliases": [],
    "rows": [
     "00:E3"
@@ -2788,7 +2797,7 @@
    "check": {
     "href": "frc/ledgers/master/gravity.html#p00176",
     "script": "frc/ledgers/master/gravity.py",
-    "line": 68,
+    "line": 109,
     "verdict": "pass"
    },
    "declarations": [
@@ -2814,7 +2823,7 @@
    "check": {
     "href": "frc/ledgers/master/gravity.html#p00058",
     "script": "frc/ledgers/master/gravity.py",
-    "line": 106,
+    "line": 147,
     "verdict": "pass"
    },
    "declarations": [
@@ -15103,7 +15112,7 @@
    "check": {
     "href": "frc/ledgers/p21_gravity.html#p21001",
     "script": "p21_gravity.py",
-    "line": 115,
+    "line": 116,
     "verdict": "pass"
    },
    "declarations": [
@@ -15236,7 +15245,7 @@
    "check": {
     "href": "frc/ledgers/p21_gravity.html#p21009",
     "script": "p21_gravity.py",
-    "line": 137,
+    "line": 138,
     "verdict": "pass"
    },
    "declarations": [
@@ -15404,7 +15413,7 @@
    "check": {
     "href": "frc/ledgers/p21_gravity.html#p21016",
     "script": "p21_gravity.py",
-    "line": 197,
+    "line": 198,
     "verdict": "pass"
    },
    "declarations": [
@@ -15440,7 +15449,7 @@
    "check": {
     "href": "frc/ledgers/p21_gravity.html#p21017",
     "script": "p21_gravity.py",
-    "line": 124,
+    "line": 125,
     "verdict": "pass"
    },
    "declarations": [
@@ -15467,9 +15476,25 @@
    "statement": "Universal attraction from the single arrow of the drive (a repulsive charge would need a time-reversed, Frobenius-branch clock).",
    "origin_row": "21:C3",
    "tag": "T",
-   "tier": null,
-   "check": null,
-   "declarations": [],
+   "tier": 0,
+   "check": {
+    "href": "frc/ledgers/p21_gravity.html#p21018",
+    "script": "p21_gravity.py",
+    "line": 289,
+    "verdict": "pass"
+   },
+   "declarations": [
+    {
+     "lib": "FrcCore",
+     "module": "FrcCore/Theme/Drift",
+     "name": "FRC.Drift.conj_branch"
+    },
+    {
+     "lib": "FrcCore",
+     "module": "FrcCore/Theme/Drift",
+     "name": "FRC.Drift.conj_pow"
+    }
+   ],
    "aliases": [],
    "rows": [
     "21:C3"
@@ -15486,7 +15511,7 @@
    "check": {
     "href": "frc/ledgers/p21_gravity.html#p21019",
     "script": "p21_gravity.py",
-    "line": 190,
+    "line": 191,
     "verdict": "pass"
    },
    "declarations": [
@@ -15512,7 +15537,7 @@
    "check": {
     "href": "frc/ledgers/p21_gravity.html#p21020",
     "script": "p21_gravity.py",
-    "line": 132,
+    "line": 133,
     "verdict": "pass"
    },
    "declarations": [
@@ -15548,7 +15573,7 @@
    "check": {
     "href": "frc/ledgers/p21_gravity.html#p21021",
     "script": "p21_gravity.py",
-    "line": 255,
+    "line": 256,
     "verdict": "pass"
    },
    "declarations": [
@@ -15574,7 +15599,7 @@
    "check": {
     "href": "frc/ledgers/p21_gravity.html#p21022",
     "script": "p21_gravity.py",
-    "line": 292,
+    "line": 304,
     "verdict": "pass"
    },
    "declarations": [
@@ -15610,7 +15635,7 @@
    "check": {
     "href": "frc/ledgers/p21_gravity.html#p21023",
     "script": "p21_gravity.py",
-    "line": 292,
+    "line": 304,
     "verdict": "pass"
    },
    "declarations": [
@@ -15651,7 +15676,7 @@
    "check": {
     "href": "frc/ledgers/p21_gravity.html#p21024",
     "script": "p21_gravity.py",
-    "line": 165,
+    "line": 166,
     "verdict": "pass"
    },
    "declarations": [
@@ -15692,7 +15717,7 @@
    "check": {
     "href": "frc/ledgers/p21_gravity.html#p21025",
     "script": "p21_gravity.py",
-    "line": 358,
+    "line": 370,
     "verdict": "pass"
    },
    "declarations": [],
@@ -15712,7 +15737,7 @@
    "check": {
     "href": "frc/ledgers/p21_gravity.html#p21026",
     "script": "p21_gravity.py",
-    "line": 242,
+    "line": 243,
     "verdict": "pass"
    },
    "declarations": [
@@ -15750,7 +15775,7 @@
    "check": {
     "href": "frc/ledgers/p21_gravity.html#p21027",
     "script": "p21_gravity.py",
-    "line": 305,
+    "line": 317,
     "verdict": "pass"
    },
    "declarations": [
@@ -15778,7 +15803,7 @@
    "check": {
     "href": "frc/ledgers/p21_gravity.html#p21062",
     "script": "p21_gravity.py",
-    "line": 151,
+    "line": 152,
     "verdict": "pass"
    },
    "declarations": [
@@ -15850,7 +15875,7 @@
    "check": {
     "href": "frc/ledgers/p21_gravity.html#p21030",
     "script": "p21_gravity.py",
-    "line": 205,
+    "line": 206,
     "verdict": "pass"
    },
    "declarations": [
@@ -15884,7 +15909,7 @@
    "check": {
     "href": "frc/ledgers/p21_gravity.html#p21031",
     "script": "p21_gravity.py",
-    "line": 115,
+    "line": 116,
     "verdict": "pass"
    },
    "declarations": [
@@ -15928,7 +15953,7 @@
    "check": {
     "href": "frc/ledgers/p21_gravity.html#p21032",
     "script": "p21_gravity.py",
-    "line": 364,
+    "line": 376,
     "verdict": "pass"
    },
    "declarations": [],
@@ -15951,7 +15976,7 @@
    "check": {
     "href": "frc/ledgers/p21_gravity.html#p21033",
     "script": "p21_gravity.py",
-    "line": 310,
+    "line": 322,
     "verdict": "pass"
    },
    "declarations": [
@@ -15984,7 +16009,7 @@
    "check": {
     "href": "frc/ledgers/p21_gravity.html#p21064",
     "script": "p21_gravity.py",
-    "line": 263,
+    "line": 264,
     "verdict": "pass"
    },
    "declarations": [
@@ -16029,7 +16054,7 @@
    "check": {
     "href": "frc/ledgers/p21_gravity.html#p21035",
     "script": "p21_gravity.py",
-    "line": 187,
+    "line": 188,
     "verdict": "pass"
    },
    "declarations": [
@@ -16065,7 +16090,7 @@
    "check": {
     "href": "frc/ledgers/p21_gravity.html#p21036",
     "script": "p21_gravity.py",
-    "line": 222,
+    "line": 223,
     "verdict": "pass"
    },
    "declarations": [
@@ -16101,7 +16126,7 @@
    "check": {
     "href": "frc/ledgers/p21_gravity.html#p21037",
     "script": "p21_gravity.py",
-    "line": 226,
+    "line": 227,
     "verdict": "pass"
    },
    "declarations": [],
@@ -16121,7 +16146,7 @@
    "check": {
     "href": "frc/ledgers/p21_gravity.html#p21038",
     "script": "p21_gravity.py",
-    "line": 296,
+    "line": 308,
     "verdict": "pass"
    },
    "declarations": [],
@@ -16143,7 +16168,7 @@
    "check": {
     "href": "frc/ledgers/p21_gravity.html#p21040",
     "script": "p21_gravity.py",
-    "line": 247,
+    "line": 248,
     "verdict": "pass"
    },
    "declarations": [
@@ -16179,7 +16204,7 @@
    "check": {
     "href": "frc/ledgers/p21_gravity.html#p21049",
     "script": "p21_gravity.py",
-    "line": 339,
+    "line": 351,
     "verdict": "pass"
    },
    "declarations": [
@@ -16223,7 +16248,7 @@
    "check": {
     "href": "frc/ledgers/p21_gravity.html#p21051",
     "script": "p21_gravity.py",
-    "line": 358,
+    "line": 370,
     "verdict": "pass"
    },
    "declarations": [
@@ -16251,7 +16276,7 @@
    "check": {
     "href": "frc/ledgers/p21_gravity.html#p21052",
     "script": "p21_gravity.py",
-    "line": 393,
+    "line": 409,
     "verdict": "pass"
    },
    "declarations": [
@@ -16282,7 +16307,7 @@
    "check": {
     "href": "frc/ledgers/p21_gravity.html#p21053",
     "script": "p21_gravity.py",
-    "line": 407,
+    "line": 423,
     "verdict": "pass"
    },
    "declarations": [
@@ -16325,7 +16350,7 @@
    "check": {
     "href": "frc/ledgers/p21_gravity.html#p21054",
     "script": "p21_gravity.py",
-    "line": 429,
+    "line": 445,
     "verdict": "pass"
    },
    "declarations": [
@@ -16355,7 +16380,7 @@
    "check": {
     "href": "frc/ledgers/p21_gravity.html#p21055",
     "script": "p21_gravity.py",
-    "line": 300,
+    "line": 312,
     "verdict": "pass"
    },
    "declarations": [
@@ -16386,7 +16411,7 @@
    "check": {
     "href": "frc/ledgers/p21_gravity.html#p21050",
     "script": "p21_gravity.py",
-    "line": 346,
+    "line": 358,
     "verdict": "pass"
    },
    "declarations": [
@@ -16414,7 +16439,7 @@
    "check": {
     "href": "frc/ledgers/p21_gravity.html#p21060",
     "script": "p21_gravity.py",
-    "line": 421,
+    "line": 437,
     "verdict": "pass"
    },
    "declarations": [
@@ -16461,7 +16486,7 @@
    "check": {
     "href": "frc/ledgers/p21_gravity.html#p21042",
     "script": "p21_gravity.py",
-    "line": 401,
+    "line": 417,
     "verdict": "pass"
    },
    "declarations": [
@@ -16486,9 +16511,25 @@
    "statement": "\\textbf{No horizons, no singularities, no information loss.} Collapse ends in a horizonless body, operationally black at $r_f$ (C12), with an exact saturating interior profile --- and information conservation is a theorem citation, not an absence claim: interior data live in offset sectors the drive confines exactly \\citep{quantum}: the theory never forfeits predictivity.",
    "origin_row": "21:X3",
    "tag": "T",
-   "tier": null,
-   "check": null,
-   "declarations": [],
+   "tier": 0,
+   "check": {
+    "href": "frc/ledgers/p21_gravity.html#p21043",
+    "script": "p21_gravity.py",
+    "line": 294,
+    "verdict": "pass"
+   },
+   "declarations": [
+    {
+     "lib": "FrcCore",
+     "module": "FrcCore/Theme/Drift",
+     "name": "FRC.Drift.compression"
+    },
+    {
+     "lib": "FrcCore",
+     "module": "FrcCore/Theme/Shift",
+     "name": "FRC.Cycle.cyc_add_n"
+    }
+   ],
    "aliases": [],
    "rows": [
     "21:X3"
@@ -16569,7 +16610,7 @@
    "check": {
     "href": "frc/ledgers/p21_gravity.html#p21048",
     "script": "p21_gravity.py",
-    "line": 155,
+    "line": 156,
     "verdict": "pass"
    },
    "declarations": [
@@ -23733,7 +23774,7 @@
    "block": "A",
    "tag": "T",
    "name": "Finitude",
-   "statement": "\\textbf{Finitude}: the Universe is the sum total of its manifestations (A8). For any totality and any reading of capacity $R$, the registered Universe embeds in the shell of $R$ members, and among any $R+1$ members two share a residue: no reading registers an unlimited supply (5:C2, 29:C1, 29:C2). One coherent plurality (A6, A13); its count $\\Om$: A7.",
+   "statement": "\\textbf{Finitude}: the Universe is the totality of its registered manifestations (A8); one coherent plurality, one registration (A6, A13). For any totality and any reading of capacity $R$, the registered Universe embeds in the shell of $R$ members, and among any $R+1$ members two share a residue (5:C2, 29:C1, 29:C2): the Universe is finite, its count $\\Om$ (A7).",
    "source": "5-red, 29-fin, m04",
    "page": "00-ledger.html#A2",
    "witness": {
@@ -23769,7 +23810,7 @@
     "29-fin",
     "m04"
    ],
-   "text": "Finitude: Finitude: the Universe is the sum total of its manifestations (A8). For any totality and any reading of capacity $R$, the registered Universe embeds in the shell of $R$ members, and among any $R+1$ members two share a residue: no reading registers an unlimited supply (5:C2, 29:C1, 29:C2). One coherent plurality (A6, A13); its count $\\Om$: A7. 5-red, 29-fin, m04"
+   "text": "Finitude: Finitude: the Universe is the totality of its registered manifestations (A8); one coherent plurality, one registration (A6, A13). For any totality and any reading of capacity $R$, the registered Universe embeds in the shell of $R$ members, and among any $R+1$ members two share a residue (5:C2, 29:C1, 29:C2): the Universe is finite, its count $\\Om$ (A7). 5-red, 29-fin, m04"
   },
   {
    "paper": "00",
@@ -25833,8 +25874,22 @@
    "page": "00-ledger.html#E3",
    "witness": {
     "script": "21:validate_newton.py",
-    "py": null,
-    "lean": []
+    "py": {
+     "href": "frc/ledgers/master/gravity.html#p00154",
+     "script": "frc/ledgers/master/gravity.py",
+     "line": 76,
+     "verdict": "pass"
+    },
+    "lean": [
+     {
+      "lib": "FrcCore",
+      "module": "FrcCore/Keys/Gravity",
+      "name": "FRC.Ledger.p00154",
+      "tier": 0,
+      "ok": true,
+      "page": "lean/core/Keys.Gravity.html#FRC.Ledger.p00154"
+     }
+    ]
    },
    "refs": [
     "p00052"
@@ -25911,7 +25966,7 @@
     "py": {
      "href": "frc/ledgers/master/gravity.html#p00176",
      "script": "frc/ledgers/master/gravity.py",
-     "line": 68,
+     "line": 109,
      "verdict": "pass"
     },
     "lean": [
@@ -25953,7 +26008,7 @@
     "py": {
      "href": "frc/ledgers/master/gravity.html#p00058",
      "script": "frc/ledgers/master/gravity.py",
-     "line": 106,
+     "line": 147,
      "verdict": "pass"
     },
     "lean": [
@@ -43409,7 +43464,7 @@
     "py": {
      "href": "frc/ledgers/p21_gravity.html#p21001",
      "script": "p21_gravity.py",
-     "line": 115,
+     "line": 116,
      "verdict": "pass"
     },
     "lean": [
@@ -43596,7 +43651,7 @@
     "py": {
      "href": "frc/ledgers/p21_gravity.html#p21009",
      "script": "p21_gravity.py",
-     "line": 137,
+     "line": 138,
      "verdict": "pass"
     },
     "lean": [
@@ -43839,7 +43894,7 @@
     "py": {
      "href": "frc/ledgers/p21_gravity.html#p21016",
      "script": "p21_gravity.py",
-     "line": 197,
+     "line": 198,
      "verdict": "pass"
     },
     "lean": [
@@ -43888,7 +43943,7 @@
     "py": {
      "href": "frc/ledgers/p21_gravity.html#p21017",
      "script": "p21_gravity.py",
-     "line": 124,
+     "line": 125,
      "verdict": "pass"
     },
     "lean": [
@@ -43925,16 +43980,38 @@
    "tag": "T",
    "name": null,
    "statement": "Universal attraction from the single arrow of the drive (a repulsive charge would need a time-reversed, Frobenius-branch clock).",
-   "source": "Prop.~\\ref{prop:universal}",
+   "source": "Prop.~\\ref{prop:universal}\\newline \\pywit{gravity}{p21018}{C3}, \\leanwit{FrcCore}{p21018}{C3} \\lean{FRC.Drift.conj\\_branch, FRC.Drift.conj\\_pow}",
    "page": "21-gravity/index.html#C3",
    "witness": {
-    "py": null,
-    "lean": []
+    "py": {
+     "href": "frc/ledgers/p21_gravity.html#p21018",
+     "script": "p21_gravity.py",
+     "line": 289,
+     "verdict": "pass"
+    },
+    "lean": [
+     {
+      "lib": "FrcCore",
+      "module": "FrcCore/Theme/Drift",
+      "name": "FRC.Drift.conj_branch",
+      "tier": 0,
+      "ok": true,
+      "page": "lean/core/Theme.html#FRC.Drift.conj_branch"
+     },
+     {
+      "lib": "FrcCore",
+      "module": "FrcCore/Theme/Drift",
+      "name": "FRC.Drift.conj_pow",
+      "tier": 0,
+      "ok": true,
+      "page": "lean/core/Theme.html#FRC.Drift.conj_pow"
+     }
+    ]
    },
    "refs": [
     "p00154"
    ],
-   "text": "Universal attraction from the single arrow of the drive (a repulsive charge would need a time-reversed, Frobenius-branch clock). Prop. prop:universal"
+   "text": "Universal attraction from the single arrow of the drive (a repulsive charge would need a time-reversed, Frobenius-branch clock). Prop. prop:universal p21018, FrcCore{C3} FRC.Drift.conj_branch, FRC.Drift.conj_pow"
   },
   {
    "paper": "21-grav",
@@ -43952,7 +44029,7 @@
     "py": {
      "href": "frc/ledgers/p21_gravity.html#p21019",
      "script": "p21_gravity.py",
-     "line": 190,
+     "line": 191,
      "verdict": "pass"
     },
     "lean": [
@@ -43985,7 +44062,7 @@
     "py": {
      "href": "frc/ledgers/p21_gravity.html#p21020",
      "script": "p21_gravity.py",
-     "line": 132,
+     "line": 133,
      "verdict": "pass"
     },
     "lean": [
@@ -44034,7 +44111,7 @@
     "py": {
      "href": "frc/ledgers/p21_gravity.html#p21021",
      "script": "p21_gravity.py",
-     "line": 255,
+     "line": 256,
      "verdict": "pass"
     },
     "lean": [
@@ -44067,7 +44144,7 @@
     "py": {
      "href": "frc/ledgers/p21_gravity.html#p21022",
      "script": "p21_gravity.py",
-     "line": 292,
+     "line": 304,
      "verdict": "pass"
     },
     "lean": [
@@ -44116,7 +44193,7 @@
     "py": {
      "href": "frc/ledgers/p21_gravity.html#p21023",
      "script": "p21_gravity.py",
-     "line": 292,
+     "line": 304,
      "verdict": "pass"
     },
     "lean": [
@@ -44173,7 +44250,7 @@
     "py": {
      "href": "frc/ledgers/p21_gravity.html#p21024",
      "script": "p21_gravity.py",
-     "line": 165,
+     "line": 166,
      "verdict": "pass"
     },
     "lean": [
@@ -44233,7 +44310,7 @@
     "py": {
      "href": "frc/ledgers/p21_gravity.html#p21025",
      "script": "p21_gravity.py",
-     "line": 358,
+     "line": 370,
      "verdict": "pass"
     },
     "lean": []
@@ -44257,7 +44334,7 @@
     "py": {
      "href": "frc/ledgers/p21_gravity.html#p21026",
      "script": "p21_gravity.py",
-     "line": 242,
+     "line": 243,
      "verdict": "pass"
     },
     "lean": [
@@ -44308,7 +44385,7 @@
     "py": {
      "href": "frc/ledgers/p21_gravity.html#p21027",
      "script": "p21_gravity.py",
-     "line": 305,
+     "line": 317,
      "verdict": "pass"
     },
     "lean": [
@@ -44344,7 +44421,7 @@
     "py": {
      "href": "frc/ledgers/p21_gravity.html#p21062",
      "script": "p21_gravity.py",
-     "line": 151,
+     "line": 152,
      "verdict": "pass"
     },
     "lean": [
@@ -44449,7 +44526,7 @@
     "py": {
      "href": "frc/ledgers/p21_gravity.html#p21030",
      "script": "p21_gravity.py",
-     "line": 205,
+     "line": 206,
      "verdict": "pass"
     },
     "lean": [
@@ -44496,7 +44573,7 @@
     "py": {
      "href": "frc/ledgers/p21_gravity.html#p21031",
      "script": "p21_gravity.py",
-     "line": 115,
+     "line": 116,
      "verdict": "pass"
     },
     "lean": [
@@ -44560,7 +44637,7 @@
     "py": {
      "href": "frc/ledgers/p21_gravity.html#p21032",
      "script": "p21_gravity.py",
-     "line": 364,
+     "line": 376,
      "verdict": "pass"
     },
     "lean": []
@@ -44590,7 +44667,7 @@
     "py": {
      "href": "frc/ledgers/p21_gravity.html#p21033",
      "script": "p21_gravity.py",
-     "line": 310,
+     "line": 322,
      "verdict": "pass"
     },
     "lean": [
@@ -44634,7 +44711,7 @@
     "py": {
      "href": "frc/ledgers/p21_gravity.html#p21064",
      "script": "p21_gravity.py",
-     "line": 263,
+     "line": 264,
      "verdict": "pass"
     },
     "lean": [
@@ -44697,7 +44774,7 @@
     "py": {
      "href": "frc/ledgers/p21_gravity.html#p21035",
      "script": "p21_gravity.py",
-     "line": 187,
+     "line": 188,
      "verdict": "pass"
     },
     "lean": [
@@ -44746,7 +44823,7 @@
     "py": {
      "href": "frc/ledgers/p21_gravity.html#p21036",
      "script": "p21_gravity.py",
-     "line": 222,
+     "line": 223,
      "verdict": "pass"
     },
     "lean": [
@@ -44795,7 +44872,7 @@
     "py": {
      "href": "frc/ledgers/p21_gravity.html#p21037",
      "script": "p21_gravity.py",
-     "line": 226,
+     "line": 227,
      "verdict": "pass"
     },
     "lean": []
@@ -44821,7 +44898,7 @@
     "py": {
      "href": "frc/ledgers/p21_gravity.html#p21038",
      "script": "p21_gravity.py",
-     "line": 296,
+     "line": 308,
      "verdict": "pass"
     },
     "lean": []
@@ -44847,7 +44924,7 @@
     "py": {
      "href": "frc/ledgers/p21_gravity.html#p21040",
      "script": "p21_gravity.py",
-     "line": 247,
+     "line": 248,
      "verdict": "pass"
     },
     "lean": [
@@ -44899,7 +44976,7 @@
     "py": {
      "href": "frc/ledgers/p21_gravity.html#p21049",
      "script": "p21_gravity.py",
-     "line": 339,
+     "line": 351,
      "verdict": "pass"
     },
     "lean": [
@@ -44961,7 +45038,7 @@
     "py": {
      "href": "frc/ledgers/p21_gravity.html#p21051",
      "script": "p21_gravity.py",
-     "line": 358,
+     "line": 370,
      "verdict": "pass"
     },
     "lean": [
@@ -44998,7 +45075,7 @@
     "py": {
      "href": "frc/ledgers/p21_gravity.html#p21052",
      "script": "p21_gravity.py",
-     "line": 393,
+     "line": 409,
      "verdict": "pass"
     },
     "lean": [
@@ -45038,7 +45115,7 @@
     "py": {
      "href": "frc/ledgers/p21_gravity.html#p21053",
      "script": "p21_gravity.py",
-     "line": 407,
+     "line": 423,
      "verdict": "pass"
     },
     "lean": [
@@ -45100,7 +45177,7 @@
     "py": {
      "href": "frc/ledgers/p21_gravity.html#p21054",
      "script": "p21_gravity.py",
-     "line": 429,
+     "line": 445,
      "verdict": "pass"
     },
     "lean": [
@@ -45138,7 +45215,7 @@
     "py": {
      "href": "frc/ledgers/p21_gravity.html#p21055",
      "script": "p21_gravity.py",
-     "line": 300,
+     "line": 312,
      "verdict": "pass"
     },
     "lean": [
@@ -45183,7 +45260,7 @@
     "py": {
      "href": "frc/ledgers/p21_gravity.html#p21050",
      "script": "p21_gravity.py",
-     "line": 346,
+     "line": 358,
      "verdict": "pass"
     },
     "lean": [
@@ -45220,7 +45297,7 @@
     "py": {
      "href": "frc/ledgers/p21_gravity.html#p21060",
      "script": "p21_gravity.py",
-     "line": 421,
+     "line": 437,
      "verdict": "pass"
     },
     "lean": [
@@ -45280,7 +45357,7 @@
     "py": {
      "href": "frc/ledgers/p21_gravity.html#p21042",
      "script": "p21_gravity.py",
-     "line": 401,
+     "line": 417,
      "verdict": "pass"
     },
     "lean": [
@@ -45312,18 +45389,40 @@
    "tag": "T",
    "name": null,
    "statement": "\\textbf{No horizons, no singularities, no information loss.} Collapse ends in a horizonless body, operationally black at $r_f$ (C12), with an exact saturating interior profile --- and information conservation is a theorem citation, not an absence claim: interior data live in offset sectors the drive confines exactly \\citep{quantum}: the theory never forfeits predictivity.",
-   "source": "Prop.~\\ref{prop:operational},~\\ref{prop:exactprofile}; rests on 22:C15",
+   "source": "Prop.~\\ref{prop:operational},~\\ref{prop:exactprofile}\\newline \\pywit{gravity}{p21043}{X3}, \\leanwit{FrcCore}{p21043}{X3}; rests on 22:C15 \\lean{FRC.Drift.compression, FRC.Cycle.cyc\\_add\\_n}",
    "page": "21-gravity/index.html#X3",
    "witness": {
-    "py": null,
-    "lean": []
+    "py": {
+     "href": "frc/ledgers/p21_gravity.html#p21043",
+     "script": "p21_gravity.py",
+     "line": 294,
+     "verdict": "pass"
+    },
+    "lean": [
+     {
+      "lib": "FrcCore",
+      "module": "FrcCore/Theme/Drift",
+      "name": "FRC.Drift.compression",
+      "tier": 0,
+      "ok": true,
+      "page": "lean/core/Theme.html#FRC.Drift.compression"
+     },
+     {
+      "lib": "FrcCore",
+      "module": "FrcCore/Theme/Shift",
+      "name": "FRC.Cycle.cyc_add_n",
+      "tier": 0,
+      "ok": true,
+      "page": "lean/core/Theme.html#FRC.Cycle.cyc_add_n"
+     }
+    ]
    },
    "refs": [
     "p00153",
     "p21027",
     "p22031"
    ],
-   "text": "No horizons, no singularities, no information loss. Collapse ends in a horizonless body, operationally black at $r_f$ (C12), with an exact saturating interior profile — and information conservation is a theorem citation, not an absence claim: interior data live in offset sectors the drive confines exactly [quantum]: the theory never forfeits predictivity. Prop. prop:operational, prop:exactprofile; rests on 22:C15"
+   "text": "No horizons, no singularities, no information loss. Collapse ends in a horizonless body, operationally black at $r_f$ (C12), with an exact saturating interior profile — and information conservation is a theorem citation, not an absence claim: interior data live in offset sectors the drive confines exactly [quantum]: the theory never forfeits predictivity. Prop. prop:operational, prop:exactprofile p21043, FrcCore{X3}; rests on 22:C15 FRC.Drift.compression, FRC.Cycle.cyc_add_n"
   },
   {
    "paper": "21-grav",
@@ -45424,7 +45523,7 @@
     "py": {
      "href": "frc/ledgers/p21_gravity.html#p21048",
      "script": "p21_gravity.py",
-     "line": 155,
+     "line": 156,
      "verdict": "pass"
     },
     "lean": [

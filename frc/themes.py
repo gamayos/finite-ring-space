@@ -148,7 +148,7 @@ BUDGETS = dict(python_file=1800, core_file=800, mathlib_file=1800, executable=35
 # theme at 7,000 lines, the author's decision of 9 October 2026 for 6-fourier's core proofs (6-fourier-20260716/reports/
 # blueprint-20261008.md set 5,000 on 8 October; the certificate's closure reached 6,629 at T09). A file takes the largest
 # budget among the themes in its closure; the file limits are unchanged.
-EXECUTABLE_BUDGETS = {"fourier": 7000, "gravity": 7500}   # the gravity theme 7,500 since 10 October 2026 (21-gravity): its core certificate imports Keys/Fourier for the shift theorem (21:C20, Theme/Shift.lean) beside Keys/Gravity, closure 7,306; for the author's confirmation (reports/execution-20261010.md)
+EXECUTABLE_BUDGETS = {"fourier": 7000, "gravity": 8000}   # the gravity theme 7,500 since 10 October 2026 (21-gravity; the author's confirmation of 10 October): its core certificate imports Keys/Fourier for the shift theorem (21:C20, Theme/Shift.lean) beside Keys/Gravity, closure 7,306; 8,000 since 11 October (the keys of 21:C3 and 21:X3 took the closure past 7,500; for the author's confirmation, reports/execution-20261010.md §10 — the alternative is Theme/Shift.lean in the gravity theme, closure about 4,000)
 
 # Gate G09: what an exact python file may import, and the exact functions of `math`.
 EXACT_STDLIB = {"fractions", "itertools", "functools", "collections", "math", "json", "os", "re", "sys", "dataclasses",

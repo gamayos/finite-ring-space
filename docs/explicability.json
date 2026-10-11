@@ -1,5 +1,5 @@
 {
- "generated": "10 October 2026",
+ "generated": "11 October 2026",
  "rows": [
   {
    "id": "10:X1",
@@ -171,7 +171,7 @@
    "key": "p21043",
    "tag": "T",
    "predicate": "\\textbf{No horizons, no singularities, no information loss.} Collapse ends in a horizonless body, operationally black at $r_f$ (C12), with an exact saturating interior profile --- and information conservation is a theorem citation, not an absence claim: interior data live in offset sectors the drive confines exactly \\citep{quantum}: the theory never forfeits predictivity.",
-   "source": "Prop.~\\ref{prop:operational},~\\ref{prop:exactprofile}; rests on 22:C15",
+   "source": "Prop.~\\ref{prop:operational},~\\ref{prop:exactprofile}\\newline \\pywit{gravity}{p21043}{X3}, \\leanwit{FrcCore}{p21043}{X3}; rests on 22:C15 \\lean{FRC.Drift.compression, FRC.Cycle.cyc\\_add\\_n}",
    "master": [
     "D15"
    ],

@@ -6126,6 +6126,8 @@ theorem cyc_add_mod (n : Nat) (hn : 0 < n) (f : Nat → Shell p) (i s : Nat) :
     cyc n f (i % n + s) = cyc n f (i + s) := by
   show f ((i % n + s) % n) = f ((i + s) % n); rw [FRC.Nat.mod_add_mod i s n hn]
 
+/-- 21:X3 — the drive returns after `n` steps: a function on the cycle read `n` sites on is itself, so a permutation of
+the cycle has finite order and what it moves comes back. -/
 theorem cyc_add_n (n : Nat) (hn : 0 < n) (f : Nat → Shell p) (i : Nat) : cyc n f (i + n) = cyc n f i := by
   show f ((i + n) % n) = f (i % n)
   rw [FRC.Nat.add_mod i n n hn, FRC.Nat.mod_self n hn, Nat.add_zero, FRC.Nat.mod_mod i n hn]

@@ -60,6 +60,9 @@ class FloorTest(unittest.TestCase):
         self.assertAlmostEqual(drag['axis'], 2 * 0.5 / 64, delta=1e-7)
         self.assertAlmostEqual(drag['equator'], -0.5 / 64, delta=1e-7)
         self.assertAlmostEqual(CG.tilt_sensitivity(), math.log(2) / 283.5, places=6)
+        u0, floor, bound, low = CG.horizonless()
+        self.assertLess(u0, bound); self.assertGreater(floor, 0); self.assertAlmostEqual(low, floor, places=12)
+        self.assertAlmostEqual(u0, 2.622, delta=0.002)
 
     def test_kuramoto_quiet_fixed_point(self):
         mean, dev = CG.kuramoto_chain(0.0, M=5, T=6000, burn=2000)

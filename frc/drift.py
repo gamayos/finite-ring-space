@@ -21,6 +21,7 @@ standard library only (gate G09). The ledger file that uses it: frc/ledgers/p21_
     locked_sum(n, m)                 |Σ_m z|² = m² on the locked word; the exact mean of |Σ|² over all n^m phase words is m
     gauss_law(J, region)             the divergence summed over a region equals the boundary flux (antisymmetric J)
     compression_identity(n, sector)  P − KᵀK = CᵀC on the cyclic shift with a sector projector (exact rationals)
+    offset_return(n, sector)         the sector's weight splits into the kept and the leaked parts exactly; Uⁿ = I returns the leak
     Series                           truncated power series over the rationals (exp, product, quotient, power)
     pn_coefficients()                e^{−2U} against ((1 − U/2)/(1 + U/2))², e^{2U} against (1 + U/2)⁴, to U³
     two_body_1pn()                   the two-body coefficients through 1PN agree, the cross term 4 U₁U₂ included
@@ -29,6 +30,8 @@ standard library only (gate G09). The ledger file that uses it: frc/ledgers/p21_
     scale_invariant_exponent(lo, hi) the n with (λk)^{n+3}/k^{n+3} = 1 at every dilation λ and drive k: −3 alone (n_s = 1)
     dilution(m, s)                   (m/√Ω)² = m²/Ω on Ω = s²: the coupling of two masses m is their count over Ω
     frobenius_trace(p, nu, m, a, b)  the Frobenius pairing of m (w ⊗ w) equals m N(w)
+    single_arrow(p, nu)              the Frobenius is the conjugation; on the circle the conjugate branch is the orbit reversed
+    pair_energy_sign(n)              the exact Dirichlet Green's function is positive: like-signed sources attract
     registration_root(w, s)          wη² − 2η + w = 0 for η = (1 − s)/w with s² = 1 − w², over the rationals
     chebyshev_weight(L, d, w)        q_{L,d} = (U_{d−1} + U_{L−d−1})/U_{L−1} at 1/w against the tridiagonal solve
     christoffel(a, b)                the registration word at rate a/b: a marks per recurrence, two-valued gaps
@@ -39,6 +42,7 @@ standard library only (gate G09). The ledger file that uses it: frc/ledgers/p21_
     binding(N, m1, m2)               superposition, cut flux = m₁ + m₂, bilinear energy, the registered clock
     fold_return(p)                   the period-averaged exterior return through the fold is the uniform floor
 """
+import random
 from fractions import Fraction
 from itertools import product
 from math import gcd
@@ -182,6 +186,33 @@ def compression_identity(n, sector):
     KK, CC = _matmul(T(K), K), _matmul(T(C), C)
     lhs = [[P[i][j] - KK[i][j] for j in range(n)] for i in range(n)]
     return lhs == CC
+
+
+def offset_return(n, sector, seed=43):
+    """The drive on the cycle ℤ_n (the cyclic shift U) with the sector projector P, over ℚ: for random rational vectors
+    ψ the sector's weight splits exactly into what the step keeps in the sector and what it moves to the offset sector,
+    ‖Pψ‖² = ‖PUPψ‖² + ‖(1 − P)UPψ‖² (the compression identity as a quadratic form); the step conserves the whole
+    weight, ‖Uψ‖² = ‖ψ‖²; and U is a permutation of finite order, Uⁿ = I, so what left the sector returns: the offset
+    sector confines the leaked data exactly (21:X3, C21). Returns (ok, the order of U)."""
+    rng = random.Random(seed)
+    U = [[Fraction(int(j == (i - 1) % n)) for j in range(n)] for i in range(n)]
+    apply = lambda A, v: [sum(A[i][j] * v[j] for j in range(n)) for i in range(n)]
+    proj = lambda v: [v[i] if i in sector else Fraction(0) for i in range(n)]
+    comp = lambda v: [Fraction(0) if i in sector else v[i] for i in range(n)]
+    w = lambda v: sum(x * x for x in v)
+    ok = True
+    for _ in range(5):
+        psi = [Fraction(rng.randint(-9, 9), rng.randint(1, 5)) for _ in range(n)]
+        up = apply(U, proj(psi))
+        ok &= w(proj(psi)) == w(proj(up)) + w(comp(up)) and w(apply(U, psi)) == w(psi)
+    power = [row[:] for row in U]; order = 1
+    while power != [[Fraction(int(i == j)) for j in range(n)] for i in range(n)]:
+        power = _matmul(U, power); order += 1
+    e = [Fraction(int(i == min(sector))) for i in range(n)]
+    v = e
+    for _ in range(order): v = apply(U, v)
+    ok &= order == n and v == e
+    return ok, order
 
 
 # ---- exact rational power series (21:C7, C8, C23, P6) ---------------------------------------------------------------
@@ -330,6 +361,66 @@ def dilution(m, s):
     """With Ω = s² and the Planck mass √Ω = s the coupling of two masses m, (m/√Ω)², equals m²/Ω exactly (21:X8, C5)."""
     m, s = Fraction(m), Fraction(s)
     return (m / s) ** 2 == m * m / (s * s)
+
+
+# ---- the single arrow (21:C3, 00:E3) ----------------------------------------------------------------------------------
+def single_arrow(p, nu):
+    """On 𝔽_{p²} = 𝔽_p(√ν): the Frobenius z ↦ z^p is the conjugation a + b√ν ↦ a − b√ν on every element (exhaustive); on the
+    norm-one circle (order p + 1) the conjugate is the inverse, the conjugate orbit of a generator g is its orbit run
+    backwards (conj(g)^k = g^{−k}), and the conjugation is no translation of the circle: it fixes ±1 alone, while z ↦ hz
+    fixes nothing (h ≠ 1) or everything. The time-reversed clock is the Frobenius branch, not a step of the drive (21:C3).
+    Returns (ok, the circle's order, the fixed points of the conjugation)."""
+    K = Ext(p, nu)
+    frob = all(K.pow(z, p) == K.conj(z) for z in K.elements())
+    circle = K.norm_one()
+    one = (1, 0)
+    inverse = all(K.mul(z, K.conj(z)) == one for z in circle)
+    order = lambda z: next(k for k in range(1, p + 2) if K.pow(z, k) == one)
+    g = next(z for z in circle if order(z) == p + 1)
+    orbit = [K.pow(g, k) for k in range(p + 1)]
+    reversed_ = all(K.pow(K.conj(g), k) == orbit[(-k) % (p + 1)] for k in range(p + 1))
+    fixed = [z for z in circle if K.conj(z) == z]
+    translation = any(all(K.conj(z) == K.mul(h, z) for z in circle) for h in circle)
+    ok = frob and len(circle) == p + 1 and inverse and reversed_ and sorted(fixed) == sorted([one, (p - 1, 0)]) and not translation
+    return ok, len(circle), fixed
+
+
+def pair_energy_sign(n):
+    """The sign of the pair energy on the Dirichlet grid {1..n}³ (the interior of a box, the field zero on its faces):
+    the lattice Laplacian L = 6 − adjacency inverted exactly over ℚ gives the Green's function G = L⁻¹, entrywise positive;
+    the energy minimum of sources m₁, m₂ at sites a, b is −½ (m₁² G_aa + 2 m₁ m₂ G_ab + m₂² G_bb), whose cross term
+    −m₁ m₂ G_ab lowers the energy exactly when the signs agree. Like-signed sources attract (21:C3, 00:E3); the field
+    equation's stiffness is the Laplacian's, the Fierz–Pauli functional's scalar sector. Returns (ok, G_ab, G_aa)."""
+    sites = [(x, y, z) for x in range(n) for y in range(n) for z in range(n)]
+    idx = {s: i for i, s in enumerate(sites)}
+    N = len(sites)
+    L = [[Fraction(0)] * N for _ in range(N)]
+    for (x, y, z), i in idx.items():
+        L[i][i] = Fraction(6)
+        for d in ((1, 0, 0), (-1, 0, 0), (0, 1, 0), (0, -1, 0), (0, 0, 1), (0, 0, -1)):
+            j = idx.get((x + d[0], y + d[1], z + d[2]))
+            if j is not None: L[i][j] = Fraction(-1)
+    # G = L⁻¹ by Gauss–Jordan elimination over ℚ
+    M = [row[:] + [Fraction(int(i == j)) for j in range(N)] for i, row in enumerate(L)]
+    for col in range(N):
+        piv = next(r for r in range(col, N) if M[r][col] != 0)
+        M[col], M[piv] = M[piv], M[col]
+        inv = 1 / M[col][col]
+        M[col] = [v * inv for v in M[col]]
+        for r in range(N):
+            if r != col and M[r][col] != 0:
+                f = M[r][col]; M[r] = [a - f * b for a, b in zip(M[r], M[col])]
+    G = [row[N:] for row in M]
+    positive = all(G[i][j] > 0 for i in range(N) for j in range(N))
+    symmetric = all(G[i][j] == G[j][i] for i in range(N) for j in range(i))
+    identity = all(sum(L[i][k] * G[k][j] for k in range(N)) == (1 if i == j else 0) for i in range(N) for j in range(N))
+    a, b = idx[(0, 0, 0)], idx[(n - 1, n - 1, n - 1)]
+    energy = lambda m1, m2: -Fraction(1, 2) * (m1 * m1 * G[a][a] + 2 * m1 * m2 * G[a][b] + m2 * m2 * G[b][b])
+    cross = lambda m1, m2: energy(m1, m2) - energy(m1, 0) - energy(0, m2)
+    like = all(cross(m1, m2) < 0 for m1, m2 in ((1, 1), (2, 3), (-1, -1), (-3, -2)))
+    unlike = all(cross(m1, m2) > 0 for m1, m2 in ((1, -1), (2, -3), (-1, 1)))
+    ok = positive and symmetric and identity and like and unlike and cross(1, 1) == -G[a][b]
+    return ok, G[a][b], G[a][a]
 
 
 # ---- the dust tensor's trace (21:C6) ----------------------------------------------------------------------------------

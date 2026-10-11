@@ -165,7 +165,7 @@
      "label": "C3",
      "predicate": "Universal attraction from the single arrow of the drive (a repulsive charge would need a time-reversed, Frobenius-branch clock).",
      "tag": "T",
-     "source": "Prop.~\\ref{prop:universal}",
+     "source": "Prop.~\\ref{prop:universal}\\newline \\pywit{gravity}{p21018}{C3}, \\leanwit{FrcCore}{p21018}{C3} \\lean{FRC.Drift.conj\\_branch, FRC.Drift.conj\\_pow}",
      "key": "p21018"
     },
     {
@@ -339,7 +339,7 @@
      "label": "X3",
      "predicate": "\\textbf{No horizons, no singularities, no information loss.} Collapse ends in a horizonless body, operationally black at $r_f$ (C12), with an exact saturating interior profile --- and information conservation is a theorem citation, not an absence claim: interior data live in offset sectors the drive confines exactly \\citep{quantum}: the theory never forfeits predictivity.",
      "tag": "T",
-     "source": "Prop.~\\ref{prop:operational},~\\ref{prop:exactprofile}; rests on 22:C15",
+     "source": "Prop.~\\ref{prop:operational},~\\ref{prop:exactprofile}\\newline \\pywit{gravity}{p21043}{X3}, \\leanwit{FrcCore}{p21043}{X3}; rests on 22:C15 \\lean{FRC.Drift.compression, FRC.Cycle.cyc\\_add\\_n}",
      "key": "p21043"
     },
     {
@@ -632,7 +632,7 @@
    {
     "name": "FRC.Drift.channel_q4",
     "module": "FrcCore/Theme/Drift",
-    "line": 49,
+    "line": 54,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -656,7 +656,7 @@
    {
     "name": "FRC.Drift.locked_sum",
     "module": "FrcCore/Theme/Drift",
-    "line": 214,
+    "line": 219,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -665,7 +665,7 @@
    {
     "name": "FRC.Drift.pair_tally",
     "module": "FrcCore/Theme/Drift",
-    "line": 194,
+    "line": 199,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -694,6 +694,26 @@
     "tier": 0,
     "ok": true,
     "doc": "21:C2, 21:C5, 21:C16 — the register value of the Newton constant on every frame, `G = 2κ`, the half-cycle: `2G = −1`; `(−2) G = 1` (the face convention `4π ↦ −2`, `G = (−2)⁻¹`); the Gauss count `(2 · 4κ) G = 1`; `c² = 2⁻¹ = 2κ + 1` with `2c² = 1`; and `G = −c²`."
+   }
+  ],
+  "C3": [
+   {
+    "name": "FRC.Drift.conj_branch",
+    "module": "FrcCore/Theme/Drift",
+    "line": 335,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "21:C3, 00:E3 — the single arrow: on the norm-one circle `N(z) = 1`, `zⁿ · (conj z)ⁿ = 1` for every `n`, so the conjugate (Frobenius) branch of a clock is its orbit run backwards (`conj (zⁿ)` inverts `zⁿ`, with `conj_pow`): a time-reversed clock is the conjugation, not a step of the drive — the row's reading is that a repulsive source would need that branch."
+   },
+   {
+    "name": "FRC.Drift.conj_pow",
+    "module": "FrcCore/Theme/Drift",
+    "line": 326,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "21:C3, 00:E3 — the conjugate of a power is the power of the conjugate, `conj (zⁿ) = (conj z)ⁿ`, on `𝔽_p[w]/(w² − ν)`."
    }
   ],
   "C4": [
@@ -752,7 +772,7 @@
    {
     "name": "FRC.Drift.frobenius_trace",
     "module": "FrcCore/Theme/Drift",
-    "line": 281,
+    "line": 286,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -789,7 +809,7 @@
    {
     "name": "FRC.Drift.cover_triangle",
     "module": "FrcCore/Theme/Drift",
-    "line": 64,
+    "line": 69,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -826,7 +846,7 @@
    {
     "name": "FRC.Drift.cover_triangle",
     "module": "FrcCore/Theme/Drift",
-    "line": 64,
+    "line": 69,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -835,7 +855,7 @@
    {
     "name": "FRC.Drift.pn_coefficients",
     "module": "FrcCore/Theme/Drift",
-    "line": 273,
+    "line": 278,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -881,7 +901,7 @@
     "axioms": [],
     "tier": 0,
     "ok": true,
-    "doc": "00:E1, 21:C9 — spin 2 over all symbols: when `2` and the metric entries `η₀`, `η₁` are units (`n ≥ 2`), the combinations gauge invariant at every symbol, for every symmetric field and every gauge vector, are exactly the Fierz–Pauli line `(a₁, a₂, a₃, a₄) = c (−1, 2, −2, 1)`."
+    "doc": "00:E1, 00:E3, 21:C9 — spin 2 over all symbols: when `2` and the metric entries `η₀`, `η₁` are units (`n ≥ 2`), the combinations gauge invariant at every symbol, for every symmetric field and every gauge vector, are exactly the Fierz–Pauli line `(a₁, a₂, a₃, a₄) = c (−1, 2, −2, 1)`."
    }
   ],
   "C11": [
@@ -901,16 +921,16 @@
    {
     "name": "FRC.Drift.gauss_law",
     "module": "FrcCore/Theme/Drift",
-    "line": 248,
+    "line": 253,
     "axioms": [],
     "tier": 0,
     "ok": true,
-    "doc": "21:C11 — the Gauss law: for antisymmetric link currents `J_xy = −J_yx` on `n` sites, the divergence `Σ_y J_xy` summed over a region `R` equals the flux through its boundary, `Σ_{x ∈ R} Σ_{y ∉ R} J_xy`: the interior links cancel in pairs."
+    "doc": "21:C11, 00:E3 — the Gauss law: for antisymmetric link currents `J_xy = −J_yx` on `n` sites, the divergence `Σ_y J_xy` summed over a region `R` equals the flux through its boundary, `Σ_{x ∈ R} Σ_{y ∉ R} J_xy`: the interior links cancel in pairs."
    },
    {
     "name": "FRC.Drift.character_composition",
     "module": "FrcCore/Theme/Drift",
-    "line": 217,
+    "line": 222,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -1142,7 +1162,7 @@
    {
     "name": "FRC.Drift.registration_root",
     "module": "FrcCore/Theme/Drift",
-    "line": 292,
+    "line": 297,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -1166,7 +1186,7 @@
    {
     "name": "FRC.Cycle.dft_kick",
     "module": "FrcCore/Theme/Shift",
-    "line": 90,
+    "line": 92,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -1175,7 +1195,7 @@
    {
     "name": "FRC.Cycle.dft_shift",
     "module": "FrcCore/Theme/Shift",
-    "line": 100,
+    "line": 102,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -1186,7 +1206,7 @@
    {
     "name": "FRC.Drift.return_iff",
     "module": "FrcCore/Theme/Drift",
-    "line": 161,
+    "line": 166,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -1195,7 +1215,7 @@
    {
     "name": "FRC.Drift.defect_instance",
     "module": "FrcCore/Theme/Drift",
-    "line": 186,
+    "line": 191,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -1204,7 +1224,7 @@
    {
     "name": "FRC.Drift.pair_tally",
     "module": "FrcCore/Theme/Drift",
-    "line": 194,
+    "line": 199,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -1228,7 +1248,7 @@
    {
     "name": "FRC.Drift.cover_triangle",
     "module": "FrcCore/Theme/Drift",
-    "line": 64,
+    "line": 69,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -1237,7 +1257,7 @@
    {
     "name": "FRC.Drift.cover_deviation",
     "module": "FrcCore/Theme/Drift",
-    "line": 75,
+    "line": 80,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -1257,6 +1277,26 @@
     "tier": 2,
     "ok": true,
     "doc": "21:C19, 21:P4, 21:X2 — the deep limit: `t/(1 − e^{−t}) → 1` as `t → 0⁺`, so `g_obs/√(g_N a₀) → 1` — the deep regime `g_obs = √(g_N a₀)`, the floor read as noise with no dark sector. (`FRC.Strong.crossover_deep_limit`, `Theme/Strong.lean`)."
+   }
+  ],
+  "X3": [
+   {
+    "name": "FRC.Drift.compression",
+    "module": "FrcCore/Theme/Drift",
+    "line": 350,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "21:X3, 21:C21 — the compression identity on the cycle of `n` sites: for the drive step `U f (x) = f ((x + 1) mod n)` and a sector `P` with `P x · P x = P x`, the sector's weight `Σ P x · f x²` equals what the step keeps in the sector, `Σ P x · (U(Pf) x)²`, plus what it moves to the offset sector, `Σ (1 − P x) · (U(Pf) x)²`: relaxation is unresolved leakage held by the offset sector, and the drive, a permutation of the cycle, returns it after `n` steps (`cyc_add_n`). The interior data of a horizonless body live in that sector; nothing is lost."
+   },
+   {
+    "name": "FRC.Cycle.cyc_add_n",
+    "module": "FrcCore/Theme/Shift",
+    "line": 33,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "21:X3 — the drive returns after `n` steps: a function on the cycle read `n` sites on is itself, so a permutation of the cycle has finite order and what it moves comes back."
    }
   ],
   "X8": [
@@ -1474,7 +1514,7 @@
    {
     "name": "FRC.Drift.pn_coefficients",
     "module": "FrcCore/Theme/Drift",
-    "line": 273,
+    "line": 278,
     "axioms": [],
     "tier": 0,
     "ok": true,

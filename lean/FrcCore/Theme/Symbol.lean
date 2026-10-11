@@ -521,7 +521,7 @@ theorem line_a2 (a₁ a₂ a₄ : Shell p) :
     (.var 1)
     (.add (.add (.mul (.add .one .one) (.var 2)) (.mul .one (.add (.mul (.add .one .one) (.var 0)) (.var 1)))) (.mul (.neg (.add .one .one)) (.add (.var 0) (.var 2)))) (by decide +kernel)
 
-/-- 00:E1, 21:C9 — spin 2 over all symbols: when `2` and the metric entries `η₀`, `η₁` are units (`n ≥ 2`), the
+/-- 00:E1, 00:E3, 21:C9 — spin 2 over all symbols: when `2` and the metric entries `η₀`, `η₁` are units (`n ≥ 2`), the
 combinations gauge invariant at every symbol, for every symmetric field and every gauge vector, are exactly the
 Fierz–Pauli line `(a₁, a₂, a₃, a₄) = c (−1, 2, −2, 1)`. -/
 theorem fierz_pauli_unique (η : Nat → Shell p) {n : Nat} {w₀ w₁ t : Shell p} (hn : 1 < n) (h₀ : η 0 * w₀ = 1)

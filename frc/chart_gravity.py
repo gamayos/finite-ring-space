@@ -82,6 +82,20 @@ def deflection(Gm=1.0, b=1.0, Z=2000.0, n=200000):
     return body + tail, 4 * Gm / b
 
 
+def horizonless(Gm=1.0, n=4000):
+    """The interior of the exact profile: below the slip core r_* = √(Gm) the integrand arcsin(Gm/s²) saturates at π/2,
+    so u(r) = u(r_*) + (π/2)(r_* − r) on [0, r_*] and u(0) = u(r_*) + (π/2) r_* is finite; the clock-rate factor e^{−2u}
+    is bounded below by e^{−2u(0)} > 0 everywhere — no horizon, no singularity (21:X3). With arcsin x ≤ (π/2) x on [0, 1],
+    u(r_*) ≤ (π/2) r_*, so u(0) ≤ π r_*. Returns (u(0), e^{−2u(0)}, the bound π r_*, the minimum of e^{−2u} on a grid)."""
+    rs = math.sqrt(Gm)
+    u_star = u_exact(rs, Gm, n)
+    u0 = u_star + math.pi / 2 * rs
+    grid = [k * rs / 50 for k in range(0, 51)] + [rs * (1 + k / 10) for k in range(1, 101)]
+    def u(r): return u_star + math.pi / 2 * (rs - r) if r <= rs else u_exact(r, Gm, n)
+    low = min(math.exp(-2 * u(r)) for r in grid)
+    return u0, math.exp(-2 * u0), math.pi * rs, low
+
+
 def profile_series(r, Gm=1.0):
     """The exact profile's series Gm/r (1 + (Gm/r²)²/30 + (Gm/r²)⁴/120) against the quadrature u_exact(r)."""
     a = Gm / r / r

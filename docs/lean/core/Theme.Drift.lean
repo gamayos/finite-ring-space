@@ -1,5 +1,7 @@
 import FrcCore.Theme.Symbol
 import FrcCore.Theme.Gravity
+import FrcCore.Theme.Quadratic
+import FrcCore.Theme.Shift
 
 /-!
 # FrcCore.Theme.Drift — the exact faces of frame drift (the gravity theme; 21-gravity, 10 October 2026)
@@ -29,6 +31,9 @@ no axioms:
   scaled coefficients (`pn_coefficients`).
 * **The dust tensor's trace** (21:C6): the Frobenius pairing of `m (w ⊗ w)`, `w = a + bη`, is `m (a² − ν b²) = m N(w)`
   (`frobenius_trace`).
+* **The single arrow** (21:C3, 00:E3): `conj (zⁿ) = (conj z)ⁿ` and `zⁿ · (conj z)ⁿ = 1` on the norm-one circle (`conj_pow`, `conj_branch`).
+* **The compression identity** (21:X3, C21): on the cycle the drive step moves a sector's weight into the sector and the
+  offset sector exactly, `Σ P·(U(Pf))² + Σ (1 − P)·(U(Pf))² = Σ P·f²` (`compression`), and returns it after `n` steps.
 * **The registration root** (21:C19): where `1 − w² = s²` is a square and `w ≠ 0`, `η` with `wη = 1 − s` solves
   `wη² − 2η + w = 0` (`registration_root`).
 
@@ -242,7 +247,7 @@ theorem antisymmetric_sum {κ : Nat} {g : Shell p} (F : Frame p κ g) (n : Nat) 
   · exact absurd (by rw [two_eq_one_add_one]; exact h) F.two_ne_zero
   · exact h
 
-/-- 21:C11 — the Gauss law: for antisymmetric link currents `J_xy = −J_yx` on `n` sites, the divergence
+/-- 21:C11, 00:E3 — the Gauss law: for antisymmetric link currents `J_xy = −J_yx` on `n` sites, the divergence
 `Σ_y J_xy` summed over a region `R` equals the flux through its boundary, `Σ_{x ∈ R} Σ_{y ∉ R} J_xy`:
 the interior links cancel in pairs. -/
 theorem gauss_law {κ : Nat} {g : Shell p} (F : Frame p κ g) (n : Nat) (J : Nat → Nat → Shell p)
@@ -312,5 +317,51 @@ theorem registration_root {κ : Nat} {g : Shell p} (F : Frame p κ g) {w s η : 
   rcases F.mul_eq_zero hz with h | h
   · exact absurd h hw
   · exact h
+
+/-! ## The single arrow (21:C3, 00:E3): the conjugate branch runs the cycle backwards (11 October 2026) -/
+open FRC.Extension FRC.Extension.Ext
+variable {ν : Shell p}
+
+/-- 21:C3, 00:E3 — the conjugate of a power is the power of the conjugate, `conj (zⁿ) = (conj z)ⁿ`, on `𝔽_p[w]/(w² − ν)`. -/
+theorem conj_pow (z : Ext p ν) : ∀ n : Nat, conj (z ^ n) = (conj z) ^ n
+  | 0 => Ext.ext rfl Shell.neg_zero
+  | n + 1 => by
+      show conj (z ^ n * z) = (conj z) ^ n * conj z
+      rw [conj_mul, conj_pow z n]
+
+/-- 21:C3, 00:E3 — the single arrow: on the norm-one circle `N(z) = 1`, `zⁿ · (conj z)ⁿ = 1` for every `n`, so the conjugate
+(Frobenius) branch of a clock is its orbit run backwards (`conj (zⁿ)` inverts `zⁿ`, with `conj_pow`): a time-reversed clock
+is the conjugation, not a step of the drive — the row's reading is that a repulsive source would need that branch. -/
+theorem conj_branch (z : Ext p ν) (hz : norm z = 1) : ∀ n : Nat, z ^ n * (conj z) ^ n = 1
+  | 0 => Ext.one_mul 1
+  | n + 1 => by
+      show z ^ n * z * ((conj z) ^ n * conj z) = 1
+      rw [Ext.mul_assoc, ← Ext.mul_assoc z, Ext.mul_comm z ((conj z) ^ n), Ext.mul_assoc, ← Ext.mul_assoc,
+        conj_branch z hz n, Ext.one_mul, conj_inv_of_norm_one z hz]
+
+
+/-! ## The compression identity (21:X3, C21): the offset sector holds what the drive moves, exactly (11 October 2026) -/
+open FRC.Cycle in
+/-- 21:X3, 21:C21 — the compression identity on the cycle of `n` sites: for the drive step `U f (x) = f ((x + 1) mod n)`
+and a sector `P` with `P x · P x = P x`, the sector's weight `Σ P x · f x²` equals what the step keeps in the sector,
+`Σ P x · (U(Pf) x)²`, plus what it moves to the offset sector, `Σ (1 − P x) · (U(Pf) x)²`: relaxation is unresolved
+leakage held by the offset sector, and the drive, a permutation of the cycle, returns it after `n` steps (`cyc_add_n`).
+The interior data of a horizonless body live in that sector; nothing is lost. -/
+theorem compression (n : Nat) (hn : 0 < n) (P f : Nat → Shell p) (hP : ∀ x, P x * P x = P x) :
+    sumRange (fun x => P x * (P ((x + 1) % n) * f ((x + 1) % n) * (P ((x + 1) % n) * f ((x + 1) % n)))) n
+      + sumRange (fun x => (1 + -(P x)) * (P ((x + 1) % n) * f ((x + 1) % n) * (P ((x + 1) % n) * f ((x + 1) % n)))) n
+      = sumRange (fun x => P x * (f x * f x)) n := by
+  have whole : ∀ x, P x * (P ((x + 1) % n) * f ((x + 1) % n) * (P ((x + 1) % n) * f ((x + 1) % n)))
+      + (1 + -(P x)) * (P ((x + 1) % n) * f ((x + 1) % n) * (P ((x + 1) % n) * f ((x + 1) % n)))
+      = (fun y => P y * f y * (P y * f y)) ((x + 1) % n) := fun x =>
+    RE.sound (look [P x, P ((x + 1) % n) * f ((x + 1) % n)])
+      (.add (.mul (.var 0) (.mul (.var 1) (.var 1))) (.mul (.add .one (.neg (.var 0))) (.mul (.var 1) (.var 1))))
+      (.mul (.var 1) (.var 1)) (by decide +kernel)
+  have square : ∀ x, P x * f x * (P x * f x) = P x * (f x * f x) := fun x => by
+    rw [show P x * f x * (P x * f x) = P x * P x * (f x * f x) from
+      RE.sound (look [P x, f x]) (.mul (.mul (.var 0) (.var 1)) (.mul (.var 0) (.var 1)))
+        (.mul (.mul (.var 0) (.var 0)) (.mul (.var 1) (.var 1))) (by decide +kernel), hP x]
+  rw [← sum_add, sum_congr n (fun x _ => whole x), sum_shift n hn (fun y => P y * f y * (P y * f y)) 1]
+  exact sum_congr n (fun x _ => square x)
 
 end FRC.Drift
