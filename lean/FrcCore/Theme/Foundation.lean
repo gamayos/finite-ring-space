@@ -163,7 +163,7 @@ theorem observer_part {Ω o : Nat} [Pos Ω] (ho : o < Ω) (ρ : Shell Ω → Nat
 /-- A8 in the core: what a reading `ρ` registers of a totality `U` — its residues, the distinctions the reading makes.
 By realisation the Universe is the totality of its registered manifestations (A2's words: a manifestation is what a
 registration leaves), and the rows A2 and A3 are theorems about this type for an arbitrary totality `U`, the prelude's
-`Nat` included; the Universe's count is the Carrier's (A6, A7), consumed, never the theorem's. -/
+`Nat` included; the Universe's structural cardinality Ω is the Carrier's (A6, A7), consumed, never the theorem's. -/
 def Registered {U : Type} (ρ : U → Nat) : Type := {r : Nat // ∃ u, ρ u = r}
 
 theorem Registered.lt {U : Type} {R : Nat} {ρ : U → Nat} (hρ : ∀ u, ρ u < R) (a : Registered ρ) : a.val < R :=
@@ -213,7 +213,7 @@ theorem complete_needs_whole {Ω o : Nat} [Pos Ω] (ρ : Shell Ω → Nat) (hρ 
 /-- A2 — the agent's bound, the row's instance at capacity `R = records s K` (29:C1): a shell read whole — injectively —
 into the records of an agent of capacity `K` over `s ≥ 2` symbols has at most `records s K` members, fewer than
 `s^(K+1)` (`complete_needs_whole` at `o = records s K`, `records_lt`; 5:C2). The row's finitude clauses are
-`registered_finite` and `no_unlimited_supply` above; the count Ω is A7's, consumed. -/
+`registered_finite` and `no_unlimited_supply` above; the structural cardinality Ω is A7's, consumed. -/
 theorem agent_bound (s K : Nat) (hs : 2 ≤ s) {N : Nat} [Pos N] (ρ : Shell N → Nat)
     (hρ : ∀ x, ρ x < FRC.Logic.records s K) (hinj : ∀ x y, ρ x = ρ y → x = y) :
     N ≤ FRC.Logic.records s K ∧ FRC.Logic.records s K < s ^ (K + 1) :=
