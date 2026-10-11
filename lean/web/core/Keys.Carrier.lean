@@ -2690,8 +2690,9 @@ theorem observer_part {Ω o : Nat} [Pos Ω] (ho : o < Ω) (ρ : Shell Ω → Nat
 /-! ## The three former pillars as theorems (A2, A3, A4; 9 October 2026) -/
 
 /-- A8 in the core: what a reading `ρ` registers of a totality `U` — its residues, the distinctions the reading makes.
-By realisation the Universe is what its registrations register, and the rows A2 and A3 are theorems about this type for
-an arbitrary totality `U`, the prelude's `Nat` included. -/
+By realisation the Universe is the totality of its registered manifestations (A2's words: a manifestation is what a
+registration leaves), and the rows A2 and A3 are theorems about this type for an arbitrary totality `U`, the prelude's
+`Nat` included; that the Universe is finite follows for its one registration (A6, A13). -/
 def Registered {U : Type} (ρ : U → Nat) : Type := {r : Nat // ∃ u, ρ u = r}
 
 theorem Registered.lt {U : Type} {R : Nat} {ρ : U → Nat} (hρ : ∀ u, ρ u < R) (a : Registered ρ) : a.val < R :=
