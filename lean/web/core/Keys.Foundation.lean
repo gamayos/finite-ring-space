@@ -2692,7 +2692,7 @@ theorem observer_part {Ω o : Nat} [Pos Ω] (ho : o < Ω) (ρ : Shell Ω → Nat
 /-- A8 in the core: what a reading `ρ` registers of a totality `U` — its residues, the distinctions the reading makes.
 By realisation the Universe is the totality of its registered manifestations (A2's words: a manifestation is what a
 registration leaves), and the rows A2 and A3 are theorems about this type for an arbitrary totality `U`, the prelude's
-`Nat` included; that the Universe is finite follows for its one registration (A6, A13). -/
+`Nat` included; the Universe's count is the Carrier's (A6, A7), consumed, never the theorem's. -/
 def Registered {U : Type} (ρ : U → Nat) : Type := {r : Nat // ∃ u, ρ u = r}
 
 theorem Registered.lt {U : Type} {R : Nat} {ρ : U → Nat} (hρ : ∀ u, ρ u < R) (a : Registered ρ) : a.val < R :=
@@ -2742,8 +2742,7 @@ theorem complete_needs_whole {Ω o : Nat} [Pos Ω] (ρ : Shell Ω → Nat) (hρ 
 /-- A2 — the agent's bound, the row's instance at capacity `R = records s K` (29:C1): a shell read whole — injectively —
 into the records of an agent of capacity `K` over `s ≥ 2` symbols has at most `records s K` members, fewer than
 `s^(K+1)` (`complete_needs_whole` at `o = records s K`, `records_lt`; 5:C2). The row's finitude clauses are
-`registered_finite` and `no_unlimited_supply` above; the one plurality and its count are A6's, A13's and A7's,
-consumed. -/
+`registered_finite` and `no_unlimited_supply` above; the count Ω is A7's, consumed. -/
 theorem agent_bound (s K : Nat) (hs : 2 ≤ s) {N : Nat} [Pos N] (ρ : Shell N → Nat)
     (hρ : ∀ x, ρ x < FRC.Logic.records s K) (hinj : ∀ x y, ρ x = ρ y → x = y) :
     N ≤ FRC.Logic.records s K ∧ FRC.Logic.records s K < s ^ (K + 1) :=
@@ -3092,7 +3091,7 @@ namespace FRC.Ledger
 /-- p00003 — 00:A3. \textbf{Completeness}: whatever exists is registered within --- the registration of any totality is onto its registered Universe (A8) --- so no outside (A8), no host (A1). Unique: two totalities each registered whole within the other have one count (5:C2 both ways), one count one Carrier (A6). No proper closed substructure (A10). Observers are parts within (A4). -/
 theorem p00003 : (∀ {U : Type} (ρ : U → Nat) (a : FRC.Foundation.Registered ρ), ∃ u, FRC.Foundation.register ρ u = a) ∧ ∀ (m n : Nat) [FRC.Pos m] [FRC.Pos n] (f : FRC.Shell m → FRC.Shell n), (∀ (x y : FRC.Shell m), f x = f y → x = y) → ∀ (g : FRC.Shell n → FRC.Shell m), (∀ (x y : FRC.Shell n), g x = g y → x = y) → m = n :=
   And.intro @FRC.Foundation.registration_onto (@FRC.Foundation.mutual_registration_count)
-/-- p00004 — 00:A2. \textbf{Finitude}: the Universe is the totality of its registered manifestations (A8); one coherent plurality, one registration (A6, A13). For any totality and any reading of capacity $R$, the registered Universe embeds in the shell of $R$ members, and among any $R+1$ members two share a residue (5:C2, 29:C1, 29:C2): the Universe is finite, its count $\Om$ (A7). -/
+/-- p00004 — 00:A2. \textbf{Finitude}: the Universe is the totality of its registered manifestations (A8). For any totality and any reading of capacity $R$, the registered Universe embeds in the shell of $R$ members, and among any $R+1$ members two share a residue (5:C2, 29:C1, 29:C2): the Universe is finite, its count $\Om$ (A7). -/
 theorem p00004 : And (∀ {U : Type} (R : Nat) [FRC.Pos R] (ρ : U → Nat), (∀ (u : U), @LT.lt Nat instLTNat (ρ u) R) → @Exists (@FRC.Foundation.Registered U ρ → FRC.Shell R) fun ι => ∀ (a b : @FRC.Foundation.Registered U ρ), @Eq (FRC.Shell R) (ι a) (ι b) → @Eq (@FRC.Foundation.Registered U ρ) a b) (And (∀ {U : Type} (R : Nat) (ρ : U → Nat), (∀ (u : U), @LT.lt Nat instLTNat (ρ u) R) → ∀ (f : Nat → U), @Exists Nat fun i => @Exists Nat fun j => And (@LT.lt Nat instLTNat i (@HAdd.hAdd Nat Nat Nat (@instHAdd Nat instAddNat) R (@OfNat.ofNat Nat (nat_lit 1) (instOfNatNat (nat_lit 1))))) (And (@LT.lt Nat instLTNat j (@HAdd.hAdd Nat Nat Nat (@instHAdd Nat instAddNat) R (@OfNat.ofNat Nat (nat_lit 1) (instOfNatNat (nat_lit 1))))) (And (@Ne Nat i j) (@Eq Nat (ρ (f i)) (ρ (f j)))))) (∀ (s K : Nat), @LE.le Nat instLENat (@OfNat.ofNat Nat (nat_lit 2) (instOfNatNat (nat_lit 2))) s → ∀ {N : Nat} [FRC.Pos N] (ρ : FRC.Shell N → Nat), (∀ (x : FRC.Shell N), @LT.lt Nat instLTNat (ρ x) (FRC.Logic.records s K)) → (∀ (x y : FRC.Shell N), @Eq Nat (ρ x) (ρ y) → @Eq (FRC.Shell N) x y) → And (@LE.le Nat instLENat N (FRC.Logic.records s K)) (@LT.lt Nat instLTNat (FRC.Logic.records s K) (@HPow.hPow Nat Nat Nat (@instHPow Nat Nat (@instPowNat Nat instNatPowNat)) s (@HAdd.hAdd Nat Nat Nat (@instHAdd Nat instAddNat) K (@OfNat.ofNat Nat (nat_lit 1) (instOfNatNat (nat_lit 1)))))))) :=
   And.intro @FRC.Foundation.registered_finite (And.intro @FRC.Foundation.no_unlimited_supply (@FRC.Foundation.agent_bound))
 /-- p00162 — 00:A10. \textbf{Completeness is primality}: the residues of a count $q\ge2$ have no proper nonzero ideal iff $q$ is prime, so the arithmetic of a counting cycle is complete exactly on prime cycles --- the formal shadow of A3, since a proper closed substructure of the totality would be a second totality within it. -/
