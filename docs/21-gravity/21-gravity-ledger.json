@@ -3,7 +3,7 @@
  "tree": "21-gravity-20260623",
  "title": "Gravitation as Phase Synchronisation",
  "doi": "https://doi.org/10.20944/preprints202606.1018.v2",
- "generated": "10 October 2026",
+ "generated": "11 October 2026",
  "blocks": [
   {
    "letter": "A",
@@ -193,7 +193,7 @@
      "label": "C7",
      "predicate": "Channel unity forces the spatial bias to equal the temporal one, $\\gamma=1$, restoring the full light deflection $4Gm/c^2b$.",
      "tag": "T",
-     "source": "Lem.~\\ref{lem:isopair}, Prop.~\\ref{prop:bending}\\newline \\pywit{gravity}{p21022}{C7}, \\leanwit{FrcCore}{p21022}{C7}, \\leanwit{FrcLedger}{p21022}{C7} \\lean{Gravity.cover\\_forcing, FRC.Drift.cover\\_triangle}",
+     "source": "Lem.~\\ref{lem:isopair}, Prop.~\\ref{prop:bending}\\newline \\pywit{gravity}{p21022}{C7}, \\leanwit{FrcCore}{p21022}{C7}, \\leanwit{FrcLedger}{p21022}{C7} \\lean{Gravity.cover\\_forcing, Gravity.pn\\_series, FRC.Drift.cover\\_triangle}",
      "key": "p21022"
     },
     {
@@ -235,7 +235,7 @@
      "label": "C13",
      "predicate": "Area-law entropy $S=c_S'A_f/\\ell_P^2$: the $\\tfrac14$ the $Q_4$ gauge quotient counted on the shell ($S/A=\\kap/\\p $ exactly), the Carrier identity $S=(\\Omega-1)/4$ at the coherence-horizon shell the same quarter (a consistency, not a closure); the count read as the coordinate area at the operational cut (B7); the identification of the entropy with the channel count (master D15); an exact merger area law $\\Delta A=2M_1M_2$ on the count face of the mass; a phase-slip (Hawking-scaling) emission suppressed below one quantum per Hubble time.",
      "tag": "T",
-     "source": "Prop.~\\ref{prop:area}\\newline \\pywit{gravity}{p21062}{C13}, \\leanwit{FrcCore}{p21062}{C13}, \\leanwit{FrcLedger}{p21062}{C13}; rests on A1, B2, C12, 00:D15 \\lean{Gravity.count\\_face, Gravity.merger\\_area\\_law, Gravity.capacity\\_ratio, FRC.Grav.count\\_identity, FRC.Grav.merger\\_instance}",
+     "source": "Prop.~\\ref{prop:area}\\newline \\pywit{gravity}{p21062}{C13}, \\leanwit{FrcCore}{p21062}{C13}, \\leanwit{FrcLedger}{p21062}{C13}; rests on A1, B2, C12, 00:D15 \\lean{Gravity.count\\_face, Gravity.merger\\_area\\_law, Gravity.capacity\\_ratio, Gravity.capacity\\_ratio\\_numeral, FRC.Grav.count\\_identity, FRC.Grav.merger\\_instance}",
      "key": "p21062"
     },
     {
@@ -399,7 +399,7 @@
     },
     {
      "label": "P8",
-     "predicate": "The primordial tilt $n_s-1=-\\pi^{2}/\\ln\\Omega=-0.0348$ [approx] at $\\ln\\Omega=283.5$ (the master's scale import), against Planck 2018 $-0.0351\\pm0.0042$ ($+0.07\\sigma$); $0.25\\%$ per factor two in $S$; the neighbouring count $\\tfrac12\\ln\\Omega$ excluded at $8.2\\sigma$.",
+     "predicate": "The primordial tilt $n_s-1=-\\pi^{2}/\\ln\\Omega=-0.0348$ [approx] at $\\ln\\Omega=283.5$ (the master's scale import), against Planck 2018 $-0.0351\\pm0.0042$ ($+0.07\\sigma$); $0.24\\%$ per factor two in $S$; the neighbouring count $\\tfrac12\\ln\\Omega$ excluded at $8.2\\sigma$.",
      "tag": "T",
      "source": "Prop.~\\ref{prop:primordial}\\newline \\pywit{gravity}{p21060}{P8}, \\leanwit{FrcLedger}{p21060}{P8}; rests on A8, C18, 00:L8 \\lean{Gravity.tilt\\_bracket}",
      "key": "p21060"
@@ -422,14 +422,14 @@
      "label": "P4",
      "predicate": "The radial acceleration relation, $g_{\\mathrm{obs}}=g_N/(1-e^{-\\sqrt{g_N/a_0}})$, no fitted function beyond the barrier identification (B9), the form the data selected across the four observed acceleration decades, its approach to Newton the discriminant ($0.05$ at $g_N\\approx5a_0$ against the simple rational interpolant); the deep limit gives the baryonic Tully--Fisher relation $v^4=GMa_0$.",
      "tag": "T",
-     "source": "Prop.~\\ref{prop:crossover}\\newline \\pywit{gravity}{p21053}{P4}, \\leanwit{FrcLedger}{p21053}{P4}; rests on A8, C16, C19 \\lean{Gravity.crossover\\_limits, Gravity.registration\\_root, Gravity.interpolant\\_discriminant}",
+     "source": "Prop.~\\ref{prop:crossover}\\newline \\pywit{gravity}{p21053}{P4}, \\leanwit{FrcLedger}{p21053}{P4}; rests on A8, C16, C19 \\lean{Gravity.crossover\\_limits, Gravity.crossover\\_newton\\_limit, Gravity.registration\\_root, Gravity.interpolant\\_discriminant}",
      "key": "p21053"
     },
     {
      "label": "P5",
      "predicate": "The floor tracks the expansion, $a_0(z)\\propto H(z)$ (BTFR zero-point $\\propto E(z)^{1/4}$); high-$z$ rotation curves decisive.",
      "tag": "T",
-     "source": "\\S\\ref{sub:rar}, \\citep{dark}\\newline \\pywit{gravity}{p21054}{P5}; rests on 14:B4, 32:B3, 00:L1",
+     "source": "\\S\\ref{sub:rar}, \\citep{dark}\\newline \\pywit{gravity}{p21054}{P5}, \\leanwit{FrcLedger}{p21054}{P5}; rests on 14:B4, 32:B3, 00:L1 \\lean{Gravity.running\\_floor}",
      "key": "p21054"
     },
     {
@@ -438,40 +438,6 @@
      "tag": "T",
      "source": "\\S\\ref{sub:2pn}\\newline \\pywit{gravity}{p21055}{P6}, \\leanwit{FrcCore}{p21055}{P6}, \\leanwit{FrcLedger}{p21055}{P6}; rests on A8, C8, C23 \\lean{Gravity.pn\\_series, FRC.Drift.pn\\_coefficients}",
      "key": "p21055"
-    }
-   ]
-  },
-  {
-   "letter": "V",
-   "title": "Machine verification",
-   "rows": [
-    {
-     "label": "V1",
-     "predicate": "The machine verification: the ledger file \\texttt{frc/ledgers/p21\\_gravity.py} of the \\texttt{finite-ring-space} framework runs forty-seven checks in seven blocks (the register, the lattice, the drift and the defect, the post-Newtonian series, the strong field, the floor and the crossover, the simulation), each witnessed row decided by one check at its \\texttt{\\# 21:}$\\langle$row$\\rangle$ marker; the notebook \\texttt{p21\\_gravity.ipynb} runs one predicate per cell.",
-     "tag": "T",
-     "source": "Reproducibility; \\href{https://finitering.space/frc/ledgers/p21_gravity.html}{\\texttt{finitering.space/frc/ledgers/p21\\_gravity.html}}",
-     "key": "p21056"
-    },
-    {
-     "label": "V2",
-     "predicate": "The kinds, recorded per check: \\textsf{EXACT} --- decidable identities in integers, fractions and residues, no tolerance in the verdict (blocks A--D, twenty-nine checks); \\textsf{CHART} --- a continuum reading (a limit, a quadrature, an extremum, a seeded simulation) or a comparison with data, tagged [approx]/[data], every numeral anchored to the scale import ($\\ln\\Omega=283.5$, $H_0=67.4$), verdict by stated tolerance (blocks E--G, eighteen checks).",
-     "tag": "T",
-     "source": "Reproducibility",
-     "key": "p21057"
-    },
-    {
-     "label": "V3",
-     "predicate": "What the run does not carry, stated: the comparable-mass $2$PN $\\nu$-sector reduction (the failed first route is not shipped; the $1$PN sector closed by check D2, the test-particle sector by D1 and D3); the imports and realisations of blocks A and B, consumed, not decided; the $\\Omega$-hard residue Z1; the dynamics of C1, C22 beyond their identities; X6's wrapped-chart clause.",
-     "tag": "T",
-     "source": "Reproducibility; \\S\\ref{sub:2pn}",
-     "key": "p21058"
-    },
-    {
-     "label": "V4",
-     "predicate": "The formal layer, one key-named declaration per witnessed row: in the Lean core (no axioms) the register, the channel, the cover triangle, the defect's recurrence, the pair tally, the locked sum, the Gauss law, the Frobenius trace, the post-Newtonian coefficients, the registration root, the central difference, the Laplacian's symbol, the shift theorem; on Mathlib the bracketed chart numerals.",
-     "tag": "T",
-     "source": "\\href{https://finitering.space/lean/core/Gravity.html}{\\texttt{finitering.space/lean/core/Gravity.html}}; \\href{https://finitering.space/lean/Gravity.html}{\\texttt{finitering.space/lean/Gravity.html}}",
-     "key": "p21061"
     }
    ]
   },
@@ -632,7 +598,7 @@
    {
     "name": "FRC.Gravity.cover_forcing",
     "module": "FrcLedger/Gravity",
-    "line": 97,
+    "line": 99,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -640,12 +606,12 @@
     ],
     "tier": 2,
     "ok": true,
-    "doc": "21:A9, 21:C25, 21:C7, 21:C8 — the cover forcing: the apsidal coefficient `2 − β + 2γ` against the PPN-free deficit `3/2` equals the two-face ratio `2` exactly when `2γ − β = 1`, with deviation `(2/3)(2γ − β − 1)`; channel unity `γ = 1` together with the forcing gives `β = 1`, and the perihelion factor `(2 + 2γ − β)/3` is then `1` (the deflection factor `(1 + γ)/2` is `1` at `γ = 1`). (`FRC.GravML.cover_forcing`, `Theme/Gravity.lean`)."
+    "doc": "21:A9, 21:C25, 21:C7, 21:C8 — the cover forcing: the apsidal coefficient `2 − β + 2γ` against the PPN-free deficit `3/2` equals the two-face ratio `2` exactly when `2γ − β = 1`, with deviation `(2/3)(2γ − β − 1)`; channel unity `γ = 1` makes the deflection factor `(1 + γ)/2` equal to `1` (the full `4Gm/c²b`) and, together with the forcing, gives `β = 1`, the perihelion factor `(2 + 2γ − β)/3` then `1`. That channel unity forces the spatial bias to equal the temporal one is Lem. isopair's argument, with `γ = 1` the exponential metric's coefficient (`pn_series` carries `B = e^{2U}` against `(1 + U/2)⁴` through `O(U)`). (`FRC.GravML.cover_forcing`, `Theme/Gravity.lean`)."
    },
    {
     "name": "FRC.Gravity.channel_q4",
     "module": "FrcLedger/Gravity",
-    "line": 106,
+    "line": 108,
     "axioms": [
      "Quot.sound",
      "propext"
@@ -677,7 +643,7 @@
    {
     "name": "FRC.Gravity.locked_sum",
     "module": "FrcLedger/Gravity",
-    "line": 231,
+    "line": 234,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -734,7 +700,7 @@
    {
     "name": "FRC.Gravity.redshift_linear",
     "module": "FrcLedger/Gravity",
-    "line": 168,
+    "line": 171,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -797,7 +763,7 @@
    {
     "name": "FRC.Gravity.cover_forcing",
     "module": "FrcLedger/Gravity",
-    "line": 97,
+    "line": 99,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -805,7 +771,20 @@
     ],
     "tier": 2,
     "ok": true,
-    "doc": "21:A9, 21:C25, 21:C7, 21:C8 — the cover forcing: the apsidal coefficient `2 − β + 2γ` against the PPN-free deficit `3/2` equals the two-face ratio `2` exactly when `2γ − β = 1`, with deviation `(2/3)(2γ − β − 1)`; channel unity `γ = 1` together with the forcing gives `β = 1`, and the perihelion factor `(2 + 2γ − β)/3` is then `1` (the deflection factor `(1 + γ)/2` is `1` at `γ = 1`). (`FRC.GravML.cover_forcing`, `Theme/Gravity.lean`)."
+    "doc": "21:A9, 21:C25, 21:C7, 21:C8 — the cover forcing: the apsidal coefficient `2 − β + 2γ` against the PPN-free deficit `3/2` equals the two-face ratio `2` exactly when `2γ − β = 1`, with deviation `(2/3)(2γ − β − 1)`; channel unity `γ = 1` makes the deflection factor `(1 + γ)/2` equal to `1` (the full `4Gm/c²b`) and, together with the forcing, gives `β = 1`, the perihelion factor `(2 + 2γ − β)/3` then `1`. That channel unity forces the spatial bias to equal the temporal one is Lem. isopair's argument, with `γ = 1` the exponential metric's coefficient (`pn_series` carries `B = e^{2U}` against `(1 + U/2)⁴` through `O(U)`). (`FRC.GravML.cover_forcing`, `Theme/Gravity.lean`)."
+   },
+   {
+    "name": "FRC.Gravity.pn_series",
+    "module": "FrcLedger/Gravity",
+    "line": 251,
+    "axioms": [
+     "Classical.choice",
+     "Quot.sound",
+     "propext"
+    ],
+    "tier": 2,
+    "ok": true,
+    "doc": "21:C8, 21:P6, 21:C7 — the post-Newtonian inputs as Taylor brackets on `|U| ≤ 1/2`: the exponential metric's `A = e^{−2U}`, `B = e^{2U}` against the isotropic Schwarzschild `A_S = ((1 − U/2)/(1 + U/2))²`, `B_S = (1 + U/2)⁴` satisfy `|A − A_S − U³/6| ≤ 3U⁴` and `|B − B_S − U²/2| ≤ 3|U|³`: the single-potential inputs consumed by C23 coincide through first post-Newtonian order (`A` to `O(U²)`, `B` to `O(U)`) and part at 2PN with `δA = U³/6`, `δB = U²/2`; the two-body superposition of C23 is the package's. (`FRC.Strong.pn_series`, `Theme/Strong.lean`)."
    },
    {
     "name": "FRC.Drift.cover_triangle",
@@ -821,7 +800,7 @@
    {
     "name": "FRC.Gravity.cover_forcing",
     "module": "FrcLedger/Gravity",
-    "line": 97,
+    "line": 99,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -829,12 +808,12 @@
     ],
     "tier": 2,
     "ok": true,
-    "doc": "21:A9, 21:C25, 21:C7, 21:C8 — the cover forcing: the apsidal coefficient `2 − β + 2γ` against the PPN-free deficit `3/2` equals the two-face ratio `2` exactly when `2γ − β = 1`, with deviation `(2/3)(2γ − β − 1)`; channel unity `γ = 1` together with the forcing gives `β = 1`, and the perihelion factor `(2 + 2γ − β)/3` is then `1` (the deflection factor `(1 + γ)/2` is `1` at `γ = 1`). (`FRC.GravML.cover_forcing`, `Theme/Gravity.lean`)."
+    "doc": "21:A9, 21:C25, 21:C7, 21:C8 — the cover forcing: the apsidal coefficient `2 − β + 2γ` against the PPN-free deficit `3/2` equals the two-face ratio `2` exactly when `2γ − β = 1`, with deviation `(2/3)(2γ − β − 1)`; channel unity `γ = 1` makes the deflection factor `(1 + γ)/2` equal to `1` (the full `4Gm/c²b`) and, together with the forcing, gives `β = 1`, the perihelion factor `(2 + 2γ − β)/3` then `1`. That channel unity forces the spatial bias to equal the temporal one is Lem. isopair's argument, with `γ = 1` the exponential metric's coefficient (`pn_series` carries `B = e^{2U}` against `(1 + U/2)⁴` through `O(U)`). (`FRC.GravML.cover_forcing`, `Theme/Gravity.lean`)."
    },
    {
     "name": "FRC.Gravity.pn_series",
     "module": "FrcLedger/Gravity",
-    "line": 248,
+    "line": 251,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -842,7 +821,7 @@
     ],
     "tier": 2,
     "ok": true,
-    "doc": "21:C8, 21:P6 — the post-Newtonian inputs as Taylor brackets on `|U| ≤ 1/2`: the exponential metric's `A = e^{−2U}`, `B = e^{2U}` against the isotropic Schwarzschild `A_S = ((1 − U/2)/(1 + U/2))²`, `B_S = (1 + U/2)⁴` satisfy `|A − A_S − U³/6| ≤ 3U⁴` and `|B − B_S − U²/2| ≤ 3|U|³`: the single-potential inputs consumed by C23 coincide through first post-Newtonian order (`A` to `O(U²)`, `B` to `O(U)`) and part at 2PN with `δA = U³/6`, `δB = U²/2`; the two-body superposition of C23 is the package's. (`FRC.Strong.pn_series`, `Theme/Strong.lean`)."
+    "doc": "21:C8, 21:P6, 21:C7 — the post-Newtonian inputs as Taylor brackets on `|U| ≤ 1/2`: the exponential metric's `A = e^{−2U}`, `B = e^{2U}` against the isotropic Schwarzschild `A_S = ((1 − U/2)/(1 + U/2))²`, `B_S = (1 + U/2)⁴` satisfy `|A − A_S − U³/6| ≤ 3U⁴` and `|B − B_S − U²/2| ≤ 3|U|³`: the single-potential inputs consumed by C23 coincide through first post-Newtonian order (`A` to `O(U²)`, `B` to `O(U)`) and part at 2PN with `δA = U³/6`, `δB = U²/2`; the two-body superposition of C23 is the package's. (`FRC.Strong.pn_series`, `Theme/Strong.lean`)."
    },
    {
     "name": "FRC.Drift.cover_triangle",
@@ -867,7 +846,7 @@
    {
     "name": "FRC.Gravity.central_difference_adjoint",
     "module": "FrcLedger/Gravity",
-    "line": 271,
+    "line": 274,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -909,7 +888,7 @@
    {
     "name": "FRC.Gravity.exponential_reading",
     "module": "FrcLedger/Gravity",
-    "line": 237,
+    "line": 240,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -942,7 +921,7 @@
    {
     "name": "FRC.Gravity.operational_cut",
     "module": "FrcLedger/Gravity",
-    "line": 112,
+    "line": 114,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -981,7 +960,7 @@
    {
     "name": "FRC.Gravity.capacity_ratio",
     "module": "FrcLedger/Gravity",
-    "line": 159,
+    "line": 161,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -989,7 +968,20 @@
     ],
     "tier": 2,
     "ok": true,
-    "doc": "The arithmetic behind 21:C13's capacity ratio: for `r_f = r_s/L` the square of `r_f/r_s` is `1/L²`, and at `L = ln Ω = 283.5` (the scale import) the ratio lies between `1.24 × 10⁻⁵` and `1.25 × 10⁻⁵` (the text's `1.24 × 10⁻⁵`); that the externally resolvable capacity scales as `(r_f/r_s)²` is the paper's count, not formal content. (`FRC.Strong.capacity_ratio`, `Theme/Strong.lean`)."
+    "doc": "21:C13 — the arithmetic behind the capacity ratio: for `r_f = r_s/L` the square of `r_f/r_s` is `1/L²`, and at `L = ln Ω = 283.5` (the scale import) the ratio lies between `1.24 × 10⁻⁵` and `1.25 × 10⁻⁵` (the text's `1.24 × 10⁻⁵`); that the externally resolvable capacity scales as `(r_f/r_s)²` is the paper's count, not formal content. (`FRC.Strong.capacity_ratio`, `Theme/Strong.lean`)."
+   },
+   {
+    "name": "FRC.Gravity.capacity_ratio_numeral",
+    "module": "FrcLedger/Gravity",
+    "line": 166,
+    "axioms": [
+     "Classical.choice",
+     "Quot.sound",
+     "propext"
+    ],
+    "tier": 2,
+    "ok": true,
+    "doc": "21:P7, 21:C13 — the capacity ratio's numeral at the scale import's `ln Ω = 283.5`: `1/283.5²` lies between `1.24 × 10⁻⁵` and `1.25 × 10⁻⁵`, the text's `S/S_BH = 1.24 × 10⁻⁵`. (`FRC.Strong.capacity_ratio_numeral`, `Theme/Strong.lean`)."
    },
    {
     "name": "FRC.Grav.count_identity",
@@ -1014,7 +1006,7 @@
    {
     "name": "FRC.Gravity.dispersion_symbol",
     "module": "FrcLedger/Gravity",
-    "line": 225,
+    "line": 228,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -1083,7 +1075,7 @@
    {
     "name": "FRC.Gravity.scale_invariance_iff",
     "module": "FrcLedger/Gravity",
-    "line": 218,
+    "line": 221,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -1096,7 +1088,7 @@
    {
     "name": "FRC.Gravity.tilt_bracket",
     "module": "FrcLedger/Gravity",
-    "line": 289,
+    "line": 292,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -1111,7 +1103,7 @@
    {
     "name": "FRC.Gravity.registration_root",
     "module": "FrcLedger/Gravity",
-    "line": 175,
+    "line": 178,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -1124,7 +1116,7 @@
    {
     "name": "FRC.Gravity.crossover_limits",
     "module": "FrcLedger/Gravity",
-    "line": 186,
+    "line": 189,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -1137,7 +1129,7 @@
    {
     "name": "FRC.Gravity.crossover_deep_limit",
     "module": "FrcLedger/Gravity",
-    "line": 195,
+    "line": 198,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -1161,7 +1153,7 @@
    {
     "name": "FRC.Gravity.shift_theorem",
     "module": "FrcLedger/Gravity",
-    "line": 279,
+    "line": 282,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -1223,7 +1215,7 @@
    {
     "name": "FRC.Gravity.cover_forcing",
     "module": "FrcLedger/Gravity",
-    "line": 97,
+    "line": 99,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -1231,7 +1223,7 @@
     ],
     "tier": 2,
     "ok": true,
-    "doc": "21:A9, 21:C25, 21:C7, 21:C8 — the cover forcing: the apsidal coefficient `2 − β + 2γ` against the PPN-free deficit `3/2` equals the two-face ratio `2` exactly when `2γ − β = 1`, with deviation `(2/3)(2γ − β − 1)`; channel unity `γ = 1` together with the forcing gives `β = 1`, and the perihelion factor `(2 + 2γ − β)/3` is then `1` (the deflection factor `(1 + γ)/2` is `1` at `γ = 1`). (`FRC.GravML.cover_forcing`, `Theme/Gravity.lean`)."
+    "doc": "21:A9, 21:C25, 21:C7, 21:C8 — the cover forcing: the apsidal coefficient `2 − β + 2γ` against the PPN-free deficit `3/2` equals the two-face ratio `2` exactly when `2γ − β = 1`, with deviation `(2/3)(2γ − β − 1)`; channel unity `γ = 1` makes the deflection factor `(1 + γ)/2` equal to `1` (the full `4Gm/c²b`) and, together with the forcing, gives `β = 1`, the perihelion factor `(2 + 2γ − β)/3` then `1`. That channel unity forces the spatial bias to equal the temporal one is Lem. isopair's argument, with `γ = 1` the exponential metric's coefficient (`pn_series` carries `B = e^{2U}` against `(1 + U/2)⁴` through `O(U)`). (`FRC.GravML.cover_forcing`, `Theme/Gravity.lean`)."
    },
    {
     "name": "FRC.Drift.cover_triangle",
@@ -1256,7 +1248,7 @@
    {
     "name": "FRC.Gravity.crossover_deep_limit",
     "module": "FrcLedger/Gravity",
-    "line": 195,
+    "line": 198,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -1286,7 +1278,7 @@
    {
     "name": "FRC.Gravity.photon_sphere",
     "module": "FrcLedger/Gravity",
-    "line": 120,
+    "line": 122,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -1299,7 +1291,7 @@
    {
     "name": "FRC.Gravity.shadow_bracket",
     "module": "FrcLedger/Gravity",
-    "line": 129,
+    "line": 131,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -1312,7 +1304,7 @@
    {
     "name": "FRC.Gravity.isco",
     "module": "FrcLedger/Gravity",
-    "line": 140,
+    "line": 142,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -1325,7 +1317,7 @@
    {
     "name": "FRC.Gravity.isco_efficiency",
     "module": "FrcLedger/Gravity",
-    "line": 150,
+    "line": 152,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -1340,7 +1332,7 @@
    {
     "name": "FRC.Gravity.operational_cut",
     "module": "FrcLedger/Gravity",
-    "line": 112,
+    "line": 114,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -1355,7 +1347,7 @@
    {
     "name": "FRC.Gravity.tilt_bracket",
     "module": "FrcLedger/Gravity",
-    "line": 289,
+    "line": 292,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -1370,7 +1362,7 @@
    {
     "name": "FRC.Gravity.preferred_frame_scale",
     "module": "FrcLedger/Gravity",
-    "line": 256,
+    "line": 259,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -1385,7 +1377,7 @@
    {
     "name": "FRC.Gravity.floor_value",
     "module": "FrcLedger/Gravity",
-    "line": 297,
+    "line": 300,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -1400,7 +1392,7 @@
    {
     "name": "FRC.Gravity.crossover_limits",
     "module": "FrcLedger/Gravity",
-    "line": 186,
+    "line": 189,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -1411,9 +1403,22 @@
     "doc": "21:C19, 21:P4 — the crossover `g_obs = g_N/(1 − e^{−√x})`, `x = g_N/a₀`, squeezed: with `t = √x > 0`, `1 ≤ t/(1 − e^{−t})`, and `t/(1 − e^{−t}) ≤ 1/(1 − 3t/4)` for `t ≤ 1`; and the Tully–Fisher algebra is exact: `v² = g_obs r` with `g_obs = √(g_N a₀)`, `g_N = GM/r²`, gives `v⁴ = GMa₀`. (`FRC.Strong.crossover_limits`, `Theme/Strong.lean`)."
    },
    {
+    "name": "FRC.Gravity.crossover_newton_limit",
+    "module": "FrcLedger/Gravity",
+    "line": 203,
+    "axioms": [
+     "Classical.choice",
+     "Quot.sound",
+     "propext"
+    ],
+    "tier": 2,
+    "ok": true,
+    "doc": "21:C19, 21:P4 — the Newtonian limit: `1 − e^{−t} → 1` as `t → ∞`, so `g_obs/g_N → 1` for `x → ∞`. (`FRC.Strong.crossover_newton_limit`, `Theme/Strong.lean`)."
+   },
+   {
     "name": "FRC.Gravity.registration_root",
     "module": "FrcLedger/Gravity",
-    "line": 175,
+    "line": 178,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -1426,7 +1431,7 @@
    {
     "name": "FRC.Gravity.interpolant_discriminant",
     "module": "FrcLedger/Gravity",
-    "line": 208,
+    "line": 211,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -1437,11 +1442,11 @@
     "doc": "21:P4 — the discriminant against the simple interpolant at `g_N = 5a₀`: the crossover `ν(5) = 1/(1 − e^{−√5})` lies between `1.11966` and `1.11967`, the simple interpolant `ν_s(5) = 1/2 + √(1/4 + 1/5)` between `1.17082` and `1.17083`, so they part by between `0.0511` and `0.0512` in `g_obs/g_N` (the text's `0.05`). (`FRC.Strong.interpolant_discriminant`, `Theme/Strong.lean`)."
    }
   ],
-  "P6": [
+  "P5": [
    {
-    "name": "FRC.Gravity.pn_series",
+    "name": "FRC.Gravity.running_floor",
     "module": "FrcLedger/Gravity",
-    "line": 248,
+    "line": 311,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -1449,7 +1454,22 @@
     ],
     "tier": 2,
     "ok": true,
-    "doc": "21:C8, 21:P6 — the post-Newtonian inputs as Taylor brackets on `|U| ≤ 1/2`: the exponential metric's `A = e^{−2U}`, `B = e^{2U}` against the isotropic Schwarzschild `A_S = ((1 − U/2)/(1 + U/2))²`, `B_S = (1 + U/2)⁴` satisfy `|A − A_S − U³/6| ≤ 3U⁴` and `|B − B_S − U²/2| ≤ 3|U|³`: the single-potential inputs consumed by C23 coincide through first post-Newtonian order (`A` to `O(U²)`, `B` to `O(U)`) and part at 2PN with `δA = U³/6`, `δB = U²/2`; the two-body superposition of C23 is the package's. (`FRC.Strong.pn_series`, `Theme/Strong.lean`)."
+    "doc": "21:P5 — the running floor: if the floor is read at every redshift on the registered rate, `a₀(z) = cH(z)/2π`, and the deep regime's `v⁴ = GMa₀` holds at fixed baryonic mass `M`, then `a₀(z)/a₀(0) = H(z)/H(0) = E(z)` and the Tully–Fisher zero-point evolves as `v(z)/v(0) = E(z)^{1/4}`; that the floor tracks the registered rate is the row's realisation clause (00:D5), not formal content. (`FRC.Chart.running_floor`, `Theme/Chart.lean`, the master's 00:P1)."
+   }
+  ],
+  "P6": [
+   {
+    "name": "FRC.Gravity.pn_series",
+    "module": "FrcLedger/Gravity",
+    "line": 251,
+    "axioms": [
+     "Classical.choice",
+     "Quot.sound",
+     "propext"
+    ],
+    "tier": 2,
+    "ok": true,
+    "doc": "21:C8, 21:P6, 21:C7 — the post-Newtonian inputs as Taylor brackets on `|U| ≤ 1/2`: the exponential metric's `A = e^{−2U}`, `B = e^{2U}` against the isotropic Schwarzschild `A_S = ((1 − U/2)/(1 + U/2))²`, `B_S = (1 + U/2)⁴` satisfy `|A − A_S − U³/6| ≤ 3U⁴` and `|B − B_S − U²/2| ≤ 3|U|³`: the single-potential inputs consumed by C23 coincide through first post-Newtonian order (`A` to `O(U²)`, `B` to `O(U)`) and part at 2PN with `δA = U³/6`, `δB = U²/2`; the two-body superposition of C23 is the package's. (`FRC.Strong.pn_series`, `Theme/Strong.lean`)."
    },
    {
     "name": "FRC.Drift.pn_coefficients",

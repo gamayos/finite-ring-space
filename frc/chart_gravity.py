@@ -5,8 +5,8 @@ The floating-point side of 21-gravity's rows, every numeral anchored to the ledg
 strong field (the exact profile, the photon sphere and the shadow, the ringdown, the innermost stable orbit and the
 accretion efficiency, the operational cut and the capacity ratio, the echo factor, the Sgr A* and M87* angles), the floor
 and the crossover (the root η against e^{−√x}, the crossover's slopes, the Tully–Fisher deep limit, the RAR identity,
-the discriminant against the simple interpolant), the turnaround radius, the preferred-frame scale, the Lense–Thirring
-rate and the ergosurface, the radiative dispersion and the helicity, the two readings of the nonlinear completion, the
+the discriminant against the simple interpolant), the turnaround radius, the preferred-frame scale, the gravitomagnetic
+dipole's Lense–Thirring rate and the ergosurface, the radiative dispersion and the helicity, the two readings of the nonlinear completion, the
 2PN periastron excess of PSR J0737−3039, the tilt and the scale-path probe, and the seeded Kuramoto chain of the
 flux-conservation lemma. Floats are allowed here and nowhere in the exact tiers; the standard library only. The Lean
 side is lean/FrcLedger/Theme/Strong.lean (Mathlib, the brackets). Every comparison with measured data is [data].
@@ -170,9 +170,18 @@ def interpolant_discriminant(x=5.0):
     return ratio(x), simple, simple - ratio(x)
 
 
-def tully_fisher(M_solar):
-    v = (G_SI * M_solar * MSUN * A0_FIT) ** 0.25
-    return v, abs(v ** 4 - G_SI * M_solar * MSUN * A0_FIT) / (G_SI * M_solar * MSUN * A0_FIT)
+def tully_fisher(M_solar, radii_kpc=(30.0, 100.0, 300.0)):
+    """The rotation curve of a point mass on the radial acceleration relation, v(r) = √(g_obs r) with
+    g_obs = g_N/(1 − e^{−√(g_N/a₀)}) and g_N = GM/r², against the deep limit's asymptote (GMa₀)^{1/4}: returns the
+    asymptote in m s⁻¹ and, per radius, (r, v(r), v(r)⁴/GMa₀) — the ratio above 1, falling to it as r grows."""
+    GM, a0 = G_SI * M_solar * MSUN, A0_FIT
+    curve = []
+    for r_kpc in radii_kpc:
+        r = r_kpc * 1e-3 * MPC_M
+        gN = GM / r ** 2
+        v = math.sqrt(gN * ratio(gN / a0) * r)
+        curve.append((r_kpc, v, v ** 4 / (GM * a0)))
+    return (GM * a0) ** 0.25, curve
 
 
 def turnaround(mass_solar=5e12, h0_kms=70.0):
@@ -203,7 +212,31 @@ def preferred_frame_scale():
 
 
 def lense_thirring(J, r):
+    """The Lense–Thirring form 2J/r³ (G = c = 1), the on-axis dragging rate; see dragging_field for its derivation."""
     return 2 * J / r ** 3
+
+
+def dragging_field(J=0.3, r=10.0, h=1e-3, probe=(3.0, 2.0, 4.0)):
+    """The gravitomagnetic dipole of the spin J ẑ, A(x) = J × x/|x|³ (the quarter-turn dual of the monopole, 21:C17):
+    off the source each component is harmonic and the field is divergence-free (second central differences at the probe
+    point), and its curl is J(3(ẑ·r̂)r̂ − ẑ)/r³ — on the axis 2J/r³ (the Lense–Thirring rate), on the equator −J/r³.
+    Returns the on-axis and equatorial curl components along ẑ, the largest |∇²A_i| and |∇·A| at the probe."""
+    def A(x, y, z):
+        d = (x * x + y * y + z * z) ** 1.5
+        return (-J * y / d, J * x / d, 0.0)
+
+    def curl(x, y, z):
+        dAz_dy = (A(x, y + h, z)[2] - A(x, y - h, z)[2]) / (2 * h); dAy_dz = (A(x, y, z + h)[1] - A(x, y, z - h)[1]) / (2 * h)
+        dAx_dz = (A(x, y, z + h)[0] - A(x, y, z - h)[0]) / (2 * h); dAz_dx = (A(x + h, y, z)[2] - A(x - h, y, z)[2]) / (2 * h)
+        dAy_dx = (A(x + h, y, z)[1] - A(x - h, y, z)[1]) / (2 * h); dAx_dy = (A(x, y + h, z)[0] - A(x, y - h, z)[0]) / (2 * h)
+        return (dAz_dy - dAy_dz, dAx_dz - dAz_dx, dAy_dx - dAx_dy)
+
+    x, y, z = probe
+    lap = max(abs((A(x + h, y, z)[i] + A(x - h, y, z)[i] + A(x, y + h, z)[i] + A(x, y - h, z)[i] + A(x, y, z + h)[i] + A(x, y, z - h)[i] - 6 * A(x, y, z)[i]) / h ** 2) for i in range(3))
+    div = abs((A(x + h, y, z)[0] - A(x - h, y, z)[0] + A(x, y + h, z)[1] - A(x, y - h, z)[1] + A(x, y, z + h)[2] - A(x, y, z - h)[2]) / (2 * h))
+    scale = max(abs(a) for a in A(x, y, z)) / (x * x + y * y + z * z)      # |A|/r²: the size of the second derivatives
+    return {"axis": curl(0.0, 0.0, r)[2], "equator": curl(r, 0.0, 0.0)[2], "laplacian": lap / scale, "divergence": div / scale,
+            "transverse": max(abs(curl(0.0, 0.0, r)[0]), abs(curl(0.0, 0.0, r)[1]))}
 
 
 def ergosurface(a):
@@ -269,9 +302,11 @@ def laplacian_psi(r, Gm=1.0, h=1e-3):
     return ((r + h) ** 2 * d(r + h) - (r - h) ** 2 * d(r - h)) / (2 * h) / r ** 2
 
 
-def sine_model_flux(N=9, m0=4.0, iters=4000, rate=0.15):
+def sine_model_flux(N=9, m0=4.0, iters=4000, rate=0.15, m1=2.0):
     """The static sine-coupled model on [0, N)³ with Dirichlet boundary: the flux through boxes about the source equals
-    the demand (the nonlinear Gauss law), and the deviation from the linear model scales as the cube of the source."""
+    the demand (the nonlinear Gauss law), the deviation from the linear model scales as the cube of the source, and
+    with a second source m1 two sites away the flux through the box enclosing both equals m0 + m1 (the two-source cut flux).
+    Returns (the one-source fluxes at R = 1, 2, 3, the scaling power, the two-source flux)."""
     idx = lambda x, y, z: (x * N + y) * N + z
     V = N ** 3
     interior = [(x, y, z) for x in range(1, N - 1) for y in range(1, N - 1) for z in range(1, N - 1)]
@@ -310,7 +345,8 @@ def sine_model_flux(N=9, m0=4.0, iters=4000, rate=0.15):
         us, ul = solve([(c, mm)]), solve([(c, mm)], sine=False)
         devs.append(max(abs(a - b) for a, b in zip(us, ul)))
     power = math.log(devs[1] / devs[0]) / math.log(2.0)
-    return fluxes, power
+    u2 = solve([((c[0] - 1, c[1], c[2]), m0), ((c[0] + 1, c[1], c[2]), m1)])
+    return fluxes, power, flux_box(u2, c, 2)
 
 
 # ---- the 2PN periastron excess (21:P6) ----------------------------------------------------------------------------------------
@@ -326,6 +362,11 @@ def periastron_excess(M_solar=2.5871, Pb=8834.535, ecc=0.0878):
 # ---- the primordial tilt (21:C18, P8) ---------------------------------------------------------------------------------------
 def tilt():
     return C.tilt()
+
+
+def tilt_sensitivity():
+    """The tilt's sensitivity to the count: d(ln ln Ω) per factor two in S is ln 2/ln Ω = 0.244 % at 283.5 (21:P8)."""
+    return math.log(2.0) / LN_OMEGA
 
 
 def scale_path_probe(K):

@@ -17,7 +17,8 @@ standard library only (gate G09). The ledger file that uses it: frc/ledgers/p21_
     defect(nA, nB, wA, wB)           L, q, a, T_def of the relative-cycle defect
     first_return(L, a)               the least t ≥ 1 with t·a ≡ 0 (mod L)
     pair_tally_identity(p, z)        (z − w)² = −(2 − z − w)(2 + z + w) on z ∈ 𝔽_p^×, w = z⁻¹
-    locked_sum(n, m)                 |Σ_m z|² = m² for one phase; the exact mean of |Σ|² over all n^m phase words is m
+    antisymmetric_dimension(d)       the antisymmetric Laurent polynomials of degree ≤ d form a d-dimensional space
+    locked_sum(n, m)                 |Σ_m z|² = m² on the locked word; the exact mean of |Σ|² over all n^m phase words is m
     gauss_law(J, region)             the divergence summed over a region equals the boundary flux (antisymmetric J)
     compression_identity(n, sector)  P − KᵀK = CᵀC on the cyclic shift with a sector projector (exact rationals)
     Series                           truncated power series over the rationals (exp, product, quotient, power)
@@ -25,13 +26,16 @@ standard library only (gate G09). The ledger file that uses it: frc/ledgers/p21_
     two_body_1pn()                   the two-body coefficients through 1PN agree, the cross term 4 U₁U₂ included
     pn_orbit_inputs()                the 2PN orbit-equation inputs: δc₂'s leading term and δc₃ = 5/6, the apsidal sum
     static_profile_coefficients()    u(r) = Gm/r (1 + (Gm/r²)²/30 + (Gm/r²)⁴/120 + …): the exact series of the profile
-    scale_invariant_exponent(lo, hi) Δ² ∝ k^{n+3} is dilation-invariant for n = −3 alone (n_s = 1)
+    scale_invariant_exponent(lo, hi) the n with (λk)^{n+3}/k^{n+3} = 1 at every dilation λ and drive k: −3 alone (n_s = 1)
     dilution(m, s)                   (m/√Ω)² = m²/Ω on Ω = s²: the coupling of two masses m is their count over Ω
     frobenius_trace(p, nu, m, a, b)  the Frobenius pairing of m (w ⊗ w) equals m N(w)
     registration_root(w, s)          wη² − 2η + w = 0 for η = (1 − s)/w with s² = 1 − w², over the rationals
     chebyshev_weight(L, d, w)        q_{L,d} = (U_{d−1} + U_{L−d−1})/U_{L−1} at 1/w against the tridiagonal solve
     christoffel(a, b)                the registration word at rate a/b: a marks per recurrence, two-valued gaps
     largest_remainder(weights, B)    the allocation of B events to the weights, discrepancy ≤ 1
+    event_orbit(a, b, gN)            the a registered events at g_N/f sum to the window total b·g_N
+    kesten_control(Om, g, th)        raw-orbit prefix counts break unit discrepancy: the theorem is over complete recurrences
+    stratum_split(B)                 the per-stratum tallies on Ω = 641 are 8 × the Galois-symmetric coefficients
     binding(N, m1, m2)               superposition, cut flux = m₁ + m₂, bilinear energy, the registered clock
     fold_return(p)                   the period-averaged exterior return through the fold is the uniform floor
 """
@@ -98,6 +102,30 @@ def first_return(L, a):
 
 
 # ---- the pair tally (21:C21, C1) -----------------------------------------------------------------------------------
+def antisymmetric_dimension(d):
+    """The antisymmetric Laurent polynomials J(z) = Σ_{|k|≤d} c_k z^k with J(z⁻¹) = −J(z): the constraints c_{−k} = −c_k
+    and c₀ = 0 as a matrix over ℚ on the 2d + 1 coefficients, its nullity by exact elimination. The space has dimension
+    d (basis z^k − z^{−k}): at d = 1 the sine mode (z − z⁻¹)/2i is the unique antisymmetric current up to scale, the
+    minimal degree of the pair-tally current (21:C21); higher odd harmonics exist for d ≥ 2."""
+    cols = 2 * d + 1                                               # c_{−d}, …, c_d
+    rows = [[Fraction(0)] * cols for _ in range(d + 1)]
+    rows[0][d] = Fraction(1)                                       # c₀ = 0
+    for k in range(1, d + 1):
+        rows[k][d + k] = Fraction(1); rows[k][d - k] = Fraction(1)   # c_k + c_{−k} = 0
+    rank, lead = 0, 0
+    M = [r[:] for r in rows]
+    for col in range(cols):
+        piv = next((i for i in range(rank, len(M)) if M[i][col] != 0), None)
+        if piv is None: continue
+        M[rank], M[piv] = M[piv], M[rank]
+        M[rank] = [x / M[rank][col] for x in M[rank]]
+        for i in range(len(M)):
+            if i != rank and M[i][col] != 0:
+                M[i] = [a - M[i][col] * b for a, b in zip(M[i], M[rank])]
+        rank += 1
+    return cols - rank
+
+
 def pair_tally_identity(p, z):
     """On z ∈ 𝔽_p^× with mate w = z⁻¹: E = 2 − z − w, W = 2 + z + w, E + W = 4 and (z − w)² = −E·W."""
     w = pow(z, p - 2, p)
@@ -109,18 +137,19 @@ def pair_tally_identity(p, z):
 def locked_sum(n, m):
     """m cells of one phase on the n-cycle sum to m·z, |Σ|² = m²; over all n^m phase words the exact mean of |Σ ζ^k|²
     is m (the incoherent √m), computed in the cyclotomic ring ℤ[ζ_n] as an integer identity: Σ_words |Σ_j ζ^{k_j}|² = m·n^m."""
-    locked = m * m
-    # |Σ_j ζ^{k_j}|² = Σ_{j,l} ζ^{k_j − k_l}; summed over all words the cross terms (j ≠ l) sum to zero and the
-    # diagonal gives m·n^m: the count of (word, j, l, residue) with k_j − k_l ≡ 0 is m·n^m + m(m − 1)·n^{m−1}·(1)…
-    # computed directly as the multiset of residues k_j − k_l over all words: each nonzero residue appears equally often
-    counts = [0] * n
-    for word in product(range(n), repeat=m):
-        for j in range(m):
-            for l in range(m):
-                counts[(word[j] - word[l]) % n] += 1
-    off = set(counts[1:])
-    # Σ_words |Σ|² = counts[0]·1 + Σ_{r≠0} counts[r]·ζ^r = counts[0] − counts[1] since Σ_{r≠0} ζ^r = −1 when all equal
-    mean = Fraction(counts[0] - counts[1], n ** m) if len(off) == 1 else None
+    # |Σ_j ζ^{k_j}|² = Σ_{j,l} ζ^{k_j − k_l}, an element of ℤ[ζ_n] recorded as the multiset of residues k_j − k_l; when
+    # the nonzero residues appear equally often it equals counts[0] − counts[1], since Σ_{r≠0} ζ^r = −1
+    def residues(words):
+        counts = [0] * n
+        for word in words:
+            for j in range(m):
+                for l in range(m):
+                    counts[(word[j] - word[l]) % n] += 1
+        return counts if len(set(counts[1:])) == 1 else None
+    one = residues([(0,) * m])                                     # the locked word: every residue 0, |Σ|² = m²
+    locked = one[0] - one[1] if one else None
+    counts = residues(product(range(n), repeat=m))                 # all n^m words: Σ_words |Σ|² = counts[0] − counts[1]
+    mean = Fraction(counts[0] - counts[1], n ** m) if counts else None
     return locked, mean
 
 
@@ -288,10 +317,13 @@ def static_profile_coefficients(k=3):
     return out
 
 
-def scale_invariant_exponent(lo=-6, hi=3):
-    """Δ²(k) = k³ P(k) ∝ k^{n+3} for P ∝ kⁿ is invariant under k ↦ λk iff n + 3 = 0: on the integer range the fixed
-    point is n = −3 alone, n_s = n + 4 = 1 (21:C18)."""
-    return [n for n in range(lo, hi) if n + 3 == 0] == [-3]
+def scale_invariant_exponent(lo=-6, hi=3, dilations=(Fraction(2), Fraction(3, 2), Fraction(1, 3)), drives=(1, 2, 5)):
+    """Δ²(k) = k³ P(k) ∝ k^{n+3} for P ∝ kⁿ: the dilation k ↦ λk multiplies Δ² by (λk)^{n+3}/k^{n+3}, evaluated exactly
+    over ℚ for every integer n ∈ [lo, hi), λ ∈ {2, 3/2, 1/3} and k ∈ {1, 2, 5}; returns the n whose ratio is 1 at every
+    (λ, k) — the dilation fixed points, n = −3 alone, n_s = n + 4 = 1 (21:C18) — and the ratios, λ^{n+3}."""
+    ratios = {n: {(lam, k): (lam * k) ** (n + 3) / Fraction(k) ** (n + 3) for lam in dilations for k in drives} for n in range(lo, hi)}
+    fixed = [n for n in range(lo, hi) if all(r == 1 for r in ratios[n].values())]
+    return fixed, ratios
 
 
 def dilution(m, s):
@@ -373,6 +405,59 @@ def ledger_identity(m, g, N, T):
     """The registered-inertia identity over ℚ: with f = N/T the impulse m g T equals (f m)(g/f) T."""
     f = Fraction(N, T)
     return (f * m) * (Fraction(g) / f) * T == m * Fraction(g) * T
+
+
+def event_orbit(a, b, gN):
+    """The event-based orbit on the registration word at rate f = a/b: each of the a registered events of the window
+    carries the impulse g_N/f, and their sum over the word is the window total b·g_N exactly (21:C19's registered
+    balance over ℚ); returns (the identity, the registered count)."""
+    f, gN = Fraction(a, b), Fraction(gN)
+    marks = [((k + 1) * a) // b - (k * a) // b for k in range(b)]
+    registered = sum(gN / f for e in marks if e)
+    return registered == gN * b, sum(marks)
+
+
+def kesten_control(Om=641, g=3, th=Fraction(23, 54), B_max=200):
+    """The negative control of the counting theorem: along the raw drive orbit g^k mod Ω the prefix count of values
+    below the threshold th·Ω is not discrepancy-bounded (Kesten: bounded discrepancy only for thresholds in the orbit's
+    own lattice); returns the first prefix length B at which |count − B·th| ≥ 2, or None if none below B_max — the
+    theorem is therefore stated over complete recurrences, where the counts are forced (21:C19)."""
+    x, count = 1, 0
+    for B in range(1, B_max):
+        if x < th * Om: count += 1
+        x = x * g % Om
+        if abs(count - B * th) >= 2: return B
+    return None
+
+
+def stratum_split(B, Om=641, g=3):
+    """The per-stratum split of the readout's worked instance (Ω = 641, g = 3): on the dial of the eight primitive
+    eighth roots the values r_j = ζ⁸^{2j+1} + ζ⁸^{−(2j+1)} are ±√2 and sum to zero; over the 2^B strings the tallies
+    Σ_j Π_i (2 ± r_j) computed in ℤ[√2] are 8 × the Galois-symmetric coefficient (the √2 part cancels), total 4^B·8, and
+    the residues mod 641 agree (21:C19, C21)."""
+    r = next(x for x in range(1, Om) if x * x % Om == 2)
+    z8 = pow(g, (Om - 1) // 8, Om)
+    dial = [(pow(z8, 2 * j + 1, Om) + pow(z8, -(2 * j + 1), Om)) % Om for j in range(8)]
+    dial_ok = set(dial) == {r, Om - r} and sum(dial) % Om == 0
+    mul = lambda x, y: (x[0] * y[0] + 2 * x[1] * y[1], x[0] * y[1] + x[1] * y[0])      # ℤ[√2] as (rational, √2) parts
+    signs = [1 if d == r else -1 for d in dial]
+    ok, total = True, 0
+    for string in product((0, 1), repeat=B):
+        acc = (0, 0)
+        for s in signs:
+            t = (1, 0)
+            for bit in string: t = mul(t, (2, s) if bit == 0 else (2, -s))
+            acc = (acc[0] + t[0], acc[1] + t[1])
+        sym = (1, 0)
+        for bit in string: sym = mul(sym, (2, 1) if bit == 0 else (2, -1))
+        res = 0
+        for d in dial:
+            t = 1
+            for bit in string: t = t * ((2 + d) if bit == 0 else (2 - d)) % Om
+            res = (res + t) % Om
+        ok &= acc[1] == 0 and acc[0] == 8 * sym[0] and res == (8 * sym[0]) % Om
+        total += acc[0]
+    return dial_ok and ok and total == 4 ** B * 8, total
 
 
 # ---- the binding bookkeeping on the torus ℤ_N³ (21:C21, C23) ---------------------------------------------------------

@@ -425,8 +425,8 @@ const PUBLICATIONS = [
       {
         "href": "https://live.lean-lang.org/#project=mathlib-stable&url=https://finitering.space/lean/web/ml/Gravity.lean",
         "label": "lean-mathlib",
-        "count": 27,
-        "title": "27 predicates proved on Mathlib (classical), 16 of them also in the core: the module Gravity as one file on Mathlib in Lean Live"
+        "count": 28,
+        "title": "28 predicates proved on Mathlib (classical), 16 of them also in the core: the module Gravity as one file on Mathlib in Lean Live"
       }
     ]
   },
@@ -733,4 +733,4 @@ const PUBLICATIONS = [
   }
 ];
 
-const GENERATED = "10 October 2026";
+const GENERATED = "11 October 2026";

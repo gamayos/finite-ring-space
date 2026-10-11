@@ -45,6 +45,10 @@ class DefectTest(unittest.TestCase):
             self.assertTrue(all(D.pair_tally_identity(p, z) for z in range(1, p)))
         self.assertEqual(D.locked_sum(4, 3), (9, 3))
         self.assertEqual(D.locked_sum(5, 2), (4, 2))
+        self.assertEqual(D.antisymmetric_dimension(4), 4)
+        self.assertEqual(D.event_orbit(5, 12, Fraction(3)), (True, 5))
+        self.assertEqual(D.kesten_control(641, 3, Fraction(23, 54), 200), 4)
+        self.assertEqual(D.stratum_split(2), (True, 128))
 
     def test_gauss_and_compression(self):
         J = [[0, 2, -1], [-2, 0, 3], [1, -3, 0]]
@@ -68,7 +72,10 @@ class SeriesTest(unittest.TestCase):
         self.assertTrue(D.two_body_1pn(3))
         self.assertTrue(D.pn_orbit_inputs(5)["ok"])
         self.assertEqual(D.static_profile_coefficients(2), [Fraction(1), Fraction(1, 30)])
-        self.assertTrue(D.scale_invariant_exponent())
+        fixed, ratios = D.scale_invariant_exponent()
+        self.assertEqual(fixed, [-3])
+        self.assertEqual(ratios[-1][(Fraction(2), 5)], 4)          # λ^{n+3} at n = −1, λ = 2
+        self.assertEqual(ratios[-5][(Fraction(1, 3), 2)], 9)       # (1/3)^{−2}
         self.assertTrue(D.dilution(7, 11))
 
     def test_roots_and_words(self):

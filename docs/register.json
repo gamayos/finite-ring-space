@@ -1,12 +1,12 @@
 {
  "header": {
-  "generated": "10 October 2026",
+  "generated": "11 October 2026",
   "schema": "frc-register/2",
-  "rows": 1028,
-  "theorems": 1018,
+  "rows": 1024,
+  "theorems": 1014,
   "counts": {
-   "keys": 1018,
-   "rows": 1028,
+   "keys": 1014,
+   "rows": 1024,
    "shared": 10,
    "by_tag": {
     "D": 139,
@@ -14,7 +14,7 @@
     "I": 119,
     "O": 14,
     "R": 81,
-    "T": 637,
+    "T": 633,
     "Ω": 27
    }
   },
@@ -835,10 +835,6 @@
       "title": "Falsifiable predictions: the exposures"
      },
      {
-      "letter": "V",
-      "title": "Machine verification"
-     },
-     {
       "letter": "Z",
       "title": "Horizon: the residue beyond the bounded observer"
      }
@@ -870,7 +866,7 @@
       "text": "Decided by the totality; not closeable by a bounded observer."
      }
     ],
-    "rows": 63
+    "rows": 59
    },
    {
     "key": "22-qm",
@@ -1445,7 +1441,7 @@
    "theorems": "one entry per key (LM12): its canonical statement (the row of its ledger of origin, the key's prefix), the origin, the tag, the Lean tier, the deciding check and declarations, the aliases that resolve to it, the rows that write it, and for a theorem the realisations its statement names (Q21)",
    "superseded": "the keys that left the public ledgers (corrected, split, merged or returned home), each with its live successor keys and nothing else (decision Q19)"
   },
-  "superseded": 76
+  "superseded": 80
  },
  "theorems": [
   {
@@ -1465,7 +1461,7 @@
   {
    "key": "p00004",
    "origin": "00",
-   "statement": "\\textbf{Finitude}: the Universe is what its registrations register (A8). For any totality and any reading of capacity $R$, the registered Universe embeds in the shell of $R$ members, and among any $R+1$ members two share a residue: no reading registers an unlimited supply (5:C2, 29:C1, 29:C2). One coherent plurality (A6, A13); its count $\\Om$: A7.",
+   "statement": "\\textbf{Finitude}: the Universe is the sum total of its manifestations (A8). For any totality and any reading of capacity $R$, the registered Universe embeds in the shell of $R$ members, and among any $R+1$ members two share a residue: no reading registers an unlimited supply (5:C2, 29:C1, 29:C2). One coherent plurality (A6, A13); its count $\\Om$: A7.",
    "origin_row": "00:A2",
    "tag": "T",
    "tier": 0,
@@ -15552,7 +15548,7 @@
    "check": {
     "href": "frc/ledgers/p21_gravity.html#p21021",
     "script": "p21_gravity.py",
-    "line": 252,
+    "line": 255,
     "verdict": "pass"
    },
    "declarations": [
@@ -15578,7 +15574,7 @@
    "check": {
     "href": "frc/ledgers/p21_gravity.html#p21022",
     "script": "p21_gravity.py",
-    "line": 282,
+    "line": 292,
     "verdict": "pass"
    },
    "declarations": [
@@ -15586,6 +15582,11 @@
      "lib": "FrcLedger",
      "module": "FrcLedger/Gravity",
      "name": "FRC.Gravity.cover_forcing"
+    },
+    {
+     "lib": "FrcLedger",
+     "module": "FrcLedger/Gravity",
+     "name": "FRC.Gravity.pn_series"
     },
     {
      "lib": "FrcCore",
@@ -15609,7 +15610,7 @@
    "check": {
     "href": "frc/ledgers/p21_gravity.html#p21023",
     "script": "p21_gravity.py",
-    "line": 282,
+    "line": 292,
     "verdict": "pass"
    },
    "declarations": [
@@ -15691,7 +15692,7 @@
    "check": {
     "href": "frc/ledgers/p21_gravity.html#p21025",
     "script": "p21_gravity.py",
-    "line": 343,
+    "line": 358,
     "verdict": "pass"
    },
    "declarations": [],
@@ -15711,7 +15712,7 @@
    "check": {
     "href": "frc/ledgers/p21_gravity.html#p21026",
     "script": "p21_gravity.py",
-    "line": 239,
+    "line": 242,
     "verdict": "pass"
    },
    "declarations": [
@@ -15749,7 +15750,7 @@
    "check": {
     "href": "frc/ledgers/p21_gravity.html#p21027",
     "script": "p21_gravity.py",
-    "line": 295,
+    "line": 305,
     "verdict": "pass"
    },
    "declarations": [
@@ -15795,6 +15796,11 @@
      "lib": "FrcLedger",
      "module": "FrcLedger/Gravity",
      "name": "FRC.Gravity.capacity_ratio"
+    },
+    {
+     "lib": "FrcLedger",
+     "module": "FrcLedger/Gravity",
+     "name": "FRC.Gravity.capacity_ratio_numeral"
     },
     {
      "lib": "FrcCore",
@@ -15922,7 +15928,7 @@
    "check": {
     "href": "frc/ledgers/p21_gravity.html#p21032",
     "script": "p21_gravity.py",
-    "line": 348,
+    "line": 364,
     "verdict": "pass"
    },
    "declarations": [],
@@ -15945,7 +15951,7 @@
    "check": {
     "href": "frc/ledgers/p21_gravity.html#p21033",
     "script": "p21_gravity.py",
-    "line": 298,
+    "line": 310,
     "verdict": "pass"
    },
    "declarations": [
@@ -15978,7 +15984,7 @@
    "check": {
     "href": "frc/ledgers/p21_gravity.html#p21064",
     "script": "p21_gravity.py",
-    "line": 260,
+    "line": 263,
     "verdict": "pass"
    },
    "declarations": [
@@ -16115,7 +16121,7 @@
    "check": {
     "href": "frc/ledgers/p21_gravity.html#p21038",
     "script": "p21_gravity.py",
-    "line": 286,
+    "line": 296,
     "verdict": "pass"
    },
    "declarations": [],
@@ -16137,7 +16143,7 @@
    "check": {
     "href": "frc/ledgers/p21_gravity.html#p21040",
     "script": "p21_gravity.py",
-    "line": 244,
+    "line": 247,
     "verdict": "pass"
    },
    "declarations": [
@@ -16173,7 +16179,7 @@
    "check": {
     "href": "frc/ledgers/p21_gravity.html#p21049",
     "script": "p21_gravity.py",
-    "line": 326,
+    "line": 339,
     "verdict": "pass"
    },
    "declarations": [
@@ -16217,7 +16223,7 @@
    "check": {
     "href": "frc/ledgers/p21_gravity.html#p21051",
     "script": "p21_gravity.py",
-    "line": 343,
+    "line": 358,
     "verdict": "pass"
    },
    "declarations": [
@@ -16245,7 +16251,7 @@
    "check": {
     "href": "frc/ledgers/p21_gravity.html#p21052",
     "script": "p21_gravity.py",
-    "line": 373,
+    "line": 393,
     "verdict": "pass"
    },
    "declarations": [
@@ -16276,7 +16282,7 @@
    "check": {
     "href": "frc/ledgers/p21_gravity.html#p21053",
     "script": "p21_gravity.py",
-    "line": 387,
+    "line": 407,
     "verdict": "pass"
    },
    "declarations": [
@@ -16284,6 +16290,11 @@
      "lib": "FrcLedger",
      "module": "FrcLedger/Gravity",
      "name": "FRC.Gravity.crossover_limits"
+    },
+    {
+     "lib": "FrcLedger",
+     "module": "FrcLedger/Gravity",
+     "name": "FRC.Gravity.crossover_newton_limit"
     },
     {
      "lib": "FrcLedger",
@@ -16310,14 +16321,20 @@
    "statement": "The floor tracks the expansion, $a_0(z)\\propto H(z)$ (BTFR zero-point $\\propto E(z)^{1/4}$); high-$z$ rotation curves decisive.",
    "origin_row": "21:P5",
    "tag": "T",
-   "tier": null,
+   "tier": 2,
    "check": {
     "href": "frc/ledgers/p21_gravity.html#p21054",
     "script": "p21_gravity.py",
-    "line": 406,
+    "line": 429,
     "verdict": "pass"
    },
-   "declarations": [],
+   "declarations": [
+    {
+     "lib": "FrcLedger",
+     "module": "FrcLedger/Gravity",
+     "name": "FRC.Gravity.running_floor"
+    }
+   ],
    "aliases": [],
    "rows": [
     "21:P5"
@@ -16338,7 +16355,7 @@
    "check": {
     "href": "frc/ledgers/p21_gravity.html#p21055",
     "script": "p21_gravity.py",
-    "line": 290,
+    "line": 300,
     "verdict": "pass"
    },
    "declarations": [
@@ -16369,7 +16386,7 @@
    "check": {
     "href": "frc/ledgers/p21_gravity.html#p21050",
     "script": "p21_gravity.py",
-    "line": 333,
+    "line": 346,
     "verdict": "pass"
    },
    "declarations": [
@@ -16390,14 +16407,14 @@
   {
    "key": "p21060",
    "origin": "21",
-   "statement": "The primordial tilt $n_s-1=-\\pi^{2}/\\ln\\Omega=-0.0348$ [approx] at $\\ln\\Omega=283.5$ (the master's scale import), against Planck 2018 $-0.0351\\pm0.0042$ ($+0.07\\sigma$); $0.25\\%$ per factor two in $S$; the neighbouring count $\\tfrac12\\ln\\Omega$ excluded at $8.2\\sigma$.",
+   "statement": "The primordial tilt $n_s-1=-\\pi^{2}/\\ln\\Omega=-0.0348$ [approx] at $\\ln\\Omega=283.5$ (the master's scale import), against Planck 2018 $-0.0351\\pm0.0042$ ($+0.07\\sigma$); $0.24\\%$ per factor two in $S$; the neighbouring count $\\tfrac12\\ln\\Omega$ excluded at $8.2\\sigma$.",
    "origin_row": "21:P8",
    "tag": "T",
    "tier": 2,
    "check": {
     "href": "frc/ledgers/p21_gravity.html#p21060",
     "script": "p21_gravity.py",
-    "line": 398,
+    "line": 421,
     "verdict": "pass"
    },
    "declarations": [
@@ -16414,66 +16431,6 @@
    "realisations": [
     "p00148"
    ]
-  },
-  {
-   "key": "p21056",
-   "origin": "21",
-   "statement": "The machine verification: the ledger file \\texttt{frc/ledgers/p21\\_gravity.py} of the \\texttt{finite-ring-space} framework runs forty-seven checks in seven blocks (the register, the lattice, the drift and the defect, the post-Newtonian series, the strong field, the floor and the crossover, the simulation), each witnessed row decided by one check at its \\texttt{\\# 21:}$\\langle$row$\\rangle$ marker; the notebook \\texttt{p21\\_gravity.ipynb} runs one predicate per cell.",
-   "origin_row": "21:V1",
-   "tag": "T",
-   "tier": null,
-   "check": null,
-   "declarations": [],
-   "aliases": [],
-   "rows": [
-    "21:V1"
-   ],
-   "realisations": []
-  },
-  {
-   "key": "p21057",
-   "origin": "21",
-   "statement": "The kinds, recorded per check: \\textsf{EXACT} --- decidable identities in integers, fractions and residues, no tolerance in the verdict (blocks A--D, twenty-nine checks); \\textsf{CHART} --- a continuum reading (a limit, a quadrature, an extremum, a seeded simulation) or a comparison with data, tagged [approx]/[data], every numeral anchored to the scale import ($\\ln\\Omega=283.5$, $H_0=67.4$), verdict by stated tolerance (blocks E--G, eighteen checks).",
-   "origin_row": "21:V2",
-   "tag": "T",
-   "tier": null,
-   "check": null,
-   "declarations": [],
-   "aliases": [],
-   "rows": [
-    "21:V2"
-   ],
-   "realisations": []
-  },
-  {
-   "key": "p21058",
-   "origin": "21",
-   "statement": "What the run does not carry, stated: the comparable-mass $2$PN $\\nu$-sector reduction (the failed first route is not shipped; the $1$PN sector closed by check D2, the test-particle sector by D1 and D3); the imports and realisations of blocks A and B, consumed, not decided; the $\\Omega$-hard residue Z1; the dynamics of C1, C22 beyond their identities; X6's wrapped-chart clause.",
-   "origin_row": "21:V3",
-   "tag": "T",
-   "tier": null,
-   "check": null,
-   "declarations": [],
-   "aliases": [],
-   "rows": [
-    "21:V3"
-   ],
-   "realisations": []
-  },
-  {
-   "key": "p21061",
-   "origin": "21",
-   "statement": "The formal layer, one key-named declaration per witnessed row: in the Lean core (no axioms) the register, the channel, the cover triangle, the defect's recurrence, the pair tally, the locked sum, the Gauss law, the Frobenius trace, the post-Newtonian coefficients, the registration root, the central difference, the Laplacian's symbol, the shift theorem; on Mathlib the bracketed chart numerals.",
-   "origin_row": "21:V4",
-   "tag": "T",
-   "tier": null,
-   "check": null,
-   "declarations": [],
-   "aliases": [],
-   "rows": [
-    "21:V4"
-   ],
-   "realisations": []
   },
   {
    "key": "p21041",
@@ -16504,7 +16461,7 @@
    "check": {
     "href": "frc/ledgers/p21_gravity.html#p21042",
     "script": "p21_gravity.py",
-    "line": 381,
+    "line": 401,
     "verdict": "pass"
    },
    "declarations": [
@@ -23713,6 +23670,22 @@
    ]
   },
   {
+   "key": "p21056",
+   "successors": []
+  },
+  {
+   "key": "p21057",
+   "successors": []
+  },
+  {
+   "key": "p21058",
+   "successors": []
+  },
+  {
+   "key": "p21061",
+   "successors": []
+  },
+  {
    "key": "p28023",
    "successors": [
     "p28050",
@@ -23760,7 +23733,7 @@
    "block": "A",
    "tag": "T",
    "name": "Finitude",
-   "statement": "\\textbf{Finitude}: the Universe is what its registrations register (A8). For any totality and any reading of capacity $R$, the registered Universe embeds in the shell of $R$ members, and among any $R+1$ members two share a residue: no reading registers an unlimited supply (5:C2, 29:C1, 29:C2). One coherent plurality (A6, A13); its count $\\Om$: A7.",
+   "statement": "\\textbf{Finitude}: the Universe is the sum total of its manifestations (A8). For any totality and any reading of capacity $R$, the registered Universe embeds in the shell of $R$ members, and among any $R+1$ members two share a residue: no reading registers an unlimited supply (5:C2, 29:C1, 29:C2). One coherent plurality (A6, A13); its count $\\Om$: A7.",
    "source": "5-red, 29-fin, m04",
    "page": "00-ledger.html#A2",
    "witness": {
@@ -23796,7 +23769,7 @@
     "29-fin",
     "m04"
    ],
-   "text": "Finitude: Finitude: the Universe is what its registrations register (A8). For any totality and any reading of capacity $R$, the registered Universe embeds in the shell of $R$ members, and among any $R+1$ members two share a residue: no reading registers an unlimited supply (5:C2, 29:C1, 29:C2). One coherent plurality (A6, A13); its count $\\Om$: A7. 5-red, 29-fin, m04"
+   "text": "Finitude: Finitude: the Universe is the sum total of its manifestations (A8). For any totality and any reading of capacity $R$, the registered Universe embeds in the shell of $R$ members, and among any $R+1$ members two share a residue: no reading registers an unlimited supply (5:C2, 29:C1, 29:C2). One coherent plurality (A6, A13); its count $\\Om$: A7. 5-red, 29-fin, m04"
   },
   {
    "paper": "00",
@@ -44061,7 +44034,7 @@
     "py": {
      "href": "frc/ledgers/p21_gravity.html#p21021",
      "script": "p21_gravity.py",
-     "line": 252,
+     "line": 255,
      "verdict": "pass"
     },
     "lean": [
@@ -44088,13 +44061,13 @@
    "tag": "T",
    "name": null,
    "statement": "Channel unity forces the spatial bias to equal the temporal one, $\\gamma=1$, restoring the full light deflection $4Gm/c^2b$.",
-   "source": "Lem.~\\ref{lem:isopair}, Prop.~\\ref{prop:bending}\\newline \\pywit{gravity}{p21022}{C7}, \\leanwit{FrcCore}{p21022}{C7}, \\leanwit{FrcLedger}{p21022}{C7} \\lean{Gravity.cover\\_forcing, FRC.Drift.cover\\_triangle}",
+   "source": "Lem.~\\ref{lem:isopair}, Prop.~\\ref{prop:bending}\\newline \\pywit{gravity}{p21022}{C7}, \\leanwit{FrcCore}{p21022}{C7}, \\leanwit{FrcLedger}{p21022}{C7} \\lean{Gravity.cover\\_forcing, Gravity.pn\\_series, FRC.Drift.cover\\_triangle}",
    "page": "21-gravity/index.html#C7",
    "witness": {
     "py": {
      "href": "frc/ledgers/p21_gravity.html#p21022",
      "script": "p21_gravity.py",
-     "line": 282,
+     "line": 292,
      "verdict": "pass"
     },
     "lean": [
@@ -44107,6 +44080,14 @@
       "page": "lean/ml/Gravity.html#FRC.Gravity.cover_forcing"
      },
      {
+      "lib": "FrcLedger",
+      "module": "FrcLedger/Gravity",
+      "name": "FRC.Gravity.pn_series",
+      "tier": 2,
+      "ok": true,
+      "page": "lean/ml/Gravity.html#FRC.Gravity.pn_series"
+     },
+     {
       "lib": "FrcCore",
       "module": "FrcCore/Theme/Drift",
       "name": "FRC.Drift.cover_triangle",
@@ -44117,7 +44098,7 @@
     ]
    },
    "refs": [],
-   "text": "Channel unity forces the spatial bias to equal the temporal one, $\\gamma=1$, restoring the full light deflection $4Gm/c^2b$. Lem. lem:isopair, Prop. prop:bending p21022, FrcCore{C7}, FrcLedger{C7} Gravity.cover_forcing, FRC.Drift.cover_triangle"
+   "text": "Channel unity forces the spatial bias to equal the temporal one, $\\gamma=1$, restoring the full light deflection $4Gm/c^2b$. Lem. lem:isopair, Prop. prop:bending p21022, FrcCore{C7}, FrcLedger{C7} Gravity.cover_forcing, Gravity.pn_series, FRC.Drift.cover_triangle"
   },
   {
    "paper": "21-grav",
@@ -44135,7 +44116,7 @@
     "py": {
      "href": "frc/ledgers/p21_gravity.html#p21023",
      "script": "p21_gravity.py",
-     "line": 282,
+     "line": 292,
      "verdict": "pass"
     },
     "lean": [
@@ -44252,7 +44233,7 @@
     "py": {
      "href": "frc/ledgers/p21_gravity.html#p21025",
      "script": "p21_gravity.py",
-     "line": 343,
+     "line": 358,
      "verdict": "pass"
     },
     "lean": []
@@ -44276,7 +44257,7 @@
     "py": {
      "href": "frc/ledgers/p21_gravity.html#p21026",
      "script": "p21_gravity.py",
-     "line": 239,
+     "line": 242,
      "verdict": "pass"
     },
     "lean": [
@@ -44327,7 +44308,7 @@
     "py": {
      "href": "frc/ledgers/p21_gravity.html#p21027",
      "script": "p21_gravity.py",
-     "line": 295,
+     "line": 305,
      "verdict": "pass"
     },
     "lean": [
@@ -44357,7 +44338,7 @@
    "tag": "T",
    "name": null,
    "statement": "Area-law entropy $S=c_S'A_f/\\ell_P^2$: the $\\tfrac14$ the $Q_4$ gauge quotient counted on the shell ($S/A=\\kap/\\p $ exactly), the Carrier identity $S=(\\Omega-1)/4$ at the coherence-horizon shell the same quarter (a consistency, not a closure); the count read as the coordinate area at the operational cut (B7); the identification of the entropy with the channel count (master D15); an exact merger area law $\\Delta A=2M_1M_2$ on the count face of the mass; a phase-slip (Hawking-scaling) emission suppressed below one quantum per Hubble time.",
-   "source": "Prop.~\\ref{prop:area}\\newline \\pywit{gravity}{p21062}{C13}, \\leanwit{FrcCore}{p21062}{C13}, \\leanwit{FrcLedger}{p21062}{C13}; rests on A1, B2, C12, 00:D15 \\lean{Gravity.count\\_face, Gravity.merger\\_area\\_law, Gravity.capacity\\_ratio, FRC.Grav.count\\_identity, FRC.Grav.merger\\_instance}",
+   "source": "Prop.~\\ref{prop:area}\\newline \\pywit{gravity}{p21062}{C13}, \\leanwit{FrcCore}{p21062}{C13}, \\leanwit{FrcLedger}{p21062}{C13}; rests on A1, B2, C12, 00:D15 \\lean{Gravity.count\\_face, Gravity.merger\\_area\\_law, Gravity.capacity\\_ratio, Gravity.capacity\\_ratio\\_numeral, FRC.Grav.count\\_identity, FRC.Grav.merger\\_instance}",
    "page": "21-gravity/index.html#C13",
    "witness": {
     "py": {
@@ -44392,6 +44373,14 @@
       "page": "lean/ml/Gravity.html#FRC.Gravity.capacity_ratio"
      },
      {
+      "lib": "FrcLedger",
+      "module": "FrcLedger/Gravity",
+      "name": "FRC.Gravity.capacity_ratio_numeral",
+      "tier": 2,
+      "ok": true,
+      "page": "lean/ml/Gravity.html#FRC.Gravity.capacity_ratio_numeral"
+     },
+     {
       "lib": "FrcCore",
       "module": "FrcCore/Theme/Gravity",
       "name": "FRC.Grav.count_identity",
@@ -44418,7 +44407,7 @@
     "p21027",
     "p21065"
    ],
-   "text": "Area-law entropy $S=c_S'A_f/\\ell_P^2$: the $\\tfrac14$ the $Q_4$ gauge quotient counted on the shell ($S/A=\\kap/\\p $ exactly), the Carrier identity $S=(\\Omega-1)/4$ at the coherence-horizon shell the same quarter (a consistency, not a closure); the count read as the coordinate area at the operational cut (B7); the identification of the entropy with the channel count (master D15); an exact merger area law $\\Delta A=2M_1M_2$ on the count face of the mass; a phase-slip (Hawking-scaling) emission suppressed below one quantum per Hubble time. Prop. prop:area p21062, FrcCore{C13}, FrcLedger{C13}; rests on A1, B2, C12, 00:D15 Gravity.count_face, Gravity.merger_area_law, Gravity.capacity_ratio, FRC.Grav.count_identity, FRC.Grav.merger_instance"
+   "text": "Area-law entropy $S=c_S'A_f/\\ell_P^2$: the $\\tfrac14$ the $Q_4$ gauge quotient counted on the shell ($S/A=\\kap/\\p $ exactly), the Carrier identity $S=(\\Omega-1)/4$ at the coherence-horizon shell the same quarter (a consistency, not a closure); the count read as the coordinate area at the operational cut (B7); the identification of the entropy with the channel count (master D15); an exact merger area law $\\Delta A=2M_1M_2$ on the count face of the mass; a phase-slip (Hawking-scaling) emission suppressed below one quantum per Hubble time. Prop. prop:area p21062, FrcCore{C13}, FrcLedger{C13}; rests on A1, B2, C12, 00:D15 Gravity.count_face, Gravity.merger_area_law, Gravity.capacity_ratio, Gravity.capacity_ratio_numeral, FRC.Grav.count_identity, FRC.Grav.merger_instance"
   },
   {
    "paper": "21-grav",
@@ -44571,7 +44560,7 @@
     "py": {
      "href": "frc/ledgers/p21_gravity.html#p21032",
      "script": "p21_gravity.py",
-     "line": 348,
+     "line": 364,
      "verdict": "pass"
     },
     "lean": []
@@ -44601,7 +44590,7 @@
     "py": {
      "href": "frc/ledgers/p21_gravity.html#p21033",
      "script": "p21_gravity.py",
-     "line": 298,
+     "line": 310,
      "verdict": "pass"
     },
     "lean": [
@@ -44645,7 +44634,7 @@
     "py": {
      "href": "frc/ledgers/p21_gravity.html#p21064",
      "script": "p21_gravity.py",
-     "line": 260,
+     "line": 263,
      "verdict": "pass"
     },
     "lean": [
@@ -44832,7 +44821,7 @@
     "py": {
      "href": "frc/ledgers/p21_gravity.html#p21038",
      "script": "p21_gravity.py",
-     "line": 286,
+     "line": 296,
      "verdict": "pass"
     },
     "lean": []
@@ -44858,7 +44847,7 @@
     "py": {
      "href": "frc/ledgers/p21_gravity.html#p21040",
      "script": "p21_gravity.py",
-     "line": 244,
+     "line": 247,
      "verdict": "pass"
     },
     "lean": [
@@ -44910,7 +44899,7 @@
     "py": {
      "href": "frc/ledgers/p21_gravity.html#p21049",
      "script": "p21_gravity.py",
-     "line": 326,
+     "line": 339,
      "verdict": "pass"
     },
     "lean": [
@@ -44972,7 +44961,7 @@
     "py": {
      "href": "frc/ledgers/p21_gravity.html#p21051",
      "script": "p21_gravity.py",
-     "line": 343,
+     "line": 358,
      "verdict": "pass"
     },
     "lean": [
@@ -45009,7 +44998,7 @@
     "py": {
      "href": "frc/ledgers/p21_gravity.html#p21052",
      "script": "p21_gravity.py",
-     "line": 373,
+     "line": 393,
      "verdict": "pass"
     },
     "lean": [
@@ -45043,13 +45032,13 @@
    "tag": "T",
    "name": null,
    "statement": "The radial acceleration relation, $g_{\\mathrm{obs}}=g_N/(1-e^{-\\sqrt{g_N/a_0}})$, no fitted function beyond the barrier identification (B9), the form the data selected across the four observed acceleration decades, its approach to Newton the discriminant ($0.05$ at $g_N\\approx5a_0$ against the simple rational interpolant); the deep limit gives the baryonic Tully--Fisher relation $v^4=GMa_0$.",
-   "source": "Prop.~\\ref{prop:crossover}\\newline \\pywit{gravity}{p21053}{P4}, \\leanwit{FrcLedger}{p21053}{P4}; rests on A8, C16, C19 \\lean{Gravity.crossover\\_limits, Gravity.registration\\_root, Gravity.interpolant\\_discriminant}",
+   "source": "Prop.~\\ref{prop:crossover}\\newline \\pywit{gravity}{p21053}{P4}, \\leanwit{FrcLedger}{p21053}{P4}; rests on A8, C16, C19 \\lean{Gravity.crossover\\_limits, Gravity.crossover\\_newton\\_limit, Gravity.registration\\_root, Gravity.interpolant\\_discriminant}",
    "page": "21-gravity/index.html#P4",
    "witness": {
     "py": {
      "href": "frc/ledgers/p21_gravity.html#p21053",
      "script": "p21_gravity.py",
-     "line": 387,
+     "line": 407,
      "verdict": "pass"
     },
     "lean": [
@@ -45060,6 +45049,14 @@
       "tier": 2,
       "ok": true,
       "page": "lean/ml/Gravity.html#FRC.Gravity.crossover_limits"
+     },
+     {
+      "lib": "FrcLedger",
+      "module": "FrcLedger/Gravity",
+      "name": "FRC.Gravity.crossover_newton_limit",
+      "tier": 2,
+      "ok": true,
+      "page": "lean/ml/Gravity.html#FRC.Gravity.crossover_newton_limit"
      },
      {
       "lib": "FrcLedger",
@@ -45085,7 +45082,7 @@
     "p21064",
     "p32015"
    ],
-   "text": "The radial acceleration relation, $g_{\\mathrm{obs}}=g_N/(1-e^{-\\sqrt{g_N/a_0}})$, no fitted function beyond the barrier identification (B9), the form the data selected across the four observed acceleration decades, its approach to Newton the discriminant ($0.05$ at $g_N\\approx5a_0$ against the simple rational interpolant); the deep limit gives the baryonic Tully–Fisher relation $v^4=GMa_0$. Prop. prop:crossover p21053, FrcLedger{P4}; rests on A8, C16, C19 Gravity.crossover_limits, Gravity.registration_root, Gravity.interpolant_discriminant"
+   "text": "The radial acceleration relation, $g_{\\mathrm{obs}}=g_N/(1-e^{-\\sqrt{g_N/a_0}})$, no fitted function beyond the barrier identification (B9), the form the data selected across the four observed acceleration decades, its approach to Newton the discriminant ($0.05$ at $g_N\\approx5a_0$ against the simple rational interpolant); the deep limit gives the baryonic Tully–Fisher relation $v^4=GMa_0$. Prop. prop:crossover p21053, FrcLedger{P4}; rests on A8, C16, C19 Gravity.crossover_limits, Gravity.crossover_newton_limit, Gravity.registration_root, Gravity.interpolant_discriminant"
   },
   {
    "paper": "21-grav",
@@ -45097,16 +45094,25 @@
    "tag": "T",
    "name": null,
    "statement": "The floor tracks the expansion, $a_0(z)\\propto H(z)$ (BTFR zero-point $\\propto E(z)^{1/4}$); high-$z$ rotation curves decisive.",
-   "source": "\\S\\ref{sub:rar}, \\citep{dark}\\newline \\pywit{gravity}{p21054}{P5}; rests on 14:B4, 32:B3, 00:L1",
+   "source": "\\S\\ref{sub:rar}, \\citep{dark}\\newline \\pywit{gravity}{p21054}{P5}, \\leanwit{FrcLedger}{p21054}{P5}; rests on 14:B4, 32:B3, 00:L1 \\lean{Gravity.running\\_floor}",
    "page": "21-gravity/index.html#P5",
    "witness": {
     "py": {
      "href": "frc/ledgers/p21_gravity.html#p21054",
      "script": "p21_gravity.py",
-     "line": 406,
+     "line": 429,
      "verdict": "pass"
     },
-    "lean": []
+    "lean": [
+     {
+      "lib": "FrcLedger",
+      "module": "FrcLedger/Gravity",
+      "name": "FRC.Gravity.running_floor",
+      "tier": 2,
+      "ok": true,
+      "page": "lean/ml/Gravity.html#FRC.Gravity.running_floor"
+     }
+    ]
    },
    "refs": [
     "p00133",
@@ -45114,7 +45120,7 @@
     "p14012",
     "p32010"
    ],
-   "text": "The floor tracks the expansion, $a_0(z)\\propto H(z)$ (BTFR zero-point $\\propto E(z)^{1/4}$); high-$z$ rotation curves decisive. \\Ssub:rar, [dark] p21054; rests on 14:B4, 32:B3, 00:L1"
+   "text": "The floor tracks the expansion, $a_0(z)\\propto H(z)$ (BTFR zero-point $\\propto E(z)^{1/4}$); high-$z$ rotation curves decisive. \\Ssub:rar, [dark] p21054, FrcLedger{P5}; rests on 14:B4, 32:B3, 00:L1 Gravity.running_floor"
   },
   {
    "paper": "21-grav",
@@ -45132,7 +45138,7 @@
     "py": {
      "href": "frc/ledgers/p21_gravity.html#p21055",
      "script": "p21_gravity.py",
-     "line": 290,
+     "line": 300,
      "verdict": "pass"
     },
     "lean": [
@@ -45177,7 +45183,7 @@
     "py": {
      "href": "frc/ledgers/p21_gravity.html#p21050",
      "script": "p21_gravity.py",
-     "line": 333,
+     "line": 346,
      "verdict": "pass"
     },
     "lean": [
@@ -45207,14 +45213,14 @@
    "block": "P",
    "tag": "T",
    "name": null,
-   "statement": "The primordial tilt $n_s-1=-\\pi^{2}/\\ln\\Omega=-0.0348$ [approx] at $\\ln\\Omega=283.5$ (the master's scale import), against Planck 2018 $-0.0351\\pm0.0042$ ($+0.07\\sigma$); $0.25\\%$ per factor two in $S$; the neighbouring count $\\tfrac12\\ln\\Omega$ excluded at $8.2\\sigma$.",
+   "statement": "The primordial tilt $n_s-1=-\\pi^{2}/\\ln\\Omega=-0.0348$ [approx] at $\\ln\\Omega=283.5$ (the master's scale import), against Planck 2018 $-0.0351\\pm0.0042$ ($+0.07\\sigma$); $0.24\\%$ per factor two in $S$; the neighbouring count $\\tfrac12\\ln\\Omega$ excluded at $8.2\\sigma$.",
    "source": "Prop.~\\ref{prop:primordial}\\newline \\pywit{gravity}{p21060}{P8}, \\leanwit{FrcLedger}{p21060}{P8}; rests on A8, C18, 00:L8 \\lean{Gravity.tilt\\_bracket}",
    "page": "21-gravity/index.html#P8",
    "witness": {
     "py": {
      "href": "frc/ledgers/p21_gravity.html#p21060",
      "script": "p21_gravity.py",
-     "line": 398,
+     "line": 421,
      "verdict": "pass"
     },
     "lean": [
@@ -45233,88 +45239,7 @@
     "p21008",
     "p21033"
    ],
-   "text": "The primordial tilt $n_s-1=-\\pi^{2}/\\ln\\Omega=-0.0348$ [approx] at $\\ln\\Omega=283.5$ (the master's scale import), against Planck 2018 $-0.0351\\pm0.0042$ ($+0.07\\sigma$); $0.25%$ per factor two in $S$; the neighbouring count $\\tfrac12\\ln\\Omega$ excluded at $8.2\\sigma$. Prop. prop:primordial p21060, FrcLedger{P8}; rests on A8, C18, 00:L8 Gravity.tilt_bracket"
-  },
-  {
-   "paper": "21-grav",
-   "no": 21,
-   "rid": "21:V1",
-   "key": "p21056",
-   "label": "V1",
-   "block": "V",
-   "tag": "T",
-   "name": null,
-   "statement": "The machine verification: the ledger file \\texttt{frc/ledgers/p21\\_gravity.py} of the \\texttt{finite-ring-space} framework runs forty-seven checks in seven blocks (the register, the lattice, the drift and the defect, the post-Newtonian series, the strong field, the floor and the crossover, the simulation), each witnessed row decided by one check at its \\texttt{\\# 21:}$\\langle$row$\\rangle$ marker; the notebook \\texttt{p21\\_gravity.ipynb} runs one predicate per cell.",
-   "source": "Reproducibility; \\href{https://finitering.space/frc/ledgers/p21_gravity.html}{\\texttt{finitering.space/frc/ledgers/p21\\_gravity.html}}",
-   "page": "21-gravity/index.html#V1",
-   "witness": {
-    "py": null,
-    "lean": []
-   },
-   "refs": [],
-   "text": "The machine verification: the ledger file frc/ledgers/p21_gravity.py of the finite-ring-space framework runs forty-seven checks in seven blocks (the register, the lattice, the drift and the defect, the post-Newtonian series, the strong field, the floor and the crossover, the simulation), each witnessed row decided by one check at its # 21:$\\langle$row$\\rangle$ marker; the notebook p21_gravity.ipynb runs one predicate per cell. Reproducibility; finitering.space/frc/ledgers/p21_gravity.html"
-  },
-  {
-   "paper": "21-grav",
-   "no": 21,
-   "rid": "21:V2",
-   "key": "p21057",
-   "label": "V2",
-   "block": "V",
-   "tag": "T",
-   "name": null,
-   "statement": "The kinds, recorded per check: \\textsf{EXACT} --- decidable identities in integers, fractions and residues, no tolerance in the verdict (blocks A--D, twenty-nine checks); \\textsf{CHART} --- a continuum reading (a limit, a quadrature, an extremum, a seeded simulation) or a comparison with data, tagged [approx]/[data], every numeral anchored to the scale import ($\\ln\\Omega=283.5$, $H_0=67.4$), verdict by stated tolerance (blocks E--G, eighteen checks).",
-   "source": "Reproducibility",
-   "page": "21-gravity/index.html#V2",
-   "witness": {
-    "py": null,
-    "lean": []
-   },
-   "refs": [],
-   "text": "The kinds, recorded per check: EXACT — decidable identities in integers, fractions and residues, no tolerance in the verdict (blocks A–D, twenty-nine checks); CHART — a continuum reading (a limit, a quadrature, an extremum, a seeded simulation) or a comparison with data, tagged [approx]/[data], every numeral anchored to the scale import ($\\ln\\Omega=283.5$, $H_0=67.4$), verdict by stated tolerance (blocks E–G, eighteen checks). Reproducibility"
-  },
-  {
-   "paper": "21-grav",
-   "no": 21,
-   "rid": "21:V3",
-   "key": "p21058",
-   "label": "V3",
-   "block": "V",
-   "tag": "T",
-   "name": null,
-   "statement": "What the run does not carry, stated: the comparable-mass $2$PN $\\nu$-sector reduction (the failed first route is not shipped; the $1$PN sector closed by check D2, the test-particle sector by D1 and D3); the imports and realisations of blocks A and B, consumed, not decided; the $\\Omega$-hard residue Z1; the dynamics of C1, C22 beyond their identities; X6's wrapped-chart clause.",
-   "source": "Reproducibility; \\S\\ref{sub:2pn}",
-   "page": "21-gravity/index.html#V3",
-   "witness": {
-    "py": null,
-    "lean": []
-   },
-   "refs": [
-    "p21016",
-    "p21037",
-    "p21046",
-    "p21059"
-   ],
-   "text": "What the run does not carry, stated: the comparable-mass $2$PN $\\nu$-sector reduction (the failed first route is not shipped; the $1$PN sector closed by check D2, the test-particle sector by D1 and D3); the imports and realisations of blocks A and B, consumed, not decided; the $\\Omega$-hard residue Z1; the dynamics of C1, C22 beyond their identities; X6's wrapped-chart clause. Reproducibility; \\Ssub:2pn"
-  },
-  {
-   "paper": "21-grav",
-   "no": 21,
-   "rid": "21:V4",
-   "key": "p21061",
-   "label": "V4",
-   "block": "V",
-   "tag": "T",
-   "name": null,
-   "statement": "The formal layer, one key-named declaration per witnessed row: in the Lean core (no axioms) the register, the channel, the cover triangle, the defect's recurrence, the pair tally, the locked sum, the Gauss law, the Frobenius trace, the post-Newtonian coefficients, the registration root, the central difference, the Laplacian's symbol, the shift theorem; on Mathlib the bracketed chart numerals.",
-   "source": "\\href{https://finitering.space/lean/core/Gravity.html}{\\texttt{finitering.space/lean/core/Gravity.html}}; \\href{https://finitering.space/lean/Gravity.html}{\\texttt{finitering.space/lean/Gravity.html}}",
-   "page": "21-gravity/index.html#V4",
-   "witness": {
-    "py": null,
-    "lean": []
-   },
-   "refs": [],
-   "text": "The formal layer, one key-named declaration per witnessed row: in the Lean core (no axioms) the register, the channel, the cover triangle, the defect's recurrence, the pair tally, the locked sum, the Gauss law, the Frobenius trace, the post-Newtonian coefficients, the registration root, the central difference, the Laplacian's symbol, the shift theorem; on Mathlib the bracketed chart numerals. finitering.space/lean/core/Gravity.html; finitering.space/lean/Gravity.html"
+   "text": "The primordial tilt $n_s-1=-\\pi^{2}/\\ln\\Omega=-0.0348$ [approx] at $\\ln\\Omega=283.5$ (the master's scale import), against Planck 2018 $-0.0351\\pm0.0042$ ($+0.07\\sigma$); $0.24%$ per factor two in $S$; the neighbouring count $\\tfrac12\\ln\\Omega$ excluded at $8.2\\sigma$. Prop. prop:primordial p21060, FrcLedger{P8}; rests on A8, C18, 00:L8 Gravity.tilt_bracket"
   },
   {
    "paper": "21-grav",
@@ -45355,7 +45280,7 @@
     "py": {
      "href": "frc/ledgers/p21_gravity.html#p21042",
      "script": "p21_gravity.py",
-     "line": 381,
+     "line": 401,
      "verdict": "pass"
     },
     "lean": [

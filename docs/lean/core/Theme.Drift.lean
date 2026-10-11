@@ -87,17 +87,17 @@ theorem least_le (P : Nat → Bool) : ∀ (f t : Nat), t ≤ least P f t
   | f + 1, t => by
     unfold least
     match h : P t with
-    | true => rw [if_pos rfl]; exact Nat.le_refl t
-    | false => rw [if_neg Bool.false_ne_true]; exact Nat.le_trans (Nat.le_succ t) (least_le P f (t + 1))
+    | true => rw [ite_eq_left rfl]; exact Nat.le_refl t
+    | false => rw [ite_eq_right Bool.false_ne_true]; exact Nat.le_trans (Nat.le_succ t) (least_le P f (t + 1))
 
 theorem least_bound (P : Nat → Bool) : ∀ (f t : Nat), least P f t ≤ t + f
   | 0, t => Nat.le_refl t
   | f + 1, t => by
     unfold least
     match h : P t with
-    | true => rw [if_pos rfl]; exact Nat.le_add_right t (f + 1)
+    | true => rw [ite_eq_left rfl]; exact Nat.le_add_right t (f + 1)
     | false =>
-      rw [if_neg Bool.false_ne_true]
+      rw [ite_eq_right Bool.false_ne_true]
       have e : t + 1 + f = t + (f + 1) := by rw [Nat.add_right_comm, Nat.add_assoc]
       rw [← e]; exact least_bound P f (t + 1)
 
@@ -106,9 +106,9 @@ theorem least_min (P : Nat → Bool) : ∀ (f t u : Nat), t ≤ u → u < least 
   | f + 1, t, u, htu, hu => by
     unfold least at hu
     match h : P t with
-    | true => rw [h, if_pos rfl] at hu; exact absurd (Nat.lt_of_le_of_lt htu hu) (Nat.lt_irrefl t)
+    | true => rw [h, ite_eq_left rfl] at hu; exact absurd (Nat.lt_of_le_of_lt htu hu) (Nat.lt_irrefl t)
     | false =>
-      rw [h, if_neg Bool.false_ne_true] at hu
+      rw [h, ite_eq_right Bool.false_ne_true] at hu
       rcases Nat.lt_or_ge u (t + 1) with hlt | hge
       · have e : u = t := Nat.le_antisymm (Nat.le_of_lt_succ hlt) htu
         rw [e]; exact h
@@ -119,9 +119,9 @@ theorem least_hit (P : Nat → Bool) : ∀ (f t : Nat), (∃ u, t ≤ u ∧ u < 
   | f + 1, t, ⟨u, htu, hu, hP⟩ => by
     unfold least
     match h : P t with
-    | true => rw [if_pos rfl]; exact h
+    | true => rw [ite_eq_left rfl]; exact h
     | false =>
-      rw [if_neg Bool.false_ne_true]
+      rw [ite_eq_right Bool.false_ne_true]
       apply least_hit P f (t + 1)
       refine ⟨u, ?_, ?_, hP⟩
       · rcases Nat.lt_or_ge u (t + 1) with hlt | hge

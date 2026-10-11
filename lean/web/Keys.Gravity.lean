@@ -109,16 +109,16 @@ theorem merger_area_law (M₁ M₂ δ : ℤ) :
 
 /-- 21:A9, 21:C25, 21:C7, 21:C8 — the cover forcing: the apsidal coefficient `2 − β + 2γ` against the
 PPN-free deficit `3/2` equals the two-face ratio `2` exactly when `2γ − β = 1`, with deviation
-`(2/3)(2γ − β − 1)`; channel unity `γ = 1` together with the forcing gives `β = 1`, and the perihelion factor
-`(2 + 2γ − β)/3` is then `1` (the deflection factor `(1 + γ)/2` is `1` at `γ = 1`). -/
+`(2/3)(2γ − β − 1)`; channel unity `γ = 1` makes the deflection factor `(1 + γ)/2` equal to `1` (the full
+`4Gm/c²b`) and, together with the forcing, gives `β = 1`, the perihelion factor `(2 + 2γ − β)/3` then `1`. -/
 theorem cover_forcing (β γ : ℚ) :
     ((2 - β + 2 * γ) / (3 / 2) = 2 ↔ 2 * γ - β = 1) ∧
     (2 - β + 2 * γ) / (3 / 2) - 2 = 2 / 3 * (2 * γ - β - 1) ∧
-    (γ = 1 → 2 * γ - β = 1 → β = 1 ∧ (2 + 2 * γ - β) / 3 = 1) := by
+    (γ = 1 → (1 + γ) / 2 = 1 ∧ (2 * γ - β = 1 → β = 1 ∧ (2 + 2 * γ - β) / 3 = 1)) := by
   refine ⟨?_, by ring, ?_⟩
   · constructor <;> intro h <;> linarith
-  · rintro rfl h
-    exact ⟨by linarith, by linarith⟩
+  · rintro rfl
+    exact ⟨by norm_num, fun h => ⟨by linarith, by linarith⟩⟩
 
 /-- 21:A9 — the mass–energy channel `C_{p−1} ∩ C_{2(p+1)} = Q₄`: on every shell `p ≡ 1 (mod 4)`,
 `gcd(p − 1, 2(p + 1)) = 4`; the subgroup reading — in the cyclic unit group of `𝔽_{p²}` (order `(p − 1)(p + 1)`)
@@ -212,14 +212,11 @@ namespace FRC.LedgerML
 theorem p21001 : (∀ {K : Type u_1} [Field K] (S : ℕ), ↑((4 : ℕ) * S + (1 : ℕ)) = (0 : K) → ↑((4 : ℕ) * S) = (-1 : K) ∧ ↑((4 : ℕ) * S) ^ (2 : ℕ) = (1 : K)) ∧ ∀ (S : ℕ) [Fact (Nat.Prime ((4 : ℕ) * S + (1 : ℕ)))], ∃ r, r ^ (2 : ℕ) = ↑S ∧ ((2 : ZMod ((4 : ℕ) * S + (1 : ℕ))) * r) ^ (2 : ℕ) = (-1 : ZMod ((4 : ℕ) * S + (1 : ℕ))) :=
   And.intro @FRC.GravML.calibration_congruence (@FRC.GravML.hbar_register)
 /-- p21009 — 21:A9. The minimal-instance results consumed: the two-face count of the drift (angular $\kap/S$, temporal $\kap/(2S)$, ratio $2$ the double cover), the registration dictionary $p_{\mathrm{sl}}=3(S/\kap)\,r_g$ with the forcing $2\gamma-\beta=1$, and the mass--energy channel $C_{\p-1}\cap C_{2(\p+1)}=Q_4$. -/
-theorem p21009 : (∀ (β γ : ℚ), (((2 : ℚ) - β + (2 : ℚ) * γ) / (3 / 2 : ℚ) = (2 : ℚ) ↔ (2 : ℚ) * γ - β = (1 : ℚ)) ∧ ((2 : ℚ) - β + (2 : ℚ) * γ) / (3 / 2 : ℚ) - (2 : ℚ) = (2 / 3 : ℚ) * ((2 : ℚ) * γ - β - (1 : ℚ)) ∧ (γ = (1 : ℚ) → (2 : ℚ) * γ - β = (1 : ℚ) → β = (1 : ℚ) ∧ ((2 : ℚ) + (2 : ℚ) * γ - β) / (3 : ℚ) = (1 : ℚ))) ∧ ∀ (p : ℕ), p % (4 : ℕ) = (1 : ℕ) → (p - (1 : ℕ)).gcd ((2 : ℕ) * (p + (1 : ℕ))) = (4 : ℕ) :=
+theorem p21009 : (∀ (β γ : ℚ), (((2 : ℚ) - β + (2 : ℚ) * γ) / (3 / 2 : ℚ) = (2 : ℚ) ↔ (2 : ℚ) * γ - β = (1 : ℚ)) ∧ ((2 : ℚ) - β + (2 : ℚ) * γ) / (3 / 2 : ℚ) - (2 : ℚ) = (2 / 3 : ℚ) * ((2 : ℚ) * γ - β - (1 : ℚ)) ∧ (γ = (1 : ℚ) → ((1 : ℚ) + γ) / (2 : ℚ) = (1 : ℚ) ∧ ((2 : ℚ) * γ - β = (1 : ℚ) → β = (1 : ℚ) ∧ ((2 : ℚ) + (2 : ℚ) * γ - β) / (3 : ℚ) = (1 : ℚ)))) ∧ ∀ (p : ℕ), p % (4 : ℕ) = (1 : ℕ) → (p - (1 : ℕ)).gcd ((2 : ℕ) * (p + (1 : ℕ))) = (4 : ℕ) :=
   And.intro @FRC.GravML.cover_forcing (@FRC.GravML.channel_q4)
 set_option linter.defProp false in
 /-- p21017 — 21:C2. Newton's law $F=-Gm_1m_2/r^2$ with $G=1/4\pi\varkappa$ [chart] (register value $G=2S$): the $r^{-2}$ from harmonicity in the three frame freedoms, the product $m_1m_2$ from coherent additivity. -/
 def p21017 := @FRC.GravML.newton_register
-/-- p21022 — 21:C7. Channel unity forces the spatial bias to equal the temporal one, $\gamma=1$, restoring the full light deflection $4Gm/c^2b$. -/
-theorem p21022 : ∀ (β γ : ℚ), (((2 : ℚ) - β + (2 : ℚ) * γ) / (3 / 2 : ℚ) = (2 : ℚ) ↔ (2 : ℚ) * γ - β = (1 : ℚ)) ∧ ((2 : ℚ) - β + (2 : ℚ) * γ) / (3 / 2 : ℚ) - (2 : ℚ) = (2 / 3 : ℚ) * ((2 : ℚ) * γ - β - (1 : ℚ)) ∧ (γ = (1 : ℚ) → (2 : ℚ) * γ - β = (1 : ℚ) → β = (1 : ℚ) ∧ ((2 : ℚ) + (2 : ℚ) * γ - β) / (3 : ℚ) = (1 : ℚ)) :=
-  @FRC.GravML.cover_forcing
 /-- p21024 — 21:C9. The discrete Fierz--Pauli functional, exactly gauge-invariant and the unique adjacency-local stiffness on the shell (the spin-one case is unique-Maxwell). -/
 theorem p21024 : ∀ {N : ℕ} [NeZero N] {R : Type u_1} [CommRing R] (f g : ZMod N → R), ∑ x, f x * (g (x + (1 : ZMod N)) - g (x - (1 : ZMod N))) = -∑ x, (f (x + (1 : ZMod N)) - f (x - (1 : ZMod N))) * g x ∧ ∑ x, f x * (g (x + (1 : ZMod N)) - g x) = -∑ x, (f x - f (x - (1 : ZMod N))) * g x :=
   @FRC.GravML.central_difference_adjoint
@@ -230,7 +227,7 @@ def p21031 := And.intro @FRC.GravML.calibration_congruence (@FRC.GravML.newton_r
 theorem p21035 : ∀ {N : ℕ} [NeZero N] {R : Type u_1} [CommRing R] (ζ : R), ζ ^ N = (1 : R) → ∀ (f : ZMod N → R) (a k : ZMod N), FRC.GravML.dft ζ (fun x => ζ ^ (a.val * x.val) * f x) k = FRC.GravML.dft ζ f (k + a) ∧ FRC.GravML.dft ζ (fun x => f (x - a)) k = ζ ^ (a.val * k.val) * FRC.GravML.dft ζ f k :=
   @FRC.GravML.shift_theorem
 /-- p21040 — 21:C25. The PPN triangle closed by two routes: channel unity gives $\gamma=1$ (C7), the instance cover forces $2\gamma-\beta=1$ (A9), jointly $\beta=1$ --- Proposition~\ref{prop:ppn} reached independently, the deviation $\tfrac23(2\gamma-\beta-1)$ its falsifier. -/
-theorem p21040 : ∀ (β γ : ℚ), (((2 : ℚ) - β + (2 : ℚ) * γ) / (3 / 2 : ℚ) = (2 : ℚ) ↔ (2 : ℚ) * γ - β = (1 : ℚ)) ∧ ((2 : ℚ) - β + (2 : ℚ) * γ) / (3 / 2 : ℚ) - (2 : ℚ) = (2 / 3 : ℚ) * ((2 : ℚ) * γ - β - (1 : ℚ)) ∧ (γ = (1 : ℚ) → (2 : ℚ) * γ - β = (1 : ℚ) → β = (1 : ℚ) ∧ ((2 : ℚ) + (2 : ℚ) * γ - β) / (3 : ℚ) = (1 : ℚ)) :=
+theorem p21040 : ∀ (β γ : ℚ), (((2 : ℚ) - β + (2 : ℚ) * γ) / (3 / 2 : ℚ) = (2 : ℚ) ↔ (2 : ℚ) * γ - β = (1 : ℚ)) ∧ ((2 : ℚ) - β + (2 : ℚ) * γ) / (3 / 2 : ℚ) - (2 : ℚ) = (2 / 3 : ℚ) * ((2 : ℚ) * γ - β - (1 : ℚ)) ∧ (γ = (1 : ℚ) → ((1 : ℚ) + γ) / (2 : ℚ) = (1 : ℚ) ∧ ((2 : ℚ) * γ - β = (1 : ℚ) → β = (1 : ℚ) ∧ ((2 : ℚ) + (2 : ℚ) * γ - β) / (3 : ℚ) = (1 : ℚ))) :=
   @FRC.GravML.cover_forcing
 -- end keys
 
@@ -240,7 +237,6 @@ end FRC.LedgerML
 #print axioms FRC.LedgerML.p21001
 #print axioms FRC.LedgerML.p21009
 #print axioms FRC.LedgerML.p21017
-#print axioms FRC.LedgerML.p21022
 #print axioms FRC.LedgerML.p21024
 #print axioms FRC.LedgerML.p21031
 #print axioms FRC.LedgerML.p21035

@@ -53,8 +53,13 @@ class FloorTest(unittest.TestCase):
         self.assertAlmostEqual(CG.loglog_slope(1e-8), 0.5, places=3)
         r, nu, d = CG.interpolant_discriminant(5.0)
         self.assertAlmostEqual(d, nu - r, places=15)
-        v, resid = CG.tully_fisher(1e9)
-        self.assertLess(resid, 1e-12)
+        v, curve = CG.tully_fisher(1e9)
+        self.assertAlmostEqual(v ** 4, CG.G_SI * 1e9 * CG.MSUN * CG.A0_FIT, delta=1e-3 * v ** 4)
+        self.assertTrue(all(1 < q for _, _, q in curve) and curve[-1][2] < curve[0][2])
+        drag = CG.dragging_field(J=0.5, r=4.0)
+        self.assertAlmostEqual(drag['axis'], 2 * 0.5 / 64, delta=1e-7)
+        self.assertAlmostEqual(drag['equator'], -0.5 / 64, delta=1e-7)
+        self.assertAlmostEqual(CG.tilt_sensitivity(), math.log(2) / 283.5, places=6)
 
     def test_kuramoto_quiet_fixed_point(self):
         mean, dev = CG.kuramoto_chain(0.0, M=5, T=6000, burn=2000)

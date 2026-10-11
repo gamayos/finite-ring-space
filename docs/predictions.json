@@ -1,5 +1,5 @@
 {
- "generated": "10 October 2026",
+ "generated": "11 October 2026",
  "rows": [
   {
    "id": "00:P1",
@@ -178,7 +178,7 @@
    "key": "p21053",
    "tag": "T",
    "predicate": "The radial acceleration relation, $g_{\\mathrm{obs}}=g_N/(1-e^{-\\sqrt{g_N/a_0}})$, no fitted function beyond the barrier identification (B9), the form the data selected across the four observed acceleration decades, its approach to Newton the discriminant ($0.05$ at $g_N\\approx5a_0$ against the simple rational interpolant); the deep limit gives the baryonic Tully--Fisher relation $v^4=GMa_0$.",
-   "source": "Prop.~\\ref{prop:crossover}\\newline \\pywit{gravity}{p21053}{P4}, \\leanwit{FrcLedger}{p21053}{P4}; rests on A8, C16, C19 \\lean{Gravity.crossover\\_limits, Gravity.registration\\_root, Gravity.interpolant\\_discriminant}",
+   "source": "Prop.~\\ref{prop:crossover}\\newline \\pywit{gravity}{p21053}{P4}, \\leanwit{FrcLedger}{p21053}{P4}; rests on A8, C16, C19 \\lean{Gravity.crossover\\_limits, Gravity.crossover\\_newton\\_limit, Gravity.registration\\_root, Gravity.interpolant\\_discriminant}",
    "master": [],
    "restated": [],
    "witnessed": false,
@@ -216,7 +216,7 @@
    "label": "P8",
    "key": "p21060",
    "tag": "T",
-   "predicate": "The primordial tilt $n_s-1=-\\pi^{2}/\\ln\\Omega=-0.0348$ [approx] at $\\ln\\Omega=283.5$ (the master's scale import), against Planck 2018 $-0.0351\\pm0.0042$ ($+0.07\\sigma$); $0.25\\%$ per factor two in $S$; the neighbouring count $\\tfrac12\\ln\\Omega$ excluded at $8.2\\sigma$.",
+   "predicate": "The primordial tilt $n_s-1=-\\pi^{2}/\\ln\\Omega=-0.0348$ [approx] at $\\ln\\Omega=283.5$ (the master's scale import), against Planck 2018 $-0.0351\\pm0.0042$ ($+0.07\\sigma$); $0.24\\%$ per factor two in $S$; the neighbouring count $\\tfrac12\\ln\\Omega$ excluded at $8.2\\sigma$.",
    "source": "Prop.~\\ref{prop:primordial}\\newline \\pywit{gravity}{p21060}{P8}, \\leanwit{FrcLedger}{p21060}{P8}; rests on A8, C18, 00:L8 \\lean{Gravity.tilt\\_bracket}",
    "master": [
     "L8"

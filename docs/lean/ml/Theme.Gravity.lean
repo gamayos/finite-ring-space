@@ -106,16 +106,16 @@ theorem merger_area_law (M₁ M₂ δ : ℤ) :
 
 /-- 21:A9, 21:C25, 21:C7, 21:C8 — the cover forcing: the apsidal coefficient `2 − β + 2γ` against the
 PPN-free deficit `3/2` equals the two-face ratio `2` exactly when `2γ − β = 1`, with deviation
-`(2/3)(2γ − β − 1)`; channel unity `γ = 1` together with the forcing gives `β = 1`, and the perihelion factor
-`(2 + 2γ − β)/3` is then `1` (the deflection factor `(1 + γ)/2` is `1` at `γ = 1`). -/
+`(2/3)(2γ − β − 1)`; channel unity `γ = 1` makes the deflection factor `(1 + γ)/2` equal to `1` (the full
+`4Gm/c²b`) and, together with the forcing, gives `β = 1`, the perihelion factor `(2 + 2γ − β)/3` then `1`. -/
 theorem cover_forcing (β γ : ℚ) :
     ((2 - β + 2 * γ) / (3 / 2) = 2 ↔ 2 * γ - β = 1) ∧
     (2 - β + 2 * γ) / (3 / 2) - 2 = 2 / 3 * (2 * γ - β - 1) ∧
-    (γ = 1 → 2 * γ - β = 1 → β = 1 ∧ (2 + 2 * γ - β) / 3 = 1) := by
+    (γ = 1 → (1 + γ) / 2 = 1 ∧ (2 * γ - β = 1 → β = 1 ∧ (2 + 2 * γ - β) / 3 = 1)) := by
   refine ⟨?_, by ring, ?_⟩
   · constructor <;> intro h <;> linarith
-  · rintro rfl h
-    exact ⟨by linarith, by linarith⟩
+  · rintro rfl
+    exact ⟨by norm_num, fun h => ⟨by linarith, by linarith⟩⟩
 
 /-- 21:A9 — the mass–energy channel `C_{p−1} ∩ C_{2(p+1)} = Q₄`: on every shell `p ≡ 1 (mod 4)`,
 `gcd(p − 1, 2(p + 1)) = 4`; the subgroup reading — in the cyclic unit group of `𝔽_{p²}` (order `(p − 1)(p + 1)`)

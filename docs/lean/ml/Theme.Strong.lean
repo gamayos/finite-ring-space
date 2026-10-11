@@ -416,7 +416,7 @@ theorem exponential_reading (a b : ℝ) :
   rw [show -(2 * (1 / 2 * log ((1 + U / 2) / (1 - U / 2)))) = -log ((1 + U / 2) / (1 - U / 2)) by ring,
     exp_neg, exp_log hpos, inv_div]
 
-/-- 21:C8, 21:P6 — the post-Newtonian inputs as Taylor brackets on `|U| ≤ 1/2`: the exponential metric's
+/-- 21:C8, 21:P6, 21:C7 — the post-Newtonian inputs as Taylor brackets on `|U| ≤ 1/2`: the exponential metric's
 `A = e^{−2U}`, `B = e^{2U}` against the isotropic Schwarzschild `A_S = ((1 − U/2)/(1 + U/2))²`,
 `B_S = (1 + U/2)⁴` satisfy `|A − A_S − U³/6| ≤ 3U⁴` and `|B − B_S − U²/2| ≤ 3|U|³`: the single-potential
 inputs consumed by C23 coincide through first post-Newtonian order (`A` to `O(U²)`, `B` to `O(U)`) and part at
