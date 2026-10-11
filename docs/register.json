@@ -1461,7 +1461,7 @@
   {
    "key": "p00004",
    "origin": "00",
-   "statement": "\\textbf{Finitude}: the Universe is the totality of its registered manifestations (A8); one coherent plurality, one registration (A6, A13). For any totality and any reading of capacity $R$, the registered Universe embeds in the shell of $R$ members, and among any $R+1$ members two share a residue (5:C2, 29:C1, 29:C2): the Universe is finite, its count $\\Om$ (A7).",
+   "statement": "\\textbf{Finitude}: the Universe is the totality of its registered manifestations (A8). For any totality and any reading of capacity $R$, the registered Universe embeds in the shell of $R$ members, and among any $R+1$ members two share a residue (5:C2, 29:C1, 29:C2): the Universe is finite, its count $\\Om$ (A7).",
    "origin_row": "00:A2",
    "tag": "T",
    "tier": 0,
@@ -23774,7 +23774,7 @@
    "block": "A",
    "tag": "T",
    "name": "Finitude",
-   "statement": "\\textbf{Finitude}: the Universe is the totality of its registered manifestations (A8); one coherent plurality, one registration (A6, A13). For any totality and any reading of capacity $R$, the registered Universe embeds in the shell of $R$ members, and among any $R+1$ members two share a residue (5:C2, 29:C1, 29:C2): the Universe is finite, its count $\\Om$ (A7).",
+   "statement": "\\textbf{Finitude}: the Universe is the totality of its registered manifestations (A8). For any totality and any reading of capacity $R$, the registered Universe embeds in the shell of $R$ members, and among any $R+1$ members two share a residue (5:C2, 29:C1, 29:C2): the Universe is finite, its count $\\Om$ (A7).",
    "source": "5-red, 29-fin, m04",
    "page": "00-ledger.html#A2",
    "witness": {
@@ -23797,10 +23797,8 @@
     ]
    },
    "refs": [
-    "p00008",
     "p00009",
     "p00010",
-    "p00196",
     "p05013",
     "p29009",
     "p29010"
@@ -23810,7 +23808,7 @@
     "29-fin",
     "m04"
    ],
-   "text": "Finitude: Finitude: the Universe is the totality of its registered manifestations (A8); one coherent plurality, one registration (A6, A13). For any totality and any reading of capacity $R$, the registered Universe embeds in the shell of $R$ members, and among any $R+1$ members two share a residue (5:C2, 29:C1, 29:C2): the Universe is finite, its count $\\Om$ (A7). 5-red, 29-fin, m04"
+   "text": "Finitude: Finitude: the Universe is the totality of its registered manifestations (A8). For any totality and any reading of capacity $R$, the registered Universe embeds in the shell of $R$ members, and among any $R+1$ members two share a residue (5:C2, 29:C1, 29:C2): the Universe is finite, its count $\\Om$ (A7). 5-red, 29-fin, m04"
   },
   {
    "paper": "00",
