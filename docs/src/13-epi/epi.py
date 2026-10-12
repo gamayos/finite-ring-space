@@ -55,7 +55,7 @@ LEDGER = {
     "e.W4": "13:F6",
     "e.W5": "13:F8, 13:Z1",
     "e.S1": "13:F5, 13:I1, 13:Z2",
-    "e.A1": "13:H4, 13:I1",
+    "e.A1": "13:H3, 13:H4, 13:I1",
     "e.N1": "13:H5, 13:I1, 13:Z2",
     # validate_pi.py
     "pi.R1": "13:E2, 13:C5",
@@ -87,6 +87,7 @@ LEDGER = {
     "tow.O": "13:B2",
     "tow.H": "13:J2, 13:J3, 13:J5",
     "tow.W": "13:J1, 13:J2, 13:G2, 13:H2, 13:I4",
+    "tow.D": "13:I3",
     # kurepa_wall.c
     "kur.K1": "13:F2, 13:J6, 13:Z1",
     # frame_invariants.c
@@ -137,6 +138,7 @@ LABELS = {
     "tow.C": "the Cayley quarter-turn map C(x) = (1 + ix)/(1 − ix) on F_13 and F_29: C(0) = 1, C(1) = i, and the composition law C(x)C(y) = C((x+y)/(1−xy)) on every pair where the denominators are units",
     "tow.O": "orientation transport on F_13 and F_29, exhaustively over the units u of the exponent cycle: g' = g^u re-derives i' = i when u ≡ 1 (mod 4) and i' = −i when u ≡ 3 (mod 4)",
     "tow.H": "the height run over all 500 shells p ≡ 1 (mod 4), p ≤ 8009, in the smallest-primitive-root frame with H minimised over the two chiralities: π_A = [−1/2] pinned at height 2 on every shell; H(e_p) ≤ 2√p on every shell; exactly 68 shells with H ≤ 10; height 2 on exactly {13, 1933, 4177, 5857} (median H/√p ≈ 0.525 printed as the diagnostic)",
+    "tow.D": "the duality on the shells p = 13 and 29: π angular-exact (g^{2κ} = −1) and wall-trivial (the terminus [w_m] = −2, the quarter invariant [w_κ] = −(a²)⁻¹, no blind scale below the wall), e angular-approximate (no exact calibration, decided on the Machin bracket) and wall-wild (the terminus K(p) ≠ 0 open at every shell, the blind set nonempty, the group law broken: K(p)A(p) ≠ 1)",
     "tow.W": "the wrap-free window and the calibration pin on p ∈ {13, 29, 101, 997, 8009}: ⌊√p⌋² < p and 2⌊√p⌋ < p; the pinning relation 2π_A + 1 ≡ 0; the half-turn tautology g^{2κ} = −1 for the smallest primitive root; the quarter-turn pin i² + 1 ≡ 0",
     "kur.K1": "Kurepa's wall in the derangement form for all 22 043 odd primes p < 2.5·10⁵ (kurepa_wall.c, one O(p) pass per prime in 128-bit modular arithmetic): !(p−1) ≡ K(p) (mod p) and K(p) ≢ 0 (mod p), zero failures of either condition",
     "frm.I1": "the three frame invariants of the two constants on the 4 783 shells p ≡ 1 (mod 4) below 10⁵ (frame_invariants.c): every triple (K(p) mod p, q_p(4) mod p, a + b i) exact — p = 13: (10, 6, −3+2i), p = 1093 the one shell with q_p(4) = 0 — the 4×4×4 contingency table of (K/p, q_p(4)/p, φ/π) and its chi-square 59.6 on 63 df exact, the means 0.502, 0.499 and variances 0.0828, 0.0831 by certified rational bounds; the independence reading is the paper's [approx] statement",
@@ -157,8 +159,8 @@ PREDICATES = {
     "13:D5": "e.R4", "13:E2": "pi.R1", "13:E3": "pi.R4", "13:E4": "pi.R3", "13:E5": "pi.R3", "13:F1": "e.W1",
     "13:F2": "e.W1", "13:F3": "e.W2", "13:F4": "e.W3", "13:F5": "e.S1", "13:F6": "e.W4", "13:F7": "tow.E",
     "13:F8": "e.W5", "13:G1": "pi.W1", "13:G2": "pi.W1", "13:G3": "pi2.A1", "13:G4": "pi.S1", "13:G5": "pi.L1",
-    "13:G6": "pi.V1", "13:G8": "pi.R2", "13:G9": "tow.P", "13:G10": "pi.S3", "13:H2": "tow.W", "13:H4": "e.A1", "13:H5": "e.N1",
-    "13:I1": "e.R2", "13:I2": "pi.R3", "13:I4": "tow.W", "13:I5": "frm.I1", "13:J1": "tow.W", "13:J2": "tow.H",
+    "13:G6": "pi.V1", "13:G7": "pi2.B2", "13:G8": "pi.R2", "13:G9": "tow.P", "13:G10": "pi.S3", "13:H2": "tow.W", "13:H3": "e.A1", "13:H4": "e.A1", "13:H5": "e.N1",
+    "13:I1": "e.R2", "13:I2": "pi.R3", "13:I3": "tow.D", "13:I4": "tow.W", "13:I5": "frm.I1", "13:J1": "tow.W", "13:J2": "tow.H",
     "13:J3": "tow.H", "13:J5": "tow.H", "13:J6": "kur.K1", "13:Z1": "lab.Z1", "13:Z2": "lab.Z2",
 }
 _FAM = [None, None]
@@ -542,9 +544,12 @@ def block_e():
     count_001 = 0
     n_p1mod4 = 0
     near = []                                     # candidates for the best list, screened in floating point, decided exactly
+    exact_hit = False                             # 13:H3: an integer label with 2 pi r = p - 1 would make pi rational; none below 10^6 (decided on the bracket)
     for p in primes:
         if p % 4 != 1: continue
         n_p1mod4 += 1
+        lo_r, hi_r = Fraction(p - 1) / (2 * PI_HI), Fraction(p - 1) / (2 * PI_LO)
+        if math.ceil(lo_r) <= math.floor(hi_r): exact_hit = True
         # sqrt(-1) mod p via a quadratic nonresidue
         a = 2
         while pow(a, (p-1)//2, p) != p - 1: a += 1
@@ -564,9 +569,10 @@ def block_e():
     log_e("best radian-calibrated frames (p, i_t-label r, theta_t, |theta_t - 1|):")
     for delta, p, rr in best[:6]:
         log_e(f"  p={p:7d}  r={rr:7d}  theta={float(2*PI_MID*rr/(p-1)):.9f}  delta={float(delta):.3e}")
-    # 13:H4 (p13069)
+    # 13:H4 (p13069), 13:H3 (p13045)
     family("e", "A1")
     chk("39175 primes p == 1 (mod 4) below 10^6", n_p1mod4 == 39175)
+    chk("exact calibration is impossible on every shell below 10^6: no integer label r with 2 pi r = p - 1, decided on the Machin bracket", not exact_hit)
     chk("exactly 260 shells with |theta - 1| < 0.01 (exact rational decision, pi as a Machin bracket)", count_001 == 260)
     chk("the best six (p, lambda(i)) in order: (778933,123966), (497773,79227), (962237,153133), (261017,41537), (345181,54945), (891997,141986)",
         [(p, rr) for _, p, rr in best[:6]] == [(778933, 123966), (497773, 79227), (962237, 153133), (261017, 41537), (345181, 54945), (891997, 141986)])
@@ -1041,6 +1047,7 @@ def block_pi2():
         bmod = Bpm3.numerator % p * pow(Bpm3.denominator % p, -1, p) % p
         law = (-1)**((p+1)//2) * bmod % p * pow(36, -1, p) % p
         rows.append((p, T3, law))
+        # 13:G7 (p13040)
         chk(f"p={p}: sigma_p/p^2 == (-1)^((p+1)/2) B_(p-3)/36 (mod p)", T3 == law, "pi2", "B2")
     log_pi2(f"  sigma == 0 (mod p^2) for all 5 <= p < 300: {'PASS' if ok2 else 'FAIL'}")
     okB3 = all(T3 == law for _, T3, law in rows)
@@ -1310,7 +1317,31 @@ def _run_tail():
       check_tow(f"p={p}: half-turn tautology g^(2 kap) == -1 (the exact angular carrier of pi)", pow(g, 2*kap, p) == p - 1)
       i = pow(g, p-1-kap, p)
       check_tow(f"p={p}: quarter-turn pin i^2 + 1 == 0", (i*i + 1) % p == 0)
-  flush("tow", order=list("EPCOHW"), details={"H": f"median H/sqrt(p) = {_MED[0]:.3f} (diagnostic)"})
+  # --- the duality on the shells p = 13 and 29 (13:I3): pi angular-exact and wall-trivial, e angular-approximate and wall-wild ---
+  PI_LO2, PI_HI2 = pi_bracket(40)
+  # 13:I3 (p13050)
+  family("tow", "D")
+  for p in (13, 29):
+      kap = (p-1)//4; m = (p-1)//2; g = primitive_root(p)
+      cbm = [_m.comb(2*n, n) for n in range(p)]
+      wall = pow(16, m, p) * pow(m * pow(cbm[m], 2, p), -1, p) % p                    # [w_m] = 16^m/(m C_m^2)
+      a = next(x for x in range(1, p) if (p - x*x) >= 0 and _m.isqrt(p - x*x)**2 == p - x*x and x % 2 == 1)
+      quarter = pow(16, kap, p) * pow(kap * pow(cbm[kap], 2, p), -1, p) % p          # [w_kap]
+      check_tow(f"p={p}: pi angular-exact, g^(2 kap) == -1", pow(g, 2*kap, p) == p - 1)
+      check_tow(f"p={p}: pi wall-trivial, terminus [w_m] == -2", wall == p - 2)
+      check_tow(f"p={p}: pi quarter invariant [w_kap] == -(a^2)^-1, p = a^2 + b^2", quarter == (-pow(a*a, -1, p)) % p)
+      check_tow(f"p={p}: pi blind set below the wall empty (p does not divide C(2n,n) for n <= m)", all(cbm[n] % p != 0 for n in range(1, m+1)))
+      f, K, A, D_mod, blind = 1, 1, 1, [1, 0], []
+      for k in range(1, p): f = f * k % p; K = (K + f) % p; A = (A + (-1)**k * f) % p
+      for n in range(2, p - 1): D_mod.append((n * (D_mod[-1] + D_mod[-2])) % p)
+      blind = [n for n in range(1, p - 1) if D_mod[n] == 0]
+      i = pow(g, p-1-kap, p)
+      exact = any(2 * r * PI_LO2 <= (p - 1) <= 2 * r * PI_HI2 for r in (i, p - i))
+      check_tow(f"p={p}: e angular-approximate, no exact calibration (2 pi lambda(i) != p - 1 on the bracket)", not exact)
+      check_tow(f"p={p}: e wall-wild, the terminus the Kurepa quantity K(p) != 0", K != 0)
+      check_tow(f"p={p}: e blind set Z_0(p) nonempty (n = 1 forced): {blind}", 1 in blind)
+      check_tow(f"p={p}: the group law broken at the wall, K(p) A(p) != 1", (K * A) % p != 1)
+  flush("tow", order=list("EPCOHWD"), details={"H": f"median H/sqrt(p) = {_MED[0]:.3f} (diagnostic)"})
 
 _MED = [0.0]
 

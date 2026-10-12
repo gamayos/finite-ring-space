@@ -329,6 +329,46 @@ def noDivisorFrom (q : Nat) : Nat → Nat → Bool
 /-- Primality by trial division, as a Boolean: `q ≥ 2` and no divisor `2 ≤ d ≤ √q`. -/
 def isPrimeB (q : Nat) : Bool := 2 ≤ q && noDivisorFrom q 2 q
 
+/-! #### Three list lemmas with no axioms
+
+The core library's `all_append_nat`, `filter_append_nat` and `length_append_nat` rest on `propext`; the census
+theorems compose their chunks through these, proved by induction. -/
+/-- `(l₁ ++ l₂).all f = (l₁.all f && l₂.all f)`, by induction, with no axioms (the core library's `all_append_nat_nat`
+rests on `propext`). -/
+theorem all_append_nat (f : Nat → Bool) : ∀ l₁ l₂ : List Nat, (l₁ ++ l₂).all f = (l₁.all f && l₂.all f)
+  | [], _ => rfl
+  | a :: l₁, l₂ => by
+    show (f a && (l₁ ++ l₂).all f) = ((f a && l₁.all f) && l₂.all f)
+    rw [all_append_nat f l₁ l₂, Bool.and_assoc]
+
+/-- `(a :: l).filter f = a :: l.filter f` when `f a = true`. -/
+theorem filter_cons_true_nat (f : Nat → Bool) (a : Nat) (l : List Nat) (h : f a = true) :
+    (a :: l).filter f = a :: l.filter f := by
+  show (match f a with | true => a :: l.filter f | false => l.filter f) = a :: l.filter f
+  rw [h]
+
+/-- `(a :: l).filter f = l.filter f` when `f a = false`. -/
+theorem filter_cons_false_nat (f : Nat → Bool) (a : Nat) (l : List Nat) (h : f a = false) :
+    (a :: l).filter f = l.filter f := by
+  show (match f a with | true => a :: l.filter f | false => l.filter f) = l.filter f
+  rw [h]
+
+/-- `(l₁ ++ l₂).filter f = l₁.filter f ++ l₂.filter f`, by induction, with no axioms. -/
+theorem filter_append_nat (f : Nat → Bool) : ∀ l₁ l₂ : List Nat, (l₁ ++ l₂).filter f = l₁.filter f ++ l₂.filter f
+  | [], _ => rfl
+  | a :: l₁, l₂ => by
+    show (a :: (l₁ ++ l₂)).filter f = (a :: l₁).filter f ++ l₂.filter f
+    cases h : f a with
+    | true => rw [filter_cons_true_nat f a _ h, filter_cons_true_nat f a _ h, filter_append_nat f l₁ l₂]; rfl
+    | false => rw [filter_cons_false_nat f a _ h, filter_cons_false_nat f a _ h, filter_append_nat f l₁ l₂]
+
+/-- `(l₁ ++ l₂).length = l₁.length + l₂.length`, by induction, with no axioms. -/
+theorem length_append_nat : ∀ l₁ l₂ : List Nat, (l₁ ++ l₂).length = l₁.length + l₂.length
+  | [], l₂ => (Nat.zero_add _).symm
+  | a :: l₁, l₂ => by
+    show (l₁ ++ l₂).length + 1 = l₁.length + 1 + l₂.length
+    rw [length_append_nat l₁ l₂, Nat.add_right_comm]
+
 /-! #### The blind sets (13:F5) -/
 
 /-- The walk of the derangement residues modulo `q`: after `n` steps, `(!n mod q, !(n+1) mod q, #{1 ≤ k ≤ n : !k ≡ 0})`. -/
@@ -425,7 +465,10 @@ theorem sigma_vanishes_all :
     (List.range 3000).filter (fun q => 5 ≤ q && isPrimeB q) = oddPrimesBelow3000 ∧ oddPrimesBelow3000.length = 428 ∧
     oddPrimesBelow3000.all (fun p => sigmaZero p p) = true ∧ sigmaZero 3 3 = false := by
   refine ⟨oddPrimesBelow3000_complete, by decide +kernel, ?_, by decide +kernel⟩
-  simp only [oddPrimesBelow3000, List.all_append, sigma_vanishes_c1, sigma_vanishes_c2, sigma_vanishes_c3, sigma_vanishes_c4, sigma_vanishes_c5, sigma_vanishes_c6, sigma_vanishes_c7, Bool.and_self]
+  rw [oddPrimesBelow3000, all_append_nat, all_append_nat, all_append_nat, all_append_nat, all_append_nat,
+    all_append_nat, sigma_vanishes_c1, sigma_vanishes_c2, sigma_vanishes_c3, sigma_vanishes_c4, sigma_vanishes_c5,
+    sigma_vanishes_c6, sigma_vanishes_c7]
+  rfl
 
 /-- The 60 primes `5 ≤ p < 300`. -/
 def primes5to300 : List Nat := (List.range 300).filter (fun q => 5 ≤ q && isPrimeB q)
@@ -631,12 +674,15 @@ theorem height_run :
     (shells8009.filter (fun p => heightE p ≤ 10)).length = 68 ∧
     shells8009.filter (fun p => heightE p == 2) = [13, 1933, 4177, 5857] := by
   refine ⟨shells8009_complete, by decide +kernel, ?_, ?_, ?_⟩
-  · simp only [shells8009, List.all_append, height_run_q1.1, height_run_q2.1, height_run_q3.1, height_run_q4.1,
-      Bool.and_self]
-  · simp only [shells8009, List.filter_append, List.length_append, height_run_q1.2.1, height_run_q2.2.1,
-      height_run_q3.2.1, height_run_q4.2.1]
-  · simp only [shells8009, List.filter_append, height_run_q1.2.2, height_run_q2.2.2, height_run_q3.2.2,
-      height_run_q4.2.2, List.cons_append, List.nil_append]
+  · rw [shells8009, all_append_nat, all_append_nat, all_append_nat, height_run_q1.1, height_run_q2.1,
+      height_run_q3.1, height_run_q4.1]
+    rfl
+  · rw [shells8009, filter_append_nat, filter_append_nat, filter_append_nat, length_append_nat,
+      length_append_nat, length_append_nat, height_run_q1.2.1, height_run_q2.2.1, height_run_q3.2.1,
+      height_run_q4.2.1]
+  · rw [shells8009, filter_append_nat, filter_append_nat, filter_append_nat, height_run_q1.2.2,
+      height_run_q2.2.2, height_run_q3.2.2, height_run_q4.2.2]
+    rfl
 
 /-- 13:J5 — the certification split: the half-period is pinned by the height-two relation `2π_A + 1 ≡ 0` on every
 frame shell (J2), while `e_p` reaches the pin value `2` on exactly four of the `500` shells of the run and otherwise
@@ -669,6 +715,18 @@ theorem p13009 : (∀ {p κ : Nat} [FRC.Pos p] {g : FRC.Shell p}, FRC.Shell.Fram
 /-- 13:B3 (p13010) — The coincidence that forces the typing: at $\p=13$ the field element $6$ is at once $\eP$, $\piA$ and the reading of $-1/2$, while $\eR\ne\piR$; no map from a bare residue to a real number exists, and the external comparison takes the structural role as part of its input --- roles, not residues, carry external meaning. Witnessed by the two towers reading the same element $6$ as $\eP$ and as $\piA$. -/
 theorem p13010 : FRC.Shell.Frame.quarterTurn (2 : FRC.Shell (13 : Nat)) (3 : Nat) = (5 : FRC.Shell (13 : Nat)) ∧ (2 : FRC.Shell (13 : Nat)) ^ (FRC.Shell.Frame.quarterTurn (2 : FRC.Shell (13 : Nat)) (3 : Nat)).val = (6 : FRC.Shell (13 : Nat)) ∧ FRC.Shell.ofNat (FRC.Shell.Frame.halfPeriod (3 : Nat)) = (6 : FRC.Shell (13 : Nat)) ∧ (2 : FRC.Shell (13 : Nat)) * (6 : FRC.Shell (13 : Nat)) = (-1 : FRC.Shell (13 : Nat)) :=
   @FRC.Epi.coincidence13
+/-- 13:D4 (p13020) — Horizon determination of the readout: $\ro(\varepsilon_n)=\ro(\eR)$ for $n\ge n_0(k)=\Theta(k/\log k)$; the binary64 constant for $e$ is the readout of $\varepsilon_{18}=18!/\dr{18}=6402373705728000/2355301661033953$ and $n=18$ is minimal ($\varepsilon_{17}$ fails readout equality, $|\varepsilon_{17}-\eR|=1.10\times10^{-15}$ above the half-ulp); the first $100$ significant digits of $\eR$ are those of $\varepsilon_{70}$; every floating-point value of $e$ is a plateau readout. -/
+theorem p13020 : FRC.Epi.readoutWithin (18 : Nat) = true ∧ ((List.range (16 : Nat)).all fun k => !FRC.Epi.readoutWithin (k + (2 : Nat))) = true ∧ FRC.Epi.dr (18 : Nat) = (2355301661033953 : Nat) ∧ FRC.Epi.fact (18 : Nat) = (6402373705728000 : Nat) :=
+  @FRC.Epi.readout_e_core
+/-- 13:D5 (p13021) — Feasibility selection: the compound chain $(1+1/n)^{n}$ costs $n\asymp2^{k}$ steps for $k$ bits against $n_0(k)=\Theta(k/\log k)$ for the derangement chain ($n=11,18,70$ at $k=24,53,333$); within a horizon $H$ the compound chain realises $O(\log H)$ bits and the factorial chain $\Theta(H\log H)$; under the feasibility principle the derangement representation is the canonical finite definition of $e$. -/
+theorem p13021 : ((8 : Nat) * (2 : Nat) ^ (24 : Nat) < FRC.Epi.fact (12 : Nat) ∧ ¬(8 : Nat) * (2 : Nat) ^ (24 : Nat) < FRC.Epi.fact (11 : Nat)) ∧ ((8 : Nat) * (2 : Nat) ^ (53 : Nat) < FRC.Epi.fact (19 : Nat) ∧ ¬(8 : Nat) * (2 : Nat) ^ (53 : Nat) < FRC.Epi.fact (18 : Nat)) ∧ (8 : Nat) * (2 : Nat) ^ (333 : Nat) < FRC.Epi.fact (71 : Nat) ∧ ¬(8 : Nat) * (2 : Nat) ^ (333 : Nat) < FRC.Epi.fact (70 : Nat) :=
+  @FRC.Epi.derangement_cost_core
+/-- 13:E3 (p13024) — The arcsin chain $s_n=3\sum_{k\le n}\Cb{k}/((2k+1)16^{k})\in\fQ$ with external completion $\piR=6\arcsin\frac12$ \chart{} and tail bound $|\piR-s_n|<4^{-n}/(2n+3)$ for $n\ge1$: geometric rate from the same combinatorial atoms as the Wallis pair. -/
+theorem p13024 : ((List.range (40 : Nat)).all fun k => FRC.Epi.tailWithin (k + (1 : Nat))) = true :=
+  @FRC.Epi.arcsin_tail_bound
+/-- 13:E5 (p13026) — The feasibility hierarchy: among $\fQ$-native constructors of $\pi$ the best known rate is geometric, $\Theta(k)$ steps (Machin, arcsin), against $\Theta(k/\log k)$ for the derangement chain of $e$; the circle count and the Leibniz/Wallis chains sit at $2^{k}$; the AGM is not $\fQ$-native. A factorial-rate chain exists for every real by rounding (and for $\pi$ by rounding the Machin chain), so the split is by kind of chain --- E-partial sums ($e$) against G-partial sums ($\pi$), master C26; whether $\piR$ is the value of an E-function with rational coefficients at a rational point is a question of the continuum (Fischler--Rivoal's conjecture $\operatorname{Frac}\mathcal E\cap\operatorname{Frac}\mathcal G=\overline{\Q}$ would answer it negatively), not a predicate of the frame. -/
+theorem p13026 : ((8 : Nat) * (2 : Nat) ^ (24 : Nat) < FRC.Epi.fact (12 : Nat) ∧ ¬(8 : Nat) * (2 : Nat) ^ (24 : Nat) < FRC.Epi.fact (11 : Nat)) ∧ ((8 : Nat) * (2 : Nat) ^ (53 : Nat) < FRC.Epi.fact (19 : Nat) ∧ ¬(8 : Nat) * (2 : Nat) ^ (53 : Nat) < FRC.Epi.fact (18 : Nat)) ∧ (8 : Nat) * (2 : Nat) ^ (333 : Nat) < FRC.Epi.fact (71 : Nat) ∧ ¬(8 : Nat) * (2 : Nat) ^ (333 : Nat) < FRC.Epi.fact (70 : Nat) :=
+  @FRC.Epi.derangement_cost_core
 set_option linter.defProp false in
 /-- 13:F2 (p13028) — The wall identity and the terminal residue of $e$: $\dr{(\p-1)}\equiv\Ku{\p}\pmod\p$ (the odd-prime case of the Mijajlovi\'c--\v Sami congruence, A4), hence $\rep{\varepsilon_{\p-1}}=-(\Ku{\p})^{-1}$ whenever $\p\nmid\Ku{\p}$; existence of the terminal link on a shell is equivalent to $\p\nmid\Ku{\p}$, universal existence over the shells of the totality to the vanishing of Kurepa's certificate (Z1); re-verified in the derangement form for all $121{,}126$ odd primes $\p<1.6\times10^{6}$ with zero failures of either condition. Beyond the wall $n!\equiv0$: $n=\p-1$ is the factorial horizon. -/
 def p13028 := @FRC.Epi.terminal13
@@ -678,6 +736,9 @@ def p13029 := And.intro @FRC.Epi.dr_antiperiodic (@FRC.Epi.dr_succ)
 /-- 13:F4 (p13030) — Series duals at the wall: $\sum_{k<\p}(-1)^{k}/k!\equiv-\Ku{\p}$ and $\sum_{k<\p}1/k!\equiv-A(\p)$, $A(\p)$ the alternating factorial sum; the group law $\exp(1)\exp(-1)=1$ does not survive, $\Ku{\p}A(\p)\equiv3,0,21,28,132,258$ at $\p=7,13,29,101,257,1009$; on $\p=13$ the direct series residue vanishes ($A(13)\equiv0$) while the derangement side survives ($\Ku{13}\equiv10$) --- a second ground for the canonicity of D5. -/
 theorem p13030 : FRC.Epi.kurS (7 : Nat) * FRC.Epi.altS (7 : Nat) = (3 : FRC.Shell (7 : Nat)) ∧ FRC.Epi.kurS (13 : Nat) * FRC.Epi.altS (13 : Nat) = (0 : FRC.Shell (13 : Nat)) ∧ FRC.Epi.altS (13 : Nat) = (0 : FRC.Shell (13 : Nat)) ∧ FRC.Epi.kurS (29 : Nat) * FRC.Epi.altS (29 : Nat) = (21 : FRC.Shell (29 : Nat)) ∧ FRC.Epi.kurS (101 : Nat) * FRC.Epi.altS (101 : Nat) = (28 : FRC.Shell (101 : Nat)) ∧ FRC.Epi.kurS (257 : Nat) * FRC.Epi.altS (257 : Nat) = (132 : FRC.Shell (257 : Nat)) ∧ FRC.Epi.kurS (1009 : Nat) * FRC.Epi.altS (1009 : Nat) = (258 : FRC.Shell (1009 : Nat)) :=
   @FRC.Epi.kurepa_alt_values
+/-- 13:F5 (p13031) — Blind-scale statistics: over the $501$ primes in $(1000,5000)$ the sizes $|Z_0(\p)|$ distribute as $1^{(169)},2^{(209)},3^{(92)},4^{(22)},5^{(6)},6^{(2)},7^{(1)}$, mean $1.996$, the excess over the forced $n=1$ matching Poisson$(1)$ \apx{} (the model: $\dr{n}\bmod\p$ uniform for $2\le n\le\p-2$, the wall excluded; extended to the $1593$ primes in $(5000,20000)$: $1^{(597)},2^{(569)},3^{(299)},4^{(108)},5^{(17)},6^{(3)}$, mean $1.988$); blind scales never obstruct the plateau of D4 (advance at most $|Z_0(\p)|$ steps past $n_0$). The counts are exact; the Poisson reading is the model they match. -/
+theorem p13031 : FRC.Epi.primes1000to1300.length = (43 : Nat) ∧ List.map FRC.Epi.blindCount FRC.Epi.primes1000to1300 = have y := have y := have y := [(1 : Nat), (2 : Nat), (2 : Nat), (1 : Nat), (2 : Nat), (3 : Nat)]; (2 : Nat) :: (3 : Nat) :: (1 : Nat) :: (2 : Nat) :: (1 : Nat) :: y; have y := (2 : Nat) :: (2 : Nat) :: (2 : Nat) :: (4 : Nat) :: (1 : Nat) :: (2 : Nat) :: y; (2 : Nat) :: (5 : Nat) :: (2 : Nat) :: (1 : Nat) :: (1 : Nat) :: y; have y := have y := (2 : Nat) :: (3 : Nat) :: (2 : Nat) :: (1 : Nat) :: (3 : Nat) :: (1 : Nat) :: y; (2 : Nat) :: (2 : Nat) :: (1 : Nat) :: (3 : Nat) :: (3 : Nat) :: y; have y := (4 : Nat) :: (1 : Nat) :: (4 : Nat) :: (2 : Nat) :: (1 : Nat) :: y; (1 : Nat) :: (2 : Nat) :: (2 : Nat) :: (1 : Nat) :: (2 : Nat) :: y :=
+  @FRC.Epi.blind_census
 set_option linter.defProp false in
 /-- 13:F6 (p13032) — The $\p=13$ picture: the residue line $\rep{\varepsilon_n}$, $n=2,\dots,12$, is $2,3,7,11,1,6,\text{blind},2,8,10,9$ --- blind at $n=8$ ($\dr{8}=14833=13\cdot1141$) and terminating on $\rep{\varepsilon_{12}}=-(\Ku{13})^{-1}=9$, the common reading of $6/5$ and $11/7$ --- while the metric row freezes onto $2.71828\ldots$ by $n\approx9$: the thesis in miniature. -/
 def p13032 := And.intro @FRC.Epi.residue_line_e13 (@FRC.Epi.terminal13)
@@ -690,21 +751,54 @@ theorem p13034 : List.map (fun k => FRC.Epi.readW (k + (1 : Nat))) (List.range (
 /-- 13:G5 (p13038) — Lucas revivals and self-similarity: beyond the wall $n\ge\p$ is legible for $w$ precisely when every base-$\p$ digit of $n$ is at most $m$ and $\p\nmid n$ (on $\p=13$ the two-digit revivals number $(2\kap)^{2}=36$); on revival scales $\Cb{n}$ factorises digitwise (Lucas, A3); at the first revival $\rep{v_\p}\equiv8$ universally and $v_\p\equiv8+16\p(2q_\p(2)-1)\pmod{\p^{2}}$ by Wolstenholme. -/
 theorem p13038 : FRC.Epi.readV (13 : Nat) = (8 : FRC.Shell (13 : Nat)) ∧ (List.filter (fun n => decide ((13 : Nat) ≤ n) && decide (FRC.Epi.cb n % (13 : Nat) ≠ (0 : Nat)) && decide (n % (13 : Nat) ≠ (0 : Nat))) (List.range (169 : Nat))).length = (36 : Nat) :=
   @FRC.Epi.revivals13
+/-- 13:G6 (p13039) — First-order wall vanishing of the arcsin chain: $\sigma_\p=\sum_{k<m}\Cb{k}/((2k+1)16^{k})\equiv0\pmod\p$ for every prime $\p\ge5$ of the totality, $\sigma_3=1$ the sole exception; proved entirely in finite arithmetic through the key identity $A+B=2L$ (coefficient bookkeeping of the formal antiderivative of $(1-s^{2})^{m}$), Wilson reflection, Lerch's congruence and the binomial transfer $\Cb{k}\equiv(-4)^{k}\binom mk$. Verified for all $428$ odd primes $5\le\p<3000$; the ingredients for $m\le60$, $\p<500$. -/
+theorem p13039 : List.filter (fun q => decide ((5 : Nat) ≤ q) && FRC.Epi.isPrimeB q) (List.range (3000 : Nat)) = FRC.Epi.oddPrimesBelow3000 ∧ FRC.Epi.oddPrimesBelow3000.length = (428 : Nat) ∧ (FRC.Epi.oddPrimesBelow3000.all fun p => FRC.Epi.sigmaZero p p) = true ∧ FRC.Epi.sigmaZero (3 : Nat) (3 : Nat) = false :=
+  @FRC.Epi.sigma_vanishes_all
+/-- 13:G7 (p13040) — Second and third order at the arcsin wall: $\sigma_\p\equiv0\pmod{\p^{2}}$ is Sun's theorem (A5), re-verified for $5\le\p<300$; the blind-range sum $\sum_{m<k<\p}\Cb{k}/((2k+1)16^{k})\equiv\p E_{\p-3}/3\pmod{\p^{2}}$ (A5), re-verified for $5\le\p<80$; at third order $\sigma_\p/\p^{2}\equiv(-1)^{(\p+1)/2}B_{\p-3}/36\pmod\p$ for all sixty primes $5\le\p<300$, the mod-$\p^{3}$ reading of Sun's Conjecture 5.1 with the Wolstenholme refinement, a theorem for every prime $\p\ge5$ of the totality (A8): Wolstenholme-trivial at orders $\p,\p^{2}$, Bernoulli at $\p^{3}$, the Euler content beyond the wall. -/
+theorem p13040 : FRC.Epi.primes5to300.length = (60 : Nat) ∧ (FRC.Epi.primes5to300.all fun p => FRC.Epi.sigmaZero p (p * p)) = true :=
+  @FRC.Epi.sigma_vanishes_mod_sq
 /-- 13:G8 (p13041) — The $\p=13$ picture for $\pi$: $\kap=3$, wall at $n=6$; the residue line $\rep{w_n}$, $n=1,\dots,6$, is $4,5,10,9,6,11$ with $\rep{w_6}=11\equiv-2$ the calibration face and $\rep{w_3}=10\equiv-(3^{2})^{-1}$ encoding $13=3^{2}+2^{2}$; empty blind set below the wall, total blindness for $n=7,\dots,12$, first revival $\rep{v_{13}}=8$. -/
 theorem p13041 : List.map (fun k => FRC.Epi.readW (k + (1 : Nat))) (List.range (6 : Nat)) = [(4 : FRC.Shell (13 : Nat)), (5 : FRC.Shell (13 : Nat)), (10 : FRC.Shell (13 : Nat)), (9 : FRC.Shell (13 : Nat)), (6 : FRC.Shell (13 : Nat)), (11 : FRC.Shell (13 : Nat))] ∧ (11 : FRC.Shell (13 : Nat)) = (-2 : FRC.Shell (13 : Nat)) ∧ (10 : FRC.Shell (13 : Nat)) * ((3 : FRC.Shell (13 : Nat)) * (3 : FRC.Shell (13 : Nat))) = (-1 : FRC.Shell (13 : Nat)) ∧ List.map (fun n => decide (FRC.Epi.cb n % (13 : Nat) = (0 : Nat))) (List.range (13 : Nat)) = [false, false, false, false, false, false, false, true, true, true, true, true, true] :=
   @FRC.Epi.residue_line_pi13
 /-- 13:H2 (p13044) — The exact angular carrier of $\pi$: $\chi(-1)=e^{\imR\piR}$ exactly in every shell, for every generator and either chirality, since $-1=\gen^{(\p-1)/2}$ sits at arc fraction one half --- Euler's identity as the half-turn tautology $\gen^{2\kap}=-1$ under the dictionary, with no calibration and no error term. -/
 theorem p13044 : ∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → g ^ ((2 : Nat) * κ) = (-1 : FRC.Shell p) :=
   @FRC.Ledger.p13044
+/-- 13:H3 (p13045) — Exact calibration of $e$ is impossible: with $\theta=2\piR\lambda(\im)/(\p-1)$ the frame angle of $\eP$, $\theta\ne1$ in every shell ($\theta=1$ would make $\piR$ rational, A2); $\chi(\eP)$ is a root of unity while $e^{\imR}$ is not, so the identification is intrinsically horizon-limited. -/
+theorem p13045 : FRC.Epi.shells8009.length = (500 : Nat) ∧ FRC.Epi.shells8009.all FRC.Epi.noCalibration = true :=
+  @FRC.Epi.no_exact_calibration
+/-- 13:H4 (p13069) — Calibrated shells at every precision the totality resolves: the $\varepsilon$-calibrated shells are a fraction $2\varepsilon/\piR$ \apx{} of the shells $\p\equiv1\pmod4$ below any bound of the totality, for every $\varepsilon$ above the nearest-hit scale $\piR/(2N)$, and $\chi(\eP)$ approaches $e^{\imR}$ along them. Below $10^{6}$: $260$ shells within $0.01$ against $249$ predicted; the best, $\p=778933$, within $4\times10^{-5}$, decided exactly. -/
+theorem p13069 : FRC.Epi.isPrimeB (778933 : Nat) = true ∧ (778933 : Nat) % (4 : Nat) = (1 : Nat) ∧ (123966 : Nat) * (123966 : Nat) % (778933 : Nat) = (778932 : Nat) :=
+  @FRC.Epi.calibrated_shell_core
+set_option linter.defProp false in
+/-- 13:I1 (p13048) — Emergence of the classical $e$: (i) in every shell with $\p>n_0+|Z_0(\p)|+1$ a non-blind scale in $[n_0,n_0+|Z_0(\p)|]$ reads out $\ro(\eR)$, at binary64 exactly $18!/\dr{18}$; (ii) the frame-internal continuation is the antiperiodic residue line with blind set $Z_0(\p)$ and terminal invariant $-(\Ku{\p})^{-1}$, collapsed by the readout to one dyadic rational; (iii) $\chi(\eP)$ approaches $e^{\imR}$ along the calibrated shells of the totality, exact calibration impossible, no pointwise link between the carriers. Composed from D4, F2, F3, F5, H3--H5. -/
+def p13048 := And.intro @FRC.Epi.readout_e_core (And.intro @FRC.Epi.terminal13 (And.intro @FRC.Epi.dr_antiperiodic (And.intro @FRC.Epi.blind_census (@FRC.Epi.no_exact_calibration))))
+/-- 13:I2 (p13049) — Emergence of the classical $\pi$: (i) the plateau readout of $\fQ$-native chains, at binary64 exactly $M_{10}$, the Wallis pair certifying two-sided enclosures at every scale; (ii) the residue line on $[1,2\kap]$ with the quarter-wall invariant $-(a^{2})^{-1}$, the half-wall terminus $-2$, the second-order Fermat quotient with $\pi$-Wieferich set $\{5,45827\}$, Morley exactness at $\p^{3}$, total blindness beyond the address of $-1$, Lucas revivals, the arcsin wall vanishing to $\p^{2}$ with the Bernoulli third order and the Euler content displaced beyond the wall; (iii) $\chi(-1)=e^{\imR\piR}$ exactly. Composed from E2, E4, G1--G7, H2. -/
+theorem p13049 : (List.map (fun k => FRC.Epi.readW (k + (1 : Nat))) (List.range (6 : Nat)) = [(4 : FRC.Shell (13 : Nat)), (5 : FRC.Shell (13 : Nat)), (10 : FRC.Shell (13 : Nat)), (9 : FRC.Shell (13 : Nat)), (6 : FRC.Shell (13 : Nat)), (11 : FRC.Shell (13 : Nat))] ∧ (11 : FRC.Shell (13 : Nat)) = (-2 : FRC.Shell (13 : Nat)) ∧ (10 : FRC.Shell (13 : Nat)) * ((3 : FRC.Shell (13 : Nat)) * (3 : FRC.Shell (13 : Nat))) = (-1 : FRC.Shell (13 : Nat)) ∧ List.map (fun n => decide (FRC.Epi.cb n % (13 : Nat) = (0 : Nat))) (List.range (13 : Nat)) = [false, false, false, false, false, false, false, true, true, true, true, true, true]) ∧ (FRC.Epi.readV (13 : Nat) = (8 : FRC.Shell (13 : Nat)) ∧ (List.filter (fun n => decide ((13 : Nat) ≤ n) && decide (FRC.Epi.cb n % (13 : Nat) ≠ (0 : Nat)) && decide (n % (13 : Nat) ≠ (0 : Nat))) (List.range (169 : Nat))).length = (36 : Nat)) ∧ (List.filter (fun q => decide ((5 : Nat) ≤ q) && FRC.Epi.isPrimeB q) (List.range (3000 : Nat)) = FRC.Epi.oddPrimesBelow3000 ∧ FRC.Epi.oddPrimesBelow3000.length = (428 : Nat) ∧ (FRC.Epi.oddPrimesBelow3000.all fun p => FRC.Epi.sigmaZero p p) = true ∧ FRC.Epi.sigmaZero (3 : Nat) (3 : Nat) = false) ∧ FRC.Epi.primes5to300.length = (60 : Nat) ∧ (FRC.Epi.primes5to300.all fun p => FRC.Epi.sigmaZero p (p * p)) = true :=
+  And.intro @FRC.Epi.residue_line_pi13 (And.intro @FRC.Epi.revivals13 (And.intro @FRC.Epi.sigma_vanishes_all (@FRC.Epi.sigma_vanishes_mod_sq)))
+set_option linter.defProp false in
+/-- 13:I3 (p13050) — The duality: $\pi$ is angular-exact and wall-trivial (tautological carrier, terminus the calibration face $-2$, Fermat quotient one order down, two-squares quarter invariant, empty blind set below the wall, geometric $\fQ$-rate, the series law split Bernoulli/Euler across the wall) and $e$ angular-approximate and wall-wild (calibration impossible, terminus the open Kurepa quantity, no quarter invariant, Poisson blind set, factorial $\fQ$-rate, the group law broken at the wall); each constant exact on the axis where the other is approximate: $\pi$ a structural, $e$ a statistical constant of the finite frame. -/
+def p13050 := And.intro @FRC.Epi.residue_line_pi13 (And.intro @FRC.Epi.terminal13 (And.intro @FRC.Epi.kurepa_alt_values (And.intro @FRC.Epi.blind_census (@FRC.Epi.no_exact_calibration))))
 /-- 13:I4 (p13051) — CRT stability: under the composite lift to $q=\prod\p_i$ the half-wall invariant of $\pi$ glues to $-2$ modulo every $q$, since $2\piA\equiv-1$ holds in every fibre, while the terminal content of $e$, $(-(\Ku{\p_i})^{-1})_i$, varies fibrewise. The two selectors resolve the $\p=13$ coincidence: the same residue $6$ reaches $\piR$ through C4 and $\eR$ through C1. -/
 theorem p13051 : ∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → FRC.Shell.ofNat ((2 : Nat) * FRC.Shell.Frame.halfPeriod κ) = (-1 : FRC.Shell p) :=
   @FRC.Ledger.p13051
+/-- 13:I5 (p13068) — The three frame invariants across shells: on the $4783$ shells $\p\equiv1\pmod4$ below $10^{5}$, the triple $(\Ku{\p}/\p,\ q_\p(4)/\p,\ \varphi/\piR)$ --- the wall of $e$ (F2), the wall of $\pi$ at second order (G4), the angular address $\varphi=\arg(a+b\imR)$ of $\p=a^{2}+b^{2}$, $a\equiv1\pmod4$ (G3) --- is exact on each shell ($\p=13$: $10,6,-3+2\imR$; $1093$: $q_\p(4)=0$, the Wieferich prime); means $0.502,0.499,0.499$ and variances $0.0828,0.0831,0.0832$ (uniform: $1/2$, $1/12$), correlations $-0.016,-0.008,+0.010$ ($\sigma=0.0145$), $4\times4\times4$ chi-square $59.6$ on $63$ df, $a/\sqrt\p=\cos\varphi$ arcsine-distributed (mean $0.004$, variance $0.500$) \apx: consistent with independence on the examined range. -/
+theorem p13068 : FRC.Epi.kur (13 : Nat) % (13 : Nat) = (10 : Nat) ∧ FRC.Epi.fermatQuotient4 (13 : Nat) = (6 : Nat) ∧ (3 : Nat) * (3 : Nat) + (2 : Nat) * (2 : Nat) = (13 : Nat) ∧ FRC.Epi.isPrimeB (1093 : Nat) = true ∧ FRC.Epi.fermatQuotient4 (1093 : Nat) = (0 : Nat) :=
+  @FRC.Epi.invariants_13_1093
 /-- 13:J1 (p13052) — The wrap-free window: an entity of the shell is $\p$-hard when it lies beyond the observer's horizon $\sqrt\p$; the accessible smalls are the natural counts below $\sqrt\p$, where sums and products of two accessible counts do not wrap, so primality, parity and order are wrap-invariant there and only there. -/
 theorem p13052 : ∀ {a b p : Nat}, a * a < p → b * b < p → a * b < p ∧ ((4 : Nat) ≤ p → a + b < p) :=
   @FRC.Epi.wrap_free
 /-- 13:J2 (p13053) — Calibration pinning: the half-period satisfies the height-two relation $2\piA+1\equiv0$, the shell calibration $\p=4\kap+1$ itself, so the observer holds an exact short certificate of an entity it never accesses as a tally; the same pinning covers the quarter-turn ($\im^{2}+1\equiv0$) and the residue web of G2; the pin holds on every one of the $500$ shells $\p\le8009$ with $H(\piA)=2$. -/
 theorem p13053 : (∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → FRC.Shell.ofNat ((2 : Nat) * FRC.Shell.Frame.halfPeriod κ) = (-1 : FRC.Shell p)) ∧ ∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → FRC.Shell.Frame.quarterTurn g κ * FRC.Shell.Frame.quarterTurn g κ = (-1 : FRC.Shell p) :=
   @FRC.Ledger.p13053
+/-- 13:J3 (p13054) — The height run: with $H(x)=\min_{a\ge1}\max(a,|\ctr{ax}|)$ in the smallest-primitive-root frame, minimised over the two chiralities, over the $500$ shells $\p\equiv1\pmod4$, $\p\le8009$: $H(\eP)\le2\sqrt\p$ on every shell (the horizon band), median $H(\eP)=0.525\sqrt\p$ \apx, exactly $68$ shells with $H\le10$, and the pin value $2$ on exactly $\{13,1933,4177,5857\}$; for $\eP$ a relation of height at most $h$ holds only on the shells with $H(\eP)\le h$ ($68$ of the $500$ for $h=10$), a share that falls as the shells grow, $H(\eP)$ sitting at the $\sqrt\p$ scale (the generic-growth reading, A7). -/
+theorem p13054 : List.filter (fun q => decide ((5 : Nat) ≤ q) && q % (4 : Nat) == (1 : Nat) && FRC.Epi.isPrimeB q) (List.range (8010 : Nat)) = FRC.Epi.shells8009 ∧ FRC.Epi.shells8009.length = (500 : Nat) ∧ (FRC.Epi.shells8009.all fun p => decide (FRC.Epi.heightE p * FRC.Epi.heightE p ≤ (4 : Nat) * p)) = true ∧ (List.filter (fun p => decide (FRC.Epi.heightE p ≤ (10 : Nat))) FRC.Epi.shells8009).length = (68 : Nat) ∧ List.filter (fun p => FRC.Epi.heightE p == (2 : Nat)) FRC.Epi.shells8009 = [(13 : Nat), (1933 : Nat), (4177 : Nat), (5857 : Nat)] :=
+  @FRC.Epi.height_run
+/-- 13:J5 (p13056) — Universality and the duality as corollary: $\p$-hardness is self-similar, every shell finding its own half-period and drive name beyond its own horizon, so the chart shadows agree across all observers; $\pi$'s half-period is calibration-pinned with a height-two certificate (J2) and its arc role normalisation-fixed, $\eP$ has neither a pinned residue nor a cross-shell certificate and its role is generator-dependent --- structural against statistical is the certification split (I3). The sporadic small-height shells of J3 are the certificate-level face of I4. -/
+theorem p13056 : (∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → FRC.Shell.ofNat ((2 : Nat) * FRC.Shell.Frame.halfPeriod κ) = (-1 : FRC.Shell p)) ∧ List.filter (fun p => FRC.Epi.heightE p == (2 : Nat)) FRC.Epi.shells8009 = [(13 : Nat), (1933 : Nat), (4177 : Nat), (5857 : Nat)] ∧ (FRC.Epi.shells8009.all fun p => decide (FRC.Epi.heightE p * FRC.Epi.heightE p ≤ (4 : Nat) * p)) = true :=
+  @FRC.Epi.pin_contrast
+set_option linter.defProp false in
+/-- 13:J6 (p13057) — Two constants, two walls: both attach their full-resolution shell content to sparse-prime problems (Kurepa non-vanishing for $e$, a prescribed Fermat quotient of Wieferich type for $\pi$); for each shell the bounded observer holds an exact finite certificate and holds no uniform certificate across all shells --- per-instance decidability without a uniform bound, the characteristic shape of statements at the arithmetic horizon; Kurepa's hypothesis is not thereby decided; the frequency of the persistence shells is a range reading (G4), their totality not a predicate of the paper. -/
+def p13057 := And.intro @FRC.Epi.terminal13 (@FRC.Epi.invariants_13_1093)
 -- end ledger predicates
 
 end FRC.Epi

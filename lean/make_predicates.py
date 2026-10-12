@@ -131,7 +131,7 @@ def statements(lib, host, names, module, explicit=False):
     for e in re.split(r"\n(?=@?FRC\.%s\.p\d{5})" % module, out.strip()):
         m = re.match(r"@?FRC\.%s\.(p\d{5}) : (.*)" % module, e, re.S)
         if m: got[m.group(1)] = re.sub(r"\[inst(?:_\d+)? : ", "[", " ".join(m.group(2).split()))
-    return got
+    return {n: t for n, t in got.items() if "⋯" not in t}                      # an elided term (a proof or an instance under pp.proofs false) cannot re-elaborate
 
 def compiles(lib, host, rows, stated, module):
     """Which predicates of `stated` re-elaborate as theorems: a scratch file in a side namespace, one theorem per predicate."""

@@ -779,10 +779,10 @@
    {
     "name": "FRC.Epi.readout_e_core",
     "module": "FrcCore/Epi",
-    "line": 547,
-    "axioms": null,
-    "tier": "missing",
-    "ok": false,
+    "line": 590,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
     "doc": "13:D4, 13:I1 — the binary64 readout of `e` in the integers: `ε₁₈ = 18!/!18` lies within the half-ulp of the binary64 constant `6121026514868073/2⁵¹` and no `ε_n` with `2 ≤ n ≤ 17` does; `!18 = 2355301661033953`."
    }
   ],
@@ -816,10 +816,10 @@
    {
     "name": "FRC.Epi.derangement_cost_core",
     "module": "FrcCore/Epi",
-    "line": 553,
-    "axioms": null,
-    "tier": "missing",
-    "ok": false,
+    "line": 596,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
     "doc": "13:D5, 13:E5 — the step counts of the derangement chain: `n = 11, 18, 70` are the least `n` with `8·2^k < (n+1)!` for `k = 24, 53, 333` (the enclosure bound `8/(n+1)!` below `2^{−k}`), decided in the integers."
    }
   ],
@@ -882,18 +882,22 @@
     "name": "FRC.Epi.pi_bracket_24",
     "module": "FrcLedger/Epi",
     "line": 657,
-    "axioms": null,
-    "tier": "missing",
-    "ok": false,
+    "axioms": [
+     "Classical.choice",
+     "Quot.sound",
+     "propext"
+    ],
+    "tier": 2,
+    "ok": true,
     "doc": "13:E3 — the rational bracket of `π` at `m = 12`, the ends of the pairing enclosure as reduced fractions (width below `10⁻³⁶`): the bracket on which the core's `arcsin_tail_bound` decides the tail bound of the arcsin chain for `1 ≤ n ≤ 40`."
    },
    {
     "name": "FRC.Epi.arcsin_tail_bound",
     "module": "FrcCore/Epi",
-    "line": 481,
-    "axioms": null,
-    "tier": "missing",
-    "ok": false,
+    "line": 524,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
     "doc": "13:E3 — the tail bound of the arcsin chain, `|π − s_n| < 4⁻ⁿ/(2n+3)`, holds against the certified bracket of `π` for every `1 ≤ n ≤ 40`."
    }
   ],
@@ -902,54 +906,78 @@
     "name": "FRC.Epi.machin_bound",
     "module": "FrcLedger/Epi",
     "line": 597,
-    "axioms": null,
-    "tier": "missing",
-    "ok": false,
+    "axioms": [
+     "Classical.choice",
+     "Quot.sound",
+     "propext"
+    ],
+    "tier": 2,
+    "ok": true,
     "doc": "13:E4, 13:E5, 13:I3 — the Machin chain's error: `|M_N − π| < 17/((2N+3)·5^{2N+3})` for every `N`, from Machin's formula `π/4 = 4 arctan(1/5) − arctan(1/239)` and the alternating bound on each arctangent series: the geometric `ℚ`-rate of `π`."
    },
    {
     "name": "FRC.Epi.readout_binary64_pi",
     "module": "FrcLedger/Epi",
     "line": 673,
-    "axioms": null,
-    "tier": "missing",
-    "ok": false,
+    "axioms": [
+     "Classical.choice",
+     "Quot.sound",
+     "propext"
+    ],
+    "tier": 2,
+    "ok": true,
     "doc": "13:E4, 13:I2 — the binary64 readout of `π`: `π` and `M_10` lie within the half-ulp `2⁻⁵²` of the binary64 constant (Mathlib's twenty-digit bracket of `π`), and no `M_N` with `N ≤ 9` does: `N = 10` is minimal."
    },
    {
     "name": "FRC.Epi.machin_hundred_digits",
     "module": "FrcLedger/Epi",
     "line": 633,
-    "axioms": null,
-    "tier": "missing",
-    "ok": false,
+    "axioms": [
+     "Classical.choice",
+     "Quot.sound",
+     "propext"
+    ],
+    "tier": 2,
+    "ok": true,
     "doc": "13:E4 — the first hundred decimal digits are fixed by `M_71`: `|M_71 − π| < 10⁻¹⁰⁰`."
    },
    {
     "name": "FRC.Epi.arctan_pairing",
     "module": "FrcLedger/Epi",
     "line": 581,
-    "axioms": null,
-    "tier": "missing",
-    "ok": false,
+    "axioms": [
+     "Classical.choice",
+     "Quot.sound",
+     "propext"
+    ],
+    "tier": 2,
+    "ok": true,
     "doc": "13:E4 — the alternating pairing of the arctangent series: for `0 ≤ x < 1`, `S_x(2k+1) ≤ arctan x ≤ S_x(2k)`, a certified two-sided enclosure at every truncation."
    },
    {
     "name": "FRC.Epi.machin_pairing",
     "module": "FrcLedger/Epi",
     "line": 645,
-    "axioms": null,
-    "tier": "missing",
-    "ok": false,
+    "axioms": [
+     "Classical.choice",
+     "Quot.sound",
+     "propext"
+    ],
+    "tier": 2,
+    "ok": true,
     "doc": "13:E4 — the alternating pairing of the two arctangent series encloses `π` at every truncation: `machinLo m ≤ π ≤ machinHi m`, a certified two-sided `ℚ`-enclosure."
    },
    {
     "name": "FRC.Epi.gregory_brackets",
     "module": "FrcLedger/Epi",
     "line": 688,
-    "axioms": null,
-    "tier": "missing",
-    "ok": false,
+    "axioms": [
+     "Classical.choice",
+     "Quot.sound",
+     "propext"
+    ],
+    "tier": 2,
+    "ok": true,
     "doc": "13:E4, 13:E5 — the Gregory brackets, the base case of the pairing: `S_{2m} ≤ π/4 ≤ S_{2m+1}`, of width `1/(4m+1)` — the Leibniz chain's `2^k` steps per `k` binary digits."
    }
   ],
@@ -958,27 +986,39 @@
     "name": "FRC.Epi.rounding_chain",
     "module": "FrcLedger/Epi",
     "line": 705,
-    "axioms": null,
-    "tier": "missing",
-    "ok": false,
+    "axioms": [
+     "Classical.choice",
+     "Quot.sound",
+     "propext"
+    ],
+    "tier": 2,
+    "ok": true,
     "doc": "13:E5 — a factorial-rate chain exists for every real by rounding: `|x − ⌊x·n!⌋/n!| < 1/n!`, so the feasibility split is by kind of chain, not by rate."
    },
    {
     "name": "FRC.Epi.machin_bound",
     "module": "FrcLedger/Epi",
     "line": 597,
-    "axioms": null,
-    "tier": "missing",
-    "ok": false,
+    "axioms": [
+     "Classical.choice",
+     "Quot.sound",
+     "propext"
+    ],
+    "tier": 2,
+    "ok": true,
     "doc": "13:E4, 13:E5, 13:I3 — the Machin chain's error: `|M_N − π| < 17/((2N+3)·5^{2N+3})` for every `N`, from Machin's formula `π/4 = 4 arctan(1/5) − arctan(1/239)` and the alternating bound on each arctangent series: the geometric `ℚ`-rate of `π`."
    },
    {
     "name": "FRC.Epi.gregory_brackets",
     "module": "FrcLedger/Epi",
     "line": 688,
-    "axioms": null,
-    "tier": "missing",
-    "ok": false,
+    "axioms": [
+     "Classical.choice",
+     "Quot.sound",
+     "propext"
+    ],
+    "tier": 2,
+    "ok": true,
     "doc": "13:E4, 13:E5 — the Gregory brackets, the base case of the pairing: `S_{2m} ≤ π/4 ≤ S_{2m+1}`, of width `1/(4m+1)` — the Leibniz chain's `2^k` steps per `k` binary digits."
    },
    {
@@ -997,10 +1037,10 @@
    {
     "name": "FRC.Epi.derangement_cost_core",
     "module": "FrcCore/Epi",
-    "line": 553,
-    "axioms": null,
-    "tier": "missing",
-    "ok": false,
+    "line": 596,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
     "doc": "13:D5, 13:E5 — the step counts of the derangement chain: `n = 11, 18, 70` are the least `n` with `8·2^k < (n+1)!` for `k = 24, 53, 333` (the enclosure bound `8/(n+1)!` below `2^{−k}`), decided in the integers."
    }
   ],
@@ -1117,10 +1157,10 @@
    {
     "name": "FRC.Epi.blind_census",
     "module": "FrcCore/Epi",
-    "line": 350,
-    "axioms": null,
-    "tier": "missing",
-    "ok": false,
+    "line": 390,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
     "doc": "13:F5, 13:I1, 13:I3 — the blind-scale census, its opening stretch: on the `43` primes in `(1000, 1300)` the sizes `|Z₀(p)|` are `1, 2, 2, 1, 2, 4, 1, 4, 2, 1, 2, 2, 1, 3, 3, 2, 3, 2, 1, 3, 1, 2, 5, 2, 1, 1, 2, 2, 2, 4, 1, 2, 2, 3, 1, 2, 1, 1, 2, 2, 1, 2, 3` — forty-three exact counts of the Poisson-read distribution (the full census of `501` primes is the package's check of F5)."
    }
   ],
@@ -1306,10 +1346,10 @@
    {
     "name": "FRC.Epi.sigma_vanishes_all",
     "module": "FrcCore/Epi",
-    "line": 424,
-    "axioms": null,
-    "tier": "missing",
-    "ok": false,
+    "line": 464,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
     "doc": "13:G6, 13:I2 — first-order wall vanishing of the arcsin chain: `σ_p ≡ 0 (mod p)` on all `428` odd primes `5 ≤ p < 3000` (the enumeration complete), and `σ_3 = 1`."
    }
   ],
@@ -1317,10 +1357,10 @@
    {
     "name": "FRC.Epi.sigma_vanishes_mod_sq",
     "module": "FrcCore/Epi",
-    "line": 435,
-    "axioms": null,
-    "tier": "missing",
-    "ok": false,
+    "line": 478,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
     "doc": "13:G7, 13:I2 — second order at the arcsin wall: `σ_p ≡ 0 (mod p²)` (Sun's theorem) on all `60` primes `5 ≤ p < 300`."
    }
   ],
@@ -1458,10 +1498,10 @@
    {
     "name": "FRC.Epi.no_exact_calibration",
     "module": "FrcCore/Epi",
-    "line": 537,
-    "axioms": null,
-    "tier": "missing",
-    "ok": false,
+    "line": 580,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
     "doc": "13:H3, 13:I1, 13:I3 — exact calibration is impossible on every shell of the run: with `θ = 2πλ(i)/(p−1)`, no integer `λ` makes `θ = 1` on any of the `500` shells `p ≡ 1 (mod 4)`, `p ≤ 8009`, decided on the certified bracket of `π`."
    }
   ],
@@ -1482,10 +1522,10 @@
    {
     "name": "FRC.Epi.calibrated_shell_core",
     "module": "FrcCore/Epi",
-    "line": 559,
-    "axioms": null,
-    "tier": "missing",
-    "ok": false,
+    "line": 602,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
     "doc": "13:H4 — the shell data of the best calibrated shell below `10⁶`: `778933` is prime, `≡ 1 (mod 4)`, and `123966` is a quarter-turn, `123966² ≡ −1 (mod 778933)` (the angle bound against `π` is the Mathlib witness)."
    }
   ],
@@ -1560,10 +1600,10 @@
    {
     "name": "FRC.Epi.readout_e_core",
     "module": "FrcCore/Epi",
-    "line": 547,
-    "axioms": null,
-    "tier": "missing",
-    "ok": false,
+    "line": 590,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
     "doc": "13:D4, 13:I1 — the binary64 readout of `e` in the integers: `ε₁₈ = 18!/!18` lies within the half-ulp of the binary64 constant `6121026514868073/2⁵¹` and no `ε_n` with `2 ≤ n ≤ 17` does; `!18 = 2355301661033953`."
    },
    {
@@ -1587,19 +1627,19 @@
    {
     "name": "FRC.Epi.blind_census",
     "module": "FrcCore/Epi",
-    "line": 350,
-    "axioms": null,
-    "tier": "missing",
-    "ok": false,
+    "line": 390,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
     "doc": "13:F5, 13:I1, 13:I3 — the blind-scale census, its opening stretch: on the `43` primes in `(1000, 1300)` the sizes `|Z₀(p)|` are `1, 2, 2, 1, 2, 4, 1, 4, 2, 1, 2, 2, 1, 3, 3, 2, 3, 2, 1, 3, 1, 2, 5, 2, 1, 1, 2, 2, 2, 4, 1, 2, 2, 3, 1, 2, 1, 1, 2, 2, 1, 2, 3` — forty-three exact counts of the Poisson-read distribution (the full census of `501` primes is the package's check of F5)."
    },
    {
     "name": "FRC.Epi.no_exact_calibration",
     "module": "FrcCore/Epi",
-    "line": 537,
-    "axioms": null,
-    "tier": "missing",
-    "ok": false,
+    "line": 580,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
     "doc": "13:H3, 13:I1, 13:I3 — exact calibration is impossible on every shell of the run: with `θ = 2πλ(i)/(p−1)`, no integer `λ` makes `θ = 1` on any of the `500` shells `p ≡ 1 (mod 4)`, `p ≤ 8009`, decided on the certified bracket of `π`."
    }
   ],
@@ -1608,9 +1648,13 @@
     "name": "FRC.Epi.readout_binary64_pi",
     "module": "FrcLedger/Epi",
     "line": 673,
-    "axioms": null,
-    "tier": "missing",
-    "ok": false,
+    "axioms": [
+     "Classical.choice",
+     "Quot.sound",
+     "propext"
+    ],
+    "tier": 2,
+    "ok": true,
     "doc": "13:E4, 13:I2 — the binary64 readout of `π`: `π` and `M_10` lie within the half-ulp `2⁻⁵²` of the binary64 constant (Mathlib's twenty-digit bracket of `π`), and no `M_N` with `N ≤ 9` does: `N = 10` is minimal."
    },
    {
@@ -1660,19 +1704,19 @@
    {
     "name": "FRC.Epi.sigma_vanishes_all",
     "module": "FrcCore/Epi",
-    "line": 424,
-    "axioms": null,
-    "tier": "missing",
-    "ok": false,
+    "line": 464,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
     "doc": "13:G6, 13:I2 — first-order wall vanishing of the arcsin chain: `σ_p ≡ 0 (mod p)` on all `428` odd primes `5 ≤ p < 3000` (the enumeration complete), and `σ_3 = 1`."
    },
    {
     "name": "FRC.Epi.sigma_vanishes_mod_sq",
     "module": "FrcCore/Epi",
-    "line": 435,
-    "axioms": null,
-    "tier": "missing",
-    "ok": false,
+    "line": 478,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
     "doc": "13:G7, 13:I2 — second order at the arcsin wall: `σ_p ≡ 0 (mod p²)` (Sun's theorem) on all `60` primes `5 ≤ p < 300`."
    }
   ],
@@ -1694,9 +1738,13 @@
     "name": "FRC.Epi.machin_bound",
     "module": "FrcLedger/Epi",
     "line": 597,
-    "axioms": null,
-    "tier": "missing",
-    "ok": false,
+    "axioms": [
+     "Classical.choice",
+     "Quot.sound",
+     "propext"
+    ],
+    "tier": 2,
+    "ok": true,
     "doc": "13:E4, 13:E5, 13:I3 — the Machin chain's error: `|M_N − π| < 17/((2N+3)·5^{2N+3})` for every `N`, from Machin's formula `π/4 = 4 arctan(1/5) − arctan(1/239)` and the alternating bound on each arctangent series: the geometric `ℚ`-rate of `π`."
    },
    {
@@ -1742,19 +1790,19 @@
    {
     "name": "FRC.Epi.blind_census",
     "module": "FrcCore/Epi",
-    "line": 350,
-    "axioms": null,
-    "tier": "missing",
-    "ok": false,
+    "line": 390,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
     "doc": "13:F5, 13:I1, 13:I3 — the blind-scale census, its opening stretch: on the `43` primes in `(1000, 1300)` the sizes `|Z₀(p)|` are `1, 2, 2, 1, 2, 4, 1, 4, 2, 1, 2, 2, 1, 3, 3, 2, 3, 2, 1, 3, 1, 2, 5, 2, 1, 1, 2, 2, 2, 4, 1, 2, 2, 3, 1, 2, 1, 1, 2, 2, 1, 2, 3` — forty-three exact counts of the Poisson-read distribution (the full census of `501` primes is the package's check of F5)."
    },
    {
     "name": "FRC.Epi.no_exact_calibration",
     "module": "FrcCore/Epi",
-    "line": 537,
-    "axioms": null,
-    "tier": "missing",
-    "ok": false,
+    "line": 580,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
     "doc": "13:H3, 13:I1, 13:I3 — exact calibration is impossible on every shell of the run: with `θ = 2πλ(i)/(p−1)`, no integer `λ` makes `θ = 1` on any of the `500` shells `p ≡ 1 (mod 4)`, `p ≤ 8009`, decided on the certified bracket of `π`."
    }
   ],
@@ -1773,10 +1821,10 @@
    {
     "name": "FRC.Epi.invariants_13_1093",
     "module": "FrcCore/Epi",
-    "line": 446,
-    "axioms": null,
-    "tier": "missing",
-    "ok": false,
+    "line": 489,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
     "doc": "13:I5, 13:J6 — the three frame invariants on their named shells: at `p = 13` the wall of `e` is `!13 ≡ 10`, the Fermat quotient `q₁₃(4) = 6` and the two squares `13 = 3² + 2²`; at `p = 1093` the Fermat quotient vanishes (the Wieferich prime), each an exact certificate of its shell."
    }
   ],
@@ -1815,10 +1863,10 @@
    {
     "name": "FRC.Epi.height_run",
     "module": "FrcCore/Epi",
-    "line": 628,
-    "axioms": null,
-    "tier": "missing",
-    "ok": false,
+    "line": 671,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
     "doc": "13:J3 — the height run: over the `500` shells `p ≡ 1 (mod 4)`, `p ≤ 8009` (the enumeration complete), `H(e_p) ≤ 2√p` on every shell (the horizon band), exactly `68` shells have `H ≤ 10`, and the pin value `2` is reached on exactly `{13, 1933, 4177, 5857}`."
    }
   ],
@@ -1826,10 +1874,10 @@
    {
     "name": "FRC.Epi.pin_contrast",
     "module": "FrcCore/Epi",
-    "line": 644,
-    "axioms": null,
-    "tier": "missing",
-    "ok": false,
+    "line": 690,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
     "doc": "13:J5 — the certification split: the half-period is pinned by the height-two relation `2π_A + 1 ≡ 0` on every frame shell (J2), while `e_p` reaches the pin value `2` on exactly four of the `500` shells of the run and otherwise sits in the horizon band `H(e_p) ≤ 2√p`: no pinned residue and no cross-shell certificate for `e_p`."
    }
   ],
@@ -1872,10 +1920,10 @@
    {
     "name": "FRC.Epi.invariants_13_1093",
     "module": "FrcCore/Epi",
-    "line": 446,
-    "axioms": null,
-    "tier": "missing",
-    "ok": false,
+    "line": 489,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
     "doc": "13:I5, 13:J6 — the three frame invariants on their named shells: at `p = 13` the wall of `e` is `!13 ≡ 10`, the Fermat quotient `q₁₃(4) = 6` and the two squares `13 = 3² + 2²`; at `p = 1093` the Fermat quotient vanishes (the Wieferich prime), each an exact certificate of its shell."
    }
   ]

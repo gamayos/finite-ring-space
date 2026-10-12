@@ -16,7 +16,10 @@ pair: strict monotonicity, the width identity and the enclosure `v_n < π < w_n`
 product); the impossibility of exact calibration of `e` from the irrationality of `π` (H3); the index condition
 of the null experiment (H5); the wall of `π` at second order: the π-Wieferich condition of G4 in its three
 forms with the exact identity `q_p(4) = 2q_p(2) + p·q_p(2)²`, Eisenstein's congruence `2q_p(2) ≡ −H_{(p−1)/2}`,
-the identification with OEIS A355959 (G10), and G4's second-order clause from Morley's congruence.  Classical (tier 2) on Mathlib's hierarchy; the finite content — the derangement
+the identification with OEIS A355959 (G10), and G4's second-order clause from Morley's congruence; the Machin chain:
+the alternating bound and pairing of the arctangent series, the error `17/((2N+3)5^{2N+3})`, the binary64 readout at
+`N = 10`, the hundred digits at `N = 71`, the rational bracket of `π` at `m = 12` read by the core (E3, E4), the Gregory
+brackets and the rounding chain (E5).  Classical (tier 2) on Mathlib's hierarchy; the finite content — the derangement
 recurrence, antiperiodicity, the tower, orientation transport, the wrap-free window and the value rows on
 `𝔽₁₃` and the six wall shells — is proved with no axioms in `FrcCore/Epi.lean`.
 
@@ -382,7 +385,7 @@ theorem numDerangements_18 : numDerangements 18 = 2355301661033953 := by decide
 /-- The binary64 constant nearest `e`: `6121026514868073 / 2^51`. -/
 noncomputable def binary64E : ℝ := 6121026514868073 / 2 ^ 51
 
-/-- 13:D4 — `e` lies within the half-ulp `2⁻⁵²` of the binary64 constant (from Mathlib's twenty-digit bracket of `e`),
+/-- 13:D4, 13:I1 — `e` lies within the half-ulp `2⁻⁵²` of the binary64 constant (from Mathlib's twenty-digit bracket of `e`),
 `ε_18` lies within the same half-ulp, and no `ε_n` with `2 ≤ n ≤ 17` does: `n = 18` is the minimal readout grade. -/
 theorem readout_binary64 :
     |Real.exp 1 - binary64E| < 1 / 2 ^ 52 ∧ |epsChain 18 - binary64E| < 1 / 2 ^ 52 ∧
@@ -450,7 +453,7 @@ theorem log_one_add_inv_le (n : ℕ) (hn : 5 ≤ n) :
   have e2 : 1 / (2 * (n : ℝ) ^ 2) = 2 * (1 / (4 * (n : ℝ) ^ 2)) := by field_simp; ring
   linarith
 
-/-- 13:D5 — the compound chain is slow: `(1 + 1/n)^n ≤ e · 4n/(4n+1)` for `n ≥ 5`, so the gap `e − (1+1/n)^n`
+/-- 13:D5, 13:E5, 13:I3 — the compound chain is slow: `(1 + 1/n)^n ≤ e · 4n/(4n+1)` for `n ≥ 5`, so the gap `e − (1+1/n)^n`
 is at least `e/(4n+1)`: `k` bits cost `n ≍ 2^k` steps. -/
 theorem compound_cost (n : ℕ) (hn : 5 ≤ n) :
     (1 + 1 / (n : ℝ)) ^ n ≤ Real.exp 1 * (4 * n) / (4 * n + 1) := by
@@ -531,6 +534,187 @@ theorem tendsto_wallis_chain :
   exact (wallis_chain_eq n hn).symm
 
 end tailAndReadout
+
+/-! ## The Machin chain, the Gregory brackets and the rounding chain (13:E3, E4, E5)
+
+The arctangent series as a `ℚ`-native chain: the alternating bound and the alternating pairing (two-sided
+enclosures at every truncation), Machin's formula `π/4 = 4 arctan(1/5) − arctan(1/239)` (Mathlib), the binary64
+readout of `π` at `N = 10`, the hundred digits at `N = 71`, the rational bracket at `m = 12` that the core's
+`arcsin_tail_bound` reads (E3), the Gregory brackets of the Leibniz series (the base case), and the factorial-rate
+chain by rounding that exists for every real (E5). -/
+section machin
+open Filter Topology Real
+
+/-- The partial sums of the arctangent series, `S_x(N) = Σ_{n ≤ N} (−1)^n x^{2n+1}/(2n+1)`. -/
+noncomputable def arctanSum (x : ℝ) (N : ℕ) : ℝ := ∑ n ∈ range (N + 1), (-1 : ℝ) ^ n * (x ^ (2 * n + 1) / (2 * n + 1))
+
+/-- The terms of the arctangent series decrease for `0 ≤ x ≤ 1`. -/
+theorem arctanTerm_antitone {x : ℝ} (hx0 : 0 ≤ x) (hx1 : x ≤ 1) :
+    Antitone (fun n : ℕ => x ^ (2 * n + 1) / (2 * n + 1)) := by
+  intro m n hmn
+  apply div_le_div₀ (by positivity) (pow_le_pow_of_le_one hx0 hx1 (by omega)) (by positivity)
+  have : (m : ℝ) ≤ n := by exact_mod_cast hmn
+  linarith
+
+/-- The arctangent series sums to `arctan x` for `0 ≤ x < 1` (Mathlib's `Real.hasSum_arctan`). -/
+theorem arctanTerm_hasSum {x : ℝ} (hx0 : 0 ≤ x) (hx1 : x < 1) :
+    HasSum (fun n : ℕ => (-1 : ℝ) ^ n * (x ^ (2 * n + 1) / (2 * n + 1))) (arctan x) := by
+  have h := Real.hasSum_arctan (x := x) (by rw [Real.norm_eq_abs, abs_of_nonneg hx0]; exact hx1)
+  convert h using 1
+  ext n; push_cast; ring
+
+/-- The error of the arctangent series for `0 ≤ x < 1` is at most the first omitted term. -/
+theorem arctanSum_error {x : ℝ} (hx0 : 0 ≤ x) (hx1 : x < 1) (N : ℕ) :
+    |arctan x - arctanSum x N| ≤ x ^ (2 * N + 3) / (2 * N + 3) := by
+  set f : ℕ → ℝ := fun n => x ^ (2 * n + 1) / (2 * n + 1) with hf
+  have hfa : Antitone f := arctanTerm_antitone hx0 hx1.le
+  have hsum : HasSum (fun n : ℕ => (-1 : ℝ) ^ n * f n) (arctan x) := arctanTerm_hasSum hx0 hx1
+  have hfs : Summable f := by
+    refine Summable.of_nonneg_of_le (fun n => by positivity) (fun n => ?_) (summable_geometric_of_lt_one hx0 hx1)
+    simp only [hf]
+    calc x ^ (2 * n + 1) / (2 * n + 1) ≤ x ^ (2 * n + 1) / 1 := by
+            apply div_le_div_of_nonneg_left (by positivity) (by norm_num) (by linarith [(by positivity : (0:ℝ) ≤ 2 * n)])
+      _ ≤ x ^ n := by rw [div_one]; exact pow_le_pow_of_le_one hx0 hx1.le (by omega)
+  have h := alternating_series_error_bound f hfa hfs (N + 1)
+  rw [hsum.tsum_eq] at h
+  simpa [arctanSum, hf, show 2 * (N + 1) + 1 = 2 * N + 3 by ring, show ((2 : ℝ) * (N + 1) + 1) = 2 * N + 3 by ring] using h
+
+/-- 13:E4 — the alternating pairing of the arctangent series: for `0 ≤ x < 1`, `S_x(2k+1) ≤ arctan x ≤ S_x(2k)`,
+a certified two-sided enclosure at every truncation. -/
+theorem arctan_pairing {x : ℝ} (hx0 : 0 ≤ x) (hx1 : x < 1) (k : ℕ) :
+    arctanSum x (2 * k + 1) ≤ arctan x ∧ arctan x ≤ arctanSum x (2 * k) := by
+  have hfa := arctanTerm_antitone hx0 hx1.le
+  have hT := (arctanTerm_hasSum hx0 hx1).tendsto_sum_nat
+  refine ⟨?_, ?_⟩
+  · have h := Antitone.alternating_series_le_tendsto hT hfa (k + 1)
+    rw [show 2 * (k + 1) = 2 * k + 1 + 1 by ring] at h
+    exact h
+  · exact Antitone.tendsto_le_alternating_series hT hfa k
+
+/-- The Machin chain `M_N = 4(4 S_{1/5}(N) − S_{1/239}(N))`. -/
+noncomputable def machin (N : ℕ) : ℝ := 4 * (4 * arctanSum (1 / 5) N - arctanSum (1 / 239) N)
+
+/-- 13:E4, 13:E5, 13:I3 — the Machin chain's error: `|M_N − π| < 17/((2N+3)·5^{2N+3})` for every `N`, from
+Machin's formula `π/4 = 4 arctan(1/5) − arctan(1/239)` and the alternating bound on each arctangent series: the
+geometric `ℚ`-rate of `π`. -/
+theorem machin_bound (N : ℕ) : |machin N - π| < 17 / ((2 * N + 3) * 5 ^ (2 * N + 3)) := by
+  have hM := Real.four_mul_arctan_inv_5_sub_arctan_inv_239
+  have h5 := arctanSum_error (x := 1 / 5) (by norm_num) (by norm_num) N
+  have h239 := arctanSum_error (x := 1 / 239) (by norm_num) (by norm_num) N
+  have hpi : π = 4 * (4 * arctan (1 / 5) - arctan (1 / 239)) := by
+    rw [one_div, one_div, hM]; ring
+  have e : machin N - π = 4 * (4 * (arctanSum (1 / 5) N - arctan (1 / 5)) - (arctanSum (1 / 239) N - arctan (1 / 239))) := by
+    rw [machin, hpi]; ring
+  rw [e]
+  have hN : (0 : ℝ) < 2 * N + 3 := by positivity
+  have h5' : |arctanSum (1 / 5) N - arctan (1 / 5)| ≤ (1 / 5) ^ (2 * N + 3) / (2 * N + 3) := by rw [abs_sub_comm]; exact h5
+  have h239' : |arctanSum (1 / 239) N - arctan (1 / 239)| ≤ (1 / 239) ^ (2 * N + 3) / (2 * N + 3) := by rw [abs_sub_comm]; exact h239
+  have hsmall : (1 / 239 : ℝ) ^ (2 * N + 3) < (1 / 4) * (1 / 5) ^ (2 * N + 3) := by
+    have : (1 / 239 : ℝ) ^ (2 * N + 3) ≤ (1 / 239) ^ 1 * (1 / 5) ^ (2 * N + 2) := by
+      rw [show 2 * N + 3 = 1 + (2 * N + 2) by ring, pow_add]
+      gcongr; norm_num
+    calc (1 / 239 : ℝ) ^ (2 * N + 3) ≤ (1 / 239) ^ 1 * (1 / 5) ^ (2 * N + 2) := this
+      _ < (1 / 4) * (1 / 5) ^ (2 * N + 3) := by
+          have hp := pow_pos (by norm_num : (0:ℝ) < 1 / 5) (2 * N + 2)
+          have e3 : (1 / 5 : ℝ) ^ (2 * N + 3) = (1 / 5) ^ (2 * N + 2) * (1 / 5) := by rw [pow_succ]
+          rw [e3]; norm_num; nlinarith [hp]
+  calc |4 * (4 * (arctanSum (1 / 5) N - arctan (1 / 5)) - (arctanSum (1 / 239) N - arctan (1 / 239)))|
+      ≤ 4 * (4 * |arctanSum (1 / 5) N - arctan (1 / 5)| + |arctanSum (1 / 239) N - arctan (1 / 239)|) := by
+        rw [abs_mul, abs_of_pos (by norm_num : (0:ℝ) < 4)]
+        gcongr
+        calc |4 * (arctanSum (1 / 5) N - arctan (1 / 5)) - (arctanSum (1 / 239) N - arctan (1 / 239))|
+            ≤ |4 * (arctanSum (1 / 5) N - arctan (1 / 5))| + |arctanSum (1 / 239) N - arctan (1 / 239)| := abs_sub _ _
+          _ = 4 * |arctanSum (1 / 5) N - arctan (1 / 5)| + |arctanSum (1 / 239) N - arctan (1 / 239)| := by
+              rw [abs_mul, abs_of_pos (by norm_num : (0:ℝ) < 4)]
+    _ ≤ 4 * (4 * ((1 / 5) ^ (2 * N + 3) / (2 * N + 3)) + (1 / 239) ^ (2 * N + 3) / (2 * N + 3)) := by gcongr
+    _ < 4 * (4 * ((1 / 5) ^ (2 * N + 3) / (2 * N + 3)) + (1 / 4) * (1 / 5) ^ (2 * N + 3) / (2 * N + 3)) := by
+        gcongr
+    _ = 17 / ((2 * N + 3) * 5 ^ (2 * N + 3)) := by
+        rw [one_div_pow]; field_simp; ring
+
+/-- 13:E4 — the first hundred decimal digits are fixed by `M_71`: `|M_71 − π| < 10⁻¹⁰⁰`. -/
+theorem machin_hundred_digits : |machin 71 - π| < 1 / 10 ^ 100 := by
+  refine lt_trans (machin_bound 71) ?_
+  norm_num
+
+/-- The pairing enclosure of the Machin chain, lower end: `4(4 S_{1/5}(2m+1) − S_{1/239}(2m))`. -/
+noncomputable def machinLo (m : ℕ) : ℝ := 4 * (4 * arctanSum (1 / 5) (2 * m + 1) - arctanSum (1 / 239) (2 * m))
+
+/-- The pairing enclosure of the Machin chain, upper end: `4(4 S_{1/5}(2m) − S_{1/239}(2m+1))`. -/
+noncomputable def machinHi (m : ℕ) : ℝ := 4 * (4 * arctanSum (1 / 5) (2 * m) - arctanSum (1 / 239) (2 * m + 1))
+
+/-- 13:E4 — the alternating pairing of the two arctangent series encloses `π` at every truncation:
+`machinLo m ≤ π ≤ machinHi m`, a certified two-sided `ℚ`-enclosure. -/
+theorem machin_pairing (m : ℕ) : machinLo m ≤ π ∧ π ≤ machinHi m := by
+  have hM := Real.four_mul_arctan_inv_5_sub_arctan_inv_239
+  have hpi : π = 4 * (4 * arctan (1 / 5) - arctan (1 / 239)) := by
+    rw [one_div, one_div, hM]; ring
+  have h5 := arctan_pairing (x := 1 / 5) (by norm_num) (by norm_num) m
+  have h239 := arctan_pairing (x := 1 / 239) (by norm_num) (by norm_num) m
+  rw [machinLo, machinHi, hpi]
+  constructor <;> linarith [h5.1, h5.2, h239.1, h239.2]
+
+/-- 13:E3 — the rational bracket of `π` at `m = 12`, the ends of the pairing enclosure as reduced fractions
+(width below `10⁻³⁶`): the bracket on which the core's `arcsin_tail_bound` decides the tail bound of the arcsin
+chain for `1 ≤ n ≤ 40`. -/
+theorem pi_bracket_24 :
+    (56982451095683495439374565467485478486061627198245408555021816811556209980957932490824931053425856737444302864615815079280095539452134822710663747992660383090256176690756 : ℝ) / 18138077522740431478132504469278196026908888402936691374051205499784758924249616118578433027852823624088713136757082253607690672547607224629473421373404562473297119140625 ≤ π ∧
+    π ≤ (130195783561461477719700582162729520693370052310728319298679169305810308737653928066126520396560009514814646871106941551053006194003594103465911391825667397563687081581706376 : ℝ) / 41442605047058247458496271511585593410122504578565869919087156374128208580482492892372746919359245529262855323388051816332995956263674891122406052090809680521488189697265625 := by
+  have h := machin_pairing 12
+  have hLo : machinLo 12 = (56982451095683495439374565467485478486061627198245408555021816811556209980957932490824931053425856737444302864615815079280095539452134822710663747992660383090256176690756 : ℝ) / 18138077522740431478132504469278196026908888402936691374051205499784758924249616118578433027852823624088713136757082253607690672547607224629473421373404562473297119140625 := by
+    rw [machinLo, arctanSum, arctanSum]; simp only [Finset.sum_range_succ, Finset.sum_range_zero]; norm_num
+  have hHi : machinHi 12 = (130195783561461477719700582162729520693370052310728319298679169305810308737653928066126520396560009514814646871106941551053006194003594103465911391825667397563687081581706376 : ℝ) / 41442605047058247458496271511585593410122504578565869919087156374128208580482492892372746919359245529262855323388051816332995956263674891122406052090809680521488189697265625 := by
+    rw [machinHi, arctanSum, arctanSum]; simp only [Finset.sum_range_succ, Finset.sum_range_zero]; norm_num
+  rw [hLo] at h; rw [hHi] at h
+  exact h
+
+/-- The binary64 constant nearest `π`: `884279719003555 / 2^48`. -/
+noncomputable def binary64Pi : ℝ := 884279719003555 / 2 ^ 48
+
+/-- 13:E4, 13:I2 — the binary64 readout of `π`: `π` and `M_10` lie within the half-ulp `2⁻⁵²` of the binary64 constant
+(Mathlib's twenty-digit bracket of `π`), and no `M_N` with `N ≤ 9` does: `N = 10` is minimal. -/
+theorem readout_binary64_pi :
+    |π - binary64Pi| < 1 / 2 ^ 52 ∧ |machin 10 - binary64Pi| < 1 / 2 ^ 52 ∧ ∀ N ≤ 9, 1 / 2 ^ 52 < |machin N - binary64Pi| := by
+  refine ⟨?_, ?_, ?_⟩
+  · have h1 := Real.pi_gt_d20; have h2 := Real.pi_lt_d20
+    rw [binary64Pi, abs_lt]; constructor <;> norm_num at h1 h2 ⊢ <;> linarith
+  · rw [machin, arctanSum, arctanSum, binary64Pi, abs_lt]; simp only [Finset.sum_range_succ, Finset.sum_range_zero]
+    constructor <;> norm_num
+  · intro N hN
+    interval_cases N <;> rw [machin, arctanSum, arctanSum, binary64Pi, lt_abs] <;> simp only [Finset.sum_range_succ, Finset.sum_range_zero] <;> norm_num
+
+/-- The Leibniz partial sums `S_m = Σ_{n < m} (−1)^n/(2n+1)`. -/
+noncomputable def leibnizSum (m : ℕ) : ℝ := ∑ n ∈ range m, (-1 : ℝ) ^ n * (1 / (2 * n + 1))
+
+/-- 13:E4, 13:E5 — the Gregory brackets, the base case of the pairing: `S_{2m} ≤ π/4 ≤ S_{2m+1}`, of width
+`1/(4m+1)` — the Leibniz chain's `2^k` steps per `k` binary digits. -/
+theorem gregory_brackets (m : ℕ) : leibnizSum (2 * m) ≤ π / 4 ∧ π / 4 ≤ leibnizSum (2 * m + 1) ∧
+    leibnizSum (2 * m + 1) - leibnizSum (2 * m) = 1 / (4 * m + 1) := by
+  have hT : Tendsto leibnizSum atTop (𝓝 (π / 4)) := by
+    have h := Real.tendsto_sum_pi_div_four
+    refine h.congr' (Eventually.of_forall fun m => ?_)
+    simp only [leibnizSum]; refine sum_congr rfl fun i _ => ?_; rw [mul_one_div]
+  have hfa : Antitone (fun n : ℕ => (1 : ℝ) / (2 * n + 1)) := by
+    intro a b hab; apply one_div_le_one_div_of_le (by positivity)
+    have : (a : ℝ) ≤ b := by exact_mod_cast hab
+    linarith
+  refine ⟨Antitone.alternating_series_le_tendsto hT hfa m, Antitone.tendsto_le_alternating_series hT hfa m, ?_⟩
+  rw [leibnizSum, leibnizSum, sum_range_succ]
+  have : (-1 : ℝ) ^ (2 * m) = 1 := by rw [pow_mul]; norm_num
+  rw [this]; push_cast; ring
+
+/-- 13:E5 — a factorial-rate chain exists for every real by rounding: `|x − ⌊x·n!⌋/n!| < 1/n!`, so the
+feasibility split is by kind of chain, not by rate. -/
+theorem rounding_chain (x : ℝ) (n : ℕ) : |x - (⌊x * n.factorial⌋ : ℝ) / n.factorial| < 1 / n.factorial := by
+  have hf : (0 : ℝ) < n.factorial := by positivity
+  have h1 := Int.floor_le (x * n.factorial)
+  have h2 := Int.lt_floor_add_one (x * n.factorial)
+  have e : x - (⌊x * n.factorial⌋ : ℝ) / n.factorial = (x * n.factorial - ⌊x * n.factorial⌋) / n.factorial := by
+    field_simp
+  rw [e, abs_div, abs_of_pos hf, div_lt_div_iff_of_pos_right hf, abs_lt]
+  constructor <;> linarith
+
+end machin
 
 
 /-- Kurepa's left factorial `!n = Σ_{k<n} k!`. -/
@@ -726,7 +910,7 @@ theorem wilson_reflection_zmod (k : ℕ) (hk : k ≤ p - 1) :
     ((k ! : ℕ) : ZMod p)⁻¹ = -(-1) ^ k * (((p - 1 - k) ! : ℕ) : ZMod p) :=
   wilson_reflection p (ZMod.natCast_self p) (ZMod.wilsons_lemma p) hp.out.one_le k hk
 
-/-- 13:F2 — the wall identity: `!(p−1) ≡ !p (mod p)` for every prime `p` — the derangement number at the wall
+/-- 13:F2, 13:J6 — the wall identity: `!(p−1) ≡ !p (mod p)` for every prime `p` — the derangement number at the wall
 is Kurepa's left factorial (the odd-prime case of the Mijajlović–Šami congruence), from Wilson reflection. -/
 theorem derangements_wall_zmod : ((numDerangements (p - 1) : ℕ) : ZMod p) = (kurepa p : ZMod p) :=
   derangements_wall p (ZMod.natCast_self p) (ZMod.wilsons_lemma p) (factorial_ne_zero_zmod p) hp.out.one_le
@@ -1035,7 +1219,7 @@ section angular
 
 open Real
 
-/-- 13:H3 — `θ = 2πλ/(p−1) ≠ 1` for every label `λ ≥ 1` and every `p`: `θ = 1` would make `π` rational. -/
+/-- 13:H3, 13:I1, 13:I3 — `θ = 2πλ/(p−1) ≠ 1` for every label `λ ≥ 1` and every `p`: `θ = 1` would make `π` rational. -/
 theorem calibration_ne_one (n l : ℕ) (hl : 0 < l) : 2 * π * l / n ≠ 1 := by
   intro h
   have hn : (n : ℝ) ≠ 0 := by intro hn; rw [hn, div_zero] at h; exact zero_ne_one h
@@ -1126,7 +1310,7 @@ end index
 section calibration
 open Real
 
-/-- 13:H4 — the best radian-calibrated shell below `10⁶` (Prop. calib): on `p = 778933`, prime, the residue
+/-- 13:H4, 13:I1 — the best radian-calibrated shell below `10⁶` (Prop. calib): on `p = 778933`, prime, the residue
 `123966` is a quarter-turn (`123966² ≡ −1 (mod p)`), and the frame angle `θ = 2π·123966/(p − 1)` it labels lies
 within `4·10⁻⁵` of one radian and not within `3.9·10⁻⁵` — the calibration inequality decided from the rational
 bounds `3.141592 < π < 3.141593` of Mathlib, no floating-point value of `π` entering; the count of calibrated shells
@@ -1246,7 +1430,7 @@ theorem wallisW_real (n : ℕ) (hn : 1 ≤ n) :
   rw [show (16 : ℝ) ^ n = 2 ^ (4 * n) by rw [pow_mul]; norm_num]
   field_simp
 
-/-- 13:E2 — the two-sided enclosure `v_n < π < w_n` for every `n ≥ 1`: the lower chain is the doubled Wallis
+/-- 13:E2, 13:I2 — the two-sided enclosure `v_n < π < w_n` for every `n ≥ 1`: the lower chain is the doubled Wallis
 partial product `2W_n < 2W_{n+1} ≤ π`, the upper chain is `W_n(2n+1)/n ≥ π(2n+1)²/(4n(n+1)) > π`. -/
 theorem wallis_enclosure (n : ℕ) (hn : 1 ≤ n) :
     ((wallisV n : ℚ) : ℝ) < π ∧ π < ((wallisW n : ℚ) : ℝ) := by
@@ -1430,7 +1614,7 @@ theorem piWieferich_iff (hp2 : p ≠ 2) :
     exact sub_eq_zero
   · rw [e]; push_cast; rw [ZMod.natCast_self]; simp
 
-/-- 13:G4 — the second order at the half wall: with `m = (p−1)/2` and Morley's congruence
+/-- 13:G4, 13:I2, 13:J6 — the second order at the half wall: with `m = (p−1)/2` and Morley's congruence
 `C(p−1, m) ≡ (−1)^m 4^{p−1}` taken modulo `p²` (the import A3), `16^m ≡ (−2 + 2p(q_p(4) − 1))·m·C(2m,m)²
 (mod p²)`, i.e. `w_m ≡ −2 + 2p(q_p(4) − 1)`; the universal `−2` persists to `p²` exactly when `q_p(4) ≡ 1`,
 the π-Wieferich condition. -/
@@ -1673,6 +1857,15 @@ theorem p13021 : (((8 : ℚ) / ↑(Nat.factorial (12 : ℕ)) < (1 : ℚ) / (2 : 
 /-- 13:E2 (p13023) — Two-sided monotone enclosure: $v_n$ strictly increasing, $w_n$ strictly decreasing, $v_n<\piR<w_n$, and the exact width identity $w_n-v_n=w_n/(2n+1)$, certifying $\approx\log_2n$ bits by nested $\fQ$-intervals; the identification of the common limit with $\piR$ is the Wallis import (A6); verified for $n\le300$ against Machin brackets of width below $10^{-420}$. -/
 theorem p13023 : And (∀ (n : Nat), @LE.le Nat instLENat (@OfNat.ofNat Nat (nat_lit 1) (instOfNatNat (nat_lit 1))) n → And (@LT.lt Real Real.instLT (@Rat.cast Real Real.instRatCast (@FRC.Epi.wallisV Rat Rat.instField n)) Real.pi) (@LT.lt Real Real.instLT Real.pi (@Rat.cast Real Real.instRatCast (@FRC.Epi.wallisW Rat Rat.instField n)))) (And (∀ (n : Nat), @LE.le Nat instLENat (@OfNat.ofNat Nat (nat_lit 1) (instOfNatNat (nat_lit 1))) n → @Eq Rat (@HSub.hSub Rat Rat Rat (@instHSub Rat Rat.instSub) (@FRC.Epi.wallisW Rat Rat.instField n) (@FRC.Epi.wallisV Rat Rat.instField n)) (@HDiv.hDiv Rat Rat Rat (@instHDiv Rat Rat.instDiv) (@FRC.Epi.wallisW Rat Rat.instField n) (@HAdd.hAdd Rat Rat Rat (@instHAdd Rat Rat.instAdd) (@HMul.hMul Rat Rat Rat (@instHMul Rat Rat.instMul) (@OfNat.ofNat Rat (nat_lit 2) (@Rat.instOfNat (nat_lit 2))) (@Nat.cast Rat Rat.instNatCast n)) (@OfNat.ofNat Rat (nat_lit 1) (@Rat.instOfNat (nat_lit 1)))))) (And (∀ (n : Nat), @LT.lt Rat Rat.instLT (@FRC.Epi.wallisV Rat Rat.instField n) (@FRC.Epi.wallisV Rat Rat.instField (@HAdd.hAdd Nat Nat Nat (@instHAdd Nat instAddNat) n (@OfNat.ofNat Nat (nat_lit 1) (instOfNatNat (nat_lit 1)))))) (∀ (n : Nat), @LE.le Nat instLENat (@OfNat.ofNat Nat (nat_lit 1) (instOfNatNat (nat_lit 1))) n → @LT.lt Rat Rat.instLT (@FRC.Epi.wallisW Rat Rat.instField (@HAdd.hAdd Nat Nat Nat (@instHAdd Nat instAddNat) n (@OfNat.ofNat Nat (nat_lit 1) (instOfNatNat (nat_lit 1))))) (@FRC.Epi.wallisW Rat Rat.instField n)))) :=
   And.intro @FRC.Epi.wallis_enclosure (And.intro @FRC.Epi.wallis_width (And.intro @FRC.Epi.wallisV_strictMono (@FRC.Epi.wallisW_strictAnti)))
+/-- 13:E3 (p13024) — The arcsin chain $s_n=3\sum_{k\le n}\Cb{k}/((2k+1)16^{k})\in\fQ$ with external completion $\piR=6\arcsin\frac12$ \chart{} and tail bound $|\piR-s_n|<4^{-n}/(2n+3)$ for $n\ge1$: geometric rate from the same combinatorial atoms as the Wallis pair. -/
+theorem p13024 : (56982451095683495439374565467485478486061627198245408555021816811556209980957932490824931053425856737444302864615815079280095539452134822710663747992660383090256176690756 / 18138077522740431478132504469278196026908888402936691374051205499784758924249616118578433027852823624088713136757082253607690672547607224629473421373404562473297119140625 : ℝ) ≤ Real.pi ∧ Real.pi ≤ (130195783561461477719700582162729520693370052310728319298679169305810308737653928066126520396560009514814646871106941551053006194003594103465911391825667397563687081581706376 / 41442605047058247458496271511585593410122504578565869919087156374128208580482492892372746919359245529262855323388051816332995956263674891122406052090809680521488189697265625 : ℝ) :=
+  @FRC.Epi.pi_bracket_24
+/-- 13:E4 (p13025) — Horizon determination for $\pi$: the Machin chain $M_N\in\fQ$ has $|M_N-\piR|<17/((2N+3)5^{2N+3})$; the binary64 constant $884279719003555/281474976710656$ is the readout of $M_{10}$ with $N=10$ minimal; the first $100$ decimal digits are fixed by $M_{71}$; alternating pairing of the two arctangent series gives certified two-sided $\fQ$-enclosures at every truncation, the Gregory brackets $4S_{2m+1}<\piR<4S_{2m}$ of width $4/(4m+3)$ the base case. -/
+theorem p13025 : (∀ (N : ℕ), |FRC.Epi.machin N - Real.pi| < (17 : ℝ) / (((2 : ℝ) * ↑N + (3 : ℝ)) * (5 : ℝ) ^ ((2 : ℕ) * N + (3 : ℕ)))) ∧ (|Real.pi - FRC.Epi.binary64Pi| < (1 : ℝ) / (2 : ℝ) ^ (52 : ℕ) ∧ |FRC.Epi.machin (10 : ℕ) - FRC.Epi.binary64Pi| < (1 : ℝ) / (2 : ℝ) ^ (52 : ℕ) ∧ ∀ N ≤ (9 : ℕ), (1 : ℝ) / (2 : ℝ) ^ (52 : ℕ) < |FRC.Epi.machin N - FRC.Epi.binary64Pi|) ∧ |FRC.Epi.machin (71 : ℕ) - Real.pi| < (1 : ℝ) / (10 : ℝ) ^ (100 : ℕ) ∧ (∀ {x : ℝ}, (0 : ℝ) ≤ x → x < (1 : ℝ) → ∀ (k : ℕ), FRC.Epi.arctanSum x ((2 : ℕ) * k + (1 : ℕ)) ≤ Real.arctan x ∧ Real.arctan x ≤ FRC.Epi.arctanSum x ((2 : ℕ) * k)) ∧ (∀ (m : ℕ), FRC.Epi.machinLo m ≤ Real.pi ∧ Real.pi ≤ FRC.Epi.machinHi m) ∧ ∀ (m : ℕ), FRC.Epi.leibnizSum ((2 : ℕ) * m) ≤ Real.pi / (4 : ℝ) ∧ Real.pi / (4 : ℝ) ≤ FRC.Epi.leibnizSum ((2 : ℕ) * m + (1 : ℕ)) ∧ FRC.Epi.leibnizSum ((2 : ℕ) * m + (1 : ℕ)) - FRC.Epi.leibnizSum ((2 : ℕ) * m) = (1 : ℝ) / ((4 : ℝ) * ↑m + (1 : ℝ)) :=
+  And.intro @FRC.Epi.machin_bound (And.intro @FRC.Epi.readout_binary64_pi (And.intro @FRC.Epi.machin_hundred_digits (And.intro @FRC.Epi.arctan_pairing (And.intro @FRC.Epi.machin_pairing (@FRC.Epi.gregory_brackets)))))
+/-- 13:E5 (p13026) — The feasibility hierarchy: among $\fQ$-native constructors of $\pi$ the best known rate is geometric, $\Theta(k)$ steps (Machin, arcsin), against $\Theta(k/\log k)$ for the derangement chain of $e$; the circle count and the Leibniz/Wallis chains sit at $2^{k}$; the AGM is not $\fQ$-native. A factorial-rate chain exists for every real by rounding (and for $\pi$ by rounding the Machin chain), so the split is by kind of chain --- E-partial sums ($e$) against G-partial sums ($\pi$), master C26; whether $\piR$ is the value of an E-function with rational coefficients at a rational point is a question of the continuum (Fischler--Rivoal's conjecture $\operatorname{Frac}\mathcal E\cap\operatorname{Frac}\mathcal G=\overline{\Q}$ would answer it negatively), not a predicate of the frame. -/
+theorem p13026 : (∀ (x : ℝ) (n : ℕ), |x - ↑⌊x * ↑n.factorial⌋ / ↑n.factorial| < (1 : ℝ) / ↑n.factorial) ∧ (∀ (N : ℕ), |FRC.Epi.machin N - Real.pi| < (17 : ℝ) / (((2 : ℝ) * ↑N + (3 : ℝ)) * (5 : ℝ) ^ ((2 : ℕ) * N + (3 : ℕ)))) ∧ (∀ (m : ℕ), FRC.Epi.leibnizSum ((2 : ℕ) * m) ≤ Real.pi / (4 : ℝ) ∧ Real.pi / (4 : ℝ) ≤ FRC.Epi.leibnizSum ((2 : ℕ) * m + (1 : ℕ)) ∧ FRC.Epi.leibnizSum ((2 : ℕ) * m + (1 : ℕ)) - FRC.Epi.leibnizSum ((2 : ℕ) * m) = (1 : ℝ) / ((4 : ℝ) * ↑m + (1 : ℝ))) ∧ ∀ (n : ℕ), (5 : ℕ) ≤ n → ((1 : ℝ) + (1 : ℝ) / ↑n) ^ n ≤ Real.exp (1 : ℝ) * ((4 : ℝ) * ↑n) / ((4 : ℝ) * ↑n + (1 : ℝ)) :=
+  And.intro @FRC.Epi.rounding_chain (And.intro @FRC.Epi.machin_bound (And.intro @FRC.Epi.gregory_brackets (@FRC.Epi.compound_cost)))
 /-- 13:F1 (p13027) — Wilson reflection: for an odd prime $\p$ and $0\le k\le\p-1$, $1/k!\equiv-(-1)^{k}(\p-1-k)!\pmod\p$. -/
 theorem p13027 : ∀ (p : ℕ) [hp : Fact (Nat.Prime p)], ∀ k ≤ p - (1 : ℕ), (↑k.factorial)⁻¹ = -(-1 : ZMod p) ^ k * ↑(p - (1 : ℕ) - k).factorial :=
   @FRC.Epi.wilson_reflection_zmod
@@ -1721,6 +1914,18 @@ theorem p13069 : Nat.Prime (778933 : ℕ) ∧ (123966 : ZMod (778933 : ℕ)) ^ (
 /-- 13:H5 (p13047) — The null experiment: whether $\gen^{\lambda(\im)}\equiv-(\Ku{\p})^{-1}$ for some primitive root of either chirality is the index condition $\gcd(s,\p-1)=\gcd(\lambda(\pm\im),\p-1)$; over the $210$ primes $\p\equiv1\pmod4$, $5<\p<3000$, it is solvable for $94$ ($44.8\%$, against $96.0\pm6.6$ expected under independence), the correlation of the two angular addresses $-0.10$ at deviation $\approx0.07$ \apx: no invariant pointwise identification of the angular and radial carriers of $e$; the naive reading of $\eP$ as the number $2.71828\ldots$ is refuted. -/
 theorem p13047 : (∀ (p : ℕ) [hp : Fact (Nat.Prime p)] (g : ZMod p), IsPrimitiveRoot g (p - (1 : ℕ)) → ∀ (l s : ℕ), (∃ u, u.Coprime (p - (1 : ℕ)) ∧ (g ^ u) ^ l = g ^ s) ↔ l.gcd (p - (1 : ℕ)) = s.gcd (p - (1 : ℕ))) ∧ ∀ (n l s : ℕ) [NeZero n], (∃ u, u.Coprime n ∧ u * l ≡ s [MOD n]) ↔ l.gcd n = s.gcd n :=
   And.intro @FRC.Epi.index_condition_shell (@FRC.Epi.index_condition)
+/-- 13:I1 (p13048) — Emergence of the classical $e$: (i) in every shell with $\p>n_0+|Z_0(\p)|+1$ a non-blind scale in $[n_0,n_0+|Z_0(\p)|]$ reads out $\ro(\eR)$, at binary64 exactly $18!/\dr{18}$; (ii) the frame-internal continuation is the antiperiodic residue line with blind set $Z_0(\p)$ and terminal invariant $-(\Ku{\p})^{-1}$, collapsed by the readout to one dyadic rational; (iii) $\chi(\eP)$ approaches $e^{\imR}$ along the calibrated shells of the totality, exact calibration impossible, no pointwise link between the carriers. Composed from D4, F2, F3, F5, H3--H5. -/
+theorem p13048 : (|Real.exp (1 : ℝ) - FRC.Epi.binary64E| < (1 : ℝ) / (2 : ℝ) ^ (52 : ℕ) ∧ |FRC.Epi.epsChain (18 : ℕ) - FRC.Epi.binary64E| < (1 : ℝ) / (2 : ℝ) ^ (52 : ℕ) ∧ ∀ (n : ℕ), (2 : ℕ) ≤ n → n ≤ (17 : ℕ) → (1 : ℝ) / (2 : ℝ) ^ (52 : ℕ) < |FRC.Epi.epsChain n - FRC.Epi.binary64E|) ∧ (∀ (n l : ℕ), (0 : ℕ) < l → (2 : ℝ) * Real.pi * ↑l / ↑n ≠ (1 : ℝ)) ∧ Nat.Prime (778933 : ℕ) ∧ (123966 : ZMod (778933 : ℕ)) ^ (2 : ℕ) = (-1 : ZMod (778933 : ℕ)) ∧ |(2 : ℝ) * Real.pi * (123966 : ℝ) / (778932 : ℝ) - (1 : ℝ)| < (4 / 100000 : ℝ) ∧ (39 / 1000000 : ℝ) < |(2 : ℝ) * Real.pi * (123966 : ℝ) / (778932 : ℝ) - (1 : ℝ)| :=
+  And.intro @FRC.Epi.readout_binary64 (And.intro @FRC.Epi.calibration_ne_one (@FRC.Epi.calibrated_778933))
+set_option linter.defProp false in
+/-- 13:I2 (p13049) — Emergence of the classical $\pi$: (i) the plateau readout of $\fQ$-native chains, at binary64 exactly $M_{10}$, the Wallis pair certifying two-sided enclosures at every scale; (ii) the residue line on $[1,2\kap]$ with the quarter-wall invariant $-(a^{2})^{-1}$, the half-wall terminus $-2$, the second-order Fermat quotient with $\pi$-Wieferich set $\{5,45827\}$, Morley exactness at $\p^{3}$, total blindness beyond the address of $-1$, Lucas revivals, the arcsin wall vanishing to $\p^{2}$ with the Bernoulli third order and the Euler content displaced beyond the wall; (iii) $\chi(-1)=e^{\imR\piR}$ exactly. Composed from E2, E4, G1--G7, H2. -/
+def p13049 := And.intro @FRC.Epi.readout_binary64_pi (And.intro @FRC.Epi.wallis_enclosure (@FRC.Epi.half_wall_second_order))
+/-- 13:I3 (p13050) — The duality: $\pi$ is angular-exact and wall-trivial (tautological carrier, terminus the calibration face $-2$, Fermat quotient one order down, two-squares quarter invariant, empty blind set below the wall, geometric $\fQ$-rate, the series law split Bernoulli/Euler across the wall) and $e$ angular-approximate and wall-wild (calibration impossible, terminus the open Kurepa quantity, no quarter invariant, Poisson blind set, factorial $\fQ$-rate, the group law broken at the wall); each constant exact on the axis where the other is approximate: $\pi$ a structural, $e$ a statistical constant of the finite frame. -/
+theorem p13050 : (∀ (n l : ℕ), (0 : ℕ) < l → (2 : ℝ) * Real.pi * ↑l / ↑n ≠ (1 : ℝ)) ∧ (∀ (N : ℕ), |FRC.Epi.machin N - Real.pi| < (17 : ℝ) / (((2 : ℝ) * ↑N + (3 : ℝ)) * (5 : ℝ) ^ ((2 : ℕ) * N + (3 : ℕ)))) ∧ ∀ (n : ℕ), (5 : ℕ) ≤ n → ((1 : ℝ) + (1 : ℝ) / ↑n) ^ n ≤ Real.exp (1 : ℝ) * ((4 : ℝ) * ↑n) / ((4 : ℝ) * ↑n + (1 : ℝ)) :=
+  And.intro @FRC.Epi.calibration_ne_one (And.intro @FRC.Epi.machin_bound (@FRC.Epi.compound_cost))
+set_option linter.defProp false in
+/-- 13:J6 (p13057) — Two constants, two walls: both attach their full-resolution shell content to sparse-prime problems (Kurepa non-vanishing for $e$, a prescribed Fermat quotient of Wieferich type for $\pi$); for each shell the bounded observer holds an exact finite certificate and holds no uniform certificate across all shells --- per-instance decidability without a uniform bound, the characteristic shape of statements at the arithmetic horizon; Kurepa's hypothesis is not thereby decided; the frequency of the persistence shells is a range reading (G4), their totality not a predicate of the paper. -/
+def p13057 := And.intro @FRC.Epi.derangements_wall_zmod (@FRC.Epi.half_wall_second_order)
 -- end ledger predicates
 
 end FRC.Epi
@@ -1734,6 +1939,9 @@ end FRC.Epi
 #print axioms FRC.Epi.p13020
 #print axioms FRC.Epi.p13021
 #print axioms FRC.Epi.p13023
+#print axioms FRC.Epi.p13024
+#print axioms FRC.Epi.p13025
+#print axioms FRC.Epi.p13026
 #print axioms FRC.Epi.p13027
 #print axioms FRC.Epi.p13028
 #print axioms FRC.Epi.p13029
@@ -1750,3 +1958,7 @@ end FRC.Epi
 #print axioms FRC.Epi.p13045
 #print axioms FRC.Epi.p13069
 #print axioms FRC.Epi.p13047
+#print axioms FRC.Epi.p13048
+#print axioms FRC.Epi.p13049
+#print axioms FRC.Epi.p13050
+#print axioms FRC.Epi.p13057
