@@ -12807,7 +12807,7 @@
   {
    "key": "p13061",
    "origin": "13",
-   "statement": "Kurepa's certificate: the count $Z=\\#\\{\\text{shells }\\p:\\p\\mid\\Ku{\\p}\\}$ over the shells of the totality, the odd primes $\\p<\\sqrt\\Om$ (00:B8, 00:C4); Kurepa's hypothesis (1971) over the totality is $Z=0$ --- equivalently $\\p\\nmid\\dr{(\\p-1)}$ (F2) and the Bell number $B_{\\p-1}\\not\\equiv1\\pmod\\p$ on every shell, the walk of F8 returning to its origin on none. Each shell certifies its own case by the walk of $\\p-1$ steps within its window (F2, F8); the certificate over the $\\approx2.6\\times10^{59}$ shells costs $\\sum(\\p-1)\\approx\\Om/\\ln\\Om$ steps, a count above $\\sqrt\\Om$ that no Subject's counting reaches (00:A5, 00:B8): $\\Om$-hard, the class of 00:Z3, host-decided only where the Carrier is hosted. On the laboratory Carriers the certificate is decided and zero: the $5$, $39$, $243$ shells of $\\Om=233$, $30089$, $2{,}408{,}561$ (the odd primes below $16$, $174$, $1552$), every one walked (\\src{lab.Z1}); no vanishing residue up to $2{,}408{,}561$ (re-verified here; the package's pass to $2.5\\times10^{5}$, \\src{kur.K1}) nor below $2^{40}$ (A4). The one claimed proof (Barsky--Benzaghou 2004, Thm.~3) was withdrawn by its authors (2011).",
+   "statement": "Kurepa's certificate over the totality: the count of shells on which the left factorial vanishes, Kurepa's hypothesis its vanishing. Each shell decides its own case within its window; the count over all shells is a count above every shell, in no embedded reader's window: $\\Om$-hard, decided on a hosted Carrier by its host.",
    "origin_row": "13:Z1",
    "tag": "Ω",
    "tier": null,
@@ -12826,7 +12826,7 @@
   {
    "key": "p13063",
    "origin": "13",
-   "statement": "The large-$\\p$ laws over the shells of the totality, the primes $\\p<\\sqrt\\Om$ (00:B8, 00:C4): (a) the calibration rate $\\delta=\\min|\\theta-1|$ over the $\\approx1.3\\times10^{59}$ shells $\\p\\equiv1\\pmod4$ --- whether $\\delta(X)$ runs at the nearest-hit scale $\\piR/(2N(X))$ for every $X$ (H4; the continuum bound the irrationality measure of $\\piR$, $\\mu\\le7.1033$, Zeilberger--Zudilin 2020) \\import; (b) the independence of $(\\Ku{\\p}/\\p,\\ q_\\p(4)/\\p,\\ \\varphi/\\piR)$ in the joint law over them (I5); (c) the Poisson$(1)$ law of $|Z_0(\\p)|-1$ over all shells (F5) and the independence of the quarter-turn index and the gcd class of the wall-residue index over the shells $\\p\\equiv1\\pmod4$, $\\p>5$ (H5). Each shell decides its own values within its window (H3, F2, G3, G4; J6); the check of each law over all shells costs a count above $\\sqrt\\Om$ that no Subject's counting reaches (00:A5, 00:B8): $\\Om$-hard, the class of 00:Z3, host-decided only where the Carrier is hosted. On the laboratory Carriers the values are decided over their own shells (\\src{lab.Z1}, \\src{lab.Z2}), the laws read against them \\apx: over the $2$, $18$, $117$ shells $\\p\\equiv1\\pmod4$ of $\\Om=233$, $30089$, $2{,}408{,}561$, $\\delta=1.62$, $0.0472$, $4.02\\times10^{-4}$ at $\\p=13$, $37$, $397$, against the nearest-hit scale $\\piR/(2N)=0.79$, $0.087$, $0.013$; at $N=117$ the triple's correlations $+0.02$, $+0.07$, $+0.14$, within $2\\sigma$ ($\\sigma=0.09$) of zero; the blind-set excess $1.02$ against $1$ over the $243$ shells; the index condition solvable on $48$ of $116$ against $52.6\\pm4.9$. On the $88{,}336$ shells $\\p\\equiv1\\pmod4$, $\\p\\le2{,}408{,}561$ (shells of the physical totality; re-verified here): means $0.500$, $0.499$, $0.500$, correlations $+0.001$, $-0.003$, $+0.000$ ($\\sigma=0.0034$), chi-square $63.3$ on $63$ df \\apx.",
+   "statement": "The large-$\\p$ laws over the totality's shells: the calibration rate against the nearest-hit scale, the joint law of the frame invariants, the blind-set and index-condition laws. Each shell decides its own values; each check over all shells is a count above every shell, in no embedded reader's window: $\\Om$-hard, decided on a hosted Carrier by its host.",
    "origin_row": "13:Z2",
    "tag": "Ω",
    "tier": null,
@@ -40207,8 +40207,8 @@
    "block": "Z",
    "tag": "Ω",
    "name": null,
-   "statement": "Kurepa's certificate: the count $Z=\\#\\{\\text{shells }\\p:\\p\\mid\\Ku{\\p}\\}$ over the shells of the totality, the odd primes $\\p<\\sqrt\\Om$ (00:B8, 00:C4); Kurepa's hypothesis (1971) over the totality is $Z=0$ --- equivalently $\\p\\nmid\\dr{(\\p-1)}$ (F2) and the Bell number $B_{\\p-1}\\not\\equiv1\\pmod\\p$ on every shell, the walk of F8 returning to its origin on none. Each shell certifies its own case by the walk of $\\p-1$ steps within its window (F2, F8); the certificate over the $\\approx2.6\\times10^{59}$ shells costs $\\sum(\\p-1)\\approx\\Om/\\ln\\Om$ steps, a count above $\\sqrt\\Om$ that no Subject's counting reaches (00:A5, 00:B8): $\\Om$-hard, the class of 00:Z3, host-decided only where the Carrier is hosted. On the laboratory Carriers the certificate is decided and zero: the $5$, $39$, $243$ shells of $\\Om=233$, $30089$, $2{,}408{,}561$ (the odd primes below $16$, $174$, $1552$), every one walked (\\src{lab.Z1}); no vanishing residue up to $2{,}408{,}561$ (re-verified here; the package's pass to $2.5\\times10^{5}$, \\src{kur.K1}) nor below $2^{40}$ (A4). The one claimed proof (Barsky--Benzaghou 2004, Thm.~3) was withdrawn by its authors (2011).",
-   "source": "Thm.~\\ref{thm:wall-e}\\newline \\pywit{epi}{p13061}{Z1}",
+   "statement": "Kurepa's certificate over the totality: the count of shells on which the left factorial vanishes, Kurepa's hypothesis its vanishing. Each shell decides its own case within its window; the count over all shells is a count above every shell, in no embedded reader's window: $\\Om$-hard, decided on a hosted Carrier by its host.",
+   "source": "Thm.~\\ref{thm:wall-e}, \\S\\ref{sec:consequences}\\newline \\pywit{epi}{p13061}{Z1}; rests on F2, F8, 00:A5, 00:B8, 00:Z3",
    "page": "13-epi/index.html#Z1",
    "witness": {
     "py": {
@@ -40220,16 +40220,14 @@
     "lean": []
    },
    "refs": [
-    "p00024",
     "p00111",
     "p00112",
     "p00166",
     "p00197",
-    "p13004",
     "p13028",
     "p13066"
    ],
-   "text": "Kurepa's certificate: the count $Z=#\\{shells \\p:\\p\\mid\\Ku{\\p}\\}$ over the shells of the totality, the odd primes $\\p<\\sqrt\\Om$ (00:B8, 00:C4); Kurepa's hypothesis (1971) over the totality is $Z=0$ — equivalently $\\p\\nmid\\dr{(\\p-1)}$ (F2) and the Bell number $B_{\\p-1}\\not\\equiv1\\pmod\\p$ on every shell, the walk of F8 returning to its origin on none. Each shell certifies its own case by the walk of $\\p-1$ steps within its window (F2, F8); the certificate over the $\\approx2.6\\times10^{59}$ shells costs $\\sum(\\p-1)\\approx\\Om/\\ln\\Om$ steps, a count above $\\sqrt\\Om$ that no Subject's counting reaches (00:A5, 00:B8): $\\Om$-hard, the class of 00:Z3, host-decided only where the Carrier is hosted. On the laboratory Carriers the certificate is decided and zero: the $5$, $39$, $243$ shells of $\\Om=233$, $30089$, $2{,}408{,}561$ (the odd primes below $16$, $174$, $1552$), every one walked (lab.Z1); no vanishing residue up to $2{,}408{,}561$ (re-verified here; the package's pass to $2.5\\times10^{5}$, kur.K1) nor below $2^{40}$ (A4). The one claimed proof (Barsky–Benzaghou 2004, Thm. 3) was withdrawn by its authors (2011). Thm. thm:wall-e p13061"
+   "text": "Kurepa's certificate over the totality: the count of shells on which the left factorial vanishes, Kurepa's hypothesis its vanishing. Each shell decides its own case within its window; the count over all shells is a count above every shell, in no embedded reader's window: $\\Om$-hard, decided on a hosted Carrier by its host. Thm. thm:wall-e, \\Ssec:consequences p13061; rests on F2, F8, 00:A5, 00:B8, 00:Z3"
   },
   {
    "paper": "13-epi",
@@ -40240,8 +40238,8 @@
    "block": "Z",
    "tag": "Ω",
    "name": null,
-   "statement": "The large-$\\p$ laws over the shells of the totality, the primes $\\p<\\sqrt\\Om$ (00:B8, 00:C4): (a) the calibration rate $\\delta=\\min|\\theta-1|$ over the $\\approx1.3\\times10^{59}$ shells $\\p\\equiv1\\pmod4$ --- whether $\\delta(X)$ runs at the nearest-hit scale $\\piR/(2N(X))$ for every $X$ (H4; the continuum bound the irrationality measure of $\\piR$, $\\mu\\le7.1033$, Zeilberger--Zudilin 2020) \\import; (b) the independence of $(\\Ku{\\p}/\\p,\\ q_\\p(4)/\\p,\\ \\varphi/\\piR)$ in the joint law over them (I5); (c) the Poisson$(1)$ law of $|Z_0(\\p)|-1$ over all shells (F5) and the independence of the quarter-turn index and the gcd class of the wall-residue index over the shells $\\p\\equiv1\\pmod4$, $\\p>5$ (H5). Each shell decides its own values within its window (H3, F2, G3, G4; J6); the check of each law over all shells costs a count above $\\sqrt\\Om$ that no Subject's counting reaches (00:A5, 00:B8): $\\Om$-hard, the class of 00:Z3, host-decided only where the Carrier is hosted. On the laboratory Carriers the values are decided over their own shells (\\src{lab.Z1}, \\src{lab.Z2}), the laws read against them \\apx: over the $2$, $18$, $117$ shells $\\p\\equiv1\\pmod4$ of $\\Om=233$, $30089$, $2{,}408{,}561$, $\\delta=1.62$, $0.0472$, $4.02\\times10^{-4}$ at $\\p=13$, $37$, $397$, against the nearest-hit scale $\\piR/(2N)=0.79$, $0.087$, $0.013$; at $N=117$ the triple's correlations $+0.02$, $+0.07$, $+0.14$, within $2\\sigma$ ($\\sigma=0.09$) of zero; the blind-set excess $1.02$ against $1$ over the $243$ shells; the index condition solvable on $48$ of $116$ against $52.6\\pm4.9$. On the $88{,}336$ shells $\\p\\equiv1\\pmod4$, $\\p\\le2{,}408{,}561$ (shells of the physical totality; re-verified here): means $0.500$, $0.499$, $0.500$, correlations $+0.001$, $-0.003$, $+0.000$ ($\\sigma=0.0034$), chi-square $63.3$ on $63$ df \\apx.",
-   "source": "Prop.~\\ref{prop:calib}, \\S\\ref{sec:duality}\\newline \\pywit{epi}{p13063}{Z2}",
+   "statement": "The large-$\\p$ laws over the totality's shells: the calibration rate against the nearest-hit scale, the joint law of the frame invariants, the blind-set and index-condition laws. Each shell decides its own values; each check over all shells is a count above every shell, in no embedded reader's window: $\\Om$-hard, decided on a hosted Carrier by its host.",
+   "source": "Prop.~\\ref{prop:calib}, \\S\\ref{sec:duality}, \\S\\ref{sec:consequences}\\newline \\pywit{epi}{p13063}{Z2}; rests on H4, I5, F5, H5, 00:A5, 00:B8, 00:Z3",
    "page": "13-epi/index.html#Z2",
    "witness": {
     "py": {
@@ -40253,22 +40251,15 @@
     "lean": []
    },
    "refs": [
-    "p00024",
     "p00111",
     "p00166",
     "p00197",
-    "p13028",
     "p13031",
-    "p13036",
-    "p13037",
-    "p13045",
     "p13047",
-    "p13057",
-    "p13061",
     "p13068",
     "p13069"
    ],
-   "text": "The large-$\\p$ laws over the shells of the totality, the primes $\\p<\\sqrt\\Om$ (00:B8, 00:C4): (a) the calibration rate $\\delta=\\min|\\theta-1|$ over the $\\approx1.3\\times10^{59}$ shells $\\p\\equiv1\\pmod4$ — whether $\\delta(X)$ runs at the nearest-hit scale $\\piR/(2N(X))$ for every $X$ (H4; the continuum bound the irrationality measure of $\\piR$, $\\mu\\le7.1033$, Zeilberger–Zudilin 2020) \\import; (b) the independence of $(\\Ku{\\p}/\\p, q_\\p(4)/\\p, \\varphi/\\piR)$ in the joint law over them (I5); (c) the Poisson$(1)$ law of $|Z_0(\\p)|-1$ over all shells (F5) and the independence of the quarter-turn index and the gcd class of the wall-residue index over the shells $\\p\\equiv1\\pmod4$, $\\p>5$ (H5). Each shell decides its own values within its window (H3, F2, G3, G4; J6); the check of each law over all shells costs a count above $\\sqrt\\Om$ that no Subject's counting reaches (00:A5, 00:B8): $\\Om$-hard, the class of 00:Z3, host-decided only where the Carrier is hosted. On the laboratory Carriers the values are decided over their own shells (lab.Z1, lab.Z2), the laws read against them \\apx: over the $2$, $18$, $117$ shells $\\p\\equiv1\\pmod4$ of $\\Om=233$, $30089$, $2{,}408{,}561$, $\\delta=1.62$, $0.0472$, $4.02\\times10^{-4}$ at $\\p=13$, $37$, $397$, against the nearest-hit scale $\\piR/(2N)=0.79$, $0.087$, $0.013$; at $N=117$ the triple's correlations $+0.02$, $+0.07$, $+0.14$, within $2\\sigma$ ($\\sigma=0.09$) of zero; the blind-set excess $1.02$ against $1$ over the $243$ shells; the index condition solvable on $48$ of $116$ against $52.6\\pm4.9$. On the $88{,}336$ shells $\\p\\equiv1\\pmod4$, $\\p\\le2{,}408{,}561$ (shells of the physical totality; re-verified here): means $0.500$, $0.499$, $0.500$, correlations $+0.001$, $-0.003$, $+0.000$ ($\\sigma=0.0034$), chi-square $63.3$ on $63$ df \\apx. Prop. prop:calib, \\Ssec:duality p13063"
+   "text": "The large-$\\p$ laws over the totality's shells: the calibration rate against the nearest-hit scale, the joint law of the frame invariants, the blind-set and index-condition laws. Each shell decides its own values; each check over all shells is a count above every shell, in no embedded reader's window: $\\Om$-hard, decided on a hosted Carrier by its host. Prop. prop:calib, \\Ssec:duality, \\Ssec:consequences p13063; rests on H4, I5, F5, H5, 00:A5, 00:B8, 00:Z3"
   },
   {
    "paper": "14-entr",
