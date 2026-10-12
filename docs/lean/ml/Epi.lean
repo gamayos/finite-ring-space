@@ -398,6 +398,108 @@ theorem readout_binary64 :
   · intro n h2 h17
     interval_cases n <;> rw [epsChain, binary64E] <;> simp only [numDerangements_2, numDerangements_3, numDerangements_4, numDerangements_5, numDerangements_6, numDerangements_7, numDerangements_8, numDerangements_9, numDerangements_10, numDerangements_11, numDerangements_12, numDerangements_13, numDerangements_14, numDerangements_15, numDerangements_16, numDerangements_17, numDerangements_18] <;> rw [lt_abs] <;> norm_num [Nat.factorial]
 
+/-- The `k`-bit readout on `[2, 4)`: the grid of spacing `2^{2−k}`, rounding to the nearest point (ties up),
+`ρ_k(x) = ⌊x·2^{k−2} + 1/2⌋ / 2^{k−2}`. -/
+noncomputable def roundTo (k : ℕ) (x : ℝ) : ℝ := (⌊x * 2 ^ (k - 2) + 1 / 2⌋ : ℝ) / 2 ^ (k - 2)
+
+/-- The distance `d_k(y)` from `y` to the nearest rounding boundary of the `k`-bit grid: with `t = y·2^{k−2} + 1/2`,
+the smaller of `t − ⌊t⌋` and `⌊t⌋ + 1 − t`, scaled back by `2^{2−k}`. -/
+noncomputable def cellDist (k : ℕ) (y : ℝ) : ℝ :=
+  min (y * 2 ^ (k - 2) + 1 / 2 - ⌊y * 2 ^ (k - 2) + 1 / 2⌋) (⌊y * 2 ^ (k - 2) + 1 / 2⌋ + 1 - (y * 2 ^ (k - 2) + 1 / 2)) /
+    2 ^ (k - 2)
+
+theorem floor_eq_of_abs_sub_lt (s t : ℝ) (h : |s - t| < min (t - ⌊t⌋) (⌊t⌋ + 1 - t)) : ⌊s⌋ = ⌊t⌋ := by
+  have h1 := Int.floor_le t
+  have h2 := Int.lt_floor_add_one t
+  rw [abs_lt] at h
+  have ha : -(t - ⌊t⌋) < s - t := lt_of_le_of_lt (neg_le_neg (min_le_left _ _)) h.1
+  have hb : s - t < ⌊t⌋ + 1 - t := lt_of_lt_of_le h.2 (min_le_right _ _)
+  rw [Int.floor_eq_iff]
+  constructor <;> linarith
+
+/-- The plateau lemma: a point within `d_k(y)` of `y` reads out as `y` does. -/
+theorem roundTo_eq_of_lt_cellDist (k : ℕ) (x y : ℝ) (h : |x - y| < cellDist k y) : roundTo k x = roundTo k y := by
+  unfold roundTo
+  congr 1
+  have hp : (0 : ℝ) < 2 ^ (k - 2) := by positivity
+  have h' : |x * 2 ^ (k - 2) + 1 / 2 - (y * 2 ^ (k - 2) + 1 / 2)| <
+      min (y * 2 ^ (k - 2) + 1 / 2 - ⌊y * 2 ^ (k - 2) + 1 / 2⌋) (⌊y * 2 ^ (k - 2) + 1 / 2⌋ + 1 - (y * 2 ^ (k - 2) + 1 / 2)) := by
+    have e : x * 2 ^ (k - 2) + 1 / 2 - (y * 2 ^ (k - 2) + 1 / 2) = (x - y) * 2 ^ (k - 2) := by ring
+    rw [e, abs_mul, abs_of_pos hp]
+    unfold cellDist at h
+    rwa [lt_div_iff₀ hp] at h
+  exact_mod_cast floor_eq_of_abs_sub_lt _ _ h'
+
+theorem floor_sub_abs_le_one (s t : ℝ) (h : |s - t| < 1 / 2) : |(⌊s⌋ : ℝ) - ⌊t⌋| ≤ 1 := by
+  rw [abs_lt] at h
+  have h1 := Int.floor_le t; have h2 := Int.lt_floor_add_one t
+  have h3 := Int.floor_le s; have h4 := Int.lt_floor_add_one s
+  have a : ⌊s⌋ ≤ ⌊t⌋ + 1 := by
+    have : (⌊s⌋ : ℝ) < ⌊t⌋ + 2 := by linarith
+    have : ⌊s⌋ < ⌊t⌋ + 2 := by exact_mod_cast this
+    omega
+  have b : ⌊t⌋ ≤ ⌊s⌋ + 1 := by
+    have : (⌊t⌋ : ℝ) < ⌊s⌋ + 2 := by linarith
+    have : ⌊t⌋ < ⌊s⌋ + 2 := by exact_mod_cast this
+    omega
+  rw [abs_le]; constructor
+  · have : (⌊t⌋ : ℝ) - 1 ≤ ⌊s⌋ := by exact_mod_cast (by omega : ⌊t⌋ - 1 ≤ ⌊s⌋)
+    linarith
+  · have : (⌊s⌋ : ℝ) ≤ ⌊t⌋ + 1 := by exact_mod_cast a
+    linarith
+
+/-- Two points less than half a grid step apart read out within one grid step of each other. -/
+theorem roundTo_sub_le (k : ℕ) (x y : ℝ) (h : |x - y| * 2 ^ (k - 2) < 1 / 2) :
+    |roundTo k x - roundTo k y| ≤ 1 / 2 ^ (k - 2) := by
+  unfold roundTo
+  have hp : (0 : ℝ) < 2 ^ (k - 2) := by positivity
+  have h' : |x * 2 ^ (k - 2) + 1 / 2 - (y * 2 ^ (k - 2) + 1 / 2)| < 1 / 2 := by
+    have e : x * 2 ^ (k - 2) + 1 / 2 - (y * 2 ^ (k - 2) + 1 / 2) = (x - y) * 2 ^ (k - 2) := by ring
+    rw [e, abs_mul, abs_of_pos hp]; exact h
+  have hf := floor_sub_abs_le_one _ _ h'
+  rw [← sub_div, abs_div, abs_of_pos hp, div_le_div_iff_of_pos_right hp]
+  exact hf
+
+/-- 13:D4 — the readout within one grid step: for `n ≥ 2` with `e(e+1)/(n+1)! < 2^{−k}` (the threshold `n₀(k)`),
+`ρ_k(ε_n)` is `ρ_k(e)` or its neighbour, `|ρ_k(ε_n) − ρ_k(e)| ≤ 2^{2−k}`. -/
+theorem readout_within_ulp (k n : ℕ) (hk : 2 ≤ k) (hn : 2 ≤ n)
+    (h : Real.exp 1 * (Real.exp 1 + 1) / ((n + 1).factorial : ℝ) < 1 / 2 ^ k) :
+    |roundTo k (epsChain n) - roundTo k (Real.exp 1)| ≤ 1 / 2 ^ (k - 2) := by
+  apply roundTo_sub_le
+  have h1 := (epsChain_enclosure n hn).1
+  have hp : (0 : ℝ) < 2 ^ (k - 2) := by positivity
+  have e2 : (2 : ℝ) ^ k = 2 ^ (k - 2) * 4 := by
+    rw [show k = (k - 2) + 2 by omega, pow_add]; norm_num
+  calc |epsChain n - Real.exp 1| * 2 ^ (k - 2) ≤ Real.exp 1 * (Real.exp 1 + 1) / ((n + 1).factorial : ℝ) * 2 ^ (k - 2) := by gcongr
+    _ < 1 / 2 ^ k * 2 ^ (k - 2) := by gcongr
+    _ = 1 / 4 := by rw [e2]; field_simp
+    _ < 1 / 2 := by norm_num
+
+/-- 13:D4 — the plateau: for `n ≥ 2` with `e(e+1)/(n+1)! < d_k(e)`, the enclosure lies in the rounding cell of `e` and
+`ρ_k(ε_n) = ρ_k(e)`; the readouts below that index are compared exactly (the package's e.R2). -/
+theorem readout_plateau (k n : ℕ) (hn : 2 ≤ n)
+    (h : Real.exp 1 * (Real.exp 1 + 1) / ((n + 1).factorial : ℝ) < cellDist k (Real.exp 1)) :
+    roundTo k (epsChain n) = roundTo k (Real.exp 1) :=
+  roundTo_eq_of_lt_cellDist k _ _ (lt_of_le_of_lt (epsChain_enclosure n hn).1 h)
+
+/-- 13:D4 — the threshold `n₀(k)` alone does not give the plateau: at `k = 6`, `n₀(6) = 5`, `ε₅ = 30/11` reads out as
+`44/16` and `e` as `43/16`, although `e(e+1)/6! < 2⁻⁶`. -/
+theorem readout_six_bits :
+    roundTo 6 (epsChain 5) = 44 / 16 ∧ roundTo 6 (Real.exp 1) = 43 / 16 ∧
+      Real.exp 1 * (Real.exp 1 + 1) / ((5 + 1).factorial : ℝ) < 1 / 2 ^ 6 := by
+  have hE : 2.7182818283 < Real.exp 1 := Real.exp_one_gt_d9
+  have hE' : Real.exp 1 < 2.7182818286 := Real.exp_one_lt_d9
+  refine ⟨?_, ?_, ?_⟩
+  · rw [roundTo, epsChain, numDerangements_5]
+    have : ⌊((5 : ℕ).factorial : ℝ) / (44 : ℕ) * 2 ^ (6 - 2) + 1 / 2⌋ = 44 := by
+      rw [Int.floor_eq_iff]; norm_num [Nat.factorial]
+    rw [this]; norm_num
+  · rw [roundTo]
+    have : ⌊Real.exp 1 * 2 ^ (6 - 2) + 1 / 2⌋ = 43 := by
+      rw [Int.floor_eq_iff]; constructor <;> norm_num <;> linarith
+    rw [this]; norm_num
+  · norm_num [Nat.factorial]; nlinarith
+
 /-! ### 13:D5 — feasibility -/
 
 /-- 13:D5 — the derangement chain's step counts: `n = 11, 18, 70` are the least `n` with `8/(n+1)! < 2^{−k}` for
@@ -1845,16 +1947,16 @@ theorem p13018 : (∀ (n : ℕ), (1 : ℝ) / (↑n + (2 : ℝ)) < FRC.Epi.tailDe
 /-- 13:D3 (p13019) — Superexponential enclosure: $|\varepsilon_n-\eR|\le\eR(\eR+1)/(n+1)!<10.2/(n+1)!$ with $\operatorname{sign}(\varepsilon_n-\eR)=(-1)^{n+1}$, hence $\varepsilon_{2m}<\eR<\varepsilon_{2m+1}$, a nested sequence of $\fQ$-native intervals; the sharper constant $8$ for $2\le n\le60$. -/
 theorem p13019 : (∀ (n : ℕ), (2 : ℕ) ≤ n → |FRC.Epi.epsChain n - Real.exp (1 : ℝ)| ≤ Real.exp (1 : ℝ) * (Real.exp (1 : ℝ) + (1 : ℝ)) / ↑(n + (1 : ℕ)).factorial ∧ Real.exp (1 : ℝ) * (Real.exp (1 : ℝ) + (1 : ℝ)) / ↑(n + (1 : ℕ)).factorial < 10.2 / ↑(n + (1 : ℕ)).factorial) ∧ ∀ (n : ℕ), (2 : ℕ) ≤ n → (0 : ℝ) < (-1 : ℝ) ^ (n + (1 : ℕ)) * (FRC.Epi.epsChain n - Real.exp (1 : ℝ)) :=
   And.intro @FRC.Epi.epsChain_enclosure (@FRC.Epi.epsChain_sign)
-/-- 13:D4 (p13020) — Horizon determination of the readout: $\ro(\varepsilon_n)=\ro(\eR)$ for $n\ge n_0(k)=\Theta(k/\log k)$; the binary64 constant for $e$ is the readout of $\varepsilon_{18}=18!/\dr{18}=6402373705728000/2355301661033953$ and $n=18$ is minimal ($\varepsilon_{17}$ fails readout equality, $|\varepsilon_{17}-\eR|=1.10\times10^{-15}$ above the half-ulp); the first $100$ significant digits of $\eR$ are those of $\varepsilon_{70}$; every floating-point value of $e$ is a plateau readout. -/
-theorem p13020 : |Real.exp (1 : ℝ) - FRC.Epi.binary64E| < (1 : ℝ) / (2 : ℝ) ^ (52 : ℕ) ∧ |FRC.Epi.epsChain (18 : ℕ) - FRC.Epi.binary64E| < (1 : ℝ) / (2 : ℝ) ^ (52 : ℕ) ∧ ∀ (n : ℕ), (2 : ℕ) ≤ n → n ≤ (17 : ℕ) → (1 : ℝ) / (2 : ℝ) ^ (52 : ℕ) < |FRC.Epi.epsChain n - FRC.Epi.binary64E| :=
-  @FRC.Epi.readout_binary64
+/-- 13:D4 (p13020) — Horizon determination of the readout: for $n\ge n_0(k)=\Theta(k/\log k)$ the readout $\ro(\varepsilon_n)$ lies within one ulp of $\ro(\eR)$, and equals it from the plateau threshold $n_1(k)$, the least $n$ from which the readouts agree, decided through the rounding cell of $\eR$ ($n_1\le n_0+1$ for $k<200$, equality at eight precisions); the binary64 constant is the readout of $\varepsilon_{18}=18!/\dr{18}$, $n=18$ minimal; $\varepsilon_{70}$ fixes $100$ digits. -/
+theorem p13020 : (|Real.exp (1 : ℝ) - FRC.Epi.binary64E| < (1 : ℝ) / (2 : ℝ) ^ (52 : ℕ) ∧ |FRC.Epi.epsChain (18 : ℕ) - FRC.Epi.binary64E| < (1 : ℝ) / (2 : ℝ) ^ (52 : ℕ) ∧ ∀ (n : ℕ), (2 : ℕ) ≤ n → n ≤ (17 : ℕ) → (1 : ℝ) / (2 : ℝ) ^ (52 : ℕ) < |FRC.Epi.epsChain n - FRC.Epi.binary64E|) ∧ (∀ (k n : ℕ), (2 : ℕ) ≤ k → (2 : ℕ) ≤ n → Real.exp (1 : ℝ) * (Real.exp (1 : ℝ) + (1 : ℝ)) / ↑(n + (1 : ℕ)).factorial < (1 : ℝ) / (2 : ℝ) ^ k → |FRC.Epi.roundTo k (FRC.Epi.epsChain n) - FRC.Epi.roundTo k (Real.exp (1 : ℝ))| ≤ (1 : ℝ) / (2 : ℝ) ^ (k - (2 : ℕ))) ∧ (∀ (k n : ℕ), (2 : ℕ) ≤ n → Real.exp (1 : ℝ) * (Real.exp (1 : ℝ) + (1 : ℝ)) / ↑(n + (1 : ℕ)).factorial < FRC.Epi.cellDist k (Real.exp (1 : ℝ)) → FRC.Epi.roundTo k (FRC.Epi.epsChain n) = FRC.Epi.roundTo k (Real.exp (1 : ℝ))) ∧ FRC.Epi.roundTo (6 : ℕ) (FRC.Epi.epsChain (5 : ℕ)) = (44 / 16 : ℝ) ∧ FRC.Epi.roundTo (6 : ℕ) (Real.exp (1 : ℝ)) = (43 / 16 : ℝ) ∧ Real.exp (1 : ℝ) * (Real.exp (1 : ℝ) + (1 : ℝ)) / ↑((5 : ℕ) + (1 : ℕ)).factorial < (1 : ℝ) / (2 : ℝ) ^ (6 : ℕ) :=
+  And.intro @FRC.Epi.readout_binary64 (And.intro @FRC.Epi.readout_within_ulp (And.intro @FRC.Epi.readout_plateau (@FRC.Epi.readout_six_bits)))
 /-- 13:D5 (p13021) — Feasibility selection: the compound chain $(1+1/n)^{n}$ costs $n\asymp2^{k}$ steps for $k$ bits against $n_0(k)=\Theta(k/\log k)$ for the derangement chain ($n=11,18,70$ at $k=24,53,333$); within a horizon $H$ the compound chain realises $O(\log H)$ bits and the factorial chain $\Theta(H\log H)$; under the feasibility principle the derangement representation is the canonical finite definition of $e$. -/
 theorem p13021 : (((8 : ℚ) / ↑(Nat.factorial (12 : ℕ)) < (1 : ℚ) / (2 : ℚ) ^ (24 : ℕ) ∧ ∀ m < (11 : ℕ), ¬(8 : ℚ) / ↑(m + (1 : ℕ)).factorial < (1 : ℚ) / (2 : ℚ) ^ (24 : ℕ)) ∧ ((8 : ℚ) / ↑(Nat.factorial (19 : ℕ)) < (1 : ℚ) / (2 : ℚ) ^ (53 : ℕ) ∧ ∀ m < (18 : ℕ), ¬(8 : ℚ) / ↑(m + (1 : ℕ)).factorial < (1 : ℚ) / (2 : ℚ) ^ (53 : ℕ)) ∧ (8 : ℚ) / ↑(Nat.factorial (71 : ℕ)) < (1 : ℚ) / (2 : ℚ) ^ (333 : ℕ) ∧ ∀ m < (70 : ℕ), ¬(8 : ℚ) / ↑(m + (1 : ℕ)).factorial < (1 : ℚ) / (2 : ℚ) ^ (333 : ℕ)) ∧ ∀ (n : ℕ), (5 : ℕ) ≤ n → ((1 : ℝ) + (1 : ℝ) / ↑n) ^ n ≤ Real.exp (1 : ℝ) * ((4 : ℝ) * ↑n) / ((4 : ℝ) * ↑n + (1 : ℝ)) :=
   And.intro @FRC.Epi.derangement_cost (@FRC.Epi.compound_cost)
 /-- 13:E2 (p13023) — Two-sided monotone enclosure: $v_n$ strictly increasing, $w_n$ strictly decreasing, $v_n<\piR<w_n$, and the exact width identity $w_n-v_n=w_n/(2n+1)$, certifying $\approx\log_2n$ bits by nested $\fQ$-intervals; the identification of the common limit with $\piR$ is the Wallis import (A6); verified for $n\le300$ against Machin brackets of width below $10^{-420}$. -/
 theorem p13023 : And (∀ (n : Nat), @LE.le Nat instLENat (@OfNat.ofNat Nat (nat_lit 1) (instOfNatNat (nat_lit 1))) n → And (@LT.lt Real Real.instLT (@Rat.cast Real Real.instRatCast (@FRC.Epi.wallisV Rat Rat.instField n)) Real.pi) (@LT.lt Real Real.instLT Real.pi (@Rat.cast Real Real.instRatCast (@FRC.Epi.wallisW Rat Rat.instField n)))) (And (∀ (n : Nat), @LE.le Nat instLENat (@OfNat.ofNat Nat (nat_lit 1) (instOfNatNat (nat_lit 1))) n → @Eq Rat (@HSub.hSub Rat Rat Rat (@instHSub Rat Rat.instSub) (@FRC.Epi.wallisW Rat Rat.instField n) (@FRC.Epi.wallisV Rat Rat.instField n)) (@HDiv.hDiv Rat Rat Rat (@instHDiv Rat Rat.instDiv) (@FRC.Epi.wallisW Rat Rat.instField n) (@HAdd.hAdd Rat Rat Rat (@instHAdd Rat Rat.instAdd) (@HMul.hMul Rat Rat Rat (@instHMul Rat Rat.instMul) (@OfNat.ofNat Rat (nat_lit 2) (@Rat.instOfNat (nat_lit 2))) (@Nat.cast Rat Rat.instNatCast n)) (@OfNat.ofNat Rat (nat_lit 1) (@Rat.instOfNat (nat_lit 1)))))) (And (∀ (n : Nat), @LT.lt Rat Rat.instLT (@FRC.Epi.wallisV Rat Rat.instField n) (@FRC.Epi.wallisV Rat Rat.instField (@HAdd.hAdd Nat Nat Nat (@instHAdd Nat instAddNat) n (@OfNat.ofNat Nat (nat_lit 1) (instOfNatNat (nat_lit 1)))))) (∀ (n : Nat), @LE.le Nat instLENat (@OfNat.ofNat Nat (nat_lit 1) (instOfNatNat (nat_lit 1))) n → @LT.lt Rat Rat.instLT (@FRC.Epi.wallisW Rat Rat.instField (@HAdd.hAdd Nat Nat Nat (@instHAdd Nat instAddNat) n (@OfNat.ofNat Nat (nat_lit 1) (instOfNatNat (nat_lit 1))))) (@FRC.Epi.wallisW Rat Rat.instField n)))) :=
   And.intro @FRC.Epi.wallis_enclosure (And.intro @FRC.Epi.wallis_width (And.intro @FRC.Epi.wallisV_strictMono (@FRC.Epi.wallisW_strictAnti)))
-/-- 13:E3 (p13024) — The arcsin chain $s_n=3\sum_{k\le n}\Cb{k}/((2k+1)16^{k})\in\fQ$ with external completion $\piR=6\arcsin\frac12$ \chart{} and tail bound $|\piR-s_n|<4^{-n}/(2n+3)$ for $n\ge1$: geometric rate from the same combinatorial atoms as the Wallis pair. -/
+/-- 13:E3 (p13024) — The arcsin chain $s_n=3\sum_{k\le n}\Cb{k}/((2k+1)16^{k})\in\fQ$ with external completion $\piR=6\arcsin\frac12$ and tail bound $|\piR-s_n|<4^{-n}/(2n+3)$ for $n\ge1$: geometric rate from the same combinatorial atoms as the Wallis pair. -/
 theorem p13024 : (56982451095683495439374565467485478486061627198245408555021816811556209980957932490824931053425856737444302864615815079280095539452134822710663747992660383090256176690756 / 18138077522740431478132504469278196026908888402936691374051205499784758924249616118578433027852823624088713136757082253607690672547607224629473421373404562473297119140625 : ℝ) ≤ Real.pi ∧ Real.pi ≤ (130195783561461477719700582162729520693370052310728319298679169305810308737653928066126520396560009514814646871106941551053006194003594103465911391825667397563687081581706376 / 41442605047058247458496271511585593410122504578565869919087156374128208580482492892372746919359245529262855323388051816332995956263674891122406052090809680521488189697265625 : ℝ) :=
   @FRC.Epi.pi_bracket_24
 /-- 13:E4 (p13025) — Horizon determination for $\pi$: the Machin chain $M_N\in\fQ$ has $|M_N-\piR|<17/((2N+3)5^{2N+3})$; the binary64 constant $884279719003555/281474976710656$ is the readout of $M_{10}$ with $N=10$ minimal; the first $100$ decimal digits are fixed by $M_{71}$; alternating pairing of the two arctangent series gives certified two-sided $\fQ$-enclosures at every truncation, the Gregory brackets $4S_{2m+1}<\piR<4S_{2m}$ of width $4/(4m+3)$ the base case. -/
@@ -1905,13 +2007,13 @@ theorem p13067 : (∀ (p : ℕ) [hp : Fact (Nat.Prime p)], p ≠ (2 : ℕ) → (
 /-- 13:H3 (p13045) — Exact calibration of $e$ is impossible: with $\theta=2\piR\lambda(\im)/(\p-1)$ the frame angle of $\eP$, $\theta\ne1$ in every shell ($\theta=1$ would make $\piR$ rational, A2); $\chi(\eP)$ is a root of unity while $e^{\imR}$ is not, so the identification is intrinsically horizon-limited. -/
 theorem p13045 : (∀ (n l : ℕ), (0 : ℕ) < l → (2 : ℝ) * Real.pi * ↑l / ↑n ≠ (1 : ℝ)) ∧ ∀ (n : ℕ), (0 : ℕ) < n → Complex.exp (↑n * Complex.I) ≠ (1 : ℂ) :=
   And.intro @FRC.Epi.calibration_ne_one (@FRC.Epi.exp_I_ne_one)
-/-- 13:H4 (p13069) — Calibrated shells at every precision the totality resolves: the $\varepsilon$-calibrated shells are a fraction $2\varepsilon/\piR$ \apx{} of the shells $\p\equiv1\pmod4$ below any bound of the totality, for every $\varepsilon$ above the nearest-hit scale $\piR/(2N)$, and $\chi(\eP)$ approaches $e^{\imR}$ along them. Below $10^{6}$: $260$ shells within $0.01$ against $249$ predicted; the best, $\p=778933$, within $4\times10^{-5}$, decided exactly. -/
+/-- 13:H4 (p13069) — Calibrated shells at every fixed precision $\varepsilon\le1$: the $\varepsilon$-calibrated shells have asymptotic density $2\varepsilon/\piR$ among the shells $\p\equiv1\pmod4$ (A7), so large enough ranges hold them, $\chi(\eP)$ within $\varepsilon$ of $e^{\imR}$ there; the uniform model reads $N$ shells down to the nearest-hit scale $\piR/(2N)$ \apx. Below $10^{6}$: $260$ shells within $0.01$ against $249$ predicted; the best, $\p=778933$, within $4\times10^{-5}$, decided exactly. -/
 theorem p13069 : Nat.Prime (778933 : ℕ) ∧ (123966 : ZMod (778933 : ℕ)) ^ (2 : ℕ) = (-1 : ZMod (778933 : ℕ)) ∧ |(2 : ℝ) * Real.pi * (123966 : ℝ) / (778932 : ℝ) - (1 : ℝ)| < (4 / 100000 : ℝ) ∧ (39 / 1000000 : ℝ) < |(2 : ℝ) * Real.pi * (123966 : ℝ) / (778932 : ℝ) - (1 : ℝ)| :=
   @FRC.Epi.calibrated_778933
 /-- 13:H5 (p13047) — The null experiment: whether $\gen^{\lambda(\im)}\equiv-(\Ku{\p})^{-1}$ for some primitive root of either chirality is the index condition $\gcd(s,\p-1)=\gcd(\lambda(\pm\im),\p-1)$; over the $210$ primes $\p\equiv1\pmod4$, $5<\p<3000$, it is solvable for $94$ ($44.8\%$, against $96.0\pm6.6$ expected under independence), the correlation of the two angular addresses $-0.10$ at deviation $\approx0.07$ \apx: no invariant pointwise identification of the angular and radial carriers of $e$; the naive reading of $\eP$ as the number $2.71828\ldots$ is refuted. -/
 theorem p13047 : (∀ (p : ℕ) [hp : Fact (Nat.Prime p)] (g : ZMod p), IsPrimitiveRoot g (p - (1 : ℕ)) → ∀ (l s : ℕ), (∃ u, u.Coprime (p - (1 : ℕ)) ∧ (g ^ u) ^ l = g ^ s) ↔ l.gcd (p - (1 : ℕ)) = s.gcd (p - (1 : ℕ))) ∧ ∀ (n l s : ℕ) [NeZero n], (∃ u, u.Coprime n ∧ u * l ≡ s [MOD n]) ↔ l.gcd n = s.gcd n :=
   And.intro @FRC.Epi.index_condition_shell (@FRC.Epi.index_condition)
-/-- 13:I1 (p13048) — Emergence of the classical $e$: (i) in every shell with $\p>n_0+|Z_0(\p)|+1$ a non-blind scale in $[n_0,n_0+|Z_0(\p)|]$ reads out $\ro(\eR)$, at binary64 exactly $18!/\dr{18}$; (ii) the frame-internal continuation is the antiperiodic residue line with blind set $Z_0(\p)$ and terminal invariant $-(\Ku{\p})^{-1}$, collapsed by the readout to one dyadic rational; (iii) $\chi(\eP)$ approaches $e^{\imR}$ along the calibrated shells of the totality, exact calibration impossible, no pointwise link between the carriers. Composed from D4, F2, F3, F5, H3--H5. -/
+/-- 13:I1 (p13048) — Emergence of the classical $e$: (i) in every shell with $\p>n_1+|Z_0(\p)|+1$ a non-blind scale in $[n_1,n_1+|Z_0(\p)|]$ reads out $\ro(\eR)$, at binary64 exactly $18!/\dr{18}$; (ii) the frame-internal continuation is the residue line, antiperiodic in its derangement denominators, blind on $Z_0(\p)$, terminating on $-(\Ku{\p})^{-1}$, read out beyond $n_1$ as one dyadic rational; (iii) $\chi(\eP)$ approaches $e^{\imR}$ along the calibrated shells, exact calibration impossible, no pointwise link between the carriers. Composed from D4, F2, F3, F5, H3--H5. -/
 theorem p13048 : (|Real.exp (1 : ℝ) - FRC.Epi.binary64E| < (1 : ℝ) / (2 : ℝ) ^ (52 : ℕ) ∧ |FRC.Epi.epsChain (18 : ℕ) - FRC.Epi.binary64E| < (1 : ℝ) / (2 : ℝ) ^ (52 : ℕ) ∧ ∀ (n : ℕ), (2 : ℕ) ≤ n → n ≤ (17 : ℕ) → (1 : ℝ) / (2 : ℝ) ^ (52 : ℕ) < |FRC.Epi.epsChain n - FRC.Epi.binary64E|) ∧ (∀ (n l : ℕ), (0 : ℕ) < l → (2 : ℝ) * Real.pi * ↑l / ↑n ≠ (1 : ℝ)) ∧ Nat.Prime (778933 : ℕ) ∧ (123966 : ZMod (778933 : ℕ)) ^ (2 : ℕ) = (-1 : ZMod (778933 : ℕ)) ∧ |(2 : ℝ) * Real.pi * (123966 : ℝ) / (778932 : ℝ) - (1 : ℝ)| < (4 / 100000 : ℝ) ∧ (39 / 1000000 : ℝ) < |(2 : ℝ) * Real.pi * (123966 : ℝ) / (778932 : ℝ) - (1 : ℝ)| :=
   And.intro @FRC.Epi.readout_binary64 (And.intro @FRC.Epi.calibration_ne_one (@FRC.Epi.calibrated_778933))
 set_option linter.defProp false in
