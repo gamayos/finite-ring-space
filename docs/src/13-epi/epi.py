@@ -48,6 +48,7 @@ LEDGER = {
     "e.R3": "13:D4",
     "e.R4": "13:D5, 13:E5",
     "e.P1": "13:C2",
+    "e.T1": "13:D2",
     "e.W1": "13:F1, 13:F2",
     "e.W2": "13:F3",
     "e.W3": "13:F4",
@@ -100,6 +101,7 @@ LABELS = {
     "e.R2": "binary64 readout: the IEEE-754 double nearest e is the correctly rounded ε_18 = 18!/!18 = 6402373705728000/2355301661033953, and n = 18 is minimal (ε_17 fails readout equality)",
     "e.R3": "100-digit determination: n = 70 is the least n with 8/(n+1)! < 10⁻¹⁰⁰, and ε_70 agrees with the certified value of e in its first 101 significant characters",
     "e.P1": "the derangement selector: the rencontres polynomial P_n(X) = Σ_{σ∈S_n} X^fix(σ) equals n! Σ_{k≤n} (X−1)^k/k! — the fixed-point census of S_n enumerated for n ≤ 8 (40 320 permutations at n = 8) against C(n,k)·D_{n−k} and against the expanded right side, the polynomial identity in exact integer coefficients for n ≤ 60 (P_3 = X³ + 3X + 2, P_4 = X⁴ + 6X² + 8X + 9), and the normalised kernel Z_n = P_n/n! with Z_n(1) = 1 and Z_n(0) = D_n/n!, so the unit registration ratio R_n = n!/D_n is the chain of e.R1",
+    "e.T1": "the tail form of the derangement numbers: D_n = n!/e + (−1)^n δ_n with δ_n strictly in (1/(n+2), 1/(n+1)), so D_n is the nearest integer to n!/e, for n = 2 … 60 — decided with e bracketed by the chain itself at n = 109, 110 (width below 10⁻¹⁷⁰), each bound holding for the whole bracket",
     "e.R4": "feasibility selection: the exact step counts of the derangement chain for 2⁻ᵏ precision, k = 24, 53, 333, are n = 11, 18, 70 (the paper's table; the compound-chain column is the chart-side estimate e·2^{k−1})",
     "e.W1": "the wall of e on p ∈ {5, 13, 29, 101, 257, 1009, 10007}: Wilson reflection 1/k! ≡ −(−1)^k (p−1−k)! for every k < p; the wall identity !(p−1) ≡ K(p) with K(p) = Σ_{k<p} k! the left factorial; K(p) ≢ 0, so the terminal residue [ε_{p−1}] = −K(p)⁻¹ exists on every sample shell",
     "e.W2": "antiperiodicity !(n+p) ≡ −!n (mod p) over a full period n < p on the seven sample shells; the blind set Z₀(p) = {n < p : !n ≡ 0} always contains 1 and never p−1 there",
@@ -151,7 +153,7 @@ _FAM = [None, None]
 # the deciding family of each witnessed predicate: the one whose checks decide the predicate's statement (the other families
 # that touch it are corroboration, listed by predicate() from the records)
 PREDICATES = {
-    "13:B2": "tow.O", "13:B3": "tow.E", "13:C2": "e.P1", "13:C3": "tow.C", "13:C5": "pi.R1", "13:D3": "e.R1", "13:D4": "e.R2",
+    "13:B2": "tow.O", "13:B3": "tow.E", "13:C2": "e.P1", "13:C3": "tow.C", "13:C5": "pi.R1", "13:D2": "e.T1", "13:D3": "e.R1", "13:D4": "e.R2",
     "13:D5": "e.R4", "13:E2": "pi.R1", "13:E3": "pi.R4", "13:E4": "pi.R3", "13:E5": "pi.R3", "13:F1": "e.W1",
     "13:F2": "e.W1", "13:F3": "e.W2", "13:F4": "e.W3", "13:F5": "e.S1", "13:F6": "e.W4", "13:F7": "tow.E",
     "13:F8": "e.W5", "13:G1": "pi.W1", "13:G2": "pi.W1", "13:G3": "pi2.A1", "13:G4": "pi.S1", "13:G5": "pi.L1",
@@ -401,6 +403,25 @@ def block_e():
     chk("P_3(X) = X^3 + 3X + 2 and P_4(X) = X^4 + 6X^2 + 8X + 9", rencontres_coeffs(3) == [2, 3, 0, 1] and rencontres_coeffs(4) == [9, 8, 6, 0, 1])
     chk("Z_n(1) = 1 and Z_n(0) = D_n/n!, so R_n = Z_n(1)/Z_n(0) = n!/D_n is the chain eps_n of (a), n = 2..60", kernel_ok)
 
+    # (f) the tail form (13:D2, 12 October 2026): D_n = n!/e + (-1)^n delta_n with delta_n in (1/(n+2), 1/(n+1)), so D_n is
+    # the nearest integer to n!/e — decided for n = 2..60 with e bracketed by the chain itself (E_lo < e < E_hi from the
+    # enclosure of (a) at n = 109, 110, width < 10^-170), each bound of delta_n holding for the whole bracket
+    E_lo, E_hi = min(Fraction(fact[109], D[109]), Fraction(fact[110], D[110])), max(Fraction(fact[109], D[109]), Fraction(fact[110], D[110]))
+    tail_ok, nearest_ok = True, True
+    for n in range(2, 61):
+        lo, hi = Fraction(fact[n]) / E_hi, Fraction(fact[n]) / E_lo          # the bracket of n!/e
+        d_lo, d_hi = (-1) ** n * (D[n] - hi), (-1) ** n * (D[n] - lo)       # the bracket of delta_n = (-1)^n (D_n - n!/e)
+        d_lo, d_hi = min(d_lo, d_hi), max(d_lo, d_hi)
+        if not (Fraction(1, n + 2) < d_lo and d_hi < Fraction(1, n + 1)): tail_ok = False
+        if not (abs(D[n] - lo) < Fraction(1, 2) and abs(D[n] - hi) < Fraction(1, 2)): nearest_ok = False
+    log_e(f"(f) tail form D_n = n!/e + (-1)^n delta_n, delta_n in (1/(n+2), 1/(n+1)), n = 2..60: {'PASS' if tail_ok else 'FAIL'}; D_n the nearest integer to n!/e: {'PASS' if nearest_ok else 'FAIL'}")
+    # 13:D2 (p13018)
+    family("e", "T1")
+    chk("the chain brackets e at n = 109, 110 with width below 10^-170", 0 < E_hi - E_lo < Fraction(1, 10 ** 170) and E_lo < E < E_hi)
+    chk("delta_n = (-1)^n (D_n - n!/e) lies strictly in (1/(n+2), 1/(n+1)) for n = 2..60, for the whole bracket of e", tail_ok)
+    chk("D_n is the nearest integer to n!/e for n = 2..60 (|D_n - n!/e| < 1/2 on the whole bracket)", nearest_ok)
+    chk("the signed tail alternates: D_n - n!/e has the sign (-1)^n for n = 2..60", all(((D[n] - Fraction(fact[n]) / E) > 0) == (n % 2 == 0) for n in range(2, 61)))
+
     # =========================================================
     log_e(); log_e("="*72); log_e("[2] FRAME-INTERNAL ARITHMETIC (per-prime structure)")
     log_e("="*72)
@@ -602,7 +623,7 @@ def block_e():
     _DIAG[0] = f"Pearson correlation of the angular addresses {num/den:+.3f} (the paper's [approx] reading)"
 
 
-    flush("e", order=["R1", "R2", "R3", "R4", "P1", "W1", "W2", "W3", "W4", "W5", "S1", "A1", "N1"], details={"N1": _DIAG[0]})
+    flush("e", order=["R1", "R2", "R3", "R4", "P1", "T1", "W1", "W2", "W3", "W4", "W5", "S1", "A1", "N1"], details={"N1": _DIAG[0]})
 
 # ------------------------------------------------------------------------------------------------------------
 # block pi — validate_pi.py: FRC emergence of pi: verification suite.

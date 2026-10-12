@@ -11581,7 +11581,7 @@
    "check": {
     "href": "src/13-epi/#p13009",
     "script": "epi.py",
-    "line": 1218,
+    "line": 1239,
     "verdict": "pass"
    },
    "declarations": [
@@ -11612,7 +11612,7 @@
    "check": {
     "href": "src/13-epi/#p13010",
     "script": "epi.py",
-    "line": 1160,
+    "line": 1181,
     "verdict": "pass"
    },
    "declarations": [
@@ -11666,7 +11666,7 @@
    "check": {
     "href": "src/13-epi/#p13013",
     "script": "epi.py",
-    "line": 397,
+    "line": 399,
     "verdict": "pass"
    },
    "declarations": [
@@ -11707,7 +11707,7 @@
    "check": {
     "href": "src/13-epi/#p13014",
     "script": "epi.py",
-    "line": 1196,
+    "line": 1217,
     "verdict": "pass"
    },
    "declarations": [
@@ -11748,14 +11748,25 @@
    "statement": "The joint-return tally: with $C_n=\\Cb{n}$ the returning $\\pm1$ histories of length $2n$ in one direction, the paired histories in the directions $1$ and $\\im$ number $16^{n}$ and the joint returns $C_n^{2}$, and $\\piR=\\lim16^{n}/(nC_n^{2})$ by the Wallis bounds (E2).",
    "origin_row": "13:C5",
    "tag": "T",
-   "tier": null,
+   "tier": 2,
    "check": {
     "href": "src/13-epi/#p13016",
     "script": "epi.py",
-    "line": 668,
+    "line": 689,
     "verdict": "pass"
    },
-   "declarations": [],
+   "declarations": [
+    {
+     "lib": "FrcLedger",
+     "module": "FrcLedger/Epi",
+     "name": "FRC.Epi.joint_return_tally"
+    },
+    {
+     "lib": "FrcLedger",
+     "module": "FrcLedger/Epi",
+     "name": "FRC.Epi.tendsto_wallis_chain"
+    }
+   ],
    "aliases": [],
    "rows": [
     "13:C5"
@@ -11782,9 +11793,25 @@
    "statement": "The tail form: $\\dr{n}=n!/\\eR+(-1)^{n}\\delta_n$ with $\\delta_n\\in(1/(n+2),1/(n+1))$, so $\\dr{n}$ is the nearest integer to $n!/\\eR$.",
    "origin_row": "13:D2",
    "tag": "T",
-   "tier": null,
-   "check": null,
-   "declarations": [],
+   "tier": 2,
+   "check": {
+    "href": "src/13-epi/#p13018",
+    "script": "epi.py",
+    "line": 418,
+    "verdict": "pass"
+   },
+   "declarations": [
+    {
+     "lib": "FrcLedger",
+     "module": "FrcLedger/Epi",
+     "name": "FRC.Epi.tailDelta_strict"
+    },
+    {
+     "lib": "FrcLedger",
+     "module": "FrcLedger/Epi",
+     "name": "FRC.Epi.numDerangements_eq_tailDelta"
+    }
+   ],
    "aliases": [],
    "rows": [
     "13:D2"
@@ -11797,14 +11824,25 @@
    "statement": "Superexponential enclosure: $|\\varepsilon_n-\\eR|\\le\\eR(\\eR+1)/(n+1)!<10.2/(n+1)!$ with $\\operatorname{sign}(\\varepsilon_n-\\eR)=(-1)^{n+1}$, hence $\\varepsilon_{2m}<\\eR<\\varepsilon_{2m+1}$, a nested sequence of $\\fQ$-native intervals; the sharper constant $8$ for $2\\le n\\le60$.",
    "origin_row": "13:D3",
    "tag": "T",
-   "tier": null,
+   "tier": 2,
    "check": {
     "href": "src/13-epi/#p13019",
     "script": "epi.py",
-    "line": 319,
+    "line": 321,
     "verdict": "pass"
    },
-   "declarations": [],
+   "declarations": [
+    {
+     "lib": "FrcLedger",
+     "module": "FrcLedger/Epi",
+     "name": "FRC.Epi.epsChain_enclosure"
+    },
+    {
+     "lib": "FrcLedger",
+     "module": "FrcLedger/Epi",
+     "name": "FRC.Epi.epsChain_sign"
+    }
+   ],
    "aliases": [],
    "rows": [
     "13:D3"
@@ -11817,14 +11855,20 @@
    "statement": "Horizon determination of the readout: $\\ro(\\varepsilon_n)=\\ro(\\eR)$ for $n\\ge n_0(k)=\\Theta(k/\\log k)$; the binary64 constant for $e$ is the readout of $\\varepsilon_{18}=18!/\\dr{18}=6402373705728000/2355301661033953$ and $n=18$ is minimal ($\\varepsilon_{17}$ fails readout equality, $|\\varepsilon_{17}-\\eR|=1.10\\times10^{-15}$ above the half-ulp); the first $100$ significant digits of $\\eR$ are those of $\\varepsilon_{70}$; every floating-point value of $e$ is a plateau readout.",
    "origin_row": "13:D4",
    "tag": "T",
-   "tier": null,
+   "tier": 2,
    "check": {
     "href": "src/13-epi/#p13020",
     "script": "epi.py",
-    "line": 333,
+    "line": 335,
     "verdict": "pass"
    },
-   "declarations": [],
+   "declarations": [
+    {
+     "lib": "FrcLedger",
+     "module": "FrcLedger/Epi",
+     "name": "FRC.Epi.readout_binary64"
+    }
+   ],
    "aliases": [],
    "rows": [
     "13:D4"
@@ -11837,14 +11881,25 @@
    "statement": "Feasibility selection: the compound chain $(1+1/n)^{n}$ costs $n\\asymp2^{k}$ steps for $k$ bits against $n_0(k)=\\Theta(k/\\log k)$ for the derangement chain ($n=11,18,70$ at $k=24,53,333$); within a horizon $H$ the compound chain realises $O(\\log H)$ bits and the factorial chain $\\Theta(H\\log H)$; under the feasibility principle the derangement representation is the canonical finite definition of $e$.",
    "origin_row": "13:D5",
    "tag": "T",
-   "tier": null,
+   "tier": 2,
    "check": {
     "href": "src/13-epi/#p13021",
     "script": "epi.py",
-    "line": 361,
+    "line": 363,
     "verdict": "pass"
    },
-   "declarations": [],
+   "declarations": [
+    {
+     "lib": "FrcLedger",
+     "module": "FrcLedger/Epi",
+     "name": "FRC.Epi.derangement_cost"
+    },
+    {
+     "lib": "FrcLedger",
+     "module": "FrcLedger/Epi",
+     "name": "FRC.Epi.compound_cost"
+    }
+   ],
    "aliases": [],
    "rows": [
     "13:D5"
@@ -11875,7 +11930,7 @@
    "check": {
     "href": "src/13-epi/#p13023",
     "script": "epi.py",
-    "line": 668,
+    "line": 689,
     "verdict": "pass"
    },
    "declarations": [
@@ -11916,7 +11971,7 @@
    "check": {
     "href": "src/13-epi/#p13024",
     "script": "epi.py",
-    "line": 716,
+    "line": 737,
     "verdict": "pass"
    },
    "declarations": [],
@@ -11936,7 +11991,7 @@
    "check": {
     "href": "src/13-epi/#p13025",
     "script": "epi.py",
-    "line": 707,
+    "line": 728,
     "verdict": "pass"
    },
    "declarations": [],
@@ -11956,7 +12011,7 @@
    "check": {
     "href": "src/13-epi/#p13026",
     "script": "epi.py",
-    "line": 707,
+    "line": 728,
     "verdict": "pass"
    },
    "declarations": [],
@@ -11976,7 +12031,7 @@
    "check": {
     "href": "src/13-epi/#p13027",
     "script": "epi.py",
-    "line": 441,
+    "line": 462,
     "verdict": "pass"
    },
    "declarations": [
@@ -12002,7 +12057,7 @@
    "check": {
     "href": "src/13-epi/#p13028",
     "script": "epi.py",
-    "line": 441,
+    "line": 462,
     "verdict": "pass"
    },
    "declarations": [
@@ -12038,7 +12093,7 @@
    "check": {
     "href": "src/13-epi/#p13029",
     "script": "epi.py",
-    "line": 448,
+    "line": 469,
     "verdict": "pass"
    },
    "declarations": [
@@ -12074,7 +12129,7 @@
    "check": {
     "href": "src/13-epi/#p13030",
     "script": "epi.py",
-    "line": 479,
+    "line": 500,
     "verdict": "pass"
    },
    "declarations": [
@@ -12105,7 +12160,7 @@
    "check": {
     "href": "src/13-epi/#p13031",
     "script": "epi.py",
-    "line": 508,
+    "line": 529,
     "verdict": "pass"
    },
    "declarations": [],
@@ -12125,7 +12180,7 @@
    "check": {
     "href": "src/13-epi/#p13032",
     "script": "epi.py",
-    "line": 485,
+    "line": 506,
     "verdict": "pass"
    },
    "declarations": [
@@ -12156,7 +12211,7 @@
    "check": {
     "href": "src/13-epi/#p13033",
     "script": "epi.py",
-    "line": 1160,
+    "line": 1181,
     "verdict": "pass"
    },
    "declarations": [
@@ -12187,7 +12242,7 @@
    "check": {
     "href": "src/13-epi/#p13066",
     "script": "epi.py",
-    "line": 453,
+    "line": 474,
     "verdict": "pass"
    },
    "declarations": [
@@ -12218,7 +12273,7 @@
    "check": {
     "href": "src/13-epi/#p13034",
     "script": "epi.py",
-    "line": 760,
+    "line": 781,
     "verdict": "pass"
    },
    "declarations": [
@@ -12249,7 +12304,7 @@
    "check": {
     "href": "src/13-epi/#p13035",
     "script": "epi.py",
-    "line": 760,
+    "line": 781,
     "verdict": "pass"
    },
    "declarations": [
@@ -12275,7 +12330,7 @@
    "check": {
     "href": "src/13-epi/#p13036",
     "script": "epi.py",
-    "line": 981,
+    "line": 1002,
     "verdict": "pass"
    },
    "declarations": [
@@ -12301,7 +12356,7 @@
    "check": {
     "href": "src/13-epi/#p13037",
     "script": "epi.py",
-    "line": 798,
+    "line": 819,
     "verdict": "pass"
    },
    "declarations": [
@@ -12327,7 +12382,7 @@
    "check": {
     "href": "src/13-epi/#p13038",
     "script": "epi.py",
-    "line": 855,
+    "line": 876,
     "verdict": "pass"
    },
    "declarations": [
@@ -12363,7 +12418,7 @@
    "check": {
     "href": "src/13-epi/#p13039",
     "script": "epi.py",
-    "line": 884,
+    "line": 905,
     "verdict": "pass"
    },
    "declarations": [],
@@ -12398,7 +12453,7 @@
    "check": {
     "href": "src/13-epi/#p13041",
     "script": "epi.py",
-    "line": 676,
+    "line": 697,
     "verdict": "pass"
    },
    "declarations": [
@@ -12424,7 +12479,7 @@
    "check": {
     "href": "src/13-epi/#p13042",
     "script": "epi.py",
-    "line": 1176,
+    "line": 1197,
     "verdict": "pass"
    },
    "declarations": [
@@ -12455,7 +12510,7 @@
    "check": {
     "href": "src/13-epi/#p13067",
     "script": "epi.py",
-    "line": 816,
+    "line": 837,
     "verdict": "pass"
    },
    "declarations": [
@@ -12510,7 +12565,7 @@
    "check": {
     "href": "src/13-epi/#p13044",
     "script": "epi.py",
-    "line": 1152,
+    "line": 1173,
     "verdict": "pass"
    },
    "declarations": [
@@ -12562,7 +12617,7 @@
    "check": {
     "href": "src/13-epi/#p13069",
     "script": "epi.py",
-    "line": 546,
+    "line": 567,
     "verdict": "pass"
    },
    "declarations": [
@@ -12588,7 +12643,7 @@
    "check": {
     "href": "src/13-epi/#p13047",
     "script": "epi.py",
-    "line": 598,
+    "line": 619,
     "verdict": "pass"
    },
    "declarations": [
@@ -12619,7 +12674,7 @@
    "check": {
     "href": "src/13-epi/#p13048",
     "script": "epi.py",
-    "line": 333,
+    "line": 335,
     "verdict": "pass"
    },
    "declarations": [],
@@ -12639,7 +12694,7 @@
    "check": {
     "href": "src/13-epi/#p13049",
     "script": "epi.py",
-    "line": 707,
+    "line": 728,
     "verdict": "pass"
    },
    "declarations": [],
@@ -12674,7 +12729,7 @@
    "check": {
     "href": "src/13-epi/#p13051",
     "script": "epi.py",
-    "line": 1152,
+    "line": 1173,
     "verdict": "pass"
    },
    "declarations": [
@@ -12700,7 +12755,7 @@
    "check": {
     "href": "src/13-epi/#p13068",
     "script": "epi.py",
-    "line": 1457,
+    "line": 1478,
     "verdict": "pass"
    },
    "declarations": [],
@@ -12720,7 +12775,7 @@
    "check": {
     "href": "src/13-epi/#p13052",
     "script": "epi.py",
-    "line": 1152,
+    "line": 1173,
     "verdict": "pass"
    },
    "declarations": [
@@ -12746,7 +12801,7 @@
    "check": {
     "href": "src/13-epi/#p13053",
     "script": "epi.py",
-    "line": 1253,
+    "line": 1274,
     "verdict": "pass"
    },
    "declarations": [
@@ -12777,7 +12832,7 @@
    "check": {
     "href": "src/13-epi/#p13054",
     "script": "epi.py",
-    "line": 1253,
+    "line": 1274,
     "verdict": "pass"
    },
    "declarations": [],
@@ -12811,7 +12866,7 @@
    "check": {
     "href": "src/13-epi/#p13056",
     "script": "epi.py",
-    "line": 1253,
+    "line": 1274,
     "verdict": "pass"
    },
    "declarations": [],
@@ -12831,7 +12886,7 @@
    "check": {
     "href": "src/13-epi/#p13057",
     "script": "epi.py",
-    "line": 1343,
+    "line": 1364,
     "verdict": "pass"
    },
    "declarations": [],
@@ -12851,7 +12906,7 @@
    "check": {
     "href": "src/13-epi/#p13061",
     "script": "epi.py",
-    "line": 1557,
+    "line": 1578,
     "verdict": "pass"
    },
    "declarations": [],
@@ -12870,7 +12925,7 @@
    "check": {
     "href": "src/13-epi/#p13063",
     "script": "epi.py",
-    "line": 1602,
+    "line": 1623,
     "verdict": "pass"
    },
    "declarations": [],
@@ -38573,7 +38628,7 @@
     "py": {
      "href": "src/13-epi/#p13009",
      "script": "epi.py",
-     "line": 1218,
+     "line": 1239,
      "verdict": "pass"
     },
     "lean": [
@@ -38616,7 +38671,7 @@
     "py": {
      "href": "src/13-epi/#p13010",
      "script": "epi.py",
-     "line": 1160,
+     "line": 1181,
      "verdict": "pass"
     },
     "lean": [
@@ -38689,7 +38744,7 @@
     "py": {
      "href": "src/13-epi/#p13013",
      "script": "epi.py",
-     "line": 397,
+     "line": 399,
      "verdict": "pass"
     },
     "lean": [
@@ -38748,7 +38803,7 @@
     "py": {
      "href": "src/13-epi/#p13014",
      "script": "epi.py",
-     "line": 1196,
+     "line": 1217,
      "verdict": "pass"
     },
     "lean": [
@@ -38802,21 +38857,38 @@
    "tag": "T",
    "name": null,
    "statement": "The joint-return tally: with $C_n=\\Cb{n}$ the returning $\\pm1$ histories of length $2n$ in one direction, the paired histories in the directions $1$ and $\\im$ number $16^{n}$ and the joint returns $C_n^{2}$, and $\\piR=\\lim16^{n}/(nC_n^{2})$ by the Wallis bounds (E2).",
-   "source": "Prop.~\\ref{prop:selector-pi}\\newline \\pywit{epi}{p13016}{C5}",
+   "source": "Prop.~\\ref{prop:selector-pi}\\newline \\pywit{epi}{p13016}{C5}, \\leanwit{FrcLedger}{p13016}{C5} \\lean{Epi.joint\\_return\\_tally, Epi.tendsto\\_wallis\\_chain}",
    "page": "13-epi/index.html#C5",
    "witness": {
     "py": {
      "href": "src/13-epi/#p13016",
      "script": "epi.py",
-     "line": 668,
+     "line": 689,
      "verdict": "pass"
     },
-    "lean": []
+    "lean": [
+     {
+      "lib": "FrcLedger",
+      "module": "FrcLedger/Epi",
+      "name": "FRC.Epi.joint_return_tally",
+      "tier": 2,
+      "ok": true,
+      "page": "lean/ml/Epi.html#FRC.Epi.joint_return_tally"
+     },
+     {
+      "lib": "FrcLedger",
+      "module": "FrcLedger/Epi",
+      "name": "FRC.Epi.tendsto_wallis_chain",
+      "tier": 2,
+      "ok": true,
+      "page": "lean/ml/Epi.html#FRC.Epi.tendsto_wallis_chain"
+     }
+    ]
    },
    "refs": [
     "p13023"
    ],
-   "text": "The joint-return tally: with $C_n=\\Cb{n}$ the returning $\\pm1$ histories of length $2n$ in one direction, the paired histories in the directions $1$ and $\\im$ number $16^{n}$ and the joint returns $C_n^{2}$, and $\\piR=\\lim16^{n}/(nC_n^{2})$ by the Wallis bounds (E2). Prop. prop:selector-pi p13016"
+   "text": "The joint-return tally: with $C_n=\\Cb{n}$ the returning $\\pm1$ histories of length $2n$ in one direction, the paired histories in the directions $1$ and $\\im$ number $16^{n}$ and the joint returns $C_n^{2}$, and $\\piR=\\lim16^{n}/(nC_n^{2})$ by the Wallis bounds (E2). Prop. prop:selector-pi p13016, FrcLedger{C5} Epi.joint_return_tally, Epi.tendsto_wallis_chain"
   },
   {
    "paper": "13-epi",
@@ -38847,14 +38919,36 @@
    "tag": "T",
    "name": null,
    "statement": "The tail form: $\\dr{n}=n!/\\eR+(-1)^{n}\\delta_n$ with $\\delta_n\\in(1/(n+2),1/(n+1))$, so $\\dr{n}$ is the nearest integer to $n!/\\eR$.",
-   "source": "Lem.~\\ref{lem:tail}",
+   "source": "Lem.~\\ref{lem:tail}\\newline \\pywit{epi}{p13018}{D2}, \\leanwit{FrcLedger}{p13018}{D2} \\lean{Epi.tailDelta\\_strict, Epi.numDerangements\\_eq\\_tailDelta}",
    "page": "13-epi/index.html#D2",
    "witness": {
-    "py": null,
-    "lean": []
+    "py": {
+     "href": "src/13-epi/#p13018",
+     "script": "epi.py",
+     "line": 418,
+     "verdict": "pass"
+    },
+    "lean": [
+     {
+      "lib": "FrcLedger",
+      "module": "FrcLedger/Epi",
+      "name": "FRC.Epi.tailDelta_strict",
+      "tier": 2,
+      "ok": true,
+      "page": "lean/ml/Epi.html#FRC.Epi.tailDelta_strict"
+     },
+     {
+      "lib": "FrcLedger",
+      "module": "FrcLedger/Epi",
+      "name": "FRC.Epi.numDerangements_eq_tailDelta",
+      "tier": 2,
+      "ok": true,
+      "page": "lean/ml/Epi.html#FRC.Epi.numDerangements_eq_tailDelta"
+     }
+    ]
    },
    "refs": [],
-   "text": "The tail form: $\\dr{n}=n!/\\eR+(-1)^{n}\\delta_n$ with $\\delta_n\\in(1/(n+2),1/(n+1))$, so $\\dr{n}$ is the nearest integer to $n!/\\eR$. Lem. lem:tail"
+   "text": "The tail form: $\\dr{n}=n!/\\eR+(-1)^{n}\\delta_n$ with $\\delta_n\\in(1/(n+2),1/(n+1))$, so $\\dr{n}$ is the nearest integer to $n!/\\eR$. Lem. lem:tail p13018, FrcLedger{D2} Epi.tailDelta_strict, Epi.numDerangements_eq_tailDelta"
   },
   {
    "paper": "13-epi",
@@ -38866,19 +38960,36 @@
    "tag": "T",
    "name": null,
    "statement": "Superexponential enclosure: $|\\varepsilon_n-\\eR|\\le\\eR(\\eR+1)/(n+1)!<10.2/(n+1)!$ with $\\operatorname{sign}(\\varepsilon_n-\\eR)=(-1)^{n+1}$, hence $\\varepsilon_{2m}<\\eR<\\varepsilon_{2m+1}$, a nested sequence of $\\fQ$-native intervals; the sharper constant $8$ for $2\\le n\\le60$.",
-   "source": "Thm.~\\ref{thm:enclosure-e}\\newline \\pywit{epi}{p13019}{D3}",
+   "source": "Thm.~\\ref{thm:enclosure-e}\\newline \\pywit{epi}{p13019}{D3}, \\leanwit{FrcLedger}{p13019}{D3} \\lean{Epi.epsChain\\_enclosure, Epi.epsChain\\_sign}",
    "page": "13-epi/index.html#D3",
    "witness": {
     "py": {
      "href": "src/13-epi/#p13019",
      "script": "epi.py",
-     "line": 319,
+     "line": 321,
      "verdict": "pass"
     },
-    "lean": []
+    "lean": [
+     {
+      "lib": "FrcLedger",
+      "module": "FrcLedger/Epi",
+      "name": "FRC.Epi.epsChain_enclosure",
+      "tier": 2,
+      "ok": true,
+      "page": "lean/ml/Epi.html#FRC.Epi.epsChain_enclosure"
+     },
+     {
+      "lib": "FrcLedger",
+      "module": "FrcLedger/Epi",
+      "name": "FRC.Epi.epsChain_sign",
+      "tier": 2,
+      "ok": true,
+      "page": "lean/ml/Epi.html#FRC.Epi.epsChain_sign"
+     }
+    ]
    },
    "refs": [],
-   "text": "Superexponential enclosure: $|\\varepsilon_n-\\eR|\\le\\eR(\\eR+1)/(n+1)!<10.2/(n+1)!$ with $\\operatorname{sign}(\\varepsilon_n-\\eR)=(-1)^{n+1}$, hence $\\varepsilon_{2m}<\\eR<\\varepsilon_{2m+1}$, a nested sequence of $\\fQ$-native intervals; the sharper constant $8$ for $2\\le n\\le60$. Thm. thm:enclosure-e p13019"
+   "text": "Superexponential enclosure: $|\\varepsilon_n-\\eR|\\le\\eR(\\eR+1)/(n+1)!<10.2/(n+1)!$ with $\\operatorname{sign}(\\varepsilon_n-\\eR)=(-1)^{n+1}$, hence $\\varepsilon_{2m}<\\eR<\\varepsilon_{2m+1}$, a nested sequence of $\\fQ$-native intervals; the sharper constant $8$ for $2\\le n\\le60$. Thm. thm:enclosure-e p13019, FrcLedger{D3} Epi.epsChain_enclosure, Epi.epsChain_sign"
   },
   {
    "paper": "13-epi",
@@ -38890,19 +39001,28 @@
    "tag": "T",
    "name": null,
    "statement": "Horizon determination of the readout: $\\ro(\\varepsilon_n)=\\ro(\\eR)$ for $n\\ge n_0(k)=\\Theta(k/\\log k)$; the binary64 constant for $e$ is the readout of $\\varepsilon_{18}=18!/\\dr{18}=6402373705728000/2355301661033953$ and $n=18$ is minimal ($\\varepsilon_{17}$ fails readout equality, $|\\varepsilon_{17}-\\eR|=1.10\\times10^{-15}$ above the half-ulp); the first $100$ significant digits of $\\eR$ are those of $\\varepsilon_{70}$; every floating-point value of $e$ is a plateau readout.",
-   "source": "Thm.~\\ref{thm:readout-e}\\newline \\pywit{epi}{p13020}{D4}",
+   "source": "Thm.~\\ref{thm:readout-e}\\newline \\pywit{epi}{p13020}{D4}, \\leanwit{FrcLedger}{p13020}{D4} \\lean{Epi.readout\\_binary64}",
    "page": "13-epi/index.html#D4",
    "witness": {
     "py": {
      "href": "src/13-epi/#p13020",
      "script": "epi.py",
-     "line": 333,
+     "line": 335,
      "verdict": "pass"
     },
-    "lean": []
+    "lean": [
+     {
+      "lib": "FrcLedger",
+      "module": "FrcLedger/Epi",
+      "name": "FRC.Epi.readout_binary64",
+      "tier": 2,
+      "ok": true,
+      "page": "lean/ml/Epi.html#FRC.Epi.readout_binary64"
+     }
+    ]
    },
    "refs": [],
-   "text": "Horizon determination of the readout: $\\ro(\\varepsilon_n)=\\ro(\\eR)$ for $n\\ge n_0(k)=\\Theta(k/\\log k)$; the binary64 constant for $e$ is the readout of $\\varepsilon_{18}=18!/\\dr{18}=6402373705728000/2355301661033953$ and $n=18$ is minimal ($\\varepsilon_{17}$ fails readout equality, $|\\varepsilon_{17}-\\eR|=1.10\\times10^{-15}$ above the half-ulp); the first $100$ significant digits of $\\eR$ are those of $\\varepsilon_{70}$; every floating-point value of $e$ is a plateau readout. Thm. thm:readout-e p13020"
+   "text": "Horizon determination of the readout: $\\ro(\\varepsilon_n)=\\ro(\\eR)$ for $n\\ge n_0(k)=\\Theta(k/\\log k)$; the binary64 constant for $e$ is the readout of $\\varepsilon_{18}=18!/\\dr{18}=6402373705728000/2355301661033953$ and $n=18$ is minimal ($\\varepsilon_{17}$ fails readout equality, $|\\varepsilon_{17}-\\eR|=1.10\\times10^{-15}$ above the half-ulp); the first $100$ significant digits of $\\eR$ are those of $\\varepsilon_{70}$; every floating-point value of $e$ is a plateau readout. Thm. thm:readout-e p13020, FrcLedger{D4} Epi.readout_binary64"
   },
   {
    "paper": "13-epi",
@@ -38914,19 +39034,36 @@
    "tag": "T",
    "name": null,
    "statement": "Feasibility selection: the compound chain $(1+1/n)^{n}$ costs $n\\asymp2^{k}$ steps for $k$ bits against $n_0(k)=\\Theta(k/\\log k)$ for the derangement chain ($n=11,18,70$ at $k=24,53,333$); within a horizon $H$ the compound chain realises $O(\\log H)$ bits and the factorial chain $\\Theta(H\\log H)$; under the feasibility principle the derangement representation is the canonical finite definition of $e$.",
-   "source": "Prop.~\\ref{prop:feasibility-e}\\newline \\pywit{epi}{p13021}{D5}",
+   "source": "Prop.~\\ref{prop:feasibility-e}\\newline \\pywit{epi}{p13021}{D5}, \\leanwit{FrcLedger}{p13021}{D5} \\lean{Epi.derangement\\_cost, Epi.compound\\_cost}",
    "page": "13-epi/index.html#D5",
    "witness": {
     "py": {
      "href": "src/13-epi/#p13021",
      "script": "epi.py",
-     "line": 361,
+     "line": 363,
      "verdict": "pass"
     },
-    "lean": []
+    "lean": [
+     {
+      "lib": "FrcLedger",
+      "module": "FrcLedger/Epi",
+      "name": "FRC.Epi.derangement_cost",
+      "tier": 2,
+      "ok": true,
+      "page": "lean/ml/Epi.html#FRC.Epi.derangement_cost"
+     },
+     {
+      "lib": "FrcLedger",
+      "module": "FrcLedger/Epi",
+      "name": "FRC.Epi.compound_cost",
+      "tier": 2,
+      "ok": true,
+      "page": "lean/ml/Epi.html#FRC.Epi.compound_cost"
+     }
+    ]
    },
    "refs": [],
-   "text": "Feasibility selection: the compound chain $(1+1/n)^{n}$ costs $n\\asymp2^{k}$ steps for $k$ bits against $n_0(k)=\\Theta(k/\\log k)$ for the derangement chain ($n=11,18,70$ at $k=24,53,333$); within a horizon $H$ the compound chain realises $O(\\log H)$ bits and the factorial chain $\\Theta(H\\log H)$; under the feasibility principle the derangement representation is the canonical finite definition of $e$. Prop. prop:feasibility-e p13021"
+   "text": "Feasibility selection: the compound chain $(1+1/n)^{n}$ costs $n\\asymp2^{k}$ steps for $k$ bits against $n_0(k)=\\Theta(k/\\log k)$ for the derangement chain ($n=11,18,70$ at $k=24,53,333$); within a horizon $H$ the compound chain realises $O(\\log H)$ bits and the factorial chain $\\Theta(H\\log H)$; under the feasibility principle the derangement representation is the canonical finite definition of $e$. Prop. prop:feasibility-e p13021, FrcLedger{D5} Epi.derangement_cost, Epi.compound_cost"
   },
   {
    "paper": "13-epi",
@@ -38965,7 +39102,7 @@
     "py": {
      "href": "src/13-epi/#p13023",
      "script": "epi.py",
-     "line": 668,
+     "line": 689,
      "verdict": "pass"
     },
     "lean": [
@@ -39024,7 +39161,7 @@
     "py": {
      "href": "src/13-epi/#p13024",
      "script": "epi.py",
-     "line": 716,
+     "line": 737,
      "verdict": "pass"
     },
     "lean": []
@@ -39048,7 +39185,7 @@
     "py": {
      "href": "src/13-epi/#p13025",
      "script": "epi.py",
-     "line": 707,
+     "line": 728,
      "verdict": "pass"
     },
     "lean": []
@@ -39072,7 +39209,7 @@
     "py": {
      "href": "src/13-epi/#p13026",
      "script": "epi.py",
-     "line": 707,
+     "line": 728,
      "verdict": "pass"
     },
     "lean": []
@@ -39098,7 +39235,7 @@
     "py": {
      "href": "src/13-epi/#p13027",
      "script": "epi.py",
-     "line": 441,
+     "line": 462,
      "verdict": "pass"
     },
     "lean": [
@@ -39131,7 +39268,7 @@
     "py": {
      "href": "src/13-epi/#p13028",
      "script": "epi.py",
-     "line": 441,
+     "line": 462,
      "verdict": "pass"
     },
     "lean": [
@@ -39183,7 +39320,7 @@
     "py": {
      "href": "src/13-epi/#p13029",
      "script": "epi.py",
-     "line": 448,
+     "line": 469,
      "verdict": "pass"
     },
     "lean": [
@@ -39232,7 +39369,7 @@
     "py": {
      "href": "src/13-epi/#p13030",
      "script": "epi.py",
-     "line": 479,
+     "line": 500,
      "verdict": "pass"
     },
     "lean": [
@@ -39275,7 +39412,7 @@
     "py": {
      "href": "src/13-epi/#p13031",
      "script": "epi.py",
-     "line": 508,
+     "line": 529,
      "verdict": "pass"
     },
     "lean": []
@@ -39301,7 +39438,7 @@
     "py": {
      "href": "src/13-epi/#p13032",
      "script": "epi.py",
-     "line": 485,
+     "line": 506,
      "verdict": "pass"
     },
     "lean": [
@@ -39342,7 +39479,7 @@
     "py": {
      "href": "src/13-epi/#p13033",
      "script": "epi.py",
-     "line": 1160,
+     "line": 1181,
      "verdict": "pass"
     },
     "lean": [
@@ -39385,7 +39522,7 @@
     "py": {
      "href": "src/13-epi/#p13066",
      "script": "epi.py",
-     "line": 453,
+     "line": 474,
      "verdict": "pass"
     },
     "lean": [
@@ -39428,7 +39565,7 @@
     "py": {
      "href": "src/13-epi/#p13034",
      "script": "epi.py",
-     "line": 760,
+     "line": 781,
      "verdict": "pass"
     },
     "lean": [
@@ -39471,7 +39608,7 @@
     "py": {
      "href": "src/13-epi/#p13035",
      "script": "epi.py",
-     "line": 760,
+     "line": 781,
      "verdict": "pass"
     },
     "lean": [
@@ -39504,7 +39641,7 @@
     "py": {
      "href": "src/13-epi/#p13036",
      "script": "epi.py",
-     "line": 981,
+     "line": 1002,
      "verdict": "pass"
     },
     "lean": [
@@ -39539,7 +39676,7 @@
     "py": {
      "href": "src/13-epi/#p13037",
      "script": "epi.py",
-     "line": 798,
+     "line": 819,
      "verdict": "pass"
     },
     "lean": [
@@ -39575,7 +39712,7 @@
     "py": {
      "href": "src/13-epi/#p13038",
      "script": "epi.py",
-     "line": 855,
+     "line": 876,
      "verdict": "pass"
     },
     "lean": [
@@ -39626,7 +39763,7 @@
     "py": {
      "href": "src/13-epi/#p13039",
      "script": "epi.py",
-     "line": 884,
+     "line": 905,
      "verdict": "pass"
     },
     "lean": []
@@ -39677,7 +39814,7 @@
     "py": {
      "href": "src/13-epi/#p13041",
      "script": "epi.py",
-     "line": 676,
+     "line": 697,
      "verdict": "pass"
     },
     "lean": [
@@ -39710,7 +39847,7 @@
     "py": {
      "href": "src/13-epi/#p13042",
      "script": "epi.py",
-     "line": 1176,
+     "line": 1197,
      "verdict": "pass"
     },
     "lean": [
@@ -39751,7 +39888,7 @@
     "py": {
      "href": "src/13-epi/#p13067",
      "script": "epi.py",
-     "line": 816,
+     "line": 837,
      "verdict": "pass"
     },
     "lean": [
@@ -39827,7 +39964,7 @@
     "py": {
      "href": "src/13-epi/#p13044",
      "script": "epi.py",
-     "line": 1152,
+     "line": 1173,
      "verdict": "pass"
     },
     "lean": [
@@ -39898,7 +40035,7 @@
     "py": {
      "href": "src/13-epi/#p13069",
      "script": "epi.py",
-     "line": 546,
+     "line": 567,
      "verdict": "pass"
     },
     "lean": [
@@ -39936,7 +40073,7 @@
     "py": {
      "href": "src/13-epi/#p13047",
      "script": "epi.py",
-     "line": 598,
+     "line": 619,
      "verdict": "pass"
     },
     "lean": [
@@ -39977,7 +40114,7 @@
     "py": {
      "href": "src/13-epi/#p13048",
      "script": "epi.py",
-     "line": 333,
+     "line": 335,
      "verdict": "pass"
     },
     "lean": []
@@ -40008,7 +40145,7 @@
     "py": {
      "href": "src/13-epi/#p13049",
      "script": "epi.py",
-     "line": 707,
+     "line": 728,
      "verdict": "pass"
     },
     "lean": []
@@ -40057,7 +40194,7 @@
     "py": {
      "href": "src/13-epi/#p13051",
      "script": "epi.py",
-     "line": 1152,
+     "line": 1173,
      "verdict": "pass"
     },
     "lean": [
@@ -40093,7 +40230,7 @@
     "py": {
      "href": "src/13-epi/#p13068",
      "script": "epi.py",
-     "line": 1457,
+     "line": 1478,
      "verdict": "pass"
     },
     "lean": []
@@ -40121,7 +40258,7 @@
     "py": {
      "href": "src/13-epi/#p13052",
      "script": "epi.py",
-     "line": 1152,
+     "line": 1173,
      "verdict": "pass"
     },
     "lean": [
@@ -40156,7 +40293,7 @@
     "py": {
      "href": "src/13-epi/#p13053",
      "script": "epi.py",
-     "line": 1253,
+     "line": 1274,
      "verdict": "pass"
     },
     "lean": [
@@ -40199,7 +40336,7 @@
     "py": {
      "href": "src/13-epi/#p13054",
      "script": "epi.py",
-     "line": 1253,
+     "line": 1274,
      "verdict": "pass"
     },
     "lean": []
@@ -40248,7 +40385,7 @@
     "py": {
      "href": "src/13-epi/#p13056",
      "script": "epi.py",
-     "line": 1253,
+     "line": 1274,
      "verdict": "pass"
     },
     "lean": []
@@ -40278,7 +40415,7 @@
     "py": {
      "href": "src/13-epi/#p13057",
      "script": "epi.py",
-     "line": 1343,
+     "line": 1364,
      "verdict": "pass"
     },
     "lean": []
@@ -40304,7 +40441,7 @@
     "py": {
      "href": "src/13-epi/#p13061",
      "script": "epi.py",
-     "line": 1557,
+     "line": 1578,
      "verdict": "pass"
     },
     "lean": []
@@ -40335,7 +40472,7 @@
     "py": {
      "href": "src/13-epi/#p13063",
      "script": "epi.py",
-     "line": 1602,
+     "line": 1623,
      "verdict": "pass"
     },
     "lean": []

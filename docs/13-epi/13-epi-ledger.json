@@ -137,7 +137,7 @@
      "label": "C5",
      "predicate": "The joint-return tally: with $C_n=\\Cb{n}$ the returning $\\pm1$ histories of length $2n$ in one direction, the paired histories in the directions $1$ and $\\im$ number $16^{n}$ and the joint returns $C_n^{2}$, and $\\piR=\\lim16^{n}/(nC_n^{2})$ by the Wallis bounds (E2).",
      "tag": "T",
-     "source": "Prop.~\\ref{prop:selector-pi}\\newline \\pywit{epi}{p13016}{C5}",
+     "source": "Prop.~\\ref{prop:selector-pi}\\newline \\pywit{epi}{p13016}{C5}, \\leanwit{FrcLedger}{p13016}{C5} \\lean{Epi.joint\\_return\\_tally, Epi.tendsto\\_wallis\\_chain}",
      "key": "p13016"
     }
    ]
@@ -157,28 +157,28 @@
      "label": "D2",
      "predicate": "The tail form: $\\dr{n}=n!/\\eR+(-1)^{n}\\delta_n$ with $\\delta_n\\in(1/(n+2),1/(n+1))$, so $\\dr{n}$ is the nearest integer to $n!/\\eR$.",
      "tag": "T",
-     "source": "Lem.~\\ref{lem:tail}",
+     "source": "Lem.~\\ref{lem:tail}\\newline \\pywit{epi}{p13018}{D2}, \\leanwit{FrcLedger}{p13018}{D2} \\lean{Epi.tailDelta\\_strict, Epi.numDerangements\\_eq\\_tailDelta}",
      "key": "p13018"
     },
     {
      "label": "D3",
      "predicate": "Superexponential enclosure: $|\\varepsilon_n-\\eR|\\le\\eR(\\eR+1)/(n+1)!<10.2/(n+1)!$ with $\\operatorname{sign}(\\varepsilon_n-\\eR)=(-1)^{n+1}$, hence $\\varepsilon_{2m}<\\eR<\\varepsilon_{2m+1}$, a nested sequence of $\\fQ$-native intervals; the sharper constant $8$ for $2\\le n\\le60$.",
      "tag": "T",
-     "source": "Thm.~\\ref{thm:enclosure-e}\\newline \\pywit{epi}{p13019}{D3}",
+     "source": "Thm.~\\ref{thm:enclosure-e}\\newline \\pywit{epi}{p13019}{D3}, \\leanwit{FrcLedger}{p13019}{D3} \\lean{Epi.epsChain\\_enclosure, Epi.epsChain\\_sign}",
      "key": "p13019"
     },
     {
      "label": "D4",
      "predicate": "Horizon determination of the readout: $\\ro(\\varepsilon_n)=\\ro(\\eR)$ for $n\\ge n_0(k)=\\Theta(k/\\log k)$; the binary64 constant for $e$ is the readout of $\\varepsilon_{18}=18!/\\dr{18}=6402373705728000/2355301661033953$ and $n=18$ is minimal ($\\varepsilon_{17}$ fails readout equality, $|\\varepsilon_{17}-\\eR|=1.10\\times10^{-15}$ above the half-ulp); the first $100$ significant digits of $\\eR$ are those of $\\varepsilon_{70}$; every floating-point value of $e$ is a plateau readout.",
      "tag": "T",
-     "source": "Thm.~\\ref{thm:readout-e}\\newline \\pywit{epi}{p13020}{D4}",
+     "source": "Thm.~\\ref{thm:readout-e}\\newline \\pywit{epi}{p13020}{D4}, \\leanwit{FrcLedger}{p13020}{D4} \\lean{Epi.readout\\_binary64}",
      "key": "p13020"
     },
     {
      "label": "D5",
      "predicate": "Feasibility selection: the compound chain $(1+1/n)^{n}$ costs $n\\asymp2^{k}$ steps for $k$ bits against $n_0(k)=\\Theta(k/\\log k)$ for the derangement chain ($n=11,18,70$ at $k=24,53,333$); within a horizon $H$ the compound chain realises $O(\\log H)$ bits and the factorial chain $\\Theta(H\\log H)$; under the feasibility principle the derangement representation is the canonical finite definition of $e$.",
      "tag": "T",
-     "source": "Prop.~\\ref{prop:feasibility-e}\\newline \\pywit{epi}{p13021}{D5}",
+     "source": "Prop.~\\ref{prop:feasibility-e}\\newline \\pywit{epi}{p13021}{D5}, \\leanwit{FrcLedger}{p13021}{D5} \\lean{Epi.derangement\\_cost, Epi.compound\\_cost}",
      "key": "p13021"
     }
    ]
@@ -654,7 +654,7 @@
    {
     "name": "FRC.Epi.cayley_values",
     "module": "FrcLedger/Epi",
-    "line": 589,
+    "line": 1001,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -667,7 +667,7 @@
    {
     "name": "FRC.Epi.cayley_mul",
     "module": "FrcLedger/Epi",
-    "line": 602,
+    "line": 1014,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -678,11 +678,138 @@
     "doc": "13:C3 — the composition law `C(x)·C(y) = C((x + y)/(1 − xy))`: the rational law is the half-angle form of phase composition, with denominators units."
    }
   ],
+  "C5": [
+   {
+    "name": "FRC.Epi.joint_return_tally",
+    "module": "FrcLedger/Epi",
+    "line": 480,
+    "axioms": [
+     "Classical.choice",
+     "Quot.sound",
+     "propext"
+    ],
+    "tier": 2,
+    "ok": true,
+    "doc": "13:C5 — the returning `±1` histories of length `2n` in one direction (the sets of `n` up-steps among `2n`) number `C(2n,n)`, the paired histories in the two directions `16^n`, and the joint returns `C(2n,n)²`."
+   },
+   {
+    "name": "FRC.Epi.tendsto_wallis_chain",
+    "module": "FrcLedger/Epi",
+    "line": 513,
+    "axioms": [
+     "Classical.choice",
+     "Quot.sound",
+     "propext"
+    ],
+    "tier": 2,
+    "ok": true,
+    "doc": "13:C5 — `π = lim 16^n/(n C_n²)`: the joint-return ratio converges to `π` (Mathlib's Wallis product)."
+   }
+  ],
+  "D2": [
+   {
+    "name": "FRC.Epi.tailDelta_strict",
+    "module": "FrcLedger/Epi",
+    "line": 243,
+    "axioms": [
+     "Classical.choice",
+     "Quot.sound",
+     "propext"
+    ],
+    "tier": 2,
+    "ok": true,
+    "doc": "13:D2 — the tail form: `!n = n!/e + (−1)^n δ_n` with `δ_n ∈ (1/(n+2), 1/(n+1))` strictly, so `!n` is the nearest integer to `n!/e`."
+   },
+   {
+    "name": "FRC.Epi.numDerangements_eq_tailDelta",
+    "module": "FrcLedger/Epi",
+    "line": 269,
+    "axioms": [
+     "Classical.choice",
+     "Quot.sound",
+     "propext"
+    ],
+    "tier": 2,
+    "ok": true,
+    "doc": "13:D2 — `!n = n!·e⁻¹ + (−1)^n δ_n`, the tail form itself."
+   }
+  ],
+  "D3": [
+   {
+    "name": "FRC.Epi.epsChain_enclosure",
+    "module": "FrcLedger/Epi",
+    "line": 342,
+    "axioms": [
+     "Classical.choice",
+     "Quot.sound",
+     "propext"
+    ],
+    "tier": 2,
+    "ok": true,
+    "doc": "13:D3 — the superexponential enclosure `|ε_n − e| ≤ e(e+1)/(n+1)! < 10.2/(n+1)!` for `n ≥ 2`."
+   },
+   {
+    "name": "FRC.Epi.epsChain_sign",
+    "module": "FrcLedger/Epi",
+    "line": 305,
+    "axioms": [
+     "Classical.choice",
+     "Quot.sound",
+     "propext"
+    ],
+    "tier": 2,
+    "ok": true,
+    "doc": "13:D3 — the sign `sign(ε_n − e) = (−1)^{n+1}`: `ε_{2m} < e < ε_{2m+1}`."
+   }
+  ],
+  "D4": [
+   {
+    "name": "FRC.Epi.readout_binary64",
+    "module": "FrcLedger/Epi",
+    "line": 384,
+    "axioms": [
+     "Classical.choice",
+     "Quot.sound",
+     "propext"
+    ],
+    "tier": 2,
+    "ok": true,
+    "doc": "13:D4 — `e` lies within the half-ulp `2⁻⁵²` of the binary64 constant (from Mathlib's twenty-digit bracket of `e`), `ε_18` lies within the same half-ulp, and no `ε_n` with `2 ≤ n ≤ 17` does: `n = 18` is the minimal readout grade."
+   }
+  ],
+  "D5": [
+   {
+    "name": "FRC.Epi.derangement_cost",
+    "module": "FrcLedger/Epi",
+    "line": 402,
+    "axioms": [
+     "Classical.choice",
+     "Quot.sound",
+     "propext"
+    ],
+    "tier": 2,
+    "ok": true,
+    "doc": "13:D5 — the derangement chain's step counts: `n = 11, 18, 70` are the least `n` with `8/(n+1)! < 2^{−k}` for `k = 24, 53, 333` (the enclosure bound of D3 with the sharper constant `8`; `8/(m+1)!` falls with `m`)."
+   },
+   {
+    "name": "FRC.Epi.compound_cost",
+    "module": "FrcLedger/Epi",
+    "line": 452,
+    "axioms": [
+     "Classical.choice",
+     "Quot.sound",
+     "propext"
+    ],
+    "tier": 2,
+    "ok": true,
+    "doc": "13:D5 — the compound chain is slow: `(1 + 1/n)^n ≤ e · 4n/(4n+1)` for `n ≥ 5`, so the gap `e − (1+1/n)^n` is at least `e/(4n+1)`: `k` bits cost `n ≍ 2^k` steps."
+   }
+  ],
   "E2": [
    {
     "name": "FRC.Epi.wallis_enclosure",
     "module": "FrcLedger/Epi",
-    "line": 836,
+    "line": 1248,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -695,7 +822,7 @@
    {
     "name": "FRC.Epi.wallis_width",
     "module": "FrcLedger/Epi",
-    "line": 744,
+    "line": 1156,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -708,7 +835,7 @@
    {
     "name": "FRC.Epi.wallisV_strictMono",
     "module": "FrcLedger/Epi",
-    "line": 767,
+    "line": 1179,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -721,7 +848,7 @@
    {
     "name": "FRC.Epi.wallisW_strictAnti",
     "module": "FrcLedger/Epi",
-    "line": 790,
+    "line": 1202,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -736,7 +863,7 @@
    {
     "name": "FRC.Epi.wilson_reflection_zmod",
     "module": "FrcLedger/Epi",
-    "line": 310,
+    "line": 722,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -751,7 +878,7 @@
    {
     "name": "FRC.Epi.derangements_wall_zmod",
     "module": "FrcLedger/Epi",
-    "line": 316,
+    "line": 728,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -764,7 +891,7 @@
    {
     "name": "FRC.Epi.terminal_residue",
     "module": "FrcLedger/Epi",
-    "line": 321,
+    "line": 733,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -788,7 +915,7 @@
    {
     "name": "FRC.Epi.derangements_antiperiodic_zmod",
     "module": "FrcLedger/Epi",
-    "line": 330,
+    "line": 742,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -821,7 +948,7 @@
    {
     "name": "FRC.Epi.series_duals_zmod",
     "module": "FrcLedger/Epi",
-    "line": 337,
+    "line": 749,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -865,7 +992,7 @@
    {
     "name": "FRC.Epi.tower_e_exact_zmod",
     "module": "FrcLedger/Epi",
-    "line": 344,
+    "line": 756,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -889,7 +1016,7 @@
    {
     "name": "FRC.Epi.tail_identity_zmod",
     "module": "FrcLedger/Epi",
-    "line": 350,
+    "line": 762,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -902,7 +1029,7 @@
    {
     "name": "FRC.Epi.blind_iff_collision",
     "module": "FrcLedger/Epi",
-    "line": 358,
+    "line": 770,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -917,7 +1044,7 @@
    {
     "name": "FRC.Epi.legibility_window",
     "module": "FrcLedger/Epi",
-    "line": 460,
+    "line": 872,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -941,7 +1068,7 @@
    {
     "name": "FRC.Epi.half_wall_terminus",
     "module": "FrcLedger/Epi",
-    "line": 483,
+    "line": 895,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -956,7 +1083,7 @@
    {
     "name": "FRC.Epi.quarter_wall_invariant",
     "module": "FrcLedger/Epi",
-    "line": 510,
+    "line": 922,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -971,7 +1098,7 @@
    {
     "name": "FRC.Epi.half_wall_second_order",
     "module": "FrcLedger/Epi",
-    "line": 1022,
+    "line": 1434,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -986,7 +1113,7 @@
    {
     "name": "FRC.Epi.first_revival",
     "module": "FrcLedger/Epi",
-    "line": 553,
+    "line": 965,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -999,7 +1126,7 @@
    {
     "name": "FRC.Epi.choose_two_mul_pow",
     "module": "FrcLedger/Epi",
-    "line": 546,
+    "line": 958,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -1034,7 +1161,7 @@
    {
     "name": "FRC.Epi.tower_pi_exact",
     "module": "FrcLedger/Epi",
-    "line": 564,
+    "line": 976,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -1047,7 +1174,7 @@
    {
     "name": "FRC.Epi.choose_two_mul_pow",
     "module": "FrcLedger/Epi",
-    "line": 546,
+    "line": 958,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -1062,7 +1189,7 @@
    {
     "name": "FRC.Epi.piWieferich_iff",
     "module": "FrcLedger/Epi",
-    "line": 1002,
+    "line": 1414,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -1075,7 +1202,7 @@
    {
     "name": "FRC.Epi.eisenstein",
     "module": "FrcLedger/Epi",
-    "line": 1172,
+    "line": 1584,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -1088,7 +1215,7 @@
    {
     "name": "FRC.Epi.piWieferich_iff_harmonic",
     "module": "FrcLedger/Epi",
-    "line": 1195,
+    "line": 1607,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -1101,7 +1228,7 @@
    {
     "name": "FRC.Epi.piWieferich_iff_oeis",
     "module": "FrcLedger/Epi",
-    "line": 1204,
+    "line": 1616,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -1127,7 +1254,7 @@
    {
     "name": "FRC.Epi.calibration_ne_one",
     "module": "FrcLedger/Epi",
-    "line": 624,
+    "line": 1036,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -1140,7 +1267,7 @@
    {
     "name": "FRC.Epi.exp_I_ne_one",
     "module": "FrcLedger/Epi",
-    "line": 633,
+    "line": 1045,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -1155,7 +1282,7 @@
    {
     "name": "FRC.Epi.calibrated_778933",
     "module": "FrcLedger/Epi",
-    "line": 719,
+    "line": 1131,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -1170,7 +1297,7 @@
    {
     "name": "FRC.Epi.index_condition_shell",
     "module": "FrcLedger/Epi",
-    "line": 700,
+    "line": 1112,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -1183,7 +1310,7 @@
    {
     "name": "FRC.Epi.index_condition",
     "module": "FrcLedger/Epi",
-    "line": 651,
+    "line": 1063,
     "axioms": [
      "Classical.choice",
      "Quot.sound",

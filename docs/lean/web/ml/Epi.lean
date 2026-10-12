@@ -120,6 +120,418 @@ theorem rencontres_zero : ∑ σ : Perm α, (0 : ℚ) ^ (fixSet σ).card = numDe
 
 end rencontres
 
+section tailAndReadout
+open Filter Topology
+
+/-- The partial sums `expNegOneSum m = Σ_{i<m} (−1)^i/i!` of the alternating series of `e⁻¹`. -/
+noncomputable def expNegOneSum (m : ℕ) : ℝ := ∑ i ∈ range m, (-1 : ℝ) ^ i * (1 / (i.factorial : ℝ))
+
+theorem expNegOneSum_succ (m : ℕ) : expNegOneSum (m + 1) = expNegOneSum m + (-1 : ℝ) ^ m * (1 / (m.factorial : ℝ)) := by
+  simp [expNegOneSum, sum_range_succ]
+
+/-- The alternating series sums to `e⁻¹`. -/
+theorem hasSum_expNegOneSum : HasSum (fun i : ℕ => (-1 : ℝ) ^ i * (1 / (i.factorial : ℝ))) (Real.exp (-1)) := by
+  have h := NormedSpace.expSeries_div_hasSum_exp (-1 : ℝ)
+  rw [← Real.exp_eq_exp_ℝ] at h
+  convert h using 1
+  ext i; ring
+
+theorem tendsto_expNegOneSum : Tendsto expNegOneSum atTop (𝓝 (Real.exp (-1))) := hasSum_expNegOneSum.tendsto_sum_nat
+
+theorem antitone_inv_factorial : Antitone (fun i : ℕ => (1 / (i.factorial : ℝ))) := by
+  intro i j hij
+  have : (i.factorial : ℝ) ≤ j.factorial := by exact_mod_cast Nat.factorial_le hij
+  exact one_div_le_one_div_of_le (by positivity) this
+
+theorem expNegOneSum_even_le (k : ℕ) : expNegOneSum (2 * k) ≤ Real.exp (-1) :=
+  Antitone.alternating_series_le_tendsto tendsto_expNegOneSum antitone_inv_factorial k
+
+theorem le_expNegOneSum_odd (k : ℕ) : Real.exp (-1) ≤ expNegOneSum (2 * k + 1) :=
+  Antitone.tendsto_le_alternating_series tendsto_expNegOneSum antitone_inv_factorial k
+
+/-- `!n = n! · expNegOneSum(n+1)`: the inclusion–exclusion sum of the derangement number. -/
+theorem numDerangements_eq_sum (n : ℕ) : (numDerangements n : ℝ) = n.factorial * expNegOneSum (n + 1) := by
+  have h := numDerangements_sum n
+  have h' : (numDerangements n : ℝ) = ∑ k ∈ range (n + 1), (-1 : ℝ) ^ k * ((k + 1).ascFactorial (n - k) : ℝ) := by
+    exact_mod_cast h
+  rw [h', expNegOneSum, mul_sum]
+  refine sum_congr rfl fun k hk => ?_
+  have hk' : k ≤ n := Nat.lt_succ_iff.mp (mem_range.mp hk)
+  have hf : (k.factorial : ℝ) * ((k + 1).ascFactorial (n - k) : ℝ) = n.factorial := by
+    rw [← Nat.cast_mul, Nat.factorial_mul_ascFactorial, Nat.add_sub_cancel' hk']
+  have hkf : (k.factorial : ℝ) ≠ 0 := by positivity
+  field_simp
+  linear_combination hf
+
+/-- `δ_n = (−1)^n (!n − n!/e)`, the signed tail. -/
+noncomputable def tailDelta (n : ℕ) : ℝ := (-1 : ℝ) ^ n * (numDerangements n - n.factorial * Real.exp (-1))
+
+/-- `δ_n = (−1)^{n+1} n! (e⁻¹ − expNegOneSum(n+1))`. -/
+theorem tailDelta_eq (n : ℕ) : tailDelta n = (-1 : ℝ) ^ (n + 1) * n.factorial * (Real.exp (-1) - expNegOneSum (n + 1)) := by
+  rw [tailDelta, numDerangements_eq_sum, pow_succ]; ring
+
+/-- 13:D2 — the closed tail bounds `1/(n+2) ≤ δ_n ≤ 1/(n+1)`, from the alternating series of `e⁻¹`. -/
+theorem tailDelta_bounds (n : ℕ) : 1 / ((n : ℝ) + 2) ≤ tailDelta n ∧ tailDelta n ≤ 1 / ((n : ℝ) + 1) := by
+  rw [tailDelta_eq]
+  have hf : (0 : ℝ) < n.factorial := by positivity
+  have h1 : ((n + 1).factorial : ℝ) = (n + 1) * n.factorial := by push_cast [Nat.factorial_succ]; ring
+  have h2 : ((n + 2).factorial : ℝ) = (n + 2) * (n + 1) * n.factorial := by
+    rw [show n + 2 = (n + 1) + 1 from rfl, Nat.factorial_succ, Nat.factorial_succ]; push_cast; ring
+  rcases Nat.even_or_odd n with ⟨k, hk⟩ | ⟨k, hk⟩
+  · -- n = 2k even: n + 1 = 2k + 1 odd; e⁻¹ ≤ expNegOneSum(n+1), expNegOneSum(n+2) ≤ e⁻¹, e⁻¹ ≤ expNegOneSum(n+3)
+    have hA := le_expNegOneSum_odd k            -- e⁻¹ ≤ expNegOneSum (2k+1)
+    have hB := expNegOneSum_even_le (k + 1)     -- expNegOneSum (2k+2) ≤ e⁻¹
+    have hC := le_expNegOneSum_odd (k + 1)      -- e⁻¹ ≤ expNegOneSum (2k+3)
+    have e1 : 2 * k + 1 = n + 1 := by omega
+    have e2 : 2 * (k + 1) = n + 2 := by omega
+    have e3 : 2 * (k + 1) + 1 = n + 3 := by omega
+    rw [e1] at hA; rw [e2] at hB; rw [e3] at hC
+    rw [show n + 2 = (n + 1) + 1 from rfl, expNegOneSum_succ] at hB
+    rw [show n + 3 = (n + 1) + 1 + 1 from rfl, expNegOneSum_succ, expNegOneSum_succ] at hC
+    have hs : (-1 : ℝ) ^ (n + 1) = -1 := by rw [hk]; simp [pow_succ, pow_mul]
+    have hs2 : (-1 : ℝ) ^ (n + 1 + 1) = 1 := by rw [hk]; simp [pow_succ, pow_mul]
+    rw [hs] at hB hC ⊢
+    rw [hs2] at hC
+    rw [h1] at hB hC; rw [h2] at hC
+    constructor
+    · rw [div_le_iff₀ (by positivity)]
+      have : Real.exp (-1) - expNegOneSum (n + 1) ≤ -(1 / ((n + 1) * n.factorial)) + 1 / ((n + 2) * (n + 1) * n.factorial) := by linarith
+      calc (1 : ℝ) = (n.factorial * (1 / ((n + 1) * n.factorial) - 1 / ((n + 2) * (n + 1) * n.factorial))) * (n + 2) := by
+              field_simp; ring
+        _ ≤ _ := by nlinarith [this]
+    · rw [le_div_iff₀ (by positivity)]
+      have : -(1 / ((n + 1) * (n.factorial : ℝ))) ≤ Real.exp (-1) - expNegOneSum (n + 1) := by linarith
+      calc (-1 * (n.factorial : ℝ) * (Real.exp (-1) - expNegOneSum (n + 1))) * (n + 1) ≤ (n.factorial * (1 / ((n + 1) * n.factorial))) * (n + 1) := by nlinarith [this]
+        _ = 1 := by field_simp
+  · -- n = 2k + 1 odd: n + 1 = 2k + 2 even; expNegOneSum(n+1) ≤ e⁻¹ ≤ expNegOneSum(n+2); expNegOneSum(n+3) ≤ e⁻¹
+    have hA := expNegOneSum_even_le (k + 1)     -- expNegOneSum (2k+2) ≤ e⁻¹
+    have hB := le_expNegOneSum_odd (k + 1)      -- e⁻¹ ≤ expNegOneSum (2k+3)
+    have hC := expNegOneSum_even_le (k + 2)     -- expNegOneSum (2k+4) ≤ e⁻¹
+    have e1 : 2 * (k + 1) = n + 1 := by omega
+    have e2 : 2 * (k + 1) + 1 = n + 2 := by omega
+    have e3 : 2 * (k + 2) = n + 3 := by omega
+    rw [e1] at hA; rw [e2] at hB; rw [e3] at hC
+    rw [show n + 2 = (n + 1) + 1 from rfl, expNegOneSum_succ] at hB
+    rw [show n + 3 = (n + 1) + 1 + 1 from rfl, expNegOneSum_succ, expNegOneSum_succ] at hC
+    have hs : (-1 : ℝ) ^ (n + 1) = 1 := by rw [hk]; simp [pow_succ, pow_mul]
+    have hs2 : (-1 : ℝ) ^ (n + 1 + 1) = -1 := by rw [hk]; simp [pow_succ, pow_mul]
+    rw [hs] at hB hC ⊢
+    rw [hs2] at hC
+    rw [h1] at hB hC; rw [h2] at hC
+    constructor
+    · rw [div_le_iff₀ (by positivity)]
+      have : 1 / ((n + 1) * (n.factorial : ℝ)) - 1 / ((n + 2) * (n + 1) * n.factorial) ≤ Real.exp (-1) - expNegOneSum (n + 1) := by linarith
+      calc (1 : ℝ) = (n.factorial * (1 / ((n + 1) * n.factorial) - 1 / ((n + 2) * (n + 1) * n.factorial))) * (n + 2) := by
+              field_simp; ring
+        _ ≤ _ := by nlinarith [this]
+    · rw [le_div_iff₀ (by positivity)]
+      have : Real.exp (-1) - expNegOneSum (n + 1) ≤ 1 / ((n + 1) * (n.factorial : ℝ)) := by linarith
+      calc (1 * (n.factorial : ℝ) * (Real.exp (-1) - expNegOneSum (n + 1))) * (n + 1) ≤ (n.factorial * (1 / ((n + 1) * n.factorial))) * (n + 1) := by nlinarith [this]
+        _ = 1 := by field_simp
+
+/-- The recursion `δ_n = (1 − δ_{n+1})/(n+1)`. -/
+theorem tailDelta_succ (n : ℕ) : tailDelta n = (1 - tailDelta (n + 1)) / ((n : ℝ) + 1) := by
+  rw [tailDelta_eq, tailDelta_eq, expNegOneSum_succ (n + 1)]
+  have h1 : ((n + 1).factorial : ℝ) = (n + 1) * n.factorial := by push_cast [Nat.factorial_succ]; ring
+  rw [h1]
+  have hf : (0 : ℝ) < n.factorial := by positivity
+  have hs1 : (-1 : ℝ) ^ (n + 1) = -((-1 : ℝ) ^ n) := by rw [pow_succ]; ring
+  have hs2 : (-1 : ℝ) ^ (n + 1 + 1) = (-1 : ℝ) ^ n := by rw [pow_succ, pow_succ]; ring
+  have hsq : ((-1 : ℝ) ^ n) ^ 2 = 1 := by rw [← pow_mul, mul_comm, pow_mul]; norm_num
+  rw [hs1, hs2]
+  field_simp
+  linear_combination (1 : ℝ) * hsq
+
+/-- 13:D2 — the tail form: `!n = n!/e + (−1)^n δ_n` with `δ_n ∈ (1/(n+2), 1/(n+1))` strictly, so `!n` is the nearest integer to `n!/e`. -/
+theorem tailDelta_strict (n : ℕ) : 1 / ((n : ℝ) + 2) < tailDelta n ∧ tailDelta n < 1 / ((n : ℝ) + 1) := by
+  have hb := tailDelta_bounds (n + 1)
+  have hb2 := tailDelta_bounds (n + 2)
+  have hpos : 0 < tailDelta (n + 2) := lt_of_lt_of_le (by positivity) hb2.1
+  have hlt : tailDelta (n + 1) < 1 / ((n : ℝ) + 2) := by
+    rw [tailDelta_succ (n + 1)]
+    push_cast
+    rw [div_lt_div_iff₀ (by positivity) (by positivity)]
+    nlinarith [hpos]
+  have hpos1 : 0 < tailDelta (n + 1) := lt_of_lt_of_le (by positivity) hb.1
+  have hlt' : tailDelta (n + 1) * ((n : ℝ) + 2) < 1 := (lt_div_iff₀ (by positivity)).mp hlt
+  rw [tailDelta_succ n]
+  constructor
+  · rw [div_lt_div_iff₀ (by positivity) (by positivity)]
+    nlinarith [hlt']
+  · rw [div_lt_div_iff₀ (by positivity) (by positivity)]
+    nlinarith [hpos1]
+
+/-! ### 13:D3 — the superexponential enclosure -/
+
+/-- The derangement chain `ε_n = n!/!n`. -/
+noncomputable def epsChain (n : ℕ) : ℝ := n.factorial / numDerangements n
+
+theorem exp_neg_one_eq : Real.exp (-1) = (Real.exp 1)⁻¹ := by rw [Real.exp_neg]
+
+/-- 13:D2 — `!n = n!·e⁻¹ + (−1)^n δ_n`, the tail form itself. -/
+theorem numDerangements_eq_tailDelta (n : ℕ) :
+    (numDerangements n : ℝ) = n.factorial * Real.exp (-1) + (-1 : ℝ) ^ n * tailDelta n := by
+  have hsq : ((-1 : ℝ) ^ n) ^ 2 = 1 := by rw [← pow_mul, mul_comm, pow_mul]; norm_num
+  rw [tailDelta]; linear_combination (-(numDerangements n : ℝ) + n.factorial * Real.exp (-1)) * hsq
+
+theorem tailDelta_pos (n : ℕ) : 0 < tailDelta n := lt_of_lt_of_le (by positivity) (tailDelta_bounds n).1
+
+/-- `!n > 0` for `n ≥ 2`. -/
+theorem numDerangements_pos_real (n : ℕ) (hn : 2 ≤ n) : (0 : ℝ) < numDerangements n := by
+  rw [numDerangements_eq_tailDelta]
+  have hE : (2 : ℝ) < Real.exp 1 := Real.exp_one_gt_two
+  have hE' : Real.exp 1 < 2.7182818286 := Real.exp_one_lt_d9
+  have hinv : (1 : ℝ) / 2.7182818286 < Real.exp (-1) := by
+    rw [exp_neg_one_eq, ← one_div]; exact one_div_lt_one_div_of_lt (by positivity) hE'
+  have hf : (2 : ℝ) ≤ n.factorial := by exact_mod_cast Nat.self_le_factorial n |>.trans' hn
+  have hd := tailDelta_bounds n
+  have hd1 : tailDelta n ≤ 1 / 3 := hd.2.trans (by
+    rw [div_le_div_iff₀ (by positivity) (by positivity)]; have : (2 : ℝ) ≤ n := by exact_mod_cast hn
+    linarith)
+  have hsgn : -(tailDelta n) ≤ (-1 : ℝ) ^ n * tailDelta n := by
+    rcases neg_one_pow_eq_or ℝ n with h | h <;> rw [h] <;> nlinarith [tailDelta_pos n]
+  nlinarith [hinv, hf, hd1, hsgn, tailDelta_pos n]
+
+/-- `ε_n − e = (−1)^{n+1} e δ_n / !n`. -/
+theorem epsChain_sub_exp (n : ℕ) (hn : 2 ≤ n) :
+    epsChain n - Real.exp 1 = (-1 : ℝ) ^ (n + 1) * Real.exp 1 * tailDelta n / numDerangements n := by
+  have hD := numDerangements_pos_real n hn
+  have hE : (0 : ℝ) < Real.exp 1 := Real.exp_pos 1
+  rw [epsChain, eq_div_iff hD.ne', sub_mul, div_mul_cancel₀ _ hD.ne']
+  have h := numDerangements_eq_tailDelta n
+  have hsq : ((-1 : ℝ) ^ n) ^ 2 = 1 := by rw [← pow_mul, mul_comm, pow_mul]; norm_num
+  have hinv : Real.exp 1 * Real.exp (-1) = 1 := by rw [exp_neg_one_eq, mul_inv_cancel₀ hE.ne']
+  rw [pow_succ]
+  linear_combination (-(Real.exp 1)) * h + (-(n.factorial : ℝ)) * hinv
+
+/-- 13:D3 — the sign `sign(ε_n − e) = (−1)^{n+1}`: `ε_{2m} < e < ε_{2m+1}`. -/
+theorem epsChain_sign (n : ℕ) (hn : 2 ≤ n) : 0 < (-1 : ℝ) ^ (n + 1) * (epsChain n - Real.exp 1) := by
+  rw [epsChain_sub_exp n hn]
+  have hsq : ((-1 : ℝ) ^ (n + 1)) ^ 2 = 1 := by rw [← pow_mul, mul_comm, pow_mul]; norm_num
+  have : (-1 : ℝ) ^ (n + 1) * ((-1) ^ (n + 1) * Real.exp 1 * tailDelta n / numDerangements n)
+      = Real.exp 1 * tailDelta n / numDerangements n := by
+    rw [mul_div_assoc', ← mul_assoc, ← mul_assoc, ← sq, hsq, one_mul]
+  rw [this]
+  exact div_pos (mul_pos (Real.exp_pos 1) (tailDelta_pos n)) (numDerangements_pos_real n hn)
+
+/-- `ε_n ≤ e + 1` for `n ≥ 2`. -/
+theorem epsChain_le (n : ℕ) (hn : 2 ≤ n) : epsChain n ≤ Real.exp 1 + 1 := by
+  have hD := numDerangements_pos_real n hn
+  rw [epsChain, div_le_iff₀ hD, numDerangements_eq_tailDelta]
+  have hE : (2 : ℝ) < Real.exp 1 := Real.exp_one_gt_two
+  have hE' : Real.exp 1 < 2.7182818286 := Real.exp_one_lt_d9
+  have hinv : Real.exp 1 * Real.exp (-1) = 1 := by rw [exp_neg_one_eq, mul_inv_cancel₀ (Real.exp_pos 1).ne']
+  have hd := tailDelta_bounds n
+  have hdp := tailDelta_pos n
+  have hsgn : -(tailDelta n) ≤ (-1 : ℝ) ^ n * tailDelta n := by
+    rcases neg_one_pow_eq_or ℝ n with h | h <;> rw [h] <;> nlinarith
+  have hd1 : tailDelta n * ((n : ℝ) + 1) ≤ 1 := (le_div_iff₀ (by positivity)).mp hd.2
+  rcases Nat.lt_or_ge n 3 with h3 | h3
+  · -- n = 2: !2 = 1 and 2 ≤ e + 1
+    have : n = 2 := by omega
+    subst this
+    have h2 : (numDerangements 2 : ℝ) = 1 := by norm_num [numDerangements_add_two]
+    rw [← numDerangements_eq_tailDelta, h2]; norm_num; linarith
+  · -- n ≥ 3: n!/e − 1/(n+1) ≥ n!/(e+1) since (n+1)! ≥ 24 > e(e+1)
+    have hf : (6 : ℝ) ≤ n.factorial := by
+      have := Nat.factorial_le h3; exact_mod_cast (by norm_num : 6 ≤ Nat.factorial 3).trans this
+    have hn3 : (3 : ℝ) ≤ n := by exact_mod_cast h3
+    have hne : Real.exp (-1) = (Real.exp 1)⁻¹ := exp_neg_one_eq
+    have hEinv : (1 : ℝ) / 2.7182818286 < Real.exp (-1) := by
+      rw [hne, ← one_div]; exact one_div_lt_one_div_of_lt (by positivity) hE'
+    nlinarith [hinv, hsgn, hd1, hf, hn3, hEinv, Real.exp_pos 1, mul_pos (Real.exp_pos 1) hdp]
+
+/-- 13:D3 — the superexponential enclosure `|ε_n − e| ≤ e(e+1)/(n+1)! < 10.2/(n+1)!` for `n ≥ 2`. -/
+theorem epsChain_enclosure (n : ℕ) (hn : 2 ≤ n) :
+    |epsChain n - Real.exp 1| ≤ Real.exp 1 * (Real.exp 1 + 1) / ((n + 1).factorial : ℝ) ∧
+      Real.exp 1 * (Real.exp 1 + 1) / ((n + 1).factorial : ℝ) < 10.2 / ((n + 1).factorial : ℝ) := by
+  have hD := numDerangements_pos_real n hn
+  have hE := Real.exp_pos 1
+  have hE' : Real.exp 1 < 2.7182818286 := Real.exp_one_lt_d9
+  have h1 : ((n + 1).factorial : ℝ) = (n + 1) * n.factorial := by push_cast [Nat.factorial_succ]; ring
+  constructor
+  · rw [epsChain_sub_exp n hn, abs_div, abs_mul, abs_mul, abs_of_pos hE, abs_of_pos (tailDelta_pos n), abs_of_pos hD]
+    have hs : |(-1 : ℝ) ^ (n + 1)| = 1 := by simp
+    rw [hs, one_mul, h1, div_le_div_iff₀ hD (by positivity)]
+    have hd : tailDelta n * ((n : ℝ) + 1) ≤ 1 := (le_div_iff₀ (by positivity)).mp (tailDelta_bounds n).2
+    have hl := epsChain_le n hn
+    rw [epsChain, div_le_iff₀ hD] at hl
+    nlinarith [mul_nonneg hE.le (tailDelta_pos n).le, mul_le_mul_of_nonneg_left hd hE.le, mul_le_mul_of_nonneg_left hl hE.le, mul_pos hE hD]
+  · rw [div_lt_div_iff_of_pos_right (by positivity)]; nlinarith
+
+/-! ### 13:D4 — the binary64 readout -/
+
+theorem numDerangements_2 : numDerangements 2 = 1 := by decide
+theorem numDerangements_3 : numDerangements 3 = 2 := by decide
+theorem numDerangements_4 : numDerangements 4 = 9 := by decide
+theorem numDerangements_5 : numDerangements 5 = 44 := by decide
+theorem numDerangements_6 : numDerangements 6 = 265 := by decide
+theorem numDerangements_7 : numDerangements 7 = 1854 := by decide
+theorem numDerangements_8 : numDerangements 8 = 14833 := by decide
+theorem numDerangements_9 : numDerangements 9 = 133496 := by decide
+theorem numDerangements_10 : numDerangements 10 = 1334961 := by decide
+theorem numDerangements_11 : numDerangements 11 = 14684570 := by decide
+theorem numDerangements_12 : numDerangements 12 = 176214841 := by decide
+theorem numDerangements_13 : numDerangements 13 = 2290792932 := by decide
+theorem numDerangements_14 : numDerangements 14 = 32071101049 := by decide
+theorem numDerangements_15 : numDerangements 15 = 481066515734 := by decide
+theorem numDerangements_16 : numDerangements 16 = 7697064251745 := by decide
+theorem numDerangements_17 : numDerangements 17 = 130850092279664 := by decide
+theorem numDerangements_18 : numDerangements 18 = 2355301661033953 := by decide
+
+/-- The binary64 constant nearest `e`: `6121026514868073 / 2^51`. -/
+noncomputable def binary64E : ℝ := 6121026514868073 / 2 ^ 51
+
+/-- 13:D4 — `e` lies within the half-ulp `2⁻⁵²` of the binary64 constant (from Mathlib's twenty-digit bracket of `e`),
+`ε_18` lies within the same half-ulp, and no `ε_n` with `2 ≤ n ≤ 17` does: `n = 18` is the minimal readout grade. -/
+theorem readout_binary64 :
+    |Real.exp 1 - binary64E| < 1 / 2 ^ 52 ∧ |epsChain 18 - binary64E| < 1 / 2 ^ 52 ∧
+      ∀ n, 2 ≤ n → n ≤ 17 → 1 / 2 ^ 52 < |epsChain n - binary64E| := by
+  refine ⟨?_, ?_, ?_⟩
+  · have h := Real.exp_one_near_20
+    have h2 : |(363916618873 : ℝ) / 133877442384 - binary64E| < 1 / 2 ^ 52 - 1 / 10 ^ 20 := by
+      rw [binary64E, abs_lt]; constructor <;> norm_num
+    calc |Real.exp 1 - binary64E| = |(Real.exp 1 - 363916618873 / 133877442384) + (363916618873 / 133877442384 - binary64E)| := by ring_nf
+      _ ≤ |Real.exp 1 - 363916618873 / 133877442384| + |(363916618873 : ℝ) / 133877442384 - binary64E| := abs_add_le _ _
+      _ < 1 / 2 ^ 52 := by linarith
+  · rw [epsChain, binary64E, numDerangements_18, abs_lt]; constructor <;> norm_num [Nat.factorial]
+  · intro n h2 h17
+    interval_cases n <;> rw [epsChain, binary64E] <;> simp only [numDerangements_2, numDerangements_3, numDerangements_4, numDerangements_5, numDerangements_6, numDerangements_7, numDerangements_8, numDerangements_9, numDerangements_10, numDerangements_11, numDerangements_12, numDerangements_13, numDerangements_14, numDerangements_15, numDerangements_16, numDerangements_17, numDerangements_18] <;> rw [lt_abs] <;> norm_num [Nat.factorial]
+
+/-! ### 13:D5 — feasibility -/
+
+/-- 13:D5 — the derangement chain's step counts: `n = 11, 18, 70` are the least `n` with `8/(n+1)! < 2^{−k}` for
+`k = 24, 53, 333` (the enclosure bound of D3 with the sharper constant `8`; `8/(m+1)!` falls with `m`). -/
+theorem derangement_cost :
+    ((8 : ℚ) / (Nat.factorial 12) < 1 / 2 ^ 24 ∧ ∀ m < 11, ¬ ((8 : ℚ) / (Nat.factorial (m + 1)) < 1 / 2 ^ 24)) ∧
+    ((8 : ℚ) / (Nat.factorial 19) < 1 / 2 ^ 53 ∧ ∀ m < 18, ¬ ((8 : ℚ) / (Nat.factorial (m + 1)) < 1 / 2 ^ 53)) ∧
+    ((8 : ℚ) / (Nat.factorial 71) < 1 / 2 ^ 333 ∧ ∀ m < 70, ¬ ((8 : ℚ) / (Nat.factorial (m + 1)) < 1 / 2 ^ 333)) := by
+  have mono : ∀ m n : ℕ, m ≤ n → (8 : ℚ) / (Nat.factorial n) ≤ 8 / (Nat.factorial m) := fun m n h =>
+    div_le_div_of_nonneg_left (by norm_num) (by positivity) (by exact_mod_cast Nat.factorial_le h)
+  have lt_iff : ∀ (n k : ℕ), ((8 : ℚ) / (Nat.factorial n) < 1 / 2 ^ k ↔ 8 * 2 ^ k < Nat.factorial n) := fun n k => by
+    rw [div_lt_div_iff₀ (by positivity) (by positivity), one_mul]; exact_mod_cast Iff.rfl
+  refine ⟨⟨?_, fun m hm h => ?_⟩, ⟨?_, fun m hm h => ?_⟩, ⟨?_, fun m hm h => ?_⟩⟩
+  · rw [lt_iff]; decide
+  · have := mono (m + 1) 11 (by omega); have h11 : ¬ ((8 : ℚ) / (Nat.factorial 11) < 1 / 2 ^ 24) := by
+      rw [lt_iff]; decide
+    exact h11 (lt_of_le_of_lt this h)
+  · rw [lt_iff]; decide
+  · have := mono (m + 1) 18 (by omega); have h18 : ¬ ((8 : ℚ) / (Nat.factorial 18) < 1 / 2 ^ 53) := by
+      rw [lt_iff]; decide
+    exact h18 (lt_of_le_of_lt this h)
+  · rw [lt_iff]; decide
+  · have := mono (m + 1) 70 (by omega); have h70 : ¬ ((8 : ℚ) / (Nat.factorial 70) < 1 / 2 ^ 333) := by
+      rw [lt_iff]; decide
+    exact h70 (lt_of_le_of_lt this h)
+
+/-- `log(1 + 1/n) ≤ 1/n − 1/(4n²)` for `n ≥ 5` (the cubic Taylor bound of Mathlib). -/
+theorem log_one_add_inv_le (n : ℕ) (hn : 5 ≤ n) :
+    Real.log (1 + 1 / (n : ℝ)) ≤ 1 / n - 1 / (4 * (n : ℝ) ^ 2) := by
+  have hn' : (5 : ℝ) ≤ n := by exact_mod_cast hn
+  have hx : |(-1 : ℝ) / n| < 1 := by
+    rw [abs_div, abs_neg, abs_one, abs_of_pos (by positivity : (0 : ℝ) < n), div_lt_one (by positivity)]; linarith
+  have h := Real.abs_log_sub_add_sum_range_le hx 2
+  have hsum : (∑ i ∈ Finset.range 2, ((-1 : ℝ) / n) ^ (i + 1) / (i + 1)) = -1 / n + 1 / (2 * (n : ℝ) ^ 2) := by
+    simp [Finset.sum_range_succ]; field_simp; ring
+  have hlog : (1 : ℝ) - (-1) / n = 1 + 1 / n := by ring
+  rw [hsum, hlog] at h
+  have habs : |(-1 : ℝ) / n| = 1 / n := by
+    rw [abs_div, abs_neg, abs_one, abs_of_pos (by positivity : (0 : ℝ) < n)]
+  rw [habs] at h
+  have hn0 : (n : ℝ) ≠ 0 := by positivity
+  have hn1 : (n : ℝ) - 1 ≠ 0 := by linarith
+  have hrem : (1 / (n : ℝ)) ^ (2 + 1) / (1 - 1 / n) ≤ 1 / (4 * (n : ℝ) ^ 2) := by
+    have ht0 : (0 : ℝ) < 1 / n := by positivity
+    have ht5 : 1 / (n : ℝ) ≤ 1 / 5 := one_div_le_one_div_of_le (by norm_num) hn'
+    have e : 1 / (4 * (n : ℝ) ^ 2) = (1 / n) ^ 2 / 4 := by field_simp
+    rw [e, div_le_iff₀ (by linarith)]
+    nlinarith [mul_pos ht0 ht0, mul_pos (mul_pos ht0 ht0) ht0]
+  have h' := (abs_le.mp h).2
+  have e2 : 1 / (2 * (n : ℝ) ^ 2) = 2 * (1 / (4 * (n : ℝ) ^ 2)) := by field_simp; ring
+  linarith
+
+/-- 13:D5 — the compound chain is slow: `(1 + 1/n)^n ≤ e · 4n/(4n+1)` for `n ≥ 5`, so the gap `e − (1+1/n)^n`
+is at least `e/(4n+1)`: `k` bits cost `n ≍ 2^k` steps. -/
+theorem compound_cost (n : ℕ) (hn : 5 ≤ n) :
+    (1 + 1 / (n : ℝ)) ^ n ≤ Real.exp 1 * (4 * n) / (4 * n + 1) := by
+  have hn' : (5 : ℝ) ≤ n := by exact_mod_cast hn
+  have hpos : (0 : ℝ) < 1 + 1 / n := by positivity
+  have hl := log_one_add_inv_le n hn
+  have h1 : (1 + 1 / (n : ℝ)) ^ n = Real.exp (n * Real.log (1 + 1 / n)) := by
+    rw [Real.exp_nat_mul, Real.exp_log hpos]
+  have h2 : (n : ℝ) * Real.log (1 + 1 / n) ≤ 1 - 1 / (4 * n) := by
+    have := mul_le_mul_of_nonneg_left hl (by positivity : (0 : ℝ) ≤ n)
+    calc (n : ℝ) * Real.log (1 + 1 / n) ≤ n * (1 / n - 1 / (4 * (n : ℝ) ^ 2)) := this
+      _ = 1 - 1 / (4 * n) := by field_simp
+  have h3 : Real.exp (1 - 1 / (4 * (n : ℝ))) = Real.exp 1 * Real.exp (-(1 / (4 * n))) := by
+    rw [← Real.exp_add]; ring_nf
+  have h4 : Real.exp (-(1 / (4 * (n : ℝ)))) ≤ (4 * n) / (4 * n + 1) := by
+    have := Real.add_one_le_exp (1 / (4 * (n : ℝ)))
+    rw [Real.exp_neg, inv_le_comm₀ (Real.exp_pos _) (by positivity)]
+    calc ((4 * (n : ℝ)) / (4 * n + 1))⁻¹ = 1 / (4 * n) + 1 := by field_simp; ring
+      _ ≤ Real.exp (1 / (4 * n)) := this
+  calc (1 + 1 / (n : ℝ)) ^ n = Real.exp (n * Real.log (1 + 1 / n)) := h1
+    _ ≤ Real.exp (1 - 1 / (4 * n)) := Real.exp_le_exp.mpr h2
+    _ = Real.exp 1 * Real.exp (-(1 / (4 * n))) := h3
+    _ ≤ Real.exp 1 * ((4 * n) / (4 * n + 1)) := by gcongr
+    _ = Real.exp 1 * (4 * n) / (4 * n + 1) := by ring
+
+/-! ### 13:C5 — the joint-return tally -/
+
+/-- 13:C5 — the returning `±1` histories of length `2n` in one direction (the sets of `n` up-steps among `2n`) number
+`C(2n,n)`, the paired histories in the two directions `16^n`, and the joint returns `C(2n,n)²`. -/
+theorem joint_return_tally (n : ℕ) :
+    ((Finset.univ : Finset (Finset (Fin (2 * n)))).filter (fun expNegOneSum => expNegOneSum.card = n)).card = Nat.centralBinom n ∧
+    Fintype.card (Finset (Fin (2 * n)) × Finset (Fin (2 * n))) = 16 ^ n ∧
+    (((Finset.univ : Finset (Finset (Fin (2 * n)))).filter (fun expNegOneSum => expNegOneSum.card = n)) ×ˢ
+      ((Finset.univ : Finset (Finset (Fin (2 * n)))).filter (fun expNegOneSum => expNegOneSum.card = n))).card = (Nat.centralBinom n) ^ 2 := by
+  have h1 : ((Finset.univ : Finset (Finset (Fin (2 * n)))).filter (fun expNegOneSum => expNegOneSum.card = n)).card = Nat.centralBinom n := by
+    rw [← Finset.powerset_univ, ← Finset.powersetCard_eq_filter, Finset.card_powersetCard, Finset.card_univ,
+      Fintype.card_fin, Nat.centralBinom_eq_two_mul_choose]
+  refine ⟨h1, ?_, ?_⟩
+  · rw [Fintype.card_prod, Fintype.card_finset, Fintype.card_fin, ← pow_add, show 2 * n + 2 * n = 4 * n by ring, pow_mul]; norm_num
+  · rw [Finset.card_product, h1, sq]
+
+/-- `C(2n,n) · (n!)² = (2n)!`. -/
+theorem centralBinom_mul_factorial_sq (n : ℕ) : Nat.centralBinom n * (n.factorial) ^ 2 = (2 * n).factorial := by
+  have h := Nat.choose_mul_factorial_mul_factorial (show n ≤ 2 * n by omega)
+  rw [show 2 * n - n = n by omega] at h
+  rw [Nat.centralBinom_eq_two_mul_choose, sq, ← mul_assoc]; exact h
+
+/-- `16^n/(n C_n²) = W_n · (2n+1)/n` for `n ≥ 1`, `W_n` Mathlib's Wallis product. -/
+theorem wallis_chain_eq (n : ℕ) (hn : 1 ≤ n) :
+    (16 : ℝ) ^ n / (n * (Nat.centralBinom n : ℝ) ^ 2) = Real.Wallis.W n * ((2 * n + 1) / n) := by
+  rw [Real.Wallis.W_eq_factorial_ratio]
+  have hc : (Nat.centralBinom n : ℝ) * (n.factorial : ℝ) ^ 2 = ((2 * n).factorial : ℝ) := by
+    exact_mod_cast centralBinom_mul_factorial_sq n
+  have hn' : (0 : ℝ) < n := by exact_mod_cast hn
+  have hf : (0 : ℝ) < n.factorial := by positivity
+  have hcb : (0 : ℝ) < Nat.centralBinom n := by exact_mod_cast Nat.centralBinom_pos n
+  rw [← hc]
+  have h16 : (2 : ℝ) ^ (4 * n) = 16 ^ n := by rw [pow_mul]; norm_num
+  rw [h16]
+  field_simp
+
+/-- 13:C5 — `π = lim 16^n/(n C_n²)`: the joint-return ratio converges to `π` (Mathlib's Wallis product). -/
+theorem tendsto_wallis_chain :
+    Filter.Tendsto (fun n : ℕ => (16 : ℝ) ^ n / (n * (Nat.centralBinom n : ℝ) ^ 2)) Filter.atTop (𝓝 Real.pi) := by
+  have hW := Real.Wallis.tendsto_W_nhds_pi_div_two
+  have hr : Filter.Tendsto (fun n : ℕ => ((2 * n + 1 : ℝ) / n)) Filter.atTop (𝓝 2) := by
+    have h0 : Filter.Tendsto (fun n : ℕ => (1 : ℝ) / n) Filter.atTop (𝓝 0) := tendsto_one_div_atTop_nhds_zero_nat
+    have : Filter.Tendsto (fun n : ℕ => (2 : ℝ) + 1 / n) Filter.atTop (𝓝 (2 + 0)) := tendsto_const_nhds.add h0
+    rw [add_zero] at this
+    refine this.congr' ?_
+    filter_upwards [Filter.eventually_ge_atTop 1] with n hn
+    have hn' : (n : ℝ) ≠ 0 := by positivity
+    field_simp
+  have hprod := hW.mul hr
+  rw [show Real.pi / 2 * 2 = Real.pi by ring] at hprod
+  refine hprod.congr' ?_
+  filter_upwards [Filter.eventually_ge_atTop 1] with n hn
+  exact (wallis_chain_eq n hn).symm
+
+end tailAndReadout
+
 
 /-- Kurepa's left factorial `!n = Σ_{k<n} k!`. -/
 def kurepa (n : ℕ) : ℕ := ∑ k ∈ range n, k !
@@ -1243,6 +1655,21 @@ def p13013 := And.intro @FRC.Epi.rencontres (And.intro @FRC.Epi.rencontres_rat (
 /-- 13:C3 (p13014) — The Cayley quarter-turn map $C(x)=(1+\im x)/(1-\im x)$ on $\Fp$ (denominators units): $C(0)=1$, $C(1)=\im$, and $C(x)C(y)=C\bigl((x+y)/(1-xy)\bigr)$, the rational composition law being the half-angle form of phase composition; shell arithmetic only. -/
 theorem p13014 : (∀ {K : Type u_1} [Field K] (i : K), i * i = (-1 : K) → (2 : K) ≠ (0 : K) → FRC.Epi.cayley i (0 : K) = (1 : K) ∧ FRC.Epi.cayley i (1 : K) = i) ∧ ∀ {K : Type u_2} [Field K] (i x y : K), i * i = (-1 : K) → (1 : K) - i * x ≠ (0 : K) → (1 : K) - i * y ≠ (0 : K) → (1 : K) - x * y ≠ (0 : K) → FRC.Epi.cayley i x * FRC.Epi.cayley i y = FRC.Epi.cayley i ((x + y) / ((1 : K) - x * y)) :=
   And.intro @FRC.Epi.cayley_values (@FRC.Epi.cayley_mul)
+set_option linter.defProp false in
+/-- 13:C5 (p13016) — The joint-return tally: with $C_n=\Cb{n}$ the returning $\pm1$ histories of length $2n$ in one direction, the paired histories in the directions $1$ and $\im$ number $16^{n}$ and the joint returns $C_n^{2}$, and $\piR=\lim16^{n}/(nC_n^{2})$ by the Wallis bounds (E2). -/
+def p13016 := And.intro @FRC.Epi.joint_return_tally (@FRC.Epi.tendsto_wallis_chain)
+/-- 13:D2 (p13018) — The tail form: $\dr{n}=n!/\eR+(-1)^{n}\delta_n$ with $\delta_n\in(1/(n+2),1/(n+1))$, so $\dr{n}$ is the nearest integer to $n!/\eR$. -/
+theorem p13018 : (∀ (n : ℕ), (1 : ℝ) / (↑n + (2 : ℝ)) < FRC.Epi.tailDelta n ∧ FRC.Epi.tailDelta n < (1 : ℝ) / (↑n + (1 : ℝ))) ∧ ∀ (n : ℕ), ↑(numDerangements n) = ↑n.factorial * Real.exp (-1 : ℝ) + (-1 : ℝ) ^ n * FRC.Epi.tailDelta n :=
+  And.intro @FRC.Epi.tailDelta_strict (@FRC.Epi.numDerangements_eq_tailDelta)
+/-- 13:D3 (p13019) — Superexponential enclosure: $|\varepsilon_n-\eR|\le\eR(\eR+1)/(n+1)!<10.2/(n+1)!$ with $\operatorname{sign}(\varepsilon_n-\eR)=(-1)^{n+1}$, hence $\varepsilon_{2m}<\eR<\varepsilon_{2m+1}$, a nested sequence of $\fQ$-native intervals; the sharper constant $8$ for $2\le n\le60$. -/
+theorem p13019 : (∀ (n : ℕ), (2 : ℕ) ≤ n → |FRC.Epi.epsChain n - Real.exp (1 : ℝ)| ≤ Real.exp (1 : ℝ) * (Real.exp (1 : ℝ) + (1 : ℝ)) / ↑(n + (1 : ℕ)).factorial ∧ Real.exp (1 : ℝ) * (Real.exp (1 : ℝ) + (1 : ℝ)) / ↑(n + (1 : ℕ)).factorial < 10.2 / ↑(n + (1 : ℕ)).factorial) ∧ ∀ (n : ℕ), (2 : ℕ) ≤ n → (0 : ℝ) < (-1 : ℝ) ^ (n + (1 : ℕ)) * (FRC.Epi.epsChain n - Real.exp (1 : ℝ)) :=
+  And.intro @FRC.Epi.epsChain_enclosure (@FRC.Epi.epsChain_sign)
+/-- 13:D4 (p13020) — Horizon determination of the readout: $\ro(\varepsilon_n)=\ro(\eR)$ for $n\ge n_0(k)=\Theta(k/\log k)$; the binary64 constant for $e$ is the readout of $\varepsilon_{18}=18!/\dr{18}=6402373705728000/2355301661033953$ and $n=18$ is minimal ($\varepsilon_{17}$ fails readout equality, $|\varepsilon_{17}-\eR|=1.10\times10^{-15}$ above the half-ulp); the first $100$ significant digits of $\eR$ are those of $\varepsilon_{70}$; every floating-point value of $e$ is a plateau readout. -/
+theorem p13020 : |Real.exp (1 : ℝ) - FRC.Epi.binary64E| < (1 : ℝ) / (2 : ℝ) ^ (52 : ℕ) ∧ |FRC.Epi.epsChain (18 : ℕ) - FRC.Epi.binary64E| < (1 : ℝ) / (2 : ℝ) ^ (52 : ℕ) ∧ ∀ (n : ℕ), (2 : ℕ) ≤ n → n ≤ (17 : ℕ) → (1 : ℝ) / (2 : ℝ) ^ (52 : ℕ) < |FRC.Epi.epsChain n - FRC.Epi.binary64E| :=
+  @FRC.Epi.readout_binary64
+/-- 13:D5 (p13021) — Feasibility selection: the compound chain $(1+1/n)^{n}$ costs $n\asymp2^{k}$ steps for $k$ bits against $n_0(k)=\Theta(k/\log k)$ for the derangement chain ($n=11,18,70$ at $k=24,53,333$); within a horizon $H$ the compound chain realises $O(\log H)$ bits and the factorial chain $\Theta(H\log H)$; under the feasibility principle the derangement representation is the canonical finite definition of $e$. -/
+theorem p13021 : (((8 : ℚ) / ↑(Nat.factorial (12 : ℕ)) < (1 : ℚ) / (2 : ℚ) ^ (24 : ℕ) ∧ ∀ m < (11 : ℕ), ¬(8 : ℚ) / ↑(m + (1 : ℕ)).factorial < (1 : ℚ) / (2 : ℚ) ^ (24 : ℕ)) ∧ ((8 : ℚ) / ↑(Nat.factorial (19 : ℕ)) < (1 : ℚ) / (2 : ℚ) ^ (53 : ℕ) ∧ ∀ m < (18 : ℕ), ¬(8 : ℚ) / ↑(m + (1 : ℕ)).factorial < (1 : ℚ) / (2 : ℚ) ^ (53 : ℕ)) ∧ (8 : ℚ) / ↑(Nat.factorial (71 : ℕ)) < (1 : ℚ) / (2 : ℚ) ^ (333 : ℕ) ∧ ∀ m < (70 : ℕ), ¬(8 : ℚ) / ↑(m + (1 : ℕ)).factorial < (1 : ℚ) / (2 : ℚ) ^ (333 : ℕ)) ∧ ∀ (n : ℕ), (5 : ℕ) ≤ n → ((1 : ℝ) + (1 : ℝ) / ↑n) ^ n ≤ Real.exp (1 : ℝ) * ((4 : ℝ) * ↑n) / ((4 : ℝ) * ↑n + (1 : ℝ)) :=
+  And.intro @FRC.Epi.derangement_cost (@FRC.Epi.compound_cost)
 /-- 13:E2 (p13023) — Two-sided monotone enclosure: $v_n$ strictly increasing, $w_n$ strictly decreasing, $v_n<\piR<w_n$, and the exact width identity $w_n-v_n=w_n/(2n+1)$, certifying $\approx\log_2n$ bits by nested $\fQ$-intervals; the identification of the common limit with $\piR$ is the Wallis import (A6); verified for $n\le300$ against Machin brackets of width below $10^{-420}$. -/
 theorem p13023 : And (∀ (n : Nat), @LE.le Nat instLENat (@OfNat.ofNat Nat (nat_lit 1) (instOfNatNat (nat_lit 1))) n → And (@LT.lt Real Real.instLT (@Rat.cast Real Real.instRatCast (@FRC.Epi.wallisV Rat Rat.instField n)) Real.pi) (@LT.lt Real Real.instLT Real.pi (@Rat.cast Real Real.instRatCast (@FRC.Epi.wallisW Rat Rat.instField n)))) (And (∀ (n : Nat), @LE.le Nat instLENat (@OfNat.ofNat Nat (nat_lit 1) (instOfNatNat (nat_lit 1))) n → @Eq Rat (@HSub.hSub Rat Rat Rat (@instHSub Rat Rat.instSub) (@FRC.Epi.wallisW Rat Rat.instField n) (@FRC.Epi.wallisV Rat Rat.instField n)) (@HDiv.hDiv Rat Rat Rat (@instHDiv Rat Rat.instDiv) (@FRC.Epi.wallisW Rat Rat.instField n) (@HAdd.hAdd Rat Rat Rat (@instHAdd Rat Rat.instAdd) (@HMul.hMul Rat Rat Rat (@instHMul Rat Rat.instMul) (@OfNat.ofNat Rat (nat_lit 2) (@Rat.instOfNat (nat_lit 2))) (@Nat.cast Rat Rat.instNatCast n)) (@OfNat.ofNat Rat (nat_lit 1) (@Rat.instOfNat (nat_lit 1)))))) (And (∀ (n : Nat), @LT.lt Rat Rat.instLT (@FRC.Epi.wallisV Rat Rat.instField n) (@FRC.Epi.wallisV Rat Rat.instField (@HAdd.hAdd Nat Nat Nat (@instHAdd Nat instAddNat) n (@OfNat.ofNat Nat (nat_lit 1) (instOfNatNat (nat_lit 1)))))) (∀ (n : Nat), @LE.le Nat instLENat (@OfNat.ofNat Nat (nat_lit 1) (instOfNatNat (nat_lit 1))) n → @LT.lt Rat Rat.instLT (@FRC.Epi.wallisW Rat Rat.instField (@HAdd.hAdd Nat Nat Nat (@instHAdd Nat instAddNat) n (@OfNat.ofNat Nat (nat_lit 1) (instOfNatNat (nat_lit 1))))) (@FRC.Epi.wallisW Rat Rat.instField n)))) :=
   And.intro @FRC.Epi.wallis_enclosure (And.intro @FRC.Epi.wallis_width (And.intro @FRC.Epi.wallisV_strictMono (@FRC.Epi.wallisW_strictAnti)))
@@ -1301,6 +1728,11 @@ end FRC.Epi
 -- Ledger predicates: axioms (each predicate's, computed here)
 #print axioms FRC.Epi.p13013
 #print axioms FRC.Epi.p13014
+#print axioms FRC.Epi.p13016
+#print axioms FRC.Epi.p13018
+#print axioms FRC.Epi.p13019
+#print axioms FRC.Epi.p13020
+#print axioms FRC.Epi.p13021
 #print axioms FRC.Epi.p13023
 #print axioms FRC.Epi.p13027
 #print axioms FRC.Epi.p13028

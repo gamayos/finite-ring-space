@@ -50,6 +50,16 @@
   "kind": "EXACT"
  },
  {
+  "id": "e.T1",
+  "rows": "13:D2",
+  "block": "e",
+  "script": "epi",
+  "label": "the tail form of the derangement numbers: D_n = n!/e + (−1)^n δ_n with δ_n strictly in (1/(n+2), 1/(n+1)), so D_n is the nearest integer to n!/e, for n = 2 … 60 — decided with e bracketed by the chain itself at n = 109, 110 (width below 10⁻¹⁷⁰), each bound holding for the whole bracket",
+  "ok": true,
+  "detail": "4 exact micro-checks",
+  "kind": "EXACT"
+ },
+ {
   "id": "e.W1",
   "rows": "13:F1, 13:F2",
   "block": "e",
@@ -406,7 +416,7 @@
   "script": "epi",
   "label": "Kurepa's wall in the derangement form for all 22 043 odd primes p < 2.5·10⁵ (kurepa_wall.c, one O(p) pass per prime in 128-bit modular arithmetic): !(p−1) ≡ K(p) (mod p) and K(p) ≢ 0 (mod p), zero failures of either condition",
   "ok": true,
-  "detail": "3 exact micro-checks; kurepa_wall.c, N = 250000, 23 s",
+  "detail": "3 exact micro-checks; kurepa_wall.c, N = 250000, 21 s",
   "kind": "EXACT"
  },
  {
@@ -426,7 +436,7 @@
   "script": "epi",
   "label": "Kurepa's certificate on the laboratory Carriers Ω = 233, 30089, 2 408 561, over their own shells (the odd primes p with p² < Ω: 5, 39, 243 of them, the largest 13, 173, 1549): K(p) ≢ 0 (mod p) on every shell, Z = 0 on each Carrier, the walks costing Σ(p−1) = 34, 3 046, 172 452 steps; the Carriers' own residues as shells of the physical totality K(233) ≡ 69, K(30089) ≡ 5260, K(2408561) ≡ 435994; on the same shells the two range laws of Z2 (c): the blind-set sizes |Z₀(p)| (1⁸⁷ 2⁹³ 3⁴³ 4¹⁵ 5³ 6¹ 7¹ on the 243, mean 490/243 = 2.016 against Poisson(1)'s 2) and the index condition of H5 (solvable on 48 of the 116 shells p ≡ 1 (mod 4), p > 5, against 52.6 ± 4.9 under independence [approx])",
   "ok": true,
-  "detail": "6 exact micro-checks; pure Python, 0.4 s",
+  "detail": "6 exact micro-checks; pure Python, 0.3 s",
   "kind": "EXACT"
  },
  {

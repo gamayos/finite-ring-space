@@ -480,6 +480,8 @@
 'FRC.Entropy.p14031' depends on axioms: [propext, Classical.choice, Quot.sound]
 'FRC.Entropy.p14038' depends on axioms: [propext, Classical.choice, Quot.sound]
 'FRC.Entropy.p14039' depends on axioms: [propext, Classical.choice, Quot.sound]
+'FRC.Epi.wallisV' depends on axioms: [propext, Quot.sound]
+'FRC.Epi.wallisW' depends on axioms: [propext, Quot.sound]
 'FRC.Epi.fixSet' depends on axioms: [propext, Classical.choice, Quot.sound]
 'FRC.Epi.card_fixing' depends on axioms: [propext, Classical.choice, Quot.sound]
 'FRC.Epi.pow_card_fixSet' depends on axioms: [propext, Classical.choice, Quot.sound]
@@ -487,9 +489,54 @@
 'FRC.Epi.rencontres_rat' depends on axioms: [propext, Classical.choice, Quot.sound]
 'FRC.Epi.rencontres_one' depends on axioms: [propext, Classical.choice, Quot.sound]
 'FRC.Epi.rencontres_zero' depends on axioms: [propext, Classical.choice, Quot.sound]
-'FRC.Epi.p13013' depends on axioms: [propext, Classical.choice, Quot.sound]
-'FRC.Epi.wallisV' depends on axioms: [propext, Quot.sound]
-'FRC.Epi.wallisW' depends on axioms: [propext, Quot.sound]
+'FRC.Epi.expNegOneSum' depends on axioms: [propext, Classical.choice, Quot.sound]
+'FRC.Epi.expNegOneSum_succ' depends on axioms: [propext, Classical.choice, Quot.sound]
+'FRC.Epi.hasSum_expNegOneSum' depends on axioms: [propext, Classical.choice, Quot.sound]
+'FRC.Epi.tendsto_expNegOneSum' depends on axioms: [propext, Classical.choice, Quot.sound]
+'FRC.Epi.antitone_inv_factorial' depends on axioms: [propext, Classical.choice, Quot.sound]
+'FRC.Epi.expNegOneSum_even_le' depends on axioms: [propext, Classical.choice, Quot.sound]
+'FRC.Epi.le_expNegOneSum_odd' depends on axioms: [propext, Classical.choice, Quot.sound]
+'FRC.Epi.numDerangements_eq_sum' depends on axioms: [propext, Classical.choice, Quot.sound]
+'FRC.Epi.tailDelta' depends on axioms: [propext, Classical.choice, Quot.sound]
+'FRC.Epi.tailDelta_eq' depends on axioms: [propext, Classical.choice, Quot.sound]
+'FRC.Epi.tailDelta_bounds' depends on axioms: [propext, Classical.choice, Quot.sound]
+'FRC.Epi.tailDelta_succ' depends on axioms: [propext, Classical.choice, Quot.sound]
+'FRC.Epi.tailDelta_strict' depends on axioms: [propext, Classical.choice, Quot.sound]
+'FRC.Epi.epsChain' depends on axioms: [propext, Classical.choice, Quot.sound]
+'FRC.Epi.exp_neg_one_eq' depends on axioms: [propext, Classical.choice, Quot.sound]
+'FRC.Epi.numDerangements_eq_tailDelta' depends on axioms: [propext, Classical.choice, Quot.sound]
+'FRC.Epi.tailDelta_pos' depends on axioms: [propext, Classical.choice, Quot.sound]
+'FRC.Epi.numDerangements_pos_real' depends on axioms: [propext, Classical.choice, Quot.sound]
+'FRC.Epi.epsChain_sub_exp' depends on axioms: [propext, Classical.choice, Quot.sound]
+'FRC.Epi.epsChain_sign' depends on axioms: [propext, Classical.choice, Quot.sound]
+'FRC.Epi.epsChain_le' depends on axioms: [propext, Classical.choice, Quot.sound]
+'FRC.Epi.epsChain_enclosure' depends on axioms: [propext, Classical.choice, Quot.sound]
+'FRC.Epi.numDerangements_2' does not depend on any axioms
+'FRC.Epi.numDerangements_3' does not depend on any axioms
+'FRC.Epi.numDerangements_4' does not depend on any axioms
+'FRC.Epi.numDerangements_5' does not depend on any axioms
+'FRC.Epi.numDerangements_6' does not depend on any axioms
+'FRC.Epi.numDerangements_7' does not depend on any axioms
+'FRC.Epi.numDerangements_8' does not depend on any axioms
+'FRC.Epi.numDerangements_9' does not depend on any axioms
+'FRC.Epi.numDerangements_10' does not depend on any axioms
+'FRC.Epi.numDerangements_11' does not depend on any axioms
+'FRC.Epi.numDerangements_12' does not depend on any axioms
+'FRC.Epi.numDerangements_13' does not depend on any axioms
+'FRC.Epi.numDerangements_14' does not depend on any axioms
+'FRC.Epi.numDerangements_15' does not depend on any axioms
+'FRC.Epi.numDerangements_16' does not depend on any axioms
+'FRC.Epi.numDerangements_17' does not depend on any axioms
+'FRC.Epi.numDerangements_18' does not depend on any axioms
+'FRC.Epi.binary64E' depends on axioms: [propext, Classical.choice, Quot.sound]
+'FRC.Epi.readout_binary64' depends on axioms: [propext, Classical.choice, Quot.sound]
+'FRC.Epi.derangement_cost' depends on axioms: [propext, Classical.choice, Quot.sound]
+'FRC.Epi.log_one_add_inv_le' depends on axioms: [propext, Classical.choice, Quot.sound]
+'FRC.Epi.compound_cost' depends on axioms: [propext, Classical.choice, Quot.sound]
+'FRC.Epi.joint_return_tally' depends on axioms: [propext, Classical.choice, Quot.sound]
+'FRC.Epi.centralBinom_mul_factorial_sq' depends on axioms: [propext, Classical.choice, Quot.sound]
+'FRC.Epi.wallis_chain_eq' depends on axioms: [propext, Classical.choice, Quot.sound]
+'FRC.Epi.tendsto_wallis_chain' depends on axioms: [propext, Classical.choice, Quot.sound]
 'FRC.Epi.kurepa' depends on axioms: [propext, Classical.choice, Quot.sound]
 'FRC.Epi.altFact' depends on axioms: [propext, Classical.choice, Quot.sound]
 'FRC.Epi.neg_one_pow_mul_self' depends on axioms: [propext, Quot.sound]
@@ -538,6 +585,7 @@
 'FRC.Epi.index_condition' depends on axioms: [propext, Classical.choice, Quot.sound]
 'FRC.Epi.index_condition_pow' depends on axioms: [propext, Classical.choice, Quot.sound]
 'FRC.Epi.index_condition_shell' depends on axioms: [propext, Classical.choice, Quot.sound]
+'FRC.Epi.calibrated_778933' depends on axioms: [propext, Classical.choice, Quot.sound]
 'FRC.Epi.centralBinom_succ_rat' depends on axioms: [propext, Classical.choice, Quot.sound]
 'FRC.Epi.centralBinom_pos_rat' depends on axioms: [propext, Classical.choice, Quot.sound]
 'FRC.Epi.wallis_width' depends on axioms: [propext, Classical.choice, Quot.sound]
@@ -580,7 +628,13 @@
 'FRC.Epi.eisenstein' depends on axioms: [propext, Classical.choice, Quot.sound]
 'FRC.Epi.piWieferich_iff_harmonic' depends on axioms: [propext, Classical.choice, Quot.sound]
 'FRC.Epi.piWieferich_iff_oeis' depends on axioms: [propext, Classical.choice, Quot.sound]
+'FRC.Epi.p13013' depends on axioms: [propext, Classical.choice, Quot.sound]
 'FRC.Epi.p13014' depends on axioms: [propext, Classical.choice, Quot.sound]
+'FRC.Epi.p13016' depends on axioms: [propext, Classical.choice, Quot.sound]
+'FRC.Epi.p13018' depends on axioms: [propext, Classical.choice, Quot.sound]
+'FRC.Epi.p13019' depends on axioms: [propext, Classical.choice, Quot.sound]
+'FRC.Epi.p13020' depends on axioms: [propext, Classical.choice, Quot.sound]
+'FRC.Epi.p13021' depends on axioms: [propext, Classical.choice, Quot.sound]
 'FRC.Epi.p13023' depends on axioms: [propext, Classical.choice, Quot.sound]
 'FRC.Epi.p13027' depends on axioms: [propext, Classical.choice, Quot.sound]
 'FRC.Epi.p13028' depends on axioms: [propext, Classical.choice, Quot.sound]
@@ -596,9 +650,8 @@
 'FRC.Epi.p13042' depends on axioms: [propext, Classical.choice, Quot.sound]
 'FRC.Epi.p13067' depends on axioms: [propext, Classical.choice, Quot.sound]
 'FRC.Epi.p13045' depends on axioms: [propext, Classical.choice, Quot.sound]
-'FRC.Epi.p13047' depends on axioms: [propext, Classical.choice, Quot.sound]
-'FRC.Epi.calibrated_778933' depends on axioms: [propext, Classical.choice, Quot.sound]
 'FRC.Epi.p13069' depends on axioms: [propext, Classical.choice, Quot.sound]
+'FRC.Epi.p13047' depends on axioms: [propext, Classical.choice, Quot.sound]
 'FRC.Fourier.sum_pow_eq_zero_of_ne_one' depends on axioms: [propext, Classical.choice, Quot.sound]
 'FRC.Fourier.W' depends on axioms: [propext, Quot.sound]
 'FRC.Fourier.J' depends on axioms: [propext, Quot.sound]
