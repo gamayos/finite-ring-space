@@ -1,7 +1,7 @@
 {
  "paper": "13-epi",
  "tree": "13-epi-20260713",
- "title": "Finite Field Realisation of π and e",
+ "title": "Finite Field Realisation of the Classical Constants π and e",
  "doi": "https://doi.org/10.20944/preprints202607.1141.v1",
  "generated": "12 October 2026",
  "blocks": [
@@ -396,7 +396,7 @@
     },
     {
      "label": "H5",
-     "predicate": "The null experiment: whether $\\gen^{\\lambda(\\im)}\\equiv-(\\Ku{\\p})^{-1}$ for some primitive root of either chirality is the index condition $\\gcd(s,\\p-1)=\\gcd(\\lambda(\\pm\\im),\\p-1)$; over the $210$ primes $\\p\\equiv1\\pmod4$, $5<\\p<3000$, it is solvable for $94$ ($44.8\\%$, against $96.0\\pm6.6$ expected under independence), the correlation of the two angular addresses $-0.10$ at deviation $\\approx0.07$ \\apx: no invariant pointwise identification of the angular and radial carriers of $e$; the naive reading of $\\eP$ as the number $2.71828\\ldots$ is refuted.",
+     "predicate": "The null experiment: whether $\\gen^{\\lambda(\\pm\\im)}\\equiv-(\\Ku{\\p})^{-1}$ for some primitive root and either orientation, varied independently, is the index condition $\\gcd(s,\\p-1)=\\gcd(\\lambda(\\pm\\im),\\p-1)$; over the $210$ primes $\\p\\equiv1\\pmod4$, $5<\\p<3000$, it holds for $94$ against $96.0\\pm6.6$ expected under independence ($54$ against $57.9\\pm6.2$ with the orientation tied to the generator), the correlation of the two angular addresses $-0.10$ at deviation $\\approx0.07$ \\apx: no invariant pointwise identification of the angular and radial carriers of $e$.",
      "tag": "T",
      "source": "Exp.~\\ref{exp:null}\\newline \\pywit{epi}{p13047}{H5}, \\leanwit{FrcLedger}{p13047}{H5} \\lean{Epi.index\\_condition\\_shell, Epi.index\\_condition}",
      "key": "p13047"

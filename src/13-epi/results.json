@@ -134,9 +134,9 @@
   "rows": "13:H5, 13:I1, 13:Z2",
   "block": "e",
   "script": "epi",
-  "label": "the null experiment over the 210 primes p ≡ 1 (mod 4), 5 < p < 3000: the index condition gcd(s, p−1) = gcd(λ(±i), p−1) linking the exponential unit to the wall residue −K(p)⁻¹ is solvable for exactly 94 primes (44.8 %, the gcd-coincidence rate); the Pearson correlation of the two angular addresses (≈ −0.10) is printed as the paper's [approx] reading",
+  "label": "the null experiment over the 210 primes p ≡ 1 (mod 4), 5 < p < 3000: the index condition gcd(s, p−1) = gcd(λ(±i), p−1) linking the exponential unit to the wall residue −K(p)⁻¹ — the primitive root and the orientation of the quarter-turn varied independently — is solvable for exactly 94 primes against 96.0 ± 6.6 expected under independence; with the orientation tied to the generator (i = g^(−κ), Section 2) for exactly 54 against 57.9 ± 6.2; the Pearson correlation of the two angular addresses (≈ −0.10) is printed as the paper's [approx] reading",
   "ok": true,
-  "detail": "2 exact micro-checks; Pearson correlation of the angular addresses -0.100 (the paper's [approx] reading)",
+  "detail": "5 exact micro-checks; Pearson correlation of the angular addresses -0.100 (the paper's [approx] reading)",
   "kind": "EXACT"
  },
  {

@@ -6,7 +6,7 @@ kurepa_wall, frame_invariants merged; the two C passes stay beside it as kurepa_
 fly — a pure-python pass to a smaller bound runs without a compiler).
 ========================================================================================================================
 
-One script, seven blocks, forty-three family checks of exact micro-checks, standard library only. Every check is exact: integers,
+One script, seven blocks, forty-seven family checks of exact micro-checks, standard library only. Every check is exact: integers,
 residues, exact rationals (fractions.Fraction); the external targets e and π enter only as certified rational brackets of
 the paper's own chains (the subfactorial chain for e, the Machin chain for π), and the binary64 constants enter as the
 objects of study of the readout theorems (compared exactly with correctly rounded framed rationals). No floating-point
@@ -112,7 +112,7 @@ LABELS = {
     "e.W5": "the tail identity j!·!(p−1−j) ≡ (−1)^j (K(p) − K(j)) for every j < p on the seven sample shells (j = 0 the wall identity), and the collision reading of the blind set: n ∈ Z₀(p) exactly when the partial sum K(p−1−n) collides with K(p); K(p−2) ≡ K(p) is the forced collision n = 1, and Kurepa's hypothesis at p is K(0) = 0 ≢ K(p)",
     "e.S1": "blind-scale statistics over the 501 primes in (1000, 5000): |Z₀(p)| distributes as 1¹⁶⁹ 2²⁰⁹ 3⁹² 4²² 5⁶ 6² 7¹, mean 1.996 (exact counts; the Poisson(1) reading of the excess is the paper's [approx] model, not a predicate)",
     "e.A1": "radian calibration over p < 10⁶: 39 175 shells p ≡ 1 (mod 4); exactly 260 of them satisfy |θ − 1| < 0.01 for one chirality, θ = 2π λ(i)/(p−1), decided with π as a Machin bracket of width < 10⁻¹⁰⁰; the best six (p, λ(i)) are (778933, 123966), (497773, 79227), (962237, 153133), (261017, 41537), (345181, 54945), (891997, 141986) in that order",
-    "e.N1": "the null experiment over the 210 primes p ≡ 1 (mod 4), 5 < p < 3000: the index condition gcd(s, p−1) = gcd(λ(±i), p−1) linking the exponential unit to the wall residue −K(p)⁻¹ is solvable for exactly 94 primes (44.8 %, the gcd-coincidence rate); the Pearson correlation of the two angular addresses (≈ −0.10) is printed as the paper's [approx] reading",
+    "e.N1": "the null experiment over the 210 primes p ≡ 1 (mod 4), 5 < p < 3000: the index condition gcd(s, p−1) = gcd(λ(±i), p−1) linking the exponential unit to the wall residue −K(p)⁻¹ — the primitive root and the orientation of the quarter-turn varied independently — is solvable for exactly 94 primes against 96.0 ± 6.6 expected under independence; with the orientation tied to the generator (i = g^(−κ), Section 2) for exactly 54 against 57.9 ± 6.2; the Pearson correlation of the two angular addresses (≈ −0.10) is printed as the paper's [approx] reading",
     "pi.R1": "the Wallis pair v_n = 2·16ⁿ/((2n+1)C(2n,n)²), w_n = 16ⁿ/(n C(2n,n)²): v_n < π < w_n for n ≤ 300 against Machin brackets of width < 10⁻⁴²⁰, the exact width identity w_n − v_n = w_n/(2n+1), and strict monotonicity",
     "pi.R2": "the p = 13 picture: the residue line [w_n]₁₃, n = 1 … 6, is 4, 5, 10, 9, 6, 11",
     "pi.R3": "the Machin chain M_N: the IEEE-754 double nearest π is the correctly rounded M_10 and N = 10 is minimal; |M_N − π| < 17/((2N+3)5^{2N+3}) for 2 ≤ N ≤ 39; 100 decimal digits fixed at N = 71; the alternating pairing of the two arctangent series gives a certified two-sided enclosure at (12, 4) terms",
@@ -632,7 +632,8 @@ def block_e():
                 return g
         return None
 
-    solvable, total = 0, 0
+    solvable, tied, total = 0, 0, 0
+    exp_free, var_free, exp_tied, var_tied = 0.0, 0.0, 0.0, 0.0
     corr_x, corr_y = [], []
     for p in [q for q in sieve_e(3000) if q % 4 == 1 and q > 5]:
         kp = kurepa_mod(p)
@@ -650,19 +651,40 @@ def block_e():
         while pow(a, (p-1)//2, p) != p - 1: a += 1
         r = pow(a, (p-1)//4, p)
         ok = (math.gcd(s, p-1) == math.gcd(r, p-1)) or (math.gcd(s, p-1) == math.gcd(p - r, p-1))
-        solvable += ok; total += 1
+        # the two conventions (12 October 2026): the orientation of the quarter-turn free (either root of -1, the index
+        # multiplier u unrestricted — the gcd criterion above), or tied to the generator as in Section 2, i = g^(-kappa), where
+        # g = g0^u keeps the orientation for u = 1 (mod 4) and reverses it for u = 3 (mod 4); the reachable indices of each,
+        # and the success probability of a uniform target index (the expectation under independence)
+        i0 = pow(g0, (p-1) - (p-1)//4, p)
+        reach_free, reach_tied = set(), set()
+        for u in range(1, p-1):
+            if math.gcd(u, p-1) != 1: continue
+            reach_free.add(u * i0 % (p-1)); reach_free.add(u * (p - i0) % (p-1))
+            reach_tied.add(u * i0 % (p-1) if u % 4 == 1 else u * (p - i0) % (p-1))
+        assert ok == (s in reach_free)
+        okt = s in reach_tied
+        qf, qt = len(reach_free) / (p-1), len(reach_tied) / (p-1)
+        exp_free += qf; var_free += qf * (1-qf); exp_tied += qt; var_tied += qt * (1-qt)
+        solvable += ok; tied += okt; total += 1
         corr_x.append(min(r, p-r)/(p-1)); corr_y.append(s/(p-1))
     # Pearson correlation
     mx = sum(corr_x)/len(corr_x); my = sum(corr_y)/len(corr_y)
     num = sum((x-mx)*(y-my) for x, y in zip(corr_x, corr_y))
     den = math.sqrt(sum((x-mx)**2 for x in corr_x) * sum((y-my)**2 for y in corr_y))
-    log_e(f"p==1(4), 5<p<3000: some frame g with g^(i_t) == -(!p)^(-1) exists for {solvable}/{total} primes ({100*solvable/total:.1f}%)")
+    log_e(f"p==1(4), 5<p<3000: some frame g with g^(i_t) == -(!p)^(-1) exists for {solvable}/{total} primes ({100*solvable/total:.1f}%), "
+          f"the orientation free: expected {exp_free:.1f} +- {math.sqrt(var_free):.1f} under independence (mean rate {100*exp_free/total:.1f}%)")
+    log_e(f"with the orientation tied to the generator (i = g^-kappa): {tied}/{total} primes ({100*tied/total:.1f}%), "
+          f"expected {exp_tied:.1f} +- {math.sqrt(var_tied):.1f} (mean rate {100*exp_tied/total:.1f}%)")
     log_e(f"Pearson correlation between angular address of i_t and of the wall residue: {num/den:+.4f}")
     log_e("=> solvability is gcd-coincidence noise, no invariant identification; the two objects are distinct projections.")
     # 13:H5 (p13047)
     family("e", "N1")
     chk("210 primes p == 1 (mod 4), 5 < p < 3000, with K(p) != 0", total == 210)
-    chk("the index condition is solvable for exactly 94 of them", solvable == 94)
+    chk("the index condition is solvable for exactly 94 of them (the orientation of the quarter-turn free)", solvable == 94)
+    chk("expected under independence: 96.0 +- 6.6, the mean gcd-coincidence rate 45.7 %",
+        round(exp_free, 1) == 96.0 and round(math.sqrt(var_free), 1) == 6.6 and round(100 * exp_free / total, 1) == 45.7)
+    chk("with the orientation tied to the generator (i = g^-kappa, Section 2): solvable for exactly 54 of them", tied == 54)
+    chk("expected under the same independence: 57.9 +- 6.2", round(exp_tied, 1) == 57.9 and round(math.sqrt(var_tied), 1) == 6.2)
     _DIAG[0] = f"Pearson correlation of the angular addresses {num/den:+.3f} (the paper's [approx] reading)"
 
 
