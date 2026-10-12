@@ -325,6 +325,20 @@
    "status": "no shared clause",
    "lean": null,
    "note": "11 October 2026: E3's exact clause for the Coulomb law is the Gauss law (FRC.Drift.gauss_law); 21:C2's key is the register value G = 2S (FRC.Grav.newton_residue); the Green's function's values are the chart (21:E1)"
+  },
+  {
+   "master": "E1",
+   "paper": "21:C9",
+   "status": "shared theorem",
+   "lean": "FRC.Symbol.fierz_pauli_unique, FRC.Symbol.fierz_pauli_invariant",
+   "note": "12 October 2026: the Fierz–Pauli line's invariance and uniqueness by the symbol method; E1's key adds the spin-1 line (maxwell_unique, vec_invariant), 21:C9's the lattice adjoints"
+  },
+  {
+   "master": "E4",
+   "paper": "21:C11",
+   "status": "shared theorem",
+   "lean": "FRC.Drift.gauss_law, FRC.Drift.character_composition",
+   "note": "12 October 2026: the Gauss law from transfer antisymmetry and the exponential reading as the character; E4's key adds character_unique, the cover triangle and the PN coefficients"
   }
  ]
 }

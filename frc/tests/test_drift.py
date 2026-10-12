@@ -106,6 +106,13 @@ class SeriesTest(unittest.TestCase):
         ok, lam, tau2 = D.curvature_datum(602140)
         self.assertTrue(ok); self.assertEqual(lam, Fraction(3, 602140)); self.assertEqual(tau2, Fraction(1, 2408560))
 
+    def test_block_e(self):
+        self.assertTrue(D.exponential_reading(13))
+        self.assertEqual(D.cut_ordering("283.5", 10 ** 6), (True, Fraction(321489, 16)))
+        self.assertFalse(D.cut_ordering("283.5", 100)[0])
+        self.assertEqual(D.fold_collision(13, 2), (True, 132))
+        self.assertTrue(D.fold_return_general(17, 8, 4) and D.fold_return_general(13, 9, 5, seed=7))
+
 
 if __name__ == "__main__":
     unittest.main()

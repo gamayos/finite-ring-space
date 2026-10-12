@@ -227,6 +227,51 @@ def fierz_pauli_line(samples=12):
     return ok1, ok2, ns1, ns2
 
 
+# ---- the cut area of the graph balls and the cut current (00:E10) --------------------------------------------------------
+def ball_cut_area(r):
+    """The links of ℤ³ between the graph ball of radius r (the sites at ℓ¹ distance ≤ r) and its complement, counted by
+    enumeration, against 6(2r² + 2r + 1) (00:E10). Returns (count, formula)."""
+    ball = {(x, y, z) for x in range(-r, r + 1) for y in range(-r, r + 1) for z in range(-r, r + 1) if abs(x) + abs(y) + abs(z) <= r}
+    steps = ((1, 0, 0), (-1, 0, 0), (0, 1, 0), (0, -1, 0), (0, 0, 1), (0, 0, -1))
+    count = sum(1 for (x, y, z) in ball for d in steps if (x + d[0], y + d[1], z + d[2]) not in ball)
+    return count, 6 * (2 * r * r + 2 * r + 1)
+
+
+def cut_current(n=2):
+    """The cut current p_r = Q_r/A_r recovers r (00:E10): the Dirichlet potential of a unit source at the centre of the box
+    {−n..n}³ (the field zero outside), solved exactly over ℚ; the flux through the cut of every graph ball of radius r ≤ n
+    is the enclosed charge 1 (the Gauss law), so the current 1/A_r falls strictly with r. Returns (ok, the currents)."""
+    sites = [(x, y, z) for x in range(-n, n + 1) for y in range(-n, n + 1) for z in range(-n, n + 1)]
+    idx = {s: i for i, s in enumerate(sites)}
+    N = len(sites)
+    steps = ((1, 0, 0), (-1, 0, 0), (0, 1, 0), (0, -1, 0), (0, 0, 1), (0, 0, -1))
+    rows = []
+    for (x, y, z), i in idx.items():
+        row = [Fraction(0)] * (N + 1); row[i] = Fraction(6)
+        for d in steps:
+            j = idx.get((x + d[0], y + d[1], z + d[2]))
+            if j is not None: row[j] = Fraction(-1)
+        row[N] = Fraction(int((x, y, z) == (0, 0, 0)))
+        rows.append(row)
+    for c in range(N):                                           # Gaussian elimination over ℚ
+        piv = next(r for r in range(c, N) if rows[r][c] != 0)
+        rows[c], rows[piv] = rows[piv], rows[c]
+        inv = 1 / rows[c][c]; rows[c] = [v * inv for v in rows[c]]
+        for r in range(N):
+            if r != c and rows[r][c] != 0:
+                f = rows[r][c]; rows[r] = [a - f * b for a, b in zip(rows[r], rows[c])]
+    u = {s: rows[idx[s]][N] for s in sites}
+    currents = []
+    for r in range(n + 1):
+        ball = [s for s in sites if abs(s[0]) + abs(s[1]) + abs(s[2]) <= r]
+        flux = sum(u[s] - u.get((s[0] + d[0], s[1] + d[1], s[2] + d[2]), Fraction(0)) for s in ball for d in steps
+                   if abs(s[0] + d[0]) + abs(s[1] + d[1]) + abs(s[2] + d[2]) > r)
+        area = ball_cut_area(r)[0]
+        currents.append((flux, flux / area))
+    ok = all(f == 1 for f, _ in currents) and all(currents[i][1] > currents[i + 1][1] for i in range(len(currents) - 1))
+    return ok, [c for _, c in currents]
+
+
 # ---- the transverse-traceless projector (21:C15) ----------------------------------------------------------------------
 def tt_rank(k):
     """The rank over ℚ of the TT projector Λ_ij,kl = ½(P_ik P_jl + P_il P_jk) − ½ P_ij P_kl on symmetric 3-tensors,

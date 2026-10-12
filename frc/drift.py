@@ -451,6 +451,88 @@ def pair_energy_sign(n):
     return ok, G[a][b], G[a][a]
 
 
+# ---- the master's block E: the completion, the floor's faces and the fold (00:E4, E5, E10) ------------------------------
+def exponential_reading(p):
+    """The exponential reading is the character, and the unique one: on 𝔽_p every nonzero c composes, c^(a+b) = c^a c^b for
+    all a, b below the full cycle (exhaustive), and a function of the drive's steps with the composition law and f(0) = 1
+    is c^a with c = f(1), rebuilt step by step from f(1) alone (00:E4, 21:C11)."""
+    n = p - 1
+    composes = all(pow(c, a + b, p) == pow(c, a, p) * pow(c, b, p) % p for c in range(1, p) for a in range(n) for b in range(n))
+    unique = True
+    for c in range(1, p):
+        f = [1]
+        for a in range(2 * n): f.append(f[-1] * c % p)          # the law f(a + 1) = f(a) f(1) rebuilds f from f(1)
+        unique &= all(f[a] == pow(c, a, p) for a in range(2 * n + 1))
+    return composes and unique
+
+
+def cut_ordering(L, M):
+    """The operational cut between the slip core and the mass, exact over ℚ: with r_* = √M and r_f = 2M/L (L = ln Ω),
+    r_*² < r_f² reads L² M < (2M)² and holds iff L² < 4M, and r_f < M reads 2M < L M, true once L > 2 (00:E5, E10).
+    Returns (ordered, the threshold (L/2)²)."""
+    L, M = Fraction(L), Fraction(M)
+    ordered = L * L * M < (2 * M) * (2 * M) and 2 * M < L * M
+    assert ordered == (L * L < 4 * M and L > 2)
+    return ordered, (L / 2) ** 2
+
+
+def fold_collision(p, g):
+    """The two chart branches are two Carrier data (00:E10): on 𝔽_p with the generator g, for every ordered pair of
+    distinct nonzero positions r₁ ≠ r₂ the residue products r₁ g^Δ and r₂ coincide at exactly one lift Δ below the full
+    cycle, while the pairs (r, g^{−Δ}) never coincide for distinct r. Exhaustive. Returns (ok, the number of pairs)."""
+    n = p - 1
+    pairs = 0; ok = True
+    powers = [pow(g, d, p) for d in range(n)]
+    for r1 in range(1, p):
+        for r2 in range(1, p):
+            if r1 == r2: continue
+            pairs += 1
+            ok &= sum(1 for d in range(n) if r1 * powers[d] % p == r2) == 1
+    inv = [pow(g, (-d) % n, p) for d in range(n)]
+    ok &= len({(r, inv[d]) for r in range(1, p) for d in range(n)}) == (p - 1) * n
+    return ok, pairs
+
+
+def fold_return_general(p, N, NI, seed=5):
+    """The fold-return identity for an arbitrary interior chart (00:E10): on the chain C_N over 𝔽_p with the interior block
+    I = {0..NI−1} and the exterior E, a random invertible block F_I (identity on E) gives P_E F U^n F⁻¹ P_E = P_E U^n P_E for
+    every n < N, term by term; the period sum Σ_n P_E U^n P_E is the all-ones block J_E on E (the uniform floor N⁻¹ J_E);
+    and U^N = I. Returns ok."""
+    rng = random.Random(seed)
+    I = [[int(i == j) for j in range(N)] for i in range(N)]
+    U = [[int(j == (i - 1) % N) for j in range(N)] for i in range(N)]
+    mm = lambda A, B: [[sum(A[i][k] * B[k][j] for k in range(N)) % p for j in range(N)] for i in range(N)]
+    def inverse(A):
+        M = [[A[i][j] % p for j in range(N)] + [int(i == j) for j in range(N)] for i in range(N)]
+        for c in range(N):
+            piv = next((r for r in range(c, N) if M[r][c]), None)
+            if piv is None: return None
+            M[c], M[piv] = M[piv], M[c]
+            iv = pow(M[c][c], p - 2, p); M[c] = [v * iv % p for v in M[c]]
+            for r in range(N):
+                if r != c and M[r][c]:
+                    f = M[r][c]; M[r] = [(a - f * b) % p for a, b in zip(M[r], M[c])]
+        return [row[N:] for row in M]
+    while True:
+        F = [[0] * N for _ in range(N)]
+        for j in range(NI):
+            for k in range(NI): F[j][k] = rng.randrange(p)
+        for j in range(NI, N): F[j][j] = 1
+        Fi = inverse(F)
+        if Fi is not None: break
+    PE = [[int(i == j and i >= NI) for j in range(N)] for i in range(N)]
+    Un = I; acc = [[0] * N for _ in range(N)]; ok = True
+    for n in range(N):
+        folded = mm(PE, mm(F, mm(Un, mm(Fi, PE))))
+        bare = mm(PE, mm(Un, PE))
+        ok &= folded == bare
+        acc = [[(acc[i][j] + bare[i][j]) % p for j in range(N)] for i in range(N)]
+        Un = mm(U, Un)
+    ok &= Un == I
+    ok &= all(acc[i][j] == (1 if i >= NI and j >= NI else 0) for i in range(N) for j in range(N))
+    return ok
+
+
 # ---- the dust tensor's trace (21:C6) ----------------------------------------------------------------------------------
 def frobenius_trace(p, nu, m, a, b):
     """w = a + bη in 𝔽_p[η]/(η² − ν): the Frobenius pairing of m(w ⊗ w), m a² − ν m b², equals m N(w)."""

@@ -1877,7 +1877,7 @@ theorem cyc_add_mod (n : Nat) (hn : 0 < n) (f : Nat → Shell p) (i s : Nat) :
     cyc n f (i % n + s) = cyc n f (i + s) := by
   show f ((i % n + s) % n) = f ((i + s) % n); rw [FRC.Nat.mod_add_mod i s n hn]
 
-/-- 21:X3 — the drive returns after `n` steps: a function on the cycle read `n` sites on is itself, so a permutation of
+/-- 21:X3, 00:E5, 00:E10 — the drive returns after `n` steps: a function on the cycle read `n` sites on is itself, so a permutation of
 the cycle has finite order and what it moves comes back. -/
 theorem cyc_add_n (n : Nat) (hn : 0 < n) (f : Nat → Shell p) (i : Nat) : cyc n f (i + n) = cyc n f i := by
   show f ((i + n) % n) = f (i % n)
@@ -2329,7 +2329,7 @@ theorem vec_shift (η : Nat → Shell p) (n : Nat) (a₁ a₂ : Shell p) (k A : 
   rw [e₁, e₂]
   exact vec_ring _ _ _ _ _ _
 
-/-- Spin 1: the line `a₁ + a₂ = 0`, the symbol of `F²`, is gauge invariant at every symbol. -/
+/-- 00:E1 — spin 1: the line `a₁ + a₂ = 0`, the symbol of `F²`, is gauge invariant at every symbol. -/
 theorem vec_invariant (η : Nat → Shell p) (n : Nat) {a₁ a₂ : Shell p} (h : a₁ + a₂ = 0) (k A : Nat → Shell p)
     (z : Shell p) : vecForm η n a₁ a₂ k (shift A k z) = vecForm η n a₁ a₂ k A := by
   rw [vec_shift, h, zero_mul, zero_mul, add_zero]
@@ -2424,7 +2424,7 @@ theorem dot_basis_ne (η : Nat → Shell p) (n : Nat) {i j : Nat} (hij : i ≠ j
     show η l * basis i l * basis j l = 0
     rw [mul_assoc, basis_mul_ne hij, mul_zero])
 
-/-- Spin 1 over all symbols: when the metric entry `η₀` is a unit (`n ≥ 1`), the forms gauge invariant at every
+/-- 00:E1 — spin 1 over all symbols: when the metric entry `η₀` is a unit (`n ≥ 1`), the forms gauge invariant at every
 symbol are exactly the line `a₁ + a₂ = 0`, Maxwell's `F²`. -/
 theorem maxwell_unique (η : Nat → Shell p) {n : Nat} {w : Shell p} (hn : 0 < n) (h₀ : η 0 * w = 1)
     (a₁ a₂ : Shell p) :
@@ -3548,7 +3548,7 @@ theorem channel_q4 (κ : Nat) (x : Shell p) :
 
 /-! ## 21:C25 — the cover triangle -/
 
-/-- 21:C25, 21:C7, 21:C8 — on every shell: `2γ − β = 1` and `γ = 1` give `β = 1`. -/
+/-- 21:C25, 21:C7, 21:C8, 00:E4 — on every shell: `2γ − β = 1` and `γ = 1` give `β = 1`. -/
 theorem cover_triangle {β γ : Shell p} (h1 : (1 + 1) * γ + -β = 1) (h2 : γ = 1) : β = 1 := by
   subst h2
   have h : (1 + 1) * (1 : Shell p) + -β = 1 := h1
@@ -3559,7 +3559,7 @@ theorem cover_triangle {β γ : Shell p} (h1 : (1 + 1) * γ + -β = 1) (h2 : γ 
   rw [neg_neg] at this
   exact this.symm
 
-/-- 21:C25 — the deviation `2γ − β − 1` vanishes on the triangle. -/
+/-- 21:C25, 00:E4 — the deviation `2γ − β − 1` vanishes on the triangle. -/
 theorem cover_deviation {β γ : Shell p} (h1 : (1 + 1) * γ + -β = 1) : (1 + 1) * γ + -β + -1 = 0 := by
   rw [h1]; exact add_neg 1
 
@@ -3701,7 +3701,7 @@ theorem tally_weight (z w : Shell p) : (1 + 1 + -z + -w) + (1 + 1 + z + w) = 1 +
 /-- 21:C1 — `m` cells of one phase `z` sum to `m·z`, the coherent coefficient. -/
 theorem locked_sum (z : Shell p) (m : Nat) : sumRange (fun _ => z) m = ofNat m * z := sum_const z m
 
-/-- 21:C11, 00:C21 — the exponential reading is the character: `g^{a+b} = g^a g^b`. -/
+/-- 21:C11, 00:C21, 00:E4 — the exponential reading is the character: `g^{a+b} = g^a g^b`. -/
 theorem character_composition (g : Shell p) (a b : Nat) : g ^ (a + b) = g ^ a * g ^ b := pow_add g a b
 
 /-! ## 21:C11 — the Gauss law from transfer antisymmetry -/
@@ -3730,7 +3730,7 @@ theorem antisymmetric_sum {κ : Nat} {g : Shell p} (F : Frame p κ g) (n : Nat) 
   · exact absurd (by rw [two_eq_one_add_one]; exact h) F.two_ne_zero
   · exact h
 
-/-- 21:C11, 00:E3 — the Gauss law: for antisymmetric link currents `J_xy = −J_yx` on `n` sites, the divergence
+/-- 21:C11, 00:E3, 00:E4 — the Gauss law: for antisymmetric link currents `J_xy = −J_yx` on `n` sites, the divergence
 `Σ_y J_xy` summed over a region `R` equals the flux through its boundary, `Σ_{x ∈ R} Σ_{y ∉ R} J_xy`:
 the interior links cancel in pairs. -/
 theorem gauss_law {κ : Nat} {g : Shell p} (F : Frame p κ g) (n : Nat) (J : Nat → Nat → Shell p)
@@ -3752,7 +3752,7 @@ theorem gauss_law {κ : Nat} {g : Shell p} (F : Frame p κ g) (n : Nat) (J : Nat
 
 /-! ## 21:C8, 21:P6 — the post-Newtonian coefficients, exact -/
 
-/-- 21:C8, 21:P6 — `e^{−2U} = 1 − 2U + 2U² − (4/3)U³ + …` against the isotropic Schwarzschild
+/-- 21:C8, 21:P6, 00:E4 — `e^{−2U} = 1 − 2U + 2U² − (4/3)U³ + …` against the isotropic Schwarzschild
 `((1 − U/2)/(1 + U/2))² = 1 − 2U + 2U² − (3/2)U³ + …`: equal through `U²`, apart at `U³` by `1/6`
 (`6·(−4/3) − 6·(−3/2) = 1`); `e^{2U} = 1 + 2U + 2U² + …` against `(1 + U/2)⁴ = 1 + 2U + (3/2)U² + …`: apart at
 `U²` by `1/2` (`2·2 − 3 = 1`); the binomial expansion behind the Schwarzschild coefficients:
@@ -3825,7 +3825,7 @@ theorem conj_branch (z : Ext p ν) (hz : norm z = 1) : ∀ n : Nat, z ^ n * (con
 
 /-! ## The compression identity (21:X3, C21): the offset sector holds what the drive moves, exactly (11 October 2026) -/
 open FRC.Cycle in
-/-- 21:X3, 21:C21 — the compression identity on the cycle of `n` sites: for the drive step `U f (x) = f ((x + 1) mod n)`
+/-- 21:X3, 21:C21, 00:E5 — the compression identity on the cycle of `n` sites: for the drive step `U f (x) = f ((x + 1) mod n)`
 and a sector `P` with `P x · P x = P x`, the sector's weight `Σ P x · f x²` equals what the step keeps in the sector,
 `Σ P x · (U(Pf) x)²`, plus what it moves to the offset sector, `Σ (1 − P x) · (U(Pf) x)²`: relaxation is unresolved
 leakage held by the offset sector, and the drive, a permutation of the cycle, returns it after `n` steps (`cyc_add_n`).
@@ -3847,6 +3847,79 @@ theorem compression (n : Nat) (hn : 0 < n) (P f : Nat → Shell p) (hP : ∀ x, 
   rw [← sum_add, sum_congr n (fun x _ => whole x), sum_shift n hn (fun y => P y * f y * (P y * f y)) 1]
   exact sum_congr n (fun x _ => square x)
 
+/-! ## The master's block E: the completion, the floor's faces and the fold (00:E4, 00:E5, 00:E10; 12 October 2026) -/
+
+/-- 00:E4, 21:C11 — the exponential reading is the unique scale-covariant one: a function of the drive's steps with the
+composition law `f (a + b) = f a · f b` and `f 0 = 1` is the character `f a = (f 1)^a`. -/
+theorem character_unique (f : Nat → Shell p) (h0 : f 0 = 1) (hf : ∀ a b, f (a + b) = f a * f b) :
+    ∀ a, f a = (f 1) ^ a
+  | 0 => h0
+  | a + 1 => by rw [hf a 1, character_unique f h0 hf a, pow_succ]
+
+/-- 00:E5, 00:E10 — the operational cut sits between the slip core and the mass, `r_* < r_f < M`, in the chart's own
+numbers: with `r_* = √M`, `r_f = 2M/L` (`L = ln Ω`) and `M > (L/2)²`, that is `L² < 4M`, the squares order as
+`L² M < (2M)²`; and `r_f < M` reads `2M < L M` once `2 < L`. -/
+theorem cut_ordering (L M : Nat) (hM : L * L < 4 * M) (hL : 2 < L) (h0 : 0 < M) :
+    L * L * M < 2 * M * (2 * M) ∧ 2 * M < L * M := by
+  have e : 2 * M * (2 * M) = 4 * M * M := FRC.Grav.nat_sound (FRC.Grav.nlook [M]) (.mul (.mul (.add .one .one) (.var 0)) (.mul (.add .one .one) (.var 0))) (.mul (.mul (.add (.add (.add .one .one) .one) .one) (.var 0)) (.var 0)) rfl rfl (by decide +kernel)
+  exact ⟨by rw [e]; exact Nat.mul_lt_mul_of_pos_right hM h0, Nat.mul_lt_mul_of_pos_right hL h0⟩
+
+/-- 00:E10 — the cut area of the graph balls of `ℤ³`, `A_r = 6(2r² + 2r + 1)` (the links between the balls of radii `r` and
+`r + 1`; the ledger file's check counts them), grows at every step, `A_{r+1} = A_r + 24(r + 1)`, so the cut current
+`Q/A_r` of a fixed enclosed charge recovers `r` from any exterior reading. -/
+theorem cut_area_monotone (r : Nat) :
+    6 * (2 * (r + 1) * (r + 1) + 2 * (r + 1) + 1) = 6 * (2 * r * r + 2 * r + 1) + 24 * (r + 1) ∧
+    6 * (2 * r * r + 2 * r + 1) < 6 * (2 * (r + 1) * (r + 1) + 2 * (r + 1) + 1) := by
+  have e : 6 * (2 * (r + 1) * (r + 1) + 2 * (r + 1) + 1) = 6 * (2 * r * r + 2 * r + 1) + 24 * (r + 1) :=
+    FRC.Grav.nat_sound (FRC.Grav.nlook [r]) (.mul (.add (.add (.add (.add (.add .one .one) .one) .one) .one) .one) (.add (.add (.mul (.mul (.add .one .one) (.add (.var 0) .one)) (.add (.var 0) .one)) (.mul (.add .one .one) (.add (.var 0) .one))) .one)) (.add (.mul (.add (.add (.add (.add (.add .one .one) .one) .one) .one) .one) (.add (.add (.mul (.mul (.add .one .one) (.var 0)) (.var 0)) (.mul (.add .one .one) (.var 0))) .one)) (.mul (.add (.add (.add (.add (.add (.add (.add (.add (.add (.add (.add (.add (.add (.add (.add (.add (.add (.add (.add (.add (.add (.add (.add .one .one) .one) .one) .one) .one) .one) .one) .one) .one) .one) .one) .one) .one) .one) .one) .one) .one) .one) .one) .one) .one) .one) .one) (.add (.var 0) .one))) rfl rfl (by decide +kernel)
+  exact ⟨e, by rw [e]; exact Nat.lt_add_of_pos_right (Nat.mul_pos (Nat.zero_lt_succ 23) (Nat.zero_lt_succ r))⟩
+
+/-- 00:E10 — the two chart branches are two Carrier data: on every frame, for nonzero positions `r₁`, `r₂` the residue
+products `r₁ g^Δ` and `r₂` coincide at exactly one lift `Δ < p − 1` (the drive generates, and `g^Δ` is injective below
+the full cycle), while the pair `(r, g^{−Δ})` never collides, its first entry being `r`. -/
+theorem fold_collision {κ : Nat} {g : Shell p} (F : Frame p κ g) {r₁ r₂ : Shell p} (h₁ : r₁ ≠ 0) (h₂ : r₂ ≠ 0) :
+    (∃ Δ, Δ < p - 1 ∧ r₁ * g ^ Δ = r₂) ∧
+    (∀ Δ Δ', Δ < p - 1 → Δ' < p - 1 → r₁ * g ^ Δ = r₂ → r₁ * g ^ Δ' = r₂ → Δ = Δ') := by
+  refine ⟨?_, fun Δ Δ' hΔ hΔ' e e' => F.pow_inj hΔ hΔ' (F.mul_left_cancel h₁ (e.trans e'.symm))⟩
+  obtain ⟨a, ha, hga⟩ := F.generates r₁.val r₁.lt (Nat.pos_of_ne_zero (fun h => h₁ (Shell.ext h)))
+  obtain ⟨b, hb, hgb⟩ := F.generates r₂.val r₂.lt (Nat.pos_of_ne_zero (fun h => h₂ (Shell.ext h)))
+  have e₁ : g ^ a = r₁ := Shell.ext hga
+  have e₂ : g ^ b = r₂ := Shell.ext hgb
+  have hab : a ≤ b + (p - 1) := Nat.le_of_lt (Nat.lt_of_lt_of_le ha (Nat.le_add_left (p - 1) b))
+  have key : (a + (b + (p - 1) - a) % (p - 1)) % (p - 1) = b := by
+    rw [FRC.Nat.add_mod_mod _ _ _ F.n_pos, FRC.Nat.add_sub_of_le hab, FRC.Nat.add_mod b (p - 1) (p - 1) F.n_pos,
+      FRC.Nat.mod_self (p - 1) F.n_pos, Nat.add_zero, FRC.Nat.mod_mod b (p - 1) F.n_pos, FRC.Nat.mod_eq_of_lt hb]
+  refine ⟨(b + (p - 1) - a) % (p - 1), FRC.Nat.mod_lt' _ F.n_pos, ?_⟩
+  calc r₁ * g ^ ((b + (p - 1) - a) % (p - 1)) = g ^ (a + (b + (p - 1) - a) % (p - 1)) := by
+        rw [← e₁]; exact (FRC.Shell.pow_add g a _).symm
+    _ = g ^ ((a + (b + (p - 1) - a) % (p - 1)) % (p - 1)) := FRC.Cycle.pow_mod (p - 1) F.n_pos F.pow_n _
+    _ = g ^ b := by rw [key]
+    _ = r₂ := e₂
+
+open FRC.Cycle in
+/-- 00:E10 — the fold is a chart projection. On the cycle of `N` sites with the exterior `E`, an interior chart is a map
+`F` on cycle functions that returns the exterior values unchanged, with an inverse `Finv` that fixes every function
+supported on the exterior. The exterior return through the fold is the bare return, term by term:
+`(F (Uⁿ (Finv (P_E f)))) x = (Uⁿ (P_E f)) x` on `x ∈ E`; its period sum is the exterior total, the uniform floor `N⁻¹ J_E`;
+and the full period returns, `U^N (P_E f) = P_E f`: no echo criterion. -/
+theorem fold_return (N : Nat) (hN : 0 < N) (E : Nat → Bool) (F Finv : (Nat → Shell p) → (Nat → Shell p))
+    (hF : ∀ h x, E x = true → F h x = h x) (hFinv : ∀ h, (∀ y, E y = false → h y = 0) → Finv h = h)
+    (f : Nat → Shell p) :
+    (∀ n x, E x = true →
+      F (fun y => cyc N (Finv (fun y => ind E y * f y)) (y + n)) x = cyc N (fun y => ind E y * f y) (x + n)) ∧
+    (∀ x, sumRange (fun n => cyc N (fun y => ind E y * f y) (x + n)) N = sumRange (fun y => ind E y * f y) N) ∧
+    (∀ x, cyc N (fun y => ind E y * f y) (x + N) = cyc N (fun y => ind E y * f y) x) := by
+  have hsupp : ∀ y, E y = false → ind E y * f y = 0 := fun y hy => by
+    show (if E y = true then (1 : Shell p) else 0) * f y = 0
+    rw [hy, ite_eq_right Bool.false_ne_true, zero_mul]
+  refine ⟨fun n x hx => ?_, fun x => ?_, fun x => cyc_add_n N hN _ x⟩
+  · rw [hF _ x hx, hFinv _ hsupp]
+  · show sumRange (fun n => (fun y => ind E y * f y) ((x + n) % N)) N = _
+    have e : ∀ n, n < N → (fun y => (ind E y : Shell p) * f y) ((x + n) % N) = (fun y => (ind E y : Shell p) * f y) ((n + x) % N) :=
+      fun n _ => by rw [Nat.add_comm x n]
+    rw [FRC.Shell.sum_congr N e]
+    exact sum_shift N hN (fun y => (ind E y : Shell p) * f y) x
+
 end FRC.Drift
 
 /-! FrcCore/Keys/Gravity.lean -/
@@ -3862,9 +3935,21 @@ that every row carrying the key asserts, proved from the themes alone. The paper
 namespace FRC.Ledger
 
 -- Keys of the gravity theme (generated by make_keys.py from the ledgers' Lean bindings; edit the ledgers, not this file)
+/-- p00052 — 00:E1. \textbf{Uniqueness of the dynamics}: in every gauge sector the relevant gauge-invariant adjacency-local action is the unique curvature-square Casimir (Maxwell $F^2$, gravity Fierz--Pauli, Yang--Mills $\mathrm{Tr}\,F^2$) --- one adjacency-local uniqueness lemma, proven on the shell. -/
+theorem p00052 : (∀ {p : Nat} [FRC.Pos p] (η : Nat → FRC.Shell p) {n : Nat} {w : FRC.Shell p}, (0 : Nat) < n → η (0 : Nat) * w = (1 : FRC.Shell p) → ∀ (a₁ a₂ : FRC.Shell p), (∀ (k A : Nat → FRC.Shell p) (z : FRC.Shell p), FRC.Symbol.vecForm η n a₁ a₂ k (FRC.Symbol.shift A k z) = FRC.Symbol.vecForm η n a₁ a₂ k A) ↔ a₁ + a₂ = (0 : FRC.Shell p)) ∧ (∀ {p : Nat} [FRC.Pos p] (η : Nat → FRC.Shell p) {n : Nat} {w₀ w₁ t : FRC.Shell p}, (1 : Nat) < n → η (0 : Nat) * w₀ = (1 : FRC.Shell p) → η (1 : Nat) * w₁ = (1 : FRC.Shell p) → ((1 : FRC.Shell p) + (1 : FRC.Shell p)) * t = (1 : FRC.Shell p) → ∀ (a₁ a₂ a₃ a₄ : FRC.Shell p), (∀ (k ξ : Nat → FRC.Shell p) (h : Nat → Nat → FRC.Shell p), (∀ (μ ν : Nat), h μ ν = h ν μ) → FRC.Symbol.tensForm η n a₁ a₂ a₃ a₄ k (FRC.Symbol.gauge h k ξ) = FRC.Symbol.tensForm η n a₁ a₂ a₃ a₄ k h) ↔ ∃ c, a₁ = -c ∧ a₂ = ((1 : FRC.Shell p) + (1 : FRC.Shell p)) * c ∧ a₃ = -(((1 : FRC.Shell p) + (1 : FRC.Shell p)) * c) ∧ a₄ = c) ∧ (∀ {p : Nat} [FRC.Pos p] (η : Nat → FRC.Shell p) (n : Nat) {a₁ a₂ : FRC.Shell p}, a₁ + a₂ = (0 : FRC.Shell p) → ∀ (k A : Nat → FRC.Shell p) (z : FRC.Shell p), FRC.Symbol.vecForm η n a₁ a₂ k (FRC.Symbol.shift A k z) = FRC.Symbol.vecForm η n a₁ a₂ k A) ∧ ∀ {p : Nat} [FRC.Pos p] (η : Nat → FRC.Shell p) (n : Nat) (c : FRC.Shell p) (k ξ : Nat → FRC.Shell p) {h : Nat → Nat → FRC.Shell p}, (∀ (μ ν : Nat), h μ ν = h ν μ) → FRC.Symbol.tensForm η n (-c) (((1 : FRC.Shell p) + (1 : FRC.Shell p)) * c) (-(((1 : FRC.Shell p) + (1 : FRC.Shell p)) * c)) c k (FRC.Symbol.gauge h k ξ) = FRC.Symbol.tensForm η n (-c) (((1 : FRC.Shell p) + (1 : FRC.Shell p)) * c) (-(((1 : FRC.Shell p) + (1 : FRC.Shell p)) * c)) c k h :=
+  And.intro @FRC.Symbol.maxwell_unique (And.intro @FRC.Symbol.fierz_pauli_unique (And.intro @FRC.Symbol.vec_invariant (@FRC.Symbol.fierz_pauli_invariant)))
+/-- p00055 — 00:E4. \textbf{Gravity} (nonlinear completion): the relational shift-symmetry Ward identity forbids self-sourcing (what gravitates is winding rate, D2), so the static potential is harmonic and the completion is the unique scale-covariant exponential metric (Deser's bootstrap inapplicable); $\beta=\gamma=1$ and the classical tests exact, the first departures strong-field. Falsifier: a weak-field departure from $\beta=\gamma=1$, or a self-sourcing static potential. -/
+theorem p00055 : (∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → ∀ (n : Nat) (J : Nat → Nat → FRC.Shell p), (∀ (x y : Nat), J x y = -J y x) → ∀ (R : Nat → Bool), FRC.Shell.sumRange (fun x => FRC.Drift.ind R x * FRC.Shell.sumRange (fun y => J x y) n) n = FRC.Shell.sumRange (fun x => FRC.Drift.ind R x * FRC.Shell.sumRange (fun y => ((1 : FRC.Shell p) + -FRC.Drift.ind R y) * J x y) n) n) ∧ (∀ {p : Nat} [FRC.Pos p] (g : FRC.Shell p) (a b : Nat), g ^ (a + b) = g ^ a * g ^ b) ∧ (∀ {p : Nat} [FRC.Pos p] (f : Nat → FRC.Shell p), f (0 : Nat) = (1 : FRC.Shell p) → (∀ (a b : Nat), f (a + b) = f a * f b) → ∀ (a : Nat), f a = f (1 : Nat) ^ a) ∧ (∀ {p : Nat} [FRC.Pos p] {β γ : FRC.Shell p}, ((1 : FRC.Shell p) + (1 : FRC.Shell p)) * γ + -β = (1 : FRC.Shell p) → γ = (1 : FRC.Shell p) → β = (1 : FRC.Shell p)) ∧ (∀ {p : Nat} [FRC.Pos p] {β γ : FRC.Shell p}, ((1 : FRC.Shell p) + (1 : FRC.Shell p)) * γ + -β = (1 : FRC.Shell p) → ((1 : FRC.Shell p) + (1 : FRC.Shell p)) * γ + -β + (-1 : FRC.Shell p) = (0 : FRC.Shell p)) ∧ (6 : Int) * (-4 : Int) / (3 : Int) - (6 : Int) * (-3 : Int) / (2 : Int) = (1 : Int) ∧ (2 : Int) * (2 : Int) - (3 : Int) = (1 : Int) ∧ (3 : Int) + (4 : Int) + (1 : Int) = (8 : Int) ∧ (-4 : Int) - (6 : Int) - (2 : Int) = (-12 : Int) ∧ (8 / 4 : Int) = (2 : Int) ∧ (-12 : Int) * (2 : Int) / (8 : Int) = (-3 : Int) :=
+  And.intro @FRC.Drift.gauss_law (And.intro @FRC.Drift.character_composition (And.intro @FRC.Drift.character_unique (And.intro @FRC.Drift.cover_triangle (And.intro @FRC.Drift.cover_deviation (@FRC.Drift.pn_coefficients)))))
+/-- p00056 — 00:E5. \textbf{Gravity} (the floor's faces): collapse yields no event horizon and no singularity but an operationally black body at $r_f=r_s/\ln\Om$, clock rate $1/\sqrt\Om$, its interior a microscopic slip core. The global drive enters local physics only through the floor: preferred-frame parameters are $O(1/\sqrt\Om)\sim3\times10^{-62}$, Lense--Thirring at the GR value. Falsifier: a registered event horizon or singularity, or a preferred-frame parameter above $O(1/\sqrt\Om)$. -/
+theorem p00056 : (∀ {p : Nat} [FRC.Pos p] (n : Nat), (0 : Nat) < n → ∀ (P f : Nat → FRC.Shell p), (∀ (x : Nat), P x * P x = P x) → FRC.Shell.sumRange (fun x => P x * (P ((x + (1 : Nat)) % n) * f ((x + (1 : Nat)) % n) * (P ((x + (1 : Nat)) % n) * f ((x + (1 : Nat)) % n)))) n + FRC.Shell.sumRange (fun x => ((1 : FRC.Shell p) + -P x) * (P ((x + (1 : Nat)) % n) * f ((x + (1 : Nat)) % n) * (P ((x + (1 : Nat)) % n) * f ((x + (1 : Nat)) % n)))) n = FRC.Shell.sumRange (fun x => P x * (f x * f x)) n) ∧ (∀ {p : Nat} [FRC.Pos p] (n : Nat), (0 : Nat) < n → ∀ (f : Nat → FRC.Shell p) (i : Nat), FRC.Cycle.cyc n f (i + n) = FRC.Cycle.cyc n f i) ∧ ∀ (L M : Nat), L * L < (4 : Nat) * M → (2 : Nat) < L → (0 : Nat) < M → L * L * M < (2 : Nat) * M * ((2 : Nat) * M) ∧ (2 : Nat) * M < L * M :=
+  And.intro @FRC.Drift.compression (And.intro @FRC.Cycle.cyc_add_n (@FRC.Drift.cut_ordering))
 /-- p00058 — 00:E7. \textbf{Gravity} (horizon triple): the record is the registered state count $\kap(\p+1)=(A/4)(1-1/\p )=M(M-1)$ (37:B5, 37:C7) on the rate face $M=(\p +1)/2$ (D2, D14; $\p =2M-1$ the count face), $d[\kap(\p+1)]/dM=\p$ exactly. The temperature has two exact faces, the registration rate $T=(\p +1)/\p ^2$ (E5) and the response $T_{\mathrm{resp}}=(d[\kap(\p+1)]/dM)^{-1}=1/\p$, split by $1+1/\p$. First law $dM=T_{\mathrm{resp}}\,d[\kap(\p+1)]=T\,d[\kap(\p+1)]/(1+1/\p )$; Smarr $2T_{\mathrm{resp}}\kap(\p+1)=M(1-1/\p )$, $2T\kap(\p+1)=M(1-1/\p ^2)$; the chart's $dM=T\,dS_{\mathrm{th}}$, $M=2TS_{\mathrm{th}}$ [import] to order $1/\p$ (D15). -/
 theorem p00058 : (∀ (κ : Nat), (4 : Nat) * (κ * ((4 : Nat) * κ + (2 : Nat))) + (1 : Nat) = ((4 : Nat) * κ + (1 : Nat)) * ((4 : Nat) * κ + (1 : Nat)) ∧ κ * ((4 : Nat) * κ + (2 : Nat)) * ((4 : Nat) * κ + (1 : Nat)) = κ * (((4 : Nat) * κ + (1 : Nat)) * ((4 : Nat) * κ + (2 : Nat))) ∧ (4 : Nat) * (κ * ((4 : Nat) * κ + (2 : Nat))) * ((4 : Nat) * κ + (1 : Nat)) = ((4 : Nat) * κ + (1 : Nat)) * ((4 : Nat) * κ + (2 : Nat)) * ((4 : Nat) * κ)) ∧ (∀ (κ : Nat), κ * ((4 : Nat) * κ + (2 : Nat)) = ((2 : Nat) * κ + (1 : Nat)) * ((2 : Nat) * κ)) ∧ (∀ (m h : Nat), (m + (1 : Nat) + h) * (m + h) = (m + (1 : Nat)) * m + ((2 : Nat) * m + (1 : Nat)) * h + h * h) ∧ (∀ (κ : Nat), ((4 : Nat) * κ + (1 : Nat)) * ((4 : Nat) * κ + (2 : Nat)) * (((4 : Nat) * κ + (1 : Nat)) * ((4 : Nat) * κ + (1 : Nat))) = ((4 : Nat) * κ + (2 : Nat)) * (((4 : Nat) * κ + (1 : Nat)) * ((4 : Nat) * κ + (1 : Nat)) * ((4 : Nat) * κ + (1 : Nat)))) ∧ (∀ (κ : Nat), (2 : Nat) * (κ * ((4 : Nat) * κ + (2 : Nat))) = ((2 : Nat) * κ + (1 : Nat)) * ((4 : Nat) * κ) ∧ (2 : Nat) * ((4 : Nat) * κ + (2 : Nat)) * (κ * ((4 : Nat) * κ + (2 : Nat))) = ((2 : Nat) * κ + (1 : Nat)) * ((4 : Nat) * κ * ((4 : Nat) * κ + (2 : Nat)))) ∧ ∀ (κ h : Nat), ((2 : Nat) * κ + (1 : Nat) + h) * ((2 : Nat) * κ + h) = ((2 : Nat) * κ + (1 : Nat)) * ((2 : Nat) * κ) + ((4 : Nat) * κ + (1 : Nat)) * h + h * h :=
   And.intro @FRC.Grav.count_identity (And.intro @FRC.Grav.record_mass (And.intro @FRC.Grav.record_response (And.intro @FRC.Grav.temperature_rate (And.intro @FRC.Grav.smarr (@FRC.Grav.record_response_rate)))))
+/-- p00147 — 00:E10. \textbf{The fold is a chart projection}: the substrate coordinate $r$ is the decoherence count, the exponential reading the character $\gen^{-\Delta n(r)}$, and the exact datum at a shell of the radial partition is the pair $(r,\gen^{-\Delta n(r)})$, injective in $r$; the areal reading $R=re^{M/r}$ [chart] multiplies the count by the lifted character and forgets $r$ --- its two branches are two Carrier data (the residue product $r\gen^{\Delta}$ collides at $\p =13,17,29$, the pair never), and the cut current $p_r=Q_r/A_r$ recovers $r$ from any exterior reading ($A_r=6(2r^2+2r+1)$ on $\mathbb Z^3$, monotone). The fold-return average is fold-independent: $P_EFU^nF^{-1}P_E=P_EU^nP_E$ for every interior chart $F$, the period average $N^{-1}J_E$ (not $N_I^{-1}$), $P_EU^NP_E=P_E$ --- no echo criterion. The $r_f$-anchored statements are made in the substrate coordinate, $r_*<r_f<M$ for $M>(\ln\Om /2)^2$ Planck masses [chart]. -/
+theorem p00147 : (∀ {p : Nat} [FRC.Pos p] (N : Nat), (0 : Nat) < N → ∀ (E : Nat → Bool) (F Finv : (Nat → FRC.Shell p) → Nat → FRC.Shell p), (∀ (h : Nat → FRC.Shell p) (x : Nat), E x = true → F h x = h x) → (∀ (h : Nat → FRC.Shell p), (∀ (y : Nat), E y = false → h y = (0 : FRC.Shell p)) → Finv h = h) → ∀ (f : Nat → FRC.Shell p), (∀ (n x : Nat), E x = true → F (fun y => FRC.Cycle.cyc N (Finv fun y => FRC.Drift.ind E y * f y) (y + n)) x = FRC.Cycle.cyc N (fun y => FRC.Drift.ind E y * f y) (x + n)) ∧ (∀ (x : Nat), FRC.Shell.sumRange (fun n => FRC.Cycle.cyc N (fun y => FRC.Drift.ind E y * f y) (x + n)) N = FRC.Shell.sumRange (fun y => FRC.Drift.ind E y * f y) N) ∧ ∀ (x : Nat), FRC.Cycle.cyc N (fun y => FRC.Drift.ind E y * f y) (x + N) = FRC.Cycle.cyc N (fun y => FRC.Drift.ind E y * f y) x) ∧ (∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → ∀ {r₁ r₂ : FRC.Shell p}, r₁ ≠ (0 : FRC.Shell p) → r₂ ≠ (0 : FRC.Shell p) → (∃ Δ, Δ < p - (1 : Nat) ∧ r₁ * g ^ Δ = r₂) ∧ ∀ (Δ Δ' : Nat), Δ < p - (1 : Nat) → Δ' < p - (1 : Nat) → r₁ * g ^ Δ = r₂ → r₁ * g ^ Δ' = r₂ → Δ = Δ') ∧ (∀ (r : Nat), (6 : Nat) * ((2 : Nat) * (r + (1 : Nat)) * (r + (1 : Nat)) + (2 : Nat) * (r + (1 : Nat)) + (1 : Nat)) = (6 : Nat) * ((2 : Nat) * r * r + (2 : Nat) * r + (1 : Nat)) + (24 : Nat) * (r + (1 : Nat)) ∧ (6 : Nat) * ((2 : Nat) * r * r + (2 : Nat) * r + (1 : Nat)) < (6 : Nat) * ((2 : Nat) * (r + (1 : Nat)) * (r + (1 : Nat)) + (2 : Nat) * (r + (1 : Nat)) + (1 : Nat))) ∧ (∀ (L M : Nat), L * L < (4 : Nat) * M → (2 : Nat) < L → (0 : Nat) < M → L * L * M < (2 : Nat) * M * ((2 : Nat) * M) ∧ (2 : Nat) * M < L * M) ∧ ∀ {p : Nat} [FRC.Pos p] (n : Nat), (0 : Nat) < n → ∀ (f : Nat → FRC.Shell p) (i : Nat), FRC.Cycle.cyc n f (i + n) = FRC.Cycle.cyc n f i :=
+  And.intro @FRC.Drift.fold_return (And.intro @FRC.Drift.fold_collision (And.intro @FRC.Drift.cut_area_monotone (And.intro @FRC.Drift.cut_ordering (@FRC.Cycle.cyc_add_n))))
 /-- p00154 — 00:E3. \textbf{Gravity} (linear): the Coulomb law is gravity's own lattice Green's function; the field equation is the discrete Fierz--Pauli functional, the unique adjacency-local stiffness (E1). Universal attraction is the drive's single time arrow. -/
 theorem p00154 : (∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → ∀ (n : Nat) (J : Nat → Nat → FRC.Shell p), (∀ (x y : Nat), J x y = -J y x) → ∀ (R : Nat → Bool), FRC.Shell.sumRange (fun x => FRC.Drift.ind R x * FRC.Shell.sumRange (fun y => J x y) n) n = FRC.Shell.sumRange (fun x => FRC.Drift.ind R x * FRC.Shell.sumRange (fun y => ((1 : FRC.Shell p) + -FRC.Drift.ind R y) * J x y) n) n) ∧ (∀ {p : Nat} [FRC.Pos p] (η : Nat → FRC.Shell p) {n : Nat} {w₀ w₁ t : FRC.Shell p}, (1 : Nat) < n → η (0 : Nat) * w₀ = (1 : FRC.Shell p) → η (1 : Nat) * w₁ = (1 : FRC.Shell p) → ((1 : FRC.Shell p) + (1 : FRC.Shell p)) * t = (1 : FRC.Shell p) → ∀ (a₁ a₂ a₃ a₄ : FRC.Shell p), (∀ (k ξ : Nat → FRC.Shell p) (h : Nat → Nat → FRC.Shell p), (∀ (μ ν : Nat), h μ ν = h ν μ) → FRC.Symbol.tensForm η n a₁ a₂ a₃ a₄ k (FRC.Symbol.gauge h k ξ) = FRC.Symbol.tensForm η n a₁ a₂ a₃ a₄ k h) ↔ ∃ c, a₁ = -c ∧ a₂ = ((1 : FRC.Shell p) + (1 : FRC.Shell p)) * c ∧ a₃ = -(((1 : FRC.Shell p) + (1 : FRC.Shell p)) * c) ∧ a₄ = c) ∧ (∀ {p : Nat} [FRC.Pos p] {ν : FRC.Shell p} (z : FRC.Extension.Ext p ν) (n : Nat), (z ^ n).conj = z.conj ^ n) ∧ ∀ {p : Nat} [FRC.Pos p] {ν : FRC.Shell p} (z : FRC.Extension.Ext p ν), z.norm = (1 : FRC.Shell p) → ∀ (n : Nat), z ^ n * z.conj ^ n = (1 : FRC.Extension.Ext p ν) :=
   And.intro @FRC.Drift.gauss_law (And.intro @FRC.Symbol.fierz_pauli_unique (And.intro @FRC.Drift.conj_pow (@FRC.Drift.conj_branch)))
@@ -3939,7 +4024,11 @@ theorem p21064 : ∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.She
 end FRC.Ledger
 
 -- Ledger predicates: axioms (each predicate's, computed here)
+#print axioms FRC.Ledger.p00052
+#print axioms FRC.Ledger.p00055
+#print axioms FRC.Ledger.p00056
 #print axioms FRC.Ledger.p00058
+#print axioms FRC.Ledger.p00147
 #print axioms FRC.Ledger.p00154
 #print axioms FRC.Ledger.p00176
 #print axioms FRC.Ledger.p21001

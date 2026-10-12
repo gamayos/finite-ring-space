@@ -1,6 +1,6 @@
 {
  "header": {
-  "generated": "11 October 2026",
+  "generated": "12 October 2026",
   "schema": "frc-register/2",
   "rows": 1024,
   "theorems": 1014,
@@ -523,7 +523,8 @@
     "no": 10,
     "title": "Dimensional Analysis over Finite Holographic Substrate",
     "status": {
-     "kind": "preprint"
+     "kind": "published",
+     "venue": "Entropy"
     },
     "page": "10-dimensions/index.html",
     "blocks": [
@@ -2718,11 +2719,20 @@
    "statement": "\\textbf{Uniqueness of the dynamics}: in every gauge sector the relevant gauge-invariant adjacency-local action is the unique curvature-square Casimir (Maxwell $F^2$, gravity Fierz--Pauli, Yang--Mills $\\mathrm{Tr}\\,F^2$) --- one adjacency-local uniqueness lemma, proven on the shell.",
    "origin_row": "00:E1",
    "tag": "T",
-   "tier": null,
+   "tier": 0,
    "check": {
-    "script": "21:validate_fp_gauge.py"
+    "href": "frc/ledgers/master/gravity.html#p00052",
+    "script": "frc/ledgers/master/gravity.py",
+    "line": 105,
+    "verdict": "pass"
    },
-   "declarations": [],
+   "declarations": [
+    {
+     "lib": "FrcCore",
+     "module": "FrcCore/Keys/Gravity",
+     "name": "FRC.Ledger.p00052"
+    }
+   ],
    "aliases": [],
    "rows": [
     "00:E1"
@@ -2739,7 +2749,7 @@
    "check": {
     "href": "frc/ledgers/master/gravity.html#p00154",
     "script": "frc/ledgers/master/gravity.py",
-    "line": 76,
+    "line": 140,
     "verdict": "pass"
    },
    "declarations": [
@@ -2761,11 +2771,20 @@
    "statement": "\\textbf{Gravity} (nonlinear completion): the relational shift-symmetry Ward identity forbids self-sourcing (what gravitates is winding rate, D2), so the static potential is harmonic and the completion is the unique scale-covariant exponential metric (Deser's bootstrap inapplicable); $\\beta=\\gamma=1$ and the classical tests exact, the first departures strong-field. Falsifier: a weak-field departure from $\\beta=\\gamma=1$, or a self-sourcing static potential.",
    "origin_row": "00:E4",
    "tag": "R",
-   "tier": null,
+   "tier": 0,
    "check": {
-    "script": "21:validate_branch.py"
+    "href": "frc/ledgers/master/gravity.html#p00055",
+    "script": "frc/ledgers/master/gravity.py",
+    "line": 176,
+    "verdict": "pass"
    },
-   "declarations": [],
+   "declarations": [
+    {
+     "lib": "FrcCore",
+     "module": "FrcCore/Keys/Gravity",
+     "name": "FRC.Ledger.p00055"
+    }
+   ],
    "aliases": [],
    "rows": [
     "00:E4"
@@ -2777,11 +2796,20 @@
    "statement": "\\textbf{Gravity} (the floor's faces): collapse yields no event horizon and no singularity but an operationally black body at $r_f=r_s/\\ln\\Om$, clock rate $1/\\sqrt\\Om$, its interior a microscopic slip core. The global drive enters local physics only through the floor: preferred-frame parameters are $O(1/\\sqrt\\Om)\\sim3\\times10^{-62}$, Lense--Thirring at the GR value. Falsifier: a registered event horizon or singularity, or a preferred-frame parameter above $O(1/\\sqrt\\Om)$.",
    "origin_row": "00:E5",
    "tag": "R",
-   "tier": null,
+   "tier": 0,
    "check": {
-    "script": "21:validate_strongfield.py"
+    "href": "frc/ledgers/master/gravity.html#p00056",
+    "script": "frc/ledgers/master/gravity.py",
+    "line": 215,
+    "verdict": "pass"
    },
-   "declarations": [],
+   "declarations": [
+    {
+     "lib": "FrcCore",
+     "module": "FrcCore/Keys/Gravity",
+     "name": "FRC.Ledger.p00056"
+    }
+   ],
    "aliases": [],
    "rows": [
     "00:E5"
@@ -2797,7 +2825,7 @@
    "check": {
     "href": "frc/ledgers/master/gravity.html#p00176",
     "script": "frc/ledgers/master/gravity.py",
-    "line": 109,
+    "line": 253,
     "verdict": "pass"
    },
    "declarations": [
@@ -2823,7 +2851,7 @@
    "check": {
     "href": "frc/ledgers/master/gravity.html#p00058",
     "script": "frc/ledgers/master/gravity.py",
-    "line": 147,
+    "line": 291,
     "verdict": "pass"
    },
    "declarations": [
@@ -2850,11 +2878,20 @@
    "statement": "\\textbf{The fold is a chart projection}: the substrate coordinate $r$ is the decoherence count, the exponential reading the character $\\gen^{-\\Delta n(r)}$, and the exact datum at a shell of the radial partition is the pair $(r,\\gen^{-\\Delta n(r)})$, injective in $r$; the areal reading $R=re^{M/r}$ [chart] multiplies the count by the lifted character and forgets $r$ --- its two branches are two Carrier data (the residue product $r\\gen^{\\Delta}$ collides at $\\p =13,17,29$, the pair never), and the cut current $p_r=Q_r/A_r$ recovers $r$ from any exterior reading ($A_r=6(2r^2+2r+1)$ on $\\mathbb Z^3$, monotone). The fold-return average is fold-independent: $P_EFU^nF^{-1}P_E=P_EU^nP_E$ for every interior chart $F$, the period average $N^{-1}J_E$ (not $N_I^{-1}$), $P_EU^NP_E=P_E$ --- no echo criterion. The $r_f$-anchored statements are made in the substrate coordinate, $r_*<r_f<M$ for $M>(\\ln\\Om /2)^2$ Planck masses [chart].",
    "origin_row": "00:E10",
    "tag": "T",
-   "tier": null,
+   "tier": 0,
    "check": {
-    "script": "21:validate_fold_echo.py"
+    "href": "frc/ledgers/master/gravity.html#p00147",
+    "script": "frc/ledgers/master/gravity.py",
+    "line": 324,
+    "verdict": "pass"
    },
-   "declarations": [],
+   "declarations": [
+    {
+     "lib": "FrcCore",
+     "module": "FrcCore/Keys/Gravity",
+     "name": "FRC.Ledger.p00147"
+    }
+   ],
    "aliases": [],
    "rows": [
     "00:E10"
@@ -25859,8 +25896,22 @@
    "page": "00-ledger.html#E1",
    "witness": {
     "script": "21:validate_fp_gauge.py",
-    "py": null,
-    "lean": []
+    "py": {
+     "href": "frc/ledgers/master/gravity.html#p00052",
+     "script": "frc/ledgers/master/gravity.py",
+     "line": 105,
+     "verdict": "pass"
+    },
+    "lean": [
+     {
+      "lib": "FrcCore",
+      "module": "FrcCore/Keys/Gravity",
+      "name": "FRC.Ledger.p00052",
+      "tier": 0,
+      "ok": true,
+      "page": "lean/core/Keys.Gravity.html#FRC.Ledger.p00052"
+     }
+    ]
    },
    "refs": [],
    "sources": [
@@ -25886,7 +25937,7 @@
     "py": {
      "href": "frc/ledgers/master/gravity.html#p00154",
      "script": "frc/ledgers/master/gravity.py",
-     "line": 76,
+     "line": 140,
      "verdict": "pass"
     },
     "lean": [
@@ -25923,8 +25974,22 @@
    "page": "00-ledger.html#E4",
    "witness": {
     "script": "21:validate_branch.py",
-    "py": null,
-    "lean": []
+    "py": {
+     "href": "frc/ledgers/master/gravity.html#p00055",
+     "script": "frc/ledgers/master/gravity.py",
+     "line": 176,
+     "verdict": "pass"
+    },
+    "lean": [
+     {
+      "lib": "FrcCore",
+      "module": "FrcCore/Keys/Gravity",
+      "name": "FRC.Ledger.p00055",
+      "tier": 0,
+      "ok": true,
+      "page": "lean/core/Keys.Gravity.html#FRC.Ledger.p00055"
+     }
+    ]
    },
    "refs": [
     "p00043"
@@ -25948,8 +26013,22 @@
    "page": "00-ledger.html#E5",
    "witness": {
     "script": "21:validate_strongfield.py",
-    "py": null,
-    "lean": []
+    "py": {
+     "href": "frc/ledgers/master/gravity.html#p00056",
+     "script": "frc/ledgers/master/gravity.py",
+     "line": 215,
+     "verdict": "pass"
+    },
+    "lean": [
+     {
+      "lib": "FrcCore",
+      "module": "FrcCore/Keys/Gravity",
+      "name": "FRC.Ledger.p00056",
+      "tier": 0,
+      "ok": true,
+      "page": "lean/core/Keys.Gravity.html#FRC.Ledger.p00056"
+     }
+    ]
    },
    "refs": [],
    "sources": [
@@ -25975,7 +26054,7 @@
     "py": {
      "href": "frc/ledgers/master/gravity.html#p00176",
      "script": "frc/ledgers/master/gravity.py",
-     "line": 109,
+     "line": 253,
      "verdict": "pass"
     },
     "lean": [
@@ -26017,7 +26096,7 @@
     "py": {
      "href": "frc/ledgers/master/gravity.html#p00058",
      "script": "frc/ledgers/master/gravity.py",
-     "line": 147,
+     "line": 291,
      "verdict": "pass"
     },
     "lean": [
@@ -26057,8 +26136,22 @@
    "page": "00-ledger.html#E10",
    "witness": {
     "script": "21:validate_fold_echo.py",
-    "py": null,
-    "lean": []
+    "py": {
+     "href": "frc/ledgers/master/gravity.html#p00147",
+     "script": "frc/ledgers/master/gravity.py",
+     "line": 324,
+     "verdict": "pass"
+    },
+    "lean": [
+     {
+      "lib": "FrcCore",
+      "module": "FrcCore/Keys/Gravity",
+      "name": "FRC.Ledger.p00147",
+      "tier": 0,
+      "ok": true,
+      "page": "lean/core/Keys.Gravity.html#FRC.Ledger.p00147"
+     }
+    ]
    },
    "refs": [],
    "sources": [

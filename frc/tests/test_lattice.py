@@ -64,6 +64,11 @@ class FierzPauliTest(unittest.TestCase):
         self.assertEqual(LT.tt_rank((0, 0, 1)), 2)
         self.assertEqual(LT.tt_rank((2, 3, 6)), 2)
 
+    def test_cut_area_and_current(self):
+        self.assertEqual([LT.ball_cut_area(r) for r in range(4)], [(6, 6), (30, 30), (78, 78), (150, 150)])
+        ok, currents = LT.cut_current(1)
+        self.assertTrue(ok); self.assertEqual(currents, [Fraction(1, 6), Fraction(1, 30)])
+
 
 if __name__ == "__main__":
     unittest.main()

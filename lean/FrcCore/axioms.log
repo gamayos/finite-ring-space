@@ -1287,6 +1287,11 @@
 'FRC.Drift.conj_pow' does not depend on any axioms
 'FRC.Drift.conj_branch' does not depend on any axioms
 'FRC.Drift.compression' does not depend on any axioms
+'FRC.Drift.character_unique' does not depend on any axioms
+'FRC.Drift.cut_ordering' does not depend on any axioms
+'FRC.Drift.cut_area_monotone' does not depend on any axioms
+'FRC.Drift.fold_collision' does not depend on any axioms
+'FRC.Drift.fold_return' does not depend on any axioms
 'FRC.Quantum.mod_zero_of_eq_mul' does not depend on any axioms
 'FRC.Quantum.eq_mul_of_mod_zero' does not depend on any axioms
 'FRC.Quantum.mul_mod_zero' does not depend on any axioms
@@ -1571,7 +1576,11 @@
 'FRC.Ledger.p00139' does not depend on any axioms
 'FRC.Ledger.p00150' does not depend on any axioms
 'FRC.Ledger.p00151' does not depend on any axioms
+'FRC.Ledger.p00052' does not depend on any axioms
+'FRC.Ledger.p00055' does not depend on any axioms
+'FRC.Ledger.p00056' does not depend on any axioms
 'FRC.Ledger.p00058' does not depend on any axioms
+'FRC.Ledger.p00147' does not depend on any axioms
 'FRC.Ledger.p00154' does not depend on any axioms
 'FRC.Ledger.p00176' does not depend on any axioms
 'FRC.Ledger.p21001' does not depend on any axioms

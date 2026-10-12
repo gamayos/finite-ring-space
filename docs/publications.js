@@ -275,7 +275,8 @@ const PUBLICATIONS = [
     "n": 10,
     "title": "Dimensional Analysis over Finite Holographic Substrate",
     "status": {
-      "kind": "preprint"
+      "kind": "published",
+      "venue": "Entropy"
     },
     "doi": "https://doi.org/10.20944/preprints202605.0668.v1",
     "doiLabel": "pp202605.0668.v1",
@@ -733,4 +734,4 @@ const PUBLICATIONS = [
   }
 ];
 
-const GENERATED = "11 October 2026";
+const GENERATED = "12 October 2026";

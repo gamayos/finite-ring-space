@@ -3,7 +3,7 @@
  "tree": "21-gravity-20260623",
  "title": "Gravitation as Phase Synchronisation",
  "doi": "https://doi.org/10.20944/preprints202606.1018.v2",
- "generated": "11 October 2026",
+ "generated": "12 October 2026",
  "blocks": [
   {
    "letter": "A",
@@ -813,7 +813,7 @@
     "axioms": [],
     "tier": 0,
     "ok": true,
-    "doc": "21:C25, 21:C7, 21:C8 — on every shell: `2γ − β = 1` and `γ = 1` give `β = 1`."
+    "doc": "21:C25, 21:C7, 21:C8, 00:E4 — on every shell: `2γ − β = 1` and `γ = 1` give `β = 1`."
    }
   ],
   "C8": [
@@ -850,7 +850,7 @@
     "axioms": [],
     "tier": 0,
     "ok": true,
-    "doc": "21:C25, 21:C7, 21:C8 — on every shell: `2γ − β = 1` and `γ = 1` give `β = 1`."
+    "doc": "21:C25, 21:C7, 21:C8, 00:E4 — on every shell: `2γ − β = 1` and `γ = 1` give `β = 1`."
    },
    {
     "name": "FRC.Drift.pn_coefficients",
@@ -859,7 +859,7 @@
     "axioms": [],
     "tier": 0,
     "ok": true,
-    "doc": "21:C8, 21:P6 — `e^{−2U} = 1 − 2U + 2U² − (4/3)U³ + …` against the isotropic Schwarzschild `((1 − U/2)/(1 + U/2))² = 1 − 2U + 2U² − (3/2)U³ + …`: equal through `U²`, apart at `U³` by `1/6` (`6·(−4/3) − 6·(−3/2) = 1`); `e^{2U} = 1 + 2U + 2U² + …` against `(1 + U/2)⁴ = 1 + 2U + (3/2)U² + …`: apart at `U²` by `1/2` (`2·2 − 3 = 1`); the binomial expansion behind the Schwarzschild coefficients: `(1 − 2x + x²)(1 − 2x + 3x² − 4x³)` has `x²`-coefficient `8` and `x³`-coefficient `−12`, read at `x = U/2` as `2` and `−3/2`. Exact integers, decided by the kernel."
+    "doc": "21:C8, 21:P6, 00:E4 — `e^{−2U} = 1 − 2U + 2U² − (4/3)U³ + …` against the isotropic Schwarzschild `((1 − U/2)/(1 + U/2))² = 1 − 2U + 2U² − (3/2)U³ + …`: equal through `U²`, apart at `U³` by `1/6` (`6·(−4/3) − 6·(−3/2) = 1`); `e^{2U} = 1 + 2U + 2U² + …` against `(1 + U/2)⁴ = 1 + 2U + (3/2)U² + …`: apart at `U²` by `1/2` (`2·2 − 3 = 1`); the binomial expansion behind the Schwarzschild coefficients: `(1 − 2x + x²)(1 − 2x + 3x² − 4x³)` has `x²`-coefficient `8` and `x³`-coefficient `−12`, read at `x = U/2` as `2` and `−3/2`. Exact integers, decided by the kernel."
    }
   ],
   "C9": [
@@ -925,7 +925,7 @@
     "axioms": [],
     "tier": 0,
     "ok": true,
-    "doc": "21:C11, 00:E3 — the Gauss law: for antisymmetric link currents `J_xy = −J_yx` on `n` sites, the divergence `Σ_y J_xy` summed over a region `R` equals the flux through its boundary, `Σ_{x ∈ R} Σ_{y ∉ R} J_xy`: the interior links cancel in pairs."
+    "doc": "21:C11, 00:E3, 00:E4 — the Gauss law: for antisymmetric link currents `J_xy = −J_yx` on `n` sites, the divergence `Σ_y J_xy` summed over a region `R` equals the flux through its boundary, `Σ_{x ∈ R} Σ_{y ∉ R} J_xy`: the interior links cancel in pairs."
    },
    {
     "name": "FRC.Drift.character_composition",
@@ -934,7 +934,7 @@
     "axioms": [],
     "tier": 0,
     "ok": true,
-    "doc": "21:C11, 00:C21 — the exponential reading is the character: `g^{a+b} = g^a g^b`."
+    "doc": "21:C11, 00:C21, 00:E4 — the exponential reading is the character: `g^{a+b} = g^a g^b`."
    }
   ],
   "C12": [
@@ -1252,7 +1252,7 @@
     "axioms": [],
     "tier": 0,
     "ok": true,
-    "doc": "21:C25, 21:C7, 21:C8 — on every shell: `2γ − β = 1` and `γ = 1` give `β = 1`."
+    "doc": "21:C25, 21:C7, 21:C8, 00:E4 — on every shell: `2γ − β = 1` and `γ = 1` give `β = 1`."
    },
    {
     "name": "FRC.Drift.cover_deviation",
@@ -1261,7 +1261,7 @@
     "axioms": [],
     "tier": 0,
     "ok": true,
-    "doc": "21:C25 — the deviation `2γ − β − 1` vanishes on the triangle."
+    "doc": "21:C25, 00:E4 — the deviation `2γ − β − 1` vanishes on the triangle."
    }
   ],
   "X1": [
@@ -1298,7 +1298,7 @@
     "axioms": [],
     "tier": 0,
     "ok": true,
-    "doc": "21:X3, 21:C21 — the compression identity on the cycle of `n` sites: for the drive step `U f (x) = f ((x + 1) mod n)` and a sector `P` with `P x · P x = P x`, the sector's weight `Σ P x · f x²` equals what the step keeps in the sector, `Σ P x · (U(Pf) x)²`, plus what it moves to the offset sector, `Σ (1 − P x) · (U(Pf) x)²`: relaxation is unresolved leakage held by the offset sector, and the drive, a permutation of the cycle, returns it after `n` steps (`cyc_add_n`). The interior data of a horizonless body live in that sector; nothing is lost."
+    "doc": "21:X3, 21:C21, 00:E5 — the compression identity on the cycle of `n` sites: for the drive step `U f (x) = f ((x + 1) mod n)` and a sector `P` with `P x · P x = P x`, the sector's weight `Σ P x · f x²` equals what the step keeps in the sector, `Σ P x · (U(Pf) x)²`, plus what it moves to the offset sector, `Σ (1 − P x) · (U(Pf) x)²`: relaxation is unresolved leakage held by the offset sector, and the drive, a permutation of the cycle, returns it after `n` steps (`cyc_add_n`). The interior data of a horizonless body live in that sector; nothing is lost."
    },
    {
     "name": "FRC.Cycle.cyc_add_n",
@@ -1307,7 +1307,7 @@
     "axioms": [],
     "tier": 0,
     "ok": true,
-    "doc": "21:X3 — the drive returns after `n` steps: a function on the cycle read `n` sites on is itself, so a permutation of the cycle has finite order and what it moves comes back."
+    "doc": "21:X3, 00:E5, 00:E10 — the drive returns after `n` steps: a function on the cycle read `n` sites on is itself, so a permutation of the cycle has finite order and what it moves comes back."
    }
   ],
   "X8": [
@@ -1529,7 +1529,7 @@
     "axioms": [],
     "tier": 0,
     "ok": true,
-    "doc": "21:C8, 21:P6 — `e^{−2U} = 1 − 2U + 2U² − (4/3)U³ + …` against the isotropic Schwarzschild `((1 − U/2)/(1 + U/2))² = 1 − 2U + 2U² − (3/2)U³ + …`: equal through `U²`, apart at `U³` by `1/6` (`6·(−4/3) − 6·(−3/2) = 1`); `e^{2U} = 1 + 2U + 2U² + …` against `(1 + U/2)⁴ = 1 + 2U + (3/2)U² + …`: apart at `U²` by `1/2` (`2·2 − 3 = 1`); the binomial expansion behind the Schwarzschild coefficients: `(1 − 2x + x²)(1 − 2x + 3x² − 4x³)` has `x²`-coefficient `8` and `x³`-coefficient `−12`, read at `x = U/2` as `2` and `−3/2`. Exact integers, decided by the kernel."
+    "doc": "21:C8, 21:P6, 00:E4 — `e^{−2U} = 1 − 2U + 2U² − (4/3)U³ + …` against the isotropic Schwarzschild `((1 − U/2)/(1 + U/2))² = 1 − 2U + 2U² − (3/2)U³ + …`: equal through `U²`, apart at `U³` by `1/6` (`6·(−4/3) − 6·(−3/2) = 1`); `e^{2U} = 1 + 2U + 2U² + …` against `(1 + U/2)⁴ = 1 + 2U + (3/2)U² + …`: apart at `U²` by `1/2` (`2·2 − 3 = 1`); the binomial expansion behind the Schwarzschild coefficients: `(1 − 2x + x²)(1 − 2x + 3x² − 4x³)` has `x²`-coefficient `8` and `x³`-coefficient `−12`, read at `x = U/2` as `2` and `−3/2`. Exact integers, decided by the kernel."
    }
   ]
  }
