@@ -2297,7 +2297,7 @@
   },
   {
    "label": "Z2",
-   "name": "RH, Goldbach, and P-vs-NP are the spectral, additive",
+   "name": "RH, Goldbach, P-vs-NP and Kurepa are the spectral, additive",
    "block": "Z",
    "key": "p00110",
    "tag": "D",
@@ -2305,7 +2305,8 @@
     "25-göd",
     "20-rh",
     "23-gold",
-    "26-pnp"
+    "26-pnp",
+    "13-epi"
    ],
    "witness": null,
    "refs": [
@@ -2326,7 +2327,7 @@
      "key": "p00135"
     }
    ],
-   "statement": "RH, Goldbach, and P-vs-NP are the spectral, additive, and computational faces of one horizon clause: each a uniform check over the totality whose per-instance statements are $\\Om$-blind relations (RH: Z10, Z11) and whose uniform form is an $\\Om$-hard value (Z3, Z4), host-decided on a hosted Carrier. An $\\Om$-hard value says nothing about whether a bounded-height certificate exists."
+   "statement": "RH, Goldbach, P-vs-NP and Kurepa are the spectral, additive, computational and factorial faces of one horizon clause: each a uniform check over the totality whose per-instance statements are $\\Om$-blind relations (Z10, Z11; 13:F2) and whose uniform form is an $\\Om$-hard value (Z3, Z4), host-decided on a hosted Carrier. An $\\Om$-hard value says nothing about whether a bounded-height certificate exists."
   },
   {
    "label": "Z3",

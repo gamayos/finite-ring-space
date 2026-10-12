@@ -478,7 +478,7 @@
     },
     {
      "label": "J5",
-     "predicate": "Universality and the duality as corollary: $\\p$-hardness is self-similar, every shell finding its own half-period and drive name beyond its own horizon, so the chart shadows agree across all observers; $\\pi$'s seat is calibration-pinned with a height-two certificate and its arc role normalisation-fixed, $e$ has neither a pinned seat nor a cross-shell certificate and its role is generator-dependent --- structural against statistical is the certification split (I3). The sporadic small-height shells of J3 are the certificate-level face of I4.",
+     "predicate": "Universality and the duality as corollary: $\\p$-hardness is self-similar, every shell finding its own half-period and drive name beyond its own horizon, so the chart shadows agree across all observers; $\\pi$'s half-period is calibration-pinned with a height-two certificate (J2) and its arc role normalisation-fixed, $\\eP$ has neither a pinned residue nor a cross-shell certificate and its role is generator-dependent --- structural against statistical is the certification split (I3). The sporadic small-height shells of J3 are the certificate-level face of I4.",
      "tag": "T",
      "source": "\\S\\ref{sec:consequences}\\newline \\pywit{epi}{p13056}{J5}",
      "key": "p13056"

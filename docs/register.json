@@ -3703,7 +3703,7 @@
   {
    "key": "p00110",
    "origin": "00",
-   "statement": "RH, Goldbach, and P-vs-NP are the spectral, additive, and computational faces of one horizon clause: each a uniform check over the totality whose per-instance statements are $\\Om$-blind relations (RH: Z10, Z11) and whose uniform form is an $\\Om$-hard value (Z3, Z4), host-decided on a hosted Carrier. An $\\Om$-hard value says nothing about whether a bounded-height certificate exists.",
+   "statement": "RH, Goldbach, P-vs-NP and Kurepa are the spectral, additive, computational and factorial faces of one horizon clause: each a uniform check over the totality whose per-instance statements are $\\Om$-blind relations (Z10, Z11; 13:F2) and whose uniform form is an $\\Om$-hard value (Z3, Z4), host-decided on a hosted Carrier. An $\\Om$-hard value says nothing about whether a bounded-height certificate exists.",
    "origin_row": "00:Z2",
    "tag": "D",
    "tier": null,
@@ -12767,7 +12767,7 @@
   {
    "key": "p13056",
    "origin": "13",
-   "statement": "Universality and the duality as corollary: $\\p$-hardness is self-similar, every shell finding its own half-period and drive name beyond its own horizon, so the chart shadows agree across all observers; $\\pi$'s seat is calibration-pinned with a height-two certificate and its arc role normalisation-fixed, $e$ has neither a pinned seat nor a cross-shell certificate and its role is generator-dependent --- structural against statistical is the certification split (I3). The sporadic small-height shells of J3 are the certificate-level face of I4.",
+   "statement": "Universality and the duality as corollary: $\\p$-hardness is self-similar, every shell finding its own half-period and drive name beyond its own horizon, so the chart shadows agree across all observers; $\\pi$'s half-period is calibration-pinned with a height-two certificate (J2) and its arc role normalisation-fixed, $\\eP$ has neither a pinned residue nor a cross-shell certificate and its role is generator-dependent --- structural against statistical is the certification split (I3). The sporadic small-height shells of J3 are the certificate-level face of I4.",
    "origin_row": "13:J5",
    "tag": "T",
    "tier": null,
@@ -27407,9 +27407,9 @@
    "label": "Z2",
    "block": "Z",
    "tag": "D",
-   "name": "RH, Goldbach, and P-vs-NP are the spectral, additive",
-   "statement": "RH, Goldbach, and P-vs-NP are the spectral, additive, and computational faces of one horizon clause: each a uniform check over the totality whose per-instance statements are $\\Om$-blind relations (RH: Z10, Z11) and whose uniform form is an $\\Om$-hard value (Z3, Z4), host-decided on a hosted Carrier. An $\\Om$-hard value says nothing about whether a bounded-height certificate exists.",
-   "source": "25-göd, 20-rh, 23-gold, 26-pnp",
+   "name": "RH, Goldbach, P-vs-NP and Kurepa are the spectral, additive",
+   "statement": "RH, Goldbach, P-vs-NP and Kurepa are the spectral, additive, computational and factorial faces of one horizon clause: each a uniform check over the totality whose per-instance statements are $\\Om$-blind relations (Z10, Z11; 13:F2) and whose uniform form is an $\\Om$-hard value (Z3, Z4), host-decided on a hosted Carrier. An $\\Om$-hard value says nothing about whether a bounded-height certificate exists.",
+   "source": "25-göd, 20-rh, 23-gold, 26-pnp, 13-epi",
    "page": "00-ledger.html#Z2",
    "witness": {
     "script": null,
@@ -27420,15 +27420,17 @@
     "p00111",
     "p00112",
     "p00135",
+    "p13028",
     "p20043"
    ],
    "sources": [
     "25-göd",
     "20-rh",
     "23-gold",
-    "26-pnp"
+    "26-pnp",
+    "13-epi"
    ],
-   "text": "RH, Goldbach, and P-vs-NP are the spectral, additive: RH, Goldbach, and P-vs-NP are the spectral, additive, and computational faces of one horizon clause: each a uniform check over the totality whose per-instance statements are $\\Om$-blind relations (RH: Z10, Z11) and whose uniform form is an $\\Om$-hard value (Z3, Z4), host-decided on a hosted Carrier. An $\\Om$-hard value says nothing about whether a bounded-height certificate exists. 25-göd, 20-rh, 23-gold, 26-pnp"
+   "text": "RH, Goldbach, P-vs-NP and Kurepa are the spectral, additive: RH, Goldbach, P-vs-NP and Kurepa are the spectral, additive, computational and factorial faces of one horizon clause: each a uniform check over the totality whose per-instance statements are $\\Om$-blind relations (Z10, Z11; 13:F2) and whose uniform form is an $\\Om$-hard value (Z3, Z4), host-decided on a hosted Carrier. An $\\Om$-hard value says nothing about whether a bounded-height certificate exists. 25-göd, 20-rh, 23-gold, 26-pnp, 13-epi"
   },
   {
    "paper": "00",
@@ -40149,7 +40151,7 @@
    "block": "J",
    "tag": "T",
    "name": null,
-   "statement": "Universality and the duality as corollary: $\\p$-hardness is self-similar, every shell finding its own half-period and drive name beyond its own horizon, so the chart shadows agree across all observers; $\\pi$'s seat is calibration-pinned with a height-two certificate and its arc role normalisation-fixed, $e$ has neither a pinned seat nor a cross-shell certificate and its role is generator-dependent --- structural against statistical is the certification split (I3). The sporadic small-height shells of J3 are the certificate-level face of I4.",
+   "statement": "Universality and the duality as corollary: $\\p$-hardness is self-similar, every shell finding its own half-period and drive name beyond its own horizon, so the chart shadows agree across all observers; $\\pi$'s half-period is calibration-pinned with a height-two certificate (J2) and its arc role normalisation-fixed, $\\eP$ has neither a pinned residue nor a cross-shell certificate and its role is generator-dependent --- structural against statistical is the certification split (I3). The sporadic small-height shells of J3 are the certificate-level face of I4.",
    "source": "\\S\\ref{sec:consequences}\\newline \\pywit{epi}{p13056}{J5}",
    "page": "13-epi/index.html#J5",
    "witness": {
@@ -40165,9 +40167,10 @@
     "p00019",
     "p13050",
     "p13051",
+    "p13053",
     "p13054"
    ],
-   "text": "Universality and the duality as corollary: $\\p$-hardness is self-similar, every shell finding its own half-period and drive name beyond its own horizon, so the chart shadows agree across all observers; $\\pi$'s seat is calibration-pinned with a height-two certificate and its arc role normalisation-fixed, $e$ has neither a pinned seat nor a cross-shell certificate and its role is generator-dependent — structural against statistical is the certification split (I3). The sporadic small-height shells of J3 are the certificate-level face of I4. \\Ssec:consequences p13056"
+   "text": "Universality and the duality as corollary: $\\p$-hardness is self-similar, every shell finding its own half-period and drive name beyond its own horizon, so the chart shadows agree across all observers; $\\pi$'s half-period is calibration-pinned with a height-two certificate (J2) and its arc role normalisation-fixed, $\\eP$ has neither a pinned residue nor a cross-shell certificate and its role is generator-dependent — structural against statistical is the certification split (I3). The sporadic small-height shells of J3 are the certificate-level face of I4. \\Ssec:consequences p13056"
   },
   {
    "paper": "13-epi",
