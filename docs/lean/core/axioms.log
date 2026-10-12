@@ -1242,6 +1242,7 @@
 'FRC.Grav.calibration' does not depend on any axioms
 'FRC.Grav.newton_residue' does not depend on any axioms
 'FRC.Grav.hbar_root' does not depend on any axioms
+'FRC.Grav.closed_chart' does not depend on any axioms
 'FRC.Grav.two_face_count' does not depend on any axioms
 'FRC.Grav.register13_17' does not depend on any axioms
 'FRC.Grav.merger_instance' does not depend on any axioms
@@ -1527,7 +1528,6 @@
 'FRC.Ledger.p06053' does not depend on any axioms
 'FRC.Ledger.p06054' does not depend on any axioms
 'FRC.Ledger.p06056' does not depend on any axioms
-'FRC.Ledger.p21035' does not depend on any axioms
 'FRC.Ledger.p01026' does not depend on any axioms
 'FRC.Ledger.p00186' does not depend on any axioms
 'FRC.Ledger.p05013' does not depend on any axioms
@@ -1587,8 +1587,10 @@
 'FRC.Ledger.p21026' does not depend on any axioms
 'FRC.Ledger.p21030' does not depend on any axioms
 'FRC.Ledger.p21031' does not depend on any axioms
+'FRC.Ledger.p21035' does not depend on any axioms
 'FRC.Ledger.p21036' does not depend on any axioms
 'FRC.Ledger.p21040' does not depend on any axioms
+'FRC.Ledger.p21041' does not depend on any axioms
 'FRC.Ledger.p21043' does not depend on any axioms
 'FRC.Ledger.p21055' does not depend on any axioms
 'FRC.Ledger.p21062' does not depend on any axioms
@@ -2236,6 +2238,7 @@
 'FRC.Gravity.p21035' does not depend on any axioms
 'FRC.Gravity.p21036' does not depend on any axioms
 'FRC.Gravity.p21040' does not depend on any axioms
+'FRC.Gravity.p21041' does not depend on any axioms
 'FRC.Gravity.p21043' does not depend on any axioms
 'FRC.Gravity.p21055' does not depend on any axioms
 'FRC.Dirac.quarterTurn_eq_pow' does not depend on any axioms

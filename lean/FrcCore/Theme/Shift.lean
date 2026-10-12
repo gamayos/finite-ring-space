@@ -1,7 +1,7 @@
 import FrcCore.Series
 
 /-!
-# FrcCore.Theme.Shift — the cycle, its shifts and the finite Fourier shift theorem (the fourier theme; 21-gravity, 10 October 2026)
+# FrcCore.Theme.Shift — the cycle, its shifts and the finite Fourier shift theorem (the gravity theme's first file; 21-gravity, 10 October 2026, moved from the fourier theme on 11 October)
 
 A function on the cycle of `n` sites is a function `Nat → Shell p` read at `i mod n` (`cyc`). A sum over the cycle is
 invariant under the shift of its index (`sum_shift`), because `j ↦ (j + s) mod n` permutes `[0, n)` (`shift_inj`, proved

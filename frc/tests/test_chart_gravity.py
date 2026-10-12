@@ -63,6 +63,10 @@ class FloorTest(unittest.TestCase):
         u0, floor, bound, low = CG.horizonless()
         self.assertLess(u0, bound); self.assertGreater(floor, 0); self.assertAlmostEqual(low, floor, places=12)
         self.assertAlmostEqual(u0, 2.622, delta=0.002)
+        ci = CG.curvature_import()
+        self.assertAlmostEqual(ci["ln_omega"], 283.5, delta=0.01)
+        self.assertAlmostEqual(ci["log10_lambda_omega"], math.log10(12 * math.pi), places=9)
+        self.assertAlmostEqual(ci["horizon_ratio"], 1.0, places=9)
 
     def test_kuramoto_quiet_fixed_point(self):
         mean, dev = CG.kuramoto_chain(0.0, M=5, T=6000, burn=2000)

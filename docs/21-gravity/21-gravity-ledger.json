@@ -325,7 +325,7 @@
      "label": "X1",
      "predicate": "\\textbf{The cosmological-constant magnitude.} $\\Lambda\\sim1/\\Omega$ in Planck units is the curvature of the closed chart, the totality datum, not a vacuum energy requiring cancellation across $122$ orders. The fine-tuning problem is not solved but unasked.",
      "tag": "T",
-     "source": "\\S\\ref{sec:intro}; rests on A1, B8, C14",
+     "source": "\\S\\ref{sec:intro}\\newline \\pywit{gravity}{p21041}{X1}, \\leanwit{FrcCore}{p21041}{X1}; rests on A1, B8, C14 \\lean{FRC.Grav.closed\\_chart}",
      "key": "p21041"
     },
     {
@@ -623,7 +623,7 @@
    {
     "name": "FRC.Grav.two_face_count",
     "module": "FrcCore/Theme/Gravity",
-    "line": 631,
+    "line": 648,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -1015,7 +1015,7 @@
    {
     "name": "FRC.Grav.merger_instance",
     "module": "FrcCore/Theme/Gravity",
-    "line": 652,
+    "line": 669,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -1084,7 +1084,7 @@
    {
     "name": "FRC.Grav.lab_register",
     "module": "FrcCore/Theme/Gravity",
-    "line": 659,
+    "line": 676,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -1262,6 +1262,17 @@
     "tier": 0,
     "ok": true,
     "doc": "21:C25 — the deviation `2γ − β − 1` vanishes on the triangle."
+   }
+  ],
+  "X1": [
+   {
+    "name": "FRC.Grav.closed_chart",
+    "module": "FrcCore/Theme/Gravity",
+    "line": 632,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "21:X1 — the closed chart on every frame: the drive's full cycle is `p − 1 = 4κ` chronons. Every nonzero residue returns after it (`x = g^m` by the frame's generation, so `x^{4κ} = (g^{4κ})^m = 1`), the generator after no shorter run, and the half cycle is the half-turn `g^{2κ} = −1`. The chart closes at the totality datum: its circumference, the horizon's `2π r_H` in light time, is the full cycle (the primer). The curvature is the chart's reading of the same datum, `Λ = 3/r_H² = 12π/(Ω − 1)` in Planck units with `S = π r_H²` and `Ω = 4S + 1` (the ledger file's check A7, over ℚ with `π` a symbol); the register carries no value for it."
    }
   ],
   "X2": [

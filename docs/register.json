@@ -15112,7 +15112,7 @@
    "check": {
     "href": "frc/ledgers/p21_gravity.html#p21001",
     "script": "p21_gravity.py",
-    "line": 116,
+    "line": 118,
     "verdict": "pass"
    },
    "declarations": [
@@ -15245,7 +15245,7 @@
    "check": {
     "href": "frc/ledgers/p21_gravity.html#p21009",
     "script": "p21_gravity.py",
-    "line": 138,
+    "line": 140,
     "verdict": "pass"
    },
    "declarations": [
@@ -15413,7 +15413,7 @@
    "check": {
     "href": "frc/ledgers/p21_gravity.html#p21016",
     "script": "p21_gravity.py",
-    "line": 198,
+    "line": 207,
     "verdict": "pass"
    },
    "declarations": [
@@ -15449,7 +15449,7 @@
    "check": {
     "href": "frc/ledgers/p21_gravity.html#p21017",
     "script": "p21_gravity.py",
-    "line": 125,
+    "line": 127,
     "verdict": "pass"
    },
    "declarations": [
@@ -15480,7 +15480,7 @@
    "check": {
     "href": "frc/ledgers/p21_gravity.html#p21018",
     "script": "p21_gravity.py",
-    "line": 289,
+    "line": 298,
     "verdict": "pass"
    },
    "declarations": [
@@ -15511,7 +15511,7 @@
    "check": {
     "href": "frc/ledgers/p21_gravity.html#p21019",
     "script": "p21_gravity.py",
-    "line": 191,
+    "line": 200,
     "verdict": "pass"
    },
    "declarations": [
@@ -15537,7 +15537,7 @@
    "check": {
     "href": "frc/ledgers/p21_gravity.html#p21020",
     "script": "p21_gravity.py",
-    "line": 133,
+    "line": 135,
     "verdict": "pass"
    },
    "declarations": [
@@ -15573,7 +15573,7 @@
    "check": {
     "href": "frc/ledgers/p21_gravity.html#p21021",
     "script": "p21_gravity.py",
-    "line": 256,
+    "line": 265,
     "verdict": "pass"
    },
    "declarations": [
@@ -15599,7 +15599,7 @@
    "check": {
     "href": "frc/ledgers/p21_gravity.html#p21022",
     "script": "p21_gravity.py",
-    "line": 304,
+    "line": 313,
     "verdict": "pass"
    },
    "declarations": [
@@ -15635,7 +15635,7 @@
    "check": {
     "href": "frc/ledgers/p21_gravity.html#p21023",
     "script": "p21_gravity.py",
-    "line": 304,
+    "line": 313,
     "verdict": "pass"
    },
    "declarations": [
@@ -15676,7 +15676,7 @@
    "check": {
     "href": "frc/ledgers/p21_gravity.html#p21024",
     "script": "p21_gravity.py",
-    "line": 166,
+    "line": 175,
     "verdict": "pass"
    },
    "declarations": [
@@ -15717,7 +15717,7 @@
    "check": {
     "href": "frc/ledgers/p21_gravity.html#p21025",
     "script": "p21_gravity.py",
-    "line": 370,
+    "line": 379,
     "verdict": "pass"
    },
    "declarations": [],
@@ -15737,7 +15737,7 @@
    "check": {
     "href": "frc/ledgers/p21_gravity.html#p21026",
     "script": "p21_gravity.py",
-    "line": 243,
+    "line": 252,
     "verdict": "pass"
    },
    "declarations": [
@@ -15775,7 +15775,7 @@
    "check": {
     "href": "frc/ledgers/p21_gravity.html#p21027",
     "script": "p21_gravity.py",
-    "line": 317,
+    "line": 326,
     "verdict": "pass"
    },
    "declarations": [
@@ -15803,7 +15803,7 @@
    "check": {
     "href": "frc/ledgers/p21_gravity.html#p21062",
     "script": "p21_gravity.py",
-    "line": 152,
+    "line": 154,
     "verdict": "pass"
    },
    "declarations": [
@@ -15875,7 +15875,7 @@
    "check": {
     "href": "frc/ledgers/p21_gravity.html#p21030",
     "script": "p21_gravity.py",
-    "line": 206,
+    "line": 215,
     "verdict": "pass"
    },
    "declarations": [
@@ -15909,7 +15909,7 @@
    "check": {
     "href": "frc/ledgers/p21_gravity.html#p21031",
     "script": "p21_gravity.py",
-    "line": 116,
+    "line": 118,
     "verdict": "pass"
    },
    "declarations": [
@@ -15953,7 +15953,7 @@
    "check": {
     "href": "frc/ledgers/p21_gravity.html#p21032",
     "script": "p21_gravity.py",
-    "line": 376,
+    "line": 385,
     "verdict": "pass"
    },
    "declarations": [],
@@ -15976,7 +15976,7 @@
    "check": {
     "href": "frc/ledgers/p21_gravity.html#p21033",
     "script": "p21_gravity.py",
-    "line": 322,
+    "line": 331,
     "verdict": "pass"
    },
    "declarations": [
@@ -16009,7 +16009,7 @@
    "check": {
     "href": "frc/ledgers/p21_gravity.html#p21064",
     "script": "p21_gravity.py",
-    "line": 264,
+    "line": 273,
     "verdict": "pass"
    },
    "declarations": [
@@ -16054,7 +16054,7 @@
    "check": {
     "href": "frc/ledgers/p21_gravity.html#p21035",
     "script": "p21_gravity.py",
-    "line": 188,
+    "line": 197,
     "verdict": "pass"
    },
    "declarations": [
@@ -16090,7 +16090,7 @@
    "check": {
     "href": "frc/ledgers/p21_gravity.html#p21036",
     "script": "p21_gravity.py",
-    "line": 223,
+    "line": 232,
     "verdict": "pass"
    },
    "declarations": [
@@ -16126,7 +16126,7 @@
    "check": {
     "href": "frc/ledgers/p21_gravity.html#p21037",
     "script": "p21_gravity.py",
-    "line": 227,
+    "line": 236,
     "verdict": "pass"
    },
    "declarations": [],
@@ -16146,7 +16146,7 @@
    "check": {
     "href": "frc/ledgers/p21_gravity.html#p21038",
     "script": "p21_gravity.py",
-    "line": 308,
+    "line": 317,
     "verdict": "pass"
    },
    "declarations": [],
@@ -16168,7 +16168,7 @@
    "check": {
     "href": "frc/ledgers/p21_gravity.html#p21040",
     "script": "p21_gravity.py",
-    "line": 248,
+    "line": 257,
     "verdict": "pass"
    },
    "declarations": [
@@ -16204,7 +16204,7 @@
    "check": {
     "href": "frc/ledgers/p21_gravity.html#p21049",
     "script": "p21_gravity.py",
-    "line": 351,
+    "line": 360,
     "verdict": "pass"
    },
    "declarations": [
@@ -16248,7 +16248,7 @@
    "check": {
     "href": "frc/ledgers/p21_gravity.html#p21051",
     "script": "p21_gravity.py",
-    "line": 370,
+    "line": 379,
     "verdict": "pass"
    },
    "declarations": [
@@ -16276,7 +16276,7 @@
    "check": {
     "href": "frc/ledgers/p21_gravity.html#p21052",
     "script": "p21_gravity.py",
-    "line": 409,
+    "line": 418,
     "verdict": "pass"
    },
    "declarations": [
@@ -16307,7 +16307,7 @@
    "check": {
     "href": "frc/ledgers/p21_gravity.html#p21053",
     "script": "p21_gravity.py",
-    "line": 423,
+    "line": 432,
     "verdict": "pass"
    },
    "declarations": [
@@ -16350,7 +16350,7 @@
    "check": {
     "href": "frc/ledgers/p21_gravity.html#p21054",
     "script": "p21_gravity.py",
-    "line": 445,
+    "line": 454,
     "verdict": "pass"
    },
    "declarations": [
@@ -16380,7 +16380,7 @@
    "check": {
     "href": "frc/ledgers/p21_gravity.html#p21055",
     "script": "p21_gravity.py",
-    "line": 312,
+    "line": 321,
     "verdict": "pass"
    },
    "declarations": [
@@ -16411,7 +16411,7 @@
    "check": {
     "href": "frc/ledgers/p21_gravity.html#p21050",
     "script": "p21_gravity.py",
-    "line": 358,
+    "line": 367,
     "verdict": "pass"
    },
    "declarations": [
@@ -16439,7 +16439,7 @@
    "check": {
     "href": "frc/ledgers/p21_gravity.html#p21060",
     "script": "p21_gravity.py",
-    "line": 437,
+    "line": 446,
     "verdict": "pass"
    },
    "declarations": [
@@ -16463,9 +16463,20 @@
    "statement": "\\textbf{The cosmological-constant magnitude.} $\\Lambda\\sim1/\\Omega$ in Planck units is the curvature of the closed chart, the totality datum, not a vacuum energy requiring cancellation across $122$ orders. The fine-tuning problem is not solved but unasked.",
    "origin_row": "21:X1",
    "tag": "T",
-   "tier": null,
-   "check": null,
-   "declarations": [],
+   "tier": 0,
+   "check": {
+    "href": "frc/ledgers/p21_gravity.html#p21041",
+    "script": "p21_gravity.py",
+    "line": 164,
+    "verdict": "pass"
+   },
+   "declarations": [
+    {
+     "lib": "FrcCore",
+     "module": "FrcCore/Theme/Gravity",
+     "name": "FRC.Grav.closed_chart"
+    }
+   ],
    "aliases": [
     "p32035"
    ],
@@ -16486,7 +16497,7 @@
    "check": {
     "href": "frc/ledgers/p21_gravity.html#p21042",
     "script": "p21_gravity.py",
-    "line": 417,
+    "line": 426,
     "verdict": "pass"
    },
    "declarations": [
@@ -16515,7 +16526,7 @@
    "check": {
     "href": "frc/ledgers/p21_gravity.html#p21043",
     "script": "p21_gravity.py",
-    "line": 294,
+    "line": 303,
     "verdict": "pass"
    },
    "declarations": [
@@ -16610,7 +16621,7 @@
    "check": {
     "href": "frc/ledgers/p21_gravity.html#p21048",
     "script": "p21_gravity.py",
-    "line": 156,
+    "line": 158,
     "verdict": "pass"
    },
    "declarations": [
@@ -43462,7 +43473,7 @@
     "py": {
      "href": "frc/ledgers/p21_gravity.html#p21001",
      "script": "p21_gravity.py",
-     "line": 116,
+     "line": 118,
      "verdict": "pass"
     },
     "lean": [
@@ -43649,7 +43660,7 @@
     "py": {
      "href": "frc/ledgers/p21_gravity.html#p21009",
      "script": "p21_gravity.py",
-     "line": 138,
+     "line": 140,
      "verdict": "pass"
     },
     "lean": [
@@ -43892,7 +43903,7 @@
     "py": {
      "href": "frc/ledgers/p21_gravity.html#p21016",
      "script": "p21_gravity.py",
-     "line": 198,
+     "line": 207,
      "verdict": "pass"
     },
     "lean": [
@@ -43941,7 +43952,7 @@
     "py": {
      "href": "frc/ledgers/p21_gravity.html#p21017",
      "script": "p21_gravity.py",
-     "line": 125,
+     "line": 127,
      "verdict": "pass"
     },
     "lean": [
@@ -43984,7 +43995,7 @@
     "py": {
      "href": "frc/ledgers/p21_gravity.html#p21018",
      "script": "p21_gravity.py",
-     "line": 289,
+     "line": 298,
      "verdict": "pass"
     },
     "lean": [
@@ -44027,7 +44038,7 @@
     "py": {
      "href": "frc/ledgers/p21_gravity.html#p21019",
      "script": "p21_gravity.py",
-     "line": 191,
+     "line": 200,
      "verdict": "pass"
     },
     "lean": [
@@ -44060,7 +44071,7 @@
     "py": {
      "href": "frc/ledgers/p21_gravity.html#p21020",
      "script": "p21_gravity.py",
-     "line": 133,
+     "line": 135,
      "verdict": "pass"
     },
     "lean": [
@@ -44109,7 +44120,7 @@
     "py": {
      "href": "frc/ledgers/p21_gravity.html#p21021",
      "script": "p21_gravity.py",
-     "line": 256,
+     "line": 265,
      "verdict": "pass"
     },
     "lean": [
@@ -44142,7 +44153,7 @@
     "py": {
      "href": "frc/ledgers/p21_gravity.html#p21022",
      "script": "p21_gravity.py",
-     "line": 304,
+     "line": 313,
      "verdict": "pass"
     },
     "lean": [
@@ -44191,7 +44202,7 @@
     "py": {
      "href": "frc/ledgers/p21_gravity.html#p21023",
      "script": "p21_gravity.py",
-     "line": 304,
+     "line": 313,
      "verdict": "pass"
     },
     "lean": [
@@ -44248,7 +44259,7 @@
     "py": {
      "href": "frc/ledgers/p21_gravity.html#p21024",
      "script": "p21_gravity.py",
-     "line": 166,
+     "line": 175,
      "verdict": "pass"
     },
     "lean": [
@@ -44308,7 +44319,7 @@
     "py": {
      "href": "frc/ledgers/p21_gravity.html#p21025",
      "script": "p21_gravity.py",
-     "line": 370,
+     "line": 379,
      "verdict": "pass"
     },
     "lean": []
@@ -44332,7 +44343,7 @@
     "py": {
      "href": "frc/ledgers/p21_gravity.html#p21026",
      "script": "p21_gravity.py",
-     "line": 243,
+     "line": 252,
      "verdict": "pass"
     },
     "lean": [
@@ -44383,7 +44394,7 @@
     "py": {
      "href": "frc/ledgers/p21_gravity.html#p21027",
      "script": "p21_gravity.py",
-     "line": 317,
+     "line": 326,
      "verdict": "pass"
     },
     "lean": [
@@ -44419,7 +44430,7 @@
     "py": {
      "href": "frc/ledgers/p21_gravity.html#p21062",
      "script": "p21_gravity.py",
-     "line": 152,
+     "line": 154,
      "verdict": "pass"
     },
     "lean": [
@@ -44524,7 +44535,7 @@
     "py": {
      "href": "frc/ledgers/p21_gravity.html#p21030",
      "script": "p21_gravity.py",
-     "line": 206,
+     "line": 215,
      "verdict": "pass"
     },
     "lean": [
@@ -44571,7 +44582,7 @@
     "py": {
      "href": "frc/ledgers/p21_gravity.html#p21031",
      "script": "p21_gravity.py",
-     "line": 116,
+     "line": 118,
      "verdict": "pass"
     },
     "lean": [
@@ -44635,7 +44646,7 @@
     "py": {
      "href": "frc/ledgers/p21_gravity.html#p21032",
      "script": "p21_gravity.py",
-     "line": 376,
+     "line": 385,
      "verdict": "pass"
     },
     "lean": []
@@ -44665,7 +44676,7 @@
     "py": {
      "href": "frc/ledgers/p21_gravity.html#p21033",
      "script": "p21_gravity.py",
-     "line": 322,
+     "line": 331,
      "verdict": "pass"
     },
     "lean": [
@@ -44709,7 +44720,7 @@
     "py": {
      "href": "frc/ledgers/p21_gravity.html#p21064",
      "script": "p21_gravity.py",
-     "line": 264,
+     "line": 273,
      "verdict": "pass"
     },
     "lean": [
@@ -44772,7 +44783,7 @@
     "py": {
      "href": "frc/ledgers/p21_gravity.html#p21035",
      "script": "p21_gravity.py",
-     "line": 188,
+     "line": 197,
      "verdict": "pass"
     },
     "lean": [
@@ -44821,7 +44832,7 @@
     "py": {
      "href": "frc/ledgers/p21_gravity.html#p21036",
      "script": "p21_gravity.py",
-     "line": 223,
+     "line": 232,
      "verdict": "pass"
     },
     "lean": [
@@ -44870,7 +44881,7 @@
     "py": {
      "href": "frc/ledgers/p21_gravity.html#p21037",
      "script": "p21_gravity.py",
-     "line": 227,
+     "line": 236,
      "verdict": "pass"
     },
     "lean": []
@@ -44896,7 +44907,7 @@
     "py": {
      "href": "frc/ledgers/p21_gravity.html#p21038",
      "script": "p21_gravity.py",
-     "line": 308,
+     "line": 317,
      "verdict": "pass"
     },
     "lean": []
@@ -44922,7 +44933,7 @@
     "py": {
      "href": "frc/ledgers/p21_gravity.html#p21040",
      "script": "p21_gravity.py",
-     "line": 248,
+     "line": 257,
      "verdict": "pass"
     },
     "lean": [
@@ -44974,7 +44985,7 @@
     "py": {
      "href": "frc/ledgers/p21_gravity.html#p21049",
      "script": "p21_gravity.py",
-     "line": 351,
+     "line": 360,
      "verdict": "pass"
     },
     "lean": [
@@ -45036,7 +45047,7 @@
     "py": {
      "href": "frc/ledgers/p21_gravity.html#p21051",
      "script": "p21_gravity.py",
-     "line": 370,
+     "line": 379,
      "verdict": "pass"
     },
     "lean": [
@@ -45073,7 +45084,7 @@
     "py": {
      "href": "frc/ledgers/p21_gravity.html#p21052",
      "script": "p21_gravity.py",
-     "line": 409,
+     "line": 418,
      "verdict": "pass"
     },
     "lean": [
@@ -45113,7 +45124,7 @@
     "py": {
      "href": "frc/ledgers/p21_gravity.html#p21053",
      "script": "p21_gravity.py",
-     "line": 423,
+     "line": 432,
      "verdict": "pass"
     },
     "lean": [
@@ -45175,7 +45186,7 @@
     "py": {
      "href": "frc/ledgers/p21_gravity.html#p21054",
      "script": "p21_gravity.py",
-     "line": 445,
+     "line": 454,
      "verdict": "pass"
     },
     "lean": [
@@ -45213,7 +45224,7 @@
     "py": {
      "href": "frc/ledgers/p21_gravity.html#p21055",
      "script": "p21_gravity.py",
-     "line": 312,
+     "line": 321,
      "verdict": "pass"
     },
     "lean": [
@@ -45258,7 +45269,7 @@
     "py": {
      "href": "frc/ledgers/p21_gravity.html#p21050",
      "script": "p21_gravity.py",
-     "line": 358,
+     "line": 367,
      "verdict": "pass"
     },
     "lean": [
@@ -45295,7 +45306,7 @@
     "py": {
      "href": "frc/ledgers/p21_gravity.html#p21060",
      "script": "p21_gravity.py",
-     "line": 437,
+     "line": 446,
      "verdict": "pass"
     },
     "lean": [
@@ -45326,18 +45337,32 @@
    "tag": "T",
    "name": null,
    "statement": "\\textbf{The cosmological-constant magnitude.} $\\Lambda\\sim1/\\Omega$ in Planck units is the curvature of the closed chart, the totality datum, not a vacuum energy requiring cancellation across $122$ orders. The fine-tuning problem is not solved but unasked.",
-   "source": "\\S\\ref{sec:intro}; rests on A1, B8, C14",
+   "source": "\\S\\ref{sec:intro}\\newline \\pywit{gravity}{p21041}{X1}, \\leanwit{FrcCore}{p21041}{X1}; rests on A1, B8, C14 \\lean{FRC.Grav.closed\\_chart}",
    "page": "21-gravity/index.html#X1",
    "witness": {
-    "py": null,
-    "lean": []
+    "py": {
+     "href": "frc/ledgers/p21_gravity.html#p21041",
+     "script": "p21_gravity.py",
+     "line": 164,
+     "verdict": "pass"
+    },
+    "lean": [
+     {
+      "lib": "FrcCore",
+      "module": "FrcCore/Theme/Gravity",
+      "name": "FRC.Grav.closed_chart",
+      "tier": 0,
+      "ok": true,
+      "page": "lean/core/Theme.html#FRC.Grav.closed_chart"
+     }
+    ]
    },
    "refs": [
     "p21001",
     "p21063",
     "p32014"
    ],
-   "text": "The cosmological-constant magnitude. $\\Lambda\\sim1/\\Omega$ in Planck units is the curvature of the closed chart, the totality datum, not a vacuum energy requiring cancellation across $122$ orders. The fine-tuning problem is not solved but unasked. \\Ssec:intro; rests on A1, B8, C14"
+   "text": "The cosmological-constant magnitude. $\\Lambda\\sim1/\\Omega$ in Planck units is the curvature of the closed chart, the totality datum, not a vacuum energy requiring cancellation across $122$ orders. The fine-tuning problem is not solved but unasked. \\Ssec:intro p21041, FrcCore{X1}; rests on A1, B8, C14 FRC.Grav.closed_chart"
   },
   {
    "paper": "21-grav",
@@ -45355,7 +45380,7 @@
     "py": {
      "href": "frc/ledgers/p21_gravity.html#p21042",
      "script": "p21_gravity.py",
-     "line": 417,
+     "line": 426,
      "verdict": "pass"
     },
     "lean": [
@@ -45393,7 +45418,7 @@
     "py": {
      "href": "frc/ledgers/p21_gravity.html#p21043",
      "script": "p21_gravity.py",
-     "line": 294,
+     "line": 303,
      "verdict": "pass"
     },
     "lean": [
@@ -45521,7 +45546,7 @@
     "py": {
      "href": "frc/ledgers/p21_gravity.html#p21048",
      "script": "p21_gravity.py",
-     "line": 156,
+     "line": 158,
      "verdict": "pass"
     },
     "lean": [

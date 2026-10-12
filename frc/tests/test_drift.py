@@ -100,6 +100,12 @@ class SeriesTest(unittest.TestCase):
         ok, order = D.offset_return(12, {0, 5, 6, 7, 11})
         self.assertTrue(ok); self.assertEqual(order, 12)
 
+    def test_closed_chart(self):
+        self.assertTrue(all(D.closed_chart(p, g) for p, g in ((13, 2), (17, 3), (29, 2), (41, 6))))
+        self.assertFalse(D.closed_chart(13, 3))                      # 3 has order 3 on 𝔽₁₃: no generator
+        ok, lam, tau2 = D.curvature_datum(602140)
+        self.assertTrue(ok); self.assertEqual(lam, Fraction(3, 602140)); self.assertEqual(tau2, Fraction(1, 2408560))
+
 
 if __name__ == "__main__":
     unittest.main()

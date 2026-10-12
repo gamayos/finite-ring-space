@@ -140,7 +140,7 @@
    "key": "p21041",
    "tag": "T",
    "predicate": "\\textbf{The cosmological-constant magnitude.} $\\Lambda\\sim1/\\Omega$ in Planck units is the curvature of the closed chart, the totality datum, not a vacuum energy requiring cancellation across $122$ orders. The fine-tuning problem is not solved but unasked.",
-   "source": "\\S\\ref{sec:intro}; rests on A1, B8, C14",
+   "source": "\\S\\ref{sec:intro}\\newline \\pywit{gravity}{p21041}{X1}, \\leanwit{FrcCore}{p21041}{X1}; rests on A1, B8, C14 \\lean{FRC.Grav.closed\\_chart}",
    "master": [],
    "restated": [
     "32:X9",

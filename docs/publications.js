@@ -413,14 +413,14 @@ const PUBLICATIONS = [
       {
         "href": "https://colab.research.google.com/github/gamayos/finite-ring-space/blob/main/frc/ledgers/p21_gravity.ipynb",
         "label": "python",
-        "count": 36,
-        "title": "36 predicates checked, all passing: the notebook p21_gravity.ipynb on Google Colab, one cell per predicate"
+        "count": 37,
+        "title": "37 predicates checked, all passing: the notebook p21_gravity.ipynb on Google Colab, one cell per predicate"
       },
       {
         "href": "https://live.lean-lang.org/#project=lean-v4.34.0&url=https://finitering.space/lean/web/core/Gravity.lean",
         "label": "lean",
-        "count": 20,
-        "title": "20 predicates proved in the core (no axioms), 16 of them also on Mathlib: the core module Gravity as one executable file (plain Lean, no Mathlib) in Lean Live"
+        "count": 21,
+        "title": "21 predicates proved in the core (no axioms), 16 of them also on Mathlib: the core module Gravity as one executable file (plain Lean, no Mathlib) in Lean Live"
       },
       {
         "href": "https://live.lean-lang.org/#project=mathlib-stable&url=https://finitering.space/lean/web/ml/Gravity.lean",

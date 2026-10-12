@@ -623,6 +623,23 @@ theorem hbar_root (F : Frame p κ g) :
     rw [Shell.neg_neg] at this
     exact this
 
+/-- 21:X1 — the closed chart on every frame: the drive's full cycle is `p − 1 = 4κ` chronons. Every nonzero residue
+returns after it (`x = g^m` by the frame's generation, so `x^{4κ} = (g^{4κ})^m = 1`), the generator after no shorter
+run, and the half cycle is the half-turn `g^{2κ} = −1`. The chart closes at the totality datum: its circumference, the
+horizon's `2π r_H` in light time, is the full cycle (the primer). The curvature is the chart's reading of the same datum,
+`Λ = 3/r_H² = 12π/(Ω − 1)` in Planck units with `S = π r_H²` and `Ω = 4S + 1` (the ledger file's check A7, over ℚ with `π` a
+symbol); the register carries no value for it. -/
+theorem closed_chart (F : Frame p κ g) :
+    (∀ x : Shell p, x ≠ 0 → x ^ (4 * κ) = 1) ∧ g ^ (4 * κ) = 1 ∧ (∀ k, 0 < k → k < 4 * κ → g ^ k ≠ 1) ∧
+    g ^ (2 * κ) = -1 := by
+  have e : 4 * κ = p - 1 := F.n_eq.symm
+  refine ⟨fun x hx => ?_, ?_, fun k hk hk' => ?_, F.half_period⟩
+  · have hv : 0 < x.val := Nat.pos_of_ne_zero (fun h0 => hx (Shell.ext h0))
+    obtain ⟨m, _, hm⟩ := F.generates x.val x.lt hv
+    rw [← Shell.ext hm, Shell.pow_mul_comm, e, F.pow_n, Shell.one_pow]
+  · rw [e]; exact F.pow_n
+  · rw [e] at hk'; exact F.prim.2 k hk' hk
+
 end register
 
 /-- 21:A9 — the two-face count: the angular face `κ/S` against the temporal face `κ/(2S)` has ratio `2`

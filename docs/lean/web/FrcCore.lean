@@ -6509,7 +6509,7 @@ end FRC
 /-! inlined: FrcCore/Theme/Shift.lean -/
 
 /-!
-# FrcCore.Theme.Shift — the cycle, its shifts and the finite Fourier shift theorem (the fourier theme; 21-gravity, 10 October 2026)
+# FrcCore.Theme.Shift — the cycle, its shifts and the finite Fourier shift theorem (the gravity theme's first file; 21-gravity, 10 October 2026, moved from the fourier theme on 11 October)
 
 A function on the cycle of `n` sites is a function `Nat → Shell p` read at `i mod n` (`cyc`). A sum over the cycle is
 invariant under the shift of its index (`sum_shift`), because `j ↦ (j + s) mod n` permutes `[0, n)` (`shift_inj`, proved
@@ -12464,6 +12464,23 @@ theorem hbar_root (F : Frame p κ g) :
     rw [Shell.neg_neg] at this
     exact this
 
+/-- 21:X1 — the closed chart on every frame: the drive's full cycle is `p − 1 = 4κ` chronons. Every nonzero residue
+returns after it (`x = g^m` by the frame's generation, so `x^{4κ} = (g^{4κ})^m = 1`), the generator after no shorter
+run, and the half cycle is the half-turn `g^{2κ} = −1`. The chart closes at the totality datum: its circumference, the
+horizon's `2π r_H` in light time, is the full cycle (the primer). The curvature is the chart's reading of the same datum,
+`Λ = 3/r_H² = 12π/(Ω − 1)` in Planck units with `S = π r_H²` and `Ω = 4S + 1` (the ledger file's check A7, over ℚ with `π` a
+symbol); the register carries no value for it. -/
+theorem closed_chart (F : Frame p κ g) :
+    (∀ x : Shell p, x ≠ 0 → x ^ (4 * κ) = 1) ∧ g ^ (4 * κ) = 1 ∧ (∀ k, 0 < k → k < 4 * κ → g ^ k ≠ 1) ∧
+    g ^ (2 * κ) = -1 := by
+  have e : 4 * κ = p - 1 := F.n_eq.symm
+  refine ⟨fun x hx => ?_, ?_, fun k hk hk' => ?_, F.half_period⟩
+  · have hv : 0 < x.val := Nat.pos_of_ne_zero (fun h0 => hx (Shell.ext h0))
+    obtain ⟨m, _, hm⟩ := F.generates x.val x.lt hv
+    rw [← Shell.ext hm, Shell.pow_mul_comm, e, F.pow_n, Shell.one_pow]
+  · rw [e]; exact F.pow_n
+  · rw [e] at hk'; exact F.prim.2 k hk' hk
+
 end register
 
 /-- 21:A9 — the two-face count: the angular face `κ/S` against the temporal face `κ/(2S)` has ratio `2`
@@ -14773,9 +14790,6 @@ theorem p06054 : (∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Sh
 /-- p06056 — 6:E10. The plane as orbits of the cycle: $R_s$ scales $u=x+\im y$ by $z_s$ and $v=x-\im y$ by $z_s^{-1}$, so every point off the origin has a free orbit of size $4\kap=|SO(2,\Fp)|$, and $\p^{2}=1+(4\kap+2)\,4\kap$ is the count of the origin and $4\kap+2$ orbits (the $4\kap$ circles of nonzero norm and the two isotropic lines, by counting); $\dim\Vt=4\kap$. -/
 theorem p06056 : (∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → ∀ (z : FRC.Shell p) (s : Nat) (x y : FRC.Shell p), FRC.Shell.Frame.cs g κ z s * x + -(FRC.Shell.Frame.ds g κ z s * y) + FRC.Shell.Frame.quarterTurn g κ * (FRC.Shell.Frame.ds g κ z s * x + FRC.Shell.Frame.cs g κ z s * y) = z ^ s * (x + FRC.Shell.Frame.quarterTurn g κ * y) ∧ FRC.Shell.Frame.cs g κ z s * x + -(FRC.Shell.Frame.ds g κ z s * y) + -(FRC.Shell.Frame.quarterTurn g κ * (FRC.Shell.Frame.ds g κ z s * x + FRC.Shell.Frame.cs g κ z s * y)) = g ^ s * (x + -(FRC.Shell.Frame.quarterTurn g κ * y))) ∧ (∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → ∀ {z : FRC.Shell p}, g * z = (1 : FRC.Shell p) → ∀ {x y : FRC.Shell p}, ¬(x = (0 : FRC.Shell p) ∧ y = (0 : FRC.Shell p)) → ∀ {s : Nat}, s < p - (1 : Nat) → FRC.Shell.Frame.cs g κ z s * x + -(FRC.Shell.Frame.ds g κ z s * y) = x ∧ FRC.Shell.Frame.ds g κ z s * x + FRC.Shell.Frame.cs g κ z s * y = y → s = (0 : Nat)) ∧ (∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → p * p = (1 : Nat) + ((4 : Nat) * κ + (2 : Nat)) * ((4 : Nat) * κ)) ∧ FRC.Shell.Frame.countCircle (5 : Nat) (5 : Nat) = (4 : Nat) ∧ FRC.Shell.Frame.countCircle (13 : Nat) (13 : Nat) = (12 : Nat) ∧ FRC.Shell.Frame.countCircle (17 : Nat) (17 : Nat) = (16 : Nat) ∧ FRC.Shell.Frame.countCircle (29 : Nat) (29 : Nat) = (28 : Nat) ∧ FRC.Shell.Frame.countCircle (37 : Nat) (37 : Nat) = (36 : Nat) ∧ FRC.Shell.Frame.countCircle (41 : Nat) (41 : Nat) = (40 : Nat) :=
   And.intro @FRC.Shell.Frame.rot_uv (And.intro @FRC.Shell.Frame.orbit_free (And.intro @FRC.Shell.Frame.plane_count (@FRC.Shell.Frame.six_circles)))
-/-- p21035 — 21:C20. The two-shift update law: kick (finite Fourier shift by the source character) composed with metaplectic transport gives $\Delta^{2}_{\tau}q=-\nabla u$ with $m$ cancelling --- registered inertia and the equivalence principle inside one derived law. -/
-theorem p21035 : (∀ {p : Nat} [FRC.Pos p] (n : Nat), (0 : Nat) < n → ∀ {ζ : FRC.Shell p}, ζ ^ n = (1 : FRC.Shell p) → ∀ (f : Nat → FRC.Shell p) (a k : Nat), FRC.Cycle.dft n ζ (fun x => ζ ^ (a * x) * f x) k = FRC.Cycle.dft n ζ f (k + a)) ∧ ∀ {p : Nat} [FRC.Pos p] (n : Nat), (0 : Nat) < n → ∀ {ζ : FRC.Shell p}, ζ ^ n = (1 : FRC.Shell p) → ∀ (f : Nat → FRC.Shell p) (a k : Nat), a ≤ n → FRC.Cycle.dft n ζ (fun x => FRC.Cycle.cyc n f (x + (n - a))) k = ζ ^ (a * k) * FRC.Cycle.dft n ζ f k :=
-  And.intro @FRC.Cycle.dft_kick (@FRC.Cycle.dft_shift)
 -- end keys
 
 end FRC.Ledger
@@ -19354,12 +19368,18 @@ theorem p21030 : ∀ {p : Nat} [FRC.Pos p] (n : Nat), (0 : Nat) < n → ∀ {g :
 /-- p21031 — 21:C16. The order-one constants are determined: $c_S'=\tfrac14$ (the $Q_4$ gauge quotient, counted on an instantiated shell and carried by the Carrier identity), the floor's $2\pi$ the full cycle of the angle--count dictionary (14:B2), its threshold the realisation 32:B3, the recurring constant the solid angle $4\pi$, reducing in the Carrier register to the calibration congruence $(4S)^{2}\equiv1$ (one residue relation). -/
 theorem p21031 : (∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → FRC.Shell.ofNat ((4 : Nat) * κ) = (-1 : FRC.Shell p) ∧ FRC.Shell.ofNat ((4 : Nat) * κ) * FRC.Shell.ofNat ((4 : Nat) * κ) = (1 : FRC.Shell p)) ∧ (4 : Nat) * (602140 : Nat) = (2408560 : Nat) ∧ (2408560 : FRC.Shell (2408561 : Nat)) = (-1 : FRC.Shell (2408561 : Nat)) ∧ (2408560 : FRC.Shell (2408561 : Nat)) * (2408560 : FRC.Shell (2408561 : Nat)) = (1 : FRC.Shell (2408561 : Nat)) ∧ (2 : FRC.Shell (2408561 : Nat)) * (1204280 : FRC.Shell (2408561 : Nat)) = (-1 : FRC.Shell (2408561 : Nat)) ∧ (-2 : FRC.Shell (2408561 : Nat)) * (1204280 : FRC.Shell (2408561 : Nat)) = (1 : FRC.Shell (2408561 : Nat)) ∧ (2 : FRC.Shell (2408561 : Nat)) * (2408560 : FRC.Shell (2408561 : Nat)) * (1204280 : FRC.Shell (2408561 : Nat)) = (1 : FRC.Shell (2408561 : Nat)) ∧ (18688 : FRC.Shell (2408561 : Nat)) * (18688 : FRC.Shell (2408561 : Nat)) = (-1 : FRC.Shell (2408561 : Nat)) ∧ (2 : FRC.Shell (2408561 : Nat)) * (9344 : FRC.Shell (2408561 : Nat)) = (18688 : FRC.Shell (2408561 : Nat)) ∧ (9344 : FRC.Shell (2408561 : Nat)) * (9344 : FRC.Shell (2408561 : Nat)) = (602140 : FRC.Shell (2408561 : Nat)) :=
   And.intro @FRC.Grav.calibration (@FRC.Grav.lab_register)
+/-- p21035 — 21:C20. The two-shift update law: kick (finite Fourier shift by the source character) composed with metaplectic transport gives $\Delta^{2}_{\tau}q=-\nabla u$ with $m$ cancelling --- registered inertia and the equivalence principle inside one derived law. -/
+theorem p21035 : (∀ {p : Nat} [FRC.Pos p] (n : Nat), (0 : Nat) < n → ∀ {ζ : FRC.Shell p}, ζ ^ n = (1 : FRC.Shell p) → ∀ (f : Nat → FRC.Shell p) (a k : Nat), FRC.Cycle.dft n ζ (fun x => ζ ^ (a * x) * f x) k = FRC.Cycle.dft n ζ f (k + a)) ∧ ∀ {p : Nat} [FRC.Pos p] (n : Nat), (0 : Nat) < n → ∀ {ζ : FRC.Shell p}, ζ ^ n = (1 : FRC.Shell p) → ∀ (f : Nat → FRC.Shell p) (a k : Nat), a ≤ n → FRC.Cycle.dft n ζ (fun x => FRC.Cycle.cyc n f (x + (n - a))) k = ζ ^ (a * k) * FRC.Cycle.dft n ζ f k :=
+  And.intro @FRC.Cycle.dft_kick (@FRC.Cycle.dft_shift)
 /-- p21036 — 21:C21. The defect chain: relative-cycle defect with exact recurrence; the compression identity (relaxation $=$ unresolved leakage, recurrence retained); the pair-tally current (sine derived, conditional on channel unity); binding bookkeeping decided --- substrate winding sources the field, the defect registered-side, $\eta_{\mathrm{Nordtvedt}}=0$. -/
 theorem p21036 : (∀ (L a t : Nat), (0 : Nat) < L → (t * a % L = (0 : Nat) ↔ FRC.Drift.firstReturn L a ∣ t)) ∧ ((420 / 28 : Nat) = (15 : Nat) ∧ (420 / 60 : Nat) = (7 : Nat) ∧ (420 : Nat) % (28 : Nat) = (0 : Nat) ∧ (420 : Nat) % (60 : Nat) = (0 : Nat) ∧ (60 : Nat) % (4 : Nat) = (0 : Nat) ∧ (28 : Nat) % (4 : Nat) = (0 : Nat) ∧ ((15 : Nat) - (7 : Nat)) % (420 : Nat) = (8 : Nat) ∧ FRC.Drift.firstReturn (105 : Nat) (8 : Nat) = (105 : Nat) ∧ FRC.Drift.firstReturn (420 : Nat) (8 : Nat) = (105 : Nat)) ∧ ∀ {p : Nat} [FRC.Pos p] (z w : FRC.Shell p), z * w = (1 : FRC.Shell p) → (z + -w) * (z + -w) = -(((1 : FRC.Shell p) + (1 : FRC.Shell p) + -z + -w) * ((1 : FRC.Shell p) + (1 : FRC.Shell p) + z + w)) :=
   And.intro @FRC.Drift.return_iff (And.intro @FRC.Drift.defect_instance (@FRC.Drift.pair_tally))
 /-- p21040 — 21:C25. The PPN triangle closed by two routes: channel unity gives $\gamma=1$ (C7), the instance cover forces $2\gamma-\beta=1$ (A9), jointly $\beta=1$ --- Proposition~\ref{prop:ppn} reached independently, the deviation $\tfrac23(2\gamma-\beta-1)$ its falsifier. -/
 theorem p21040 : (∀ {p : Nat} [FRC.Pos p] {β γ : FRC.Shell p}, ((1 : FRC.Shell p) + (1 : FRC.Shell p)) * γ + -β = (1 : FRC.Shell p) → γ = (1 : FRC.Shell p) → β = (1 : FRC.Shell p)) ∧ ∀ {p : Nat} [FRC.Pos p] {β γ : FRC.Shell p}, ((1 : FRC.Shell p) + (1 : FRC.Shell p)) * γ + -β = (1 : FRC.Shell p) → ((1 : FRC.Shell p) + (1 : FRC.Shell p)) * γ + -β + (-1 : FRC.Shell p) = (0 : FRC.Shell p) :=
   And.intro @FRC.Drift.cover_triangle (@FRC.Drift.cover_deviation)
+/-- p21041 — 21:X1. \textbf{The cosmological-constant magnitude.} $\Lambda\sim1/\Omega$ in Planck units is the curvature of the closed chart, the totality datum, not a vacuum energy requiring cancellation across $122$ orders. The fine-tuning problem is not solved but unasked. -/
+theorem p21041 : ∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → (∀ (x : FRC.Shell p), x ≠ (0 : FRC.Shell p) → x ^ ((4 : Nat) * κ) = (1 : FRC.Shell p)) ∧ g ^ ((4 : Nat) * κ) = (1 : FRC.Shell p) ∧ (∀ (k : Nat), (0 : Nat) < k → k < (4 : Nat) * κ → g ^ k ≠ (1 : FRC.Shell p)) ∧ g ^ ((2 : Nat) * κ) = (-1 : FRC.Shell p) :=
+  @FRC.Grav.closed_chart
 /-- p21043 — 21:X3. \textbf{No horizons, no singularities, no information loss.} Collapse ends in a horizonless body, operationally black at $r_f$ (C12), with an exact saturating interior profile --- and information conservation is a theorem citation, not an absence claim: interior data live in offset sectors the drive confines exactly \citep{quantum}: the theory never forfeits predictivity. -/
 theorem p21043 : (∀ {p : Nat} [FRC.Pos p] (n : Nat), (0 : Nat) < n → ∀ (P f : Nat → FRC.Shell p), (∀ (x : Nat), P x * P x = P x) → FRC.Shell.sumRange (fun x => P x * (P ((x + (1 : Nat)) % n) * f ((x + (1 : Nat)) % n) * (P ((x + (1 : Nat)) % n) * f ((x + (1 : Nat)) % n)))) n + FRC.Shell.sumRange (fun x => ((1 : FRC.Shell p) + -P x) * (P ((x + (1 : Nat)) % n) * f ((x + (1 : Nat)) % n) * (P ((x + (1 : Nat)) % n) * f ((x + (1 : Nat)) % n)))) n = FRC.Shell.sumRange (fun x => P x * (f x * f x)) n) ∧ ∀ {p : Nat} [FRC.Pos p] (n : Nat), (0 : Nat) < n → ∀ (f : Nat → FRC.Shell p) (i : Nat), FRC.Cycle.cyc n f (i + n) = FRC.Cycle.cyc n f i :=
   And.intro @FRC.Drift.compression (@FRC.Cycle.cyc_add_n)
@@ -19531,6 +19551,9 @@ theorem p21036 : (∀ (L a t : Nat), (0 : Nat) < L → (t * a % L = (0 : Nat) �
 /-- 21:C25 (p21040) — The PPN triangle closed by two routes: channel unity gives $\gamma=1$ (C7), the instance cover forces $2\gamma-\beta=1$ (A9), jointly $\beta=1$ --- Proposition~\ref{prop:ppn} reached independently, the deviation $\tfrac23(2\gamma-\beta-1)$ its falsifier. -/
 theorem p21040 : (∀ {p : Nat} [FRC.Pos p] {β γ : FRC.Shell p}, ((1 : FRC.Shell p) + (1 : FRC.Shell p)) * γ + -β = (1 : FRC.Shell p) → γ = (1 : FRC.Shell p) → β = (1 : FRC.Shell p)) ∧ ∀ {p : Nat} [FRC.Pos p] {β γ : FRC.Shell p}, ((1 : FRC.Shell p) + (1 : FRC.Shell p)) * γ + -β = (1 : FRC.Shell p) → ((1 : FRC.Shell p) + (1 : FRC.Shell p)) * γ + -β + (-1 : FRC.Shell p) = (0 : FRC.Shell p) :=
   @FRC.Ledger.p21040
+/-- 21:X1 (p21041) — \textbf{The cosmological-constant magnitude.} $\Lambda\sim1/\Omega$ in Planck units is the curvature of the closed chart, the totality datum, not a vacuum energy requiring cancellation across $122$ orders. The fine-tuning problem is not solved but unasked. -/
+theorem p21041 : ∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → (∀ (x : FRC.Shell p), x ≠ (0 : FRC.Shell p) → x ^ ((4 : Nat) * κ) = (1 : FRC.Shell p)) ∧ g ^ ((4 : Nat) * κ) = (1 : FRC.Shell p) ∧ (∀ (k : Nat), (0 : Nat) < k → k < (4 : Nat) * κ → g ^ k ≠ (1 : FRC.Shell p)) ∧ g ^ ((2 : Nat) * κ) = (-1 : FRC.Shell p) :=
+  @FRC.Ledger.p21041
 /-- 21:X3 (p21043) — \textbf{No horizons, no singularities, no information loss.} Collapse ends in a horizonless body, operationally black at $r_f$ (C12), with an exact saturating interior profile --- and information conservation is a theorem citation, not an absence claim: interior data live in offset sectors the drive confines exactly \citep{quantum}: the theory never forfeits predictivity. -/
 theorem p21043 : (∀ {p : Nat} [FRC.Pos p] (n : Nat), (0 : Nat) < n → ∀ (P f : Nat → FRC.Shell p), (∀ (x : Nat), P x * P x = P x) → FRC.Shell.sumRange (fun x => P x * (P ((x + (1 : Nat)) % n) * f ((x + (1 : Nat)) % n) * (P ((x + (1 : Nat)) % n) * f ((x + (1 : Nat)) % n)))) n + FRC.Shell.sumRange (fun x => ((1 : FRC.Shell p) + -P x) * (P ((x + (1 : Nat)) % n) * f ((x + (1 : Nat)) % n) * (P ((x + (1 : Nat)) % n) * f ((x + (1 : Nat)) % n)))) n = FRC.Shell.sumRange (fun x => P x * (f x * f x)) n) ∧ ∀ {p : Nat} [FRC.Pos p] (n : Nat), (0 : Nat) < n → ∀ (f : Nat → FRC.Shell p) (i : Nat), FRC.Cycle.cyc n f (i + n) = FRC.Cycle.cyc n f i :=
   @FRC.Ledger.p21043

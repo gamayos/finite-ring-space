@@ -96,6 +96,21 @@ def horizonless(Gm=1.0, n=4000):
     return u0, math.exp(-2 * u0), math.pi * rs, low
 
 
+def curvature_import(lam=float(C.LAMBDA_FIT), lp=float(C.PLANCK_LENGTH)):
+    """The scale import read as the curvature of the closed chart (21:X1): Λ ℓ_P², the measured curvature in Planck units;
+    the de Sitter entropy S = 3π/(Λ ℓ_P²) and Ω = 4S + 1 with ln Ω against the ledger's 283.5; log₁₀(Λ ℓ_P² · Ω), which is
+    log₁₀ 12π = 1.58 (Λ ∼ 1/Ω within two decades, the constant the chart's); the 122 orders as log₁₀ S and −log₁₀(Λ ℓ_P²);
+    the chronon τ/t_P = (√π/2)/√S; and the horizon r_H/ℓ_P against √Ω/(2√π)."""
+    lam_pl = lam * lp * lp
+    S = 3 * math.pi / lam_pl
+    omega = 4 * S + 1
+    return {"lambda_planck": lam_pl, "S": S, "omega": omega, "ln_omega": math.log(omega),
+            "log10_lambda_omega": math.log10(lam_pl * omega), "log10_12pi": math.log10(12 * math.pi),
+            "orders_S": math.log10(S), "orders_lambda": -math.log10(lam_pl),
+            "chronon": math.sqrt(math.pi) / 2 / math.sqrt(S), "horizon": math.sqrt(S / math.pi),
+            "horizon_ratio": math.sqrt(S / math.pi) / (math.sqrt(omega) / (2 * math.sqrt(math.pi)))}
+
+
 def profile_series(r, Gm=1.0):
     """The exact profile's series Gm/r (1 + (Gm/r²)²/30 + (Gm/r²)⁴/120) against the quadrature u_exact(r)."""
     a = Gm / r / r

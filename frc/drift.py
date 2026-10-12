@@ -50,7 +50,7 @@ from math import gcd
 from frc.extension import Ext
 
 
-# ---- the register on a frame (21:A1, C2, C5, C16) ----------------------------------------------------------------
+# ---- the register on a frame (21:A1, C2, C5, C16, X1) ------------------------------------------------------------
 def calibration(p):
     """The calibration congruence on p = 4κ + 1: 4κ ≡ −1 and (4κ)² ≡ 1."""
     k = (p - 1) // 4
@@ -77,6 +77,34 @@ def channel_q4(p):
     both = {x for x in range(1, p) if pow(x, p - 1, p) == 1 and pow(x, 2 * (p + 1), p) == 1}
     q4 = {x for x in range(1, p) if pow(x, 4, p) == 1}
     return both == q4 and len(q4) == 4
+
+
+def closed_chart(p, g):
+    """The closed chart on the frame of 𝔽_p (p = 4κ + 1, g a generator of the multiplicative cycle): every nonzero residue
+    returns after the full cycle p − 1 = 4κ chronons, the generator after no shorter run, the half cycle is −1; and the
+    cycle's register is the calibration 4κ ≡ −1, (4κ)² ≡ 1 (21:X1)."""
+    k = (p - 1) // 4
+    full = all(pow(x, 4 * k, p) == 1 for x in range(1, p))
+    order = pow(g, 4 * k, p) == 1 and all(pow(g, j, p) != 1 for j in range(1, 4 * k))
+    half = pow(g, 2 * k, p) == p - 1
+    register = (4 * k) % p == p - 1 and (4 * k) ** 2 % p == 1
+    return full and order and half and register
+
+
+def curvature_datum(S):
+    """The two readings of the totality datum Ω = 4S + 1 on the chart, exact over ℚ with π a formal symbol (a quantity is a
+    rational coefficient and a power of π): the de Sitter entropy S = π r_H² (Planck units) gives r_H² = (S/π); the
+    curvature Λ = 3/r_H² = (3/S)π, so Λ(Ω − 1) = 12π and ΛS = 3π; the chronon τ = 2π r_H/(4S c) has τ² = (π/4S) t_P² (the
+    paper's (√π/2) t_P/√S) and the horizon is r_H/(cτ) = 2S/π chronons (21:X1). Returns (ok, Λ/π, τ²/(π t_P²))."""
+    S = Fraction(S); omega = 4 * S + 1
+    rh2 = (S, -1)                                               # r_H² = S π⁻¹
+    lam = (3 / rh2[0], -rh2[1])                                 # Λ = 3/r_H²
+    product = (lam[0] * (omega - 1), lam[1])                    # Λ (Ω − 1)
+    lam_s = (lam[0] * S, lam[1])                                # Λ S
+    tau2 = (Fraction(4) * rh2[0] / (16 * S * S), 2 + rh2[1])    # τ² = (2π)² r_H² / (4S)²
+    ratio2 = (rh2[0] / tau2[0], rh2[1] - tau2[1])               # (r_H/τ)²
+    ok = product == (12, 1) and lam_s == (3, 1) and tau2 == (1 / (4 * S), 1) and ratio2 == (4 * S * S, -2)
+    return ok, lam[0], tau2[0]
 
 
 # ---- the cover triangle (21:C25, C7, C8) ---------------------------------------------------------------------------
