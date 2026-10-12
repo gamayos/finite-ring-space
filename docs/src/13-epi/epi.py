@@ -100,7 +100,7 @@ LEDGER = {
 
 LABELS = {
     "e.R1": "superexponential enclosure of the derangement chain ε_n = n!/!n: |ε_n − e| < 8/(n+1)! and the alternating enclosure ε_even < e < ε_odd for 2 ≤ n ≤ 60, against the chain's own certified bracket",
-    "e.R2": "binary64 readout: the IEEE-754 double nearest e is the correctly rounded ε_18 = 18!/!18 = 6402373705728000/2355301661033953, and n = 18 is minimal (ε_17 fails readout equality)",
+    "e.R2": "binary64 readout: the IEEE-754 double nearest e is the correctly rounded ε_18 = 18!/!18 = 6402373705728000/2355301661033953, and n = 18 is minimal (ε_17 fails readout equality); the plateau thresholds below 200 bits, exact: ro_k(ε_n) within one ulp of ro_k(e) from n0(k), equal from n1(k) ≤ n0(k) + 1, with n1 = n0 + 1 exactly at k = 6, 21, 28, 113, 161, 177, 194, 198 (at k = 6, ε_5 = 30/11 reads out as 44/16, e as 43/16)",
     "e.R3": "100-digit determination: n = 70 is the least n with 8/(n+1)! < 10⁻¹⁰⁰, and ε_70 agrees with the certified value of e in its first 101 significant characters",
     "e.P1": "the derangement selector: the rencontres polynomial P_n(X) = Σ_{σ∈S_n} X^fix(σ) equals n! Σ_{k≤n} (X−1)^k/k! — the fixed-point census of S_n enumerated for n ≤ 8 (40 320 permutations at n = 8) against C(n,k)·D_{n−k} and against the expanded right side, the polynomial identity in exact integer coefficients for n ≤ 60 (P_3 = X³ + 3X + 2, P_4 = X⁴ + 6X² + 8X + 9), and the normalised kernel Z_n = P_n/n! with Z_n(1) = 1 and Z_n(0) = D_n/n!, so the unit registration ratio R_n = n!/D_n is the chain of e.R1",
     "e.T1": "the tail form of the derangement numbers: D_n = n!/e + (−1)^n δ_n with δ_n strictly in (1/(n+2), 1/(n+1)), so D_n is the nearest integer to n!/e, for n = 2 … 60 — decided with e bracketed by the chain itself at n = 109, 110 (width below 10⁻¹⁷⁰), each bound holding for the whole bracket",
@@ -341,7 +341,42 @@ def block_e():
     chk("minimal n with float(n!/D_n) == binary64(e) is n = 18", n_double == 18)
     chk("eps_18 = 6402373705728000/2355301661033953", Fraction(fact[18], D[18]) == Fraction(6402373705728000, 2355301661033953))
     chk("eps_17 fails readout equality", float(Fraction(fact[17], D[17])) != target)
-    chk("|eps_17 - e| exceeds the half-ulp 2^-53 and |eps_18 - e| lies below it", abs(Fraction(fact[17], D[17]) - E) > Fraction(1, 2**53) > abs(Fraction(fact[18], D[18]) - E))
+    chk("|eps_17 - e| exceeds the half-ulp 2^-52 of e and |eps_18 - e| lies below it", abs(Fraction(fact[17], D[17]) - E) > Fraction(1, 2**52) > abs(Fraction(fact[18], D[18]) - E))
+
+    # (b') the plateau thresholds below 200 bits, exact: n0(k) from the enclosure bound e(e+1)/(n+1)! < 2^-k; the readout
+    # ro_k on [2, 4) (grid 2^(2-k), ties to even); d_k(e) the distance from e to the nearest rounding boundary; the enclosure
+    # certifies the plateau from the least N with e(e+1)/(N+1)! < d_k(e), the readouts below N compared exactly; n1(k) the least
+    # n from which they agree. E is e to 300 terms, |E - e| < 1/301!, below every d_k(e) met (certified per k).
+    def ro_bits(x, k):
+        step = Fraction(1, 2**(k-2)); q = x / step; m = q.numerator // q.denominator; r = q - m
+        if r > Fraction(1, 2) or (r == Fraction(1, 2) and m % 2 == 1): m += 1
+        return m * step
+    ee = E * (E + 1); tail = Fraction(1, math.factorial(301))
+    ok_ulp = ok_cert = ok_bound = True; n1_exc = {}; first_n0 = None
+    for k in range(2, 200):
+        n0 = 2
+        while ee / fact[n0+1] >= Fraction(1, 2**k): n0 += 1
+        step = Fraction(1, 2**(k-2)); tq = E / step; frac = tq - (tq.numerator // tq.denominator)
+        d = abs(frac - Fraction(1, 2)) * step            # distance from E to the nearest boundary (m + 1/2)*step
+        if d <= tail: ok_cert = False
+        N = 2
+        while ee / fact[N+1] >= d - tail: N += 1
+        rE = ro_bits(E, k)
+        if abs(ro_bits(Fraction(fact[n0], D[n0]), k) - rE) > step: ok_ulp = False
+        agree = [ro_bits(Fraction(fact[n], D[n]), k) == rE for n in range(n0, N + 1)]
+        n1 = N
+        for i in range(len(agree) - 1, -1, -1):
+            if agree[i]: n1 = n0 + i
+            else: break
+        if n1 > n0 + 1: ok_bound = False
+        if n1 == n0 + 1: n1_exc[k] = n0
+        if k == 6: first_n0 = (n0, ro_bits(Fraction(fact[n0], D[n0]), k), rE)
+    log_e(f"(b') plateau thresholds k < 200: within one ulp at n0 {'PASS' if ok_ulp else 'FAIL'}; n1 <= n0 + 1 {'PASS' if ok_bound else 'FAIL'}; n1 = n0 + 1 at k = {sorted(n1_exc)}")
+    chk("ro_k(eps_n0) lies within one ulp of ro_k(e) for every 2 <= k < 200", ok_ulp)
+    chk("the plateau threshold n1(k) <= n0(k) + 1 for every 2 <= k < 200, the comparison exact below the certified index", ok_bound)
+    chk("n1 = n0 + 1 exactly at k = 6, 21, 28, 113, 161, 177, 194, 198", sorted(n1_exc) == [6, 21, 28, 113, 161, 177, 194, 198])
+    chk("k = 6: n0 = 5, eps_5 = 30/11 reads out as 44/16, e as 43/16", first_n0 == (5, Fraction(44, 16), Fraction(43, 16)) and Fraction(fact[5], D[5]) == Fraction(30, 11))
+    chk("the 300-term e is within every rounding cell met: d_k(e) > 1/301! for 2 <= k < 200", ok_cert)
 
     # (c) 100-digit determination
     n100 = None

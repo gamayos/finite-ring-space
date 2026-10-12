@@ -14,9 +14,9 @@
   "rows": "13:D4, 13:I1",
   "block": "e",
   "script": "epi",
-  "label": "binary64 readout: the IEEE-754 double nearest e is the correctly rounded ε_18 = 18!/!18 = 6402373705728000/2355301661033953, and n = 18 is minimal (ε_17 fails readout equality)",
+  "label": "binary64 readout: the IEEE-754 double nearest e is the correctly rounded ε_18 = 18!/!18 = 6402373705728000/2355301661033953, and n = 18 is minimal (ε_17 fails readout equality); the plateau thresholds below 200 bits, exact: ro_k(ε_n) within one ulp of ro_k(e) from n0(k), equal from n1(k) ≤ n0(k) + 1, with n1 = n0 + 1 exactly at k = 6, 21, 28, 113, 161, 177, 194, 198 (at k = 6, ε_5 = 30/11 reads out as 44/16, e as 43/16)",
   "ok": true,
-  "detail": "4 exact micro-checks",
+  "detail": "9 exact micro-checks",
   "kind": "EXACT"
  },
  {
@@ -436,7 +436,7 @@
   "script": "epi",
   "label": "Kurepa's wall in the derangement form for all 22 043 odd primes p < 2.5·10⁵ (kurepa_wall.c, one O(p) pass per prime in 128-bit modular arithmetic): !(p−1) ≡ K(p) (mod p) and K(p) ≢ 0 (mod p), zero failures of either condition",
   "ok": true,
-  "detail": "3 exact micro-checks; kurepa_wall.c, N = 250000, 29 s",
+  "detail": "3 exact micro-checks; kurepa_wall.c, N = 250000, 30 s",
   "kind": "EXACT"
  },
  {
