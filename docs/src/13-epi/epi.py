@@ -47,6 +47,7 @@ LEDGER = {
     "e.R2": "13:D4, 13:I1",
     "e.R3": "13:D4",
     "e.R4": "13:D5, 13:E5",
+    "e.P1": "13:C2",
     "e.W1": "13:F1, 13:F2",
     "e.W2": "13:F3",
     "e.W3": "13:F4",
@@ -98,6 +99,7 @@ LABELS = {
     "e.R1": "superexponential enclosure of the derangement chain ε_n = n!/!n: |ε_n − e| < 8/(n+1)! and the alternating enclosure ε_even < e < ε_odd for 2 ≤ n ≤ 60, against the chain's own certified bracket",
     "e.R2": "binary64 readout: the IEEE-754 double nearest e is the correctly rounded ε_18 = 18!/!18 = 6402373705728000/2355301661033953, and n = 18 is minimal (ε_17 fails readout equality)",
     "e.R3": "100-digit determination: n = 70 is the least n with 8/(n+1)! < 10⁻¹⁰⁰, and ε_70 agrees with the certified value of e in its first 101 significant characters",
+    "e.P1": "the derangement selector: the rencontres polynomial P_n(X) = Σ_{σ∈S_n} X^fix(σ) equals n! Σ_{k≤n} (X−1)^k/k! — the fixed-point census of S_n enumerated for n ≤ 8 (40 320 permutations at n = 8) against C(n,k)·D_{n−k} and against the expanded right side, the polynomial identity in exact integer coefficients for n ≤ 60 (P_3 = X³ + 3X + 2, P_4 = X⁴ + 6X² + 8X + 9), and the normalised kernel Z_n = P_n/n! with Z_n(1) = 1 and Z_n(0) = D_n/n!, so the unit registration ratio R_n = n!/D_n is the chain of e.R1",
     "e.R4": "feasibility selection: the exact step counts of the derangement chain for 2⁻ᵏ precision, k = 24, 53, 333, are n = 11, 18, 70 (the paper's table; the compound-chain column is the chart-side estimate e·2^{k−1})",
     "e.W1": "the wall of e on p ∈ {5, 13, 29, 101, 257, 1009, 10007}: Wilson reflection 1/k! ≡ −(−1)^k (p−1−k)! for every k < p; the wall identity !(p−1) ≡ K(p) with K(p) = Σ_{k<p} k! the left factorial; K(p) ≢ 0, so the terminal residue [ε_{p−1}] = −K(p)⁻¹ exists on every sample shell",
     "e.W2": "antiperiodicity !(n+p) ≡ −!n (mod p) over a full period n < p on the seven sample shells; the blind set Z₀(p) = {n < p : !n ≡ 0} always contains 1 and never p−1 there",
@@ -149,7 +151,7 @@ _FAM = [None, None]
 # the deciding family of each witnessed predicate: the one whose checks decide the predicate's statement (the other families
 # that touch it are corroboration, listed by predicate() from the records)
 PREDICATES = {
-    "13:B2": "tow.O", "13:B3": "tow.E", "13:C3": "tow.C", "13:C5": "pi.R1", "13:D3": "e.R1", "13:D4": "e.R2",
+    "13:B2": "tow.O", "13:B3": "tow.E", "13:C2": "e.P1", "13:C3": "tow.C", "13:C5": "pi.R1", "13:D3": "e.R1", "13:D4": "e.R2",
     "13:D5": "e.R4", "13:E2": "pi.R1", "13:E3": "pi.R4", "13:E4": "pi.R3", "13:E5": "pi.R3", "13:F1": "e.W1",
     "13:F2": "e.W1", "13:F3": "e.W2", "13:F4": "e.W3", "13:F5": "e.S1", "13:F6": "e.W4", "13:F7": "tow.E",
     "13:F8": "e.W5", "13:G1": "pi.W1", "13:G2": "pi.W1", "13:G3": "pi2.A1", "13:G4": "pi.S1", "13:G5": "pi.L1",
@@ -367,6 +369,38 @@ def block_e():
         log_e(f"    k={k:3d}:  derangement chain n = {n1:3d}   |   (1+1/n)^n chain n ~ {n2:.2e}")
         chk(f"derangement chain reaches 2^-{k} at n = {(24, 53, 333).index(k) and [11, 18, 70][(24, 53, 333).index(k)] or 11}", n1 == [11, 18, 70][(24, 53, 333).index(k)])
 
+    # (e) the derangement selector (13:C2, 12 October 2026): the rencontres polynomial P_n(X) = sum_{sigma in S_n} X^fix(sigma)
+    # equals n! sum_{k<=n} (X-1)^k/k! — the census of S_n by enumeration for n <= 8 (40 320 permutations at n = 8), the
+    # polynomial identity sum_k C(n,k) D_{n-k} X^k = n! sum_j (X-1)^j/j! in exact integer coefficients for n <= 60, and the
+    # normalised kernel Z_n = P_n/n! with Z_n(1) = 1, Z_n(0) = D_n/n!, so the unit registration ratio R_n = n!/D_n is the chain of (a)
+    from itertools import permutations
+    def rencontres_coeffs(n):                        # coefficients of n! sum_{j<=n} (X-1)^j/j! in powers of X, exact integers
+        c = [Fraction(0)] * (n + 1)
+        for j in range(n + 1):
+            w = Fraction(fact[n], fact[j])           # n!/j!, an integer
+            for i in range(j + 1):                   # (X-1)^j = sum_i C(j,i) X^i (-1)^(j-i)
+                c[i] += w * comb(j, i) * (-1) ** (j - i)
+        assert all(x.denominator == 1 for x in c)
+        return [int(x) for x in c]
+    census_ok = True
+    for n in range(0, 9):
+        census = [0] * (n + 1)
+        for sg in permutations(range(n)):
+            census[sum(1 for i in range(n) if sg[i] == i)] += 1
+        if census != [comb(n, k) * D[n - k] for k in range(n + 1)] or census != rencontres_coeffs(n): census_ok = False
+    identity_ok = all([comb(n, k) * D[n - k] for k in range(n + 1)] == rencontres_coeffs(n) for n in range(0, 61))
+    kernel_ok = True
+    for n in range(2, 61):
+        c = rencontres_coeffs(n); Z1, Z0 = Fraction(sum(c), fact[n]), Fraction(c[0], fact[n])      # Z_n(1), Z_n(0)
+        if not (Z1 == 1 and Z0 == Fraction(D[n], fact[n]) and Z1 / Z0 == Fraction(fact[n], D[n])): kernel_ok = False
+    log_e(f"(e) rencontres census of S_n (n <= 8) against C(n,k) D_(n-k) and n! sum (X-1)^j/j!: {'PASS' if census_ok else 'FAIL'}; P_3(X) = {rencontres_coeffs(3)[::-1]} (descending)")
+    # 13:C2 (p13013)
+    family("e", "P1")
+    chk("the fixed-point census of S_n for n <= 8 (enumerated) is C(n,k) D_(n-k) and equals the coefficients of n! sum_(j<=n) (X-1)^j/j!", census_ok)
+    chk("sum_k C(n,k) D_(n-k) X^k = n! sum_(j<=n) (X-1)^j/j! as an exact polynomial identity for n <= 60", identity_ok)
+    chk("P_3(X) = X^3 + 3X + 2 and P_4(X) = X^4 + 6X^2 + 8X + 9", rencontres_coeffs(3) == [2, 3, 0, 1] and rencontres_coeffs(4) == [9, 8, 6, 0, 1])
+    chk("Z_n(1) = 1 and Z_n(0) = D_n/n!, so R_n = Z_n(1)/Z_n(0) = n!/D_n is the chain eps_n of (a), n = 2..60", kernel_ok)
+
     # =========================================================
     log_e(); log_e("="*72); log_e("[2] FRAME-INTERNAL ARITHMETIC (per-prime structure)")
     log_e("="*72)
@@ -568,7 +602,7 @@ def block_e():
     _DIAG[0] = f"Pearson correlation of the angular addresses {num/den:+.3f} (the paper's [approx] reading)"
 
 
-    flush("e", order=["R1", "R2", "R3", "R4", "W1", "W2", "W3", "W4", "W5", "S1", "A1", "N1"], details={"N1": _DIAG[0]})
+    flush("e", order=["R1", "R2", "R3", "R4", "P1", "W1", "W2", "W3", "W4", "W5", "S1", "A1", "N1"], details={"N1": _DIAG[0]})
 
 # ------------------------------------------------------------------------------------------------------------
 # block pi — validate_pi.py: FRC emergence of pi: verification suite.

@@ -318,8 +318,8 @@ const PUBLICATIONS = [
       {
         "href": "https://colab.research.google.com/github/gamayos/finite-ring-space/blob/main/src/13-epi/frc-13-epi.ipynb",
         "label": "python",
-        "count": 42,
-        "title": "42 predicates checked, all passing: the notebook frc-13-epi.ipynb on Google Colab, one cell per predicate"
+        "count": 43,
+        "title": "43 predicates checked, all passing: the notebook frc-13-epi.ipynb on Google Colab, one cell per predicate"
       },
       {
         "href": "https://live.lean-lang.org/#project=lean-v4.34.0&url=https://finitering.space/lean/web/core/Epi.lean",
@@ -330,8 +330,8 @@ const PUBLICATIONS = [
       {
         "href": "https://live.lean-lang.org/#project=mathlib-stable&url=https://finitering.space/lean/web/ml/Epi.lean",
         "label": "lean-mathlib",
-        "count": 18,
-        "title": "18 predicates proved on Mathlib (classical), 6 of them also in the core: the module Epi as one file on Mathlib in Lean Live"
+        "count": 19,
+        "title": "19 predicates proved on Mathlib (classical), 6 of them also in the core: the module Epi as one file on Mathlib in Lean Live"
       }
     ]
   },
