@@ -46,9 +46,9 @@
     },
     {
      "label": "A6",
-     "predicate": "The external comparison objects: Wallis' product and the squeeze that identifies the limit of the Wallis pair, the Gregory series, the Gaussian-integer factorisation behind the Machin identity, Stirling's growth estimate, the Wieferich condition; the IEEE-754 readout $\\ro$ (correct rounding to $k$ bits) as the bounded register's retention.",
+     "predicate": "The external comparison objects: Wallis' product and the squeeze that identifies the limit of the Wallis pair, the Gregory series, the Gaussian-integer factorisation behind the Machin identity, Stirling's growth estimate, Siegel's E- and G-function classes, Gauss's sign theorem for the quadratic Gauss sum, the Wieferich condition; the IEEE-754 readout $\\ro$ (correct rounding to $k$ bits) as the bounded register's retention.",
      "tag": "I",
-     "source": "\\cite{wallis1656arithmetica,wieferich1909fermat}; \\S\\ref{sec:setting}, ``The readout map''",
+     "source": "\\cite{wallis1656arithmetica,wieferich1909fermat}; \\S\\ref{sec:setting}",
      "key": "p13006"
     },
     {
@@ -73,9 +73,9 @@
    "rows": [
     {
      "label": "B1",
-     "predicate": "The typed constants: the exact half-period $\\piP=2\\kap$ with $\\gen^{\\piP}=-1$, its affine representative $\\piA=(2\\kap)\\cdot1\\in\\Fp$, and the classical value $\\piR$ \\chart; the oriented quarter-turn $\\im=\\gen^{-\\kap}$, the exponential unit $\\eP=\\gen^{\\lambda(\\im)}$ with $\\lambda$ the label lift (frame data), and $\\eR$ \\chart. On $\\p=13$, $\\gen=2$: $\\piA=6$, $\\im=5$, $\\eP=6$.",
+     "predicate": "The typed constants: the exact half-period $\\piP=2\\kap$ with $\\gen^{\\piP}=-1$, its affine representative $\\piA=(2\\kap)\\cdot1\\in\\Fp$, and the classical value $\\piR$; the oriented quarter-turn $\\im=\\gen^{-\\kap}$, the exponential unit $\\eP=\\gen^{\\lambda(\\im)}$ with $\\lambda$ the label lift (frame data), and $\\eR$. On $\\p=13$, $\\gen=2$: $\\piA=6$, $\\im=5$, $\\eP=6$.",
      "tag": "D",
-     "source": "\\S\\ref{sec:setting}, ``The typed constants''; Fig.~\\ref{fig:framed-shell}",
+     "source": "\\S\\ref{sec:setting}; Fig.~\\ref{fig:framed-shell}",
      "key": "p13008"
     },
     {
@@ -89,14 +89,14 @@
      "label": "B3",
      "predicate": "The coincidence that forces the typing: at $\\p=13$ the field element $6$ is at once $\\eP$, $\\piA$ and the reading of $-1/2$, while $\\eR\\ne\\piR$; no map from a bare residue to a real number exists, and the external comparison takes the structural role as part of its input --- roles, not residues, carry external meaning. Witnessed by the two towers reading the same element $6$ as $\\eP$ and as $\\piA$.",
      "tag": "T",
-     "source": "\\S\\ref{sec:setting}, ``The coincidence''\\newline \\pywit{epi}{p13010}{B3}, \\leanwit{FrcCore}{p13010}{B3} \\lean{FRC.Epi.coincidence13}",
+     "source": "\\S\\ref{sec:setting}\\newline \\pywit{epi}{p13010}{B3}, \\leanwit{FrcCore}{p13010}{B3} \\lean{FRC.Epi.coincidence13}",
      "key": "p13010"
     },
     {
      "label": "B4",
-     "predicate": "Chains and their two lives: a chain is a sequence in $\\fQ$ given by explicit integer formulas, with an external metric life read against $\\R$ \\chart{} and an internal residue life read through $\\rep{\\cdot}$; no third life --- the shell carries no completion of $\\fQ$, and the continuum enters only as the chart. This is the statement of record superseding the framed-real construction of \\cite{akhtman2025algebra}, \\S4.4.",
+     "predicate": "Chains and their two lives: a chain is a sequence in $\\fQ$ given by explicit integer formulas, with an external metric life read against $\\R$ and an internal residue life read through $\\rep{\\cdot}$; no third life --- the shell carries no completion of $\\fQ$, and the continuum enters only as the chart. This is the statement of record superseding the framed-real construction of \\cite{akhtman2025algebra}, \\S4.4.",
      "tag": "D",
-     "source": "\\S\\ref{sec:setting}, ``Framed rationals and the shell reading''; Fig.~\\ref{fig:framed-rationals}",
+     "source": "\\S\\ref{sec:setting}; Fig.~\\ref{fig:framed-rationals}",
      "key": "p13011"
     }
    ]
@@ -128,7 +128,7 @@
     },
     {
      "label": "C4",
-     "predicate": "The Cayley--Gregory normalisation: the external comparison of $\\oplus$ is the additive chart $A$ with $A'(0)=1$, and $\\piR:=4A(1)$; given the normalisation the chart is unique \\chart, $A(X)=\\sum(-1)^{k}X^{2k+1}/(2k+1)$, and the normalisation is underivable (no nontrivial homomorphism of a finite cyclic group into $(\\R,+)$; $cA$ satisfies the same law). The second and last \\tD{} move.",
+     "predicate": "The Cayley--Gregory normalisation: the external comparison of $\\oplus$ is the additive chart $A$ with $A'(0)=1$, and $\\piR:=4A(1)$; given the normalisation the chart is unique, $A(X)=\\sum(-1)^{k}X^{2k+1}/(2k+1)$, and the normalisation is underivable (no nontrivial homomorphism of a finite cyclic group into $(\\R,+)$; $cA$ satisfies the same law). The second and last \\tD{} move.",
      "tag": "D",
      "source": "Principle~\\ref{prin:gregory}",
      "key": "p13015"
@@ -203,7 +203,7 @@
     },
     {
      "label": "E3",
-     "predicate": "The arcsin chain $s_n=3\\sum_{k\\le n}\\Cb{k}/((2k+1)16^{k})\\in\\fQ$ with external completion $\\piR=6\\arcsin\\frac12$ \\chart{} and tail bound $|\\piR-s_n|<4^{-n}/(2n+3)$ for $n\\ge1$: geometric rate from the same combinatorial atoms as the Wallis pair.",
+     "predicate": "The arcsin chain $s_n=3\\sum_{k\\le n}\\Cb{k}/((2k+1)16^{k})\\in\\fQ$ with external completion $\\piR=6\\arcsin\\frac12$ and tail bound $|\\piR-s_n|<4^{-n}/(2n+3)$ for $n\\ge1$: geometric rate from the same combinatorial atoms as the Wallis pair.",
      "tag": "T",
      "source": "Def.~\\ref{def:arcsin}\\newline \\pywit{epi}{p13024}{E3}, \\leanwit{FrcCore}{p13024}{E3}, \\leanwit{FrcLedger}{p13024}{E3} \\lean{Epi.pi\\_bracket\\_24, FRC.Epi.arcsin\\_tail\\_bound}",
      "key": "p13024"
@@ -267,7 +267,7 @@
      "label": "F6",
      "predicate": "The $\\p=13$ picture: the residue line $\\rep{\\varepsilon_n}$, $n=2,\\dots,12$, is $2,3,7,11,1,6,\\text{blind},2,8,10,9$ --- blind at $n=8$ ($\\dr{8}=14833=13\\cdot1141$) and terminating on $\\rep{\\varepsilon_{12}}=-(\\Ku{13})^{-1}=9$, the common reading of $6/5$ and $11/7$ --- while the metric row freezes onto $2.71828\\ldots$ by $n\\approx9$: the thesis in miniature.",
      "tag": "T",
-     "source": "\\S\\ref{sec:wall-e}, ``The $\\p=13$ picture''\\newline \\pywit{epi}{p13032}{F6}, \\leanwit{FrcCore}{p13032}{F6} \\lean{FRC.Epi.residue\\_line\\_e13, FRC.Epi.terminal13}",
+     "source": "\\S\\ref{sec:wall-e}\\newline \\pywit{epi}{p13032}{F6}, \\leanwit{FrcCore}{p13032}{F6} \\lean{FRC.Epi.residue\\_line\\_e13, FRC.Epi.terminal13}",
      "key": "p13032"
     },
     {
@@ -334,7 +334,7 @@
     },
     {
      "label": "G7",
-     "predicate": "Second and third order at the arcsin wall: $\\sigma_\\p\\equiv0\\pmod{\\p^{2}}$ is Sun's theorem (A5), re-verified for $5\\le\\p<300$; the blind-range sum $\\sum_{m<k<\\p}\\Cb{k}/((2k+1)16^{k})\\equiv\\p E_{\\p-3}/3\\pmod{\\p^{2}}$ (A5), re-verified for $5\\le\\p<80$; at third order $\\sigma_\\p/\\p^{2}\\equiv(-1)^{(\\p+1)/2}B_{\\p-3}/36\\pmod\\p$ for all sixty primes $5\\le\\p<300$, the mod-$\\p^{3}$ reading of Sun's Conjecture 5.1 with the Wolstenholme refinement, a theorem for every prime $\\p\\ge5$ of the totality (A8): Wolstenholme-trivial at orders $\\p,\\p^{2}$, Bernoulli at $\\p^{3}$, the Euler content beyond the wall.",
+     "predicate": "Second and third order at the arcsin wall: $\\sigma_\\p\\equiv0\\pmod{\\p^{2}}$ is Sun's theorem (A5), re-verified for $5\\le\\p<300$; the blind-range sum $\\sum_{m<k<\\p}\\Cb{k}/((2k+1)16^{k})\\equiv\\p E_{\\p-3}/3\\pmod{\\p^{2}}$ (A5), re-verified for $5\\le\\p<80$; at third order $\\sigma_\\p/\\p^{2}\\equiv(-1)^{(\\p+1)/2}B_{\\p-3}/36\\pmod\\p$ for all $1227$ primes $5\\le\\p<10^{4}$, the mod-$\\p^{3}$ reading of Sun's Conjecture 5.1 with the Wolstenholme refinement, a theorem for every prime $\\p\\ge5$ of the totality (A8): Wolstenholme-trivial at orders $\\p,\\p^{2}$, Bernoulli at $\\p^{3}$, the Euler content beyond the wall.",
      "tag": "T",
      "source": "Thm.~\\ref{thm:super}, Rem.~\\ref{rem:hierarchy}; rests on A3, G6\\newline \\pywit{epi}{p13040}{G7}, \\leanwit{FrcCore}{p13040}{G7} \\lean{FRC.Epi.sigma\\_vanishes\\_mod\\_sq}",
      "key": "p13040"
@@ -343,7 +343,7 @@
      "label": "G8",
      "predicate": "The $\\p=13$ picture for $\\pi$: $\\kap=3$, wall at $n=6$; the residue line $\\rep{w_n}$, $n=1,\\dots,6$, is $4,5,10,9,6,11$ with $\\rep{w_6}=11\\equiv-2$ the calibration face and $\\rep{w_3}=10\\equiv-(3^{2})^{-1}$ encoding $13=3^{2}+2^{2}$; empty blind set below the wall, total blindness for $n=7,\\dots,12$, first revival $\\rep{v_{13}}=8$.",
      "tag": "T",
-     "source": "\\S\\ref{sec:wall-pi}, ``The $\\p=13$ picture''\\newline \\pywit{epi}{p13041}{G8}, \\leanwit{FrcCore}{p13041}{G8} \\lean{FRC.Epi.residue\\_line\\_pi13}",
+     "source": "\\S\\ref{sec:wall-pi}\\newline \\pywit{epi}{p13041}{G8}, \\leanwit{FrcCore}{p13041}{G8} \\lean{FRC.Epi.residue\\_line\\_pi13}",
      "key": "p13041"
     },
     {
@@ -368,7 +368,7 @@
    "rows": [
     {
      "label": "H1",
-     "predicate": "The frame character $\\chi(\\gen^{n})=\\exp(2\\piR\\imR\\,n/(\\p-1))$ \\chart, the canonical external dictionary sending $\\gen$ to $\\zeta_{\\p-1}$; the comparison map, never used to derive either constant.",
+     "predicate": "The frame character $\\chi(\\gen^{n})=\\exp(2\\piR\\imR\\,n/(\\p-1))$, the canonical external dictionary sending $\\gen$ to $\\zeta_{\\p-1}$; the comparison map, never used to derive either constant.",
      "tag": "D",
      "source": "\\S\\ref{sec:angular}",
      "key": "p13043"
@@ -425,7 +425,7 @@
      "label": "I3",
      "predicate": "The duality: $\\pi$ is angular-exact and wall-trivial (tautological carrier, terminus the calibration face $-2$, Fermat quotient one order down, two-squares quarter invariant, empty blind set below the wall, geometric $\\fQ$-rate, the series law split Bernoulli/Euler across the wall) and $e$ angular-approximate and wall-wild (calibration impossible, terminus the open Kurepa quantity, no quarter invariant, Poisson blind set, factorial $\\fQ$-rate, the group law broken at the wall); each constant exact on the axis where the other is approximate: $\\pi$ a structural, $e$ a statistical constant of the finite frame.",
      "tag": "T",
-     "source": "\\S\\ref{sec:duality}, ``The duality''\\newline \\pywit{epi}{p13050}{I3}, \\leanwit{FrcCore}{p13050}{I3}, \\leanwit{FrcLedger}{p13050}{I3} \\lean{Epi.calibration\\_ne\\_one, Epi.machin\\_bound, Epi.compound\\_cost, FRC.Epi.residue\\_line\\_pi13, FRC.Epi.terminal13, FRC.Epi.kurepa\\_alt\\_values, FRC.Epi.blind\\_census, FRC.Epi.no\\_exact\\_calibration}",
+     "source": "\\S\\ref{sec:duality}\\newline \\pywit{epi}{p13050}{I3}, \\leanwit{FrcCore}{p13050}{I3}, \\leanwit{FrcLedger}{p13050}{I3} \\lean{Epi.calibration\\_ne\\_one, Epi.machin\\_bound, Epi.compound\\_cost, FRC.Epi.residue\\_line\\_pi13, FRC.Epi.terminal13, FRC.Epi.kurepa\\_alt\\_values, FRC.Epi.blind\\_census, FRC.Epi.no\\_exact\\_calibration}",
      "key": "p13050"
     },
     {
@@ -439,7 +439,7 @@
      "label": "I5",
      "predicate": "The three frame invariants across shells: on the $4783$ shells $\\p\\equiv1\\pmod4$ below $10^{5}$, the triple $(\\Ku{\\p}/\\p,\\ q_\\p(4)/\\p,\\ \\varphi/\\piR)$ --- the wall of $e$ (F2), the wall of $\\pi$ at second order (G4), the angular address $\\varphi=\\arg(a+b\\imR)$ of $\\p=a^{2}+b^{2}$, $a\\equiv1\\pmod4$ (G3) --- is exact on each shell ($\\p=13$: $10,6,-3+2\\imR$; $1093$: $q_\\p(4)=0$, the Wieferich prime); means $0.502,0.499,0.499$ and variances $0.0828,0.0831,0.0832$ (uniform: $1/2$, $1/12$), correlations $-0.016,-0.008,+0.010$ ($\\sigma=0.0145$), $4\\times4\\times4$ chi-square $59.6$ on $63$ df, $a/\\sqrt\\p=\\cos\\varphi$ arcsine-distributed (mean $0.004$, variance $0.500$) \\apx: consistent with independence on the examined range.",
      "tag": "T",
-     "source": "\\S\\ref{sec:duality}, ``The three invariants across shells''\\newline \\pywit{epi}{p13068}{I5}, \\leanwit{FrcCore}{p13068}{I5} \\lean{FRC.Epi.invariants\\_13\\_1093}",
+     "source": "\\S\\ref{sec:duality}\\newline \\pywit{epi}{p13068}{I5}, \\leanwit{FrcCore}{p13068}{I5} \\lean{FRC.Epi.invariants\\_13\\_1093}",
      "key": "p13068"
     }
    ]
@@ -452,7 +452,7 @@
      "label": "J1",
      "predicate": "The wrap-free window: an entity of the shell is $\\p$-hard when it lies beyond the observer's horizon $\\sqrt\\p$; the accessible smalls are the natural counts below $\\sqrt\\p$, where sums and products of two accessible counts do not wrap, so primality, parity and order are wrap-invariant there and only there.",
      "tag": "T",
-     "source": "\\S\\ref{sec:consequences}, ``What transcendence is''\\newline \\pywit{epi}{p13052}{J1}, \\leanwit{FrcCore}{p13052}{J1} \\lean{FRC.Epi.wrap\\_free}",
+     "source": "\\S\\ref{sec:consequences}\\newline \\pywit{epi}{p13052}{J1}, \\leanwit{FrcCore}{p13052}{J1} \\lean{FRC.Epi.wrap\\_free}",
      "key": "p13052"
     },
     {
@@ -487,7 +487,7 @@
      "label": "J6",
      "predicate": "Two constants, two walls: both attach their full-resolution shell content to sparse-prime problems (Kurepa non-vanishing for $e$, a prescribed Fermat quotient of Wieferich type for $\\pi$); for each shell the bounded observer holds an exact finite certificate and holds no uniform certificate across all shells --- per-instance decidability without a uniform bound, the characteristic shape of statements at the arithmetic horizon; Kurepa's hypothesis is not thereby decided; the frequency of the persistence shells is a range reading (G4), their totality not a predicate of the paper.",
      "tag": "T",
-     "source": "\\S\\ref{sec:consequences}, ``Two constants, two celebrated walls''\\newline \\pywit{epi}{p13057}{J6}, \\leanwit{FrcCore}{p13057}{J6}, \\leanwit{FrcLedger}{p13057}{J6} \\lean{Epi.derangements\\_wall\\_zmod, Epi.half\\_wall\\_second\\_order, FRC.Epi.terminal13, FRC.Epi.invariants\\_13\\_1093}",
+     "source": "\\S\\ref{sec:consequences}\\newline \\pywit{epi}{p13057}{J6}, \\leanwit{FrcCore}{p13057}{J6}, \\leanwit{FrcLedger}{p13057}{J6} \\lean{Epi.derangements\\_wall\\_zmod, Epi.half\\_wall\\_second\\_order, FRC.Epi.terminal13, FRC.Epi.invariants\\_13\\_1093}",
      "key": "p13057"
     }
    ]

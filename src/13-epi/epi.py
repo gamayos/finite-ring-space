@@ -74,6 +74,7 @@ LEDGER = {
     "pi2.A2": "13:G3, 13:I2",
     "pi2.B1": "13:G7",
     "pi2.B2": "13:G7",
+    "pi2.B3": "13:G7",
     "pi2.C1": "13:G6",
     "pi2.C2": "13:G6",
     "pi2.C3": "13:G6",
@@ -127,6 +128,7 @@ LABELS = {
     "pi2.A2": "the quarter-wall two-squares invariant [w_κ] = κ⁻¹(2a)⁻² = −(a²)⁻¹ = (b²)⁻¹ (mod p) for the same 211 primes; on p = 13 = 3² + 2², [w_3] = 10 = −(9)⁻¹",
     "pi2.B1": "Sun's supercongruence σ_p ≡ 0 (mod p²) re-verified in exact rational arithmetic for all primes 5 ≤ p < 300",
     "pi2.B2": "the third-order Bernoulli law σ_p/p² ≡ (−1)^{(p+1)/2} B_{p−3}/36 (mod p) for all sixty primes 5 ≤ p < 300, B_{p−3} from the exact Bernoulli recurrence",
+    "pi2.B3": "the third-order Bernoulli law for all 1227 primes 5 ≤ p < 10⁴, σ_p modulo p³ by the recursion C(2k,k) = C(2k−2,k−1)·2(2k−1)/k (every divisor a p-unit) and B_{p−3} modulo p by the power sum Σ_{j<p} j^{p−3} ≡ p B_{p−3} (mod p²); the power-sum Bernoulli values agree with the exact recurrence on the sixty primes below 300",
     "pi2.C1": "the binomial transfer C(2k,k) ≡ (−4)^k C(m,k) (mod p) for k < m on p ∈ {11, 13, 29, 37}",
     "pi2.C2": "Lerch's congruence H_{(p−1)/2} ≡ −2 q_p(2) (mod p) for all primes 5 ≤ p < 500",
     "pi2.C3": "the Wallis evaluation L_m = Σ_j C(m,j)(−1)^j/(2j+1) = 4^m (m!)²/(2m+1)! over Q for m ≤ 60",
@@ -1056,6 +1058,39 @@ def block_pi2():
     log_pi2("  p, sigma/p^2 mod p, law: " + str([(p, t, l) for p, t, l in rows[:8]]))
     chk("sixty primes 5 <= p < 300", len(rows) == 60, "pi2", "B2")
 
+    # ---- [B3] the third-order law to 10^4, modular throughout (the method of reports/daily-push/t8-push-20260917)
+    def sigma_mod(p, M):
+        """sigma_p mod M (M a power of p): C(2k,k) by the recursion C(2k,k) = C(2k-2,k-1)*2(2k-1)/k, every divisor a p-unit for 2k+1 <= p-2."""
+        c = 1; s = 0; sixteen = 1
+        for k in range((p - 1) // 2):
+            if k:
+                c = c * 2 * (2*k - 1) * pow(k, -1, M) % M
+                sixteen = sixteen * 16 % M
+            s = (s + c * pow((2*k + 1) * sixteen, -1, M)) % M
+        return s
+    def bern_mod_p(p, n):
+        """B_n mod p for even n <= p-3: sum_{j=1}^{p-1} j^n == p B_n (mod p^2) (Faulhaber, every denominator a p-unit)."""
+        M = p * p
+        S = sum(pow(j, n, M) for j in range(1, p)) % M
+        return (S // p) % p if S % p == 0 else None
+    okL = True; nL = 0; first = []; agree = True
+    for p in [q for q in sieve_pi2(10**4) if q >= 5]:
+        s3 = sigma_mod(p, p**3); b3 = bern_mod_p(p, p - 3)
+        lhs = (s3 // (p*p)) % p if s3 % (p*p) == 0 else None
+        rhs = None if b3 is None else (-1)**((p+1)//2) * b3 % p * pow(36, -1, p) % p
+        if lhs is None or rhs is None or lhs != rhs: okL = False
+        if p < 300:
+            Bpm3 = BERN[p-3]
+            if b3 != Bpm3.numerator % p * pow(Bpm3.denominator % p, -1, p) % p: agree = False
+        if len(first) < 10: first.append((p, lhs))
+        nL += 1
+    log_pi2(f"  third-order law to 10^4, sigma_p mod p^3 and B_(p-3) mod p modular: {'PASS' if okL else 'FAIL'} ({nL} primes)")
+    chk("1227 primes 5 <= p < 10^4", nL == 1227, "pi2", "B3")
+    chk("sigma_p == 0 (mod p^2) and sigma_p/p^2 == (-1)^((p+1)/2) B_(p-3)/36 (mod p) for all 1227 primes 5 <= p < 10^4", okL, "pi2", "B3")
+    chk("B_(p-3) mod p by the power sum agrees with the exact Bernoulli recurrence for the sixty primes 5 <= p < 300", agree, "pi2", "B3")
+    chk("first rows (p, sigma_p/p^2 mod p) = (5,4) (7,3) (11,5) (13,6) (17,15) (19,2) (23,10) (29,21) (31,9) (37,2)",
+        first == [(5,4),(7,3),(11,5),(13,6),(17,15),(19,2),(23,10),(29,21),(31,9),(37,2)], "pi2", "B3")
+
     # ---- [C] proof sanity checks
     log_pi2(); log_pi2("[C] PROOF INGREDIENTS")
     okc = True
@@ -1118,7 +1153,7 @@ def block_pi2():
     chk("v_p == 8 + 16p(2 q_p(2) - 1) (mod p^2) for p in {5, 7, 11, 13, 29, 37}", okR, "pi2", "D2")
 
 
-    flush("pi2", order=["A1", "A2", "B1", "B2", "C1", "C2", "C3", "C4", "D1", "D2"])
+    flush("pi2", order=["A1", "A2", "B1", "B2", "B3", "C1", "C2", "C3", "C4", "D1", "D2"])
 
 # ------------------------------------------------------------------------------------------------------------
 # block tow — validate_towers.py: validate_towers.py -- 13-epi fixed-shell towers, Cayley identities, orientation rule.
