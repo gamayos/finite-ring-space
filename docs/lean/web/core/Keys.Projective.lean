@@ -1940,7 +1940,7 @@ end Affine
 
 /-- 1:C2, 4:C5, the order — the frames `(a, b)`, `b ≠ 0`, number `p·(p − 1)`: `p` choices of the origin, `p − 1`
 of the unit. -/
-theorem frame_count (_F : Frame p κ g) :
+theorem frame_count :
     natCount (fun _ => True) p * natCount (fun b => b ≠ 0) p = p * (p - 1) := by
   have h1 : ∀ n, natCount (fun _ => True) n = n := fun n => by
     induction n with
@@ -2004,16 +2004,31 @@ def PEq (u v : Shell p × Shell p) : Prop := u.1 * v.2 = v.1 * u.2
 theorem eq_of_add_neg_eq_zero {x y : Shell p} (h : x + -y = 0) : x = y := by
   rw [← add_zero x, ← neg_add y, ← add_assoc, h, zero_add]
 
-/-- On a frame, `x² − ν y² ≠ 0` for `(x, y) ≠ 0` when `ν` is a nonsquare. -/
-theorem norm_ne_zero (F : Frame p κ g) {ν : Shell p} (hν : ¬ ∃ y : Shell p, y * y = ν) {x y : Shell p}
+/-- The field laws of a shell, as the Hopf section and the frame triple use them; a frame gives them (`Frame.fld`), so
+does primality (`Prime.fld`, `Theme/Hopf.lean`): the theorems below hold on every prime shell (38:A9). -/
+structure Fld (p : Nat) [Pos p] : Prop where
+  one_ne_zero : (1 : Shell p) ≠ 0
+  exists_inv : ∀ {x : Shell p}, x ≠ 0 → ∃ y, x * y = 1
+  mul_eq_zero : ∀ {a b : Shell p}, a * b = 0 → a = 0 ∨ b = 0
+  mul_ne_zero : ∀ {a b : Shell p}, a ≠ 0 → b ≠ 0 → a * b ≠ 0
+  mul_left_cancel : ∀ {a b c : Shell p}, a ≠ 0 → a * b = a * c → b = c
+  sq_eq_one : ∀ {x : Shell p}, x * x = 1 → x = 1 ∨ x = -1
+
+/-- A frame has the field laws. -/
+theorem fld (F : Frame p κ g) : Fld p :=
+  ⟨F.one_ne_zero, fun hx => F.exists_inv hx, fun h => F.mul_eq_zero h, fun ha hb => F.mul_ne_zero ha hb,
+   fun ha h => F.mul_left_cancel ha h, fun h => F.sq_eq_one h⟩
+
+/-- 38:A9, 00:C19 — on a field-law shell, `x² − ν y² ≠ 0` for `(x, y) ≠ 0` when `ν` is a nonsquare. -/
+theorem Fld.norm_ne_zero (K : Fld p) {ν : Shell p} (hν : ¬ ∃ y : Shell p, y * y = ν) {x y : Shell p}
     (hxy : x ≠ 0 ∨ y ≠ 0) : x * x + -(ν * (y * y)) ≠ 0 := fun h => by
   have e := eq_of_add_neg_eq_zero h
   match Shell.instDecidableEq y 0 with
   | .isTrue hy =>
     rw [hy, mul_zero, mul_zero] at e
-    exact hxy.elim (fun hx => hx (match F.mul_eq_zero e with | .inl h => h | .inr h => h)) (fun h => h hy)
+    exact hxy.elim (fun hx => hx (match K.mul_eq_zero e with | .inl h => h | .inr h => h)) (fun h => h hy)
   | .isFalse hy =>
-    obtain ⟨s, hs⟩ := F.exists_inv hy
+    obtain ⟨s, hs⟩ := K.exists_inv hy
     exact hν ⟨x * s, by rw [mul_mul_mul_comm, e, mul_assoc, ← mul_mul_mul_comm, hs, mul_one, mul_one]⟩
 
 /-- 38:A7, 38:A9 — **C19 (p00039), the Hopf section.** In `PGL₂(𝔽_p)` on a frame, `ν` a nonsquare:
@@ -2022,7 +2037,7 @@ theorem norm_ne_zero (F : Frame p κ g) {ν : Shell p} (hν : ¬ ∃ y : Shell p
 chart is a global section of `G → G/T`; (5) the boost classes are the points of `ℙ¹` (`p + 1` per fibre) and (6) the
 cone charts number `p (p − 1)`; (7) on the spin cover `SL₂` the sign `−I` is both a boost and a chart, `B ∩ T = {±I}`
 there, and `b t = (−b)(−t)`: the section obstructs at `−1`. -/
-theorem hopf_section (F : Frame p κ g) {ν : Shell p} (hν : ¬ ∃ y : Shell p, y * y = ν) :
+theorem Fld.hopf_section (K : Fld p) {ν : Shell p} (hν : ¬ ∃ y : Shell p, y * y = ν) :
     (∀ α β x y : Shell p, β ≠ 0 → (x ≠ 0 ∨ y ≠ 0) → ¬ PEq ((boost ν α β).act x y) (x, y)) ∧
     (∀ α β a b e l : Shell p, boost ν α β = M2.smul l (borel a b e) → β = 0) ∧
     (∀ M : M2 p, M.det ≠ 0 → ∃ N a b e α β : Shell p, N ≠ 0 ∧ a * e ≠ 0 ∧ (α ≠ 0 ∨ β ≠ 0) ∧
@@ -2036,9 +2051,9 @@ theorem hopf_section (F : Frame p κ g) {ν : Shell p} (hν : ¬ ∃ y : Shell p
     (boost ν (-1) 0 = borel (-1) 0 (-1) ∧ (-1 : Shell p) * -1 + -(ν * (0 * 0)) = 1 ∧ (-1 : Shell p) * -1 = 1 ∧
       (∀ α β a b e : Shell p, boost ν α β = borel a b e → α * α + -(ν * (β * β)) = 1 → β = 0 ∧ (α = 1 ∨ α = -1)) ∧
       ∀ M N : M2 p, (M2.smul (-1) M).mul (M2.smul (-1) N) = M.mul N) := by
-  have hN : ∀ {x y : Shell p}, (x ≠ 0 ∨ y ≠ 0) → x * x + -(ν * (y * y)) ≠ 0 := fun hxy => norm_ne_zero F hν hxy
+  have hN : ∀ {x y : Shell p}, (x ≠ 0 ∨ y ≠ 0) → x * x + -(ν * (y * y)) ≠ 0 := fun hxy => K.norm_ne_zero hν hxy
   refine ⟨fun α β x y hβ hxy hP => ?_, fun α β a b e l h => ?_, fun M hM => ?_,
-    fun l a1 b1 e1 α1 β1 a2 b2 e2 α2 β2 hl he2 hαβ h => ?_, fun α β α' β' h1 h2 => ?_, frame_count F, ?_⟩
+    fun l a1 b1 e1 α1 β1 a2 b2 e2 α2 β2 hl he2 hαβ h => ?_, fun α β α' β' h1 h2 => ?_, frame_count, ?_⟩
   · -- (1) a fixed point forces `β (ν y² − x²) = 0`
     have e : (α * x + ν * β * y) * y + -(x * (β * x + α * y)) = β * (ν * (y * y) + -(x * x)) :=
       Shell.Frame.RE.sound (Shell.Frame.look [α, β, ν, x, y])
@@ -2046,7 +2061,7 @@ theorem hopf_section (F : Frame p κ g) {ν : Shell p} (hν : ¬ ∃ y : Shell p
         (.mul (.var 1) (.add (.mul (.var 2) (.mul (.var 4) (.var 4))) (.neg (.mul (.var 3) (.var 3))))) (by decide +kernel)
     have hP' : (α * x + ν * β * y) * y = x * (β * x + α * y) := hP
     rw [hP', add_neg] at e
-    match F.mul_eq_zero e.symm with
+    match K.mul_eq_zero e.symm with
     | .inl h => exact hβ h
     | .inr h =>
       have h' : x * x + -(ν * (y * y)) = 0 := by
@@ -2065,7 +2080,7 @@ theorem hopf_section (F : Frame p κ g) {ν : Shell p} (hν : ¬ ∃ y : Shell p
       | .isFalse hd, _ => exact .inl hd
       | _, .isFalse hc => exact .inr hc
     refine ⟨M.d * M.d + -(ν * (M.c * M.c)), M.det, M.b * M.d + -(ν * (M.a * M.c)), M.d * M.d + -(ν * (M.c * M.c)),
-      M.d, M.c, hN hcd, F.mul_ne_zero hM (hN hcd), hcd, M2.ext' ?_ ?_ ?_ ?_⟩
+      M.d, M.c, hN hcd, K.mul_ne_zero hM (hN hcd), hcd, M2.ext' ?_ ?_ ?_ ?_⟩
     · exact Shell.Frame.RE.sound (Shell.Frame.look [M.a, M.b, M.c, M.d, ν])
         (.mul (.add (.mul (.var 3) (.var 3)) (.neg (.mul (.var 4) (.mul (.var 2) (.var 2))))) (.var 0))
         (.add (.mul (.add (.mul (.var 0) (.var 3)) (.neg (.mul (.var 1) (.var 2)))) (.var 3)) (.mul (.add (.mul (.var 1) (.var 3)) (.neg (.mul (.var 4) (.mul (.var 0) (.var 2))))) (.var 2))) (by decide +kernel)
@@ -2095,7 +2110,7 @@ theorem hopf_section (F : Frame p κ g) {ν : Shell p} (hν : ¬ ∃ y : Shell p
         (.add (.mul (.var 4) (.mul (.var 0) (.mul (.var 3) (.var 5)))) (.neg (.mul (.var 5) (.mul (.var 0) (.mul (.var 3) (.var 4))))))
         .zero (by decide +kernel)
     rw [t2] at t1
-    have hT : α1 * β2 = α2 * β1 := eq_of_add_neg_eq_zero ((F.mul_eq_zero t1).resolve_left he2)
+    have hT : α1 * β2 = α2 * β1 := eq_of_add_neg_eq_zero ((K.mul_eq_zero t1).resolve_left he2)
     -- the chart: X = e2 a1 − e1 a2, Y = e2 b1 − e1 b2 solve the system with matrix boost(α1, β1)
     have s1 : e2 * (l * (a1 * α1 + b1 * β1)) = a2 * (l * (e1 * α1)) + b2 * (l * (e1 * β1)) := by
       rw [ha, ← hd', ← hc']; exact Shell.Frame.RE.sound (Shell.Frame.look [l, a1, b1, e1, α1, β1, a2, b2, e2, α2, β2, ν])
@@ -2115,8 +2130,8 @@ theorem hopf_section (F : Frame p κ g) {ν : Shell p} (hν : ¬ ∃ y : Shell p
         (.add (.mul (.var 8) (.mul (.var 0) (.add (.mul (.var 1) (.mul (.var 11) (.var 5))) (.mul (.var 2) (.var 4))))) (.neg (.add (.mul (.var 6) (.mul (.var 11) (.mul (.var 0) (.mul (.var 3) (.var 5))))) (.mul (.var 7) (.mul (.var 0) (.mul (.var 3) (.var 4))))))) (by decide +kernel)
     rw [s1, add_neg] at u1
     rw [s2, add_neg] at u2
-    have v1 := (F.mul_eq_zero u1).resolve_left hl
-    have v2 := (F.mul_eq_zero u2).resolve_left hl
+    have v1 := (K.mul_eq_zero u1).resolve_left hl
+    have v2 := (K.mul_eq_zero u2).resolve_left hl
     have w1 : (e2 * a1 + -(e1 * a2)) * (α1 * α1 + -(ν * (β1 * β1))) =
         α1 * ((e2 * a1 + -(e1 * a2)) * α1 + (e2 * b1 + -(e1 * b2)) * β1) +
         -(β1 * ((e2 * a1 + -(e1 * a2)) * (ν * β1) + (e2 * b1 + -(e1 * b2)) * α1)) := Shell.Frame.RE.sound (Shell.Frame.look [l, a1, b1, e1, α1, β1, a2, b2, e2, α2, β2, ν])
@@ -2129,8 +2144,8 @@ theorem hopf_section (F : Frame p κ g) {ν : Shell p} (hν : ¬ ∃ y : Shell p
         (.add (.mul (.var 4) (.add (.mul (.add (.mul (.var 8) (.var 1)) (.neg (.mul (.var 3) (.var 6)))) (.mul (.var 11) (.var 5))) (.mul (.add (.mul (.var 8) (.var 2)) (.neg (.mul (.var 3) (.var 7)))) (.var 4)))) (.neg (.mul (.mul (.var 11) (.var 5)) (.add (.mul (.add (.mul (.var 8) (.var 1)) (.neg (.mul (.var 3) (.var 6)))) (.var 4)) (.mul (.add (.mul (.var 8) (.var 2)) (.neg (.mul (.var 3) (.var 7)))) (.var 5)))))) (by decide +kernel)
     rw [v1, v2, mul_zero, mul_zero, neg_zero, add_zero] at w1
     rw [v1, v2, mul_zero, mul_zero, neg_zero, add_zero] at w2
-    exact ⟨hT, eq_of_add_neg_eq_zero ((F.mul_eq_zero w1).resolve_right (hN hαβ)),
-      eq_of_add_neg_eq_zero ((F.mul_eq_zero w2).resolve_right (hN hαβ))⟩
+    exact ⟨hT, eq_of_add_neg_eq_zero ((K.mul_eq_zero w1).resolve_right (hN hαβ)),
+      eq_of_add_neg_eq_zero ((K.mul_eq_zero w2).resolve_right (hN hαβ))⟩
   · -- (5) the boost classes are the points of `ℙ¹`
     constructor
     · intro ⟨μ, _, h⟩
@@ -2140,7 +2155,7 @@ theorem hopf_section (F : Frame p κ g) {ν : Shell p} (hν : ¬ ∃ y : Shell p
     · intro e
       match Shell.instDecidableEq α 0 with
       | .isFalse hα =>
-        obtain ⟨s, hs⟩ := F.exists_inv hα
+        obtain ⟨s, hs⟩ := K.exists_inv hα
         have hb' : β' = α' * s * β :=
           calc β' = β' * (α * s) := by rw [hs, mul_one]
             _ = (α * β') * s := by rw [mul_left_comm, ← mul_assoc]
@@ -2159,10 +2174,10 @@ theorem hopf_section (F : Frame p κ g) {ν : Shell p} (hν : ¬ ∃ y : Shell p
         have hβ : β ≠ 0 := h1.resolve_left (fun h => h hα)
         have hα' : α' = 0 := by
           have : α' * β = 0 := by rw [← e, hα, zero_mul]
-          exact (F.mul_eq_zero this).resolve_right hβ
+          exact (K.mul_eq_zero this).resolve_right hβ
         have hβ' : β' ≠ 0 := h2.resolve_left (fun h => h hα')
-        obtain ⟨s, hs⟩ := F.exists_inv hβ
-        refine ⟨β' * s, F.mul_ne_zero hβ' (fun h0 => F.one_ne_zero (by rw [← hs, h0, mul_zero])), M2.ext' ?_ ?_ ?_ ?_⟩
+        obtain ⟨s, hs⟩ := K.exists_inv hβ
+        refine ⟨β' * s, K.mul_ne_zero hβ' (fun h0 => K.one_ne_zero (by rw [← hs, h0, mul_zero])), M2.ext' ?_ ?_ ?_ ?_⟩
         · show α' = β' * s * α; rw [hα, hα', mul_zero]
         · show ν * β' = β' * s * (ν * β); rw [mul_left_comm, mul_assoc, mul_comm s, hs, mul_one]
         · show β' = β' * s * β; rw [mul_assoc, mul_comm s, hs, mul_one]
@@ -2171,7 +2186,7 @@ theorem hopf_section (F : Frame p κ g) {ν : Shell p} (hν : ¬ ∃ y : Shell p
     refine ⟨M2.ext' rfl (mul_zero ν) rfl rfl, by rw [mul_zero, mul_zero, neg_zero, add_zero, neg_mul_neg, one_mul],
       by rw [neg_mul_neg, one_mul], fun α β a b e h hn => ?_, fun M N => M2.ext' ?_ ?_ ?_ ?_⟩
     · have hβ : β = 0 := congrArg M2.c h
-      refine ⟨hβ, F.sq_eq_one ?_⟩
+      refine ⟨hβ, K.sq_eq_one ?_⟩
       rw [hβ, mul_zero, mul_zero, neg_zero, add_zero] at hn; exact hn
     · exact Shell.Frame.RE.sound (Shell.Frame.look [M.a, M.b, M.c, M.d, N.a, N.b, N.c, N.d])
         (.add (.mul (.mul (.neg .one) (.var 0)) (.mul (.neg .one) (.var 4))) (.mul (.mul (.neg .one) (.var 1)) (.mul (.neg .one) (.var 6))))
@@ -2186,12 +2201,29 @@ theorem hopf_section (F : Frame p κ g) {ν : Shell p} (hν : ¬ ∃ y : Shell p
         (.add (.mul (.mul (.neg .one) (.var 2)) (.mul (.neg .one) (.var 5))) (.mul (.mul (.neg .one) (.var 3)) (.mul (.neg .one) (.var 7))))
         (.add (.mul (.var 2) (.var 5)) (.mul (.var 3) (.var 7))) (by decide +kernel)
 
+/-- 38:A7, 38:A9 — on a frame (`Frame.fld`): `Fld.hopf_section`. -/
+theorem hopf_section (F : Frame p κ g) {ν : Shell p} (hν : ¬ ∃ y : Shell p, y * y = ν) :
+    (∀ α β x y : Shell p, β ≠ 0 → (x ≠ 0 ∨ y ≠ 0) → ¬ PEq ((boost ν α β).act x y) (x, y)) ∧
+    (∀ α β a b e l : Shell p, boost ν α β = M2.smul l (borel a b e) → β = 0) ∧
+    (∀ M : M2 p, M.det ≠ 0 → ∃ N a b e α β : Shell p, N ≠ 0 ∧ a * e ≠ 0 ∧ (α ≠ 0 ∨ β ≠ 0) ∧
+      M2.smul N M = (borel a b e).mul (boost ν α β)) ∧
+    (∀ l a1 b1 e1 α1 β1 a2 b2 e2 α2 β2 : Shell p, l ≠ 0 → e2 ≠ 0 → (α1 ≠ 0 ∨ β1 ≠ 0) →
+      M2.smul l ((borel a1 b1 e1).mul (boost ν α1 β1)) = (borel a2 b2 e2).mul (boost ν α2 β2) →
+      α1 * β2 = α2 * β1 ∧ e2 * a1 = e1 * a2 ∧ e2 * b1 = e1 * b2) ∧
+    (∀ α β α' β' : Shell p, (α ≠ 0 ∨ β ≠ 0) → (α' ≠ 0 ∨ β' ≠ 0) →
+      ((∃ μ : Shell p, μ ≠ 0 ∧ boost ν α' β' = M2.smul μ (boost ν α β)) ↔ α * β' = α' * β)) ∧
+    natCount (fun _ => True) p * natCount (fun b => b ≠ 0) p = p * (p - 1) ∧
+    (boost ν (-1) 0 = borel (-1) 0 (-1) ∧ (-1 : Shell p) * -1 + -(ν * (0 * 0)) = 1 ∧ (-1 : Shell p) * -1 = 1 ∧
+      (∀ α β a b e : Shell p, boost ν α β = borel a b e → α * α + -(ν * (β * β)) = 1 → β = 0 ∧ (α = 1 ∨ α = -1)) ∧
+      ∀ M N : M2 p, (M2.smul (-1) M).mul (M2.smul (-1) N) = M.mul N) :=
+  F.fld.hopf_section hν
+
 /-- 38:A7, 38:A9, 38:X4, 00:C19 — the fibration counted by representatives. Every Borel class (an upper-triangular `[[a, b], [0, e]]`,
 `a e ≠ 0`, up to a nonzero scalar) has exactly one representative `[[i, j], [0, 1]]` with `i, j < p` and `i ≠ 0`, and
 these number `p (p − 1)`. Every boost class has exactly one representative among `[[i, ν], [1, i]]` (`i < p`) and the
 identity `[[1, 0], [0, 1]]`, and these number `p + 1`. With the factorisation (`hopf_section`), the frames are
 `p (p − 1)` fibres of `p + 1`. -/
-theorem hopf_counts (F : Frame p κ g) (ν : Shell p) :
+theorem Fld.hopf_counts (K : Fld p) (ν : Shell p) :
     (∀ a b e : Shell p, a * e ≠ 0 → ∃ i j : Nat, i < p ∧ j < p ∧ i ≠ 0 ∧
       ∃ l : Shell p, l ≠ 0 ∧ M2.smul l (borel a b e) = borel (ofNat i) (ofNat j) 1) ∧
     (∀ i j i' j' : Nat, i < p → j < p → i' < p → j' < p → ∀ l : Shell p,
@@ -2217,13 +2249,13 @@ theorem hopf_counts (F : Frame p κ g) (ν : Shell p) :
   -- the boost scaled: `μ · [[α, νβ], [β, α]] = [[μα, ν(μβ)], [μβ, μα]]`
   have hsb : ∀ μ α β : Shell p, M2.smul μ (boost ν α β) = boost ν (μ * α) (μ * β) := fun μ α β =>
     M2.ext' rfl (by show μ * (ν * β) = ν * (μ * β); rw [mul_left_comm]) rfl rfl
-  refine ⟨fun a b e hae => ?_, fun i j i' j' hi hj hi' hj' l h => ?_, frame_count F, fun α β hαβ => ?_,
+  refine ⟨fun a b e hae => ?_, fun i j i' j' hi hj hi' hj' l h => ?_, frame_count, fun α β hαβ => ?_,
     fun i i' hi hi' μ h => ?_, fun i μ hμ h => ?_, fun i μ h => ?_, by rw [hT]⟩
   · have he : e ≠ 0 := fun h0 => hae (by rw [h0, mul_zero])
     have ha : a ≠ 0 := fun h0 => hae (by rw [h0, zero_mul])
-    obtain ⟨y, hy⟩ := F.exists_inv he
-    have hy0 : y ≠ 0 := fun h0 => F.one_ne_zero (by rw [← hy, h0, mul_zero])
-    refine ⟨(y * a).val, (y * b).val, (y * a).lt, (y * b).lt, hval _ (F.mul_ne_zero hy0 ha), y, hy0, ?_⟩
+    obtain ⟨y, hy⟩ := K.exists_inv he
+    have hy0 : y ≠ 0 := fun h0 => K.one_ne_zero (by rw [← hy, h0, mul_zero])
+    refine ⟨(y * a).val, (y * b).val, (y * a).lt, (y * b).lt, hval _ (K.mul_ne_zero hy0 ha), y, hy0, ?_⟩
     rw [ofNat_val, ofNat_val]
     exact M2.ext' rfl rfl (mul_zero y) (by show y * e = 1; rw [mul_comm]; exact hy)
   · have hl : l = 1 := hl1 l (M2.ext'_d h)
@@ -2234,14 +2266,14 @@ theorem hopf_counts (F : Frame p κ g) (ν : Shell p) :
     exact ⟨ofNat_inj hi hi' ha, ofNat_inj hj hj' hb⟩
   · match Shell.instDecidableEq β 0 with
     | .isFalse hβ =>
-      obtain ⟨y, hy⟩ := F.exists_inv hβ
-      have hy0 : y ≠ 0 := fun h0 => F.one_ne_zero (by rw [← hy, h0, mul_zero])
+      obtain ⟨y, hy⟩ := K.exists_inv hβ
+      have hy0 : y ≠ 0 := fun h0 => K.one_ne_zero (by rw [← hy, h0, mul_zero])
       refine .inl ⟨(y * α).val, (y * α).lt, y, hy0, ?_⟩
       rw [hsb, ofNat_val, mul_comm y β, hy]
     | .isTrue hβ =>
       have hα : α ≠ 0 := match hαβ with | .inl h => h | .inr h => absurd hβ h
-      obtain ⟨y, hy⟩ := F.exists_inv hα
-      have hy0 : y ≠ 0 := fun h0 => F.one_ne_zero (by rw [← hy, h0, mul_zero])
+      obtain ⟨y, hy⟩ := K.exists_inv hα
+      have hy0 : y ≠ 0 := fun h0 => K.one_ne_zero (by rw [← hy, h0, mul_zero])
       refine .inr ⟨y, hy0, ?_⟩
       rw [hsb, hβ, mul_zero, mul_comm y α, hy]
   · rw [hsb] at h
@@ -2251,8 +2283,24 @@ theorem hopf_counts (F : Frame p κ g) (ν : Shell p) :
   · rw [hsb] at h
     exact hμ (by have := M2.ext'_c h; rwa [mul_one] at this)
   · rw [hsb, mul_zero] at h
-    exact F.one_ne_zero (M2.ext'_c h).symm
+    exact K.one_ne_zero (M2.ext'_c h).symm
 
+
+/-- 38:A7, 38:A9, 38:X4, 00:C19 — on a frame (`Frame.fld`): `Fld.hopf_counts`. -/
+theorem hopf_counts (F : Frame p κ g) (ν : Shell p) :
+    (∀ a b e : Shell p, a * e ≠ 0 → ∃ i j : Nat, i < p ∧ j < p ∧ i ≠ 0 ∧
+      ∃ l : Shell p, l ≠ 0 ∧ M2.smul l (borel a b e) = borel (ofNat i) (ofNat j) 1) ∧
+    (∀ i j i' j' : Nat, i < p → j < p → i' < p → j' < p → ∀ l : Shell p,
+      M2.smul l (borel (ofNat i) (ofNat j) 1) = borel (ofNat i') (ofNat j') 1 → i = i' ∧ j = j') ∧
+    natCount (fun _ => True) p * natCount (fun b => b ≠ 0) p = p * (p - 1) ∧
+    (∀ α β : Shell p, (α ≠ 0 ∨ β ≠ 0) →
+      (∃ i : Nat, i < p ∧ ∃ μ : Shell p, μ ≠ 0 ∧ M2.smul μ (boost ν α β) = boost ν (ofNat i) 1) ∨
+      (∃ μ : Shell p, μ ≠ 0 ∧ M2.smul μ (boost ν α β) = boost ν 1 0)) ∧
+    (∀ i i' : Nat, i < p → i' < p → ∀ μ : Shell p, M2.smul μ (boost ν (ofNat i) 1) = boost ν (ofNat i') 1 → i = i') ∧
+    (∀ i : Nat, ∀ μ : Shell p, μ ≠ 0 → M2.smul μ (boost ν (ofNat i) 1) ≠ boost ν 1 0) ∧
+    (∀ i : Nat, ∀ μ : Shell p, M2.smul μ (boost ν 1 0) ≠ boost ν (ofNat i) 1) ∧
+    natCount (fun _ => True) p + 1 = p + 1 :=
+  F.fld.hopf_counts ν
 
 /-! ## 38:A9, 38:X4, 38:B6: the frame triple and the split fibration (12 October 2026)
 
@@ -2296,9 +2344,9 @@ theorem mul_diag (l : Shell p) (M : M2 p) : M.mul ⟨l, 0, 0, l⟩ = smul l M :=
   ext' (Shell.Frame.RE.sound (Shell.Frame.look [l, M.a, M.b, M.c, M.d]) (.add (.mul (.var 1) (.var 0)) (.mul (.var 2) .zero)) (.mul (.var 0) (.var 1)) (by decide +kernel)) (Shell.Frame.RE.sound (Shell.Frame.look [l, M.a, M.b, M.c, M.d]) (.add (.mul (.var 1) .zero) (.mul (.var 2) (.var 0))) (.mul (.var 0) (.var 2)) (by decide +kernel)) (Shell.Frame.RE.sound (Shell.Frame.look [l, M.a, M.b, M.c, M.d]) (.add (.mul (.var 3) (.var 0)) (.mul (.var 4) .zero)) (.mul (.var 0) (.var 3)) (by decide +kernel)) (Shell.Frame.RE.sound (Shell.Frame.look [l, M.a, M.b, M.c, M.d]) (.add (.mul (.var 3) .zero) (.mul (.var 4) (.var 0))) (.mul (.var 0) (.var 4)) (by decide +kernel))
 
 /-- A nonzero scalar cancels. -/
-theorem smul_cancel (F : Frame p κ g) {l : Shell p} (hl : l ≠ 0) {A B : M2 p} (h : smul l A = smul l B) : A = B :=
-  ext' (F.mul_left_cancel hl (ext'_a h)) (F.mul_left_cancel hl (ext'_b h)) (F.mul_left_cancel hl (ext'_c h))
-    (F.mul_left_cancel hl (ext'_d h))
+theorem smul_cancel (K : Fld p) {l : Shell p} (hl : l ≠ 0) {A B : M2 p} (h : smul l A = smul l B) : A = B :=
+  ext' (K.mul_left_cancel hl (ext'_a h)) (K.mul_left_cancel hl (ext'_b h)) (K.mul_left_cancel hl (ext'_c h))
+    (K.mul_left_cancel hl (ext'_d h))
 
 end M2
 
@@ -2309,7 +2357,7 @@ every frame is (boost carrying the horizon to its direction) × (cone chart); (2
 (3) the factorisation is unique up to scalars — two factorisations of proportional frames have the same boost class and
 the same chart class. With `hopf_counts` (`p + 1` boost classes, `p(p − 1)` charts) the frames number
 `(p + 1)·p·(p − 1)`: one direction, one shell cell, one drive phase. -/
-theorem frame_triple (F : Frame p κ g) {ν : Shell p} (hν : ¬ ∃ y : Shell p, y * y = ν) :
+theorem Fld.frame_triple (K : Fld p) {ν : Shell p} (hν : ¬ ∃ y : Shell p, y * y = ν) :
     (∀ M : M2 p, M.det ≠ 0 → (M.a ≠ 0 ∨ M.c ≠ 0) ∧ M.act 1 0 = (M.a, M.c) ∧ (boost ν M.a M.c).act 1 0 = (M.a, M.c) ∧
       M.a * M.a + -(ν * (M.c * M.c)) ≠ 0 ∧
       M2.smul (M.a * M.a + -(ν * (M.c * M.c))) M =
@@ -2318,7 +2366,7 @@ theorem frame_triple (F : Frame p κ g) {ν : Shell p} (hν : ¬ ∃ y : Shell p
     (∀ l α1 β1 a1 b1 e1 α2 β2 a2 b2 e2 : Shell p, l ≠ 0 → a1 ≠ 0 → a2 ≠ 0 → (α1 ≠ 0 ∨ β1 ≠ 0) →
       M2.smul l ((boost ν α1 β1).mul (borel a1 b1 e1)) = (boost ν α2 β2).mul (borel a2 b2 e2) →
       α1 * β2 = α2 * β1 ∧ e2 * a1 = e1 * a2 ∧ e2 * b1 = e1 * b2) := by
-  have hN : ∀ {x y : Shell p}, (x ≠ 0 ∨ y ≠ 0) → x * x + -(ν * (y * y)) ≠ 0 := fun hxy => norm_ne_zero F hν hxy
+  have hN : ∀ {x y : Shell p}, (x ≠ 0 ∨ y ≠ 0) → x * x + -(ν * (y * y)) ≠ 0 := fun hxy => K.norm_ne_zero hν hxy
   refine ⟨fun M hM => ?_, fun a b e => ?_, fun l α1 β1 a1 b1 e1 α2 β2 a2 b2 e2 hl ha1 ha2 hαβ h => ?_⟩
   · have hac : M.a ≠ 0 ∨ M.c ≠ 0 := by
       match Shell.instDecidableEq M.a 0, Shell.instDecidableEq M.c 0 with
@@ -2348,7 +2396,7 @@ theorem frame_triple (F : Frame p κ g) {ν : Shell p} (hν : ¬ ∃ y : Shell p
     rw [ha, hc] at t1
     have t2 : α2 * a2 * β2 + -(α2 * (β2 * a2)) = 0 := Shell.Frame.RE.sound (Shell.Frame.look [l, α1, β1, a1, b1, e1, α2, β2, a2, b2, e2, ν]) (.add (.mul (.mul (.var 6) (.var 8)) (.var 7)) (.neg (.mul (.var 6) (.mul (.var 7) (.var 8))))) .zero (by decide +kernel)
     rw [t2] at t1
-    have hT : α1 * β2 = α2 * β1 := eq_of_add_neg_eq_zero ((F.mul_eq_zero t1).resolve_left (F.mul_ne_zero hl ha1))
+    have hT : α1 * β2 = α2 * β1 := eq_of_add_neg_eq_zero ((K.mul_eq_zero t1).resolve_left (K.mul_ne_zero hl ha1))
     -- the chart class: scale the `b`, `d` rows by `a2` and read the boost classes equal
     have s1 : a2 * (α2 * b2 + ν * β2 * e2) = l * (a1 * (α1 * b2 + ν * β1 * e2)) := by
       have e : a2 * (α2 * b2 + ν * β2 * e2) = (α2 * a2) * b2 + ν * ((β2 * a2) * e2) := Shell.Frame.RE.sound (Shell.Frame.look [l, α1, β1, a1, b1, e1, α2, β2, a2, b2, e2, ν]) (.mul (.var 8) (.add (.mul (.var 6) (.var 9)) (.mul (.mul (.var 11) (.var 7)) (.var 10)))) (.add (.mul (.mul (.var 6) (.var 8)) (.var 9)) (.mul (.var 11) (.mul (.mul (.var 7) (.var 8)) (.var 10)))) (by decide +kernel)
@@ -2359,24 +2407,36 @@ theorem frame_triple (F : Frame p κ g) {ν : Shell p} (hν : ¬ ∃ y : Shell p
     have X1 : a2*(α1*b1 + ν*β1*e1) = a1*(α1*b2 + ν*β1*e2) := by
       have e : l * (a2*(α1*b1 + ν*β1*e1)) = a2 * (l * (α1 * b1 + ν * β1 * e1)) := Shell.Frame.RE.sound (Shell.Frame.look [l, α1, β1, a1, b1, e1, α2, β2, a2, b2, e2, ν]) (.mul (.var 0) (.mul (.var 8) (.add (.mul (.var 1) (.var 4)) (.mul (.mul (.var 11) (.var 2)) (.var 5))))) (.mul (.var 8) (.mul (.var 0) (.add (.mul (.var 1) (.var 4)) (.mul (.mul (.var 11) (.var 2)) (.var 5))))) (by decide +kernel)
       rw [hb, s1] at e
-      exact F.mul_left_cancel hl e
+      exact K.mul_left_cancel hl e
     have X2 : a2*(β1*b1 + α1*e1) = a1*(β1*b2 + α1*e2) := by
       have e : l * (a2*(β1*b1 + α1*e1)) = a2 * (l * (β1 * b1 + α1 * e1)) := Shell.Frame.RE.sound (Shell.Frame.look [l, α1, β1, a1, b1, e1, α2, β2, a2, b2, e2, ν]) (.mul (.var 0) (.mul (.var 8) (.add (.mul (.var 2) (.var 4)) (.mul (.var 1) (.var 5))))) (.mul (.var 8) (.mul (.var 0) (.add (.mul (.var 2) (.var 4)) (.mul (.var 1) (.var 5))))) (by decide +kernel)
       rw [hd, s2] at e
-      exact F.mul_left_cancel hl e
+      exact K.mul_left_cancel hl e
     -- invert the boost: `N(α1, β1) ≠ 0`
     have w1 : (a2 * b1 + -(a1 * b2)) * (α1*α1 + -(ν*(β1*β1))) = α1 * (a2*(α1*b1 + ν*β1*e1) + -(a1*(α1*b2 + ν*β1*e2))) + -(ν * β1 * (a2*(β1*b1 + α1*e1) + -(a1*(β1*b2 + α1*e2)))) := Shell.Frame.RE.sound (Shell.Frame.look [l, α1, β1, a1, b1, e1, α2, β2, a2, b2, e2, ν]) (.mul (.add (.mul (.var 8) (.var 4)) (.neg (.mul (.var 3) (.var 9)))) (.add (.mul (.var 1) (.var 1)) (.neg (.mul (.var 11) (.mul (.var 2) (.var 2)))))) (.add (.mul (.var 1) (.add (.mul (.var 8) (.add (.mul (.var 1) (.var 4)) (.mul (.mul (.var 11) (.var 2)) (.var 5)))) (.neg (.mul (.var 3) (.add (.mul (.var 1) (.var 9)) (.mul (.mul (.var 11) (.var 2)) (.var 10))))))) (.neg (.mul (.mul (.var 11) (.var 2)) (.add (.mul (.var 8) (.add (.mul (.var 2) (.var 4)) (.mul (.var 1) (.var 5)))) (.neg (.mul (.var 3) (.add (.mul (.var 2) (.var 9)) (.mul (.var 1) (.var 10))))))))) (by decide +kernel)
     have w2 : (a2 * e1 + -(a1 * e2)) * (α1*α1 + -(ν*(β1*β1))) = α1 * (a2*(β1*b1 + α1*e1) + -(a1*(β1*b2 + α1*e2))) + -(β1 * (a2*(α1*b1 + ν*β1*e1) + -(a1*(α1*b2 + ν*β1*e2)))) := Shell.Frame.RE.sound (Shell.Frame.look [l, α1, β1, a1, b1, e1, α2, β2, a2, b2, e2, ν]) (.mul (.add (.mul (.var 8) (.var 5)) (.neg (.mul (.var 3) (.var 10)))) (.add (.mul (.var 1) (.var 1)) (.neg (.mul (.var 11) (.mul (.var 2) (.var 2)))))) (.add (.mul (.var 1) (.add (.mul (.var 8) (.add (.mul (.var 2) (.var 4)) (.mul (.var 1) (.var 5)))) (.neg (.mul (.var 3) (.add (.mul (.var 2) (.var 9)) (.mul (.var 1) (.var 10))))))) (.neg (.mul (.var 2) (.add (.mul (.var 8) (.add (.mul (.var 1) (.var 4)) (.mul (.mul (.var 11) (.var 2)) (.var 5)))) (.neg (.mul (.var 3) (.add (.mul (.var 1) (.var 9)) (.mul (.mul (.var 11) (.var 2)) (.var 10))))))))) (by decide +kernel)
     rw [X1, X2, add_neg, add_neg, mul_zero, mul_zero, neg_zero, add_zero] at w1 w2
-    have hB : a2 * b1 = a1 * b2 := eq_of_add_neg_eq_zero ((F.mul_eq_zero w1).resolve_right (hN hαβ))
-    have hE : a2 * e1 = a1 * e2 := eq_of_add_neg_eq_zero ((F.mul_eq_zero w2).resolve_right (hN hαβ))
+    have hB : a2 * b1 = a1 * b2 := eq_of_add_neg_eq_zero ((K.mul_eq_zero w1).resolve_right (hN hαβ))
+    have hE : a2 * e1 = a1 * e2 := eq_of_add_neg_eq_zero ((K.mul_eq_zero w2).resolve_right (hN hαβ))
     refine ⟨hT, by rw [mul_comm e2 a1, ← hE, mul_comm], ?_⟩
-    apply F.mul_left_cancel ha2
+    apply K.mul_left_cancel ha2
     calc a2 * (e2 * b1) = e2 * (a2 * b1) := mul_left_comm a2 e2 b1
       _ = e2 * a1 * b2 := by rw [hB, mul_assoc]
       _ = a1 * e2 * b2 := by rw [mul_comm e2 a1]
       _ = a2 * e1 * b2 := by rw [hE]
       _ = a2 * (e1 * b2) := mul_assoc a2 e1 b2
+
+/-- 38:A9, 38:X4 — on a frame (`Frame.fld`): `Fld.frame_triple`. -/
+theorem frame_triple (F : Frame p κ g) {ν : Shell p} (hν : ¬ ∃ y : Shell p, y * y = ν) :
+    (∀ M : M2 p, M.det ≠ 0 → (M.a ≠ 0 ∨ M.c ≠ 0) ∧ M.act 1 0 = (M.a, M.c) ∧ (boost ν M.a M.c).act 1 0 = (M.a, M.c) ∧
+      M.a * M.a + -(ν * (M.c * M.c)) ≠ 0 ∧
+      M2.smul (M.a * M.a + -(ν * (M.c * M.c))) M =
+        (boost ν M.a M.c).mul (borel (M.a * M.a + -(ν * (M.c * M.c))) (M.a * M.b + -(ν * (M.c * M.d))) M.det)) ∧
+    (∀ a b e : Shell p, (borel a b e).act 1 0 = (a, 0)) ∧
+    (∀ l α1 β1 a1 b1 e1 α2 β2 a2 b2 e2 : Shell p, l ≠ 0 → a1 ≠ 0 → a2 ≠ 0 → (α1 ≠ 0 ∨ β1 ≠ 0) →
+      M2.smul l ((boost ν α1 β1).mul (borel a1 b1 e1)) = (boost ν α2 β2).mul (borel a2 b2 e2) →
+      α1 * β2 = α2 * β1 ∧ e2 * a1 = e1 * a2 ∧ e2 * b1 = e1 * b2) :=
+  F.fld.frame_triple hν
 
 /-- The split fibration (`unit_split` states it with the unit and the diagonal matrices named) by the unit `i = diag(r, −r)`, `r = g^κ`, `r² = −1`, on every frame
 `p = 4κ + 1`: (1) a matrix commuting with `i` is diagonal — the centraliser is the diagonal torus, inside the Borel
@@ -2507,13 +2567,14 @@ theorem unit_split_let (F : Frame p κ g) :
     rw [← M2.mul_assoc', M2.adj_mul, M2.diag_mul, ← M2.mul_assoc'] at k1
     have k2 : (M2.smul M'.det I).mul M'.adj = ((M'.adj.mul N).mul M').mul M'.adj := congrArg (fun X => X.mul M'.adj) k1
     rw [M2.smul_mul, M2.mul_assoc', M2.mul_adj, M2.mul_diag] at k2
-    have k3 : I.mul M'.adj = M'.adj.mul N := M2.smul_cancel F hM' k2
+    have k3 : I.mul M'.adj = M'.adj.mul N := M2.smul_cancel F.fld hM' k2
     calc (M'.adj.mul M).mul I = M'.adj.mul (M.mul I) := M2.mul_assoc' _ _ _
       _ = (M'.adj.mul N).mul M := by rw [hM, M2.mul_assoc']
       _ = (I.mul M'.adj).mul M := by rw [k3]
       _ = I.mul (M'.adj.mul M) := M2.mul_assoc' _ _ _
 
-/-- The unit `i = diag(r, −r)`, `r = g^κ`, as a matrix. -/
+/-- The unit as a matrix, `diag(r, −r)` with `r = g^κ`: the corpus's unit is `i = −g^κ` (`quarterTurn`), so this is the
+matrix of `−i`; projectively the same class as `diag(−r, r)`, with the same centraliser and the same quadric. -/
 def unit (g : Shell p) (κ : Nat) : M2 p := ⟨g ^ κ, 0, 0, -(g ^ κ)⟩
 
 /-- A diagonal matrix `diag(a, d)`. -/
@@ -2539,6 +2600,24 @@ theorem unit_split (F : Frame p κ g) :
     (∀ N M M' : M2 p, M'.det ≠ 0 → M.mul (unit g κ) = N.mul M → M'.mul (unit g κ) = N.mul M' →
       (M'.adj.mul M).mul (unit g κ) = (unit g κ).mul (M'.adj.mul M)) :=
   unit_split_let F
+
+/-- 38:A9, 38:A7 — the frame counts: `(p + 1)·p·(p − 1) = 14·13·12 = 2184 = 156·14`, the Borel `156 = 13·12`, the spin cover
+twice the rotation half `2·1092 = 2184`, and `PGL₂` carries `169 = 13²` involutions against `SL₂`'s one. -/
+theorem frame_counts :
+    (14 : Nat) * 13 * 12 = 2184 ∧ (2184 : Nat) = 156 * 14 ∧ (156 : Nat) = 13 * 12 ∧ (2 : Nat) * 1092 = 2184 ∧
+    (13 : Nat) * 13 = 169 ∧ (182 : Nat) = 13 * 14 ∧ (2184 : Nat) = 12 * 182 := by decide +kernel
+
+/-- The quaternion `x + y i + z j + w k` as a matrix, `[[x + r y, z + r w], [−z + r w, x − r y]]` with `r² = −1`. -/
+def quat (r x y z w : Shell p) : M2 p := ⟨x + r * y, z + r * w, -z + r * w, x + -(r * y)⟩
+
+/-- 38:A7 — the norm-one sphere is `SL₂`: with `r² = −1` the quaternion `x + y i + z j + w k` is the matrix `quat`
+(`1, i, j, k ↦ I, diag(r, −r), [[0, 1], [−1, 0]], [[0, r], [r, 0]]`) and its norm is the determinant. -/
+theorem sphere_det {r : Shell p} (hr : r * r = -1) (x y z w : Shell p) :
+    M2.det (quat r x y z w) = x * x + y * y + z * z + w * w := by
+  have e : M2.det (quat r x y z w) =
+      x * x + -((r * r) * (y * y)) + (z * z + -((r * r) * (w * w))) :=
+    Shell.Frame.RE.sound (Shell.Frame.look [x, y, z, w, r]) (.add (.mul (.add (.var 0) (.mul (.var 4) (.var 1))) (.add (.var 0) (.neg (.mul (.var 4) (.var 1))))) (.neg (.mul (.add (.var 2) (.mul (.var 4) (.var 3))) (.add (.neg (.var 2)) (.mul (.var 4) (.var 3)))))) (.add (.add (.mul (.var 0) (.var 0)) (.neg (.mul (.mul (.var 4) (.var 4)) (.mul (.var 1) (.var 1))))) (.add (.mul (.var 2) (.var 2)) (.neg (.mul (.mul (.var 4) (.var 4)) (.mul (.var 3) (.var 3)))))) (by decide +kernel)
+  rw [e, hr, neg_one_mul, neg_one_mul, neg_neg, neg_neg, ← add_assoc]
 
 end Frame
 end Shell
@@ -2566,9 +2645,9 @@ def p01009 := And.intro @FRC.Shell.Frame.Affine.simply_transitive (@FRC.Shell.Fr
 set_option linter.defProp false in
 /-- p04015 — 4:C5. Charts of the shell itself: for $\mathcal Z=\Fp$ the charts respecting the arithmetic are the frames $x\mapsto a+bx$ (1:C2), $\p(\p-1)$ of them, and $\Psi_{m\to n}$ between two frames is the one affine map carrying the first to the second (simply transitive) --- the corpus's coordinate systems are the paper's charts. -/
 def p04015 := And.intro @FRC.Shell.Frame.Affine.simply_transitive (@FRC.Shell.Frame.frame_count)
-/-- p38007 — 38:A7. The frame counts: $2184=156\times14=14\times13\times12$; $\PGL_{2}=\mathrm{SO}_{3}(\F_{13})$, the norm-one sphere $\SL_{2}$ its spin cover of $\mathrm{PSL}_{2}$ ($1092$); $\SL_{2}$ obstructs at $-1$ (Theorem~\ref{th:hopf}). -/
-theorem p38007 : (∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → ∀ {ν : FRC.Shell p}, (¬∃ y, y * y = ν) → (∀ (α β x y : FRC.Shell p), β ≠ (0 : FRC.Shell p) → x ≠ (0 : FRC.Shell p) ∨ y ≠ (0 : FRC.Shell p) → ¬FRC.Shell.Frame.PEq ((FRC.Shell.Frame.boost ν α β).act x y) (x, y)) ∧ (∀ (α β a b e l : FRC.Shell p), FRC.Shell.Frame.boost ν α β = FRC.Shell.Frame.M2.smul l (FRC.Shell.Frame.borel a b e) → β = (0 : FRC.Shell p)) ∧ (∀ (M : FRC.Shell.Frame.M2 p), M.det ≠ (0 : FRC.Shell p) → ∃ N a b e α β, N ≠ (0 : FRC.Shell p) ∧ a * e ≠ (0 : FRC.Shell p) ∧ (α ≠ (0 : FRC.Shell p) ∨ β ≠ (0 : FRC.Shell p)) ∧ FRC.Shell.Frame.M2.smul N M = (FRC.Shell.Frame.borel a b e).mul (FRC.Shell.Frame.boost ν α β)) ∧ (∀ (l a1 b1 e1 α1 β1 a2 b2 e2 α2 β2 : FRC.Shell p), l ≠ (0 : FRC.Shell p) → e2 ≠ (0 : FRC.Shell p) → α1 ≠ (0 : FRC.Shell p) ∨ β1 ≠ (0 : FRC.Shell p) → FRC.Shell.Frame.M2.smul l ((FRC.Shell.Frame.borel a1 b1 e1).mul (FRC.Shell.Frame.boost ν α1 β1)) = (FRC.Shell.Frame.borel a2 b2 e2).mul (FRC.Shell.Frame.boost ν α2 β2) → α1 * β2 = α2 * β1 ∧ e2 * a1 = e1 * a2 ∧ e2 * b1 = e1 * b2) ∧ (∀ (α β α' β' : FRC.Shell p), α ≠ (0 : FRC.Shell p) ∨ β ≠ (0 : FRC.Shell p) → α' ≠ (0 : FRC.Shell p) ∨ β' ≠ (0 : FRC.Shell p) → ((∃ μ, μ ≠ (0 : FRC.Shell p) ∧ FRC.Shell.Frame.boost ν α' β' = FRC.Shell.Frame.M2.smul μ (FRC.Shell.Frame.boost ν α β)) ↔ α * β' = α' * β)) ∧ FRC.Shell.Frame.natCount (fun x => True) p * FRC.Shell.Frame.natCount (fun b => b ≠ (0 : Nat)) p = p * (p - (1 : Nat)) ∧ FRC.Shell.Frame.boost ν (-1 : FRC.Shell p) (0 : FRC.Shell p) = FRC.Shell.Frame.borel (-1 : FRC.Shell p) (0 : FRC.Shell p) (-1 : FRC.Shell p) ∧ (-1 : FRC.Shell p) * (-1 : FRC.Shell p) + -(ν * ((0 : FRC.Shell p) * (0 : FRC.Shell p))) = (1 : FRC.Shell p) ∧ (-1 : FRC.Shell p) * (-1 : FRC.Shell p) = (1 : FRC.Shell p) ∧ (∀ (α β a b e : FRC.Shell p), FRC.Shell.Frame.boost ν α β = FRC.Shell.Frame.borel a b e → α * α + -(ν * (β * β)) = (1 : FRC.Shell p) → β = (0 : FRC.Shell p) ∧ (α = (1 : FRC.Shell p) ∨ α = (-1 : FRC.Shell p))) ∧ ∀ (M N : FRC.Shell.Frame.M2 p), (FRC.Shell.Frame.M2.smul (-1 : FRC.Shell p) M).mul (FRC.Shell.Frame.M2.smul (-1 : FRC.Shell p) N) = M.mul N) ∧ ∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → ∀ (ν : FRC.Shell p), (∀ (a b e : FRC.Shell p), a * e ≠ (0 : FRC.Shell p) → ∃ i j, i < p ∧ j < p ∧ i ≠ (0 : Nat) ∧ ∃ l, l ≠ (0 : FRC.Shell p) ∧ FRC.Shell.Frame.M2.smul l (FRC.Shell.Frame.borel a b e) = FRC.Shell.Frame.borel (FRC.Shell.ofNat i) (FRC.Shell.ofNat j) (1 : FRC.Shell p)) ∧ (∀ (i j i' j' : Nat), i < p → j < p → i' < p → j' < p → ∀ (l : FRC.Shell p), FRC.Shell.Frame.M2.smul l (FRC.Shell.Frame.borel (FRC.Shell.ofNat i) (FRC.Shell.ofNat j) (1 : FRC.Shell p)) = FRC.Shell.Frame.borel (FRC.Shell.ofNat i') (FRC.Shell.ofNat j') (1 : FRC.Shell p) → i = i' ∧ j = j') ∧ FRC.Shell.Frame.natCount (fun x => True) p * FRC.Shell.Frame.natCount (fun b => b ≠ (0 : Nat)) p = p * (p - (1 : Nat)) ∧ (∀ (α β : FRC.Shell p), α ≠ (0 : FRC.Shell p) ∨ β ≠ (0 : FRC.Shell p) → (∃ i, i < p ∧ ∃ μ, μ ≠ (0 : FRC.Shell p) ∧ FRC.Shell.Frame.M2.smul μ (FRC.Shell.Frame.boost ν α β) = FRC.Shell.Frame.boost ν (FRC.Shell.ofNat i) (1 : FRC.Shell p)) ∨ ∃ μ, μ ≠ (0 : FRC.Shell p) ∧ FRC.Shell.Frame.M2.smul μ (FRC.Shell.Frame.boost ν α β) = FRC.Shell.Frame.boost ν (1 : FRC.Shell p) (0 : FRC.Shell p)) ∧ (∀ (i i' : Nat), i < p → i' < p → ∀ (μ : FRC.Shell p), FRC.Shell.Frame.M2.smul μ (FRC.Shell.Frame.boost ν (FRC.Shell.ofNat i) (1 : FRC.Shell p)) = FRC.Shell.Frame.boost ν (FRC.Shell.ofNat i') (1 : FRC.Shell p) → i = i') ∧ (∀ (i : Nat) (μ : FRC.Shell p), μ ≠ (0 : FRC.Shell p) → FRC.Shell.Frame.M2.smul μ (FRC.Shell.Frame.boost ν (FRC.Shell.ofNat i) (1 : FRC.Shell p)) ≠ FRC.Shell.Frame.boost ν (1 : FRC.Shell p) (0 : FRC.Shell p)) ∧ (∀ (i : Nat) (μ : FRC.Shell p), FRC.Shell.Frame.M2.smul μ (FRC.Shell.Frame.boost ν (1 : FRC.Shell p) (0 : FRC.Shell p)) ≠ FRC.Shell.Frame.boost ν (FRC.Shell.ofNat i) (1 : FRC.Shell p)) ∧ FRC.Shell.Frame.natCount (fun x => True) p + (1 : Nat) = p + (1 : Nat) :=
-  And.intro @FRC.Shell.Frame.hopf_section (@FRC.Shell.Frame.hopf_counts)
+/-- p38007 — 38:A7. The frame counts: $2184=156\times14=14\times13\times12$; the norm-one sphere is $\SL_{2}$ (its quaternion determinant), the spin cover of $\mathrm{PSL}_{2}$ ($1092$); $\SL_{2}$ obstructs at $-1$ (Theorem~\ref{th:hopf}; the theorem's $\PGL_{2}\cong\mathrm{SO}_{3}(\F_{13})$ is its reading of the adjoint action). -/
+theorem p38007 : (∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → ∀ {ν : FRC.Shell p}, (¬∃ y, y * y = ν) → (∀ (α β x y : FRC.Shell p), β ≠ (0 : FRC.Shell p) → x ≠ (0 : FRC.Shell p) ∨ y ≠ (0 : FRC.Shell p) → ¬FRC.Shell.Frame.PEq ((FRC.Shell.Frame.boost ν α β).act x y) (x, y)) ∧ (∀ (α β a b e l : FRC.Shell p), FRC.Shell.Frame.boost ν α β = FRC.Shell.Frame.M2.smul l (FRC.Shell.Frame.borel a b e) → β = (0 : FRC.Shell p)) ∧ (∀ (M : FRC.Shell.Frame.M2 p), M.det ≠ (0 : FRC.Shell p) → ∃ N a b e α β, N ≠ (0 : FRC.Shell p) ∧ a * e ≠ (0 : FRC.Shell p) ∧ (α ≠ (0 : FRC.Shell p) ∨ β ≠ (0 : FRC.Shell p)) ∧ FRC.Shell.Frame.M2.smul N M = (FRC.Shell.Frame.borel a b e).mul (FRC.Shell.Frame.boost ν α β)) ∧ (∀ (l a1 b1 e1 α1 β1 a2 b2 e2 α2 β2 : FRC.Shell p), l ≠ (0 : FRC.Shell p) → e2 ≠ (0 : FRC.Shell p) → α1 ≠ (0 : FRC.Shell p) ∨ β1 ≠ (0 : FRC.Shell p) → FRC.Shell.Frame.M2.smul l ((FRC.Shell.Frame.borel a1 b1 e1).mul (FRC.Shell.Frame.boost ν α1 β1)) = (FRC.Shell.Frame.borel a2 b2 e2).mul (FRC.Shell.Frame.boost ν α2 β2) → α1 * β2 = α2 * β1 ∧ e2 * a1 = e1 * a2 ∧ e2 * b1 = e1 * b2) ∧ (∀ (α β α' β' : FRC.Shell p), α ≠ (0 : FRC.Shell p) ∨ β ≠ (0 : FRC.Shell p) → α' ≠ (0 : FRC.Shell p) ∨ β' ≠ (0 : FRC.Shell p) → ((∃ μ, μ ≠ (0 : FRC.Shell p) ∧ FRC.Shell.Frame.boost ν α' β' = FRC.Shell.Frame.M2.smul μ (FRC.Shell.Frame.boost ν α β)) ↔ α * β' = α' * β)) ∧ FRC.Shell.Frame.natCount (fun x => True) p * FRC.Shell.Frame.natCount (fun b => b ≠ (0 : Nat)) p = p * (p - (1 : Nat)) ∧ FRC.Shell.Frame.boost ν (-1 : FRC.Shell p) (0 : FRC.Shell p) = FRC.Shell.Frame.borel (-1 : FRC.Shell p) (0 : FRC.Shell p) (-1 : FRC.Shell p) ∧ (-1 : FRC.Shell p) * (-1 : FRC.Shell p) + -(ν * ((0 : FRC.Shell p) * (0 : FRC.Shell p))) = (1 : FRC.Shell p) ∧ (-1 : FRC.Shell p) * (-1 : FRC.Shell p) = (1 : FRC.Shell p) ∧ (∀ (α β a b e : FRC.Shell p), FRC.Shell.Frame.boost ν α β = FRC.Shell.Frame.borel a b e → α * α + -(ν * (β * β)) = (1 : FRC.Shell p) → β = (0 : FRC.Shell p) ∧ (α = (1 : FRC.Shell p) ∨ α = (-1 : FRC.Shell p))) ∧ ∀ (M N : FRC.Shell.Frame.M2 p), (FRC.Shell.Frame.M2.smul (-1 : FRC.Shell p) M).mul (FRC.Shell.Frame.M2.smul (-1 : FRC.Shell p) N) = M.mul N) ∧ (∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → ∀ (ν : FRC.Shell p), (∀ (a b e : FRC.Shell p), a * e ≠ (0 : FRC.Shell p) → ∃ i j, i < p ∧ j < p ∧ i ≠ (0 : Nat) ∧ ∃ l, l ≠ (0 : FRC.Shell p) ∧ FRC.Shell.Frame.M2.smul l (FRC.Shell.Frame.borel a b e) = FRC.Shell.Frame.borel (FRC.Shell.ofNat i) (FRC.Shell.ofNat j) (1 : FRC.Shell p)) ∧ (∀ (i j i' j' : Nat), i < p → j < p → i' < p → j' < p → ∀ (l : FRC.Shell p), FRC.Shell.Frame.M2.smul l (FRC.Shell.Frame.borel (FRC.Shell.ofNat i) (FRC.Shell.ofNat j) (1 : FRC.Shell p)) = FRC.Shell.Frame.borel (FRC.Shell.ofNat i') (FRC.Shell.ofNat j') (1 : FRC.Shell p) → i = i' ∧ j = j') ∧ FRC.Shell.Frame.natCount (fun x => True) p * FRC.Shell.Frame.natCount (fun b => b ≠ (0 : Nat)) p = p * (p - (1 : Nat)) ∧ (∀ (α β : FRC.Shell p), α ≠ (0 : FRC.Shell p) ∨ β ≠ (0 : FRC.Shell p) → (∃ i, i < p ∧ ∃ μ, μ ≠ (0 : FRC.Shell p) ∧ FRC.Shell.Frame.M2.smul μ (FRC.Shell.Frame.boost ν α β) = FRC.Shell.Frame.boost ν (FRC.Shell.ofNat i) (1 : FRC.Shell p)) ∨ ∃ μ, μ ≠ (0 : FRC.Shell p) ∧ FRC.Shell.Frame.M2.smul μ (FRC.Shell.Frame.boost ν α β) = FRC.Shell.Frame.boost ν (1 : FRC.Shell p) (0 : FRC.Shell p)) ∧ (∀ (i i' : Nat), i < p → i' < p → ∀ (μ : FRC.Shell p), FRC.Shell.Frame.M2.smul μ (FRC.Shell.Frame.boost ν (FRC.Shell.ofNat i) (1 : FRC.Shell p)) = FRC.Shell.Frame.boost ν (FRC.Shell.ofNat i') (1 : FRC.Shell p) → i = i') ∧ (∀ (i : Nat) (μ : FRC.Shell p), μ ≠ (0 : FRC.Shell p) → FRC.Shell.Frame.M2.smul μ (FRC.Shell.Frame.boost ν (FRC.Shell.ofNat i) (1 : FRC.Shell p)) ≠ FRC.Shell.Frame.boost ν (1 : FRC.Shell p) (0 : FRC.Shell p)) ∧ (∀ (i : Nat) (μ : FRC.Shell p), FRC.Shell.Frame.M2.smul μ (FRC.Shell.Frame.boost ν (1 : FRC.Shell p) (0 : FRC.Shell p)) ≠ FRC.Shell.Frame.boost ν (FRC.Shell.ofNat i) (1 : FRC.Shell p)) ∧ FRC.Shell.Frame.natCount (fun x => True) p + (1 : Nat) = p + (1 : Nat)) ∧ (∀ {p : Nat} [FRC.Pos p] {r : FRC.Shell p}, r * r = (-1 : FRC.Shell p) → ∀ (x y z w : FRC.Shell p), (FRC.Shell.Frame.quat r x y z w).det = x * x + y * y + z * z + w * w) ∧ (14 : Nat) * (13 : Nat) * (12 : Nat) = (2184 : Nat) ∧ (2184 : Nat) = (156 : Nat) * (14 : Nat) ∧ (156 : Nat) = (13 : Nat) * (12 : Nat) ∧ (2 : Nat) * (1092 : Nat) = (2184 : Nat) ∧ (13 : Nat) * (13 : Nat) = (169 : Nat) ∧ (182 : Nat) = (13 : Nat) * (14 : Nat) ∧ (2184 : Nat) = (12 : Nat) * (182 : Nat) :=
+  And.intro @FRC.Shell.Frame.hopf_section (And.intro @FRC.Shell.Frame.hopf_counts (And.intro @FRC.Shell.Frame.sphere_det (@FRC.Shell.Frame.frame_counts)))
 /-- p38051 — 38:X4. \textbf{The shell is holographic}: a Subject's frame datum is one projective direction, one shell cell, one drive phase, and the bulk frame is that boundary datum with nothing left over (Theorem~\ref{th:holography}; the realisation reading and its falsifier, Reading~\ref{th:holography-reading}). -/
 theorem p38051 : (∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → ∀ {ν : FRC.Shell p}, (¬∃ y, y * y = ν) → (∀ (M : FRC.Shell.Frame.M2 p), M.det ≠ (0 : FRC.Shell p) → (M.a ≠ (0 : FRC.Shell p) ∨ M.c ≠ (0 : FRC.Shell p)) ∧ M.act (1 : FRC.Shell p) (0 : FRC.Shell p) = (M.a, M.c) ∧ (FRC.Shell.Frame.boost ν M.a M.c).act (1 : FRC.Shell p) (0 : FRC.Shell p) = (M.a, M.c) ∧ M.a * M.a + -(ν * (M.c * M.c)) ≠ (0 : FRC.Shell p) ∧ FRC.Shell.Frame.M2.smul (M.a * M.a + -(ν * (M.c * M.c))) M = (FRC.Shell.Frame.boost ν M.a M.c).mul (FRC.Shell.Frame.borel (M.a * M.a + -(ν * (M.c * M.c))) (M.a * M.b + -(ν * (M.c * M.d))) M.det)) ∧ (∀ (a b e : FRC.Shell p), (FRC.Shell.Frame.borel a b e).act (1 : FRC.Shell p) (0 : FRC.Shell p) = (a, (0 : FRC.Shell p))) ∧ ∀ (l α1 β1 a1 b1 e1 α2 β2 a2 b2 e2 : FRC.Shell p), l ≠ (0 : FRC.Shell p) → a1 ≠ (0 : FRC.Shell p) → a2 ≠ (0 : FRC.Shell p) → α1 ≠ (0 : FRC.Shell p) ∨ β1 ≠ (0 : FRC.Shell p) → FRC.Shell.Frame.M2.smul l ((FRC.Shell.Frame.boost ν α1 β1).mul (FRC.Shell.Frame.borel a1 b1 e1)) = (FRC.Shell.Frame.boost ν α2 β2).mul (FRC.Shell.Frame.borel a2 b2 e2) → α1 * β2 = α2 * β1 ∧ e2 * a1 = e1 * a2 ∧ e2 * b1 = e1 * b2) ∧ (∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → (∀ (M : FRC.Shell.Frame.M2 p), M.mul (FRC.Shell.Frame.unit g κ) = (FRC.Shell.Frame.unit g κ).mul M → M.b = (0 : FRC.Shell p) ∧ M.c = (0 : FRC.Shell p)) ∧ (∀ (a d : FRC.Shell p), (FRC.Shell.Frame.diag a d).mul (FRC.Shell.Frame.unit g κ) = (FRC.Shell.Frame.unit g κ).mul (FRC.Shell.Frame.diag a d) ∧ FRC.Shell.Frame.diag a d = FRC.Shell.Frame.borel a (0 : FRC.Shell p) d) ∧ (∀ (l : FRC.Shell p), FRC.Shell.Frame.unit g κ ≠ FRC.Shell.Frame.diag l l) ∧ (∀ (x y : FRC.Shell p), x * x + y * y = (1 : FRC.Shell p) → (FRC.Shell.Frame.diag (x + g ^ κ * y) (x + -(g ^ κ * y))).det = (1 : FRC.Shell p)) ∧ (∀ (M : FRC.Shell.Frame.M2 p), ((M.mul (FRC.Shell.Frame.unit g κ)).mul M.adj).a + ((M.mul (FRC.Shell.Frame.unit g κ)).mul M.adj).d = (0 : FRC.Shell p) ∧ ((M.mul (FRC.Shell.Frame.unit g κ)).mul M.adj).a * ((M.mul (FRC.Shell.Frame.unit g κ)).mul M.adj).a + ((M.mul (FRC.Shell.Frame.unit g κ)).mul M.adj).b * ((M.mul (FRC.Shell.Frame.unit g κ)).mul M.adj).c = -(M.det * M.det)) ∧ (∀ (N : FRC.Shell.Frame.M2 p), N.a + N.d = (0 : FRC.Shell p) → N.a * N.a + N.b * N.c = (-1 : FRC.Shell p) → ∃ M, M.det ≠ (0 : FRC.Shell p) ∧ M.mul (FRC.Shell.Frame.unit g κ) = N.mul M) ∧ (∀ (x y z : FRC.Shell p), x * x + y * y + z * z = (1 : FRC.Shell p) → g ^ κ * x * (g ^ κ * x) + (y + g ^ κ * z) * -(y + -(g ^ κ * z)) = (-1 : FRC.Shell p)) ∧ (∀ (h : FRC.Shell p), ((1 : FRC.Shell p) + (1 : FRC.Shell p)) * h = (1 : FRC.Shell p) → ∀ (a b c : FRC.Shell p), a * a + b * c = (-1 : FRC.Shell p) → -(g ^ κ * a) * -(g ^ κ * a) + h * (b + -c) * (h * (b + -c)) + -(h * (g ^ κ * (b + c))) * -(h * (g ^ κ * (b + c))) = (1 : FRC.Shell p)) ∧ ∀ (N M M' : FRC.Shell.Frame.M2 p), M'.det ≠ (0 : FRC.Shell p) → M.mul (FRC.Shell.Frame.unit g κ) = N.mul M → M'.mul (FRC.Shell.Frame.unit g κ) = N.mul M' → (M'.adj.mul M).mul (FRC.Shell.Frame.unit g κ) = (FRC.Shell.Frame.unit g κ).mul (M'.adj.mul M)) ∧ ∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → ∀ (ν : FRC.Shell p), (∀ (a b e : FRC.Shell p), a * e ≠ (0 : FRC.Shell p) → ∃ i j, i < p ∧ j < p ∧ i ≠ (0 : Nat) ∧ ∃ l, l ≠ (0 : FRC.Shell p) ∧ FRC.Shell.Frame.M2.smul l (FRC.Shell.Frame.borel a b e) = FRC.Shell.Frame.borel (FRC.Shell.ofNat i) (FRC.Shell.ofNat j) (1 : FRC.Shell p)) ∧ (∀ (i j i' j' : Nat), i < p → j < p → i' < p → j' < p → ∀ (l : FRC.Shell p), FRC.Shell.Frame.M2.smul l (FRC.Shell.Frame.borel (FRC.Shell.ofNat i) (FRC.Shell.ofNat j) (1 : FRC.Shell p)) = FRC.Shell.Frame.borel (FRC.Shell.ofNat i') (FRC.Shell.ofNat j') (1 : FRC.Shell p) → i = i' ∧ j = j') ∧ FRC.Shell.Frame.natCount (fun x => True) p * FRC.Shell.Frame.natCount (fun b => b ≠ (0 : Nat)) p = p * (p - (1 : Nat)) ∧ (∀ (α β : FRC.Shell p), α ≠ (0 : FRC.Shell p) ∨ β ≠ (0 : FRC.Shell p) → (∃ i, i < p ∧ ∃ μ, μ ≠ (0 : FRC.Shell p) ∧ FRC.Shell.Frame.M2.smul μ (FRC.Shell.Frame.boost ν α β) = FRC.Shell.Frame.boost ν (FRC.Shell.ofNat i) (1 : FRC.Shell p)) ∨ ∃ μ, μ ≠ (0 : FRC.Shell p) ∧ FRC.Shell.Frame.M2.smul μ (FRC.Shell.Frame.boost ν α β) = FRC.Shell.Frame.boost ν (1 : FRC.Shell p) (0 : FRC.Shell p)) ∧ (∀ (i i' : Nat), i < p → i' < p → ∀ (μ : FRC.Shell p), FRC.Shell.Frame.M2.smul μ (FRC.Shell.Frame.boost ν (FRC.Shell.ofNat i) (1 : FRC.Shell p)) = FRC.Shell.Frame.boost ν (FRC.Shell.ofNat i') (1 : FRC.Shell p) → i = i') ∧ (∀ (i : Nat) (μ : FRC.Shell p), μ ≠ (0 : FRC.Shell p) → FRC.Shell.Frame.M2.smul μ (FRC.Shell.Frame.boost ν (FRC.Shell.ofNat i) (1 : FRC.Shell p)) ≠ FRC.Shell.Frame.boost ν (1 : FRC.Shell p) (0 : FRC.Shell p)) ∧ (∀ (i : Nat) (μ : FRC.Shell p), FRC.Shell.Frame.M2.smul μ (FRC.Shell.Frame.boost ν (1 : FRC.Shell p) (0 : FRC.Shell p)) ≠ FRC.Shell.Frame.boost ν (FRC.Shell.ofNat i) (1 : FRC.Shell p)) ∧ FRC.Shell.Frame.natCount (fun x => True) p + (1 : Nat) = p + (1 : Nat) :=
   And.intro @FRC.Shell.Frame.frame_triple (And.intro @FRC.Shell.Frame.unit_split (@FRC.Shell.Frame.hopf_counts))

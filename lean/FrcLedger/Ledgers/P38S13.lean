@@ -19,15 +19,15 @@ fails if a key's axioms change (the axioms of Mathlib's hierarchy at most). Noth
 #guard_msgs in
 #print axioms FRC.LedgerML.p38022
 
--- 38:C8 (p38023)
-/-- info: 'FRC.LedgerML.p38023' depends on axioms: [propext, Classical.choice, Quot.sound] -/
-#guard_msgs in
-#print axioms FRC.LedgerML.p38023
-
 -- 38:X3 (p38048)
 /-- info: 'FRC.LedgerML.p38048' depends on axioms: [propext, Classical.choice, Quot.sound] -/
 #guard_msgs in
 #print axioms FRC.LedgerML.p38048
+
+-- 38:C8 (p38023)
+/-- info: 'FRC.LedgerML.p38023' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in
+#print axioms FRC.LedgerML.p38023
 
 -- 38:P1 (p38049)
 /-- info: 'FRC.LedgerML.p38049' depends on axioms: [propext, Classical.choice, Quot.sound] -/

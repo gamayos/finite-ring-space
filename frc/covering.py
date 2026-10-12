@@ -63,11 +63,11 @@ def mounting(p, g):
 
 def fibre_product(m, n, d):
     """The fibre product of C_m and C_n over C_d (d | m, n): the pairs (x, y) with x ≡ y (mod d) number m n / d, and
-    t ↦ (t mod m, t mod n) injects C_{lcm(m, n)} into them; returns (count, lcm, injective, count == lcm)."""
+    t ↦ (t mod m, t mod n) injects C_{lcm(m, n)} onto them; returns (count, lcm, injective onto the pairs, count == lcm)."""
     pairs = [(x, y) for x in range(m) for y in range(n) if x % d == y % d]
     L = m * n // gcd(m, n)
     image = {(t % m, t % n) for t in range(L)}
-    return len(pairs), L, len(image) == L, len(pairs) == L
+    return len(pairs), L, len(image) == L and image == set(pairs), len(pairs) == L
 
 
 def composed_rate(p, Om):

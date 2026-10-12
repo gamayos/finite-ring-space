@@ -255,15 +255,20 @@ def apsidal_bound(p, Om):
     return lhs < rhs, p * p < Om
 
 
-def kill_test(p=53, kO=3, Om=157):
-    """The (p, q) regression of 38:C6 read in the auxiliary modulus Ω = 4S + 1 (S = 39 at Ω = 157, not admissible):
-    v_O = 5^13, 3 ∤ 13, 22⁹ = 28 = 5^{−39}, 22⁴ of order 3, the idempotent 117·13 ≡ 117 (mod 156), 5^39 = 129,
-    12/52 = 3/13 = κ_O/κ_S, lcm(12, 52) = 156 with the half event 78. Returns the dict of readings."""
+def kill_test(p=53, kO=3, Om=157, g=5):
+    """The (p, q) regression of 38:C6 read in the auxiliary modulus Ω = 4S + 1 (S = 39 at Ω = 157, not admissible),
+    with g a primitive residue mod Ω (checked: g^((Ω−1)/q) ≠ 1 for every prime q | Ω − 1) and κ_S = (p − 1)/4 = 13:
+    v_O = g^κ_S, κ_O ∤ κ_S, v_O^(3κ_O) = g^{−S}, v_O^4 of order 3 (so v_O ∉ ⟨g³⟩), the idempotent (S·3)·κ_S ≡ S·3
+    (mod Ω − 1), g^S, 12/52 = 3/13 = κ_O/κ_S, lcm(4κ_O, 4κ_S) with its half. Returns the dict of readings."""
     kS = (p - 1) // 4
     S = (Om - 1) // 4
-    vO = pow(5, 13, Om)
+    primes = sorted({q for q in range(2, Om) if (Om - 1) % q == 0 and all(q % r for r in range(2, q))})
+    primitive = all(pow(g, (Om - 1) // q, Om) != 1 for q in primes)
+    vO = pow(g, kS, Om)
     x = pow(vO, 4, Om)
-    return {"Om_form": Om == 4 * S + 1, "S": S, "v_O": vO, "three_divides_13": 13 % 3 == 0, "core_quarter": pow(vO, 9, Om),
-            "inverse": pow(5, 39, Om) * pow(vO, 9, Om) % Om, "order3": pow(x, 3, Om) == 1 and x != 1,
-            "idempotent": (117 * 13) % 156, "subject_face": pow(5, 39, Om),
-            "ratio": Fraction(4 * kO, 4 * kS) == Fraction(kO, kS), "lcm": 12 * 52 // gcd(12, 52), "half": 12 * 52 // gcd(12, 52) // 2}
+    L = 4 * kO * 4 * kS // gcd(4 * kO, 4 * kS)
+    return {"Om_form": Om == 4 * S + 1, "S": S, "primitive": primitive, "v_O": vO, "kO_divides_kS": kS % kO == 0,
+            "core_quarter": pow(vO, 3 * kO, Om), "inverse": pow(g, S, Om) * pow(vO, 3 * kO, Om) % Om,
+            "order3": pow(x, 3, Om) == 1 and x != 1, "in_cube_subgroup": pow(vO, (Om - 1) // 3, Om) == 1,
+            "idempotent": (3 * S * kS) % (Om - 1), "subject_face": pow(g, S, Om),
+            "ratio": Fraction(kO, kS), "lcm": L, "half": L // 2}

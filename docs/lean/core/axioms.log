@@ -303,8 +303,11 @@
 'FRC.Shell.Frame.borel' does not depend on any axioms
 'FRC.Shell.Frame.PEq' does not depend on any axioms
 'FRC.Shell.Frame.eq_of_add_neg_eq_zero' does not depend on any axioms
-'FRC.Shell.Frame.norm_ne_zero' does not depend on any axioms
+'FRC.Shell.Frame.fld' does not depend on any axioms
+'FRC.Shell.Frame.Fld.norm_ne_zero' does not depend on any axioms
+'FRC.Shell.Frame.Fld.hopf_section' does not depend on any axioms
 'FRC.Shell.Frame.hopf_section' does not depend on any axioms
+'FRC.Shell.Frame.Fld.hopf_counts' does not depend on any axioms
 'FRC.Shell.Frame.hopf_counts' does not depend on any axioms
 'FRC.Shell.Frame.M2.adj' does not depend on any axioms
 'FRC.Shell.Frame.M2.mul_adj' does not depend on any axioms
@@ -315,11 +318,15 @@
 'FRC.Shell.Frame.M2.diag_mul' does not depend on any axioms
 'FRC.Shell.Frame.M2.mul_diag' does not depend on any axioms
 'FRC.Shell.Frame.M2.smul_cancel' does not depend on any axioms
+'FRC.Shell.Frame.Fld.frame_triple' does not depend on any axioms
 'FRC.Shell.Frame.frame_triple' does not depend on any axioms
 'FRC.Shell.Frame.unit_split_let' does not depend on any axioms
 'FRC.Shell.Frame.unit' does not depend on any axioms
 'FRC.Shell.Frame.diag' does not depend on any axioms
 'FRC.Shell.Frame.unit_split' does not depend on any axioms
+'FRC.Shell.Frame.frame_counts' does not depend on any axioms
+'FRC.Shell.Frame.quat' does not depend on any axioms
+'FRC.Shell.Frame.sphere_det' does not depend on any axioms
 'FRC.Shell.Frame.red1' does not depend on any axioms
 'FRC.Shell.Frame.red2' does not depend on any axioms
 'FRC.Shell.Frame.frft_aux' does not depend on any axioms
@@ -1119,6 +1126,8 @@
 'FRC.Pair.mod_mul_self' does not depend on any axioms
 'FRC.Pair.joint_cycle' does not depend on any axioms
 'FRC.Pair.joint_cycle_frame' does not depend on any axioms
+'FRC.Pair.joint_return_iff' does not depend on any axioms
+'FRC.Pair.joint_return_eight' does not depend on any axioms
 'FRC.Pair.tick' does not depend on any axioms
 'FRC.Pair.tick_home' does not depend on any axioms
 'FRC.Pair.tick_half' does not depend on any axioms
@@ -1136,7 +1145,6 @@
 'FRC.Pair.carrier_frame' does not depend on any axioms
 'FRC.Pair.carrier_roots' does not depend on any axioms
 'FRC.Pair.half_instance' does not depend on any axioms
-'FRC.Pair.frame_counts' does not depend on any axioms
 'FRC.Pair.window_instance' does not depend on any axioms
 'FRC.Pair.label' does not depend on any axioms
 'FRC.Pair.node_field' does not depend on any axioms
@@ -1164,6 +1172,11 @@
 'FRC.Pair.fusion' does not depend on any axioms
 'FRC.Pair.inv13' does not depend on any axioms
 'FRC.Pair.parity_instance' does not depend on any axioms
+'FRC.Shell.Prime.exists_inv' does not depend on any axioms
+'FRC.Shell.Prime.fld' does not depend on any axioms
+'FRC.Shell.Prime.hopf_section' does not depend on any axioms
+'FRC.Shell.Prime.hopf_counts' does not depend on any axioms
+'FRC.Shell.Prime.frame_triple' does not depend on any axioms
 'FRC.Symbol.sum_swap' does not depend on any axioms
 'FRC.Symbol.lin2_zero' does not depend on any axioms
 'FRC.Symbol.lin2_step' does not depend on any axioms
@@ -1704,7 +1717,6 @@
 'FRC.Ledger.p21064' does not depend on any axioms
 'FRC.Ledger.p38014' does not depend on any axioms
 'FRC.Ledger.p38022' does not depend on any axioms
-'FRC.Ledger.p38023' does not depend on any axioms
 'FRC.Ledger.p38027' does not depend on any axioms
 'FRC.Ledger.p38029' does not depend on any axioms
 'FRC.Ledger.p38050' does not depend on any axioms
@@ -2460,7 +2472,6 @@
 'FRC.S13.p38020' does not depend on any axioms
 'FRC.S13.p38021' does not depend on any axioms
 'FRC.S13.p38022' does not depend on any axioms
-'FRC.S13.p38023' does not depend on any axioms
 'FRC.S13.p38044' does not depend on any axioms
 'FRC.S13.p38053' does not depend on any axioms
 'FRC.S13.p38054' does not depend on any axioms

@@ -65,7 +65,7 @@ theorem channel_q4 (κ : Nat) (x : Shell p) :
 
 /-! ## 21:C25 — the cover triangle -/
 
-/-- 21:C25, 21:C7, 21:C8, 38:C8, 00:E4 — on every shell: `2γ − β = 1` and `γ = 1` give `β = 1`. -/
+/-- 21:C25, 21:C7, 21:C8, 00:E4 — on every shell: `2γ − β = 1` and `γ = 1` give `β = 1`. -/
 theorem cover_triangle {β γ : Shell p} (h1 : (1 + 1) * γ + -β = 1) (h2 : γ = 1) : β = 1 := by
   subst h2
   have h : (1 + 1) * (1 : Shell p) + -β = 1 := h1
@@ -76,7 +76,7 @@ theorem cover_triangle {β γ : Shell p} (h1 : (1 + 1) * γ + -β = 1) (h2 : γ 
   rw [neg_neg] at this
   exact this.symm
 
-/-- 21:C25, 38:C8, 00:E4 — the deviation `2γ − β − 1` vanishes on the triangle. -/
+/-- 21:C25, 00:E4 — the deviation `2γ − β − 1` vanishes on the triangle. -/
 theorem cover_deviation {β γ : Shell p} (h1 : (1 + 1) * γ + -β = 1) : (1 + 1) * γ + -β + -1 = 0 := by
   rw [h1]; exact add_neg 1
 

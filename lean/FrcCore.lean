@@ -30,6 +30,7 @@ import FrcCore.Theme.Drive
 import FrcCore.Theme.Carrier
 import FrcCore.Theme.Subject
 import FrcCore.Theme.Pair
+import FrcCore.Theme.Hopf
 import FrcCore.Theme.Symbol
 import FrcCore.Theme.Gravity
 import FrcCore.Theme.Lattice

@@ -53,9 +53,9 @@
     },
     {
      "label": "A7",
-     "predicate": "The frame counts: $2184=156\\times14=14\\times13\\times12$; $\\PGL_{2}=\\mathrm{SO}_{3}(\\F_{13})$, the norm-one sphere $\\SL_{2}$ its spin cover of $\\mathrm{PSL}_{2}$ ($1092$); $\\SL_{2}$ obstructs at $-1$ (Theorem~\\ref{th:hopf}).",
+     "predicate": "The frame counts: $2184=156\\times14=14\\times13\\times12$; the norm-one sphere is $\\SL_{2}$ (its quaternion determinant), the spin cover of $\\mathrm{PSL}_{2}$ ($1092$); $\\SL_{2}$ obstructs at $-1$ (Theorem~\\ref{th:hopf}; the theorem's $\\PGL_{2}\\cong\\mathrm{SO}_{3}(\\F_{13})$ is its reading of the adjoint action).",
      "tag": "T",
-     "source": "Theorem~\\ref{th:hopf}\\newline \\pywit{s13}{p38007}{A7}, \\leanwit{FrcCore}{p38007}{A7} \\lean{FRC.Shell.Frame.hopf\\_section, FRC.Shell.Frame.hopf\\_counts}",
+     "source": "Theorem~\\ref{th:hopf}\\newline \\pywit{s13}{p38007}{A7}, \\leanwit{FrcCore}{p38007}{A7} \\lean{FRC.Shell.Frame.hopf\\_section, FRC.Shell.Frame.hopf\\_counts, FRC.Shell.Frame.sphere\\_det, FRC.Shell.Frame.frame\\_counts}",
      "key": "p38007"
     },
     {
@@ -69,7 +69,7 @@
      "label": "A9",
      "predicate": "The two fibrations and the frame triple (Theorem~\\ref{th:holography}): $G\\cong\\Prj^{1}\\times\\F_\\p\\times C_{\\p-1}$ for every odd $\\p$ of the totality, $14\\times13\\times12$; non-split fibres $C_{\\p+1}$ over $\\p(\\p-1)=156$ with the cone-chart section, split fibres $C_{\\p-1}$ over $\\p(\\p+1)=182$ without; the unit $\\im$ is split at every $\\p=4\\kap+1$.",
      "tag": "T",
-     "source": "Theorem~\\ref{th:holography}\\newline \\pywit{s13}{p38050}{A9}, \\leanwit{FrcCore}{p38050}{A9} \\lean{FRC.Shell.Frame.frame\\_triple, FRC.Shell.Frame.unit\\_split, FRC.Shell.Frame.hopf\\_section, FRC.Shell.Frame.hopf\\_counts, FRC.Grav.sphere\\_area\\_rung, FRC.Grav.conic\\_count, FRC.Pair.frame\\_counts}",
+     "source": "Theorem~\\ref{th:holography}\\newline \\pywit{s13}{p38050}{A9}, \\leanwit{FrcCore}{p38050}{A9} \\lean{FRC.Shell.Prime.frame\\_triple, FRC.Shell.Prime.hopf\\_section, FRC.Shell.Prime.hopf\\_counts, FRC.Shell.Frame.unit\\_split, FRC.Grav.sphere\\_area\\_rung, FRC.Grav.conic\\_count, FRC.Shell.Frame.frame\\_counts}",
      "key": "p38050"
     },
     {
@@ -193,7 +193,7 @@
      "label": "C8",
      "predicate": "The face-ratio identity, orbit-free (both sides' scales cancel): the pair's two faces (C7) have ratio exactly $2$; read in the comparison chart of the laboratory dictionary (C12), the parametrised isotropic metric [approx: continuum chart], the identity forces $2\\gamma-\\beta=1$, a combination measured to $10^{-4}$ (Cassini, lunar laser ranging) and so discriminating no metric the data have not already selected; Brans--Dicke's $2\\gamma-\\beta-1=-2/(2+\\omega)$ is the same fact read in one family.",
      "tag": "T",
-     "source": "Statement~\\ref{th:floors}\\newline \\pywit{s13}{p38023}{C8}, \\leanwit{FrcCore}{p38023}{C8}, \\leanwit{FrcLedger}{p38023}{C8}; rests on C7, C12 \\lean{FRC.Drift.cover\\_triangle, FRC.Drift.cover\\_deviation, S13.ppn\\_faces}",
+     "source": "Statement~\\ref{th:floors}\\newline \\pywit{s13}{p38023}{C8}, \\leanwit{FrcLedger}{p38023}{C8}; rests on C7, C12 \\lean{S13.ppn\\_faces}",
      "key": "p38023"
     },
     {
@@ -228,7 +228,7 @@
      "label": "C14",
      "predicate": "The joint cycle (Theorem~\\ref{th:precession}): for every $\\kap$-odd pair with $\\dS\\equiv2\\pmod4$ the chart count advances by $(\\p-1)/(\\Om-1)=\\kap/\\dS$ of its cycle per shell revolution; the joint cycle closes at $\\mathrm{lcm}(\\p-1,\\Om-1)$ at (home, home), and the exact midpoint is (home, $-1$).",
      "tag": "T",
-     "source": "Theorem~\\ref{th:precession}\\newline \\pywit{s13}{p38054}{C14}, \\leanwit{FrcCore}{p38054}{C14}; rests on A1 \\lean{FRC.Pair.joint\\_cycle, FRC.Pair.joint\\_cycle\\_frame, FRC.Pair.recurrence}",
+     "source": "Theorem~\\ref{th:precession}\\newline \\pywit{s13}{p38054}{C14}, \\leanwit{FrcCore}{p38054}{C14}; rests on A1 \\lean{FRC.Pair.joint\\_cycle, FRC.Pair.joint\\_cycle\\_frame, FRC.Pair.joint\\_return\\_iff, FRC.Pair.joint\\_return\\_eight, FRC.Pair.leak\\_rate, FRC.Pair.recurrence}",
      "key": "p38054"
     }
    ]
@@ -241,7 +241,7 @@
      "label": "D1",
      "predicate": "The capacity stations: $4d<13$ selects $\\{1,2,3,10,11,12\\}$; threading exact, all $232$ states.",
      "tag": "T",
-     "source": "\\S\\ref{sec:meridians}\\newline \\pywit{s13}{p38025}{D1}, \\leanwit{FrcCore}{p38025}{D1} \\lean{FRC.Pair.stations, FRC.Pair.window}",
+     "source": "\\S\\ref{sec:meridians}\\newline \\pywit{s13}{p38025}{D1}, \\leanwit{FrcCore}{p38025}{D1} \\lean{FRC.Pair.stations, FRC.Pair.window, FRC.Pair.flow\\_stations}",
      "key": "p38025"
     },
     {
@@ -437,7 +437,7 @@
    {
     "name": "FRC.Pair.pair_frame",
     "module": "FrcCore/Theme/Pair",
-    "line": 344,
+    "line": 385,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -446,7 +446,7 @@
    {
     "name": "FRC.Pair.pair_register",
     "module": "FrcCore/Theme/Pair",
-    "line": 349,
+    "line": 390,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -484,7 +484,7 @@
    {
     "name": "FRC.Pair.pair_register",
     "module": "FrcCore/Theme/Pair",
-    "line": 349,
+    "line": 390,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -504,7 +504,7 @@
    {
     "name": "FRC.Pair.channel_instance",
     "module": "FrcCore/Theme/Pair",
-    "line": 357,
+    "line": 398,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -524,7 +524,7 @@
    {
     "name": "FRC.Pair.carrier_frame",
     "module": "FrcCore/Theme/Pair",
-    "line": 365,
+    "line": 406,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -533,7 +533,7 @@
    {
     "name": "FRC.Pair.carrier_roots",
     "module": "FrcCore/Theme/Pair",
-    "line": 369,
+    "line": 410,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -553,7 +553,7 @@
    {
     "name": "FRC.Pair.half_instance",
     "module": "FrcCore/Theme/Pair",
-    "line": 378,
+    "line": 419,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -564,20 +564,38 @@
    {
     "name": "FRC.Shell.Frame.hopf_section",
     "module": "FrcCore/Theme/Projective",
-    "line": 177,
+    "line": 357,
     "axioms": [],
     "tier": 0,
     "ok": true,
-    "doc": "38:A7, 38:A9 — **C19 (p00039), the Hopf section.** In `PGL₂(𝔽_p)` on a frame, `ν` a nonsquare: (1) a boost that is not scalar fixes no point of `ℙ¹`; (2) a boost in the Borel subgroup is scalar: `T ∩ B = 1`; (3) every invertible matrix factors as (cone chart) × (boost) up to a scalar, (4) uniquely up to scalars — the cone chart is a global section of `G → G/T`; (5) the boost classes are the points of `ℙ¹` (`p + 1` per fibre) and (6) the cone charts number `p (p − 1)`; (7) on the spin cover `SL₂` the sign `−I` is both a boost and a chart, `B ∩ T = {±I}` there, and `b t = (−b)(−t)`: the section obstructs at `−1`."
+    "doc": "38:A7, 38:A9 — on a frame (`Frame.fld`): `Fld.hopf_section`."
    },
    {
     "name": "FRC.Shell.Frame.hopf_counts",
     "module": "FrcCore/Theme/Projective",
-    "line": 346,
+    "line": 442,
     "axioms": [],
     "tier": 0,
     "ok": true,
-    "doc": "38:A7, 38:A9, 38:X4, 00:C19 — the fibration counted by representatives. Every Borel class (an upper-triangular `[[a, b], [0, e]]`, `a e ≠ 0`, up to a nonzero scalar) has exactly one representative `[[i, j], [0, 1]]` with `i, j < p` and `i ≠ 0`, and these number `p (p − 1)`. Every boost class has exactly one representative among `[[i, ν], [1, i]]` (`i < p`) and the identity `[[1, 0], [0, 1]]`, and these number `p + 1`. With the factorisation (`hopf_section`), the frames are `p (p − 1)` fibres of `p + 1`."
+    "doc": "38:A7, 38:A9, 38:X4, 00:C19 — on a frame (`Frame.fld`): `Fld.hopf_counts`."
+   },
+   {
+    "name": "FRC.Shell.Frame.sphere_det",
+    "module": "FrcCore/Theme/Projective",
+    "line": 767,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "38:A7 — the norm-one sphere is `SL₂`: with `r² = −1` the quaternion `x + y i + z j + w k` is the matrix `quat` (`1, i, j, k ↦ I, diag(r, −r), [[0, 1], [−1, 0]], [[0, r], [r, 0]]`) and its norm is the determinant."
+   },
+   {
+    "name": "FRC.Shell.Frame.frame_counts",
+    "module": "FrcCore/Theme/Projective",
+    "line": 758,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "38:A9, 38:A7 — the frame counts: `(p + 1)·p·(p − 1) = 14·13·12 = 2184 = 156·14`, the Borel `156 = 13·12`, the spin cover twice the rotation half `2·1092 = 2184`, and `PGL₂` carries `169 = 13²` involutions against `SL₂`'s one."
    }
   ],
   "A8": [
@@ -602,7 +620,7 @@
    {
     "name": "FRC.Pair.window_instance",
     "module": "FrcCore/Theme/Pair",
-    "line": 391,
+    "line": 425,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -611,40 +629,40 @@
   ],
   "A9": [
    {
-    "name": "FRC.Shell.Frame.frame_triple",
-    "module": "FrcCore/Theme/Projective",
-    "line": 464,
+    "name": "FRC.Shell.Prime.frame_triple",
+    "module": "FrcCore/Theme/Hopf",
+    "line": 67,
     "axioms": [],
     "tier": 0,
     "ok": true,
-    "doc": "38:A9, 38:X4 — **the frame triple** (Theorem *The two fibrations and the frame triple*, the master's C22). On a frame with `ν` a nonsquare: (1) an invertible `M` has a nonzero first column, its direction `M·[1 : 0] = [a : c]` is the boost `[[a, νc], [c, a]]`'s direction, that boost has nonzero norm `N = a² − νc²`, and `N·M = boost(a, c) · borel(N, ab − νcd, det M)`: every frame is (boost carrying the horizon to its direction) × (cone chart); (2) the cone charts fix the horizon; (3) the factorisation is unique up to scalars — two factorisations of proportional frames have the same boost class and the same chart class. With `hopf_counts` (`p + 1` boost classes, `p(p − 1)` charts) the frames number `(p + 1)·p·(p − 1)`: one direction, one shell cell, one drive phase."
+    "doc": "38:A9 — the frame triple on every prime shell (`Fld.frame_triple` under primality)."
+   },
+   {
+    "name": "FRC.Shell.Prime.hopf_section",
+    "module": "FrcCore/Theme/Hopf",
+    "line": 34,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "38:A9 — the Hopf section on every prime shell (`Fld.hopf_section` under primality, `ν` any nonsquare; on `𝔽₂` no nonsquare exists, and the rows quantify over the odd primes)."
+   },
+   {
+    "name": "FRC.Shell.Prime.hopf_counts",
+    "module": "FrcCore/Theme/Hopf",
+    "line": 51,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "38:A9 — the frame counts on every prime shell: `Fld.hopf_counts` under primality."
    },
    {
     "name": "FRC.Shell.Frame.unit_split",
     "module": "FrcCore/Theme/Projective",
-    "line": 679,
+    "line": 740,
     "axioms": [],
     "tier": 0,
     "ok": true,
     "doc": "38:A9, 38:B6, 38:X4 — **the split fibration**, `unit_split_let`'s statement with the unit `unit g κ = diag(g^κ, −g^κ)` and the diagonal matrices `diag a d` named (so that the key files re-elaborate it); the clauses are `unit_split_let`'s (1)–(8): the centraliser of the unit is the diagonal torus inside the Borel, the unit is not scalar, the circle lands in the torus, the conjugates fill the quadric `a² + bc = −1` and every point is reached, the quadric is the unit sphere, and two frames over one point differ by an element of the centraliser."
-   },
-   {
-    "name": "FRC.Shell.Frame.hopf_section",
-    "module": "FrcCore/Theme/Projective",
-    "line": 177,
-    "axioms": [],
-    "tier": 0,
-    "ok": true,
-    "doc": "38:A7, 38:A9 — **C19 (p00039), the Hopf section.** In `PGL₂(𝔽_p)` on a frame, `ν` a nonsquare: (1) a boost that is not scalar fixes no point of `ℙ¹`; (2) a boost in the Borel subgroup is scalar: `T ∩ B = 1`; (3) every invertible matrix factors as (cone chart) × (boost) up to a scalar, (4) uniquely up to scalars — the cone chart is a global section of `G → G/T`; (5) the boost classes are the points of `ℙ¹` (`p + 1` per fibre) and (6) the cone charts number `p (p − 1)`; (7) on the spin cover `SL₂` the sign `−I` is both a boost and a chart, `B ∩ T = {±I}` there, and `b t = (−b)(−t)`: the section obstructs at `−1`."
-   },
-   {
-    "name": "FRC.Shell.Frame.hopf_counts",
-    "module": "FrcCore/Theme/Projective",
-    "line": 346,
-    "axioms": [],
-    "tier": 0,
-    "ok": true,
-    "doc": "38:A7, 38:A9, 38:X4, 00:C19 — the fibration counted by representatives. Every Borel class (an upper-triangular `[[a, b], [0, e]]`, `a e ≠ 0`, up to a nonzero scalar) has exactly one representative `[[i, j], [0, 1]]` with `i, j < p` and `i ≠ 0`, and these number `p (p − 1)`. Every boost class has exactly one representative among `[[i, ν], [1, i]]` (`i < p`) and the identity `[[1, 0], [0, 1]]`, and these number `p + 1`. With the factorisation (`hopf_section`), the frames are `p (p − 1)` fibres of `p + 1`."
    },
    {
     "name": "FRC.Grav.sphere_area_rung",
@@ -665,20 +683,20 @@
     "doc": "00:E6, 38:B6, 38:A9 — the plane conic `x² + y² = c` on every frame: `p − 1` points for `c ≠ 0`, `2p − 1` for `c = 0`; the circle `x² + y² = 1` is the drive torus of the split fibration (38-s13)."
    },
    {
-    "name": "FRC.Pair.frame_counts",
-    "module": "FrcCore/Theme/Pair",
-    "line": 385,
+    "name": "FRC.Shell.Frame.frame_counts",
+    "module": "FrcCore/Theme/Projective",
+    "line": 758,
     "axioms": [],
     "tier": 0,
     "ok": true,
-    "doc": "38:A9, 38:A7 — the frame counts: `(p + 1)·p·(p − 1) = 14·13·12 = 2184 = 156·14`, the Borel `156 = 13·12`, the spin cover twice the rotation half `2·1092 = 2184`, and `PGL₂` carries `169 = 13²` involutions against `SL₂`'s one (the count face as numerals; the groups by elements are `Theme/Projective.lean`'s)."
+    "doc": "38:A9, 38:A7 — the frame counts: `(p + 1)·p·(p − 1) = 14·13·12 = 2184 = 156·14`, the Borel `156 = 13·12`, the spin cover twice the rotation half `2·1092 = 2184`, and `PGL₂` carries `169 = 13²` involutions against `SL₂`'s one."
    }
   ],
   "B1": [
    {
     "name": "FRC.Pair.node_field",
     "module": "FrcCore/Theme/Pair",
-    "line": 403,
+    "line": 437,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -698,7 +716,7 @@
    {
     "name": "FRC.Pair.window_instance",
     "module": "FrcCore/Theme/Pair",
-    "line": 391,
+    "line": 425,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -722,7 +740,7 @@
    {
     "name": "FRC.Pair.mounting",
     "module": "FrcCore/Theme/Pair",
-    "line": 410,
+    "line": 444,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -733,7 +751,7 @@
    {
     "name": "FRC.Pair.sky_chronon",
     "module": "FrcCore/Theme/Pair",
-    "line": 417,
+    "line": 451,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -762,7 +780,7 @@
    {
     "name": "FRC.Pair.recurrence",
     "module": "FrcCore/Theme/Pair",
-    "line": 425,
+    "line": 459,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -773,7 +791,7 @@
    {
     "name": "FRC.Shell.Frame.unit_split",
     "module": "FrcCore/Theme/Projective",
-    "line": 679,
+    "line": 740,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -802,7 +820,7 @@
    {
     "name": "FRC.Pair.tick_half",
     "module": "FrcCore/Theme/Pair",
-    "line": 161,
+    "line": 202,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -811,18 +829,18 @@
    {
     "name": "FRC.Pair.frame_leak",
     "module": "FrcCore/Theme/Pair",
-    "line": 436,
+    "line": 470,
     "axioms": [],
     "tier": 0,
     "ok": true,
-    "doc": "38:B7 — the frame leak: the halved tick `π/232` is `1/464` of the turn, `π/2` at the quarter station `b_C = 58` (`58·4 = 232`), the composed rate `1/12 + 1/232 = 61/696`; between two (home, home) events every class-compatible pair `(s mod 12, c mod 232)` occurs once: the pairs number `12·232/4 = 696` and the map `t ↦ (t mod 12, t mod 232)` has trivial kernel on `[0, 696)`."
+    "doc": "38:B7 — the frame leak: the tick `π/116` reaches `π/2` at the quarter station `b_C = 58` (`58·4 = 232`), the halved tick `π/232` being its reading on `C₄₆₄` (`1/464` of the turn); the composed rate `1/12 + 1/232 = 61/696`; between two (home, home) events every class-compatible pair `(s mod 12, c mod 232)` occurs once: the pairs number `12·232/4 = 696` and the map `t ↦ (t mod 12, t mod 232)` has trivial kernel on `[0, 696)`."
    }
   ],
   "C1": [
    {
     "name": "FRC.Pair.tick_home",
     "module": "FrcCore/Theme/Pair",
-    "line": 149,
+    "line": 190,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -831,18 +849,18 @@
    {
     "name": "FRC.Pair.flow_stations",
     "module": "FrcCore/Theme/Pair",
-    "line": 446,
+    "line": 480,
     "axioms": [],
     "tier": 0,
     "ok": true,
-    "doc": "38:C1, 38:C5 — the flow law as tick counts on `C₂₃₂` (`tick`): row `k` is home at `b_C = k` and at its parity image (`116`) at `b_C = 116 + k`, for every row; the count returns the row at every clock state."
+    "doc": "38:C1, 38:C5, 38:D1 — the flow law as tick counts on `C₂₃₂` (`tick`): row `k` is home at `b_C = k` and at its parity image (`116`) at `b_C = 116 + k`, for every row; the count returns the row at every clock state."
    }
   ],
   "C3": [
    {
     "name": "FRC.Pair.ownership",
     "module": "FrcCore/Theme/Pair",
-    "line": 454,
+    "line": 488,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -853,7 +871,7 @@
    {
     "name": "FRC.Pair.half_turn",
     "module": "FrcCore/Theme/Pair",
-    "line": 198,
+    "line": 239,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -862,7 +880,7 @@
    {
     "name": "FRC.Pair.half_turn_instance",
     "module": "FrcCore/Theme/Pair",
-    "line": 461,
+    "line": 495,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -873,7 +891,7 @@
    {
     "name": "FRC.Pair.tick_half",
     "module": "FrcCore/Theme/Pair",
-    "line": 161,
+    "line": 202,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -882,22 +900,22 @@
    {
     "name": "FRC.Pair.flow_stations",
     "module": "FrcCore/Theme/Pair",
-    "line": 446,
+    "line": 480,
     "axioms": [],
     "tier": 0,
     "ok": true,
-    "doc": "38:C1, 38:C5 — the flow law as tick counts on `C₂₃₂` (`tick`): row `k` is home at `b_C = k` and at its parity image (`116`) at `b_C = 116 + k`, for every row; the count returns the row at every clock state."
+    "doc": "38:C1, 38:C5, 38:D1 — the flow law as tick counts on `C₂₃₂` (`tick`): row `k` is home at `b_C = k` and at its parity image (`116`) at `b_C = 116 + k`, for every row; the count returns the row at every clock state."
    }
   ],
   "C6": [
    {
     "name": "FRC.Pair.kill_test",
     "module": "FrcCore/Theme/Pair",
-    "line": 468,
+    "line": 502,
     "axioms": [],
     "tier": 0,
     "ok": true,
-    "doc": "38:C6 — the dilation instance `3/58 = 12/232` and the `(53, 13)` kill test in the auxiliary modulus `157` (`S = 39 ≡ 3 mod 4`, not admissible): `5¹³ = 22`, `3 ∤ 13`, `22⁹ = 28 = 5⁻³⁹`, `22⁴` of order `3`, the idempotent `117·13 ≡ 117 mod 156`, `5³⁹ = 129`; `12/52 = 3/13`, `lcm(12, 52) = 156` with the half event at `78`."
+    "doc": "38:C6 — the dilation instance `3/58 = 12/232` and the `(53, 13)` kill test in the auxiliary modulus `157` (`53 = 4·13 + 1`; `S = 39 ≡ 3 mod 4`, not admissible): `5` primitive mod `157` (`5⁷⁸, 5⁵², 5¹² ≠ 1`, `5¹⁵⁶ = 1`), `5¹³ = 22`, `3 ∤ 13`, `22⁹ = 28 = 5⁻³⁹`, `22⁴` of order `3`, the idempotent `117·13 ≡ 117 mod 156`, `5³⁹ = 129`; `12/52 = 3/13`, `lcm(12, 52) = 156` with the half event at `78`."
    }
   ],
   "C7": [
@@ -917,12 +935,12 @@
     "axioms": [],
     "tier": 0,
     "ok": true,
-    "doc": "38:C10, 38:C7, 38:C13, 38:X1, 38:X3 — the leak rate per chronon is `κ`-free: `(κ/S)/(p − 1) = 1/(4S) = 1/(Ω − 1)`, as the integer identities `κ · 4S = S · (p − 1)`, `4S = Ω − 1`, and the temporal face on the cover `2(Ω − 1) = 8S`."
+    "doc": "38:C10, 38:C7, 38:C13, 38:C14, 38:X1, 38:X3 — the leak rate per chronon is `κ`-free: `(κ/S)/(p − 1) = 1/(4S) = 1/(Ω − 1)`, as the integer identities `κ · 4S = S · (p − 1)`, `4S = Ω − 1`, and the temporal face on the cover `2(Ω − 1) = 8S`."
    },
    {
     "name": "FRC.Pair.two_faces",
     "module": "FrcCore/Theme/Pair",
-    "line": 477,
+    "line": 513,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -943,24 +961,6 @@
    }
   ],
   "C8": [
-   {
-    "name": "FRC.Drift.cover_triangle",
-    "module": "FrcCore/Theme/Drift",
-    "line": 69,
-    "axioms": [],
-    "tier": 0,
-    "ok": true,
-    "doc": "21:C25, 21:C7, 21:C8, 38:C8, 00:E4 — on every shell: `2γ − β = 1` and `γ = 1` give `β = 1`."
-   },
-   {
-    "name": "FRC.Drift.cover_deviation",
-    "module": "FrcCore/Theme/Drift",
-    "line": 80,
-    "axioms": [],
-    "tier": 0,
-    "ok": true,
-    "doc": "21:C25, 38:C8, 00:E4 — the deviation `2γ − β − 1` vanishes on the triangle."
-   },
    {
     "name": "FRC.S13.ppn_faces",
     "module": "FrcLedger/S13",
@@ -983,12 +983,12 @@
     "axioms": [],
     "tier": 0,
     "ok": true,
-    "doc": "38:C10, 38:C7, 38:C13, 38:X1, 38:X3 — the leak rate per chronon is `κ`-free: `(κ/S)/(p − 1) = 1/(4S) = 1/(Ω − 1)`, as the integer identities `κ · 4S = S · (p − 1)`, `4S = Ω − 1`, and the temporal face on the cover `2(Ω − 1) = 8S`."
+    "doc": "38:C10, 38:C7, 38:C13, 38:C14, 38:X1, 38:X3 — the leak rate per chronon is `κ`-free: `(κ/S)/(p − 1) = 1/(4S) = 1/(Ω − 1)`, as the integer identities `κ · 4S = S · (p − 1)`, `4S = Ω − 1`, and the temporal face on the cover `2(Ω − 1) = 8S`."
    },
    {
     "name": "FRC.Pair.two_faces",
     "module": "FrcCore/Theme/Pair",
-    "line": 477,
+    "line": 513,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -1012,7 +1012,7 @@
     "axioms": [],
     "tier": 0,
     "ok": true,
-    "doc": "38:C10, 38:C7, 38:C13, 38:X1, 38:X3 — the leak rate per chronon is `κ`-free: `(κ/S)/(p − 1) = 1/(4S) = 1/(Ω − 1)`, as the integer identities `κ · 4S = S · (p − 1)`, `4S = Ω − 1`, and the temporal face on the cover `2(Ω − 1) = 8S`."
+    "doc": "38:C10, 38:C7, 38:C13, 38:C14, 38:X1, 38:X3 — the leak rate per chronon is `κ`-free: `(κ/S)/(p − 1) = 1/(4S) = 1/(Ω − 1)`, as the integer identities `κ · 4S = S · (p − 1)`, `4S = Ω − 1`, and the temporal face on the cover `2(Ω − 1) = 8S`."
    }
   ],
   "C14": [
@@ -1035,9 +1035,36 @@
     "doc": "38:C14 on the frames: a Subject frame of odd capacity `κ = 2a + 1` and a Carrier frame of capacity `S = 4b + 2` return together — at `4ℓ` the Subject's drive is home, `g^{4ℓ} = 1`, and the Carrier's reads the half, `h^{4ℓ} = −1` (the sign event); at `8ℓ` both are home."
    },
    {
+    "name": "FRC.Pair.joint_return_iff",
+    "module": "FrcCore/Theme/Pair",
+    "line": 143,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "38:C14 — the joint returns are exactly the common multiples of the two periods, so the least is `lcm(p − 1, Ω − 1)`; for `κ` odd and `S ≡ 2 (mod 4)` it is `8ℓ`, `ℓ` the least odd common multiple of `κ` and `S/2` (`joint_cycle_frame`)."
+   },
+   {
+    "name": "FRC.Pair.joint_return_eight",
+    "module": "FrcCore/Theme/Pair",
+    "line": 152,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "38:C14 — every common multiple of the periods `4κ` (`κ = 2a + 1` odd) and `8·(S/2)` (`S/2 = 2b + 1`) is eight times a common multiple of `κ` and `S/2`: with `joint_return_iff`, the least joint return is `8ℓ` for `ℓ` the least common multiple of `κ` and `S/2` (odd), and its half `4ℓ` is `joint_cycle_frame`'s sign event."
+   },
+   {
+    "name": "FRC.Pair.leak_rate",
+    "module": "FrcCore/Theme/Pair",
+    "line": 76,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "38:C10, 38:C7, 38:C13, 38:C14, 38:X1, 38:X3 — the leak rate per chronon is `κ`-free: `(κ/S)/(p − 1) = 1/(4S) = 1/(Ω − 1)`, as the integer identities `κ · 4S = S · (p − 1)`, `4S = Ω − 1`, and the temporal face on the cover `2(Ω − 1) = 8S`."
+   },
+   {
     "name": "FRC.Pair.recurrence",
     "module": "FrcCore/Theme/Pair",
-    "line": 425,
+    "line": 459,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -1048,7 +1075,7 @@
    {
     "name": "FRC.Pair.stations",
     "module": "FrcCore/Theme/Pair",
-    "line": 506,
+    "line": 542,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -1062,13 +1089,22 @@
     "tier": 0,
     "ok": true,
     "doc": "38:A8, 38:B2, 38:D1 — the capacity clause: `4k < p = 4κ + 1` exactly when `k ≤ κ`; the window `|k̂| ≤ κ`, and the radial ladder's `κ` shells."
+   },
+   {
+    "name": "FRC.Pair.flow_stations",
+    "module": "FrcCore/Theme/Pair",
+    "line": 480,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "38:C1, 38:C5, 38:D1 — the flow law as tick counts on `C₂₃₂` (`tick`): row `k` is home at `b_C = k` and at its parity image (`116`) at `b_C = 116 + k`, for every row; the count returns the row at every clock state."
    }
   ],
   "D2": [
    {
     "name": "FRC.Pair.step_law",
     "module": "FrcCore/Theme/Pair",
-    "line": 513,
+    "line": 549,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -1088,7 +1124,7 @@
    {
     "name": "FRC.Pair.tower_period",
     "module": "FrcCore/Theme/Pair",
-    "line": 521,
+    "line": 557,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -1108,7 +1144,7 @@
    {
     "name": "FRC.Pair.quarter_classes",
     "module": "FrcCore/Theme/Pair",
-    "line": 528,
+    "line": 564,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -1119,7 +1155,7 @@
    {
     "name": "FRC.Pair.momentum_dual",
     "module": "FrcCore/Theme/Pair",
-    "line": 535,
+    "line": 571,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -1130,7 +1166,7 @@
    {
     "name": "FRC.Pair.covering_instance",
     "module": "FrcCore/Theme/Pair",
-    "line": 547,
+    "line": 583,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -1139,7 +1175,7 @@
    {
     "name": "FRC.Pair.covering_parity",
     "module": "FrcCore/Theme/Pair",
-    "line": 285,
+    "line": 326,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -1150,7 +1186,7 @@
    {
     "name": "FRC.Pair.ramification",
     "module": "FrcCore/Theme/Pair",
-    "line": 556,
+    "line": 592,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -1161,7 +1197,7 @@
    {
     "name": "FRC.Pair.fusion",
     "module": "FrcCore/Theme/Pair",
-    "line": 562,
+    "line": 598,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -1172,7 +1208,7 @@
    {
     "name": "FRC.Pair.reflection_identity",
     "module": "FrcCore/Theme/Pair",
-    "line": 215,
+    "line": 256,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -1181,7 +1217,7 @@
    {
     "name": "FRC.Pair.parity_table",
     "module": "FrcCore/Theme/Pair",
-    "line": 270,
+    "line": 311,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -1190,7 +1226,7 @@
    {
     "name": "FRC.Pair.covering_parity",
     "module": "FrcCore/Theme/Pair",
-    "line": 285,
+    "line": 326,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -1199,7 +1235,7 @@
    {
     "name": "FRC.Pair.parity_instance",
     "module": "FrcCore/Theme/Pair",
-    "line": 573,
+    "line": 609,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -1210,7 +1246,7 @@
    {
     "name": "FRC.Pair.covering_instance",
     "module": "FrcCore/Theme/Pair",
-    "line": 547,
+    "line": 583,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -1219,7 +1255,7 @@
    {
     "name": "FRC.Pair.momentum_dual",
     "module": "FrcCore/Theme/Pair",
-    "line": 535,
+    "line": 571,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -1234,12 +1270,12 @@
     "axioms": [],
     "tier": 0,
     "ok": true,
-    "doc": "38:C10, 38:C7, 38:C13, 38:X1, 38:X3 — the leak rate per chronon is `κ`-free: `(κ/S)/(p − 1) = 1/(4S) = 1/(Ω − 1)`, as the integer identities `κ · 4S = S · (p − 1)`, `4S = Ω − 1`, and the temporal face on the cover `2(Ω − 1) = 8S`."
+    "doc": "38:C10, 38:C7, 38:C13, 38:C14, 38:X1, 38:X3 — the leak rate per chronon is `κ`-free: `(κ/S)/(p − 1) = 1/(4S) = 1/(Ω − 1)`, as the integer identities `κ · 4S = S · (p − 1)`, `4S = Ω − 1`, and the temporal face on the cover `2(Ω − 1) = 8S`."
    },
    {
     "name": "FRC.Pair.two_faces",
     "module": "FrcCore/Theme/Pair",
-    "line": 477,
+    "line": 513,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -1254,7 +1290,7 @@
     "axioms": [],
     "tier": 0,
     "ok": true,
-    "doc": "38:C10, 38:C7, 38:C13, 38:X1, 38:X3 — the leak rate per chronon is `κ`-free: `(κ/S)/(p − 1) = 1/(4S) = 1/(Ω − 1)`, as the integer identities `κ · 4S = S · (p − 1)`, `4S = Ω − 1`, and the temporal face on the cover `2(Ω − 1) = 8S`."
+    "doc": "38:C10, 38:C7, 38:C13, 38:C14, 38:X1, 38:X3 — the leak rate per chronon is `κ`-free: `(κ/S)/(p − 1) = 1/(4S) = 1/(Ω − 1)`, as the integer identities `κ · 4S = S · (p − 1)`, `4S = Ω − 1`, and the temporal face on the cover `2(Ω − 1) = 8S`."
    },
    {
     "name": "FRC.S13.floor_value",
@@ -1274,16 +1310,16 @@
    {
     "name": "FRC.Shell.Frame.frame_triple",
     "module": "FrcCore/Theme/Projective",
-    "line": 464,
+    "line": 582,
     "axioms": [],
     "tier": 0,
     "ok": true,
-    "doc": "38:A9, 38:X4 — **the frame triple** (Theorem *The two fibrations and the frame triple*, the master's C22). On a frame with `ν` a nonsquare: (1) an invertible `M` has a nonzero first column, its direction `M·[1 : 0] = [a : c]` is the boost `[[a, νc], [c, a]]`'s direction, that boost has nonzero norm `N = a² − νc²`, and `N·M = boost(a, c) · borel(N, ab − νcd, det M)`: every frame is (boost carrying the horizon to its direction) × (cone chart); (2) the cone charts fix the horizon; (3) the factorisation is unique up to scalars — two factorisations of proportional frames have the same boost class and the same chart class. With `hopf_counts` (`p + 1` boost classes, `p(p − 1)` charts) the frames number `(p + 1)·p·(p − 1)`: one direction, one shell cell, one drive phase."
+    "doc": "38:A9, 38:X4 — on a frame (`Frame.fld`): `Fld.frame_triple`."
    },
    {
     "name": "FRC.Shell.Frame.unit_split",
     "module": "FrcCore/Theme/Projective",
-    "line": 679,
+    "line": 740,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -1292,11 +1328,11 @@
    {
     "name": "FRC.Shell.Frame.hopf_counts",
     "module": "FrcCore/Theme/Projective",
-    "line": 346,
+    "line": 442,
     "axioms": [],
     "tier": 0,
     "ok": true,
-    "doc": "38:A7, 38:A9, 38:X4, 00:C19 — the fibration counted by representatives. Every Borel class (an upper-triangular `[[a, b], [0, e]]`, `a e ≠ 0`, up to a nonzero scalar) has exactly one representative `[[i, j], [0, 1]]` with `i, j < p` and `i ≠ 0`, and these number `p (p − 1)`. Every boost class has exactly one representative among `[[i, ν], [1, i]]` (`i < p`) and the identity `[[1, 0], [0, 1]]`, and these number `p + 1`. With the factorisation (`hopf_section`), the frames are `p (p − 1)` fibres of `p + 1`."
+    "doc": "38:A7, 38:A9, 38:X4, 00:C19 — on a frame (`Frame.fld`): `Fld.hopf_counts`."
    }
   ],
   "P1": [

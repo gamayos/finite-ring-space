@@ -71,7 +71,7 @@ theorem window_sum {κ k₁ k₂ : Nat} (hκ : 0 < κ) (h₁ : k₁ ≤ κ) (h�
 
 /-! ## 38:C10 — the per-chronon leak rate -/
 
-/-- 38:C10, 38:C7, 38:C13, 38:X1, 38:X3 — the leak rate per chronon is `κ`-free: `(κ/S)/(p − 1) = 1/(4S) = 1/(Ω − 1)`, as the integer
+/-- 38:C10, 38:C7, 38:C13, 38:C14, 38:X1, 38:X3 — the leak rate per chronon is `κ`-free: `(κ/S)/(p − 1) = 1/(4S) = 1/(Ω − 1)`, as the integer
 identities `κ · 4S = S · (p − 1)`, `4S = Ω − 1`, and the temporal face on the cover `2(Ω − 1) = 8S`. -/
 theorem leak_rate {p Ω κ S : Nat} (hp : p = 4 * κ + 1) (hΩ : Ω = 4 * S + 1) :
     κ * (4 * S) = S * (p - 1) ∧ 4 * S = Ω - 1 ∧ 2 * (Ω - 1) = 8 * S := by
@@ -137,6 +137,47 @@ theorem joint_cycle_frame {p Ω : Nat} [Pos p] [Pos Ω] {a b : Nat} {g : Shell p
   refine ⟨F.pow_eq_one_of_mod (by rw [F.n_eq]; exact c1), ?_, F.pow_eq_one_of_mod (by rw [F.n_eq]; exact c3),
     G.pow_eq_one_of_mod (by rw [eS]; exact c4)⟩
   rw [G.pow_mod, eS, c2, ← eH]; exact G.half_period
+
+/-- 38:C14 — the joint returns are exactly the common multiples of the two periods, so the least is `lcm(p − 1, Ω − 1)`;
+for `κ` odd and `S ≡ 2 (mod 4)` it is `8ℓ`, `ℓ` the least odd common multiple of `κ` and `S/2` (`joint_cycle_frame`). -/
+theorem joint_return_iff {p Ω : Nat} [Pos p] [Pos Ω] {κ S : Nat} {g : Shell p} {h : Shell Ω}
+    (F : Frame p κ g) (G : Frame Ω S h) (n : Nat) :
+    g ^ n = 1 ∧ h ^ n = 1 ↔ n % (p - 1) = 0 ∧ n % (Ω - 1) = 0 :=
+  ⟨fun ⟨hg, hh⟩ => ⟨F.mod_eq_zero_of_pow_eq_one hg, G.mod_eq_zero_of_pow_eq_one hh⟩,
+   fun ⟨hg, hh⟩ => ⟨F.pow_eq_one_of_mod hg, G.pow_eq_one_of_mod hh⟩⟩
+
+/-- 38:C14 — every common multiple of the periods `4κ` (`κ = 2a + 1` odd) and `8·(S/2)` (`S/2 = 2b + 1`) is eight times a
+common multiple of `κ` and `S/2`: with `joint_return_iff`, the least joint return is `8ℓ` for `ℓ` the least common
+multiple of `κ` and `S/2` (odd), and its half `4ℓ` is `joint_cycle_frame`'s sign event. -/
+theorem joint_return_eight {a b n : Nat} (h4 : n % (4 * (2 * a + 1)) = 0) (h8 : n % (8 * (2 * b + 1)) = 0) :
+    ∃ m, n = 8 * m ∧ m % (2 * a + 1) = 0 ∧ m % (2 * b + 1) = 0 := by
+  have ha0 : 0 < 4 * (2 * a + 1) := Nat.mul_pos (by decide) (Nat.zero_lt_succ _)
+  have hb0 : 0 < 8 * (2 * b + 1) := Nat.mul_pos (by decide) (Nat.zero_lt_succ _)
+  obtain ⟨v, hv⟩ := FRC.Nat.mod_spec _ hb0 n
+  obtain ⟨u, hu⟩ := FRC.Nat.mod_spec _ ha0 n
+  rw [h8, Nat.add_zero] at hv
+  rw [h4, Nat.add_zero] at hu
+  refine ⟨(2 * b + 1) * v, by rw [hv, FRC.Nat.mul_assoc], ?_, mod_mul_self _ _ (Nat.zero_lt_succ _)⟩
+  have e : (2 * a + 1) * u = 2 * ((2 * b + 1) * v) := by
+    apply Nat.eq_of_mul_eq_mul_left (show 0 < 4 by decide)
+    calc 4 * ((2 * a + 1) * u) = 4 * (2 * a + 1) * u := (FRC.Nat.mul_assoc _ _ _).symm
+      _ = 8 * (2 * b + 1) * v := hu.symm.trans hv
+      _ = 4 * (2 * ((2 * b + 1) * v)) := by
+        show 4 * 2 * (2 * b + 1) * v = 4 * (2 * ((2 * b + 1) * v))
+        rw [FRC.Nat.mul_assoc (4 * 2), FRC.Nat.mul_assoc 4 2]
+  obtain ⟨k, hk⟩ := FRC.Nat.mod_spec 2 (by decide) u
+  rcases FRC.Nat.mod_two_cases u with h0 | h1
+  · rw [h0, Nat.add_zero] at hk
+    rw [hk, FRC.Nat.mul_left_comm] at e
+    rw [← Nat.eq_of_mul_eq_mul_left (show 0 < 2 by decide) e]
+    exact mod_mul_self _ _ (Nat.zero_lt_succ _)
+  · rw [h1] at hk
+    rw [hk, Nat.mul_add, Nat.mul_one, FRC.Nat.mul_left_comm, ← Nat.add_assoc, Nat.add_comm (2 * ((2 * a + 1) * k)) (2 * a),
+      ← Nat.mul_add] at e
+    -- `2 (a + (2a + 1) k) + 1 = 2 m'`: odd against even
+    have h1' : (2 * (a + (2 * a + 1) * k) + 1) % 2 = 1 := FRC.Nat.mod_unique (by decide) rfl
+    rw [e, mod_mul_self _ _ (by decide)] at h1'
+    exact absurd h1' (by decide)
 
 /-! ## 38:C1, 38:C4, 38:C5 — the tick arithmetic of the flow -/
 
@@ -379,13 +420,6 @@ theorem half_instance :
     (2 : Shell 13) * 7 = 1 ∧ (6 : Shell 13) = -7 ∧ (2 : Shell 13) * 6 = -1 ∧ 6 * 2 < 13 ∧ 13 < 7 * 2 := by
   decide +kernel
 
-/-- 38:A9, 38:A7 — the frame counts: `(p + 1)·p·(p − 1) = 14·13·12 = 2184 = 156·14`, the Borel `156 = 13·12`, the spin cover
-twice the rotation half `2·1092 = 2184`, and `PGL₂` carries `169 = 13²` involutions against `SL₂`'s one (the count
-face as numerals; the groups by elements are `Theme/Projective.lean`'s). -/
-theorem frame_counts :
-    (14 : Nat) * 13 * 12 = 2184 ∧ (2184 : Nat) = 156 * 14 ∧ (156 : Nat) = 13 * 12 ∧ (2 : Nat) * 1092 = 2184 ∧
-    (13 : Nat) * 13 = 169 ∧ (182 : Nat) = 13 * 14 ∧ (2184 : Nat) = 12 * 182 := by decide +kernel
-
 /-- 38:A8, 38:B2 — the resolvable window at the instance: `4|k̂| < 13` exactly for `|k̂| ≤ 3`, the window `{0, ±1, ±2, ±3}`;
 the symmetric heights `k̂ ∈ {−5, …, 6}` of `C₁₂`; two window heights sum within `6 < 12`. -/
 theorem window_instance :
@@ -429,8 +463,8 @@ theorem recurrence :
     (4 * 87 : Nat) % 12 = 0 ∧ (4 * 87 : Nat) % 232 = 116 ∧ (2 : Shell 13) ^ 348 = 1 ∧ (78 : Shell 233) ^ 348 = -1 ∧
     (2 : Shell 13) ^ 696 = 1 ∧ (78 : Shell 233) ^ 696 = 1 := by decide +kernel
 
-/-- 38:B7 — the frame leak: the halved tick `π/232` is `1/464` of the turn, `π/2` at the quarter station
-`b_C = 58` (`58·4 = 232`), the composed rate `1/12 + 1/232 = 61/696`; between two (home, home) events every
+/-- 38:B7 — the frame leak: the tick `π/116` reaches `π/2` at the quarter station `b_C = 58` (`58·4 = 232`), the halved
+tick `π/232` being its reading on `C₄₆₄` (`1/464` of the turn); the composed rate `1/12 + 1/232 = 61/696`; between two (home, home) events every
 class-compatible pair `(s mod 12, c mod 232)` occurs once: the pairs number `12·232/4 = 696` and the map
 `t ↦ (t mod 12, t mod 232)` has trivial kernel on `[0, 696)`. -/
 theorem frame_leak :
@@ -441,7 +475,7 @@ theorem frame_leak :
 
 /-! ## C. The flow -/
 
-/-- 38:C1, 38:C5 — the flow law as tick counts on `C₂₃₂` (`tick`): row `k` is home at `b_C = k` and at its
+/-- 38:C1, 38:C5, 38:D1 — the flow law as tick counts on `C₂₃₂` (`tick`): row `k` is home at `b_C = k` and at its
 parity image (`116`) at `b_C = 116 + k`, for every row; the count returns the row at every clock state. -/
 theorem flow_stations :
     (∀ k, k < 232 → tick 232 k k = 0 ∧ tick 232 k (116 + k) = 116) ∧
@@ -463,10 +497,12 @@ theorem half_turn_instance :
     (464 - 232 % 464) % 464 = 232 := by decide +kernel
 
 /-- 38:C6 — the dilation instance `3/58 = 12/232` and the `(53, 13)` kill test in the auxiliary modulus `157`
-(`S = 39 ≡ 3 mod 4`, not admissible): `5¹³ = 22`, `3 ∤ 13`, `22⁹ = 28 = 5⁻³⁹`, `22⁴` of order `3`, the idempotent
+(`53 = 4·13 + 1`; `S = 39 ≡ 3 mod 4`, not admissible): `5` primitive mod `157` (`5⁷⁸, 5⁵², 5¹² ≠ 1`, `5¹⁵⁶ = 1`), `5¹³ = 22`, `3 ∤ 13`, `22⁹ = 28 = 5⁻³⁹`, `22⁴` of order `3`, the idempotent
 `117·13 ≡ 117 mod 156`, `5³⁹ = 129`; `12/52 = 3/13`, `lcm(12, 52) = 156` with the half event at `78`. -/
 theorem kill_test :
-    (3 : Nat) * 232 = 58 * 12 ∧ (157 : Nat) = 4 * 39 + 1 ∧ 39 % 4 = 3 ∧ (5 : Shell 157) ^ 13 = 22 ∧ 13 % 3 ≠ 0 ∧
+    (3 : Nat) * 232 = 58 * 12 ∧ (53 : Nat) = 4 * 13 + 1 ∧ (157 : Nat) = 4 * 39 + 1 ∧ 39 % 4 = 3 ∧
+    (5 : Shell 157) ^ 78 ≠ 1 ∧ (5 : Shell 157) ^ 52 ≠ 1 ∧ (5 : Shell 157) ^ 12 ≠ 1 ∧ (5 : Shell 157) ^ 156 = 1 ∧
+    (5 : Shell 157) ^ 13 = 22 ∧ 13 % 3 ≠ 0 ∧
     (22 : Shell 157) ^ 9 = 28 ∧ (5 : Shell 157) ^ 39 * 28 = 1 ∧ (22 : Shell 157) ^ 4 ≠ 1 ∧
     ((22 : Shell 157) ^ 4) ^ 3 = 1 ∧ (117 : Nat) * 13 % 156 = 117 ∧ (5 : Shell 157) ^ 39 = 129 ∧
     (12 : Nat) * 13 = 52 * 3 ∧ (156 : Nat) % 12 = 0 ∧ (156 : Nat) % 52 = 0 ∧

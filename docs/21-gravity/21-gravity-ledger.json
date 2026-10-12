@@ -812,7 +812,7 @@
     "axioms": [],
     "tier": 0,
     "ok": true,
-    "doc": "21:C25, 21:C7, 21:C8, 38:C8, 00:E4 — on every shell: `2γ − β = 1` and `γ = 1` give `β = 1`."
+    "doc": "21:C25, 21:C7, 21:C8, 00:E4 — on every shell: `2γ − β = 1` and `γ = 1` give `β = 1`."
    }
   ],
   "C8": [
@@ -849,7 +849,7 @@
     "axioms": [],
     "tier": 0,
     "ok": true,
-    "doc": "21:C25, 21:C7, 21:C8, 38:C8, 00:E4 — on every shell: `2γ − β = 1` and `γ = 1` give `β = 1`."
+    "doc": "21:C25, 21:C7, 21:C8, 00:E4 — on every shell: `2γ − β = 1` and `γ = 1` give `β = 1`."
    },
    {
     "name": "FRC.Drift.pn_coefficients",
@@ -1251,7 +1251,7 @@
     "axioms": [],
     "tier": 0,
     "ok": true,
-    "doc": "21:C25, 21:C7, 21:C8, 38:C8, 00:E4 — on every shell: `2γ − β = 1` and `γ = 1` give `β = 1`."
+    "doc": "21:C25, 21:C7, 21:C8, 00:E4 — on every shell: `2γ − β = 1` and `γ = 1` give `β = 1`."
    },
    {
     "name": "FRC.Drift.cover_deviation",
@@ -1260,7 +1260,7 @@
     "axioms": [],
     "tier": 0,
     "ok": true,
-    "doc": "21:C25, 38:C8, 00:E4 — the deviation `2γ − β − 1` vanishes on the triangle."
+    "doc": "21:C25, 00:E4 — the deviation `2γ − β − 1` vanishes on the triangle."
    }
   ],
   "X1": [

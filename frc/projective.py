@@ -112,6 +112,23 @@ def triple(M, nu, p):
     return direction, (a % p, c % p), chart
 
 
+def quaternion_matrix(x, y, z, w, r, p):
+    """The quaternion x + y i + z j + w k as the matrix [[x + r y, z + r w], [−z + r w, x − r y]], r² = −1
+    (Projective.lean, `sphere_det`): its determinant is x² + y² + z² + w², so the norm-one sphere is SL₂."""
+    return ((x + r * y) % p, (z + r * w) % p, (-z + r * w) % p, (x - r * y) % p)
+
+
+def sphere_is_sl2(p, r):
+    """38:A7 — the quaternion matrices of the norm-one sphere x² + y² + z² + w² = 1 are exactly the matrices of
+    determinant one of the quaternion form, and their number is p(p² − 1) = |SL₂|; returns
+    (the norm equals the determinant on every quaternion, the sphere's size, |SL₂|, the two sets equal)."""
+    assert r * r % p == p - 1
+    quats = [(x, y, z, w) for x in range(p) for y in range(p) for z in range(p) for w in range(p)]
+    norm_is_det = all((x * x + y * y + z * z + w * w) % p == det(quaternion_matrix(x, y, z, w, r, p), p) for x, y, z, w in quats)
+    sphere = {quaternion_matrix(x, y, z, w, r, p) for x, y, z, w in quats if (x * x + y * y + z * z + w * w) % p == 1}
+    return norm_is_det, len(sphere), len(sl2(p)), sphere == set(sl2(p))
+
+
 def frame_triple(p, nu):
     """Every class of PGL₂(F_p) is one point of ℙ¹ (its direction) and one Borel class (the chart), uniquely: the map
     class ↦ (direction, Borel class) is a bijection onto ℙ¹ × (the p(p − 1) Borel classes); returns
@@ -151,10 +168,10 @@ def unit(p):
 
 def centraliser(p):
     """The classes of PGL₂ whose matrices commute with the unit i (M i = i M as matrices, independent of the scalar):
-    the diagonal torus, p − 1 classes, every one inside the Borel; returns (the classes, p − 1, all diagonal)."""
+    the diagonal torus, p − 1 classes, every one inside the Borel; returns (the classes, their number, all diagonal)."""
     i = unit(p)
     cen = [M for M in pgl2(p) if mul(M, i, p) == mul(i, M, p)]
-    return cen, p - 1, all(M[1] == 0 and M[2] == 0 for M in cen)
+    return cen, len(cen), all(M[1] == 0 and M[2] == 0 for M in cen)
 
 
 def split_fibration(p):

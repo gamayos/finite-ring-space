@@ -644,14 +644,14 @@ const PUBLICATIONS = [
       {
         "href": "https://live.lean-lang.org/#project=lean-v4.34.0&url=https://finitering.space/lean/web/core/S13.lean",
         "label": "lean",
-        "count": 38,
-        "title": "38 predicates proved in the core (no axioms), 4 of them also on Mathlib: the core module S13 as one executable file (plain Lean, no Mathlib) in Lean Live"
+        "count": 37,
+        "title": "37 predicates proved in the core (no axioms), 3 of them also on Mathlib: the core module S13 as one executable file (plain Lean, no Mathlib) in Lean Live"
       },
       {
         "href": "https://live.lean-lang.org/#project=mathlib-stable&url=https://finitering.space/lean/web/ml/S13.lean",
         "label": "lean-mathlib",
         "count": 5,
-        "title": "5 predicates proved on Mathlib (classical), 4 of them also in the core: the module S13 as one file on Mathlib in Lean Live"
+        "title": "5 predicates proved on Mathlib (classical), 3 of them also in the core: the module S13 as one file on Mathlib in Lean Live"
       },
       {
         "href": "38-s13/lab.html",
