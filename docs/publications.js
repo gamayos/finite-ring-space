@@ -275,8 +275,7 @@ const PUBLICATIONS = [
     "n": 10,
     "title": "Dimensional Analysis over Finite Holographic Substrate",
     "status": {
-      "kind": "published",
-      "venue": "Entropy"
+      "kind": "preprint"
     },
     "doi": "https://doi.org/10.20944/preprints202605.0668.v1",
     "doiLabel": "pp202605.0668.v1",
@@ -318,20 +317,20 @@ const PUBLICATIONS = [
       {
         "href": "https://colab.research.google.com/github/gamayos/finite-ring-space/blob/main/src/13-epi/frc-13-epi.ipynb",
         "label": "python",
-        "count": 44,
-        "title": "44 predicates checked, all passing: the notebook frc-13-epi.ipynb on Google Colab, one cell per predicate"
+        "count": 47,
+        "title": "47 predicates checked, all passing: the notebook frc-13-epi.ipynb on Google Colab, one cell per predicate"
       },
       {
         "href": "https://live.lean-lang.org/#project=lean-v4.34.0&url=https://finitering.space/lean/web/core/Epi.lean",
         "label": "lean",
-        "count": 14,
-        "title": "14 predicates proved in the core (no axioms), 6 of them also on Mathlib: the core module Epi as one executable file (plain Lean, no Mathlib) in Lean Live"
+        "count": 30,
+        "title": "30 predicates proved in the core (no axioms), 16 of them also on Mathlib: the core module Epi as one executable file (plain Lean, no Mathlib) in Lean Live"
       },
       {
         "href": "https://live.lean-lang.org/#project=mathlib-stable&url=https://finitering.space/lean/web/ml/Epi.lean",
         "label": "lean-mathlib",
-        "count": 24,
-        "title": "24 predicates proved on Mathlib (classical), 6 of them also in the core: the module Epi as one file on Mathlib in Lean Live"
+        "count": 31,
+        "title": "31 predicates proved on Mathlib (classical), 16 of them also in the core: the module Epi as one file on Mathlib in Lean Live"
       }
     ]
   },
