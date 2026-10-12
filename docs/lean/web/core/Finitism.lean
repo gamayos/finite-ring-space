@@ -3026,7 +3026,7 @@ theorem tsirelson {ζ : Shell p} (h4 : ζ ^ 4 = -1) : (ζ + ζ ^ 7) * (ζ + ζ ^
   rw [left_distrib, right_distrib, right_distrib, hz, mul_comm (ζ ^ 7) ζ, hz, h14, two_eq]
   exact add_one_add_one_neg _
 
-/-- `2S + 1` is `2⁻¹` on the chart `p = 4S + 1`. -/
+/-- 38:A6 — `2S + 1` is `2⁻¹` on the chart `p = 4S + 1`. -/
 theorem two_mul_chart_half {S : Nat} (hS : p = 4 * S + 1) : (2 : Shell p) * ofNat (2 * S + 1) = 1 := ext (by
   show (2 % p * ((2 * S + 1) % p)) % p = 1 % p
   rw [← FRC.Nat.mul_mod _ _ _ Pos.pos,

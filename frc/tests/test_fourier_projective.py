@@ -4,6 +4,7 @@ import unittest
 from frc import arith
 from frc.foundation import drive
 from frc.fourier import transform, identity, matmul, matpow, projectors, frft, meridian
+from frc import projective as PJ
 from frc.projective import mul, det, act, normal, pclass, line, boost, borel, pgl2, factor
 
 SHELLS = [p for p in range(5, 60) if p % 4 == 1 and arith.is_prime(p)]
@@ -71,6 +72,25 @@ class MasterBlockFilesTest(unittest.TestCase):
             for lab in L.R.predicates: self.assertIn(lab, marks)
             self.assertEqual(sorted(L.PROOFS), sorted(L.LEAN))
             self.assertEqual(L.BLOCK, "C")
+
+
+class FibrationTest(unittest.TestCase):
+    """The frame triple and the two fibrations (38:A9, X4, B6) at p = 5 and 13, each count a second way."""
+    def test_triple_and_fibrations(self):
+        for p in (5, 13):
+            nu = next(a for a in range(2, p) if pow(a, (p - 1) // 2, p) == p - 1)
+            n, d, b, bij = PJ.frame_triple(p, nu)
+            self.assertTrue(bij); self.assertEqual(n, p * (p * p - 1))
+            sp, ns = PJ.split_fibration(p), PJ.nonsplit_fibration(p, nu)
+            self.assertEqual((sp["base"], ns["base"]), (p * (p + 1), p * (p - 1)))
+            self.assertTrue(sp["orbit_is_quadric"] and sp["fibres_are_cosets"] and ns["section"] and ns["fibres"])
+            self.assertEqual(len(PJ.circle(p)), p - 1)
+            self.assertEqual(PJ.sphere(p, 1), p * (p + 1)); self.assertEqual(PJ.sphere(p, nu), p * (p - 1))
+            self.assertEqual(PJ.involutions(p), (1, p * p))
+            i = PJ.unit(p)
+            self.assertEqual(i[0] * i[0] % p, p - 1)
+            for M in pgl2(p)[:50]:
+                self.assertEqual(PJ.conj(M, i, p), tuple(x * pow(det(M, p), -1, p) % p for x in mul(mul(M, i, p), PJ.adj(M, p), p)))
 
 
 if __name__ == "__main__":

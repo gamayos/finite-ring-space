@@ -41,6 +41,10 @@ standard library only (gate G09). The ledger file that uses it: frc/ledgers/p21_
     stratum_split(B)                 the per-stratum tallies on Ω = 641 are 8 × the Galois-symmetric coefficients
     binding(N, m1, m2)               superposition, cut flux = m₁ + m₂, bilinear energy, the registered clock
     fold_return(p)                   the period-averaged exterior return through the fold is the uniform floor
+    ppn_faces(beta, gamma)           the face ratio (2/3)(2 + 2γ − β) of the PPN family, its value 2 iff 2γ − β = 1 (38:C8)
+    brans_dicke(omega)               β = 1, γ = (1 + ω)/(2 + ω): 2γ − β − 1 = −2/(2 + ω), the deviation −4/(3(2 + ω)) (38:C8)
+    registration_dictionary(k, S)    p_sl/r_g = 3S/κ from the temporal face; the angular face then κ/S (38:C12, C7)
+    nesting_bound(p, Om)             (p − 1)²Ω < (Ω − p)² iff p² < Ω, with the exact difference (Ω − p²)(Ω − 1) (38:C13)
 """
 import random
 from fractions import Fraction
@@ -743,3 +747,49 @@ def fold_return(p=17, N=8, NI=4):
     ext = [[acc[i][j] * invT % p for j in range(NI, N)] for i in range(NI, N)]
     nonzero = {v for row in ext for v in row if v}
     return len(nonzero) <= 1
+
+
+# ---- the faces of the pair against the PPN chart (38:C7, C8, C12, C13) ---------------------------------------------------
+def ppn_faces(beta, gamma):
+    """The parametrised post-Newtonian family read on the pair's two faces (Statement *The physical floors*, 38-s13):
+    the apsidal coefficient 2 − β + 2γ against the β, γ-free clock-deficit coefficient 3/2 gives the face ratio
+    (2/3)(2 + 2γ − β), equal to 2 exactly when 2γ − β = 1, with deviation (2/3)(2γ − β − 1); exact rationals.
+    Returns (ratio, ratio == 2, 2γ − β == 1, deviation)."""
+    b, g = Fraction(beta), Fraction(gamma)
+    ratio = (2 - b + 2 * g) / Fraction(3, 2)
+    assert ratio == Fraction(2, 3) * (2 + 2 * g - b)
+    dev = ratio - 2
+    assert dev == Fraction(2, 3) * (2 * g - b - 1)
+    return ratio, ratio == 2, 2 * g - b == 1, dev
+
+
+def brans_dicke(omega):
+    """Brans–Dicke at coupling ω: β = 1, γ = (1 + ω)/(2 + ω); the combination 2γ − β − 1 = −2/(2 + ω), nonzero at every
+    finite ω, and the face-ratio deviation −4/(3(2 + ω)); exact rationals. Returns (γ, 2γ − β − 1, deviation)."""
+    w = Fraction(omega)
+    g = (1 + w) / (2 + w)
+    comb = 2 * g - 1 - 1
+    assert comb == -2 / (2 + w) and comb != 0
+    _, _, _, dev = ppn_faces(1, g)
+    assert dev == Fraction(-4, 1) / (3 * (2 + w))
+    return g, comb, dev
+
+
+def registration_dictionary(kappa, S):
+    """The laboratory dictionary on a hosted pair (38:C12): matching the temporal face κ/(2S) to the circular-orbit
+    clock deficit (3/2) r_g/p_sl gives p_sl/r_g = 3S/κ, under which the angular face 3 r_g/p_sl = κ/S automatically;
+    the two faces have ratio 2. Returns (p_sl/r_g, the angular face, κ/S : κ/(2S))."""
+    k, S = Fraction(kappa), Fraction(S)
+    ratio = Fraction(3, 2) / (k / (2 * S))          # p_sl/r_g from (3/2)(r_g/p_sl) = κ/(2S)
+    assert ratio == 3 * S / k
+    angular = 3 / ratio
+    assert angular == k / S
+    return ratio, angular, (k / S) / (k / (2 * S))
+
+
+def nesting_bound(p, Om):
+    """The apsidal bound κ/S < 1/(√Ω + 1) in root-free form, (p − 1)²Ω < (Ω − p)², against the nesting p² < Ω: the
+    exact difference (Ω − p)² − (p − 1)²Ω = (Ω − p²)(Ω − 1) over the integers (Drift.nesting_bound; 38:C13)."""
+    diff = (Om - p) ** 2 - (p - 1) ** 2 * Om
+    assert diff == (Om - p * p) * (Om - 1)
+    return (p - 1) ** 2 * Om < (Om - p) ** 2, p * p < Om, diff

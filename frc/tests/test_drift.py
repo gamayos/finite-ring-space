@@ -114,5 +114,22 @@ class SeriesTest(unittest.TestCase):
         self.assertTrue(D.fold_return_general(17, 8, 4) and D.fold_return_general(13, 9, 5, seed=7))
 
 
+class PairFacesTest(unittest.TestCase):
+    """The PPN faces and the dictionary (38:C8, C12, C13) against direct rational arithmetic."""
+    def test_ppn_faces(self):
+        for b2 in range(-6, 7):
+            for g2 in range(-6, 7):
+                b, g = Fraction(b2, 3), Fraction(g2, 3)
+                ratio, is2, cond, dev = D.ppn_faces(b, g)
+                self.assertEqual(ratio, (2 - b + 2 * g) * Fraction(2, 3)); self.assertEqual(is2, cond)
+                self.assertEqual(dev, ratio - 2)
+        for w in (Fraction(1, 2), 3, 1000):
+            g, comb, dev = D.brans_dicke(w)
+            self.assertEqual(comb, 2 * g - 2); self.assertNotEqual(comb, 0)
+        self.assertEqual(D.registration_dictionary(3, 58), (58, Fraction(3, 58), 2))
+        self.assertEqual(D.nesting_bound(13, 233)[2], (233 - 169) * 232)
+        self.assertEqual(D.nesting_bound(53, 157)[:2], (False, False))
+
+
 if __name__ == "__main__":
     unittest.main()

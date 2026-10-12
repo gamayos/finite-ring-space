@@ -171,14 +171,14 @@
      "label": "D4",
      "predicate": "Horizon determination of the readout: $\\ro(\\varepsilon_n)=\\ro(\\eR)$ for $n\\ge n_0(k)=\\Theta(k/\\log k)$; the binary64 constant for $e$ is the readout of $\\varepsilon_{18}=18!/\\dr{18}=6402373705728000/2355301661033953$ and $n=18$ is minimal ($\\varepsilon_{17}$ fails readout equality, $|\\varepsilon_{17}-\\eR|=1.10\\times10^{-15}$ above the half-ulp); the first $100$ significant digits of $\\eR$ are those of $\\varepsilon_{70}$; every floating-point value of $e$ is a plateau readout.",
      "tag": "T",
-     "source": "Thm.~\\ref{thm:readout-e}\\newline \\pywit{epi}{p13020}{D4}, \\leanwit{FrcLedger}{p13020}{D4} \\lean{Epi.readout\\_binary64}",
+     "source": "Thm.~\\ref{thm:readout-e}\\newline \\pywit{epi}{p13020}{D4}, \\leanwit{FrcCore}{p13020}{D4}, \\leanwit{FrcLedger}{p13020}{D4} \\lean{Epi.readout\\_binary64, FRC.Epi.readout\\_e\\_core}",
      "key": "p13020"
     },
     {
      "label": "D5",
      "predicate": "Feasibility selection: the compound chain $(1+1/n)^{n}$ costs $n\\asymp2^{k}$ steps for $k$ bits against $n_0(k)=\\Theta(k/\\log k)$ for the derangement chain ($n=11,18,70$ at $k=24,53,333$); within a horizon $H$ the compound chain realises $O(\\log H)$ bits and the factorial chain $\\Theta(H\\log H)$; under the feasibility principle the derangement representation is the canonical finite definition of $e$.",
      "tag": "T",
-     "source": "Prop.~\\ref{prop:feasibility-e}\\newline \\pywit{epi}{p13021}{D5}, \\leanwit{FrcLedger}{p13021}{D5} \\lean{Epi.derangement\\_cost, Epi.compound\\_cost}",
+     "source": "Prop.~\\ref{prop:feasibility-e}\\newline \\pywit{epi}{p13021}{D5}, \\leanwit{FrcCore}{p13021}{D5}, \\leanwit{FrcLedger}{p13021}{D5} \\lean{Epi.derangement\\_cost, Epi.compound\\_cost, FRC.Epi.derangement\\_cost\\_core}",
      "key": "p13021"
     }
    ]
@@ -205,21 +205,21 @@
      "label": "E3",
      "predicate": "The arcsin chain $s_n=3\\sum_{k\\le n}\\Cb{k}/((2k+1)16^{k})\\in\\fQ$ with external completion $\\piR=6\\arcsin\\frac12$ \\chart{} and tail bound $|\\piR-s_n|<4^{-n}/(2n+3)$ for $n\\ge1$: geometric rate from the same combinatorial atoms as the Wallis pair.",
      "tag": "T",
-     "source": "Def.~\\ref{def:arcsin}\\newline \\pywit{epi}{p13024}{E3}",
+     "source": "Def.~\\ref{def:arcsin}\\newline \\pywit{epi}{p13024}{E3}, \\leanwit{FrcCore}{p13024}{E3}, \\leanwit{FrcLedger}{p13024}{E3} \\lean{Epi.pi\\_bracket\\_24, FRC.Epi.arcsin\\_tail\\_bound}",
      "key": "p13024"
     },
     {
      "label": "E4",
      "predicate": "Horizon determination for $\\pi$: the Machin chain $M_N\\in\\fQ$ has $|M_N-\\piR|<17/((2N+3)5^{2N+3})$; the binary64 constant $884279719003555/281474976710656$ is the readout of $M_{10}$ with $N=10$ minimal; the first $100$ decimal digits are fixed by $M_{71}$; alternating pairing of the two arctangent series gives certified two-sided $\\fQ$-enclosures at every truncation, the Gregory brackets $4S_{2m+1}<\\piR<4S_{2m}$ of width $4/(4m+3)$ the base case.",
      "tag": "T",
-     "source": "Thm.~\\ref{thm:readout-pi}\\newline \\pywit{epi}{p13025}{E4}",
+     "source": "Thm.~\\ref{thm:readout-pi}\\newline \\pywit{epi}{p13025}{E4}, \\leanwit{FrcLedger}{p13025}{E4} \\lean{Epi.machin\\_bound, Epi.readout\\_binary64\\_pi, Epi.machin\\_hundred\\_digits, Epi.arctan\\_pairing, Epi.machin\\_pairing, Epi.gregory\\_brackets}",
      "key": "p13025"
     },
     {
      "label": "E5",
      "predicate": "The feasibility hierarchy: among $\\fQ$-native constructors of $\\pi$ the best known rate is geometric, $\\Theta(k)$ steps (Machin, arcsin), against $\\Theta(k/\\log k)$ for the derangement chain of $e$; the circle count and the Leibniz/Wallis chains sit at $2^{k}$; the AGM is not $\\fQ$-native. A factorial-rate chain exists for every real by rounding (and for $\\pi$ by rounding the Machin chain), so the split is by kind of chain --- E-partial sums ($e$) against G-partial sums ($\\pi$), master C26; whether $\\piR$ is the value of an E-function with rational coefficients at a rational point is a question of the continuum (Fischler--Rivoal's conjecture $\\operatorname{Frac}\\mathcal E\\cap\\operatorname{Frac}\\mathcal G=\\overline{\\Q}$ would answer it negatively), not a predicate of the frame.",
      "tag": "T",
-     "source": "Prop.~\\ref{prop:feas-pi}\\newline \\pywit{epi}{p13026}{E5}",
+     "source": "Prop.~\\ref{prop:feas-pi}\\newline \\pywit{epi}{p13026}{E5}, \\leanwit{FrcCore}{p13026}{E5}, \\leanwit{FrcLedger}{p13026}{E5} \\lean{Epi.rounding\\_chain, Epi.machin\\_bound, Epi.gregory\\_brackets, Epi.compound\\_cost, FRC.Epi.derangement\\_cost\\_core}",
      "key": "p13026"
     }
    ]
@@ -260,7 +260,7 @@
      "label": "F5",
      "predicate": "Blind-scale statistics: over the $501$ primes in $(1000,5000)$ the sizes $|Z_0(\\p)|$ distribute as $1^{(169)},2^{(209)},3^{(92)},4^{(22)},5^{(6)},6^{(2)},7^{(1)}$, mean $1.996$, the excess over the forced $n=1$ matching Poisson$(1)$ \\apx{} (the model: $\\dr{n}\\bmod\\p$ uniform for $2\\le n\\le\\p-2$, the wall excluded; extended to the $1593$ primes in $(5000,20000)$: $1^{(597)},2^{(569)},3^{(299)},4^{(108)},5^{(17)},6^{(3)}$, mean $1.988$); blind scales never obstruct the plateau of D4 (advance at most $|Z_0(\\p)|$ steps past $n_0$). The counts are exact; the Poisson reading is the model they match.",
      "tag": "T",
-     "source": "Exp.~\\ref{exp:blind}\\newline \\pywit{epi}{p13031}{F5}",
+     "source": "Exp.~\\ref{exp:blind}\\newline \\pywit{epi}{p13031}{F5}, \\leanwit{FrcCore}{p13031}{F5} \\lean{FRC.Epi.blind\\_census}",
      "key": "p13031"
     },
     {
@@ -329,14 +329,14 @@
      "label": "G6",
      "predicate": "First-order wall vanishing of the arcsin chain: $\\sigma_\\p=\\sum_{k<m}\\Cb{k}/((2k+1)16^{k})\\equiv0\\pmod\\p$ for every prime $\\p\\ge5$ of the totality, $\\sigma_3=1$ the sole exception; proved entirely in finite arithmetic through the key identity $A+B=2L$ (coefficient bookkeeping of the formal antiderivative of $(1-s^{2})^{m}$), Wilson reflection, Lerch's congruence and the binomial transfer $\\Cb{k}\\equiv(-4)^{k}\\binom mk$. Verified for all $428$ odd primes $5\\le\\p<3000$; the ingredients for $m\\le60$, $\\p<500$.",
      "tag": "T",
-     "source": "Thm.~\\ref{thm:vanish}, eq.~\\eqref{eq:key}\\newline \\pywit{epi}{p13039}{G6}",
+     "source": "Thm.~\\ref{thm:vanish}, eq.~\\eqref{eq:key}\\newline \\pywit{epi}{p13039}{G6}, \\leanwit{FrcCore}{p13039}{G6} \\lean{FRC.Epi.sigma\\_vanishes\\_all}",
      "key": "p13039"
     },
     {
      "label": "G7",
      "predicate": "Second and third order at the arcsin wall: $\\sigma_\\p\\equiv0\\pmod{\\p^{2}}$ is Sun's theorem (A5), re-verified for $5\\le\\p<300$; the blind-range sum $\\sum_{m<k<\\p}\\Cb{k}/((2k+1)16^{k})\\equiv\\p E_{\\p-3}/3\\pmod{\\p^{2}}$ (A5), re-verified for $5\\le\\p<80$; at third order $\\sigma_\\p/\\p^{2}\\equiv(-1)^{(\\p+1)/2}B_{\\p-3}/36\\pmod\\p$ for all sixty primes $5\\le\\p<300$, the mod-$\\p^{3}$ reading of Sun's Conjecture 5.1 with the Wolstenholme refinement, a theorem for every prime $\\p\\ge5$ of the totality (A8): Wolstenholme-trivial at orders $\\p,\\p^{2}$, Bernoulli at $\\p^{3}$, the Euler content beyond the wall.",
      "tag": "T",
-     "source": "Thm.~\\ref{thm:super}, Rem.~\\ref{rem:hierarchy}; \\src{pi2.B1}, \\src{pi2.B2}, \\src{pi2.D1}; rests on A3, G6",
+     "source": "Thm.~\\ref{thm:super}, Rem.~\\ref{rem:hierarchy}; rests on A3, G6\\newline \\pywit{epi}{p13040}{G7}, \\leanwit{FrcCore}{p13040}{G7} \\lean{FRC.Epi.sigma\\_vanishes\\_mod\\_sq}",
      "key": "p13040"
     },
     {
@@ -384,14 +384,14 @@
      "label": "H3",
      "predicate": "Exact calibration of $e$ is impossible: with $\\theta=2\\piR\\lambda(\\im)/(\\p-1)$ the frame angle of $\\eP$, $\\theta\\ne1$ in every shell ($\\theta=1$ would make $\\piR$ rational, A2); $\\chi(\\eP)$ is a root of unity while $e^{\\imR}$ is not, so the identification is intrinsically horizon-limited.",
      "tag": "T",
-     "source": "Lem.~\\ref{lem:norad}\\newline \\leanwit{FrcLedger}{p13045}{H3} \\lean{Epi.calibration\\_ne\\_one, Epi.exp\\_I\\_ne\\_one}",
+     "source": "Lem.~\\ref{lem:norad}\\newline \\pywit{epi}{p13045}{H3}, \\leanwit{FrcCore}{p13045}{H3}, \\leanwit{FrcLedger}{p13045}{H3} \\lean{Epi.calibration\\_ne\\_one, Epi.exp\\_I\\_ne\\_one, FRC.Epi.no\\_exact\\_calibration}",
      "key": "p13045"
     },
     {
      "label": "H4",
      "predicate": "Calibrated shells at every precision the totality resolves: the $\\varepsilon$-calibrated shells are a fraction $2\\varepsilon/\\piR$ \\apx{} of the shells $\\p\\equiv1\\pmod4$ below any bound of the totality, for every $\\varepsilon$ above the nearest-hit scale $\\piR/(2N)$, and $\\chi(\\eP)$ approaches $e^{\\imR}$ along them. Below $10^{6}$: $260$ shells within $0.01$ against $249$ predicted; the best, $\\p=778933$, within $4\\times10^{-5}$, decided exactly.",
      "tag": "T",
-     "source": "Prop.~\\ref{prop:calib}; rests on A7, B1, E4, H3\\newline \\pywit{epi}{p13069}{H4}, \\leanwit{FrcLedger}{p13069}{H4} \\lean{Epi.calibrated\\_778933}",
+     "source": "Prop.~\\ref{prop:calib}; rests on A7, B1, E4, H3\\newline \\pywit{epi}{p13069}{H4}, \\leanwit{FrcCore}{p13069}{H4}, \\leanwit{FrcLedger}{p13069}{H4} \\lean{Epi.calibrated\\_778933, FRC.Epi.calibrated\\_shell\\_core}",
      "key": "p13069"
     },
     {
@@ -411,21 +411,21 @@
      "label": "I1",
      "predicate": "Emergence of the classical $e$: (i) in every shell with $\\p>n_0+|Z_0(\\p)|+1$ a non-blind scale in $[n_0,n_0+|Z_0(\\p)|]$ reads out $\\ro(\\eR)$, at binary64 exactly $18!/\\dr{18}$; (ii) the frame-internal continuation is the antiperiodic residue line with blind set $Z_0(\\p)$ and terminal invariant $-(\\Ku{\\p})^{-1}$, collapsed by the readout to one dyadic rational; (iii) $\\chi(\\eP)$ approaches $e^{\\imR}$ along the calibrated shells of the totality, exact calibration impossible, no pointwise link between the carriers. Composed from D4, F2, F3, F5, H3--H5.",
      "tag": "T",
-     "source": "Thm.~\\ref{thm:main-e}\\newline \\pywit{epi}{p13048}{I1}",
+     "source": "Thm.~\\ref{thm:main-e}\\newline \\pywit{epi}{p13048}{I1}, \\leanwit{FrcCore}{p13048}{I1}, \\leanwit{FrcLedger}{p13048}{I1} \\lean{Epi.readout\\_binary64, Epi.calibration\\_ne\\_one, Epi.calibrated\\_778933, FRC.Epi.readout\\_e\\_core, FRC.Epi.terminal13, FRC.Epi.dr\\_antiperiodic, FRC.Epi.blind\\_census, FRC.Epi.no\\_exact\\_calibration}",
      "key": "p13048"
     },
     {
      "label": "I2",
      "predicate": "Emergence of the classical $\\pi$: (i) the plateau readout of $\\fQ$-native chains, at binary64 exactly $M_{10}$, the Wallis pair certifying two-sided enclosures at every scale; (ii) the residue line on $[1,2\\kap]$ with the quarter-wall invariant $-(a^{2})^{-1}$, the half-wall terminus $-2$, the second-order Fermat quotient with $\\pi$-Wieferich set $\\{5,45827\\}$, Morley exactness at $\\p^{3}$, total blindness beyond the address of $-1$, Lucas revivals, the arcsin wall vanishing to $\\p^{2}$ with the Bernoulli third order and the Euler content displaced beyond the wall; (iii) $\\chi(-1)=e^{\\imR\\piR}$ exactly. Composed from E2, E4, G1--G7, H2.",
      "tag": "T",
-     "source": "Thm.~\\ref{thm:main-pi}\\newline \\pywit{epi}{p13049}{I2}",
+     "source": "Thm.~\\ref{thm:main-pi}\\newline \\pywit{epi}{p13049}{I2}, \\leanwit{FrcCore}{p13049}{I2}, \\leanwit{FrcLedger}{p13049}{I2} \\lean{Epi.readout\\_binary64\\_pi, Epi.wallis\\_enclosure, Epi.half\\_wall\\_second\\_order, FRC.Epi.residue\\_line\\_pi13, FRC.Epi.revivals13, FRC.Epi.sigma\\_vanishes\\_all, FRC.Epi.sigma\\_vanishes\\_mod\\_sq}",
      "key": "p13049"
     },
     {
      "label": "I3",
      "predicate": "The duality: $\\pi$ is angular-exact and wall-trivial (tautological carrier, terminus the calibration face $-2$, Fermat quotient one order down, two-squares quarter invariant, empty blind set below the wall, geometric $\\fQ$-rate, the series law split Bernoulli/Euler across the wall) and $e$ angular-approximate and wall-wild (calibration impossible, terminus the open Kurepa quantity, no quarter invariant, Poisson blind set, factorial $\\fQ$-rate, the group law broken at the wall); each constant exact on the axis where the other is approximate: $\\pi$ a structural, $e$ a statistical constant of the finite frame.",
      "tag": "T",
-     "source": "\\S\\ref{sec:duality}, ``The duality''",
+     "source": "\\S\\ref{sec:duality}, ``The duality''\\newline \\pywit{epi}{p13050}{I3}, \\leanwit{FrcCore}{p13050}{I3}, \\leanwit{FrcLedger}{p13050}{I3} \\lean{Epi.calibration\\_ne\\_one, Epi.machin\\_bound, Epi.compound\\_cost, FRC.Epi.residue\\_line\\_pi13, FRC.Epi.terminal13, FRC.Epi.kurepa\\_alt\\_values, FRC.Epi.blind\\_census, FRC.Epi.no\\_exact\\_calibration}",
      "key": "p13050"
     },
     {
@@ -439,7 +439,7 @@
      "label": "I5",
      "predicate": "The three frame invariants across shells: on the $4783$ shells $\\p\\equiv1\\pmod4$ below $10^{5}$, the triple $(\\Ku{\\p}/\\p,\\ q_\\p(4)/\\p,\\ \\varphi/\\piR)$ --- the wall of $e$ (F2), the wall of $\\pi$ at second order (G4), the angular address $\\varphi=\\arg(a+b\\imR)$ of $\\p=a^{2}+b^{2}$, $a\\equiv1\\pmod4$ (G3) --- is exact on each shell ($\\p=13$: $10,6,-3+2\\imR$; $1093$: $q_\\p(4)=0$, the Wieferich prime); means $0.502,0.499,0.499$ and variances $0.0828,0.0831,0.0832$ (uniform: $1/2$, $1/12$), correlations $-0.016,-0.008,+0.010$ ($\\sigma=0.0145$), $4\\times4\\times4$ chi-square $59.6$ on $63$ df, $a/\\sqrt\\p=\\cos\\varphi$ arcsine-distributed (mean $0.004$, variance $0.500$) \\apx: consistent with independence on the examined range.",
      "tag": "T",
-     "source": "\\S\\ref{sec:duality}, ``The three invariants across shells''\\newline \\pywit{epi}{p13068}{I5}",
+     "source": "\\S\\ref{sec:duality}, ``The three invariants across shells''\\newline \\pywit{epi}{p13068}{I5}, \\leanwit{FrcCore}{p13068}{I5} \\lean{FRC.Epi.invariants\\_13\\_1093}",
      "key": "p13068"
     }
    ]
@@ -466,7 +466,7 @@
      "label": "J3",
      "predicate": "The height run: with $H(x)=\\min_{a\\ge1}\\max(a,|\\ctr{ax}|)$ in the smallest-primitive-root frame, minimised over the two chiralities, over the $500$ shells $\\p\\equiv1\\pmod4$, $\\p\\le8009$: $H(\\eP)\\le2\\sqrt\\p$ on every shell (the horizon band), median $H(\\eP)=0.525\\sqrt\\p$ \\apx, exactly $68$ shells with $H\\le10$, and the pin value $2$ on exactly $\\{13,1933,4177,5857\\}$; for $\\eP$ a relation of height at most $h$ holds only on the shells with $H(\\eP)\\le h$ ($68$ of the $500$ for $h=10$), a share that falls as the shells grow, $H(\\eP)$ sitting at the $\\sqrt\\p$ scale (the generic-growth reading, A7).",
      "tag": "T",
-     "source": "\\S\\ref{sec:consequences}\\newline \\pywit{epi}{p13054}{J3}",
+     "source": "\\S\\ref{sec:consequences}\\newline \\pywit{epi}{p13054}{J3}, \\leanwit{FrcCore}{p13054}{J3} \\lean{FRC.Epi.height\\_run}",
      "key": "p13054"
     },
     {
@@ -480,14 +480,14 @@
      "label": "J5",
      "predicate": "Universality and the duality as corollary: $\\p$-hardness is self-similar, every shell finding its own half-period and drive name beyond its own horizon, so the chart shadows agree across all observers; $\\pi$'s half-period is calibration-pinned with a height-two certificate (J2) and its arc role normalisation-fixed, $\\eP$ has neither a pinned residue nor a cross-shell certificate and its role is generator-dependent --- structural against statistical is the certification split (I3). The sporadic small-height shells of J3 are the certificate-level face of I4.",
      "tag": "T",
-     "source": "\\S\\ref{sec:consequences}\\newline \\pywit{epi}{p13056}{J5}",
+     "source": "\\S\\ref{sec:consequences}\\newline \\pywit{epi}{p13056}{J5}, \\leanwit{FrcCore}{p13056}{J5} \\lean{FRC.Epi.pin\\_contrast}",
      "key": "p13056"
     },
     {
      "label": "J6",
      "predicate": "Two constants, two walls: both attach their full-resolution shell content to sparse-prime problems (Kurepa non-vanishing for $e$, a prescribed Fermat quotient of Wieferich type for $\\pi$); for each shell the bounded observer holds an exact finite certificate and holds no uniform certificate across all shells --- per-instance decidability without a uniform bound, the characteristic shape of statements at the arithmetic horizon; Kurepa's hypothesis is not thereby decided; the frequency of the persistence shells is a range reading (G4), their totality not a predicate of the paper.",
      "tag": "T",
-     "source": "\\S\\ref{sec:consequences}, ``Two constants, two celebrated walls''\\newline \\pywit{epi}{p13057}{J6}",
+     "source": "\\S\\ref{sec:consequences}, ``Two constants, two celebrated walls''\\newline \\pywit{epi}{p13057}{J6}, \\leanwit{FrcCore}{p13057}{J6}, \\leanwit{FrcLedger}{p13057}{J6} \\lean{Epi.derangements\\_wall\\_zmod, Epi.half\\_wall\\_second\\_order, FRC.Epi.terminal13, FRC.Epi.invariants\\_13\\_1093}",
      "key": "p13057"
     }
    ]
@@ -569,7 +569,7 @@
    {
     "name": "FRC.Epi.orientation_transport",
     "module": "FrcCore/Epi",
-    "line": 224,
+    "line": 230,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -589,7 +589,7 @@
    {
     "name": "FRC.Epi.coincidence13",
     "module": "FrcCore/Epi",
-    "line": 265,
+    "line": 271,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -600,7 +600,7 @@
    {
     "name": "FRC.Epi.rencontres",
     "module": "FrcLedger/Epi",
-    "line": 69,
+    "line": 72,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -613,7 +613,7 @@
    {
     "name": "FRC.Epi.rencontres_rat",
     "module": "FrcLedger/Epi",
-    "line": 86,
+    "line": 89,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -626,7 +626,7 @@
    {
     "name": "FRC.Epi.rencontres_one",
     "module": "FrcLedger/Epi",
-    "line": 99,
+    "line": 102,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -639,7 +639,7 @@
    {
     "name": "FRC.Epi.rencontres_zero",
     "module": "FrcLedger/Epi",
-    "line": 103,
+    "line": 106,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -654,7 +654,7 @@
    {
     "name": "FRC.Epi.cayley_values",
     "module": "FrcLedger/Epi",
-    "line": 1001,
+    "line": 1185,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -667,7 +667,7 @@
    {
     "name": "FRC.Epi.cayley_mul",
     "module": "FrcLedger/Epi",
-    "line": 1014,
+    "line": 1198,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -682,7 +682,7 @@
    {
     "name": "FRC.Epi.joint_return_tally",
     "module": "FrcLedger/Epi",
-    "line": 480,
+    "line": 483,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -695,7 +695,7 @@
    {
     "name": "FRC.Epi.tendsto_wallis_chain",
     "module": "FrcLedger/Epi",
-    "line": 513,
+    "line": 516,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -710,7 +710,7 @@
    {
     "name": "FRC.Epi.tailDelta_strict",
     "module": "FrcLedger/Epi",
-    "line": 243,
+    "line": 246,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -723,7 +723,7 @@
    {
     "name": "FRC.Epi.numDerangements_eq_tailDelta",
     "module": "FrcLedger/Epi",
-    "line": 269,
+    "line": 272,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -738,7 +738,7 @@
    {
     "name": "FRC.Epi.epsChain_enclosure",
     "module": "FrcLedger/Epi",
-    "line": 342,
+    "line": 345,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -751,7 +751,7 @@
    {
     "name": "FRC.Epi.epsChain_sign",
     "module": "FrcLedger/Epi",
-    "line": 305,
+    "line": 308,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -766,7 +766,7 @@
    {
     "name": "FRC.Epi.readout_binary64",
     "module": "FrcLedger/Epi",
-    "line": 384,
+    "line": 387,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -774,14 +774,23 @@
     ],
     "tier": 2,
     "ok": true,
-    "doc": "13:D4 — `e` lies within the half-ulp `2⁻⁵²` of the binary64 constant (from Mathlib's twenty-digit bracket of `e`), `ε_18` lies within the same half-ulp, and no `ε_n` with `2 ≤ n ≤ 17` does: `n = 18` is the minimal readout grade."
+    "doc": "13:D4, 13:I1 — `e` lies within the half-ulp `2⁻⁵²` of the binary64 constant (from Mathlib's twenty-digit bracket of `e`), `ε_18` lies within the same half-ulp, and no `ε_n` with `2 ≤ n ≤ 17` does: `n = 18` is the minimal readout grade."
+   },
+   {
+    "name": "FRC.Epi.readout_e_core",
+    "module": "FrcCore/Epi",
+    "line": 547,
+    "axioms": null,
+    "tier": "missing",
+    "ok": false,
+    "doc": "13:D4, 13:I1 — the binary64 readout of `e` in the integers: `ε₁₈ = 18!/!18` lies within the half-ulp of the binary64 constant `6121026514868073/2⁵¹` and no `ε_n` with `2 ≤ n ≤ 17` does; `!18 = 2355301661033953`."
    }
   ],
   "D5": [
    {
     "name": "FRC.Epi.derangement_cost",
     "module": "FrcLedger/Epi",
-    "line": 402,
+    "line": 405,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -794,7 +803,7 @@
    {
     "name": "FRC.Epi.compound_cost",
     "module": "FrcLedger/Epi",
-    "line": 452,
+    "line": 455,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -802,14 +811,23 @@
     ],
     "tier": 2,
     "ok": true,
-    "doc": "13:D5 — the compound chain is slow: `(1 + 1/n)^n ≤ e · 4n/(4n+1)` for `n ≥ 5`, so the gap `e − (1+1/n)^n` is at least `e/(4n+1)`: `k` bits cost `n ≍ 2^k` steps."
+    "doc": "13:D5, 13:E5, 13:I3 — the compound chain is slow: `(1 + 1/n)^n ≤ e · 4n/(4n+1)` for `n ≥ 5`, so the gap `e − (1+1/n)^n` is at least `e/(4n+1)`: `k` bits cost `n ≍ 2^k` steps."
+   },
+   {
+    "name": "FRC.Epi.derangement_cost_core",
+    "module": "FrcCore/Epi",
+    "line": 553,
+    "axioms": null,
+    "tier": "missing",
+    "ok": false,
+    "doc": "13:D5, 13:E5 — the step counts of the derangement chain: `n = 11, 18, 70` are the least `n` with `8·2^k < (n+1)!` for `k = 24, 53, 333` (the enclosure bound `8/(n+1)!` below `2^{−k}`), decided in the integers."
    }
   ],
   "E2": [
    {
     "name": "FRC.Epi.wallis_enclosure",
     "module": "FrcLedger/Epi",
-    "line": 1248,
+    "line": 1432,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -817,12 +835,12 @@
     ],
     "tier": 2,
     "ok": true,
-    "doc": "13:E2 — the two-sided enclosure `v_n < π < w_n` for every `n ≥ 1`: the lower chain is the doubled Wallis partial product `2W_n < 2W_{n+1} ≤ π`, the upper chain is `W_n(2n+1)/n ≥ π(2n+1)²/(4n(n+1)) > π`."
+    "doc": "13:E2, 13:I2 — the two-sided enclosure `v_n < π < w_n` for every `n ≥ 1`: the lower chain is the doubled Wallis partial product `2W_n < 2W_{n+1} ≤ π`, the upper chain is `W_n(2n+1)/n ≥ π(2n+1)²/(4n(n+1)) > π`."
    },
    {
     "name": "FRC.Epi.wallis_width",
     "module": "FrcLedger/Epi",
-    "line": 1156,
+    "line": 1340,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -835,7 +853,7 @@
    {
     "name": "FRC.Epi.wallisV_strictMono",
     "module": "FrcLedger/Epi",
-    "line": 1179,
+    "line": 1363,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -848,7 +866,7 @@
    {
     "name": "FRC.Epi.wallisW_strictAnti",
     "module": "FrcLedger/Epi",
-    "line": 1202,
+    "line": 1386,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -859,11 +877,138 @@
     "doc": "13:E2 — the Wallis upper chain `w_n` is strictly decreasing from `n = 1`."
    }
   ],
+  "E3": [
+   {
+    "name": "FRC.Epi.pi_bracket_24",
+    "module": "FrcLedger/Epi",
+    "line": 657,
+    "axioms": null,
+    "tier": "missing",
+    "ok": false,
+    "doc": "13:E3 — the rational bracket of `π` at `m = 12`, the ends of the pairing enclosure as reduced fractions (width below `10⁻³⁶`): the bracket on which the core's `arcsin_tail_bound` decides the tail bound of the arcsin chain for `1 ≤ n ≤ 40`."
+   },
+   {
+    "name": "FRC.Epi.arcsin_tail_bound",
+    "module": "FrcCore/Epi",
+    "line": 481,
+    "axioms": null,
+    "tier": "missing",
+    "ok": false,
+    "doc": "13:E3 — the tail bound of the arcsin chain, `|π − s_n| < 4⁻ⁿ/(2n+3)`, holds against the certified bracket of `π` for every `1 ≤ n ≤ 40`."
+   }
+  ],
+  "E4": [
+   {
+    "name": "FRC.Epi.machin_bound",
+    "module": "FrcLedger/Epi",
+    "line": 597,
+    "axioms": null,
+    "tier": "missing",
+    "ok": false,
+    "doc": "13:E4, 13:E5, 13:I3 — the Machin chain's error: `|M_N − π| < 17/((2N+3)·5^{2N+3})` for every `N`, from Machin's formula `π/4 = 4 arctan(1/5) − arctan(1/239)` and the alternating bound on each arctangent series: the geometric `ℚ`-rate of `π`."
+   },
+   {
+    "name": "FRC.Epi.readout_binary64_pi",
+    "module": "FrcLedger/Epi",
+    "line": 673,
+    "axioms": null,
+    "tier": "missing",
+    "ok": false,
+    "doc": "13:E4, 13:I2 — the binary64 readout of `π`: `π` and `M_10` lie within the half-ulp `2⁻⁵²` of the binary64 constant (Mathlib's twenty-digit bracket of `π`), and no `M_N` with `N ≤ 9` does: `N = 10` is minimal."
+   },
+   {
+    "name": "FRC.Epi.machin_hundred_digits",
+    "module": "FrcLedger/Epi",
+    "line": 633,
+    "axioms": null,
+    "tier": "missing",
+    "ok": false,
+    "doc": "13:E4 — the first hundred decimal digits are fixed by `M_71`: `|M_71 − π| < 10⁻¹⁰⁰`."
+   },
+   {
+    "name": "FRC.Epi.arctan_pairing",
+    "module": "FrcLedger/Epi",
+    "line": 581,
+    "axioms": null,
+    "tier": "missing",
+    "ok": false,
+    "doc": "13:E4 — the alternating pairing of the arctangent series: for `0 ≤ x < 1`, `S_x(2k+1) ≤ arctan x ≤ S_x(2k)`, a certified two-sided enclosure at every truncation."
+   },
+   {
+    "name": "FRC.Epi.machin_pairing",
+    "module": "FrcLedger/Epi",
+    "line": 645,
+    "axioms": null,
+    "tier": "missing",
+    "ok": false,
+    "doc": "13:E4 — the alternating pairing of the two arctangent series encloses `π` at every truncation: `machinLo m ≤ π ≤ machinHi m`, a certified two-sided `ℚ`-enclosure."
+   },
+   {
+    "name": "FRC.Epi.gregory_brackets",
+    "module": "FrcLedger/Epi",
+    "line": 688,
+    "axioms": null,
+    "tier": "missing",
+    "ok": false,
+    "doc": "13:E4, 13:E5 — the Gregory brackets, the base case of the pairing: `S_{2m} ≤ π/4 ≤ S_{2m+1}`, of width `1/(4m+1)` — the Leibniz chain's `2^k` steps per `k` binary digits."
+   }
+  ],
+  "E5": [
+   {
+    "name": "FRC.Epi.rounding_chain",
+    "module": "FrcLedger/Epi",
+    "line": 705,
+    "axioms": null,
+    "tier": "missing",
+    "ok": false,
+    "doc": "13:E5 — a factorial-rate chain exists for every real by rounding: `|x − ⌊x·n!⌋/n!| < 1/n!`, so the feasibility split is by kind of chain, not by rate."
+   },
+   {
+    "name": "FRC.Epi.machin_bound",
+    "module": "FrcLedger/Epi",
+    "line": 597,
+    "axioms": null,
+    "tier": "missing",
+    "ok": false,
+    "doc": "13:E4, 13:E5, 13:I3 — the Machin chain's error: `|M_N − π| < 17/((2N+3)·5^{2N+3})` for every `N`, from Machin's formula `π/4 = 4 arctan(1/5) − arctan(1/239)` and the alternating bound on each arctangent series: the geometric `ℚ`-rate of `π`."
+   },
+   {
+    "name": "FRC.Epi.gregory_brackets",
+    "module": "FrcLedger/Epi",
+    "line": 688,
+    "axioms": null,
+    "tier": "missing",
+    "ok": false,
+    "doc": "13:E4, 13:E5 — the Gregory brackets, the base case of the pairing: `S_{2m} ≤ π/4 ≤ S_{2m+1}`, of width `1/(4m+1)` — the Leibniz chain's `2^k` steps per `k` binary digits."
+   },
+   {
+    "name": "FRC.Epi.compound_cost",
+    "module": "FrcLedger/Epi",
+    "line": 455,
+    "axioms": [
+     "Classical.choice",
+     "Quot.sound",
+     "propext"
+    ],
+    "tier": 2,
+    "ok": true,
+    "doc": "13:D5, 13:E5, 13:I3 — the compound chain is slow: `(1 + 1/n)^n ≤ e · 4n/(4n+1)` for `n ≥ 5`, so the gap `e − (1+1/n)^n` is at least `e/(4n+1)`: `k` bits cost `n ≍ 2^k` steps."
+   },
+   {
+    "name": "FRC.Epi.derangement_cost_core",
+    "module": "FrcCore/Epi",
+    "line": 553,
+    "axioms": null,
+    "tier": "missing",
+    "ok": false,
+    "doc": "13:D5, 13:E5 — the step counts of the derangement chain: `n = 11, 18, 70` are the least `n` with `8·2^k < (n+1)!` for `k = 24, 53, 333` (the enclosure bound `8/(n+1)!` below `2^{−k}`), decided in the integers."
+   }
+  ],
   "F1": [
    {
     "name": "FRC.Epi.wilson_reflection_zmod",
     "module": "FrcLedger/Epi",
-    "line": 722,
+    "line": 906,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -878,7 +1023,7 @@
    {
     "name": "FRC.Epi.derangements_wall_zmod",
     "module": "FrcLedger/Epi",
-    "line": 728,
+    "line": 912,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -886,12 +1031,12 @@
     ],
     "tier": 2,
     "ok": true,
-    "doc": "13:F2 — the wall identity: `!(p−1) ≡ !p (mod p)` for every prime `p` — the derangement number at the wall is Kurepa's left factorial (the odd-prime case of the Mijajlović–Šami congruence), from Wilson reflection."
+    "doc": "13:F2, 13:J6 — the wall identity: `!(p−1) ≡ !p (mod p)` for every prime `p` — the derangement number at the wall is Kurepa's left factorial (the odd-prime case of the Mijajlović–Šami congruence), from Wilson reflection."
    },
    {
     "name": "FRC.Epi.terminal_residue",
     "module": "FrcLedger/Epi",
-    "line": 733,
+    "line": 917,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -904,18 +1049,18 @@
    {
     "name": "FRC.Epi.terminal13",
     "module": "FrcCore/Epi",
-    "line": 271,
+    "line": 277,
     "axioms": [],
     "tier": 0,
     "ok": true,
-    "doc": "13:F2, 13:F6 — the wall of `e` on `𝔽₁₃`: `!12 ≡ !13 ≡ 10`, the terminal residue `⟦ε₁₂⟧ = 9 = −(!13)⁻¹`, the common reading of `6/5` and `11/7`."
+    "doc": "13:F2, 13:F6, 13:I1, 13:I3, 13:J6 — the wall of `e` on `𝔽₁₃`: `!12 ≡ !13 ≡ 10`, the terminal residue `⟦ε₁₂⟧ = 9 = −(!13)⁻¹`, the common reading of `6/5` and `11/7`."
    }
   ],
   "F3": [
    {
     "name": "FRC.Epi.derangements_antiperiodic_zmod",
     "module": "FrcLedger/Epi",
-    "line": 742,
+    "line": 926,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -928,16 +1073,16 @@
    {
     "name": "FRC.Epi.dr_antiperiodic",
     "module": "FrcCore/Epi",
-    "line": 122,
+    "line": 128,
     "axioms": [],
     "tier": 0,
     "ok": true,
-    "doc": "13:F3 — antiperiodicity on every shell `p = 4κ + 1`: `!(n + p) ≡ −!n (mod p)` for every `n`, so `!n mod p` depends on `n mod 2p`; and the blind set contains `n = 1` (`!1 = 0`)."
+    "doc": "13:F3, 13:I1 — antiperiodicity on every shell `p = 4κ + 1`: `!(n + p) ≡ −!n (mod p)` for every `n`, so `!n mod p` depends on `n mod 2p`; and the blind set contains `n = 1` (`!1 = 0`)."
    },
    {
     "name": "FRC.Epi.dr_succ",
     "module": "FrcCore/Epi",
-    "line": 99,
+    "line": 105,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -948,7 +1093,7 @@
    {
     "name": "FRC.Epi.series_duals_zmod",
     "module": "FrcLedger/Epi",
-    "line": 749,
+    "line": 933,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -961,18 +1106,29 @@
    {
     "name": "FRC.Epi.kurepa_alt_values",
     "module": "FrcCore/Epi",
-    "line": 300,
+    "line": 306,
     "axioms": [],
     "tier": 0,
     "ok": true,
-    "doc": "13:F4 — the broken group law at the wall: `!p·A(p) ≡ 3, 0, 21, 28, 132, 258` at `p = 7, 13, 29, 101, 257, 1009`, with `A(13) ≡ 0` (the direct series residue vanishes on `𝔽₁₃`)."
+    "doc": "13:F4, 13:I3 — the broken group law at the wall: `!p·A(p) ≡ 3, 0, 21, 28, 132, 258` at `p = 7, 13, 29, 101, 257, 1009`, with `A(13) ≡ 0` (the direct series residue vanishes on `𝔽₁₃`)."
+   }
+  ],
+  "F5": [
+   {
+    "name": "FRC.Epi.blind_census",
+    "module": "FrcCore/Epi",
+    "line": 350,
+    "axioms": null,
+    "tier": "missing",
+    "ok": false,
+    "doc": "13:F5, 13:I1, 13:I3 — the blind-scale census, its opening stretch: on the `43` primes in `(1000, 1300)` the sizes `|Z₀(p)|` are `1, 2, 2, 1, 2, 4, 1, 4, 2, 1, 2, 2, 1, 3, 3, 2, 3, 2, 1, 3, 1, 2, 5, 2, 1, 1, 2, 2, 2, 4, 1, 2, 2, 3, 1, 2, 1, 1, 2, 2, 1, 2, 3` — forty-three exact counts of the Poisson-read distribution (the full census of `501` primes is the package's check of F5)."
    }
   ],
   "F6": [
    {
     "name": "FRC.Epi.residue_line_e13",
     "module": "FrcCore/Epi",
-    "line": 278,
+    "line": 284,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -981,18 +1137,18 @@
    {
     "name": "FRC.Epi.terminal13",
     "module": "FrcCore/Epi",
-    "line": 271,
+    "line": 277,
     "axioms": [],
     "tier": 0,
     "ok": true,
-    "doc": "13:F2, 13:F6 — the wall of `e` on `𝔽₁₃`: `!12 ≡ !13 ≡ 10`, the terminal residue `⟦ε₁₂⟧ = 9 = −(!13)⁻¹`, the common reading of `6/5` and `11/7`."
+    "doc": "13:F2, 13:F6, 13:I1, 13:I3, 13:J6 — the wall of `e` on `𝔽₁₃`: `!12 ≡ !13 ≡ 10`, the terminal residue `⟦ε₁₂⟧ = 9 = −(!13)⁻¹`, the common reading of `6/5` and `11/7`."
    }
   ],
   "F7": [
    {
     "name": "FRC.Epi.tower_e_exact_zmod",
     "module": "FrcLedger/Epi",
-    "line": 756,
+    "line": 940,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -1005,7 +1161,7 @@
    {
     "name": "FRC.Epi.tower_e_exact",
     "module": "FrcCore/Epi",
-    "line": 141,
+    "line": 147,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -1016,7 +1172,7 @@
    {
     "name": "FRC.Epi.tail_identity_zmod",
     "module": "FrcLedger/Epi",
-    "line": 762,
+    "line": 946,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -1029,7 +1185,7 @@
    {
     "name": "FRC.Epi.blind_iff_collision",
     "module": "FrcLedger/Epi",
-    "line": 770,
+    "line": 954,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -1044,7 +1200,7 @@
    {
     "name": "FRC.Epi.legibility_window",
     "module": "FrcLedger/Epi",
-    "line": 872,
+    "line": 1056,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -1057,18 +1213,18 @@
    {
     "name": "FRC.Epi.residue_line_pi13",
     "module": "FrcCore/Epi",
-    "line": 285,
+    "line": 291,
     "axioms": [],
     "tier": 0,
     "ok": true,
-    "doc": "13:G8, 13:G1 — the residue line of `π` on `𝔽₁₃`: `⟦w_n⟧`, `n = 1, …, 6`, is `4, 5, 10, 9, 6, 11`, the calibration face `⟦w₆⟧ = 11 = −2`, the quarter invariant `⟦w₃⟧ = 10 = −(3²)⁻¹`; the legibility window is exactly `1 ≤ n ≤ 6` (`13 ∣ C(2n,n)` for `7 ≤ n ≤ 12`, not for `n ≤ 6`)."
+    "doc": "13:G8, 13:G1, 13:I2, 13:I3 — the residue line of `π` on `𝔽₁₃`: `⟦w_n⟧`, `n = 1, …, 6`, is `4, 5, 10, 9, 6, 11`, the calibration face `⟦w₆⟧ = 11 = −2`, the quarter invariant `⟦w₃⟧ = 10 = −(3²)⁻¹`; the legibility window is exactly `1 ≤ n ≤ 6` (`13 ∣ C(2n,n)` for `7 ≤ n ≤ 12`, not for `n ≤ 6`)."
    }
   ],
   "G2": [
    {
     "name": "FRC.Epi.half_wall_terminus",
     "module": "FrcLedger/Epi",
-    "line": 895,
+    "line": 1079,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -1083,7 +1239,7 @@
    {
     "name": "FRC.Epi.quarter_wall_invariant",
     "module": "FrcLedger/Epi",
-    "line": 922,
+    "line": 1106,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -1098,7 +1254,7 @@
    {
     "name": "FRC.Epi.half_wall_second_order",
     "module": "FrcLedger/Epi",
-    "line": 1434,
+    "line": 1618,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -1106,14 +1262,14 @@
     ],
     "tier": 2,
     "ok": true,
-    "doc": "13:G4 — the second order at the half wall: with `m = (p−1)/2` and Morley's congruence `C(p−1, m) ≡ (−1)^m 4^{p−1}` taken modulo `p²` (the import A3), `16^m ≡ (−2 + 2p(q_p(4) − 1))·m·C(2m,m)² (mod p²)`, i.e. `w_m ≡ −2 + 2p(q_p(4) − 1)`; the universal `−2` persists to `p²` exactly when `q_p(4) ≡ 1`, the π-Wieferich condition."
+    "doc": "13:G4, 13:I2, 13:J6 — the second order at the half wall: with `m = (p−1)/2` and Morley's congruence `C(p−1, m) ≡ (−1)^m 4^{p−1}` taken modulo `p²` (the import A3), `16^m ≡ (−2 + 2p(q_p(4) − 1))·m·C(2m,m)² (mod p²)`, i.e. `w_m ≡ −2 + 2p(q_p(4) − 1)`; the universal `−2` persists to `p²` exactly when `q_p(4) ≡ 1`, the π-Wieferich condition."
    }
   ],
   "G5": [
    {
     "name": "FRC.Epi.first_revival",
     "module": "FrcLedger/Epi",
-    "line": 965,
+    "line": 1149,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -1126,7 +1282,7 @@
    {
     "name": "FRC.Epi.choose_two_mul_pow",
     "module": "FrcLedger/Epi",
-    "line": 958,
+    "line": 1142,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -1139,29 +1295,51 @@
    {
     "name": "FRC.Epi.revivals13",
     "module": "FrcCore/Epi",
-    "line": 293,
+    "line": 299,
     "axioms": [],
     "tier": 0,
     "ok": true,
-    "doc": "13:G5 — the first revival on `𝔽₁₃`: `⟦v₁₃⟧ = 8`, and the two-digit revivals `13 ≤ n < 169` with `13 ∤ C(2n,n)` and `13 ∤ n` number `36 = (2κ)²`."
+    "doc": "13:G5, 13:I2 — the first revival on `𝔽₁₃`: `⟦v₁₃⟧ = 8`, and the two-digit revivals `13 ≤ n < 169` with `13 ∤ C(2n,n)` and `13 ∤ n` number `36 = (2κ)²`."
+   }
+  ],
+  "G6": [
+   {
+    "name": "FRC.Epi.sigma_vanishes_all",
+    "module": "FrcCore/Epi",
+    "line": 424,
+    "axioms": null,
+    "tier": "missing",
+    "ok": false,
+    "doc": "13:G6, 13:I2 — first-order wall vanishing of the arcsin chain: `σ_p ≡ 0 (mod p)` on all `428` odd primes `5 ≤ p < 3000` (the enumeration complete), and `σ_3 = 1`."
+   }
+  ],
+  "G7": [
+   {
+    "name": "FRC.Epi.sigma_vanishes_mod_sq",
+    "module": "FrcCore/Epi",
+    "line": 435,
+    "axioms": null,
+    "tier": "missing",
+    "ok": false,
+    "doc": "13:G7, 13:I2 — second order at the arcsin wall: `σ_p ≡ 0 (mod p²)` (Sun's theorem) on all `60` primes `5 ≤ p < 300`."
    }
   ],
   "G8": [
    {
     "name": "FRC.Epi.residue_line_pi13",
     "module": "FrcCore/Epi",
-    "line": 285,
+    "line": 291,
     "axioms": [],
     "tier": 0,
     "ok": true,
-    "doc": "13:G8, 13:G1 — the residue line of `π` on `𝔽₁₃`: `⟦w_n⟧`, `n = 1, …, 6`, is `4, 5, 10, 9, 6, 11`, the calibration face `⟦w₆⟧ = 11 = −2`, the quarter invariant `⟦w₃⟧ = 10 = −(3²)⁻¹`; the legibility window is exactly `1 ≤ n ≤ 6` (`13 ∣ C(2n,n)` for `7 ≤ n ≤ 12`, not for `n ≤ 6`)."
+    "doc": "13:G8, 13:G1, 13:I2, 13:I3 — the residue line of `π` on `𝔽₁₃`: `⟦w_n⟧`, `n = 1, …, 6`, is `4, 5, 10, 9, 6, 11`, the calibration face `⟦w₆⟧ = 11 = −2`, the quarter invariant `⟦w₃⟧ = 10 = −(3²)⁻¹`; the legibility window is exactly `1 ≤ n ≤ 6` (`13 ∣ C(2n,n)` for `7 ≤ n ≤ 12`, not for `n ≤ 6`)."
    }
   ],
   "G9": [
    {
     "name": "FRC.Epi.tower_pi_exact",
     "module": "FrcLedger/Epi",
-    "line": 976,
+    "line": 1160,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -1174,7 +1352,7 @@
    {
     "name": "FRC.Epi.choose_two_mul_pow",
     "module": "FrcLedger/Epi",
-    "line": 958,
+    "line": 1142,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -1189,7 +1367,7 @@
    {
     "name": "FRC.Epi.piWieferich_iff",
     "module": "FrcLedger/Epi",
-    "line": 1414,
+    "line": 1598,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -1202,7 +1380,7 @@
    {
     "name": "FRC.Epi.eisenstein",
     "module": "FrcLedger/Epi",
-    "line": 1584,
+    "line": 1768,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -1215,7 +1393,7 @@
    {
     "name": "FRC.Epi.piWieferich_iff_harmonic",
     "module": "FrcLedger/Epi",
-    "line": 1607,
+    "line": 1791,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -1228,7 +1406,7 @@
    {
     "name": "FRC.Epi.piWieferich_iff_oeis",
     "module": "FrcLedger/Epi",
-    "line": 1616,
+    "line": 1800,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -1254,7 +1432,7 @@
    {
     "name": "FRC.Epi.calibration_ne_one",
     "module": "FrcLedger/Epi",
-    "line": 1036,
+    "line": 1220,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -1262,12 +1440,12 @@
     ],
     "tier": 2,
     "ok": true,
-    "doc": "13:H3 — `θ = 2πλ/(p−1) ≠ 1` for every label `λ ≥ 1` and every `p`: `θ = 1` would make `π` rational."
+    "doc": "13:H3, 13:I1, 13:I3 — `θ = 2πλ/(p−1) ≠ 1` for every label `λ ≥ 1` and every `p`: `θ = 1` would make `π` rational."
    },
    {
     "name": "FRC.Epi.exp_I_ne_one",
     "module": "FrcLedger/Epi",
-    "line": 1045,
+    "line": 1229,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -1276,13 +1454,22 @@
     "tier": 2,
     "ok": true,
     "doc": "13:H3 — `e^{i n} ≠ 1` for every `n ≥ 1`: `e^{i}` is not a root of unity (while `χ(e_p)` is one)."
+   },
+   {
+    "name": "FRC.Epi.no_exact_calibration",
+    "module": "FrcCore/Epi",
+    "line": 537,
+    "axioms": null,
+    "tier": "missing",
+    "ok": false,
+    "doc": "13:H3, 13:I1, 13:I3 — exact calibration is impossible on every shell of the run: with `θ = 2πλ(i)/(p−1)`, no integer `λ` makes `θ = 1` on any of the `500` shells `p ≡ 1 (mod 4)`, `p ≤ 8009`, decided on the certified bracket of `π`."
    }
   ],
   "H4": [
    {
     "name": "FRC.Epi.calibrated_778933",
     "module": "FrcLedger/Epi",
-    "line": 1131,
+    "line": 1315,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -1290,14 +1477,23 @@
     ],
     "tier": 2,
     "ok": true,
-    "doc": "13:H4 — the best radian-calibrated shell below `10⁶` (Prop. calib): on `p = 778933`, prime, the residue `123966` is a quarter-turn (`123966² ≡ −1 (mod p)`), and the frame angle `θ = 2π·123966/(p − 1)` it labels lies within `4·10⁻⁵` of one radian and not within `3.9·10⁻⁵` — the calibration inequality decided from the rational bounds `3.141592 < π < 3.141593` of Mathlib, no floating-point value of `π` entering; the count of calibrated shells and the nearest-hit comparison are the package's (`e.A1`)."
+    "doc": "13:H4, 13:I1 — the best radian-calibrated shell below `10⁶` (Prop. calib): on `p = 778933`, prime, the residue `123966` is a quarter-turn (`123966² ≡ −1 (mod p)`), and the frame angle `θ = 2π·123966/(p − 1)` it labels lies within `4·10⁻⁵` of one radian and not within `3.9·10⁻⁵` — the calibration inequality decided from the rational bounds `3.141592 < π < 3.141593` of Mathlib, no floating-point value of `π` entering; the count of calibrated shells and the nearest-hit comparison are the package's (`e.A1`)."
+   },
+   {
+    "name": "FRC.Epi.calibrated_shell_core",
+    "module": "FrcCore/Epi",
+    "line": 559,
+    "axioms": null,
+    "tier": "missing",
+    "ok": false,
+    "doc": "13:H4 — the shell data of the best calibrated shell below `10⁶`: `778933` is prime, `≡ 1 (mod 4)`, and `123966` is a quarter-turn, `123966² ≡ −1 (mod 778933)` (the angle bound against `π` is the Mathlib witness)."
    }
   ],
   "H5": [
    {
     "name": "FRC.Epi.index_condition_shell",
     "module": "FrcLedger/Epi",
-    "line": 1112,
+    "line": 1296,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -1310,7 +1506,7 @@
    {
     "name": "FRC.Epi.index_condition",
     "module": "FrcLedger/Epi",
-    "line": 1063,
+    "line": 1247,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -1319,6 +1515,247 @@
     "tier": 2,
     "ok": true,
     "doc": "13:H5 — the index condition: `u·l ≡ s (mod n)` is solvable with `u` coprime to `n` exactly when `gcd(l, n) = gcd(s, n)`."
+   }
+  ],
+  "I1": [
+   {
+    "name": "FRC.Epi.readout_binary64",
+    "module": "FrcLedger/Epi",
+    "line": 387,
+    "axioms": [
+     "Classical.choice",
+     "Quot.sound",
+     "propext"
+    ],
+    "tier": 2,
+    "ok": true,
+    "doc": "13:D4, 13:I1 — `e` lies within the half-ulp `2⁻⁵²` of the binary64 constant (from Mathlib's twenty-digit bracket of `e`), `ε_18` lies within the same half-ulp, and no `ε_n` with `2 ≤ n ≤ 17` does: `n = 18` is the minimal readout grade."
+   },
+   {
+    "name": "FRC.Epi.calibration_ne_one",
+    "module": "FrcLedger/Epi",
+    "line": 1220,
+    "axioms": [
+     "Classical.choice",
+     "Quot.sound",
+     "propext"
+    ],
+    "tier": 2,
+    "ok": true,
+    "doc": "13:H3, 13:I1, 13:I3 — `θ = 2πλ/(p−1) ≠ 1` for every label `λ ≥ 1` and every `p`: `θ = 1` would make `π` rational."
+   },
+   {
+    "name": "FRC.Epi.calibrated_778933",
+    "module": "FrcLedger/Epi",
+    "line": 1315,
+    "axioms": [
+     "Classical.choice",
+     "Quot.sound",
+     "propext"
+    ],
+    "tier": 2,
+    "ok": true,
+    "doc": "13:H4, 13:I1 — the best radian-calibrated shell below `10⁶` (Prop. calib): on `p = 778933`, prime, the residue `123966` is a quarter-turn (`123966² ≡ −1 (mod p)`), and the frame angle `θ = 2π·123966/(p − 1)` it labels lies within `4·10⁻⁵` of one radian and not within `3.9·10⁻⁵` — the calibration inequality decided from the rational bounds `3.141592 < π < 3.141593` of Mathlib, no floating-point value of `π` entering; the count of calibrated shells and the nearest-hit comparison are the package's (`e.A1`)."
+   },
+   {
+    "name": "FRC.Epi.readout_e_core",
+    "module": "FrcCore/Epi",
+    "line": 547,
+    "axioms": null,
+    "tier": "missing",
+    "ok": false,
+    "doc": "13:D4, 13:I1 — the binary64 readout of `e` in the integers: `ε₁₈ = 18!/!18` lies within the half-ulp of the binary64 constant `6121026514868073/2⁵¹` and no `ε_n` with `2 ≤ n ≤ 17` does; `!18 = 2355301661033953`."
+   },
+   {
+    "name": "FRC.Epi.terminal13",
+    "module": "FrcCore/Epi",
+    "line": 277,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "13:F2, 13:F6, 13:I1, 13:I3, 13:J6 — the wall of `e` on `𝔽₁₃`: `!12 ≡ !13 ≡ 10`, the terminal residue `⟦ε₁₂⟧ = 9 = −(!13)⁻¹`, the common reading of `6/5` and `11/7`."
+   },
+   {
+    "name": "FRC.Epi.dr_antiperiodic",
+    "module": "FrcCore/Epi",
+    "line": 128,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "13:F3, 13:I1 — antiperiodicity on every shell `p = 4κ + 1`: `!(n + p) ≡ −!n (mod p)` for every `n`, so `!n mod p` depends on `n mod 2p`; and the blind set contains `n = 1` (`!1 = 0`)."
+   },
+   {
+    "name": "FRC.Epi.blind_census",
+    "module": "FrcCore/Epi",
+    "line": 350,
+    "axioms": null,
+    "tier": "missing",
+    "ok": false,
+    "doc": "13:F5, 13:I1, 13:I3 — the blind-scale census, its opening stretch: on the `43` primes in `(1000, 1300)` the sizes `|Z₀(p)|` are `1, 2, 2, 1, 2, 4, 1, 4, 2, 1, 2, 2, 1, 3, 3, 2, 3, 2, 1, 3, 1, 2, 5, 2, 1, 1, 2, 2, 2, 4, 1, 2, 2, 3, 1, 2, 1, 1, 2, 2, 1, 2, 3` — forty-three exact counts of the Poisson-read distribution (the full census of `501` primes is the package's check of F5)."
+   },
+   {
+    "name": "FRC.Epi.no_exact_calibration",
+    "module": "FrcCore/Epi",
+    "line": 537,
+    "axioms": null,
+    "tier": "missing",
+    "ok": false,
+    "doc": "13:H3, 13:I1, 13:I3 — exact calibration is impossible on every shell of the run: with `θ = 2πλ(i)/(p−1)`, no integer `λ` makes `θ = 1` on any of the `500` shells `p ≡ 1 (mod 4)`, `p ≤ 8009`, decided on the certified bracket of `π`."
+   }
+  ],
+  "I2": [
+   {
+    "name": "FRC.Epi.readout_binary64_pi",
+    "module": "FrcLedger/Epi",
+    "line": 673,
+    "axioms": null,
+    "tier": "missing",
+    "ok": false,
+    "doc": "13:E4, 13:I2 — the binary64 readout of `π`: `π` and `M_10` lie within the half-ulp `2⁻⁵²` of the binary64 constant (Mathlib's twenty-digit bracket of `π`), and no `M_N` with `N ≤ 9` does: `N = 10` is minimal."
+   },
+   {
+    "name": "FRC.Epi.wallis_enclosure",
+    "module": "FrcLedger/Epi",
+    "line": 1432,
+    "axioms": [
+     "Classical.choice",
+     "Quot.sound",
+     "propext"
+    ],
+    "tier": 2,
+    "ok": true,
+    "doc": "13:E2, 13:I2 — the two-sided enclosure `v_n < π < w_n` for every `n ≥ 1`: the lower chain is the doubled Wallis partial product `2W_n < 2W_{n+1} ≤ π`, the upper chain is `W_n(2n+1)/n ≥ π(2n+1)²/(4n(n+1)) > π`."
+   },
+   {
+    "name": "FRC.Epi.half_wall_second_order",
+    "module": "FrcLedger/Epi",
+    "line": 1618,
+    "axioms": [
+     "Classical.choice",
+     "Quot.sound",
+     "propext"
+    ],
+    "tier": 2,
+    "ok": true,
+    "doc": "13:G4, 13:I2, 13:J6 — the second order at the half wall: with `m = (p−1)/2` and Morley's congruence `C(p−1, m) ≡ (−1)^m 4^{p−1}` taken modulo `p²` (the import A3), `16^m ≡ (−2 + 2p(q_p(4) − 1))·m·C(2m,m)² (mod p²)`, i.e. `w_m ≡ −2 + 2p(q_p(4) − 1)`; the universal `−2` persists to `p²` exactly when `q_p(4) ≡ 1`, the π-Wieferich condition."
+   },
+   {
+    "name": "FRC.Epi.residue_line_pi13",
+    "module": "FrcCore/Epi",
+    "line": 291,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "13:G8, 13:G1, 13:I2, 13:I3 — the residue line of `π` on `𝔽₁₃`: `⟦w_n⟧`, `n = 1, …, 6`, is `4, 5, 10, 9, 6, 11`, the calibration face `⟦w₆⟧ = 11 = −2`, the quarter invariant `⟦w₃⟧ = 10 = −(3²)⁻¹`; the legibility window is exactly `1 ≤ n ≤ 6` (`13 ∣ C(2n,n)` for `7 ≤ n ≤ 12`, not for `n ≤ 6`)."
+   },
+   {
+    "name": "FRC.Epi.revivals13",
+    "module": "FrcCore/Epi",
+    "line": 299,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "13:G5, 13:I2 — the first revival on `𝔽₁₃`: `⟦v₁₃⟧ = 8`, and the two-digit revivals `13 ≤ n < 169` with `13 ∤ C(2n,n)` and `13 ∤ n` number `36 = (2κ)²`."
+   },
+   {
+    "name": "FRC.Epi.sigma_vanishes_all",
+    "module": "FrcCore/Epi",
+    "line": 424,
+    "axioms": null,
+    "tier": "missing",
+    "ok": false,
+    "doc": "13:G6, 13:I2 — first-order wall vanishing of the arcsin chain: `σ_p ≡ 0 (mod p)` on all `428` odd primes `5 ≤ p < 3000` (the enumeration complete), and `σ_3 = 1`."
+   },
+   {
+    "name": "FRC.Epi.sigma_vanishes_mod_sq",
+    "module": "FrcCore/Epi",
+    "line": 435,
+    "axioms": null,
+    "tier": "missing",
+    "ok": false,
+    "doc": "13:G7, 13:I2 — second order at the arcsin wall: `σ_p ≡ 0 (mod p²)` (Sun's theorem) on all `60` primes `5 ≤ p < 300`."
+   }
+  ],
+  "I3": [
+   {
+    "name": "FRC.Epi.calibration_ne_one",
+    "module": "FrcLedger/Epi",
+    "line": 1220,
+    "axioms": [
+     "Classical.choice",
+     "Quot.sound",
+     "propext"
+    ],
+    "tier": 2,
+    "ok": true,
+    "doc": "13:H3, 13:I1, 13:I3 — `θ = 2πλ/(p−1) ≠ 1` for every label `λ ≥ 1` and every `p`: `θ = 1` would make `π` rational."
+   },
+   {
+    "name": "FRC.Epi.machin_bound",
+    "module": "FrcLedger/Epi",
+    "line": 597,
+    "axioms": null,
+    "tier": "missing",
+    "ok": false,
+    "doc": "13:E4, 13:E5, 13:I3 — the Machin chain's error: `|M_N − π| < 17/((2N+3)·5^{2N+3})` for every `N`, from Machin's formula `π/4 = 4 arctan(1/5) − arctan(1/239)` and the alternating bound on each arctangent series: the geometric `ℚ`-rate of `π`."
+   },
+   {
+    "name": "FRC.Epi.compound_cost",
+    "module": "FrcLedger/Epi",
+    "line": 455,
+    "axioms": [
+     "Classical.choice",
+     "Quot.sound",
+     "propext"
+    ],
+    "tier": 2,
+    "ok": true,
+    "doc": "13:D5, 13:E5, 13:I3 — the compound chain is slow: `(1 + 1/n)^n ≤ e · 4n/(4n+1)` for `n ≥ 5`, so the gap `e − (1+1/n)^n` is at least `e/(4n+1)`: `k` bits cost `n ≍ 2^k` steps."
+   },
+   {
+    "name": "FRC.Epi.residue_line_pi13",
+    "module": "FrcCore/Epi",
+    "line": 291,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "13:G8, 13:G1, 13:I2, 13:I3 — the residue line of `π` on `𝔽₁₃`: `⟦w_n⟧`, `n = 1, …, 6`, is `4, 5, 10, 9, 6, 11`, the calibration face `⟦w₆⟧ = 11 = −2`, the quarter invariant `⟦w₃⟧ = 10 = −(3²)⁻¹`; the legibility window is exactly `1 ≤ n ≤ 6` (`13 ∣ C(2n,n)` for `7 ≤ n ≤ 12`, not for `n ≤ 6`)."
+   },
+   {
+    "name": "FRC.Epi.terminal13",
+    "module": "FrcCore/Epi",
+    "line": 277,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "13:F2, 13:F6, 13:I1, 13:I3, 13:J6 — the wall of `e` on `𝔽₁₃`: `!12 ≡ !13 ≡ 10`, the terminal residue `⟦ε₁₂⟧ = 9 = −(!13)⁻¹`, the common reading of `6/5` and `11/7`."
+   },
+   {
+    "name": "FRC.Epi.kurepa_alt_values",
+    "module": "FrcCore/Epi",
+    "line": 306,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "13:F4, 13:I3 — the broken group law at the wall: `!p·A(p) ≡ 3, 0, 21, 28, 132, 258` at `p = 7, 13, 29, 101, 257, 1009`, with `A(13) ≡ 0` (the direct series residue vanishes on `𝔽₁₃`)."
+   },
+   {
+    "name": "FRC.Epi.blind_census",
+    "module": "FrcCore/Epi",
+    "line": 350,
+    "axioms": null,
+    "tier": "missing",
+    "ok": false,
+    "doc": "13:F5, 13:I1, 13:I3 — the blind-scale census, its opening stretch: on the `43` primes in `(1000, 1300)` the sizes `|Z₀(p)|` are `1, 2, 2, 1, 2, 4, 1, 4, 2, 1, 2, 2, 1, 3, 3, 2, 3, 2, 1, 3, 1, 2, 5, 2, 1, 1, 2, 2, 2, 4, 1, 2, 2, 3, 1, 2, 1, 1, 2, 2, 1, 2, 3` — forty-three exact counts of the Poisson-read distribution (the full census of `501` primes is the package's check of F5)."
+   },
+   {
+    "name": "FRC.Epi.no_exact_calibration",
+    "module": "FrcCore/Epi",
+    "line": 537,
+    "axioms": null,
+    "tier": "missing",
+    "ok": false,
+    "doc": "13:H3, 13:I1, 13:I3 — exact calibration is impossible on every shell of the run: with `θ = 2πλ(i)/(p−1)`, no integer `λ` makes `θ = 1` on any of the `500` shells `p ≡ 1 (mod 4)`, `p ≤ 8009`, decided on the certified bracket of `π`."
    }
   ],
   "I4": [
@@ -1332,11 +1769,22 @@
     "doc": "00:C1, 13:J2, 13:I4 — the web closes: `2π ≡ −1` on every shell (`4κ = p − 1`): the height-two pinning `2π_A + 1 ≡ 0`, which holds in every fibre of a composite lift."
    }
   ],
+  "I5": [
+   {
+    "name": "FRC.Epi.invariants_13_1093",
+    "module": "FrcCore/Epi",
+    "line": 446,
+    "axioms": null,
+    "tier": "missing",
+    "ok": false,
+    "doc": "13:I5, 13:J6 — the three frame invariants on their named shells: at `p = 13` the wall of `e` is `!13 ≡ 10`, the Fermat quotient `q₁₃(4) = 6` and the two squares `13 = 3² + 2²`; at `p = 1093` the Fermat quotient vanishes (the Wieferich prime), each an exact certificate of its shell."
+   }
+  ],
   "J1": [
    {
     "name": "FRC.Epi.wrap_free",
     "module": "FrcCore/Epi",
-    "line": 237,
+    "line": 243,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -1361,6 +1809,74 @@
     "tier": 0,
     "ok": true,
     "doc": "1:B3, 2:D2, 13:J2 — the quarter-turn `i = −g^κ` squares to `−1` (the pinning relation `i² + 1 ≡ 0`)."
+   }
+  ],
+  "J3": [
+   {
+    "name": "FRC.Epi.height_run",
+    "module": "FrcCore/Epi",
+    "line": 628,
+    "axioms": null,
+    "tier": "missing",
+    "ok": false,
+    "doc": "13:J3 — the height run: over the `500` shells `p ≡ 1 (mod 4)`, `p ≤ 8009` (the enumeration complete), `H(e_p) ≤ 2√p` on every shell (the horizon band), exactly `68` shells have `H ≤ 10`, and the pin value `2` is reached on exactly `{13, 1933, 4177, 5857}`."
+   }
+  ],
+  "J5": [
+   {
+    "name": "FRC.Epi.pin_contrast",
+    "module": "FrcCore/Epi",
+    "line": 644,
+    "axioms": null,
+    "tier": "missing",
+    "ok": false,
+    "doc": "13:J5 — the certification split: the half-period is pinned by the height-two relation `2π_A + 1 ≡ 0` on every frame shell (J2), while `e_p` reaches the pin value `2` on exactly four of the `500` shells of the run and otherwise sits in the horizon band `H(e_p) ≤ 2√p`: no pinned residue and no cross-shell certificate for `e_p`."
+   }
+  ],
+  "J6": [
+   {
+    "name": "FRC.Epi.derangements_wall_zmod",
+    "module": "FrcLedger/Epi",
+    "line": 912,
+    "axioms": [
+     "Classical.choice",
+     "Quot.sound",
+     "propext"
+    ],
+    "tier": 2,
+    "ok": true,
+    "doc": "13:F2, 13:J6 — the wall identity: `!(p−1) ≡ !p (mod p)` for every prime `p` — the derangement number at the wall is Kurepa's left factorial (the odd-prime case of the Mijajlović–Šami congruence), from Wilson reflection."
+   },
+   {
+    "name": "FRC.Epi.half_wall_second_order",
+    "module": "FrcLedger/Epi",
+    "line": 1618,
+    "axioms": [
+     "Classical.choice",
+     "Quot.sound",
+     "propext"
+    ],
+    "tier": 2,
+    "ok": true,
+    "doc": "13:G4, 13:I2, 13:J6 — the second order at the half wall: with `m = (p−1)/2` and Morley's congruence `C(p−1, m) ≡ (−1)^m 4^{p−1}` taken modulo `p²` (the import A3), `16^m ≡ (−2 + 2p(q_p(4) − 1))·m·C(2m,m)² (mod p²)`, i.e. `w_m ≡ −2 + 2p(q_p(4) − 1)`; the universal `−2` persists to `p²` exactly when `q_p(4) ≡ 1`, the π-Wieferich condition."
+   },
+   {
+    "name": "FRC.Epi.terminal13",
+    "module": "FrcCore/Epi",
+    "line": 277,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "13:F2, 13:F6, 13:I1, 13:I3, 13:J6 — the wall of `e` on `𝔽₁₃`: `!12 ≡ !13 ≡ 10`, the terminal residue `⟦ε₁₂⟧ = 9 = −(!13)⁻¹`, the common reading of `6/5` and `11/7`."
+   },
+   {
+    "name": "FRC.Epi.invariants_13_1093",
+    "module": "FrcCore/Epi",
+    "line": 446,
+    "axioms": null,
+    "tier": "missing",
+    "ok": false,
+    "doc": "13:I5, 13:J6 — the three frame invariants on their named shells: at `p = 13` the wall of `e` is `!13 ≡ 10`, the Fermat quotient `q₁₃(4) = 6` and the two squares `13 = 3² + 2²`; at `p = 1093` the Fermat quotient vanishes (the Wieferich prime), each an exact certificate of its shell."
    }
   ]
  }

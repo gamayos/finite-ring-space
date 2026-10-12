@@ -913,39 +913,8 @@
     "38-s13"
    ],
    "witness": null,
-   "refs": [
-    {
-     "label": "C18",
-     "key": "p00038"
-    }
-   ],
-   "statement": "\\textbf{The spinor dichotomy}: $\\kap$ odd $\\Leftrightarrow$ $C_{\\p-1}\\cong C_4\\times C_\\kap$ $\\Leftrightarrow$ $v_2(\\p-1)=2$ $\\Leftrightarrow$ $3\\kap r+4s\\equiv1\\ (\\mathrm{mod}\\ 4\\kap)$ is solvable: the spinor class. Shell and Carrier share the $2$-part $C_{2^m}$, $m=\\min(v_2(\\p-1),v_2(\\Om-1))$, and the shell closes on a cover of degree $2^{v_2(\\Om-1)-m}$; the shared order times the cover degree is the Carrier's $2$-part, $8$ exactly when $\\dS\\equiv2\\ (\\mathrm{mod}\\ 4)$. The midpoint event of a $\\kap$-odd shell: C18."
-  },
-  {
-   "label": "C18",
-   "name": "The precession theorem",
-   "block": "C",
-   "key": "p00038",
-   "tag": "T",
-   "sources": [
-    "38-s13"
-   ],
-   "witness": "38:check_s13.js",
-   "refs": [
-    {
-     "label": "C8",
-     "key": "p00028"
-    },
-    {
-     "label": "C14",
-     "key": "p00034"
-    },
-    {
-     "label": "D2",
-     "key": "p00043"
-    }
-   ],
-   "statement": "\\textbf{The precession theorem}: over the pair dynamics the shell orbit precesses against the Carrier quarter by the winding ratio (D2): the apsidal fraction per revolution is exactly $\\kap /\\dS =(\\p -1)/(\\Om -1)$, every $\\kap$-odd pair with the $c$-square ($\\dS$ even, C8); the half event (home, dlog$(-1)$) sits at the exact midpoint, closure at (home, home); orientation prograde, Subject-selected (C14, the gauge bit)."
+   "refs": [],
+   "statement": "\\textbf{The spinor dichotomy}: $\\kap$ odd $\\Leftrightarrow$ $C_{\\p-1}\\cong C_4\\times C_\\kap$ $\\Leftrightarrow$ $v_2(\\p-1)=2$ $\\Leftrightarrow$ $3\\kap r+4s\\equiv1\\ (\\mathrm{mod}\\ 4\\kap)$ is solvable: the spinor class. Shell and Carrier share the $2$-part $C_{2^m}$, $m=\\min(v_2(\\p-1),v_2(\\Om-1))$, and the shell closes on a cover of degree $2^{v_2(\\Om-1)-m}$; the shared order times the cover degree is the Carrier's $2$-part, $8$ exactly when $\\dS\\equiv2\\ (\\mathrm{mod}\\ 4)$. The midpoint event of a $\\kap$-odd shell: 38:C14."
   },
   {
    "label": "C19",

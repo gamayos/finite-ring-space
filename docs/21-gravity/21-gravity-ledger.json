@@ -488,7 +488,6 @@
    "D1"
   ],
   "A9": [
-   "C18",
    "C20"
   ],
   "B2": [
@@ -587,11 +586,11 @@
    {
     "name": "FRC.Grav.calibration",
     "module": "FrcCore/Theme/Gravity",
-    "line": 560,
+    "line": 562,
     "axioms": [],
     "tier": 0,
     "ok": true,
-    "doc": "21:C16, 21:A1 — the calibration congruence on every frame: the full cycle `2π ↦ 4κ = p − 1` is `−1`, and `(4κ)² = 1`."
+    "doc": "21:C16, 21:A1, 38:D3 — the calibration congruence on every frame: the full cycle `2π ↦ 4κ = p − 1` is `−1`, and `(4κ)² = 1`."
    }
   ],
   "A9": [
@@ -623,11 +622,11 @@
    {
     "name": "FRC.Grav.two_face_count",
     "module": "FrcCore/Theme/Gravity",
-    "line": 648,
+    "line": 650,
     "axioms": [],
     "tier": 0,
     "ok": true,
-    "doc": "21:A9 — the two-face count: the angular face `κ/S` against the temporal face `κ/(2S)` has ratio `2` (`κ · 2S = 2 · κS`), and the registration fibre product has `(p − 1)(Ω − 1) = 4 · 4κS` for `p = 4κ + 1`, `Ω = 4S + 1`."
+    "doc": "21:A9, 38:C7 — the two-face count: the angular face `κ/S` against the temporal face `κ/(2S)` has ratio `2` (`κ · 2S = 2 · κS`), and the registration fibre product has `(p − 1)(Ω − 1) = 4 · 4κS` for `p = 4κ + 1`, `Ω = 4S + 1`."
    },
    {
     "name": "FRC.Drift.channel_q4",
@@ -636,7 +635,7 @@
     "axioms": [],
     "tier": 0,
     "ok": true,
-    "doc": "21:A9 — the channel `C_{p−1} ∩ C_{2(p+1)} = Q₄` on every shell: with `p − 1 = 4κ`, a residue has `x^{4κ} = 1` and `x^{2(4κ + 2)} = 1` exactly when `x⁴ = 1`."
+    "doc": "21:A9, 38:D5 — the channel `C_{p−1} ∩ C_{2(p+1)} = Q₄` on every shell: with `p − 1 = 4κ`, a residue has `x^{4κ} = 1` and `x^{2(4κ + 2)} = 1` exactly when `x⁴ = 1`."
    }
   ],
   "C1": [
@@ -689,7 +688,7 @@
    {
     "name": "FRC.Grav.newton_residue",
     "module": "FrcCore/Theme/Gravity",
-    "line": 572,
+    "line": 574,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -761,7 +760,7 @@
    {
     "name": "FRC.Grav.hbar_root",
     "module": "FrcCore/Theme/Gravity",
-    "line": 598,
+    "line": 600,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -813,7 +812,7 @@
     "axioms": [],
     "tier": 0,
     "ok": true,
-    "doc": "21:C25, 21:C7, 21:C8, 00:E4 — on every shell: `2γ − β = 1` and `γ = 1` give `β = 1`."
+    "doc": "21:C25, 21:C7, 21:C8, 38:C8, 00:E4 — on every shell: `2γ − β = 1` and `γ = 1` give `β = 1`."
    }
   ],
   "C8": [
@@ -850,7 +849,7 @@
     "axioms": [],
     "tier": 0,
     "ok": true,
-    "doc": "21:C25, 21:C7, 21:C8, 00:E4 — on every shell: `2γ − β = 1` and `γ = 1` give `β = 1`."
+    "doc": "21:C25, 21:C7, 21:C8, 38:C8, 00:E4 — on every shell: `2γ − β = 1` and `γ = 1` give `β = 1`."
    },
    {
     "name": "FRC.Drift.pn_coefficients",
@@ -1006,7 +1005,7 @@
    {
     "name": "FRC.Grav.count_identity",
     "module": "FrcCore/Theme/Gravity",
-    "line": 510,
+    "line": 512,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -1015,7 +1014,7 @@
    {
     "name": "FRC.Grav.merger_instance",
     "module": "FrcCore/Theme/Gravity",
-    "line": 669,
+    "line": 671,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -1075,16 +1074,16 @@
    {
     "name": "FRC.Grav.calibration",
     "module": "FrcCore/Theme/Gravity",
-    "line": 560,
+    "line": 562,
     "axioms": [],
     "tier": 0,
     "ok": true,
-    "doc": "21:C16, 21:A1 — the calibration congruence on every frame: the full cycle `2π ↦ 4κ = p − 1` is `−1`, and `(4κ)² = 1`."
+    "doc": "21:C16, 21:A1, 38:D3 — the calibration congruence on every frame: the full cycle `2π ↦ 4κ = p − 1` is `−1`, and `(4κ)² = 1`."
    },
    {
     "name": "FRC.Grav.lab_register",
     "module": "FrcCore/Theme/Gravity",
-    "line": 676,
+    "line": 678,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -1186,7 +1185,7 @@
    {
     "name": "FRC.Cycle.dft_kick",
     "module": "FrcCore/Theme/Shift",
-    "line": 92,
+    "line": 38,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -1195,7 +1194,7 @@
    {
     "name": "FRC.Cycle.dft_shift",
     "module": "FrcCore/Theme/Shift",
-    "line": 102,
+    "line": 48,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -1252,7 +1251,7 @@
     "axioms": [],
     "tier": 0,
     "ok": true,
-    "doc": "21:C25, 21:C7, 21:C8, 00:E4 — on every shell: `2γ − β = 1` and `γ = 1` give `β = 1`."
+    "doc": "21:C25, 21:C7, 21:C8, 38:C8, 00:E4 — on every shell: `2γ − β = 1` and `γ = 1` give `β = 1`."
    },
    {
     "name": "FRC.Drift.cover_deviation",
@@ -1261,14 +1260,14 @@
     "axioms": [],
     "tier": 0,
     "ok": true,
-    "doc": "21:C25, 00:E4 — the deviation `2γ − β − 1` vanishes on the triangle."
+    "doc": "21:C25, 38:C8, 00:E4 — the deviation `2γ − β − 1` vanishes on the triangle."
    }
   ],
   "X1": [
    {
     "name": "FRC.Grav.closed_chart",
     "module": "FrcCore/Theme/Gravity",
-    "line": 632,
+    "line": 634,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -1302,12 +1301,12 @@
    },
    {
     "name": "FRC.Cycle.cyc_add_n",
-    "module": "FrcCore/Theme/Shift",
-    "line": 33,
+    "module": "FrcCore/Cycle",
+    "line": 32,
     "axioms": [],
     "tier": 0,
     "ok": true,
-    "doc": "21:X3, 00:E5, 00:E10 — the drive returns after `n` steps: a function on the cycle read `n` sites on is itself, so a permutation of the cycle has finite order and what it moves comes back."
+    "doc": "21:X3, 00:E5, 00:E10, 38:B4 — the drive returns after `n` steps: a function on the cycle read `n` sites on is itself, so a permutation of the cycle has finite order and what it moves comes back."
    }
   ],
   "X8": [

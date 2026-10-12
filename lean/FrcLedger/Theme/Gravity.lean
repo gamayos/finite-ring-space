@@ -117,6 +117,49 @@ theorem cover_forcing (β γ : ℚ) :
   · rintro rfl
     exact ⟨by norm_num, fun h => ⟨by linarith, by linarith⟩⟩
 
+/-- 38:C8 — the face-ratio identity of the parametrised post-Newtonian family (Statement *The physical floors*,
+38-s13): with the apsidal coefficient `2 − β + 2γ` and the `β, γ`-free clock-deficit coefficient `3/2`, the face
+ratio is `(2/3)(2 + 2γ − β)`, equal to `2` exactly when `2γ − β = 1`, with deviation `(2/3)(2γ − β − 1)`; the
+exponential metric `β = γ = 1` satisfies it; in Brans–Dicke theory (`β = 1`, `γ = (1 + ω)/(2 + ω)`) the combination
+is `2γ − β − 1 = −2/(2 + ω)`, nonzero at every finite coupling, deviation `−4/(3(2 + ω))`, and below every `ε` past
+`ω = 2/ε` (the general-relativistic limit, stated over `ℚ`). The coefficients themselves are the continuum chart's (the series of the
+isotropic metric, `o1_gr_chart.py`); the algebra is exact over `ℚ`. -/
+theorem ppn_faces (β γ : ℚ) :
+    (2 - β + 2 * γ) / (3 / 2) = 2 / 3 * (2 + 2 * γ - β) ∧
+    (2 / 3 * (2 + 2 * γ - β) = 2 ↔ 2 * γ - β = 1) ∧
+    2 / 3 * (2 + 2 * γ - β) - 2 = 2 / 3 * (2 * γ - β - 1) ∧
+    (2 * (1 : ℚ) - 1 = 1) ∧
+    (∀ ω : ℚ, 2 + ω ≠ 0 → 2 * ((1 + ω) / (2 + ω)) - 1 - 1 = -2 / (2 + ω) ∧
+      2 / 3 * (2 * ((1 + ω) / (2 + ω)) - 1 - 1) = -4 / (3 * (2 + ω)) ∧ -2 / (2 + ω) ≠ 0) ∧
+    (∀ ε : ℚ, 0 < ε → ∃ W : ℚ, ∀ ω : ℚ, W < ω → |(-2 : ℚ) / (2 + ω)| < ε) := by
+  refine ⟨by ring, ⟨fun h => by linarith, fun h => by linarith⟩, by ring, by norm_num, fun ω hω => ⟨?_, ?_, ?_⟩, ?_⟩
+  · field_simp; ring
+  · field_simp; ring
+  · exact div_ne_zero (by norm_num) hω
+  · intro ε hε
+    refine ⟨2 / ε, fun ω hω => ?_⟩
+    have h2 : 0 < 2 / ε := by positivity
+    have hpos : 0 < 2 + ω := by linarith
+    rw [abs_div, abs_neg, abs_of_pos hpos, abs_of_pos (by norm_num : (0 : ℚ) < 2), div_lt_iff₀ hpos]
+    have : 2 / ε < ω := hω
+    rw [div_lt_iff₀ hε] at this
+    linarith
+
+/-- 38:C12, 38:C7 — the registration dictionary on a hosted pair: matching the temporal face `κ/(2S)` to the
+circular-orbit clock deficit `(3/2) r_g/p_sl` forces `p_sl = 3 (S/κ) r_g`, under which the angular face reads
+`3 r_g/p_sl = κ/S` automatically: one relation, homogeneous of degree `0`, fixing the ratio `p_sl/r_g = 3S/κ` —
+`58` at `(13, 233)` (`κ = 3`, `S = 58`: `p_sl = S r_g`), `174` at `(5, 233)`; the two faces `κ/S : κ/(2S) = 2`. -/
+theorem registration_dictionary (κ S rg psl : ℚ) (hκ : κ ≠ 0) (hS : S ≠ 0) (hrg : rg ≠ 0) (hpsl : psl ≠ 0) :
+    ((3 / 2) * (rg / psl) = κ / (2 * S) ↔ psl = 3 * (S / κ) * rg) ∧
+    (psl = 3 * (S / κ) * rg → 3 * rg / psl = κ / S ∧ psl / rg = 3 * S / κ) ∧
+    (κ / S) / (κ / (2 * S)) = 2 ∧ 3 * (58 : ℚ) / 3 = 58 ∧ 3 * (58 : ℚ) / 1 = 174 := by
+  refine ⟨⟨fun h => ?_, fun h => ?_⟩, fun h => ⟨?_, ?_⟩, ?_, by norm_num, by norm_num⟩
+  · field_simp at h ⊢; linarith
+  · subst h; field_simp
+  · subst h; field_simp
+  · subst h; field_simp
+  · field_simp
+
 /-- 21:A9 — the mass–energy channel `C_{p−1} ∩ C_{2(p+1)} = Q₄`: on every shell `p ≡ 1 (mod 4)`,
 `gcd(p − 1, 2(p + 1)) = 4`; the subgroup reading — in the cyclic unit group of `𝔽_{p²}` (order `(p − 1)(p + 1)`)
 the subgroups of orders `p − 1` and `2(p + 1)` meet in the subgroup of order `gcd` — is not formalised here. -/

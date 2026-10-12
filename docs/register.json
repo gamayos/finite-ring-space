@@ -2,11 +2,11 @@
  "header": {
   "generated": "12 October 2026",
   "schema": "frc-register/2",
-  "rows": 1024,
-  "theorems": 1014,
+  "rows": 1019,
+  "theorems": 1009,
   "counts": {
-   "keys": 1014,
-   "rows": 1024,
+   "keys": 1009,
+   "rows": 1019,
    "shared": 10,
    "by_tag": {
     "D": 139,
@@ -14,7 +14,7 @@
     "I": 119,
     "O": 12,
     "R": 81,
-    "T": 633,
+    "T": 628,
     "Ω": 29
    }
   },
@@ -81,7 +81,7 @@
      }
     ],
     "legend": [],
-    "rows": 124
+    "rows": 123
    },
    {
     "key": "1-alg",
@@ -1389,10 +1389,6 @@
      {
       "letter": "P",
       "title": "Predictions and falsifiers"
-     },
-     {
-      "letter": "V",
-      "title": "Machine verification"
      }
     ],
     "legend": [
@@ -1410,14 +1406,9 @@
       "tag": "R",
       "name": "Realisation",
       "text": "The row states what a physical term denotes in the substrate: constitutive, not interpretive, defended by the totality of its registered consequences."
-     },
-     {
-      "tag": "O",
-      "name": "Open (conjecture)",
-      "text": "Stated ahead of derivation, carrying its exposure and its falsifier; a derivation re-homes the row."
      }
     ],
-    "rows": 52
+    "rows": 48
    }
   ],
   "tags": {
@@ -1442,7 +1433,7 @@
    "theorems": "one entry per key (LM12): its canonical statement (the row of its ledger of origin, the key's prefix), the origin, the tag, the Lean tier, the deciding check and declarations, the aliases that resolve to it, the rows that write it, and for a theorem the realisations its statement names (Q21)",
    "superseded": "the keys that left the public ledgers (corrected, split, merged or returned home), each with its live successor keys and nothing else (decision Q19)"
   },
-  "superseded": 80
+  "superseded": 86
  },
  "theorems": [
   {
@@ -2277,7 +2268,7 @@
   {
    "key": "p00151",
    "origin": "00",
-   "statement": "\\textbf{The spinor dichotomy}: $\\kap$ odd $\\Leftrightarrow$ $C_{\\p-1}\\cong C_4\\times C_\\kap$ $\\Leftrightarrow$ $v_2(\\p-1)=2$ $\\Leftrightarrow$ $3\\kap r+4s\\equiv1\\ (\\mathrm{mod}\\ 4\\kap)$ is solvable: the spinor class. Shell and Carrier share the $2$-part $C_{2^m}$, $m=\\min(v_2(\\p-1),v_2(\\Om-1))$, and the shell closes on a cover of degree $2^{v_2(\\Om-1)-m}$; the shared order times the cover degree is the Carrier's $2$-part, $8$ exactly when $\\dS\\equiv2\\ (\\mathrm{mod}\\ 4)$. The midpoint event of a $\\kap$-odd shell: C18.",
+   "statement": "\\textbf{The spinor dichotomy}: $\\kap$ odd $\\Leftrightarrow$ $C_{\\p-1}\\cong C_4\\times C_\\kap$ $\\Leftrightarrow$ $v_2(\\p-1)=2$ $\\Leftrightarrow$ $3\\kap r+4s\\equiv1\\ (\\mathrm{mod}\\ 4\\kap)$ is solvable: the spinor class. Shell and Carrier share the $2$-part $C_{2^m}$, $m=\\min(v_2(\\p-1),v_2(\\Om-1))$, and the shell closes on a cover of degree $2^{v_2(\\Om-1)-m}$; the shared order times the cover degree is the Carrier's $2$-part, $8$ exactly when $\\dS\\equiv2\\ (\\mathrm{mod}\\ 4)$. The midpoint event of a $\\kap$-odd shell: 38:C14.",
    "origin_row": "00:C16",
    "tag": "T",
    "tier": 0,
@@ -2299,25 +2290,6 @@
     "00:C16"
    ],
    "realisations": []
-  },
-  {
-   "key": "p00038",
-   "origin": "00",
-   "statement": "\\textbf{The precession theorem}: over the pair dynamics the shell orbit precesses against the Carrier quarter by the winding ratio (D2): the apsidal fraction per revolution is exactly $\\kap /\\dS =(\\p -1)/(\\Om -1)$, every $\\kap$-odd pair with the $c$-square ($\\dS$ even, C8); the half event (home, dlog$(-1)$) sits at the exact midpoint, closure at (home, home); orientation prograde, Subject-selected (C14, the gauge bit).",
-   "origin_row": "00:C18",
-   "tag": "T",
-   "tier": null,
-   "check": {
-    "script": "38:check_s13.js"
-   },
-   "declarations": [],
-   "aliases": [],
-   "rows": [
-    "00:C18"
-   ],
-   "realisations": [
-    "p00043"
-   ]
   },
   {
    "key": "p00190",
@@ -16666,7 +16638,7 @@
     },
     {
      "lib": "FrcCore",
-     "module": "FrcCore/Theme/Shift",
+     "module": "FrcCore/Cycle",
      "name": "FRC.Cycle.cyc_add_n"
     }
    ],
@@ -22622,9 +22594,25 @@
    "statement": "The pair: $\\p=13$, $\\kap=3$, $\\Om=233$, $\\dS=58$; $\\gen=2$, $\\im=5=-\\gen^{\\kap}$.",
    "origin_row": "38:A1",
    "tag": "T",
-   "tier": null,
-   "check": null,
-   "declarations": [],
+   "tier": 0,
+   "check": {
+    "href": "frc/ledgers/p38_s13.html#p38001",
+    "script": "p38_s13.py",
+    "line": 118,
+    "verdict": "pass"
+   },
+   "declarations": [
+    {
+     "lib": "FrcCore",
+     "module": "FrcCore/Theme/Pair",
+     "name": "FRC.Pair.pair_frame"
+    },
+    {
+     "lib": "FrcCore",
+     "module": "FrcCore/Theme/Pair",
+     "name": "FRC.Pair.pair_register"
+    }
+   ],
    "aliases": [],
    "rows": [
     "38:A1"
@@ -22637,9 +22625,35 @@
    "statement": "The tower identity: $C_{12}=C_{4}\\times C_{3}$, $\\gen=3\\cdot5=2$; unit exponents exactly at $\\kap=3$; general form $4a-\\kap b\\equiv1\\pmod{4\\kap}$, solvable for every odd $\\kap$ (Theorem~\\ref{th:channel} inside the Subject).",
    "origin_row": "38:A2",
    "tag": "T",
-   "tier": null,
-   "check": null,
-   "declarations": [],
+   "tier": 0,
+   "check": {
+    "href": "frc/ledgers/p38_s13.html#p38002",
+    "script": "p38_s13.py",
+    "line": 125,
+    "verdict": "pass"
+   },
+   "declarations": [
+    {
+     "lib": "FrcCore",
+     "module": "FrcCore/Theme/Pair",
+     "name": "FRC.Pair.tower_solvable"
+    },
+    {
+     "lib": "FrcCore",
+     "module": "FrcCore/Theme/Subject",
+     "name": "FRC.Subject.spinor"
+    },
+    {
+     "lib": "FrcCore",
+     "module": "FrcCore/Theme/Subject",
+     "name": "FRC.Subject.two_part"
+    },
+    {
+     "lib": "FrcCore",
+     "module": "FrcCore/Theme/Pair",
+     "name": "FRC.Pair.pair_register"
+    }
+   ],
    "aliases": [],
    "rows": [
     "38:A2"
@@ -22652,9 +22666,25 @@
    "statement": "The channel at the instance: $\\gcd(12,14)=2$, $\\gcd(12,28)=4$; $N(\\im)=-1$ (Theorem~\\ref{th:channel}).",
    "origin_row": "38:A3",
    "tag": "T",
-   "tier": null,
-   "check": null,
-   "declarations": [],
+   "tier": 0,
+   "check": {
+    "href": "frc/ledgers/p38_s13.html#p38003",
+    "script": "p38_s13.py",
+    "line": 134,
+    "verdict": "pass"
+   },
+   "declarations": [
+    {
+     "lib": "FrcCore",
+     "module": "FrcCore/Theme/Subject",
+     "name": "FRC.Subject.channel"
+    },
+    {
+     "lib": "FrcCore",
+     "module": "FrcCore/Theme/Pair",
+     "name": "FRC.Pair.channel_instance"
+    }
+   ],
    "aliases": [],
    "rows": [
     "38:A3"
@@ -22664,12 +22694,33 @@
   {
    "key": "p38004",
    "origin": "38",
-   "statement": "The Carrier quarter roots, arithmetic: $78^{58}=89=h$, $h^{2}=-1$, $\\hbar=144$, $\\hbar h=1$, $\\hbar+h=\\Om$; octant $\\zeta_{8}=97$, $\\zeta_{8}^{2}=h$.",
+   "statement": "The Carrier quarter roots, arithmetic: $78^{58}=89=h$, $h^{2}=-1$, $\\hbar=144$, $\\hbar h=1$, $\\hbar+h=\\Om$; octant $\\zeta_{8}=97$, $\\zeta_{8}^{2}=h$; $233=13^{2}+8^{2}$ with $h=13/8$, $\\hbar=8/13$ on $\\F_{233}$.",
    "origin_row": "38:A4",
    "tag": "T",
-   "tier": null,
-   "check": null,
-   "declarations": [],
+   "tier": 0,
+   "check": {
+    "href": "frc/ledgers/p38_s13.html#p38004",
+    "script": "p38_s13.py",
+    "line": 143,
+    "verdict": "pass"
+   },
+   "declarations": [
+    {
+     "lib": "FrcCore",
+     "module": "FrcCore/Theme/Subject",
+     "name": "FRC.Subject.channel_233"
+    },
+    {
+     "lib": "FrcCore",
+     "module": "FrcCore/Theme/Pair",
+     "name": "FRC.Pair.carrier_frame"
+    },
+    {
+     "lib": "FrcCore",
+     "module": "FrcCore/Theme/Pair",
+     "name": "FRC.Pair.carrier_roots"
+    }
+   ],
    "aliases": [],
    "rows": [
     "38:A4"
@@ -22696,9 +22747,25 @@
    "statement": "The FRC algebra half \\cite{algebra}: $\\tfrac12=7$, $-\\tfrac12=6$; the seam between rows $6$ and $7$.",
    "origin_row": "38:A6",
    "tag": "T",
-   "tier": null,
-   "check": null,
-   "declarations": [],
+   "tier": 0,
+   "check": {
+    "href": "frc/ledgers/p38_s13.html#p38006",
+    "script": "p38_s13.py",
+    "line": 159,
+    "verdict": "pass"
+   },
+   "declarations": [
+    {
+     "lib": "FrcCore",
+     "module": "FrcCore/Theme/Field",
+     "name": "FRC.Shell.Prime.two_mul_chart_half"
+    },
+    {
+     "lib": "FrcCore",
+     "module": "FrcCore/Theme/Pair",
+     "name": "FRC.Pair.half_instance"
+    }
+   ],
    "aliases": [],
    "rows": [
     "38:A6"
@@ -22711,9 +22778,25 @@
    "statement": "The frame counts: $2184=156\\times14=14\\times13\\times12$; $\\PGL_{2}=\\mathrm{SO}_{3}(\\F_{13})$, the norm-one sphere $\\SL_{2}$ its spin cover of $\\mathrm{PSL}_{2}$ ($1092$); $\\SL_{2}$ obstructs at $-1$ (Theorem~\\ref{th:hopf}).",
    "origin_row": "38:A7",
    "tag": "T",
-   "tier": null,
-   "check": null,
-   "declarations": [],
+   "tier": 0,
+   "check": {
+    "href": "frc/ledgers/p38_s13.html#p38007",
+    "script": "p38_s13.py",
+    "line": 190,
+    "verdict": "pass"
+   },
+   "declarations": [
+    {
+     "lib": "FrcCore",
+     "module": "FrcCore/Theme/Projective",
+     "name": "FRC.Shell.Frame.hopf_section"
+    },
+    {
+     "lib": "FrcCore",
+     "module": "FrcCore/Theme/Projective",
+     "name": "FRC.Shell.Frame.hopf_counts"
+    }
+   ],
    "aliases": [],
    "rows": [
     "38:A7"
@@ -22726,9 +22809,30 @@
    "statement": "The resolvable spectrum (Proposition~\\ref{th:window}): symmetric heights, window $|\\hat k|\\le\\kap\\Leftrightarrow4|\\hat k|<\\p$, energy the magnitude with the sign as orientation, pairwise-exact conservation below capacity; instance window $\\{0,\\pm1,\\pm2,\\pm3\\}$.",
    "origin_row": "38:A8",
    "tag": "T",
-   "tier": null,
-   "check": null,
-   "declarations": [],
+   "tier": 0,
+   "check": {
+    "href": "frc/ledgers/p38_s13.html#p38008",
+    "script": "p38_s13.py",
+    "line": 167,
+    "verdict": "pass"
+   },
+   "declarations": [
+    {
+     "lib": "FrcCore",
+     "module": "FrcCore/Theme/Pair",
+     "name": "FRC.Pair.window"
+    },
+    {
+     "lib": "FrcCore",
+     "module": "FrcCore/Theme/Pair",
+     "name": "FRC.Pair.window_sum"
+    },
+    {
+     "lib": "FrcCore",
+     "module": "FrcCore/Theme/Pair",
+     "name": "FRC.Pair.window_instance"
+    }
+   ],
    "aliases": [],
    "rows": [
     "38:A8"
@@ -22738,12 +22842,53 @@
   {
    "key": "p38050",
    "origin": "38",
-   "statement": "The two fibrations and the frame triple (Theorem~\\ref{th:holography}): $G\\cong\\Prj^{1}\\times\\F_\\p\\times C_{\\p-1}$ for every odd $\\p$, $14\\times13\\times12$; non-split fibres $C_{\\p+1}$ over $\\p(\\p-1)=156$ with the cone-chart section, split fibres $C_{\\p-1}$ over $\\p(\\p+1)=182$ without; the unit $\\im$ is split at every $\\p=4\\kap+1$.",
+   "statement": "The two fibrations and the frame triple (Theorem~\\ref{th:holography}): $G\\cong\\Prj^{1}\\times\\F_\\p\\times C_{\\p-1}$ for every odd $\\p$ of the totality, $14\\times13\\times12$; non-split fibres $C_{\\p+1}$ over $\\p(\\p-1)=156$ with the cone-chart section, split fibres $C_{\\p-1}$ over $\\p(\\p+1)=182$ without; the unit $\\im$ is split at every $\\p=4\\kap+1$.",
    "origin_row": "38:A9",
    "tag": "T",
-   "tier": null,
-   "check": null,
-   "declarations": [],
+   "tier": 0,
+   "check": {
+    "href": "frc/ledgers/p38_s13.html#p38050",
+    "script": "p38_s13.py",
+    "line": 204,
+    "verdict": "pass"
+   },
+   "declarations": [
+    {
+     "lib": "FrcCore",
+     "module": "FrcCore/Theme/Projective",
+     "name": "FRC.Shell.Frame.frame_triple"
+    },
+    {
+     "lib": "FrcCore",
+     "module": "FrcCore/Theme/Projective",
+     "name": "FRC.Shell.Frame.unit_split"
+    },
+    {
+     "lib": "FrcCore",
+     "module": "FrcCore/Theme/Projective",
+     "name": "FRC.Shell.Frame.hopf_section"
+    },
+    {
+     "lib": "FrcCore",
+     "module": "FrcCore/Theme/Projective",
+     "name": "FRC.Shell.Frame.hopf_counts"
+    },
+    {
+     "lib": "FrcCore",
+     "module": "FrcCore/Theme/Gravity",
+     "name": "FRC.Grav.sphere_area_rung"
+    },
+    {
+     "lib": "FrcCore",
+     "module": "FrcCore/Theme/Gravity",
+     "name": "FRC.Grav.conic_count"
+    },
+    {
+     "lib": "FrcCore",
+     "module": "FrcCore/Theme/Pair",
+     "name": "FRC.Pair.frame_counts"
+    }
+   ],
    "aliases": [],
    "rows": [
     "38:A9"
@@ -22751,14 +22896,39 @@
    "realisations": []
   },
   {
+   "key": "p38039",
+   "origin": "38",
+   "statement": "The drawing chart: the radial ladder $R\\sin(2a\\pi/13)$, the chart angle unit $\\pi/232$ on $C_{464}$, the Hopf leaves; incidence, ordering, winding, anchoring and flow exact, the connecting curves the declared chart, each constant [approx].",
+   "origin_row": "38:A10",
+   "tag": "D",
+   "tier": null,
+   "check": null,
+   "declarations": [],
+   "aliases": [],
+   "rows": [
+    "38:A10"
+   ]
+  },
+  {
    "key": "p38009",
    "origin": "38",
    "statement": "The node field: $72=3\\times2\\times12$; retarded labels, one chronon of lookback per row.",
    "origin_row": "38:B1",
    "tag": "T",
-   "tier": null,
-   "check": null,
-   "declarations": [],
+   "tier": 0,
+   "check": {
+    "href": "frc/ledgers/p38_s13.html#p38009",
+    "script": "p38_s13.py",
+    "line": 277,
+    "verdict": "pass"
+   },
+   "declarations": [
+    {
+     "lib": "FrcCore",
+     "module": "FrcCore/Theme/Pair",
+     "name": "FRC.Pair.node_field"
+    }
+   ],
    "aliases": [],
    "rows": [
     "38:B1"
@@ -22768,12 +22938,33 @@
   {
    "key": "p38010",
    "origin": "38",
-   "statement": "The radial ladder: shells at $R\\sin(2a\\pi/13)$; capacity $4a<\\p\\Leftrightarrow a\\le\\kap$.",
+   "statement": "The radial ladder: shells at $R\\sin(2a\\pi/13)$ [chart]; capacity $4a<\\p\\Leftrightarrow a\\le\\kap$.",
    "origin_row": "38:B2",
    "tag": "T",
-   "tier": null,
-   "check": null,
-   "declarations": [],
+   "tier": 0,
+   "check": {
+    "href": "frc/ledgers/p38_s13.html#p38010",
+    "script": "p38_s13.py",
+    "line": 167,
+    "verdict": "pass"
+   },
+   "declarations": [
+    {
+     "lib": "FrcCore",
+     "module": "FrcCore/Theme/Pair",
+     "name": "FRC.Pair.window"
+    },
+    {
+     "lib": "FrcCore",
+     "module": "FrcCore/Theme/Pair",
+     "name": "FRC.Pair.window_instance"
+    },
+    {
+     "lib": "FrcLedger",
+     "module": "FrcLedger/S13",
+     "name": "FRC.S13.ladder_monotone"
+    }
+   ],
    "aliases": [],
    "rows": [
     "38:B2"
@@ -22786,9 +22977,20 @@
    "statement": "The mounting: $\\times3=\\gen^{4}$, $120^{\\circ}=8$ steps, quarter-blind.",
    "origin_row": "38:B3",
    "tag": "T",
-   "tier": null,
-   "check": null,
-   "declarations": [],
+   "tier": 0,
+   "check": {
+    "href": "frc/ledgers/p38_s13.html#p38011",
+    "script": "p38_s13.py",
+    "line": 281,
+    "verdict": "pass"
+   },
+   "declarations": [
+    {
+     "lib": "FrcCore",
+     "module": "FrcCore/Theme/Pair",
+     "name": "FRC.Pair.mounting"
+    }
+   ],
    "aliases": [],
    "rows": [
     "38:B3"
@@ -22801,9 +23003,25 @@
    "statement": "The sky chronon: $\\chron\\bmod24$, the fibre product of $C_{12}$ and $C_{8}$ over $C_{4}$; antipodal at $+12$, closed at $+24$.",
    "origin_row": "38:B4",
    "tag": "T",
-   "tier": null,
-   "check": null,
-   "declarations": [],
+   "tier": 0,
+   "check": {
+    "href": "frc/ledgers/p38_s13.html#p38012",
+    "script": "p38_s13.py",
+    "line": 228,
+    "verdict": "pass"
+   },
+   "declarations": [
+    {
+     "lib": "FrcCore",
+     "module": "FrcCore/Theme/Pair",
+     "name": "FRC.Pair.sky_chronon"
+    },
+    {
+     "lib": "FrcCore",
+     "module": "FrcCore/Cycle",
+     "name": "FRC.Cycle.cyc_add_n"
+    }
+   ],
    "aliases": [],
    "rows": [
     "38:B4"
@@ -22816,9 +23034,25 @@
    "statement": "The recurrence data: $696=\\dS\\cdot12$, spinor $1392$ [proxy-chart]; the pair registers only the monotone dephasing.",
    "origin_row": "38:B5",
    "tag": "T",
-   "tier": null,
-   "check": null,
-   "declarations": [],
+   "tier": 0,
+   "check": {
+    "href": "frc/ledgers/p38_s13.html#p38013",
+    "script": "p38_s13.py",
+    "line": 233,
+    "verdict": "pass"
+   },
+   "declarations": [
+    {
+     "lib": "FrcCore",
+     "module": "FrcCore/Theme/Pair",
+     "name": "FRC.Pair.joint_cycle"
+    },
+    {
+     "lib": "FrcCore",
+     "module": "FrcCore/Theme/Pair",
+     "name": "FRC.Pair.recurrence"
+    }
+   ],
    "aliases": [],
    "rows": [
     "38:B5"
@@ -22831,9 +23065,25 @@
    "statement": "The Hopf representation: node-on-fiber exact; foliation depth $=$ rung ladder; the drawn leaves are the continuum foliation by the unit $\\im$, the chart face of the count of A9, distinguishing neither fibration [chart].",
    "origin_row": "38:B6",
    "tag": "T",
-   "tier": null,
-   "check": null,
-   "declarations": [],
+   "tier": 0,
+   "check": {
+    "href": "frc/ledgers/p38_s13.html#p38014",
+    "script": "p38_s13.py",
+    "line": 287,
+    "verdict": "pass"
+   },
+   "declarations": [
+    {
+     "lib": "FrcCore",
+     "module": "FrcCore/Theme/Projective",
+     "name": "FRC.Shell.Frame.unit_split"
+    },
+    {
+     "lib": "FrcCore",
+     "module": "FrcCore/Theme/Gravity",
+     "name": "FRC.Grav.conic_count"
+    }
+   ],
    "aliases": [],
    "rows": [
     "38:B6"
@@ -22846,9 +23096,30 @@
    "statement": "The frame leak: halved tick $\\pi/232$; $\\pi/2$ at the quarter station; continuous wrap on $C_{464}$ (Theorems~\\ref{th:flip}, \\ref{th:precession}).",
    "origin_row": "38:B7",
    "tag": "T",
-   "tier": null,
-   "check": null,
-   "declarations": [],
+   "tier": 0,
+   "check": {
+    "href": "frc/ledgers/p38_s13.html#p38015",
+    "script": "p38_s13.py",
+    "line": 250,
+    "verdict": "pass"
+   },
+   "declarations": [
+    {
+     "lib": "FrcCore",
+     "module": "FrcCore/Theme/Pair",
+     "name": "FRC.Pair.joint_cycle"
+    },
+    {
+     "lib": "FrcCore",
+     "module": "FrcCore/Theme/Pair",
+     "name": "FRC.Pair.tick_half"
+    },
+    {
+     "lib": "FrcCore",
+     "module": "FrcCore/Theme/Pair",
+     "name": "FRC.Pair.frame_leak"
+    }
+   ],
    "aliases": [],
    "rows": [
     "38:B7"
@@ -22861,9 +23132,25 @@
    "statement": "One retarded flow law: $\\varphi(k)=-(b_{C}-k)\\pi/116$; the Subject draws the gauge-free curl (Theorem~\\ref{th:precession}).",
    "origin_row": "38:C1",
    "tag": "T",
-   "tier": null,
-   "check": null,
-   "declarations": [],
+   "tier": 0,
+   "check": {
+    "href": "frc/ledgers/p38_s13.html#p38016",
+    "script": "p38_s13.py",
+    "line": 256,
+    "verdict": "pass"
+   },
+   "declarations": [
+    {
+     "lib": "FrcCore",
+     "module": "FrcCore/Theme/Pair",
+     "name": "FRC.Pair.tick_home"
+    },
+    {
+     "lib": "FrcCore",
+     "module": "FrcCore/Theme/Pair",
+     "name": "FRC.Pair.flow_stations"
+    }
+   ],
    "aliases": [],
    "rows": [
     "38:C1"
@@ -22877,7 +23164,12 @@
    "origin_row": "38:C2",
    "tag": "T",
    "tier": null,
-   "check": null,
+   "check": {
+    "href": "frc/ledgers/p38_s13.html#p38017",
+    "script": "p38_s13.py",
+    "line": 256,
+    "verdict": "pass"
+   },
    "declarations": [],
    "aliases": [],
    "rows": [
@@ -22894,9 +23186,20 @@
    "statement": "Ownership: the origin never dressed; rays anchor at the Observer at every clock state.",
    "origin_row": "38:C3",
    "tag": "T",
-   "tier": null,
-   "check": null,
-   "declarations": [],
+   "tier": 0,
+   "check": {
+    "href": "frc/ledgers/p38_s13.html#p38018",
+    "script": "p38_s13.py",
+    "line": 263,
+    "verdict": "pass"
+   },
+   "declarations": [
+    {
+     "lib": "FrcCore",
+     "module": "FrcCore/Theme/Pair",
+     "name": "FRC.Pair.ownership"
+    }
+   ],
    "aliases": [],
    "rows": [
     "38:C3"
@@ -22909,9 +23212,25 @@
    "statement": "The half-turn exact: odd chart, point reflection; the rim kiss (Theorem~\\ref{th:channel}).",
    "origin_row": "38:C4",
    "tag": "T",
-   "tier": null,
-   "check": null,
-   "declarations": [],
+   "tier": 0,
+   "check": {
+    "href": "frc/ledgers/p38_s13.html#p38019",
+    "script": "p38_s13.py",
+    "line": 266,
+    "verdict": "pass"
+   },
+   "declarations": [
+    {
+     "lib": "FrcCore",
+     "module": "FrcCore/Theme/Pair",
+     "name": "FRC.Pair.half_turn"
+    },
+    {
+     "lib": "FrcCore",
+     "module": "FrcCore/Theme/Pair",
+     "name": "FRC.Pair.half_turn_instance"
+    }
+   ],
    "aliases": [],
    "rows": [
     "38:C4"
@@ -22924,9 +23243,25 @@
    "statement": "The $C_{4}$ stations: parity image at $b_{C}=116+k$, home at $b_{C}=k$, gauge-free.",
    "origin_row": "38:C5",
    "tag": "T",
-   "tier": null,
-   "check": null,
-   "declarations": [],
+   "tier": 0,
+   "check": {
+    "href": "frc/ledgers/p38_s13.html#p38020",
+    "script": "p38_s13.py",
+    "line": 259,
+    "verdict": "pass"
+   },
+   "declarations": [
+    {
+     "lib": "FrcCore",
+     "module": "FrcCore/Theme/Pair",
+     "name": "FRC.Pair.tick_half"
+    },
+    {
+     "lib": "FrcCore",
+     "module": "FrcCore/Theme/Pair",
+     "name": "FRC.Pair.flow_stations"
+    }
+   ],
    "aliases": [],
    "rows": [
     "38:C5"
@@ -22939,9 +23274,20 @@
    "statement": "The dilation instance $3/58$; the $(53,13)$ kill test (Theorems~\\ref{th:precession}, \\ref{th:channel}).",
    "origin_row": "38:C6",
    "tag": "T",
-   "tier": null,
-   "check": null,
-   "declarations": [],
+   "tier": 0,
+   "check": {
+    "href": "frc/ledgers/p38_s13.html#p38021",
+    "script": "p38_s13.py",
+    "line": 350,
+    "verdict": "pass"
+   },
+   "declarations": [
+    {
+     "lib": "FrcCore",
+     "module": "FrcCore/Theme/Pair",
+     "name": "FRC.Pair.kill_test"
+    }
+   ],
    "aliases": [],
    "rows": [
     "38:C6"
@@ -22954,9 +23300,35 @@
    "statement": "The two faces of the leak: angular $\\kap/\\dS$ (the curl), temporal $\\kap/(2\\dS)$ (the ring, on $C_{464}$); ratio exactly $2$, the double cover.",
    "origin_row": "38:C7",
    "tag": "T",
-   "tier": null,
-   "check": null,
-   "declarations": [],
+   "tier": 0,
+   "check": {
+    "href": "frc/ledgers/p38_s13.html#p38022",
+    "script": "p38_s13.py",
+    "line": 356,
+    "verdict": "pass"
+   },
+   "declarations": [
+    {
+     "lib": "FrcCore",
+     "module": "FrcCore/Theme/Gravity",
+     "name": "FRC.Grav.two_face_count"
+    },
+    {
+     "lib": "FrcCore",
+     "module": "FrcCore/Theme/Pair",
+     "name": "FRC.Pair.leak_rate"
+    },
+    {
+     "lib": "FrcCore",
+     "module": "FrcCore/Theme/Pair",
+     "name": "FRC.Pair.two_faces"
+    },
+    {
+     "lib": "FrcLedger",
+     "module": "FrcLedger/S13",
+     "name": "FRC.S13.registration_dictionary"
+    }
+   ],
    "aliases": [],
    "rows": [
     "38:C7"
@@ -22969,9 +23341,30 @@
    "statement": "The face-ratio identity, orbit-free (both sides' scales cancel): the pair's two faces (C7) have ratio exactly $2$; read in the comparison chart of the laboratory dictionary (C12), the parametrised isotropic metric [approx: continuum chart], the identity forces $2\\gamma-\\beta=1$, a combination measured to $10^{-4}$ (Cassini, lunar laser ranging) and so discriminating no metric the data have not already selected; Brans--Dicke's $2\\gamma-\\beta-1=-2/(2+\\omega)$ is the same fact read in one family.",
    "origin_row": "38:C8",
    "tag": "T",
-   "tier": null,
-   "check": null,
-   "declarations": [],
+   "tier": 0,
+   "check": {
+    "href": "frc/ledgers/p38_s13.html#p38023",
+    "script": "p38_s13.py",
+    "line": 367,
+    "verdict": "pass"
+   },
+   "declarations": [
+    {
+     "lib": "FrcCore",
+     "module": "FrcCore/Theme/Drift",
+     "name": "FRC.Drift.cover_triangle"
+    },
+    {
+     "lib": "FrcCore",
+     "module": "FrcCore/Theme/Drift",
+     "name": "FRC.Drift.cover_deviation"
+    },
+    {
+     "lib": "FrcLedger",
+     "module": "FrcLedger/S13",
+     "name": "FRC.S13.ppn_faces"
+    }
+   ],
    "aliases": [],
    "rows": [
     "38:C8"
@@ -22984,9 +23377,25 @@
    "statement": "The per-chronon leak rate: $(\\kap/\\dS)/(\\p-1)=1/(4\\dS)=1/(\\Om-1)$ exactly, $\\kap$-free --- one chart tick per chronon (the temporal face on the cover $1/(2(\\Om-1))$); at the instance $(3/58)/12=1/232$, at $(5,233)$ $(1/58)/4=1/232$. The per-revolution fraction $\\kap/\\dS$ (C7) is this rate times the shell period $\\p-1$.",
    "origin_row": "38:C10",
    "tag": "T",
-   "tier": null,
-   "check": null,
-   "declarations": [],
+   "tier": 0,
+   "check": {
+    "href": "frc/ledgers/p38_s13.html#p38044",
+    "script": "p38_s13.py",
+    "line": 173,
+    "verdict": "pass"
+   },
+   "declarations": [
+    {
+     "lib": "FrcCore",
+     "module": "FrcCore/Theme/Pair",
+     "name": "FRC.Pair.leak_rate"
+    },
+    {
+     "lib": "FrcCore",
+     "module": "FrcCore/Theme/Pair",
+     "name": "FRC.Pair.two_faces"
+    }
+   ],
    "aliases": [],
    "rows": [
     "38:C10"
@@ -23010,11 +23419,16 @@
   {
    "key": "p38052",
    "origin": "38",
-   "statement": "The laboratory dictionary: on a hosted pair $p_{\\mathrm{sl}}=3(\\dS/\\kap)\\,r_{g}$ (Statement~\\ref{th:floors}) is one relation, homogeneous of degree $0$, between two chart lengths, fixing their ratio $3\\dS/\\kap$ ($58$ at the instance, $174$ at $(5,233)$) and consuming no chart datum: a definition of the chart's $r_{g}$ per $(\\kap,\\dS)$, host-decided, under which $3\\,r_{g}/p_{\\mathrm{sl}}=\\kap/\\dS$ is C7's identity; no hosted pair confirms or refutes it (master E9).",
+   "statement": "The laboratory dictionary: on a hosted pair $p_{\\mathrm{sl}}=3(\\dS/\\kap)\\,r_{g}$ (Statement~\\ref{th:floors}) is one relation, homogeneous of degree $0$, between two chart lengths, fixing their ratio $3\\dS/\\kap$ ($58$ at the instance, $174$ at $(5,233)$) and consuming no chart datum: a definition of the chart's $r_{g}$ per $(\\kap,\\dS)$, host-decided, under which $3\\,r_{g}/p_{\\mathrm{sl}}=\\kap/\\dS$ is C7's identity; no hosted pair confirms or refutes it.",
    "origin_row": "38:C12",
    "tag": "D",
    "tier": null,
-   "check": null,
+   "check": {
+    "href": "frc/ledgers/p38_s13.html#p38052",
+    "script": "p38_s13.py",
+    "line": 374,
+    "verdict": "pass"
+   },
    "declarations": [],
    "aliases": [],
    "rows": [
@@ -23024,12 +23438,28 @@
   {
    "key": "p38053",
    "origin": "38",
-   "statement": "The apsidal bound: a nested Subject registers $\\kap/\\dS=(\\p-1)/(\\Om-1)<1/(\\sqrt\\Om+1)$, the nesting condition $\\p^{2}<\\Om$ itself; on the physical Carrier no Subject registers an observed precession (Mercury's $8.0\\times10^{-8}$ per revolution sits $54$ orders above the bound $10^{-61}$ [approx]), and the pair reads per orbit of period $T$ the floor $TH_{0}/2\\pi$ (C10, C11; \\S\\ref{sec:reality}). Master E8.",
+   "statement": "The apsidal bound: a nested Subject registers $\\kap/\\dS=(\\p-1)/(\\Om-1)<1/(\\sqrt\\Om+1)$, the nesting condition $\\p^{2}<\\Om$ itself; on the physical Carrier no Subject registers an observed precession (Mercury's $8.0\\times10^{-8}$ per revolution sits $54$ orders above the bound $10^{-61}$ [approx]), and the pair reads per orbit of period $T$ the floor $TH_{0}/2\\pi$ (C10, C11; \\S\\ref{sec:reality}).",
    "origin_row": "38:C13",
    "tag": "T",
-   "tier": null,
-   "check": null,
-   "declarations": [],
+   "tier": 0,
+   "check": {
+    "href": "frc/ledgers/p38_s13.html#p38053",
+    "script": "p38_s13.py",
+    "line": 179,
+    "verdict": "pass"
+   },
+   "declarations": [
+    {
+     "lib": "FrcCore",
+     "module": "FrcCore/Theme/Drift",
+     "name": "FRC.Drift.nesting_bound"
+    },
+    {
+     "lib": "FrcCore",
+     "module": "FrcCore/Theme/Pair",
+     "name": "FRC.Pair.leak_rate"
+    }
+   ],
    "aliases": [
     "p00141"
    ],
@@ -23041,14 +23471,66 @@
    ]
   },
   {
+   "key": "p38054",
+   "origin": "38",
+   "statement": "The joint cycle (Theorem~\\ref{th:precession}): for every $\\kap$-odd pair with $\\dS\\equiv2\\pmod4$ the chart count advances by $(\\p-1)/(\\Om-1)=\\kap/\\dS$ of its cycle per shell revolution; the joint cycle closes at $\\mathrm{lcm}(\\p-1,\\Om-1)$ at (home, home), and the exact midpoint is (home, $-1$).",
+   "origin_row": "38:C14",
+   "tag": "T",
+   "tier": 0,
+   "check": {
+    "href": "frc/ledgers/p38_s13.html#p38054",
+    "script": "p38_s13.py",
+    "line": 243,
+    "verdict": "pass"
+   },
+   "declarations": [
+    {
+     "lib": "FrcCore",
+     "module": "FrcCore/Theme/Pair",
+     "name": "FRC.Pair.joint_cycle"
+    },
+    {
+     "lib": "FrcCore",
+     "module": "FrcCore/Theme/Pair",
+     "name": "FRC.Pair.joint_cycle_frame"
+    },
+    {
+     "lib": "FrcCore",
+     "module": "FrcCore/Theme/Pair",
+     "name": "FRC.Pair.recurrence"
+    }
+   ],
+   "aliases": [],
+   "rows": [
+    "38:C14"
+   ],
+   "realisations": []
+  },
+  {
    "key": "p38025",
    "origin": "38",
    "statement": "The capacity stations: $4d<13$ selects $\\{1,2,3,10,11,12\\}$; threading exact, all $232$ states.",
    "origin_row": "38:D1",
    "tag": "T",
-   "tier": null,
-   "check": null,
-   "declarations": [],
+   "tier": 0,
+   "check": {
+    "href": "frc/ledgers/p38_s13.html#p38025",
+    "script": "p38_s13.py",
+    "line": 292,
+    "verdict": "pass"
+   },
+   "declarations": [
+    {
+     "lib": "FrcCore",
+     "module": "FrcCore/Theme/Pair",
+     "name": "FRC.Pair.stations"
+    },
+    {
+     "lib": "FrcCore",
+     "module": "FrcCore/Theme/Pair",
+     "name": "FRC.Pair.window"
+    }
+   ],
    "aliases": [],
    "rows": [
     "38:D1"
@@ -23058,12 +23540,23 @@
   {
    "key": "p38026",
    "origin": "38",
-   "statement": "The step law $\\tfrac{11\\pi}{12}+\\tfrac{\\pi}{13}+\\tfrac{\\pi}{232}$ and the leak $\\pi/156-\\pi/232$ on the space trace: exact rationals of the chart angle, the angle itself the declared chart unit (V2).",
+   "statement": "The step law $\\tfrac{11\\pi}{12}+\\tfrac{\\pi}{13}+\\tfrac{\\pi}{232}$ and the leak $\\pi/156-\\pi/232$ on the space trace: exact rationals of the chart angle, the angle itself the declared chart unit (A10).",
    "origin_row": "38:D2",
    "tag": "T",
-   "tier": null,
-   "check": null,
-   "declarations": [],
+   "tier": 0,
+   "check": {
+    "href": "frc/ledgers/p38_s13.html#p38026",
+    "script": "p38_s13.py",
+    "line": 296,
+    "verdict": "pass"
+   },
+   "declarations": [
+    {
+     "lib": "FrcCore",
+     "module": "FrcCore/Theme/Pair",
+     "name": "FRC.Pair.step_law"
+    }
+   ],
    "aliases": [],
    "rows": [
     "38:D2"
@@ -23073,12 +23566,28 @@
   {
    "key": "p38027",
    "origin": "38",
-   "statement": "The scale-tower circuit: the period at the FRC algebra half; the radius $R\\lvert\\sin(2a\\pi/13)\\rvert$ the declared drawing chart (V2, [approx]).",
+   "statement": "The scale-tower circuit: the period at the FRC algebra half; the radius $R\\lvert\\sin(2a\\pi/13)\\rvert$ the declared drawing chart (A10, [approx]).",
    "origin_row": "38:D3",
    "tag": "T",
-   "tier": null,
-   "check": null,
-   "declarations": [],
+   "tier": 0,
+   "check": {
+    "href": "frc/ledgers/p38_s13.html#p38027",
+    "script": "p38_s13.py",
+    "line": 300,
+    "verdict": "pass"
+   },
+   "declarations": [
+    {
+     "lib": "FrcCore",
+     "module": "FrcCore/Theme/Gravity",
+     "name": "FRC.Grav.calibration"
+    },
+    {
+     "lib": "FrcCore",
+     "module": "FrcCore/Theme/Pair",
+     "name": "FRC.Pair.tower_period"
+    }
+   ],
    "aliases": [],
    "rows": [
     "38:D3"
@@ -23105,9 +23614,25 @@
    "statement": "Four rays realise the four quarter classes (Theorem~\\ref{th:channel}), each a fiber geodesic to the quarter fold $a=13/4$.",
    "origin_row": "38:D5",
    "tag": "T",
-   "tier": null,
-   "check": null,
-   "declarations": [],
+   "tier": 0,
+   "check": {
+    "href": "frc/ledgers/p38_s13.html#p38029",
+    "script": "p38_s13.py",
+    "line": 217,
+    "verdict": "pass"
+   },
+   "declarations": [
+    {
+     "lib": "FrcCore",
+     "module": "FrcCore/Theme/Drift",
+     "name": "FRC.Drift.channel_q4"
+    },
+    {
+     "lib": "FrcCore",
+     "module": "FrcCore/Theme/Pair",
+     "name": "FRC.Pair.quarter_classes"
+    }
+   ],
    "aliases": [],
    "rows": [
     "38:D5"
@@ -23120,9 +23645,20 @@
    "statement": "The momentum dual $M_{3}$ at winding $5$: stations, tent shells, $C_{26}$ fold; framed-rational passages $13/5$, $52/5$.",
    "origin_row": "38:D6",
    "tag": "T",
-   "tier": null,
-   "check": null,
-   "declarations": [],
+   "tier": 0,
+   "check": {
+    "href": "frc/ledgers/p38_s13.html#p38030",
+    "script": "p38_s13.py",
+    "line": 305,
+    "verdict": "pass"
+   },
+   "declarations": [
+    {
+     "lib": "FrcCore",
+     "module": "FrcCore/Theme/Pair",
+     "name": "FRC.Pair.momentum_dual"
+    }
+   ],
    "aliases": [],
    "rows": [
     "38:D6"
@@ -23135,9 +23671,25 @@
    "statement": "The covering: $144$ slots cover $72/72$; multiplicity $1$ odd $/$ $3$ even; $144=36+108$.",
    "origin_row": "38:D7",
    "tag": "T",
-   "tier": null,
-   "check": null,
-   "declarations": [],
+   "tier": 0,
+   "check": {
+    "href": "frc/ledgers/p38_s13.html#p38031",
+    "script": "p38_s13.py",
+    "line": 309,
+    "verdict": "pass"
+   },
+   "declarations": [
+    {
+     "lib": "FrcCore",
+     "module": "FrcCore/Theme/Pair",
+     "name": "FRC.Pair.covering_instance"
+    },
+    {
+     "lib": "FrcCore",
+     "module": "FrcCore/Theme/Pair",
+     "name": "FRC.Pair.covering_parity"
+    }
+   ],
    "aliases": [],
    "rows": [
     "38:D7"
@@ -23150,9 +23702,20 @@
    "statement": "The half-cell ramification: $t_{1/2}=13/(2m)$; $M_{0}$'s at the origin.",
    "origin_row": "38:D8",
    "tag": "T",
-   "tier": null,
-   "check": null,
-   "declarations": [],
+   "tier": 0,
+   "check": {
+    "href": "frc/ledgers/p38_s13.html#p38032",
+    "script": "p38_s13.py",
+    "line": 312,
+    "verdict": "pass"
+   },
+   "declarations": [
+    {
+     "lib": "FrcCore",
+     "module": "FrcCore/Theme/Pair",
+     "name": "FRC.Pair.ramification"
+    }
+   ],
    "aliases": [],
    "rows": [
     "38:D8"
@@ -23165,9 +23728,20 @@
    "statement": "The horizon fold fusions: $5\\cdot39\\equiv-13\\ (104)$; eight ends, four points; $E\\leftrightarrow B$.",
    "origin_row": "38:D9",
    "tag": "T",
-   "tier": null,
-   "check": null,
-   "declarations": [],
+   "tier": 0,
+   "check": {
+    "href": "frc/ledgers/p38_s13.html#p38033",
+    "script": "p38_s13.py",
+    "line": 315,
+    "verdict": "pass"
+   },
+   "declarations": [
+    {
+     "lib": "FrcCore",
+     "module": "FrcCore/Theme/Pair",
+     "name": "FRC.Pair.fusion"
+    }
+   ],
    "aliases": [],
    "rows": [
     "38:D9"
@@ -23208,9 +23782,35 @@
    "statement": "The covering parity theorem, closed at every shell (Theorem~\\ref{th:covering}, Lemma~\\ref{lem:parity}): $\\mu\\in\\{1,3\\}$ by the odd four-sum; decider the row parity and position by the eight-case table; completeness a corollary; the carrier the sheet parity: even rows $\\gen$-divisible (thrice), odd rows the half-cell obstruction of D8 (once).",
    "origin_row": "38:D12",
    "tag": "T",
-   "tier": null,
-   "check": null,
-   "declarations": [],
+   "tier": 0,
+   "check": {
+    "href": "frc/ledgers/p38_s13.html#p38036",
+    "script": "p38_s13.py",
+    "line": 328,
+    "verdict": "pass"
+   },
+   "declarations": [
+    {
+     "lib": "FrcCore",
+     "module": "FrcCore/Theme/Pair",
+     "name": "FRC.Pair.reflection_identity"
+    },
+    {
+     "lib": "FrcCore",
+     "module": "FrcCore/Theme/Pair",
+     "name": "FRC.Pair.parity_table"
+    },
+    {
+     "lib": "FrcCore",
+     "module": "FrcCore/Theme/Pair",
+     "name": "FRC.Pair.covering_parity"
+    },
+    {
+     "lib": "FrcCore",
+     "module": "FrcCore/Theme/Pair",
+     "name": "FRC.Pair.parity_instance"
+    }
+   ],
    "aliases": [],
    "rows": [
     "38:D12"
@@ -23223,9 +23823,25 @@
    "statement": "The family law: the one meridian law generalized (\\texttt{baseMW}; $M_{0}$, $M_{3}$ its windings $1$, $5$), the covering arithmetic fully certified; the drawn pair is the family's representative, a drawn ten-sibling layer retracted as washing the sky.",
    "origin_row": "38:D13",
    "tag": "T",
-   "tier": null,
-   "check": null,
-   "declarations": [],
+   "tier": 0,
+   "check": {
+    "href": "frc/ledgers/p38_s13.html#p38037",
+    "script": "p38_s13.py",
+    "line": 319,
+    "verdict": "pass"
+   },
+   "declarations": [
+    {
+     "lib": "FrcCore",
+     "module": "FrcCore/Theme/Pair",
+     "name": "FRC.Pair.covering_instance"
+    },
+    {
+     "lib": "FrcCore",
+     "module": "FrcCore/Theme/Pair",
+     "name": "FRC.Pair.momentum_dual"
+    }
+   ],
    "aliases": [],
    "rows": [
     "38:D13"
@@ -23238,9 +23854,25 @@
    "statement": "The registration floor $a_{0}=cH_{0}/2\\pi$, read from the pair's $\\kap$-free per-chronon leak rate (C11): parameter-free, tracking $H(z)$. Falsifier: a measured floor off $cH_{0}/2\\pi$ beyond the $H_{0}$ uncertainty, or one not tracking $H(z)$ (\\S\\ref{sec:predictions}, item 5; the dark sector's L1).",
    "origin_row": "38:P1",
    "tag": "T",
-   "tier": null,
-   "check": null,
-   "declarations": [],
+   "tier": 2,
+   "check": {
+    "href": "frc/ledgers/p38_s13.html#p38049",
+    "script": "p38_s13.py",
+    "line": 381,
+    "verdict": "pass"
+   },
+   "declarations": [
+    {
+     "lib": "FrcLedger",
+     "module": "FrcLedger/S13",
+     "name": "FRC.S13.floor_value"
+    },
+    {
+     "lib": "FrcLedger",
+     "module": "FrcLedger/S13",
+     "name": "FRC.S13.running_floor"
+    }
+   ],
    "aliases": [],
    "rows": [
     "38:P1"
@@ -23251,103 +23883,30 @@
    ]
   },
   {
-   "key": "p38038",
-   "origin": "38",
-   "statement": "The laboratory's six suites, $208$ checks, all passing (\\S\\ref{sec:repro}), run from \\texttt{docs/38-s13} by the package registry: \\src{s13.\\allowbreak verify-233} ($84$), \\src{s13.\\allowbreak verify-sky} ($28$), \\src{s13.\\allowbreak verify-space} ($25$), \\src{s13.\\allowbreak verify-f13} ($25$), \\src{s13.\\allowbreak verify-hopf} ($10$), \\src{s13.\\allowbreak verify-render} ($20$).",
-   "origin_row": "38:V1",
-   "tag": "T",
-   "tier": null,
-   "check": null,
-   "declarations": [],
-   "aliases": [],
-   "rows": [
-    "38:V1"
-   ],
-   "realisations": []
-  },
-  {
-   "key": "p38039",
-   "origin": "38",
-   "statement": "The exactness boundary: exact incidence/ordering/winding/anchoring/flow; connecting curves the declared chart, each constant [approx].",
-   "origin_row": "38:V2",
-   "tag": "D",
-   "tier": null,
-   "check": null,
-   "declarations": [],
-   "aliases": [],
-   "rows": [
-    "38:V2"
-   ]
-  },
-  {
-   "key": "p38040",
-   "origin": "38",
-   "statement": "The in-tree audit: \\src{check\\_s13.js}, $58$ checks, re-derives every arithmetic identity of blocks A--D and the registration fibre product.",
-   "origin_row": "38:V3",
-   "tag": "T",
-   "tier": null,
-   "check": null,
-   "declarations": [],
-   "aliases": [],
-   "rows": [
-    "38:V3"
-   ],
-   "realisations": []
-  },
-  {
-   "key": "p38041",
-   "origin": "38",
-   "statement": "The dictionary audit: \\src{check\\_o1.js} ($10$, exact) and \\src{o1\\_gr\\_chart.py} ($10$ identities, symbolic rationals [approx: continuum chart]).",
-   "origin_row": "38:V4",
-   "tag": "T",
-   "tier": null,
-   "check": null,
-   "declarations": [],
-   "aliases": [],
-   "rows": [
-    "38:V4"
-   ],
-   "realisations": []
-  },
-  {
-   "key": "p38042",
-   "origin": "38",
-   "statement": "The multiplicity audit: \\src{check\\_o2.js}, $11$ checks, exact, including the eight-case parity table of Lemma~\\ref{lem:parity} at $\\p=5,13,17,29$; the decider sweep $\\Om$-blind at $\\p=5,17,29$, the home instance excluded from the blindness sweep by design.",
-   "origin_row": "38:V5",
-   "tag": "T",
-   "tier": null,
-   "check": null,
-   "declarations": [],
-   "aliases": [],
-   "rows": [
-    "38:V5"
-   ],
-   "realisations": []
-  },
-  {
-   "key": "p38043",
-   "origin": "38",
-   "statement": "The family audit: \\src{check\\_o3.js}, $7$ checks, exact (the winding-$1/5$ identity, the $144$-slot containment, the covering multiset, the passages, the ramification).",
-   "origin_row": "38:V6",
-   "tag": "T",
-   "tier": null,
-   "check": null,
-   "declarations": [],
-   "aliases": [],
-   "rows": [
-    "38:V6"
-   ],
-   "realisations": []
-  },
-  {
    "key": "p38046",
    "origin": "38",
-   "statement": "\\textbf{The weakness of gravity} is the $1/\\dS$ suppression of the frame leak: one chart tick per chronon, $1/(4\\dS)$ of the cycle --- $1/232$ at the instance, of order $10^{-122}$ at physical capacity; the denominator that makes the world look continuous makes gravity look weak (C10, \\S\\ref{sec:reality}).",
+   "statement": "\\textbf{The weakness of gravity} is the $1/\\dS$ suppression of the frame leak: one chart tick per chronon, $1/(4\\dS)$ of the cycle --- $1/232$ at the instance, of order $10^{-123}$ at physical capacity; the denominator that makes the world look continuous makes gravity look weak (C10, \\S\\ref{sec:reality}).",
    "origin_row": "38:X1",
    "tag": "T",
-   "tier": null,
-   "check": null,
-   "declarations": [],
+   "tier": 0,
+   "check": {
+    "href": "frc/ledgers/p38_s13.html#p38046",
+    "script": "p38_s13.py",
+    "line": 173,
+    "verdict": "pass"
+   },
+   "declarations": [
+    {
+     "lib": "FrcCore",
+     "module": "FrcCore/Theme/Pair",
+     "name": "FRC.Pair.leak_rate"
+    },
+    {
+     "lib": "FrcCore",
+     "module": "FrcCore/Theme/Pair",
+     "name": "FRC.Pair.two_faces"
+    }
+   ],
    "aliases": [],
    "rows": [
     "38:X1"
@@ -23375,9 +23934,25 @@
    "statement": "\\textbf{The acceleration floor $a_{0}=cH_{0}/2\\pi$ is the drive seen in the chart}: the leak's cyclic rate is the drive's own, one cycle per drive period $\\Om-1$ chronons $=2\\pi/H_{0}$, and its acceleration face is the floor (C10; C11, the realisation); at the instance $a_{0}=c/(\\Om-1)$.",
    "origin_row": "38:X3",
    "tag": "T",
-   "tier": null,
-   "check": null,
-   "declarations": [],
+   "tier": 0,
+   "check": {
+    "href": "frc/ledgers/p38_s13.html#p38048",
+    "script": "p38_s13.py",
+    "line": 381,
+    "verdict": "pass"
+   },
+   "declarations": [
+    {
+     "lib": "FrcCore",
+     "module": "FrcCore/Theme/Pair",
+     "name": "FRC.Pair.leak_rate"
+    },
+    {
+     "lib": "FrcLedger",
+     "module": "FrcLedger/S13",
+     "name": "FRC.S13.floor_value"
+    }
+   ],
    "aliases": [],
    "rows": [
     "38:X3"
@@ -23393,9 +23968,30 @@
    "statement": "\\textbf{The shell is holographic}: a Subject's frame datum is one projective direction, one shell cell, one drive phase, and the bulk frame is that boundary datum with nothing left over (Theorem~\\ref{th:holography}; the realisation reading and its falsifier, Reading~\\ref{th:holography-reading}).",
    "origin_row": "38:X4",
    "tag": "T",
-   "tier": null,
-   "check": null,
-   "declarations": [],
+   "tier": 0,
+   "check": {
+    "href": "frc/ledgers/p38_s13.html#p38051",
+    "script": "p38_s13.py",
+    "line": 204,
+    "verdict": "pass"
+   },
+   "declarations": [
+    {
+     "lib": "FrcCore",
+     "module": "FrcCore/Theme/Projective",
+     "name": "FRC.Shell.Frame.frame_triple"
+    },
+    {
+     "lib": "FrcCore",
+     "module": "FrcCore/Theme/Projective",
+     "name": "FRC.Shell.Frame.unit_split"
+    },
+    {
+     "lib": "FrcCore",
+     "module": "FrcCore/Theme/Projective",
+     "name": "FRC.Shell.Frame.hopf_counts"
+    }
+   ],
    "aliases": [],
    "rows": [
     "38:X4"
@@ -23505,6 +24101,15 @@
    "successors": [
     "p00013",
     "p38004"
+   ]
+  },
+  {
+   "key": "p00038",
+   "successors": [
+    "p00028",
+    "p00034",
+    "p00043",
+    "p38054"
    ]
   },
   {
@@ -23878,6 +24483,36 @@
    "successors": [
     "p32050",
     "p32051"
+   ]
+  },
+  {
+   "key": "p38038",
+   "successors": [
+    "p38039"
+   ]
+  },
+  {
+   "key": "p38040",
+   "successors": [
+    "p38039"
+   ]
+  },
+  {
+   "key": "p38041",
+   "successors": [
+    "p38039"
+   ]
+  },
+  {
+   "key": "p38042",
+   "successors": [
+    "p38039"
+   ]
+  },
+  {
+   "key": "p38043",
+   "successors": [
+    "p38039"
    ]
   }
  ],
@@ -25244,7 +25879,7 @@
    "block": "C",
    "tag": "T",
    "name": "The spinor dichotomy",
-   "statement": "\\textbf{The spinor dichotomy}: $\\kap$ odd $\\Leftrightarrow$ $C_{\\p-1}\\cong C_4\\times C_\\kap$ $\\Leftrightarrow$ $v_2(\\p-1)=2$ $\\Leftrightarrow$ $3\\kap r+4s\\equiv1\\ (\\mathrm{mod}\\ 4\\kap)$ is solvable: the spinor class. Shell and Carrier share the $2$-part $C_{2^m}$, $m=\\min(v_2(\\p-1),v_2(\\Om-1))$, and the shell closes on a cover of degree $2^{v_2(\\Om-1)-m}$; the shared order times the cover degree is the Carrier's $2$-part, $8$ exactly when $\\dS\\equiv2\\ (\\mathrm{mod}\\ 4)$. The midpoint event of a $\\kap$-odd shell: C18.",
+   "statement": "\\textbf{The spinor dichotomy}: $\\kap$ odd $\\Leftrightarrow$ $C_{\\p-1}\\cong C_4\\times C_\\kap$ $\\Leftrightarrow$ $v_2(\\p-1)=2$ $\\Leftrightarrow$ $3\\kap r+4s\\equiv1\\ (\\mathrm{mod}\\ 4\\kap)$ is solvable: the spinor class. Shell and Carrier share the $2$-part $C_{2^m}$, $m=\\min(v_2(\\p-1),v_2(\\Om-1))$, and the shell closes on a cover of degree $2^{v_2(\\Om-1)-m}$; the shared order times the cover degree is the Carrier's $2$-part, $8$ exactly when $\\dS\\equiv2\\ (\\mathrm{mod}\\ 4)$. The midpoint event of a $\\kap$-odd shell: 38:C14.",
    "source": "38-s13",
    "page": "00-ledger.html#C16",
    "witness": {
@@ -25267,39 +25902,12 @@
     ]
    },
    "refs": [
-    "p00038"
+    "p38054"
    ],
    "sources": [
     "38-s13"
    ],
-   "text": "The spinor dichotomy: The spinor dichotomy: $\\kap$ odd $\\Leftrightarrow$ $C_{\\p-1}\\cong C_4\\times C_\\kap$ $\\Leftrightarrow$ $v_2(\\p-1)=2$ $\\Leftrightarrow$ $3\\kap r+4s\\equiv1 (\\mathrm{mod} 4\\kap)$ is solvable: the spinor class. Shell and Carrier share the $2$-part $C_{2^m}$, $m=\\min(v_2(\\p-1),v_2(\\Om-1))$, and the shell closes on a cover of degree $2^{v_2(\\Om-1)-m}$; the shared order times the cover degree is the Carrier's $2$-part, $8$ exactly when $\\dS\\equiv2 (\\mathrm{mod} 4)$. The midpoint event of a $\\kap$-odd shell: C18. 38-s13"
-  },
-  {
-   "paper": "00",
-   "no": 0,
-   "rid": "00:C18",
-   "key": "p00038",
-   "label": "C18",
-   "block": "C",
-   "tag": "T",
-   "name": "The precession theorem",
-   "statement": "\\textbf{The precession theorem}: over the pair dynamics the shell orbit precesses against the Carrier quarter by the winding ratio (D2): the apsidal fraction per revolution is exactly $\\kap /\\dS =(\\p -1)/(\\Om -1)$, every $\\kap$-odd pair with the $c$-square ($\\dS$ even, C8); the half event (home, dlog$(-1)$) sits at the exact midpoint, closure at (home, home); orientation prograde, Subject-selected (C14, the gauge bit).",
-   "source": "38-s13",
-   "page": "00-ledger.html#C18",
-   "witness": {
-    "script": "38:check_s13.js",
-    "py": null,
-    "lean": []
-   },
-   "refs": [
-    "p00028",
-    "p00034",
-    "p00043"
-   ],
-   "sources": [
-    "38-s13"
-   ],
-   "text": "The precession theorem: The precession theorem: over the pair dynamics the shell orbit precesses against the Carrier quarter by the winding ratio (D2): the apsidal fraction per revolution is exactly $\\kap /\\dS =(\\p -1)/(\\Om -1)$, every $\\kap$-odd pair with the $c$-square ($\\dS$ even, C8); the half event (home, dlog$(-1)$) sits at the exact midpoint, closure at (home, home); orientation prograde, Subject-selected (C14, the gauge bit). 38-s13 38:check_s13.js"
+   "text": "The spinor dichotomy: The spinor dichotomy: $\\kap$ odd $\\Leftrightarrow$ $C_{\\p-1}\\cong C_4\\times C_\\kap$ $\\Leftrightarrow$ $v_2(\\p-1)=2$ $\\Leftrightarrow$ $3\\kap r+4s\\equiv1 (\\mathrm{mod} 4\\kap)$ is solvable: the spinor class. Shell and Carrier share the $2$-part $C_{2^m}$, $m=\\min(v_2(\\p-1),v_2(\\Om-1))$, and the shell closes on a cover of degree $2^{v_2(\\Om-1)-m}$; the shared order times the cover degree is the Carrier's $2$-part, $8$ exactly when $\\dS\\equiv2 (\\mathrm{mod} 4)$. The midpoint event of a $\\kap$-odd shell: 38:C14. 38-s13"
   },
   {
    "paper": "00",
@@ -44029,7 +44637,6 @@
     ]
    },
    "refs": [
-    "p00038",
     "p00040"
    ],
    "text": "The minimal-instance results consumed: the two-face count of the drift (angular $\\kap/S$, temporal $\\kap/(2S)$, ratio $2$ the double cover), the registration dictionary $p_{\\mathrm{sl}}=3(S/\\kap) r_g$ with the forcing $2\\gamma-\\beta=1$, and the mass–energy channel $C_{\\p-1}\\cap C_{2(\\p+1)}=Q_4$. [s13] p21009, FrcCore{A9}, FrcLedger{A9} Gravity.cover_forcing, Gravity.channel_q4, FRC.Grav.two_face_count, FRC.Drift.channel_q4"
@@ -45762,11 +46369,11 @@
      },
      {
       "lib": "FrcCore",
-      "module": "FrcCore/Theme/Shift",
+      "module": "FrcCore/Cycle",
       "name": "FRC.Cycle.cyc_add_n",
       "tier": 0,
       "ok": true,
-      "page": "lean/core/Theme.html#FRC.Cycle.cyc_add_n"
+      "page": "lean/core/Cycle.html#FRC.Cycle.cyc_add_n"
      }
     ]
    },
@@ -54213,14 +54820,36 @@
    "tag": "T",
    "name": null,
    "statement": "The pair: $\\p=13$, $\\kap=3$, $\\Om=233$, $\\dS=58$; $\\gen=2$, $\\im=5=-\\gen^{\\kap}$.",
-   "source": "\\src{s13.\\allowbreak check\\_s13}",
+   "source": "\\S\\ref{sec:pair}\\newline \\pywit{s13}{p38001}{A1}, \\leanwit{FrcCore}{p38001}{A1} \\lean{FRC.Pair.pair\\_frame, FRC.Pair.pair\\_register}",
    "page": "38-s13/index.html#A1",
    "witness": {
-    "py": null,
-    "lean": []
+    "py": {
+     "href": "frc/ledgers/p38_s13.html#p38001",
+     "script": "p38_s13.py",
+     "line": 118,
+     "verdict": "pass"
+    },
+    "lean": [
+     {
+      "lib": "FrcCore",
+      "module": "FrcCore/Theme/Pair",
+      "name": "FRC.Pair.pair_frame",
+      "tier": 0,
+      "ok": true,
+      "page": "lean/core/Theme.html#FRC.Pair.pair_frame"
+     },
+     {
+      "lib": "FrcCore",
+      "module": "FrcCore/Theme/Pair",
+      "name": "FRC.Pair.pair_register",
+      "tier": 0,
+      "ok": true,
+      "page": "lean/core/Theme.html#FRC.Pair.pair_register"
+     }
+    ]
    },
    "refs": [],
-   "text": "The pair: $\\p=13$, $\\kap=3$, $\\Om=233$, $\\dS=58$; $\\gen=2$, $\\im=5=-\\gen^{\\kap}$. s13. check_s13"
+   "text": "The pair: $\\p=13$, $\\kap=3$, $\\Om=233$, $\\dS=58$; $\\gen=2$, $\\im=5=-\\gen^{\\kap}$. \\Ssec:pair p38001, FrcCore{A1} FRC.Pair.pair_frame, FRC.Pair.pair_register"
   },
   {
    "paper": "38-s13",
@@ -54232,17 +54861,55 @@
    "tag": "T",
    "name": null,
    "statement": "The tower identity: $C_{12}=C_{4}\\times C_{3}$, $\\gen=3\\cdot5=2$; unit exponents exactly at $\\kap=3$; general form $4a-\\kap b\\equiv1\\pmod{4\\kap}$, solvable for every odd $\\kap$ (Theorem~\\ref{th:channel} inside the Subject).",
-   "source": "\\src{s13.\\allowbreak check\\_s13}",
+   "source": "\\S\\ref{sec:pair}\\newline \\pywit{s13}{p38002}{A2}, \\leanwit{FrcCore}{p38002}{A2} \\lean{FRC.Pair.tower\\_solvable, FRC.Subject.spinor, FRC.Subject.two\\_part, FRC.Pair.pair\\_register}",
    "page": "38-s13/index.html#A2",
    "witness": {
-    "py": null,
-    "lean": []
+    "py": {
+     "href": "frc/ledgers/p38_s13.html#p38002",
+     "script": "p38_s13.py",
+     "line": 125,
+     "verdict": "pass"
+    },
+    "lean": [
+     {
+      "lib": "FrcCore",
+      "module": "FrcCore/Theme/Pair",
+      "name": "FRC.Pair.tower_solvable",
+      "tier": 0,
+      "ok": true,
+      "page": "lean/core/Theme.html#FRC.Pair.tower_solvable"
+     },
+     {
+      "lib": "FrcCore",
+      "module": "FrcCore/Theme/Subject",
+      "name": "FRC.Subject.spinor",
+      "tier": 0,
+      "ok": true,
+      "page": "lean/core/Theme.html#FRC.Subject.spinor"
+     },
+     {
+      "lib": "FrcCore",
+      "module": "FrcCore/Theme/Subject",
+      "name": "FRC.Subject.two_part",
+      "tier": 0,
+      "ok": true,
+      "page": "lean/core/Theme.html#FRC.Subject.two_part"
+     },
+     {
+      "lib": "FrcCore",
+      "module": "FrcCore/Theme/Pair",
+      "name": "FRC.Pair.pair_register",
+      "tier": 0,
+      "ok": true,
+      "page": "lean/core/Theme.html#FRC.Pair.pair_register"
+     }
+    ]
    },
    "refs": [
     "p00062",
     "p00151"
    ],
-   "text": "The tower identity: $C_{12}=C_{4}\\times C_{3}$, $\\gen=3\\cdot5=2$; unit exponents exactly at $\\kap=3$; general form $4a-\\kap b\\equiv1\\pmod{4\\kap}$, solvable for every odd $\\kap$ (Theorem th:channel inside the Subject). s13. check_s13"
+   "text": "The tower identity: $C_{12}=C_{4}\\times C_{3}$, $\\gen=3\\cdot5=2$; unit exponents exactly at $\\kap=3$; general form $4a-\\kap b\\equiv1\\pmod{4\\kap}$, solvable for every odd $\\kap$ (Theorem th:channel inside the Subject). \\Ssec:pair p38002, FrcCore{A2} FRC.Pair.tower_solvable, FRC.Subject.spinor, FRC.Subject.two_part, FRC.Pair.pair_register"
   },
   {
    "paper": "38-s13",
@@ -54254,16 +54921,38 @@
    "tag": "T",
    "name": null,
    "statement": "The channel at the instance: $\\gcd(12,14)=2$, $\\gcd(12,28)=4$; $N(\\im)=-1$ (Theorem~\\ref{th:channel}).",
-   "source": "\\src{s13.\\allowbreak check\\_s13}",
+   "source": "Theorem~\\ref{th:channel}\\newline \\pywit{s13}{p38003}{A3}, \\leanwit{FrcCore}{p38003}{A3} \\lean{FRC.Subject.channel, FRC.Pair.channel\\_instance}",
    "page": "38-s13/index.html#A3",
    "witness": {
-    "py": null,
-    "lean": []
+    "py": {
+     "href": "frc/ledgers/p38_s13.html#p38003",
+     "script": "p38_s13.py",
+     "line": 134,
+     "verdict": "pass"
+    },
+    "lean": [
+     {
+      "lib": "FrcCore",
+      "module": "FrcCore/Theme/Subject",
+      "name": "FRC.Subject.channel",
+      "tier": 0,
+      "ok": true,
+      "page": "lean/core/Theme.html#FRC.Subject.channel"
+     },
+     {
+      "lib": "FrcCore",
+      "module": "FrcCore/Theme/Pair",
+      "name": "FRC.Pair.channel_instance",
+      "tier": 0,
+      "ok": true,
+      "page": "lean/core/Theme.html#FRC.Pair.channel_instance"
+     }
+    ]
    },
    "refs": [
     "p00040"
    ],
-   "text": "The channel at the instance: $\\gcd(12,14)=2$, $\\gcd(12,28)=4$; $N(\\im)=-1$ (Theorem th:channel). s13. check_s13"
+   "text": "The channel at the instance: $\\gcd(12,14)=2$, $\\gcd(12,28)=4$; $N(\\im)=-1$ (Theorem th:channel). Theorem th:channel p38003, FrcCore{A3} FRC.Subject.channel, FRC.Pair.channel_instance"
   },
   {
    "paper": "38-s13",
@@ -54274,17 +54963,47 @@
    "block": "A",
    "tag": "T",
    "name": null,
-   "statement": "The Carrier quarter roots, arithmetic: $78^{58}=89=h$, $h^{2}=-1$, $\\hbar=144$, $\\hbar h=1$, $\\hbar+h=\\Om$; octant $\\zeta_{8}=97$, $\\zeta_{8}^{2}=h$.",
-   "source": "\\src{s13.\\allowbreak check\\_s13}, \\src{s13.\\allowbreak check\\_phi}",
+   "statement": "The Carrier quarter roots, arithmetic: $78^{58}=89=h$, $h^{2}=-1$, $\\hbar=144$, $\\hbar h=1$, $\\hbar+h=\\Om$; octant $\\zeta_{8}=97$, $\\zeta_{8}^{2}=h$; $233=13^{2}+8^{2}$ with $h=13/8$, $\\hbar=8/13$ on $\\F_{233}$.",
+   "source": "Theorem~\\ref{th:flip}\\newline \\pywit{s13}{p38004}{A4}, \\leanwit{FrcCore}{p38004}{A4} \\lean{FRC.Subject.channel\\_233, FRC.Pair.carrier\\_frame, FRC.Pair.carrier\\_roots}",
    "page": "38-s13/index.html#A4",
    "witness": {
-    "py": null,
-    "lean": []
+    "py": {
+     "href": "frc/ledgers/p38_s13.html#p38004",
+     "script": "p38_s13.py",
+     "line": 143,
+     "verdict": "pass"
+    },
+    "lean": [
+     {
+      "lib": "FrcCore",
+      "module": "FrcCore/Theme/Subject",
+      "name": "FRC.Subject.channel_233",
+      "tier": 0,
+      "ok": true,
+      "page": "lean/core/Theme.html#FRC.Subject.channel_233"
+     },
+     {
+      "lib": "FrcCore",
+      "module": "FrcCore/Theme/Pair",
+      "name": "FRC.Pair.carrier_frame",
+      "tier": 0,
+      "ok": true,
+      "page": "lean/core/Theme.html#FRC.Pair.carrier_frame"
+     },
+     {
+      "lib": "FrcCore",
+      "module": "FrcCore/Theme/Pair",
+      "name": "FRC.Pair.carrier_roots",
+      "tier": 0,
+      "ok": true,
+      "page": "lean/core/Theme.html#FRC.Pair.carrier_roots"
+     }
+    ]
    },
    "refs": [
     "p00013"
    ],
-   "text": "The Carrier quarter roots, arithmetic: $78^{58}=89=h$, $h^{2}=-1$, $\\hbar=144$, $\\hbar h=1$, $\\hbar+h=\\Om$; octant $\\zeta_{8}=97$, $\\zeta_{8}^{2}=h$. s13. check_s13, s13. check_phi"
+   "text": "The Carrier quarter roots, arithmetic: $78^{58}=89=h$, $h^{2}=-1$, $\\hbar=144$, $\\hbar h=1$, $\\hbar+h=\\Om$; octant $\\zeta_{8}=97$, $\\zeta_{8}^{2}=h$; $233=13^{2}+8^{2}$ with $h=13/8$, $\\hbar=8/13$ on $\\F_{233}$. Theorem th:flip p38004, FrcCore{A4} FRC.Subject.channel_233, FRC.Pair.carrier_frame, FRC.Pair.carrier_roots"
   },
   {
    "paper": "38-s13",
@@ -54317,14 +55036,36 @@
    "tag": "T",
    "name": null,
    "statement": "The FRC algebra half \\cite{algebra}: $\\tfrac12=7$, $-\\tfrac12=6$; the seam between rows $6$ and $7$.",
-   "source": "\\src{s13.\\allowbreak check\\_s13}",
+   "source": "\\S\\ref{sec:pair}\\newline \\pywit{s13}{p38006}{A6}, \\leanwit{FrcCore}{p38006}{A6} \\lean{FRC.Shell.Prime.two\\_mul\\_chart\\_half, FRC.Pair.half\\_instance}",
    "page": "38-s13/index.html#A6",
    "witness": {
-    "py": null,
-    "lean": []
+    "py": {
+     "href": "frc/ledgers/p38_s13.html#p38006",
+     "script": "p38_s13.py",
+     "line": 159,
+     "verdict": "pass"
+    },
+    "lean": [
+     {
+      "lib": "FrcCore",
+      "module": "FrcCore/Theme/Field",
+      "name": "FRC.Shell.Prime.two_mul_chart_half",
+      "tier": 0,
+      "ok": true,
+      "page": "lean/core/Theme.html#FRC.Shell.Prime.two_mul_chart_half"
+     },
+     {
+      "lib": "FrcCore",
+      "module": "FrcCore/Theme/Pair",
+      "name": "FRC.Pair.half_instance",
+      "tier": 0,
+      "ok": true,
+      "page": "lean/core/Theme.html#FRC.Pair.half_instance"
+     }
+    ]
    },
    "refs": [],
-   "text": "The FRC algebra half [algebra]: $\\tfrac12=7$, $-\\tfrac12=6$; the seam between rows $6$ and $7$. s13. check_s13"
+   "text": "The FRC algebra half [algebra]: $\\tfrac12=7$, $-\\tfrac12=6$; the seam between rows $6$ and $7$. \\Ssec:pair p38006, FrcCore{A6} FRC.Shell.Prime.two_mul_chart_half, FRC.Pair.half_instance"
   },
   {
    "paper": "38-s13",
@@ -54336,17 +55077,39 @@
    "tag": "T",
    "name": null,
    "statement": "The frame counts: $2184=156\\times14=14\\times13\\times12$; $\\PGL_{2}=\\mathrm{SO}_{3}(\\F_{13})$, the norm-one sphere $\\SL_{2}$ its spin cover of $\\mathrm{PSL}_{2}$ ($1092$); $\\SL_{2}$ obstructs at $-1$ (Theorem~\\ref{th:hopf}).",
-   "source": "\\src{s13.\\allowbreak check\\_s13}, \\src{s13.\\allowbreak verify-hopf}",
+   "source": "Theorem~\\ref{th:hopf}\\newline \\pywit{s13}{p38007}{A7}, \\leanwit{FrcCore}{p38007}{A7} \\lean{FRC.Shell.Frame.hopf\\_section, FRC.Shell.Frame.hopf\\_counts}",
    "page": "38-s13/index.html#A7",
    "witness": {
-    "py": null,
-    "lean": []
+    "py": {
+     "href": "frc/ledgers/p38_s13.html#p38007",
+     "script": "p38_s13.py",
+     "line": 190,
+     "verdict": "pass"
+    },
+    "lean": [
+     {
+      "lib": "FrcCore",
+      "module": "FrcCore/Theme/Projective",
+      "name": "FRC.Shell.Frame.hopf_section",
+      "tier": 0,
+      "ok": true,
+      "page": "lean/core/Theme.html#FRC.Shell.Frame.hopf_section"
+     },
+     {
+      "lib": "FrcCore",
+      "module": "FrcCore/Theme/Projective",
+      "name": "FRC.Shell.Frame.hopf_counts",
+      "tier": 0,
+      "ok": true,
+      "page": "lean/core/Theme.html#FRC.Shell.Frame.hopf_counts"
+     }
+    ]
    },
    "refs": [
     "p00152",
     "p00190"
    ],
-   "text": "The frame counts: $2184=156\\times14=14\\times13\\times12$; $\\PGL_{2}=\\mathrm{SO}_{3}(\\F_{13})$, the norm-one sphere $\\SL_{2}$ its spin cover of $\\mathrm{PSL}_{2}$ ($1092$); $\\SL_{2}$ obstructs at $-1$ (Theorem th:hopf). s13. check_s13, s13. verify-hopf"
+   "text": "The frame counts: $2184=156\\times14=14\\times13\\times12$; $\\PGL_{2}=\\mathrm{SO}_{3}(\\F_{13})$, the norm-one sphere $\\SL_{2}$ its spin cover of $\\mathrm{PSL}_{2}$ ($1092$); $\\SL_{2}$ obstructs at $-1$ (Theorem th:hopf). Theorem th:hopf p38007, FrcCore{A7} FRC.Shell.Frame.hopf_section, FRC.Shell.Frame.hopf_counts"
   },
   {
    "paper": "38-s13",
@@ -54358,14 +55121,44 @@
    "tag": "T",
    "name": null,
    "statement": "The resolvable spectrum (Proposition~\\ref{th:window}): symmetric heights, window $|\\hat k|\\le\\kap\\Leftrightarrow4|\\hat k|<\\p$, energy the magnitude with the sign as orientation, pairwise-exact conservation below capacity; instance window $\\{0,\\pm1,\\pm2,\\pm3\\}$.",
-   "source": "\\src{s13.\\allowbreak check\\_s13}",
+   "source": "Proposition~\\ref{th:window}\\newline \\pywit{s13}{p38008}{A8}, \\leanwit{FrcCore}{p38008}{A8} \\lean{FRC.Pair.window, FRC.Pair.window\\_sum, FRC.Pair.window\\_instance}",
    "page": "38-s13/index.html#A8",
    "witness": {
-    "py": null,
-    "lean": []
+    "py": {
+     "href": "frc/ledgers/p38_s13.html#p38008",
+     "script": "p38_s13.py",
+     "line": 167,
+     "verdict": "pass"
+    },
+    "lean": [
+     {
+      "lib": "FrcCore",
+      "module": "FrcCore/Theme/Pair",
+      "name": "FRC.Pair.window",
+      "tier": 0,
+      "ok": true,
+      "page": "lean/core/Theme.html#FRC.Pair.window"
+     },
+     {
+      "lib": "FrcCore",
+      "module": "FrcCore/Theme/Pair",
+      "name": "FRC.Pair.window_sum",
+      "tier": 0,
+      "ok": true,
+      "page": "lean/core/Theme.html#FRC.Pair.window_sum"
+     },
+     {
+      "lib": "FrcCore",
+      "module": "FrcCore/Theme/Pair",
+      "name": "FRC.Pair.window_instance",
+      "tier": 0,
+      "ok": true,
+      "page": "lean/core/Theme.html#FRC.Pair.window_instance"
+     }
+    ]
    },
    "refs": [],
-   "text": "The resolvable spectrum (Proposition th:window): symmetric heights, window $|\\hat k|\\le\\kap\\Leftrightarrow4|\\hat k|<\\p$, energy the magnitude with the sign as orientation, pairwise-exact conservation below capacity; instance window $\\{0,\\pm1,\\pm2,\\pm3\\}$. s13. check_s13"
+   "text": "The resolvable spectrum (Proposition th:window): symmetric heights, window $|\\hat k|\\le\\kap\\Leftrightarrow4|\\hat k|<\\p$, energy the magnitude with the sign as orientation, pairwise-exact conservation below capacity; instance window $\\{0,\\pm1,\\pm2,\\pm3\\}$. Proposition th:window p38008, FrcCore{A8} FRC.Pair.window, FRC.Pair.window_sum, FRC.Pair.window_instance"
   },
   {
    "paper": "38-s13",
@@ -54376,17 +55169,98 @@
    "block": "A",
    "tag": "T",
    "name": null,
-   "statement": "The two fibrations and the frame triple (Theorem~\\ref{th:holography}): $G\\cong\\Prj^{1}\\times\\F_\\p\\times C_{\\p-1}$ for every odd $\\p$, $14\\times13\\times12$; non-split fibres $C_{\\p+1}$ over $\\p(\\p-1)=156$ with the cone-chart section, split fibres $C_{\\p-1}$ over $\\p(\\p+1)=182$ without; the unit $\\im$ is split at every $\\p=4\\kap+1$.",
-   "source": "\\src{s13.\\allowbreak verify-hopf}, \\src{s13.\\allowbreak check\\_fibrations}",
+   "statement": "The two fibrations and the frame triple (Theorem~\\ref{th:holography}): $G\\cong\\Prj^{1}\\times\\F_\\p\\times C_{\\p-1}$ for every odd $\\p$ of the totality, $14\\times13\\times12$; non-split fibres $C_{\\p+1}$ over $\\p(\\p-1)=156$ with the cone-chart section, split fibres $C_{\\p-1}$ over $\\p(\\p+1)=182$ without; the unit $\\im$ is split at every $\\p=4\\kap+1$.",
+   "source": "Theorem~\\ref{th:holography}\\newline \\pywit{s13}{p38050}{A9}, \\leanwit{FrcCore}{p38050}{A9} \\lean{FRC.Shell.Frame.frame\\_triple, FRC.Shell.Frame.unit\\_split, FRC.Shell.Frame.hopf\\_section, FRC.Shell.Frame.hopf\\_counts, FRC.Grav.sphere\\_area\\_rung, FRC.Grav.conic\\_count, FRC.Pair.frame\\_counts}",
    "page": "38-s13/index.html#A9",
    "witness": {
-    "py": null,
-    "lean": []
+    "py": {
+     "href": "frc/ledgers/p38_s13.html#p38050",
+     "script": "p38_s13.py",
+     "line": 204,
+     "verdict": "pass"
+    },
+    "lean": [
+     {
+      "lib": "FrcCore",
+      "module": "FrcCore/Theme/Projective",
+      "name": "FRC.Shell.Frame.frame_triple",
+      "tier": 0,
+      "ok": true,
+      "page": "lean/core/Theme.html#FRC.Shell.Frame.frame_triple"
+     },
+     {
+      "lib": "FrcCore",
+      "module": "FrcCore/Theme/Projective",
+      "name": "FRC.Shell.Frame.unit_split",
+      "tier": 0,
+      "ok": true,
+      "page": "lean/core/Theme.html#FRC.Shell.Frame.unit_split"
+     },
+     {
+      "lib": "FrcCore",
+      "module": "FrcCore/Theme/Projective",
+      "name": "FRC.Shell.Frame.hopf_section",
+      "tier": 0,
+      "ok": true,
+      "page": "lean/core/Theme.html#FRC.Shell.Frame.hopf_section"
+     },
+     {
+      "lib": "FrcCore",
+      "module": "FrcCore/Theme/Projective",
+      "name": "FRC.Shell.Frame.hopf_counts",
+      "tier": 0,
+      "ok": true,
+      "page": "lean/core/Theme.html#FRC.Shell.Frame.hopf_counts"
+     },
+     {
+      "lib": "FrcCore",
+      "module": "FrcCore/Theme/Gravity",
+      "name": "FRC.Grav.sphere_area_rung",
+      "tier": 0,
+      "ok": true,
+      "page": "lean/core/Theme.html#FRC.Grav.sphere_area_rung"
+     },
+     {
+      "lib": "FrcCore",
+      "module": "FrcCore/Theme/Gravity",
+      "name": "FRC.Grav.conic_count",
+      "tier": 0,
+      "ok": true,
+      "page": "lean/core/Theme.html#FRC.Grav.conic_count"
+     },
+     {
+      "lib": "FrcCore",
+      "module": "FrcCore/Theme/Pair",
+      "name": "FRC.Pair.frame_counts",
+      "tier": 0,
+      "ok": true,
+      "page": "lean/core/Theme.html#FRC.Pair.frame_counts"
+     }
+    ]
    },
    "refs": [
     "p00152"
    ],
-   "text": "The two fibrations and the frame triple (Theorem th:holography): $G\\cong\\Prj^{1}\\times\\F_\\p\\times C_{\\p-1}$ for every odd $\\p$, $14\\times13\\times12$; non-split fibres $C_{\\p+1}$ over $\\p(\\p-1)=156$ with the cone-chart section, split fibres $C_{\\p-1}$ over $\\p(\\p+1)=182$ without; the unit $\\im$ is split at every $\\p=4\\kap+1$. s13. verify-hopf, s13. check_fibrations"
+   "text": "The two fibrations and the frame triple (Theorem th:holography): $G\\cong\\Prj^{1}\\times\\F_\\p\\times C_{\\p-1}$ for every odd $\\p$ of the totality, $14\\times13\\times12$; non-split fibres $C_{\\p+1}$ over $\\p(\\p-1)=156$ with the cone-chart section, split fibres $C_{\\p-1}$ over $\\p(\\p+1)=182$ without; the unit $\\im$ is split at every $\\p=4\\kap+1$. Theorem th:holography p38050, FrcCore{A9} FRC.Shell.Frame.frame_triple, FRC.Shell.Frame.unit_split, FRC.Shell.Frame.hopf_section, FRC.Shell.Frame.hopf_counts, FRC.Grav.sphere_area_rung, FRC.Grav.conic_count, FRC.Pair.frame_counts"
+  },
+  {
+   "paper": "38-s13",
+   "no": 38,
+   "rid": "38:A10",
+   "key": "p38039",
+   "label": "A10",
+   "block": "A",
+   "tag": "D",
+   "name": null,
+   "statement": "The drawing chart: the radial ladder $R\\sin(2a\\pi/13)$, the chart angle unit $\\pi/232$ on $C_{464}$, the Hopf leaves; incidence, ordering, winding, anchoring and flow exact, the connecting curves the declared chart, each constant [approx].",
+   "source": "\\S\\ref{sec:lab}",
+   "page": "38-s13/index.html#A10",
+   "witness": {
+    "py": null,
+    "lean": []
+   },
+   "refs": [],
+   "text": "The drawing chart: the radial ladder $R\\sin(2a\\pi/13)$, the chart angle unit $\\pi/232$ on $C_{464}$, the Hopf leaves; incidence, ordering, winding, anchoring and flow exact, the connecting curves the declared chart, each constant [approx]. \\Ssec:lab"
   },
   {
    "paper": "38-s13",
@@ -54398,14 +55272,28 @@
    "tag": "T",
    "name": null,
    "statement": "The node field: $72=3\\times2\\times12$; retarded labels, one chronon of lookback per row.",
-   "source": "\\src{s13.\\allowbreak verify-sky}",
+   "source": "\\S\\ref{sec:sky}\\newline \\pywit{s13}{p38009}{B1}, \\leanwit{FrcCore}{p38009}{B1} \\lean{FRC.Pair.node\\_field}",
    "page": "38-s13/index.html#B1",
    "witness": {
-    "py": null,
-    "lean": []
+    "py": {
+     "href": "frc/ledgers/p38_s13.html#p38009",
+     "script": "p38_s13.py",
+     "line": 277,
+     "verdict": "pass"
+    },
+    "lean": [
+     {
+      "lib": "FrcCore",
+      "module": "FrcCore/Theme/Pair",
+      "name": "FRC.Pair.node_field",
+      "tier": 0,
+      "ok": true,
+      "page": "lean/core/Theme.html#FRC.Pair.node_field"
+     }
+    ]
    },
    "refs": [],
-   "text": "The node field: $72=3\\times2\\times12$; retarded labels, one chronon of lookback per row. s13. verify-sky"
+   "text": "The node field: $72=3\\times2\\times12$; retarded labels, one chronon of lookback per row. \\Ssec:sky p38009, FrcCore{B1} FRC.Pair.node_field"
   },
   {
    "paper": "38-s13",
@@ -54416,15 +55304,47 @@
    "block": "B",
    "tag": "T",
    "name": null,
-   "statement": "The radial ladder: shells at $R\\sin(2a\\pi/13)$; capacity $4a<\\p\\Leftrightarrow a\\le\\kap$.",
-   "source": "\\src{s13.\\allowbreak verify-sky}",
+   "statement": "The radial ladder: shells at $R\\sin(2a\\pi/13)$ [chart]; capacity $4a<\\p\\Leftrightarrow a\\le\\kap$.",
+   "source": "\\S\\ref{sec:sky}\\newline \\pywit{s13}{p38010}{B2}, \\leanwit{FrcCore}{p38010}{B2}, \\leanwit{FrcLedger}{p38010}{B2}; rests on A10 \\lean{FRC.Pair.window, FRC.Pair.window\\_instance, S13.ladder\\_monotone}",
    "page": "38-s13/index.html#B2",
    "witness": {
-    "py": null,
-    "lean": []
+    "py": {
+     "href": "frc/ledgers/p38_s13.html#p38010",
+     "script": "p38_s13.py",
+     "line": 167,
+     "verdict": "pass"
+    },
+    "lean": [
+     {
+      "lib": "FrcCore",
+      "module": "FrcCore/Theme/Pair",
+      "name": "FRC.Pair.window",
+      "tier": 0,
+      "ok": true,
+      "page": "lean/core/Theme.html#FRC.Pair.window"
+     },
+     {
+      "lib": "FrcCore",
+      "module": "FrcCore/Theme/Pair",
+      "name": "FRC.Pair.window_instance",
+      "tier": 0,
+      "ok": true,
+      "page": "lean/core/Theme.html#FRC.Pair.window_instance"
+     },
+     {
+      "lib": "FrcLedger",
+      "module": "FrcLedger/S13",
+      "name": "FRC.S13.ladder_monotone",
+      "tier": 2,
+      "ok": true,
+      "page": "lean/ml/S13.html#FRC.S13.ladder_monotone"
+     }
+    ]
    },
-   "refs": [],
-   "text": "The radial ladder: shells at $R\\sin(2a\\pi/13)$; capacity $4a<\\p\\Leftrightarrow a\\le\\kap$. s13. verify-sky"
+   "refs": [
+    "p38039"
+   ],
+   "text": "The radial ladder: shells at $R\\sin(2a\\pi/13)$ [chart]; capacity $4a<\\p\\Leftrightarrow a\\le\\kap$. \\Ssec:sky p38010, FrcCore{B2}, FrcLedger{B2}; rests on A10 FRC.Pair.window, FRC.Pair.window_instance, S13.ladder_monotone"
   },
   {
    "paper": "38-s13",
@@ -54436,14 +55356,28 @@
    "tag": "T",
    "name": null,
    "statement": "The mounting: $\\times3=\\gen^{4}$, $120^{\\circ}=8$ steps, quarter-blind.",
-   "source": "\\src{s13.\\allowbreak verify-sky}",
+   "source": "\\S\\ref{sec:sky}\\newline \\pywit{s13}{p38011}{B3}, \\leanwit{FrcCore}{p38011}{B3} \\lean{FRC.Pair.mounting}",
    "page": "38-s13/index.html#B3",
    "witness": {
-    "py": null,
-    "lean": []
+    "py": {
+     "href": "frc/ledgers/p38_s13.html#p38011",
+     "script": "p38_s13.py",
+     "line": 281,
+     "verdict": "pass"
+    },
+    "lean": [
+     {
+      "lib": "FrcCore",
+      "module": "FrcCore/Theme/Pair",
+      "name": "FRC.Pair.mounting",
+      "tier": 0,
+      "ok": true,
+      "page": "lean/core/Theme.html#FRC.Pair.mounting"
+     }
+    ]
    },
    "refs": [],
-   "text": "The mounting: $\\times3=\\gen^{4}$, $120^{\\circ}=8$ steps, quarter-blind. s13. verify-sky"
+   "text": "The mounting: $\\times3=\\gen^{4}$, $120^{\\circ}=8$ steps, quarter-blind. \\Ssec:sky p38011, FrcCore{B3} FRC.Pair.mounting"
   },
   {
    "paper": "38-s13",
@@ -54455,16 +55389,38 @@
    "tag": "T",
    "name": null,
    "statement": "The sky chronon: $\\chron\\bmod24$, the fibre product of $C_{12}$ and $C_{8}$ over $C_{4}$; antipodal at $+12$, closed at $+24$.",
-   "source": "\\src{s13.\\allowbreak verify-render}",
+   "source": "\\S\\ref{sec:sky}\\newline \\pywit{s13}{p38012}{B4}, \\leanwit{FrcCore}{p38012}{B4} \\lean{FRC.Pair.sky\\_chronon, FRC.Cycle.cyc\\_add\\_n}",
    "page": "38-s13/index.html#B4",
    "witness": {
-    "py": null,
-    "lean": []
+    "py": {
+     "href": "frc/ledgers/p38_s13.html#p38012",
+     "script": "p38_s13.py",
+     "line": 228,
+     "verdict": "pass"
+    },
+    "lean": [
+     {
+      "lib": "FrcCore",
+      "module": "FrcCore/Theme/Pair",
+      "name": "FRC.Pair.sky_chronon",
+      "tier": 0,
+      "ok": true,
+      "page": "lean/core/Theme.html#FRC.Pair.sky_chronon"
+     },
+     {
+      "lib": "FrcCore",
+      "module": "FrcCore/Cycle",
+      "name": "FRC.Cycle.cyc_add_n",
+      "tier": 0,
+      "ok": true,
+      "page": "lean/core/Cycle.html#FRC.Cycle.cyc_add_n"
+     }
+    ]
    },
    "refs": [
     "p00151"
    ],
-   "text": "The sky chronon: $\\chron\\bmod24$, the fibre product of $C_{12}$ and $C_{8}$ over $C_{4}$; antipodal at $+12$, closed at $+24$. s13. verify-render"
+   "text": "The sky chronon: $\\chron\\bmod24$, the fibre product of $C_{12}$ and $C_{8}$ over $C_{4}$; antipodal at $+12$, closed at $+24$. \\Ssec:sky p38012, FrcCore{B4} FRC.Pair.sky_chronon, FRC.Cycle.cyc_add_n"
   },
   {
    "paper": "38-s13",
@@ -54476,14 +55432,36 @@
    "tag": "T",
    "name": null,
    "statement": "The recurrence data: $696=\\dS\\cdot12$, spinor $1392$ [proxy-chart]; the pair registers only the monotone dephasing.",
-   "source": "\\src{s13.\\allowbreak verify-233}",
+   "source": "Theorem~\\ref{th:precession}\\newline \\pywit{s13}{p38013}{B5}, \\leanwit{FrcCore}{p38013}{B5} \\lean{FRC.Pair.joint\\_cycle, FRC.Pair.recurrence}",
    "page": "38-s13/index.html#B5",
    "witness": {
-    "py": null,
-    "lean": []
+    "py": {
+     "href": "frc/ledgers/p38_s13.html#p38013",
+     "script": "p38_s13.py",
+     "line": 233,
+     "verdict": "pass"
+    },
+    "lean": [
+     {
+      "lib": "FrcCore",
+      "module": "FrcCore/Theme/Pair",
+      "name": "FRC.Pair.joint_cycle",
+      "tier": 0,
+      "ok": true,
+      "page": "lean/core/Theme.html#FRC.Pair.joint_cycle"
+     },
+     {
+      "lib": "FrcCore",
+      "module": "FrcCore/Theme/Pair",
+      "name": "FRC.Pair.recurrence",
+      "tier": 0,
+      "ok": true,
+      "page": "lean/core/Theme.html#FRC.Pair.recurrence"
+     }
+    ]
    },
    "refs": [],
-   "text": "The recurrence data: $696=\\dS\\cdot12$, spinor $1392$ [proxy-chart]; the pair registers only the monotone dephasing. s13. verify-233"
+   "text": "The recurrence data: $696=\\dS\\cdot12$, spinor $1392$ [proxy-chart]; the pair registers only the monotone dephasing. Theorem th:precession p38013, FrcCore{B5} FRC.Pair.joint_cycle, FRC.Pair.recurrence"
   },
   {
    "paper": "38-s13",
@@ -54495,17 +55473,39 @@
    "tag": "T",
    "name": null,
    "statement": "The Hopf representation: node-on-fiber exact; foliation depth $=$ rung ladder; the drawn leaves are the continuum foliation by the unit $\\im$, the chart face of the count of A9, distinguishing neither fibration [chart].",
-   "source": "\\src{s13.\\allowbreak verify-render}; rests on V2",
+   "source": "\\S\\ref{sec:lab}\\newline \\pywit{s13}{p38014}{B6}, \\leanwit{FrcCore}{p38014}{B6}; rests on A10 \\lean{FRC.Shell.Frame.unit\\_split, FRC.Grav.conic\\_count}",
    "page": "38-s13/index.html#B6",
    "witness": {
-    "py": null,
-    "lean": []
+    "py": {
+     "href": "frc/ledgers/p38_s13.html#p38014",
+     "script": "p38_s13.py",
+     "line": 287,
+     "verdict": "pass"
+    },
+    "lean": [
+     {
+      "lib": "FrcCore",
+      "module": "FrcCore/Theme/Projective",
+      "name": "FRC.Shell.Frame.unit_split",
+      "tier": 0,
+      "ok": true,
+      "page": "lean/core/Theme.html#FRC.Shell.Frame.unit_split"
+     },
+     {
+      "lib": "FrcCore",
+      "module": "FrcCore/Theme/Gravity",
+      "name": "FRC.Grav.conic_count",
+      "tier": 0,
+      "ok": true,
+      "page": "lean/core/Theme.html#FRC.Grav.conic_count"
+     }
+    ]
    },
    "refs": [
     "p38039",
     "p38050"
    ],
-   "text": "The Hopf representation: node-on-fiber exact; foliation depth $=$ rung ladder; the drawn leaves are the continuum foliation by the unit $\\im$, the chart face of the count of A9, distinguishing neither fibration [chart]. s13. verify-render; rests on V2"
+   "text": "The Hopf representation: node-on-fiber exact; foliation depth $=$ rung ladder; the drawn leaves are the continuum foliation by the unit $\\im$, the chart face of the count of A9, distinguishing neither fibration [chart]. \\Ssec:lab p38014, FrcCore{B6}; rests on A10 FRC.Shell.Frame.unit_split, FRC.Grav.conic_count"
   },
   {
    "paper": "38-s13",
@@ -54517,14 +55517,44 @@
    "tag": "T",
    "name": null,
    "statement": "The frame leak: halved tick $\\pi/232$; $\\pi/2$ at the quarter station; continuous wrap on $C_{464}$ (Theorems~\\ref{th:flip}, \\ref{th:precession}).",
-   "source": "\\src{s13.\\allowbreak verify-render}",
+   "source": "\\S\\ref{sec:sky}\\newline \\pywit{s13}{p38015}{B7}, \\leanwit{FrcCore}{p38015}{B7} \\lean{FRC.Pair.joint\\_cycle, FRC.Pair.tick\\_half, FRC.Pair.frame\\_leak}",
    "page": "38-s13/index.html#B7",
    "witness": {
-    "py": null,
-    "lean": []
+    "py": {
+     "href": "frc/ledgers/p38_s13.html#p38015",
+     "script": "p38_s13.py",
+     "line": 250,
+     "verdict": "pass"
+    },
+    "lean": [
+     {
+      "lib": "FrcCore",
+      "module": "FrcCore/Theme/Pair",
+      "name": "FRC.Pair.joint_cycle",
+      "tier": 0,
+      "ok": true,
+      "page": "lean/core/Theme.html#FRC.Pair.joint_cycle"
+     },
+     {
+      "lib": "FrcCore",
+      "module": "FrcCore/Theme/Pair",
+      "name": "FRC.Pair.tick_half",
+      "tier": 0,
+      "ok": true,
+      "page": "lean/core/Theme.html#FRC.Pair.tick_half"
+     },
+     {
+      "lib": "FrcCore",
+      "module": "FrcCore/Theme/Pair",
+      "name": "FRC.Pair.frame_leak",
+      "tier": 0,
+      "ok": true,
+      "page": "lean/core/Theme.html#FRC.Pair.frame_leak"
+     }
+    ]
    },
    "refs": [],
-   "text": "The frame leak: halved tick $\\pi/232$; $\\pi/2$ at the quarter station; continuous wrap on $C_{464}$ (Theorems th:flip, th:precession). s13. verify-render"
+   "text": "The frame leak: halved tick $\\pi/232$; $\\pi/2$ at the quarter station; continuous wrap on $C_{464}$ (Theorems th:flip, th:precession). \\Ssec:sky p38015, FrcCore{B7} FRC.Pair.joint_cycle, FRC.Pair.tick_half, FRC.Pair.frame_leak"
   },
   {
    "paper": "38-s13",
@@ -54536,14 +55566,36 @@
    "tag": "T",
    "name": null,
    "statement": "One retarded flow law: $\\varphi(k)=-(b_{C}-k)\\pi/116$; the Subject draws the gauge-free curl (Theorem~\\ref{th:precession}).",
-   "source": "\\src{s13.\\allowbreak verify-render}",
+   "source": "\\S\\ref{sec:flow}\\newline \\pywit{s13}{p38016}{C1}, \\leanwit{FrcCore}{p38016}{C1} \\lean{FRC.Pair.tick\\_home, FRC.Pair.flow\\_stations}",
    "page": "38-s13/index.html#C1",
    "witness": {
-    "py": null,
-    "lean": []
+    "py": {
+     "href": "frc/ledgers/p38_s13.html#p38016",
+     "script": "p38_s13.py",
+     "line": 256,
+     "verdict": "pass"
+    },
+    "lean": [
+     {
+      "lib": "FrcCore",
+      "module": "FrcCore/Theme/Pair",
+      "name": "FRC.Pair.tick_home",
+      "tier": 0,
+      "ok": true,
+      "page": "lean/core/Theme.html#FRC.Pair.tick_home"
+     },
+     {
+      "lib": "FrcCore",
+      "module": "FrcCore/Theme/Pair",
+      "name": "FRC.Pair.flow_stations",
+      "tier": 0,
+      "ok": true,
+      "page": "lean/core/Theme.html#FRC.Pair.flow_stations"
+     }
+    ]
    },
    "refs": [],
-   "text": "One retarded flow law: $\\varphi(k)=-(b_{C}-k)\\pi/116$; the Subject draws the gauge-free curl (Theorem th:precession). s13. verify-render"
+   "text": "One retarded flow law: $\\varphi(k)=-(b_{C}-k)\\pi/116$; the Subject draws the gauge-free curl (Theorem th:precession). \\Ssec:flow p38016, FrcCore{C1} FRC.Pair.tick_home, FRC.Pair.flow_stations"
   },
   {
    "paper": "38-s13",
@@ -54555,17 +55607,23 @@
    "tag": "T",
    "name": null,
    "statement": "One retarded flow across the three representations (its Dirac reading with D10, D11); the toggle switches fibers only.",
-   "source": "\\src{s13.\\allowbreak verify-render}",
+   "source": "\\S\\ref{sec:flow}\\newline \\pywit{s13}{p38017}{C2}; rests on C1",
    "page": "38-s13/index.html#C2",
    "witness": {
-    "py": null,
+    "py": {
+     "href": "frc/ledgers/p38_s13.html#p38017",
+     "script": "p38_s13.py",
+     "line": 256,
+     "verdict": "pass"
+    },
     "lean": []
    },
    "refs": [
+    "p38016",
     "p38034",
     "p38035"
    ],
-   "text": "One retarded flow across the three representations (its Dirac reading with D10, D11); the toggle switches fibers only. s13. verify-render"
+   "text": "One retarded flow across the three representations (its Dirac reading with D10, D11); the toggle switches fibers only. \\Ssec:flow p38017; rests on C1"
   },
   {
    "paper": "38-s13",
@@ -54577,14 +55635,28 @@
    "tag": "T",
    "name": null,
    "statement": "Ownership: the origin never dressed; rays anchor at the Observer at every clock state.",
-   "source": "\\src{s13.\\allowbreak verify-render}",
+   "source": "\\S\\ref{sec:flow}\\newline \\pywit{s13}{p38018}{C3}, \\leanwit{FrcCore}{p38018}{C3} \\lean{FRC.Pair.ownership}",
    "page": "38-s13/index.html#C3",
    "witness": {
-    "py": null,
-    "lean": []
+    "py": {
+     "href": "frc/ledgers/p38_s13.html#p38018",
+     "script": "p38_s13.py",
+     "line": 263,
+     "verdict": "pass"
+    },
+    "lean": [
+     {
+      "lib": "FrcCore",
+      "module": "FrcCore/Theme/Pair",
+      "name": "FRC.Pair.ownership",
+      "tier": 0,
+      "ok": true,
+      "page": "lean/core/Theme.html#FRC.Pair.ownership"
+     }
+    ]
    },
    "refs": [],
-   "text": "Ownership: the origin never dressed; rays anchor at the Observer at every clock state. s13. verify-render"
+   "text": "Ownership: the origin never dressed; rays anchor at the Observer at every clock state. \\Ssec:flow p38018, FrcCore{C3} FRC.Pair.ownership"
   },
   {
    "paper": "38-s13",
@@ -54596,14 +55668,36 @@
    "tag": "T",
    "name": null,
    "statement": "The half-turn exact: odd chart, point reflection; the rim kiss (Theorem~\\ref{th:channel}).",
-   "source": "\\src{s13.\\allowbreak verify-render}",
+   "source": "\\S\\ref{sec:flow}\\newline \\pywit{s13}{p38019}{C4}, \\leanwit{FrcCore}{p38019}{C4} \\lean{FRC.Pair.half\\_turn, FRC.Pair.half\\_turn\\_instance}",
    "page": "38-s13/index.html#C4",
    "witness": {
-    "py": null,
-    "lean": []
+    "py": {
+     "href": "frc/ledgers/p38_s13.html#p38019",
+     "script": "p38_s13.py",
+     "line": 266,
+     "verdict": "pass"
+    },
+    "lean": [
+     {
+      "lib": "FrcCore",
+      "module": "FrcCore/Theme/Pair",
+      "name": "FRC.Pair.half_turn",
+      "tier": 0,
+      "ok": true,
+      "page": "lean/core/Theme.html#FRC.Pair.half_turn"
+     },
+     {
+      "lib": "FrcCore",
+      "module": "FrcCore/Theme/Pair",
+      "name": "FRC.Pair.half_turn_instance",
+      "tier": 0,
+      "ok": true,
+      "page": "lean/core/Theme.html#FRC.Pair.half_turn_instance"
+     }
+    ]
    },
    "refs": [],
-   "text": "The half-turn exact: odd chart, point reflection; the rim kiss (Theorem th:channel). s13. verify-render"
+   "text": "The half-turn exact: odd chart, point reflection; the rim kiss (Theorem th:channel). \\Ssec:flow p38019, FrcCore{C4} FRC.Pair.half_turn, FRC.Pair.half_turn_instance"
   },
   {
    "paper": "38-s13",
@@ -54615,14 +55709,36 @@
    "tag": "T",
    "name": null,
    "statement": "The $C_{4}$ stations: parity image at $b_{C}=116+k$, home at $b_{C}=k$, gauge-free.",
-   "source": "\\src{s13.\\allowbreak verify-render}",
+   "source": "\\S\\ref{sec:flow}\\newline \\pywit{s13}{p38020}{C5}, \\leanwit{FrcCore}{p38020}{C5} \\lean{FRC.Pair.tick\\_half, FRC.Pair.flow\\_stations}",
    "page": "38-s13/index.html#C5",
    "witness": {
-    "py": null,
-    "lean": []
+    "py": {
+     "href": "frc/ledgers/p38_s13.html#p38020",
+     "script": "p38_s13.py",
+     "line": 259,
+     "verdict": "pass"
+    },
+    "lean": [
+     {
+      "lib": "FrcCore",
+      "module": "FrcCore/Theme/Pair",
+      "name": "FRC.Pair.tick_half",
+      "tier": 0,
+      "ok": true,
+      "page": "lean/core/Theme.html#FRC.Pair.tick_half"
+     },
+     {
+      "lib": "FrcCore",
+      "module": "FrcCore/Theme/Pair",
+      "name": "FRC.Pair.flow_stations",
+      "tier": 0,
+      "ok": true,
+      "page": "lean/core/Theme.html#FRC.Pair.flow_stations"
+     }
+    ]
    },
    "refs": [],
-   "text": "The $C_{4}$ stations: parity image at $b_{C}=116+k$, home at $b_{C}=k$, gauge-free. s13. verify-render"
+   "text": "The $C_{4}$ stations: parity image at $b_{C}=116+k$, home at $b_{C}=k$, gauge-free. \\Ssec:flow p38020, FrcCore{C5} FRC.Pair.tick_half, FRC.Pair.flow_stations"
   },
   {
    "paper": "38-s13",
@@ -54634,16 +55750,28 @@
    "tag": "T",
    "name": null,
    "statement": "The dilation instance $3/58$; the $(53,13)$ kill test (Theorems~\\ref{th:precession}, \\ref{th:channel}).",
-   "source": "\\src{s13.\\allowbreak check\\_s13}",
+   "source": "Theorem~\\ref{th:precession}\\newline \\pywit{s13}{p38021}{C6}, \\leanwit{FrcCore}{p38021}{C6} \\lean{FRC.Pair.kill\\_test}",
    "page": "38-s13/index.html#C6",
    "witness": {
-    "py": null,
-    "lean": []
+    "py": {
+     "href": "frc/ledgers/p38_s13.html#p38021",
+     "script": "p38_s13.py",
+     "line": 350,
+     "verdict": "pass"
+    },
+    "lean": [
+     {
+      "lib": "FrcCore",
+      "module": "FrcCore/Theme/Pair",
+      "name": "FRC.Pair.kill_test",
+      "tier": 0,
+      "ok": true,
+      "page": "lean/core/Theme.html#FRC.Pair.kill_test"
+     }
+    ]
    },
-   "refs": [
-    "p00038"
-   ],
-   "text": "The dilation instance $3/58$; the $(53,13)$ kill test (Theorems th:precession, th:channel). s13. check_s13"
+   "refs": [],
+   "text": "The dilation instance $3/58$; the $(53,13)$ kill test (Theorems th:precession, th:channel). Theorem th:precession p38021, FrcCore{C6} FRC.Pair.kill_test"
   },
   {
    "paper": "38-s13",
@@ -54655,14 +55783,52 @@
    "tag": "T",
    "name": null,
    "statement": "The two faces of the leak: angular $\\kap/\\dS$ (the curl), temporal $\\kap/(2\\dS)$ (the ring, on $C_{464}$); ratio exactly $2$, the double cover.",
-   "source": "\\src{s13.\\allowbreak check\\_o1}",
+   "source": "Statement~\\ref{th:floors}\\newline \\pywit{s13}{p38022}{C7}, \\leanwit{FrcCore}{p38022}{C7}, \\leanwit{FrcLedger}{p38022}{C7} \\lean{FRC.Grav.two\\_face\\_count, FRC.Pair.leak\\_rate, FRC.Pair.two\\_faces, S13.registration\\_dictionary}",
    "page": "38-s13/index.html#C7",
    "witness": {
-    "py": null,
-    "lean": []
+    "py": {
+     "href": "frc/ledgers/p38_s13.html#p38022",
+     "script": "p38_s13.py",
+     "line": 356,
+     "verdict": "pass"
+    },
+    "lean": [
+     {
+      "lib": "FrcCore",
+      "module": "FrcCore/Theme/Gravity",
+      "name": "FRC.Grav.two_face_count",
+      "tier": 0,
+      "ok": true,
+      "page": "lean/core/Theme.html#FRC.Grav.two_face_count"
+     },
+     {
+      "lib": "FrcCore",
+      "module": "FrcCore/Theme/Pair",
+      "name": "FRC.Pair.leak_rate",
+      "tier": 0,
+      "ok": true,
+      "page": "lean/core/Theme.html#FRC.Pair.leak_rate"
+     },
+     {
+      "lib": "FrcCore",
+      "module": "FrcCore/Theme/Pair",
+      "name": "FRC.Pair.two_faces",
+      "tier": 0,
+      "ok": true,
+      "page": "lean/core/Theme.html#FRC.Pair.two_faces"
+     },
+     {
+      "lib": "FrcLedger",
+      "module": "FrcLedger/S13",
+      "name": "FRC.S13.registration_dictionary",
+      "tier": 2,
+      "ok": true,
+      "page": "lean/ml/S13.html#FRC.S13.registration_dictionary"
+     }
+    ]
    },
    "refs": [],
-   "text": "The two faces of the leak: angular $\\kap/\\dS$ (the curl), temporal $\\kap/(2\\dS)$ (the ring, on $C_{464}$); ratio exactly $2$, the double cover. s13. check_o1"
+   "text": "The two faces of the leak: angular $\\kap/\\dS$ (the curl), temporal $\\kap/(2\\dS)$ (the ring, on $C_{464}$); ratio exactly $2$, the double cover. Statement th:floors p38022, FrcCore{C7}, FrcLedger{C7} FRC.Grav.two_face_count, FRC.Pair.leak_rate, FRC.Pair.two_faces, S13.registration_dictionary"
   },
   {
    "paper": "38-s13",
@@ -54674,17 +55840,47 @@
    "tag": "T",
    "name": null,
    "statement": "The face-ratio identity, orbit-free (both sides' scales cancel): the pair's two faces (C7) have ratio exactly $2$; read in the comparison chart of the laboratory dictionary (C12), the parametrised isotropic metric [approx: continuum chart], the identity forces $2\\gamma-\\beta=1$, a combination measured to $10^{-4}$ (Cassini, lunar laser ranging) and so discriminating no metric the data have not already selected; Brans--Dicke's $2\\gamma-\\beta-1=-2/(2+\\omega)$ is the same fact read in one family.",
-   "source": "\\src{s13.\\allowbreak check\\_o1}, \\src{s13.\\allowbreak o1\\_gr\\_chart}",
+   "source": "Statement~\\ref{th:floors}\\newline \\pywit{s13}{p38023}{C8}, \\leanwit{FrcCore}{p38023}{C8}, \\leanwit{FrcLedger}{p38023}{C8}; rests on C7, C12 \\lean{FRC.Drift.cover\\_triangle, FRC.Drift.cover\\_deviation, S13.ppn\\_faces}",
    "page": "38-s13/index.html#C8",
    "witness": {
-    "py": null,
-    "lean": []
+    "py": {
+     "href": "frc/ledgers/p38_s13.html#p38023",
+     "script": "p38_s13.py",
+     "line": 367,
+     "verdict": "pass"
+    },
+    "lean": [
+     {
+      "lib": "FrcCore",
+      "module": "FrcCore/Theme/Drift",
+      "name": "FRC.Drift.cover_triangle",
+      "tier": 0,
+      "ok": true,
+      "page": "lean/core/Theme.html#FRC.Drift.cover_triangle"
+     },
+     {
+      "lib": "FrcCore",
+      "module": "FrcCore/Theme/Drift",
+      "name": "FRC.Drift.cover_deviation",
+      "tier": 0,
+      "ok": true,
+      "page": "lean/core/Theme.html#FRC.Drift.cover_deviation"
+     },
+     {
+      "lib": "FrcLedger",
+      "module": "FrcLedger/S13",
+      "name": "FRC.S13.ppn_faces",
+      "tier": 2,
+      "ok": true,
+      "page": "lean/ml/S13.html#FRC.S13.ppn_faces"
+     }
+    ]
    },
    "refs": [
     "p38022",
     "p38052"
    ],
-   "text": "The face-ratio identity, orbit-free (both sides' scales cancel): the pair's two faces (C7) have ratio exactly $2$; read in the comparison chart of the laboratory dictionary (C12), the parametrised isotropic metric [approx: continuum chart], the identity forces $2\\gamma-\\beta=1$, a combination measured to $10^{-4}$ (Cassini, lunar laser ranging) and so discriminating no metric the data have not already selected; Brans–Dicke's $2\\gamma-\\beta-1=-2/(2+\\omega)$ is the same fact read in one family. s13. check_o1, s13. o1_gr_chart"
+   "text": "The face-ratio identity, orbit-free (both sides' scales cancel): the pair's two faces (C7) have ratio exactly $2$; read in the comparison chart of the laboratory dictionary (C12), the parametrised isotropic metric [approx: continuum chart], the identity forces $2\\gamma-\\beta=1$, a combination measured to $10^{-4}$ (Cassini, lunar laser ranging) and so discriminating no metric the data have not already selected; Brans–Dicke's $2\\gamma-\\beta-1=-2/(2+\\omega)$ is the same fact read in one family. Statement th:floors p38023, FrcCore{C8}, FrcLedger{C8}; rests on C7, C12 FRC.Drift.cover_triangle, FRC.Drift.cover_deviation, S13.ppn_faces"
   },
   {
    "paper": "38-s13",
@@ -54696,16 +55892,38 @@
    "tag": "T",
    "name": null,
    "statement": "The per-chronon leak rate: $(\\kap/\\dS)/(\\p-1)=1/(4\\dS)=1/(\\Om-1)$ exactly, $\\kap$-free --- one chart tick per chronon (the temporal face on the cover $1/(2(\\Om-1))$); at the instance $(3/58)/12=1/232$, at $(5,233)$ $(1/58)/4=1/232$. The per-revolution fraction $\\kap/\\dS$ (C7) is this rate times the shell period $\\p-1$.",
-   "source": "\\src{s13.\\allowbreak check\\_s13}",
+   "source": "\\S\\ref{sec:reality}\\newline \\pywit{s13}{p38044}{C10}, \\leanwit{FrcCore}{p38044}{C10} \\lean{FRC.Pair.leak\\_rate, FRC.Pair.two\\_faces}",
    "page": "38-s13/index.html#C10",
    "witness": {
-    "py": null,
-    "lean": []
+    "py": {
+     "href": "frc/ledgers/p38_s13.html#p38044",
+     "script": "p38_s13.py",
+     "line": 173,
+     "verdict": "pass"
+    },
+    "lean": [
+     {
+      "lib": "FrcCore",
+      "module": "FrcCore/Theme/Pair",
+      "name": "FRC.Pair.leak_rate",
+      "tier": 0,
+      "ok": true,
+      "page": "lean/core/Theme.html#FRC.Pair.leak_rate"
+     },
+     {
+      "lib": "FrcCore",
+      "module": "FrcCore/Theme/Pair",
+      "name": "FRC.Pair.two_faces",
+      "tier": 0,
+      "ok": true,
+      "page": "lean/core/Theme.html#FRC.Pair.two_faces"
+     }
+    ]
    },
    "refs": [
     "p38022"
    ],
-   "text": "The per-chronon leak rate: $(\\kap/\\dS)/(\\p-1)=1/(4\\dS)=1/(\\Om-1)$ exactly, $\\kap$-free — one chart tick per chronon (the temporal face on the cover $1/(2(\\Om-1))$); at the instance $(3/58)/12=1/232$, at $(5,233)$ $(1/58)/4=1/232$. The per-revolution fraction $\\kap/\\dS$ (C7) is this rate times the shell period $\\p-1$. s13. check_s13"
+   "text": "The per-chronon leak rate: $(\\kap/\\dS)/(\\p-1)=1/(4\\dS)=1/(\\Om-1)$ exactly, $\\kap$-free — one chart tick per chronon (the temporal face on the cover $1/(2(\\Om-1))$); at the instance $(3/58)/12=1/232$, at $(5,233)$ $(1/58)/4=1/232$. The per-revolution fraction $\\kap/\\dS$ (C7) is this rate times the shell period $\\p-1$. \\Ssec:reality p38044, FrcCore{C10} FRC.Pair.leak_rate, FRC.Pair.two_faces"
   },
   {
    "paper": "38-s13",
@@ -54739,17 +55957,22 @@
    "block": "C",
    "tag": "D",
    "name": null,
-   "statement": "The laboratory dictionary: on a hosted pair $p_{\\mathrm{sl}}=3(\\dS/\\kap)\\,r_{g}$ (Statement~\\ref{th:floors}) is one relation, homogeneous of degree $0$, between two chart lengths, fixing their ratio $3\\dS/\\kap$ ($58$ at the instance, $174$ at $(5,233)$) and consuming no chart datum: a definition of the chart's $r_{g}$ per $(\\kap,\\dS)$, host-decided, under which $3\\,r_{g}/p_{\\mathrm{sl}}=\\kap/\\dS$ is C7's identity; no hosted pair confirms or refutes it (master E9).",
-   "source": "\\src{s13.\\allowbreak check\\_o1}",
+   "statement": "The laboratory dictionary: on a hosted pair $p_{\\mathrm{sl}}=3(\\dS/\\kap)\\,r_{g}$ (Statement~\\ref{th:floors}) is one relation, homogeneous of degree $0$, between two chart lengths, fixing their ratio $3\\dS/\\kap$ ($58$ at the instance, $174$ at $(5,233)$) and consuming no chart datum: a definition of the chart's $r_{g}$ per $(\\kap,\\dS)$, host-decided, under which $3\\,r_{g}/p_{\\mathrm{sl}}=\\kap/\\dS$ is C7's identity; no hosted pair confirms or refutes it.",
+   "source": "Statement~\\ref{th:floors}\\newline \\pywit{s13}{p38052}{C12}",
    "page": "38-s13/index.html#C12",
    "witness": {
-    "py": null,
+    "py": {
+     "href": "frc/ledgers/p38_s13.html#p38052",
+     "script": "p38_s13.py",
+     "line": 374,
+     "verdict": "pass"
+    },
     "lean": []
    },
    "refs": [
     "p38022"
    ],
-   "text": "The laboratory dictionary: on a hosted pair $p_{\\mathrm{sl}}=3(\\dS/\\kap) r_{g}$ (Statement th:floors) is one relation, homogeneous of degree $0$, between two chart lengths, fixing their ratio $3\\dS/\\kap$ ($58$ at the instance, $174$ at $(5,233)$) and consuming no chart datum: a definition of the chart's $r_{g}$ per $(\\kap,\\dS)$, host-decided, under which $3 r_{g}/p_{\\mathrm{sl}}=\\kap/\\dS$ is C7's identity; no hosted pair confirms or refutes it (master E9). s13. check_o1"
+   "text": "The laboratory dictionary: on a hosted pair $p_{\\mathrm{sl}}=3(\\dS/\\kap) r_{g}$ (Statement th:floors) is one relation, homogeneous of degree $0$, between two chart lengths, fixing their ratio $3\\dS/\\kap$ ($58$ at the instance, $174$ at $(5,233)$) and consuming no chart datum: a definition of the chart's $r_{g}$ per $(\\kap,\\dS)$, host-decided, under which $3 r_{g}/p_{\\mathrm{sl}}=\\kap/\\dS$ is C7's identity; no hosted pair confirms or refutes it. Statement th:floors p38052"
   },
   {
    "paper": "38-s13",
@@ -54760,18 +55983,91 @@
    "block": "C",
    "tag": "T",
    "name": null,
-   "statement": "The apsidal bound: a nested Subject registers $\\kap/\\dS=(\\p-1)/(\\Om-1)<1/(\\sqrt\\Om+1)$, the nesting condition $\\p^{2}<\\Om$ itself; on the physical Carrier no Subject registers an observed precession (Mercury's $8.0\\times10^{-8}$ per revolution sits $54$ orders above the bound $10^{-61}$ [approx]), and the pair reads per orbit of period $T$ the floor $TH_{0}/2\\pi$ (C10, C11; \\S\\ref{sec:reality}). Master E8.",
-   "source": "master \\src{check\\_e8}",
+   "statement": "The apsidal bound: a nested Subject registers $\\kap/\\dS=(\\p-1)/(\\Om-1)<1/(\\sqrt\\Om+1)$, the nesting condition $\\p^{2}<\\Om$ itself; on the physical Carrier no Subject registers an observed precession (Mercury's $8.0\\times10^{-8}$ per revolution sits $54$ orders above the bound $10^{-61}$ [approx]), and the pair reads per orbit of period $T$ the floor $TH_{0}/2\\pi$ (C10, C11; \\S\\ref{sec:reality}).",
+   "source": "\\S\\ref{sec:reality}\\newline \\pywit{s13}{p38053}{C13}, \\leanwit{FrcCore}{p38053}{C13}; rests on C10, C11 \\lean{FRC.Drift.nesting\\_bound, FRC.Pair.leak\\_rate}",
    "page": "38-s13/index.html#C13",
    "witness": {
-    "py": null,
-    "lean": []
+    "py": {
+     "href": "frc/ledgers/p38_s13.html#p38053",
+     "script": "p38_s13.py",
+     "line": 179,
+     "verdict": "pass"
+    },
+    "lean": [
+     {
+      "lib": "FrcCore",
+      "module": "FrcCore/Theme/Drift",
+      "name": "FRC.Drift.nesting_bound",
+      "tier": 0,
+      "ok": true,
+      "page": "lean/core/Theme.html#FRC.Drift.nesting_bound"
+     },
+     {
+      "lib": "FrcCore",
+      "module": "FrcCore/Theme/Pair",
+      "name": "FRC.Pair.leak_rate",
+      "tier": 0,
+      "ok": true,
+      "page": "lean/core/Theme.html#FRC.Pair.leak_rate"
+     }
+    ]
    },
    "refs": [
     "p38044",
     "p38045"
    ],
-   "text": "The apsidal bound: a nested Subject registers $\\kap/\\dS=(\\p-1)/(\\Om-1)<1/(\\sqrt\\Om+1)$, the nesting condition $\\p^{2}<\\Om$ itself; on the physical Carrier no Subject registers an observed precession (Mercury's $8.0\\times10^{-8}$ per revolution sits $54$ orders above the bound $10^{-61}$ [approx]), and the pair reads per orbit of period $T$ the floor $TH_{0}/2\\pi$ (C10, C11; \\Ssec:reality). Master E8. master check_e8"
+   "text": "The apsidal bound: a nested Subject registers $\\kap/\\dS=(\\p-1)/(\\Om-1)<1/(\\sqrt\\Om+1)$, the nesting condition $\\p^{2}<\\Om$ itself; on the physical Carrier no Subject registers an observed precession (Mercury's $8.0\\times10^{-8}$ per revolution sits $54$ orders above the bound $10^{-61}$ [approx]), and the pair reads per orbit of period $T$ the floor $TH_{0}/2\\pi$ (C10, C11; \\Ssec:reality). \\Ssec:reality p38053, FrcCore{C13}; rests on C10, C11 FRC.Drift.nesting_bound, FRC.Pair.leak_rate"
+  },
+  {
+   "paper": "38-s13",
+   "no": 38,
+   "rid": "38:C14",
+   "key": "p38054",
+   "label": "C14",
+   "block": "C",
+   "tag": "T",
+   "name": null,
+   "statement": "The joint cycle (Theorem~\\ref{th:precession}): for every $\\kap$-odd pair with $\\dS\\equiv2\\pmod4$ the chart count advances by $(\\p-1)/(\\Om-1)=\\kap/\\dS$ of its cycle per shell revolution; the joint cycle closes at $\\mathrm{lcm}(\\p-1,\\Om-1)$ at (home, home), and the exact midpoint is (home, $-1$).",
+   "source": "Theorem~\\ref{th:precession}\\newline \\pywit{s13}{p38054}{C14}, \\leanwit{FrcCore}{p38054}{C14}; rests on A1 \\lean{FRC.Pair.joint\\_cycle, FRC.Pair.joint\\_cycle\\_frame, FRC.Pair.recurrence}",
+   "page": "38-s13/index.html#C14",
+   "witness": {
+    "py": {
+     "href": "frc/ledgers/p38_s13.html#p38054",
+     "script": "p38_s13.py",
+     "line": 243,
+     "verdict": "pass"
+    },
+    "lean": [
+     {
+      "lib": "FrcCore",
+      "module": "FrcCore/Theme/Pair",
+      "name": "FRC.Pair.joint_cycle",
+      "tier": 0,
+      "ok": true,
+      "page": "lean/core/Theme.html#FRC.Pair.joint_cycle"
+     },
+     {
+      "lib": "FrcCore",
+      "module": "FrcCore/Theme/Pair",
+      "name": "FRC.Pair.joint_cycle_frame",
+      "tier": 0,
+      "ok": true,
+      "page": "lean/core/Theme.html#FRC.Pair.joint_cycle_frame"
+     },
+     {
+      "lib": "FrcCore",
+      "module": "FrcCore/Theme/Pair",
+      "name": "FRC.Pair.recurrence",
+      "tier": 0,
+      "ok": true,
+      "page": "lean/core/Theme.html#FRC.Pair.recurrence"
+     }
+    ]
+   },
+   "refs": [
+    "p38001"
+   ],
+   "text": "The joint cycle (Theorem th:precession): for every $\\kap$-odd pair with $\\dS\\equiv2\\pmod4$ the chart count advances by $(\\p-1)/(\\Om-1)=\\kap/\\dS$ of its cycle per shell revolution; the joint cycle closes at $\\mathrm{lcm}(\\p-1,\\Om-1)$ at (home, home), and the exact midpoint is (home, $-1$). Theorem th:precession p38054, FrcCore{C14}; rests on A1 FRC.Pair.joint_cycle, FRC.Pair.joint_cycle_frame, FRC.Pair.recurrence"
   },
   {
    "paper": "38-s13",
@@ -54783,14 +56079,36 @@
    "tag": "T",
    "name": null,
    "statement": "The capacity stations: $4d<13$ selects $\\{1,2,3,10,11,12\\}$; threading exact, all $232$ states.",
-   "source": "\\src{s13.\\allowbreak verify-render}",
+   "source": "\\S\\ref{sec:meridians}\\newline \\pywit{s13}{p38025}{D1}, \\leanwit{FrcCore}{p38025}{D1} \\lean{FRC.Pair.stations, FRC.Pair.window}",
    "page": "38-s13/index.html#D1",
    "witness": {
-    "py": null,
-    "lean": []
+    "py": {
+     "href": "frc/ledgers/p38_s13.html#p38025",
+     "script": "p38_s13.py",
+     "line": 292,
+     "verdict": "pass"
+    },
+    "lean": [
+     {
+      "lib": "FrcCore",
+      "module": "FrcCore/Theme/Pair",
+      "name": "FRC.Pair.stations",
+      "tier": 0,
+      "ok": true,
+      "page": "lean/core/Theme.html#FRC.Pair.stations"
+     },
+     {
+      "lib": "FrcCore",
+      "module": "FrcCore/Theme/Pair",
+      "name": "FRC.Pair.window",
+      "tier": 0,
+      "ok": true,
+      "page": "lean/core/Theme.html#FRC.Pair.window"
+     }
+    ]
    },
    "refs": [],
-   "text": "The capacity stations: $4d<13$ selects $\\{1,2,3,10,11,12\\}$; threading exact, all $232$ states. s13. verify-render"
+   "text": "The capacity stations: $4d<13$ selects $\\{1,2,3,10,11,12\\}$; threading exact, all $232$ states. \\Ssec:meridians p38025, FrcCore{D1} FRC.Pair.stations, FRC.Pair.window"
   },
   {
    "paper": "38-s13",
@@ -54801,19 +56119,33 @@
    "block": "D",
    "tag": "T",
    "name": null,
-   "statement": "The step law $\\tfrac{11\\pi}{12}+\\tfrac{\\pi}{13}+\\tfrac{\\pi}{232}$ and the leak $\\pi/156-\\pi/232$ on the space trace: exact rationals of the chart angle, the angle itself the declared chart unit (V2).",
-   "source": "\\src{s13.\\allowbreak check\\_s13}; rests on B3, B7",
+   "statement": "The step law $\\tfrac{11\\pi}{12}+\\tfrac{\\pi}{13}+\\tfrac{\\pi}{232}$ and the leak $\\pi/156-\\pi/232$ on the space trace: exact rationals of the chart angle, the angle itself the declared chart unit (A10).",
+   "source": "\\S\\ref{sec:meridians}\\newline \\pywit{s13}{p38026}{D2}, \\leanwit{FrcCore}{p38026}{D2}; rests on B3, B7, A10 \\lean{FRC.Pair.step\\_law}",
    "page": "38-s13/index.html#D2",
    "witness": {
-    "py": null,
-    "lean": []
+    "py": {
+     "href": "frc/ledgers/p38_s13.html#p38026",
+     "script": "p38_s13.py",
+     "line": 296,
+     "verdict": "pass"
+    },
+    "lean": [
+     {
+      "lib": "FrcCore",
+      "module": "FrcCore/Theme/Pair",
+      "name": "FRC.Pair.step_law",
+      "tier": 0,
+      "ok": true,
+      "page": "lean/core/Theme.html#FRC.Pair.step_law"
+     }
+    ]
    },
    "refs": [
     "p38011",
     "p38015",
     "p38039"
    ],
-   "text": "The step law $\\tfrac{11\\pi}{12}+\\tfrac{\\pi}{13}+\\tfrac{\\pi}{232}$ and the leak $\\pi/156-\\pi/232$ on the space trace: exact rationals of the chart angle, the angle itself the declared chart unit (V2). s13. check_s13; rests on B3, B7"
+   "text": "The step law $\\tfrac{11\\pi}{12}+\\tfrac{\\pi}{13}+\\tfrac{\\pi}{232}$ and the leak $\\pi/156-\\pi/232$ on the space trace: exact rationals of the chart angle, the angle itself the declared chart unit (A10). \\Ssec:meridians p38026, FrcCore{D2}; rests on B3, B7, A10 FRC.Pair.step_law"
   },
   {
    "paper": "38-s13",
@@ -54824,19 +56156,41 @@
    "block": "D",
    "tag": "T",
    "name": null,
-   "statement": "The scale-tower circuit: the period at the FRC algebra half; the radius $R\\lvert\\sin(2a\\pi/13)\\rvert$ the declared drawing chart (V2, [approx]).",
-   "source": "\\src{s13.\\allowbreak verify-render}; rests on A6, B2",
+   "statement": "The scale-tower circuit: the period at the FRC algebra half; the radius $R\\lvert\\sin(2a\\pi/13)\\rvert$ the declared drawing chart (A10, [approx]).",
+   "source": "\\S\\ref{sec:meridians}\\newline \\pywit{s13}{p38027}{D3}, \\leanwit{FrcCore}{p38027}{D3}; rests on A6, B2, A10 \\lean{FRC.Grav.calibration, FRC.Pair.tower\\_period}",
    "page": "38-s13/index.html#D3",
    "witness": {
-    "py": null,
-    "lean": []
+    "py": {
+     "href": "frc/ledgers/p38_s13.html#p38027",
+     "script": "p38_s13.py",
+     "line": 300,
+     "verdict": "pass"
+    },
+    "lean": [
+     {
+      "lib": "FrcCore",
+      "module": "FrcCore/Theme/Gravity",
+      "name": "FRC.Grav.calibration",
+      "tier": 0,
+      "ok": true,
+      "page": "lean/core/Theme.html#FRC.Grav.calibration"
+     },
+     {
+      "lib": "FrcCore",
+      "module": "FrcCore/Theme/Pair",
+      "name": "FRC.Pair.tower_period",
+      "tier": 0,
+      "ok": true,
+      "page": "lean/core/Theme.html#FRC.Pair.tower_period"
+     }
+    ]
    },
    "refs": [
     "p38006",
     "p38010",
     "p38039"
    ],
-   "text": "The scale-tower circuit: the period at the FRC algebra half; the radius $R\\lvert\\sin(2a\\pi/13)\\rvert$ the declared drawing chart (V2, [approx]). s13. verify-render; rests on A6, B2"
+   "text": "The scale-tower circuit: the period at the FRC algebra half; the radius $R\\lvert\\sin(2a\\pi/13)\\rvert$ the declared drawing chart (A10, [approx]). \\Ssec:meridians p38027, FrcCore{D3}; rests on A6, B2, A10 FRC.Grav.calibration, FRC.Pair.tower_period"
   },
   {
    "paper": "38-s13",
@@ -54848,14 +56202,14 @@
    "tag": "R",
    "name": null,
    "statement": "The photon travels scales: absorption is the completed decoherence cascade; nothing crosses the Observer.",
-   "source": "\\src{s13.\\allowbreak verify-render}",
+   "source": "\\S\\ref{sec:meridians}",
    "page": "38-s13/index.html#D4",
    "witness": {
     "py": null,
     "lean": []
    },
    "refs": [],
-   "text": "The photon travels scales: absorption is the completed decoherence cascade; nothing crosses the Observer. s13. verify-render"
+   "text": "The photon travels scales: absorption is the completed decoherence cascade; nothing crosses the Observer. \\Ssec:meridians"
   },
   {
    "paper": "38-s13",
@@ -54867,14 +56221,36 @@
    "tag": "T",
    "name": null,
    "statement": "Four rays realise the four quarter classes (Theorem~\\ref{th:channel}), each a fiber geodesic to the quarter fold $a=13/4$.",
-   "source": "\\src{s13.\\allowbreak verify-render}",
+   "source": "Theorem~\\ref{th:channel}\\newline \\pywit{s13}{p38029}{D5}, \\leanwit{FrcCore}{p38029}{D5} \\lean{FRC.Drift.channel\\_q4, FRC.Pair.quarter\\_classes}",
    "page": "38-s13/index.html#D5",
    "witness": {
-    "py": null,
-    "lean": []
+    "py": {
+     "href": "frc/ledgers/p38_s13.html#p38029",
+     "script": "p38_s13.py",
+     "line": 217,
+     "verdict": "pass"
+    },
+    "lean": [
+     {
+      "lib": "FrcCore",
+      "module": "FrcCore/Theme/Drift",
+      "name": "FRC.Drift.channel_q4",
+      "tier": 0,
+      "ok": true,
+      "page": "lean/core/Theme.html#FRC.Drift.channel_q4"
+     },
+     {
+      "lib": "FrcCore",
+      "module": "FrcCore/Theme/Pair",
+      "name": "FRC.Pair.quarter_classes",
+      "tier": 0,
+      "ok": true,
+      "page": "lean/core/Theme.html#FRC.Pair.quarter_classes"
+     }
+    ]
    },
    "refs": [],
-   "text": "Four rays realise the four quarter classes (Theorem th:channel), each a fiber geodesic to the quarter fold $a=13/4$. s13. verify-render"
+   "text": "Four rays realise the four quarter classes (Theorem th:channel), each a fiber geodesic to the quarter fold $a=13/4$. Theorem th:channel p38029, FrcCore{D5} FRC.Drift.channel_q4, FRC.Pair.quarter_classes"
   },
   {
    "paper": "38-s13",
@@ -54886,14 +56262,28 @@
    "tag": "T",
    "name": null,
    "statement": "The momentum dual $M_{3}$ at winding $5$: stations, tent shells, $C_{26}$ fold; framed-rational passages $13/5$, $52/5$.",
-   "source": "\\src{s13.\\allowbreak check\\_s13}",
+   "source": "\\S\\ref{sec:meridians}\\newline \\pywit{s13}{p38030}{D6}, \\leanwit{FrcCore}{p38030}{D6} \\lean{FRC.Pair.momentum\\_dual}",
    "page": "38-s13/index.html#D6",
    "witness": {
-    "py": null,
-    "lean": []
+    "py": {
+     "href": "frc/ledgers/p38_s13.html#p38030",
+     "script": "p38_s13.py",
+     "line": 305,
+     "verdict": "pass"
+    },
+    "lean": [
+     {
+      "lib": "FrcCore",
+      "module": "FrcCore/Theme/Pair",
+      "name": "FRC.Pair.momentum_dual",
+      "tier": 0,
+      "ok": true,
+      "page": "lean/core/Theme.html#FRC.Pair.momentum_dual"
+     }
+    ]
    },
    "refs": [],
-   "text": "The momentum dual $M_{3}$ at winding $5$: stations, tent shells, $C_{26}$ fold; framed-rational passages $13/5$, $52/5$. s13. check_s13"
+   "text": "The momentum dual $M_{3}$ at winding $5$: stations, tent shells, $C_{26}$ fold; framed-rational passages $13/5$, $52/5$. \\Ssec:meridians p38030, FrcCore{D6} FRC.Pair.momentum_dual"
   },
   {
    "paper": "38-s13",
@@ -54905,14 +56295,36 @@
    "tag": "T",
    "name": null,
    "statement": "The covering: $144$ slots cover $72/72$; multiplicity $1$ odd $/$ $3$ even; $144=36+108$.",
-   "source": "\\src{s13.\\allowbreak check\\_s13}",
+   "source": "Theorem~\\ref{th:covering}\\newline \\pywit{s13}{p38031}{D7}, \\leanwit{FrcCore}{p38031}{D7} \\lean{FRC.Pair.covering\\_instance, FRC.Pair.covering\\_parity}",
    "page": "38-s13/index.html#D7",
    "witness": {
-    "py": null,
-    "lean": []
+    "py": {
+     "href": "frc/ledgers/p38_s13.html#p38031",
+     "script": "p38_s13.py",
+     "line": 309,
+     "verdict": "pass"
+    },
+    "lean": [
+     {
+      "lib": "FrcCore",
+      "module": "FrcCore/Theme/Pair",
+      "name": "FRC.Pair.covering_instance",
+      "tier": 0,
+      "ok": true,
+      "page": "lean/core/Theme.html#FRC.Pair.covering_instance"
+     },
+     {
+      "lib": "FrcCore",
+      "module": "FrcCore/Theme/Pair",
+      "name": "FRC.Pair.covering_parity",
+      "tier": 0,
+      "ok": true,
+      "page": "lean/core/Theme.html#FRC.Pair.covering_parity"
+     }
+    ]
    },
    "refs": [],
-   "text": "The covering: $144$ slots cover $72/72$; multiplicity $1$ odd $/$ $3$ even; $144=36+108$. s13. check_s13"
+   "text": "The covering: $144$ slots cover $72/72$; multiplicity $1$ odd $/$ $3$ even; $144=36+108$. Theorem th:covering p38031, FrcCore{D7} FRC.Pair.covering_instance, FRC.Pair.covering_parity"
   },
   {
    "paper": "38-s13",
@@ -54924,14 +56336,28 @@
    "tag": "T",
    "name": null,
    "statement": "The half-cell ramification: $t_{1/2}=13/(2m)$; $M_{0}$'s at the origin.",
-   "source": "\\src{s13.\\allowbreak check\\_s13}",
+   "source": "\\S\\ref{sec:meridians}\\newline \\pywit{s13}{p38032}{D8}, \\leanwit{FrcCore}{p38032}{D8} \\lean{FRC.Pair.ramification}",
    "page": "38-s13/index.html#D8",
    "witness": {
-    "py": null,
-    "lean": []
+    "py": {
+     "href": "frc/ledgers/p38_s13.html#p38032",
+     "script": "p38_s13.py",
+     "line": 312,
+     "verdict": "pass"
+    },
+    "lean": [
+     {
+      "lib": "FrcCore",
+      "module": "FrcCore/Theme/Pair",
+      "name": "FRC.Pair.ramification",
+      "tier": 0,
+      "ok": true,
+      "page": "lean/core/Theme.html#FRC.Pair.ramification"
+     }
+    ]
    },
    "refs": [],
-   "text": "The half-cell ramification: $t_{1/2}=13/(2m)$; $M_{0}$'s at the origin. s13. check_s13"
+   "text": "The half-cell ramification: $t_{1/2}=13/(2m)$; $M_{0}$'s at the origin. \\Ssec:meridians p38032, FrcCore{D8} FRC.Pair.ramification"
   },
   {
    "paper": "38-s13",
@@ -54943,14 +56369,28 @@
    "tag": "T",
    "name": null,
    "statement": "The horizon fold fusions: $5\\cdot39\\equiv-13\\ (104)$; eight ends, four points; $E\\leftrightarrow B$.",
-   "source": "\\src{s13.\\allowbreak check\\_s13}",
+   "source": "\\S\\ref{sec:meridians}\\newline \\pywit{s13}{p38033}{D9}, \\leanwit{FrcCore}{p38033}{D9} \\lean{FRC.Pair.fusion}",
    "page": "38-s13/index.html#D9",
    "witness": {
-    "py": null,
-    "lean": []
+    "py": {
+     "href": "frc/ledgers/p38_s13.html#p38033",
+     "script": "p38_s13.py",
+     "line": 315,
+     "verdict": "pass"
+    },
+    "lean": [
+     {
+      "lib": "FrcCore",
+      "module": "FrcCore/Theme/Pair",
+      "name": "FRC.Pair.fusion",
+      "tier": 0,
+      "ok": true,
+      "page": "lean/core/Theme.html#FRC.Pair.fusion"
+     }
+    ]
    },
    "refs": [],
-   "text": "The horizon fold fusions: $5\\cdot39\\equiv-13 (104)$; eight ends, four points; $E\\leftrightarrow B$. s13. check_s13"
+   "text": "The horizon fold fusions: $5\\cdot39\\equiv-13 (104)$; eight ends, four points; $E\\leftrightarrow B$. \\Ssec:meridians p38033, FrcCore{D9} FRC.Pair.fusion"
   },
   {
    "paper": "38-s13",
@@ -54962,14 +56402,14 @@
    "tag": "R",
    "name": null,
    "statement": "The quadrature reading: $M_{0}/M_{3}$ the two quadratures of $F=E+iB$ \\cite{dirac}.",
-   "source": "\\src{s13.\\allowbreak verify-render}",
+   "source": "\\S\\ref{sec:meridians}",
    "page": "38-s13/index.html#D10",
    "witness": {
     "py": null,
     "lean": []
    },
    "refs": [],
-   "text": "The quadrature reading: $M_{0}/M_{3}$ the two quadratures of $F=E+iB$ [dirac]. s13. verify-render"
+   "text": "The quadrature reading: $M_{0}/M_{3}$ the two quadratures of $F=E+iB$ [dirac]. \\Ssec:meridians"
   },
   {
    "paper": "38-s13",
@@ -54981,7 +56421,7 @@
    "tag": "R",
    "name": null,
    "statement": "The headline realisation: $i\\hbar\\,\\partial_t\\psi=\\hat H\\psi\\ \\rightleftharpoons\\ \\psi_{\\chron+1}=\\gen\\psi_{\\chron}=i(3\\psi_{\\chron})$.",
-   "source": "\\src{s13.\\allowbreak verify-space}, \\src{s13.\\allowbreak verify-f13}",
+   "source": "\\S\\ref{sec:register}",
    "page": "38-s13/index.html#D11",
    "witness": {
     "py": null,
@@ -54990,7 +56430,7 @@
    "refs": [
     "p00042"
    ],
-   "text": "The headline realisation: $i\\hbar \\partial_t\\psi=\\hat H\\psi \\rightleftharpoons \\psi_{\\chron+1}=\\gen\\psi_{\\chron}=i(3\\psi_{\\chron})$. s13. verify-space, s13. verify-f13"
+   "text": "The headline realisation: $i\\hbar \\partial_t\\psi=\\hat H\\psi \\rightleftharpoons \\psi_{\\chron+1}=\\gen\\psi_{\\chron}=i(3\\psi_{\\chron})$. \\Ssec:register"
   },
   {
    "paper": "38-s13",
@@ -55002,16 +56442,54 @@
    "tag": "T",
    "name": null,
    "statement": "The covering parity theorem, closed at every shell (Theorem~\\ref{th:covering}, Lemma~\\ref{lem:parity}): $\\mu\\in\\{1,3\\}$ by the odd four-sum; decider the row parity and position by the eight-case table; completeness a corollary; the carrier the sheet parity: even rows $\\gen$-divisible (thrice), odd rows the half-cell obstruction of D8 (once).",
-   "source": "\\src{s13.\\allowbreak check\\_o2}",
+   "source": "Theorem~\\ref{th:covering}\\newline \\pywit{s13}{p38036}{D12}, \\leanwit{FrcCore}{p38036}{D12} \\lean{FRC.Pair.reflection\\_identity, FRC.Pair.parity\\_table, FRC.Pair.covering\\_parity, FRC.Pair.parity\\_instance}",
    "page": "38-s13/index.html#D12",
    "witness": {
-    "py": null,
-    "lean": []
+    "py": {
+     "href": "frc/ledgers/p38_s13.html#p38036",
+     "script": "p38_s13.py",
+     "line": 328,
+     "verdict": "pass"
+    },
+    "lean": [
+     {
+      "lib": "FrcCore",
+      "module": "FrcCore/Theme/Pair",
+      "name": "FRC.Pair.reflection_identity",
+      "tier": 0,
+      "ok": true,
+      "page": "lean/core/Theme.html#FRC.Pair.reflection_identity"
+     },
+     {
+      "lib": "FrcCore",
+      "module": "FrcCore/Theme/Pair",
+      "name": "FRC.Pair.parity_table",
+      "tier": 0,
+      "ok": true,
+      "page": "lean/core/Theme.html#FRC.Pair.parity_table"
+     },
+     {
+      "lib": "FrcCore",
+      "module": "FrcCore/Theme/Pair",
+      "name": "FRC.Pair.covering_parity",
+      "tier": 0,
+      "ok": true,
+      "page": "lean/core/Theme.html#FRC.Pair.covering_parity"
+     },
+     {
+      "lib": "FrcCore",
+      "module": "FrcCore/Theme/Pair",
+      "name": "FRC.Pair.parity_instance",
+      "tier": 0,
+      "ok": true,
+      "page": "lean/core/Theme.html#FRC.Pair.parity_instance"
+     }
+    ]
    },
    "refs": [
     "p38032"
    ],
-   "text": "The covering parity theorem, closed at every shell (Theorem th:covering, Lemma lem:parity): $\\mu\\in\\{1,3\\}$ by the odd four-sum; decider the row parity and position by the eight-case table; completeness a corollary; the carrier the sheet parity: even rows $\\gen$-divisible (thrice), odd rows the half-cell obstruction of D8 (once). s13. check_o2"
+   "text": "The covering parity theorem, closed at every shell (Theorem th:covering, Lemma lem:parity): $\\mu\\in\\{1,3\\}$ by the odd four-sum; decider the row parity and position by the eight-case table; completeness a corollary; the carrier the sheet parity: even rows $\\gen$-divisible (thrice), odd rows the half-cell obstruction of D8 (once). Theorem th:covering p38036, FrcCore{D12} FRC.Pair.reflection_identity, FRC.Pair.parity_table, FRC.Pair.covering_parity, FRC.Pair.parity_instance"
   },
   {
    "paper": "38-s13",
@@ -55023,14 +56501,36 @@
    "tag": "T",
    "name": null,
    "statement": "The family law: the one meridian law generalized (\\texttt{baseMW}; $M_{0}$, $M_{3}$ its windings $1$, $5$), the covering arithmetic fully certified; the drawn pair is the family's representative, a drawn ten-sibling layer retracted as washing the sky.",
-   "source": "\\src{s13.\\allowbreak check\\_o3}",
+   "source": "\\S\\ref{sec:lab}\\newline \\pywit{s13}{p38037}{D13}, \\leanwit{FrcCore}{p38037}{D13} \\lean{FRC.Pair.covering\\_instance, FRC.Pair.momentum\\_dual}",
    "page": "38-s13/index.html#D13",
    "witness": {
-    "py": null,
-    "lean": []
+    "py": {
+     "href": "frc/ledgers/p38_s13.html#p38037",
+     "script": "p38_s13.py",
+     "line": 319,
+     "verdict": "pass"
+    },
+    "lean": [
+     {
+      "lib": "FrcCore",
+      "module": "FrcCore/Theme/Pair",
+      "name": "FRC.Pair.covering_instance",
+      "tier": 0,
+      "ok": true,
+      "page": "lean/core/Theme.html#FRC.Pair.covering_instance"
+     },
+     {
+      "lib": "FrcCore",
+      "module": "FrcCore/Theme/Pair",
+      "name": "FRC.Pair.momentum_dual",
+      "tier": 0,
+      "ok": true,
+      "page": "lean/core/Theme.html#FRC.Pair.momentum_dual"
+     }
+    ]
    },
    "refs": [],
-   "text": "The family law: the one meridian law generalized (baseMW; $M_{0}$, $M_{3}$ its windings $1$, $5$), the covering arithmetic fully certified; the drawn pair is the family's representative, a drawn ten-sibling layer retracted as washing the sky. s13. check_o3"
+   "text": "The family law: the one meridian law generalized (baseMW; $M_{0}$, $M_{3}$ its windings $1$, $5$), the covering arithmetic fully certified; the drawn pair is the family's representative, a drawn ten-sibling layer retracted as washing the sky. \\Ssec:lab p38037, FrcCore{D13} FRC.Pair.covering_instance, FRC.Pair.momentum_dual"
   },
   {
    "paper": "38-s13",
@@ -55042,132 +56542,40 @@
    "tag": "T",
    "name": null,
    "statement": "The registration floor $a_{0}=cH_{0}/2\\pi$, read from the pair's $\\kap$-free per-chronon leak rate (C11): parameter-free, tracking $H(z)$. Falsifier: a measured floor off $cH_{0}/2\\pi$ beyond the $H_{0}$ uncertainty, or one not tracking $H(z)$ (\\S\\ref{sec:predictions}, item 5; the dark sector's L1).",
-   "source": "\\S\\ref{sec:predictions}; rests on C10, 00:L1",
+   "source": "\\S\\ref{sec:predictions}\\newline \\pywit{s13}{p38049}{P1}, \\leanwit{FrcLedger}{p38049}{P1}; rests on C10, C11, 00:L1 \\lean{S13.floor\\_value, S13.running\\_floor}",
    "page": "38-s13/index.html#P1",
    "witness": {
-    "py": null,
-    "lean": []
+    "py": {
+     "href": "frc/ledgers/p38_s13.html#p38049",
+     "script": "p38_s13.py",
+     "line": 381,
+     "verdict": "pass"
+    },
+    "lean": [
+     {
+      "lib": "FrcLedger",
+      "module": "FrcLedger/S13",
+      "name": "FRC.S13.floor_value",
+      "tier": 2,
+      "ok": true,
+      "page": "lean/ml/S13.html#FRC.S13.floor_value"
+     },
+     {
+      "lib": "FrcLedger",
+      "module": "FrcLedger/S13",
+      "name": "FRC.S13.running_floor",
+      "tier": 2,
+      "ok": true,
+      "page": "lean/ml/S13.html#FRC.S13.running_floor"
+     }
+    ]
    },
    "refs": [
     "p00192",
     "p38044",
     "p38045"
    ],
-   "text": "The registration floor $a_{0}=cH_{0}/2\\pi$, read from the pair's $\\kap$-free per-chronon leak rate (C11): parameter-free, tracking $H(z)$. Falsifier: a measured floor off $cH_{0}/2\\pi$ beyond the $H_{0}$ uncertainty, or one not tracking $H(z)$ (\\Ssec:predictions, item 5; the dark sector's L1). \\Ssec:predictions; rests on C10, 00:L1"
-  },
-  {
-   "paper": "38-s13",
-   "no": 38,
-   "rid": "38:V1",
-   "key": "p38038",
-   "label": "V1",
-   "block": "V",
-   "tag": "T",
-   "name": null,
-   "statement": "The laboratory's six suites, $208$ checks, all passing (\\S\\ref{sec:repro}), run from \\texttt{docs/38-s13} by the package registry: \\src{s13.\\allowbreak verify-233} ($84$), \\src{s13.\\allowbreak verify-sky} ($28$), \\src{s13.\\allowbreak verify-space} ($25$), \\src{s13.\\allowbreak verify-f13} ($25$), \\src{s13.\\allowbreak verify-hopf} ($10$), \\src{s13.\\allowbreak verify-render} ($20$).",
-   "source": "the six \\texttt{s13.verify-*}",
-   "page": "38-s13/index.html#V1",
-   "witness": {
-    "py": null,
-    "lean": []
-   },
-   "refs": [],
-   "text": "The laboratory's six suites, $208$ checks, all passing (\\Ssec:repro), run from docs/38-s13 by the package registry: s13. verify-233 ($84$), s13. verify-sky ($28$), s13. verify-space ($25$), s13. verify-f13 ($25$), s13. verify-hopf ($10$), s13. verify-render ($20$). the six s13.verify-*"
-  },
-  {
-   "paper": "38-s13",
-   "no": 38,
-   "rid": "38:V2",
-   "key": "p38039",
-   "label": "V2",
-   "block": "V",
-   "tag": "D",
-   "name": null,
-   "statement": "The exactness boundary: exact incidence/ordering/winding/anchoring/flow; connecting curves the declared chart, each constant [approx].",
-   "source": "\\src{s13.\\allowbreak verify-render}",
-   "page": "38-s13/index.html#V2",
-   "witness": {
-    "py": null,
-    "lean": []
-   },
-   "refs": [],
-   "text": "The exactness boundary: exact incidence/ordering/winding/anchoring/flow; connecting curves the declared chart, each constant [approx]. s13. verify-render"
-  },
-  {
-   "paper": "38-s13",
-   "no": 38,
-   "rid": "38:V3",
-   "key": "p38040",
-   "label": "V3",
-   "block": "V",
-   "tag": "T",
-   "name": null,
-   "statement": "The in-tree audit: \\src{check\\_s13.js}, $58$ checks, re-derives every arithmetic identity of blocks A--D and the registration fibre product.",
-   "source": "\\src{s13.\\allowbreak check\\_s13}",
-   "page": "38-s13/index.html#V3",
-   "witness": {
-    "py": null,
-    "lean": []
-   },
-   "refs": [],
-   "text": "The in-tree audit: check_s13.js, $58$ checks, re-derives every arithmetic identity of blocks A–D and the registration fibre product. s13. check_s13"
-  },
-  {
-   "paper": "38-s13",
-   "no": 38,
-   "rid": "38:V4",
-   "key": "p38041",
-   "label": "V4",
-   "block": "V",
-   "tag": "T",
-   "name": null,
-   "statement": "The dictionary audit: \\src{check\\_o1.js} ($10$, exact) and \\src{o1\\_gr\\_chart.py} ($10$ identities, symbolic rationals [approx: continuum chart]).",
-   "source": "\\src{s13.\\allowbreak check\\_o1}, \\src{s13.\\allowbreak o1\\_gr\\_chart}",
-   "page": "38-s13/index.html#V4",
-   "witness": {
-    "py": null,
-    "lean": []
-   },
-   "refs": [],
-   "text": "The dictionary audit: check_o1.js ($10$, exact) and o1_gr_chart.py ($10$ identities, symbolic rationals [approx: continuum chart]). s13. check_o1, s13. o1_gr_chart"
-  },
-  {
-   "paper": "38-s13",
-   "no": 38,
-   "rid": "38:V5",
-   "key": "p38042",
-   "label": "V5",
-   "block": "V",
-   "tag": "T",
-   "name": null,
-   "statement": "The multiplicity audit: \\src{check\\_o2.js}, $11$ checks, exact, including the eight-case parity table of Lemma~\\ref{lem:parity} at $\\p=5,13,17,29$; the decider sweep $\\Om$-blind at $\\p=5,17,29$, the home instance excluded from the blindness sweep by design.",
-   "source": "\\src{s13.\\allowbreak check\\_o2}",
-   "page": "38-s13/index.html#V5",
-   "witness": {
-    "py": null,
-    "lean": []
-   },
-   "refs": [],
-   "text": "The multiplicity audit: check_o2.js, $11$ checks, exact, including the eight-case parity table of Lemma lem:parity at $\\p=5,13,17,29$; the decider sweep $\\Om$-blind at $\\p=5,17,29$, the home instance excluded from the blindness sweep by design. s13. check_o2"
-  },
-  {
-   "paper": "38-s13",
-   "no": 38,
-   "rid": "38:V6",
-   "key": "p38043",
-   "label": "V6",
-   "block": "V",
-   "tag": "T",
-   "name": null,
-   "statement": "The family audit: \\src{check\\_o3.js}, $7$ checks, exact (the winding-$1/5$ identity, the $144$-slot containment, the covering multiset, the passages, the ramification).",
-   "source": "\\src{s13.\\allowbreak check\\_o3}",
-   "page": "38-s13/index.html#V6",
-   "witness": {
-    "py": null,
-    "lean": []
-   },
-   "refs": [],
-   "text": "The family audit: check_o3.js, $7$ checks, exact (the winding-$1/5$ identity, the $144$-slot containment, the covering multiset, the passages, the ramification). s13. check_o3"
+   "text": "The registration floor $a_{0}=cH_{0}/2\\pi$, read from the pair's $\\kap$-free per-chronon leak rate (C11): parameter-free, tracking $H(z)$. Falsifier: a measured floor off $cH_{0}/2\\pi$ beyond the $H_{0}$ uncertainty, or one not tracking $H(z)$ (\\Ssec:predictions, item 5; the dark sector's L1). \\Ssec:predictions p38049, FrcLedger{P1}; rests on C10, C11, 00:L1 S13.floor_value, S13.running_floor"
   },
   {
    "paper": "38-s13",
@@ -55178,17 +56586,39 @@
    "block": "X",
    "tag": "T",
    "name": null,
-   "statement": "\\textbf{The weakness of gravity} is the $1/\\dS$ suppression of the frame leak: one chart tick per chronon, $1/(4\\dS)$ of the cycle --- $1/232$ at the instance, of order $10^{-122}$ at physical capacity; the denominator that makes the world look continuous makes gravity look weak (C10, \\S\\ref{sec:reality}).",
-   "source": "\\src{s13.\\allowbreak check\\_s13} (C10)",
+   "statement": "\\textbf{The weakness of gravity} is the $1/\\dS$ suppression of the frame leak: one chart tick per chronon, $1/(4\\dS)$ of the cycle --- $1/232$ at the instance, of order $10^{-123}$ at physical capacity; the denominator that makes the world look continuous makes gravity look weak (C10, \\S\\ref{sec:reality}).",
+   "source": "\\S\\ref{sec:reality}\\newline \\pywit{s13}{p38046}{X1}, \\leanwit{FrcCore}{p38046}{X1}; rests on C10 \\lean{FRC.Pair.leak\\_rate, FRC.Pair.two\\_faces}",
    "page": "38-s13/index.html#X1",
    "witness": {
-    "py": null,
-    "lean": []
+    "py": {
+     "href": "frc/ledgers/p38_s13.html#p38046",
+     "script": "p38_s13.py",
+     "line": 173,
+     "verdict": "pass"
+    },
+    "lean": [
+     {
+      "lib": "FrcCore",
+      "module": "FrcCore/Theme/Pair",
+      "name": "FRC.Pair.leak_rate",
+      "tier": 0,
+      "ok": true,
+      "page": "lean/core/Theme.html#FRC.Pair.leak_rate"
+     },
+     {
+      "lib": "FrcCore",
+      "module": "FrcCore/Theme/Pair",
+      "name": "FRC.Pair.two_faces",
+      "tier": 0,
+      "ok": true,
+      "page": "lean/core/Theme.html#FRC.Pair.two_faces"
+     }
+    ]
    },
    "refs": [
     "p38044"
    ],
-   "text": "The weakness of gravity is the $1/\\dS$ suppression of the frame leak: one chart tick per chronon, $1/(4\\dS)$ of the cycle — $1/232$ at the instance, of order $10^{-122}$ at physical capacity; the denominator that makes the world look continuous makes gravity look weak (C10, \\Ssec:reality). s13. check_s13 (C10)"
+   "text": "The weakness of gravity is the $1/\\dS$ suppression of the frame leak: one chart tick per chronon, $1/(4\\dS)$ of the cycle — $1/232$ at the instance, of order $10^{-123}$ at physical capacity; the denominator that makes the world look continuous makes gravity look weak (C10, \\Ssec:reality). \\Ssec:reality p38046, FrcCore{X1}; rests on C10 FRC.Pair.leak_rate, FRC.Pair.two_faces"
   },
   {
    "paper": "38-s13",
@@ -55219,18 +56649,40 @@
    "tag": "T",
    "name": null,
    "statement": "\\textbf{The acceleration floor $a_{0}=cH_{0}/2\\pi$ is the drive seen in the chart}: the leak's cyclic rate is the drive's own, one cycle per drive period $\\Om-1$ chronons $=2\\pi/H_{0}$, and its acceleration face is the floor (C10; C11, the realisation); at the instance $a_{0}=c/(\\Om-1)$.",
-   "source": "\\src{s13.\\allowbreak check\\_s13} (C10, C11)",
+   "source": "\\S\\ref{sec:reality}\\newline \\pywit{s13}{p38048}{X3}, \\leanwit{FrcCore}{p38048}{X3}, \\leanwit{FrcLedger}{p38048}{X3}; rests on C10, C11 \\lean{FRC.Pair.leak\\_rate, S13.floor\\_value}",
    "page": "38-s13/index.html#X3",
    "witness": {
-    "py": null,
-    "lean": []
+    "py": {
+     "href": "frc/ledgers/p38_s13.html#p38048",
+     "script": "p38_s13.py",
+     "line": 381,
+     "verdict": "pass"
+    },
+    "lean": [
+     {
+      "lib": "FrcCore",
+      "module": "FrcCore/Theme/Pair",
+      "name": "FRC.Pair.leak_rate",
+      "tier": 0,
+      "ok": true,
+      "page": "lean/core/Theme.html#FRC.Pair.leak_rate"
+     },
+     {
+      "lib": "FrcLedger",
+      "module": "FrcLedger/S13",
+      "name": "FRC.S13.floor_value",
+      "tier": 2,
+      "ok": true,
+      "page": "lean/ml/S13.html#FRC.S13.floor_value"
+     }
+    ]
    },
    "refs": [
     "p00192",
     "p38044",
     "p38045"
    ],
-   "text": "The acceleration floor $a_{0=cH_{0}/2\\pi$ is the drive seen in the chart}: the leak's cyclic rate is the drive's own, one cycle per drive period $\\Om-1$ chronons $=2\\pi/H_{0}$, and its acceleration face is the floor (C10; C11, the realisation); at the instance $a_{0}=c/(\\Om-1)$. s13. check_s13 (C10, C11)"
+   "text": "The acceleration floor $a_{0=cH_{0}/2\\pi$ is the drive seen in the chart}: the leak's cyclic rate is the drive's own, one cycle per drive period $\\Om-1$ chronons $=2\\pi/H_{0}$, and its acceleration face is the floor (C10; C11, the realisation); at the instance $a_{0}=c/(\\Om-1)$. \\Ssec:reality p38048, FrcCore{X3}, FrcLedger{X3}; rests on C10, C11 FRC.Pair.leak_rate, S13.floor_value"
   },
   {
    "paper": "38-s13",
@@ -55242,16 +56694,47 @@
    "tag": "T",
    "name": null,
    "statement": "\\textbf{The shell is holographic}: a Subject's frame datum is one projective direction, one shell cell, one drive phase, and the bulk frame is that boundary datum with nothing left over (Theorem~\\ref{th:holography}; the realisation reading and its falsifier, Reading~\\ref{th:holography-reading}).",
-   "source": "\\src{s13.\\allowbreak verify-hopf}, \\src{s13.\\allowbreak check\\_fibrations}",
+   "source": "Theorem~\\ref{th:holography}\\newline \\pywit{s13}{p38051}{X4}, \\leanwit{FrcCore}{p38051}{X4}; rests on A9 \\lean{FRC.Shell.Frame.frame\\_triple, FRC.Shell.Frame.unit\\_split, FRC.Shell.Frame.hopf\\_counts}",
    "page": "38-s13/index.html#X4",
    "witness": {
-    "py": null,
-    "lean": []
+    "py": {
+     "href": "frc/ledgers/p38_s13.html#p38051",
+     "script": "p38_s13.py",
+     "line": 204,
+     "verdict": "pass"
+    },
+    "lean": [
+     {
+      "lib": "FrcCore",
+      "module": "FrcCore/Theme/Projective",
+      "name": "FRC.Shell.Frame.frame_triple",
+      "tier": 0,
+      "ok": true,
+      "page": "lean/core/Theme.html#FRC.Shell.Frame.frame_triple"
+     },
+     {
+      "lib": "FrcCore",
+      "module": "FrcCore/Theme/Projective",
+      "name": "FRC.Shell.Frame.unit_split",
+      "tier": 0,
+      "ok": true,
+      "page": "lean/core/Theme.html#FRC.Shell.Frame.unit_split"
+     },
+     {
+      "lib": "FrcCore",
+      "module": "FrcCore/Theme/Projective",
+      "name": "FRC.Shell.Frame.hopf_counts",
+      "tier": 0,
+      "ok": true,
+      "page": "lean/core/Theme.html#FRC.Shell.Frame.hopf_counts"
+     }
+    ]
    },
    "refs": [
-    "p00152"
+    "p00152",
+    "p38050"
    ],
-   "text": "The shell is holographic: a Subject's frame datum is one projective direction, one shell cell, one drive phase, and the bulk frame is that boundary datum with nothing left over (Theorem th:holography; the realisation reading and its falsifier, Reading th:holography-reading). s13. verify-hopf, s13. check_fibrations"
+   "text": "The shell is holographic: a Subject's frame datum is one projective direction, one shell cell, one drive phase, and the bulk frame is that boundary datum with nothing left over (Theorem th:holography; the realisation reading and its falsifier, Reading th:holography-reading). Theorem th:holography p38051, FrcCore{X4}; rests on A9 FRC.Shell.Frame.frame_triple, FRC.Shell.Frame.unit_split, FRC.Shell.Frame.hopf_counts"
   }
  ]
 }

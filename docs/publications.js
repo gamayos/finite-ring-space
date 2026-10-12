@@ -634,16 +634,25 @@ const PUBLICATIONS = [
     "doi": "https://doi.org/10.20944/preprints202608.0390.v1",
     "doiLabel": "pp202608.0390.v1",
     "ledger": "38-s13/index.html",
+    "schema": true,
     "links": [
       {
-        "href": "38-s13/index.html",
-        "label": "ledger",
-        "title": "the paper's predicate ledger"
+        "href": "https://colab.research.google.com/github/gamayos/finite-ring-space/blob/main/frc/ledgers/p38_s13.ipynb",
+        "label": "python",
+        "count": 41,
+        "title": "41 predicates checked, all passing: the notebook p38_s13.ipynb on Google Colab, one cell per predicate"
       },
       {
-        "href": "https://colab.research.google.com/github/gamayos/finite-ring-space/blob/main/src/38-s13/38-s13-main.ipynb",
-        "label": "notebook",
-        "title": "the validation notebook on Google Colab"
+        "href": "https://live.lean-lang.org/#project=lean-v4.34.0&url=https://finitering.space/lean/web/core/S13.lean",
+        "label": "lean",
+        "count": 38,
+        "title": "38 predicates proved in the core (no axioms), 4 of them also on Mathlib: the core module S13 as one executable file (plain Lean, no Mathlib) in Lean Live"
+      },
+      {
+        "href": "https://live.lean-lang.org/#project=mathlib-stable&url=https://finitering.space/lean/web/ml/S13.lean",
+        "label": "lean-mathlib",
+        "count": 5,
+        "title": "5 predicates proved on Mathlib (classical), 4 of them also in the core: the module S13 as one file on Mathlib in Lean Live"
       },
       {
         "href": "38-s13/lab.html",

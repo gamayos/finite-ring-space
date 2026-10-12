@@ -129,7 +129,7 @@ theorem half_class (hp : FRC.Nat.isPrime p) {S : Nat} (hS : p = 4 * S + 1) :
 
 /-! ## C20: the mass–energy channel -/
 
-/-- **C20 (p00040), the mass–energy channel**, generator-free on a prime `p` with a quarter-turn `h² = −1`: inside
+/-- 38:A3 — **C20 (p00040), the mass–energy channel**, generator-free on a prime `p` with a quarter-turn `h² = −1`: inside
 `𝔽_{p²}^×`, `C_{p−1} = 𝔽_p^×` meets the boost torus `C_{p+1} = {z^{p+1} = 1}` in the sign `±1` alone, and the spinor
 cover `C_{2(p+1)}` in exactly `Q₄ = {±1, ±h}`; the quarter is spinorial, `N(h) = h^{p+1} = h² = −1`. -/
 theorem channel (hp : FRC.Nat.isPrime p) {h : Shell p} (hh : h * h = -1) :
@@ -164,7 +164,7 @@ theorem channel (hp : FRC.Nat.isPrime p) {h : Shell p} (hh : h * h = -1) :
     | .inr (.inr (.inl a)) => exact .inr (by rw [a, hh])
     | .inr (.inr (.inr a)) => exact .inr (by rw [a, neg_mul_neg, hh])
 
-/-- C20's Carrier instance (38:A4): on `Ω = 233`, `78^58 = 89 = ħ`, a root of `−1`. -/
+/-- 38:A4 — C20's Carrier instance: on `Ω = 233`, `78^58 = 89 = ħ`, a root of `−1`. -/
 theorem channel_233 : (78 : Shell 233) ^ 58 = 89 ∧ (89 : Shell 233) * 89 = -1 := by decide
 
 /-! ## C13's part 10:G2: the exponent-window ladder on every capacity -/
@@ -313,7 +313,7 @@ theorem quarter_pow_inj (hp : FRC.Nat.isPrime p) (h2 : 2 < p) {j : Shell p} (hj 
   | .inl hlt => exact (key (Nat.le_of_lt hlt) hr' e.symm).symm
   | .inr hge => exact key hge hr e
 
-/-- **C16 (p00151), the spinor dichotomy**, on every frame (`p − 1 = 4κ`, `i = −g^κ`): `κ` is odd iff
+/-- 38:A2 — **C16 (p00151), the spinor dichotomy**, on every frame (`p − 1 = 4κ`, `i = −g^κ`): `κ` is odd iff
 `v₂(p − 1) = 2` (`8 ∤ p − 1`) iff the fold `(r, s) ↦ iʳ (g⁴)ˢ` is injective on `C₄ × C_κ`, and then onto `𝔽_p^×`, so
 `C_{p−1} ≅ C₄ × C_κ`; and iff `3κr + 4s ≡ 1 (mod 4κ)` is solvable. -/
 theorem spinor {κ : Nat} {g : Shell p} (F : Frame p κ g) :
@@ -468,7 +468,7 @@ theorem pow_dvd_odd {a k u : Nat} (hu : u % 2 = 1) : 2 ^ k ∣ 2 ^ a * u → k �
       rw [Nat.eq_of_mul_eq_mul_left (FRC.Nat.pos_pow_of_pos a (by decide : 0 < 2)) e, Frame.two_mul_mod] at hu
       exact absurd hu (by decide)
 
-/-- C16's 2-parts. With `p − 1 = 2^a u` and `Ω − 1 = 2^b w`, `u, w` odd, and `m = min(a, b)`: `2^m` divides both and
+/-- 38:A2 — C16's 2-parts. With `p − 1 = 2^a u` and `Ω − 1 = 2^b w`, `u, w` odd, and `m = min(a, b)`: `2^m` divides both and
 `2^{m+1}` not both (the shared 2-part `C_{2^m}`), and `2^m · 2^{b−m} = 2^b` (the shared order times the cover degree is
 the Carrier's 2-part); for `Ω − 1 = 4S` the Carrier's 2-part is `8` iff `S ≡ 2 (mod 4)`. -/
 theorem two_part :

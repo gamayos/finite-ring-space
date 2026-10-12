@@ -49,7 +49,7 @@ variable {p : Nat} [Pos p]
 
 /-! ## 21:A9 — the mass–energy channel -/
 
-/-- 21:A9 — the channel `C_{p−1} ∩ C_{2(p+1)} = Q₄` on every shell: with `p − 1 = 4κ`, a residue has
+/-- 21:A9, 38:D5 — the channel `C_{p−1} ∩ C_{2(p+1)} = Q₄` on every shell: with `p − 1 = 4κ`, a residue has
 `x^{4κ} = 1` and `x^{2(4κ + 2)} = 1` exactly when `x⁴ = 1`. -/
 theorem channel_q4 (κ : Nat) (x : Shell p) :
     (x ^ (4 * κ) = 1 ∧ x ^ (2 * (4 * κ + 2)) = 1 ↔ x ^ 4 = 1) := by
@@ -65,7 +65,7 @@ theorem channel_q4 (κ : Nat) (x : Shell p) :
 
 /-! ## 21:C25 — the cover triangle -/
 
-/-- 21:C25, 21:C7, 21:C8, 00:E4 — on every shell: `2γ − β = 1` and `γ = 1` give `β = 1`. -/
+/-- 21:C25, 21:C7, 21:C8, 38:C8, 00:E4 — on every shell: `2γ − β = 1` and `γ = 1` give `β = 1`. -/
 theorem cover_triangle {β γ : Shell p} (h1 : (1 + 1) * γ + -β = 1) (h2 : γ = 1) : β = 1 := by
   subst h2
   have h : (1 + 1) * (1 : Shell p) + -β = 1 := h1
@@ -76,7 +76,7 @@ theorem cover_triangle {β γ : Shell p} (h1 : (1 + 1) * γ + -β = 1) (h2 : γ 
   rw [neg_neg] at this
   exact this.symm
 
-/-- 21:C25, 00:E4 — the deviation `2γ − β − 1` vanishes on the triangle. -/
+/-- 21:C25, 38:C8, 00:E4 — the deviation `2γ − β − 1` vanishes on the triangle. -/
 theorem cover_deviation {β γ : Shell p} (h1 : (1 + 1) * γ + -β = 1) : (1 + 1) * γ + -β + -1 = 0 := by
   rw [h1]; exact add_neg 1
 
@@ -380,6 +380,29 @@ theorem cut_ordering (L M : Nat) (hM : L * L < 4 * M) (hL : 2 < L) (h0 : 0 < M) 
     L * L * M < 2 * M * (2 * M) ∧ 2 * M < L * M := by
   have e : 2 * M * (2 * M) = 4 * M * M := FRC.Grav.nat_sound (FRC.Grav.nlook [M]) (.mul (.mul (.add .one .one) (.var 0)) (.mul (.add .one .one) (.var 0))) (.mul (.mul (.add (.add (.add .one .one) .one) .one) (.var 0)) (.var 0)) rfl rfl (by decide +kernel)
   exact ⟨by rw [e]; exact Nat.mul_lt_mul_of_pos_right hM h0, Nat.mul_lt_mul_of_pos_right hL h0⟩
+
+/-- 38:C13 — **the apsidal bound is the nesting condition.** A nested Subject `p = q + 1` on a Carrier `Ω` registers the
+apsidal fraction `κ/S = (p − 1)/(Ω − 1)` (`Pair.leak_rate`), and the bound `κ/S < 1/(√Ω + 1)` is, squared and cleared
+of its root, `(p − 1)²Ω < (Ω − p)²`, which holds exactly when `p² < Ω`: with `Ω = p² + d`, `(Ω − p)² − (p − 1)²Ω =
+d(Ω − 1) > 0` for `d ≥ 1`, and with `p² = Ω + d`, `Ω = m + q + 1`, `(Ω − p)² + d(Ω − 1) = (p − 1)²Ω`, so the bound fails.
+On the physical Carrier no hosted Subject registers an observed precession (the paper's C13). -/
+theorem nesting_bound (q d : Nat) :
+    ((q + 1) * (q + 1) + d) - (q + 1) = q * q + q + d ∧
+    q * q * ((q + 1) * (q + 1) + d) + d * (q * q + 2 * q + d) = (q * q + q + d) * (q * q + q + d) ∧
+    (0 < d → q * q * ((q + 1) * (q + 1) + d) < (q * q + q + d) * (q * q + q + d)) ∧
+    (∀ m : Nat, (q + 1) * (q + 1) = m + q + 1 + d →
+      m * m + d * (m + q) = q * q * (m + q + 1) ∧ m * m ≤ q * q * (m + q + 1)) := by
+  have e0 : (q + 1) * (q + 1) + d = (q * q + q + d) + (q + 1) := FRC.Grav.nat_sound (FRC.Grav.nlook [q, d]) (.add (.mul (.add (.var 0) .one) (.add (.var 0) .one)) (.var 1)) (.add (.add (.add (.mul (.var 0) (.var 0)) (.var 0)) (.var 1)) (.add (.var 0) .one)) rfl rfl (by decide +kernel)
+  have e1 : q * q * ((q + 1) * (q + 1) + d) + d * (q * q + 2 * q + d) = (q * q + q + d) * (q * q + q + d) := FRC.Grav.nat_sound (FRC.Grav.nlook [q, d]) (.add (.mul (.mul (.var 0) (.var 0)) (.add (.mul (.add (.var 0) .one) (.add (.var 0) .one)) (.var 1))) (.mul (.var 1) (.add (.add (.mul (.var 0) (.var 0)) (.mul (.add .one .one) (.var 0))) (.var 1)))) (.mul (.add (.add (.mul (.var 0) (.var 0)) (.var 0)) (.var 1)) (.add (.add (.mul (.var 0) (.var 0)) (.var 0)) (.var 1))) rfl rfl (by decide +kernel)
+  refine ⟨by rw [e0]; exact FRC.Nat.add_sub_cancel _ _, e1, fun hd => ?_, fun m h => ?_⟩
+  · rw [← e1]
+    exact Nat.lt_add_of_pos_right (Nat.mul_pos hd (Nat.lt_of_lt_of_le hd (Nat.le_add_left d _)))
+  · have i1 : m * m + (m + q) * ((q + 1) * (q + 1)) = q * q * (m + q + 1) + (m + q + 1) * (m + q) := FRC.Grav.nat_sound (FRC.Grav.nlook [q, d, m]) (.add (.mul (.var 2) (.var 2)) (.mul (.add (.var 2) (.var 0)) (.mul (.add (.var 0) .one) (.add (.var 0) .one)))) (.add (.mul (.mul (.var 0) (.var 0)) (.add (.add (.var 2) (.var 0)) .one)) (.mul (.add (.add (.var 2) (.var 0)) .one) (.add (.var 2) (.var 0)))) rfl rfl (by decide +kernel)
+    rw [h] at i1
+    have i2 : m * m + (m + q) * (m + q + 1 + d) = (m * m + d * (m + q)) + (m + q + 1) * (m + q) := FRC.Grav.nat_sound (FRC.Grav.nlook [q, d, m]) (.add (.mul (.var 2) (.var 2)) (.mul (.add (.var 2) (.var 0)) (.add (.add (.add (.var 2) (.var 0)) .one) (.var 1)))) (.add (.add (.mul (.var 2) (.var 2)) (.mul (.var 1) (.add (.var 2) (.var 0)))) (.mul (.add (.add (.var 2) (.var 0)) .one) (.add (.var 2) (.var 0)))) rfl rfl (by decide +kernel)
+    rw [i2] at i1
+    have e : m * m + d * (m + q) = q * q * (m + q + 1) := Nat.add_right_cancel i1
+    exact ⟨e, by rw [← e]; exact Nat.le_add_right _ _⟩
 
 /-- 00:E10 — the cut area of the graph balls of `ℤ³`, `A_r = 6(2r² + 2r + 1)` (the links between the balls of radii `r` and
 `r + 1`; the ledger file's check counts them), grows at every step, `A_{r+1} = A_r + 24(r + 1)`, so the cut current

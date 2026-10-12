@@ -425,3 +425,17 @@ def kuramoto_chain(noise, M=20, dt=0.05, T=120_000, burn=40_000, b=0.3, seed=3):
     Jbar = [j / ((T - burn) * dt) for j in J]
     mean = sum(Jbar) / M
     return mean, max(abs(j - b) for j in Jbar)
+
+
+# ---- the apsidal bound on the physical Carrier (38:C13) ---------------------------------------------------------------------
+def apsidal_bound(ln_omega=LN_OMEGA, mercury=8.0e-8):
+    """The bound κ/S < 1/(√Ω + 1) on the physical Carrier (ln Ω = 283.5) in decades, against Mercury's apsidal fraction
+    per revolution (43″ per century over 415 revolutions: 8.0 × 10⁻⁸ [data]): the bound is 10⁻⁶¹·⁶ and Mercury sits
+    54 orders above it; a Subject registering κ/S = (p − 1)/(Ω − 1) = 8 × 10⁻⁸ would have p ≈ 10¹¹⁵·⁵ and p² ≈ 10²³¹ ≫ Ω,
+    so no hosted Subject registers an observed precession (38:C13)."""
+    log10_omega = ln_omega / math.log(10)
+    log10_bound = -log10_omega / 2
+    log10_mercury = math.log10(mercury)
+    log10_p = log10_mercury + log10_omega
+    return {"log10_bound": log10_bound, "log10_mercury": log10_mercury, "orders_above": log10_mercury - log10_bound,
+            "log10_p": log10_p, "log10_p2": 2 * log10_p, "log10_omega": log10_omega}

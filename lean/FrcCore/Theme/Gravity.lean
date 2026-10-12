@@ -371,7 +371,8 @@ theorem conic_row (F : Frame p κ g) (a c : Shell p) :
   exact count_bij (fun y => a + quarterTurn g κ * y) (fun u => (u + -a) * -(quarterTurn g κ))
     (fun y => red1 ((fun i => Shell.Frame.RE.sound (Shell.Frame.look [a, i, y]) (.mul (.add (.add (.var 0) (.mul (.var 1) (.var 2))) (.neg (.var 0))) (.neg (.var 1))) (.add (.var 2) (.mul (.add (.mul (.var 1) (.var 1)) .one) (.neg (.var 2)))) (by decide +kernel)) (quarterTurn g κ)) hi) (fun u => u * (a + a + -u) = c)
 
-/-- 00:E6 — the plane conic `x² + y² = c` on every frame: `p − 1` points for `c ≠ 0`, `2p − 1` for `c = 0`. -/
+/-- 00:E6, 38:B6, 38:A9 — the plane conic `x² + y² = c` on every frame: `p − 1` points for `c ≠ 0`, `2p − 1` for
+`c = 0`; the circle `x² + y² = 1` is the drive torus of the split fibration (38-s13). -/
 theorem conic_count (F : Frame p κ g) (c : Shell p) :
     nsum (fun x => count (fun y => ofNat x * ofNat x + y * y = c)) p = (p - 1) + (if c = 0 then p else 0) := by
   rw [nsum_congr p (fun x _ => conic_row F (ofNat x) c)]
@@ -484,7 +485,8 @@ def quad (x y z : Shell p) : Shell p := x * x + y * y + z * z
 def sphereCount (p : Nat) [Pos p] (a : Shell p) : Nat :=
   nsum (fun z => nsum (fun x => count (fun y => quad (ofNat x) y (ofNat z) = a)) p) p
 
-/-- 00:E6 — the area of the sphere at every nonzero square rung `a = b²`: `p(p + 1)`. -/
+/-- 00:E6, 38:A9 — the area of the sphere at every nonzero square rung `a = b²`: `p(p + 1)`; the unit sphere's
+`p(p + 1)` points are the base of the split fibration (38-s13). -/
 theorem sphere_area_rung (F : Frame p κ g) {b : Shell p} (hb : b ≠ 0) : sphereCount p (b * b) = p * (p + 1) := by
   show nsum (fun z => nsum (fun x => count (fun y => ofNat x * ofNat x + y * y + ofNat z * ofNat z = b * b)) p) p = _
   rw [sphere_count F, count_sq F hb, ← Nat.mul_add]
@@ -555,7 +557,7 @@ theorem merger_area (M₁ M₂ : Nat) :
 section register
 variable {κ : Nat} {g : Shell p}
 
-/-- 21:C16, 21:A1 — the calibration congruence on every frame: the full cycle `2π ↦ 4κ = p − 1` is `−1`,
+/-- 21:C16, 21:A1, 38:D3 — the calibration congruence on every frame: the full cycle `2π ↦ 4κ = p − 1` is `−1`,
 and `(4κ)² = 1`. -/
 theorem calibration (F : Frame p κ g) :
     (ofNat (4 * κ) : Shell p) = -1 ∧ (ofNat (4 * κ) : Shell p) * ofNat (4 * κ) = 1 := by
@@ -642,7 +644,7 @@ theorem closed_chart (F : Frame p κ g) :
 
 end register
 
-/-- 21:A9 — the two-face count: the angular face `κ/S` against the temporal face `κ/(2S)` has ratio `2`
+/-- 21:A9, 38:C7 — the two-face count: the angular face `κ/S` against the temporal face `κ/(2S)` has ratio `2`
 (`κ · 2S = 2 · κS`), and the registration fibre product has `(p − 1)(Ω − 1) = 4 · 4κS` for `p = 4κ + 1`,
 `Ω = 4S + 1`. -/
 theorem two_face_count (κ S : Nat) :

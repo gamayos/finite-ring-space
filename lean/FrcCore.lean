@@ -2,6 +2,7 @@ import FrcCore.Nat
 import FrcCore.Pigeonhole
 import FrcCore.Shell
 import FrcCore.Series
+import FrcCore.Cycle
 import FrcCore.Frame
 import FrcCore.Transform
 import FrcCore.Orbit
@@ -28,6 +29,7 @@ import FrcCore.Theme.Foundation
 import FrcCore.Theme.Drive
 import FrcCore.Theme.Carrier
 import FrcCore.Theme.Subject
+import FrcCore.Theme.Pair
 import FrcCore.Theme.Symbol
 import FrcCore.Theme.Gravity
 import FrcCore.Theme.Lattice
@@ -67,4 +69,5 @@ import FrcCore.Instances
 import FrcCore.Rh
 import FrcCore.Entropy
 import FrcCore.Gravity
+import FrcCore.S13
 import FrcCore.Dirac

@@ -339,6 +339,34 @@
    "status": "shared theorem",
    "lean": "FRC.Drift.gauss_law, FRC.Drift.character_composition",
    "note": "12 October 2026: the Gauss law from transfer antisymmetry and the exponential reading as the character; E4's key adds character_unique, the cover triangle and the PN coefficients"
+  },
+  {
+   "master": "C16",
+   "paper": "38:A2",
+   "status": "shared theorem",
+   "lean": "FRC.Subject.spinor, FRC.Subject.two_part",
+   "note": "12 October 2026 (38-s13): the spinor dichotomy and the 2-parts are C16's clauses and 38:A2's; 38:A2's key adds the tower congruence's solvability for every odd κ (FRC.Pair.tower_solvable) and the instance, C16's the no-isomorphism clause"
+  },
+  {
+   "master": "C16",
+   "paper": "38:B4",
+   "status": "no shared clause",
+   "lean": null,
+   "note": "12 October 2026 (38-s13): 38:B4's key is the sky chronon C₂₄ as the fibre product of C₁₂ and C₈ over C₄ with the cycle's return (FRC.Pair.sky_chronon, FRC.Cycle.cyc_add_n); C16's key is the spinor fold and the 2-parts of p − 1 and Ω − 1"
+  },
+  {
+   "master": "C19",
+   "paper": "38:A7",
+   "status": "shared theorem",
+   "lean": "FRC.Shell.Frame.hopf_section, FRC.Shell.Frame.hopf_counts",
+   "note": "12 October 2026 (38-s13): 38:A7's key conjoins the two theorems of C19's key; the frame counts of the instance are the ledger file's"
+  },
+  {
+   "master": "C20",
+   "paper": "38:A3",
+   "status": "shared theorem",
+   "lean": "FRC.Subject.channel",
+   "note": "12 October 2026 (38-s13): the mass–energy channel on every prime shell is both keys' clause; 38:A3's key adds the instance's gcds and N(i) on 𝔽₁₃ (FRC.Pair.channel_instance), C20's the Carrier instance 78⁵⁸ = 89 (FRC.Subject.channel_233)"
   }
  ]
 }

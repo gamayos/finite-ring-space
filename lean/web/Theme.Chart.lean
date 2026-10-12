@@ -332,6 +332,28 @@ theorem running_floor (c G M : ℝ) (H a v : ℝ → ℝ) (z : ℝ) (hc : 0 < c)
 
 end floor
 
+/-! ## The radial ladder of the minimal pair (38:B2) -/
+section ladder
+
+/-- 38:B2 [chart] — the radial ladder of the sky: the shell radii `R sin(2aπ/13)`, `a = 1, 2, 3`, are positive,
+strictly increasing, and inside the rim `R` (the chart flattening of the latitude circles; the capacity `4a < p ⇔ a ≤ κ`
+is the core's `FRC.Pair.window`). -/
+theorem ladder_monotone (R : ℝ) (hR : 0 < R) :
+    0 < R * Real.sin (2 * π / 13) ∧ R * Real.sin (2 * π / 13) < R * Real.sin (4 * π / 13) ∧
+    R * Real.sin (4 * π / 13) < R * Real.sin (6 * π / 13) ∧ R * Real.sin (6 * π / 13) < R := by
+  have hpi := Real.pi_pos
+  have mono : ∀ x y : ℝ, 0 ≤ x → x < y → y ≤ π / 2 → Real.sin x < Real.sin y := fun x y hx hxy hy =>
+    Real.sin_lt_sin_of_lt_of_le_pi_div_two (by linarith) hy hxy
+  refine ⟨mul_pos hR (Real.sin_pos_of_pos_of_lt_pi (by positivity) (by linarith)), ?_, ?_, ?_⟩
+  · exact mul_lt_mul_of_pos_left (mono _ _ (by positivity) (by linarith) (by linarith)) hR
+  · exact mul_lt_mul_of_pos_left (mono _ _ (by positivity) (by linarith) (by linarith)) hR
+  · have h := mono (6 * π / 13) (π / 2) (by positivity) (by linarith) le_rfl
+    rw [Real.sin_pi_div_two] at h
+    calc R * Real.sin (6 * π / 13) < R * 1 := mul_lt_mul_of_pos_left h hR
+      _ = R := mul_one R
+
+end ladder
+
 /-! ## The primordial tilt (00:L8) -/
 section tilt
 

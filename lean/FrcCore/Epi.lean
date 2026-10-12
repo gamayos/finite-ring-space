@@ -12,7 +12,13 @@ The derangement numbers by their natural recurrence, their signed recurrence and
 orientation transport of the quarter-turn under a change of drive (no third case), the wrap-free window
 below `√p`; and the value rows decided by the kernel: the `p = 13` coincidence (`e_p = π_A = −1/2 = 6`),
 the residue lines of `e` and `π` on `𝔽₁₃`, the terminal residue `−(!13)⁻¹ = 9`, the legibility window and
-the first revival on `𝔽₁₃`, the 36 two-digit revivals, and the products `!p·A(p)` on the six wall shells.
+the first revival on `𝔽₁₃`, the 36 two-digit revivals, and the products `!p·A(p)` on the six wall shells; and the
+censuses decided by the kernel (section `census`, each cut into chunks of about 45,000 fold steps): the opening stretch
+of the blind-scale census (F5), the arcsin wall vanishing on all 428 odd primes below 3000 and to second order on the 60
+primes below 300 (G6, G7), the frame invariants at `p = 13` and `1093` (I5), the tail bound of the arcsin chain and the
+impossibility of exact calibration on the 500 shells `p ≤ 8009`, both against a certified rational bracket of `π`
+(E3, H3), the binary64 readout and the step counts of the derangement chain in the integers (D4, D5), the shell data of
+the best calibrated shell (H4), the height run over the 500 shells and the certification split (J3, J5).
 
 Since the ledger migration (task LM17) `ofNat_self` and `ofNat_add_self` live in `Frame.lean`; the old names stay as aliases.
 -/
@@ -117,7 +123,7 @@ theorem neg_one_pow_p {κ : Nat} (hκ : p = 4 * κ + 1) : (-1 : Shell p) ^ p = -
   have h2 : p % 2 = 1 := by rw [hκ]; exact four_kappa_add_one_mod_two κ
   rw [neg_one_pow, h2]; rfl
 
-/-- 13:F3 — antiperiodicity on every shell `p = 4κ + 1`: `!(n + p) ≡ −!n (mod p)` for every `n`, so
+/-- 13:F3, 13:I1 — antiperiodicity on every shell `p = 4κ + 1`: `!(n + p) ≡ −!n (mod p)` for every `n`, so
 `!n mod p` depends on `n mod 2p`; and the blind set contains `n = 1` (`!1 = 0`). -/
 theorem dr_antiperiodic {κ : Nat} (hκ : p = 4 * κ + 1) :
     (∀ n, (ofNat (dr (n + p)) : Shell p) = -(ofNat (dr n))) ∧ dr 1 = 0 := by
@@ -266,7 +272,7 @@ theorem coincidence13 :
     quarterTurn (2 : Shell 13) 3 = 5 ∧ (2 : Shell 13) ^ (quarterTurn (2 : Shell 13) 3).val = 6 ∧
     (ofNat (halfPeriod 3) : Shell 13) = 6 ∧ (2 : Shell 13) * 6 = -1 := by decide
 
-/-- 13:F2, 13:F6 — the wall of `e` on `𝔽₁₃`: `!12 ≡ !13 ≡ 10`, the terminal residue `⟦ε₁₂⟧ = 9 = −(!13)⁻¹`, the
+/-- 13:F2, 13:F6, 13:I1, 13:I3, 13:J6 — the wall of `e` on `𝔽₁₃`: `!12 ≡ !13 ≡ 10`, the terminal residue `⟦ε₁₂⟧ = 9 = −(!13)⁻¹`, the
 common reading of `6/5` and `11/7`. -/
 theorem terminal13 :
     (ofNat (dr 12) : Shell 13) = ofNat (kur 13) ∧ (ofNat (kur 13) : Shell 13) = 10 ∧
@@ -279,7 +285,7 @@ theorem residue_line_e13 :
     (List.range 11).map (fun k => readE (p := 13) (k + 2)) = [2, 3, 7, 11, 1, 6, 0, 2, 8, 10, 9] ∧
     dr 8 = 13 * 1141 ∧ (ofNat (dr 8) : Shell 13) = 0 := by decide +kernel
 
-/-- 13:G8, 13:G1 — the residue line of `π` on `𝔽₁₃`: `⟦w_n⟧`, `n = 1, …, 6`, is `4, 5, 10, 9, 6, 11`, the
+/-- 13:G8, 13:G1, 13:I2, 13:I3 — the residue line of `π` on `𝔽₁₃`: `⟦w_n⟧`, `n = 1, …, 6`, is `4, 5, 10, 9, 6, 11`, the
 calibration face `⟦w₆⟧ = 11 = −2`, the quarter invariant `⟦w₃⟧ = 10 = −(3²)⁻¹`; the legibility window is exactly
 `1 ≤ n ≤ 6` (`13 ∣ C(2n,n)` for `7 ≤ n ≤ 12`, not for `n ≤ 6`). -/
 theorem residue_line_pi13 :
@@ -288,14 +294,14 @@ theorem residue_line_pi13 :
     (List.range 13).map (fun n => decide (cb n % 13 = 0)) =
       [false, false, false, false, false, false, false, true, true, true, true, true, true] := by decide +kernel
 
-/-- 13:G5 — the first revival on `𝔽₁₃`: `⟦v₁₃⟧ = 8`, and the two-digit revivals `13 ≤ n < 169` with
+/-- 13:G5, 13:I2 — the first revival on `𝔽₁₃`: `⟦v₁₃⟧ = 8`, and the two-digit revivals `13 ≤ n < 169` with
 `13 ∤ C(2n,n)` and `13 ∤ n` number `36 = (2κ)²`. -/
 theorem revivals13 :
     readV (p := 13) 13 = 8 ∧
     ((List.range 169).filter (fun n => decide (13 ≤ n) && decide (cb n % 13 ≠ 0) && decide (n % 13 ≠ 0))).length
       = 36 := by decide +kernel
 
-/-- 13:F4 — the broken group law at the wall: `!p·A(p) ≡ 3, 0, 21, 28, 132, 258` at `p = 7, 13, 29, 101, 257,
+/-- 13:F4, 13:I3 — the broken group law at the wall: `!p·A(p) ≡ 3, 0, 21, 28, 132, 258` at `p = 7, 13, 29, 101, 257,
 1009`, with `A(13) ≡ 0` (the direct series residue vanishes on `𝔽₁₃`). -/
 theorem kurepa_alt_values :
     kurS (p := 7) 7 * altS 7 = 3 ∧ kurS (p := 13) 13 * altS 13 = 0 ∧ altS (p := 13) 13 = 0 ∧
@@ -303,6 +309,345 @@ theorem kurepa_alt_values :
     kurS (p := 257) 257 * altS 257 = 132 ∧ kurS (p := 1009) 1009 * altS 1009 = 258 := by decide +kernel
 
 end values
+
+/-! ### Censuses decided by the kernel: the blind sets, the arcsin wall, the frame invariants, the height run,
+the readouts and the calibration
+
+Every theorem of this section is a `decide +kernel` evaluation of a closed natural-number statement: the shells are
+enumerated by trial division, the residues are folded by the recurrences, and the kernel's arithmetic (GMP for the
+large naturals) decides the equalities. Nothing here is proved for every shell; each is a census over the shells its
+statement names, the instance face of the rows it cites. A census is cut into chunks of about 45,000 fold steps, each
+a declaration of its own, since the kernel keeps every intermediate term of one evaluation; the census theorem
+composes the chunks and asserts the completeness of its enumeration. -/
+section census
+
+/-- Trial division from `d` with fuel: `true` when no `d ≤ d' ≤ √q` divides `q`. -/
+def noDivisorFrom (q : Nat) : Nat → Nat → Bool
+  | _, 0 => true
+  | d, fuel + 1 => if q < d * d then true else if q % d == 0 then false else noDivisorFrom q (d + 1) fuel
+
+/-- Primality by trial division, as a Boolean: `q ≥ 2` and no divisor `2 ≤ d ≤ √q`. -/
+def isPrimeB (q : Nat) : Bool := 2 ≤ q && noDivisorFrom q 2 q
+
+/-! #### The blind sets (13:F5) -/
+
+/-- The walk of the derangement residues modulo `q`: after `n` steps, `(!n mod q, !(n+1) mod q, #{1 ≤ k ≤ n : !k ≡ 0})`. -/
+def blindFold (q : Nat) : Nat → Nat × Nat × Nat
+  | 0 => (1 % q, 0, 0)
+  | n + 1 =>
+    match blindFold q n with
+    | (a, b, c) => (b, ((n + 1) * (a + b)) % q, if b = 0 then c + 1 else c)
+
+/-- `|Z₀(q)| = #{1 ≤ n ≤ q − 2 : !n ≡ 0 (mod q)}`, the blind set of the shell `q` counted below the wall. -/
+def blindCount (q : Nat) : Nat := (blindFold q (q - 2)).2.2
+
+/-- The 43 primes in `(1000, 1300)`, the opening stretch of the census of F5. -/
+def primes1000to1300 : List Nat := (List.range 1300).filter (fun q => 1000 < q && isPrimeB q)
+
+/-- 13:F5, 13:I1, 13:I3 — the blind-scale census, its opening stretch: on the `43` primes in `(1000, 1300)` the
+sizes `|Z₀(p)|` are `1, 2, 2, 1, 2, 4, 1, 4, 2, 1, 2, 2, 1, 3, 3, 2, 3, 2, 1, 3, 1, 2, 5, 2, 1, 1, 2, 2, 2, 4, 1, 2, 2, 3, 1, 2, 1, 1, 2, 2, 1, 2, 3` — forty-three exact
+counts of the Poisson-read distribution (the full census of `501` primes is the package's check of F5). -/
+theorem blind_census :
+    primes1000to1300.length = 43 ∧ primes1000to1300.map blindCount =
+      [1, 2, 2, 1, 2, 4, 1, 4, 2, 1, 2, 2, 1, 3, 3, 2, 3, 2, 1, 3, 1, 2, 5, 2, 1, 1, 2, 2, 2, 4, 1, 2, 2, 3, 1,
+      2, 1, 1, 2, 2, 1, 2, 3] := by decide +kernel
+
+/-! #### The arcsin wall (13:G6, G7) -/
+
+/-- The fold of `σ_p = Σ_{k<m} C(2k,k)/((2k+1)16^k)` modulo `q` by common denominators, no inverses: the state
+`(A_k, B_k, N, D)` carries the term `A_k/B_k` (`A_{k+1} = A_k(2k+1)²`, `B_{k+1} = 8B_k(k+1)(2k+3)`, the ratio
+`C(2k+2,k+1)(2k+1)/(C(2k,k)(2k+3)·16)`) and the partial sum `N/D` of the terms below `k`, all reduced modulo `q`. -/
+def sigmaFold (q : Nat) : Nat → Nat × Nat × Nat × Nat
+  | 0 => (1, 1, 0, 1)
+  | k + 1 =>
+    match sigmaFold q k with
+    | (a, b, n, d) =>
+      ((a * (2 * k + 1) * (2 * k + 1)) % q, (8 * b * (k + 1) * (2 * k + 3)) % q, (n * b + a * d) % q, (d * b) % q)
+
+/-- `σ_p ≡ 0 (mod q)` read off the numerator of the fold at `m = (p−1)/2`: for `q = p` or `q = p²` the
+denominators `B_k = 8^k k!(2k+1)!!`, `k < m`, are units modulo `q`, so the numerator vanishes exactly when `σ_p` does. -/
+def sigmaZero (p q : Nat) : Bool := (sigmaFold q ((p - 1) / 2)).2.2.1 == 0
+/-- The odd primes `5 ≤ p ≤ 1087`, chunk 1 of the census of G6. -/
+def oddPrimesC1 : List Nat :=
+  [5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47, 53, 59, 61, 67, 71, 73, 79, 83, 89, 97, 101, 103, 107, 109,
+  113, 127, 131, 137, 139, 149, 151, 157, 163, 167, 173, 179, 181, 191, 193, 197, 199, 211, 223, 227, 229, 233,
+  239, 241, 251, 257, 263, 269, 271, 277, 281, 283, 293, 307, 311, 313, 317, 331, 337, 347, 349, 353, 359, 367,
+  373, 379, 383, 389, 397, 401, 409, 419, 421, 431, 433, 439, 443, 449, 457, 461, 463, 467, 479, 487, 491, 499,
+  503, 509, 521, 523, 541, 547, 557, 563, 569, 571, 577, 587, 593, 599, 601, 607, 613, 617, 619, 631, 641, 643,
+  647, 653, 659, 661, 673, 677, 683, 691, 701, 709, 719, 727, 733, 739, 743, 751, 757, 761, 769, 773, 787, 797,
+  809, 811, 821, 823, 827, 829, 839, 853, 857, 859, 863, 877, 881, 883, 887, 907, 911, 919, 929, 937, 941, 947,
+  953, 967, 971, 977, 983, 991, 997, 1009, 1013, 1019, 1021, 1031, 1033, 1039, 1049, 1051, 1061, 1063, 1069,
+  1087]
+/-- The odd primes `1091 ≤ p ≤ 1571`, chunk 2 of the census of G6. -/
+def oddPrimesC2 : List Nat :=
+  [1091, 1093, 1097, 1103, 1109, 1117, 1123, 1129, 1151, 1153, 1163, 1171, 1181, 1187, 1193, 1201, 1213, 1217,
+  1223, 1229, 1231, 1237, 1249, 1259, 1277, 1279, 1283, 1289, 1291, 1297, 1301, 1303, 1307, 1319, 1321, 1327,
+  1361, 1367, 1373, 1381, 1399, 1409, 1423, 1427, 1429, 1433, 1439, 1447, 1451, 1453, 1459, 1471, 1481, 1483,
+  1487, 1489, 1493, 1499, 1511, 1523, 1531, 1543, 1549, 1553, 1559, 1567, 1571]
+/-- The odd primes `1579 ≤ p ≤ 1973`, chunk 3 of the census of G6. -/
+def oddPrimesC3 : List Nat :=
+  [1579, 1583, 1597, 1601, 1607, 1609, 1613, 1619, 1621, 1627, 1637, 1657, 1663, 1667, 1669, 1693, 1697, 1699,
+  1709, 1721, 1723, 1733, 1741, 1747, 1753, 1759, 1777, 1783, 1787, 1789, 1801, 1811, 1823, 1831, 1847, 1861,
+  1867, 1871, 1873, 1877, 1879, 1889, 1901, 1907, 1913, 1931, 1933, 1949, 1951, 1973]
+/-- The odd primes `1979 ≤ p ≤ 2287`, chunk 4 of the census of G6. -/
+def oddPrimesC4 : List Nat :=
+  [1979, 1987, 1993, 1997, 1999, 2003, 2011, 2017, 2027, 2029, 2039, 2053, 2063, 2069, 2081, 2083, 2087, 2089,
+  2099, 2111, 2113, 2129, 2131, 2137, 2141, 2143, 2153, 2161, 2179, 2203, 2207, 2213, 2221, 2237, 2239, 2243,
+  2251, 2267, 2269, 2273, 2281, 2287]
+/-- The odd primes `2293 ≤ p ≤ 2591`, chunk 5 of the census of G6. -/
+def oddPrimesC5 : List Nat :=
+  [2293, 2297, 2309, 2311, 2333, 2339, 2341, 2347, 2351, 2357, 2371, 2377, 2381, 2383, 2389, 2393, 2399, 2411,
+  2417, 2423, 2437, 2441, 2447, 2459, 2467, 2473, 2477, 2503, 2521, 2531, 2539, 2543, 2549, 2551, 2557, 2579,
+  2591]
+/-- The odd primes `2593 ≤ p ≤ 2819`, chunk 6 of the census of G6. -/
+def oddPrimesC6 : List Nat :=
+  [2593, 2609, 2617, 2621, 2633, 2647, 2657, 2659, 2663, 2671, 2677, 2683, 2687, 2689, 2693, 2699, 2707, 2711,
+  2713, 2719, 2729, 2731, 2741, 2749, 2753, 2767, 2777, 2789, 2791, 2797, 2801, 2803, 2819]
+/-- The odd primes `2833 ≤ p ≤ 2999`, chunk 7 of the census of G6. -/
+def oddPrimesC7 : List Nat :=
+  [2833, 2837, 2843, 2851, 2857, 2861, 2879, 2887, 2897, 2903, 2909, 2917, 2927, 2939, 2953, 2957, 2963, 2969,
+  2971, 2999]
+/-- The 428 odd primes `5 ≤ p < 3000`, the seven chunks concatenated. -/
+def oddPrimesBelow3000 : List Nat := oddPrimesC1 ++ oddPrimesC2 ++ oddPrimesC3 ++ oddPrimesC4 ++ oddPrimesC5 ++ oddPrimesC6 ++ oddPrimesC7
+/-- The enumeration is complete: the seven chunks are exactly the odd primes `5 ≤ p < 3000` by trial division. -/
+theorem oddPrimesBelow3000_complete :
+    (List.range 3000).filter (fun q => 5 ≤ q && isPrimeB q) = oddPrimesBelow3000 := by decide +kernel
+theorem sigma_vanishes_c1 : oddPrimesC1.all (fun p => sigmaZero p p) = true := by decide +kernel
+theorem sigma_vanishes_c2 : oddPrimesC2.all (fun p => sigmaZero p p) = true := by decide +kernel
+theorem sigma_vanishes_c3 : oddPrimesC3.all (fun p => sigmaZero p p) = true := by decide +kernel
+theorem sigma_vanishes_c4 : oddPrimesC4.all (fun p => sigmaZero p p) = true := by decide +kernel
+theorem sigma_vanishes_c5 : oddPrimesC5.all (fun p => sigmaZero p p) = true := by decide +kernel
+theorem sigma_vanishes_c6 : oddPrimesC6.all (fun p => sigmaZero p p) = true := by decide +kernel
+theorem sigma_vanishes_c7 : oddPrimesC7.all (fun p => sigmaZero p p) = true := by decide +kernel
+/-- 13:G6, 13:I2 — first-order wall vanishing of the arcsin chain: `σ_p ≡ 0 (mod p)` on all `428` odd primes
+`5 ≤ p < 3000` (the enumeration complete), and `σ_3 = 1`. -/
+theorem sigma_vanishes_all :
+    (List.range 3000).filter (fun q => 5 ≤ q && isPrimeB q) = oddPrimesBelow3000 ∧ oddPrimesBelow3000.length = 428 ∧
+    oddPrimesBelow3000.all (fun p => sigmaZero p p) = true ∧ sigmaZero 3 3 = false := by
+  refine ⟨oddPrimesBelow3000_complete, by decide +kernel, ?_, by decide +kernel⟩
+  simp only [oddPrimesBelow3000, List.all_append, sigma_vanishes_c1, sigma_vanishes_c2, sigma_vanishes_c3, sigma_vanishes_c4, sigma_vanishes_c5, sigma_vanishes_c6, sigma_vanishes_c7, Bool.and_self]
+
+/-- The 60 primes `5 ≤ p < 300`. -/
+def primes5to300 : List Nat := (List.range 300).filter (fun q => 5 ≤ q && isPrimeB q)
+
+/-- 13:G7, 13:I2 — second order at the arcsin wall: `σ_p ≡ 0 (mod p²)` (Sun's theorem) on all `60` primes
+`5 ≤ p < 300`. -/
+theorem sigma_vanishes_mod_sq :
+    primes5to300.length = 60 ∧ primes5to300.all (fun p => sigmaZero p (p * p)) = true := by decide +kernel
+
+/-! #### The frame invariants (13:I5) -/
+
+/-- The Fermat quotient of `4` at `p`: `(4^{p−1} − 1)/p mod p`. -/
+def fermatQuotient4 (p : Nat) : Nat := ((4 ^ (p - 1) % (p * p) + p * p - 1) / p) % p
+
+/-- 13:I5, 13:J6 — the three frame invariants on their named shells: at `p = 13` the wall of `e` is `!13 ≡ 10`, the
+Fermat quotient `q₁₃(4) = 6` and the two squares `13 = 3² + 2²`; at `p = 1093` the Fermat quotient vanishes (the
+Wieferich prime), each an exact certificate of its shell. -/
+theorem invariants_13_1093 :
+    kur 13 % 13 = 10 ∧ fermatQuotient4 13 = 6 ∧ 3 * 3 + 2 * 2 = 13 ∧ isPrimeB 1093 = true ∧ fermatQuotient4 1093 = 0 := by
+  decide +kernel
+
+/-! #### The arcsin chain against a certified bracket of `π` (13:E3, H3) -/
+
+/-- The arcsin chain `s_n = 3 Σ_{k ≤ n} C(2k,k)/((2k+1)16^k)` as an exact fraction `(num, den)`, with `C(2k,k)`
+carried by the recurrence `C(2k+2,k+1) = C(2k,k)·2(2k+1)/(k+1)`: after step `k` the state is `(C(2k,k), num, den)`
+of `s_k`. -/
+def arcsinChain : Nat → Nat × Nat × Nat
+  | 0 => (1, 3, 1)
+  | k + 1 =>
+    match arcsinChain k with
+    | (c, num, den) =>
+      let c' := c * (2 * (2 * k + 1)) / (k + 1)
+      let d := (2 * (k + 1) + 1) * 16 ^ (k + 1)
+      (c', num * d + 3 * c' * den, den * d)
+
+/-- The lower end `L` of the rational bracket `L ≤ π ≤ U` of the Machin pairing at `m = 12`
+(`FRC.Epi.pi_bracket_24` on Mathlib: `L = 4(4 S_{1/5}(25) − S_{1/239}(24))`), as `(numerator, denominator)`. -/
+def piLo : Nat × Nat := (56982451095683495439374565467485478486061627198245408555021816811556209980957932490824931053425856737444302864615815079280095539452134822710663747992660383090256176690756, 18138077522740431478132504469278196026908888402936691374051205499784758924249616118578433027852823624088713136757082253607690672547607224629473421373404562473297119140625)
+
+/-- The upper end `U` of the same bracket (`U = 4(4 S_{1/5}(24) − S_{1/239}(25))`), the width below `10⁻³⁶`. -/
+def piHi : Nat × Nat := (130195783561461477719700582162729520693370052310728319298679169305810308737653928066126520396560009514814646871106941551053006194003594103465911391825667397563687081581706376, 41442605047058247458496271511585593410122504578565869919087156374128208580482492892372746919359245529262855323388051816332995956263674891122406052090809680521488189697265625)
+
+/-- `|π − s_n| < 4⁻ⁿ/(2n+3)` decided on the bracket: `s_n − 4⁻ⁿ/(2n+3) < L` and `U < s_n + 4⁻ⁿ/(2n+3)`,
+cross-multiplied in the naturals. -/
+def tailWithin (n : Nat) : Bool :=
+  match arcsinChain n, piLo, piHi with
+  | (_, num, den), (a, b), (c, d) =>
+    let q := 4 ^ n * (2 * n + 3)
+    ((num * q - den) * b < a * den * q) && (c * den * q < (num * q + den) * d)
+
+/-- 13:E3 — the tail bound of the arcsin chain, `|π − s_n| < 4⁻ⁿ/(2n+3)`, holds against the certified bracket of
+`π` for every `1 ≤ n ≤ 40`. -/
+theorem arcsin_tail_bound : (List.range 40).all (fun k => tailWithin (k + 1)) = true := by decide +kernel
+
+/-- No integer `λ` satisfies `2πλ = p − 1` on the shell `p`: with `L = a/b ≤ π ≤ U = c/d`, the interval
+`[(p−1)/(2U), (p−1)/(2L)] = [(p−1)d/(2c), (p−1)b/(2a)]` contains no integer, decided in the naturals as
+`⌊(p−1)b/(2a)⌋ < ⌈(p−1)d/(2c)⌉`. -/
+def noCalibration (p : Nat) : Bool :=
+  match piLo, piHi with
+  | (a, b), (c, d) =>
+    let lo := ((p - 1) * d + 2 * c - 1) / (2 * c)
+    let hi := ((p - 1) * b) / (2 * a)
+    hi < lo
+/-- The shells `p ≡ 1 (mod 4)`, `5 ≤ p ≤ 1657`, chunk 1 of the run of J3. -/
+def shellsQ1 : List Nat :=
+  [5, 13, 17, 29, 37, 41, 53, 61, 73, 89, 97, 101, 109, 113, 137, 149, 157, 173, 181, 193, 197, 229, 233, 241,
+  257, 269, 277, 281, 293, 313, 317, 337, 349, 353, 373, 389, 397, 401, 409, 421, 433, 449, 457, 461, 509, 521,
+  541, 557, 569, 577, 593, 601, 613, 617, 641, 653, 661, 673, 677, 701, 709, 733, 757, 761, 769, 773, 797, 809,
+  821, 829, 853, 857, 877, 881, 929, 937, 941, 953, 977, 997, 1009, 1013, 1021, 1033, 1049, 1061, 1069, 1093,
+  1097, 1109, 1117, 1129, 1153, 1181, 1193, 1201, 1213, 1217, 1229, 1237, 1249, 1277, 1289, 1297, 1301, 1321,
+  1361, 1373, 1381, 1409, 1429, 1433, 1453, 1481, 1489, 1493, 1549, 1553, 1597, 1601, 1609, 1613, 1621, 1637,
+  1657]
+/-- The shells `p ≡ 1 (mod 4)`, `1669 ≤ p ≤ 3637`, chunk 2 of the run of J3. -/
+def shellsQ2 : List Nat :=
+  [1669, 1693, 1697, 1709, 1721, 1733, 1741, 1753, 1777, 1789, 1801, 1861, 1873, 1877, 1889, 1901, 1913, 1933,
+  1949, 1973, 1993, 1997, 2017, 2029, 2053, 2069, 2081, 2089, 2113, 2129, 2137, 2141, 2153, 2161, 2213, 2221,
+  2237, 2269, 2273, 2281, 2293, 2297, 2309, 2333, 2341, 2357, 2377, 2381, 2389, 2393, 2417, 2437, 2441, 2473,
+  2477, 2521, 2549, 2557, 2593, 2609, 2617, 2621, 2633, 2657, 2677, 2689, 2693, 2713, 2729, 2741, 2749, 2753,
+  2777, 2789, 2797, 2801, 2833, 2837, 2857, 2861, 2897, 2909, 2917, 2953, 2957, 2969, 3001, 3037, 3041, 3049,
+  3061, 3089, 3109, 3121, 3137, 3169, 3181, 3209, 3217, 3221, 3229, 3253, 3257, 3301, 3313, 3329, 3361, 3373,
+  3389, 3413, 3433, 3449, 3457, 3461, 3469, 3517, 3529, 3533, 3541, 3557, 3581, 3593, 3613, 3617, 3637]
+/-- The shells `p ≡ 1 (mod 4)`, `3673 ≤ p ≤ 5821`, chunk 3 of the run of J3. -/
+def shellsQ3 : List Nat :=
+  [3673, 3677, 3697, 3701, 3709, 3733, 3761, 3769, 3793, 3797, 3821, 3833, 3853, 3877, 3881, 3889, 3917, 3929,
+  3989, 4001, 4013, 4021, 4049, 4057, 4073, 4093, 4129, 4133, 4153, 4157, 4177, 4201, 4217, 4229, 4241, 4253,
+  4261, 4273, 4289, 4297, 4337, 4349, 4357, 4373, 4397, 4409, 4421, 4441, 4457, 4481, 4493, 4513, 4517, 4549,
+  4561, 4597, 4621, 4637, 4649, 4657, 4673, 4721, 4729, 4733, 4789, 4793, 4801, 4813, 4817, 4861, 4877, 4889,
+  4909, 4933, 4937, 4957, 4969, 4973, 4993, 5009, 5021, 5077, 5081, 5101, 5113, 5153, 5189, 5197, 5209, 5233,
+  5237, 5261, 5273, 5281, 5297, 5309, 5333, 5381, 5393, 5413, 5417, 5437, 5441, 5449, 5477, 5501, 5521, 5557,
+  5569, 5573, 5581, 5641, 5653, 5657, 5669, 5689, 5693, 5701, 5717, 5737, 5741, 5749, 5801, 5813, 5821]
+/-- The shells `p ≡ 1 (mod 4)`, `5849 ≤ p ≤ 8009`, chunk 4 of the run of J3. -/
+def shellsQ4 : List Nat :=
+  [5849, 5857, 5861, 5869, 5881, 5897, 5953, 5981, 6029, 6037, 6053, 6073, 6089, 6101, 6113, 6121, 6133, 6173,
+  6197, 6217, 6221, 6229, 6257, 6269, 6277, 6301, 6317, 6329, 6337, 6353, 6361, 6373, 6389, 6397, 6421, 6449,
+  6469, 6473, 6481, 6521, 6529, 6553, 6569, 6577, 6581, 6637, 6653, 6661, 6673, 6689, 6701, 6709, 6733, 6737,
+  6761, 6781, 6793, 6829, 6833, 6841, 6857, 6869, 6917, 6949, 6961, 6977, 6997, 7001, 7013, 7057, 7069, 7109,
+  7121, 7129, 7177, 7193, 7213, 7229, 7237, 7253, 7297, 7309, 7321, 7333, 7349, 7369, 7393, 7417, 7433, 7457,
+  7477, 7481, 7489, 7517, 7529, 7537, 7541, 7549, 7561, 7573, 7577, 7589, 7621, 7649, 7669, 7673, 7681, 7717,
+  7741, 7753, 7757, 7789, 7793, 7817, 7829, 7841, 7853, 7873, 7877, 7901, 7933, 7937, 7949, 7993, 8009]
+/-- The 500 shells `p ≡ 1 (mod 4)`, `5 ≤ p ≤ 8009`, the four chunks concatenated. -/
+def shells8009 : List Nat := shellsQ1 ++ shellsQ2 ++ shellsQ3 ++ shellsQ4
+/-- The enumeration is complete: the four chunks are exactly the primes `p ≡ 1 (mod 4)` below `8010` by trial division. -/
+theorem shells8009_complete :
+    (List.range 8010).filter (fun q => 5 ≤ q && q % 4 == 1 && isPrimeB q) = shells8009 := by decide +kernel
+
+/-- 13:H3, 13:I1, 13:I3 — exact calibration is impossible on every shell of the run: with `θ = 2πλ(i)/(p−1)`, no
+integer `λ` makes `θ = 1` on any of the `500` shells `p ≡ 1 (mod 4)`, `p ≤ 8009`, decided on the certified bracket
+of `π`. -/
+theorem no_exact_calibration : shells8009.length = 500 ∧ shells8009.all noCalibration = true := by decide +kernel
+
+/-! #### The readouts and the calibrated shell in the integers (13:D4, D5, H4) -/
+
+/-- `|ε_n − d| < 2⁻⁵²` for `d = 6121026514868073/2⁵¹`, decided in the integers: `2·|n!·2⁵¹ − 6121026514868073·!n| < !n`. -/
+def readoutWithin (n : Nat) : Bool :=
+  2 * Int.natAbs ((fact n * 2 ^ 51 : Int) - 6121026514868073 * (dr n : Int)) < dr n
+
+/-- 13:D4, 13:I1 — the binary64 readout of `e` in the integers: `ε₁₈ = 18!/!18` lies within the half-ulp of the
+binary64 constant `6121026514868073/2⁵¹` and no `ε_n` with `2 ≤ n ≤ 17` does; `!18 = 2355301661033953`. -/
+theorem readout_e_core :
+    readoutWithin 18 = true ∧ (List.range 16).all (fun k => !readoutWithin (k + 2)) = true ∧
+    dr 18 = 2355301661033953 ∧ fact 18 = 6402373705728000 := by decide +kernel
+
+/-- 13:D5, 13:E5 — the step counts of the derangement chain: `n = 11, 18, 70` are the least `n` with
+`8·2^k < (n+1)!` for `k = 24, 53, 333` (the enclosure bound `8/(n+1)!` below `2^{−k}`), decided in the integers. -/
+theorem derangement_cost_core :
+    (8 * 2 ^ 24 < fact 12 ∧ ¬ (8 * 2 ^ 24 < fact 11)) ∧ (8 * 2 ^ 53 < fact 19 ∧ ¬ (8 * 2 ^ 53 < fact 18)) ∧
+    (8 * 2 ^ 333 < fact 71 ∧ ¬ (8 * 2 ^ 333 < fact 70)) := by decide +kernel
+
+/-- 13:H4 — the shell data of the best calibrated shell below `10⁶`: `778933` is prime, `≡ 1 (mod 4)`, and
+`123966` is a quarter-turn, `123966² ≡ −1 (mod 778933)` (the angle bound against `π` is the Mathlib witness). -/
+theorem calibrated_shell_core :
+    isPrimeB 778933 = true ∧ 778933 % 4 = 1 ∧ (123966 * 123966) % 778933 = 778932 := by decide +kernel
+
+/-! #### The height run (13:J3, J5) -/
+
+/-- The prime factors of `n` by trial division from `d` with fuel, each factor repeated with its multiplicity. -/
+def primeFactorsFrom (n d : Nat) : Nat → List Nat
+  | 0 => []
+  | fuel + 1 =>
+    if n < 2 then [] else if n < d * d then [n]
+    else if n % d == 0 then d :: primeFactorsFrom (n / d) d fuel
+    else primeFactorsFrom n (d + 1) fuel
+
+/-- The prime factors of `n`. -/
+def primeFactors (n : Nat) : List Nat := primeFactorsFrom n 2 n
+
+/-- `g` is a primitive root modulo the prime `p`: `g^{(p−1)/q} ≠ 1` for every prime `q ∣ p − 1`. -/
+def isPrimRoot (p g : Nat) : Bool := (primeFactors (p - 1)).all (fun q => g ^ ((p - 1) / q) % p != 1)
+
+/-- The first primitive root at or above `g`, searched with fuel (`0` when the fuel runs out). -/
+def primRootFrom (p g : Nat) : Nat → Nat
+  | 0 => 0
+  | fuel + 1 => if isPrimRoot p g then g else primRootFrom p (g + 1) fuel
+
+/-- The smallest primitive root modulo `p`. -/
+def smallestPrimRoot (p : Nat) : Nat := primRootFrom p 2 p
+
+/-- The centred absolute value `|ctr x|` of a residue `x < p`. -/
+def ctrAbs (p x : Nat) : Nat := if 2 * x ≤ p then x else p - x
+
+/-- `H_B(x) = min_{1 ≤ a ≤ B} max(a, |ctr(a·x)|)`, the height searched up to `a = B` (`H_0 = p`). -/
+def heightSearch (p x : Nat) : Nat → Nat
+  | 0 => p
+  | a + 1 => min (heightSearch p x a) (max (a + 1) (ctrAbs p ((a + 1) * x % p)))
+
+/-- The height searched within the band `a ≤ 200`: on every shell of the run `H ≤ 2√p < 180` (the clause
+`H² ≤ 4p` of `height_run`), so a multiplier `a > 200` gives `max(a, ·) > H`, and the minimum over all `a ≥ 1` is the
+minimum over the band. -/
+def height (p x : Nat) : Nat := heightSearch p x 200
+
+/-- The exponential unit `e_p = g^{λ(i)}` with `i = g^{−κ} = g^{3κ}` the quarter-turn, in the frame of `g`. -/
+def expUnit (p g : Nat) : Nat := g ^ (g ^ (3 * ((p - 1) / 4)) % p) % p
+
+/-- The exponential unit of the conjugate chart, `g^{λ(−i)}`. -/
+def expUnitConj (p g : Nat) : Nat := g ^ (p - g ^ (3 * ((p - 1) / 4)) % p) % p
+
+/-- `H(e_p)` minimised over the two chiralities, in the smallest-primitive-root frame. -/
+def heightE (p : Nat) : Nat :=
+  let g := smallestPrimRoot p
+  min (height p (expUnit p g)) (height p (expUnitConj p g))
+theorem height_run_q1 :
+    shellsQ1.all (fun p => heightE p * heightE p ≤ 4 * p) = true ∧
+    (shellsQ1.filter (fun p => heightE p ≤ 10)).length = 48 ∧
+    shellsQ1.filter (fun p => heightE p == 2) = [13] := by decide +kernel
+theorem height_run_q2 :
+    shellsQ2.all (fun p => heightE p * heightE p ≤ 4 * p) = true ∧
+    (shellsQ2.filter (fun p => heightE p ≤ 10)).length = 10 ∧
+    shellsQ2.filter (fun p => heightE p == 2) = [1933] := by decide +kernel
+theorem height_run_q3 :
+    shellsQ3.all (fun p => heightE p * heightE p ≤ 4 * p) = true ∧
+    (shellsQ3.filter (fun p => heightE p ≤ 10)).length = 3 ∧
+    shellsQ3.filter (fun p => heightE p == 2) = [4177] := by decide +kernel
+theorem height_run_q4 :
+    shellsQ4.all (fun p => heightE p * heightE p ≤ 4 * p) = true ∧
+    (shellsQ4.filter (fun p => heightE p ≤ 10)).length = 7 ∧
+    shellsQ4.filter (fun p => heightE p == 2) = [5857] := by decide +kernel
+/-- 13:J3 — the height run: over the `500` shells `p ≡ 1 (mod 4)`, `p ≤ 8009` (the enumeration complete),
+`H(e_p) ≤ 2√p` on every shell (the horizon band), exactly `68` shells have `H ≤ 10`, and the pin value `2` is reached
+on exactly `{13, 1933, 4177, 5857}`. -/
+theorem height_run :
+    (List.range 8010).filter (fun q => 5 ≤ q && q % 4 == 1 && isPrimeB q) = shells8009 ∧ shells8009.length = 500 ∧
+    shells8009.all (fun p => heightE p * heightE p ≤ 4 * p) = true ∧
+    (shells8009.filter (fun p => heightE p ≤ 10)).length = 68 ∧
+    shells8009.filter (fun p => heightE p == 2) = [13, 1933, 4177, 5857] := by
+  refine ⟨shells8009_complete, by decide +kernel, ?_, ?_, ?_⟩
+  · simp only [shells8009, List.all_append, height_run_q1.1, height_run_q2.1, height_run_q3.1, height_run_q4.1,
+      Bool.and_self]
+  · simp only [shells8009, List.filter_append, List.length_append, height_run_q1.2.1, height_run_q2.2.1,
+      height_run_q3.2.1, height_run_q4.2.1]
+  · simp only [shells8009, List.filter_append, height_run_q1.2.2, height_run_q2.2.2, height_run_q3.2.2,
+      height_run_q4.2.2, List.cons_append, List.nil_append]
+
+/-- 13:J5 — the certification split: the half-period is pinned by the height-two relation `2π_A + 1 ≡ 0` on every
+frame shell (J2), while `e_p` reaches the pin value `2` on exactly four of the `500` shells of the run and otherwise
+sits in the horizon band `H(e_p) ≤ 2√p`: no pinned residue and no cross-shell certificate for `e_p`. -/
+theorem pin_contrast :
+    (∀ {p : Nat} [Pos p] {κ : Nat} {g : Shell p}, Frame p κ g → (ofNat (2 * halfPeriod κ) : Shell p) = -1) ∧
+    shells8009.filter (fun p => heightE p == 2) = [13, 1933, 4177, 5857] ∧
+    shells8009.all (fun p => heightE p * heightE p ≤ 4 * p) = true :=
+  ⟨fun F => F.two_pi, height_run.2.2.2.2, height_run.2.2.1⟩
+
+end census
 
 /-! ## Old names (ledger migration, task LM17): the declarations moved to the themes, each under its old name -/
 section aliases

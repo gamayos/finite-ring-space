@@ -82,5 +82,13 @@ class RadiativeTest(unittest.TestCase):
         self.assertAlmostEqual(CG.schwarzschild_as_exponential(0.4), 0.0, places=12)
 
 
+class ApsidalBoundTest(unittest.TestCase):
+    def test_mercury(self):
+        ab = CG.apsidal_bound()
+        self.assertAlmostEqual(ab["log10_bound"], -283.5 / 2 / math.log(10))
+        self.assertGreater(ab["orders_above"], 54); self.assertLess(ab["orders_above"], 55)
+        self.assertGreater(ab["log10_p2"], ab["log10_omega"])
+
+
 if __name__ == "__main__":
     unittest.main()

@@ -964,7 +964,7 @@
    "key": "p38051",
    "tag": "T",
    "predicate": "\\textbf{The shell is holographic}: a Subject's frame datum is one projective direction, one shell cell, one drive phase, and the bulk frame is that boundary datum with nothing left over (Theorem~\\ref{th:holography}; the realisation reading and its falsifier, Reading~\\ref{th:holography-reading}).",
-   "source": "\\src{s13.\\allowbreak verify-hopf}, \\src{s13.\\allowbreak check\\_fibrations}",
+   "source": "Theorem~\\ref{th:holography}\\newline \\pywit{s13}{p38051}{X4}, \\leanwit{FrcCore}{p38051}{X4}; rests on A9 \\lean{FRC.Shell.Frame.frame\\_triple, FRC.Shell.Frame.unit\\_split, FRC.Shell.Frame.hopf\\_counts}",
    "master": [
     "C22"
    ],

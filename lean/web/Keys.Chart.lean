@@ -120,6 +120,49 @@ theorem cover_forcing (β γ : ℚ) :
   · rintro rfl
     exact ⟨by norm_num, fun h => ⟨by linarith, by linarith⟩⟩
 
+/-- 38:C8 — the face-ratio identity of the parametrised post-Newtonian family (Statement *The physical floors*,
+38-s13): with the apsidal coefficient `2 − β + 2γ` and the `β, γ`-free clock-deficit coefficient `3/2`, the face
+ratio is `(2/3)(2 + 2γ − β)`, equal to `2` exactly when `2γ − β = 1`, with deviation `(2/3)(2γ − β − 1)`; the
+exponential metric `β = γ = 1` satisfies it; in Brans–Dicke theory (`β = 1`, `γ = (1 + ω)/(2 + ω)`) the combination
+is `2γ − β − 1 = −2/(2 + ω)`, nonzero at every finite coupling, deviation `−4/(3(2 + ω))`, and below every `ε` past
+`ω = 2/ε` (the general-relativistic limit, stated over `ℚ`). The coefficients themselves are the continuum chart's (the series of the
+isotropic metric, `o1_gr_chart.py`); the algebra is exact over `ℚ`. -/
+theorem ppn_faces (β γ : ℚ) :
+    (2 - β + 2 * γ) / (3 / 2) = 2 / 3 * (2 + 2 * γ - β) ∧
+    (2 / 3 * (2 + 2 * γ - β) = 2 ↔ 2 * γ - β = 1) ∧
+    2 / 3 * (2 + 2 * γ - β) - 2 = 2 / 3 * (2 * γ - β - 1) ∧
+    (2 * (1 : ℚ) - 1 = 1) ∧
+    (∀ ω : ℚ, 2 + ω ≠ 0 → 2 * ((1 + ω) / (2 + ω)) - 1 - 1 = -2 / (2 + ω) ∧
+      2 / 3 * (2 * ((1 + ω) / (2 + ω)) - 1 - 1) = -4 / (3 * (2 + ω)) ∧ -2 / (2 + ω) ≠ 0) ∧
+    (∀ ε : ℚ, 0 < ε → ∃ W : ℚ, ∀ ω : ℚ, W < ω → |(-2 : ℚ) / (2 + ω)| < ε) := by
+  refine ⟨by ring, ⟨fun h => by linarith, fun h => by linarith⟩, by ring, by norm_num, fun ω hω => ⟨?_, ?_, ?_⟩, ?_⟩
+  · field_simp; ring
+  · field_simp; ring
+  · exact div_ne_zero (by norm_num) hω
+  · intro ε hε
+    refine ⟨2 / ε, fun ω hω => ?_⟩
+    have h2 : 0 < 2 / ε := by positivity
+    have hpos : 0 < 2 + ω := by linarith
+    rw [abs_div, abs_neg, abs_of_pos hpos, abs_of_pos (by norm_num : (0 : ℚ) < 2), div_lt_iff₀ hpos]
+    have : 2 / ε < ω := hω
+    rw [div_lt_iff₀ hε] at this
+    linarith
+
+/-- 38:C12, 38:C7 — the registration dictionary on a hosted pair: matching the temporal face `κ/(2S)` to the
+circular-orbit clock deficit `(3/2) r_g/p_sl` forces `p_sl = 3 (S/κ) r_g`, under which the angular face reads
+`3 r_g/p_sl = κ/S` automatically: one relation, homogeneous of degree `0`, fixing the ratio `p_sl/r_g = 3S/κ` —
+`58` at `(13, 233)` (`κ = 3`, `S = 58`: `p_sl = S r_g`), `174` at `(5, 233)`; the two faces `κ/S : κ/(2S) = 2`. -/
+theorem registration_dictionary (κ S rg psl : ℚ) (hκ : κ ≠ 0) (hS : S ≠ 0) (hrg : rg ≠ 0) (hpsl : psl ≠ 0) :
+    ((3 / 2) * (rg / psl) = κ / (2 * S) ↔ psl = 3 * (S / κ) * rg) ∧
+    (psl = 3 * (S / κ) * rg → 3 * rg / psl = κ / S ∧ psl / rg = 3 * S / κ) ∧
+    (κ / S) / (κ / (2 * S)) = 2 ∧ 3 * (58 : ℚ) / 3 = 58 ∧ 3 * (58 : ℚ) / 1 = 174 := by
+  refine ⟨⟨fun h => ?_, fun h => ?_⟩, fun h => ⟨?_, ?_⟩, ?_, by norm_num, by norm_num⟩
+  · field_simp at h ⊢; linarith
+  · subst h; field_simp
+  · subst h; field_simp
+  · subst h; field_simp
+  · field_simp
+
 /-- 21:A9 — the mass–energy channel `C_{p−1} ∩ C_{2(p+1)} = Q₄`: on every shell `p ≡ 1 (mod 4)`,
 `gcd(p − 1, 2(p + 1)) = 4`; the subgroup reading — in the cyclic unit group of `𝔽_{p²}` (order `(p − 1)(p + 1)`)
 the subgroups of orders `p − 1` and `2(p + 1)` meet in the subgroup of order `gcd` — is not formalised here. -/
@@ -1121,6 +1164,28 @@ theorem running_floor (c G M : ℝ) (H a v : ℝ → ℝ) (z : ℝ) (hc : 0 < c)
 
 end floor
 
+/-! ## The radial ladder of the minimal pair (38:B2) -/
+section ladder
+
+/-- 38:B2 [chart] — the radial ladder of the sky: the shell radii `R sin(2aπ/13)`, `a = 1, 2, 3`, are positive,
+strictly increasing, and inside the rim `R` (the chart flattening of the latitude circles; the capacity `4a < p ⇔ a ≤ κ`
+is the core's `FRC.Pair.window`). -/
+theorem ladder_monotone (R : ℝ) (hR : 0 < R) :
+    0 < R * Real.sin (2 * π / 13) ∧ R * Real.sin (2 * π / 13) < R * Real.sin (4 * π / 13) ∧
+    R * Real.sin (4 * π / 13) < R * Real.sin (6 * π / 13) ∧ R * Real.sin (6 * π / 13) < R := by
+  have hpi := Real.pi_pos
+  have mono : ∀ x y : ℝ, 0 ≤ x → x < y → y ≤ π / 2 → Real.sin x < Real.sin y := fun x y hx hxy hy =>
+    Real.sin_lt_sin_of_lt_of_le_pi_div_two (by linarith) hy hxy
+  refine ⟨mul_pos hR (Real.sin_pos_of_pos_of_lt_pi (by positivity) (by linarith)), ?_, ?_, ?_⟩
+  · exact mul_lt_mul_of_pos_left (mono _ _ (by positivity) (by linarith) (by linarith)) hR
+  · exact mul_lt_mul_of_pos_left (mono _ _ (by positivity) (by linarith) (by linarith)) hR
+  · have h := mono (6 * π / 13) (π / 2) (by positivity) (by linarith) le_rfl
+    rw [Real.sin_pi_div_two] at h
+    calc R * Real.sin (6 * π / 13) < R * 1 := mul_lt_mul_of_pos_left h hR
+      _ = R := mul_one R
+
+end ladder
+
 /-! ## The primordial tilt (00:L8) -/
 section tilt
 
@@ -1913,6 +1978,15 @@ theorem p21062 : (∀ (κ : ℕ), (4 : ℕ) * (κ * ((4 : ℕ) * κ + (2 : ℕ))
 /-- p21064 — 21:C19. The registration crossover made exact: the killed walk is the noise sector, first passage the masking event, the window attribution the framed-rational tally ratio $g_N/f$, and the orbital response now derived (Theorem~\ref{thm:twoshift} with the registered-inertia identity); it rests on the masking barrier (B9) and the corpus's unified sampling clause (master D10), shared with \citep{quantum}. -/
 theorem p21064 : (∀ (w : ℝ), (0 : ℝ) < w → w < (1 : ℝ) → w * (((1 : ℝ) - √((1 : ℝ) - w ^ (2 : ℕ))) / w) ^ (2 : ℕ) - (2 : ℝ) * (((1 : ℝ) - √((1 : ℝ) - w ^ (2 : ℕ))) / w) + w = (0 : ℝ) ∧ (0 : ℝ) < ((1 : ℝ) - √((1 : ℝ) - w ^ (2 : ℕ))) / w ∧ ((1 : ℝ) - √((1 : ℝ) - w ^ (2 : ℕ))) / w < (1 : ℝ) ∧ (1 : ℝ) < ((1 : ℝ) + √((1 : ℝ) - w ^ (2 : ℕ))) / w ∧ ∀ (x : ℝ), w * x ^ (2 : ℕ) - (2 : ℝ) * x + w = (0 : ℝ) → x = ((1 : ℝ) - √((1 : ℝ) - w ^ (2 : ℕ))) / w ∨ x = ((1 : ℝ) + √((1 : ℝ) - w ^ (2 : ℕ))) / w) ∧ (∀ (t : ℝ), (0 : ℝ) < t → (0 : ℝ) < (1 : ℝ) - Real.exp (-t) ∧ (1 : ℝ) ≤ t / ((1 : ℝ) - Real.exp (-t)) ∧ (t ≤ (1 : ℝ) → t / ((1 : ℝ) - Real.exp (-t)) ≤ (1 : ℝ) / ((1 : ℝ) - (3 : ℝ) * t / (4 : ℝ))) ∧ ∀ (G M r a₀ v : ℝ), (0 : ℝ) < r → (0 : ℝ) ≤ G * M → (0 : ℝ) ≤ a₀ → v ^ (2 : ℕ) = √(G * M / r ^ (2 : ℕ) * a₀) * r → v ^ (4 : ℕ) = G * M * a₀) ∧ Filter.Tendsto (fun t => t / ((1 : ℝ) - Real.exp (-t))) (nhdsWithin (0 : ℝ) (Set.Ioi (0 : ℝ))) (nhds (1 : ℝ)) :=
   And.intro @FRC.Strong.registration_root (And.intro @FRC.Strong.crossover_limits (@FRC.Strong.crossover_deep_limit))
+/-- p38010 — 38:B2. The radial ladder: shells at $R\sin(2a\pi/13)$ [chart]; capacity $4a<\p\Leftrightarrow a\le\kap$. -/
+theorem p38010 : ∀ (R : ℝ), (0 : ℝ) < R → (0 : ℝ) < R * Real.sin ((2 : ℝ) * Real.pi / (13 : ℝ)) ∧ R * Real.sin ((2 : ℝ) * Real.pi / (13 : ℝ)) < R * Real.sin ((4 : ℝ) * Real.pi / (13 : ℝ)) ∧ R * Real.sin ((4 : ℝ) * Real.pi / (13 : ℝ)) < R * Real.sin ((6 : ℝ) * Real.pi / (13 : ℝ)) ∧ R * Real.sin ((6 : ℝ) * Real.pi / (13 : ℝ)) < R :=
+  @FRC.Chart.ladder_monotone
+/-- p38048 — 38:X3. \textbf{The acceleration floor $a_{0}=cH_{0}/2\pi$ is the drive seen in the chart}: the leak's cyclic rate is the drive's own, one cycle per drive period $\Om-1$ chronons $=2\pi/H_{0}$, and its acceleration face is the floor (C10; C11, the realisation); at the instance $a_{0}=c/(\Om-1)$. -/
+theorem p38048 : ∀ (c H0 : ℝ), c = (299792458 : ℝ) → H0 = 674e2 / 30856775814913673e6 → 104e-12 < c * H0 / ((2 : ℝ) * Real.pi) ∧ c * H0 / ((2 : ℝ) * Real.pi) < 105e-12 ∧ 0.868 < c * H0 / ((2 : ℝ) * Real.pi) / 12e-11 ∧ c * H0 / ((2 : ℝ) * Real.pi) / 12e-11 < 0.870 ∧ 0.65 < (12e-11 - c * H0 / ((2 : ℝ) * Real.pi)) / 24e-12 ∧ (12e-11 - c * H0 / ((2 : ℝ) * Real.pi)) / 24e-12 < 0.67 :=
+  @FRC.Chart.floor_value
+/-- p38049 — 38:P1. The registration floor $a_{0}=cH_{0}/2\pi$, read from the pair's $\kap$-free per-chronon leak rate (C11): parameter-free, tracking $H(z)$. Falsifier: a measured floor off $cH_{0}/2\pi$ beyond the $H_{0}$ uncertainty, or one not tracking $H(z)$ (\S\ref{sec:predictions}, item 5; the dark sector's L1). -/
+theorem p38049 : (∀ (c H0 : ℝ), c = (299792458 : ℝ) → H0 = 674e2 / 30856775814913673e6 → 104e-12 < c * H0 / ((2 : ℝ) * Real.pi) ∧ c * H0 / ((2 : ℝ) * Real.pi) < 105e-12 ∧ 0.868 < c * H0 / ((2 : ℝ) * Real.pi) / 12e-11 ∧ c * H0 / ((2 : ℝ) * Real.pi) / 12e-11 < 0.870 ∧ 0.65 < (12e-11 - c * H0 / ((2 : ℝ) * Real.pi)) / 24e-12 ∧ (12e-11 - c * H0 / ((2 : ℝ) * Real.pi)) / 24e-12 < 0.67) ∧ ∀ (c G M : ℝ) (H a v : ℝ → ℝ) (z : ℝ), (0 : ℝ) < c → (0 : ℝ) < G → (0 : ℝ) < M → (0 : ℝ) < H (0 : ℝ) → (0 : ℝ) < H z → (∀ (z : ℝ), a z = c * H z / ((2 : ℝ) * Real.pi)) → (0 : ℝ) < v (0 : ℝ) → (0 : ℝ) < v z → (∀ (z : ℝ), v z ^ (4 : ℕ) = G * M * a z) → a z / a (0 : ℝ) = H z / H (0 : ℝ) ∧ v z / v (0 : ℝ) = (H z / H (0 : ℝ)) ^ (1 / 4 : ℝ) :=
+  And.intro @FRC.Chart.floor_value (@FRC.Chart.running_floor)
 -- end keys
 
 end FRC.LedgerML
@@ -1950,3 +2024,6 @@ end FRC.LedgerML
 #print axioms FRC.LedgerML.p21060
 #print axioms FRC.LedgerML.p21062
 #print axioms FRC.LedgerML.p21064
+#print axioms FRC.LedgerML.p38010
+#print axioms FRC.LedgerML.p38048
+#print axioms FRC.LedgerML.p38049

@@ -14,7 +14,8 @@ against the continuum, the only place where floats and the reals appear.
 
 The Lean files that exist today keep their paths. `Frame`, `Orbit`, `Instances`, `Sum`, `Meridian` and `Poly` are
 assigned to their themes in place. Since task LM22 the base holds `Series` (bounded search, sums and products, from
-`Frame` and `Sum`), and the numbers theme's `Theme/Numbers` holds the frame's root criterion (from `Poly`), so that the
+`Frame` and `Sum`), since 12 October 2026 `Cycle` (the cycle of `n` sites and its shift, from the gravity theme's
+`Theme/Shift`; 38-s13, the author's decision D4), and the numbers theme's `Theme/Numbers` holds the frame's root criterion (from `Poly`), so that the
 programme themes stand on the prime shell without the frame. Since task LM24 (the author's decision of 5 October: split
 the frame and extension themes, keep the budget) the frame theme opens with `FrameCore` (the frame itself) and `Parity`
 (the square class), the extension theme with `Theme/Quadratic` (the quadratic extension, frame-free), and the base holds
@@ -48,8 +49,8 @@ TIERS = ("base", "structure", "programme", "chart", "keys", "ledgers")
 THEMES = {
     "base": dict(tier="base", rank=0, exact=True,
                  py=["frc/registry.py", "frc/arith.py"],
-                 core=["lean/FrcCore/Nat.lean", "lean/FrcCore/Pigeonhole.lean", "lean/FrcCore/Shell.lean", "lean/FrcCore/Series.lean", "lean/FrcCore/Ring.lean"], ml=[],
-                 content="the registry of checks; exact integer arithmetic; the naturals, the pigeonhole and the shell's residues; bounded search, finite sums and products; the normaliser of ring identities"),
+                 core=["lean/FrcCore/Nat.lean", "lean/FrcCore/Pigeonhole.lean", "lean/FrcCore/Shell.lean", "lean/FrcCore/Series.lean", "lean/FrcCore/Cycle.lean", "lean/FrcCore/Ring.lean"], ml=[],
+                 content="the registry of checks; exact integer arithmetic; the naturals, the pigeonhole and the shell's residues; bounded search, finite sums and products, the cycle and its shift; the normaliser of ring identities"),
     "frame": dict(tier="structure", rank=10, exact=True,
                   py=["frc/shell.py"],
                   core=["lean/FrcCore/FrameCore.lean", "lean/FrcCore/Frame.lean", "lean/FrcCore/Parity.lean", "lean/FrcCore/Transform.lean", "lean/FrcCore/Orbit.lean", "lean/FrcCore/Instances.lean", "lean/FrcCore/Sum.lean", "lean/FrcCore/Meridian.lean", "lean/FrcCore/Theme/Domain.lean"],
@@ -81,11 +82,11 @@ THEMES = {
                     py=["frc/carrier.py"], core=["lean/FrcCore/Theme/Carrier.lean"], ml=[],
                     content="master block B: the Carrier and its constants; the window ladder; the octant"),
     "subject": dict(tier="programme", rank=22, exact=True,
-                    py=["frc/subject.py"], core=["lean/FrcCore/Theme/Subject.lean"], ml=[],
-                    content="master block C: the Subject, the frame group, the registration"),
+                    py=["frc/subject.py", "frc/covering.py"], core=["lean/FrcCore/Theme/Subject.lean", "lean/FrcCore/Theme/Pair.lean"], ml=[],
+                    content="master block C: the Subject, the frame group, the registration; the pair (p, Ω): the resolvable window, the leak rate, the joint cycle, the tick arithmetic and the covering parity theorem (38-s13)"),
     "gravity": dict(tier="programme", rank=23, exact=True,
                     py=["frc/gravity.py", "frc/drift.py", "frc/lattice.py"], core=["lean/FrcCore/Theme/Shift.lean", "lean/FrcCore/Theme/Symbol.lean", "lean/FrcCore/Theme/Gravity.lean", "lean/FrcCore/Theme/Lattice.lean", "lean/FrcCore/Theme/Drift.lean"], ml=["lean/FrcLedger/Theme/Gravity.lean"],
-                    content="master block E: gravity on the lattice; the count face; the register on every frame, the cycle's shifts and the shift theorem (21:C20), the difference operators on the cycle and the exact faces of frame drift (21-gravity)"),
+                    content="master block E: gravity on the lattice; the count face; the register on every frame, the shift theorem on the cycle (21:C20), the difference operators on the cycle and the exact faces of frame drift (21-gravity)"),
     "quantum": dict(tier="programme", rank=24, exact=True,
                     py=["frc/quantum.py"], core=["lean/FrcCore/Theme/Quantum.lean"], ml=[],
                     content="master block F: the quantum rows"),
@@ -124,6 +125,7 @@ LEGACY = {
     "lean/FrcCore/Entropy.lean": ("14-entropy", []),
     "lean/FrcCore/Rh.lean": ("20-rh", ["extension", "horizon"]),
     "lean/FrcCore/Gravity.lean": ("21-gravity", ["gravity"]),
+    "lean/FrcCore/S13.lean": ("38-s13", ["subject", "projective", "gravity"]),
     "lean/FrcCore/Godel.lean": ("25-godel", ["logic"]),
     "lean/FrcCore/Finitism.lean": ("29-finitism", ["logic"]),
     "lean/FrcLedger/Algebra.lean": ("1-algebra", []),
@@ -138,6 +140,7 @@ LEGACY = {
     "lean/FrcLedger/Entropy.lean": ("14-entropy", ["chart"]),
     "lean/FrcLedger/Rh.lean": ("20-rh", ["extension"]),
     "lean/FrcLedger/Gravity.lean": ("21-gravity", ["chart"]),
+    "lean/FrcLedger/S13.lean": ("38-s13", ["gravity", "chart"]),
     "lean/FrcLedger/Godel.lean": ("25-godel", ["logic"]),
 }
 LEGACY_IMPORTS_ENFORCED = True          # set by LM18 (5 October 2026): the paper modules import themes only
@@ -148,7 +151,7 @@ BUDGETS = dict(python_file=1800, core_file=800, mathlib_file=1800, executable=35
 # theme at 7,000 lines, the author's decision of 9 October 2026 for 6-fourier's core proofs (6-fourier-20260716/reports/
 # blueprint-20261008.md set 5,000 on 8 October; the certificate's closure reached 6,629 at T09). A file takes the largest
 # budget among the themes in its closure; the file limits are unchanged.
-EXECUTABLE_BUDGETS = {"fourier": 7000, "gravity": 7500}   # the gravity theme 7,500 since 10 October 2026 (21-gravity; the author's confirmation of 10 October), when its core certificate imported Keys/Fourier for the shift theorem (21:C20, then the fourier theme's Theme/Shift.lean) beside Keys/Gravity, closure 7,306. Since 11 October (the author's decision of 21:45) Theme/Shift.lean is the gravity theme's first file, the key p21035 lives in Keys/Gravity.lean and the certificate no longer imports Keys/Fourier: closure about 4,100 (reports/execution-20261010.md §12); the budget stays at the confirmed 7,500.
+EXECUTABLE_BUDGETS = {"fourier": 7000, "gravity": 7500, "subject": 4500}   # the gravity theme 7,500 since 10 October 2026 (21-gravity; the author's confirmation of 10 October), when its core certificate imported Keys/Fourier for the shift theorem (21:C20, then the fourier theme's Theme/Shift.lean) beside Keys/Gravity, closure 7,306. Since 11 October (the author's decision of 21:45) Theme/Shift.lean is the gravity theme's first file, the key p21035 lives in Keys/Gravity.lean and the certificate no longer imports Keys/Fourier: closure about 4,100 (reports/execution-20261010.md §12); the budget stays at the confirmed 7,500. The subject theme 4,500 since 12 October 2026 (38-s13; the blueprint's D4 set 4,000 with the instances in a paper module, the execution record §2 measures the closure with them in Theme/Pair.lean, as 21-gravity's are in Theme/Gravity.lean): Theme/Pair.lean (the window, the leak rate, the joint cycle, the tick arithmetic, the covering parity theorem and the kernel-decided instances of the pair) brings Keys/Subject.lean's closure to about 4,200.
 
 # Gate G09: what an exact python file may import, and the exact functions of `math`.
 EXACT_STDLIB = {"fractions", "itertools", "functools", "collections", "math", "json", "os", "re", "sys", "dataclasses",

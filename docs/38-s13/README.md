@@ -44,7 +44,9 @@ production clock: 696 stepChronon calls land the flipped sheet and
 the exact half-turn, 1392 the full home);
 node, all passing, all integer arithmetic in the exact suites;
 `node run-all.js` runs the six suites and exits nonzero on any
-failure. The screen projection is
+failure. The suites are the laboratory's own tests of its drawing;
+the paper's ledger rows are decided by the framework's ledger file
+`frc/ledgers/p38_s13.py` and the two Lean libraries (12 October 2026). The screen projection is
 a labelled chart approximation; every state shown is exact and
 discrete. The instance is the minimal non-trivial pair (13, 233),
 kappa = 3, Objectless.
