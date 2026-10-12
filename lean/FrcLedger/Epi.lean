@@ -629,6 +629,26 @@ theorem index_condition_shell (p : ℕ) [hp : Fact p.Prime] (g : ZMod p) (hg : I
 end index
 
 
+section calibration
+open Real
+
+/-- 13:H4 — the best radian-calibrated shell below `10⁶` (Prop. calib): on `p = 778933`, prime, the residue
+`123966` is a quarter-turn (`123966² ≡ −1 (mod p)`), and the frame angle `θ = 2π·123966/(p − 1)` it labels lies
+within `4·10⁻⁵` of one radian and not within `3.9·10⁻⁵` — the calibration inequality decided from the rational
+bounds `3.141592 < π < 3.141593` of Mathlib, no floating-point value of `π` entering; the count of calibrated shells
+and the nearest-hit comparison are the package's (`e.A1`). -/
+theorem calibrated_778933 :
+    Nat.Prime 778933 ∧ (123966 : ZMod 778933) ^ 2 = -1 ∧
+      |2 * π * 123966 / 778932 - 1| < 4 / 100000 ∧ 39 / 1000000 < |2 * π * 123966 / 778932 - 1| := by
+  have h1 := pi_gt_d6
+  have h2 := pi_lt_d6
+  refine ⟨by norm_num, by decide, ?_, ?_⟩
+  · rw [abs_lt]; constructor <;> nlinarith
+  · rw [lt_abs]; right; nlinarith
+
+end calibration
+
+
 section wallisQ
 
 theorem centralBinom_succ_rat (n : ℕ) :
@@ -1148,7 +1168,7 @@ set_option linter.defProp false in
 /-- 13:F2 (p13028) — The wall identity and the terminal residue of $e$: $\dr{(\p-1)}\equiv\Ku{\p}\pmod\p$ (the odd-prime case of the Mijajlovi\'c--\v Sami congruence, A4), hence $\rep{\varepsilon_{\p-1}}=-(\Ku{\p})^{-1}$ whenever $\p\nmid\Ku{\p}$; existence of the terminal link on a shell is equivalent to $\p\nmid\Ku{\p}$, universal existence over the shells of the totality to the vanishing of Kurepa's certificate (Z1); re-verified in the derangement form for all $121{,}126$ odd primes $\p<1.6\times10^{6}$ with zero failures of either condition. Beyond the wall $n!\equiv0$: $n=\p-1$ is the factorial horizon. -/
 def p13028 := And.intro @FRC.Epi.derangements_wall_zmod (@FRC.Epi.terminal_residue)
 set_option linter.defProp false in
-/-- 13:F3 (p13029) — Antiperiodicity: $\dr{(n+\p)}\equiv-\dr{n}\pmod\p$ for every odd prime and every $n\ge0$, so $\dr{n}\bmod\p$ depends on $n\bmod2\p$; the blind set $Z_0(\p)=\{n<\p:\dr{n}\equiv0\}$ always contains $1$, and Kurepa's hypothesis is $\p-1\notin Z_0(\p)$ for every $\p$. -/
+/-- 13:F3 (p13029) — Antiperiodicity: $\dr{(n+\p)}\equiv-\dr{n}\pmod\p$ for every odd prime $\p$ and every $n\ge0$ of the totality, so $\dr{n}\bmod\p$ depends on $n\bmod2\p$; the blind set $Z_0(\p)=\{n<\p:\dr{n}\equiv0\}$ always contains $1$, and Kurepa's hypothesis is $\p-1\notin Z_0(\p)$ for every odd prime $\p$ of the totality. -/
 def p13029 := @FRC.Epi.derangements_antiperiodic_zmod
 set_option linter.defProp false in
 /-- 13:F4 (p13030) — Series duals at the wall: $\sum_{k<\p}(-1)^{k}/k!\equiv-\Ku{\p}$ and $\sum_{k<\p}1/k!\equiv-A(\p)$, $A(\p)$ the alternating factorial sum; the group law $\exp(1)\exp(-1)=1$ does not survive, $\Ku{\p}A(\p)\equiv3,0,21,28,132,258$ at $\p=7,13,29,101,257,1009$; on $\p=13$ the direct series residue vanishes ($A(13)\equiv0$) while the derangement side survives ($\Ku{13}\equiv10$) --- a second ground for the canonicity of D5. -/
@@ -1162,7 +1182,7 @@ def p13066 := And.intro @FRC.Epi.tail_identity_zmod (@FRC.Epi.blind_iff_collisio
 /-- 13:G1 (p13034) — The legibility window: with $m=(\p-1)/2$, $\p\nmid\Cb{n}$ for $1\le n\le m$ and $\p\mid\Cb{n}$ for $m<n<\p$ (Kummer, A3): the residue line of the Wallis chain is defined on exactly $[1,m]$, blind-free below the wall and totally blind on $(m,\p)$; on a frame shell the last legible scale $n=2\kap$ is the angular address of $-1$. -/
 theorem p13034 : ∀ (p : ℕ) [hp : Fact (Nat.Prime p)] (n : ℕ), ((2 : ℕ) * n ≤ p - (1 : ℕ) → ¬p ∣ n.centralBinom) ∧ (p ≤ (2 : ℕ) * n → n < p → p ∣ n.centralBinom) :=
   @FRC.Epi.legibility_window
-/-- 13:G2 (p13035) — The half-wall terminus, the calibration face: $\rep{w_m}=m^{-1}=\piA^{-1}=4\piA\equiv-2$ for every odd prime, the return statistics trivialising at the wall ($16^{m}\equiv1$, $\Cb{m}^{2}\equiv1$) and exposing the naked inverse scale; the identities are the calibration web of $2\piA\equiv-1$, and $\rep{w_{\piA}}\piA\equiv1\iff(4\kap)^{2}\equiv1$; the lower chain is blind at the wall and nowhere below. -/
+/-- 13:G2 (p13035) — The half-wall terminus, the calibration face: $\rep{w_m}=m^{-1}=\piA^{-1}=4\piA\equiv-2$ for every odd prime of the totality, the return statistics trivialising at the wall ($16^{m}\equiv1$, $\Cb{m}^{2}\equiv1$) and exposing the naked inverse scale; the identities are the calibration web of $2\piA\equiv-1$, and $\rep{w_{\piA}}\piA\equiv1\iff(4\kap)^{2}\equiv1$; the lower chain is blind at the wall and nowhere below. -/
 theorem p13035 : ∀ (p : ℕ) [hp : Fact (Nat.Prime p)], p ≠ (2 : ℕ) → ∀ (m : ℕ), p = (2 : ℕ) * m + (1 : ℕ) → (16 : ZMod p) ^ m = (1 : ZMod p) ∧ ↑m.centralBinom ^ (2 : ℕ) = (1 : ZMod p) ∧ FRC.Epi.wallisW m = (-2 : ZMod p) ∧ (↑m)⁻¹ = (-2 : ZMod p) ∧ (4 : ZMod p) * ↑m = (-2 : ZMod p) :=
   @FRC.Epi.half_wall_terminus
 set_option linter.defProp false in
@@ -1183,6 +1203,9 @@ theorem p13067 : (∀ (p : ℕ) [hp : Fact (Nat.Prime p)], p ≠ (2 : ℕ) → (
 /-- 13:H3 (p13045) — Exact calibration of $e$ is impossible: with $\theta=2\piR\lambda(\im)/(\p-1)$ the frame angle of $\eP$, $\theta\ne1$ in every shell ($\theta=1$ would make $\piR$ rational, A2); $\chi(\eP)$ is a root of unity while $e^{\imR}$ is not, so the identification is intrinsically horizon-limited. -/
 theorem p13045 : (∀ (n l : ℕ), (0 : ℕ) < l → (2 : ℝ) * Real.pi * ↑l / ↑n ≠ (1 : ℝ)) ∧ ∀ (n : ℕ), (0 : ℕ) < n → Complex.exp (↑n * Complex.I) ≠ (1 : ℂ) :=
   And.intro @FRC.Epi.calibration_ne_one (@FRC.Epi.exp_I_ne_one)
+/-- 13:H4 (p13069) — Calibrated shells at every precision the totality resolves: the $\varepsilon$-calibrated shells are a fraction $2\varepsilon/\piR$ \apx{} of the shells $\p\equiv1\pmod4$ below any bound of the totality, for every $\varepsilon$ above the nearest-hit scale $\piR/(2N)$, and $\chi(\eP)$ approaches $e^{\imR}$ along them. Below $10^{6}$: $260$ shells within $0.01$ against $249$ predicted; the best, $\p=778933$, within $4\times10^{-5}$, decided exactly. -/
+theorem p13069 : Nat.Prime (778933 : ℕ) ∧ (123966 : ZMod (778933 : ℕ)) ^ (2 : ℕ) = (-1 : ZMod (778933 : ℕ)) ∧ |(2 : ℝ) * Real.pi * (123966 : ℝ) / (778932 : ℝ) - (1 : ℝ)| < (4 / 100000 : ℝ) ∧ (39 / 1000000 : ℝ) < |(2 : ℝ) * Real.pi * (123966 : ℝ) / (778932 : ℝ) - (1 : ℝ)| :=
+  @FRC.Epi.calibrated_778933
 /-- 13:H5 (p13047) — The null experiment: whether $\gen^{\lambda(\im)}\equiv-(\Ku{\p})^{-1}$ for some primitive root of either chirality is the index condition $\gcd(s,\p-1)=\gcd(\lambda(\pm\im),\p-1)$; over the $210$ primes $\p\equiv1\pmod4$, $5<\p<3000$, it is solvable for $94$ ($44.8\%$, against $96.0\pm6.6$ expected under independence), the correlation of the two angular addresses $-0.10$ at deviation $\approx0.07$ \apx: no invariant pointwise identification of the angular and radial carriers of $e$; the naive reading of $\eP$ as the number $2.71828\ldots$ is refuted. -/
 theorem p13047 : (∀ (p : ℕ) [hp : Fact (Nat.Prime p)] (g : ZMod p), IsPrimitiveRoot g (p - (1 : ℕ)) → ∀ (l s : ℕ), (∃ u, u.Coprime (p - (1 : ℕ)) ∧ (g ^ u) ^ l = g ^ s) ↔ l.gcd (p - (1 : ℕ)) = s.gcd (p - (1 : ℕ))) ∧ ∀ (n l s : ℕ) [NeZero n], (∃ u, u.Coprime n ∧ u * l ≡ s [MOD n]) ↔ l.gcd n = s.gcd n :=
   And.intro @FRC.Epi.index_condition_shell (@FRC.Epi.index_condition)

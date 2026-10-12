@@ -389,9 +389,9 @@
     },
     {
      "label": "H4",
-     "predicate": "Calibrated shells at every precision the totality resolves: by A7, the $\\varepsilon$-calibrated shells ($|\\theta-1|<\\varepsilon$ for one chirality) are a fraction $2\\varepsilon/\\piR$ \\apx{} of the $N$ shells $\\p\\equiv1\\pmod4$ below any bound of the totality, for every $\\varepsilon$ above the nearest-hit scale $\\piR/(2N)$, and $\\chi(\\eP)$, within $\\varepsilon$ of $e^{\\imR}$ on each, approaches it along them as $\\varepsilon$ falls to that scale; data for $\\p<10^{6}$ ($39{,}175$ primes $\\equiv1\\bmod4$): $260$ shells within $0.01$ against $\\approx249$ predicted, the best six led by $(\\p,\\lambda(\\im))=(778933,123966)$ at $|\\theta-1|=3.9\\times10^{-5}$, consistent with the nearest-hit prediction $\\piR/(2N)\\approx4.0\\times10^{-5}$ \\apx{} (exact minima $3.93\\times10^{-5}$ at $10^{6}$, $6.34\\times10^{-6}$ at $2\\times10^{6}$, $4.53\\times10^{-6}$ at $4\\times10^{6}$); the calibration inequalities decided as rational inequalities with $\\piR$ bracketed by the Machin chain.",
+     "predicate": "Calibrated shells at every precision the totality resolves: the $\\varepsilon$-calibrated shells are a fraction $2\\varepsilon/\\piR$ \\apx{} of the shells $\\p\\equiv1\\pmod4$ below any bound of the totality, for every $\\varepsilon$ above the nearest-hit scale $\\piR/(2N)$, and $\\chi(\\eP)$ approaches $e^{\\imR}$ along them. Below $10^{6}$: $260$ shells within $0.01$ against $249$ predicted; the best, $\\p=778933$, within $4\\times10^{-5}$, decided exactly.",
      "tag": "T",
-     "source": "Prop.~\\ref{prop:calib}; \\src{e.A1}; rests on B1, E4, H3",
+     "source": "Prop.~\\ref{prop:calib}; rests on A7, B1, E4, H3\\newline \\pywit{epi}{p13069}{H4}, \\leanwit{FrcLedger}{p13069}{H4} \\lean{Epi.calibrated\\_778933}",
      "key": "p13069"
     },
     {
@@ -628,7 +628,7 @@
    {
     "name": "FRC.Epi.wallis_enclosure",
     "module": "FrcLedger/Epi",
-    "line": 737,
+    "line": 757,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -641,7 +641,7 @@
    {
     "name": "FRC.Epi.wallis_width",
     "module": "FrcLedger/Epi",
-    "line": 645,
+    "line": 665,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -654,7 +654,7 @@
    {
     "name": "FRC.Epi.wallisV_strictMono",
     "module": "FrcLedger/Epi",
-    "line": 668,
+    "line": 688,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -667,7 +667,7 @@
    {
     "name": "FRC.Epi.wallisW_strictAnti",
     "module": "FrcLedger/Epi",
-    "line": 691,
+    "line": 711,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -917,7 +917,7 @@
    {
     "name": "FRC.Epi.half_wall_second_order",
     "module": "FrcLedger/Epi",
-    "line": 923,
+    "line": 943,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -1008,7 +1008,7 @@
    {
     "name": "FRC.Epi.piWieferich_iff",
     "module": "FrcLedger/Epi",
-    "line": 903,
+    "line": 923,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -1021,7 +1021,7 @@
    {
     "name": "FRC.Epi.eisenstein",
     "module": "FrcLedger/Epi",
-    "line": 1073,
+    "line": 1093,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -1034,7 +1034,7 @@
    {
     "name": "FRC.Epi.piWieferich_iff_harmonic",
     "module": "FrcLedger/Epi",
-    "line": 1096,
+    "line": 1116,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -1047,7 +1047,7 @@
    {
     "name": "FRC.Epi.piWieferich_iff_oeis",
     "module": "FrcLedger/Epi",
-    "line": 1105,
+    "line": 1125,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -1095,6 +1095,21 @@
     "tier": 2,
     "ok": true,
     "doc": "13:H3 — `e^{i n} ≠ 1` for every `n ≥ 1`: `e^{i}` is not a root of unity (while `χ(e_p)` is one)."
+   }
+  ],
+  "H4": [
+   {
+    "name": "FRC.Epi.calibrated_778933",
+    "module": "FrcLedger/Epi",
+    "line": 640,
+    "axioms": [
+     "Classical.choice",
+     "Quot.sound",
+     "propext"
+    ],
+    "tier": 2,
+    "ok": true,
+    "doc": "13:H4 — the best radian-calibrated shell below `10⁶` (Prop. calib): on `p = 778933`, prime, the residue `123966` is a quarter-turn (`123966² ≡ −1 (mod p)`), and the frame angle `θ = 2π·123966/(p − 1)` it labels lies within `4·10⁻⁵` of one radian and not within `3.9·10⁻⁵` — the calibration inequality decided from the rational bounds `3.141592 < π < 3.141593` of Mathlib, no floating-point value of `π` entering; the count of calibrated shells and the nearest-hit comparison are the package's (`e.A1`)."
    }
   ],
   "H5": [

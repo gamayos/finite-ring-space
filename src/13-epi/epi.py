@@ -153,7 +153,7 @@ PREDICATES = {
     "13:D5": "e.R4", "13:E2": "pi.R1", "13:E3": "pi.R4", "13:E4": "pi.R3", "13:E5": "pi.R3", "13:F1": "e.W1",
     "13:F2": "e.W1", "13:F3": "e.W2", "13:F4": "e.W3", "13:F5": "e.S1", "13:F6": "e.W4", "13:F7": "tow.E",
     "13:F8": "e.W5", "13:G1": "pi.W1", "13:G2": "pi.W1", "13:G3": "pi2.A1", "13:G4": "pi.S1", "13:G5": "pi.L1",
-    "13:G6": "pi.V1", "13:G8": "pi.R2", "13:G9": "tow.P", "13:G10": "pi.S3", "13:H2": "tow.W", "13:H5": "e.N1",
+    "13:G6": "pi.V1", "13:G8": "pi.R2", "13:G9": "tow.P", "13:G10": "pi.S3", "13:H2": "tow.W", "13:H4": "e.A1", "13:H5": "e.N1",
     "13:I1": "e.R2", "13:I2": "pi.R3", "13:I4": "tow.W", "13:I5": "frm.I1", "13:J1": "tow.W", "13:J2": "tow.H",
     "13:J3": "tow.H", "13:J5": "tow.H", "13:J6": "kur.K1", "13:Z1": "lab.Z1", "13:Z2": "lab.Z2",
 }
@@ -509,6 +509,7 @@ def block_e():
     log_e("best radian-calibrated frames (p, i_t-label r, theta_t, |theta_t - 1|):")
     for delta, p, rr in best[:6]:
         log_e(f"  p={p:7d}  r={rr:7d}  theta={float(2*PI_MID*rr/(p-1)):.9f}  delta={float(delta):.3e}")
+    # 13:H4 (p13069)
     family("e", "A1")
     chk("39175 primes p == 1 (mod 4) below 10^6", n_p1mod4 == 39175)
     chk("exactly 260 shells with |theta - 1| < 0.01 (exact rational decision, pi as a Machin bracket)", count_001 == 260)

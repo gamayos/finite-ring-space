@@ -11581,7 +11581,7 @@
    "check": {
     "href": "src/13-epi/#p13009",
     "script": "epi.py",
-    "line": 1183,
+    "line": 1184,
     "verdict": "pass"
    },
    "declarations": [
@@ -11612,7 +11612,7 @@
    "check": {
     "href": "src/13-epi/#p13010",
     "script": "epi.py",
-    "line": 1125,
+    "line": 1126,
     "verdict": "pass"
    },
    "declarations": [
@@ -11681,7 +11681,7 @@
    "check": {
     "href": "src/13-epi/#p13014",
     "script": "epi.py",
-    "line": 1161,
+    "line": 1162,
     "verdict": "pass"
    },
    "declarations": [
@@ -11726,7 +11726,7 @@
    "check": {
     "href": "src/13-epi/#p13016",
     "script": "epi.py",
-    "line": 633,
+    "line": 634,
     "verdict": "pass"
    },
    "declarations": [],
@@ -11849,7 +11849,7 @@
    "check": {
     "href": "src/13-epi/#p13023",
     "script": "epi.py",
-    "line": 633,
+    "line": 634,
     "verdict": "pass"
    },
    "declarations": [
@@ -11890,7 +11890,7 @@
    "check": {
     "href": "src/13-epi/#p13024",
     "script": "epi.py",
-    "line": 681,
+    "line": 682,
     "verdict": "pass"
    },
    "declarations": [],
@@ -11910,7 +11910,7 @@
    "check": {
     "href": "src/13-epi/#p13025",
     "script": "epi.py",
-    "line": 672,
+    "line": 673,
     "verdict": "pass"
    },
    "declarations": [],
@@ -11930,7 +11930,7 @@
    "check": {
     "href": "src/13-epi/#p13026",
     "script": "epi.py",
-    "line": 672,
+    "line": 673,
     "verdict": "pass"
    },
    "declarations": [],
@@ -12130,7 +12130,7 @@
    "check": {
     "href": "src/13-epi/#p13033",
     "script": "epi.py",
-    "line": 1125,
+    "line": 1126,
     "verdict": "pass"
    },
    "declarations": [
@@ -12192,7 +12192,7 @@
    "check": {
     "href": "src/13-epi/#p13034",
     "script": "epi.py",
-    "line": 725,
+    "line": 726,
     "verdict": "pass"
    },
    "declarations": [
@@ -12223,7 +12223,7 @@
    "check": {
     "href": "src/13-epi/#p13035",
     "script": "epi.py",
-    "line": 725,
+    "line": 726,
     "verdict": "pass"
    },
    "declarations": [
@@ -12249,7 +12249,7 @@
    "check": {
     "href": "src/13-epi/#p13036",
     "script": "epi.py",
-    "line": 946,
+    "line": 947,
     "verdict": "pass"
    },
    "declarations": [
@@ -12275,7 +12275,7 @@
    "check": {
     "href": "src/13-epi/#p13037",
     "script": "epi.py",
-    "line": 763,
+    "line": 764,
     "verdict": "pass"
    },
    "declarations": [
@@ -12301,7 +12301,7 @@
    "check": {
     "href": "src/13-epi/#p13038",
     "script": "epi.py",
-    "line": 820,
+    "line": 821,
     "verdict": "pass"
    },
    "declarations": [
@@ -12337,7 +12337,7 @@
    "check": {
     "href": "src/13-epi/#p13039",
     "script": "epi.py",
-    "line": 849,
+    "line": 850,
     "verdict": "pass"
    },
    "declarations": [],
@@ -12372,7 +12372,7 @@
    "check": {
     "href": "src/13-epi/#p13041",
     "script": "epi.py",
-    "line": 641,
+    "line": 642,
     "verdict": "pass"
    },
    "declarations": [
@@ -12398,7 +12398,7 @@
    "check": {
     "href": "src/13-epi/#p13042",
     "script": "epi.py",
-    "line": 1141,
+    "line": 1142,
     "verdict": "pass"
    },
    "declarations": [
@@ -12429,7 +12429,7 @@
    "check": {
     "href": "src/13-epi/#p13067",
     "script": "epi.py",
-    "line": 781,
+    "line": 782,
     "verdict": "pass"
    },
    "declarations": [
@@ -12484,7 +12484,7 @@
    "check": {
     "href": "src/13-epi/#p13044",
     "script": "epi.py",
-    "line": 1117,
+    "line": 1118,
     "verdict": "pass"
    },
    "declarations": [
@@ -12529,12 +12529,23 @@
   {
    "key": "p13069",
    "origin": "13",
-   "statement": "Calibrated shells at every precision the totality resolves: by A7, the $\\varepsilon$-calibrated shells ($|\\theta-1|<\\varepsilon$ for one chirality) are a fraction $2\\varepsilon/\\piR$ \\apx{} of the $N$ shells $\\p\\equiv1\\pmod4$ below any bound of the totality, for every $\\varepsilon$ above the nearest-hit scale $\\piR/(2N)$, and $\\chi(\\eP)$, within $\\varepsilon$ of $e^{\\imR}$ on each, approaches it along them as $\\varepsilon$ falls to that scale; data for $\\p<10^{6}$ ($39{,}175$ primes $\\equiv1\\bmod4$): $260$ shells within $0.01$ against $\\approx249$ predicted, the best six led by $(\\p,\\lambda(\\im))=(778933,123966)$ at $|\\theta-1|=3.9\\times10^{-5}$, consistent with the nearest-hit prediction $\\piR/(2N)\\approx4.0\\times10^{-5}$ \\apx{} (exact minima $3.93\\times10^{-5}$ at $10^{6}$, $6.34\\times10^{-6}$ at $2\\times10^{6}$, $4.53\\times10^{-6}$ at $4\\times10^{6}$); the calibration inequalities decided as rational inequalities with $\\piR$ bracketed by the Machin chain.",
+   "statement": "Calibrated shells at every precision the totality resolves: the $\\varepsilon$-calibrated shells are a fraction $2\\varepsilon/\\piR$ \\apx{} of the shells $\\p\\equiv1\\pmod4$ below any bound of the totality, for every $\\varepsilon$ above the nearest-hit scale $\\piR/(2N)$, and $\\chi(\\eP)$ approaches $e^{\\imR}$ along them. Below $10^{6}$: $260$ shells within $0.01$ against $249$ predicted; the best, $\\p=778933$, within $4\\times10^{-5}$, decided exactly.",
    "origin_row": "13:H4",
    "tag": "T",
-   "tier": null,
-   "check": null,
-   "declarations": [],
+   "tier": 2,
+   "check": {
+    "href": "src/13-epi/#p13069",
+    "script": "epi.py",
+    "line": 512,
+    "verdict": "pass"
+   },
+   "declarations": [
+    {
+     "lib": "FrcLedger",
+     "module": "FrcLedger/Epi",
+     "name": "FRC.Epi.calibrated_778933"
+    }
+   ],
    "aliases": [],
    "rows": [
     "13:H4"
@@ -12551,7 +12562,7 @@
    "check": {
     "href": "src/13-epi/#p13047",
     "script": "epi.py",
-    "line": 563,
+    "line": 564,
     "verdict": "pass"
    },
    "declarations": [
@@ -12602,7 +12613,7 @@
    "check": {
     "href": "src/13-epi/#p13049",
     "script": "epi.py",
-    "line": 672,
+    "line": 673,
     "verdict": "pass"
    },
    "declarations": [],
@@ -12637,7 +12648,7 @@
    "check": {
     "href": "src/13-epi/#p13051",
     "script": "epi.py",
-    "line": 1117,
+    "line": 1118,
     "verdict": "pass"
    },
    "declarations": [
@@ -12663,7 +12674,7 @@
    "check": {
     "href": "src/13-epi/#p13068",
     "script": "epi.py",
-    "line": 1422,
+    "line": 1423,
     "verdict": "pass"
    },
    "declarations": [],
@@ -12683,7 +12694,7 @@
    "check": {
     "href": "src/13-epi/#p13052",
     "script": "epi.py",
-    "line": 1117,
+    "line": 1118,
     "verdict": "pass"
    },
    "declarations": [
@@ -12709,7 +12720,7 @@
    "check": {
     "href": "src/13-epi/#p13053",
     "script": "epi.py",
-    "line": 1218,
+    "line": 1219,
     "verdict": "pass"
    },
    "declarations": [
@@ -12740,7 +12751,7 @@
    "check": {
     "href": "src/13-epi/#p13054",
     "script": "epi.py",
-    "line": 1218,
+    "line": 1219,
     "verdict": "pass"
    },
    "declarations": [],
@@ -12774,7 +12785,7 @@
    "check": {
     "href": "src/13-epi/#p13056",
     "script": "epi.py",
-    "line": 1218,
+    "line": 1219,
     "verdict": "pass"
    },
    "declarations": [],
@@ -12794,7 +12805,7 @@
    "check": {
     "href": "src/13-epi/#p13057",
     "script": "epi.py",
-    "line": 1308,
+    "line": 1309,
     "verdict": "pass"
    },
    "declarations": [],
@@ -12814,7 +12825,7 @@
    "check": {
     "href": "src/13-epi/#p13061",
     "script": "epi.py",
-    "line": 1522,
+    "line": 1523,
     "verdict": "pass"
    },
    "declarations": [],
@@ -12833,7 +12844,7 @@
    "check": {
     "href": "src/13-epi/#p13063",
     "script": "epi.py",
-    "line": 1567,
+    "line": 1568,
     "verdict": "pass"
    },
    "declarations": [],
@@ -38536,7 +38547,7 @@
     "py": {
      "href": "src/13-epi/#p13009",
      "script": "epi.py",
-     "line": 1183,
+     "line": 1184,
      "verdict": "pass"
     },
     "lean": [
@@ -38579,7 +38590,7 @@
     "py": {
      "href": "src/13-epi/#p13010",
      "script": "epi.py",
-     "line": 1125,
+     "line": 1126,
      "verdict": "pass"
     },
     "lean": [
@@ -38671,7 +38682,7 @@
     "py": {
      "href": "src/13-epi/#p13014",
      "script": "epi.py",
-     "line": 1161,
+     "line": 1162,
      "verdict": "pass"
     },
     "lean": [
@@ -38731,7 +38742,7 @@
     "py": {
      "href": "src/13-epi/#p13016",
      "script": "epi.py",
-     "line": 633,
+     "line": 634,
      "verdict": "pass"
     },
     "lean": []
@@ -38888,7 +38899,7 @@
     "py": {
      "href": "src/13-epi/#p13023",
      "script": "epi.py",
-     "line": 633,
+     "line": 634,
      "verdict": "pass"
     },
     "lean": [
@@ -38947,7 +38958,7 @@
     "py": {
      "href": "src/13-epi/#p13024",
      "script": "epi.py",
-     "line": 681,
+     "line": 682,
      "verdict": "pass"
     },
     "lean": []
@@ -38971,7 +38982,7 @@
     "py": {
      "href": "src/13-epi/#p13025",
      "script": "epi.py",
-     "line": 672,
+     "line": 673,
      "verdict": "pass"
     },
     "lean": []
@@ -38995,7 +39006,7 @@
     "py": {
      "href": "src/13-epi/#p13026",
      "script": "epi.py",
-     "line": 672,
+     "line": 673,
      "verdict": "pass"
     },
     "lean": []
@@ -39265,7 +39276,7 @@
     "py": {
      "href": "src/13-epi/#p13033",
      "script": "epi.py",
-     "line": 1125,
+     "line": 1126,
      "verdict": "pass"
     },
     "lean": [
@@ -39351,7 +39362,7 @@
     "py": {
      "href": "src/13-epi/#p13034",
      "script": "epi.py",
-     "line": 725,
+     "line": 726,
      "verdict": "pass"
     },
     "lean": [
@@ -39394,7 +39405,7 @@
     "py": {
      "href": "src/13-epi/#p13035",
      "script": "epi.py",
-     "line": 725,
+     "line": 726,
      "verdict": "pass"
     },
     "lean": [
@@ -39427,7 +39438,7 @@
     "py": {
      "href": "src/13-epi/#p13036",
      "script": "epi.py",
-     "line": 946,
+     "line": 947,
      "verdict": "pass"
     },
     "lean": [
@@ -39462,7 +39473,7 @@
     "py": {
      "href": "src/13-epi/#p13037",
      "script": "epi.py",
-     "line": 763,
+     "line": 764,
      "verdict": "pass"
     },
     "lean": [
@@ -39498,7 +39509,7 @@
     "py": {
      "href": "src/13-epi/#p13038",
      "script": "epi.py",
-     "line": 820,
+     "line": 821,
      "verdict": "pass"
     },
     "lean": [
@@ -39549,7 +39560,7 @@
     "py": {
      "href": "src/13-epi/#p13039",
      "script": "epi.py",
-     "line": 849,
+     "line": 850,
      "verdict": "pass"
     },
     "lean": []
@@ -39600,7 +39611,7 @@
     "py": {
      "href": "src/13-epi/#p13041",
      "script": "epi.py",
-     "line": 641,
+     "line": 642,
      "verdict": "pass"
     },
     "lean": [
@@ -39633,7 +39644,7 @@
     "py": {
      "href": "src/13-epi/#p13042",
      "script": "epi.py",
-     "line": 1141,
+     "line": 1142,
      "verdict": "pass"
     },
     "lean": [
@@ -39674,7 +39685,7 @@
     "py": {
      "href": "src/13-epi/#p13067",
      "script": "epi.py",
-     "line": 781,
+     "line": 782,
      "verdict": "pass"
     },
     "lean": [
@@ -39750,7 +39761,7 @@
     "py": {
      "href": "src/13-epi/#p13044",
      "script": "epi.py",
-     "line": 1117,
+     "line": 1118,
      "verdict": "pass"
     },
     "lean": [
@@ -39814,21 +39825,34 @@
    "block": "H",
    "tag": "T",
    "name": null,
-   "statement": "Calibrated shells at every precision the totality resolves: by A7, the $\\varepsilon$-calibrated shells ($|\\theta-1|<\\varepsilon$ for one chirality) are a fraction $2\\varepsilon/\\piR$ \\apx{} of the $N$ shells $\\p\\equiv1\\pmod4$ below any bound of the totality, for every $\\varepsilon$ above the nearest-hit scale $\\piR/(2N)$, and $\\chi(\\eP)$, within $\\varepsilon$ of $e^{\\imR}$ on each, approaches it along them as $\\varepsilon$ falls to that scale; data for $\\p<10^{6}$ ($39{,}175$ primes $\\equiv1\\bmod4$): $260$ shells within $0.01$ against $\\approx249$ predicted, the best six led by $(\\p,\\lambda(\\im))=(778933,123966)$ at $|\\theta-1|=3.9\\times10^{-5}$, consistent with the nearest-hit prediction $\\piR/(2N)\\approx4.0\\times10^{-5}$ \\apx{} (exact minima $3.93\\times10^{-5}$ at $10^{6}$, $6.34\\times10^{-6}$ at $2\\times10^{6}$, $4.53\\times10^{-6}$ at $4\\times10^{6}$); the calibration inequalities decided as rational inequalities with $\\piR$ bracketed by the Machin chain.",
-   "source": "Prop.~\\ref{prop:calib}; \\src{e.A1}; rests on B1, E4, H3",
+   "statement": "Calibrated shells at every precision the totality resolves: the $\\varepsilon$-calibrated shells are a fraction $2\\varepsilon/\\piR$ \\apx{} of the shells $\\p\\equiv1\\pmod4$ below any bound of the totality, for every $\\varepsilon$ above the nearest-hit scale $\\piR/(2N)$, and $\\chi(\\eP)$ approaches $e^{\\imR}$ along them. Below $10^{6}$: $260$ shells within $0.01$ against $249$ predicted; the best, $\\p=778933$, within $4\\times10^{-5}$, decided exactly.",
+   "source": "Prop.~\\ref{prop:calib}; rests on A7, B1, E4, H3\\newline \\pywit{epi}{p13069}{H4}, \\leanwit{FrcLedger}{p13069}{H4} \\lean{Epi.calibrated\\_778933}",
    "page": "13-epi/index.html#H4",
    "witness": {
-    "py": null,
-    "lean": []
+    "py": {
+     "href": "src/13-epi/#p13069",
+     "script": "epi.py",
+     "line": 512,
+     "verdict": "pass"
+    },
+    "lean": [
+     {
+      "lib": "FrcLedger",
+      "module": "FrcLedger/Epi",
+      "name": "FRC.Epi.calibrated_778933",
+      "tier": 2,
+      "ok": true,
+      "page": "lean/ml/Epi.html#FRC.Epi.calibrated_778933"
+     }
+    ]
    },
    "refs": [
-    "p13001",
     "p13007",
     "p13008",
     "p13025",
     "p13045"
    ],
-   "text": "Calibrated shells at every precision the totality resolves: by A7, the $\\varepsilon$-calibrated shells ($|\\theta-1|<\\varepsilon$ for one chirality) are a fraction $2\\varepsilon/\\piR$ \\apx{} of the $N$ shells $\\p\\equiv1\\pmod4$ below any bound of the totality, for every $\\varepsilon$ above the nearest-hit scale $\\piR/(2N)$, and $\\chi(\\eP)$, within $\\varepsilon$ of $e^{\\imR}$ on each, approaches it along them as $\\varepsilon$ falls to that scale; data for $\\p<10^{6}$ ($39{,}175$ primes $\\equiv1\\bmod4$): $260$ shells within $0.01$ against $\\approx249$ predicted, the best six led by $(\\p,\\lambda(\\im))=(778933,123966)$ at $|\\theta-1|=3.9\\times10^{-5}$, consistent with the nearest-hit prediction $\\piR/(2N)\\approx4.0\\times10^{-5}$ \\apx{} (exact minima $3.93\\times10^{-5}$ at $10^{6}$, $6.34\\times10^{-6}$ at $2\\times10^{6}$, $4.53\\times10^{-6}$ at $4\\times10^{6}$); the calibration inequalities decided as rational inequalities with $\\piR$ bracketed by the Machin chain. Prop. prop:calib; e.A1; rests on B1, E4, H3"
+   "text": "Calibrated shells at every precision the totality resolves: the $\\varepsilon$-calibrated shells are a fraction $2\\varepsilon/\\piR$ \\apx{} of the shells $\\p\\equiv1\\pmod4$ below any bound of the totality, for every $\\varepsilon$ above the nearest-hit scale $\\piR/(2N)$, and $\\chi(\\eP)$ approaches $e^{\\imR}$ along them. Below $10^{6}$: $260$ shells within $0.01$ against $249$ predicted; the best, $\\p=778933$, within $4\\times10^{-5}$, decided exactly. Prop. prop:calib; rests on A7, B1, E4, H3 p13069, FrcLedger{H4} Epi.calibrated_778933"
   },
   {
    "paper": "13-epi",
@@ -39846,7 +39870,7 @@
     "py": {
      "href": "src/13-epi/#p13047",
      "script": "epi.py",
-     "line": 563,
+     "line": 564,
      "verdict": "pass"
     },
     "lean": [
@@ -39918,7 +39942,7 @@
     "py": {
      "href": "src/13-epi/#p13049",
      "script": "epi.py",
-     "line": 672,
+     "line": 673,
      "verdict": "pass"
     },
     "lean": []
@@ -39967,7 +39991,7 @@
     "py": {
      "href": "src/13-epi/#p13051",
      "script": "epi.py",
-     "line": 1117,
+     "line": 1118,
      "verdict": "pass"
     },
     "lean": [
@@ -40003,7 +40027,7 @@
     "py": {
      "href": "src/13-epi/#p13068",
      "script": "epi.py",
-     "line": 1422,
+     "line": 1423,
      "verdict": "pass"
     },
     "lean": []
@@ -40031,7 +40055,7 @@
     "py": {
      "href": "src/13-epi/#p13052",
      "script": "epi.py",
-     "line": 1117,
+     "line": 1118,
      "verdict": "pass"
     },
     "lean": [
@@ -40066,7 +40090,7 @@
     "py": {
      "href": "src/13-epi/#p13053",
      "script": "epi.py",
-     "line": 1218,
+     "line": 1219,
      "verdict": "pass"
     },
     "lean": [
@@ -40109,7 +40133,7 @@
     "py": {
      "href": "src/13-epi/#p13054",
      "script": "epi.py",
-     "line": 1218,
+     "line": 1219,
      "verdict": "pass"
     },
     "lean": []
@@ -40158,7 +40182,7 @@
     "py": {
      "href": "src/13-epi/#p13056",
      "script": "epi.py",
-     "line": 1218,
+     "line": 1219,
      "verdict": "pass"
     },
     "lean": []
@@ -40188,7 +40212,7 @@
     "py": {
      "href": "src/13-epi/#p13057",
      "script": "epi.py",
-     "line": 1308,
+     "line": 1309,
      "verdict": "pass"
     },
     "lean": []
@@ -40214,7 +40238,7 @@
     "py": {
      "href": "src/13-epi/#p13061",
      "script": "epi.py",
-     "line": 1522,
+     "line": 1523,
      "verdict": "pass"
     },
     "lean": []
@@ -40245,7 +40269,7 @@
     "py": {
      "href": "src/13-epi/#p13063",
      "script": "epi.py",
-     "line": 1567,
+     "line": 1568,
      "verdict": "pass"
     },
     "lean": []
