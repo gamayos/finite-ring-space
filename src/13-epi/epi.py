@@ -6,7 +6,7 @@ kurepa_wall, frame_invariants merged; the two C passes stay beside it as kurepa_
 fly — a pure-python pass to a smaller bound runs without a compiler).
 ========================================================================================================================
 
-One script, six blocks, forty-one family checks of exact micro-checks, standard library only. Every check is exact: integers,
+One script, seven blocks, forty-three family checks of exact micro-checks, standard library only. Every check is exact: integers,
 residues, exact rationals (fractions.Fraction); the external targets e and π enter only as certified rational brackets of
 the paper's own chains (the subfactorial chain for e, the Machin chain for π), and the binary64 constants enter as the
 objects of study of the readout theorems (compared exactly with correctly rounded framed rationals). No floating-point
@@ -18,11 +18,12 @@ kur.K1, …) — and names the predicate(s) of the paper's ledger it witnesses (
 deciding family's `# 13:XN (<key>)` marker is what the ledger's source column links (PREDICATES;
 finitering.space/src/13-epi/#<key>). Master-ledger predicates reached through the paper predicates: 00:B8
 (13:J1, 13:J3), 00:B9 (13:J4, 13:J5), 00:C13 (13:J3), 00:C14 (13:B2, 13:H2), 00:B1 (13:B4), 00:C24 (13:G7 with A8, the
-third-order wall) and 00:C26 (13:E5, the four chains as E- and G-partial sums); 13:Y1 and 13:Y3 are the paper's
-hypotheses (block Y, tag O).
+third-order wall) and 00:C26 (13:E5, the four chains as E- and G-partial sums); 13:Z1 and 13:Z2 are the paper's
+Ω-hard certificates (block Z, the horizon: read over the shells p < √Ω of the totality, decided on the laboratory
+Carriers over their own shells by block lab; 12 October 2026).
 
     python3 epi.py                every block, results.json written; exit 1 if a family check fails (≈ 40 s, ≈ 30 s of it the C pass over 22 043 primes)
-    python3 epi.py pi tow         the blocks named (e, pi, pi2, tow, kur, frm); no results.json
+    python3 epi.py pi tow         the blocks named (e, pi, pi2, tow, kur, frm, lab); no results.json
     from frc_13_epi import predicate; predicate("13:F2")    one predicate: its blocks run once per session
 """
 import os, json, sys, re, shutil, subprocess, time, math
@@ -50,10 +51,10 @@ LEDGER = {
     "e.W2": "13:F3",
     "e.W3": "13:F4",
     "e.W4": "13:F6",
-    "e.W5": "13:F8, 13:Y1",
-    "e.S1": "13:F5, 13:I1",
+    "e.W5": "13:F8, 13:Z1",
+    "e.S1": "13:F5, 13:I1, 13:Z2",
     "e.A1": "13:H4, 13:I1",
-    "e.N1": "13:H5, 13:I1",
+    "e.N1": "13:H5, 13:I1, 13:Z2",
     # validate_pi.py
     "pi.R1": "13:E2, 13:C5",
     "pi.R2": "13:G8",
@@ -85,9 +86,12 @@ LEDGER = {
     "tow.H": "13:J2, 13:J3, 13:J5",
     "tow.W": "13:J1, 13:J2, 13:G2, 13:H2, 13:I4",
     # kurepa_wall.c
-    "kur.K1": "13:F2, 13:J6, 13:Y1",
+    "kur.K1": "13:F2, 13:J6, 13:Z1",
     # frame_invariants.c
-    "frm.I1": "13:I5, 13:Y3",
+    "frm.I1": "13:I5, 13:Z2",
+    # the laboratory Carriers' shells (12 October 2026)
+    "lab.Z1": "13:Z1, 13:Z2",
+    "lab.Z2": "13:Z2",
 }
 
 LABELS = {
@@ -132,11 +136,14 @@ LABELS = {
     "tow.W": "the wrap-free window and the calibration pin on p ∈ {13, 29, 101, 997, 8009}: ⌊√p⌋² < p and 2⌊√p⌋ < p; the pinning relation 2π_A + 1 ≡ 0; the half-turn tautology g^{2κ} = −1 for the smallest primitive root; the quarter-turn pin i² + 1 ≡ 0",
     "kur.K1": "Kurepa's wall in the derangement form for all 22 043 odd primes p < 2.5·10⁵ (kurepa_wall.c, one O(p) pass per prime in 128-bit modular arithmetic): !(p−1) ≡ K(p) (mod p) and K(p) ≢ 0 (mod p), zero failures of either condition",
     "frm.I1": "the three frame invariants of the two constants on the 4 783 shells p ≡ 1 (mod 4) below 10⁵ (frame_invariants.c): every triple (K(p) mod p, q_p(4) mod p, a + b i) exact — p = 13: (10, 6, −3+2i), p = 1093 the one shell with q_p(4) = 0 — the 4×4×4 contingency table of (K/p, q_p(4)/p, φ/π) and its chi-square 59.6 on 63 df exact, the means 0.502, 0.499 and variances 0.0828, 0.0831 by certified rational bounds; the independence reading is the paper's [approx] statement",
+    "lab.Z1": "Kurepa's certificate on the laboratory Carriers Ω = 233, 30089, 2 408 561, over their own shells (the odd primes p with p² < Ω: 5, 39, 243 of them, the largest 13, 173, 1549): K(p) ≢ 0 (mod p) on every shell, Z = 0 on each Carrier, the walks costing Σ(p−1) = 34, 3 046, 172 452 steps; the Carriers' own residues as shells of the physical totality K(233) ≡ 69, K(30089) ≡ 5260, K(2408561) ≡ 435994; on the same shells the two range laws of Z2 (c): the blind-set sizes |Z₀(p)| (1⁸⁷ 2⁹³ 3⁴³ 4¹⁵ 5³ 6¹ 7¹ on the 243, mean 490/243 = 2.016 against Poisson(1)'s 2) and the index condition of H5 (solvable on 48 of the 116 shells p ≡ 1 (mod 4), p > 5, against 52.6 ± 4.9 under independence [approx])",
+    "lab.Z2": "the calibration minimum over the laboratory Carriers' shells p ≡ 1 (mod 4) — 2, 18, 117 of them — decided exactly with π as a Machin bracket: δ = |2πλ/(p−1) − 1| is least at (p, λ) = (13, 5), (37, 6), (397, 63), δ = 1.618, 4.720·10⁻², 4.023·10⁻⁴, against H4's nearest-hit scale π/(2N) = 0.785, 0.0873, 0.0134 [approx]; the three frame invariants (K(p)/p, q_p(4)/p, φ/π) exact on the 117 shells of 2 408 561 (p = 397: 152, 383, −19+6i), their pairwise correlations +0.024, +0.067, +0.144 within 2σ = 0.185 of zero [approx]",
 }
 
 BLOCK = {"e": "the derangement chain of e: the wall, the blind statistics, the calibration scan, the null experiment", "pi": "the chains of π: Wallis, Machin, arcsin; the window, the terminus, Morley, the Wieferich search, the revivals",      # check-id prefix -> the block (the function block_<name> below)
          "pi2": "the quarter invariant, Sun's supercongruence and the Bernoulli law, the proof ingredients", "tow": "the fixed-shell towers, the Cayley map, orientation transport, the height run, the pins",
-         "kur": "the Kurepa wall over the 22 043 odd primes below 2.5e5 (a C pass)", "frm": "the frame invariants of the 4 783 shells p ≡ 1 (mod 4) below 1e5 (a C pass)"}
+         "kur": "the Kurepa wall over the 22 043 odd primes below 2.5e5 (a C pass)", "frm": "the frame invariants of the 4 783 shells p ≡ 1 (mod 4) below 1e5 (a C pass)",
+         "lab": "the laboratory Carriers' own shells (p² < Ω for Ω = 233, 30089, 2 408 561): the certificates of block Z decided where they are decided"}
 _FAM = [None, None]
 
 # the deciding family of each witnessed predicate: the one whose checks decide the predicate's statement (the other families
@@ -148,7 +155,7 @@ PREDICATES = {
     "13:F8": "e.W5", "13:G1": "pi.W1", "13:G2": "pi.W1", "13:G3": "pi2.A1", "13:G4": "pi.S1", "13:G5": "pi.L1",
     "13:G6": "pi.V1", "13:G8": "pi.R2", "13:G9": "tow.P", "13:G10": "pi.S3", "13:H2": "tow.W", "13:H5": "e.N1",
     "13:I1": "e.R2", "13:I2": "pi.R3", "13:I4": "tow.W", "13:I5": "frm.I1", "13:J1": "tow.W", "13:J2": "tow.H",
-    "13:J3": "tow.H", "13:J5": "tow.H", "13:J6": "kur.K1", "13:Y1": "kur.K1", "13:Y3": "frm.I1",
+    "13:J3": "tow.H", "13:J5": "tow.H", "13:J6": "kur.K1", "13:Z1": "lab.Z1", "13:Z2": "lab.Z2",
 }
 _FAM = [None, None]
 _RAN = set()                                            # blocks already run in this session (predicate() runs each once)
@@ -1298,7 +1305,7 @@ def block_kur():
         print("    " + out.strip().replace("\n", "\n    "))
         m = re.search(r"primes_checked=(\d+) kurepa_vanishing=(\d+) wall_congruence_failures=(\d+)", out)
         checked, kfail, cfail = (int(x) for x in m.groups()) if m else (0, 1, 1)
-        # 13:J6 (p13057), 13:Y1 (p13061)
+        # 13:J6 (p13057)
         family("kur", "K1")
         chk(f"{checked} odd primes p < {N_kur}: exactly 22043", checked == 22043)
         chk("K(p) != 0 (mod p) for every prime checked", kfail == 0)
@@ -1412,7 +1419,7 @@ def block_frm():
     print(f"    {n} shells p = 1 (mod 4) below {bound}; K/p: mean {float(meanK[0]):.4f} var {float(varK[0]):.4f}; q_p(4)/p: mean {float(meanQ[0]):.4f} var {float(varQ[0]):.4f} (certified rational bounds, width 1e-12)")
     print(f"    phi/pi: mean {meanP:.4f} var {varP:.4f} [approx]; a/sqrt p: mean {meanC:.3f} var {varC:.3f} [approx] (arcsine law: 0, 1/2); uniform law: 1/2, 1/12 = 0.0833")
     print(f"    4x4x4 table against the product of the quarter bins: chi-square {float(chi):.2f} on 63 df (exact rational {chi.numerator}/{chi.denominator}) [approx reading: consistent with independence]")
-    # 13:I5 (p13068), 13:Y3 (p13063)
+    # 13:I5 (p13068)
     family("frm", "I1")
     if bound == N_frm:
         chk("exactly 4783 shells p = 1 (mod 4) below 10^5", n == 4783)
@@ -1428,6 +1435,146 @@ def block_frm():
     chk("every triple consistent: 0 < K(p) < p, 0 <= q_p(4) < p, a = 1 (mod 4), b > 0 even, a^2 + b^2 = p", consistent)
     chk("the 64 cells of the table sum to the shell count", sum(table.values()) == n)
     flush("frm", details={"I1": f"frame_invariants.c, N = {bound}, {time.time() - t:.0f} s" if bound == N_frm else f"NO C COMPILER: pure-Python pass to N = {bound}, {time.time() - t:.0f} s"})
+
+# ------------------------------------------------------------------------------------------------------------
+# block lab — the laboratory Carriers' own shells (12 October 2026, the Y1 and Y3 pushes). A prime of the totality is a
+# Subject's shell, p² < Ω (00:C4), so a certificate "over the shells of the totality" is read over the primes p < √Ω and is
+# decided, on a laboratory Carrier Ω ∈ {233, 30089, 2 408 561}, over that Carrier's own shells: the odd primes p ≤ ⌊√(Ω−1)⌋,
+# 5, 39, 243 of them. lab.Z1: Kurepa's certificate Z = #{shells : p | K(p)} is zero on each Carrier (every shell walked,
+# Σ(p−1) steps in all), and on the same shells the two range laws of Z2 (c) — the blind-set sizes
+# against Poisson(1) (F5) and the index condition against independence (H5). lab.Z2: the calibration minimum over the
+# Carrier's shells p ≡ 1 (mod 4), decided exactly with π as a Machin bracket, against the nearest-hit scale π/(2N) of H4; the
+# three frame invariants on the same shells, exact, their correlations an [approx] reading. Pure Python, under a second.
+LAB_OMEGA = (233, 30089, 2408561)
+
+def lab_shells(Om):
+    """The odd primes p with p² < Ω: the Subject shells a Carrier of cardinality Ω holds."""
+    return [p for p in sieve_e(math.isqrt(Om - 1)) if p > 2]
+
+def lab_kurepa(p):
+    """K(p) = Σ_{k<p} k! mod p, the walk of p − 1 steps."""
+    f = s = 1
+    for k in range(1, p):
+        f = f * k % p; s = (s + f) % p
+    return s
+
+def lab_blind_size(p):
+    """|Z₀(p)| = #{1 ≤ n ≤ p−2 : !n ≡ 0 (mod p)}, the derangement numbers !n = (n−1)(!(n−1) + !(n−2)) walked mod p."""
+    d0, d1, z = 1, 0, 0
+    for n in range(1, p - 1):
+        if d1 == 0: z += 1
+        d0, d1 = d1, n * (d1 + d0) % p
+    return z
+
+def lab_phi(n):
+    r = m = n; d = 2
+    while d * d <= m:
+        if m % d == 0:
+            r -= r // d
+            while m % d == 0: m //= d
+        d += 1
+    return r - r // m if m > 1 else r
+
+def lab_primitive_root(p):
+    fac, m, d = [], p - 1, 2
+    while d * d <= m:
+        if m % d == 0:
+            fac.append(d)
+            while m % d == 0: m //= d
+        d += 1
+    if m > 1: fac.append(m)
+    return next(g for g in range(2, p) if all(pow(g, (p - 1) // q, p) != 1 for q in fac))
+
+def lab_quarter_turn(p):
+    """The quarter-turn i = a^{(p−1)/4} for the least quadratic non-residue a (p ≡ 1 mod 4), as e.A1 and e.N1 take it."""
+    a = 2
+    while pow(a, (p - 1) // 2, p) != p - 1: a += 1
+    return pow(a, (p - 1) // 4, p)
+
+def lab_index_condition(p):
+    """H5 on one shell: gcd(s, p−1) ∈ {gcd(λ(i), p−1), gcd(λ(−i), p−1)} for s the index of −K(p)⁻¹, with the probability of the
+    coincidence for s uniform on Z/(p−1) (the independence model): (φ((p−1)/d₁) + φ((p−1)/d₂)) / (p−1)."""
+    Ep = (-pow(lab_kurepa(p), -1, p)) % p; g = lab_primitive_root(p)
+    ind, x = {}, 1
+    for m in range(p - 1): ind[x] = m; x = x * g % p
+    r = lab_quarter_turn(p); d1, d2 = math.gcd(r, p - 1), math.gcd(p - r, p - 1)
+    prob = Fraction(lab_phi((p - 1) // d1) + (lab_phi((p - 1) // d2) if d2 != d1 else 0), p - 1)
+    return math.gcd(ind[Ep], p - 1) in (d1, d2), prob
+
+def block_lab():
+    """Block lab — the certificates of block Z on the laboratory Carriers' own shells (lab.Z1, lab.Z2)."""
+    from collections import Counter
+    t = time.time()
+    shells = {Om: lab_shells(Om) for Om in LAB_OMEGA}
+    kur = {Om: {p: lab_kurepa(p) for p in shells[Om]} for Om in LAB_OMEGA}
+    Z = {Om: sum(1 for v in kur[Om].values() if v == 0) for Om in LAB_OMEGA}
+    cost = {Om: sum(p - 1 for p in shells[Om]) for Om in LAB_OMEGA}
+    sizes = {Om: Counter(lab_blind_size(p) for p in shells[Om]) for Om in LAB_OMEGA}
+    h5 = {Om: [(p, *lab_index_condition(p)) for p in shells[Om] if p % 4 == 1 and p > 5] for Om in LAB_OMEGA}
+    for Om in LAB_OMEGA:
+        sh = shells[Om]; mean = Fraction(sum(k * v for k, v in sizes[Om].items()), len(sh))
+        solv = sum(ok for _, ok, _ in h5[Om]); exp = sum(pr for _, _, pr in h5[Om]); sd = math.sqrt(sum(pr * (1 - pr) for _, _, pr in h5[Om]))
+        print(f"    Omega = {Om}: {len(sh)} shells (odd primes below {math.isqrt(Om - 1) + 1}, the largest {sh[-1]}); Kurepa's certificate Z = {Z[Om]} "
+              f"over Σ(p−1) = {cost[Om]} walk steps; |Z0(p)|: {dict(sorted(sizes[Om].items()))}, mean {float(mean):.3f} (Poisson(1): 2) [approx]; "
+              f"index condition solvable on {solv} of {len(h5[Om])} shells p = 1 (mod 4), p > 5, against {float(exp):.1f} ± {sd:.1f} under independence [approx]")
+    own = {Om: lab_kurepa(Om) for Om in LAB_OMEGA}        # the Carriers' own residues: shells of the physical totality
+    print(f"    the laboratory Omega walked as shells of the physical totality: K(233) = {own[233]}, K(30089) = {own[30089]}, K(2408561) = {own[2408561]} (mod Omega)")
+    # 13:Z1 (p13061)
+    family("lab", "Z1")
+    chk("the shells of Omega = 233, 30089, 2408561 are the 5, 39, 243 odd primes below 16, 174, 1552, the largest 13, 173, 1549",
+        [len(shells[Om]) for Om in LAB_OMEGA] == [5, 39, 243] and [shells[Om][-1] for Om in LAB_OMEGA] == [13, 173, 1549])
+    chk("K(p) != 0 (mod p) on every shell of each Carrier: Z = 0, 0, 0", all(Z[Om] == 0 for Om in LAB_OMEGA))
+    chk("the certificates cost 34, 3046, 172452 walk steps", [cost[Om] for Om in LAB_OMEGA] == [34, 3046, 172452])
+    chk("K(233) = 69, K(30089) = 5260, K(2408561) = 435994 (mod Omega)", (own[233], own[30089], own[2408561]) == (69, 5260, 435994))
+    chk("|Z0(p)| over the 243 shells of 2408561: 1:87, 2:93, 3:43, 4:15, 5:3, 6:1, 7:1 (mean 490/243); over the 39 of 30089: 1:19, 2:11, 3:8, 4:1 (mean 69/39)",
+        dict(sizes[2408561]) == {1: 87, 2: 93, 3: 43, 4: 15, 5: 3, 6: 1, 7: 1} and dict(sizes[30089]) == {1: 19, 2: 11, 3: 8, 4: 1})
+    chk("the index condition is solvable on 48 of the 116 shells p = 1 (mod 4), p > 5, of 2408561; on 7 of the 17 of 30089; on the one shell (13) of 233",
+        [(sum(ok for _, ok, _ in h5[Om]), len(h5[Om])) for Om in LAB_OMEGA] == [(1, 1), (7, 17), (48, 116)])
+    # the calibration minimum over the Carrier's shells p = 1 (mod 4), decided exactly: for each shell and each chirality
+    # delta = |2 pi r/(p-1) - 1| is bracketed with pi's Machin bracket; the least candidate is decided when its upper bound
+    # lies below every other candidate's lower bound
+    PI_LO, PI_HI = pi_bracket(80); PI_MID = (PI_LO + PI_HI) / 2
+    argmin, delta, N4 = {}, {}, {}
+    for Om in LAB_OMEGA:
+        cands = []
+        for p in shells[Om]:
+            if p % 4 != 1: continue
+            r = lab_quarter_turn(p)
+            for rr in (r, p - r):
+                lo = min(abs(2 * PI_LO * rr / (p - 1) - 1), abs(2 * PI_HI * rr / (p - 1) - 1))
+                hi = max(abs(2 * PI_LO * rr / (p - 1) - 1), abs(2 * PI_HI * rr / (p - 1) - 1))
+                if (2 * PI_LO * rr / (p - 1) - 1) * (2 * PI_HI * rr / (p - 1) - 1) < 0: lo = Fraction(0)
+                cands.append((lo, hi, p, rr))
+        N4[Om] = len(cands) // 2
+        best = min(cands, key=lambda c: c[1]); decided = all(best[1] < c[0] for c in cands if c is not best)
+        argmin[Om] = (best[2], best[3]) if decided else None; delta[Om] = abs(2 * PI_MID * best[3] / (best[2] - 1) - 1)
+        print(f"    Omega = {Om}: {N4[Om]} shells p = 1 (mod 4); the calibration minimum at (p, lambda) = {argmin[Om]}, delta = {float(delta[Om]):.4e}, "
+              f"the nearest-hit scale pi/(2N) = {math.pi / (2 * N4[Om]):.4e}, ratio {float(delta[Om]) / (math.pi / (2 * N4[Om])):.3f} [approx]")
+    # the three frame invariants on the 117 shells of 2 408 561 (as frm.I1 takes them: K(p) mod p, q_p(4) mod p, p = a^2 + b^2, a = 1 (mod 4), b > 0)
+    rows = []
+    for p in shells[2408561]:
+        if p % 4 != 1: continue
+        q4 = (pow(4, p - 1, p * p) - 1) // p
+        a, b = next((x, math.isqrt(p - x * x)) for x in range(1, math.isqrt(p) + 1, 2) if math.isqrt(p - x * x) ** 2 == p - x * x)
+        rows.append((p, kur[2408561][p], q4, a if a % 4 == 1 else -a, b))
+    byp = {p: (K, q, a, b) for p, K, q, a, b in rows}
+    n = len(rows); T = [(K / p, q / p, math.atan2(b, a) / math.pi) for p, K, q, a, b in rows]
+    m = [sum(t[k] for t in T) / n for k in range(3)]; v = [sum((t[k] - m[k]) ** 2 for t in T) / n for k in range(3)]
+    corr = lambda i, j: sum((t[i] - m[i]) * (t[j] - m[j]) for t in T) / n / math.sqrt(v[i] * v[j])
+    c = (corr(0, 1), corr(0, 2), corr(1, 2)); sig = 1 / math.sqrt(n)
+    print(f"    the frame invariants on the {n} shells p = 1 (mod 4) of 2408561: means {m[0]:.3f}, {m[1]:.3f}, {m[2]:.3f}; variances {v[0]:.4f}, {v[1]:.4f}, {v[2]:.4f} "
+          f"(uniform 1/12 = 0.0833); correlations (K,q) {c[0]:+.3f}, (K,phi) {c[1]:+.3f}, (q,phi) {c[2]:+.3f} at sigma = 1/sqrt(n) = {sig:.3f} [approx]")
+    # 13:Z2 (p13063)
+    family("lab", "Z2")
+    chk("the shells p = 1 (mod 4) of the three Carriers number 2, 18, 117", [N4[Om] for Om in LAB_OMEGA] == [2, 18, 117])
+    chk("the calibration minimum is decided (the least bracket below every other) at (p, lambda) = (13, 5), (37, 6), (397, 63)",
+        [argmin[Om] for Om in LAB_OMEGA] == [(13, 5), (37, 6), (397, 63)])
+    chk("delta = 1.618 (in (1.61, 1.62)), 4.720e-2 (in (0.0471, 0.0473)), 4.023e-4 (in (4.02e-4, 4.03e-4))",
+        Fraction(161, 100) < delta[233] < Fraction(162, 100) and Fraction(471, 10**4) < delta[30089] < Fraction(473, 10**4) and Fraction(402, 10**6) < delta[2408561] < Fraction(403, 10**6))
+    chk("every triple on the 117 shells consistent: 0 < K(p) < p, 0 <= q_p(4) < p, a = 1 (mod 4), b > 0 even, a^2 + b^2 = p",
+        all(0 < K < p and 0 <= q < p and a % 4 == 1 and b % 2 == 0 and b > 0 and a * a + b * b == p for p, K, q, a, b in rows))
+    chk("the triples at p = 13 and p = 397 are (10, 6, -3+2i) and (152, 383, -19+6i)", byp.get(13) == (10, 6, -3, 2) and byp.get(397) == (152, 383, -19, 6))
+    flush("lab", order=["Z1", "Z2"], details={"Z1": f"pure Python, {time.time() - t:.1f} s", "Z2": f"correlations {c[0]:+.3f}, {c[1]:+.3f}, {c[2]:+.3f} at sigma {sig:.3f} (the paper's [approx] reading)"})
 
 if __name__ == "__main__":
     import time

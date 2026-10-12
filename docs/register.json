@@ -12,10 +12,10 @@
     "D": 139,
     "G": 1,
     "I": 119,
-    "O": 14,
+    "O": 12,
     "R": 81,
     "T": 633,
-    "Ω": 27
+    "Ω": 29
    }
   },
   "papers": [
@@ -645,8 +645,8 @@
       "title": "Hardness and certification"
      },
      {
-      "letter": "Y",
-      "title": "Hypotheses: the constants-sector walls"
+      "letter": "Z",
+      "title": "Horizon: the certificates of the totality"
      }
     ],
     "legend": [
@@ -666,9 +666,9 @@
       "text": "Derived within this paper from the rows above it in exact finite arithmetic, machine-verified by the named witness where a witness is named."
      },
      {
-      "tag": "O",
-      "name": "Open",
-      "text": "Genuinely unresolved."
+      "tag": "Ω",
+      "name": "$\\Omega$-hard",
+      "text": "A value decided by the totality, in no embedded reader's window; a demarcation of where the value is read, not an open item."
      }
     ],
     "rows": 63
@@ -3731,7 +3731,7 @@
   {
    "key": "p00112",
    "origin": "00",
-   "statement": "RH $=$ the on-line spectrum complete for the prime vector; Goldbach $=$ the uniform per-$n$ parity positivity; P-vs-NP $=$ the forward-invertibility of the scale descent. Each is a uniform check over the totality, in no embedded reader's window; the per-instance statements are $\\Om$-blind relations (Z10, Z11). Whether a certificate exists is undecided (20-rh \\S8.3).",
+   "statement": "RH $=$ the on-line spectrum complete for the prime vector; Goldbach $=$ the uniform per-$n$ parity positivity; P-vs-NP $=$ the forward-invertibility of the scale descent; Kurepa $=$ the left factorial nonzero on every odd shell (13:Z1). Each a uniform check over the totality, in no embedded reader's window; per-instance statements $\\Om$-blind relations (Z10, Z11); a certificate's existence undecided (20-rh \\S8.3).",
    "origin_row": "00:Z4",
    "tag": "Ω",
    "tier": null,
@@ -11581,7 +11581,7 @@
    "check": {
     "href": "src/13-epi/#p13009",
     "script": "epi.py",
-    "line": 1176,
+    "line": 1183,
     "verdict": "pass"
    },
    "declarations": [
@@ -11612,7 +11612,7 @@
    "check": {
     "href": "src/13-epi/#p13010",
     "script": "epi.py",
-    "line": 1118,
+    "line": 1125,
     "verdict": "pass"
    },
    "declarations": [
@@ -11681,7 +11681,7 @@
    "check": {
     "href": "src/13-epi/#p13014",
     "script": "epi.py",
-    "line": 1154,
+    "line": 1161,
     "verdict": "pass"
    },
    "declarations": [
@@ -11726,7 +11726,7 @@
    "check": {
     "href": "src/13-epi/#p13016",
     "script": "epi.py",
-    "line": 626,
+    "line": 633,
     "verdict": "pass"
    },
    "declarations": [],
@@ -11775,7 +11775,7 @@
    "check": {
     "href": "src/13-epi/#p13019",
     "script": "epi.py",
-    "line": 310,
+    "line": 317,
     "verdict": "pass"
    },
    "declarations": [],
@@ -11795,7 +11795,7 @@
    "check": {
     "href": "src/13-epi/#p13020",
     "script": "epi.py",
-    "line": 324,
+    "line": 331,
     "verdict": "pass"
    },
    "declarations": [],
@@ -11815,7 +11815,7 @@
    "check": {
     "href": "src/13-epi/#p13021",
     "script": "epi.py",
-    "line": 352,
+    "line": 359,
     "verdict": "pass"
    },
    "declarations": [],
@@ -11849,7 +11849,7 @@
    "check": {
     "href": "src/13-epi/#p13023",
     "script": "epi.py",
-    "line": 626,
+    "line": 633,
     "verdict": "pass"
    },
    "declarations": [
@@ -11890,7 +11890,7 @@
    "check": {
     "href": "src/13-epi/#p13024",
     "script": "epi.py",
-    "line": 674,
+    "line": 681,
     "verdict": "pass"
    },
    "declarations": [],
@@ -11910,7 +11910,7 @@
    "check": {
     "href": "src/13-epi/#p13025",
     "script": "epi.py",
-    "line": 665,
+    "line": 672,
     "verdict": "pass"
    },
    "declarations": [],
@@ -11930,7 +11930,7 @@
    "check": {
     "href": "src/13-epi/#p13026",
     "script": "epi.py",
-    "line": 665,
+    "line": 672,
     "verdict": "pass"
    },
    "declarations": [],
@@ -11950,7 +11950,7 @@
    "check": {
     "href": "src/13-epi/#p13027",
     "script": "epi.py",
-    "line": 400,
+    "line": 407,
     "verdict": "pass"
    },
    "declarations": [
@@ -11969,14 +11969,14 @@
   {
    "key": "p13028",
    "origin": "13",
-   "statement": "The wall identity and the terminal residue of $e$: $\\dr{(\\p-1)}\\equiv\\Ku{\\p}\\pmod\\p$ (the odd-prime case of the Mijajlovi\\'c--\\v Sami congruence, A4), hence $\\rep{\\varepsilon_{\\p-1}}=-(\\Ku{\\p})^{-1}$ whenever $\\p\\nmid\\Ku{\\p}$; existence of the terminal link on a shell is equivalent to $\\p\\nmid\\Ku{\\p}$, universal existence to Kurepa's hypothesis (Y1); re-verified in the derangement form for all $121{,}126$ odd primes $\\p<1.6\\times10^{6}$ with zero failures of either condition. Beyond the wall $n!\\equiv0$: $n=\\p-1$ is the factorial horizon.",
+   "statement": "The wall identity and the terminal residue of $e$: $\\dr{(\\p-1)}\\equiv\\Ku{\\p}\\pmod\\p$ (the odd-prime case of the Mijajlovi\\'c--\\v Sami congruence, A4), hence $\\rep{\\varepsilon_{\\p-1}}=-(\\Ku{\\p})^{-1}$ whenever $\\p\\nmid\\Ku{\\p}$; existence of the terminal link on a shell is equivalent to $\\p\\nmid\\Ku{\\p}$, universal existence over the shells of the totality to the vanishing of Kurepa's certificate (Z1); re-verified in the derangement form for all $121{,}126$ odd primes $\\p<1.6\\times10^{6}$ with zero failures of either condition. Beyond the wall $n!\\equiv0$: $n=\\p-1$ is the factorial horizon.",
    "origin_row": "13:F2",
    "tag": "T",
    "tier": 0,
    "check": {
     "href": "src/13-epi/#p13028",
     "script": "epi.py",
-    "line": 400,
+    "line": 407,
     "verdict": "pass"
    },
    "declarations": [
@@ -12012,7 +12012,7 @@
    "check": {
     "href": "src/13-epi/#p13029",
     "script": "epi.py",
-    "line": 407,
+    "line": 414,
     "verdict": "pass"
    },
    "declarations": [
@@ -12048,7 +12048,7 @@
    "check": {
     "href": "src/13-epi/#p13030",
     "script": "epi.py",
-    "line": 438,
+    "line": 445,
     "verdict": "pass"
    },
    "declarations": [
@@ -12079,7 +12079,7 @@
    "check": {
     "href": "src/13-epi/#p13031",
     "script": "epi.py",
-    "line": 467,
+    "line": 474,
     "verdict": "pass"
    },
    "declarations": [],
@@ -12099,7 +12099,7 @@
    "check": {
     "href": "src/13-epi/#p13032",
     "script": "epi.py",
-    "line": 444,
+    "line": 451,
     "verdict": "pass"
    },
    "declarations": [
@@ -12130,7 +12130,7 @@
    "check": {
     "href": "src/13-epi/#p13033",
     "script": "epi.py",
-    "line": 1118,
+    "line": 1125,
     "verdict": "pass"
    },
    "declarations": [
@@ -12161,7 +12161,7 @@
    "check": {
     "href": "src/13-epi/#p13066",
     "script": "epi.py",
-    "line": 412,
+    "line": 419,
     "verdict": "pass"
    },
    "declarations": [
@@ -12192,7 +12192,7 @@
    "check": {
     "href": "src/13-epi/#p13034",
     "script": "epi.py",
-    "line": 718,
+    "line": 725,
     "verdict": "pass"
    },
    "declarations": [
@@ -12223,7 +12223,7 @@
    "check": {
     "href": "src/13-epi/#p13035",
     "script": "epi.py",
-    "line": 718,
+    "line": 725,
     "verdict": "pass"
    },
    "declarations": [
@@ -12249,7 +12249,7 @@
    "check": {
     "href": "src/13-epi/#p13036",
     "script": "epi.py",
-    "line": 939,
+    "line": 946,
     "verdict": "pass"
    },
    "declarations": [
@@ -12275,7 +12275,7 @@
    "check": {
     "href": "src/13-epi/#p13037",
     "script": "epi.py",
-    "line": 756,
+    "line": 763,
     "verdict": "pass"
    },
    "declarations": [
@@ -12301,7 +12301,7 @@
    "check": {
     "href": "src/13-epi/#p13038",
     "script": "epi.py",
-    "line": 813,
+    "line": 820,
     "verdict": "pass"
    },
    "declarations": [
@@ -12337,7 +12337,7 @@
    "check": {
     "href": "src/13-epi/#p13039",
     "script": "epi.py",
-    "line": 842,
+    "line": 849,
     "verdict": "pass"
    },
    "declarations": [],
@@ -12372,7 +12372,7 @@
    "check": {
     "href": "src/13-epi/#p13041",
     "script": "epi.py",
-    "line": 634,
+    "line": 641,
     "verdict": "pass"
    },
    "declarations": [
@@ -12398,7 +12398,7 @@
    "check": {
     "href": "src/13-epi/#p13042",
     "script": "epi.py",
-    "line": 1134,
+    "line": 1141,
     "verdict": "pass"
    },
    "declarations": [
@@ -12429,7 +12429,7 @@
    "check": {
     "href": "src/13-epi/#p13067",
     "script": "epi.py",
-    "line": 774,
+    "line": 781,
     "verdict": "pass"
    },
    "declarations": [
@@ -12484,7 +12484,7 @@
    "check": {
     "href": "src/13-epi/#p13044",
     "script": "epi.py",
-    "line": 1110,
+    "line": 1117,
     "verdict": "pass"
    },
    "declarations": [
@@ -12551,7 +12551,7 @@
    "check": {
     "href": "src/13-epi/#p13047",
     "script": "epi.py",
-    "line": 556,
+    "line": 563,
     "verdict": "pass"
    },
    "declarations": [
@@ -12582,7 +12582,7 @@
    "check": {
     "href": "src/13-epi/#p13048",
     "script": "epi.py",
-    "line": 324,
+    "line": 331,
     "verdict": "pass"
    },
    "declarations": [],
@@ -12602,7 +12602,7 @@
    "check": {
     "href": "src/13-epi/#p13049",
     "script": "epi.py",
-    "line": 665,
+    "line": 672,
     "verdict": "pass"
    },
    "declarations": [],
@@ -12637,7 +12637,7 @@
    "check": {
     "href": "src/13-epi/#p13051",
     "script": "epi.py",
-    "line": 1110,
+    "line": 1117,
     "verdict": "pass"
    },
    "declarations": [
@@ -12663,7 +12663,7 @@
    "check": {
     "href": "src/13-epi/#p13068",
     "script": "epi.py",
-    "line": 1415,
+    "line": 1422,
     "verdict": "pass"
    },
    "declarations": [],
@@ -12683,7 +12683,7 @@
    "check": {
     "href": "src/13-epi/#p13052",
     "script": "epi.py",
-    "line": 1110,
+    "line": 1117,
     "verdict": "pass"
    },
    "declarations": [
@@ -12709,7 +12709,7 @@
    "check": {
     "href": "src/13-epi/#p13053",
     "script": "epi.py",
-    "line": 1211,
+    "line": 1218,
     "verdict": "pass"
    },
    "declarations": [
@@ -12740,7 +12740,7 @@
    "check": {
     "href": "src/13-epi/#p13054",
     "script": "epi.py",
-    "line": 1211,
+    "line": 1218,
     "verdict": "pass"
    },
    "declarations": [],
@@ -12774,7 +12774,7 @@
    "check": {
     "href": "src/13-epi/#p13056",
     "script": "epi.py",
-    "line": 1211,
+    "line": 1218,
     "verdict": "pass"
    },
    "declarations": [],
@@ -12794,7 +12794,7 @@
    "check": {
     "href": "src/13-epi/#p13057",
     "script": "epi.py",
-    "line": 1301,
+    "line": 1308,
     "verdict": "pass"
    },
    "declarations": [],
@@ -12807,39 +12807,39 @@
   {
    "key": "p13061",
    "origin": "13",
-   "statement": "Kurepa's hypothesis, $\\p\\nmid\\Ku{\\p}$ for every odd prime of the totality, equivalently $\\p\\nmid\\dr{(\\p-1)}$ (F2) and $B_{\\p-1}\\not\\equiv1\\pmod\\p$: universal existence of the terminal residue $-(\\Ku{\\p})^{-1}$ of $e$; equivalently, the walk $\\Ku{0},\\Ku{1},\\dots,\\Ku{\\p}$ of the left factorial's partial sums does not return to its origin modulo $\\p$ (F8). Open since 1971; the one claimed proof (Barsky--Benzaghou 2004, Thm.~3) withdrawn by its authors (2011); no counterexample for $\\p<2^{40}$; re-verified here with the wall identity for all $121{,}126$ odd primes $\\p<1.6\\times10^{6}$. Decided by no shell (each decides its own value: $\\Ku{13}\\equiv10$, $\\Ku{233}\\equiv69$, $\\Ku{30089}\\equiv5260$), by no search short of the whole totality (F5's uniform model at the wall expects $\\sum_{\\p\\le X}1/\\p\\approx\\ln\\ln X-0.24$ counterexamples \\apx, so the model is scoped to $n\\le\\p-2$) and by no relation of this paper. Beside it, two large-$\\p$ laws read on ranges: $|Z_0(\\p)|-1\\to\\mathrm{Poisson}(1)$ (F5) and the independence of the quarter-turn index and the gcd class of the wall-residue index (H5; $94$ of $210$ against $96.0\\pm6.6$ \\apx).",
-   "origin_row": "13:Y1",
-   "tag": "O",
+   "statement": "Kurepa's certificate: the count $Z=\\#\\{\\text{shells }\\p:\\p\\mid\\Ku{\\p}\\}$ over the shells of the totality, the odd primes $\\p<\\sqrt\\Om$ (00:B8, 00:C4); Kurepa's hypothesis (1971) over the totality is $Z=0$ --- equivalently $\\p\\nmid\\dr{(\\p-1)}$ (F2) and the Bell number $B_{\\p-1}\\not\\equiv1\\pmod\\p$ on every shell, the walk of F8 returning to its origin on none. Each shell certifies its own case by the walk of $\\p-1$ steps within its window (F2, F8); the certificate over the $\\approx2.6\\times10^{59}$ shells costs $\\sum(\\p-1)\\approx\\Om/\\ln\\Om$ steps, a count above $\\sqrt\\Om$ that no Subject's counting reaches (00:A5, 00:B8): $\\Om$-hard, the class of 00:Z3, host-decided only where the Carrier is hosted. On the laboratory Carriers the certificate is decided and zero: the $5$, $39$, $243$ shells of $\\Om=233$, $30089$, $2{,}408{,}561$ (the odd primes below $16$, $174$, $1552$), every one walked (\\src{lab.Z1}); no vanishing residue up to $2{,}408{,}561$ (re-verified here; the package's pass to $2.5\\times10^{5}$, \\src{kur.K1}) nor below $2^{40}$ (A4). The one claimed proof (Barsky--Benzaghou 2004, Thm.~3) was withdrawn by its authors (2011).",
+   "origin_row": "13:Z1",
+   "tag": "Ω",
    "tier": null,
    "check": {
     "href": "src/13-epi/#p13061",
     "script": "epi.py",
-    "line": 1301,
+    "line": 1522,
     "verdict": "pass"
    },
    "declarations": [],
    "aliases": [],
    "rows": [
-    "13:Y1"
+    "13:Z1"
    ]
   },
   {
    "key": "p13063",
    "origin": "13",
-   "statement": "The large-$\\p$ laws of the two walls, read on ranges and open as laws. (a) The calibration rate $\\delta(X)=\\min_{\\p\\le X}|\\theta-1|$: exact to $X=4\\times10^{6}$ (H4), falling with $X$ by A7; whether its order is the uniform model's $\\piR/(2N(X))$ for every large $X$ of the totality, the continuum bound being the irrationality measure of $\\piR$ ($\\mu\\le7.1033$, Zeilberger--Zudilin 2020) \\import. (b) The joint law of $(\\Ku{\\p}/\\p,\\ q_\\p(4)/\\p,\\ \\varphi/\\piR)$ for large $\\p$ (I5 on $\\p<10^{5}$): $\\varphi/\\piR$ equidistributes (Hecke) \\import, $q_\\p(4)/\\p$ equidistributes in the base at fixed $\\p$ (Heath-Brown) and nothing is proved in $\\p$, $\\Ku{\\p}/\\p$ is Y1's; whether the three are independent in the large-$\\p$ law. Each clause is a statement about every large finite $\\p$ with the continuum as its chart, decided by no shell alone and by no relation of this paper.",
-   "origin_row": "13:Y3",
-   "tag": "O",
+   "statement": "The large-$\\p$ laws over the shells of the totality, the primes $\\p<\\sqrt\\Om$ (00:B8, 00:C4): (a) the calibration rate $\\delta=\\min|\\theta-1|$ over the $\\approx1.3\\times10^{59}$ shells $\\p\\equiv1\\pmod4$ --- whether $\\delta(X)$ runs at the nearest-hit scale $\\piR/(2N(X))$ for every $X$ (H4; the continuum bound the irrationality measure of $\\piR$, $\\mu\\le7.1033$, Zeilberger--Zudilin 2020) \\import; (b) the independence of $(\\Ku{\\p}/\\p,\\ q_\\p(4)/\\p,\\ \\varphi/\\piR)$ in the joint law over them (I5); (c) the Poisson$(1)$ law of $|Z_0(\\p)|-1$ over all shells (F5) and the independence of the quarter-turn index and the gcd class of the wall-residue index over the shells $\\p\\equiv1\\pmod4$, $\\p>5$ (H5). Each shell decides its own values within its window (H3, F2, G3, G4; J6); the check of each law over all shells costs a count above $\\sqrt\\Om$ that no Subject's counting reaches (00:A5, 00:B8): $\\Om$-hard, the class of 00:Z3, host-decided only where the Carrier is hosted. On the laboratory Carriers the values are decided over their own shells (\\src{lab.Z1}, \\src{lab.Z2}), the laws read against them \\apx: over the $2$, $18$, $117$ shells $\\p\\equiv1\\pmod4$ of $\\Om=233$, $30089$, $2{,}408{,}561$, $\\delta=1.62$, $0.0472$, $4.02\\times10^{-4}$ at $\\p=13$, $37$, $397$, against the nearest-hit scale $\\piR/(2N)=0.79$, $0.087$, $0.013$; at $N=117$ the triple's correlations $+0.02$, $+0.07$, $+0.14$, within $2\\sigma$ ($\\sigma=0.09$) of zero; the blind-set excess $1.02$ against $1$ over the $243$ shells; the index condition solvable on $48$ of $116$ against $52.6\\pm4.9$. On the $88{,}336$ shells $\\p\\equiv1\\pmod4$, $\\p\\le2{,}408{,}561$ (shells of the physical totality; re-verified here): means $0.500$, $0.499$, $0.500$, correlations $+0.001$, $-0.003$, $+0.000$ ($\\sigma=0.0034$), chi-square $63.3$ on $63$ df \\apx.",
+   "origin_row": "13:Z2",
+   "tag": "Ω",
    "tier": null,
    "check": {
     "href": "src/13-epi/#p13063",
     "script": "epi.py",
-    "line": 1415,
+    "line": 1567,
     "verdict": "pass"
    },
    "declarations": [],
    "aliases": [],
    "rows": [
-    "13:Y3"
+    "13:Z2"
    ]
   },
   {
@@ -27468,9 +27468,9 @@
    "label": "Z4",
    "block": "Z",
    "tag": "Ω",
-   "name": "The three certificates: RH = the on-line spectrum complete",
-   "statement": "RH $=$ the on-line spectrum complete for the prime vector; Goldbach $=$ the uniform per-$n$ parity positivity; P-vs-NP $=$ the forward-invertibility of the scale descent. Each is a uniform check over the totality, in no embedded reader's window; the per-instance statements are $\\Om$-blind relations (Z10, Z11). Whether a certificate exists is undecided (20-rh \\S8.3).",
-   "source": "20-rh, 23-gold, 26-pnp",
+   "name": "The four certificates: RH = the on-line spectrum complete",
+   "statement": "RH $=$ the on-line spectrum complete for the prime vector; Goldbach $=$ the uniform per-$n$ parity positivity; P-vs-NP $=$ the forward-invertibility of the scale descent; Kurepa $=$ the left factorial nonzero on every odd shell (13:Z1). Each a uniform check over the totality, in no embedded reader's window; per-instance statements $\\Om$-blind relations (Z10, Z11); a certificate's existence undecided (20-rh \\S8.3).",
+   "source": "20-rh, 23-gold, 26-pnp, 13-epi",
    "page": "00-ledger.html#Z4",
    "witness": {
     "script": null,
@@ -27479,14 +27479,16 @@
    },
    "refs": [
     "p00135",
+    "p13061",
     "p20043"
    ],
    "sources": [
     "20-rh",
     "23-gold",
-    "26-pnp"
+    "26-pnp",
+    "13-epi"
    ],
-   "text": "The three certificates: RH = the on-line spectrum complete: RH $=$ the on-line spectrum complete for the prime vector; Goldbach $=$ the uniform per-$n$ parity positivity; P-vs-NP $=$ the forward-invertibility of the scale descent. Each is a uniform check over the totality, in no embedded reader's window; the per-instance statements are $\\Om$-blind relations (Z10, Z11). Whether a certificate exists is undecided (20-rh \\S8.3). 20-rh, 23-gold, 26-pnp"
+   "text": "The four certificates: RH = the on-line spectrum complete: RH $=$ the on-line spectrum complete for the prime vector; Goldbach $=$ the uniform per-$n$ parity positivity; P-vs-NP $=$ the forward-invertibility of the scale descent; Kurepa $=$ the left factorial nonzero on every odd shell (13:Z1). Each a uniform check over the totality, in no embedded reader's window; per-instance statements $\\Om$-blind relations (Z10, Z11); a certificate's existence undecided (20-rh \\S8.3). 20-rh, 23-gold, 26-pnp, 13-epi"
   },
   {
    "paper": "00",
@@ -38532,7 +38534,7 @@
     "py": {
      "href": "src/13-epi/#p13009",
      "script": "epi.py",
-     "line": 1176,
+     "line": 1183,
      "verdict": "pass"
     },
     "lean": [
@@ -38575,7 +38577,7 @@
     "py": {
      "href": "src/13-epi/#p13010",
      "script": "epi.py",
-     "line": 1118,
+     "line": 1125,
      "verdict": "pass"
     },
     "lean": [
@@ -38667,7 +38669,7 @@
     "py": {
      "href": "src/13-epi/#p13014",
      "script": "epi.py",
-     "line": 1154,
+     "line": 1161,
      "verdict": "pass"
     },
     "lean": [
@@ -38727,7 +38729,7 @@
     "py": {
      "href": "src/13-epi/#p13016",
      "script": "epi.py",
-     "line": 626,
+     "line": 633,
      "verdict": "pass"
     },
     "lean": []
@@ -38791,7 +38793,7 @@
     "py": {
      "href": "src/13-epi/#p13019",
      "script": "epi.py",
-     "line": 310,
+     "line": 317,
      "verdict": "pass"
     },
     "lean": []
@@ -38815,7 +38817,7 @@
     "py": {
      "href": "src/13-epi/#p13020",
      "script": "epi.py",
-     "line": 324,
+     "line": 331,
      "verdict": "pass"
     },
     "lean": []
@@ -38839,7 +38841,7 @@
     "py": {
      "href": "src/13-epi/#p13021",
      "script": "epi.py",
-     "line": 352,
+     "line": 359,
      "verdict": "pass"
     },
     "lean": []
@@ -38884,7 +38886,7 @@
     "py": {
      "href": "src/13-epi/#p13023",
      "script": "epi.py",
-     "line": 626,
+     "line": 633,
      "verdict": "pass"
     },
     "lean": [
@@ -38943,7 +38945,7 @@
     "py": {
      "href": "src/13-epi/#p13024",
      "script": "epi.py",
-     "line": 674,
+     "line": 681,
      "verdict": "pass"
     },
     "lean": []
@@ -38967,7 +38969,7 @@
     "py": {
      "href": "src/13-epi/#p13025",
      "script": "epi.py",
-     "line": 665,
+     "line": 672,
      "verdict": "pass"
     },
     "lean": []
@@ -38991,7 +38993,7 @@
     "py": {
      "href": "src/13-epi/#p13026",
      "script": "epi.py",
-     "line": 665,
+     "line": 672,
      "verdict": "pass"
     },
     "lean": []
@@ -39017,7 +39019,7 @@
     "py": {
      "href": "src/13-epi/#p13027",
      "script": "epi.py",
-     "line": 400,
+     "line": 407,
      "verdict": "pass"
     },
     "lean": [
@@ -39043,14 +39045,14 @@
    "block": "F",
    "tag": "T",
    "name": null,
-   "statement": "The wall identity and the terminal residue of $e$: $\\dr{(\\p-1)}\\equiv\\Ku{\\p}\\pmod\\p$ (the odd-prime case of the Mijajlovi\\'c--\\v Sami congruence, A4), hence $\\rep{\\varepsilon_{\\p-1}}=-(\\Ku{\\p})^{-1}$ whenever $\\p\\nmid\\Ku{\\p}$; existence of the terminal link on a shell is equivalent to $\\p\\nmid\\Ku{\\p}$, universal existence to Kurepa's hypothesis (Y1); re-verified in the derangement form for all $121{,}126$ odd primes $\\p<1.6\\times10^{6}$ with zero failures of either condition. Beyond the wall $n!\\equiv0$: $n=\\p-1$ is the factorial horizon.",
+   "statement": "The wall identity and the terminal residue of $e$: $\\dr{(\\p-1)}\\equiv\\Ku{\\p}\\pmod\\p$ (the odd-prime case of the Mijajlovi\\'c--\\v Sami congruence, A4), hence $\\rep{\\varepsilon_{\\p-1}}=-(\\Ku{\\p})^{-1}$ whenever $\\p\\nmid\\Ku{\\p}$; existence of the terminal link on a shell is equivalent to $\\p\\nmid\\Ku{\\p}$, universal existence over the shells of the totality to the vanishing of Kurepa's certificate (Z1); re-verified in the derangement form for all $121{,}126$ odd primes $\\p<1.6\\times10^{6}$ with zero failures of either condition. Beyond the wall $n!\\equiv0$: $n=\\p-1$ is the factorial horizon.",
    "source": "Thm.~\\ref{thm:wall-e}\\newline \\pywit{epi}{p13028}{F2}, \\leanwit{FrcCore}{p13028}{F2}, \\leanwit{FrcLedger}{p13028}{F2} \\lean{Epi.derangements\\_wall\\_zmod, Epi.terminal\\_residue, FRC.Epi.terminal13}",
    "page": "13-epi/index.html#F2",
    "witness": {
     "py": {
      "href": "src/13-epi/#p13028",
      "script": "epi.py",
-     "line": 400,
+     "line": 407,
      "verdict": "pass"
     },
     "lean": [
@@ -39084,7 +39086,7 @@
     "p13004",
     "p13061"
    ],
-   "text": "The wall identity and the terminal residue of $e$: $\\dr{(\\p-1)}\\equiv\\Ku{\\p}\\pmod\\p$ (the odd-prime case of the Mijajlovi\\'c–\\v Sami congruence, A4), hence $\\rep{\\varepsilon_{\\p-1}}=-(\\Ku{\\p})^{-1}$ whenever $\\p\\nmid\\Ku{\\p}$; existence of the terminal link on a shell is equivalent to $\\p\\nmid\\Ku{\\p}$, universal existence to Kurepa's hypothesis (Y1); re-verified in the derangement form for all $121{,}126$ odd primes $\\p<1.6\\times10^{6}$ with zero failures of either condition. Beyond the wall $n!\\equiv0$: $n=\\p-1$ is the factorial horizon. Thm. thm:wall-e p13028, FrcCore{F2}, FrcLedger{F2} Epi.derangements_wall_zmod, Epi.terminal_residue, FRC.Epi.terminal13"
+   "text": "The wall identity and the terminal residue of $e$: $\\dr{(\\p-1)}\\equiv\\Ku{\\p}\\pmod\\p$ (the odd-prime case of the Mijajlovi\\'c–\\v Sami congruence, A4), hence $\\rep{\\varepsilon_{\\p-1}}=-(\\Ku{\\p})^{-1}$ whenever $\\p\\nmid\\Ku{\\p}$; existence of the terminal link on a shell is equivalent to $\\p\\nmid\\Ku{\\p}$, universal existence over the shells of the totality to the vanishing of Kurepa's certificate (Z1); re-verified in the derangement form for all $121{,}126$ odd primes $\\p<1.6\\times10^{6}$ with zero failures of either condition. Beyond the wall $n!\\equiv0$: $n=\\p-1$ is the factorial horizon. Thm. thm:wall-e p13028, FrcCore{F2}, FrcLedger{F2} Epi.derangements_wall_zmod, Epi.terminal_residue, FRC.Epi.terminal13"
   },
   {
    "paper": "13-epi",
@@ -39102,7 +39104,7 @@
     "py": {
      "href": "src/13-epi/#p13029",
      "script": "epi.py",
-     "line": 407,
+     "line": 414,
      "verdict": "pass"
     },
     "lean": [
@@ -39151,7 +39153,7 @@
     "py": {
      "href": "src/13-epi/#p13030",
      "script": "epi.py",
-     "line": 438,
+     "line": 445,
      "verdict": "pass"
     },
     "lean": [
@@ -39194,7 +39196,7 @@
     "py": {
      "href": "src/13-epi/#p13031",
      "script": "epi.py",
-     "line": 467,
+     "line": 474,
      "verdict": "pass"
     },
     "lean": []
@@ -39220,7 +39222,7 @@
     "py": {
      "href": "src/13-epi/#p13032",
      "script": "epi.py",
-     "line": 444,
+     "line": 451,
      "verdict": "pass"
     },
     "lean": [
@@ -39261,7 +39263,7 @@
     "py": {
      "href": "src/13-epi/#p13033",
      "script": "epi.py",
-     "line": 1118,
+     "line": 1125,
      "verdict": "pass"
     },
     "lean": [
@@ -39304,7 +39306,7 @@
     "py": {
      "href": "src/13-epi/#p13066",
      "script": "epi.py",
-     "line": 412,
+     "line": 419,
      "verdict": "pass"
     },
     "lean": [
@@ -39347,7 +39349,7 @@
     "py": {
      "href": "src/13-epi/#p13034",
      "script": "epi.py",
-     "line": 718,
+     "line": 725,
      "verdict": "pass"
     },
     "lean": [
@@ -39390,7 +39392,7 @@
     "py": {
      "href": "src/13-epi/#p13035",
      "script": "epi.py",
-     "line": 718,
+     "line": 725,
      "verdict": "pass"
     },
     "lean": [
@@ -39423,7 +39425,7 @@
     "py": {
      "href": "src/13-epi/#p13036",
      "script": "epi.py",
-     "line": 939,
+     "line": 946,
      "verdict": "pass"
     },
     "lean": [
@@ -39458,7 +39460,7 @@
     "py": {
      "href": "src/13-epi/#p13037",
      "script": "epi.py",
-     "line": 756,
+     "line": 763,
      "verdict": "pass"
     },
     "lean": [
@@ -39494,7 +39496,7 @@
     "py": {
      "href": "src/13-epi/#p13038",
      "script": "epi.py",
-     "line": 813,
+     "line": 820,
      "verdict": "pass"
     },
     "lean": [
@@ -39545,7 +39547,7 @@
     "py": {
      "href": "src/13-epi/#p13039",
      "script": "epi.py",
-     "line": 842,
+     "line": 849,
      "verdict": "pass"
     },
     "lean": []
@@ -39596,7 +39598,7 @@
     "py": {
      "href": "src/13-epi/#p13041",
      "script": "epi.py",
-     "line": 634,
+     "line": 641,
      "verdict": "pass"
     },
     "lean": [
@@ -39629,7 +39631,7 @@
     "py": {
      "href": "src/13-epi/#p13042",
      "script": "epi.py",
-     "line": 1134,
+     "line": 1141,
      "verdict": "pass"
     },
     "lean": [
@@ -39670,7 +39672,7 @@
     "py": {
      "href": "src/13-epi/#p13067",
      "script": "epi.py",
-     "line": 774,
+     "line": 781,
      "verdict": "pass"
     },
     "lean": [
@@ -39746,7 +39748,7 @@
     "py": {
      "href": "src/13-epi/#p13044",
      "script": "epi.py",
-     "line": 1110,
+     "line": 1117,
      "verdict": "pass"
     },
     "lean": [
@@ -39842,7 +39844,7 @@
     "py": {
      "href": "src/13-epi/#p13047",
      "script": "epi.py",
-     "line": 556,
+     "line": 563,
      "verdict": "pass"
     },
     "lean": [
@@ -39883,7 +39885,7 @@
     "py": {
      "href": "src/13-epi/#p13048",
      "script": "epi.py",
-     "line": 324,
+     "line": 331,
      "verdict": "pass"
     },
     "lean": []
@@ -39914,7 +39916,7 @@
     "py": {
      "href": "src/13-epi/#p13049",
      "script": "epi.py",
-     "line": 665,
+     "line": 672,
      "verdict": "pass"
     },
     "lean": []
@@ -39963,7 +39965,7 @@
     "py": {
      "href": "src/13-epi/#p13051",
      "script": "epi.py",
-     "line": 1110,
+     "line": 1117,
      "verdict": "pass"
     },
     "lean": [
@@ -39999,7 +40001,7 @@
     "py": {
      "href": "src/13-epi/#p13068",
      "script": "epi.py",
-     "line": 1415,
+     "line": 1422,
      "verdict": "pass"
     },
     "lean": []
@@ -40027,7 +40029,7 @@
     "py": {
      "href": "src/13-epi/#p13052",
      "script": "epi.py",
-     "line": 1110,
+     "line": 1117,
      "verdict": "pass"
     },
     "lean": [
@@ -40062,7 +40064,7 @@
     "py": {
      "href": "src/13-epi/#p13053",
      "script": "epi.py",
-     "line": 1211,
+     "line": 1218,
      "verdict": "pass"
     },
     "lean": [
@@ -40105,7 +40107,7 @@
     "py": {
      "href": "src/13-epi/#p13054",
      "script": "epi.py",
-     "line": 1211,
+     "line": 1218,
      "verdict": "pass"
     },
     "lean": []
@@ -40154,7 +40156,7 @@
     "py": {
      "href": "src/13-epi/#p13056",
      "script": "epi.py",
-     "line": 1211,
+     "line": 1218,
      "verdict": "pass"
     },
     "lean": []
@@ -40183,7 +40185,7 @@
     "py": {
      "href": "src/13-epi/#p13057",
      "script": "epi.py",
-     "line": 1301,
+     "line": 1308,
      "verdict": "pass"
     },
     "lean": []
@@ -40196,60 +40198,74 @@
   {
    "paper": "13-epi",
    "no": 13,
-   "rid": "13:Y1",
+   "rid": "13:Z1",
    "key": "p13061",
-   "label": "Y1",
-   "block": "Y",
-   "tag": "O",
+   "label": "Z1",
+   "block": "Z",
+   "tag": "Ω",
    "name": null,
-   "statement": "Kurepa's hypothesis, $\\p\\nmid\\Ku{\\p}$ for every odd prime of the totality, equivalently $\\p\\nmid\\dr{(\\p-1)}$ (F2) and $B_{\\p-1}\\not\\equiv1\\pmod\\p$: universal existence of the terminal residue $-(\\Ku{\\p})^{-1}$ of $e$; equivalently, the walk $\\Ku{0},\\Ku{1},\\dots,\\Ku{\\p}$ of the left factorial's partial sums does not return to its origin modulo $\\p$ (F8). Open since 1971; the one claimed proof (Barsky--Benzaghou 2004, Thm.~3) withdrawn by its authors (2011); no counterexample for $\\p<2^{40}$; re-verified here with the wall identity for all $121{,}126$ odd primes $\\p<1.6\\times10^{6}$. Decided by no shell (each decides its own value: $\\Ku{13}\\equiv10$, $\\Ku{233}\\equiv69$, $\\Ku{30089}\\equiv5260$), by no search short of the whole totality (F5's uniform model at the wall expects $\\sum_{\\p\\le X}1/\\p\\approx\\ln\\ln X-0.24$ counterexamples \\apx, so the model is scoped to $n\\le\\p-2$) and by no relation of this paper. Beside it, two large-$\\p$ laws read on ranges: $|Z_0(\\p)|-1\\to\\mathrm{Poisson}(1)$ (F5) and the independence of the quarter-turn index and the gcd class of the wall-residue index (H5; $94$ of $210$ against $96.0\\pm6.6$ \\apx).",
-   "source": "Thm.~\\ref{thm:wall-e}\\newline \\pywit{epi}{p13061}{Y1}",
-   "page": "13-epi/index.html#Y1",
+   "statement": "Kurepa's certificate: the count $Z=\\#\\{\\text{shells }\\p:\\p\\mid\\Ku{\\p}\\}$ over the shells of the totality, the odd primes $\\p<\\sqrt\\Om$ (00:B8, 00:C4); Kurepa's hypothesis (1971) over the totality is $Z=0$ --- equivalently $\\p\\nmid\\dr{(\\p-1)}$ (F2) and the Bell number $B_{\\p-1}\\not\\equiv1\\pmod\\p$ on every shell, the walk of F8 returning to its origin on none. Each shell certifies its own case by the walk of $\\p-1$ steps within its window (F2, F8); the certificate over the $\\approx2.6\\times10^{59}$ shells costs $\\sum(\\p-1)\\approx\\Om/\\ln\\Om$ steps, a count above $\\sqrt\\Om$ that no Subject's counting reaches (00:A5, 00:B8): $\\Om$-hard, the class of 00:Z3, host-decided only where the Carrier is hosted. On the laboratory Carriers the certificate is decided and zero: the $5$, $39$, $243$ shells of $\\Om=233$, $30089$, $2{,}408{,}561$ (the odd primes below $16$, $174$, $1552$), every one walked (\\src{lab.Z1}); no vanishing residue up to $2{,}408{,}561$ (re-verified here; the package's pass to $2.5\\times10^{5}$, \\src{kur.K1}) nor below $2^{40}$ (A4). The one claimed proof (Barsky--Benzaghou 2004, Thm.~3) was withdrawn by its authors (2011).",
+   "source": "Thm.~\\ref{thm:wall-e}\\newline \\pywit{epi}{p13061}{Z1}",
+   "page": "13-epi/index.html#Z1",
    "witness": {
     "py": {
      "href": "src/13-epi/#p13061",
      "script": "epi.py",
-     "line": 1301,
+     "line": 1522,
      "verdict": "pass"
     },
     "lean": []
    },
    "refs": [
+    "p00024",
+    "p00111",
+    "p00112",
+    "p00166",
+    "p00197",
+    "p13004",
     "p13028",
-    "p13031",
-    "p13047",
     "p13066"
    ],
-   "text": "Kurepa's hypothesis, $\\p\\nmid\\Ku{\\p}$ for every odd prime of the totality, equivalently $\\p\\nmid\\dr{(\\p-1)}$ (F2) and $B_{\\p-1}\\not\\equiv1\\pmod\\p$: universal existence of the terminal residue $-(\\Ku{\\p})^{-1}$ of $e$; equivalently, the walk $\\Ku{0},\\Ku{1},\\dots,\\Ku{\\p}$ of the left factorial's partial sums does not return to its origin modulo $\\p$ (F8). Open since 1971; the one claimed proof (Barsky–Benzaghou 2004, Thm. 3) withdrawn by its authors (2011); no counterexample for $\\p<2^{40}$; re-verified here with the wall identity for all $121{,}126$ odd primes $\\p<1.6\\times10^{6}$. Decided by no shell (each decides its own value: $\\Ku{13}\\equiv10$, $\\Ku{233}\\equiv69$, $\\Ku{30089}\\equiv5260$), by no search short of the whole totality (F5's uniform model at the wall expects $\\sum_{\\p\\le X}1/\\p\\approx\\ln\\ln X-0.24$ counterexamples \\apx, so the model is scoped to $n\\le\\p-2$) and by no relation of this paper. Beside it, two large-$\\p$ laws read on ranges: $|Z_0(\\p)|-1\\to\\mathrm{Poisson}(1)$ (F5) and the independence of the quarter-turn index and the gcd class of the wall-residue index (H5; $94$ of $210$ against $96.0\\pm6.6$ \\apx). Thm. thm:wall-e p13061"
+   "text": "Kurepa's certificate: the count $Z=#\\{shells \\p:\\p\\mid\\Ku{\\p}\\}$ over the shells of the totality, the odd primes $\\p<\\sqrt\\Om$ (00:B8, 00:C4); Kurepa's hypothesis (1971) over the totality is $Z=0$ — equivalently $\\p\\nmid\\dr{(\\p-1)}$ (F2) and the Bell number $B_{\\p-1}\\not\\equiv1\\pmod\\p$ on every shell, the walk of F8 returning to its origin on none. Each shell certifies its own case by the walk of $\\p-1$ steps within its window (F2, F8); the certificate over the $\\approx2.6\\times10^{59}$ shells costs $\\sum(\\p-1)\\approx\\Om/\\ln\\Om$ steps, a count above $\\sqrt\\Om$ that no Subject's counting reaches (00:A5, 00:B8): $\\Om$-hard, the class of 00:Z3, host-decided only where the Carrier is hosted. On the laboratory Carriers the certificate is decided and zero: the $5$, $39$, $243$ shells of $\\Om=233$, $30089$, $2{,}408{,}561$ (the odd primes below $16$, $174$, $1552$), every one walked (lab.Z1); no vanishing residue up to $2{,}408{,}561$ (re-verified here; the package's pass to $2.5\\times10^{5}$, kur.K1) nor below $2^{40}$ (A4). The one claimed proof (Barsky–Benzaghou 2004, Thm. 3) was withdrawn by its authors (2011). Thm. thm:wall-e p13061"
   },
   {
    "paper": "13-epi",
    "no": 13,
-   "rid": "13:Y3",
+   "rid": "13:Z2",
    "key": "p13063",
-   "label": "Y3",
-   "block": "Y",
-   "tag": "O",
+   "label": "Z2",
+   "block": "Z",
+   "tag": "Ω",
    "name": null,
-   "statement": "The large-$\\p$ laws of the two walls, read on ranges and open as laws. (a) The calibration rate $\\delta(X)=\\min_{\\p\\le X}|\\theta-1|$: exact to $X=4\\times10^{6}$ (H4), falling with $X$ by A7; whether its order is the uniform model's $\\piR/(2N(X))$ for every large $X$ of the totality, the continuum bound being the irrationality measure of $\\piR$ ($\\mu\\le7.1033$, Zeilberger--Zudilin 2020) \\import. (b) The joint law of $(\\Ku{\\p}/\\p,\\ q_\\p(4)/\\p,\\ \\varphi/\\piR)$ for large $\\p$ (I5 on $\\p<10^{5}$): $\\varphi/\\piR$ equidistributes (Hecke) \\import, $q_\\p(4)/\\p$ equidistributes in the base at fixed $\\p$ (Heath-Brown) and nothing is proved in $\\p$, $\\Ku{\\p}/\\p$ is Y1's; whether the three are independent in the large-$\\p$ law. Each clause is a statement about every large finite $\\p$ with the continuum as its chart, decided by no shell alone and by no relation of this paper.",
-   "source": "Prop.~\\ref{prop:calib}, \\S\\ref{sec:duality}\\newline \\pywit{epi}{p13063}{Y3}",
-   "page": "13-epi/index.html#Y3",
+   "statement": "The large-$\\p$ laws over the shells of the totality, the primes $\\p<\\sqrt\\Om$ (00:B8, 00:C4): (a) the calibration rate $\\delta=\\min|\\theta-1|$ over the $\\approx1.3\\times10^{59}$ shells $\\p\\equiv1\\pmod4$ --- whether $\\delta(X)$ runs at the nearest-hit scale $\\piR/(2N(X))$ for every $X$ (H4; the continuum bound the irrationality measure of $\\piR$, $\\mu\\le7.1033$, Zeilberger--Zudilin 2020) \\import; (b) the independence of $(\\Ku{\\p}/\\p,\\ q_\\p(4)/\\p,\\ \\varphi/\\piR)$ in the joint law over them (I5); (c) the Poisson$(1)$ law of $|Z_0(\\p)|-1$ over all shells (F5) and the independence of the quarter-turn index and the gcd class of the wall-residue index over the shells $\\p\\equiv1\\pmod4$, $\\p>5$ (H5). Each shell decides its own values within its window (H3, F2, G3, G4; J6); the check of each law over all shells costs a count above $\\sqrt\\Om$ that no Subject's counting reaches (00:A5, 00:B8): $\\Om$-hard, the class of 00:Z3, host-decided only where the Carrier is hosted. On the laboratory Carriers the values are decided over their own shells (\\src{lab.Z1}, \\src{lab.Z2}), the laws read against them \\apx: over the $2$, $18$, $117$ shells $\\p\\equiv1\\pmod4$ of $\\Om=233$, $30089$, $2{,}408{,}561$, $\\delta=1.62$, $0.0472$, $4.02\\times10^{-4}$ at $\\p=13$, $37$, $397$, against the nearest-hit scale $\\piR/(2N)=0.79$, $0.087$, $0.013$; at $N=117$ the triple's correlations $+0.02$, $+0.07$, $+0.14$, within $2\\sigma$ ($\\sigma=0.09$) of zero; the blind-set excess $1.02$ against $1$ over the $243$ shells; the index condition solvable on $48$ of $116$ against $52.6\\pm4.9$. On the $88{,}336$ shells $\\p\\equiv1\\pmod4$, $\\p\\le2{,}408{,}561$ (shells of the physical totality; re-verified here): means $0.500$, $0.499$, $0.500$, correlations $+0.001$, $-0.003$, $+0.000$ ($\\sigma=0.0034$), chi-square $63.3$ on $63$ df \\apx.",
+   "source": "Prop.~\\ref{prop:calib}, \\S\\ref{sec:duality}\\newline \\pywit{epi}{p13063}{Z2}",
+   "page": "13-epi/index.html#Z2",
    "witness": {
     "py": {
      "href": "src/13-epi/#p13063",
      "script": "epi.py",
-     "line": 1415,
+     "line": 1567,
      "verdict": "pass"
     },
     "lean": []
    },
    "refs": [
-    "p13007",
+    "p00024",
+    "p00111",
+    "p00166",
+    "p00197",
+    "p13028",
+    "p13031",
+    "p13036",
+    "p13037",
+    "p13045",
+    "p13047",
+    "p13057",
     "p13061",
     "p13068",
     "p13069"
    ],
-   "text": "The large-$\\p$ laws of the two walls, read on ranges and open as laws. (a) The calibration rate $\\delta(X)=\\min_{\\p\\le X}|\\theta-1|$: exact to $X=4\\times10^{6}$ (H4), falling with $X$ by A7; whether its order is the uniform model's $\\piR/(2N(X))$ for every large $X$ of the totality, the continuum bound being the irrationality measure of $\\piR$ ($\\mu\\le7.1033$, Zeilberger–Zudilin 2020) \\import. (b) The joint law of $(\\Ku{\\p}/\\p, q_\\p(4)/\\p, \\varphi/\\piR)$ for large $\\p$ (I5 on $\\p<10^{5}$): $\\varphi/\\piR$ equidistributes (Hecke) \\import, $q_\\p(4)/\\p$ equidistributes in the base at fixed $\\p$ (Heath-Brown) and nothing is proved in $\\p$, $\\Ku{\\p}/\\p$ is Y1's; whether the three are independent in the large-$\\p$ law. Each clause is a statement about every large finite $\\p$ with the continuum as its chart, decided by no shell alone and by no relation of this paper. Prop. prop:calib, \\Ssec:duality p13063"
+   "text": "The large-$\\p$ laws over the shells of the totality, the primes $\\p<\\sqrt\\Om$ (00:B8, 00:C4): (a) the calibration rate $\\delta=\\min|\\theta-1|$ over the $\\approx1.3\\times10^{59}$ shells $\\p\\equiv1\\pmod4$ — whether $\\delta(X)$ runs at the nearest-hit scale $\\piR/(2N(X))$ for every $X$ (H4; the continuum bound the irrationality measure of $\\piR$, $\\mu\\le7.1033$, Zeilberger–Zudilin 2020) \\import; (b) the independence of $(\\Ku{\\p}/\\p, q_\\p(4)/\\p, \\varphi/\\piR)$ in the joint law over them (I5); (c) the Poisson$(1)$ law of $|Z_0(\\p)|-1$ over all shells (F5) and the independence of the quarter-turn index and the gcd class of the wall-residue index over the shells $\\p\\equiv1\\pmod4$, $\\p>5$ (H5). Each shell decides its own values within its window (H3, F2, G3, G4; J6); the check of each law over all shells costs a count above $\\sqrt\\Om$ that no Subject's counting reaches (00:A5, 00:B8): $\\Om$-hard, the class of 00:Z3, host-decided only where the Carrier is hosted. On the laboratory Carriers the values are decided over their own shells (lab.Z1, lab.Z2), the laws read against them \\apx: over the $2$, $18$, $117$ shells $\\p\\equiv1\\pmod4$ of $\\Om=233$, $30089$, $2{,}408{,}561$, $\\delta=1.62$, $0.0472$, $4.02\\times10^{-4}$ at $\\p=13$, $37$, $397$, against the nearest-hit scale $\\piR/(2N)=0.79$, $0.087$, $0.013$; at $N=117$ the triple's correlations $+0.02$, $+0.07$, $+0.14$, within $2\\sigma$ ($\\sigma=0.09$) of zero; the blind-set excess $1.02$ against $1$ over the $243$ shells; the index condition solvable on $48$ of $116$ against $52.6\\pm4.9$. On the $88{,}336$ shells $\\p\\equiv1\\pmod4$, $\\p\\le2{,}408{,}561$ (shells of the physical totality; re-verified here): means $0.500$, $0.499$, $0.500$, correlations $+0.001$, $-0.003$, $+0.000$ ($\\sigma=0.0034$), chi-square $63.3$ on $63$ df \\apx. Prop. prop:calib, \\Ssec:duality p13063"
   },
   {
    "paper": "14-entr",

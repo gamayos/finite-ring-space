@@ -3,7 +3,7 @@
  "tree": "13-epi-20260713",
  "title": "Finite Field Realisation of π and e",
  "doi": "https://doi.org/10.20944/preprints202607.1141.v1",
- "generated": "11 October 2026",
+ "generated": "12 October 2026",
  "blocks": [
   {
    "letter": "A",
@@ -237,7 +237,7 @@
     },
     {
      "label": "F2",
-     "predicate": "The wall identity and the terminal residue of $e$: $\\dr{(\\p-1)}\\equiv\\Ku{\\p}\\pmod\\p$ (the odd-prime case of the Mijajlovi\\'c--\\v Sami congruence, A4), hence $\\rep{\\varepsilon_{\\p-1}}=-(\\Ku{\\p})^{-1}$ whenever $\\p\\nmid\\Ku{\\p}$; existence of the terminal link on a shell is equivalent to $\\p\\nmid\\Ku{\\p}$, universal existence to Kurepa's hypothesis (Y1); re-verified in the derangement form for all $121{,}126$ odd primes $\\p<1.6\\times10^{6}$ with zero failures of either condition. Beyond the wall $n!\\equiv0$: $n=\\p-1$ is the factorial horizon.",
+     "predicate": "The wall identity and the terminal residue of $e$: $\\dr{(\\p-1)}\\equiv\\Ku{\\p}\\pmod\\p$ (the odd-prime case of the Mijajlovi\\'c--\\v Sami congruence, A4), hence $\\rep{\\varepsilon_{\\p-1}}=-(\\Ku{\\p})^{-1}$ whenever $\\p\\nmid\\Ku{\\p}$; existence of the terminal link on a shell is equivalent to $\\p\\nmid\\Ku{\\p}$, universal existence over the shells of the totality to the vanishing of Kurepa's certificate (Z1); re-verified in the derangement form for all $121{,}126$ odd primes $\\p<1.6\\times10^{6}$ with zero failures of either condition. Beyond the wall $n!\\equiv0$: $n=\\p-1$ is the factorial horizon.",
      "tag": "T",
      "source": "Thm.~\\ref{thm:wall-e}\\newline \\pywit{epi}{p13028}{F2}, \\leanwit{FrcCore}{p13028}{F2}, \\leanwit{FrcLedger}{p13028}{F2} \\lean{Epi.derangements\\_wall\\_zmod, Epi.terminal\\_residue, FRC.Epi.terminal13}",
      "key": "p13028"
@@ -493,21 +493,21 @@
    ]
   },
   {
-   "letter": "Y",
-   "title": "Hypotheses: the constants-sector walls",
+   "letter": "Z",
+   "title": "Horizon: the certificates of the totality",
    "rows": [
     {
-     "label": "Y1",
-     "predicate": "Kurepa's hypothesis, $\\p\\nmid\\Ku{\\p}$ for every odd prime of the totality, equivalently $\\p\\nmid\\dr{(\\p-1)}$ (F2) and $B_{\\p-1}\\not\\equiv1\\pmod\\p$: universal existence of the terminal residue $-(\\Ku{\\p})^{-1}$ of $e$; equivalently, the walk $\\Ku{0},\\Ku{1},\\dots,\\Ku{\\p}$ of the left factorial's partial sums does not return to its origin modulo $\\p$ (F8). Open since 1971; the one claimed proof (Barsky--Benzaghou 2004, Thm.~3) withdrawn by its authors (2011); no counterexample for $\\p<2^{40}$; re-verified here with the wall identity for all $121{,}126$ odd primes $\\p<1.6\\times10^{6}$. Decided by no shell (each decides its own value: $\\Ku{13}\\equiv10$, $\\Ku{233}\\equiv69$, $\\Ku{30089}\\equiv5260$), by no search short of the whole totality (F5's uniform model at the wall expects $\\sum_{\\p\\le X}1/\\p\\approx\\ln\\ln X-0.24$ counterexamples \\apx, so the model is scoped to $n\\le\\p-2$) and by no relation of this paper. Beside it, two large-$\\p$ laws read on ranges: $|Z_0(\\p)|-1\\to\\mathrm{Poisson}(1)$ (F5) and the independence of the quarter-turn index and the gcd class of the wall-residue index (H5; $94$ of $210$ against $96.0\\pm6.6$ \\apx).",
-     "tag": "O",
-     "source": "Thm.~\\ref{thm:wall-e}\\newline \\pywit{epi}{p13061}{Y1}",
+     "label": "Z1",
+     "predicate": "Kurepa's certificate: the count $Z=\\#\\{\\text{shells }\\p:\\p\\mid\\Ku{\\p}\\}$ over the shells of the totality, the odd primes $\\p<\\sqrt\\Om$ (00:B8, 00:C4); Kurepa's hypothesis (1971) over the totality is $Z=0$ --- equivalently $\\p\\nmid\\dr{(\\p-1)}$ (F2) and the Bell number $B_{\\p-1}\\not\\equiv1\\pmod\\p$ on every shell, the walk of F8 returning to its origin on none. Each shell certifies its own case by the walk of $\\p-1$ steps within its window (F2, F8); the certificate over the $\\approx2.6\\times10^{59}$ shells costs $\\sum(\\p-1)\\approx\\Om/\\ln\\Om$ steps, a count above $\\sqrt\\Om$ that no Subject's counting reaches (00:A5, 00:B8): $\\Om$-hard, the class of 00:Z3, host-decided only where the Carrier is hosted. On the laboratory Carriers the certificate is decided and zero: the $5$, $39$, $243$ shells of $\\Om=233$, $30089$, $2{,}408{,}561$ (the odd primes below $16$, $174$, $1552$), every one walked (\\src{lab.Z1}); no vanishing residue up to $2{,}408{,}561$ (re-verified here; the package's pass to $2.5\\times10^{5}$, \\src{kur.K1}) nor below $2^{40}$ (A4). The one claimed proof (Barsky--Benzaghou 2004, Thm.~3) was withdrawn by its authors (2011).",
+     "tag": "Ω",
+     "source": "Thm.~\\ref{thm:wall-e}\\newline \\pywit{epi}{p13061}{Z1}",
      "key": "p13061"
     },
     {
-     "label": "Y3",
-     "predicate": "The large-$\\p$ laws of the two walls, read on ranges and open as laws. (a) The calibration rate $\\delta(X)=\\min_{\\p\\le X}|\\theta-1|$: exact to $X=4\\times10^{6}$ (H4), falling with $X$ by A7; whether its order is the uniform model's $\\piR/(2N(X))$ for every large $X$ of the totality, the continuum bound being the irrationality measure of $\\piR$ ($\\mu\\le7.1033$, Zeilberger--Zudilin 2020) \\import. (b) The joint law of $(\\Ku{\\p}/\\p,\\ q_\\p(4)/\\p,\\ \\varphi/\\piR)$ for large $\\p$ (I5 on $\\p<10^{5}$): $\\varphi/\\piR$ equidistributes (Hecke) \\import, $q_\\p(4)/\\p$ equidistributes in the base at fixed $\\p$ (Heath-Brown) and nothing is proved in $\\p$, $\\Ku{\\p}/\\p$ is Y1's; whether the three are independent in the large-$\\p$ law. Each clause is a statement about every large finite $\\p$ with the continuum as its chart, decided by no shell alone and by no relation of this paper.",
-     "tag": "O",
-     "source": "Prop.~\\ref{prop:calib}, \\S\\ref{sec:duality}\\newline \\pywit{epi}{p13063}{Y3}",
+     "label": "Z2",
+     "predicate": "The large-$\\p$ laws over the shells of the totality, the primes $\\p<\\sqrt\\Om$ (00:B8, 00:C4): (a) the calibration rate $\\delta=\\min|\\theta-1|$ over the $\\approx1.3\\times10^{59}$ shells $\\p\\equiv1\\pmod4$ --- whether $\\delta(X)$ runs at the nearest-hit scale $\\piR/(2N(X))$ for every $X$ (H4; the continuum bound the irrationality measure of $\\piR$, $\\mu\\le7.1033$, Zeilberger--Zudilin 2020) \\import; (b) the independence of $(\\Ku{\\p}/\\p,\\ q_\\p(4)/\\p,\\ \\varphi/\\piR)$ in the joint law over them (I5); (c) the Poisson$(1)$ law of $|Z_0(\\p)|-1$ over all shells (F5) and the independence of the quarter-turn index and the gcd class of the wall-residue index over the shells $\\p\\equiv1\\pmod4$, $\\p>5$ (H5). Each shell decides its own values within its window (H3, F2, G3, G4; J6); the check of each law over all shells costs a count above $\\sqrt\\Om$ that no Subject's counting reaches (00:A5, 00:B8): $\\Om$-hard, the class of 00:Z3, host-decided only where the Carrier is hosted. On the laboratory Carriers the values are decided over their own shells (\\src{lab.Z1}, \\src{lab.Z2}), the laws read against them \\apx: over the $2$, $18$, $117$ shells $\\p\\equiv1\\pmod4$ of $\\Om=233$, $30089$, $2{,}408{,}561$, $\\delta=1.62$, $0.0472$, $4.02\\times10^{-4}$ at $\\p=13$, $37$, $397$, against the nearest-hit scale $\\piR/(2N)=0.79$, $0.087$, $0.013$; at $N=117$ the triple's correlations $+0.02$, $+0.07$, $+0.14$, within $2\\sigma$ ($\\sigma=0.09$) of zero; the blind-set excess $1.02$ against $1$ over the $243$ shells; the index condition solvable on $48$ of $116$ against $52.6\\pm4.9$. On the $88{,}336$ shells $\\p\\equiv1\\pmod4$, $\\p\\le2{,}408{,}561$ (shells of the physical totality; re-verified here): means $0.500$, $0.499$, $0.500$, correlations $+0.001$, $-0.003$, $+0.000$ ($\\sigma=0.0034$), chi-square $63.3$ on $63$ df \\apx.",
+     "tag": "Ω",
+     "source": "Prop.~\\ref{prop:calib}, \\S\\ref{sec:duality}\\newline \\pywit{epi}{p13063}{Z2}",
      "key": "p13063"
     }
    ]
@@ -530,9 +530,9 @@
    "text": "Derived within this paper from the rows above it in exact finite arithmetic, machine-verified by the named witness where a witness is named."
   },
   {
-   "tag": "O",
-   "name": "Open",
-   "text": "Genuinely unresolved."
+   "tag": "Ω",
+   "name": "$\\Omega$-hard",
+   "text": "A value decided by the totality, in no embedded reader's window; a demarcation of where the value is read, not an open item."
   }
  ],
  "master": {
@@ -559,6 +559,9 @@
   ],
   "E5": [
    "C26"
+  ],
+  "Z1": [
+   "Z4"
   ]
  },
  "lean": {
@@ -840,7 +843,7 @@
     ],
     "tier": 2,
     "ok": true,
-    "doc": "13:F8, 13:Y1 — the tail identity on the shell: `j! · !(p−1−j) ≡ (−1)^j (!p − !j) (mod p)`, `0 ≤ j ≤ p − 1`."
+    "doc": "13:F8, 13:Z1 — the tail identity on the shell: `j! · !(p−1−j) ≡ (−1)^j (!p − !j) (mod p)`, `0 ≤ j ≤ p − 1`."
    },
    {
     "name": "FRC.Epi.blind_iff_collision",
@@ -853,7 +856,7 @@
     ],
     "tier": 2,
     "ok": true,
-    "doc": "13:F8, 13:Y1 — the collision reading of the blind set: for `n ≤ p − 1`, `!n ≡ 0 (mod p)` exactly when the partial sum `!(p−1−n)` of the left factorial collides with `!p`; Kurepa's hypothesis at `p` is the case `n = p − 1`, `!(0) = 0 ≢ !p`; the universal blind scale `n = 1` is `!(p−2) ≡ !p` (the tail `(p−2)! + (p−1)! ≡ 0`)."
+    "doc": "13:F8, 13:Z1 — the collision reading of the blind set: for `n ≤ p − 1`, `!n ≡ 0 (mod p)` exactly when the partial sum `!(p−1−n)` of the left factorial collides with `!p`; Kurepa's hypothesis at `p` is the case `n = p − 1`, `!(0) = 0 ≢ !p`; the universal blind scale `n = 1` is `!(p−2) ≡ !p` (the tail `(p−2)! + (p−1)! ≡ 0`)."
    }
   ],
   "G1": [

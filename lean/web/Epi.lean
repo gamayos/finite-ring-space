@@ -270,13 +270,13 @@ theorem tower_e_exact_zmod (hp2 : p ≠ 2) (m : ℕ) (hm : 1 ≤ m) (e δ : ZMod
     ((((m * p) ! : ℕ) : ZMod p) + δ) / ((numDerangements (m * p) : ℕ) : ZMod p) = e :=
   tower_e_exact p (ZMod.natCast_self p) (hp.out.odd_of_ne_two hp2) (factorial_mul_prime_eq_zero p) m hm e δ hδ
 
-/-- 13:F8, 13:Y1 — the tail identity on the shell: `j! · !(p−1−j) ≡ (−1)^j (!p − !j) (mod p)`, `0 ≤ j ≤ p − 1`. -/
+/-- 13:F8, 13:Z1 — the tail identity on the shell: `j! · !(p−1−j) ≡ (−1)^j (!p − !j) (mod p)`, `0 ≤ j ≤ p − 1`. -/
 theorem tail_identity_zmod (j : ℕ) (hj : j ≤ p - 1) :
     ((j ! : ℕ) : ZMod p) * ((numDerangements (p - 1 - j) : ℕ) : ZMod p) =
       (-1) ^ j * ((kurepa p : ZMod p) - (kurepa j : ZMod p)) :=
   tail_identity p (ZMod.natCast_self p) (ZMod.wilsons_lemma p) (factorial_ne_zero_zmod p) hp.out.one_le j hj
 
-/-- 13:F8, 13:Y1 — the collision reading of the blind set: for `n ≤ p − 1`, `!n ≡ 0 (mod p)` exactly when the partial
+/-- 13:F8, 13:Z1 — the collision reading of the blind set: for `n ≤ p − 1`, `!n ≡ 0 (mod p)` exactly when the partial
 sum `!(p−1−n)` of the left factorial collides with `!p`; Kurepa's hypothesis at `p` is the case `n = p − 1`,
 `!(0) = 0 ≢ !p`; the universal blind scale `n = 1` is `!(p−2) ≡ !p` (the tail `(p−2)! + (p−1)! ≡ 0`). -/
 theorem blind_iff_collision (n : ℕ) (hn : n ≤ p - 1) :
@@ -1148,7 +1148,7 @@ theorem p13023 : And (∀ (n : Nat), @LE.le Nat instLENat (@OfNat.ofNat Nat (nat
 theorem p13027 : ∀ (p : ℕ) [hp : Fact (Nat.Prime p)], ∀ k ≤ p - (1 : ℕ), (↑k.factorial)⁻¹ = -(-1 : ZMod p) ^ k * ↑(p - (1 : ℕ) - k).factorial :=
   @FRC.Epi.wilson_reflection_zmod
 set_option linter.defProp false in
-/-- 13:F2 (p13028) — The wall identity and the terminal residue of $e$: $\dr{(\p-1)}\equiv\Ku{\p}\pmod\p$ (the odd-prime case of the Mijajlovi\'c--\v Sami congruence, A4), hence $\rep{\varepsilon_{\p-1}}=-(\Ku{\p})^{-1}$ whenever $\p\nmid\Ku{\p}$; existence of the terminal link on a shell is equivalent to $\p\nmid\Ku{\p}$, universal existence to Kurepa's hypothesis (Y1); re-verified in the derangement form for all $121{,}126$ odd primes $\p<1.6\times10^{6}$ with zero failures of either condition. Beyond the wall $n!\equiv0$: $n=\p-1$ is the factorial horizon. -/
+/-- 13:F2 (p13028) — The wall identity and the terminal residue of $e$: $\dr{(\p-1)}\equiv\Ku{\p}\pmod\p$ (the odd-prime case of the Mijajlovi\'c--\v Sami congruence, A4), hence $\rep{\varepsilon_{\p-1}}=-(\Ku{\p})^{-1}$ whenever $\p\nmid\Ku{\p}$; existence of the terminal link on a shell is equivalent to $\p\nmid\Ku{\p}$, universal existence over the shells of the totality to the vanishing of Kurepa's certificate (Z1); re-verified in the derangement form for all $121{,}126$ odd primes $\p<1.6\times10^{6}$ with zero failures of either condition. Beyond the wall $n!\equiv0$: $n=\p-1$ is the factorial horizon. -/
 def p13028 := And.intro @FRC.Epi.derangements_wall_zmod (@FRC.Epi.terminal_residue)
 set_option linter.defProp false in
 /-- 13:F3 (p13029) — Antiperiodicity: $\dr{(n+\p)}\equiv-\dr{n}\pmod\p$ for every odd prime and every $n\ge0$, so $\dr{n}\bmod\p$ depends on $n\bmod2\p$; the blind set $Z_0(\p)=\{n<\p:\dr{n}\equiv0\}$ always contains $1$, and Kurepa's hypothesis is $\p-1\notin Z_0(\p)$ for every $\p$. -/

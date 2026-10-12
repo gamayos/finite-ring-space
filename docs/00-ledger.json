@@ -1,5 +1,5 @@
 {
- "generated": "11 October 2026",
+ "generated": "12 October 2026",
  "blocks": {
   "A": "Foundation: from existence to the finite carrier",
   "B": "The Carrier: the substrate structure",
@@ -2356,14 +2356,15 @@
   },
   {
    "label": "Z4",
-   "name": "The three certificates: RH = the on-line spectrum complete",
+   "name": "The four certificates: RH = the on-line spectrum complete",
    "block": "Z",
    "key": "p00112",
    "tag": "Ω",
    "sources": [
     "20-rh",
     "23-gold",
-    "26-pnp"
+    "26-pnp",
+    "13-epi"
    ],
    "witness": null,
    "refs": [
@@ -2376,7 +2377,7 @@
      "key": "p00135"
     }
    ],
-   "statement": "RH $=$ the on-line spectrum complete for the prime vector; Goldbach $=$ the uniform per-$n$ parity positivity; P-vs-NP $=$ the forward-invertibility of the scale descent. Each is a uniform check over the totality, in no embedded reader's window; the per-instance statements are $\\Om$-blind relations (Z10, Z11). Whether a certificate exists is undecided (20-rh \\S8.3)."
+   "statement": "RH $=$ the on-line spectrum complete for the prime vector; Goldbach $=$ the uniform per-$n$ parity positivity; P-vs-NP $=$ the forward-invertibility of the scale descent; Kurepa $=$ the left factorial nonzero on every odd shell (13:Z1). Each a uniform check over the totality, in no embedded reader's window; per-instance statements $\\Om$-blind relations (Z10, Z11); a certificate's existence undecided (20-rh \\S8.3)."
   },
   {
    "label": "Z5",

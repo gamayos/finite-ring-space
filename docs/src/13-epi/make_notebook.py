@@ -45,7 +45,7 @@ for r in witnessed:
 md("""## Summary
 
 The cells above are the paper's python-witnessed predicates; the whole script, family by family, is `python3 epi.py`
-(41 family checks, 813 exact micro-checks, `results.json`), `python3 -m frc_13_epi` once installed.""", "summary")
+(43 family checks, 824 exact micro-checks, `results.json`), `python3 -m frc_13_epi` once installed.""", "summary")
 code(f"""{INSTALL}
 from frc_13_epi import verify_all
 assert verify_all(), "a family check failed"
