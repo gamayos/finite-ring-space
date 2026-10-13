@@ -3,7 +3,7 @@
  "tree": "20-rh-20260608",
  "title": "Riemann Hypothesis over the Holographic Substrate",
  "doi": "https://doi.org/10.20944/preprints202606.0768.v1",
- "generated": "12 October 2026",
+ "generated": "13 October 2026",
  "blocks": [
   {
    "letter": "A",
@@ -18,66 +18,73 @@
     },
     {
      "label": "A2",
-     "predicate": "The finitude of the totality: the reductio ad absurdum against completed infinity, a stated premise used for one purpose, the closure of the quantifier over heights (F7).",
-     "tag": "I",
-     "source": "\\citep{akhtman2025reductio}",
-     "key": "p20002"
+     "predicate": "Finitude: for any reading of capacity $R$ the registered Universe embeds in the shell of $R$ members, and among $R+1$ members two share a residue; the totality is finite, its cardinality $\\Omega$. A theorem of the master ledger (00:A2), proved in the core, cited as the closure's first premise (F7).",
+     "tag": "T",
+     "source": "00:A2; \\S\\ref{sec:promotion}\\newline \\pywit{rh}{p00004}{A2}, \\leanwit{FrcCore}{p00004}{A2} \\lean{FRC.Foundation.registered\\_finite, FRC.Foundation.no\\_unlimited\\_supply, FRC.Foundation.agent\\_bound}",
+     "key": "p00004"
     },
     {
      "label": "A3",
+     "predicate": "Completeness: the registration of any totality is onto its registered Universe, so there is no outside and no host; two totalities each registered whole within the other have one count. A theorem of the master ledger (00:A3), proved in the core; the hypothesis of the Carrier is a statement about its own residues and nothing else.",
+     "tag": "T",
+     "source": "00:A3\\newline \\leanwit{FrcCore}{p00003}{A3} \\lean{FRC.Foundation.registration\\_onto, FRC.Foundation.mutual\\_registration\\_count}",
+     "key": "p00003"
+    },
+    {
+     "label": "A4",
+     "predicate": "Observation: every observation is a registration by an embedded part of $o<\\Omega$ states; every reading identifies two members, and a complete reading needs the whole count; one translation carries each member to each. A theorem of the master ledger (00:A4), proved in the core, cited as the closure's second premise (F7) and behind the horizon (Z1).",
+     "tag": "T",
+     "source": "00:A4; \\S\\ref{sec:promotion}\\newline \\pywit{rh}{p00197}{A4}, \\leanwit{FrcCore}{p00197}{A4} \\lean{FRC.Foundation.observer\\_part, FRC.Foundation.complete\\_needs\\_whole, FRC.Foundation.translation\\_torsor}",
+     "key": "p00197"
+    },
+    {
+     "label": "A5",
+     "predicate": "The Carrier: a timeless torsor of $\\Omega$ elements, its cardinality its only absolute characteristic; reframings $x\\mapsto ax+b$ are automorphisms, so $0$, $1$, $-1$ are frame data; a Subject's frame charts it as the prime field $\\F_\\Omega$, the frame's chart, never the Carrier (00:A6). Its scale $\\Omega=4\\dS+1$ is 00:A7, cited in the text.",
+     "tag": "D",
+     "source": "00:A6",
+     "key": "p00008"
+    },
+    {
+     "label": "A6",
      "predicate": "The classical analytic apparatus: the count $\\mathcal N(T)=\\theta(T)/\\pi+1+S(T)$, the Riemann--Siegel main sum with its $O(t^{-1/4})$ remainder, the explicit formula in its distributional form over the Weil class, Hardy's Ramanujan-sum expansion of $\\Lambda$, M\\\"obius inversion.",
      "tag": "I",
      "source": "\\citep{edwards1974,weil1952,hardy1921,apostol1976}",
      "key": "p20003"
     },
     {
-     "label": "A4",
+     "label": "A7",
      "predicate": "Turing's count: with $C(T)$ the sign changes of $Z$ on $(0,T)$, $C\\le N_{\\mathrm{crit}}\\le\\mathcal N$; $C=\\mathcal N$ certifies the hypothesis below $T$ and forces every zero there to be simple.",
      "tag": "I",
      "source": "\\citep{turing1953}",
      "key": "p20004"
     },
     {
-     "label": "A5",
+     "label": "A8",
      "predicate": "The Davenport--Heilbronn function: a Dirichlet series with the functional equation and no Euler product, with zeros off the line, the first pair at $0.8085171825+85.6993484854\\,i$ and $1-\\bar s$; the treatment of linear combinations of $L$-functions by smoothed Euler products.",
      "tag": "I",
      "source": "\\citep{davenport1936,titchmarsh1986,gonek2012}",
      "key": "p20078"
     },
     {
-     "label": "A6",
+     "label": "A9",
      "predicate": "The comparison data: no off-line zero of $\\zeta$ to height $3\\times10^{12}$, by Turing's certificate, so every zero there is simple; GUE spacing statistics of the zeros; some $2600$ zeros to twelve digits from the primes to $10^{6}$ by harmonic inversion (the precision the observations of block E do not aim at); the self-adjoint realisations of the Berry--Keating operator.",
      "tag": "I",
      "source": "\\citep{platt2021,montgomery1973,odlyzko1987,main1998,berry1999,endres2010}",
      "key": "p20006"
     },
     {
-     "label": "A7",
-     "predicate": "The physical readings of Subsection~\\ref{sub:physical} (the Carrier as the Universe, the constants by register, $c^{2}=2^{-1}$, mass as cardinality, the $3$-sphere frame space) are owned by the papers cited there and enter no result of this paper.",
-     "tag": "I",
-     "source": "\\S\\ref{sub:physical}",
-     "key": "p20007"
-    },
-    {
-     "label": "A8",
+     "label": "A10",
      "predicate": "Explicit bounds on the Riemann--Siegel remainder: Gabcke's explicit error term, used by the verification of A6; with it the sign of $Z$ is certified wherever $|Z_M(t)|$ exceeds the bound (F1).",
      "tag": "I",
      "source": "\\citep{gabcke1979}; Prop.~\\ref{prop:turing}",
      "key": "p20070"
     },
     {
-     "label": "A9",
+     "label": "A11",
      "predicate": "The semiclassical phase-space cell $2\\pi$ of the Berry--Keating count [chart], imposed as the standard unit, not derived from the shell constants; the shell's own count uses no cell (E12(iii)).",
      "tag": "I",
      "source": "\\citep{berry1999}; Rem.~\\ref{rem:cutoff}",
      "key": "p20071"
-    },
-    {
-     "label": "A10",
-     "predicate": "The aliasing premise: the identification of the height coordinate with the meridian cycle (A1) carries the zero predicate, an off-line zero of multiplicity $m$ at a height symbol $H>2\\pi\\Omega$ is an off-line residue of multiplicity $m$ at the aliased height. The kernels $n^{-iT}$ share no period ($\\log2/\\log3$ irrational), so the chart carries no aliasing; declared, not derived.",
-     "tag": "D",
-     "source": "\\S\\ref{sec:promotion}; F7",
-     "key": "p20077"
     }
    ]
   },
@@ -177,7 +184,7 @@
     },
     {
      "label": "C2",
-     "predicate": "Resonance and the von Mangoldt weight: $R_L\\to\\frac{\\varphi(n)}{n}\\Lambda(n)$ (Hardy, A3); $\\Lambda=\\mu\\ast\\log$ exactly on the divisor lattice; the intertwiner $\\Lambda=\\frac{n}{\\varphi(n)}R$; support the prime powers in every form.",
+     "predicate": "Resonance and the von Mangoldt weight: $R_L\\to\\frac{\\varphi(n)}{n}\\Lambda(n)$ (Hardy, A6); $\\Lambda=\\mu\\ast\\log$ exactly on the divisor lattice; the intertwiner $\\Lambda=\\frac{n}{\\varphi(n)}R$; support the prime powers in every form.",
      "tag": "T",
      "source": "Thm.~\\ref{thm:resonance}\\newline \\pywit{rh}{p20020}{C2}, \\leanwit{FrcLedger}{p20020}{C2} \\lean{Rh.vonMangoldt\\_moebius}",
      "key": "p20020"
@@ -232,7 +239,7 @@
     },
     {
      "label": "D3",
-     "predicate": "Reconstruction residue: the finite-horizon error of the main sum is the Riemann--Siegel remainder $O(T^{-1/4})=O(\\p^{-1/4})$ (A3), unconditional, fitted slope $-0.24$ over $t=40\\ldots5120$ [approx].",
+     "predicate": "Reconstruction residue: the finite-horizon error of the main sum is the Riemann--Siegel remainder $O(T^{-1/4})=O(\\p^{-1/4})$ (A6), unconditional, fitted slope $-0.24$ over $t=40\\ldots5120$ [approx].",
      "tag": "I",
      "source": "Obs.~\\ref{obs:residue}\\newline \\pywit{rh}{p20027}{D3}",
      "key": "p20027"
@@ -246,7 +253,7 @@
     },
     {
      "label": "D5",
-     "predicate": "Completeness criterion: faithfulness of the de-framing ($N_{\\mathrm{crit}}=\\mathcal N$ at every height), zero-mode completeness of the on-line spectrum for $v$ over the Weil class (A3), the absence of off-line zeros, and the Riemann Hypothesis are equivalent; an off-line zero $\\beta+i\\gamma_0$ leaves a residual growing as $x^{\\beta-1/2}$ at its height.",
+     "predicate": "Completeness criterion: faithfulness of the de-framing ($N_{\\mathrm{crit}}=\\mathcal N$ at every height), zero-mode completeness of the on-line spectrum for $v$ over the Weil class (A6), the absence of off-line zeros, and the Riemann Hypothesis are equivalent; an off-line zero $\\beta+i\\gamma_0$ leaves a residual growing as $x^{\\beta-1/2}$ at its height.",
      "tag": "T",
      "source": "Lem.~\\ref{lem:complete}",
      "key": "p20029"
@@ -287,7 +294,7 @@
     },
     {
      "label": "E3",
-     "predicate": "Cutoff and semiclassical density: with the space quantum $1_\\Omega$ as lower cutoff the Berry--Keating phase-space count is the Riemann--von Mangoldt count, density the shell scale-depth of D2 [chart]; the cell normalisation $1_\\Omega^{2}\\sim2\\pi$ is imposed [chart] (A9).",
+     "predicate": "Cutoff and semiclassical density: with the space quantum $1_\\Omega$ as lower cutoff the Berry--Keating phase-space count is the Riemann--von Mangoldt count, density the shell scale-depth of D2 [chart]; the cell normalisation $1_\\Omega^{2}\\sim2\\pi$ is imposed [chart] (A11).",
      "tag": "D",
      "source": "Rem.~\\ref{rem:cutoff}\\newline \\pywit{rh}{p20034}{E3}",
      "key": "p20034"
@@ -322,7 +329,7 @@
     },
     {
      "label": "E8",
-     "predicate": "The heights from an explicit matrix: the colleague matrix of the Chebyshev expansion of $\\cos(\\pi\\widehat{\\mathcal N}_N)$ on $[10,52]$ at $N=10^{6}$ returns the ten heights to mean error $4.8\\times10^{-5}$ at dimension $520$ and $3.5\\times10^{-5}$ at $620$, converging to the corrected roots' own $3.4\\times10^{-5}$ at this depth [approx]; the precision is the smoothed count's, not the comb's (A6).",
+     "predicate": "The heights from an explicit matrix: the colleague matrix of the Chebyshev expansion of $\\cos(\\pi\\widehat{\\mathcal N}_N)$ on $[10,52]$ at $N=10^{6}$ returns the ten heights to mean error $4.8\\times10^{-5}$ at dimension $520$ and $3.5\\times10^{-5}$ at $620$, converging to the corrected roots' own $3.4\\times10^{-5}$ at this depth [approx]; the precision is the smoothed count's, not the comb's (A9).",
      "tag": "T",
      "source": "Obs.~\\ref{obs:matrix}\\newline \\pywit{rh}{p20039}{E8}",
      "key": "p20039"
@@ -343,7 +350,7 @@
     },
     {
      "label": "E11",
-     "predicate": "GUE level repulsion of the target spectrum: unfolded spacings of the first $240$ zeros give $P(s<\\half)=0.05$ (GUE $\\approx0.12$, Poisson $\\approx0.39$) and variance $0.13$ (GUE $\\approx0.18$, Poisson $1$) [approx]; a known statistic (A6) reproduced.",
+     "predicate": "GUE level repulsion of the target spectrum: unfolded spacings of the first $240$ zeros give $P(s<\\half)=0.05$ (GUE $\\approx0.12$, Poisson $\\approx0.39$) and variance $0.13$ (GUE $\\approx0.18$, Poisson $1$) [approx]; a known statistic (A9) reproduced.",
      "tag": "I",
      "source": "Obs.~\\ref{obs:gue}\\newline \\pywit{rh}{p20042}{E11}",
      "key": "p20042"
@@ -391,21 +398,21 @@
    "rows": [
     {
      "label": "F1",
-     "predicate": "\\textbf{Turing's count on the shell.} $C\\le N_{\\mathrm{crit}}\\le\\mathcal N$ (A4); the hypothesis below $T$ is $\\mathcal N(T)=N_{\\mathrm{crit}}(T)$, $C=\\mathcal N$ the certificate. The shell estimates $\\mathcal N$ by the pole-corrected comb count (F8; uncertified at finite depth) and $C$ by the main sum's sign changes (A8); the secular condition reads $\\mathcal N$, not $N_{\\mathrm{crit}}$. An off-line zero is a phantom: $\\mathcal N-N_{\\mathrm{crit}}>0$.",
+     "predicate": "\\textbf{Turing's count on the shell.} $C\\le N_{\\mathrm{crit}}\\le\\mathcal N$ (A7); the hypothesis below $T$ is $\\mathcal N(T)=N_{\\mathrm{crit}}(T)$, $C=\\mathcal N$ the certificate. The shell estimates $\\mathcal N$ by the pole-corrected comb count (F8; uncertified at finite depth) and $C$ by the main sum's sign changes (A10); the secular condition reads $\\mathcal N$, not $N_{\\mathrm{crit}}$. An off-line zero is a phantom: $\\mathcal N-N_{\\mathrm{crit}}>0$.",
      "tag": "T",
      "source": "Prop.~\\ref{prop:turing}\\newline \\pywit{rh}{p20047}{F1}",
      "key": "p20047"
     },
     {
      "label": "F2",
-     "predicate": "\\textbf{The screen reading.} By D5 and F1 the classical hypothesis below $T$ is the value $\\mathcal N(T)-N_{\\mathrm{crit}}(T)=0$, both terms estimated on the shell, the count from the pole-corrected comb (convergent under the hypothesis, uncertified at finite depth), the on-line zeros from the sign changes (exact where certified, A8, and simple). Declared, not derived; E12 uses no Euler product.",
+     "predicate": "\\textbf{The screen reading.} By D5 and F1 the classical hypothesis below $T$ is the value $\\mathcal N(T)-N_{\\mathrm{crit}}(T)=0$, both terms estimated on the shell, the count from the pole-corrected comb (convergent under the hypothesis, uncertified at finite depth), the on-line zeros from the sign changes (exact where certified, A10, and simple). Declared, not derived; E12 uses no Euler product.",
      "tag": "D",
      "source": "Def.~\\ref{def:screen}, Rem.~\\ref{rem:screen}",
      "key": "p20048"
     },
     {
      "label": "F3",
-     "predicate": "The control on the line: the completed Davenport--Heilbronn $\\Lambda_f$ is real on the line to $10^{-20}$ [approx]; on $[0,87]$ the argument principle counts $N_f=45$ strip zeros against $C=43$ sign changes, the deficit $2$ opening only in the band of the off-line pair (A5), where $|Z_f|$ dips to $0.357$ without crossing; the constituent $L(s,\\chi)$ closes with deficit $0$.",
+     "predicate": "The control on the line: the completed Davenport--Heilbronn $\\Lambda_f$ is real on the line to $10^{-20}$ [approx]; on $[0,87]$ the argument principle counts $N_f=45$ strip zeros against $C=43$ sign changes, the deficit $2$ opening only in the band of the off-line pair (A8), where $|Z_f|$ dips to $0.357$ without crossing; the constituent $L(s,\\chi)$ closes with deficit $0$.",
      "tag": "T",
      "source": "Obs.~\\ref{obs:dh}\\newline \\pywit{rh}{p20049}{F3}",
      "key": "p20049"
@@ -433,10 +440,10 @@
     },
     {
      "label": "F7",
-     "predicate": "The closure of the quantifier, conditional on A2 (the totality finite) and A10 (the height chart's aliasing carries the zero predicate): heights are residues on the reading shell's cycle, the largest shell the Carrier's, so the quantifier closes at the cycle $2\\pi\\Omega$ and does no further work within it, the value inside the cycle is F2.",
+     "predicate": "\\textbf{The closure of the heights.} A height is a residue on the cycle of the shell that reads it, the largest shell is the Carrier's and there is no height beyond its cycle (A2); no embedded Subject reads the cycle whole (A4). The hypothesis of the Carrier is a statement about the residues of its cycle, one clause per residue.",
      "tag": "T",
-     "source": "\\S\\ref{sec:promotion}, \\S\\ref{sub:epistemic}",
-     "key": "p20053"
+     "source": "Thm.~\\ref{thm:closure}\\newline \\pywit{rh}{p20079}{F7}, \\leanwit{FrcCore}{p20079}{F7} \\lean{FRC.Horizon.closure, FRC.Horizon.closure\\_lab}",
+     "key": "p20079"
     },
     {
      "label": "F8",
@@ -512,6 +519,84 @@
   ]
  },
  "lean": {
+  "A2": [
+   {
+    "name": "FRC.Foundation.registered_finite",
+    "module": "FrcCore/Theme/Foundation",
+    "line": 179,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "20:A2, A2 — the registered Universe is finite: whatever the totality `U`, what a reading of capacity `R` registers of it embeds in the shell of `R` members. No finiteness of `U` is assumed; the bound is the reading's, a record being finite (29:C1)."
+   },
+   {
+    "name": "FRC.Foundation.no_unlimited_supply",
+    "module": "FrcCore/Theme/Foundation",
+    "line": 186,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "20:A2, A2 — no reading registers an unlimited supply: among any `R + 1` members of the totality, a reading of capacity `R` gives two the same residue, found by search (the pigeonhole `FRC.Logic.no_mirror`, 5:C2; the idleness of the unbounded supply, 29:C2)."
+   },
+   {
+    "name": "FRC.Foundation.agent_bound",
+    "module": "FrcCore/Theme/Foundation",
+    "line": 217,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "20:A2, A2 — the agent's bound, the row's instance at capacity `R = records s K` (29:C1): a shell read whole — injectively — into the records of an agent of capacity `K` over `s ≥ 2` symbols has at most `records s K` members, fewer than `s^(K+1)` (`complete_needs_whole` at `o = records s K`, `records_lt`; 5:C2). The row's finitude clauses are `registered_finite` and `no_unlimited_supply` above; the structural cardinality Ω is A7's, consumed."
+   }
+  ],
+  "A3": [
+   {
+    "name": "FRC.Foundation.registration_onto",
+    "module": "FrcCore/Theme/Foundation",
+    "line": 201,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "20:A3, A3 — whatever exists is registered within: the registration of any totality is onto its registered Universe (the definition of `Registered` read back: every residue has a member). The row's \"no outside, no host\" is A8's and A1's, consumed by reference, not this theorem's: the conjunct holds on a shell read inside a larger host."
+   },
+   {
+    "name": "FRC.Foundation.mutual_registration_count",
+    "module": "FrcCore/Theme/Foundation",
+    "line": 225,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "20:A3, A3 — two totalities each registered whole within the other have one count: injections both ways between shells force `m = n` (the pigeonhole `FRC.Logic.no_mirror`, 5:C2, both ways). With A6, one count is one Carrier. Silent on a host: a shell with more points registers a shell with fewer."
+   }
+  ],
+  "A4": [
+   {
+    "name": "FRC.Foundation.observer_part",
+    "module": "FrcCore/Theme/Foundation",
+    "line": 148,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "20:A4, A4 (Observation, first clause) — a bounded observer is a proper part: an observer with `o < Ω` states holds no injective encoding of the Carrier's `Ω` points, and every reading `ρ` into its states identifies two distinct points (the pigeonhole, `FRC.Logic.no_mirror`; 25:D1, 5:C2). The two points are found by search."
+   },
+   {
+    "name": "FRC.Foundation.complete_needs_whole",
+    "module": "FrcCore/Theme/Foundation",
+    "line": 206,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "20:A4, A4 (Observation, second clause) — a complete reading needs the whole count: a reading of the `Ω` points into `o` records that identifies no two points has `Ω ≤ o` (the contrapositive of `observer_part`). A reader that is not the whole reads incompletely."
+   },
+   {
+    "name": "FRC.Foundation.translation_torsor",
+    "module": "FrcCore/Theme/Foundation",
+    "line": 238,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "20:A4, A4 (Observation, third clause) — the Carrier is a translation torsor (A6): exactly one translation carries each member to each. The origin is frame data: the shell's `0` is the chart's, and the translation carrying `0` to `x` makes `x` an origin as good; the affine frames are a torsor under the frame group (1:C2, `simply_transitive`)."
+   }
+  ],
   "B1": [
    {
     "name": "FRC.Rh.lab_pair",
@@ -541,7 +626,7 @@
    {
     "name": "FRC.Rh.lab_pair",
     "module": "FrcCore/Rh",
-    "line": 183,
+    "line": 184,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -589,7 +674,7 @@
    {
     "name": "FRC.Rh.window_readback",
     "module": "FrcCore/Rh",
-    "line": 164,
+    "line": 165,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -598,7 +683,7 @@
    {
     "name": "FRC.Rh.factorisation_iff",
     "module": "FrcCore/Rh",
-    "line": 171,
+    "line": 172,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -607,7 +692,7 @@
    {
     "name": "FRC.Rh.frame_coincidence",
     "module": "FrcCore/Rh",
-    "line": 177,
+    "line": 178,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -631,7 +716,7 @@
    {
     "name": "FRC.Rh.zero_slot",
     "module": "FrcCore/Rh",
-    "line": 93,
+    "line": 94,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -655,7 +740,7 @@
    {
     "name": "FRC.Rh.slot_complementarity",
     "module": "FrcCore/Rh",
-    "line": 118,
+    "line": 119,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -718,7 +803,7 @@
    {
     "name": "FRC.Rh.Ext.mul_conj",
     "module": "FrcCore/Rh",
-    "line": 221,
+    "line": 222,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -727,7 +812,7 @@
    {
     "name": "FRC.Rh.Ext.conj_inv_of_norm_one",
     "module": "FrcCore/Rh",
-    "line": 225,
+    "line": 226,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -736,7 +821,7 @@
    {
     "name": "FRC.Rh.Ext.quarter_turn_off_circle",
     "module": "FrcCore/Rh",
-    "line": 265,
+    "line": 266,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -745,7 +830,7 @@
    {
     "name": "FRC.Rh.Ext.circle13",
     "module": "FrcCore/Rh",
-    "line": 272,
+    "line": 273,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -769,7 +854,7 @@
    {
     "name": "FRC.Rh.ramanujan_sum",
     "module": "FrcCore/Rh",
-    "line": 148,
+    "line": 149,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -778,7 +863,7 @@
    {
     "name": "FRC.Rh.ramanujan53",
     "module": "FrcCore/Rh",
-    "line": 154,
+    "line": 155,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -841,7 +926,7 @@
    {
     "name": "FRC.Rh.half_inverse",
     "module": "FrcCore/Rh",
-    "line": 99,
+    "line": 100,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -850,7 +935,7 @@
    {
     "name": "FRC.Rh.Ext.critical_line",
     "module": "FrcCore/Rh",
-    "line": 245,
+    "line": 246,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -859,7 +944,7 @@
    {
     "name": "FRC.Rh.Ext.norm_on_line",
     "module": "FrcCore/Rh",
-    "line": 258,
+    "line": 259,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -922,7 +1007,7 @@
    {
     "name": "FRC.Rh.Ext.klein_four",
     "module": "FrcCore/Rh",
-    "line": 239,
+    "line": 240,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -931,7 +1016,7 @@
    {
     "name": "FRC.Rh.Ext.fixed_conj",
     "module": "FrcCore/Rh",
-    "line": 229,
+    "line": 230,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -940,7 +1025,7 @@
    {
     "name": "FRC.Rh.Ext.critical_line",
     "module": "FrcCore/Rh",
-    "line": 245,
+    "line": 246,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -949,7 +1034,7 @@
    {
     "name": "FRC.Rh.Ext.fixed_half_turn",
     "module": "FrcCore/Rh",
-    "line": 252,
+    "line": 253,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -985,7 +1070,7 @@
    {
     "name": "FRC.Rh.subject_constants",
     "module": "FrcCore/Rh",
-    "line": 129,
+    "line": 130,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -994,7 +1079,7 @@
    {
     "name": "FRC.Rh.constants13",
     "module": "FrcCore/Rh",
-    "line": 136,
+    "line": 137,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -1096,7 +1181,7 @@
    {
     "name": "FRC.Rh.shift_power_character",
     "module": "FrcCore/Rh",
-    "line": 105,
+    "line": 106,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -1105,7 +1190,7 @@
    {
     "name": "FRC.Rh.shift_trace",
     "module": "FrcCore/Rh",
-    "line": 110,
+    "line": 111,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -1155,7 +1240,7 @@
    {
     "name": "FRC.Rh.shift_power_character",
     "module": "FrcCore/Rh",
-    "line": 105,
+    "line": 106,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -1164,7 +1249,7 @@
    {
     "name": "FRC.Rh.shift_trace",
     "module": "FrcCore/Rh",
-    "line": 110,
+    "line": 111,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -1199,7 +1284,7 @@
    {
     "name": "FRC.Rh.Ext.readout_on_line",
     "module": "FrcCore/Rh",
-    "line": 289,
+    "line": 290,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -1208,7 +1293,7 @@
    {
     "name": "FRC.Rh.Ext.readout_slot_index",
     "module": "FrcCore/Rh",
-    "line": 295,
+    "line": 296,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -1267,6 +1352,26 @@
     "tier": 2,
     "ok": true,
     "doc": "20:E12, 20:E13 — 20-rh's name; the theorem is `FRC.HorizonML.power_characters_not_orthonormal` (task LM36)."
+   }
+  ],
+  "F7": [
+   {
+    "name": "FRC.Horizon.closure",
+    "module": "FrcCore/Theme/Horizon",
+    "line": 451,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "20:F7, the foundation clauses of Theorem closure. (i) The wrap of the height reading: a height `T + p` reads as the residue `T` on the cycle of the shell of cardinality `p`, and the successor reaches every residue of the cycle from `0` within `p` steps (00:A5, `successor_cycle`). (ii) Finitude: a reading of capacity `Ω` embeds the registered heights in the shell of `Ω` members (00:A2, `registered_finite`). (iii) Observation: a reading of `o < Ω` states identifies two residues of the Carrier's cycle, and a reading that identifies none has `Ω ≤ o` (00:A4, `observer_part`, `complete_needs_whole`). No axioms."
+   },
+   {
+    "name": "FRC.Horizon.closure_lab",
+    "module": "FrcCore/Theme/Horizon",
+    "line": 467,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "20:F7, the laboratory instances: for each laboratory Carrier `Ω = 13, 233, 30089, 2408561` (prime, `≡ 1 mod 4`) the largest embedded Subject `p* = 3, 13, 173, 1549` with `p*² < Ω < p'²`, `p'` the next prime (no prime between), so every embedded Subject's cycle is shorter than the Carrier's and the Carrier's top cell is read from labels up to `√Ω`, beyond every embedded window `√p*`. Primality by trial division to the root (`isPrime_of_bounded`), decided by the kernel."
    }
   ]
  }

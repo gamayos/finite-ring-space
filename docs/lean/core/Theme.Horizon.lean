@@ -1,5 +1,6 @@
 import FrcCore.Transform
 import FrcCore.Theme.Extension
+import FrcCore.Theme.Foundation
 
 /-!
 # FrcCore.Theme.Horizon — the horizon theme: the shell theorem (ledger migration, task LM26)
@@ -438,5 +439,50 @@ end coincidence
 theorem lab_pair :
     13 * 13 < 233 ∧ 12 % 4 = 0 ∧ 232 % 4 = 0 ∧ 232 % 3 ≠ 0 ∧ (5 : Shell 13) * 5 = -1 ∧
     (89 : Shell 233) * 89 = -1 ∧ 232 % 12 ≠ 0 ∧ 3 * 3 < 13 ∧ 3 * 3 < 233 := by decide
+
+/-! ## The closure of the heights (20:F7, Theorem closure; 13 October 2026) -/
+
+/-- 20:F7, the foundation clauses of Theorem closure. (i) The wrap of the height reading: a height `T + p` reads as the
+residue `T` on the cycle of the shell of cardinality `p`, and the successor reaches every residue of the cycle from `0`
+within `p` steps (00:A5, `successor_cycle`). (ii) Finitude: a reading of capacity `Ω` embeds the registered heights in
+the shell of `Ω` members (00:A2, `registered_finite`). (iii) Observation: a reading of `o < Ω` states identifies two
+residues of the Carrier's cycle, and a reading that identifies none has `Ω ≤ o` (00:A4, `observer_part`,
+`complete_needs_whole`). No axioms. -/
+theorem closure :
+    (∀ {p : Nat} [Pos p] (T : Nat), (ofNat (T + p) : Shell p) = ofNat T) ∧
+    (∀ {p : Nat} [Pos p], 2 ≤ p → ∀ y : Shell p, ∃ k, k < p ∧ FRC.Foundation.succIter (0 : Shell p) k = y) ∧
+    (∀ {U : Type} (Ω : Nat) [Pos Ω] (ρ : U → Nat), (∀ u, ρ u < Ω) →
+      ∃ ι : FRC.Foundation.Registered ρ → Shell Ω, ∀ a b, ι a = ι b → a = b) ∧
+    (∀ {Ω o : Nat} [Pos Ω], o < Ω → ∀ ρ : Shell Ω → Nat, (∀ x, ρ x < o) → ∃ x y : Shell Ω, x ≠ y ∧ ρ x = ρ y) ∧
+    (∀ {Ω o : Nat} [Pos Ω] (ρ : Shell Ω → Nat), (∀ x, ρ x < o) → (∀ x y, ρ x = ρ y → x = y) → Ω ≤ o) :=
+  ⟨fun T => FRC.Shell.Frame.ofNat_add_self T, fun h2 y => (FRC.Foundation.successor_cycle h2).2.2 0 y,
+   fun {U} Ω inst ρ hρ => @FRC.Foundation.registered_finite U Ω inst ρ hρ,
+   fun ho ρ hρ => FRC.Foundation.observer_part ho ρ hρ,
+   fun ρ hρ hinj => FRC.Foundation.complete_needs_whole ρ hρ hinj⟩
+
+/-- 20:F7, the laboratory instances: for each laboratory Carrier `Ω = 13, 233, 30089, 2408561` (prime, `≡ 1 mod 4`) the
+largest embedded Subject `p* = 3, 13, 173, 1549` with `p*² < Ω < p'²`, `p'` the next prime (no prime between), so every
+embedded Subject's cycle is shorter than the Carrier's and the Carrier's top cell is read from labels up to `√Ω`, beyond
+every embedded window `√p*`. Primality by trial division to the root (`isPrime_of_bounded`), decided by the kernel. -/
+theorem closure_lab :
+    (3 * 3 < 13 ∧ 13 < 5 * 5 ∧ 13 % 4 = 1 ∧ FRC.Nat.isPrime 3 ∧ FRC.Nat.isPrime 5 ∧ FRC.Nat.isPrime 13 ∧
+      ∀ q, q < 5 → 3 < q → ¬ FRC.Nat.isPrime q) ∧
+    (13 * 13 < 233 ∧ 233 < 17 * 17 ∧ 233 % 4 = 1 ∧ FRC.Nat.isPrime 13 ∧ FRC.Nat.isPrime 17 ∧ FRC.Nat.isPrime 233 ∧
+      ∀ q, q < 17 → 13 < q → ¬ FRC.Nat.isPrime q) ∧
+    (173 * 173 < 30089 ∧ 30089 < 179 * 179 ∧ 30089 % 4 = 1 ∧ FRC.Nat.isPrime 173 ∧ FRC.Nat.isPrime 179 ∧
+      FRC.Nat.isPrime 30089 ∧ ∀ q, q < 179 → 173 < q → ¬ FRC.Nat.isPrime q) ∧
+    (1549 * 1549 < 2408561 ∧ 2408561 < 1553 * 1553 ∧ 2408561 % 4 = 1 ∧ FRC.Nat.isPrime 1549 ∧ FRC.Nat.isPrime 1553 ∧
+      FRC.Nat.isPrime 2408561 ∧ ∀ q, q < 1553 → 1549 < q → ¬ FRC.Nat.isPrime q) := by
+  refine ⟨⟨by decide, by decide, by decide, by decide +kernel, by decide +kernel, by decide +kernel, by decide +kernel⟩,
+    ⟨by decide, by decide, by decide, by decide +kernel, by decide +kernel, ?_, by decide +kernel⟩,
+    ⟨by decide, by decide, by decide, ?_, ?_, ?_, by decide +kernel⟩,
+    ⟨by decide, by decide, by decide, ?_, ?_, ?_, by decide +kernel⟩⟩
+  · exact FRC.Nat.isPrime_of_bounded 233 15 (by decide) (by decide) (by decide +kernel)
+  · exact FRC.Nat.isPrime_of_bounded 173 13 (by decide) (by decide) (by decide +kernel)
+  · exact FRC.Nat.isPrime_of_bounded 179 13 (by decide) (by decide) (by decide +kernel)
+  · exact FRC.Nat.isPrime_of_bounded 30089 173 (by decide) (by decide) (by decide +kernel)
+  · exact FRC.Nat.isPrime_of_bounded 1549 39 (by decide) (by decide) (by decide +kernel)
+  · exact FRC.Nat.isPrime_of_bounded 1553 39 (by decide) (by decide) (by decide +kernel)
+  · exact FRC.Nat.isPrime_of_bounded 2408561 1552 (by decide) (by decide) (by decide +kernel)
 
 end FRC.Horizon

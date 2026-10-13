@@ -1546,6 +1546,8 @@
 'FRC.Horizon.factorisation_iff' does not depend on any axioms
 'FRC.Horizon.frame_coincidence' does not depend on any axioms
 'FRC.Horizon.lab_pair' does not depend on any axioms
+'FRC.Horizon.closure' does not depend on any axioms
+'FRC.Horizon.closure_lab' does not depend on any axioms
 'FRC.Ledger.p00032' does not depend on any axioms
 'FRC.Ledger.p01004' does not depend on any axioms
 'FRC.Ledger.p01005' does not depend on any axioms
@@ -1737,6 +1739,7 @@
 'FRC.Ledger.p20017' does not depend on any axioms
 'FRC.Ledger.p20032' does not depend on any axioms
 'FRC.Ledger.p20043' does not depend on any axioms
+'FRC.Ledger.p20079' does not depend on any axioms
 'FRC.Shell.meridian' does not depend on any axioms
 'FRC.Shell.scale' does not depend on any axioms
 'FRC.Shell.map_scale_aux' does not depend on any axioms
@@ -2373,6 +2376,11 @@
 'FRC.Rh.Ext.readout_slot_index' does not depend on any axioms
 'FRC.Rh.decForallLT' does not depend on any axioms
 'FRC.Rh.instDecForallLT' does not depend on any axioms
+'FRC.Rh.closure' does not depend on any axioms
+'FRC.Rh.closure_lab' does not depend on any axioms
+'FRC.Rh.p00004' does not depend on any axioms
+'FRC.Rh.p00003' does not depend on any axioms
+'FRC.Rh.p00197' does not depend on any axioms
 'FRC.Rh.p20008' does not depend on any axioms
 'FRC.Rh.p20009' does not depend on any axioms
 'FRC.Rh.p20011' does not depend on any axioms
@@ -2384,6 +2392,7 @@
 'FRC.Rh.p20017' does not depend on any axioms
 'FRC.Rh.p20032' does not depend on any axioms
 'FRC.Rh.p20043' does not depend on any axioms
+'FRC.Rh.p20079' does not depend on any axioms
 'FRC.Entropy.quarter_identity' does not depend on any axioms
 'FRC.Entropy.triality_residues' does not depend on any axioms
 'FRC.Entropy.octant_divides' does not depend on any axioms

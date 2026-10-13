@@ -10118,7 +10118,7 @@ theorem successor_cycle (h2 : 2 ≤ q) :
     exact absurd h1 (by decide)
   · rw [succIter_eq, ofNat_val, add_comm y, ← add_assoc, add_neg, zero_add]
 
-/-- A4 (Observation, first clause) — a bounded observer is a proper part: an observer with `o < Ω` states holds no injective
+/-- 20:A4, A4 (Observation, first clause) — a bounded observer is a proper part: an observer with `o < Ω` states holds no injective
 encoding of the Carrier's `Ω` points, and every reading `ρ` into its states identifies two distinct points (the
 pigeonhole, `FRC.Logic.no_mirror`; 25:D1, 5:C2). The two points are found by search. -/
 theorem observer_part {Ω o : Nat} [Pos Ω] (ho : o < Ω) (ρ : Shell Ω → Nat) (hρ : ∀ x, ρ x < o) :
@@ -10149,14 +10149,14 @@ theorem Registered.lt {U : Type} {R : Nat} {ρ : U → Nat} (hρ : ∀ u, ρ u <
 /-- The registration of the totality: each member to its residue. -/
 def register {U : Type} (ρ : U → Nat) (u : U) : Registered ρ := ⟨ρ u, u, rfl⟩
 
-/-- A2 — the registered Universe is finite: whatever the totality `U`, what a reading of capacity `R` registers of it
+/-- 20:A2, A2 — the registered Universe is finite: whatever the totality `U`, what a reading of capacity `R` registers of it
 embeds in the shell of `R` members. No finiteness of `U` is assumed; the bound is the reading's, a record being finite
 (29:C1). -/
 theorem registered_finite {U : Type} (R : Nat) [Pos R] (ρ : U → Nat) (hρ : ∀ u, ρ u < R) :
     ∃ ι : Registered ρ → Shell R, ∀ a b, ι a = ι b → a = b :=
   ⟨fun a => ofNat a.val, fun a b e => Subtype.ext (Poly.Frame.ofNat_inj_lt (Registered.lt hρ a) (Registered.lt hρ b) e)⟩
 
-/-- A2 — no reading registers an unlimited supply: among any `R + 1` members of the totality, a reading of capacity
+/-- 20:A2, A2 — no reading registers an unlimited supply: among any `R + 1` members of the totality, a reading of capacity
 `R` gives two the same residue, found by search (the pigeonhole `FRC.Logic.no_mirror`, 5:C2; the idleness of the
 unbounded supply, 29:C2). -/
 theorem no_unlimited_supply {U : Type} (R : Nat) (ρ : U → Nat) (hρ : ∀ u, ρ u < R) (f : Nat → U) :
@@ -10171,13 +10171,13 @@ theorem no_unlimited_supply {U : Type} (R : Nat) (ρ : U → Nat) (hρ : ∀ u, 
           | .inl hlt => absurd ⟨i, hi, j, hlt, e.symm⟩ hno
           | .inr hge' => Nat.le_antisymm hge' hge)).elim
 
-/-- A3 — whatever exists is registered within: the registration of any totality is onto its registered Universe (the
+/-- 20:A3, A3 — whatever exists is registered within: the registration of any totality is onto its registered Universe (the
 definition of `Registered` read back: every residue has a member). The row's "no outside, no host" is A8's and A1's,
 consumed by reference, not this theorem's: the conjunct holds on a shell read inside a larger host. -/
 theorem registration_onto {U : Type} (ρ : U → Nat) : ∀ a : Registered ρ, ∃ u, register ρ u = a
   | ⟨_, u, hu⟩ => ⟨u, Subtype.ext hu⟩
 
-/-- A4 (Observation, second clause) — a complete reading needs the whole count: a reading of the `Ω` points into `o` records that identifies no two
+/-- 20:A4, A4 (Observation, second clause) — a complete reading needs the whole count: a reading of the `Ω` points into `o` records that identifies no two
 points has `Ω ≤ o` (the contrapositive of `observer_part`). A reader that is not the whole reads incompletely. -/
 theorem complete_needs_whole {Ω o : Nat} [Pos Ω] (ρ : Shell Ω → Nat) (hρ : ∀ x, ρ x < o)
     (hinj : ∀ x y, ρ x = ρ y → x = y) : Ω ≤ o :=
@@ -10186,7 +10186,7 @@ theorem complete_needs_whole {Ω o : Nat} [Pos Ω] (ρ : Shell Ω → Nat) (hρ 
     | ⟨x, y, hxy, e⟩ => (hxy (hinj x y e)).elim
   | .inr hge => hge
 
-/-- A2 — the agent's bound, the row's instance at capacity `R = records s K` (29:C1): a shell read whole — injectively —
+/-- 20:A2, A2 — the agent's bound, the row's instance at capacity `R = records s K` (29:C1): a shell read whole — injectively —
 into the records of an agent of capacity `K` over `s ≥ 2` symbols has at most `records s K` members, fewer than
 `s^(K+1)` (`complete_needs_whole` at `o = records s K`, `records_lt`; 5:C2). The row's finitude clauses are
 `registered_finite` and `no_unlimited_supply` above; the structural cardinality Ω is A7's, consumed. -/
@@ -10195,7 +10195,7 @@ theorem agent_bound (s K : Nat) (hs : 2 ≤ s) {N : Nat} [Pos N] (ρ : Shell N �
     N ≤ FRC.Logic.records s K ∧ FRC.Logic.records s K < s ^ (K + 1) :=
   ⟨complete_needs_whole ρ hρ hinj, FRC.Logic.records_lt s hs K⟩
 
-/-- A3 — two totalities each registered whole within the other have one count: injections both ways between shells
+/-- 20:A3, A3 — two totalities each registered whole within the other have one count: injections both ways between shells
 force `m = n` (the pigeonhole `FRC.Logic.no_mirror`, 5:C2, both ways). With A6, one count is one Carrier. Silent
 on a host: a shell with more points registers a shell with fewer. -/
 theorem mutual_registration_count (m n : Nat) [Pos m] [Pos n]
@@ -10208,7 +10208,7 @@ theorem mutual_registration_count (m n : Nat) [Pos m] [Pos n]
       | .inr hge => hge
   Nat.le_antisymm (h1 f hf) (h1 g hg)
 
-/-- A4 (Observation, third clause) — the Carrier is a translation torsor (A6): exactly one translation carries each member to each. The origin
+/-- 20:A4, A4 (Observation, third clause) — the Carrier is a translation torsor (A6): exactly one translation carries each member to each. The origin
 is frame data: the shell's `0` is the chart's, and the translation carrying `0` to `x` makes `x` an origin as good;
 the affine frames are a torsor under the frame group (1:C2, `simply_transitive`). -/
 theorem translation_torsor {Ω : Nat} [Pos Ω] (x y : Shell Ω) :
@@ -15889,6 +15889,51 @@ theorem lab_pair :
     13 * 13 < 233 ∧ 12 % 4 = 0 ∧ 232 % 4 = 0 ∧ 232 % 3 ≠ 0 ∧ (5 : Shell 13) * 5 = -1 ∧
     (89 : Shell 233) * 89 = -1 ∧ 232 % 12 ≠ 0 ∧ 3 * 3 < 13 ∧ 3 * 3 < 233 := by decide
 
+/-! ## The closure of the heights (20:F7, Theorem closure; 13 October 2026) -/
+
+/-- 20:F7, the foundation clauses of Theorem closure. (i) The wrap of the height reading: a height `T + p` reads as the
+residue `T` on the cycle of the shell of cardinality `p`, and the successor reaches every residue of the cycle from `0`
+within `p` steps (00:A5, `successor_cycle`). (ii) Finitude: a reading of capacity `Ω` embeds the registered heights in
+the shell of `Ω` members (00:A2, `registered_finite`). (iii) Observation: a reading of `o < Ω` states identifies two
+residues of the Carrier's cycle, and a reading that identifies none has `Ω ≤ o` (00:A4, `observer_part`,
+`complete_needs_whole`). No axioms. -/
+theorem closure :
+    (∀ {p : Nat} [Pos p] (T : Nat), (ofNat (T + p) : Shell p) = ofNat T) ∧
+    (∀ {p : Nat} [Pos p], 2 ≤ p → ∀ y : Shell p, ∃ k, k < p ∧ FRC.Foundation.succIter (0 : Shell p) k = y) ∧
+    (∀ {U : Type} (Ω : Nat) [Pos Ω] (ρ : U → Nat), (∀ u, ρ u < Ω) →
+      ∃ ι : FRC.Foundation.Registered ρ → Shell Ω, ∀ a b, ι a = ι b → a = b) ∧
+    (∀ {Ω o : Nat} [Pos Ω], o < Ω → ∀ ρ : Shell Ω → Nat, (∀ x, ρ x < o) → ∃ x y : Shell Ω, x ≠ y ∧ ρ x = ρ y) ∧
+    (∀ {Ω o : Nat} [Pos Ω] (ρ : Shell Ω → Nat), (∀ x, ρ x < o) → (∀ x y, ρ x = ρ y → x = y) → Ω ≤ o) :=
+  ⟨fun T => FRC.Shell.Frame.ofNat_add_self T, fun h2 y => (FRC.Foundation.successor_cycle h2).2.2 0 y,
+   fun {U} Ω inst ρ hρ => @FRC.Foundation.registered_finite U Ω inst ρ hρ,
+   fun ho ρ hρ => FRC.Foundation.observer_part ho ρ hρ,
+   fun ρ hρ hinj => FRC.Foundation.complete_needs_whole ρ hρ hinj⟩
+
+/-- 20:F7, the laboratory instances: for each laboratory Carrier `Ω = 13, 233, 30089, 2408561` (prime, `≡ 1 mod 4`) the
+largest embedded Subject `p* = 3, 13, 173, 1549` with `p*² < Ω < p'²`, `p'` the next prime (no prime between), so every
+embedded Subject's cycle is shorter than the Carrier's and the Carrier's top cell is read from labels up to `√Ω`, beyond
+every embedded window `√p*`. Primality by trial division to the root (`isPrime_of_bounded`), decided by the kernel. -/
+theorem closure_lab :
+    (3 * 3 < 13 ∧ 13 < 5 * 5 ∧ 13 % 4 = 1 ∧ FRC.Nat.isPrime 3 ∧ FRC.Nat.isPrime 5 ∧ FRC.Nat.isPrime 13 ∧
+      ∀ q, q < 5 → 3 < q → ¬ FRC.Nat.isPrime q) ∧
+    (13 * 13 < 233 ∧ 233 < 17 * 17 ∧ 233 % 4 = 1 ∧ FRC.Nat.isPrime 13 ∧ FRC.Nat.isPrime 17 ∧ FRC.Nat.isPrime 233 ∧
+      ∀ q, q < 17 → 13 < q → ¬ FRC.Nat.isPrime q) ∧
+    (173 * 173 < 30089 ∧ 30089 < 179 * 179 ∧ 30089 % 4 = 1 ∧ FRC.Nat.isPrime 173 ∧ FRC.Nat.isPrime 179 ∧
+      FRC.Nat.isPrime 30089 ∧ ∀ q, q < 179 → 173 < q → ¬ FRC.Nat.isPrime q) ∧
+    (1549 * 1549 < 2408561 ∧ 2408561 < 1553 * 1553 ∧ 2408561 % 4 = 1 ∧ FRC.Nat.isPrime 1549 ∧ FRC.Nat.isPrime 1553 ∧
+      FRC.Nat.isPrime 2408561 ∧ ∀ q, q < 1553 → 1549 < q → ¬ FRC.Nat.isPrime q) := by
+  refine ⟨⟨by decide, by decide, by decide, by decide +kernel, by decide +kernel, by decide +kernel, by decide +kernel⟩,
+    ⟨by decide, by decide, by decide, by decide +kernel, by decide +kernel, ?_, by decide +kernel⟩,
+    ⟨by decide, by decide, by decide, ?_, ?_, ?_, by decide +kernel⟩,
+    ⟨by decide, by decide, by decide, ?_, ?_, ?_, by decide +kernel⟩⟩
+  · exact FRC.Nat.isPrime_of_bounded 233 15 (by decide) (by decide) (by decide +kernel)
+  · exact FRC.Nat.isPrime_of_bounded 173 13 (by decide) (by decide) (by decide +kernel)
+  · exact FRC.Nat.isPrime_of_bounded 179 13 (by decide) (by decide) (by decide +kernel)
+  · exact FRC.Nat.isPrime_of_bounded 30089 173 (by decide) (by decide) (by decide +kernel)
+  · exact FRC.Nat.isPrime_of_bounded 1549 39 (by decide) (by decide) (by decide +kernel)
+  · exact FRC.Nat.isPrime_of_bounded 1553 39 (by decide) (by decide) (by decide +kernel)
+  · exact FRC.Nat.isPrime_of_bounded 2408561 1552 (by decide) (by decide) (by decide +kernel)
+
 end FRC.Horizon
 
 /-! inlined: FrcCore/Keys/Fourier.lean -/
@@ -19759,10 +19804,10 @@ that every row carrying the key asserts, proved from the themes alone. The paper
 namespace FRC.Ledger
 
 -- Keys of the foundation theme (generated by make_keys.py from the ledgers' Lean bindings; edit the ledgers, not this file)
-/-- p00003 — 00:A3. \textbf{Completeness}: whatever exists is registered within --- the registration of any totality is onto its registered Universe (A8) --- so no outside (A8), no host (A1). Unique: two totalities each registered whole within the other have one count (5:C2 both ways), one count one Carrier (A6). No proper closed substructure (A10). Observers are parts within (A4). -/
+/-- p00003 — 20:A3, 00:A3. \textbf{Completeness}: whatever exists is registered within --- the registration of any totality is onto its registered Universe (A8) --- so no outside (A8), no host (A1). Unique: two totalities each registered whole within the other have one count (5:C2 both ways), one count one Carrier (A6). No proper closed substructure (A10). Observers are parts within (A4). -/
 theorem p00003 : (∀ {U : Type} (ρ : U → Nat) (a : FRC.Foundation.Registered ρ), ∃ u, FRC.Foundation.register ρ u = a) ∧ ∀ (m n : Nat) [FRC.Pos m] [FRC.Pos n] (f : FRC.Shell m → FRC.Shell n), (∀ (x y : FRC.Shell m), f x = f y → x = y) → ∀ (g : FRC.Shell n → FRC.Shell m), (∀ (x y : FRC.Shell n), g x = g y → x = y) → m = n :=
   And.intro @FRC.Foundation.registration_onto (@FRC.Foundation.mutual_registration_count)
-/-- p00004 — 00:A2. \textbf{Finitude}: the Universe is the totality of its registered manifestations (A8). For any totality and any reading of capacity $R$, the registered Universe embeds in the shell of $R$ members, and among any $R+1$ members two share a residue (5:C2, 29:C1, 29:C2): the Universe is finite, its structural cardinality $\Om$ (A7). -/
+/-- p00004 — 20:A2, 00:A2. \textbf{Finitude}: the Universe is the totality of its registered manifestations (A8). For any totality and any reading of capacity $R$, the registered Universe embeds in the shell of $R$ members, and among any $R+1$ members two share a residue (5:C2, 29:C1, 29:C2): the Universe is finite, its structural cardinality $\Om$ (A7). -/
 theorem p00004 : And (∀ {U : Type} (R : Nat) [FRC.Pos R] (ρ : U → Nat), (∀ (u : U), @LT.lt Nat instLTNat (ρ u) R) → @Exists (@FRC.Foundation.Registered U ρ → FRC.Shell R) fun ι => ∀ (a b : @FRC.Foundation.Registered U ρ), @Eq (FRC.Shell R) (ι a) (ι b) → @Eq (@FRC.Foundation.Registered U ρ) a b) (And (∀ {U : Type} (R : Nat) (ρ : U → Nat), (∀ (u : U), @LT.lt Nat instLTNat (ρ u) R) → ∀ (f : Nat → U), @Exists Nat fun i => @Exists Nat fun j => And (@LT.lt Nat instLTNat i (@HAdd.hAdd Nat Nat Nat (@instHAdd Nat instAddNat) R (@OfNat.ofNat Nat (nat_lit 1) (instOfNatNat (nat_lit 1))))) (And (@LT.lt Nat instLTNat j (@HAdd.hAdd Nat Nat Nat (@instHAdd Nat instAddNat) R (@OfNat.ofNat Nat (nat_lit 1) (instOfNatNat (nat_lit 1))))) (And (@Ne Nat i j) (@Eq Nat (ρ (f i)) (ρ (f j)))))) (∀ (s K : Nat), @LE.le Nat instLENat (@OfNat.ofNat Nat (nat_lit 2) (instOfNatNat (nat_lit 2))) s → ∀ {N : Nat} [FRC.Pos N] (ρ : FRC.Shell N → Nat), (∀ (x : FRC.Shell N), @LT.lt Nat instLTNat (ρ x) (FRC.Logic.records s K)) → (∀ (x y : FRC.Shell N), @Eq Nat (ρ x) (ρ y) → @Eq (FRC.Shell N) x y) → And (@LE.le Nat instLENat N (FRC.Logic.records s K)) (@LT.lt Nat instLTNat (FRC.Logic.records s K) (@HPow.hPow Nat Nat Nat (@instHPow Nat Nat (@instPowNat Nat instNatPowNat)) s (@HAdd.hAdd Nat Nat Nat (@instHAdd Nat instAddNat) K (@OfNat.ofNat Nat (nat_lit 1) (instOfNatNat (nat_lit 1)))))))) :=
   And.intro @FRC.Foundation.registered_finite (And.intro @FRC.Foundation.no_unlimited_supply (@FRC.Foundation.agent_bound))
 /-- p00162 — 00:A10. \textbf{Completeness is primality}: the residues of a count $q\ge2$ have no proper nonzero ideal iff $q$ is prime, so the arithmetic of a counting cycle is complete exactly on prime cycles --- the formal shadow of A3, since a proper closed substructure of the totality would be a second totality within it. -/
@@ -19777,7 +19822,7 @@ theorem p00164 : ∀ {p : Nat} [FRC.Pos p], FRC.Nat.isPrime p → ∃ g, (g ^ (p
 /-- p00188 — 00:A5. Counting closes by return: the successor $C_q:x\mapsto x{+}1\ (\mathrm{mod}\ q)$ on $q\ge2$ points is one $q$-cycle with no fixed point, so iteration is bounded and cyclic; its interpretation is A2's. -/
 theorem p00188 : ∀ {q : Nat} [FRC.Pos q], (2 : Nat) ≤ q → (∀ (x : FRC.Shell q), x + (1 : FRC.Shell q) ≠ x) ∧ (∀ (x : FRC.Shell q) (k : Nat), FRC.Foundation.succIter x k = x ↔ k % q = (0 : Nat)) ∧ ∀ (x y : FRC.Shell q), ∃ k, k < q ∧ FRC.Foundation.succIter x k = y :=
   @FRC.Foundation.successor_cycle
-/-- p00197 — 00:A4. \textbf{Observation}: every observation is a registration by an embedded part (C4, A13) of $o<\Om$ states (A6): every reading identifies two members (25:D1, 5:C2) --- an incomplete projection --- and a complete reading needs the whole count. No frame is the Carrier's own (A6): one translation carries each member to each, one affine map each frame to each (1:C2). Horizon: Z1, Z9. -/
+/-- p00197 — 20:A4, 00:A4. \textbf{Observation}: every observation is a registration by an embedded part (C4, A13) of $o<\Om$ states (A6): every reading identifies two members (25:D1, 5:C2) --- an incomplete projection --- and a complete reading needs the whole count. No frame is the Carrier's own (A6): one translation carries each member to each, one affine map each frame to each (1:C2). Horizon: Z1, Z9. -/
 theorem p00197 : (∀ {Ω o : Nat} [FRC.Pos Ω], o < Ω → ∀ (ρ : FRC.Shell Ω → Nat), (∀ (x : FRC.Shell Ω), ρ x < o) → ∃ x y, x ≠ y ∧ ρ x = ρ y) ∧ (∀ {Ω o : Nat} [FRC.Pos Ω] (ρ : FRC.Shell Ω → Nat), (∀ (x : FRC.Shell Ω), ρ x < o) → (∀ (x y : FRC.Shell Ω), ρ x = ρ y → x = y) → Ω ≤ o) ∧ ∀ {Ω : Nat} [FRC.Pos Ω] (x y : FRC.Shell Ω), ∃ t, x + t = y ∧ ∀ (t' : FRC.Shell Ω), x + t' = y → t' = t :=
   And.intro @FRC.Foundation.observer_part (And.intro @FRC.Foundation.complete_needs_whole (@FRC.Foundation.translation_torsor))
 -- end keys
@@ -20302,6 +20347,9 @@ theorem p20032 : (∀ {p : Nat} [FRC.Pos p] {g : FRC.Shell p} (r k : Nat) (x : F
 /-- p20043 — 20:E12, 00:Z10. On every shell $\F_\p\subset\F_{\p^2}$, with no hypothesis, the prime vector's spectral content is the constant mode and the nonterminal quarter-turn modes, the finite zeta vanishing on each (20:E12, 20:B4). Every mode of every vector lies on the self-dual line $\Tr=1$, an eigenvector of the scale-shift with a $(\p-1)$-th root of unity as eigenvalue: no off-line mode, $\Om$-blind. -/
 theorem p20043 : (∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → (∀ (k : Nat), (0 : Nat) < k → k < p - (1 : Nat) → FRC.Shell.sumRange (fun l => FRC.Shell.ofNat (l + (1 : Nat)) ^ k) (p - (1 : Nat)) = (0 : FRC.Shell p)) ∧ FRC.Shell.sumRange (fun l => FRC.Shell.ofNat (l + (1 : Nat)) ^ (p - (1 : Nat))) (p - (1 : Nat)) = (-1 : FRC.Shell p)) ∧ (∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → ∀ (v : Nat → FRC.Shell p) {j : Nat}, j < p - (1 : Nat) → v j = FRC.Shell.sumRange (fun k => FRC.Horizon.modeCoeff g v k * (g ^ j) ^ k) (p - (1 : Nat))) ∧ (∀ {p : Nat} [FRC.Pos p] {g : FRC.Shell p} (r k : Nat) (x : FRC.Shell p), (g ^ r * x) ^ k = (g ^ r) ^ k * x ^ k) ∧ (∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → ∀ (r k : Nat), ((g ^ r) ^ k) ^ (p - (1 : Nat)) = (1 : FRC.Shell p)) ∧ (∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → ∀ (r : Nat), FRC.Shell.Frame.natCount (fun x => x ≠ (0 : Nat) ∧ g ^ r * FRC.Shell.ofNat x = FRC.Shell.ofNat x) p = if r % (p - (1 : Nat)) = (0 : Nat) then p - (1 : Nat) else (0 : Nat)) ∧ (∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → ∀ (ν θ : FRC.Shell p), (FRC.Horizon.readout ν κ θ).trace = (1 : FRC.Shell p) ∧ (FRC.Horizon.readout ν κ θ).re = FRC.Shell.ofNat ((2 : Nat) * κ + (1 : Nat)) ∧ ∀ (θ' : FRC.Shell p), FRC.Horizon.readout ν κ θ = FRC.Horizon.readout ν κ θ' → θ = θ') ∧ ∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → ∀ (k : Nat), (1 : Nat) ≤ k → k ≤ p - (2 : Nat) → -g ^ k ≠ (0 : FRC.Shell p) ∧ -g ^ k ≠ (-1 : FRC.Shell p) :=
   And.intro @FRC.Horizon.zero_slot (And.intro @FRC.Horizon.mode_expansion (And.intro @FRC.Horizon.shift_power_character (And.intro @FRC.Horizon.eigenphase (And.intro @FRC.Horizon.shift_trace (And.intro @FRC.Horizon.readout_on_line (@FRC.Horizon.readout_slot_index))))))
+set_option linter.defProp false in
+/-- p20079 — 20:F7. \textbf{The closure of the heights.} A height is a residue on the cycle of the shell that reads it, the largest shell is the Carrier's and there is no height beyond its cycle (A2); no embedded Subject reads the cycle whole (A4). The hypothesis of the Carrier is a statement about the residues of its cycle, one clause per residue. -/
+def p20079 := And.intro @FRC.Horizon.closure (@FRC.Horizon.closure_lab)
 -- end keys
 
 end FRC.Ledger
@@ -20608,9 +20656,41 @@ end Ext
 @[reducible] def instDecForallLT (P : Nat → Prop) [DecidablePred P] (n : Nat) : Decidable (∀ m, m < n → P m) :=
   FRC.Shell.instDecForallLT P n
 
+/-- 20:F7 (Theorem closure), the foundation clauses: the wrap of the height reading and the return of the cycle
+(00:A5), Finitude (00:A2), Observation (00:A4). Lives in the horizon theme since 13 October 2026. -/
+theorem closure :
+    (∀ {p : Nat} [Pos p] (T : Nat), (ofNat (T + p) : Shell p) = ofNat T) ∧
+    (∀ {p : Nat} [Pos p], 2 ≤ p → ∀ y : Shell p, ∃ k, k < p ∧ FRC.Foundation.succIter (0 : Shell p) k = y) ∧
+    (∀ {U : Type} (Ω : Nat) [Pos Ω] (ρ : U → Nat), (∀ u, ρ u < Ω) →
+      ∃ ι : FRC.Foundation.Registered ρ → Shell Ω, ∀ a b, ι a = ι b → a = b) ∧
+    (∀ {Ω o : Nat} [Pos Ω], o < Ω → ∀ ρ : Shell Ω → Nat, (∀ x, ρ x < o) → ∃ x y : Shell Ω, x ≠ y ∧ ρ x = ρ y) ∧
+    (∀ {Ω o : Nat} [Pos Ω] (ρ : Shell Ω → Nat), (∀ x, ρ x < o) → (∀ x y, ρ x = ρ y → x = y) → Ω ≤ o) :=
+  FRC.Horizon.closure
+
+/-- 20:F7, the laboratory instances of the closure (`FRC.Horizon.closure_lab`). -/
+theorem closure_lab :
+    (3 * 3 < 13 ∧ 13 < 5 * 5 ∧ 13 % 4 = 1 ∧ FRC.Nat.isPrime 3 ∧ FRC.Nat.isPrime 5 ∧ FRC.Nat.isPrime 13 ∧
+      ∀ q, q < 5 → 3 < q → ¬ FRC.Nat.isPrime q) ∧
+    (13 * 13 < 233 ∧ 233 < 17 * 17 ∧ 233 % 4 = 1 ∧ FRC.Nat.isPrime 13 ∧ FRC.Nat.isPrime 17 ∧ FRC.Nat.isPrime 233 ∧
+      ∀ q, q < 17 → 13 < q → ¬ FRC.Nat.isPrime q) ∧
+    (173 * 173 < 30089 ∧ 30089 < 179 * 179 ∧ 30089 % 4 = 1 ∧ FRC.Nat.isPrime 173 ∧ FRC.Nat.isPrime 179 ∧
+      FRC.Nat.isPrime 30089 ∧ ∀ q, q < 179 → 173 < q → ¬ FRC.Nat.isPrime q) ∧
+    (1549 * 1549 < 2408561 ∧ 2408561 < 1553 * 1553 ∧ 2408561 % 4 = 1 ∧ FRC.Nat.isPrime 1549 ∧ FRC.Nat.isPrime 1553 ∧
+      FRC.Nat.isPrime 2408561 ∧ ∀ q, q < 1553 → 1549 < q → ¬ FRC.Nat.isPrime q) :=
+  FRC.Horizon.closure_lab
+
 end aliases
 
 -- Ledger predicates of 20-rh (generated by make_predicates.py from docs/20-rh/20-rh-ledger.json; edit the ledger, not this section)
+/-- 20:A2 (p00004) — Finitude: for any reading of capacity $R$ the registered Universe embeds in the shell of $R$ members, and among $R+1$ members two share a residue; the totality is finite, its cardinality $\Omega$. A theorem of the master ledger (00:A2), proved in the core, cited as the closure's first premise (F7). -/
+theorem p00004 : And (∀ {U : Type} (R : Nat) [FRC.Pos R] (ρ : U → Nat), (∀ (u : U), @LT.lt Nat instLTNat (ρ u) R) → @Exists (@FRC.Foundation.Registered U ρ → FRC.Shell R) fun ι => ∀ (a b : @FRC.Foundation.Registered U ρ), @Eq (FRC.Shell R) (ι a) (ι b) → @Eq (@FRC.Foundation.Registered U ρ) a b) (And (∀ {U : Type} (R : Nat) (ρ : U → Nat), (∀ (u : U), @LT.lt Nat instLTNat (ρ u) R) → ∀ (f : Nat → U), @Exists Nat fun i => @Exists Nat fun j => And (@LT.lt Nat instLTNat i (@HAdd.hAdd Nat Nat Nat (@instHAdd Nat instAddNat) R (@OfNat.ofNat Nat (nat_lit 1) (instOfNatNat (nat_lit 1))))) (And (@LT.lt Nat instLTNat j (@HAdd.hAdd Nat Nat Nat (@instHAdd Nat instAddNat) R (@OfNat.ofNat Nat (nat_lit 1) (instOfNatNat (nat_lit 1))))) (And (@Ne Nat i j) (@Eq Nat (ρ (f i)) (ρ (f j)))))) (∀ (s K : Nat), @LE.le Nat instLENat (@OfNat.ofNat Nat (nat_lit 2) (instOfNatNat (nat_lit 2))) s → ∀ {N : Nat} [FRC.Pos N] (ρ : FRC.Shell N → Nat), (∀ (x : FRC.Shell N), @LT.lt Nat instLTNat (ρ x) (FRC.Logic.records s K)) → (∀ (x y : FRC.Shell N), @Eq Nat (ρ x) (ρ y) → @Eq (FRC.Shell N) x y) → And (@LE.le Nat instLENat N (FRC.Logic.records s K)) (@LT.lt Nat instLTNat (FRC.Logic.records s K) (@HPow.hPow Nat Nat Nat (@instHPow Nat Nat (@instPowNat Nat instNatPowNat)) s (@HAdd.hAdd Nat Nat Nat (@instHAdd Nat instAddNat) K (@OfNat.ofNat Nat (nat_lit 1) (instOfNatNat (nat_lit 1)))))))) :=
+  @FRC.Ledger.p00004
+/-- 20:A3 (p00003) — Completeness: the registration of any totality is onto its registered Universe, so there is no outside and no host; two totalities each registered whole within the other have one count. A theorem of the master ledger (00:A3), proved in the core; the hypothesis of the Carrier is a statement about its own residues and nothing else. -/
+theorem p00003 : (∀ {U : Type} (ρ : U → Nat) (a : FRC.Foundation.Registered ρ), ∃ u, FRC.Foundation.register ρ u = a) ∧ ∀ (m n : Nat) [FRC.Pos m] [FRC.Pos n] (f : FRC.Shell m → FRC.Shell n), (∀ (x y : FRC.Shell m), f x = f y → x = y) → ∀ (g : FRC.Shell n → FRC.Shell m), (∀ (x y : FRC.Shell n), g x = g y → x = y) → m = n :=
+  @FRC.Ledger.p00003
+/-- 20:A4 (p00197) — Observation: every observation is a registration by an embedded part of $o<\Omega$ states; every reading identifies two members, and a complete reading needs the whole count; one translation carries each member to each. A theorem of the master ledger (00:A4), proved in the core, cited as the closure's second premise (F7) and behind the horizon (Z1). -/
+theorem p00197 : (∀ {Ω o : Nat} [FRC.Pos Ω], o < Ω → ∀ (ρ : FRC.Shell Ω → Nat), (∀ (x : FRC.Shell Ω), ρ x < o) → ∃ x y, x ≠ y ∧ ρ x = ρ y) ∧ (∀ {Ω o : Nat} [FRC.Pos Ω] (ρ : FRC.Shell Ω → Nat), (∀ (x : FRC.Shell Ω), ρ x < o) → (∀ (x y : FRC.Shell Ω), ρ x = ρ y → x = y) → Ω ≤ o) ∧ ∀ {Ω : Nat} [FRC.Pos Ω] (x y : FRC.Shell Ω), ∃ t, x + t = y ∧ ∀ (t' : FRC.Shell Ω), x + t' = y → t' = t :=
+  @FRC.Ledger.p00197
 /-- 20:B1 (p20008) — The two frames on one substrate: the Carrier chart $\F_\Omega$, held by no embedded observer, and the Subject $\Fp$ embedded with $\Omega\gg \p^{2}$; what they share is the quarter-turn core $Q_4$ and nothing else, on the laboratory pair $(13,233)$ the cycles $C_{12}$ and $C_{232}$ admit no projection ($12\nmid232$); hardness by register ($\p$-hard, $\Omega$-hard). -/
 theorem p20008 : (13 : Nat) * (13 : Nat) < (233 : Nat) ∧ (12 : Nat) % (4 : Nat) = (0 : Nat) ∧ (232 : Nat) % (4 : Nat) = (0 : Nat) ∧ (232 : Nat) % (3 : Nat) ≠ (0 : Nat) ∧ (5 : FRC.Shell (13 : Nat)) * (5 : FRC.Shell (13 : Nat)) = (-1 : FRC.Shell (13 : Nat)) ∧ (89 : FRC.Shell (233 : Nat)) * (89 : FRC.Shell (233 : Nat)) = (-1 : FRC.Shell (233 : Nat)) ∧ (232 : Nat) % (12 : Nat) ≠ (0 : Nat) ∧ (3 : Nat) * (3 : Nat) < (13 : Nat) ∧ (3 : Nat) * (3 : Nat) < (233 : Nat) :=
   @FRC.Ledger.p20008
@@ -20644,6 +20724,9 @@ theorem p20032 : (∀ {p : Nat} [FRC.Pos p] {g : FRC.Shell p} (r k : Nat) (x : F
 /-- 20:E12 (p20043) — \textbf{The shell theorem.} On every shell, with no hypothesis: (i) $v$ expands in the constant mode and the nonterminal modes of the quarter-turn meridian; (ii) every readout lies on $\Tr=1$, real part $2^{-1}=2\kp+1=-\pi$; (iii) the scale-shift has the modes as eigenvectors, eigenphases $2\pi j/(\p-1)$ independent of $v$. No off-line mode; true of every vector, the Davenport--Heilbronn vector included. -/
 theorem p20043 : (∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → (∀ (k : Nat), (0 : Nat) < k → k < p - (1 : Nat) → FRC.Shell.sumRange (fun l => FRC.Shell.ofNat (l + (1 : Nat)) ^ k) (p - (1 : Nat)) = (0 : FRC.Shell p)) ∧ FRC.Shell.sumRange (fun l => FRC.Shell.ofNat (l + (1 : Nat)) ^ (p - (1 : Nat))) (p - (1 : Nat)) = (-1 : FRC.Shell p)) ∧ (∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → ∀ (v : Nat → FRC.Shell p) {j : Nat}, j < p - (1 : Nat) → v j = FRC.Shell.sumRange (fun k => FRC.Horizon.modeCoeff g v k * (g ^ j) ^ k) (p - (1 : Nat))) ∧ (∀ {p : Nat} [FRC.Pos p] {g : FRC.Shell p} (r k : Nat) (x : FRC.Shell p), (g ^ r * x) ^ k = (g ^ r) ^ k * x ^ k) ∧ (∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → ∀ (r k : Nat), ((g ^ r) ^ k) ^ (p - (1 : Nat)) = (1 : FRC.Shell p)) ∧ (∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → ∀ (r : Nat), FRC.Shell.Frame.natCount (fun x => x ≠ (0 : Nat) ∧ g ^ r * FRC.Shell.ofNat x = FRC.Shell.ofNat x) p = if r % (p - (1 : Nat)) = (0 : Nat) then p - (1 : Nat) else (0 : Nat)) ∧ (∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → ∀ (ν θ : FRC.Shell p), (FRC.Horizon.readout ν κ θ).trace = (1 : FRC.Shell p) ∧ (FRC.Horizon.readout ν κ θ).re = FRC.Shell.ofNat ((2 : Nat) * κ + (1 : Nat)) ∧ ∀ (θ' : FRC.Shell p), FRC.Horizon.readout ν κ θ = FRC.Horizon.readout ν κ θ' → θ = θ') ∧ ∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → ∀ (k : Nat), (1 : Nat) ≤ k → k ≤ p - (2 : Nat) → -g ^ k ≠ (0 : FRC.Shell p) ∧ -g ^ k ≠ (-1 : FRC.Shell p) :=
   @FRC.Ledger.p20043
+set_option linter.defProp false in
+/-- 20:F7 (p20079) — \textbf{The closure of the heights.} A height is a residue on the cycle of the shell that reads it, the largest shell is the Carrier's and there is no height beyond its cycle (A2); no embedded Subject reads the cycle whole (A4). The hypothesis of the Carrier is a statement about the residues of its cycle, one clause per residue. -/
+def p20079 := @FRC.Ledger.p20079
 -- end ledger predicates
 
 end FRC.Rh

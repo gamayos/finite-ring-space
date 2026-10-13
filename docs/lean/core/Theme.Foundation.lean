@@ -142,7 +142,7 @@ theorem successor_cycle (h2 : 2 ≤ q) :
     exact absurd h1 (by decide)
   · rw [succIter_eq, ofNat_val, add_comm y, ← add_assoc, add_neg, zero_add]
 
-/-- A4 (Observation, first clause) — a bounded observer is a proper part: an observer with `o < Ω` states holds no injective
+/-- 20:A4, A4 (Observation, first clause) — a bounded observer is a proper part: an observer with `o < Ω` states holds no injective
 encoding of the Carrier's `Ω` points, and every reading `ρ` into its states identifies two distinct points (the
 pigeonhole, `FRC.Logic.no_mirror`; 25:D1, 5:C2). The two points are found by search. -/
 theorem observer_part {Ω o : Nat} [Pos Ω] (ho : o < Ω) (ρ : Shell Ω → Nat) (hρ : ∀ x, ρ x < o) :
@@ -173,14 +173,14 @@ theorem Registered.lt {U : Type} {R : Nat} {ρ : U → Nat} (hρ : ∀ u, ρ u <
 /-- The registration of the totality: each member to its residue. -/
 def register {U : Type} (ρ : U → Nat) (u : U) : Registered ρ := ⟨ρ u, u, rfl⟩
 
-/-- A2 — the registered Universe is finite: whatever the totality `U`, what a reading of capacity `R` registers of it
+/-- 20:A2, A2 — the registered Universe is finite: whatever the totality `U`, what a reading of capacity `R` registers of it
 embeds in the shell of `R` members. No finiteness of `U` is assumed; the bound is the reading's, a record being finite
 (29:C1). -/
 theorem registered_finite {U : Type} (R : Nat) [Pos R] (ρ : U → Nat) (hρ : ∀ u, ρ u < R) :
     ∃ ι : Registered ρ → Shell R, ∀ a b, ι a = ι b → a = b :=
   ⟨fun a => ofNat a.val, fun a b e => Subtype.ext (Poly.Frame.ofNat_inj_lt (Registered.lt hρ a) (Registered.lt hρ b) e)⟩
 
-/-- A2 — no reading registers an unlimited supply: among any `R + 1` members of the totality, a reading of capacity
+/-- 20:A2, A2 — no reading registers an unlimited supply: among any `R + 1` members of the totality, a reading of capacity
 `R` gives two the same residue, found by search (the pigeonhole `FRC.Logic.no_mirror`, 5:C2; the idleness of the
 unbounded supply, 29:C2). -/
 theorem no_unlimited_supply {U : Type} (R : Nat) (ρ : U → Nat) (hρ : ∀ u, ρ u < R) (f : Nat → U) :
@@ -195,13 +195,13 @@ theorem no_unlimited_supply {U : Type} (R : Nat) (ρ : U → Nat) (hρ : ∀ u, 
           | .inl hlt => absurd ⟨i, hi, j, hlt, e.symm⟩ hno
           | .inr hge' => Nat.le_antisymm hge' hge)).elim
 
-/-- A3 — whatever exists is registered within: the registration of any totality is onto its registered Universe (the
+/-- 20:A3, A3 — whatever exists is registered within: the registration of any totality is onto its registered Universe (the
 definition of `Registered` read back: every residue has a member). The row's "no outside, no host" is A8's and A1's,
 consumed by reference, not this theorem's: the conjunct holds on a shell read inside a larger host. -/
 theorem registration_onto {U : Type} (ρ : U → Nat) : ∀ a : Registered ρ, ∃ u, register ρ u = a
   | ⟨_, u, hu⟩ => ⟨u, Subtype.ext hu⟩
 
-/-- A4 (Observation, second clause) — a complete reading needs the whole count: a reading of the `Ω` points into `o` records that identifies no two
+/-- 20:A4, A4 (Observation, second clause) — a complete reading needs the whole count: a reading of the `Ω` points into `o` records that identifies no two
 points has `Ω ≤ o` (the contrapositive of `observer_part`). A reader that is not the whole reads incompletely. -/
 theorem complete_needs_whole {Ω o : Nat} [Pos Ω] (ρ : Shell Ω → Nat) (hρ : ∀ x, ρ x < o)
     (hinj : ∀ x y, ρ x = ρ y → x = y) : Ω ≤ o :=
@@ -210,7 +210,7 @@ theorem complete_needs_whole {Ω o : Nat} [Pos Ω] (ρ : Shell Ω → Nat) (hρ 
     | ⟨x, y, hxy, e⟩ => (hxy (hinj x y e)).elim
   | .inr hge => hge
 
-/-- A2 — the agent's bound, the row's instance at capacity `R = records s K` (29:C1): a shell read whole — injectively —
+/-- 20:A2, A2 — the agent's bound, the row's instance at capacity `R = records s K` (29:C1): a shell read whole — injectively —
 into the records of an agent of capacity `K` over `s ≥ 2` symbols has at most `records s K` members, fewer than
 `s^(K+1)` (`complete_needs_whole` at `o = records s K`, `records_lt`; 5:C2). The row's finitude clauses are
 `registered_finite` and `no_unlimited_supply` above; the structural cardinality Ω is A7's, consumed. -/
@@ -219,7 +219,7 @@ theorem agent_bound (s K : Nat) (hs : 2 ≤ s) {N : Nat} [Pos N] (ρ : Shell N �
     N ≤ FRC.Logic.records s K ∧ FRC.Logic.records s K < s ^ (K + 1) :=
   ⟨complete_needs_whole ρ hρ hinj, FRC.Logic.records_lt s hs K⟩
 
-/-- A3 — two totalities each registered whole within the other have one count: injections both ways between shells
+/-- 20:A3, A3 — two totalities each registered whole within the other have one count: injections both ways between shells
 force `m = n` (the pigeonhole `FRC.Logic.no_mirror`, 5:C2, both ways). With A6, one count is one Carrier. Silent
 on a host: a shell with more points registers a shell with fewer. -/
 theorem mutual_registration_count (m n : Nat) [Pos m] [Pos n]
@@ -232,7 +232,7 @@ theorem mutual_registration_count (m n : Nat) [Pos m] [Pos n]
       | .inr hge => hge
   Nat.le_antisymm (h1 f hf) (h1 g hg)
 
-/-- A4 (Observation, third clause) — the Carrier is a translation torsor (A6): exactly one translation carries each member to each. The origin
+/-- 20:A4, A4 (Observation, third clause) — the Carrier is a translation torsor (A6): exactly one translation carries each member to each. The origin
 is frame data: the shell's `0` is the chart's, and the translation carrying `0` to `x` makes `x` an origin as good;
 the affine frames are a torsor under the frame group (1:C2, `simply_transitive`). -/
 theorem translation_torsor {Ω : Nat} [Pos Ω] (x y : Shell Ω) :

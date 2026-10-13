@@ -616,8 +616,48 @@
   "script": "rh",
   "label": "any real multiset is the spectrum of a real-symmetric tridiagonal matrix (Lanczos on ten heights, floating point)",
   "ok": true,
-  "detail": "max|eig(J) \u2212 height| = 1.8e-14",
+  "detail": "max|eig(J) \u2212 height| = 1.4e-14",
   "kind": "[approx]"
+ },
+ {
+  "id": "A12",
+  "rows": "20:A2, 20:A4, 20:F7",
+  "block": "A",
+  "script": "rh",
+  "label": "closure of the heights on \u03a9 = 13: p* = 3 (3\u00b2 < \u03a9 < 5\u00b2), the cycle's 13 cells, an embedded Subject reads 3 of them; readings into 3 and 12 records collide",
+  "ok": true,
+  "detail": "collisions {3: (0, 3), 12: (0, 12)}; \u221a\u03a9 = 3, \u221ap* = 1",
+  "kind": "EXACT"
+ },
+ {
+  "id": "A12",
+  "rows": "20:A2, 20:A4, 20:F7",
+  "block": "A",
+  "script": "rh",
+  "label": "closure of the heights on \u03a9 = 233: p* = 13 (13\u00b2 < \u03a9 < 17\u00b2), the cycle's 233 cells, an embedded Subject reads 13 of them; readings into 13 and 232 records collide",
+  "ok": true,
+  "detail": "collisions {13: (0, 13), 232: (0, 232)}; \u221a\u03a9 = 15, \u221ap* = 3",
+  "kind": "EXACT"
+ },
+ {
+  "id": "A12",
+  "rows": "20:A2, 20:A4, 20:F7",
+  "block": "A",
+  "script": "rh",
+  "label": "closure of the heights on \u03a9 = 30089: p* = 173 (173\u00b2 < \u03a9 < 179\u00b2), the cycle's 30089 cells, an embedded Subject reads 173 of them; readings into 173 and 30088 records collide",
+  "ok": true,
+  "detail": "collisions {173: (0, 173), 30088: (0, 30088)}; \u221a\u03a9 = 173, \u221ap* = 13",
+  "kind": "EXACT"
+ },
+ {
+  "id": "A12",
+  "rows": "20:A2, 20:A4, 20:F7",
+  "block": "A",
+  "script": "rh",
+  "label": "closure of the heights on \u03a9 = 2408561: p* = 1549 (1549\u00b2 < \u03a9 < 1553\u00b2), the cycle's 2408561 cells, an embedded Subject reads 1549 of them; readings into 1549 and 2408560 records collide",
+  "ok": true,
+  "detail": "collisions {1549: (0, 1549), 2408560: (0, 2408560)}; \u221a\u03a9 = 1551, \u221ap* = 39",
+  "kind": "EXACT"
  },
  {
   "id": "B1",
@@ -706,7 +746,7 @@
   "script": "rh",
   "label": "Jacobi matrix of the corrected roots: real-symmetric tridiagonal; eig = roots to 1e-12; a, b as stated; heights to 3.4e-5",
   "ok": true,
-  "detail": "max|eig\u2212roots| = 1.4e-14; a[0..2] = 34.314, 31.021, 31.178; b[0] = 11.178",
+  "detail": "max|eig\u2212roots| = 1.8e-14; a[0..2] = 34.314, 31.021, 31.178; b[0] = 11.178",
   "kind": "[approx]"
  },
  {

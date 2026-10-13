@@ -5,7 +5,7 @@ Screen Reading" (Akhtman & Voether, 2026; Preprints doi 10.20944/preprints202606
 a_shell, b_deframe, c_primeside, c_gue, c_chi, d_classification, e_resonance merged, the three prime-side scripts as one block C).
 ========================================================================================================================
 
-One script, five blocks, 95 checks — 58 EXACT (integer-pinned), 34 [approx] (a floating-point observation against the value
+One script, five blocks, 99 checks — 62 EXACT (integer-pinned), 34 [approx] (a floating-point observation against the value
 the paper states, to a stated tolerance), 3 [chart] (a continuum reading of a finite object; notation.tex convention 6) —
 Python with numpy, scipy, mpmath, sympy and matplotlib (the blocks redraw the paper's numerical figures into figures/). Each
 check names the predicate(s) of the paper's ledger it witnesses (LEDGER; predicates cited as 20:XN), and the deciding check's
@@ -63,7 +63,7 @@ RESULTS = []
 # check witnesses. The ledger's source column cites these check ids in return.
 LEDGER = {
     "A1": "20:B4", "A2": "20:B5", "A3": "20:B6", "A4": "20:B8", "A5": "20:B9", "A6": "20:B10", "A6b": "20:B10", "A7": "20:E1, 20:E12, 20:E13",
-    "A7b": "20:E1, 20:E12, 20:E13", "A8": "20:E9", "A9": "20:B7", "A10": "20:B1", "A11": "20:B2",
+    "A7b": "20:E1, 20:E12, 20:E13", "A8": "20:E9", "A9": "20:B7", "A10": "20:B1", "A11": "20:B2", "A12": "20:A2, 20:A4, 20:F7",
     "B1": "20:D2", "B2": "20:D3", "B3": "20:B8", "B4": "20:D4",
     "C1": "20:E5", "C2": "20:E6", "C2b": "20:E6, 20:E8", "C2c": "20:E6", "C3": "20:E8", "C4": "20:E9", "C5": "20:E10", "C6": "20:E11", "C6b": "20:E3",
     "C7a": "20:E14, 20:E15", "C7b": "20:E15", "C7c": "20:E14, 20:E16",
@@ -82,7 +82,7 @@ BLOCK = {"A": "the shell theorem and the exact shell arithmetic (a_shell.py unti
 # cite it are corroboration, listed by predicate() from the records)
 PREDICATES = {
     "20:B1": "A10", "20:B2": "A11", "20:B4": "A1", "20:B5": "A2", "20:B6": "A3", "20:B7": "A9", "20:B8": "A4", "20:B9": "A5",
-    "20:B10": "A6", "20:B11": "E2a",
+    "20:B10": "A6", "20:B11": "E2a", "20:A2": "A12", "20:A4": "A12", "20:F7": "A12",
     "20:C2": "E1a", "20:C3": "E1c", "20:C4": "E3", "20:C6": "E4",
     "20:D2": "B1", "20:D3": "B2", "20:D4": "B4",
     "20:E1": "A7", "20:E3": "C6b", "20:E5": "C1", "20:E6": "C2", "20:E8": "C3", "20:E9": "C4", "20:E10": "C5", "20:E11": "C6",
@@ -389,9 +389,13 @@ class Timer:
 #   A11 Prop. coincide    frame coincidence below the horizon √p: residues, window products and primality
 #                         (trial division inside the window) agree between F_p and the Carrier chart F_Ω,
 #                         Ω the least prime ≡ 1 (mod 4) above p²
+#   A12 Thm. closure      the closure of the heights on the laboratory Carriers Ω = 13, 233, 30089, 2408561: the
+#                         largest embedded Subject p* = 3, 13, 173, 1549 (p*² < Ω < p'²), the cells of the cycle as its
+#                         residues, the embedded cycle shorter, the wrap of the height reading, the pigeonhole of
+#                         00:A2/00:A4 on the cells (rows A2, A4, F7)
 #
 # Shells: p = 13, 17, 29, 37, 41 in full (all p² points of F_{p²}); 173 for A1, A4, A6; 1009 and 10009 for A11.
-# Kinds: A1–A7, A6b, A9–A11 are integer arithmetic (EXACT); A7b and A8 use floating-point roots of unity and eigenvalues ([approx]).
+# Kinds: A1–A7, A6b, A9–A12 are integer arithmetic (EXACT); A7b and A8 use floating-point roots of unity and eigenvalues ([approx]).
 
 SHELLS = [13, 17, 29, 37, 41]
 BIG = 173
@@ -570,6 +574,32 @@ def block_A():
     ok = np.allclose(J, J.T) and np.max(np.abs(np.triu(J, 2))) == 0 and np.max(np.abs(ev - HEIGHTS[:10])) < 1e-11
     check("A8", "any real multiset is the spectrum of a real-symmetric tridiagonal matrix (Lanczos on ten heights, floating point)", ok,
           f"max|eig(J) − height| = {np.max(np.abs(ev - HEIGHTS[:10])):.1e}", kind="[approx]")
+
+    # A12 the closure of the heights (Thm. closure; rows A2, A4, F7), on the four laboratory Carriers Ω = 13, 233, 30089,
+    # 2408561: the largest embedded Subject p* with p*² < Ω < p'² (p' the next prime); the cells of a cycle are its residues
+    # 0..q−1 and a Subject of cardinality p reads the cells y < p, its own residues, so an embedded Subject's cycle is shorter
+    # than the Carrier's and the Carrier's top cell is read from labels up to √Ω, beyond every embedded window √p*; the
+    # wrap of the height reading, (T + Ω) ≡ T; the pigeonhole of 00:A2/00:A4 on the cells — a reading of the Ω cells into
+    # o < Ω records identifies two cells (found by search for o = p* and o = Ω − 1), and an injective reading needs o ≥ Ω
+    for Om in (13, 233, 30089, 2408561):
+        ps = int(sp.prevprime(math.isqrt(Om) + 1)); pn = int(sp.nextprime(ps))
+        ok = sp.isprime(Om) and Om % 4 == 1 and sp.isprime(ps) and sp.isprime(pn) and ps * ps < Om < pn * pn
+        ok &= all(not sp.isprime(q) for q in range(ps + 1, pn))            # p* the largest prime below √Ω
+        ok &= ps < Om and math.isqrt(ps) < math.isqrt(Om)                   # the embedded cycle shorter; the top cell's labels beyond √p*
+        ok &= all((T + Om) % Om == T % Om for T in (0, 1, ps, Om - 1, Om, 7 * Om + 3))   # the wrap of the height reading
+        collisions = {}
+        for o in (ps, Om - 1):
+            seen = {}
+            for y in range(Om):                                             # the cells of the Carrier's cycle, read into o records
+                r = y % o
+                if r in seen:
+                    collisions[o] = (seen[r], y); break
+                seen[r] = y
+            ok &= o in collisions and collisions[o][0] != collisions[o][1] and collisions[o][0] % o == collisions[o][1] % o
+        ok &= len({y for y in range(Om)}) == Om                             # the identity reading into Ω records is injective: Ω ≤ Ω
+        # 20:F7 (p20079)
+        check("A12", f"closure of the heights on Ω = {Om}: p* = {ps} ({ps}² < Ω < {pn}²), the cycle's {Om} cells, an embedded Subject reads {ps} of them; readings into {ps} and {Om - 1} records collide", ok,
+              f"collisions {collisions}; √Ω = {math.isqrt(Om)}, √p* = {math.isqrt(ps)}")
 
 # ======================================================================================================================
 # block B — b_deframe.py (until 24 September 2026), its former docstring:
