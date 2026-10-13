@@ -234,7 +234,7 @@ pre.lean .o, pre.lean .ow { color: var(--ink-soft); }                           
   pre.lean .m, pre.lean .mi, pre.lean .mf, pre.lean .mh, pre.lean .mo, pre.lean .mb { color: #f0a45d; }
   pre.lean .nb, pre.lean .bp { color: #82aaff; } pre.lean .nf, pre.lean .fm, pre.lean .nc, pre.lean .nn { color: #82aaff; }
 }
-.src .glyphs { display: flex; align-items: center; gap: .15rem; margin-top: .25rem; }
+.src .glyphs { display: flex; align-items: center; gap: .15rem; margin: 0 0 .25rem; }   /* the witnesses lead the Sources cell (13 October 2026) */
 img.runico { width: 16px; height: 16px; display: block; object-fit: contain; filter: invert(.78); }   /* the run glyphs: light on transparency, darkened on the light theme like the plain Lean glyph */
 img.runico.pysrc { filter: brightness(0) invert(.55); }   /* the python-source glyph, a white PNG: no verdict (a script cited whole) mid grey */
 img.runico.pyok, img.runico.pyfail, .wrap a.ico:hover img.runico.pyok, .wrap a.ico:hover img.runico.pyfail { filter: none; }   /* the python glyph in its verdict colour, drawn in the PNG (media/python-ok.png gold #a27900, media/python-fail.png red #c04a4a) as the Lean glyphs are: no filter chain, so every browser shows the colour of the count beside it (12 October 2026) */
