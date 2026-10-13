@@ -242,6 +242,18 @@ theorem vonMangoldt_moebius (m : ℕ) :
 
 end resonance
 
+section strip
+
+open ComplexConjugate
+
+/-- 20:D8 — 20-rh's name; the theorem is `FRC.Chart.zeros_in_strip`: a nontrivial zero of `ζ` lies in the open strip
+`0 < Re s < 1`, and `1 − s` and `s̄` are zeros. -/
+theorem zeros_in_strip {s : ℂ} (h0 : riemannZeta s = 0) (htriv : ¬∃ n : ℕ, s = -2 * (n + 1)) (h1 : s ≠ 1) :
+    0 < s.re ∧ s.re < 1 ∧ riemannZeta (1 - s) = 0 ∧ riemannZeta (conj s) = 0 :=
+  FRC.Chart.zeros_in_strip h0 htriv h1
+
+end strip
+
 section coincidence
 
 /-- 20:B2 — 20-rh's name; the theorem is `FRC.HorizonML.window_readback` (task LM36). -/
@@ -310,6 +322,9 @@ theorem p20020 : ∀ (m : ℕ), ArithmeticFunction.vonMangoldt m = ∑ d ∈ m.d
 /-- 20:C5 (p20023) — Mean-square flatness: with $r_j$ the normalised correlation of the mean-removed prime indicator with the nonconstant chart mode $\chi_j$, $\sum_{j\ne0}r_j^{2}=1$ exactly (Parseval), so the root-mean-square correlation is $1/\sqrt{\p-2}$. -/
 theorem p20023 : (∀ {n : ℕ} [NeZero n] (v : ZMod n → ℂ), ∑ j, Complex.normSq (FRC.Chart.coef v j) = ↑n * ∑ m, Complex.normSq (v m)) ∧ ∀ {n : ℕ} [NeZero n] (u : ZMod n → ℂ), ∑ m, u m = (0 : ℂ) → u ≠ (0 : ZMod n → ℂ) → ∑ j ∈ Finset.univ.erase (0 : ZMod n), Complex.normSq (FRC.Chart.coef u j) / (↑n * ∑ m, Complex.normSq (u m)) = (1 : ℝ) ∧ (∑ j ∈ Finset.univ.erase (0 : ZMod n), Complex.normSq (FRC.Chart.coef u j) / (↑n * ∑ m, Complex.normSq (u m))) / (↑n - (1 : ℝ)) = (1 : ℝ) / (↑n - (1 : ℝ)) :=
   @FRC.LedgerML.p20023
+set_option linter.defProp false in
+/-- 20:D8 (p20080) — The strip: the Euler product excludes zeros with real part at least one, and the functional equation confines the nontrivial zeros to the open strip in Klein-four orbits of size two on the line and four off it; the Davenport--Heilbronn vector, without the product, is not multiplicative and has an off-line zero. No core witness: the statement is analytic. -/
+def p20080 := @FRC.LedgerML.p20080
 set_option linter.defProp false in
 /-- 20:E1 (p20032) — The scale-evolution generator: on the shell the scale-shift $x\mapsto\gen^{\,r}x$ is a unitary permutation of $\Fx{\p}$ with the complex characters as eigenvectors; in the analytic chart [chart] the dilation group $U_r=e^{ir\Hh}$ has the self-adjoint generator $\Hh=-i(x\partial_x+\half)$ with generalised eigenfunctions $x^{-\bar\rho}$, $\rho=\half+i\gamma$, the symmetrizing $\half$ the half-turn of B8; the chart assignment is used nowhere as a shell identity. -/
 def p20032 := @FRC.LedgerML.p20032

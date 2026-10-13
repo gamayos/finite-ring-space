@@ -6280,6 +6280,102 @@ theorem closure_lab :
   · exact FRC.Nat.isPrime_of_bounded 1553 39 (by decide) (by decide) (by decide +kernel)
   · exact FRC.Nat.isPrime_of_bounded 2408561 1552 (by decide) (by decide) (by decide +kernel)
 
+/-! ## The finite negative control (20:D9; 13 October 2026) -/
+
+/-- 20:D9, the finite negative control: on `𝔽₁₃(√2)` (`η² = 2`, `2` a nonsquare, `2⁻¹ = 7`) the polynomial
+`P(X) = ((X − 2)² − 2)((X + 1)² − 2)` has exactly the four roots `2 ± η`, `−1 ± η`, of traces `4, 4, 11, 11` against the
+trace-one line's `1` (`Tr z = 1 ⟺ Re z = 7`), its root set closed under conjugation and under the half-turn `X ↦ 1 − X`:
+finitude, conjugation and the functional-equation reflection do not force roots onto the line. Decided by the kernel on
+all `169` elements. -/
+theorem negative_control13 :
+    (∀ k, k < 169 →
+      ((((⟨ofNat (k / 13), ofNat (k % 13)⟩ : Ext 13 2) + -Ext.ofShell 2) * ((⟨ofNat (k / 13), ofNat (k % 13)⟩ : Ext 13 2) + -Ext.ofShell 2) + -Ext.ofShell 2) *
+        (((⟨ofNat (k / 13), ofNat (k % 13)⟩ : Ext 13 2) + Ext.ofShell 1) * ((⟨ofNat (k / 13), ofNat (k % 13)⟩ : Ext 13 2) + Ext.ofShell 1) + -Ext.ofShell 2) = Ext.ofShell 0 ↔
+      (k = 2 * 13 + 1 ∨ k = 2 * 13 + 12 ∨ k = 12 * 13 + 1 ∨ k = 12 * 13 + 12))) ∧
+    (Ext.trace (⟨2, 1⟩ : Ext 13 2) = 4 ∧ Ext.trace (⟨2, 12⟩ : Ext 13 2) = 4 ∧
+      Ext.trace (⟨12, 1⟩ : Ext 13 2) = 11 ∧ Ext.trace (⟨12, 12⟩ : Ext 13 2) = 11) ∧
+    (∀ k, k < 169 → (Ext.trace (⟨ofNat (k / 13), ofNat (k % 13)⟩ : Ext 13 2) = 1 ↔ k / 13 = 7)) ∧
+    (Ext.conj (⟨2, 1⟩ : Ext 13 2) = ⟨2, 12⟩ ∧ Ext.conj (⟨12, 1⟩ : Ext 13 2) = ⟨12, 12⟩) ∧
+    (Ext.ofShell 1 + -(⟨2, 1⟩ : Ext 13 2) = ⟨12, 12⟩ ∧ Ext.ofShell 1 + -(⟨2, 12⟩ : Ext 13 2) = ⟨12, 1⟩) ∧
+    (∀ x : Nat, x < 13 → 0 < x → (ofNat x : Shell 13) * ofNat x ≠ 2) := by
+  decide +kernel
+
+
+/-! ## The cells of the cycle (20:D5; 13 October 2026): the two finite lemmas of the count identity -/
+
+section cells
+
+open FRC.Shell.Frame (sumTo)
+
+/-- Monotonicity of the finite sum under a pointwise bound. -/
+theorem sumTo_le (c n : Nat → Nat) : ∀ m, (∀ y, y < m → c y ≤ n y) → sumTo c m ≤ sumTo n m
+  | 0, _ => Nat.le_refl _
+  | m + 1, h => Nat.add_le_add (sumTo_le c n m fun y hy => h y (Nat.lt_succ_of_lt hy)) (h m (Nat.lt_succ_self m))
+
+/-- 20:D5, the cells: with `c y ≤ n y` on every cell `y < m` (the on-line count of the cell against its count), every
+cell is clean, `c y = n y`, exactly when the two sums over the cycle agree — a sum of non-negative differences vanishes
+only term by term. -/
+theorem cells_clean_iff_cycle (c n : Nat → Nat) : ∀ m, (∀ y, y < m → c y ≤ n y) →
+    ((∀ y, y < m → c y = n y) ↔ sumTo c m = sumTo n m)
+  | 0, _ => ⟨fun _ => rfl, fun _ y hy => absurd hy (Nat.not_lt_zero y)⟩
+  | m + 1, h =>
+    have ih := cells_clean_iff_cycle c n m fun y hy => h y (Nat.lt_succ_of_lt hy)
+    ⟨fun hall => by
+      show sumTo c m + c m = sumTo n m + n m
+      rw [ih.1 (fun y hy => hall y (Nat.lt_succ_of_lt hy)), hall m (Nat.lt_succ_self m)],
+     fun hsum y hy =>
+      have hs : sumTo c m + c m = sumTo n m + n m := hsum
+      have h1 := sumTo_le c n m fun y hy => h y (Nat.lt_succ_of_lt hy)
+      have h2 := h m (Nat.lt_succ_self m)
+      have hm : c m = n m := match Nat.lt_or_ge (c m) (n m) with
+        | .inl hlt => absurd hs (Nat.ne_of_lt (Nat.add_lt_add_of_le_of_lt h1 hlt))
+        | .inr hge => Nat.le_antisymm h2 hge
+      have hr : sumTo c m = sumTo n m := Nat.add_right_cancel (hm ▸ hs)
+      match Nat.lt_or_ge y m with
+      | .inl hlt => ih.2 hr y hlt
+      | .inr hge => (Nat.le_antisymm (Nat.le_of_lt_succ hy) hge) ▸ hm⟩
+
+/-- 20:D5, the cells: the number of points of a finite list that the involution fixes (`fixed z = true`). -/
+def fixedCount {α : Type} (fixed : α → Bool) : List α → Nat
+  | [] => 0
+  | a :: l => fixedCount fixed l + (match fixed a with | true => 1 | false => 0)
+
+theorem fixedCount_le {α : Type} (fixed : α → Bool) : ∀ l : List α, fixedCount fixed l ≤ l.length
+  | [] => Nat.le_refl 0
+  | a :: l => by
+    show fixedCount fixed l + (match fixed a with | true => 1 | false => 0) ≤ l.length + 1
+    cases fixed a with
+    | true => exact Nat.add_le_add (fixedCount_le fixed l) (Nat.le_refl 1)
+    | false => exact Nat.add_le_add (fixedCount_le fixed l) (Nat.zero_le 1)
+
+/-- 20:D5, the cells: a finite list of points with an involution (the reflection `s ↦ 1 − s̄`, say) has every point
+fixed exactly when the count of fixed points equals the count. -/
+theorem clean_iff_count {α : Type} (fixed : α → Bool) : ∀ l : List α,
+    ((∀ z, z ∈ l → fixed z = true) ↔ fixedCount fixed l = l.length)
+  | [] => ⟨fun _ => rfl, fun _ z hz => nomatch hz⟩
+  | a :: l =>
+    have ih := clean_iff_count fixed l
+    ⟨fun hall => by
+      have ha : fixed a = true := hall a (List.Mem.head l)
+      show fixedCount fixed l + (match fixed a with | true => 1 | false => 0) = l.length + 1
+      rw [ha, ih.1 fun z hz => hall z (List.Mem.tail a hz)],
+     fun hlen z hz => by
+      have hle := fixedCount_le fixed l
+      have hlen' : fixedCount fixed l + (match fixed a with | true => 1 | false => 0) = l.length + 1 := hlen
+      cases hfa : fixed a with
+      | true =>
+        rw [hfa] at hlen'
+        have := ih.2 (Nat.succ.inj hlen')
+        cases hz with
+        | head => exact hfa
+        | tail _ hz' => exact this z hz'
+      | false =>
+        rw [hfa] at hlen'
+        have h0 : fixedCount fixed l = l.length + 1 := hlen'
+        exact absurd (h0 ▸ hle) (Nat.not_succ_le_self _)⟩
+
+end cells
+
 end FRC.Horizon
 
 /-! inlined: FrcCore/Instances.lean -/
@@ -6352,7 +6448,7 @@ that every row carrying the key asserts, proved from the themes alone. The paper
 namespace FRC.Ledger
 
 -- Keys of the foundation theme (generated by make_keys.py from the ledgers' Lean bindings; edit the ledgers, not this file)
-/-- p00003 — 20:A3, 00:A3. \textbf{Completeness}: whatever exists is registered within --- the registration of any totality is onto its registered Universe (A8) --- so no outside (A8), no host (A1). Unique: two totalities each registered whole within the other have one count (5:C2 both ways), one count one Carrier (A6). No proper closed substructure (A10). Observers are parts within (A4). -/
+/-- p00003 — 20:A3, 00:A3. \textbf{Completeness of the totality}: whatever exists is registered within --- the registration of any totality is onto its registered Universe (A8) --- so no outside (A8), no host (A1). Unique: two totalities each registered whole within the other have one count (5:C2 both ways), one count one Carrier (A6). No proper closed substructure (A10). Observers are parts within (A4). -/
 theorem p00003 : (∀ {U : Type} (ρ : U → Nat) (a : FRC.Foundation.Registered ρ), ∃ u, FRC.Foundation.register ρ u = a) ∧ ∀ (m n : Nat) [FRC.Pos m] [FRC.Pos n] (f : FRC.Shell m → FRC.Shell n), (∀ (x y : FRC.Shell m), f x = f y → x = y) → ∀ (g : FRC.Shell n → FRC.Shell m), (∀ (x y : FRC.Shell n), g x = g y → x = y) → m = n :=
   And.intro @FRC.Foundation.registration_onto (@FRC.Foundation.mutual_registration_count)
 /-- p00004 — 20:A2, 00:A2. \textbf{Finitude}: the Universe is the totality of its registered manifestations (A8). For any totality and any reading of capacity $R$, the registered Universe embeds in the shell of $R$ members, and among any $R+1$ members two share a residue (5:C2, 29:C1, 29:C2): the Universe is finite, its structural cardinality $\Om$ (A7). -/
@@ -6370,7 +6466,7 @@ theorem p00164 : ∀ {p : Nat} [FRC.Pos p], FRC.Nat.isPrime p → ∃ g, (g ^ (p
 /-- p00188 — 00:A5. Counting closes by return: the successor $C_q:x\mapsto x{+}1\ (\mathrm{mod}\ q)$ on $q\ge2$ points is one $q$-cycle with no fixed point, so iteration is bounded and cyclic; its interpretation is A2's. -/
 theorem p00188 : ∀ {q : Nat} [FRC.Pos q], (2 : Nat) ≤ q → (∀ (x : FRC.Shell q), x + (1 : FRC.Shell q) ≠ x) ∧ (∀ (x : FRC.Shell q) (k : Nat), FRC.Foundation.succIter x k = x ↔ k % q = (0 : Nat)) ∧ ∀ (x y : FRC.Shell q), ∃ k, k < q ∧ FRC.Foundation.succIter x k = y :=
   @FRC.Foundation.successor_cycle
-/-- p00197 — 20:A4, 00:A4. \textbf{Observation}: every observation is a registration by an embedded part (C4, A13) of $o<\Om$ states (A6): every reading identifies two members (25:D1, 5:C2) --- an incomplete projection --- and a complete reading needs the whole count. No frame is the Carrier's own (A6): one translation carries each member to each, one affine map each frame to each (1:C2). Horizon: Z1, Z9. -/
+/-- p00197 — 20:A4, 00:A4. \textbf{Incompleteness of observation}: every observation is a registration by an embedded part (C4, A13) of cardinality $\p<\sqrt\Om$ (A6, B8): every reading identifies two members (25:D1, 5:C2) --- an incomplete projection, complete only at the whole count. No frame sees more: one translation carries each member to each, one affine map each frame to each (A6, 1:C2). Horizon: Z1, Z9. -/
 theorem p00197 : (∀ {Ω o : Nat} [FRC.Pos Ω], o < Ω → ∀ (ρ : FRC.Shell Ω → Nat), (∀ (x : FRC.Shell Ω), ρ x < o) → ∃ x y, x ≠ y ∧ ρ x = ρ y) ∧ (∀ {Ω o : Nat} [FRC.Pos Ω] (ρ : FRC.Shell Ω → Nat), (∀ (x : FRC.Shell Ω), ρ x < o) → (∀ (x y : FRC.Shell Ω), ρ x = ρ y → x = y) → Ω ≤ o) ∧ ∀ {Ω : Nat} [FRC.Pos Ω] (x y : FRC.Shell Ω), ∃ t, x + t = y ∧ ∀ (t' : FRC.Shell Ω), x + t' = y → t' = t :=
   And.intro @FRC.Foundation.observer_part (And.intro @FRC.Foundation.complete_needs_whole (@FRC.Foundation.translation_torsor))
 -- end keys
@@ -6417,6 +6513,9 @@ def p20016 := And.intro @FRC.Horizon.klein_four (And.intro @FRC.Extension.Ext.fi
 /-- p20017 — 20:B10. The Subject constants on the shell: $\pi=2\kp$, $2\pi\equiv-1$, $\im=\gen^{-\kp}$, $\im^{2}\equiv-1$, $\E=\gen^{\,\im}$ on the odd lift, $\gen^{\,\pi}\equiv-1$, $\E^{\,\im\pi}\equiv-1$; on $\F_{13}$: $\gen=2$, $\im=5$, $\E=6$, $\pi=6$. -/
 theorem p20017 : (∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → FRC.Shell.ofNat ((2 : Nat) * FRC.Shell.Frame.halfPeriod κ) = (-1 : FRC.Shell p) ∧ g ^ ((3 : Nat) * κ) = FRC.Shell.Frame.quarterTurn g κ ∧ FRC.Shell.Frame.quarterTurn g κ * FRC.Shell.Frame.quarterTurn g κ = (-1 : FRC.Shell p) ∧ g ^ ((2 : Nat) * κ) = (-1 : FRC.Shell p) ∧ ∀ (m : Nat), m % (2 : Nat) = (1 : Nat) → (g ^ m) ^ (m * ((2 : Nat) * κ)) = (-1 : FRC.Shell p)) ∧ ((2 : FRC.Shell (13 : Nat)) * (6 : FRC.Shell (13 : Nat)) = (-1 : FRC.Shell (13 : Nat)) ∧ (2 : FRC.Shell (13 : Nat)) ^ (9 : Nat) = (5 : FRC.Shell (13 : Nat)) ∧ FRC.Shell.Frame.quarterTurn (2 : FRC.Shell (13 : Nat)) (3 : Nat) = (5 : FRC.Shell (13 : Nat)) ∧ (5 : FRC.Shell (13 : Nat)) * (5 : FRC.Shell (13 : Nat)) = (-1 : FRC.Shell (13 : Nat)) ∧ (2 : FRC.Shell (13 : Nat)) ^ (5 : Nat) = (6 : FRC.Shell (13 : Nat)) ∧ (2 : FRC.Shell (13 : Nat)) ^ (6 : Nat) = (-1 : FRC.Shell (13 : Nat)) ∧ (6 : FRC.Shell (13 : Nat)) ^ ((5 : Nat) * (6 : Nat)) = (-1 : FRC.Shell (13 : Nat))) ∧ FRC.Shell.Frame (13 : Nat) (3 : Nat) (2 : FRC.Shell (13 : Nat)) :=
   And.intro @FRC.Horizon.subject_constants (And.intro @FRC.Horizon.constants13 (@FRC.Shell.frame13))
+/-- p20029 — 20:D5. The cells: the heights of a Carrier's cycle are its residues, residue $y$ the cell from $2\pi y$ to $2\pi(y+1)$; a cell is clean when its zeros lie on the line, which Turing's count decides from the labels below $\sqrt{y+1}$, and passes when the frame's reading certifies it. The hypothesis of the Carrier: every residue has a clean cell. -/
+theorem p20029 : (∀ {α : Type} (fixed : α → Bool) (l : List α), (∀ (z : α), z ∈ l → fixed z = true) ↔ FRC.Horizon.fixedCount fixed l = l.length) ∧ ∀ (c n : Nat → Nat) (m : Nat), (∀ (y : Nat), y < m → c y ≤ n y) → ((∀ (y : Nat), y < m → c y = n y) ↔ FRC.Shell.Frame.sumTo c m = FRC.Shell.Frame.sumTo n m) :=
+  And.intro @FRC.Horizon.clean_iff_count (@FRC.Horizon.cells_clean_iff_cycle)
 /-- p20032 — 20:E1. The scale-evolution generator: on the shell the scale-shift $x\mapsto\gen^{\,r}x$ is a unitary permutation of $\Fx{\p}$ with the complex characters as eigenvectors; in the analytic chart [chart] the dilation group $U_r=e^{ir\Hh}$ has the self-adjoint generator $\Hh=-i(x\partial_x+\half)$ with generalised eigenfunctions $x^{-\bar\rho}$, $\rho=\half+i\gamma$, the symmetrizing $\half$ the half-turn of B8; the chart assignment is used nowhere as a shell identity. -/
 theorem p20032 : (∀ {p : Nat} [FRC.Pos p] {g : FRC.Shell p} (r k : Nat) (x : FRC.Shell p), (g ^ r * x) ^ k = (g ^ r) ^ k * x ^ k) ∧ ∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → ∀ (r : Nat), FRC.Shell.Frame.natCount (fun x => x ≠ (0 : Nat) ∧ g ^ r * FRC.Shell.ofNat x = FRC.Shell.ofNat x) p = if r % (p - (1 : Nat)) = (0 : Nat) then p - (1 : Nat) else (0 : Nat) :=
   And.intro @FRC.Horizon.shift_power_character (@FRC.Horizon.shift_trace)
@@ -6426,6 +6525,9 @@ theorem p20043 : (∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Sh
 set_option linter.defProp false in
 /-- p20079 — 20:F7. \textbf{The closure of the heights.} A height is a residue on the cycle of the shell that reads it, the largest shell is the Carrier's and there is no height beyond its cycle (A2); no embedded Subject reads the cycle whole (A4). The hypothesis of the Carrier is a statement about the residues of its cycle, one clause per residue. -/
 def p20079 := And.intro @FRC.Horizon.closure (@FRC.Horizon.closure_lab)
+set_option linter.defProp false in
+/-- p20083 — 20:D9. The finite negative control: on $\F_{13}(\sqrt2)$ the polynomial $((X-2)^{2}-2)((X+1)^{2}-2)$ has exactly the roots $2\pm\eta$, $-1\pm\eta$, of traces $4$, $4$, $11$, $11$ against the line's $1$, the root set closed under conjugation and under the half-turn; finitude, conjugation and the reflection force no root onto the line. -/
+def p20083 := @FRC.Horizon.negative_control13
 -- end keys
 
 end FRC.Ledger
@@ -6794,6 +6896,12 @@ def p20016 := @FRC.Ledger.p20016
 /-- 20:B10 (p20017) — The Subject constants on the shell: $\pi=2\kp$, $2\pi\equiv-1$, $\im=\gen^{-\kp}$, $\im^{2}\equiv-1$, $\E=\gen^{\,\im}$ on the odd lift, $\gen^{\,\pi}\equiv-1$, $\E^{\,\im\pi}\equiv-1$; on $\F_{13}$: $\gen=2$, $\im=5$, $\E=6$, $\pi=6$. -/
 theorem p20017 : (∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → FRC.Shell.ofNat ((2 : Nat) * FRC.Shell.Frame.halfPeriod κ) = (-1 : FRC.Shell p) ∧ g ^ ((3 : Nat) * κ) = FRC.Shell.Frame.quarterTurn g κ ∧ FRC.Shell.Frame.quarterTurn g κ * FRC.Shell.Frame.quarterTurn g κ = (-1 : FRC.Shell p) ∧ g ^ ((2 : Nat) * κ) = (-1 : FRC.Shell p) ∧ ∀ (m : Nat), m % (2 : Nat) = (1 : Nat) → (g ^ m) ^ (m * ((2 : Nat) * κ)) = (-1 : FRC.Shell p)) ∧ ((2 : FRC.Shell (13 : Nat)) * (6 : FRC.Shell (13 : Nat)) = (-1 : FRC.Shell (13 : Nat)) ∧ (2 : FRC.Shell (13 : Nat)) ^ (9 : Nat) = (5 : FRC.Shell (13 : Nat)) ∧ FRC.Shell.Frame.quarterTurn (2 : FRC.Shell (13 : Nat)) (3 : Nat) = (5 : FRC.Shell (13 : Nat)) ∧ (5 : FRC.Shell (13 : Nat)) * (5 : FRC.Shell (13 : Nat)) = (-1 : FRC.Shell (13 : Nat)) ∧ (2 : FRC.Shell (13 : Nat)) ^ (5 : Nat) = (6 : FRC.Shell (13 : Nat)) ∧ (2 : FRC.Shell (13 : Nat)) ^ (6 : Nat) = (-1 : FRC.Shell (13 : Nat)) ∧ (6 : FRC.Shell (13 : Nat)) ^ ((5 : Nat) * (6 : Nat)) = (-1 : FRC.Shell (13 : Nat))) ∧ FRC.Shell.Frame (13 : Nat) (3 : Nat) (2 : FRC.Shell (13 : Nat)) :=
   @FRC.Ledger.p20017
+/-- 20:D5 (p20029) — The cells: the heights of a Carrier's cycle are its residues, residue $y$ the cell from $2\pi y$ to $2\pi(y+1)$; a cell is clean when its zeros lie on the line, which Turing's count decides from the labels below $\sqrt{y+1}$, and passes when the frame's reading certifies it. The hypothesis of the Carrier: every residue has a clean cell. -/
+theorem p20029 : (∀ {α : Type} (fixed : α → Bool) (l : List α), (∀ (z : α), z ∈ l → fixed z = true) ↔ FRC.Horizon.fixedCount fixed l = l.length) ∧ ∀ (c n : Nat → Nat) (m : Nat), (∀ (y : Nat), y < m → c y ≤ n y) → ((∀ (y : Nat), y < m → c y = n y) ↔ FRC.Shell.Frame.sumTo c m = FRC.Shell.Frame.sumTo n m) :=
+  @FRC.Ledger.p20029
+set_option linter.defProp false in
+/-- 20:D9 (p20083) — The finite negative control: on $\F_{13}(\sqrt2)$ the polynomial $((X-2)^{2}-2)((X+1)^{2}-2)$ has exactly the roots $2\pm\eta$, $-1\pm\eta$, of traces $4$, $4$, $11$, $11$ against the line's $1$, the root set closed under conjugation and under the half-turn; finitude, conjugation and the reflection force no root onto the line. -/
+def p20083 := @FRC.Ledger.p20083
 /-- 20:E1 (p20032) — The scale-evolution generator: on the shell the scale-shift $x\mapsto\gen^{\,r}x$ is a unitary permutation of $\Fx{\p}$ with the complex characters as eigenvectors; in the analytic chart [chart] the dilation group $U_r=e^{ir\Hh}$ has the self-adjoint generator $\Hh=-i(x\partial_x+\half)$ with generalised eigenfunctions $x^{-\bar\rho}$, $\rho=\half+i\gamma$, the symmetrizing $\half$ the half-turn of B8; the chart assignment is used nowhere as a shell identity. -/
 theorem p20032 : (∀ {p : Nat} [FRC.Pos p] {g : FRC.Shell p} (r k : Nat) (x : FRC.Shell p), (g ^ r * x) ^ k = (g ^ r) ^ k * x ^ k) ∧ ∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → ∀ (r : Nat), FRC.Shell.Frame.natCount (fun x => x ≠ (0 : Nat) ∧ g ^ r * FRC.Shell.ofNat x = FRC.Shell.ofNat x) p = if r % (p - (1 : Nat)) = (0 : Nat) then p - (1 : Nat) else (0 : Nat) :=
   @FRC.Ledger.p20032
@@ -6820,6 +6928,8 @@ end FRC.Rh
 #print axioms FRC.Rh.p20015
 #print axioms FRC.Rh.p20016
 #print axioms FRC.Rh.p20017
+#print axioms FRC.Rh.p20029
+#print axioms FRC.Rh.p20083
 #print axioms FRC.Rh.p20032
 #print axioms FRC.Rh.p20043
 #print axioms FRC.Rh.p20079

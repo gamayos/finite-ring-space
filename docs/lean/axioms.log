@@ -862,6 +862,7 @@
 'FRC.LedgerML.p20032' depends on axioms: [propext, Classical.choice, Quot.sound]
 'FRC.LedgerML.p20043' depends on axioms: [propext, Classical.choice, Quot.sound]
 'FRC.LedgerML.p20044' depends on axioms: [propext, Classical.choice, Quot.sound]
+'FRC.LedgerML.p20080' depends on axioms: [propext, Classical.choice, Quot.sound]
 'FRC.LedgerML.p21016' depends on axioms: [propext, Classical.choice, Quot.sound]
 'FRC.LedgerML.p21019' depends on axioms: [propext, Classical.choice, Quot.sound]
 'FRC.LedgerML.p21020' depends on axioms: [propext, Classical.choice, Quot.sound]
@@ -1007,6 +1008,7 @@
 'FRC.Rh.chi_parseval' depends on axioms: [propext, Classical.choice, Quot.sound]
 'FRC.Rh.flatness' depends on axioms: [propext, Classical.choice, Quot.sound]
 'FRC.Rh.vonMangoldt_moebius' depends on axioms: [propext, Classical.choice, Quot.sound]
+'FRC.Rh.zeros_in_strip' depends on axioms: [propext, Classical.choice, Quot.sound]
 'FRC.Rh.window_readback' depends on axioms: [propext, Quot.sound]
 'FRC.Rh.prime_iff_window_irreducible' depends on axioms: [propext, Quot.sound]
 'FRC.Rh.sqrt_sq_lt_prime' depends on axioms: [propext, Classical.choice, Quot.sound]
@@ -1023,6 +1025,7 @@
 'FRC.Rh.p20017' depends on axioms: [propext, Classical.choice, Quot.sound]
 'FRC.Rh.p20020' depends on axioms: [propext, Classical.choice, Quot.sound]
 'FRC.Rh.p20023' depends on axioms: [propext, Classical.choice, Quot.sound]
+'FRC.Rh.p20080' depends on axioms: [propext, Classical.choice, Quot.sound]
 'FRC.Rh.p20032' depends on axioms: [propext, Classical.choice, Quot.sound]
 'FRC.Rh.p20043' depends on axioms: [propext, Classical.choice, Quot.sound]
 'FRC.Rh.p20044' depends on axioms: [propext, Classical.choice, Quot.sound]
@@ -1069,6 +1072,8 @@
 'FRC.Chart.flatness' depends on axioms: [propext, Classical.choice, Quot.sound]
 'FRC.Chart.character_eigen' depends on axioms: [propext, Classical.choice, Quot.sound]
 'FRC.Chart.vonMangoldt_moebius' depends on axioms: [propext, Classical.choice, Quot.sound]
+'FRC.Chart.zero_re_nonpos_trivial' depends on axioms: [propext, Classical.choice, Quot.sound]
+'FRC.Chart.zeros_in_strip' depends on axioms: [propext, Classical.choice, Quot.sound]
 'FRC.Extension.Ext.zero_re' does not depend on any axioms
 'FRC.Extension.Ext.zero_im' does not depend on any axioms
 'FRC.Extension.Ext.one_re' does not depend on any axioms

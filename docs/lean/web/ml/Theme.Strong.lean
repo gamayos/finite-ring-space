@@ -551,6 +551,81 @@ theorem vonMangoldt_moebius (m : ℕ) :
 
 end resonance
 
+/-! ## The strip (20:D8): the Euler product excludes zeros with real part at least one, and the functional equation
+confines the nontrivial zeros to the open strip, in orbits of the Klein four-group `s ↦ 1 − s`, `s ↦ s̄` (13 October 2026). -/
+section strip
+
+open ComplexConjugate
+
+/-- A zero of `ζ` with real part at most zero is a trivial zero `−2(n+1)`: at `s' = 1 − s` the functional equation reads
+`ζ s = 2 (2π)^{−s'} Γ(s') cos(π s'/2) ζ(s')` with `Re s' ≥ 1`, where `ζ(s') ≠ 0` (the Euler product), so `cos(π s'/2) = 0`,
+`s'` an odd integer and `s` an even integer `≤ 0`; `s = 0` is excluded by `ζ 0 = −1/2`. -/
+theorem zero_re_nonpos_trivial {s : ℂ} (h0 : riemannZeta s = 0) (hre : s.re ≤ 0) :
+    ∃ n : ℕ, s = -2 * (n + 1) := by
+  have hs0 : s ≠ 0 := fun h => by rw [h, riemannZeta_zero] at h0; norm_num at h0
+  set s' := 1 - s with hs'
+  have hre' : 1 ≤ s'.re := by simp only [hs', Complex.sub_re, Complex.one_re]; linarith
+  have hne : ∀ n : ℕ, s' ≠ -n := fun n h => by
+    have := congrArg Complex.re h
+    simp only [Complex.neg_re, Complex.natCast_re] at this
+    have : (0 : ℝ) ≤ n := Nat.cast_nonneg n
+    linarith
+  have hne1 : s' ≠ 1 := fun h => hs0 (by rw [hs'] at h; linear_combination -h)
+  have hfe := riemannZeta_one_sub hne hne1
+  have h1s : 1 - s' = s := by rw [hs']; ring
+  rw [h1s, h0] at hfe
+  have hz : riemannZeta s' ≠ 0 := riemannZeta_ne_zero_of_one_le_re hre'
+  have hΓ : Complex.Gamma s' ≠ 0 := Complex.Gamma_ne_zero_of_re_pos (by linarith)
+  have hpow : (2 * (Real.pi : ℂ)) ^ (-s') ≠ 0 := by
+    rw [Complex.cpow_ne_zero_iff]; left
+    exact mul_ne_zero two_ne_zero (Complex.ofReal_ne_zero.2 Real.pi_ne_zero)
+  have hcos : Complex.cos ((Real.pi : ℂ) * s' / 2) = 0 := by
+    have h := hfe.symm
+    simp only [mul_eq_zero, two_ne_zero, false_or, hpow, hΓ, hz, or_false] at h
+    exact h
+  obtain ⟨k, hk⟩ := Complex.cos_eq_zero_iff.1 hcos
+  have hπ : (Real.pi : ℂ) ≠ 0 := Complex.ofReal_ne_zero.2 Real.pi_ne_zero
+  have hs'k : s' = 2 * k + 1 := by
+    have : (Real.pi : ℂ) * s' = (Real.pi : ℂ) * (2 * k + 1) := by linear_combination 2 * hk
+    exact mul_left_cancel₀ hπ this
+  have hsk : s = -2 * k := by rw [← h1s, hs'k]; ring
+  have hk0 : 0 ≤ k := by
+    have := congrArg Complex.re hsk
+    simp only [neg_mul, Complex.neg_re, Complex.mul_re, Complex.re_ofNat, Complex.im_ofNat, Complex.intCast_re, Complex.intCast_im, mul_zero, sub_zero] at this
+    have : (0 : ℝ) ≤ k := by linarith
+    exact_mod_cast this
+  have hk1 : k ≠ 0 := fun h => hs0 (by rw [hsk, h]; simp)
+  refine ⟨(k - 1).toNat, ?_⟩
+  have hk1' : 1 ≤ k := by omega
+  have : ((k - 1).toNat : ℤ) = k - 1 := Int.toNat_of_nonneg (by omega)
+  rw [hsk]
+  have hcast : ((((k - 1).toNat : ℕ) : ℂ)) = (k : ℂ) - 1 := by
+    rw [← Int.cast_natCast, this]; push_cast; ring
+  rw [hcast]; ring
+
+/-- 20:D8, the strip: a nontrivial zero of `ζ` lies in the open strip `0 < Re s < 1`, and its Klein-four orbit under
+`s ↦ 1 − s` and `s ↦ s̄` consists of zeros: `Re s < 1` by the Euler product (`riemannZeta_ne_zero_of_one_le_re`),
+`0 < Re s` by the functional equation with the Euler product on the reflected side, `ζ(1 − s) = 0` by the functional
+equation (`riemannZeta_one_sub`) and `ζ(s̄) = 0` by `riemannZeta_conj`. -/
+theorem zeros_in_strip {s : ℂ} (h0 : riemannZeta s = 0) (htriv : ¬∃ n : ℕ, s = -2 * (n + 1)) (h1 : s ≠ 1) :
+    0 < s.re ∧ s.re < 1 ∧ riemannZeta (1 - s) = 0 ∧ riemannZeta (conj s) = 0 := by
+  have hlt : s.re < 1 := by
+    by_contra h
+    exact riemannZeta_ne_zero_of_one_le_re (not_lt.1 h) h0
+  have hpos : 0 < s.re := by
+    by_contra h
+    exact htriv (zero_re_nonpos_trivial h0 (not_lt.1 h))
+  refine ⟨hpos, hlt, ?_, ?_⟩
+  · have hne : ∀ n : ℕ, s ≠ -n := fun n h => by
+      have := congrArg Complex.re h
+      simp only [Complex.neg_re, Complex.natCast_re] at this
+      have : (0 : ℝ) ≤ n := Nat.cast_nonneg n
+      linarith
+    rw [riemannZeta_one_sub hne h1, h0, mul_zero]
+  · rw [riemannZeta_conj, h0, map_zero]
+
+end strip
+
 end FRC.Chart
 
 /-! FrcLedger/Theme.Strong.lean -/

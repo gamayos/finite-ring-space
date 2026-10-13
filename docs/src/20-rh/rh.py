@@ -5,7 +5,7 @@ Screen Reading" (Akhtman & Voether, 2026; Preprints doi 10.20944/preprints202606
 a_shell, b_deframe, c_primeside, c_gue, c_chi, d_classification, e_resonance merged, the three prime-side scripts as one block C).
 ========================================================================================================================
 
-One script, five blocks, 99 checks — 62 EXACT (integer-pinned), 34 [approx] (a floating-point observation against the value
+One script, five blocks, 104 checks — 63 EXACT (integer-pinned), 38 [approx] (a floating-point observation against the value
 the paper states, to a stated tolerance), 3 [chart] (a continuum reading of a finite object; notation.tex convention 6) —
 Python with numpy, scipy, mpmath, sympy and matplotlib (the blocks redraw the paper's numerical figures into figures/). Each
 check names the predicate(s) of the paper's ledger it witnesses (LEDGER; predicates cited as 20:XN), and the deciding check's
@@ -69,6 +69,7 @@ LEDGER = {
     "C7a": "20:E14, 20:E15", "C7b": "20:E15", "C7c": "20:E14, 20:E16",
     "D1": "20:F1", "D2a": "20:F3", "D2b": "20:F3", "D2c": "20:F4", "D2d": "20:F4", "D2e": "20:F5",
     "D2f": "20:F5, 20:F8", "D2g": "20:F4, 20:F8", "D3": "20:F8", "D4": "20:F1",
+    "D6a": "20:D8", "D6b": "20:D8", "D6c": "20:D9", "D7a": "20:D5", "D7b": "20:D5",
     "E1a": "20:C2", "E1b": "20:C2", "E1c": "20:C3", "E2a": "20:B11", "E2b": "20:B11", "E3": "20:C4", "E4": "20:C6",
 }
 
@@ -87,7 +88,7 @@ PREDICATES = {
     "20:D2": "B1", "20:D3": "B2", "20:D4": "B4",
     "20:E1": "A7", "20:E3": "C6b", "20:E5": "C1", "20:E6": "C2", "20:E8": "C3", "20:E9": "C4", "20:E10": "C5", "20:E11": "C6",
     "20:E12": "A7", "20:E13": "A7b", "20:E14": "C7a", "20:E15": "C7a", "20:E16": "C7c",
-    "20:F1": "D1", "20:F3": "D2a", "20:F4": "D2c", "20:F5": "D2e", "20:F8": "D2f",
+    "20:F1": "D1", "20:F3": "D2a", "20:F4": "D2c", "20:F5": "D2e", "20:F8": "D2f", "20:D8": "D6a", "20:D9": "D6c", "20:D5": "D7a",
 }
 _RAN = set()                                            # blocks already run in this session (predicate() runs each once)
 
@@ -1491,6 +1492,79 @@ def block_D():
     h1, l1 = ax[2].get_legend_handles_labels(); h2, l2 = ax2.get_legend_handles_labels(); ax[2].legend(h1 + h2, l1 + l2, fontsize=7.5, loc="upper center", bbox_to_anchor=(0.5, -0.17), ncol=2)
     plt.tight_layout(); plt.savefig(f"{FIGDIR}/fig_dh.pdf", bbox_inches="tight"); plt.savefig(f"{FIGDIR}/fig_dh.png", dpi=110, bbox_inches="tight"); plt.close()
     print(f"    wrote {FIGDIR}/fig_dh.pdf")
+
+    # ---------------- D6: the strip (Thm. strip, row D8) and the finite negative control (row D9); 13 October 2026
+    # D6a the Davenport–Heilbronn zero off the line and its Klein-four orbit: f(ρ) = 0 at ρ = 0.808517182457 + 85.6993484854 i
+    # (A8), f(1 − ρ) = 0 and f(ρ̄) = 0 (the functional equation and the reality of the coefficients), 0 < Re ρ < 1, Re ρ ≠ ½;
+    # for ζ the strip is a theorem (Mathlib, Thm. strip): ζ(s) ≠ 0 for Re s ≥ 1, checked here at four points as a sanity reading
+    mp.mp.dps = 20
+    rho = mp.mpc("0.808517182457", "85.6993484854")
+    vals = [abs(pair_values(s)[1]) for s in (rho, 1 - rho, mp.conj(rho))]
+    zeta_right = [abs(mp.zeta(s)) for s in (mp.mpf(1) + 20j, mp.mpf(2), mp.mpc(1, 85.7), mp.mpc(1.5, 1000))]
+    ok = all(v < mp.mpf(10) ** -9 for v in vals) and 0 < rho.real < 1 and abs(rho.real - mp.mpf(1) / 2) > 0.3 and all(z > 0.1 for z in zeta_right)
+    # 20:D8 (p20080)
+    check("D6a", "the strip: the DH zero ρ = 0.8085 + 85.699 i has 0 < Re ρ < 1 off the line, with f(1 − ρ) = f(ρ̄) = 0 (the Klein-four orbit); ζ ≠ 0 on four points with Re s ≥ 1", ok,
+          f"|f| at ρ, 1−ρ, ρ̄ = {[float(v) for v in vals]}; |ζ| on Re s ≥ 1: min {float(min(zeta_right)):.3f}", kind="[approx]")
+    # D6b the DH prime vector: Λ_f from the divisor recursion is supported outside the prime powers, and a(n) is not multiplicative
+    Lf = dh_lambda(40)
+    supp = [n for n in range(2, 41) if abs(Lf[n]) > 1e-12]
+    pp = {n for n in range(2, 41) if len(prime_factors(n)) == 1}
+    outside = [n for n in supp if n not in pp]
+    kappa = float(KAPPA); a = lambda n: [0, 1, kappa, -kappa, -1][n % 5]
+    ok = outside[:8] == [6, 12, 14, 18, 21, 24, 26, 28] and abs(a(6) - a(2) * a(3)) > 1.0 and abs(a(6) - 1) < 1e-15
+    check("D6b", "the DH prime vector Λ_f from the divisor recursion is supported outside the prime powers (6, 12, 14, 18, 21, 24, 26, 28, …), and a(n) is not multiplicative: a(6) = 1 against a(2)a(3) = −κ²", ok,
+          f"support outside prime powers below 40: {outside}; a(6) = {a(6):.3f}, a(2)a(3) = {a(2) * a(3):.3f}", kind="[approx]")
+    # D6c the finite negative control (Thm. negative_control13, row D9): over F_13(√2), P(X) = ((X − 2)² − 2)((X + 1)² − 2) has exactly the
+    # roots 2 ± η and −1 ± η, traces 4, 4, 11, 11 against the line's 1 (Tr z = 1 ⟺ Re z = 2⁻¹ = 7), the root set closed under conjugation and
+    # under X ↦ 1 − X: finitude, conjugation and the reflection force no root onto the line
+    p13, nu13 = 13, 2
+    E = [(a_, b_) for a_ in range(p13) for b_ in range(p13)]
+    add = lambda z, w: ((z[0] + w[0]) % p13, (z[1] + w[1]) % p13)
+    sub = lambda z, w: ((z[0] - w[0]) % p13, (z[1] - w[1]) % p13)
+    sq = lambda z: mul(z, z, nu13, p13)
+    P = lambda z: mul(sub(sq(sub(z, (2, 0))), (2, 0)), sub(sq(add(z, (1, 0))), (2, 0)), nu13, p13)
+    roots = sorted(z for z in E if P(z) == (0, 0))
+    expected = sorted([(2, 1), (2, 12), (12, 1), (12, 12)])
+    traces = [trace(z, p13) for z in roots]
+    line = [z for z in E if trace(z, p13) == 1]
+    conj_closed = all(((z[0], (-z[1]) % p13) in roots) for z in roots)
+    half_turn_closed = all((((1 - z[0]) % p13, (-z[1]) % p13) in roots) for z in roots)   # 1 − z = (1 − a) − bη
+    ok = roots == expected and traces == [4, 4, 11, 11] and all(z[0] == 7 for z in line) and len(line) == 13 and conj_closed and half_turn_closed \
+         and all((x * x) % p13 != nu13 for x in range(1, p13))
+    # 20:D9 (p20083)
+    check("D6c", "the finite negative control over F_13(√2): ((X−2)²−2)((X+1)²−2) has exactly the roots 2 ± η, −1 ± η, traces 4, 4, 11, 11 against the line's 1, the root set closed under conjugation and under X ↦ 1 − X; none on the line", ok,
+          f"roots {roots}, traces {traces}, the line Re z = 7 ({len(line)} points)")
+    # ---------------- D7: the cells of the cycle (Def./Prop. cells, row D5); 13 October 2026
+    # on Ω = 13 and 233 the cycle's Ω cells [2πy, 2π(y+1)): N_y the zeros of ζ in the cell (the argument principle, mpmath nzeros), C_y
+    # the sign changes of Z on the cell (the Riemann–Siegel formula with the first remainder term, a grid refined where a change is close);
+    # C_y ≤ N_y on every cell; every cell clean (C_y = N_y) and the totals agree, N(2πΩ) = Σ N_y = 21, 1038; about log y zeros per cell
+    def Z_rs(t):
+        t = np.asarray(t, float); a = np.sqrt(t / (2 * np.pi)); N = np.floor(a).astype(int); pfrac = a - N
+        th = np.imag(loggamma(0.25 + 0.5j * t)) - 0.5 * t * np.log(np.pi)
+        main = np.zeros_like(t)
+        for n in range(1, int(N.max()) + 1):
+            m = N >= n
+            main[m] += 2 * np.cos(th[m] - t[m] * np.log(n)) / np.sqrt(n)
+        psi = np.cos(2 * np.pi * (pfrac * pfrac - pfrac - 1 / 16)) / np.cos(2 * np.pi * pfrac)
+        return main + (-1) ** (N - 1) * a ** -0.5 * psi
+    for Om in (13, 233):
+        counts = [int(mp.nzeros(2 * mp.pi * (y + 1))) - int(mp.nzeros(2 * mp.pi * y)) for y in range(Om)]
+        changes = []
+        for y in range(Om):
+            lo, hi = 2 * math.pi * y, 2 * math.pi * (y + 1)
+            ts = np.linspace(lo, hi, 400 if y > 0 else 400); zs = Z_rs(ts) if y > 0 else None
+            if y == 0:                                   # the first cell holds no zero (the first ordinate is 14.13 > 2π)
+                changes.append(0); continue
+            sc = int(np.sum(zs[:-1] * zs[1:] < 0))
+            if sc < counts[y]:                            # refine the grid where a close pair may hide
+                ts = np.linspace(lo, hi, 4000); zs = Z_rs(ts); sc = int(np.sum(zs[:-1] * zs[1:] < 0))
+            changes.append(sc)
+        total = int(mp.nzeros(2 * mp.pi * Om))
+        ok = all(c <= n for c, n in zip(changes, counts)) and changes == counts and sum(counts) == total and total == {13: 21, 233: 1038}[Om]
+        tail = counts[-10:]
+        # 20:D5 (p20029)
+        check(f"D7{'a' if Om == 13 else 'b'}", f"the cells of the cycle on Ω = {Om}: N_y from the argument principle, C_y from the sign changes of Z on each cell; C_y ≤ N_y and C_y = N_y on all {Om} cells, Σ N_y = N(2πΩ) = {total}", ok,
+              f"zeros per cell: max {max(counts)}, last ten {tail} against log y ≈ {math.log(Om):.2f}; empty cells {sum(1 for c in counts if c == 0)}", kind="[approx]")
 
 # ======================================================================================================================
 # block E — e_resonance.py (until 24 September 2026), its former docstring:

@@ -48,6 +48,9 @@ set_option linter.defProp false in
 /-- p20044 — 20:E13. Shell-basis completeness is not a clause of E12: the $\p-1$ complex characters are an orthogonal basis of $\mathbb C^{\Fx{\p}}$ ($\lVert\chi_j\rVert^{2}=\p-1$; finite Parseval), true of every vector, the trivial character carrying the mean $\psi(\p-1)/(\p-1)$; the $\Fp$-valued power characters are never orthonormal and do not expand $v$; completeness for the zero set of $\zeta$ is D5, a different clause. -/
 def p20044 := And.intro @FRC.Chart.chi_orthogonal (And.intro @FRC.Chart.chi_parseval (And.intro @FRC.Chart.chi_inversion (@FRC.HorizonML.power_characters_not_orthonormal)))
 set_option linter.defProp false in
+/-- p20080 — 20:D8. The strip: the Euler product excludes zeros with real part at least one, and the functional equation confines the nontrivial zeros to the open strip in Klein-four orbits of size two on the line and four off it; the Davenport--Heilbronn vector, without the product, is not multiplicative and has an off-line zero. No core witness: the statement is analytic. -/
+def p20080 := @FRC.Chart.zeros_in_strip
+set_option linter.defProp false in
 /-- p21016 — 21:C1. The linearised dynamics is the gradient flow of a coherence free energy --- its current derived from the pair tally conditional on channel unity (Lemma~\ref{lem:pairtally}) --- and a locked cluster of cardinality $m$ couples with coefficient exactly $m$. -/
 def p21016 := @FRC.Strong.locked_sum
 /-- p21019 — 21:C4. The equivalence principle as an identity; the bias field is clock rate, giving the redshift $\Delta f/f=Gm/rc^2$; the turnaround radius against the Hubble drive. -/

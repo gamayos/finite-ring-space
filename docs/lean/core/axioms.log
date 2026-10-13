@@ -1548,6 +1548,12 @@
 'FRC.Horizon.lab_pair' does not depend on any axioms
 'FRC.Horizon.closure' does not depend on any axioms
 'FRC.Horizon.closure_lab' does not depend on any axioms
+'FRC.Horizon.negative_control13' does not depend on any axioms
+'FRC.Horizon.sumTo_le' does not depend on any axioms
+'FRC.Horizon.cells_clean_iff_cycle' does not depend on any axioms
+'FRC.Horizon.fixedCount' does not depend on any axioms
+'FRC.Horizon.fixedCount_le' does not depend on any axioms
+'FRC.Horizon.clean_iff_count' does not depend on any axioms
 'FRC.Ledger.p00032' does not depend on any axioms
 'FRC.Ledger.p01004' does not depend on any axioms
 'FRC.Ledger.p01005' does not depend on any axioms
@@ -1737,9 +1743,11 @@
 'FRC.Ledger.p20015' does not depend on any axioms
 'FRC.Ledger.p20016' does not depend on any axioms
 'FRC.Ledger.p20017' does not depend on any axioms
+'FRC.Ledger.p20029' does not depend on any axioms
 'FRC.Ledger.p20032' does not depend on any axioms
 'FRC.Ledger.p20043' does not depend on any axioms
 'FRC.Ledger.p20079' does not depend on any axioms
+'FRC.Ledger.p20083' does not depend on any axioms
 'FRC.Shell.meridian' does not depend on any axioms
 'FRC.Shell.scale' does not depend on any axioms
 'FRC.Shell.map_scale_aux' does not depend on any axioms
@@ -2390,6 +2398,8 @@
 'FRC.Rh.p20015' does not depend on any axioms
 'FRC.Rh.p20016' does not depend on any axioms
 'FRC.Rh.p20017' does not depend on any axioms
+'FRC.Rh.p20029' does not depend on any axioms
+'FRC.Rh.p20083' does not depend on any axioms
 'FRC.Rh.p20032' does not depend on any axioms
 'FRC.Rh.p20043' does not depend on any axioms
 'FRC.Rh.p20079' does not depend on any axioms

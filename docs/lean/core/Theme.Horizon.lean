@@ -485,4 +485,100 @@ theorem closure_lab :
   · exact FRC.Nat.isPrime_of_bounded 1553 39 (by decide) (by decide) (by decide +kernel)
   · exact FRC.Nat.isPrime_of_bounded 2408561 1552 (by decide) (by decide) (by decide +kernel)
 
+/-! ## The finite negative control (20:D9; 13 October 2026) -/
+
+/-- 20:D9, the finite negative control: on `𝔽₁₃(√2)` (`η² = 2`, `2` a nonsquare, `2⁻¹ = 7`) the polynomial
+`P(X) = ((X − 2)² − 2)((X + 1)² − 2)` has exactly the four roots `2 ± η`, `−1 ± η`, of traces `4, 4, 11, 11` against the
+trace-one line's `1` (`Tr z = 1 ⟺ Re z = 7`), its root set closed under conjugation and under the half-turn `X ↦ 1 − X`:
+finitude, conjugation and the functional-equation reflection do not force roots onto the line. Decided by the kernel on
+all `169` elements. -/
+theorem negative_control13 :
+    (∀ k, k < 169 →
+      ((((⟨ofNat (k / 13), ofNat (k % 13)⟩ : Ext 13 2) + -Ext.ofShell 2) * ((⟨ofNat (k / 13), ofNat (k % 13)⟩ : Ext 13 2) + -Ext.ofShell 2) + -Ext.ofShell 2) *
+        (((⟨ofNat (k / 13), ofNat (k % 13)⟩ : Ext 13 2) + Ext.ofShell 1) * ((⟨ofNat (k / 13), ofNat (k % 13)⟩ : Ext 13 2) + Ext.ofShell 1) + -Ext.ofShell 2) = Ext.ofShell 0 ↔
+      (k = 2 * 13 + 1 ∨ k = 2 * 13 + 12 ∨ k = 12 * 13 + 1 ∨ k = 12 * 13 + 12))) ∧
+    (Ext.trace (⟨2, 1⟩ : Ext 13 2) = 4 ∧ Ext.trace (⟨2, 12⟩ : Ext 13 2) = 4 ∧
+      Ext.trace (⟨12, 1⟩ : Ext 13 2) = 11 ∧ Ext.trace (⟨12, 12⟩ : Ext 13 2) = 11) ∧
+    (∀ k, k < 169 → (Ext.trace (⟨ofNat (k / 13), ofNat (k % 13)⟩ : Ext 13 2) = 1 ↔ k / 13 = 7)) ∧
+    (Ext.conj (⟨2, 1⟩ : Ext 13 2) = ⟨2, 12⟩ ∧ Ext.conj (⟨12, 1⟩ : Ext 13 2) = ⟨12, 12⟩) ∧
+    (Ext.ofShell 1 + -(⟨2, 1⟩ : Ext 13 2) = ⟨12, 12⟩ ∧ Ext.ofShell 1 + -(⟨2, 12⟩ : Ext 13 2) = ⟨12, 1⟩) ∧
+    (∀ x : Nat, x < 13 → 0 < x → (ofNat x : Shell 13) * ofNat x ≠ 2) := by
+  decide +kernel
+
+
+/-! ## The cells of the cycle (20:D5; 13 October 2026): the two finite lemmas of the count identity -/
+
+section cells
+
+open FRC.Shell.Frame (sumTo)
+
+/-- Monotonicity of the finite sum under a pointwise bound. -/
+theorem sumTo_le (c n : Nat → Nat) : ∀ m, (∀ y, y < m → c y ≤ n y) → sumTo c m ≤ sumTo n m
+  | 0, _ => Nat.le_refl _
+  | m + 1, h => Nat.add_le_add (sumTo_le c n m fun y hy => h y (Nat.lt_succ_of_lt hy)) (h m (Nat.lt_succ_self m))
+
+/-- 20:D5, the cells: with `c y ≤ n y` on every cell `y < m` (the on-line count of the cell against its count), every
+cell is clean, `c y = n y`, exactly when the two sums over the cycle agree — a sum of non-negative differences vanishes
+only term by term. -/
+theorem cells_clean_iff_cycle (c n : Nat → Nat) : ∀ m, (∀ y, y < m → c y ≤ n y) →
+    ((∀ y, y < m → c y = n y) ↔ sumTo c m = sumTo n m)
+  | 0, _ => ⟨fun _ => rfl, fun _ y hy => absurd hy (Nat.not_lt_zero y)⟩
+  | m + 1, h =>
+    have ih := cells_clean_iff_cycle c n m fun y hy => h y (Nat.lt_succ_of_lt hy)
+    ⟨fun hall => by
+      show sumTo c m + c m = sumTo n m + n m
+      rw [ih.1 (fun y hy => hall y (Nat.lt_succ_of_lt hy)), hall m (Nat.lt_succ_self m)],
+     fun hsum y hy =>
+      have hs : sumTo c m + c m = sumTo n m + n m := hsum
+      have h1 := sumTo_le c n m fun y hy => h y (Nat.lt_succ_of_lt hy)
+      have h2 := h m (Nat.lt_succ_self m)
+      have hm : c m = n m := match Nat.lt_or_ge (c m) (n m) with
+        | .inl hlt => absurd hs (Nat.ne_of_lt (Nat.add_lt_add_of_le_of_lt h1 hlt))
+        | .inr hge => Nat.le_antisymm h2 hge
+      have hr : sumTo c m = sumTo n m := Nat.add_right_cancel (hm ▸ hs)
+      match Nat.lt_or_ge y m with
+      | .inl hlt => ih.2 hr y hlt
+      | .inr hge => (Nat.le_antisymm (Nat.le_of_lt_succ hy) hge) ▸ hm⟩
+
+/-- 20:D5, the cells: the number of points of a finite list that the involution fixes (`fixed z = true`). -/
+def fixedCount {α : Type} (fixed : α → Bool) : List α → Nat
+  | [] => 0
+  | a :: l => fixedCount fixed l + (match fixed a with | true => 1 | false => 0)
+
+theorem fixedCount_le {α : Type} (fixed : α → Bool) : ∀ l : List α, fixedCount fixed l ≤ l.length
+  | [] => Nat.le_refl 0
+  | a :: l => by
+    show fixedCount fixed l + (match fixed a with | true => 1 | false => 0) ≤ l.length + 1
+    cases fixed a with
+    | true => exact Nat.add_le_add (fixedCount_le fixed l) (Nat.le_refl 1)
+    | false => exact Nat.add_le_add (fixedCount_le fixed l) (Nat.zero_le 1)
+
+/-- 20:D5, the cells: a finite list of points with an involution (the reflection `s ↦ 1 − s̄`, say) has every point
+fixed exactly when the count of fixed points equals the count. -/
+theorem clean_iff_count {α : Type} (fixed : α → Bool) : ∀ l : List α,
+    ((∀ z, z ∈ l → fixed z = true) ↔ fixedCount fixed l = l.length)
+  | [] => ⟨fun _ => rfl, fun _ z hz => nomatch hz⟩
+  | a :: l =>
+    have ih := clean_iff_count fixed l
+    ⟨fun hall => by
+      have ha : fixed a = true := hall a (List.Mem.head l)
+      show fixedCount fixed l + (match fixed a with | true => 1 | false => 0) = l.length + 1
+      rw [ha, ih.1 fun z hz => hall z (List.Mem.tail a hz)],
+     fun hlen z hz => by
+      have hle := fixedCount_le fixed l
+      have hlen' : fixedCount fixed l + (match fixed a with | true => 1 | false => 0) = l.length + 1 := hlen
+      cases hfa : fixed a with
+      | true =>
+        rw [hfa] at hlen'
+        have := ih.2 (Nat.succ.inj hlen')
+        cases hz with
+        | head => exact hfa
+        | tail _ hz' => exact this z hz'
+      | false =>
+        rw [hfa] at hlen'
+        have h0 : fixedCount fixed l = l.length + 1 := hlen'
+        exact absurd (h0 ▸ hle) (Nat.not_succ_le_self _)⟩
+
+end cells
+
 end FRC.Horizon

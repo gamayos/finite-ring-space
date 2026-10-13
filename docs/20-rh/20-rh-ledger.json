@@ -253,9 +253,9 @@
     },
     {
      "label": "D5",
-     "predicate": "Completeness criterion: faithfulness of the de-framing ($N_{\\mathrm{crit}}=\\mathcal N$ at every height), zero-mode completeness of the on-line spectrum for $v$ over the Weil class (A6), the absence of off-line zeros, and the Riemann Hypothesis are equivalent; an off-line zero $\\beta+i\\gamma_0$ leaves a residual growing as $x^{\\beta-1/2}$ at its height.",
-     "tag": "T",
-     "source": "Lem.~\\ref{lem:complete}",
+     "predicate": "The cells: the heights of a Carrier's cycle are its residues, residue $y$ the cell from $2\\pi y$ to $2\\pi(y+1)$; a cell is clean when its zeros lie on the line, which Turing's count decides from the labels below $\\sqrt{y+1}$, and passes when the frame's reading certifies it. The hypothesis of the Carrier: every residue has a clean cell.",
+     "tag": "D",
+     "source": "Def.~\\ref{def:cells}, Prop.~\\ref{prop:cells}, Lem.~\\ref{lem:complete}\\newline \\pywit{rh}{p20029}{D5}, \\leanwit{FrcCore}{p20029}{D5} \\lean{FRC.Horizon.clean\\_iff\\_count, FRC.Horizon.cells\\_clean\\_iff\\_cycle}",
      "key": "p20029"
     },
     {
@@ -271,6 +271,20 @@
      "tag": "T",
      "source": "Cor.~\\ref{cor:reduce}",
      "key": "p20031"
+    },
+    {
+     "label": "D8",
+     "predicate": "The strip: the Euler product excludes zeros with real part at least one, and the functional equation confines the nontrivial zeros to the open strip in Klein-four orbits of size two on the line and four off it; the Davenport--Heilbronn vector, without the product, is not multiplicative and has an off-line zero. No core witness: the statement is analytic.",
+     "tag": "T",
+     "source": "Thm.~\\ref{thm:strip}\\newline \\pywit{rh}{p20080}{D8}, \\leanwit{FrcLedger}{p20080}{D8} \\lean{Rh.zeros\\_in\\_strip}",
+     "key": "p20080"
+    },
+    {
+     "label": "D9",
+     "predicate": "The finite negative control: on $\\F_{13}(\\sqrt2)$ the polynomial $((X-2)^{2}-2)((X+1)^{2}-2)$ has exactly the roots $2\\pm\\eta$, $-1\\pm\\eta$, of traces $4$, $4$, $11$, $11$ against the line's $1$, the root set closed under conjugation and under the half-turn; finitude, conjugation and the reflection force no root onto the line.",
+     "tag": "T",
+     "source": "Prop.~\\ref{prop:control13}\\newline \\pywit{rh}{p20083}{D9}, \\leanwit{FrcCore}{p20083}{D9} \\lean{FRC.Horizon.negative\\_control13}",
+     "key": "p20083"
     }
    ]
   },
@@ -398,9 +412,9 @@
    "rows": [
     {
      "label": "F1",
-     "predicate": "\\textbf{Turing's count on the shell.} $C\\le N_{\\mathrm{crit}}\\le\\mathcal N$ (A7); the hypothesis below $T$ is $\\mathcal N(T)=N_{\\mathrm{crit}}(T)$, $C=\\mathcal N$ the certificate. The shell estimates $\\mathcal N$ by the pole-corrected comb count (F8; uncertified at finite depth) and $C$ by the main sum's sign changes (A10); the secular condition reads $\\mathcal N$, not $N_{\\mathrm{crit}}$. An off-line zero is a phantom: $\\mathcal N-N_{\\mathrm{crit}}>0$.",
+     "predicate": "\\textbf{Turing's count on the shell.} On every cell $C_y\\le N^{\\mathrm{crit}}_y\\le\\mathcal N_y$ (A7); the cell is clean when $\\mathcal N_y=N^{\\mathrm{crit}}_y$, and $C_y=\\mathcal N_y$ certifies it with every zero simple. The shell estimates $\\mathcal N$ by the pole-corrected comb count (F8; uncertified at finite depth) and $C$ by the main sum's sign changes (A10). An off-line zero is a phantom: $\\mathcal N_y-N^{\\mathrm{crit}}_y>0$.",
      "tag": "T",
-     "source": "Prop.~\\ref{prop:turing}\\newline \\pywit{rh}{p20047}{F1}",
+     "source": "Prop.~\\ref{prop:turing}, Prop.~\\ref{prop:cells}\\newline \\pywit{rh}{p20047}{F1}",
      "key": "p20047"
     },
     {
@@ -601,7 +615,7 @@
    {
     "name": "FRC.Rh.lab_pair",
     "module": "FrcLedger/Rh",
-    "line": 268,
+    "line": 280,
     "axioms": [
      "Quot.sound",
      "propext"
@@ -613,7 +627,7 @@
    {
     "name": "FRC.Rh.no_cycle_projection",
     "module": "FrcLedger/Rh",
-    "line": 273,
+    "line": 285,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -637,7 +651,7 @@
    {
     "name": "FRC.Rh.window_readback",
     "module": "FrcLedger/Rh",
-    "line": 248,
+    "line": 260,
     "axioms": [
      "Quot.sound",
      "propext"
@@ -649,7 +663,7 @@
    {
     "name": "FRC.Rh.prime_iff_window_irreducible",
     "module": "FrcLedger/Rh",
-    "line": 254,
+    "line": 266,
     "axioms": [
      "Quot.sound",
      "propext"
@@ -661,7 +675,7 @@
    {
     "name": "FRC.Rh.sqrt_sq_lt_prime",
     "module": "FrcLedger/Rh",
-    "line": 260,
+    "line": 272,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -1136,6 +1150,52 @@
     "tier": 2,
     "ok": true,
     "doc": "20:C5 — 20-rh's name; the theorem is `FRC.Chart.flatness` (task LM36)."
+   }
+  ],
+  "D5": [
+   {
+    "name": "FRC.Horizon.clean_iff_count",
+    "module": "FrcCore/Theme/Horizon",
+    "line": 558,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "20:D5, the cells: a finite list of points with an involution (the reflection `s ↦ 1 − s̄`, say) has every point fixed exactly when the count of fixed points equals the count."
+   },
+   {
+    "name": "FRC.Horizon.cells_clean_iff_cycle",
+    "module": "FrcCore/Theme/Horizon",
+    "line": 523,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "20:D5, the cells: with `c y ≤ n y` on every cell `y < m` (the on-line count of the cell against its count), every cell is clean, `c y = n y`, exactly when the two sums over the cycle agree — a sum of non-negative differences vanishes only term by term."
+   }
+  ],
+  "D8": [
+   {
+    "name": "FRC.Rh.zeros_in_strip",
+    "module": "FrcLedger/Rh",
+    "line": 251,
+    "axioms": [
+     "Classical.choice",
+     "Quot.sound",
+     "propext"
+    ],
+    "tier": 2,
+    "ok": true,
+    "doc": "20:D8 — 20-rh's name; the theorem is `FRC.Chart.zeros_in_strip`: a nontrivial zero of `ζ` lies in the open strip `0 < Re s < 1`, and `1 − s` and `s̄` are zeros."
+   }
+  ],
+  "D9": [
+   {
+    "name": "FRC.Horizon.negative_control13",
+    "module": "FrcCore/Theme/Horizon",
+    "line": 495,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "20:D9, the finite negative control: on `𝔽₁₃(√2)` (`η² = 2`, `2` a nonsquare, `2⁻¹ = 7`) the polynomial `P(X) = ((X − 2)² − 2)((X + 1)² − 2)` has exactly the four roots `2 ± η`, `−1 ± η`, of traces `4, 4, 11, 11` against the trace-one line's `1` (`Tr z = 1 ⟺ Re z = 7`), its root set closed under conjugation and under the half-turn `X ↦ 1 − X`: finitude, conjugation and the functional-equation reflection do not force roots onto the line. Decided by the kernel on all `169` elements."
    }
   ],
   "E1": [

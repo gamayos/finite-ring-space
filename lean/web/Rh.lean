@@ -1146,6 +1146,81 @@ theorem vonMangoldt_moebius (m : ℕ) :
 
 end resonance
 
+/-! ## The strip (20:D8): the Euler product excludes zeros with real part at least one, and the functional equation
+confines the nontrivial zeros to the open strip, in orbits of the Klein four-group `s ↦ 1 − s`, `s ↦ s̄` (13 October 2026). -/
+section strip
+
+open ComplexConjugate
+
+/-- A zero of `ζ` with real part at most zero is a trivial zero `−2(n+1)`: at `s' = 1 − s` the functional equation reads
+`ζ s = 2 (2π)^{−s'} Γ(s') cos(π s'/2) ζ(s')` with `Re s' ≥ 1`, where `ζ(s') ≠ 0` (the Euler product), so `cos(π s'/2) = 0`,
+`s'` an odd integer and `s` an even integer `≤ 0`; `s = 0` is excluded by `ζ 0 = −1/2`. -/
+theorem zero_re_nonpos_trivial {s : ℂ} (h0 : riemannZeta s = 0) (hre : s.re ≤ 0) :
+    ∃ n : ℕ, s = -2 * (n + 1) := by
+  have hs0 : s ≠ 0 := fun h => by rw [h, riemannZeta_zero] at h0; norm_num at h0
+  set s' := 1 - s with hs'
+  have hre' : 1 ≤ s'.re := by simp only [hs', Complex.sub_re, Complex.one_re]; linarith
+  have hne : ∀ n : ℕ, s' ≠ -n := fun n h => by
+    have := congrArg Complex.re h
+    simp only [Complex.neg_re, Complex.natCast_re] at this
+    have : (0 : ℝ) ≤ n := Nat.cast_nonneg n
+    linarith
+  have hne1 : s' ≠ 1 := fun h => hs0 (by rw [hs'] at h; linear_combination -h)
+  have hfe := riemannZeta_one_sub hne hne1
+  have h1s : 1 - s' = s := by rw [hs']; ring
+  rw [h1s, h0] at hfe
+  have hz : riemannZeta s' ≠ 0 := riemannZeta_ne_zero_of_one_le_re hre'
+  have hΓ : Complex.Gamma s' ≠ 0 := Complex.Gamma_ne_zero_of_re_pos (by linarith)
+  have hpow : (2 * (Real.pi : ℂ)) ^ (-s') ≠ 0 := by
+    rw [Complex.cpow_ne_zero_iff]; left
+    exact mul_ne_zero two_ne_zero (Complex.ofReal_ne_zero.2 Real.pi_ne_zero)
+  have hcos : Complex.cos ((Real.pi : ℂ) * s' / 2) = 0 := by
+    have h := hfe.symm
+    simp only [mul_eq_zero, two_ne_zero, false_or, hpow, hΓ, hz, or_false] at h
+    exact h
+  obtain ⟨k, hk⟩ := Complex.cos_eq_zero_iff.1 hcos
+  have hπ : (Real.pi : ℂ) ≠ 0 := Complex.ofReal_ne_zero.2 Real.pi_ne_zero
+  have hs'k : s' = 2 * k + 1 := by
+    have : (Real.pi : ℂ) * s' = (Real.pi : ℂ) * (2 * k + 1) := by linear_combination 2 * hk
+    exact mul_left_cancel₀ hπ this
+  have hsk : s = -2 * k := by rw [← h1s, hs'k]; ring
+  have hk0 : 0 ≤ k := by
+    have := congrArg Complex.re hsk
+    simp only [neg_mul, Complex.neg_re, Complex.mul_re, Complex.re_ofNat, Complex.im_ofNat, Complex.intCast_re, Complex.intCast_im, mul_zero, sub_zero] at this
+    have : (0 : ℝ) ≤ k := by linarith
+    exact_mod_cast this
+  have hk1 : k ≠ 0 := fun h => hs0 (by rw [hsk, h]; simp)
+  refine ⟨(k - 1).toNat, ?_⟩
+  have hk1' : 1 ≤ k := by omega
+  have : ((k - 1).toNat : ℤ) = k - 1 := Int.toNat_of_nonneg (by omega)
+  rw [hsk]
+  have hcast : ((((k - 1).toNat : ℕ) : ℂ)) = (k : ℂ) - 1 := by
+    rw [← Int.cast_natCast, this]; push_cast; ring
+  rw [hcast]; ring
+
+/-- 20:D8, the strip: a nontrivial zero of `ζ` lies in the open strip `0 < Re s < 1`, and its Klein-four orbit under
+`s ↦ 1 − s` and `s ↦ s̄` consists of zeros: `Re s < 1` by the Euler product (`riemannZeta_ne_zero_of_one_le_re`),
+`0 < Re s` by the functional equation with the Euler product on the reflected side, `ζ(1 − s) = 0` by the functional
+equation (`riemannZeta_one_sub`) and `ζ(s̄) = 0` by `riemannZeta_conj`. -/
+theorem zeros_in_strip {s : ℂ} (h0 : riemannZeta s = 0) (htriv : ¬∃ n : ℕ, s = -2 * (n + 1)) (h1 : s ≠ 1) :
+    0 < s.re ∧ s.re < 1 ∧ riemannZeta (1 - s) = 0 ∧ riemannZeta (conj s) = 0 := by
+  have hlt : s.re < 1 := by
+    by_contra h
+    exact riemannZeta_ne_zero_of_one_le_re (not_lt.1 h) h0
+  have hpos : 0 < s.re := by
+    by_contra h
+    exact htriv (zero_re_nonpos_trivial h0 (not_lt.1 h))
+  refine ⟨hpos, hlt, ?_, ?_⟩
+  · have hne : ∀ n : ℕ, s ≠ -n := fun n h => by
+      have := congrArg Complex.re h
+      simp only [Complex.neg_re, Complex.natCast_re] at this
+      have : (0 : ℝ) ≤ n := Nat.cast_nonneg n
+      linarith
+    rw [riemannZeta_one_sub hne h1, h0, mul_zero]
+  · rw [riemannZeta_conj, h0, map_zero]
+
+end strip
+
 end FRC.Chart
 
 /-! inlined: FrcLedger/Theme/Gravity.lean (verbatim, minus its import lines) -/
@@ -1916,6 +1991,9 @@ set_option linter.defProp false in
 /-- p20044 — 20:E13. Shell-basis completeness is not a clause of E12: the $\p-1$ complex characters are an orthogonal basis of $\mathbb C^{\Fx{\p}}$ ($\lVert\chi_j\rVert^{2}=\p-1$; finite Parseval), true of every vector, the trivial character carrying the mean $\psi(\p-1)/(\p-1)$; the $\Fp$-valued power characters are never orthonormal and do not expand $v$; completeness for the zero set of $\zeta$ is D5, a different clause. -/
 def p20044 := And.intro @FRC.Chart.chi_orthogonal (And.intro @FRC.Chart.chi_parseval (And.intro @FRC.Chart.chi_inversion (@FRC.HorizonML.power_characters_not_orthonormal)))
 set_option linter.defProp false in
+/-- p20080 — 20:D8. The strip: the Euler product excludes zeros with real part at least one, and the functional equation confines the nontrivial zeros to the open strip in Klein-four orbits of size two on the line and four off it; the Davenport--Heilbronn vector, without the product, is not multiplicative and has an off-line zero. No core witness: the statement is analytic. -/
+def p20080 := @FRC.Chart.zeros_in_strip
+set_option linter.defProp false in
 /-- p21016 — 21:C1. The linearised dynamics is the gradient flow of a coherence free energy --- its current derived from the pair tally conditional on channel unity (Lemma~\ref{lem:pairtally}) --- and a locked cluster of cardinality $m$ couples with coefficient exactly $m$. -/
 def p21016 := @FRC.Strong.locked_sum
 /-- p21019 — 21:C4. The equivalence principle as an identity; the bias field is clock rate, giving the redshift $\Delta f/f=Gm/rc^2$; the turnaround radius against the Hubble drive. -/
@@ -2275,6 +2353,18 @@ theorem vonMangoldt_moebius (m : ℕ) :
 
 end resonance
 
+section strip
+
+open ComplexConjugate
+
+/-- 20:D8 — 20-rh's name; the theorem is `FRC.Chart.zeros_in_strip`: a nontrivial zero of `ζ` lies in the open strip
+`0 < Re s < 1`, and `1 − s` and `s̄` are zeros. -/
+theorem zeros_in_strip {s : ℂ} (h0 : riemannZeta s = 0) (htriv : ¬∃ n : ℕ, s = -2 * (n + 1)) (h1 : s ≠ 1) :
+    0 < s.re ∧ s.re < 1 ∧ riemannZeta (1 - s) = 0 ∧ riemannZeta (conj s) = 0 :=
+  FRC.Chart.zeros_in_strip h0 htriv h1
+
+end strip
+
 section coincidence
 
 /-- 20:B2 — 20-rh's name; the theorem is `FRC.HorizonML.window_readback` (task LM36). -/
@@ -2344,6 +2434,9 @@ theorem p20020 : ∀ (m : ℕ), ArithmeticFunction.vonMangoldt m = ∑ d ∈ m.d
 theorem p20023 : (∀ {n : ℕ} [NeZero n] (v : ZMod n → ℂ), ∑ j, Complex.normSq (FRC.Chart.coef v j) = ↑n * ∑ m, Complex.normSq (v m)) ∧ ∀ {n : ℕ} [NeZero n] (u : ZMod n → ℂ), ∑ m, u m = (0 : ℂ) → u ≠ (0 : ZMod n → ℂ) → ∑ j ∈ Finset.univ.erase (0 : ZMod n), Complex.normSq (FRC.Chart.coef u j) / (↑n * ∑ m, Complex.normSq (u m)) = (1 : ℝ) ∧ (∑ j ∈ Finset.univ.erase (0 : ZMod n), Complex.normSq (FRC.Chart.coef u j) / (↑n * ∑ m, Complex.normSq (u m))) / (↑n - (1 : ℝ)) = (1 : ℝ) / (↑n - (1 : ℝ)) :=
   @FRC.LedgerML.p20023
 set_option linter.defProp false in
+/-- 20:D8 (p20080) — The strip: the Euler product excludes zeros with real part at least one, and the functional equation confines the nontrivial zeros to the open strip in Klein-four orbits of size two on the line and four off it; the Davenport--Heilbronn vector, without the product, is not multiplicative and has an off-line zero. No core witness: the statement is analytic. -/
+def p20080 := @FRC.LedgerML.p20080
+set_option linter.defProp false in
 /-- 20:E1 (p20032) — The scale-evolution generator: on the shell the scale-shift $x\mapsto\gen^{\,r}x$ is a unitary permutation of $\Fx{\p}$ with the complex characters as eigenvectors; in the analytic chart [chart] the dilation group $U_r=e^{ir\Hh}$ has the self-adjoint generator $\Hh=-i(x\partial_x+\half)$ with generalised eigenfunctions $x^{-\bar\rho}$, $\rho=\half+i\gamma$, the symmetrizing $\half$ the half-turn of B8; the chart assignment is used nowhere as a shell identity. -/
 def p20032 := @FRC.LedgerML.p20032
 set_option linter.defProp false in
@@ -2368,6 +2461,7 @@ end FRC.Rh
 #print axioms FRC.Rh.p20017
 #print axioms FRC.Rh.p20020
 #print axioms FRC.Rh.p20023
+#print axioms FRC.Rh.p20080
 #print axioms FRC.Rh.p20032
 #print axioms FRC.Rh.p20043
 #print axioms FRC.Rh.p20044

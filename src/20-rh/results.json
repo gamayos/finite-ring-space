@@ -920,6 +920,56 @@
   "kind": "[approx]"
  },
  {
+  "id": "D6a",
+  "rows": "20:D8",
+  "block": "D",
+  "script": "rh",
+  "label": "the strip: the DH zero \u03c1 = 0.8085 + 85.699 i has 0 < Re \u03c1 < 1 off the line, with f(1 \u2212 \u03c1) = f(\u03c1\u0304) = 0 (the Klein-four orbit); \u03b6 \u2260 0 on four points with Re s \u2265 1",
+  "ok": true,
+  "detail": "|f| at \u03c1, 1\u2212\u03c1, \u03c1\u0304 = [2.8142397537512867e-11, 1.035403082106132e-10, 2.8142397537512867e-11]; |\u03b6| on Re s \u2265 1: min 0.960",
+  "kind": "[approx]"
+ },
+ {
+  "id": "D6b",
+  "rows": "20:D8",
+  "block": "D",
+  "script": "rh",
+  "label": "the DH prime vector \u039b_f from the divisor recursion is supported outside the prime powers (6, 12, 14, 18, 21, 24, 26, 28, \u2026), and a(n) is not multiplicative: a(6) = 1 against a(2)a(3) = \u2212\u03ba\u00b2",
+  "ok": true,
+  "detail": "support outside prime powers below 40: [6, 12, 14, 18, 21, 24, 26, 28, 34, 36, 39]; a(6) = 1.000, a(2)a(3) = -0.081",
+  "kind": "[approx]"
+ },
+ {
+  "id": "D6c",
+  "rows": "20:D9",
+  "block": "D",
+  "script": "rh",
+  "label": "the finite negative control over F_13(\u221a2): ((X\u22122)\u00b2\u22122)((X+1)\u00b2\u22122) has exactly the roots 2 \u00b1 \u03b7, \u22121 \u00b1 \u03b7, traces 4, 4, 11, 11 against the line's 1, the root set closed under conjugation and under X \u21a6 1 \u2212 X; none on the line",
+  "ok": true,
+  "detail": "roots [(2, 1), (2, 12), (12, 1), (12, 12)], traces [4, 4, 11, 11], the line Re z = 7 (13 points)",
+  "kind": "EXACT"
+ },
+ {
+  "id": "D7a",
+  "rows": "20:D5",
+  "block": "D",
+  "script": "rh",
+  "label": "the cells of the cycle on \u03a9 = 13: N_y from the argument principle, C_y from the sign changes of Z on each cell; C_y \u2264 N_y and C_y = N_y on all 13 cells, \u03a3 N_y = N(2\u03c0\u03a9) = 21",
+  "ok": true,
+  "detail": "zeros per cell: max 3, last ten [2, 1, 2, 2, 2, 2, 2, 2, 2, 3] against log y \u2248 2.56; empty cells 2",
+  "kind": "[approx]"
+ },
+ {
+  "id": "D7b",
+  "rows": "20:D5",
+  "block": "D",
+  "script": "rh",
+  "label": "the cells of the cycle on \u03a9 = 233: N_y from the argument principle, C_y from the sign changes of Z on each cell; C_y \u2264 N_y and C_y = N_y on all 233 cells, \u03a3 N_y = N(2\u03c0\u03a9) = 1038",
+  "ok": true,
+  "detail": "zeros per cell: max 6, last ten [5, 5, 6, 5, 6, 5, 6, 5, 6, 5] against log y \u2248 5.45; empty cells 2",
+  "kind": "[approx]"
+ },
+ {
   "id": "E1a",
   "rows": "20:C2",
   "block": "E",
