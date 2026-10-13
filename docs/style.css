@@ -193,8 +193,6 @@ table.ledger tr.blockhead .bglyphs { display: flex; align-items: center; gap: 0;
 .wrap table.ledger tr.blockhead .bglyphs a.sum:hover { background: color-mix(in srgb, var(--ink) 8%, transparent); border: 0; }
 table.ledger tr.blockhead .bglyphs .n { line-height: 1; color: #419457; font-weight: 400; } table.ledger tr.blockhead .bglyphs a.sum.py .n { color: #a27900; } table.ledger tr.blockhead .bglyphs a.sum.ml .n { color: #7974c6; } table.ledger tr.blockhead .bglyphs a.sum.fail .n { color: #c04a4a; }
 table.ledger tr.blockhead .bglyphs img.leanico, table.ledger tr.blockhead .bglyphs img.runico { width: 16px; height: 16px; display: block; }
-table.ledger tr.blockhead .bglyphs a.sum.py.ok img.runico.pysrc { filter: brightness(0) saturate(100%) invert(64%) sepia(85%) saturate(6488%) hue-rotate(38deg) brightness(103%) contrast(106%); }
-table.ledger tr.blockhead .bglyphs a.sum.py.fail img.runico.pysrc { filter: brightness(0) saturate(100%) invert(24%) sepia(41%) saturate(6155%) hue-rotate(347deg) brightness(93%) contrast(59%); }
 @media (prefers-color-scheme: dark) { table.ledger tr.blockhead .bglyphs img, table.ledger tr.blockhead .bglyphs .n { opacity: .85; } }
 table.ledger tr.target td { background: var(--sub-bg); }
 .tag { display: inline-block; min-width: 1.4em; padding: 0.05rem 0.4rem; border-radius: 0.3rem; font-family: var(--mono); font-size: 0.78rem; font-weight: 600; text-align: center; }
@@ -238,9 +236,8 @@ pre.lean .o, pre.lean .ow { color: var(--ink-soft); }                           
 }
 .src .glyphs { display: flex; align-items: center; gap: .15rem; margin-top: .25rem; }
 img.runico { width: 16px; height: 16px; display: block; object-fit: contain; filter: invert(.78); }   /* the run glyphs: light on transparency, darkened on the light theme like the plain Lean glyph */
-img.runico.pysrc { filter: brightness(0) invert(.55); }   /* the python-source glyph, a white PNG: no verdict (a script cited whole) mid grey; the verdict colours below are filter chains solved numerically against the sRGB filter matrices to the python gold #a27900 and the glyphs' red #c04a4a, so they hold in every browser */
-.wrap a.wit.ico.py.ok img.runico.pysrc, .legend .ico img.runico.pysrc { filter: brightness(0) saturate(100%) invert(64%) sepia(85%) saturate(6488%) hue-rotate(38deg) brightness(103%) contrast(106%); }   /* #a27900, the python gold */
-.wrap a.wit.ico.py.fail img.runico.pysrc { filter: brightness(0) saturate(100%) invert(24%) sepia(41%) saturate(6155%) hue-rotate(347deg) brightness(93%) contrast(59%); }   /* #c04a4a, the red of lean-fail.png */
+img.runico.pysrc { filter: brightness(0) invert(.55); }   /* the python-source glyph, a white PNG: no verdict (a script cited whole) mid grey */
+img.runico.pyok, img.runico.pyfail, .wrap a.ico:hover img.runico.pyok, .wrap a.ico:hover img.runico.pyfail { filter: none; }   /* the python glyph in its verdict colour, drawn in the PNG (media/python-ok.png gold #a27900, media/python-fail.png red #c04a4a) as the Lean glyphs are: no filter chain, so every browser shows the colour of the count beside it (12 October 2026) */
 img.runico.colab { width: 19px; filter: none; }                                                        /* the Colab mark is coloured: shown as drawn in both themes */
 .wrap a.ico:hover img.runico.colab { filter: none; opacity: .8; }
 .wrap a.ico:hover img.runico { filter: invert(.45) sepia(.6) saturate(3) hue-rotate(170deg); }        /* the accent on hover */
@@ -266,8 +263,14 @@ section.prose { margin: 1rem 0; line-height: 1.55; } section.prose.closing { bor
 p.hist { font-size: 0.85rem; color: var(--ink-soft); }
 section.abstract { font-size: 0.95rem; line-height: 1.5; color: var(--ink-soft); margin: 0.6rem 0 0; }   /* full width of .wrap, like the table below it */
 section.abstract p.meta { margin: 0.55rem 0 0; } section.abstract p.meta a.badge { margin-right: .3rem; }   /* a page built before the badges moved to the menu line keeps its header until its next build */
-nav { align-items: center; flex-wrap: wrap; } nav.withmeta { flex-wrap: wrap-reverse; }   /* a menu line with the badges: when it wraps, the badges' line comes first (above the menu), at whatever width the wrap happens */
+nav { align-items: center; flex-wrap: wrap; } nav.withmeta { flex-wrap: wrap-reverse; }   /* a menu line with the badges: one line above 760 px (the widest menu, 38-s13's, needs 734 px) */
 nav .meta { margin-left: auto; display: inline-flex; align-items: center; gap: .45rem; }   /* the paper's badges at the right end of the menu line */
+@media (max-width: 760px) {   /* a narrow screen (12 October 2026): Home and the badges or glyph totals on the first line, the other tabs on the second */
+  nav.withmeta { flex-wrap: wrap; row-gap: 0; }
+  nav.withmeta > .meta { order: 1; }
+  nav.withmeta::after { content: ""; order: 2; flex-basis: 100%; height: .5rem; }   /* the line break */
+  nav.withmeta > a:not(:first-child) { order: 3; }
+}
 .wrap a.colab, .wrap a.colab:visited, .wrap a.colab:hover { border-bottom: none; text-decoration: none; display: inline-block; line-height: 0; vertical-align: middle; }
 .wrap a.badge, .wrap a.badge:visited, .wrap a.badge:hover { border-bottom: none; text-decoration: none; display: inline-block; line-height: 0; vertical-align: middle; margin: 0; padding: 0; }   /* the header badges: inline SVG, each a link; the .badge padding is the text badges' */
 .wrap a.badge svg { display: block; } .wrap a.badge svg text { font-weight: 400; letter-spacing: 0; } .wrap a.badge:hover svg { filter: brightness(1.08); }
@@ -343,8 +346,6 @@ nav .meta.totals { gap: 0; }   /* the corpus totals at the right end of the menu
 nav .totals .n { line-height: 1; min-width: 1.4em; color: #419457; } nav .totals a.sum.py .n { color: #a27900; } nav .totals a.sum.ml .n { color: #7974c6; } nav .totals a.sum.fail .n { color: #c04a4a; } nav .totals a.sum.lab .n { color: var(--ink-soft); }
 nav .totals a.sum.lab svg { width: 17px; height: 17px; stroke: var(--ink-soft); fill: none; stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round; }
 nav .totals img.leanico, nav .totals img.runico { width: 16px; height: 16px; display: block; }
-nav .totals a.sum.py.ok img.runico.pysrc { filter: brightness(0) saturate(100%) invert(64%) sepia(85%) saturate(6488%) hue-rotate(38deg) brightness(103%) contrast(106%); }   /* the row glyphs' gold and red */
-nav .totals a.sum.py.fail img.runico.pysrc { filter: brightness(0) saturate(100%) invert(24%) sepia(41%) saturate(6155%) hue-rotate(347deg) brightness(93%) contrast(59%); }
 @media (prefers-color-scheme: dark) { nav .totals img, nav .totals .n { opacity: .85; } .wrap nav .totals a.sum:hover { background: color-mix(in srgb, var(--ink) 13%, transparent); } .wrap td.links a.sum img, .wrap td.links a.sum .n, .wrap td.links a.sum:hover img, .wrap td.links a.sum:hover .n { opacity: .85; } .wrap td.links a.ico.sum:hover { background: color-mix(in srgb, var(--ink) 13%, transparent); } }   /* dark theme: the pill in ink at 13 % (rule-soft is 4 L* above the dark page, under the row's own hover tint it vanished); glyph and count stay at the theme's .85 under hover too (the run-glyph rule alone would brighten the python image): the hover highlights the badge, the pill behind glyph and count, nothing inside it */
 .srcbar.solo { position: static; border: 0; padding-left: 0; padding-right: 0; margin: 1.1rem 0 .2rem; }   /* the bar on its own (a package page): no frame, flush with the text */
 pre.lean .ln, pre.lean a.pred { scroll-margin-top: 2.8rem; }   /* a targeted line (or predicate anchor) lands below the sticky bar */
@@ -360,7 +361,6 @@ th.pkg .pkgrow, td.links.pkg .pkgrow { display: grid; grid-template-columns: rep
 th.pkg .g, td.links.pkg .g { display: inline-flex; justify-content: center; align-items: center; min-height: 22px; width: 100%; }
 th.pkg .g .ico, .wrap th.pkg .g .ico { display: inline-flex; width: auto; height: auto; padding: 0; margin: 0; border: 0; background: none; }
 th.pkg img.runico, th.pkg img.leanico { width: 16px; height: 16px; display: block; }
-th.pkg .ico.wit.py.ok img.runico.pysrc { filter: brightness(0) saturate(100%) invert(64%) sepia(85%) saturate(6488%) hue-rotate(38deg) brightness(103%) contrast(106%); }
 th.pkg .ico svg { width: 17px; height: 17px; stroke: var(--ink-soft); fill: none; stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round; }
 .wrap td.links.pkg a.n, .wrap td.links.pkg a.n:visited { font-family: var(--mono); font-size: .85rem; line-height: 1; border: 0; background: none; padding: .1rem .15rem; width: 2ch; box-sizing: content-box; text-align: right; height: auto; text-decoration: none; margin: 0; }
 .wrap td.links.pkg a.n.py.ok { color: #a27900; } .wrap td.links.pkg a.n.core { color: #419457; } .wrap td.links.pkg a.n.ml { color: #7974c6; } .wrap td.links.pkg a.n.py.fail { color: #c04a4a; }
