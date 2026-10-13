@@ -1,5 +1,5 @@
 {
- "generated": "12 October 2026",
+ "generated": "13 October 2026",
  "blocks": {
   "A": "Foundation: from existence to the finite carrier",
   "B": "The Carrier: the substrate structure",
@@ -64,7 +64,7 @@
   },
   {
    "label": "A3",
-   "name": "Completeness",
+   "name": "Completeness of the totality",
    "block": "A",
    "key": "p00003",
    "tag": "T",
@@ -95,11 +95,11 @@
      "key": "p00162"
     }
    ],
-   "statement": "\\textbf{Completeness}: whatever exists is registered within --- the registration of any totality is onto its registered Universe (A8) --- so no outside (A8), no host (A1). Unique: two totalities each registered whole within the other have one count (5:C2 both ways), one count one Carrier (A6). No proper closed substructure (A10). Observers are parts within (A4)."
+   "statement": "\\textbf{Completeness of the totality}: whatever exists is registered within --- the registration of any totality is onto its registered Universe (A8) --- so no outside (A8), no host (A1). Unique: two totalities each registered whole within the other have one count (5:C2 both ways), one count one Carrier (A6). No proper closed substructure (A10). Observers are parts within (A4)."
   },
   {
    "label": "A4",
-   "name": "Observation",
+   "name": "Incompleteness of observation",
    "block": "A",
    "key": "p00197",
    "tag": "T",
@@ -119,6 +119,10 @@
      "key": "p00196"
     },
     {
+     "label": "B8",
+     "key": "p00166"
+    },
+    {
      "label": "C4",
      "key": "p00024"
     },
@@ -131,7 +135,7 @@
      "key": "p00187"
     }
    ],
-   "statement": "\\textbf{Observation}: every observation is a registration by an embedded part (C4, A13) of $o<\\Om$ states (A6): every reading identifies two members (25:D1, 5:C2) --- an incomplete projection --- and a complete reading needs the whole count. No frame is the Carrier's own (A6): one translation carries each member to each, one affine map each frame to each (1:C2). Horizon: Z1, Z9."
+   "statement": "\\textbf{Incompleteness of observation}: every observation is a registration by an embedded part (C4, A13) of cardinality $\\p<\\sqrt\\Om$ (A6, B8): every reading identifies two members (25:D1, 5:C2) --- an incomplete projection, complete only at the whole count. No frame sees more: one translation carries each member to each, one affine map each frame to each (A6, 1:C2). Horizon: Z1, Z9."
   },
   {
    "label": "A5",
@@ -215,7 +219,7 @@
      "key": "p00197"
     }
    ],
-   "statement": "\\textbf{Realisation, not correspondence}: a sufficiently expressive, predictive, registration-complete structure \\emph{is} its subject, not an abstraction of it. By Observation (A4) no registration reaches an unregistered reality, so a distinction with no registered residue is no distinction. Identification rows (\\tR) are therefore constitutive: defended by the totality of registered consequences, killed by explicit falsifiers."
+   "statement": "\\textbf{Realisation, not correspondence}: a sufficiently expressive, predictive, registration-complete structure \\emph{is} its subject, not an abstraction of it. By the incompleteness of observation (A4) no registration reaches an unregistered reality, so a distinction with no registered residue is no distinction. Identification rows (\\tR) are therefore constitutive: defended by the totality of registered consequences, killed by explicit falsifiers."
   },
   {
    "label": "A9",

@@ -1,6 +1,6 @@
 {
  "header": {
-  "generated": "12 October 2026",
+  "generated": "13 October 2026",
   "schema": "frc-register/2",
   "rows": 1019,
   "theorems": 1009,
@@ -1478,14 +1478,14 @@
   {
    "key": "p00003",
    "origin": "00",
-   "statement": "\\textbf{Completeness}: whatever exists is registered within --- the registration of any totality is onto its registered Universe (A8) --- so no outside (A8), no host (A1). Unique: two totalities each registered whole within the other have one count (5:C2 both ways), one count one Carrier (A6). No proper closed substructure (A10). Observers are parts within (A4).",
+   "statement": "\\textbf{Completeness of the totality}: whatever exists is registered within --- the registration of any totality is onto its registered Universe (A8) --- so no outside (A8), no host (A1). Unique: two totalities each registered whole within the other have one count (5:C2 both ways), one count one Carrier (A6). No proper closed substructure (A10). Observers are parts within (A4).",
    "origin_row": "00:A3",
    "tag": "T",
    "tier": 0,
    "check": {
     "href": "frc/ledgers/master/foundation.html#p00003",
     "script": "frc/ledgers/master/foundation.py",
-    "line": 186,
+    "line": 187,
     "verdict": "pass"
    },
    "declarations": [
@@ -1504,14 +1504,14 @@
   {
    "key": "p00197",
    "origin": "00",
-   "statement": "\\textbf{Observation}: every observation is a registration by an embedded part (C4, A13) of $o<\\Om$ states (A6): every reading identifies two members (25:D1, 5:C2) --- an incomplete projection --- and a complete reading needs the whole count. No frame is the Carrier's own (A6): one translation carries each member to each, one affine map each frame to each (1:C2). Horizon: Z1, Z9.",
+   "statement": "\\textbf{Incompleteness of observation}: every observation is a registration by an embedded part (C4, A13) of cardinality $\\p<\\sqrt\\Om$ (A6, B8): every reading identifies two members (25:D1, 5:C2) --- an incomplete projection, complete only at the whole count. No frame sees more: one translation carries each member to each, one affine map each frame to each (A6, 1:C2). Horizon: Z1, Z9.",
    "origin_row": "00:A4",
    "tag": "T",
    "tier": 0,
    "check": {
     "href": "frc/ledgers/master/foundation.html#p00197",
     "script": "frc/ledgers/master/foundation.py",
-    "line": 227,
+    "line": 228,
     "verdict": "pass"
    },
    "declarations": [
@@ -1595,7 +1595,7 @@
   {
    "key": "p00010",
    "origin": "00",
-   "statement": "\\textbf{Realisation, not correspondence}: a sufficiently expressive, predictive, registration-complete structure \\emph{is} its subject, not an abstraction of it. By Observation (A4) no registration reaches an unregistered reality, so a distinction with no registered residue is no distinction. Identification rows (\\tR) are therefore constitutive: defended by the totality of registered consequences, killed by explicit falsifiers.",
+   "statement": "\\textbf{Realisation, not correspondence}: a sufficiently expressive, predictive, registration-complete structure \\emph{is} its subject, not an abstraction of it. By the incompleteness of observation (A4) no registration reaches an unregistered reality, so a distinction with no registered residue is no distinction. Identification rows (\\tR) are therefore constitutive: defended by the totality of registered consequences, killed by explicit falsifiers.",
    "origin_row": "00:A8",
    "tag": "D",
    "tier": null,
@@ -24905,8 +24905,8 @@
    "label": "A3",
    "block": "A",
    "tag": "T",
-   "name": "Completeness",
-   "statement": "\\textbf{Completeness}: whatever exists is registered within --- the registration of any totality is onto its registered Universe (A8) --- so no outside (A8), no host (A1). Unique: two totalities each registered whole within the other have one count (5:C2 both ways), one count one Carrier (A6). No proper closed substructure (A10). Observers are parts within (A4).",
+   "name": "Completeness of the totality",
+   "statement": "\\textbf{Completeness of the totality}: whatever exists is registered within --- the registration of any totality is onto its registered Universe (A8) --- so no outside (A8), no host (A1). Unique: two totalities each registered whole within the other have one count (5:C2 both ways), one count one Carrier (A6). No proper closed substructure (A10). Observers are parts within (A4).",
    "source": "25-göd, 5-red",
    "page": "00-ledger.html#A3",
    "witness": {
@@ -24914,7 +24914,7 @@
     "py": {
      "href": "frc/ledgers/master/foundation.html#p00003",
      "script": "frc/ledgers/master/foundation.py",
-     "line": 186,
+     "line": 187,
      "verdict": "pass"
     },
     "lean": [
@@ -24940,7 +24940,7 @@
     "25-göd",
     "5-red"
    ],
-   "text": "Completeness: Completeness: whatever exists is registered within — the registration of any totality is onto its registered Universe (A8) — so no outside (A8), no host (A1). Unique: two totalities each registered whole within the other have one count (5:C2 both ways), one count one Carrier (A6). No proper closed substructure (A10). Observers are parts within (A4). 25-göd, 5-red"
+   "text": "Completeness of the totality: Completeness of the totality: whatever exists is registered within — the registration of any totality is onto its registered Universe (A8) — so no outside (A8), no host (A1). Unique: two totalities each registered whole within the other have one count (5:C2 both ways), one count one Carrier (A6). No proper closed substructure (A10). Observers are parts within (A4). 25-göd, 5-red"
   },
   {
    "paper": "00",
@@ -24950,8 +24950,8 @@
    "label": "A4",
    "block": "A",
    "tag": "T",
-   "name": "Observation",
-   "statement": "\\textbf{Observation}: every observation is a registration by an embedded part (C4, A13) of $o<\\Om$ states (A6): every reading identifies two members (25:D1, 5:C2) --- an incomplete projection --- and a complete reading needs the whole count. No frame is the Carrier's own (A6): one translation carries each member to each, one affine map each frame to each (1:C2). Horizon: Z1, Z9.",
+   "name": "Incompleteness of observation",
+   "statement": "\\textbf{Incompleteness of observation}: every observation is a registration by an embedded part (C4, A13) of cardinality $\\p<\\sqrt\\Om$ (A6, B8): every reading identifies two members (25:D1, 5:C2) --- an incomplete projection, complete only at the whole count. No frame sees more: one translation carries each member to each, one affine map each frame to each (A6, 1:C2). Horizon: Z1, Z9.",
    "source": "25-göd, 5-red, 1-alg",
    "page": "00-ledger.html#A4",
    "witness": {
@@ -24959,7 +24959,7 @@
     "py": {
      "href": "frc/ledgers/master/foundation.html#p00197",
      "script": "frc/ledgers/master/foundation.py",
-     "line": 227,
+     "line": 228,
      "verdict": "pass"
     },
     "lean": [
@@ -24976,6 +24976,7 @@
    "refs": [
     "p00008",
     "p00024",
+    "p00166",
     "p00186",
     "p00187",
     "p00196",
@@ -24988,7 +24989,7 @@
     "5-red",
     "1-alg"
    ],
-   "text": "Observation: Observation: every observation is a registration by an embedded part (C4, A13) of $o<\\Om$ states (A6): every reading identifies two members (25:D1, 5:C2) — an incomplete projection — and a complete reading needs the whole count. No frame is the Carrier's own (A6): one translation carries each member to each, one affine map each frame to each (1:C2). Horizon: Z1, Z9. 25-göd, 5-red, 1-alg"
+   "text": "Incompleteness of observation: Incompleteness of observation: every observation is a registration by an embedded part (C4, A13) of cardinality $\\p<\\sqrt\\Om$ (A6, B8): every reading identifies two members (25:D1, 5:C2) — an incomplete projection, complete only at the whole count. No frame sees more: one translation carries each member to each, one affine map each frame to each (A6, 1:C2). Horizon: Z1, Z9. 25-göd, 5-red, 1-alg"
   },
   {
    "paper": "00",
@@ -25107,7 +25108,7 @@
    "block": "A",
    "tag": "D",
    "name": "Realisation, not correspondence",
-   "statement": "\\textbf{Realisation, not correspondence}: a sufficiently expressive, predictive, registration-complete structure \\emph{is} its subject, not an abstraction of it. By Observation (A4) no registration reaches an unregistered reality, so a distinction with no registered residue is no distinction. Identification rows (\\tR) are therefore constitutive: defended by the totality of registered consequences, killed by explicit falsifiers.",
+   "statement": "\\textbf{Realisation, not correspondence}: a sufficiently expressive, predictive, registration-complete structure \\emph{is} its subject, not an abstraction of it. By the incompleteness of observation (A4) no registration reaches an unregistered reality, so a distinction with no registered residue is no distinction. Identification rows (\\tR) are therefore constitutive: defended by the totality of registered consequences, killed by explicit falsifiers.",
    "source": "",
    "page": "00-ledger.html#A8",
    "witness": {
@@ -25119,7 +25120,7 @@
     "p00197"
    ],
    "sources": [],
-   "text": "Realisation, not correspondence: Realisation, not correspondence: a sufficiently expressive, predictive, registration-complete structure is its subject, not an abstraction of it. By Observation (A4) no registration reaches an unregistered reality, so a distinction with no registered residue is no distinction. Identification rows (R) are therefore constitutive: defended by the totality of registered consequences, killed by explicit falsifiers."
+   "text": "Realisation, not correspondence: Realisation, not correspondence: a sufficiently expressive, predictive, registration-complete structure is its subject, not an abstraction of it. By the incompleteness of observation (A4) no registration reaches an unregistered reality, so a distinction with no registered residue is no distinction. Identification rows (R) are therefore constitutive: defended by the totality of registered consequences, killed by explicit falsifiers."
   },
   {
    "paper": "00",

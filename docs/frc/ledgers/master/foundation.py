@@ -9,8 +9,9 @@ the check that decides the row (PREDICATES).
 The rows are A2, A3 and A4 (the three former pillars, theorems since 9 October 2026: the registered Universe of any
 totality is finite and no reading registers an unlimited supply, with the agent's bound; the registration of any
 totality is onto its registered Universe, and two totalities each registered whole within the other have one count;
-Observation — every reading of a part identifies two members, a complete reading needs the whole count and the Carrier
-is a translation torsor; until 9 October two rows, the bounded observer A4 and Registration A5, merged that day), A5,
+the incompleteness of observation — every reading of a part identifies two members, complete only at the whole count,
+and no frame sees more, the Carrier a translation torsor; until 9 October two rows, the bounded observer A4 and
+Registration A5, merged that day; retitled with A3, Completeness of the totality, on 13 October), A5,
 A10, A11 and A12, the block's T rows, proved in
 lean/FrcCore/Theme/Foundation.lean and lean/FrcCore/Theme/Drive.lean with no generator assumed. A9, the trusted base, is
 a D row: gate G19 enforces its clause on unboundedness, and every key's empty axiom list (gate G08) its kernel clause.
