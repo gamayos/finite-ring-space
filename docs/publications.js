@@ -275,10 +275,11 @@ const PUBLICATIONS = [
     "n": 10,
     "title": "Dimensional Analysis over Finite Holographic Substrate",
     "status": {
-      "kind": "preprint"
+      "kind": "published",
+      "venue": "Entropy"
     },
-    "doi": "https://doi.org/10.20944/preprints202605.0668.v1",
-    "doiLabel": "pp202605.0668.v1",
+    "doi": "https://doi.org/10.3390/e28101122",
+    "doiLabel": "e28101122",
     "ledger": "10-dimensions/index.html",
     "schema": true,
     "links": [
@@ -305,7 +306,7 @@ const PUBLICATIONS = [
   {
     "key": "13-epi",
     "n": 13,
-    "title": "Finite Field Realisation of π and e",
+    "title": "Finite Field Realisation of the Classical Constants π and e",
     "status": {
       "kind": "preprint"
     },
@@ -381,20 +382,20 @@ const PUBLICATIONS = [
       {
         "href": "https://colab.research.google.com/github/gamayos/finite-ring-space/blob/main/src/20-rh/frc-20-rh.ipynb",
         "label": "python",
-        "count": 35,
-        "title": "35 predicates checked, all passing: the notebook frc-20-rh.ipynb on Google Colab, one cell per predicate"
+        "count": 41,
+        "title": "41 predicates checked, all passing: the notebook frc-20-rh.ipynb on Google Colab, one cell per predicate"
       },
       {
         "href": "https://live.lean-lang.org/#project=lean-v4.34.0&url=https://finitering.space/lean/web/core/Rh.lean",
         "label": "lean",
-        "count": 11,
-        "title": "11 predicates proved in the core (no axioms), 11 of them also on Mathlib: the core module Rh as one executable file (plain Lean, no Mathlib) in Lean Live"
+        "count": 17,
+        "title": "17 predicates proved in the core (no axioms), 11 of them also on Mathlib: the core module Rh as one executable file (plain Lean, no Mathlib) in Lean Live"
       },
       {
         "href": "https://live.lean-lang.org/#project=mathlib-stable&url=https://finitering.space/lean/web/ml/Rh.lean",
         "label": "lean-mathlib",
-        "count": 14,
-        "title": "14 predicates proved on Mathlib (classical), 11 of them also in the core: the module Rh as one file on Mathlib in Lean Live"
+        "count": 15,
+        "title": "15 predicates proved on Mathlib (classical), 11 of them also in the core: the module Rh as one file on Mathlib in Lean Live"
       }
     ]
   },
@@ -742,4 +743,4 @@ const PUBLICATIONS = [
   }
 ];
 
-const GENERATED = "12 October 2026";
+const GENERATED = "14 October 2026";
