@@ -120,7 +120,7 @@ LABELS = {
     "pi.W1": "the legibility window on p ∈ {5, 13, 29, 101, 257, 1009, 10007}: p ∤ C(2n,n) for 1 ≤ n ≤ m = (p−1)/2 and p | C(2n,n) for m < n < p; the half-wall terminus [w_m] ≡ −2 = m⁻¹ = 4π_A; the lower chain blind exactly at the wall (2m+1 = p)",
     "pi.W2": "the wall residue −2 is universal: [w_m] ≡ −2 also for p ≡ 3 (mod 4), p ∈ {7, 23, 1031}",
     "pi.S1": "second order at the half wall for p ∈ {13, 29, 37, 41, 53, 101}: Morley's congruence (−1)^m C(p−1,m) ≡ 4^{p−1} (mod p³) and the formula w_m ≡ −2 + 2p(q_p(4) − 1) (mod p²)",
-    "pi.S2": "the π-Wieferich search: 4^{p−1} ≡ 1 + p (mod p²) holds for exactly p ∈ {5, 45827} among the primes below 10⁶ (the normalised quotients' moments over p < 2·10⁴ are printed as the paper's [approx] reading)",
+    "pi.S2": "the π-Wieferich search: 4^{p−1} ≡ 1 + p (mod p²) holds for exactly p ∈ {5, 45827} among the primes below 10⁶, and the recorded search of the standalone C programs (results_wieferich.txt) tiles [3, 2³⁵) with the same two hits (the normalised quotients' moments over p < 2·10⁴ are printed as the paper's [approx] reading)",
     "pi.S3": "the π-Wieferich condition in three forms on p ∈ {5, 13, 29, 37, 41, 53, 101, 45827}: q_p(4) = 2q_p(2) + p·q_p(2)² exactly, 4^{p−1} ≡ 1 + p (mod p²) iff q_p(4) ≡ 1 iff 2q_p(2) ≡ 1 (mod p); Eisenstein's 2q_p(2) ≡ −H_{(p−1)/2}; and the OEIS A355959 form (p+2)^{p−1} ≡ 1 (mod p²) iff 2q_p(2) ≡ 1, holding at 5 and 45827 only",
     "pi.L1": "Lucas revivals: [v_p] ≡ 8 for p ∈ {5, 7, 11, 13, 29, 37}; on p = 13, C(26,13) ≡ 2 = C(2,1)·C(0,0), C(28,14) ≡ 4 = C(2,1)² digitwise, and the two-digit revival scales number exactly (2κ)² = 36",
     "pi.V1": "first-order wall vanishing: σ_p = Σ_{k<m} C(2k,k)/((2k+1)16^k) ≡ 0 (mod p) for all 428 odd primes 5 ≤ p < 3000, with σ_3 = 1 the sole exception; the rational numerator of σ_p is divisible by p for 5 ≤ p < 200",
@@ -897,6 +897,17 @@ def block_pi():
         f"(heuristic expectation ~ sum 1/p ~ {sum(1/q for q in sieve_pi(LIM)):.2f} ... over the range)")
     family("pi", "S2")
     chk("pi-Wieferich primes below 10^6 are exactly {5, 45827}", hits == [5, 45827])
+    # the recorded search of the standalone programs pi_wieferich.c and pi_wieferich128.c (results_wieferich.txt, 18 September
+    # 2026): the recorded ranges tile [3, 2^35) and the recorded hits are 5 and 45827 alone
+    rec = open(os.path.join(os.path.dirname(os.path.abspath(__file__)), "results_wieferich.txt"), encoding="utf-8").read()
+    import re as _re
+    spans = sorted((int(a), int(b)) for a, b in _re.findall(r"^range \[(\d+), (\d+)\):", rec, _re.M))
+    rhits = [int(x) for x in _re.findall(r"^HIT p=(\d+)", rec, _re.M)]
+    tiled = bool(spans) and spans[0][0] == 3 and spans[-1][1] == 2 ** 35 and all(spans[i][1] == spans[i + 1][0] for i in range(len(spans) - 1))
+    counted = sum(int(n) for n in _re.findall(r"pi-Wieferich hits (\d+)", rec))
+    log_pi(f"recorded search (results_wieferich.txt): ranges {spans}, hits {rhits}, hits counted {counted}")
+    chk("the recorded search tiles [3, 2^35) with the hits 5 and 45827 alone (results_wieferich.txt: three runs, 2 hits counted)",
+        tiled and rhits == [5, 45827] and counted == 2)
 
     # the pi-Wieferich condition in three forms, Eisenstein's harmonic form and the OEIS A355959 form (13:G10)
     # 13:G10 (p13067)

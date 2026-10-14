@@ -3,7 +3,7 @@
  "tree": "13-epi-20260713",
  "title": "Finite Field Realisation of the Classical Constants π and e",
  "doi": "https://doi.org/10.20944/preprints202607.1141.v1",
- "generated": "13 October 2026",
+ "generated": "14 October 2026",
  "blocks": [
   {
    "letter": "A",
@@ -313,7 +313,7 @@
     },
     {
      "label": "G4",
-     "predicate": "Second order at the half wall: $w_m\\equiv-2+2\\p(q_\\p(4)-1)\\pmod{\\p^{2}}$ with $q_\\p(4)\\equiv2q_\\p(2)$, exact to $\\p^{3}$ through Morley (A3); the universal $-2$ persists to $\\p^{2}$ exactly for the $\\pi$-Wieferich primes $4^{\\p-1}\\equiv1+\\p\\pmod{\\p^{2}}$ (OEIS A355959, G10), which are exactly $5$ and $45827$ below $1.08\\times10^{11}$ \\cite{oeisA355959}, re-verified here to $2^{35}$ (\\src{pi\\_wieferich128}; $45827\\equiv3\\pmod4$, so $\\p=5$ is the only Subject shell among them; two below $10^{6}$ against the range frequency $\\sum_{\\p<10^{6}}1/\\p\\approx2.4$); the normalised quotients equidistribute empirically \\apx.",
+     "predicate": "Second order at the half wall: $w_m\\equiv-2+2\\p(q_\\p(4)-1)\\pmod{\\p^{2}}$ with $q_\\p(4)\\equiv2q_\\p(2)$, exact to $\\p^{3}$ through Morley (A3). The universal $-2$ persists to $\\p^{2}$ exactly for the $\\pi$-Wieferich primes (G10): $5$ and $45827$ below $1.08\\times10^{11}$ \\cite{oeisA355959} and below $2^{35}$ (the package's recorded search); $45827\\equiv3\\pmod4$, so $\\p=5$ is the only Subject shell among them. The normalised quotients equidistribute empirically \\apx.",
      "tag": "T",
      "source": "Thm.~\\ref{thm:secondorder}\\newline \\pywit{epi}{p13037}{G4}, \\leanwit{FrcLedger}{p13037}{G4} \\lean{Epi.half\\_wall\\_second\\_order}",
      "key": "p13037"
