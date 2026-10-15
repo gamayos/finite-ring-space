@@ -120,6 +120,66 @@
   "kind": "CHART"
  },
  {
+  "id": "est.N2",
+  "rows": "14:C2",
+  "block": "est",
+  "script": "entropy",
+  "label": "the non-channels: the horizon-quarter closure as integers on the laboratory Carrier and on every Ω = 4S + 1 below 10⁴ ((Ω − 1)/4 = S exactly); the registered entropy budget ~10¹⁰⁴ against S = 3.3 × 10¹²²: 18.5 orders, a floor eighteen orders below [approx]",
+  "ok": true,
+  "detail": "2 micro-checks",
+  "kind": "EXACT+CHART"
+ },
+ {
+  "id": "est.O4",
+  "rows": "14:X4",
+  "block": "est",
+  "script": "entropy",
+  "label": "the congruence S even is the octant sector: on every prime Ω = 4S + 1 below 10⁴, an element of order 8 exists in F_Ω iff 8 | Ω − 1 iff S even (the primitive root's (Ω − 1)/8 power; exhaustive); on the laboratory Carrier ζ₈ = 1 639 587",
+  "ok": true,
+  "detail": "2 micro-checks",
+  "kind": "EXACT"
+ },
+ {
+  "id": "est.L0",
+  "rows": "14:X1",
+  "block": "est",
+  "script": "entropy",
+  "label": "the curvature face: Λℓ_P² = 3π/S exactly for Λ = 3/r_H² and S = π(r_H/ℓ_P)² (the identity to 10⁻¹² at the channel-1 r_H), 2.9 × 10⁻¹²² at S = 3.3 × 10¹²² [approx]; no mode sum enters",
+  "ok": true,
+  "detail": "2 micro-checks",
+  "kind": "CHART"
+ },
+ {
+  "id": "est.H7",
+  "rows": "14:X7, 14:X8",
+  "block": "est",
+  "script": "entropy",
+  "label": "the Hubble radius on the black-hole line: ρ_BH(r) = 3c²/(8πG r²) equals ρ_c = 3H²/(8πG) at r = c/H identically (to 10⁻¹² at H₀ = 67.4 and 73.0) [ΛCDM] — the saturation identity X7 and X8 share",
+  "ok": true,
+  "detail": "2 micro-checks",
+  "kind": "CHART"
+ },
+ {
+  "id": "est.S8",
+  "rows": "14:P2, 14:X8",
+  "block": "est",
+  "script": "entropy",
+  "label": "the record-depth bound separates the completions: the octant value is fixed at 13.79 Gyr while the ΛCDM t₀ grows with chart time, 1/13.79 = 7.25 % per Gyr (in (7 %, 7.5 %)); degenerate to 0.2 % now, 7 % apart one Gyr on [approx]",
+  "ok": true,
+  "detail": "2 micro-checks",
+  "kind": "CHART"
+ },
+ {
+  "id": "est.W4",
+  "rows": "14:P4",
+  "block": "est",
+  "script": "entropy",
+  "label": "the rigid equation of state: with ρ′ = 0 the conservation law ρ′ + 3H(ρ + p) = 0 gives p = −ρ, w = p/ρ = −1 exactly (Fraction arithmetic on sample H, ρ; every sample), no w₀w_a freedom",
+  "ok": true,
+  "detail": "2 micro-checks",
+  "kind": "EXACT"
+ },
+ {
   "id": "tri.A",
   "rows": "14:C5, 14:C8, 14:C9",
   "block": "tri",

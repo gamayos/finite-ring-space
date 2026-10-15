@@ -172,14 +172,14 @@
      "label": "C1",
      "predicate": "Two faces: a frame supplies one spatial and one temporal datum, so every instrument reading the size of the totality is one of exactly two faces, converted by $c$.",
      "tag": "T",
-     "source": "\\S\\ref{sec:channels}\\newline \\pywit{entropy}{p14018}{C1}",
+     "source": "\\S\\ref{sec:channels}\\newline \\pywit{entropy}{p14018}{C1}, \\leanwit{FrcLedger}{p14018}{C1} \\lean{Entropy.two\\_faces}",
      "key": "p14018"
     },
     {
      "label": "C2",
      "predicate": "The non-channels: the constants correspondence carries no dimensional readout, the horizon-quarter closure is an internal consistency loop, the registered entropy budget is a floor eighteen orders below $\\dS$ \\apx.",
      "tag": "T",
-     "source": "\\S\\ref{sec:notchannels}\\newline \\leanwit{FrcLedger}{p14019}{C2} \\lean{Entropy.horizon\\_quarter\\_closure}",
+     "source": "\\S\\ref{sec:notchannels}\\newline \\pywit{entropy}{p14019}{C2}, \\leanwit{FrcCore}{p14019}{C2}, \\leanwit{FrcLedger}{p14019}{C2} \\lean{Entropy.horizon\\_quarter\\_closure, FRC.Entropy.quarter\\_identity}",
      "key": "p14019"
     },
     {
@@ -193,7 +193,7 @@
      "label": "C4",
      "predicate": "The concordance: five evidence readings return $\\sqrt{\\dS}=(1.3\\text{--}1.8)\\times10^{61}$ \\apx, $\\pm17\\%$ half-range on the count face, factor $1.9$ on $\\dS$; the gauge reading 4a is displayed and excluded from every statistic.",
      "tag": "T",
-     "source": "\\S\\ref{sec:channels}\\newline \\pywit{entropy}{p14021}{C4}",
+     "source": "\\S\\ref{sec:channels}\\newline \\pywit{entropy}{p14021}{C4}, \\leanwit{FrcCore}{p14021}{C4} \\lean{FRC.Entropy.concordance}",
      "key": "p14021"
     },
     {
@@ -248,7 +248,7 @@
      "label": "X1",
      "predicate": "\\textbf{The cosmological-constant problem} dissolves: $\\Lambda$ is the curvature face of the one cardinality, not a vacuum energy, so there is no mode sum to cancel and the $10^{120}$-order discrepancy does not arise.",
      "tag": "T",
-     "source": "\\S\\ref{sec:import}, \\citep{weinberg1989}",
+     "source": "\\S\\ref{sec:import}, \\citep{weinberg1989}\\newline \\pywit{entropy}{p14028}{X1}, \\leanwit{FrcLedger}{p14028}{X1} \\lean{Entropy.lambda\\_face}",
      "key": "p14028"
     },
     {
@@ -269,35 +269,35 @@
      "label": "X4",
      "predicate": "\\textbf{The congruence $\\dS$ even} acquires a second physical face: it is the existence of the octant sector, hence the well-definedness of the measured age --- a structure of the Carrier's cycle lattice, certified by realisation and read as an observational condition, never an arithmetic property of the numeral.",
      "tag": "T",
-     "source": "Lem.~\\ref{lem:octant}(iv)\\newline \\leanwit{FrcCore}{p14031}{X4}, \\leanwit{FrcLedger}{p14031}{X4} \\lean{Entropy.octant\\_second\\_face, Entropy.octant\\_sector\\_iff, FRC.Entropy.two\\_is\\_square\\_iff}",
+     "source": "Lem.~\\ref{lem:octant}(iv)\\newline \\pywit{entropy}{p14031}{X4}, \\leanwit{FrcCore}{p14031}{X4}, \\leanwit{FrcLedger}{p14031}{X4} \\lean{Entropy.octant\\_second\\_face, Entropy.octant\\_sector\\_iff, FRC.Entropy.two\\_is\\_square\\_iff}",
      "key": "p14031"
     },
     {
      "label": "X5",
      "predicate": "\\textbf{The termination of the single-object sequence} is a consistency of the wall structure, the exit of C9 read as a bound: the typical-density diagonal over-closes at $1.8\\times10^{8}M_\\odot$ \\apx{} (sensitivity band $(1.4\\text{--}2.8)\\times10^{8}$ across fit variants), so every heavier single object continuing the condensed-density sequence is necessarily wall-bound; the supermassive holes are that continuation, not an anomaly beyond it. Classified with the triangle: consistency, not derivation of an observed scale.",
      "tag": "T",
-     "source": "\\S\\ref{sec:wedge}\\newline \\pywit{entropy}{p14032}{X5}",
+     "source": "\\S\\ref{sec:wedge}\\newline \\pywit{entropy}{p14032}{X5}, \\leanwit{FrcLedger}{p14032}{X5} \\lean{Entropy.wall\\_exit}",
      "key": "p14032"
     },
     {
      "label": "X6",
      "predicate": "\\textbf{The celebrated sub-percent age agreement} is judged: same-channel by the circularity criterion, a restatement of the fitted dark-energy fraction --- consistency, not evidence --- and the criterion locates exactly which confrontations do carry weight.",
      "tag": "T",
-     "source": "\\S\\ref{sec:audit}\\newline \\pywit{entropy}{p14033}{X6}",
+     "source": "\\S\\ref{sec:audit}\\newline \\pywit{entropy}{p14033}{X6}, \\leanwit{FrcLedger}{p14033}{X6} \\lean{Entropy.lcdm\\_age, Entropy.octant\\_inversion}",
      "key": "p14033"
     },
     {
      "label": "X7",
      "predicate": "\\textbf{The universe-as-black-hole puzzle dissolves}: the Hubble radius sits on the black-hole line identically ($\\rho_{\\mathrm{BH}}(r_H)=\\rho_c$ \\lcdm), but the Schwarzschild reading consumes an exterior, and the containment argument (A3) makes an exterior incoherent --- the totality on its own horizon is the chart's closing point, not a hole in a background.",
      "tag": "T",
-     "source": "\\S\\ref{sec:wedge}, \\citep{lineweaver2023}",
+     "source": "\\S\\ref{sec:wedge}, \\citep{lineweaver2023}\\newline \\pywit{entropy}{p14034}{X7}, \\leanwit{FrcLedger}{p14034}{X7} \\lean{Entropy.hubble\\_on\\_bh\\_line}",
      "key": "p14034"
     },
     {
      "label": "X8",
      "predicate": "\\textbf{The interior completions weighed}: black-hole cosmology keeps the same saturation identity by consuming a parent exterior and a singularity-replacing mechanism (torsion; exclusion pressure); the finite reading consumes neither: the containment argument (A3) closes the chart at $\\Om$, and no singularity is available over a finite totality. The registered record-depth bound separates the completions empirically (P2).",
      "tag": "T",
-     "source": "\\S\\ref{sec:wedge}, \\citep{pathria1972,poplawski2016,gaztanaga2025}",
+     "source": "\\S\\ref{sec:wedge}, \\citep{pathria1972,poplawski2016,gaztanaga2025}\\newline \\pywit{entropy}{p14035}{X8}, \\leanwit{FrcLedger}{p14035}{X8} \\lean{Entropy.hubble\\_on\\_bh\\_line, Entropy.record\\_depth}",
      "key": "p14035"
     }
    ]
@@ -310,14 +310,14 @@
      "label": "P1",
      "predicate": "\\textbf{(Lead.)} The floor runs with the registered rate, $a_0(z)\\propto H(z)$, the role statement of the floor closure, against both a constant fundamental $a_0$ and feedback-emergent scaling. Status: the constant-floor branch is excluded --- four redshift bins rising from $1.99$ to $2.71\\times10^{-10}\\,\\mathrm{m/s^2}$ over $z=0.50$--$1.28$ \\citep{ciocan2026}, $\\Delta\\chi^2=23$ against $A\\,H(z)/H_0$ \\lcdm{} --- and the running form fits the bins at free amplitude ($A=1.39\\pm0.03$, $\\chi^2=5.4/3$); the binned rate sits on the $\\propto H(z)$ chord while the authors' global linear fit runs above it, so the shape waits on the likelihood refit of the resolved tracks, and the amplitude's $0.12$\\,dex excess over $cH_0/2\\pi$ lies inside the $0.2$\\,dex gas systematic. Falsifier: a likelihood refit or a wider-redshift sample excluding the $\\propto H(z)$ form after the baryonic-mass and pressure-support systematics close.",
      "tag": "T",
-     "source": "\\S\\ref{sec:open}; rests on A6, A8, B4\\newline \\pywit{entropy}{p14036}{P1}",
+     "source": "\\S\\ref{sec:open}; rests on A6, A8, B4\\newline \\pywit{entropy}{p14036}{P1}, \\leanwit{FrcLedger}{p14036}{P1} \\lean{Entropy.running\\_floor}",
      "key": "p14036"
     },
     {
      "label": "P2",
      "predicate": "The registered record depth is bounded by $(\\pi/4)\\,r_H/c=13.79$ Gyr \\apx{} (channel-1 anchor) at every observational frame chronon, against a $\\Lambda$CDM $t_0$ that grows with chart time: degenerate to $0.2\\%$ now, separating at ${\\sim}7\\%$ per Gyr; the octant carries zero parameter freedom at fixed $\\Lambda$. Status \\citep{valcin2026}: the oldest cluster population $0.5\\sigma$ below the bound, the inferred age straddling it within $0.1\\sigma$ (\\S\\ref{sec:open}). Falsifier: one well-dated object older than the octant value, in any frame --- fit-independent, fatal; the same bound excludes interior-bounce black-hole cosmology (X8).",
      "tag": "T",
-     "source": "Lem.~\\ref{lem:octant}; rests on A8, B3, C5\\newline \\pywit{entropy}{p14037}{P2}",
+     "source": "Lem.~\\ref{lem:octant}; rests on A8, B3, C5\\newline \\pywit{entropy}{p14037}{P2}, \\leanwit{FrcLedger}{p14037}{P2} \\lean{Entropy.record\\_depth}",
      "key": "p14037"
     },
     {
@@ -331,7 +331,7 @@
      "label": "P4",
      "predicate": "\\textbf{(Lead.)} The dark-energy equation of state is rigid: $\\Lambda$ is the curvature face of the fixed cardinality, constant, its effective-fluid reading $w=-1$ exactly with no $w_0w_a$ freedom; the fluid statement consumes the conservation-law correspondence and the single-component clause (B8). Status: DESI-era combined fits prefer evolving dark energy at $3$--$4.2\\sigma$ \\citep{desi2025}, contested by reanalyses (\\S\\ref{sec:import}). Falsifier: confirmed evolution of $w$, which kills $\\Lambda\\sim1/\\Om$ outright and exposes P2 through $\\Lambda$.",
      "tag": "T",
-     "source": "\\S\\ref{sec:import}; rests on A1, A8, B1\\newline \\leanwit{FrcLedger}{p14039}{P4} \\lean{Entropy.fluid\\_w}",
+     "source": "\\S\\ref{sec:import}; rests on A1, A8, B1\\newline \\pywit{entropy}{p14039}{P4}, \\leanwit{FrcLedger}{p14039}{P4} \\lean{Entropy.fluid\\_w}",
      "key": "p14039"
     }
    ]
@@ -456,11 +456,11 @@
    {
     "name": "FRC.Entropy.quarter_identity",
     "module": "FrcCore/Entropy",
-    "line": 47,
+    "line": 48,
     "axioms": [],
     "tier": 0,
     "ok": true,
-    "doc": "14:A1, 14:B9 — the quarter identity: `Ω = 4S + 1` has `Ω ≡ 1 (mod 4)` and `Ω − 1 = 4S`, so the import fixes the cardinality exactly; the finite face of B9's area law `A = 4S`."
+    "doc": "14:A1, 14:B9, 14:C2 — the quarter identity: `Ω = 4S + 1` has `Ω ≡ 1 (mod 4)` and `Ω − 1 = 4S`, so the import fixes the cardinality exactly; the finite face of B9's area law `A = 4S`, and the integer face of C2's horizon-quarter closure `(Ω − 1)/4 = S`."
    }
   ],
   "A2": [
@@ -480,7 +480,7 @@
    {
     "name": "FRC.Entropy.carrierLab_prime",
     "module": "FrcCore/Entropy",
-    "line": 148,
+    "line": 149,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -530,7 +530,7 @@
    {
     "name": "FRC.Entropy.octant_count",
     "module": "FrcCore/Entropy",
-    "line": 71,
+    "line": 72,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -582,11 +582,11 @@
    {
     "name": "FRC.Entropy.quarter_identity",
     "module": "FrcCore/Entropy",
-    "line": 47,
+    "line": 48,
     "axioms": [],
     "tier": 0,
     "ok": true,
-    "doc": "14:A1, 14:B9 — the quarter identity: `Ω = 4S + 1` has `Ω ≡ 1 (mod 4)` and `Ω − 1 = 4S`, so the import fixes the cardinality exactly; the finite face of B9's area law `A = 4S`."
+    "doc": "14:A1, 14:B9, 14:C2 — the quarter identity: `Ω = 4S + 1` has `Ω ≡ 1 (mod 4)` and `Ω − 1 = 4S`, so the import fixes the cardinality exactly; the finite face of B9's area law `A = 4S`, and the integer face of C2's horizon-quarter closure `(Ω − 1)/4 = S`."
    }
   ],
   "B10": [
@@ -619,7 +619,7 @@
    {
     "name": "FRC.Entropy.nesting_bound",
     "module": "FrcCore/Entropy",
-    "line": 96,
+    "line": 97,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -628,7 +628,7 @@
    {
     "name": "FRC.Entropy.lab_nesting",
     "module": "FrcCore/Entropy",
-    "line": 161,
+    "line": 162,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -651,7 +651,7 @@
    {
     "name": "FRC.Entropy.additive_window",
     "module": "FrcCore/Entropy",
-    "line": 342,
+    "line": 343,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -660,7 +660,7 @@
    {
     "name": "FRC.Entropy.additive_window_hydrogen",
     "module": "FrcCore/Entropy",
-    "line": 352,
+    "line": 353,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -683,7 +683,7 @@
    {
     "name": "FRC.Entropy.lock_recurrence",
     "module": "FrcCore/Entropy",
-    "line": 371,
+    "line": 372,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -692,7 +692,7 @@
    {
     "name": "FRC.Entropy.lock_orbits",
     "module": "FrcCore/Entropy",
-    "line": 379,
+    "line": 380,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -728,7 +728,7 @@
    {
     "name": "FRC.Entropy.shells_of_capacity",
     "module": "FrcCore/Entropy",
-    "line": 391,
+    "line": 392,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -737,11 +737,26 @@
    {
     "name": "FRC.Entropy.fusion_capacity",
     "module": "FrcCore/Entropy",
-    "line": 416,
+    "line": 417,
     "axioms": [],
     "tier": 0,
     "ok": true,
     "doc": "14:B13 — fusion of coprime cycles is multiplicative, the instances: hydrogen `(4, 3)` returns jointly exactly at the multiples of `12 = 4 · 3` (searched below `24`), the diagonal drive on `C₄ × C₃` is one orbit of length `12` (the twelve points `(k, k)`, `k < 12`, distinct), and the fused capacity is `4 · 3 / 4 = 3`; like cycles do not fuse — `(12, 12)` returns at the multiples of `12`, `gcd (12, 12) = 12` — and the capacity-`3` shell `13` is not the lock's register `12`. The general law, `lcm (n₁, n₂) = n₁ n₂` for coprime cycles, is the Mathlib declaration."
+   }
+  ],
+  "C1": [
+   {
+    "name": "FRC.Entropy.two_faces",
+    "module": "FrcLedger/Entropy",
+    "line": 638,
+    "axioms": [
+     "Classical.choice",
+     "Quot.sound",
+     "propext"
+    ],
+    "tier": 2,
+    "ok": true,
+    "doc": "14:C1 [chart] — the two faces: with `c > 0` the conversion `r = c t` is a bijection between the temporal and the spatial datum, `r = c t ↔ t = r/c`, and each face returns the other, `(c t)/c = t`, `c (r/c) = r`. That an instrument reads exactly one of the two faces is C1's realisation clause (a frame supplies one datum of each kind), not formal content."
    }
   ],
   "C2": [
@@ -757,6 +772,15 @@
     "tier": 2,
     "ok": true,
     "doc": "14:C2 [chart] — the horizon-quarter closure is a consistency loop: the shell entropy `S(p) = (p² − 1)/4` read at the coherence-horizon point `p² = Ω` returns `(Ω − 1)/4 = S`, the import itself. No shell has `p² = Ω` (`Ω` is prime); the closure is read at the chart point `√Ω`."
+   },
+   {
+    "name": "FRC.Entropy.quarter_identity",
+    "module": "FrcCore/Entropy",
+    "line": 48,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "14:A1, 14:B9, 14:C2 — the quarter identity: `Ω = 4S + 1` has `Ω ≡ 1 (mod 4)` and `Ω − 1 = 4S`, so the import fixes the cardinality exactly; the finite face of B9's area law `A = 4S`, and the integer face of C2's horizon-quarter closure `(Ω − 1)/4 = S`."
    }
   ],
   "C3": [
@@ -784,7 +808,7 @@
     ],
     "tier": 2,
     "ok": true,
-    "doc": "14:A8, 14:C3 [ΛCDM] — the age identity verified: with `Ω_m + Ω_Λ = 1` the closed-form scale factor reaches `1` at the time `t` exactly when `t H_Λ = (2/3) artanh √Ω_Λ`, so the product `t₀H_Λ` of C3 is the chart's own age–rate relation, a function of the one fitted parameter."
+    "doc": "14:A8, 14:C3, 14:X6 [ΛCDM] — the age identity verified: with `Ω_m + Ω_Λ = 1` the closed-form scale factor reaches `1` at the time `t` exactly when `t H_Λ = (2/3) artanh √Ω_Λ`, so the product `t₀H_Λ` of C3 is the chart's own age–rate relation, a function of the one fitted parameter."
    },
    {
     "name": "FRC.Entropy.age_bracket",
@@ -800,11 +824,22 @@
     "doc": "14:C3 — the audit numeral bracketed: at the fitted `Ω_Λ = 0.685` (A8, taken as data) the rival chart's `t₀H_Λ = (2/3) artanh √0.685` lies in `(0.7870, 0.7871)` — the paper's `0.7871` — and exceeds `π/4` by between `0.21 %` and `0.22 %` of `π/4`, the audit's \"≈ 0.2 %\"."
    }
   ],
+  "C4": [
+   {
+    "name": "FRC.Entropy.concordance",
+    "module": "FrcCore/Entropy",
+    "line": 439,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "14:C4 [approx] — the concordance as integer arithmetic: the five evidence readings of `r_H` (rows 1, 2a, 2b, 3, 4b of the instrument table) are `166, 127, 133, 119, 164` in units of `10²⁴ m`, the gauge reading 4a (`129`) displayed and excluded; the count face `√S = √π · r_H/ℓ_P` is monotone in `r_H`, so rows 1 and 3 are the extremes. Clauses: the five lie in `[119, 166]`; the half-range `(166 − 119)/(166 + 119)` lies in `(16 %, 17 %)`, the paper's `±17 %`; the full-range factor on `S`, `(166/119)²`, lies in `(1.9, 2.0)`, the paper's `1.9`; with `ℓ_P = 1.616255 × 10⁻³⁵ m` the two extremes of `r_H/ℓ_P` lie in `(7.36, 7.37) × 10⁶⁰` and `(10.27, 10.28) × 10⁶⁰`; with `√π ∈ (1.772, 1.773)` (`1772² < 3 141 592 < 3 141 593 < 1773²`) the count face lies in `(1.30, 1.31) × 10⁶¹` and `(1.80, 1.83) × 10⁶¹`, the paper's `√S = (1.3–1.8) × 10⁶¹`. The readings, `ℓ_P` and `π` are chart data (taken as given); the arithmetic is decided."
+   }
+  ],
   "C5": [
    {
     "name": "FRC.Entropy.octant_chart",
     "module": "FrcLedger/Entropy",
-    "line": 634,
+    "line": 737,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -830,7 +865,7 @@
    {
     "name": "FRC.Entropy.closure_count",
     "module": "FrcCore/Entropy",
-    "line": 77,
+    "line": 78,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -839,7 +874,7 @@
    {
     "name": "FRC.Entropy.octant_count",
     "module": "FrcCore/Entropy",
-    "line": 71,
+    "line": 72,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -876,7 +911,7 @@
    {
     "name": "FRC.Entropy.tsirelson_square",
     "module": "FrcCore/Entropy",
-    "line": 202,
+    "line": 203,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -885,7 +920,7 @@
    {
     "name": "FRC.Entropy.octant_iff",
     "module": "FrcCore/Entropy",
-    "line": 246,
+    "line": 247,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -894,7 +929,7 @@
    {
     "name": "FRC.Entropy.lab_carrier",
     "module": "FrcCore/Entropy",
-    "line": 141,
+    "line": 142,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -913,12 +948,12 @@
     ],
     "tier": 2,
     "ok": true,
-    "doc": "14:C7, 14:X3 [ΛCDM] — the octant inversion, moved to the chart theme (`FRC.Chart.octant_inversion`); this name is its alias."
+    "doc": "14:C7, 14:X3, 14:X6 [ΛCDM] — the octant inversion, moved to the chart theme (`FRC.Chart.octant_inversion`); this name is its alias."
    },
    {
     "name": "FRC.Entropy.landing_bracket",
     "module": "FrcLedger/Entropy",
-    "line": 669,
+    "line": 772,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -1002,11 +1037,26 @@
    {
     "name": "FRC.Entropy.capacity_axis",
     "module": "FrcCore/Entropy",
-    "line": 154,
+    "line": 155,
     "axioms": [],
     "tier": 0,
     "ok": true,
     "doc": "14:C10, 14:B10 — the primality behind the capacity axis: `κ = 1` (the bare proton) is the shell `𝔽₅`, `κ = 2` has no shell (`9` composite), `κ_H = 3` (hydrogen, `N = 1`) is `𝔽₁₃`; the `3N` shell at `N = 3` (`37`), none at `N = 2` (`25`)."
+   }
+  ],
+  "X1": [
+   {
+    "name": "FRC.Entropy.lambda_face",
+    "module": "FrcLedger/Entropy",
+    "line": 648,
+    "axioms": [
+     "Classical.choice",
+     "Quot.sound",
+     "propext"
+    ],
+    "tier": 2,
+    "ok": true,
+    "doc": "14:X1 [chart] — the curvature face of the one cardinality: with `Λ = 3/r_H²` (the de Sitter radius) and `S = π (r_H/ℓ_P)²` (the count face, B9), `Λ ℓ_P² = 3π/S` identically. The constant is the cardinality read on the curvature face; that no mode sum enters is X1's realisation clause."
    }
   ],
   "X2": [
@@ -1036,12 +1086,12 @@
     ],
     "tier": 2,
     "ok": true,
-    "doc": "14:C7, 14:X3 [ΛCDM] — the octant inversion, moved to the chart theme (`FRC.Chart.octant_inversion`); this name is its alias."
+    "doc": "14:C7, 14:X3, 14:X6 [ΛCDM] — the octant inversion, moved to the chart theme (`FRC.Chart.octant_inversion`); this name is its alias."
    },
    {
     "name": "FRC.Entropy.landing_bracket",
     "module": "FrcLedger/Entropy",
-    "line": 669,
+    "line": 772,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -1082,18 +1132,134 @@
    {
     "name": "FRC.Entropy.two_is_square_iff",
     "module": "FrcCore/Entropy",
-    "line": 257,
+    "line": 258,
     "axioms": [],
     "tier": 0,
     "ok": true,
     "doc": "14:X4 — the second face as an equivalence at tier 0: on every frame `(τ; 0, 1, g)`, `2` is a square exactly when the capacity is even — the c-square congruence and the octant sector are one condition."
    }
   ],
+  "X5": [
+   {
+    "name": "FRC.Entropy.wall_exit",
+    "module": "FrcLedger/Entropy",
+    "line": 658,
+    "axioms": [
+     "Classical.choice",
+     "Quot.sound",
+     "propext"
+    ],
+    "tier": 2,
+    "ok": true,
+    "doc": "14:X5 [chart] — the over-closure exit of the typical-density diagonal: a body of density `ρ₀` (the paper's `c̃`) on the cubic `M = ρ₀ R³` that sits on its own Schwarzschild radius `R = 2GM/c²` has `M² = c⁶/(8 G³ ρ₀)`, one positive mass — the exit of C9 read as a bound. Its value `1.8 × 10⁸ M☉` at `ρ₀ = 0.97 × 10³ kg/m³` is the python witness's (`tri.W`)."
+   }
+  ],
+  "X6": [
+   {
+    "name": "FRC.Entropy.lcdm_age",
+    "module": "FrcLedger/Entropy",
+    "line": 391,
+    "axioms": [
+     "Classical.choice",
+     "Quot.sound",
+     "propext"
+    ],
+    "tier": 2,
+    "ok": true,
+    "doc": "14:A8, 14:C3, 14:X6 [ΛCDM] — the age identity verified: with `Ω_m + Ω_Λ = 1` the closed-form scale factor reaches `1` at the time `t` exactly when `t H_Λ = (2/3) artanh √Ω_Λ`, so the product `t₀H_Λ` of C3 is the chart's own age–rate relation, a function of the one fitted parameter."
+   },
+   {
+    "name": "FRC.Entropy.octant_inversion",
+    "module": "FrcLedger/Entropy",
+    "line": 227,
+    "axioms": [
+     "Classical.choice",
+     "Quot.sound",
+     "propext"
+    ],
+    "tier": 2,
+    "ok": true,
+    "doc": "14:C7, 14:X3, 14:X6 [ΛCDM] — the octant inversion, moved to the chart theme (`FRC.Chart.octant_inversion`); this name is its alias."
+   }
+  ],
+  "X7": [
+   {
+    "name": "FRC.Entropy.hubble_on_bh_line",
+    "module": "FrcLedger/Entropy",
+    "line": 686,
+    "axioms": [
+     "Classical.choice",
+     "Quot.sound",
+     "propext"
+    ],
+    "tier": 2,
+    "ok": true,
+    "doc": "14:X7, 14:X8 [ΛCDM] — the Hubble radius on the black-hole line: the density of a Schwarzschild mass `M = r c²/2G` spread over its own ball is `ρ_BH(r) = 3c²/(8πG r²)`; at `r = c/H` it is the critical density `ρ_c = 3H²/(8πG)` identically, and the equality `ρ_BH(r) = ρ_c` holds at `r = c/H` alone — the saturation identity X7 and X8 share. That the Schwarzschild reading consumes an exterior, and what each interior completion consumes, is the rows' realisation content."
+   }
+  ],
+  "X8": [
+   {
+    "name": "FRC.Entropy.hubble_on_bh_line",
+    "module": "FrcLedger/Entropy",
+    "line": 686,
+    "axioms": [
+     "Classical.choice",
+     "Quot.sound",
+     "propext"
+    ],
+    "tier": 2,
+    "ok": true,
+    "doc": "14:X7, 14:X8 [ΛCDM] — the Hubble radius on the black-hole line: the density of a Schwarzschild mass `M = r c²/2G` spread over its own ball is `ρ_BH(r) = 3c²/(8πG r²)`; at `r = c/H` it is the critical density `ρ_c = 3H²/(8πG)` identically, and the equality `ρ_BH(r) = ρ_c` holds at `r = c/H` alone — the saturation identity X7 and X8 share. That the Schwarzschild reading consumes an exterior, and what each interior completion consumes, is the rows' realisation content."
+   },
+   {
+    "name": "FRC.Entropy.record_depth",
+    "module": "FrcLedger/Entropy",
+    "line": 725,
+    "axioms": [
+     "Classical.choice",
+     "Quot.sound",
+     "propext"
+    ],
+    "tier": 2,
+    "ok": true,
+    "doc": "14:P2, 14:X8 [chart, ΛCDM] — the registered record depth: the octant's chart conversion `(S/2)/(4S) · 2π r_H/c = (π/4) r_H/c` (C5) at every frame chronon; the rival chart's `t₀ H_Λ` at the fitted `Ω_Λ = 0.685` exceeds `π/4` by `0.21–0.22 %` (the \"degenerate to 0.2 % now\", C3); and a `t₀` growing one Gyr per Gyr of chart time separates from the fixed `13.79 Gyr` at `1/13.79` per Gyr, which lies in `(7 %, 7.5 %)`. The numeral `13.79 Gyr` and the confrontation with the cluster ages are the python witness's (`est.P2`)."
+   }
+  ],
+  "P1": [
+   {
+    "name": "FRC.Entropy.running_floor",
+    "module": "FrcLedger/Entropy",
+    "line": 708,
+    "axioms": [
+     "Classical.choice",
+     "Quot.sound",
+     "propext"
+    ],
+    "tier": 2,
+    "ok": true,
+    "doc": "14:P1 [ΛCDM] — the running floor: with `a₀(z) = A H(z)/2π` and `H(z) = H₀ E(z)`, `E(z) = √(Ω_m (1+z)³ + Ω_Λ)`, the floor's ratio to today is the chart's `E(z)` (`E(0) = 1` on a flat chart), and at `z = 1` on the fitted chart (`Ω_m = 0.315`) it lies in `(1.79, 1.80)`: the floor runs with the registered rate. The confrontation with the four redshift bins is the python witness's (`est.P1`)."
+   }
+  ],
+  "P2": [
+   {
+    "name": "FRC.Entropy.record_depth",
+    "module": "FrcLedger/Entropy",
+    "line": 725,
+    "axioms": [
+     "Classical.choice",
+     "Quot.sound",
+     "propext"
+    ],
+    "tier": 2,
+    "ok": true,
+    "doc": "14:P2, 14:X8 [chart, ΛCDM] — the registered record depth: the octant's chart conversion `(S/2)/(4S) · 2π r_H/c = (π/4) r_H/c` (C5) at every frame chronon; the rival chart's `t₀ H_Λ` at the fitted `Ω_Λ = 0.685` exceeds `π/4` by `0.21–0.22 %` (the \"degenerate to 0.2 % now\", C3); and a `t₀` growing one Gyr per Gyr of chart time separates from the fixed `13.79 Gyr` at `1/13.79` per Gyr, which lies in `(7 %, 7.5 %)`. The numeral `13.79 Gyr` and the confrontation with the cluster ages are the python witness's (`est.P2`)."
+   }
+  ],
   "P3": [
    {
     "name": "FRC.Entropy.age_rate_locus",
     "module": "FrcLedger/Entropy",
-    "line": 643,
+    "line": 746,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -1106,7 +1272,7 @@
    {
     "name": "FRC.Entropy.locus_bracket",
     "module": "FrcLedger/Entropy",
-    "line": 665,
+    "line": 768,
     "axioms": [
      "Classical.choice",
      "Quot.sound",

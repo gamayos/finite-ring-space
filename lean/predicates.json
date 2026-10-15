@@ -227,6 +227,8 @@
    "14:B2": "Entropy",
    "14:B9": "Entropy",
    "14:C10": "Entropy",
+   "14:C2": "Entropy",
+   "14:C4": "Entropy",
    "14:C5": "Entropy",
    "14:C6": "Entropy",
    "14:X4": "Entropy"
@@ -241,6 +243,7 @@
    "14:B2": "Entropy",
    "14:B8": "Entropy",
    "14:B9": "Entropy",
+   "14:C1": "Entropy",
    "14:C10": "Entropy",
    "14:C2": "Entropy",
    "14:C3": "Entropy",
@@ -249,11 +252,18 @@
    "14:C7": "Entropy",
    "14:C8": "Entropy",
    "14:C9": "Entropy",
+   "14:P1": "Entropy",
+   "14:P2": "Entropy",
    "14:P3": "Entropy",
    "14:P4": "Entropy",
+   "14:X1": "Entropy",
    "14:X2": "Entropy",
    "14:X3": "Entropy",
-   "14:X4": "Entropy"
+   "14:X4": "Entropy",
+   "14:X5": "Entropy",
+   "14:X6": "Entropy",
+   "14:X7": "Entropy",
+   "14:X8": "Entropy"
   }
  },
  "6-fourier": {

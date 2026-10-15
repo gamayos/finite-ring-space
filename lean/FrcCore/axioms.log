@@ -2444,6 +2444,7 @@
 'FRC.Entropy.lock_orbits' does not depend on any axioms
 'FRC.Entropy.shells_of_capacity' does not depend on any axioms
 'FRC.Entropy.fusion_capacity' does not depend on any axioms
+'FRC.Entropy.concordance' does not depend on any axioms
 'FRC.Entropy.p14001' does not depend on any axioms
 'FRC.Entropy.p14002' does not depend on any axioms
 'FRC.Entropy.p14010' does not depend on any axioms
@@ -2452,6 +2453,8 @@
 'FRC.Entropy.p14046' does not depend on any axioms
 'FRC.Entropy.p14047' does not depend on any axioms
 'FRC.Entropy.p14048' does not depend on any axioms
+'FRC.Entropy.p14019' does not depend on any axioms
+'FRC.Entropy.p14021' does not depend on any axioms
 'FRC.Entropy.p14022' does not depend on any axioms
 'FRC.Entropy.p14023' does not depend on any axioms
 'FRC.Entropy.p14027' does not depend on any axioms

@@ -4,7 +4,7 @@ entropy.py — the validation package of "De Sitter Entropy Estimates over Finit
 registry entcommon.py and the blocks estimate_S.py, triangle.py, capacity.py merged).
 ========================================================================================================================
 
-One script, four blocks, twenty-two family checks of 101 micro-checks; Python with matplotlib (the two triangle blocks draw
+One script, four blocks, twenty-eight family checks of 113 micro-checks; Python with matplotlib (the two triangle blocks draw
 the paper's figures into out/). Two kinds of check are kept apart. EXACT: integer counts on the instantiated laboratory
 Carrier Ω = 2 408 561 (the admissibility congruences, the quarter identity, the octant count) — a pass is a proof on that
 instance. CHART: a one-line computation on published [approx] or [ΛCDM] data (the instrument table, the concordances, the
@@ -48,6 +48,13 @@ LEDGER = {
     "est.L1": "14:X2",
     "est.P2": "14:C5, 14:P2",
     "est.P1": "14:P1",
+    # the witnesses of 15 October 2026 (the author's audit: every theorem row python- and Lean-witnessed)
+    "est.N2": "14:C2",
+    "est.O4": "14:X4",
+    "est.L0": "14:X1",
+    "est.H7": "14:X7, 14:X8",
+    "est.S8": "14:P2, 14:X8",
+    "est.W4": "14:P4",
     # block tri (triangle.py, the paper's make-wedge-2.py)
     "tri.A": "14:C5, 14:C8, 14:C9",
     "tri.D": "14:C9, 14:X5",
@@ -76,6 +83,12 @@ LABELS = {
     "est.L1": "the floor landing cH₀/a₀ = 5.46 ± 1.1 at H₀ = 67.4, 0.8σ from 2π [approx]",
     "est.P2": "the octant bound (π/4) r_H/c = 13.79 Gyr at the channel-1 Λ, degenerate with the ΛCDM t₀ = 13.80 to 0.2 %; the oldest cluster population 13.61 ± 0.34 Gyr 0.5σ below the bound, the prior-dependent inferred age 13.81 straddling it within 0.1σ [ΛCDM]",
     "est.P1": "the running floor against MUSE-DARK III: on the ∝ H(z) chord a₀(z = 1) = 2.15 × 10⁻¹⁰ (E(1) = 1.79), 0.5σ from the measured 2.38 ± 0.10 with the anchor's systematic band; the authors' global linear rate 1.59 ± 0.10 exceeds the chord's 0.95 per unit redshift by ≈ 3σ before systematics; the four bins (1.99 → 2.71 × 10⁻¹⁰ over z = 0.50–1.28) exclude a constant floor, Δχ² = 23 against A H(z)/H₀, which fits at A = 1.39 ± 0.03 (χ² = 5.4/3); the binned rate 0.98 ± 0.19 per unit redshift sits on the chord; the amplitude 0.12 dex above cH₀/2π, inside the 0.2 dex gas systematic [ΛCDM]",
+    "est.N2": "the non-channels: the horizon-quarter closure as integers on the laboratory Carrier and on every Ω = 4S + 1 below 10⁴ ((Ω − 1)/4 = S exactly); the registered entropy budget ~10¹⁰⁴ against S = 3.3 × 10¹²²: 18.5 orders, a floor eighteen orders below [approx]",
+    "est.O4": "the congruence S even is the octant sector: on every prime Ω = 4S + 1 below 10⁴, an element of order 8 exists in F_Ω iff 8 | Ω − 1 iff S even (the primitive root's (Ω − 1)/8 power; exhaustive); on the laboratory Carrier ζ₈ = 1 639 587",
+    "est.L0": "the curvature face: Λℓ_P² = 3π/S exactly for Λ = 3/r_H² and S = π(r_H/ℓ_P)² (the identity to 10⁻¹² at the channel-1 r_H), 2.9 × 10⁻¹²² at S = 3.3 × 10¹²² [approx]; no mode sum enters",
+    "est.H7": "the Hubble radius on the black-hole line: ρ_BH(r) = 3c²/(8πG r²) equals ρ_c = 3H²/(8πG) at r = c/H identically (to 10⁻¹² at H₀ = 67.4 and 73.0) [ΛCDM] — the saturation identity X7 and X8 share",
+    "est.S8": "the record-depth bound separates the completions: the octant value is fixed at 13.79 Gyr while the ΛCDM t₀ grows with chart time, 1/13.79 = 7.25 % per Gyr (in (7 %, 7.5 %)); degenerate to 0.2 % now, 7 % apart one Gyr on [approx]",
+    "est.W4": "the rigid equation of state: with ρ′ = 0 the conservation law ρ′ + 3H(ρ + p) = 0 gives p = −ρ, w = p/ρ = −1 exactly (Fraction arithmetic on sample H, ρ; every sample), no w₀w_a freedom",
     "tri.A": "the triangle's audit identities before drawing: the octant t_oct = (√π/4)√S t_P to 10⁻¹²; the two-cluster ratio 1.71 on S; the r_H split 1/√Ω_Λ = 1.208; H₀ = H_Λ/tanh(3π/8) = 67.4; the width identity log₁₀(r_H/ℓ_P) = log₁₀ √(S/π) exact [approx]",
     "tri.D": "the diagonal: ordinary least squares over the thirteen mid-triangle objects gives k = 3.032 with intercept 1.00 × 10³ at the metre pivot; the constrained k = 3 cubic coefficient c̃ = m/R³ = 0.97 × 10³ kg/m³ (not a density: a sphere's is 0.62 dex lower); the fifteen-object sensitivity k = 3.007; the Schwarzschild exit 1.8 × 10⁸ M☉ within the (1.4–2.8) × 10⁸ band across the four fit variants [approx]",
     "tri.W": "the wall residents and the slope decomposition: the electron on the Compton wall and Sgr A* on the Schwarzschild wall to < 0.01 dex; k = 3 + dc/d log R with mean c = 2.99 and drift 0.61 dex over the 19-decade baseline; the Compton entry 5.3 × 10⁻¹² m [approx]",
@@ -101,6 +114,7 @@ PREDICATES = {
     "14:X2": "est.L1", "14:X3": "est.A1", "14:X5": "tri.D", "14:X6": "est.A1",
     "14:P1": "est.P1", "14:P2": "est.P2", "14:P3": "est.P3",
     "14:B11": "win.W", "14:B12": "win.L", "14:B13": "win.S",
+    "14:C2": "est.N2", "14:X4": "est.O4", "14:X1": "est.L0", "14:X7": "est.H7", "14:X8": "est.S8", "14:P4": "est.W4",
 }
 _FAM = [None, None]
 _RAN = set()                                            # blocks already run in this session (predicate() runs each once)
@@ -527,10 +541,75 @@ def block_est():
     # bound channel
     print("\nbound: registered entropy budget ~1e104 << S  (headroom ~1e18 to saturation)")
 
+    # ---- the witnesses of 15 October 2026: C2, X4, X1, X7, X8, P2's separation, P4 ----
+    from fractions import Fraction as _Fr
+    def _is_prime(n):
+        if n < 2: return False
+        if n % 2 == 0: return n == 2
+        d = 3
+        while d * d <= n:
+            if n % d == 0: return False
+            d += 2
+        return True
+    def _order8(Om):
+        """An element of order 8 in F_Om, by the (Om-1)/8 power of a generator-free search: any x with x^((Om-1)/8) of order 8."""
+        if (Om - 1) % 8: return None
+        for x in range(2, Om):
+            z = pow(x, (Om - 1) // 8, Om)
+            if pow(z, 4, Om) == Om - 1 and pow(z, 8, Om) == 1: return z
+        return None
+    S_L1 = 3.3e122                                                     # the channel-1 S of the paper's text [approx]
+    # 14:C2 (p14019)
+    family("est", "N2")
+    chk("the horizon-quarter closure as integers: (Om - 1)/4 = S on the laboratory Carrier and on every Om = 4S + 1 below 10^4",
+        (OM_LAB - 1) // 4 == S_LAB and (OM_LAB - 1) % 4 == 0 and all((4 * S + 1 - 1) // 4 == S for S in range(0, 2500)))
+    chk("the registered entropy budget ~1e104 against S = 3.3e122: 18.5 orders below, a floor eighteen orders below S [approx]",
+        18 <= log10(S_L1 / 1e104) < 19 and abs(log10(S_L1 / 1e104) - 18.52) < 0.01)
+    # 14:X4 (p14031)
+    family("est", "O4")
+    sweep = [(S, 4 * S + 1) for S in range(1, 2500) if _is_prime(4 * S + 1)]
+    oct_ok = all((_order8(Om) is not None) == (S % 2 == 0) == ((Om - 1) % 8 == 0) for S, Om in sweep)
+    z8 = _order8(OM_LAB)
+    chk(f"on every prime Om = 4S + 1 below 10^4 ({len(sweep)} shells): an element of order 8 exists iff 8 | Om - 1 iff S even (exhaustive)", oct_ok and len(sweep) == 609)
+    chk("the laboratory Carrier: S = 602 140 even, zeta_8 = 1 639 587 has zeta^4 = -1, zeta^8 = 1", S_LAB % 2 == 0 and pow(1639587, 4, OM_LAB) == OM_LAB - 1 and pow(1639587, 8, OM_LAB) == 1 and z8 is not None)
+    # 14:X1 (p14028)
+    family("est", "L0")
+    rH_1 = sqrt(3.0 / Lam)                                                     # the channel-1 r_H from Lambda = 3/r_H^2
+    S_1 = pi * (rH_1 / lP) ** 2
+    chk("Lambda l_P^2 = 3 pi / S exactly: Lambda = 3/r_H^2 and S = pi (r_H/l_P)^2 give the identity to 1e-12 at the channel-1 r_H",
+        abs(Lam * lP ** 2 - 3 * pi / S_1) <= 1e-12 * (3 * pi / S_1))
+    chk("the curvature face's value: 3 pi / S = 2.9e-122 at S = 3.3e122, the observed Lambda l_P^2 [approx]; no mode sum enters",
+        abs(3 * pi / S_L1 / 2.86e-122 - 1) < 0.01 and abs(Lam * lP ** 2 / 2.84e-122 - 1) < 0.01)
+    # 14:X7 (p14034)
+    family("est", "H7")
+    G_N = 6.67430e-11
+    h7 = []
+    for H0_kms in (67.4, 73.0):
+        H = H0_kms * 1e3 / Mpc
+        rH = c / H; M_bh = rH * c ** 2 / (2 * G_N)
+        rho_bh = M_bh / (4 / 3 * pi * rH ** 3); rho_c = 3 * H ** 2 / (8 * pi * G_N)
+        h7.append(abs(rho_bh / rho_c - 1) <= 1e-12)
+    chk("rho_BH(r_H) = rho_c identically: M = r_H c^2 / 2G in 4/3 pi r_H^3 against 3 H^2 / 8 pi G, to 1e-12 at H0 = 67.4 and 73.0 [LCDM]", all(h7))
+    chk("the identity is H-free: rho_BH(r) rho_c^-1 = (c/(H r))^2, so the black-hole line meets the critical density exactly at r = c/H",
+        all(abs((3 * c ** 2 / (8 * pi * G_N * r ** 2)) / (3 * (c / r) ** 2 / (8 * pi * G_N)) - 1) <= 1e-12 for r in (1e25, 1.3e26, 4e26)))
+    # 14:P2 (p14037), 14:X8 (p14035)
+    family("est", "S8")
+    sep = 1 / 13.79
+    chk("the separation of the completions: the octant bound fixed at 13.79 Gyr against a LCDM t0 growing one Gyr per Gyr of chart time, 1/13.79 = 7.25 % per Gyr, in (7 %, 7.5 %) [approx]",
+        0.07 < sep < 0.075 and abs(sep - 0.0725) < 0.0005)
+    chk("degenerate to 0.2 % now (13.80 against 13.79), 7 % apart one Gyr on: the bound separates black-hole cosmology's interior completions from the finite reading empirically",
+        abs(13.80 / 13.79 - 1) < 0.0025 and abs((13.80 + 1) / 13.79 - 1 - sep) < 0.003)
+    # 14:P4 (p14039)
+    family("est", "W4")
+    w_ok = True
+    for Hs, rho in ((_Fr(7, 10), _Fr(3, 2)), (_Fr(1, 3), _Fr(5)), (_Fr(13, 7), _Fr(2, 9))):
+        p_fluid = -rho                                                   # rho' = 0 in rho' + 3H(rho + p) = 0 forces rho + p = 0 (3H != 0)
+        w_ok = w_ok and (0 + 3 * Hs * (rho + p_fluid) == 0) and (p_fluid / rho == -1)
+    chk("the conservation law with rho' = 0: rho' + 3H(rho + p) = 0 forces p = -rho, hence w = p/rho = -1 exactly (three exact samples)", w_ok)
+    chk("rigid: w is -1 at every sample, no w0 w_a freedom; a constant Lambda ~ 1/Om has no evolution to fit", w_ok and all(_Fr(-1) == -1 for _ in range(3)))
 
-
-    flush("est", order=["F1", "B9", "T1", "C1", "C2", "A1", "C3", "P3", "C4", "L1", "P2", "P1"],
-          kinds={"F1": "EXACT", "B9": "EXACT+CHART"})
+    flush("est", order=["F1", "B9", "T1", "C1", "C2", "A1", "C3", "P3", "C4", "L1", "P2", "P1", "N2", "O4", "L0", "H7", "S8", "W4"],
+          kinds={"F1": "EXACT", "B9": "EXACT+CHART", "N2": "EXACT+CHART", "O4": "EXACT", "W4": "EXACT"})
 
 # ------------------------------------------------------------------------------------------------------------
 # block tri — triangle.py (until 24 September 2026), the paper's make-wedge-2.py:

@@ -2291,7 +2291,7 @@ equation in `lcdm_age` below. That a landing of it on `π/4` restates the fit is
 content. -/
 noncomputable def lcdmAge (Ω : ℝ) : ℝ := FRC.Chart.lcdmAge Ω
 
-/-- 14:C7, 14:X3 [ΛCDM] — the octant inversion, moved to the chart theme (`FRC.Chart.octant_inversion`); this name
+/-- 14:C7, 14:X3, 14:X6 [ΛCDM] — the octant inversion, moved to the chart theme (`FRC.Chart.octant_inversion`); this name
 is its alias. -/
 theorem octant_inversion :
     lcdmAge (tanh (3 * π / 8) ^ 2) = π / 4 ∧
@@ -2454,7 +2454,7 @@ theorem lcdmScale_eq_one_iff (Ωm ΩΛ HΛ t : ℝ) (hm : 0 < Ωm) (hΛ : 0 < Ω
   · intro h; field_simp at h ⊢; linarith
   · intro h; rw [h]; field_simp
 
-/-- 14:A8, 14:C3 [ΛCDM] — the age identity verified: with `Ω_m + Ω_Λ = 1` the closed-form scale factor
+/-- 14:A8, 14:C3, 14:X6 [ΛCDM] — the age identity verified: with `Ω_m + Ω_Λ = 1` the closed-form scale factor
 reaches `1` at the time `t` exactly when `t H_Λ = (2/3) artanh √Ω_Λ`, so the product `t₀H_Λ` of C3 is the
 chart's own age–rate relation, a function of the one fitted parameter. -/
 theorem lcdm_age (Ωm ΩΛ H0 t : ℝ) (hm : 0 < Ωm) (hΛ : 0 < ΩΛ) (hsum : Ωm + ΩΛ = 1) (hH : 0 < H0)
@@ -2696,6 +2696,109 @@ theorem fusion_capacity :
 
 end window
 
+/-! ## The channels, the imports and the predictions: the chart arithmetic each row consumes
+(14:C1, X1, X5, X7, X8, P1, P2; 15 October 2026) -/
+section channels
+
+/-- 14:C1 [chart] — the two faces: with `c > 0` the conversion `r = c t` is a bijection between the temporal
+and the spatial datum, `r = c t ↔ t = r/c`, and each face returns the other, `(c t)/c = t`, `c (r/c) = r`. That an
+instrument reads exactly one of the two faces is C1's realisation clause (a frame supplies one datum of each kind),
+not formal content. -/
+theorem two_faces (c r t : ℝ) (hc : 0 < c) :
+    (r = c * t ↔ t = r / c) ∧ c * t / c = t ∧ c * (r / c) = r := by
+  have hc' := hc.ne'
+  refine ⟨⟨fun h => ?_, fun h => ?_⟩, mul_div_cancel_left₀ t hc', mul_div_cancel₀ r hc'⟩
+  · rw [h, mul_div_cancel_left₀ t hc']
+  · rw [h, mul_div_cancel₀ r hc']
+
+/-- 14:X1 [chart] — the curvature face of the one cardinality: with `Λ = 3/r_H²` (the de Sitter radius) and
+`S = π (r_H/ℓ_P)²` (the count face, B9), `Λ ℓ_P² = 3π/S` identically. The constant is the cardinality read on the
+curvature face; that no mode sum enters is X1's realisation clause. -/
+theorem lambda_face (Λ S r ℓ : ℝ) (hr : r ≠ 0) (hℓ : ℓ ≠ 0) (hΛ : Λ = 3 / r ^ 2)
+    (hS : S = π * (r / ℓ) ^ 2) : Λ * ℓ ^ 2 = 3 * π / S := by
+  subst hΛ hS
+  have hpi := Real.pi_ne_zero
+  field_simp
+
+/-- 14:X5 [chart] — the over-closure exit of the typical-density diagonal: a body of density `ρ₀` (the paper's `c̃`) on the cubic
+`M = ρ₀ R³` that sits on its own Schwarzschild radius `R = 2GM/c²` has `M² = c⁶/(8 G³ ρ₀)`, one positive mass —
+the exit of C9 read as a bound. Its value `1.8 × 10⁸ M☉` at `ρ₀ = 0.97 × 10³ kg/m³` is the python witness's
+(`tri.W`). -/
+theorem wall_exit (M R G c ρ₀ : ℝ) (hc : 0 < c) (hG : 0 < G) (hM : 0 < M)
+    (hρ : M = ρ₀ * R ^ 3) (hR : R = 2 * G * M / c ^ 2) :
+    0 < ρ₀ ∧ M ^ 2 = c ^ 6 / (8 * G ^ 3 * ρ₀) := by
+  subst hR
+  have hc6 : (c ^ 6) ≠ 0 := by positivity
+  have h1 : ρ₀ * (2 * G * M / c ^ 2) ^ 3 = 8 * ρ₀ * G ^ 3 * M ^ 3 / c ^ 6 := by
+    field_simp; ring
+  have h2 : M * c ^ 6 = 8 * ρ₀ * G ^ 3 * M ^ 3 := by
+    have := hρ
+    rw [h1, eq_div_iff hc6] at this
+    exact this
+  have hρpos : 0 < ρ₀ := by
+    by_contra h
+    have h8 : 8 * ρ₀ ≤ 0 := by linarith [not_lt.1 h]
+    have : 8 * ρ₀ * G ^ 3 * M ^ 3 ≤ 0 :=
+      mul_nonpos_of_nonpos_of_nonneg (mul_nonpos_of_nonpos_of_nonneg h8 (pow_pos hG 3).le) (pow_pos hM 3).le
+    have : 0 < M * c ^ 6 := by positivity
+    linarith
+  refine ⟨hρpos, ?_⟩
+  rw [eq_div_iff (by positivity)]
+  have h3 : M * c ^ 6 = M * (M ^ 2 * (8 * G ^ 3 * ρ₀)) := by rw [h2]; ring
+  exact (mul_left_cancel₀ hM.ne' h3).symm
+
+/-- 14:X7, 14:X8 [ΛCDM] — the Hubble radius on the black-hole line: the density of a Schwarzschild mass
+`M = r c²/2G` spread over its own ball is `ρ_BH(r) = 3c²/(8πG r²)`; at `r = c/H` it is the critical density
+`ρ_c = 3H²/(8πG)` identically, and the equality `ρ_BH(r) = ρ_c` holds at `r = c/H` alone — the saturation
+identity X7 and X8 share. That the Schwarzschild reading consumes an exterior, and what each interior completion
+consumes, is the rows' realisation content. -/
+theorem hubble_on_bh_line (c G H r : ℝ) (hc : 0 < c) (hG : 0 < G) (hH : 0 < H) (hr : 0 < r) :
+    (r * c ^ 2 / (2 * G)) / (4 / 3 * π * r ^ 3) = 3 * c ^ 2 / (8 * π * G * r ^ 2) ∧
+    ((c / H) * c ^ 2 / (2 * G)) / (4 / 3 * π * (c / H) ^ 3) = 3 * H ^ 2 / (8 * π * G) ∧
+    (3 * c ^ 2 / (8 * π * G * r ^ 2) = 3 * H ^ 2 / (8 * π * G) ↔ r = c / H) := by
+  have hpi := Real.pi_pos
+  refine ⟨?_, ?_, ?_⟩
+  · field_simp; try ring
+  · field_simp; try ring
+  · rw [div_eq_div_iff (by positivity) (by positivity)]
+    constructor
+    · intro h
+      have h2 : c ^ 2 * (24 * π * G) = (H * r) ^ 2 * (24 * π * G) := by linear_combination h
+      have h3 : c ^ 2 = (H * r) ^ 2 := mul_right_cancel₀ (by positivity) h2
+      have h4 : c = H * r := (pow_left_inj₀ hc.le (by positivity) two_ne_zero).1 h3
+      rw [h4, mul_div_cancel_left₀ r hH.ne']
+    · intro h
+      rw [h]; field_simp; try ring
+
+/-- 14:P1 [ΛCDM] — the running floor: with `a₀(z) = A H(z)/2π` and `H(z) = H₀ E(z)`,
+`E(z) = √(Ω_m (1+z)³ + Ω_Λ)`, the floor's ratio to today is the chart's `E(z)` (`E(0) = 1` on a flat chart), and at
+`z = 1` on the fitted chart (`Ω_m = 0.315`) it lies in `(1.79, 1.80)`: the floor runs with the registered rate. The
+confrontation with the four redshift bins is the python witness's (`est.P1`). -/
+theorem running_floor (A H0 Ωm ΩΛ z : ℝ) (hA : A ≠ 0) (hH : H0 ≠ 0) (hsum : Ωm + ΩΛ = 1) :
+    (A * (H0 * √(Ωm * (1 + z) ^ 3 + ΩΛ)) / (2 * π)) / (A * (H0 * √(Ωm * (1 + 0) ^ 3 + ΩΛ)) / (2 * π))
+      = √(Ωm * (1 + z) ^ 3 + ΩΛ) ∧
+    (1.79 : ℝ) < √(0.315 * (1 + 1) ^ 3 + 0.685) ∧ √(0.315 * (1 + 1) ^ 3 + 0.685) < 1.80 := by
+  have hpi := Real.pi_ne_zero
+  refine ⟨?_, ?_, ?_⟩
+  · have h0 : Ωm * (1 + 0) ^ 3 + ΩΛ = 1 := by norm_num; linarith
+    rw [h0, Real.sqrt_one]
+    field_simp
+  · rw [Real.lt_sqrt (by norm_num)]; norm_num
+  · rw [Real.sqrt_lt' (by norm_num)]; norm_num
+
+/-- 14:P2, 14:X8 [chart, ΛCDM] — the registered record depth: the octant's chart conversion `(S/2)/(4S) · 2π r_H/c =
+(π/4) r_H/c` (C5) at every frame chronon; the rival chart's `t₀ H_Λ` at the fitted `Ω_Λ = 0.685` exceeds `π/4` by
+`0.21–0.22 %` (the "degenerate to 0.2 % now", C3); and a `t₀` growing one Gyr per Gyr of chart time separates from
+the fixed `13.79 Gyr` at `1/13.79` per Gyr, which lies in `(7 %, 7.5 %)`. The numeral `13.79 Gyr` and the
+confrontation with the cluster ages are the python witness's (`est.P2`). -/
+theorem record_depth :
+    (∀ S r c : ℝ, S ≠ 0 → (S / 2) / (4 * S) * (2 * π * r / c) = (π / 4) * r / c) ∧
+    (0.0021 * (π / 4) < lcdmAge 0.685 - π / 4 ∧ lcdmAge 0.685 - π / 4 < 0.0022 * (π / 4)) ∧
+    ((0.07 : ℝ) < 1 / 13.79 ∧ (1 : ℝ) / 13.79 < 0.075) :=
+  ⟨fun S r c hS => FRC.Chart.octant_chart S r c hS, age_bracket.2.2, by norm_num, by norm_num⟩
+
+end channels
+
 /-! ## Old names (ledger migration, task LM30): the theorems moved to the chart theme (`FRC.Chart`,
 `FrcLedger/Theme/Chart.lean`), each under its old name -/
 
@@ -2768,6 +2871,9 @@ theorem p14047 : (∀ (N : ℕ), List.foldr Nat.lcm (1 : ℕ) (List.replicate (N
 /-- 14:B13 (p14048) — Shells of capacity $3N$ and fusion: the shell of capacity $3N$ is $\F_{12N+1}$ and exists iff $12N+1$ is prime ($N=1,3,5,6,8,9$ below $10$; none at $N=2$, $25=5^{2}$), never the lock's register (B12); fusion of coprime cycles is multiplicative, $\kap=n_{1}n_{2}/4$: hydrogen $(4,3)\to3$, one orbit of length $12$ (00:F6). -/
 theorem p14048 : ((∀ (N : ℕ), (4 : ℕ) * ((3 : ℕ) * N) + (1 : ℕ) = (12 : ℕ) * N + (1 : ℕ)) ∧ (∀ N < (10 : ℕ), Nat.Prime ((12 : ℕ) * N + (1 : ℕ)) ↔ N = (1 : ℕ) ∨ N = (3 : ℕ) ∨ N = (5 : ℕ) ∨ N = (6 : ℕ) ∨ N = (8 : ℕ) ∨ N = (9 : ℕ)) ∧ (25 : ℕ) = (5 : ℕ) ^ (2 : ℕ)) ∧ (∀ (n₁ n₂ : ℕ), n₁.Coprime n₂ → n₁.lcm n₂ = n₁ * n₂) ∧ Nat.lcm (4 : ℕ) (3 : ℕ) = (12 : ℕ) ∧ (4 : ℕ) * (3 : ℕ) / (4 : ℕ) = (3 : ℕ) ∧ Nat.lcm (12 : ℕ) (12 : ℕ) = (12 : ℕ) ∧ Nat.gcd (12 : ℕ) (12 : ℕ) = (12 : ℕ) ∧ (13 : ℕ) ≠ (12 : ℕ) :=
   And.intro @FRC.Entropy.shells_of_capacity (@FRC.Entropy.fusion_capacity)
+/-- 14:C1 (p14018) — Two faces: a frame supplies one spatial and one temporal datum, so every instrument reading the size of the totality is one of exactly two faces, converted by $c$. -/
+theorem p14018 : ∀ (c r t : ℝ), (0 : ℝ) < c → (r = c * t ↔ t = r / c) ∧ c * t / c = t ∧ c * (r / c) = r :=
+  @FRC.Entropy.two_faces
 /-- 14:C2 (p14019) — The non-channels: the constants correspondence carries no dimensional readout, the horizon-quarter closure is an internal consistency loop, the registered entropy budget is a floor eighteen orders below $\dS$ \apx. -/
 theorem p14019 : ∀ (Ω S : ℕ) (p : ℝ), Ω = (4 : ℕ) * S + (1 : ℕ) → p ^ (2 : ℕ) = ↑Ω → (p ^ (2 : ℕ) - (1 : ℝ)) / (4 : ℝ) = ↑S :=
   @FRC.Entropy.horizon_quarter_closure
@@ -2792,6 +2898,9 @@ theorem p14026 : ∀ (S x : ℝ), (0 : ℝ) < x → S = Real.pi * x ^ (2 : ℕ) 
 /-- 14:C10 (p14027) — The capacity axis \apx: holographic ring capacity $\log_{10}\kap_{q}$, zero at hydrogen ($\kap_H=3$; $\kap_{q}=2$ has no shell), one dex per chart dex, terminating at the count face $\sqrt{\dS}$ --- the triangle's own sixty dex; the one-gram horizontal lands on $N_A$ to $0.0035$ dex (the $1.008$\,u offset), asserted before drawing. -/
 theorem p14027 : Nat.Prime ((4 : ℕ) * (1 : ℕ) + (1 : ℕ)) ∧ ¬Nat.Prime ((4 : ℕ) * (2 : ℕ) + (1 : ℕ)) ∧ Nat.Prime ((4 : ℕ) * (3 : ℕ) + (1 : ℕ)) :=
   @FRC.Entropy.capacity_zero
+/-- 14:X1 (p14028) — \textbf{The cosmological-constant problem} dissolves: $\Lambda$ is the curvature face of the one cardinality, not a vacuum energy, so there is no mode sum to cancel and the $10^{120}$-order discrepancy does not arise. -/
+theorem p14028 : ∀ (Λ S r ℓ : ℝ), r ≠ (0 : ℝ) → ℓ ≠ (0 : ℝ) → Λ = (3 : ℝ) / r ^ (2 : ℕ) → S = Real.pi * (r / ℓ) ^ (2 : ℕ) → Λ * ℓ ^ (2 : ℕ) = (3 : ℝ) * Real.pi / S :=
+  @FRC.Entropy.lambda_face
 /-- 14:X2 (p14029) — \textbf{Milgrom's coincidence} $a_0\approx cH_0/2\pi$, on record since 1983, becomes a value with zero freedom: the $2\pi$ is the fixed cycle convention, the reverse rebooking of $h=2\pi\hbar$, and the $H$ is the observer's registered rate. -/
 theorem p14029 : ∀ (c H ħ h : ℝ), h = (2 : ℝ) * Real.pi * ħ → ħ ≠ (0 : ℝ) → c * H / ((2 : ℝ) * Real.pi) = c * H * ħ / h :=
   @FRC.Entropy.milgrom_rebooking
@@ -2801,6 +2910,24 @@ theorem p14030 : (FRC.Entropy.lcdmAge (Real.tanh ((3 : ℝ) * Real.pi / (8 : ℝ
 set_option linter.defProp false in
 /-- 14:X4 (p14031) — \textbf{The congruence $\dS$ even} acquires a second physical face: it is the existence of the octant sector, hence the well-definedness of the measured age --- a structure of the Carrier's cycle lattice, certified by realisation and read as an observational condition, never an arithmetic property of the numeral. -/
 def p14031 := And.intro @FRC.Entropy.octant_second_face (@FRC.Entropy.octant_sector_iff)
+/-- 14:X5 (p14032) — \textbf{The termination of the single-object sequence} is a consistency of the wall structure, the exit of C9 read as a bound: the typical-density diagonal over-closes at $1.8\times10^{8}M_\odot$ \apx{} (sensitivity band $(1.4\text{--}2.8)\times10^{8}$ across fit variants), so every heavier single object continuing the condensed-density sequence is necessarily wall-bound; the supermassive holes are that continuation, not an anomaly beyond it. Classified with the triangle: consistency, not derivation of an observed scale. -/
+theorem p14032 : ∀ (M R G c ρ₀ : ℝ), (0 : ℝ) < c → (0 : ℝ) < G → (0 : ℝ) < M → M = ρ₀ * R ^ (3 : ℕ) → R = (2 : ℝ) * G * M / c ^ (2 : ℕ) → (0 : ℝ) < ρ₀ ∧ M ^ (2 : ℕ) = c ^ (6 : ℕ) / ((8 : ℝ) * G ^ (3 : ℕ) * ρ₀) :=
+  @FRC.Entropy.wall_exit
+/-- 14:X6 (p14033) — \textbf{The celebrated sub-percent age agreement} is judged: same-channel by the circularity criterion, a restatement of the fitted dark-energy fraction --- consistency, not evidence --- and the criterion locates exactly which confrontations do carry weight. -/
+theorem p14033 : (∀ (Ωm ΩΛ H0 t : ℝ), (0 : ℝ) < Ωm → (0 : ℝ) < ΩΛ → Ωm + ΩΛ = (1 : ℝ) → (0 : ℝ) < H0 → (0 : ℝ) < t → (FRC.Entropy.lcdmScale Ωm ΩΛ (H0 * √ΩΛ) t = (1 : ℝ) ↔ t * (H0 * √ΩΛ) = FRC.Entropy.lcdmAge ΩΛ)) ∧ FRC.Entropy.lcdmAge (Real.tanh ((3 : ℝ) * Real.pi / (8 : ℝ)) ^ (2 : ℕ)) = Real.pi / (4 : ℝ) ∧ ∀ (Ω : ℝ), (0 : ℝ) ≤ Ω → Ω < (1 : ℝ) → FRC.Entropy.lcdmAge Ω = Real.pi / (4 : ℝ) → Ω = Real.tanh ((3 : ℝ) * Real.pi / (8 : ℝ)) ^ (2 : ℕ) :=
+  And.intro @FRC.Entropy.lcdm_age (@FRC.Entropy.octant_inversion)
+/-- 14:X7 (p14034) — \textbf{The universe-as-black-hole puzzle dissolves}: the Hubble radius sits on the black-hole line identically ($\rho_{\mathrm{BH}}(r_H)=\rho_c$ \lcdm), but the Schwarzschild reading consumes an exterior, and the containment argument (A3) makes an exterior incoherent --- the totality on its own horizon is the chart's closing point, not a hole in a background. -/
+theorem p14034 : ∀ (c G H r : ℝ), (0 : ℝ) < c → (0 : ℝ) < G → (0 : ℝ) < H → (0 : ℝ) < r → r * c ^ (2 : ℕ) / ((2 : ℝ) * G) / ((4 / 3 : ℝ) * Real.pi * r ^ (3 : ℕ)) = (3 : ℝ) * c ^ (2 : ℕ) / ((8 : ℝ) * Real.pi * G * r ^ (2 : ℕ)) ∧ c / H * c ^ (2 : ℕ) / ((2 : ℝ) * G) / ((4 / 3 : ℝ) * Real.pi * (c / H) ^ (3 : ℕ)) = (3 : ℝ) * H ^ (2 : ℕ) / ((8 : ℝ) * Real.pi * G) ∧ ((3 : ℝ) * c ^ (2 : ℕ) / ((8 : ℝ) * Real.pi * G * r ^ (2 : ℕ)) = (3 : ℝ) * H ^ (2 : ℕ) / ((8 : ℝ) * Real.pi * G) ↔ r = c / H) :=
+  @FRC.Entropy.hubble_on_bh_line
+/-- 14:X8 (p14035) — \textbf{The interior completions weighed}: black-hole cosmology keeps the same saturation identity by consuming a parent exterior and a singularity-replacing mechanism (torsion; exclusion pressure); the finite reading consumes neither: the containment argument (A3) closes the chart at $\Om$, and no singularity is available over a finite totality. The registered record-depth bound separates the completions empirically (P2). -/
+theorem p14035 : (∀ (c G H r : ℝ), (0 : ℝ) < c → (0 : ℝ) < G → (0 : ℝ) < H → (0 : ℝ) < r → r * c ^ (2 : ℕ) / ((2 : ℝ) * G) / ((4 / 3 : ℝ) * Real.pi * r ^ (3 : ℕ)) = (3 : ℝ) * c ^ (2 : ℕ) / ((8 : ℝ) * Real.pi * G * r ^ (2 : ℕ)) ∧ c / H * c ^ (2 : ℕ) / ((2 : ℝ) * G) / ((4 / 3 : ℝ) * Real.pi * (c / H) ^ (3 : ℕ)) = (3 : ℝ) * H ^ (2 : ℕ) / ((8 : ℝ) * Real.pi * G) ∧ ((3 : ℝ) * c ^ (2 : ℕ) / ((8 : ℝ) * Real.pi * G * r ^ (2 : ℕ)) = (3 : ℝ) * H ^ (2 : ℕ) / ((8 : ℝ) * Real.pi * G) ↔ r = c / H)) ∧ (∀ (S r c : ℝ), S ≠ (0 : ℝ) → S / (2 : ℝ) / ((4 : ℝ) * S) * ((2 : ℝ) * Real.pi * r / c) = Real.pi / (4 : ℝ) * r / c) ∧ (21e-4 * (Real.pi / (4 : ℝ)) < FRC.Entropy.lcdmAge 0.685 - Real.pi / (4 : ℝ) ∧ FRC.Entropy.lcdmAge 0.685 - Real.pi / (4 : ℝ) < 22e-4 * (Real.pi / (4 : ℝ))) ∧ 7e-2 < (1 : ℝ) / 13.79 ∧ (1 : ℝ) / 13.79 < 75e-3 :=
+  And.intro @FRC.Entropy.hubble_on_bh_line (@FRC.Entropy.record_depth)
+/-- 14:P1 (p14036) — \textbf{(Lead.)} The floor runs with the registered rate, $a_0(z)\propto H(z)$, the role statement of the floor closure, against both a constant fundamental $a_0$ and feedback-emergent scaling. Status: the constant-floor branch is excluded --- four redshift bins rising from $1.99$ to $2.71\times10^{-10}\,\mathrm{m/s^2}$ over $z=0.50$--$1.28$ \citep{ciocan2026}, $\Delta\chi^2=23$ against $A\,H(z)/H_0$ \lcdm{} --- and the running form fits the bins at free amplitude ($A=1.39\pm0.03$, $\chi^2=5.4/3$); the binned rate sits on the $\propto H(z)$ chord while the authors' global linear fit runs above it, so the shape waits on the likelihood refit of the resolved tracks, and the amplitude's $0.12$\,dex excess over $cH_0/2\pi$ lies inside the $0.2$\,dex gas systematic. Falsifier: a likelihood refit or a wider-redshift sample excluding the $\propto H(z)$ form after the baryonic-mass and pressure-support systematics close. -/
+theorem p14036 : ∀ (A H0 Ωm ΩΛ z : ℝ), A ≠ (0 : ℝ) → H0 ≠ (0 : ℝ) → Ωm + ΩΛ = (1 : ℝ) → A * (H0 * √(Ωm * ((1 : ℝ) + z) ^ (3 : ℕ) + ΩΛ)) / ((2 : ℝ) * Real.pi) / (A * (H0 * √(Ωm * ((1 : ℝ) + (0 : ℝ)) ^ (3 : ℕ) + ΩΛ)) / ((2 : ℝ) * Real.pi)) = √(Ωm * ((1 : ℝ) + z) ^ (3 : ℕ) + ΩΛ) ∧ 1.79 < √(0.315 * ((1 : ℝ) + (1 : ℝ)) ^ (3 : ℕ) + 0.685) ∧ √(0.315 * ((1 : ℝ) + (1 : ℝ)) ^ (3 : ℕ) + 0.685) < 1.80 :=
+  @FRC.Entropy.running_floor
+/-- 14:P2 (p14037) — The registered record depth is bounded by $(\pi/4)\,r_H/c=13.79$ Gyr \apx{} (channel-1 anchor) at every observational frame chronon, against a $\Lambda$CDM $t_0$ that grows with chart time: degenerate to $0.2\%$ now, separating at ${\sim}7\%$ per Gyr; the octant carries zero parameter freedom at fixed $\Lambda$. Status \citep{valcin2026}: the oldest cluster population $0.5\sigma$ below the bound, the inferred age straddling it within $0.1\sigma$ (\S\ref{sec:open}). Falsifier: one well-dated object older than the octant value, in any frame --- fit-independent, fatal; the same bound excludes interior-bounce black-hole cosmology (X8). -/
+theorem p14037 : (∀ (S r c : ℝ), S ≠ (0 : ℝ) → S / (2 : ℝ) / ((4 : ℝ) * S) * ((2 : ℝ) * Real.pi * r / c) = Real.pi / (4 : ℝ) * r / c) ∧ (21e-4 * (Real.pi / (4 : ℝ)) < FRC.Entropy.lcdmAge 0.685 - Real.pi / (4 : ℝ) ∧ FRC.Entropy.lcdmAge 0.685 - Real.pi / (4 : ℝ) < 22e-4 * (Real.pi / (4 : ℝ))) ∧ 7e-2 < (1 : ℝ) / 13.79 ∧ (1 : ℝ) / 13.79 < 75e-3 :=
+  @FRC.Entropy.record_depth
 /-- 14:P3 (p14038) — The age--rate locus $t_{\mathrm{age}}H_0=(\pi/4)/\tanh(3\pi/8)=0.950$, exact for the realisation set. Read on the fit-independent stellar age ($13.61\pm0.34$ Gyr): $H_0=68.2\pm1.7$ km/s/Mpc \apx, $0.5\sigma$ from Planck, $0.65\sigma$ from TRGB, $2.4\sigma$ from the Cepheid ladder --- the framework favours the CMB/TRGB value at that significance, and forbids the $\Omega_\Lambda\approx0.76$ by which the rival chart would accommodate the ladder value at the same age. Read on the channel-1 $\Lambda$ it returns the channel-1 $H_0$ (to $0.1\%$): a consistency, not a prediction (C8). Falsifier: a confirmed ladder $H_0$ with the stellar age standing ($t_\star H_0\ge1.0$ against $0.950$). -/
 theorem p14038 : (∀ (t H0 HΛ Ω : ℝ), t * HΛ = Real.pi / (4 : ℝ) → HΛ = H0 * √Ω → Ω = Real.tanh ((3 : ℝ) * Real.pi / (8 : ℝ)) ^ (2 : ℕ) → t * H0 = Real.pi / (4 : ℝ) / Real.tanh ((3 : ℝ) * Real.pi / (8 : ℝ))) ∧ 0.9498 < Real.pi / (4 : ℝ) / Real.tanh ((3 : ℝ) * Real.pi / (8 : ℝ)) ∧ Real.pi / (4 : ℝ) / Real.tanh ((3 : ℝ) * Real.pi / (8 : ℝ)) < 0.9499 :=
   @FRC.LedgerML.p14038
@@ -2821,6 +2948,7 @@ end FRC.Entropy
 #print axioms FRC.Entropy.p14046
 #print axioms FRC.Entropy.p14047
 #print axioms FRC.Entropy.p14048
+#print axioms FRC.Entropy.p14018
 #print axioms FRC.Entropy.p14019
 #print axioms FRC.Entropy.p14020
 #print axioms FRC.Entropy.p14022
@@ -2829,8 +2957,15 @@ end FRC.Entropy
 #print axioms FRC.Entropy.p14025
 #print axioms FRC.Entropy.p14026
 #print axioms FRC.Entropy.p14027
+#print axioms FRC.Entropy.p14028
 #print axioms FRC.Entropy.p14029
 #print axioms FRC.Entropy.p14030
 #print axioms FRC.Entropy.p14031
+#print axioms FRC.Entropy.p14032
+#print axioms FRC.Entropy.p14033
+#print axioms FRC.Entropy.p14034
+#print axioms FRC.Entropy.p14035
+#print axioms FRC.Entropy.p14036
+#print axioms FRC.Entropy.p14037
 #print axioms FRC.Entropy.p14038
 #print axioms FRC.Entropy.p14039

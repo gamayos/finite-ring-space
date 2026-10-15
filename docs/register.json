@@ -521,7 +521,7 @@
     "key": "10-dim",
     "dir": "10-dimensions",
     "no": 10,
-    "title": null,
+    "title": "Dimensional Analysis over Finite Holographic Substrate",
     "status": null,
     "page": "10-dimensions/index.html",
     "blocks": [
@@ -13256,7 +13256,7 @@
    "check": {
     "href": "src/14-entropy/#p14002",
     "script": "entropy.py",
-    "line": 252,
+    "line": 266,
     "verdict": "pass"
    },
    "declarations": [
@@ -13509,7 +13509,7 @@
    "check": {
     "href": "src/14-entropy/#p14017",
     "script": "entropy.py",
-    "line": 272,
+    "line": 286,
     "verdict": "pass"
    },
    "declarations": [
@@ -13579,7 +13579,7 @@
    "check": {
     "href": "src/14-entropy/#p14046",
     "script": "entropy.py",
-    "line": 1214,
+    "line": 1293,
     "verdict": "pass"
    },
    "declarations": [
@@ -13615,7 +13615,7 @@
    "check": {
     "href": "src/14-entropy/#p14047",
     "script": "entropy.py",
-    "line": 1233,
+    "line": 1312,
     "verdict": "pass"
    },
    "declarations": [
@@ -13651,7 +13651,7 @@
    "check": {
     "href": "src/14-entropy/#p14048",
     "script": "entropy.py",
-    "line": 1245,
+    "line": 1324,
     "verdict": "pass"
    },
    "declarations": [
@@ -13688,14 +13688,20 @@
    "statement": "Two faces: a frame supplies one spatial and one temporal datum, so every instrument reading the size of the totality is one of exactly two faces, converted by $c$.",
    "origin_row": "14:C1",
    "tag": "T",
-   "tier": null,
+   "tier": 2,
    "check": {
     "href": "src/14-entropy/#p14018",
     "script": "entropy.py",
-    "line": 340,
+    "line": 354,
     "verdict": "pass"
    },
-   "declarations": [],
+   "declarations": [
+    {
+     "lib": "FrcLedger",
+     "module": "FrcLedger/Entropy",
+     "name": "FRC.Entropy.two_faces"
+    }
+   ],
    "aliases": [],
    "rows": [
     "14:C1"
@@ -13708,13 +13714,23 @@
    "statement": "The non-channels: the constants correspondence carries no dimensional readout, the horizon-quarter closure is an internal consistency loop, the registered entropy budget is a floor eighteen orders below $\\dS$ \\apx.",
    "origin_row": "14:C2",
    "tag": "T",
-   "tier": 2,
-   "check": null,
+   "tier": 0,
+   "check": {
+    "href": "src/14-entropy/#p14019",
+    "script": "entropy.py",
+    "line": 562,
+    "verdict": "pass"
+   },
    "declarations": [
     {
      "lib": "FrcLedger",
      "module": "FrcLedger/Entropy",
      "name": "FRC.Entropy.horizon_quarter_closure"
+    },
+    {
+     "lib": "FrcCore",
+     "module": "FrcCore/Entropy",
+     "name": "FRC.Entropy.quarter_identity"
     }
    ],
    "aliases": [],
@@ -13733,7 +13749,7 @@
    "check": {
     "href": "src/14-entropy/#p14020",
     "script": "entropy.py",
-    "line": 397,
+    "line": 411,
     "verdict": "pass"
    },
    "declarations": [
@@ -13765,14 +13781,20 @@
    "statement": "The concordance: five evidence readings return $\\sqrt{\\dS}=(1.3\\text{--}1.8)\\times10^{61}$ \\apx, $\\pm17\\%$ half-range on the count face, factor $1.9$ on $\\dS$; the gauge reading 4a is displayed and excluded from every statistic.",
    "origin_row": "14:C4",
    "tag": "T",
-   "tier": null,
+   "tier": 0,
    "check": {
     "href": "src/14-entropy/#p14021",
     "script": "entropy.py",
-    "line": 357,
+    "line": 371,
     "verdict": "pass"
    },
-   "declarations": [],
+   "declarations": [
+    {
+     "lib": "FrcCore",
+     "module": "FrcCore/Entropy",
+     "name": "FRC.Entropy.concordance"
+    }
+   ],
    "aliases": [],
    "rows": [
     "14:C4"
@@ -13789,7 +13811,7 @@
    "check": {
     "href": "src/14-entropy/#p14022",
     "script": "entropy.py",
-    "line": 481,
+    "line": 495,
     "verdict": "pass"
    },
    "declarations": [
@@ -13835,7 +13857,7 @@
    "check": {
     "href": "src/14-entropy/#p14023",
     "script": "entropy.py",
-    "line": 252,
+    "line": 266,
     "verdict": "pass"
    },
    "declarations": [
@@ -13881,7 +13903,7 @@
    "check": {
     "href": "src/14-entropy/#p14024",
     "script": "entropy.py",
-    "line": 397,
+    "line": 411,
     "verdict": "pass"
    },
    "declarations": [
@@ -13914,7 +13936,7 @@
    "check": {
     "href": "src/14-entropy/#p14025",
     "script": "entropy.py",
-    "line": 416,
+    "line": 430,
     "verdict": "pass"
    },
    "declarations": [
@@ -13952,7 +13974,7 @@
    "check": {
     "href": "src/14-entropy/#p14026",
     "script": "entropy.py",
-    "line": 694,
+    "line": 773,
     "verdict": "pass"
    },
    "declarations": [
@@ -13978,7 +14000,7 @@
    "check": {
     "href": "src/14-entropy/#p14027",
     "script": "entropy.py",
-    "line": 1138,
+    "line": 1217,
     "verdict": "pass"
    },
    "declarations": [
@@ -14005,14 +14027,20 @@
    "statement": "\\textbf{(Lead.)} The floor runs with the registered rate, $a_0(z)\\propto H(z)$, the role statement of the floor closure, against both a constant fundamental $a_0$ and feedback-emergent scaling. Status: the constant-floor branch is excluded --- four redshift bins rising from $1.99$ to $2.71\\times10^{-10}\\,\\mathrm{m/s^2}$ over $z=0.50$--$1.28$ \\citep{ciocan2026}, $\\Delta\\chi^2=23$ against $A\\,H(z)/H_0$ \\lcdm{} --- and the running form fits the bins at free amplitude ($A=1.39\\pm0.03$, $\\chi^2=5.4/3$); the binned rate sits on the $\\propto H(z)$ chord while the authors' global linear fit runs above it, so the shape waits on the likelihood refit of the resolved tracks, and the amplitude's $0.12$\\,dex excess over $cH_0/2\\pi$ lies inside the $0.2$\\,dex gas systematic. Falsifier: a likelihood refit or a wider-redshift sample excluding the $\\propto H(z)$ form after the baryonic-mass and pressure-support systematics close.",
    "origin_row": "14:P1",
    "tag": "T",
-   "tier": null,
+   "tier": 2,
    "check": {
     "href": "src/14-entropy/#p14036",
     "script": "entropy.py",
-    "line": 500,
+    "line": 514,
     "verdict": "pass"
    },
-   "declarations": [],
+   "declarations": [
+    {
+     "lib": "FrcLedger",
+     "module": "FrcLedger/Entropy",
+     "name": "FRC.Entropy.running_floor"
+    }
+   ],
    "aliases": [],
    "rows": [
     "14:P1"
@@ -14027,14 +14055,20 @@
    "statement": "The registered record depth is bounded by $(\\pi/4)\\,r_H/c=13.79$ Gyr \\apx{} (channel-1 anchor) at every observational frame chronon, against a $\\Lambda$CDM $t_0$ that grows with chart time: degenerate to $0.2\\%$ now, separating at ${\\sim}7\\%$ per Gyr; the octant carries zero parameter freedom at fixed $\\Lambda$. Status \\citep{valcin2026}: the oldest cluster population $0.5\\sigma$ below the bound, the inferred age straddling it within $0.1\\sigma$ (\\S\\ref{sec:open}). Falsifier: one well-dated object older than the octant value, in any frame --- fit-independent, fatal; the same bound excludes interior-bounce black-hole cosmology (X8).",
    "origin_row": "14:P2",
    "tag": "T",
-   "tier": null,
+   "tier": 2,
    "check": {
     "href": "src/14-entropy/#p14037",
     "script": "entropy.py",
-    "line": 481,
+    "line": 495,
     "verdict": "pass"
    },
-   "declarations": [],
+   "declarations": [
+    {
+     "lib": "FrcLedger",
+     "module": "FrcLedger/Entropy",
+     "name": "FRC.Entropy.record_depth"
+    }
+   ],
    "aliases": [],
    "rows": [
     "14:P2"
@@ -14054,7 +14088,7 @@
    "check": {
     "href": "src/14-entropy/#p14038",
     "script": "entropy.py",
-    "line": 436,
+    "line": 450,
     "verdict": "pass"
    },
    "declarations": [
@@ -14085,7 +14119,12 @@
    "origin_row": "14:P4",
    "tag": "T",
    "tier": 2,
-   "check": null,
+   "check": {
+    "href": "src/14-entropy/#p14039",
+    "script": "entropy.py",
+    "line": 602,
+    "verdict": "pass"
+   },
    "declarations": [
     {
      "lib": "FrcLedger",
@@ -14109,9 +14148,20 @@
    "statement": "\\textbf{The cosmological-constant problem} dissolves: $\\Lambda$ is the curvature face of the one cardinality, not a vacuum energy, so there is no mode sum to cancel and the $10^{120}$-order discrepancy does not arise.",
    "origin_row": "14:X1",
    "tag": "T",
-   "tier": null,
-   "check": null,
-   "declarations": [],
+   "tier": 2,
+   "check": {
+    "href": "src/14-entropy/#p14028",
+    "script": "entropy.py",
+    "line": 575,
+    "verdict": "pass"
+   },
+   "declarations": [
+    {
+     "lib": "FrcLedger",
+     "module": "FrcLedger/Entropy",
+     "name": "FRC.Entropy.lambda_face"
+    }
+   ],
    "aliases": [],
    "rows": [
     "14:X1"
@@ -14128,7 +14178,7 @@
    "check": {
     "href": "src/14-entropy/#p14029",
     "script": "entropy.py",
-    "line": 468,
+    "line": 482,
     "verdict": "pass"
    },
    "declarations": [
@@ -14157,7 +14207,7 @@
    "check": {
     "href": "src/14-entropy/#p14030",
     "script": "entropy.py",
-    "line": 397,
+    "line": 411,
     "verdict": "pass"
    },
    "declarations": [
@@ -14185,7 +14235,12 @@
    "origin_row": "14:X4",
    "tag": "T",
    "tier": 0,
-   "check": null,
+   "check": {
+    "href": "src/14-entropy/#p14031",
+    "script": "entropy.py",
+    "line": 568,
+    "verdict": "pass"
+   },
    "declarations": [
     {
      "lib": "FrcLedger",
@@ -14215,14 +14270,20 @@
    "statement": "\\textbf{The termination of the single-object sequence} is a consistency of the wall structure, the exit of C9 read as a bound: the typical-density diagonal over-closes at $1.8\\times10^{8}M_\\odot$ \\apx{} (sensitivity band $(1.4\\text{--}2.8)\\times10^{8}$ across fit variants), so every heavier single object continuing the condensed-density sequence is necessarily wall-bound; the supermassive holes are that continuation, not an anomaly beyond it. Classified with the triangle: consistency, not derivation of an observed scale.",
    "origin_row": "14:X5",
    "tag": "T",
-   "tier": null,
+   "tier": 2,
    "check": {
     "href": "src/14-entropy/#p14032",
     "script": "entropy.py",
-    "line": 694,
+    "line": 773,
     "verdict": "pass"
    },
-   "declarations": [],
+   "declarations": [
+    {
+     "lib": "FrcLedger",
+     "module": "FrcLedger/Entropy",
+     "name": "FRC.Entropy.wall_exit"
+    }
+   ],
    "aliases": [],
    "rows": [
     "14:X5"
@@ -14235,14 +14296,25 @@
    "statement": "\\textbf{The celebrated sub-percent age agreement} is judged: same-channel by the circularity criterion, a restatement of the fitted dark-energy fraction --- consistency, not evidence --- and the criterion locates exactly which confrontations do carry weight.",
    "origin_row": "14:X6",
    "tag": "T",
-   "tier": null,
+   "tier": 2,
    "check": {
     "href": "src/14-entropy/#p14033",
     "script": "entropy.py",
-    "line": 397,
+    "line": 411,
     "verdict": "pass"
    },
-   "declarations": [],
+   "declarations": [
+    {
+     "lib": "FrcLedger",
+     "module": "FrcLedger/Entropy",
+     "name": "FRC.Entropy.lcdm_age"
+    },
+    {
+     "lib": "FrcLedger",
+     "module": "FrcLedger/Entropy",
+     "name": "FRC.Entropy.octant_inversion"
+    }
+   ],
    "aliases": [],
    "rows": [
     "14:X6"
@@ -14255,9 +14327,20 @@
    "statement": "\\textbf{The universe-as-black-hole puzzle dissolves}: the Hubble radius sits on the black-hole line identically ($\\rho_{\\mathrm{BH}}(r_H)=\\rho_c$ \\lcdm), but the Schwarzschild reading consumes an exterior, and the containment argument (A3) makes an exterior incoherent --- the totality on its own horizon is the chart's closing point, not a hole in a background.",
    "origin_row": "14:X7",
    "tag": "T",
-   "tier": null,
-   "check": null,
-   "declarations": [],
+   "tier": 2,
+   "check": {
+    "href": "src/14-entropy/#p14034",
+    "script": "entropy.py",
+    "line": 583,
+    "verdict": "pass"
+   },
+   "declarations": [
+    {
+     "lib": "FrcLedger",
+     "module": "FrcLedger/Entropy",
+     "name": "FRC.Entropy.hubble_on_bh_line"
+    }
+   ],
    "aliases": [],
    "rows": [
     "14:X7"
@@ -14270,9 +14353,25 @@
    "statement": "\\textbf{The interior completions weighed}: black-hole cosmology keeps the same saturation identity by consuming a parent exterior and a singularity-replacing mechanism (torsion; exclusion pressure); the finite reading consumes neither: the containment argument (A3) closes the chart at $\\Om$, and no singularity is available over a finite totality. The registered record-depth bound separates the completions empirically (P2).",
    "origin_row": "14:X8",
    "tag": "T",
-   "tier": null,
-   "check": null,
-   "declarations": [],
+   "tier": 2,
+   "check": {
+    "href": "src/14-entropy/#p14035",
+    "script": "entropy.py",
+    "line": 595,
+    "verdict": "pass"
+   },
+   "declarations": [
+    {
+     "lib": "FrcLedger",
+     "module": "FrcLedger/Entropy",
+     "name": "FRC.Entropy.hubble_on_bh_line"
+    },
+    {
+     "lib": "FrcLedger",
+     "module": "FrcLedger/Entropy",
+     "name": "FRC.Entropy.record_depth"
+    }
+   ],
    "aliases": [
     "p00131"
    ],
@@ -42071,7 +42170,7 @@
     "py": {
      "href": "src/14-entropy/#p14002",
      "script": "entropy.py",
-     "line": 252,
+     "line": 266,
      "verdict": "pass"
     },
     "lean": [
@@ -42437,7 +42536,7 @@
     "py": {
      "href": "src/14-entropy/#p14017",
      "script": "entropy.py",
-     "line": 272,
+     "line": 286,
      "verdict": "pass"
     },
     "lean": [
@@ -42547,7 +42646,7 @@
     "py": {
      "href": "src/14-entropy/#p14046",
      "script": "entropy.py",
-     "line": 1214,
+     "line": 1293,
      "verdict": "pass"
     },
     "lean": [
@@ -42599,7 +42698,7 @@
     "py": {
      "href": "src/14-entropy/#p14047",
      "script": "entropy.py",
-     "line": 1233,
+     "line": 1312,
      "verdict": "pass"
     },
     "lean": [
@@ -42651,7 +42750,7 @@
     "py": {
      "href": "src/14-entropy/#p14048",
      "script": "entropy.py",
-     "line": 1245,
+     "line": 1324,
      "verdict": "pass"
     },
     "lean": [
@@ -42705,19 +42804,28 @@
    "tag": "T",
    "name": null,
    "statement": "Two faces: a frame supplies one spatial and one temporal datum, so every instrument reading the size of the totality is one of exactly two faces, converted by $c$.",
-   "source": "\\S\\ref{sec:channels}\\newline \\pywit{entropy}{p14018}{C1}",
+   "source": "\\S\\ref{sec:channels}\\newline \\pywit{entropy}{p14018}{C1}, \\leanwit{FrcLedger}{p14018}{C1} \\lean{Entropy.two\\_faces}",
    "page": "14-entropy/index.html#C1",
    "witness": {
     "py": {
      "href": "src/14-entropy/#p14018",
      "script": "entropy.py",
-     "line": 340,
+     "line": 354,
      "verdict": "pass"
     },
-    "lean": []
+    "lean": [
+     {
+      "lib": "FrcLedger",
+      "module": "FrcLedger/Entropy",
+      "name": "FRC.Entropy.two_faces",
+      "tier": 2,
+      "ok": true,
+      "page": "lean/ml/Entropy.html#FRC.Entropy.two_faces"
+     }
+    ]
    },
    "refs": [],
-   "text": "Two faces: a frame supplies one spatial and one temporal datum, so every instrument reading the size of the totality is one of exactly two faces, converted by $c$. \\Ssec:channels p14018"
+   "text": "Two faces: a frame supplies one spatial and one temporal datum, so every instrument reading the size of the totality is one of exactly two faces, converted by $c$. \\Ssec:channels p14018, FrcLedger{C1} Entropy.two_faces"
   },
   {
    "paper": "14-entr",
@@ -42729,10 +42837,15 @@
    "tag": "T",
    "name": null,
    "statement": "The non-channels: the constants correspondence carries no dimensional readout, the horizon-quarter closure is an internal consistency loop, the registered entropy budget is a floor eighteen orders below $\\dS$ \\apx.",
-   "source": "\\S\\ref{sec:notchannels}\\newline \\leanwit{FrcLedger}{p14019}{C2} \\lean{Entropy.horizon\\_quarter\\_closure}",
+   "source": "\\S\\ref{sec:notchannels}\\newline \\pywit{entropy}{p14019}{C2}, \\leanwit{FrcCore}{p14019}{C2}, \\leanwit{FrcLedger}{p14019}{C2} \\lean{Entropy.horizon\\_quarter\\_closure, FRC.Entropy.quarter\\_identity}",
    "page": "14-entropy/index.html#C2",
    "witness": {
-    "py": null,
+    "py": {
+     "href": "src/14-entropy/#p14019",
+     "script": "entropy.py",
+     "line": 562,
+     "verdict": "pass"
+    },
     "lean": [
      {
       "lib": "FrcLedger",
@@ -42741,11 +42854,19 @@
       "tier": 2,
       "ok": true,
       "page": "lean/ml/Entropy.html#FRC.Entropy.horizon_quarter_closure"
+     },
+     {
+      "lib": "FrcCore",
+      "module": "FrcCore/Entropy",
+      "name": "FRC.Entropy.quarter_identity",
+      "tier": 0,
+      "ok": true,
+      "page": "lean/core/Entropy.html#FRC.Entropy.quarter_identity"
      }
     ]
    },
    "refs": [],
-   "text": "The non-channels: the constants correspondence carries no dimensional readout, the horizon-quarter closure is an internal consistency loop, the registered entropy budget is a floor eighteen orders below $\\dS$ \\apx. \\Ssec:notchannels FrcLedger{C2} Entropy.horizon_quarter_closure"
+   "text": "The non-channels: the constants correspondence carries no dimensional readout, the horizon-quarter closure is an internal consistency loop, the registered entropy budget is a floor eighteen orders below $\\dS$ \\apx. \\Ssec:notchannels p14019, FrcCore{C2}, FrcLedger{C2} Entropy.horizon_quarter_closure, FRC.Entropy.quarter_identity"
   },
   {
    "paper": "14-entr",
@@ -42763,7 +42884,7 @@
     "py": {
      "href": "src/14-entropy/#p14020",
      "script": "entropy.py",
-     "line": 397,
+     "line": 411,
      "verdict": "pass"
     },
     "lean": [
@@ -42808,21 +42929,30 @@
    "tag": "T",
    "name": null,
    "statement": "The concordance: five evidence readings return $\\sqrt{\\dS}=(1.3\\text{--}1.8)\\times10^{61}$ \\apx, $\\pm17\\%$ half-range on the count face, factor $1.9$ on $\\dS$; the gauge reading 4a is displayed and excluded from every statistic.",
-   "source": "\\S\\ref{sec:channels}\\newline \\pywit{entropy}{p14021}{C4}",
+   "source": "\\S\\ref{sec:channels}\\newline \\pywit{entropy}{p14021}{C4}, \\leanwit{FrcCore}{p14021}{C4} \\lean{FRC.Entropy.concordance}",
    "page": "14-entropy/index.html#C4",
    "witness": {
     "py": {
      "href": "src/14-entropy/#p14021",
      "script": "entropy.py",
-     "line": 357,
+     "line": 371,
      "verdict": "pass"
     },
-    "lean": []
+    "lean": [
+     {
+      "lib": "FrcCore",
+      "module": "FrcCore/Entropy",
+      "name": "FRC.Entropy.concordance",
+      "tier": 0,
+      "ok": true,
+      "page": "lean/core/Entropy.html#FRC.Entropy.concordance"
+     }
+    ]
    },
    "refs": [
     "p00085"
    ],
-   "text": "The concordance: five evidence readings return $\\sqrt{\\dS}=(1.3–1.8)\\times10^{61}$ \\apx, $\\pm17%$ half-range on the count face, factor $1.9$ on $\\dS$; the gauge reading 4a is displayed and excluded from every statistic. \\Ssec:channels p14021"
+   "text": "The concordance: five evidence readings return $\\sqrt{\\dS}=(1.3–1.8)\\times10^{61}$ \\apx, $\\pm17%$ half-range on the count face, factor $1.9$ on $\\dS$; the gauge reading 4a is displayed and excluded from every statistic. \\Ssec:channels p14021, FrcCore{C4} FRC.Entropy.concordance"
   },
   {
    "paper": "14-entr",
@@ -42840,7 +42970,7 @@
     "py": {
      "href": "src/14-entropy/#p14022",
      "script": "entropy.py",
-     "line": 481,
+     "line": 495,
      "verdict": "pass"
     },
     "lean": [
@@ -42905,7 +43035,7 @@
     "py": {
      "href": "src/14-entropy/#p14023",
      "script": "entropy.py",
-     "line": 252,
+     "line": 266,
      "verdict": "pass"
     },
     "lean": [
@@ -42973,7 +43103,7 @@
     "py": {
      "href": "src/14-entropy/#p14024",
      "script": "entropy.py",
-     "line": 397,
+     "line": 411,
      "verdict": "pass"
     },
     "lean": [
@@ -43018,7 +43148,7 @@
     "py": {
      "href": "src/14-entropy/#p14025",
      "script": "entropy.py",
-     "line": 416,
+     "line": 430,
      "verdict": "pass"
     },
     "lean": [
@@ -43072,7 +43202,7 @@
     "py": {
      "href": "src/14-entropy/#p14026",
      "script": "entropy.py",
-     "line": 694,
+     "line": 773,
      "verdict": "pass"
     },
     "lean": [
@@ -43108,7 +43238,7 @@
     "py": {
      "href": "src/14-entropy/#p14027",
      "script": "entropy.py",
-     "line": 1138,
+     "line": 1217,
      "verdict": "pass"
     },
     "lean": [
@@ -43143,16 +43273,25 @@
    "tag": "T",
    "name": null,
    "statement": "\\textbf{(Lead.)} The floor runs with the registered rate, $a_0(z)\\propto H(z)$, the role statement of the floor closure, against both a constant fundamental $a_0$ and feedback-emergent scaling. Status: the constant-floor branch is excluded --- four redshift bins rising from $1.99$ to $2.71\\times10^{-10}\\,\\mathrm{m/s^2}$ over $z=0.50$--$1.28$ \\citep{ciocan2026}, $\\Delta\\chi^2=23$ against $A\\,H(z)/H_0$ \\lcdm{} --- and the running form fits the bins at free amplitude ($A=1.39\\pm0.03$, $\\chi^2=5.4/3$); the binned rate sits on the $\\propto H(z)$ chord while the authors' global linear fit runs above it, so the shape waits on the likelihood refit of the resolved tracks, and the amplitude's $0.12$\\,dex excess over $cH_0/2\\pi$ lies inside the $0.2$\\,dex gas systematic. Falsifier: a likelihood refit or a wider-redshift sample excluding the $\\propto H(z)$ form after the baryonic-mass and pressure-support systematics close.",
-   "source": "\\S\\ref{sec:open}; rests on A6, A8, B4\\newline \\pywit{entropy}{p14036}{P1}",
+   "source": "\\S\\ref{sec:open}; rests on A6, A8, B4\\newline \\pywit{entropy}{p14036}{P1}, \\leanwit{FrcLedger}{p14036}{P1} \\lean{Entropy.running\\_floor}",
    "page": "14-entropy/index.html#P1",
    "witness": {
     "py": {
      "href": "src/14-entropy/#p14036",
      "script": "entropy.py",
-     "line": 500,
+     "line": 514,
      "verdict": "pass"
     },
-    "lean": []
+    "lean": [
+     {
+      "lib": "FrcLedger",
+      "module": "FrcLedger/Entropy",
+      "name": "FRC.Entropy.running_floor",
+      "tier": 2,
+      "ok": true,
+      "page": "lean/ml/Entropy.html#FRC.Entropy.running_floor"
+     }
+    ]
    },
    "refs": [
     "p00133",
@@ -43160,7 +43299,7 @@
     "p14008",
     "p14012"
    ],
-   "text": "(Lead.) The floor runs with the registered rate, $a_0(z)\\propto H(z)$, the role statement of the floor closure, against both a constant fundamental $a_0$ and feedback-emergent scaling. Status: the constant-floor branch is excluded — four redshift bins rising from $1.99$ to $2.71\\times10^{-10} \\mathrm{m/s^2}$ over $z=0.50$–$1.28$ [ciocan2026], $\\Delta\\chi^2=23$ against $A H(z)/H_0$ \\lcdm{} — and the running form fits the bins at free amplitude ($A=1.39\\pm0.03$, $\\chi^2=5.4/3$); the binned rate sits on the $\\propto H(z)$ chord while the authors' global linear fit runs above it, so the shape waits on the likelihood refit of the resolved tracks, and the amplitude's $0.12$ dex excess over $cH_0/2\\pi$ lies inside the $0.2$ dex gas systematic. Falsifier: a likelihood refit or a wider-redshift sample excluding the $\\propto H(z)$ form after the baryonic-mass and pressure-support systematics close. \\Ssec:open; rests on A6, A8, B4 p14036"
+   "text": "(Lead.) The floor runs with the registered rate, $a_0(z)\\propto H(z)$, the role statement of the floor closure, against both a constant fundamental $a_0$ and feedback-emergent scaling. Status: the constant-floor branch is excluded — four redshift bins rising from $1.99$ to $2.71\\times10^{-10} \\mathrm{m/s^2}$ over $z=0.50$–$1.28$ [ciocan2026], $\\Delta\\chi^2=23$ against $A H(z)/H_0$ \\lcdm{} — and the running form fits the bins at free amplitude ($A=1.39\\pm0.03$, $\\chi^2=5.4/3$); the binned rate sits on the $\\propto H(z)$ chord while the authors' global linear fit runs above it, so the shape waits on the likelihood refit of the resolved tracks, and the amplitude's $0.12$ dex excess over $cH_0/2\\pi$ lies inside the $0.2$ dex gas systematic. Falsifier: a likelihood refit or a wider-redshift sample excluding the $\\propto H(z)$ form after the baryonic-mass and pressure-support systematics close. \\Ssec:open; rests on A6, A8, B4 p14036, FrcLedger{P1} Entropy.running_floor"
   },
   {
    "paper": "14-entr",
@@ -43172,16 +43311,25 @@
    "tag": "T",
    "name": null,
    "statement": "The registered record depth is bounded by $(\\pi/4)\\,r_H/c=13.79$ Gyr \\apx{} (channel-1 anchor) at every observational frame chronon, against a $\\Lambda$CDM $t_0$ that grows with chart time: degenerate to $0.2\\%$ now, separating at ${\\sim}7\\%$ per Gyr; the octant carries zero parameter freedom at fixed $\\Lambda$. Status \\citep{valcin2026}: the oldest cluster population $0.5\\sigma$ below the bound, the inferred age straddling it within $0.1\\sigma$ (\\S\\ref{sec:open}). Falsifier: one well-dated object older than the octant value, in any frame --- fit-independent, fatal; the same bound excludes interior-bounce black-hole cosmology (X8).",
-   "source": "Lem.~\\ref{lem:octant}; rests on A8, B3, C5\\newline \\pywit{entropy}{p14037}{P2}",
+   "source": "Lem.~\\ref{lem:octant}; rests on A8, B3, C5\\newline \\pywit{entropy}{p14037}{P2}, \\leanwit{FrcLedger}{p14037}{P2} \\lean{Entropy.record\\_depth}",
    "page": "14-entropy/index.html#P2",
    "witness": {
     "py": {
      "href": "src/14-entropy/#p14037",
      "script": "entropy.py",
-     "line": 481,
+     "line": 495,
      "verdict": "pass"
     },
-    "lean": []
+    "lean": [
+     {
+      "lib": "FrcLedger",
+      "module": "FrcLedger/Entropy",
+      "name": "FRC.Entropy.record_depth",
+      "tier": 2,
+      "ok": true,
+      "page": "lean/ml/Entropy.html#FRC.Entropy.record_depth"
+     }
+    ]
    },
    "refs": [
     "p00193",
@@ -43190,7 +43338,7 @@
     "p14022",
     "p14035"
    ],
-   "text": "The registered record depth is bounded by $(\\pi/4) r_H/c=13.79$ Gyr \\apx{} (channel-1 anchor) at every observational frame chronon, against a $\\Lambda$CDM $t_0$ that grows with chart time: degenerate to $0.2%$ now, separating at ${\\sim}7%$ per Gyr; the octant carries zero parameter freedom at fixed $\\Lambda$. Status [valcin2026]: the oldest cluster population $0.5\\sigma$ below the bound, the inferred age straddling it within $0.1\\sigma$ (\\Ssec:open). Falsifier: one well-dated object older than the octant value, in any frame — fit-independent, fatal; the same bound excludes interior-bounce black-hole cosmology (X8). Lem. lem:octant; rests on A8, B3, C5 p14037"
+   "text": "The registered record depth is bounded by $(\\pi/4) r_H/c=13.79$ Gyr \\apx{} (channel-1 anchor) at every observational frame chronon, against a $\\Lambda$CDM $t_0$ that grows with chart time: degenerate to $0.2%$ now, separating at ${\\sim}7%$ per Gyr; the octant carries zero parameter freedom at fixed $\\Lambda$. Status [valcin2026]: the oldest cluster population $0.5\\sigma$ below the bound, the inferred age straddling it within $0.1\\sigma$ (\\Ssec:open). Falsifier: one well-dated object older than the octant value, in any frame — fit-independent, fatal; the same bound excludes interior-bounce black-hole cosmology (X8). Lem. lem:octant; rests on A8, B3, C5 p14037, FrcLedger{P2} Entropy.record_depth"
   },
   {
    "paper": "14-entr",
@@ -43208,7 +43356,7 @@
     "py": {
      "href": "src/14-entropy/#p14038",
      "script": "entropy.py",
-     "line": 436,
+     "line": 450,
      "verdict": "pass"
     },
     "lean": [
@@ -43250,10 +43398,15 @@
    "tag": "T",
    "name": null,
    "statement": "\\textbf{(Lead.)} The dark-energy equation of state is rigid: $\\Lambda$ is the curvature face of the fixed cardinality, constant, its effective-fluid reading $w=-1$ exactly with no $w_0w_a$ freedom; the fluid statement consumes the conservation-law correspondence and the single-component clause (B8). Status: DESI-era combined fits prefer evolving dark energy at $3$--$4.2\\sigma$ \\citep{desi2025}, contested by reanalyses (\\S\\ref{sec:import}). Falsifier: confirmed evolution of $w$, which kills $\\Lambda\\sim1/\\Om$ outright and exposes P2 through $\\Lambda$.",
-   "source": "\\S\\ref{sec:import}; rests on A1, A8, B1\\newline \\leanwit{FrcLedger}{p14039}{P4} \\lean{Entropy.fluid\\_w}",
+   "source": "\\S\\ref{sec:import}; rests on A1, A8, B1\\newline \\pywit{entropy}{p14039}{P4}, \\leanwit{FrcLedger}{p14039}{P4} \\lean{Entropy.fluid\\_w}",
    "page": "14-entropy/index.html#P4",
    "witness": {
-    "py": null,
+    "py": {
+     "href": "src/14-entropy/#p14039",
+     "script": "entropy.py",
+     "line": 602,
+     "verdict": "pass"
+    },
     "lean": [
      {
       "lib": "FrcLedger",
@@ -43273,7 +43426,7 @@
     "p14016",
     "p14037"
    ],
-   "text": "(Lead.) The dark-energy equation of state is rigid: $\\Lambda$ is the curvature face of the fixed cardinality, constant, its effective-fluid reading $w=-1$ exactly with no $w_0w_a$ freedom; the fluid statement consumes the conservation-law correspondence and the single-component clause (B8). Status: DESI-era combined fits prefer evolving dark energy at $3$–$4.2\\sigma$ [desi2025], contested by reanalyses (\\Ssec:import). Falsifier: confirmed evolution of $w$, which kills $\\Lambda\\sim1/\\Om$ outright and exposes P2 through $\\Lambda$. \\Ssec:import; rests on A1, A8, B1 FrcLedger{P4} Entropy.fluid_w"
+   "text": "(Lead.) The dark-energy equation of state is rigid: $\\Lambda$ is the curvature face of the fixed cardinality, constant, its effective-fluid reading $w=-1$ exactly with no $w_0w_a$ freedom; the fluid statement consumes the conservation-law correspondence and the single-component clause (B8). Status: DESI-era combined fits prefer evolving dark energy at $3$–$4.2\\sigma$ [desi2025], contested by reanalyses (\\Ssec:import). Falsifier: confirmed evolution of $w$, which kills $\\Lambda\\sim1/\\Om$ outright and exposes P2 through $\\Lambda$. \\Ssec:import; rests on A1, A8, B1 p14039, FrcLedger{P4} Entropy.fluid_w"
   },
   {
    "paper": "14-entr",
@@ -43285,14 +43438,28 @@
    "tag": "T",
    "name": null,
    "statement": "\\textbf{The cosmological-constant problem} dissolves: $\\Lambda$ is the curvature face of the one cardinality, not a vacuum energy, so there is no mode sum to cancel and the $10^{120}$-order discrepancy does not arise.",
-   "source": "\\S\\ref{sec:import}, \\citep{weinberg1989}",
+   "source": "\\S\\ref{sec:import}, \\citep{weinberg1989}\\newline \\pywit{entropy}{p14028}{X1}, \\leanwit{FrcLedger}{p14028}{X1} \\lean{Entropy.lambda\\_face}",
    "page": "14-entropy/index.html#X1",
    "witness": {
-    "py": null,
-    "lean": []
+    "py": {
+     "href": "src/14-entropy/#p14028",
+     "script": "entropy.py",
+     "line": 575,
+     "verdict": "pass"
+    },
+    "lean": [
+     {
+      "lib": "FrcLedger",
+      "module": "FrcLedger/Entropy",
+      "name": "FRC.Entropy.lambda_face",
+      "tier": 2,
+      "ok": true,
+      "page": "lean/ml/Entropy.html#FRC.Entropy.lambda_face"
+     }
+    ]
    },
    "refs": [],
-   "text": "The cosmological-constant problem dissolves: $\\Lambda$ is the curvature face of the one cardinality, not a vacuum energy, so there is no mode sum to cancel and the $10^{120}$-order discrepancy does not arise. \\Ssec:import, [weinberg1989]"
+   "text": "The cosmological-constant problem dissolves: $\\Lambda$ is the curvature face of the one cardinality, not a vacuum energy, so there is no mode sum to cancel and the $10^{120}$-order discrepancy does not arise. \\Ssec:import, [weinberg1989] p14028, FrcLedger{X1} Entropy.lambda_face"
   },
   {
    "paper": "14-entr",
@@ -43310,7 +43477,7 @@
     "py": {
      "href": "src/14-entropy/#p14029",
      "script": "entropy.py",
-     "line": 468,
+     "line": 482,
      "verdict": "pass"
     },
     "lean": [
@@ -43348,7 +43515,7 @@
     "py": {
      "href": "src/14-entropy/#p14030",
      "script": "entropy.py",
-     "line": 397,
+     "line": 411,
      "verdict": "pass"
     },
     "lean": [
@@ -43388,10 +43555,15 @@
    "tag": "T",
    "name": null,
    "statement": "\\textbf{The congruence $\\dS$ even} acquires a second physical face: it is the existence of the octant sector, hence the well-definedness of the measured age --- a structure of the Carrier's cycle lattice, certified by realisation and read as an observational condition, never an arithmetic property of the numeral.",
-   "source": "Lem.~\\ref{lem:octant}(iv)\\newline \\leanwit{FrcCore}{p14031}{X4}, \\leanwit{FrcLedger}{p14031}{X4} \\lean{Entropy.octant\\_second\\_face, Entropy.octant\\_sector\\_iff, FRC.Entropy.two\\_is\\_square\\_iff}",
+   "source": "Lem.~\\ref{lem:octant}(iv)\\newline \\pywit{entropy}{p14031}{X4}, \\leanwit{FrcCore}{p14031}{X4}, \\leanwit{FrcLedger}{p14031}{X4} \\lean{Entropy.octant\\_second\\_face, Entropy.octant\\_sector\\_iff, FRC.Entropy.two\\_is\\_square\\_iff}",
    "page": "14-entropy/index.html#X4",
    "witness": {
-    "py": null,
+    "py": {
+     "href": "src/14-entropy/#p14031",
+     "script": "entropy.py",
+     "line": 568,
+     "verdict": "pass"
+    },
     "lean": [
      {
       "lib": "FrcLedger",
@@ -43422,7 +43594,7 @@
    "refs": [
     "p00151"
    ],
-   "text": "The congruence $\\dS$ even acquires a second physical face: it is the existence of the octant sector, hence the well-definedness of the measured age — a structure of the Carrier's cycle lattice, certified by realisation and read as an observational condition, never an arithmetic property of the numeral. Lem. lem:octant(iv) FrcCore{X4}, FrcLedger{X4} Entropy.octant_second_face, Entropy.octant_sector_iff, FRC.Entropy.two_is_square_iff"
+   "text": "The congruence $\\dS$ even acquires a second physical face: it is the existence of the octant sector, hence the well-definedness of the measured age — a structure of the Carrier's cycle lattice, certified by realisation and read as an observational condition, never an arithmetic property of the numeral. Lem. lem:octant(iv) p14031, FrcCore{X4}, FrcLedger{X4} Entropy.octant_second_face, Entropy.octant_sector_iff, FRC.Entropy.two_is_square_iff"
   },
   {
    "paper": "14-entr",
@@ -43434,21 +43606,30 @@
    "tag": "T",
    "name": null,
    "statement": "\\textbf{The termination of the single-object sequence} is a consistency of the wall structure, the exit of C9 read as a bound: the typical-density diagonal over-closes at $1.8\\times10^{8}M_\\odot$ \\apx{} (sensitivity band $(1.4\\text{--}2.8)\\times10^{8}$ across fit variants), so every heavier single object continuing the condensed-density sequence is necessarily wall-bound; the supermassive holes are that continuation, not an anomaly beyond it. Classified with the triangle: consistency, not derivation of an observed scale.",
-   "source": "\\S\\ref{sec:wedge}\\newline \\pywit{entropy}{p14032}{X5}",
+   "source": "\\S\\ref{sec:wedge}\\newline \\pywit{entropy}{p14032}{X5}, \\leanwit{FrcLedger}{p14032}{X5} \\lean{Entropy.wall\\_exit}",
    "page": "14-entropy/index.html#X5",
    "witness": {
     "py": {
      "href": "src/14-entropy/#p14032",
      "script": "entropy.py",
-     "line": 694,
+     "line": 773,
      "verdict": "pass"
     },
-    "lean": []
+    "lean": [
+     {
+      "lib": "FrcLedger",
+      "module": "FrcLedger/Entropy",
+      "name": "FRC.Entropy.wall_exit",
+      "tier": 2,
+      "ok": true,
+      "page": "lean/ml/Entropy.html#FRC.Entropy.wall_exit"
+     }
+    ]
    },
    "refs": [
     "p14026"
    ],
-   "text": "The termination of the single-object sequence is a consistency of the wall structure, the exit of C9 read as a bound: the typical-density diagonal over-closes at $1.8\\times10^{8}M_\\odot$ \\apx{} (sensitivity band $(1.4–2.8)\\times10^{8}$ across fit variants), so every heavier single object continuing the condensed-density sequence is necessarily wall-bound; the supermassive holes are that continuation, not an anomaly beyond it. Classified with the triangle: consistency, not derivation of an observed scale. \\Ssec:wedge p14032"
+   "text": "The termination of the single-object sequence is a consistency of the wall structure, the exit of C9 read as a bound: the typical-density diagonal over-closes at $1.8\\times10^{8}M_\\odot$ \\apx{} (sensitivity band $(1.4–2.8)\\times10^{8}$ across fit variants), so every heavier single object continuing the condensed-density sequence is necessarily wall-bound; the supermassive holes are that continuation, not an anomaly beyond it. Classified with the triangle: consistency, not derivation of an observed scale. \\Ssec:wedge p14032, FrcLedger{X5} Entropy.wall_exit"
   },
   {
    "paper": "14-entr",
@@ -43460,19 +43641,36 @@
    "tag": "T",
    "name": null,
    "statement": "\\textbf{The celebrated sub-percent age agreement} is judged: same-channel by the circularity criterion, a restatement of the fitted dark-energy fraction --- consistency, not evidence --- and the criterion locates exactly which confrontations do carry weight.",
-   "source": "\\S\\ref{sec:audit}\\newline \\pywit{entropy}{p14033}{X6}",
+   "source": "\\S\\ref{sec:audit}\\newline \\pywit{entropy}{p14033}{X6}, \\leanwit{FrcLedger}{p14033}{X6} \\lean{Entropy.lcdm\\_age, Entropy.octant\\_inversion}",
    "page": "14-entropy/index.html#X6",
    "witness": {
     "py": {
      "href": "src/14-entropy/#p14033",
      "script": "entropy.py",
-     "line": 397,
+     "line": 411,
      "verdict": "pass"
     },
-    "lean": []
+    "lean": [
+     {
+      "lib": "FrcLedger",
+      "module": "FrcLedger/Entropy",
+      "name": "FRC.Entropy.lcdm_age",
+      "tier": 2,
+      "ok": true,
+      "page": "lean/ml/Entropy.html#FRC.Entropy.lcdm_age"
+     },
+     {
+      "lib": "FrcLedger",
+      "module": "FrcLedger/Entropy",
+      "name": "FRC.Entropy.octant_inversion",
+      "tier": 2,
+      "ok": true,
+      "page": "lean/ml/Entropy.html#FRC.Entropy.octant_inversion"
+     }
+    ]
    },
    "refs": [],
-   "text": "The celebrated sub-percent age agreement is judged: same-channel by the circularity criterion, a restatement of the fitted dark-energy fraction — consistency, not evidence — and the criterion locates exactly which confrontations do carry weight. \\Ssec:audit p14033"
+   "text": "The celebrated sub-percent age agreement is judged: same-channel by the circularity criterion, a restatement of the fitted dark-energy fraction — consistency, not evidence — and the criterion locates exactly which confrontations do carry weight. \\Ssec:audit p14033, FrcLedger{X6} Entropy.lcdm_age, Entropy.octant_inversion"
   },
   {
    "paper": "14-entr",
@@ -43484,16 +43682,30 @@
    "tag": "T",
    "name": null,
    "statement": "\\textbf{The universe-as-black-hole puzzle dissolves}: the Hubble radius sits on the black-hole line identically ($\\rho_{\\mathrm{BH}}(r_H)=\\rho_c$ \\lcdm), but the Schwarzschild reading consumes an exterior, and the containment argument (A3) makes an exterior incoherent --- the totality on its own horizon is the chart's closing point, not a hole in a background.",
-   "source": "\\S\\ref{sec:wedge}, \\citep{lineweaver2023}",
+   "source": "\\S\\ref{sec:wedge}, \\citep{lineweaver2023}\\newline \\pywit{entropy}{p14034}{X7}, \\leanwit{FrcLedger}{p14034}{X7} \\lean{Entropy.hubble\\_on\\_bh\\_line}",
    "page": "14-entropy/index.html#X7",
    "witness": {
-    "py": null,
-    "lean": []
+    "py": {
+     "href": "src/14-entropy/#p14034",
+     "script": "entropy.py",
+     "line": 583,
+     "verdict": "pass"
+    },
+    "lean": [
+     {
+      "lib": "FrcLedger",
+      "module": "FrcLedger/Entropy",
+      "name": "FRC.Entropy.hubble_on_bh_line",
+      "tier": 2,
+      "ok": true,
+      "page": "lean/ml/Entropy.html#FRC.Entropy.hubble_on_bh_line"
+     }
+    ]
    },
    "refs": [
     "p14003"
    ],
-   "text": "The universe-as-black-hole puzzle dissolves: the Hubble radius sits on the black-hole line identically ($\\rho_{\\mathrm{BH}}(r_H)=\\rho_c$ \\lcdm), but the Schwarzschild reading consumes an exterior, and the containment argument (A3) makes an exterior incoherent — the totality on its own horizon is the chart's closing point, not a hole in a background. \\Ssec:wedge, [lineweaver2023]"
+   "text": "The universe-as-black-hole puzzle dissolves: the Hubble radius sits on the black-hole line identically ($\\rho_{\\mathrm{BH}}(r_H)=\\rho_c$ \\lcdm), but the Schwarzschild reading consumes an exterior, and the containment argument (A3) makes an exterior incoherent — the totality on its own horizon is the chart's closing point, not a hole in a background. \\Ssec:wedge, [lineweaver2023] p14034, FrcLedger{X7} Entropy.hubble_on_bh_line"
   },
   {
    "paper": "14-entr",
@@ -43505,17 +43717,39 @@
    "tag": "T",
    "name": null,
    "statement": "\\textbf{The interior completions weighed}: black-hole cosmology keeps the same saturation identity by consuming a parent exterior and a singularity-replacing mechanism (torsion; exclusion pressure); the finite reading consumes neither: the containment argument (A3) closes the chart at $\\Om$, and no singularity is available over a finite totality. The registered record-depth bound separates the completions empirically (P2).",
-   "source": "\\S\\ref{sec:wedge}, \\citep{pathria1972,poplawski2016,gaztanaga2025}",
+   "source": "\\S\\ref{sec:wedge}, \\citep{pathria1972,poplawski2016,gaztanaga2025}\\newline \\pywit{entropy}{p14035}{X8}, \\leanwit{FrcLedger}{p14035}{X8} \\lean{Entropy.hubble\\_on\\_bh\\_line, Entropy.record\\_depth}",
    "page": "14-entropy/index.html#X8",
    "witness": {
-    "py": null,
-    "lean": []
+    "py": {
+     "href": "src/14-entropy/#p14035",
+     "script": "entropy.py",
+     "line": 595,
+     "verdict": "pass"
+    },
+    "lean": [
+     {
+      "lib": "FrcLedger",
+      "module": "FrcLedger/Entropy",
+      "name": "FRC.Entropy.hubble_on_bh_line",
+      "tier": 2,
+      "ok": true,
+      "page": "lean/ml/Entropy.html#FRC.Entropy.hubble_on_bh_line"
+     },
+     {
+      "lib": "FrcLedger",
+      "module": "FrcLedger/Entropy",
+      "name": "FRC.Entropy.record_depth",
+      "tier": 2,
+      "ok": true,
+      "page": "lean/ml/Entropy.html#FRC.Entropy.record_depth"
+     }
+    ]
    },
    "refs": [
     "p14003",
     "p14037"
    ],
-   "text": "The interior completions weighed: black-hole cosmology keeps the same saturation identity by consuming a parent exterior and a singularity-replacing mechanism (torsion; exclusion pressure); the finite reading consumes neither: the containment argument (A3) closes the chart at $\\Om$, and no singularity is available over a finite totality. The registered record-depth bound separates the completions empirically (P2). \\Ssec:wedge, [pathria1972,poplawski2016,gaztanaga2025]"
+   "text": "The interior completions weighed: black-hole cosmology keeps the same saturation identity by consuming a parent exterior and a singularity-replacing mechanism (torsion; exclusion pressure); the finite reading consumes neither: the containment argument (A3) closes the chart at $\\Om$, and no singularity is available over a finite totality. The registered record-depth bound separates the completions empirically (P2). \\Ssec:wedge, [pathria1972,poplawski2016,gaztanaga2025] p14035, FrcLedger{X8} Entropy.hubble_on_bh_line, Entropy.record_depth"
   },
   {
    "paper": "14-entr",
