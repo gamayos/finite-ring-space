@@ -28,7 +28,7 @@ data = json.load(open(LEDGER, encoding="utf-8"))
 rows = [r for b in data["blocks"] for r in b["rows"]]
 witnessed = [r for r in rows if f"{PAPER}:{r['label']}" in dcommon.PREDICATES]
 
-md(f"""## The Riemann Hypothesis over the Holographic Substrate: a Finite-Field Dictionary and the Screen Reading, [{CITE}]({DOI})
+md(f"""## Riemann Hypothesis over Finite Holographic Substrate, [{CITE}]({DOI})
 
 Each cell below verifies one predicate of the paper's predicate ledger (Appendix {APPENDIX}; [{LEDGER_URL[8:]}]({LEDGER_URL})): it runs the
 blocks of {SCRIPTS} whose checks cite the predicate, prints the check and lists every record that cites it with its verdict. Any cell can be run first, or *Runtime → Run all* ({RUNTIME}).""", "header")

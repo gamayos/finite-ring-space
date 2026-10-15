@@ -6540,7 +6540,7 @@ end FRC.Ledger
 /-!
 # FrcCore.Rh — the shell predicates of 20-rh with no axioms
 
-The exact arithmetic of *Riemann Hypothesis over the Holographic Substrate* (20-rh), block B and the `𝔽_p`
+The exact arithmetic of *Riemann Hypothesis over Finite Holographic Substrate* (20-rh), block B and the `𝔽_p`
 reading of the shell theorem, on the kernel alone. For every frame `(τ; 0, 1, g)` of capacity `κ`
 (`p = 4κ + 1`): the zero-slot `Σ_{x≠0} x^k = 0` on the nonterminal exponents and `−1` on the full cycle (20:B4);
 slot complementarity `k ↦ −g^k`, injective on the nontrivial spectral slots and onto `F^× ∖ {−1}` (20:B5);

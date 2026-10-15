@@ -1,5 +1,4 @@
-"""frc_20_rh — the validation package of *The Riemann Hypothesis over a Finite Carrier: the Critical Line as the Self-Dual Locus,
-and the Cells of the Cycle Decided by the Host* (Akhtman & Voether, 2026), installable:
+"""frc_20_rh — the validation package of *Riemann Hypothesis over Finite Holographic Substrate* (Akhtman & Voether, 2026), installable:
     pip install frc-20-rh --find-links https://finitering.space/pkg/
     from frc_20_rh import predicate; predicate("20:E6")
 The same script runs in place from src/20-rh (python3 rh.py) and as a module (python3 -m frc_20_rh). The blocks compute with

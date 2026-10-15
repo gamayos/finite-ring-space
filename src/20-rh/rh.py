@@ -1,7 +1,7 @@
 """
-rh.py — the validation package of "The Riemann Hypothesis over a Finite Carrier: the Critical Line as the Self-Dual Locus, and
-the Cells of the Cycle Decided by the Host" (Akhtman & Voether, 2026; Preprints doi 10.20944/preprints202606.0768.v1; until
-15 October 2026 "The Riemann Hypothesis over the Holographic Substrate: a Finite-Field Dictionary and the Screen Reading"), the paper 20-rh of the FRC corpus
+rh.py — the validation package of "Riemann Hypothesis over Finite Holographic Substrate" (Akhtman & Voether, 2026; Preprints
+doi 10.20944/preprints202606.0768.v1, whose first version is "Riemann Hypothesis over the Holographic Substrate: a Finite-Field
+Dictionary and the Screen Reading"), the paper 20-rh of the FRC corpus
 (finite-ring-space/src/20-rh); one script since 24 September 2026 (the registry rhcommon.py and the seven block scripts
 a_shell, b_deframe, c_primeside, c_gue, c_chi, d_classification, e_resonance merged, the three prime-side scripts as one block C).
 ========================================================================================================================

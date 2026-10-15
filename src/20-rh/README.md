@@ -1,8 +1,8 @@
 # 20-rh validation package
 
-Validation package of *The Riemann Hypothesis over a Finite Carrier: the Critical Line as the Self-Dual Locus, and the Cells
-of the Cycle Decided by the Host* (Akhtman & Voether, 2026; until 15 October 2026 *The Riemann Hypothesis over the Holographic
-Substrate: a Finite-Field Dictionary and the Screen Reading*), `20-rh` of the FRC corpus. One script, `rh.py` (since
+Validation package of *Riemann Hypothesis over Finite Holographic Substrate* (Akhtman & Voether, 2026; the first version of the
+preprint, *Riemann Hypothesis over the Holographic Substrate: a Finite-Field Dictionary and the Screen Reading*), `20-rh` of the
+FRC corpus. One script, `rh.py` (since
 24 September 2026; the registry `rhcommon.py` and the seven block scripts merged), six blocks, 107 checks (63 EXACT, 41 [approx],
 3 [chart]), driven by `frc-20-rh.ipynb`
 (Google Colab: one cell per python-witnessed ledger predicate, any cell on its own, or *Runtime → Run all*, ≈ 8 min) or run whole;

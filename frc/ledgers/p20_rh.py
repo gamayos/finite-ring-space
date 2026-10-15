@@ -1,7 +1,7 @@
 """p20_rh — the ledger file of 20-rh (ledger migration, task LM36, 7 October 2026).
 
-"The Riemann Hypothesis over the Holographic Substrate: a Finite-Field Dictionary and the Screen Reading" (Akhtman and
-Voether, 2026; doi 10.20944/preprints202606.0768.v1). The paper's predicate ledger is docs/20-rh/20-rh-ledger.json. This
+"Riemann Hypothesis over Finite Holographic Substrate" (Akhtman and Voether, 2026; doi 10.20944/preprints202606.0768.v1,
+whose first version is "Riemann Hypothesis over the Holographic Substrate: a Finite-Field Dictionary and the Screen Reading"). The paper's predicate ledger is docs/20-rh/20-rh-ledger.json. This
 file binds its predicates to the framework: the table of keys (generated from the ledger by ci/make_ledgers.py), the
 shells, and the checks of three of the package's five blocks. Each check names the predicate(s) it witnesses (LEDGER)
 under a `# 20:XN (<key>)` marker on the check that decides it (PREDICATES). The checks are those of the paper's
