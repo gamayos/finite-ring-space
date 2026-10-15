@@ -2,20 +2,20 @@
  "header": {
   "generated": "15 October 2026",
   "schema": "frc-register/2",
-  "rows": 1024,
-  "theorems": 1010,
+  "rows": 1002,
+  "theorems": 988,
   "counts": {
-   "keys": 1010,
-   "rows": 1024,
+   "keys": 988,
+   "rows": 1002,
    "shared": 14,
    "by_tag": {
-    "D": 139,
+    "D": 132,
     "G": 1,
-    "I": 117,
+    "I": 115,
     "O": 12,
     "R": 81,
-    "T": 631,
-    "Ω": 29
+    "T": 619,
+    "Ω": 28
    }
   },
   "papers": [
@@ -746,7 +746,7 @@
     "key": "20-rh",
     "dir": "20-rh",
     "no": 20,
-    "title": "Riemann Hypothesis over the Holographic Substrate",
+    "title": "Riemann Hypothesis over Finite Holographic Substrate",
     "status": {
      "kind": "preprint"
     },
@@ -762,23 +762,23 @@
      },
      {
       "letter": "C",
-      "title": "Resonance: the staircase from the modes"
+      "title": "Resonance: the identity and the flatness"
      },
      {
       "letter": "D",
-      "title": "The de-framing dictionary and the completeness criterion"
+      "title": "The reading of $\\zeta$ on the line: the dictionary, the cells, the strip"
      },
      {
       "letter": "E",
-      "title": "The scale-evolution spectrum from the prime side, and the shell theorem"
+      "title": "The scale-shift and the shell theorem"
      },
      {
       "letter": "F",
-      "title": "The screen reading: the value and its control"
+      "title": "The closure, the hosted theorem and the controls"
      },
      {
       "letter": "Z",
-      "title": "Horizon: the values beyond the embedded reader"
+      "title": "Horizon: the physical Carrier"
      }
     ],
     "legend": [
@@ -800,10 +800,10 @@
      {
       "tag": "Ω",
       "name": "$\\Omega$-hard",
-      "text": "A value decided by the totality, in no embedded reader's window; a demarcation of where the value is read, not an open item."
+      "text": "A value decided by the totality, in no embedded reader's window; a demarcation of where the value is read, not an open item and not a claim that no proof exists."
      }
     ],
-    "rows": 64
+    "rows": 42
    },
    {
     "key": "21-grav",
@@ -1433,7 +1433,7 @@
    "theorems": "one entry per key (LM12): its canonical statement (the row of its ledger of origin, the key's prefix), the origin, the tag, the Lean tier, the deciding check and declarations, the aliases that resolve to it, the rows that write it, and for a theorem the realisations its statement names (Q21)",
    "superseded": "the keys that left the public ledgers (corrected, split, merged or returned home), each with its live successor keys and nothing else (decision Q19)"
   },
-  "superseded": 91
+  "superseded": 115
  },
  "theorems": [
   {
@@ -3833,7 +3833,7 @@
    "check": {
     "href": "src/20-rh/#p20043",
     "script": "rh.py",
-    "line": 529,
+    "line": 532,
     "verdict": "pass"
    },
    "declarations": [
@@ -14456,7 +14456,7 @@
   {
    "key": "p20006",
    "origin": "20",
-   "statement": "The comparison data: no off-line zero of $\\zeta$ to height $3\\times10^{12}$, by Turing's certificate, so every zero there is simple; GUE spacing statistics of the zeros; some $2600$ zeros to twelve digits from the primes to $10^{6}$ by harmonic inversion (the precision the observations of block E do not aim at); the self-adjoint realisations of the Berry--Keating operator.",
+   "statement": "The comparison data: no off-line zero of $\\zeta$ to height $3\\times10^{12}$, by Turing's certificate, so every zero there is simple and every cell below $4.8\\times10^{11}$ clean; GUE spacing statistics of the zeros; some $2600$ zeros to twelve digits from the primes to $10^{6}$ by harmonic inversion; the self-adjoint realisations of the Berry--Keating operator.",
    "origin_row": "20:A9",
    "tag": "I",
    "tier": null,
@@ -14482,9 +14482,9 @@
    ]
   },
   {
-   "key": "p20071",
+   "key": "p20082",
    "origin": "20",
-   "statement": "The semiclassical phase-space cell $2\\pi$ of the Berry--Keating count [chart], imposed as the standard unit, not derived from the shell constants; the shell's own count uses no cell (E12(iii)).",
+   "statement": "The density bounds, imported for every cycle: for a fixed tolerance the cells holding a zero farther than it from the line are a vanishing fraction of the cycle (Selberg), and at least two fifths of a cycle's zeros lie on the line (Conrey) [chart]; bounds on the unclean cells of the physical Carrier, naming none.",
    "origin_row": "20:A11",
    "tag": "I",
    "tier": null,
@@ -14505,7 +14505,7 @@
    "check": {
     "href": "src/20-rh/#p20008",
     "script": "rh.py",
-    "line": 540,
+    "line": 543,
     "verdict": "pass"
    },
    "declarations": [
@@ -14540,7 +14540,7 @@
    "check": {
     "href": "src/20-rh/#p20009",
     "script": "rh.py",
-    "line": 555,
+    "line": 558,
     "verdict": "pass"
    },
    "declarations": [
@@ -14605,7 +14605,7 @@
    "check": {
     "href": "src/20-rh/#p20011",
     "script": "rh.py",
-    "line": 445,
+    "line": 448,
     "verdict": "pass"
    },
    "declarations": [
@@ -14636,7 +14636,7 @@
    "check": {
     "href": "src/20-rh/#p20012",
     "script": "rh.py",
-    "line": 473,
+    "line": 476,
     "verdict": "pass"
    },
    "declarations": [
@@ -14667,7 +14667,7 @@
    "check": {
     "href": "src/20-rh/#p20013",
     "script": "rh.py",
-    "line": 482,
+    "line": 485,
     "verdict": "pass"
    },
    "declarations": [
@@ -14728,7 +14728,7 @@
    "check": {
     "href": "src/20-rh/#p20014",
     "script": "rh.py",
-    "line": 500,
+    "line": 503,
     "verdict": "pass"
    },
    "declarations": [
@@ -14764,7 +14764,7 @@
    "check": {
     "href": "src/20-rh/#p20015",
     "script": "rh.py",
-    "line": 466,
+    "line": 469,
     "verdict": "pass"
    },
    "declarations": [
@@ -14820,7 +14820,7 @@
    "check": {
     "href": "src/20-rh/#p20016",
     "script": "rh.py",
-    "line": 492,
+    "line": 495,
     "verdict": "pass"
    },
    "declarations": [
@@ -14881,7 +14881,7 @@
    "check": {
     "href": "src/20-rh/#p20017",
     "script": "rh.py",
-    "line": 456,
+    "line": 459,
     "verdict": "pass"
    },
    "declarations": [
@@ -14918,50 +14918,16 @@
    "realisations": []
   },
   {
-   "key": "p20018",
-   "origin": "20",
-   "statement": "Antipode dominance: in the units-chart basis the per-mode energy is $\\mu^{2}(q)/\\varphi(q)=1/\\varphi(q)$ on squarefree $q$ ($1,\\half,\\tfrac14,\\tfrac16$ at $q=2,3,5,7$), its unique maximum among the nonconstant modes at the antipode $q=2$, decreasing along the primes, not the modulus; in the additive transform the band nearest the half-turn, $k=(\\p\\pm1)/2$, is the strongest off the spectral origin and follows the same law [approx].",
-   "origin_row": "20:B11",
-   "tag": "T",
-   "tier": null,
-   "check": {
-    "href": "src/20-rh/#p20018",
-    "script": "rh.py",
-    "line": 1703,
-    "verdict": "pass"
-   },
-   "declarations": [],
-   "aliases": [],
-   "rows": [
-    "20:B11"
-   ],
-   "realisations": []
-  },
-  {
-   "key": "p20019",
-   "origin": "20",
-   "statement": "The units-chart resonance $R_L(n)=\\sum_{q\\le L}\\frac{\\mu(q)}{\\varphi(q)}c_q(n)$ and its renormalisation $\\Lambda_L(n)=\\frac{n}{\\varphi(n)}R_L(n)$.",
-   "origin_row": "20:C1",
-   "tag": "D",
-   "tier": null,
-   "check": null,
-   "declarations": [],
-   "aliases": [],
-   "rows": [
-    "20:C1"
-   ]
-  },
-  {
    "key": "p20020",
    "origin": "20",
-   "statement": "Resonance and the von Mangoldt weight: $R_L\\to\\frac{\\varphi(n)}{n}\\Lambda(n)$ (Hardy, A6); $\\Lambda=\\mu\\ast\\log$ exactly on the divisor lattice; the intertwiner $\\Lambda=\\frac{n}{\\varphi(n)}R$; support the prime powers in every form.",
+   "statement": "The resonance and the von Mangoldt weight: the units-chart resonance $R_L(n)=\\sum_{q\\le L}\\frac{\\mu(q)}{\\varphi(q)}c_q(n)$ converges to $\\frac{\\varphi(n)}{n}\\Lambda(n)$ (Hardy, A6); $\\Lambda=\\mu\\ast\\log$ exactly on the divisor lattice; the intertwiner $\\Lambda=\\frac{n}{\\varphi(n)}R$; support the prime powers in every form.",
    "origin_row": "20:C2",
    "tag": "T",
    "tier": 2,
    "check": {
     "href": "src/20-rh/#p20020",
     "script": "rh.py",
-    "line": 1679,
+    "line": 1682,
     "verdict": "pass"
    },
    "declarations": [
@@ -14974,46 +14940,6 @@
    "aliases": [],
    "rows": [
     "20:C2"
-   ],
-   "realisations": []
-  },
-  {
-   "key": "p20021",
-   "origin": "20",
-   "statement": "The staircase from the modes: $\\Psi_L(N)=\\sum_{n\\le N}\\frac{n}{\\varphi(n)}R_L(n)\\to\\psi(N)$ as the bandwidth grows, the modes in modulus order, the antipode the first nonconstant one; the finite-bandwidth wiggle tightens monotonically [approx].",
-   "origin_row": "20:C3",
-   "tag": "T",
-   "tier": null,
-   "check": {
-    "href": "src/20-rh/#p20021",
-    "script": "rh.py",
-    "line": 1697,
-    "verdict": "pass"
-   },
-   "declarations": [],
-   "aliases": [],
-   "rows": [
-    "20:C3"
-   ],
-   "realisations": []
-  },
-  {
-   "key": "p20022",
-   "origin": "20",
-   "statement": "Horizon-scale resolution: a least bandwidth $L^{*}(H)$ at which $R_L$ separates every prime power in $\\{2,\\dots,H\\}$ from every other value exists, and $L^{*}(H)\\asymp H=\\lfloor\\sqrt \\p\\rfloor$ up to slowly growing factors, far below the field scale $H^{2}$ [approx].",
-   "origin_row": "20:C4",
-   "tag": "T",
-   "tier": null,
-   "check": {
-    "href": "src/20-rh/#p20022",
-    "script": "rh.py",
-    "line": 1731,
-    "verdict": "pass"
-   },
-   "declarations": [],
-   "aliases": [],
-   "rows": [
-    "20:C4"
    ],
    "realisations": []
   },
@@ -15044,26 +14970,6 @@
    "realisations": []
   },
   {
-   "key": "p20024",
-   "origin": "20",
-   "statement": "Square-root cancellation: the maximal chart-mode correlation is a small multiple of the floor $1/\\sqrt{\\p-2}$ of C5, $0.077$ against $0.0315$ at $\\p=1009$ ($2.4$ times), $0.0087$ against $0.0032$ at $\\p=100049$ ($2.7$ times) [approx]; the resonance in its window correlates $0.90$. The bound uniform over every shell is Z5.",
-   "origin_row": "20:C6",
-   "tag": "T",
-   "tier": null,
-   "check": {
-    "href": "src/20-rh/#p20024",
-    "script": "rh.py",
-    "line": 1744,
-    "verdict": "pass"
-   },
-   "declarations": [],
-   "aliases": [],
-   "rows": [
-    "20:C6"
-   ],
-   "realisations": []
-  },
-  {
    "key": "p20025",
    "origin": "20",
    "statement": "The dictionary [chart]: horizon $\\sqrt \\p\\leftrightarrow$ Riemann--Siegel length $\\sqrt{T/2\\pi}$, half-turn $\\leftrightarrow n^{-1/2}$, scale $\\leftrightarrow\\log n$; a shell of cardinality $\\p$ reads $\\zeta$ on the line to $T=2\\pi \\p$, one cycle of the shell, and a height is the scale coordinate of the shell that reads it, its count using residues below $\\sqrt{T/2\\pi}$ only.",
@@ -15078,45 +14984,6 @@
    ]
   },
   {
-   "key": "p20026",
-   "origin": "20",
-   "statement": "Zero density is shell scale-depth: at $T=2\\pi \\p$ the smooth Riemann--von Mangoldt density is $\\frac1{2\\pi}\\log \\p$, $0.6226,0.9891,1.3556,1.7220$ at $\\p=50,500,5\\cdot10^{3},5\\cdot10^{4}$ [chart]; a substitution under the dictionary, recorded as a consistency, not a test.",
-   "origin_row": "20:D2",
-   "tag": "T",
-   "tier": null,
-   "check": {
-    "href": "src/20-rh/#p20026",
-    "script": "rh.py",
-    "line": 645,
-    "verdict": "pass"
-   },
-   "declarations": [],
-   "aliases": [],
-   "rows": [
-    "20:D2"
-   ],
-   "realisations": []
-  },
-  {
-   "key": "p20027",
-   "origin": "20",
-   "statement": "Reconstruction residue: the finite-horizon error of the main sum is the Riemann--Siegel remainder $O(T^{-1/4})=O(\\p^{-1/4})$ (A6), unconditional, fitted slope $-0.24$ over $t=40\\ldots5120$ [approx].",
-   "origin_row": "20:D3",
-   "tag": "I",
-   "tier": null,
-   "check": {
-    "href": "src/20-rh/#p20027",
-    "script": "rh.py",
-    "line": 671,
-    "verdict": "pass"
-   },
-   "declarations": [],
-   "aliases": [],
-   "rows": [
-    "20:D3"
-   ]
-  },
-  {
    "key": "p20028",
    "origin": "20",
    "statement": "The bare horizon-length sum locates the first zeros: one sign change per zero of $\\zeta$ on $[10,55]$, each within $0.5$ of $\\gamma_n$, from one or two terms [approx].",
@@ -15126,7 +14993,7 @@
    "check": {
     "href": "src/20-rh/#p20028",
     "script": "rh.py",
-    "line": 660,
+    "line": 663,
     "verdict": "pass"
    },
    "declarations": [],
@@ -15146,7 +15013,7 @@
    "check": {
     "href": "src/20-rh/#p20029",
     "script": "rh.py",
-    "line": 1565,
+    "line": 1568,
     "verdict": "pass"
    },
    "declarations": [
@@ -15167,35 +15034,6 @@
    ]
   },
   {
-   "key": "p20030",
-   "origin": "20",
-   "statement": "The finite readings are approximations: at any depth neither reading produces an exact zero, neither uses nor supplies the hypothesis; completeness is stated in the zero-mode basis, and no transfer from the units-chart order of C3 is asserted or used.",
-   "origin_row": "20:D6",
-   "tag": "D",
-   "tier": null,
-   "check": null,
-   "declarations": [],
-   "aliases": [],
-   "rows": [
-    "20:D6"
-   ]
-  },
-  {
-   "key": "p20031",
-   "origin": "20",
-   "statement": "The reconstruction is on-line: $Z(T)$ is real on the line, so every point it produces has $\\Real=\\half$, a property of the reading; the hypothesis is then the completeness clause of D5, the faithfulness of the de-framing, and likewise for each $\\chi$-twist (E14).",
-   "origin_row": "20:D7",
-   "tag": "T",
-   "tier": null,
-   "check": null,
-   "declarations": [],
-   "aliases": [],
-   "rows": [
-    "20:D7"
-   ],
-   "realisations": []
-  },
-  {
    "key": "p20080",
    "origin": "20",
    "statement": "The strip: the Euler product excludes zeros with real part at least one, and the functional equation confines the nontrivial zeros to the open strip in Klein-four orbits of size two on the line and four off it; the Davenport--Heilbronn vector, without the product, is not multiplicative and has an off-line zero. No core witness: the statement is analytic.",
@@ -15205,7 +15043,7 @@
    "check": {
     "href": "src/20-rh/#p20080",
     "script": "rh.py",
-    "line": 1505,
+    "line": 1508,
     "verdict": "pass"
    },
    "declarations": [
@@ -15231,7 +15069,7 @@
    "check": {
     "href": "src/20-rh/#p20083",
     "script": "rh.py",
-    "line": 1534,
+    "line": 1537,
     "verdict": "pass"
    },
    "declarations": [
@@ -15257,7 +15095,7 @@
    "check": {
     "href": "src/20-rh/#p20032",
     "script": "rh.py",
-    "line": 529,
+    "line": 532,
     "verdict": "pass"
    },
    "declarations": [
@@ -15294,39 +15132,6 @@
    "realisations": []
   },
   {
-   "key": "p20033",
-   "origin": "20",
-   "statement": "The Hilbert--P\\'olya target correspondence: the de-framing on the spectrum is $\\rho\\mapsto-i(\\rho-\\half)$, real on the nontrivial zeros iff the hypothesis; $\\sigma(\\Hh)=\\{-i(\\rho-\\half)\\}$ is the target, not a result. The exhibited operator is the Jacobi matrix $\\mathbf J_N$ (E9), a realisation every finite real multiset admits; its identification with a discretisation of $\\Hh$ is not asserted and used by no row.",
-   "origin_row": "20:E2",
-   "tag": "D",
-   "tier": null,
-   "check": null,
-   "declarations": [],
-   "aliases": [],
-   "rows": [
-    "20:E2"
-   ]
-  },
-  {
-   "key": "p20034",
-   "origin": "20",
-   "statement": "Cutoff and semiclassical density: with the space quantum $1_\\Omega$ as lower cutoff the Berry--Keating phase-space count is the Riemann--von Mangoldt count, density the shell scale-depth of D2 [chart]; the cell normalisation $1_\\Omega^{2}\\sim2\\pi$ is imposed [chart] (A11).",
-   "origin_row": "20:E3",
-   "tag": "D",
-   "tier": null,
-   "check": {
-    "href": "src/20-rh/#p20034",
-    "script": "rh.py",
-    "line": 917,
-    "verdict": "pass"
-   },
-   "declarations": [],
-   "aliases": [],
-   "rows": [
-    "20:E3"
-   ]
-  },
-  {
    "key": "p20035",
    "origin": "20",
    "statement": "Prime--zero duality on the scale axis: $\\sum\\Lambda(n)n^{-s}=-\\zeta'/\\zeta$, poles at $s=1$, the nontrivial zeros and the trivial zeros; the poles on the self-dual axis are exactly the on-line zeros, an off-line zero a pole at its own location off the axis.",
@@ -15341,26 +15146,6 @@
    ]
   },
   {
-   "key": "p20036",
-   "origin": "20",
-   "statement": "The heights from the primes, $\\zeta$ never evaluated: the tapered scale-spectrum $\\Sigma_N(\\gamma)$ of the comb to $N=10^{6}$ peaks at the first six heights within $0.03$, each peak several times the baseline, width $\\sim2\\pi/\\log N$ [approx].",
-   "origin_row": "20:E5",
-   "tag": "T",
-   "tier": null,
-   "check": {
-    "href": "src/20-rh/#p20036",
-    "script": "rh.py",
-    "line": 769,
-    "verdict": "pass"
-   },
-   "declarations": [],
-   "aliases": [],
-   "rows": [
-    "20:E5"
-   ],
-   "realisations": []
-  },
-  {
    "key": "p20037",
    "origin": "20",
    "statement": "The discrete eigenvalues from the comb: the raw count $\\widetilde{\\mathcal N}_N(T)=\\theta(T)/\\pi+1+S_{\\mathrm{comb}}(T)$ carries the pole term (F8) and has no limit in $N$; the pole-corrected count $\\widehat{\\mathcal N}_N=\\widetilde{\\mathcal N}_N-\\tfrac1\\pi\\Im[\\Pi_N+\\log\\tfrac{s-1}{s}]$ crosses $n-\\half$ near the zeros, its secular condition recovering the first ten heights to mean error $3.4\\times10^{-5}$ at $N=10^{6}$ and $1.3\\times10^{-5}$ at $10^{8}$; the raw condition stalls past $10^{7}$ [approx].",
@@ -15370,7 +15155,7 @@
    "check": {
     "href": "src/20-rh/#p20037",
     "script": "rh.py",
-    "line": 781,
+    "line": 784,
     "verdict": "pass"
    },
    "declarations": [],
@@ -15379,99 +15164,6 @@
     "20:E6"
    ],
    "realisations": []
-  },
-  {
-   "key": "p20038",
-   "origin": "20",
-   "statement": "The limits are finitist refinements: $N\\to\\infty$ is a sequence of finite reframings, the comb depth the refinement depth, no completed infinity invoked; a comb of depth $N$ is the window of a Subject with $\\sqrt \\p\\ge N$ (B3), so the exhibited combs are read on $\\p\\ge N^{2}$, embedded while $\\Omega\\gg N^{4}$; each construction's (heights, main-sum length, depth, Subject) is recorded.",
-   "origin_row": "20:E7",
-   "tag": "D",
-   "tier": null,
-   "check": null,
-   "declarations": [],
-   "aliases": [],
-   "rows": [
-    "20:E7"
-   ]
-  },
-  {
-   "key": "p20039",
-   "origin": "20",
-   "statement": "The heights from an explicit matrix: the colleague matrix of the Chebyshev expansion of $\\cos(\\pi\\widehat{\\mathcal N}_N)$ on $[10,52]$ at $N=10^{6}$ returns the ten heights to mean error $4.8\\times10^{-5}$ at dimension $520$ and $3.5\\times10^{-5}$ at $620$, converging to the corrected roots' own $3.4\\times10^{-5}$ at this depth [approx]; the precision is the smoothed count's, not the comb's (A9).",
-   "origin_row": "20:E8",
-   "tag": "T",
-   "tier": null,
-   "check": {
-    "href": "src/20-rh/#p20039",
-    "script": "rh.py",
-    "line": 819,
-    "verdict": "pass"
-   },
-   "declarations": [],
-   "aliases": [],
-   "rows": [
-    "20:E8"
-   ],
-   "realisations": []
-  },
-  {
-   "key": "p20040",
-   "origin": "20",
-   "statement": "The comb-built Jacobi realisation: the real-symmetric tridiagonal matrix of the height measure of the corrected secular roots has those roots as its exact spectrum ($4\\times10^{-14}$ [approx]) and the heights to $3.4\\times10^{-5}$, with the stated ten coefficients $a$, $b$; self-adjointness is free (every finite real multiset is such a spectrum), so it imposes no constraint.",
-   "origin_row": "20:E9",
-   "tag": "T",
-   "tier": null,
-   "check": {
-    "href": "src/20-rh/#p20040",
-    "script": "rh.py",
-    "line": 811,
-    "verdict": "pass"
-   },
-   "declarations": [],
-   "aliases": [],
-   "rows": [
-    "20:E9"
-   ],
-   "realisations": []
-  },
-  {
-   "key": "p20041",
-   "origin": "20",
-   "statement": "Additive injection is gauge-trivial: $-i\\,d/du+V$ is unitarily equivalent to $-i\\,d/du$ with a shifted boundary phase, its spectrum uniform; numerically the spacing standard deviation of $-i\\,d/du+V_{\\mathrm{comb}}$ is $0.11$ of its mean against the heights' $0.39$ [approx]; the comb enters through the trace.",
-   "origin_row": "20:E10",
-   "tag": "T",
-   "tier": null,
-   "check": {
-    "href": "src/20-rh/#p20041",
-    "script": "rh.py",
-    "line": 829,
-    "verdict": "pass"
-   },
-   "declarations": [],
-   "aliases": [],
-   "rows": [
-    "20:E10"
-   ],
-   "realisations": []
-  },
-  {
-   "key": "p20042",
-   "origin": "20",
-   "statement": "GUE level repulsion of the target spectrum: unfolded spacings of the first $240$ zeros give $P(s<\\half)=0.05$ (GUE $\\approx0.12$, Poisson $\\approx0.39$) and variance $0.13$ (GUE $\\approx0.18$, Poisson $1$) [approx]; a known statistic (A9) reproduced.",
-   "origin_row": "20:E11",
-   "tag": "I",
-   "tier": null,
-   "check": {
-    "href": "src/20-rh/#p20042",
-    "script": "rh.py",
-    "line": 909,
-    "verdict": "pass"
-   },
-   "declarations": [],
-   "aliases": [],
-   "rows": [
-    "20:E11"
-   ]
   },
   {
    "key": "p20044",
@@ -15483,7 +15175,7 @@
    "check": {
     "href": "src/20-rh/#p20044",
     "script": "rh.py",
-    "line": 531,
+    "line": 534,
     "verdict": "pass"
    },
    "declarations": [
@@ -15514,66 +15206,6 @@
    ]
   },
   {
-   "key": "p20045",
-   "origin": "20",
-   "statement": "The $\\chi$-twist: for a real character the twisted vector is self-conjugate, the twisted secular condition recovering six heights of $L(s,\\chi_{-4})$ to mean error $8.6\\times10^{-5}$ [approx]; for a primitive complex character the root number's half-phase and the matching $\\Gamma$-factor restore the self-dual structure (E16); the generalized hypothesis is read as the twisted de-framing's faithfulness, as D5.",
-   "origin_row": "20:E14",
-   "tag": "T",
-   "tier": null,
-   "check": {
-    "href": "src/20-rh/#p20045",
-    "script": "rh.py",
-    "line": 1010,
-    "verdict": "pass"
-   },
-   "declarations": [],
-   "aliases": [],
-   "rows": [
-    "20:E14"
-   ],
-   "realisations": []
-  },
-  {
-   "key": "p20046",
-   "origin": "20",
-   "statement": "Twisted-comb validation, $\\chi_{-4}$: $\\widetilde{\\mathcal N}_{N,\\chi}=\\theta_\\chi/\\pi+S^{\\chi}_{\\mathrm{comb}}$, with no pole term to remove, reads $0.4997,\\dots,5.4998$ at the first six zeros of $L(s,\\chi)$ (located via Hurwitz zeta), and the twisted secular condition with the $N=10^{6}$ comb recovers $6.0209,\\dots,21.4506$ to mean error $8.6\\times10^{-5}$, $L$ never evaluated [approx].",
-   "origin_row": "20:E15",
-   "tag": "T",
-   "tier": null,
-   "check": {
-    "href": "src/20-rh/#p20046",
-    "script": "rh.py",
-    "line": 1010,
-    "verdict": "pass"
-   },
-   "declarations": [],
-   "aliases": [],
-   "rows": [
-    "20:E15"
-   ],
-   "realisations": []
-  },
-  {
-   "key": "p20072",
-   "origin": "20",
-   "statement": "Twisted-comb validation, the complex character of conductor $5$ ($\\chi(2)=i$, odd): the half-phase $W(\\chi)^{-1/2}\\Lambda(\\half+it,\\chi)$ is real on the line to $10^{-20}$; the twisted count rounds to the exact integers $1,\\dots,14$ midway between the fifteen zeros below $40$, within $3\\times10^{-4}$; the twisted secular condition with the $N=10^{6}$ comb, $L$ never evaluated, recovers the fifteen heights to mean error $8.0\\times10^{-5}$ [approx].",
-   "origin_row": "20:E16",
-   "tag": "T",
-   "tier": null,
-   "check": {
-    "href": "src/20-rh/#p20072",
-    "script": "rh.py",
-    "line": 1091,
-    "verdict": "pass"
-   },
-   "declarations": [],
-   "aliases": [],
-   "rows": [
-    "20:E16"
-   ],
-   "realisations": []
-  },
-  {
    "key": "p20047",
    "origin": "20",
    "statement": "\\textbf{Turing's count on the shell.} On every cell $C_y\\le N^{\\mathrm{crit}}_y\\le\\mathcal N_y$ (A7); the cell is clean when $\\mathcal N_y=N^{\\mathrm{crit}}_y$, and $C_y=\\mathcal N_y$ certifies it with every zero simple. The shell estimates $\\mathcal N$ by the pole-corrected comb count (F8; uncertified at finite depth) and $C$ by the main sum's sign changes (A10). An off-line zero is a phantom: $\\mathcal N_y-N^{\\mathrm{crit}}_y>0$.",
@@ -15583,7 +15215,7 @@
    "check": {
     "href": "src/20-rh/#p20047",
     "script": "rh.py",
-    "line": 1306,
+    "line": 1309,
     "verdict": "pass"
    },
    "declarations": [],
@@ -15594,18 +15226,30 @@
    "realisations": []
   },
   {
-   "key": "p20048",
+   "key": "p20081",
    "origin": "20",
-   "statement": "\\textbf{The screen reading.} By D5 and F1 the classical hypothesis below $T$ is the value $\\mathcal N(T)-N_{\\mathrm{crit}}(T)=0$, both terms estimated on the shell, the count from the pole-corrected comb (convergent under the hypothesis, uncertified at finite depth), the on-line zeros from the sign changes (exact where certified, A10, and simple). Declared, not derived; E12 uses no Euler product.",
+   "statement": "\\textbf{The hypothesis on a hosted Carrier.} A cell is decided by the certificate of a shell reading it, an embedded Subject below the largest one, the host above; on the laboratory Carriers $233$, $30\\,089$ and $2\\,408\\,561$ every cell of the cycle is clean, $1\\,038$, $280\\,186$ and $32\\,984\\,135$ zeros, all simple; the classical verification cleans every cell below $4.8\\times10^{11}$ (A9).",
    "origin_row": "20:F2",
-   "tag": "D",
-   "tier": null,
-   "check": null,
-   "declarations": [],
+   "tag": "T",
+   "tier": 0,
+   "check": {
+    "href": "src/20-rh/#p20081",
+    "script": "rh.py",
+    "line": 2217,
+    "verdict": "pass"
+   },
+   "declarations": [
+    {
+     "lib": "FrcCore",
+     "module": "FrcCore/Theme/Horizon",
+     "name": "FRC.Horizon.closure_lab"
+    }
+   ],
    "aliases": [],
    "rows": [
     "20:F2"
-   ]
+   ],
+   "realisations": []
   },
   {
    "key": "p20049",
@@ -15617,7 +15261,7 @@
    "check": {
     "href": "src/20-rh/#p20049",
     "script": "rh.py",
-    "line": 1312,
+    "line": 1315,
     "verdict": "pass"
    },
    "declarations": [],
@@ -15637,7 +15281,7 @@
    "check": {
     "href": "src/20-rh/#p20050",
     "script": "rh.py",
-    "line": 1369,
+    "line": 1372,
     "verdict": "pass"
    },
    "declarations": [],
@@ -15657,7 +15301,7 @@
    "check": {
     "href": "src/20-rh/#p20051",
     "script": "rh.py",
-    "line": 1395,
+    "line": 1398,
     "verdict": "pass"
    },
    "declarations": [],
@@ -15666,20 +15310,6 @@
     "20:F5"
    ],
    "realisations": []
-  },
-  {
-   "key": "p20052",
-   "origin": "20",
-   "statement": "The Euler-product reading: an Euler product is the signature of a single multiplicative structure; the Davenport--Heilbronn function, a superposition of two, has the self-dual line and the functional symmetry and lacks the product; the screen reading separates the cases by the value $\\mathcal N-N_{\\mathrm{crit}}$ and places no zero on the line by fiat.",
-   "origin_row": "20:F6",
-   "tag": "D",
-   "tier": null,
-   "check": null,
-   "declarations": [],
-   "aliases": [],
-   "rows": [
-    "20:F6"
-   ]
   },
   {
    "key": "p20079",
@@ -15691,7 +15321,7 @@
    "check": {
     "href": "src/20-rh/#p20079",
     "script": "rh.py",
-    "line": 601,
+    "line": 604,
     "verdict": "pass"
    },
    "declarations": [
@@ -15715,14 +15345,14 @@
   {
    "key": "p20069",
    "origin": "20",
-   "statement": "\\textbf{The smoothed explicit formula.} Under the hypothesis of no zero to the right of the line, $\\sum_{n\\le N}\\Lambda(n)w(n)n^{-s}/\\log n=\\Pi_N(s)+J_N(s)$ exactly, $\\Pi_N$ explicit and growing with $N$, $J_N(s)\\to G(s)=\\log((s-1)\\zeta(s)/s)$ off the zeros: the pole-corrected count converges to $\\mathcal N(T)$. An off-line zero adds an explicit term $-\\Pi^{(\\rho)}_N$ (Rem.~\\ref{rem:combsettle}); a collection of such zeros growing with the depth is not summed. Observed: the corrected counts settle (D2f, D2g, D3) [approx].",
+   "statement": "\\textbf{The smoothed explicit formula.} With no zero to the right of the line, $\\sum_{n\\le N}\\Lambda(n)w(n)n^{-s}/\\log n=\\Pi_N(s)+J_N(s)$ exactly, $\\Pi_N$ explicit and growing with $N$, $J_N(s)\\to G(s)=\\log((s-1)\\zeta(s)/s)$ off the zeros: the pole-corrected count converges to $\\mathcal N(T)$. An off-line zero adds an explicit term $-\\Pi^{(\\rho)}_N$; a growing collection of such zeros is not summed. Observed: the corrected counts settle [approx].",
    "origin_row": "20:F8",
    "tag": "T",
    "tier": null,
    "check": {
     "href": "src/20-rh/#p20069",
     "script": "rh.py",
-    "line": 1405,
+    "line": 1408,
     "verdict": "pass"
    },
    "declarations": [],
@@ -15735,7 +15365,7 @@
   {
    "key": "p20059",
    "origin": "20",
-   "statement": "The uniform value $\\mathcal N=N_{\\mathrm{crit}}$ over the Carrier's cycle, and the value at each height in $(2\\pi\\sqrt\\Omega,\\,2\\pi\\Omega]$: read by the shell whose scale is that height, no embedded Subject; the failing computation is the count at that height from any embedded window. Whether a finite-description proof exists is a question no row poses; positivity (\\S\\ref{sec:promotion}) is not attempted.",
+   "statement": "The physical Carrier: the cells from the largest embedded Subject up lie in no embedded cycle, the whole-state certificate of the hypothesis is a record no embedded reader holds, and its evaluation costs more than the totality counts; the predicate's value there is $\\Omega$-hard as a tally. Short derivations are neither claimed nor excluded; the laboratory cycles are its instances.",
    "origin_row": "20:Z1",
    "tag": "Ω",
    "tier": null,
@@ -15749,7 +15379,7 @@
   {
    "key": "p20060",
    "origin": "20",
-   "statement": "The heights as Carrier residues: under the frame-covariance of the height chart (A1) each $\\gamma$ is a residue on the frequency latitude $L_{\\kp+1}$ of the Carrier, its exact index below the resolution of every embedded Subject; finite-precision readings remain available to every Subject for the heights its scale reaches.",
+   "statement": "The heights as Carrier residues: under the frame-covariance of the height chart (A1) each height is a residue on the Carrier's frequency latitude, its exact index below the resolution of every embedded Subject; every Subject reads to finite precision the heights its scale reaches, its own cells (D5).",
    "origin_row": "20:Z2",
    "tag": "Ω",
    "tier": null,
@@ -15758,20 +15388,6 @@
    "aliases": [],
    "rows": [
     "20:Z2"
-   ]
-  },
-  {
-   "key": "p20075",
-   "origin": "20",
-   "statement": "The uniform flatness bound over the shells: with $M(\\p)=\\max_{j\\ne0}\\lvert\\langle\\mathbf1_\\Pi,\\chi_j\\rangle\\rvert/(\\lVert\\mathbf1_\\Pi-\\bar{\\mathbf1}_\\Pi\\rVert\\,\\lVert\\chi_j\\rVert)$ the normalised correlation of the shell's prime indicator with the chart modes, mean removed (floor $1/\\sqrt{\\p-2}$, C5), the bound $M(\\p)=O(\\p^{-1/2}\\log^{5/2}\\p)$; the generalized hypothesis modulo $\\p$ implies it [import: \\citealp[Ch.~20]{davenport2000}], the converse not asserted. Each shell's maximum is a finite computation (C6), the uniform bound read by no embedded Subject.",
-   "origin_row": "20:Z5",
-   "tag": "Ω",
-   "tier": null,
-   "check": null,
-   "declarations": [],
-   "aliases": [],
-   "rows": [
-    "20:Z5"
    ]
   },
   {
@@ -25066,10 +24682,126 @@
    "successors": []
   },
   {
+   "key": "p20018",
+   "successors": []
+  },
+  {
+   "key": "p20019",
+   "successors": [
+    "p20020"
+   ]
+  },
+  {
+   "key": "p20021",
+   "successors": []
+  },
+  {
+   "key": "p20022",
+   "successors": []
+  },
+  {
+   "key": "p20024",
+   "successors": [
+    "p20023"
+   ]
+  },
+  {
+   "key": "p20026",
+   "successors": []
+  },
+  {
+   "key": "p20027",
+   "successors": [
+    "p20070"
+   ]
+  },
+  {
+   "key": "p20030",
+   "successors": []
+  },
+  {
+   "key": "p20031",
+   "successors": [
+    "p20025",
+    "p20029"
+   ]
+  },
+  {
+   "key": "p20033",
+   "successors": []
+  },
+  {
+   "key": "p20034",
+   "successors": []
+  },
+  {
+   "key": "p20036",
+   "successors": []
+  },
+  {
+   "key": "p20038",
+   "successors": [
+    "p20079"
+   ]
+  },
+  {
+   "key": "p20039",
+   "successors": []
+  },
+  {
+   "key": "p20040",
+   "successors": []
+  },
+  {
+   "key": "p20041",
+   "successors": []
+  },
+  {
+   "key": "p20042",
+   "successors": [
+    "p20006"
+   ]
+  },
+  {
+   "key": "p20045",
+   "successors": []
+  },
+  {
+   "key": "p20046",
+   "successors": []
+  },
+  {
+   "key": "p20048",
+   "successors": [
+    "p20029",
+    "p20081"
+   ]
+  },
+  {
+   "key": "p20052",
+   "successors": [
+    "p20080"
+   ]
+  },
+  {
    "key": "p20053",
    "successors": [
     "p20079"
    ]
+  },
+  {
+   "key": "p20071",
+   "successors": [
+    "p20082"
+   ]
+  },
+  {
+   "key": "p20072",
+   "successors": []
+  },
+  {
+   "key": "p20075",
+   "successors": []
   },
   {
    "key": "p20077",
@@ -29024,7 +28756,7 @@
     "p00112",
     "p20029",
     "p20047",
-    "p20048"
+    "p20081"
    ],
    "sources": [
     "20-rh"
@@ -43845,7 +43577,7 @@
    "tag": "T",
    "name": null,
    "statement": "Finitude: for any reading of capacity $R$ the registered Universe embeds in the shell of $R$ members, and among $R+1$ members two share a residue; the totality is finite, its cardinality $\\Omega$. A theorem of the master ledger (00:A2), proved in the core, cited as the closure's first premise (F7).",
-   "source": "00:A2; \\S\\ref{sec:promotion}\\newline \\pywit{rh}{p00004}{A2}, \\leanwit{FrcCore}{p00004}{A2} \\lean{FRC.Foundation.registered\\_finite, FRC.Foundation.no\\_unlimited\\_supply, FRC.Foundation.agent\\_bound}",
+   "source": "00:A2; \\S\\ref{sec:closure}\\newline \\pywit{rh}{p00004}{A2}, \\leanwit{FrcCore}{p00004}{A2} \\lean{FRC.Foundation.registered\\_finite, FRC.Foundation.no\\_unlimited\\_supply, FRC.Foundation.agent\\_bound}",
    "page": "20-rh/index.html#A2",
    "witness": {
     "py": null,
@@ -43880,7 +43612,7 @@
     "p00004",
     "p20079"
    ],
-   "text": "Finitude: for any reading of capacity $R$ the registered Universe embeds in the shell of $R$ members, and among $R+1$ members two share a residue; the totality is finite, its cardinality $\\Omega$. A theorem of the master ledger (00:A2), proved in the core, cited as the closure's first premise (F7). 00:A2; \\Ssec:promotion p00004, FrcCore{A2} FRC.Foundation.registered_finite, FRC.Foundation.no_unlimited_supply, FRC.Foundation.agent_bound"
+   "text": "Finitude: for any reading of capacity $R$ the registered Universe embeds in the shell of $R$ members, and among $R+1$ members two share a residue; the totality is finite, its cardinality $\\Omega$. A theorem of the master ledger (00:A2), proved in the core, cited as the closure's first premise (F7). 00:A2; \\Ssec:closure p00004, FrcCore{A2} FRC.Foundation.registered_finite, FRC.Foundation.no_unlimited_supply, FRC.Foundation.agent_bound"
   },
   {
    "paper": "20-rh",
@@ -43930,7 +43662,7 @@
    "tag": "T",
    "name": null,
    "statement": "Observation: every observation is a registration by an embedded part of $o<\\Omega$ states; every reading identifies two members, and a complete reading needs the whole count; one translation carries each member to each. A theorem of the master ledger (00:A4), proved in the core, cited as the closure's second premise (F7) and behind the horizon (Z1).",
-   "source": "00:A4; \\S\\ref{sec:promotion}\\newline \\pywit{rh}{p00197}{A4}, \\leanwit{FrcCore}{p00197}{A4} \\lean{FRC.Foundation.observer\\_part, FRC.Foundation.complete\\_needs\\_whole, FRC.Foundation.translation\\_torsor}",
+   "source": "00:A4; \\S\\ref{sec:closure}\\newline \\pywit{rh}{p00197}{A4}, \\leanwit{FrcCore}{p00197}{A4} \\lean{FRC.Foundation.observer\\_part, FRC.Foundation.complete\\_needs\\_whole, FRC.Foundation.translation\\_torsor}",
    "page": "20-rh/index.html#A4",
    "witness": {
     "py": null,
@@ -43966,7 +43698,7 @@
     "p20059",
     "p20079"
    ],
-   "text": "Observation: every observation is a registration by an embedded part of $o<\\Omega$ states; every reading identifies two members, and a complete reading needs the whole count; one translation carries each member to each. A theorem of the master ledger (00:A4), proved in the core, cited as the closure's second premise (F7) and behind the horizon (Z1). 00:A4; \\Ssec:promotion p00197, FrcCore{A4} FRC.Foundation.observer_part, FRC.Foundation.complete_needs_whole, FRC.Foundation.translation_torsor"
+   "text": "Observation: every observation is a registration by an embedded part of $o<\\Omega$ states; every reading identifies two members, and a complete reading needs the whole count; one translation carries each member to each. A theorem of the master ledger (00:A4), proved in the core, cited as the closure's second premise (F7) and behind the horizon (Z1). 00:A4; \\Ssec:closure p00197, FrcCore{A4} FRC.Foundation.observer_part, FRC.Foundation.complete_needs_whole, FRC.Foundation.translation_torsor"
   },
   {
    "paper": "20-rh",
@@ -44056,7 +43788,7 @@
    "block": "A",
    "tag": "I",
    "name": null,
-   "statement": "The comparison data: no off-line zero of $\\zeta$ to height $3\\times10^{12}$, by Turing's certificate, so every zero there is simple; GUE spacing statistics of the zeros; some $2600$ zeros to twelve digits from the primes to $10^{6}$ by harmonic inversion (the precision the observations of block E do not aim at); the self-adjoint realisations of the Berry--Keating operator.",
+   "statement": "The comparison data: no off-line zero of $\\zeta$ to height $3\\times10^{12}$, by Turing's certificate, so every zero there is simple and every cell below $4.8\\times10^{11}$ clean; GUE spacing statistics of the zeros; some $2600$ zeros to twelve digits from the primes to $10^{6}$ by harmonic inversion; the self-adjoint realisations of the Berry--Keating operator.",
    "source": "\\citep{platt2021,montgomery1973,odlyzko1987,main1998,berry1999,endres2010}",
    "page": "20-rh/index.html#A9",
    "witness": {
@@ -44064,7 +43796,7 @@
     "lean": []
    },
    "refs": [],
-   "text": "The comparison data: no off-line zero of $\\zeta$ to height $3\\times10^{12}$, by Turing's certificate, so every zero there is simple; GUE spacing statistics of the zeros; some $2600$ zeros to twelve digits from the primes to $10^{6}$ by harmonic inversion (the precision the observations of block E do not aim at); the self-adjoint realisations of the Berry–Keating operator. [platt2021,montgomery1973,odlyzko1987,main1998,berry1999,endres2010]"
+   "text": "The comparison data: no off-line zero of $\\zeta$ to height $3\\times10^{12}$, by Turing's certificate, so every zero there is simple and every cell below $4.8\\times10^{11}$ clean; GUE spacing statistics of the zeros; some $2600$ zeros to twelve digits from the primes to $10^{6}$ by harmonic inversion; the self-adjoint realisations of the Berry–Keating operator. [platt2021,montgomery1973,odlyzko1987,main1998,berry1999,endres2010]"
   },
   {
    "paper": "20-rh",
@@ -44092,22 +43824,20 @@
    "paper": "20-rh",
    "no": 20,
    "rid": "20:A11",
-   "key": "p20071",
+   "key": "p20082",
    "label": "A11",
    "block": "A",
    "tag": "I",
    "name": null,
-   "statement": "The semiclassical phase-space cell $2\\pi$ of the Berry--Keating count [chart], imposed as the standard unit, not derived from the shell constants; the shell's own count uses no cell (E12(iii)).",
-   "source": "\\citep{berry1999}; Rem.~\\ref{rem:cutoff}",
+   "statement": "The density bounds, imported for every cycle: for a fixed tolerance the cells holding a zero farther than it from the line are a vanishing fraction of the cycle (Selberg), and at least two fifths of a cycle's zeros lie on the line (Conrey) [chart]; bounds on the unclean cells of the physical Carrier, naming none.",
+   "source": "\\S\\ref{sec:closure}; \\citep{selberg1946,conrey1989}",
    "page": "20-rh/index.html#A11",
    "witness": {
     "py": null,
     "lean": []
    },
-   "refs": [
-    "p20043"
-   ],
-   "text": "The semiclassical phase-space cell $2\\pi$ of the Berry–Keating count [chart], imposed as the standard unit, not derived from the shell constants; the shell's own count uses no cell (E12(iii)). [berry1999]; Rem. rem:cutoff"
+   "refs": [],
+   "text": "The density bounds, imported for every cycle: for a fixed tolerance the cells holding a zero farther than it from the line are a vanishing fraction of the cycle (Selberg), and at least two fifths of a cycle's zeros lie on the line (Conrey) [chart]; bounds on the unclean cells of the physical Carrier, naming none. \\Ssec:closure; [selberg1946,conrey1989]"
   },
   {
    "paper": "20-rh",
@@ -44125,7 +43855,7 @@
     "py": {
      "href": "src/20-rh/#p20008",
      "script": "rh.py",
-     "line": 540,
+     "line": 543,
      "verdict": "pass"
     },
     "lean": [
@@ -44176,7 +43906,7 @@
     "py": {
      "href": "src/20-rh/#p20009",
      "script": "rh.py",
-     "line": 555,
+     "line": 558,
      "verdict": "pass"
     },
     "lean": [
@@ -44268,7 +43998,7 @@
     "py": {
      "href": "src/20-rh/#p20011",
      "script": "rh.py",
-     "line": 445,
+     "line": 448,
      "verdict": "pass"
     },
     "lean": [
@@ -44309,7 +44039,7 @@
     "py": {
      "href": "src/20-rh/#p20012",
      "script": "rh.py",
-     "line": 473,
+     "line": 476,
      "verdict": "pass"
     },
     "lean": [
@@ -44350,7 +44080,7 @@
     "py": {
      "href": "src/20-rh/#p20013",
      "script": "rh.py",
-     "line": 482,
+     "line": 485,
      "verdict": "pass"
     },
     "lean": [
@@ -44439,7 +44169,7 @@
     "py": {
      "href": "src/20-rh/#p20014",
      "script": "rh.py",
-     "line": 500,
+     "line": 503,
      "verdict": "pass"
     },
     "lean": [
@@ -44488,7 +44218,7 @@
     "py": {
      "href": "src/20-rh/#p20015",
      "script": "rh.py",
-     "line": 466,
+     "line": 469,
      "verdict": "pass"
     },
     "lean": [
@@ -44569,7 +44299,7 @@
     "py": {
      "href": "src/20-rh/#p20016",
      "script": "rh.py",
-     "line": 492,
+     "line": 495,
      "verdict": "pass"
     },
     "lean": [
@@ -44658,7 +44388,7 @@
     "py": {
      "href": "src/20-rh/#p20017",
      "script": "rh.py",
-     "line": 456,
+     "line": 459,
      "verdict": "pass"
     },
     "lean": [
@@ -44710,63 +44440,20 @@
   {
    "paper": "20-rh",
    "no": 20,
-   "rid": "20:B11",
-   "key": "p20018",
-   "label": "B11",
-   "block": "B",
-   "tag": "T",
-   "name": null,
-   "statement": "Antipode dominance: in the units-chart basis the per-mode energy is $\\mu^{2}(q)/\\varphi(q)=1/\\varphi(q)$ on squarefree $q$ ($1,\\half,\\tfrac14,\\tfrac16$ at $q=2,3,5,7$), its unique maximum among the nonconstant modes at the antipode $q=2$, decreasing along the primes, not the modulus; in the additive transform the band nearest the half-turn, $k=(\\p\\pm1)/2$, is the strongest off the spectral origin and follows the same law [approx].",
-   "source": "Obs.~\\ref{obs:antipode}\\newline \\pywit{rh}{p20018}{B11}",
-   "page": "20-rh/index.html#B11",
-   "witness": {
-    "py": {
-     "href": "src/20-rh/#p20018",
-     "script": "rh.py",
-     "line": 1703,
-     "verdict": "pass"
-    },
-    "lean": []
-   },
-   "refs": [],
-   "text": "Antipode dominance: in the units-chart basis the per-mode energy is $\\mu^{2}(q)/\\varphi(q)=1/\\varphi(q)$ on squarefree $q$ ($1,\\half,\\tfrac14,\\tfrac16$ at $q=2,3,5,7$), its unique maximum among the nonconstant modes at the antipode $q=2$, decreasing along the primes, not the modulus; in the additive transform the band nearest the half-turn, $k=(\\p\\pm1)/2$, is the strongest off the spectral origin and follows the same law [approx]. Obs. obs:antipode p20018"
-  },
-  {
-   "paper": "20-rh",
-   "no": 20,
-   "rid": "20:C1",
-   "key": "p20019",
-   "label": "C1",
-   "block": "C",
-   "tag": "D",
-   "name": null,
-   "statement": "The units-chart resonance $R_L(n)=\\sum_{q\\le L}\\frac{\\mu(q)}{\\varphi(q)}c_q(n)$ and its renormalisation $\\Lambda_L(n)=\\frac{n}{\\varphi(n)}R_L(n)$.",
-   "source": "Def.~\\ref{def:resonance}",
-   "page": "20-rh/index.html#C1",
-   "witness": {
-    "py": null,
-    "lean": []
-   },
-   "refs": [],
-   "text": "The units-chart resonance $R_L(n)=\\sum_{q\\le L}\\frac{\\mu(q)}{\\varphi(q)}c_q(n)$ and its renormalisation $\\Lambda_L(n)=\\frac{n}{\\varphi(n)}R_L(n)$. Def. def:resonance"
-  },
-  {
-   "paper": "20-rh",
-   "no": 20,
    "rid": "20:C2",
    "key": "p20020",
    "label": "C2",
    "block": "C",
    "tag": "T",
    "name": null,
-   "statement": "Resonance and the von Mangoldt weight: $R_L\\to\\frac{\\varphi(n)}{n}\\Lambda(n)$ (Hardy, A6); $\\Lambda=\\mu\\ast\\log$ exactly on the divisor lattice; the intertwiner $\\Lambda=\\frac{n}{\\varphi(n)}R$; support the prime powers in every form.",
-   "source": "Thm.~\\ref{thm:resonance}\\newline \\pywit{rh}{p20020}{C2}, \\leanwit{FrcLedger}{p20020}{C2} \\lean{Rh.vonMangoldt\\_moebius}",
+   "statement": "The resonance and the von Mangoldt weight: the units-chart resonance $R_L(n)=\\sum_{q\\le L}\\frac{\\mu(q)}{\\varphi(q)}c_q(n)$ converges to $\\frac{\\varphi(n)}{n}\\Lambda(n)$ (Hardy, A6); $\\Lambda=\\mu\\ast\\log$ exactly on the divisor lattice; the intertwiner $\\Lambda=\\frac{n}{\\varphi(n)}R$; support the prime powers in every form.",
+   "source": "Def.~\\ref{def:resonance}, Thm.~\\ref{thm:resonance}\\newline \\pywit{rh}{p20020}{C2}, \\leanwit{FrcLedger}{p20020}{C2} \\lean{Rh.vonMangoldt\\_moebius}",
    "page": "20-rh/index.html#C2",
    "witness": {
     "py": {
      "href": "src/20-rh/#p20020",
      "script": "rh.py",
-     "line": 1679,
+     "line": 1682,
      "verdict": "pass"
     },
     "lean": [
@@ -44783,55 +44470,7 @@
    "refs": [
     "p20003"
    ],
-   "text": "Resonance and the von Mangoldt weight: $R_L\\to\\frac{\\varphi(n)}{n}\\Lambda(n)$ (Hardy, A6); $\\Lambda=\\mu\\ast\\log$ exactly on the divisor lattice; the intertwiner $\\Lambda=\\frac{n}{\\varphi(n)}R$; support the prime powers in every form. Thm. thm:resonance p20020, FrcLedger{C2} Rh.vonMangoldt_moebius"
-  },
-  {
-   "paper": "20-rh",
-   "no": 20,
-   "rid": "20:C3",
-   "key": "p20021",
-   "label": "C3",
-   "block": "C",
-   "tag": "T",
-   "name": null,
-   "statement": "The staircase from the modes: $\\Psi_L(N)=\\sum_{n\\le N}\\frac{n}{\\varphi(n)}R_L(n)\\to\\psi(N)$ as the bandwidth grows, the modes in modulus order, the antipode the first nonconstant one; the finite-bandwidth wiggle tightens monotonically [approx].",
-   "source": "\\S\\ref{sec:emergence}, Fig.~\\ref{fig:emergence}\\newline \\pywit{rh}{p20021}{C3}",
-   "page": "20-rh/index.html#C3",
-   "witness": {
-    "py": {
-     "href": "src/20-rh/#p20021",
-     "script": "rh.py",
-     "line": 1697,
-     "verdict": "pass"
-    },
-    "lean": []
-   },
-   "refs": [],
-   "text": "The staircase from the modes: $\\Psi_L(N)=\\sum_{n\\le N}\\frac{n}{\\varphi(n)}R_L(n)\\to\\psi(N)$ as the bandwidth grows, the modes in modulus order, the antipode the first nonconstant one; the finite-bandwidth wiggle tightens monotonically [approx]. \\Ssec:emergence, Fig. fig:emergence p20021"
-  },
-  {
-   "paper": "20-rh",
-   "no": 20,
-   "rid": "20:C4",
-   "key": "p20022",
-   "label": "C4",
-   "block": "C",
-   "tag": "T",
-   "name": null,
-   "statement": "Horizon-scale resolution: a least bandwidth $L^{*}(H)$ at which $R_L$ separates every prime power in $\\{2,\\dots,H\\}$ from every other value exists, and $L^{*}(H)\\asymp H=\\lfloor\\sqrt \\p\\rfloor$ up to slowly growing factors, far below the field scale $H^{2}$ [approx].",
-   "source": "Obs.~\\ref{obs:horizon}\\newline \\pywit{rh}{p20022}{C4}",
-   "page": "20-rh/index.html#C4",
-   "witness": {
-    "py": {
-     "href": "src/20-rh/#p20022",
-     "script": "rh.py",
-     "line": 1731,
-     "verdict": "pass"
-    },
-    "lean": []
-   },
-   "refs": [],
-   "text": "Horizon-scale resolution: a least bandwidth $L^{*}(H)$ at which $R_L$ separates every prime power in $\\{2,\\dots,H\\}$ from every other value exists, and $L^{*}(H)\\asymp H=\\lfloor\\sqrt \\p\\rfloor$ up to slowly growing factors, far below the field scale $H^{2}$ [approx]. Obs. obs:horizon p20022"
+   "text": "The resonance and the von Mangoldt weight: the units-chart resonance $R_L(n)=\\sum_{q\\le L}\\frac{\\mu(q)}{\\varphi(q)}c_q(n)$ converges to $\\frac{\\varphi(n)}{n}\\Lambda(n)$ (Hardy, A6); $\\Lambda=\\mu\\ast\\log$ exactly on the divisor lattice; the intertwiner $\\Lambda=\\frac{n}{\\varphi(n)}R$; support the prime powers in every form. Def. def:resonance, Thm. thm:resonance p20020, FrcLedger{C2} Rh.vonMangoldt_moebius"
   },
   {
    "paper": "20-rh",
@@ -44872,33 +44511,6 @@
   {
    "paper": "20-rh",
    "no": 20,
-   "rid": "20:C6",
-   "key": "p20024",
-   "label": "C6",
-   "block": "C",
-   "tag": "T",
-   "name": null,
-   "statement": "Square-root cancellation: the maximal chart-mode correlation is a small multiple of the floor $1/\\sqrt{\\p-2}$ of C5, $0.077$ against $0.0315$ at $\\p=1009$ ($2.4$ times), $0.0087$ against $0.0032$ at $\\p=100049$ ($2.7$ times) [approx]; the resonance in its window correlates $0.90$. The bound uniform over every shell is Z5.",
-   "source": "Obs.~\\ref{obs:flat}\\newline \\pywit{rh}{p20024}{C6}",
-   "page": "20-rh/index.html#C6",
-   "witness": {
-    "py": {
-     "href": "src/20-rh/#p20024",
-     "script": "rh.py",
-     "line": 1744,
-     "verdict": "pass"
-    },
-    "lean": []
-   },
-   "refs": [
-    "p20023",
-    "p20075"
-   ],
-   "text": "Square-root cancellation: the maximal chart-mode correlation is a small multiple of the floor $1/\\sqrt{\\p-2}$ of C5, $0.077$ against $0.0315$ at $\\p=1009$ ($2.4$ times), $0.0087$ against $0.0032$ at $\\p=100049$ ($2.7$ times) [approx]; the resonance in its window correlates $0.90$. The bound uniform over every shell is Z5. Obs. obs:flat p20024"
-  },
-  {
-   "paper": "20-rh",
-   "no": 20,
    "rid": "20:D1",
    "key": "p20025",
    "label": "D1",
@@ -44918,56 +44530,6 @@
   {
    "paper": "20-rh",
    "no": 20,
-   "rid": "20:D2",
-   "key": "p20026",
-   "label": "D2",
-   "block": "D",
-   "tag": "T",
-   "name": null,
-   "statement": "Zero density is shell scale-depth: at $T=2\\pi \\p$ the smooth Riemann--von Mangoldt density is $\\frac1{2\\pi}\\log \\p$, $0.6226,0.9891,1.3556,1.7220$ at $\\p=50,500,5\\cdot10^{3},5\\cdot10^{4}$ [chart]; a substitution under the dictionary, recorded as a consistency, not a test.",
-   "source": "Prop.~\\ref{thm:density}\\newline \\pywit{rh}{p20026}{D2}",
-   "page": "20-rh/index.html#D2",
-   "witness": {
-    "py": {
-     "href": "src/20-rh/#p20026",
-     "script": "rh.py",
-     "line": 645,
-     "verdict": "pass"
-    },
-    "lean": []
-   },
-   "refs": [],
-   "text": "Zero density is shell scale-depth: at $T=2\\pi \\p$ the smooth Riemann–von Mangoldt density is $\\frac1{2\\pi}\\log \\p$, $0.6226,0.9891,1.3556,1.7220$ at $\\p=50,500,5\\cdot10^{3},5\\cdot10^{4}$ [chart]; a substitution under the dictionary, recorded as a consistency, not a test. Prop. thm:density p20026"
-  },
-  {
-   "paper": "20-rh",
-   "no": 20,
-   "rid": "20:D3",
-   "key": "p20027",
-   "label": "D3",
-   "block": "D",
-   "tag": "I",
-   "name": null,
-   "statement": "Reconstruction residue: the finite-horizon error of the main sum is the Riemann--Siegel remainder $O(T^{-1/4})=O(\\p^{-1/4})$ (A6), unconditional, fitted slope $-0.24$ over $t=40\\ldots5120$ [approx].",
-   "source": "Obs.~\\ref{obs:residue}\\newline \\pywit{rh}{p20027}{D3}",
-   "page": "20-rh/index.html#D3",
-   "witness": {
-    "py": {
-     "href": "src/20-rh/#p20027",
-     "script": "rh.py",
-     "line": 671,
-     "verdict": "pass"
-    },
-    "lean": []
-   },
-   "refs": [
-    "p20003"
-   ],
-   "text": "Reconstruction residue: the finite-horizon error of the main sum is the Riemann–Siegel remainder $O(T^{-1/4})=O(\\p^{-1/4})$ (A6), unconditional, fitted slope $-0.24$ over $t=40\\ldots5120$ [approx]. Obs. obs:residue p20027"
-  },
-  {
-   "paper": "20-rh",
-   "no": 20,
    "rid": "20:D4",
    "key": "p20028",
    "label": "D4",
@@ -44981,7 +44543,7 @@
     "py": {
      "href": "src/20-rh/#p20028",
      "script": "rh.py",
-     "line": 660,
+     "line": 663,
      "verdict": "pass"
     },
     "lean": []
@@ -45005,7 +44567,7 @@
     "py": {
      "href": "src/20-rh/#p20029",
      "script": "rh.py",
-     "line": 1565,
+     "line": 1568,
      "verdict": "pass"
     },
     "lean": [
@@ -45027,51 +44589,10 @@
      }
     ]
    },
-   "refs": [],
+   "refs": [
+    "p00135"
+   ],
    "text": "The cells: the heights of a Carrier's cycle are its residues, residue $y$ the cell from $2\\pi y$ to $2\\pi(y+1)$; a cell is clean when its zeros lie on the line, which Turing's count decides from the labels below $\\sqrt{y+1}$, and passes when the frame's reading certifies it. The hypothesis of the Carrier: every residue has a clean cell. Def. def:cells, Prop. prop:cells, Lem. lem:complete p20029, FrcCore{D5} FRC.Horizon.clean_iff_count, FRC.Horizon.cells_clean_iff_cycle"
-  },
-  {
-   "paper": "20-rh",
-   "no": 20,
-   "rid": "20:D6",
-   "key": "p20030",
-   "label": "D6",
-   "block": "D",
-   "tag": "D",
-   "name": null,
-   "statement": "The finite readings are approximations: at any depth neither reading produces an exact zero, neither uses nor supplies the hypothesis; completeness is stated in the zero-mode basis, and no transfer from the units-chart order of C3 is asserted or used.",
-   "source": "Rem.~\\ref{rem:approx}, Rem.~\\ref{rem:bases}",
-   "page": "20-rh/index.html#D6",
-   "witness": {
-    "py": null,
-    "lean": []
-   },
-   "refs": [
-    "p20021"
-   ],
-   "text": "The finite readings are approximations: at any depth neither reading produces an exact zero, neither uses nor supplies the hypothesis; completeness is stated in the zero-mode basis, and no transfer from the units-chart order of C3 is asserted or used. Rem. rem:approx, Rem. rem:bases"
-  },
-  {
-   "paper": "20-rh",
-   "no": 20,
-   "rid": "20:D7",
-   "key": "p20031",
-   "label": "D7",
-   "block": "D",
-   "tag": "T",
-   "name": null,
-   "statement": "The reconstruction is on-line: $Z(T)$ is real on the line, so every point it produces has $\\Real=\\half$, a property of the reading; the hypothesis is then the completeness clause of D5, the faithfulness of the de-framing, and likewise for each $\\chi$-twist (E14).",
-   "source": "Cor.~\\ref{cor:reduce}",
-   "page": "20-rh/index.html#D7",
-   "witness": {
-    "py": null,
-    "lean": []
-   },
-   "refs": [
-    "p20029",
-    "p20045"
-   ],
-   "text": "The reconstruction is on-line: $Z(T)$ is real on the line, so every point it produces has $\\Real=\\half$, a property of the reading; the hypothesis is then the completeness clause of D5, the faithfulness of the de-framing, and likewise for each $\\chi$-twist (E14). Cor. cor:reduce"
   },
   {
    "paper": "20-rh",
@@ -45089,7 +44610,7 @@
     "py": {
      "href": "src/20-rh/#p20080",
      "script": "rh.py",
-     "line": 1505,
+     "line": 1508,
      "verdict": "pass"
     },
     "lean": [
@@ -45122,7 +44643,7 @@
     "py": {
      "href": "src/20-rh/#p20083",
      "script": "rh.py",
-     "line": 1534,
+     "line": 1537,
      "verdict": "pass"
     },
     "lean": [
@@ -45155,7 +44676,7 @@
     "py": {
      "href": "src/20-rh/#p20032",
      "script": "rh.py",
-     "line": 529,
+     "line": 532,
      "verdict": "pass"
     },
     "lean": [
@@ -45209,54 +44730,6 @@
   {
    "paper": "20-rh",
    "no": 20,
-   "rid": "20:E2",
-   "key": "p20033",
-   "label": "E2",
-   "block": "E",
-   "tag": "D",
-   "name": null,
-   "statement": "The Hilbert--P\\'olya target correspondence: the de-framing on the spectrum is $\\rho\\mapsto-i(\\rho-\\half)$, real on the nontrivial zeros iff the hypothesis; $\\sigma(\\Hh)=\\{-i(\\rho-\\half)\\}$ is the target, not a result. The exhibited operator is the Jacobi matrix $\\mathbf J_N$ (E9), a realisation every finite real multiset admits; its identification with a discretisation of $\\Hh$ is not asserted and used by no row.",
-   "source": "Def.~\\ref{def:specmap}",
-   "page": "20-rh/index.html#E2",
-   "witness": {
-    "py": null,
-    "lean": []
-   },
-   "refs": [
-    "p20040"
-   ],
-   "text": "The Hilbert–P\\'olya target correspondence: the de-framing on the spectrum is $\\rho\\mapsto-i(\\rho-\\half)$, real on the nontrivial zeros iff the hypothesis; $\\sigma(\\Hh)=\\{-i(\\rho-\\half)\\}$ is the target, not a result. The exhibited operator is the Jacobi matrix $\\mathbf J_N$ (E9), a realisation every finite real multiset admits; its identification with a discretisation of $\\Hh$ is not asserted and used by no row. Def. def:specmap"
-  },
-  {
-   "paper": "20-rh",
-   "no": 20,
-   "rid": "20:E3",
-   "key": "p20034",
-   "label": "E3",
-   "block": "E",
-   "tag": "D",
-   "name": null,
-   "statement": "Cutoff and semiclassical density: with the space quantum $1_\\Omega$ as lower cutoff the Berry--Keating phase-space count is the Riemann--von Mangoldt count, density the shell scale-depth of D2 [chart]; the cell normalisation $1_\\Omega^{2}\\sim2\\pi$ is imposed [chart] (A11).",
-   "source": "Rem.~\\ref{rem:cutoff}\\newline \\pywit{rh}{p20034}{E3}",
-   "page": "20-rh/index.html#E3",
-   "witness": {
-    "py": {
-     "href": "src/20-rh/#p20034",
-     "script": "rh.py",
-     "line": 917,
-     "verdict": "pass"
-    },
-    "lean": []
-   },
-   "refs": [
-    "p20026",
-    "p20071"
-   ],
-   "text": "Cutoff and semiclassical density: with the space quantum $1_\\Omega$ as lower cutoff the Berry–Keating phase-space count is the Riemann–von Mangoldt count, density the shell scale-depth of D2 [chart]; the cell normalisation $1_\\Omega^{2}\\sim2\\pi$ is imposed [chart] (A11). Rem. rem:cutoff p20034"
-  },
-  {
-   "paper": "20-rh",
-   "no": 20,
    "rid": "20:E4",
    "key": "p20035",
    "label": "E4",
@@ -45276,30 +44749,6 @@
   {
    "paper": "20-rh",
    "no": 20,
-   "rid": "20:E5",
-   "key": "p20036",
-   "label": "E5",
-   "block": "E",
-   "tag": "T",
-   "name": null,
-   "statement": "The heights from the primes, $\\zeta$ never evaluated: the tapered scale-spectrum $\\Sigma_N(\\gamma)$ of the comb to $N=10^{6}$ peaks at the first six heights within $0.03$, each peak several times the baseline, width $\\sim2\\pi/\\log N$ [approx].",
-   "source": "Obs.~\\ref{obs:primespec}\\newline \\pywit{rh}{p20036}{E5}",
-   "page": "20-rh/index.html#E5",
-   "witness": {
-    "py": {
-     "href": "src/20-rh/#p20036",
-     "script": "rh.py",
-     "line": 769,
-     "verdict": "pass"
-    },
-    "lean": []
-   },
-   "refs": [],
-   "text": "The heights from the primes, $\\zeta$ never evaluated: the tapered scale-spectrum $\\Sigma_N(\\gamma)$ of the comb to $N=10^{6}$ peaks at the first six heights within $0.03$, each peak several times the baseline, width $\\sim2\\pi/\\log N$ [approx]. Obs. obs:primespec p20036"
-  },
-  {
-   "paper": "20-rh",
-   "no": 20,
    "rid": "20:E6",
    "key": "p20037",
    "label": "E6",
@@ -45313,7 +44762,7 @@
     "py": {
      "href": "src/20-rh/#p20037",
      "script": "rh.py",
-     "line": 781,
+     "line": 784,
      "verdict": "pass"
     },
     "lean": []
@@ -45322,127 +44771,6 @@
     "p20069"
    ],
    "text": "The discrete eigenvalues from the comb: the raw count $\\widetilde{\\mathcal N}_N(T)=\\theta(T)/\\pi+1+S_{\\mathrm{comb}}(T)$ carries the pole term (F8) and has no limit in $N$; the pole-corrected count $\\widehat{\\mathcal N}_N=\\widetilde{\\mathcal N}_N-\\tfrac1\\pi\\Im[\\Pi_N+\\log\\tfrac{s-1}{s}]$ crosses $n-\\half$ near the zeros, its secular condition recovering the first ten heights to mean error $3.4\\times10^{-5}$ at $N=10^{6}$ and $1.3\\times10^{-5}$ at $10^{8}$; the raw condition stalls past $10^{7}$ [approx]. Obs. obs:trace p20037"
-  },
-  {
-   "paper": "20-rh",
-   "no": 20,
-   "rid": "20:E7",
-   "key": "p20038",
-   "label": "E7",
-   "block": "E",
-   "tag": "D",
-   "name": null,
-   "statement": "The limits are finitist refinements: $N\\to\\infty$ is a sequence of finite reframings, the comb depth the refinement depth, no completed infinity invoked; a comb of depth $N$ is the window of a Subject with $\\sqrt \\p\\ge N$ (B3), so the exhibited combs are read on $\\p\\ge N^{2}$, embedded while $\\Omega\\gg N^{4}$; each construction's (heights, main-sum length, depth, Subject) is recorded.",
-   "source": "Rem.~\\ref{rem:finitist}",
-   "page": "20-rh/index.html#E7",
-   "witness": {
-    "py": null,
-    "lean": []
-   },
-   "refs": [
-    "p20010"
-   ],
-   "text": "The limits are finitist refinements: $N\\to\\infty$ is a sequence of finite reframings, the comb depth the refinement depth, no completed infinity invoked; a comb of depth $N$ is the window of a Subject with $\\sqrt \\p\\ge N$ (B3), so the exhibited combs are read on $\\p\\ge N^{2}$, embedded while $\\Omega\\gg N^{4}$; each construction's (heights, main-sum length, depth, Subject) is recorded. Rem. rem:finitist"
-  },
-  {
-   "paper": "20-rh",
-   "no": 20,
-   "rid": "20:E8",
-   "key": "p20039",
-   "label": "E8",
-   "block": "E",
-   "tag": "T",
-   "name": null,
-   "statement": "The heights from an explicit matrix: the colleague matrix of the Chebyshev expansion of $\\cos(\\pi\\widehat{\\mathcal N}_N)$ on $[10,52]$ at $N=10^{6}$ returns the ten heights to mean error $4.8\\times10^{-5}$ at dimension $520$ and $3.5\\times10^{-5}$ at $620$, converging to the corrected roots' own $3.4\\times10^{-5}$ at this depth [approx]; the precision is the smoothed count's, not the comb's (A9).",
-   "source": "Obs.~\\ref{obs:matrix}\\newline \\pywit{rh}{p20039}{E8}",
-   "page": "20-rh/index.html#E8",
-   "witness": {
-    "py": {
-     "href": "src/20-rh/#p20039",
-     "script": "rh.py",
-     "line": 819,
-     "verdict": "pass"
-    },
-    "lean": []
-   },
-   "refs": [
-    "p20006"
-   ],
-   "text": "The heights from an explicit matrix: the colleague matrix of the Chebyshev expansion of $\\cos(\\pi\\widehat{\\mathcal N}_N)$ on $[10,52]$ at $N=10^{6}$ returns the ten heights to mean error $4.8\\times10^{-5}$ at dimension $520$ and $3.5\\times10^{-5}$ at $620$, converging to the corrected roots' own $3.4\\times10^{-5}$ at this depth [approx]; the precision is the smoothed count's, not the comb's (A9). Obs. obs:matrix p20039"
-  },
-  {
-   "paper": "20-rh",
-   "no": 20,
-   "rid": "20:E9",
-   "key": "p20040",
-   "label": "E9",
-   "block": "E",
-   "tag": "T",
-   "name": null,
-   "statement": "The comb-built Jacobi realisation: the real-symmetric tridiagonal matrix of the height measure of the corrected secular roots has those roots as its exact spectrum ($4\\times10^{-14}$ [approx]) and the heights to $3.4\\times10^{-5}$, with the stated ten coefficients $a$, $b$; self-adjointness is free (every finite real multiset is such a spectrum), so it imposes no constraint.",
-   "source": "Def.~\\ref{def:jacobi}, Obs.~\\ref{obs:jacobi}\\newline \\pywit{rh}{p20040}{E9}",
-   "page": "20-rh/index.html#E9",
-   "witness": {
-    "py": {
-     "href": "src/20-rh/#p20040",
-     "script": "rh.py",
-     "line": 811,
-     "verdict": "pass"
-    },
-    "lean": []
-   },
-   "refs": [],
-   "text": "The comb-built Jacobi realisation: the real-symmetric tridiagonal matrix of the height measure of the corrected secular roots has those roots as its exact spectrum ($4\\times10^{-14}$ [approx]) and the heights to $3.4\\times10^{-5}$, with the stated ten coefficients $a$, $b$; self-adjointness is free (every finite real multiset is such a spectrum), so it imposes no constraint. Def. def:jacobi, Obs. obs:jacobi p20040"
-  },
-  {
-   "paper": "20-rh",
-   "no": 20,
-   "rid": "20:E10",
-   "key": "p20041",
-   "label": "E10",
-   "block": "E",
-   "tag": "T",
-   "name": null,
-   "statement": "Additive injection is gauge-trivial: $-i\\,d/du+V$ is unitarily equivalent to $-i\\,d/du$ with a shifted boundary phase, its spectrum uniform; numerically the spacing standard deviation of $-i\\,d/du+V_{\\mathrm{comb}}$ is $0.11$ of its mean against the heights' $0.39$ [approx]; the comb enters through the trace.",
-   "source": "Prop.~\\ref{prop:gauge}\\newline \\pywit{rh}{p20041}{E10}",
-   "page": "20-rh/index.html#E10",
-   "witness": {
-    "py": {
-     "href": "src/20-rh/#p20041",
-     "script": "rh.py",
-     "line": 829,
-     "verdict": "pass"
-    },
-    "lean": []
-   },
-   "refs": [],
-   "text": "Additive injection is gauge-trivial: $-i d/du+V$ is unitarily equivalent to $-i d/du$ with a shifted boundary phase, its spectrum uniform; numerically the spacing standard deviation of $-i d/du+V_{\\mathrm{comb}}$ is $0.11$ of its mean against the heights' $0.39$ [approx]; the comb enters through the trace. Prop. prop:gauge p20041"
-  },
-  {
-   "paper": "20-rh",
-   "no": 20,
-   "rid": "20:E11",
-   "key": "p20042",
-   "label": "E11",
-   "block": "E",
-   "tag": "I",
-   "name": null,
-   "statement": "GUE level repulsion of the target spectrum: unfolded spacings of the first $240$ zeros give $P(s<\\half)=0.05$ (GUE $\\approx0.12$, Poisson $\\approx0.39$) and variance $0.13$ (GUE $\\approx0.18$, Poisson $1$) [approx]; a known statistic (A9) reproduced.",
-   "source": "Obs.~\\ref{obs:gue}\\newline \\pywit{rh}{p20042}{E11}",
-   "page": "20-rh/index.html#E11",
-   "witness": {
-    "py": {
-     "href": "src/20-rh/#p20042",
-     "script": "rh.py",
-     "line": 909,
-     "verdict": "pass"
-    },
-    "lean": []
-   },
-   "refs": [
-    "p20006"
-   ],
-   "text": "GUE level repulsion of the target spectrum: unfolded spacings of the first $240$ zeros give $P(s<\\half)=0.05$ (GUE $\\approx0.12$, Poisson $\\approx0.39$) and variance $0.13$ (GUE $\\approx0.18$, Poisson $1$) [approx]; a known statistic (A9) reproduced. Obs. obs:gue p20042"
   },
   {
    "paper": "20-rh",
@@ -45460,7 +44788,7 @@
     "py": {
      "href": "src/20-rh/#p20043",
      "script": "rh.py",
-     "line": 529,
+     "line": 532,
      "verdict": "pass"
     },
     "lean": [
@@ -45559,7 +44887,7 @@
     "py": {
      "href": "src/20-rh/#p20044",
      "script": "rh.py",
-     "line": 531,
+     "line": 534,
      "verdict": "pass"
     },
     "lean": [
@@ -45606,81 +44934,6 @@
   {
    "paper": "20-rh",
    "no": 20,
-   "rid": "20:E14",
-   "key": "p20045",
-   "label": "E14",
-   "block": "E",
-   "tag": "T",
-   "name": null,
-   "statement": "The $\\chi$-twist: for a real character the twisted vector is self-conjugate, the twisted secular condition recovering six heights of $L(s,\\chi_{-4})$ to mean error $8.6\\times10^{-5}$ [approx]; for a primitive complex character the root number's half-phase and the matching $\\Gamma$-factor restore the self-dual structure (E16); the generalized hypothesis is read as the twisted de-framing's faithfulness, as D5.",
-   "source": "Def.~\\ref{prop:chi}, Obs.~\\ref{obs:chi}\\newline \\pywit{rh}{p20045}{E14}",
-   "page": "20-rh/index.html#E14",
-   "witness": {
-    "py": {
-     "href": "src/20-rh/#p20045",
-     "script": "rh.py",
-     "line": 1010,
-     "verdict": "pass"
-    },
-    "lean": []
-   },
-   "refs": [
-    "p20029",
-    "p20072"
-   ],
-   "text": "The $\\chi$-twist: for a real character the twisted vector is self-conjugate, the twisted secular condition recovering six heights of $L(s,\\chi_{-4})$ to mean error $8.6\\times10^{-5}$ [approx]; for a primitive complex character the root number's half-phase and the matching $\\Gamma$-factor restore the self-dual structure (E16); the generalized hypothesis is read as the twisted de-framing's faithfulness, as D5. Def. prop:chi, Obs. obs:chi p20045"
-  },
-  {
-   "paper": "20-rh",
-   "no": 20,
-   "rid": "20:E15",
-   "key": "p20046",
-   "label": "E15",
-   "block": "E",
-   "tag": "T",
-   "name": null,
-   "statement": "Twisted-comb validation, $\\chi_{-4}$: $\\widetilde{\\mathcal N}_{N,\\chi}=\\theta_\\chi/\\pi+S^{\\chi}_{\\mathrm{comb}}$, with no pole term to remove, reads $0.4997,\\dots,5.4998$ at the first six zeros of $L(s,\\chi)$ (located via Hurwitz zeta), and the twisted secular condition with the $N=10^{6}$ comb recovers $6.0209,\\dots,21.4506$ to mean error $8.6\\times10^{-5}$, $L$ never evaluated [approx].",
-   "source": "Obs.~\\ref{obs:chi}\\newline \\pywit{rh}{p20046}{E15}",
-   "page": "20-rh/index.html#E15",
-   "witness": {
-    "py": {
-     "href": "src/20-rh/#p20046",
-     "script": "rh.py",
-     "line": 1010,
-     "verdict": "pass"
-    },
-    "lean": []
-   },
-   "refs": [],
-   "text": "Twisted-comb validation, $\\chi_{-4}$: $\\widetilde{\\mathcal N}_{N,\\chi}=\\theta_\\chi/\\pi+S^{\\chi}_{\\mathrm{comb}}$, with no pole term to remove, reads $0.4997,\\dots,5.4998$ at the first six zeros of $L(s,\\chi)$ (located via Hurwitz zeta), and the twisted secular condition with the $N=10^{6}$ comb recovers $6.0209,\\dots,21.4506$ to mean error $8.6\\times10^{-5}$, $L$ never evaluated [approx]. Obs. obs:chi p20046"
-  },
-  {
-   "paper": "20-rh",
-   "no": 20,
-   "rid": "20:E16",
-   "key": "p20072",
-   "label": "E16",
-   "block": "E",
-   "tag": "T",
-   "name": null,
-   "statement": "Twisted-comb validation, the complex character of conductor $5$ ($\\chi(2)=i$, odd): the half-phase $W(\\chi)^{-1/2}\\Lambda(\\half+it,\\chi)$ is real on the line to $10^{-20}$; the twisted count rounds to the exact integers $1,\\dots,14$ midway between the fifteen zeros below $40$, within $3\\times10^{-4}$; the twisted secular condition with the $N=10^{6}$ comb, $L$ never evaluated, recovers the fifteen heights to mean error $8.0\\times10^{-5}$ [approx].",
-   "source": "Def.~\\ref{prop:chi}, Obs.~\\ref{obs:chi}\\newline \\pywit{rh}{p20072}{E16}",
-   "page": "20-rh/index.html#E16",
-   "witness": {
-    "py": {
-     "href": "src/20-rh/#p20072",
-     "script": "rh.py",
-     "line": 1091,
-     "verdict": "pass"
-    },
-    "lean": []
-   },
-   "refs": [],
-   "text": "Twisted-comb validation, the complex character of conductor $5$ ($\\chi(2)=i$, odd): the half-phase $W(\\chi)^{-1/2}\\Lambda(\\half+it,\\chi)$ is real on the line to $10^{-20}$; the twisted count rounds to the exact integers $1,\\dots,14$ midway between the fifteen zeros below $40$, within $3\\times10^{-4}$; the twisted secular condition with the $N=10^{6}$ comb, $L$ never evaluated, recovers the fifteen heights to mean error $8.0\\times10^{-5}$ [approx]. Def. prop:chi, Obs. obs:chi p20072"
-  },
-  {
-   "paper": "20-rh",
-   "no": 20,
    "rid": "20:F1",
    "key": "p20047",
    "label": "F1",
@@ -45694,7 +44947,7 @@
     "py": {
      "href": "src/20-rh/#p20047",
      "script": "rh.py",
-     "line": 1306,
+     "line": 1309,
      "verdict": "pass"
     },
     "lean": []
@@ -45711,26 +44964,37 @@
    "paper": "20-rh",
    "no": 20,
    "rid": "20:F2",
-   "key": "p20048",
+   "key": "p20081",
    "label": "F2",
    "block": "F",
-   "tag": "D",
+   "tag": "T",
    "name": null,
-   "statement": "\\textbf{The screen reading.} By D5 and F1 the classical hypothesis below $T$ is the value $\\mathcal N(T)-N_{\\mathrm{crit}}(T)=0$, both terms estimated on the shell, the count from the pole-corrected comb (convergent under the hypothesis, uncertified at finite depth), the on-line zeros from the sign changes (exact where certified, A10, and simple). Declared, not derived; E12 uses no Euler product.",
-   "source": "Def.~\\ref{def:screen}, Rem.~\\ref{rem:screen}",
+   "statement": "\\textbf{The hypothesis on a hosted Carrier.} A cell is decided by the certificate of a shell reading it, an embedded Subject below the largest one, the host above; on the laboratory Carriers $233$, $30\\,089$ and $2\\,408\\,561$ every cell of the cycle is clean, $1\\,038$, $280\\,186$ and $32\\,984\\,135$ zeros, all simple; the classical verification cleans every cell below $4.8\\times10^{11}$ (A9).",
+   "source": "Thm.~\\ref{thm:hosted} (the certificate analytic, with the package; the core decides the laboratory instances)\\newline \\pywit{rh}{p20081}{F2}, \\leanwit{FrcCore}{p20081}{F2} \\lean{FRC.Horizon.closure\\_lab}",
    "page": "20-rh/index.html#F2",
    "witness": {
-    "py": null,
-    "lean": []
+    "py": {
+     "href": "src/20-rh/#p20081",
+     "script": "rh.py",
+     "line": 2217,
+     "verdict": "pass"
+    },
+    "lean": [
+     {
+      "lib": "FrcCore",
+      "module": "FrcCore/Theme/Horizon",
+      "name": "FRC.Horizon.closure_lab",
+      "tier": 0,
+      "ok": true,
+      "page": "lean/core/Theme.html#FRC.Horizon.closure_lab"
+     }
+    ]
    },
    "refs": [
     "p00135",
-    "p20029",
-    "p20043",
-    "p20047",
-    "p20070"
+    "p20006"
    ],
-   "text": "The screen reading. By D5 and F1 the classical hypothesis below $T$ is the value $\\mathcal N(T)-N_{\\mathrm{crit}}(T)=0$, both terms estimated on the shell, the count from the pole-corrected comb (convergent under the hypothesis, uncertified at finite depth), the on-line zeros from the sign changes (exact where certified, A10, and simple). Declared, not derived; E12 uses no Euler product. Def. def:screen, Rem. rem:screen"
+   "text": "The hypothesis on a hosted Carrier. A cell is decided by the certificate of a shell reading it, an embedded Subject below the largest one, the host above; on the laboratory Carriers $233$, $30 089$ and $2 408 561$ every cell of the cycle is clean, $1 038$, $280 186$ and $32 984 135$ zeros, all simple; the classical verification cleans every cell below $4.8\\times10^{11}$ (A9). Thm. thm:hosted (the certificate analytic, with the package; the core decides the laboratory instances) p20081, FrcCore{F2} FRC.Horizon.closure_lab"
   },
   {
    "paper": "20-rh",
@@ -45748,7 +45012,7 @@
     "py": {
      "href": "src/20-rh/#p20049",
      "script": "rh.py",
-     "line": 1312,
+     "line": 1315,
      "verdict": "pass"
     },
     "lean": []
@@ -45774,7 +45038,7 @@
     "py": {
      "href": "src/20-rh/#p20050",
      "script": "rh.py",
-     "line": 1369,
+     "line": 1372,
      "verdict": "pass"
     },
     "lean": []
@@ -45798,7 +45062,7 @@
     "py": {
      "href": "src/20-rh/#p20051",
      "script": "rh.py",
-     "line": 1395,
+     "line": 1398,
      "verdict": "pass"
     },
     "lean": []
@@ -45808,25 +45072,6 @@
     "p20069"
    ],
    "text": "The $\\zeta$ comb at its own singularity, the pole: at $t=1$ (exact count $0$) the raw count drifts, $+0.09\\ldots-1.46$ over depths $10^{4}\\ldots8\\times10^{7}$, while at $t=15$ it stays within $2\\times10^{-3}$ of $1$; the pole-corrected count at $t=1$ falls monotonically, $0.0051\\to0.0012$ [approx]. The drift is the pole term of F8: no rounding bound for the raw count is depth-independent (F1). Obs. obs:dh p20051"
-  },
-  {
-   "paper": "20-rh",
-   "no": 20,
-   "rid": "20:F6",
-   "key": "p20052",
-   "label": "F6",
-   "block": "F",
-   "tag": "D",
-   "name": null,
-   "statement": "The Euler-product reading: an Euler product is the signature of a single multiplicative structure; the Davenport--Heilbronn function, a superposition of two, has the self-dual line and the functional symmetry and lacks the product; the screen reading separates the cases by the value $\\mathcal N-N_{\\mathrm{crit}}$ and places no zero on the line by fiat.",
-   "source": "\\S\\ref{subsec:discriminator}",
-   "page": "20-rh/index.html#F6",
-   "witness": {
-    "py": null,
-    "lean": []
-   },
-   "refs": [],
-   "text": "The Euler-product reading: an Euler product is the signature of a single multiplicative structure; the Davenport–Heilbronn function, a superposition of two, has the self-dual line and the functional symmetry and lacks the product; the screen reading separates the cases by the value $\\mathcal N-N_{\\mathrm{crit}}$ and places no zero on the line by fiat. \\Ssubsec:discriminator"
   },
   {
    "paper": "20-rh",
@@ -45844,7 +45089,7 @@
     "py": {
      "href": "src/20-rh/#p20079",
      "script": "rh.py",
-     "line": 601,
+     "line": 604,
      "verdict": "pass"
     },
     "lean": [
@@ -45881,22 +45126,20 @@
    "block": "F",
    "tag": "T",
    "name": null,
-   "statement": "\\textbf{The smoothed explicit formula.} Under the hypothesis of no zero to the right of the line, $\\sum_{n\\le N}\\Lambda(n)w(n)n^{-s}/\\log n=\\Pi_N(s)+J_N(s)$ exactly, $\\Pi_N$ explicit and growing with $N$, $J_N(s)\\to G(s)=\\log((s-1)\\zeta(s)/s)$ off the zeros: the pole-corrected count converges to $\\mathcal N(T)$. An off-line zero adds an explicit term $-\\Pi^{(\\rho)}_N$ (Rem.~\\ref{rem:combsettle}); a collection of such zeros growing with the depth is not summed. Observed: the corrected counts settle (D2f, D2g, D3) [approx].",
+   "statement": "\\textbf{The smoothed explicit formula.} With no zero to the right of the line, $\\sum_{n\\le N}\\Lambda(n)w(n)n^{-s}/\\log n=\\Pi_N(s)+J_N(s)$ exactly, $\\Pi_N$ explicit and growing with $N$, $J_N(s)\\to G(s)=\\log((s-1)\\zeta(s)/s)$ off the zeros: the pole-corrected count converges to $\\mathcal N(T)$. An off-line zero adds an explicit term $-\\Pi^{(\\rho)}_N$; a growing collection of such zeros is not summed. Observed: the corrected counts settle [approx].",
    "source": "Prop.~\\ref{prop:combformula}, Rem.~\\ref{rem:combsettle}, Obs.~\\ref{obs:dh}\\newline \\pywit{rh}{p20069}{F8}",
    "page": "20-rh/index.html#F8",
    "witness": {
     "py": {
      "href": "src/20-rh/#p20069",
      "script": "rh.py",
-     "line": 1405,
+     "line": 1408,
      "verdict": "pass"
     },
     "lean": []
    },
-   "refs": [
-    "p20027"
-   ],
-   "text": "The smoothed explicit formula. Under the hypothesis of no zero to the right of the line, $\\sum_{n\\le N}\\Lambda(n)w(n)n^{-s}/\\log n=\\Pi_N(s)+J_N(s)$ exactly, $\\Pi_N$ explicit and growing with $N$, $J_N(s)\\to G(s)=\\log((s-1)\\zeta(s)/s)$ off the zeros: the pole-corrected count converges to $\\mathcal N(T)$. An off-line zero adds an explicit term $-\\Pi^{(\\rho)}_N$ (Rem. rem:combsettle); a collection of such zeros growing with the depth is not summed. Observed: the corrected counts settle (D2f, D2g, D3) [approx]. Prop. prop:combformula, Rem. rem:combsettle, Obs. obs:dh p20069"
+   "refs": [],
+   "text": "The smoothed explicit formula. With no zero to the right of the line, $\\sum_{n\\le N}\\Lambda(n)w(n)n^{-s}/\\log n=\\Pi_N(s)+J_N(s)$ exactly, $\\Pi_N$ explicit and growing with $N$, $J_N(s)\\to G(s)=\\log((s-1)\\zeta(s)/s)$ off the zeros: the pole-corrected count converges to $\\mathcal N(T)$. An off-line zero adds an explicit term $-\\Pi^{(\\rho)}_N$; a growing collection of such zeros is not summed. Observed: the corrected counts settle [approx]. Prop. prop:combformula, Rem. rem:combsettle, Obs. obs:dh p20069"
   },
   {
    "paper": "20-rh",
@@ -45907,15 +45150,15 @@
    "block": "Z",
    "tag": "Ω",
    "name": null,
-   "statement": "The uniform value $\\mathcal N=N_{\\mathrm{crit}}$ over the Carrier's cycle, and the value at each height in $(2\\pi\\sqrt\\Omega,\\,2\\pi\\Omega]$: read by the shell whose scale is that height, no embedded Subject; the failing computation is the count at that height from any embedded window. Whether a finite-description proof exists is a question no row poses; positivity (\\S\\ref{sec:promotion}) is not attempted.",
-   "source": "Rem.~\\ref{rem:screen}, \\S\\ref{sub:physical}, \\S\\ref{sec:promotion}",
+   "statement": "The physical Carrier: the cells from the largest embedded Subject up lie in no embedded cycle, the whole-state certificate of the hypothesis is a record no embedded reader holds, and its evaluation costs more than the totality counts; the predicate's value there is $\\Omega$-hard as a tally. Short derivations are neither claimed nor excluded; the laboratory cycles are its instances.",
+   "source": "Rem.~\\ref{rem:physical}, \\S\\ref{sub:physical}, \\S\\ref{sec:closure}",
    "page": "20-rh/index.html#Z1",
    "witness": {
     "py": null,
     "lean": []
    },
    "refs": [],
-   "text": "The uniform value $\\mathcal N=N_{\\mathrm{crit}}$ over the Carrier's cycle, and the value at each height in $(2\\pi\\sqrt\\Omega, 2\\pi\\Omega]$: read by the shell whose scale is that height, no embedded Subject; the failing computation is the count at that height from any embedded window. Whether a finite-description proof exists is a question no row poses; positivity (\\Ssec:promotion) is not attempted. Rem. rem:screen, \\Ssub:physical, \\Ssec:promotion"
+   "text": "The physical Carrier: the cells from the largest embedded Subject up lie in no embedded cycle, the whole-state certificate of the hypothesis is a record no embedded reader holds, and its evaluation costs more than the totality counts; the predicate's value there is $\\Omega$-hard as a tally. Short derivations are neither claimed nor excluded; the laboratory cycles are its instances. Rem. rem:physical, \\Ssub:physical, \\Ssec:closure"
   },
   {
    "paper": "20-rh",
@@ -45926,7 +45169,7 @@
    "block": "Z",
    "tag": "Ω",
    "name": null,
-   "statement": "The heights as Carrier residues: under the frame-covariance of the height chart (A1) each $\\gamma$ is a residue on the frequency latitude $L_{\\kp+1}$ of the Carrier, its exact index below the resolution of every embedded Subject; finite-precision readings remain available to every Subject for the heights its scale reaches.",
+   "statement": "The heights as Carrier residues: under the frame-covariance of the height chart (A1) each height is a residue on the Carrier's frequency latitude, its exact index below the resolution of every embedded Subject; every Subject reads to finite precision the heights its scale reaches, its own cells (D5).",
    "source": "\\S\\ref{sub:physical}",
    "page": "20-rh/index.html#Z2",
    "witness": {
@@ -45934,31 +45177,10 @@
     "lean": []
    },
    "refs": [
-    "p20001"
+    "p20001",
+    "p20029"
    ],
-   "text": "The heights as Carrier residues: under the frame-covariance of the height chart (A1) each $\\gamma$ is a residue on the frequency latitude $L_{\\kp+1}$ of the Carrier, its exact index below the resolution of every embedded Subject; finite-precision readings remain available to every Subject for the heights its scale reaches. \\Ssub:physical"
-  },
-  {
-   "paper": "20-rh",
-   "no": 20,
-   "rid": "20:Z5",
-   "key": "p20075",
-   "label": "Z5",
-   "block": "Z",
-   "tag": "Ω",
-   "name": null,
-   "statement": "The uniform flatness bound over the shells: with $M(\\p)=\\max_{j\\ne0}\\lvert\\langle\\mathbf1_\\Pi,\\chi_j\\rangle\\rvert/(\\lVert\\mathbf1_\\Pi-\\bar{\\mathbf1}_\\Pi\\rVert\\,\\lVert\\chi_j\\rVert)$ the normalised correlation of the shell's prime indicator with the chart modes, mean removed (floor $1/\\sqrt{\\p-2}$, C5), the bound $M(\\p)=O(\\p^{-1/2}\\log^{5/2}\\p)$; the generalized hypothesis modulo $\\p$ implies it [import: \\citealp[Ch.~20]{davenport2000}], the converse not asserted. Each shell's maximum is a finite computation (C6), the uniform bound read by no embedded Subject.",
-   "source": "\\S\\ref{sec:emergence}, Obs.~\\ref{obs:flat}",
-   "page": "20-rh/index.html#Z5",
-   "witness": {
-    "py": null,
-    "lean": []
-   },
-   "refs": [
-    "p20023",
-    "p20024"
-   ],
-   "text": "The uniform flatness bound over the shells: with $M(\\p)=\\max_{j\\ne0}\\lvert\\langle\\mathbf1_\\Pi,\\chi_j\\rangle\\rvert/(\\lVert\\mathbf1_\\Pi-\\bar{\\mathbf1}_\\Pi\\rVert \\lVert\\chi_j\\rVert)$ the normalised correlation of the shell's prime indicator with the chart modes, mean removed (floor $1/\\sqrt{\\p-2}$, C5), the bound $M(\\p)=O(\\p^{-1/2}\\log^{5/2}\\p)$; the generalized hypothesis modulo $\\p$ implies it [import: \\citealp[Ch. 20]{davenport2000}], the converse not asserted. Each shell's maximum is a finite computation (C6), the uniform bound read by no embedded Subject. \\Ssec:emergence, Obs. obs:flat"
+   "text": "The heights as Carrier residues: under the frame-covariance of the height chart (A1) each height is a residue on the Carrier's frequency latitude, its exact index below the resolution of every embedded Subject; every Subject reads to finite precision the heights its scale reaches, its own cells (D5). \\Ssub:physical"
   },
   {
    "paper": "21-grav",
