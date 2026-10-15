@@ -87,7 +87,7 @@ class ApsidalBoundTest(unittest.TestCase):
         ab = CG.apsidal_bound()
         self.assertAlmostEqual(ab["log10_bound"], -283.5 / 2 / math.log(10))
         self.assertGreater(ab["orders_above"], 54); self.assertLess(ab["orders_above"], 55)
-        self.assertGreater(ab["log10_p2"], ab["log10_omega"])
+        self.assertGreater(ab["orders_above"], 50); self.assertNotIn("log10_p2", ab)      # no quantity above Ω is formed (15 October 2026)
 
 
 if __name__ == "__main__":
