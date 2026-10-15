@@ -395,8 +395,8 @@ def block_F():
     R.check("F5", "the floor a₀ = cH₀/2π at the entailed H₀ = 67.4 km s⁻¹ Mpc⁻¹: 1.04 × 10⁻¹⁰ m s⁻² within the bracket of the chart theme, 13 % below the fitted 1.20 × 10⁻¹⁰ [data]; the leak's cyclic rate is the drive's own, one cycle per Ω − 1 chronons (X3)", ok,
             f"a₀ = {a0:.9e} m s⁻², bracket ({'%.9e' % lo}, {'%.9e' % hi})", kind="CHART")   # the bracket's Fractions printed through %-formatting (Python 3.10 has no Fraction.__format__)
     ab = CG.apsidal_bound()
-    ok = near(ab["log10_bound"], Fr(-616, 10), abs_=Fr(1, 10)) and near(ab["orders_above"], Fr(545, 10), abs_=Fr(5, 10)) and ab["orders_above"] > 50
-    R.check("F6", "the apsidal bound on the physical Carrier (ln Ω = 283.5): 1/(√Ω + 1) is 10⁻⁶¹·⁶, and Mercury's apsidal fraction 8.0 × 10⁻⁸ per revolution [data] sits 54 orders above it: no hosted Subject registers an observed precession", ok,
+    ok = near(ab["log10_bound"], Fr(-616, 10), abs_=Fr(1, 10)) and near(ab["orders_above"], Fr(545, 10), abs_=Fr(5, 10)) and ab["log10_p2"] > ab["log10_omega"] + 100
+    R.check("F6", "the apsidal bound on the physical Carrier (ln Ω = 283.5): 1/(√Ω + 1) is 10⁻⁶¹·⁶, and Mercury's apsidal fraction 8.0 × 10⁻⁸ per revolution [data] sits 54 orders above it; the Subject that would register it has p² ≈ 10²³² ≫ Ω: no hosted Subject registers an observed precession", ok,
             f"{ab}", kind="CHART")
 
 

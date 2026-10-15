@@ -170,6 +170,7 @@ footer code { font-family: var(--mono); font-size: .95em; }
 .home ol.refs li { margin-bottom: .3rem; }
 .home ol.refs li:target { background: color-mix(in srgb, var(--accent) 10%, transparent); border-radius: 4px; }
 .home a[href^="#ref-"] { border-bottom: none; font-size: .85em; vertical-align: 1px; }
+.home sup, .home sub { line-height: 0; }   /* superscripts and subscripts leave the line height alone (15 October 2026) */
 /* ---- ledger pages (added by tools/site_build.py) ---- */
 /* every link on every page takes the accent token (light and dark) except the tab bar and the title links of the
    publications list; the stylesheet above colours only nav, .sub and DOI links, and a page has no <main> wrapper
