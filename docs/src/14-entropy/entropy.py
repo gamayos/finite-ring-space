@@ -4,7 +4,7 @@ entropy.py — the validation package of "De Sitter Entropy Estimates over Finit
 registry entcommon.py and the blocks estimate_S.py, triangle.py, capacity.py merged).
 ========================================================================================================================
 
-One script, three blocks, nineteen family checks of 92 micro-checks; Python with matplotlib (the two triangle blocks draw
+One script, four blocks, twenty-two family checks of 101 micro-checks; Python with matplotlib (the two triangle blocks draw
 the paper's figures into out/). Two kinds of check are kept apart. EXACT: integer counts on the instantiated laboratory
 Carrier Ω = 2 408 561 (the admissibility congruences, the quarter identity, the octant count) — a pass is a proof on that
 instance. CHART: a one-line computation on published [approx] or [ΛCDM] data (the instrument table, the concordances, the
@@ -13,16 +13,16 @@ a pass says the paper's numeral follows from its named inputs; it is not a measu
 parameter and no random sampling anywhere; transcendental library calls (sqrt, atanh, tanh, pi) are the labelled chart
 functions applied to chart quantities.
 
-A family is one check of the registry, identified as <block>.<family> (est.F1 … est.P1, tri.A … tri.F, cap.A … cap.F), and
+A family is one check of the registry, identified as <block>.<family> (est.F1 … est.P1, tri.A … tri.F, cap.A … cap.F, win.W … win.S), and
 names the predicate(s) of the paper's ledger it witnesses (LEDGER; predicates cited as 14:<label>) — the deciding family's
 `# 14:<label> (<key>)` marker is what the ledger's source column links (PREDICATES;
 finitering.space/src/14-entropy/#<key>); the family checks are listed on the public page from results.json.
 Master-ledger predicates reached through the paper predicates: 00:A9 (14:A1, 14:A2), 00:L2 (14:C4, 14:B5, 14:Z1),
 00:L3 (14:C5, 14:C7, 14:P2, 14:P3, 14:P4), 00:L4 (14:C9), 00:L5 (14:B9), 00:L6 (14:X8), 00:L7 (14:P1, 14:B4),
-00:L1 (14:X2, 14:A6), 00:F7 (the additive window, 14:B10).
+00:L1 (14:X2, 14:A6), 00:F6 and 00:F2 (14:B12, 14:B13; master F7 returned to 14:B11-B13 on 15 October 2026).
 
-    python3 entropy.py          the three blocks, results.json written; exit 1 if a family check fails (≈ 3 s)
-    python3 entropy.py tri      one block (est, tri or cap); no results.json
+    python3 entropy.py          the four blocks, results.json written; exit 1 if a family check fails (≈ 4 s)
+    python3 entropy.py win      one block (est, tri, cap or win); no results.json
     from frc_14_entropy import predicate; predicate("14:C5")    one predicate: its blocks run once per session
 """
 import os, json, sys
@@ -57,6 +57,10 @@ LEDGER = {
     "cap.A": "14:C9",
     "cap.K": "14:C10",
     "cap.F": "",
+    # block win (the additive window, the lock and the shells of capacity 3N: master F7, returned 15 October 2026)
+    "win.W": "14:B11",
+    "win.L": "14:B12",
+    "win.S": "14:B13",
 }
 
 LABELS = {
@@ -79,11 +83,15 @@ LABELS = {
     "cap.A": "the audit and diagonal identities re-asserted in the capacity-axis variant (identical to tri.A, tri.D, tri.W)",
     "cap.K": "the capacity axis: the mass-axis pin (−45, 62) held after all children (no datalim drift); the one-gram horizontal lands on N_A = 6.022 × 10²³ hydrogen units to 0.0035 dex (tolerance 0.005) [approx]",
     "cap.F": "the figure written: the registrable triangle with the holographic-ring-capacity axis (Figure 4 of the paper; no ledger predicate)",
+    "win.W": "the additive window: for N modes at heights |h_i| ≤ κ_i the totals are exactly [−Σκ_i, Σκ_i] — exhaustive for N ≤ 4 at κ = 3 (7^N tuples, the least window 3N) and for mixed κ_i ∈ {1, 2, 3}, N ≤ 3; the pairwise bound 2κ of 38:A8 at p = 13 and the 20 of 343 triples beyond it",
+    "win.L": "the lock of like units: joint recurrence lcm(12, …, 12) = 12 for every N ≤ 6 (no element of order 12N), one C₁₂ offset per further unit; the diagonal drive on C₁₂² has 12 orbits of length 12, on C₁₂³ 144, on C₄ × C₃ one orbit of length 12",
+    "win.S": "the shells of capacity 3N: 12N + 1 prime exactly for N ∈ {1, 3, 5, 6, 8, 9} below 10 (25 = 5² at N = 2); fusion of coprime cycles multiplicative, κ = n₁n₂/4 — hydrogen (4, 3) → 12/4 = 3 — and no fusion of (12, 12), lcm 12",
 }
 
 BLOCK = {"est": "the exact faces and the area law on the laboratory Carrier, then every chart numeral of the paper (estimate_S.py until 24 September 2026)",      # check-id prefix -> the block (the function block_<name> below)
          "tri": "the registrable triangle: the audit identities, the diagonal regression, the wall residents, the figures (the paper's make-wedge-2.py)",
-         "cap": "the capacity-axis variant: the identities re-asserted, the Avogadro landing, the figure (the paper's make-wedge-3.py)"}
+         "cap": "the capacity-axis variant: the identities re-asserted, the Avogadro landing, the figure (the paper's make-wedge-3.py)",
+         "win": "the additive window, the lock of like units and the shells of capacity 3N (master F7, returned to rows B11-B13 on 15 October 2026; the master's check_f7.py of 17 September)"}
 
 # the deciding family of each witnessed predicate: the one whose checks decide the predicate's statement (the other families
 # that touch it are corroboration, listed by predicate() from the records)
@@ -92,6 +100,7 @@ PREDICATES = {
     "14:C6": "est.F1", "14:C7": "est.A1", "14:C8": "est.C3", "14:C9": "tri.D", "14:C10": "cap.K",
     "14:X2": "est.L1", "14:X3": "est.A1", "14:X5": "tri.D", "14:X6": "est.A1",
     "14:P1": "est.P1", "14:P2": "est.P2", "14:P3": "est.P3",
+    "14:B11": "win.W", "14:B12": "win.L", "14:B13": "win.S",
 }
 _FAM = [None, None]
 _RAN = set()                                            # blocks already run in this session (predicate() runs each once)
@@ -1173,6 +1182,75 @@ def block_cap():
     plt.close("all")
 
     flush("cap", order=["A", "K", "F"])
+
+def block_win():
+    """Block win — the additive window (B11), the lock of like units (B12), the shells of capacity 3N with fusion (B13); exact integers
+    throughout (the master's check_f7.py of 17 September 2026, parts 1-3, without its chart part)."""
+    import itertools
+    from math import lcm
+
+    def is_prime(n):
+        if n < 2: return False
+        if n % 2 == 0: return n == 2
+        d = 3
+        while d * d <= n:
+            if n % d == 0: return False
+            d += 2
+        return True
+
+    # ---- B11: the additive window ----
+    counts = []; ok_w = True
+    for N in range(1, 5):
+        sums = [sum(t) for t in itertools.product(range(-3, 4), repeat=N)]
+        counts.append((7 ** N, max(abs(x) for x in sums)))
+        if max(abs(x) for x in sums) != 3 * N or set(sums) != set(range(-3 * N, 3 * N + 1)): ok_w = False
+    ok_m = True
+    for N in range(1, 4):
+        for ks in itertools.product((1, 2, 3), repeat=N):
+            sums = {sum(t) for t in itertools.product(*[range(-k, k + 1) for k in ks])}
+            if max(abs(x) for x in sums) != sum(ks) or sums != set(range(-sum(ks), sum(ks) + 1)): ok_m = False
+    trip = list(itertools.product(range(-3, 4), repeat=3)); beyond = sum(1 for t in trip if abs(sum(t)) > 6)
+    print(f"additive window at kappa = 3: (7^N tuples, max |sum|) = {counts}; triples beyond the pairwise bound 6: {beyond} of {len(trip)}")
+    # 14:B11 (p14046)
+    family("win", "W")
+    chk("N = 1..4 at kappa = 3: max |sum h_i| = 3N and every total in [-3N, 3N] occurs (7^N tuples, exhaustive)", ok_w and counts == [(7, 3), (49, 6), (343, 9), (2401, 12)])
+    chk("mixed capacities kappa_i in {1, 2, 3}, N <= 3: the least resolving window is sum kappa_i, every total occurs", ok_m)
+    chk("38:A8 at p = 13: |h1 + h2| <= 6 = 2 kappa for every pair; 20 of 343 triples exceed 2 kappa (the window grows with N)",
+        all(abs(a + b) <= 6 for a in range(-3, 4) for b in range(-3, 4)) and beyond == 20)
+
+    # ---- B12: the lock of like units ----
+    def orbits(ns):
+        seen = set(); count = 0; lengths = set()
+        for start in itertools.product(*[range(n) for n in ns]):
+            if start in seen: continue
+            count += 1; cur = start; L = 0
+            while cur not in seen:
+                seen.add(cur); cur = tuple((c + 1) % n for c, n in zip(cur, ns)); L += 1
+            lengths.add(L)
+        return count, lengths
+    o43, o1212, o121212 = orbits((4, 3)), orbits((12, 12)), orbits((12, 12, 12))
+    print(f"diagonal drive orbits: (4, 3) {o43}; (12, 12) {o1212}; (12, 12, 12) {o121212}")
+    # 14:B12 (p14047)
+    family("win", "L")
+    chk("N like units on C_12, N <= 6: joint recurrence lcm(12, ..., 12) = 12, no element of order 12N",
+        all(lcm(*([12] * N)) == 12 for N in range(2, 7)) and all(12 * N != 12 for N in range(2, 7)))
+    chk("the diagonal drive on C_12^2: 12 orbits of length 12 (one C_12 offset per further unit); on C_12^3: 144 orbits of length 12",
+        o1212 == (12, {12}) and o121212 == (144, {12}))
+    chk("the offset is superselected: (x + 1, y + 1) keeps x - y (mod 12) for every point of C_12^2",
+        all(((x + 1) - (y + 1)) % 12 == (x - y) % 12 for x in range(12) for y in range(12)))
+
+    # ---- B13: the shells of capacity 3N and fusion ----
+    pr = [N for N in range(1, 10) if is_prime(12 * N + 1)]
+    print(f"12N + 1 prime for N in {pr} (N < 10); N = 2: 25 = 5^2")
+    # 14:B13 (p14048)
+    family("win", "S")
+    chk("a shell of capacity 3N is F_{12N+1}: 4 (3N) + 1 = 12N + 1; 12N + 1 prime exactly for N in {1, 3, 5, 6, 8, 9} below 10, 25 = 5^2 at N = 2",
+        all(4 * (3 * N) + 1 == 12 * N + 1 for N in range(1, 10)) and pr == [1, 3, 5, 6, 8, 9] and 25 == 5 * 5)
+    chk("fusion of coprime cycles is multiplicative: lcm(4, 3) = 12, kappa = 4 * 3 / 4 = 3 (hydrogen), one orbit of length 12", lcm(4, 3) == 12 and 4 * 3 // 4 == 3 and o43 == (1, {12}))
+    chk("like cycles do not fuse: gcd(12, 12) = 12, lcm(12, 12) = 12; the capacity-3N shell (13 at N = 1) is not the lock's register C_12",
+        lcm(12, 12) == 12 and 12 != 13 and is_prime(13))
+
+    flush("win", order=["W", "L", "S"], kinds={"W": "EXACT", "L": "EXACT", "S": "EXACT"})
 
 if __name__ == "__main__":
     import time

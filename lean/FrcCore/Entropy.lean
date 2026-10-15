@@ -2,6 +2,7 @@ import FrcCore.Frame
 import FrcCore.Orbit
 import FrcCore.Instances
 import FrcCore.Keys.Frame
+import FrcCore.Theme.Quantum
 
 /-!
 # 14-entropy — the import's congruences, the octant sector and the laboratory Carrier, no axioms
@@ -16,7 +17,9 @@ budget `2x ≤ 2m ⟺ x ≤ m` (C5); on every frame `(τ; 0, 1, g)` of even capa
 `ζ⁸ = 1` forces the capacity even, and a square root `r` of `2` gives one, `ζ = (r + i r)/2` with `ζ² = i` —
 so that, on every frame at tier 0, the octant sector exists ⟺ the capacity is even ⟺ `2` is a square: the
 octant and the c-square are one condition (C6, X4); the nesting bound `q² < p`, `p² < Ω ⇒ q⁴ < Ω` (B10);
-primality by trial division up to the square root. Decided by the kernel: the octant on `𝔽₁₇` and its absence
+primality by trial division up to the square root; the additive window `|Σhᵢ| ≤ Σκᵢ`, attained, every total
+occurring (B11), the lock of like units with recurrence `12` and its offset (B12), the shells of capacity `3N` and
+the multiplicative fusion of coprime cycles (B13). Decided by the kernel: the octant on `𝔽₁₇` and its absence
 on `𝔽₁₃` and `𝔽₂₉`, the characters `ζ₈` of the Carriers `233` and `2 408 561`; the laboratory Carrier —
 `S = 602 140` even, `≡ 1 (mod 3)`, `4S + 1` prime (A2); the capacity axis `𝔽₅`, no shell at `κ = 2`, `𝔽₁₃` at
 hydrogen, `12N + 1` prime at `N = 1, 3` and not at `N = 2` (C10, B10); the nesting `37 → 1373 → 2 408 561` and
@@ -256,6 +259,170 @@ theorem two_is_square_iff (F : Frame p κ g) : (∃ r : Shell p, r * r = 2) ↔ 
 
 end aliases
 
+/-! ## 14:B11–B13 — the additive window, the lock of like units, the shells of capacity `3N` (master F7, returned
+15 October 2026). Heights `hᵢ` with `|hᵢ| ≤ κᵢ` are read as `uᵢ = hᵢ + κᵢ ≤ 2κᵢ`, so that the window `|Σhᵢ| ≤ Σκᵢ` is
+`Σuᵢ ≤ 2Σκᵢ` and "every total occurs" is "every `s ≤ 2Σκᵢ` is a sum": the statements stay in `Nat`, with no axiom. -/
+
+section window
+
+/-- The total of the modes `u 0, …, u (m − 1)` (as the quantum theme's `prodN`, for sums). -/
+def sumN (u : Nat → Nat) : Nat → Nat
+  | 0 => 0
+  | m + 1 => sumN u m + u m
+
+theorem sumN_congr (u v : Nat → Nat) : ∀ m, (∀ j, j < m → u j = v j) → sumN u m = sumN v m
+  | 0, _ => rfl
+  | m + 1, h => by
+    show sumN u m + u m = sumN v m + v m
+    rw [sumN_congr u v m (fun j hj => h j (Nat.lt_succ_of_lt hj)), h m (Nat.lt_succ_self m)]
+
+theorem sumN_mul (c : Nat) (κ : Nat → Nat) : ∀ m, sumN (fun j => c * κ j) m = c * sumN κ m
+  | 0 => (Nat.mul_zero c).symm
+  | m + 1 => by
+    show sumN (fun j => c * κ j) m + c * κ m = c * (sumN κ m + κ m)
+    rw [sumN_mul c κ m, Nat.mul_add]
+
+/-- 14:B11 — the additive window, the bound: `m` modes at heights `uᵢ ≤ 2κᵢ` total at most `2Σκᵢ`
+(`|Σhᵢ| ≤ Σκᵢ` for `hᵢ = uᵢ − κᵢ`). -/
+theorem additive_window_bound (u κ : Nat → Nat) : ∀ m, (∀ j, j < m → u j ≤ 2 * κ j) → sumN u m ≤ 2 * sumN κ m
+  | 0, _ => Nat.le_refl 0
+  | m + 1, h => by
+    show sumN u m + u m ≤ 2 * (sumN κ m + κ m)
+    rw [Nat.mul_add]
+    exact Nat.add_le_add (additive_window_bound u κ m (fun j hj => h j (Nat.lt_succ_of_lt hj))) (h m (Nat.lt_succ_self m))
+
+/-- 14:B11 — the window is attained: the heights `uᵢ = 2κᵢ` (`hᵢ = κᵢ`) total `2Σκᵢ`. -/
+theorem additive_window_attained (κ : Nat → Nat) (m : Nat) : sumN (fun j => 2 * κ j) m = 2 * sumN κ m :=
+  sumN_mul 2 κ m
+
+/-- 14:B11 — every total occurs: for every `s ≤ 2Σκᵢ` there are heights `uᵢ ≤ 2κᵢ` with `Σuᵢ = s` — the last
+height `s` itself when `s ≤ 2κ_m`, else `2κ_m` with the rest by induction. -/
+theorem additive_window_every (κ : Nat → Nat) :
+    ∀ m s, s ≤ 2 * sumN κ m → ∃ u : Nat → Nat, (∀ j, j < m → u j ≤ 2 * κ j) ∧ sumN u m = s
+  | 0, s, hs => ⟨fun _ => 0, fun j hj => absurd hj (Nat.not_lt_zero j), (Nat.eq_zero_of_le_zero hs).symm⟩
+  | m + 1, s, hs => by
+    have hs' : s ≤ 2 * sumN κ m + 2 * κ m := by
+      have e : 2 * sumN κ (m + 1) = 2 * sumN κ m + 2 * κ m := Nat.mul_add 2 (sumN κ m) (κ m)
+      exact e ▸ hs
+    match Nat.lt_or_ge (2 * κ m) s with
+    | .inr hle =>
+      obtain ⟨u', hu', hsum'⟩ := additive_window_every κ m 0 (Nat.zero_le _)
+      refine ⟨fun j => if j = m then s else u' j, ?_, ?_⟩
+      · intro j hj
+        match Nat.decEq j m with
+        | isTrue e => show (if j = m then s else u' j) ≤ 2 * κ j; rw [if_pos e, e]; exact hle
+        | isFalse ne =>
+          show (if j = m then s else u' j) ≤ 2 * κ j
+          rw [if_neg ne]; exact hu' j (Nat.lt_of_le_of_ne (Nat.le_of_lt_succ hj) ne)
+      · show sumN (fun j => if j = m then s else u' j) m + (if m = m then s else u' m) = s
+        rw [if_pos rfl, sumN_congr (fun j => if j = m then s else u' j) u' m (fun j hj => if_neg (Nat.ne_of_lt hj)),
+          hsum']
+        exact Nat.zero_add s
+    | .inl hlt =>
+      obtain ⟨s', hs'eq⟩ := Nat.le.dest (Nat.le_of_lt hlt)
+      have hs'le : s' ≤ 2 * sumN κ m := by
+        apply FRC.Nat.le_of_add_le_add_left (a := 2 * κ m)
+        rw [hs'eq]
+        exact Nat.le_trans hs' (Nat.le_of_eq (Nat.add_comm _ _))
+      obtain ⟨u', hu', hsum'⟩ := additive_window_every κ m s' hs'le
+      refine ⟨fun j => if j = m then 2 * κ m else u' j, ?_, ?_⟩
+      · intro j hj
+        match Nat.decEq j m with
+        | isTrue e => show (if j = m then 2 * κ m else u' j) ≤ 2 * κ j; rw [if_pos e, e]; exact Nat.le_refl _
+        | isFalse ne =>
+          show (if j = m then 2 * κ m else u' j) ≤ 2 * κ j
+          rw [if_neg ne]; exact hu' j (Nat.lt_of_le_of_ne (Nat.le_of_lt_succ hj) ne)
+      · show sumN (fun j => if j = m then 2 * κ m else u' j) m + (if m = m then 2 * κ m else u' m) = s
+        rw [if_pos rfl, sumN_congr (fun j => if j = m then 2 * κ m else u' j) u' m (fun j hj => if_neg (Nat.ne_of_lt hj)),
+          hsum', Nat.add_comm]
+        exact hs'eq
+
+/-- 14:B11 — the additive window as one statement: the bound, its attainment and every total in the range
+(heights read as `uᵢ = hᵢ + κᵢ ≤ 2κᵢ`). -/
+theorem additive_window :
+    (∀ (u κ : Nat → Nat) (m : Nat), (∀ j, j < m → u j ≤ 2 * κ j) → sumN u m ≤ 2 * sumN κ m) ∧
+    (∀ (κ : Nat → Nat) (m : Nat), sumN (fun j => 2 * κ j) m = 2 * sumN κ m) ∧
+    (∀ (κ : Nat → Nat) (m s : Nat), s ≤ 2 * sumN κ m →
+      ∃ u : Nat → Nat, (∀ j, j < m → u j ≤ 2 * κ j) ∧ sumN u m = s) :=
+  ⟨additive_window_bound, additive_window_attained, additive_window_every⟩
+
+/-- 14:B11 — hydrogen units: `N` modes of capacity `3` have the window `3N` (`2 · 3N` in the shifted reading);
+on the hydrogen shell `𝔽₁₃` two heights `≤ 3` sum to at most `6 = 2κ` (38:A8), and three can exceed it,
+`3 + 3 + 3 = 9 > 6` — the window grows with `N`. -/
+theorem additive_window_hydrogen :
+    (∀ N : Nat, sumN (fun _ => 2 * 3) N = 2 * (3 * N)) ∧
+    (∀ u, u < 7 → ∀ v, v < 7 → u + v ≤ 12) ∧ 6 + 6 + 6 > 12 := by
+  refine ⟨fun N => ?_, by decide, by decide⟩
+  have e := sumN_mul 2 (fun _ => 3) N
+  rw [e]
+  have h3 : ∀ n, sumN (fun _ => 3) n = 3 * n := fun n => by
+    induction n with
+    | zero => rfl
+    | succ k ih => show sumN (fun _ => 3) k + 3 = 3 * (k + 1); rw [ih, Nat.mul_succ]
+  rw [h3]
+
+end window
+
+section lock
+
+/-- 14:B12 — the lock of like units: `m ≥ 1` cycles of period `12` return jointly exactly at the multiples of
+`12` (the quantum theme's `Joint`), so the joint recurrence is `12` for every `m` and no element has order `12m`
+for `m ≥ 2`. -/
+theorem lock_recurrence (m : Nat) (hm : 0 < m) (t : Nat) :
+    FRC.Quantum.Joint (fun _ => 12) m t ↔ t % 12 = 0 :=
+  ⟨fun h => h 0 hm, fun h _ _ => h⟩
+
+/-- 14:B12 — the instances on the lock `C₁₂ × C₁₂`: the diagonal drive `(x, y) ↦ (x + 1, y + 1)` returns every
+point after `12` steps, `x + 12 = x`, and not before, `x + k ≠ x` for `0 < k < 12`; it keeps the offset,
+`(x + 1) − (y + 1) = x − y` (one superselected `C₁₂` offset per further unit); so the `144` points fall into `12`
+orbits of length `12`, and the `1728` points of `C₁₂³` into `144`. -/
+theorem lock_orbits :
+    (∀ x : Shell 12, x + 12 = x) ∧
+    (∀ x : Shell 12, ∀ k, k < 12 → 0 < k → x + FRC.Shell.ofNat k ≠ x) ∧
+    (∀ x : Shell 12, ∀ y : Shell 12, (x + 1) + -(y + 1) = x + -y) ∧ 144 = 12 * 12 ∧ 1728 = 144 * 12 := by
+  refine ⟨by decide +kernel, by decide +kernel, by decide +kernel, by decide, by decide⟩
+
+end lock
+
+section shells
+
+/-- 14:B13 — the shell of capacity `3N` is `𝔽_{12N+1}`, `4 · 3N + 1 = 12N + 1`; below `N = 10` it exists exactly for
+`N = 1, 3, 5, 6, 8, 9` (`12N + 1` prime), and not at `N = 2` (`25 = 5²`), `4`, `7`. -/
+theorem shells_of_capacity :
+    (∀ N : Nat, 4 * (3 * N) + 1 = 12 * N + 1) ∧
+    (∀ N : Nat, N < 10 → (FRC.Nat.isPrime (12 * N + 1) ↔ N = 1 ∨ N = 3 ∨ N = 5 ∨ N = 6 ∨ N = 8 ∨ N = 9)) ∧
+    25 = 5 * 5 := by
+  refine ⟨fun N => ?_, ?_, by decide⟩
+  · rw [← FRC.Nat.mul_assoc]
+  · intro N hN
+    match N, hN with
+    | 0, _ => decide +kernel
+    | 1, _ => decide +kernel
+    | 2, _ => decide +kernel
+    | 3, _ => decide +kernel
+    | 4, _ => decide +kernel
+    | 5, _ => decide +kernel
+    | 6, _ => decide +kernel
+    | 7, _ => decide +kernel
+    | 8, _ => decide +kernel
+    | 9, _ => decide +kernel
+    | n + 10, h => exact absurd (Nat.lt_of_lt_of_le h (Nat.le_add_left 10 n)) (Nat.lt_irrefl _)
+
+/-- 14:B13 — fusion of coprime cycles is multiplicative, the instances: hydrogen `(4, 3)` returns jointly exactly
+at the multiples of `12 = 4 · 3` (searched below `24`), the diagonal drive on `C₄ × C₃` is one orbit of length `12`
+(the twelve points `(k, k)`, `k < 12`, distinct), and the fused capacity is `4 · 3 / 4 = 3`; like cycles do not
+fuse — `(12, 12)` returns at the multiples of `12`, `gcd (12, 12) = 12` — and the capacity-`3` shell `13` is not
+the lock's register `12`. The general law, `lcm (n₁, n₂) = n₁ n₂` for coprime cycles, is the Mathlib declaration. -/
+theorem fusion_capacity :
+    (∀ t, t < 24 → (FRC.Quantum.Joint (fun j => if j = 0 then 4 else 3) 2 t ↔ t % 12 = 0)) ∧
+    (∀ k, k < 12 → ∀ k', k' < 12 →
+      (FRC.Shell.ofNat k : Shell 4) = FRC.Shell.ofNat k' → (FRC.Shell.ofNat k : Shell 3) = FRC.Shell.ofNat k' → k = k') ∧
+    4 * 3 / 4 = 3 ∧ Nat.lcm 4 3 = 12 ∧
+    (∀ t, t < 24 → (FRC.Quantum.Joint (fun _ => 12) 2 t ↔ t % 12 = 0)) ∧ Nat.gcd 12 12 = 12 ∧ (13 : Nat) ≠ 12 :=
+  ⟨by decide +kernel, by decide +kernel, by decide, by decide, by decide +kernel, by decide, by decide⟩
+
+end shells
+
 -- Ledger predicates of 14-entropy (generated by make_predicates.py from docs/14-entropy/14-entropy-ledger.json; edit the ledger, not this section)
 /-- 14:A1 (p14001) — The de Sitter entropy $\dS$, the single quantitative import, fixing the cardinality exactly, $\Om=4\dS+1$. -/
 theorem p14001 : ∀ (S : Nat), ((4 : Nat) * S + (1 : Nat)) % (4 : Nat) = (1 : Nat) ∧ (4 : Nat) * S + (1 : Nat) - (1 : Nat) = (4 : Nat) * S :=
@@ -269,9 +436,18 @@ theorem p14010 : ∀ (S m : Nat), S = (2 : Nat) * m → (2 : Nat) * ((2 : Nat) *
 /-- 14:B9 (p14017) — The area law: the projected horizon area in Planck cells is the full phase cycle, $A=4\dS$ \apx{} at the horizon ($4\pi n_A=4\dS$, $n_A=(r_H/\lP)^{2}$ \apx); the Bekenstein--Hawking quarter $\dS=A/4$ is the quarter-turn $Q_4$, the generative four of $\Om=4\dS+1$ and $\p=4\kap+1$; area is a Subject-projection property, the Carrier carrying none. -/
 theorem p14017 : ∀ (S : Nat), ((4 : Nat) * S + (1 : Nat)) % (4 : Nat) = (1 : Nat) ∧ (4 : Nat) * S + (1 : Nat) - (1 : Nat) = (4 : Nat) * S :=
   @FRC.Entropy.quarter_identity
-/-- 14:B10 (p14044) — The capacity axis counts hydrogen units (one gram at $N_A$ to $0.003$ dex \apx): a definition, not a registered shell. The least register window resolving the total winding of $N$ units is $3N$, a theorem about the observing Subject (00:F7); a phase-locked composite of like units is an aggregate, never one shell (00:F6; a shell of capacity $3N$ exists only when $12N+1$ is prime, none at $N=2$); the largest shell any Subject registers whole is the nesting bound $\mathsf{q}<\Om^{1/4}$, $N<(\Om^{1/4}-1)/12$ units, $8\times10^{2}$\,kg at $\dS=3.3\times10^{122}$ \apx{} ($\dS^{1/4}$ units overcounts by $12$); everything heavier an aggregate of locks; the proton's $1$ against $3$ compares a tower label with a chart count. -/
+/-- 14:B10 (p14044) — The capacity axis counts hydrogen units (one gram at $N_A$ to $0.003$ dex \apx): a definition, not a registered shell. The least register window resolving the total winding of $N$ units is $3N$, a theorem about the observing Subject (B11); a phase-locked composite of like units is an aggregate, never one shell (B12; a shell of capacity $3N$ exists only when $12N+1$ is prime, B13); the largest shell any Subject registers whole is the nesting bound $\mathsf{q}<\Om^{1/4}$ (00:B8), $N<(\Om^{1/4}-1)/12$ units, $8\times10^{2}$\,kg at $\dS=3.3\times10^{122}$ \apx{} ($\Om^{1/4}$ units overcounts by $12$); everything heavier an aggregate of locks; the proton's $1$ against $3$ compares a tower label with a chart count. -/
 theorem p14044 : (∀ (q p Ω : Nat), q * q < p → p * p < Ω → q * q * (q * q) < Ω) ∧ FRC.Nat.isPrime (1373 : Nat) ∧ (1373 : Nat) = (4 : Nat) * (343 : Nat) + (1 : Nat) ∧ (37 : Nat) * (37 : Nat) < (1373 : Nat) ∧ (1373 : Nat) * (1373 : Nat) < (2408561 : Nat) ∧ (37 : Nat) * (37 : Nat) * ((37 : Nat) * (37 : Nat)) < (2408561 : Nat) ∧ (2408561 : Nat) < (49 : Nat) * (49 : Nat) * ((49 : Nat) * (49 : Nat)) :=
   And.intro @FRC.Entropy.nesting_bound (@FRC.Entropy.lab_nesting)
+/-- 14:B11 (p14046) — The additive window: for $N$ modes at resolvable heights $|\hat h_i|\le\kap_i$ (38:A8) the total winding satisfies $|\sum_i\hat h_i|\le\sum_i\kap_i$, attained, every total in the range occurring; the least register window resolving the total exactly is the capacity sum $\sum_i\kap_i$, $3N$ for $N$ hydrogen units --- a capacity of the observing Subject, not a shell of the composite (B10). -/
+theorem p14046 : ((∀ (u κ : Nat → Nat) (m : Nat), (∀ (j : Nat), j < m → u j ≤ (2 : Nat) * κ j) → FRC.Entropy.sumN u m ≤ (2 : Nat) * FRC.Entropy.sumN κ m) ∧ (∀ (κ : Nat → Nat) (m : Nat), FRC.Entropy.sumN (fun j => (2 : Nat) * κ j) m = (2 : Nat) * FRC.Entropy.sumN κ m) ∧ ∀ (κ : Nat → Nat) (m s : Nat), s ≤ (2 : Nat) * FRC.Entropy.sumN κ m → ∃ u, (∀ (j : Nat), j < m → u j ≤ (2 : Nat) * κ j) ∧ FRC.Entropy.sumN u m = s) ∧ (∀ (N : Nat), FRC.Entropy.sumN (fun x => (2 : Nat) * (3 : Nat)) N = (2 : Nat) * ((3 : Nat) * N)) ∧ (∀ (u : Nat), u < (7 : Nat) → ∀ (v : Nat), v < (7 : Nat) → u + v ≤ (12 : Nat)) ∧ (6 : Nat) + (6 : Nat) + (6 : Nat) > (12 : Nat) :=
+  And.intro @FRC.Entropy.additive_window (@FRC.Entropy.additive_window_hydrogen)
+/-- 14:B12 (p14047) — The lock of like units: $N$ like units never fuse (00:F6, $\gcd(12,12)=12$): their joint registration (00:F2) recurs on $C_{12}$ with period $12$ for every $N$, one superselected $C_{12}$ offset per further unit --- an aggregate, never one shell. Instances: the diagonal drive on $C_{12}^{2}$ has $12$ orbits of length $12$, on $C_{12}^{3}$ $144$. -/
+theorem p14047 : (∀ (m : Nat), (0 : Nat) < m → ∀ (t : Nat), FRC.Quantum.Joint (fun x => (12 : Nat)) m t ↔ t % (12 : Nat) = (0 : Nat)) ∧ (∀ (x : FRC.Shell (12 : Nat)), x + (12 : FRC.Shell (12 : Nat)) = x) ∧ (∀ (x : FRC.Shell (12 : Nat)) (k : Nat), k < (12 : Nat) → (0 : Nat) < k → x + FRC.Shell.ofNat k ≠ x) ∧ (∀ (x y : FRC.Shell (12 : Nat)), x + (1 : FRC.Shell (12 : Nat)) + -(y + (1 : FRC.Shell (12 : Nat))) = x + -y) ∧ (144 : Nat) = (12 : Nat) * (12 : Nat) ∧ (1728 : Nat) = (144 : Nat) * (12 : Nat) :=
+  And.intro @FRC.Entropy.lock_recurrence (@FRC.Entropy.lock_orbits)
+set_option linter.defProp false in
+/-- 14:B13 (p14048) — Shells of capacity $3N$ and fusion: the shell of capacity $3N$ is $\F_{12N+1}$ and exists iff $12N+1$ is prime ($N=1,3,5,6,8,9$ below $10$; none at $N=2$, $25=5^{2}$), never the lock's register (B12); fusion of coprime cycles is multiplicative, $\kap=n_{1}n_{2}/4$: hydrogen $(4,3)\to3$, one orbit of length $12$ (00:F6). -/
+def p14048 := And.intro @FRC.Entropy.shells_of_capacity (@FRC.Entropy.fusion_capacity)
 /-- 14:C5 (p14022) — The octant lemma: the measured age is $\dS/2$ chronons, $(\pi/4)\,r_H/c$ in the chart \apx; the halving and the sector are exact through the enumerated realisation set $B_{\mathrm{oct}}=\{$A4, A5, B2, B3, B6, B7$\}$, the same class as the constants correspondence. -/
 theorem p14022 : (∀ (m x : Nat), (2 : Nat) * x ≤ (2 : Nat) * m ↔ x ≤ m) ∧ ∀ (S m : Nat), S = (2 : Nat) * m → (2 : Nat) * ((2 : Nat) * S) = (4 : Nat) * S ∧ (8 : Nat) * m = (4 : Nat) * S :=
   And.intro @FRC.Entropy.closure_count (@FRC.Entropy.octant_count)

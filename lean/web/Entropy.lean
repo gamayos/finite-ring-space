@@ -2602,6 +2602,100 @@ theorem nesting_lab :
 
 end triangle
 
+/-! ## 14:B11–B13 — the additive window, the lock of like units, the shells of capacity `3N` (master F7, returned
+15 October 2026) -/
+section window
+
+/-- 14:B11 — the additive window: for modes at heights `hᵢ` with `|hᵢ| ≤ κᵢ` (as a list of pairs `(hᵢ, κᵢ)`) the
+total has `|Σhᵢ| ≤ Σκᵢ`; the bound is attained by `hᵢ = κᵢ`; and every total `t` with `|t| ≤ Σκᵢ` occurs — the
+first height the clamp of `t` to `[−κ₁, κ₁]`, the rest by induction. -/
+theorem additive_window :
+    (∀ (l : List (ℤ × ℕ)), (∀ x ∈ l, x.1.natAbs ≤ x.2) → (l.map Prod.fst).sum.natAbs ≤ (l.map Prod.snd).sum) ∧
+    (∀ (κ : List ℕ), ((κ.map fun (k : ℕ) => (k : ℤ)).sum).natAbs = κ.sum) ∧
+    (∀ (κ : List ℕ) (t : ℤ), t.natAbs ≤ κ.sum →
+      ∃ l : List (ℤ × ℕ), l.map Prod.snd = κ ∧ (∀ x ∈ l, x.1.natAbs ≤ x.2) ∧ (l.map Prod.fst).sum = t) := by
+  refine ⟨?_, ?_, ?_⟩
+  · intro l
+    induction l with
+    | nil => intro _; simp
+    | cons x t ih =>
+      intro hb
+      have h1 : x.1.natAbs ≤ x.2 := hb x (List.mem_cons_self ..)
+      have ih' := ih (fun y hy => hb y (List.mem_cons_of_mem _ hy))
+      simp only [List.map_cons, List.sum_cons]
+      exact Nat.le_trans (Int.natAbs_add_le _ _) (Nat.add_le_add h1 ih')
+  · intro κ
+    induction κ with
+    | nil => simp
+    | cons k t ih =>
+      simp only [List.map_cons, List.sum_cons]
+      have hnn : 0 ≤ (t.map fun (k : ℕ) => (k : ℤ)).sum := by
+        clear ih
+        induction t with
+        | nil => simp
+        | cons a t iht => simp only [List.map_cons, List.sum_cons]; omega
+      omega
+  · intro κ
+    induction κ with
+    | nil =>
+      intro t ht
+      refine ⟨[], rfl, fun x hx => absurd hx List.not_mem_nil, ?_⟩
+      simp only [List.sum_nil] at ht; simp only [List.map_nil, List.sum_nil]; omega
+    | cons k κ' ih =>
+      intro t ht
+      let h₀ : ℤ := if t > (k : ℤ) then (k : ℤ) else if t < -(k : ℤ) then -(k : ℤ) else t
+      have hk : h₀.natAbs ≤ k := by
+        simp only [h₀]; split
+        · omega
+        · split <;> omega
+      have hr : (t - h₀).natAbs ≤ κ'.sum := by
+        simp only [List.sum_cons] at ht
+        simp only [h₀]; split
+        · omega
+        · split <;> omega
+      obtain ⟨l, hl, hb, hs⟩ := ih (t - h₀) hr
+      refine ⟨(h₀, k) :: l, by simp [hl], ?_, ?_⟩
+      · intro x hx
+        rcases List.mem_cons.mp hx with rfl | hx'
+        · exact hk
+        · exact hb x hx'
+      · simp only [List.map_cons, List.sum_cons, hs]; omega
+
+/-- 14:B12 — the lock of like units: the joint recurrence of `N + 1` cycles of period `12` is `12` for every `N`,
+`lcm (12, …, 12) = 12`, so no element of the lock has order `12N` for `N ≥ 2`; the diagonal drive on `ZMod 12 × ZMod 12`
+keeps the offset `x − y` (one superselected `C₁₂` offset per further unit), and `144 = 12 · 12`, `1728 = 144 · 12`
+points fall into orbits of length `12`. -/
+theorem lock_recurrence :
+    (∀ N : ℕ, (List.replicate (N + 1) (12 : ℕ)).foldr Nat.lcm 1 = 12) ∧
+    (∀ N : ℕ, 2 ≤ N → 12 * N ≠ 12) ∧
+    (∀ x y : ZMod 12, (x + 1) - (y + 1) = x - y) ∧ (∀ x : ZMod 12, x + 12 = x) ∧
+    144 = 12 * 12 ∧ 1728 = 144 * 12 := by
+  refine ⟨fun N => ?_, fun N hN => by omega, fun x y => by ring, fun x => by
+      have h12 : (12 : ZMod 12) = 0 := by decide
+      rw [h12, add_zero], by norm_num, by norm_num⟩
+  induction N with
+  | zero => simp
+  | succ n ih => simp only [List.replicate_succ, List.foldr_cons] at ih ⊢; rw [ih]; decide
+
+/-- 14:B13 — the shell of capacity `3N` is `𝔽_{12N+1}`, `4 · 3N + 1 = 12N + 1`, and exists exactly when `12N + 1` is
+prime: below `N = 10` for `N = 1, 3, 5, 6, 8, 9` and not at `N = 2` (`25 = 5²`), `4`, `7`. -/
+theorem shells_of_capacity :
+    (∀ N : ℕ, 4 * (3 * N) + 1 = 12 * N + 1) ∧
+    (∀ N : ℕ, N < 10 → (Nat.Prime (12 * N + 1) ↔ N = 1 ∨ N = 3 ∨ N = 5 ∨ N = 6 ∨ N = 8 ∨ N = 9)) ∧
+    25 = 5 ^ 2 := by
+  refine ⟨fun N => by ring, fun N hN => ?_, by norm_num⟩
+  interval_cases N <;> norm_num
+
+/-- 14:B13 — fusion of coprime cycles is multiplicative: for coprime periods `n₁, n₂` the joint recurrence is
+`lcm n₁ n₂ = n₁ n₂`, and the fused capacity `n₁ n₂ / 4`; hydrogen `(4, 3)`: `lcm = 12`, capacity `3`; like cycles do
+not fuse, `lcm (12, 12) = 12 = gcd (12, 12)`, and the capacity-`3` shell `13` is not the lock's register `12`. -/
+theorem fusion_capacity :
+    (∀ n₁ n₂ : ℕ, Nat.Coprime n₁ n₂ → Nat.lcm n₁ n₂ = n₁ * n₂) ∧
+    Nat.lcm 4 3 = 12 ∧ 4 * 3 / 4 = 3 ∧ Nat.lcm 12 12 = 12 ∧ Nat.gcd 12 12 = 12 ∧ (13 : ℕ) ≠ 12 :=
+  ⟨fun _ _ h => h.lcm_eq_mul, by decide, by norm_num, by decide, by decide, by norm_num⟩
+
+end window
+
 /-! ## Old names (ledger migration, task LM30): the theorems moved to the chart theme (`FRC.Chart`,
 `FrcLedger/Theme/Chart.lean`), each under its old name -/
 
@@ -2662,9 +2756,18 @@ theorem p14016 : ∀ (H ρ p ρ' : ℝ), H ≠ (0 : ℝ) → ρ ≠ (0 : ℝ) �
 /-- 14:B9 (p14017) — The area law: the projected horizon area in Planck cells is the full phase cycle, $A=4\dS$ \apx{} at the horizon ($4\pi n_A=4\dS$, $n_A=(r_H/\lP)^{2}$ \apx); the Bekenstein--Hawking quarter $\dS=A/4$ is the quarter-turn $Q_4$, the generative four of $\Om=4\dS+1$ and $\p=4\kap+1$; area is a Subject-projection property, the Carrier carrying none. -/
 theorem p14017 : (∀ (S : ℕ) [hp : Fact (Nat.Prime ((4 : ℕ) * S + (1 : ℕ)))], IsSquare (-1 : ZMod ((4 : ℕ) * S + (1 : ℕ))) ∧ ∃ i, i ^ (2 : ℕ) = (-1 : ZMod ((4 : ℕ) * S + (1 : ℕ))) ∧ i ^ (4 : ℕ) = (1 : ZMod ((4 : ℕ) * S + (1 : ℕ))) ∧ i ≠ (1 : ZMod ((4 : ℕ) * S + (1 : ℕ))) ∧ i ≠ (-1 : ZMod ((4 : ℕ) * S + (1 : ℕ)))) ∧ ∀ (S : ℝ), (4 : ℝ) * Real.pi * (S / Real.pi) = (4 : ℝ) * S :=
   And.intro @FRC.Entropy.quarter_turn (@FRC.Entropy.area_law_chart)
-/-- 14:B10 (p14044) — The capacity axis counts hydrogen units (one gram at $N_A$ to $0.003$ dex \apx): a definition, not a registered shell. The least register window resolving the total winding of $N$ units is $3N$, a theorem about the observing Subject (00:F7); a phase-locked composite of like units is an aggregate, never one shell (00:F6; a shell of capacity $3N$ exists only when $12N+1$ is prime, none at $N=2$); the largest shell any Subject registers whole is the nesting bound $\mathsf{q}<\Om^{1/4}$, $N<(\Om^{1/4}-1)/12$ units, $8\times10^{2}$\,kg at $\dS=3.3\times10^{122}$ \apx{} ($\dS^{1/4}$ units overcounts by $12$); everything heavier an aggregate of locks; the proton's $1$ against $3$ compares a tower label with a chart count. -/
+/-- 14:B10 (p14044) — The capacity axis counts hydrogen units (one gram at $N_A$ to $0.003$ dex \apx): a definition, not a registered shell. The least register window resolving the total winding of $N$ units is $3N$, a theorem about the observing Subject (B11); a phase-locked composite of like units is an aggregate, never one shell (B12; a shell of capacity $3N$ exists only when $12N+1$ is prime, B13); the largest shell any Subject registers whole is the nesting bound $\mathsf{q}<\Om^{1/4}$ (00:B8), $N<(\Om^{1/4}-1)/12$ units, $8\times10^{2}$\,kg at $\dS=3.3\times10^{122}$ \apx{} ($\Om^{1/4}$ units overcounts by $12$); everything heavier an aggregate of locks; the proton's $1$ against $3$ compares a tower label with a chart count. -/
 theorem p14044 : (Nat.Prime (13 : ℕ) ∧ ¬Nat.Prime (25 : ℕ) ∧ Nat.Prime (37 : ℕ) ∧ ∀ (q p Ω : ℕ), q ^ (2 : ℕ) < p → p ^ (2 : ℕ) < Ω → q ^ (4 : ℕ) < Ω) ∧ (37 : ℕ) ^ (4 : ℕ) < (2408561 : ℕ) ∧ (2408561 : ℕ) < (49 : ℕ) ^ (4 : ℕ) ∧ (∀ (N : ℕ), ((12 : ℕ) * N + (1 : ℕ)) ^ (4 : ℕ) < (2408561 : ℕ) → N ≤ (3 : ℕ)) ∧ Nat.Prime (1373 : ℕ) ∧ (1373 : ℕ) = (4 : ℕ) * (343 : ℕ) + (1 : ℕ) ∧ (37 : ℕ) ^ (2 : ℕ) < (1373 : ℕ) ∧ (1373 : ℕ) ^ (2 : ℕ) < (2408561 : ℕ) :=
   And.intro @FRC.Entropy.hydrogen_units (@FRC.Entropy.nesting_lab)
+/-- 14:B11 (p14046) — The additive window: for $N$ modes at resolvable heights $|\hat h_i|\le\kap_i$ (38:A8) the total winding satisfies $|\sum_i\hat h_i|\le\sum_i\kap_i$, attained, every total in the range occurring; the least register window resolving the total exactly is the capacity sum $\sum_i\kap_i$, $3N$ for $N$ hydrogen units --- a capacity of the observing Subject, not a shell of the composite (B10). -/
+theorem p14046 : And (∀ (l : List (Prod Int Nat)), (∀ (x : Prod Int Nat), @Membership.mem (Prod Int Nat) (List (Prod Int Nat)) (@List.instMembership (Prod Int Nat)) l x → @LE.le Nat instLENat (@Prod.fst Int Nat x).natAbs (@Prod.snd Int Nat x)) → @LE.le Nat instLENat (@List.sum Int Int.instAdd (@MulZeroClass.toZero Int (@instMulZeroClassOfSemiring Int Int.instSemiring)) (@List.map (Prod Int Nat) Int (@Prod.fst Int Nat) l)).natAbs (@List.sum Nat instAddNat (@MulZeroClass.toZero Nat Nat.instMulZeroClass) (@List.map (Prod Int Nat) Nat (@Prod.snd Int Nat) l))) (And (∀ (κ : List Nat), @Eq Nat (@List.sum Int Int.instAdd (@MulZeroClass.toZero Int (@instMulZeroClassOfSemiring Int Int.instSemiring)) (@List.map Nat Int (fun k => @Nat.cast Int instNatCastInt k) κ)).natAbs (@List.sum Nat instAddNat (@MulZeroClass.toZero Nat Nat.instMulZeroClass) κ)) (∀ (κ : List Nat) (t : Int), @LE.le Nat instLENat t.natAbs (@List.sum Nat instAddNat (@MulZeroClass.toZero Nat Nat.instMulZeroClass) κ) → ∃ l, And (@Eq (List Nat) (@List.map (Prod Int Nat) Nat (@Prod.snd Int Nat) l) κ) (And (∀ (x : Prod Int Nat), @Membership.mem (Prod Int Nat) (List (Prod Int Nat)) (@List.instMembership (Prod Int Nat)) l x → @LE.le Nat instLENat (@Prod.fst Int Nat x).natAbs (@Prod.snd Int Nat x)) (@Eq Int (@List.sum Int Int.instAdd (@MulZeroClass.toZero Int (@instMulZeroClassOfSemiring Int Int.instSemiring)) (@List.map (Prod Int Nat) Int (@Prod.fst Int Nat) l)) t)))) :=
+  @FRC.Entropy.additive_window
+/-- 14:B12 (p14047) — The lock of like units: $N$ like units never fuse (00:F6, $\gcd(12,12)=12$): their joint registration (00:F2) recurs on $C_{12}$ with period $12$ for every $N$, one superselected $C_{12}$ offset per further unit --- an aggregate, never one shell. Instances: the diagonal drive on $C_{12}^{2}$ has $12$ orbits of length $12$, on $C_{12}^{3}$ $144$. -/
+theorem p14047 : (∀ (N : ℕ), List.foldr Nat.lcm (1 : ℕ) (List.replicate (N + (1 : ℕ)) (12 : ℕ)) = (12 : ℕ)) ∧ (∀ (N : ℕ), (2 : ℕ) ≤ N → (12 : ℕ) * N ≠ (12 : ℕ)) ∧ (∀ (x y : ZMod (12 : ℕ)), x + (1 : ZMod (12 : ℕ)) - (y + (1 : ZMod (12 : ℕ))) = x - y) ∧ (∀ (x : ZMod (12 : ℕ)), x + (12 : ZMod (12 : ℕ)) = x) ∧ (144 : ℕ) = (12 : ℕ) * (12 : ℕ) ∧ (1728 : ℕ) = (144 : ℕ) * (12 : ℕ) :=
+  @FRC.Entropy.lock_recurrence
+/-- 14:B13 (p14048) — Shells of capacity $3N$ and fusion: the shell of capacity $3N$ is $\F_{12N+1}$ and exists iff $12N+1$ is prime ($N=1,3,5,6,8,9$ below $10$; none at $N=2$, $25=5^{2}$), never the lock's register (B12); fusion of coprime cycles is multiplicative, $\kap=n_{1}n_{2}/4$: hydrogen $(4,3)\to3$, one orbit of length $12$ (00:F6). -/
+theorem p14048 : ((∀ (N : ℕ), (4 : ℕ) * ((3 : ℕ) * N) + (1 : ℕ) = (12 : ℕ) * N + (1 : ℕ)) ∧ (∀ N < (10 : ℕ), Nat.Prime ((12 : ℕ) * N + (1 : ℕ)) ↔ N = (1 : ℕ) ∨ N = (3 : ℕ) ∨ N = (5 : ℕ) ∨ N = (6 : ℕ) ∨ N = (8 : ℕ) ∨ N = (9 : ℕ)) ∧ (25 : ℕ) = (5 : ℕ) ^ (2 : ℕ)) ∧ (∀ (n₁ n₂ : ℕ), n₁.Coprime n₂ → n₁.lcm n₂ = n₁ * n₂) ∧ Nat.lcm (4 : ℕ) (3 : ℕ) = (12 : ℕ) ∧ (4 : ℕ) * (3 : ℕ) / (4 : ℕ) = (3 : ℕ) ∧ Nat.lcm (12 : ℕ) (12 : ℕ) = (12 : ℕ) ∧ Nat.gcd (12 : ℕ) (12 : ℕ) = (12 : ℕ) ∧ (13 : ℕ) ≠ (12 : ℕ) :=
+  And.intro @FRC.Entropy.shells_of_capacity (@FRC.Entropy.fusion_capacity)
 /-- 14:C2 (p14019) — The non-channels: the constants correspondence carries no dimensional readout, the horizon-quarter closure is an internal consistency loop, the registered entropy budget is a floor eighteen orders below $\dS$ \apx. -/
 theorem p14019 : ∀ (Ω S : ℕ) (p : ℝ), Ω = (4 : ℕ) * S + (1 : ℕ) → p ^ (2 : ℕ) = ↑Ω → (p ^ (2 : ℕ) - (1 : ℝ)) / (4 : ℝ) = ↑S :=
   @FRC.Entropy.horizon_quarter_closure
@@ -2701,7 +2804,7 @@ def p14031 := And.intro @FRC.Entropy.octant_second_face (@FRC.Entropy.octant_sec
 /-- 14:P3 (p14038) — The age--rate locus $t_{\mathrm{age}}H_0=(\pi/4)/\tanh(3\pi/8)=0.950$, exact for the realisation set. Read on the fit-independent stellar age ($13.61\pm0.34$ Gyr): $H_0=68.2\pm1.7$ km/s/Mpc \apx, $0.5\sigma$ from Planck, $0.65\sigma$ from TRGB, $2.4\sigma$ from the Cepheid ladder --- the framework favours the CMB/TRGB value at that significance, and forbids the $\Omega_\Lambda\approx0.76$ by which the rival chart would accommodate the ladder value at the same age. Read on the channel-1 $\Lambda$ it returns the channel-1 $H_0$ (to $0.1\%$): a consistency, not a prediction (C8). Falsifier: a confirmed ladder $H_0$ with the stellar age standing ($t_\star H_0\ge1.0$ against $0.950$). -/
 theorem p14038 : (∀ (t H0 HΛ Ω : ℝ), t * HΛ = Real.pi / (4 : ℝ) → HΛ = H0 * √Ω → Ω = Real.tanh ((3 : ℝ) * Real.pi / (8 : ℝ)) ^ (2 : ℕ) → t * H0 = Real.pi / (4 : ℝ) / Real.tanh ((3 : ℝ) * Real.pi / (8 : ℝ))) ∧ 0.9498 < Real.pi / (4 : ℝ) / Real.tanh ((3 : ℝ) * Real.pi / (8 : ℝ)) ∧ Real.pi / (4 : ℝ) / Real.tanh ((3 : ℝ) * Real.pi / (8 : ℝ)) < 0.9499 :=
   @FRC.LedgerML.p14038
-/-- 14:P4 (p14039) — \textbf{(Lead; grade \tT$\,\vert\,$\tR.)} The dark-energy equation of state is rigid: $\Lambda$ is the curvature face of the fixed cardinality, constant, its effective-fluid reading $w=-1$ exactly with no $w_0w_a$ freedom; the fluid statement consumes the conservation-law correspondence and the single-component clause (B8), hence the realisation grade. Status: DESI-era combined fits prefer evolving dark energy at $3$--$4.2\sigma$ \citep{desi2025}, contested by reanalyses (\S\ref{sec:import}). Falsifier: confirmed evolution of $w$, which kills $\Lambda\sim1/\Om$ outright and exposes P2 through $\Lambda$. -/
+/-- 14:P4 (p14039) — \textbf{(Lead.)} The dark-energy equation of state is rigid: $\Lambda$ is the curvature face of the fixed cardinality, constant, its effective-fluid reading $w=-1$ exactly with no $w_0w_a$ freedom; the fluid statement consumes the conservation-law correspondence and the single-component clause (B8). Status: DESI-era combined fits prefer evolving dark energy at $3$--$4.2\sigma$ \citep{desi2025}, contested by reanalyses (\S\ref{sec:import}). Falsifier: confirmed evolution of $w$, which kills $\Lambda\sim1/\Om$ outright and exposes P2 through $\Lambda$. -/
 theorem p14039 : ∀ (H ρ p ρ' : ℝ), H ≠ (0 : ℝ) → ρ ≠ (0 : ℝ) → ρ' = (0 : ℝ) → ρ' + (3 : ℝ) * H * (ρ + p) = (0 : ℝ) → p = -ρ ∧ p / ρ = (-1 : ℝ) :=
   @FRC.Entropy.fluid_w
 -- end ledger predicates
@@ -2715,6 +2818,9 @@ end FRC.Entropy
 #print axioms FRC.Entropy.p14016
 #print axioms FRC.Entropy.p14017
 #print axioms FRC.Entropy.p14044
+#print axioms FRC.Entropy.p14046
+#print axioms FRC.Entropy.p14047
+#print axioms FRC.Entropy.p14048
 #print axioms FRC.Entropy.p14019
 #print axioms FRC.Entropy.p14020
 #print axioms FRC.Entropy.p14022

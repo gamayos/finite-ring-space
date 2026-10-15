@@ -1,20 +1,20 @@
 {
  "header": {
-  "generated": "14 October 2026",
+  "generated": "15 October 2026",
   "schema": "frc-register/2",
-  "rows": 1019,
-  "theorems": 1009,
+  "rows": 1024,
+  "theorems": 1010,
   "counts": {
-   "keys": 1009,
-   "rows": 1019,
-   "shared": 10,
+   "keys": 1010,
+   "rows": 1024,
+   "shared": 14,
    "by_tag": {
     "D": 139,
     "G": 1,
-    "I": 119,
+    "I": 117,
     "O": 12,
     "R": 81,
-    "T": 628,
+    "T": 631,
     "Ω": 29
    }
   },
@@ -81,7 +81,7 @@
      }
     ],
     "legend": [],
-    "rows": 123
+    "rows": 122
    },
    {
     "key": "1-alg",
@@ -521,10 +521,8 @@
     "key": "10-dim",
     "dir": "10-dimensions",
     "no": 10,
-    "title": "Dimensional Analysis over Finite Holographic Substrate",
-    "status": {
-     "kind": "preprint"
-    },
+    "title": null,
+    "status": null,
     "page": "10-dimensions/index.html",
     "blocks": [
      {
@@ -597,7 +595,7 @@
     "key": "13-epi",
     "dir": "13-epi",
     "no": 13,
-    "title": "Finite Field Realisation of π and e",
+    "title": "Finite Field Realisation of the Classical Constants π and e",
     "status": {
      "kind": "preprint"
     },
@@ -739,7 +737,7 @@
       "text": "Decided by the totality; not closeable by a bounded observer."
      }
     ],
-    "rows": 41
+    "rows": 44
    },
    {
     "key": "20-rh",
@@ -802,7 +800,7 @@
       "text": "A value decided by the totality, in no embedded reader's window; a demarcation of where the value is read, not an open item."
      }
     ],
-    "rows": 61
+    "rows": 64
    },
    {
     "key": "21-grav",
@@ -1432,7 +1430,7 @@
    "theorems": "one entry per key (LM12): its canonical statement (the row of its ledger of origin, the key's prefix), the origin, the tag, the Lean tier, the deciding check and declarations, the aliases that resolve to it, the rows that write it, and for a theorem the realisations its statement names (Q21)",
    "superseded": "the keys that left the public ledgers (corrected, split, merged or returned home), each with its live successor keys and nothing else (decision Q19)"
   },
-  "superseded": 86
+  "superseded": 87
  },
  "theorems": [
   {
@@ -1459,7 +1457,7 @@
    "check": {
     "href": "frc/ledgers/master/foundation.html#p00004",
     "script": "frc/ledgers/master/foundation.py",
-    "line": 119,
+    "line": 120,
     "verdict": "pass"
    },
    "declarations": [
@@ -1467,11 +1465,27 @@
      "lib": "FrcCore",
      "module": "FrcCore/Keys/Foundation",
      "name": "FRC.Ledger.p00004"
+    },
+    {
+     "lib": "FrcCore",
+     "module": "FrcCore/Theme/Foundation",
+     "name": "FRC.Foundation.registered_finite"
+    },
+    {
+     "lib": "FrcCore",
+     "module": "FrcCore/Theme/Foundation",
+     "name": "FRC.Foundation.no_unlimited_supply"
+    },
+    {
+     "lib": "FrcCore",
+     "module": "FrcCore/Theme/Foundation",
+     "name": "FRC.Foundation.agent_bound"
     }
    ],
    "aliases": [],
    "rows": [
-    "00:A2"
+    "00:A2",
+    "20:A2"
    ],
    "realisations": []
   },
@@ -1493,11 +1507,22 @@
      "lib": "FrcCore",
      "module": "FrcCore/Keys/Foundation",
      "name": "FRC.Ledger.p00003"
+    },
+    {
+     "lib": "FrcCore",
+     "module": "FrcCore/Theme/Foundation",
+     "name": "FRC.Foundation.registration_onto"
+    },
+    {
+     "lib": "FrcCore",
+     "module": "FrcCore/Theme/Foundation",
+     "name": "FRC.Foundation.mutual_registration_count"
     }
    ],
    "aliases": [],
    "rows": [
-    "00:A3"
+    "00:A3",
+    "20:A3"
    ],
    "realisations": []
   },
@@ -1519,11 +1544,27 @@
      "lib": "FrcCore",
      "module": "FrcCore/Keys/Foundation",
      "name": "FRC.Ledger.p00197"
+    },
+    {
+     "lib": "FrcCore",
+     "module": "FrcCore/Theme/Foundation",
+     "name": "FRC.Foundation.observer_part"
+    },
+    {
+     "lib": "FrcCore",
+     "module": "FrcCore/Theme/Foundation",
+     "name": "FRC.Foundation.complete_needs_whole"
+    },
+    {
+     "lib": "FrcCore",
+     "module": "FrcCore/Theme/Foundation",
+     "name": "FRC.Foundation.translation_torsor"
     }
    ],
    "aliases": [],
    "rows": [
-    "00:A4"
+    "00:A4",
+    "20:A4"
    ],
    "realisations": []
   },
@@ -1537,7 +1578,7 @@
    "check": {
     "href": "frc/ledgers/master/foundation.html#p00188",
     "script": "frc/ledgers/master/foundation.py",
-    "line": 296,
+    "line": 297,
     "verdict": "pass"
    },
    "declarations": [
@@ -1564,7 +1605,8 @@
    "declarations": [],
    "aliases": [],
    "rows": [
-    "00:A6"
+    "00:A6",
+    "20:A5"
    ]
   },
   {
@@ -1630,7 +1672,7 @@
    "check": {
     "href": "frc/ledgers/master/foundation.html#p00162",
     "script": "frc/ledgers/master/foundation.py",
-    "line": 337,
+    "line": 338,
     "verdict": "pass"
    },
    "declarations": [
@@ -1656,7 +1698,7 @@
    "check": {
     "href": "frc/ledgers/master/foundation.html#p00163",
     "script": "frc/ledgers/master/foundation.py",
-    "line": 358,
+    "line": 359,
     "verdict": "pass"
    },
    "declarations": [
@@ -1682,7 +1724,7 @@
    "check": {
     "href": "frc/ledgers/master/foundation.html#p00164",
     "script": "frc/ledgers/master/foundation.py",
-    "line": 383,
+    "line": 384,
     "verdict": "pass"
    },
    "declarations": [
@@ -2968,25 +3010,6 @@
    "realisations": []
   },
   {
-   "key": "p00177",
-   "origin": "00",
-   "statement": "\\textbf{The additive window}: for $N$ modes at resolvable heights $|\\hat h_i|\\le\\kap_i$ (38:A8) the total winding satisfies $|\\sum_i\\hat h_i|\\le\\sum_i\\kap_i$, attained, every total occurring, so the least register window resolving the total exactly is the capacity sum $\\sum\\kap_i$ --- $3N$ for $N$ hydrogen units --- a capacity of the observing Subject, not a shell of the composite. A lock of $N$ like units never fuses (F6, $\\gcd(12,12)=12$): it is F2's joint registration on $C_{12}$, recurrence $12$, one superselected $C_{12}$ offset per further unit, an aggregate; a shell of capacity $3N$ exists iff $12N+1$ is prime ($N=1,3,5,6,8,9$; none at $N=2$, $25=5^{2}$) and is not the lock's register; fusion (coprime cycles) is multiplicative, $\\kap =n_{1}n_{2}/4$, hydrogen $(4,3)\\to3$. The largest shell a Subject of the Carrier registers whole is $\\q<\\Om^{1/4}$ ($\\q^{2}<\\p$, $\\p^{2}<\\Om$; B8): $13$ on $30089$, $37$ on $2{,}408{,}561$, none on $233$; in hydrogen units $N<(\\Om^{1/4}-1)/12$, $8\\times10^{2}$ kg at the ledger's $\\Om$ (A7), on the 14-entr diagonal at $0.95$ m [approx]. The 14-entr capacity axis counts hydrogen units, one gram at $N_A$ [approx]: a definition (D2), not a registered shell; a lock's capacity against its wall displacement compares a shell label with a chart count and is no relation.",
-   "origin_row": "00:F7",
-   "tag": "T",
-   "tier": null,
-   "check": {
-    "script": "38:check_s13.js"
-   },
-   "declarations": [],
-   "aliases": [],
-   "rows": [
-    "00:F7"
-   ],
-   "realisations": [
-    "p00043"
-   ]
-  },
-  {
    "key": "p00178",
    "origin": "00",
    "statement": "Electromagnetism (exact), on the force realisation D6: charge $=$ quantised winding index; the photon is massless, the observable residue $2$ of the split torus $C_{\\Om-1}$ (two helicities $=$ two $\\F_\\Om$-fixed lines $=N(1{-}\\im)$; D2, D8); Maxwell is the unique \\emph{relevant} action (E1). The bare coupling: Z8.",
@@ -3807,7 +3830,7 @@
    "check": {
     "href": "src/20-rh/#p20043",
     "script": "rh.py",
-    "line": 524,
+    "line": 529,
     "verdict": "pass"
    },
    "declarations": [
@@ -11552,7 +11575,7 @@
    "check": {
     "href": "src/13-epi/#p13009",
     "script": "epi.py",
-    "line": 1316,
+    "line": 1349,
     "verdict": "pass"
    },
    "declarations": [
@@ -11583,7 +11606,7 @@
    "check": {
     "href": "src/13-epi/#p13010",
     "script": "epi.py",
-    "line": 1258,
+    "line": 1291,
     "verdict": "pass"
    },
    "declarations": [
@@ -11678,7 +11701,7 @@
    "check": {
     "href": "src/13-epi/#p13014",
     "script": "epi.py",
-    "line": 1294,
+    "line": 1327,
     "verdict": "pass"
    },
    "declarations": [
@@ -11723,7 +11746,7 @@
    "check": {
     "href": "src/13-epi/#p13016",
     "script": "epi.py",
-    "line": 732,
+    "line": 754,
     "verdict": "pass"
    },
    "declarations": [
@@ -11926,7 +11949,7 @@
    "check": {
     "href": "src/13-epi/#p13023",
     "script": "epi.py",
-    "line": 732,
+    "line": 754,
     "verdict": "pass"
    },
    "declarations": [
@@ -11967,7 +11990,7 @@
    "check": {
     "href": "src/13-epi/#p13024",
     "script": "epi.py",
-    "line": 780,
+    "line": 802,
     "verdict": "pass"
    },
    "declarations": [
@@ -11998,7 +12021,7 @@
    "check": {
     "href": "src/13-epi/#p13025",
     "script": "epi.py",
-    "line": 771,
+    "line": 793,
     "verdict": "pass"
    },
    "declarations": [
@@ -12049,7 +12072,7 @@
    "check": {
     "href": "src/13-epi/#p13026",
     "script": "epi.py",
-    "line": 771,
+    "line": 793,
     "verdict": "pass"
    },
    "declarations": [
@@ -12281,7 +12304,7 @@
    "check": {
     "href": "src/13-epi/#p13033",
     "script": "epi.py",
-    "line": 1258,
+    "line": 1291,
     "verdict": "pass"
    },
    "declarations": [
@@ -12343,7 +12366,7 @@
    "check": {
     "href": "src/13-epi/#p13034",
     "script": "epi.py",
-    "line": 824,
+    "line": 846,
     "verdict": "pass"
    },
    "declarations": [
@@ -12374,7 +12397,7 @@
    "check": {
     "href": "src/13-epi/#p13035",
     "script": "epi.py",
-    "line": 824,
+    "line": 846,
     "verdict": "pass"
    },
    "declarations": [
@@ -12400,7 +12423,7 @@
    "check": {
     "href": "src/13-epi/#p13036",
     "script": "epi.py",
-    "line": 1045,
+    "line": 1078,
     "verdict": "pass"
    },
    "declarations": [
@@ -12426,7 +12449,7 @@
    "check": {
     "href": "src/13-epi/#p13037",
     "script": "epi.py",
-    "line": 862,
+    "line": 884,
     "verdict": "pass"
    },
    "declarations": [
@@ -12452,7 +12475,7 @@
    "check": {
     "href": "src/13-epi/#p13038",
     "script": "epi.py",
-    "line": 919,
+    "line": 952,
     "verdict": "pass"
    },
    "declarations": [
@@ -12488,7 +12511,7 @@
    "check": {
     "href": "src/13-epi/#p13039",
     "script": "epi.py",
-    "line": 948,
+    "line": 981,
     "verdict": "pass"
    },
    "declarations": [
@@ -12514,7 +12537,7 @@
    "check": {
     "href": "src/13-epi/#p13040",
     "script": "epi.py",
-    "line": 1087,
+    "line": 1120,
     "verdict": "pass"
    },
    "declarations": [
@@ -12540,7 +12563,7 @@
    "check": {
     "href": "src/13-epi/#p13041",
     "script": "epi.py",
-    "line": 740,
+    "line": 762,
     "verdict": "pass"
    },
    "declarations": [
@@ -12566,7 +12589,7 @@
    "check": {
     "href": "src/13-epi/#p13042",
     "script": "epi.py",
-    "line": 1274,
+    "line": 1307,
     "verdict": "pass"
    },
    "declarations": [
@@ -12597,7 +12620,7 @@
    "check": {
     "href": "src/13-epi/#p13067",
     "script": "epi.py",
-    "line": 880,
+    "line": 913,
     "verdict": "pass"
    },
    "declarations": [
@@ -12652,7 +12675,7 @@
    "check": {
     "href": "src/13-epi/#p13044",
     "script": "epi.py",
-    "line": 1250,
+    "line": 1283,
     "verdict": "pass"
    },
    "declarations": [
@@ -12738,14 +12761,14 @@
   {
    "key": "p13047",
    "origin": "13",
-   "statement": "The null experiment: whether $\\gen^{\\lambda(\\im)}\\equiv-(\\Ku{\\p})^{-1}$ for some primitive root of either chirality is the index condition $\\gcd(s,\\p-1)=\\gcd(\\lambda(\\pm\\im),\\p-1)$; over the $210$ primes $\\p\\equiv1\\pmod4$, $5<\\p<3000$, it is solvable for $94$ ($44.8\\%$, against $96.0\\pm6.6$ expected under independence), the correlation of the two angular addresses $-0.10$ at deviation $\\approx0.07$ \\apx: no invariant pointwise identification of the angular and radial carriers of $e$; the naive reading of $\\eP$ as the number $2.71828\\ldots$ is refuted.",
+   "statement": "The null experiment: whether $\\gen^{\\lambda(\\pm\\im)}\\equiv-(\\Ku{\\p})^{-1}$ for some primitive root and either orientation, varied independently, is the index condition $\\gcd(s,\\p-1)=\\gcd(\\lambda(\\pm\\im),\\p-1)$; over the $210$ primes $\\p\\equiv1\\pmod4$, $5<\\p<3000$, it holds for $94$ against $96.0\\pm6.6$ expected under independence ($54$ against $57.9\\pm6.2$ with the orientation tied to the generator), the correlation of the two angular addresses $-0.10$ at deviation $\\approx0.07$ \\apx: no invariant pointwise identification of the angular and radial carriers of $e$.",
    "origin_row": "13:H5",
    "tag": "T",
    "tier": 2,
    "check": {
     "href": "src/13-epi/#p13047",
     "script": "epi.py",
-    "line": 662,
+    "line": 680,
     "verdict": "pass"
    },
    "declarations": [
@@ -12837,7 +12860,7 @@
    "check": {
     "href": "src/13-epi/#p13049",
     "script": "epi.py",
-    "line": 771,
+    "line": 793,
     "verdict": "pass"
    },
    "declarations": [
@@ -12893,7 +12916,7 @@
    "check": {
     "href": "src/13-epi/#p13050",
     "script": "epi.py",
-    "line": 1392,
+    "line": 1425,
     "verdict": "pass"
    },
    "declarations": [
@@ -12954,7 +12977,7 @@
    "check": {
     "href": "src/13-epi/#p13051",
     "script": "epi.py",
-    "line": 1250,
+    "line": 1283,
     "verdict": "pass"
    },
    "declarations": [
@@ -12980,7 +13003,7 @@
    "check": {
     "href": "src/13-epi/#p13068",
     "script": "epi.py",
-    "line": 1579,
+    "line": 1612,
     "verdict": "pass"
    },
    "declarations": [
@@ -13006,7 +13029,7 @@
    "check": {
     "href": "src/13-epi/#p13052",
     "script": "epi.py",
-    "line": 1250,
+    "line": 1283,
     "verdict": "pass"
    },
    "declarations": [
@@ -13032,7 +13055,7 @@
    "check": {
     "href": "src/13-epi/#p13053",
     "script": "epi.py",
-    "line": 1351,
+    "line": 1384,
     "verdict": "pass"
    },
    "declarations": [
@@ -13063,7 +13086,7 @@
    "check": {
     "href": "src/13-epi/#p13054",
     "script": "epi.py",
-    "line": 1351,
+    "line": 1384,
     "verdict": "pass"
    },
    "declarations": [
@@ -13103,7 +13126,7 @@
    "check": {
     "href": "src/13-epi/#p13056",
     "script": "epi.py",
-    "line": 1351,
+    "line": 1384,
     "verdict": "pass"
    },
    "declarations": [
@@ -13129,7 +13152,7 @@
    "check": {
     "href": "src/13-epi/#p13057",
     "script": "epi.py",
-    "line": 1465,
+    "line": 1498,
     "verdict": "pass"
    },
    "declarations": [
@@ -13170,7 +13193,7 @@
    "check": {
     "href": "src/13-epi/#p13061",
     "script": "epi.py",
-    "line": 1679,
+    "line": 1712,
     "verdict": "pass"
    },
    "declarations": [],
@@ -13189,7 +13212,7 @@
    "check": {
     "href": "src/13-epi/#p13063",
     "script": "epi.py",
-    "line": 1724,
+    "line": 1757,
     "verdict": "pass"
    },
    "declarations": [],
@@ -13233,7 +13256,7 @@
    "check": {
     "href": "src/14-entropy/#p14002",
     "script": "entropy.py",
-    "line": 243,
+    "line": 252,
     "verdict": "pass"
    },
    "declarations": [
@@ -13486,7 +13509,7 @@
    "check": {
     "href": "src/14-entropy/#p14017",
     "script": "entropy.py",
-    "line": 263,
+    "line": 272,
     "verdict": "pass"
    },
    "declarations": [
@@ -13514,7 +13537,7 @@
   {
    "key": "p14044",
    "origin": "14",
-   "statement": "The capacity axis counts hydrogen units (one gram at $N_A$ to $0.003$ dex \\apx): a definition, not a registered shell. The least register window resolving the total winding of $N$ units is $3N$, a theorem about the observing Subject (00:F7); a phase-locked composite of like units is an aggregate, never one shell (00:F6; a shell of capacity $3N$ exists only when $12N+1$ is prime, none at $N=2$); the largest shell any Subject registers whole is the nesting bound $\\mathsf{q}<\\Om^{1/4}$, $N<(\\Om^{1/4}-1)/12$ units, $8\\times10^{2}$\\,kg at $\\dS=3.3\\times10^{122}$ \\apx{} ($\\dS^{1/4}$ units overcounts by $12$); everything heavier an aggregate of locks; the proton's $1$ against $3$ compares a tower label with a chart count.",
+   "statement": "The capacity axis counts hydrogen units (one gram at $N_A$ to $0.003$ dex \\apx): a definition, not a registered shell. The least register window resolving the total winding of $N$ units is $3N$, a theorem about the observing Subject (B11); a phase-locked composite of like units is an aggregate, never one shell (B12; a shell of capacity $3N$ exists only when $12N+1$ is prime, B13); the largest shell any Subject registers whole is the nesting bound $\\mathsf{q}<\\Om^{1/4}$ (00:B8), $N<(\\Om^{1/4}-1)/12$ units, $8\\times10^{2}$\\,kg at $\\dS=3.3\\times10^{122}$ \\apx{} ($\\Om^{1/4}$ units overcounts by $12$); everything heavier an aggregate of locks; the proton's $1$ against $3$ compares a tower label with a chart count.",
    "origin_row": "14:B10",
    "tag": "D",
    "tier": 0,
@@ -13547,6 +13570,119 @@
    ]
   },
   {
+   "key": "p14046",
+   "origin": "14",
+   "statement": "The additive window: for $N$ modes at resolvable heights $|\\hat h_i|\\le\\kap_i$ (38:A8) the total winding satisfies $|\\sum_i\\hat h_i|\\le\\sum_i\\kap_i$, attained, every total in the range occurring; the least register window resolving the total exactly is the capacity sum $\\sum_i\\kap_i$, $3N$ for $N$ hydrogen units --- a capacity of the observing Subject, not a shell of the composite (B10).",
+   "origin_row": "14:B11",
+   "tag": "T",
+   "tier": 0,
+   "check": {
+    "href": "src/14-entropy/#p14046",
+    "script": "entropy.py",
+    "line": 1214,
+    "verdict": "pass"
+   },
+   "declarations": [
+    {
+     "lib": "FrcLedger",
+     "module": "FrcLedger/Entropy",
+     "name": "FRC.Entropy.additive_window"
+    },
+    {
+     "lib": "FrcCore",
+     "module": "FrcCore/Entropy",
+     "name": "FRC.Entropy.additive_window"
+    },
+    {
+     "lib": "FrcCore",
+     "module": "FrcCore/Entropy",
+     "name": "FRC.Entropy.additive_window_hydrogen"
+    }
+   ],
+   "aliases": [],
+   "rows": [
+    "14:B11"
+   ],
+   "realisations": []
+  },
+  {
+   "key": "p14047",
+   "origin": "14",
+   "statement": "The lock of like units: $N$ like units never fuse (00:F6, $\\gcd(12,12)=12$): their joint registration (00:F2) recurs on $C_{12}$ with period $12$ for every $N$, one superselected $C_{12}$ offset per further unit --- an aggregate, never one shell. Instances: the diagonal drive on $C_{12}^{2}$ has $12$ orbits of length $12$, on $C_{12}^{3}$ $144$.",
+   "origin_row": "14:B12",
+   "tag": "T",
+   "tier": 0,
+   "check": {
+    "href": "src/14-entropy/#p14047",
+    "script": "entropy.py",
+    "line": 1233,
+    "verdict": "pass"
+   },
+   "declarations": [
+    {
+     "lib": "FrcLedger",
+     "module": "FrcLedger/Entropy",
+     "name": "FRC.Entropy.lock_recurrence"
+    },
+    {
+     "lib": "FrcCore",
+     "module": "FrcCore/Entropy",
+     "name": "FRC.Entropy.lock_recurrence"
+    },
+    {
+     "lib": "FrcCore",
+     "module": "FrcCore/Entropy",
+     "name": "FRC.Entropy.lock_orbits"
+    }
+   ],
+   "aliases": [],
+   "rows": [
+    "14:B12"
+   ],
+   "realisations": []
+  },
+  {
+   "key": "p14048",
+   "origin": "14",
+   "statement": "Shells of capacity $3N$ and fusion: the shell of capacity $3N$ is $\\F_{12N+1}$ and exists iff $12N+1$ is prime ($N=1,3,5,6,8,9$ below $10$; none at $N=2$, $25=5^{2}$), never the lock's register (B12); fusion of coprime cycles is multiplicative, $\\kap=n_{1}n_{2}/4$: hydrogen $(4,3)\\to3$, one orbit of length $12$ (00:F6).",
+   "origin_row": "14:B13",
+   "tag": "T",
+   "tier": 0,
+   "check": {
+    "href": "src/14-entropy/#p14048",
+    "script": "entropy.py",
+    "line": 1245,
+    "verdict": "pass"
+   },
+   "declarations": [
+    {
+     "lib": "FrcLedger",
+     "module": "FrcLedger/Entropy",
+     "name": "FRC.Entropy.shells_of_capacity"
+    },
+    {
+     "lib": "FrcLedger",
+     "module": "FrcLedger/Entropy",
+     "name": "FRC.Entropy.fusion_capacity"
+    },
+    {
+     "lib": "FrcCore",
+     "module": "FrcCore/Entropy",
+     "name": "FRC.Entropy.shells_of_capacity"
+    },
+    {
+     "lib": "FrcCore",
+     "module": "FrcCore/Entropy",
+     "name": "FRC.Entropy.fusion_capacity"
+    }
+   ],
+   "aliases": [],
+   "rows": [
+    "14:B13"
+   ],
+   "realisations": []
+  },
+  {
    "key": "p14018",
    "origin": "14",
    "statement": "Two faces: a frame supplies one spatial and one temporal datum, so every instrument reading the size of the totality is one of exactly two faces, converted by $c$.",
@@ -13556,7 +13692,7 @@
    "check": {
     "href": "src/14-entropy/#p14018",
     "script": "entropy.py",
-    "line": 331,
+    "line": 340,
     "verdict": "pass"
    },
    "declarations": [],
@@ -13597,7 +13733,7 @@
    "check": {
     "href": "src/14-entropy/#p14020",
     "script": "entropy.py",
-    "line": 388,
+    "line": 397,
     "verdict": "pass"
    },
    "declarations": [
@@ -13633,7 +13769,7 @@
    "check": {
     "href": "src/14-entropy/#p14021",
     "script": "entropy.py",
-    "line": 348,
+    "line": 357,
     "verdict": "pass"
    },
    "declarations": [],
@@ -13653,7 +13789,7 @@
    "check": {
     "href": "src/14-entropy/#p14022",
     "script": "entropy.py",
-    "line": 472,
+    "line": 481,
     "verdict": "pass"
    },
    "declarations": [
@@ -13699,7 +13835,7 @@
    "check": {
     "href": "src/14-entropy/#p14023",
     "script": "entropy.py",
-    "line": 243,
+    "line": 252,
     "verdict": "pass"
    },
    "declarations": [
@@ -13745,7 +13881,7 @@
    "check": {
     "href": "src/14-entropy/#p14024",
     "script": "entropy.py",
-    "line": 388,
+    "line": 397,
     "verdict": "pass"
    },
    "declarations": [
@@ -13778,7 +13914,7 @@
    "check": {
     "href": "src/14-entropy/#p14025",
     "script": "entropy.py",
-    "line": 407,
+    "line": 416,
     "verdict": "pass"
    },
    "declarations": [
@@ -13816,7 +13952,7 @@
    "check": {
     "href": "src/14-entropy/#p14026",
     "script": "entropy.py",
-    "line": 685,
+    "line": 694,
     "verdict": "pass"
    },
    "declarations": [
@@ -13842,7 +13978,7 @@
    "check": {
     "href": "src/14-entropy/#p14027",
     "script": "entropy.py",
-    "line": 1129,
+    "line": 1138,
     "verdict": "pass"
    },
    "declarations": [
@@ -13873,7 +14009,7 @@
    "check": {
     "href": "src/14-entropy/#p14036",
     "script": "entropy.py",
-    "line": 491,
+    "line": 500,
     "verdict": "pass"
    },
    "declarations": [],
@@ -13895,7 +14031,7 @@
    "check": {
     "href": "src/14-entropy/#p14037",
     "script": "entropy.py",
-    "line": 472,
+    "line": 481,
     "verdict": "pass"
    },
    "declarations": [],
@@ -13918,7 +14054,7 @@
    "check": {
     "href": "src/14-entropy/#p14038",
     "script": "entropy.py",
-    "line": 427,
+    "line": 436,
     "verdict": "pass"
    },
    "declarations": [
@@ -13992,7 +14128,7 @@
    "check": {
     "href": "src/14-entropy/#p14029",
     "script": "entropy.py",
-    "line": 459,
+    "line": 468,
     "verdict": "pass"
    },
    "declarations": [
@@ -14021,7 +14157,7 @@
    "check": {
     "href": "src/14-entropy/#p14030",
     "script": "entropy.py",
-    "line": 388,
+    "line": 397,
     "verdict": "pass"
    },
    "declarations": [
@@ -14083,7 +14219,7 @@
    "check": {
     "href": "src/14-entropy/#p14032",
     "script": "entropy.py",
-    "line": 685,
+    "line": 694,
     "verdict": "pass"
    },
    "declarations": [],
@@ -14103,7 +14239,7 @@
    "check": {
     "href": "src/14-entropy/#p14033",
     "script": "entropy.py",
-    "line": 388,
+    "line": 397,
     "verdict": "pass"
    },
    "declarations": [],
@@ -14174,65 +14310,9 @@
    ]
   },
   {
-   "key": "p20002",
-   "origin": "20",
-   "statement": "The finitude of the totality: the reductio ad absurdum against completed infinity, a stated premise used for one purpose, the closure of the quantifier over heights (F7).",
-   "origin_row": "20:A2",
-   "tag": "I",
-   "tier": null,
-   "check": null,
-   "declarations": [],
-   "aliases": [],
-   "rows": [
-    "20:A2"
-   ]
-  },
-  {
    "key": "p20003",
    "origin": "20",
    "statement": "The classical analytic apparatus: the count $\\mathcal N(T)=\\theta(T)/\\pi+1+S(T)$, the Riemann--Siegel main sum with its $O(t^{-1/4})$ remainder, the explicit formula in its distributional form over the Weil class, Hardy's Ramanujan-sum expansion of $\\Lambda$, M\\\"obius inversion.",
-   "origin_row": "20:A3",
-   "tag": "I",
-   "tier": null,
-   "check": null,
-   "declarations": [],
-   "aliases": [],
-   "rows": [
-    "20:A3"
-   ]
-  },
-  {
-   "key": "p20004",
-   "origin": "20",
-   "statement": "Turing's count: with $C(T)$ the sign changes of $Z$ on $(0,T)$, $C\\le N_{\\mathrm{crit}}\\le\\mathcal N$; $C=\\mathcal N$ certifies the hypothesis below $T$ and forces every zero there to be simple.",
-   "origin_row": "20:A4",
-   "tag": "I",
-   "tier": null,
-   "check": null,
-   "declarations": [],
-   "aliases": [],
-   "rows": [
-    "20:A4"
-   ]
-  },
-  {
-   "key": "p20078",
-   "origin": "20",
-   "statement": "The Davenport--Heilbronn function: a Dirichlet series with the functional equation and no Euler product, with zeros off the line, the first pair at $0.8085171825+85.6993484854\\,i$ and $1-\\bar s$; the treatment of linear combinations of $L$-functions by smoothed Euler products.",
-   "origin_row": "20:A5",
-   "tag": "I",
-   "tier": null,
-   "check": null,
-   "declarations": [],
-   "aliases": [],
-   "rows": [
-    "20:A5"
-   ]
-  },
-  {
-   "key": "p20006",
-   "origin": "20",
-   "statement": "The comparison data: no off-line zero of $\\zeta$ to height $3\\times10^{12}$, by Turing's certificate, so every zero there is simple; GUE spacing statistics of the zeros; some $2600$ zeros to twelve digits from the primes to $10^{6}$ by harmonic inversion (the precision the observations of block E do not aim at); the self-adjoint realisations of the Berry--Keating operator.",
    "origin_row": "20:A6",
    "tag": "I",
    "tier": null,
@@ -14244,9 +14324,9 @@
    ]
   },
   {
-   "key": "p20007",
+   "key": "p20004",
    "origin": "20",
-   "statement": "The physical readings of Subsection~\\ref{sub:physical} (the Carrier as the Universe, the constants by register, $c^{2}=2^{-1}$, mass as cardinality, the $3$-sphere frame space) are owned by the papers cited there and enter no result of this paper.",
+   "statement": "Turing's count: with $C(T)$ the sign changes of $Z$ on $(0,T)$, $C\\le N_{\\mathrm{crit}}\\le\\mathcal N$; $C=\\mathcal N$ certifies the hypothesis below $T$ and forces every zero there to be simple.",
    "origin_row": "20:A7",
    "tag": "I",
    "tier": null,
@@ -14258,9 +14338,9 @@
    ]
   },
   {
-   "key": "p20070",
+   "key": "p20078",
    "origin": "20",
-   "statement": "Explicit bounds on the Riemann--Siegel remainder: Gabcke's explicit error term, used by the verification of A6; with it the sign of $Z$ is certified wherever $|Z_M(t)|$ exceeds the bound (F1).",
+   "statement": "The Davenport--Heilbronn function: a Dirichlet series with the functional equation and no Euler product, with zeros off the line, the first pair at $0.8085171825+85.6993484854\\,i$ and $1-\\bar s$; the treatment of linear combinations of $L$-functions by smoothed Euler products.",
    "origin_row": "20:A8",
    "tag": "I",
    "tier": null,
@@ -14272,9 +14352,9 @@
    ]
   },
   {
-   "key": "p20071",
+   "key": "p20006",
    "origin": "20",
-   "statement": "The semiclassical phase-space cell $2\\pi$ of the Berry--Keating count [chart], imposed as the standard unit, not derived from the shell constants; the shell's own count uses no cell (E12(iii)).",
+   "statement": "The comparison data: no off-line zero of $\\zeta$ to height $3\\times10^{12}$, by Turing's certificate, so every zero there is simple; GUE spacing statistics of the zeros; some $2600$ zeros to twelve digits from the primes to $10^{6}$ by harmonic inversion (the precision the observations of block E do not aim at); the self-adjoint realisations of the Berry--Keating operator.",
    "origin_row": "20:A9",
    "tag": "I",
    "tier": null,
@@ -14286,17 +14366,31 @@
    ]
   },
   {
-   "key": "p20077",
+   "key": "p20070",
    "origin": "20",
-   "statement": "The aliasing premise: the identification of the height coordinate with the meridian cycle (A1) carries the zero predicate, an off-line zero of multiplicity $m$ at a height symbol $H>2\\pi\\Omega$ is an off-line residue of multiplicity $m$ at the aliased height. The kernels $n^{-iT}$ share no period ($\\log2/\\log3$ irrational), so the chart carries no aliasing; declared, not derived.",
+   "statement": "Explicit bounds on the Riemann--Siegel remainder: Gabcke's explicit error term, used by the verification of A6; with it the sign of $Z$ is certified wherever $|Z_M(t)|$ exceeds the bound (F1).",
    "origin_row": "20:A10",
-   "tag": "D",
+   "tag": "I",
    "tier": null,
    "check": null,
    "declarations": [],
    "aliases": [],
    "rows": [
     "20:A10"
+   ]
+  },
+  {
+   "key": "p20071",
+   "origin": "20",
+   "statement": "The semiclassical phase-space cell $2\\pi$ of the Berry--Keating count [chart], imposed as the standard unit, not derived from the shell constants; the shell's own count uses no cell (E12(iii)).",
+   "origin_row": "20:A11",
+   "tag": "I",
+   "tier": null,
+   "check": null,
+   "declarations": [],
+   "aliases": [],
+   "rows": [
+    "20:A11"
    ]
   },
   {
@@ -14309,7 +14403,7 @@
    "check": {
     "href": "src/20-rh/#p20008",
     "script": "rh.py",
-    "line": 535,
+    "line": 540,
     "verdict": "pass"
    },
    "declarations": [
@@ -14344,7 +14438,7 @@
    "check": {
     "href": "src/20-rh/#p20009",
     "script": "rh.py",
-    "line": 550,
+    "line": 555,
     "verdict": "pass"
    },
    "declarations": [
@@ -14409,7 +14503,7 @@
    "check": {
     "href": "src/20-rh/#p20011",
     "script": "rh.py",
-    "line": 440,
+    "line": 445,
     "verdict": "pass"
    },
    "declarations": [
@@ -14440,7 +14534,7 @@
    "check": {
     "href": "src/20-rh/#p20012",
     "script": "rh.py",
-    "line": 468,
+    "line": 473,
     "verdict": "pass"
    },
    "declarations": [
@@ -14471,7 +14565,7 @@
    "check": {
     "href": "src/20-rh/#p20013",
     "script": "rh.py",
-    "line": 477,
+    "line": 482,
     "verdict": "pass"
    },
    "declarations": [
@@ -14532,7 +14626,7 @@
    "check": {
     "href": "src/20-rh/#p20014",
     "script": "rh.py",
-    "line": 495,
+    "line": 500,
     "verdict": "pass"
    },
    "declarations": [
@@ -14568,7 +14662,7 @@
    "check": {
     "href": "src/20-rh/#p20015",
     "script": "rh.py",
-    "line": 461,
+    "line": 466,
     "verdict": "pass"
    },
    "declarations": [
@@ -14624,7 +14718,7 @@
    "check": {
     "href": "src/20-rh/#p20016",
     "script": "rh.py",
-    "line": 487,
+    "line": 492,
     "verdict": "pass"
    },
    "declarations": [
@@ -14685,7 +14779,7 @@
    "check": {
     "href": "src/20-rh/#p20017",
     "script": "rh.py",
-    "line": 451,
+    "line": 456,
     "verdict": "pass"
    },
    "declarations": [
@@ -14731,7 +14825,7 @@
    "check": {
     "href": "src/20-rh/#p20018",
     "script": "rh.py",
-    "line": 1599,
+    "line": 1703,
     "verdict": "pass"
    },
    "declarations": [],
@@ -14758,14 +14852,14 @@
   {
    "key": "p20020",
    "origin": "20",
-   "statement": "Resonance and the von Mangoldt weight: $R_L\\to\\frac{\\varphi(n)}{n}\\Lambda(n)$ (Hardy, A3); $\\Lambda=\\mu\\ast\\log$ exactly on the divisor lattice; the intertwiner $\\Lambda=\\frac{n}{\\varphi(n)}R$; support the prime powers in every form.",
+   "statement": "Resonance and the von Mangoldt weight: $R_L\\to\\frac{\\varphi(n)}{n}\\Lambda(n)$ (Hardy, A6); $\\Lambda=\\mu\\ast\\log$ exactly on the divisor lattice; the intertwiner $\\Lambda=\\frac{n}{\\varphi(n)}R$; support the prime powers in every form.",
    "origin_row": "20:C2",
    "tag": "T",
    "tier": 2,
    "check": {
     "href": "src/20-rh/#p20020",
     "script": "rh.py",
-    "line": 1575,
+    "line": 1679,
     "verdict": "pass"
    },
    "declarations": [
@@ -14791,7 +14885,7 @@
    "check": {
     "href": "src/20-rh/#p20021",
     "script": "rh.py",
-    "line": 1593,
+    "line": 1697,
     "verdict": "pass"
    },
    "declarations": [],
@@ -14811,7 +14905,7 @@
    "check": {
     "href": "src/20-rh/#p20022",
     "script": "rh.py",
-    "line": 1627,
+    "line": 1731,
     "verdict": "pass"
    },
    "declarations": [],
@@ -14857,7 +14951,7 @@
    "check": {
     "href": "src/20-rh/#p20024",
     "script": "rh.py",
-    "line": 1640,
+    "line": 1744,
     "verdict": "pass"
    },
    "declarations": [],
@@ -14891,7 +14985,7 @@
    "check": {
     "href": "src/20-rh/#p20026",
     "script": "rh.py",
-    "line": 614,
+    "line": 645,
     "verdict": "pass"
    },
    "declarations": [],
@@ -14904,14 +14998,14 @@
   {
    "key": "p20027",
    "origin": "20",
-   "statement": "Reconstruction residue: the finite-horizon error of the main sum is the Riemann--Siegel remainder $O(T^{-1/4})=O(\\p^{-1/4})$ (A3), unconditional, fitted slope $-0.24$ over $t=40\\ldots5120$ [approx].",
+   "statement": "Reconstruction residue: the finite-horizon error of the main sum is the Riemann--Siegel remainder $O(T^{-1/4})=O(\\p^{-1/4})$ (A6), unconditional, fitted slope $-0.24$ over $t=40\\ldots5120$ [approx].",
    "origin_row": "20:D3",
    "tag": "I",
    "tier": null,
    "check": {
     "href": "src/20-rh/#p20027",
     "script": "rh.py",
-    "line": 640,
+    "line": 671,
     "verdict": "pass"
    },
    "declarations": [],
@@ -14930,7 +15024,7 @@
    "check": {
     "href": "src/20-rh/#p20028",
     "script": "rh.py",
-    "line": 629,
+    "line": 660,
     "verdict": "pass"
    },
    "declarations": [],
@@ -14943,17 +15037,32 @@
   {
    "key": "p20029",
    "origin": "20",
-   "statement": "Completeness criterion: faithfulness of the de-framing ($N_{\\mathrm{crit}}=\\mathcal N$ at every height), zero-mode completeness of the on-line spectrum for $v$ over the Weil class (A3), the absence of off-line zeros, and the Riemann Hypothesis are equivalent; an off-line zero $\\beta+i\\gamma_0$ leaves a residual growing as $x^{\\beta-1/2}$ at its height.",
+   "statement": "The cells: the heights of a Carrier's cycle are its residues, residue $y$ the cell from $2\\pi y$ to $2\\pi(y+1)$; a cell is clean when its zeros lie on the line, which Turing's count decides from the labels below $\\sqrt{y+1}$, and passes when the frame's reading certifies it. The hypothesis of the Carrier: every residue has a clean cell.",
    "origin_row": "20:D5",
-   "tag": "T",
-   "tier": null,
-   "check": null,
-   "declarations": [],
+   "tag": "D",
+   "tier": 0,
+   "check": {
+    "href": "src/20-rh/#p20029",
+    "script": "rh.py",
+    "line": 1565,
+    "verdict": "pass"
+   },
+   "declarations": [
+    {
+     "lib": "FrcCore",
+     "module": "FrcCore/Theme/Horizon",
+     "name": "FRC.Horizon.clean_iff_count"
+    },
+    {
+     "lib": "FrcCore",
+     "module": "FrcCore/Theme/Horizon",
+     "name": "FRC.Horizon.cells_clean_iff_cycle"
+    }
+   ],
    "aliases": [],
    "rows": [
     "20:D5"
-   ],
-   "realisations": []
+   ]
   },
   {
    "key": "p20030",
@@ -14985,6 +15094,58 @@
    "realisations": []
   },
   {
+   "key": "p20080",
+   "origin": "20",
+   "statement": "The strip: the Euler product excludes zeros with real part at least one, and the functional equation confines the nontrivial zeros to the open strip in Klein-four orbits of size two on the line and four off it; the Davenport--Heilbronn vector, without the product, is not multiplicative and has an off-line zero. No core witness: the statement is analytic.",
+   "origin_row": "20:D8",
+   "tag": "T",
+   "tier": 2,
+   "check": {
+    "href": "src/20-rh/#p20080",
+    "script": "rh.py",
+    "line": 1505,
+    "verdict": "pass"
+   },
+   "declarations": [
+    {
+     "lib": "FrcLedger",
+     "module": "FrcLedger/Rh",
+     "name": "FRC.Rh.zeros_in_strip"
+    }
+   ],
+   "aliases": [],
+   "rows": [
+    "20:D8"
+   ],
+   "realisations": []
+  },
+  {
+   "key": "p20083",
+   "origin": "20",
+   "statement": "The finite negative control: on $\\F_{13}(\\sqrt2)$ the polynomial $((X-2)^{2}-2)((X+1)^{2}-2)$ has exactly the roots $2\\pm\\eta$, $-1\\pm\\eta$, of traces $4$, $4$, $11$, $11$ against the line's $1$, the root set closed under conjugation and under the half-turn; finitude, conjugation and the reflection force no root onto the line.",
+   "origin_row": "20:D9",
+   "tag": "T",
+   "tier": 0,
+   "check": {
+    "href": "src/20-rh/#p20083",
+    "script": "rh.py",
+    "line": 1534,
+    "verdict": "pass"
+   },
+   "declarations": [
+    {
+     "lib": "FrcCore",
+     "module": "FrcCore/Theme/Horizon",
+     "name": "FRC.Horizon.negative_control13"
+    }
+   ],
+   "aliases": [],
+   "rows": [
+    "20:D9"
+   ],
+   "realisations": []
+  },
+  {
    "key": "p20032",
    "origin": "20",
    "statement": "The scale-evolution generator: on the shell the scale-shift $x\\mapsto\\gen^{\\,r}x$ is a unitary permutation of $\\Fx{\\p}$ with the complex characters as eigenvectors; in the analytic chart [chart] the dilation group $U_r=e^{ir\\Hh}$ has the self-adjoint generator $\\Hh=-i(x\\partial_x+\\half)$ with generalised eigenfunctions $x^{-\\bar\\rho}$, $\\rho=\\half+i\\gamma$, the symmetrizing $\\half$ the half-turn of B8; the chart assignment is used nowhere as a shell identity.",
@@ -14994,7 +15155,7 @@
    "check": {
     "href": "src/20-rh/#p20032",
     "script": "rh.py",
-    "line": 524,
+    "line": 529,
     "verdict": "pass"
    },
    "declarations": [
@@ -15047,14 +15208,14 @@
   {
    "key": "p20034",
    "origin": "20",
-   "statement": "Cutoff and semiclassical density: with the space quantum $1_\\Omega$ as lower cutoff the Berry--Keating phase-space count is the Riemann--von Mangoldt count, density the shell scale-depth of D2 [chart]; the cell normalisation $1_\\Omega^{2}\\sim2\\pi$ is imposed [chart] (A9).",
+   "statement": "Cutoff and semiclassical density: with the space quantum $1_\\Omega$ as lower cutoff the Berry--Keating phase-space count is the Riemann--von Mangoldt count, density the shell scale-depth of D2 [chart]; the cell normalisation $1_\\Omega^{2}\\sim2\\pi$ is imposed [chart] (A11).",
    "origin_row": "20:E3",
    "tag": "D",
    "tier": null,
    "check": {
     "href": "src/20-rh/#p20034",
     "script": "rh.py",
-    "line": 886,
+    "line": 917,
     "verdict": "pass"
    },
    "declarations": [],
@@ -15087,7 +15248,7 @@
    "check": {
     "href": "src/20-rh/#p20036",
     "script": "rh.py",
-    "line": 738,
+    "line": 769,
     "verdict": "pass"
    },
    "declarations": [],
@@ -15107,7 +15268,7 @@
    "check": {
     "href": "src/20-rh/#p20037",
     "script": "rh.py",
-    "line": 750,
+    "line": 781,
     "verdict": "pass"
    },
    "declarations": [],
@@ -15134,14 +15295,14 @@
   {
    "key": "p20039",
    "origin": "20",
-   "statement": "The heights from an explicit matrix: the colleague matrix of the Chebyshev expansion of $\\cos(\\pi\\widehat{\\mathcal N}_N)$ on $[10,52]$ at $N=10^{6}$ returns the ten heights to mean error $4.8\\times10^{-5}$ at dimension $520$ and $3.5\\times10^{-5}$ at $620$, converging to the corrected roots' own $3.4\\times10^{-5}$ at this depth [approx]; the precision is the smoothed count's, not the comb's (A6).",
+   "statement": "The heights from an explicit matrix: the colleague matrix of the Chebyshev expansion of $\\cos(\\pi\\widehat{\\mathcal N}_N)$ on $[10,52]$ at $N=10^{6}$ returns the ten heights to mean error $4.8\\times10^{-5}$ at dimension $520$ and $3.5\\times10^{-5}$ at $620$, converging to the corrected roots' own $3.4\\times10^{-5}$ at this depth [approx]; the precision is the smoothed count's, not the comb's (A9).",
    "origin_row": "20:E8",
    "tag": "T",
    "tier": null,
    "check": {
     "href": "src/20-rh/#p20039",
     "script": "rh.py",
-    "line": 788,
+    "line": 819,
     "verdict": "pass"
    },
    "declarations": [],
@@ -15161,7 +15322,7 @@
    "check": {
     "href": "src/20-rh/#p20040",
     "script": "rh.py",
-    "line": 780,
+    "line": 811,
     "verdict": "pass"
    },
    "declarations": [],
@@ -15181,7 +15342,7 @@
    "check": {
     "href": "src/20-rh/#p20041",
     "script": "rh.py",
-    "line": 798,
+    "line": 829,
     "verdict": "pass"
    },
    "declarations": [],
@@ -15194,14 +15355,14 @@
   {
    "key": "p20042",
    "origin": "20",
-   "statement": "GUE level repulsion of the target spectrum: unfolded spacings of the first $240$ zeros give $P(s<\\half)=0.05$ (GUE $\\approx0.12$, Poisson $\\approx0.39$) and variance $0.13$ (GUE $\\approx0.18$, Poisson $1$) [approx]; a known statistic (A6) reproduced.",
+   "statement": "GUE level repulsion of the target spectrum: unfolded spacings of the first $240$ zeros give $P(s<\\half)=0.05$ (GUE $\\approx0.12$, Poisson $\\approx0.39$) and variance $0.13$ (GUE $\\approx0.18$, Poisson $1$) [approx]; a known statistic (A9) reproduced.",
    "origin_row": "20:E11",
    "tag": "I",
    "tier": null,
    "check": {
     "href": "src/20-rh/#p20042",
     "script": "rh.py",
-    "line": 878,
+    "line": 909,
     "verdict": "pass"
    },
    "declarations": [],
@@ -15220,7 +15381,7 @@
    "check": {
     "href": "src/20-rh/#p20044",
     "script": "rh.py",
-    "line": 526,
+    "line": 531,
     "verdict": "pass"
    },
    "declarations": [
@@ -15260,7 +15421,7 @@
    "check": {
     "href": "src/20-rh/#p20045",
     "script": "rh.py",
-    "line": 979,
+    "line": 1010,
     "verdict": "pass"
    },
    "declarations": [],
@@ -15280,7 +15441,7 @@
    "check": {
     "href": "src/20-rh/#p20046",
     "script": "rh.py",
-    "line": 979,
+    "line": 1010,
     "verdict": "pass"
    },
    "declarations": [],
@@ -15300,7 +15461,7 @@
    "check": {
     "href": "src/20-rh/#p20072",
     "script": "rh.py",
-    "line": 1060,
+    "line": 1091,
     "verdict": "pass"
    },
    "declarations": [],
@@ -15313,14 +15474,14 @@
   {
    "key": "p20047",
    "origin": "20",
-   "statement": "\\textbf{Turing's count on the shell.} $C\\le N_{\\mathrm{crit}}\\le\\mathcal N$ (A4); the hypothesis below $T$ is $\\mathcal N(T)=N_{\\mathrm{crit}}(T)$, $C=\\mathcal N$ the certificate. The shell estimates $\\mathcal N$ by the pole-corrected comb count (F8; uncertified at finite depth) and $C$ by the main sum's sign changes (A8); the secular condition reads $\\mathcal N$, not $N_{\\mathrm{crit}}$. An off-line zero is a phantom: $\\mathcal N-N_{\\mathrm{crit}}>0$.",
+   "statement": "\\textbf{Turing's count on the shell.} On every cell $C_y\\le N^{\\mathrm{crit}}_y\\le\\mathcal N_y$ (A7); the cell is clean when $\\mathcal N_y=N^{\\mathrm{crit}}_y$, and $C_y=\\mathcal N_y$ certifies it with every zero simple. The shell estimates $\\mathcal N$ by the pole-corrected comb count (F8; uncertified at finite depth) and $C$ by the main sum's sign changes (A10). An off-line zero is a phantom: $\\mathcal N_y-N^{\\mathrm{crit}}_y>0$.",
    "origin_row": "20:F1",
    "tag": "T",
    "tier": null,
    "check": {
     "href": "src/20-rh/#p20047",
     "script": "rh.py",
-    "line": 1275,
+    "line": 1306,
     "verdict": "pass"
    },
    "declarations": [],
@@ -15333,7 +15494,7 @@
   {
    "key": "p20048",
    "origin": "20",
-   "statement": "\\textbf{The screen reading.} By D5 and F1 the classical hypothesis below $T$ is the value $\\mathcal N(T)-N_{\\mathrm{crit}}(T)=0$, both terms estimated on the shell, the count from the pole-corrected comb (convergent under the hypothesis, uncertified at finite depth), the on-line zeros from the sign changes (exact where certified, A8, and simple). Declared, not derived; E12 uses no Euler product.",
+   "statement": "\\textbf{The screen reading.} By D5 and F1 the classical hypothesis below $T$ is the value $\\mathcal N(T)-N_{\\mathrm{crit}}(T)=0$, both terms estimated on the shell, the count from the pole-corrected comb (convergent under the hypothesis, uncertified at finite depth), the on-line zeros from the sign changes (exact where certified, A10, and simple). Declared, not derived; E12 uses no Euler product.",
    "origin_row": "20:F2",
    "tag": "D",
    "tier": null,
@@ -15347,14 +15508,14 @@
   {
    "key": "p20049",
    "origin": "20",
-   "statement": "The control on the line: the completed Davenport--Heilbronn $\\Lambda_f$ is real on the line to $10^{-20}$ [approx]; on $[0,87]$ the argument principle counts $N_f=45$ strip zeros against $C=43$ sign changes, the deficit $2$ opening only in the band of the off-line pair (A5), where $|Z_f|$ dips to $0.357$ without crossing; the constituent $L(s,\\chi)$ closes with deficit $0$.",
+   "statement": "The control on the line: the completed Davenport--Heilbronn $\\Lambda_f$ is real on the line to $10^{-20}$ [approx]; on $[0,87]$ the argument principle counts $N_f=45$ strip zeros against $C=43$ sign changes, the deficit $2$ opening only in the band of the off-line pair (A8), where $|Z_f|$ dips to $0.357$ without crossing; the constituent $L(s,\\chi)$ closes with deficit $0$.",
    "origin_row": "20:F3",
    "tag": "T",
    "tier": null,
    "check": {
     "href": "src/20-rh/#p20049",
     "script": "rh.py",
-    "line": 1281,
+    "line": 1312,
     "verdict": "pass"
    },
    "declarations": [],
@@ -15374,7 +15535,7 @@
    "check": {
     "href": "src/20-rh/#p20050",
     "script": "rh.py",
-    "line": 1338,
+    "line": 1369,
     "verdict": "pass"
    },
    "declarations": [],
@@ -15394,7 +15555,7 @@
    "check": {
     "href": "src/20-rh/#p20051",
     "script": "rh.py",
-    "line": 1364,
+    "line": 1395,
     "verdict": "pass"
    },
    "declarations": [],
@@ -15419,14 +15580,30 @@
    ]
   },
   {
-   "key": "p20053",
+   "key": "p20079",
    "origin": "20",
-   "statement": "The closure of the quantifier, conditional on A2 (the totality finite) and A10 (the height chart's aliasing carries the zero predicate): heights are residues on the reading shell's cycle, the largest shell the Carrier's, so the quantifier closes at the cycle $2\\pi\\Omega$ and does no further work within it, the value inside the cycle is F2.",
+   "statement": "\\textbf{The closure of the heights.} A height is a residue on the cycle of the shell that reads it, the largest shell is the Carrier's and there is no height beyond its cycle (A2); no embedded Subject reads the cycle whole (A4). The hypothesis of the Carrier is a statement about the residues of its cycle, one clause per residue.",
    "origin_row": "20:F7",
    "tag": "T",
-   "tier": null,
-   "check": null,
-   "declarations": [],
+   "tier": 0,
+   "check": {
+    "href": "src/20-rh/#p20079",
+    "script": "rh.py",
+    "line": 601,
+    "verdict": "pass"
+   },
+   "declarations": [
+    {
+     "lib": "FrcCore",
+     "module": "FrcCore/Theme/Horizon",
+     "name": "FRC.Horizon.closure"
+    },
+    {
+     "lib": "FrcCore",
+     "module": "FrcCore/Theme/Horizon",
+     "name": "FRC.Horizon.closure_lab"
+    }
+   ],
    "aliases": [],
    "rows": [
     "20:F7"
@@ -15443,7 +15620,7 @@
    "check": {
     "href": "src/20-rh/#p20069",
     "script": "rh.py",
-    "line": 1374,
+    "line": 1405,
     "verdict": "pass"
    },
    "declarations": [],
@@ -24611,7 +24788,14 @@
   {
    "key": "p00145",
    "successors": [
-    "p00177"
+    "p00009",
+    "p00043",
+    "p00064",
+    "p00166",
+    "p00191",
+    "p14046",
+    "p14047",
+    "p14048"
    ]
   },
   {
@@ -24663,6 +24847,19 @@
    "successors": [
     "p00182",
     "p00183"
+   ]
+  },
+  {
+   "key": "p00177",
+   "successors": [
+    "p00009",
+    "p00043",
+    "p00064",
+    "p00166",
+    "p00191",
+    "p14046",
+    "p14047",
+    "p14048"
    ]
   },
   {
@@ -24869,7 +25066,7 @@
     "py": {
      "href": "frc/ledgers/master/foundation.html#p00004",
      "script": "frc/ledgers/master/foundation.py",
-     "line": 119,
+     "line": 120,
      "verdict": "pass"
     },
     "lean": [
@@ -25008,7 +25205,7 @@
     "py": {
      "href": "frc/ledgers/master/foundation.html#p00188",
      "script": "frc/ledgers/master/foundation.py",
-     "line": 296,
+     "line": 297,
      "verdict": "pass"
     },
     "lean": [
@@ -25162,7 +25359,7 @@
     "py": {
      "href": "frc/ledgers/master/foundation.html#p00162",
      "script": "frc/ledgers/master/foundation.py",
-     "line": 337,
+     "line": 338,
      "verdict": "pass"
     },
     "lean": [
@@ -25201,7 +25398,7 @@
     "py": {
      "href": "frc/ledgers/master/foundation.html#p00163",
      "script": "frc/ledgers/master/foundation.py",
-     "line": 358,
+     "line": 359,
      "verdict": "pass"
     },
     "lean": [
@@ -25240,7 +25437,7 @@
     "py": {
      "href": "frc/ledgers/master/foundation.html#p00164",
      "script": "frc/ledgers/master/foundation.py",
-     "line": 383,
+     "line": 384,
      "verdict": "pass"
     },
     "lean": [
@@ -25583,7 +25780,7 @@
    "tag": "T",
    "name": "One gauge bit closes the sign sector",
    "statement": "\\textbf{One gauge bit closes the sign sector}: no C14-type marker exists --- $-1$ is a square on admissible $\\Om$, so square class is pair-blind, and integer parity is frame data (A6). Registered faces are pair-invariant: $c^2$, the one-way member synchronisation gauge (C8); $|k_B|$ (C12); $\\{\\hbar,h\\}$ the two named unit faces (B7).",
-   "source": "10-dim, 8-dirac",
+   "source": "8-dirac",
    "page": "00-ledger.html#B10",
    "witness": {
     "script": null,
@@ -25612,10 +25809,9 @@
     "p00165"
    ],
    "sources": [
-    "10-dim",
     "8-dirac"
    ],
-   "text": "One gauge bit closes the sign sector: One gauge bit closes the sign sector: no C14-type marker exists — $-1$ is a square on admissible $\\Om$, so square class is pair-blind, and integer parity is frame data (A6). Registered faces are pair-invariant: $c^2$, the one-way member synchronisation gauge (C8); $|k_B|$ (C12); $\\{\\hbar,h\\}$ the two named unit faces (B7). 10-dim, 8-dirac"
+   "text": "One gauge bit closes the sign sector: One gauge bit closes the sign sector: no C14-type marker exists — $-1$ is a square on admissible $\\Om$, so square class is pair-blind, and integer parity is frame data (A6). Registered faces are pair-invariant: $c^2$, the one-way member synchronisation gauge (C8); $|k_B|$ (C12); $\\{\\hbar,h\\}$ the two named unit faces (B7). 8-dirac"
   },
   {
    "paper": "00",
@@ -25655,7 +25851,7 @@
    "tag": "D",
    "name": "The sign of the Boltzmann residue",
    "statement": "\\textbf{The sign of the Boltzmann residue}: $k_B:=-\\hbar/c$, the sign fixed by the Hawking scaling $k_Bc=h$ read in the chart [chart]; the registered face is $|k_B|$ (B10).",
-   "source": "10-dim",
+   "source": "",
    "page": "00-ledger.html#B13",
    "witness": {
     "script": null,
@@ -25665,10 +25861,8 @@
    "refs": [
     "p00168"
    ],
-   "sources": [
-    "10-dim"
-   ],
-   "text": "The sign of the Boltzmann residue: The sign of the Boltzmann residue: $k_B:=-\\hbar/c$, the sign fixed by the Hawking scaling $k_Bc=h$ read in the chart [chart]; the registered face is $|k_B|$ (B10). 10-dim"
+   "sources": [],
+   "text": "The sign of the Boltzmann residue: The sign of the Boltzmann residue: $k_B:=-\\hbar/c$, the sign fixed by the Hawking scaling $k_Bc=h$ read in the chart [chart]; the registered face is $|k_B|$ (B10)."
   },
   {
    "paper": "00",
@@ -25963,7 +26157,7 @@
    "tag": "T",
    "name": "The square class is chronon parity",
    "statement": "For a primitive drive the squares are $\\langle \\gen^2\\rangle$: a residue's quadratic class is its drive-step parity. Registered transport is even, the one-way multiplier $\\gen$ odd, so the one-way speed is gauge and the two-way constant invariant. $[c^2]$ is even iff $\\dS$ is even, a relation certified by the unit realisation (D7). The Tsirelson $\\sqrt2=\\zeta_8+\\zeta_8^{-1}$ is its two-way symmetrisation.",
-   "source": "8-dirac, 3-caus, 10-dim, 22-qm",
+   "source": "8-dirac, 3-caus, 22-qm",
    "page": "00-ledger.html#C8",
    "witness": {
     "script": null,
@@ -25990,10 +26184,9 @@
    "sources": [
     "8-dirac",
     "3-caus",
-    "10-dim",
     "22-qm"
    ],
-   "text": "The square class is chronon parity: For a primitive drive the squares are $\\langle \\gen^2\\rangle$: a residue's quadratic class is its drive-step parity. Registered transport is even, the one-way multiplier $\\gen$ odd, so the one-way speed is gauge and the two-way constant invariant. $[c^2]$ is even iff $\\dS$ is even, a relation certified by the unit realisation (D7). The Tsirelson $\\sqrt2=\\zeta_8+\\zeta_8^{-1}$ is its two-way symmetrisation. 8-dirac, 3-caus, 10-dim, 22-qm"
+   "text": "The square class is chronon parity: For a primitive drive the squares are $\\langle \\gen^2\\rangle$: a residue's quadratic class is its drive-step parity. Registered transport is even, the one-way multiplier $\\gen$ odd, so the one-way speed is gauge and the two-way constant invariant. $[c^2]$ is even iff $\\dS$ is even, a relation certified by the unit realisation (D7). The Tsirelson $\\sqrt2=\\zeta_8+\\zeta_8^{-1}$ is its two-way symmetrisation. 8-dirac, 3-caus, 22-qm"
   },
   {
    "paper": "00",
@@ -26113,7 +26306,7 @@
    "tag": "T",
    "name": "Temperature and the classical arity, derived",
    "statement": "\\textbf{Temperature and the classical arity, derived}: the temperature domain is acceleration, $[\\Theta]=[E][k_B]^{-1}=[L][T]^{-2}$, flag-free, $\\Theta_P=E_P/|k_B|$, Unruh closing as a domain identity; neither mass nor temperature is primitive --- $M$-$L$-$T$-plus-thermal is the torsion-free shadow of the two-generators-plus-flag system (the mass primitive standing in for the flag, the thermal for $k_B$), classical dimensional analysis recovered in exponents and arity.",
-   "source": "10-dim",
+   "source": "",
    "page": "00-ledger.html#C12",
    "witness": {
     "script": null,
@@ -26135,10 +26328,8 @@
     ]
    },
    "refs": [],
-   "sources": [
-    "10-dim"
-   ],
-   "text": "Temperature and the classical arity, derived: Temperature and the classical arity, derived: the temperature domain is acceleration, $[\\Theta]=[E][k_B]^{-1}=[L][T]^{-2}$, flag-free, $\\Theta_P=E_P/|k_B|$, Unruh closing as a domain identity; neither mass nor temperature is primitive — $M$-$L$-$T$-plus-thermal is the torsion-free shadow of the two-generators-plus-flag system (the mass primitive standing in for the flag, the thermal for $k_B$), classical dimensional analysis recovered in exponents and arity. 10-dim"
+   "sources": [],
+   "text": "Temperature and the classical arity, derived: Temperature and the classical arity, derived: the temperature domain is acceleration, $[\\Theta]=[E][k_B]^{-1}=[L][T]^{-2}$, flag-free, $\\Theta_P=E_P/|k_B|$, Unruh closing as a domain identity; neither mass nor temperature is primitive — $M$-$L$-$T$-plus-thermal is the torsion-free shadow of the two-generators-plus-flag system (the mass primitive standing in for the flag, the thermal for $k_B$), classical dimensional analysis recovered in exponents and arity."
   },
   {
    "paper": "00",
@@ -26656,7 +26847,7 @@
    "tag": "R",
    "name": "A unit of measure is a reciprocal cross-frame relation",
    "statement": "A unit is observer counts per substrate count, its atomic form the action quantum $\\hbar^2=-1$ (B7), its domain the unit-free order-four flag: unitful measures carry it, observables are flag-free, the absolute unit value $\\Om$-hard. The fundamental units are the four domain horizons (10-dim). Falsifier: an embedded observer registering an absolute unit value, or a unitful measure with no cross-frame reciprocal.",
-   "source": "10-dim, 20-rh, 22-qm",
+   "source": "20-rh, 22-qm",
    "page": "00-ledger.html#D7",
    "witness": {
     "script": "10:dimensions.py",
@@ -26667,11 +26858,10 @@
     "p00165"
    ],
    "sources": [
-    "10-dim",
     "20-rh",
     "22-qm"
    ],
-   "text": "A unit of measure is a reciprocal cross-frame relation: A unit is observer counts per substrate count, its atomic form the action quantum $\\hbar^2=-1$ (B7), its domain the unit-free order-four flag: unitful measures carry it, observables are flag-free, the absolute unit value $\\Om$-hard. The fundamental units are the four domain horizons (10-dim). Falsifier: an embedded observer registering an absolute unit value, or a unitful measure with no cross-frame reciprocal. 10-dim, 20-rh, 22-qm 10:dimensions.py"
+   "text": "A unit of measure is a reciprocal cross-frame relation: A unit is observer counts per substrate count, its atomic form the action quantum $\\hbar^2=-1$ (B7), its domain the unit-free order-four flag: unitful measures carry it, observables are flag-free, the absolute unit value $\\Om$-hard. The fundamental units are the four domain horizons (10-dim). Falsifier: an embedded observer registering an absolute unit value, or a unitful measure with no cross-frame reciprocal. 20-rh, 22-qm 10:dimensions.py"
   },
   {
    "paper": "00",
@@ -27327,37 +27517,6 @@
     "22-qm"
    ],
    "text": "The binding lift: The binding lift: a pair fuses iff cycles coprime, windings unit; else the F2 offsets stay drive-confined (22-qm B5, C15) — the deuteron, $(4,4)$, spectrumless. Fusion carries the half-driven offsets onto the F4 rungs; pointer channels forced, Born lands with exact dephasing ($1+\\omega+\\omega^{2}=0$, $T'=516$). Energies $E_{s}=s h/3$, stations $\\{0,58,116\\}$; cores odd$(\\q-1)$: hydrogen $(4,3)\\to C_{12}$, $\\kap_{O}=3$, ground first. 22-qm"
-  },
-  {
-   "paper": "00",
-   "no": 0,
-   "rid": "00:F7",
-   "key": "p00177",
-   "label": "F7",
-   "block": "F",
-   "tag": "T",
-   "name": "The additive window",
-   "statement": "\\textbf{The additive window}: for $N$ modes at resolvable heights $|\\hat h_i|\\le\\kap_i$ (38:A8) the total winding satisfies $|\\sum_i\\hat h_i|\\le\\sum_i\\kap_i$, attained, every total occurring, so the least register window resolving the total exactly is the capacity sum $\\sum\\kap_i$ --- $3N$ for $N$ hydrogen units --- a capacity of the observing Subject, not a shell of the composite. A lock of $N$ like units never fuses (F6, $\\gcd(12,12)=12$): it is F2's joint registration on $C_{12}$, recurrence $12$, one superselected $C_{12}$ offset per further unit, an aggregate; a shell of capacity $3N$ exists iff $12N+1$ is prime ($N=1,3,5,6,8,9$; none at $N=2$, $25=5^{2}$) and is not the lock's register; fusion (coprime cycles) is multiplicative, $\\kap =n_{1}n_{2}/4$, hydrogen $(4,3)\\to3$. The largest shell a Subject of the Carrier registers whole is $\\q<\\Om^{1/4}$ ($\\q^{2}<\\p$, $\\p^{2}<\\Om$; B8): $13$ on $30089$, $37$ on $2{,}408{,}561$, none on $233$; in hydrogen units $N<(\\Om^{1/4}-1)/12$, $8\\times10^{2}$ kg at the ledger's $\\Om$ (A7), on the 14-entr diagonal at $0.95$ m [approx]. The 14-entr capacity axis counts hydrogen units, one gram at $N_A$ [approx]: a definition (D2), not a registered shell; a lock's capacity against its wall displacement compares a shell label with a chart count and is no relation.",
-   "source": "38-s13 (A8), 14-entr",
-   "page": "00-ledger.html#F7",
-   "witness": {
-    "script": "38:check_s13.js",
-    "py": null,
-    "lean": []
-   },
-   "refs": [
-    "p00009",
-    "p00043",
-    "p00064",
-    "p00166",
-    "p00191",
-    "p38008"
-   ],
-   "sources": [
-    "38-s13",
-    "14-entr"
-   ],
-   "text": "The additive window: The additive window: for $N$ modes at resolvable heights $|\\hat h_i|\\le\\kap_i$ (38:A8) the total winding satisfies $|\\sum_i\\hat h_i|\\le\\sum_i\\kap_i$, attained, every total occurring, so the least register window resolving the total exactly is the capacity sum $\\sum\\kap_i$ — $3N$ for $N$ hydrogen units — a capacity of the observing Subject, not a shell of the composite. A lock of $N$ like units never fuses (F6, $\\gcd(12,12)=12$): it is F2's joint registration on $C_{12}$, recurrence $12$, one superselected $C_{12}$ offset per further unit, an aggregate; a shell of capacity $3N$ exists iff $12N+1$ is prime ($N=1,3,5,6,8,9$; none at $N=2$, $25=5^{2}$) and is not the lock's register; fusion (coprime cycles) is multiplicative, $\\kap =n_{1}n_{2}/4$, hydrogen $(4,3)\\to3$. The largest shell a Subject of the Carrier registers whole is $\\q<\\Om^{1/4}$ ($\\q^{2}<\\p$, $\\p^{2}<\\Om$; B8): $13$ on $30089$, $37$ on $2{,}408{,}561$, none on $233$; in hydrogen units $N<(\\Om^{1/4}-1)/12$, $8\\times10^{2}$ kg at the ledger's $\\Om$ (A7), on the 14-entr diagonal at $0.95$ m [approx]. The 14-entr capacity axis counts hydrogen units, one gram at $N_A$ [approx]: a definition (D2), not a registered shell; a lock's capacity against its wall displacement compares a shell label with a chart count and is no relation. 38-s13 (A8), 14-entr 38:check_s13.js"
   },
   {
    "paper": "00",
@@ -28719,10 +28878,10 @@
     "lean": []
    },
    "refs": [
+    "p00008",
     "p00062",
     "p00112",
-    "p20047",
-    "p20078"
+    "p20047"
    ],
    "sources": [
     "20-rh"
@@ -39549,7 +39708,7 @@
     "py": {
      "href": "src/13-epi/#p13009",
      "script": "epi.py",
-     "line": 1316,
+     "line": 1349,
      "verdict": "pass"
     },
     "lean": [
@@ -39592,7 +39751,7 @@
     "py": {
      "href": "src/13-epi/#p13010",
      "script": "epi.py",
-     "line": 1258,
+     "line": 1291,
      "verdict": "pass"
     },
     "lean": [
@@ -39724,7 +39883,7 @@
     "py": {
      "href": "src/13-epi/#p13014",
      "script": "epi.py",
-     "line": 1294,
+     "line": 1327,
      "verdict": "pass"
     },
     "lean": [
@@ -39784,7 +39943,7 @@
     "py": {
      "href": "src/13-epi/#p13016",
      "script": "epi.py",
-     "line": 732,
+     "line": 754,
      "verdict": "pass"
     },
     "lean": [
@@ -40063,7 +40222,7 @@
     "py": {
      "href": "src/13-epi/#p13023",
      "script": "epi.py",
-     "line": 732,
+     "line": 754,
      "verdict": "pass"
     },
     "lean": [
@@ -40122,7 +40281,7 @@
     "py": {
      "href": "src/13-epi/#p13024",
      "script": "epi.py",
-     "line": 780,
+     "line": 802,
      "verdict": "pass"
     },
     "lean": [
@@ -40163,7 +40322,7 @@
     "py": {
      "href": "src/13-epi/#p13025",
      "script": "epi.py",
-     "line": 771,
+     "line": 793,
      "verdict": "pass"
     },
     "lean": [
@@ -40236,7 +40395,7 @@
     "py": {
      "href": "src/13-epi/#p13026",
      "script": "epi.py",
-     "line": 771,
+     "line": 793,
      "verdict": "pass"
     },
     "lean": [
@@ -40556,7 +40715,7 @@
     "py": {
      "href": "src/13-epi/#p13033",
      "script": "epi.py",
-     "line": 1258,
+     "line": 1291,
      "verdict": "pass"
     },
     "lean": [
@@ -40642,7 +40801,7 @@
     "py": {
      "href": "src/13-epi/#p13034",
      "script": "epi.py",
-     "line": 824,
+     "line": 846,
      "verdict": "pass"
     },
     "lean": [
@@ -40685,7 +40844,7 @@
     "py": {
      "href": "src/13-epi/#p13035",
      "script": "epi.py",
-     "line": 824,
+     "line": 846,
      "verdict": "pass"
     },
     "lean": [
@@ -40718,7 +40877,7 @@
     "py": {
      "href": "src/13-epi/#p13036",
      "script": "epi.py",
-     "line": 1045,
+     "line": 1078,
      "verdict": "pass"
     },
     "lean": [
@@ -40753,7 +40912,7 @@
     "py": {
      "href": "src/13-epi/#p13037",
      "script": "epi.py",
-     "line": 862,
+     "line": 884,
      "verdict": "pass"
     },
     "lean": [
@@ -40771,7 +40930,7 @@
     "p13003",
     "p13067"
    ],
-   "text": "Second order at the half wall: $w_m\\equiv-2+2\\p(q_\\p(4)-1)\\pmod{\\p^{2}}$ with $q_\\p(4)\\equiv2q_\\p(2)$, exact to $\\p^{3}$ through Morley (A3); the universal $-2$ persists to $\\p^{2}$ exactly for the $\\pi$-Wieferich primes $4^{\\p-1}\\equiv1+\\p\\pmod{\\p^{2}}$ (OEIS A355959, G10), which are exactly $5$ and $45827$ below $1.08\\times10^{11}$ [oeisA355959], re-verified here to $2^{35}$ (pi_wieferich128; $45827\\equiv3\\pmod4$, so $\\p=5$ is the only Subject shell among them; two below $10^{6}$ against the range frequency $\\sum_{\\p<10^{6}}1/\\p\\approx2.4$); the normalised quotients equidistribute empirically \\apx. Thm. thm:secondorder p13037, FrcLedger{G4} Epi.half_wall_second_order"
+   "text": "Second order at the half wall: $w_m\\equiv-2+2\\p(q_\\p(4)-1)\\pmod{\\p^{2}}$ with $q_\\p(4)\\equiv2q_\\p(2)$, exact to $\\p^{3}$ through Morley (A3). The universal $-2$ persists to $\\p^{2}$ exactly for the $\\pi$-Wieferich primes (G10): $5$ and $45827$ below $1.08\\times10^{11}$ [oeisA355959] and below $2^{35}$ (the package's recorded search); $45827\\equiv3\\pmod4$, so $\\p=5$ is the only Subject shell among them. The normalised quotients equidistribute empirically \\apx. Thm. thm:secondorder p13037, FrcLedger{G4} Epi.half_wall_second_order"
   },
   {
    "paper": "13-epi",
@@ -40789,7 +40948,7 @@
     "py": {
      "href": "src/13-epi/#p13038",
      "script": "epi.py",
-     "line": 919,
+     "line": 952,
      "verdict": "pass"
     },
     "lean": [
@@ -40840,7 +40999,7 @@
     "py": {
      "href": "src/13-epi/#p13039",
      "script": "epi.py",
-     "line": 948,
+     "line": 981,
      "verdict": "pass"
     },
     "lean": [
@@ -40873,7 +41032,7 @@
     "py": {
      "href": "src/13-epi/#p13040",
      "script": "epi.py",
-     "line": 1087,
+     "line": 1120,
      "verdict": "pass"
     },
     "lean": [
@@ -40911,7 +41070,7 @@
     "py": {
      "href": "src/13-epi/#p13041",
      "script": "epi.py",
-     "line": 740,
+     "line": 762,
      "verdict": "pass"
     },
     "lean": [
@@ -40944,7 +41103,7 @@
     "py": {
      "href": "src/13-epi/#p13042",
      "script": "epi.py",
-     "line": 1274,
+     "line": 1307,
      "verdict": "pass"
     },
     "lean": [
@@ -40985,7 +41144,7 @@
     "py": {
      "href": "src/13-epi/#p13067",
      "script": "epi.py",
-     "line": 880,
+     "line": 913,
      "verdict": "pass"
     },
     "lean": [
@@ -41061,7 +41220,7 @@
     "py": {
      "href": "src/13-epi/#p13044",
      "script": "epi.py",
-     "line": 1250,
+     "line": 1283,
      "verdict": "pass"
     },
     "lean": [
@@ -41184,14 +41343,14 @@
    "block": "H",
    "tag": "T",
    "name": null,
-   "statement": "The null experiment: whether $\\gen^{\\lambda(\\im)}\\equiv-(\\Ku{\\p})^{-1}$ for some primitive root of either chirality is the index condition $\\gcd(s,\\p-1)=\\gcd(\\lambda(\\pm\\im),\\p-1)$; over the $210$ primes $\\p\\equiv1\\pmod4$, $5<\\p<3000$, it is solvable for $94$ ($44.8\\%$, against $96.0\\pm6.6$ expected under independence), the correlation of the two angular addresses $-0.10$ at deviation $\\approx0.07$ \\apx: no invariant pointwise identification of the angular and radial carriers of $e$; the naive reading of $\\eP$ as the number $2.71828\\ldots$ is refuted.",
+   "statement": "The null experiment: whether $\\gen^{\\lambda(\\pm\\im)}\\equiv-(\\Ku{\\p})^{-1}$ for some primitive root and either orientation, varied independently, is the index condition $\\gcd(s,\\p-1)=\\gcd(\\lambda(\\pm\\im),\\p-1)$; over the $210$ primes $\\p\\equiv1\\pmod4$, $5<\\p<3000$, it holds for $94$ against $96.0\\pm6.6$ expected under independence ($54$ against $57.9\\pm6.2$ with the orientation tied to the generator), the correlation of the two angular addresses $-0.10$ at deviation $\\approx0.07$ \\apx: no invariant pointwise identification of the angular and radial carriers of $e$.",
    "source": "Exp.~\\ref{exp:null}\\newline \\pywit{epi}{p13047}{H5}, \\leanwit{FrcLedger}{p13047}{H5} \\lean{Epi.index\\_condition\\_shell, Epi.index\\_condition}",
    "page": "13-epi/index.html#H5",
    "witness": {
     "py": {
      "href": "src/13-epi/#p13047",
      "script": "epi.py",
-     "line": 662,
+     "line": 680,
      "verdict": "pass"
     },
     "lean": [
@@ -41214,7 +41373,7 @@
     ]
    },
    "refs": [],
-   "text": "The null experiment: whether $\\gen^{\\lambda(\\im)}\\equiv-(\\Ku{\\p})^{-1}$ for some primitive root of either chirality is the index condition $\\gcd(s,\\p-1)=\\gcd(\\lambda(\\pm\\im),\\p-1)$; over the $210$ primes $\\p\\equiv1\\pmod4$, $5<\\p<3000$, it is solvable for $94$ ($44.8%$, against $96.0\\pm6.6$ expected under independence), the correlation of the two angular addresses $-0.10$ at deviation $\\approx0.07$ \\apx: no invariant pointwise identification of the angular and radial carriers of $e$; the naive reading of $\\eP$ as the number $2.71828\\ldots$ is refuted. Exp. exp:null p13047, FrcLedger{H5} Epi.index_condition_shell, Epi.index_condition"
+   "text": "The null experiment: whether $\\gen^{\\lambda(\\pm\\im)}\\equiv-(\\Ku{\\p})^{-1}$ for some primitive root and either orientation, varied independently, is the index condition $\\gcd(s,\\p-1)=\\gcd(\\lambda(\\pm\\im),\\p-1)$; over the $210$ primes $\\p\\equiv1\\pmod4$, $5<\\p<3000$, it holds for $94$ against $96.0\\pm6.6$ expected under independence ($54$ against $57.9\\pm6.2$ with the orientation tied to the generator), the correlation of the two angular addresses $-0.10$ at deviation $\\approx0.07$ \\apx: no invariant pointwise identification of the angular and radial carriers of $e$. Exp. exp:null p13047, FrcLedger{H5} Epi.index_condition_shell, Epi.index_condition"
   },
   {
    "paper": "13-epi",
@@ -41328,7 +41487,7 @@
     "py": {
      "href": "src/13-epi/#p13049",
      "script": "epi.py",
-     "line": 771,
+     "line": 793,
      "verdict": "pass"
     },
     "lean": [
@@ -41415,7 +41574,7 @@
     "py": {
      "href": "src/13-epi/#p13050",
      "script": "epi.py",
-     "line": 1392,
+     "line": 1425,
      "verdict": "pass"
     },
     "lean": [
@@ -41504,7 +41663,7 @@
     "py": {
      "href": "src/13-epi/#p13051",
      "script": "epi.py",
-     "line": 1250,
+     "line": 1283,
      "verdict": "pass"
     },
     "lean": [
@@ -41540,7 +41699,7 @@
     "py": {
      "href": "src/13-epi/#p13068",
      "script": "epi.py",
-     "line": 1579,
+     "line": 1612,
      "verdict": "pass"
     },
     "lean": [
@@ -41577,7 +41736,7 @@
     "py": {
      "href": "src/13-epi/#p13052",
      "script": "epi.py",
-     "line": 1250,
+     "line": 1283,
      "verdict": "pass"
     },
     "lean": [
@@ -41612,7 +41771,7 @@
     "py": {
      "href": "src/13-epi/#p13053",
      "script": "epi.py",
-     "line": 1351,
+     "line": 1384,
      "verdict": "pass"
     },
     "lean": [
@@ -41655,7 +41814,7 @@
     "py": {
      "href": "src/13-epi/#p13054",
      "script": "epi.py",
-     "line": 1351,
+     "line": 1384,
      "verdict": "pass"
     },
     "lean": [
@@ -41713,7 +41872,7 @@
     "py": {
      "href": "src/13-epi/#p13056",
      "script": "epi.py",
-     "line": 1351,
+     "line": 1384,
      "verdict": "pass"
     },
     "lean": [
@@ -41752,7 +41911,7 @@
     "py": {
      "href": "src/13-epi/#p13057",
      "script": "epi.py",
-     "line": 1465,
+     "line": 1498,
      "verdict": "pass"
     },
     "lean": [
@@ -41811,7 +41970,7 @@
     "py": {
      "href": "src/13-epi/#p13061",
      "script": "epi.py",
-     "line": 1679,
+     "line": 1712,
      "verdict": "pass"
     },
     "lean": []
@@ -41842,7 +42001,7 @@
     "py": {
      "href": "src/13-epi/#p13063",
      "script": "epi.py",
-     "line": 1724,
+     "line": 1757,
      "verdict": "pass"
     },
     "lean": []
@@ -41912,7 +42071,7 @@
     "py": {
      "href": "src/14-entropy/#p14002",
      "script": "entropy.py",
-     "line": 243,
+     "line": 252,
      "verdict": "pass"
     },
     "lean": [
@@ -42278,7 +42437,7 @@
     "py": {
      "href": "src/14-entropy/#p14017",
      "script": "entropy.py",
-     "line": 263,
+     "line": 272,
      "verdict": "pass"
     },
     "lean": [
@@ -42324,8 +42483,8 @@
    "block": "B",
    "tag": "D",
    "name": null,
-   "statement": "The capacity axis counts hydrogen units (one gram at $N_A$ to $0.003$ dex \\apx): a definition, not a registered shell. The least register window resolving the total winding of $N$ units is $3N$, a theorem about the observing Subject (00:F7); a phase-locked composite of like units is an aggregate, never one shell (00:F6; a shell of capacity $3N$ exists only when $12N+1$ is prime, none at $N=2$); the largest shell any Subject registers whole is the nesting bound $\\mathsf{q}<\\Om^{1/4}$, $N<(\\Om^{1/4}-1)/12$ units, $8\\times10^{2}$\\,kg at $\\dS=3.3\\times10^{122}$ \\apx{} ($\\dS^{1/4}$ units overcounts by $12$); everything heavier an aggregate of locks; the proton's $1$ against $3$ compares a tower label with a chart count.",
-   "source": "\\S\\ref{sec:wedge}; 00:F7, 00:F6\\newline \\leanwit{FrcCore}{p14044}{B10}, \\leanwit{FrcLedger}{p14044}{B10} \\lean{Entropy.hydrogen\\_units, Entropy.nesting\\_lab, FRC.Entropy.nesting\\_bound, FRC.Entropy.lab\\_nesting}",
+   "statement": "The capacity axis counts hydrogen units (one gram at $N_A$ to $0.003$ dex \\apx): a definition, not a registered shell. The least register window resolving the total winding of $N$ units is $3N$, a theorem about the observing Subject (B11); a phase-locked composite of like units is an aggregate, never one shell (B12; a shell of capacity $3N$ exists only when $12N+1$ is prime, B13); the largest shell any Subject registers whole is the nesting bound $\\mathsf{q}<\\Om^{1/4}$ (00:B8), $N<(\\Om^{1/4}-1)/12$ units, $8\\times10^{2}$\\,kg at $\\dS=3.3\\times10^{122}$ \\apx{} ($\\Om^{1/4}$ units overcounts by $12$); everything heavier an aggregate of locks; the proton's $1$ against $3$ compares a tower label with a chart count.",
+   "source": "\\S\\ref{sec:wedge}; B11--B13, 00:B8\\newline \\leanwit{FrcCore}{p14044}{B10}, \\leanwit{FrcLedger}{p14044}{B10} \\lean{Entropy.hydrogen\\_units, Entropy.nesting\\_lab, FRC.Entropy.nesting\\_bound, FRC.Entropy.lab\\_nesting}",
    "page": "14-entropy/index.html#B10",
    "witness": {
     "py": null,
@@ -42365,10 +42524,176 @@
     ]
    },
    "refs": [
-    "p00064",
-    "p00177"
+    "p00166",
+    "p14046",
+    "p14047",
+    "p14048"
    ],
-   "text": "The capacity axis counts hydrogen units (one gram at $N_A$ to $0.003$ dex \\apx): a definition, not a registered shell. The least register window resolving the total winding of $N$ units is $3N$, a theorem about the observing Subject (00:F7); a phase-locked composite of like units is an aggregate, never one shell (00:F6; a shell of capacity $3N$ exists only when $12N+1$ is prime, none at $N=2$); the largest shell any Subject registers whole is the nesting bound $\\mathsf{q}<\\Om^{1/4}$, $N<(\\Om^{1/4}-1)/12$ units, $8\\times10^{2}$ kg at $\\dS=3.3\\times10^{122}$ \\apx{} ($\\dS^{1/4}$ units overcounts by $12$); everything heavier an aggregate of locks; the proton's $1$ against $3$ compares a tower label with a chart count. \\Ssec:wedge; 00:F7, 00:F6 FrcCore{B10}, FrcLedger{B10} Entropy.hydrogen_units, Entropy.nesting_lab, FRC.Entropy.nesting_bound, FRC.Entropy.lab_nesting"
+   "text": "The capacity axis counts hydrogen units (one gram at $N_A$ to $0.003$ dex \\apx): a definition, not a registered shell. The least register window resolving the total winding of $N$ units is $3N$, a theorem about the observing Subject (B11); a phase-locked composite of like units is an aggregate, never one shell (B12; a shell of capacity $3N$ exists only when $12N+1$ is prime, B13); the largest shell any Subject registers whole is the nesting bound $\\mathsf{q}<\\Om^{1/4}$ (00:B8), $N<(\\Om^{1/4}-1)/12$ units, $8\\times10^{2}$ kg at $\\dS=3.3\\times10^{122}$ \\apx{} ($\\Om^{1/4}$ units overcounts by $12$); everything heavier an aggregate of locks; the proton's $1$ against $3$ compares a tower label with a chart count. \\Ssec:wedge; B11–B13, 00:B8 FrcCore{B10}, FrcLedger{B10} Entropy.hydrogen_units, Entropy.nesting_lab, FRC.Entropy.nesting_bound, FRC.Entropy.lab_nesting"
+  },
+  {
+   "paper": "14-entr",
+   "no": 14,
+   "rid": "14:B11",
+   "key": "p14046",
+   "label": "B11",
+   "block": "B",
+   "tag": "T",
+   "name": null,
+   "statement": "The additive window: for $N$ modes at resolvable heights $|\\hat h_i|\\le\\kap_i$ (38:A8) the total winding satisfies $|\\sum_i\\hat h_i|\\le\\sum_i\\kap_i$, attained, every total in the range occurring; the least register window resolving the total exactly is the capacity sum $\\sum_i\\kap_i$, $3N$ for $N$ hydrogen units --- a capacity of the observing Subject, not a shell of the composite (B10).",
+   "source": "\\S\\ref{sec:wedge}; 38:A8, B10\\newline \\pywit{entropy}{p14046}{B11}, \\leanwit{FrcCore}{p14046}{B11}, \\leanwit{FrcLedger}{p14046}{B11} \\lean{Entropy.additive\\_window, FRC.Entropy.additive\\_window, FRC.Entropy.additive\\_window\\_hydrogen}",
+   "page": "14-entropy/index.html#B11",
+   "witness": {
+    "py": {
+     "href": "src/14-entropy/#p14046",
+     "script": "entropy.py",
+     "line": 1214,
+     "verdict": "pass"
+    },
+    "lean": [
+     {
+      "lib": "FrcLedger",
+      "module": "FrcLedger/Entropy",
+      "name": "FRC.Entropy.additive_window",
+      "tier": 1,
+      "ok": true,
+      "page": "lean/ml/Entropy.html#FRC.Entropy.additive_window"
+     },
+     {
+      "lib": "FrcCore",
+      "module": "FrcCore/Entropy",
+      "name": "FRC.Entropy.additive_window",
+      "tier": 0,
+      "ok": true,
+      "page": "lean/core/Entropy.html#FRC.Entropy.additive_window"
+     },
+     {
+      "lib": "FrcCore",
+      "module": "FrcCore/Entropy",
+      "name": "FRC.Entropy.additive_window_hydrogen",
+      "tier": 0,
+      "ok": true,
+      "page": "lean/core/Entropy.html#FRC.Entropy.additive_window_hydrogen"
+     }
+    ]
+   },
+   "refs": [
+    "p14044",
+    "p38008"
+   ],
+   "text": "The additive window: for $N$ modes at resolvable heights $|\\hat h_i|\\le\\kap_i$ (38:A8) the total winding satisfies $|\\sum_i\\hat h_i|\\le\\sum_i\\kap_i$, attained, every total in the range occurring; the least register window resolving the total exactly is the capacity sum $\\sum_i\\kap_i$, $3N$ for $N$ hydrogen units — a capacity of the observing Subject, not a shell of the composite (B10). \\Ssec:wedge; 38:A8, B10 p14046, FrcCore{B11}, FrcLedger{B11} Entropy.additive_window, FRC.Entropy.additive_window, FRC.Entropy.additive_window_hydrogen"
+  },
+  {
+   "paper": "14-entr",
+   "no": 14,
+   "rid": "14:B12",
+   "key": "p14047",
+   "label": "B12",
+   "block": "B",
+   "tag": "T",
+   "name": null,
+   "statement": "The lock of like units: $N$ like units never fuse (00:F6, $\\gcd(12,12)=12$): their joint registration (00:F2) recurs on $C_{12}$ with period $12$ for every $N$, one superselected $C_{12}$ offset per further unit --- an aggregate, never one shell. Instances: the diagonal drive on $C_{12}^{2}$ has $12$ orbits of length $12$, on $C_{12}^{3}$ $144$.",
+   "source": "\\S\\ref{sec:wedge}; 00:F6, 00:F2\\newline \\pywit{entropy}{p14047}{B12}, \\leanwit{FrcCore}{p14047}{B12}, \\leanwit{FrcLedger}{p14047}{B12} \\lean{Entropy.lock\\_recurrence, FRC.Entropy.lock\\_recurrence, FRC.Entropy.lock\\_orbits}",
+   "page": "14-entropy/index.html#B12",
+   "witness": {
+    "py": {
+     "href": "src/14-entropy/#p14047",
+     "script": "entropy.py",
+     "line": 1233,
+     "verdict": "pass"
+    },
+    "lean": [
+     {
+      "lib": "FrcLedger",
+      "module": "FrcLedger/Entropy",
+      "name": "FRC.Entropy.lock_recurrence",
+      "tier": 1,
+      "ok": true,
+      "page": "lean/ml/Entropy.html#FRC.Entropy.lock_recurrence"
+     },
+     {
+      "lib": "FrcCore",
+      "module": "FrcCore/Entropy",
+      "name": "FRC.Entropy.lock_recurrence",
+      "tier": 0,
+      "ok": true,
+      "page": "lean/core/Entropy.html#FRC.Entropy.lock_recurrence"
+     },
+     {
+      "lib": "FrcCore",
+      "module": "FrcCore/Entropy",
+      "name": "FRC.Entropy.lock_orbits",
+      "tier": 0,
+      "ok": true,
+      "page": "lean/core/Entropy.html#FRC.Entropy.lock_orbits"
+     }
+    ]
+   },
+   "refs": [
+    "p00064",
+    "p00191"
+   ],
+   "text": "The lock of like units: $N$ like units never fuse (00:F6, $\\gcd(12,12)=12$): their joint registration (00:F2) recurs on $C_{12}$ with period $12$ for every $N$, one superselected $C_{12}$ offset per further unit — an aggregate, never one shell. Instances: the diagonal drive on $C_{12}^{2}$ has $12$ orbits of length $12$, on $C_{12}^{3}$ $144$. \\Ssec:wedge; 00:F6, 00:F2 p14047, FrcCore{B12}, FrcLedger{B12} Entropy.lock_recurrence, FRC.Entropy.lock_recurrence, FRC.Entropy.lock_orbits"
+  },
+  {
+   "paper": "14-entr",
+   "no": 14,
+   "rid": "14:B13",
+   "key": "p14048",
+   "label": "B13",
+   "block": "B",
+   "tag": "T",
+   "name": null,
+   "statement": "Shells of capacity $3N$ and fusion: the shell of capacity $3N$ is $\\F_{12N+1}$ and exists iff $12N+1$ is prime ($N=1,3,5,6,8,9$ below $10$; none at $N=2$, $25=5^{2}$), never the lock's register (B12); fusion of coprime cycles is multiplicative, $\\kap=n_{1}n_{2}/4$: hydrogen $(4,3)\\to3$, one orbit of length $12$ (00:F6).",
+   "source": "\\S\\ref{sec:wedge}; B12, 00:F6\\newline \\pywit{entropy}{p14048}{B13}, \\leanwit{FrcCore}{p14048}{B13}, \\leanwit{FrcLedger}{p14048}{B13} \\lean{Entropy.shells\\_of\\_capacity, Entropy.fusion\\_capacity, FRC.Entropy.shells\\_of\\_capacity, FRC.Entropy.fusion\\_capacity}",
+   "page": "14-entropy/index.html#B13",
+   "witness": {
+    "py": {
+     "href": "src/14-entropy/#p14048",
+     "script": "entropy.py",
+     "line": 1245,
+     "verdict": "pass"
+    },
+    "lean": [
+     {
+      "lib": "FrcLedger",
+      "module": "FrcLedger/Entropy",
+      "name": "FRC.Entropy.shells_of_capacity",
+      "tier": 2,
+      "ok": true,
+      "page": "lean/ml/Entropy.html#FRC.Entropy.shells_of_capacity"
+     },
+     {
+      "lib": "FrcLedger",
+      "module": "FrcLedger/Entropy",
+      "name": "FRC.Entropy.fusion_capacity",
+      "tier": 1,
+      "ok": true,
+      "page": "lean/ml/Entropy.html#FRC.Entropy.fusion_capacity"
+     },
+     {
+      "lib": "FrcCore",
+      "module": "FrcCore/Entropy",
+      "name": "FRC.Entropy.shells_of_capacity",
+      "tier": 0,
+      "ok": true,
+      "page": "lean/core/Entropy.html#FRC.Entropy.shells_of_capacity"
+     },
+     {
+      "lib": "FrcCore",
+      "module": "FrcCore/Entropy",
+      "name": "FRC.Entropy.fusion_capacity",
+      "tier": 0,
+      "ok": true,
+      "page": "lean/core/Entropy.html#FRC.Entropy.fusion_capacity"
+     }
+    ]
+   },
+   "refs": [
+    "p00064",
+    "p14047"
+   ],
+   "text": "Shells of capacity $3N$ and fusion: the shell of capacity $3N$ is $\\F_{12N+1}$ and exists iff $12N+1$ is prime ($N=1,3,5,6,8,9$ below $10$; none at $N=2$, $25=5^{2}$), never the lock's register (B12); fusion of coprime cycles is multiplicative, $\\kap=n_{1}n_{2}/4$: hydrogen $(4,3)\\to3$, one orbit of length $12$ (00:F6). \\Ssec:wedge; B12, 00:F6 p14048, FrcCore{B13}, FrcLedger{B13} Entropy.shells_of_capacity, Entropy.fusion_capacity, FRC.Entropy.shells_of_capacity, FRC.Entropy.fusion_capacity"
   },
   {
    "paper": "14-entr",
@@ -42386,7 +42711,7 @@
     "py": {
      "href": "src/14-entropy/#p14018",
      "script": "entropy.py",
-     "line": 331,
+     "line": 340,
      "verdict": "pass"
     },
     "lean": []
@@ -42438,7 +42763,7 @@
     "py": {
      "href": "src/14-entropy/#p14020",
      "script": "entropy.py",
-     "line": 388,
+     "line": 397,
      "verdict": "pass"
     },
     "lean": [
@@ -42489,7 +42814,7 @@
     "py": {
      "href": "src/14-entropy/#p14021",
      "script": "entropy.py",
-     "line": 348,
+     "line": 357,
      "verdict": "pass"
     },
     "lean": []
@@ -42515,7 +42840,7 @@
     "py": {
      "href": "src/14-entropy/#p14022",
      "script": "entropy.py",
-     "line": 472,
+     "line": 481,
      "verdict": "pass"
     },
     "lean": [
@@ -42580,7 +42905,7 @@
     "py": {
      "href": "src/14-entropy/#p14023",
      "script": "entropy.py",
-     "line": 243,
+     "line": 252,
      "verdict": "pass"
     },
     "lean": [
@@ -42648,7 +42973,7 @@
     "py": {
      "href": "src/14-entropy/#p14024",
      "script": "entropy.py",
-     "line": 388,
+     "line": 397,
      "verdict": "pass"
     },
     "lean": [
@@ -42693,7 +43018,7 @@
     "py": {
      "href": "src/14-entropy/#p14025",
      "script": "entropy.py",
-     "line": 407,
+     "line": 416,
      "verdict": "pass"
     },
     "lean": [
@@ -42747,7 +43072,7 @@
     "py": {
      "href": "src/14-entropy/#p14026",
      "script": "entropy.py",
-     "line": 685,
+     "line": 694,
      "verdict": "pass"
     },
     "lean": [
@@ -42783,7 +43108,7 @@
     "py": {
      "href": "src/14-entropy/#p14027",
      "script": "entropy.py",
-     "line": 1129,
+     "line": 1138,
      "verdict": "pass"
     },
     "lean": [
@@ -42824,7 +43149,7 @@
     "py": {
      "href": "src/14-entropy/#p14036",
      "script": "entropy.py",
-     "line": 491,
+     "line": 500,
      "verdict": "pass"
     },
     "lean": []
@@ -42853,7 +43178,7 @@
     "py": {
      "href": "src/14-entropy/#p14037",
      "script": "entropy.py",
-     "line": 472,
+     "line": 481,
      "verdict": "pass"
     },
     "lean": []
@@ -42883,7 +43208,7 @@
     "py": {
      "href": "src/14-entropy/#p14038",
      "script": "entropy.py",
-     "line": 427,
+     "line": 436,
      "verdict": "pass"
     },
     "lean": [
@@ -42985,7 +43310,7 @@
     "py": {
      "href": "src/14-entropy/#p14029",
      "script": "entropy.py",
-     "line": 459,
+     "line": 468,
      "verdict": "pass"
     },
     "lean": [
@@ -43023,7 +43348,7 @@
     "py": {
      "href": "src/14-entropy/#p14030",
      "script": "entropy.py",
-     "line": 388,
+     "line": 397,
      "verdict": "pass"
     },
     "lean": [
@@ -43115,7 +43440,7 @@
     "py": {
      "href": "src/14-entropy/#p14032",
      "script": "entropy.py",
-     "line": 685,
+     "line": 694,
      "verdict": "pass"
     },
     "lean": []
@@ -43141,7 +43466,7 @@
     "py": {
      "href": "src/14-entropy/#p14033",
      "script": "entropy.py",
-     "line": 388,
+     "line": 397,
      "verdict": "pass"
     },
     "lean": []
@@ -43236,35 +43561,169 @@
    "paper": "20-rh",
    "no": 20,
    "rid": "20:A2",
-   "key": "p20002",
+   "key": "p00004",
    "label": "A2",
    "block": "A",
-   "tag": "I",
+   "tag": "T",
    "name": null,
-   "statement": "The finitude of the totality: the reductio ad absurdum against completed infinity, a stated premise used for one purpose, the closure of the quantifier over heights (F7).",
-   "source": "\\citep{akhtman2025reductio}",
+   "statement": "Finitude: for any reading of capacity $R$ the registered Universe embeds in the shell of $R$ members, and among $R+1$ members two share a residue; the totality is finite, its cardinality $\\Omega$. A theorem of the master ledger (00:A2), proved in the core, cited as the closure's first premise (F7).",
+   "source": "00:A2; \\S\\ref{sec:promotion}\\newline \\pywit{rh}{p00004}{A2}, \\leanwit{FrcCore}{p00004}{A2} \\lean{FRC.Foundation.registered\\_finite, FRC.Foundation.no\\_unlimited\\_supply, FRC.Foundation.agent\\_bound}",
    "page": "20-rh/index.html#A2",
    "witness": {
     "py": null,
-    "lean": []
+    "lean": [
+     {
+      "lib": "FrcCore",
+      "module": "FrcCore/Theme/Foundation",
+      "name": "FRC.Foundation.registered_finite",
+      "tier": 0,
+      "ok": true,
+      "page": "lean/core/Theme.html#FRC.Foundation.registered_finite"
+     },
+     {
+      "lib": "FrcCore",
+      "module": "FrcCore/Theme/Foundation",
+      "name": "FRC.Foundation.no_unlimited_supply",
+      "tier": 0,
+      "ok": true,
+      "page": "lean/core/Theme.html#FRC.Foundation.no_unlimited_supply"
+     },
+     {
+      "lib": "FrcCore",
+      "module": "FrcCore/Theme/Foundation",
+      "name": "FRC.Foundation.agent_bound",
+      "tier": 0,
+      "ok": true,
+      "page": "lean/core/Theme.html#FRC.Foundation.agent_bound"
+     }
+    ]
    },
    "refs": [
-    "p20053"
+    "p00004",
+    "p20079"
    ],
-   "text": "The finitude of the totality: the reductio ad absurdum against completed infinity, a stated premise used for one purpose, the closure of the quantifier over heights (F7). [akhtman2025reductio]"
+   "text": "Finitude: for any reading of capacity $R$ the registered Universe embeds in the shell of $R$ members, and among $R+1$ members two share a residue; the totality is finite, its cardinality $\\Omega$. A theorem of the master ledger (00:A2), proved in the core, cited as the closure's first premise (F7). 00:A2; \\Ssec:promotion p00004, FrcCore{A2} FRC.Foundation.registered_finite, FRC.Foundation.no_unlimited_supply, FRC.Foundation.agent_bound"
   },
   {
    "paper": "20-rh",
    "no": 20,
    "rid": "20:A3",
-   "key": "p20003",
+   "key": "p00003",
    "label": "A3",
+   "block": "A",
+   "tag": "T",
+   "name": null,
+   "statement": "Completeness: the registration of any totality is onto its registered Universe, so there is no outside and no host; two totalities each registered whole within the other have one count. A theorem of the master ledger (00:A3), proved in the core; the hypothesis of the Carrier is a statement about its own residues and nothing else.",
+   "source": "00:A3\\newline \\leanwit{FrcCore}{p00003}{A3} \\lean{FRC.Foundation.registration\\_onto, FRC.Foundation.mutual\\_registration\\_count}",
+   "page": "20-rh/index.html#A3",
+   "witness": {
+    "py": null,
+    "lean": [
+     {
+      "lib": "FrcCore",
+      "module": "FrcCore/Theme/Foundation",
+      "name": "FRC.Foundation.registration_onto",
+      "tier": 0,
+      "ok": true,
+      "page": "lean/core/Theme.html#FRC.Foundation.registration_onto"
+     },
+     {
+      "lib": "FrcCore",
+      "module": "FrcCore/Theme/Foundation",
+      "name": "FRC.Foundation.mutual_registration_count",
+      "tier": 0,
+      "ok": true,
+      "page": "lean/core/Theme.html#FRC.Foundation.mutual_registration_count"
+     }
+    ]
+   },
+   "refs": [
+    "p00003"
+   ],
+   "text": "Completeness: the registration of any totality is onto its registered Universe, so there is no outside and no host; two totalities each registered whole within the other have one count. A theorem of the master ledger (00:A3), proved in the core; the hypothesis of the Carrier is a statement about its own residues and nothing else. 00:A3 FrcCore{A3} FRC.Foundation.registration_onto, FRC.Foundation.mutual_registration_count"
+  },
+  {
+   "paper": "20-rh",
+   "no": 20,
+   "rid": "20:A4",
+   "key": "p00197",
+   "label": "A4",
+   "block": "A",
+   "tag": "T",
+   "name": null,
+   "statement": "Observation: every observation is a registration by an embedded part of $o<\\Omega$ states; every reading identifies two members, and a complete reading needs the whole count; one translation carries each member to each. A theorem of the master ledger (00:A4), proved in the core, cited as the closure's second premise (F7) and behind the horizon (Z1).",
+   "source": "00:A4; \\S\\ref{sec:promotion}\\newline \\pywit{rh}{p00197}{A4}, \\leanwit{FrcCore}{p00197}{A4} \\lean{FRC.Foundation.observer\\_part, FRC.Foundation.complete\\_needs\\_whole, FRC.Foundation.translation\\_torsor}",
+   "page": "20-rh/index.html#A4",
+   "witness": {
+    "py": null,
+    "lean": [
+     {
+      "lib": "FrcCore",
+      "module": "FrcCore/Theme/Foundation",
+      "name": "FRC.Foundation.observer_part",
+      "tier": 0,
+      "ok": true,
+      "page": "lean/core/Theme.html#FRC.Foundation.observer_part"
+     },
+     {
+      "lib": "FrcCore",
+      "module": "FrcCore/Theme/Foundation",
+      "name": "FRC.Foundation.complete_needs_whole",
+      "tier": 0,
+      "ok": true,
+      "page": "lean/core/Theme.html#FRC.Foundation.complete_needs_whole"
+     },
+     {
+      "lib": "FrcCore",
+      "module": "FrcCore/Theme/Foundation",
+      "name": "FRC.Foundation.translation_torsor",
+      "tier": 0,
+      "ok": true,
+      "page": "lean/core/Theme.html#FRC.Foundation.translation_torsor"
+     }
+    ]
+   },
+   "refs": [
+    "p00004",
+    "p20059",
+    "p20079"
+   ],
+   "text": "Observation: every observation is a registration by an embedded part of $o<\\Omega$ states; every reading identifies two members, and a complete reading needs the whole count; one translation carries each member to each. A theorem of the master ledger (00:A4), proved in the core, cited as the closure's second premise (F7) and behind the horizon (Z1). 00:A4; \\Ssec:promotion p00197, FrcCore{A4} FRC.Foundation.observer_part, FRC.Foundation.complete_needs_whole, FRC.Foundation.translation_torsor"
+  },
+  {
+   "paper": "20-rh",
+   "no": 20,
+   "rid": "20:A5",
+   "key": "p00008",
+   "label": "A5",
+   "block": "A",
+   "tag": "D",
+   "name": null,
+   "statement": "The Carrier: a timeless torsor of $\\Omega$ elements, its cardinality its only absolute characteristic; reframings $x\\mapsto ax+b$ are automorphisms, so $0$, $1$, $-1$ are frame data; a Subject's frame charts it as the prime field $\\F_\\Omega$, the frame's chart, never the Carrier (00:A6). Its scale $\\Omega=4\\dS+1$ is 00:A7, cited in the text.",
+   "source": "00:A6",
+   "page": "20-rh/index.html#A5",
+   "witness": {
+    "py": null,
+    "lean": []
+   },
+   "refs": [
+    "p00188",
+    "p00197"
+   ],
+   "text": "The Carrier: a timeless torsor of $\\Omega$ elements, its cardinality its only absolute characteristic; reframings $x\\mapsto ax+b$ are automorphisms, so $0$, $1$, $-1$ are frame data; a Subject's frame charts it as the prime field $\\F_\\Omega$, the frame's chart, never the Carrier (00:A6). Its scale $\\Omega=4\\dS+1$ is 00:A7, cited in the text. 00:A6"
+  },
+  {
+   "paper": "20-rh",
+   "no": 20,
+   "rid": "20:A6",
+   "key": "p20003",
+   "label": "A6",
    "block": "A",
    "tag": "I",
    "name": null,
    "statement": "The classical analytic apparatus: the count $\\mathcal N(T)=\\theta(T)/\\pi+1+S(T)$, the Riemann--Siegel main sum with its $O(t^{-1/4})$ remainder, the explicit formula in its distributional form over the Weil class, Hardy's Ramanujan-sum expansion of $\\Lambda$, M\\\"obius inversion.",
    "source": "\\citep{edwards1974,weil1952,hardy1921,apostol1976}",
-   "page": "20-rh/index.html#A3",
+   "page": "20-rh/index.html#A6",
    "witness": {
     "py": null,
     "lean": []
@@ -43275,15 +43734,15 @@
   {
    "paper": "20-rh",
    "no": 20,
-   "rid": "20:A4",
+   "rid": "20:A7",
    "key": "p20004",
-   "label": "A4",
+   "label": "A7",
    "block": "A",
    "tag": "I",
    "name": null,
    "statement": "Turing's count: with $C(T)$ the sign changes of $Z$ on $(0,T)$, $C\\le N_{\\mathrm{crit}}\\le\\mathcal N$; $C=\\mathcal N$ certifies the hypothesis below $T$ and forces every zero there to be simple.",
    "source": "\\citep{turing1953}",
-   "page": "20-rh/index.html#A4",
+   "page": "20-rh/index.html#A7",
    "witness": {
     "py": null,
     "lean": []
@@ -43294,15 +43753,15 @@
   {
    "paper": "20-rh",
    "no": 20,
-   "rid": "20:A5",
+   "rid": "20:A8",
    "key": "p20078",
-   "label": "A5",
+   "label": "A8",
    "block": "A",
    "tag": "I",
    "name": null,
    "statement": "The Davenport--Heilbronn function: a Dirichlet series with the functional equation and no Euler product, with zeros off the line, the first pair at $0.8085171825+85.6993484854\\,i$ and $1-\\bar s$; the treatment of linear combinations of $L$-functions by smoothed Euler products.",
    "source": "\\citep{davenport1936,titchmarsh1986,gonek2012}",
-   "page": "20-rh/index.html#A5",
+   "page": "20-rh/index.html#A8",
    "witness": {
     "py": null,
     "lean": []
@@ -43313,15 +43772,15 @@
   {
    "paper": "20-rh",
    "no": 20,
-   "rid": "20:A6",
+   "rid": "20:A9",
    "key": "p20006",
-   "label": "A6",
+   "label": "A9",
    "block": "A",
    "tag": "I",
    "name": null,
    "statement": "The comparison data: no off-line zero of $\\zeta$ to height $3\\times10^{12}$, by Turing's certificate, so every zero there is simple; GUE spacing statistics of the zeros; some $2600$ zeros to twelve digits from the primes to $10^{6}$ by harmonic inversion (the precision the observations of block E do not aim at); the self-adjoint realisations of the Berry--Keating operator.",
    "source": "\\citep{platt2021,montgomery1973,odlyzko1987,main1998,berry1999,endres2010}",
-   "page": "20-rh/index.html#A6",
+   "page": "20-rh/index.html#A9",
    "witness": {
     "py": null,
     "lean": []
@@ -43332,40 +43791,21 @@
   {
    "paper": "20-rh",
    "no": 20,
-   "rid": "20:A7",
-   "key": "p20007",
-   "label": "A7",
-   "block": "A",
-   "tag": "I",
-   "name": null,
-   "statement": "The physical readings of Subsection~\\ref{sub:physical} (the Carrier as the Universe, the constants by register, $c^{2}=2^{-1}$, mass as cardinality, the $3$-sphere frame space) are owned by the papers cited there and enter no result of this paper.",
-   "source": "\\S\\ref{sub:physical}",
-   "page": "20-rh/index.html#A7",
-   "witness": {
-    "py": null,
-    "lean": []
-   },
-   "refs": [],
-   "text": "The physical readings of Subsection sub:physical (the Carrier as the Universe, the constants by register, $c^{2}=2^{-1}$, mass as cardinality, the $3$-sphere frame space) are owned by the papers cited there and enter no result of this paper. \\Ssub:physical"
-  },
-  {
-   "paper": "20-rh",
-   "no": 20,
-   "rid": "20:A8",
+   "rid": "20:A10",
    "key": "p20070",
-   "label": "A8",
+   "label": "A10",
    "block": "A",
    "tag": "I",
    "name": null,
    "statement": "Explicit bounds on the Riemann--Siegel remainder: Gabcke's explicit error term, used by the verification of A6; with it the sign of $Z$ is certified wherever $|Z_M(t)|$ exceeds the bound (F1).",
    "source": "\\citep{gabcke1979}; Prop.~\\ref{prop:turing}",
-   "page": "20-rh/index.html#A8",
+   "page": "20-rh/index.html#A10",
    "witness": {
     "py": null,
     "lean": []
    },
    "refs": [
-    "p20006",
+    "p20003",
     "p20047"
    ],
    "text": "Explicit bounds on the Riemann–Siegel remainder: Gabcke's explicit error term, used by the verification of A6; with it the sign of $Z$ is certified wherever $|Z_M(t)|$ exceeds the bound (F1). [gabcke1979]; Prop. prop:turing"
@@ -43373,15 +43813,15 @@
   {
    "paper": "20-rh",
    "no": 20,
-   "rid": "20:A9",
+   "rid": "20:A11",
    "key": "p20071",
-   "label": "A9",
+   "label": "A11",
    "block": "A",
    "tag": "I",
    "name": null,
    "statement": "The semiclassical phase-space cell $2\\pi$ of the Berry--Keating count [chart], imposed as the standard unit, not derived from the shell constants; the shell's own count uses no cell (E12(iii)).",
    "source": "\\citep{berry1999}; Rem.~\\ref{rem:cutoff}",
-   "page": "20-rh/index.html#A9",
+   "page": "20-rh/index.html#A11",
    "witness": {
     "py": null,
     "lean": []
@@ -43390,28 +43830,6 @@
     "p20043"
    ],
    "text": "The semiclassical phase-space cell $2\\pi$ of the Berry–Keating count [chart], imposed as the standard unit, not derived from the shell constants; the shell's own count uses no cell (E12(iii)). [berry1999]; Rem. rem:cutoff"
-  },
-  {
-   "paper": "20-rh",
-   "no": 20,
-   "rid": "20:A10",
-   "key": "p20077",
-   "label": "A10",
-   "block": "A",
-   "tag": "D",
-   "name": null,
-   "statement": "The aliasing premise: the identification of the height coordinate with the meridian cycle (A1) carries the zero predicate, an off-line zero of multiplicity $m$ at a height symbol $H>2\\pi\\Omega$ is an off-line residue of multiplicity $m$ at the aliased height. The kernels $n^{-iT}$ share no period ($\\log2/\\log3$ irrational), so the chart carries no aliasing; declared, not derived.",
-   "source": "\\S\\ref{sec:promotion}; F7",
-   "page": "20-rh/index.html#A10",
-   "witness": {
-    "py": null,
-    "lean": []
-   },
-   "refs": [
-    "p20001",
-    "p20053"
-   ],
-   "text": "The aliasing premise: the identification of the height coordinate with the meridian cycle (A1) carries the zero predicate, an off-line zero of multiplicity $m$ at a height symbol $H>2\\pi\\Omega$ is an off-line residue of multiplicity $m$ at the aliased height. The kernels $n^{-iT}$ share no period ($\\log2/\\log3$ irrational), so the chart carries no aliasing; declared, not derived. \\Ssec:promotion; F7"
   },
   {
    "paper": "20-rh",
@@ -43429,7 +43847,7 @@
     "py": {
      "href": "src/20-rh/#p20008",
      "script": "rh.py",
-     "line": 535,
+     "line": 540,
      "verdict": "pass"
     },
     "lean": [
@@ -43480,7 +43898,7 @@
     "py": {
      "href": "src/20-rh/#p20009",
      "script": "rh.py",
-     "line": 550,
+     "line": 555,
      "verdict": "pass"
     },
     "lean": [
@@ -43572,7 +43990,7 @@
     "py": {
      "href": "src/20-rh/#p20011",
      "script": "rh.py",
-     "line": 440,
+     "line": 445,
      "verdict": "pass"
     },
     "lean": [
@@ -43613,7 +44031,7 @@
     "py": {
      "href": "src/20-rh/#p20012",
      "script": "rh.py",
-     "line": 468,
+     "line": 473,
      "verdict": "pass"
     },
     "lean": [
@@ -43654,7 +44072,7 @@
     "py": {
      "href": "src/20-rh/#p20013",
      "script": "rh.py",
-     "line": 477,
+     "line": 482,
      "verdict": "pass"
     },
     "lean": [
@@ -43743,7 +44161,7 @@
     "py": {
      "href": "src/20-rh/#p20014",
      "script": "rh.py",
-     "line": 495,
+     "line": 500,
      "verdict": "pass"
     },
     "lean": [
@@ -43792,7 +44210,7 @@
     "py": {
      "href": "src/20-rh/#p20015",
      "script": "rh.py",
-     "line": 461,
+     "line": 466,
      "verdict": "pass"
     },
     "lean": [
@@ -43873,7 +44291,7 @@
     "py": {
      "href": "src/20-rh/#p20016",
      "script": "rh.py",
-     "line": 487,
+     "line": 492,
      "verdict": "pass"
     },
     "lean": [
@@ -43962,7 +44380,7 @@
     "py": {
      "href": "src/20-rh/#p20017",
      "script": "rh.py",
-     "line": 451,
+     "line": 456,
      "verdict": "pass"
     },
     "lean": [
@@ -44027,7 +44445,7 @@
     "py": {
      "href": "src/20-rh/#p20018",
      "script": "rh.py",
-     "line": 1599,
+     "line": 1703,
      "verdict": "pass"
     },
     "lean": []
@@ -44063,14 +44481,14 @@
    "block": "C",
    "tag": "T",
    "name": null,
-   "statement": "Resonance and the von Mangoldt weight: $R_L\\to\\frac{\\varphi(n)}{n}\\Lambda(n)$ (Hardy, A3); $\\Lambda=\\mu\\ast\\log$ exactly on the divisor lattice; the intertwiner $\\Lambda=\\frac{n}{\\varphi(n)}R$; support the prime powers in every form.",
+   "statement": "Resonance and the von Mangoldt weight: $R_L\\to\\frac{\\varphi(n)}{n}\\Lambda(n)$ (Hardy, A6); $\\Lambda=\\mu\\ast\\log$ exactly on the divisor lattice; the intertwiner $\\Lambda=\\frac{n}{\\varphi(n)}R$; support the prime powers in every form.",
    "source": "Thm.~\\ref{thm:resonance}\\newline \\pywit{rh}{p20020}{C2}, \\leanwit{FrcLedger}{p20020}{C2} \\lean{Rh.vonMangoldt\\_moebius}",
    "page": "20-rh/index.html#C2",
    "witness": {
     "py": {
      "href": "src/20-rh/#p20020",
      "script": "rh.py",
-     "line": 1575,
+     "line": 1679,
      "verdict": "pass"
     },
     "lean": [
@@ -44087,7 +44505,7 @@
    "refs": [
     "p20003"
    ],
-   "text": "Resonance and the von Mangoldt weight: $R_L\\to\\frac{\\varphi(n)}{n}\\Lambda(n)$ (Hardy, A3); $\\Lambda=\\mu\\ast\\log$ exactly on the divisor lattice; the intertwiner $\\Lambda=\\frac{n}{\\varphi(n)}R$; support the prime powers in every form. Thm. thm:resonance p20020, FrcLedger{C2} Rh.vonMangoldt_moebius"
+   "text": "Resonance and the von Mangoldt weight: $R_L\\to\\frac{\\varphi(n)}{n}\\Lambda(n)$ (Hardy, A6); $\\Lambda=\\mu\\ast\\log$ exactly on the divisor lattice; the intertwiner $\\Lambda=\\frac{n}{\\varphi(n)}R$; support the prime powers in every form. Thm. thm:resonance p20020, FrcLedger{C2} Rh.vonMangoldt_moebius"
   },
   {
    "paper": "20-rh",
@@ -44105,7 +44523,7 @@
     "py": {
      "href": "src/20-rh/#p20021",
      "script": "rh.py",
-     "line": 1593,
+     "line": 1697,
      "verdict": "pass"
     },
     "lean": []
@@ -44129,7 +44547,7 @@
     "py": {
      "href": "src/20-rh/#p20022",
      "script": "rh.py",
-     "line": 1627,
+     "line": 1731,
      "verdict": "pass"
     },
     "lean": []
@@ -44189,7 +44607,7 @@
     "py": {
      "href": "src/20-rh/#p20024",
      "script": "rh.py",
-     "line": 1640,
+     "line": 1744,
      "verdict": "pass"
     },
     "lean": []
@@ -44235,7 +44653,7 @@
     "py": {
      "href": "src/20-rh/#p20026",
      "script": "rh.py",
-     "line": 614,
+     "line": 645,
      "verdict": "pass"
     },
     "lean": []
@@ -44252,14 +44670,14 @@
    "block": "D",
    "tag": "I",
    "name": null,
-   "statement": "Reconstruction residue: the finite-horizon error of the main sum is the Riemann--Siegel remainder $O(T^{-1/4})=O(\\p^{-1/4})$ (A3), unconditional, fitted slope $-0.24$ over $t=40\\ldots5120$ [approx].",
+   "statement": "Reconstruction residue: the finite-horizon error of the main sum is the Riemann--Siegel remainder $O(T^{-1/4})=O(\\p^{-1/4})$ (A6), unconditional, fitted slope $-0.24$ over $t=40\\ldots5120$ [approx].",
    "source": "Obs.~\\ref{obs:residue}\\newline \\pywit{rh}{p20027}{D3}",
    "page": "20-rh/index.html#D3",
    "witness": {
     "py": {
      "href": "src/20-rh/#p20027",
      "script": "rh.py",
-     "line": 640,
+     "line": 671,
      "verdict": "pass"
     },
     "lean": []
@@ -44267,7 +44685,7 @@
    "refs": [
     "p20003"
    ],
-   "text": "Reconstruction residue: the finite-horizon error of the main sum is the Riemann–Siegel remainder $O(T^{-1/4})=O(\\p^{-1/4})$ (A3), unconditional, fitted slope $-0.24$ over $t=40\\ldots5120$ [approx]. Obs. obs:residue p20027"
+   "text": "Reconstruction residue: the finite-horizon error of the main sum is the Riemann–Siegel remainder $O(T^{-1/4})=O(\\p^{-1/4})$ (A6), unconditional, fitted slope $-0.24$ over $t=40\\ldots5120$ [approx]. Obs. obs:residue p20027"
   },
   {
    "paper": "20-rh",
@@ -44285,7 +44703,7 @@
     "py": {
      "href": "src/20-rh/#p20028",
      "script": "rh.py",
-     "line": 629,
+     "line": 660,
      "verdict": "pass"
     },
     "lean": []
@@ -44300,19 +44718,39 @@
    "key": "p20029",
    "label": "D5",
    "block": "D",
-   "tag": "T",
+   "tag": "D",
    "name": null,
-   "statement": "Completeness criterion: faithfulness of the de-framing ($N_{\\mathrm{crit}}=\\mathcal N$ at every height), zero-mode completeness of the on-line spectrum for $v$ over the Weil class (A3), the absence of off-line zeros, and the Riemann Hypothesis are equivalent; an off-line zero $\\beta+i\\gamma_0$ leaves a residual growing as $x^{\\beta-1/2}$ at its height.",
-   "source": "Lem.~\\ref{lem:complete}",
+   "statement": "The cells: the heights of a Carrier's cycle are its residues, residue $y$ the cell from $2\\pi y$ to $2\\pi(y+1)$; a cell is clean when its zeros lie on the line, which Turing's count decides from the labels below $\\sqrt{y+1}$, and passes when the frame's reading certifies it. The hypothesis of the Carrier: every residue has a clean cell.",
+   "source": "Def.~\\ref{def:cells}, Prop.~\\ref{prop:cells}, Lem.~\\ref{lem:complete}\\newline \\pywit{rh}{p20029}{D5}, \\leanwit{FrcCore}{p20029}{D5} \\lean{FRC.Horizon.clean\\_iff\\_count, FRC.Horizon.cells\\_clean\\_iff\\_cycle}",
    "page": "20-rh/index.html#D5",
    "witness": {
-    "py": null,
-    "lean": []
+    "py": {
+     "href": "src/20-rh/#p20029",
+     "script": "rh.py",
+     "line": 1565,
+     "verdict": "pass"
+    },
+    "lean": [
+     {
+      "lib": "FrcCore",
+      "module": "FrcCore/Theme/Horizon",
+      "name": "FRC.Horizon.clean_iff_count",
+      "tier": 0,
+      "ok": true,
+      "page": "lean/core/Theme.html#FRC.Horizon.clean_iff_count"
+     },
+     {
+      "lib": "FrcCore",
+      "module": "FrcCore/Theme/Horizon",
+      "name": "FRC.Horizon.cells_clean_iff_cycle",
+      "tier": 0,
+      "ok": true,
+      "page": "lean/core/Theme.html#FRC.Horizon.cells_clean_iff_cycle"
+     }
+    ]
    },
-   "refs": [
-    "p20003"
-   ],
-   "text": "Completeness criterion: faithfulness of the de-framing ($N_{\\mathrm{crit}}=\\mathcal N$ at every height), zero-mode completeness of the on-line spectrum for $v$ over the Weil class (A3), the absence of off-line zeros, and the Riemann Hypothesis are equivalent; an off-line zero $\\beta+i\\gamma_0$ leaves a residual growing as $x^{\\beta-1/2}$ at its height. Lem. lem:complete"
+   "refs": [],
+   "text": "The cells: the heights of a Carrier's cycle are its residues, residue $y$ the cell from $2\\pi y$ to $2\\pi(y+1)$; a cell is clean when its zeros lie on the line, which Turing's count decides from the labels below $\\sqrt{y+1}$, and passes when the frame's reading certifies it. The hypothesis of the Carrier: every residue has a clean cell. Def. def:cells, Prop. prop:cells, Lem. lem:complete p20029, FrcCore{D5} FRC.Horizon.clean_iff_count, FRC.Horizon.cells_clean_iff_cycle"
   },
   {
    "paper": "20-rh",
@@ -44360,6 +44798,72 @@
   {
    "paper": "20-rh",
    "no": 20,
+   "rid": "20:D8",
+   "key": "p20080",
+   "label": "D8",
+   "block": "D",
+   "tag": "T",
+   "name": null,
+   "statement": "The strip: the Euler product excludes zeros with real part at least one, and the functional equation confines the nontrivial zeros to the open strip in Klein-four orbits of size two on the line and four off it; the Davenport--Heilbronn vector, without the product, is not multiplicative and has an off-line zero. No core witness: the statement is analytic.",
+   "source": "Thm.~\\ref{thm:strip}\\newline \\pywit{rh}{p20080}{D8}, \\leanwit{FrcLedger}{p20080}{D8} \\lean{Rh.zeros\\_in\\_strip}",
+   "page": "20-rh/index.html#D8",
+   "witness": {
+    "py": {
+     "href": "src/20-rh/#p20080",
+     "script": "rh.py",
+     "line": 1505,
+     "verdict": "pass"
+    },
+    "lean": [
+     {
+      "lib": "FrcLedger",
+      "module": "FrcLedger/Rh",
+      "name": "FRC.Rh.zeros_in_strip",
+      "tier": 2,
+      "ok": true,
+      "page": "lean/ml/Rh.html#FRC.Rh.zeros_in_strip"
+     }
+    ]
+   },
+   "refs": [],
+   "text": "The strip: the Euler product excludes zeros with real part at least one, and the functional equation confines the nontrivial zeros to the open strip in Klein-four orbits of size two on the line and four off it; the Davenport–Heilbronn vector, without the product, is not multiplicative and has an off-line zero. No core witness: the statement is analytic. Thm. thm:strip p20080, FrcLedger{D8} Rh.zeros_in_strip"
+  },
+  {
+   "paper": "20-rh",
+   "no": 20,
+   "rid": "20:D9",
+   "key": "p20083",
+   "label": "D9",
+   "block": "D",
+   "tag": "T",
+   "name": null,
+   "statement": "The finite negative control: on $\\F_{13}(\\sqrt2)$ the polynomial $((X-2)^{2}-2)((X+1)^{2}-2)$ has exactly the roots $2\\pm\\eta$, $-1\\pm\\eta$, of traces $4$, $4$, $11$, $11$ against the line's $1$, the root set closed under conjugation and under the half-turn; finitude, conjugation and the reflection force no root onto the line.",
+   "source": "Prop.~\\ref{prop:control13}\\newline \\pywit{rh}{p20083}{D9}, \\leanwit{FrcCore}{p20083}{D9} \\lean{FRC.Horizon.negative\\_control13}",
+   "page": "20-rh/index.html#D9",
+   "witness": {
+    "py": {
+     "href": "src/20-rh/#p20083",
+     "script": "rh.py",
+     "line": 1534,
+     "verdict": "pass"
+    },
+    "lean": [
+     {
+      "lib": "FrcCore",
+      "module": "FrcCore/Theme/Horizon",
+      "name": "FRC.Horizon.negative_control13",
+      "tier": 0,
+      "ok": true,
+      "page": "lean/core/Theme.html#FRC.Horizon.negative_control13"
+     }
+    ]
+   },
+   "refs": [],
+   "text": "The finite negative control: on $\\F_{13}(\\sqrt2)$ the polynomial $((X-2)^{2}-2)((X+1)^{2}-2)$ has exactly the roots $2\\pm\\eta$, $-1\\pm\\eta$, of traces $4$, $4$, $11$, $11$ against the line's $1$, the root set closed under conjugation and under the half-turn; finitude, conjugation and the reflection force no root onto the line. Prop. prop:control13 p20083, FrcCore{D9} FRC.Horizon.negative_control13"
+  },
+  {
+   "paper": "20-rh",
+   "no": 20,
    "rid": "20:E1",
    "key": "p20032",
    "label": "E1",
@@ -44373,7 +44877,7 @@
     "py": {
      "href": "src/20-rh/#p20032",
      "script": "rh.py",
-     "line": 524,
+     "line": 529,
      "verdict": "pass"
     },
     "lean": [
@@ -44454,14 +44958,14 @@
    "block": "E",
    "tag": "D",
    "name": null,
-   "statement": "Cutoff and semiclassical density: with the space quantum $1_\\Omega$ as lower cutoff the Berry--Keating phase-space count is the Riemann--von Mangoldt count, density the shell scale-depth of D2 [chart]; the cell normalisation $1_\\Omega^{2}\\sim2\\pi$ is imposed [chart] (A9).",
+   "statement": "Cutoff and semiclassical density: with the space quantum $1_\\Omega$ as lower cutoff the Berry--Keating phase-space count is the Riemann--von Mangoldt count, density the shell scale-depth of D2 [chart]; the cell normalisation $1_\\Omega^{2}\\sim2\\pi$ is imposed [chart] (A11).",
    "source": "Rem.~\\ref{rem:cutoff}\\newline \\pywit{rh}{p20034}{E3}",
    "page": "20-rh/index.html#E3",
    "witness": {
     "py": {
      "href": "src/20-rh/#p20034",
      "script": "rh.py",
-     "line": 886,
+     "line": 917,
      "verdict": "pass"
     },
     "lean": []
@@ -44470,7 +44974,7 @@
     "p20026",
     "p20071"
    ],
-   "text": "Cutoff and semiclassical density: with the space quantum $1_\\Omega$ as lower cutoff the Berry–Keating phase-space count is the Riemann–von Mangoldt count, density the shell scale-depth of D2 [chart]; the cell normalisation $1_\\Omega^{2}\\sim2\\pi$ is imposed [chart] (A9). Rem. rem:cutoff p20034"
+   "text": "Cutoff and semiclassical density: with the space quantum $1_\\Omega$ as lower cutoff the Berry–Keating phase-space count is the Riemann–von Mangoldt count, density the shell scale-depth of D2 [chart]; the cell normalisation $1_\\Omega^{2}\\sim2\\pi$ is imposed [chart] (A11). Rem. rem:cutoff p20034"
   },
   {
    "paper": "20-rh",
@@ -44507,7 +45011,7 @@
     "py": {
      "href": "src/20-rh/#p20036",
      "script": "rh.py",
-     "line": 738,
+     "line": 769,
      "verdict": "pass"
     },
     "lean": []
@@ -44531,7 +45035,7 @@
     "py": {
      "href": "src/20-rh/#p20037",
      "script": "rh.py",
-     "line": 750,
+     "line": 781,
      "verdict": "pass"
     },
     "lean": []
@@ -44571,14 +45075,14 @@
    "block": "E",
    "tag": "T",
    "name": null,
-   "statement": "The heights from an explicit matrix: the colleague matrix of the Chebyshev expansion of $\\cos(\\pi\\widehat{\\mathcal N}_N)$ on $[10,52]$ at $N=10^{6}$ returns the ten heights to mean error $4.8\\times10^{-5}$ at dimension $520$ and $3.5\\times10^{-5}$ at $620$, converging to the corrected roots' own $3.4\\times10^{-5}$ at this depth [approx]; the precision is the smoothed count's, not the comb's (A6).",
+   "statement": "The heights from an explicit matrix: the colleague matrix of the Chebyshev expansion of $\\cos(\\pi\\widehat{\\mathcal N}_N)$ on $[10,52]$ at $N=10^{6}$ returns the ten heights to mean error $4.8\\times10^{-5}$ at dimension $520$ and $3.5\\times10^{-5}$ at $620$, converging to the corrected roots' own $3.4\\times10^{-5}$ at this depth [approx]; the precision is the smoothed count's, not the comb's (A9).",
    "source": "Obs.~\\ref{obs:matrix}\\newline \\pywit{rh}{p20039}{E8}",
    "page": "20-rh/index.html#E8",
    "witness": {
     "py": {
      "href": "src/20-rh/#p20039",
      "script": "rh.py",
-     "line": 788,
+     "line": 819,
      "verdict": "pass"
     },
     "lean": []
@@ -44586,7 +45090,7 @@
    "refs": [
     "p20006"
    ],
-   "text": "The heights from an explicit matrix: the colleague matrix of the Chebyshev expansion of $\\cos(\\pi\\widehat{\\mathcal N}_N)$ on $[10,52]$ at $N=10^{6}$ returns the ten heights to mean error $4.8\\times10^{-5}$ at dimension $520$ and $3.5\\times10^{-5}$ at $620$, converging to the corrected roots' own $3.4\\times10^{-5}$ at this depth [approx]; the precision is the smoothed count's, not the comb's (A6). Obs. obs:matrix p20039"
+   "text": "The heights from an explicit matrix: the colleague matrix of the Chebyshev expansion of $\\cos(\\pi\\widehat{\\mathcal N}_N)$ on $[10,52]$ at $N=10^{6}$ returns the ten heights to mean error $4.8\\times10^{-5}$ at dimension $520$ and $3.5\\times10^{-5}$ at $620$, converging to the corrected roots' own $3.4\\times10^{-5}$ at this depth [approx]; the precision is the smoothed count's, not the comb's (A9). Obs. obs:matrix p20039"
   },
   {
    "paper": "20-rh",
@@ -44604,7 +45108,7 @@
     "py": {
      "href": "src/20-rh/#p20040",
      "script": "rh.py",
-     "line": 780,
+     "line": 811,
      "verdict": "pass"
     },
     "lean": []
@@ -44628,7 +45132,7 @@
     "py": {
      "href": "src/20-rh/#p20041",
      "script": "rh.py",
-     "line": 798,
+     "line": 829,
      "verdict": "pass"
     },
     "lean": []
@@ -44645,14 +45149,14 @@
    "block": "E",
    "tag": "I",
    "name": null,
-   "statement": "GUE level repulsion of the target spectrum: unfolded spacings of the first $240$ zeros give $P(s<\\half)=0.05$ (GUE $\\approx0.12$, Poisson $\\approx0.39$) and variance $0.13$ (GUE $\\approx0.18$, Poisson $1$) [approx]; a known statistic (A6) reproduced.",
+   "statement": "GUE level repulsion of the target spectrum: unfolded spacings of the first $240$ zeros give $P(s<\\half)=0.05$ (GUE $\\approx0.12$, Poisson $\\approx0.39$) and variance $0.13$ (GUE $\\approx0.18$, Poisson $1$) [approx]; a known statistic (A9) reproduced.",
    "source": "Obs.~\\ref{obs:gue}\\newline \\pywit{rh}{p20042}{E11}",
    "page": "20-rh/index.html#E11",
    "witness": {
     "py": {
      "href": "src/20-rh/#p20042",
      "script": "rh.py",
-     "line": 878,
+     "line": 909,
      "verdict": "pass"
     },
     "lean": []
@@ -44660,7 +45164,7 @@
    "refs": [
     "p20006"
    ],
-   "text": "GUE level repulsion of the target spectrum: unfolded spacings of the first $240$ zeros give $P(s<\\half)=0.05$ (GUE $\\approx0.12$, Poisson $\\approx0.39$) and variance $0.13$ (GUE $\\approx0.18$, Poisson $1$) [approx]; a known statistic (A6) reproduced. Obs. obs:gue p20042"
+   "text": "GUE level repulsion of the target spectrum: unfolded spacings of the first $240$ zeros give $P(s<\\half)=0.05$ (GUE $\\approx0.12$, Poisson $\\approx0.39$) and variance $0.13$ (GUE $\\approx0.18$, Poisson $1$) [approx]; a known statistic (A9) reproduced. Obs. obs:gue p20042"
   },
   {
    "paper": "20-rh",
@@ -44678,7 +45182,7 @@
     "py": {
      "href": "src/20-rh/#p20043",
      "script": "rh.py",
-     "line": 524,
+     "line": 529,
      "verdict": "pass"
     },
     "lean": [
@@ -44777,7 +45281,7 @@
     "py": {
      "href": "src/20-rh/#p20044",
      "script": "rh.py",
-     "line": 526,
+     "line": 531,
      "verdict": "pass"
     },
     "lean": [
@@ -44837,7 +45341,7 @@
     "py": {
      "href": "src/20-rh/#p20045",
      "script": "rh.py",
-     "line": 979,
+     "line": 1010,
      "verdict": "pass"
     },
     "lean": []
@@ -44864,7 +45368,7 @@
     "py": {
      "href": "src/20-rh/#p20046",
      "script": "rh.py",
-     "line": 979,
+     "line": 1010,
      "verdict": "pass"
     },
     "lean": []
@@ -44888,7 +45392,7 @@
     "py": {
      "href": "src/20-rh/#p20072",
      "script": "rh.py",
-     "line": 1060,
+     "line": 1091,
      "verdict": "pass"
     },
     "lean": []
@@ -44905,14 +45409,14 @@
    "block": "F",
    "tag": "T",
    "name": null,
-   "statement": "\\textbf{Turing's count on the shell.} $C\\le N_{\\mathrm{crit}}\\le\\mathcal N$ (A4); the hypothesis below $T$ is $\\mathcal N(T)=N_{\\mathrm{crit}}(T)$, $C=\\mathcal N$ the certificate. The shell estimates $\\mathcal N$ by the pole-corrected comb count (F8; uncertified at finite depth) and $C$ by the main sum's sign changes (A8); the secular condition reads $\\mathcal N$, not $N_{\\mathrm{crit}}$. An off-line zero is a phantom: $\\mathcal N-N_{\\mathrm{crit}}>0$.",
-   "source": "Prop.~\\ref{prop:turing}\\newline \\pywit{rh}{p20047}{F1}",
+   "statement": "\\textbf{Turing's count on the shell.} On every cell $C_y\\le N^{\\mathrm{crit}}_y\\le\\mathcal N_y$ (A7); the cell is clean when $\\mathcal N_y=N^{\\mathrm{crit}}_y$, and $C_y=\\mathcal N_y$ certifies it with every zero simple. The shell estimates $\\mathcal N$ by the pole-corrected comb count (F8; uncertified at finite depth) and $C$ by the main sum's sign changes (A10). An off-line zero is a phantom: $\\mathcal N_y-N^{\\mathrm{crit}}_y>0$.",
+   "source": "Prop.~\\ref{prop:turing}, Prop.~\\ref{prop:cells}\\newline \\pywit{rh}{p20047}{F1}",
    "page": "20-rh/index.html#F1",
    "witness": {
     "py": {
      "href": "src/20-rh/#p20047",
      "script": "rh.py",
-     "line": 1275,
+     "line": 1306,
      "verdict": "pass"
     },
     "lean": []
@@ -44923,7 +45427,7 @@
     "p20069",
     "p20070"
    ],
-   "text": "Turing's count on the shell. $C\\le N_{\\mathrm{crit}}\\le\\mathcal N$ (A4); the hypothesis below $T$ is $\\mathcal N(T)=N_{\\mathrm{crit}}(T)$, $C=\\mathcal N$ the certificate. The shell estimates $\\mathcal N$ by the pole-corrected comb count (F8; uncertified at finite depth) and $C$ by the main sum's sign changes (A8); the secular condition reads $\\mathcal N$, not $N_{\\mathrm{crit}}$. An off-line zero is a phantom: $\\mathcal N-N_{\\mathrm{crit}}>0$. Prop. prop:turing p20047"
+   "text": "Turing's count on the shell. On every cell $C_y\\le N^{\\mathrm{crit}}_y\\le\\mathcal N_y$ (A7); the cell is clean when $\\mathcal N_y=N^{\\mathrm{crit}}_y$, and $C_y=\\mathcal N_y$ certifies it with every zero simple. The shell estimates $\\mathcal N$ by the pole-corrected comb count (F8; uncertified at finite depth) and $C$ by the main sum's sign changes (A10). An off-line zero is a phantom: $\\mathcal N_y-N^{\\mathrm{crit}}_y>0$. Prop. prop:turing, Prop. prop:cells p20047"
   },
   {
    "paper": "20-rh",
@@ -44934,7 +45438,7 @@
    "block": "F",
    "tag": "D",
    "name": null,
-   "statement": "\\textbf{The screen reading.} By D5 and F1 the classical hypothesis below $T$ is the value $\\mathcal N(T)-N_{\\mathrm{crit}}(T)=0$, both terms estimated on the shell, the count from the pole-corrected comb (convergent under the hypothesis, uncertified at finite depth), the on-line zeros from the sign changes (exact where certified, A8, and simple). Declared, not derived; E12 uses no Euler product.",
+   "statement": "\\textbf{The screen reading.} By D5 and F1 the classical hypothesis below $T$ is the value $\\mathcal N(T)-N_{\\mathrm{crit}}(T)=0$, both terms estimated on the shell, the count from the pole-corrected comb (convergent under the hypothesis, uncertified at finite depth), the on-line zeros from the sign changes (exact where certified, A10, and simple). Declared, not derived; E12 uses no Euler product.",
    "source": "Def.~\\ref{def:screen}, Rem.~\\ref{rem:screen}",
    "page": "20-rh/index.html#F2",
    "witness": {
@@ -44948,7 +45452,7 @@
     "p20047",
     "p20070"
    ],
-   "text": "The screen reading. By D5 and F1 the classical hypothesis below $T$ is the value $\\mathcal N(T)-N_{\\mathrm{crit}}(T)=0$, both terms estimated on the shell, the count from the pole-corrected comb (convergent under the hypothesis, uncertified at finite depth), the on-line zeros from the sign changes (exact where certified, A8, and simple). Declared, not derived; E12 uses no Euler product. Def. def:screen, Rem. rem:screen"
+   "text": "The screen reading. By D5 and F1 the classical hypothesis below $T$ is the value $\\mathcal N(T)-N_{\\mathrm{crit}}(T)=0$, both terms estimated on the shell, the count from the pole-corrected comb (convergent under the hypothesis, uncertified at finite depth), the on-line zeros from the sign changes (exact where certified, A10, and simple). Declared, not derived; E12 uses no Euler product. Def. def:screen, Rem. rem:screen"
   },
   {
    "paper": "20-rh",
@@ -44959,14 +45463,14 @@
    "block": "F",
    "tag": "T",
    "name": null,
-   "statement": "The control on the line: the completed Davenport--Heilbronn $\\Lambda_f$ is real on the line to $10^{-20}$ [approx]; on $[0,87]$ the argument principle counts $N_f=45$ strip zeros against $C=43$ sign changes, the deficit $2$ opening only in the band of the off-line pair (A5), where $|Z_f|$ dips to $0.357$ without crossing; the constituent $L(s,\\chi)$ closes with deficit $0$.",
+   "statement": "The control on the line: the completed Davenport--Heilbronn $\\Lambda_f$ is real on the line to $10^{-20}$ [approx]; on $[0,87]$ the argument principle counts $N_f=45$ strip zeros against $C=43$ sign changes, the deficit $2$ opening only in the band of the off-line pair (A8), where $|Z_f|$ dips to $0.357$ without crossing; the constituent $L(s,\\chi)$ closes with deficit $0$.",
    "source": "Obs.~\\ref{obs:dh}\\newline \\pywit{rh}{p20049}{F3}",
    "page": "20-rh/index.html#F3",
    "witness": {
     "py": {
      "href": "src/20-rh/#p20049",
      "script": "rh.py",
-     "line": 1281,
+     "line": 1312,
      "verdict": "pass"
     },
     "lean": []
@@ -44974,7 +45478,7 @@
    "refs": [
     "p20078"
    ],
-   "text": "The control on the line: the completed Davenport–Heilbronn $\\Lambda_f$ is real on the line to $10^{-20}$ [approx]; on $[0,87]$ the argument principle counts $N_f=45$ strip zeros against $C=43$ sign changes, the deficit $2$ opening only in the band of the off-line pair (A5), where $|Z_f|$ dips to $0.357$ without crossing; the constituent $L(s,\\chi)$ closes with deficit $0$. Obs. obs:dh p20049"
+   "text": "The control on the line: the completed Davenport–Heilbronn $\\Lambda_f$ is real on the line to $10^{-20}$ [approx]; on $[0,87]$ the argument principle counts $N_f=45$ strip zeros against $C=43$ sign changes, the deficit $2$ opening only in the band of the off-line pair (A8), where $|Z_f|$ dips to $0.357$ without crossing; the constituent $L(s,\\chi)$ closes with deficit $0$. Obs. obs:dh p20049"
   },
   {
    "paper": "20-rh",
@@ -44992,7 +45496,7 @@
     "py": {
      "href": "src/20-rh/#p20050",
      "script": "rh.py",
-     "line": 1338,
+     "line": 1369,
      "verdict": "pass"
     },
     "lean": []
@@ -45016,7 +45520,7 @@
     "py": {
      "href": "src/20-rh/#p20051",
      "script": "rh.py",
-     "line": 1364,
+     "line": 1395,
      "verdict": "pass"
     },
     "lean": []
@@ -45050,24 +45554,45 @@
    "paper": "20-rh",
    "no": 20,
    "rid": "20:F7",
-   "key": "p20053",
+   "key": "p20079",
    "label": "F7",
    "block": "F",
    "tag": "T",
    "name": null,
-   "statement": "The closure of the quantifier, conditional on A2 (the totality finite) and A10 (the height chart's aliasing carries the zero predicate): heights are residues on the reading shell's cycle, the largest shell the Carrier's, so the quantifier closes at the cycle $2\\pi\\Omega$ and does no further work within it, the value inside the cycle is F2.",
-   "source": "\\S\\ref{sec:promotion}, \\S\\ref{sub:epistemic}",
+   "statement": "\\textbf{The closure of the heights.} A height is a residue on the cycle of the shell that reads it, the largest shell is the Carrier's and there is no height beyond its cycle (A2); no embedded Subject reads the cycle whole (A4). The hypothesis of the Carrier is a statement about the residues of its cycle, one clause per residue.",
+   "source": "Thm.~\\ref{thm:closure}\\newline \\pywit{rh}{p20079}{F7}, \\leanwit{FrcCore}{p20079}{F7} \\lean{FRC.Horizon.closure, FRC.Horizon.closure\\_lab}",
    "page": "20-rh/index.html#F7",
    "witness": {
-    "py": null,
-    "lean": []
+    "py": {
+     "href": "src/20-rh/#p20079",
+     "script": "rh.py",
+     "line": 601,
+     "verdict": "pass"
+    },
+    "lean": [
+     {
+      "lib": "FrcCore",
+      "module": "FrcCore/Theme/Horizon",
+      "name": "FRC.Horizon.closure",
+      "tier": 0,
+      "ok": true,
+      "page": "lean/core/Theme.html#FRC.Horizon.closure"
+     },
+     {
+      "lib": "FrcCore",
+      "module": "FrcCore/Theme/Horizon",
+      "name": "FRC.Horizon.closure_lab",
+      "tier": 0,
+      "ok": true,
+      "page": "lean/core/Theme.html#FRC.Horizon.closure_lab"
+     }
+    ]
    },
    "refs": [
-    "p20002",
-    "p20048",
-    "p20077"
+    "p00004",
+    "p00197"
    ],
-   "text": "The closure of the quantifier, conditional on A2 (the totality finite) and A10 (the height chart's aliasing carries the zero predicate): heights are residues on the reading shell's cycle, the largest shell the Carrier's, so the quantifier closes at the cycle $2\\pi\\Omega$ and does no further work within it, the value inside the cycle is F2. \\Ssec:promotion, \\Ssub:epistemic"
+   "text": "The closure of the heights. A height is a residue on the cycle of the shell that reads it, the largest shell is the Carrier's and there is no height beyond its cycle (A2); no embedded Subject reads the cycle whole (A4). The hypothesis of the Carrier is a statement about the residues of its cycle, one clause per residue. Thm. thm:closure p20079, FrcCore{F7} FRC.Horizon.closure, FRC.Horizon.closure_lab"
   },
   {
    "paper": "20-rh",
@@ -45085,7 +45610,7 @@
     "py": {
      "href": "src/20-rh/#p20069",
      "script": "rh.py",
-     "line": 1374,
+     "line": 1405,
      "verdict": "pass"
     },
     "lean": []

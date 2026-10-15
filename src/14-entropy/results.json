@@ -188,5 +188,35 @@
   "ok": true,
   "detail": "1 micro-checks",
   "kind": "CHART"
+ },
+ {
+  "id": "win.W",
+  "rows": "14:B11",
+  "block": "win",
+  "script": "entropy",
+  "label": "the additive window: for N modes at heights |h_i| ≤ κ_i the totals are exactly [−Σκ_i, Σκ_i] — exhaustive for N ≤ 4 at κ = 3 (7^N tuples, the least window 3N) and for mixed κ_i ∈ {1, 2, 3}, N ≤ 3; the pairwise bound 2κ of 38:A8 at p = 13 and the 20 of 343 triples beyond it",
+  "ok": true,
+  "detail": "3 micro-checks",
+  "kind": "EXACT"
+ },
+ {
+  "id": "win.L",
+  "rows": "14:B12",
+  "block": "win",
+  "script": "entropy",
+  "label": "the lock of like units: joint recurrence lcm(12, …, 12) = 12 for every N ≤ 6 (no element of order 12N), one C₁₂ offset per further unit; the diagonal drive on C₁₂² has 12 orbits of length 12, on C₁₂³ 144, on C₄ × C₃ one orbit of length 12",
+  "ok": true,
+  "detail": "3 micro-checks",
+  "kind": "EXACT"
+ },
+ {
+  "id": "win.S",
+  "rows": "14:B13",
+  "block": "win",
+  "script": "entropy",
+  "label": "the shells of capacity 3N: 12N + 1 prime exactly for N ∈ {1, 3, 5, 6, 8, 9} below 10 (25 = 5² at N = 2); fusion of coprime cycles multiplicative, κ = n₁n₂/4 — hydrogen (4, 3) → 12/4 = 3 — and no fusion of (12, 12), lcm 12",
+  "ok": true,
+  "detail": "3 micro-checks",
+  "kind": "EXACT"
  }
 ]

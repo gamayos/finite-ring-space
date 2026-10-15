@@ -1,5 +1,5 @@
 {
- "generated": "13 October 2026",
+ "generated": "15 October 2026",
  "blocks": {
   "A": "Foundation: from existence to the finite carrier",
   "B": "The Carrier: the substrate structure",
@@ -535,7 +535,6 @@
    "key": "p00168",
    "tag": "T",
    "sources": [
-    "10-dim",
     "8-dirac"
    ],
    "witness": null,
@@ -593,9 +592,7 @@
    "block": "B",
    "key": "p00169",
    "tag": "D",
-   "sources": [
-    "10-dim"
-   ],
+   "sources": [],
    "witness": null,
    "refs": [
     {
@@ -789,7 +786,6 @@
    "sources": [
     "8-dirac",
     "3-caus",
-    "10-dim",
     "22-qm"
    ],
    "witness": null,
@@ -872,9 +868,7 @@
    "block": "C",
    "key": "p00032",
    "tag": "T",
-   "sources": [
-    "10-dim"
-   ],
+   "sources": [],
    "witness": null,
    "refs": [],
    "statement": "\\textbf{Temperature and the classical arity, derived}: the temperature domain is acceleration, $[\\Theta]=[E][k_B]^{-1}=[L][T]^{-2}$, flag-free, $\\Theta_P=E_P/|k_B|$, Unruh closing as a domain identity; neither mass nor temperature is primitive --- $M$-$L$-$T$-plus-thermal is the torsion-free shadow of the two-generators-plus-flag system (the mass primitive standing in for the flag, the thermal for $k_B$), classical dimensional analysis recovered in exponents and arity."
@@ -1178,7 +1172,6 @@
    "key": "p00048",
    "tag": "R",
    "sources": [
-    "10-dim",
     "20-rh",
     "22-qm"
    ],
@@ -1620,41 +1613,6 @@
     }
    ],
    "statement": "\\textbf{The binding lift}: a pair fuses iff cycles coprime, windings unit; else the F2 offsets stay drive-confined (22-qm B5, C15) --- the deuteron, $(4,4)$, spectrumless. Fusion carries the half-driven offsets onto the F4 rungs; pointer channels forced, Born lands with exact dephasing ($1+\\omega+\\omega^{2}=0$, $T'=516$). Energies $E_{s}=s\\,h/3$, stations $\\{0,58,116\\}$; cores odd$(\\q-1)$: hydrogen $(4,3)\\to C_{12}$, $\\kap_{O}=3$, ground first."
-  },
-  {
-   "label": "F7",
-   "name": "The additive window",
-   "block": "F",
-   "key": "p00177",
-   "tag": "T",
-   "sources": [
-    "38-s13 (A8)",
-    "14-entr"
-   ],
-   "witness": "38:check_s13.js",
-   "refs": [
-    {
-     "label": "A7",
-     "key": "p00009"
-    },
-    {
-     "label": "B8",
-     "key": "p00166"
-    },
-    {
-     "label": "D2",
-     "key": "p00043"
-    },
-    {
-     "label": "F2",
-     "key": "p00191"
-    },
-    {
-     "label": "F6",
-     "key": "p00064"
-    }
-   ],
-   "statement": "\\textbf{The additive window}: for $N$ modes at resolvable heights $|\\hat h_i|\\le\\kap_i$ (38:A8) the total winding satisfies $|\\sum_i\\hat h_i|\\le\\sum_i\\kap_i$, attained, every total occurring, so the least register window resolving the total exactly is the capacity sum $\\sum\\kap_i$ --- $3N$ for $N$ hydrogen units --- a capacity of the observing Subject, not a shell of the composite. A lock of $N$ like units never fuses (F6, $\\gcd(12,12)=12$): it is F2's joint registration on $C_{12}$, recurrence $12$, one superselected $C_{12}$ offset per further unit, an aggregate; a shell of capacity $3N$ exists iff $12N+1$ is prime ($N=1,3,5,6,8,9$; none at $N=2$, $25=5^{2}$) and is not the lock's register; fusion (coprime cycles) is multiplicative, $\\kap =n_{1}n_{2}/4$, hydrogen $(4,3)\\to3$. The largest shell a Subject of the Carrier registers whole is $\\q<\\Om^{1/4}$ ($\\q^{2}<\\p$, $\\p^{2}<\\Om$; B8): $13$ on $30089$, $37$ on $2{,}408{,}561$, none on $233$; in hydrogen units $N<(\\Om^{1/4}-1)/12$, $8\\times10^{2}$ kg at the ledger's $\\Om$ (A7), on the 14-entr diagonal at $0.95$ m [approx]. The 14-entr capacity axis counts hydrogen units, one gram at $N_A$ [approx]: a definition (D2), not a registered shell; a lock's capacity against its wall displacement compares a shell label with a chart count and is no relation."
   },
   {
    "label": "G1",

@@ -2,7 +2,7 @@
 
 Validation package of *De Sitter Entropy Estimates over Finite Holographic Substrate* (Akhtman & Voether, 2026),
 `14-entr` of the FRC corpus. One script, `entropy.py` (since 24 September 2026; the registry and the three blocks
-merged), three blocks, 19 family checks over 92 micro-checks, driven by `frc-14-entropy.ipynb` (Google Colab: one cell
+merged; block `win` added 15 October 2026), four blocks, 22 family checks over 101 micro-checks, driven by `frc-14-entropy.ipynb` (Google Colab: one cell
 per ledger predicate, any cell on its own, or *Runtime → Run all*, ≈ 5 s) or run whole. Python with matplotlib (the two
 triangle blocks draw the paper's figures into `out/`).
 
@@ -21,7 +21,7 @@ Where a predicate is proved in Lean (`lean/FrcCore/Entropy.lean` with no axioms,
 Mathlib — the congruences and the laboratory Carrier, the octant sector and its character, the rival chart's age
 identity verified against its own Friedmann equation with its numerals bracketed, the locus), the check here is the
 instance the reader can run. Master-ledger predicates of the corpus reached through the paper predicates: `00:A7`,
-`00:L1`–`00:L7`, `00:F7`.
+`00:L1`–`00:L7`, `00:F6`, `00:F2` (through B12, B13; master F7 returned to the paper's rows B11–B13 on 15 October 2026).
 
 [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/gamayos/finite-ring-space/blob/main/src/14-entropy/frc-14-entropy.ipynb)
 
@@ -31,6 +31,7 @@ instance the reader can run. Master-ledger predicates of the corpus reached thro
 |---|---|---|---|
 | `est` | est.F1, B9, T1, C1, C2, A1, C3, P3, C4, L1, P2, P1 | 56 | the paper's `estimate_S.py` as written: the exact faces (EXACT; 14:A2, C6) and the area law (EXACT counts and a CHART face; 14:B9) on the laboratory Carrier; the instrument table from the four public data (14:C1, C4); the two-face concordance ±17 %/factor 1.9 and the conventional ±14 %/1.7 (14:C4); the chart identity behind the two clusters (14:C8); the circularity audit and the octant inversion, 0.19σ (14:C3, C7, X3, X6); the channel-1 consistency 67.4 (14:C8); the age–rate locus 0.950 read on the stellar age, H₀ = 68.2 ± 1.7 with its three confrontations (14:P3); the one-face concordance ±7 %/±4 % and the r_H^Λ column (14:C4, C7); the floor landing 5.46 ± 1.1 (14:X2); the octant bound 13.79 Gyr against the stellar ages (14:C5, P2); the running floor against the intermediate-redshift measurement — the endpoint and the global linear rate against the ∝ H(z) chord, and the four bins: a constant floor excluded by Δχ² = 23, the running form at A = 1.39 ± 0.03 with χ² = 5.4/3, the binned rate 0.98 ± 0.19 on the chord, the amplitude 0.12 dex above cH₀/2π (14:P1) |
 | `tri` | tri.A, D, W, F | 19 | `make-wedge-2.py` of the paper: the audit identities before drawing (14:C5, C8, C9); the thirteen-object regression k = 3.032, the constrained cubic coefficient c̃ = m/R³ = 0.97 × 10³ kg/m³, the fifteen-object sensitivity, the over-closure exit 1.8 × 10⁸ M☉ within its band (14:C9, X5); the wall residents, the slope decomposition, the Compton entry (14:C9); the triangle and wall-channels figures written (no predicate) |
+| `win` | win.W, L, S | 9 | the additive window (EXACT; 14:B11: the totals of N modes at heights ≤ κᵢ are exactly [−Σκᵢ, Σκᵢ], exhaustive for N ≤ 4), the lock of like units (14:B12: recurrence 12, one C₁₂ offset per further unit, the orbit counts 12 and 144), the shells of capacity 3N and fusion (14:B13: 12N + 1 prime for N ∈ {1, 3, 5, 6, 8, 9}, hydrogen (4, 3) → 3) — the master's `check_f7.py` of 17 September, parts 1–3 |
 | `cap` | cap.A, K, F | 17 | `make-wedge-3.py` of the paper: the same identities re-asserted (14:C9); the pinned mass axis and the Avogadro landing to 0.0035 dex (14:C10); the capacity-axis figure written (no predicate) |
 
 The registry (micro-check collector, family aggregation, `LEDGER` check → predicates, `LABELS`, kinds, `PREDICATES`,
@@ -79,6 +80,6 @@ Section 4 and are not cited by it.
 
 Predicates A1–A8 imports; B1, B3, B4, B6–B8 realisations, B2, B5 definitions, B9 composite; C1–C10 derived; X1–X8 the
 explicability dividends; P1–P4 the predictions with their falsifiers; Z1 the Ω-hard numeral; B10 the capacity axis as
-a definition (the former lock conjecture O1, closed 17 Sep 2026 as `00:F7`). Block V retired on 24 September 2026: its
+a definition (the former lock conjecture O1, closed 17 Sep 2026 as `00:F7`); B11–B13 the three theorems of the capacity axis (master F7, returned 15 October 2026). Block V retired on 24 September 2026: its
 rows described the package and the libraries, not the paper; the machine verification is carried by the witness links
 of the rows. Check → predicate: `entropy.LEDGER`.

@@ -3,7 +3,7 @@
  "tree": "14-entropy-20260722",
  "title": "De Sitter Entropy Estimates over Finite Holographic Substrate",
  "doi": "https://doi.org/10.20944/preprints202608.0310.v1",
- "generated": "13 October 2026",
+ "generated": "15 October 2026",
  "blocks": [
   {
    "letter": "A",
@@ -136,10 +136,31 @@
     },
     {
      "label": "B10",
-     "predicate": "The capacity axis counts hydrogen units (one gram at $N_A$ to $0.003$ dex \\apx): a definition, not a registered shell. The least register window resolving the total winding of $N$ units is $3N$, a theorem about the observing Subject (00:F7); a phase-locked composite of like units is an aggregate, never one shell (00:F6; a shell of capacity $3N$ exists only when $12N+1$ is prime, none at $N=2$); the largest shell any Subject registers whole is the nesting bound $\\mathsf{q}<\\Om^{1/4}$, $N<(\\Om^{1/4}-1)/12$ units, $8\\times10^{2}$\\,kg at $\\dS=3.3\\times10^{122}$ \\apx{} ($\\dS^{1/4}$ units overcounts by $12$); everything heavier an aggregate of locks; the proton's $1$ against $3$ compares a tower label with a chart count.",
+     "predicate": "The capacity axis counts hydrogen units (one gram at $N_A$ to $0.003$ dex \\apx): a definition, not a registered shell. The least register window resolving the total winding of $N$ units is $3N$, a theorem about the observing Subject (B11); a phase-locked composite of like units is an aggregate, never one shell (B12; a shell of capacity $3N$ exists only when $12N+1$ is prime, B13); the largest shell any Subject registers whole is the nesting bound $\\mathsf{q}<\\Om^{1/4}$ (00:B8), $N<(\\Om^{1/4}-1)/12$ units, $8\\times10^{2}$\\,kg at $\\dS=3.3\\times10^{122}$ \\apx{} ($\\Om^{1/4}$ units overcounts by $12$); everything heavier an aggregate of locks; the proton's $1$ against $3$ compares a tower label with a chart count.",
      "tag": "D",
-     "source": "\\S\\ref{sec:wedge}; 00:F7, 00:F6\\newline \\leanwit{FrcCore}{p14044}{B10}, \\leanwit{FrcLedger}{p14044}{B10} \\lean{Entropy.hydrogen\\_units, Entropy.nesting\\_lab, FRC.Entropy.nesting\\_bound, FRC.Entropy.lab\\_nesting}",
+     "source": "\\S\\ref{sec:wedge}; B11--B13, 00:B8\\newline \\leanwit{FrcCore}{p14044}{B10}, \\leanwit{FrcLedger}{p14044}{B10} \\lean{Entropy.hydrogen\\_units, Entropy.nesting\\_lab, FRC.Entropy.nesting\\_bound, FRC.Entropy.lab\\_nesting}",
      "key": "p14044"
+    },
+    {
+     "label": "B11",
+     "predicate": "The additive window: for $N$ modes at resolvable heights $|\\hat h_i|\\le\\kap_i$ (38:A8) the total winding satisfies $|\\sum_i\\hat h_i|\\le\\sum_i\\kap_i$, attained, every total in the range occurring; the least register window resolving the total exactly is the capacity sum $\\sum_i\\kap_i$, $3N$ for $N$ hydrogen units --- a capacity of the observing Subject, not a shell of the composite (B10).",
+     "tag": "T",
+     "source": "\\S\\ref{sec:wedge}; 38:A8, B10\\newline \\pywit{entropy}{p14046}{B11}, \\leanwit{FrcCore}{p14046}{B11}, \\leanwit{FrcLedger}{p14046}{B11} \\lean{Entropy.additive\\_window, FRC.Entropy.additive\\_window, FRC.Entropy.additive\\_window\\_hydrogen}",
+     "key": "p14046"
+    },
+    {
+     "label": "B12",
+     "predicate": "The lock of like units: $N$ like units never fuse (00:F6, $\\gcd(12,12)=12$): their joint registration (00:F2) recurs on $C_{12}$ with period $12$ for every $N$, one superselected $C_{12}$ offset per further unit --- an aggregate, never one shell. Instances: the diagonal drive on $C_{12}^{2}$ has $12$ orbits of length $12$, on $C_{12}^{3}$ $144$.",
+     "tag": "T",
+     "source": "\\S\\ref{sec:wedge}; 00:F6, 00:F2\\newline \\pywit{entropy}{p14047}{B12}, \\leanwit{FrcCore}{p14047}{B12}, \\leanwit{FrcLedger}{p14047}{B12} \\lean{Entropy.lock\\_recurrence, FRC.Entropy.lock\\_recurrence, FRC.Entropy.lock\\_orbits}",
+     "key": "p14047"
+    },
+    {
+     "label": "B13",
+     "predicate": "Shells of capacity $3N$ and fusion: the shell of capacity $3N$ is $\\F_{12N+1}$ and exists iff $12N+1$ is prime ($N=1,3,5,6,8,9$ below $10$; none at $N=2$, $25=5^{2}$), never the lock's register (B12); fusion of coprime cycles is multiplicative, $\\kap=n_{1}n_{2}/4$: hydrogen $(4,3)\\to3$, one orbit of length $12$ (00:F6).",
+     "tag": "T",
+     "source": "\\S\\ref{sec:wedge}; B12, 00:F6\\newline \\pywit{entropy}{p14048}{B13}, \\leanwit{FrcCore}{p14048}{B13}, \\leanwit{FrcLedger}{p14048}{B13} \\lean{Entropy.shells\\_of\\_capacity, Entropy.fusion\\_capacity, FRC.Entropy.shells\\_of\\_capacity, FRC.Entropy.fusion\\_capacity}",
+     "key": "p14048"
     }
    ]
   },
@@ -396,9 +417,6 @@
   "X4": [
    "C16"
   ],
-  "B10": [
-   "F7"
-  ],
   "A6": [
    "L1"
   ],
@@ -438,7 +456,7 @@
    {
     "name": "FRC.Entropy.quarter_identity",
     "module": "FrcCore/Entropy",
-    "line": 44,
+    "line": 47,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -462,7 +480,7 @@
    {
     "name": "FRC.Entropy.carrierLab_prime",
     "module": "FrcCore/Entropy",
-    "line": 145,
+    "line": 148,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -512,7 +530,7 @@
    {
     "name": "FRC.Entropy.octant_count",
     "module": "FrcCore/Entropy",
-    "line": 68,
+    "line": 71,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -564,7 +582,7 @@
    {
     "name": "FRC.Entropy.quarter_identity",
     "module": "FrcCore/Entropy",
-    "line": 44,
+    "line": 47,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -601,7 +619,7 @@
    {
     "name": "FRC.Entropy.nesting_bound",
     "module": "FrcCore/Entropy",
-    "line": 93,
+    "line": 96,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -610,11 +628,120 @@
    {
     "name": "FRC.Entropy.lab_nesting",
     "module": "FrcCore/Entropy",
-    "line": 158,
+    "line": 161,
     "axioms": [],
     "tier": 0,
     "ok": true,
     "doc": "14:B10 — the nesting on the laboratory Carrier: the capacity-`9` shell `q = 37` nests through the Subject `p = 1373 = 4 · 343 + 1`, prime (`1373 < 38²`, no `d ≤ 37` divides it), `37² < 1373`, `1373² < Ω`; and the bound `N ≤ 3`: `37⁴ < Ω < 49⁴`."
+   }
+  ],
+  "B11": [
+   {
+    "name": "FRC.Entropy.additive_window",
+    "module": "FrcLedger/Entropy",
+    "line": 543,
+    "axioms": [
+     "Quot.sound",
+     "propext"
+    ],
+    "tier": 1,
+    "ok": true,
+    "doc": "14:B11 — the additive window: for modes at heights `hᵢ` with `|hᵢ| ≤ κᵢ` (as a list of pairs `(hᵢ, κᵢ)`) the total has `|Σhᵢ| ≤ Σκᵢ`; the bound is attained by `hᵢ = κᵢ`; and every total `t` with `|t| ≤ Σκᵢ` occurs — the first height the clamp of `t` to `[−κ₁, κ₁]`, the rest by induction."
+   },
+   {
+    "name": "FRC.Entropy.additive_window",
+    "module": "FrcCore/Entropy",
+    "line": 342,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "14:B11 — the additive window as one statement: the bound, its attainment and every total in the range (heights read as `uᵢ = hᵢ + κᵢ ≤ 2κᵢ`)."
+   },
+   {
+    "name": "FRC.Entropy.additive_window_hydrogen",
+    "module": "FrcCore/Entropy",
+    "line": 352,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "14:B11 — hydrogen units: `N` modes of capacity `3` have the window `3N` (`2 · 3N` in the shifted reading); on the hydrogen shell `𝔽₁₃` two heights `≤ 3` sum to at most `6 = 2κ` (38:A8), and three can exceed it, `3 + 3 + 3 = 9 > 6` — the window grows with `N`."
+   }
+  ],
+  "B12": [
+   {
+    "name": "FRC.Entropy.lock_recurrence",
+    "module": "FrcLedger/Entropy",
+    "line": 599,
+    "axioms": [
+     "Quot.sound",
+     "propext"
+    ],
+    "tier": 1,
+    "ok": true,
+    "doc": "14:B12 — the lock of like units: the joint recurrence of `N + 1` cycles of period `12` is `12` for every `N`, `lcm (12, …, 12) = 12`, so no element of the lock has order `12N` for `N ≥ 2`; the diagonal drive on `ZMod 12 × ZMod 12` keeps the offset `x − y` (one superselected `C₁₂` offset per further unit), and `144 = 12 · 12`, `1728 = 144 · 12` points fall into orbits of length `12`."
+   },
+   {
+    "name": "FRC.Entropy.lock_recurrence",
+    "module": "FrcCore/Entropy",
+    "line": 371,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "14:B12 — the lock of like units: `m ≥ 1` cycles of period `12` return jointly exactly at the multiples of `12` (the quantum theme's `Joint`), so the joint recurrence is `12` for every `m` and no element has order `12m` for `m ≥ 2`."
+   },
+   {
+    "name": "FRC.Entropy.lock_orbits",
+    "module": "FrcCore/Entropy",
+    "line": 379,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "14:B12 — the instances on the lock `C₁₂ × C₁₂`: the diagonal drive `(x, y) ↦ (x + 1, y + 1)` returns every point after `12` steps, `x + 12 = x`, and not before, `x + k ≠ x` for `0 < k < 12`; it keeps the offset, `(x + 1) − (y + 1) = x − y` (one superselected `C₁₂` offset per further unit); so the `144` points fall into `12` orbits of length `12`, and the `1728` points of `C₁₂³` into `144`."
+   }
+  ],
+  "B13": [
+   {
+    "name": "FRC.Entropy.shells_of_capacity",
+    "module": "FrcLedger/Entropy",
+    "line": 613,
+    "axioms": [
+     "Classical.choice",
+     "Quot.sound",
+     "propext"
+    ],
+    "tier": 2,
+    "ok": true,
+    "doc": "14:B13 — the shell of capacity `3N` is `𝔽_{12N+1}`, `4 · 3N + 1 = 12N + 1`, and exists exactly when `12N + 1` is prime: below `N = 10` for `N = 1, 3, 5, 6, 8, 9` and not at `N = 2` (`25 = 5²`), `4`, `7`."
+   },
+   {
+    "name": "FRC.Entropy.fusion_capacity",
+    "module": "FrcLedger/Entropy",
+    "line": 623,
+    "axioms": [
+     "Quot.sound",
+     "propext"
+    ],
+    "tier": 1,
+    "ok": true,
+    "doc": "14:B13 — fusion of coprime cycles is multiplicative: for coprime periods `n₁, n₂` the joint recurrence is `lcm n₁ n₂ = n₁ n₂`, and the fused capacity `n₁ n₂ / 4`; hydrogen `(4, 3)`: `lcm = 12`, capacity `3`; like cycles do not fuse, `lcm (12, 12) = 12 = gcd (12, 12)`, and the capacity-`3` shell `13` is not the lock's register `12`."
+   },
+   {
+    "name": "FRC.Entropy.shells_of_capacity",
+    "module": "FrcCore/Entropy",
+    "line": 391,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "14:B13 — the shell of capacity `3N` is `𝔽_{12N+1}`, `4 · 3N + 1 = 12N + 1`; below `N = 10` it exists exactly for `N = 1, 3, 5, 6, 8, 9` (`12N + 1` prime), and not at `N = 2` (`25 = 5²`), `4`, `7`."
+   },
+   {
+    "name": "FRC.Entropy.fusion_capacity",
+    "module": "FrcCore/Entropy",
+    "line": 416,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "14:B13 — fusion of coprime cycles is multiplicative, the instances: hydrogen `(4, 3)` returns jointly exactly at the multiples of `12 = 4 · 3` (searched below `24`), the diagonal drive on `C₄ × C₃` is one orbit of length `12` (the twelve points `(k, k)`, `k < 12`, distinct), and the fused capacity is `4 · 3 / 4 = 3`; like cycles do not fuse — `(12, 12)` returns at the multiples of `12`, `gcd (12, 12) = 12` — and the capacity-`3` shell `13` is not the lock's register `12`. The general law, `lcm (n₁, n₂) = n₁ n₂` for coprime cycles, is the Mathlib declaration."
    }
   ],
   "C2": [
@@ -677,7 +804,7 @@
    {
     "name": "FRC.Entropy.octant_chart",
     "module": "FrcLedger/Entropy",
-    "line": 540,
+    "line": 634,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -703,7 +830,7 @@
    {
     "name": "FRC.Entropy.closure_count",
     "module": "FrcCore/Entropy",
-    "line": 74,
+    "line": 77,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -712,7 +839,7 @@
    {
     "name": "FRC.Entropy.octant_count",
     "module": "FrcCore/Entropy",
-    "line": 68,
+    "line": 71,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -749,7 +876,7 @@
    {
     "name": "FRC.Entropy.tsirelson_square",
     "module": "FrcCore/Entropy",
-    "line": 199,
+    "line": 202,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -758,7 +885,7 @@
    {
     "name": "FRC.Entropy.octant_iff",
     "module": "FrcCore/Entropy",
-    "line": 243,
+    "line": 246,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -767,7 +894,7 @@
    {
     "name": "FRC.Entropy.lab_carrier",
     "module": "FrcCore/Entropy",
-    "line": 138,
+    "line": 141,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -791,7 +918,7 @@
    {
     "name": "FRC.Entropy.landing_bracket",
     "module": "FrcLedger/Entropy",
-    "line": 575,
+    "line": 669,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -875,7 +1002,7 @@
    {
     "name": "FRC.Entropy.capacity_axis",
     "module": "FrcCore/Entropy",
-    "line": 151,
+    "line": 154,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -914,7 +1041,7 @@
    {
     "name": "FRC.Entropy.landing_bracket",
     "module": "FrcLedger/Entropy",
-    "line": 575,
+    "line": 669,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -955,7 +1082,7 @@
    {
     "name": "FRC.Entropy.two_is_square_iff",
     "module": "FrcCore/Entropy",
-    "line": 254,
+    "line": 257,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -966,7 +1093,7 @@
    {
     "name": "FRC.Entropy.age_rate_locus",
     "module": "FrcLedger/Entropy",
-    "line": 549,
+    "line": 643,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -979,7 +1106,7 @@
    {
     "name": "FRC.Entropy.locus_bracket",
     "module": "FrcLedger/Entropy",
-    "line": 571,
+    "line": 665,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
