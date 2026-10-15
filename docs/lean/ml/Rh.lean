@@ -252,6 +252,13 @@ theorem zeros_in_strip {s : ℂ} (h0 : riemannZeta s = 0) (htriv : ¬∃ n : ℕ
     0 < s.re ∧ s.re < 1 ∧ riemannZeta (1 - s) = 0 ∧ riemannZeta (conj s) = 0 :=
   FRC.Chart.zeros_in_strip h0 htriv h1
 
+/-- 20:F1 — 20-rh's name; the theorem is `FRC.Chart.zero_of_sign_change`: a sign change of the real completed zeta
+`Re Λ(1/2 + it)` between two heights is a zero of `ζ` on the line between them (Turing's count, the analytic clause). -/
+theorem zero_of_sign_change {a b : ℝ} (hab : a < b)
+    (h : (completedRiemannZeta (1 / 2 + a * Complex.I)).re * (completedRiemannZeta (1 / 2 + b * Complex.I)).re < 0) :
+    ∃ t : ℝ, a < t ∧ t < b ∧ riemannZeta (1 / 2 + t * Complex.I) = 0 :=
+  FRC.Chart.zero_of_sign_change hab h
+
 end strip
 
 section coincidence
@@ -316,12 +323,6 @@ theorem p20016 : (∀ {F : Type u_1} [Field F] (ν : F) (z : QuadraticAlgebra F 
 /-- 20:B10 (p20017) — The Subject constants on the shell: $\pi=2\kp$, $2\pi\equiv-1$, $\im=\gen^{-\kp}$, $\im^{2}\equiv-1$, $\E=\gen^{\,\im}$ on the odd lift, $\gen^{\,\pi}\equiv-1$, $\E^{\,\im\pi}\equiv-1$; on $\F_{13}$: $\gen=2$, $\im=5$, $\E=6$, $\pi=6$. -/
 theorem p20017 : (∀ {F : Type u_1} [Field F] [Fintype F] (κ : ℕ), Fintype.card F = (4 : ℕ) * κ + (1 : ℕ) → ∀ (g : F), IsPrimitiveRoot g (Fintype.card F - (1 : ℕ)) → (2 : F) * ↑((2 : ℕ) * κ) = (-1 : F) ∧ g ^ ((3 : ℕ) * κ) = -g ^ κ ∧ (g ^ ((3 : ℕ) * κ)) ^ (2 : ℕ) = (-1 : F) ∧ g ^ ((2 : ℕ) * κ) = (-1 : F) ∧ ∀ (m : ℕ), m % (2 : ℕ) = (1 : ℕ) → (g ^ m) ^ (m * ((2 : ℕ) * κ)) = (-1 : F)) ∧ (2 : ZMod (13 : ℕ)) * (6 : ZMod (13 : ℕ)) = (-1 : ZMod (13 : ℕ)) ∧ (2 : ZMod (13 : ℕ)) ^ (9 : ℕ) = (5 : ZMod (13 : ℕ)) ∧ (5 : ZMod (13 : ℕ)) ^ (2 : ℕ) = (-1 : ZMod (13 : ℕ)) ∧ (2 : ZMod (13 : ℕ)) ^ (5 : ℕ) = (6 : ZMod (13 : ℕ)) ∧ (2 : ZMod (13 : ℕ)) ^ (6 : ℕ) = (-1 : ZMod (13 : ℕ)) ∧ (6 : ZMod (13 : ℕ)) ^ ((5 : ℕ) * (6 : ℕ)) = (-1 : ZMod (13 : ℕ)) :=
   @FRC.LedgerML.p20017
-/-- 20:C2 (p20020) — The resonance and the von Mangoldt weight: the units-chart resonance $R_L(n)=\sum_{q\le L}\frac{\mu(q)}{\varphi(q)}c_q(n)$ converges to $\frac{\varphi(n)}{n}\Lambda(n)$ (Hardy, A6); $\Lambda=\mu\ast\log$ exactly on the divisor lattice; the intertwiner $\Lambda=\frac{n}{\varphi(n)}R$; support the prime powers in every form. -/
-theorem p20020 : ∀ (m : ℕ), ArithmeticFunction.vonMangoldt m = ∑ d ∈ m.divisors, ↑(ArithmeticFunction.moebius d) * Real.log (↑m / ↑d) ∧ (ArithmeticFunction.vonMangoldt m ≠ (0 : ℝ) ↔ IsPrimePow m) :=
-  @FRC.LedgerML.p20020
-/-- 20:C5 (p20023) — Mean-square flatness: with $r_j$ the normalised correlation of the mean-removed prime indicator with the nonconstant chart mode $\chi_j$, $\sum_{j\ne0}r_j^{2}=1$ exactly (Parseval), so the root-mean-square correlation is $1/\sqrt{\p-2}$. -/
-theorem p20023 : (∀ {n : ℕ} [NeZero n] (v : ZMod n → ℂ), ∑ j, Complex.normSq (FRC.Chart.coef v j) = ↑n * ∑ m, Complex.normSq (v m)) ∧ ∀ {n : ℕ} [NeZero n] (u : ZMod n → ℂ), ∑ m, u m = (0 : ℂ) → u ≠ (0 : ZMod n → ℂ) → ∑ j ∈ Finset.univ.erase (0 : ZMod n), Complex.normSq (FRC.Chart.coef u j) / (↑n * ∑ m, Complex.normSq (u m)) = (1 : ℝ) ∧ (∑ j ∈ Finset.univ.erase (0 : ZMod n), Complex.normSq (FRC.Chart.coef u j) / (↑n * ∑ m, Complex.normSq (u m))) / (↑n - (1 : ℝ)) = (1 : ℝ) / (↑n - (1 : ℝ)) :=
-  @FRC.LedgerML.p20023
 set_option linter.defProp false in
 /-- 20:D8 (p20080) — The strip: the Euler product excludes zeros with real part at least one, and the functional equation confines the nontrivial zeros to the open strip in Klein-four orbits of size two on the line and four off it; the Davenport--Heilbronn vector, without the product, is not multiplicative and has an off-line zero. No core witness: the statement is analytic. -/
 def p20080 := @FRC.LedgerML.p20080
@@ -334,6 +335,9 @@ def p20043 := @FRC.LedgerML.p20043
 set_option linter.defProp false in
 /-- 20:E13 (p20044) — Shell-basis completeness is not a clause of E12: the $\p-1$ complex characters are an orthogonal basis of $\mathbb C^{\Fx{\p}}$ ($\lVert\chi_j\rVert^{2}=\p-1$; finite Parseval), true of every vector, the trivial character carrying the mean $\psi(\p-1)/(\p-1)$; the $\Fp$-valued power characters are never orthonormal and do not expand $v$; completeness for the zero set of $\zeta$ is D5, a different clause. -/
 def p20044 := @FRC.LedgerML.p20044
+set_option linter.defProp false in
+/-- 20:F1 (p20047) — \textbf{Turing's count on the shell.} On every cell $C_y\le N^{\mathrm{crit}}_y\le\mathcal N_y$ (A7); the cell is clean when $\mathcal N_y=N^{\mathrm{crit}}_y$, and $C_y=\mathcal N_y$ certifies it, every zero simple. The shell estimates $\mathcal N$ by the comb count (Appendix~\ref{app:comb}; uncertified) and reads $C$ from the main sum's sign changes (A10), zeros on the line. An off-line zero is a phantom, $\mathcal N_y-N^{\mathrm{crit}}_y>0$. -/
+def p20047 := @FRC.LedgerML.p20047
 -- end ledger predicates
 
 end FRC.Rh

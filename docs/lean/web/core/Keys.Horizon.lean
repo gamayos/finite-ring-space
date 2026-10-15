@@ -5246,6 +5246,55 @@ theorem clean_iff_count {α : Type} (fixed : α → Bool) : ∀ l : List α,
 
 end cells
 
+/-! ## Turing's count on the shell (20:F1; 15 October 2026): the chain `C_y ≤ N^crit_y ≤ N_y`, the certificate at
+equality, and the phantom -/
+
+section turing
+
+/-- 20:F1, Turing's count: `fixedCount` is monotone in the predicate — when every certified sign change of the list
+is a point of the line (`sc z = true → onLine z = true`), the certified count is at most the on-line count. -/
+theorem fixedCount_mono {α : Type} (sc onLine : α → Bool) : ∀ l : List α,
+    (∀ z, z ∈ l → sc z = true → onLine z = true) → fixedCount sc l ≤ fixedCount onLine l
+  | [], _ => Nat.le_refl 0
+  | a :: l, h => by
+    show fixedCount sc l + (match sc a with | true => 1 | false => 0) ≤
+      fixedCount onLine l + (match onLine a with | true => 1 | false => 0)
+    have ih := fixedCount_mono sc onLine l fun z hz => h z (List.Mem.tail a hz)
+    cases hsa : sc a with
+    | true =>
+      rw [h a (List.Mem.head l) hsa]
+      exact Nat.add_le_add ih (Nat.le_refl 1)
+    | false => exact Nat.add_le_add ih (Nat.zero_le _)
+
+/-- 20:F1, the chain `C_y ≤ N^crit_y ≤ N_y`: on the finite list of a cell's zeros, the certified sign changes (each a
+point of the line) count at most the on-line zeros, which count at most the zeros. -/
+theorem turing_chain {α : Type} (sc onLine : α → Bool) (l : List α)
+    (h : ∀ z, z ∈ l → sc z = true → onLine z = true) :
+    fixedCount sc l ≤ fixedCount onLine l ∧ fixedCount onLine l ≤ l.length :=
+  ⟨fixedCount_mono sc onLine l h, fixedCount_le onLine l⟩
+
+/-- 20:F1, the certificate: when the certified count reaches the count of the cell, every zero of the cell lies on
+the line and is certified (simple, as a sign change). -/
+theorem turing_equal {α : Type} (sc onLine : α → Bool) (l : List α)
+    (h : ∀ z, z ∈ l → sc z = true → onLine z = true) (hc : fixedCount sc l = l.length) :
+    ∀ z, z ∈ l → onLine z = true ∧ sc z = true := by
+  have hsc := (clean_iff_count sc l).2 hc
+  intro z hz
+  exact ⟨h z hz (hsc z hz), hsc z hz⟩
+
+/-- 20:F1, the phantom: a zero off the line makes the on-line count fall short of the count, `N_y − N^crit_y > 0`. -/
+theorem turing_phantom {α : Type} (onLine : α → Bool) (l : List α) (hz : ∃ z, z ∈ l ∧ onLine z = false) :
+    fixedCount onLine l < l.length :=
+  match Nat.lt_or_ge (fixedCount onLine l) l.length with
+  | .inl hlt => hlt
+  | .inr hge =>
+    have heq : fixedCount onLine l = l.length := Nat.le_antisymm (fixedCount_le onLine l) hge
+    have hall := (clean_iff_count onLine l).2 heq
+    match hz with
+    | ⟨z, hzl, hzf⟩ => absurd (hall z hzl) (by rw [hzf]; exact Bool.false_ne_true)
+
+end turing
+
 end FRC.Horizon
 
 /-! FrcCore/Keys/Horizon.lean -/
@@ -5297,6 +5346,9 @@ theorem p20032 : (∀ {p : Nat} [FRC.Pos p] {g : FRC.Shell p} (r k : Nat) (x : F
 /-- p20043 — 20:E12, 00:Z10. On every shell $\F_\p\subset\F_{\p^2}$, with no hypothesis, the prime vector's spectral content is the constant mode and the nonterminal quarter-turn modes, the finite zeta vanishing on each (20:E12, 20:B4). Every mode of every vector lies on the self-dual line $\Tr=1$, an eigenvector of the scale-shift with a $(\p-1)$-th root of unity as eigenvalue: no off-line mode, $\Om$-blind. -/
 theorem p20043 : (∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → (∀ (k : Nat), (0 : Nat) < k → k < p - (1 : Nat) → FRC.Shell.sumRange (fun l => FRC.Shell.ofNat (l + (1 : Nat)) ^ k) (p - (1 : Nat)) = (0 : FRC.Shell p)) ∧ FRC.Shell.sumRange (fun l => FRC.Shell.ofNat (l + (1 : Nat)) ^ (p - (1 : Nat))) (p - (1 : Nat)) = (-1 : FRC.Shell p)) ∧ (∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → ∀ (v : Nat → FRC.Shell p) {j : Nat}, j < p - (1 : Nat) → v j = FRC.Shell.sumRange (fun k => FRC.Horizon.modeCoeff g v k * (g ^ j) ^ k) (p - (1 : Nat))) ∧ (∀ {p : Nat} [FRC.Pos p] {g : FRC.Shell p} (r k : Nat) (x : FRC.Shell p), (g ^ r * x) ^ k = (g ^ r) ^ k * x ^ k) ∧ (∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → ∀ (r k : Nat), ((g ^ r) ^ k) ^ (p - (1 : Nat)) = (1 : FRC.Shell p)) ∧ (∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → ∀ (r : Nat), FRC.Shell.Frame.natCount (fun x => x ≠ (0 : Nat) ∧ g ^ r * FRC.Shell.ofNat x = FRC.Shell.ofNat x) p = if r % (p - (1 : Nat)) = (0 : Nat) then p - (1 : Nat) else (0 : Nat)) ∧ (∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → ∀ (ν θ : FRC.Shell p), (FRC.Horizon.readout ν κ θ).trace = (1 : FRC.Shell p) ∧ (FRC.Horizon.readout ν κ θ).re = FRC.Shell.ofNat ((2 : Nat) * κ + (1 : Nat)) ∧ ∀ (θ' : FRC.Shell p), FRC.Horizon.readout ν κ θ = FRC.Horizon.readout ν κ θ' → θ = θ') ∧ ∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → ∀ (k : Nat), (1 : Nat) ≤ k → k ≤ p - (2 : Nat) → -g ^ k ≠ (0 : FRC.Shell p) ∧ -g ^ k ≠ (-1 : FRC.Shell p) :=
   And.intro @FRC.Horizon.zero_slot (And.intro @FRC.Horizon.mode_expansion (And.intro @FRC.Horizon.shift_power_character (And.intro @FRC.Horizon.eigenphase (And.intro @FRC.Horizon.shift_trace (And.intro @FRC.Horizon.readout_on_line (@FRC.Horizon.readout_slot_index))))))
+/-- p20047 — 20:F1. \textbf{Turing's count on the shell.} On every cell $C_y\le N^{\mathrm{crit}}_y\le\mathcal N_y$ (A7); the cell is clean when $\mathcal N_y=N^{\mathrm{crit}}_y$, and $C_y=\mathcal N_y$ certifies it, every zero simple. The shell estimates $\mathcal N$ by the comb count (Appendix~\ref{app:comb}; uncertified) and reads $C$ from the main sum's sign changes (A10), zeros on the line. An off-line zero is a phantom, $\mathcal N_y-N^{\mathrm{crit}}_y>0$. -/
+theorem p20047 : (∀ {α : Type} (sc onLine : α → Bool) (l : List α), (∀ (z : α), z ∈ l → sc z = true → onLine z = true) → FRC.Horizon.fixedCount sc l ≤ FRC.Horizon.fixedCount onLine l ∧ FRC.Horizon.fixedCount onLine l ≤ l.length) ∧ (∀ {α : Type} (sc onLine : α → Bool) (l : List α), (∀ (z : α), z ∈ l → sc z = true → onLine z = true) → FRC.Horizon.fixedCount sc l = l.length → ∀ (z : α), z ∈ l → onLine z = true ∧ sc z = true) ∧ ∀ {α : Type} (onLine : α → Bool) (l : List α), (∃ z, z ∈ l ∧ onLine z = false) → FRC.Horizon.fixedCount onLine l < l.length :=
+  And.intro @FRC.Horizon.turing_chain (And.intro @FRC.Horizon.turing_equal (@FRC.Horizon.turing_phantom))
 set_option linter.defProp false in
 /-- p20079 — 20:F7. \textbf{The closure of the heights.} A height is a residue on the cycle of the shell that reads it, the largest shell is the Carrier's and there is no height beyond its cycle (A2); no embedded Subject reads the cycle whole (A4). The hypothesis of the Carrier is a statement about the residues of its cycle, one clause per residue. -/
 def p20079 := And.intro @FRC.Horizon.closure (@FRC.Horizon.closure_lab)
@@ -5323,6 +5375,7 @@ end FRC.Ledger
 #print axioms FRC.Ledger.p20029
 #print axioms FRC.Ledger.p20032
 #print axioms FRC.Ledger.p20043
+#print axioms FRC.Ledger.p20047
 #print axioms FRC.Ledger.p20079
 #print axioms FRC.Ledger.p20081
 #print axioms FRC.Ledger.p20083

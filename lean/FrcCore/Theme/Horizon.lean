@@ -581,4 +581,53 @@ theorem clean_iff_count {α : Type} (fixed : α → Bool) : ∀ l : List α,
 
 end cells
 
+/-! ## Turing's count on the shell (20:F1; 15 October 2026): the chain `C_y ≤ N^crit_y ≤ N_y`, the certificate at
+equality, and the phantom -/
+
+section turing
+
+/-- 20:F1, Turing's count: `fixedCount` is monotone in the predicate — when every certified sign change of the list
+is a point of the line (`sc z = true → onLine z = true`), the certified count is at most the on-line count. -/
+theorem fixedCount_mono {α : Type} (sc onLine : α → Bool) : ∀ l : List α,
+    (∀ z, z ∈ l → sc z = true → onLine z = true) → fixedCount sc l ≤ fixedCount onLine l
+  | [], _ => Nat.le_refl 0
+  | a :: l, h => by
+    show fixedCount sc l + (match sc a with | true => 1 | false => 0) ≤
+      fixedCount onLine l + (match onLine a with | true => 1 | false => 0)
+    have ih := fixedCount_mono sc onLine l fun z hz => h z (List.Mem.tail a hz)
+    cases hsa : sc a with
+    | true =>
+      rw [h a (List.Mem.head l) hsa]
+      exact Nat.add_le_add ih (Nat.le_refl 1)
+    | false => exact Nat.add_le_add ih (Nat.zero_le _)
+
+/-- 20:F1, the chain `C_y ≤ N^crit_y ≤ N_y`: on the finite list of a cell's zeros, the certified sign changes (each a
+point of the line) count at most the on-line zeros, which count at most the zeros. -/
+theorem turing_chain {α : Type} (sc onLine : α → Bool) (l : List α)
+    (h : ∀ z, z ∈ l → sc z = true → onLine z = true) :
+    fixedCount sc l ≤ fixedCount onLine l ∧ fixedCount onLine l ≤ l.length :=
+  ⟨fixedCount_mono sc onLine l h, fixedCount_le onLine l⟩
+
+/-- 20:F1, the certificate: when the certified count reaches the count of the cell, every zero of the cell lies on
+the line and is certified (simple, as a sign change). -/
+theorem turing_equal {α : Type} (sc onLine : α → Bool) (l : List α)
+    (h : ∀ z, z ∈ l → sc z = true → onLine z = true) (hc : fixedCount sc l = l.length) :
+    ∀ z, z ∈ l → onLine z = true ∧ sc z = true := by
+  have hsc := (clean_iff_count sc l).2 hc
+  intro z hz
+  exact ⟨h z hz (hsc z hz), hsc z hz⟩
+
+/-- 20:F1, the phantom: a zero off the line makes the on-line count fall short of the count, `N_y − N^crit_y > 0`. -/
+theorem turing_phantom {α : Type} (onLine : α → Bool) (l : List α) (hz : ∃ z, z ∈ l ∧ onLine z = false) :
+    fixedCount onLine l < l.length :=
+  match Nat.lt_or_ge (fixedCount onLine l) l.length with
+  | .inl hlt => hlt
+  | .inr hge =>
+    have heq : fixedCount onLine l = l.length := Nat.le_antisymm (fixedCount_le onLine l) hge
+    have hall := (clean_iff_count onLine l).2 heq
+    match hz with
+    | ⟨z, hzl, hzf⟩ => absurd (hall z hzl) (by rw [hzf]; exact Bool.false_ne_true)
+
+end turing
+
 end FRC.Horizon

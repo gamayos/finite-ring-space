@@ -626,4 +626,90 @@ theorem zeros_in_strip {s : ℂ} (h0 : riemannZeta s = 0) (htriv : ¬∃ n : ℕ
 
 end strip
 
+/-! ## Turing's count (20:F1; 15 October 2026): the completed zeta is real on the line, and a sign change of it between
+two heights is a zero of `ζ` on the line between them — the analytic half of the certificate, whose finite half is
+`FRC.Horizon.turing_chain`, `turing_equal`, `turing_phantom`. -/
+section turing
+
+open ComplexConjugate
+
+theorem line_ne_zero (t : ℝ) : (1 / 2 + t * Complex.I : ℂ) ≠ 0 := by
+  intro h
+  have := congrArg Complex.re h
+  simp at this
+
+theorem line_ne_one (t : ℝ) : (1 / 2 + t * Complex.I : ℂ) ≠ 1 := by
+  intro h
+  have := congrArg Complex.re h
+  norm_num at this
+
+/-- The factor `π^{−w/2} Γ(w/2)` does not vanish for `Re w > 0`. -/
+theorem scale_ne_zero {w : ℂ} (hw : 0 < w.re) :
+    ((Real.pi : ℂ) ^ (-w / 2) * Complex.Gamma (w / 2)) ≠ 0 := by
+  refine mul_ne_zero ?_ ?_
+  · exact Complex.cpow_ne_zero_iff.mpr (Or.inl (by exact_mod_cast Real.pi_ne_zero))
+  · exact Complex.Gamma_ne_zero_of_re_pos (by simp; linarith)
+
+/-- 20:F1 — `Λ(w) = ζ(w) π^{−w/2} Γ(w/2)` for `Re w > 0` (Mathlib's `riemannZeta_eq_completedRiemannZeta₀` with
+`completedRiemannZeta_eq`). -/
+theorem completed_eq_mul {w : ℂ} (hw : 0 < w.re) :
+    completedRiemannZeta w = riemannZeta w * ((Real.pi : ℂ) ^ (-w / 2) * Complex.Gamma (w / 2)) := by
+  have hw0 : w ≠ 0 := fun h => by simp [h] at hw
+  rw [riemannZeta_eq_completedRiemannZeta₀ hw0, ← completedRiemannZeta_eq, div_mul_cancel₀ _ (scale_ne_zero hw)]
+
+/-- 20:F1 — `Λ(s̄) = conj Λ(s)` for `Re s > 0`: `ζ`, `Γ` and the real power commute with conjugation. -/
+theorem completed_conj {s : ℂ} (hs : 0 < s.re) :
+    completedRiemannZeta (conj s) = conj (completedRiemannZeta s) := by
+  have hs' : 0 < (conj s).re := by simpa using hs
+  rw [completed_eq_mul hs', completed_eq_mul hs, map_mul, map_mul, riemannZeta_conj, ← Complex.Gamma_conj]
+  congr 2
+  · have h1 : (-(conj s) / 2 : ℂ) = conj (-s / 2) := by rw [map_div₀, map_neg, map_ofNat]
+    have hπ : (Real.pi : ℂ).arg ≠ Real.pi := by
+      rw [Complex.arg_ofReal_of_nonneg Real.pi_pos.le]; exact Real.pi_ne_zero.symm
+    rw [h1, Complex.cpow_conj _ _ hπ, Complex.conj_ofReal]
+  · congr 1; rw [map_div₀, map_ofNat]
+
+/-- 20:F1 — the completed zeta is real on the line: `1 − s = s̄` there, so `Λ(s) = Λ(1 − s) = Λ(s̄) = conj Λ(s)`. -/
+theorem completed_im_line (t : ℝ) : (completedRiemannZeta (1 / 2 + t * Complex.I)).im = 0 := by
+  set s : ℂ := 1 / 2 + t * Complex.I with hs
+  have hre : 0 < s.re := by simp [hs]
+  have h1 : conj s = 1 - s := by
+    apply Complex.ext <;> simp [hs]; norm_num
+  have h2 : conj (completedRiemannZeta s) = completedRiemannZeta s := by
+    rw [← completed_conj hre, h1, completedRiemannZeta_one_sub]
+  exact Complex.conj_eq_iff_im.mp h2
+
+/-- The real part of the completed zeta along the line is continuous in the height. -/
+theorem continuous_line_re :
+    Continuous (fun t : ℝ => (completedRiemannZeta (1 / 2 + t * Complex.I)).re) := by
+  have hline : Continuous (fun t : ℝ => (1 / 2 + t * Complex.I : ℂ)) := by fun_prop
+  refine Complex.continuous_re.comp (continuous_iff_continuousAt.mpr fun t => ?_)
+  exact ContinuousAt.comp (f := fun t : ℝ => (1 / 2 + t * Complex.I : ℂ)) (g := completedRiemannZeta)
+    (differentiableAt_completedZeta (line_ne_zero t) (line_ne_one t)).continuousAt hline.continuousAt
+
+/-- 20:F1 — Turing's count, the analytic clause: a sign change of `Re Λ(1/2 + it)` between the heights `a < b` is
+a zero of `ζ` on the line strictly between them (the intermediate value theorem on the real function
+`completed_im_line`, divided by the non-vanishing factor `scale_ne_zero`). Each certified sign change of the
+package's main sum is such a zero; the finite count is `FRC.Horizon.turing_chain`. -/
+theorem zero_of_sign_change {a b : ℝ} (hab : a < b)
+    (h : (completedRiemannZeta (1 / 2 + a * Complex.I)).re * (completedRiemannZeta (1 / 2 + b * Complex.I)).re < 0) :
+    ∃ t : ℝ, a < t ∧ t < b ∧ riemannZeta (1 / 2 + t * Complex.I) = 0 := by
+  set f : ℝ → ℝ := fun t => (completedRiemannZeta (1 / 2 + t * Complex.I)).re with hf
+  have hc : ContinuousOn f (Set.Icc a b) := continuous_line_re.continuousOn
+  have key : ∀ t : ℝ, f t = 0 → riemannZeta (1 / 2 + t * Complex.I) = 0 := by
+    intro t ht
+    have hre : 0 < (1 / 2 + t * Complex.I : ℂ).re := by simp
+    have hΛ : completedRiemannZeta (1 / 2 + t * Complex.I) = 0 :=
+      Complex.ext (by simpa [hf] using ht) (by simpa using completed_im_line t)
+    have := completed_eq_mul hre
+    rw [hΛ] at this
+    exact (mul_eq_zero.mp this.symm).resolve_right (scale_ne_zero hre)
+  rcases mul_neg_iff.mp h with ⟨ha, hb⟩ | ⟨ha, hb⟩
+  · obtain ⟨t, ⟨hta, htb⟩, hft⟩ := intermediate_value_Ioo' hab.le hc ⟨hb, ha⟩
+    exact ⟨t, hta, htb, key t hft⟩
+  · obtain ⟨t, ⟨hta, htb⟩, hft⟩ := intermediate_value_Ioo hab.le hc ⟨ha, hb⟩
+    exact ⟨t, hta, htb, key t hft⟩
+
+end turing
+
 end FRC.Chart

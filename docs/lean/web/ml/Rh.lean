@@ -1221,6 +1221,92 @@ theorem zeros_in_strip {s : ℂ} (h0 : riemannZeta s = 0) (htriv : ¬∃ n : ℕ
 
 end strip
 
+/-! ## Turing's count (20:F1; 15 October 2026): the completed zeta is real on the line, and a sign change of it between
+two heights is a zero of `ζ` on the line between them — the analytic half of the certificate, whose finite half is
+`FRC.Horizon.turing_chain`, `turing_equal`, `turing_phantom`. -/
+section turing
+
+open ComplexConjugate
+
+theorem line_ne_zero (t : ℝ) : (1 / 2 + t * Complex.I : ℂ) ≠ 0 := by
+  intro h
+  have := congrArg Complex.re h
+  simp at this
+
+theorem line_ne_one (t : ℝ) : (1 / 2 + t * Complex.I : ℂ) ≠ 1 := by
+  intro h
+  have := congrArg Complex.re h
+  norm_num at this
+
+/-- The factor `π^{−w/2} Γ(w/2)` does not vanish for `Re w > 0`. -/
+theorem scale_ne_zero {w : ℂ} (hw : 0 < w.re) :
+    ((Real.pi : ℂ) ^ (-w / 2) * Complex.Gamma (w / 2)) ≠ 0 := by
+  refine mul_ne_zero ?_ ?_
+  · exact Complex.cpow_ne_zero_iff.mpr (Or.inl (by exact_mod_cast Real.pi_ne_zero))
+  · exact Complex.Gamma_ne_zero_of_re_pos (by simp; linarith)
+
+/-- 20:F1 — `Λ(w) = ζ(w) π^{−w/2} Γ(w/2)` for `Re w > 0` (Mathlib's `riemannZeta_eq_completedRiemannZeta₀` with
+`completedRiemannZeta_eq`). -/
+theorem completed_eq_mul {w : ℂ} (hw : 0 < w.re) :
+    completedRiemannZeta w = riemannZeta w * ((Real.pi : ℂ) ^ (-w / 2) * Complex.Gamma (w / 2)) := by
+  have hw0 : w ≠ 0 := fun h => by simp [h] at hw
+  rw [riemannZeta_eq_completedRiemannZeta₀ hw0, ← completedRiemannZeta_eq, div_mul_cancel₀ _ (scale_ne_zero hw)]
+
+/-- 20:F1 — `Λ(s̄) = conj Λ(s)` for `Re s > 0`: `ζ`, `Γ` and the real power commute with conjugation. -/
+theorem completed_conj {s : ℂ} (hs : 0 < s.re) :
+    completedRiemannZeta (conj s) = conj (completedRiemannZeta s) := by
+  have hs' : 0 < (conj s).re := by simpa using hs
+  rw [completed_eq_mul hs', completed_eq_mul hs, map_mul, map_mul, riemannZeta_conj, ← Complex.Gamma_conj]
+  congr 2
+  · have h1 : (-(conj s) / 2 : ℂ) = conj (-s / 2) := by rw [map_div₀, map_neg, map_ofNat]
+    have hπ : (Real.pi : ℂ).arg ≠ Real.pi := by
+      rw [Complex.arg_ofReal_of_nonneg Real.pi_pos.le]; exact Real.pi_ne_zero.symm
+    rw [h1, Complex.cpow_conj _ _ hπ, Complex.conj_ofReal]
+  · congr 1; rw [map_div₀, map_ofNat]
+
+/-- 20:F1 — the completed zeta is real on the line: `1 − s = s̄` there, so `Λ(s) = Λ(1 − s) = Λ(s̄) = conj Λ(s)`. -/
+theorem completed_im_line (t : ℝ) : (completedRiemannZeta (1 / 2 + t * Complex.I)).im = 0 := by
+  set s : ℂ := 1 / 2 + t * Complex.I with hs
+  have hre : 0 < s.re := by simp [hs]
+  have h1 : conj s = 1 - s := by
+    apply Complex.ext <;> simp [hs]; norm_num
+  have h2 : conj (completedRiemannZeta s) = completedRiemannZeta s := by
+    rw [← completed_conj hre, h1, completedRiemannZeta_one_sub]
+  exact Complex.conj_eq_iff_im.mp h2
+
+/-- The real part of the completed zeta along the line is continuous in the height. -/
+theorem continuous_line_re :
+    Continuous (fun t : ℝ => (completedRiemannZeta (1 / 2 + t * Complex.I)).re) := by
+  have hline : Continuous (fun t : ℝ => (1 / 2 + t * Complex.I : ℂ)) := by fun_prop
+  refine Complex.continuous_re.comp (continuous_iff_continuousAt.mpr fun t => ?_)
+  exact ContinuousAt.comp (f := fun t : ℝ => (1 / 2 + t * Complex.I : ℂ)) (g := completedRiemannZeta)
+    (differentiableAt_completedZeta (line_ne_zero t) (line_ne_one t)).continuousAt hline.continuousAt
+
+/-- 20:F1 — Turing's count, the analytic clause: a sign change of `Re Λ(1/2 + it)` between the heights `a < b` is
+a zero of `ζ` on the line strictly between them (the intermediate value theorem on the real function
+`completed_im_line`, divided by the non-vanishing factor `scale_ne_zero`). Each certified sign change of the
+package's main sum is such a zero; the finite count is `FRC.Horizon.turing_chain`. -/
+theorem zero_of_sign_change {a b : ℝ} (hab : a < b)
+    (h : (completedRiemannZeta (1 / 2 + a * Complex.I)).re * (completedRiemannZeta (1 / 2 + b * Complex.I)).re < 0) :
+    ∃ t : ℝ, a < t ∧ t < b ∧ riemannZeta (1 / 2 + t * Complex.I) = 0 := by
+  set f : ℝ → ℝ := fun t => (completedRiemannZeta (1 / 2 + t * Complex.I)).re with hf
+  have hc : ContinuousOn f (Set.Icc a b) := continuous_line_re.continuousOn
+  have key : ∀ t : ℝ, f t = 0 → riemannZeta (1 / 2 + t * Complex.I) = 0 := by
+    intro t ht
+    have hre : 0 < (1 / 2 + t * Complex.I : ℂ).re := by simp
+    have hΛ : completedRiemannZeta (1 / 2 + t * Complex.I) = 0 :=
+      Complex.ext (by simpa [hf] using ht) (by simpa using completed_im_line t)
+    have := completed_eq_mul hre
+    rw [hΛ] at this
+    exact (mul_eq_zero.mp this.symm).resolve_right (scale_ne_zero hre)
+  rcases mul_neg_iff.mp h with ⟨ha, hb⟩ | ⟨ha, hb⟩
+  · obtain ⟨t, ⟨hta, htb⟩, hft⟩ := intermediate_value_Ioo' hab.le hc ⟨hb, ha⟩
+    exact ⟨t, hta, htb, key t hft⟩
+  · obtain ⟨t, ⟨hta, htb⟩, hft⟩ := intermediate_value_Ioo hab.le hc ⟨ha, hb⟩
+    exact ⟨t, hta, htb, key t hft⟩
+
+end turing
+
 end FRC.Chart
 
 /-! inlined: FrcLedger/Theme/Gravity.lean (verbatim, minus its import lines) -/
@@ -1975,12 +2061,6 @@ theorem p00193 : (∀ (S r c : ℝ), S ≠ (0 : ℝ) → S / (2 : ℝ) / ((4 : �
 /-- p14038 — 14:P3. The age--rate locus $t_{\mathrm{age}}H_0=(\pi/4)/\tanh(3\pi/8)=0.950$, exact for the realisation set. Read on the fit-independent stellar age ($13.61\pm0.34$ Gyr): $H_0=68.2\pm1.7$ km/s/Mpc \apx, $0.5\sigma$ from Planck, $0.65\sigma$ from TRGB, $2.4\sigma$ from the Cepheid ladder --- the framework favours the CMB/TRGB value at that significance, and forbids the $\Omega_\Lambda\approx0.76$ by which the rival chart would accommodate the ladder value at the same age. Read on the channel-1 $\Lambda$ it returns the channel-1 $H_0$ (to $0.1\%$): a consistency, not a prediction (C8). Falsifier: a confirmed ladder $H_0$ with the stellar age standing ($t_\star H_0\ge1.0$ against $0.950$). -/
 theorem p14038 : (∀ (t H0 HΛ Ω : ℝ), t * HΛ = Real.pi / (4 : ℝ) → HΛ = H0 * √Ω → Ω = Real.tanh ((3 : ℝ) * Real.pi / (8 : ℝ)) ^ (2 : ℕ) → t * H0 = Real.pi / (4 : ℝ) / Real.tanh ((3 : ℝ) * Real.pi / (8 : ℝ))) ∧ 0.9498 < Real.pi / (4 : ℝ) / Real.tanh ((3 : ℝ) * Real.pi / (8 : ℝ)) ∧ Real.pi / (4 : ℝ) / Real.tanh ((3 : ℝ) * Real.pi / (8 : ℝ)) < 0.9499 :=
   And.intro @FRC.Chart.age_rate_locus (@FRC.Chart.locus_bracket)
-/-- p20020 — 20:C2. The resonance and the von Mangoldt weight: the units-chart resonance $R_L(n)=\sum_{q\le L}\frac{\mu(q)}{\varphi(q)}c_q(n)$ converges to $\frac{\varphi(n)}{n}\Lambda(n)$ (Hardy, A6); $\Lambda=\mu\ast\log$ exactly on the divisor lattice; the intertwiner $\Lambda=\frac{n}{\varphi(n)}R$; support the prime powers in every form. -/
-theorem p20020 : ∀ (m : ℕ), ArithmeticFunction.vonMangoldt m = ∑ d ∈ m.divisors, ↑(ArithmeticFunction.moebius d) * Real.log (↑m / ↑d) ∧ (ArithmeticFunction.vonMangoldt m ≠ (0 : ℝ) ↔ IsPrimePow m) :=
-  @FRC.Chart.vonMangoldt_moebius
-/-- p20023 — 20:C5. Mean-square flatness: with $r_j$ the normalised correlation of the mean-removed prime indicator with the nonconstant chart mode $\chi_j$, $\sum_{j\ne0}r_j^{2}=1$ exactly (Parseval), so the root-mean-square correlation is $1/\sqrt{\p-2}$. -/
-theorem p20023 : (∀ {n : ℕ} [NeZero n] (v : ZMod n → ℂ), ∑ j, Complex.normSq (FRC.Chart.coef v j) = ↑n * ∑ m, Complex.normSq (v m)) ∧ ∀ {n : ℕ} [NeZero n] (u : ZMod n → ℂ), ∑ m, u m = (0 : ℂ) → u ≠ (0 : ZMod n → ℂ) → ∑ j ∈ Finset.univ.erase (0 : ZMod n), Complex.normSq (FRC.Chart.coef u j) / (↑n * ∑ m, Complex.normSq (u m)) = (1 : ℝ) ∧ (∑ j ∈ Finset.univ.erase (0 : ZMod n), Complex.normSq (FRC.Chart.coef u j) / (↑n * ∑ m, Complex.normSq (u m))) / (↑n - (1 : ℝ)) = (1 : ℝ) / (↑n - (1 : ℝ)) :=
-  And.intro @FRC.Chart.chi_parseval (@FRC.Chart.flatness)
 set_option linter.defProp false in
 /-- p20032 — 20:E1. The scale-evolution generator: on the shell the scale-shift $x\mapsto\gen^{\,r}x$ is a unitary permutation of $\Fx{\p}$ with the complex characters as eigenvectors; in the analytic chart [chart] the dilation group $U_r=e^{ir\Hh}$ has the self-adjoint generator $\Hh=-i(x\partial_x+\half)$ with generalised eigenfunctions $x^{-\bar\rho}$, $\rho=\half+i\gamma$, the symmetrizing $\half$ the half-turn of B8; the chart assignment is used nowhere as a shell identity. -/
 def p20032 := And.intro @FRC.HorizonML.scale_shift (And.intro @FRC.Chart.character_eigen (@FRC.Chart.chi_shift))
@@ -1990,6 +2070,9 @@ def p20043 := And.intro @FRC.Chart.chi_inversion (And.intro @FRC.Chart.chi_shift
 set_option linter.defProp false in
 /-- p20044 — 20:E13. Shell-basis completeness is not a clause of E12: the $\p-1$ complex characters are an orthogonal basis of $\mathbb C^{\Fx{\p}}$ ($\lVert\chi_j\rVert^{2}=\p-1$; finite Parseval), true of every vector, the trivial character carrying the mean $\psi(\p-1)/(\p-1)$; the $\Fp$-valued power characters are never orthonormal and do not expand $v$; completeness for the zero set of $\zeta$ is D5, a different clause. -/
 def p20044 := And.intro @FRC.Chart.chi_orthogonal (And.intro @FRC.Chart.chi_parseval (And.intro @FRC.Chart.chi_inversion (@FRC.HorizonML.power_characters_not_orthonormal)))
+/-- p20047 — 20:F1. \textbf{Turing's count on the shell.} On every cell $C_y\le N^{\mathrm{crit}}_y\le\mathcal N_y$ (A7); the cell is clean when $\mathcal N_y=N^{\mathrm{crit}}_y$, and $C_y=\mathcal N_y$ certifies it, every zero simple. The shell estimates $\mathcal N$ by the comb count (Appendix~\ref{app:comb}; uncertified) and reads $C$ from the main sum's sign changes (A10), zeros on the line. An off-line zero is a phantom, $\mathcal N_y-N^{\mathrm{crit}}_y>0$. -/
+theorem p20047 : ∀ {a b : ℝ}, a < b → (completedRiemannZeta ((1 / 2 : ℂ) + ↑a * Complex.I)).re * (completedRiemannZeta ((1 / 2 : ℂ) + ↑b * Complex.I)).re < (0 : ℝ) → ∃ t, a < t ∧ t < b ∧ riemannZeta ((1 / 2 : ℂ) + ↑t * Complex.I) = (0 : ℂ) :=
+  @FRC.Chart.zero_of_sign_change
 set_option linter.defProp false in
 /-- p20080 — 20:D8. The strip: the Euler product excludes zeros with real part at least one, and the functional equation confines the nontrivial zeros to the open strip in Klein-four orbits of size two on the line and four off it; the Davenport--Heilbronn vector, without the product, is not multiplicative and has an off-line zero. No core witness: the statement is analytic. -/
 def p20080 := @FRC.Chart.zeros_in_strip
@@ -2363,6 +2446,13 @@ theorem zeros_in_strip {s : ℂ} (h0 : riemannZeta s = 0) (htriv : ¬∃ n : ℕ
     0 < s.re ∧ s.re < 1 ∧ riemannZeta (1 - s) = 0 ∧ riemannZeta (conj s) = 0 :=
   FRC.Chart.zeros_in_strip h0 htriv h1
 
+/-- 20:F1 — 20-rh's name; the theorem is `FRC.Chart.zero_of_sign_change`: a sign change of the real completed zeta
+`Re Λ(1/2 + it)` between two heights is a zero of `ζ` on the line between them (Turing's count, the analytic clause). -/
+theorem zero_of_sign_change {a b : ℝ} (hab : a < b)
+    (h : (completedRiemannZeta (1 / 2 + a * Complex.I)).re * (completedRiemannZeta (1 / 2 + b * Complex.I)).re < 0) :
+    ∃ t : ℝ, a < t ∧ t < b ∧ riemannZeta (1 / 2 + t * Complex.I) = 0 :=
+  FRC.Chart.zero_of_sign_change hab h
+
 end strip
 
 section coincidence
@@ -2427,12 +2517,6 @@ theorem p20016 : (∀ {F : Type u_1} [Field F] (ν : F) (z : QuadraticAlgebra F 
 /-- 20:B10 (p20017) — The Subject constants on the shell: $\pi=2\kp$, $2\pi\equiv-1$, $\im=\gen^{-\kp}$, $\im^{2}\equiv-1$, $\E=\gen^{\,\im}$ on the odd lift, $\gen^{\,\pi}\equiv-1$, $\E^{\,\im\pi}\equiv-1$; on $\F_{13}$: $\gen=2$, $\im=5$, $\E=6$, $\pi=6$. -/
 theorem p20017 : (∀ {F : Type u_1} [Field F] [Fintype F] (κ : ℕ), Fintype.card F = (4 : ℕ) * κ + (1 : ℕ) → ∀ (g : F), IsPrimitiveRoot g (Fintype.card F - (1 : ℕ)) → (2 : F) * ↑((2 : ℕ) * κ) = (-1 : F) ∧ g ^ ((3 : ℕ) * κ) = -g ^ κ ∧ (g ^ ((3 : ℕ) * κ)) ^ (2 : ℕ) = (-1 : F) ∧ g ^ ((2 : ℕ) * κ) = (-1 : F) ∧ ∀ (m : ℕ), m % (2 : ℕ) = (1 : ℕ) → (g ^ m) ^ (m * ((2 : ℕ) * κ)) = (-1 : F)) ∧ (2 : ZMod (13 : ℕ)) * (6 : ZMod (13 : ℕ)) = (-1 : ZMod (13 : ℕ)) ∧ (2 : ZMod (13 : ℕ)) ^ (9 : ℕ) = (5 : ZMod (13 : ℕ)) ∧ (5 : ZMod (13 : ℕ)) ^ (2 : ℕ) = (-1 : ZMod (13 : ℕ)) ∧ (2 : ZMod (13 : ℕ)) ^ (5 : ℕ) = (6 : ZMod (13 : ℕ)) ∧ (2 : ZMod (13 : ℕ)) ^ (6 : ℕ) = (-1 : ZMod (13 : ℕ)) ∧ (6 : ZMod (13 : ℕ)) ^ ((5 : ℕ) * (6 : ℕ)) = (-1 : ZMod (13 : ℕ)) :=
   @FRC.LedgerML.p20017
-/-- 20:C2 (p20020) — The resonance and the von Mangoldt weight: the units-chart resonance $R_L(n)=\sum_{q\le L}\frac{\mu(q)}{\varphi(q)}c_q(n)$ converges to $\frac{\varphi(n)}{n}\Lambda(n)$ (Hardy, A6); $\Lambda=\mu\ast\log$ exactly on the divisor lattice; the intertwiner $\Lambda=\frac{n}{\varphi(n)}R$; support the prime powers in every form. -/
-theorem p20020 : ∀ (m : ℕ), ArithmeticFunction.vonMangoldt m = ∑ d ∈ m.divisors, ↑(ArithmeticFunction.moebius d) * Real.log (↑m / ↑d) ∧ (ArithmeticFunction.vonMangoldt m ≠ (0 : ℝ) ↔ IsPrimePow m) :=
-  @FRC.LedgerML.p20020
-/-- 20:C5 (p20023) — Mean-square flatness: with $r_j$ the normalised correlation of the mean-removed prime indicator with the nonconstant chart mode $\chi_j$, $\sum_{j\ne0}r_j^{2}=1$ exactly (Parseval), so the root-mean-square correlation is $1/\sqrt{\p-2}$. -/
-theorem p20023 : (∀ {n : ℕ} [NeZero n] (v : ZMod n → ℂ), ∑ j, Complex.normSq (FRC.Chart.coef v j) = ↑n * ∑ m, Complex.normSq (v m)) ∧ ∀ {n : ℕ} [NeZero n] (u : ZMod n → ℂ), ∑ m, u m = (0 : ℂ) → u ≠ (0 : ZMod n → ℂ) → ∑ j ∈ Finset.univ.erase (0 : ZMod n), Complex.normSq (FRC.Chart.coef u j) / (↑n * ∑ m, Complex.normSq (u m)) = (1 : ℝ) ∧ (∑ j ∈ Finset.univ.erase (0 : ZMod n), Complex.normSq (FRC.Chart.coef u j) / (↑n * ∑ m, Complex.normSq (u m))) / (↑n - (1 : ℝ)) = (1 : ℝ) / (↑n - (1 : ℝ)) :=
-  @FRC.LedgerML.p20023
 set_option linter.defProp false in
 /-- 20:D8 (p20080) — The strip: the Euler product excludes zeros with real part at least one, and the functional equation confines the nontrivial zeros to the open strip in Klein-four orbits of size two on the line and four off it; the Davenport--Heilbronn vector, without the product, is not multiplicative and has an off-line zero. No core witness: the statement is analytic. -/
 def p20080 := @FRC.LedgerML.p20080
@@ -2445,6 +2529,9 @@ def p20043 := @FRC.LedgerML.p20043
 set_option linter.defProp false in
 /-- 20:E13 (p20044) — Shell-basis completeness is not a clause of E12: the $\p-1$ complex characters are an orthogonal basis of $\mathbb C^{\Fx{\p}}$ ($\lVert\chi_j\rVert^{2}=\p-1$; finite Parseval), true of every vector, the trivial character carrying the mean $\psi(\p-1)/(\p-1)$; the $\Fp$-valued power characters are never orthonormal and do not expand $v$; completeness for the zero set of $\zeta$ is D5, a different clause. -/
 def p20044 := @FRC.LedgerML.p20044
+set_option linter.defProp false in
+/-- 20:F1 (p20047) — \textbf{Turing's count on the shell.} On every cell $C_y\le N^{\mathrm{crit}}_y\le\mathcal N_y$ (A7); the cell is clean when $\mathcal N_y=N^{\mathrm{crit}}_y$, and $C_y=\mathcal N_y$ certifies it, every zero simple. The shell estimates $\mathcal N$ by the comb count (Appendix~\ref{app:comb}; uncertified) and reads $C$ from the main sum's sign changes (A10), zeros on the line. An off-line zero is a phantom, $\mathcal N_y-N^{\mathrm{crit}}_y>0$. -/
+def p20047 := @FRC.LedgerML.p20047
 -- end ledger predicates
 
 end FRC.Rh
@@ -2459,9 +2546,8 @@ end FRC.Rh
 #print axioms FRC.Rh.p20015
 #print axioms FRC.Rh.p20016
 #print axioms FRC.Rh.p20017
-#print axioms FRC.Rh.p20020
-#print axioms FRC.Rh.p20023
 #print axioms FRC.Rh.p20080
 #print axioms FRC.Rh.p20032
 #print axioms FRC.Rh.p20043
 #print axioms FRC.Rh.p20044
+#print axioms FRC.Rh.p20047

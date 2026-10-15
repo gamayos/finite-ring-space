@@ -660,6 +660,36 @@
   "kind": "EXACT"
  },
  {
+  "id": "A13",
+  "rows": "20:A3",
+  "block": "A",
+  "script": "rh",
+  "label": "completeness on the pair (13, 233): the registration of the cycle is onto its registered Universe (233 residues; 13 under the Subject's reading); F_13 registers within F_233, every reading of the 233 cells into 13 records collides, one count only both ways",
+  "ok": true,
+  "detail": "collisions y mod p: (0, 13), 3y+5 mod p: (0, 13), y\u00b2 mod p: (6, 7)",
+  "kind": "EXACT"
+ },
+ {
+  "id": "A13",
+  "rows": "20:A3",
+  "block": "A",
+  "script": "rh",
+  "label": "completeness on the pair (173, 30089): the registration of the cycle is onto its registered Universe (30089 residues; 173 under the Subject's reading); F_173 registers within F_30089, every reading of the 30089 cells into 173 records collides, one count only both ways",
+  "ok": true,
+  "detail": "collisions y mod p: (0, 173), 3y+5 mod p: (0, 173), y\u00b2 mod p: (86, 87)",
+  "kind": "EXACT"
+ },
+ {
+  "id": "A13",
+  "rows": "20:A3",
+  "block": "A",
+  "script": "rh",
+  "label": "completeness on the pair (1549, 2408561): the registration of the cycle is onto its registered Universe (2408561 residues; 1549 under the Subject's reading); F_1549 registers within F_2408561, every reading of the 2408561 cells into 1549 records collides, one count only both ways",
+  "ok": true,
+  "detail": "collisions y mod p: (0, 1549), 3y+5 mod p: (0, 1549), y\u00b2 mod p: (774, 775)",
+  "kind": "EXACT"
+ },
+ {
   "id": "B1",
   "rows": "",
   "block": "B",
@@ -681,7 +711,7 @@
  },
  {
   "id": "B4",
-  "rows": "20:D4",
+  "rows": "",
   "block": "B",
   "script": "rh",
   "label": "the bare horizon-length main sum has one sign change per zero on [10,55], each within 0.5 of \u03b3_n",
@@ -711,7 +741,7 @@
  },
  {
   "id": "C2",
-  "rows": "20:E6",
+  "rows": "",
   "block": "C",
   "script": "rh",
   "label": "raw secular condition: ten heights to mean 4.4e-5, max 1.5e-4 (\u03b3\u2081) at N = 10\u2076; 3.6e-4 at 10\u00b3, 6e-5 at 10\u2075",
@@ -721,7 +751,7 @@
  },
  {
   "id": "C2b",
-  "rows": "20:E6",
+  "rows": "",
   "block": "C",
   "script": "rh",
   "label": "pole-corrected secular condition: mean 3.4e-5 (max 6.6e-5) at 10\u2076, 2.3e-5 at 10\u2077, 1.3e-5 (max 2.8e-5) at 10\u2078; falling with depth",
@@ -731,7 +761,7 @@
  },
  {
   "id": "C2c",
-  "rows": "20:E6",
+  "rows": "",
   "block": "C",
   "script": "rh",
   "label": "raw secular condition does not sharpen past 10\u2077: mean 2.7e-5 at 10\u2077, 4.2e-5 at 10\u2078; \u03b3\u2081 error 1.5e-4 (10\u2076) \u2192 2.6e-4 (10\u2078): the pole term",
@@ -831,7 +861,7 @@
  },
  {
   "id": "D2a",
-  "rows": "20:F3",
+  "rows": "",
   "block": "D",
   "script": "rh",
   "label": "the completed \u039b_f(\u00bd + it) is real on the line to 10\u207b\u00b2\u2070",
@@ -841,7 +871,7 @@
  },
  {
   "id": "D2b",
-  "rows": "20:F3",
+  "rows": "",
   "block": "D",
   "script": "rh",
   "label": "argument principle on [0,87]: f: 45 strip zeros vs 43 on-line, deficit 2 only in the band of the off-line pair; L(s,\u03c7): 45 = 45, deficit 0 everywhere",
@@ -851,7 +881,7 @@
  },
  {
   "id": "D2c",
-  "rows": "20:F4",
+  "rows": "",
   "block": "D",
   "script": "rh",
   "label": "the secular condition on the \u039b_f comb returns two 'on-line' roots at the phantom height: 85.63/85.76 (10\u2075), 85.65/85.75 (4\u00d710\u2075)",
@@ -861,7 +891,7 @@
  },
  {
   "id": "D2d",
-  "rows": "20:F4",
+  "rows": "",
   "block": "D",
   "script": "rh",
   "label": "raw DH comb count drifts monotonically at t = 85.9 (45.14 \u2192 45.73) and reads 42.66 \u2026 42.73 at 85.3 (interior depths dip to 42.64); stable at 60.3 (28.005 \u00b1 0.002) and 84.0 (43.00 \u00b1 0.01)",
@@ -871,7 +901,7 @@
  },
  {
   "id": "D2e",
-  "rows": "20:F5",
+  "rows": "",
   "block": "D",
   "script": "rh",
   "label": "\u03b6 comb at the pole: t = 1 reads +0.09, \u22120.26, +0.36, \u22120.08, \u22120.81, \u22121.42, \u22121.46 with depth (exact 0); t = 5, 10 within \u00b10.02, \u00b10.003; t = 15 within 2e-3 of 1; t = 30 3.04 \u2192 2.998; t = 50.3 within 1e-2 of 10",
@@ -881,7 +911,7 @@
  },
  {
   "id": "D2f",
-  "rows": "20:F5, 20:F8",
+  "rows": "",
   "block": "D",
   "script": "rh",
   "label": "pole-corrected \u03b6 count at t = 1: 0.0051, 0.0032, 0.0022, 0.0016, 0.0015, 0.0013, 0.0012 (exact 0), monotone; t = 5, 10 within 4e-4 from 10\u2076 on, falling",
@@ -891,7 +921,7 @@
  },
  {
   "id": "D2g",
-  "rows": "20:F4, 20:F8",
+  "rows": "",
   "block": "D",
   "script": "rh",
   "label": "DH count corrected by the zero term of \u03c1\u2080 and its constant: 44.960 \u2192 44.972 at 85.9 (raw 45.14 \u2192 45.73; exact 45), 43.035 \u2192 43.022 at 85.3 (exact 43), monotone toward the exact count",
@@ -901,7 +931,7 @@
  },
  {
   "id": "D3",
-  "rows": "20:F8",
+  "rows": "",
   "block": "D",
   "script": "rh",
   "label": "the identity's validation arm: Re(\u03a3_w \u2212 \u03a0_N \u2212 log((s\u22121)/s)) \u2192 log|\u03b6(\u00bd+it)| at t = 1, 5, 10, 15, 30, the error falling with depth (0.0049 at t = 1, 8\u00d710\u2077)",
@@ -971,7 +1001,7 @@
  },
  {
   "id": "E1a",
-  "rows": "20:C2",
+  "rows": "",
   "block": "E",
   "script": "rh",
   "label": "\u039b = \u03bc \u2217 log: \u2212\u03a3_{d|n} \u03bc(d) log d = \u039b(n), symbolic for n \u2264 300, floating point for n \u2264 5000",
@@ -981,7 +1011,7 @@
  },
  {
   "id": "E1b",
-  "rows": "20:C2",
+  "rows": "",
   "block": "E",
   "script": "rh",
   "label": "Hardy: R_L(n) \u2192 (\u03c6(n)/n) \u039b(n) on prime powers, \u2192 0 off them; intertwiner (n/\u03c6(n)) R \u2192 \u039b = log \u2113",
@@ -1046,7 +1076,7 @@
   "script": "rh",
   "label": "Turing's certificate over the cycle of \u03a9 = 233: N(g_1037) = 1038 by Turing's theorem, 1038 certified sign changes; N(2\u03c0\u03a9) = 1038, every cell clean",
   "ok": true,
-  "detail": "computed now; Gram points 807, good 94.7 %, uncertified 0, blocks 763, longest 2, exceptions to Rosser's rule 0 (0 unions resolved at the finest grid), Turing span 3 after / 4 before; cells max 6, empty 2, last ten [5, 5, 6, 5, 6, 5, 6, 5, 6, 5]; 109.4 s",
+  "detail": "computed now; Gram points 807, good 94.7 %, uncertified 0, blocks 763, longest 2, exceptions to Rosser's rule 0 (0 unions resolved at the finest grid), Turing span 3 after / 4 before; cells max 6, empty 2, last ten [5, 5, 6, 5, 6, 5, 6, 5, 6, 5]; 111.4 s",
   "kind": "[approx]"
  },
  {
@@ -1056,7 +1086,7 @@
   "script": "rh",
   "label": "Turing's certificate over the cycle of \u03a9 = 30089: N(g_280187) = 280188 by Turing's theorem, 280188 certified sign changes; N(2\u03c0\u03a9) = 280186, every cell clean",
   "ok": true,
-  "detail": "computed now; Gram points 279957, good 88.0 %, uncertified 0, blocks 246501, longest 5, exceptions to Rosser's rule 0 (0 unions resolved at the finest grid), Turing span 5 after / 5 before; cells max 12, empty 2, last ten [12, 10, 10, 11, 10, 10, 10, 11, 10, 9]; 111.7 s",
+  "detail": "computed now; Gram points 279957, good 88.0 %, uncertified 0, blocks 246501, longest 5, exceptions to Rosser's rule 0 (0 unions resolved at the finest grid), Turing span 5 after / 5 before; cells max 12, empty 2, last ten [12, 10, 10, 11, 10, 10, 10, 11, 10, 9]; 118.2 s",
   "kind": "[approx]"
  },
  {

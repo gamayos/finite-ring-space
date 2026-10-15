@@ -27,7 +27,7 @@
      "label": "A3",
      "predicate": "Completeness: the registration of any totality is onto its registered Universe, so there is no outside and no host; two totalities each registered whole within the other have one count. A theorem of the master ledger (00:A3), proved in the core; the hypothesis of the Carrier is a statement about its own residues and nothing else.",
      "tag": "T",
-     "source": "00:A3\\newline \\leanwit{FrcCore}{p00003}{A3} \\lean{FRC.Foundation.registration\\_onto, FRC.Foundation.mutual\\_registration\\_count}",
+     "source": "00:A3\\newline \\pywit{rh}{p00003}{A3}, \\leanwit{FrcCore}{p00003}{A3} \\lean{FRC.Foundation.registration\\_onto, FRC.Foundation.mutual\\_registration\\_count}",
      "key": "p00003"
     },
     {
@@ -39,9 +39,9 @@
     },
     {
      "label": "A5",
-     "predicate": "The Carrier: a timeless torsor of $\\Omega$ elements, its cardinality its only absolute characteristic; reframings $x\\mapsto ax+b$ are automorphisms, so $0$, $1$, $-1$ are frame data; a Subject's frame charts it as the prime field $\\F_\\Omega$, the frame's chart, never the Carrier (00:A6). Its scale $\\Omega=4\\dS+1$ is 00:A7, cited in the text.",
+     "predicate": "The Carrier: a timeless torsor of $\\Omega$ elements, its cardinality its only absolute characteristic; reframings $x\\mapsto ax+b$ are automorphisms, so $0$, $1$, $-1$ are frame data; a Subject's frame charts it as the prime field $\\F_\\Omega$, never the Carrier (00:A6). A finite holographic substrate: capacity $\\dS$ the horizon entropy, $\\Omega=4\\dS+1$ its exact content (00:A7, 10:A2), the Subject embedded under $\\p^{2}<\\Omega$.",
      "tag": "D",
-     "source": "00:A6",
+     "source": "00:A6; Rem.~\\ref{rem:holographic}, Def.~\\ref{def:shells}",
      "key": "p00008"
     },
     {
@@ -165,26 +165,6 @@
    ]
   },
   {
-   "letter": "C",
-   "title": "Resonance: the identity and the flatness",
-   "rows": [
-    {
-     "label": "C2",
-     "predicate": "The resonance and the von Mangoldt weight: the units-chart resonance $R_L(n)=\\sum_{q\\le L}\\frac{\\mu(q)}{\\varphi(q)}c_q(n)$ converges to $\\frac{\\varphi(n)}{n}\\Lambda(n)$ (Hardy, A6); $\\Lambda=\\mu\\ast\\log$ exactly on the divisor lattice; the intertwiner $\\Lambda=\\frac{n}{\\varphi(n)}R$; support the prime powers in every form.",
-     "tag": "T",
-     "source": "Def.~\\ref{def:resonance}, Thm.~\\ref{thm:resonance}\\newline \\pywit{rh}{p20020}{C2}, \\leanwit{FrcLedger}{p20020}{C2} \\lean{Rh.vonMangoldt\\_moebius}",
-     "key": "p20020"
-    },
-    {
-     "label": "C5",
-     "predicate": "Mean-square flatness: with $r_j$ the normalised correlation of the mean-removed prime indicator with the nonconstant chart mode $\\chi_j$, $\\sum_{j\\ne0}r_j^{2}=1$ exactly (Parseval), so the root-mean-square correlation is $1/\\sqrt{\\p-2}$.",
-     "tag": "T",
-     "source": "Prop.~\\ref{prop:flat}\\newline \\leanwit{FrcLedger}{p20023}{C5} \\lean{Rh.chi\\_parseval, Rh.flatness}",
-     "key": "p20023"
-    }
-   ]
-  },
-  {
    "letter": "D",
    "title": "The reading of $\\zeta$ on the line: the dictionary, the cells, the strip",
    "rows": [
@@ -194,13 +174,6 @@
      "tag": "D",
      "source": "Def.~\\ref{def:deframe}",
      "key": "p20025"
-    },
-    {
-     "label": "D4",
-     "predicate": "The bare horizon-length sum locates the first zeros: one sign change per zero of $\\zeta$ on $[10,55]$, each within $0.5$ of $\\gamma_n$, from one or two terms [approx].",
-     "tag": "T",
-     "source": "\\S\\ref{sec:deframe}, Fig.~\\ref{fig:deframe}\\newline \\pywit{rh}{p20028}{D4}",
-     "key": "p20028"
     },
     {
      "label": "D5",
@@ -237,20 +210,6 @@
      "key": "p20032"
     },
     {
-     "label": "E4",
-     "predicate": "Prime--zero duality on the scale axis: $\\sum\\Lambda(n)n^{-s}=-\\zeta'/\\zeta$, poles at $s=1$, the nontrivial zeros and the trivial zeros; the poles on the self-dual axis are exactly the on-line zeros, an off-line zero a pole at its own location off the axis.",
-     "tag": "I",
-     "source": "Prop.~\\ref{prop:primezero}",
-     "key": "p20035"
-    },
-    {
-     "label": "E6",
-     "predicate": "The discrete eigenvalues from the comb: the raw count $\\widetilde{\\mathcal N}_N(T)=\\theta(T)/\\pi+1+S_{\\mathrm{comb}}(T)$ carries the pole term (F8) and has no limit in $N$; the pole-corrected count $\\widehat{\\mathcal N}_N=\\widetilde{\\mathcal N}_N-\\tfrac1\\pi\\Im[\\Pi_N+\\log\\tfrac{s-1}{s}]$ crosses $n-\\half$ near the zeros, its secular condition recovering the first ten heights to mean error $3.4\\times10^{-5}$ at $N=10^{6}$ and $1.3\\times10^{-5}$ at $10^{8}$; the raw condition stalls past $10^{7}$ [approx].",
-     "tag": "T",
-     "source": "Obs.~\\ref{obs:trace}\\newline \\pywit{rh}{p20037}{E6}",
-     "key": "p20037"
-    },
-    {
      "label": "E12",
      "predicate": "\\textbf{The shell theorem.} On every shell, with no hypothesis: (i) $v$ expands in the constant mode and the nonterminal modes of the quarter-turn meridian; (ii) every readout lies on $\\Tr=1$, real part $2^{-1}=2\\kp+1=-\\pi$; (iii) the scale-shift has the modes as eigenvectors, eigenphases $2\\pi j/(\\p-1)$ independent of $v$. No off-line mode; true of every vector, the Davenport--Heilbronn vector included.",
      "tag": "T",
@@ -272,9 +231,9 @@
    "rows": [
     {
      "label": "F1",
-     "predicate": "\\textbf{Turing's count on the shell.} On every cell $C_y\\le N^{\\mathrm{crit}}_y\\le\\mathcal N_y$ (A7); the cell is clean when $\\mathcal N_y=N^{\\mathrm{crit}}_y$, and $C_y=\\mathcal N_y$ certifies it with every zero simple. The shell estimates $\\mathcal N$ by the pole-corrected comb count (F8; uncertified at finite depth) and $C$ by the main sum's sign changes (A10). An off-line zero is a phantom: $\\mathcal N_y-N^{\\mathrm{crit}}_y>0$.",
+     "predicate": "\\textbf{Turing's count on the shell.} On every cell $C_y\\le N^{\\mathrm{crit}}_y\\le\\mathcal N_y$ (A7); the cell is clean when $\\mathcal N_y=N^{\\mathrm{crit}}_y$, and $C_y=\\mathcal N_y$ certifies it, every zero simple. The shell estimates $\\mathcal N$ by the comb count (Appendix~\\ref{app:comb}; uncertified) and reads $C$ from the main sum's sign changes (A10), zeros on the line. An off-line zero is a phantom, $\\mathcal N_y-N^{\\mathrm{crit}}_y>0$.",
      "tag": "T",
-     "source": "Prop.~\\ref{prop:turing}, Prop.~\\ref{prop:cells}\\newline \\pywit{rh}{p20047}{F1}",
+     "source": "Prop.~\\ref{prop:turing}, Prop.~\\ref{prop:cells}\\newline \\pywit{rh}{p20047}{F1}, \\leanwit{FrcCore}{p20047}{F1}, \\leanwit{FrcLedger}{p20047}{F1} \\lean{FRC.Horizon.turing\\_chain, FRC.Horizon.turing\\_equal, FRC.Horizon.turing\\_phantom, Rh.zero\\_of\\_sign\\_change}",
      "key": "p20047"
     },
     {
@@ -285,39 +244,11 @@
      "key": "p20081"
     },
     {
-     "label": "F3",
-     "predicate": "The control on the line: the completed Davenport--Heilbronn $\\Lambda_f$ is real on the line to $10^{-20}$ [approx]; on $[0,87]$ the argument principle counts $N_f=45$ strip zeros against $C=43$ sign changes, the deficit $2$ opening only in the band of the off-line pair (A8), where $|Z_f|$ dips to $0.357$ without crossing; the constituent $L(s,\\chi)$ closes with deficit $0$.",
-     "tag": "T",
-     "source": "Obs.~\\ref{obs:dh}\\newline \\pywit{rh}{p20049}{F3}",
-     "key": "p20049"
-    },
-    {
-     "label": "F4",
-     "predicate": "The negative control on the comb side: the secular condition on the generalized comb $\\Lambda_f$ (divisor recursion from the coefficients) returns two ``on-line'' roots at the phantom height, $85.65/85.75$ (comb to $4\\times10^{5}$), where the line holds no zero; the raw count near the pair drifts with depth, $45.14\\to45.73$ at $t=85.9$, and is stable away from it [approx].",
-     "tag": "T",
-     "source": "Obs.~\\ref{obs:dh}\\newline \\pywit{rh}{p20050}{F4}",
-     "key": "p20050"
-    },
-    {
-     "label": "F5",
-     "predicate": "The $\\zeta$ comb at its own singularity, the pole: at $t=1$ (exact count $0$) the raw count drifts, $+0.09\\ldots-1.46$ over depths $10^{4}\\ldots8\\times10^{7}$, while at $t=15$ it stays within $2\\times10^{-3}$ of $1$; the pole-corrected count at $t=1$ falls monotonically, $0.0051\\to0.0012$ [approx]. The drift is the pole term of F8: no rounding bound for the raw count is depth-independent (F1).",
-     "tag": "T",
-     "source": "Obs.~\\ref{obs:dh}\\newline \\pywit{rh}{p20051}{F5}",
-     "key": "p20051"
-    },
-    {
      "label": "F7",
      "predicate": "\\textbf{The closure of the heights.} A height is a residue on the cycle of the shell that reads it, the largest shell is the Carrier's and there is no height beyond its cycle (A2); no embedded Subject reads the cycle whole (A4). The hypothesis of the Carrier is a statement about the residues of its cycle, one clause per residue.",
      "tag": "T",
      "source": "Thm.~\\ref{thm:closure}\\newline \\pywit{rh}{p20079}{F7}, \\leanwit{FrcCore}{p20079}{F7} \\lean{FRC.Horizon.closure, FRC.Horizon.closure\\_lab}",
      "key": "p20079"
-    },
-    {
-     "label": "F8",
-     "predicate": "\\textbf{The smoothed explicit formula.} With no zero to the right of the line, $\\sum_{n\\le N}\\Lambda(n)w(n)n^{-s}/\\log n=\\Pi_N(s)+J_N(s)$ exactly, $\\Pi_N$ explicit and growing with $N$, $J_N(s)\\to G(s)=\\log((s-1)\\zeta(s)/s)$ off the zeros: the pole-corrected count converges to $\\mathcal N(T)$. An off-line zero adds an explicit term $-\\Pi^{(\\rho)}_N$; a growing collection of such zeros is not summed. Observed: the corrected counts settle [approx].",
-     "tag": "T",
-     "source": "Prop.~\\ref{prop:combformula}, Rem.~\\ref{rem:combsettle}, Obs.~\\ref{obs:dh}\\newline \\pywit{rh}{p20069}{F8}",
-     "key": "p20069"
     }
    ]
   },
@@ -464,7 +395,7 @@
    {
     "name": "FRC.Rh.lab_pair",
     "module": "FrcLedger/Rh",
-    "line": 280,
+    "line": 287,
     "axioms": [
      "Quot.sound",
      "propext"
@@ -476,7 +407,7 @@
    {
     "name": "FRC.Rh.no_cycle_projection",
     "module": "FrcLedger/Rh",
-    "line": 285,
+    "line": 292,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -500,7 +431,7 @@
    {
     "name": "FRC.Rh.window_readback",
     "module": "FrcLedger/Rh",
-    "line": 260,
+    "line": 267,
     "axioms": [
      "Quot.sound",
      "propext"
@@ -512,7 +443,7 @@
    {
     "name": "FRC.Rh.prime_iff_window_irreducible",
     "module": "FrcLedger/Rh",
-    "line": 266,
+    "line": 273,
     "axioms": [
      "Quot.sound",
      "propext"
@@ -524,7 +455,7 @@
    {
     "name": "FRC.Rh.sqrt_sq_lt_prime",
     "module": "FrcLedger/Rh",
-    "line": 272,
+    "line": 279,
     "axioms": [
      "Classical.choice",
      "Quot.sound",
@@ -958,49 +889,6 @@
     "doc": "00:C1, 20:B10 on `𝔽₁₃`: the frame `(τ; 0, 1, 2)` of capacity `3` — `2` is primitive (decided). Moved here from `Instances.lean` under its name (task LM36), so that the horizon theme takes it without the orbits."
    }
   ],
-  "C2": [
-   {
-    "name": "FRC.Rh.vonMangoldt_moebius",
-    "module": "FrcLedger/Rh",
-    "line": 238,
-    "axioms": [
-     "Classical.choice",
-     "Quot.sound",
-     "propext"
-    ],
-    "tier": 2,
-    "ok": true,
-    "doc": "20:C2 — 20-rh's name; the theorem is `FRC.Chart.vonMangoldt_moebius` (task LM36)."
-   }
-  ],
-  "C5": [
-   {
-    "name": "FRC.Rh.chi_parseval",
-    "module": "FrcLedger/Rh",
-    "line": 221,
-    "axioms": [
-     "Classical.choice",
-     "Quot.sound",
-     "propext"
-    ],
-    "tier": 2,
-    "ok": true,
-    "doc": "20:E13, 20:C5 — 20-rh's name; the theorem is `FRC.Chart.chi_parseval` (task LM36)."
-   },
-   {
-    "name": "FRC.Rh.flatness",
-    "module": "FrcLedger/Rh",
-    "line": 226,
-    "axioms": [
-     "Classical.choice",
-     "Quot.sound",
-     "propext"
-    ],
-    "tier": 2,
-    "ok": true,
-    "doc": "20:C5 — 20-rh's name; the theorem is `FRC.Chart.flatness` (task LM36)."
-   }
-  ],
   "D5": [
    {
     "name": "FRC.Horizon.clean_iff_count",
@@ -1261,6 +1149,48 @@
     "tier": 2,
     "ok": true,
     "doc": "20:E12, 20:E13 — 20-rh's name; the theorem is `FRC.HorizonML.power_characters_not_orthonormal` (task LM36)."
+   }
+  ],
+  "F1": [
+   {
+    "name": "FRC.Horizon.turing_chain",
+    "module": "FrcCore/Theme/Horizon",
+    "line": 606,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "20:F1, the chain `C_y ≤ N^crit_y ≤ N_y`: on the finite list of a cell's zeros, the certified sign changes (each a point of the line) count at most the on-line zeros, which count at most the zeros."
+   },
+   {
+    "name": "FRC.Horizon.turing_equal",
+    "module": "FrcCore/Theme/Horizon",
+    "line": 613,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "20:F1, the certificate: when the certified count reaches the count of the cell, every zero of the cell lies on the line and is certified (simple, as a sign change)."
+   },
+   {
+    "name": "FRC.Horizon.turing_phantom",
+    "module": "FrcCore/Theme/Horizon",
+    "line": 621,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "20:F1, the phantom: a zero off the line makes the on-line count fall short of the count, `N_y − N^crit_y > 0`."
+   },
+   {
+    "name": "FRC.Rh.zero_of_sign_change",
+    "module": "FrcLedger/Rh",
+    "line": 257,
+    "axioms": [
+     "Classical.choice",
+     "Quot.sound",
+     "propext"
+    ],
+    "tier": 2,
+    "ok": true,
+    "doc": "20:F1 — 20-rh's name; the theorem is `FRC.Chart.zero_of_sign_change`: a sign change of the real completed zeta `Re Λ(1/2 + it)` between two heights is a zero of `ζ` on the line between them (Turing's count, the analytic clause)."
    }
   ],
   "F2": [

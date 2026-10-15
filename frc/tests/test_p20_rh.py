@@ -95,8 +95,8 @@ class LedgerTest(unittest.TestCase):
         text = Path(L.__file__).read_text(encoding="utf-8")
         found = 0
         for line in text.splitlines():
-            if re.match(r"\s*# 20:[A-Z]+\d+ \(p20\d{3}\)", line):
-                for lab, key in re.findall(r"20:([A-Z]+\d+) \((p20\d{3})\)", line):
+            if re.match(r"\s*# 20:[A-Z]+\d+ \(p\d{5}\)", line):
+                for lab, key in re.findall(r"20:([A-Z]+\d+) \((p\d{5})\)", line):
                     self.assertEqual(L.KEYS[lab], key); found += 1
         self.assertEqual(found, len(L.PREDICATES))
 
@@ -108,7 +108,7 @@ class LedgerTest(unittest.TestCase):
         with redirect_stdout(io.StringIO()):
             L.R.verify_all()
         mine = L.R.results
-        self.assertEqual(len(records), 73)
+        self.assertEqual(len(records), 80)
         self.assertEqual([(r["id"], r["rows"], r["ok"], _ALIAS.get(r["kind"], r["kind"]), r["label"]) for r in records],
                          [(r["id"], r["rows"], r["ok"], r["kind"], r["label"]) for r in mine])
 

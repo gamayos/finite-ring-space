@@ -1556,6 +1556,10 @@
 'FRC.Horizon.fixedCount' does not depend on any axioms
 'FRC.Horizon.fixedCount_le' does not depend on any axioms
 'FRC.Horizon.clean_iff_count' does not depend on any axioms
+'FRC.Horizon.fixedCount_mono' does not depend on any axioms
+'FRC.Horizon.turing_chain' does not depend on any axioms
+'FRC.Horizon.turing_equal' does not depend on any axioms
+'FRC.Horizon.turing_phantom' does not depend on any axioms
 'FRC.Ledger.p00032' does not depend on any axioms
 'FRC.Ledger.p01004' does not depend on any axioms
 'FRC.Ledger.p01005' does not depend on any axioms
@@ -1748,6 +1752,7 @@
 'FRC.Ledger.p20029' does not depend on any axioms
 'FRC.Ledger.p20032' does not depend on any axioms
 'FRC.Ledger.p20043' does not depend on any axioms
+'FRC.Ledger.p20047' does not depend on any axioms
 'FRC.Ledger.p20079' does not depend on any axioms
 'FRC.Ledger.p20081' does not depend on any axioms
 'FRC.Ledger.p20083' does not depend on any axioms
@@ -2405,6 +2410,7 @@
 'FRC.Rh.p20083' does not depend on any axioms
 'FRC.Rh.p20032' does not depend on any axioms
 'FRC.Rh.p20043' does not depend on any axioms
+'FRC.Rh.p20047' does not depend on any axioms
 'FRC.Rh.p20081' does not depend on any axioms
 'FRC.Rh.p20079' does not depend on any axioms
 'FRC.Entropy.quarter_identity' does not depend on any axioms

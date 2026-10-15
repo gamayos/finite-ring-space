@@ -6,22 +6,25 @@ Dictionary and the Screen Reading"), the paper 20-rh of the FRC corpus
 a_shell, b_deframe, c_primeside, c_gue, c_chi, d_classification, e_resonance merged, the three prime-side scripts as one block C).
 ========================================================================================================================
 
-One script, six blocks, 107 checks — 63 EXACT (integer-pinned), 41 [approx] (a floating-point observation against the value
+One script, six blocks, 110 checks — 66 EXACT (integer-pinned), 41 [approx] (a floating-point observation against the value
 the paper states, to a stated tolerance), 3 [chart] (a continuum reading of a finite object; notation.tex convention 6) —
 Python with numpy, scipy, mpmath, sympy and matplotlib (the blocks redraw the paper's numerical figures into figures/). Each
 check names the predicate(s) of the paper's ledger it witnesses (LEDGER; predicates cited as 20:XN), and the deciding check's
 `# 20:XN (<key>)` marker is what the ledger's source column links (PREDICATES; finitering.space/src/20-rh/#<key>). Since the
 cut of 15 October 2026 (T05 of reports/blueprint-20261013.md) the checks of the retired rows (the staircase, the horizon-scale
 resolution, the semiclassical cutoff, the prime-side spectrum, the GUE statistic, the χ-twist, ...) still run as illustrations,
-marked "illustration: 20:XN retired 2026-10-15", and witness no row. Master-ledger predicates reached through the paper
+marked "illustration: 20:XN retired 2026-10-15", and witness no row; since T11 of the same day (every theorem row with a python
+and a Lean witness) so do the checks of the resonance, the bare main sum, the raw secular condition, the Davenport–Heilbronn
+comb and the pole-corrected count (20:C2, D4, E6, F3–F5, F8). Master-ledger predicates reached through the paper
 predicates: 00:D11 (the shell theorem, 20:E12) and 00:D12 (the cells and the hosted theorem, 20:D5, 20:F2).
 
-Block A  the shell theorem and the exact shell arithmetic, the closure's instances (EXACT; 20:A2, A4, B1–B10, E1, E12, E13, F7)
-Block B  the de-framing dictionary ([chart], [approx]; 20:D4; the density and residue checks illustrations)
-Block C  the spectrum from the prime side, ζ never evaluated ([approx]; 20:E6; the GUE statistic and the χ-twist illustrations)
+Block A  the shell theorem and the exact shell arithmetic, the closure's instances, completeness (EXACT; 20:A2, A3, A4, B1–B10, E1, E12, E13, F7)
+Block B  the de-framing dictionary ([chart], [approx]; illustrations since the cut: the density, the residue, the bare main sum)
+Block C  the spectrum from the prime side, ζ never evaluated ([approx]; illustrations since the cut: the secular condition, the GUE statistic, the χ-twist)
 Block D  Turing's count on the shell, the phantom, the Davenport–Heilbronn controls, the smoothed explicit formula, the strip,
-         the finite control, the cells by the argument principle ([approx], EXACT; 20:D5, D8, D9, F1, F3–F5, F8)
-Block E  resonance (EXACT; 20:C2; the antipode, the horizon-scale resolution and the flatness checks illustrations)
+         the finite control, the cells by the argument principle ([approx], EXACT; 20:D5, D8, D9, F1; the Davenport–Heilbronn
+         comb and the pole-corrected count illustrations since the cut)
+Block E  resonance (EXACT; illustrations since the cut: the resonance, the antipode, the horizon-scale resolution, the flatness)
 Block T  Turing's certificate over the laboratory Carriers' cycles: Ω = 233, 30089, 2408561, every cell clean ([approx] in
          double precision with explicit bounds; 20:F2; the largest read from its embedded record, RH_CERT_FULL=1 recomputes it)
 
@@ -41,7 +44,7 @@ Everything the blocks share (the former rhcommon.py):
                                  block C and the 8×10⁷ comb of block D are the slow parts; RH_FAST=1 runs reduced depths in ≈ 3 min,
                                  and the records then differ from the paper's)
     python3 rh.py A E            the blocks named (A, B, C, D, E, T); no results.json
-    from frc_20_rh import predicate; predicate("20:E6")    one predicate: the blocks of the checks citing it run once per session
+    from frc_20_rh import predicate; predicate("20:F1")    one predicate: the blocks of the checks citing it run once per session
 """
 import os, json, sys, math, cmath, time
 from math import gcd
@@ -67,14 +70,14 @@ RESULTS = []
 # check witnesses. The ledger's source column cites these check ids in return.
 LEDGER = {
     "A1": "20:B4", "A2": "20:B5", "A3": "20:B6", "A4": "20:B8", "A5": "20:B9", "A6": "20:B10", "A6b": "20:B10", "A7": "20:E1, 20:E12, 20:E13",
-    "A7b": "20:E1, 20:E12, 20:E13", "A8": "", "A9": "20:B7", "A10": "20:B1", "A11": "20:B2", "A12": "20:A2, 20:A4, 20:F7",
-    "B1": "", "B2": "", "B3": "20:B8", "B4": "20:D4",
-    "C1": "", "C2": "20:E6", "C2b": "20:E6", "C2c": "20:E6", "C3": "", "C4": "", "C5": "", "C6": "", "C6b": "",
+    "A7b": "20:E1, 20:E12, 20:E13", "A8": "", "A9": "20:B7", "A10": "20:B1", "A11": "20:B2", "A12": "20:A2, 20:A4, 20:F7", "A13": "20:A3",
+    "B1": "", "B2": "", "B3": "20:B8", "B4": "",
+    "C1": "", "C2": "", "C2b": "", "C2c": "", "C3": "", "C4": "", "C5": "", "C6": "", "C6b": "",
     "C7a": "", "C7b": "", "C7c": "",
-    "D1": "20:F1", "D2a": "20:F3", "D2b": "20:F3", "D2c": "20:F4", "D2d": "20:F4", "D2e": "20:F5",
-    "D2f": "20:F5, 20:F8", "D2g": "20:F4, 20:F8", "D3": "20:F8", "D4": "20:F1",
+    "D1": "20:F1", "D2a": "", "D2b": "", "D2c": "", "D2d": "", "D2e": "",
+    "D2f": "", "D2g": "", "D3": "", "D4": "20:F1",
     "D6a": "20:D8", "D6b": "20:D8", "D6c": "20:D9", "D7a": "20:D5", "D7b": "20:D5",
-    "E1a": "20:C2", "E1b": "20:C2", "E1c": "", "E2a": "", "E2b": "", "E3": "", "E4": "",
+    "E1a": "", "E1b": "", "E1c": "", "E2a": "", "E2b": "", "E3": "", "E4": "",
     "T1": "20:F2", "T2": "20:F2", "T3": "20:F2",
 }
 
@@ -89,9 +92,8 @@ BLOCK = {"A": "the shell theorem and the exact shell arithmetic (a_shell.py unti
 # cite it are corroboration, listed by predicate() from the records)
 PREDICATES = {
     "20:B1": "A10", "20:B2": "A11", "20:B4": "A1", "20:B5": "A2", "20:B6": "A3", "20:B7": "A9", "20:B8": "A4", "20:B9": "A5",
-    "20:B10": "A6", "20:A2": "A12", "20:A4": "A12", "20:F7": "A12",
-    "20:C2": "E1a", "20:D4": "B4",
-    "20:E1": "A7", "20:E6": "C2", "20:E12": "A7", "20:E13": "A7b", "20:F1": "D1", "20:F3": "D2a", "20:F4": "D2c", "20:F5": "D2e", "20:F8": "D2f", "20:D8": "D6a", "20:D9": "D6c", "20:D5": "D7a", "20:F2": "T1",
+    "20:B10": "A6", "20:A2": "A12", "20:A3": "A13", "20:A4": "A12", "20:F7": "A12",
+    "20:E1": "A7", "20:E12": "A7", "20:E13": "A7b", "20:F1": "D1", "20:D8": "D6a", "20:D9": "D6c", "20:D5": "D7a", "20:F2": "T1",
 }
 _RAN = set()                                            # blocks already run in this session (predicate() runs each once)
 
@@ -397,9 +399,13 @@ class Timer:
 #                         largest embedded Subject p* = 3, 13, 173, 1549 (p*² < Ω < p'²), the cells of the cycle as its
 #                         residues, the embedded cycle shorter, the wrap of the height reading, the pigeonhole of
 #                         00:A2/00:A4 on the cells (rows A2, A4, F7)
+#   A13 Completeness      row A3 (00:A3) on the laboratory pairs (p, Ω): the registration of the cycle is onto its registered
+#                         Universe (every residue of it has a member, whole and under the Subject's reading), the Subject's cycle
+#                         registers within the Carrier's, no reading of the Carrier's cycle within the Subject's is injective, one
+#                         count both ways (FRC.Foundation.registration_onto, mutual_registration_count)
 #
 # Shells: p = 13, 17, 29, 37, 41 in full (all p² points of F_{p²}); 173 for A1, A4, A6; 1009 and 10009 for A11.
-# Kinds: A1–A7, A6b, A9–A12 are integer arithmetic (EXACT); A7b and A8 use floating-point roots of unity and eigenvalues ([approx]).
+# Kinds: A1–A7, A6b, A9–A13 are integer arithmetic (EXACT); A7b and A8 use floating-point roots of unity and eigenvalues ([approx]).
 
 SHELLS = [13, 17, 29, 37, 41]
 BIG = 173
@@ -605,6 +611,38 @@ def block_A():
         check("A12", f"closure of the heights on Ω = {Om}: p* = {ps} ({ps}² < Ω < {pn}²), the cycle's {Om} cells, an embedded Subject reads {ps} of them; readings into {ps} and {Om - 1} records collide", ok,
               f"collisions {collisions}; √Ω = {math.isqrt(Om)}, √p* = {math.isqrt(ps)}")
 
+    # A13 Completeness (row A3; 00:A3), on the laboratory pairs (p, Ω) = (13, 233), (173, 30089), (1549, 2408561): the
+    # registration of a totality is onto its registered Universe — the registered Universe is the set of residues at which some
+    # member registers, read back as a member for every residue of it (the Carrier's cells registered whole, ρ(y) = y, and the
+    # Subject's reading of them, ρ_p(y) = y mod p: Ω and p residues, each with a member); and two totalities each registered
+    # whole within the other have one count — the identity registers the Subject's cycle within the Carrier's, every reading of
+    # the Carrier's Ω cells into the Subject's p records identifies two cells (y mod p, an affine reading, the square; the
+    # pigeonhole of 00:A2 both ways is FRC.Foundation.mutual_registration_count), and only cycles of one count embed both ways
+    for p, Om in ((13, 233), (173, 30089), (1549, 2408561)):
+        members = {}
+        for y in range(Om):                                                 # the Carrier's cycle registered whole
+            members.setdefault(y % Om, y)
+        ok = len(members) == Om and all(members[r] % Om == r for r in members)          # onto: every residue has a member
+        membersp = {}
+        for y in range(Om):                                                 # the Subject's reading of the Carrier's cells
+            membersp.setdefault(y % p, y)
+        ok &= len(membersp) == p and all(membersp[r] % p == r for r in membersp)
+        ok &= len({x % Om for x in range(p)}) == p                          # the identity registers Shell p within Shell Ω
+        readings = {"y mod p": lambda y: y % p, "3y+5 mod p": lambda y: (3 * y + 5) % p, "y² mod p": lambda y: (y * y) % p}
+        collisions = {}
+        for name, f in readings.items():                                    # no reading of Shell Ω within Shell p is injective
+            seen = {}
+            for y in range(Om):
+                r = f(y)
+                if r in seen:
+                    collisions[name] = (seen[r], y); break
+                seen[r] = y
+            ok &= name in collisions and collisions[name][0] != collisions[name][1] and f(collisions[name][0]) == f(collisions[name][1])
+        ok &= p < Om and len({x % p for x in range(p)}) == p                 # one count: the identity both ways on Shell p
+        # 20:A3 (p00003)
+        check("A13", f"completeness on the pair ({p}, {Om}): the registration of the cycle is onto its registered Universe ({Om} residues; {p} under the Subject's reading); F_{p} registers within F_{Om}, every reading of the {Om} cells into {p} records collides, one count only both ways", ok,
+              "collisions " + ", ".join(f"{k}: {v}" for k, v in collisions.items()))
+
 # ======================================================================================================================
 # block B — b_deframe.py (until 24 September 2026), its former docstring:
 # b_deframe.py — block B: the de-framing dictionary and its consequences ([chart], [approx])
@@ -660,7 +698,7 @@ def block_B():
     inwin = HEIGHTS[(HEIGHTS > 10) & (HEIGHTS < 55)]              # γ_1..γ_11
     dev = [float(np.min(np.abs(sc - g))) for g in inwin]
     ok = len(sc) == len(inwin) and max(dev) < 0.5
-    # 20:D4 (p20028)
+    # illustration: 20:D4 retired 2026-10-15 (T11)
     check("B4", "the bare horizon-length main sum has one sign change per zero on [10,55], each within 0.5 of γ_n", ok,
           f"{len(sc)} sign changes for {len(inwin)} zeros; max deviation {max(dev):.2f} (1–2 terms only at these heights)", kind="[approx]")
     # B2 residue scaling
@@ -781,7 +819,7 @@ def _C_primeside():
         e = np.abs(roots - HEIGHTS[:10]); errs[depth] = (e.mean(), e.max())
     e6 = errs[10 ** 6]
     ok = abs(e6[0] - 4.4e-5) < 0.6e-5 and abs(e6[1] - 1.46e-4) < 0.15e-4 and (FAST or errs[10 ** 3][0] < 6e-4) and errs[10 ** 5][0] < 1e-4
-    # 20:E6 (p20037)
+    # illustration: 20:E6 retired 2026-10-15 (T11)
     check("C2", "raw secular condition: ten heights to mean 4.4e-5, max 1.5e-4 (γ₁) at N = 10⁶; 3.6e-4 at 10³, 6e-5 at 10⁵", ok,
           "; ".join(f"N={d:.0e}: mean {m:.2e} max {x:.2e}" for d, (m, x) in errs.items()), kind="[approx]")
     # C2b, C2c: the pole-corrected secular condition against the raw one, with depth (Prop. combformula)
@@ -1312,7 +1350,7 @@ def block_D():
     # ---------------- D2a: reality of Λ_f on the line
     with mp.workdps(30):
         im = max(abs(mp.im(gamma_factor(mp.mpf(1) / 2 + I * t) * pair_values(mp.mpf(1) / 2 + I * t)[1])) for t in np.linspace(0.7, 86.3, 25))
-    # 20:F3 (p20049)
+    # illustration: 20:F3 retired 2026-10-15 (T11)
     check("D2a", "the completed Λ_f(½ + it) is real on the line to 10⁻²⁰", im < 1e-20, f"max |Im Λ_f| = {float(im):.1e} over 25 heights", kind="[approx]")
     # ---------------- D2b: strip counts by the argument principle against on-line sign changes
     with Timer("on-line grid (Hurwitz zeta)"):
@@ -1369,7 +1407,7 @@ def block_D():
         excursion[M] = (v[(tt > 85) & (tt < 86.4)].min(), v[(tt > 85) & (tt < 86.4)].max())
     ok = (len(roots[10 ** 5]) == 2 and len(roots[4 * 10 ** 5]) == 2 and len(extra[10 ** 5]) == 0
           and np.allclose(roots[10 ** 5], [85.63, 85.76], atol=0.015) and np.allclose(roots[4 * 10 ** 5], [85.65, 85.75], atol=0.015))
-    # 20:F4 (p20050)
+    # illustration: 20:F4 retired 2026-10-15 (T11)
     check("D2c", "the secular condition on the Λ_f comb returns two 'on-line' roots at the phantom height: 85.63/85.76 (10⁵), 85.65/85.75 (4×10⁵)", ok,
           f"10⁵: {np.round(roots[10 ** 5], 3).tolist()} (no other crossing in [84,87]; count excursion {excursion[10 ** 5][0]:.2f}–{excursion[10 ** 5][1]:.2f}); "
           f"4×10⁵: {np.round(roots[4 * 10 ** 5], 3).tolist()}, plus the swing of the unsettled count through the levels {sorted(set(float(h) for _, h in extra[4 * 10 ** 5]))} "
@@ -1395,7 +1433,7 @@ def block_D():
     ok = (np.allclose(z1, STATED_T1[:k], atol=0.015) and np.all(np.abs(z5) < 0.021) and np.all(np.abs(z10) < 0.0031)
           and np.all(np.abs(z15 - 1) < 2e-3) and abs(z30[0] - 3.04) < 0.006 and abs(z30[-1] - (2.998 if not FAST else z30[-1])) < 0.002
           and np.all(np.abs(z503 - 10) < 1e-2))
-    # 20:F5 (p20051)
+    # illustration: 20:F5 retired 2026-10-15 (T11)
     check("D2e", "ζ comb at the pole: t = 1 reads +0.09, −0.26, +0.36, −0.08, −0.81, −1.42, −1.46 with depth (exact 0); t = 5, 10 within ±0.02, ±0.003; t = 15 within 2e-3 of 1; t = 30 3.04 → 2.998; t = 50.3 within 1e-2 of 10", ok,
           "t=1: " + ", ".join(f"{v:+.2f}" for v in z1) + "; t=5: max|·| " + f"{np.max(np.abs(z5)):.3f}" + "; t=10: " + f"{np.max(np.abs(z10)):.4f}"
           + "; t=15: max dev " + f"{np.max(np.abs(z15 - 1)):.1e}" + f"; t=30: {z30[0]:.3f} → {z30[-1]:.3f}; t=50.3: max dev {np.max(np.abs(z503 - 10)):.1e}", kind="[approx]")
@@ -1405,7 +1443,7 @@ def block_D():
     i6 = DEPTHS_Z.index(10 ** 6)
     ok = (np.allclose(c1, stated_c1, atol=0.0003) and np.all(np.diff(c1) < 0) and np.all(np.abs(c5[i6:]) < 4e-4) and np.all(np.abs(c10[i6:]) < 4e-4)
           and np.all(np.diff(np.abs(c5)) < 0) and np.all(np.diff(np.abs(c10)) < 0))
-    # 20:F8 (p20069)
+    # illustration: 20:F8 retired 2026-10-15 (T11)
     check("D2f", "pole-corrected ζ count at t = 1: 0.0051, 0.0032, 0.0022, 0.0016, 0.0015, 0.0013, 0.0012 (exact 0), monotone; t = 5, 10 within 4e-4 from 10⁶ on, falling", ok,
           "t=1: " + ", ".join(f"{v:+.4f}" for v in c1) + "; t=5: " + ", ".join(f"{v:+.5f}" for v in c5) + "; t=10: " + ", ".join(f"{v:+.5f}" for v in c10), kind="[approx]")
     # ---------------- D2g: the DH drift is the zero term of the off-line zero (Remark combsettle)
@@ -1679,7 +1717,7 @@ def block_E():
             sym_ok = False; break
     flt = np.array([-sum(mu[d] * math.log(d) for d in divisors(n) if d > 1) for n in range(2, 5001)])
     flt_ok = np.max(np.abs(flt - Lam[2:5001])) < 1e-9
-    # 20:C2 (p20020)
+    # illustration: 20:C2 retired 2026-10-15 (T11)
     check("E1a", "Λ = μ ∗ log: −Σ_{d|n} μ(d) log d = Λ(n), symbolic for n ≤ 300, floating point for n ≤ 5000", sym_ok and flt_ok,
           f"symbolic {'ok' if sym_ok else 'FAIL'}; max float deviation {np.max(np.abs(flt - Lam[2:5001])):.1e}", kind="EXACT")
     # ---------------- E1b: Hardy's limit and the intertwiner (Cesàro mean over L ≤ 4000, conditional convergence)
