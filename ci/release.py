@@ -11,7 +11,9 @@ manifest releases/<release>.json: the tag and commit of finite-ring-space, the L
                                                     tag; and each paper's checks at the tag recorded in the manifest
     python3 -B ci/release.py cut frc-YYYYMMDD [--pin KEY ...]
                                                     at a paper milestone: an annotated tag at HEAD and its manifest,
-                                                    the earlier release's papers carried over and KEY pinned anew
+                                                    the earlier release's papers carried over and KEY pinned anew; a
+                                                    paper whose package retired is pinned by its ledger file
+                                                    (frc/ledgers/, in the archive), its checks run from the tag at serve
 
 The pages (docs/releases/index.html, docs/releases/<release>/index.html) are written by the site build from the
 manifests. Gate G15 (ci/gates.py) checks the pins. Needs git and the tag; standard library only.
@@ -59,6 +61,26 @@ def results_at(tag, package):
     return [sum(1 for r in recs if r.get("ok")), len(recs)]
 
 
+def ledger_file_of(key):
+    """The framework ledger file of a paper (frc/ledgers/p<NN>_<topic>.py, by the paper's number), or None."""
+    nn = int(key.split("-")[0])
+    return next((str(f.relative_to(ROOT)) for f in sorted((ROOT / "frc" / "ledgers").glob(f"p{nn:02d}_*.py"))), None)
+
+
+def ledger_results(tag, ledger_file):
+    """(passed, checks) of a ledger file run from the tag's tree: a paper whose package retired is witnessed by its ledger
+    file, which the release's archive carries (frc/); None when the file is not at the tag."""
+    import os, re, tempfile
+    try: git("cat-file", "-e", f"{tag}:{ledger_file}")
+    except SystemExit: return None
+    with tempfile.TemporaryDirectory() as td:
+        subprocess.run(f"git -C {ROOT} archive {tag} frc | tar -x -C {td}", shell=True, check=True)
+        r = subprocess.run([sys.executable, "-B", "-m", ledger_file[:-3].replace("/", ".")], cwd=td, capture_output=True, text=True,
+                           env=dict(os.environ, PYTHONDONTWRITEBYTECODE="1"))
+    m = re.search(r"SUMMARY: (\d+)/(\d+) checks passed", r.stdout)
+    return [int(m.group(1)), int(m.group(2))] if m else None
+
+
 def serve(rel):
     man_path = REL / f"{rel}.json"
     man = json.loads(man_path.read_text(encoding="utf-8"))
@@ -76,6 +98,9 @@ def serve(rel):
             got = git("rev-parse", f"{tag}:{p['package']}")
             if got != p.get("package_tree"): raise SystemExit(f"{p['key']}: {p['package']} at {tag} is {got}, the manifest pins {p.get('package_tree')}")
             p["results"] = results_at(tag, p["package"])
+        elif p.get("ledger_file"):                                           # a paper witnessed by its ledger file (the package retired, Q06)
+            p["results"] = ledger_results(tag, p["ledger_file"])
+            if p["results"] is None: raise SystemExit(f"{p['key']}: {p['ledger_file']} is not at {tag}")
         if p.get("sdist"):
             data = git("show", f"{tag}:docs/pkg/{p['sdist']}", binary=True)
             if hashlib.sha256(data).hexdigest() != p["sdist_sha256"]: raise SystemExit(f"{p['key']}: {p['sdist']} at {tag} differs from the manifest")
@@ -99,12 +124,17 @@ def cut(rel, pins):
     papers, before = [], man.get("release")
     for p in man.get("papers", []):
         p = dict(p, pinned_release=p.get("pinned_release", before))                 # carried over: still pinned to its own release
-        if p["key"] in pins and p.get("package"):
+        if p["key"] in pins and p.get("package") and subprocess.run(["git", "-C", str(ROOT), "cat-file", "-e", f"{rel}:{p['package']}"], capture_output=True).returncode == 0:
             p.pop("results", None)
             p["package_tree"] = git("rev-parse", f"{rel}:{p['package']}"); p["pinned_release"] = rel
             sd = sorted((ROOT / "docs" / "pkg").glob(f"frc-{p['package'].split('/')[-1]}-*.tar.gz"))
             p["sdist"] = sd[-1].name if sd else None
             p["sdist_sha256"] = hashlib.sha256(sd[-1].read_bytes()).hexdigest() if sd else None
+        elif p["key"] in pins:                                                # the package retired at this milestone (Q06): the ledger file is the witness
+            lf = p.get("ledger_file") or ledger_file_of(p["key"])
+            if not lf: raise SystemExit(f"{p['key']}: no package at {rel} and no ledger file under frc/ledgers/")
+            for k in ("results", "package", "package_tree", "sdist", "sdist_sha256"): p.pop(k, None)
+            p["ledger_file"] = lf; p["pinned_release"] = rel
         papers.append(p)
     new = {"release": rel, "date": datetime.date.today().isoformat(), "kind": "framework release at a paper milestone (Q06)", "repository": "finite-ring-space",
            "tag": rel, "commit": head, "pushed": False,

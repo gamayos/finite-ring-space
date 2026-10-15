@@ -49,7 +49,7 @@
     "29-fin",
     "m04"
    ],
-   "witness": null,
+   "witness": "20:rh.py",
    "refs": [
     {
      "label": "A7",
@@ -108,7 +108,7 @@
     "5-red",
     "1-alg"
    ],
-   "witness": null,
+   "witness": "20:rh.py",
    "refs": [
     {
      "label": "A6",
@@ -535,6 +535,7 @@
    "key": "p00168",
    "tag": "T",
    "sources": [
+    "10-dim",
     "8-dirac"
    ],
    "witness": null,
@@ -592,7 +593,9 @@
    "block": "B",
    "key": "p00169",
    "tag": "D",
-   "sources": [],
+   "sources": [
+    "10-dim"
+   ],
    "witness": null,
    "refs": [
     {
@@ -786,6 +789,7 @@
    "sources": [
     "8-dirac",
     "3-caus",
+    "10-dim",
     "22-qm"
    ],
    "witness": null,
@@ -868,7 +872,9 @@
    "block": "C",
    "key": "p00032",
    "tag": "T",
-   "sources": [],
+   "sources": [
+    "10-dim"
+   ],
    "witness": null,
    "refs": [],
    "statement": "\\textbf{Temperature and the classical arity, derived}: the temperature domain is acceleration, $[\\Theta]=[E][k_B]^{-1}=[L][T]^{-2}$, flag-free, $\\Theta_P=E_P/|k_B|$, Unruh closing as a domain identity; neither mass nor temperature is primitive --- $M$-$L$-$T$-plus-thermal is the torsion-free shadow of the two-generators-plus-flag system (the mass primitive standing in for the flag, the thermal for $k_B$), classical dimensional analysis recovered in exponents and arity."
@@ -923,7 +929,7 @@
    "sources": [
     "38-s13"
    ],
-   "witness": "38:check_s13.js",
+   "witness": "38:p38_s13.py",
    "refs": [
     {
      "label": "C22",
@@ -978,7 +984,7 @@
    "sources": [
     "38-s13"
    ],
-   "witness": "38:verify-hopf.js",
+   "witness": "38:p38_s13.py",
    "refs": [
     {
      "label": "C19",
@@ -1037,7 +1043,7 @@
     "38-s13",
     "1-alg"
    ],
-   "witness": "38:verify-hopf.js",
+   "witness": "38:p38_s13.py",
    "refs": [
     {
      "label": "C20",
@@ -1172,6 +1178,7 @@
    "key": "p00048",
    "tag": "R",
    "sources": [
+    "10-dim",
     "20-rh",
     "22-qm"
    ],
@@ -1245,7 +1252,7 @@
     "38-s13",
     "1-alg"
    ],
-   "witness": "38:verify-sky.js, 38:verify-render.js",
+   "witness": "38:p38_s13.py",
    "refs": [
     {
      "label": "C19",
@@ -2258,7 +2265,7 @@
      "key": "p00135"
     }
    ],
-   "statement": "RH, Goldbach, P-vs-NP and Kurepa are the spectral, additive, computational and factorial faces of one horizon clause: each a uniform check over the totality whose per-instance statements are $\\Om$-blind relations (Z10, Z11; 13:F2) and whose uniform form is an $\\Om$-hard value (Z3, Z4), host-decided on a hosted Carrier. An $\\Om$-hard value says nothing about whether a bounded-height certificate exists."
+   "statement": "RH, Goldbach, P-vs-NP and Kurepa are the spectral, additive, computational and factorial faces of one horizon clause: each a uniform check over the totality whose per-instance statements are $\\Om$-blind relations (Z10, Z11; 13:F2) and whose uniform form is an $\\Om$-hard value (Z3, Z4), host-decided on a hosted Carrier. An $\\Om$-hard value says nothing about whether a short derivation exists."
   },
   {
    "label": "Z3",
@@ -2288,7 +2295,7 @@
   },
   {
    "label": "Z4",
-   "name": "The four certificates: RH = the on-line spectrum complete",
+   "name": "The four certificates: RH = every cell of the cycle clean",
    "block": "Z",
    "key": "p00112",
    "tag": "Ω",
@@ -2309,7 +2316,7 @@
      "key": "p00135"
     }
    ],
-   "statement": "RH $=$ the on-line spectrum complete for the prime vector; Goldbach $=$ the uniform per-$n$ parity positivity; P-vs-NP $=$ the forward-invertibility of the scale descent; Kurepa $=$ the left factorial nonzero on every odd shell (13:Z1). Each a uniform check over the totality, in no embedded reader's window; per-instance statements $\\Om$-blind relations (Z10, Z11); a certificate's existence undecided (20-rh \\S8.3)."
+   "statement": "RH $=$ every cell of the cycle clean (20:D5); Goldbach $=$ the uniform per-$n$ parity positivity; P-vs-NP $=$ the forward-invertibility of the scale descent; Kurepa $=$ the left factorial nonzero on every odd shell (13:Z1). Each a uniform check over the totality, in no embedded reader's window; per-instance statements frame-decided (Z10, Z11); the whole-state certificate $\\Om$-hard as a tally (20:Z1)."
   },
   {
    "label": "Z5",
@@ -2498,7 +2505,7 @@
   },
   {
    "label": "Z11",
-   "name": "The classical hypothesis is a screen value",
+   "name": "The classical hypothesis is decided cell by cell",
    "block": "Z",
    "key": "p00135",
    "tag": "D",
@@ -2512,7 +2519,7 @@
      "key": "p00112"
     }
    ],
-   "statement": "RH below height $T$ is the count identity $\\mathcal N(T)=N_{\\mathrm{crit}}(T)$, $C\\le N_{\\mathrm{crit}}\\le\\mathcal N$ [import: Turing 1953], a screen value (20:F1--F4), both counts read from the explicit formula's two sides, inputs frame-exact, outputs uncertified. An off-line zero is a phantom, a comb count with no on-line mode (20:A5). Decidable per height; uniform form Z4. Falsifier: a shell window where $\\mathcal N-N_{\\mathrm{crit}}$ differs from Turing's count."
+   "statement": "RH on a Carrier is the conjunction over its cycle's residues of the clean-cell predicate: residue $y$ the cell of heights from $2\\pi y$ to $2\\pi(y+1)$, clean when its zeros lie on the line, decided by Turing's certificate (20:D5, 20:F1); on a hosted Carrier the host decides every cell (20:F2); the uniform form is Z4. Falsifier: a cell in deficit."
   }
  ]
 }

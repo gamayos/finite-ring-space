@@ -1172,6 +1172,8 @@
 'FRC.Pair.fusion' does not depend on any axioms
 'FRC.Pair.inv13' does not depend on any axioms
 'FRC.Pair.parity_instance' does not depend on any axioms
+'FRC.Pair.mult_eq_mu' does not depend on any axioms
+'FRC.Shell.Frame.quat_bijective' does not depend on any axioms
 'FRC.Shell.Prime.exists_inv' does not depend on any axioms
 'FRC.Shell.Prime.fld' does not depend on any axioms
 'FRC.Shell.Prime.hopf_section' does not depend on any axioms
@@ -1598,7 +1600,6 @@
 'FRC.Ledger.p00190' does not depend on any axioms
 'FRC.Ledger.p01009' does not depend on any axioms
 'FRC.Ledger.p04015' does not depend on any axioms
-'FRC.Ledger.p38007' does not depend on any axioms
 'FRC.Ledger.p38051' does not depend on any axioms
 'FRC.Ledger.p00022' does not depend on any axioms
 'FRC.Ledger.p00189' does not depend on any axioms
@@ -1671,6 +1672,7 @@
 'FRC.Ledger.p38003' does not depend on any axioms
 'FRC.Ledger.p38004' does not depend on any axioms
 'FRC.Ledger.p38006' does not depend on any axioms
+'FRC.Ledger.p38007' does not depend on any axioms
 'FRC.Ledger.p38008' does not depend on any axioms
 'FRC.Ledger.p38009' does not depend on any axioms
 'FRC.Ledger.p38010' does not depend on any axioms

@@ -19,6 +19,7 @@ const VENUES = {
   "BSL": "Bulletin of Symbolic Logic",
   "SYNT": "Synthese",
   "ExpMath": "Experimental Mathematics",
+  "IJACM": "International Journal of Experimental and Computational Mathematics",
   "PhilMath": "Philosophia Mathematica",
   "FoP": "Foundations of Physics",
   "QSMF": "Quantum Studies: Mathematics and Foundations",
@@ -310,8 +311,8 @@ const PUBLICATIONS = [
     "status": {
       "kind": "preprint"
     },
-    "doi": "https://doi.org/10.20944/preprints202607.1141.v1",
-    "doiLabel": "pp202607.1141.v1",
+    "doi": "https://doi.org/10.20944/preprints202607.1141.v2",
+    "doiLabel": "pp202607.1141.v2",
     "ledger": "13-epi/index.html",
     "schema": true,
     "links": [
@@ -743,4 +744,4 @@ const PUBLICATIONS = [
   }
 ];
 
-const GENERATED = "14 October 2026";
+const GENERATED = "15 October 2026";

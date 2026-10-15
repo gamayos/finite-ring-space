@@ -234,7 +234,7 @@ def leak_rate(p, Om):
 
 def joint_cycle(p, Om):
     """(L, L/2, L/2 mod (p − 1), L/2 mod (Ω − 1)) with L = lcm(p − 1, Ω − 1): the joint cycle closes at (home, home) and,
-    for a κ-odd pair with S ≡ 2 (mod 4), the half event reads (home, (Ω − 1)/2): the Carrier at −1 (38:C14, B5)."""
+    for a κ-odd pair (S even), the half event reads (home, (Ω − 1)/2): the Carrier at −1 (38:C14, B5)."""
     a, b = p - 1, Om - 1
     L = a * b // gcd(a, b)
     return L, L // 2, (L // 2) % a, (L // 2) % b

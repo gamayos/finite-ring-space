@@ -31,7 +31,8 @@ G15  every published paper pins a release and runs green against it (task LM33; 
      pinned package's checks at the tag passed (the manifest's record, written by ci/release.py serve); the site serves the
      release (docs/releases/<release>/: the archive, the web copies, each pinned sdist with its recorded SHA-256). Where git
      holds the tag, the package's tree at the tag is the one pinned. A package changed since its pin is reported: the paper
-     is in revision and pins anew at its milestone.
+     is in revision and pins anew at its milestone. A paper whose package retired (38-s13, 15 October 2026) is pinned by
+     its ledger file, which must be at the tag; its checks are run from the tag at serve.
 G19  no core statement asserts unboundedness: no theorem of FrcCore states a quantity above every bound (an existential
      bounded below by a variable and above by nothing, or an existential over ℕ with no upper bound in its scope and no
      equation fixing it from bounded data; the audit's M11), and none names Infinite, Set.Infinite, Filter.atTop or
@@ -354,7 +355,7 @@ def g15():
         return r.stdout.strip() if r.returncode == 0 else None
     n = 0
     for p in latest["papers"]:
-        if not (p.get("posted") and p.get("package")): continue
+        if not (p.get("posted") and (p.get("package") or p.get("ledger_file"))): continue
         n += 1; key = p["key"]
         if not p.get("pinned"): fail("G15", f"{key}: a posted paper with a package and no pinned release"); continue
         rel = p.get("pinned_release", latest["release"])
@@ -362,16 +363,19 @@ def g15():
         if man is None: fail("G15", f"{key}: pinned to {rel}, which has no manifest"); continue
         pin = next((q for q in man["papers"] if q["key"] == key), None)
         if pin is None or not pin.get("pinned"): fail("G15", f"{key}: {rel} does not pin it"); continue
-        res = pin.get("results")
+        res = pin.get("results"); wit = p.get("package") or p.get("ledger_file")
         if "results" not in pin: fail("G15", f"{key}: {rel} is not served (run ci/release.py serve {rel})")
-        elif res is None: report("G15", f"{key}: {p['package']} keeps no check records (results.json) at {rel}; it gains them when the paper migrates (LM36)")
-        elif res[0] != res[1]: fail("G15", f"{key}: {p['package']} at {rel} passes {res[0]} of {res[1]} checks")
+        elif res is None: report("G15", f"{key}: {wit} keeps no check records (results.json) at {rel}; it gains them when the paper migrates (LM36)")
+        elif res[0] != res[1]: fail("G15", f"{key}: {wit} at {rel} passes {res[0]} of {res[1]} checks")
         out = ROOT / "docs" / "releases" / rel
         if not (out / f"{rel}.tar.gz").exists() or not (out / "lean" / "web").is_dir(): fail("G15", f"{key}: the site does not serve {rel} (docs/releases/{rel}/)")
         if pin.get("sdist"):
             f = out / "pkg" / pin["sdist"]
             if not f.exists(): fail("G15", f"{key}: the pinned sdist {pin['sdist']} is not served under docs/releases/{rel}/pkg/")
             elif hashlib.sha256(f.read_bytes()).hexdigest() != pin["sdist_sha256"]: fail("G15", f"{key}: the served {pin['sdist']} differs from the pin")
+        if not p.get("package"):                                           # a paper pinned by its ledger file (the package retired, Q06)
+            if at_tag(man["tag"], p["ledger_file"]) is None: fail("G15", f"{key}: {p['ledger_file']} is not at {man['tag']}")
+            continue
         tree = at_tag(man["tag"], p["package"])
         if tree is None: report("G15", f"{key}: the tag {man['tag']} is not in this clone; the package tree is not rechecked")
         elif tree != pin.get("package_tree"): fail("G15", f"{key}: {p['package']} at {man['tag']} is not the pinned tree")

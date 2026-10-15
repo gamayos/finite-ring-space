@@ -12,8 +12,8 @@ The arithmetic of a Subject `p = 4κ + 1` hosted by a Carrier `Ω = 4S + 1`, fro
   `k₁ + k₂ ≤ 2κ < 4κ` (`window`, `window_sum`);
 * **38:C10, 38:X1, 38:X3** the per-chronon leak rate `(κ/S)/(p − 1) = 1/(4S) = 1/(Ω − 1)`, `κ`-free, as integer
   identities (`leak_rate`);
-* **38:C14, 38:B5, 38:B7** the joint cycle of a `κ`-odd pair with `S ≡ 2 (mod 4)`: for `ℓ` an odd common multiple of
-  `κ = 2a + 1` and `S/2 = 2b + 1`, the shell is home and the Carrier reads the half at `4ℓ` ticks, both home at `8ℓ`
+* **38:C14, 38:B5, 38:B7** the joint cycle of a `κ`-odd pair (`S = 2m` even): for `ℓ` a common multiple of
+  `κ = 2a + 1` and `m` with `ℓ/m` odd, the shell is home and the Carrier reads the half at `4ℓ` ticks, both home at `8ℓ`
   (`joint_cycle`); on frames, `g^{4ℓ} = 1` and `h^{4ℓ} = −1` (`joint_cycle_frame`);
 * **38:C1, 38:C4, 38:C5** the flow law as a tick count on the cycle, home at the row's own clock and the parity image
   half a cycle on (`tick`, `tick_home`, `tick_half`); the half turn as the point reflection (`half_turn`);
@@ -90,17 +90,15 @@ theorem mod_mul_self (p q : Nat) (hp : 0 < p) : (p * q) % p = 0 :=
 
 /-! ## 38:C14 — the joint cycle -/
 
-/-- 38:C14, 38:B5, 38:B7 — the joint cycle of a `κ`-odd pair with `S ≡ 2 (mod 4)`. With `κ = 2a + 1`, `S = 2(2b + 1)`
-and `ℓ` an odd common multiple of `2a + 1` and `2b + 1` (`ℓ = (2a + 1)(2u + 1) = (2b + 1)(2v + 1)`): at `4ℓ` ticks the
-shell is home (`4ℓ ≡ 0 mod 4κ = p − 1`) and the Carrier count reads the half (`4ℓ ≡ (Ω − 1)/2 mod Ω − 1 = 8(2b + 1)`);
-at `8ℓ` both are home. At the instance `ℓ = 87 = 3 · 29`: `348` and `696`. -/
-theorem joint_cycle {a b u v ℓ : Nat} (hu : ℓ = (2 * a + 1) * (2 * u + 1)) (hv : ℓ = (2 * b + 1) * (2 * v + 1)) :
-    (4 * ℓ) % (4 * (2 * a + 1)) = 0 ∧ (4 * ℓ) % (8 * (2 * b + 1)) = 4 * (2 * b + 1) ∧
-    (8 * ℓ) % (4 * (2 * a + 1)) = 0 ∧ (8 * ℓ) % (8 * (2 * b + 1)) = 0 := by
+/-- 38:C14, 38:B5, 38:B7 — the joint cycle of a `κ`-odd pair with `S` even: `κ = 2a + 1`, `S = 2m`, `ℓ` a common multiple
+of `2a + 1` and `m` with `ℓ/m` odd (`ℓ = (2a + 1)(2u + 1) = m(2v + 1)`). At `4ℓ` ticks the shell is home (`4ℓ ≡ 0 mod 4κ`)
+and the Carrier reads the half (`4ℓ ≡ 4m = (Ω − 1)/2 mod 8m`); at `8ℓ` both are home. At the instance `ℓ = 87 = 3 · 29`. -/
+theorem joint_cycle {a m u v ℓ : Nat} (hm : 0 < m) (hu : ℓ = (2 * a + 1) * (2 * u + 1)) (hv : ℓ = m * (2 * v + 1)) :
+    (4 * ℓ) % (4 * (2 * a + 1)) = 0 ∧ (4 * ℓ) % (8 * m) = 4 * m ∧
+    (8 * ℓ) % (4 * (2 * a + 1)) = 0 ∧ (8 * ℓ) % (8 * m) = 0 := by
   have ha0 : 0 < 4 * (2 * a + 1) := Nat.mul_pos (by decide) (Nat.zero_lt_succ _)
-  have hb0 : 0 < 8 * (2 * b + 1) := Nat.mul_pos (by decide) (Nat.zero_lt_succ _)
-  have hb4 : 4 * (2 * b + 1) < 8 * (2 * b + 1) :=
-    Nat.mul_lt_mul_of_pos_right (by decide : 4 < 8) (Nat.zero_lt_succ _)
+  have hb0 : 0 < 8 * m := Nat.mul_pos (by decide) hm
+  have hb4 : 4 * m < 8 * m := Nat.mul_lt_mul_of_pos_right (by decide : 4 < 8) hm
   -- `4ℓ = (4(2a + 1)) (2u + 1)` and `8ℓ = (4(2a + 1)) (2(2u + 1))`
   have e1 : 4 * ℓ = 4 * (2 * a + 1) * (2 * u + 1) := by rw [hu, FRC.Nat.mul_assoc]
   have e3 : 8 * ℓ = 4 * (2 * a + 1) * (2 * (2 * u + 1)) := by
@@ -108,62 +106,61 @@ theorem joint_cycle {a b u v ℓ : Nat} (hu : ℓ = (2 * a + 1) * (2 * u + 1)) (
     calc 8 * ((2 * a + 1) * (2 * u + 1)) = 4 * (2 * ((2 * a + 1) * (2 * u + 1))) := FRC.Nat.mul_assoc 4 2 _
       _ = 4 * ((2 * a + 1) * (2 * (2 * u + 1))) := by rw [FRC.Nat.mul_left_comm 2 (2 * a + 1)]
       _ = 4 * (2 * a + 1) * (2 * (2 * u + 1)) := (FRC.Nat.mul_assoc 4 _ _).symm
-  -- `4ℓ = 8(2b + 1) v + 4(2b + 1)` and `8ℓ = (8(2b + 1)) (2v + 1)`
-  have e2 : 4 * ℓ = 8 * (2 * b + 1) * v + 4 * (2 * b + 1) := by
+  -- `4ℓ = 8m v + 4m` and `8ℓ = (8m) (2v + 1)`
+  have e2 : 4 * ℓ = 8 * m * v + 4 * m := by
     rw [hv]
-    calc 4 * ((2 * b + 1) * (2 * v + 1)) = 4 * ((2 * b + 1) * (2 * v) + (2 * b + 1)) := by
-            rw [Nat.mul_add, Nat.mul_one]
-      _ = 4 * ((2 * b + 1) * (2 * v)) + 4 * (2 * b + 1) := Nat.mul_add 4 _ _
-      _ = 4 * (2 * ((2 * b + 1) * v)) + 4 * (2 * b + 1) := by rw [FRC.Nat.mul_left_comm (2 * b + 1) 2 v]
-      _ = 4 * 2 * ((2 * b + 1) * v) + 4 * (2 * b + 1) := by rw [FRC.Nat.mul_assoc 4 2]
-      _ = 8 * (2 * b + 1) * v + 4 * (2 * b + 1) := by rw [← FRC.Nat.mul_assoc 8]
-  have e4 : 8 * ℓ = 8 * (2 * b + 1) * (2 * v + 1) := by rw [hv, FRC.Nat.mul_assoc]
+    calc 4 * (m * (2 * v + 1)) = 4 * (m * (2 * v) + m) := by rw [Nat.mul_add, Nat.mul_one]
+      _ = 4 * (m * (2 * v)) + 4 * m := Nat.mul_add 4 _ _
+      _ = 4 * (2 * (m * v)) + 4 * m := by rw [FRC.Nat.mul_left_comm m 2 v]
+      _ = 4 * 2 * (m * v) + 4 * m := by rw [FRC.Nat.mul_assoc 4 2]
+      _ = 8 * m * v + 4 * m := by rw [← FRC.Nat.mul_assoc 8]
+  have e4 : 8 * ℓ = 8 * m * (2 * v + 1) := by rw [hv, FRC.Nat.mul_assoc]
   refine ⟨by rw [e1, mod_mul_self _ _ ha0], FRC.Nat.mod_unique hb4 e2, by rw [e3, mod_mul_self _ _ ha0],
     by rw [e4, mod_mul_self _ _ hb0]⟩
 
-/-- 38:C14 on the frames: a Subject frame of odd capacity `κ = 2a + 1` and a Carrier frame of capacity `S = 4b + 2`
+/-- 38:C14 on the frames: a Subject frame of odd capacity `κ = 2a + 1` and a Carrier frame of even capacity `S = 2m`
 return together — at `4ℓ` the Subject's drive is home, `g^{4ℓ} = 1`, and the Carrier's reads the half, `h^{4ℓ} = −1`
 (the sign event); at `8ℓ` both are home. -/
-theorem joint_cycle_frame {p Ω : Nat} [Pos p] [Pos Ω] {a b : Nat} {g : Shell p} {h : Shell Ω}
-    (F : Frame p (2 * a + 1) g) (G : Frame Ω (4 * b + 2) h) {u v ℓ : Nat}
-    (hu : ℓ = (2 * a + 1) * (2 * u + 1)) (hv : ℓ = (2 * b + 1) * (2 * v + 1)) :
+theorem joint_cycle_frame {p Ω : Nat} [Pos p] [Pos Ω] {a m : Nat} {g : Shell p} {h : Shell Ω}
+    (F : Frame p (2 * a + 1) g) (G : Frame Ω (2 * m) h) (hm : 0 < m) {u v ℓ : Nat}
+    (hu : ℓ = (2 * a + 1) * (2 * u + 1)) (hv : ℓ = m * (2 * v + 1)) :
     g ^ (4 * ℓ) = 1 ∧ h ^ (4 * ℓ) = -1 ∧ g ^ (8 * ℓ) = 1 ∧ h ^ (8 * ℓ) = 1 := by
-  obtain ⟨c1, c2, c3, c4⟩ := joint_cycle hu hv
-  have eS : Ω - 1 = 8 * (2 * b + 1) := by
-    rw [G.n_eq]; show 4 * (4 * b + 2) = 8 * (2 * b + 1)
-    rw [Nat.mul_add, Nat.mul_add, ← FRC.Nat.mul_assoc, ← FRC.Nat.mul_assoc]
-  have eH : 2 * (4 * b + 2) = 4 * (2 * b + 1) := by
-    rw [Nat.mul_add, Nat.mul_add, ← FRC.Nat.mul_assoc, ← FRC.Nat.mul_assoc]
+  obtain ⟨c1, c2, c3, c4⟩ := joint_cycle hm hu hv
+  have eS : Ω - 1 = 8 * m := by
+    rw [G.n_eq]; show 4 * (2 * m) = 8 * m
+    rw [← FRC.Nat.mul_assoc]
+  have eH : 2 * (2 * m) = 4 * m := by rw [← FRC.Nat.mul_assoc]
   refine ⟨F.pow_eq_one_of_mod (by rw [F.n_eq]; exact c1), ?_, F.pow_eq_one_of_mod (by rw [F.n_eq]; exact c3),
     G.pow_eq_one_of_mod (by rw [eS]; exact c4)⟩
   rw [G.pow_mod, eS, c2, ← eH]; exact G.half_period
 
 /-- 38:C14 — the joint returns are exactly the common multiples of the two periods, so the least is `lcm(p − 1, Ω − 1)`;
-for `κ` odd and `S ≡ 2 (mod 4)` it is `8ℓ`, `ℓ` the least odd common multiple of `κ` and `S/2` (`joint_cycle_frame`). -/
+for `κ` odd and `S = 2m` even it is `8ℓ`, `ℓ` the least common multiple of `κ` and `m` (`joint_return_eight`), whose
+cofactor over `m` is odd (`joint_cycle_frame`). -/
 theorem joint_return_iff {p Ω : Nat} [Pos p] [Pos Ω] {κ S : Nat} {g : Shell p} {h : Shell Ω}
     (F : Frame p κ g) (G : Frame Ω S h) (n : Nat) :
     g ^ n = 1 ∧ h ^ n = 1 ↔ n % (p - 1) = 0 ∧ n % (Ω - 1) = 0 :=
   ⟨fun ⟨hg, hh⟩ => ⟨F.mod_eq_zero_of_pow_eq_one hg, G.mod_eq_zero_of_pow_eq_one hh⟩,
    fun ⟨hg, hh⟩ => ⟨F.pow_eq_one_of_mod hg, G.pow_eq_one_of_mod hh⟩⟩
 
-/-- 38:C14 — every common multiple of the periods `4κ` (`κ = 2a + 1` odd) and `8·(S/2)` (`S/2 = 2b + 1`) is eight times a
-common multiple of `κ` and `S/2`: with `joint_return_iff`, the least joint return is `8ℓ` for `ℓ` the least common
-multiple of `κ` and `S/2` (odd), and its half `4ℓ` is `joint_cycle_frame`'s sign event. -/
-theorem joint_return_eight {a b n : Nat} (h4 : n % (4 * (2 * a + 1)) = 0) (h8 : n % (8 * (2 * b + 1)) = 0) :
-    ∃ m, n = 8 * m ∧ m % (2 * a + 1) = 0 ∧ m % (2 * b + 1) = 0 := by
+/-- 38:C14 — every common multiple of the periods `4κ` (`κ = 2a + 1` odd) and `8m` (`S = 2m` even) is eight times a common
+multiple of `κ` and `m`: with `joint_return_iff` the least joint return is `8ℓ`, `ℓ = lcm(κ, m)`, and its half `4ℓ` is
+`joint_cycle_frame`'s sign event (`ℓ/m = κ/gcd(κ, m)` is odd). -/
+theorem joint_return_eight {a m n : Nat} (hm : 0 < m) (h4 : n % (4 * (2 * a + 1)) = 0) (h8 : n % (8 * m) = 0) :
+    ∃ k, n = 8 * k ∧ k % (2 * a + 1) = 0 ∧ k % m = 0 := by
   have ha0 : 0 < 4 * (2 * a + 1) := Nat.mul_pos (by decide) (Nat.zero_lt_succ _)
-  have hb0 : 0 < 8 * (2 * b + 1) := Nat.mul_pos (by decide) (Nat.zero_lt_succ _)
+  have hb0 : 0 < 8 * m := Nat.mul_pos (by decide) hm
   obtain ⟨v, hv⟩ := FRC.Nat.mod_spec _ hb0 n
   obtain ⟨u, hu⟩ := FRC.Nat.mod_spec _ ha0 n
   rw [h8, Nat.add_zero] at hv
   rw [h4, Nat.add_zero] at hu
-  refine ⟨(2 * b + 1) * v, by rw [hv, FRC.Nat.mul_assoc], ?_, mod_mul_self _ _ (Nat.zero_lt_succ _)⟩
-  have e : (2 * a + 1) * u = 2 * ((2 * b + 1) * v) := by
+  refine ⟨m * v, by rw [hv, FRC.Nat.mul_assoc], ?_, mod_mul_self _ _ hm⟩
+  have e : (2 * a + 1) * u = 2 * (m * v) := by
     apply Nat.eq_of_mul_eq_mul_left (show 0 < 4 by decide)
     calc 4 * ((2 * a + 1) * u) = 4 * (2 * a + 1) * u := (FRC.Nat.mul_assoc _ _ _).symm
-      _ = 8 * (2 * b + 1) * v := hu.symm.trans hv
-      _ = 4 * (2 * ((2 * b + 1) * v)) := by
-        show 4 * 2 * (2 * b + 1) * v = 4 * (2 * ((2 * b + 1) * v))
+      _ = 8 * m * v := hu.symm.trans hv
+      _ = 4 * (2 * (m * v)) := by
+        show 4 * 2 * m * v = 4 * (2 * (m * v))
         rw [FRC.Nat.mul_assoc (4 * 2), FRC.Nat.mul_assoc 4 2]
   obtain ⟨k, hk⟩ := FRC.Nat.mod_spec 2 (by decide) u
   rcases FRC.Nat.mod_two_cases u with h0 | h1
@@ -613,5 +610,13 @@ theorem parity_instance :
       mu (a * (k * inv13 a % 13) / 13) ((13 - k * inv13 a % 13) * a / 13)
         ((k * inv13 a % 13) * (13 - a) / 13) ((13 - k * inv13 a % 13) * (13 - a) / 13) =
         if k % 2 = 0 then 3 else 1) := by decide +kernel
+
+/-- 38:D12, 38:D7 — the parity decider agrees with the covering at the instance: for every node (shell `a ∈ {1, 2, 3}`,
+row `k`) on either route, the multiplicity counted over the `144` slots (`mult`) is the decider's value (`mu`). -/
+theorem mult_eq_mu :
+    ∀ a, a < 4 → 0 < a → ∀ e, e < 2 → ∀ k, k < 13 → 0 < k →
+      mult 13 3 (a - 1) e k =
+        mu (a * (k * inv13 a % 13) / 13) ((13 - k * inv13 a % 13) * a / 13)
+          ((k * inv13 a % 13) * (13 - a) / 13) ((13 - k * inv13 a % 13) * (13 - a) / 13) := by decide +kernel
 
 end FRC.Pair

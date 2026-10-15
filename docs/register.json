@@ -522,7 +522,10 @@
     "dir": "10-dimensions",
     "no": 10,
     "title": "Dimensional Analysis over Finite Holographic Substrate",
-    "status": null,
+    "status": {
+     "kind": "published",
+     "venue": "Entropy"
+    },
     "page": "10-dimensions/index.html",
     "blocks": [
      {
@@ -1430,7 +1433,7 @@
    "theorems": "one entry per key (LM12): its canonical statement (the row of its ledger of origin, the key's prefix), the origin, the tag, the Lean tier, the deciding check and declarations, the aliases that resolve to it, the rows that write it, and for a theorem the realisations its statement names (Q21)",
    "superseded": "the keys that left the public ledgers (corrected, split, merged or returned home), each with its live successor keys and nothing else (decision Q19)"
   },
-  "superseded": 87
+  "superseded": 91
  },
  "theorems": [
   {
@@ -2409,7 +2412,7 @@
    "tag": "T",
    "tier": null,
    "check": {
-    "script": "38:verify-hopf.js"
+    "script": "38:p38_s13.py"
    },
    "declarations": [],
    "aliases": [],
@@ -2662,7 +2665,7 @@
    "tag": "R",
    "tier": null,
    "check": {
-    "script": "38:verify-sky.js, 38:verify-render.js"
+    "script": "38:p38_s13.py"
    },
    "declarations": [],
    "aliases": [],
@@ -3697,7 +3700,7 @@
   {
    "key": "p00110",
    "origin": "00",
-   "statement": "RH, Goldbach, P-vs-NP and Kurepa are the spectral, additive, computational and factorial faces of one horizon clause: each a uniform check over the totality whose per-instance statements are $\\Om$-blind relations (Z10, Z11; 13:F2) and whose uniform form is an $\\Om$-hard value (Z3, Z4), host-decided on a hosted Carrier. An $\\Om$-hard value says nothing about whether a bounded-height certificate exists.",
+   "statement": "RH, Goldbach, P-vs-NP and Kurepa are the spectral, additive, computational and factorial faces of one horizon clause: each a uniform check over the totality whose per-instance statements are $\\Om$-blind relations (Z10, Z11; 13:F2) and whose uniform form is an $\\Om$-hard value (Z3, Z4), host-decided on a hosted Carrier. An $\\Om$-hard value says nothing about whether a short derivation exists.",
    "origin_row": "00:Z2",
    "tag": "D",
    "tier": null,
@@ -3725,7 +3728,7 @@
   {
    "key": "p00112",
    "origin": "00",
-   "statement": "RH $=$ the on-line spectrum complete for the prime vector; Goldbach $=$ the uniform per-$n$ parity positivity; P-vs-NP $=$ the forward-invertibility of the scale descent; Kurepa $=$ the left factorial nonzero on every odd shell (13:Z1). Each a uniform check over the totality, in no embedded reader's window; per-instance statements $\\Om$-blind relations (Z10, Z11); a certificate's existence undecided (20-rh \\S8.3).",
+   "statement": "RH $=$ every cell of the cycle clean (20:D5); Goldbach $=$ the uniform per-$n$ parity positivity; P-vs-NP $=$ the forward-invertibility of the scale descent; Kurepa $=$ the left factorial nonzero on every odd shell (13:Z1). Each a uniform check over the totality, in no embedded reader's window; per-instance statements frame-decided (Z10, Z11); the whole-state certificate $\\Om$-hard as a tally (20:Z1).",
    "origin_row": "00:Z4",
    "tag": "Ω",
    "tier": null,
@@ -3895,7 +3898,7 @@
   {
    "key": "p00135",
    "origin": "00",
-   "statement": "RH below height $T$ is the count identity $\\mathcal N(T)=N_{\\mathrm{crit}}(T)$, $C\\le N_{\\mathrm{crit}}\\le\\mathcal N$ [import: Turing 1953], a screen value (20:F1--F4), both counts read from the explicit formula's two sides, inputs frame-exact, outputs uncertified. An off-line zero is a phantom, a comb count with no on-line mode (20:A5). Decidable per height; uniform form Z4. Falsifier: a shell window where $\\mathcal N-N_{\\mathrm{crit}}$ differs from Turing's count.",
+   "statement": "RH on a Carrier is the conjunction over its cycle's residues of the clean-cell predicate: residue $y$ the cell of heights from $2\\pi y$ to $2\\pi(y+1)$, clean when its zeros lie on the line, decided by Turing's certificate (20:D5, 20:F1); on a hosted Carrier the host decides every cell (20:F2); the uniform form is Z4. Falsifier: a cell in deficit.",
    "origin_row": "00:Z11",
    "tag": "D",
    "tier": null,
@@ -23166,7 +23169,7 @@
    "check": {
     "href": "frc/ledgers/p38_s13.html#p38001",
     "script": "p38_s13.py",
-    "line": 118,
+    "line": 120,
     "verdict": "pass"
    },
    "declarations": [
@@ -23197,7 +23200,7 @@
    "check": {
     "href": "frc/ledgers/p38_s13.html#p38002",
     "script": "p38_s13.py",
-    "line": 125,
+    "line": 127,
     "verdict": "pass"
    },
    "declarations": [
@@ -23238,7 +23241,7 @@
    "check": {
     "href": "frc/ledgers/p38_s13.html#p38003",
     "script": "p38_s13.py",
-    "line": 134,
+    "line": 136,
     "verdict": "pass"
    },
    "declarations": [
@@ -23269,7 +23272,7 @@
    "check": {
     "href": "frc/ledgers/p38_s13.html#p38004",
     "script": "p38_s13.py",
-    "line": 143,
+    "line": 145,
     "verdict": "pass"
    },
    "declarations": [
@@ -23319,7 +23322,7 @@
    "check": {
     "href": "frc/ledgers/p38_s13.html#p38006",
     "script": "p38_s13.py",
-    "line": 159,
+    "line": 161,
     "verdict": "pass"
    },
    "declarations": [
@@ -23343,14 +23346,14 @@
   {
    "key": "p38007",
    "origin": "38",
-   "statement": "The frame counts: $2184=156\\times14=14\\times13\\times12$; the norm-one sphere is $\\SL_{2}$ (its quaternion determinant), the spin cover of $\\mathrm{PSL}_{2}$ ($1092$); $\\SL_{2}$ obstructs at $-1$ (Theorem~\\ref{th:hopf}; the theorem's $\\PGL_{2}\\cong\\mathrm{SO}_{3}(\\F_{13})$ is its reading of the adjoint action).",
+   "statement": "The frame counts: $2184=156\\times14=14\\times13\\times12$; the norm-one sphere is $\\SL_{2}$ (its quaternion determinant), the spin cover of $\\mathrm{PSL}_{2}$ ($1092$); $\\SL_{2}$ obstructs at $-1$ (Theorem~\\ref{th:hopf}).",
    "origin_row": "38:A7",
    "tag": "T",
    "tier": 0,
    "check": {
     "href": "frc/ledgers/p38_s13.html#p38007",
     "script": "p38_s13.py",
-    "line": 192,
+    "line": 194,
     "verdict": "pass"
    },
    "declarations": [
@@ -23368,6 +23371,11 @@
      "lib": "FrcCore",
      "module": "FrcCore/Theme/Projective",
      "name": "FRC.Shell.Frame.sphere_det"
+    },
+    {
+     "lib": "FrcCore",
+     "module": "FrcCore/Theme/Hopf",
+     "name": "FRC.Shell.Frame.quat_bijective"
     },
     {
      "lib": "FrcCore",
@@ -23391,7 +23399,7 @@
    "check": {
     "href": "frc/ledgers/p38_s13.html#p38008",
     "script": "p38_s13.py",
-    "line": 167,
+    "line": 169,
     "verdict": "pass"
    },
    "declarations": [
@@ -23427,7 +23435,7 @@
    "check": {
     "href": "frc/ledgers/p38_s13.html#p38050",
     "script": "p38_s13.py",
-    "line": 209,
+    "line": 211,
     "verdict": "pass"
    },
    "declarations": [
@@ -23497,7 +23505,7 @@
    "check": {
     "href": "frc/ledgers/p38_s13.html#p38009",
     "script": "p38_s13.py",
-    "line": 284,
+    "line": 288,
     "verdict": "pass"
    },
    "declarations": [
@@ -23523,7 +23531,7 @@
    "check": {
     "href": "frc/ledgers/p38_s13.html#p38010",
     "script": "p38_s13.py",
-    "line": 167,
+    "line": 169,
     "verdict": "pass"
    },
    "declarations": [
@@ -23559,7 +23567,7 @@
    "check": {
     "href": "frc/ledgers/p38_s13.html#p38011",
     "script": "p38_s13.py",
-    "line": 288,
+    "line": 292,
     "verdict": "pass"
    },
    "declarations": [
@@ -23585,7 +23593,7 @@
    "check": {
     "href": "frc/ledgers/p38_s13.html#p38012",
     "script": "p38_s13.py",
-    "line": 235,
+    "line": 237,
     "verdict": "pass"
    },
    "declarations": [
@@ -23616,7 +23624,7 @@
    "check": {
     "href": "frc/ledgers/p38_s13.html#p38013",
     "script": "p38_s13.py",
-    "line": 240,
+    "line": 242,
     "verdict": "pass"
    },
    "declarations": [
@@ -23647,7 +23655,7 @@
    "check": {
     "href": "frc/ledgers/p38_s13.html#p38014",
     "script": "p38_s13.py",
-    "line": 294,
+    "line": 298,
     "verdict": "pass"
    },
    "declarations": [
@@ -23678,7 +23686,7 @@
    "check": {
     "href": "frc/ledgers/p38_s13.html#p38015",
     "script": "p38_s13.py",
-    "line": 257,
+    "line": 261,
     "verdict": "pass"
    },
    "declarations": [
@@ -23714,7 +23722,7 @@
    "check": {
     "href": "frc/ledgers/p38_s13.html#p38016",
     "script": "p38_s13.py",
-    "line": 263,
+    "line": 267,
     "verdict": "pass"
    },
    "declarations": [
@@ -23745,7 +23753,7 @@
    "check": {
     "href": "frc/ledgers/p38_s13.html#p38017",
     "script": "p38_s13.py",
-    "line": 263,
+    "line": 267,
     "verdict": "pass"
    },
    "declarations": [],
@@ -23768,7 +23776,7 @@
    "check": {
     "href": "frc/ledgers/p38_s13.html#p38018",
     "script": "p38_s13.py",
-    "line": 270,
+    "line": 274,
     "verdict": "pass"
    },
    "declarations": [
@@ -23794,7 +23802,7 @@
    "check": {
     "href": "frc/ledgers/p38_s13.html#p38019",
     "script": "p38_s13.py",
-    "line": 273,
+    "line": 277,
     "verdict": "pass"
    },
    "declarations": [
@@ -23825,7 +23833,7 @@
    "check": {
     "href": "frc/ledgers/p38_s13.html#p38020",
     "script": "p38_s13.py",
-    "line": 266,
+    "line": 270,
     "verdict": "pass"
    },
    "declarations": [
@@ -23856,7 +23864,7 @@
    "check": {
     "href": "frc/ledgers/p38_s13.html#p38021",
     "script": "p38_s13.py",
-    "line": 358,
+    "line": 362,
     "verdict": "pass"
    },
    "declarations": [
@@ -23882,7 +23890,7 @@
    "check": {
     "href": "frc/ledgers/p38_s13.html#p38022",
     "script": "p38_s13.py",
-    "line": 364,
+    "line": 368,
     "verdict": "pass"
    },
    "declarations": [
@@ -23923,7 +23931,7 @@
    "check": {
     "href": "frc/ledgers/p38_s13.html#p38023",
     "script": "p38_s13.py",
-    "line": 376,
+    "line": 380,
     "verdict": "pass"
    },
    "declarations": [
@@ -23949,7 +23957,7 @@
    "check": {
     "href": "frc/ledgers/p38_s13.html#p38044",
     "script": "p38_s13.py",
-    "line": 173,
+    "line": 175,
     "verdict": "pass"
    },
    "declarations": [
@@ -23994,7 +24002,7 @@
    "check": {
     "href": "frc/ledgers/p38_s13.html#p38052",
     "script": "p38_s13.py",
-    "line": 383,
+    "line": 387,
     "verdict": "pass"
    },
    "declarations": [],
@@ -24013,7 +24021,7 @@
    "check": {
     "href": "frc/ledgers/p38_s13.html#p38053",
     "script": "p38_s13.py",
-    "line": 179,
+    "line": 181,
     "verdict": "pass"
    },
    "declarations": [
@@ -24041,14 +24049,14 @@
   {
    "key": "p38054",
    "origin": "38",
-   "statement": "The joint cycle (Theorem~\\ref{th:precession}): for every $\\kap$-odd pair with $\\dS\\equiv2\\pmod4$ the chart count advances by $(\\p-1)/(\\Om-1)=\\kap/\\dS$ of its cycle per shell revolution; the joint cycle closes at $\\mathrm{lcm}(\\p-1,\\Om-1)$ at (home, home), and the exact midpoint is (home, $-1$).",
+   "statement": "The joint cycle (Theorem~\\ref{th:precession}): for every $\\kap$-odd pair the chart count advances by $(\\p-1)/(\\Om-1)=\\kap/\\dS$ of its cycle per shell revolution; the joint cycle closes at $\\mathrm{lcm}(\\p-1,\\Om-1)$ at (home, home), and the exact midpoint is (home, $-1$).",
    "origin_row": "38:C14",
    "tag": "T",
    "tier": 0,
    "check": {
     "href": "frc/ledgers/p38_s13.html#p38054",
     "script": "p38_s13.py",
-    "line": 250,
+    "line": 254,
     "verdict": "pass"
    },
    "declarations": [
@@ -24092,14 +24100,14 @@
   {
    "key": "p38025",
    "origin": "38",
-   "statement": "The capacity stations: $4d<13$ selects $\\{1,2,3,10,11,12\\}$; threading exact, all $232$ states.",
+   "statement": "The capacity stations: $4d<13$ selects $\\{1,2,3,10,11,12\\}$; the flow law threads every station at all $232$ clock states.",
    "origin_row": "38:D1",
    "tag": "T",
    "tier": 0,
    "check": {
     "href": "frc/ledgers/p38_s13.html#p38025",
     "script": "p38_s13.py",
-    "line": 299,
+    "line": 303,
     "verdict": "pass"
    },
    "declarations": [
@@ -24135,7 +24143,7 @@
    "check": {
     "href": "frc/ledgers/p38_s13.html#p38026",
     "script": "p38_s13.py",
-    "line": 303,
+    "line": 307,
     "verdict": "pass"
    },
    "declarations": [
@@ -24161,7 +24169,7 @@
    "check": {
     "href": "frc/ledgers/p38_s13.html#p38027",
     "script": "p38_s13.py",
-    "line": 307,
+    "line": 311,
     "verdict": "pass"
    },
    "declarations": [
@@ -24206,7 +24214,7 @@
    "check": {
     "href": "frc/ledgers/p38_s13.html#p38029",
     "script": "p38_s13.py",
-    "line": 224,
+    "line": 226,
     "verdict": "pass"
    },
    "declarations": [
@@ -24237,7 +24245,7 @@
    "check": {
     "href": "frc/ledgers/p38_s13.html#p38030",
     "script": "p38_s13.py",
-    "line": 312,
+    "line": 316,
     "verdict": "pass"
    },
    "declarations": [
@@ -24263,7 +24271,7 @@
    "check": {
     "href": "frc/ledgers/p38_s13.html#p38031",
     "script": "p38_s13.py",
-    "line": 316,
+    "line": 320,
     "verdict": "pass"
    },
    "declarations": [
@@ -24294,7 +24302,7 @@
    "check": {
     "href": "frc/ledgers/p38_s13.html#p38032",
     "script": "p38_s13.py",
-    "line": 319,
+    "line": 323,
     "verdict": "pass"
    },
    "declarations": [
@@ -24320,7 +24328,7 @@
    "check": {
     "href": "frc/ledgers/p38_s13.html#p38033",
     "script": "p38_s13.py",
-    "line": 322,
+    "line": 326,
     "verdict": "pass"
    },
    "declarations": [
@@ -24374,7 +24382,7 @@
    "check": {
     "href": "frc/ledgers/p38_s13.html#p38036",
     "script": "p38_s13.py",
-    "line": 335,
+    "line": 339,
     "verdict": "pass"
    },
    "declarations": [
@@ -24397,6 +24405,11 @@
      "lib": "FrcCore",
      "module": "FrcCore/Theme/Pair",
      "name": "FRC.Pair.parity_instance"
+    },
+    {
+     "lib": "FrcCore",
+     "module": "FrcCore/Theme/Pair",
+     "name": "FRC.Pair.mult_eq_mu"
     }
    ],
    "aliases": [],
@@ -24415,7 +24428,7 @@
    "check": {
     "href": "frc/ledgers/p38_s13.html#p38037",
     "script": "p38_s13.py",
-    "line": 326,
+    "line": 330,
     "verdict": "pass"
    },
    "declarations": [
@@ -24446,7 +24459,7 @@
    "check": {
     "href": "frc/ledgers/p38_s13.html#p38049",
     "script": "p38_s13.py",
-    "line": 390,
+    "line": 394,
     "verdict": "pass"
    },
    "declarations": [
@@ -24480,7 +24493,7 @@
    "check": {
     "href": "frc/ledgers/p38_s13.html#p38046",
     "script": "p38_s13.py",
-    "line": 173,
+    "line": 175,
     "verdict": "pass"
    },
    "declarations": [
@@ -24526,7 +24539,7 @@
    "check": {
     "href": "frc/ledgers/p38_s13.html#p38048",
     "script": "p38_s13.py",
-    "line": 390,
+    "line": 394,
     "verdict": "pass"
    },
    "declarations": [
@@ -24560,7 +24573,7 @@
    "check": {
     "href": "frc/ledgers/p38_s13.html#p38051",
     "script": "p38_s13.py",
-    "line": 209,
+    "line": 211,
     "verdict": "pass"
    },
    "declarations": [
@@ -25037,9 +25050,31 @@
    ]
   },
   {
+   "key": "p20002",
+   "successors": [
+    "p00004"
+   ]
+  },
+  {
    "key": "p20005",
    "successors": [
     "p20078"
+   ]
+  },
+  {
+   "key": "p20007",
+   "successors": []
+  },
+  {
+   "key": "p20053",
+   "successors": [
+    "p20079"
+   ]
+  },
+  {
+   "key": "p20077",
+   "successors": [
+    "p20079"
    ]
   },
   {
@@ -25161,7 +25196,7 @@
    "source": "5-red, 29-fin, m04",
    "page": "00-ledger.html#A2",
    "witness": {
-    "script": null,
+    "script": "20:rh.py",
     "py": {
      "href": "frc/ledgers/master/foundation.html#p00004",
      "script": "frc/ledgers/master/foundation.py",
@@ -25191,7 +25226,7 @@
     "29-fin",
     "m04"
    ],
-   "text": "Finitude: Finitude: the Universe is the totality of its registered manifestations (A8). For any totality and any reading of capacity $R$, the registered Universe embeds in the shell of $R$ members, and among any $R+1$ members two share a residue (5:C2, 29:C1, 29:C2): the Universe is finite, its structural cardinality $\\Om$ (A7). 5-red, 29-fin, m04"
+   "text": "Finitude: Finitude: the Universe is the totality of its registered manifestations (A8). For any totality and any reading of capacity $R$, the registered Universe embeds in the shell of $R$ members, and among any $R+1$ members two share a residue (5:C2, 29:C1, 29:C2): the Universe is finite, its structural cardinality $\\Om$ (A7). 5-red, 29-fin, m04 20:rh.py"
   },
   {
    "paper": "00",
@@ -25251,7 +25286,7 @@
    "source": "25-göd, 5-red, 1-alg",
    "page": "00-ledger.html#A4",
    "witness": {
-    "script": null,
+    "script": "20:rh.py",
     "py": {
      "href": "frc/ledgers/master/foundation.html#p00197",
      "script": "frc/ledgers/master/foundation.py",
@@ -25285,7 +25320,7 @@
     "5-red",
     "1-alg"
    ],
-   "text": "Incompleteness of observation: Incompleteness of observation: every observation is a registration by an embedded part (C4, A13) of cardinality $\\p<\\sqrt\\Om$ (A6, B8): every reading identifies two members (25:D1, 5:C2) — an incomplete projection, complete only at the whole count. No frame sees more: one translation carries each member to each, one affine map each frame to each (A6, 1:C2). Horizon: Z1, Z9. 25-göd, 5-red, 1-alg"
+   "text": "Incompleteness of observation: Incompleteness of observation: every observation is a registration by an embedded part (C4, A13) of cardinality $\\p<\\sqrt\\Om$ (A6, B8): every reading identifies two members (25:D1, 5:C2) — an incomplete projection, complete only at the whole count. No frame sees more: one translation carries each member to each, one affine map each frame to each (A6, 1:C2). Horizon: Z1, Z9. 25-göd, 5-red, 1-alg 20:rh.py"
   },
   {
    "paper": "00",
@@ -25879,7 +25914,7 @@
    "tag": "T",
    "name": "One gauge bit closes the sign sector",
    "statement": "\\textbf{One gauge bit closes the sign sector}: no C14-type marker exists --- $-1$ is a square on admissible $\\Om$, so square class is pair-blind, and integer parity is frame data (A6). Registered faces are pair-invariant: $c^2$, the one-way member synchronisation gauge (C8); $|k_B|$ (C12); $\\{\\hbar,h\\}$ the two named unit faces (B7).",
-   "source": "8-dirac",
+   "source": "10-dim, 8-dirac",
    "page": "00-ledger.html#B10",
    "witness": {
     "script": null,
@@ -25908,9 +25943,10 @@
     "p00165"
    ],
    "sources": [
+    "10-dim",
     "8-dirac"
    ],
-   "text": "One gauge bit closes the sign sector: One gauge bit closes the sign sector: no C14-type marker exists — $-1$ is a square on admissible $\\Om$, so square class is pair-blind, and integer parity is frame data (A6). Registered faces are pair-invariant: $c^2$, the one-way member synchronisation gauge (C8); $|k_B|$ (C12); $\\{\\hbar,h\\}$ the two named unit faces (B7). 8-dirac"
+   "text": "One gauge bit closes the sign sector: One gauge bit closes the sign sector: no C14-type marker exists — $-1$ is a square on admissible $\\Om$, so square class is pair-blind, and integer parity is frame data (A6). Registered faces are pair-invariant: $c^2$, the one-way member synchronisation gauge (C8); $|k_B|$ (C12); $\\{\\hbar,h\\}$ the two named unit faces (B7). 10-dim, 8-dirac"
   },
   {
    "paper": "00",
@@ -25950,7 +25986,7 @@
    "tag": "D",
    "name": "The sign of the Boltzmann residue",
    "statement": "\\textbf{The sign of the Boltzmann residue}: $k_B:=-\\hbar/c$, the sign fixed by the Hawking scaling $k_Bc=h$ read in the chart [chart]; the registered face is $|k_B|$ (B10).",
-   "source": "",
+   "source": "10-dim",
    "page": "00-ledger.html#B13",
    "witness": {
     "script": null,
@@ -25960,8 +25996,10 @@
    "refs": [
     "p00168"
    ],
-   "sources": [],
-   "text": "The sign of the Boltzmann residue: The sign of the Boltzmann residue: $k_B:=-\\hbar/c$, the sign fixed by the Hawking scaling $k_Bc=h$ read in the chart [chart]; the registered face is $|k_B|$ (B10)."
+   "sources": [
+    "10-dim"
+   ],
+   "text": "The sign of the Boltzmann residue: The sign of the Boltzmann residue: $k_B:=-\\hbar/c$, the sign fixed by the Hawking scaling $k_Bc=h$ read in the chart [chart]; the registered face is $|k_B|$ (B10). 10-dim"
   },
   {
    "paper": "00",
@@ -26256,7 +26294,7 @@
    "tag": "T",
    "name": "The square class is chronon parity",
    "statement": "For a primitive drive the squares are $\\langle \\gen^2\\rangle$: a residue's quadratic class is its drive-step parity. Registered transport is even, the one-way multiplier $\\gen$ odd, so the one-way speed is gauge and the two-way constant invariant. $[c^2]$ is even iff $\\dS$ is even, a relation certified by the unit realisation (D7). The Tsirelson $\\sqrt2=\\zeta_8+\\zeta_8^{-1}$ is its two-way symmetrisation.",
-   "source": "8-dirac, 3-caus, 22-qm",
+   "source": "8-dirac, 3-caus, 10-dim, 22-qm",
    "page": "00-ledger.html#C8",
    "witness": {
     "script": null,
@@ -26283,9 +26321,10 @@
    "sources": [
     "8-dirac",
     "3-caus",
+    "10-dim",
     "22-qm"
    ],
-   "text": "The square class is chronon parity: For a primitive drive the squares are $\\langle \\gen^2\\rangle$: a residue's quadratic class is its drive-step parity. Registered transport is even, the one-way multiplier $\\gen$ odd, so the one-way speed is gauge and the two-way constant invariant. $[c^2]$ is even iff $\\dS$ is even, a relation certified by the unit realisation (D7). The Tsirelson $\\sqrt2=\\zeta_8+\\zeta_8^{-1}$ is its two-way symmetrisation. 8-dirac, 3-caus, 22-qm"
+   "text": "The square class is chronon parity: For a primitive drive the squares are $\\langle \\gen^2\\rangle$: a residue's quadratic class is its drive-step parity. Registered transport is even, the one-way multiplier $\\gen$ odd, so the one-way speed is gauge and the two-way constant invariant. $[c^2]$ is even iff $\\dS$ is even, a relation certified by the unit realisation (D7). The Tsirelson $\\sqrt2=\\zeta_8+\\zeta_8^{-1}$ is its two-way symmetrisation. 8-dirac, 3-caus, 10-dim, 22-qm"
   },
   {
    "paper": "00",
@@ -26405,7 +26444,7 @@
    "tag": "T",
    "name": "Temperature and the classical arity, derived",
    "statement": "\\textbf{Temperature and the classical arity, derived}: the temperature domain is acceleration, $[\\Theta]=[E][k_B]^{-1}=[L][T]^{-2}$, flag-free, $\\Theta_P=E_P/|k_B|$, Unruh closing as a domain identity; neither mass nor temperature is primitive --- $M$-$L$-$T$-plus-thermal is the torsion-free shadow of the two-generators-plus-flag system (the mass primitive standing in for the flag, the thermal for $k_B$), classical dimensional analysis recovered in exponents and arity.",
-   "source": "",
+   "source": "10-dim",
    "page": "00-ledger.html#C12",
    "witness": {
     "script": null,
@@ -26427,8 +26466,10 @@
     ]
    },
    "refs": [],
-   "sources": [],
-   "text": "Temperature and the classical arity, derived: Temperature and the classical arity, derived: the temperature domain is acceleration, $[\\Theta]=[E][k_B]^{-1}=[L][T]^{-2}$, flag-free, $\\Theta_P=E_P/|k_B|$, Unruh closing as a domain identity; neither mass nor temperature is primitive — $M$-$L$-$T$-plus-thermal is the torsion-free shadow of the two-generators-plus-flag system (the mass primitive standing in for the flag, the thermal for $k_B$), classical dimensional analysis recovered in exponents and arity."
+   "sources": [
+    "10-dim"
+   ],
+   "text": "Temperature and the classical arity, derived: Temperature and the classical arity, derived: the temperature domain is acceleration, $[\\Theta]=[E][k_B]^{-1}=[L][T]^{-2}$, flag-free, $\\Theta_P=E_P/|k_B|$, Unruh closing as a domain identity; neither mass nor temperature is primitive — $M$-$L$-$T$-plus-thermal is the torsion-free shadow of the two-generators-plus-flag system (the mass primitive standing in for the flag, the thermal for $k_B$), classical dimensional analysis recovered in exponents and arity. 10-dim"
   },
   {
    "paper": "00",
@@ -26525,7 +26566,7 @@
    "source": "38-s13",
    "page": "00-ledger.html#C19",
    "witness": {
-    "script": "38:check_s13.js",
+    "script": "38:p38_s13.py",
     "py": {
      "href": "frc/ledgers/master/projective.html#p00190",
      "script": "frc/ledgers/master/projective.py",
@@ -26549,7 +26590,7 @@
    "sources": [
     "38-s13"
    ],
-   "text": "The Hopf section: The Hopf section: on the frames by elements (no group counted, Q20) the boost torus $C_{\\p +1}$ is fixed-point-free on $\\mathbb{P}^1$ and meets the Borel trivially, so every frame factors uniquely as (cone-chart event)$\\times$(boost): the cone chart is a global section of the non-split fibration (C22), $\\p (\\p -1)$ fibres of $\\p +1$; $\\mathrm{SL}_2$ obstructs at $-1$. 38-s13 38:check_s13.js"
+   "text": "The Hopf section: The Hopf section: on the frames by elements (no group counted, Q20) the boost torus $C_{\\p +1}$ is fixed-point-free on $\\mathbb{P}^1$ and meets the Borel trivially, so every frame factors uniquely as (cone-chart event)$\\times$(boost): the cone chart is a global section of the non-split fibration (C22), $\\p (\\p -1)$ fibres of $\\p +1$; $\\mathrm{SL}_2$ obstructs at $-1$. 38-s13 38:p38_s13.py"
   },
   {
    "paper": "00",
@@ -26630,7 +26671,7 @@
    "source": "38-s13",
    "page": "00-ledger.html#C22",
    "witness": {
-    "script": "38:verify-hopf.js",
+    "script": "38:p38_s13.py",
     "py": null,
     "lean": []
    },
@@ -26640,7 +26681,7 @@
    "sources": [
     "38-s13"
    ],
-   "text": "The frame variety and its two fibrations: $\\mathrm{PGL}_2(\\F_\\p)\\cong\\mathrm{SO}_3(\\F_\\p)$, and the norm-one sphere is $\\mathrm{SL}_2$, the spin cover of its rotation half $\\mathrm{PSL}_2$. For every $\\p=4\\kap+1$ of the totality each frame is uniquely one direction in $\\mathbb{P}^1$, one shell cell and one drive phase. Two fibrations partition the frames: non-split $C_{\\p +1}$ over $\\p (\\p -1)$, with the cone-chart section (C19); split $C_{\\p -1}$ over $\\p (\\p +1)$, with no subgroup section. 38-s13 38:verify-hopf.js"
+   "text": "The frame variety and its two fibrations: $\\mathrm{PGL}_2(\\F_\\p)\\cong\\mathrm{SO}_3(\\F_\\p)$, and the norm-one sphere is $\\mathrm{SL}_2$, the spin cover of its rotation half $\\mathrm{PSL}_2$. For every $\\p=4\\kap+1$ of the totality each frame is uniquely one direction in $\\mathbb{P}^1$, one shell cell and one drive phase. Two fibrations partition the frames: non-split $C_{\\p +1}$ over $\\p (\\p -1)$, with the cone-chart section (C19); split $C_{\\p -1}$ over $\\p (\\p +1)$, with no subgroup section. 38-s13 38:p38_s13.py"
   },
   {
    "paper": "00",
@@ -26706,7 +26747,7 @@
    "source": "38-s13, 1-alg",
    "page": "00-ledger.html#C25",
    "witness": {
-    "script": "38:verify-hopf.js",
+    "script": "38:p38_s13.py",
     "py": {
      "href": "frc/ledgers/master/subject.html#p00139",
      "script": "frc/ledgers/master/subject.py",
@@ -26733,7 +26774,7 @@
     "38-s13",
     "1-alg"
    ],
-   "text": "The horizon is the origin's antipode on the boost torus: For $w^2=\\nu$ a nonsquare, the torsor map $\\mathbb{P}^1(\\F_\\p)\\to C_{\\p +1}$, $P\\mapsto u_P/\\bar u_P$ with $u_P$ the unique boost carrying $0$ to $P$, is equivariant and sends the origin to $1$ and the horizon $[1{:}0]$ to $-1=\\zeta^{(\\p +1)/2}$. Origin and horizon are the sign pair $C_{\\p -1}\\cap C_{\\p +1}$ (C20), exchanged by the torus's unique involution $q\\mapsto\\nu/q$. On the additive cycle the antipode is the seam $\\p/2$ (1:Z1, 1:Z2). 38-s13, 1-alg 38:verify-hopf.js"
+   "text": "The horizon is the origin's antipode on the boost torus: For $w^2=\\nu$ a nonsquare, the torsor map $\\mathbb{P}^1(\\F_\\p)\\to C_{\\p +1}$, $P\\mapsto u_P/\\bar u_P$ with $u_P$ the unique boost carrying $0$ to $P$, is equivariant and sends the origin to $1$ and the horizon $[1{:}0]$ to $-1=\\zeta^{(\\p +1)/2}$. Origin and horizon are the sign pair $C_{\\p -1}\\cap C_{\\p +1}$ (C20), exchanged by the torus's unique involution $q\\mapsto\\nu/q$. On the additive cycle the antipode is the seam $\\p/2$ (1:Z1, 1:Z2). 38-s13, 1-alg 38:p38_s13.py"
   },
   {
    "paper": "00",
@@ -26946,7 +26987,7 @@
    "tag": "R",
    "name": "A unit of measure is a reciprocal cross-frame relation",
    "statement": "A unit is observer counts per substrate count, its atomic form the action quantum $\\hbar^2=-1$ (B7), its domain the unit-free order-four flag: unitful measures carry it, observables are flag-free, the absolute unit value $\\Om$-hard. The fundamental units are the four domain horizons (10-dim). Falsifier: an embedded observer registering an absolute unit value, or a unitful measure with no cross-frame reciprocal.",
-   "source": "20-rh, 22-qm",
+   "source": "10-dim, 20-rh, 22-qm",
    "page": "00-ledger.html#D7",
    "witness": {
     "script": "10:dimensions.py",
@@ -26957,10 +26998,11 @@
     "p00165"
    ],
    "sources": [
+    "10-dim",
     "20-rh",
     "22-qm"
    ],
-   "text": "A unit of measure is a reciprocal cross-frame relation: A unit is observer counts per substrate count, its atomic form the action quantum $\\hbar^2=-1$ (B7), its domain the unit-free order-four flag: unitful measures carry it, observables are flag-free, the absolute unit value $\\Om$-hard. The fundamental units are the four domain horizons (10-dim). Falsifier: an embedded observer registering an absolute unit value, or a unitful measure with no cross-frame reciprocal. 20-rh, 22-qm 10:dimensions.py"
+   "text": "A unit of measure is a reciprocal cross-frame relation: A unit is observer counts per substrate count, its atomic form the action quantum $\\hbar^2=-1$ (B7), its domain the unit-free order-four flag: unitful measures carry it, observables are flag-free, the absolute unit value $\\Om$-hard. The fundamental units are the four domain horizons (10-dim). Falsifier: an embedded observer registering an absolute unit value, or a unitful measure with no cross-frame reciprocal. 10-dim, 20-rh, 22-qm 10:dimensions.py"
   },
   {
    "paper": "00",
@@ -27050,7 +27092,7 @@
    "source": "38-s13, 1-alg",
    "page": "00-ledger.html#D13",
    "witness": {
-    "script": "38:verify-sky.js, 38:verify-render.js",
+    "script": "38:p38_s13.py",
     "py": null,
     "lean": []
    },
@@ -27065,7 +27107,7 @@
     "38-s13",
     "1-alg"
    ],
-   "text": "Observation is the Hopf section: The Subject registers its past cone, one chronon per decoherence step (D1, D3), through the cone chart (C19, C22); the horizon is the origin's antipode (C25). Falsifier: a registration on the direct branch whose value is not the Object's drive state at $\\chron -k$ for its decoherence count $k$, read modulo $\\p -1$, or a registration off the past cone. 38-s13, 1-alg 38:verify-sky.js, 38:verify-render.js"
+   "text": "Observation is the Hopf section: The Subject registers its past cone, one chronon per decoherence step (D1, D3), through the cone chart (C19, C22); the horizon is the origin's antipode (C25). Falsifier: a registration on the direct branch whose value is not the Object's drive state at $\\chron -k$ for its decoherence count $k$, read modulo $\\p -1$, or a registration off the past cone. 38-s13, 1-alg 38:p38_s13.py"
   },
   {
    "paper": "00",
@@ -28679,7 +28721,7 @@
    "block": "Z",
    "tag": "D",
    "name": "RH, Goldbach, P-vs-NP and Kurepa are the spectral, additive",
-   "statement": "RH, Goldbach, P-vs-NP and Kurepa are the spectral, additive, computational and factorial faces of one horizon clause: each a uniform check over the totality whose per-instance statements are $\\Om$-blind relations (Z10, Z11; 13:F2) and whose uniform form is an $\\Om$-hard value (Z3, Z4), host-decided on a hosted Carrier. An $\\Om$-hard value says nothing about whether a bounded-height certificate exists.",
+   "statement": "RH, Goldbach, P-vs-NP and Kurepa are the spectral, additive, computational and factorial faces of one horizon clause: each a uniform check over the totality whose per-instance statements are $\\Om$-blind relations (Z10, Z11; 13:F2) and whose uniform form is an $\\Om$-hard value (Z3, Z4), host-decided on a hosted Carrier. An $\\Om$-hard value says nothing about whether a short derivation exists.",
    "source": "25-göd, 20-rh, 23-gold, 26-pnp, 13-epi",
    "page": "00-ledger.html#Z2",
    "witness": {
@@ -28701,7 +28743,7 @@
     "26-pnp",
     "13-epi"
    ],
-   "text": "RH, Goldbach, P-vs-NP and Kurepa are the spectral, additive: RH, Goldbach, P-vs-NP and Kurepa are the spectral, additive, computational and factorial faces of one horizon clause: each a uniform check over the totality whose per-instance statements are $\\Om$-blind relations (Z10, Z11; 13:F2) and whose uniform form is an $\\Om$-hard value (Z3, Z4), host-decided on a hosted Carrier. An $\\Om$-hard value says nothing about whether a bounded-height certificate exists. 25-göd, 20-rh, 23-gold, 26-pnp, 13-epi"
+   "text": "RH, Goldbach, P-vs-NP and Kurepa are the spectral, additive: RH, Goldbach, P-vs-NP and Kurepa are the spectral, additive, computational and factorial faces of one horizon clause: each a uniform check over the totality whose per-instance statements are $\\Om$-blind relations (Z10, Z11; 13:F2) and whose uniform form is an $\\Om$-hard value (Z3, Z4), host-decided on a hosted Carrier. An $\\Om$-hard value says nothing about whether a short derivation exists. 25-göd, 20-rh, 23-gold, 26-pnp, 13-epi"
   },
   {
    "paper": "00",
@@ -28741,8 +28783,8 @@
    "label": "Z4",
    "block": "Z",
    "tag": "Ω",
-   "name": "The four certificates: RH = the on-line spectrum complete",
-   "statement": "RH $=$ the on-line spectrum complete for the prime vector; Goldbach $=$ the uniform per-$n$ parity positivity; P-vs-NP $=$ the forward-invertibility of the scale descent; Kurepa $=$ the left factorial nonzero on every odd shell (13:Z1). Each a uniform check over the totality, in no embedded reader's window; per-instance statements $\\Om$-blind relations (Z10, Z11); a certificate's existence undecided (20-rh \\S8.3).",
+   "name": "The four certificates: RH = every cell of the cycle clean",
+   "statement": "RH $=$ every cell of the cycle clean (20:D5); Goldbach $=$ the uniform per-$n$ parity positivity; P-vs-NP $=$ the forward-invertibility of the scale descent; Kurepa $=$ the left factorial nonzero on every odd shell (13:Z1). Each a uniform check over the totality, in no embedded reader's window; per-instance statements frame-decided (Z10, Z11); the whole-state certificate $\\Om$-hard as a tally (20:Z1).",
    "source": "20-rh, 23-gold, 26-pnp, 13-epi",
    "page": "00-ledger.html#Z4",
    "witness": {
@@ -28753,7 +28795,9 @@
    "refs": [
     "p00135",
     "p13061",
-    "p20043"
+    "p20029",
+    "p20043",
+    "p20059"
    ],
    "sources": [
     "20-rh",
@@ -28761,7 +28805,7 @@
     "26-pnp",
     "13-epi"
    ],
-   "text": "The four certificates: RH = the on-line spectrum complete: RH $=$ the on-line spectrum complete for the prime vector; Goldbach $=$ the uniform per-$n$ parity positivity; P-vs-NP $=$ the forward-invertibility of the scale descent; Kurepa $=$ the left factorial nonzero on every odd shell (13:Z1). Each a uniform check over the totality, in no embedded reader's window; per-instance statements $\\Om$-blind relations (Z10, Z11); a certificate's existence undecided (20-rh \\S8.3). 20-rh, 23-gold, 26-pnp, 13-epi"
+   "text": "The four certificates: RH = every cell of the cycle clean: RH $=$ every cell of the cycle clean (20:D5); Goldbach $=$ the uniform per-$n$ parity positivity; P-vs-NP $=$ the forward-invertibility of the scale descent; Kurepa $=$ the left factorial nonzero on every odd shell (13:Z1). Each a uniform check over the totality, in no embedded reader's window; per-instance statements frame-decided (Z10, Z11); the whole-state certificate $\\Om$-hard as a tally (20:Z1). 20-rh, 23-gold, 26-pnp, 13-epi"
   },
   {
    "paper": "00",
@@ -28967,8 +29011,8 @@
    "label": "Z11",
    "block": "Z",
    "tag": "D",
-   "name": "The classical hypothesis is a screen value",
-   "statement": "RH below height $T$ is the count identity $\\mathcal N(T)=N_{\\mathrm{crit}}(T)$, $C\\le N_{\\mathrm{crit}}\\le\\mathcal N$ [import: Turing 1953], a screen value (20:F1--F4), both counts read from the explicit formula's two sides, inputs frame-exact, outputs uncertified. An off-line zero is a phantom, a comb count with no on-line mode (20:A5). Decidable per height; uniform form Z4. Falsifier: a shell window where $\\mathcal N-N_{\\mathrm{crit}}$ differs from Turing's count.",
+   "name": "The classical hypothesis is decided cell by cell",
+   "statement": "RH on a Carrier is the conjunction over its cycle's residues of the clean-cell predicate: residue $y$ the cell of heights from $2\\pi y$ to $2\\pi(y+1)$, clean when its zeros lie on the line, decided by Turing's certificate (20:D5, 20:F1); on a hosted Carrier the host decides every cell (20:F2); the uniform form is Z4. Falsifier: a cell in deficit.",
    "source": "20-rh",
    "page": "00-ledger.html#Z11",
    "witness": {
@@ -28977,15 +29021,15 @@
     "lean": []
    },
    "refs": [
-    "p00008",
-    "p00062",
     "p00112",
-    "p20047"
+    "p20029",
+    "p20047",
+    "p20048"
    ],
    "sources": [
     "20-rh"
    ],
-   "text": "The classical hypothesis is a screen value: RH below height $T$ is the count identity $\\mathcal N(T)=N_{\\mathrm{crit}}(T)$, $C\\le N_{\\mathrm{crit}}\\le\\mathcal N$ [import: Turing 1953], a screen value (20:F1–F4), both counts read from the explicit formula's two sides, inputs frame-exact, outputs uncertified. An off-line zero is a phantom, a comb count with no on-line mode (20:A5). Decidable per height; uniform form Z4. Falsifier: a shell window where $\\mathcal N-N_{\\mathrm{crit}}$ differs from Turing's count. 20-rh"
+   "text": "The classical hypothesis is decided cell by cell: RH on a Carrier is the conjunction over its cycle's residues of the clean-cell predicate: residue $y$ the cell of heights from $2\\pi y$ to $2\\pi(y+1)$, clean when its zeros lie on the line, decided by Turing's certificate (20:D5, 20:F1); on a hosted Carrier the host decides every cell (20:F2); the uniform form is Z4. Falsifier: a cell in deficit. 20-rh"
   },
   {
    "paper": "1-alg",
@@ -56347,7 +56391,7 @@
     "py": {
      "href": "frc/ledgers/p38_s13.html#p38001",
      "script": "p38_s13.py",
-     "line": 118,
+     "line": 120,
      "verdict": "pass"
     },
     "lean": [
@@ -56388,7 +56432,7 @@
     "py": {
      "href": "frc/ledgers/p38_s13.html#p38002",
      "script": "p38_s13.py",
-     "line": 125,
+     "line": 127,
      "verdict": "pass"
     },
     "lean": [
@@ -56448,7 +56492,7 @@
     "py": {
      "href": "frc/ledgers/p38_s13.html#p38003",
      "script": "p38_s13.py",
-     "line": 134,
+     "line": 136,
      "verdict": "pass"
     },
     "lean": [
@@ -56491,7 +56535,7 @@
     "py": {
      "href": "frc/ledgers/p38_s13.html#p38004",
      "script": "p38_s13.py",
-     "line": 143,
+     "line": 145,
      "verdict": "pass"
     },
     "lean": [
@@ -56563,7 +56607,7 @@
     "py": {
      "href": "frc/ledgers/p38_s13.html#p38006",
      "script": "p38_s13.py",
-     "line": 159,
+     "line": 161,
      "verdict": "pass"
     },
     "lean": [
@@ -56597,14 +56641,14 @@
    "block": "A",
    "tag": "T",
    "name": null,
-   "statement": "The frame counts: $2184=156\\times14=14\\times13\\times12$; the norm-one sphere is $\\SL_{2}$ (its quaternion determinant), the spin cover of $\\mathrm{PSL}_{2}$ ($1092$); $\\SL_{2}$ obstructs at $-1$ (Theorem~\\ref{th:hopf}; the theorem's $\\PGL_{2}\\cong\\mathrm{SO}_{3}(\\F_{13})$ is its reading of the adjoint action).",
-   "source": "Theorem~\\ref{th:hopf}\\newline \\pywit{s13}{p38007}{A7}, \\leanwit{FrcCore}{p38007}{A7} \\lean{FRC.Shell.Frame.hopf\\_section, FRC.Shell.Frame.hopf\\_counts, FRC.Shell.Frame.sphere\\_det, FRC.Shell.Frame.frame\\_counts}",
+   "statement": "The frame counts: $2184=156\\times14=14\\times13\\times12$; the norm-one sphere is $\\SL_{2}$ (its quaternion determinant), the spin cover of $\\mathrm{PSL}_{2}$ ($1092$); $\\SL_{2}$ obstructs at $-1$ (Theorem~\\ref{th:hopf}).",
+   "source": "Theorem~\\ref{th:hopf}\\newline \\pywit{s13}{p38007}{A7}, \\leanwit{FrcCore}{p38007}{A7} \\lean{FRC.Shell.Frame.hopf\\_section, FRC.Shell.Frame.hopf\\_counts, FRC.Shell.Frame.sphere\\_det, FRC.Shell.Frame.quat\\_bijective, FRC.Shell.Frame.frame\\_counts}",
    "page": "38-s13/index.html#A7",
    "witness": {
     "py": {
      "href": "frc/ledgers/p38_s13.html#p38007",
      "script": "p38_s13.py",
-     "line": 192,
+     "line": 194,
      "verdict": "pass"
     },
     "lean": [
@@ -56634,6 +56678,14 @@
      },
      {
       "lib": "FrcCore",
+      "module": "FrcCore/Theme/Hopf",
+      "name": "FRC.Shell.Frame.quat_bijective",
+      "tier": 0,
+      "ok": true,
+      "page": "lean/core/Theme.html#FRC.Shell.Frame.quat_bijective"
+     },
+     {
+      "lib": "FrcCore",
       "module": "FrcCore/Theme/Projective",
       "name": "FRC.Shell.Frame.frame_counts",
       "tier": 0,
@@ -56646,7 +56698,7 @@
     "p00152",
     "p00190"
    ],
-   "text": "The frame counts: $2184=156\\times14=14\\times13\\times12$; the norm-one sphere is $\\SL_{2}$ (its quaternion determinant), the spin cover of $\\mathrm{PSL}_{2}$ ($1092$); $\\SL_{2}$ obstructs at $-1$ (Theorem th:hopf; the theorem's $\\PGL_{2}\\cong\\mathrm{SO}_{3}(\\F_{13})$ is its reading of the adjoint action). Theorem th:hopf p38007, FrcCore{A7} FRC.Shell.Frame.hopf_section, FRC.Shell.Frame.hopf_counts, FRC.Shell.Frame.sphere_det, FRC.Shell.Frame.frame_counts"
+   "text": "The frame counts: $2184=156\\times14=14\\times13\\times12$; the norm-one sphere is $\\SL_{2}$ (its quaternion determinant), the spin cover of $\\mathrm{PSL}_{2}$ ($1092$); $\\SL_{2}$ obstructs at $-1$ (Theorem th:hopf). Theorem th:hopf p38007, FrcCore{A7} FRC.Shell.Frame.hopf_section, FRC.Shell.Frame.hopf_counts, FRC.Shell.Frame.sphere_det, FRC.Shell.Frame.quat_bijective, FRC.Shell.Frame.frame_counts"
   },
   {
    "paper": "38-s13",
@@ -56664,7 +56716,7 @@
     "py": {
      "href": "frc/ledgers/p38_s13.html#p38008",
      "script": "p38_s13.py",
-     "line": 167,
+     "line": 169,
      "verdict": "pass"
     },
     "lean": [
@@ -56713,7 +56765,7 @@
     "py": {
      "href": "frc/ledgers/p38_s13.html#p38050",
      "script": "p38_s13.py",
-     "line": 209,
+     "line": 211,
      "verdict": "pass"
     },
     "lean": [
@@ -56815,7 +56867,7 @@
     "py": {
      "href": "frc/ledgers/p38_s13.html#p38009",
      "script": "p38_s13.py",
-     "line": 284,
+     "line": 288,
      "verdict": "pass"
     },
     "lean": [
@@ -56848,7 +56900,7 @@
     "py": {
      "href": "frc/ledgers/p38_s13.html#p38010",
      "script": "p38_s13.py",
-     "line": 167,
+     "line": 169,
      "verdict": "pass"
     },
     "lean": [
@@ -56899,7 +56951,7 @@
     "py": {
      "href": "frc/ledgers/p38_s13.html#p38011",
      "script": "p38_s13.py",
-     "line": 288,
+     "line": 292,
      "verdict": "pass"
     },
     "lean": [
@@ -56932,7 +56984,7 @@
     "py": {
      "href": "frc/ledgers/p38_s13.html#p38012",
      "script": "p38_s13.py",
-     "line": 235,
+     "line": 237,
      "verdict": "pass"
     },
     "lean": [
@@ -56975,7 +57027,7 @@
     "py": {
      "href": "frc/ledgers/p38_s13.html#p38013",
      "script": "p38_s13.py",
-     "line": 240,
+     "line": 242,
      "verdict": "pass"
     },
     "lean": [
@@ -57016,7 +57068,7 @@
     "py": {
      "href": "frc/ledgers/p38_s13.html#p38014",
      "script": "p38_s13.py",
-     "line": 294,
+     "line": 298,
      "verdict": "pass"
     },
     "lean": [
@@ -57060,7 +57112,7 @@
     "py": {
      "href": "frc/ledgers/p38_s13.html#p38015",
      "script": "p38_s13.py",
-     "line": 257,
+     "line": 261,
      "verdict": "pass"
     },
     "lean": [
@@ -57109,7 +57161,7 @@
     "py": {
      "href": "frc/ledgers/p38_s13.html#p38016",
      "script": "p38_s13.py",
-     "line": 263,
+     "line": 267,
      "verdict": "pass"
     },
     "lean": [
@@ -57150,7 +57202,7 @@
     "py": {
      "href": "frc/ledgers/p38_s13.html#p38017",
      "script": "p38_s13.py",
-     "line": 263,
+     "line": 267,
      "verdict": "pass"
     },
     "lean": []
@@ -57178,7 +57230,7 @@
     "py": {
      "href": "frc/ledgers/p38_s13.html#p38018",
      "script": "p38_s13.py",
-     "line": 270,
+     "line": 274,
      "verdict": "pass"
     },
     "lean": [
@@ -57211,7 +57263,7 @@
     "py": {
      "href": "frc/ledgers/p38_s13.html#p38019",
      "script": "p38_s13.py",
-     "line": 273,
+     "line": 277,
      "verdict": "pass"
     },
     "lean": [
@@ -57252,7 +57304,7 @@
     "py": {
      "href": "frc/ledgers/p38_s13.html#p38020",
      "script": "p38_s13.py",
-     "line": 266,
+     "line": 270,
      "verdict": "pass"
     },
     "lean": [
@@ -57293,7 +57345,7 @@
     "py": {
      "href": "frc/ledgers/p38_s13.html#p38021",
      "script": "p38_s13.py",
-     "line": 358,
+     "line": 362,
      "verdict": "pass"
     },
     "lean": [
@@ -57326,7 +57378,7 @@
     "py": {
      "href": "frc/ledgers/p38_s13.html#p38022",
      "script": "p38_s13.py",
-     "line": 364,
+     "line": 368,
      "verdict": "pass"
     },
     "lean": [
@@ -57383,7 +57435,7 @@
     "py": {
      "href": "frc/ledgers/p38_s13.html#p38023",
      "script": "p38_s13.py",
-     "line": 376,
+     "line": 380,
      "verdict": "pass"
     },
     "lean": [
@@ -57419,7 +57471,7 @@
     "py": {
      "href": "frc/ledgers/p38_s13.html#p38044",
      "script": "p38_s13.py",
-     "line": 173,
+     "line": 175,
      "verdict": "pass"
     },
     "lean": [
@@ -57485,7 +57537,7 @@
     "py": {
      "href": "frc/ledgers/p38_s13.html#p38052",
      "script": "p38_s13.py",
-     "line": 383,
+     "line": 387,
      "verdict": "pass"
     },
     "lean": []
@@ -57511,7 +57563,7 @@
     "py": {
      "href": "frc/ledgers/p38_s13.html#p38053",
      "script": "p38_s13.py",
-     "line": 179,
+     "line": 181,
      "verdict": "pass"
     },
     "lean": [
@@ -57548,14 +57600,14 @@
    "block": "C",
    "tag": "T",
    "name": null,
-   "statement": "The joint cycle (Theorem~\\ref{th:precession}): for every $\\kap$-odd pair with $\\dS\\equiv2\\pmod4$ the chart count advances by $(\\p-1)/(\\Om-1)=\\kap/\\dS$ of its cycle per shell revolution; the joint cycle closes at $\\mathrm{lcm}(\\p-1,\\Om-1)$ at (home, home), and the exact midpoint is (home, $-1$).",
+   "statement": "The joint cycle (Theorem~\\ref{th:precession}): for every $\\kap$-odd pair the chart count advances by $(\\p-1)/(\\Om-1)=\\kap/\\dS$ of its cycle per shell revolution; the joint cycle closes at $\\mathrm{lcm}(\\p-1,\\Om-1)$ at (home, home), and the exact midpoint is (home, $-1$).",
    "source": "Theorem~\\ref{th:precession}\\newline \\pywit{s13}{p38054}{C14}, \\leanwit{FrcCore}{p38054}{C14}; rests on A1 \\lean{FRC.Pair.joint\\_cycle, FRC.Pair.joint\\_cycle\\_frame, FRC.Pair.joint\\_return\\_iff, FRC.Pair.joint\\_return\\_eight, FRC.Pair.leak\\_rate, FRC.Pair.recurrence}",
    "page": "38-s13/index.html#C14",
    "witness": {
     "py": {
      "href": "frc/ledgers/p38_s13.html#p38054",
      "script": "p38_s13.py",
-     "line": 250,
+     "line": 254,
      "verdict": "pass"
     },
     "lean": [
@@ -57612,7 +57664,7 @@
    "refs": [
     "p38001"
    ],
-   "text": "The joint cycle (Theorem th:precession): for every $\\kap$-odd pair with $\\dS\\equiv2\\pmod4$ the chart count advances by $(\\p-1)/(\\Om-1)=\\kap/\\dS$ of its cycle per shell revolution; the joint cycle closes at $\\mathrm{lcm}(\\p-1,\\Om-1)$ at (home, home), and the exact midpoint is (home, $-1$). Theorem th:precession p38054, FrcCore{C14}; rests on A1 FRC.Pair.joint_cycle, FRC.Pair.joint_cycle_frame, FRC.Pair.joint_return_iff, FRC.Pair.joint_return_eight, FRC.Pair.leak_rate, FRC.Pair.recurrence"
+   "text": "The joint cycle (Theorem th:precession): for every $\\kap$-odd pair the chart count advances by $(\\p-1)/(\\Om-1)=\\kap/\\dS$ of its cycle per shell revolution; the joint cycle closes at $\\mathrm{lcm}(\\p-1,\\Om-1)$ at (home, home), and the exact midpoint is (home, $-1$). Theorem th:precession p38054, FrcCore{C14}; rests on A1 FRC.Pair.joint_cycle, FRC.Pair.joint_cycle_frame, FRC.Pair.joint_return_iff, FRC.Pair.joint_return_eight, FRC.Pair.leak_rate, FRC.Pair.recurrence"
   },
   {
    "paper": "38-s13",
@@ -57623,14 +57675,14 @@
    "block": "D",
    "tag": "T",
    "name": null,
-   "statement": "The capacity stations: $4d<13$ selects $\\{1,2,3,10,11,12\\}$; threading exact, all $232$ states.",
+   "statement": "The capacity stations: $4d<13$ selects $\\{1,2,3,10,11,12\\}$; the flow law threads every station at all $232$ clock states.",
    "source": "\\S\\ref{sec:meridians}\\newline \\pywit{s13}{p38025}{D1}, \\leanwit{FrcCore}{p38025}{D1} \\lean{FRC.Pair.stations, FRC.Pair.window, FRC.Pair.flow\\_stations}",
    "page": "38-s13/index.html#D1",
    "witness": {
     "py": {
      "href": "frc/ledgers/p38_s13.html#p38025",
      "script": "p38_s13.py",
-     "line": 299,
+     "line": 303,
      "verdict": "pass"
     },
     "lean": [
@@ -57661,7 +57713,7 @@
     ]
    },
    "refs": [],
-   "text": "The capacity stations: $4d<13$ selects $\\{1,2,3,10,11,12\\}$; threading exact, all $232$ states. \\Ssec:meridians p38025, FrcCore{D1} FRC.Pair.stations, FRC.Pair.window, FRC.Pair.flow_stations"
+   "text": "The capacity stations: $4d<13$ selects $\\{1,2,3,10,11,12\\}$; the flow law threads every station at all $232$ clock states. \\Ssec:meridians p38025, FrcCore{D1} FRC.Pair.stations, FRC.Pair.window, FRC.Pair.flow_stations"
   },
   {
    "paper": "38-s13",
@@ -57679,7 +57731,7 @@
     "py": {
      "href": "frc/ledgers/p38_s13.html#p38026",
      "script": "p38_s13.py",
-     "line": 303,
+     "line": 307,
      "verdict": "pass"
     },
     "lean": [
@@ -57716,7 +57768,7 @@
     "py": {
      "href": "frc/ledgers/p38_s13.html#p38027",
      "script": "p38_s13.py",
-     "line": 307,
+     "line": 311,
      "verdict": "pass"
     },
     "lean": [
@@ -57780,7 +57832,7 @@
     "py": {
      "href": "frc/ledgers/p38_s13.html#p38029",
      "script": "p38_s13.py",
-     "line": 224,
+     "line": 226,
      "verdict": "pass"
     },
     "lean": [
@@ -57821,7 +57873,7 @@
     "py": {
      "href": "frc/ledgers/p38_s13.html#p38030",
      "script": "p38_s13.py",
-     "line": 312,
+     "line": 316,
      "verdict": "pass"
     },
     "lean": [
@@ -57854,7 +57906,7 @@
     "py": {
      "href": "frc/ledgers/p38_s13.html#p38031",
      "script": "p38_s13.py",
-     "line": 316,
+     "line": 320,
      "verdict": "pass"
     },
     "lean": [
@@ -57895,7 +57947,7 @@
     "py": {
      "href": "frc/ledgers/p38_s13.html#p38032",
      "script": "p38_s13.py",
-     "line": 319,
+     "line": 323,
      "verdict": "pass"
     },
     "lean": [
@@ -57928,7 +57980,7 @@
     "py": {
      "href": "frc/ledgers/p38_s13.html#p38033",
      "script": "p38_s13.py",
-     "line": 322,
+     "line": 326,
      "verdict": "pass"
     },
     "lean": [
@@ -57995,13 +58047,13 @@
    "tag": "T",
    "name": null,
    "statement": "The covering parity theorem, closed at every shell (Theorem~\\ref{th:covering}, Lemma~\\ref{lem:parity}): $\\mu\\in\\{1,3\\}$ by the odd four-sum; decider the row parity and position by the eight-case table; completeness a corollary; the carrier the sheet parity: even rows $\\gen$-divisible (thrice), odd rows the half-cell obstruction of D8 (once).",
-   "source": "Theorem~\\ref{th:covering}\\newline \\pywit{s13}{p38036}{D12}, \\leanwit{FrcCore}{p38036}{D12} \\lean{FRC.Pair.reflection\\_identity, FRC.Pair.parity\\_table, FRC.Pair.covering\\_parity, FRC.Pair.parity\\_instance}",
+   "source": "Theorem~\\ref{th:covering}\\newline \\pywit{s13}{p38036}{D12}, \\leanwit{FrcCore}{p38036}{D12} \\lean{FRC.Pair.reflection\\_identity, FRC.Pair.parity\\_table, FRC.Pair.covering\\_parity, FRC.Pair.parity\\_instance, FRC.Pair.mult\\_eq\\_mu}",
    "page": "38-s13/index.html#D12",
    "witness": {
     "py": {
      "href": "frc/ledgers/p38_s13.html#p38036",
      "script": "p38_s13.py",
-     "line": 335,
+     "line": 339,
      "verdict": "pass"
     },
     "lean": [
@@ -58036,13 +58088,21 @@
       "tier": 0,
       "ok": true,
       "page": "lean/core/Theme.html#FRC.Pair.parity_instance"
+     },
+     {
+      "lib": "FrcCore",
+      "module": "FrcCore/Theme/Pair",
+      "name": "FRC.Pair.mult_eq_mu",
+      "tier": 0,
+      "ok": true,
+      "page": "lean/core/Theme.html#FRC.Pair.mult_eq_mu"
      }
     ]
    },
    "refs": [
     "p38032"
    ],
-   "text": "The covering parity theorem, closed at every shell (Theorem th:covering, Lemma lem:parity): $\\mu\\in\\{1,3\\}$ by the odd four-sum; decider the row parity and position by the eight-case table; completeness a corollary; the carrier the sheet parity: even rows $\\gen$-divisible (thrice), odd rows the half-cell obstruction of D8 (once). Theorem th:covering p38036, FrcCore{D12} FRC.Pair.reflection_identity, FRC.Pair.parity_table, FRC.Pair.covering_parity, FRC.Pair.parity_instance"
+   "text": "The covering parity theorem, closed at every shell (Theorem th:covering, Lemma lem:parity): $\\mu\\in\\{1,3\\}$ by the odd four-sum; decider the row parity and position by the eight-case table; completeness a corollary; the carrier the sheet parity: even rows $\\gen$-divisible (thrice), odd rows the half-cell obstruction of D8 (once). Theorem th:covering p38036, FrcCore{D12} FRC.Pair.reflection_identity, FRC.Pair.parity_table, FRC.Pair.covering_parity, FRC.Pair.parity_instance, FRC.Pair.mult_eq_mu"
   },
   {
    "paper": "38-s13",
@@ -58060,7 +58120,7 @@
     "py": {
      "href": "frc/ledgers/p38_s13.html#p38037",
      "script": "p38_s13.py",
-     "line": 326,
+     "line": 330,
      "verdict": "pass"
     },
     "lean": [
@@ -58101,7 +58161,7 @@
     "py": {
      "href": "frc/ledgers/p38_s13.html#p38049",
      "script": "p38_s13.py",
-     "line": 390,
+     "line": 394,
      "verdict": "pass"
     },
     "lean": [
@@ -58146,7 +58206,7 @@
     "py": {
      "href": "frc/ledgers/p38_s13.html#p38046",
      "script": "p38_s13.py",
-     "line": 173,
+     "line": 175,
      "verdict": "pass"
     },
     "lean": [
@@ -58208,7 +58268,7 @@
     "py": {
      "href": "frc/ledgers/p38_s13.html#p38048",
      "script": "p38_s13.py",
-     "line": 390,
+     "line": 394,
      "verdict": "pass"
     },
     "lean": [
@@ -58253,7 +58313,7 @@
     "py": {
      "href": "frc/ledgers/p38_s13.html#p38051",
      "script": "p38_s13.py",
-     "line": 209,
+     "line": 211,
      "verdict": "pass"
     },
     "lean": [

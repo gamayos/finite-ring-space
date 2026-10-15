@@ -60,6 +60,8 @@ KAP, S = 3, 58
 SHELLS = [5, 13, 17, 29, 37]                  # the Ω-blind sweep of the covering (38:D7, D12)
 ADMISSIBLE = [(p, Om) for p in range(5, 200) for Om in range(p * p + 1, 3000)
               if SB.admissible(p, Om)["p_prime"] and Om % 48 == 41 and arith.is_prime(Om) and all(SB.admissible(p, Om).values())]
+EVEN_PAIRS = [(p, Om) for p in range(5, 200) for Om in range(p * p + 1, 3000)
+              if arith.is_prime(p) and p % 8 == 5 and arith.is_prime(Om) and Om % 16 == 1]   # κ odd, S ≡ 0 (mod 4), p² < Ω
 
 # The paper's predicate ledger (its appendix, predicates cited as 38:XN): the predicate(s) each check witnesses.
 LEDGER = {
@@ -241,15 +243,17 @@ def block_C():
     R.check("C2", "the recurrence data: 696 = lcm(12, 232) = 58·12 = 3·232 is the least common return (by search), the spinor 1392 = 2·696; the half event 348 ≡ 0 (12), ≡ 116 (232): the shell home and the Carrier at −1 (78³⁴⁸ = −1)", ok,
             f"L = {Lc}, half = {half}")
     rng = random.Random(1392)
-    sample = rng.sample(ADMISSIBLE, min(200, len(ADMISSIBLE)))
+    sample = rng.sample(ADMISSIBLE, min(200, len(ADMISSIBLE))) + rng.sample(EVEN_PAIRS, min(200, len(EVEN_PAIRS)))
     ok = True
     for p, Om in sample:
         Lc, half, hp, hO = SB.joint_cycle(p, Om)
         ok &= Lc == SB.least_return(p, Om) and hp == 0 and hO == (Om - 1) // 2 and Lc % (p - 1) == 0 and Lc % (Om - 1) == 0
         ok &= Fr(p - 1, Om - 1) == Fr((p - 1) // 4, (Om - 1) // 4)
+    Lc, half, hp, hO = SB.joint_cycle(17, 233)                   # the κ-even control: κ = 4 > S's 2-part, the roles swap
+    ok &= Lc == 464 and half == 232 and hp == 8 and hO == 0
     # 38:C14 (p38054)
-    R.check("C3", f"the joint cycle in general: on {len(sample)} admissible pairs below (200, 3000) (κ odd, S ≡ 2 mod 4) the apsidal fraction (p − 1)/(Ω − 1) = κ/S, the least common return is lcm(p − 1, Ω − 1) with both counters home, and the exact midpoint is (home, (Ω − 1)/2): the Carrier at −1", ok,
-            f"{len(ADMISSIBLE)} admissible pairs")
+    R.check("C3", f"the joint cycle in general: on {len(sample)} κ-odd pairs below (200, 3000) — the admissible ones (S ≡ 2 mod 4) and the S ≡ 0 (mod 4) pairs — the apsidal fraction (p − 1)/(Ω − 1) = κ/S, the least common return is lcm(p − 1, Ω − 1) with both counters home, and the exact midpoint is (home, (Ω − 1)/2): the Carrier at −1; at the κ-even control (17, 233) the midpoint is (−1, home), the roles swapped", ok,
+            f"{len(ADMISSIBLE)} admissible pairs, {len(EVEN_PAIRS)} with S ≡ 0 (mod 4)")
     rate = CV.composed_rate(P, OM)
     pairs, Lc, inj, eq = CV.pair_space(P, OM)
     ok = Fr(1, 232) * 58 == Fr(1, 4) and 58 * 2 == 116 and 232 * 2 == 464 and rate == Fr(61, 696) and 61 * 12 * 232 == 696 * 244
