@@ -460,7 +460,7 @@ theorem closure :
    fun ho ρ hρ => FRC.Foundation.observer_part ho ρ hρ,
    fun ρ hρ hinj => FRC.Foundation.complete_needs_whole ρ hρ hinj⟩
 
-/-- 20:F7, the laboratory instances: for each laboratory Carrier `Ω = 13, 233, 30089, 2408561` (prime, `≡ 1 mod 4`) the
+/-- 20:F7, 20:F2, the laboratory instances: for each laboratory Carrier `Ω = 13, 233, 30089, 2408561` (prime, `≡ 1 mod 4`) the
 largest embedded Subject `p* = 3, 13, 173, 1549` with `p*² < Ω < p'²`, `p'` the next prime (no prime between), so every
 embedded Subject's cycle is shorter than the Carrier's and the Carrier's top cell is read from labels up to `√Ω`, beyond
 every embedded window `√p*`. Primality by trial division to the root (`isPrime_of_bounded`), decided by the kernel. -/

@@ -611,7 +611,7 @@
  },
  {
   "id": "A8",
-  "rows": "20:E9",
+  "rows": "",
   "block": "A",
   "script": "rh",
   "label": "any real multiset is the spectrum of a real-symmetric tridiagonal matrix (Lanczos on ten heights, floating point)",
@@ -661,7 +661,7 @@
  },
  {
   "id": "B1",
-  "rows": "20:D2",
+  "rows": "",
   "block": "B",
   "script": "rh",
   "label": "smooth zero density at T = 2\u03c0p is (1/2\u03c0) log p",
@@ -691,7 +691,7 @@
  },
  {
   "id": "B2",
-  "rows": "20:D3",
+  "rows": "",
   "block": "B",
   "script": "rh",
   "label": "reconstruction residue \u221d p^{-1/4}: fitted log-log slope in [\u22120.40, \u22120.10]",
@@ -701,7 +701,7 @@
  },
  {
   "id": "C1",
-  "rows": "20:E5",
+  "rows": "",
   "block": "C",
   "script": "rh",
   "label": "scale-spectrum peaks at the stated 14.14 \u2026 37.57 (within 0.015) and at \u03b3_1..\u03b3_6 (within 0.05, the taper's width); each peak \u2265 4\u00d7 the baseline",
@@ -721,7 +721,7 @@
  },
  {
   "id": "C2b",
-  "rows": "20:E6, 20:E8",
+  "rows": "20:E6",
   "block": "C",
   "script": "rh",
   "label": "pole-corrected secular condition: mean 3.4e-5 (max 6.6e-5) at 10\u2076, 2.3e-5 at 10\u2077, 1.3e-5 (max 2.8e-5) at 10\u2078; falling with depth",
@@ -741,7 +741,7 @@
  },
  {
   "id": "C4",
-  "rows": "20:E9",
+  "rows": "",
   "block": "C",
   "script": "rh",
   "label": "Jacobi matrix of the corrected roots: real-symmetric tridiagonal; eig = roots to 1e-12; a, b as stated; heights to 3.4e-5",
@@ -751,7 +751,7 @@
  },
  {
   "id": "C3",
-  "rows": "20:E8",
+  "rows": "",
   "block": "C",
   "script": "rh",
   "label": "colleague matrix of cos(\u03c0 N\u0302_N) on [10,52], N = 10\u2076: mean error 4.8e-5 at dim 520, 3.5e-5 by 620 (the roots' own 3.4e-5)",
@@ -761,7 +761,7 @@
  },
  {
   "id": "C5",
-  "rows": "20:E10",
+  "rows": "",
   "block": "C",
   "script": "rh",
   "label": "additive \u2212i d/du + V_comb has a uniform spectrum: spacing std 0.08 (0.11 of its mean) against 0.39 of the mean for the heights",
@@ -771,7 +771,7 @@
  },
  {
   "id": "C6",
-  "rows": "20:E11",
+  "rows": "",
   "block": "C",
   "script": "rh",
   "label": "unfolded spacings of the first 240 zeros: P(s<\u00bd) \u2248 0.05, variance \u2248 0.13 (repulsion; far from Poisson)",
@@ -781,7 +781,7 @@
  },
  {
   "id": "C6b",
-  "rows": "20:E3",
+  "rows": "",
   "block": "C",
   "script": "rh",
   "label": "eigenvalue count N(T) within 1.5 of the Berry\u2013Keating smooth count on [10, \u03b3_240]",
@@ -791,7 +791,7 @@
  },
  {
   "id": "C7a",
-  "rows": "20:E14, 20:E15",
+  "rows": "",
   "block": "C",
   "script": "rh",
   "label": "N_\u03c7 at the first six zeros of L(s, \u03c7_{\u22124}) reads 0.4997 \u2026 5.4998 (completed L real on the line)",
@@ -801,7 +801,7 @@
  },
  {
   "id": "C7b",
-  "rows": "20:E15",
+  "rows": "",
   "block": "C",
   "script": "rh",
   "label": "twisted secular condition, N = 10\u2076 comb, L never evaluated: six heights to mean error 8.6e-5",
@@ -811,7 +811,7 @@
  },
  {
   "id": "C7c",
-  "rows": "20:E14, 20:E16",
+  "rows": "",
   "block": "C",
   "script": "rh",
   "label": "\u03c7 mod 5 complex: Z_\u03c7 real on the line; the twisted count reads 1 \u2026 14 between the fifteen zeros below 40; the secular condition (N = 10\u2076 comb, brackets from the count alone, L never evaluated) recovers the fifteen heights to mean error 8.0e-5 (max 2.0e-4)",
@@ -991,7 +991,7 @@
  },
  {
   "id": "E1c",
-  "rows": "20:C3",
+  "rows": "",
   "block": "E",
   "script": "rh",
   "label": "\u03a8_L(N) \u2192 \u03c8(N) on N \u2264 30: maximal deviation falls monotonically over L = 15, 60, 240",
@@ -1001,7 +1001,7 @@
  },
  {
   "id": "E2a",
-  "rows": "20:B11",
+  "rows": "",
   "block": "E",
   "script": "rh",
   "label": "per-mode energy \u03bc\u00b2(q)/\u03c6(q) = 1, \u00bd, \u00bc, \u2159 at q = 2, 3, 5, 7; unique maximum among the nonconstant modes at the antipode q = 2 (2 \u2264 q \u2264 2000)",
@@ -1011,7 +1011,7 @@
  },
  {
   "id": "E2b",
-  "rows": "20:B11",
+  "rows": "",
   "block": "E",
   "script": "rh",
   "label": "additive-transform band energy of the prime indicator on Z/10007 (Parseval-normalised, bins within 3 of a/q): 1153 > 592 > 301 > 205, the law 1/\u03c6(q)",
@@ -1021,7 +1021,7 @@
  },
  {
   "id": "E3",
-  "rows": "20:C4",
+  "rows": "",
   "block": "E",
   "script": "rh",
   "label": "resolving threshold L*(H) exists for H = 6..50 and tracks the horizon: L* < 6H \u226a H\u00b2",
@@ -1031,12 +1031,42 @@
  },
  {
   "id": "E4",
-  "rows": "20:C6",
+  "rows": "",
   "block": "E",
   "script": "rh",
   "label": "max chart-mode correlation with the primes is a small multiple of the 1/\u221a(p\u22122) floor: 0.077 vs 0.0315 (p = 1009, 2.4\u00d7), 0.0087 vs 0.0032 (p = 100049, 2.7\u00d7); resonance correlates 0.90",
   "ok": true,
   "detail": "p = 1009: max 0.0766, floor 0.0315, ratio 2.431; p = 100049: max 0.0087 over 50024 mode pairs, floor 0.0032, ratio 2.745; corr(1_\u03a0, R_80) on n \u2264 200 = 0.90",
+  "kind": "[approx]"
+ },
+ {
+  "id": "T1",
+  "rows": "20:F2",
+  "block": "T",
+  "script": "rh",
+  "label": "Turing's certificate over the cycle of \u03a9 = 233: N(g_1037) = 1038 by Turing's theorem, 1038 certified sign changes; N(2\u03c0\u03a9) = 1038, every cell clean",
+  "ok": true,
+  "detail": "computed now; Gram points 807, good 94.7 %, uncertified 0, blocks 763, longest 2, exceptions to Rosser's rule 0 (0 unions resolved at the finest grid), Turing span 3 after / 4 before; cells max 6, empty 2, last ten [5, 5, 6, 5, 6, 5, 6, 5, 6, 5]; 109.4 s",
+  "kind": "[approx]"
+ },
+ {
+  "id": "T2",
+  "rows": "20:F2",
+  "block": "T",
+  "script": "rh",
+  "label": "Turing's certificate over the cycle of \u03a9 = 30089: N(g_280187) = 280188 by Turing's theorem, 280188 certified sign changes; N(2\u03c0\u03a9) = 280186, every cell clean",
+  "ok": true,
+  "detail": "computed now; Gram points 279957, good 88.0 %, uncertified 0, blocks 246501, longest 5, exceptions to Rosser's rule 0 (0 unions resolved at the finest grid), Turing span 5 after / 5 before; cells max 12, empty 2, last ten [12, 10, 10, 11, 10, 10, 10, 11, 10, 9]; 111.7 s",
+  "kind": "[approx]"
+ },
+ {
+  "id": "T3",
+  "rows": "20:F2",
+  "block": "T",
+  "script": "rh",
+  "label": "Turing's certificate over the cycle of \u03a9 = 2408561: N(g_32984135) = 32984136 by Turing's theorem, 32984136 certified sign changes; N(2\u03c0\u03a9) = 32984135, every cell clean",
+  "ok": true,
+  "detail": "the recorded run of 15 October 2026 (RH_CERT_FULL=1 recomputes it); Gram points 32983905, good 84.6 %, uncertified 231, blocks 27920263, longest 7, exceptions to Rosser's rule 4 (4 unions resolved at the finest grid), Turing span 7 after / 7 before; cells max 17, empty 2, last ten [15, 15, 14, 15, 14, 15, 14, 16, 14, 14]; 1916.6 s",
   "kind": "[approx]"
  }
 ]

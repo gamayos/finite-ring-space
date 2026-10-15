@@ -1,0 +1,107 @@
+{
+ "Omega": 2408561,
+ "T": 15133435.08664577,
+ "n_low": 290,
+ "g_low": 530.5318655440009,
+ "N_low": 291,
+ "n_end": 32984135,
+ "g_end": 15133435.125860486,
+ "N_end": 32984136,
+ "C_end": 32984136,
+ "gram_points": 32983905,
+ "good_fraction": 0.8464814581536055,
+ "uncertified": 231,
+ "blocks": 27920263,
+ "longest_block": 7,
+ "rosser_violations": 4,
+ "rosser_unions": [
+  {
+   "blocks": [
+    11921435,
+    11921439
+   ],
+   "gram": [
+    13999520,
+    13999529
+   ],
+   "intervals": 9,
+   "changes": 9,
+   "host_points": 0,
+   "resolved": true,
+   "short": [
+    13999525
+   ]
+  },
+  {
+   "blocks": [
+    20663429,
+    20663433
+   ],
+   "gram": [
+    24360728,
+    24360736
+   ],
+   "intervals": 8,
+   "changes": 8,
+   "host_points": 22,
+   "resolved": true,
+   "short": [
+    24360730
+   ]
+  },
+  {
+   "blocks": [
+    26069384,
+    26069388
+   ],
+   "gram": [
+    30783327,
+    30783333
+   ],
+   "intervals": 6,
+   "changes": 6,
+   "host_points": 0,
+   "resolved": true,
+   "short": [
+    30783329
+   ]
+  },
+  {
+   "blocks": [
+    26193457,
+    26193461
+   ],
+   "gram": [
+    30930925,
+    30930932
+   ],
+   "intervals": 7,
+   "changes": 7,
+   "host_points": 0,
+   "resolved": true,
+   "short": [
+    30930927
+   ]
+  }
+ ],
+ "turing_bound_intervals": 7,
+ "turing_before_intervals": 7,
+ "N_T": 32984135,
+ "cells_max": 17,
+ "cells_empty": 2,
+ "cells_last10": [
+  15,
+  15,
+  14,
+  15,
+  14,
+  15,
+  14,
+  16,
+  14,
+  14
+ ],
+ "cells_sum": 32984135,
+ "certified": true,
+ "seconds": 1916.6
+}

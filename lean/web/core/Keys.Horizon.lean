@@ -5125,7 +5125,7 @@ theorem closure :
    fun ho ρ hρ => FRC.Foundation.observer_part ho ρ hρ,
    fun ρ hρ hinj => FRC.Foundation.complete_needs_whole ρ hρ hinj⟩
 
-/-- 20:F7, the laboratory instances: for each laboratory Carrier `Ω = 13, 233, 30089, 2408561` (prime, `≡ 1 mod 4`) the
+/-- 20:F7, 20:F2, the laboratory instances: for each laboratory Carrier `Ω = 13, 233, 30089, 2408561` (prime, `≡ 1 mod 4`) the
 largest embedded Subject `p* = 3, 13, 173, 1549` with `p*² < Ω < p'²`, `p'` the next prime (no prime between), so every
 embedded Subject's cycle is shorter than the Carrier's and the Carrier's top cell is read from labels up to `√Ω`, beyond
 every embedded window `√p*`. Primality by trial division to the root (`isPrime_of_bounded`), decided by the kernel. -/
@@ -5300,6 +5300,9 @@ theorem p20043 : (∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Sh
 set_option linter.defProp false in
 /-- p20079 — 20:F7. \textbf{The closure of the heights.} A height is a residue on the cycle of the shell that reads it, the largest shell is the Carrier's and there is no height beyond its cycle (A2); no embedded Subject reads the cycle whole (A4). The hypothesis of the Carrier is a statement about the residues of its cycle, one clause per residue. -/
 def p20079 := And.intro @FRC.Horizon.closure (@FRC.Horizon.closure_lab)
+/-- p20081 — 20:F2. \textbf{The hypothesis on a hosted Carrier.} A cell is decided by the certificate of a shell reading it, an embedded Subject below the largest one, the host above; on the laboratory Carriers $233$, $30\,089$ and $2\,408\,561$ every cell of the cycle is clean, $1\,038$, $280\,186$ and $32\,984\,135$ zeros, all simple; the classical verification cleans every cell below $4.8\times10^{11}$ (A9). -/
+theorem p20081 : ((3 : Nat) * (3 : Nat) < (13 : Nat) ∧ (13 : Nat) < (5 : Nat) * (5 : Nat) ∧ (13 : Nat) % (4 : Nat) = (1 : Nat) ∧ FRC.Nat.isPrime (3 : Nat) ∧ FRC.Nat.isPrime (5 : Nat) ∧ FRC.Nat.isPrime (13 : Nat) ∧ ∀ (q : Nat), q < (5 : Nat) → (3 : Nat) < q → ¬FRC.Nat.isPrime q) ∧ ((13 : Nat) * (13 : Nat) < (233 : Nat) ∧ (233 : Nat) < (17 : Nat) * (17 : Nat) ∧ (233 : Nat) % (4 : Nat) = (1 : Nat) ∧ FRC.Nat.isPrime (13 : Nat) ∧ FRC.Nat.isPrime (17 : Nat) ∧ FRC.Nat.isPrime (233 : Nat) ∧ ∀ (q : Nat), q < (17 : Nat) → (13 : Nat) < q → ¬FRC.Nat.isPrime q) ∧ ((173 : Nat) * (173 : Nat) < (30089 : Nat) ∧ (30089 : Nat) < (179 : Nat) * (179 : Nat) ∧ (30089 : Nat) % (4 : Nat) = (1 : Nat) ∧ FRC.Nat.isPrime (173 : Nat) ∧ FRC.Nat.isPrime (179 : Nat) ∧ FRC.Nat.isPrime (30089 : Nat) ∧ ∀ (q : Nat), q < (179 : Nat) → (173 : Nat) < q → ¬FRC.Nat.isPrime q) ∧ (1549 : Nat) * (1549 : Nat) < (2408561 : Nat) ∧ (2408561 : Nat) < (1553 : Nat) * (1553 : Nat) ∧ (2408561 : Nat) % (4 : Nat) = (1 : Nat) ∧ FRC.Nat.isPrime (1549 : Nat) ∧ FRC.Nat.isPrime (1553 : Nat) ∧ FRC.Nat.isPrime (2408561 : Nat) ∧ ∀ (q : Nat), q < (1553 : Nat) → (1549 : Nat) < q → ¬FRC.Nat.isPrime q :=
+  @FRC.Horizon.closure_lab
 set_option linter.defProp false in
 /-- p20083 — 20:D9. The finite negative control: on $\F_{13}(\sqrt2)$ the polynomial $((X-2)^{2}-2)((X+1)^{2}-2)$ has exactly the roots $2\pm\eta$, $-1\pm\eta$, of traces $4$, $4$, $11$, $11$ against the line's $1$, the root set closed under conjugation and under the half-turn; finitude, conjugation and the reflection force no root onto the line. -/
 def p20083 := @FRC.Horizon.negative_control13
@@ -5321,4 +5324,5 @@ end FRC.Ledger
 #print axioms FRC.Ledger.p20032
 #print axioms FRC.Ledger.p20043
 #print axioms FRC.Ledger.p20079
+#print axioms FRC.Ledger.p20081
 #print axioms FRC.Ledger.p20083
