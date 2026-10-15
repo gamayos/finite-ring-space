@@ -2,11 +2,11 @@
  "header": {
   "generated": "15 October 2026",
   "schema": "frc-register/2",
-  "rows": 1002,
-  "theorems": 988,
+  "rows": 1003,
+  "theorems": 989,
   "counts": {
-   "keys": 988,
-   "rows": 1002,
+   "keys": 989,
+   "rows": 1003,
    "shared": 14,
    "by_tag": {
     "D": 133,
@@ -14,7 +14,7 @@
     "I": 115,
     "O": 11,
     "R": 81,
-    "T": 619,
+    "T": 620,
     "Ω": 28
    }
   },
@@ -2938,6 +2938,32 @@
    "rows": [
     "00:E11"
    ]
+  },
+  {
+   "key": "p00199",
+   "origin": "00",
+   "statement": "\\textbf{The chart count}: a homogeneous chart on the $\\Om$ registrations, flat to the horizon radius in $d$ dimensions, holds the $\\mathbb Z^{d}$ ball of that radius; for $d\\ge2$ the ball exceeds $\\Om$, for $d=1$ it fits. The one chart flat to the horizon radius is the drive's scale-time direction (E11); a three-chart of curvature radius $\\sqrt\\Om$ needs $\\Om^{3/2}$ cells (A2).",
+   "origin_row": "00:E12",
+   "tag": "T",
+   "tier": 0,
+   "check": {
+    "href": "frc/ledgers/master/gravity.html#p00199",
+    "script": "frc/ledgers/master/gravity.py",
+    "line": 392,
+    "verdict": "pass"
+   },
+   "declarations": [
+    {
+     "lib": "FrcCore",
+     "module": "FrcCore/Keys/Gravity",
+     "name": "FRC.Ledger.p00199"
+    }
+   ],
+   "aliases": [],
+   "rows": [
+    "00:E12"
+   ],
+   "realisations": []
   },
   {
    "key": "p00059",
@@ -26410,7 +26436,7 @@
    "block": "C",
    "tag": "T",
    "name": "The frame variety and its two fibrations",
-   "statement": "$\\mathrm{PGL}_2(\\F_\\p)\\cong\\mathrm{SO}_3(\\F_\\p)$, and the norm-one sphere is $\\mathrm{SL}_2$, the spin cover of its rotation half $\\mathrm{PSL}_2$. For every $\\p=4\\kap+1$ of the totality each frame is uniquely one direction in $\\mathbb{P}^1$, one shell cell and one drive phase. Two fibrations partition the frames: non-split $C_{\\p +1}$ over $\\p (\\p -1)$, with the cone-chart section (C19); split $C_{\\p -1}$ over $\\p (\\p +1)$, with no subgroup section.",
+   "statement": "$\\mathrm{PGL}_2(\\F_\\p)\\cong\\mathrm{SO}_3(\\F_\\p)$; the norm-one sphere is $\\mathrm{SL}_2$, the spin cover of $\\mathrm{PSL}_2$, whose elements are frame moves, not registrations. For every $\\p=4\\kap+1$ of the totality each element is one direction in $\\mathbb{P}^1$, one shell cell and one drive phase. Two fibrations partition the variety: non-split $C_{\\p +1}$ over $\\p (\\p -1)$, with the cone-chart section (C19), split $C_{\\p -1}$ over $\\p (\\p +1)$ without.",
    "source": "38-s13",
    "page": "00-ledger.html#C22",
    "witness": {
@@ -26424,7 +26450,7 @@
    "sources": [
     "38-s13"
    ],
-   "text": "The frame variety and its two fibrations: $\\mathrm{PGL}_2(\\F_\\p)\\cong\\mathrm{SO}_3(\\F_\\p)$, and the norm-one sphere is $\\mathrm{SL}_2$, the spin cover of its rotation half $\\mathrm{PSL}_2$. For every $\\p=4\\kap+1$ of the totality each frame is uniquely one direction in $\\mathbb{P}^1$, one shell cell and one drive phase. Two fibrations partition the frames: non-split $C_{\\p +1}$ over $\\p (\\p -1)$, with the cone-chart section (C19); split $C_{\\p -1}$ over $\\p (\\p +1)$, with no subgroup section. 38-s13 38:p38_s13.py"
+   "text": "The frame variety and its two fibrations: $\\mathrm{PGL}_2(\\F_\\p)\\cong\\mathrm{SO}_3(\\F_\\p)$; the norm-one sphere is $\\mathrm{SL}_2$, the spin cover of $\\mathrm{PSL}_2$, whose elements are frame moves, not registrations. For every $\\p=4\\kap+1$ of the totality each element is one direction in $\\mathbb{P}^1$, one shell cell and one drive phase. Two fibrations partition the variety: non-split $C_{\\p +1}$ over $\\p (\\p -1)$, with the cone-chart section (C19), split $C_{\\p -1}$ over $\\p (\\p +1)$ without. 38-s13 38:p38_s13.py"
   },
   {
    "paper": "00",
@@ -28373,37 +28399,64 @@
    "block": "E",
    "tag": "D",
    "name": "The registered adjacency chart (declared)",
-   "statement": "\\textbf{The registered adjacency chart} (declared): a translation-homogeneous bounded-degree chart on the Subject's cells, locally flat and three-dimensional [chart], the discrete twin of C23. The drive induces the scale-time direction alone, and the Carrier's residues carry no chart flat to the horizon radius beyond dimension one; the three dimensions are the frame freedoms (C6). Given the chart, induced relaxation holds (21:C22).",
+   "statement": "\\textbf{The registered adjacency chart} (declared): a translation-homogeneous bounded-degree chart on the Subject's cells, locally flat and three-dimensional [chart], C23's discrete twin. The drive induces the scale-time direction alone, and the Carrier's residues carry no chart flat to the horizon radius beyond dimension one (E12); the three dimensions are the frame freedoms (C6). Given the chart, induced relaxation holds (21:C22).",
    "source": "21-grav",
    "page": "00-ledger.html#E11",
    "witness": {
     "script": null,
+    "py": null,
+    "lean": []
+   },
+   "refs": [
+    "p00171",
+    "p00182",
+    "p00199",
+    "p21037"
+   ],
+   "sources": [
+    "21-grav"
+   ],
+   "text": "The registered adjacency chart (declared): The registered adjacency chart (declared): a translation-homogeneous bounded-degree chart on the Subject's cells, locally flat and three-dimensional [chart], C23's discrete twin. The drive induces the scale-time direction alone, and the Carrier's residues carry no chart flat to the horizon radius beyond dimension one (E12); the three dimensions are the frame freedoms (C6). Given the chart, induced relaxation holds (21:C22). 21-grav"
+  },
+  {
+   "paper": "00",
+   "no": 0,
+   "rid": "00:E12",
+   "key": "p00199",
+   "label": "E12",
+   "block": "E",
+   "tag": "T",
+   "name": "The chart count",
+   "statement": "\\textbf{The chart count}: a homogeneous chart on the $\\Om$ registrations, flat to the horizon radius in $d$ dimensions, holds the $\\mathbb Z^{d}$ ball of that radius; for $d\\ge2$ the ball exceeds $\\Om$, for $d=1$ it fits. The one chart flat to the horizon radius is the drive's scale-time direction (E11); a three-chart of curvature radius $\\sqrt\\Om$ needs $\\Om^{3/2}$ cells (A2).",
+   "source": "21-grav",
+   "page": "00-ledger.html#E12",
+   "witness": {
+    "script": null,
     "py": {
-     "href": "frc/ledgers/master/gravity.html#p00198",
+     "href": "frc/ledgers/master/gravity.html#p00199",
      "script": "frc/ledgers/master/gravity.py",
-     "line": 391,
+     "line": 392,
      "verdict": "pass"
     },
     "lean": [
      {
       "lib": "FrcCore",
       "module": "FrcCore/Keys/Gravity",
-      "name": "FRC.Ledger.p00198",
+      "name": "FRC.Ledger.p00199",
       "tier": 0,
       "ok": true,
-      "page": "lean/core/Keys.Gravity.html#FRC.Ledger.p00198"
+      "page": "lean/core/Keys.Gravity.html#FRC.Ledger.p00199"
      }
     ]
    },
    "refs": [
-    "p00171",
-    "p00182",
-    "p21037"
+    "p00004",
+    "p00198"
    ],
    "sources": [
     "21-grav"
    ],
-   "text": "The registered adjacency chart (declared): The registered adjacency chart (declared): a translation-homogeneous bounded-degree chart on the Subject's cells, locally flat and three-dimensional [chart], the discrete twin of C23. The drive induces the scale-time direction alone, and the Carrier's residues carry no chart flat to the horizon radius beyond dimension one; the three dimensions are the frame freedoms (C6). Given the chart, induced relaxation holds (21:C22). 21-grav"
+   "text": "The chart count: The chart count: a homogeneous chart on the $\\Om$ registrations, flat to the horizon radius in $d$ dimensions, holds the $\\mathbb Z^{d}$ ball of that radius; for $d\\ge2$ the ball exceeds $\\Om$, for $d=1$ it fits. The one chart flat to the horizon radius is the drive's scale-time direction (E11); a three-chart of curvature radius $\\sqrt\\Om$ needs $\\Om^{3/2}$ cells (A2). 21-grav"
   },
   {
    "paper": "00",
@@ -55892,7 +55945,7 @@
    "block": "A",
    "tag": "T",
    "name": null,
-   "statement": "The frame counts: $2184=156\\times14=14\\times13\\times12$; the norm-one sphere is $\\SL_{2}$ (its quaternion determinant), the spin cover of $\\mathrm{PSL}_{2}$ ($1092$); $\\SL_{2}$ obstructs at $-1$ (Theorem~\\ref{th:hopf}).",
+   "statement": "The frame counts: $2184=156\\times14=14\\times13\\times12$; the norm-one sphere is $\\SL_{2}$ (its quaternion determinant), the spin cover of $\\mathrm{PSL}_{2}$ ($1092$); $\\SL_{2}$ obstructs at $-1$ (Theorem~\\ref{th:hopf}). The elements counted are the frame moves of the Subject's chart, not registrations of the Carrier (00:C22).",
    "source": "Theorem~\\ref{th:hopf}\\newline \\pywit{s13}{p38007}{A7}, \\leanwit{FrcCore}{p38007}{A7} \\lean{FRC.Shell.Frame.hopf\\_section, FRC.Shell.Frame.hopf\\_counts, FRC.Shell.Frame.sphere\\_det, FRC.Shell.Frame.quat\\_bijective, FRC.Shell.Frame.frame\\_counts}",
    "page": "38-s13/index.html#A7",
    "witness": {
@@ -55949,7 +56002,7 @@
     "p00152",
     "p00190"
    ],
-   "text": "The frame counts: $2184=156\\times14=14\\times13\\times12$; the norm-one sphere is $\\SL_{2}$ (its quaternion determinant), the spin cover of $\\mathrm{PSL}_{2}$ ($1092$); $\\SL_{2}$ obstructs at $-1$ (Theorem th:hopf). Theorem th:hopf p38007, FrcCore{A7} FRC.Shell.Frame.hopf_section, FRC.Shell.Frame.hopf_counts, FRC.Shell.Frame.sphere_det, FRC.Shell.Frame.quat_bijective, FRC.Shell.Frame.frame_counts"
+   "text": "The frame counts: $2184=156\\times14=14\\times13\\times12$; the norm-one sphere is $\\SL_{2}$ (its quaternion determinant), the spin cover of $\\mathrm{PSL}_{2}$ ($1092$); $\\SL_{2}$ obstructs at $-1$ (Theorem th:hopf). The elements counted are the frame moves of the Subject's chart, not registrations of the Carrier (00:C22). Theorem th:hopf p38007, FrcCore{A7} FRC.Shell.Frame.hopf_section, FRC.Shell.Frame.hopf_counts, FRC.Shell.Frame.sphere_det, FRC.Shell.Frame.quat_bijective, FRC.Shell.Frame.frame_counts"
   },
   {
    "paper": "38-s13",

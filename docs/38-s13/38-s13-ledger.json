@@ -53,7 +53,7 @@
     },
     {
      "label": "A7",
-     "predicate": "The frame counts: $2184=156\\times14=14\\times13\\times12$; the norm-one sphere is $\\SL_{2}$ (its quaternion determinant), the spin cover of $\\mathrm{PSL}_{2}$ ($1092$); $\\SL_{2}$ obstructs at $-1$ (Theorem~\\ref{th:hopf}).",
+     "predicate": "The frame counts: $2184=156\\times14=14\\times13\\times12$; the norm-one sphere is $\\SL_{2}$ (its quaternion determinant), the spin cover of $\\mathrm{PSL}_{2}$ ($1092$); $\\SL_{2}$ obstructs at $-1$ (Theorem~\\ref{th:hopf}). The elements counted are the frame moves of the Subject's chart, not registrations of the Carrier (00:C22).",
      "tag": "T",
      "source": "Theorem~\\ref{th:hopf}\\newline \\pywit{s13}{p38007}{A7}, \\leanwit{FrcCore}{p38007}{A7} \\lean{FRC.Shell.Frame.hopf\\_section, FRC.Shell.Frame.hopf\\_counts, FRC.Shell.Frame.sphere\\_det, FRC.Shell.Frame.quat\\_bijective, FRC.Shell.Frame.frame\\_counts}",
      "key": "p38007"

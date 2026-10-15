@@ -991,7 +991,7 @@
      "key": "p00190"
     }
    ],
-   "statement": "$\\mathrm{PGL}_2(\\F_\\p)\\cong\\mathrm{SO}_3(\\F_\\p)$, and the norm-one sphere is $\\mathrm{SL}_2$, the spin cover of its rotation half $\\mathrm{PSL}_2$. For every $\\p=4\\kap+1$ of the totality each frame is uniquely one direction in $\\mathbb{P}^1$, one shell cell and one drive phase. Two fibrations partition the frames: non-split $C_{\\p +1}$ over $\\p (\\p -1)$, with the cone-chart section (C19); split $C_{\\p -1}$ over $\\p (\\p +1)$, with no subgroup section."
+   "statement": "$\\mathrm{PGL}_2(\\F_\\p)\\cong\\mathrm{SO}_3(\\F_\\p)$; the norm-one sphere is $\\mathrm{SL}_2$, the spin cover of $\\mathrm{PSL}_2$, whose elements are frame moves, not registrations. For every $\\p=4\\kap+1$ of the totality each element is one direction in $\\mathbb{P}^1$, one shell cell and one drive phase. Two fibrations partition the variety: non-split $C_{\\p +1}$ over $\\p (\\p -1)$, with the cone-chart section (C19), split $C_{\\p -1}$ over $\\p (\\p +1)$ without."
   },
   {
    "label": "C23",
@@ -1540,9 +1540,35 @@
     {
      "label": "C23",
      "key": "p00182"
+    },
+    {
+     "label": "E12",
+     "key": "p00199"
     }
    ],
-   "statement": "\\textbf{The registered adjacency chart} (declared): a translation-homogeneous bounded-degree chart on the Subject's cells, locally flat and three-dimensional [chart], the discrete twin of C23. The drive induces the scale-time direction alone, and the Carrier's residues carry no chart flat to the horizon radius beyond dimension one; the three dimensions are the frame freedoms (C6). Given the chart, induced relaxation holds (21:C22)."
+   "statement": "\\textbf{The registered adjacency chart} (declared): a translation-homogeneous bounded-degree chart on the Subject's cells, locally flat and three-dimensional [chart], C23's discrete twin. The drive induces the scale-time direction alone, and the Carrier's residues carry no chart flat to the horizon radius beyond dimension one (E12); the three dimensions are the frame freedoms (C6). Given the chart, induced relaxation holds (21:C22)."
+  },
+  {
+   "label": "E12",
+   "name": "The chart count",
+   "block": "E",
+   "key": "p00199",
+   "tag": "T",
+   "sources": [
+    "21-grav"
+   ],
+   "witness": null,
+   "refs": [
+    {
+     "label": "A2",
+     "key": "p00004"
+    },
+    {
+     "label": "E11",
+     "key": "p00198"
+    }
+   ],
+   "statement": "\\textbf{The chart count}: a homogeneous chart on the $\\Om$ registrations, flat to the horizon radius in $d$ dimensions, holds the $\\mathbb Z^{d}$ ball of that radius; for $d\\ge2$ the ball exceeds $\\Om$, for $d=1$ it fits. The one chart flat to the horizon radius is the drive's scale-time direction (E11); a three-chart of curvature radius $\\sqrt\\Om$ needs $\\Om^{3/2}$ cells (A2)."
   },
   {
    "label": "F1",
