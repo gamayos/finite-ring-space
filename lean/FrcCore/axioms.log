@@ -1328,6 +1328,10 @@
 'FRC.Grav.register13_17' does not depend on any axioms
 'FRC.Grav.merger_instance' does not depend on any axioms
 'FRC.Grav.lab_register' does not depend on any axioms
+'FRC.Grav.chart_plane_overflows' does not depend on any axioms
+'FRC.Grav.chart_space_overflows' does not depend on any axioms
+'FRC.Grav.chart_line_fits' does not depend on any axioms
+'FRC.Grav.chart_lab_instance' does not depend on any axioms
 'FRC.Lattice.cdiff' does not depend on any axioms
 'FRC.Lattice.fdiff' does not depend on any axioms
 'FRC.Lattice.bdiff' does not depend on any axioms
@@ -1708,6 +1712,7 @@
 'FRC.Ledger.p00147' does not depend on any axioms
 'FRC.Ledger.p00154' does not depend on any axioms
 'FRC.Ledger.p00176' does not depend on any axioms
+'FRC.Ledger.p00198' does not depend on any axioms
 'FRC.Ledger.p21001' does not depend on any axioms
 'FRC.Ledger.p21009' does not depend on any axioms
 'FRC.Ledger.p21016' does not depend on any axioms

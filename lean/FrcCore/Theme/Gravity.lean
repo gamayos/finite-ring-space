@@ -685,4 +685,77 @@ theorem lab_register :
 
 end values
 
+/-! ## The registered adjacency chart: the counting obstruction (00:E11; master T1 obstructed, 15 October 2026) -/
+section chart
+
+/-- 00:E11 — the planar count: a homogeneous chart on `Ω` cells that is `Z²`-flat to radius `R` holds the `ℓ¹` ball
+`2R² + 2R + 1`; with `Ω < (R+1)²` (the horizon radius `R = ⌊√Ω⌋`) the ball overflows the totality:
+`(R+1)² ≤ 2R² + 2R + 1`. -/
+theorem chart_plane_overflows (R Ω : Nat) (h : Ω < (R + 1) * (R + 1)) : Ω < 2 * (R * R) + 2 * R + 1 := by
+  have e : (R + 1) * (R + 1) = R * R + 2 * R + 1 := by
+    rw [Nat.add_mul, Nat.mul_add, Nat.mul_add, Nat.one_mul, Nat.mul_one, Nat.one_mul, Nat.two_mul, Nat.add_assoc,
+      Nat.add_assoc, ← Nat.add_assoc R R 1]
+  have hle : R * R + 2 * R + 1 ≤ 2 * (R * R) + 2 * R + 1 := by
+    rw [Nat.two_mul (R * R)]
+    exact Nat.add_le_add_right (Nat.add_le_add_right (Nat.le_add_left (R * R) (R * R)) (2 * R)) 1
+  exact Nat.lt_of_lt_of_le (e ▸ h) hle
+
+/-- 00:E11 — the spatial count: three times the `ℓ¹` ball of `Z³` at radius `R` is the integer `4R³ + 6R² + 8R + 3`;
+with `Ω < (R+1)²` it exceeds `3Ω`: `3(R+1)² = 3R² + 6R + 3 ≤ 4R³ + 6R² + 8R + 3`. So no homogeneous chart on the
+`Ω` residues is `Z³`-flat to the horizon radius. -/
+theorem chart_space_overflows (R Ω : Nat) (h : Ω < (R + 1) * (R + 1)) :
+    3 * Ω < 4 * (R * R * R) + 6 * (R * R) + 8 * R + 3 := by
+  have e : 3 * ((R + 1) * (R + 1)) = 3 * (R * R) + 6 * R + 3 := by
+    have e1 : (R + 1) * (R + 1) = R * R + 2 * R + 1 := by
+      rw [Nat.add_mul, Nat.mul_add, Nat.mul_add, Nat.one_mul, Nat.mul_one, Nat.one_mul, Nat.two_mul, Nat.add_assoc,
+        Nat.add_assoc, ← Nat.add_assoc R R 1]
+    rw [e1, Nat.mul_add, Nat.mul_add, ← Nat.mul_assoc 3 2 R]
+  have h3 : 3 * Ω < 3 * ((R + 1) * (R + 1)) := Nat.mul_lt_mul_of_pos_left h (Nat.zero_lt_succ 2)
+  have hle : 3 * (R * R) + 6 * R + 3 ≤ 4 * (R * R * R) + 6 * (R * R) + 8 * R + 3 := by
+    have a1 : 3 * (R * R) ≤ 6 * (R * R) := Nat.mul_le_mul_right (R * R) (by decide : 3 ≤ 6)
+    have a2 : 6 * R ≤ 8 * R := Nat.mul_le_mul_right R (by decide : 6 ≤ 8)
+    have a3 : 3 * (R * R) + 6 * R + 3 ≤ 6 * (R * R) + 8 * R + 3 :=
+      Nat.add_le_add_right (Nat.add_le_add a1 a2) 3
+    have a4 : 6 * (R * R) + 8 * R + 3 ≤ 4 * (R * R * R) + 6 * (R * R) + 8 * R + 3 := by
+      rw [Nat.add_assoc (4 * (R * R * R)), Nat.add_assoc (4 * (R * R * R))]
+      exact Nat.le_add_left _ _
+    exact Nat.le_trans a3 a4
+  exact Nat.lt_of_lt_of_le (e ▸ h3) hle
+
+/-- 00:E11 — the linear count fits: the `ℓ¹` ball of `Z¹` at radius `R`, `2R + 1`, is at most `Ω` when `R² ≤ Ω`,
+`5 ≤ Ω` and `2 ≤ R` — the scale-time direction the drive induces is the one direction flat to the horizon radius. -/
+theorem chart_line_fits (R Ω : Nat) (hR : R * R ≤ Ω) (h5 : 5 ≤ Ω) (h2 : 2 ≤ R) : 2 * R + 1 ≤ Ω := by
+  cases R with
+  | zero => exact absurd h2 (by decide)
+  | succ r =>
+    cases r with
+    | zero => exact absurd h2 (by decide)
+    | succ r' =>
+      cases r' with
+      | zero => exact h5
+      | succ r'' =>
+        have : 2 * (r'' + 3) + 1 ≤ (r'' + 3) * (r'' + 3) := by
+          have e : (r'' + 3) * (r'' + 3) = r'' * r'' + 6 * r'' + 9 := by
+            rw [Nat.add_mul, Nat.mul_add, Nat.mul_add, Nat.mul_comm r'' 3, ← Nat.add_assoc, Nat.add_assoc (r'' * r''),
+              ← Nat.two_mul, ← Nat.mul_assoc]
+          rw [e]
+          have b1 : 2 * (r'' + 3) + 1 = 2 * r'' + 7 := by rw [Nat.mul_add]
+          rw [b1]
+          have c1 : 2 * r'' ≤ r'' * r'' + 6 * r'' :=
+            Nat.le_trans (Nat.mul_le_mul_right r'' (by decide : 2 ≤ 6)) (Nat.le_add_left _ _)
+          exact Nat.add_le_add c1 (by decide : 7 ≤ 9)
+        exact Nat.le_trans this hR
+
+/-- 00:E11 — the laboratory Carrier `Ω = 2 408 561`, `R = 1551` (`1551² ≤ Ω < 1552²`): the spatial ball fits at
+`R = 121` and overflows at `122` (`2 391 687 ≤ Ω < 2 451 225`), the planar ball fits at `1096` and overflows at `1097`,
+the linear ball fits at the horizon radius (`3103 ≤ Ω`). -/
+theorem chart_lab_instance :
+    1551 * 1551 ≤ 2408561 ∧ 2408561 < 1552 * 1552 ∧
+    (4 * (121 * 121 * 121) + 6 * (121 * 121) + 8 * 121 + 3) / 3 = 2391687 ∧ 2391687 ≤ 2408561 ∧
+    (4 * (122 * 122 * 122) + 6 * (122 * 122) + 8 * 122 + 3) / 3 = 2451225 ∧ 2408561 < 2451225 ∧
+    2 * (1096 * 1096) + 2 * 1096 + 1 ≤ 2408561 ∧ 2408561 < 2 * (1097 * 1097) + 2 * 1097 + 1 ∧
+    2 * 1551 + 1 ≤ 2408561 := by decide
+
+end chart
+
 end FRC.Grav

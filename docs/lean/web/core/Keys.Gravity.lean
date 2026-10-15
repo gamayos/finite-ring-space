@@ -6559,6 +6559,79 @@ theorem lab_register :
 
 end values
 
+/-! ## The registered adjacency chart: the counting obstruction (00:E11; master T1 obstructed, 15 October 2026) -/
+section chart
+
+/-- 00:E11 — the planar count: a homogeneous chart on `Ω` cells that is `Z²`-flat to radius `R` holds the `ℓ¹` ball
+`2R² + 2R + 1`; with `Ω < (R+1)²` (the horizon radius `R = ⌊√Ω⌋`) the ball overflows the totality:
+`(R+1)² ≤ 2R² + 2R + 1`. -/
+theorem chart_plane_overflows (R Ω : Nat) (h : Ω < (R + 1) * (R + 1)) : Ω < 2 * (R * R) + 2 * R + 1 := by
+  have e : (R + 1) * (R + 1) = R * R + 2 * R + 1 := by
+    rw [Nat.add_mul, Nat.mul_add, Nat.mul_add, Nat.one_mul, Nat.mul_one, Nat.one_mul, Nat.two_mul, Nat.add_assoc,
+      Nat.add_assoc, ← Nat.add_assoc R R 1]
+  have hle : R * R + 2 * R + 1 ≤ 2 * (R * R) + 2 * R + 1 := by
+    rw [Nat.two_mul (R * R)]
+    exact Nat.add_le_add_right (Nat.add_le_add_right (Nat.le_add_left (R * R) (R * R)) (2 * R)) 1
+  exact Nat.lt_of_lt_of_le (e ▸ h) hle
+
+/-- 00:E11 — the spatial count: three times the `ℓ¹` ball of `Z³` at radius `R` is the integer `4R³ + 6R² + 8R + 3`;
+with `Ω < (R+1)²` it exceeds `3Ω`: `3(R+1)² = 3R² + 6R + 3 ≤ 4R³ + 6R² + 8R + 3`. So no homogeneous chart on the
+`Ω` residues is `Z³`-flat to the horizon radius. -/
+theorem chart_space_overflows (R Ω : Nat) (h : Ω < (R + 1) * (R + 1)) :
+    3 * Ω < 4 * (R * R * R) + 6 * (R * R) + 8 * R + 3 := by
+  have e : 3 * ((R + 1) * (R + 1)) = 3 * (R * R) + 6 * R + 3 := by
+    have e1 : (R + 1) * (R + 1) = R * R + 2 * R + 1 := by
+      rw [Nat.add_mul, Nat.mul_add, Nat.mul_add, Nat.one_mul, Nat.mul_one, Nat.one_mul, Nat.two_mul, Nat.add_assoc,
+        Nat.add_assoc, ← Nat.add_assoc R R 1]
+    rw [e1, Nat.mul_add, Nat.mul_add, ← Nat.mul_assoc 3 2 R]
+  have h3 : 3 * Ω < 3 * ((R + 1) * (R + 1)) := Nat.mul_lt_mul_of_pos_left h (Nat.zero_lt_succ 2)
+  have hle : 3 * (R * R) + 6 * R + 3 ≤ 4 * (R * R * R) + 6 * (R * R) + 8 * R + 3 := by
+    have a1 : 3 * (R * R) ≤ 6 * (R * R) := Nat.mul_le_mul_right (R * R) (by decide : 3 ≤ 6)
+    have a2 : 6 * R ≤ 8 * R := Nat.mul_le_mul_right R (by decide : 6 ≤ 8)
+    have a3 : 3 * (R * R) + 6 * R + 3 ≤ 6 * (R * R) + 8 * R + 3 :=
+      Nat.add_le_add_right (Nat.add_le_add a1 a2) 3
+    have a4 : 6 * (R * R) + 8 * R + 3 ≤ 4 * (R * R * R) + 6 * (R * R) + 8 * R + 3 := by
+      rw [Nat.add_assoc (4 * (R * R * R)), Nat.add_assoc (4 * (R * R * R))]
+      exact Nat.le_add_left _ _
+    exact Nat.le_trans a3 a4
+  exact Nat.lt_of_lt_of_le (e ▸ h3) hle
+
+/-- 00:E11 — the linear count fits: the `ℓ¹` ball of `Z¹` at radius `R`, `2R + 1`, is at most `Ω` when `R² ≤ Ω`,
+`5 ≤ Ω` and `2 ≤ R` — the scale-time direction the drive induces is the one direction flat to the horizon radius. -/
+theorem chart_line_fits (R Ω : Nat) (hR : R * R ≤ Ω) (h5 : 5 ≤ Ω) (h2 : 2 ≤ R) : 2 * R + 1 ≤ Ω := by
+  cases R with
+  | zero => exact absurd h2 (by decide)
+  | succ r =>
+    cases r with
+    | zero => exact absurd h2 (by decide)
+    | succ r' =>
+      cases r' with
+      | zero => exact h5
+      | succ r'' =>
+        have : 2 * (r'' + 3) + 1 ≤ (r'' + 3) * (r'' + 3) := by
+          have e : (r'' + 3) * (r'' + 3) = r'' * r'' + 6 * r'' + 9 := by
+            rw [Nat.add_mul, Nat.mul_add, Nat.mul_add, Nat.mul_comm r'' 3, ← Nat.add_assoc, Nat.add_assoc (r'' * r''),
+              ← Nat.two_mul, ← Nat.mul_assoc]
+          rw [e]
+          have b1 : 2 * (r'' + 3) + 1 = 2 * r'' + 7 := by rw [Nat.mul_add]
+          rw [b1]
+          have c1 : 2 * r'' ≤ r'' * r'' + 6 * r'' :=
+            Nat.le_trans (Nat.mul_le_mul_right r'' (by decide : 2 ≤ 6)) (Nat.le_add_left _ _)
+          exact Nat.add_le_add c1 (by decide : 7 ≤ 9)
+        exact Nat.le_trans this hR
+
+/-- 00:E11 — the laboratory Carrier `Ω = 2 408 561`, `R = 1551` (`1551² ≤ Ω < 1552²`): the spatial ball fits at
+`R = 121` and overflows at `122` (`2 391 687 ≤ Ω < 2 451 225`), the planar ball fits at `1096` and overflows at `1097`,
+the linear ball fits at the horizon radius (`3103 ≤ Ω`). -/
+theorem chart_lab_instance :
+    1551 * 1551 ≤ 2408561 ∧ 2408561 < 1552 * 1552 ∧
+    (4 * (121 * 121 * 121) + 6 * (121 * 121) + 8 * 121 + 3) / 3 = 2391687 ∧ 2391687 ≤ 2408561 ∧
+    (4 * (122 * 122 * 122) + 6 * (122 * 122) + 8 * 122 + 3) / 3 = 2451225 ∧ 2408561 < 2451225 ∧
+    2 * (1096 * 1096) + 2 * 1096 + 1 ≤ 2408561 ∧ 2408561 < 2 * (1097 * 1097) + 2 * 1097 + 1 ∧
+    2 * 1551 + 1 ≤ 2408561 := by decide
+
+end chart
+
 end FRC.Grav
 
 /-! inlined: FrcCore/Theme/Lattice.lean -/
@@ -7156,6 +7229,9 @@ theorem p00154 : (∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Sh
 /-- p00176 — 00:E6. \textbf{Gravity} (horizon count): the registration sphere of a shell has area $A=\p(\p+1)$ and record $\kap(\p+1)$, so $\kap(\p+1)/A=\kap/\p$ exactly, the $Q_4$ gauge quotient, and closes the calibration: at the coherence horizon $\p^2\to\Om$ the record law returns $(\Om-1)/4=\dS$, the imported entropy (A7). The chart reading $S=\tfrac14A/\ell_P^2$ is L5's. Corollary: the merger area law $\Delta A=2M_1M_2$, saturated (37-sim). Triple: E7. -/
 theorem p00176 : (∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → FRC.Grav.sphereCount p (FRC.Shell.ofNat κ * FRC.Shell.ofNat κ) = p * (p + (1 : Nat))) ∧ (∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → ∀ {b : FRC.Shell p}, b ≠ (0 : FRC.Shell p) → FRC.Grav.sphereCount p (b * b) = p * (p + (1 : Nat))) ∧ (∀ (κ : Nat), (4 : Nat) * (κ * ((4 : Nat) * κ + (2 : Nat))) + (1 : Nat) = ((4 : Nat) * κ + (1 : Nat)) * ((4 : Nat) * κ + (1 : Nat)) ∧ κ * ((4 : Nat) * κ + (2 : Nat)) * ((4 : Nat) * κ + (1 : Nat)) = κ * (((4 : Nat) * κ + (1 : Nat)) * ((4 : Nat) * κ + (2 : Nat))) ∧ (4 : Nat) * (κ * ((4 : Nat) * κ + (2 : Nat))) * ((4 : Nat) * κ + (1 : Nat)) = ((4 : Nat) * κ + (1 : Nat)) * ((4 : Nat) * κ + (2 : Nat)) * ((4 : Nat) * κ)) ∧ ∀ (M₁ M₂ : Nat), (M₁ + M₂) * (M₁ + M₂ + (1 : Nat)) = M₁ * (M₁ + (1 : Nat)) + M₂ * (M₂ + (1 : Nat)) + (2 : Nat) * (M₁ * M₂) :=
   And.intro @FRC.Grav.sphere_area (And.intro @FRC.Grav.sphere_area_rung (And.intro @FRC.Grav.count_identity (@FRC.Grav.merger_area)))
+/-- p00198 — 00:E11. \textbf{The registered adjacency chart} (declared): a translation-homogeneous bounded-degree chart on the Subject's cells, locally flat and three-dimensional [chart], the discrete twin of C23. The drive induces the scale-time direction alone, and the Carrier's residues carry no chart flat to the horizon radius beyond dimension one; the three dimensions are the frame freedoms (C6). Given the chart, induced relaxation holds (21:C22). -/
+theorem p00198 : (∀ (R Ω : Nat), Ω < (R + (1 : Nat)) * (R + (1 : Nat)) → Ω < (2 : Nat) * (R * R) + (2 : Nat) * R + (1 : Nat)) ∧ (∀ (R Ω : Nat), Ω < (R + (1 : Nat)) * (R + (1 : Nat)) → (3 : Nat) * Ω < (4 : Nat) * (R * R * R) + (6 : Nat) * (R * R) + (8 : Nat) * R + (3 : Nat)) ∧ (∀ (R Ω : Nat), R * R ≤ Ω → (5 : Nat) ≤ Ω → (2 : Nat) ≤ R → (2 : Nat) * R + (1 : Nat) ≤ Ω) ∧ (1551 : Nat) * (1551 : Nat) ≤ (2408561 : Nat) ∧ (2408561 : Nat) < (1552 : Nat) * (1552 : Nat) ∧ ((4 : Nat) * ((121 : Nat) * (121 : Nat) * (121 : Nat)) + (6 : Nat) * ((121 : Nat) * (121 : Nat)) + (8 : Nat) * (121 : Nat) + (3 : Nat)) / (3 : Nat) = (2391687 : Nat) ∧ (2391687 : Nat) ≤ (2408561 : Nat) ∧ ((4 : Nat) * ((122 : Nat) * (122 : Nat) * (122 : Nat)) + (6 : Nat) * ((122 : Nat) * (122 : Nat)) + (8 : Nat) * (122 : Nat) + (3 : Nat)) / (3 : Nat) = (2451225 : Nat) ∧ (2408561 : Nat) < (2451225 : Nat) ∧ (2 : Nat) * ((1096 : Nat) * (1096 : Nat)) + (2 : Nat) * (1096 : Nat) + (1 : Nat) ≤ (2408561 : Nat) ∧ (2408561 : Nat) < (2 : Nat) * ((1097 : Nat) * (1097 : Nat)) + (2 : Nat) * (1097 : Nat) + (1 : Nat) ∧ (2 : Nat) * (1551 : Nat) + (1 : Nat) ≤ (2408561 : Nat) :=
+  And.intro @FRC.Grav.chart_plane_overflows (And.intro @FRC.Grav.chart_space_overflows (And.intro @FRC.Grav.chart_line_fits (@FRC.Grav.chart_lab_instance)))
 /-- p21001 — 21:A1. The finite substrate: the torsor Carrier, coordinatized by a frame as $\F_\Omega$, its cardinality the Carrier identity $\Omega=4S+1$ with the measured $S\sim10^{122}$ (Planck units) locating the coherence horizon, with the phase cycle $C_{\Omega-1}$, the quarter-turn core $Q_4$, the drive (time is scale-dilation, each Subject's own), the coherence horizon $\sqrt\Omega$, and the resolution floor $1/\sqrt\Omega$. -/
 theorem p21001 : ∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → FRC.Shell.ofNat ((4 : Nat) * κ) = (-1 : FRC.Shell p) ∧ FRC.Shell.ofNat ((4 : Nat) * κ) * FRC.Shell.ofNat ((4 : Nat) * κ) = (1 : FRC.Shell p) :=
   @FRC.Grav.calibration
@@ -7249,6 +7325,7 @@ end FRC.Ledger
 #print axioms FRC.Ledger.p00147
 #print axioms FRC.Ledger.p00154
 #print axioms FRC.Ledger.p00176
+#print axioms FRC.Ledger.p00198
 #print axioms FRC.Ledger.p21001
 #print axioms FRC.Ledger.p21009
 #print axioms FRC.Ledger.p21016

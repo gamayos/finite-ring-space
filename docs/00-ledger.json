@@ -1523,6 +1523,28 @@
    "statement": "\\textbf{The fold is a chart projection}: the substrate coordinate $r$ is the decoherence count, the exponential reading the character $\\gen^{-\\Delta n(r)}$, and the exact datum at a shell of the radial partition is the pair $(r,\\gen^{-\\Delta n(r)})$, injective in $r$; the areal reading $R=re^{M/r}$ [chart] multiplies the count by the lifted character and forgets $r$ --- its two branches are two Carrier data (the residue product $r\\gen^{\\Delta}$ collides at $\\p =13,17,29$, the pair never), and the cut current $p_r=Q_r/A_r$ recovers $r$ from any exterior reading ($A_r=6(2r^2+2r+1)$ on $\\mathbb Z^3$, monotone). The fold-return average is fold-independent: $P_EFU^nF^{-1}P_E=P_EU^nP_E$ for every interior chart $F$, the period average $N^{-1}J_E$ (not $N_I^{-1}$), $P_EU^NP_E=P_E$ --- no echo criterion. The $r_f$-anchored statements are made in the substrate coordinate, $r_*<r_f<M$ for $M>(\\ln\\Om /2)^2$ Planck masses [chart]."
   },
   {
+   "label": "E11",
+   "name": "The registered adjacency chart (declared)",
+   "block": "E",
+   "key": "p00198",
+   "tag": "D",
+   "sources": [
+    "21-grav"
+   ],
+   "witness": null,
+   "refs": [
+    {
+     "label": "C6",
+     "key": "p00171"
+    },
+    {
+     "label": "C23",
+     "key": "p00182"
+    }
+   ],
+   "statement": "\\textbf{The registered adjacency chart} (declared): a translation-homogeneous bounded-degree chart on the Subject's cells, locally flat and three-dimensional [chart], the discrete twin of C23. The drive induces the scale-time direction alone, and the Carrier's residues carry no chart flat to the horizon radius beyond dimension one; the three dimensions are the frame freedoms (C6). Given the chart, induced relaxation holds (21:C22)."
+  },
+  {
    "label": "F1",
    "name": "Quantum mechanics: the Born weighting on the Subject's ledger",
    "block": "F",
@@ -2184,19 +2206,6 @@
    "witness": null,
    "refs": [],
    "statement": "The master's rows are verdicted row by row, in exact arithmetic, on one instantiated Carrier, $\\Om=2{,}408{,}561$ (37-sim), at a dated snapshot. Those that hold there hold jointly in one finite structure: a consistency witness for the projection, not a proof of the physical case. Rows without an instance, or added or restated after the snapshot, are not exercised."
-  },
-  {
-   "label": "T1",
-   "name": "The induced-relaxation theorem, chart-free form",
-   "block": "T",
-   "key": "p00094",
-   "tag": "O",
-   "sources": [
-    "21-grav"
-   ],
-   "witness": null,
-   "refs": [],
-   "statement": "The induced-relaxation theorem, chart-free form: derive the registered adjacency chart and its homogeneity from the one Carrier action. Chart-relative form proved (21-gravity); pillars: relative-cycle defect, compression identity, pair-tally current."
   },
   {
    "label": "T5",

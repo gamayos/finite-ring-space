@@ -298,7 +298,7 @@
      "label": "C22",
      "predicate": "Induced relaxation, chart-relative form: given the registered adjacency chart with unit capacity, the weak-defect short-memory reading of $K_{\\mathrm S}=P_{\\mathrm S}U_{\\mathrm C}P_{\\mathrm S}$ is the gradient flow of the coherence free energy with the pair-tally current --- proof by composition of the defect pillars, the forced leading contraction, and the return chains.",
      "tag": "T",
-     "source": "Thm.~\\ref{thm:indrelax}\\newline \\pywit{gravity}{p21037}{C22}",
+     "source": "Thm.~\\ref{thm:indrelax}; rests on 00:E11\\newline \\pywit{gravity}{p21037}{C22}",
      "key": "p21037"
     },
     {
@@ -531,9 +531,6 @@
   "P5": [
    "P1"
   ],
-  "C22": [
-   "T1"
-  ],
   "Z1": [
    "Z7"
   ],
@@ -554,6 +551,9 @@
   ],
   "P3": [
    "L1"
+  ],
+  "C22": [
+   "E11"
   ]
  },
  "lean": {

@@ -9,10 +9,10 @@
    "rows": 1002,
    "shared": 14,
    "by_tag": {
-    "D": 132,
+    "D": 133,
     "G": 1,
     "I": 115,
-    "O": 12,
+    "O": 11,
     "R": 81,
     "T": 619,
     "Ω": 28
@@ -2915,6 +2915,31 @@
    "realisations": []
   },
   {
+   "key": "p00198",
+   "origin": "00",
+   "statement": "\\textbf{The registered adjacency chart} (declared): a translation-homogeneous bounded-degree chart on the Subject's cells, locally flat and three-dimensional [chart], the discrete twin of C23. The drive induces the scale-time direction alone, and the Carrier's residues carry no chart flat to the horizon radius beyond dimension one; the three dimensions are the frame freedoms (C6). Given the chart, induced relaxation holds (21:C22).",
+   "origin_row": "00:E11",
+   "tag": "D",
+   "tier": 0,
+   "check": {
+    "href": "frc/ledgers/master/gravity.html#p00198",
+    "script": "frc/ledgers/master/gravity.py",
+    "line": 391,
+    "verdict": "pass"
+   },
+   "declarations": [
+    {
+     "lib": "FrcCore",
+     "module": "FrcCore/Keys/Gravity",
+     "name": "FRC.Ledger.p00198"
+    }
+   ],
+   "aliases": [],
+   "rows": [
+    "00:E11"
+   ]
+  },
+  {
    "key": "p00059",
    "origin": "00",
    "statement": "Quantum mechanics: the Born weighting on the Subject's ledger is one declared identification, that registration data are sample pairs, plus counting theorems (C8, C10, C11, 22:C13). Falsifier: outcome tallies on the stationary core-valued $Q_4$ sector that are not the pair-form ratios, or a real-amplitude network behaviour (22:C13).",
@@ -3641,20 +3666,6 @@
    "realisations": [
     "p00047",
     "p27012"
-   ]
-  },
-  {
-   "key": "p00094",
-   "origin": "00",
-   "statement": "The induced-relaxation theorem, chart-free form: derive the registered adjacency chart and its homogeneity from the one Carrier action. Chart-relative form proved (21-gravity); pillars: relative-cycle defect, compression identity, pair-tally current.",
-   "origin_row": "00:T1",
-   "tag": "O",
-   "tier": null,
-   "check": null,
-   "declarations": [],
-   "aliases": [],
-   "rows": [
-    "00:T1"
    ]
   },
   {
@@ -26975,7 +26986,7 @@
     "py": {
      "href": "frc/ledgers/master/gravity.html#p00052",
      "script": "frc/ledgers/master/gravity.py",
-     "line": 105,
+     "line": 110,
      "verdict": "pass"
     },
     "lean": [
@@ -27013,7 +27024,7 @@
     "py": {
      "href": "frc/ledgers/master/gravity.html#p00154",
      "script": "frc/ledgers/master/gravity.py",
-     "line": 140,
+     "line": 145,
      "verdict": "pass"
     },
     "lean": [
@@ -27053,7 +27064,7 @@
     "py": {
      "href": "frc/ledgers/master/gravity.html#p00055",
      "script": "frc/ledgers/master/gravity.py",
-     "line": 176,
+     "line": 181,
      "verdict": "pass"
     },
     "lean": [
@@ -27092,7 +27103,7 @@
     "py": {
      "href": "frc/ledgers/master/gravity.html#p00056",
      "script": "frc/ledgers/master/gravity.py",
-     "line": 215,
+     "line": 220,
      "verdict": "pass"
     },
     "lean": [
@@ -27130,7 +27141,7 @@
     "py": {
      "href": "frc/ledgers/master/gravity.html#p00176",
      "script": "frc/ledgers/master/gravity.py",
-     "line": 253,
+     "line": 258,
      "verdict": "pass"
     },
     "lean": [
@@ -27172,7 +27183,7 @@
     "py": {
      "href": "frc/ledgers/master/gravity.html#p00058",
      "script": "frc/ledgers/master/gravity.py",
-     "line": 291,
+     "line": 296,
      "verdict": "pass"
     },
     "lean": [
@@ -27215,7 +27226,7 @@
     "py": {
      "href": "frc/ledgers/master/gravity.html#p00147",
      "script": "frc/ledgers/master/gravity.py",
-     "line": 324,
+     "line": 329,
      "verdict": "pass"
     },
     "lean": [
@@ -28356,25 +28367,43 @@
   {
    "paper": "00",
    "no": 0,
-   "rid": "00:T1",
-   "key": "p00094",
-   "label": "T1",
-   "block": "T",
-   "tag": "O",
-   "name": "The induced-relaxation theorem, chart-free form",
-   "statement": "The induced-relaxation theorem, chart-free form: derive the registered adjacency chart and its homogeneity from the one Carrier action. Chart-relative form proved (21-gravity); pillars: relative-cycle defect, compression identity, pair-tally current.",
+   "rid": "00:E11",
+   "key": "p00198",
+   "label": "E11",
+   "block": "E",
+   "tag": "D",
+   "name": "The registered adjacency chart (declared)",
+   "statement": "\\textbf{The registered adjacency chart} (declared): a translation-homogeneous bounded-degree chart on the Subject's cells, locally flat and three-dimensional [chart], the discrete twin of C23. The drive induces the scale-time direction alone, and the Carrier's residues carry no chart flat to the horizon radius beyond dimension one; the three dimensions are the frame freedoms (C6). Given the chart, induced relaxation holds (21:C22).",
    "source": "21-grav",
-   "page": "00-ledger.html#T1",
+   "page": "00-ledger.html#E11",
    "witness": {
     "script": null,
-    "py": null,
-    "lean": []
+    "py": {
+     "href": "frc/ledgers/master/gravity.html#p00198",
+     "script": "frc/ledgers/master/gravity.py",
+     "line": 391,
+     "verdict": "pass"
+    },
+    "lean": [
+     {
+      "lib": "FrcCore",
+      "module": "FrcCore/Keys/Gravity",
+      "name": "FRC.Ledger.p00198",
+      "tier": 0,
+      "ok": true,
+      "page": "lean/core/Keys.Gravity.html#FRC.Ledger.p00198"
+     }
+    ]
    },
-   "refs": [],
+   "refs": [
+    "p00171",
+    "p00182",
+    "p21037"
+   ],
    "sources": [
     "21-grav"
    ],
-   "text": "The induced-relaxation theorem, chart-free form: The induced-relaxation theorem, chart-free form: derive the registered adjacency chart and its homogeneity from the one Carrier action. Chart-relative form proved (21-gravity); pillars: relative-cycle defect, compression identity, pair-tally current. 21-grav"
+   "text": "The registered adjacency chart (declared): The registered adjacency chart (declared): a translation-homogeneous bounded-degree chart on the Subject's cells, locally flat and three-dimensional [chart], the discrete twin of C23. The drive induces the scale-time direction alone, and the Carrier's residues carry no chart flat to the horizon radius beyond dimension one; the three dimensions are the frame freedoms (C6). Given the chart, induced relaxation holds (21:C22). 21-grav"
   },
   {
    "paper": "00",
@@ -46599,7 +46628,7 @@
    "tag": "T",
    "name": null,
    "statement": "Induced relaxation, chart-relative form: given the registered adjacency chart with unit capacity, the weak-defect short-memory reading of $K_{\\mathrm S}=P_{\\mathrm S}U_{\\mathrm C}P_{\\mathrm S}$ is the gradient flow of the coherence free energy with the pair-tally current --- proof by composition of the defect pillars, the forced leading contraction, and the return chains.",
-   "source": "Thm.~\\ref{thm:indrelax}\\newline \\pywit{gravity}{p21037}{C22}",
+   "source": "Thm.~\\ref{thm:indrelax}; rests on 00:E11\\newline \\pywit{gravity}{p21037}{C22}",
    "page": "21-gravity/index.html#C22",
    "witness": {
     "py": {
@@ -46611,9 +46640,9 @@
     "lean": []
    },
    "refs": [
-    "p00094"
+    "p00198"
    ],
-   "text": "Induced relaxation, chart-relative form: given the registered adjacency chart with unit capacity, the weak-defect short-memory reading of $K_{\\mathrm S}=P_{\\mathrm S}U_{\\mathrm C}P_{\\mathrm S}$ is the gradient flow of the coherence free energy with the pair-tally current — proof by composition of the defect pillars, the forced leading contraction, and the return chains. Thm. thm:indrelax p21037"
+   "text": "Induced relaxation, chart-relative form: given the registered adjacency chart with unit capacity, the weak-defect short-memory reading of $K_{\\mathrm S}=P_{\\mathrm S}U_{\\mathrm C}P_{\\mathrm S}$ is the gradient flow of the coherence free energy with the pair-tally current — proof by composition of the defect pillars, the forced leading contraction, and the return chains. Thm. thm:indrelax; rests on 00:E11 p21037"
   },
   {
    "paper": "21-grav",
