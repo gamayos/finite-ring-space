@@ -514,7 +514,29 @@ const PUBLICATIONS = [
       "kind": "preprint"
     },
     "doi": "https://doi.org/10.20944/preprints202606.1781.v1",
-    "doiLabel": "pp202606.1781.v1"
+    "doiLabel": "pp202606.1781.v1",
+    "ledger": "26-pnp/index.html",
+    "schema": true,
+    "links": [
+      {
+        "href": "https://colab.research.google.com/github/gamayos/finite-ring-space/blob/main/frc/ledgers/p26_pnp.ipynb",
+        "label": "python",
+        "count": 15,
+        "title": "15 predicates checked, all passing: the notebook p26_pnp.ipynb on Google Colab, one cell per predicate"
+      },
+      {
+        "href": "https://live.lean-lang.org/#project=lean-v4.34.0&url=https://finitering.space/lean/web/core/Pnp.lean",
+        "label": "lean",
+        "count": 12,
+        "title": "12 predicates proved in the core (no axioms), 1 of them also on Mathlib: the core module Pnp as one executable file (plain Lean, no Mathlib) in Lean Live"
+      },
+      {
+        "href": "https://live.lean-lang.org/#project=mathlib-stable&url=https://finitering.space/lean/web/ml/Pnp.lean",
+        "label": "lean-mathlib",
+        "count": 3,
+        "title": "3 predicates proved on Mathlib (classical), 1 of them also in the core: the module Pnp as one file on Mathlib in Lean Live"
+      }
+    ]
   },
   {
     "key": "27-fld",

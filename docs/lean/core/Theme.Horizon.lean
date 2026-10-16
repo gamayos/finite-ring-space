@@ -108,17 +108,17 @@ theorem mode_expansion (F : Frame p κ g) (v : Nat → Shell p) {j : Nat} (hj : 
 
 /-! ## The scale-shift (20:E1, 20:E12 (iii)) -/
 
-/-- 20:E1, 20:E12 — the power characters are eigenvectors of the scale-shift `x ↦ g^r x` in the `𝔽_p` reading:
+/-- 20:E1, 20:E12, 26:B3 — the power characters are eigenvectors of the scale-shift `x ↦ g^r x` in the `𝔽_p` reading:
 `(g^r x)^k = (g^r)^k · x^k`. -/
 theorem shift_power_character (r k : Nat) (x : Shell p) : (g ^ r * x) ^ k = (g ^ r) ^ k * x ^ k :=
   mul_pow _ _ _
 
-/-- 20:E12 (iii), Z10 — the eigenvalue `(g^r)^k` of the mode `k` under the scale-shift is a `(p − 1)`-th root of
+/-- 20:E12 (iii), 20:Z10, 26:B3 — the eigenvalue `(g^r)^k` of the mode `k` under the scale-shift is a `(p − 1)`-th root of
 unity, independent of the vector. -/
 theorem eigenphase (F : Frame p κ g) (r k : Nat) : ((g ^ r) ^ k) ^ (p - 1) = 1 := by
   rw [pow_mul_comm, pow_mul_comm g r (p - 1), F.pow_n, one_pow, one_pow]
 
-/-- 20:E12, 20:E1 — clause (iii) in the `𝔽_p` reading: the fixed-point count of the scale-shift, the trace of its
+/-- 20:E12, 20:E1, 26:B3 — clause (iii) in the `𝔽_p` reading: the fixed-point count of the scale-shift, the trace of its
 permutation matrix: `x ↦ g^r x` fixes every nonzero residue when `(p − 1) ∣ r` and none otherwise,
 `Tr S^r = (p − 1)·[(p − 1) ∣ r]`; the shell's trace carries no prime data. -/
 theorem shift_trace (F : Frame p κ g) (r : Nat) :
@@ -245,7 +245,7 @@ theorem pow_mod_of_pow_eq_one {ω : Shell q} {m : Nat} (hm : 0 < m) (hω : ω ^ 
       _ = (ω ^ m) ^ c * ω ^ (l % m) := by rw [pow_add, pow_mul]
       _ = ω ^ (l % m) := by rw [hω, one_pow, one_mul]
 
-/-- 20:B7 — the flat ground state: in a shell `𝔽_q` with a frame (no zero divisors) and an element `ω` of
+/-- 20:B7, 26:B5 — the flat ground state: in a shell `𝔽_q` with a frame (no zero divisors) and an element `ω` of
 order exactly `m`, the Ramanujan sum `Σ_{a=1}^{m−1} ω^{an}` equals `−1` for every `n ≢ 0 (mod m)`. With
 `m = p` this is `c_p(n) ≡ −1`: the mode at the spectral origin carries no prime information. -/
 theorem ramanujan_sum (F : Frame q κ' h) {m : Nat} (hm : 0 < m) {ω : Shell q} (hω : IsPrimitive ω m)
@@ -263,6 +263,15 @@ theorem ramanujan_sum (F : Frame q κ' h) {m : Nat} (hm : 0 < m) {ω : Shell q} 
   rw [sum_congr (m - 1) e]
   rw [add_comm] at h0
   exact eq_neg_of_add_eq_zero h0
+
+/-- 26:B5 — the Ramanujan sum at `n = 0`: `Σ_{a=1}^{m−1} ω^{0·a} = m − 1` (the additive character sum over the units
+is `P − 1` for `c = 0`, against `−1` for `c ≠ 0`); no hypothesis on `ω`. -/
+theorem ramanujan_zero (ω : Shell q) (m : Nat) :
+    sumRange (fun a => ω ^ (0 * (a + 1))) (m - 1) = ofNat (m - 1) := by
+  have e : ∀ a, a < m - 1 → (fun a => ω ^ (0 * (a + 1))) a = (fun _ => (1 : Shell q)) a := fun a _ => by
+    show ω ^ (0 * (a + 1)) = 1
+    rw [Nat.zero_mul, pow_zero]
+  rw [sum_congr (m - 1) e, sum_const, mul_one]
 
 /-- 20:B7 [value] — on `𝔽₅₃` with `ω = 16` of order `13`: `c_{13}(n) = Σ_{a=1}^{12} ω^{an} = −1` for every
 `0 < n < 13`, and `12 = m − 1` at `n = 0`. -/

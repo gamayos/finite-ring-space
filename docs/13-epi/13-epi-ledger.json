@@ -3,7 +3,7 @@
  "tree": "13-epi-20260713",
  "title": "Finite Field Realisation of the Classical Constants π and e",
  "doi": "https://doi.org/10.20944/preprints202607.1141.v2",
- "generated": "15 October 2026",
+ "generated": "16 October 2026",
  "blocks": [
   {
    "letter": "A",
@@ -578,7 +578,7 @@
    {
     "name": "FRC.Shell.Frame.orientation_class",
     "module": "FrcCore/FrameCore",
-    "line": 278,
+    "line": 279,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -1500,7 +1500,7 @@
    {
     "name": "FRC.Shell.Frame.half_period",
     "module": "FrcCore/FrameCore",
-    "line": 258,
+    "line": 259,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -1849,7 +1849,7 @@
    {
     "name": "FRC.Shell.Frame.two_pi",
     "module": "FrcCore/FrameCore",
-    "line": 316,
+    "line": 317,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -1882,7 +1882,7 @@
    {
     "name": "FRC.Shell.Frame.two_pi",
     "module": "FrcCore/FrameCore",
-    "line": 316,
+    "line": 317,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -1891,7 +1891,7 @@
    {
     "name": "FRC.Shell.Frame.quarter_turn_sq",
     "module": "FrcCore/FrameCore",
-    "line": 265,
+    "line": 266,
     "axioms": [],
     "tier": 0,
     "ok": true,

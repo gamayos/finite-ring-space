@@ -257,7 +257,7 @@ theorem exists_primitive (hp : FRC.Nat.isPrime p) :
   obtain ⟨g, hg0, hg⟩ := exists_order_of_dvd hp (p - 1) (p - 1) (Nat.le_refl _) hp1 ⟨1, (Nat.mul_one _).symm⟩
   exact ⟨g, hg0, hg.2.1, hg.2.2⟩
 
-/-- The powers `g⁰, …, g^{p−2}` of a primitive root are distinct. -/
+/-- 26:E10, 26:F10 — the powers `g⁰, …, g^{p−2}` of a primitive root are distinct. -/
 theorem primitive_pow_inj (hp : FRC.Nat.isPrime p) {g : Shell p} (hg0 : g ≠ 0) (hg : HasOrder g (p - 1))
     {i j : Nat} (hi : i < p - 1) (hj : j < p - 1) (h : g ^ i = g ^ j) : i = j := by
   have key : ∀ {i j : Nat}, i ≤ j → j < p - 1 → g ^ i = g ^ j → i = j := by
@@ -275,7 +275,7 @@ theorem primitive_pow_inj (hp : FRC.Nat.isPrime p) {g : Shell p} (hg0 : g ≠ 0)
     | .inl hlt => key (Nat.le_of_lt hlt) hj h
     | .inr hge => (key hge hi h.symm).symm
 
-/-- A12 — every prime carries a frame: the prime shell `𝔽_p` has a drive `g`, a primitive root of order `p − 1`, and
+/-- 00:A12, 26:E10, 26:F10 — every prime carries a frame: the prime shell `𝔽_p` has a drive `g`, a primitive root of order `p − 1`, and
 its powers `g^m`, `m < p − 1`, reach every nonzero residue (`⟨g⟩ = 𝔽_p^×`, the pigeonhole). -/
 theorem exists_drive (hp : FRC.Nat.isPrime p) :
     ∃ g : Shell p, (g ^ (p - 1) = 1 ∧ ∀ l, l < p - 1 → 0 < l → g ^ l ≠ 1) ∧

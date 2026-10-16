@@ -3,7 +3,7 @@
  "tree": "1-algebra-axioms",
  "title": "Relativistic Algebra over Finite Ring Continuum",
  "doi": "https://doi.org/10.3390/axioms14080636",
- "generated": "13 October 2026",
+ "generated": "16 October 2026",
  "blocks": [
   {
    "letter": "A",
@@ -411,7 +411,7 @@
    {
     "name": "FRC.Shell.Frame.quarter_turn_sq",
     "module": "FrcCore/FrameCore",
-    "line": 265,
+    "line": 266,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -871,7 +871,7 @@
    {
     "name": "FRC.Shell.Frame.no_south_pole",
     "module": "FrcCore/FrameCore",
-    "line": 353,
+    "line": 354,
     "axioms": [],
     "tier": 0,
     "ok": true,

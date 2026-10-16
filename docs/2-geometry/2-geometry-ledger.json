@@ -3,7 +3,7 @@
  "tree": "2-geometry-20260706",
  "title": "Geometry and Constants in Finite Ring Continuum",
  "doi": "https://doi.org/10.3390/sym18050751",
- "generated": "13 October 2026",
+ "generated": "16 October 2026",
  "blocks": [
   {
    "letter": "A",
@@ -479,7 +479,7 @@
    {
     "name": "FRC.Shell.Frame.half_period",
     "module": "FrcCore/FrameCore",
-    "line": 258,
+    "line": 259,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -503,7 +503,7 @@
    {
     "name": "FRC.Shell.Frame.quarter_turn_order",
     "module": "FrcCore/FrameCore",
-    "line": 270,
+    "line": 271,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -538,7 +538,7 @@
    {
     "name": "FRC.Shell.Frame.orientation_class",
     "module": "FrcCore/FrameCore",
-    "line": 278,
+    "line": 279,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -562,7 +562,7 @@
    {
     "name": "FRC.Shell.Frame.euler_identity",
     "module": "FrcCore/FrameCore",
-    "line": 306,
+    "line": 307,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -674,7 +674,7 @@
     "axioms": [],
     "tier": 0,
     "ok": true,
-    "doc": "2:F1 (Prop. 6.1) — `g` is a principal root of unity: `g^n = 1`, `Σ_{j<n} (g^k)^j = 0` for `0 < k < n`, and `n = p − 1` reads as `−1` in the shell."
+    "doc": "2:F1 (Prop. 6.1), 26:B5, 26:H3 — `g` is a principal root of unity: `g^n = 1`, `Σ_{j<n} (g^k)^j = 0` for `0 < k < n`, and `n = p − 1` reads as `−1` in the shell."
    }
   ],
   "F3": [
@@ -694,11 +694,11 @@
    {
     "name": "FRC.Shell.Frame.dft_inverse",
     "module": "FrcCore/Transform",
-    "line": 88,
+    "line": 89,
     "axioms": [],
     "tier": 0,
     "ok": true,
-    "doc": "2:F3 (Prop. 6.3), 6:B5 — the inversion of the shell Fourier matrix, entrywise: with `W k j = g^{jk}` and `W' l j = −g^{(n−j)l}` (`= −g^{−lj}`), `Σ_{l<n} W k l · W' l j = [k = j]`."
+    "doc": "2:F3 (Prop. 6.3), 6:B5, 26:H3 — the inversion of the shell Fourier matrix, entrywise: with `W k j = g^{jk}` and `W' l j = −g^{(n−j)l}` (`= −g^{−lj}`), `Σ_{l<n} W k l · W' l j = [k = j]`. The matrix `g^{jk}` on the full cycle `n = p − 1` is both the longitudinal character table (26:B3) and the additive transform on the shell (26:H3)."
    }
   ],
   "F4": [

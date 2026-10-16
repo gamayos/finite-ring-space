@@ -3,7 +3,7 @@
  "tree": "6-fourier-20260716",
  "title": "Scale-Shift and Fractional Fourier Transform as Rotations over Finite Holographic Substrate",
  "doi": "https://doi.org/10.20944/preprints202606.0127.v1",
- "generated": "13 October 2026",
+ "generated": "16 October 2026",
  "blocks": [
   {
    "letter": "A",
@@ -351,7 +351,7 @@
    {
     "name": "FRC.Shell.Frame.euler_identity",
     "module": "FrcCore/FrameCore",
-    "line": 306,
+    "line": 307,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -362,7 +362,7 @@
    {
     "name": "FRC.Shell.Frame.orientation_class",
     "module": "FrcCore/FrameCore",
-    "line": 278,
+    "line": 279,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -386,7 +386,7 @@
    {
     "name": "FRC.Shell.Frame.W_sq'",
     "module": "FrcCore/Transform",
-    "line": 219,
+    "line": 220,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -395,7 +395,7 @@
    {
     "name": "FRC.Shell.Frame.F_sq",
     "module": "FrcCore/Transform",
-    "line": 234,
+    "line": 235,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -404,7 +404,7 @@
    {
     "name": "FRC.Shell.Frame.J_sq",
     "module": "FrcCore/Transform",
-    "line": 223,
+    "line": 224,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -457,7 +457,7 @@
    {
     "name": "FRC.Shell.Frame.W_J_comm",
     "module": "FrcCore/Transform",
-    "line": 242,
+    "line": 243,
     "axioms": [],
     "tier": 0,
     "ok": true,

@@ -30,4 +30,5 @@ import FrcLedger.Entropy
 import FrcLedger.Gravity
 import FrcLedger.S13
 import FrcLedger.Qm
+import FrcLedger.Pnp
 import FrcLedger.Dirac

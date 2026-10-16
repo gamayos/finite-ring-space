@@ -1,5 +1,5 @@
 /-! FrcCore — the FRC substrate from first principles, one file for the live instance (no Mathlib,
-no axioms). Generated from FrcCore/*.lean in dependency order (Nat, Pigeonhole, Shell, Series, Cycle, Ring, FrameCore, Frame, Parity, Transform, Orbit, Sum, Theme.Projective, Meridian, Theme.Fourier, Theme.Fractional, Theme.Lifts, Theme.Dichotomy, Theme.Rotations, Theme.Heisenberg, Theme.Spectra, Theme.Exclusivity, Theme.Shift, Theme.Quadratic, Theme.Extension, Poly, Theme.Numbers, Theme.Logic, Theme.SecondOrder, Theme.Formation, Theme.Field, Theme.Foundation, Theme.Drive, Theme.Carrier, Theme.Subject, Theme.Pair, Theme.Hopf, Theme.Symbol, Theme.Gravity, Theme.Lattice, Theme.Drift, Theme.Quantum, Theme.Observation, Theme.Interference, Theme.Composite, Theme.Unitary, Theme.Interactions, Theme.Horizon, Keys.Fourier, Instances, Theme.Domain, Keys.Frame, Fourier, Keys.Numbers, Keys.Projective, Algebra, Epi, Dimensions, Quaternion, Theme.Tally, Keys.Extension, Causality, Representation, Keys.Logic, Reductio, Godel, Keys.Foundation, Finitism, Geometry, Complex, Keys.Horizon, Rh, Entropy, Keys.Gravity, Gravity, Dirac, Keys.Subject, S13, Keys.Quantum, Qm, Keys.Carrier, Keys.Interactions)
+no axioms). Generated from FrcCore/*.lean in dependency order (Nat, Pigeonhole, Shell, Series, Cycle, Ring, FrameCore, Frame, Parity, Transform, Orbit, Sum, Theme.Projective, Meridian, Theme.Fourier, Theme.Fractional, Theme.Lifts, Theme.Dichotomy, Theme.Rotations, Theme.Heisenberg, Theme.Spectra, Theme.Exclusivity, Theme.Shift, Theme.Quadratic, Theme.Extension, Poly, Theme.Numbers, Theme.Logic, Theme.SecondOrder, Theme.Formation, Theme.Field, Theme.Foundation, Theme.Drive, Theme.Carrier, Theme.Subject, Theme.Pair, Theme.Hopf, Theme.Symbol, Theme.Gravity, Theme.Lattice, Theme.Drift, Theme.Quantum, Theme.Observation, Theme.Interference, Theme.Composite, Theme.Unitary, Theme.Interactions, Theme.Horizon, Theme.Ladder, Keys.Fourier, Instances, Theme.Domain, Keys.Frame, Fourier, Keys.Numbers, Keys.Projective, Algebra, Epi, Dimensions, Quaternion, Theme.Tally, Keys.Extension, Causality, Representation, Keys.Logic, Reductio, Godel, Keys.Foundation, Finitism, Geometry, Complex, Keys.Horizon, Rh, Entropy, Keys.Gravity, Gravity, Dirac, Keys.Subject, S13, Keys.Quantum, Qm, Pnp, Keys.Carrier, Keys.Interactions)
 by make_core_web.py; the modules' own headers follow. Check any declaration with `#print axioms`. -/
 
 /-! inlined: FrcCore/Nat.lean -/
@@ -1431,7 +1431,7 @@ theorem one_ne_zero (F : Frame p κ g) : (1 : Shell p) ≠ 0 := fun h => by
 
 theorem pow_n (F : Frame p κ g) : g ^ (p - 1) = 1 := F.prim.1
 
-/-- Powers of the drive are periodic with period `p − 1`. -/
+/-- 26:G2 — powers of the drive are periodic with period `p − 1`. -/
 theorem pow_mod (F : Frame p κ g) (l : Nat) : g ^ l = g ^ (l % (p - 1)) := by
   match FRC.Nat.mod_spec (p - 1) F.n_pos l with
   | ⟨q, hq⟩ =>
@@ -1448,6 +1448,7 @@ theorem mod_eq_zero_of_pow_eq_one (F : Frame p κ g) {l : Nat} (h : g ^ l = 1) :
     | .isTrue h0 => h0
     | .isFalse h0 => absurd h (F.prim.2 _ (Nat.mod_lt l F.n_pos) (Nat.pos_of_ne_zero h0))
 
+/-- 26:B3 — the powers `g⁰, …, g^{n−1}` of the drive are distinct: `g^i = g^j` with `i, j < n` forces `i = j`. -/
 theorem pow_inj (F : Frame p κ g) {i j : Nat} (hi : i < p - 1) (hj : j < p - 1) (h : g ^ i = g ^ j) :
     i = j := by
   have key : ∀ {i j : Nat}, i ≤ j → j < p - 1 → g ^ i = g ^ j → i = j := by
@@ -1517,7 +1518,7 @@ theorem powList_nodup (F : Frame p κ g) : ∀ {n : Nat}, n ≤ p - 1 → Pigeon
         Nat.lt_irrefl n (this ▸ hm),
     powList_nodup F (Nat.le_of_lt hn)⟩
 
-/-- 00:A12 — the drive generates: every nonzero residue is a power `g^m`, `m < p − 1` (the pigeonhole). -/
+/-- 00:A12, 26:E10, 26:F10 — the drive generates: every nonzero residue is a power `g^m`, `m < p − 1` (the pigeonhole). -/
 theorem generates (F : Frame p κ g) : Generates g (p - 1) := by
   intro v hv hv0
   have hb : ∀ e, Pigeonhole.mem e (powList g (p - 1)) → 1 ≤ e ∧ e ≤ p - 1 := fun e he =>
@@ -2062,7 +2063,7 @@ theorem ofNat_n (F : Frame p κ g) : (ofNat (p - 1) : Shell p) = -1 := by
   rw [val_ofNat, val_neg, val_one, FRC.Nat.mod_eq_of_lt F.one_lt_p,
     FRC.Nat.mod_eq_of_lt (Nat.sub_lt Pos.pos (Nat.zero_lt_succ 0))]
 
-/-- 2:F1 (Prop. 6.1) — `g` is a principal root of unity: `g^n = 1`, `Σ_{j<n} (g^k)^j = 0` for
+/-- 2:F1 (Prop. 6.1), 26:B5, 26:H3 — `g` is a principal root of unity: `g^n = 1`, `Σ_{j<n} (g^k)^j = 0` for
 `0 < k < n`, and `n = p − 1` reads as `−1` in the shell. -/
 theorem principal_root (F : Frame p κ g) (k : Nat) (hk0 : 0 < k) (hk : k < p - 1) :
     g ^ (p - 1) = 1 ∧ sumRange (fun j => (g ^ k) ^ j) (p - 1) = 0 ∧ (ofNat (p - 1) : Shell p) = -1 := by
@@ -2105,8 +2106,9 @@ theorem pow_shift_eq_one_iff (F : Frame p κ g) {k j : Nat} (hk : k < p - 1) (hj
   · intro e
     rw [e, FRC.Nat.add_sub_of_le (Nat.le_of_lt hj), F.pow_n]
 
-/-- 2:F3 (Prop. 6.3), 6:B5 — the inversion of the shell Fourier matrix, entrywise: with
-`W k j = g^{jk}` and `W' l j = −g^{(n−j)l}` (`= −g^{−lj}`), `Σ_{l<n} W k l · W' l j = [k = j]`. -/
+/-- 2:F3 (Prop. 6.3), 6:B5, 26:H3 — the inversion of the shell Fourier matrix, entrywise: with
+`W k j = g^{jk}` and `W' l j = −g^{(n−j)l}` (`= −g^{−lj}`), `Σ_{l<n} W k l · W' l j = [k = j]`. The matrix `g^{jk}` on the
+full cycle `n = p − 1` is both the longitudinal character table (26:B3) and the additive transform on the shell (26:H3). -/
 theorem dft_inverse (F : Frame p κ g) {k j : Nat} (hk : k < p - 1) (hj : j < p - 1) :
     sumRange (fun l => g ^ (l * k) * -(g ^ ((p - 1 - j) * l))) (p - 1) = if k = j then 1 else 0 := by
   have hsum : sumRange (fun l => g ^ (l * k) * -(g ^ ((p - 1 - j) * l))) (p - 1)
@@ -10478,7 +10480,7 @@ theorem exists_primitive (hp : FRC.Nat.isPrime p) :
   obtain ⟨g, hg0, hg⟩ := exists_order_of_dvd hp (p - 1) (p - 1) (Nat.le_refl _) hp1 ⟨1, (Nat.mul_one _).symm⟩
   exact ⟨g, hg0, hg.2.1, hg.2.2⟩
 
-/-- The powers `g⁰, …, g^{p−2}` of a primitive root are distinct. -/
+/-- 26:E10, 26:F10 — the powers `g⁰, …, g^{p−2}` of a primitive root are distinct. -/
 theorem primitive_pow_inj (hp : FRC.Nat.isPrime p) {g : Shell p} (hg0 : g ≠ 0) (hg : HasOrder g (p - 1))
     {i j : Nat} (hi : i < p - 1) (hj : j < p - 1) (h : g ^ i = g ^ j) : i = j := by
   have key : ∀ {i j : Nat}, i ≤ j → j < p - 1 → g ^ i = g ^ j → i = j := by
@@ -10496,7 +10498,7 @@ theorem primitive_pow_inj (hp : FRC.Nat.isPrime p) {g : Shell p} (hg0 : g ≠ 0)
     | .inl hlt => key (Nat.le_of_lt hlt) hj h
     | .inr hge => (key hge hi h.symm).symm
 
-/-- A12 — every prime carries a frame: the prime shell `𝔽_p` has a drive `g`, a primitive root of order `p − 1`, and
+/-- 00:A12, 26:E10, 26:F10 — every prime carries a frame: the prime shell `𝔽_p` has a drive `g`, a primitive root of order `p − 1`, and
 its powers `g^m`, `m < p − 1`, reach every nonzero residue (`⟨g⟩ = 𝔽_p^×`, the pigeonhole). -/
 theorem exists_drive (hp : FRC.Nat.isPrime p) :
     ∃ g : Shell p, (g ^ (p - 1) = 1 ∧ ∀ l, l < p - 1 → 0 < l → g ^ l ≠ 1) ∧
@@ -16999,17 +17001,17 @@ theorem mode_expansion (F : Frame p κ g) (v : Nat → Shell p) {j : Nat} (hj : 
 
 /-! ## The scale-shift (20:E1, 20:E12 (iii)) -/
 
-/-- 20:E1, 20:E12 — the power characters are eigenvectors of the scale-shift `x ↦ g^r x` in the `𝔽_p` reading:
+/-- 20:E1, 20:E12, 26:B3 — the power characters are eigenvectors of the scale-shift `x ↦ g^r x` in the `𝔽_p` reading:
 `(g^r x)^k = (g^r)^k · x^k`. -/
 theorem shift_power_character (r k : Nat) (x : Shell p) : (g ^ r * x) ^ k = (g ^ r) ^ k * x ^ k :=
   mul_pow _ _ _
 
-/-- 20:E12 (iii), Z10 — the eigenvalue `(g^r)^k` of the mode `k` under the scale-shift is a `(p − 1)`-th root of
+/-- 20:E12 (iii), 20:Z10, 26:B3 — the eigenvalue `(g^r)^k` of the mode `k` under the scale-shift is a `(p − 1)`-th root of
 unity, independent of the vector. -/
 theorem eigenphase (F : Frame p κ g) (r k : Nat) : ((g ^ r) ^ k) ^ (p - 1) = 1 := by
   rw [pow_mul_comm, pow_mul_comm g r (p - 1), F.pow_n, one_pow, one_pow]
 
-/-- 20:E12, 20:E1 — clause (iii) in the `𝔽_p` reading: the fixed-point count of the scale-shift, the trace of its
+/-- 20:E12, 20:E1, 26:B3 — clause (iii) in the `𝔽_p` reading: the fixed-point count of the scale-shift, the trace of its
 permutation matrix: `x ↦ g^r x` fixes every nonzero residue when `(p − 1) ∣ r` and none otherwise,
 `Tr S^r = (p − 1)·[(p − 1) ∣ r]`; the shell's trace carries no prime data. -/
 theorem shift_trace (F : Frame p κ g) (r : Nat) :
@@ -17136,7 +17138,7 @@ theorem pow_mod_of_pow_eq_one {ω : Shell q} {m : Nat} (hm : 0 < m) (hω : ω ^ 
       _ = (ω ^ m) ^ c * ω ^ (l % m) := by rw [pow_add, pow_mul]
       _ = ω ^ (l % m) := by rw [hω, one_pow, one_mul]
 
-/-- 20:B7 — the flat ground state: in a shell `𝔽_q` with a frame (no zero divisors) and an element `ω` of
+/-- 20:B7, 26:B5 — the flat ground state: in a shell `𝔽_q` with a frame (no zero divisors) and an element `ω` of
 order exactly `m`, the Ramanujan sum `Σ_{a=1}^{m−1} ω^{an}` equals `−1` for every `n ≢ 0 (mod m)`. With
 `m = p` this is `c_p(n) ≡ −1`: the mode at the spectral origin carries no prime information. -/
 theorem ramanujan_sum (F : Frame q κ' h) {m : Nat} (hm : 0 < m) {ω : Shell q} (hω : IsPrimitive ω m)
@@ -17154,6 +17156,15 @@ theorem ramanujan_sum (F : Frame q κ' h) {m : Nat} (hm : 0 < m) {ω : Shell q} 
   rw [sum_congr (m - 1) e]
   rw [add_comm] at h0
   exact eq_neg_of_add_eq_zero h0
+
+/-- 26:B5 — the Ramanujan sum at `n = 0`: `Σ_{a=1}^{m−1} ω^{0·a} = m − 1` (the additive character sum over the units
+is `P − 1` for `c = 0`, against `−1` for `c ≠ 0`); no hypothesis on `ω`. -/
+theorem ramanujan_zero (ω : Shell q) (m : Nat) :
+    sumRange (fun a => ω ^ (0 * (a + 1))) (m - 1) = ofNat (m - 1) := by
+  have e : ∀ a, a < m - 1 → (fun a => ω ^ (0 * (a + 1))) a = (fun _ => (1 : Shell q)) a := fun a _ => by
+    show ω ^ (0 * (a + 1)) = 1
+    rw [Nat.zero_mul, pow_zero]
+  rw [sum_congr (m - 1) e, sum_const, mul_one]
 
 /-- 20:B7 [value] — on `𝔽₅₃` with `ω = 16` of order `13`: `c_{13}(n) = Σ_{a=1}^{12} ω^{an} = −1` for every
 `0 < n < 13`, and `12 = m − 1` at `n = 0`. -/
@@ -17522,6 +17533,668 @@ theorem turing_phantom {α : Type} (onLine : α → Bool) (l : List α) (hz : �
 end turing
 
 end FRC.Horizon
+
+/-! inlined: FrcCore/Theme/Ladder.lean -/
+
+/-!
+# FrcCore.Theme.Ladder — the horizon theme: the ladder of the four roles, the ascent and the descent (26-pnp, 16 October 2026)
+
+The computational face of the horizon clause (master Z2–Z4, B6), on a frame `(τ; 0, 1, g)` of a prime shell with the
+drive `g` of order `n = p − 1`. The index cycle `C_n` is carried to the units by the ascent `m ↦ g^m`; the descent reads
+the index back. On every shell, with no hypothesis beyond the frame:
+
+* the power map acts on the index as multiplication by `k` — `(g^m)^k = g^{km mod n}` — and its iterates as
+  multiplication by `k^r` (`power_index`, `phase_index`); the ascent is one multiplication per counted step
+  (`ascent_step`); a tower exponent is read modulo `n`, so iterated exponentiation opens no fifth role
+  (`tower_reduces`, the drive's `pow_mod`);
+* multiplication by a unit permutes the units (`mul_perm`), the clause behind the Gauss-sum telescoping;
+* every index `m` has a recentring chart, a translation of the cycle that carries it to one step from the origin
+  (`recentre`, `recentre_inj`);
+* the power map `x ↦ x^k` is a bijection of the units when `k` is invertible modulo `n`, inverted by `x ↦ x^a` with
+  `ak ≡ 1` (`power_bijective_of_unit`); when `d` divides `k` and `n`, its image is the cycle of `g^d`, of exactly
+  `n/d` elements (`power_image`); the gcd enters as a Bezout witness, never by the prelude's `Nat.gcd` (propext);
+* square-and-multiply computes `b^e` with at most `2·bits e` multiplications (`sqmul_spec`, `sqmul_count`,
+  `bits_le_of_lt_pow`);
+* the baby-step–giant-step search, with `m² ≥ n` baby steps `1, g, …, g^{m−1}` (one multiplication each,
+  `baby_step`) and at most `m` giant steps (one multiplication each, `giant_count`), recovers an index `y` with
+  `g^y = g^x` from `g^x` (`bsgs_spec`).
+
+The bit length and the halving are the file's own structural recursions (`half`, `par`, `bits`), since the prelude's
+`Nat.log2` and `Nat.div` lemmas carry `propext`. No axioms.
+-/
+
+namespace FRC.Ladder
+
+open FRC.Shell FRC.Shell.Frame
+
+variable {p : Nat} [Pos p] {κ : Nat} {g : Shell p}
+
+/-! ## The index dynamics of the power map (26:G2, G3) -/
+
+/-- 26:G2, 26:G3 — the power map on the index: `(g^m)^k = g^{km mod n}`, multiplication by `k` on the index cycle. -/
+theorem power_index (F : Frame p κ g) (m k : Nat) : (g ^ m) ^ k = g ^ ((k * m) % (p - 1)) := by
+  rw [← pow_mul, Nat.mul_comm m k, F.pow_mod]
+
+/-- `r` iterates of a map. -/
+def iter {α : Type} (f : α → α) : Nat → α → α
+  | 0, x => x
+  | r + 1, x => iter f r (f x)
+
+/-- 26:G3 — the iterated power map on the index: `P_k^r(g^m) = g^{k^r m mod n}`. -/
+theorem phase_index (F : Frame p κ g) (k : Nat) : ∀ (r m : Nat),
+    iter (fun x : Shell p => x ^ k) r (g ^ m) = g ^ ((k ^ r * m) % (p - 1))
+  | 0, m => by
+    show g ^ m = g ^ ((1 * m) % (p - 1))
+    rw [Nat.one_mul, ← F.pow_mod]
+  | r + 1, m => by
+    show iter (fun x : Shell p => x ^ k) r ((g ^ m) ^ k) = g ^ ((k ^ (r + 1) * m) % (p - 1))
+    rw [power_index F, phase_index F k r, FRC.Nat.mul_mod_mod _ _ _ F.n_pos, Nat.pow_succ,
+      FRC.Nat.mul_assoc, Nat.mul_comm k m, ← FRC.Nat.mul_assoc]
+
+/-- 26:G3, 26:G4 — the ascent is counting along the orbit: `g^{j+1} = g^j · g`, one multiplication per step. -/
+theorem ascent_step (j : Nat) : g ^ (j + 1) = g ^ j * g := pow_succ g j
+
+/-- 26:G2 — a tower exponent is read modulo `n`: `g^{(g^j)} = g^{(g^j) mod n}`; tetration is exponentiation of a
+reduced index, and the two cyclic structures host every iterate. -/
+theorem tower_reduces (F : Frame p κ g) (j : Nat) : g ^ (g ^ j).val = g ^ ((g ^ j).val % (p - 1)) :=
+  F.pow_mod _
+
+/-! ## Multiplication by a unit permutes the units (26:B5) -/
+
+/-- 26:B5 — multiplication by a unit `c` is injective on the shell and reaches every residue. -/
+theorem mul_perm (F : Frame p κ g) {c : Shell p} (hc : c ≠ 0) :
+    (∀ {x y : Shell p}, c * x = c * y → x = y) ∧ ∀ y : Shell p, ∃ x, c * x = y := by
+  refine ⟨fun h => F.mul_left_cancel hc h, fun y => ?_⟩
+  obtain ⟨u, hu⟩ := F.exists_inv hc
+  exact ⟨u * y, by rw [← mul_assoc, hu, one_mul]⟩
+
+/-! ## The recentring chart (26:E8) -/
+
+/-- The translation of the index cycle that carries the index `m` to `1`. -/
+def recentre (n m j : Nat) : Nat := (j + (n - m) + 1) % n
+
+/-- 26:E8 — the recentred witness sits one step from the origin: `g^{recentre m} = g = g^0 · g`. -/
+theorem recentre_witness (F : Frame p κ g) {m : Nat} (hm : m < p - 1) :
+    g ^ recentre (p - 1) m m = g ∧ g = g ^ 0 * g := by
+  refine ⟨?_, by rw [pow_zero, one_mul]⟩
+  unfold recentre
+  rw [← F.pow_mod, FRC.Nat.add_sub_of_le (Nat.le_of_lt hm), pow_succ, F.pow_n, one_mul]
+
+/-- 26:E8 — the recentring is a chart: a bijection of the index cycle (injective on the `n` indices). -/
+theorem recentre_inj (F : Frame p κ g) (m : Nat) {i j : Nat} (hi : i < p - 1) (hj : j < p - 1)
+    (h : recentre (p - 1) m i = recentre (p - 1) m j) : i = j := by
+  unfold recentre at h
+  rw [Nat.add_assoc, Nat.add_assoc] at h
+  have e : g ^ (p - 1 - m + 1) * g ^ i = g ^ (p - 1 - m + 1) * g ^ j := by
+    rw [mul_comm, mul_comm _ (g ^ j), ← pow_add, ← pow_add, F.pow_mod (i + _), F.pow_mod (j + _), h]
+  exact F.pow_inj hi hj (F.mul_left_cancel (F.pow_ne_zero _) e)
+
+/-- 26:E8 — the recentring reaches every index `j < n` (from `i = (j + m + n − 1) % n`): with `recentre_inj`, a
+bijection of the index cycle. -/
+theorem recentre_surj (F : Frame p κ g) {m : Nat} (hm : m < p - 1) {j : Nat} (hj : j < p - 1) :
+    ∃ i, i < p - 1 ∧ recentre (p - 1) m i = j := by
+  have hn := F.n_pos
+  refine ⟨(j + m + (p - 1 - 1)) % (p - 1), Nat.mod_lt _ hn, ?_⟩
+  unfold recentre
+  rw [Nat.add_assoc, FRC.Nat.mod_add_mod _ _ _ hn, ← Nat.add_assoc]
+  have e : j + m + (p - 1 - 1) + (p - 1 - m) + 1 = (p - 1) * 2 + j := by
+    have h1 : m + (p - 1 - m) = p - 1 := FRC.Nat.add_sub_of_le (Nat.le_of_lt hm)
+    have h2 : (p - 1 - 1) + 1 = p - 1 := FRC.Nat.sub_add_cancel hn
+    rw [Nat.add_assoc (j + m + (p - 1 - 1)), Nat.add_assoc (j + m), Nat.add_assoc j,
+      Nat.add_left_comm (p - 1 - 1), ← Nat.add_assoc m, h1, h2, ← Nat.mul_two, Nat.add_comm]
+  rw [e, FRC.Nat.add_mul_mod_self_left _ _ _ hn, FRC.Nat.mod_eq_of_lt hj]
+
+/-! ## The power map: bijective or compressive (26:G5) -/
+
+/-- 26:G5 — when `ak ≡ 1 (mod n)` the power map `x ↦ x^k` is a bijection of the units, inverted by `x ↦ x^a`. -/
+theorem power_bijective_of_unit (F : Frame p κ g) {a k : Nat} (hak : (a * k) % (p - 1) = 1) (m : Nat) :
+    ((g ^ m) ^ k) ^ a = g ^ m ∧ ((g ^ m) ^ a) ^ k = g ^ m := by
+  have key : ∀ u v : Nat, (u * v) % (p - 1) = 1 → ((g ^ m) ^ u) ^ v = g ^ m := fun u v huv => by
+    rw [← pow_mul, ← pow_mul, F.pow_mod, ← FRC.Nat.mul_mod_mod _ _ _ F.n_pos, huv, Nat.mul_one, ← F.pow_mod]
+  exact ⟨key k a (by rw [Nat.mul_comm]; exact hak), key a k hak⟩
+
+/-- 26:G5 — when `d ∣ k`, `n = d·e` and `ak = bn + d` (the gcd as a Bezout witness), the image of the power map
+`x ↦ x^k` on the units is the cycle of `g^d`: every value is a power of `g^d`, every power of `g^d` is a value, and
+the powers `(g^d)^i`, `i < e`, are distinct — the image has exactly `e = n/d` elements. -/
+theorem power_image (F : Frame p κ g) {d e c a b k : Nat} (hn : p - 1 = d * e) (hk : k = d * c)
+    (hbez : a * k = b * (p - 1) + d) :
+    (∀ m : Nat, (g ^ m) ^ k = (g ^ d) ^ (m * c)) ∧
+    (∀ i : Nat, ((g ^ a) ^ i) ^ k = (g ^ d) ^ i) ∧
+    (∀ i j : Nat, i < e → j < e → (g ^ d) ^ i = (g ^ d) ^ j → i = j) := by
+  have hd : 0 < d := by
+    match d, hn with
+    | 0, hn =>
+      have h0 : 0 < 0 * e := hn ▸ F.n_pos
+      rw [Nat.zero_mul] at h0
+      exact absurd h0 (Nat.lt_irrefl 0)
+    | d + 1, _ => exact Nat.zero_lt_succ d
+  refine ⟨fun m => ?_, fun i => ?_, fun i j hi hj h => ?_⟩
+  · rw [← pow_mul, ← pow_mul, hk, Nat.mul_comm d c, ← FRC.Nat.mul_assoc, Nat.mul_comm (m * c) d]
+  · rw [← pow_mul, ← pow_mul, ← pow_mul, FRC.Nat.mul_left_comm, hbez, Nat.left_distrib, pow_add,
+      ← FRC.Nat.mul_assoc, Nat.mul_comm (i * b), pow_mul, F.pow_n, one_pow, one_mul, Nat.mul_comm i d]
+  · rw [← pow_mul, ← pow_mul] at h
+    have hi' : d * i < p - 1 := by rw [hn]; exact Nat.mul_lt_mul_of_pos_left hi hd
+    have hj' : d * j < p - 1 := by rw [hn]; exact Nat.mul_lt_mul_of_pos_left hj hd
+    exact Nat.eq_of_mul_eq_mul_left hd (F.pow_inj hi' hj' h)
+
+
+/-- 26:G5 — the compressive image has at most `e = n/d` elements: every value of `x ↦ x^k` is `(g^d)^i` with `i < e`
+(with `power_image`'s distinctness of those powers, exactly `e`). -/
+theorem power_image_index (F : Frame p κ g) {d e c k : Nat} (hn : p - 1 = d * e) (hk : k = d * c) (m : Nat) :
+    ∃ i, i < e ∧ (g ^ m) ^ k = (g ^ d) ^ i := by
+  have he : 0 < e := by
+    match e, hn with
+    | 0, hn => exact absurd (hn ▸ F.n_pos) (by rw [Nat.mul_zero]; exact Nat.lt_irrefl 0)
+    | e + 1, _ => exact Nat.zero_lt_succ e
+  have hde : (g ^ d) ^ e = 1 := by rw [← pow_mul, ← hn, F.pow_n]
+  have h1 : (g ^ m) ^ k = (g ^ d) ^ (m * c) := by
+    rw [← pow_mul, ← pow_mul, hk, Nat.mul_comm d c, ← FRC.Nat.mul_assoc, Nat.mul_comm (m * c) d]
+  refine ⟨(m * c) % e, Nat.mod_lt _ he, ?_⟩
+  rw [h1]
+  match FRC.Nat.mod_spec e he (m * c) with
+  | ⟨q, hq⟩ =>
+    calc (g ^ d) ^ (m * c) = (g ^ d) ^ (e * q + (m * c) % e) := by rw [← hq]
+      _ = ((g ^ d) ^ e) ^ q * (g ^ d) ^ ((m * c) % e) := by rw [pow_add, pow_mul]
+      _ = (g ^ d) ^ ((m * c) % e) := by rw [hde, one_pow, one_mul]
+
+/-- 26:G5 — the only-if: when `d = gcd(k, n) > 1` the image has fewer than `n` elements (`e < d·e = n`), so the power map
+is no bijection of the units. -/
+theorem compressive_of_gcd (F : Frame p κ g) {d e : Nat} (hn : p - 1 = d * e) (hd : 1 < d) : e < p - 1 := by
+  have he : 0 < e := by
+    match e, hn with
+    | 0, hn => exact absurd (hn ▸ F.n_pos) (by rw [Nat.mul_zero]; exact Nat.lt_irrefl 0)
+    | e + 1, _ => exact Nat.zero_lt_succ e
+  rw [hn]
+  calc e = 1 * e := (Nat.one_mul e).symm
+    _ < d * e := Nat.mul_lt_mul_of_pos_right hd he
+
+/-! ## The bit length (the file's own recursion) -/
+
+/-- The half of a natural number, by structural recursion. -/
+def half : Nat → Nat
+  | 0 => 0
+  | 1 => 0
+  | n + 2 => half n + 1
+
+/-- The parity bit of a natural number. -/
+def par : Nat → Nat
+  | 0 => 0
+  | 1 => 1
+  | n + 2 => par n
+
+theorem half_par : ∀ n : Nat, n = 2 * half n + par n
+  | 0 => rfl
+  | 1 => rfl
+  | n + 2 => by
+    show n + 2 = 2 * (half n + 1) + par n
+    rw [Nat.mul_succ, Nat.add_right_comm, ← half_par n]
+
+theorem par_lt_two : ∀ n : Nat, par n < 2
+  | 0 => Nat.zero_lt_succ 1
+  | 1 => Nat.lt_succ_self 1
+  | n + 2 => par_lt_two n
+
+theorem half_lt : ∀ {n : Nat}, 0 < n → half n < n
+  | 0, h => absurd h (Nat.lt_irrefl 0)
+  | 1, _ => Nat.zero_lt_succ 0
+  | n + 2, _ => by
+    show half n + 1 < n + 2
+    exact Nat.succ_le_succ (Nat.succ_le_succ (half_le n))
+where
+  half_le : ∀ n : Nat, half n ≤ n
+    | 0 => Nat.le_refl 0
+    | 1 => Nat.zero_le 1
+    | n + 2 => Nat.succ_le_succ (Nat.le_trans (half_le n) (Nat.le_succ n))
+
+/-- `a·b < a·c` gives `b < c` (the prelude's lemma carries `propext`). -/
+theorem lt_of_mul_lt_mul_left' {a b c : Nat} (h : a * b < a * c) : b < c :=
+  match Nat.lt_or_ge b c with
+  | .inl hlt => hlt
+  | .inr hge => absurd h (Nat.not_lt_of_le (Nat.mul_le_mul_left a hge))
+
+/-- The bit length by fuel: `bitsAux fuel e` is the length of `e` written in binary when `e ≤ fuel`. -/
+def bitsAux : Nat → Nat → Nat
+  | 0, _ => 0
+  | fuel + 1, e => if e = 0 then 0 else bitsAux fuel (half e) + 1
+
+/-- The bit length of `e` (`0` for `e = 0`). -/
+def bits (e : Nat) : Nat := bitsAux e e
+
+theorem bitsAux_eq : ∀ (f₁ f₂ e : Nat), e ≤ f₁ → e ≤ f₂ → bitsAux f₁ e = bitsAux f₂ e
+  | 0, f₂, e, h₁, _ => by
+    have he : e = 0 := Nat.le_zero.1 h₁
+    subst he
+    match f₂ with
+    | 0 => rfl
+    | f₂ + 1 => rfl
+  | f₁ + 1, 0, e, _, h₂ => by
+    have he : e = 0 := Nat.le_zero.1 h₂
+    subst he; rfl
+  | f₁ + 1, f₂ + 1, e, h₁, h₂ => by
+    show (if e = 0 then 0 else bitsAux f₁ (half e) + 1) = (if e = 0 then 0 else bitsAux f₂ (half e) + 1)
+    match Nat.decEq e 0 with
+    | isTrue he => rw [ite_eq_left he, ite_eq_left he]
+    | isFalse he =>
+      rw [ite_eq_right he, ite_eq_right he]
+      have hl := half_lt (Nat.pos_of_ne_zero he)
+      rw [bitsAux_eq f₁ f₂ (half e) (Nat.le_of_lt_succ (Nat.lt_of_lt_of_le hl h₁))
+        (Nat.le_of_lt_succ (Nat.lt_of_lt_of_le hl h₂))]
+
+/-- 26:F2 — a number below `2^l` has at most `l` bits. -/
+theorem bitsAux_le_of_lt_pow : ∀ (l fuel e : Nat), e ≤ fuel → e < 2 ^ l → bitsAux fuel e ≤ l
+  | l, 0, e, _, _ => Nat.zero_le l
+  | 0, fuel + 1, e, _, he => by
+    match e, he with
+    | 0, _ => exact Nat.le_refl 0
+    | e + 1, he => exact absurd he (Nat.not_lt_of_le (Nat.succ_le_succ (Nat.zero_le e)))
+  | l + 1, fuel + 1, e, hf, he => by
+    show (if e = 0 then 0 else bitsAux fuel (half e) + 1) ≤ l + 1
+    match Nat.decEq e 0 with
+    | isTrue h0 => rw [ite_eq_left h0]; exact Nat.zero_le _
+    | isFalse h0 =>
+      rw [ite_eq_right h0]
+      apply Nat.succ_le_succ
+      have hl := half_lt (Nat.pos_of_ne_zero h0)
+      apply bitsAux_le_of_lt_pow l fuel (half e) (Nat.le_of_lt_succ (Nat.lt_of_lt_of_le hl hf))
+      -- `2 · half e ≤ e < 2^(l+1) = 2 · 2^l`
+      have h2 : 2 * half e < 2 * 2 ^ l := by
+        have e2 : 2 * 2 ^ l = 2 ^ (l + 1) := by rw [Nat.pow_succ, Nat.mul_comm]
+        rw [e2]
+        refine Nat.lt_of_le_of_lt ?_ he
+        conv => rhs; rw [half_par e]
+        exact Nat.le_add_right _ _
+      exact lt_of_mul_lt_mul_left' h2
+
+theorem bits_le_of_lt_pow {l e : Nat} (he : e < 2 ^ l) : bits e ≤ l :=
+  bitsAux_le_of_lt_pow l e e (Nat.le_refl e) he
+
+/-- 26:E10 — `e < 2^(bits e)`: the upper half of the bit-length bracket. -/
+theorem lt_pow_bits : ∀ (fuel e : Nat), e ≤ fuel → e < 2 ^ bitsAux fuel e
+  | 0, e, h => by
+    have he : e = 0 := Nat.le_zero.1 h
+    subst he; exact Nat.zero_lt_one
+  | fuel + 1, e, h => by
+    show e < 2 ^ (if e = 0 then 0 else bitsAux fuel (half e) + 1)
+    match Nat.decEq e 0 with
+    | isTrue h0 => rw [ite_eq_left h0, h0]; exact Nat.zero_lt_one
+    | isFalse h0 =>
+      rw [ite_eq_right h0]
+      have hl := half_lt (Nat.pos_of_ne_zero h0)
+      have ih := lt_pow_bits fuel (half e) (Nat.le_of_lt_succ (Nat.lt_of_lt_of_le hl h))
+      have hp := par_lt_two e
+      calc e = 2 * half e + par e := half_par e
+        _ < 2 * half e + 2 := Nat.add_lt_add_left hp _
+        _ = 2 * (half e + 1) := by rw [Nat.mul_succ]
+        _ ≤ 2 * 2 ^ bitsAux fuel (half e) := Nat.mul_le_mul_left 2 ih
+        _ = 2 ^ (bitsAux fuel (half e) + 1) := by rw [Nat.pow_succ, Nat.mul_comm]
+
+/-- 26:E10 — `2^(bits e − 1) ≤ e` for `e > 0`: the lower half of the bit-length bracket. -/
+theorem pow_bits_pred_le : ∀ (fuel e : Nat), e ≤ fuel → 0 < e → 2 ^ (bitsAux fuel e - 1) ≤ e
+  | 0, e, h, he => absurd (Nat.lt_of_lt_of_le he h) (Nat.lt_irrefl 0)
+  | fuel + 1, e, h, he => by
+    show 2 ^ ((if e = 0 then 0 else bitsAux fuel (half e) + 1) - 1) ≤ e
+    have h0 : e ≠ 0 := Nat.ne_of_gt he
+    rw [ite_eq_right h0, Nat.add_sub_cancel]
+    match Nat.decEq (half e) 0 with
+    | isTrue hh =>
+      have hb : bitsAux fuel 0 = 0 := by cases fuel <;> rfl
+      rw [hh, hb]; exact he
+    | isFalse hh =>
+      have hl := half_lt he
+      have ih := pow_bits_pred_le fuel (half e) (Nat.le_of_lt_succ (Nat.lt_of_lt_of_le hl h)) (Nat.pos_of_ne_zero hh)
+      have hb1 : 1 ≤ bitsAux fuel (half e) := by
+        match fuel, (Nat.le_of_lt_succ (Nat.lt_of_lt_of_le hl h) : half e ≤ fuel) with
+        | 0, hf => exact absurd (Nat.le_zero.1 hf) hh
+        | f + 1, _ =>
+          show 1 ≤ (if half e = 0 then 0 else bitsAux f (half (half e)) + 1)
+          rw [ite_eq_right hh]; exact Nat.succ_le_succ (Nat.zero_le _)
+      have key : ∀ b : Nat, 1 ≤ b → 2 ^ b = 2 * 2 ^ (b - 1) := fun b hb => by
+        match b, hb with
+        | b' + 1, _ => rw [Nat.add_sub_cancel, Nat.pow_succ, Nat.mul_comm]
+      calc 2 ^ bitsAux fuel (half e) = 2 * 2 ^ (bitsAux fuel (half e) - 1) := key _ hb1
+        _ ≤ 2 * half e := Nat.mul_le_mul_left 2 ih
+        _ ≤ 2 * half e + par e := Nat.le_add_right _ _
+        _ = e := (half_par e).symm
+
+/-- 26:E10 — the bit-length bracket: `2^(ℓ−1) ≤ e < 2^ℓ` for `ℓ = bits e`, `e > 0`. -/
+theorem bits_bracket {e : Nat} (he : 0 < e) : 2 ^ (bits e - 1) ≤ e ∧ e < 2 ^ bits e :=
+  ⟨pow_bits_pred_le e e (Nat.le_refl e) he, lt_pow_bits e e (Nat.le_refl e)⟩
+
+/-- The sum of the distances `1, …, n` along the orbit. -/
+def distSum : Nat → Nat
+  | 0 => 0
+  | n + 1 => distSum n + (n + 1)
+
+/-- 26:E10 — the distances `1, …, n` have mean `(n + 1)/2` (`P/2` on the cycle of `n = P − 1` units):
+`2 · Σ_{k<n} (k + 1) = n (n + 1)`. -/
+theorem two_mul_distSum : ∀ n : Nat, 2 * distSum n = n * (n + 1)
+  | 0 => rfl
+  | n + 1 => by
+    show 2 * (distSum n + (n + 1)) = (n + 1) * (n + 1 + 1)
+    rw [Nat.mul_add, two_mul_distSum n, ← Nat.add_mul, Nat.mul_comm]
+
+/-- 26:E10 — the maximum of the distances `1, …, n` is `n`: every `k + 1` with `k < n` is at most `n`. -/
+theorem dist_le (n : Nat) : ∀ k, k < n → k + 1 ≤ n := fun _ hk => hk
+
+/-! ## The ascent: square-and-multiply with its count (26:F2, G4) -/
+
+/-- Square-and-multiply, right to left, by fuel: the pair (accumulator, multiplications). -/
+def sqmulAux (b r : Shell p) (ops : Nat) : Nat → Nat → Shell p × Nat
+  | 0, _ => (r, ops)
+  | fuel + 1, e =>
+    if e = 0 then (r, ops)
+    else
+      sqmulAux (b * b) (if par e = 1 then r * b else r) ((if par e = 1 then ops + 1 else ops) + 1) fuel (half e)
+
+/-- Square-and-multiply: `b^e` and the number of modular multiplications used. -/
+def sqmul (b : Shell p) (e : Nat) : Shell p × Nat := sqmulAux b 1 0 e e
+
+theorem sqmulAux_spec : ∀ (fuel e : Nat) (b r : Shell p) (ops : Nat), e ≤ fuel →
+    (sqmulAux b r ops fuel e).1 = r * b ^ e
+  | 0, e, b, r, ops, h => by
+    have he : e = 0 := Nat.le_zero.1 h
+    subst he; show r = r * 1; rw [mul_one]
+  | fuel + 1, e, b, r, ops, h => by
+    show (if e = 0 then (r, ops) else sqmulAux (b * b) (if par e = 1 then r * b else r)
+      ((if par e = 1 then ops + 1 else ops) + 1) fuel (half e)).1 = r * b ^ e
+    match Nat.decEq e 0 with
+    | isTrue h0 => rw [ite_eq_left h0, h0, pow_zero, mul_one]
+    | isFalse h0 =>
+      rw [ite_eq_right h0]
+      have hl := half_lt (Nat.pos_of_ne_zero h0)
+      rw [sqmulAux_spec fuel (half e) (b * b) _ _ (Nat.le_of_lt_succ (Nat.lt_of_lt_of_le hl h))]
+      have hb : (b * b) ^ half e = b ^ (2 * half e) := by rw [mul_pow, Nat.mul_comm, pow_mul, pow_succ, pow_one]
+      rw [hb]
+      match (par_lt_two e), Nat.decEq (par e) 1 with
+      | _, isTrue h1 =>
+        rw [ite_eq_left h1]
+        calc r * b * b ^ (2 * half e) = r * b ^ (2 * half e + 1) := by
+              rw [pow_succ, mul_assoc, mul_comm b]
+          _ = r * b ^ e := by rw [← h1]; conv => rhs; rw [half_par e]
+      | hlt, isFalse h1 =>
+        rw [ite_eq_right h1]
+        have h0' : par e = 0 := by
+          match (par e), hlt, h1 with
+          | 0, _, _ => rfl
+          | 1, _, h1 => exact absurd rfl h1
+          | n + 2, hlt, _ => exact absurd hlt (Nat.not_lt_of_le (Nat.succ_le_succ (Nat.succ_le_succ (Nat.zero_le n))))
+        have : e = 2 * half e := by conv => lhs; rw [half_par e, h0', Nat.add_zero]
+        rw [← this]
+
+/-- 26:F2 — square-and-multiply computes `b^e`. -/
+theorem sqmul_spec (b : Shell p) (e : Nat) : (sqmul b e).1 = b ^ e := by
+  unfold sqmul; rw [sqmulAux_spec e e b 1 0 (Nat.le_refl e), one_mul]
+
+theorem sqmulAux_count : ∀ (fuel e : Nat) (b r : Shell p) (ops : Nat), e ≤ fuel →
+    (sqmulAux b r ops fuel e).2 ≤ ops + 2 * bitsAux fuel e
+  | 0, e, b, r, ops, _ => Nat.le_add_right _ _
+  | fuel + 1, e, b, r, ops, h => by
+    show (if e = 0 then (r, ops) else sqmulAux (b * b) (if par e = 1 then r * b else r)
+      ((if par e = 1 then ops + 1 else ops) + 1) fuel (half e)).2
+      ≤ ops + 2 * (if e = 0 then 0 else bitsAux fuel (half e) + 1)
+    match Nat.decEq e 0 with
+    | isTrue h0 => rw [ite_eq_left h0, ite_eq_left h0]; exact Nat.le_add_right _ _
+    | isFalse h0 =>
+      rw [ite_eq_right h0, ite_eq_right h0]
+      have hl := half_lt (Nat.pos_of_ne_zero h0)
+      have ih := sqmulAux_count fuel (half e) (b * b) (if par e = 1 then r * b else r)
+        ((if par e = 1 then ops + 1 else ops) + 1) (Nat.le_of_lt_succ (Nat.lt_of_lt_of_le hl h))
+      have hops : (if par e = 1 then ops + 1 else ops) + 1 ≤ ops + 2 := by
+        match Nat.decEq (par e) 1 with
+        | isTrue h1 => rw [ite_eq_left h1]; exact Nat.le_refl _
+        | isFalse h1 => rw [ite_eq_right h1]; exact Nat.le_succ _
+      calc _ ≤ (if par e = 1 then ops + 1 else ops) + 1 + 2 * bitsAux fuel (half e) := ih
+        _ ≤ ops + 2 + 2 * bitsAux fuel (half e) := Nat.add_le_add_right hops _
+        _ = ops + 2 * (bitsAux fuel (half e) + 1) := by
+          rw [Nat.mul_succ, Nat.add_assoc, Nat.add_comm 2]
+
+/-- 26:F2, 26:G4 — square-and-multiply uses at most `2·bits e` multiplications; for `e < 2^l`, at most `2l`. -/
+theorem sqmul_count (b : Shell p) (e : Nat) : (sqmul b e).2 ≤ 2 * bits e := by
+  have h := sqmulAux_count e e b 1 0 (Nat.le_refl e)
+  rw [Nat.zero_add] at h
+  exact h
+
+/-- 26:F2, 26:G4 — for an exponent below `2^l`, square-and-multiply uses at most `2l` multiplications: `O(ℓ)` on a shell
+of `ℓ` bits. -/
+theorem sqmul_count_of_lt_pow (b : Shell p) {e l : Nat} (he : e < 2 ^ l) : (sqmul b e).2 ≤ 2 * l :=
+  Nat.le_trans (sqmul_count b e) (Nat.mul_le_mul_left 2 (bits_le_of_lt_pow he))
+
+/-! ## The descent: baby-step–giant-step with its count (26:F3, G4) -/
+
+/-- The least `m < n` with `P m`, by search. -/
+def findLT (P : Nat → Prop) [DecidablePred P] : Nat → Option Nat
+  | 0 => none
+  | n + 1 =>
+    match findLT P n with
+    | some m => some m
+    | none => if P n then some n else none
+
+theorem findLT_some {P : Nat → Prop} [DecidablePred P] : ∀ {n m : Nat}, findLT P n = some m → m < n ∧ P m
+  | 0, m, h => by cases h
+  | n + 1, m, h => by
+    unfold findLT at h
+    match hf : findLT P n with
+    | some m' =>
+      rw [hf] at h
+      have hm : m' = m := Option.some.inj h
+      have := findLT_some hf
+      exact ⟨Nat.lt_succ_of_lt (hm ▸ this.1), hm ▸ this.2⟩
+    | none =>
+      rw [hf] at h
+      have h' : (if P n then some n else none) = some m := h
+      match (inferInstance : Decidable (P n)) with
+      | isTrue hp =>
+        rw [ite_eq_left hp] at h'
+        have hm : n = m := Option.some.inj h'
+        exact ⟨hm ▸ Nat.lt_succ_self n, hm ▸ hp⟩
+      | isFalse hp =>
+        rw [ite_eq_right hp] at h'
+        cases h'
+
+theorem findLT_of_exists {P : Nat → Prop} [DecidablePred P] : ∀ {n : Nat}, (∃ m, m < n ∧ P m) →
+    ∃ m, findLT P n = some m
+  | 0, ⟨m, hm, _⟩ => absurd hm (Nat.not_lt_zero m)
+  | n + 1, ⟨m, hm, hp⟩ =>
+    match hf : findLT P n with
+    | some m' => ⟨m', by unfold findLT; rw [hf]⟩
+    | none =>
+      match Nat.lt_or_ge m n with
+      | .inl hlt =>
+        match findLT_of_exists ⟨m, hlt, hp⟩ with
+        | ⟨m'', h''⟩ => by rw [hf] at h''; cases h''
+      | .inr hge =>
+        have hmn : m = n := Nat.le_antisymm (Nat.le_of_lt_succ hm) hge
+        ⟨n, by
+          unfold findLT; rw [hf]
+          show (if P n then some n else none) = some n
+          rw [ite_eq_left (hmn ▸ hp)]⟩
+
+/-- The giant steps: from `γ`, multiply by `u` until the value is in the baby table; `(some (i, j), ops)` with `i`
+the number of giant steps taken, `j` the baby index hit and `ops` the multiplications used. -/
+def giantAux (u : Shell p) (m : Nat) (baby : Nat → Shell p) : Nat → Nat → Shell p → Nat → Option (Nat × Nat) × Nat
+  | 0, _, _, ops => (none, ops)
+  | fuel + 1, i, γ, ops =>
+    match findLT (fun j => γ = baby j) m with
+    | some j => (some (i, j), ops)
+    | none => giantAux u m baby fuel (i + 1) (γ * u) (ops + 1)
+
+/-- Baby-step–giant-step on the frame: `m` baby steps `g^j`, giant steps by `g^{n−m}` from the target `h`. -/
+def bsgs (g h : Shell p) (n m : Nat) : Option (Nat × Nat) × Nat :=
+  giantAux (g ^ (n - m)) m (fun j => g ^ j) m 0 h 0
+
+/-- 26:F3 — the baby steps are one multiplication each: `g^{j+1} = g^j · g`. -/
+theorem baby_step (j : Nat) : g ^ (j + 1) = g ^ j * g := pow_succ g j
+
+theorem giantAux_count (u : Shell p) (m : Nat) (baby : Nat → Shell p) :
+    ∀ (fuel i : Nat) (γ : Shell p) (ops : Nat), (giantAux u m baby fuel i γ ops).2 ≤ ops + fuel
+  | 0, _, _, ops => Nat.le_refl _
+  | fuel + 1, i, γ, ops => by
+    unfold giantAux
+    match findLT (fun j => γ = baby j) m with
+    | some j => exact Nat.le_add_right _ _
+    | none =>
+      calc _ ≤ ops + 1 + fuel := giantAux_count u m baby fuel (i + 1) (γ * u) (ops + 1)
+        _ = ops + (fuel + 1) := by rw [Nat.add_assoc, Nat.add_comm 1]
+
+theorem giantAux_spec (u : Shell p) (m : Nat) (baby : Nat → Shell p) :
+    ∀ (fuel i : Nat) (γ : Shell p) (ops i' j : Nat),
+      (giantAux u m baby fuel i γ ops).1 = some (i', j) → j < m ∧ i ≤ i' ∧ γ * u ^ (i' - i) = baby j
+  | 0, _, _, _, _, _, h => by cases h
+  | fuel + 1, i, γ, ops, i', j, h => by
+    unfold giantAux at h
+    match hf : findLT (fun j => γ = baby j) m with
+    | some j' =>
+      rw [hf] at h
+      have hj := findLT_some hf
+      have e := Prod.mk.inj (Option.some.inj h)
+      rw [← e.1, ← e.2, Nat.sub_self, pow_zero, mul_one]
+      exact ⟨hj.1, Nat.le_refl _, hj.2⟩
+    | none =>
+      rw [hf] at h
+      obtain ⟨hj, hi, hγ⟩ := giantAux_spec u m baby fuel (i + 1) (γ * u) (ops + 1) i' j h
+      refine ⟨hj, Nat.le_of_succ_le hi, ?_⟩
+      have : i' - i = (i' - (i + 1)) + 1 := by
+        conv => lhs; rw [← FRC.Nat.add_sub_of_le hi, Nat.add_assoc, Nat.add_comm 1, FRC.Nat.add_sub_cancel_left]
+      rw [this, pow_succ, ← mul_assoc, mul_comm (γ * u ^ (i' - (i + 1))) u, ← mul_assoc, mul_comm u γ]
+      exact hγ
+
+theorem giantAux_of_exists (u : Shell p) (m : Nat) (baby : Nat → Shell p) :
+    ∀ (fuel i : Nat) (γ : Shell p) (ops : Nat),
+      (∃ t, t < fuel ∧ ∃ j, j < m ∧ γ * u ^ t = baby j) → ∃ r, (giantAux u m baby fuel i γ ops).1 = some r
+  | 0, _, _, _, ⟨t, ht, _⟩ => absurd ht (Nat.not_lt_zero t)
+  | fuel + 1, i, γ, ops, ⟨t, ht, j, hj, hγ⟩ =>
+    match hf : findLT (fun j => γ = baby j) m with
+    | some j' => ⟨(i, j'), by unfold giantAux; rw [hf]⟩
+    | none =>
+      match t, ht, hγ with
+      | 0, _, hγ =>
+        have hγ' : γ = baby j := by rw [pow_zero, mul_one] at hγ; exact hγ
+        match findLT_of_exists (P := fun j => γ = baby j) ⟨j, hj, hγ'⟩ with
+        | ⟨j'', h''⟩ => by rw [hf] at h''; cases h''
+      | t + 1, ht, hγ =>
+        match giantAux_of_exists u m baby fuel (i + 1) (γ * u) (ops + 1)
+            ⟨t, Nat.lt_of_succ_lt_succ ht, j, hj, by rw [mul_assoc, mul_comm u, ← pow_succ]; exact hγ⟩ with
+        | ⟨r, hr⟩ => ⟨r, by unfold giantAux; rw [hf]; exact hr⟩
+
+/-- The descent's verdict on a target, decidable by the kernel: the pair returned reconstructs the target. -/
+def descendsB (g h : Shell p) (n m : Nat) : Bool :=
+  match (bsgs g h n m).1 with
+  | some (i, j) => decide (j < m) && decide (g ^ (j + m * i) = h)
+  | none => false
+
+/-- 26:F3 — the kernel's verdict unpacked: when `descendsB` holds, the search returns `(i, j)` with `j < m` and
+`g^{j + m i} = h`. -/
+theorem descendsB_spec {g h : Shell p} {n m : Nat} (hd : descendsB g h n m = true) :
+    ∃ i j, (bsgs g h n m).1 = some (i, j) ∧ j < m ∧ g ^ (j + m * i) = h := by
+  unfold descendsB at hd
+  match hb : (bsgs g h n m).1 with
+  | some (i, j) =>
+    rw [hb] at hd
+    have hd' : (decide (j < m) && decide (g ^ (j + m * i) = h)) = true := hd
+    have h1 : decide (j < m) = true := by
+      match hc : decide (j < m) with
+      | true => rfl
+      | false => rw [hc] at hd'; cases hd'
+    rw [h1] at hd'
+    have h2 : decide (g ^ (j + m * i) = h) = true := by
+      match hc : decide (g ^ (j + m * i) = h) with
+      | true => rfl
+      | false => rw [hc] at hd'; cases hd'
+    exact ⟨i, j, rfl, of_decide_eq_true h1, of_decide_eq_true h2⟩
+  | none => rw [hb] at hd; cases hd
+
+/-- 26:F3, 26:G4 — the descent: for `m ≤ n ≤ m²`, baby-step–giant-step from `h = g^x` (`x < n`) returns `(i, j)` with
+`g^{j + m i} = h`, so the index is recovered modulo `n`, after at most `m` giant-step multiplications. -/
+theorem bsgs_spec (F : Frame p κ g) {m : Nat} (hm : m ≤ p - 1) (hmm : p - 1 ≤ m * m) {x : Nat} (hx : x < p - 1) :
+    (∃ i j, (bsgs g (g ^ x) (p - 1) m).1 = some (i, j) ∧ j < m ∧ g ^ (j + m * i) = g ^ x) ∧
+    (bsgs g (g ^ x) (p - 1) m).2 ≤ m := by
+  have hm0 : 0 < m := by
+    match m, hmm with
+    | 0, hmm => exact absurd (Nat.lt_of_lt_of_le F.n_pos hmm) (Nat.lt_irrefl 0)
+    | m + 1, _ => exact Nat.zero_lt_succ m
+  have hu : g ^ (p - 1 - m) * g ^ m = 1 := by rw [← pow_add, FRC.Nat.sub_add_cancel hm, F.pow_n]
+  have hcount : (bsgs g (g ^ x) (p - 1) m).2 ≤ m := by
+    have hc := giantAux_count (g ^ (p - 1 - m)) m (fun j => g ^ j) m 0 (g ^ x) 0
+    rw [Nat.zero_add] at hc
+    exact hc
+  refine ⟨?_, hcount⟩
+  -- the hit exists at the giant step `q`, `x = m q + r`
+  obtain ⟨q, hq⟩ := FRC.Nat.mod_spec m hm0 x
+  have hr : x % m < m := Nat.mod_lt x hm0
+  have hqm : q < m := by
+    have h1 : m * q < m * m := Nat.lt_of_le_of_lt (by rw [hq]; exact Nat.le_add_right _ _) (Nat.lt_of_lt_of_le hx hmm)
+    exact lt_of_mul_lt_mul_left' h1
+  have hhit : g ^ x * (g ^ (p - 1 - m)) ^ q = g ^ (x % m) := by
+    have e1 : x + (p - 1 - m) * q = x % m + (p - 1) * q := by
+      conv => lhs; rw [hq]
+      rw [Nat.add_right_comm, Nat.add_comm, ← FRC.Nat.add_mul, Nat.add_comm m, FRC.Nat.sub_add_cancel hm]
+    rw [← pow_mul, ← pow_add, e1, pow_add, pow_mul, F.pow_n, one_pow, mul_one]
+  obtain ⟨⟨i', j⟩, hr'⟩ := giantAux_of_exists (g ^ (p - 1 - m)) m (fun j => g ^ j) m 0 (g ^ x) 0
+    ⟨q, hqm, x % m, hr, hhit⟩
+  obtain ⟨hj, _, hγ⟩ := giantAux_spec (g ^ (p - 1 - m)) m (fun j => g ^ j) m 0 (g ^ x) 0 i' j hr'
+  refine ⟨i', j, hr', hj, ?_⟩
+  have hγ' : g ^ x * (g ^ (p - 1 - m)) ^ i' = g ^ j := by rw [Nat.sub_zero] at hγ; exact hγ
+  calc g ^ (j + m * i') = g ^ j * (g ^ m) ^ i' := by rw [pow_add, pow_mul]
+    _ = g ^ x * (g ^ (p - 1 - m)) ^ i' * (g ^ m) ^ i' := by rw [hγ']
+    _ = g ^ x * (g ^ (p - 1 - m) * g ^ m) ^ i' := by rw [mul_assoc, ← mul_pow]
+    _ = g ^ x := by rw [hu, one_pow, mul_one]
+
+/-- 26:F3 — the descent's total: the `m` baby steps and the giant multiplications together are at most `2m`. -/
+theorem bsgs_total (F : Frame p κ g) {m : Nat} (hm : m ≤ p - 1) (hmm : p - 1 ≤ m * m) {x : Nat} (hx : x < p - 1) :
+    m + (bsgs g (g ^ x) (p - 1) m).2 ≤ 2 * m := by
+  have h := (bsgs_spec F hm hmm hx).2
+  rw [Nat.two_mul]
+  exact Nat.add_le_add_left h m
+
+/-! ## The reference shape `𝔽₁₃` and `𝔽₁₀₁`, decided by the kernel (26:B3, E8, F2, F3, G2, G3, G5) -/
+
+/-- 26:B3, the reference shape — the twelve eigenvalues `2^ν` of the scale shift on `𝔽₁₃` are distinct. -/
+theorem eigenvalues13 : ∀ i, i < 12 → ∀ j, j < 12 → (2 : Shell 13) ^ i = 2 ^ j → i = j :=
+  @of_decide_eq_true _ (@decForallLT (fun i => ∀ j, j < 12 → (2 : Shell 13) ^ i = 2 ^ j → i = j)
+    (fun i => decForallLT (fun j => (2 : Shell 13) ^ i = 2 ^ j → i = j) 12) 12) (by decide +kernel)
+
+/-- 26:G3, the reference shape — the phase formula on `𝔽₁₃`: two iterates of `x ↦ x³` carry `2^m` to `2^{9m mod 12}`,
+and three iterates of `x ↦ x²` to `2^{8m mod 12}`. -/
+theorem phase13 : ∀ m, m < 12 → iter (fun x : Shell 13 => x ^ 3) 2 (2 ^ m) = 2 ^ ((9 * m) % 12) ∧
+    iter (fun x : Shell 13 => x ^ 2) 3 (2 ^ m) = 2 ^ ((8 * m) % 12) :=
+  @of_decide_eq_true _ (decForallLT (fun m => iter (fun x : Shell 13 => x ^ 3) 2 (2 ^ m) = 2 ^ ((9 * m) % 12) ∧
+    iter (fun x : Shell 13 => x ^ 2) 3 (2 ^ m) = 2 ^ ((8 * m) % 12)) 12) (by decide +kernel)
+
+/-- 26:G2, the reference shape — a tower exponent is read modulo `12`: `2^{(2^j)} = 2^{(2^j) mod 12}` on `𝔽₁₃`. -/
+theorem tower13 : ∀ j, j < 12 → (2 : Shell 13) ^ ((2 : Shell 13) ^ j).val = 2 ^ (((2 : Shell 13) ^ j).val % 12) :=
+  @of_decide_eq_true _ (decForallLT (fun j => (2 : Shell 13) ^ ((2 : Shell 13) ^ j).val =
+    2 ^ (((2 : Shell 13) ^ j).val % 12)) 12) (by decide +kernel)
+
+/-- 26:E8, the reference shape — every index of `𝔽₁₃` is recentred to one step from the origin. -/
+theorem recentre13 : ∀ m, m < 12 → (2 : Shell 13) ^ recentre 12 m m = 2 :=
+  @of_decide_eq_true _ (decForallLT (fun m => (2 : Shell 13) ^ recentre 12 m m = 2) 12) (by decide +kernel)
+
+/-- 26:G5, the reference shape — on `𝔽₁₃` the power map `x ↦ x⁵` is a bijection (`5 · 5 = 25 ≡ 1 (mod 12)`), and
+`x ↦ x⁴` compresses the units onto the three powers of `2⁴ = 3` (`gcd(4, 12) = 4`, `1 · 4 = 0 · 12 + 4`). -/
+theorem powers13 : (∀ m, m < 12 → (((2 : Shell 13) ^ m) ^ 5) ^ 5 = 2 ^ m) ∧
+    (∀ m, m < 12 → ∃ i, i < 3 ∧ ((2 : Shell 13) ^ m) ^ 4 = ((2 : Shell 13) ^ 4) ^ i) ∧
+    (∀ i, i < 3 → ∃ m, m < 12 ∧ ((2 : Shell 13) ^ m) ^ 4 = ((2 : Shell 13) ^ 4) ^ i) :=
+  ⟨@of_decide_eq_true _ (decForallLT (fun m => (((2 : Shell 13) ^ m) ^ 5) ^ 5 = 2 ^ m) 12) (by decide +kernel),
+   @of_decide_eq_true _ (@decForallLT (fun m => ∃ i, i < 3 ∧ ((2 : Shell 13) ^ m) ^ 4 = ((2 : Shell 13) ^ 4) ^ i)
+     (fun m => decExistsLT (fun i => ((2 : Shell 13) ^ m) ^ 4 = ((2 : Shell 13) ^ 4) ^ i) 3) 12) (by decide +kernel),
+   @of_decide_eq_true _ (@decForallLT (fun i => ∃ m, m < 12 ∧ ((2 : Shell 13) ^ m) ^ 4 = ((2 : Shell 13) ^ 4) ^ i)
+     (fun i => decExistsLT (fun m => ((2 : Shell 13) ^ m) ^ 4 = ((2 : Shell 13) ^ 4) ^ i) 12) 3) (by decide +kernel)⟩
+
+/-- 26:F2, the reference shape — square-and-multiply on `𝔽₁₃` computes every `2^e`, `e < 64`, within `2·bits e`
+multiplications; `2^{11}` in seven. -/
+theorem sqmul13 : (∀ e, e < 64 → (sqmul (2 : Shell 13) e).1 = 2 ^ e ∧ (sqmul (2 : Shell 13) e).2 ≤ 2 * bits e) ∧
+    (sqmul (2 : Shell 13) 11).2 = 7 :=
+  ⟨@of_decide_eq_true _ (decForallLT (fun e => (sqmul (2 : Shell 13) e).1 = 2 ^ e ∧
+      (sqmul (2 : Shell 13) e).2 ≤ 2 * bits e) 64) (by decide +kernel), by decide⟩
+
+/-- 26:F3, the reference shape and `𝔽₁₀₁` — baby-step–giant-step recovers every index: on `𝔽₁₃` with `m = 4`
+(`16 ≥ 12`), on `𝔽₁₀₁` with `m = 10` (`100 ≥ 100`), the pair returned reconstructs the target. -/
+theorem descent13_101 : (∀ x, x < 12 → descendsB (2 : Shell 13) (2 ^ x) 12 4 = true) ∧
+    (∀ x, x < 100 → descendsB (2 : Shell 101) (2 ^ x) 100 10 = true) :=
+  ⟨@of_decide_eq_true _ (decForallLT (fun x => descendsB (2 : Shell 13) (2 ^ x) 12 4 = true) 12) (by decide +kernel),
+   @of_decide_eq_true _ (decForallLT (fun x => descendsB (2 : Shell 101) (2 ^ x) 100 10 = true) 100) (by decide +kernel)⟩
+
+end FRC.Ladder
 
 /-! inlined: FrcCore/Keys/Fourier.lean -/
 
@@ -17905,6 +18578,9 @@ theorem p13053 : (∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Sh
 /-- p14031 — 14:X4. \textbf{The congruence $\dS$ even} acquires a second physical face: it is the existence of the octant sector, hence the well-definedness of the measured age --- a structure of the Carrier's cycle lattice, certified by realisation and read as an observational condition, never an arithmetic property of the numeral. -/
 theorem p14031 : ∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → ((∃ r, r * r = (2 : FRC.Shell p)) ↔ ∃ m, κ = (2 : Nat) * m) :=
   @FRC.Shell.Frame.two_is_square_iff
+/-- p26048 — 26:H3. Fourier-diagonalisable implies $\PC$: the additive transform on the shell is exact and self-inverse, $T^{-1}T=1$ on the full cycle $n=P-1$ (the round trips on the sub-cycles $n=8$, $256$, $2^{16}$ over $\F_{17}$, $\F_{257}$, $\F_{65537}$ [data]); the cyclic convolution costs $n^{2}$ multiplications in the position chart and $\tfrac32n\log_2n+n$ through the transform ($1\,048\,576$ against $16\,384$ at $n=2^{10}$) [data]. -/
+theorem p26048 : (∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → ∀ {k j : Nat}, k < p - (1 : Nat) → j < p - (1 : Nat) → FRC.Shell.sumRange (fun l => g ^ (l * k) * -g ^ ((p - (1 : Nat) - j) * l)) (p - (1 : Nat)) = if k = j then (1 : FRC.Shell p) else (0 : FRC.Shell p)) ∧ ∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → ∀ (k : Nat), (0 : Nat) < k → k < p - (1 : Nat) → g ^ (p - (1 : Nat)) = (1 : FRC.Shell p) ∧ FRC.Shell.sumRange (fun j => (g ^ k) ^ j) (p - (1 : Nat)) = (0 : FRC.Shell p) ∧ FRC.Shell.ofNat (p - (1 : Nat)) = (-1 : FRC.Shell p) :=
+  And.intro @FRC.Shell.Frame.dft_inverse (@FRC.Shell.Frame.principal_root)
 -- end keys
 
 end FRC.Ledger
@@ -21412,6 +22088,9 @@ theorem p00188 : ∀ {q : Nat} [FRC.Pos q], (2 : Nat) ≤ q → (∀ (x : FRC.Sh
 /-- p00197 — 20:A4, 00:A4. \textbf{Incompleteness of observation}: every observation is a registration by an embedded part (C4, A13) of cardinality $\p<\sqrt\Om$ (A6, B8): every reading identifies two members (25:D1, 5:C2) --- an incomplete projection, complete only at the whole count. No frame sees more: one translation carries each member to each, one affine map each frame to each (A6, 1:C2). Horizon: Z1, Z9. -/
 theorem p00197 : (∀ {Ω o : Nat} [FRC.Pos Ω], o < Ω → ∀ (ρ : FRC.Shell Ω → Nat), (∀ (x : FRC.Shell Ω), ρ x < o) → ∃ x y, x ≠ y ∧ ρ x = ρ y) ∧ (∀ {Ω o : Nat} [FRC.Pos Ω] (ρ : FRC.Shell Ω → Nat), (∀ (x : FRC.Shell Ω), ρ x < o) → (∀ (x y : FRC.Shell Ω), ρ x = ρ y → x = y) → Ω ≤ o) ∧ ∀ {Ω : Nat} [FRC.Pos Ω] (x y : FRC.Shell Ω), ∃ t, x + t = y ∧ ∀ (t' : FRC.Shell Ω), x + t' = y → t' = t :=
   And.intro @FRC.Foundation.observer_part (And.intro @FRC.Foundation.complete_needs_whole (@FRC.Foundation.translation_torsor))
+/-- p26038 — 26:F10. The descent is the inverse coordinate map: $a_P:j\mapsto g^{j}$ is the bijection of $C_{P-1}$ onto $\F_P^{\times}$ carrying the time index to its position, and $d_P=\mathrm{dlog}$ its inverse, a cyclic-group coordinate, not the inverse of the multiplicative Fourier transform (B3). -/
+theorem p26038 : (∀ {p : Nat} [FRC.Pos p], FRC.Nat.isPrime p → ∃ g, (g ^ (p - (1 : Nat)) = (1 : FRC.Shell p) ∧ ∀ (l : Nat), l < p - (1 : Nat) → (0 : Nat) < l → g ^ l ≠ (1 : FRC.Shell p)) ∧ ∀ (v : Nat), v < p → (0 : Nat) < v → ∃ m, m < p - (1 : Nat) ∧ (g ^ m).val = v) ∧ (∀ {p : Nat} [FRC.Pos p], FRC.Nat.isPrime p → ∀ {g : FRC.Shell p}, g ≠ (0 : FRC.Shell p) → FRC.Shell.Prime.HasOrder g (p - (1 : Nat)) → ∀ {i j : Nat}, i < p - (1 : Nat) → j < p - (1 : Nat) → g ^ i = g ^ j → i = j) ∧ ∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → g.Generates (p - (1 : Nat)) :=
+  And.intro @FRC.Shell.Prime.exists_drive (And.intro @FRC.Shell.Prime.primitive_pow_inj (@FRC.Shell.Frame.generates))
 -- end keys
 
 end FRC.Ledger
@@ -21949,6 +22628,36 @@ theorem p20081 : ((3 : Nat) * (3 : Nat) < (13 : Nat) ∧ (13 : Nat) < (5 : Nat) 
 set_option linter.defProp false in
 /-- p20083 — 20:D9. The finite negative control: on $\F_{13}(\sqrt2)$ the polynomial $((X-2)^{2}-2)((X+1)^{2}-2)$ has exactly the roots $2\pm\eta$, $-1\pm\eta$, of traces $4$, $4$, $11$, $11$ against the line's $1$, the root set closed under conjugation and under the half-turn; finitude, conjugation and the reflection force no root onto the line. -/
 def p20083 := @FRC.Horizon.negative_control13
+/-- p26009 — 26:B3. The longitudinal turn on the shell: the multiplicative characters $\chi_\nu(g^t)=g^{\nu t}$ are eigenvectors of the scale shift $x\mapsto gx$, with the $(P-1)$-th roots of unity $g^{\nu}$ as distinct eigenvalues; the shift $x\mapsto g^{r}x$ fixes every unit when $(P-1)\mid r$ and none otherwise. -/
+theorem p26009 : (∀ {p : Nat} [FRC.Pos p] {g : FRC.Shell p} (r k : Nat) (x : FRC.Shell p), (g ^ r * x) ^ k = (g ^ r) ^ k * x ^ k) ∧ (∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → ∀ (r k : Nat), ((g ^ r) ^ k) ^ (p - (1 : Nat)) = (1 : FRC.Shell p)) ∧ (∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → ∀ {i j : Nat}, i < p - (1 : Nat) → j < p - (1 : Nat) → g ^ i = g ^ j → i = j) ∧ (∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → ∀ (r : Nat), FRC.Shell.Frame.natCount (fun x => x ≠ (0 : Nat) ∧ g ^ r * FRC.Shell.ofNat x = FRC.Shell.ofNat x) p = if r % (p - (1 : Nat)) = (0 : Nat) then p - (1 : Nat) else (0 : Nat)) ∧ ∀ (i : Nat), i < (12 : Nat) → ∀ (j : Nat), j < (12 : Nat) → (2 : FRC.Shell (13 : Nat)) ^ i = (2 : FRC.Shell (13 : Nat)) ^ j → i = j :=
+  And.intro @FRC.Horizon.shift_power_character (And.intro @FRC.Horizon.eigenphase (And.intro @FRC.Shell.Frame.pow_inj (And.intro @FRC.Horizon.shift_trace (@FRC.Ladder.eigenvalues13))))
+/-- p26011 — 26:B5. The Gauss sum couples the two turns: multiplication by a unit permutes the units; $\sum_{t\neq0}\psi(tc)$ is $-1$ for $c\neq0$ and $P-1$ for $c=0$; $\sum_u\chi(u)=0$ for $\chi\neq1$; hence $\lvert g(\chi)\rvert^{2}=P$ for every nontrivial $\chi$ on the shell ($\Om$ on the Carrier). -/
+theorem p26011 : (∀ {q : Nat} [FRC.Pos q] {κ' : Nat} {h : FRC.Shell q}, FRC.Shell.Frame q κ' h → ∀ {m : Nat}, (0 : Nat) < m → ∀ {ω : FRC.Shell q}, ω.IsPrimitive m → ∀ (n : Nat), n % m ≠ (0 : Nat) → FRC.Shell.sumRange (fun a => ω ^ (n * (a + (1 : Nat)))) (m - (1 : Nat)) = (-1 : FRC.Shell q)) ∧ (∀ {q : Nat} [FRC.Pos q] (ω : FRC.Shell q) (m : Nat), FRC.Shell.sumRange (fun a => ω ^ ((0 : Nat) * (a + (1 : Nat)))) (m - (1 : Nat)) = FRC.Shell.ofNat (m - (1 : Nat))) ∧ (∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → ∀ (k : Nat), (0 : Nat) < k → k < p - (1 : Nat) → g ^ (p - (1 : Nat)) = (1 : FRC.Shell p) ∧ FRC.Shell.sumRange (fun j => (g ^ k) ^ j) (p - (1 : Nat)) = (0 : FRC.Shell p) ∧ FRC.Shell.ofNat (p - (1 : Nat)) = (-1 : FRC.Shell p)) ∧ ∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → ∀ {c : FRC.Shell p}, c ≠ (0 : FRC.Shell p) → (∀ {x y : FRC.Shell p}, c * x = c * y → x = y) ∧ ∀ (y : FRC.Shell p), ∃ x, c * x = y :=
+  And.intro @FRC.Horizon.ramanujan_sum (And.intro @FRC.Horizon.ramanujan_zero (And.intro @FRC.Shell.Frame.principal_root (@FRC.Ladder.mul_perm)))
+/-- p26025 — 26:E8. Existence is free: for every witness index $m$ of the scale chart the translation $j\mapsto j+(n-m)+1$ of the index cycle is a chart (a bijection of the cycle) that places $g^{m}$ one counting step from the origin, $g=g^{0}\cdot g$. The witness enters only to name the chart. -/
+theorem p26025 : (∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → ∀ {m : Nat}, m < p - (1 : Nat) → g ^ FRC.Ladder.recentre (p - (1 : Nat)) m m = g ∧ g = g ^ (0 : Nat) * g) ∧ (∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → ∀ (m : Nat) {i j : Nat}, i < p - (1 : Nat) → j < p - (1 : Nat) → FRC.Ladder.recentre (p - (1 : Nat)) m i = FRC.Ladder.recentre (p - (1 : Nat)) m j → i = j) ∧ (∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → ∀ {m : Nat}, m < p - (1 : Nat) → ∀ {j : Nat}, j < p - (1 : Nat) → ∃ i, i < p - (1 : Nat) ∧ FRC.Ladder.recentre (p - (1 : Nat)) m i = j) ∧ ∀ (m : Nat), m < (12 : Nat) → (2 : FRC.Shell (13 : Nat)) ^ FRC.Ladder.recentre (12 : Nat) m m = (2 : FRC.Shell (13 : Nat)) :=
+  And.intro @FRC.Ladder.recentre_witness (And.intro @FRC.Ladder.recentre_inj (And.intro @FRC.Ladder.recentre_surj (@FRC.Ladder.recentre13)))
+/-- p26027 — 26:E10. The counting distance of a unit along the orbit of $g$ is its index: $m\mapsto g^{m}$ is a bijection of the index cycle onto the units, the distances $1,\dots,P-1$ have mean $P/2$ and maximum $P-1$, between $2^{\ell-1}$ and $2^{\ell}$ for $\ell$ the bit length. -/
+theorem p26027 : (∀ {p : Nat} [FRC.Pos p], FRC.Nat.isPrime p → ∃ g, (g ^ (p - (1 : Nat)) = (1 : FRC.Shell p) ∧ ∀ (l : Nat), l < p - (1 : Nat) → (0 : Nat) < l → g ^ l ≠ (1 : FRC.Shell p)) ∧ ∀ (v : Nat), v < p → (0 : Nat) < v → ∃ m, m < p - (1 : Nat) ∧ (g ^ m).val = v) ∧ (∀ {p : Nat} [FRC.Pos p], FRC.Nat.isPrime p → ∀ {g : FRC.Shell p}, g ≠ (0 : FRC.Shell p) → FRC.Shell.Prime.HasOrder g (p - (1 : Nat)) → ∀ {i j : Nat}, i < p - (1 : Nat) → j < p - (1 : Nat) → g ^ i = g ^ j → i = j) ∧ (∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → g.Generates (p - (1 : Nat))) ∧ (∀ (n : Nat), (2 : Nat) * FRC.Ladder.distSum n = n * (n + (1 : Nat))) ∧ (∀ (n k : Nat), k < n → k + (1 : Nat) ≤ n) ∧ ∀ {e : Nat}, (0 : Nat) < e → (2 : Nat) ^ (FRC.Ladder.bits e - (1 : Nat)) ≤ e ∧ e < (2 : Nat) ^ FRC.Ladder.bits e :=
+  And.intro @FRC.Shell.Prime.exists_drive (And.intro @FRC.Shell.Prime.primitive_pow_inj (And.intro @FRC.Shell.Frame.generates (And.intro @FRC.Ladder.two_mul_distSum (And.intro @FRC.Ladder.dist_le (@FRC.Ladder.bits_bracket)))))
+/-- p26030 — 26:F2. Ascent is feasible: square-and-multiply computes $g^{j}$ in at most $2\,\mathrm{bits}(j)$ modular multiplications, hence at most $2\ell$ for $j<P$; on the three carriers $17$, $26$, $38$ multiplications at $j=P/3$, right to left with the last squaring skipped [data]. -/
+theorem p26030 : (∀ {p : Nat} [FRC.Pos p] (b : FRC.Shell p) (e : Nat), (FRC.Ladder.sqmul b e).fst = b ^ e) ∧ (∀ {p : Nat} [FRC.Pos p] (b : FRC.Shell p) (e : Nat), (FRC.Ladder.sqmul b e).snd ≤ (2 : Nat) * FRC.Ladder.bits e) ∧ (∀ {p : Nat} [FRC.Pos p] (b : FRC.Shell p) {e l : Nat}, e < (2 : Nat) ^ l → (FRC.Ladder.sqmul b e).snd ≤ (2 : Nat) * l) ∧ (∀ (e : Nat), e < (64 : Nat) → (FRC.Ladder.sqmul (2 : FRC.Shell (13 : Nat)) e).fst = (2 : FRC.Shell (13 : Nat)) ^ e ∧ (FRC.Ladder.sqmul (2 : FRC.Shell (13 : Nat)) e).snd ≤ (2 : Nat) * FRC.Ladder.bits e) ∧ (FRC.Ladder.sqmul (2 : FRC.Shell (13 : Nat)) (11 : Nat)).snd = (7 : Nat) :=
+  And.intro @FRC.Ladder.sqmul_spec (And.intro @FRC.Ladder.sqmul_count (And.intro @FRC.Ladder.sqmul_count_of_lt_pow (@FRC.Ladder.sqmul13)))
+/-- p26031 — 26:F3. The descent's count: with $m^{2}\ge P-1$ baby steps $1,g,\dots,g^{m-1}$ ($m$ entries, one multiplication per step) and at most $m$ giant steps, baby-step--giant-step recovers from $g^{x}$ an index $y$ with $g^{y}=g^{x}$; at most $2m$ operations, $m=\lfloor\sqrt{P-1}\rfloor+1$; $134$, $1334$, $13334$ on the three carriers [data]. -/
+theorem p26031 : (∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → ∀ {m : Nat}, m ≤ p - (1 : Nat) → p - (1 : Nat) ≤ m * m → ∀ {x : Nat}, x < p - (1 : Nat) → (∃ i j, (FRC.Ladder.bsgs g (g ^ x) (p - (1 : Nat)) m).fst = some (i, j) ∧ j < m ∧ g ^ (j + m * i) = g ^ x) ∧ (FRC.Ladder.bsgs g (g ^ x) (p - (1 : Nat)) m).snd ≤ m) ∧ (∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → ∀ {m : Nat}, m ≤ p - (1 : Nat) → p - (1 : Nat) ≤ m * m → ∀ {x : Nat}, x < p - (1 : Nat) → m + (FRC.Ladder.bsgs g (g ^ x) (p - (1 : Nat)) m).snd ≤ (2 : Nat) * m) ∧ (∀ {p : Nat} [FRC.Pos p] {g : FRC.Shell p} (j : Nat), g ^ (j + (1 : Nat)) = g ^ j * g) ∧ (∀ {p : Nat} [FRC.Pos p] {g h : FRC.Shell p} {n m : Nat}, FRC.Ladder.descendsB g h n m = true → ∃ i j, (FRC.Ladder.bsgs g h n m).fst = some (i, j) ∧ j < m ∧ g ^ (j + m * i) = h) ∧ (∀ (x : Nat), x < (12 : Nat) → FRC.Ladder.descendsB (2 : FRC.Shell (13 : Nat)) ((2 : FRC.Shell (13 : Nat)) ^ x) (12 : Nat) (4 : Nat) = true) ∧ ∀ (x : Nat), x < (100 : Nat) → FRC.Ladder.descendsB (2 : FRC.Shell (101 : Nat)) ((2 : FRC.Shell (101 : Nat)) ^ x) (100 : Nat) (10 : Nat) = true :=
+  And.intro @FRC.Ladder.bsgs_spec (And.intro @FRC.Ladder.bsgs_total (And.intro @FRC.Ladder.baby_step (And.intro @FRC.Ladder.descendsB_spec (@FRC.Ladder.descent13_101))))
+/-- p26041 — 26:G2. Ladder closure: the four roles generate the two cyclic structures, $C_P$ additive and $C_{P-1}$ multiplicative, with the bridge $a_P$. A tower exponent $g^{j}$ is read modulo $P-1$, so tetration is exponentiation of a reduced index, and the power map acts on the index as multiplication; no third cyclic structure hosts a fifth role (00:B6). -/
+theorem p26041 : (∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → ∀ (l : Nat), g ^ l = g ^ (l % (p - (1 : Nat)))) ∧ (∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → ∀ (j : Nat), g ^ (g ^ j).val = g ^ ((g ^ j).val % (p - (1 : Nat)))) ∧ (∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → ∀ (m k : Nat), (g ^ m) ^ k = g ^ (k * m % (p - (1 : Nat)))) ∧ ∀ (j : Nat), j < (12 : Nat) → (2 : FRC.Shell (13 : Nat)) ^ ((2 : FRC.Shell (13 : Nat)) ^ j).val = (2 : FRC.Shell (13 : Nat)) ^ (((2 : FRC.Shell (13 : Nat)) ^ j).val % (12 : Nat)) :=
+  And.intro @FRC.Shell.Frame.pow_mod (And.intro @FRC.Ladder.tower_reduces (And.intro @FRC.Ladder.power_index (@FRC.Ladder.tower13)))
+/-- p26042 — 26:G3. Phase-index dynamics: in the scale chart $x=g^{m}$ the power map acts by $P_k(g^{m})=g^{km}$ and its iterates by $P_k^{\,r}(g^{m})=g^{k^{r}m}$, the exponents read modulo $P-1$; the ascent is the orbit traversal $g^{j+1}=g\cdot g^{j}$, one multiplication per counted step. -/
+theorem p26042 : (∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → ∀ (m k : Nat), (g ^ m) ^ k = g ^ (k * m % (p - (1 : Nat)))) ∧ (∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → ∀ (k r m : Nat), FRC.Ladder.iter (fun x => x ^ k) r (g ^ m) = g ^ (k ^ r * m % (p - (1 : Nat)))) ∧ (∀ {p : Nat} [FRC.Pos p] {g : FRC.Shell p} (j : Nat), g ^ (j + (1 : Nat)) = g ^ j * g) ∧ ∀ (m : Nat), m < (12 : Nat) → FRC.Ladder.iter (fun x => x ^ (3 : Nat)) (2 : Nat) ((2 : FRC.Shell (13 : Nat)) ^ m) = (2 : FRC.Shell (13 : Nat)) ^ ((9 : Nat) * m % (12 : Nat)) ∧ FRC.Ladder.iter (fun x => x ^ (2 : Nat)) (3 : Nat) ((2 : FRC.Shell (13 : Nat)) ^ m) = (2 : FRC.Shell (13 : Nat)) ^ ((8 : Nat) * m % (12 : Nat)) :=
+  And.intro @FRC.Ladder.power_index (And.intro @FRC.Ladder.phase_index (And.intro @FRC.Ladder.ascent_step (@FRC.Ladder.phase13)))
+/-- p26043 — 26:G4. The one-way function is the inverse of the last role: each forward role costs one modular operation, the ascent at most $2\ell$ multiplications; the descent recovers the index, the position in the counted orbit of the fourth role. The descent/ascent operation ratio at the three carriers is $134/17$, $1334/26$, $13334/38$ [data]. -/
+theorem p26043 : (∀ {p : Nat} [FRC.Pos p] (b : FRC.Shell p) {e l : Nat}, e < (2 : Nat) ^ l → (FRC.Ladder.sqmul b e).snd ≤ (2 : Nat) * l) ∧ (∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → ∀ {m : Nat}, m ≤ p - (1 : Nat) → p - (1 : Nat) ≤ m * m → ∀ {x : Nat}, x < p - (1 : Nat) → (∃ i j, (FRC.Ladder.bsgs g (g ^ x) (p - (1 : Nat)) m).fst = some (i, j) ∧ j < m ∧ g ^ (j + m * i) = g ^ x) ∧ (FRC.Ladder.bsgs g (g ^ x) (p - (1 : Nat)) m).snd ≤ m) ∧ ∀ {p : Nat} [FRC.Pos p] {g : FRC.Shell p} (j : Nat), g ^ (j + (1 : Nat)) = g ^ j * g :=
+  And.intro @FRC.Ladder.sqmul_count_of_lt_pow (And.intro @FRC.Ladder.bsgs_spec (@FRC.Ladder.ascent_step))
+/-- p26044 — 26:G5. The power map $P_k$ is a bijection of $\F_P^{\times}$ iff $k$ is invertible modulo $P-1$, inverted by $x\mapsto x^{a}$ with $ak\equiv1$; otherwise its image is the cycle of $g^{d}$, $d=\gcd(k,P-1)$, of exactly $(P-1)/d$ elements. -/
+theorem p26044 : (∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → ∀ {a k : Nat}, a * k % (p - (1 : Nat)) = (1 : Nat) → ∀ (m : Nat), ((g ^ m) ^ k) ^ a = g ^ m ∧ ((g ^ m) ^ a) ^ k = g ^ m) ∧ (∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → ∀ {d e c a b k : Nat}, p - (1 : Nat) = d * e → k = d * c → a * k = b * (p - (1 : Nat)) + d → (∀ (m : Nat), (g ^ m) ^ k = (g ^ d) ^ (m * c)) ∧ (∀ (i : Nat), ((g ^ a) ^ i) ^ k = (g ^ d) ^ i) ∧ ∀ (i j : Nat), i < e → j < e → (g ^ d) ^ i = (g ^ d) ^ j → i = j) ∧ (∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → ∀ {d e c k : Nat}, p - (1 : Nat) = d * e → k = d * c → ∀ (m : Nat), ∃ i, i < e ∧ (g ^ m) ^ k = (g ^ d) ^ i) ∧ (∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → ∀ {d e : Nat}, p - (1 : Nat) = d * e → (1 : Nat) < d → e < p - (1 : Nat)) ∧ (∀ (m : Nat), m < (12 : Nat) → (((2 : FRC.Shell (13 : Nat)) ^ m) ^ (5 : Nat)) ^ (5 : Nat) = (2 : FRC.Shell (13 : Nat)) ^ m) ∧ (∀ (m : Nat), m < (12 : Nat) → ∃ i, i < (3 : Nat) ∧ ((2 : FRC.Shell (13 : Nat)) ^ m) ^ (4 : Nat) = ((2 : FRC.Shell (13 : Nat)) ^ (4 : Nat)) ^ i) ∧ ∀ (i : Nat), i < (3 : Nat) → ∃ m, m < (12 : Nat) ∧ ((2 : FRC.Shell (13 : Nat)) ^ m) ^ (4 : Nat) = ((2 : FRC.Shell (13 : Nat)) ^ (4 : Nat)) ^ i :=
+  And.intro @FRC.Ladder.power_bijective_of_unit (And.intro @FRC.Ladder.power_image (And.intro @FRC.Ladder.power_image_index (And.intro @FRC.Ladder.compressive_of_gcd (@FRC.Ladder.powers13))))
 -- end keys
 
 end FRC.Ledger
@@ -24133,13 +24842,13 @@ theorem p22031 : (∀ {N : Nat}, (0 : Nat) < N → ∀ (t : Nat) (x : Nat → Na
 /-- p22032 — 22:C16. Qubits from doublets: the forced readout is $\sigma_x$ through the relation $v^{\,8}=-1$. -/
 theorem p22032 : (∀ {q : Nat} [FRC.Pos q], FRC.Nat.isPrime q → ∀ {v : FRC.Shell q}, FRC.Shell.Prime.HasOrder v (16 : Nat) → v ^ (8 : Nat) = (-1 : FRC.Shell q)) ∧ (∀ {q : Nat} [FRC.Pos q], FRC.Nat.isPrime q → ∀ {v : FRC.Shell q}, FRC.Shell.Prime.HasOrder v (16 : Nat) → ∀ (k s : Nat) (lam : FRC.Shell q), FRC.Shell.sumRange (fun j => ((v ^ s * (v ^ (2 : Nat)) ^ j) ^ k + lam * (v ^ s * (v ^ (2 : Nat)) ^ j) ^ (k + (8 : Nat))) * (v ^ (2 : Nat)) ^ (((8 : Nat) - k % (8 : Nat)) * j)) (8 : Nat) = FRC.Shell.ofNat (8 : Nat) * (v ^ (s * k) * ((1 : FRC.Shell q) + lam * (v ^ (8 : Nat)) ^ s))) ∧ (641 : Nat) = (4 : Nat) * (160 : Nat) + (1 : Nat) ∧ FRC.Shell.Prime.HasOrder (3 : FRC.Shell (641 : Nat)) (640 : Nat) ∧ (3 : FRC.Shell (641 : Nat)) ^ (40 : Nat) = (601 : FRC.Shell (641 : Nat)) ∧ FRC.Shell.Prime.HasOrder (601 : FRC.Shell (641 : Nat)) (16 : Nat) ∧ (601 : FRC.Shell (641 : Nat)) ^ (8 : Nat) = (-1 : FRC.Shell (641 : Nat)) ∧ (3 : FRC.Shell (641 : Nat)) ^ (8 : Nat) = (151 : FRC.Shell (641 : Nat)) ∧ FRC.Shell.Prime.HasOrder (151 : FRC.Shell (641 : Nat)) (80 : Nat) ∧ (3 : FRC.Shell (641 : Nat)) ^ (80 : Nat) = (318 : FRC.Shell (641 : Nat)) ∧ (318 : FRC.Shell (641 : Nat)) ^ (4 : Nat) = (-1 : FRC.Shell (641 : Nat)) ∧ ((318 : FRC.Shell (641 : Nat)) + (318 : FRC.Shell (641 : Nat)) ^ (7 : Nat)) * ((318 : FRC.Shell (641 : Nat)) + (318 : FRC.Shell (641 : Nat)) ^ (7 : Nat)) = (2 : FRC.Shell (641 : Nat)) ∧ (2 : FRC.Shell (641 : Nat)) * ((318 : FRC.Shell (641 : Nat)) + (318 : FRC.Shell (641 : Nat)) ^ (7 : Nat)) * ((2 : FRC.Shell (641 : Nat)) * ((318 : FRC.Shell (641 : Nat)) + (318 : FRC.Shell (641 : Nat)) ^ (7 : Nat))) = (8 : FRC.Shell (641 : Nat)) ∧ (40 : Nat) % (8 : Nat) = (0 : Nat) ∧ (16 : Nat) % (8 : Nat) = (0 : Nat) ∧ ∀ (e : Nat), e < (41 : Nat) → (40 : Nat) % e = (0 : Nat) → (16 : Nat) % e = (0 : Nat) → (8 : Nat) % e = (0 : Nat) :=
   And.intro @FRC.Composite.half_turn_sixteen (And.intro @FRC.Composite.doublet_readout (@FRC.Composite.carrier_641))
-/-- p22033 — 22:C17. Exact Tsirelson saturation: the singlet law $E(\Delta)=\cos(\pi\Delta/40)$, $S=2(\zeta_8+\zeta_8^{-1})$, $S^2=8$, the exhaustive $80^3$ sweep never exceeding it; no-signalling and the composite reduction commute. -/
+/-- p22033 — 22:C17. Exact Tsirelson saturation: the singlet law $E(\Delta)=\cos(\pi\Delta/40)$ [chart], $S=2(\zeta_8+\zeta_8^{-1})$, $S^2=8$, the exhaustive $80^3$ sweep never exceeding it [chart]; no-signalling and the composite reduction commute. -/
 theorem p22033 : (∀ {p : Nat} [FRC.Pos p] {ζ : FRC.Shell p}, ζ ^ (4 : Nat) = (-1 : FRC.Shell p) → (ζ + ζ ^ (7 : Nat)) * (ζ + ζ ^ (7 : Nat)) = (2 : FRC.Shell p)) ∧ (∀ {q : Nat} [FRC.Pos q] {ζ : FRC.Shell q}, ζ ^ (4 : Nat) = (-1 : FRC.Shell q) → (2 : FRC.Shell q) * (ζ + ζ ^ (7 : Nat)) * ((2 : FRC.Shell q) * (ζ + ζ ^ (7 : Nat))) = (8 : FRC.Shell q)) ∧ (∀ {q : Nat} [FRC.Pos q] (c E : FRC.Shell q), c * ((1 : FRC.Shell q) + E) + c * ((1 : FRC.Shell q) + -E) = c * (2 : FRC.Shell q)) ∧ (∀ {q : Nat} [FRC.Pos q] {v : FRC.Shell q} {n : Nat}, (0 : Nat) < n → v ^ n = (1 : FRC.Shell q) → ∀ (c c' : Nat → Nat), FRC.Observation.shadow v (FRC.Observation.conv c c' n) n = FRC.Observation.shadow v c n * FRC.Observation.shadow v c' n) ∧ (641 : Nat) = (4 : Nat) * (160 : Nat) + (1 : Nat) ∧ FRC.Shell.Prime.HasOrder (3 : FRC.Shell (641 : Nat)) (640 : Nat) ∧ (3 : FRC.Shell (641 : Nat)) ^ (40 : Nat) = (601 : FRC.Shell (641 : Nat)) ∧ FRC.Shell.Prime.HasOrder (601 : FRC.Shell (641 : Nat)) (16 : Nat) ∧ (601 : FRC.Shell (641 : Nat)) ^ (8 : Nat) = (-1 : FRC.Shell (641 : Nat)) ∧ (3 : FRC.Shell (641 : Nat)) ^ (8 : Nat) = (151 : FRC.Shell (641 : Nat)) ∧ FRC.Shell.Prime.HasOrder (151 : FRC.Shell (641 : Nat)) (80 : Nat) ∧ (3 : FRC.Shell (641 : Nat)) ^ (80 : Nat) = (318 : FRC.Shell (641 : Nat)) ∧ (318 : FRC.Shell (641 : Nat)) ^ (4 : Nat) = (-1 : FRC.Shell (641 : Nat)) ∧ ((318 : FRC.Shell (641 : Nat)) + (318 : FRC.Shell (641 : Nat)) ^ (7 : Nat)) * ((318 : FRC.Shell (641 : Nat)) + (318 : FRC.Shell (641 : Nat)) ^ (7 : Nat)) = (2 : FRC.Shell (641 : Nat)) ∧ (2 : FRC.Shell (641 : Nat)) * ((318 : FRC.Shell (641 : Nat)) + (318 : FRC.Shell (641 : Nat)) ^ (7 : Nat)) * ((2 : FRC.Shell (641 : Nat)) * ((318 : FRC.Shell (641 : Nat)) + (318 : FRC.Shell (641 : Nat)) ^ (7 : Nat))) = (8 : FRC.Shell (641 : Nat)) ∧ (40 : Nat) % (8 : Nat) = (0 : Nat) ∧ (16 : Nat) % (8 : Nat) = (0 : Nat) ∧ ∀ (e : Nat), e < (41 : Nat) → (40 : Nat) % e = (0 : Nat) → (16 : Nat) % e = (0 : Nat) → (8 : Nat) % e = (0 : Nat) :=
   And.intro @FRC.Shell.Prime.tsirelson (And.intro @FRC.Composite.singlet_square (And.intro @FRC.Composite.no_signalling (And.intro @FRC.Observation.reduce_mul (@FRC.Composite.carrier_641))))
 /-- p22034 — 22:C18. The network table is the complex-quantum table, and the Bell-state measurement is the offset readout. -/
 theorem p22034 : (∀ {a b T : Nat}, (0 : Nat) < a → (0 : Nat) < b → (0 : Nat) < T → T % a = (0 : Nat) → T % b = (0 : Nat) → (∀ (t : Nat), (0 : Nat) < t → t < T → ¬(t % a = (0 : Nat) ∧ t % b = (0 : Nat))) → ∃ g, g ≤ a ∧ (0 : Nat) < g ∧ g * T = a * b ∧ a % g = (0 : Nat) ∧ b % g = (0 : Nat) ∧ (∀ (e : Nat), (0 : Nat) < e → a % e = (0 : Nat) → b % e = (0 : Nat) → g % e = (0 : Nat)) ∧ ∀ (x y x' y' : Nat), x < a → y < b → x' < a → y' < b → ((∃ t, t < T ∧ (x + t) % a = x' ∧ (y + t) % b = y') ↔ (x + y') % g = (x' + y) % g)) ∧ ∀ {N m : Nat}, (0 : Nat) < N → (0 : Nat) < m → ∀ (x y : Nat → Nat), (∀ (j : Nat), j < m → y j < N) → ((∃ t, t < N ∧ ∀ (j : Nat), j < m → (x j + t) % N = y j) ↔ ∀ (j : Nat), j < m → (x j + y (0 : Nat)) % N = (y j + x (0 : Nat)) % N) :=
   And.intro @FRC.Quantum.pair_offset (@FRC.Composite.cluster_offset)
-/-- p22035 — 22:C19. The gravitational channel entangles exactly, $C^2=\sin^2(\varphi/2)$, with the pure-channel complementarity $V^2+C^2=1$. -/
+/-- p22035 — 22:C19. The gravitational channel entangles exactly, $C^2=\sin^2(\varphi/2)$ [chart], with the pure-channel complementarity $V^2+C^2=1$. -/
 theorem p22035 : (∀ {q : Nat} [FRC.Pos q] {h x y i : FRC.Shell q}, h * (2 : FRC.Shell q) = (1 : FRC.Shell q) → x * y = (1 : FRC.Shell q) → i * i = (-1 : FRC.Shell q) → h * (x + y) * (h * (x + y)) + h * (x + -y) * -i * (h * (x + -y) * -i) = (1 : FRC.Shell q)) ∧ ∀ {q : Nat} [FRC.Pos q] (h x i : FRC.Shell q), h * (x + -x) * -i = (0 : FRC.Shell q) :=
   And.intro @FRC.Composite.channel_complementarity (@FRC.Composite.channel_product_at_zero)
 /-- p22036 — 22:C20. No spontaneous collapse; the dilation floor dephases with an exact revival $V(n)=1$. -/
@@ -24157,7 +24866,7 @@ theorem p22039 : (∀ (α β : Nat), (0 : Nat) < α → (0 : Nat) < β → ∃ T
 /-- p22040 — 22:C24. Carrier-chart classicality: to the host of a hosted Carrier every observation is total absorption (for the physical Carrier, a limit no reader instantiates); quantumness is the subgroup index $[\PhiO:\core]>1$, and classicality is the divisibility of the observer's frame --- one outcome per fixed channel, with the channel index still carrying the winding information (absorption is not the absence of information transfer). -/
 theorem p22040 : (∀ {d k : Nat}, (0 : Nat) < d → (k = (1 : Nat) ↔ d * k = d) ∧ ((1 : Nat) < k ↔ d < d * k)) ∧ (∀ {q : Nat} [FRC.Pos q], FRC.Nat.isPrime q → ∀ {ω : FRC.Shell q} {d : Nat}, FRC.Shell.Prime.HasOrder ω d → ∀ (k : Nat) {r : Nat}, r < d → FRC.Shell.sumRange (fun j => ω ^ (k * j) * ω ^ ((d - r) * j)) d = if k % d = r then FRC.Shell.ofNat d else (0 : FRC.Shell q)) ∧ (421 : Nat) = (4 : Nat) * (105 : Nat) + (1 : Nat) ∧ FRC.Shell.Prime.HasOrder (2 : FRC.Shell (421 : Nat)) (420 : Nat) ∧ (2 : FRC.Shell (421 : Nat)) ^ (315 : Nat) = (392 : FRC.Shell (421 : Nat)) ∧ (392 : FRC.Shell (421 : Nat)) * (392 : FRC.Shell (421 : Nat)) = (-1 : FRC.Shell (421 : Nat)) ∧ ((60 : Nat) % (4 : Nat) = (0 : Nat) ∧ (28 : Nat) % (4 : Nat) = (0 : Nat) ∧ ∀ (e : Nat), e < (61 : Nat) → (60 : Nat) % e = (0 : Nat) → (28 : Nat) % e = (0 : Nat) → (4 : Nat) % e = (0 : Nat)) ∧ (28 : Nat) = (4 : Nat) * (7 : Nat) ∧ ((60 : Nat) % (12 : Nat) = (0 : Nat) ∧ (12 : Nat) % (12 : Nat) = (0 : Nat) ∧ ∀ (e : Nat), e < (61 : Nat) → (60 : Nat) % e = (0 : Nat) → (12 : Nat) % e = (0 : Nat) → (12 : Nat) % e = (0 : Nat)) ∧ (12 : Nat) = (12 : Nat) * (1 : Nat) :=
   And.intro @FRC.Observation.classicality_index (And.intro @FRC.Observation.selection (@FRC.Composite.carrier_421))
-/-- p22041 — 22:C25. The measurement problem dissolved: Kochen--Specker poses no separate threat because values exist only as Subject-relative quotient phases, carried together with the Tsirelson strength $2\sqrt2$. -/
+/-- p22041 — 22:C25. The measurement problem dissolved: Kochen--Specker poses no separate threat because values exist only as Subject-relative quotient phases, carried together with the Tsirelson strength $2\sqrt2$ [chart]. -/
 theorem p22041 : (∀ {p : Nat} [FRC.Pos p] {ζ : FRC.Shell p}, ζ ^ (4 : Nat) = (-1 : FRC.Shell p) → (ζ + ζ ^ (7 : Nat)) * (ζ + ζ ^ (7 : Nat)) = (2 : FRC.Shell p)) ∧ ∀ {q : Nat} [FRC.Pos q] {ζ : FRC.Shell q}, ζ ^ (4 : Nat) = (-1 : FRC.Shell q) → (2 : FRC.Shell q) * (ζ + ζ ^ (7 : Nat)) * ((2 : FRC.Shell q) * (ζ + ζ ^ (7 : Nat))) = (8 : FRC.Shell q) :=
   And.intro @FRC.Shell.Prime.tsirelson (@FRC.Composite.singlet_square)
 /-- p22042 — 22:C26. The unequal-cycle composite gate: joint recurrence $T'=\operatorname{lcm}_j(n_j/\gcd(s_j,n_j))$, conserved data the quotient $A/\langle s\rangle$ (unit-winding pair: the gcd cycle, generically $\Qf$), and the counting Born rule verbatim with $T'$ as the recurrence; all orbit-nontrivial characters cancel. -/
@@ -24184,25 +24893,25 @@ theorem p22048 : (∀ {d k : Nat}, (0 : Nat) < d → (k = (1 : Nat) ↔ d * k = 
 set_option linter.defProp false in
 /-- p22049 — 22:X6. \textbf{Native probability over a finite substrate}: the unordered-field obstruction is cleared by keeping counts in the observer's ledger: a finite-relational provenance theorem for the Born calculus, in which the substrate determines the tally ring, the measurement family, and the readout (calibrated against the counting and cyclotomic precedents in Section~\ref{sec:discussion}). -/
 def p22049 := And.intro @FRC.Observation.window_lift (And.intro @FRC.Extension.Tally.tally_criterion (And.intro @FRC.Extension.Tally.channel_selectivity (@FRC.Extension.framed_readout)))
-/-- p22050 — 22:X7. \textbf{The Tsirelson boundary} is attained as a ring identity, $S=2(\zeta_8+\zeta_8^{-1})=2\sqrt2$, so a relational finite substrate carries full quantum correlation strength, not merely quantum vocabulary. -/
+/-- p22050 — 22:X7. \textbf{The Tsirelson boundary} is attained as a ring identity, $S=2(\zeta_8+\zeta_8^{-1})=2\sqrt2$ [chart], so a relational finite substrate carries full quantum correlation strength, not merely quantum vocabulary. -/
 theorem p22050 : (∀ {p : Nat} [FRC.Pos p] {ζ : FRC.Shell p}, ζ ^ (4 : Nat) = (-1 : FRC.Shell p) → (ζ + ζ ^ (7 : Nat)) * (ζ + ζ ^ (7 : Nat)) = (2 : FRC.Shell p)) ∧ ∀ {q : Nat} [FRC.Pos q] {ζ : FRC.Shell q}, ζ ^ (4 : Nat) = (-1 : FRC.Shell q) → (2 : FRC.Shell q) * (ζ + ζ ^ (7 : Nat)) * ((2 : FRC.Shell q) * (ζ + ζ ^ (7 : Nat))) = (8 : FRC.Shell q) :=
   And.intro @FRC.Shell.Prime.tsirelson (@FRC.Composite.singlet_square)
 /-- p22051 — 22:X8. \textbf{Higher-order interference} is forbidden exactly: the Sorkin hierarchy is zero with a forbidden neighbourhood, not a small number to be measured down. -/
 theorem p22051 : (∀ {q : Nat} [FRC.Pos q] {c : FRC.Shell q → FRC.Shell q}, FRC.Interference.Additive c → ∀ (a : Nat → FRC.Shell q) (k : Nat) (x : FRC.Shell q), FRC.Interference.mixedDiff a (FRC.Interference.weight c) (k + (3 : Nat)) x = (0 : FRC.Shell q)) ∧ ∀ {q : Nat} [FRC.Pos q] (a : Nat), FRC.Shell.ofNat a = (0 : FRC.Shell q) ↔ ∃ k, a = q * k :=
   And.intro @FRC.Interference.sorkin_hierarchy (@FRC.Observation.wrap_quantised)
-/-- p22052 — 22:P1. Gravitationally induced entanglement at exactly the Newtonian rate, $V^2+C^2=1$ on the pure channel: equal force but unequal entanglement --- a source gravitates by its full mass while the systematic conditional phase, the calibrated discriminator, is carried by the coherent sectors alone, the fully incoherent channel separable at generic (nondegenerate) geometry. The one dated forward prediction. -/
+/-- p22052 — 22:P1. Gravitationally induced entanglement at exactly the Newtonian rate [chart], $V^2+C^2=1$ on the pure channel: equal force but unequal entanglement --- a source gravitates by its full mass while the systematic conditional phase, the calibrated discriminator, is carried by the coherent sectors alone, the fully incoherent channel separable at generic (nondegenerate) geometry. The one dated forward prediction. -/
 theorem p22052 : (∀ {q : Nat} [FRC.Pos q] {h x y i : FRC.Shell q}, h * (2 : FRC.Shell q) = (1 : FRC.Shell q) → x * y = (1 : FRC.Shell q) → i * i = (-1 : FRC.Shell q) → h * (x + y) * (h * (x + y)) + h * (x + -y) * -i * (h * (x + -y) * -i) = (1 : FRC.Shell q)) ∧ (∀ {q : Nat} [FRC.Pos q] (ζ : FRC.Shell q) (a mc : Nat), FRC.Shell.prodRange (fun x => ζ ^ a) mc = ζ ^ (mc * a)) ∧ ∀ {q : Nat} [FRC.Pos q] (ζ : FRC.Shell q) (p : Nat → FRC.Shell q) (n c : Nat), FRC.Shell.sumRange (fun θ => p θ * ζ ^ (θ + c)) n = FRC.Shell.sumRange (fun θ => p θ * ζ ^ θ) n * ζ ^ c :=
   And.intro @FRC.Composite.channel_complementarity (And.intro @FRC.Composite.branch_phase (@FRC.Composite.channel_assembly))
 /-- p22053 — 22:P2. Third-order interference exactly zero at every accessible scale, any wrap quantised to a multiple of $\Omega$: a single confirmed small $I_3\neq0$ falsifies outright. -/
 theorem p22053 : (∀ {q : Nat} [FRC.Pos q] {c : FRC.Shell q → FRC.Shell q}, FRC.Interference.Additive c → ∀ (a : Nat → FRC.Shell q) (k : Nat) (x : FRC.Shell q), FRC.Interference.mixedDiff a (FRC.Interference.weight c) (k + (3 : Nat)) x = (0 : FRC.Shell q)) ∧ ∀ {q : Nat} [FRC.Pos q] (a : Nat), FRC.Shell.ofNat a = (0 : FRC.Shell q) ↔ ∃ k, a = q * k :=
   And.intro @FRC.Interference.sorkin_hierarchy (@FRC.Observation.wrap_quantised)
-/-- p22054 — 22:P3. The Tsirelson value $S=2\sqrt2$ exact and the network behaviour of complex (not real) quantum theory: vacuum dispersion, $S\neq2\sqrt2$, or non-quantum network behaviour each falsify. -/
+/-- p22054 — 22:P3. The Tsirelson value $S=2\sqrt2$ exact [chart] and the network behaviour of complex (not real) quantum theory: vacuum dispersion, $S\neq2\sqrt2$, or non-quantum network behaviour each falsify. -/
 theorem p22054 : (∀ {p : Nat} [FRC.Pos p] {ζ : FRC.Shell p}, ζ ^ (4 : Nat) = (-1 : FRC.Shell p) → (ζ + ζ ^ (7 : Nat)) * (ζ + ζ ^ (7 : Nat)) = (2 : FRC.Shell p)) ∧ (∀ {q : Nat} [FRC.Pos q] {ζ : FRC.Shell q}, ζ ^ (4 : Nat) = (-1 : FRC.Shell q) → (2 : FRC.Shell q) * (ζ + ζ ^ (7 : Nat)) * ((2 : FRC.Shell q) * (ζ + ζ ^ (7 : Nat))) = (8 : FRC.Shell q)) ∧ ∀ {a b T : Nat}, (0 : Nat) < a → (0 : Nat) < b → (0 : Nat) < T → T % a = (0 : Nat) → T % b = (0 : Nat) → (∀ (t : Nat), (0 : Nat) < t → t < T → ¬(t % a = (0 : Nat) ∧ t % b = (0 : Nat))) → ∃ g, g ≤ a ∧ (0 : Nat) < g ∧ g * T = a * b ∧ a % g = (0 : Nat) ∧ b % g = (0 : Nat) ∧ (∀ (e : Nat), (0 : Nat) < e → a % e = (0 : Nat) → b % e = (0 : Nat) → g % e = (0 : Nat)) ∧ ∀ (x y x' y' : Nat), x < a → y < b → x' < a → y' < b → ((∃ t, t < T ∧ (x + t) % a = x' ∧ (y + t) % b = y') ↔ (x + y') % g = (x' + y) % g) :=
   And.intro @FRC.Shell.Prime.tsirelson (And.intro @FRC.Composite.singlet_square (@FRC.Quantum.pair_offset))
 /-- p22055 — 22:P4. No vacuum dispersion at any sub-horizon order (the finite double cover accumulates nothing): the gamma-ray-burst time-of-flight bounds leave the framework untouched. -/
 theorem p22055 : (∀ {p : Nat} [FRC.Pos p], FRC.Nat.isPrime p → ∀ {h : FRC.Shell p}, h * h = (-1 : FRC.Shell p) → (∀ (x : FRC.Shell p), x ≠ (0 : FRC.Shell p) → (x ^ (p + (1 : Nat)) = (1 : FRC.Shell p) ↔ x = (1 : FRC.Shell p) ∨ x = (-1 : FRC.Shell p))) ∧ (∀ (x : FRC.Shell p), x ≠ (0 : FRC.Shell p) → (x ^ ((2 : Nat) * (p + (1 : Nat))) = (1 : FRC.Shell p) ↔ x = (1 : FRC.Shell p) ∨ x = (-1 : FRC.Shell p) ∨ x = h ∨ x = -h)) ∧ h ^ (p + (1 : Nat)) = (-1 : FRC.Shell p)) ∧ (∀ {p : Nat} [FRC.Pos p] {ν : FRC.Shell p}, FRC.Nat.isPrime p → ∀ {κ : Nat}, p = (4 : Nat) * κ + (1 : Nat) → (¬∃ y, y * y = ν) → ∀ (ζ : FRC.Extension.Ext p ν), ζ.norm = (1 : FRC.Shell p) → ζ ^ (p + (1 : Nat)) = (1 : FRC.Extension.Ext p ν) → (∀ (l : Nat), (0 : Nat) < l → l < p + (1 : Nat) → ζ ^ l ≠ (1 : FRC.Extension.Ext p ν)) → ζ ^ ((2 : Nat) * κ + (1 : Nat)) = (-1 : FRC.Extension.Ext p ν)) ∧ ∀ {q : Nat} [FRC.Pos q] {ν : FRC.Shell q} (z : FRC.Extension.Ext q ν), z.norm = (1 : FRC.Shell q) → z * z.conj = (1 : FRC.Extension.Ext q ν) :=
   And.intro @FRC.Subject.channel (And.intro @FRC.Subject.horizon_generator (@FRC.Observation.torus_conj_inv))
-/-- p22056 — 22:P5. Quantum computation succeeds as standard quantum mechanics prescribes at every accessible depth; the first deviation, if any, is quantised at the unit-core ceiling $k^*=408$ ($204$ for $\sqrt\Omega$), not gradual. -/
+/-- p22056 — 22:P5. Quantum computation succeeds as standard quantum mechanics prescribes at every accessible depth; the first deviation, if any, is quantised at the unit-core ceiling $k^*=408$ ($204$ for $\sqrt\Omega$) [chart], not gradual. -/
 theorem p22056 : (∀ {k k' : Nat}, k ≤ k' → FRC.Interference.tallyNorm k ≤ FRC.Interference.tallyNorm k') ∧ ((∀ (k : Nat), FRC.Interference.tallyNorm k < (641 : Nat) ↔ k ≤ (8 : Nat)) ∧ ∀ (k : Nat), (8 : Nat) * FRC.Interference.tallyNorm k < (641 : Nat) ↔ k ≤ (6 : Nat)) ∧ ∀ {q : Nat} [FRC.Pos q] {i : FRC.Shell q}, i * i = (-1 : FRC.Shell q) → ∀ (m : Nat), ((1 : FRC.Shell q) + i) ^ ((2 : Nat) * m) = FRC.Shell.ofNat ((2 : Nat) ^ m) * i ^ m :=
   And.intro @FRC.Interference.tally_norm_mono (And.intro @FRC.Interference.ceiling_641 (@FRC.Interference.hadamard_even))
 -- end keys
@@ -24361,6 +25070,71 @@ theorem p22056 : (∀ {k k' : Nat}, k ≤ k' → FRC.Interference.tallyNorm k �
 -- end ledger predicates
 
 end FRC.Qm
+
+/-! inlined: FrcCore/Pnp.lean -/
+
+/-!
+# 26-pnp — the paper module: the reference shell `𝔽₁₃` decided by the kernel (16 October 2026)
+
+The finite content of *P versus NP: Computation as Counting over Finite Relational Substrate* (tree `26-pnp-20260614`)
+lives in the themes: the longitudinal turn — the characters as eigenvectors of the scale shift, the eigenvalues roots
+of unity, the fixed-point count — in `Theme/Horizon.lean` (`FRC.Horizon`, the shell theorem of 20-rh, the master's
+Z10); the Gauss-sum telescoping in `Theme/Horizon.lean` (`ramanujan_sum`) and `Transform.lean` (`principal_root`); the
+exponential bijection of the index cycle onto the units in `Theme/Drive.lean` (`Prime.exists_drive`,
+`primitive_pow_inj`, the master's A12); the exact round trip of the additive transform in `Transform.lean`
+(`dft_inverse`); the ladder itself — the index dynamics of the power map, the recentring chart, the bijective and the
+compressive power maps, square-and-multiply with its count, baby-step–giant-step with its count — in
+`Theme/Ladder.lean` (`FRC.Ladder`, the horizon theme). Every row of the paper's ledger is a key written by
+`make_keys.py` from those (`Keys/*.lean`), and this module carries the rows' declarations `FRC.Pnp.p26NNN` as aliases of
+the keys (`make_predicates.py`), the worked instances on the paper's reference shape `𝔽₁₃` (`g = 2`, `n = 12`) and on
+`𝔽₁₀₁`, decided by the kernel, living in `Theme/Ladder.lean` beside the theorems they instantiate. No theorem is stated here twice. Every declaration is checked to depend
+on no axiom (`check_core_axioms.py`).
+-/
+
+namespace FRC.Pnp
+
+open FRC.Shell FRC.Shell.Frame FRC.Ladder
+
+-- Ledger predicates of 26-pnp (generated by make_predicates.py from docs/26-pnp/26-pnp-ledger.json; edit the ledger, not this section)
+/-- 26:B3 (p26009) — The longitudinal turn on the shell: the multiplicative characters $\chi_\nu(g^t)=g^{\nu t}$ are eigenvectors of the scale shift $x\mapsto gx$, with the $(P-1)$-th roots of unity $g^{\nu}$ as distinct eigenvalues; the shift $x\mapsto g^{r}x$ fixes every unit when $(P-1)\mid r$ and none otherwise. -/
+theorem p26009 : (∀ {p : Nat} [FRC.Pos p] {g : FRC.Shell p} (r k : Nat) (x : FRC.Shell p), (g ^ r * x) ^ k = (g ^ r) ^ k * x ^ k) ∧ (∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → ∀ (r k : Nat), ((g ^ r) ^ k) ^ (p - (1 : Nat)) = (1 : FRC.Shell p)) ∧ (∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → ∀ {i j : Nat}, i < p - (1 : Nat) → j < p - (1 : Nat) → g ^ i = g ^ j → i = j) ∧ (∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → ∀ (r : Nat), FRC.Shell.Frame.natCount (fun x => x ≠ (0 : Nat) ∧ g ^ r * FRC.Shell.ofNat x = FRC.Shell.ofNat x) p = if r % (p - (1 : Nat)) = (0 : Nat) then p - (1 : Nat) else (0 : Nat)) ∧ ∀ (i : Nat), i < (12 : Nat) → ∀ (j : Nat), j < (12 : Nat) → (2 : FRC.Shell (13 : Nat)) ^ i = (2 : FRC.Shell (13 : Nat)) ^ j → i = j :=
+  @FRC.Ledger.p26009
+/-- 26:B5 (p26011) — The Gauss sum couples the two turns: multiplication by a unit permutes the units; $\sum_{t\neq0}\psi(tc)$ is $-1$ for $c\neq0$ and $P-1$ for $c=0$; $\sum_u\chi(u)=0$ for $\chi\neq1$; hence $\lvert g(\chi)\rvert^{2}=P$ for every nontrivial $\chi$ on the shell ($\Om$ on the Carrier). -/
+theorem p26011 : (∀ {q : Nat} [FRC.Pos q] {κ' : Nat} {h : FRC.Shell q}, FRC.Shell.Frame q κ' h → ∀ {m : Nat}, (0 : Nat) < m → ∀ {ω : FRC.Shell q}, ω.IsPrimitive m → ∀ (n : Nat), n % m ≠ (0 : Nat) → FRC.Shell.sumRange (fun a => ω ^ (n * (a + (1 : Nat)))) (m - (1 : Nat)) = (-1 : FRC.Shell q)) ∧ (∀ {q : Nat} [FRC.Pos q] (ω : FRC.Shell q) (m : Nat), FRC.Shell.sumRange (fun a => ω ^ ((0 : Nat) * (a + (1 : Nat)))) (m - (1 : Nat)) = FRC.Shell.ofNat (m - (1 : Nat))) ∧ (∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → ∀ (k : Nat), (0 : Nat) < k → k < p - (1 : Nat) → g ^ (p - (1 : Nat)) = (1 : FRC.Shell p) ∧ FRC.Shell.sumRange (fun j => (g ^ k) ^ j) (p - (1 : Nat)) = (0 : FRC.Shell p) ∧ FRC.Shell.ofNat (p - (1 : Nat)) = (-1 : FRC.Shell p)) ∧ ∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → ∀ {c : FRC.Shell p}, c ≠ (0 : FRC.Shell p) → (∀ {x y : FRC.Shell p}, c * x = c * y → x = y) ∧ ∀ (y : FRC.Shell p), ∃ x, c * x = y :=
+  @FRC.Ledger.p26011
+/-- 26:E8 (p26025) — Existence is free: for every witness index $m$ of the scale chart the translation $j\mapsto j+(n-m)+1$ of the index cycle is a chart (a bijection of the cycle) that places $g^{m}$ one counting step from the origin, $g=g^{0}\cdot g$. The witness enters only to name the chart. -/
+theorem p26025 : (∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → ∀ {m : Nat}, m < p - (1 : Nat) → g ^ FRC.Ladder.recentre (p - (1 : Nat)) m m = g ∧ g = g ^ (0 : Nat) * g) ∧ (∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → ∀ (m : Nat) {i j : Nat}, i < p - (1 : Nat) → j < p - (1 : Nat) → FRC.Ladder.recentre (p - (1 : Nat)) m i = FRC.Ladder.recentre (p - (1 : Nat)) m j → i = j) ∧ (∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → ∀ {m : Nat}, m < p - (1 : Nat) → ∀ {j : Nat}, j < p - (1 : Nat) → ∃ i, i < p - (1 : Nat) ∧ FRC.Ladder.recentre (p - (1 : Nat)) m i = j) ∧ ∀ (m : Nat), m < (12 : Nat) → (2 : FRC.Shell (13 : Nat)) ^ FRC.Ladder.recentre (12 : Nat) m m = (2 : FRC.Shell (13 : Nat)) :=
+  @FRC.Ledger.p26025
+/-- 26:E10 (p26027) — The counting distance of a unit along the orbit of $g$ is its index: $m\mapsto g^{m}$ is a bijection of the index cycle onto the units, the distances $1,\dots,P-1$ have mean $P/2$ and maximum $P-1$, between $2^{\ell-1}$ and $2^{\ell}$ for $\ell$ the bit length. -/
+theorem p26027 : (∀ {p : Nat} [FRC.Pos p], FRC.Nat.isPrime p → ∃ g, (g ^ (p - (1 : Nat)) = (1 : FRC.Shell p) ∧ ∀ (l : Nat), l < p - (1 : Nat) → (0 : Nat) < l → g ^ l ≠ (1 : FRC.Shell p)) ∧ ∀ (v : Nat), v < p → (0 : Nat) < v → ∃ m, m < p - (1 : Nat) ∧ (g ^ m).val = v) ∧ (∀ {p : Nat} [FRC.Pos p], FRC.Nat.isPrime p → ∀ {g : FRC.Shell p}, g ≠ (0 : FRC.Shell p) → FRC.Shell.Prime.HasOrder g (p - (1 : Nat)) → ∀ {i j : Nat}, i < p - (1 : Nat) → j < p - (1 : Nat) → g ^ i = g ^ j → i = j) ∧ (∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → g.Generates (p - (1 : Nat))) ∧ (∀ (n : Nat), (2 : Nat) * FRC.Ladder.distSum n = n * (n + (1 : Nat))) ∧ (∀ (n k : Nat), k < n → k + (1 : Nat) ≤ n) ∧ ∀ {e : Nat}, (0 : Nat) < e → (2 : Nat) ^ (FRC.Ladder.bits e - (1 : Nat)) ≤ e ∧ e < (2 : Nat) ^ FRC.Ladder.bits e :=
+  @FRC.Ledger.p26027
+/-- 26:F2 (p26030) — Ascent is feasible: square-and-multiply computes $g^{j}$ in at most $2\,\mathrm{bits}(j)$ modular multiplications, hence at most $2\ell$ for $j<P$; on the three carriers $17$, $26$, $38$ multiplications at $j=P/3$, right to left with the last squaring skipped [data]. -/
+theorem p26030 : (∀ {p : Nat} [FRC.Pos p] (b : FRC.Shell p) (e : Nat), (FRC.Ladder.sqmul b e).fst = b ^ e) ∧ (∀ {p : Nat} [FRC.Pos p] (b : FRC.Shell p) (e : Nat), (FRC.Ladder.sqmul b e).snd ≤ (2 : Nat) * FRC.Ladder.bits e) ∧ (∀ {p : Nat} [FRC.Pos p] (b : FRC.Shell p) {e l : Nat}, e < (2 : Nat) ^ l → (FRC.Ladder.sqmul b e).snd ≤ (2 : Nat) * l) ∧ (∀ (e : Nat), e < (64 : Nat) → (FRC.Ladder.sqmul (2 : FRC.Shell (13 : Nat)) e).fst = (2 : FRC.Shell (13 : Nat)) ^ e ∧ (FRC.Ladder.sqmul (2 : FRC.Shell (13 : Nat)) e).snd ≤ (2 : Nat) * FRC.Ladder.bits e) ∧ (FRC.Ladder.sqmul (2 : FRC.Shell (13 : Nat)) (11 : Nat)).snd = (7 : Nat) :=
+  @FRC.Ledger.p26030
+/-- 26:F3 (p26031) — The descent's count: with $m^{2}\ge P-1$ baby steps $1,g,\dots,g^{m-1}$ ($m$ entries, one multiplication per step) and at most $m$ giant steps, baby-step--giant-step recovers from $g^{x}$ an index $y$ with $g^{y}=g^{x}$; at most $2m$ operations, $m=\lfloor\sqrt{P-1}\rfloor+1$; $134$, $1334$, $13334$ on the three carriers [data]. -/
+theorem p26031 : (∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → ∀ {m : Nat}, m ≤ p - (1 : Nat) → p - (1 : Nat) ≤ m * m → ∀ {x : Nat}, x < p - (1 : Nat) → (∃ i j, (FRC.Ladder.bsgs g (g ^ x) (p - (1 : Nat)) m).fst = some (i, j) ∧ j < m ∧ g ^ (j + m * i) = g ^ x) ∧ (FRC.Ladder.bsgs g (g ^ x) (p - (1 : Nat)) m).snd ≤ m) ∧ (∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → ∀ {m : Nat}, m ≤ p - (1 : Nat) → p - (1 : Nat) ≤ m * m → ∀ {x : Nat}, x < p - (1 : Nat) → m + (FRC.Ladder.bsgs g (g ^ x) (p - (1 : Nat)) m).snd ≤ (2 : Nat) * m) ∧ (∀ {p : Nat} [FRC.Pos p] {g : FRC.Shell p} (j : Nat), g ^ (j + (1 : Nat)) = g ^ j * g) ∧ (∀ {p : Nat} [FRC.Pos p] {g h : FRC.Shell p} {n m : Nat}, FRC.Ladder.descendsB g h n m = true → ∃ i j, (FRC.Ladder.bsgs g h n m).fst = some (i, j) ∧ j < m ∧ g ^ (j + m * i) = h) ∧ (∀ (x : Nat), x < (12 : Nat) → FRC.Ladder.descendsB (2 : FRC.Shell (13 : Nat)) ((2 : FRC.Shell (13 : Nat)) ^ x) (12 : Nat) (4 : Nat) = true) ∧ ∀ (x : Nat), x < (100 : Nat) → FRC.Ladder.descendsB (2 : FRC.Shell (101 : Nat)) ((2 : FRC.Shell (101 : Nat)) ^ x) (100 : Nat) (10 : Nat) = true :=
+  @FRC.Ledger.p26031
+/-- 26:F10 (p26038) — The descent is the inverse coordinate map: $a_P:j\mapsto g^{j}$ is the bijection of $C_{P-1}$ onto $\F_P^{\times}$ carrying the time index to its position, and $d_P=\mathrm{dlog}$ its inverse, a cyclic-group coordinate, not the inverse of the multiplicative Fourier transform (B3). -/
+theorem p26038 : (∀ {p : Nat} [FRC.Pos p], FRC.Nat.isPrime p → ∃ g, (g ^ (p - (1 : Nat)) = (1 : FRC.Shell p) ∧ ∀ (l : Nat), l < p - (1 : Nat) → (0 : Nat) < l → g ^ l ≠ (1 : FRC.Shell p)) ∧ ∀ (v : Nat), v < p → (0 : Nat) < v → ∃ m, m < p - (1 : Nat) ∧ (g ^ m).val = v) ∧ (∀ {p : Nat} [FRC.Pos p], FRC.Nat.isPrime p → ∀ {g : FRC.Shell p}, g ≠ (0 : FRC.Shell p) → FRC.Shell.Prime.HasOrder g (p - (1 : Nat)) → ∀ {i j : Nat}, i < p - (1 : Nat) → j < p - (1 : Nat) → g ^ i = g ^ j → i = j) ∧ ∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → g.Generates (p - (1 : Nat)) :=
+  @FRC.Ledger.p26038
+/-- 26:G2 (p26041) — Ladder closure: the four roles generate the two cyclic structures, $C_P$ additive and $C_{P-1}$ multiplicative, with the bridge $a_P$. A tower exponent $g^{j}$ is read modulo $P-1$, so tetration is exponentiation of a reduced index, and the power map acts on the index as multiplication; no third cyclic structure hosts a fifth role (00:B6). -/
+theorem p26041 : (∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → ∀ (l : Nat), g ^ l = g ^ (l % (p - (1 : Nat)))) ∧ (∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → ∀ (j : Nat), g ^ (g ^ j).val = g ^ ((g ^ j).val % (p - (1 : Nat)))) ∧ (∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → ∀ (m k : Nat), (g ^ m) ^ k = g ^ (k * m % (p - (1 : Nat)))) ∧ ∀ (j : Nat), j < (12 : Nat) → (2 : FRC.Shell (13 : Nat)) ^ ((2 : FRC.Shell (13 : Nat)) ^ j).val = (2 : FRC.Shell (13 : Nat)) ^ (((2 : FRC.Shell (13 : Nat)) ^ j).val % (12 : Nat)) :=
+  @FRC.Ledger.p26041
+/-- 26:G3 (p26042) — Phase-index dynamics: in the scale chart $x=g^{m}$ the power map acts by $P_k(g^{m})=g^{km}$ and its iterates by $P_k^{\,r}(g^{m})=g^{k^{r}m}$, the exponents read modulo $P-1$; the ascent is the orbit traversal $g^{j+1}=g\cdot g^{j}$, one multiplication per counted step. -/
+theorem p26042 : (∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → ∀ (m k : Nat), (g ^ m) ^ k = g ^ (k * m % (p - (1 : Nat)))) ∧ (∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → ∀ (k r m : Nat), FRC.Ladder.iter (fun x => x ^ k) r (g ^ m) = g ^ (k ^ r * m % (p - (1 : Nat)))) ∧ (∀ {p : Nat} [FRC.Pos p] {g : FRC.Shell p} (j : Nat), g ^ (j + (1 : Nat)) = g ^ j * g) ∧ ∀ (m : Nat), m < (12 : Nat) → FRC.Ladder.iter (fun x => x ^ (3 : Nat)) (2 : Nat) ((2 : FRC.Shell (13 : Nat)) ^ m) = (2 : FRC.Shell (13 : Nat)) ^ ((9 : Nat) * m % (12 : Nat)) ∧ FRC.Ladder.iter (fun x => x ^ (2 : Nat)) (3 : Nat) ((2 : FRC.Shell (13 : Nat)) ^ m) = (2 : FRC.Shell (13 : Nat)) ^ ((8 : Nat) * m % (12 : Nat)) :=
+  @FRC.Ledger.p26042
+/-- 26:G4 (p26043) — The one-way function is the inverse of the last role: each forward role costs one modular operation, the ascent at most $2\ell$ multiplications; the descent recovers the index, the position in the counted orbit of the fourth role. The descent/ascent operation ratio at the three carriers is $134/17$, $1334/26$, $13334/38$ [data]. -/
+theorem p26043 : (∀ {p : Nat} [FRC.Pos p] (b : FRC.Shell p) {e l : Nat}, e < (2 : Nat) ^ l → (FRC.Ladder.sqmul b e).snd ≤ (2 : Nat) * l) ∧ (∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → ∀ {m : Nat}, m ≤ p - (1 : Nat) → p - (1 : Nat) ≤ m * m → ∀ {x : Nat}, x < p - (1 : Nat) → (∃ i j, (FRC.Ladder.bsgs g (g ^ x) (p - (1 : Nat)) m).fst = some (i, j) ∧ j < m ∧ g ^ (j + m * i) = g ^ x) ∧ (FRC.Ladder.bsgs g (g ^ x) (p - (1 : Nat)) m).snd ≤ m) ∧ ∀ {p : Nat} [FRC.Pos p] {g : FRC.Shell p} (j : Nat), g ^ (j + (1 : Nat)) = g ^ j * g :=
+  @FRC.Ledger.p26043
+/-- 26:G5 (p26044) — The power map $P_k$ is a bijection of $\F_P^{\times}$ iff $k$ is invertible modulo $P-1$, inverted by $x\mapsto x^{a}$ with $ak\equiv1$; otherwise its image is the cycle of $g^{d}$, $d=\gcd(k,P-1)$, of exactly $(P-1)/d$ elements. -/
+theorem p26044 : (∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → ∀ {a k : Nat}, a * k % (p - (1 : Nat)) = (1 : Nat) → ∀ (m : Nat), ((g ^ m) ^ k) ^ a = g ^ m ∧ ((g ^ m) ^ a) ^ k = g ^ m) ∧ (∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → ∀ {d e c a b k : Nat}, p - (1 : Nat) = d * e → k = d * c → a * k = b * (p - (1 : Nat)) + d → (∀ (m : Nat), (g ^ m) ^ k = (g ^ d) ^ (m * c)) ∧ (∀ (i : Nat), ((g ^ a) ^ i) ^ k = (g ^ d) ^ i) ∧ ∀ (i j : Nat), i < e → j < e → (g ^ d) ^ i = (g ^ d) ^ j → i = j) ∧ (∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → ∀ {d e c k : Nat}, p - (1 : Nat) = d * e → k = d * c → ∀ (m : Nat), ∃ i, i < e ∧ (g ^ m) ^ k = (g ^ d) ^ i) ∧ (∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → ∀ {d e : Nat}, p - (1 : Nat) = d * e → (1 : Nat) < d → e < p - (1 : Nat)) ∧ (∀ (m : Nat), m < (12 : Nat) → (((2 : FRC.Shell (13 : Nat)) ^ m) ^ (5 : Nat)) ^ (5 : Nat) = (2 : FRC.Shell (13 : Nat)) ^ m) ∧ (∀ (m : Nat), m < (12 : Nat) → ∃ i, i < (3 : Nat) ∧ ((2 : FRC.Shell (13 : Nat)) ^ m) ^ (4 : Nat) = ((2 : FRC.Shell (13 : Nat)) ^ (4 : Nat)) ^ i) ∧ ∀ (i : Nat), i < (3 : Nat) → ∃ m, m < (12 : Nat) ∧ ((2 : FRC.Shell (13 : Nat)) ^ m) ^ (4 : Nat) = ((2 : FRC.Shell (13 : Nat)) ^ (4 : Nat)) ^ i :=
+  @FRC.Ledger.p26044
+/-- 26:H3 (p26048) — Fourier-diagonalisable implies $\PC$: the additive transform on the shell is exact and self-inverse, $T^{-1}T=1$ on the full cycle $n=P-1$ (the round trips on the sub-cycles $n=8$, $256$, $2^{16}$ over $\F_{17}$, $\F_{257}$, $\F_{65537}$ [data]); the cyclic convolution costs $n^{2}$ multiplications in the position chart and $\tfrac32n\log_2n+n$ through the transform ($1\,048\,576$ against $16\,384$ at $n=2^{10}$) [data]. -/
+theorem p26048 : (∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → ∀ {k j : Nat}, k < p - (1 : Nat) → j < p - (1 : Nat) → FRC.Shell.sumRange (fun l => g ^ (l * k) * -g ^ ((p - (1 : Nat) - j) * l)) (p - (1 : Nat)) = if k = j then (1 : FRC.Shell p) else (0 : FRC.Shell p)) ∧ ∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → ∀ (k : Nat), (0 : Nat) < k → k < p - (1 : Nat) → g ^ (p - (1 : Nat)) = (1 : FRC.Shell p) ∧ FRC.Shell.sumRange (fun j => (g ^ k) ^ j) (p - (1 : Nat)) = (0 : FRC.Shell p) ∧ FRC.Shell.ofNat (p - (1 : Nat)) = (-1 : FRC.Shell p) :=
+  @FRC.Ledger.p26048
+-- end ledger predicates
+
+end FRC.Pnp
 
 /-! inlined: FrcCore/Keys/Carrier.lean -/
 

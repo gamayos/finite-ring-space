@@ -839,7 +839,7 @@
     "22-qm",
     "1-alg"
    ],
-   "witness": null,
+   "witness": "22:p22_quantum.py",
    "refs": [
     {
      "label": "D10",
@@ -857,7 +857,7 @@
    "sources": [
     "22-qm"
    ],
-   "witness": null,
+   "witness": "22:p22_quantum.py",
    "refs": [
     {
      "label": "D10",
@@ -1238,7 +1238,7 @@
     "22-qm",
     "21-grav"
    ],
-   "witness": null,
+   "witness": "22:p22_quantum.py",
    "refs": [],
    "statement": "A registration protocol samples one stratum of a drive-presented ensemble. Over complete joint recurrences the counts are forced exact tallies (22-qm Rem.~strata), on incomplete batches the largest-remainder gauge, shared by the quantum readout and the gravity crossover. Falsifier: outcome tallies over a complete joint recurrence that are not exact ratios, or a fixed-setting protocol sampling more than one stratum."
   },
@@ -1653,7 +1653,7 @@
    "sources": [
     "22-qm"
    ],
-   "witness": null,
+   "witness": "22:p22_quantum.py",
    "refs": [
     {
      "label": "F1",

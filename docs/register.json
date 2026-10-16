@@ -2,20 +2,20 @@
  "header": {
   "generated": "16 October 2026",
   "schema": "frc-register/2",
-  "rows": 992,
-  "theorems": 978,
+  "rows": 1050,
+  "theorems": 1036,
   "counts": {
-   "keys": 978,
-   "rows": 992,
+   "keys": 1036,
+   "rows": 1050,
    "shared": 14,
    "by_tag": {
-    "D": 134,
+    "D": 160,
     "G": 1,
-    "I": 114,
+    "I": 121,
     "O": 10,
     "R": 82,
-    "T": 609,
-    "Ω": 28
+    "T": 632,
+    "Ω": 30
    }
   },
   "papers": [
@@ -994,6 +994,81 @@
      }
     ],
     "rows": 48
+   },
+   {
+    "key": "26-pnp",
+    "dir": "26-pnp",
+    "no": 26,
+    "title": "P versus NP: Computation as Counting",
+    "status": {
+     "kind": "preprint"
+    },
+    "page": "26-pnp/index.html",
+    "blocks": [
+     {
+      "letter": "A",
+      "title": "Inputs: imported, not derived here"
+     },
+     {
+      "letter": "B",
+      "title": "Computation as counting along a representation"
+     },
+     {
+      "letter": "C",
+      "title": "The comprehension horizon"
+     },
+     {
+      "letter": "D",
+      "title": "Proof as a bounded path; certificate as a near-representation"
+     },
+     {
+      "letter": "E",
+      "title": "P versus NP: finding versus checking"
+     },
+     {
+      "letter": "F",
+      "title": "The directional asymmetry is a one-way function"
+     },
+     {
+      "letter": "G",
+      "title": "The arithmetic-hierarchy closure"
+     },
+     {
+      "letter": "H",
+      "title": "The transform map"
+     },
+     {
+      "letter": "J",
+      "title": "The scope and the barriers"
+     },
+     {
+      "letter": "K",
+      "title": "The horizon clause and the residue"
+     }
+    ],
+    "legend": [
+     {
+      "tag": "I",
+      "name": "Import",
+      "text": "A standard result used as proved, or a result of the corpus."
+     },
+     {
+      "tag": "D",
+      "name": "Definition",
+      "text": "A naming or set-up move, or a reading of the construction, carrying no claim of its own."
+     },
+     {
+      "tag": "T",
+      "name": "Theorem",
+      "text": "Derived within this paper from the rows above it; where a \\textsf{py} token is named, its content is reproduced by the framework's ledger file; where a \\textsf{lean} token is named, proved in Lean. A continuum reading of a finite object is marked [chart]; its witness is a certified bracket or a Mathlib theorem on the reals. A table of computed values is marked [data]."
+     },
+     {
+      "tag": "Ω",
+      "name": "$\\Om$-hard",
+      "text": "Decided by the totality; its uniform certificate below the bounded observer's horizon."
+     }
+    ],
+    "rows": 58
    },
    {
     "key": "27-fld",
@@ -2226,9 +2301,9 @@
    "tag": "T",
    "tier": 0,
    "check": {
-    "href": "frc/ledgers/master/extension.html#p22028",
-    "script": "frc/ledgers/master/extension.py",
-    "line": 213,
+    "href": "frc/ledgers/p22_quantum.html#p22028",
+    "script": "p22_quantum.py",
+    "line": 1323,
     "verdict": "pass"
    },
    "declarations": [
@@ -2680,7 +2755,9 @@
    "origin_row": "00:D10",
    "tag": "R",
    "tier": null,
-   "check": null,
+   "check": {
+    "script": "22:p22_quantum.py"
+   },
    "declarations": [],
    "aliases": [],
    "rows": [
@@ -3698,7 +3775,9 @@
    "origin_row": "00:P2",
    "tag": "T",
    "tier": null,
-   "check": null,
+   "check": {
+    "script": "22:p22_quantum.py"
+   },
    "declarations": [],
    "aliases": [],
    "rows": [
@@ -16437,7 +16516,6 @@
    ],
    "realisations": [
     "p00055",
-    "p00201",
     "p21011"
    ]
   },
@@ -16875,7 +16953,12 @@
    "origin_row": "22:A2",
    "tag": "I",
    "tier": 0,
-   "check": null,
+   "check": {
+    "href": "frc/ledgers/p22_quantum.html#p22002",
+    "script": "p22_quantum.py",
+    "line": 436,
+    "verdict": "pass"
+   },
    "declarations": [
     {
      "lib": "FrcCore",
@@ -16933,7 +17016,12 @@
    "origin_row": "22:A5",
    "tag": "Ω",
    "tier": 2,
-   "check": null,
+   "check": {
+    "href": "frc/ledgers/p22_quantum.html#p22005",
+    "script": "p22_quantum.py",
+    "line": 1389,
+    "verdict": "pass"
+   },
    "declarations": [
     {
      "lib": "FrcLedger",
@@ -17107,7 +17195,12 @@
    "origin_row": "22:C1",
    "tag": "T",
    "tier": 0,
-   "check": null,
+   "check": {
+    "href": "frc/ledgers/p22_quantum.html#p22017",
+    "script": "p22_quantum.py",
+    "line": 179,
+    "verdict": "pass"
+   },
    "declarations": [
     {
      "lib": "FrcCore",
@@ -17138,7 +17231,12 @@
    "origin_row": "22:C2",
    "tag": "T",
    "tier": 0,
-   "check": null,
+   "check": {
+    "href": "frc/ledgers/p22_quantum.html#p22018",
+    "script": "p22_quantum.py",
+    "line": 179,
+    "verdict": "pass"
+   },
    "declarations": [
     {
      "lib": "FrcCore",
@@ -17164,7 +17262,12 @@
    "origin_row": "22:C3",
    "tag": "T",
    "tier": 0,
-   "check": null,
+   "check": {
+    "href": "frc/ledgers/p22_quantum.html#p22019",
+    "script": "p22_quantum.py",
+    "line": 202,
+    "verdict": "pass"
+   },
    "declarations": [
     {
      "lib": "FrcCore",
@@ -17200,7 +17303,12 @@
    "origin_row": "22:C4",
    "tag": "T",
    "tier": 0,
-   "check": null,
+   "check": {
+    "href": "frc/ledgers/p22_quantum.html#p22020",
+    "script": "p22_quantum.py",
+    "line": 172,
+    "verdict": "pass"
+   },
    "declarations": [
     {
      "lib": "FrcCore",
@@ -17221,7 +17329,12 @@
    "origin_row": "22:C5",
    "tag": "T",
    "tier": 0,
-   "check": null,
+   "check": {
+    "href": "frc/ledgers/p22_quantum.html#p22021",
+    "script": "p22_quantum.py",
+    "line": 234,
+    "verdict": "pass"
+   },
    "declarations": [
     {
      "lib": "FrcCore",
@@ -17242,7 +17355,12 @@
    "origin_row": "22:C6",
    "tag": "T",
    "tier": 0,
-   "check": null,
+   "check": {
+    "href": "frc/ledgers/p22_quantum.html#p22022",
+    "script": "p22_quantum.py",
+    "line": 283,
+    "verdict": "pass"
+   },
    "declarations": [
     {
      "lib": "FrcCore",
@@ -17273,7 +17391,12 @@
    "origin_row": "22:C7",
    "tag": "T",
    "tier": 0,
-   "check": null,
+   "check": {
+    "href": "frc/ledgers/p22_quantum.html#p22023",
+    "script": "p22_quantum.py",
+    "line": 218,
+    "verdict": "pass"
+   },
    "declarations": [
     {
      "lib": "FrcCore",
@@ -17314,7 +17437,12 @@
    "origin_row": "22:C8",
    "tag": "T",
    "tier": 0,
-   "check": null,
+   "check": {
+    "href": "frc/ledgers/p22_quantum.html#p22024",
+    "script": "p22_quantum.py",
+    "line": 344,
+    "verdict": "pass"
+   },
    "declarations": [
     {
      "lib": "FrcCore",
@@ -17355,7 +17483,12 @@
    "origin_row": "22:C9",
    "tag": "T",
    "tier": 0,
-   "check": null,
+   "check": {
+    "href": "frc/ledgers/p22_quantum.html#p22025",
+    "script": "p22_quantum.py",
+    "line": 222,
+    "verdict": "pass"
+   },
    "declarations": [
     {
      "lib": "FrcCore",
@@ -17386,7 +17519,12 @@
    "origin_row": "22:C10",
    "tag": "T",
    "tier": 0,
-   "check": null,
+   "check": {
+    "href": "frc/ledgers/p22_quantum.html#p22026",
+    "script": "p22_quantum.py",
+    "line": 1162,
+    "verdict": "pass"
+   },
    "declarations": [
     {
      "lib": "FrcCore",
@@ -17439,7 +17577,12 @@
    "origin_row": "22:C11",
    "tag": "T",
    "tier": 0,
-   "check": null,
+   "check": {
+    "href": "frc/ledgers/p22_quantum.html#p22027",
+    "script": "p22_quantum.py",
+    "line": 1181,
+    "verdict": "pass"
+   },
    "declarations": [
     {
      "lib": "FrcCore",
@@ -17483,7 +17626,12 @@
    "origin_row": "22:C13",
    "tag": "T",
    "tier": 0,
-   "check": null,
+   "check": {
+    "href": "frc/ledgers/p22_quantum.html#p22029",
+    "script": "p22_quantum.py",
+    "line": 296,
+    "verdict": "pass"
+   },
    "declarations": [
     {
      "lib": "FrcCore",
@@ -17509,7 +17657,12 @@
    "origin_row": "22:C14",
    "tag": "T",
    "tier": 0,
-   "check": null,
+   "check": {
+    "href": "frc/ledgers/p22_quantum.html#p22030",
+    "script": "p22_quantum.py",
+    "line": 1078,
+    "verdict": "pass"
+   },
    "declarations": [
     {
      "lib": "FrcCore",
@@ -17565,7 +17718,12 @@
    "origin_row": "22:C15",
    "tag": "T",
    "tier": 0,
-   "check": null,
+   "check": {
+    "href": "frc/ledgers/p22_quantum.html#p22031",
+    "script": "p22_quantum.py",
+    "line": 749,
+    "verdict": "pass"
+   },
    "declarations": [
     {
      "lib": "FrcCore",
@@ -17608,7 +17766,12 @@
    "origin_row": "22:C16",
    "tag": "T",
    "tier": 0,
-   "check": null,
+   "check": {
+    "href": "frc/ledgers/p22_quantum.html#p22032",
+    "script": "p22_quantum.py",
+    "line": 617,
+    "verdict": "pass"
+   },
    "declarations": [
     {
      "lib": "FrcCore",
@@ -17639,7 +17802,12 @@
    "origin_row": "22:C17",
    "tag": "T",
    "tier": 0,
-   "check": null,
+   "check": {
+    "href": "frc/ledgers/p22_quantum.html#p22033",
+    "script": "p22_quantum.py",
+    "line": 635,
+    "verdict": "pass"
+   },
    "declarations": [
     {
      "lib": "FrcCore",
@@ -17690,7 +17858,12 @@
    "origin_row": "22:C18",
    "tag": "T",
    "tier": 0,
-   "check": null,
+   "check": {
+    "href": "frc/ledgers/p22_quantum.html#p22034",
+    "script": "p22_quantum.py",
+    "line": 855,
+    "verdict": "pass"
+   },
    "declarations": [
     {
      "lib": "FrcCore",
@@ -17716,7 +17889,12 @@
    "origin_row": "22:C19",
    "tag": "T",
    "tier": 0,
-   "check": null,
+   "check": {
+    "href": "frc/ledgers/p22_quantum.html#p22035",
+    "script": "p22_quantum.py",
+    "line": 924,
+    "verdict": "pass"
+   },
    "declarations": [
     {
      "lib": "FrcCore",
@@ -17752,7 +17930,12 @@
    "origin_row": "22:C20",
    "tag": "T",
    "tier": 0,
-   "check": null,
+   "check": {
+    "href": "frc/ledgers/p22_quantum.html#p22036",
+    "script": "p22_quantum.py",
+    "line": 973,
+    "verdict": "pass"
+   },
    "declarations": [
     {
      "lib": "FrcCore",
@@ -17783,7 +17966,12 @@
    "origin_row": "22:C21",
    "tag": "T",
    "tier": 0,
-   "check": null,
+   "check": {
+    "href": "frc/ledgers/p22_quantum.html#p22037",
+    "script": "p22_quantum.py",
+    "line": 1291,
+    "verdict": "pass"
+   },
    "declarations": [
     {
      "lib": "FrcCore",
@@ -17821,7 +18009,12 @@
    "origin_row": "22:C22",
    "tag": "T",
    "tier": 0,
-   "check": null,
+   "check": {
+    "href": "frc/ledgers/p22_quantum.html#p22038",
+    "script": "p22_quantum.py",
+    "line": 1034,
+    "verdict": "pass"
+   },
    "declarations": [
     {
      "lib": "FrcCore",
@@ -17857,7 +18050,12 @@
    "origin_row": "22:C23",
    "tag": "T",
    "tier": 0,
-   "check": null,
+   "check": {
+    "href": "frc/ledgers/p22_quantum.html#p22039",
+    "script": "p22_quantum.py",
+    "line": 1481,
+    "verdict": "pass"
+   },
    "declarations": [
     {
      "lib": "FrcCore",
@@ -17888,7 +18086,12 @@
    "origin_row": "22:C24",
    "tag": "T",
    "tier": 0,
-   "check": null,
+   "check": {
+    "href": "frc/ledgers/p22_quantum.html#p22040",
+    "script": "p22_quantum.py",
+    "line": 261,
+    "verdict": "pass"
+   },
    "declarations": [
     {
      "lib": "FrcCore",
@@ -17919,7 +18122,12 @@
    "origin_row": "22:C25",
    "tag": "T",
    "tier": 0,
-   "check": null,
+   "check": {
+    "href": "frc/ledgers/p22_quantum.html#p22041",
+    "script": "p22_quantum.py",
+    "line": 649,
+    "verdict": "pass"
+   },
    "declarations": [
     {
      "lib": "FrcCore",
@@ -17953,7 +18161,12 @@
    "origin_row": "22:C26",
    "tag": "T",
    "tier": 0,
-   "check": null,
+   "check": {
+    "href": "frc/ledgers/p22_quantum.html#p22042",
+    "script": "p22_quantum.py",
+    "line": 677,
+    "verdict": "pass"
+   },
    "declarations": [
     {
      "lib": "FrcCore",
@@ -17994,7 +18207,12 @@
    "origin_row": "22:C27",
    "tag": "T",
    "tier": 0,
-   "check": null,
+   "check": {
+    "href": "frc/ledgers/p22_quantum.html#p22043",
+    "script": "p22_quantum.py",
+    "line": 1554,
+    "verdict": "pass"
+   },
    "declarations": [
     {
      "lib": "FrcCore",
@@ -18020,7 +18238,12 @@
    "origin_row": "22:P1",
    "tag": "T",
    "tier": 0,
-   "check": null,
+   "check": {
+    "href": "frc/ledgers/p22_quantum.html#p22052",
+    "script": "p22_quantum.py",
+    "line": 952,
+    "verdict": "pass"
+   },
    "declarations": [
     {
      "lib": "FrcCore",
@@ -18058,7 +18281,12 @@
    "origin_row": "22:P2",
    "tag": "T",
    "tier": 0,
-   "check": null,
+   "check": {
+    "href": "frc/ledgers/p22_quantum.html#p22053",
+    "script": "p22_quantum.py",
+    "line": 353,
+    "verdict": "pass"
+   },
    "declarations": [
     {
      "lib": "FrcCore",
@@ -18091,7 +18319,12 @@
    "origin_row": "22:P3",
    "tag": "T",
    "tier": 0,
-   "check": null,
+   "check": {
+    "href": "frc/ledgers/p22_quantum.html#p22054",
+    "script": "p22_quantum.py",
+    "line": 877,
+    "verdict": "pass"
+   },
    "declarations": [
     {
      "lib": "FrcCore",
@@ -18130,7 +18363,12 @@
    "origin_row": "22:P4",
    "tag": "T",
    "tier": 0,
-   "check": null,
+   "check": {
+    "href": "frc/ledgers/p22_quantum.html#p22055",
+    "script": "p22_quantum.py",
+    "line": 571,
+    "verdict": "pass"
+   },
    "declarations": [
     {
      "lib": "FrcCore",
@@ -18163,7 +18401,12 @@
    "origin_row": "22:P5",
    "tag": "T",
    "tier": 0,
-   "check": null,
+   "check": {
+    "href": "frc/ledgers/p22_quantum.html#p22056",
+    "script": "p22_quantum.py",
+    "line": 1096,
+    "verdict": "pass"
+   },
    "declarations": [
     {
      "lib": "FrcCore",
@@ -18204,7 +18447,12 @@
    "origin_row": "22:X1",
    "tag": "T",
    "tier": 0,
-   "check": null,
+   "check": {
+    "href": "frc/ledgers/p22_quantum.html#p22044",
+    "script": "p22_quantum.py",
+    "line": 218,
+    "verdict": "pass"
+   },
    "declarations": [
     {
      "lib": "FrcCore",
@@ -18245,7 +18493,12 @@
    "origin_row": "22:X2",
    "tag": "T",
    "tier": 0,
-   "check": null,
+   "check": {
+    "href": "frc/ledgers/p22_quantum.html#p22045",
+    "script": "p22_quantum.py",
+    "line": 296,
+    "verdict": "pass"
+   },
    "declarations": [
     {
      "lib": "FrcCore",
@@ -18271,7 +18524,12 @@
    "origin_row": "22:X3",
    "tag": "T",
    "tier": 0,
-   "check": null,
+   "check": {
+    "href": "frc/ledgers/p22_quantum.html#p22046",
+    "script": "p22_quantum.py",
+    "line": 202,
+    "verdict": "pass"
+   },
    "declarations": [
     {
      "lib": "FrcCore",
@@ -18297,7 +18555,12 @@
    "origin_row": "22:X4",
    "tag": "T",
    "tier": 0,
-   "check": null,
+   "check": {
+    "href": "frc/ledgers/p22_quantum.html#p22047",
+    "script": "p22_quantum.py",
+    "line": 1507,
+    "verdict": "pass"
+   },
    "declarations": [
     {
      "lib": "FrcCore",
@@ -18328,7 +18591,12 @@
    "origin_row": "22:X5",
    "tag": "T",
    "tier": 0,
-   "check": null,
+   "check": {
+    "href": "frc/ledgers/p22_quantum.html#p22048",
+    "script": "p22_quantum.py",
+    "line": 261,
+    "verdict": "pass"
+   },
    "declarations": [
     {
      "lib": "FrcCore",
@@ -18359,7 +18627,12 @@
    "origin_row": "22:X6",
    "tag": "T",
    "tier": 0,
-   "check": null,
+   "check": {
+    "href": "frc/ledgers/p22_quantum.html#p22049",
+    "script": "p22_quantum.py",
+    "line": 1181,
+    "verdict": "pass"
+   },
    "declarations": [
     {
      "lib": "FrcCore",
@@ -18395,7 +18668,12 @@
    "origin_row": "22:X7",
    "tag": "T",
    "tier": 0,
-   "check": null,
+   "check": {
+    "href": "frc/ledgers/p22_quantum.html#p22050",
+    "script": "p22_quantum.py",
+    "line": 649,
+    "verdict": "pass"
+   },
    "declarations": [
     {
      "lib": "FrcCore",
@@ -18426,7 +18704,12 @@
    "origin_row": "22:X8",
    "tag": "T",
    "tier": 0,
-   "check": null,
+   "check": {
+    "href": "frc/ledgers/p22_quantum.html#p22051",
+    "script": "p22_quantum.py",
+    "line": 344,
+    "verdict": "pass"
+   },
    "declarations": [
     {
      "lib": "FrcCore",
@@ -18471,7 +18754,12 @@
    "origin_row": "22:Z2",
    "tag": "Ω",
    "tier": 2,
-   "check": null,
+   "check": {
+    "href": "frc/ledgers/p22_quantum.html#p22061",
+    "script": "p22_quantum.py",
+    "line": 1400,
+    "verdict": "pass"
+   },
    "declarations": [
     {
      "lib": "FrcLedger",
@@ -19548,6 +19836,1195 @@
    "aliases": [],
    "rows": [
     "25:J5"
+   ]
+  },
+  {
+   "key": "p26001",
+   "origin": "26",
+   "statement": "$\\NPC$-completeness and self-reducibility: satisfiability is $\\NPC$-complete (Cook, Levin), the reductions reach combinatorial mathematics (Karp), and polynomial time is invariant across the standard machines (Church--Turing).",
+   "origin_row": "26:A1",
+   "tag": "I",
+   "tier": null,
+   "check": null,
+   "declarations": [],
+   "aliases": [],
+   "rows": [
+    "26:A1"
+   ]
+  },
+  {
+   "key": "p26002",
+   "origin": "26",
+   "statement": "Proof complexity, used as proved: $\\NPC=\\coNP$ iff some propositional proof system is polynomially bounded (Cook--Reckhow); Extended Frege is not automatizable unless RSA breaks, bounded-depth Frege unless factoring and Diffie--Hellman are feasible, and resolution is $\\NPC$-hard to automate.",
+   "origin_row": "26:A2",
+   "tag": "I",
+   "tier": null,
+   "check": null,
+   "declarations": [],
+   "aliases": [],
+   "rows": [
+    "26:A2"
+   ]
+  },
+  {
+   "key": "p26003",
+   "origin": "26",
+   "statement": "One-way functions and the average case: the discrete logarithm and factoring as the canonical instances (Diffie--Hellman), Impagliazzo's worlds; Shor's order finding, which inverts both for a quantum observer.",
+   "origin_row": "26:A3",
+   "tag": "I",
+   "tier": null,
+   "check": null,
+   "declarations": [],
+   "aliases": [],
+   "rows": [
+    "26:A3"
+   ]
+  },
+  {
+   "key": "p26004",
+   "origin": "26",
+   "statement": "The three barriers: relativization (Baker--Gill--Solovay), natural proofs (Razborov--Rudich), algebrization (Aaronson--Wigderson); Wigderson's survey of what a separation must use.",
+   "origin_row": "26:A4",
+   "tag": "I",
+   "tier": null,
+   "check": null,
+   "declarations": [],
+   "aliases": [],
+   "rows": [
+    "26:A4"
+   ]
+  },
+  {
+   "key": "p26005",
+   "origin": "26",
+   "statement": "Eckmann and Tlusty: under uniform angle scaling a single walk in $\\mathrm{SO}(3)$ reaches the identity only on a measure-zero set, while the doubled walk returns for some exponentially large scaling, delivered non-constructively.",
+   "origin_row": "26:A5",
+   "tag": "I",
+   "tier": null,
+   "check": null,
+   "declarations": [],
+   "aliases": [],
+   "rows": [
+    "26:A5"
+   ]
+  },
+  {
+   "key": "p26006",
+   "origin": "26",
+   "statement": "The corpus: the horizon clause and its complexity face (00:Z1--Z4; 25:G3, 25:G7), the shell theorem (00:Z10; 20:E1, 20:E12), the scale import $\\Om=4S+1$ (00:A7), the window ladder $P^{2}<\\Om$ (00:B8), the four generative levels (00:B6), the drive of every prime shell (00:A12).",
+   "origin_row": "26:A6",
+   "tag": "I",
+   "tier": null,
+   "check": null,
+   "declarations": [],
+   "aliases": [],
+   "rows": [
+    "26:A6"
+   ]
+  },
+  {
+   "key": "p26007",
+   "origin": "26",
+   "statement": "A representation $R=(E_R,O_R,c_R)$: an encoding, a finite set of elementary operations, and the cost, the graph distance in $G_R$. $R$ is admissible when it and a standard machine simulate each other with polynomial overhead. Cost is counted in bit operations, $\\ell=\\log_2P$ for a carrier element and $n$ for a stored length-$n$ object.",
+   "origin_row": "26:B1",
+   "tag": "D",
+   "tier": null,
+   "check": null,
+   "declarations": [],
+   "aliases": [],
+   "rows": [
+    "26:B1"
+   ]
+  },
+  {
+   "key": "p26008",
+   "origin": "26",
+   "statement": "Cost is a function of the pair (target, representation), not of the target alone: a target far in one chart can be near in another, and the transform between charts is itself a path. ``Within the horizon'' is a predicate on pairs.",
+   "origin_row": "26:B2",
+   "tag": "D",
+   "tier": null,
+   "check": null,
+   "declarations": [],
+   "aliases": [],
+   "rows": [
+    "26:B2"
+   ]
+  },
+  {
+   "key": "p26009",
+   "origin": "26",
+   "statement": "The longitudinal turn on the shell: the multiplicative characters $\\chi_\\nu(g^t)=g^{\\nu t}$ are eigenvectors of the scale shift $x\\mapsto gx$, with the $(P-1)$-th roots of unity $g^{\\nu}$ as distinct eigenvalues; the shift $x\\mapsto g^{r}x$ fixes every unit when $(P-1)\\mid r$ and none otherwise.",
+   "origin_row": "26:B3",
+   "tag": "T",
+   "tier": 0,
+   "check": {
+    "href": "frc/ledgers/p26_pnp.html#p26009",
+    "script": "p26_pnp.py",
+    "line": 115,
+    "verdict": "pass"
+   },
+   "declarations": [
+    {
+     "lib": "FrcCore",
+     "module": "FrcCore/Theme/Horizon",
+     "name": "FRC.Horizon.shift_power_character"
+    },
+    {
+     "lib": "FrcCore",
+     "module": "FrcCore/Theme/Horizon",
+     "name": "FRC.Horizon.eigenphase"
+    },
+    {
+     "lib": "FrcCore",
+     "module": "FrcCore/FrameCore",
+     "name": "FRC.Shell.Frame.pow_inj"
+    },
+    {
+     "lib": "FrcCore",
+     "module": "FrcCore/Theme/Horizon",
+     "name": "FRC.Horizon.shift_trace"
+    },
+    {
+     "lib": "FrcCore",
+     "module": "FrcCore/Theme/Ladder",
+     "name": "FRC.Ladder.eigenvalues13"
+    }
+   ],
+   "aliases": [],
+   "rows": [
+    "26:B3"
+   ],
+   "realisations": []
+  },
+  {
+   "key": "p26010",
+   "origin": "26",
+   "statement": "The continuum reading [chart]: the dilation generator $\\HH=-\\mathrm i(x\\partial_x+\\tfrac12)$ has $x^{-1/2+\\mathrm i\\nu}$ as eigenfunction of eigenvalue $\\nu$ on $x>0$, so the frequency index is the spectrum of $\\HH$ in the chart of the scale shift (20:E1).",
+   "origin_row": "26:B4",
+   "tag": "T",
+   "tier": 2,
+   "check": {
+    "href": "frc/ledgers/p26_pnp.html#p26010",
+    "script": "p26_pnp.py",
+    "line": 136,
+    "verdict": "pass"
+   },
+   "declarations": [
+    {
+     "lib": "FrcLedger",
+     "module": "FrcLedger/Pnp",
+     "name": "FRC.Pnp.dilation_eigen"
+    }
+   ],
+   "aliases": [],
+   "rows": [
+    "26:B4"
+   ],
+   "realisations": []
+  },
+  {
+   "key": "p26011",
+   "origin": "26",
+   "statement": "The Gauss sum couples the two turns: multiplication by a unit permutes the units; $\\sum_{t\\neq0}\\psi(tc)$ is $-1$ for $c\\neq0$ and $P-1$ for $c=0$; $\\sum_u\\chi(u)=0$ for $\\chi\\neq1$; hence $\\lvert g(\\chi)\\rvert^{2}=P$ for every nontrivial $\\chi$ on the shell ($\\Om$ on the Carrier).",
+   "origin_row": "26:B5",
+   "tag": "T",
+   "tier": 0,
+   "check": {
+    "href": "frc/ledgers/p26_pnp.html#p26011",
+    "script": "p26_pnp.py",
+    "line": 162,
+    "verdict": "pass"
+   },
+   "declarations": [
+    {
+     "lib": "FrcCore",
+     "module": "FrcCore/Theme/Horizon",
+     "name": "FRC.Horizon.ramanujan_sum"
+    },
+    {
+     "lib": "FrcCore",
+     "module": "FrcCore/Theme/Horizon",
+     "name": "FRC.Horizon.ramanujan_zero"
+    },
+    {
+     "lib": "FrcCore",
+     "module": "FrcCore/Transform",
+     "name": "FRC.Shell.Frame.principal_root"
+    },
+    {
+     "lib": "FrcCore",
+     "module": "FrcCore/Theme/Ladder",
+     "name": "FRC.Ladder.mul_perm"
+    },
+    {
+     "lib": "FrcLedger",
+     "module": "FrcLedger/Pnp",
+     "name": "FRC.Pnp.gauss_product"
+    },
+    {
+     "lib": "FrcLedger",
+     "module": "FrcLedger/Pnp",
+     "name": "FRC.Pnp.gauss_modulus"
+    }
+   ],
+   "aliases": [],
+   "rows": [
+    "26:B5"
+   ],
+   "realisations": []
+  },
+  {
+   "key": "p26012",
+   "origin": "26",
+   "statement": "Two horizons, nested: the per-instance feasible horizon $H(\\ell)$, polynomial in the feasible regime, and the absolute horizon $\\Om^{1/4}$, the observer's total budget in the totality. The totality holds the inverse of every ascent whole, the table of $P-1$ index pairs, below its own count: the endpoint-given oracle.",
+   "origin_row": "26:C1",
+   "tag": "D",
+   "tier": null,
+   "check": null,
+   "declarations": [],
+   "aliases": [],
+   "rows": [
+    "26:C1"
+   ]
+  },
+  {
+   "key": "p26013",
+   "origin": "26",
+   "statement": "The family's size and the table beyond the horizon [chart]: at the anchor $2^{204}<\\sqrt\\Om<2^{205}$, so the shells of the family $P^{2}<\\Om$ have at most $205$ bits; $2^{102}<\\Om^{1/4}<2^{103}$, so a decision table with one entry per $204$-bit input exceeds the absolute horizon and lies below $\\sqrt\\Om$.",
+   "origin_row": "26:C2",
+   "tag": "T",
+   "tier": 2,
+   "check": {
+    "href": "frc/ledgers/p26_pnp.html#p26013",
+    "script": "p26_pnp.py",
+    "line": 188,
+    "verdict": "pass"
+   },
+   "declarations": [
+    {
+     "lib": "FrcLedger",
+     "module": "FrcLedger/Pnp",
+     "name": "FRC.Pnp.family_bits"
+    }
+   ],
+   "aliases": [],
+   "rows": [
+    "26:C2"
+   ],
+   "realisations": []
+  },
+  {
+   "key": "p26014",
+   "origin": "26",
+   "statement": "The classes in a representation: $L\\in\\PC_R$ when a $\\mathrm{poly}(\\ell)$ uniform rule selects each next operation and the deterministic forward path reaches the decision bit within $H(\\ell)$; $L\\in\\NPC_R$ when a certificate of polynomial length places ``accept'' within $H(\\ell)$ of $(E_R(x),w)$. The axis is find versus exist.",
+   "origin_row": "26:D1",
+   "tag": "D",
+   "tier": null,
+   "check": null,
+   "declarations": [],
+   "aliases": [],
+   "rows": [
+    "26:D1"
+   ]
+  },
+  {
+   "key": "p26015",
+   "origin": "26",
+   "statement": "Faithfulness: for every admissible $R$, $\\PC_R=\\PC$ and $\\NPC_R=\\NPC$. The forward direction simulates each operation in polynomial time and guesses the operation sequence with the certificate; the reverse rewrites a standard computation as an $R$-derivation of polynomial length.",
+   "origin_row": "26:D2",
+   "tag": "T",
+   "tier": null,
+   "check": null,
+   "declarations": [],
+   "aliases": [],
+   "rows": [
+    "26:D2"
+   ],
+   "realisations": []
+  },
+  {
+   "key": "p26016",
+   "origin": "26",
+   "statement": "The classes are representation-invariant; what varies with $R$ is the cost of a specific target within a fixed budget. A certificate is a representation in which the far target is near: supplied ($\\NPC$) rather than forward-constructed ($\\PC$).",
+   "origin_row": "26:D3",
+   "tag": "D",
+   "tier": null,
+   "check": null,
+   "declarations": [],
+   "aliases": [],
+   "rows": [
+    "26:D3"
+   ]
+  },
+  {
+   "key": "p26017",
+   "origin": "26",
+   "statement": "Faithfulness is to the class structure on the carrier family: the carrier classes are $\\PC$ and $\\NPC$, the textbook asymptotic classes their degenerate idealisation. No tower of carriers is admitted; a fixed length admits a decision table, decided by the totality, unreachable below the horizon (C2).",
+   "origin_row": "26:D4",
+   "tag": "D",
+   "tier": null,
+   "check": null,
+   "declarations": [],
+   "aliases": [],
+   "rows": [
+    "26:D4"
+   ]
+  },
+  {
+   "key": "p26018",
+   "origin": "26",
+   "statement": "The search problem $\\mathrm{Search}_V$ of $L\\in\\NPC$ with verifier $V$ and witness bound $p$ maps an instance to a witness or to $\\bot$. The near-representation is forward-constructible iff $\\mathrm{Search}_V\\in\\mathrm{FP}$.",
+   "origin_row": "26:E1",
+   "tag": "D",
+   "tier": null,
+   "check": null,
+   "declarations": [],
+   "aliases": [],
+   "rows": [
+    "26:E1"
+   ]
+  },
+  {
+   "key": "p26019",
+   "origin": "26",
+   "statement": "The crisp form: $\\PC=\\NPC$ iff $\\mathrm{Search}_V\\in\\mathrm{FP}$ for every $L\\in\\NPC$, equivalently for $\\mathrm{SAT}$; by self-reduction on the variables and the witness-preserving Cook--Levin reduction.",
+   "origin_row": "26:E2",
+   "tag": "T",
+   "tier": null,
+   "check": null,
+   "declarations": [],
+   "aliases": [],
+   "rows": [
+    "26:E2"
+   ],
+   "realisations": []
+  },
+  {
+   "key": "p26020",
+   "origin": "26",
+   "statement": "A propositional proof system is a polynomial-time onto map $\\Pi$ to $\\mathrm{TAUT}$; $p$-bounded when every tautology has a polynomial-size proof; automatizable when some algorithm finds a proof in time polynomial in the tautology and its least proof size.",
+   "origin_row": "26:E3",
+   "tag": "D",
+   "tier": null,
+   "check": null,
+   "declarations": [],
+   "aliases": [],
+   "rows": [
+    "26:E3"
+   ]
+  },
+  {
+   "key": "p26021",
+   "origin": "26",
+   "statement": "The witness--automatization dictionary: for $L\\in\\NPC$ with verifier $V$, $\\mathrm{Search}_V\\in\\mathrm{FP}$ iff the certificate system $\\Pi_V$ (a witness system, not a system for $\\mathrm{TAUT}$) is automatizable; so $\\PC=\\NPC$ iff every witness system is automatizable.",
+   "origin_row": "26:E4",
+   "tag": "T",
+   "tier": null,
+   "check": null,
+   "declarations": [],
+   "aliases": [],
+   "rows": [
+    "26:E4"
+   ],
+   "realisations": []
+  },
+  {
+   "key": "p26022",
+   "origin": "26",
+   "statement": "Finding collapses to checking: if $\\PC=\\NPC$ then every propositional proof system is automatizable, the proof built bit by bit by self-reduction on the predicate ``$\\tau$ has a $\\Pi$-proof of size at most $s$''.",
+   "origin_row": "26:E5",
+   "tag": "T",
+   "tier": null,
+   "check": null,
+   "declarations": [],
+   "aliases": [],
+   "rows": [
+    "26:E5"
+   ],
+   "realisations": []
+  },
+  {
+   "key": "p26023",
+   "origin": "26",
+   "statement": "The gap is finding versus existing: the truth-table system is automatizable but not $p$-bounded, so existence ($\\NPC=\\coNP$) and discovery are distinct; the known separations condition the gap on the hardness of factoring and the discrete logarithm, the substrate's descent.",
+   "origin_row": "26:E6",
+   "tag": "D",
+   "tier": null,
+   "check": null,
+   "declarations": [],
+   "aliases": [],
+   "rows": [
+    "26:E6"
+   ]
+  },
+  {
+   "key": "p26024",
+   "origin": "26",
+   "statement": "A localizing chart for $x\\in L$: an admissible chart in which some witness lies within the polynomial horizon of $\\mathbf0$. A constructive localising selector emits, in $\\mathrm{FP}$, such a chart with a canonical forward rule whose orbit reaches the witness in $\\mathrm{poly}(\\ell)$ steps. Proximity alone is insufficient.",
+   "origin_row": "26:E7",
+   "tag": "D",
+   "tier": null,
+   "check": null,
+   "declarations": [],
+   "aliases": [],
+   "rows": [
+    "26:E7"
+   ]
+  },
+  {
+   "key": "p26025",
+   "origin": "26",
+   "statement": "Existence is free: for every witness index $m$ of the scale chart the translation $j\\mapsto j+(n-m)+1$ of the index cycle is a chart (a bijection of the cycle) that places $g^{m}$ one counting step from the origin, $g=g^{0}\\cdot g$. The witness enters only to name the chart.",
+   "origin_row": "26:E8",
+   "tag": "T",
+   "tier": 0,
+   "check": {
+    "href": "frc/ledgers/p26_pnp.html#p26025",
+    "script": "p26_pnp.py",
+    "line": 215,
+    "verdict": "pass"
+   },
+   "declarations": [
+    {
+     "lib": "FrcCore",
+     "module": "FrcCore/Theme/Ladder",
+     "name": "FRC.Ladder.recentre_witness"
+    },
+    {
+     "lib": "FrcCore",
+     "module": "FrcCore/Theme/Ladder",
+     "name": "FRC.Ladder.recentre_inj"
+    },
+    {
+     "lib": "FrcCore",
+     "module": "FrcCore/Theme/Ladder",
+     "name": "FRC.Ladder.recentre_surj"
+    },
+    {
+     "lib": "FrcCore",
+     "module": "FrcCore/Theme/Ladder",
+     "name": "FRC.Ladder.recentre13"
+    }
+   ],
+   "aliases": [],
+   "rows": [
+    "26:E8"
+   ],
+   "realisations": []
+  },
+  {
+   "key": "p26026",
+   "origin": "26",
+   "statement": "The selector is the content: a constructive localising selector for every $L\\in\\NPC$, equivalently for $\\mathrm{SAT}$, exists iff $\\PC=\\NPC$; a selector for a single easy $L$ does not suffice.",
+   "origin_row": "26:E9",
+   "tag": "T",
+   "tier": null,
+   "check": null,
+   "declarations": [],
+   "aliases": [],
+   "rows": [
+    "26:E9"
+   ],
+   "realisations": []
+  },
+  {
+   "key": "p26027",
+   "origin": "26",
+   "statement": "The counting distance of a unit along the orbit of $g$ is its index: $m\\mapsto g^{m}$ is a bijection of the index cycle onto the units, the distances $1,\\dots,P-1$ have mean $P/2$ and maximum $P-1$, between $2^{\\ell-1}$ and $2^{\\ell}$ for $\\ell$ the bit length.",
+   "origin_row": "26:E10",
+   "tag": "T",
+   "tier": 0,
+   "check": {
+    "href": "frc/ledgers/p26_pnp.html#p26027",
+    "script": "p26_pnp.py",
+    "line": 232,
+    "verdict": "pass"
+   },
+   "declarations": [
+    {
+     "lib": "FrcCore",
+     "module": "FrcCore/Theme/Drive",
+     "name": "FRC.Shell.Prime.exists_drive"
+    },
+    {
+     "lib": "FrcCore",
+     "module": "FrcCore/Theme/Drive",
+     "name": "FRC.Shell.Prime.primitive_pow_inj"
+    },
+    {
+     "lib": "FrcCore",
+     "module": "FrcCore/FrameCore",
+     "name": "FRC.Shell.Frame.generates"
+    },
+    {
+     "lib": "FrcCore",
+     "module": "FrcCore/Theme/Ladder",
+     "name": "FRC.Ladder.two_mul_distSum"
+    },
+    {
+     "lib": "FrcCore",
+     "module": "FrcCore/Theme/Ladder",
+     "name": "FRC.Ladder.dist_le"
+    },
+    {
+     "lib": "FrcCore",
+     "module": "FrcCore/Theme/Ladder",
+     "name": "FRC.Ladder.bits_bracket"
+    }
+   ],
+   "aliases": [],
+   "rows": [
+    "26:E10"
+   ],
+   "realisations": []
+  },
+  {
+   "key": "p26028",
+   "origin": "26",
+   "statement": "Three quantities differ: the naive orbit length (up to $2^{\\ell}$ steps), the cost of a specified algorithm (baby-step--giant-step, F3), and the minimum complexity of the descent, the open lower bound. The bijection of E10 bounds none of them. Short to name is not short to find.",
+   "origin_row": "26:E11",
+   "tag": "D",
+   "tier": null,
+   "check": null,
+   "declarations": [],
+   "aliases": [],
+   "rows": [
+    "26:E11"
+   ]
+  },
+  {
+   "key": "p26029",
+   "origin": "26",
+   "statement": "Charts and the family: on $\\F_P$ the additive chart and the scale chart $(\\F_P^{\\times},\\cdot)\\simeq C_{P-1}$; with a fixed generator $g$ the ascent $a_P(j)=g^{j}$ and the descent $d_P=\\mathrm{dlog}_g$. The carrier family is $\\{\\F_P:P^{2}<\\Om\\}$ (00:B8), input size $\\ell$, feasibility $\\mathrm{poly}(\\ell)$.",
+   "origin_row": "26:F1",
+   "tag": "D",
+   "tier": null,
+   "check": null,
+   "declarations": [],
+   "aliases": [],
+   "rows": [
+    "26:F1"
+   ]
+  },
+  {
+   "key": "p26030",
+   "origin": "26",
+   "statement": "Ascent is feasible: square-and-multiply computes $g^{j}$ in at most $2\\,\\mathrm{bits}(j)$ modular multiplications, hence at most $2\\ell$ for $j<P$; on the three carriers $17$, $26$, $38$ multiplications at $j=P/3$, right to left with the last squaring skipped [data].",
+   "origin_row": "26:F2",
+   "tag": "T",
+   "tier": 0,
+   "check": {
+    "href": "frc/ledgers/p26_pnp.html#p26030",
+    "script": "p26_pnp.py",
+    "line": 269,
+    "verdict": "pass"
+   },
+   "declarations": [
+    {
+     "lib": "FrcCore",
+     "module": "FrcCore/Theme/Ladder",
+     "name": "FRC.Ladder.sqmul_spec"
+    },
+    {
+     "lib": "FrcCore",
+     "module": "FrcCore/Theme/Ladder",
+     "name": "FRC.Ladder.sqmul_count"
+    },
+    {
+     "lib": "FrcCore",
+     "module": "FrcCore/Theme/Ladder",
+     "name": "FRC.Ladder.sqmul_count_of_lt_pow"
+    },
+    {
+     "lib": "FrcCore",
+     "module": "FrcCore/Theme/Ladder",
+     "name": "FRC.Ladder.sqmul13"
+    }
+   ],
+   "aliases": [],
+   "rows": [
+    "26:F2"
+   ],
+   "realisations": []
+  },
+  {
+   "key": "p26031",
+   "origin": "26",
+   "statement": "The descent's count: with $m^{2}\\ge P-1$ baby steps $1,g,\\dots,g^{m-1}$ ($m$ entries, one multiplication per step) and at most $m$ giant steps, baby-step--giant-step recovers from $g^{x}$ an index $y$ with $g^{y}=g^{x}$; at most $2m$ operations, $m=\\lfloor\\sqrt{P-1}\\rfloor+1$; $134$, $1334$, $13334$ on the three carriers [data].",
+   "origin_row": "26:F3",
+   "tag": "T",
+   "tier": 0,
+   "check": {
+    "href": "frc/ledgers/p26_pnp.html#p26031",
+    "script": "p26_pnp.py",
+    "line": 297,
+    "verdict": "pass"
+   },
+   "declarations": [
+    {
+     "lib": "FrcCore",
+     "module": "FrcCore/Theme/Ladder",
+     "name": "FRC.Ladder.bsgs_spec"
+    },
+    {
+     "lib": "FrcCore",
+     "module": "FrcCore/Theme/Ladder",
+     "name": "FRC.Ladder.bsgs_total"
+    },
+    {
+     "lib": "FrcCore",
+     "module": "FrcCore/Theme/Ladder",
+     "name": "FRC.Ladder.baby_step"
+    },
+    {
+     "lib": "FrcCore",
+     "module": "FrcCore/Theme/Ladder",
+     "name": "FRC.Ladder.descendsB_spec"
+    },
+    {
+     "lib": "FrcCore",
+     "module": "FrcCore/Theme/Ladder",
+     "name": "FRC.Ladder.descent13_101"
+    }
+   ],
+   "aliases": [],
+   "rows": [
+    "26:F3"
+   ],
+   "realisations": []
+  },
+  {
+   "key": "p26032",
+   "origin": "26",
+   "statement": "Three scales: the feasibility budget $\\mathrm{poly}(\\ell)$, exceeded by the descent; the per-instance descent $2\\sqrt P$, at most $\\Om^{1/4}$ on the family, superpolynomial yet far below carrier scale; the uniform statement that no $\\mathrm{poly}(\\ell)$ inverse exists across the family, with no per-instance witness.",
+   "origin_row": "26:F4",
+   "tag": "D",
+   "tier": null,
+   "check": null,
+   "declarations": [],
+   "aliases": [],
+   "rows": [
+    "26:F4"
+   ]
+  },
+  {
+   "key": "p26033",
+   "origin": "26",
+   "statement": "A one-way family: each $f_\\ell$ computable in $\\mathrm{poly}(\\ell)$ while every $\\mathrm{poly}(\\ell)$-time inverter succeeds on at most a sub-horizon fraction of the carrier, the finite-totality reading of negligibility.",
+   "origin_row": "26:F5",
+   "tag": "D",
+   "tier": null,
+   "check": null,
+   "declarations": [],
+   "aliases": [],
+   "rows": [
+    "26:F5"
+   ]
+  },
+  {
+   "key": "p26034",
+   "origin": "26",
+   "statement": "One-way implies separation: if a one-way family exists then $\\PC\\neq\\NPC$, since inverting $f$ is the search problem of the verifier $[f(x)=y]$, which $\\PC=\\NPC$ would place in $\\mathrm{FP}$.",
+   "origin_row": "26:F6",
+   "tag": "T",
+   "tier": null,
+   "check": null,
+   "declarations": [],
+   "aliases": [],
+   "rows": [
+    "26:F6"
+   ],
+   "realisations": []
+  },
+  {
+   "key": "p26035",
+   "origin": "26",
+   "statement": "The scale-descent residue: the ascent family $\\{a_P\\}$ on the carrier family is one-way, $\\mathrm{poly}(\\ell)$ forward and inverted by no $\\mathrm{poly}(\\ell)$ forward computation. Decided by the totality, beyond the bounded observer; the complexity literature posits the same statement as the discrete-logarithm hardness assumption (00:Z4).",
+   "origin_row": "26:F7",
+   "tag": "Ω",
+   "tier": null,
+   "check": null,
+   "declarations": [],
+   "aliases": [],
+   "rows": [
+    "26:F7"
+   ]
+  },
+  {
+   "key": "p26036",
+   "origin": "26",
+   "statement": "If the scale descent is one-way (F7) then $\\PC\\neq\\NPC$.",
+   "origin_row": "26:F8",
+   "tag": "T",
+   "tier": null,
+   "check": null,
+   "declarations": [],
+   "aliases": [],
+   "rows": [
+    "26:F8"
+   ],
+   "realisations": []
+  },
+  {
+   "key": "p26037",
+   "origin": "26",
+   "statement": "The native locus: ascent is a horizon-bounded forward count, descent its inverse below the horizon; $\\PC\\neq\\NPC$ follows from F7 one way, the converse not known. The single arrow of the drive is the structural reason for the residue, the descent the time-reversed branch a composed observer cannot freely take.",
+   "origin_row": "26:F9",
+   "tag": "D",
+   "tier": null,
+   "check": null,
+   "declarations": [],
+   "aliases": [],
+   "rows": [
+    "26:F9"
+   ]
+  },
+  {
+   "key": "p26038",
+   "origin": "26",
+   "statement": "The descent is the inverse coordinate map: $a_P:j\\mapsto g^{j}$ is the bijection of $C_{P-1}$ onto $\\F_P^{\\times}$ carrying the time index to its position, and $d_P=\\mathrm{dlog}$ its inverse, a cyclic-group coordinate, not the inverse of the multiplicative Fourier transform (B3).",
+   "origin_row": "26:F10",
+   "tag": "T",
+   "tier": 0,
+   "check": {
+    "href": "frc/ledgers/p26_pnp.html#p26038",
+    "script": "p26_pnp.py",
+    "line": 246,
+    "verdict": "pass"
+   },
+   "declarations": [
+    {
+     "lib": "FrcCore",
+     "module": "FrcCore/Theme/Drive",
+     "name": "FRC.Shell.Prime.exists_drive"
+    },
+    {
+     "lib": "FrcCore",
+     "module": "FrcCore/Theme/Drive",
+     "name": "FRC.Shell.Prime.primitive_pow_inj"
+    },
+    {
+     "lib": "FrcCore",
+     "module": "FrcCore/FrameCore",
+     "name": "FRC.Shell.Frame.generates"
+    }
+   ],
+   "aliases": [],
+   "rows": [
+    "26:F10"
+   ],
+   "realisations": []
+  },
+  {
+   "key": "p26039",
+   "origin": "26",
+   "statement": "The scaling flow returns the doubled walk: Eckmann and Tlusty's two facts (A5) read on the shell as the find--exist split, a designated point unreachable by the single scaling, the relaxed target met non-constructively at an exponential scaling. A geometric parallel, not a lower bound.",
+   "origin_row": "26:F11",
+   "tag": "I",
+   "tier": null,
+   "check": null,
+   "declarations": [],
+   "aliases": [],
+   "rows": [
+    "26:F11"
+   ]
+  },
+  {
+   "key": "p26040",
+   "origin": "26",
+   "statement": "The four primitive roles on $\\F_P$ with the generator $g$: succession $x+1$, addition $x+a$, multiplication $mx$, fixed-base exponentiation $a_P(j)=g^{j}$, each the previous iterated with a fixed operand; the fourth is the top, its inverse the discrete logarithm.",
+   "origin_row": "26:G1",
+   "tag": "D",
+   "tier": null,
+   "check": null,
+   "declarations": [],
+   "aliases": [],
+   "rows": [
+    "26:G1"
+   ]
+  },
+  {
+   "key": "p26041",
+   "origin": "26",
+   "statement": "Ladder closure: the four roles generate the two cyclic structures, $C_P$ additive and $C_{P-1}$ multiplicative, with the bridge $a_P$. A tower exponent $g^{j}$ is read modulo $P-1$, so tetration is exponentiation of a reduced index, and the power map acts on the index as multiplication; no third cyclic structure hosts a fifth role (00:B6).",
+   "origin_row": "26:G2",
+   "tag": "T",
+   "tier": 0,
+   "check": {
+    "href": "frc/ledgers/p26_pnp.html#p26041",
+    "script": "p26_pnp.py",
+    "line": 347,
+    "verdict": "pass"
+   },
+   "declarations": [
+    {
+     "lib": "FrcCore",
+     "module": "FrcCore/FrameCore",
+     "name": "FRC.Shell.Frame.pow_mod"
+    },
+    {
+     "lib": "FrcCore",
+     "module": "FrcCore/Theme/Ladder",
+     "name": "FRC.Ladder.tower_reduces"
+    },
+    {
+     "lib": "FrcCore",
+     "module": "FrcCore/Theme/Ladder",
+     "name": "FRC.Ladder.power_index"
+    },
+    {
+     "lib": "FrcCore",
+     "module": "FrcCore/Theme/Ladder",
+     "name": "FRC.Ladder.tower13"
+    }
+   ],
+   "aliases": [],
+   "rows": [
+    "26:G2"
+   ],
+   "realisations": []
+  },
+  {
+   "key": "p26042",
+   "origin": "26",
+   "statement": "Phase-index dynamics: in the scale chart $x=g^{m}$ the power map acts by $P_k(g^{m})=g^{km}$ and its iterates by $P_k^{\\,r}(g^{m})=g^{k^{r}m}$, the exponents read modulo $P-1$; the ascent is the orbit traversal $g^{j+1}=g\\cdot g^{j}$, one multiplication per counted step.",
+   "origin_row": "26:G3",
+   "tag": "T",
+   "tier": 0,
+   "check": {
+    "href": "frc/ledgers/p26_pnp.html#p26042",
+    "script": "p26_pnp.py",
+    "line": 363,
+    "verdict": "pass"
+   },
+   "declarations": [
+    {
+     "lib": "FrcCore",
+     "module": "FrcCore/Theme/Ladder",
+     "name": "FRC.Ladder.power_index"
+    },
+    {
+     "lib": "FrcCore",
+     "module": "FrcCore/Theme/Ladder",
+     "name": "FRC.Ladder.phase_index"
+    },
+    {
+     "lib": "FrcCore",
+     "module": "FrcCore/Theme/Ladder",
+     "name": "FRC.Ladder.ascent_step"
+    },
+    {
+     "lib": "FrcCore",
+     "module": "FrcCore/Theme/Ladder",
+     "name": "FRC.Ladder.phase13"
+    }
+   ],
+   "aliases": [],
+   "rows": [
+    "26:G3"
+   ],
+   "realisations": []
+  },
+  {
+   "key": "p26043",
+   "origin": "26",
+   "statement": "The one-way function is the inverse of the last role: each forward role costs one modular operation, the ascent at most $2\\ell$ multiplications; the descent recovers the index, the position in the counted orbit of the fourth role. The descent/ascent operation ratio at the three carriers is $134/17$, $1334/26$, $13334/38$ [data].",
+   "origin_row": "26:G4",
+   "tag": "T",
+   "tier": 0,
+   "check": {
+    "href": "frc/ledgers/p26_pnp.html#p26043",
+    "script": "p26_pnp.py",
+    "line": 396,
+    "verdict": "pass"
+   },
+   "declarations": [
+    {
+     "lib": "FrcCore",
+     "module": "FrcCore/Theme/Ladder",
+     "name": "FRC.Ladder.sqmul_count_of_lt_pow"
+    },
+    {
+     "lib": "FrcCore",
+     "module": "FrcCore/Theme/Ladder",
+     "name": "FRC.Ladder.bsgs_spec"
+    },
+    {
+     "lib": "FrcCore",
+     "module": "FrcCore/Theme/Ladder",
+     "name": "FRC.Ladder.ascent_step"
+    }
+   ],
+   "aliases": [],
+   "rows": [
+    "26:G4"
+   ],
+   "realisations": []
+  },
+  {
+   "key": "p26044",
+   "origin": "26",
+   "statement": "The power map $P_k$ is a bijection of $\\F_P^{\\times}$ iff $k$ is invertible modulo $P-1$, inverted by $x\\mapsto x^{a}$ with $ak\\equiv1$; otherwise its image is the cycle of $g^{d}$, $d=\\gcd(k,P-1)$, of exactly $(P-1)/d$ elements.",
+   "origin_row": "26:G5",
+   "tag": "T",
+   "tier": 0,
+   "check": {
+    "href": "frc/ledgers/p26_pnp.html#p26044",
+    "script": "p26_pnp.py",
+    "line": 416,
+    "verdict": "pass"
+   },
+   "declarations": [
+    {
+     "lib": "FrcCore",
+     "module": "FrcCore/Theme/Ladder",
+     "name": "FRC.Ladder.power_bijective_of_unit"
+    },
+    {
+     "lib": "FrcCore",
+     "module": "FrcCore/Theme/Ladder",
+     "name": "FRC.Ladder.power_image"
+    },
+    {
+     "lib": "FrcCore",
+     "module": "FrcCore/Theme/Ladder",
+     "name": "FRC.Ladder.power_image_index"
+    },
+    {
+     "lib": "FrcCore",
+     "module": "FrcCore/Theme/Ladder",
+     "name": "FRC.Ladder.compressive_of_gcd"
+    },
+    {
+     "lib": "FrcCore",
+     "module": "FrcCore/Theme/Ladder",
+     "name": "FRC.Ladder.powers13"
+    }
+   ],
+   "aliases": [],
+   "rows": [
+    "26:G5"
+   ],
+   "realisations": []
+  },
+  {
+   "key": "p26045",
+   "origin": "26",
+   "statement": "The index cycle $C_{P-1}$ is the abelian hidden-subgroup datum on which Shor's transform acts, the chart H5 marks as the hard classical case. The one-way map is the exponential $a_P$, whose inverse is the discrete logarithm, not the power map, which is efficiently inverted when bijective (G5).",
+   "origin_row": "26:G6",
+   "tag": "D",
+   "tier": null,
+   "check": null,
+   "declarations": [],
+   "aliases": [],
+   "rows": [
+    "26:G6"
+   ]
+  },
+  {
+   "key": "p26046",
+   "origin": "26",
+   "statement": "The two quarter turns as a structured correspondence: the transverse turn (the additive transform) is forward-computable classically on a stored vector; the longitudinal turn's period is reached by a $\\BQP$ observer through order finding, not by reading a transform vector. A correspondence between charts and the observers that reach them, not a complexity theorem.",
+   "origin_row": "26:H1",
+   "tag": "D",
+   "tier": null,
+   "check": null,
+   "declarations": [],
+   "aliases": [],
+   "rows": [
+    "26:H1"
+   ]
+  },
+  {
+   "key": "p26047",
+   "origin": "26",
+   "statement": "A chart change $T$ is forward-computable when $T$ and $T^{-1}$ lie in $\\PC$; a problem is transform-diagonalisable by $T$ when its instances become pointwise in the $T$-chart. Well defined for abelian and hidden-subgroup problems, not a feature of $\\NPC$ at large.",
+   "origin_row": "26:H2",
+   "tag": "D",
+   "tier": null,
+   "check": null,
+   "declarations": [],
+   "aliases": [],
+   "rows": [
+    "26:H2"
+   ]
+  },
+  {
+   "key": "p26048",
+   "origin": "26",
+   "statement": "Fourier-diagonalisable implies $\\PC$: the additive transform on the shell is exact and self-inverse, $T^{-1}T=1$ on the full cycle $n=P-1$ (the round trips on the sub-cycles $n=8$, $256$, $2^{16}$ over $\\F_{17}$, $\\F_{257}$, $\\F_{65537}$ [data]); the cyclic convolution costs $n^{2}$ multiplications in the position chart and $\\tfrac32n\\log_2n+n$ through the transform ($1\\,048\\,576$ against $16\\,384$ at $n=2^{10}$) [data].",
+   "origin_row": "26:H3",
+   "tag": "T",
+   "tier": 0,
+   "check": {
+    "href": "frc/ledgers/p26_pnp.html#p26048",
+    "script": "p26_pnp.py",
+    "line": 452,
+    "verdict": "pass"
+   },
+   "declarations": [
+    {
+     "lib": "FrcCore",
+     "module": "FrcCore/Transform",
+     "name": "FRC.Shell.Frame.dft_inverse"
+    },
+    {
+     "lib": "FrcCore",
+     "module": "FrcCore/Transform",
+     "name": "FRC.Shell.Frame.principal_root"
+    }
+   ],
+   "aliases": [],
+   "rows": [
+    "26:H3"
+   ],
+   "realisations": []
+  },
+  {
+   "key": "p26049",
+   "origin": "26",
+   "statement": "Structured witness sets are forward-localizable: when the witnesses of $x$ are the solutions of an affine $\\F_2$-system readable from $x$, Gaussian elimination returns a particular solution $w_0$ and a basis; the chart $w\\mapsto w-w_0$ places $w_0$ at $\\mathbf0$ and every solution within the basis's size in counting steps.",
+   "origin_row": "26:H4",
+   "tag": "T",
+   "tier": null,
+   "check": {
+    "href": "frc/ledgers/p26_pnp.html#p26049",
+    "script": "p26_pnp.py",
+    "line": 506,
+    "verdict": "pass"
+   },
+   "declarations": [],
+   "aliases": [],
+   "rows": [
+    "26:H4"
+   ],
+   "realisations": []
+  },
+  {
+   "key": "p26050",
+   "origin": "26",
+   "statement": "The scale chart is the hard case: the discrete logarithm is the carrier's native order-finding instance, reached by a $\\BQP$ observer and, under F7, by no classical forward computation; factoring is a distinct instance not covered by F7. A correspondence on structured instances, not a boundary theorem.",
+   "origin_row": "26:H5",
+   "tag": "D",
+   "tier": null,
+   "check": null,
+   "declarations": [],
+   "aliases": [],
+   "rows": [
+    "26:H5"
+   ]
+  },
+  {
+   "key": "p26051",
+   "origin": "26",
+   "statement": "A universal constructive selector would invert the one-way family: applied to the inversion family of a one-way $f$ it inverts $f$ in $\\mathrm{poly}(\\ell)$; under F7 none exists, and its non-existence is equivalent to $\\PC\\neq\\NPC$ (E9). The natural-proofs reading is an analogy, the density not established.",
+   "origin_row": "26:J1",
+   "tag": "T",
+   "tier": null,
+   "check": null,
+   "declarations": [],
+   "aliases": [],
+   "rows": [
+    "26:J1"
+   ],
+   "realisations": []
+  },
+  {
+   "key": "p26052",
+   "origin": "26",
+   "statement": "The barriers as obstructions: relativization treats the shell as a featureless sphere, natural proofs forbid a large generic marking where the hardness is the non-generic alignment with the arrow, algebrization adds an algebraic oracle the carrier's scale arithmetic replaces. The reading is a locus, not a technique the barriers exclude.",
+   "origin_row": "26:J2",
+   "tag": "D",
+   "tier": null,
+   "check": null,
+   "declarations": [],
+   "aliases": [],
+   "rows": [
+    "26:J2"
+   ]
+  },
+  {
+   "key": "p26053",
+   "origin": "26",
+   "statement": "$\\Om$-hard: a statement the totality decides and whose instance witnesses are checkable at sub-carrier scale, while its uniform forward-findable certificate is carrier-scale, below the bounded observer's horizon. Decidable, not undecidable: settled at the scale of the whole (00:Z3).",
+   "origin_row": "26:K1",
+   "tag": "D",
+   "tier": null,
+   "check": null,
+   "declarations": [],
+   "aliases": [],
+   "rows": [
+    "26:K1"
+   ]
+  },
+  {
+   "key": "p26054",
+   "origin": "26",
+   "statement": "The three faces: the shell theorem's classical screen value in 20-rh (every mode on the self-dual line; classical RH as the count equality, $\\Om$-hard in its uniform form), the uniform per-$n$ Goldbach bound, and the forward-invertibility of the scale descent are one horizon clause, decided by the totality beyond the bounded observer (00:Z2).",
+   "origin_row": "26:K2",
+   "tag": "D",
+   "tier": null,
+   "check": null,
+   "declarations": [],
+   "aliases": [],
+   "rows": [
+    "26:K2"
+   ]
+  },
+  {
+   "key": "p26055",
+   "origin": "26",
+   "statement": "Frequency and the spectrum [chart]: the frequency chart is the spectrum of the scale shift on the shell (B3), the dilation generator its continuum reading (B4, 20:E1). The Hilbert--P\\'olya correspondence is a target of 20-rh, not a result; the spectral and the computational faces meet on the one $\\HH$-axis as a reading.",
+   "origin_row": "26:K3",
+   "tag": "D",
+   "tier": null,
+   "check": null,
+   "declarations": [],
+   "aliases": [],
+   "rows": [
+    "26:K3"
+   ]
+  },
+  {
+   "key": "p26056",
+   "origin": "26",
+   "statement": "An arrow-forward computation: a $\\mathrm{poly}(\\ell)$-length path applying only the drive-forward operations of the carrier.",
+   "origin_row": "26:K4",
+   "tag": "D",
+   "tier": null,
+   "check": null,
+   "declarations": [],
+   "aliases": [],
+   "rows": [
+    "26:K4"
+   ]
+  },
+  {
+   "key": "p26057",
+   "origin": "26",
+   "statement": "Why the single arrow stops short of a proof: forbidding the inverse outright is circular; admitting every $\\mathrm{poly}(\\ell)$ operation makes the exclusion $\\mathrm{dlog}\\notin\\mathrm{FP}$, which implies $\\PC\\neq\\NPC$ one way; the closure removes the circularity (G4) and leaves the lower bound as the residue.",
+   "origin_row": "26:K5",
+   "tag": "D",
+   "tier": null,
+   "check": null,
+   "declarations": [],
+   "aliases": [],
+   "rows": [
+    "26:K5"
+   ]
+  },
+  {
+   "key": "p26058",
+   "origin": "26",
+   "statement": "The irreducible residue: the uniform certificate that the inverse of the last role has no $\\mathrm{poly}(\\ell)$ forward algorithm across the carrier family, the computational face of the horizon clause, decided by the totality and below the bounded observer's horizon (00:Z4).",
+   "origin_row": "26:K6",
+   "tag": "Ω",
+   "tier": null,
+   "check": null,
+   "declarations": [],
+   "aliases": [],
+   "rows": [
+    "26:K6"
    ]
   },
   {
@@ -26797,7 +28274,7 @@
    "source": "22-qm, 1-alg",
    "page": "00-ledger.html#C10",
    "witness": {
-    "script": null,
+    "script": "22:p22_quantum.py",
     "py": {
      "href": "frc/ledgers/master/extension.html#p00030",
      "script": "frc/ledgers/master/extension.py",
@@ -26822,7 +28299,7 @@
     "22-qm",
     "1-alg"
    ],
-   "text": "Two strata of probability: A registered probability is a framed rational; a structural weight is an element of the parity-even cyclotomic subring. The strata coincide exactly on the stationary core-valued $Q_4$ sector, joined by two proved reductions and the stratum-sampling clause (D10). On a single Object the weights are uniform over the fibres (22-qm Rem. borndomain); non-uniform statistics arrive through the engineered-core readout. 22-qm, 1-alg"
+   "text": "Two strata of probability: A registered probability is a framed rational; a structural weight is an element of the parity-even cyclotomic subring. The strata coincide exactly on the stationary core-valued $Q_4$ sector, joined by two proved reductions and the stratum-sampling clause (D10). On a single Object the weights are uniform over the fibres (22-qm Rem. borndomain); non-uniform statistics arrive through the engineered-core readout. 22-qm, 1-alg 22:p22_quantum.py"
   },
   {
    "paper": "00",
@@ -26837,7 +28314,7 @@
    "source": "22-qm",
    "page": "00-ledger.html#C11",
    "witness": {
-    "script": null,
+    "script": "22:p22_quantum.py",
     "py": {
      "href": "frc/ledgers/master/extension.html#p22028",
      "script": "frc/ledgers/master/extension.py",
@@ -26861,7 +28338,7 @@
    "sources": [
     "22-qm"
    ],
-   "text": "Pair-tally uniqueness: Pair-tally uniqueness (22-qm Prop. gleason, the uniqueness of the pair tally on the stationary $Q_4$ sector): on the stationary core-valued $Q_4$ sector, tally-valued, fibre-additive, drive-invariant, parity-even registration functionals form the character cone fixed by the pure windings; adding channel-selectivity (assumed, not derived; the sampling clause D10) picks the Born ray. The minimal degree is forced; proof shape: 22-qm. 22-qm"
+   "text": "Pair-tally uniqueness: Pair-tally uniqueness (22-qm Prop. gleason, the uniqueness of the pair tally on the stationary $Q_4$ sector): on the stationary core-valued $Q_4$ sector, tally-valued, fibre-additive, drive-invariant, parity-even registration functionals form the character cone fixed by the pure windings; adding channel-selectivity (assumed, not derived; the sampling clause D10) picks the Born ray. The minimal degree is forced; proof shape: 22-qm. 22-qm 22:p22_quantum.py"
   },
   {
    "paper": "00",
@@ -27497,7 +28974,7 @@
    "source": "22-qm, 21-grav",
    "page": "00-ledger.html#D10",
    "witness": {
-    "script": null,
+    "script": "22:p22_quantum.py",
     "py": null,
     "lean": []
    },
@@ -27506,7 +28983,7 @@
     "22-qm",
     "21-grav"
    ],
-   "text": "The unified sampling clause: A registration protocol samples one stratum of a drive-presented ensemble. Over complete joint recurrences the counts are forced exact tallies (22-qm Rem. strata), on incomplete batches the largest-remainder gauge, shared by the quantum readout and the gravity crossover. Falsifier: outcome tallies over a complete joint recurrence that are not exact ratios, or a fixed-setting protocol sampling more than one stratum. 22-qm, 21-grav"
+   "text": "The unified sampling clause: A registration protocol samples one stratum of a drive-presented ensemble. Over complete joint recurrences the counts are forced exact tallies (22-qm Rem. strata), on incomplete batches the largest-remainder gauge, shared by the quantum readout and the gravity crossover. Falsifier: outcome tallies over a complete joint recurrence that are not exact ratios, or a fixed-setting protocol sampling more than one stratum. 22-qm, 21-grav 22:p22_quantum.py"
   },
   {
    "paper": "00",
@@ -28108,7 +29585,7 @@
    "source": "22-qm",
    "page": "00-ledger.html#F2",
    "witness": {
-    "script": null,
+    "script": "22:p22_quantum.py",
     "py": {
      "href": "frc/ledgers/master/quantum.html#p00191",
      "script": "frc/ledgers/master/quantum.py",
@@ -28132,7 +29609,7 @@
    "sources": [
     "22-qm"
    ],
-   "text": "Multi-body registration: Multi-body registration: an unequal-cycle composite returning below $\\Om$ (Q20) recurs jointly at the lcm of its parts' registration periods; each pair's conserved offset lives on the $\\gcd$ cycle (the quotient $A/\\langle v\\rangle$), and dephasing over every joint recurrence below $\\Om$ is exact, extending the Born-rule count (F1) verbatim to unequal cycles (37-sim: joint recurrence verified, 1400/1400 characters cancel). 22-qm"
+   "text": "Multi-body registration: Multi-body registration: an unequal-cycle composite returning below $\\Om$ (Q20) recurs jointly at the lcm of its parts' registration periods; each pair's conserved offset lives on the $\\gcd$ cycle (the quotient $A/\\langle v\\rangle$), and dephasing over every joint recurrence below $\\Om$ is exact, extending the Born-rule count (F1) verbatim to unequal cycles (37-sim: joint recurrence verified, 1400/1400 characters cancel). 22-qm 22:p22_quantum.py"
   },
   {
    "paper": "00",
@@ -29110,7 +30587,7 @@
    "source": "22-qm (B8/C21)",
    "page": "predictions.html#P2",
    "witness": {
-    "script": null,
+    "script": "22:p22_quantum.py",
     "py": null,
     "lean": []
    },
@@ -29122,7 +30599,7 @@
    "sources": [
     "22-qm"
    ],
-   "text": "The coherent-fraction channel: Equal force, unequal entanglement (D5): sources gravitate by full masses; synchronised cross-source pairs carry the conditional phase $f_1f_2\\varphi_N$, spread pairs imprint which-branch data, the incoherent channel separable at generic geometry ($C=0$ at $f=0$); $f=m_c/m$ microscopic. The discriminator is the calibrated conditional phase rate at fixed centre-of-mass superposition. Falsifier: a calibrated conditional phase rate off $f_1f_2\\varphi_N$. Confrontation: none, filed before data. 22-qm (B8/C21)"
+   "text": "The coherent-fraction channel: Equal force, unequal entanglement (D5): sources gravitate by full masses; synchronised cross-source pairs carry the conditional phase $f_1f_2\\varphi_N$, spread pairs imprint which-branch data, the incoherent channel separable at generic geometry ($C=0$ at $f=0$); $f=m_c/m$ microscopic. The discriminator is the calibrated conditional phase rate at fixed centre-of-mass superposition. Falsifier: a calibrated conditional phase rate off $f_1f_2\\varphi_N$. Confrontation: none, filed before data. 22-qm (B8/C21) 22:p22_quantum.py"
   },
   {
    "paper": "00",
@@ -47927,7 +49404,12 @@
    "source": "\\citep{akhtman2026dirac,lidl1997}\\newline \\pywit{quantum}{p22002}{A2}, \\leanwit{FrcCore}{p22002}{A2} \\lean{FRC.Subject.channel, FRC.Subject.horizon\\_generator, FRC.Observation.torus\\_conj\\_inv}",
    "page": "22-quantum/index.html#A2",
    "witness": {
-    "py": null,
+    "py": {
+     "href": "frc/ledgers/p22_quantum.html#p22002",
+     "script": "p22_quantum.py",
+     "line": 436,
+     "verdict": "pass"
+    },
     "lean": [
      {
       "lib": "FrcCore",
@@ -48011,7 +49493,12 @@
    "source": "\\S\\ref{sec:omegaledger}, Tab.~\\ref{tab:omega}\\newline \\pywit{quantum}{p22005}{A5}, \\leanwit{FrcLedger}{p22005}{A5} \\lean{Qm.omega\\_floors}",
    "page": "22-quantum/index.html#A5",
    "witness": {
-    "py": null,
+    "py": {
+     "href": "frc/ledgers/p22_quantum.html#p22005",
+     "script": "p22_quantum.py",
+     "line": 1389,
+     "verdict": "pass"
+    },
     "lean": [
      {
       "lib": "FrcLedger",
@@ -48271,7 +49758,12 @@
    "source": "Lem.~\\ref{lem:powermaps}\\newline \\pywit{quantum}{p22017}{C1}, \\leanwit{FrcCore}{p22017}{C1} \\lean{FRC.Observation.power\\_maps, FRC.Observation.roots\\_of\\_order, FRC.Observation.character\\_is\\_power\\_map}",
    "page": "22-quantum/index.html#C1",
    "witness": {
-    "py": null,
+    "py": {
+     "href": "frc/ledgers/p22_quantum.html#p22017",
+     "script": "p22_quantum.py",
+     "line": 179,
+     "verdict": "pass"
+    },
     "lean": [
      {
       "lib": "FrcCore",
@@ -48315,7 +49807,12 @@
    "source": "Prop.~\\ref{prop:stationary}\\newline \\pywit{quantum}{p22018}{C2}, \\leanwit{FrcCore}{p22018}{C2} \\lean{FRC.Observation.stationary, FRC.Observation.stationary\\_modes}",
    "page": "22-quantum/index.html#C2",
    "witness": {
-    "py": null,
+    "py": {
+     "href": "frc/ledgers/p22_quantum.html#p22018",
+     "script": "p22_quantum.py",
+     "line": 179,
+     "verdict": "pass"
+    },
     "lean": [
      {
       "lib": "FrcCore",
@@ -48351,7 +49848,12 @@
    "source": "Prop.~\\ref{prop:basis}\\newline \\pywit{quantum}{p22019}{C3}, \\leanwit{FrcCore}{p22019}{C3} \\lean{FRC.Observation.orthogonality, FRC.Observation.parseval, FRC.Extension.Tally.fourier\\_inversion, FRC.Extension.Tally.dft\\_det}",
    "page": "22-quantum/index.html#C3",
    "witness": {
-    "py": null,
+    "py": {
+     "href": "frc/ledgers/p22_quantum.html#p22019",
+     "script": "p22_quantum.py",
+     "line": 202,
+     "verdict": "pass"
+    },
     "lean": [
      {
       "lib": "FrcCore",
@@ -48403,7 +49905,12 @@
    "source": "Prop.~\\ref{prop:selection}\\newline \\pywit{quantum}{p22020}{C4}, \\leanwit{FrcCore}{p22020}{C4} \\lean{FRC.Observation.selection}",
    "page": "22-quantum/index.html#C4",
    "witness": {
-    "py": null,
+    "py": {
+     "href": "frc/ledgers/p22_quantum.html#p22020",
+     "script": "p22_quantum.py",
+     "line": 172,
+     "verdict": "pass"
+    },
     "lean": [
      {
       "lib": "FrcCore",
@@ -48431,7 +49938,12 @@
    "source": "Prop.~\\ref{prop:lueders}\\newline \\pywit{quantum}{p22021}{C5}, \\leanwit{FrcCore}{p22021}{C5} \\lean{FRC.Observation.lueders}",
    "page": "22-quantum/index.html#C5",
    "witness": {
-    "py": null,
+    "py": {
+     "href": "frc/ledgers/p22_quantum.html#p22021",
+     "script": "p22_quantum.py",
+     "line": 234,
+     "verdict": "pass"
+    },
     "lean": [
      {
       "lib": "FrcCore",
@@ -48459,7 +49971,12 @@
    "source": "Lem.~\\ref{lem:involution}, Prop.~\\ref{prop:reduction},~\\ref{prop:paircount}, \\citep{akhtman2026dirac}\\newline \\pywit{quantum}{p22022}{C6}, \\leanwit{FrcCore}{p22022}{C6} \\lean{FRC.Observation.frobenius\\_unique, FRC.Observation.torus\\_conj\\_inv, FRC.Observation.exponent\\_negation}",
    "page": "22-quantum/index.html#C6",
    "witness": {
-    "py": null,
+    "py": {
+     "href": "frc/ledgers/p22_quantum.html#p22022",
+     "script": "p22_quantum.py",
+     "line": 283,
+     "verdict": "pass"
+    },
     "lean": [
      {
       "lib": "FrcCore",
@@ -48503,7 +50020,12 @@
    "source": "Prop.~\\ref{prop:paircount}, Lem.~\\ref{lem:registered}\\newline \\pywit{quantum}{p22023}{C7}, \\leanwit{FrcCore}{p22023}{C7}, \\leanwit{FrcLedger}{p22023}{C7} \\lean{FRC.Observation.pair\\_count, FRC.Observation.pure\\_winding\\_weight, FRC.Observation.parseval, FRC.Quantum.dephasing, Qm.pair\\_count\\_tally}",
    "page": "22-quantum/index.html#C7",
    "witness": {
-    "py": null,
+    "py": {
+     "href": "frc/ledgers/p22_quantum.html#p22023",
+     "script": "p22_quantum.py",
+     "line": 218,
+     "verdict": "pass"
+    },
     "lean": [
      {
       "lib": "FrcCore",
@@ -48563,7 +50085,12 @@
    "source": "Cor.~\\ref{cor:sorkin}\\newline \\pywit{quantum}{p22024}{C8}, \\leanwit{FrcCore}{p22024}{C8}, \\leanwit{FrcLedger}{p22024}{C8} \\lean{FRC.Interference.sorkin\\_hierarchy, FRC.Interference.sorkin\\_second, FRC.Interference.sorkin\\_second\\_witness, Qm.sorkin\\_hierarchy, Qm.sorkin\\_second\\_witness}",
    "page": "22-quantum/index.html#C8",
    "witness": {
-    "py": null,
+    "py": {
+     "href": "frc/ledgers/p22_quantum.html#p22024",
+     "script": "p22_quantum.py",
+     "line": 344,
+     "verdict": "pass"
+    },
     "lean": [
      {
       "lib": "FrcCore",
@@ -48623,7 +50150,12 @@
    "source": "Prop.~\\ref{prop:reduction}\\newline \\pywit{quantum}{p22025}{C9}, \\leanwit{FrcCore}{p22025}{C9} \\lean{FRC.Observation.reduce\\_add, FRC.Observation.reduce\\_mul, FRC.Observation.reduce\\_wrap}",
    "page": "22-quantum/index.html#C9",
    "witness": {
-    "py": null,
+    "py": {
+     "href": "frc/ledgers/p22_quantum.html#p22025",
+     "script": "p22_quantum.py",
+     "line": 222,
+     "verdict": "pass"
+    },
     "lean": [
      {
       "lib": "FrcCore",
@@ -48667,7 +50199,12 @@
    "source": "Thm.~\\ref{thm:born}, Prop.~\\ref{prop:strata}, Def.~\\ref{def:registered}, Rem.~\\ref{rem:ergodic}\\newline \\pywit{quantum}{p22026}{C10}, \\leanwit{FrcCore}{p22026}{C10} \\lean{FRC.Extension.two\\_way\\_tally, FRC.Extension.core\\_weights, FRC.Extension.root\\_two\\_two\\_way, FRC.Extension.framed\\_readout, FRC.Observation.window\\_lift, FRC.Observation.pure\\_winding\\_weight, FRC.Quantum.joint\\_recurrence}",
    "page": "22-quantum/index.html#C10",
    "witness": {
-    "py": null,
+    "py": {
+     "href": "frc/ledgers/p22_quantum.html#p22026",
+     "script": "p22_quantum.py",
+     "line": 1162,
+     "verdict": "pass"
+    },
     "lean": [
      {
       "lib": "FrcCore",
@@ -48747,7 +50284,12 @@
    "source": "Prop.~\\ref{prop:strata}, Rem.~\\ref{rem:strata}; rests on B4, C10, 00:D10\\newline \\pywit{quantum}{p22027}{C11}, \\leanwit{FrcCore}{p22027}{C11} \\lean{FRC.Extension.conjugate\\_pair\\_tally, FRC.Extension.trace\\_recurrence, FRC.Extension.dial\\_shift, FRC.Extension.dial\\_tally, FRC.Extension.framed\\_readout}",
    "page": "22-quantum/index.html#C11",
    "witness": {
-    "py": null,
+    "py": {
+     "href": "frc/ledgers/p22_quantum.html#p22027",
+     "script": "p22_quantum.py",
+     "line": 1181,
+     "verdict": "pass"
+    },
     "lean": [
      {
       "lib": "FrcCore",
@@ -48812,7 +50354,12 @@
    "source": "Prop.~\\ref{prop:gleason}\\newline \\pywit{quantum}{p22028}{C12}, \\leanwit{FrcCore}{p22028}{C12} \\lean{FRC.Extension.Tally.winding\\_fixing, FRC.Extension.Tally.tally\\_criterion, FRC.Extension.Tally.two\\_way, FRC.Extension.Tally.fourier\\_inversion, FRC.Extension.Tally.channel\\_selectivity, FRC.Extension.Tally.dft\\_det, FRC.Extension.Tally.cone\\_boundary, FRC.Extension.Tally.linear\\_exclusion}",
    "page": "22-quantum/index.html#C12",
    "witness": {
-    "py": null,
+    "py": {
+     "href": "frc/ledgers/p22_quantum.html#p22028",
+     "script": "p22_quantum.py",
+     "line": 1323,
+     "verdict": "pass"
+    },
     "lean": [
      {
       "lib": "FrcCore",
@@ -48899,7 +50446,12 @@
    "source": "Prop.~\\ref{prop:gaussian}\\newline \\pywit{quantum}{p22029}{C13}, \\leanwit{FrcCore}{p22029}{C13} \\lean{FRC.Observation.shared\\_core, FRC.Observation.no\\_quarter\\_turn}",
    "page": "22-quantum/index.html#C13",
    "witness": {
-    "py": null,
+    "py": {
+     "href": "frc/ledgers/p22_quantum.html#p22029",
+     "script": "p22_quantum.py",
+     "line": 296,
+     "verdict": "pass"
+    },
     "lean": [
      {
       "lib": "FrcCore",
@@ -48935,7 +50487,12 @@
    "source": "Prop.~\\ref{prop:granularity}\\newline \\pywit{quantum}{p22030}{C14}, \\leanwit{FrcCore}{p22030}{C14}, \\leanwit{FrcLedger}{p22030}{C14} \\lean{FRC.Interference.hadamard\\_even, FRC.Interference.hadamard\\_odd, FRC.Interference.tally\\_norm\\_mono, FRC.Interference.ceiling\\_641, Qm.gaussian\\_layers, Qm.gaussian\\_minimal, Qm.gaussian\\_norm, Qm.tally\\_norm\\_eq}",
    "page": "22-quantum/index.html#C14",
    "witness": {
-    "py": null,
+    "py": {
+     "href": "frc/ledgers/p22_quantum.html#p22030",
+     "script": "p22_quantum.py",
+     "line": 1078,
+     "verdict": "pass"
+    },
     "lean": [
      {
       "lib": "FrcCore",
@@ -49019,7 +50576,12 @@
    "source": "Prop.~\\ref{prop:offset}, Lem.~\\ref{lem:mbody}\\newline \\pywit{quantum}{p22031}{C15}, \\leanwit{FrcCore}{p22031}{C15} \\lean{FRC.Composite.offset\\_invariant, FRC.Composite.cluster\\_offset, FRC.Composite.locked\\_norm, FRC.Composite.spread\\_average, FRC.Quantum.pair\\_offset}",
    "page": "22-quantum/index.html#C15",
    "witness": {
-    "py": null,
+    "py": {
+     "href": "frc/ledgers/p22_quantum.html#p22031",
+     "script": "p22_quantum.py",
+     "line": 749,
+     "verdict": "pass"
+    },
     "lean": [
      {
       "lib": "FrcCore",
@@ -49082,7 +50644,12 @@
    "source": "Prop.~\\ref{prop:doublet},~\\ref{prop:sigmax}\\newline \\pywit{quantum}{p22032}{C16}, \\leanwit{FrcCore}{p22032}{C16} \\lean{FRC.Composite.half\\_turn\\_sixteen, FRC.Composite.doublet\\_readout, FRC.Composite.carrier\\_641}",
    "page": "22-quantum/index.html#C16",
    "witness": {
-    "py": null,
+    "py": {
+     "href": "frc/ledgers/p22_quantum.html#p22032",
+     "script": "p22_quantum.py",
+     "line": 617,
+     "verdict": "pass"
+    },
     "lean": [
      {
       "lib": "FrcCore",
@@ -49126,7 +50693,12 @@
    "source": "Thm.~\\ref{thm:tsirelson}, Prop.~\\ref{prop:boundary}\\newline \\pywit{quantum}{p22033}{C17}, \\leanwit{FrcCore}{p22033}{C17}, \\leanwit{FrcLedger}{p22033}{C17} \\lean{FRC.Shell.Prime.tsirelson, FRC.Composite.singlet\\_square, FRC.Composite.no\\_signalling, FRC.Observation.reduce\\_mul, FRC.Composite.carrier\\_641, Qm.tsirelson\\_real, Qm.singlet\\_law}",
    "page": "22-quantum/index.html#C17",
    "witness": {
-    "py": null,
+    "py": {
+     "href": "frc/ledgers/p22_quantum.html#p22033",
+     "script": "p22_quantum.py",
+     "line": 635,
+     "verdict": "pass"
+    },
     "lean": [
      {
       "lib": "FrcCore",
@@ -49204,7 +50776,12 @@
    "source": "Prop.~\\ref{prop:bsm}, Thm.~\\ref{thm:table}\\newline \\pywit{quantum}{p22034}{C18}, \\leanwit{FrcCore}{p22034}{C18} \\lean{FRC.Quantum.pair\\_offset, FRC.Composite.cluster\\_offset}",
    "page": "22-quantum/index.html#C18",
    "witness": {
-    "py": null,
+    "py": {
+     "href": "frc/ledgers/p22_quantum.html#p22034",
+     "script": "p22_quantum.py",
+     "line": 855,
+     "verdict": "pass"
+    },
     "lean": [
      {
       "lib": "FrcCore",
@@ -49240,7 +50817,12 @@
    "source": "Prop.~\\ref{prop:bmvmech}\\newline \\pywit{quantum}{p22035}{C19}, \\leanwit{FrcCore}{p22035}{C19}, \\leanwit{FrcLedger}{p22035}{C19} \\lean{FRC.Composite.channel\\_complementarity, FRC.Composite.channel\\_product\\_at\\_zero, Qm.channel\\_chart, Qm.channel\\_entangles}",
    "page": "22-quantum/index.html#C19",
    "witness": {
-    "py": null,
+    "py": {
+     "href": "frc/ledgers/p22_quantum.html#p22035",
+     "script": "p22_quantum.py",
+     "line": 924,
+     "verdict": "pass"
+    },
     "lean": [
      {
       "lib": "FrcCore",
@@ -49292,7 +50874,12 @@
    "source": "Prop.~\\ref{prop:nocollapse},~\\ref{prop:dilation}\\newline \\pywit{quantum}{p22036}{C20}, \\leanwit{FrcCore}{p22036}{C20} \\lean{FRC.Composite.drive\\_norm, FRC.Composite.revival, FRC.Quantum.joint\\_recurrence}",
    "page": "22-quantum/index.html#C20",
    "witness": {
-    "py": null,
+    "py": {
+     "href": "frc/ledgers/p22_quantum.html#p22036",
+     "script": "p22_quantum.py",
+     "line": 973,
+     "verdict": "pass"
+    },
     "lean": [
      {
       "lib": "FrcCore",
@@ -49336,7 +50923,12 @@
    "source": "Prop.~\\ref{prop:fcoh}; rests on A4, C19, C22\\newline \\pywit{quantum}{p22037}{C21}, \\leanwit{FrcCore}{p22037}{C21} \\lean{FRC.Composite.branch\\_phase, FRC.Composite.pair\\_product, FRC.Composite.spread\\_cancels, FRC.Composite.channel\\_assembly}",
    "page": "22-quantum/index.html#C21",
    "witness": {
-    "py": null,
+    "py": {
+     "href": "frc/ledgers/p22_quantum.html#p22037",
+     "script": "p22_quantum.py",
+     "line": 1291,
+     "verdict": "pass"
+    },
     "lean": [
      {
       "lib": "FrcCore",
@@ -49394,7 +50986,12 @@
    "source": "Prop.~\\ref{prop:scaling}\\newline \\pywit{quantum}{p22038}{C22}, \\leanwit{FrcCore}{p22038}{C22} \\lean{FRC.Composite.field\\_linear, FRC.Composite.eta\\_zero, FRC.Composite.locked\\_norm, FRC.Composite.spread\\_average}",
    "page": "22-quantum/index.html#C22",
    "witness": {
-    "py": null,
+    "py": {
+     "href": "frc/ledgers/p22_quantum.html#p22038",
+     "script": "p22_quantum.py",
+     "line": 1034,
+     "verdict": "pass"
+    },
     "lean": [
      {
       "lib": "FrcCore",
@@ -49446,7 +51043,12 @@
    "source": "Prop.~\\ref{prop:intersubject}\\newline \\pywit{quantum}{p22039}{C23}, \\leanwit{FrcCore}{p22039}{C23} \\lean{FRC.Composite.joint\\_refinement, FRC.Composite.order\\_independence, FRC.Observation.selection}",
    "page": "22-quantum/index.html#C23",
    "witness": {
-    "py": null,
+    "py": {
+     "href": "frc/ledgers/p22_quantum.html#p22039",
+     "script": "p22_quantum.py",
+     "line": 1481,
+     "verdict": "pass"
+    },
     "lean": [
      {
       "lib": "FrcCore",
@@ -49490,7 +51092,12 @@
    "source": "Cor.~\\ref{cor:carrier}\\newline \\pywit{quantum}{p22040}{C24}, \\leanwit{FrcCore}{p22040}{C24} \\lean{FRC.Observation.classicality\\_index, FRC.Observation.selection, FRC.Composite.carrier\\_421}",
    "page": "22-quantum/index.html#C24",
    "witness": {
-    "py": null,
+    "py": {
+     "href": "frc/ledgers/p22_quantum.html#p22040",
+     "script": "p22_quantum.py",
+     "line": 261,
+     "verdict": "pass"
+    },
     "lean": [
      {
       "lib": "FrcCore",
@@ -49534,7 +51141,12 @@
    "source": "\\S\\ref{sec:dividends}; rests on A7, B3, B6, C17\\newline \\pywit{quantum}{p22041}{C25}, \\leanwit{FrcCore}{p22041}{C25}, \\leanwit{FrcLedger}{p22041}{C25} \\lean{FRC.Shell.Prime.tsirelson, FRC.Composite.singlet\\_square, Qm.tsirelson\\_real}",
    "page": "22-quantum/index.html#C25",
    "witness": {
-    "py": null,
+    "py": {
+     "href": "frc/ledgers/p22_quantum.html#p22041",
+     "script": "p22_quantum.py",
+     "line": 649,
+     "verdict": "pass"
+    },
     "lean": [
      {
       "lib": "FrcCore",
@@ -49583,7 +51195,12 @@
    "source": "Prop.~\\ref{prop:unequal}\\newline \\pywit{quantum}{p22042}{C26}, \\leanwit{FrcCore}{p22042}{C26} \\lean{FRC.Quantum.joint\\_recurrence, FRC.Quantum.joint\\_least, FRC.Quantum.pair\\_offset, FRC.Quantum.dephasing, FRC.Composite.winding\\_period}",
    "page": "22-quantum/index.html#C26",
    "witness": {
-    "py": null,
+    "py": {
+     "href": "frc/ledgers/p22_quantum.html#p22042",
+     "script": "p22_quantum.py",
+     "line": 677,
+     "verdict": "pass"
+    },
     "lean": [
      {
       "lib": "FrcCore",
@@ -49645,7 +51262,12 @@
    "source": "Lem.~\\ref{lem:transport}, \\citep{akhtman2026gravity}\\newline \\pywit{quantum}{p22043}{C27}, \\leanwit{FrcCore}{p22043}{C27} \\lean{FRC.Observation.transport\\_trichotomy, FRC.Observation.transport\\_cases}",
    "page": "22-quantum/index.html#C27",
    "witness": {
-    "py": null,
+    "py": {
+     "href": "frc/ledgers/p22_quantum.html#p22043",
+     "script": "p22_quantum.py",
+     "line": 1554,
+     "verdict": "pass"
+    },
     "lean": [
      {
       "lib": "FrcCore",
@@ -49681,7 +51303,12 @@
    "source": "Rem.~\\ref{rem:bmvpred}; rests on A4, B8, C19, C21\\newline \\pywit{quantum}{p22052}{P1}, \\leanwit{FrcCore}{p22052}{P1}, \\leanwit{FrcLedger}{p22052}{P1} \\lean{FRC.Composite.channel\\_complementarity, FRC.Composite.branch\\_phase, FRC.Composite.channel\\_assembly, Qm.channel\\_chart}",
    "page": "22-quantum/index.html#P1",
    "witness": {
-    "py": null,
+    "py": {
+     "href": "frc/ledgers/p22_quantum.html#p22052",
+     "script": "p22_quantum.py",
+     "line": 952,
+     "verdict": "pass"
+    },
     "lean": [
      {
       "lib": "FrcCore",
@@ -49738,7 +51365,12 @@
    "source": "Cor.~\\ref{cor:sorkin}, Rem.~\\ref{rem:horizon}; rests on B1, C8\\newline \\pywit{quantum}{p22053}{P2}, \\leanwit{FrcCore}{p22053}{P2}, \\leanwit{FrcLedger}{p22053}{P2} \\lean{FRC.Interference.sorkin\\_hierarchy, FRC.Observation.wrap\\_quantised, Qm.sorkin\\_hierarchy}",
    "page": "22-quantum/index.html#P2",
    "witness": {
-    "py": null,
+    "py": {
+     "href": "frc/ledgers/p22_quantum.html#p22053",
+     "script": "p22_quantum.py",
+     "line": 353,
+     "verdict": "pass"
+    },
     "lean": [
      {
       "lib": "FrcCore",
@@ -49785,7 +51417,12 @@
    "source": "Thm.~\\ref{thm:tsirelson},~\\ref{thm:table}; rests on B2, B5, C17, C18\\newline \\pywit{quantum}{p22054}{P3}, \\leanwit{FrcCore}{p22054}{P3}, \\leanwit{FrcLedger}{p22054}{P3} \\lean{FRC.Shell.Prime.tsirelson, FRC.Composite.singlet\\_square, FRC.Quantum.pair\\_offset, Qm.tsirelson\\_real}",
    "page": "22-quantum/index.html#P3",
    "witness": {
-    "py": null,
+    "py": {
+     "href": "frc/ledgers/p22_quantum.html#p22054",
+     "script": "p22_quantum.py",
+     "line": 877,
+     "verdict": "pass"
+    },
     "lean": [
      {
       "lib": "FrcCore",
@@ -49842,7 +51479,12 @@
    "source": "Rem.~\\ref{rem:doublecover}; rests on A2, B2\\newline \\pywit{quantum}{p22055}{P4}, \\leanwit{FrcCore}{p22055}{P4} \\lean{FRC.Subject.channel, FRC.Subject.horizon\\_generator, FRC.Observation.torus\\_conj\\_inv}",
    "page": "22-quantum/index.html#P4",
    "witness": {
-    "py": null,
+    "py": {
+     "href": "frc/ledgers/p22_quantum.html#p22055",
+     "script": "p22_quantum.py",
+     "line": 571,
+     "verdict": "pass"
+    },
     "lean": [
      {
       "lib": "FrcCore",
@@ -49890,7 +51532,12 @@
    "source": "Prop.~\\ref{prop:granularity}; rests on A5, C14\\newline \\pywit{quantum}{p22056}{P5}, \\leanwit{FrcCore}{p22056}{P5}, \\leanwit{FrcLedger}{p22056}{P5} \\lean{FRC.Interference.tally\\_norm\\_mono, FRC.Interference.ceiling\\_641, FRC.Interference.hadamard\\_even, Qm.ceiling\\_bracket, Qm.gaussian\\_minimal}",
    "page": "22-quantum/index.html#P5",
    "witness": {
-    "py": null,
+    "py": {
+     "href": "frc/ledgers/p22_quantum.html#p22056",
+     "script": "p22_quantum.py",
+     "line": 1096,
+     "verdict": "pass"
+    },
     "lean": [
      {
       "lib": "FrcCore",
@@ -49953,7 +51600,12 @@
    "source": "Prop.~\\ref{prop:paircount}, Thm.~\\ref{thm:born}, Rem.~\\ref{rem:borndomain}\\newline \\pywit{quantum}{p22044}{X1}, \\leanwit{FrcCore}{p22044}{X1}, \\leanwit{FrcLedger}{p22044}{X1} \\lean{FRC.Observation.window\\_lift, FRC.Observation.pair\\_count, FRC.Observation.pure\\_winding\\_weight, FRC.Extension.two\\_way\\_tally, Qm.pair\\_count\\_tally}",
    "page": "22-quantum/index.html#X1",
    "witness": {
-    "py": null,
+    "py": {
+     "href": "frc/ledgers/p22_quantum.html#p22044",
+     "script": "p22_quantum.py",
+     "line": 218,
+     "verdict": "pass"
+    },
     "lean": [
      {
       "lib": "FrcCore",
@@ -50015,7 +51667,12 @@
    "source": "Prop.~\\ref{prop:gaussian}\\newline \\pywit{quantum}{p22045}{X2}, \\leanwit{FrcCore}{p22045}{X2} \\lean{FRC.Observation.shared\\_core, FRC.Observation.no\\_quarter\\_turn}",
    "page": "22-quantum/index.html#X2",
    "witness": {
-    "py": null,
+    "py": {
+     "href": "frc/ledgers/p22_quantum.html#p22045",
+     "script": "p22_quantum.py",
+     "line": 296,
+     "verdict": "pass"
+    },
     "lean": [
      {
       "lib": "FrcCore",
@@ -50051,7 +51708,12 @@
    "source": "Prop.~\\ref{prop:basis}\\newline \\pywit{quantum}{p22046}{X3}, \\leanwit{FrcCore}{p22046}{X3} \\lean{FRC.Observation.orthogonality, FRC.Observation.selection}",
    "page": "22-quantum/index.html#X3",
    "witness": {
-    "py": null,
+    "py": {
+     "href": "frc/ledgers/p22_quantum.html#p22046",
+     "script": "p22_quantum.py",
+     "line": 202,
+     "verdict": "pass"
+    },
     "lean": [
      {
       "lib": "FrcCore",
@@ -50087,7 +51749,12 @@
    "source": "Rem.~\\ref{rem:collapse}, Prop.~\\ref{prop:intersubject}\\newline \\pywit{quantum}{p22047}{X4}, \\leanwit{FrcCore}{p22047}{X4} \\lean{FRC.Composite.joint\\_refinement, FRC.Composite.order\\_independence, FRC.Observation.lueders}",
    "page": "22-quantum/index.html#X4",
    "witness": {
-    "py": null,
+    "py": {
+     "href": "frc/ledgers/p22_quantum.html#p22047",
+     "script": "p22_quantum.py",
+     "line": 1507,
+     "verdict": "pass"
+    },
     "lean": [
      {
       "lib": "FrcCore",
@@ -50131,7 +51798,12 @@
    "source": "\\S\\ref{sec:regimes}\\newline \\pywit{quantum}{p22048}{X5}, \\leanwit{FrcCore}{p22048}{X5} \\lean{FRC.Observation.classicality\\_index, FRC.Observation.selection, FRC.Composite.carrier\\_421}",
    "page": "22-quantum/index.html#X5",
    "witness": {
-    "py": null,
+    "py": {
+     "href": "frc/ledgers/p22_quantum.html#p22048",
+     "script": "p22_quantum.py",
+     "line": 261,
+     "verdict": "pass"
+    },
     "lean": [
      {
       "lib": "FrcCore",
@@ -50175,7 +51847,12 @@
    "source": "\\S\\ref{sec:ledger}\\newline \\pywit{quantum}{p22049}{X6}, \\leanwit{FrcCore}{p22049}{X6} \\lean{FRC.Observation.window\\_lift, FRC.Extension.Tally.tally\\_criterion, FRC.Extension.Tally.channel\\_selectivity, FRC.Extension.framed\\_readout}",
    "page": "22-quantum/index.html#X6",
    "witness": {
-    "py": null,
+    "py": {
+     "href": "frc/ledgers/p22_quantum.html#p22049",
+     "script": "p22_quantum.py",
+     "line": 1181,
+     "verdict": "pass"
+    },
     "lean": [
      {
       "lib": "FrcCore",
@@ -50227,7 +51904,12 @@
    "source": "Thm.~\\ref{thm:tsirelson}\\newline \\pywit{quantum}{p22050}{X7}, \\leanwit{FrcCore}{p22050}{X7}, \\leanwit{FrcLedger}{p22050}{X7} \\lean{FRC.Shell.Prime.tsirelson, FRC.Composite.singlet\\_square, Qm.tsirelson\\_real}",
    "page": "22-quantum/index.html#X7",
    "witness": {
-    "py": null,
+    "py": {
+     "href": "frc/ledgers/p22_quantum.html#p22050",
+     "script": "p22_quantum.py",
+     "line": 649,
+     "verdict": "pass"
+    },
     "lean": [
      {
       "lib": "FrcCore",
@@ -50273,7 +51955,12 @@
    "source": "Cor.~\\ref{cor:sorkin}, Rem.~\\ref{rem:horizon}\\newline \\pywit{quantum}{p22051}{X8}, \\leanwit{FrcCore}{p22051}{X8}, \\leanwit{FrcLedger}{p22051}{X8} \\lean{FRC.Interference.sorkin\\_hierarchy, FRC.Observation.wrap\\_quantised, Qm.sorkin\\_hierarchy}",
    "page": "22-quantum/index.html#X8",
    "witness": {
-    "py": null,
+    "py": {
+     "href": "frc/ledgers/p22_quantum.html#p22051",
+     "script": "p22_quantum.py",
+     "line": 344,
+     "verdict": "pass"
+    },
     "lean": [
      {
       "lib": "FrcCore",
@@ -50336,7 +52023,12 @@
    "source": "\\S\\ref{sec:omegaledger}, Tab.~\\ref{tab:omega}\\newline \\pywit{quantum}{p22061}{Z2}, \\leanwit{FrcLedger}{p22061}{Z2} \\lean{Qm.omega\\_floors}",
    "page": "22-quantum/index.html#Z2",
    "witness": {
-    "py": null,
+    "py": {
+     "href": "frc/ledgers/p22_quantum.html#p22061",
+     "script": "p22_quantum.py",
+     "line": 1400,
+     "verdict": "pass"
+    },
     "lean": [
      {
       "lib": "FrcLedger",
@@ -51852,6 +53544,1781 @@
    },
    "refs": [],
    "text": "Objections O1–O8 are answered. Grade (ii) asserts a specification and a computed size, not the realisation of the evaluation object (O8). The agent bounds are parameters, not psychology (O4). No feasibility predicate is used, and no number is called too large to exist (O5). Section sec:objections"
+  },
+  {
+   "paper": "26-pnp",
+   "no": 26,
+   "rid": "26:A1",
+   "key": "p26001",
+   "label": "A1",
+   "block": "A",
+   "tag": "I",
+   "name": null,
+   "statement": "$\\NPC$-completeness and self-reducibility: satisfiability is $\\NPC$-complete (Cook, Levin), the reductions reach combinatorial mathematics (Karp), and polynomial time is invariant across the standard machines (Church--Turing).",
+   "source": "\\citep{cook1971,levin1973,karp1972,hartmanis1965}",
+   "page": "26-pnp/index.html#A1",
+   "witness": {
+    "py": null,
+    "lean": []
+   },
+   "refs": [],
+   "text": "$\\NPC$-completeness and self-reducibility: satisfiability is $\\NPC$-complete (Cook, Levin), the reductions reach combinatorial mathematics (Karp), and polynomial time is invariant across the standard machines (Church–Turing). [cook1971,levin1973,karp1972,hartmanis1965]"
+  },
+  {
+   "paper": "26-pnp",
+   "no": 26,
+   "rid": "26:A2",
+   "key": "p26002",
+   "label": "A2",
+   "block": "A",
+   "tag": "I",
+   "name": null,
+   "statement": "Proof complexity, used as proved: $\\NPC=\\coNP$ iff some propositional proof system is polynomially bounded (Cook--Reckhow); Extended Frege is not automatizable unless RSA breaks, bounded-depth Frege unless factoring and Diffie--Hellman are feasible, and resolution is $\\NPC$-hard to automate.",
+   "source": "\\citep{cook1979,krajicek1995,krajicekpudlak1998,bonet2000,atserias2019}",
+   "page": "26-pnp/index.html#A2",
+   "witness": {
+    "py": null,
+    "lean": []
+   },
+   "refs": [],
+   "text": "Proof complexity, used as proved: $\\NPC=\\coNP$ iff some propositional proof system is polynomially bounded (Cook–Reckhow); Extended Frege is not automatizable unless RSA breaks, bounded-depth Frege unless factoring and Diffie–Hellman are feasible, and resolution is $\\NPC$-hard to automate. [cook1979,krajicek1995,krajicekpudlak1998,bonet2000,atserias2019]"
+  },
+  {
+   "paper": "26-pnp",
+   "no": 26,
+   "rid": "26:A3",
+   "key": "p26003",
+   "label": "A3",
+   "block": "A",
+   "tag": "I",
+   "name": null,
+   "statement": "One-way functions and the average case: the discrete logarithm and factoring as the canonical instances (Diffie--Hellman), Impagliazzo's worlds; Shor's order finding, which inverts both for a quantum observer.",
+   "source": "\\citep{diffie1976,impagliazzo1995,shor1997}",
+   "page": "26-pnp/index.html#A3",
+   "witness": {
+    "py": null,
+    "lean": []
+   },
+   "refs": [],
+   "text": "One-way functions and the average case: the discrete logarithm and factoring as the canonical instances (Diffie–Hellman), Impagliazzo's worlds; Shor's order finding, which inverts both for a quantum observer. [diffie1976,impagliazzo1995,shor1997]"
+  },
+  {
+   "paper": "26-pnp",
+   "no": 26,
+   "rid": "26:A4",
+   "key": "p26004",
+   "label": "A4",
+   "block": "A",
+   "tag": "I",
+   "name": null,
+   "statement": "The three barriers: relativization (Baker--Gill--Solovay), natural proofs (Razborov--Rudich), algebrization (Aaronson--Wigderson); Wigderson's survey of what a separation must use.",
+   "source": "\\citep{bakergillsolovay1975,razborov1997,aaronson2009,wigderson2019}",
+   "page": "26-pnp/index.html#A4",
+   "witness": {
+    "py": null,
+    "lean": []
+   },
+   "refs": [],
+   "text": "The three barriers: relativization (Baker–Gill–Solovay), natural proofs (Razborov–Rudich), algebrization (Aaronson–Wigderson); Wigderson's survey of what a separation must use. [bakergillsolovay1975,razborov1997,aaronson2009,wigderson2019]"
+  },
+  {
+   "paper": "26-pnp",
+   "no": 26,
+   "rid": "26:A5",
+   "key": "p26005",
+   "label": "A5",
+   "block": "A",
+   "tag": "I",
+   "name": null,
+   "statement": "Eckmann and Tlusty: under uniform angle scaling a single walk in $\\mathrm{SO}(3)$ reaches the identity only on a measure-zero set, while the doubled walk returns for some exponentially large scaling, delivered non-constructively.",
+   "source": "\\citep{eckmanntlusty2025}",
+   "page": "26-pnp/index.html#A5",
+   "witness": {
+    "py": null,
+    "lean": []
+   },
+   "refs": [],
+   "text": "Eckmann and Tlusty: under uniform angle scaling a single walk in $\\mathrm{SO}(3)$ reaches the identity only on a measure-zero set, while the doubled walk returns for some exponentially large scaling, delivered non-constructively. [eckmanntlusty2025]"
+  },
+  {
+   "paper": "26-pnp",
+   "no": 26,
+   "rid": "26:A6",
+   "key": "p26006",
+   "label": "A6",
+   "block": "A",
+   "tag": "I",
+   "name": null,
+   "statement": "The corpus: the horizon clause and its complexity face (00:Z1--Z4; 25:G3, 25:G7), the shell theorem (00:Z10; 20:E1, 20:E12), the scale import $\\Om=4S+1$ (00:A7), the window ladder $P^{2}<\\Om$ (00:B8), the four generative levels (00:B6), the drive of every prime shell (00:A12).",
+   "source": "\\citep{akhtman2026godel,akhtman2026rh,akhtman2025algebra}",
+   "page": "26-pnp/index.html#A6",
+   "witness": {
+    "py": null,
+    "lean": []
+   },
+   "refs": [
+    "p00009",
+    "p00016",
+    "p00110",
+    "p00111",
+    "p00112",
+    "p00162",
+    "p00164",
+    "p00166",
+    "p00186",
+    "p00188",
+    "p20032",
+    "p20043",
+    "p25030",
+    "p25034"
+   ],
+   "text": "The corpus: the horizon clause and its complexity face (00:Z1–Z4; 25:G3, 25:G7), the shell theorem (00:Z10; 20:E1, 20:E12), the scale import $\\Om=4S+1$ (00:A7), the window ladder $P^{2}<\\Om$ (00:B8), the four generative levels (00:B6), the drive of every prime shell (00:A12). [akhtman2026godel,akhtman2026rh,akhtman2025algebra]"
+  },
+  {
+   "paper": "26-pnp",
+   "no": 26,
+   "rid": "26:B1",
+   "key": "p26007",
+   "label": "B1",
+   "block": "B",
+   "tag": "D",
+   "name": null,
+   "statement": "A representation $R=(E_R,O_R,c_R)$: an encoding, a finite set of elementary operations, and the cost, the graph distance in $G_R$. $R$ is admissible when it and a standard machine simulate each other with polynomial overhead. Cost is counted in bit operations, $\\ell=\\log_2P$ for a carrier element and $n$ for a stored length-$n$ object.",
+   "source": "Def.~\\ref{def:rep}",
+   "page": "26-pnp/index.html#B1",
+   "witness": {
+    "py": null,
+    "lean": []
+   },
+   "refs": [],
+   "text": "A representation $R=(E_R,O_R,c_R)$: an encoding, a finite set of elementary operations, and the cost, the graph distance in $G_R$. $R$ is admissible when it and a standard machine simulate each other with polynomial overhead. Cost is counted in bit operations, $\\ell=\\log_2P$ for a carrier element and $n$ for a stored length-$n$ object. Def. def:rep"
+  },
+  {
+   "paper": "26-pnp",
+   "no": 26,
+   "rid": "26:B2",
+   "key": "p26008",
+   "label": "B2",
+   "block": "B",
+   "tag": "D",
+   "name": null,
+   "statement": "Cost is a function of the pair (target, representation), not of the target alone: a target far in one chart can be near in another, and the transform between charts is itself a path. ``Within the horizon'' is a predicate on pairs.",
+   "source": "Claim~\\ref{cl:rel}",
+   "page": "26-pnp/index.html#B2",
+   "witness": {
+    "py": null,
+    "lean": []
+   },
+   "refs": [],
+   "text": "Cost is a function of the pair (target, representation), not of the target alone: a target far in one chart can be near in another, and the transform between charts is itself a path. “Within the horizon” is a predicate on pairs. Claim cl:rel"
+  },
+  {
+   "paper": "26-pnp",
+   "no": 26,
+   "rid": "26:B3",
+   "key": "p26009",
+   "label": "B3",
+   "block": "B",
+   "tag": "T",
+   "name": null,
+   "statement": "The longitudinal turn on the shell: the multiplicative characters $\\chi_\\nu(g^t)=g^{\\nu t}$ are eigenvectors of the scale shift $x\\mapsto gx$, with the $(P-1)$-th roots of unity $g^{\\nu}$ as distinct eigenvalues; the shift $x\\mapsto g^{r}x$ fixes every unit when $(P-1)\\mid r$ and none otherwise.",
+   "source": "Prop.~\\ref{prop:longturn}; A6\\newline \\pywit{pnp}{p26009}{B3}, \\leanwit{FrcCore}{p26009}{B3} \\lean{FRC.Horizon.shift\\_power\\_character, FRC.Horizon.eigenphase, FRC.Shell.Frame.pow\\_inj, FRC.Horizon.shift\\_trace, FRC.Ladder.eigenvalues13}",
+   "page": "26-pnp/index.html#B3",
+   "witness": {
+    "py": {
+     "href": "frc/ledgers/p26_pnp.html#p26009",
+     "script": "p26_pnp.py",
+     "line": 115,
+     "verdict": "pass"
+    },
+    "lean": [
+     {
+      "lib": "FrcCore",
+      "module": "FrcCore/Theme/Horizon",
+      "name": "FRC.Horizon.shift_power_character",
+      "tier": 0,
+      "ok": true,
+      "page": "lean/core/Theme.html#FRC.Horizon.shift_power_character"
+     },
+     {
+      "lib": "FrcCore",
+      "module": "FrcCore/Theme/Horizon",
+      "name": "FRC.Horizon.eigenphase",
+      "tier": 0,
+      "ok": true,
+      "page": "lean/core/Theme.html#FRC.Horizon.eigenphase"
+     },
+     {
+      "lib": "FrcCore",
+      "module": "FrcCore/FrameCore",
+      "name": "FRC.Shell.Frame.pow_inj",
+      "tier": 0,
+      "ok": true,
+      "page": "lean/core/FrameCore.html#FRC.Shell.Frame.pow_inj"
+     },
+     {
+      "lib": "FrcCore",
+      "module": "FrcCore/Theme/Horizon",
+      "name": "FRC.Horizon.shift_trace",
+      "tier": 0,
+      "ok": true,
+      "page": "lean/core/Theme.html#FRC.Horizon.shift_trace"
+     },
+     {
+      "lib": "FrcCore",
+      "module": "FrcCore/Theme/Ladder",
+      "name": "FRC.Ladder.eigenvalues13",
+      "tier": 0,
+      "ok": true,
+      "page": "lean/core/Theme.html#FRC.Ladder.eigenvalues13"
+     }
+    ]
+   },
+   "refs": [
+    "p20043",
+    "p26006"
+   ],
+   "text": "The longitudinal turn on the shell: the multiplicative characters $\\chi_\\nu(g^t)=g^{\\nu t}$ are eigenvectors of the scale shift $x\\mapsto gx$, with the $(P-1)$-th roots of unity $g^{\\nu}$ as distinct eigenvalues; the shift $x\\mapsto g^{r}x$ fixes every unit when $(P-1)\\mid r$ and none otherwise. Prop. prop:longturn; A6 p26009, FrcCore{B3} FRC.Horizon.shift_power_character, FRC.Horizon.eigenphase, FRC.Shell.Frame.pow_inj, FRC.Horizon.shift_trace, FRC.Ladder.eigenvalues13"
+  },
+  {
+   "paper": "26-pnp",
+   "no": 26,
+   "rid": "26:B4",
+   "key": "p26010",
+   "label": "B4",
+   "block": "B",
+   "tag": "T",
+   "name": null,
+   "statement": "The continuum reading [chart]: the dilation generator $\\HH=-\\mathrm i(x\\partial_x+\\tfrac12)$ has $x^{-1/2+\\mathrm i\\nu}$ as eigenfunction of eigenvalue $\\nu$ on $x>0$, so the frequency index is the spectrum of $\\HH$ in the chart of the scale shift (20:E1).",
+   "source": "Prop.~\\ref{prop:longturn}; B3\\newline \\pywit{pnp}{p26010}{B4}, \\leanwit{FrcLedger}{p26010}{B4} \\lean{Pnp.dilation\\_eigen}",
+   "page": "26-pnp/index.html#B4",
+   "witness": {
+    "py": {
+     "href": "frc/ledgers/p26_pnp.html#p26010",
+     "script": "p26_pnp.py",
+     "line": 136,
+     "verdict": "pass"
+    },
+    "lean": [
+     {
+      "lib": "FrcLedger",
+      "module": "FrcLedger/Pnp",
+      "name": "FRC.Pnp.dilation_eigen",
+      "tier": 2,
+      "ok": true,
+      "page": "lean/ml/Pnp.html#FRC.Pnp.dilation_eigen"
+     }
+    ]
+   },
+   "refs": [
+    "p20032",
+    "p26009"
+   ],
+   "text": "The continuum reading [chart]: the dilation generator $\\HH=-\\mathrm i(x\\partial_x+\\tfrac12)$ has $x^{-1/2+\\mathrm i\\nu}$ as eigenfunction of eigenvalue $\\nu$ on $x>0$, so the frequency index is the spectrum of $\\HH$ in the chart of the scale shift (20:E1). Prop. prop:longturn; B3 p26010, FrcLedger{B4} Pnp.dilation_eigen"
+  },
+  {
+   "paper": "26-pnp",
+   "no": 26,
+   "rid": "26:B5",
+   "key": "p26011",
+   "label": "B5",
+   "block": "B",
+   "tag": "T",
+   "name": null,
+   "statement": "The Gauss sum couples the two turns: multiplication by a unit permutes the units; $\\sum_{t\\neq0}\\psi(tc)$ is $-1$ for $c\\neq0$ and $P-1$ for $c=0$; $\\sum_u\\chi(u)=0$ for $\\chi\\neq1$; hence $\\lvert g(\\chi)\\rvert^{2}=P$ for every nontrivial $\\chi$ on the shell ($\\Om$ on the Carrier).",
+   "source": "Rem.~\\ref{rem:gauss}; B3\\newline \\pywit{pnp}{p26011}{B5}, \\leanwit{FrcCore}{p26011}{B5}, \\leanwit{FrcLedger}{p26011}{B5} \\lean{FRC.Horizon.ramanujan\\_sum, FRC.Horizon.ramanujan\\_zero, FRC.Shell.Frame.principal\\_root, FRC.Ladder.mul\\_perm, Pnp.gauss\\_product, Pnp.gauss\\_modulus}",
+   "page": "26-pnp/index.html#B5",
+   "witness": {
+    "py": {
+     "href": "frc/ledgers/p26_pnp.html#p26011",
+     "script": "p26_pnp.py",
+     "line": 162,
+     "verdict": "pass"
+    },
+    "lean": [
+     {
+      "lib": "FrcCore",
+      "module": "FrcCore/Theme/Horizon",
+      "name": "FRC.Horizon.ramanujan_sum",
+      "tier": 0,
+      "ok": true,
+      "page": "lean/core/Theme.html#FRC.Horizon.ramanujan_sum"
+     },
+     {
+      "lib": "FrcCore",
+      "module": "FrcCore/Theme/Horizon",
+      "name": "FRC.Horizon.ramanujan_zero",
+      "tier": 0,
+      "ok": true,
+      "page": "lean/core/Theme.html#FRC.Horizon.ramanujan_zero"
+     },
+     {
+      "lib": "FrcCore",
+      "module": "FrcCore/Transform",
+      "name": "FRC.Shell.Frame.principal_root",
+      "tier": 0,
+      "ok": true,
+      "page": "lean/core/Transform.html#FRC.Shell.Frame.principal_root"
+     },
+     {
+      "lib": "FrcCore",
+      "module": "FrcCore/Theme/Ladder",
+      "name": "FRC.Ladder.mul_perm",
+      "tier": 0,
+      "ok": true,
+      "page": "lean/core/Theme.html#FRC.Ladder.mul_perm"
+     },
+     {
+      "lib": "FrcLedger",
+      "module": "FrcLedger/Pnp",
+      "name": "FRC.Pnp.gauss_product",
+      "tier": 2,
+      "ok": true,
+      "page": "lean/ml/Pnp.html#FRC.Pnp.gauss_product"
+     },
+     {
+      "lib": "FrcLedger",
+      "module": "FrcLedger/Pnp",
+      "name": "FRC.Pnp.gauss_modulus",
+      "tier": 2,
+      "ok": true,
+      "page": "lean/ml/Pnp.html#FRC.Pnp.gauss_modulus"
+     }
+    ]
+   },
+   "refs": [
+    "p26009"
+   ],
+   "text": "The Gauss sum couples the two turns: multiplication by a unit permutes the units; $\\sum_{t\\neq0}\\psi(tc)$ is $-1$ for $c\\neq0$ and $P-1$ for $c=0$; $\\sum_u\\chi(u)=0$ for $\\chi\\neq1$; hence $\\lvert g(\\chi)\\rvert^{2}=P$ for every nontrivial $\\chi$ on the shell ($\\Om$ on the Carrier). Rem. rem:gauss; B3 p26011, FrcCore{B5}, FrcLedger{B5} FRC.Horizon.ramanujan_sum, FRC.Horizon.ramanujan_zero, FRC.Shell.Frame.principal_root, FRC.Ladder.mul_perm, Pnp.gauss_product, Pnp.gauss_modulus"
+  },
+  {
+   "paper": "26-pnp",
+   "no": 26,
+   "rid": "26:C1",
+   "key": "p26012",
+   "label": "C1",
+   "block": "C",
+   "tag": "D",
+   "name": null,
+   "statement": "Two horizons, nested: the per-instance feasible horizon $H(\\ell)$, polynomial in the feasible regime, and the absolute horizon $\\Om^{1/4}$, the observer's total budget in the totality. The totality holds the inverse of every ascent whole, the table of $P-1$ index pairs, below its own count: the endpoint-given oracle.",
+   "source": "Def.~\\ref{def:horizon}; A6",
+   "page": "26-pnp/index.html#C1",
+   "witness": {
+    "py": null,
+    "lean": []
+   },
+   "refs": [
+    "p26006"
+   ],
+   "text": "Two horizons, nested: the per-instance feasible horizon $H(\\ell)$, polynomial in the feasible regime, and the absolute horizon $\\Om^{1/4}$, the observer's total budget in the totality. The totality holds the inverse of every ascent whole, the table of $P-1$ index pairs, below its own count: the endpoint-given oracle. Def. def:horizon; A6"
+  },
+  {
+   "paper": "26-pnp",
+   "no": 26,
+   "rid": "26:C2",
+   "key": "p26013",
+   "label": "C2",
+   "block": "C",
+   "tag": "T",
+   "name": null,
+   "statement": "The family's size and the table beyond the horizon [chart]: at the anchor $2^{204}<\\sqrt\\Om<2^{205}$, so the shells of the family $P^{2}<\\Om$ have at most $205$ bits; $2^{102}<\\Om^{1/4}<2^{103}$, so a decision table with one entry per $204$-bit input exceeds the absolute horizon and lies below $\\sqrt\\Om$.",
+   "source": "Rem.~\\ref{rem:bridge}; A6\\newline \\pywit{pnp}{p26013}{C2}, \\leanwit{FrcLedger}{p26013}{C2} \\lean{Pnp.family\\_bits}",
+   "page": "26-pnp/index.html#C2",
+   "witness": {
+    "py": {
+     "href": "frc/ledgers/p26_pnp.html#p26013",
+     "script": "p26_pnp.py",
+     "line": 188,
+     "verdict": "pass"
+    },
+    "lean": [
+     {
+      "lib": "FrcLedger",
+      "module": "FrcLedger/Pnp",
+      "name": "FRC.Pnp.family_bits",
+      "tier": 2,
+      "ok": true,
+      "page": "lean/ml/Pnp.html#FRC.Pnp.family_bits"
+     }
+    ]
+   },
+   "refs": [
+    "p00166",
+    "p26006"
+   ],
+   "text": "The family's size and the table beyond the horizon [chart]: at the anchor $2^{204}<\\sqrt\\Om<2^{205}$, so the shells of the family $P^{2}<\\Om$ have at most $205$ bits; $2^{102}<\\Om^{1/4}<2^{103}$, so a decision table with one entry per $204$-bit input exceeds the absolute horizon and lies below $\\sqrt\\Om$. Rem. rem:bridge; A6 p26013, FrcLedger{C2} Pnp.family_bits"
+  },
+  {
+   "paper": "26-pnp",
+   "no": 26,
+   "rid": "26:D1",
+   "key": "p26014",
+   "label": "D1",
+   "block": "D",
+   "tag": "D",
+   "name": null,
+   "statement": "The classes in a representation: $L\\in\\PC_R$ when a $\\mathrm{poly}(\\ell)$ uniform rule selects each next operation and the deterministic forward path reaches the decision bit within $H(\\ell)$; $L\\in\\NPC_R$ when a certificate of polynomial length places ``accept'' within $H(\\ell)$ of $(E_R(x),w)$. The axis is find versus exist.",
+   "source": "Def.~\\ref{def:classes}",
+   "page": "26-pnp/index.html#D1",
+   "witness": {
+    "py": null,
+    "lean": []
+   },
+   "refs": [],
+   "text": "The classes in a representation: $L\\in\\PC_R$ when a $\\mathrm{poly}(\\ell)$ uniform rule selects each next operation and the deterministic forward path reaches the decision bit within $H(\\ell)$; $L\\in\\NPC_R$ when a certificate of polynomial length places “accept” within $H(\\ell)$ of $(E_R(x),w)$. The axis is find versus exist. Def. def:classes"
+  },
+  {
+   "paper": "26-pnp",
+   "no": 26,
+   "rid": "26:D2",
+   "key": "p26015",
+   "label": "D2",
+   "block": "D",
+   "tag": "T",
+   "name": null,
+   "statement": "Faithfulness: for every admissible $R$, $\\PC_R=\\PC$ and $\\NPC_R=\\NPC$. The forward direction simulates each operation in polynomial time and guesses the operation sequence with the certificate; the reverse rewrites a standard computation as an $R$-derivation of polynomial length.",
+   "source": "Thm.~\\ref{thm:faith}; A1, B1, D1",
+   "page": "26-pnp/index.html#D2",
+   "witness": {
+    "py": null,
+    "lean": []
+   },
+   "refs": [
+    "p26001",
+    "p26007",
+    "p26014"
+   ],
+   "text": "Faithfulness: for every admissible $R$, $\\PC_R=\\PC$ and $\\NPC_R=\\NPC$. The forward direction simulates each operation in polynomial time and guesses the operation sequence with the certificate; the reverse rewrites a standard computation as an $R$-derivation of polynomial length. Thm. thm:faith; A1, B1, D1"
+  },
+  {
+   "paper": "26-pnp",
+   "no": 26,
+   "rid": "26:D3",
+   "key": "p26016",
+   "label": "D3",
+   "block": "D",
+   "tag": "D",
+   "name": null,
+   "statement": "The classes are representation-invariant; what varies with $R$ is the cost of a specific target within a fixed budget. A certificate is a representation in which the far target is near: supplied ($\\NPC$) rather than forward-constructed ($\\PC$).",
+   "source": "Cor.~\\ref{cor:robust}; D2, B2",
+   "page": "26-pnp/index.html#D3",
+   "witness": {
+    "py": null,
+    "lean": []
+   },
+   "refs": [
+    "p26008",
+    "p26015"
+   ],
+   "text": "The classes are representation-invariant; what varies with $R$ is the cost of a specific target within a fixed budget. A certificate is a representation in which the far target is near: supplied ($\\NPC$) rather than forward-constructed ($\\PC$). Cor. cor:robust; D2, B2"
+  },
+  {
+   "paper": "26-pnp",
+   "no": 26,
+   "rid": "26:D4",
+   "key": "p26017",
+   "label": "D4",
+   "block": "D",
+   "tag": "D",
+   "name": null,
+   "statement": "Faithfulness is to the class structure on the carrier family: the carrier classes are $\\PC$ and $\\NPC$, the textbook asymptotic classes their degenerate idealisation. No tower of carriers is admitted; a fixed length admits a decision table, decided by the totality, unreachable below the horizon (C2).",
+   "source": "Rem.~\\ref{rem:bridge}; A6, C2",
+   "page": "26-pnp/index.html#D4",
+   "witness": {
+    "py": null,
+    "lean": []
+   },
+   "refs": [
+    "p26006",
+    "p26013"
+   ],
+   "text": "Faithfulness is to the class structure on the carrier family: the carrier classes are $\\PC$ and $\\NPC$, the textbook asymptotic classes their degenerate idealisation. No tower of carriers is admitted; a fixed length admits a decision table, decided by the totality, unreachable below the horizon (C2). Rem. rem:bridge; A6, C2"
+  },
+  {
+   "paper": "26-pnp",
+   "no": 26,
+   "rid": "26:E1",
+   "key": "p26018",
+   "label": "E1",
+   "block": "E",
+   "tag": "D",
+   "name": null,
+   "statement": "The search problem $\\mathrm{Search}_V$ of $L\\in\\NPC$ with verifier $V$ and witness bound $p$ maps an instance to a witness or to $\\bot$. The near-representation is forward-constructible iff $\\mathrm{Search}_V\\in\\mathrm{FP}$.",
+   "source": "Def.~\\ref{def:search}",
+   "page": "26-pnp/index.html#E1",
+   "witness": {
+    "py": null,
+    "lean": []
+   },
+   "refs": [],
+   "text": "The search problem $\\mathrm{Search}_V$ of $L\\in\\NPC$ with verifier $V$ and witness bound $p$ maps an instance to a witness or to $\\bot$. The near-representation is forward-constructible iff $\\mathrm{Search}_V\\in\\mathrm{FP}$. Def. def:search"
+  },
+  {
+   "paper": "26-pnp",
+   "no": 26,
+   "rid": "26:E2",
+   "key": "p26019",
+   "label": "E2",
+   "block": "E",
+   "tag": "T",
+   "name": null,
+   "statement": "The crisp form: $\\PC=\\NPC$ iff $\\mathrm{Search}_V\\in\\mathrm{FP}$ for every $L\\in\\NPC$, equivalently for $\\mathrm{SAT}$; by self-reduction on the variables and the witness-preserving Cook--Levin reduction.",
+   "source": "Thm.~\\ref{thm:crisp}; A1, E1",
+   "page": "26-pnp/index.html#E2",
+   "witness": {
+    "py": null,
+    "lean": []
+   },
+   "refs": [
+    "p26001",
+    "p26018"
+   ],
+   "text": "The crisp form: $\\PC=\\NPC$ iff $\\mathrm{Search}_V\\in\\mathrm{FP}$ for every $L\\in\\NPC$, equivalently for $\\mathrm{SAT}$; by self-reduction on the variables and the witness-preserving Cook–Levin reduction. Thm. thm:crisp; A1, E1"
+  },
+  {
+   "paper": "26-pnp",
+   "no": 26,
+   "rid": "26:E3",
+   "key": "p26020",
+   "label": "E3",
+   "block": "E",
+   "tag": "D",
+   "name": null,
+   "statement": "A propositional proof system is a polynomial-time onto map $\\Pi$ to $\\mathrm{TAUT}$; $p$-bounded when every tautology has a polynomial-size proof; automatizable when some algorithm finds a proof in time polynomial in the tautology and its least proof size.",
+   "source": "Def.~\\ref{def:ps}",
+   "page": "26-pnp/index.html#E3",
+   "witness": {
+    "py": null,
+    "lean": []
+   },
+   "refs": [],
+   "text": "A propositional proof system is a polynomial-time onto map $\\Pi$ to $\\mathrm{TAUT}$; $p$-bounded when every tautology has a polynomial-size proof; automatizable when some algorithm finds a proof in time polynomial in the tautology and its least proof size. Def. def:ps"
+  },
+  {
+   "paper": "26-pnp",
+   "no": 26,
+   "rid": "26:E4",
+   "key": "p26021",
+   "label": "E4",
+   "block": "E",
+   "tag": "T",
+   "name": null,
+   "statement": "The witness--automatization dictionary: for $L\\in\\NPC$ with verifier $V$, $\\mathrm{Search}_V\\in\\mathrm{FP}$ iff the certificate system $\\Pi_V$ (a witness system, not a system for $\\mathrm{TAUT}$) is automatizable; so $\\PC=\\NPC$ iff every witness system is automatizable.",
+   "source": "Lem.~\\ref{lem:dict}; E1, E2, E3",
+   "page": "26-pnp/index.html#E4",
+   "witness": {
+    "py": null,
+    "lean": []
+   },
+   "refs": [
+    "p26018",
+    "p26019",
+    "p26020"
+   ],
+   "text": "The witness–automatization dictionary: for $L\\in\\NPC$ with verifier $V$, $\\mathrm{Search}_V\\in\\mathrm{FP}$ iff the certificate system $\\Pi_V$ (a witness system, not a system for $\\mathrm{TAUT}$) is automatizable; so $\\PC=\\NPC$ iff every witness system is automatizable. Lem. lem:dict; E1, E2, E3"
+  },
+  {
+   "paper": "26-pnp",
+   "no": 26,
+   "rid": "26:E5",
+   "key": "p26022",
+   "label": "E5",
+   "block": "E",
+   "tag": "T",
+   "name": null,
+   "statement": "Finding collapses to checking: if $\\PC=\\NPC$ then every propositional proof system is automatizable, the proof built bit by bit by self-reduction on the predicate ``$\\tau$ has a $\\Pi$-proof of size at most $s$''.",
+   "source": "Prop.~\\ref{prop:auto}; A1, E2, E3",
+   "page": "26-pnp/index.html#E5",
+   "witness": {
+    "py": null,
+    "lean": []
+   },
+   "refs": [
+    "p26001",
+    "p26019",
+    "p26020"
+   ],
+   "text": "Finding collapses to checking: if $\\PC=\\NPC$ then every propositional proof system is automatizable, the proof built bit by bit by self-reduction on the predicate “$\\tau$ has a $\\Pi$-proof of size at most $s$”. Prop. prop:auto; A1, E2, E3"
+  },
+  {
+   "paper": "26-pnp",
+   "no": 26,
+   "rid": "26:E6",
+   "key": "p26023",
+   "label": "E6",
+   "block": "E",
+   "tag": "D",
+   "name": null,
+   "statement": "The gap is finding versus existing: the truth-table system is automatizable but not $p$-bounded, so existence ($\\NPC=\\coNP$) and discovery are distinct; the known separations condition the gap on the hardness of factoring and the discrete logarithm, the substrate's descent.",
+   "source": "Rem.~\\ref{rem:gap}; A2, E5",
+   "page": "26-pnp/index.html#E6",
+   "witness": {
+    "py": null,
+    "lean": []
+   },
+   "refs": [
+    "p26002",
+    "p26022"
+   ],
+   "text": "The gap is finding versus existing: the truth-table system is automatizable but not $p$-bounded, so existence ($\\NPC=\\coNP$) and discovery are distinct; the known separations condition the gap on the hardness of factoring and the discrete logarithm, the substrate's descent. Rem. rem:gap; A2, E5"
+  },
+  {
+   "paper": "26-pnp",
+   "no": 26,
+   "rid": "26:E7",
+   "key": "p26024",
+   "label": "E7",
+   "block": "E",
+   "tag": "D",
+   "name": null,
+   "statement": "A localizing chart for $x\\in L$: an admissible chart in which some witness lies within the polynomial horizon of $\\mathbf0$. A constructive localising selector emits, in $\\mathrm{FP}$, such a chart with a canonical forward rule whose orbit reaches the witness in $\\mathrm{poly}(\\ell)$ steps. Proximity alone is insufficient.",
+   "source": "Def.~\\ref{def:localize}",
+   "page": "26-pnp/index.html#E7",
+   "witness": {
+    "py": null,
+    "lean": []
+   },
+   "refs": [],
+   "text": "A localizing chart for $x\\in L$: an admissible chart in which some witness lies within the polynomial horizon of $\\mathbf0$. A constructive localising selector emits, in $\\mathrm{FP}$, such a chart with a canonical forward rule whose orbit reaches the witness in $\\mathrm{poly}(\\ell)$ steps. Proximity alone is insufficient. Def. def:localize"
+  },
+  {
+   "paper": "26-pnp",
+   "no": 26,
+   "rid": "26:E8",
+   "key": "p26025",
+   "label": "E8",
+   "block": "E",
+   "tag": "T",
+   "name": null,
+   "statement": "Existence is free: for every witness index $m$ of the scale chart the translation $j\\mapsto j+(n-m)+1$ of the index cycle is a chart (a bijection of the cycle) that places $g^{m}$ one counting step from the origin, $g=g^{0}\\cdot g$. The witness enters only to name the chart.",
+   "source": "Prop.~\\ref{prop:uniformchart}; E7\\newline \\pywit{pnp}{p26025}{E8}, \\leanwit{FrcCore}{p26025}{E8} \\lean{FRC.Ladder.recentre\\_witness, FRC.Ladder.recentre\\_inj, FRC.Ladder.recentre\\_surj, FRC.Ladder.recentre13}",
+   "page": "26-pnp/index.html#E8",
+   "witness": {
+    "py": {
+     "href": "frc/ledgers/p26_pnp.html#p26025",
+     "script": "p26_pnp.py",
+     "line": 215,
+     "verdict": "pass"
+    },
+    "lean": [
+     {
+      "lib": "FrcCore",
+      "module": "FrcCore/Theme/Ladder",
+      "name": "FRC.Ladder.recentre_witness",
+      "tier": 0,
+      "ok": true,
+      "page": "lean/core/Theme.html#FRC.Ladder.recentre_witness"
+     },
+     {
+      "lib": "FrcCore",
+      "module": "FrcCore/Theme/Ladder",
+      "name": "FRC.Ladder.recentre_inj",
+      "tier": 0,
+      "ok": true,
+      "page": "lean/core/Theme.html#FRC.Ladder.recentre_inj"
+     },
+     {
+      "lib": "FrcCore",
+      "module": "FrcCore/Theme/Ladder",
+      "name": "FRC.Ladder.recentre_surj",
+      "tier": 0,
+      "ok": true,
+      "page": "lean/core/Theme.html#FRC.Ladder.recentre_surj"
+     },
+     {
+      "lib": "FrcCore",
+      "module": "FrcCore/Theme/Ladder",
+      "name": "FRC.Ladder.recentre13",
+      "tier": 0,
+      "ok": true,
+      "page": "lean/core/Theme.html#FRC.Ladder.recentre13"
+     }
+    ]
+   },
+   "refs": [
+    "p26024"
+   ],
+   "text": "Existence is free: for every witness index $m$ of the scale chart the translation $j\\mapsto j+(n-m)+1$ of the index cycle is a chart (a bijection of the cycle) that places $g^{m}$ one counting step from the origin, $g=g^{0}\\cdot g$. The witness enters only to name the chart. Prop. prop:uniformchart; E7 p26025, FrcCore{E8} FRC.Ladder.recentre_witness, FRC.Ladder.recentre_inj, FRC.Ladder.recentre_surj, FRC.Ladder.recentre13"
+  },
+  {
+   "paper": "26-pnp",
+   "no": 26,
+   "rid": "26:E9",
+   "key": "p26026",
+   "label": "E9",
+   "block": "E",
+   "tag": "T",
+   "name": null,
+   "statement": "The selector is the content: a constructive localising selector for every $L\\in\\NPC$, equivalently for $\\mathrm{SAT}$, exists iff $\\PC=\\NPC$; a selector for a single easy $L$ does not suffice.",
+   "source": "Prop.~\\ref{prop:uniformchart}; E2, E7, E8",
+   "page": "26-pnp/index.html#E9",
+   "witness": {
+    "py": null,
+    "lean": []
+   },
+   "refs": [
+    "p26019",
+    "p26024",
+    "p26025"
+   ],
+   "text": "The selector is the content: a constructive localising selector for every $L\\in\\NPC$, equivalently for $\\mathrm{SAT}$, exists iff $\\PC=\\NPC$; a selector for a single easy $L$ does not suffice. Prop. prop:uniformchart; E2, E7, E8"
+  },
+  {
+   "paper": "26-pnp",
+   "no": 26,
+   "rid": "26:E10",
+   "key": "p26027",
+   "label": "E10",
+   "block": "E",
+   "tag": "T",
+   "name": null,
+   "statement": "The counting distance of a unit along the orbit of $g$ is its index: $m\\mapsto g^{m}$ is a bijection of the index cycle onto the units, the distances $1,\\dots,P-1$ have mean $P/2$ and maximum $P-1$, between $2^{\\ell-1}$ and $2^{\\ell}$ for $\\ell$ the bit length.",
+   "source": "Rem.~\\ref{rem:lucky}; A6\\newline \\pywit{pnp}{p26027}{E10}, \\leanwit{FrcCore}{p26027}{E10} \\lean{FRC.Shell.Prime.exists\\_drive, FRC.Shell.Prime.primitive\\_pow\\_inj, FRC.Shell.Frame.generates, FRC.Ladder.two\\_mul\\_distSum, FRC.Ladder.dist\\_le, FRC.Ladder.bits\\_bracket}",
+   "page": "26-pnp/index.html#E10",
+   "witness": {
+    "py": {
+     "href": "frc/ledgers/p26_pnp.html#p26027",
+     "script": "p26_pnp.py",
+     "line": 232,
+     "verdict": "pass"
+    },
+    "lean": [
+     {
+      "lib": "FrcCore",
+      "module": "FrcCore/Theme/Drive",
+      "name": "FRC.Shell.Prime.exists_drive",
+      "tier": 0,
+      "ok": true,
+      "page": "lean/core/Theme.html#FRC.Shell.Prime.exists_drive"
+     },
+     {
+      "lib": "FrcCore",
+      "module": "FrcCore/Theme/Drive",
+      "name": "FRC.Shell.Prime.primitive_pow_inj",
+      "tier": 0,
+      "ok": true,
+      "page": "lean/core/Theme.html#FRC.Shell.Prime.primitive_pow_inj"
+     },
+     {
+      "lib": "FrcCore",
+      "module": "FrcCore/FrameCore",
+      "name": "FRC.Shell.Frame.generates",
+      "tier": 0,
+      "ok": true,
+      "page": "lean/core/FrameCore.html#FRC.Shell.Frame.generates"
+     },
+     {
+      "lib": "FrcCore",
+      "module": "FrcCore/Theme/Ladder",
+      "name": "FRC.Ladder.two_mul_distSum",
+      "tier": 0,
+      "ok": true,
+      "page": "lean/core/Theme.html#FRC.Ladder.two_mul_distSum"
+     },
+     {
+      "lib": "FrcCore",
+      "module": "FrcCore/Theme/Ladder",
+      "name": "FRC.Ladder.dist_le",
+      "tier": 0,
+      "ok": true,
+      "page": "lean/core/Theme.html#FRC.Ladder.dist_le"
+     },
+     {
+      "lib": "FrcCore",
+      "module": "FrcCore/Theme/Ladder",
+      "name": "FRC.Ladder.bits_bracket",
+      "tier": 0,
+      "ok": true,
+      "page": "lean/core/Theme.html#FRC.Ladder.bits_bracket"
+     }
+    ]
+   },
+   "refs": [
+    "p00164",
+    "p26006"
+   ],
+   "text": "The counting distance of a unit along the orbit of $g$ is its index: $m\\mapsto g^{m}$ is a bijection of the index cycle onto the units, the distances $1,\\dots,P-1$ have mean $P/2$ and maximum $P-1$, between $2^{\\ell-1}$ and $2^{\\ell}$ for $\\ell$ the bit length. Rem. rem:lucky; A6 p26027, FrcCore{E10} FRC.Shell.Prime.exists_drive, FRC.Shell.Prime.primitive_pow_inj, FRC.Shell.Frame.generates, FRC.Ladder.two_mul_distSum, FRC.Ladder.dist_le, FRC.Ladder.bits_bracket"
+  },
+  {
+   "paper": "26-pnp",
+   "no": 26,
+   "rid": "26:E11",
+   "key": "p26028",
+   "label": "E11",
+   "block": "E",
+   "tag": "D",
+   "name": null,
+   "statement": "Three quantities differ: the naive orbit length (up to $2^{\\ell}$ steps), the cost of a specified algorithm (baby-step--giant-step, F3), and the minimum complexity of the descent, the open lower bound. The bijection of E10 bounds none of them. Short to name is not short to find.",
+   "source": "Rem.~\\ref{rem:lucky}; E10, F3",
+   "page": "26-pnp/index.html#E11",
+   "witness": {
+    "py": null,
+    "lean": []
+   },
+   "refs": [
+    "p26027",
+    "p26031"
+   ],
+   "text": "Three quantities differ: the naive orbit length (up to $2^{\\ell}$ steps), the cost of a specified algorithm (baby-step–giant-step, F3), and the minimum complexity of the descent, the open lower bound. The bijection of E10 bounds none of them. Short to name is not short to find. Rem. rem:lucky; E10, F3"
+  },
+  {
+   "paper": "26-pnp",
+   "no": 26,
+   "rid": "26:F1",
+   "key": "p26029",
+   "label": "F1",
+   "block": "F",
+   "tag": "D",
+   "name": null,
+   "statement": "Charts and the family: on $\\F_P$ the additive chart and the scale chart $(\\F_P^{\\times},\\cdot)\\simeq C_{P-1}$; with a fixed generator $g$ the ascent $a_P(j)=g^{j}$ and the descent $d_P=\\mathrm{dlog}_g$. The carrier family is $\\{\\F_P:P^{2}<\\Om\\}$ (00:B8), input size $\\ell$, feasibility $\\mathrm{poly}(\\ell)$.",
+   "source": "Def.~\\ref{def:charts}; A6, C1",
+   "page": "26-pnp/index.html#F1",
+   "witness": {
+    "py": null,
+    "lean": []
+   },
+   "refs": [
+    "p00166",
+    "p26006",
+    "p26012"
+   ],
+   "text": "Charts and the family: on $\\F_P$ the additive chart and the scale chart $(\\F_P^{\\times},\\cdot)\\simeq C_{P-1}$; with a fixed generator $g$ the ascent $a_P(j)=g^{j}$ and the descent $d_P=\\mathrm{dlog}_g$. The carrier family is $\\{\\F_P:P^{2}<\\Om\\}$ (00:B8), input size $\\ell$, feasibility $\\mathrm{poly}(\\ell)$. Def. def:charts; A6, C1"
+  },
+  {
+   "paper": "26-pnp",
+   "no": 26,
+   "rid": "26:F2",
+   "key": "p26030",
+   "label": "F2",
+   "block": "F",
+   "tag": "T",
+   "name": null,
+   "statement": "Ascent is feasible: square-and-multiply computes $g^{j}$ in at most $2\\,\\mathrm{bits}(j)$ modular multiplications, hence at most $2\\ell$ for $j<P$; on the three carriers $17$, $26$, $38$ multiplications at $j=P/3$, right to left with the last squaring skipped [data].",
+   "source": "Thm.~\\ref{thm:ascent}; F1\\newline \\pywit{pnp}{p26030}{F2}, \\leanwit{FrcCore}{p26030}{F2} \\lean{FRC.Ladder.sqmul\\_spec, FRC.Ladder.sqmul\\_count, FRC.Ladder.sqmul\\_count\\_of\\_lt\\_pow, FRC.Ladder.sqmul13}",
+   "page": "26-pnp/index.html#F2",
+   "witness": {
+    "py": {
+     "href": "frc/ledgers/p26_pnp.html#p26030",
+     "script": "p26_pnp.py",
+     "line": 269,
+     "verdict": "pass"
+    },
+    "lean": [
+     {
+      "lib": "FrcCore",
+      "module": "FrcCore/Theme/Ladder",
+      "name": "FRC.Ladder.sqmul_spec",
+      "tier": 0,
+      "ok": true,
+      "page": "lean/core/Theme.html#FRC.Ladder.sqmul_spec"
+     },
+     {
+      "lib": "FrcCore",
+      "module": "FrcCore/Theme/Ladder",
+      "name": "FRC.Ladder.sqmul_count",
+      "tier": 0,
+      "ok": true,
+      "page": "lean/core/Theme.html#FRC.Ladder.sqmul_count"
+     },
+     {
+      "lib": "FrcCore",
+      "module": "FrcCore/Theme/Ladder",
+      "name": "FRC.Ladder.sqmul_count_of_lt_pow",
+      "tier": 0,
+      "ok": true,
+      "page": "lean/core/Theme.html#FRC.Ladder.sqmul_count_of_lt_pow"
+     },
+     {
+      "lib": "FrcCore",
+      "module": "FrcCore/Theme/Ladder",
+      "name": "FRC.Ladder.sqmul13",
+      "tier": 0,
+      "ok": true,
+      "page": "lean/core/Theme.html#FRC.Ladder.sqmul13"
+     }
+    ]
+   },
+   "refs": [
+    "p26029"
+   ],
+   "text": "Ascent is feasible: square-and-multiply computes $g^{j}$ in at most $2 \\mathrm{bits}(j)$ modular multiplications, hence at most $2\\ell$ for $j<P$; on the three carriers $17$, $26$, $38$ multiplications at $j=P/3$, right to left with the last squaring skipped [data]. Thm. thm:ascent; F1 p26030, FrcCore{F2} FRC.Ladder.sqmul_spec, FRC.Ladder.sqmul_count, FRC.Ladder.sqmul_count_of_lt_pow, FRC.Ladder.sqmul13"
+  },
+  {
+   "paper": "26-pnp",
+   "no": 26,
+   "rid": "26:F3",
+   "key": "p26031",
+   "label": "F3",
+   "block": "F",
+   "tag": "T",
+   "name": null,
+   "statement": "The descent's count: with $m^{2}\\ge P-1$ baby steps $1,g,\\dots,g^{m-1}$ ($m$ entries, one multiplication per step) and at most $m$ giant steps, baby-step--giant-step recovers from $g^{x}$ an index $y$ with $g^{y}=g^{x}$; at most $2m$ operations, $m=\\lfloor\\sqrt{P-1}\\rfloor+1$; $134$, $1334$, $13334$ on the three carriers [data].",
+   "source": "\\S\\ref{sec:owf}; F1\\newline \\pywit{pnp}{p26031}{F3}, \\leanwit{FrcCore}{p26031}{F3} \\lean{FRC.Ladder.bsgs\\_spec, FRC.Ladder.bsgs\\_total, FRC.Ladder.baby\\_step, FRC.Ladder.descendsB\\_spec, FRC.Ladder.descent13\\_101}",
+   "page": "26-pnp/index.html#F3",
+   "witness": {
+    "py": {
+     "href": "frc/ledgers/p26_pnp.html#p26031",
+     "script": "p26_pnp.py",
+     "line": 297,
+     "verdict": "pass"
+    },
+    "lean": [
+     {
+      "lib": "FrcCore",
+      "module": "FrcCore/Theme/Ladder",
+      "name": "FRC.Ladder.bsgs_spec",
+      "tier": 0,
+      "ok": true,
+      "page": "lean/core/Theme.html#FRC.Ladder.bsgs_spec"
+     },
+     {
+      "lib": "FrcCore",
+      "module": "FrcCore/Theme/Ladder",
+      "name": "FRC.Ladder.bsgs_total",
+      "tier": 0,
+      "ok": true,
+      "page": "lean/core/Theme.html#FRC.Ladder.bsgs_total"
+     },
+     {
+      "lib": "FrcCore",
+      "module": "FrcCore/Theme/Ladder",
+      "name": "FRC.Ladder.baby_step",
+      "tier": 0,
+      "ok": true,
+      "page": "lean/core/Theme.html#FRC.Ladder.baby_step"
+     },
+     {
+      "lib": "FrcCore",
+      "module": "FrcCore/Theme/Ladder",
+      "name": "FRC.Ladder.descendsB_spec",
+      "tier": 0,
+      "ok": true,
+      "page": "lean/core/Theme.html#FRC.Ladder.descendsB_spec"
+     },
+     {
+      "lib": "FrcCore",
+      "module": "FrcCore/Theme/Ladder",
+      "name": "FRC.Ladder.descent13_101",
+      "tier": 0,
+      "ok": true,
+      "page": "lean/core/Theme.html#FRC.Ladder.descent13_101"
+     }
+    ]
+   },
+   "refs": [
+    "p26029"
+   ],
+   "text": "The descent's count: with $m^{2}\\ge P-1$ baby steps $1,g,\\dots,g^{m-1}$ ($m$ entries, one multiplication per step) and at most $m$ giant steps, baby-step–giant-step recovers from $g^{x}$ an index $y$ with $g^{y}=g^{x}$; at most $2m$ operations, $m=\\lfloor\\sqrt{P-1}\\rfloor+1$; $134$, $1334$, $13334$ on the three carriers [data]. \\Ssec:owf; F1 p26031, FrcCore{F3} FRC.Ladder.bsgs_spec, FRC.Ladder.bsgs_total, FRC.Ladder.baby_step, FRC.Ladder.descendsB_spec, FRC.Ladder.descent13_101"
+  },
+  {
+   "paper": "26-pnp",
+   "no": 26,
+   "rid": "26:F4",
+   "key": "p26032",
+   "label": "F4",
+   "block": "F",
+   "tag": "D",
+   "name": null,
+   "statement": "Three scales: the feasibility budget $\\mathrm{poly}(\\ell)$, exceeded by the descent; the per-instance descent $2\\sqrt P$, at most $\\Om^{1/4}$ on the family, superpolynomial yet far below carrier scale; the uniform statement that no $\\mathrm{poly}(\\ell)$ inverse exists across the family, with no per-instance witness.",
+   "source": "\\S\\ref{sec:owf}; C1, C2, F3",
+   "page": "26-pnp/index.html#F4",
+   "witness": {
+    "py": null,
+    "lean": []
+   },
+   "refs": [
+    "p26012",
+    "p26013",
+    "p26031"
+   ],
+   "text": "Three scales: the feasibility budget $\\mathrm{poly}(\\ell)$, exceeded by the descent; the per-instance descent $2\\sqrt P$, at most $\\Om^{1/4}$ on the family, superpolynomial yet far below carrier scale; the uniform statement that no $\\mathrm{poly}(\\ell)$ inverse exists across the family, with no per-instance witness. \\Ssec:owf; C1, C2, F3"
+  },
+  {
+   "paper": "26-pnp",
+   "no": 26,
+   "rid": "26:F5",
+   "key": "p26033",
+   "label": "F5",
+   "block": "F",
+   "tag": "D",
+   "name": null,
+   "statement": "A one-way family: each $f_\\ell$ computable in $\\mathrm{poly}(\\ell)$ while every $\\mathrm{poly}(\\ell)$-time inverter succeeds on at most a sub-horizon fraction of the carrier, the finite-totality reading of negligibility.",
+   "source": "Def.~\\ref{def:owf}",
+   "page": "26-pnp/index.html#F5",
+   "witness": {
+    "py": null,
+    "lean": []
+   },
+   "refs": [],
+   "text": "A one-way family: each $f_\\ell$ computable in $\\mathrm{poly}(\\ell)$ while every $\\mathrm{poly}(\\ell)$-time inverter succeeds on at most a sub-horizon fraction of the carrier, the finite-totality reading of negligibility. Def. def:owf"
+  },
+  {
+   "paper": "26-pnp",
+   "no": 26,
+   "rid": "26:F6",
+   "key": "p26034",
+   "label": "F6",
+   "block": "F",
+   "tag": "T",
+   "name": null,
+   "statement": "One-way implies separation: if a one-way family exists then $\\PC\\neq\\NPC$, since inverting $f$ is the search problem of the verifier $[f(x)=y]$, which $\\PC=\\NPC$ would place in $\\mathrm{FP}$.",
+   "source": "Thm.~\\ref{thm:owf}; E2, F5",
+   "page": "26-pnp/index.html#F6",
+   "witness": {
+    "py": null,
+    "lean": []
+   },
+   "refs": [
+    "p26019",
+    "p26033"
+   ],
+   "text": "One-way implies separation: if a one-way family exists then $\\PC\\neq\\NPC$, since inverting $f$ is the search problem of the verifier $[f(x)=y]$, which $\\PC=\\NPC$ would place in $\\mathrm{FP}$. Thm. thm:owf; E2, F5"
+  },
+  {
+   "paper": "26-pnp",
+   "no": 26,
+   "rid": "26:F7",
+   "key": "p26035",
+   "label": "F7",
+   "block": "F",
+   "tag": "Ω",
+   "name": null,
+   "statement": "The scale-descent residue: the ascent family $\\{a_P\\}$ on the carrier family is one-way, $\\mathrm{poly}(\\ell)$ forward and inverted by no $\\mathrm{poly}(\\ell)$ forward computation. Decided by the totality, beyond the bounded observer; the complexity literature posits the same statement as the discrete-logarithm hardness assumption (00:Z4).",
+   "source": "Res.~\\ref{asm:dlog}; A3, A6, F2",
+   "page": "26-pnp/index.html#F7",
+   "witness": {
+    "py": null,
+    "lean": []
+   },
+   "refs": [
+    "p00112",
+    "p26003",
+    "p26006",
+    "p26030"
+   ],
+   "text": "The scale-descent residue: the ascent family $\\{a_P\\}$ on the carrier family is one-way, $\\mathrm{poly}(\\ell)$ forward and inverted by no $\\mathrm{poly}(\\ell)$ forward computation. Decided by the totality, beyond the bounded observer; the complexity literature posits the same statement as the discrete-logarithm hardness assumption (00:Z4). Res. asm:dlog; A3, A6, F2"
+  },
+  {
+   "paper": "26-pnp",
+   "no": 26,
+   "rid": "26:F8",
+   "key": "p26036",
+   "label": "F8",
+   "block": "F",
+   "tag": "T",
+   "name": null,
+   "statement": "If the scale descent is one-way (F7) then $\\PC\\neq\\NPC$.",
+   "source": "Cor.~\\ref{cor:dlogsep}; F6, F7",
+   "page": "26-pnp/index.html#F8",
+   "witness": {
+    "py": null,
+    "lean": []
+   },
+   "refs": [
+    "p26034",
+    "p26035"
+   ],
+   "text": "If the scale descent is one-way (F7) then $\\PC\\neq\\NPC$. Cor. cor:dlogsep; F6, F7"
+  },
+  {
+   "paper": "26-pnp",
+   "no": 26,
+   "rid": "26:F9",
+   "key": "p26037",
+   "label": "F9",
+   "block": "F",
+   "tag": "D",
+   "name": null,
+   "statement": "The native locus: ascent is a horizon-bounded forward count, descent its inverse below the horizon; $\\PC\\neq\\NPC$ follows from F7 one way, the converse not known. The single arrow of the drive is the structural reason for the residue, the descent the time-reversed branch a composed observer cannot freely take.",
+   "source": "Claim~\\ref{cl:locus}; F7, F8",
+   "page": "26-pnp/index.html#F9",
+   "witness": {
+    "py": null,
+    "lean": []
+   },
+   "refs": [
+    "p26035",
+    "p26036"
+   ],
+   "text": "The native locus: ascent is a horizon-bounded forward count, descent its inverse below the horizon; $\\PC\\neq\\NPC$ follows from F7 one way, the converse not known. The single arrow of the drive is the structural reason for the residue, the descent the time-reversed branch a composed observer cannot freely take. Claim cl:locus; F7, F8"
+  },
+  {
+   "paper": "26-pnp",
+   "no": 26,
+   "rid": "26:F10",
+   "key": "p26038",
+   "label": "F10",
+   "block": "F",
+   "tag": "T",
+   "name": null,
+   "statement": "The descent is the inverse coordinate map: $a_P:j\\mapsto g^{j}$ is the bijection of $C_{P-1}$ onto $\\F_P^{\\times}$ carrying the time index to its position, and $d_P=\\mathrm{dlog}$ its inverse, a cyclic-group coordinate, not the inverse of the multiplicative Fourier transform (B3).",
+   "source": "Rem.~\\ref{rem:descentlong}; A6, B3\\newline \\pywit{pnp}{p26038}{F10}, \\leanwit{FrcCore}{p26038}{F10} \\lean{FRC.Shell.Prime.exists\\_drive, FRC.Shell.Prime.primitive\\_pow\\_inj, FRC.Shell.Frame.generates}",
+   "page": "26-pnp/index.html#F10",
+   "witness": {
+    "py": {
+     "href": "frc/ledgers/p26_pnp.html#p26038",
+     "script": "p26_pnp.py",
+     "line": 246,
+     "verdict": "pass"
+    },
+    "lean": [
+     {
+      "lib": "FrcCore",
+      "module": "FrcCore/Theme/Drive",
+      "name": "FRC.Shell.Prime.exists_drive",
+      "tier": 0,
+      "ok": true,
+      "page": "lean/core/Theme.html#FRC.Shell.Prime.exists_drive"
+     },
+     {
+      "lib": "FrcCore",
+      "module": "FrcCore/Theme/Drive",
+      "name": "FRC.Shell.Prime.primitive_pow_inj",
+      "tier": 0,
+      "ok": true,
+      "page": "lean/core/Theme.html#FRC.Shell.Prime.primitive_pow_inj"
+     },
+     {
+      "lib": "FrcCore",
+      "module": "FrcCore/FrameCore",
+      "name": "FRC.Shell.Frame.generates",
+      "tier": 0,
+      "ok": true,
+      "page": "lean/core/FrameCore.html#FRC.Shell.Frame.generates"
+     }
+    ]
+   },
+   "refs": [
+    "p00164",
+    "p26006",
+    "p26009"
+   ],
+   "text": "The descent is the inverse coordinate map: $a_P:j\\mapsto g^{j}$ is the bijection of $C_{P-1}$ onto $\\F_P^{\\times}$ carrying the time index to its position, and $d_P=\\mathrm{dlog}$ its inverse, a cyclic-group coordinate, not the inverse of the multiplicative Fourier transform (B3). Rem. rem:descentlong; A6, B3 p26038, FrcCore{F10} FRC.Shell.Prime.exists_drive, FRC.Shell.Prime.primitive_pow_inj, FRC.Shell.Frame.generates"
+  },
+  {
+   "paper": "26-pnp",
+   "no": 26,
+   "rid": "26:F11",
+   "key": "p26039",
+   "label": "F11",
+   "block": "F",
+   "tag": "I",
+   "name": null,
+   "statement": "The scaling flow returns the doubled walk: Eckmann and Tlusty's two facts (A5) read on the shell as the find--exist split, a designated point unreachable by the single scaling, the relaxed target met non-constructively at an exponential scaling. A geometric parallel, not a lower bound.",
+   "source": "Rem.~\\ref{rem:rotation}; A5, E9",
+   "page": "26-pnp/index.html#F11",
+   "witness": {
+    "py": null,
+    "lean": []
+   },
+   "refs": [
+    "p26005",
+    "p26026"
+   ],
+   "text": "The scaling flow returns the doubled walk: Eckmann and Tlusty's two facts (A5) read on the shell as the find–exist split, a designated point unreachable by the single scaling, the relaxed target met non-constructively at an exponential scaling. A geometric parallel, not a lower bound. Rem. rem:rotation; A5, E9"
+  },
+  {
+   "paper": "26-pnp",
+   "no": 26,
+   "rid": "26:G1",
+   "key": "p26040",
+   "label": "G1",
+   "block": "G",
+   "tag": "D",
+   "name": null,
+   "statement": "The four primitive roles on $\\F_P$ with the generator $g$: succession $x+1$, addition $x+a$, multiplication $mx$, fixed-base exponentiation $a_P(j)=g^{j}$, each the previous iterated with a fixed operand; the fourth is the top, its inverse the discrete logarithm.",
+   "source": "Def.~\\ref{def:roles}",
+   "page": "26-pnp/index.html#G1",
+   "witness": {
+    "py": null,
+    "lean": []
+   },
+   "refs": [],
+   "text": "The four primitive roles on $\\F_P$ with the generator $g$: succession $x+1$, addition $x+a$, multiplication $mx$, fixed-base exponentiation $a_P(j)=g^{j}$, each the previous iterated with a fixed operand; the fourth is the top, its inverse the discrete logarithm. Def. def:roles"
+  },
+  {
+   "paper": "26-pnp",
+   "no": 26,
+   "rid": "26:G2",
+   "key": "p26041",
+   "label": "G2",
+   "block": "G",
+   "tag": "T",
+   "name": null,
+   "statement": "Ladder closure: the four roles generate the two cyclic structures, $C_P$ additive and $C_{P-1}$ multiplicative, with the bridge $a_P$. A tower exponent $g^{j}$ is read modulo $P-1$, so tetration is exponentiation of a reduced index, and the power map acts on the index as multiplication; no third cyclic structure hosts a fifth role (00:B6).",
+   "source": "Prop.~\\ref{prop:closure}; A6, G1, G3\\newline \\pywit{pnp}{p26041}{G2}, \\leanwit{FrcCore}{p26041}{G2} \\lean{FRC.Shell.Frame.pow\\_mod, FRC.Ladder.tower\\_reduces, FRC.Ladder.power\\_index, FRC.Ladder.tower13}",
+   "page": "26-pnp/index.html#G2",
+   "witness": {
+    "py": {
+     "href": "frc/ledgers/p26_pnp.html#p26041",
+     "script": "p26_pnp.py",
+     "line": 347,
+     "verdict": "pass"
+    },
+    "lean": [
+     {
+      "lib": "FrcCore",
+      "module": "FrcCore/FrameCore",
+      "name": "FRC.Shell.Frame.pow_mod",
+      "tier": 0,
+      "ok": true,
+      "page": "lean/core/FrameCore.html#FRC.Shell.Frame.pow_mod"
+     },
+     {
+      "lib": "FrcCore",
+      "module": "FrcCore/Theme/Ladder",
+      "name": "FRC.Ladder.tower_reduces",
+      "tier": 0,
+      "ok": true,
+      "page": "lean/core/Theme.html#FRC.Ladder.tower_reduces"
+     },
+     {
+      "lib": "FrcCore",
+      "module": "FrcCore/Theme/Ladder",
+      "name": "FRC.Ladder.power_index",
+      "tier": 0,
+      "ok": true,
+      "page": "lean/core/Theme.html#FRC.Ladder.power_index"
+     },
+     {
+      "lib": "FrcCore",
+      "module": "FrcCore/Theme/Ladder",
+      "name": "FRC.Ladder.tower13",
+      "tier": 0,
+      "ok": true,
+      "page": "lean/core/Theme.html#FRC.Ladder.tower13"
+     }
+    ]
+   },
+   "refs": [
+    "p00016",
+    "p26006",
+    "p26040",
+    "p26042"
+   ],
+   "text": "Ladder closure: the four roles generate the two cyclic structures, $C_P$ additive and $C_{P-1}$ multiplicative, with the bridge $a_P$. A tower exponent $g^{j}$ is read modulo $P-1$, so tetration is exponentiation of a reduced index, and the power map acts on the index as multiplication; no third cyclic structure hosts a fifth role (00:B6). Prop. prop:closure; A6, G1, G3 p26041, FrcCore{G2} FRC.Shell.Frame.pow_mod, FRC.Ladder.tower_reduces, FRC.Ladder.power_index, FRC.Ladder.tower13"
+  },
+  {
+   "paper": "26-pnp",
+   "no": 26,
+   "rid": "26:G3",
+   "key": "p26042",
+   "label": "G3",
+   "block": "G",
+   "tag": "T",
+   "name": null,
+   "statement": "Phase-index dynamics: in the scale chart $x=g^{m}$ the power map acts by $P_k(g^{m})=g^{km}$ and its iterates by $P_k^{\\,r}(g^{m})=g^{k^{r}m}$, the exponents read modulo $P-1$; the ascent is the orbit traversal $g^{j+1}=g\\cdot g^{j}$, one multiplication per counted step.",
+   "source": "Thm.~\\ref{thm:phase}; G1\\newline \\pywit{pnp}{p26042}{G3}, \\leanwit{FrcCore}{p26042}{G3} \\lean{FRC.Ladder.power\\_index, FRC.Ladder.phase\\_index, FRC.Ladder.ascent\\_step, FRC.Ladder.phase13}",
+   "page": "26-pnp/index.html#G3",
+   "witness": {
+    "py": {
+     "href": "frc/ledgers/p26_pnp.html#p26042",
+     "script": "p26_pnp.py",
+     "line": 363,
+     "verdict": "pass"
+    },
+    "lean": [
+     {
+      "lib": "FrcCore",
+      "module": "FrcCore/Theme/Ladder",
+      "name": "FRC.Ladder.power_index",
+      "tier": 0,
+      "ok": true,
+      "page": "lean/core/Theme.html#FRC.Ladder.power_index"
+     },
+     {
+      "lib": "FrcCore",
+      "module": "FrcCore/Theme/Ladder",
+      "name": "FRC.Ladder.phase_index",
+      "tier": 0,
+      "ok": true,
+      "page": "lean/core/Theme.html#FRC.Ladder.phase_index"
+     },
+     {
+      "lib": "FrcCore",
+      "module": "FrcCore/Theme/Ladder",
+      "name": "FRC.Ladder.ascent_step",
+      "tier": 0,
+      "ok": true,
+      "page": "lean/core/Theme.html#FRC.Ladder.ascent_step"
+     },
+     {
+      "lib": "FrcCore",
+      "module": "FrcCore/Theme/Ladder",
+      "name": "FRC.Ladder.phase13",
+      "tier": 0,
+      "ok": true,
+      "page": "lean/core/Theme.html#FRC.Ladder.phase13"
+     }
+    ]
+   },
+   "refs": [
+    "p26040"
+   ],
+   "text": "Phase-index dynamics: in the scale chart $x=g^{m}$ the power map acts by $P_k(g^{m})=g^{km}$ and its iterates by $P_k^{ r}(g^{m})=g^{k^{r}m}$, the exponents read modulo $P-1$; the ascent is the orbit traversal $g^{j+1}=g\\cdot g^{j}$, one multiplication per counted step. Thm. thm:phase; G1 p26042, FrcCore{G3} FRC.Ladder.power_index, FRC.Ladder.phase_index, FRC.Ladder.ascent_step, FRC.Ladder.phase13"
+  },
+  {
+   "paper": "26-pnp",
+   "no": 26,
+   "rid": "26:G4",
+   "key": "p26043",
+   "label": "G4",
+   "block": "G",
+   "tag": "T",
+   "name": null,
+   "statement": "The one-way function is the inverse of the last role: each forward role costs one modular operation, the ascent at most $2\\ell$ multiplications; the descent recovers the index, the position in the counted orbit of the fourth role. The descent/ascent operation ratio at the three carriers is $134/17$, $1334/26$, $13334/38$ [data].",
+   "source": "Prop.~\\ref{prop:invlast}; F2, F3, G3\\newline \\pywit{pnp}{p26043}{G4}, \\leanwit{FrcCore}{p26043}{G4} \\lean{FRC.Ladder.sqmul\\_count\\_of\\_lt\\_pow, FRC.Ladder.bsgs\\_spec, FRC.Ladder.ascent\\_step}",
+   "page": "26-pnp/index.html#G4",
+   "witness": {
+    "py": {
+     "href": "frc/ledgers/p26_pnp.html#p26043",
+     "script": "p26_pnp.py",
+     "line": 396,
+     "verdict": "pass"
+    },
+    "lean": [
+     {
+      "lib": "FrcCore",
+      "module": "FrcCore/Theme/Ladder",
+      "name": "FRC.Ladder.sqmul_count_of_lt_pow",
+      "tier": 0,
+      "ok": true,
+      "page": "lean/core/Theme.html#FRC.Ladder.sqmul_count_of_lt_pow"
+     },
+     {
+      "lib": "FrcCore",
+      "module": "FrcCore/Theme/Ladder",
+      "name": "FRC.Ladder.bsgs_spec",
+      "tier": 0,
+      "ok": true,
+      "page": "lean/core/Theme.html#FRC.Ladder.bsgs_spec"
+     },
+     {
+      "lib": "FrcCore",
+      "module": "FrcCore/Theme/Ladder",
+      "name": "FRC.Ladder.ascent_step",
+      "tier": 0,
+      "ok": true,
+      "page": "lean/core/Theme.html#FRC.Ladder.ascent_step"
+     }
+    ]
+   },
+   "refs": [
+    "p26030",
+    "p26031",
+    "p26042"
+   ],
+   "text": "The one-way function is the inverse of the last role: each forward role costs one modular operation, the ascent at most $2\\ell$ multiplications; the descent recovers the index, the position in the counted orbit of the fourth role. The descent/ascent operation ratio at the three carriers is $134/17$, $1334/26$, $13334/38$ [data]. Prop. prop:invlast; F2, F3, G3 p26043, FrcCore{G4} FRC.Ladder.sqmul_count_of_lt_pow, FRC.Ladder.bsgs_spec, FRC.Ladder.ascent_step"
+  },
+  {
+   "paper": "26-pnp",
+   "no": 26,
+   "rid": "26:G5",
+   "key": "p26044",
+   "label": "G5",
+   "block": "G",
+   "tag": "T",
+   "name": null,
+   "statement": "The power map $P_k$ is a bijection of $\\F_P^{\\times}$ iff $k$ is invertible modulo $P-1$, inverted by $x\\mapsto x^{a}$ with $ak\\equiv1$; otherwise its image is the cycle of $g^{d}$, $d=\\gcd(k,P-1)$, of exactly $(P-1)/d$ elements.",
+   "source": "Rem.~\\ref{rem:closuretransform}; G3\\newline \\pywit{pnp}{p26044}{G5}, \\leanwit{FrcCore}{p26044}{G5} \\lean{FRC.Ladder.power\\_bijective\\_of\\_unit, FRC.Ladder.power\\_image, FRC.Ladder.power\\_image\\_index, FRC.Ladder.compressive\\_of\\_gcd, FRC.Ladder.powers13}",
+   "page": "26-pnp/index.html#G5",
+   "witness": {
+    "py": {
+     "href": "frc/ledgers/p26_pnp.html#p26044",
+     "script": "p26_pnp.py",
+     "line": 416,
+     "verdict": "pass"
+    },
+    "lean": [
+     {
+      "lib": "FrcCore",
+      "module": "FrcCore/Theme/Ladder",
+      "name": "FRC.Ladder.power_bijective_of_unit",
+      "tier": 0,
+      "ok": true,
+      "page": "lean/core/Theme.html#FRC.Ladder.power_bijective_of_unit"
+     },
+     {
+      "lib": "FrcCore",
+      "module": "FrcCore/Theme/Ladder",
+      "name": "FRC.Ladder.power_image",
+      "tier": 0,
+      "ok": true,
+      "page": "lean/core/Theme.html#FRC.Ladder.power_image"
+     },
+     {
+      "lib": "FrcCore",
+      "module": "FrcCore/Theme/Ladder",
+      "name": "FRC.Ladder.power_image_index",
+      "tier": 0,
+      "ok": true,
+      "page": "lean/core/Theme.html#FRC.Ladder.power_image_index"
+     },
+     {
+      "lib": "FrcCore",
+      "module": "FrcCore/Theme/Ladder",
+      "name": "FRC.Ladder.compressive_of_gcd",
+      "tier": 0,
+      "ok": true,
+      "page": "lean/core/Theme.html#FRC.Ladder.compressive_of_gcd"
+     },
+     {
+      "lib": "FrcCore",
+      "module": "FrcCore/Theme/Ladder",
+      "name": "FRC.Ladder.powers13",
+      "tier": 0,
+      "ok": true,
+      "page": "lean/core/Theme.html#FRC.Ladder.powers13"
+     }
+    ]
+   },
+   "refs": [
+    "p26042"
+   ],
+   "text": "The power map $P_k$ is a bijection of $\\F_P^{\\times}$ iff $k$ is invertible modulo $P-1$, inverted by $x\\mapsto x^{a}$ with $ak\\equiv1$; otherwise its image is the cycle of $g^{d}$, $d=\\gcd(k,P-1)$, of exactly $(P-1)/d$ elements. Rem. rem:closuretransform; G3 p26044, FrcCore{G5} FRC.Ladder.power_bijective_of_unit, FRC.Ladder.power_image, FRC.Ladder.power_image_index, FRC.Ladder.compressive_of_gcd, FRC.Ladder.powers13"
+  },
+  {
+   "paper": "26-pnp",
+   "no": 26,
+   "rid": "26:G6",
+   "key": "p26045",
+   "label": "G6",
+   "block": "G",
+   "tag": "D",
+   "name": null,
+   "statement": "The index cycle $C_{P-1}$ is the abelian hidden-subgroup datum on which Shor's transform acts, the chart H5 marks as the hard classical case. The one-way map is the exponential $a_P$, whose inverse is the discrete logarithm, not the power map, which is efficiently inverted when bijective (G5).",
+   "source": "Rem.~\\ref{rem:closuretransform}; A3, G5, H5",
+   "page": "26-pnp/index.html#G6",
+   "witness": {
+    "py": null,
+    "lean": []
+   },
+   "refs": [
+    "p26003",
+    "p26044",
+    "p26050"
+   ],
+   "text": "The index cycle $C_{P-1}$ is the abelian hidden-subgroup datum on which Shor's transform acts, the chart H5 marks as the hard classical case. The one-way map is the exponential $a_P$, whose inverse is the discrete logarithm, not the power map, which is efficiently inverted when bijective (G5). Rem. rem:closuretransform; A3, G5, H5"
+  },
+  {
+   "paper": "26-pnp",
+   "no": 26,
+   "rid": "26:H1",
+   "key": "p26046",
+   "label": "H1",
+   "block": "H",
+   "tag": "D",
+   "name": null,
+   "statement": "The two quarter turns as a structured correspondence: the transverse turn (the additive transform) is forward-computable classically on a stored vector; the longitudinal turn's period is reached by a $\\BQP$ observer through order finding, not by reading a transform vector. A correspondence between charts and the observers that reach them, not a complexity theorem.",
+   "source": "Prop.~\\ref{prop:twoturns}; A3, B3, H3",
+   "page": "26-pnp/index.html#H1",
+   "witness": {
+    "py": null,
+    "lean": []
+   },
+   "refs": [
+    "p26003",
+    "p26009",
+    "p26048"
+   ],
+   "text": "The two quarter turns as a structured correspondence: the transverse turn (the additive transform) is forward-computable classically on a stored vector; the longitudinal turn's period is reached by a $\\BQP$ observer through order finding, not by reading a transform vector. A correspondence between charts and the observers that reach them, not a complexity theorem. Prop. prop:twoturns; A3, B3, H3"
+  },
+  {
+   "paper": "26-pnp",
+   "no": 26,
+   "rid": "26:H2",
+   "key": "p26047",
+   "label": "H2",
+   "block": "H",
+   "tag": "D",
+   "name": null,
+   "statement": "A chart change $T$ is forward-computable when $T$ and $T^{-1}$ lie in $\\PC$; a problem is transform-diagonalisable by $T$ when its instances become pointwise in the $T$-chart. Well defined for abelian and hidden-subgroup problems, not a feature of $\\NPC$ at large.",
+   "source": "Def.~\\ref{def:transform}",
+   "page": "26-pnp/index.html#H2",
+   "witness": {
+    "py": null,
+    "lean": []
+   },
+   "refs": [],
+   "text": "A chart change $T$ is forward-computable when $T$ and $T^{-1}$ lie in $\\PC$; a problem is transform-diagonalisable by $T$ when its instances become pointwise in the $T$-chart. Well defined for abelian and hidden-subgroup problems, not a feature of $\\NPC$ at large. Def. def:transform"
+  },
+  {
+   "paper": "26-pnp",
+   "no": 26,
+   "rid": "26:H3",
+   "key": "p26048",
+   "label": "H3",
+   "block": "H",
+   "tag": "T",
+   "name": null,
+   "statement": "Fourier-diagonalisable implies $\\PC$: the additive transform on the shell is exact and self-inverse, $T^{-1}T=1$ on the full cycle $n=P-1$ (the round trips on the sub-cycles $n=8$, $256$, $2^{16}$ over $\\F_{17}$, $\\F_{257}$, $\\F_{65537}$ [data]); the cyclic convolution costs $n^{2}$ multiplications in the position chart and $\\tfrac32n\\log_2n+n$ through the transform ($1\\,048\\,576$ against $16\\,384$ at $n=2^{10}$) [data].",
+   "source": "Thm.~\\ref{thm:fft}; B2, D1, H2\\newline \\pywit{pnp}{p26048}{H3}, \\leanwit{FrcCore}{p26048}{H3} \\lean{FRC.Shell.Frame.dft\\_inverse, FRC.Shell.Frame.principal\\_root}",
+   "page": "26-pnp/index.html#H3",
+   "witness": {
+    "py": {
+     "href": "frc/ledgers/p26_pnp.html#p26048",
+     "script": "p26_pnp.py",
+     "line": 452,
+     "verdict": "pass"
+    },
+    "lean": [
+     {
+      "lib": "FrcCore",
+      "module": "FrcCore/Transform",
+      "name": "FRC.Shell.Frame.dft_inverse",
+      "tier": 0,
+      "ok": true,
+      "page": "lean/core/Transform.html#FRC.Shell.Frame.dft_inverse"
+     },
+     {
+      "lib": "FrcCore",
+      "module": "FrcCore/Transform",
+      "name": "FRC.Shell.Frame.principal_root",
+      "tier": 0,
+      "ok": true,
+      "page": "lean/core/Transform.html#FRC.Shell.Frame.principal_root"
+     }
+    ]
+   },
+   "refs": [
+    "p26008",
+    "p26014",
+    "p26047"
+   ],
+   "text": "Fourier-diagonalisable implies $\\PC$: the additive transform on the shell is exact and self-inverse, $T^{-1}T=1$ on the full cycle $n=P-1$ (the round trips on the sub-cycles $n=8$, $256$, $2^{16}$ over $\\F_{17}$, $\\F_{257}$, $\\F_{65537}$ [data]); the cyclic convolution costs $n^{2}$ multiplications in the position chart and $\\tfrac32n\\log_2n+n$ through the transform ($1 048 576$ against $16 384$ at $n=2^{10}$) [data]. Thm. thm:fft; B2, D1, H2 p26048, FrcCore{H3} FRC.Shell.Frame.dft_inverse, FRC.Shell.Frame.principal_root"
+  },
+  {
+   "paper": "26-pnp",
+   "no": 26,
+   "rid": "26:H4",
+   "key": "p26049",
+   "label": "H4",
+   "block": "H",
+   "tag": "T",
+   "name": null,
+   "statement": "Structured witness sets are forward-localizable: when the witnesses of $x$ are the solutions of an affine $\\F_2$-system readable from $x$, Gaussian elimination returns a particular solution $w_0$ and a basis; the chart $w\\mapsto w-w_0$ places $w_0$ at $\\mathbf0$ and every solution within the basis's size in counting steps.",
+   "source": "Lem.~\\ref{lem:affine}; E7, E8\\newline \\pywit{pnp}{p26049}{H4}",
+   "page": "26-pnp/index.html#H4",
+   "witness": {
+    "py": {
+     "href": "frc/ledgers/p26_pnp.html#p26049",
+     "script": "p26_pnp.py",
+     "line": 506,
+     "verdict": "pass"
+    },
+    "lean": []
+   },
+   "refs": [
+    "p26024",
+    "p26025"
+   ],
+   "text": "Structured witness sets are forward-localizable: when the witnesses of $x$ are the solutions of an affine $\\F_2$-system readable from $x$, Gaussian elimination returns a particular solution $w_0$ and a basis; the chart $w\\mapsto w-w_0$ places $w_0$ at $\\mathbf0$ and every solution within the basis's size in counting steps. Lem. lem:affine; E7, E8 p26049"
+  },
+  {
+   "paper": "26-pnp",
+   "no": 26,
+   "rid": "26:H5",
+   "key": "p26050",
+   "label": "H5",
+   "block": "H",
+   "tag": "D",
+   "name": null,
+   "statement": "The scale chart is the hard case: the discrete logarithm is the carrier's native order-finding instance, reached by a $\\BQP$ observer and, under F7, by no classical forward computation; factoring is a distinct instance not covered by F7. A correspondence on structured instances, not a boundary theorem.",
+   "source": "Prop.~\\ref{prop:hardchart}; A3, F7, H1",
+   "page": "26-pnp/index.html#H5",
+   "witness": {
+    "py": null,
+    "lean": []
+   },
+   "refs": [
+    "p26003",
+    "p26035",
+    "p26046"
+   ],
+   "text": "The scale chart is the hard case: the discrete logarithm is the carrier's native order-finding instance, reached by a $\\BQP$ observer and, under F7, by no classical forward computation; factoring is a distinct instance not covered by F7. A correspondence on structured instances, not a boundary theorem. Prop. prop:hardchart; A3, F7, H1"
+  },
+  {
+   "paper": "26-pnp",
+   "no": 26,
+   "rid": "26:J1",
+   "key": "p26051",
+   "label": "J1",
+   "block": "J",
+   "tag": "T",
+   "name": null,
+   "statement": "A universal constructive selector would invert the one-way family: applied to the inversion family of a one-way $f$ it inverts $f$ in $\\mathrm{poly}(\\ell)$; under F7 none exists, and its non-existence is equivalent to $\\PC\\neq\\NPC$ (E9). The natural-proofs reading is an analogy, the density not established.",
+   "source": "Prop.~\\ref{prop:naturalselector}; E9, F6, F7",
+   "page": "26-pnp/index.html#J1",
+   "witness": {
+    "py": null,
+    "lean": []
+   },
+   "refs": [
+    "p26026",
+    "p26034",
+    "p26035"
+   ],
+   "text": "A universal constructive selector would invert the one-way family: applied to the inversion family of a one-way $f$ it inverts $f$ in $\\mathrm{poly}(\\ell)$; under F7 none exists, and its non-existence is equivalent to $\\PC\\neq\\NPC$ (E9). The natural-proofs reading is an analogy, the density not established. Prop. prop:naturalselector; E9, F6, F7"
+  },
+  {
+   "paper": "26-pnp",
+   "no": 26,
+   "rid": "26:J2",
+   "key": "p26052",
+   "label": "J2",
+   "block": "J",
+   "tag": "D",
+   "name": null,
+   "statement": "The barriers as obstructions: relativization treats the shell as a featureless sphere, natural proofs forbid a large generic marking where the hardness is the non-generic alignment with the arrow, algebrization adds an algebraic oracle the carrier's scale arithmetic replaces. The reading is a locus, not a technique the barriers exclude.",
+   "source": "\\S\\ref{sec:scope}; A4, F9",
+   "page": "26-pnp/index.html#J2",
+   "witness": {
+    "py": null,
+    "lean": []
+   },
+   "refs": [
+    "p26004",
+    "p26037"
+   ],
+   "text": "The barriers as obstructions: relativization treats the shell as a featureless sphere, natural proofs forbid a large generic marking where the hardness is the non-generic alignment with the arrow, algebrization adds an algebraic oracle the carrier's scale arithmetic replaces. The reading is a locus, not a technique the barriers exclude. \\Ssec:scope; A4, F9"
+  },
+  {
+   "paper": "26-pnp",
+   "no": 26,
+   "rid": "26:K1",
+   "key": "p26053",
+   "label": "K1",
+   "block": "K",
+   "tag": "D",
+   "name": null,
+   "statement": "$\\Om$-hard: a statement the totality decides and whose instance witnesses are checkable at sub-carrier scale, while its uniform forward-findable certificate is carrier-scale, below the bounded observer's horizon. Decidable, not undecidable: settled at the scale of the whole (00:Z3).",
+   "source": "\\S\\ref{sec:link}; A6",
+   "page": "26-pnp/index.html#K1",
+   "witness": {
+    "py": null,
+    "lean": []
+   },
+   "refs": [
+    "p00111",
+    "p26006"
+   ],
+   "text": "$\\Om$-hard: a statement the totality decides and whose instance witnesses are checkable at sub-carrier scale, while its uniform forward-findable certificate is carrier-scale, below the bounded observer's horizon. Decidable, not undecidable: settled at the scale of the whole (00:Z3). \\Ssec:link; A6"
+  },
+  {
+   "paper": "26-pnp",
+   "no": 26,
+   "rid": "26:K2",
+   "key": "p26054",
+   "label": "K2",
+   "block": "K",
+   "tag": "D",
+   "name": null,
+   "statement": "The three faces: the shell theorem's classical screen value in 20-rh (every mode on the self-dual line; classical RH as the count equality, $\\Om$-hard in its uniform form), the uniform per-$n$ Goldbach bound, and the forward-invertibility of the scale descent are one horizon clause, decided by the totality beyond the bounded observer (00:Z2).",
+   "source": "\\S\\ref{sec:link}; A6, K1",
+   "page": "26-pnp/index.html#K2",
+   "witness": {
+    "py": null,
+    "lean": []
+   },
+   "refs": [
+    "p00110",
+    "p26006",
+    "p26053"
+   ],
+   "text": "The three faces: the shell theorem's classical screen value in 20-rh (every mode on the self-dual line; classical RH as the count equality, $\\Om$-hard in its uniform form), the uniform per-$n$ Goldbach bound, and the forward-invertibility of the scale descent are one horizon clause, decided by the totality beyond the bounded observer (00:Z2). \\Ssec:link; A6, K1"
+  },
+  {
+   "paper": "26-pnp",
+   "no": 26,
+   "rid": "26:K3",
+   "key": "p26055",
+   "label": "K3",
+   "block": "K",
+   "tag": "D",
+   "name": null,
+   "statement": "Frequency and the spectrum [chart]: the frequency chart is the spectrum of the scale shift on the shell (B3), the dilation generator its continuum reading (B4, 20:E1). The Hilbert--P\\'olya correspondence is a target of 20-rh, not a result; the spectral and the computational faces meet on the one $\\HH$-axis as a reading.",
+   "source": "Rem.~\\ref{rem:hpspectrum}; A6, B3, B4",
+   "page": "26-pnp/index.html#K3",
+   "witness": {
+    "py": null,
+    "lean": []
+   },
+   "refs": [
+    "p20032",
+    "p26006",
+    "p26009",
+    "p26010"
+   ],
+   "text": "Frequency and the spectrum [chart]: the frequency chart is the spectrum of the scale shift on the shell (B3), the dilation generator its continuum reading (B4, 20:E1). The Hilbert–P\\'olya correspondence is a target of 20-rh, not a result; the spectral and the computational faces meet on the one $\\HH$-axis as a reading. Rem. rem:hpspectrum; A6, B3, B4"
+  },
+  {
+   "paper": "26-pnp",
+   "no": 26,
+   "rid": "26:K4",
+   "key": "p26056",
+   "label": "K4",
+   "block": "K",
+   "tag": "D",
+   "name": null,
+   "statement": "An arrow-forward computation: a $\\mathrm{poly}(\\ell)$-length path applying only the drive-forward operations of the carrier.",
+   "source": "Def.~\\ref{def:arrow}; F1, G1",
+   "page": "26-pnp/index.html#K4",
+   "witness": {
+    "py": null,
+    "lean": []
+   },
+   "refs": [
+    "p26029",
+    "p26040"
+   ],
+   "text": "An arrow-forward computation: a $\\mathrm{poly}(\\ell)$-length path applying only the drive-forward operations of the carrier. Def. def:arrow; F1, G1"
+  },
+  {
+   "paper": "26-pnp",
+   "no": 26,
+   "rid": "26:K5",
+   "key": "p26057",
+   "label": "K5",
+   "block": "K",
+   "tag": "D",
+   "name": null,
+   "statement": "Why the single arrow stops short of a proof: forbidding the inverse outright is circular; admitting every $\\mathrm{poly}(\\ell)$ operation makes the exclusion $\\mathrm{dlog}\\notin\\mathrm{FP}$, which implies $\\PC\\neq\\NPC$ one way; the closure removes the circularity (G4) and leaves the lower bound as the residue.",
+   "source": "Rem.~\\ref{rem:arrow}; A4, G4, F9",
+   "page": "26-pnp/index.html#K5",
+   "witness": {
+    "py": null,
+    "lean": []
+   },
+   "refs": [
+    "p26004",
+    "p26037",
+    "p26043"
+   ],
+   "text": "Why the single arrow stops short of a proof: forbidding the inverse outright is circular; admitting every $\\mathrm{poly}(\\ell)$ operation makes the exclusion $\\mathrm{dlog}\\notin\\mathrm{FP}$, which implies $\\PC\\neq\\NPC$ one way; the closure removes the circularity (G4) and leaves the lower bound as the residue. Rem. rem:arrow; A4, G4, F9"
+  },
+  {
+   "paper": "26-pnp",
+   "no": 26,
+   "rid": "26:K6",
+   "key": "p26058",
+   "label": "K6",
+   "block": "K",
+   "tag": "Ω",
+   "name": null,
+   "statement": "The irreducible residue: the uniform certificate that the inverse of the last role has no $\\mathrm{poly}(\\ell)$ forward algorithm across the carrier family, the computational face of the horizon clause, decided by the totality and below the bounded observer's horizon (00:Z4).",
+   "source": "\\S\\ref{sec:program}; F7, G4, K1",
+   "page": "26-pnp/index.html#K6",
+   "witness": {
+    "py": null,
+    "lean": []
+   },
+   "refs": [
+    "p00112",
+    "p26035",
+    "p26043",
+    "p26053"
+   ],
+   "text": "The irreducible residue: the uniform certificate that the inverse of the last role has no $\\mathrm{poly}(\\ell)$ forward algorithm across the carrier family, the computational face of the horizon clause, decided by the totality and below the bounded observer's horizon (00:Z4). \\Ssec:program; F7, G4, K1"
   },
   {
    "paper": "27-fld",

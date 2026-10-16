@@ -1,3 +1,4 @@
+import FrcCore.FrameCore
 import FrcCore.Theme.Foundation
 import FrcCore.Theme.Drive
 
@@ -33,6 +34,9 @@ theorem p00188 : ∀ {q : Nat} [FRC.Pos q], (2 : Nat) ≤ q → (∀ (x : FRC.Sh
 /-- p00197 — 20:A4, 00:A4. \textbf{Incompleteness of observation}: every observation is a registration by an embedded part (C4, A13) of cardinality $\p<\sqrt\Om$ (A6, B8): every reading identifies two members (25:D1, 5:C2) --- an incomplete projection, complete only at the whole count. No frame sees more: one translation carries each member to each, one affine map each frame to each (A6, 1:C2). Horizon: Z1, Z9. -/
 theorem p00197 : (∀ {Ω o : Nat} [FRC.Pos Ω], o < Ω → ∀ (ρ : FRC.Shell Ω → Nat), (∀ (x : FRC.Shell Ω), ρ x < o) → ∃ x y, x ≠ y ∧ ρ x = ρ y) ∧ (∀ {Ω o : Nat} [FRC.Pos Ω] (ρ : FRC.Shell Ω → Nat), (∀ (x : FRC.Shell Ω), ρ x < o) → (∀ (x y : FRC.Shell Ω), ρ x = ρ y → x = y) → Ω ≤ o) ∧ ∀ {Ω : Nat} [FRC.Pos Ω] (x y : FRC.Shell Ω), ∃ t, x + t = y ∧ ∀ (t' : FRC.Shell Ω), x + t' = y → t' = t :=
   And.intro @FRC.Foundation.observer_part (And.intro @FRC.Foundation.complete_needs_whole (@FRC.Foundation.translation_torsor))
+/-- p26038 — 26:F10. The descent is the inverse coordinate map: $a_P:j\mapsto g^{j}$ is the bijection of $C_{P-1}$ onto $\F_P^{\times}$ carrying the time index to its position, and $d_P=\mathrm{dlog}$ its inverse, a cyclic-group coordinate, not the inverse of the multiplicative Fourier transform (B3). -/
+theorem p26038 : (∀ {p : Nat} [FRC.Pos p], FRC.Nat.isPrime p → ∃ g, (g ^ (p - (1 : Nat)) = (1 : FRC.Shell p) ∧ ∀ (l : Nat), l < p - (1 : Nat) → (0 : Nat) < l → g ^ l ≠ (1 : FRC.Shell p)) ∧ ∀ (v : Nat), v < p → (0 : Nat) < v → ∃ m, m < p - (1 : Nat) ∧ (g ^ m).val = v) ∧ (∀ {p : Nat} [FRC.Pos p], FRC.Nat.isPrime p → ∀ {g : FRC.Shell p}, g ≠ (0 : FRC.Shell p) → FRC.Shell.Prime.HasOrder g (p - (1 : Nat)) → ∀ {i j : Nat}, i < p - (1 : Nat) → j < p - (1 : Nat) → g ^ i = g ^ j → i = j) ∧ ∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → g.Generates (p - (1 : Nat)) :=
+  And.intro @FRC.Shell.Prime.exists_drive (And.intro @FRC.Shell.Prime.primitive_pow_inj (@FRC.Shell.Frame.generates))
 -- end keys
 
 end FRC.Ledger

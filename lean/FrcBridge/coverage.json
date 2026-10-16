@@ -423,6 +423,27 @@
    "status": "shared theorem",
    "lean": "FRC.Subject.channel",
    "note": "15 October 2026 (22-quantum, T07 of its blueprint): the channel is both keys' clause; 22:P4 adds the horizon generator and the torus inversion (no dispersion on the double cover), C20 the Carrier instance 78⁵⁸ = 89"
+  },
+  {
+   "master": "Z10",
+   "paper": "26:B3",
+   "status": "shared theorem",
+   "lean": "FRC.Horizon.shift_power_character, FRC.Horizon.eigenphase, FRC.Horizon.shift_trace",
+   "note": "16 October 2026 (26-pnp, T07 of its blueprint): the longitudinal turn's three theorems are three of Z10's eight, which the paper's key conjoins with the distinctness of the eigenvalues (pow_inj) and the reference shape; Z10 adds the mode expansion and the readout on the line"
+  },
+  {
+   "master": "A12",
+   "paper": "26:E10",
+   "status": "shared theorem",
+   "lean": "FRC.Shell.Prime.exists_drive",
+   "note": "16 October 2026 (26-pnp, T07 of its blueprint): A12's one theorem is the first conjunct of the paper's key, which adds the injectivity of the powers (primitive_pow_inj): the bijection of the index cycle onto the units"
+  },
+  {
+   "master": "A12",
+   "paper": "26:F10",
+   "status": "shared theorem",
+   "lean": "FRC.Shell.Prime.exists_drive",
+   "note": "16 October 2026 (26-pnp, T07 of its blueprint): the same two theorems as E10's key; the reading of the descent as the inverse coordinate map is the paper's"
   }
  ]
 }

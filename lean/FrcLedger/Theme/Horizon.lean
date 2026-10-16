@@ -591,4 +591,20 @@ theorem no_cycle_projection :
 
 end lab
 
+/-! ## The Gauss sum (26:B5) -/
+
+section gauss
+
+/-- 26:B5 — **the Gauss-sum product**: on a finite field `F` (every prime shell), for a nontrivial multiplicative
+character `χ` into a domain and a primitive additive character `ψ`, `g(χ, ψ) · g(χ⁻¹, ψ⁻¹) = |F|` (Mathlib's
+`gaussSum_mul_gaussSum_eq_card`); over the complex numbers the second factor is the conjugate of the first, so the
+modulus squared is `|F|` (the chart theme's `gauss_modulus`). The shell's own telescoping is the core's `ramanujan_sum`
+and `principal_root`. -/
+theorem gauss_product {F : Type*} [Field F] [Fintype F] {R' : Type*} [CommRing R'] [IsDomain R']
+    {χ : MulChar F R'} (hχ : χ ≠ 1) {ψ : AddChar F R'} (hψ : ψ.IsPrimitive) :
+    gaussSum χ ψ * gaussSum χ⁻¹ ψ⁻¹ = Fintype.card F :=
+  gaussSum_mul_gaussSum_eq_card hχ hψ
+
+end gauss
+
 end FRC.HorizonML

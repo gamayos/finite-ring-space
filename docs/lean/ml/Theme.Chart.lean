@@ -1,4 +1,5 @@
 import Mathlib
+import FrcLedger.Theme.Horizon
 
 /-!
 # FrcLedger.Theme.Chart — the chart theme: the readings against the continuum (ledger migration, task LM30)
@@ -200,6 +201,75 @@ theorem channel_entangles (φ : ℝ) (h0 : 0 < φ) (h1 : φ < 2 * π) : Real.sin
   ne_of_gt (Real.sin_pos_of_pos_of_lt_pi (by linarith) (by linarith))
 
 end quantum
+
+/-! ## 26-pnp: the carrier family, the table beyond the horizon and the dilation generator (26:C2, B4) -/
+
+section pnp
+
+set_option exponentiation.threshold 512 in
+/-- 26:C2 [chart] — **the family's size and the table beyond the horizon**: with the scale import's `Ω = 4S + 1` (the
+hypotheses of `scale_import`), `2²⁰⁴ < √Ω < 2²⁰⁵`, so the shells of the family `P² < Ω` have at most `205` bits, and
+`2¹⁰² < Ω^{1/4} < 2¹⁰³`, so a decision table with one entry per input of `204` bits has `2²⁰⁴` entries, below `√Ω` and
+beyond the absolute horizon `Ω^{1/4}` by more than `2¹⁰¹`. No numeral formed exceeds `Ω` (the largest is `2⁴⁰⁸`). -/
+theorem family_bits (Λ ℓP r S Ω : ℝ) (hΛ : Λ = 1.088e-52) (hℓ : ℓP = 1.616255e-35)
+    (hr2 : r ^ 2 = 3 / Λ) (hS : S = π * (r / ℓP) ^ 2) (hΩ : Ω = 4 * S + 1) :
+    (2 : ℝ) ^ 204 < √Ω ∧ √Ω < (2 : ℝ) ^ 205 ∧ (2 : ℝ) ^ 102 < √(√Ω) ∧ √(√Ω) < (2 : ℝ) ^ 103 := by
+  obtain ⟨h1, h2, h3, -⟩ := ceiling_bracket Λ ℓP r S Ω hΛ hℓ hr2 hS hΩ
+  have hΩpos : (0 : ℝ) < Ω := lt_trans (by positivity) h1
+  -- `√Ω / 2 = √(Ω / 4) < 2²⁰⁴` from `Ω / 4 < 2⁴⁰⁸ = (2²⁰⁴)²`: the largest numeral formed is `2⁴⁰⁸ < Ω` (the G18 round of
+  -- 16 October 2026: the first proof bounded `Ω` by a power of two above it, a numeral the corpus does not form)
+  have hhalf : √Ω / 2 < (2 : ℝ) ^ 204 := by
+    have e : √Ω / 2 = √(Ω / 4) := by
+      rw [Real.sqrt_div' _ (by norm_num : (0 : ℝ) ≤ 4), show √(4 : ℝ) = 2 by
+        rw [show (4 : ℝ) = 2 ^ 2 by norm_num, Real.sqrt_sq (by norm_num)]]
+    rw [e, Real.sqrt_lt' (by positivity)]
+    calc Ω / 4 < (2 : ℝ) ^ 408 := h2
+      _ = ((2 : ℝ) ^ 204) ^ 2 := by norm_num
+  have h5 : √Ω < (2 : ℝ) ^ 205 := by
+    have : (2 : ℝ) ^ 205 = 2 * 2 ^ 204 := by norm_num
+    rw [this]; linarith
+  refine ⟨h3, h5, ?_, ?_⟩
+  · rw [Real.lt_sqrt (by positivity)]
+    calc ((2 : ℝ) ^ 102) ^ 2 = 2 ^ 204 := by norm_num
+      _ < √Ω := h3
+  · rw [Real.sqrt_lt' (by positivity)]
+    calc √Ω < (2 : ℝ) ^ 205 := h5
+      _ < ((2 : ℝ) ^ 103) ^ 2 := by norm_num
+
+/-- 26:B5 — **the Gauss-sum modulus**: over `ℂ`, on a finite field `F`, for a nontrivial multiplicative character `χ`
+and a primitive additive character `ψ`, `g(χ⁻¹, ψ⁻¹)` is the complex conjugate of `g(χ, ψ)` (Mathlib's
+`star_gaussSum_eq`), so with the horizon theme's `gauss_product`, `g(χ) · conj g(χ) = |g(χ)|² = |F|`: on the prime
+shell `𝔽_P`, `P`. -/
+theorem gauss_modulus {F : Type*} [Field F] [Fintype F] {χ : MulChar F ℂ} (hχ : χ ≠ 1) {ψ : AddChar F ℂ}
+    (hψ : ψ.IsPrimitive) :
+    gaussSum χ ψ * star (gaussSum χ ψ) = Fintype.card F ∧ Complex.normSq (gaussSum χ ψ) = Fintype.card F := by
+  have h := FRC.HorizonML.gauss_product hχ hψ
+  rw [← star_gaussSum_eq] at h
+  refine ⟨h, ?_⟩
+  have h2 : (Complex.normSq (gaussSum χ ψ) : ℂ) = (Fintype.card F : ℂ) := by rw [← Complex.mul_conj, ← h]; rfl
+  exact_mod_cast h2
+
+/-- 26:B4 [chart] — **the dilation generator**: `Ĥ = −i(x ∂ₓ + ½)` has `x^{−1/2 + iν}` as eigenfunction of eigenvalue
+`ν` on `x > 0`; the frequency index is the spectrum of `Ĥ` in the continuum reading of the scale shift (20:E1). -/
+theorem dilation_eigen (ν x : ℝ) (hx : 0 < x) :
+    -Complex.I * ((x : ℂ) * deriv (fun t : ℝ => (t : ℂ) ^ (-(1 / 2 : ℂ) + Complex.I * ν)) x
+      + (1 / 2 : ℂ) * (x : ℂ) ^ (-(1 / 2 : ℂ) + Complex.I * ν))
+      = ν * (x : ℂ) ^ (-(1 / 2 : ℂ) + Complex.I * ν) := by
+  set s : ℂ := -(1 / 2 : ℂ) + Complex.I * ν with hs
+  have hx0 : (x : ℂ) ≠ 0 := by exact_mod_cast hx.ne'
+  have hslit : (x : ℂ) ∈ Complex.slitPlane := Complex.ofReal_mem_slitPlane.2 hx
+  have hd : HasDerivAt (fun t : ℝ => (t : ℂ) ^ s) (s * (x : ℂ) ^ (s - 1)) x :=
+    (Complex.hasStrictDerivAt_cpow_const hslit).hasDerivAt.comp_ofReal
+  rw [hd.deriv]
+  have hpow : (x : ℂ) * (x : ℂ) ^ (s - 1) = (x : ℂ) ^ s := by
+    rw [Complex.cpow_sub _ _ hx0, Complex.cpow_one, mul_div_cancel₀ _ hx0]
+  have hcoef : -Complex.I * (s + 1 / 2) = ν := by
+    rw [hs]; ring_nf; rw [Complex.I_sq]; ring
+  calc -Complex.I * ((x : ℂ) * (s * (x : ℂ) ^ (s - 1)) + (1 / 2 : ℂ) * (x : ℂ) ^ s)
+      = -Complex.I * (s + 1 / 2) * (x : ℂ) ^ s := by rw [← hpow]; ring
+    _ = ν * (x : ℂ) ^ s := by rw [hcoef]
+
+end pnp
 
 /-! ## The octant record depth and its outputs (00:L3; 14:C5, C7, P3) -/
 section octant

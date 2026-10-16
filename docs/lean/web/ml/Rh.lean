@@ -594,6 +594,22 @@ theorem no_cycle_projection :
 
 end lab
 
+/-! ## The Gauss sum (26:B5) -/
+
+section gauss
+
+/-- 26:B5 — **the Gauss-sum product**: on a finite field `F` (every prime shell), for a nontrivial multiplicative
+character `χ` into a domain and a primitive additive character `ψ`, `g(χ, ψ) · g(χ⁻¹, ψ⁻¹) = |F|` (Mathlib's
+`gaussSum_mul_gaussSum_eq_card`); over the complex numbers the second factor is the conjugate of the first, so the
+modulus squared is `|F|` (the chart theme's `gauss_modulus`). The shell's own telescoping is the core's `ramanujan_sum`
+and `principal_root`. -/
+theorem gauss_product {F : Type*} [Field F] [Fintype F] {R' : Type*} [CommRing R'] [IsDomain R']
+    {χ : MulChar F R'} (hχ : χ ≠ 1) {ψ : AddChar F R'} (hψ : ψ.IsPrimitive) :
+    gaussSum χ ψ * gaussSum χ⁻¹ ψ⁻¹ = Fintype.card F :=
+  gaussSum_mul_gaussSum_eq_card hχ hψ
+
+end gauss
+
 end FRC.HorizonML
 
 /-! inlined: FrcLedger/Theme/Chart.lean (verbatim, minus its import lines) -/
@@ -798,6 +814,75 @@ theorem channel_entangles (φ : ℝ) (h0 : 0 < φ) (h1 : φ < 2 * π) : Real.sin
   ne_of_gt (Real.sin_pos_of_pos_of_lt_pi (by linarith) (by linarith))
 
 end quantum
+
+/-! ## 26-pnp: the carrier family, the table beyond the horizon and the dilation generator (26:C2, B4) -/
+
+section pnp
+
+set_option exponentiation.threshold 512 in
+/-- 26:C2 [chart] — **the family's size and the table beyond the horizon**: with the scale import's `Ω = 4S + 1` (the
+hypotheses of `scale_import`), `2²⁰⁴ < √Ω < 2²⁰⁵`, so the shells of the family `P² < Ω` have at most `205` bits, and
+`2¹⁰² < Ω^{1/4} < 2¹⁰³`, so a decision table with one entry per input of `204` bits has `2²⁰⁴` entries, below `√Ω` and
+beyond the absolute horizon `Ω^{1/4}` by more than `2¹⁰¹`. No numeral formed exceeds `Ω` (the largest is `2⁴⁰⁸`). -/
+theorem family_bits (Λ ℓP r S Ω : ℝ) (hΛ : Λ = 1.088e-52) (hℓ : ℓP = 1.616255e-35)
+    (hr2 : r ^ 2 = 3 / Λ) (hS : S = π * (r / ℓP) ^ 2) (hΩ : Ω = 4 * S + 1) :
+    (2 : ℝ) ^ 204 < √Ω ∧ √Ω < (2 : ℝ) ^ 205 ∧ (2 : ℝ) ^ 102 < √(√Ω) ∧ √(√Ω) < (2 : ℝ) ^ 103 := by
+  obtain ⟨h1, h2, h3, -⟩ := ceiling_bracket Λ ℓP r S Ω hΛ hℓ hr2 hS hΩ
+  have hΩpos : (0 : ℝ) < Ω := lt_trans (by positivity) h1
+  -- `√Ω / 2 = √(Ω / 4) < 2²⁰⁴` from `Ω / 4 < 2⁴⁰⁸ = (2²⁰⁴)²`: the largest numeral formed is `2⁴⁰⁸ < Ω` (the G18 round of
+  -- 16 October 2026: the first proof bounded `Ω` by a power of two above it, a numeral the corpus does not form)
+  have hhalf : √Ω / 2 < (2 : ℝ) ^ 204 := by
+    have e : √Ω / 2 = √(Ω / 4) := by
+      rw [Real.sqrt_div' _ (by norm_num : (0 : ℝ) ≤ 4), show √(4 : ℝ) = 2 by
+        rw [show (4 : ℝ) = 2 ^ 2 by norm_num, Real.sqrt_sq (by norm_num)]]
+    rw [e, Real.sqrt_lt' (by positivity)]
+    calc Ω / 4 < (2 : ℝ) ^ 408 := h2
+      _ = ((2 : ℝ) ^ 204) ^ 2 := by norm_num
+  have h5 : √Ω < (2 : ℝ) ^ 205 := by
+    have : (2 : ℝ) ^ 205 = 2 * 2 ^ 204 := by norm_num
+    rw [this]; linarith
+  refine ⟨h3, h5, ?_, ?_⟩
+  · rw [Real.lt_sqrt (by positivity)]
+    calc ((2 : ℝ) ^ 102) ^ 2 = 2 ^ 204 := by norm_num
+      _ < √Ω := h3
+  · rw [Real.sqrt_lt' (by positivity)]
+    calc √Ω < (2 : ℝ) ^ 205 := h5
+      _ < ((2 : ℝ) ^ 103) ^ 2 := by norm_num
+
+/-- 26:B5 — **the Gauss-sum modulus**: over `ℂ`, on a finite field `F`, for a nontrivial multiplicative character `χ`
+and a primitive additive character `ψ`, `g(χ⁻¹, ψ⁻¹)` is the complex conjugate of `g(χ, ψ)` (Mathlib's
+`star_gaussSum_eq`), so with the horizon theme's `gauss_product`, `g(χ) · conj g(χ) = |g(χ)|² = |F|`: on the prime
+shell `𝔽_P`, `P`. -/
+theorem gauss_modulus {F : Type*} [Field F] [Fintype F] {χ : MulChar F ℂ} (hχ : χ ≠ 1) {ψ : AddChar F ℂ}
+    (hψ : ψ.IsPrimitive) :
+    gaussSum χ ψ * star (gaussSum χ ψ) = Fintype.card F ∧ Complex.normSq (gaussSum χ ψ) = Fintype.card F := by
+  have h := FRC.HorizonML.gauss_product hχ hψ
+  rw [← star_gaussSum_eq] at h
+  refine ⟨h, ?_⟩
+  have h2 : (Complex.normSq (gaussSum χ ψ) : ℂ) = (Fintype.card F : ℂ) := by rw [← Complex.mul_conj, ← h]; rfl
+  exact_mod_cast h2
+
+/-- 26:B4 [chart] — **the dilation generator**: `Ĥ = −i(x ∂ₓ + ½)` has `x^{−1/2 + iν}` as eigenfunction of eigenvalue
+`ν` on `x > 0`; the frequency index is the spectrum of `Ĥ` in the continuum reading of the scale shift (20:E1). -/
+theorem dilation_eigen (ν x : ℝ) (hx : 0 < x) :
+    -Complex.I * ((x : ℂ) * deriv (fun t : ℝ => (t : ℂ) ^ (-(1 / 2 : ℂ) + Complex.I * ν)) x
+      + (1 / 2 : ℂ) * (x : ℂ) ^ (-(1 / 2 : ℂ) + Complex.I * ν))
+      = ν * (x : ℂ) ^ (-(1 / 2 : ℂ) + Complex.I * ν) := by
+  set s : ℂ := -(1 / 2 : ℂ) + Complex.I * ν with hs
+  have hx0 : (x : ℂ) ≠ 0 := by exact_mod_cast hx.ne'
+  have hslit : (x : ℂ) ∈ Complex.slitPlane := Complex.ofReal_mem_slitPlane.2 hx
+  have hd : HasDerivAt (fun t : ℝ => (t : ℂ) ^ s) (s * (x : ℂ) ^ (s - 1)) x :=
+    (Complex.hasStrictDerivAt_cpow_const hslit).hasDerivAt.comp_ofReal
+  rw [hd.deriv]
+  have hpow : (x : ℂ) * (x : ℂ) ^ (s - 1) = (x : ℂ) ^ s := by
+    rw [Complex.cpow_sub _ _ hx0, Complex.cpow_one, mul_div_cancel₀ _ hx0]
+  have hcoef : -Complex.I * (s + 1 / 2) = ν := by
+    rw [hs]; ring_nf; rw [Complex.I_sq]; ring
+  calc -Complex.I * ((x : ℂ) * (s * (x : ℂ) ^ (s - 1)) + (1 / 2 : ℂ) * (x : ℂ) ^ s)
+      = -Complex.I * (s + 1 / 2) * (x : ℂ) ^ s := by rw [← hpow]; ring
+    _ = ν * (x : ℂ) ^ s := by rw [hcoef]
+
+end pnp
 
 /-! ## The octant record depth and its outputs (00:L3; 14:C5, C7, P3) -/
 section octant
@@ -2422,32 +2507,41 @@ theorem p21062 : (∀ (κ : ℕ), (4 : ℕ) * (κ * ((4 : ℕ) * κ + (2 : ℕ))
 theorem p21064 : (∀ (w : ℝ), (0 : ℝ) < w → w < (1 : ℝ) → w * (((1 : ℝ) - √((1 : ℝ) - w ^ (2 : ℕ))) / w) ^ (2 : ℕ) - (2 : ℝ) * (((1 : ℝ) - √((1 : ℝ) - w ^ (2 : ℕ))) / w) + w = (0 : ℝ) ∧ (0 : ℝ) < ((1 : ℝ) - √((1 : ℝ) - w ^ (2 : ℕ))) / w ∧ ((1 : ℝ) - √((1 : ℝ) - w ^ (2 : ℕ))) / w < (1 : ℝ) ∧ (1 : ℝ) < ((1 : ℝ) + √((1 : ℝ) - w ^ (2 : ℕ))) / w ∧ ∀ (x : ℝ), w * x ^ (2 : ℕ) - (2 : ℝ) * x + w = (0 : ℝ) → x = ((1 : ℝ) - √((1 : ℝ) - w ^ (2 : ℕ))) / w ∨ x = ((1 : ℝ) + √((1 : ℝ) - w ^ (2 : ℕ))) / w) ∧ (∀ (t : ℝ), (0 : ℝ) < t → (0 : ℝ) < (1 : ℝ) - Real.exp (-t) ∧ (1 : ℝ) ≤ t / ((1 : ℝ) - Real.exp (-t)) ∧ (t ≤ (1 : ℝ) → t / ((1 : ℝ) - Real.exp (-t)) ≤ (1 : ℝ) / ((1 : ℝ) - (3 : ℝ) * t / (4 : ℝ))) ∧ ∀ (G M r a₀ v : ℝ), (0 : ℝ) < r → (0 : ℝ) ≤ G * M → (0 : ℝ) ≤ a₀ → v ^ (2 : ℕ) = √(G * M / r ^ (2 : ℕ) * a₀) * r → v ^ (4 : ℕ) = G * M * a₀) ∧ Filter.Tendsto (fun t => t / ((1 : ℝ) - Real.exp (-t))) (nhdsWithin (0 : ℝ) (Set.Ioi (0 : ℝ))) (nhds (1 : ℝ)) :=
   And.intro @FRC.Strong.registration_root (And.intro @FRC.Strong.crossover_limits (@FRC.Strong.crossover_deep_limit))
 set_option linter.defProp false in
-/-- p22005 — 22:A5. The window discipline, committed: the coherence horizon $\sqrt\Omega$, the decidability horizon $\Omega^{1/4}$, and the committed cardinality $\Omega\sim1.3\times10^{123}$ (the corpus's scale import, master A7) --- declared inputs of the programme, their cost recorded in the $\Omega$ ledger. -/
+/-- p22005 — 22:A5. The window discipline, committed: the coherence horizon $\sqrt\Omega$, the decidability horizon $\Omega^{1/4}$, and the committed cardinality $\Omega\sim1.3\times10^{123}$ [chart] (the corpus's scale import, master A7) --- declared inputs of the programme, their cost recorded in the $\Omega$ ledger. -/
 def p22005 := @FRC.Chart.omega_floors
-/-- p22033 — 22:C17. Exact Tsirelson saturation: the singlet law $E(\Delta)=\cos(\pi\Delta/40)$, $S=2(\zeta_8+\zeta_8^{-1})$, $S^2=8$, the exhaustive $80^3$ sweep never exceeding it; no-signalling and the composite reduction commute. -/
+/-- p22033 — 22:C17. Exact Tsirelson saturation: the singlet law $E(\Delta)=\cos(\pi\Delta/40)$ [chart], $S=2(\zeta_8+\zeta_8^{-1})$, $S^2=8$, the exhaustive $80^3$ sweep never exceeding it [chart]; no-signalling and the composite reduction commute. -/
 theorem p22033 : (FRC.Chart.zeta8 + FRC.Chart.zeta8⁻¹ = ↑√(2 : ℝ) ∧ (2 : ℂ) * (FRC.Chart.zeta8 + FRC.Chart.zeta8⁻¹) = ↑((2 : ℝ) * √(2 : ℝ)) ∧ ((2 : ℂ) * (FRC.Chart.zeta8 + FRC.Chart.zeta8⁻¹)) ^ (2 : ℕ) = (8 : ℂ)) ∧ ∀ (Δ : ℕ), (Complex.exp (↑((2 : ℝ) * Real.pi * ↑Δ / (80 : ℝ)) * Complex.I)).re = Real.cos (Real.pi * ↑Δ / (40 : ℝ)) :=
   And.intro @FRC.Chart.tsirelson_real (@FRC.Chart.singlet_law)
-/-- p22035 — 22:C19. The gravitational channel entangles exactly, $C^2=\sin^2(\varphi/2)$, with the pure-channel complementarity $V^2+C^2=1$. -/
+/-- p22035 — 22:C19. The gravitational channel entangles exactly, $C^2=\sin^2(\varphi/2)$ [chart], with the pure-channel complementarity $V^2+C^2=1$. -/
 theorem p22035 : (∀ (φ : ℝ), (Complex.exp (↑(φ / (2 : ℝ)) * Complex.I) + Complex.exp (-(↑(φ / (2 : ℝ)) * Complex.I))) / (2 : ℂ) = ↑(Real.cos (φ / (2 : ℝ))) ∧ (Complex.exp (↑(φ / (2 : ℝ)) * Complex.I) - Complex.exp (-(↑(φ / (2 : ℝ)) * Complex.I))) / ((2 : ℂ) * Complex.I) = ↑(Real.sin (φ / (2 : ℝ))) ∧ Real.cos (φ / (2 : ℝ)) ^ (2 : ℕ) + Real.sin (φ / (2 : ℝ)) ^ (2 : ℕ) = (1 : ℝ) ∧ Real.sin (0 / 2 : ℝ) = (0 : ℝ)) ∧ ∀ (φ : ℝ), (0 : ℝ) < φ → φ < (2 : ℝ) * Real.pi → Real.sin (φ / (2 : ℝ)) ≠ (0 : ℝ) :=
   And.intro @FRC.Chart.channel_chart (@FRC.Chart.channel_entangles)
-/-- p22041 — 22:C25. The measurement problem dissolved: Kochen--Specker poses no separate threat because values exist only as Subject-relative quotient phases, carried together with the Tsirelson strength $2\sqrt2$. -/
+/-- p22041 — 22:C25. The measurement problem dissolved: Kochen--Specker poses no separate threat because values exist only as Subject-relative quotient phases, carried together with the Tsirelson strength $2\sqrt2$ [chart]. -/
 theorem p22041 : FRC.Chart.zeta8 + FRC.Chart.zeta8⁻¹ = ↑√(2 : ℝ) ∧ (2 : ℂ) * (FRC.Chart.zeta8 + FRC.Chart.zeta8⁻¹) = ↑((2 : ℝ) * √(2 : ℝ)) ∧ ((2 : ℂ) * (FRC.Chart.zeta8 + FRC.Chart.zeta8⁻¹)) ^ (2 : ℕ) = (8 : ℂ) :=
   @FRC.Chart.tsirelson_real
-/-- p22050 — 22:X7. \textbf{The Tsirelson boundary} is attained as a ring identity, $S=2(\zeta_8+\zeta_8^{-1})=2\sqrt2$, so a relational finite substrate carries full quantum correlation strength, not merely quantum vocabulary. -/
+/-- p22050 — 22:X7. \textbf{The Tsirelson boundary} is attained as a ring identity, $S=2(\zeta_8+\zeta_8^{-1})=2\sqrt2$ [chart], so a relational finite substrate carries full quantum correlation strength, not merely quantum vocabulary. -/
 theorem p22050 : FRC.Chart.zeta8 + FRC.Chart.zeta8⁻¹ = ↑√(2 : ℝ) ∧ (2 : ℂ) * (FRC.Chart.zeta8 + FRC.Chart.zeta8⁻¹) = ↑((2 : ℝ) * √(2 : ℝ)) ∧ ((2 : ℂ) * (FRC.Chart.zeta8 + FRC.Chart.zeta8⁻¹)) ^ (2 : ℕ) = (8 : ℂ) :=
   @FRC.Chart.tsirelson_real
-/-- p22052 — 22:P1. Gravitationally induced entanglement at exactly the Newtonian rate, $V^2+C^2=1$ on the pure channel: equal force but unequal entanglement --- a source gravitates by its full mass while the systematic conditional phase, the calibrated discriminator, is carried by the coherent sectors alone, the fully incoherent channel separable at generic (nondegenerate) geometry. The one dated forward prediction. -/
+/-- p22052 — 22:P1. Gravitationally induced entanglement at exactly the Newtonian rate [chart], $V^2+C^2=1$ on the pure channel: equal force but unequal entanglement --- a source gravitates by its full mass while the systematic conditional phase, the calibrated discriminator, is carried by the coherent sectors alone, the fully incoherent channel separable at generic (nondegenerate) geometry. The one dated forward prediction. -/
 theorem p22052 : ∀ (φ : ℝ), (Complex.exp (↑(φ / (2 : ℝ)) * Complex.I) + Complex.exp (-(↑(φ / (2 : ℝ)) * Complex.I))) / (2 : ℂ) = ↑(Real.cos (φ / (2 : ℝ))) ∧ (Complex.exp (↑(φ / (2 : ℝ)) * Complex.I) - Complex.exp (-(↑(φ / (2 : ℝ)) * Complex.I))) / ((2 : ℂ) * Complex.I) = ↑(Real.sin (φ / (2 : ℝ))) ∧ Real.cos (φ / (2 : ℝ)) ^ (2 : ℕ) + Real.sin (φ / (2 : ℝ)) ^ (2 : ℕ) = (1 : ℝ) ∧ Real.sin (0 / 2 : ℝ) = (0 : ℝ) :=
   @FRC.Chart.channel_chart
-/-- p22054 — 22:P3. The Tsirelson value $S=2\sqrt2$ exact and the network behaviour of complex (not real) quantum theory: vacuum dispersion, $S\neq2\sqrt2$, or non-quantum network behaviour each falsify. -/
+/-- p22054 — 22:P3. The Tsirelson value $S=2\sqrt2$ exact [chart] and the network behaviour of complex (not real) quantum theory: vacuum dispersion, $S\neq2\sqrt2$, or non-quantum network behaviour each falsify. -/
 theorem p22054 : FRC.Chart.zeta8 + FRC.Chart.zeta8⁻¹ = ↑√(2 : ℝ) ∧ (2 : ℂ) * (FRC.Chart.zeta8 + FRC.Chart.zeta8⁻¹) = ↑((2 : ℝ) * √(2 : ℝ)) ∧ ((2 : ℂ) * (FRC.Chart.zeta8 + FRC.Chart.zeta8⁻¹)) ^ (2 : ℕ) = (8 : ℂ) :=
   @FRC.Chart.tsirelson_real
-/-- p22056 — 22:P5. Quantum computation succeeds as standard quantum mechanics prescribes at every accessible depth; the first deviation, if any, is quantised at the unit-core ceiling $k^*=408$ ($204$ for $\sqrt\Omega$), not gradual. -/
+/-- p22056 — 22:P5. Quantum computation succeeds as standard quantum mechanics prescribes at every accessible depth; the first deviation, if any, is quantised at the unit-core ceiling $k^*=408$ ($204$ for $\sqrt\Omega$) [chart], not gradual. -/
 theorem p22056 : (∀ (Λ ℓP r S Ω : ℝ), Λ = 1088e-55 → ℓP = 1616255e-41 → r ^ (2 : ℕ) = (3 : ℝ) / Λ → S = Real.pi * (r / ℓP) ^ (2 : ℕ) → Ω = (4 : ℝ) * S + (1 : ℝ) → (2 : ℝ) ^ (408 : ℕ) < Ω ∧ Ω / (4 : ℝ) < (2 : ℝ) ^ (408 : ℕ) ∧ (2 : ℝ) ^ (204 : ℕ) < √Ω ∧ √Ω / (4 : ℝ) < (2 : ℝ) ^ (204 : ℕ)) ∧ ∀ (m : ℕ), ¬(2 : GaussianInt) ∣ FRC.QuantumML.gi ^ m * FRC.QuantumML.onePlusI :=
   And.intro @FRC.Chart.ceiling_bracket (@FRC.QuantumML.gaussian_minimal)
 set_option linter.defProp false in
-/-- p22061 — 22:Z2. The committed $\Omega$ anchor and the binding floor: the carrier scale is fixed by the verified Riemann height through $\Omega^{1/4}$, and a single off-line zero below $\Omega^{1/4}$ falsifies from a desk. -/
+/-- p22061 — 22:Z2. The committed $\Omega$ anchor and the binding floor: the carrier scale is fixed by the verified Riemann height through $\Omega^{1/4}$ [chart], and a single off-line zero below $\Omega^{1/4}$ falsifies from a desk. -/
 def p22061 := @FRC.Chart.omega_floors
+set_option linter.defProp false in
+/-- p26010 — 26:B4. The continuum reading [chart]: the dilation generator $\HH=-\mathrm i(x\partial_x+\tfrac12)$ has $x^{-1/2+\mathrm i\nu}$ as eigenfunction of eigenvalue $\nu$ on $x>0$, so the frequency index is the spectrum of $\HH$ in the chart of the scale shift (20:E1). -/
+def p26010 := @FRC.Chart.dilation_eigen
+/-- p26011 — 26:B5. The Gauss sum couples the two turns: multiplication by a unit permutes the units; $\sum_{t\neq0}\psi(tc)$ is $-1$ for $c\neq0$ and $P-1$ for $c=0$; $\sum_u\chi(u)=0$ for $\chi\neq1$; hence $\lvert g(\chi)\rvert^{2}=P$ for every nontrivial $\chi$ on the shell ($\Om$ on the Carrier). -/
+theorem p26011 : (∀ {F : Type u_1} [Field F] [Fintype F] {R' : Type u_2} [CommRing R'] [IsDomain R'] {χ : MulChar F R'}, χ ≠ (1 : MulChar F R') → ∀ {ψ : AddChar F R'}, ψ.IsPrimitive → gaussSum χ ψ * gaussSum χ⁻¹ ψ⁻¹ = ↑(Fintype.card F)) ∧ ∀ {F : Type u_3} [Field F] [Fintype F] {χ : MulChar F ℂ}, χ ≠ (1 : MulChar F ℂ) → ∀ {ψ : AddChar F ℂ}, ψ.IsPrimitive → gaussSum χ ψ * star (gaussSum χ ψ) = ↑(Fintype.card F) ∧ Complex.normSq (gaussSum χ ψ) = ↑(Fintype.card F) :=
+  And.intro @FRC.HorizonML.gauss_product (@FRC.Chart.gauss_modulus)
+/-- p26013 — 26:C2. The family's size and the table beyond the horizon [chart]: at the anchor $2^{204}<\sqrt\Om<2^{205}$, so the shells of the family $P^{2}<\Om$ have at most $205$ bits; $2^{102}<\Om^{1/4}<2^{103}$, so a decision table with one entry per $204$-bit input exceeds the absolute horizon and lies below $\sqrt\Om$. -/
+theorem p26013 : ∀ (Λ ℓP r S Ω : ℝ), Λ = 1088e-55 → ℓP = 1616255e-41 → r ^ (2 : ℕ) = (3 : ℝ) / Λ → S = Real.pi * (r / ℓP) ^ (2 : ℕ) → Ω = (4 : ℝ) * S + (1 : ℝ) → (2 : ℝ) ^ (204 : ℕ) < √Ω ∧ √Ω < (2 : ℝ) ^ (205 : ℕ) ∧ (2 : ℝ) ^ (102 : ℕ) < √√Ω ∧ √√Ω < (2 : ℝ) ^ (103 : ℕ) :=
+  @FRC.Chart.family_bits
 /-- p38010 — 38:B2. The radial ladder: shells at $R\sin(2a\pi/13)$ [chart]; capacity $4a<\p\Leftrightarrow a\le\kap$. -/
 theorem p38010 : ∀ (R : ℝ), (0 : ℝ) < R → (0 : ℝ) < R * Real.sin ((2 : ℝ) * Real.pi / (13 : ℝ)) ∧ R * Real.sin ((2 : ℝ) * Real.pi / (13 : ℝ)) < R * Real.sin ((4 : ℝ) * Real.pi / (13 : ℝ)) ∧ R * Real.sin ((4 : ℝ) * Real.pi / (13 : ℝ)) < R * Real.sin ((6 : ℝ) * Real.pi / (13 : ℝ)) ∧ R * Real.sin ((6 : ℝ) * Real.pi / (13 : ℝ)) < R :=
   @FRC.Chart.ladder_monotone

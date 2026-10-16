@@ -3,7 +3,7 @@
  "tree": "20-rh-20260608",
  "title": "Riemann Hypothesis over Finite Holographic Substrate",
  "doi": "https://doi.org/10.20944/preprints202606.0768.v1",
- "generated": "15 October 2026",
+ "generated": "16 October 2026",
  "blocks": [
   {
    "letter": "A",
@@ -882,7 +882,7 @@
    {
     "name": "FRC.Shell.frame13",
     "module": "FrcCore/Transform",
-    "line": 285,
+    "line": 286,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -893,7 +893,7 @@
    {
     "name": "FRC.Horizon.clean_iff_count",
     "module": "FrcCore/Theme/Horizon",
-    "line": 558,
+    "line": 567,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -902,7 +902,7 @@
    {
     "name": "FRC.Horizon.cells_clean_iff_cycle",
     "module": "FrcCore/Theme/Horizon",
-    "line": 523,
+    "line": 532,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -928,7 +928,7 @@
    {
     "name": "FRC.Horizon.negative_control13",
     "module": "FrcCore/Theme/Horizon",
-    "line": 495,
+    "line": 504,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -1155,7 +1155,7 @@
    {
     "name": "FRC.Horizon.turing_chain",
     "module": "FrcCore/Theme/Horizon",
-    "line": 606,
+    "line": 615,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -1164,7 +1164,7 @@
    {
     "name": "FRC.Horizon.turing_equal",
     "module": "FrcCore/Theme/Horizon",
-    "line": 613,
+    "line": 622,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -1173,7 +1173,7 @@
    {
     "name": "FRC.Horizon.turing_phantom",
     "module": "FrcCore/Theme/Horizon",
-    "line": 621,
+    "line": 630,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -1197,7 +1197,7 @@
    {
     "name": "FRC.Horizon.closure_lab",
     "module": "FrcCore/Theme/Horizon",
-    "line": 467,
+    "line": 476,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -1208,7 +1208,7 @@
    {
     "name": "FRC.Horizon.closure",
     "module": "FrcCore/Theme/Horizon",
-    "line": 451,
+    "line": 460,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -1217,7 +1217,7 @@
    {
     "name": "FRC.Horizon.closure_lab",
     "module": "FrcCore/Theme/Horizon",
-    "line": 467,
+    "line": 476,
     "axioms": [],
     "tier": 0,
     "ok": true,
