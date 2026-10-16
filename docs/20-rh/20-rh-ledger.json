@@ -53,9 +53,9 @@
     },
     {
      "label": "A7",
-     "predicate": "Turing's count: with $C(T)$ the sign changes of $Z$ on $(0,T)$, $C\\le N_{\\mathrm{crit}}\\le\\mathcal N$; $C=\\mathcal N$ certifies the hypothesis below $T$ and forces every zero there to be simple.",
+     "predicate": "Turing's count: with $C(T)$ the sign changes of $Z$ on $(0,T)$, $C\\le N_{\\mathrm{crit}}\\le\\mathcal N$; $C=\\mathcal N$ certifies the hypothesis below $T$ and forces every zero there to be simple. Turing's criterion at a good Gram point, with Trudgian's bound on the integral of $S$ above $168\\pi$.",
      "tag": "I",
-     "source": "\\citep{turing1953}",
+     "source": "\\citep{turing1953,trudgian2011}; Lem.~\\ref{lem:turing}",
      "key": "p20004"
     },
     {
@@ -67,7 +67,7 @@
     },
     {
      "label": "A9",
-     "predicate": "The comparison data: no off-line zero of $\\zeta$ to height $3\\times10^{12}$, by Turing's certificate, so every zero there is simple and every cell below $4.8\\times10^{11}$ clean; GUE spacing statistics of the zeros; some $2600$ zeros to twelve digits from the primes to $10^{6}$ by harmonic inversion; the self-adjoint realisations of the Berry--Keating operator.",
+     "predicate": "The comparison data: no off-line zero of $\\zeta$ to height $3\\times10^{12}$, by Turing's certificate, so every zero there is simple and every cell $y\\le477\\,464\\,829\\,274$ clean; GUE spacing statistics of the zeros; some $2600$ zeros to twelve digits from the primes to $10^{6}$ by harmonic inversion; the self-adjoint realisations of the Berry--Keating operator.",
      "tag": "I",
      "source": "\\citep{platt2021,montgomery1973,odlyzko1987,main1998,berry1999,endres2010}",
      "key": "p20006"
@@ -85,6 +85,13 @@
      "tag": "I",
      "source": "\\S\\ref{sec:closure}; \\citep{selberg1946,conrey1989}",
      "key": "p20082"
+    },
+    {
+     "label": "A12",
+     "predicate": "Ball arithmetic: enclosures of $\\zeta$ and $\\log\\Gamma$ on the line whose radius carries every rounding and truncation (Arb), read at the points the double-precision certificate leaves open and below $t=200$; a ball that excludes $0$ certifies the sign.",
+     "tag": "I",
+     "source": "\\citep{johansson2017}; App.~\\ref{app:cert}",
+     "key": "p20084"
     }
    ]
   },
@@ -238,9 +245,9 @@
     },
     {
      "label": "F2",
-     "predicate": "\\textbf{The hypothesis on a hosted Carrier.} A cell is decided by the certificate of a shell reading it, an embedded Subject below the largest one, the host above; on the laboratory Carriers $233$, $30\\,089$ and $2\\,408\\,561$ every cell of the cycle is clean, $1\\,038$, $280\\,186$ and $32\\,984\\,135$ zeros, all simple; the classical verification cleans every cell below $4.8\\times10^{11}$ (A9).",
+     "predicate": "\\textbf{The hypothesis on a hosted Carrier.} A cell that passes is certified clean by the reading shell, an embedded Subject below the largest one, the host above; on the laboratory Carriers $233$, $30\\,089$ and $2\\,408\\,561$ every cell passes, $1\\,038$, $280\\,186$ and $32\\,984\\,135$ zeros, all simple; the classical verification cleans every cell $y\\le477\\,464\\,829\\,274$ (A9). The Lean declaration states the embedding arithmetic alone.",
      "tag": "T",
-     "source": "Thm.~\\ref{thm:hosted} (the certificate analytic, with the package; the core decides the laboratory instances)\\newline \\pywit{rh}{p20081}{F2}, \\leanwit{FrcCore}{p20081}{F2} \\lean{FRC.Horizon.closure\\_lab}",
+     "source": "Thm.~\\ref{thm:hosted}, App.~\\ref{app:cert} (the certificate with the package; the core decides the embedding arithmetic)\\newline \\pywit{rh}{p20081}{F2}, \\leanwit{FrcCore}{p20081}{F2} \\lean{FRC.Horizon.closure\\_lab}",
      "key": "p20081"
     },
     {
@@ -893,7 +900,7 @@
    {
     "name": "FRC.Horizon.clean_iff_count",
     "module": "FrcCore/Theme/Horizon",
-    "line": 567,
+    "line": 587,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -902,7 +909,7 @@
    {
     "name": "FRC.Horizon.cells_clean_iff_cycle",
     "module": "FrcCore/Theme/Horizon",
-    "line": 532,
+    "line": 552,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -928,7 +935,7 @@
    {
     "name": "FRC.Horizon.negative_control13",
     "module": "FrcCore/Theme/Horizon",
-    "line": 504,
+    "line": 524,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -1155,7 +1162,7 @@
    {
     "name": "FRC.Horizon.turing_chain",
     "module": "FrcCore/Theme/Horizon",
-    "line": 615,
+    "line": 635,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -1164,7 +1171,7 @@
    {
     "name": "FRC.Horizon.turing_equal",
     "module": "FrcCore/Theme/Horizon",
-    "line": 622,
+    "line": 642,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -1173,7 +1180,7 @@
    {
     "name": "FRC.Horizon.turing_phantom",
     "module": "FrcCore/Theme/Horizon",
-    "line": 630,
+    "line": 650,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -1197,11 +1204,11 @@
    {
     "name": "FRC.Horizon.closure_lab",
     "module": "FrcCore/Theme/Horizon",
-    "line": 476,
+    "line": 493,
     "axioms": [],
     "tier": 0,
     "ok": true,
-    "doc": "20:F7, 20:F2, the laboratory instances: for each laboratory Carrier `Ω = 13, 233, 30089, 2408561` (prime, `≡ 1 mod 4`) the largest embedded Subject `p* = 3, 13, 173, 1549` with `p*² < Ω < p'²`, `p'` the next prime (no prime between), so every embedded Subject's cycle is shorter than the Carrier's and the Carrier's top cell is read from labels up to `√Ω`, beyond every embedded window `√p*`. Primality by trial division to the root (`isPrime_of_bounded`), decided by the kernel."
+    "doc": "20:F7, 20:F2, the laboratory instances: for each laboratory Carrier `Ω = 233, 30089, 2408561` (prime, `≡ 1 mod 4`) the largest admissible Subject `p* = 13, 173, 1549` — a prime `p = 4κ + 1` with `κ > 1` and `p² < Ω`, no admissible Subject between `p*` and `√Ω` (`largestSubject`) — so every embedded Subject's cycle is shorter than the Carrier's and the Carrier's top cell is read from labels up to `√Ω`, beyond every embedded window `√p*`. The largest prime below `√Ω` is not in general a Subject: on `Ω = 401` it is `19`, against the Subject `17`; and `Ω = 13` has no admissible Subject. Primality by trial division to the root (`isPrime_of_bounded`), the bounded quantifiers decided by the kernel."
    }
   ],
   "F7": [
@@ -1217,11 +1224,11 @@
    {
     "name": "FRC.Horizon.closure_lab",
     "module": "FrcCore/Theme/Horizon",
-    "line": 476,
+    "line": 493,
     "axioms": [],
     "tier": 0,
     "ok": true,
-    "doc": "20:F7, 20:F2, the laboratory instances: for each laboratory Carrier `Ω = 13, 233, 30089, 2408561` (prime, `≡ 1 mod 4`) the largest embedded Subject `p* = 3, 13, 173, 1549` with `p*² < Ω < p'²`, `p'` the next prime (no prime between), so every embedded Subject's cycle is shorter than the Carrier's and the Carrier's top cell is read from labels up to `√Ω`, beyond every embedded window `√p*`. Primality by trial division to the root (`isPrime_of_bounded`), decided by the kernel."
+    "doc": "20:F7, 20:F2, the laboratory instances: for each laboratory Carrier `Ω = 233, 30089, 2408561` (prime, `≡ 1 mod 4`) the largest admissible Subject `p* = 13, 173, 1549` — a prime `p = 4κ + 1` with `κ > 1` and `p² < Ω`, no admissible Subject between `p*` and `√Ω` (`largestSubject`) — so every embedded Subject's cycle is shorter than the Carrier's and the Carrier's top cell is read from labels up to `√Ω`, beyond every embedded window `√p*`. The largest prime below `√Ω` is not in general a Subject: on `Ω = 401` it is `19`, against the Subject `17`; and `Ω = 13` has no admissible Subject. Primality by trial division to the root (`isPrime_of_bounded`), the bounded quantifiers decided by the kernel."
    }
   ]
  }

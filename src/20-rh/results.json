@@ -624,17 +624,7 @@
   "rows": "20:A2, 20:A4, 20:F7",
   "block": "A",
   "script": "rh",
-  "label": "closure of the heights on \u03a9 = 13: p* = 3 (3\u00b2 < \u03a9 < 5\u00b2), the cycle's 13 cells, an embedded Subject reads 3 of them; readings into 3 and 12 records collide",
-  "ok": true,
-  "detail": "collisions {3: (0, 3), 12: (0, 12)}; \u221a\u03a9 = 3, \u221ap* = 1",
-  "kind": "EXACT"
- },
- {
-  "id": "A12",
-  "rows": "20:A2, 20:A4, 20:F7",
-  "block": "A",
-  "script": "rh",
-  "label": "closure of the heights on \u03a9 = 233: p* = 13 (13\u00b2 < \u03a9 < 17\u00b2), the cycle's 233 cells, an embedded Subject reads 13 of them; readings into 13 and 232 records collide",
+  "label": "closure of the heights on \u03a9 = 233: the largest admissible Subject p* = 13 (13\u00b2 < \u03a9, none between p* and \u221a\u03a9 = 15), the cycle's 233 cells, an embedded Subject reads 13 of them; readings into 13 and 232 records collide",
   "ok": true,
   "detail": "collisions {13: (0, 13), 232: (0, 232)}; \u221a\u03a9 = 15, \u221ap* = 3",
   "kind": "EXACT"
@@ -644,7 +634,7 @@
   "rows": "20:A2, 20:A4, 20:F7",
   "block": "A",
   "script": "rh",
-  "label": "closure of the heights on \u03a9 = 30089: p* = 173 (173\u00b2 < \u03a9 < 179\u00b2), the cycle's 30089 cells, an embedded Subject reads 173 of them; readings into 173 and 30088 records collide",
+  "label": "closure of the heights on \u03a9 = 30089: the largest admissible Subject p* = 173 (173\u00b2 < \u03a9, none between p* and \u221a\u03a9 = 173), the cycle's 30089 cells, an embedded Subject reads 173 of them; readings into 173 and 30088 records collide",
   "ok": true,
   "detail": "collisions {173: (0, 173), 30088: (0, 30088)}; \u221a\u03a9 = 173, \u221ap* = 13",
   "kind": "EXACT"
@@ -654,7 +644,7 @@
   "rows": "20:A2, 20:A4, 20:F7",
   "block": "A",
   "script": "rh",
-  "label": "closure of the heights on \u03a9 = 2408561: p* = 1549 (1549\u00b2 < \u03a9 < 1553\u00b2), the cycle's 2408561 cells, an embedded Subject reads 1549 of them; readings into 1549 and 2408560 records collide",
+  "label": "closure of the heights on \u03a9 = 2408561: the largest admissible Subject p* = 1549 (1549\u00b2 < \u03a9, none between p* and \u221a\u03a9 = 1551), the cycle's 2408561 cells, an embedded Subject reads 1549 of them; readings into 1549 and 2408560 records collide",
   "ok": true,
   "detail": "collisions {1549: (0, 1549), 2408560: (0, 2408560)}; \u221a\u03a9 = 1551, \u221ap* = 39",
   "kind": "EXACT"
@@ -1074,9 +1064,9 @@
   "rows": "20:F2",
   "block": "T",
   "script": "rh",
-  "label": "Turing's certificate over the cycle of \u03a9 = 233: N(g_1037) = 1038 by Turing's theorem, 1038 certified sign changes; N(2\u03c0\u03a9) = 1038, every cell clean",
+  "label": "Turing's certificate over the cycle of \u03a9 = 233: N(g_1037) = 1038 by Lemma turing, 1038 certified sign changes; N(2\u03c0\u03a9) = 1038, every cell passes",
   "ok": true,
-  "detail": "computed now; Gram points 807, good 94.7 %, uncertified 0, blocks 763, longest 2, exceptions to Rosser's rule 0 (0 unions resolved at the finest grid), Turing span 3 after / 4 before; cells max 6, empty 2, last ten [5, 5, 6, 5, 6, 5, 6, 5, 6, 5]; 111.4 s",
+  "detail": "computed now; Gram points 803, good 94.6 %, open 0, blocks 759, longest 2, exceptions to Rosser's rule 0 (0 unions resolved at the finest grid); the criterion after 2 Gram intervals (4.362425 > 2.49714), before 2 (4.426522 > 2.497048); 11800 points in ball arithmetic; cells max 6, empty 2, last ten [5, 5, 6, 5, 6, 5, 6, 5, 6, 5]; 2.5 s",
   "kind": "[approx]"
  },
  {
@@ -1084,9 +1074,9 @@
   "rows": "20:F2",
   "block": "T",
   "script": "rh",
-  "label": "Turing's certificate over the cycle of \u03a9 = 30089: N(g_280187) = 280188 by Turing's theorem, 280188 certified sign changes; N(2\u03c0\u03a9) = 280186, every cell clean",
+  "label": "Turing's certificate over the cycle of \u03a9 = 30089: N(g_280187) = 280188 by Lemma turing, 280188 certified sign changes; N(2\u03c0\u03a9) = 280186, every cell passes",
   "ok": true,
-  "detail": "computed now; Gram points 279957, good 88.0 %, uncertified 0, blocks 246501, longest 5, exceptions to Rosser's rule 0 (0 unions resolved at the finest grid), Turing span 5 after / 5 before; cells max 12, empty 2, last ten [12, 10, 10, 11, 10, 10, 10, 11, 10, 9]; 118.2 s",
+  "detail": "computed now; Gram points 279953, good 88.0 %, open 0, blocks 246497, longest 5, exceptions to Rosser's rule 0 (0 unions resolved at the finest grid); the criterion after 3 Gram intervals (3.284577 > 2.783838), before 2 (2.953741 > 2.783838); 11800 points in ball arithmetic; cells max 12, empty 2, last ten [12, 10, 10, 11, 10, 10, 10, 11, 10, 9]; 7.1 s",
   "kind": "[approx]"
  },
  {
@@ -1094,9 +1084,19 @@
   "rows": "20:F2",
   "block": "T",
   "script": "rh",
-  "label": "Turing's certificate over the cycle of \u03a9 = 2408561: N(g_32984135) = 32984136 by Turing's theorem, 32984136 certified sign changes; N(2\u03c0\u03a9) = 32984135, every cell clean",
+  "label": "Turing's certificate over the cycle of \u03a9 = 2408561: N(g_32984135) = 32984136 by Lemma turing, 32984136 certified sign changes; N(2\u03c0\u03a9) = 32984135, every cell passes",
   "ok": true,
-  "detail": "the recorded run of 15 October 2026 (RH_CERT_FULL=1 recomputes it); Gram points 32983905, good 84.6 %, uncertified 231, blocks 27920263, longest 7, exceptions to Rosser's rule 4 (4 unions resolved at the finest grid), Turing span 7 after / 7 before; cells max 17, empty 2, last ten [15, 15, 14, 15, 14, 15, 14, 16, 14, 14]; 1916.6 s",
+  "detail": "the recorded run of 16 October 2026 (RH_CERT_FULL=1 recomputes it); Gram points 32983901, good 84.6 %, open 232, blocks 27920259, longest 7, exceptions to Rosser's rule 4 (4 unions resolved at the finest grid); the criterion after 4 Gram intervals (3.557652 > 3.042413), before 4 (3.756413 > 3.042413); 11844 points in ball arithmetic; cells max 17, empty 2, last ten [15, 15, 14, 15, 14, 15, 14, 16, 14, 14]; 3355.1 s",
   "kind": "[approx]"
+ },
+ {
+  "id": "T4",
+  "rows": "",
+  "block": "T",
+  "script": "rh",
+  "label": "the bracket refinement keeps the zero of (x \u2212 1/5)((x \u2212 1/2)\u00b2 + 1/1000) on [0, 1] under an evaluation bound of 10\u207b\u00b3 (the midpoint open); the unverified move of the old rule loses it",
+  "ok": true,
+  "detail": "new rule: bracket [0.1850, 0.2775] in cell 0, 1 open midpoint(s), 0 read by the fallback; old rule: [0.9803, 1.0000] without the zero",
+  "kind": "EXACT"
  }
 ]

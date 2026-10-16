@@ -469,30 +469,50 @@ theorem closure :
    fun ho ρ hρ => FRC.Foundation.observer_part ho ρ hρ,
    fun ρ hρ hinj => FRC.Foundation.complete_needs_whole ρ hρ hinj⟩
 
-/-- 20:F7, 20:F2, the laboratory instances: for each laboratory Carrier `Ω = 13, 233, 30089, 2408561` (prime, `≡ 1 mod 4`) the
-largest embedded Subject `p* = 3, 13, 173, 1549` with `p*² < Ω < p'²`, `p'` the next prime (no prime between), so every
-embedded Subject's cycle is shorter than the Carrier's and the Carrier's top cell is read from labels up to `√Ω`, beyond
-every embedded window `√p*`. Primality by trial division to the root (`isPrime_of_bounded`), decided by the kernel. -/
+/-- The largest admissible Subject of a Carrier `Ω` (20:F7, 20:F2; Remark holographic): `p = 4κ + 1` prime with
+`κ > 1` (`5 < p`), `p² < Ω`, and no admissible `q > p` with `q² < Ω`. -/
+def largestSubject (Ω p : Nat) : Prop :=
+  FRC.Nat.isPrime p ∧ p % 4 = 1 ∧ 5 < p ∧ p * p < Ω ∧
+  ∀ q, p < q → q * q < Ω → q % 4 = 1 → ¬ FRC.Nat.isPrime q
+
+/-- `largestSubject` from a bound `Ω ≤ b²`: every `q` with `q² < Ω` is below `b`, so the maximality clause is a
+bounded quantifier the kernel decides. -/
+theorem largestSubject_of_bound (Ω p b : Nat) (hb : Ω ≤ b * b) (hp : FRC.Nat.isPrime p) (h4 : p % 4 = 1)
+    (h5 : 5 < p) (hpΩ : p * p < Ω) (hq : ∀ q, q < b → p < q → q % 4 = 1 → ¬ FRC.Nat.isPrime q) :
+    largestSubject Ω p :=
+  ⟨hp, h4, h5, hpΩ, fun q hpq hqΩ h4q =>
+    hq q (Nat.lt_of_not_le fun hbq =>
+      Nat.lt_irrefl _ (Nat.lt_of_lt_of_le (Nat.lt_of_lt_of_le hqΩ hb) (Nat.mul_le_mul hbq hbq))) hpq h4q⟩
+
+/-- 20:F7, 20:F2, the laboratory instances: for each laboratory Carrier `Ω = 233, 30089, 2408561` (prime, `≡ 1 mod 4`) the
+largest admissible Subject `p* = 13, 173, 1549` — a prime `p = 4κ + 1` with `κ > 1` and `p² < Ω`, no admissible Subject
+between `p*` and `√Ω` (`largestSubject`) — so every embedded Subject's cycle is shorter than the Carrier's and the
+Carrier's top cell is read from labels up to `√Ω`, beyond every embedded window `√p*`. The largest prime below `√Ω` is
+not in general a Subject: on `Ω = 401` it is `19`, against the Subject `17`; and `Ω = 13` has no admissible Subject.
+Primality by trial division to the root (`isPrime_of_bounded`), the bounded quantifiers decided by the kernel. -/
 theorem closure_lab :
-    (3 * 3 < 13 ∧ 13 < 5 * 5 ∧ 13 % 4 = 1 ∧ FRC.Nat.isPrime 3 ∧ FRC.Nat.isPrime 5 ∧ FRC.Nat.isPrime 13 ∧
-      ∀ q, q < 5 → 3 < q → ¬ FRC.Nat.isPrime q) ∧
-    (13 * 13 < 233 ∧ 233 < 17 * 17 ∧ 233 % 4 = 1 ∧ FRC.Nat.isPrime 13 ∧ FRC.Nat.isPrime 17 ∧ FRC.Nat.isPrime 233 ∧
-      ∀ q, q < 17 → 13 < q → ¬ FRC.Nat.isPrime q) ∧
-    (173 * 173 < 30089 ∧ 30089 < 179 * 179 ∧ 30089 % 4 = 1 ∧ FRC.Nat.isPrime 173 ∧ FRC.Nat.isPrime 179 ∧
-      FRC.Nat.isPrime 30089 ∧ ∀ q, q < 179 → 173 < q → ¬ FRC.Nat.isPrime q) ∧
-    (1549 * 1549 < 2408561 ∧ 2408561 < 1553 * 1553 ∧ 2408561 % 4 = 1 ∧ FRC.Nat.isPrime 1549 ∧ FRC.Nat.isPrime 1553 ∧
-      FRC.Nat.isPrime 2408561 ∧ ∀ q, q < 1553 → 1549 < q → ¬ FRC.Nat.isPrime q) := by
-  refine ⟨⟨by decide, by decide, by decide, by decide +kernel, by decide +kernel, by decide +kernel, by decide +kernel⟩,
-    ⟨by decide, by decide, by decide, by decide +kernel, by decide +kernel, ?_, by decide +kernel⟩,
-    ⟨by decide, by decide, by decide, ?_, ?_, ?_, by decide +kernel⟩,
-    ⟨by decide, by decide, by decide, ?_, ?_, ?_, by decide +kernel⟩⟩
+    (largestSubject 233 13 ∧ 233 % 4 = 1 ∧ FRC.Nat.isPrime 233) ∧
+    (largestSubject 30089 173 ∧ 30089 % 4 = 1 ∧ FRC.Nat.isPrime 30089) ∧
+    (largestSubject 2408561 1549 ∧ 2408561 % 4 = 1 ∧ FRC.Nat.isPrime 2408561) ∧
+    (largestSubject 401 17 ∧ FRC.Nat.isPrime 19 ∧ 19 * 19 < 401 ∧ 19 % 4 = 3) ∧
+    (∀ q, q < 4 → q % 4 = 1 → 5 < q → ¬ FRC.Nat.isPrime q) ∧ 13 ≤ 4 * 4 := by
+  refine ⟨⟨largestSubject_of_bound 233 13 16 (by decide) ?_ (by decide) (by decide) (by decide) (by decide +kernel),
+      by decide, ?_⟩,
+    ⟨largestSubject_of_bound 30089 173 174 (by decide) ?_ (by decide) (by decide) (by decide) (by decide +kernel),
+      by decide, ?_⟩,
+    ⟨largestSubject_of_bound 2408561 1549 1552 (by decide) ?_ (by decide) (by decide) (by decide) (by decide +kernel),
+      by decide, ?_⟩,
+    ⟨largestSubject_of_bound 401 17 21 (by decide) ?_ (by decide) (by decide) (by decide) (by decide +kernel),
+      ?_, by decide, by decide⟩,
+    by decide +kernel, by decide⟩
+  · exact FRC.Nat.isPrime_of_bounded 13 3 (by decide) (by decide) (by decide +kernel)
   · exact FRC.Nat.isPrime_of_bounded 233 15 (by decide) (by decide) (by decide +kernel)
   · exact FRC.Nat.isPrime_of_bounded 173 13 (by decide) (by decide) (by decide +kernel)
-  · exact FRC.Nat.isPrime_of_bounded 179 13 (by decide) (by decide) (by decide +kernel)
   · exact FRC.Nat.isPrime_of_bounded 30089 173 (by decide) (by decide) (by decide +kernel)
   · exact FRC.Nat.isPrime_of_bounded 1549 39 (by decide) (by decide) (by decide +kernel)
-  · exact FRC.Nat.isPrime_of_bounded 1553 39 (by decide) (by decide) (by decide +kernel)
   · exact FRC.Nat.isPrime_of_bounded 2408561 1552 (by decide) (by decide) (by decide +kernel)
+  · exact FRC.Nat.isPrime_of_bounded 17 4 (by decide) (by decide) (by decide +kernel)
+  · exact FRC.Nat.isPrime_of_bounded 19 4 (by decide) (by decide) (by decide +kernel)
 
 /-! ## The finite negative control (20:D9; 13 October 2026) -/
 

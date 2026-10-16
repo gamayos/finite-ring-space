@@ -108,7 +108,7 @@ class LedgerTest(unittest.TestCase):
         with redirect_stdout(io.StringIO()):
             L.R.verify_all()
         mine = L.R.results
-        self.assertEqual(len(records), 80)
+        self.assertEqual(len(records), 79)        # review 20261016-1: A12's Ω = 13 instance left (no admissible Subject)
         self.assertEqual([(r["id"], r["rows"], r["ok"], _ALIAS.get(r["kind"], r["kind"]), r["label"]) for r in records],
                          [(r["id"], r["rows"], r["ok"], r["kind"], r["label"]) for r in mine])
 

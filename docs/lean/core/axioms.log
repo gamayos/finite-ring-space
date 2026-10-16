@@ -1658,6 +1658,8 @@
 'FRC.Horizon.frame_coincidence' does not depend on any axioms
 'FRC.Horizon.lab_pair' does not depend on any axioms
 'FRC.Horizon.closure' does not depend on any axioms
+'FRC.Horizon.largestSubject' does not depend on any axioms
+'FRC.Horizon.largestSubject_of_bound' does not depend on any axioms
 'FRC.Horizon.closure_lab' does not depend on any axioms
 'FRC.Horizon.negative_control13' does not depend on any axioms
 'FRC.Horizon.sumTo_le' does not depend on any axioms

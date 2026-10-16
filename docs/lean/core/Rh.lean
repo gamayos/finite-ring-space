@@ -317,16 +317,15 @@ theorem closure :
     (∀ {Ω o : Nat} [Pos Ω] (ρ : Shell Ω → Nat), (∀ x, ρ x < o) → (∀ x y, ρ x = ρ y → x = y) → Ω ≤ o) :=
   FRC.Horizon.closure
 
-/-- 20:F7, the laboratory instances of the closure (`FRC.Horizon.closure_lab`). -/
+/-- 20:F7, 20:F2, the laboratory instances of the closure (`FRC.Horizon.closure_lab`): the largest admissible Subject
+`13, 173, 1549` of `Ω = 233, 30089, 2408561`, the control `Ω = 401` (the prime `19` is no Subject; `17` is), and `Ω = 13`
+without one. -/
 theorem closure_lab :
-    (3 * 3 < 13 ∧ 13 < 5 * 5 ∧ 13 % 4 = 1 ∧ FRC.Nat.isPrime 3 ∧ FRC.Nat.isPrime 5 ∧ FRC.Nat.isPrime 13 ∧
-      ∀ q, q < 5 → 3 < q → ¬ FRC.Nat.isPrime q) ∧
-    (13 * 13 < 233 ∧ 233 < 17 * 17 ∧ 233 % 4 = 1 ∧ FRC.Nat.isPrime 13 ∧ FRC.Nat.isPrime 17 ∧ FRC.Nat.isPrime 233 ∧
-      ∀ q, q < 17 → 13 < q → ¬ FRC.Nat.isPrime q) ∧
-    (173 * 173 < 30089 ∧ 30089 < 179 * 179 ∧ 30089 % 4 = 1 ∧ FRC.Nat.isPrime 173 ∧ FRC.Nat.isPrime 179 ∧
-      FRC.Nat.isPrime 30089 ∧ ∀ q, q < 179 → 173 < q → ¬ FRC.Nat.isPrime q) ∧
-    (1549 * 1549 < 2408561 ∧ 2408561 < 1553 * 1553 ∧ 2408561 % 4 = 1 ∧ FRC.Nat.isPrime 1549 ∧ FRC.Nat.isPrime 1553 ∧
-      FRC.Nat.isPrime 2408561 ∧ ∀ q, q < 1553 → 1549 < q → ¬ FRC.Nat.isPrime q) :=
+    (FRC.Horizon.largestSubject 233 13 ∧ 233 % 4 = 1 ∧ FRC.Nat.isPrime 233) ∧
+    (FRC.Horizon.largestSubject 30089 173 ∧ 30089 % 4 = 1 ∧ FRC.Nat.isPrime 30089) ∧
+    (FRC.Horizon.largestSubject 2408561 1549 ∧ 2408561 % 4 = 1 ∧ FRC.Nat.isPrime 2408561) ∧
+    (FRC.Horizon.largestSubject 401 17 ∧ FRC.Nat.isPrime 19 ∧ 19 * 19 < 401 ∧ 19 % 4 = 3) ∧
+    (∀ q, q < 4 → q % 4 = 1 → 5 < q → ¬ FRC.Nat.isPrime q) ∧ 13 ≤ 4 * 4 :=
   FRC.Horizon.closure_lab
 
 end aliases
@@ -384,7 +383,7 @@ set_option linter.defProp false in
 /-- 20:F1 (p20047) — \textbf{Turing's count on the shell.} On every cell $C_y\le N^{\mathrm{crit}}_y\le\mathcal N_y$ (A7); the cell is clean when $\mathcal N_y=N^{\mathrm{crit}}_y$, and $C_y=\mathcal N_y$ certifies it, every zero simple. The shell estimates $\mathcal N$ by the comb count (Appendix~\ref{app:comb}; uncertified) and reads $C$ from the main sum's sign changes (A10), zeros on the line. An off-line zero is a phantom, $\mathcal N_y-N^{\mathrm{crit}}_y>0$. -/
 def p20047 := @FRC.Ledger.p20047
 set_option linter.defProp false in
-/-- 20:F2 (p20081) — \textbf{The hypothesis on a hosted Carrier.} A cell is decided by the certificate of a shell reading it, an embedded Subject below the largest one, the host above; on the laboratory Carriers $233$, $30\,089$ and $2\,408\,561$ every cell of the cycle is clean, $1\,038$, $280\,186$ and $32\,984\,135$ zeros, all simple; the classical verification cleans every cell below $4.8\times10^{11}$ (A9). -/
+/-- 20:F2 (p20081) — \textbf{The hypothesis on a hosted Carrier.} A cell that passes is certified clean by the reading shell, an embedded Subject below the largest one, the host above; on the laboratory Carriers $233$, $30\,089$ and $2\,408\,561$ every cell passes, $1\,038$, $280\,186$ and $32\,984\,135$ zeros, all simple; the classical verification cleans every cell $y\le477\,464\,829\,274$ (A9). The Lean declaration states the embedding arithmetic alone. -/
 def p20081 := @FRC.Ledger.p20081
 set_option linter.defProp false in
 /-- 20:F7 (p20079) — \textbf{The closure of the heights.} A height is a residue on the cycle of the shell that reads it, the largest shell is the Carrier's and there is no height beyond its cycle (A2); no embedded Subject reads the cycle whole (A4). The hypothesis of the Carrier is a statement about the residues of its cycle, one clause per residue. -/
