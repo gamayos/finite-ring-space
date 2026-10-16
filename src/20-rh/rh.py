@@ -78,7 +78,7 @@ INK, RED, BLUE, ORANGE, NAVY, CRIMSON, GRAY = "#1a1a1a", "#c0392b", "#1f5fbf", "
 
 def panel_letter(ax, s):
     """The panel letter above the axes' top-left corner, as the captions cite it."""
-    ax.text(-0.02, 1.03, s, transform=ax.transAxes, ha="right", va="bottom", fontsize=9, fontweight="bold")
+    ax.text(-0.02, 1.03, s, transform=ax.transAxes, ha="right", va="bottom", fontsize=9)
 
 def paper_figure(name, draw, height):
     """Draw one paper figure under PAPER_RC at the text width into FIGDIR/paper/<name>.pdf (and .png), restoring the rc."""
