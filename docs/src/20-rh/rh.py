@@ -8,7 +8,8 @@ a_shell, b_deframe, c_primeside, c_gue, c_chi, d_classification, e_resonance mer
 
 One script, six blocks, 110 checks — 66 EXACT (integer-pinned), 41 [approx] (a floating-point observation against the value
 the paper states, to a stated tolerance), 3 [chart] (a continuum reading of a finite object; notation.tex convention 6) —
-Python with numpy, scipy, mpmath, sympy and matplotlib (the blocks redraw the paper's numerical figures into figures/). Each
+Python with numpy, scipy, mpmath, sympy and matplotlib (the blocks redraw their diagnostic figures into figures/ and the paper's
+three numerical figures, at the page width, into figures/paper/). Each
 check names the predicate(s) of the paper's ledger it witnesses (LEDGER; predicates cited as 20:XN), and the deciding check's
 `# 20:XN (<key>)` marker is what the ledger's source column links (PREDICATES; finitering.space/src/20-rh/#<key>). Since the
 cut of 15 October 2026 (T05 of reports/blueprint-20261013.md) the checks of the retired rows (the staircase, the horizon-scale
@@ -62,6 +63,33 @@ SCRIPT = os.path.splitext(os.path.basename(__file__))[0]        # "rh": the one 
 FAST = os.environ.get("RH_FAST", "0") == "1"      # reduced depths for a quick run (the records then differ from the paper's)
 FIGDIR = os.environ.get("RH_FIGDIR", "figures")
 os.makedirs(FIGDIR, exist_ok=True)
+os.makedirs(f"{FIGDIR}/paper", exist_ok=True)
+
+# ----------------------------------------------------------------------------- the paper's figures
+# The blocks draw their diagnostic figures (titles carrying the check ids) and, from the same arrays, the paper's figures:
+# drawn at the text width of the manuscript (452.97 pt = 6.29 in, a4 with 1 in margins, 11 pt), so that \includegraphics scales
+# nothing and the 8–9 pt type prints as drawn; no titles (the captions carry them), panel letters above the axes (16 October 2026).
+TEXTWIDTH_IN = 452.97 / 72.27
+PAPER_RC = {"font.size": 8.5, "axes.labelsize": 9, "axes.titlesize": 9, "xtick.labelsize": 8, "ytick.labelsize": 8,
+            "legend.fontsize": 7.8, "legend.frameon": True, "legend.framealpha": 0.92, "legend.edgecolor": "0.8",
+            "axes.linewidth": 0.7, "xtick.major.width": 0.6, "ytick.major.width": 0.6, "lines.linewidth": 1.1,
+            "axes.grid": False, "pdf.fonttype": 42, "mathtext.fontset": "cm", "font.family": "DejaVu Sans"}
+INK, RED, BLUE, ORANGE, NAVY, CRIMSON, GRAY = "#1a1a1a", "#c0392b", "#1f5fbf", "#e67e22", "#10325f", "#c8102e", "0.40"
+
+def panel_letter(ax, s):
+    """The panel letter above the axes' top-left corner, as the captions cite it."""
+    ax.text(-0.02, 1.03, s, transform=ax.transAxes, ha="right", va="bottom", fontsize=9, fontweight="bold")
+
+def paper_figure(name, draw, height):
+    """Draw one paper figure under PAPER_RC at the text width into FIGDIR/paper/<name>.pdf (and .png), restoring the rc."""
+    with plt.rc_context(PAPER_RC):
+        fig, ax = plt.subplots(1, 2, figsize=(TEXTWIDTH_IN, height), gridspec_kw={"width_ratios": [1.55, 1.0]} if name != "fig_dh" else None)
+        draw(fig, ax)
+        fig.tight_layout(w_pad=1.2)
+        fig.savefig(f"{FIGDIR}/paper/{name}.pdf", bbox_inches="tight", pad_inches=0.02)
+        fig.savefig(f"{FIGDIR}/paper/{name}.png", dpi=220, bbox_inches="tight", pad_inches=0.02)
+        plt.close(fig)
+    print(f"    wrote {FIGDIR}/paper/{name}.pdf")
 
 # ----------------------------------------------------------------------------- registry
 RESULTS = []
@@ -732,6 +760,19 @@ def block_B():
     ax[2].set_title(f"B2: residue $\\propto p^{{-1/4}}$ (slope {slope:.2f})"); ax[2].legend(fontsize=8)
     plt.tight_layout(); plt.savefig(f"{FIGDIR}/fig_deframing.pdf", bbox_inches="tight"); plt.savefig(f"{FIGDIR}/fig_deframing.png", dpi=110, bbox_inches="tight"); plt.close()
     print(f"    wrote {FIGDIR}/fig_deframing.pdf")
+    # the paper's Figure "the reading of ζ on the line": (a) the main sum of the window through the first ten zeros, (b) the residue
+    def _reading(fig, ax):
+        a = ax[0]; a.axhline(0, color="0.8", lw=0.6)
+        for g in HEIGHTS[:10]: a.axvline(g, color="0.85", lw=0.6, ls=":")
+        a.plot(ts, zt, color=INK, lw=1.2, label=r"$Z(t)$")
+        a.plot(ts, zh, color=RED, lw=1.1, ls="--", label=r"main sum to $\lfloor\sqrt{t/2\pi}\rfloor$")
+        a.plot(HEIGHTS[:10], [0] * 10, "o", color=BLUE, ms=3.6, zorder=5, label=r"zeros $\gamma_n$")
+        a.set_xlim(10, 55); a.set_ylim(-6.3, 7.6); a.set_yticks([-6, -4, -2, 0, 2, 4, 6]); a.set_xlabel(r"height $t$"); a.set_ylabel(r"$Z(t)$")
+        a.legend(loc="upper center", ncol=3, columnspacing=1.0, handlelength=1.6); panel_letter(a, "(a)")
+        b = ax[1]; b.loglog(T0, err, "o-", color=RED, lw=1.1, ms=3.6, label=r"median $|Z_M-Z|$")
+        b.loglog(T0, T0 ** -0.25, color=INK, ls="--", lw=1.0, label=r"$t^{-1/4}$")
+        b.set_xlabel(r"height $t$"); b.set_ylabel("residue"); b.legend(loc="lower left"); panel_letter(b, "(b)")
+    paper_figure("fig_reading", _reading, 2.45)
 
 # ======================================================================================================================
 # block C — c_primeside.py (until 24 September 2026), its former docstring:
@@ -877,14 +918,29 @@ def _C_primeside():
     for h in HEIGHTS[:6]: ax[0].axvline(h, color="#c0392b", ls="--", lw=0.8)
     ax[0].plot(top, [sig[np.argmin(np.abs(gs - t))] for t in top], "o", color="#e67e22")
     ax[0].set_xlabel(r"$\gamma$"); ax[0].set_ylabel(r"$|\Sigma_N(\gamma)|$"); ax[0].set_title(f"C1: scale-spectrum of the comb, N = 10⁶ (peaks vs heights)")
+    g2 = np.arange(13.0, 15.3, 0.002); sharp = {}
     for Ndepth, col in [(10 ** 4, "#9ec5e8"), (10 ** 5, "#5b9bd5"), (10 ** 6, "#10325f")]:
         c = comb if Ndepth == N else Comb(Ndepth)
-        g2 = np.arange(13.0, 15.3, 0.002)
-        ax[1].plot(g2, c.sigma(g2) / c.sigma(HEIGHTS[0]), color=col, lw=1.1, label=f"N = 10^{int(math.log10(Ndepth))}")
+        sharp[Ndepth] = (col, c.sigma(g2) / c.sigma(HEIGHTS[0]))
+        ax[1].plot(g2, sharp[Ndepth][1], color=col, lw=1.1, label=f"N = 10^{int(math.log10(Ndepth))}")
     ax[1].axvline(HEIGHTS[0], color="#c0392b", ls="--", lw=0.8); ax[1].set_xlabel(r"$\gamma$"); ax[1].legend(fontsize=8)
     ax[1].set_title(r"peak at $\gamma_1$ sharpens with depth, width $\sim 2\pi/\log N$")
     plt.tight_layout(); plt.savefig(f"{FIGDIR}/fig_prime_spectrum.pdf", bbox_inches="tight"); plt.savefig(f"{FIGDIR}/fig_prime_spectrum.png", dpi=110, bbox_inches="tight"); plt.close()
     print(f"    wrote {FIGDIR}/fig_prime_spectrum.pdf")
+    # the paper's Figure "the zero heights from the prime side": (a) the scale-spectrum with its peaks, (b) the peak at γ₁ sharpening
+    def _primespec(fig, ax):
+        a = ax[0]
+        for h in HEIGHTS[:6]: a.axvline(h, color=RED, ls="--", lw=0.7)
+        a.plot(gs, sig, color=NAVY, lw=0.9, label=r"$|\Sigma_N(\gamma)|$, $N=10^{6}$")
+        a.plot(top, [sig[np.argmin(np.abs(gs - t))] for t in top], "o", color=ORANGE, ms=4, label="peaks, from the primes alone")
+        a.plot([], [], color=RED, ls="--", lw=0.7, label=r"zero heights $\gamma_n$")
+        a.set_xlim(10, 40); a.set_ylim(0, 10.2); a.set_xlabel(r"scale frequency $\gamma$"); a.set_ylabel("amplitude"); a.legend(loc="upper right"); panel_letter(a, "(a)")
+        b = ax[1]
+        for Ndepth, (col, curve) in sharp.items():
+            b.plot(g2, curve, color=col, lw=1.1, label=rf"$N=10^{{{int(math.log10(Ndepth))}}}$")
+        b.axvline(HEIGHTS[0], color=RED, ls="--", lw=0.7); b.set_xlim(13, 15.3); b.set_ylim(0, 1.32); b.set_xlabel(r"$\gamma$"); b.set_ylabel(r"amplitude at $\gamma_1$, normalised")
+        b.legend(loc="upper left"); panel_letter(b, "(b)")
+    paper_figure("fig_primespec", _primespec, 2.45)
     Tg = np.arange(11.0, 40.0, 0.02)
     NB = theta(Tg) / math.pi + 1.0; NC = count_raw(comb, Tg); NH = count_corrected(comb, Tg)
     fig, ax = plt.subplots(1, 3, figsize=(13.5, 4.2))
@@ -1533,6 +1589,27 @@ def block_D():
     h1, l1 = ax[2].get_legend_handles_labels(); h2, l2 = ax2.get_legend_handles_labels(); ax[2].legend(h1 + h2, l1 + l2, fontsize=7.5, loc="upper center", bbox_to_anchor=(0.5, -0.17), ncol=2)
     plt.tight_layout(); plt.savefig(f"{FIGDIR}/fig_dh.pdf", bbox_inches="tight"); plt.savefig(f"{FIGDIR}/fig_dh.png", dpi=110, bbox_inches="tight"); plt.close()
     print(f"    wrote {FIGDIR}/fig_dh.pdf")
+    # the paper's Figure "the Euler-product discriminator": (a) the phantom on the line, (b) the deficit staircase with its inset;
+    # the depth panel above stays a diagnostic of the package
+    toff = float(mp.im(RHO_OFF))
+    def _dh(fig, ax):
+        a = ax[0]; a.axhline(0, color="0.75", lw=0.6)
+        a.plot(tw, Zcw, color=GRAY, lw=1.2, label=r"$Z_\chi(t)$, the constituent $L(s,\chi)$")
+        a.plot(tw, Zfw, color=CRIMSON, lw=1.5, label=r"$Z_f(t)$, Davenport–Heilbronn")
+        a.axvline(toff, color=CRIMSON, lw=0.8, ls=":")
+        a.text(toff + 0.06, 2.05, "off-line pair at $t=85.70$", fontsize=7.5, color=CRIMSON, ha="left", va="top")
+        a.set_xlim(84, 87); a.set_ylim(-7.2, 2.4); a.set_xlabel("$t$"); a.set_ylabel("rotated on-line value"); a.legend(loc="lower right"); panel_letter(a, "(a)")
+        b = ax[1]
+        b.step(xs_s, ys_s, where="post", color=CRIMSON, lw=1.4, label=r"$N_f(t)$, strip count")
+        b.step(xs_on, ys_on, where="post", color=GRAY, lw=1.0, ls="--", label=r"$N_{\mathrm{crit}}(t)$, on-line count")
+        b.axvline(toff, color=CRIMSON, lw=0.8, ls=":")
+        b.set_xlim(0, T_HI); b.set_ylim(0, 47.5); b.set_xlabel("$t$"); b.set_ylabel("cumulative zero count"); b.legend(loc="upper left"); panel_letter(b, "(b)")
+        axins = b.inset_axes([0.56, 0.08, 0.41, 0.35])
+        axins.step(xs_s, ys_s, where="post", color=CRIMSON, lw=1.4); axins.step(xs_on, ys_on, where="post", color=GRAY, lw=1.0, ls="--")
+        axins.fill_between([toff, T_HI], [43, 43], [45, 45], color=CRIMSON, alpha=0.12, step="post")
+        axins.set_xlim(84, 87); axins.set_ylim(41, 46.6); axins.set_xticks([84, 85, 86, 87]); axins.set_yticks([42, 44, 46]); axins.tick_params(labelsize=6.5, length=2)
+        axins.text(84.12, 45.15, r"$N_f-N_{\mathrm{crit}}=2$", fontsize=7, color=CRIMSON, ha="left", va="bottom")
+    paper_figure("fig_dh", _dh, 2.55)
 
     # ---------------- D6: the strip (Thm. strip, row D8) and the finite negative control (row D9); 13 October 2026
     # D6a the Davenport–Heilbronn zero off the line and its Klein-four orbit: f(ρ) = 0 at ρ = 0.808517182457 + 85.6993484854 i
