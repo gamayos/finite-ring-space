@@ -36,6 +36,9 @@ import FrcCore.Theme.Gravity
 import FrcCore.Theme.Lattice
 import FrcCore.Theme.Drift
 import FrcCore.Theme.Quantum
+import FrcCore.Theme.Observation
+import FrcCore.Theme.Interference
+import FrcCore.Theme.Composite
 import FrcCore.Theme.Unitary
 import FrcCore.Theme.Interactions
 import FrcCore.Theme.Horizon
@@ -71,4 +74,5 @@ import FrcCore.Rh
 import FrcCore.Entropy
 import FrcCore.Gravity
 import FrcCore.S13
+import FrcCore.Qm
 import FrcCore.Dirac

@@ -371,7 +371,7 @@ const PUBLICATIONS = [
   {
     "key": "20-rh",
     "n": 20,
-    "title": "Riemann Hypothesis over the Holographic Substrate",
+    "title": "Riemann Hypothesis over Finite Holographic Substrate",
     "status": {
       "kind": "preprint"
     },
@@ -383,20 +383,20 @@ const PUBLICATIONS = [
       {
         "href": "https://colab.research.google.com/github/gamayos/finite-ring-space/blob/main/src/20-rh/frc-20-rh.ipynb",
         "label": "python",
-        "count": 41,
-        "title": "41 predicates checked, all passing: the notebook frc-20-rh.ipynb on Google Colab, one cell per predicate"
+        "count": 21,
+        "title": "21 predicates checked, all passing: the notebook frc-20-rh.ipynb on Google Colab, one cell per predicate"
       },
       {
         "href": "https://live.lean-lang.org/#project=lean-v4.34.0&url=https://finitering.space/lean/web/core/Rh.lean",
         "label": "lean",
-        "count": 17,
-        "title": "17 predicates proved in the core (no axioms), 11 of them also on Mathlib: the core module Rh as one executable file (plain Lean, no Mathlib) in Lean Live"
+        "count": 19,
+        "title": "19 predicates proved in the core (no axioms), 12 of them also on Mathlib: the core module Rh as one executable file (plain Lean, no Mathlib) in Lean Live"
       },
       {
         "href": "https://live.lean-lang.org/#project=mathlib-stable&url=https://finitering.space/lean/web/ml/Rh.lean",
         "label": "lean-mathlib",
-        "count": 15,
-        "title": "15 predicates proved on Mathlib (classical), 11 of them also in the core: the module Rh as one file on Mathlib in Lean Live"
+        "count": 14,
+        "title": "14 predicates proved on Mathlib (classical), 12 of them also in the core: the module Rh as one file on Mathlib in Lean Live"
       }
     ]
   },
@@ -442,16 +442,25 @@ const PUBLICATIONS = [
     "doi": "https://doi.org/10.20944/preprints202606.1160.v2",
     "doiLabel": "pp202606.1160.v2",
     "ledger": "22-quantum/index.html",
+    "schema": true,
     "links": [
       {
-        "href": "22-quantum/index.html",
-        "label": "ledger",
-        "title": "the paper's predicate ledger"
+        "href": "https://colab.research.google.com/github/gamayos/finite-ring-space/blob/main/frc/ledgers/p22_quantum.ipynb",
+        "label": "python",
+        "count": 43,
+        "title": "43 predicates checked, all passing: the notebook p22_quantum.ipynb on Google Colab, one cell per predicate"
       },
       {
-        "href": "https://colab.research.google.com/github/gamayos/finite-ring-space/blob/main/src/22-quantum/22-quantum-main.ipynb",
-        "label": "notebook",
-        "title": "the validation notebook on Google Colab"
+        "href": "https://live.lean-lang.org/#project=lean-v4.34.0&url=https://finitering.space/lean/web/core/Qm.lean",
+        "label": "lean",
+        "count": 41,
+        "title": "41 predicates proved in the core (no axioms), 13 of them also on Mathlib: the core module Qm as one executable file (plain Lean, no Mathlib) in Lean Live"
+      },
+      {
+        "href": "https://live.lean-lang.org/#project=mathlib-stable&url=https://finitering.space/lean/web/ml/Qm.lean",
+        "label": "lean-mathlib",
+        "count": 15,
+        "title": "15 predicates proved on Mathlib (classical), 13 of them also in the core: the module Qm as one file on Mathlib in Lean Live"
       }
     ]
   },
@@ -744,4 +753,4 @@ const PUBLICATIONS = [
   }
 ];
 
-const GENERATED = "15 October 2026";
+const GENERATED = "16 October 2026";

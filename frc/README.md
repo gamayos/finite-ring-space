@@ -66,7 +66,7 @@ Generated from `frc/themes.py` (`python3 -m frc.themes`).
 | carrier | programme | 21 | yes | `carrier.py` | `Theme/Carrier.lean` | — | master block B: the Carrier and its constants; the window ladder; the octant |
 | subject | programme | 22 | yes | `subject.py`, `covering.py` | `Theme/Subject.lean`, `Theme/Pair.lean`, `Theme/Hopf.lean` | — | master block C: the Subject, the frame group, the registration; the pair (p, Ω): the resolvable window, the leak rate, the joint cycle, the tick arithmetic and the covering parity theorem; the Hopf section and the frame triple on every prime shell (38-s13) |
 | gravity | programme | 23 | yes | `gravity.py`, `drift.py`, `lattice.py` | `Theme/Shift.lean`, `Theme/Symbol.lean`, `Theme/Gravity.lean`, `Theme/Lattice.lean`, `Theme/Drift.lean` | `Theme/Gravity.lean` | master block E: gravity on the lattice; the count face; the register on every frame, the shift theorem on the cycle (21:C20), the difference operators on the cycle and the exact faces of frame drift (21-gravity) |
-| quantum | programme | 24 | yes | `quantum.py` | `Theme/Quantum.lean` | — | master block F: the quantum rows |
+| quantum | programme | 24 | yes | `quantum.py` | `Theme/Quantum.lean`, `Theme/Observation.lean`, `Theme/Interference.lean`, `Theme/Composite.lean` | `Theme/Quantum.lean` | master block F: the quantum rows; the observation formalism in the shadow, the interference hierarchy and the splitting depth, the composites, the correlations and the gravitational channel (22-quantum) |
 | interactions | programme | 25 | yes | `interactions.py` | `Theme/Unitary.lean`, `Theme/Interactions.lean` | — | master block G: electromagnetism, the weak and strong forces, matter, flavour |
 | horizon | programme | 26 | yes | `horizon.py` | `Theme/Horizon.lean` | `Theme/Horizon.lean` | master block Z: the horizon; the shell theorem; finite Gödel at the totality |
 | chart | chart | 30 | no | `chart.py`, `chart_quantum.py`, `chart_fields.py`, `chart_rh.py`, `chart_fourier.py`, `chart_gravity.py` | — | `Theme/Chart.lean`, `Theme/Strong.lean` | readings against the continuum: the cosmology section, the constants' charts; floats and ℝ allowed here only |
@@ -90,4 +90,8 @@ octant's readings (from 14-entropy) and the floor's (from 21-gravity), with the 
 and `FrcCore/Gravity.lean` hold the papers 6-fourier and 21-gravity. Since task LM18 the paper modules of today import
 themes only (and their own paper's modules), and gate G09 fails a cross-paper import. Since 9 October 2026 (29-finitism) the logic
 theme also holds `Theme/SecondOrder` (the full second-order theory of a finite structure) and `Theme/Formation`
-(formation universes, traces and bounded certificates), with the python `frc/formation.py`.
+(formation universes, traces and bounded certificates), with the python `frc/formation.py`. Since 15 October 2026
+(22-quantum's milestone) the quantum theme holds `Theme/Observation` (the single-system formalism in the shadow),
+`Theme/Interference` (the Sorkin hierarchy and the splitting depth) and `Theme/Composite` (the cluster's offset, the
+correlations, the channel and the worked carriers), with its first Mathlib file `FrcLedger/Theme/Quantum.lean` (the
+ledger's identities and the continuum readings), under its own executable budget of 7,500 lines.

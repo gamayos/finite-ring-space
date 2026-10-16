@@ -66,7 +66,7 @@ def support (c₀ c₁ c₂ c₃ : Int) : Nat :=
   (if c₀ = 0 then 0 else 1) + (if c₁ = 0 then 0 else 1) + (if c₂ = 0 then 0 else 1) + (if c₃ = 0 then 0 else 1)
 
 set_option maxRecDepth 4000 in
-/-- 00:C11 (i) — the pure windings fix the tallies on the box `−1 ≤ c_r ≤ 3` (the naturals `a, b, c, d < 5`, cast to
+/-- 00:C11 (i), 22:C12 — the pure windings fix the tallies on the box `−1 ≤ c_r ≤ 3` (the naturals `a, b, c, d < 5`, cast to
 `ℤ` and shifted by one), which contains negative coefficients: `F(K_c, ψ_k) = 16 c_k` for every kernel of the box and
 every channel `k`. -/
 theorem winding_fixing : ∀ a : Nat, a < 5 → ∀ b : Nat, b < 5 → ∀ c : Nat, c < 5 → ∀ d : Nat, d < 5 →
@@ -75,7 +75,7 @@ theorem winding_fixing : ∀ a : Nat, a < 5 → ∀ b : Nat, b < 5 → ∀ c : N
       ⟨16 * coeff (Int.ofNat a - 1) (Int.ofNat b - 1) (Int.ofNat c - 1) (Int.ofNat d - 1) k, 0⟩ := by decide +kernel
 
 set_option maxRecDepth 4000 in
-/-- 00:C11 (i′) — the tally criterion on the box: the pair tally of `K_c` on `ψ_k` is a tally (a nonnegative integer)
+/-- 00:C11 (i′), 22:C12, 22:X6 — the tally criterion on the box: the pair tally of `K_c` on `ψ_k` is a tally (a nonnegative integer)
 iff `0 ≤ c_k` — the cone's two halves: every tally combination is tally-valued on the windings, and a kernel with a
 negative coefficient is excluded by its own winding. -/
 theorem tally_criterion : ∀ a : Nat, a < 5 → ∀ b : Nat, b < 5 → ∀ c : Nat, c < 5 → ∀ d : Nat, d < 5 →
@@ -83,21 +83,21 @@ theorem tally_criterion : ∀ a : Nat, a < 5 → ∀ b : Nat, b < 5 → ∀ c : 
     (tally (F (kernel (Int.ofNat a - 1) (Int.ofNat b - 1) (Int.ofNat c - 1) (Int.ofNat d - 1)) (psi k)) ↔
       (0 : Int) ≤ coeff (Int.ofNat a - 1) (Int.ofNat b - 1) (Int.ofNat c - 1) (Int.ofNat d - 1) k) := by decide +kernel
 
-/-- 00:C11 (ii) — every kernel of the cube is two-way, `K(−d) = conj K(d)`, and tally-valued on the pure windings. -/
+/-- 00:C11 (ii), 22:C12 — every kernel of the cube is two-way, `K(−d) = conj K(d)`, and tally-valued on the pure windings. -/
 theorem two_way : ∀ a : Nat, a < 4 → ∀ b : Nat, b < 4 → ∀ c : Nat, c < 4 → ∀ d : Nat, d < 4 →
     (∀ e, e < 4 → kernel (Int.ofNat a) (Int.ofNat b) (Int.ofNat c) (Int.ofNat d) ((4 - e) % 4) = conj (kernel (Int.ofNat a) (Int.ofNat b) (Int.ofNat c) (Int.ofNat d) e)) ∧
     (∀ k, k < 4 → tally (F (kernel (Int.ofNat a) (Int.ofNat b) (Int.ofNat c) (Int.ofNat d)) (psi k))) := by decide
 
-/-- 00:C11 (iii) — Fourier inversion recovers every coefficient exactly: `Σ_d K(d) i^{−rd} = 4 c_r`. -/
+/-- 00:C11 (iii), 22:C3, 22:C12 — Fourier inversion recovers every coefficient exactly: `Σ_d K(d) i^{−rd} = 4 c_r`. -/
 theorem fourier_inversion : ∀ a : Nat, a < 4 → ∀ b : Nat, b < 4 → ∀ c : Nat, c < 4 → ∀ d : Nat, d < 4 →
     ∀ r, r < 4 → inversion (kernel (Int.ofNat a) (Int.ofNat b) (Int.ofNat c) (Int.ofNat d)) r = ⟨4 * coeff (Int.ofNat a) (Int.ofNat b) (Int.ofNat c) (Int.ofNat d) r, 0⟩ := by decide
 
-/-- 00:C11 (iv) — channel-selectivity picks the ray: a kernel of the cube responds on exactly one channel iff its
+/-- 00:C11 (iv), 22:C12, 22:X6 — channel-selectivity picks the ray: a kernel of the cube responds on exactly one channel iff its
 coefficient vector is a scaled unit vector. -/
 theorem channel_selectivity : ∀ a : Nat, a < 4 → ∀ b : Nat, b < 4 → ∀ c : Nat, c < 4 → ∀ d : Nat, d < 4 →
     (responses (kernel (Int.ofNat a) (Int.ofNat b) (Int.ofNat c) (Int.ofNat d)) = 1 ↔ support (Int.ofNat a) (Int.ofNat b) (Int.ofNat c) (Int.ofNat d) = 1) := by decide
 
-/-- 00:C11 (v) — the core DFT matrix `(i^{ru})` is invertible: its determinant is `−16i`. -/
+/-- 00:C11 (v), 22:C3, 22:C12 — the core DFT matrix `(i^{ru})` is invertible: its determinant is `−16i`. -/
 theorem dft_det :
     let M := fun r u => ipow (r * u)
     let d2 := fun a b c d : GI => a * d + smul (-1) (b * c)
@@ -118,7 +118,7 @@ def psiA (u : Nat) : GI := if u = 0 then ⟨1, 1⟩ else ⟨0, 0⟩
 /-- The Gaussian-lattice state `e₀ + i e₁`. -/
 def psiB (u : Nat) : GI := if u = 0 then ⟨1, 0⟩ else if u = 1 then ⟨0, 1⟩ else ⟨0, 0⟩
 
-/-- 00:C11 (vi) — the witnesses of the cone's boundary (22-quantum's U3, U5, U6a): the negative coefficient
+/-- 00:C11 (vi), 22:C12 — the witnesses of the cone's boundary (22-quantum's U3, U5, U6a): the negative coefficient
 `c = (1, −1, 1, 0)` is excluded by its own winding, `F(K_c, ψ₁) = −16`; the two-way kernel `5η₁ − 2η₂ + η₃` outside the
 box is excluded on `ψ₂` and Fourier inversion recovers `4c = (0, 20, −8, 4)`; the fibre norm `[d = 0]` is two-way,
 responds `(4, 4, 4, 4)` with `4c_r = 1` on every channel (no tally combination) and fails channel-selectivity; the
@@ -132,7 +132,7 @@ theorem cone_boundary :
     responses fibreNorm = 4 ∧ (∀ r, r < 4 → inversion fibreNorm r = ⟨1, 0⟩) ∧
     F (kernel 0 1 0 0) (psi 1) = ⟨16, 0⟩ ∧ F (kernel 0 1 0 0) (psi 0) = ⟨0, 0⟩ ∧ responses (kernel 0 1 0 0) = 1 := by decide
 
-/-- 00:C11 (vii) — the minimal degree is forced (22-quantum Lemma degree): a linear functional constant on the orbit
+/-- 00:C11 (vii), 22:C12 — the minimal degree is forced (22-quantum Lemma degree): a linear functional constant on the orbit
 vanishes on every nontrivial winding (the complete character sums), and on the trivial winding `F(i ψ₀) = i F(ψ₀)`
 leaves the tally cone for every nonzero multiplier `c ≤ 4`; and the unconjugated bilinear form leaves the tally line
 on Gaussian-lattice states where the conjugated form of the same kernel stays on it: `B(fn, (1 + i)e₀) = 2i` against

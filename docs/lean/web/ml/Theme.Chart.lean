@@ -91,7 +91,118 @@ theorem ln_omega_ledger (Λ ℓP r S Ω : ℝ) (hΛ : Λ = 1.088e-52) (hℓ : �
   rw [hlog]
   exact ⟨by linarith, by linarith⟩
 
+set_option exponentiation.threshold 512 in
+/-- 22:C14, P5 [chart] — **the granularity ceiling at the anchor**: with the scale import's `Ω = 4S + 1`
+(`S = π (r_H/ℓ_P)²`, the same hypotheses as `scale_import`), `2⁴⁰⁸ < Ω` and `Ω/4 < 2⁴⁰⁸`, so the largest depth `k`
+with `T(k) = 2^{k + [k odd]} < Ω` is `k* = 408` (the odd `409` would need `4 · 2⁴⁰⁸ < Ω`); and `2²⁰⁴ < √Ω`,
+`√Ω/4 < 2²⁰⁴`, so at the coherence horizon `k* = 204`. Every quantity compared is below `Ω`. -/
+theorem ceiling_bracket (Λ ℓP r S Ω : ℝ) (hΛ : Λ = 1.088e-52) (hℓ : ℓP = 1.616255e-35)
+    (hr2 : r ^ 2 = 3 / Λ) (hS : S = π * (r / ℓP) ^ 2) (hΩ : Ω = 4 * S + 1) :
+    (2 : ℝ) ^ 408 < Ω ∧ Ω / 4 < (2 : ℝ) ^ 408 ∧ (2 : ℝ) ^ 204 < √Ω ∧ √Ω / 4 < (2 : ℝ) ^ 204 := by
+  have hpi1 := Real.pi_gt_d6
+  have hpi2 := Real.pi_lt_d6
+  have hK : S = π * (3 / (Λ * ℓP ^ 2)) := by
+    rw [hS, div_pow, hr2]; subst hΛ hℓ; field_simp
+  subst hΛ hℓ
+  have hKpos : (0 : ℝ) < 3 / (1.088e-52 * (1.616255e-35) ^ 2) := by positivity
+  have hSlo : (3.3160599e122 : ℝ) < S := by
+    rw [hK]; have := mul_lt_mul_of_pos_right hpi1 hKpos; norm_num at this ⊢; linarith
+  have hShi : S < (3.3160611e122 : ℝ) := by
+    rw [hK]; have := mul_lt_mul_of_pos_right hpi2 hKpos; norm_num at this ⊢; linarith
+  subst hΩ
+  have h1 : (2 : ℝ) ^ 408 < 4 * S + 1 := by norm_num; linarith
+  have h2 : (4 * S + 1) / 4 < (2 : ℝ) ^ 408 := by norm_num; linarith
+  have hΩpos : (0 : ℝ) < 4 * S + 1 := by linarith
+  refine ⟨h1, h2, ?_, ?_⟩
+  · rw [Real.lt_sqrt (by positivity)]
+    calc ((2 : ℝ) ^ 204) ^ 2 = 2 ^ 408 := by norm_num
+      _ < 4 * S + 1 := h1
+  · have hsq : (√(4 * S + 1) / 4) ^ 2 < ((2 : ℝ) ^ 204) ^ 2 := by
+      rw [div_pow, Real.sq_sqrt (le_of_lt hΩpos)]
+      calc (4 * S + 1) / 4 ^ 2 = (4 * S + 1) / 4 / 4 := by ring
+        _ < (2 : ℝ) ^ 408 / 4 := by
+            exact div_lt_div_of_pos_right h2 (by norm_num)
+        _ < (2 : ℝ) ^ 408 := by
+            have : (0 : ℝ) < 2 ^ 408 := by positivity
+            linarith
+        _ = ((2 : ℝ) ^ 204) ^ 2 := by norm_num
+    exact lt_of_pow_lt_pow_left₀ 2 (by positivity) hsq
+
+/-- 22:A5, Z2 [chart] — **the Ω ledger's floors**: every null channel's floor lies below the anchor — the Riemann
+height `(3 × 10¹²)⁴ = 8.1 × 10⁴⁹` (the binding floor, through the decidability horizon `Ω^{1/4}`), the Sorkin and
+Born tallies `10²²` (one floor, cited twice by the paper's ledger file), the granularity `2⁶⁰` — with the same hypotheses
+as `scale_import`. -/
+theorem omega_floors (Λ ℓP r S Ω : ℝ) (hΛ : Λ = 1.088e-52) (hℓ : ℓP = 1.616255e-35)
+    (hr2 : r ^ 2 = 3 / Λ) (hS : S = π * (r / ℓP) ^ 2) (hΩ : Ω = 4 * S + 1) :
+    (3e12 : ℝ) ^ 4 = 8.1e49 ∧ (3e12 : ℝ) ^ 4 < Ω ∧ (1e22 : ℝ) < Ω ∧ (2 : ℝ) ^ 60 < Ω := by
+  obtain ⟨-, -, hlo, -⟩ := scale_import Λ ℓP r S Ω hΛ hℓ hr2 hS hΩ
+  refine ⟨by norm_num, ?_, ?_, ?_⟩ <;> norm_num <;> linarith
+
 end scale
+
+/-! ## 22-quantum: the Tsirelson value, the singlet law and the channel against the continuum (22:C17, X7, P3, C25;
+C19, P1; 15 October 2026) -/
+section quantum
+
+/-- The primitive eighth root `ζ₈ = e^{iπ/4}`. -/
+noncomputable def zeta8 : ℂ := Complex.exp ((π / 4 : ℝ) * Complex.I)
+
+theorem zeta8_pow_four : zeta8 ^ 4 = -1 := by
+  unfold zeta8
+  rw [← Complex.exp_nat_mul]
+  have : (4 : ℕ) * ((π / 4 : ℝ) * Complex.I) = (π : ℂ) * Complex.I := by push_cast; ring
+  rw [this, Complex.exp_pi_mul_I]
+
+theorem zeta8_inv : zeta8⁻¹ = Complex.exp (-((π / 4 : ℝ) * Complex.I)) := by
+  unfold zeta8; rw [← Complex.exp_neg]
+
+/-- 22:C17, X7, P3, C25 — **the Tsirelson value is `2√2`**: `ζ₈ + ζ₈⁻¹ = 2 cos(π/4) = √2`, so `S = 2(ζ₈ + ζ₈⁻¹) = 2√2`
+as a real number and `S² = 8`. -/
+theorem tsirelson_real :
+    zeta8 + zeta8⁻¹ = (Real.sqrt 2 : ℂ) ∧ 2 * (zeta8 + zeta8⁻¹) = (2 * Real.sqrt 2 : ℝ) ∧
+    (2 * (zeta8 + zeta8⁻¹)) ^ 2 = 8 := by
+  have hcos : zeta8 + zeta8⁻¹ = 2 * Complex.cos ((π / 4 : ℝ) : ℂ) := by
+    rw [zeta8_inv, Complex.two_cos, neg_mul]; rfl
+  have hval : zeta8 + zeta8⁻¹ = (Real.sqrt 2 : ℂ) := by
+    rw [hcos, ← Complex.ofReal_cos, Real.cos_pi_div_four]
+    push_cast; ring
+  refine ⟨hval, ?_, ?_⟩
+  · rw [hval]; push_cast; ring
+  · rw [hval]
+    have : ((Real.sqrt 2 : ℝ) : ℂ) ^ 2 = 2 := by
+      rw [← Complex.ofReal_pow, Real.sq_sqrt (by norm_num)]; push_cast; ring
+    calc (2 * (Real.sqrt 2 : ℂ)) ^ 2 = 4 * ((Real.sqrt 2 : ℝ) : ℂ) ^ 2 := by ring
+      _ = 8 := by rw [this]; norm_num
+
+/-- 22:C17 — the singlet law: the correlator at `Δ` setting steps is the real part of `ζ₈₀^Δ = e^{2πiΔ/80}`,
+`E(Δ) = cos(πΔ/40)`. -/
+theorem singlet_law (Δ : ℕ) :
+    (Complex.exp ((2 * π * Δ / 80 : ℝ) * Complex.I)).re = Real.cos (π * Δ / 40) := by
+  rw [Complex.exp_ofReal_mul_I_re]
+  congr 1
+  ring
+
+/-- 22:C19, P1 — the channel's chart: with the branch phase `φ`, the visibility `V = (x + x⁻¹)/2 = cos(φ/2)` and the
+concurrence `C = (x − x⁻¹)/(2i) = sin(φ/2)` for `x = e^{iφ/2}`, so `V² + C² = 1` and `C² = sin²(φ/2)`; at `φ = 0`
+the concurrence vanishes. -/
+theorem channel_chart (φ : ℝ) :
+    (Complex.exp ((φ / 2 : ℝ) * Complex.I) + Complex.exp (-((φ / 2 : ℝ) * Complex.I))) / 2 =
+      (Real.cos (φ / 2) : ℂ) ∧
+    (Complex.exp ((φ / 2 : ℝ) * Complex.I) - Complex.exp (-((φ / 2 : ℝ) * Complex.I))) / (2 * Complex.I) =
+      (Real.sin (φ / 2) : ℂ) ∧
+    Real.cos (φ / 2) ^ 2 + Real.sin (φ / 2) ^ 2 = 1 ∧ Real.sin (0 / 2) = 0 := by
+  refine ⟨?_, ?_, Real.cos_sq_add_sin_sq _, by simp⟩
+  · rw [Complex.ofReal_cos, Complex.cos, neg_mul]
+  · rw [Complex.ofReal_sin, Complex.sin, neg_mul]
+    have hI : Complex.I ≠ 0 := Complex.I_ne_zero
+    field_simp
+    linear_combination (Complex.exp ((φ / 2 : ℝ) * Complex.I) - Complex.exp (-((φ / 2 : ℝ) * Complex.I))) * Complex.I_sq
+
+/-- 22:C19 — the channel entangles: off the trivial phase, `0 < φ < 2π`, the concurrence `C = sin(φ/2)` is not zero. -/
+theorem channel_entangles (φ : ℝ) (h0 : 0 < φ) (h1 : φ < 2 * π) : Real.sin (φ / 2) ≠ 0 :=
+  ne_of_gt (Real.sin_pos_of_pos_of_lt_pi (by linarith) (by linarith))
+
+end quantum
 
 /-! ## The octant record depth and its outputs (00:L3; 14:C5, C7, P3) -/
 section octant

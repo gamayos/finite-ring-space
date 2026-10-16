@@ -367,6 +367,62 @@
    "status": "shared theorem",
    "lean": "FRC.Subject.channel",
    "note": "12 October 2026 (38-s13): the mass–energy channel on every prime shell is both keys' clause; 38:A3's key adds the instance's gcds and N(i) on 𝔽₁₃ (FRC.Pair.channel_instance), C20's the Carrier instance 78⁵⁸ = 89 (FRC.Subject.channel_233)"
+  },
+  {
+   "master": "C10",
+   "paper": "22:C10",
+   "status": "shared theorem",
+   "lean": "FRC.Extension.two_way_tally, FRC.Extension.core_weights, FRC.Extension.root_two_two_way, FRC.Extension.framed_readout",
+   "note": "15 October 2026 (22-quantum, T07 of its blueprint): the two strata on the Q₄ sector are four of C10's eight theorems, which the paper's key conjoins; the paper's key adds the window lift, the pure winding weight and the joint recurrence (the counting Born rule), the master's the engineered-core reductions (22:C11)"
+  },
+  {
+   "master": "C10",
+   "paper": "22:C11",
+   "status": "shared theorem",
+   "lean": "FRC.Extension.conjugate_pair_tally, FRC.Extension.trace_recurrence, FRC.Extension.dial_shift, FRC.Extension.dial_tally, FRC.Extension.framed_readout",
+   "note": "15 October 2026 (22-quantum, T07 of its blueprint): the engineered-core readout's five theorems are all of the paper's key and five of the master's eight (master=>paper in substance; the record keeps the class overlap for the named reductions)"
+  },
+  {
+   "master": "C11",
+   "paper": "22:C12",
+   "status": "shared theorem",
+   "lean": "FRC.Extension.Tally.winding_fixing, FRC.Extension.Tally.tally_criterion, FRC.Extension.Tally.two_way, FRC.Extension.Tally.fourier_inversion, FRC.Extension.Tally.channel_selectivity, FRC.Extension.Tally.dft_det, FRC.Extension.Tally.cone_boundary, FRC.Extension.Tally.linear_exclusion",
+   "note": "15 October 2026 (22-quantum, T07 of its blueprint): one key (p22028): the master's C11 and the paper's C12 conjoin the same eight Tally theorems; the paper's cell names them, not the key"
+  },
+  {
+   "master": "F2",
+   "paper": "22:C15",
+   "status": "shared theorem",
+   "lean": "FRC.Quantum.pair_offset",
+   "note": "15 October 2026 (22-quantum, T07 of its blueprint): the conserved pair offset on the gcd cycle is both keys' clause; F2 adds the joint recurrence and dephasing, 22:C15 the cluster's offset label (FRC.Composite.cluster_offset), the locked norm and the spread"
+  },
+  {
+   "master": "F2",
+   "paper": "22:C26",
+   "status": "shared theorem",
+   "lean": "FRC.Quantum.joint_recurrence, FRC.Quantum.joint_least, FRC.Quantum.pair_offset, FRC.Quantum.dephasing",
+   "note": "15 October 2026 (22-quantum, T07 of its blueprint): the paper's key conjoins F2's four theorems and adds the winding period (FRC.Composite.winding_period): paper=>master"
+  },
+  {
+   "master": "C8",
+   "paper": "22:C17",
+   "status": "shared theorem",
+   "lean": "FRC.Shell.Prime.tsirelson",
+   "note": "15 October 2026 (22-quantum, T07 of its blueprint): the root identity √2 = ζ₈ + ζ₈⁻¹ is both keys' clause; C8 adds the parity of the square class, 22:C17 the singlet law, S² = 8, no-signalling and the sweep"
+  },
+  {
+   "master": "C8",
+   "paper": "22:X7",
+   "status": "shared theorem",
+   "lean": "FRC.Shell.Prime.tsirelson",
+   "note": "15 October 2026 (22-quantum, T07 of its blueprint): the root identity is both keys' clause; 22:X7 adds S² = 8 (FRC.Composite.singlet_square) and the real value 2√2 on Mathlib"
+  },
+  {
+   "master": "C20",
+   "paper": "22:P4",
+   "status": "shared theorem",
+   "lean": "FRC.Subject.channel",
+   "note": "15 October 2026 (22-quantum, T07 of its blueprint): the channel is both keys' clause; 22:P4 adds the horizon generator and the torus inversion (no dispersion on the double cover), C20 the Carrier instance 78⁵⁸ = 89"
   }
  ]
 }

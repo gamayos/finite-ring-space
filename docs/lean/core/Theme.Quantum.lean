@@ -115,7 +115,7 @@ theorem prodN_joint (n : Nat → Nat) (hn : ∀ j, 0 < n j) : ∀ m, Joint n m (
       rw [e]
       exact mod_zero_of_eq_mul (hn m) (Nat.mul_comm _ _)
 
-/-- 00:F2, 22:C26 — the joint recurrence of an unequal-cycle composite, found below a common multiple `L > 0` of the
+/-- 00:F2, 22:C26, 22:C10, 22:C20 — the joint recurrence of an unequal-cycle composite, found below a common multiple `L > 0` of the
 periods (on a shell, a joint return below `Ω`): the chronons at which all `m` parts return are exactly the multiples of
 one period `T`, `0 < T ≤ L`, which divides `L`. The search never passes `L` (Q20). -/
 theorem joint_recurrence (n : Nat → Nat) (hn : ∀ j, 0 < n j) (m L : Nat) (hL : 0 < L) (hLj : Joint n m L) :
@@ -146,7 +146,7 @@ theorem joint_recurrence (n : Nat → Nat) (hn : ∀ j, 0 < n j) (m L : Nat) (hL
         | ⟨q, hq⟩ => rw [hq]; exact mul_mod_zero (hn j) (hT'.2 j hj) q
     exact ⟨T, Nat.le_of_lt_succ hs.1, hT'.1, hT'.2, hiff, (hiff _).1 hLj⟩
 
-/-- The joint period is the least common multiple: no positive joint return comes earlier. -/
+/-- 22:C26 — the joint period is the least common multiple: no positive joint return comes earlier. -/
 theorem joint_least {n : Nat → Nat} {m T : Nat} (hiff : ∀ t, Joint n m t ↔ t % T = 0) (hT : 0 < T) :
     ∀ t, 0 < t → Joint n m t → T ≤ t := fun t ht hj =>
   match eq_mul_of_mod_zero hT ((hiff t).1 hj) with
@@ -175,7 +175,7 @@ theorem mulIdx_spec (g w j₀ : Nat) (h : g * j₀ = w) : ∀ N, j₀ < N → g 
       have ih := mulIdx_spec g w j₀ h N hlt
       exact ⟨ih.1, Nat.lt_succ_of_lt ih.2⟩
 
-/-- 00:F2, 22:C26 — two parts of periods `a`, `b` with joint period `T` (a common multiple, and no positive common
+/-- 00:F2, 22:C26, 22:C15, 22:C18, 22:P3 — two parts of periods `a`, `b` with joint period `T` (a common multiple, and no positive common
 multiple below it): the number `g` with `g T = a b` divides both periods, and every common divisor divides it (`g` is
 the gcd); the joint drive carries `(x, y)` to `(x', y')` within one joint period exactly when the offsets agree modulo
 `g` — the conserved offset on the gcd cycle, the orbits the quotient `A/⟨v⟩ ≅ ℤ/g`. -/
@@ -324,7 +324,7 @@ theorem prodRange_one : ∀ m, prodRange (fun _ => (1 : Shell q)) m = 1
   | 0 => rfl
   | m + 1 => by show prodRange (fun _ => (1 : Shell q)) m * 1 = 1; rw [prodRange_one m, mul_one]
 
-/-- 00:F2, 22:C26 — dephasing is exact: on a prime shell `q`, a character `χ(x) = Π_j ζ_j^{x_j}` of the composite
+/-- 00:F2, 22:C26, 22:C7 — dephasing is exact: on a prime shell `q`, a character `χ(x) = Π_j ζ_j^{x_j}` of the composite
 (`ζ_j^{n_j} = 1`) that the drive moves (`χ(v) = Π_j ζ_j ≠ 1`) sums to zero along the drive, `Σ_{t<M} χ(t v) = 0`, over
 every joint recurrence `M`, the product of the periods among them. -/
 theorem dephasing (hq : FRC.Nat.isPrime q) (n : Nat → Nat) (hn : ∀ j, 0 < n j) (m : Nat) (ζ : Nat → Shell q)

@@ -1,19 +1,75 @@
-"""frc.chart_quantum — the quantum readings in floating point (chart tier; ledger migration, task LM35, 7 October 2026).
+"""frc.chart_quantum — the quantum readings against the continuum (chart tier; ledger migration, task LM35, 7 October
+2026; the exact sweep of 15 October 2026).
 
-The chart theme holds the readings against the continuum, the only place where floats appear (frc/themes.py, rank 30).
-This file holds the floating-point computations of 22-quantum's validation package (src/22-quantum): the CHSH sweep of
-the composite gate, the Gaussian envelope of the dilation dephasing, the sampled √m illustration, and the hardware
-compilations of the forced bases. Each returns numbers that the ledger file compares with exact bounds. The package
-used numpy. This file uses `math`, `cmath` and `random` only, so the framework stays free of third-party imports.
+The chart theme holds the readings against the continuum (frc/themes.py, rank 30). This file holds the continuum
+readings of 22-quantum: the CHSH sweep of the composite gate, decided exactly by certified rational brackets on
+cos(πk/40) (the alternating series on the chart's π bracket) against the bracket of 2√2, and the Gaussian envelope of
+the dilation dephasing, a floating-point reading the ledger file compares with a stated tolerance. The package's
+sampled √m illustration and its floating-point hardware compilations (its rows retired with block V on 15 October
+2026) are not carried. This file uses `math` and `cmath` only.
 
-    chsh_sweep(n)                   max, min and an argmax of E(Δ₁) + E(Δ₂) + E(Δ₃) − E(Δ₂ + Δ₃ − Δ₁), E(Δ) = cos(2πΔ/n)
+    cos_brackets(n)                 [(lo, hi)] with lo ≤ cos(2πk/n) ≤ hi for k < n, exact rationals, width below 10⁻¹⁸
+    chsh_bound(n)                   the n³ setting triples sorted by their brackets: below 2√2 for certain, or at it
+    chsh_sweep(n)                   max, min and an argmax of E(Δ₁) + E(Δ₂) + E(Δ₃) − E(Δ₂ + Δ₃ − Δ₁) in floating point
     envelope(M, n, taus)            |Σ_E p_E e^{iEθ}| against exp(−σ²θ²/2) for the binomial p_E on 0..M, θ = 2πτ/n
-    sampled_scaling(m, k, nph, s)   the mean of |Σ_i ζ^{θ_i}|²/m over k draws of m uniform phases on C_nph, seed s
-    emulation()                     the largest deviations of the 12- and 16-level compilations from their exact laws
 """
 import cmath
 import math
-import random
+from fractions import Fraction as Q
+
+from frc import chart as CH
+
+
+def _cos_series_bracket(x, terms=24):
+    """cos x for a rational 0 ≤ x ≤ 4 by the alternating Taylor series: (lo, hi) between two consecutive partial sums
+    (the terms decrease from the second on, so the sum lies between any two consecutive partial sums beyond it)."""
+    sums, term = [], Q(1)
+    s = Q(0)
+    for j in range(terms):
+        s += term
+        sums.append(s)
+        term = -term * x * x / ((2 * j + 1) * (2 * j + 2))
+    a, b = sums[-2], sums[-1]
+    return (min(a, b), max(a, b))
+
+
+def cos_brackets(n=80):
+    """Certified brackets on cos(2πk/n), k < n: cos is decreasing on [0, π], and cos(2π − y) = cos y folds the second
+    half; π is the chart's Machin bracket, so each value is bracketed by exact rationals."""
+    pi_lo, pi_hi = CH.pi_bracket()
+    out = []
+    for k in range(n):
+        kk = k if 2 * k <= n else n - k                                      # fold: cos(2πk/n) = cos(2π(n−k)/n)
+        x_lo, x_hi = 2 * kk * pi_lo / n, 2 * kk * pi_hi / n                  # 0 ≤ x ≤ π, cos decreasing
+        lo = _cos_series_bracket(x_hi)[0]
+        hi = _cos_series_bracket(x_lo)[1]
+        out.append((lo, hi))
+    return out
+
+
+def chsh_bound(n=80, digits=24):
+    """The n³ triples (Δ₁, Δ₂, Δ₃), Δ₄ = Δ₂ + Δ₃ − Δ₁: with S = E(Δ₁) + E(Δ₂) + E(Δ₃) − E(Δ₄) bracketed by the cosine
+    brackets, widened to `digits` decimals in fixed-point integers, (below, at, over) — the number of triples whose
+    bracket lies below the bracket of 2√2 for certain, those whose bracket meets it (the saturating set, decided by the
+    ring identity), and those above it (none)."""
+    N = 10 ** digits
+    br = [(math.floor(lo * N), math.ceil(hi * N)) for lo, hi in cos_brackets(n)]
+    s8_lo, s8_hi = CH.sqrt_bracket(8, digits)
+    s8_lo, s8_hi = math.floor(s8_lo * N), math.ceil(s8_hi * N)
+    below, at, over = 0, [], []
+    for d1 in range(n):
+        l1, h1 = br[d1]
+        for d2 in range(n):
+            l12, h12 = l1 + br[d2][0], h1 + br[d2][1]
+            base = d2 - d1
+            for d3 in range(n):
+                d4 = (base + d3) % n
+                lo = l12 + br[d3][0] - br[d4][1]
+                hi = h12 + br[d3][1] - br[d4][0]
+                if hi < s8_lo: below += 1
+                elif lo > s8_hi: over.append((d1, d2, d3, d4))
+                else: at.append((d1, d2, d3, d4))
+    return below, at, over
 
 
 def chsh_sweep(n=80):
@@ -38,79 +94,3 @@ def envelope(M, n, taus):
         chi = abs(sum(math.comb(M, E) / 2 ** M * cmath.exp(1j * E * th) for E in range(M + 1)))
         out.append((tau, chi, math.exp(-(M / 4) * th * th / 2)))
     return out
-
-
-def sampled_scaling(m=10000, draws=200, nph=8, seed=5):
-    """The mean over `draws` samples of |Σ_i ζ^{θ_i}|²/m, θ_i uniform on 0..nph−1 (nph a power of two below 256)."""
-    rng = random.Random(seed)
-    z = [cmath.exp(2j * math.pi * k / nph) for k in range(nph)]
-    table = bytes(b % nph for b in range(256))
-    vals = []
-    for _ in range(draws):
-        th = rng.getrandbits(8 * m).to_bytes(m, "little").translate(table)
-        s = sum(th.count(k) * z[k] for k in range(nph))
-        vals.append(abs(s) ** 2 / m)
-    return sum(vals) / len(vals)
-
-
-# ---- the hardware compilations (22-quantum, Appendix B, the package's emulation.py) ---------------------------------
-def _mm(A, B): return [[sum(A[i][k] * B[k][j] for k in range(len(B))) for j in range(len(B[0]))] for i in range(len(A))]
-def _dag(A): return [[A[j][i].conjugate() for j in range(len(A))] for i in range(len(A[0]))]
-def _kron(A, B): return [[A[i // len(B)][j // len(B[0])] * B[i % len(B)][j % len(B[0])] for j in range(len(A[0]) * len(B[0]))]
-                         for i in range(len(A) * len(B))]
-def _eye(n): return [[complex(i == j) for j in range(n)] for i in range(n)]
-def _dev(A, B): return max(abs(a - b) for ra, rb in zip(A, B) for a, b in zip(ra, rb))
-def _apply(U, v): return [sum(U[i][k] * v[k] for k in range(len(v))) for i in range(len(U))]
-def _normed(v):
-    r = math.sqrt(sum(abs(x) ** 2 for x in v))
-    return [x / r for x in v]
-
-
-def emulation():
-    """The largest deviation of each law from its exact value: {"M1u", "M1b", "M2", "M3", "M4", "M5u", "M5"}."""
-    dev = {}
-    F4 = [[1j ** (r * l) / 2 for l in range(4)] for r in range(4)]
-    U = _kron(_eye(3), F4)                                        # the 12-level forced basis, |α, ℓ⟩
-    Ud = _dag(U)
-    dev["M1u"] = _dev(_mm(U, Ud), _eye(12))
-    d = 0.0
-    for r in range(4):
-        for al in range(3):
-            v = [0j] * 12
-            for l in range(4): v[al * 4 + l] = 1j ** (r * l) / 2
-            e = [complex(i == al * 4 + r) for i in range(12)]
-            d = max(d, max(abs(a - b) for a, b in zip(_apply(Ud, v), e)))
-    dev["M1b"] = d
-    z12 = cmath.exp(2j * math.pi / 12)
-    d = 0.0
-    for s in range(12):                                           # winding states: the channel s mod 4, uniform outcomes
-        psi = _normed([z12 ** (s * (al + 3 * l)) for al in range(3) for l in range(4)])
-        pr = [abs(x) ** 2 for x in _apply(Ud, psi)]
-        d = max(d, max(abs(pr[al * 4 + r] - ((1 / 3) if (r - s) % 4 == 0 else 0.0)) for al in range(3) for r in range(4)))
-    dev["M2"] = d
-    om, d = cmath.exp(2j * math.pi / 3), 0.0
-    for s in (0, 1, 5):                                           # doublets: the three-outcome interference law
-        for j in range(12):
-            lam = z12 ** j
-            psi = _normed([z12 ** (s * (al + 3 * l)) + lam * z12 ** ((s + 4) * (al + 3 * l)) for al in range(3) for l in range(4)])
-            pr = [abs(x) ** 2 for x in _apply(Ud, psi)]
-            d = max(d, max(abs(pr[al * 4 + s % 4] - abs(1 + lam * om ** al) ** 2 / 6) for al in range(3)))
-    dev["M3"] = d
-    h = 1 / math.sqrt(2)
-    H, I2 = [[h, h], [h, -h]], _eye(2)
-    CS = [[complex(i == j) * (1j if i == 3 else 1) for j in range(4)] for i in range(4)]
-    SWAP = [[1, 0, 0, 0], [0, 0, 1, 0], [0, 1, 0, 0], [0, 0, 0, 1]]
-    dev["M4"] = _dev(_mm(_mm(_mm(SWAP, _kron(I2, H)), CS), _kron(H, I2)), F4)
-    F8 = [[cmath.exp(2j * math.pi * r * l / 8) / math.sqrt(8) for l in range(8)] for r in range(8)]
-    U16 = _kron(_eye(2), F8)
-    U16d = _dag(U16)
-    dev["M5u"] = _dev(_mm(U16, U16d), _eye(16))
-    z16, d = cmath.exp(2j * math.pi / 16), 0.0
-    for s in (0, 3, 9):                                           # the σ_x doublet law over the π/40 sweep
-        for j in range(80):
-            lam = cmath.exp(2j * math.pi * 8 * j / 640)
-            psi = _normed([z16 ** (s * (al + 2 * l)) + lam * z16 ** ((s + 8) * (al + 2 * l)) for al in range(2) for l in range(8)])
-            pr = [abs(x) ** 2 for x in _apply(U16d, psi)]
-            d = max(d, abs(pr[s % 8] - abs(1 + lam) ** 2 / 4), abs(pr[8 + s % 8] - abs(1 - lam) ** 2 / 4))
-    dev["M5"] = d
-    return dev

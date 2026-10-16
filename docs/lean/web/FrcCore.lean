@@ -1,5 +1,5 @@
 /-! FrcCore — the FRC substrate from first principles, one file for the live instance (no Mathlib,
-no axioms). Generated from FrcCore/*.lean in dependency order (Nat, Pigeonhole, Shell, Series, Cycle, Ring, FrameCore, Frame, Parity, Transform, Orbit, Sum, Theme.Projective, Meridian, Theme.Fourier, Theme.Fractional, Theme.Lifts, Theme.Dichotomy, Theme.Rotations, Theme.Heisenberg, Theme.Spectra, Theme.Exclusivity, Theme.Shift, Theme.Quadratic, Theme.Extension, Poly, Theme.Numbers, Theme.Logic, Theme.SecondOrder, Theme.Formation, Theme.Field, Theme.Foundation, Theme.Drive, Theme.Carrier, Theme.Subject, Theme.Pair, Theme.Hopf, Theme.Symbol, Theme.Gravity, Theme.Lattice, Theme.Drift, Theme.Quantum, Theme.Unitary, Theme.Interactions, Theme.Horizon, Keys.Fourier, Instances, Theme.Domain, Keys.Frame, Fourier, Keys.Numbers, Keys.Projective, Algebra, Epi, Dimensions, Quaternion, Theme.Tally, Keys.Extension, Causality, Representation, Keys.Logic, Reductio, Godel, Keys.Foundation, Finitism, Geometry, Complex, Keys.Horizon, Rh, Entropy, Keys.Gravity, Gravity, Dirac, Keys.Subject, S13, Keys.Carrier, Keys.Interactions, Keys.Quantum)
+no axioms). Generated from FrcCore/*.lean in dependency order (Nat, Pigeonhole, Shell, Series, Cycle, Ring, FrameCore, Frame, Parity, Transform, Orbit, Sum, Theme.Projective, Meridian, Theme.Fourier, Theme.Fractional, Theme.Lifts, Theme.Dichotomy, Theme.Rotations, Theme.Heisenberg, Theme.Spectra, Theme.Exclusivity, Theme.Shift, Theme.Quadratic, Theme.Extension, Poly, Theme.Numbers, Theme.Logic, Theme.SecondOrder, Theme.Formation, Theme.Field, Theme.Foundation, Theme.Drive, Theme.Carrier, Theme.Subject, Theme.Pair, Theme.Hopf, Theme.Symbol, Theme.Gravity, Theme.Lattice, Theme.Drift, Theme.Quantum, Theme.Observation, Theme.Interference, Theme.Composite, Theme.Unitary, Theme.Interactions, Theme.Horizon, Keys.Fourier, Instances, Theme.Domain, Keys.Frame, Fourier, Keys.Numbers, Keys.Projective, Algebra, Epi, Dimensions, Quaternion, Theme.Tally, Keys.Extension, Causality, Representation, Keys.Logic, Reductio, Godel, Keys.Foundation, Finitism, Geometry, Complex, Keys.Horizon, Rh, Entropy, Keys.Gravity, Gravity, Dirac, Keys.Subject, S13, Keys.Quantum, Qm, Keys.Carrier, Keys.Interactions)
 by make_core_web.py; the modules' own headers follow. Check any declaration with `#print axioms`. -/
 
 /-! inlined: FrcCore/Nat.lean -/
@@ -7606,7 +7606,7 @@ theorem ext_cayley_hamilton (z : Ext p ν) : z * z + Ext.ofShell (Ext.norm z) = 
       (.add (.mul (.add (.var 1) (.var 1)) (.var 2)) (.mul .zero (.var 1)))
       (by decide +kernel))
 
-/-- 00:C10 (S1) — the part of the extension fixed by its conjugation is the tally line: a weight `z` is its own
+/-- 00:C10 (S1), 22:C10, 22:X1 — the part of the extension fixed by its conjugation is the tally line: a weight `z` is its own
 conjugate exactly when its `w`-component vanishes (the frame's odd prime), and the symmetrised weight `z + z̄` is the
 tally-line element `tr(z)`. For `ℤ[i]`, `ν = −1`, this is the paper's two-way subring. -/
 theorem two_way_tally (F : Frame p κ g) (z : Ext p ν) :
@@ -7617,7 +7617,7 @@ theorem two_way_tally (F : Frame p κ g) (z : Ext p ν) :
 /-- The engineered-core weight `W₊ = 2 + w` in `𝔽_p[w]/(w² − 2)`; `W₋ = W̄₊ = 2 − w`. -/
 def Wp : Ext p 2 := ⟨2, 1⟩
 
-/-- 00:C10 (S2, S4) — the engineered-core weights reduce to the core: `W₊ + W₋ = 4` and `W₊ W₋ = 2` in every
+/-- 00:C10 (S2, S4), 22:C10 — the engineered-core weights reduce to the core: `W₊ + W₋ = 4` and `W₊ W₋ = 2` in every
 `𝔽_p[w]/(w² − 2)`, and on `Ω = 641` (`641 ≡ 1 (mod 8)`) as residues, `r = 67`, `r² = 2`, `W± = 2 ± r`, with `r` a
 grid point of the Subject chart of generator `3`, `r = 3⁵⁵⁵` (S4). -/
 theorem core_weights :
@@ -7632,7 +7632,7 @@ theorem core_weights :
   refine ⟨⟨Ext.ext (lit_add 2 2) (Shell.add_neg 1), by rw [Ext.mul_conj, hn], lit_add 2 2, hn⟩, by decide,
     by decide +kernel, by decide +kernel, by decide +kernel, by decide +kernel⟩
 
-/-- 00:C10 (S2) — the two-way root of two: on a frame, for `ζ` of order `8` (`ζ⁸ = 1`, `ζ⁴ ≠ 1`) and `η = ζ⁻¹`,
+/-- 00:C10 (S2), 22:C10 — the two-way root of two: on a frame, for `ζ` of order `8` (`ζ⁸ = 1`, `ζ⁴ ≠ 1`) and `η = ζ⁻¹`,
 `(ζ + η)² = 2`. So `w = ζ₈ + ζ₈⁻¹` lies in the paper's two-way subring, the part of the cyclotomic ring fixed by
 `ζ ↦ ζ⁻¹`, and the engineered-core weights `2 ± w` are two-way (on `641`: `ζ₈ = 318`, `ζ₈ + ζ₈⁻¹ = 574 = −67`). -/
 theorem root_two_two_way (F : Frame p κ g) {ζ η : Shell p} (h8 : ζ ^ 8 = 1) (h4 : ζ ^ 4 ≠ 1) (hζη : ζ * η = 1) :
@@ -7652,7 +7652,7 @@ theorem root_two_two_way (F : Frame p κ g) {ζ η : Shell p} (h8 : ζ ^ 8 = 1) 
     ← pow_two ζ, ← pow_two η, hzero, zero_add]
   exact two_eq.symm
 
-/-- 00:C10 (S9) — the conjugate-pair trace tally: a flip-summed pair of conjugate string weights is core-valued,
+/-- 00:C10 (S9), 22:C11 — the conjugate-pair trace tally: a flip-summed pair of conjugate string weights is core-valued,
 `z^k z̄^(k+m) + z̄^k z^(k+m) = N(z)^k · tr(z^m)` on the tally line, for every weight `z` of every quadratic extension. -/
 theorem conjugate_pair_tally (z : Ext p ν) (k m : Nat) :
     z ^ k * Ext.conj z ^ (k + m) + Ext.conj z ^ k * z ^ (k + m) = Ext.ofShell (Ext.norm z ^ k * Ext.trace (z ^ m)) := by
@@ -7660,7 +7660,7 @@ theorem conjugate_pair_tally (z : Ext p ν) (k m : Nat) :
     Ext.mul_comm (Ext.conj z) z, Ext.mul_conj, ext_ofShell_pow, ← ext_mul_add, ← ext_conj_pow, ext_add_comm,
     ext_tally_line (z ^ m), Ext.ofShell_mul]
 
-/-- 00:C10 (S9) — the trace sequence `t_m = tr(z^m)` obeys `t_{m+2} + N(z) t_m = tr(z) t_{m+1}`; for `W₊` (`tr = 4`,
+/-- 00:C10 (S9), 22:C11 — the trace sequence `t_m = tr(z^m)` obeys `t_{m+2} + N(z) t_m = tr(z) t_{m+1}`; for `W₊` (`tr = 4`,
 `N = 2`): `t_0 = 2`, `t_1 = 4`, `t_{m+2} = 4 t_{m+1} − 2 t_m`, so `t_2 = 12`, `t_3 = 40` (on `Ω = 641`). -/
 theorem trace_recurrence :
     (∀ (z : Ext p ν) (m : Nat), Ext.trace (z ^ (m + 2)) + Ext.norm z * Ext.trace (z ^ m) = Ext.trace z * Ext.trace (z ^ (m + 1))) ∧
@@ -7693,7 +7693,7 @@ theorem geom_sum_zero (F : Frame p κ g) {x : Shell p} (n : Nat) (hn : x ^ n = 1
         _ = (x + -1) + 1 := (add_assoc _ _ _).symm
         _ = 1 := by rw [h, zero_add]) hx
 
-/-- 00:C10 (S9) — the dial-shift conjugation: on a dial of `2M` settings (`ζ^(2M) = 1`, `ζ^M ≠ 1`, `η = ζ⁻¹`), the
+/-- 00:C10 (S9), 22:C11 — the dial-shift conjugation: on a dial of `2M` settings (`ζ^(2M) = 1`, `ζ^M ≠ 1`, `η = ζ⁻¹`), the
 weight at the shifted setting is the conjugate weight, `w₊(M − θ) = w₋(θ)` for `θ ≤ M` (the witness: `M = 40` in
 `ℤ[x]/(x⁴⁰ + 1)`, `w₊(40 − D) = w₋(D)`). -/
 theorem dial_shift (F : Frame p κ g) {ζ η : Shell p} (M : Nat) (h2M : ζ ^ (2 * M) = 1) (hM : ζ ^ M ≠ 1)
@@ -7719,7 +7719,7 @@ theorem dial_shift (F : Frame p κ g) {ζ η : Shell p} (M : Nat) (h2M : ζ ^ (2
       _ = -(ζ ^ θ) := by rw [hηM, neg_one_mul]
   rw [e1, e2, neg_add_rev, add_comm (-(ζ ^ θ))]
 
-/-- 00:C10 (S10) — the dial-ensemble Parseval tally: over a dial of `N` settings closed under `ζ` (`ζ^N = 1`,
+/-- 00:C10 (S10), 22:C11 — the dial-ensemble Parseval tally: over a dial of `N` settings closed under `ζ` (`ζ^N = 1`,
 `ζ² ≠ 1`, `η = ζ⁻¹`) on a frame, the weights `w±(θ) = 2 ± (ζ^θ + η^θ)` sum to `2N`, and so do the products
 `w₊(θ) w₋(θ)`: the cross terms cancel by the character sums (the frame: no zero divisors). -/
 theorem dial_tally (F : Frame p κ g) {ζ η : Shell p} (N : Nat) (hN : ζ ^ N = 1) (hζη : ζ * η = 1) (h2 : ζ * ζ ≠ 1) :
@@ -7792,7 +7792,7 @@ def largestRemainder (B den : Nat) (nums : List Nat) : List Nat :=
   let seats := B - floors.foldl (· + ·) 0
   (List.range nums.length).map (fun i => nth floors i + if remainderRank rems i < seats then 1 else 0)
 
-/-- 00:C10 (S5–S7) — a registered probability is a framed rational, decided by the kernel: the grid bound
+/-- 00:C10 (S5–S7), 22:C10, 22:C11, 22:X6 — a registered probability is a framed rational, decided by the kernel: the grid bound
 `s_n² ≤ 2 · 9ⁿ < (s_n + 1)²` at every scale `n ≤ 8` and the readouts nest, `3 s_n ≤ s_{n+1} ≤ 3 s_n + 2`; the readout
 `R_4((2 + √2)/8) = (2 · 3⁴ + 114)/(8 · 3⁴) = 23/54`; the `√3` instance `s_3 = 46`; the largest-remainder allocation at
 `B = 81` of `(23/54, 23/54, 4/54, 4/54)` is `35 + 34 + 6 + 6` (the floors `34 + 34 + 6 + 6`, the one seat left to the
@@ -9914,7 +9914,7 @@ theorem octant_sector (hp : FRC.Nat.isPrime p) {S : Nat} (hS : p = 4 * S + 1) :
     exact ⟨a ^ m, by rw [show (8 : Nat) = 4 * 2 from rfl, pow_mul, h4, pow_two, neg_mul_neg, mul_one],
       by rw [h4]; exact neg_one_ne_one h2⟩
 
-/-- The Tsirelson square without a generator: `ζ⁴ = −1` gives `(ζ + ζ⁷)² = 2`. -/
+/-- 00:C8, 22:C17, 22:C25, 22:X7, 22:P3 — the Tsirelson square without a generator: `ζ⁴ = −1` gives `(ζ + ζ⁷)² = 2`. -/
 theorem tsirelson {ζ : Shell p} (h4 : ζ ^ 4 = -1) : (ζ + ζ ^ 7) * (ζ + ζ ^ 7) = 2 := by
   have h8 : ζ ^ 8 = 1 := by rw [show (8 : Nat) = 4 + 4 from rfl, pow_add, h4, neg_mul_neg, mul_one]
   have hz : ζ * ζ ^ 7 = 1 := by rw [mul_comm, ← pow_succ]; exact h8
@@ -10996,7 +10996,7 @@ theorem half_class (hp : FRC.Nat.isPrime p) {S : Nat} (hS : p = 4 * S + 1) :
 
 /-! ## C20: the mass–energy channel -/
 
-/-- 38:A3 — **C20 (p00040), the mass–energy channel**, generator-free on a prime `p` with a quarter-turn `h² = −1`: inside
+/-- 38:A3, 22:A2, 22:P4 — **C20 (p00040), the mass–energy channel**, generator-free on a prime `p` with a quarter-turn `h² = −1`: inside
 `𝔽_{p²}^×`, `C_{p−1} = 𝔽_p^×` meets the boost torus `C_{p+1} = {z^{p+1} = 1}` in the sign `±1` alone, and the spinor
 cover `C_{2(p+1)}` in exactly `Q₄ = {±1, ±h}`; the quarter is spinorial, `N(h) = h^{p+1} = h² = −1`. -/
 theorem channel (hp : FRC.Nat.isPrime p) {h : Shell p} (hh : h * h = -1) :
@@ -11625,7 +11625,7 @@ theorem horizon_antipode (hp : FRC.Nat.isPrime p) {κ : Nat} (hκ : p = 4 * κ +
     hsurj, h01, hm1, hord2, hrat, hinv, hwact,
     fun s hs => (Prime.mul_eq_zero hp hs).resolve_left h2, Prime.two_mul_chart_half hκ, hseam⟩
 
-/-- 00:C25 — the horizon is `ζ^{(p+1)/2}` for every generator `ζ` of the torus: a norm-one `ζ` of order exactly `p + 1`
+/-- 00:C25, 22:A2, 22:P4 — the horizon is `ζ^{(p+1)/2}` for every generator `ζ` of the torus: a norm-one `ζ` of order exactly `p + 1`
 has `ζ^{2κ+1} = −1`, the torus's one element of order two. -/
 theorem horizon_generator (hp : FRC.Nat.isPrime p) {κ : Nat} (hκ : p = 4 * κ + 1) (hν : ¬ ∃ y : Shell p, y * y = ν)
     (ζ : Extension.Ext p ν) (hn : ζ.norm = 1) (hζ : ζ ^ (p + 1) = 1)
@@ -14410,7 +14410,7 @@ theorem prodN_joint (n : Nat → Nat) (hn : ∀ j, 0 < n j) : ∀ m, Joint n m (
       rw [e]
       exact mod_zero_of_eq_mul (hn m) (Nat.mul_comm _ _)
 
-/-- 00:F2, 22:C26 — the joint recurrence of an unequal-cycle composite, found below a common multiple `L > 0` of the
+/-- 00:F2, 22:C26, 22:C10, 22:C20 — the joint recurrence of an unequal-cycle composite, found below a common multiple `L > 0` of the
 periods (on a shell, a joint return below `Ω`): the chronons at which all `m` parts return are exactly the multiples of
 one period `T`, `0 < T ≤ L`, which divides `L`. The search never passes `L` (Q20). -/
 theorem joint_recurrence (n : Nat → Nat) (hn : ∀ j, 0 < n j) (m L : Nat) (hL : 0 < L) (hLj : Joint n m L) :
@@ -14441,7 +14441,7 @@ theorem joint_recurrence (n : Nat → Nat) (hn : ∀ j, 0 < n j) (m L : Nat) (hL
         | ⟨q, hq⟩ => rw [hq]; exact mul_mod_zero (hn j) (hT'.2 j hj) q
     exact ⟨T, Nat.le_of_lt_succ hs.1, hT'.1, hT'.2, hiff, (hiff _).1 hLj⟩
 
-/-- The joint period is the least common multiple: no positive joint return comes earlier. -/
+/-- 22:C26 — the joint period is the least common multiple: no positive joint return comes earlier. -/
 theorem joint_least {n : Nat → Nat} {m T : Nat} (hiff : ∀ t, Joint n m t ↔ t % T = 0) (hT : 0 < T) :
     ∀ t, 0 < t → Joint n m t → T ≤ t := fun t ht hj =>
   match eq_mul_of_mod_zero hT ((hiff t).1 hj) with
@@ -14470,7 +14470,7 @@ theorem mulIdx_spec (g w j₀ : Nat) (h : g * j₀ = w) : ∀ N, j₀ < N → g 
       have ih := mulIdx_spec g w j₀ h N hlt
       exact ⟨ih.1, Nat.lt_succ_of_lt ih.2⟩
 
-/-- 00:F2, 22:C26 — two parts of periods `a`, `b` with joint period `T` (a common multiple, and no positive common
+/-- 00:F2, 22:C26, 22:C15, 22:C18, 22:P3 — two parts of periods `a`, `b` with joint period `T` (a common multiple, and no positive common
 multiple below it): the number `g` with `g T = a b` divides both periods, and every common divisor divides it (`g` is
 the gcd); the joint drive carries `(x, y)` to `(x', y')` within one joint period exactly when the offsets agree modulo
 `g` — the conserved offset on the gcd cycle, the orbits the quotient `A/⟨v⟩ ≅ ℤ/g`. -/
@@ -14619,7 +14619,7 @@ theorem prodRange_one : ∀ m, prodRange (fun _ => (1 : Shell q)) m = 1
   | 0 => rfl
   | m + 1 => by show prodRange (fun _ => (1 : Shell q)) m * 1 = 1; rw [prodRange_one m, mul_one]
 
-/-- 00:F2, 22:C26 — dephasing is exact: on a prime shell `q`, a character `χ(x) = Π_j ζ_j^{x_j}` of the composite
+/-- 00:F2, 22:C26, 22:C7 — dephasing is exact: on a prime shell `q`, a character `χ(x) = Π_j ζ_j^{x_j}` of the composite
 (`ζ_j^{n_j} = 1`) that the drive moves (`χ(v) = Π_j ζ_j ≠ 1`) sums to zero along the drive, `Σ_{t<M} χ(t v) = 0`, over
 every joint recurrence `M`, the product of the periods among them. -/
 theorem dephasing (hq : FRC.Nat.isPrime q) (n : Nat → Nat) (hn : ∀ j, 0 < n j) (m : Nat) (ζ : Nat → Shell q)
@@ -14823,6 +14823,1327 @@ theorem registration_instances :
 end registration
 
 end FRC.Quantum
+
+/-! inlined: FrcCore/Theme/Observation.lean -/
+
+/-!
+# FrcCore.Theme.Observation — the quantum theme: the single-system formalism in the shadow (22-quantum, 15 October 2026)
+
+The observation formalism of 22-quantum read on a prime shell `𝔽_q`, the Carrier chart of the ledger `ℤ[ζ_d]` (the
+reduction `ζ ↦ v`, 22:C9): a winding of the Object cycle is a power map, the drive multiplies it by a scalar, the forced
+basis of a core of order `d` is the character table of `C_d`, and the Born weights are the character sums.
+
+* characters are power maps, pairwise distinct (`power_maps`, 22:C1); the drive's eigenvalues are distinct and a
+  winding acquires the weight `k` per chronon (`stationary`, 22:C2);
+* orthogonality `d δ`, the bilinear Parseval identity and the Lüders projector (`orthogonality`, `parseval`,
+  `lueders`, 22:C3, C5); the selection rule `r ≡ k (mod d)` (`selection`, 22:C4); the pair count as a double sum and the
+  pure-winding weight `d² [r ≡ k]` (`pair_count`, `pure_winding_weight`, 22:C7);
+* the reduction: the shadow of the group ring `ℕ[C_n]` is a ring map, additive and multiplicative, and silent about
+  magnitude (`reduce_add`, `reduce_mul`, `reduce_wrap`, 22:C9);
+* the unique window lift (`window_lift`, 22:C10) and the wrap (`wrap_quantised`, 22:X8, P2);
+* the forced complex sector: the shared core of two framed shells contains `Q₄`, it is `Q₄` when the capacities are
+  coprime, and a shell `p ≡ 3 (mod 4)` has no quarter-turn (`shared_core`, `no_quarter_turn`, 22:C13);
+* classicality is the index of the core (`classicality_index`, 22:C24);
+* the quarter-turn transport trichotomy (`transport_trichotomy`, 22:C27);
+* conjugation is inversion: the Frobenius is the only non-trivial automorphism of `𝔽_{p²}` over `𝔽_p`, it inverts the
+  norm-one torus, and exponent negation inverts the phase cycle (`frobenius_unique`, `torus_conj_inv`,
+  `exponent_negation`, 22:C6).
+
+No axioms.
+-/
+
+namespace FRC.Observation
+
+open FRC.Shell
+open FRC.Shell.Prime
+open FRC.Quantum
+
+variable {q : Nat} [Pos q]
+
+/-! ## Powers of an element of order `n` -/
+
+/-- The powers `x⁰, …, x^{n−1}` of an element of order `n` are distinct. -/
+theorem pow_inj_of_order (hq : FRC.Nat.isPrime q) {x : Shell q} {n : Nat} (hx : HasOrder x n) {i j : Nat}
+    (hi : i < n) (hj : j < n) (h : x ^ i = x ^ j) : i = j := by
+  have hx0 : x ≠ 0 := fun e => by
+    have h1 := hx.2.1
+    rw [e] at h1
+    match n, hx.1, h1 with
+    | k + 1, _, h1 => rw [pow_succ, mul_zero] at h1; exact one_ne_zero hq h1.symm
+  have key : ∀ {i j : Nat}, i ≤ j → j < n → x ^ i = x ^ j → i = j := by
+    intro i j hij hj h
+    have e1 : x ^ i * x ^ (j - i) = x ^ i * 1 := by rw [← pow_add, FRC.Nat.add_sub_of_le hij, mul_one, h]
+    have e2 : x ^ (j - i) = 1 := mul_left_cancel hq (pow_ne_zero hq hx0 i) e1
+    match Nat.decEq (j - i) 0 with
+    | .isTrue h0 => exact Nat.le_antisymm hij (Nat.le_of_sub_eq_zero h0)
+    | .isFalse h0 =>
+      exact absurd e2 (hx.2.2 _ (Nat.lt_of_le_of_lt (Nat.sub_le j i) hj) (Nat.pos_of_ne_zero h0))
+  exact match Nat.lt_or_ge i j with
+    | .inl hlt => key (Nat.le_of_lt hlt) hj h
+    | .inr hge => (key hge hi h.symm).symm
+
+/-- A power reduces modulo the order: `x^c = x^{c mod n}`. -/
+theorem pow_mod_order {x : Shell q} {n : Nat} (hx : HasOrder x n) (c : Nat) : x ^ c = x ^ (c % n) := by
+  match FRC.Nat.mod_spec n hx.1 c with
+  | ⟨k, hk⟩ => conv => lhs; rw [hk, pow_add, pow_mul, hx.2.1, one_pow, one_mul]
+
+/-- `x^a = x^b` exactly when `a ≡ b (mod n)`, for `x` of order `n`. -/
+theorem pow_eq_pow_iff_mod (hq : FRC.Nat.isPrime q) {x : Shell q} {n : Nat} (hx : HasOrder x n) (a b : Nat) :
+    x ^ a = x ^ b ↔ a % n = b % n := by
+  constructor
+  · intro h
+    rw [pow_mod_order hx a, pow_mod_order hx b] at h
+    exact pow_inj_of_order hq hx (Nat.mod_lt a hx.1) (Nat.mod_lt b hx.1) h
+  · intro h; rw [pow_mod_order hx a, pow_mod_order hx b, h]
+
+/-- `x^a = 1` exactly when `a % n = 0`. -/
+theorem pow_eq_one_iff_mod (hq : FRC.Nat.isPrime q) {x : Shell q} {n : Nat} (hx : HasOrder x n) (a : Nat) :
+    x ^ a = 1 ↔ a % n = 0 := by
+  have := pow_eq_pow_iff_mod hq hx a 0
+  rw [pow_zero, FRC.Nat.zero_mod] at this; exact this
+
+/-! ## 22:C1, C2 — characters are power maps; stationary states are the windings -/
+
+/-- 22:C1 — the characters of the Object cycle are the power maps `u ↦ u^k`: each is multiplicative, and for a cycle
+generated by `ζ` of order `n` the maps of distinct windings `k, k' < n` differ (at the generator). -/
+theorem power_maps (hq : FRC.Nat.isPrime q) {ζ : Shell q} {n : Nat} (hζ : HasOrder ζ n) :
+    (∀ (u v : Shell q) (k : Nat), (u * v) ^ k = u ^ k * v ^ k) ∧
+    ∀ k k', k < n → k' < n → k ≠ k' → ζ ^ k ≠ ζ ^ k' :=
+  ⟨fun u v k => mul_pow u v k, fun k k' hk hk' hne e => hne (pow_inj_of_order hq hζ hk hk' e)⟩
+
+/-- 22:C2 — the windings are the drive's eigenvectors: `ψ_k(g u) = g^k ψ_k(u)`, the eigenvalue `g^k` is the weight
+`k` per chronon, and the eigenvalues of the windings `k < n` are distinct for a drive `g` of order `n` on the cycle. -/
+theorem stationary (hq : FRC.Nat.isPrime q) {g : Shell q} {n : Nat} (hg : HasOrder g n) :
+    (∀ (u : Shell q) (k : Nat), (g * u) ^ k = g ^ k * u ^ k) ∧
+    ∀ k k', k < n → k' < n → g ^ k = g ^ k' → k = k' :=
+  ⟨fun u k => mul_pow g u k, fun k k' hk hk' e => pow_inj_of_order hq hg hk hk' e⟩
+
+/-- 22:C1 — every `n`-th root of unity is a power of a given element of order `n` (the root bound of `Xⁿ − 1`; the proof of
+`FRC.Quantum.absorbed` with the generator replaced by any element of order `n`). -/
+theorem roots_of_order (hq : FRC.Nat.isPrime q) {x : Shell q} {n : Nat} (hx : HasOrder x n) (y : Shell q)
+    (hy : y ^ n = 1) : ∃ k, k < n ∧ y = x ^ k := by
+  have hn : 0 < n := hx.1
+  have hx0 : x ≠ 0 := fun e => by
+    have h1 := hx.2.1
+    rw [e] at h1
+    match n, hx.1, h1 with
+    | k + 1, _, h1 => rw [pow_succ, mul_zero] at h1; exact one_ne_zero hq h1.symm
+  match decExistsLT (fun k => y = x ^ k) n with
+  | .isTrue h => exact h
+  | .isFalse h =>
+    exfalso
+    have hdist : ∀ i j, i < n → j < n → x ^ i = x ^ j → i = j := fun i j hi hj e =>
+      pow_inj_of_order hq hx hi hj e
+    let r : Nat → Shell q := fun i => if i < n then x ^ i else y
+    have hr : ∀ i j, i ≤ n → j ≤ n → r i = r j → i = j := fun i j hi hj e => by
+      change (if i < n then x ^ i else y) = (if j < n then x ^ j else y) at e
+      match Nat.decLt i n, Nat.decLt j n with
+      | .isTrue hi', .isTrue hj' =>
+        have e' : x ^ i = x ^ j := by
+          have := e; rw [ite_eq_left hi', ite_eq_left hj'] at this; exact this
+        exact hdist i j hi' hj' e'
+      | .isTrue hi', .isFalse hj' =>
+        have e' : x ^ i = y := by
+          have := e; rw [ite_eq_left hi', ite_eq_right hj'] at this; exact this
+        exact absurd ⟨i, hi', e'.symm⟩ h
+      | .isFalse hi', .isTrue hj' =>
+        have e' : y = x ^ j := by
+          have := e; rw [ite_eq_right hi', ite_eq_left hj'] at this; exact this
+        exact absurd ⟨j, hj', e'⟩ h
+      | .isFalse hi', .isFalse hj' =>
+        exact (Nat.le_antisymm hi (Nat.not_lt.1 hi')).trans (Nat.le_antisymm hj (Nat.not_lt.1 hj')).symm
+    have hroot : ∀ i, i ≤ n → Poly.eval (Poly.xn1 n : Poly q) n (r i) = 0 := fun i _ => by
+      rw [Poly.eval_xn1 hn]
+      match Nat.decLt i n with
+      | .isTrue hi' =>
+        show (if i < n then x ^ i else y) ^ n + -1 = 0
+        rw [ite_eq_left hi', ← pow_mul, Nat.mul_comm, pow_mul, hx.2.1, one_pow, add_neg]
+      | .isFalse hi' => show (if i < n then x ^ i else y) ^ n + -1 = 0; rw [ite_eq_right hi', hy, add_neg]
+    have hz := Poly.root_bound_of (fun h => Prime.mul_eq_zero hq h) n (Poly.xn1 n) (Poly.xn1_bound n) r hr hroot n
+    rw [Poly.xn1_top] at hz
+    exact Prime.one_ne_zero hq hz
+
+/-- 22:C1 — the characters are the power maps: a multiplicative map `χ` on the cycle `⟨ζ⟩` of order `n`
+(`χ(ζ^a ζ^b) = χ(ζ^a) χ(ζ^b)`, `χ 1 = 1`) is `u ↦ u^k` for one `k < n`, `χ(ζ^j) = (ζ^j)^k` for every `j`. -/
+theorem character_is_power_map (hq : FRC.Nat.isPrime q) {ζ : Shell q} {n : Nat} (hζ : HasOrder ζ n)
+    (χ : Shell q → Shell q) (hmul : ∀ a b : Nat, χ (ζ ^ a * ζ ^ b) = χ (ζ ^ a) * χ (ζ ^ b)) (h1 : χ 1 = 1) :
+    ∃ k : Nat, k < n ∧ ∀ j : Nat, χ (ζ ^ j) = (ζ ^ j) ^ k := by
+  have hpow : ∀ j : Nat, χ (ζ ^ j) = (χ ζ) ^ j := by
+    intro j
+    induction j with
+    | zero => rw [pow_zero, pow_zero]; exact h1
+    | succ j ih =>
+      rw [pow_succ]
+      have := hmul j 1
+      rw [pow_one] at this
+      rw [this, ih, pow_succ]
+  have hn : (χ ζ) ^ n = 1 := by rw [← hpow, hζ.2.1]; exact h1
+  obtain ⟨k, hk, e⟩ := roots_of_order hq hζ (χ ζ) hn
+  exact ⟨k, hk, fun j => by rw [hpow, e, ← pow_mul, Nat.mul_comm, pow_mul]⟩
+
+/-- 22:C2 — the stationary states are the winding modes: a function `ψ` on the cycle `⟨g⟩` of order `n` that the
+drive scales, `ψ(g · g^j) = λ ψ(g^j)` for every `j`, is `ψ(g^j) = ψ(1) (g^j)^k` for one winding `k < n` with
+`λ = g^k` when `ψ 1 ≠ 0`, and vanishes on the cycle when `ψ 1 = 0`. -/
+theorem stationary_modes (hq : FRC.Nat.isPrime q) {g : Shell q} {n : Nat} (hg : HasOrder g n)
+    (ψ : Shell q → Shell q) {lam : Shell q} (hψ : ∀ j : Nat, ψ (g * g ^ j) = lam * ψ (g ^ j)) :
+    (ψ 1 = 0 → ∀ j : Nat, ψ (g ^ j) = 0) ∧
+    (ψ 1 ≠ 0 → ∃ k : Nat, k < n ∧ lam = g ^ k ∧ ∀ j : Nat, ψ (g ^ j) = ψ 1 * (g ^ j) ^ k) := by
+  have hpow : ∀ j : Nat, ψ (g ^ j) = lam ^ j * ψ 1 := by
+    intro j
+    induction j with
+    | zero => rw [pow_zero, pow_zero, one_mul]
+    | succ j ih => rw [pow_succ, Shell.mul_comm (g ^ j) g, hψ j, ih, pow_succ, Shell.mul_comm (lam ^ j) lam,
+        Shell.mul_assoc]
+  refine ⟨fun h0 j => by rw [hpow, h0, mul_zero], fun h0 => ?_⟩
+  have hn : lam ^ n = 1 := by
+    have e : lam ^ n * ψ 1 = ψ 1 := by rw [← hpow, hg.2.1]
+    have e2 : (lam ^ n + -1) * ψ 1 = 0 := by rw [Shell.right_distrib, Shell.neg_one_mul, e, add_neg]
+    match Prime.mul_eq_zero hq e2 with
+    | .inl h => exact Prime.eq_of_sub_eq_zero h
+    | .inr h => exact absurd h h0
+  obtain ⟨k, hk, e⟩ := roots_of_order hq hg lam hn
+  exact ⟨k, hk, e, fun j => by rw [hpow, e, ← pow_mul, Nat.mul_comm, pow_mul, Shell.mul_comm]⟩
+
+/-! ## Character sums over a core of order `d` -/
+
+/-- A geometric sum of a root of unity other than `1` vanishes: `x^n = 1`, `x ≠ 1` give `Σ_{l<n} x^l = 0`. -/
+theorem geom_sum_zero (hq : FRC.Nat.isPrime q) {x : Shell q} (n : Nat) (hn : x ^ n = 1) (hx : x ≠ 1) :
+    sumRange (fun l => x ^ l) n = 0 := by
+  have hg := geom_sum_mul x n
+  rw [hn, add_neg] at hg
+  match mul_eq_zero hq hg with
+  | .inl h => exact h
+  | .inr h => exact absurd (eq_of_sub_eq_zero h) hx
+
+/-- The character sum of `ω` of order `d` at the exponent `e`: `Σ_{j<d} ω^{e j} = d` when `d ∣ e`, else `0`. -/
+theorem character_sum (hq : FRC.Nat.isPrime q) {ω : Shell q} {d : Nat} (hω : HasOrder ω d) (e : Nat) :
+    sumRange (fun j => ω ^ (e * j)) d = if e % d = 0 then ofNat d else 0 := by
+  have e1 : ∀ j, ω ^ (e * j) = (ω ^ e) ^ j := fun j => pow_mul ω e j
+  rw [sum_congr d (fun j _ => e1 j)]
+  match Nat.decEq (e % d) 0 with
+  | .isTrue h0 =>
+    rw [if_pos h0, (pow_eq_one_iff_mod hq hω e).2 h0]
+    have := sum_const (1 : Shell q) d
+    rw [mul_one] at this
+    rw [← this]; exact sum_congr d (fun j _ => one_pow j)
+  | .isFalse h0 =>
+    rw [if_neg h0]
+    refine geom_sum_zero hq d ?_ ?_
+    · rw [← pow_mul, Nat.mul_comm, pow_mul, hω.2.1, one_pow]
+    · intro h1; exact h0 ((pow_eq_one_iff_mod hq hω e).1 h1)
+
+/-- The exponent `r + (d − r')` is a multiple of `d` exactly when `r = r'`, for `r, r' < d`. -/
+theorem shift_mod {d r r' : Nat} (hr : r < d) (hr' : r' < d) : (r + (d - r')) % d = 0 ↔ r = r' := by
+  have hd : 0 < d := Nat.lt_of_le_of_lt (Nat.zero_le r) hr
+  constructor
+  · intro h
+    match Nat.lt_or_ge r r' with
+    | .inl hlt =>
+      have hpos : 0 < r + (d - r') := Nat.add_pos_right r (sub_pos hr')
+      have hlt' : r + (d - r') < d := by
+        have : r + (d - r') < r' + (d - r') := Nat.add_lt_add_right hlt _
+        rw [FRC.Nat.add_sub_of_le (Nat.le_of_lt hr')] at this; exact this
+      rw [FRC.Nat.mod_eq_of_lt hlt'] at h
+      exact absurd h (Nat.ne_of_gt hpos)
+    | .inr hge =>
+      have e : r + (d - r') = d * 1 + (r - r') := by
+        calc r + (d - r') = (r - r' + r') + (d - r') := by rw [FRC.Nat.sub_add_cancel hge]
+          _ = (r - r') + (r' + (d - r')) := Nat.add_assoc _ _ _
+          _ = (r - r') + d := by rw [FRC.Nat.add_sub_of_le (Nat.le_of_lt hr')]
+          _ = d * 1 + (r - r') := by rw [Nat.mul_one, Nat.add_comm]
+      rw [e, FRC.Nat.add_mul_mod_self_left _ _ _ hd] at h
+      have hlt' : r - r' < d := Nat.lt_of_le_of_lt (Nat.sub_le r r') hr
+      rw [FRC.Nat.mod_eq_of_lt hlt'] at h
+      exact Nat.le_antisymm (Nat.le_of_sub_eq_zero h) hge
+  · intro h; rw [h, FRC.Nat.add_sub_of_le (Nat.le_of_lt hr'), FRC.Nat.mod_self d hd]
+
+/-- 22:C3, 22:X3 — orthogonality of the forced basis: for a core `C_d` generated by `ω`, the characters `η_r(j) = ω^{rj}`
+satisfy `Σ_{j<d} η_r(j) η_{r'}(j)⁻¹ = d δ_{rr'}` (the inverse character is `ω^{(d−r')j}`). -/
+theorem orthogonality (hq : FRC.Nat.isPrime q) {ω : Shell q} {d : Nat} (hω : HasOrder ω d) {r r' : Nat} (hr : r < d)
+    (hr' : r' < d) :
+    sumRange (fun j => ω ^ (r * j) * ω ^ ((d - r') * j)) d = if r = r' then ofNat d else 0 := by
+  have e1 : ∀ j, ω ^ (r * j) * ω ^ ((d - r') * j) = ω ^ ((r + (d - r')) * j) := fun j => by
+    rw [← pow_add, FRC.Nat.add_mul]
+  rw [sum_congr d (fun j _ => e1 j), character_sum hq hω]
+  match Nat.decEq r r' with
+  | .isTrue h => rw [if_pos h, if_pos ((shift_mod hr hr').2 h)]
+  | .isFalse h => rw [if_neg h, if_neg (fun h' => h ((shift_mod hr hr').1 h'))]
+
+/-- 22:C4, 22:C23, 22:X3, 22:C24, 22:X5 — the selection rule: a pointer channel `r < d` couples to the Object winding `k` over a fibre of the core
+exactly when their core phases agree, `k ≡ r (mod d)`: `Σ_{j<d} ω^{kj} ω^{(d−r)j} = d [k ≡ r]`. -/
+theorem selection (hq : FRC.Nat.isPrime q) {ω : Shell q} {d : Nat} (hω : HasOrder ω d) (k : Nat) {r : Nat}
+    (hr : r < d) :
+    sumRange (fun j => ω ^ (k * j) * ω ^ ((d - r) * j)) d = if k % d = r then ofNat d else 0 := by
+  have e1 : ∀ j, ω ^ (k * j) * ω ^ ((d - r) * j) = ω ^ ((k % d) * j) * ω ^ ((d - r) * j) := fun j => by
+    rw [(pow_eq_pow_iff_mod hq hω (k * j) ((k % d) * j)).2 (FRC.Nat.mul_mod_left' k j d hω.1)]
+  rw [sum_congr d (fun j _ => e1 j), orthogonality hq hω (Nat.mod_lt k hω.1) hr]
+
+/-- 22:C5, 22:X4 — the Lüders projector of the channel `r`, `Π_{jl} = ω^{rj} ω^{(d−r)l}`, is idempotent up to `d`: `Π² = d Π`,
+so an immediately repeated registration returns the outcome. -/
+theorem lueders {ω : Shell q} {d : Nat} (hω : HasOrder ω d) {r : Nat} (hr : r < d) (j m : Nat) :
+    sumRange (fun l => (ω ^ (r * j) * ω ^ ((d - r) * l)) * (ω ^ (r * l) * ω ^ ((d - r) * m))) d =
+      ofNat d * (ω ^ (r * j) * ω ^ ((d - r) * m)) := by
+  have e1 : ∀ l, (ω ^ (r * j) * ω ^ ((d - r) * l)) * (ω ^ (r * l) * ω ^ ((d - r) * m)) =
+      ω ^ (r * j) * ω ^ ((d - r) * m) := fun l => by
+    have hl : ω ^ ((d - r) * l) * ω ^ (r * l) = 1 := by
+      rw [← pow_add, ← FRC.Nat.add_mul, FRC.Nat.sub_add_cancel (Nat.le_of_lt hr), pow_mul, hω.2.1, one_pow]
+    rw [mul_assoc, ← mul_assoc (ω ^ ((d - r) * l)), hl, one_mul]
+  rw [sum_congr d (fun l _ => e1 l), sum_const]
+
+/-- A product of two sums is the double sum of the products. -/
+theorem sum_mul_sum (f g : Nat → Shell q) (n m : Nat) :
+    sumRange f n * sumRange g m = sumRange (fun j => sumRange (fun l => f j * g l) m) n := by
+  rw [← sum_mul_right]
+  exact sum_congr n (fun j _ => (sum_mul_left g (f j) m).symm)
+
+/-- Double sums commute. -/
+theorem sum_comm (F : Nat → Nat → Shell q) (n m : Nat) :
+    sumRange (fun j => sumRange (fun l => F j l) m) n = sumRange (fun l => sumRange (fun j => F j l) n) m := by
+  induction n with
+  | zero => rw [sumRange_zero]; exact (sum_zero m (fun l _ => rfl)).symm
+  | succ n ih =>
+    rw [sumRange_succ, ih, ← sum_add]
+    exact sum_congr m (fun l _ => (sumRange_succ _ n).symm)
+
+/-- 22:C7, 22:X1 — the pair count: the squared amplitude is the double sum of phase agreements,
+`(Σ_j ψ_j)(Σ_l ψ̄_l) = Σ_j Σ_l ψ_j ψ̄_l`. -/
+theorem pair_count (ψ ψbar : Nat → Shell q) (d : Nat) :
+    sumRange ψ d * sumRange ψbar d = sumRange (fun j => sumRange (fun l => ψ j * ψbar l) d) d :=
+  sum_mul_sum ψ ψbar d d
+
+/-- 22:C7, 22:C10, 22:X1 — on a pure winding `k` the weight of the channel `r < d` is `d² [k ≡ r (mod d)]`: the amplitude
+`Σ_j ω^{kj} ω^{(d−r)j}` times its conjugate `Σ_l ω^{rl} ω^{(d−k)l}` (the conjugate winding `d − k % d`). -/
+theorem pure_winding_weight (hq : FRC.Nat.isPrime q) {ω : Shell q} {d : Nat} (hω : HasOrder ω d) (k : Nat) {r : Nat}
+    (hr : r < d) :
+    sumRange (fun j => ω ^ (k * j) * ω ^ ((d - r) * j)) d * sumRange (fun l => ω ^ (r * l) * ω ^ ((d - k % d) * l)) d =
+      if k % d = r then ofNat (d * d) else 0 := by
+  rw [selection hq hω k hr, orthogonality hq hω hr (Nat.mod_lt k hω.1)]
+  match Nat.decEq (k % d) r with
+  | .isTrue h => rw [if_pos h, if_pos h.symm, if_pos h, ofNat_mul]
+  | .isFalse h => rw [if_neg h, zero_mul, if_neg h]
+
+/-- The cross exponents `r l + (d − r) j` and `l r + (d − j) r` agree modulo `d` for `r, j < d`. -/
+theorem cross_mod {d r j : Nat} (hr : r < d) (hj : j < d) (l : Nat) :
+    (r * l + (d - r) * j) % d = (l * r + (d - j) * r) % d := by
+  have hd : 0 < d := Nat.lt_of_le_of_lt (Nat.zero_le r) hr
+  have h1 : r * j + (r * l + (d - r) * j) = d * j + r * l := by
+    calc r * j + (r * l + (d - r) * j) = r * l + ((d - r) * j + r * j) := by
+          rw [Nat.add_left_comm, Nat.add_comm (r * j)]
+      _ = r * l + d * j := by rw [← FRC.Nat.add_mul, FRC.Nat.sub_add_cancel (Nat.le_of_lt hr)]
+      _ = d * j + r * l := Nat.add_comm _ _
+  have h2 : r * j + (l * r + (d - j) * r) = d * r + l * r := by
+    calc r * j + (l * r + (d - j) * r) = l * r + ((d - j) * r + j * r) := by
+          rw [Nat.add_left_comm, Nat.add_comm (r * j), Nat.mul_comm r j]
+      _ = l * r + d * r := by rw [← FRC.Nat.add_mul, FRC.Nat.sub_add_cancel (Nat.le_of_lt hj)]
+      _ = d * r + l * r := Nat.add_comm _ _
+  refine mod_add_left_cancel (x := r * j) hd ?_
+  rw [h1, h2, FRC.Nat.add_mul_mod_self_left _ _ _ hd, FRC.Nat.add_mul_mod_self_left _ _ _ hd, Nat.mul_comm r l]
+
+/-- 22:C3, 22:C7 — the bilinear Parseval identity on the core: for any two coefficient vectors `f, g` on the fibre,
+`Σ_{r<d} (Σ_j f_j ω^{(d−r)j}) (Σ_l g_l ω^{rl}) = d Σ_j f_j g_j` (with `g = f̄` the resolution of identity and the
+norm identity of the forced basis). -/
+theorem parseval (hq : FRC.Nat.isPrime q) {ω : Shell q} {d : Nat} (hω : HasOrder ω d) (f g : Nat → Shell q) :
+    sumRange (fun r => sumRange (fun j => f j * ω ^ ((d - r) * j)) d * sumRange (fun l => g l * ω ^ (r * l)) d) d =
+      ofNat d * sumRange (fun j => f j * g j) d := by
+  have e1 : ∀ r, sumRange (fun j => f j * ω ^ ((d - r) * j)) d * sumRange (fun l => g l * ω ^ (r * l)) d =
+      sumRange (fun j => sumRange (fun l => (f j * g l) * (ω ^ (r * l) * ω ^ ((d - r) * j))) d) d := fun r => by
+    rw [sum_mul_sum]
+    refine sum_congr d (fun j _ => sum_congr d (fun l _ => ?_))
+    rw [mul_mul_mul_comm, mul_comm (ω ^ ((d - r) * j))]
+  rw [sum_congr d (fun r _ => e1 r), sum_comm, ← sum_mul_left]
+  refine sum_congr d (fun j hj => ?_)
+  rw [sum_comm]
+  have e2 : ∀ l, sumRange (fun r => (f j * g l) * (ω ^ (r * l) * ω ^ ((d - r) * j))) d =
+      (f j * g l) * sumRange (fun r => ω ^ (r * l) * ω ^ ((d - r) * j)) d := fun l => sum_mul_left _ _ d
+  have e3 : ∀ l, l < d → sumRange (fun r => ω ^ (r * l) * ω ^ ((d - r) * j)) d = if l = j then ofNat d else 0 :=
+    fun l hl => by
+      have e4 : ∀ r, r < d → ω ^ (r * l) * ω ^ ((d - r) * j) = ω ^ (l * r) * ω ^ ((d - j) * r) := fun r hr => by
+        rw [← pow_add, ← pow_add]
+        exact (pow_eq_pow_iff_mod hq hω _ _).2 (cross_mod hr hj l)
+      rw [sum_congr d e4, orthogonality hq hω hl hj]
+  rw [sum_congr d (fun l _ => e2 l), sum_congr d (fun l hl => by rw [e3 l hl])]
+  rw [sum_eq_single (f := fun l => f j * g l * (if l = j then ofNat d else 0)) hj
+    (fun l _ hne => by rw [if_neg hne, mul_zero])]
+  rw [if_pos rfl, mul_comm]
+
+/-! ## 22:C9 — the reduction: the shadow of the group ring is a ring map -/
+
+/-- `ofNat` is additive. -/
+theorem ofNat_add (a b : Nat) : (ofNat a + ofNat b : Shell q) = ofNat (a + b) :=
+  Shell.ext (by show (a % q + b % q) % q = (a + b) % q; exact (FRC.Nat.add_mod a b q Pos.pos).symm)
+
+/-- A sum of naturals. -/
+def nsum (f : Nat → Nat) : Nat → Nat
+  | 0 => 0
+  | n + 1 => nsum f n + f n
+
+/-- The shadow of a sum of naturals is the sum of the shadows. -/
+theorem ofNat_nsum (f : Nat → Nat) : ∀ n, (ofNat (nsum f n) : Shell q) = sumRange (fun e => (ofNat (f e) : Shell q)) n
+  | 0 => rfl
+  | n + 1 => by
+    show (ofNat (nsum f n + f n) : Shell q) = sumRange (fun e => (ofNat (f e) : Shell q)) n + ofNat (f n)
+    rw [← ofNat_add, ofNat_nsum f n]
+
+/-- The shadow of a ledger element `Σ_{e<n} c_e ζ^e` of `ℕ[C_n]` on the shell: `ζ ↦ v`. -/
+def shadow (v : Shell q) (c : Nat → Nat) (n : Nat) : Shell q := sumRange (fun e => ofNat (c e) * v ^ e) n
+
+/-- The product in the group ring `ℕ[C_n]`: `(c ⋆ c')_e = Σ_{a,b<n, a+b ≡ e} c_a c'_b`. -/
+def conv (c c' : Nat → Nat) (n e : Nat) : Nat :=
+  nsum (fun a => nsum (fun b => if (a + b) % n = e then c a * c' b else 0) n) n
+
+/-- 22:C9 — the reduction is additive: the shadow of `c + c'` is the sum of the shadows. -/
+theorem reduce_add (v : Shell q) (c c' : Nat → Nat) (n : Nat) :
+    shadow v (fun e => c e + c' e) n = shadow v c n + shadow v c' n := by
+  unfold shadow
+  rw [← sum_add]
+  exact sum_congr n (fun e _ => by rw [← ofNat_add, right_distrib])
+
+/-- 22:C9, 22:C17 — the reduction is multiplicative: with `v^n = 1`, the shadow of the convolution `c ⋆ c'` is the product
+of the shadows; the Carrier-chart amplitude of a product is the product of the amplitudes, exact as algebra. -/
+theorem reduce_mul {v : Shell q} {n : Nat} (hn : 0 < n) (hv : v ^ n = 1) (c c' : Nat → Nat) :
+    shadow v (conv c c' n) n = shadow v c n * shadow v c' n := by
+  unfold shadow conv
+  rw [sum_mul_sum]
+  have step1 : ∀ e, ofNat (nsum (fun a => nsum (fun b => if (a + b) % n = e then c a * c' b else 0) n) n) * v ^ e =
+      sumRange (fun a => sumRange (fun b => (if (a + b) % n = e then ofNat (c a * c' b) else 0) * v ^ e) n) n := fun e => by
+    rw [ofNat_nsum, ← sum_mul_right]
+    refine sum_congr n (fun a _ => ?_)
+    rw [ofNat_nsum, ← sum_mul_right]
+    refine sum_congr n (fun b _ => ?_)
+    match Nat.decEq ((a + b) % n) e with
+    | .isTrue h => rw [if_pos h, if_pos h]
+    | .isFalse h => rw [if_neg h, if_neg h]; rfl
+  rw [sum_congr n (fun e _ => step1 e), sum_comm]
+  refine sum_congr n (fun a _ => ?_)
+  rw [sum_comm]
+  refine sum_congr n (fun b _ => ?_)
+  have hab : (a + b) % n < n := Nat.mod_lt _ hn
+  rw [sum_eq_single (f := fun e => (if (a + b) % n = e then ofNat (c a * c' b) else 0) * v ^ e) hab
+    (fun e _ hne => by rw [if_neg (fun h => hne h.symm), zero_mul])]
+  rw [if_pos rfl, ← ofNat_mul, mul_mul_mul_comm, ← pow_add]
+  congr 1
+  match FRC.Nat.mod_spec n hn (a + b) with
+  | ⟨k, hk⟩ => conv => rhs; rw [hk, pow_add, pow_mul, hv, one_pow, one_mul]
+
+/-- 22:C9 — the reduction is silent about magnitude: the count `q` itself reduces to `0`. -/
+theorem reduce_wrap : (ofNat q : Shell q) = 0 := ofNat_self
+
+/-! ## 22:C10, X8, P2 — the window lift and the wrap -/
+
+/-- 22:C10, 22:X1, 22:X6 — the unique window lift: two tallies below the window `Ω` with one shadow are equal, so a sub-horizon
+tally is the unique lift of its residue. -/
+theorem window_lift {a b : Nat} (ha : a < q) (hb : b < q) (h : (ofNat a : Shell q) = ofNat b) : a = b := by
+  have := val_injective h
+  show a = b
+  rw [show (ofNat a : Shell q).val = a % q from rfl, show (ofNat b : Shell q).val = b % q from rfl,
+    FRC.Nat.mod_eq_of_lt ha, FRC.Nat.mod_eq_of_lt hb] at this
+  exact this
+
+/-- 22:X8, 22:P2 — the wrap is quantised: a tally whose shadow vanishes is a multiple of `Ω`, so a lift of the vanishing
+Sorkin sum above the window is `Ω` times an integer, never a small nonzero number. -/
+theorem wrap_quantised (a : Nat) : (ofNat a : Shell q) = 0 ↔ ∃ k, a = q * k := by
+  constructor
+  · intro h
+    have hv := val_injective h
+    rw [show (ofNat a : Shell q).val = a % q from rfl, val_zero] at hv
+    exact eq_mul_of_mod_zero Pos.pos hv
+  · intro ⟨k, hk⟩
+    rw [hk]; exact Shell.ext (mod_zero_of_eq_mul Pos.pos rfl)
+
+/-! ## 22:C13 — the forced complex sector -/
+
+/-- 22:C13, 22:X2 — the shared core of two framed shells: an element of both cycles `C_{4κ}` and `C_{4κ'}` lies in `Q₄` when
+the capacities are coprime (`κ a = κ' b + 1` the Bezout witness), and `Q₄` lies in every such cycle. -/
+theorem shared_core {κ κ' a b : Nat} (hbez : κ * a = κ' * b + 1) (x : Shell q) (hx : x ^ (4 * κ) = 1)
+    (hx' : x ^ (4 * κ') = 1) :
+    x ^ 4 = 1 ∧ (∀ y : Shell q, y ^ 4 = 1 → y ^ (4 * κ) = 1 ∧ y ^ (4 * κ') = 1) := by
+  constructor
+  · have e1 : x ^ (4 * κ * a) = 1 := by rw [pow_mul, hx, one_pow]
+    have e2 : 4 * κ * a = 4 * κ' * b + 4 := by rw [FRC.Nat.mul_assoc, hbez, Nat.mul_succ, FRC.Nat.mul_assoc]
+    rw [e2, pow_add, pow_mul, hx', one_pow, one_mul] at e1
+    exact e1
+  · intro y hy
+    exact ⟨by rw [pow_mul, hy, one_pow], by rw [pow_mul, hy, one_pow]⟩
+
+/-- 22:C13, 22:X2 — a shell `p ≡ 3 (mod 4)` has no quarter-turn: no `x` with `x² = −1`, since such an `x` has order `4`,
+which divides `p − 1` by Fermat. -/
+theorem no_quarter_turn (hq : FRC.Nat.isPrime q) (h3 : q % 4 = 3) : ¬ ∃ x : Shell q, x * x = -1 := by
+  intro ⟨x, hx⟩
+  have h2 : 2 < q := by
+    match q, h3 with
+    | 0, h => exact absurd h (by decide)
+    | 1, h => exact absurd h (by decide)
+    | 2, h => exact absurd h (by decide)
+    | k + 3, _ => exact Nat.lt_of_lt_of_le (by decide) (Nat.le_add_left 3 k)
+  have hx0 : x ≠ 0 := ne_zero_of_mul_self (neg_one_ne_zero hq) hx
+  have h4 : x ^ 4 = 1 := by
+    rw [show (4 : Nat) = 2 + 2 from rfl, pow_add, pow_two, hx, neg_mul_neg, mul_one]
+  have hord : HasOrder x 4 := by
+    refine ⟨by decide, h4, fun l hl hl0 => ?_⟩
+    match l with
+    | 0 => exact absurd hl0 (Nat.lt_irrefl 0)
+    | k + 4 => exact absurd hl (Nat.not_lt_of_le (Nat.le_add_left 4 k))
+    | 1 => rw [pow_one]; intro e; rw [e, mul_one] at hx; exact neg_one_ne_one h2 hx.symm
+    | 2 => rw [pow_two, hx]; exact neg_one_ne_one h2
+    | 3 =>
+      rw [show (3 : Nat) = 2 + 1 from rfl, pow_add, pow_two, pow_one, hx, neg_one_mul]
+      intro e
+      have e' : x = -1 := by rw [← neg_neg x, e]
+      rw [e', neg_mul_neg, mul_one] at hx
+      exact neg_one_ne_one h2 hx.symm
+  obtain ⟨c, hc⟩ := dvd_of_pow_eq_one hord (fermat hq hx0)
+  have : (q - 1) % 4 = 0 := mod_zero_of_eq_mul (by decide) hc
+  have hq1 : q = (q - 1) + 1 := (FRC.Nat.sub_add_cancel (Nat.le_of_lt (Nat.lt_trans (Nat.lt_succ_self 1) h2))).symm
+  rw [hq1, FRC.Nat.add_mod _ _ _ (by decide), this] at h3
+  exact absurd h3 (by decide)
+
+/-! ## 22:C24 — classicality is the index of the core -/
+
+/-- 22:C24, 22:X5 — with the core `C_d` of index `k` in the Object cycle `C_n = C_{dk}`: the Object is absorbed (classical,
+one outcome per channel) exactly when `k = 1`, that is when its cycle is the core, and resolved (quantum) exactly when
+`1 < k`, that is when the core is a proper subgroup. -/
+theorem classicality_index {d k : Nat} (hd : 0 < d) :
+    (k = 1 ↔ d * k = d) ∧ (1 < k ↔ d < d * k) := by
+  constructor
+  · constructor
+    · intro h; exact h ▸ Nat.mul_one d
+    · intro h
+      exact Nat.eq_of_mul_eq_mul_left hd (h.trans (Nat.mul_one d).symm)
+  · constructor
+    · intro h
+      calc d = d * 1 := (Nat.mul_one d).symm
+        _ < d * k := Nat.mul_lt_mul_of_pos_left h hd
+    · intro h
+      match k with
+      | 0 => rw [Nat.mul_zero] at h; exact absurd h (Nat.not_lt_zero d)
+      | 1 => rw [Nat.mul_one] at h; exact absurd h (Nat.lt_irrefl d)
+      | k + 2 => exact Nat.succ_lt_succ (Nat.zero_lt_succ k)
+
+/-! ## 22:C27 — the quarter-turn transport trichotomy -/
+
+/-- The three reductions of `ζ^{3κ}` on a label of order `4m`, read on the exponents (the raw form of 22:C27). -/
+theorem transport_trichotomy_raw (hq : FRC.Nat.isPrime q) {ζ : Shell q} {m κ : Nat} (hζ : HasOrder ζ (4 * m)) :
+    (ζ ^ (3 * κ) = ζ ^ (3 * m) ↔ (3 * κ) % (4 * m) = (3 * m) % (4 * m)) ∧
+    (ζ ^ (3 * κ) = ζ ^ m ↔ (3 * κ) % (4 * m) = m % (4 * m)) ∧
+    (ζ ^ (3 * κ) * ζ ^ (3 * κ) = 1 ↔ (3 * κ * 2) % (4 * m) = 0) :=
+  ⟨pow_eq_pow_iff_mod hq hζ _ _, pow_eq_pow_iff_mod hq hζ _ _, by
+    rw [← pow_add, ← Nat.mul_two]; exact pow_eq_one_iff_mod hq hζ _⟩
+
+/-- `(m x) % (m y) = m (x % y)` for `0 < m`, `0 < y` (the core's own modular lemma, no `propext`). -/
+theorem mul_mod_mul_left' (m x y : Nat) (hm : 0 < m) (hy : 0 < y) : (m * x) % (m * y) = m * (x % y) := by
+  match FRC.Nat.mod_spec y hy x with
+  | ⟨k, hk⟩ =>
+    have hlt : m * (x % y) < m * y := by
+      rw [Nat.mul_comm m (x % y), Nat.mul_comm m y]; exact FRC.Nat.mul_lt_mul_of_lt_of_pos (Nat.mod_lt x hy) hm
+    exact FRC.Nat.mod_unique hlt (by conv => lhs; rw [hk]; rw [Nat.mul_add, ← FRC.Nat.mul_assoc])
+
+/-- The three residue readings on the capacity `t = κ/m`, decided by the kernel over the residue `r = t % 4`. -/
+theorem transport_residues : ∀ r, r < 4 →
+    ((3 * r) % 4 = 3 ↔ r = 1) ∧ ((3 * r) % 4 = 1 ↔ (r + 1) % 4 = 0) ∧ ((6 * r) % 4 = 0 ↔ r % 2 = 0) := by decide
+
+/-- 22:C27 — the ambient quarter-turn `g^{−κ} = g^{3κ}` of a shell of capacity `κ` reduces onto an embedded label
+`C_n`, `n = 4m` dividing `4κ` (`κ = m t`), generated by `ζ`, as `ζ^{3κ}`: it is the label's own quarter-turn `ζ^{3m}`
+(faithful) exactly when `κ ≡ m (mod n)`, its conjugate `ζ^m` exactly when `κ + m ≡ 0 (mod n)`, and a sign (broken, no
+quarter-turn: its square is `1`) exactly when `κ ≡ 0 (mod n/2)`, the complement of the two quarter-turn cases; for
+`n = 4` the three cases are `κ ≡ 1`, `κ ≡ 3` and `κ` even, the residue mod `4`; on `C_{40}` the broken case is
+`κ ≡ 0 (mod 20)`, the `𝔽_{641}` case (`κ = 160`). Off the embedding (`m ∤ κ`) the element `ζ^{3κ}` is not the
+reduction of the ambient quarter-turn and the criterion does not apply. -/
+theorem transport_trichotomy (hq : FRC.Nat.isPrime q) {ζ : Shell q} {m κ t : Nat} (hζ : HasOrder ζ (4 * m))
+    (ht : κ = m * t) :
+    (ζ ^ (3 * κ) = ζ ^ (3 * m) ↔ κ % (4 * m) = m) ∧
+    (ζ ^ (3 * κ) = ζ ^ m ↔ (κ + m) % (4 * m) = 0) ∧
+    (ζ ^ (3 * κ) * ζ ^ (3 * κ) = 1 ↔ κ % (2 * m) = 0) := by
+  have hm : 0 < m := by
+    match m, hζ.1 with
+    | m + 1, _ => exact Nat.zero_lt_succ m
+  have h4 : 0 < 4 := by decide
+  have h2 : 0 < 2 := by decide
+  have hr := transport_residues (t % 4) (Nat.mod_lt t h4)
+  -- the residues of the three multiples of `κ = m t`, each `m` times a residue of `t`
+  have e1 : (3 * κ) % (4 * m) = m * ((3 * t) % 4) := by
+    rw [ht, Nat.mul_comm 4 m, ← FRC.Nat.mul_assoc, Nat.mul_comm 3 m, FRC.Nat.mul_assoc,
+      mul_mod_mul_left' m (3 * t) 4 hm h4]
+  have e2 : (3 * m) % (4 * m) = m * 3 := by
+    rw [Nat.mul_comm 4 m, Nat.mul_comm 3 m, mul_mod_mul_left' m 3 4 hm h4]
+  have e3 : κ % (4 * m) = m * (t % 4) := by rw [ht, Nat.mul_comm 4 m, mul_mod_mul_left' m t 4 hm h4]
+  have e4 : (κ + m) % (4 * m) = m * ((t + 1) % 4) := by
+    rw [ht, Nat.mul_comm 4 m, ← Nat.mul_succ, mul_mod_mul_left' m (t + 1) 4 hm h4]
+  have e5 : (3 * κ * 2) % (4 * m) = m * ((6 * t) % 4) := by
+    have e : 3 * (m * t) * 2 = m * (6 * t) := by
+      rw [FRC.Nat.mul_left_comm 3 m t, FRC.Nat.mul_assoc, FRC.Nat.mul_assoc 3 t 2, Nat.mul_comm t 2,
+        ← FRC.Nat.mul_assoc 3 2 t]
+    rw [ht, e, Nat.mul_comm 4 m, mul_mod_mul_left' m (6 * t) 4 hm h4]
+  have e6 : κ % (2 * m) = m * (t % 2) := by rw [ht, Nat.mul_comm 2 m, mul_mod_mul_left' m t 2 hm h2]
+  have em : m % (4 * m) = m := by
+    have := mul_mod_mul_left' m 1 4 hm h4
+    rw [Nat.mul_one, Nat.mul_comm m 4] at this
+    rw [this]
+  have mod3 : (3 * t) % 4 = (3 * (t % 4)) % 4 := (FRC.Nat.mul_mod_mod 3 t 4 h4).symm
+  have mod6 : (6 * t) % 4 = (6 * (t % 4)) % 4 := (FRC.Nat.mul_mod_mod 6 t 4 h4).symm
+  have mod1 : (t + 1) % 4 = (t % 4 + 1) % 4 := (FRC.Nat.mod_add_mod t 1 4 h4).symm
+  have mod2 : t % 2 = (t % 4) % 2 := by
+    match FRC.Nat.mod_spec 4 h4 t with
+    | ⟨k, hk⟩ =>
+      conv => lhs; rw [hk]
+      rw [show 4 * k + t % 4 = 2 * (2 * k) + t % 4 by rw [← FRC.Nat.mul_assoc], FRC.Nat.add_mul_mod_self_left _ _ _ h2]
+  have cancel : ∀ a b : Nat, m * a = m * b ↔ a = b := fun a b =>
+    ⟨fun e => Nat.eq_of_mul_eq_mul_left hm e, fun e => by rw [e]⟩
+  have c1 : ∀ a : Nat, m * a = m ↔ a = 1 := fun a => by have := cancel a 1; rw [Nat.mul_one] at this; exact this
+  have c0 : ∀ a : Nat, m * a = 0 ↔ a = 0 := fun a => by have := cancel a 0; rw [Nat.mul_zero] at this; exact this
+  have t3 := transport_trichotomy_raw hq hζ (κ := κ)
+  refine ⟨Iff.trans t3.1 ?_, Iff.trans t3.2.1 ?_, Iff.trans t3.2.2 ?_⟩
+  · rw [e1, e2, e3]
+    refine Iff.trans (cancel _ _) (Iff.trans ?_ (c1 _).symm)
+    rw [mod3]; exact hr.1
+  · rw [e1, e4, em]
+    refine Iff.trans (c1 _) (Iff.trans ?_ (c0 _).symm)
+    rw [mod3, mod1]; exact hr.2.1
+  · rw [e5, e6]
+    refine Iff.trans (c0 _) (Iff.trans ?_ (c0 _).symm)
+    rw [mod6, mod2]; exact hr.2.2
+
+/-- 22:C27 — the three cases read on the capacity, decided by the kernel on the worked labels `C_{40}`, `Q₄` and
+`C_{12}`: `3κ ≡ 3m`, `3κ ≡ m` and `6κ ≡ 0 (mod 4m)` are `κ ≡ m`, `κ + m ≡ 0` and `κ ≡ 0 (mod 2m)`, and on `C_{12}`
+(`m = 3`, the embedded capacities `κ = 3t`) the faithful case is `κ ≡ 3 (mod 12)`. -/
+theorem transport_cases :
+    (∀ κ, κ < 40 → ((3 * κ) % 40 = (3 * 10) % 40 ↔ κ % 40 = 10 % 40) ∧ ((3 * κ) % 40 = 10 % 40 ↔ (κ + 10) % 40 = 0) ∧
+      ((3 * κ * 2) % 40 = 0 ↔ κ % 20 = 0)) ∧
+    (∀ κ, κ < 4 → ((3 * κ) % 4 = 3 % 4 ↔ κ % 4 = 1) ∧ ((3 * κ) % 4 = 1 % 4 ↔ κ % 4 = 3) ∧
+      ((3 * κ * 2) % 4 = 0 ↔ κ % 2 = 0)) ∧
+    (∀ t, t < 4 → ((3 * (3 * t)) % 12 = 9 % 12 ↔ (3 * t) % 12 = 3)) := by decide +kernel
+
+/-! ## 22:C6 — conjugation is inversion -/
+
+/-- 22:C6 — exponent negation inverts the phase cycle: `ζ^{n−k}` is the inverse of `ζ^k` on a cycle of order `n`. -/
+theorem exponent_negation {ζ : Shell q} {n : Nat} (hζ : ζ ^ n = 1) {k : Nat} (hk : k ≤ n) :
+    ζ ^ k * ζ ^ (n - k) = 1 := by rw [← pow_add, FRC.Nat.add_sub_of_le hk, hζ]
+
+section extension
+open FRC.Extension FRC.Extension.Ext
+
+variable {ν : Shell q}
+
+/-- The inverse of a nonzero residue, `a^{p−2}`. -/
+theorem inv_spec (hq : FRC.Nat.isPrime q) {a : Shell q} (ha : a ≠ 0) : a * a ^ (q - 2) = 1 := by
+  have e : q - 2 + 1 = q - 1 := by
+    match q, hq.1 with
+    | k + 2, _ => rfl
+  rw [Shell.mul_comm, ← pow_succ, e, fermat hq ha]
+
+/-- With `ν` a nonsquare, a zero norm forces zero: `a² = ν b²` has only the trivial solution. -/
+theorem eq_zero_of_norm_eq_zero (hq : FRC.Nat.isPrime q) (hν : ¬ ∃ y : Shell q, y * y = ν) {z : Ext q ν}
+    (h : norm z = 0) : z = 0 := by
+  have hsq : z.re * z.re = ν * (z.im * z.im) := eq_of_sub_eq_zero h
+  match Nat.decEq z.im.val 0 with
+  | .isTrue him =>
+    have him' : z.im = 0 := Shell.ext him
+    rw [him', mul_zero, mul_zero] at hsq
+    have hre : z.re = 0 := match mul_eq_zero hq hsq with | .inl a => a | .inr a => a
+    exact Ext.ext hre him'
+  | .isFalse him =>
+    have him' : z.im ≠ 0 := fun e => him (by rw [e]; rfl)
+    have hi := inv_spec hq him'
+    exact absurd ⟨z.re * z.im ^ (q - 2), by
+      calc (z.re * z.im ^ (q - 2)) * (z.re * z.im ^ (q - 2)) = (z.re * z.re) * (z.im ^ (q - 2) * z.im ^ (q - 2)) :=
+            Shell.mul_mul_mul_comm _ _ _ _
+        _ = ν * ((z.im * z.im ^ (q - 2)) * (z.im * z.im ^ (q - 2))) := by
+            rw [hsq, Shell.mul_assoc, Shell.mul_mul_mul_comm]
+        _ = ν := by rw [hi, Shell.mul_one, Shell.mul_one]⟩ hν
+
+/-- `𝔽_{p²}` has no zero divisors for `ν` a nonsquare. -/
+theorem ext_mul_eq_zero (hq : FRC.Nat.isPrime q) (hν : ¬ ∃ y : Shell q, y * y = ν) {z z' : Ext q ν}
+    (h : z * z' = 0) : z = 0 ∨ z' = 0 := by
+  have hn : norm z * norm z' = 0 := by
+    rw [← norm_mul, h]
+    show norm (ofShell (0 : Shell q) : Ext q ν) = 0
+    rw [norm_ofShell, Shell.mul_zero]
+  match mul_eq_zero hq hn with
+  | .inl e => exact .inl (eq_zero_of_norm_eq_zero hq hν e)
+  | .inr e => exact .inr (eq_zero_of_norm_eq_zero hq hν e)
+
+theorem ext_add_neg (z : Ext q ν) : z + -z = 0 := Ext.ext (Shell.add_neg z.re) (Shell.add_neg z.im)
+
+theorem ext_sq_eq_sq (hq : FRC.Nat.isPrime q) (hν : ¬ ∃ y : Shell q, y * y = ν) {x y : Ext q ν}
+    (h : x * x = y * y) : x = y ∨ x = -y := by
+  have e : (x + -y) * (x + y) = 0 := by
+    have e1 : (x + -y) * (x + y) = x * x + -(y * y) := Ext.ext
+      (by show (x.re + -y.re) * (x.re + y.re) + ν * ((x.im + -y.im) * (x.im + y.im)) = (x.re * x.re + ν * (x.im * x.im)) + -(y.re * y.re + ν * (y.im * y.im))
+          exact Shell.Frame.RE.sound (Shell.Frame.look [ν, x.re, x.im, y.re, y.im])
+            (.add (.mul (.add (.var 1) (.neg (.var 3))) (.add (.var 1) (.var 3))) (.mul (.var 0) (.mul (.add (.var 2) (.neg (.var 4))) (.add (.var 2) (.var 4)))))
+            (.add (.add (.mul (.var 1) (.var 1)) (.mul (.var 0) (.mul (.var 2) (.var 2)))) (.neg (.add (.mul (.var 3) (.var 3)) (.mul (.var 0) (.mul (.var 4) (.var 4))))))
+            (by decide +kernel))
+      (by show (x.re + -y.re) * (x.im + y.im) + (x.im + -y.im) * (x.re + y.re) = (x.re * x.im + x.im * x.re) + -(y.re * y.im + y.im * y.re)
+          exact Shell.Frame.RE.sound (Shell.Frame.look [ν, x.re, x.im, y.re, y.im])
+            (.add (.mul (.add (.var 1) (.neg (.var 3))) (.add (.var 2) (.var 4))) (.mul (.add (.var 2) (.neg (.var 4))) (.add (.var 1) (.var 3))))
+            (.add (.add (.mul (.var 1) (.var 2)) (.mul (.var 2) (.var 1))) (.neg (.add (.mul (.var 3) (.var 4)) (.mul (.var 4) (.var 3)))))
+            (by decide +kernel))
+    rw [e1, h]; exact ext_add_neg _
+  match ext_mul_eq_zero hq hν e with
+  | .inl e' => exact .inl (calc x = (x + -y) + y := by rw [add_assoc', ext_neg_add, ext_add_zero]
+      _ = 0 + y := by rw [e']
+      _ = y := ext_zero_add y)
+  | .inr e' => exact .inr (calc x = (x + y) + -y := by rw [add_assoc', ext_add_neg, ext_add_zero]
+      _ = 0 + -y := by rw [e']
+      _ = -y := ext_zero_add (-y))
+where
+  add_assoc' (a b c : Ext q ν) : a + b + c = a + (b + c) := Ext.ext (Shell.add_assoc _ _ _) (Shell.add_assoc _ _ _)
+  ext_neg_add (z : Ext q ν) : -z + z = 0 := Ext.ext (Shell.neg_add z.re) (Shell.neg_add z.im)
+  ext_add_zero (z : Ext q ν) : z + 0 = z := Ext.ext (Shell.add_zero z.re) (Shell.add_zero z.im)
+  ext_zero_add (z : Ext q ν) : 0 + z = z := Ext.ext (Shell.zero_add z.re) (Shell.zero_add z.im)
+
+/-- Every element is `a + b w`. -/
+theorem ext_decompose (z : Ext q ν) : z = ofShell z.re + ofShell z.im * w :=
+  Ext.ext (by show z.re = z.re + (z.im * 0 + ν * (0 * 1)); rw [Shell.mul_zero, Shell.zero_mul, Shell.mul_zero, Shell.add_zero, Shell.add_zero])
+    (by show z.im = 0 + (z.im * 1 + 0 * 0); rw [Shell.mul_one, Shell.zero_mul, Shell.add_zero, Shell.zero_add])
+
+/-- 22:C6 — the Frobenius is forced: a ring map `σ` of `𝔽_{p²}` fixing the shell (`σ(c) = c`, additive, multiplicative)
+is the identity or the conjugation `w ↦ −w`, since `σ(w)² = ν` leaves `σ(w) = ±w`. -/
+theorem frobenius_unique (hq : FRC.Nat.isPrime q) (hν : ¬ ∃ y : Shell q, y * y = ν) (σ : Ext q ν → Ext q ν)
+    (hfix : ∀ c : Shell q, σ (ofShell c) = ofShell c) (hadd : ∀ z z', σ (z + z') = σ z + σ z')
+    (hmul : ∀ z z', σ (z * z') = σ z * σ z') : (∀ z, σ z = z) ∨ (∀ z, σ z = conj z) := by
+  have hw : σ w * σ w = w * w := by rw [← hmul, w_sq, hfix]
+  match ext_sq_eq_sq hq hν hw with
+  | .inl e => exact .inl (fun z => by
+      conv => lhs; rw [ext_decompose z]
+      rw [hadd, hmul, hfix, hfix, e, ← ext_decompose])
+  | .inr e => exact .inr (fun z => by
+      conv => lhs; rw [ext_decompose z]
+      rw [hadd, hmul, hfix, hfix, e]
+      exact Ext.ext
+        (by show z.re + (z.im * -0 + ν * (0 * -1)) = z.re
+            rw [Shell.neg_zero, Shell.mul_zero, Shell.zero_mul, Shell.mul_zero, Shell.add_zero, Shell.add_zero])
+        (by show 0 + (z.im * -1 + 0 * -0) = -z.im
+            rw [← Shell.mul_neg, Shell.mul_one, Shell.zero_mul, Shell.add_zero, Shell.zero_add]))
+
+/-- 22:C6, 22:A2, 22:P4 — on the norm-one torus the conjugation is the inversion: `z · conj z = 1`. -/
+theorem torus_conj_inv (z : Ext q ν) (hz : norm z = 1) : z * conj z = 1 := conj_inv_of_norm_one z hz
+
+end extension
+
+end FRC.Observation
+
+/-! inlined: FrcCore/Theme/Interference.lean -/
+
+/-!
+# FrcCore.Theme.Interference — the quantum theme: the interference hierarchy and the splitting depth (22-quantum, 15 October 2026)
+
+Two laws of the ledger read on every shell, where the ledger's conjugation is any additive map `c` (the shadow of
+`ζ ↦ ζ⁻¹` on the windings, extended additively) and the weight is `w(x) = x · c(x)`:
+
+* the Sorkin hierarchy: the `k`-fold mixed difference of the weight vanishes for every `k ≥ 3` and every base point,
+  while the second difference is the cross term `a c(b) + b c(a)`, nonzero at `a = b = 1` with `c` the identity
+  (`sorkin_hierarchy`, `sorkin_second`, `sorkin_second_witness`, 22:C8, X8, P2): the interference term `I_k`
+  (inclusion–exclusion of the pair count over the paths, the mixed difference at the origin) is zero exactly for
+  `k ≥ 3` and generically nonzero for `k = 2`;
+* the Hadamard layers: on a shell with a quarter-turn `i² = −1`, `(1 + i)² = 2i`, so `k` balanced layers give the
+  amplitude `(1 + i)^k = 2^m i^m` (`k = 2m`) or `2^m i^m (1 + i)` (`k = 2m + 1`) (`hadamard_even`, `hadamard_odd`,
+  22:C14); the minimal tally norm `T(k) = 2^{k + [k odd]}` is monotone and the ceiling `k* = max{k : d T(k) < Ω}` is
+  decided on the worked carrier `Ω = 641`: `8` for the unit core, `6` for the Bell core `d = 8` (`tally_norm_mono`,
+  `ceiling_641`, 22:C14, P5).
+
+No axioms.
+-/
+
+namespace FRC.Interference
+
+open FRC.Shell
+open FRC.Shell.Prime
+
+variable {q : Nat} [Pos q]
+
+/-! ## The Sorkin hierarchy -/
+
+/-- A conjugation on the shell: an additive map (the shadow of the ledger's conjugation). -/
+def Additive (c : Shell q → Shell q) : Prop := ∀ x y, c (x + y) = c x + c y
+
+/-- The weight `w(x) = x · c(x)`, the shadow of the squared amplitude `x x̄`. -/
+def weight (c : Shell q → Shell q) (x : Shell q) : Shell q := x * c x
+
+/-- The `k`-fold mixed difference of `f` along the directions `a 0, …, a (k−1)`:
+`Δ_{a_{k−1}} ⋯ Δ_{a_0} f (x)`, with `Δ_a f (x) = f (x + a) − f (x)`. The Sorkin term `I_k` of the paths `a_0, …, a_{k−1}`
+is the difference at the origin. -/
+def mixedDiff (a : Nat → Shell q) (f : Shell q → Shell q) : Nat → Shell q → Shell q
+  | 0, x => f x
+  | k + 1, x => mixedDiff a f k (x + a k) + -(mixedDiff a f k x)
+
+theorem mixedDiff_zero (a : Nat → Shell q) (f : Shell q → Shell q) (x : Shell q) : mixedDiff a f 0 x = f x := rfl
+
+theorem mixedDiff_succ (a : Nat → Shell q) (f : Shell q → Shell q) (k : Nat) (x : Shell q) :
+    mixedDiff a f (k + 1) x = mixedDiff a f k (x + a k) + -(mixedDiff a f k x) := rfl
+
+/-- The first difference of the weight: `Δ_a w (x) = x c(a) + a c(x) + a c(a)`. -/
+theorem weight_diff1 {c : Shell q → Shell q} (hc : Additive c) (a : Nat → Shell q) (x : Shell q) :
+    mixedDiff a (weight c) 1 x = x * c (a 0) + a 0 * c x + a 0 * c (a 0) := by
+  rw [mixedDiff_succ, mixedDiff_zero, mixedDiff_zero]
+  unfold weight
+  rw [hc]
+  exact Shell.Frame.RE.sound (Shell.Frame.look [x, a 0, c x, c (a 0)])
+    (.add (.mul (.add (.var 0) (.var 1)) (.add (.var 2) (.var 3))) (.neg (.mul (.var 0) (.var 2))))
+    (.add (.add (.mul (.var 0) (.var 3)) (.mul (.var 1) (.var 2))) (.mul (.var 1) (.var 3)))
+    (by decide +kernel)
+
+/-- 22:C8 — the second difference is the cross term: `Δ_b Δ_a w (x) = b c(a) + a c(b)`, independent of `x`. -/
+theorem sorkin_second {c : Shell q → Shell q} (hc : Additive c) (a : Nat → Shell q) (x : Shell q) :
+    mixedDiff a (weight c) 2 x = a 1 * c (a 0) + a 0 * c (a 1) := by
+  rw [mixedDiff_succ, weight_diff1 hc, weight_diff1 hc, hc]
+  exact Shell.Frame.RE.sound (Shell.Frame.look [x, a 0, a 1, c x, c (a 0), c (a 1)])
+    (.add (.add (.add (.mul (.add (.var 0) (.var 2)) (.var 4)) (.mul (.var 1) (.add (.var 3) (.var 5)))) (.mul (.var 1) (.var 4)))
+      (.neg (.add (.add (.mul (.var 0) (.var 4)) (.mul (.var 1) (.var 3))) (.mul (.var 1) (.var 4)))))
+    (.add (.mul (.var 2) (.var 4)) (.mul (.var 1) (.var 5)))
+    (by decide +kernel)
+
+/-- The third difference vanishes identically. -/
+theorem sorkin_third {c : Shell q → Shell q} (hc : Additive c) (a : Nat → Shell q) (x : Shell q) :
+    mixedDiff a (weight c) 3 x = 0 := by
+  rw [mixedDiff_succ, sorkin_second hc, sorkin_second hc, add_neg]
+
+/-- 22:C8, 22:X8, 22:P2 — **the Sorkin hierarchy**: for every additive conjugation `c`, every family of paths `a` and every
+base point `x`, the `k`-fold mixed difference of the weight `w(x) = x c(x)` is zero for every `k ≥ 3`; so the
+interference terms `I_k = Δ_{a_{k−1}} ⋯ Δ_{a_0} w (0)` vanish exactly from the third order on, on every channel and
+outcome (the ledger's value reduces to the shadow, and a vanishing shadow lifts to a multiple of `Ω`). -/
+theorem sorkin_hierarchy {c : Shell q → Shell q} (hc : Additive c) (a : Nat → Shell q) :
+    ∀ k, ∀ x, mixedDiff a (weight c) (k + 3) x = 0
+  | 0, x => sorkin_third hc a x
+  | k + 1, x => by
+    rw [mixedDiff_succ, sorkin_hierarchy hc a k, sorkin_hierarchy hc a k, add_neg]
+
+/-- The identity is additive. -/
+theorem additive_id : Additive (fun x : Shell q => x) := fun _ _ => rfl
+
+/-- 22:C8 — `I₂` is generically nonzero: with `c` the identity and the paths `a = b = 1`, `I₂ = 2 ≠ 0` on every
+shell `q > 2`. -/
+theorem sorkin_second_witness (h2 : 2 < q) :
+    mixedDiff (fun _ => (1 : Shell q)) (weight fun x => x) 2 0 ≠ 0 := by
+  rw [sorkin_second additive_id]
+  show (1 : Shell q) * 1 + 1 * 1 ≠ 0
+  rw [mul_one, ← two_eq]
+  exact ofNat_ne_zero (by decide) h2
+
+/-! ## The Hadamard layers and the splitting depth -/
+
+/-- `ofNat` of a power is the power of `ofNat`. -/
+theorem ofNat_pow (a : Nat) : ∀ m, (ofNat (a ^ m) : Shell q) = ofNat a ^ m
+  | 0 => rfl
+  | m + 1 => by rw [Nat.pow_succ, ← ofNat_mul, ofNat_pow a m, pow_succ]
+
+/-- One balanced layer squared: `(1 + i)² = 2i` for a quarter-turn `i² = −1`. -/
+theorem hadamard_sq {i : Shell q} (hi : i * i = -1) : (1 + i) * (1 + i) = 2 * i := by
+  have e : (1 + i) * (1 + i) = 1 + (i + i) + i * i :=
+    Shell.Frame.RE.sound (Shell.Frame.look [i])
+      (.mul (.add .one (.var 0)) (.add .one (.var 0)))
+      (.add (.add .one (.add (.var 0) (.var 0))) (.mul (.var 0) (.var 0)))
+      (by decide +kernel)
+  rw [e, hi, add_assoc, add_comm (i + i), ← add_assoc, add_neg, zero_add, two_eq, right_distrib, one_mul]
+
+/-- 22:C14, 22:P5 — `2m` balanced layers give the amplitude `(1 + i)^{2m} = 2^m i^m`. -/
+theorem hadamard_even {i : Shell q} (hi : i * i = -1) (m : Nat) : (1 + i) ^ (2 * m) = ofNat (2 ^ m) * i ^ m := by
+  rw [pow_mul, pow_two, hadamard_sq hi, mul_pow, ofNat_pow]; rfl
+
+/-- 22:C14 — `2m + 1` balanced layers give the amplitude `(1 + i)^{2m+1} = 2^m i^m (1 + i)`. -/
+theorem hadamard_odd {i : Shell q} (hi : i * i = -1) (m : Nat) :
+    (1 + i) ^ (2 * m + 1) = ofNat (2 ^ m) * i ^ m * (1 + i) := by
+  rw [pow_succ, hadamard_even hi]
+
+/-- The minimal tally norm after `k` balanced layers: `T(k) = 2^{k + [k odd]}`, that is `2^k` for even `k` and
+`2^{k+1}` for odd `k`. -/
+def tallyNorm (k : Nat) : Nat := 2 ^ (k + k % 2)
+
+/-- 22:C14, 22:P5 — the tally norm is monotone in the depth. -/
+theorem tally_norm_mono {k k' : Nat} (h : k ≤ k') : tallyNorm k ≤ tallyNorm k' := by
+  unfold tallyNorm
+  refine Nat.pow_le_pow_right (by decide) ?_
+  match Nat.eq_or_lt_of_le h with
+  | .inl e => rw [e]; exact Nat.le_refl _
+  | .inr hlt =>
+    have h1 : k % 2 ≤ 1 := Nat.le_of_lt_succ (Nat.mod_lt k (by decide))
+    calc k + k % 2 ≤ k + 1 := Nat.add_le_add_left h1 k
+      _ ≤ k' := hlt
+      _ ≤ k' + k' % 2 := Nat.le_add_right k' _
+
+/-- 22:C14, 22:P5 — **the ceiling on the worked carrier** `Ω = 641`: the largest depth with `T(k) < Ω` is `k* = 8` for the
+unit core (`T(8) = 256`, `T(9) = 1024`), and with the Bell core `d = 8` it is `6` (`8 T(6) = 512`, `8 T(7) = 2048`). -/
+theorem ceiling_641 : (∀ k, tallyNorm k < 641 ↔ k ≤ 8) ∧ (∀ k, 8 * tallyNorm k < 641 ↔ k ≤ 6) := by
+  have t8 : tallyNorm 8 = 256 := by decide
+  have t9 : tallyNorm 9 = 1024 := by decide
+  have t6 : tallyNorm 6 = 64 := by decide
+  have t7 : tallyNorm 7 = 256 := by decide
+  constructor
+  · intro k
+    constructor
+    · intro h
+      match Nat.lt_or_ge 8 k with
+      | .inl hlt =>
+        have := tally_norm_mono (Nat.succ_le_of_lt hlt)
+        rw [t9] at this
+        exact absurd (Nat.lt_of_le_of_lt this h) (by decide)
+      | .inr hge => exact hge
+    · intro h
+      have := tally_norm_mono h
+      rw [t8] at this
+      exact Nat.lt_of_le_of_lt this (by decide)
+  · intro k
+    constructor
+    · intro h
+      match Nat.lt_or_ge 6 k with
+      | .inl hlt =>
+        have := Nat.mul_le_mul_left 8 (tally_norm_mono (Nat.succ_le_of_lt hlt))
+        rw [t7] at this
+        exact absurd (Nat.lt_of_le_of_lt this h) (by decide)
+      | .inr hge => exact hge
+    · intro h
+      have := Nat.mul_le_mul_left 8 (tally_norm_mono h)
+      rw [t6] at this
+      exact Nat.lt_of_le_of_lt this (by decide)
+
+end FRC.Interference
+
+/-! inlined: FrcCore/Theme/Composite.lean -/
+
+/-!
+# FrcCore.Theme.Composite — the quantum theme: composites, correlations and the channel (22-quantum, 15 October 2026)
+
+The composite formalism of 22-quantum in the shadow: a reading Subject's one drive acts diagonally on a cluster, the
+offset is its conserved label, and the Bell configuration's identities are ring identities on every shell.
+
+* the `m`-body cluster: the offset vector is drive-invariant and two configurations share an orbit exactly when their
+  offset vectors agree (`offset_invariant`, `cluster_offset`, 22:C15); the winding `s` on `C_n` has period
+  `n/gcd(s, n)` (`winding_period`, 22:C26);
+* the synchronised orbit adds coherently, `|Σ_i χ(u_i)|² = m²`, against the offset-uniform average `m`
+  (`locked_norm`, `spread_average`, 22:C15, C22); the field of `m` locked sources is `m` times one, and the
+  acceleration of a test cluster is mass-free, `η = 0` (`field_linear`, `eta_zero`, 22:C22);
+* the doublet readout is `σ_x` through the half-turn `v⁸ = −1` (`half_turn_sixteen`, `doublet_readout`, 22:C16);
+* the Tsirelson square `S² = 8` for `S = 2(ζ + ζ⁷)`, `ζ⁴ = −1`, and no-signalling (`singlet_square`, `no_signalling`,
+  22:C17, X7, P3);
+* the channel complementarity `V² + C² = 1` on every shell, the product at zero coupling (`channel_complementarity`,
+  `channel_product_at_zero`, 22:C19, P1);
+* the drive conserves the ledger norm and the visibility revives at the recurrence (`drive_norm`, `revival`, 22:C20);
+* the coherent fraction: the branch phase of `m_c` synchronised cells, the pairwise product law, the complete spread
+  cancels, and the reduced channel factorises (`branch_phase`, `pair_product`, `spread_cancels`, `channel_assembly`,
+  22:C21);
+* inter-Subject consistency: the channels of two Subjects agree on the common core, and the joint refinement is the
+  common core's partition (`order_independence`, `joint_refinement`, 22:C23, X4).
+
+No axioms.
+-/
+
+namespace FRC.Composite
+
+open FRC.Shell
+open FRC.Shell.Prime
+open FRC.Quantum
+open FRC.Observation
+
+variable {q : Nat} [Pos q]
+
+/-! ## 22:C15 — the cluster's offset is a conserved label -/
+
+/-- 22:C15 — the offset vector of a cluster on `(ℤ/N)^m` is invariant under the diagonal drive by `t` chronons:
+in the cross form, `x_j + (x_0 + t) ≡ (x_j + t) + x_0 (mod N)`. -/
+theorem offset_invariant {N : Nat} (hN : 0 < N) (t : Nat) (x : Nat → Nat) (j : Nat) :
+    (x j + (x 0 + t) % N) % N = ((x j + t) % N + x 0) % N := by
+  rw [FRC.Nat.add_mod_mod _ _ _ hN, FRC.Nat.mod_add_mod _ _ _ hN, ← Nat.add_assoc, Nat.add_right_comm]
+
+/-- 22:C15, lem:mbody (i)–(ii), 22:C18 — the offset is the orbit label: two configurations `x, y` of the cluster `(ℤ/N)^m`
+(`0 < m`, `y` reduced) lie on one orbit of the diagonal drive exactly when their offset vectors agree,
+`x_j − x_0 ≡ y_j − y_0 (mod N)` for every cell `j`; the drive time `t` is a residue, `t < N`, and no drive evolution
+connects distinct offsets. -/
+theorem cluster_offset {N m : Nat} (hN : 0 < N) (hm : 0 < m) (x y : Nat → Nat) (hy : ∀ j, j < m → y j < N) :
+    (∃ t, t < N ∧ ∀ j, j < m → (x j + t) % N = y j) ↔ ∀ j, j < m → (x j + y 0) % N = (y j + x 0) % N := by
+  constructor
+  · intro ⟨t, _, ht⟩ j hj
+    rw [← ht 0 hm, ← ht j hj]
+    exact offset_invariant hN t x j
+  · intro h
+    refine ⟨(y 0 + (N - x 0 % N)) % N, Nat.mod_lt _ hN, fun j hj => ?_⟩
+    rw [FRC.Nat.add_mod_mod _ _ _ hN]
+    match FRC.Nat.mod_spec N hN (x 0) with
+    | ⟨k, hk⟩ =>
+      have hr : x 0 % N < N := Nat.mod_lt _ hN
+      calc (x j + (y 0 + (N - x 0 % N))) % N = ((x j + y 0) % N + (N - x 0 % N)) % N := by
+            rw [FRC.Nat.mod_add_mod _ _ _ hN, Nat.add_assoc]
+        _ = ((y j + x 0) % N + (N - x 0 % N)) % N := by rw [h j hj]
+        _ = (y j + x 0 + (N - x 0 % N)) % N := FRC.Nat.mod_add_mod _ _ _ hN
+        _ = (N * (k + 1) + y j) % N := by
+            congr 1
+            calc y j + x 0 + (N - x 0 % N) = y j + (N * k + x 0 % N + (N - x 0 % N)) := by rw [← hk, Nat.add_assoc]
+              _ = y j + (N * k + N) := by rw [Nat.add_assoc (N * k), FRC.Nat.add_sub_of_le (Nat.le_of_lt hr)]
+              _ = N * (k + 1) + y j := by rw [Nat.mul_succ, Nat.add_comm]
+        _ = y j := by rw [FRC.Nat.add_mul_mod_self_left _ _ _ hN, FRC.Nat.mod_eq_of_lt (hy j hj)]
+
+/-! ## 22:C26 — the period of a winding -/
+
+/-- 22:C26 — the winding `s` on the cycle `C_n` has period `n/gcd(s, n)`: with `n = d n'`, `s = d s'` and `d` the gcd
+(`s' u = n' v + 1` the Bezout witness of coprimality), the drive `x ↦ x + s` returns, `s t ≡ 0 (mod n)`, exactly when
+`n' ∣ t`; the joint recurrence of a composite is then the lcm of these periods (`FRC.Quantum.joint_recurrence`). -/
+theorem winding_period {n s d n' s' u v : Nat} (hd : 0 < d) (hn' : 0 < n') (hn : n = d * n') (hs : s = d * s')
+    (hbez : s' * u = n' * v + 1) (t : Nat) : (s * t) % n = 0 ↔ t % n' = 0 := by
+  have hn0 : 0 < n := by rw [hn]; exact Nat.mul_pos hd hn'
+  constructor
+  · intro h
+    obtain ⟨c, hc⟩ := eq_mul_of_mod_zero hn0 h
+    rw [hn, hs, FRC.Nat.mul_assoc, FRC.Nat.mul_assoc] at hc
+    have e1 : s' * t = n' * c := Nat.eq_of_mul_eq_mul_left hd hc
+    have e : n' * (v * t) + t = n' * (u * c) := by
+      calc n' * (v * t) + t = (n' * v + 1) * t := by rw [FRC.Nat.add_mul, Nat.one_mul, FRC.Nat.mul_assoc]
+        _ = s' * u * t := by rw [hbez]
+        _ = u * (s' * t) := by rw [Nat.mul_comm s' u, FRC.Nat.mul_assoc]
+        _ = n' * (u * c) := by rw [e1, FRC.Nat.mul_left_comm]
+    calc t % n' = (n' * (v * t) + t) % n' := (FRC.Nat.add_mul_mod_self_left _ _ _ hn').symm
+      _ = 0 := by rw [e]; exact mod_zero_of_eq_mul hn' rfl
+  · intro h
+    obtain ⟨c, hc⟩ := eq_mul_of_mod_zero hn' h
+    refine mod_zero_of_eq_mul (q := s' * c) hn0 ?_
+    rw [hc, hs, hn, FRC.Nat.mul_assoc, FRC.Nat.mul_assoc, FRC.Nat.mul_left_comm s']
+
+/-! ## The locked cluster against the spread: `m²` against `m` -/
+
+/-- lem:mbody (iii), 22:C15, 22:C22 — on the synchronised orbit the amplitudes add coherently: `Σ_{i<m} χ = m χ`, and the
+weight `(m χ)(m χ̄) = m²` when `χ χ̄ = 1`. -/
+theorem locked_norm (m : Nat) {χ χbar : Shell q} (h : χ * χbar = 1) :
+    sumRange (fun _ => χ) m = ofNat m * χ ∧ sumRange (fun _ => χ) m * sumRange (fun _ => χbar) m = ofNat (m * m) := by
+  refine ⟨sum_const χ m, ?_⟩
+  rw [sum_const, sum_const, mul_mul_mul_comm, h, mul_one, ofNat_mul]
+
+/-- The sum of `F` over all configurations `v : Nat → Nat` of the cluster with `v_j < n` for `j < m` and `v_j = 0`
+beyond, by recursion on the number of cells. -/
+def tsum (n : Nat) (F : (Nat → Nat) → Shell q) : Nat → Shell q
+  | 0 => F (fun _ => 0)
+  | m + 1 => sumRange (fun θ => tsum n (fun v => F (fun j => if j = m then θ else v j)) m) n
+
+theorem tsum_zero (n : Nat) (F : (Nat → Nat) → Shell q) : tsum n F 0 = F (fun _ => 0) := rfl
+
+theorem tsum_succ (n : Nat) (F : (Nat → Nat) → Shell q) (m : Nat) :
+    tsum n F (m + 1) = sumRange (fun θ => tsum n (fun v => F (fun j => if j = m then θ else v j)) m) n := rfl
+
+/-- The configuration sum depends on `F` pointwise. -/
+theorem tsum_congr (n : Nat) {F G : (Nat → Nat) → Shell q} (h : ∀ v, F v = G v) : ∀ m, tsum n F m = tsum n G m
+  | 0 => h _
+  | m + 1 => by
+    rw [tsum_succ, tsum_succ]
+    exact sum_congr n (fun θ _ => tsum_congr n (fun v => h _) m)
+
+/-- The configuration sum is additive. -/
+theorem tsum_add (n : Nat) (F G : (Nat → Nat) → Shell q) : ∀ m, tsum n (fun v => F v + G v) m = tsum n F m + tsum n G m
+  | 0 => rfl
+  | m + 1 => by
+    rw [tsum_succ, tsum_succ, tsum_succ, ← sum_add]
+    exact sum_congr n (fun θ _ => tsum_add n _ _ m)
+
+/-- The configuration sum of a constant: `n^m c`. -/
+theorem tsum_const (n : Nat) (c : Shell q) : ∀ m, tsum n (fun _ => c) m = ofNat (n ^ m) * c
+  | 0 => by rw [tsum_zero]; exact (one_mul c).symm
+  | m + 1 => by
+    rw [tsum_succ, sum_congr n (fun θ _ => tsum_const n c m), sum_const, ← mul_assoc, ofNat_mul, Nat.pow_succ,
+      Nat.mul_comm]
+
+/-- The configuration sum of a scalar multiple. -/
+theorem tsum_mul_left (n : Nat) (c : Shell q) (F : (Nat → Nat) → Shell q) :
+    ∀ m, tsum n (fun v => c * F v) m = c * tsum n F m
+  | 0 => rfl
+  | m + 1 => by
+    rw [tsum_succ, tsum_succ, ← sum_mul_left]
+    exact sum_congr n (fun θ _ => tsum_mul_left n c _ m)
+
+theorem tsum_mul_right (n : Nat) (c : Shell q) (F : (Nat → Nat) → Shell q) (m : Nat) :
+    tsum n (fun v => F v * c) m = tsum n F m * c := by
+  rw [tsum_congr n (fun v => mul_comm (F v) c), tsum_mul_left, mul_comm]
+
+/-- The configuration sum of a sum over cells. -/
+theorem tsum_sum (n m : Nat) (G : Nat → (Nat → Nat) → Shell q) :
+    ∀ k, tsum n (fun v => sumRange (fun i => G i v) k) m = sumRange (fun i => tsum n (G i) m) k
+  | 0 => by rw [tsum_congr n (fun v => sumRange_zero (fun i => G i v)), tsum_const, mul_zero, sumRange_zero]
+  | k + 1 => by
+    rw [sumRange_succ, tsum_congr n (fun v => sumRange_succ (fun i => G i v) k), tsum_add, tsum_sum n m G k]
+
+/-- A character of one cell `i < m` sums to zero over the configurations: `Σ_v ζ^{c + v_i} = 0` for `ζ` of order `n`,
+`ζ ≠ 1`. -/
+theorem tsum_cell (hq : FRC.Nat.isPrime q) {ζ : Shell q} {n : Nat} (hζ : HasOrder ζ n) (hζ1 : ζ ≠ 1) (c : Nat) :
+    ∀ m i, i < m → tsum n (fun v => ζ ^ (c + v i)) m = 0
+  | 0, i, hi => absurd hi (Nat.not_lt_zero i)
+  | m + 1, i, hi => by
+    rw [tsum_succ]
+    match Nat.decEq i m with
+    | .isTrue e =>
+      subst e
+      have e1 : ∀ θ, θ < n → tsum n (fun v => ζ ^ (c + (fun j => if j = i then θ else v j) i)) i =
+          ofNat (n ^ i) * (ζ ^ c * ζ ^ θ) := fun θ _ => by
+        dsimp only
+        rw [tsum_congr n (fun v => by rw [if_pos rfl, pow_add]), tsum_const]
+      rw [sum_congr n e1, sum_mul_left, sum_mul_left, geom_sum_zero hq n hζ.2.1 hζ1, mul_zero, mul_zero]
+    | .isFalse e =>
+      have hi' : i < m := Nat.lt_of_le_of_ne (Nat.le_of_lt_succ hi) e
+      have e1 : ∀ θ, θ < n → tsum n (fun v => ζ ^ (c + (fun j => if j = m then θ else v j) i)) m = 0 := fun θ _ => by
+        dsimp only
+        rw [tsum_congr n (fun v => by rw [if_neg e]), tsum_cell hq hζ hζ1 c m i hi']
+      rw [sum_congr n e1]
+      exact sum_zero n (fun _ _ => rfl)
+
+/-- Two distinct cells `i ≠ j` carrying the characters `ζ`, `η` of order `n` (neither `1`) sum to zero over the
+configurations. -/
+theorem tsum_cross (hq : FRC.Nat.isPrime q) {ζ η : Shell q} {n : Nat} (hζ : HasOrder ζ n) (hζ1 : ζ ≠ 1)
+    (hη : HasOrder η n) (hη1 : η ≠ 1) (c c' : Nat) :
+    ∀ m i j, i < m → j < m → i ≠ j → tsum n (fun v => ζ ^ (c + v i) * η ^ (c' + v j)) m = 0
+  | 0, i, _, hi, _, _ => absurd hi (Nat.not_lt_zero i)
+  | m + 1, i, j, hi, hj, hij => by
+    rw [tsum_succ]
+    match Nat.decEq i m, Nat.decEq j m with
+    | .isTrue ei, _ =>
+      subst ei
+      have hj' : j < i := Nat.lt_of_le_of_ne (Nat.le_of_lt_succ hj) (fun e => hij e.symm)
+      have e1 : ∀ θ, θ < n → tsum n (fun v => ζ ^ (c + (fun l => if l = i then θ else v l) i) *
+          η ^ (c' + (fun l => if l = i then θ else v l) j)) i = ζ ^ (c + θ) * 0 := fun θ _ => by
+        dsimp only
+        rw [tsum_congr n (fun v => by rw [if_pos rfl, if_neg (Nat.ne_of_lt hj')]), tsum_mul_left,
+          tsum_cell hq hη hη1 c' i j hj']
+      rw [sum_congr n e1]
+      exact sum_zero n (fun _ _ => mul_zero _)
+    | .isFalse ei, .isTrue ej =>
+      subst ej
+      have hi' : i < j := Nat.lt_of_le_of_ne (Nat.le_of_lt_succ hi) ei
+      have e1 : ∀ θ, θ < n → tsum n (fun v => ζ ^ (c + (fun l => if l = j then θ else v l) i) *
+          η ^ (c' + (fun l => if l = j then θ else v l) j)) j = 0 * η ^ (c' + θ) := fun θ _ => by
+        dsimp only
+        rw [tsum_congr n (fun v => by rw [if_pos rfl, if_neg ei]), tsum_mul_right, tsum_cell hq hζ hζ1 c j i hi']
+      rw [sum_congr n e1]
+      exact sum_zero n (fun _ _ => zero_mul _)
+    | .isFalse ei, .isFalse ej =>
+      have hi' : i < m := Nat.lt_of_le_of_ne (Nat.le_of_lt_succ hi) ei
+      have hj' : j < m := Nat.lt_of_le_of_ne (Nat.le_of_lt_succ hj) ej
+      have e1 : ∀ θ, θ < n → tsum n (fun v => ζ ^ (c + (fun l => if l = m then θ else v l) i) *
+          η ^ (c' + (fun l => if l = m then θ else v l) j)) m = 0 := fun θ _ => by
+        dsimp only
+        rw [tsum_congr n (fun v => by rw [if_neg ei, if_neg ej]), tsum_cross hq hζ hζ1 hη hη1 c c' m i j hi' hj' hij]
+      rw [sum_congr n e1]
+      exact sum_zero n (fun _ _ => rfl)
+
+/-- lem:mbody (iii), 22:C22, 22:C15 — **the offset-uniform average is `m`**: for `m` cells with independent uniform phases
+on a cycle of order `n` (`ζ` of order `n`, `η = ζ⁻¹`, neither `1`), the sum over all `n^m` configurations of
+`|Σ_i ζ^{v_i}|² = (Σ_i ζ^{v_i})(Σ_j η^{v_j})` is `m n^m`, the average `m`, against `m²` on the synchronised orbit:
+the `√m` lives only in amplitude-coherent observables. -/
+theorem spread_average (hq : FRC.Nat.isPrime q) {ζ η : Shell q} {n : Nat} (hζ : HasOrder ζ n) (hζ1 : ζ ≠ 1)
+    (hη : HasOrder η n) (hη1 : η ≠ 1) (hζη : ζ * η = 1) (m : Nat) :
+    tsum n (fun v => sumRange (fun i => ζ ^ (v i)) m * sumRange (fun j => η ^ (v j)) m) m = ofNat m * ofNat (n ^ m) := by
+  rw [tsum_congr n (fun v => sum_mul_sum _ _ m m), tsum_sum]
+  have e1 : ∀ i, i < m → tsum n (fun v => sumRange (fun j => ζ ^ (v i) * η ^ (v j)) m) m = ofNat (n ^ m) := fun i hi => by
+    rw [tsum_sum]
+    have e2 : ∀ j, j < m → tsum n (fun v => ζ ^ (v i) * η ^ (v j)) m = if j = i then ofNat (n ^ m) else 0 := fun j hj => by
+      match Nat.decEq j i with
+      | .isTrue e =>
+        subst e
+        rw [if_pos rfl, tsum_congr n (fun v => by rw [← mul_pow, hζη, one_pow]), tsum_const, mul_one]
+      | .isFalse e =>
+        rw [if_neg e]
+        have := tsum_cross hq hζ hζ1 hη hη1 0 0 m i j hi hj (fun e' => e e'.symm)
+        rw [tsum_congr n (fun v => by rw [Nat.zero_add, Nat.zero_add]) m] at this
+        exact this
+    rw [sum_congr m e2, sum_eq_single (f := fun j => if j = i then ofNat (n ^ m) else 0) hi
+      (fun j _ hne => if_neg hne), if_pos rfl]
+  rw [sum_congr m e1, sum_const]
+
+/-- 22:C22 (i) — the stationary field is linear in its sources with coefficient exactly `m` per locked cluster of `m`
+cells: `Σ_{i<m} u = m u`. -/
+theorem field_linear (m : Nat) (u : Shell q) : sumRange (fun _ => u) m = ofNat m * u := sum_const u m
+
+/-- 22:C22 (ii) — the exact equivalence-principle null: the pull `m_t ∇u` on a locked test cluster against its inertia
+`m_t` gives the acceleration `∇u` for every `m_t` (`w = m_t⁻¹`), so `η = 0` identically. -/
+theorem eta_zero (mt w g : Shell q) (hw : mt * w = 1) : (mt * g) * w = g := by
+  rw [mul_assoc, mul_comm g w, ← mul_assoc, hw, one_mul]
+
+/-! ## 22:C16 — the doublet readout is `σ_x` -/
+
+/-- 22:C16 — an element of order `16` has `v⁸ = −1`: the half-turn supplies the sign. -/
+theorem half_turn_sixteen (hq : FRC.Nat.isPrime q) {v : Shell q} (hv : HasOrder v 16) : v ^ 8 = -1 := by
+  have hsq : v ^ 8 * v ^ 8 = 1 := by rw [← pow_add]; exact hv.2.1
+  match sq_eq_one hq hsq with
+  | .inl e => exact absurd e (hv.2.2 8 (by decide) (by decide))
+  | .inr e => exact e
+
+/-- The square of an element of order `16` has order `8`. -/
+theorem order_eight_of_sixteen (hq : FRC.Nat.isPrime q) {v : Shell q} (hv : HasOrder v 16) : HasOrder (v ^ 2) 8 := by
+  refine ⟨by decide, by rw [← pow_mul]; exact hv.2.1, fun l hl hl0 e => ?_⟩
+  rw [← pow_mul] at e
+  exact hv.2.2 (2 * l) (Nat.mul_lt_mul_of_pos_left hl (by decide)) (Nat.mul_pos (by decide) hl0) e
+
+/-- 22:C16 — **the forced readout is `σ_x`**: on the `C_{16}` Object `⟨v⟩` read by a core-`C_8` Subject
+(`ω = v²` the core's generator), the doublet state `u^k + λ u^{k+8}` registers on the matched channel `r = k mod 8`
+over the two cosets `s ∈ {0, 1}` (the fibre `v^s ⟨ω⟩`) as `Ψ(s) = 8 v^{sk} (1 + λ (v⁸)^s)`, that is `Ψ(0) = 8(1 + λ)`
+and `Ψ(1) = 8 v^k (1 − λ)` by the half-turn `v⁸ = −1` (`half_turn_sixteen`). -/
+theorem doublet_readout (hq : FRC.Nat.isPrime q) {v : Shell q} (hv : HasOrder v 16) (k s : Nat) (lam : Shell q) :
+    sumRange (fun j => ((v ^ s * (v ^ 2) ^ j) ^ k + lam * (v ^ s * (v ^ 2) ^ j) ^ (k + 8)) *
+      (v ^ 2) ^ ((8 - k % 8) * j)) 8 = ofNat 8 * (v ^ (s * k) * (1 + lam * (v ^ 8) ^ s)) := by
+  have hω := order_eight_of_sixteen hq hv
+  have e1 : ∀ j, ((v ^ s * (v ^ 2) ^ j) ^ k + lam * (v ^ s * (v ^ 2) ^ j) ^ (k + 8)) * (v ^ 2) ^ ((8 - k % 8) * j) =
+      (v ^ (s * k) * (1 + lam * (v ^ 8) ^ s)) * ((v ^ 2) ^ (k * j) * (v ^ 2) ^ ((8 - k % 8) * j)) := fun j => by
+    have h8 : ((v ^ 2) ^ j) ^ 8 = 1 := by rw [pow_mul_comm, hω.2.1, one_pow]
+    have ha : (v ^ s * (v ^ 2) ^ j) ^ k = v ^ (s * k) * (v ^ 2) ^ (k * j) := by
+      rw [mul_pow, ← pow_mul v s k, ← pow_mul (v ^ 2) j k, Nat.mul_comm j k]
+    have hb : (v ^ s * (v ^ 2) ^ j) ^ (k + 8) = v ^ (s * k) * (v ^ 8) ^ s * (v ^ 2) ^ (k * j) := by
+      rw [mul_pow, pow_add, pow_add, h8, mul_one, ← pow_mul v s k, ← pow_mul v s 8, ← pow_mul (v ^ 2) j k,
+        Nat.mul_comm s 8, pow_mul v 8 s, Nat.mul_comm j k]
+    rw [ha, hb]
+    exact Shell.Frame.RE.sound (Shell.Frame.look [v ^ (s * k), (v ^ 2) ^ (k * j), lam, (v ^ 8) ^ s,
+      (v ^ 2) ^ ((8 - k % 8) * j)])
+      (.mul (.add (.mul (.var 0) (.var 1)) (.mul (.var 2) (.mul (.mul (.var 0) (.var 3)) (.var 1)))) (.var 4))
+      (.mul (.mul (.var 0) (.add .one (.mul (.var 2) (.var 3)))) (.mul (.var 1) (.var 4)))
+      (by decide +kernel)
+  rw [sum_congr 8 (fun j _ => e1 j), sum_mul_left, selection hq hω k (Nat.mod_lt k (by decide)), if_pos rfl,
+    mul_comm]
+
+/-! ## 22:C17, X7, P3 — the Tsirelson square and no-signalling -/
+
+/-- 22:C17, 22:X7, 22:C25, 22:P3 — the Tsirelson square: `S = 2(ζ + ζ⁷)` for `ζ⁴ = −1` has `S² = 8` on every shell, the shadow of the
+ring identity `S² = 8` in `ℤ[ζ₈]`. -/
+theorem singlet_square {ζ : Shell q} (h4 : ζ ^ 4 = -1) : (2 * (ζ + ζ ^ 7)) * (2 * (ζ + ζ ^ 7)) = 8 := by
+  rw [mul_mul_mul_comm, tsirelson h4]
+  show ofNat 2 * ofNat 2 * ofNat 2 = ofNat 8
+  rw [ofNat_mul, ofNat_mul]
+
+/-- 22:C17 — no-signalling: the marginal of one wing, `c(1 + E) + c(1 − E)` over the two outcomes of the other
+(`c = 1/4`), is `2c`, independent of the correlator and so of the far setting. -/
+theorem no_signalling (c E : Shell q) : c * (1 + E) + c * (1 + -E) = c * 2 := by
+  rw [two_eq]
+  exact Shell.Frame.RE.sound (Shell.Frame.look [c, E])
+    (.add (.mul (.var 0) (.add .one (.var 1))) (.mul (.var 0) (.add .one (.neg (.var 1)))))
+    (.mul (.var 0) (.add .one .one)) (by decide +kernel)
+
+/-! ## 22:C19, P1 — the channel complementarity -/
+
+/-- 22:C19, 22:P1 — **`V² + C² = 1`** on every shell: for a unit phase `x` with inverse `y`, the visibility
+`V = (x + y)/2` and the concurrence `C = (x − y)/(2i)` (`h = 1/2`, `i² = −1`, `1/i = −i`) satisfy `V² + C² = 1`
+exactly, the which-path complementarity of the pure gravitational channel. -/
+theorem channel_complementarity {h x y i : Shell q} (hh : h * 2 = 1) (hxy : x * y = 1) (hi : i * i = -1) :
+    (h * (x + y)) * (h * (x + y)) + (h * (x + -y) * -i) * (h * (x + -y) * -i) = 1 := by
+  have e : (h * (x + y)) * (h * (x + y)) + (h * (x + -y) * -i) * (h * (x + -y) * -i) =
+      (h * 2) * (h * 2) * (x * y) + h * h * ((x + -y) * (x + -y)) * (i * i + 1) := by
+    rw [two_eq]
+    exact Shell.Frame.RE.sound (Shell.Frame.look [h, x, y, i]) (.add (.mul (.mul (.var 0) (.add (.var 1) (.var 2))) (.mul (.var 0) (.add (.var 1) (.var 2)))) (.mul (.mul (.mul (.var 0) (.add (.var 1) (.neg (.var 2)))) (.neg (.var 3))) (.mul (.mul (.var 0) (.add (.var 1) (.neg (.var 2)))) (.neg (.var 3))))) (.add (.mul (.mul (.mul (.var 0) (.add .one .one)) (.mul (.var 0) (.add .one .one))) (.mul (.var 1) (.var 2))) (.mul (.mul (.mul (.var 0) (.var 0)) (.mul (.add (.var 1) (.neg (.var 2))) (.add (.var 1) (.neg (.var 2))))) (.add (.mul (.var 3) (.var 3)) .one))) (by decide +kernel)
+  rw [e, hh, hxy, hi, neg_add, mul_zero, mul_one, mul_one, add_zero]
+
+/-- 22:C19 — at zero coupling the branch state is a product: the concurrence vanishes, `C = h (x − x)(−i) = 0`. -/
+theorem channel_product_at_zero (h x i : Shell q) : h * (x + -x) * -i = 0 := by
+  rw [add_neg, mul_zero, zero_mul]
+
+/-! ## 22:C20 — no collapse, exact revival -/
+
+/-- 22:C20 — the drive conserves the ledger norm: a unit phase `u` (`u ū = 1`) leaves `a ā` unchanged, so an isolated
+superposition keeps unit fringe contrast at every drive time. -/
+theorem drive_norm {u ub : Shell q} (hu : u * ub = 1) (a ab : Shell q) : (u * a) * (ub * ab) = a * ab := by
+  rw [mul_mul_mul_comm, hu, one_mul]
+
+/-- 22:C20 — the exact revival: the visibility `V(t) = Σ_E p_E ζ^{E t}` returns to `Σ_E p_E` at the recurrence `n`
+(`ζ^n = 1`): dephasing, never collapse. -/
+theorem revival {ζ : Shell q} {n : Nat} (hn : ζ ^ n = 1) (p : Nat → Shell q) (M : Nat) :
+    sumRange (fun E => p E * ζ ^ (E * n)) M = sumRange p M :=
+  sum_congr M (fun E _ => by rw [Nat.mul_comm, pow_mul, hn, one_pow, mul_one])
+
+/-! ## 22:C21 — the coherent-fraction channel -/
+
+/-- A constant product is a power. -/
+theorem prodRange_const (x : Shell q) : ∀ m, prodRange (fun _ => x) m = x ^ m
+  | 0 => rfl
+  | m + 1 => by show prodRange (fun _ => x) m * x = x ^ (m + 1); rw [prodRange_const x m, pow_succ]
+
+/-- 22:C21 (ii), 22:P1 — the branch phase of `m_c` synchronised cells is the coherent product `ζ^{m_c a}`. -/
+theorem branch_phase (ζ : Shell q) (a mc : Nat) : prodRange (fun _ => ζ ^ a) mc = ζ ^ (mc * a) := by
+  rw [prodRange_const, ← pow_mul, Nat.mul_comm]
+
+/-- 22:C21 (ii) — the pairwise law: the phase of `m₁` against `m₂` synchronised cells is `ζ^{m₁ m₂ a}`. -/
+theorem pair_product (ζ : Shell q) (a m1 m2 : Nat) : (ζ ^ (m1 * a)) ^ m2 = ζ ^ (m1 * m2 * a) := by
+  rw [← pow_mul, FRC.Nat.mul_assoc, Nat.mul_comm a m2, ← FRC.Nat.mul_assoc]
+
+/-- 22:C21 (iii) — a complete sector sum vanishes: the offset-spread cells' phases cancel over one cycle. -/
+theorem spread_cancels (hq : FRC.Nat.isPrime q) {ζ : Shell q} {n : Nat} (hζ : HasOrder ζ n) (hζ1 : ζ ≠ 1) :
+    sumRange (fun θ => ζ ^ θ) n = 0 := geom_sum_zero hq n hζ.2.1 hζ1
+
+/-- 22:C21 (iii), 22:P1 — the reduced channel factorises: the offset distribution's partial sum times the coherent phase,
+`Σ_θ p_θ ζ^{θ + c} = (Σ_θ p_θ ζ^θ) ζ^c = χ_inc · ζ^{f φ}`. -/
+theorem channel_assembly (ζ : Shell q) (p : Nat → Shell q) (n c : Nat) :
+    sumRange (fun θ => p θ * ζ ^ (θ + c)) n = sumRange (fun θ => p θ * ζ ^ θ) n * ζ ^ c := by
+  rw [← sum_mul_right]
+  exact sum_congr n (fun θ _ => by rw [pow_add, mul_assoc])
+
+/-! ## 22:C23, X4 — inter-Subject consistency -/
+
+/-- 22:C23 (ii), 22:X4 — shared-core agreement: with the common core of order `e` dividing both cores `a`, `b`, the channels
+`r ≡ k (mod a)` of `S` and `r' ≡ k (mod b)` of `S'` agree on the common core, `r ≡ r' (mod e)`: both induce the one
+character `η_{k mod e}`. -/
+theorem order_independence {a b e r r' k : Nat} (he : 0 < e) (ha : 0 < a) (hb : 0 < b) (hae : a % e = 0)
+    (hbe : b % e = 0) (hr : r % a = k % a) (hr' : r' % b = k % b) : r % e = r' % e := by
+  rw [← mod_mod_of_dvd (n := r) he ha hae, hr, mod_mod_of_dvd he ha hae, ← mod_mod_of_dvd (n := r') he hb hbe, hr',
+    mod_mod_of_dvd he hb hbe]
+
+/-- 22:C23 (i), 22:X4 — joint refinement: the common cosets of two cores (classes modulo `α` and modulo `β` on the Object
+cycle) are the classes modulo one period `T`, the common core's, in either order; `T` lies below the product
+`αβ` (`FRC.Quantum.joint_recurrence` on the two parts, the search bounded by `αβ`). -/
+theorem joint_refinement (α β : Nat) (hα : 0 < α) (hβ : 0 < β) :
+    ∃ T, T ≤ α * β ∧ 0 < T ∧ ∀ x, (x % α = 0 ∧ x % β = 0) ↔ x % T = 0 := by
+  let n : Nat → Nat := fun j => if j = 0 then α else β
+  have hn : ∀ j, 0 < n j := fun j => by
+    show 0 < (if j = 0 then α else β)
+    match Nat.decEq j 0 with
+    | .isTrue e => rw [if_pos e]; exact hα
+    | .isFalse e => rw [if_neg e]; exact hβ
+  have hL : Joint n 2 (α * β) := fun j hj => by
+    show (α * β) % (if j = 0 then α else β) = 0
+    match j with
+    | 0 => rw [if_pos rfl]; exact mod_zero_of_eq_mul hα rfl
+    | 1 => rw [if_neg (by decide), Nat.mul_comm]; exact mod_zero_of_eq_mul hβ rfl
+    | j + 2 => exact absurd hj (Nat.not_lt_of_le (Nat.le_add_left 2 j))
+  obtain ⟨T, hTL, hT0, _, hiff, _⟩ := joint_recurrence n hn 2 (α * β) (Nat.mul_pos hα hβ) hL
+  refine ⟨T, hTL, hT0, fun x => Iff.trans ?_ (hiff x)⟩
+  constructor
+  · intro ⟨h0, h1⟩ j hj
+    show x % (if j = 0 then α else β) = 0
+    match j with
+    | 0 => rw [if_pos rfl]; exact h0
+    | 1 => rw [if_neg (by decide)]; exact h1
+    | j + 2 => exact absurd hj (Nat.not_lt_of_le (Nat.le_add_left 2 j))
+  · intro h
+    constructor
+    · have := h 0 (by decide)
+      exact (show x % (if 0 = 0 then α else β) = 0 from this) |> fun e => by rwa [if_pos rfl] at e
+    · have := h 1 (by decide)
+      exact (show x % (if 1 = 0 then α else β) = 0 from this) |> fun e => by rwa [if_neg (by decide)] at e
+
+/-! ## The worked carriers (Table `tab:configs`), decided by the kernel -/
+
+instance decHasOrder {p : Nat} [Pos p] (x : Shell p) (n : Nat) : Decidable (HasOrder x n) :=
+  have : Decidable (∀ l, l < n → 0 < l → x ^ l ≠ 1) := FRC.Shell.decForallLT (fun l => 0 < l → x ^ l ≠ 1) n
+  inferInstanceAs (Decidable (0 < n ∧ x ^ n = 1 ∧ ∀ l, l < n → 0 < l → x ^ l ≠ 1))
+
+/-- 22:C24, the worked carrier `𝔽₁₅₇` (`κ = 39`): `g = 5` is primitive, the quarter-turn `I = g^{−39} = g^{117} = 28`,
+`I² = −1`; the Subject `S₅₃` has the cycle `C₅₂ = ⟨g³ = 125⟩`, the Object `O₁₃` the cycle `C₁₂ = ⟨g¹³ = 22⟩`, the core
+`Q₄` (`gcd(52, 12) = 4`), three outcomes (`12/4 = 3`). -/
+theorem carrier_157 :
+    (157 : Nat) = 4 * 39 + 1 ∧ HasOrder (5 : Shell 157) 156 ∧ (5 : Shell 157) ^ 117 = 28 ∧
+    (28 : Shell 157) * 28 = -1 ∧ (5 : Shell 157) ^ 3 = 125 ∧ HasOrder (125 : Shell 157) 52 ∧
+    (5 : Shell 157) ^ 13 = 22 ∧ HasOrder (22 : Shell 157) 12 ∧
+    (52 % 4 = 0 ∧ 12 % 4 = 0 ∧ ∀ e, e < 53 → 52 % e = 0 → 12 % e = 0 → 4 % e = 0) ∧ 12 = 4 * 3 := by
+  decide +kernel
+
+/-- 22:C24, 22:X5 — the worked carrier `𝔽₄₂₁` (`κ = 105`): `g = 2` is primitive, `I = g^{−105} = g^{315} = 392`, `I² = −1`;
+the Subject `S₆₁` (`C₆₀`) resolves `O₂₉` (`C₂₈`) through the core `Q₄` (`gcd(60, 28) = 4`) in seven outcomes
+(`28 = 4 · 7`) and absorbs `O₁₃` (`C₁₂`, `gcd(60, 12) = 12`, one outcome): quantumness is the subgroup index. -/
+theorem carrier_421 :
+    (421 : Nat) = 4 * 105 + 1 ∧ HasOrder (2 : Shell 421) 420 ∧ (2 : Shell 421) ^ 315 = 392 ∧
+    (392 : Shell 421) * 392 = -1 ∧
+    (60 % 4 = 0 ∧ 28 % 4 = 0 ∧ ∀ e, e < 61 → 60 % e = 0 → 28 % e = 0 → 4 % e = 0) ∧ 28 = 4 * 7 ∧
+    (60 % 12 = 0 ∧ 12 % 12 = 0 ∧ ∀ e, e < 61 → 60 % e = 0 → 12 % e = 0 → 12 % e = 0) ∧ 12 = 12 * 1 := by
+  decide +kernel
+
+/-- 22:C16, 22:C17 — the worked carrier `𝔽₆₄₁` (`κ = 160`): `g = 3` is primitive; the Object generator `g_O = g⁴⁰ = 601`
+has order `16` and `g_O⁸ = −1` (the doublet's sign); the setting step `ζ₈₀ = g⁸ = 151` has order `80`; the octant
+`ζ₈ = g⁸⁰ = 318` has `ζ₈⁴ = −1`, `(ζ₈ + ζ₈⁷)² = 2` and `S² = 8`; the Bell core is `C₈` (`gcd(40, 16) = 8`). -/
+theorem carrier_641 :
+    (641 : Nat) = 4 * 160 + 1 ∧ HasOrder (3 : Shell 641) 640 ∧ (3 : Shell 641) ^ 40 = 601 ∧
+    HasOrder (601 : Shell 641) 16 ∧ (601 : Shell 641) ^ 8 = -1 ∧ (3 : Shell 641) ^ 8 = 151 ∧
+    HasOrder (151 : Shell 641) 80 ∧ (3 : Shell 641) ^ 80 = 318 ∧ (318 : Shell 641) ^ 4 = -1 ∧
+    (318 + (318 : Shell 641) ^ 7) * (318 + (318 : Shell 641) ^ 7) = 2 ∧
+    (2 * (318 + (318 : Shell 641) ^ 7)) * (2 * (318 + (318 : Shell 641) ^ 7)) = 8 ∧
+    (40 % 8 = 0 ∧ 16 % 8 = 0 ∧ ∀ e, e < 41 → 40 % e = 0 → 16 % e = 0 → 8 % e = 0) := by
+  decide +kernel
+
+end FRC.Composite
 
 /-! inlined: FrcCore/Theme/Unitary.lean -/
 
@@ -18715,7 +20036,7 @@ def support (c₀ c₁ c₂ c₃ : Int) : Nat :=
   (if c₀ = 0 then 0 else 1) + (if c₁ = 0 then 0 else 1) + (if c₂ = 0 then 0 else 1) + (if c₃ = 0 then 0 else 1)
 
 set_option maxRecDepth 4000 in
-/-- 00:C11 (i) — the pure windings fix the tallies on the box `−1 ≤ c_r ≤ 3` (the naturals `a, b, c, d < 5`, cast to
+/-- 00:C11 (i), 22:C12 — the pure windings fix the tallies on the box `−1 ≤ c_r ≤ 3` (the naturals `a, b, c, d < 5`, cast to
 `ℤ` and shifted by one), which contains negative coefficients: `F(K_c, ψ_k) = 16 c_k` for every kernel of the box and
 every channel `k`. -/
 theorem winding_fixing : ∀ a : Nat, a < 5 → ∀ b : Nat, b < 5 → ∀ c : Nat, c < 5 → ∀ d : Nat, d < 5 →
@@ -18724,7 +20045,7 @@ theorem winding_fixing : ∀ a : Nat, a < 5 → ∀ b : Nat, b < 5 → ∀ c : N
       ⟨16 * coeff (Int.ofNat a - 1) (Int.ofNat b - 1) (Int.ofNat c - 1) (Int.ofNat d - 1) k, 0⟩ := by decide +kernel
 
 set_option maxRecDepth 4000 in
-/-- 00:C11 (i′) — the tally criterion on the box: the pair tally of `K_c` on `ψ_k` is a tally (a nonnegative integer)
+/-- 00:C11 (i′), 22:C12, 22:X6 — the tally criterion on the box: the pair tally of `K_c` on `ψ_k` is a tally (a nonnegative integer)
 iff `0 ≤ c_k` — the cone's two halves: every tally combination is tally-valued on the windings, and a kernel with a
 negative coefficient is excluded by its own winding. -/
 theorem tally_criterion : ∀ a : Nat, a < 5 → ∀ b : Nat, b < 5 → ∀ c : Nat, c < 5 → ∀ d : Nat, d < 5 →
@@ -18732,21 +20053,21 @@ theorem tally_criterion : ∀ a : Nat, a < 5 → ∀ b : Nat, b < 5 → ∀ c : 
     (tally (F (kernel (Int.ofNat a - 1) (Int.ofNat b - 1) (Int.ofNat c - 1) (Int.ofNat d - 1)) (psi k)) ↔
       (0 : Int) ≤ coeff (Int.ofNat a - 1) (Int.ofNat b - 1) (Int.ofNat c - 1) (Int.ofNat d - 1) k) := by decide +kernel
 
-/-- 00:C11 (ii) — every kernel of the cube is two-way, `K(−d) = conj K(d)`, and tally-valued on the pure windings. -/
+/-- 00:C11 (ii), 22:C12 — every kernel of the cube is two-way, `K(−d) = conj K(d)`, and tally-valued on the pure windings. -/
 theorem two_way : ∀ a : Nat, a < 4 → ∀ b : Nat, b < 4 → ∀ c : Nat, c < 4 → ∀ d : Nat, d < 4 →
     (∀ e, e < 4 → kernel (Int.ofNat a) (Int.ofNat b) (Int.ofNat c) (Int.ofNat d) ((4 - e) % 4) = conj (kernel (Int.ofNat a) (Int.ofNat b) (Int.ofNat c) (Int.ofNat d) e)) ∧
     (∀ k, k < 4 → tally (F (kernel (Int.ofNat a) (Int.ofNat b) (Int.ofNat c) (Int.ofNat d)) (psi k))) := by decide
 
-/-- 00:C11 (iii) — Fourier inversion recovers every coefficient exactly: `Σ_d K(d) i^{−rd} = 4 c_r`. -/
+/-- 00:C11 (iii), 22:C3, 22:C12 — Fourier inversion recovers every coefficient exactly: `Σ_d K(d) i^{−rd} = 4 c_r`. -/
 theorem fourier_inversion : ∀ a : Nat, a < 4 → ∀ b : Nat, b < 4 → ∀ c : Nat, c < 4 → ∀ d : Nat, d < 4 →
     ∀ r, r < 4 → inversion (kernel (Int.ofNat a) (Int.ofNat b) (Int.ofNat c) (Int.ofNat d)) r = ⟨4 * coeff (Int.ofNat a) (Int.ofNat b) (Int.ofNat c) (Int.ofNat d) r, 0⟩ := by decide
 
-/-- 00:C11 (iv) — channel-selectivity picks the ray: a kernel of the cube responds on exactly one channel iff its
+/-- 00:C11 (iv), 22:C12, 22:X6 — channel-selectivity picks the ray: a kernel of the cube responds on exactly one channel iff its
 coefficient vector is a scaled unit vector. -/
 theorem channel_selectivity : ∀ a : Nat, a < 4 → ∀ b : Nat, b < 4 → ∀ c : Nat, c < 4 → ∀ d : Nat, d < 4 →
     (responses (kernel (Int.ofNat a) (Int.ofNat b) (Int.ofNat c) (Int.ofNat d)) = 1 ↔ support (Int.ofNat a) (Int.ofNat b) (Int.ofNat c) (Int.ofNat d) = 1) := by decide
 
-/-- 00:C11 (v) — the core DFT matrix `(i^{ru})` is invertible: its determinant is `−16i`. -/
+/-- 00:C11 (v), 22:C3, 22:C12 — the core DFT matrix `(i^{ru})` is invertible: its determinant is `−16i`. -/
 theorem dft_det :
     let M := fun r u => ipow (r * u)
     let d2 := fun a b c d : GI => a * d + smul (-1) (b * c)
@@ -18767,7 +20088,7 @@ def psiA (u : Nat) : GI := if u = 0 then ⟨1, 1⟩ else ⟨0, 0⟩
 /-- The Gaussian-lattice state `e₀ + i e₁`. -/
 def psiB (u : Nat) : GI := if u = 0 then ⟨1, 0⟩ else if u = 1 then ⟨0, 1⟩ else ⟨0, 0⟩
 
-/-- 00:C11 (vi) — the witnesses of the cone's boundary (22-quantum's U3, U5, U6a): the negative coefficient
+/-- 00:C11 (vi), 22:C12 — the witnesses of the cone's boundary (22-quantum's U3, U5, U6a): the negative coefficient
 `c = (1, −1, 1, 0)` is excluded by its own winding, `F(K_c, ψ₁) = −16`; the two-way kernel `5η₁ − 2η₂ + η₃` outside the
 box is excluded on `ψ₂` and Fourier inversion recovers `4c = (0, 20, −8, 4)`; the fibre norm `[d = 0]` is two-way,
 responds `(4, 4, 4, 4)` with `4c_r = 1` on every channel (no tally combination) and fails channel-selectivity; the
@@ -18781,7 +20102,7 @@ theorem cone_boundary :
     responses fibreNorm = 4 ∧ (∀ r, r < 4 → inversion fibreNorm r = ⟨1, 0⟩) ∧
     F (kernel 0 1 0 0) (psi 1) = ⟨16, 0⟩ ∧ F (kernel 0 1 0 0) (psi 0) = ⟨0, 0⟩ ∧ responses (kernel 0 1 0 0) = 1 := by decide
 
-/-- 00:C11 (vii) — the minimal degree is forced (22-quantum Lemma degree): a linear functional constant on the orbit
+/-- 00:C11 (vii), 22:C12 — the minimal degree is forced (22-quantum Lemma degree): a linear functional constant on the orbit
 vanishes on every nontrivial winding (the complete character sums), and on the trivial winding `F(i ψ₀) = i F(ψ₀)`
 leaves the tally cone for every nonzero multiplier `c ≤ 4`; and the unconjugated bilinear form leaves the tally line
 on Gaussian-lattice states where the conjugated form of the same kernel stays on it: `B(fn, (1 + i)e₀) = 2i` against
@@ -18839,6 +20160,9 @@ theorem p08002 : ∀ {p : Nat} [FRC.Pos p] {ν : FRC.Shell p} (z : FRC.Extension
 /-- p08012 — 8:B6. Norm growth and parity: $N(gz)=g^{2}N(z)$ with $g^{2}$ a square, the single-chronon multiplier $g$ odd, $x^{2}=\nu$ unsolvable in $\Fp$; the flip $g\mapsto g^{-1}$ preserves the parity class. -/
 theorem p08012 : (∀ {p : Nat} [FRC.Pos p] {ν : FRC.Shell p} (c : FRC.Shell p) (z : FRC.Extension.Ext p ν), (FRC.Extension.Ext.ofShell c * z).norm = c * c * z.norm) ∧ ∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → ∀ {y : FRC.Shell p}, g * y = (1 : FRC.Shell p) → ¬∃ r, r * r = y :=
   And.intro @FRC.Extension.Ext.norm_scale (@FRC.Shell.Frame.inv_drive_nonsquare)
+/-- p22027 — 22:C11. The engineered-core readout: registered frequencies are framed rationals reading the two-way structural weight through Definition~\ref{def:readout}; two reductions are proved (the conjugate-pair trace tally and the setting-ensemble Parseval tally, Remark~\ref{rem:strata}), given the stratum-sampling clause, the unified sampling clause of master D10. -/
+theorem p22027 : (∀ {p : Nat} [FRC.Pos p] {ν : FRC.Shell p} (z : FRC.Extension.Ext p ν) (k m : Nat), z ^ k * z.conj ^ (k + m) + z.conj ^ k * z ^ (k + m) = FRC.Extension.Ext.ofShell (z.norm ^ k * (z ^ m).trace)) ∧ (∀ {p : Nat} [FRC.Pos p] {ν : FRC.Shell p}, (∀ (z : FRC.Extension.Ext p ν) (m : Nat), (z ^ (m + (2 : Nat))).trace + z.norm * (z ^ m).trace = z.trace * (z ^ (m + (1 : Nat))).trace) ∧ ((FRC.Extension.Wp ^ (0 : Nat)).trace = (2 : FRC.Shell p) ∧ (FRC.Extension.Wp ^ (1 : Nat)).trace = (4 : FRC.Shell p)) ∧ (FRC.Extension.Wp ^ (2 : Nat)).trace = (12 : FRC.Shell (641 : Nat)) ∧ (FRC.Extension.Wp ^ (3 : Nat)).trace = (40 : FRC.Shell (641 : Nat))) ∧ (∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → ∀ {ζ η : FRC.Shell p} (M : Nat), ζ ^ ((2 : Nat) * M) = (1 : FRC.Shell p) → ζ ^ M ≠ (1 : FRC.Shell p) → ζ * η = (1 : FRC.Shell p) → ∀ (θ : Nat), θ ≤ M → (2 : FRC.Shell p) + (ζ ^ (M - θ) + η ^ (M - θ)) = (2 : FRC.Shell p) + -(ζ ^ θ + η ^ θ)) ∧ (∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → ∀ {ζ η : FRC.Shell p} (N : Nat), ζ ^ N = (1 : FRC.Shell p) → ζ * η = (1 : FRC.Shell p) → ζ * ζ ≠ (1 : FRC.Shell p) → FRC.Shell.sumRange (fun θ => (2 : FRC.Shell p) + (ζ ^ θ + η ^ θ)) N = FRC.Shell.ofNat N * (2 : FRC.Shell p) ∧ FRC.Shell.sumRange (fun θ => (2 : FRC.Shell p) + -(ζ ^ θ + η ^ θ)) N = FRC.Shell.ofNat N * (2 : FRC.Shell p) ∧ FRC.Shell.sumRange (fun θ => ((2 : FRC.Shell p) + (ζ ^ θ + η ^ θ)) * ((2 : FRC.Shell p) + -(ζ ^ θ + η ^ θ))) N = FRC.Shell.ofNat N * (2 : FRC.Shell p)) ∧ (∀ (n : Nat), n < (9 : Nat) → FRC.Extension.gridPoint n * FRC.Extension.gridPoint n ≤ (2 : Nat) * (9 : Nat) ^ n ∧ (2 : Nat) * (9 : Nat) ^ n < (FRC.Extension.gridPoint n + (1 : Nat)) * (FRC.Extension.gridPoint n + (1 : Nat))) ∧ (∀ (n : Nat), n < (8 : Nat) → (3 : Nat) * FRC.Extension.gridPoint n ≤ FRC.Extension.gridPoint (n + (1 : Nat)) ∧ FRC.Extension.gridPoint (n + (1 : Nat)) ≤ (3 : Nat) * FRC.Extension.gridPoint n + (2 : Nat)) ∧ ((2 : Nat) * (3 : Nat) ^ (4 : Nat) + FRC.Extension.gridPoint (4 : Nat)) * (54 : Nat) = (23 : Nat) * ((8 : Nat) * (3 : Nat) ^ (4 : Nat)) ∧ ((46 : Nat) * (46 : Nat) ≤ (3 : Nat) * (3 : Nat) ^ (6 : Nat) ∧ (3 : Nat) * (3 : Nat) ^ (6 : Nat) < (47 : Nat) * (47 : Nat)) ∧ (23 : Nat) + (23 : Nat) + (4 : Nat) + (4 : Nat) = (54 : Nat) ∧ FRC.Extension.largestRemainder (81 : Nat) (54 : Nat) [(23 : Nat), (23 : Nat), (4 : Nat), (4 : Nat)] = [(35 : Nat), (34 : Nat), (6 : Nat), (6 : Nat)] :=
+  And.intro @FRC.Extension.conjugate_pair_tally (And.intro @FRC.Extension.trace_recurrence (And.intro @FRC.Extension.dial_shift (And.intro @FRC.Extension.dial_tally (@FRC.Extension.framed_readout))))
 /-- p22028 — 22:C12, 00:C11. \textbf{Pair-tally uniqueness} (22-qm Prop.~gleason, the uniqueness of the pair tally on the stationary $Q_4$ sector): on the stationary core-valued $Q_4$ sector, tally-valued, fibre-additive, drive-invariant, parity-even registration functionals form the character cone fixed by the pure windings; adding channel-selectivity (assumed, not derived; the sampling clause D10) picks the Born ray. The minimal degree is forced; proof shape: 22-qm. -/
 theorem p22028 : (∀ (a : Nat), a < (5 : Nat) → ∀ (b : Nat), b < (5 : Nat) → ∀ (c : Nat), c < (5 : Nat) → ∀ (d : Nat), d < (5 : Nat) → ∀ (k : Nat), k < (4 : Nat) → FRC.Extension.Tally.F (FRC.Extension.Tally.kernel (Int.ofNat a - (1 : Int)) (Int.ofNat b - (1 : Int)) (Int.ofNat c - (1 : Int)) (Int.ofNat d - (1 : Int))) (FRC.Extension.Tally.psi k) = { re := (16 : Int) * FRC.Extension.Tally.coeff (Int.ofNat a - (1 : Int)) (Int.ofNat b - (1 : Int)) (Int.ofNat c - (1 : Int)) (Int.ofNat d - (1 : Int)) k, im := (0 : Int) }) ∧ (∀ (a : Nat), a < (5 : Nat) → ∀ (b : Nat), b < (5 : Nat) → ∀ (c : Nat), c < (5 : Nat) → ∀ (d : Nat), d < (5 : Nat) → ∀ (k : Nat), k < (4 : Nat) → ((FRC.Extension.Tally.F (FRC.Extension.Tally.kernel (Int.ofNat a - (1 : Int)) (Int.ofNat b - (1 : Int)) (Int.ofNat c - (1 : Int)) (Int.ofNat d - (1 : Int))) (FRC.Extension.Tally.psi k)).tally ↔ (0 : Int) ≤ FRC.Extension.Tally.coeff (Int.ofNat a - (1 : Int)) (Int.ofNat b - (1 : Int)) (Int.ofNat c - (1 : Int)) (Int.ofNat d - (1 : Int)) k)) ∧ (∀ (a : Nat), a < (4 : Nat) → ∀ (b : Nat), b < (4 : Nat) → ∀ (c : Nat), c < (4 : Nat) → ∀ (d : Nat), d < (4 : Nat) → (∀ (e : Nat), e < (4 : Nat) → FRC.Extension.Tally.kernel (Int.ofNat a) (Int.ofNat b) (Int.ofNat c) (Int.ofNat d) (((4 : Nat) - e) % (4 : Nat)) = (FRC.Extension.Tally.kernel (Int.ofNat a) (Int.ofNat b) (Int.ofNat c) (Int.ofNat d) e).conj) ∧ ∀ (k : Nat), k < (4 : Nat) → (FRC.Extension.Tally.F (FRC.Extension.Tally.kernel (Int.ofNat a) (Int.ofNat b) (Int.ofNat c) (Int.ofNat d)) (FRC.Extension.Tally.psi k)).tally) ∧ (∀ (a : Nat), a < (4 : Nat) → ∀ (b : Nat), b < (4 : Nat) → ∀ (c : Nat), c < (4 : Nat) → ∀ (d : Nat), d < (4 : Nat) → ∀ (r : Nat), r < (4 : Nat) → FRC.Extension.Tally.inversion (FRC.Extension.Tally.kernel (Int.ofNat a) (Int.ofNat b) (Int.ofNat c) (Int.ofNat d)) r = { re := (4 : Int) * FRC.Extension.Tally.coeff (Int.ofNat a) (Int.ofNat b) (Int.ofNat c) (Int.ofNat d) r, im := (0 : Int) }) ∧ (∀ (a : Nat), a < (4 : Nat) → ∀ (b : Nat), b < (4 : Nat) → ∀ (c : Nat), c < (4 : Nat) → ∀ (d : Nat), d < (4 : Nat) → (FRC.Extension.Tally.responses (FRC.Extension.Tally.kernel (Int.ofNat a) (Int.ofNat b) (Int.ofNat c) (Int.ofNat d)) = (1 : Nat) ↔ FRC.Extension.Tally.support (Int.ofNat a) (Int.ofNat b) (Int.ofNat c) (Int.ofNat d) = (1 : Nat))) ∧ (have M := fun r u => FRC.Extension.Tally.GI.ipow (r * u); have d2 := fun a b c d => a * d + FRC.Extension.Tally.GI.smul (-1 : Int) (b * c); have e := fun r => M r; have det3 := fun f g h => f (1 : Nat) * d2 (g (2 : Nat)) (g (3 : Nat)) (h (2 : Nat)) (h (3 : Nat)) + FRC.Extension.Tally.GI.smul (-1 : Int) (f (2 : Nat) * d2 (g (1 : Nat)) (g (3 : Nat)) (h (1 : Nat)) (h (3 : Nat))) + f (3 : Nat) * d2 (g (1 : Nat)) (g (2 : Nat)) (h (1 : Nat)) (h (2 : Nat)); e (0 : Nat) (0 : Nat) * det3 (e (1 : Nat)) (e (2 : Nat)) (e (3 : Nat)) + FRC.Extension.Tally.GI.smul (-1 : Int) (e (1 : Nat) (0 : Nat) * det3 (e (0 : Nat)) (e (2 : Nat)) (e (3 : Nat))) + e (2 : Nat) (0 : Nat) * det3 (e (0 : Nat)) (e (1 : Nat)) (e (3 : Nat)) + FRC.Extension.Tally.GI.smul (-1 : Int) (e (3 : Nat) (0 : Nat) * det3 (e (0 : Nat)) (e (1 : Nat)) (e (2 : Nat))) = { re := (0 : Int), im := (-16 : Int) }) ∧ (FRC.Extension.Tally.F (FRC.Extension.Tally.kernel (1 : Int) (-1 : Int) (1 : Int) (0 : Int)) (FRC.Extension.Tally.psi (1 : Nat)) = { re := (-16 : Int), im := (0 : Int) } ∧ ¬(FRC.Extension.Tally.F (FRC.Extension.Tally.kernel (1 : Int) (-1 : Int) (1 : Int) (0 : Int)) (FRC.Extension.Tally.psi (1 : Nat))).tally ∧ (∀ (e : Nat), e < (4 : Nat) → FRC.Extension.Tally.kout (((4 : Nat) - e) % (4 : Nat)) = (FRC.Extension.Tally.kout e).conj) ∧ FRC.Extension.Tally.F FRC.Extension.Tally.kout (FRC.Extension.Tally.psi (2 : Nat)) = { re := (-32 : Int), im := (0 : Int) } ∧ ¬(FRC.Extension.Tally.F FRC.Extension.Tally.kout (FRC.Extension.Tally.psi (2 : Nat))).tally ∧ FRC.Extension.Tally.inversion FRC.Extension.Tally.kout (0 : Nat) = { re := (0 : Int), im := (0 : Int) } ∧ FRC.Extension.Tally.inversion FRC.Extension.Tally.kout (1 : Nat) = { re := (20 : Int), im := (0 : Int) } ∧ FRC.Extension.Tally.inversion FRC.Extension.Tally.kout (2 : Nat) = { re := (-8 : Int), im := (0 : Int) } ∧ FRC.Extension.Tally.inversion FRC.Extension.Tally.kout (3 : Nat) = { re := (4 : Int), im := (0 : Int) } ∧ (∀ (d : Nat), d < (4 : Nat) → FRC.Extension.Tally.GI.smul (4 : Int) (FRC.Extension.Tally.kout d) = FRC.Extension.Tally.sum4 fun r => FRC.Extension.Tally.inversion FRC.Extension.Tally.kout r * FRC.Extension.Tally.GI.ipow (r * d)) ∧ (∀ (e : Nat), e < (4 : Nat) → FRC.Extension.Tally.fibreNorm (((4 : Nat) - e) % (4 : Nat)) = (FRC.Extension.Tally.fibreNorm e).conj) ∧ (∀ (k : Nat), k < (4 : Nat) → FRC.Extension.Tally.F FRC.Extension.Tally.fibreNorm (FRC.Extension.Tally.psi k) = { re := (4 : Int), im := (0 : Int) }) ∧ FRC.Extension.Tally.responses FRC.Extension.Tally.fibreNorm = (4 : Nat) ∧ (∀ (r : Nat), r < (4 : Nat) → FRC.Extension.Tally.inversion FRC.Extension.Tally.fibreNorm r = { re := (1 : Int), im := (0 : Int) }) ∧ FRC.Extension.Tally.F (FRC.Extension.Tally.kernel (0 : Int) (1 : Int) (0 : Int) (0 : Int)) (FRC.Extension.Tally.psi (1 : Nat)) = { re := (16 : Int), im := (0 : Int) } ∧ FRC.Extension.Tally.F (FRC.Extension.Tally.kernel (0 : Int) (1 : Int) (0 : Int) (0 : Int)) (FRC.Extension.Tally.psi (0 : Nat)) = { re := (0 : Int), im := (0 : Int) } ∧ FRC.Extension.Tally.responses (FRC.Extension.Tally.kernel (0 : Int) (1 : Int) (0 : Int) (0 : Int)) = (1 : Nat)) ∧ (∀ (k : Nat), k < (4 : Nat) → (0 : Nat) < k → (FRC.Extension.Tally.sum4 fun u => FRC.Extension.Tally.GI.ipow (k * u)) = FRC.Extension.Tally.GI.zero) ∧ (∀ (c : Nat), c < (5 : Nat) → (0 : Nat) < c → ¬(FRC.Extension.Tally.GI.i * { re := (4 : Int) * Int.ofNat c, im := (0 : Int) }).tally) ∧ FRC.Extension.Tally.B FRC.Extension.Tally.fibreNorm FRC.Extension.Tally.psiA = { re := (0 : Int), im := (2 : Int) } ∧ ¬(FRC.Extension.Tally.B FRC.Extension.Tally.fibreNorm FRC.Extension.Tally.psiA).tally ∧ FRC.Extension.Tally.F FRC.Extension.Tally.fibreNorm FRC.Extension.Tally.psiA = { re := (2 : Int), im := (0 : Int) } ∧ (FRC.Extension.Tally.F FRC.Extension.Tally.fibreNorm FRC.Extension.Tally.psiA).tally ∧ FRC.Extension.Tally.B (fun d => if d % (4 : Nat) = (1 : Nat) then { re := (1 : Int), im := (0 : Int) } else { re := (0 : Int), im := (0 : Int) }) FRC.Extension.Tally.psiB = { re := (0 : Int), im := (1 : Int) } ∧ ¬(FRC.Extension.Tally.B (fun d => if d % (4 : Nat) = (1 : Nat) then { re := (1 : Int), im := (0 : Int) } else { re := (0 : Int), im := (0 : Int) }) FRC.Extension.Tally.psiB).tally ∧ FRC.Extension.Tally.B (FRC.Extension.Tally.kernel (1 : Int) (1 : Int) (0 : Int) (0 : Int)) FRC.Extension.Tally.psiA = { re := (0 : Int), im := (4 : Int) } ∧ ¬(FRC.Extension.Tally.B (FRC.Extension.Tally.kernel (1 : Int) (1 : Int) (0 : Int) (0 : Int)) FRC.Extension.Tally.psiA).tally ∧ FRC.Extension.Tally.F (FRC.Extension.Tally.kernel (1 : Int) (1 : Int) (0 : Int) (0 : Int)) FRC.Extension.Tally.psiA = { re := (4 : Int), im := (0 : Int) } :=
   And.intro @FRC.Extension.Tally.winding_fixing (And.intro @FRC.Extension.Tally.tally_criterion (And.intro @FRC.Extension.Tally.two_way (And.intro @FRC.Extension.Tally.fourier_inversion (And.intro @FRC.Extension.Tally.channel_selectivity (And.intro @FRC.Extension.Tally.dft_det (And.intro @FRC.Extension.Tally.cone_boundary (@FRC.Extension.Tally.linear_exclusion)))))))
@@ -22745,6 +24069,299 @@ theorem p38051 : (∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Sh
 
 end FRC.S13
 
+/-! inlined: FrcCore/Keys/Quantum.lean -/
+
+/-!
+# FrcCore.Keys.Quantum — the keyed theorems of the quantum theme (ledger migration, task LM19)
+
+One declaration per key, `FRC.Ledger.p<key>`, generated by `make_keys.py` from the ledgers' Lean bindings: the theorem
+that every row carrying the key asserts, proved from the themes alone. The paper's module keeps its declaration
+`FRC.<Module>.p<key>` as an alias. Every declaration has no axioms (`check_core_axioms.py`).
+-/
+
+namespace FRC.Ledger
+
+-- Keys of the quantum theme (generated by make_keys.py from the ledgers' Lean bindings; edit the ledgers, not this file)
+/-- p00191 — 00:F2. \textbf{Multi-body registration}: an unequal-cycle composite returning below $\Om$ (Q20) recurs jointly at the lcm of its parts' registration periods; each pair's conserved offset lives on the $\gcd$ cycle (the quotient $A/\langle v\rangle$), and dephasing over every joint recurrence below $\Om$ is exact, extending the Born-rule count (F1) verbatim to unequal cycles (37-sim: joint recurrence verified, 1400/1400 characters cancel). -/
+theorem p00191 : (∀ (n : Nat → Nat), (∀ (j : Nat), (0 : Nat) < n j) → ∀ (m L : Nat), (0 : Nat) < L → FRC.Quantum.Joint n m L → ∃ T, T ≤ L ∧ (0 : Nat) < T ∧ FRC.Quantum.Joint n m T ∧ (∀ (t : Nat), FRC.Quantum.Joint n m t ↔ t % T = (0 : Nat)) ∧ L % T = (0 : Nat)) ∧ (∀ {n : Nat → Nat} {m T : Nat}, (∀ (t : Nat), FRC.Quantum.Joint n m t ↔ t % T = (0 : Nat)) → (0 : Nat) < T → ∀ (t : Nat), (0 : Nat) < t → FRC.Quantum.Joint n m t → T ≤ t) ∧ (∀ {a b T : Nat}, (0 : Nat) < a → (0 : Nat) < b → (0 : Nat) < T → T % a = (0 : Nat) → T % b = (0 : Nat) → (∀ (t : Nat), (0 : Nat) < t → t < T → ¬(t % a = (0 : Nat) ∧ t % b = (0 : Nat))) → ∃ g, g ≤ a ∧ (0 : Nat) < g ∧ g * T = a * b ∧ a % g = (0 : Nat) ∧ b % g = (0 : Nat) ∧ (∀ (e : Nat), (0 : Nat) < e → a % e = (0 : Nat) → b % e = (0 : Nat) → g % e = (0 : Nat)) ∧ ∀ (x y x' y' : Nat), x < a → y < b → x' < a → y' < b → ((∃ t, t < T ∧ (x + t) % a = x' ∧ (y + t) % b = y') ↔ (x + y') % g = (x' + y) % g)) ∧ ∀ {q : Nat} [FRC.Pos q], FRC.Nat.isPrime q → ∀ (n : Nat → Nat), (∀ (j : Nat), (0 : Nat) < n j) → ∀ (m : Nat) (ζ : Nat → FRC.Shell q), (∀ (j : Nat), j < m → ζ j ^ n j = (1 : FRC.Shell q)) → FRC.Shell.prodRange ζ m ≠ (1 : FRC.Shell q) → ∀ (M : Nat), FRC.Quantum.Joint n m M → FRC.Shell.sumRange (fun t => FRC.Shell.prodRange (fun j => ζ j ^ t) m) M = (0 : FRC.Shell q) :=
+  And.intro @FRC.Quantum.joint_recurrence (And.intro @FRC.Quantum.joint_least (And.intro @FRC.Quantum.pair_offset (@FRC.Quantum.dephasing)))
+/-- p00194 — 00:F5. \textbf{The graded registration law}: an Object component $\ell^{a}$ registers at depth $d=\mathrm{ord}_{\ell^{a}}(\p)$ --- $1$ absorbed (register, unique image), $2$ observable (odd $\ell$: boost torus, unique home; $2^{a}>4$: off both tori), else beyond-quadratic; the sign always $\{\pm1\}$. Visible iff $\p^{d}<\Om$; the cap is $2$ at saturating and minimal towers; opacity relational --- hydrogen's interior opaque/observable/absorbed at $173/181/197$. Controls: proton whole, $(5,13)$ refused. -/
+theorem p00194 : (∀ {p : Nat} [FRC.Pos p], FRC.Nat.isPrime p → ∀ {n : Nat}, (0 : Nat) < n → n ∣ p - (1 : Nat) → ∃ x, x ≠ (0 : FRC.Shell p) ∧ FRC.Shell.Prime.HasOrder x n ∧ ∀ (y : FRC.Shell p), y ^ n = (1 : FRC.Shell p) → ∃ k, k < n ∧ y = x ^ k) ∧ (∀ {p : Nat}, (0 : Nat) < p → (∀ (e : Nat), (0 : Nat) < e → (p - (1 : Nat)) % e = (0 : Nat) → (p + (1 : Nat)) % e = (0 : Nat) → (2 : Nat) % e = (0 : Nat)) ∧ ∀ (l a : Nat), FRC.Nat.isPrime l → l ≠ (2 : Nat) → (p - (1 : Nat)) * (p + (1 : Nat)) % l ^ a = (0 : Nat) → (p - (1 : Nat)) % l ^ a ≠ (0 : Nat) → (p + (1 : Nat)) % l ^ a = (0 : Nat)) ∧ (∀ {κ : Nat}, κ % (2 : Nat) = (1 : Nat) → (4 : Nat) * κ % (4 : Nat) = (0 : Nat) ∧ (4 : Nat) * κ % (8 : Nat) ≠ (0 : Nat) ∧ ((4 : Nat) * κ + (2 : Nat)) % (2 : Nat) = (0 : Nat) ∧ ((4 : Nat) * κ + (2 : Nat)) % (4 : Nat) ≠ (0 : Nat) ∧ ∀ (a : Nat), (3 : Nat) ≤ a → (4 : Nat) * κ % (2 : Nat) ^ a ≠ (0 : Nat) ∧ ((4 : Nat) * κ + (2 : Nat)) % (2 : Nat) ^ a ≠ (0 : Nat)) ∧ (∀ {p : Nat} [FRC.Pos p], (2 : Nat) < p → p % (2 : Nat) = (1 : Nat) → (-1 : FRC.Shell p) ^ (p - (1 : Nat)) = (1 : FRC.Shell p) ∧ (-1 : FRC.Shell p) ^ (p + (1 : Nat)) = (1 : FRC.Shell p) ∧ (-1 : FRC.Shell p) * (-1 : FRC.Shell p) = (1 : FRC.Shell p) ∧ (-1 : FRC.Shell p) ≠ (1 : FRC.Shell p)) ∧ ((∀ (p Ω : Nat), (1 : Nat) < p → p * p < Ω → p < Ω) ∧ (∀ (p Ω : Nat), (3 : Nat) ≤ p → Ω ≤ (p + (1 : Nat)) * (p + (1 : Nat)) → Ω < p * p * p) ∧ ((173 : Nat) * (173 : Nat) < (30089 : Nat) ∧ (30089 : Nat) ≤ (174 : Nat) * (174 : Nat)) ∧ (1373 : Nat) * (1373 : Nat) < (2408561 : Nat) ∧ (2408561 : Nat) < (1373 : Nat) * (1373 : Nat) * (1373 : Nat)) ∧ ((173 : Nat) ^ (6 : Nat) % (7 : Nat) = (1 : Nat) ∧ ∀ (d : Nat), (0 : Nat) < d → d < (6 : Nat) → (173 : Nat) ^ d % (7 : Nat) ≠ (1 : Nat)) ∧ ((181 : Nat) ^ (2 : Nat) % (7 : Nat) = (1 : Nat) ∧ (181 : Nat) % (7 : Nat) ≠ (1 : Nat)) ∧ (197 : Nat) % (7 : Nat) = (1 : Nat) ∧ (∀ (v : Nat), v < (173 : Nat) → (FRC.Shell.ofNat v ^ (4 : Nat) = (1 : FRC.Shell (173 : Nat)) ↔ v = (1 : Nat) ∨ v = (80 : Nat) ∨ v = (93 : Nat) ∨ v = (172 : Nat))) ∧ ((172 : Nat) % (3 : Nat) ≠ (0 : Nat) ∧ (174 : Nat) % (3 : Nat) = (0 : Nat)) ∧ ((172 : Nat) % (4 : Nat) = (0 : Nat) ∧ (174 : Nat) % (6 : Nat) = (0 : Nat)) ∧ (13 : Nat) < (5 : Nat) * (5 : Nat) :=
+  And.intro @FRC.Quantum.absorbed (And.intro @FRC.Quantum.unique_home (And.intro @FRC.Quantum.two_part_homes (And.intro @FRC.Quantum.sign_both (And.intro @FRC.Quantum.visibility_cap (@FRC.Quantum.registration_instances)))))
+/-- p22002 — 22:A2. The Lorentzian split: the quadratic extension $\F_{\p^2}$, the Frobenius involution, the norm-one boost cycle of order $\p+1$, and the spinor double cover (the Dirac layer). -/
+theorem p22002 : (∀ {p : Nat} [FRC.Pos p], FRC.Nat.isPrime p → ∀ {h : FRC.Shell p}, h * h = (-1 : FRC.Shell p) → (∀ (x : FRC.Shell p), x ≠ (0 : FRC.Shell p) → (x ^ (p + (1 : Nat)) = (1 : FRC.Shell p) ↔ x = (1 : FRC.Shell p) ∨ x = (-1 : FRC.Shell p))) ∧ (∀ (x : FRC.Shell p), x ≠ (0 : FRC.Shell p) → (x ^ ((2 : Nat) * (p + (1 : Nat))) = (1 : FRC.Shell p) ↔ x = (1 : FRC.Shell p) ∨ x = (-1 : FRC.Shell p) ∨ x = h ∨ x = -h)) ∧ h ^ (p + (1 : Nat)) = (-1 : FRC.Shell p)) ∧ (∀ {p : Nat} [FRC.Pos p] {ν : FRC.Shell p}, FRC.Nat.isPrime p → ∀ {κ : Nat}, p = (4 : Nat) * κ + (1 : Nat) → (¬∃ y, y * y = ν) → ∀ (ζ : FRC.Extension.Ext p ν), ζ.norm = (1 : FRC.Shell p) → ζ ^ (p + (1 : Nat)) = (1 : FRC.Extension.Ext p ν) → (∀ (l : Nat), (0 : Nat) < l → l < p + (1 : Nat) → ζ ^ l ≠ (1 : FRC.Extension.Ext p ν)) → ζ ^ ((2 : Nat) * κ + (1 : Nat)) = (-1 : FRC.Extension.Ext p ν)) ∧ ∀ {q : Nat} [FRC.Pos q] {ν : FRC.Shell q} (z : FRC.Extension.Ext q ν), z.norm = (1 : FRC.Shell q) → z * z.conj = (1 : FRC.Extension.Ext q ν) :=
+  And.intro @FRC.Subject.channel (And.intro @FRC.Subject.horizon_generator (@FRC.Observation.torus_conj_inv))
+/-- p22017 — 22:C1. Characters are power maps $\psi_k(u)=u^k$, pairwise distinct: the wave function is the cycle read through a winding index. -/
+theorem p22017 : (∀ {q : Nat} [FRC.Pos q], FRC.Nat.isPrime q → ∀ {ζ : FRC.Shell q} {n : Nat}, FRC.Shell.Prime.HasOrder ζ n → (∀ (u v : FRC.Shell q) (k : Nat), (u * v) ^ k = u ^ k * v ^ k) ∧ ∀ (k k' : Nat), k < n → k' < n → k ≠ k' → ζ ^ k ≠ ζ ^ k') ∧ (∀ {q : Nat} [FRC.Pos q], FRC.Nat.isPrime q → ∀ {x : FRC.Shell q} {n : Nat}, FRC.Shell.Prime.HasOrder x n → ∀ (y : FRC.Shell q), y ^ n = (1 : FRC.Shell q) → ∃ k, k < n ∧ y = x ^ k) ∧ ∀ {q : Nat} [FRC.Pos q], FRC.Nat.isPrime q → ∀ {ζ : FRC.Shell q} {n : Nat}, FRC.Shell.Prime.HasOrder ζ n → ∀ (χ : FRC.Shell q → FRC.Shell q), (∀ (a b : Nat), χ (ζ ^ a * ζ ^ b) = χ (ζ ^ a) * χ (ζ ^ b)) → χ (1 : FRC.Shell q) = (1 : FRC.Shell q) → ∃ k, k < n ∧ ∀ (j : Nat), χ (ζ ^ j) = (ζ ^ j) ^ k :=
+  And.intro @FRC.Observation.power_maps (And.intro @FRC.Observation.roots_of_order (@FRC.Observation.character_is_power_map))
+/-- p22018 — 22:C2. Stationary states are the winding modes: the drive's eigenvalues are distinct and a winding acquires a global phase of weight $k$ per chronon. -/
+theorem p22018 : (∀ {q : Nat} [FRC.Pos q], FRC.Nat.isPrime q → ∀ {g : FRC.Shell q} {n : Nat}, FRC.Shell.Prime.HasOrder g n → (∀ (u : FRC.Shell q) (k : Nat), (g * u) ^ k = g ^ k * u ^ k) ∧ ∀ (k k' : Nat), k < n → k' < n → g ^ k = g ^ k' → k = k') ∧ ∀ {q : Nat} [FRC.Pos q], FRC.Nat.isPrime q → ∀ {g : FRC.Shell q} {n : Nat}, FRC.Shell.Prime.HasOrder g n → ∀ (ψ : FRC.Shell q → FRC.Shell q) {lam : FRC.Shell q}, (∀ (j : Nat), ψ (g * g ^ j) = lam * ψ (g ^ j)) → (ψ (1 : FRC.Shell q) = (0 : FRC.Shell q) → ∀ (j : Nat), ψ (g ^ j) = (0 : FRC.Shell q)) ∧ (ψ (1 : FRC.Shell q) ≠ (0 : FRC.Shell q) → ∃ k, k < n ∧ lam = g ^ k ∧ ∀ (j : Nat), ψ (g ^ j) = ψ (1 : FRC.Shell q) * (g ^ j) ^ k) :=
+  And.intro @FRC.Observation.stationary (@FRC.Observation.stationary_modes)
+/-- p22019 — 22:C3. The measurement vectors are a forced orthogonal basis: orthogonality $d\,\delta\delta$, resolution of identity, and Parseval are character theory, and the pointer basis is einselected by the algebra of the frames. -/
+theorem p22019 : (∀ {q : Nat} [FRC.Pos q], FRC.Nat.isPrime q → ∀ {ω : FRC.Shell q} {d : Nat}, FRC.Shell.Prime.HasOrder ω d → ∀ {r r' : Nat}, r < d → r' < d → FRC.Shell.sumRange (fun j => ω ^ (r * j) * ω ^ ((d - r') * j)) d = if r = r' then FRC.Shell.ofNat d else (0 : FRC.Shell q)) ∧ (∀ {q : Nat} [FRC.Pos q], FRC.Nat.isPrime q → ∀ {ω : FRC.Shell q} {d : Nat}, FRC.Shell.Prime.HasOrder ω d → ∀ (f g : Nat → FRC.Shell q), FRC.Shell.sumRange (fun r => FRC.Shell.sumRange (fun j => f j * ω ^ ((d - r) * j)) d * FRC.Shell.sumRange (fun l => g l * ω ^ (r * l)) d) d = FRC.Shell.ofNat d * FRC.Shell.sumRange (fun j => f j * g j) d) ∧ (∀ (a : Nat), a < (4 : Nat) → ∀ (b : Nat), b < (4 : Nat) → ∀ (c : Nat), c < (4 : Nat) → ∀ (d : Nat), d < (4 : Nat) → ∀ (r : Nat), r < (4 : Nat) → FRC.Extension.Tally.inversion (FRC.Extension.Tally.kernel (Int.ofNat a) (Int.ofNat b) (Int.ofNat c) (Int.ofNat d)) r = { re := (4 : Int) * FRC.Extension.Tally.coeff (Int.ofNat a) (Int.ofNat b) (Int.ofNat c) (Int.ofNat d) r, im := (0 : Int) }) ∧ have M := fun r u => FRC.Extension.Tally.GI.ipow (r * u); have d2 := fun a b c d => a * d + FRC.Extension.Tally.GI.smul (-1 : Int) (b * c); have e := fun r => M r; have det3 := fun f g h => f (1 : Nat) * d2 (g (2 : Nat)) (g (3 : Nat)) (h (2 : Nat)) (h (3 : Nat)) + FRC.Extension.Tally.GI.smul (-1 : Int) (f (2 : Nat) * d2 (g (1 : Nat)) (g (3 : Nat)) (h (1 : Nat)) (h (3 : Nat))) + f (3 : Nat) * d2 (g (1 : Nat)) (g (2 : Nat)) (h (1 : Nat)) (h (2 : Nat)); e (0 : Nat) (0 : Nat) * det3 (e (1 : Nat)) (e (2 : Nat)) (e (3 : Nat)) + FRC.Extension.Tally.GI.smul (-1 : Int) (e (1 : Nat) (0 : Nat) * det3 (e (0 : Nat)) (e (2 : Nat)) (e (3 : Nat))) + e (2 : Nat) (0 : Nat) * det3 (e (0 : Nat)) (e (1 : Nat)) (e (3 : Nat)) + FRC.Extension.Tally.GI.smul (-1 : Int) (e (3 : Nat) (0 : Nat) * det3 (e (0 : Nat)) (e (1 : Nat)) (e (2 : Nat))) = { re := (0 : Int), im := (-16 : Int) } :=
+  And.intro @FRC.Observation.orthogonality (And.intro @FRC.Observation.parseval (And.intro @FRC.Extension.Tally.fourier_inversion (@FRC.Extension.Tally.dft_det)))
+/-- p22020 — 22:C4. The selection rule: a pointer channel couples to an Object mode only when their core phases agree, $r\equiv k\pmod d$. -/
+theorem p22020 : ∀ {q : Nat} [FRC.Pos q], FRC.Nat.isPrime q → ∀ {ω : FRC.Shell q} {d : Nat}, FRC.Shell.Prime.HasOrder ω d → ∀ (k : Nat) {r : Nat}, r < d → FRC.Shell.sumRange (fun j => ω ^ (k * j) * ω ^ ((d - r) * j)) d = if k % d = r then FRC.Shell.ofNat d else (0 : FRC.Shell q) :=
+  @FRC.Observation.selection
+/-- p22021 — 22:C5. The L\"uders update is projection, $\Pi^2=d\,\Pi$, so an immediately repeated measurement returns the same outcome. -/
+theorem p22021 : ∀ {q : Nat} [FRC.Pos q] {ω : FRC.Shell q} {d : Nat}, FRC.Shell.Prime.HasOrder ω d → ∀ {r : Nat}, r < d → ∀ (j m : Nat), FRC.Shell.sumRange (fun l => ω ^ (r * j) * ω ^ ((d - r) * l) * (ω ^ (r * l) * ω ^ ((d - r) * m))) d = FRC.Shell.ofNat d * (ω ^ (r * j) * ω ^ ((d - r) * m)) :=
+  @FRC.Observation.lueders
+/-- p22022 — 22:C6. Conjugation is cycle inversion, forced in each setting: the Frobenius on the boost cycle (the only non-trivial automorphism over $\F_\p$), exponent negation on the phase cycle, and on the ledger the complex conjugation, the automorphism that reduces to inversion. -/
+theorem p22022 : (∀ {q : Nat} [FRC.Pos q] {ν : FRC.Shell q}, FRC.Nat.isPrime q → (¬∃ y, y * y = ν) → ∀ (σ : FRC.Extension.Ext q ν → FRC.Extension.Ext q ν), (∀ (c : FRC.Shell q), σ (FRC.Extension.Ext.ofShell c) = FRC.Extension.Ext.ofShell c) → (∀ (z z' : FRC.Extension.Ext q ν), σ (z + z') = σ z + σ z') → (∀ (z z' : FRC.Extension.Ext q ν), σ (z * z') = σ z * σ z') → (∀ (z : FRC.Extension.Ext q ν), σ z = z) ∨ ∀ (z : FRC.Extension.Ext q ν), σ z = z.conj) ∧ (∀ {q : Nat} [FRC.Pos q] {ν : FRC.Shell q} (z : FRC.Extension.Ext q ν), z.norm = (1 : FRC.Shell q) → z * z.conj = (1 : FRC.Extension.Ext q ν)) ∧ ∀ {q : Nat} [FRC.Pos q] {ζ : FRC.Shell q} {n : Nat}, ζ ^ n = (1 : FRC.Shell q) → ∀ {k : Nat}, k ≤ n → ζ ^ k * ζ ^ (n - k) = (1 : FRC.Shell q) :=
+  And.intro @FRC.Observation.frobenius_unique (And.intro @FRC.Observation.torus_conj_inv (@FRC.Observation.exponent_negation))
+/-- p22023 — 22:C7. Squared amplitudes are coincidence counts (the pair-count identity), realized tallies on $\Z[\im]$ for stationary core-valued states of definite drive eigenvalue; a distinct-eigenvalue superposition registers the integral drive-frequency count; for a pure winding the weights are $d^2[r\equiv k]$. -/
+theorem p22023 : (∀ {q : Nat} [FRC.Pos q] (ψ ψbar : Nat → FRC.Shell q) (d : Nat), FRC.Shell.sumRange ψ d * FRC.Shell.sumRange ψbar d = FRC.Shell.sumRange (fun j => FRC.Shell.sumRange (fun l => ψ j * ψbar l) d) d) ∧ (∀ {q : Nat} [FRC.Pos q], FRC.Nat.isPrime q → ∀ {ω : FRC.Shell q} {d : Nat}, FRC.Shell.Prime.HasOrder ω d → ∀ (k : Nat) {r : Nat}, r < d → FRC.Shell.sumRange (fun j => ω ^ (k * j) * ω ^ ((d - r) * j)) d * FRC.Shell.sumRange (fun l => ω ^ (r * l) * ω ^ ((d - k % d) * l)) d = if k % d = r then FRC.Shell.ofNat (d * d) else (0 : FRC.Shell q)) ∧ (∀ {q : Nat} [FRC.Pos q], FRC.Nat.isPrime q → ∀ {ω : FRC.Shell q} {d : Nat}, FRC.Shell.Prime.HasOrder ω d → ∀ (f g : Nat → FRC.Shell q), FRC.Shell.sumRange (fun r => FRC.Shell.sumRange (fun j => f j * ω ^ ((d - r) * j)) d * FRC.Shell.sumRange (fun l => g l * ω ^ (r * l)) d) d = FRC.Shell.ofNat d * FRC.Shell.sumRange (fun j => f j * g j) d) ∧ ∀ {q : Nat} [FRC.Pos q], FRC.Nat.isPrime q → ∀ (n : Nat → Nat), (∀ (j : Nat), (0 : Nat) < n j) → ∀ (m : Nat) (ζ : Nat → FRC.Shell q), (∀ (j : Nat), j < m → ζ j ^ n j = (1 : FRC.Shell q)) → FRC.Shell.prodRange ζ m ≠ (1 : FRC.Shell q) → ∀ (M : Nat), FRC.Quantum.Joint n m M → FRC.Shell.sumRange (fun t => FRC.Shell.prodRange (fun j => ζ j ^ t) m) M = (0 : FRC.Shell q) :=
+  And.intro @FRC.Observation.pair_count (And.intro @FRC.Observation.pure_winding_weight (And.intro @FRC.Observation.parseval (@FRC.Quantum.dephasing)))
+/-- p22024 — 22:C8. Sorkin nullity: $I_k=0$ for every $k\ge3$, exactly, on every channel and outcome, with $I_2$ generically nonzero. -/
+theorem p22024 : (∀ {q : Nat} [FRC.Pos q] {c : FRC.Shell q → FRC.Shell q}, FRC.Interference.Additive c → ∀ (a : Nat → FRC.Shell q) (k : Nat) (x : FRC.Shell q), FRC.Interference.mixedDiff a (FRC.Interference.weight c) (k + (3 : Nat)) x = (0 : FRC.Shell q)) ∧ (∀ {q : Nat} [FRC.Pos q] {c : FRC.Shell q → FRC.Shell q}, FRC.Interference.Additive c → ∀ (a : Nat → FRC.Shell q) (x : FRC.Shell q), FRC.Interference.mixedDiff a (FRC.Interference.weight c) (2 : Nat) x = a (1 : Nat) * c (a (0 : Nat)) + a (0 : Nat) * c (a (1 : Nat))) ∧ ∀ {q : Nat} [FRC.Pos q], (2 : Nat) < q → FRC.Interference.mixedDiff (fun x => (1 : FRC.Shell q)) (FRC.Interference.weight fun x => x) (2 : Nat) (0 : FRC.Shell q) ≠ (0 : FRC.Shell q) :=
+  And.intro @FRC.Interference.sorkin_hierarchy (And.intro @FRC.Interference.sorkin_second (@FRC.Interference.sorkin_second_witness))
+/-- p22025 — 22:C9. Reduction: the Carrier-chart amplitude is the mod-$\Omega$ shadow of the ledger ($\zeta\mapsto v$), exact as algebra and silent about magnitude. -/
+theorem p22025 : (∀ {q : Nat} [FRC.Pos q] (v : FRC.Shell q) (c c' : Nat → Nat) (n : Nat), FRC.Observation.shadow v (fun e => c e + c' e) n = FRC.Observation.shadow v c n + FRC.Observation.shadow v c' n) ∧ (∀ {q : Nat} [FRC.Pos q] {v : FRC.Shell q} {n : Nat}, (0 : Nat) < n → v ^ n = (1 : FRC.Shell q) → ∀ (c c' : Nat → Nat), FRC.Observation.shadow v (FRC.Observation.conv c c' n) n = FRC.Observation.shadow v c n * FRC.Observation.shadow v c' n) ∧ ∀ {q : Nat} [FRC.Pos q], FRC.Shell.ofNat q = (0 : FRC.Shell q) :=
+  And.intro @FRC.Observation.reduce_add (And.intro @FRC.Observation.reduce_mul (@FRC.Observation.reduce_wrap))
+set_option linter.defProp false in
+/-- p22026 — 22:C10. The counting Born rule on sub-horizon states over the universal core $\Qf$: the weight is the unique window lift of its shadow and the probability a framed-rational ratio of coincidence counts, the frequency along the drive completed in finitely many chronons; the two probability strata and their $\Qf$ coincidence; on a single Object the theorem's weights are uniform over the fibres (Remark~\ref{rem:borndomain}), every non-uniform statistic passing through C11. -/
+def p22026 := And.intro @FRC.Extension.two_way_tally (And.intro @FRC.Extension.core_weights (And.intro @FRC.Extension.root_two_two_way (And.intro @FRC.Extension.framed_readout (And.intro @FRC.Observation.window_lift (And.intro @FRC.Observation.pure_winding_weight (@FRC.Quantum.joint_recurrence))))))
+/-- p22029 — 22:C13. Complex amplitudes are forced: the generic shared core of two framed shells is $\Qf$, so the minimal ledger is $\Z[\im]$; shells of cardinality $\equiv3\pmod4$ (arising from no capacity) give a real-amplitude theory. -/
+theorem p22029 : (∀ {q : Nat} [FRC.Pos q] {κ κ' a b : Nat}, κ * a = κ' * b + (1 : Nat) → ∀ (x : FRC.Shell q), x ^ ((4 : Nat) * κ) = (1 : FRC.Shell q) → x ^ ((4 : Nat) * κ') = (1 : FRC.Shell q) → x ^ (4 : Nat) = (1 : FRC.Shell q) ∧ ∀ (y : FRC.Shell q), y ^ (4 : Nat) = (1 : FRC.Shell q) → y ^ ((4 : Nat) * κ) = (1 : FRC.Shell q) ∧ y ^ ((4 : Nat) * κ') = (1 : FRC.Shell q)) ∧ ∀ {q : Nat} [FRC.Pos q], FRC.Nat.isPrime q → q % (4 : Nat) = (3 : Nat) → ¬∃ x, x * x = (-1 : FRC.Shell q) :=
+  And.intro @FRC.Observation.shared_core (@FRC.Observation.no_quarter_turn)
+/-- p22030 — 22:C14. The granularity ceiling: the representable coherent-splitting depth is the largest $k$ with $d\,T(k)<\Omega$, $T(k)=2^{k+[k\text{ odd}]}$ the minimal tally norm, and resolution finer than $1/\Omega$ lies outside the derived Born regime. -/
+theorem p22030 : (∀ {q : Nat} [FRC.Pos q] {i : FRC.Shell q}, i * i = (-1 : FRC.Shell q) → ∀ (m : Nat), ((1 : FRC.Shell q) + i) ^ ((2 : Nat) * m) = FRC.Shell.ofNat ((2 : Nat) ^ m) * i ^ m) ∧ (∀ {q : Nat} [FRC.Pos q] {i : FRC.Shell q}, i * i = (-1 : FRC.Shell q) → ∀ (m : Nat), ((1 : FRC.Shell q) + i) ^ ((2 : Nat) * m + (1 : Nat)) = FRC.Shell.ofNat ((2 : Nat) ^ m) * i ^ m * ((1 : FRC.Shell q) + i)) ∧ (∀ {k k' : Nat}, k ≤ k' → FRC.Interference.tallyNorm k ≤ FRC.Interference.tallyNorm k') ∧ (∀ (k : Nat), FRC.Interference.tallyNorm k < (641 : Nat) ↔ k ≤ (8 : Nat)) ∧ ∀ (k : Nat), (8 : Nat) * FRC.Interference.tallyNorm k < (641 : Nat) ↔ k ≤ (6 : Nat) :=
+  And.intro @FRC.Interference.hadamard_even (And.intro @FRC.Interference.hadamard_odd (And.intro @FRC.Interference.tally_norm_mono (@FRC.Interference.ceiling_641)))
+/-- p22031 — 22:C15. The composite ledger and the conserved offset: synchronised orbits are the Bell states, the $m$-body locked cluster carries the offset as a conserved, drive-confined label (its ensemble diagonality a declared preparation clause). -/
+theorem p22031 : (∀ {N : Nat}, (0 : Nat) < N → ∀ (t : Nat) (x : Nat → Nat) (j : Nat), (x j + (x (0 : Nat) + t) % N) % N = ((x j + t) % N + x (0 : Nat)) % N) ∧ (∀ {N m : Nat}, (0 : Nat) < N → (0 : Nat) < m → ∀ (x y : Nat → Nat), (∀ (j : Nat), j < m → y j < N) → ((∃ t, t < N ∧ ∀ (j : Nat), j < m → (x j + t) % N = y j) ↔ ∀ (j : Nat), j < m → (x j + y (0 : Nat)) % N = (y j + x (0 : Nat)) % N)) ∧ (∀ {q : Nat} [FRC.Pos q] (m : Nat) {χ χbar : FRC.Shell q}, χ * χbar = (1 : FRC.Shell q) → FRC.Shell.sumRange (fun x => χ) m = FRC.Shell.ofNat m * χ ∧ FRC.Shell.sumRange (fun x => χ) m * FRC.Shell.sumRange (fun x => χbar) m = FRC.Shell.ofNat (m * m)) ∧ (∀ {q : Nat} [FRC.Pos q], FRC.Nat.isPrime q → ∀ {ζ η : FRC.Shell q} {n : Nat}, FRC.Shell.Prime.HasOrder ζ n → ζ ≠ (1 : FRC.Shell q) → FRC.Shell.Prime.HasOrder η n → η ≠ (1 : FRC.Shell q) → ζ * η = (1 : FRC.Shell q) → ∀ (m : Nat), FRC.Composite.tsum n (fun v => FRC.Shell.sumRange (fun i => ζ ^ v i) m * FRC.Shell.sumRange (fun j => η ^ v j) m) m = FRC.Shell.ofNat m * FRC.Shell.ofNat (n ^ m)) ∧ ∀ {a b T : Nat}, (0 : Nat) < a → (0 : Nat) < b → (0 : Nat) < T → T % a = (0 : Nat) → T % b = (0 : Nat) → (∀ (t : Nat), (0 : Nat) < t → t < T → ¬(t % a = (0 : Nat) ∧ t % b = (0 : Nat))) → ∃ g, g ≤ a ∧ (0 : Nat) < g ∧ g * T = a * b ∧ a % g = (0 : Nat) ∧ b % g = (0 : Nat) ∧ (∀ (e : Nat), (0 : Nat) < e → a % e = (0 : Nat) → b % e = (0 : Nat) → g % e = (0 : Nat)) ∧ ∀ (x y x' y' : Nat), x < a → y < b → x' < a → y' < b → ((∃ t, t < T ∧ (x + t) % a = x' ∧ (y + t) % b = y') ↔ (x + y') % g = (x' + y) % g) :=
+  And.intro @FRC.Composite.offset_invariant (And.intro @FRC.Composite.cluster_offset (And.intro @FRC.Composite.locked_norm (And.intro @FRC.Composite.spread_average (@FRC.Quantum.pair_offset))))
+/-- p22032 — 22:C16. Qubits from doublets: the forced readout is $\sigma_x$ through the relation $v^{\,8}=-1$. -/
+theorem p22032 : (∀ {q : Nat} [FRC.Pos q], FRC.Nat.isPrime q → ∀ {v : FRC.Shell q}, FRC.Shell.Prime.HasOrder v (16 : Nat) → v ^ (8 : Nat) = (-1 : FRC.Shell q)) ∧ (∀ {q : Nat} [FRC.Pos q], FRC.Nat.isPrime q → ∀ {v : FRC.Shell q}, FRC.Shell.Prime.HasOrder v (16 : Nat) → ∀ (k s : Nat) (lam : FRC.Shell q), FRC.Shell.sumRange (fun j => ((v ^ s * (v ^ (2 : Nat)) ^ j) ^ k + lam * (v ^ s * (v ^ (2 : Nat)) ^ j) ^ (k + (8 : Nat))) * (v ^ (2 : Nat)) ^ (((8 : Nat) - k % (8 : Nat)) * j)) (8 : Nat) = FRC.Shell.ofNat (8 : Nat) * (v ^ (s * k) * ((1 : FRC.Shell q) + lam * (v ^ (8 : Nat)) ^ s))) ∧ (641 : Nat) = (4 : Nat) * (160 : Nat) + (1 : Nat) ∧ FRC.Shell.Prime.HasOrder (3 : FRC.Shell (641 : Nat)) (640 : Nat) ∧ (3 : FRC.Shell (641 : Nat)) ^ (40 : Nat) = (601 : FRC.Shell (641 : Nat)) ∧ FRC.Shell.Prime.HasOrder (601 : FRC.Shell (641 : Nat)) (16 : Nat) ∧ (601 : FRC.Shell (641 : Nat)) ^ (8 : Nat) = (-1 : FRC.Shell (641 : Nat)) ∧ (3 : FRC.Shell (641 : Nat)) ^ (8 : Nat) = (151 : FRC.Shell (641 : Nat)) ∧ FRC.Shell.Prime.HasOrder (151 : FRC.Shell (641 : Nat)) (80 : Nat) ∧ (3 : FRC.Shell (641 : Nat)) ^ (80 : Nat) = (318 : FRC.Shell (641 : Nat)) ∧ (318 : FRC.Shell (641 : Nat)) ^ (4 : Nat) = (-1 : FRC.Shell (641 : Nat)) ∧ ((318 : FRC.Shell (641 : Nat)) + (318 : FRC.Shell (641 : Nat)) ^ (7 : Nat)) * ((318 : FRC.Shell (641 : Nat)) + (318 : FRC.Shell (641 : Nat)) ^ (7 : Nat)) = (2 : FRC.Shell (641 : Nat)) ∧ (2 : FRC.Shell (641 : Nat)) * ((318 : FRC.Shell (641 : Nat)) + (318 : FRC.Shell (641 : Nat)) ^ (7 : Nat)) * ((2 : FRC.Shell (641 : Nat)) * ((318 : FRC.Shell (641 : Nat)) + (318 : FRC.Shell (641 : Nat)) ^ (7 : Nat))) = (8 : FRC.Shell (641 : Nat)) ∧ (40 : Nat) % (8 : Nat) = (0 : Nat) ∧ (16 : Nat) % (8 : Nat) = (0 : Nat) ∧ ∀ (e : Nat), e < (41 : Nat) → (40 : Nat) % e = (0 : Nat) → (16 : Nat) % e = (0 : Nat) → (8 : Nat) % e = (0 : Nat) :=
+  And.intro @FRC.Composite.half_turn_sixteen (And.intro @FRC.Composite.doublet_readout (@FRC.Composite.carrier_641))
+/-- p22033 — 22:C17. Exact Tsirelson saturation: the singlet law $E(\Delta)=\cos(\pi\Delta/40)$, $S=2(\zeta_8+\zeta_8^{-1})$, $S^2=8$, the exhaustive $80^3$ sweep never exceeding it; no-signalling and the composite reduction commute. -/
+theorem p22033 : (∀ {p : Nat} [FRC.Pos p] {ζ : FRC.Shell p}, ζ ^ (4 : Nat) = (-1 : FRC.Shell p) → (ζ + ζ ^ (7 : Nat)) * (ζ + ζ ^ (7 : Nat)) = (2 : FRC.Shell p)) ∧ (∀ {q : Nat} [FRC.Pos q] {ζ : FRC.Shell q}, ζ ^ (4 : Nat) = (-1 : FRC.Shell q) → (2 : FRC.Shell q) * (ζ + ζ ^ (7 : Nat)) * ((2 : FRC.Shell q) * (ζ + ζ ^ (7 : Nat))) = (8 : FRC.Shell q)) ∧ (∀ {q : Nat} [FRC.Pos q] (c E : FRC.Shell q), c * ((1 : FRC.Shell q) + E) + c * ((1 : FRC.Shell q) + -E) = c * (2 : FRC.Shell q)) ∧ (∀ {q : Nat} [FRC.Pos q] {v : FRC.Shell q} {n : Nat}, (0 : Nat) < n → v ^ n = (1 : FRC.Shell q) → ∀ (c c' : Nat → Nat), FRC.Observation.shadow v (FRC.Observation.conv c c' n) n = FRC.Observation.shadow v c n * FRC.Observation.shadow v c' n) ∧ (641 : Nat) = (4 : Nat) * (160 : Nat) + (1 : Nat) ∧ FRC.Shell.Prime.HasOrder (3 : FRC.Shell (641 : Nat)) (640 : Nat) ∧ (3 : FRC.Shell (641 : Nat)) ^ (40 : Nat) = (601 : FRC.Shell (641 : Nat)) ∧ FRC.Shell.Prime.HasOrder (601 : FRC.Shell (641 : Nat)) (16 : Nat) ∧ (601 : FRC.Shell (641 : Nat)) ^ (8 : Nat) = (-1 : FRC.Shell (641 : Nat)) ∧ (3 : FRC.Shell (641 : Nat)) ^ (8 : Nat) = (151 : FRC.Shell (641 : Nat)) ∧ FRC.Shell.Prime.HasOrder (151 : FRC.Shell (641 : Nat)) (80 : Nat) ∧ (3 : FRC.Shell (641 : Nat)) ^ (80 : Nat) = (318 : FRC.Shell (641 : Nat)) ∧ (318 : FRC.Shell (641 : Nat)) ^ (4 : Nat) = (-1 : FRC.Shell (641 : Nat)) ∧ ((318 : FRC.Shell (641 : Nat)) + (318 : FRC.Shell (641 : Nat)) ^ (7 : Nat)) * ((318 : FRC.Shell (641 : Nat)) + (318 : FRC.Shell (641 : Nat)) ^ (7 : Nat)) = (2 : FRC.Shell (641 : Nat)) ∧ (2 : FRC.Shell (641 : Nat)) * ((318 : FRC.Shell (641 : Nat)) + (318 : FRC.Shell (641 : Nat)) ^ (7 : Nat)) * ((2 : FRC.Shell (641 : Nat)) * ((318 : FRC.Shell (641 : Nat)) + (318 : FRC.Shell (641 : Nat)) ^ (7 : Nat))) = (8 : FRC.Shell (641 : Nat)) ∧ (40 : Nat) % (8 : Nat) = (0 : Nat) ∧ (16 : Nat) % (8 : Nat) = (0 : Nat) ∧ ∀ (e : Nat), e < (41 : Nat) → (40 : Nat) % e = (0 : Nat) → (16 : Nat) % e = (0 : Nat) → (8 : Nat) % e = (0 : Nat) :=
+  And.intro @FRC.Shell.Prime.tsirelson (And.intro @FRC.Composite.singlet_square (And.intro @FRC.Composite.no_signalling (And.intro @FRC.Observation.reduce_mul (@FRC.Composite.carrier_641))))
+/-- p22034 — 22:C18. The network table is the complex-quantum table, and the Bell-state measurement is the offset readout. -/
+theorem p22034 : (∀ {a b T : Nat}, (0 : Nat) < a → (0 : Nat) < b → (0 : Nat) < T → T % a = (0 : Nat) → T % b = (0 : Nat) → (∀ (t : Nat), (0 : Nat) < t → t < T → ¬(t % a = (0 : Nat) ∧ t % b = (0 : Nat))) → ∃ g, g ≤ a ∧ (0 : Nat) < g ∧ g * T = a * b ∧ a % g = (0 : Nat) ∧ b % g = (0 : Nat) ∧ (∀ (e : Nat), (0 : Nat) < e → a % e = (0 : Nat) → b % e = (0 : Nat) → g % e = (0 : Nat)) ∧ ∀ (x y x' y' : Nat), x < a → y < b → x' < a → y' < b → ((∃ t, t < T ∧ (x + t) % a = x' ∧ (y + t) % b = y') ↔ (x + y') % g = (x' + y) % g)) ∧ ∀ {N m : Nat}, (0 : Nat) < N → (0 : Nat) < m → ∀ (x y : Nat → Nat), (∀ (j : Nat), j < m → y j < N) → ((∃ t, t < N ∧ ∀ (j : Nat), j < m → (x j + t) % N = y j) ↔ ∀ (j : Nat), j < m → (x j + y (0 : Nat)) % N = (y j + x (0 : Nat)) % N) :=
+  And.intro @FRC.Quantum.pair_offset (@FRC.Composite.cluster_offset)
+/-- p22035 — 22:C19. The gravitational channel entangles exactly, $C^2=\sin^2(\varphi/2)$, with the pure-channel complementarity $V^2+C^2=1$. -/
+theorem p22035 : (∀ {q : Nat} [FRC.Pos q] {h x y i : FRC.Shell q}, h * (2 : FRC.Shell q) = (1 : FRC.Shell q) → x * y = (1 : FRC.Shell q) → i * i = (-1 : FRC.Shell q) → h * (x + y) * (h * (x + y)) + h * (x + -y) * -i * (h * (x + -y) * -i) = (1 : FRC.Shell q)) ∧ ∀ {q : Nat} [FRC.Pos q] (h x i : FRC.Shell q), h * (x + -x) * -i = (0 : FRC.Shell q) :=
+  And.intro @FRC.Composite.channel_complementarity (@FRC.Composite.channel_product_at_zero)
+/-- p22036 — 22:C20. No spontaneous collapse; the dilation floor dephases with an exact revival $V(n)=1$. -/
+theorem p22036 : (∀ {q : Nat} [FRC.Pos q] {u ub : FRC.Shell q}, u * ub = (1 : FRC.Shell q) → ∀ (a ab : FRC.Shell q), u * a * (ub * ab) = a * ab) ∧ (∀ {q : Nat} [FRC.Pos q] {ζ : FRC.Shell q} {n : Nat}, ζ ^ n = (1 : FRC.Shell q) → ∀ (p : Nat → FRC.Shell q) (M : Nat), FRC.Shell.sumRange (fun E => p E * ζ ^ (E * n)) M = FRC.Shell.sumRange p M) ∧ ∀ (n : Nat → Nat), (∀ (j : Nat), (0 : Nat) < n j) → ∀ (m L : Nat), (0 : Nat) < L → FRC.Quantum.Joint n m L → ∃ T, T ≤ L ∧ (0 : Nat) < T ∧ FRC.Quantum.Joint n m T ∧ (∀ (t : Nat), FRC.Quantum.Joint n m t ↔ t % T = (0 : Nat)) ∧ L % T = (0 : Nat) :=
+  And.intro @FRC.Composite.drive_norm (And.intro @FRC.Composite.revival (@FRC.Quantum.joint_recurrence))
+/-- p22037 — 22:C21. The coherent-fraction channel: force by full masses, entanglement by coherent fractions; the identification reciprocal synchronisation (B8), and the fully incoherent channel is separable at generic (nondegenerate) geometry. -/
+theorem p22037 : (∀ {q : Nat} [FRC.Pos q] (ζ : FRC.Shell q) (a mc : Nat), FRC.Shell.prodRange (fun x => ζ ^ a) mc = ζ ^ (mc * a)) ∧ (∀ {q : Nat} [FRC.Pos q] (ζ : FRC.Shell q) (a m1 m2 : Nat), (ζ ^ (m1 * a)) ^ m2 = ζ ^ (m1 * m2 * a)) ∧ (∀ {q : Nat} [FRC.Pos q], FRC.Nat.isPrime q → ∀ {ζ : FRC.Shell q} {n : Nat}, FRC.Shell.Prime.HasOrder ζ n → ζ ≠ (1 : FRC.Shell q) → FRC.Shell.sumRange (fun θ => ζ ^ θ) n = (0 : FRC.Shell q)) ∧ ∀ {q : Nat} [FRC.Pos q] (ζ : FRC.Shell q) (p : Nat → FRC.Shell q) (n c : Nat), FRC.Shell.sumRange (fun θ => p θ * ζ ^ (θ + c)) n = FRC.Shell.sumRange (fun θ => p θ * ζ ^ θ) n * ζ ^ c :=
+  And.intro @FRC.Composite.branch_phase (And.intro @FRC.Composite.pair_product (And.intro @FRC.Composite.spread_cancels (@FRC.Composite.channel_assembly)))
+/-- p22038 — 22:C22. The two scaling laws and the exact equivalence-principle null: coherent $m^2$ against incoherent $m$, $\eta=0$. -/
+theorem p22038 : (∀ {q : Nat} [FRC.Pos q] (m : Nat) (u : FRC.Shell q), FRC.Shell.sumRange (fun x => u) m = FRC.Shell.ofNat m * u) ∧ (∀ {q : Nat} [FRC.Pos q] (mt w g : FRC.Shell q), mt * w = (1 : FRC.Shell q) → mt * g * w = g) ∧ (∀ {q : Nat} [FRC.Pos q] (m : Nat) {χ χbar : FRC.Shell q}, χ * χbar = (1 : FRC.Shell q) → FRC.Shell.sumRange (fun x => χ) m = FRC.Shell.ofNat m * χ ∧ FRC.Shell.sumRange (fun x => χ) m * FRC.Shell.sumRange (fun x => χbar) m = FRC.Shell.ofNat (m * m)) ∧ ∀ {q : Nat} [FRC.Pos q], FRC.Nat.isPrime q → ∀ {ζ η : FRC.Shell q} {n : Nat}, FRC.Shell.Prime.HasOrder ζ n → ζ ≠ (1 : FRC.Shell q) → FRC.Shell.Prime.HasOrder η n → η ≠ (1 : FRC.Shell q) → ζ * η = (1 : FRC.Shell q) → ∀ (m : Nat), FRC.Composite.tsum n (fun v => FRC.Shell.sumRange (fun i => ζ ^ v i) m * FRC.Shell.sumRange (fun j => η ^ v j) m) m = FRC.Shell.ofNat m * FRC.Shell.ofNat (n ^ m) :=
+  And.intro @FRC.Composite.field_linear (And.intro @FRC.Composite.eta_zero (And.intro @FRC.Composite.locked_norm (@FRC.Composite.spread_average)))
+/-- p22039 — 22:C23. Inter-Subject consistency: two distinct Subjects reading one Object agree on the shared core $\Qf$ , order-independent joint refinement, the same core character by the selection rule, and order-independence on the shared cell. -/
+theorem p22039 : (∀ (α β : Nat), (0 : Nat) < α → (0 : Nat) < β → ∃ T, T ≤ α * β ∧ (0 : Nat) < T ∧ ∀ (x : Nat), x % α = (0 : Nat) ∧ x % β = (0 : Nat) ↔ x % T = (0 : Nat)) ∧ (∀ {a b e r r' k : Nat}, (0 : Nat) < e → (0 : Nat) < a → (0 : Nat) < b → a % e = (0 : Nat) → b % e = (0 : Nat) → r % a = k % a → r' % b = k % b → r % e = r' % e) ∧ ∀ {q : Nat} [FRC.Pos q], FRC.Nat.isPrime q → ∀ {ω : FRC.Shell q} {d : Nat}, FRC.Shell.Prime.HasOrder ω d → ∀ (k : Nat) {r : Nat}, r < d → FRC.Shell.sumRange (fun j => ω ^ (k * j) * ω ^ ((d - r) * j)) d = if k % d = r then FRC.Shell.ofNat d else (0 : FRC.Shell q) :=
+  And.intro @FRC.Composite.joint_refinement (And.intro @FRC.Composite.order_independence (@FRC.Observation.selection))
+/-- p22040 — 22:C24. Carrier-chart classicality: to the host of a hosted Carrier every observation is total absorption (for the physical Carrier, a limit no reader instantiates); quantumness is the subgroup index $[\PhiO:\core]>1$, and classicality is the divisibility of the observer's frame --- one outcome per fixed channel, with the channel index still carrying the winding information (absorption is not the absence of information transfer). -/
+theorem p22040 : (∀ {d k : Nat}, (0 : Nat) < d → (k = (1 : Nat) ↔ d * k = d) ∧ ((1 : Nat) < k ↔ d < d * k)) ∧ (∀ {q : Nat} [FRC.Pos q], FRC.Nat.isPrime q → ∀ {ω : FRC.Shell q} {d : Nat}, FRC.Shell.Prime.HasOrder ω d → ∀ (k : Nat) {r : Nat}, r < d → FRC.Shell.sumRange (fun j => ω ^ (k * j) * ω ^ ((d - r) * j)) d = if k % d = r then FRC.Shell.ofNat d else (0 : FRC.Shell q)) ∧ (421 : Nat) = (4 : Nat) * (105 : Nat) + (1 : Nat) ∧ FRC.Shell.Prime.HasOrder (2 : FRC.Shell (421 : Nat)) (420 : Nat) ∧ (2 : FRC.Shell (421 : Nat)) ^ (315 : Nat) = (392 : FRC.Shell (421 : Nat)) ∧ (392 : FRC.Shell (421 : Nat)) * (392 : FRC.Shell (421 : Nat)) = (-1 : FRC.Shell (421 : Nat)) ∧ ((60 : Nat) % (4 : Nat) = (0 : Nat) ∧ (28 : Nat) % (4 : Nat) = (0 : Nat) ∧ ∀ (e : Nat), e < (61 : Nat) → (60 : Nat) % e = (0 : Nat) → (28 : Nat) % e = (0 : Nat) → (4 : Nat) % e = (0 : Nat)) ∧ (28 : Nat) = (4 : Nat) * (7 : Nat) ∧ ((60 : Nat) % (12 : Nat) = (0 : Nat) ∧ (12 : Nat) % (12 : Nat) = (0 : Nat) ∧ ∀ (e : Nat), e < (61 : Nat) → (60 : Nat) % e = (0 : Nat) → (12 : Nat) % e = (0 : Nat) → (12 : Nat) % e = (0 : Nat)) ∧ (12 : Nat) = (12 : Nat) * (1 : Nat) :=
+  And.intro @FRC.Observation.classicality_index (And.intro @FRC.Observation.selection (@FRC.Composite.carrier_421))
+/-- p22041 — 22:C25. The measurement problem dissolved: Kochen--Specker poses no separate threat because values exist only as Subject-relative quotient phases, carried together with the Tsirelson strength $2\sqrt2$. -/
+theorem p22041 : (∀ {p : Nat} [FRC.Pos p] {ζ : FRC.Shell p}, ζ ^ (4 : Nat) = (-1 : FRC.Shell p) → (ζ + ζ ^ (7 : Nat)) * (ζ + ζ ^ (7 : Nat)) = (2 : FRC.Shell p)) ∧ ∀ {q : Nat} [FRC.Pos q] {ζ : FRC.Shell q}, ζ ^ (4 : Nat) = (-1 : FRC.Shell q) → (2 : FRC.Shell q) * (ζ + ζ ^ (7 : Nat)) * ((2 : FRC.Shell q) * (ζ + ζ ^ (7 : Nat))) = (8 : FRC.Shell q) :=
+  And.intro @FRC.Shell.Prime.tsirelson (@FRC.Composite.singlet_square)
+/-- p22042 — 22:C26. The unequal-cycle composite gate: joint recurrence $T'=\operatorname{lcm}_j(n_j/\gcd(s_j,n_j))$, conserved data the quotient $A/\langle s\rangle$ (unit-winding pair: the gcd cycle, generically $\Qf$), and the counting Born rule verbatim with $T'$ as the recurrence; all orbit-nontrivial characters cancel. -/
+theorem p22042 : (∀ (n : Nat → Nat), (∀ (j : Nat), (0 : Nat) < n j) → ∀ (m L : Nat), (0 : Nat) < L → FRC.Quantum.Joint n m L → ∃ T, T ≤ L ∧ (0 : Nat) < T ∧ FRC.Quantum.Joint n m T ∧ (∀ (t : Nat), FRC.Quantum.Joint n m t ↔ t % T = (0 : Nat)) ∧ L % T = (0 : Nat)) ∧ (∀ {n : Nat → Nat} {m T : Nat}, (∀ (t : Nat), FRC.Quantum.Joint n m t ↔ t % T = (0 : Nat)) → (0 : Nat) < T → ∀ (t : Nat), (0 : Nat) < t → FRC.Quantum.Joint n m t → T ≤ t) ∧ (∀ {a b T : Nat}, (0 : Nat) < a → (0 : Nat) < b → (0 : Nat) < T → T % a = (0 : Nat) → T % b = (0 : Nat) → (∀ (t : Nat), (0 : Nat) < t → t < T → ¬(t % a = (0 : Nat) ∧ t % b = (0 : Nat))) → ∃ g, g ≤ a ∧ (0 : Nat) < g ∧ g * T = a * b ∧ a % g = (0 : Nat) ∧ b % g = (0 : Nat) ∧ (∀ (e : Nat), (0 : Nat) < e → a % e = (0 : Nat) → b % e = (0 : Nat) → g % e = (0 : Nat)) ∧ ∀ (x y x' y' : Nat), x < a → y < b → x' < a → y' < b → ((∃ t, t < T ∧ (x + t) % a = x' ∧ (y + t) % b = y') ↔ (x + y') % g = (x' + y) % g)) ∧ (∀ {q : Nat} [FRC.Pos q], FRC.Nat.isPrime q → ∀ (n : Nat → Nat), (∀ (j : Nat), (0 : Nat) < n j) → ∀ (m : Nat) (ζ : Nat → FRC.Shell q), (∀ (j : Nat), j < m → ζ j ^ n j = (1 : FRC.Shell q)) → FRC.Shell.prodRange ζ m ≠ (1 : FRC.Shell q) → ∀ (M : Nat), FRC.Quantum.Joint n m M → FRC.Shell.sumRange (fun t => FRC.Shell.prodRange (fun j => ζ j ^ t) m) M = (0 : FRC.Shell q)) ∧ ∀ {n s d n' s' u v : Nat}, (0 : Nat) < d → (0 : Nat) < n' → n = d * n' → s = d * s' → s' * u = n' * v + (1 : Nat) → ∀ (t : Nat), s * t % n = (0 : Nat) ↔ t % n' = (0 : Nat) :=
+  And.intro @FRC.Quantum.joint_recurrence (And.intro @FRC.Quantum.joint_least (And.intro @FRC.Quantum.pair_offset (And.intro @FRC.Quantum.dephasing (@FRC.Composite.winding_period))))
+/-- p22043 — 22:C27. Quarter-turn transport: the ambient quarter-turn aliases onto an embedded label iff $\kap\equiv\pm\kap_n\pmod n$, the capacity residue mod~$4$ the coarsest invariant; the constants web is read per register (Remark~\ref{rem:conceptual}). -/
+theorem p22043 : (∀ {q : Nat} [FRC.Pos q], FRC.Nat.isPrime q → ∀ {ζ : FRC.Shell q} {m κ t : Nat}, FRC.Shell.Prime.HasOrder ζ ((4 : Nat) * m) → κ = m * t → (ζ ^ ((3 : Nat) * κ) = ζ ^ ((3 : Nat) * m) ↔ κ % ((4 : Nat) * m) = m) ∧ (ζ ^ ((3 : Nat) * κ) = ζ ^ m ↔ (κ + m) % ((4 : Nat) * m) = (0 : Nat)) ∧ (ζ ^ ((3 : Nat) * κ) * ζ ^ ((3 : Nat) * κ) = (1 : FRC.Shell q) ↔ κ % ((2 : Nat) * m) = (0 : Nat))) ∧ (∀ (κ : Nat), κ < (40 : Nat) → ((3 : Nat) * κ % (40 : Nat) = (3 : Nat) * (10 : Nat) % (40 : Nat) ↔ κ % (40 : Nat) = (10 : Nat) % (40 : Nat)) ∧ ((3 : Nat) * κ % (40 : Nat) = (10 : Nat) % (40 : Nat) ↔ (κ + (10 : Nat)) % (40 : Nat) = (0 : Nat)) ∧ ((3 : Nat) * κ * (2 : Nat) % (40 : Nat) = (0 : Nat) ↔ κ % (20 : Nat) = (0 : Nat))) ∧ (∀ (κ : Nat), κ < (4 : Nat) → ((3 : Nat) * κ % (4 : Nat) = (3 : Nat) % (4 : Nat) ↔ κ % (4 : Nat) = (1 : Nat)) ∧ ((3 : Nat) * κ % (4 : Nat) = (1 : Nat) % (4 : Nat) ↔ κ % (4 : Nat) = (3 : Nat)) ∧ ((3 : Nat) * κ * (2 : Nat) % (4 : Nat) = (0 : Nat) ↔ κ % (2 : Nat) = (0 : Nat))) ∧ ∀ (t : Nat), t < (4 : Nat) → ((3 : Nat) * ((3 : Nat) * t) % (12 : Nat) = (9 : Nat) % (12 : Nat) ↔ (3 : Nat) * t % (12 : Nat) = (3 : Nat)) :=
+  And.intro @FRC.Observation.transport_trichotomy (@FRC.Observation.transport_cases)
+set_option linter.defProp false in
+/-- p22044 — 22:X1. \textbf{The Born rule} is a coincidence count, the unique window lift of its carrier shadow, not a postulated quadratic functional --- on its stationary domain, where the weights are uniform over the fibres; non-uniform statistics are read through the engineered-core readout (C11). -/
+def p22044 := And.intro @FRC.Observation.window_lift (And.intro @FRC.Observation.pair_count (And.intro @FRC.Observation.pure_winding_weight (@FRC.Extension.two_way_tally)))
+/-- p22045 — 22:X2. \textbf{The complexity of amplitudes} is the arithmetic of the shared quarter-turn core, the canonical complex sector $\Z[\im]$; a shell without the internal quarter-turn gives a real-amplitude theory instead. -/
+theorem p22045 : (∀ {q : Nat} [FRC.Pos q] {κ κ' a b : Nat}, κ * a = κ' * b + (1 : Nat) → ∀ (x : FRC.Shell q), x ^ ((4 : Nat) * κ) = (1 : FRC.Shell q) → x ^ ((4 : Nat) * κ') = (1 : FRC.Shell q) → x ^ (4 : Nat) = (1 : FRC.Shell q) ∧ ∀ (y : FRC.Shell q), y ^ (4 : Nat) = (1 : FRC.Shell q) → y ^ ((4 : Nat) * κ) = (1 : FRC.Shell q) ∧ y ^ ((4 : Nat) * κ') = (1 : FRC.Shell q)) ∧ ∀ {q : Nat} [FRC.Pos q], FRC.Nat.isPrime q → q % (4 : Nat) = (3 : Nat) → ¬∃ x, x * x = (-1 : FRC.Shell q) :=
+  And.intro @FRC.Observation.shared_core (@FRC.Observation.no_quarter_turn)
+/-- p22046 — 22:X3. \textbf{The preferred basis} is the Subject's own phase anatomy, einselected by the algebra of the frames rather than by a model of the environment. -/
+theorem p22046 : (∀ {q : Nat} [FRC.Pos q], FRC.Nat.isPrime q → ∀ {ω : FRC.Shell q} {d : Nat}, FRC.Shell.Prime.HasOrder ω d → ∀ {r r' : Nat}, r < d → r' < d → FRC.Shell.sumRange (fun j => ω ^ (r * j) * ω ^ ((d - r') * j)) d = if r = r' then FRC.Shell.ofNat d else (0 : FRC.Shell q)) ∧ ∀ {q : Nat} [FRC.Pos q], FRC.Nat.isPrime q → ∀ {ω : FRC.Shell q} {d : Nat}, FRC.Shell.Prime.HasOrder ω d → ∀ (k : Nat) {r : Nat}, r < d → FRC.Shell.sumRange (fun j => ω ^ (k * j) * ω ^ ((d - r) * j)) d = if k % d = r then FRC.Shell.ofNat d else (0 : FRC.Shell q) :=
+  And.intro @FRC.Observation.orthogonality (@FRC.Observation.selection)
+/-- p22047 — 22:X4. \textbf{The dynamical measurement problem} dissolves: collapse is the re-metrisation of a relational chart, no disturbance propagates, and distinct Subjects never disagree on what they share. -/
+theorem p22047 : (∀ (α β : Nat), (0 : Nat) < α → (0 : Nat) < β → ∃ T, T ≤ α * β ∧ (0 : Nat) < T ∧ ∀ (x : Nat), x % α = (0 : Nat) ∧ x % β = (0 : Nat) ↔ x % T = (0 : Nat)) ∧ (∀ {a b e r r' k : Nat}, (0 : Nat) < e → (0 : Nat) < a → (0 : Nat) < b → a % e = (0 : Nat) → b % e = (0 : Nat) → r % a = k % a → r' % b = k % b → r % e = r' % e) ∧ ∀ {q : Nat} [FRC.Pos q] {ω : FRC.Shell q} {d : Nat}, FRC.Shell.Prime.HasOrder ω d → ∀ {r : Nat}, r < d → ∀ (j m : Nat), FRC.Shell.sumRange (fun l => ω ^ (r * j) * ω ^ ((d - r) * l) * (ω ^ (r * l) * ω ^ ((d - r) * m))) d = FRC.Shell.ofNat d * (ω ^ (r * j) * ω ^ ((d - r) * m)) :=
+  And.intro @FRC.Composite.joint_refinement (And.intro @FRC.Composite.order_independence (@FRC.Observation.lueders))
+/-- p22048 — 22:X5. \textbf{The classical limit} has a mechanism, containment, the divisibility of the observer's frame, exact arithmetic rather than an appeal to a limit. -/
+theorem p22048 : (∀ {d k : Nat}, (0 : Nat) < d → (k = (1 : Nat) ↔ d * k = d) ∧ ((1 : Nat) < k ↔ d < d * k)) ∧ (∀ {q : Nat} [FRC.Pos q], FRC.Nat.isPrime q → ∀ {ω : FRC.Shell q} {d : Nat}, FRC.Shell.Prime.HasOrder ω d → ∀ (k : Nat) {r : Nat}, r < d → FRC.Shell.sumRange (fun j => ω ^ (k * j) * ω ^ ((d - r) * j)) d = if k % d = r then FRC.Shell.ofNat d else (0 : FRC.Shell q)) ∧ (421 : Nat) = (4 : Nat) * (105 : Nat) + (1 : Nat) ∧ FRC.Shell.Prime.HasOrder (2 : FRC.Shell (421 : Nat)) (420 : Nat) ∧ (2 : FRC.Shell (421 : Nat)) ^ (315 : Nat) = (392 : FRC.Shell (421 : Nat)) ∧ (392 : FRC.Shell (421 : Nat)) * (392 : FRC.Shell (421 : Nat)) = (-1 : FRC.Shell (421 : Nat)) ∧ ((60 : Nat) % (4 : Nat) = (0 : Nat) ∧ (28 : Nat) % (4 : Nat) = (0 : Nat) ∧ ∀ (e : Nat), e < (61 : Nat) → (60 : Nat) % e = (0 : Nat) → (28 : Nat) % e = (0 : Nat) → (4 : Nat) % e = (0 : Nat)) ∧ (28 : Nat) = (4 : Nat) * (7 : Nat) ∧ ((60 : Nat) % (12 : Nat) = (0 : Nat) ∧ (12 : Nat) % (12 : Nat) = (0 : Nat) ∧ ∀ (e : Nat), e < (61 : Nat) → (60 : Nat) % e = (0 : Nat) → (12 : Nat) % e = (0 : Nat) → (12 : Nat) % e = (0 : Nat)) ∧ (12 : Nat) = (12 : Nat) * (1 : Nat) :=
+  And.intro @FRC.Observation.classicality_index (And.intro @FRC.Observation.selection (@FRC.Composite.carrier_421))
+set_option linter.defProp false in
+/-- p22049 — 22:X6. \textbf{Native probability over a finite substrate}: the unordered-field obstruction is cleared by keeping counts in the observer's ledger: a finite-relational provenance theorem for the Born calculus, in which the substrate determines the tally ring, the measurement family, and the readout (calibrated against the counting and cyclotomic precedents in Section~\ref{sec:discussion}). -/
+def p22049 := And.intro @FRC.Observation.window_lift (And.intro @FRC.Extension.Tally.tally_criterion (And.intro @FRC.Extension.Tally.channel_selectivity (@FRC.Extension.framed_readout)))
+/-- p22050 — 22:X7. \textbf{The Tsirelson boundary} is attained as a ring identity, $S=2(\zeta_8+\zeta_8^{-1})=2\sqrt2$, so a relational finite substrate carries full quantum correlation strength, not merely quantum vocabulary. -/
+theorem p22050 : (∀ {p : Nat} [FRC.Pos p] {ζ : FRC.Shell p}, ζ ^ (4 : Nat) = (-1 : FRC.Shell p) → (ζ + ζ ^ (7 : Nat)) * (ζ + ζ ^ (7 : Nat)) = (2 : FRC.Shell p)) ∧ ∀ {q : Nat} [FRC.Pos q] {ζ : FRC.Shell q}, ζ ^ (4 : Nat) = (-1 : FRC.Shell q) → (2 : FRC.Shell q) * (ζ + ζ ^ (7 : Nat)) * ((2 : FRC.Shell q) * (ζ + ζ ^ (7 : Nat))) = (8 : FRC.Shell q) :=
+  And.intro @FRC.Shell.Prime.tsirelson (@FRC.Composite.singlet_square)
+/-- p22051 — 22:X8. \textbf{Higher-order interference} is forbidden exactly: the Sorkin hierarchy is zero with a forbidden neighbourhood, not a small number to be measured down. -/
+theorem p22051 : (∀ {q : Nat} [FRC.Pos q] {c : FRC.Shell q → FRC.Shell q}, FRC.Interference.Additive c → ∀ (a : Nat → FRC.Shell q) (k : Nat) (x : FRC.Shell q), FRC.Interference.mixedDiff a (FRC.Interference.weight c) (k + (3 : Nat)) x = (0 : FRC.Shell q)) ∧ ∀ {q : Nat} [FRC.Pos q] (a : Nat), FRC.Shell.ofNat a = (0 : FRC.Shell q) ↔ ∃ k, a = q * k :=
+  And.intro @FRC.Interference.sorkin_hierarchy (@FRC.Observation.wrap_quantised)
+/-- p22052 — 22:P1. Gravitationally induced entanglement at exactly the Newtonian rate, $V^2+C^2=1$ on the pure channel: equal force but unequal entanglement --- a source gravitates by its full mass while the systematic conditional phase, the calibrated discriminator, is carried by the coherent sectors alone, the fully incoherent channel separable at generic (nondegenerate) geometry. The one dated forward prediction. -/
+theorem p22052 : (∀ {q : Nat} [FRC.Pos q] {h x y i : FRC.Shell q}, h * (2 : FRC.Shell q) = (1 : FRC.Shell q) → x * y = (1 : FRC.Shell q) → i * i = (-1 : FRC.Shell q) → h * (x + y) * (h * (x + y)) + h * (x + -y) * -i * (h * (x + -y) * -i) = (1 : FRC.Shell q)) ∧ (∀ {q : Nat} [FRC.Pos q] (ζ : FRC.Shell q) (a mc : Nat), FRC.Shell.prodRange (fun x => ζ ^ a) mc = ζ ^ (mc * a)) ∧ ∀ {q : Nat} [FRC.Pos q] (ζ : FRC.Shell q) (p : Nat → FRC.Shell q) (n c : Nat), FRC.Shell.sumRange (fun θ => p θ * ζ ^ (θ + c)) n = FRC.Shell.sumRange (fun θ => p θ * ζ ^ θ) n * ζ ^ c :=
+  And.intro @FRC.Composite.channel_complementarity (And.intro @FRC.Composite.branch_phase (@FRC.Composite.channel_assembly))
+/-- p22053 — 22:P2. Third-order interference exactly zero at every accessible scale, any wrap quantised to a multiple of $\Omega$: a single confirmed small $I_3\neq0$ falsifies outright. -/
+theorem p22053 : (∀ {q : Nat} [FRC.Pos q] {c : FRC.Shell q → FRC.Shell q}, FRC.Interference.Additive c → ∀ (a : Nat → FRC.Shell q) (k : Nat) (x : FRC.Shell q), FRC.Interference.mixedDiff a (FRC.Interference.weight c) (k + (3 : Nat)) x = (0 : FRC.Shell q)) ∧ ∀ {q : Nat} [FRC.Pos q] (a : Nat), FRC.Shell.ofNat a = (0 : FRC.Shell q) ↔ ∃ k, a = q * k :=
+  And.intro @FRC.Interference.sorkin_hierarchy (@FRC.Observation.wrap_quantised)
+/-- p22054 — 22:P3. The Tsirelson value $S=2\sqrt2$ exact and the network behaviour of complex (not real) quantum theory: vacuum dispersion, $S\neq2\sqrt2$, or non-quantum network behaviour each falsify. -/
+theorem p22054 : (∀ {p : Nat} [FRC.Pos p] {ζ : FRC.Shell p}, ζ ^ (4 : Nat) = (-1 : FRC.Shell p) → (ζ + ζ ^ (7 : Nat)) * (ζ + ζ ^ (7 : Nat)) = (2 : FRC.Shell p)) ∧ (∀ {q : Nat} [FRC.Pos q] {ζ : FRC.Shell q}, ζ ^ (4 : Nat) = (-1 : FRC.Shell q) → (2 : FRC.Shell q) * (ζ + ζ ^ (7 : Nat)) * ((2 : FRC.Shell q) * (ζ + ζ ^ (7 : Nat))) = (8 : FRC.Shell q)) ∧ ∀ {a b T : Nat}, (0 : Nat) < a → (0 : Nat) < b → (0 : Nat) < T → T % a = (0 : Nat) → T % b = (0 : Nat) → (∀ (t : Nat), (0 : Nat) < t → t < T → ¬(t % a = (0 : Nat) ∧ t % b = (0 : Nat))) → ∃ g, g ≤ a ∧ (0 : Nat) < g ∧ g * T = a * b ∧ a % g = (0 : Nat) ∧ b % g = (0 : Nat) ∧ (∀ (e : Nat), (0 : Nat) < e → a % e = (0 : Nat) → b % e = (0 : Nat) → g % e = (0 : Nat)) ∧ ∀ (x y x' y' : Nat), x < a → y < b → x' < a → y' < b → ((∃ t, t < T ∧ (x + t) % a = x' ∧ (y + t) % b = y') ↔ (x + y') % g = (x' + y) % g) :=
+  And.intro @FRC.Shell.Prime.tsirelson (And.intro @FRC.Composite.singlet_square (@FRC.Quantum.pair_offset))
+/-- p22055 — 22:P4. No vacuum dispersion at any sub-horizon order (the finite double cover accumulates nothing): the gamma-ray-burst time-of-flight bounds leave the framework untouched. -/
+theorem p22055 : (∀ {p : Nat} [FRC.Pos p], FRC.Nat.isPrime p → ∀ {h : FRC.Shell p}, h * h = (-1 : FRC.Shell p) → (∀ (x : FRC.Shell p), x ≠ (0 : FRC.Shell p) → (x ^ (p + (1 : Nat)) = (1 : FRC.Shell p) ↔ x = (1 : FRC.Shell p) ∨ x = (-1 : FRC.Shell p))) ∧ (∀ (x : FRC.Shell p), x ≠ (0 : FRC.Shell p) → (x ^ ((2 : Nat) * (p + (1 : Nat))) = (1 : FRC.Shell p) ↔ x = (1 : FRC.Shell p) ∨ x = (-1 : FRC.Shell p) ∨ x = h ∨ x = -h)) ∧ h ^ (p + (1 : Nat)) = (-1 : FRC.Shell p)) ∧ (∀ {p : Nat} [FRC.Pos p] {ν : FRC.Shell p}, FRC.Nat.isPrime p → ∀ {κ : Nat}, p = (4 : Nat) * κ + (1 : Nat) → (¬∃ y, y * y = ν) → ∀ (ζ : FRC.Extension.Ext p ν), ζ.norm = (1 : FRC.Shell p) → ζ ^ (p + (1 : Nat)) = (1 : FRC.Extension.Ext p ν) → (∀ (l : Nat), (0 : Nat) < l → l < p + (1 : Nat) → ζ ^ l ≠ (1 : FRC.Extension.Ext p ν)) → ζ ^ ((2 : Nat) * κ + (1 : Nat)) = (-1 : FRC.Extension.Ext p ν)) ∧ ∀ {q : Nat} [FRC.Pos q] {ν : FRC.Shell q} (z : FRC.Extension.Ext q ν), z.norm = (1 : FRC.Shell q) → z * z.conj = (1 : FRC.Extension.Ext q ν) :=
+  And.intro @FRC.Subject.channel (And.intro @FRC.Subject.horizon_generator (@FRC.Observation.torus_conj_inv))
+/-- p22056 — 22:P5. Quantum computation succeeds as standard quantum mechanics prescribes at every accessible depth; the first deviation, if any, is quantised at the unit-core ceiling $k^*=408$ ($204$ for $\sqrt\Omega$), not gradual. -/
+theorem p22056 : (∀ {k k' : Nat}, k ≤ k' → FRC.Interference.tallyNorm k ≤ FRC.Interference.tallyNorm k') ∧ ((∀ (k : Nat), FRC.Interference.tallyNorm k < (641 : Nat) ↔ k ≤ (8 : Nat)) ∧ ∀ (k : Nat), (8 : Nat) * FRC.Interference.tallyNorm k < (641 : Nat) ↔ k ≤ (6 : Nat)) ∧ ∀ {q : Nat} [FRC.Pos q] {i : FRC.Shell q}, i * i = (-1 : FRC.Shell q) → ∀ (m : Nat), ((1 : FRC.Shell q) + i) ^ ((2 : Nat) * m) = FRC.Shell.ofNat ((2 : Nat) ^ m) * i ^ m :=
+  And.intro @FRC.Interference.tally_norm_mono (And.intro @FRC.Interference.ceiling_641 (@FRC.Interference.hadamard_even))
+-- end keys
+
+end FRC.Ledger
+
+/-! inlined: FrcCore/Qm.lean -/
+
+/-!
+# 22-quantum — the paper module: every theorem of *Quantum Observation over Finite Holographic Substrate* lives in the themes (15 October 2026)
+
+The finite content of the paper (tree `22-quantum-20260625`) is the themes': the single-system formalism in the shadow
+— power maps, the forced basis, the selection rule, Lüders, the pair count, the reduction, the window lift, the forced
+complex sector, the classicality index, the transport trichotomy, the Frobenius — in `Theme/Observation.lean`
+(`FRC.Observation`, the quantum theme); the Sorkin hierarchy and the Hadamard layers with the ceiling at `641` in
+`Theme/Interference.lean` (`FRC.Interference`); the cluster's offset, the winding period, the locked cluster against
+the spread, the doublet readout, the Tsirelson square, the channel complementarity, the revival, the coherent-fraction
+channel, the inter-Subject refinement and the three worked carriers in `Theme/Composite.lean` (`FRC.Composite`); the
+joint recurrence, the pair offset and the dephasing in `Theme/Quantum.lean` (`FRC.Quantum`, the master's F2); the two
+strata and the pair tally on `Q₄` in `Theme/Extension.lean` and `Theme/Tally.lean` (the extension theme, the master's
+C10 and C11); the Tsirelson square's root identity in `Theme/Field.lean` (`Prime.tsirelson`) and the spinor cover and
+the torus half-turn in `Theme/Subject.lean` (`Subject.channel`, `horizon_generator`, the master's C20 and C25). Every
+row of the paper's ledger is a key written by `make_keys.py` from those (`Keys/*.lean`), and this module carries the
+rows' declarations `FRC.Qm.p22NNN` as aliases of the keys (`make_predicates.py`). No theorem is stated here twice.
+Every declaration is checked to depend on no axiom (`check_core_axioms.py`).
+-/
+
+namespace FRC.Qm
+
+open FRC.Shell
+
+-- Ledger predicates of 22-quantum (generated by make_predicates.py from docs/22-quantum/22-quantum-ledger.json; edit the ledger, not this section)
+/-- 22:A2 (p22002) — The Lorentzian split: the quadratic extension $\F_{\p^2}$, the Frobenius involution, the norm-one boost cycle of order $\p+1$, and the spinor double cover (the Dirac layer). -/
+theorem p22002 : (∀ {p : Nat} [FRC.Pos p], FRC.Nat.isPrime p → ∀ {h : FRC.Shell p}, h * h = (-1 : FRC.Shell p) → (∀ (x : FRC.Shell p), x ≠ (0 : FRC.Shell p) → (x ^ (p + (1 : Nat)) = (1 : FRC.Shell p) ↔ x = (1 : FRC.Shell p) ∨ x = (-1 : FRC.Shell p))) ∧ (∀ (x : FRC.Shell p), x ≠ (0 : FRC.Shell p) → (x ^ ((2 : Nat) * (p + (1 : Nat))) = (1 : FRC.Shell p) ↔ x = (1 : FRC.Shell p) ∨ x = (-1 : FRC.Shell p) ∨ x = h ∨ x = -h)) ∧ h ^ (p + (1 : Nat)) = (-1 : FRC.Shell p)) ∧ (∀ {p : Nat} [FRC.Pos p] {ν : FRC.Shell p}, FRC.Nat.isPrime p → ∀ {κ : Nat}, p = (4 : Nat) * κ + (1 : Nat) → (¬∃ y, y * y = ν) → ∀ (ζ : FRC.Extension.Ext p ν), ζ.norm = (1 : FRC.Shell p) → ζ ^ (p + (1 : Nat)) = (1 : FRC.Extension.Ext p ν) → (∀ (l : Nat), (0 : Nat) < l → l < p + (1 : Nat) → ζ ^ l ≠ (1 : FRC.Extension.Ext p ν)) → ζ ^ ((2 : Nat) * κ + (1 : Nat)) = (-1 : FRC.Extension.Ext p ν)) ∧ ∀ {q : Nat} [FRC.Pos q] {ν : FRC.Shell q} (z : FRC.Extension.Ext q ν), z.norm = (1 : FRC.Shell q) → z * z.conj = (1 : FRC.Extension.Ext q ν) :=
+  @FRC.Ledger.p22002
+/-- 22:C1 (p22017) — Characters are power maps $\psi_k(u)=u^k$, pairwise distinct: the wave function is the cycle read through a winding index. -/
+theorem p22017 : (∀ {q : Nat} [FRC.Pos q], FRC.Nat.isPrime q → ∀ {ζ : FRC.Shell q} {n : Nat}, FRC.Shell.Prime.HasOrder ζ n → (∀ (u v : FRC.Shell q) (k : Nat), (u * v) ^ k = u ^ k * v ^ k) ∧ ∀ (k k' : Nat), k < n → k' < n → k ≠ k' → ζ ^ k ≠ ζ ^ k') ∧ (∀ {q : Nat} [FRC.Pos q], FRC.Nat.isPrime q → ∀ {x : FRC.Shell q} {n : Nat}, FRC.Shell.Prime.HasOrder x n → ∀ (y : FRC.Shell q), y ^ n = (1 : FRC.Shell q) → ∃ k, k < n ∧ y = x ^ k) ∧ ∀ {q : Nat} [FRC.Pos q], FRC.Nat.isPrime q → ∀ {ζ : FRC.Shell q} {n : Nat}, FRC.Shell.Prime.HasOrder ζ n → ∀ (χ : FRC.Shell q → FRC.Shell q), (∀ (a b : Nat), χ (ζ ^ a * ζ ^ b) = χ (ζ ^ a) * χ (ζ ^ b)) → χ (1 : FRC.Shell q) = (1 : FRC.Shell q) → ∃ k, k < n ∧ ∀ (j : Nat), χ (ζ ^ j) = (ζ ^ j) ^ k :=
+  @FRC.Ledger.p22017
+/-- 22:C2 (p22018) — Stationary states are the winding modes: the drive's eigenvalues are distinct and a winding acquires a global phase of weight $k$ per chronon. -/
+theorem p22018 : (∀ {q : Nat} [FRC.Pos q], FRC.Nat.isPrime q → ∀ {g : FRC.Shell q} {n : Nat}, FRC.Shell.Prime.HasOrder g n → (∀ (u : FRC.Shell q) (k : Nat), (g * u) ^ k = g ^ k * u ^ k) ∧ ∀ (k k' : Nat), k < n → k' < n → g ^ k = g ^ k' → k = k') ∧ ∀ {q : Nat} [FRC.Pos q], FRC.Nat.isPrime q → ∀ {g : FRC.Shell q} {n : Nat}, FRC.Shell.Prime.HasOrder g n → ∀ (ψ : FRC.Shell q → FRC.Shell q) {lam : FRC.Shell q}, (∀ (j : Nat), ψ (g * g ^ j) = lam * ψ (g ^ j)) → (ψ (1 : FRC.Shell q) = (0 : FRC.Shell q) → ∀ (j : Nat), ψ (g ^ j) = (0 : FRC.Shell q)) ∧ (ψ (1 : FRC.Shell q) ≠ (0 : FRC.Shell q) → ∃ k, k < n ∧ lam = g ^ k ∧ ∀ (j : Nat), ψ (g ^ j) = ψ (1 : FRC.Shell q) * (g ^ j) ^ k) :=
+  @FRC.Ledger.p22018
+/-- 22:C3 (p22019) — The measurement vectors are a forced orthogonal basis: orthogonality $d\,\delta\delta$, resolution of identity, and Parseval are character theory, and the pointer basis is einselected by the algebra of the frames. -/
+theorem p22019 : (∀ {q : Nat} [FRC.Pos q], FRC.Nat.isPrime q → ∀ {ω : FRC.Shell q} {d : Nat}, FRC.Shell.Prime.HasOrder ω d → ∀ {r r' : Nat}, r < d → r' < d → FRC.Shell.sumRange (fun j => ω ^ (r * j) * ω ^ ((d - r') * j)) d = if r = r' then FRC.Shell.ofNat d else (0 : FRC.Shell q)) ∧ (∀ {q : Nat} [FRC.Pos q], FRC.Nat.isPrime q → ∀ {ω : FRC.Shell q} {d : Nat}, FRC.Shell.Prime.HasOrder ω d → ∀ (f g : Nat → FRC.Shell q), FRC.Shell.sumRange (fun r => FRC.Shell.sumRange (fun j => f j * ω ^ ((d - r) * j)) d * FRC.Shell.sumRange (fun l => g l * ω ^ (r * l)) d) d = FRC.Shell.ofNat d * FRC.Shell.sumRange (fun j => f j * g j) d) ∧ (∀ (a : Nat), a < (4 : Nat) → ∀ (b : Nat), b < (4 : Nat) → ∀ (c : Nat), c < (4 : Nat) → ∀ (d : Nat), d < (4 : Nat) → ∀ (r : Nat), r < (4 : Nat) → FRC.Extension.Tally.inversion (FRC.Extension.Tally.kernel (Int.ofNat a) (Int.ofNat b) (Int.ofNat c) (Int.ofNat d)) r = { re := (4 : Int) * FRC.Extension.Tally.coeff (Int.ofNat a) (Int.ofNat b) (Int.ofNat c) (Int.ofNat d) r, im := (0 : Int) }) ∧ have M := fun r u => FRC.Extension.Tally.GI.ipow (r * u); have d2 := fun a b c d => a * d + FRC.Extension.Tally.GI.smul (-1 : Int) (b * c); have e := fun r => M r; have det3 := fun f g h => f (1 : Nat) * d2 (g (2 : Nat)) (g (3 : Nat)) (h (2 : Nat)) (h (3 : Nat)) + FRC.Extension.Tally.GI.smul (-1 : Int) (f (2 : Nat) * d2 (g (1 : Nat)) (g (3 : Nat)) (h (1 : Nat)) (h (3 : Nat))) + f (3 : Nat) * d2 (g (1 : Nat)) (g (2 : Nat)) (h (1 : Nat)) (h (2 : Nat)); e (0 : Nat) (0 : Nat) * det3 (e (1 : Nat)) (e (2 : Nat)) (e (3 : Nat)) + FRC.Extension.Tally.GI.smul (-1 : Int) (e (1 : Nat) (0 : Nat) * det3 (e (0 : Nat)) (e (2 : Nat)) (e (3 : Nat))) + e (2 : Nat) (0 : Nat) * det3 (e (0 : Nat)) (e (1 : Nat)) (e (3 : Nat)) + FRC.Extension.Tally.GI.smul (-1 : Int) (e (3 : Nat) (0 : Nat) * det3 (e (0 : Nat)) (e (1 : Nat)) (e (2 : Nat))) = { re := (0 : Int), im := (-16 : Int) } :=
+  @FRC.Ledger.p22019
+/-- 22:C4 (p22020) — The selection rule: a pointer channel couples to an Object mode only when their core phases agree, $r\equiv k\pmod d$. -/
+theorem p22020 : ∀ {q : Nat} [FRC.Pos q], FRC.Nat.isPrime q → ∀ {ω : FRC.Shell q} {d : Nat}, FRC.Shell.Prime.HasOrder ω d → ∀ (k : Nat) {r : Nat}, r < d → FRC.Shell.sumRange (fun j => ω ^ (k * j) * ω ^ ((d - r) * j)) d = if k % d = r then FRC.Shell.ofNat d else (0 : FRC.Shell q) :=
+  @FRC.Ledger.p22020
+/-- 22:C5 (p22021) — The L\"uders update is projection, $\Pi^2=d\,\Pi$, so an immediately repeated measurement returns the same outcome. -/
+theorem p22021 : ∀ {q : Nat} [FRC.Pos q] {ω : FRC.Shell q} {d : Nat}, FRC.Shell.Prime.HasOrder ω d → ∀ {r : Nat}, r < d → ∀ (j m : Nat), FRC.Shell.sumRange (fun l => ω ^ (r * j) * ω ^ ((d - r) * l) * (ω ^ (r * l) * ω ^ ((d - r) * m))) d = FRC.Shell.ofNat d * (ω ^ (r * j) * ω ^ ((d - r) * m)) :=
+  @FRC.Ledger.p22021
+/-- 22:C6 (p22022) — Conjugation is cycle inversion, forced in each setting: the Frobenius on the boost cycle (the only non-trivial automorphism over $\F_\p$), exponent negation on the phase cycle, and on the ledger the complex conjugation, the automorphism that reduces to inversion. -/
+theorem p22022 : (∀ {q : Nat} [FRC.Pos q] {ν : FRC.Shell q}, FRC.Nat.isPrime q → (¬∃ y, y * y = ν) → ∀ (σ : FRC.Extension.Ext q ν → FRC.Extension.Ext q ν), (∀ (c : FRC.Shell q), σ (FRC.Extension.Ext.ofShell c) = FRC.Extension.Ext.ofShell c) → (∀ (z z' : FRC.Extension.Ext q ν), σ (z + z') = σ z + σ z') → (∀ (z z' : FRC.Extension.Ext q ν), σ (z * z') = σ z * σ z') → (∀ (z : FRC.Extension.Ext q ν), σ z = z) ∨ ∀ (z : FRC.Extension.Ext q ν), σ z = z.conj) ∧ (∀ {q : Nat} [FRC.Pos q] {ν : FRC.Shell q} (z : FRC.Extension.Ext q ν), z.norm = (1 : FRC.Shell q) → z * z.conj = (1 : FRC.Extension.Ext q ν)) ∧ ∀ {q : Nat} [FRC.Pos q] {ζ : FRC.Shell q} {n : Nat}, ζ ^ n = (1 : FRC.Shell q) → ∀ {k : Nat}, k ≤ n → ζ ^ k * ζ ^ (n - k) = (1 : FRC.Shell q) :=
+  @FRC.Ledger.p22022
+/-- 22:C7 (p22023) — Squared amplitudes are coincidence counts (the pair-count identity), realized tallies on $\Z[\im]$ for stationary core-valued states of definite drive eigenvalue; a distinct-eigenvalue superposition registers the integral drive-frequency count; for a pure winding the weights are $d^2[r\equiv k]$. -/
+theorem p22023 : (∀ {q : Nat} [FRC.Pos q] (ψ ψbar : Nat → FRC.Shell q) (d : Nat), FRC.Shell.sumRange ψ d * FRC.Shell.sumRange ψbar d = FRC.Shell.sumRange (fun j => FRC.Shell.sumRange (fun l => ψ j * ψbar l) d) d) ∧ (∀ {q : Nat} [FRC.Pos q], FRC.Nat.isPrime q → ∀ {ω : FRC.Shell q} {d : Nat}, FRC.Shell.Prime.HasOrder ω d → ∀ (k : Nat) {r : Nat}, r < d → FRC.Shell.sumRange (fun j => ω ^ (k * j) * ω ^ ((d - r) * j)) d * FRC.Shell.sumRange (fun l => ω ^ (r * l) * ω ^ ((d - k % d) * l)) d = if k % d = r then FRC.Shell.ofNat (d * d) else (0 : FRC.Shell q)) ∧ (∀ {q : Nat} [FRC.Pos q], FRC.Nat.isPrime q → ∀ {ω : FRC.Shell q} {d : Nat}, FRC.Shell.Prime.HasOrder ω d → ∀ (f g : Nat → FRC.Shell q), FRC.Shell.sumRange (fun r => FRC.Shell.sumRange (fun j => f j * ω ^ ((d - r) * j)) d * FRC.Shell.sumRange (fun l => g l * ω ^ (r * l)) d) d = FRC.Shell.ofNat d * FRC.Shell.sumRange (fun j => f j * g j) d) ∧ ∀ {q : Nat} [FRC.Pos q], FRC.Nat.isPrime q → ∀ (n : Nat → Nat), (∀ (j : Nat), (0 : Nat) < n j) → ∀ (m : Nat) (ζ : Nat → FRC.Shell q), (∀ (j : Nat), j < m → ζ j ^ n j = (1 : FRC.Shell q)) → FRC.Shell.prodRange ζ m ≠ (1 : FRC.Shell q) → ∀ (M : Nat), FRC.Quantum.Joint n m M → FRC.Shell.sumRange (fun t => FRC.Shell.prodRange (fun j => ζ j ^ t) m) M = (0 : FRC.Shell q) :=
+  @FRC.Ledger.p22023
+/-- 22:C8 (p22024) — Sorkin nullity: $I_k=0$ for every $k\ge3$, exactly, on every channel and outcome, with $I_2$ generically nonzero. -/
+theorem p22024 : (∀ {q : Nat} [FRC.Pos q] {c : FRC.Shell q → FRC.Shell q}, FRC.Interference.Additive c → ∀ (a : Nat → FRC.Shell q) (k : Nat) (x : FRC.Shell q), FRC.Interference.mixedDiff a (FRC.Interference.weight c) (k + (3 : Nat)) x = (0 : FRC.Shell q)) ∧ (∀ {q : Nat} [FRC.Pos q] {c : FRC.Shell q → FRC.Shell q}, FRC.Interference.Additive c → ∀ (a : Nat → FRC.Shell q) (x : FRC.Shell q), FRC.Interference.mixedDiff a (FRC.Interference.weight c) (2 : Nat) x = a (1 : Nat) * c (a (0 : Nat)) + a (0 : Nat) * c (a (1 : Nat))) ∧ ∀ {q : Nat} [FRC.Pos q], (2 : Nat) < q → FRC.Interference.mixedDiff (fun x => (1 : FRC.Shell q)) (FRC.Interference.weight fun x => x) (2 : Nat) (0 : FRC.Shell q) ≠ (0 : FRC.Shell q) :=
+  @FRC.Ledger.p22024
+/-- 22:C9 (p22025) — Reduction: the Carrier-chart amplitude is the mod-$\Omega$ shadow of the ledger ($\zeta\mapsto v$), exact as algebra and silent about magnitude. -/
+theorem p22025 : (∀ {q : Nat} [FRC.Pos q] (v : FRC.Shell q) (c c' : Nat → Nat) (n : Nat), FRC.Observation.shadow v (fun e => c e + c' e) n = FRC.Observation.shadow v c n + FRC.Observation.shadow v c' n) ∧ (∀ {q : Nat} [FRC.Pos q] {v : FRC.Shell q} {n : Nat}, (0 : Nat) < n → v ^ n = (1 : FRC.Shell q) → ∀ (c c' : Nat → Nat), FRC.Observation.shadow v (FRC.Observation.conv c c' n) n = FRC.Observation.shadow v c n * FRC.Observation.shadow v c' n) ∧ ∀ {q : Nat} [FRC.Pos q], FRC.Shell.ofNat q = (0 : FRC.Shell q) :=
+  @FRC.Ledger.p22025
+set_option linter.defProp false in
+/-- 22:C10 (p22026) — The counting Born rule on sub-horizon states over the universal core $\Qf$: the weight is the unique window lift of its shadow and the probability a framed-rational ratio of coincidence counts, the frequency along the drive completed in finitely many chronons; the two probability strata and their $\Qf$ coincidence; on a single Object the theorem's weights are uniform over the fibres (Remark~\ref{rem:borndomain}), every non-uniform statistic passing through C11. -/
+def p22026 := @FRC.Ledger.p22026
+/-- 22:C11 (p22027) — The engineered-core readout: registered frequencies are framed rationals reading the two-way structural weight through Definition~\ref{def:readout}; two reductions are proved (the conjugate-pair trace tally and the setting-ensemble Parseval tally, Remark~\ref{rem:strata}), given the stratum-sampling clause, the unified sampling clause of master D10. -/
+theorem p22027 : (∀ {p : Nat} [FRC.Pos p] {ν : FRC.Shell p} (z : FRC.Extension.Ext p ν) (k m : Nat), z ^ k * z.conj ^ (k + m) + z.conj ^ k * z ^ (k + m) = FRC.Extension.Ext.ofShell (z.norm ^ k * (z ^ m).trace)) ∧ (∀ {p : Nat} [FRC.Pos p] {ν : FRC.Shell p}, (∀ (z : FRC.Extension.Ext p ν) (m : Nat), (z ^ (m + (2 : Nat))).trace + z.norm * (z ^ m).trace = z.trace * (z ^ (m + (1 : Nat))).trace) ∧ ((FRC.Extension.Wp ^ (0 : Nat)).trace = (2 : FRC.Shell p) ∧ (FRC.Extension.Wp ^ (1 : Nat)).trace = (4 : FRC.Shell p)) ∧ (FRC.Extension.Wp ^ (2 : Nat)).trace = (12 : FRC.Shell (641 : Nat)) ∧ (FRC.Extension.Wp ^ (3 : Nat)).trace = (40 : FRC.Shell (641 : Nat))) ∧ (∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → ∀ {ζ η : FRC.Shell p} (M : Nat), ζ ^ ((2 : Nat) * M) = (1 : FRC.Shell p) → ζ ^ M ≠ (1 : FRC.Shell p) → ζ * η = (1 : FRC.Shell p) → ∀ (θ : Nat), θ ≤ M → (2 : FRC.Shell p) + (ζ ^ (M - θ) + η ^ (M - θ)) = (2 : FRC.Shell p) + -(ζ ^ θ + η ^ θ)) ∧ (∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → ∀ {ζ η : FRC.Shell p} (N : Nat), ζ ^ N = (1 : FRC.Shell p) → ζ * η = (1 : FRC.Shell p) → ζ * ζ ≠ (1 : FRC.Shell p) → FRC.Shell.sumRange (fun θ => (2 : FRC.Shell p) + (ζ ^ θ + η ^ θ)) N = FRC.Shell.ofNat N * (2 : FRC.Shell p) ∧ FRC.Shell.sumRange (fun θ => (2 : FRC.Shell p) + -(ζ ^ θ + η ^ θ)) N = FRC.Shell.ofNat N * (2 : FRC.Shell p) ∧ FRC.Shell.sumRange (fun θ => ((2 : FRC.Shell p) + (ζ ^ θ + η ^ θ)) * ((2 : FRC.Shell p) + -(ζ ^ θ + η ^ θ))) N = FRC.Shell.ofNat N * (2 : FRC.Shell p)) ∧ (∀ (n : Nat), n < (9 : Nat) → FRC.Extension.gridPoint n * FRC.Extension.gridPoint n ≤ (2 : Nat) * (9 : Nat) ^ n ∧ (2 : Nat) * (9 : Nat) ^ n < (FRC.Extension.gridPoint n + (1 : Nat)) * (FRC.Extension.gridPoint n + (1 : Nat))) ∧ (∀ (n : Nat), n < (8 : Nat) → (3 : Nat) * FRC.Extension.gridPoint n ≤ FRC.Extension.gridPoint (n + (1 : Nat)) ∧ FRC.Extension.gridPoint (n + (1 : Nat)) ≤ (3 : Nat) * FRC.Extension.gridPoint n + (2 : Nat)) ∧ ((2 : Nat) * (3 : Nat) ^ (4 : Nat) + FRC.Extension.gridPoint (4 : Nat)) * (54 : Nat) = (23 : Nat) * ((8 : Nat) * (3 : Nat) ^ (4 : Nat)) ∧ ((46 : Nat) * (46 : Nat) ≤ (3 : Nat) * (3 : Nat) ^ (6 : Nat) ∧ (3 : Nat) * (3 : Nat) ^ (6 : Nat) < (47 : Nat) * (47 : Nat)) ∧ (23 : Nat) + (23 : Nat) + (4 : Nat) + (4 : Nat) = (54 : Nat) ∧ FRC.Extension.largestRemainder (81 : Nat) (54 : Nat) [(23 : Nat), (23 : Nat), (4 : Nat), (4 : Nat)] = [(35 : Nat), (34 : Nat), (6 : Nat), (6 : Nat)] :=
+  @FRC.Ledger.p22027
+/-- 22:C12 (p22028) — Uniqueness of the pair tally on the stationary core-valued $\Qf$ sector: tally-valued, fibre-additive, drive-invariant, two-way registration functionals form the $d^2c$-realized character cone, the degree itself forced (Lemma~\ref{lem:degree}); channel selectivity picks the Born ray. -/
+theorem p22028 : (∀ (a : Nat), a < (5 : Nat) → ∀ (b : Nat), b < (5 : Nat) → ∀ (c : Nat), c < (5 : Nat) → ∀ (d : Nat), d < (5 : Nat) → ∀ (k : Nat), k < (4 : Nat) → FRC.Extension.Tally.F (FRC.Extension.Tally.kernel (Int.ofNat a - (1 : Int)) (Int.ofNat b - (1 : Int)) (Int.ofNat c - (1 : Int)) (Int.ofNat d - (1 : Int))) (FRC.Extension.Tally.psi k) = { re := (16 : Int) * FRC.Extension.Tally.coeff (Int.ofNat a - (1 : Int)) (Int.ofNat b - (1 : Int)) (Int.ofNat c - (1 : Int)) (Int.ofNat d - (1 : Int)) k, im := (0 : Int) }) ∧ (∀ (a : Nat), a < (5 : Nat) → ∀ (b : Nat), b < (5 : Nat) → ∀ (c : Nat), c < (5 : Nat) → ∀ (d : Nat), d < (5 : Nat) → ∀ (k : Nat), k < (4 : Nat) → ((FRC.Extension.Tally.F (FRC.Extension.Tally.kernel (Int.ofNat a - (1 : Int)) (Int.ofNat b - (1 : Int)) (Int.ofNat c - (1 : Int)) (Int.ofNat d - (1 : Int))) (FRC.Extension.Tally.psi k)).tally ↔ (0 : Int) ≤ FRC.Extension.Tally.coeff (Int.ofNat a - (1 : Int)) (Int.ofNat b - (1 : Int)) (Int.ofNat c - (1 : Int)) (Int.ofNat d - (1 : Int)) k)) ∧ (∀ (a : Nat), a < (4 : Nat) → ∀ (b : Nat), b < (4 : Nat) → ∀ (c : Nat), c < (4 : Nat) → ∀ (d : Nat), d < (4 : Nat) → (∀ (e : Nat), e < (4 : Nat) → FRC.Extension.Tally.kernel (Int.ofNat a) (Int.ofNat b) (Int.ofNat c) (Int.ofNat d) (((4 : Nat) - e) % (4 : Nat)) = (FRC.Extension.Tally.kernel (Int.ofNat a) (Int.ofNat b) (Int.ofNat c) (Int.ofNat d) e).conj) ∧ ∀ (k : Nat), k < (4 : Nat) → (FRC.Extension.Tally.F (FRC.Extension.Tally.kernel (Int.ofNat a) (Int.ofNat b) (Int.ofNat c) (Int.ofNat d)) (FRC.Extension.Tally.psi k)).tally) ∧ (∀ (a : Nat), a < (4 : Nat) → ∀ (b : Nat), b < (4 : Nat) → ∀ (c : Nat), c < (4 : Nat) → ∀ (d : Nat), d < (4 : Nat) → ∀ (r : Nat), r < (4 : Nat) → FRC.Extension.Tally.inversion (FRC.Extension.Tally.kernel (Int.ofNat a) (Int.ofNat b) (Int.ofNat c) (Int.ofNat d)) r = { re := (4 : Int) * FRC.Extension.Tally.coeff (Int.ofNat a) (Int.ofNat b) (Int.ofNat c) (Int.ofNat d) r, im := (0 : Int) }) ∧ (∀ (a : Nat), a < (4 : Nat) → ∀ (b : Nat), b < (4 : Nat) → ∀ (c : Nat), c < (4 : Nat) → ∀ (d : Nat), d < (4 : Nat) → (FRC.Extension.Tally.responses (FRC.Extension.Tally.kernel (Int.ofNat a) (Int.ofNat b) (Int.ofNat c) (Int.ofNat d)) = (1 : Nat) ↔ FRC.Extension.Tally.support (Int.ofNat a) (Int.ofNat b) (Int.ofNat c) (Int.ofNat d) = (1 : Nat))) ∧ (have M := fun r u => FRC.Extension.Tally.GI.ipow (r * u); have d2 := fun a b c d => a * d + FRC.Extension.Tally.GI.smul (-1 : Int) (b * c); have e := fun r => M r; have det3 := fun f g h => f (1 : Nat) * d2 (g (2 : Nat)) (g (3 : Nat)) (h (2 : Nat)) (h (3 : Nat)) + FRC.Extension.Tally.GI.smul (-1 : Int) (f (2 : Nat) * d2 (g (1 : Nat)) (g (3 : Nat)) (h (1 : Nat)) (h (3 : Nat))) + f (3 : Nat) * d2 (g (1 : Nat)) (g (2 : Nat)) (h (1 : Nat)) (h (2 : Nat)); e (0 : Nat) (0 : Nat) * det3 (e (1 : Nat)) (e (2 : Nat)) (e (3 : Nat)) + FRC.Extension.Tally.GI.smul (-1 : Int) (e (1 : Nat) (0 : Nat) * det3 (e (0 : Nat)) (e (2 : Nat)) (e (3 : Nat))) + e (2 : Nat) (0 : Nat) * det3 (e (0 : Nat)) (e (1 : Nat)) (e (3 : Nat)) + FRC.Extension.Tally.GI.smul (-1 : Int) (e (3 : Nat) (0 : Nat) * det3 (e (0 : Nat)) (e (1 : Nat)) (e (2 : Nat))) = { re := (0 : Int), im := (-16 : Int) }) ∧ (FRC.Extension.Tally.F (FRC.Extension.Tally.kernel (1 : Int) (-1 : Int) (1 : Int) (0 : Int)) (FRC.Extension.Tally.psi (1 : Nat)) = { re := (-16 : Int), im := (0 : Int) } ∧ ¬(FRC.Extension.Tally.F (FRC.Extension.Tally.kernel (1 : Int) (-1 : Int) (1 : Int) (0 : Int)) (FRC.Extension.Tally.psi (1 : Nat))).tally ∧ (∀ (e : Nat), e < (4 : Nat) → FRC.Extension.Tally.kout (((4 : Nat) - e) % (4 : Nat)) = (FRC.Extension.Tally.kout e).conj) ∧ FRC.Extension.Tally.F FRC.Extension.Tally.kout (FRC.Extension.Tally.psi (2 : Nat)) = { re := (-32 : Int), im := (0 : Int) } ∧ ¬(FRC.Extension.Tally.F FRC.Extension.Tally.kout (FRC.Extension.Tally.psi (2 : Nat))).tally ∧ FRC.Extension.Tally.inversion FRC.Extension.Tally.kout (0 : Nat) = { re := (0 : Int), im := (0 : Int) } ∧ FRC.Extension.Tally.inversion FRC.Extension.Tally.kout (1 : Nat) = { re := (20 : Int), im := (0 : Int) } ∧ FRC.Extension.Tally.inversion FRC.Extension.Tally.kout (2 : Nat) = { re := (-8 : Int), im := (0 : Int) } ∧ FRC.Extension.Tally.inversion FRC.Extension.Tally.kout (3 : Nat) = { re := (4 : Int), im := (0 : Int) } ∧ (∀ (d : Nat), d < (4 : Nat) → FRC.Extension.Tally.GI.smul (4 : Int) (FRC.Extension.Tally.kout d) = FRC.Extension.Tally.sum4 fun r => FRC.Extension.Tally.inversion FRC.Extension.Tally.kout r * FRC.Extension.Tally.GI.ipow (r * d)) ∧ (∀ (e : Nat), e < (4 : Nat) → FRC.Extension.Tally.fibreNorm (((4 : Nat) - e) % (4 : Nat)) = (FRC.Extension.Tally.fibreNorm e).conj) ∧ (∀ (k : Nat), k < (4 : Nat) → FRC.Extension.Tally.F FRC.Extension.Tally.fibreNorm (FRC.Extension.Tally.psi k) = { re := (4 : Int), im := (0 : Int) }) ∧ FRC.Extension.Tally.responses FRC.Extension.Tally.fibreNorm = (4 : Nat) ∧ (∀ (r : Nat), r < (4 : Nat) → FRC.Extension.Tally.inversion FRC.Extension.Tally.fibreNorm r = { re := (1 : Int), im := (0 : Int) }) ∧ FRC.Extension.Tally.F (FRC.Extension.Tally.kernel (0 : Int) (1 : Int) (0 : Int) (0 : Int)) (FRC.Extension.Tally.psi (1 : Nat)) = { re := (16 : Int), im := (0 : Int) } ∧ FRC.Extension.Tally.F (FRC.Extension.Tally.kernel (0 : Int) (1 : Int) (0 : Int) (0 : Int)) (FRC.Extension.Tally.psi (0 : Nat)) = { re := (0 : Int), im := (0 : Int) } ∧ FRC.Extension.Tally.responses (FRC.Extension.Tally.kernel (0 : Int) (1 : Int) (0 : Int) (0 : Int)) = (1 : Nat)) ∧ (∀ (k : Nat), k < (4 : Nat) → (0 : Nat) < k → (FRC.Extension.Tally.sum4 fun u => FRC.Extension.Tally.GI.ipow (k * u)) = FRC.Extension.Tally.GI.zero) ∧ (∀ (c : Nat), c < (5 : Nat) → (0 : Nat) < c → ¬(FRC.Extension.Tally.GI.i * { re := (4 : Int) * Int.ofNat c, im := (0 : Int) }).tally) ∧ FRC.Extension.Tally.B FRC.Extension.Tally.fibreNorm FRC.Extension.Tally.psiA = { re := (0 : Int), im := (2 : Int) } ∧ ¬(FRC.Extension.Tally.B FRC.Extension.Tally.fibreNorm FRC.Extension.Tally.psiA).tally ∧ FRC.Extension.Tally.F FRC.Extension.Tally.fibreNorm FRC.Extension.Tally.psiA = { re := (2 : Int), im := (0 : Int) } ∧ (FRC.Extension.Tally.F FRC.Extension.Tally.fibreNorm FRC.Extension.Tally.psiA).tally ∧ FRC.Extension.Tally.B (fun d => if d % (4 : Nat) = (1 : Nat) then { re := (1 : Int), im := (0 : Int) } else { re := (0 : Int), im := (0 : Int) }) FRC.Extension.Tally.psiB = { re := (0 : Int), im := (1 : Int) } ∧ ¬(FRC.Extension.Tally.B (fun d => if d % (4 : Nat) = (1 : Nat) then { re := (1 : Int), im := (0 : Int) } else { re := (0 : Int), im := (0 : Int) }) FRC.Extension.Tally.psiB).tally ∧ FRC.Extension.Tally.B (FRC.Extension.Tally.kernel (1 : Int) (1 : Int) (0 : Int) (0 : Int)) FRC.Extension.Tally.psiA = { re := (0 : Int), im := (4 : Int) } ∧ ¬(FRC.Extension.Tally.B (FRC.Extension.Tally.kernel (1 : Int) (1 : Int) (0 : Int) (0 : Int)) FRC.Extension.Tally.psiA).tally ∧ FRC.Extension.Tally.F (FRC.Extension.Tally.kernel (1 : Int) (1 : Int) (0 : Int) (0 : Int)) FRC.Extension.Tally.psiA = { re := (4 : Int), im := (0 : Int) } :=
+  @FRC.Ledger.p22028
+/-- 22:C13 (p22029) — Complex amplitudes are forced: the generic shared core of two framed shells is $\Qf$, so the minimal ledger is $\Z[\im]$; shells of cardinality $\equiv3\pmod4$ (arising from no capacity) give a real-amplitude theory. -/
+theorem p22029 : (∀ {q : Nat} [FRC.Pos q] {κ κ' a b : Nat}, κ * a = κ' * b + (1 : Nat) → ∀ (x : FRC.Shell q), x ^ ((4 : Nat) * κ) = (1 : FRC.Shell q) → x ^ ((4 : Nat) * κ') = (1 : FRC.Shell q) → x ^ (4 : Nat) = (1 : FRC.Shell q) ∧ ∀ (y : FRC.Shell q), y ^ (4 : Nat) = (1 : FRC.Shell q) → y ^ ((4 : Nat) * κ) = (1 : FRC.Shell q) ∧ y ^ ((4 : Nat) * κ') = (1 : FRC.Shell q)) ∧ ∀ {q : Nat} [FRC.Pos q], FRC.Nat.isPrime q → q % (4 : Nat) = (3 : Nat) → ¬∃ x, x * x = (-1 : FRC.Shell q) :=
+  @FRC.Ledger.p22029
+/-- 22:C14 (p22030) — The granularity ceiling: the representable coherent-splitting depth is the largest $k$ with $d\,T(k)<\Omega$, $T(k)=2^{k+[k\text{ odd}]}$ the minimal tally norm, and resolution finer than $1/\Omega$ lies outside the derived Born regime. -/
+theorem p22030 : (∀ {q : Nat} [FRC.Pos q] {i : FRC.Shell q}, i * i = (-1 : FRC.Shell q) → ∀ (m : Nat), ((1 : FRC.Shell q) + i) ^ ((2 : Nat) * m) = FRC.Shell.ofNat ((2 : Nat) ^ m) * i ^ m) ∧ (∀ {q : Nat} [FRC.Pos q] {i : FRC.Shell q}, i * i = (-1 : FRC.Shell q) → ∀ (m : Nat), ((1 : FRC.Shell q) + i) ^ ((2 : Nat) * m + (1 : Nat)) = FRC.Shell.ofNat ((2 : Nat) ^ m) * i ^ m * ((1 : FRC.Shell q) + i)) ∧ (∀ {k k' : Nat}, k ≤ k' → FRC.Interference.tallyNorm k ≤ FRC.Interference.tallyNorm k') ∧ (∀ (k : Nat), FRC.Interference.tallyNorm k < (641 : Nat) ↔ k ≤ (8 : Nat)) ∧ ∀ (k : Nat), (8 : Nat) * FRC.Interference.tallyNorm k < (641 : Nat) ↔ k ≤ (6 : Nat) :=
+  @FRC.Ledger.p22030
+/-- 22:C15 (p22031) — The composite ledger and the conserved offset: synchronised orbits are the Bell states, the $m$-body locked cluster carries the offset as a conserved, drive-confined label (its ensemble diagonality a declared preparation clause). -/
+theorem p22031 : (∀ {N : Nat}, (0 : Nat) < N → ∀ (t : Nat) (x : Nat → Nat) (j : Nat), (x j + (x (0 : Nat) + t) % N) % N = ((x j + t) % N + x (0 : Nat)) % N) ∧ (∀ {N m : Nat}, (0 : Nat) < N → (0 : Nat) < m → ∀ (x y : Nat → Nat), (∀ (j : Nat), j < m → y j < N) → ((∃ t, t < N ∧ ∀ (j : Nat), j < m → (x j + t) % N = y j) ↔ ∀ (j : Nat), j < m → (x j + y (0 : Nat)) % N = (y j + x (0 : Nat)) % N)) ∧ (∀ {q : Nat} [FRC.Pos q] (m : Nat) {χ χbar : FRC.Shell q}, χ * χbar = (1 : FRC.Shell q) → FRC.Shell.sumRange (fun x => χ) m = FRC.Shell.ofNat m * χ ∧ FRC.Shell.sumRange (fun x => χ) m * FRC.Shell.sumRange (fun x => χbar) m = FRC.Shell.ofNat (m * m)) ∧ (∀ {q : Nat} [FRC.Pos q], FRC.Nat.isPrime q → ∀ {ζ η : FRC.Shell q} {n : Nat}, FRC.Shell.Prime.HasOrder ζ n → ζ ≠ (1 : FRC.Shell q) → FRC.Shell.Prime.HasOrder η n → η ≠ (1 : FRC.Shell q) → ζ * η = (1 : FRC.Shell q) → ∀ (m : Nat), FRC.Composite.tsum n (fun v => FRC.Shell.sumRange (fun i => ζ ^ v i) m * FRC.Shell.sumRange (fun j => η ^ v j) m) m = FRC.Shell.ofNat m * FRC.Shell.ofNat (n ^ m)) ∧ ∀ {a b T : Nat}, (0 : Nat) < a → (0 : Nat) < b → (0 : Nat) < T → T % a = (0 : Nat) → T % b = (0 : Nat) → (∀ (t : Nat), (0 : Nat) < t → t < T → ¬(t % a = (0 : Nat) ∧ t % b = (0 : Nat))) → ∃ g, g ≤ a ∧ (0 : Nat) < g ∧ g * T = a * b ∧ a % g = (0 : Nat) ∧ b % g = (0 : Nat) ∧ (∀ (e : Nat), (0 : Nat) < e → a % e = (0 : Nat) → b % e = (0 : Nat) → g % e = (0 : Nat)) ∧ ∀ (x y x' y' : Nat), x < a → y < b → x' < a → y' < b → ((∃ t, t < T ∧ (x + t) % a = x' ∧ (y + t) % b = y') ↔ (x + y') % g = (x' + y) % g) :=
+  @FRC.Ledger.p22031
+/-- 22:C16 (p22032) — Qubits from doublets: the forced readout is $\sigma_x$ through the relation $v^{\,8}=-1$. -/
+theorem p22032 : (∀ {q : Nat} [FRC.Pos q], FRC.Nat.isPrime q → ∀ {v : FRC.Shell q}, FRC.Shell.Prime.HasOrder v (16 : Nat) → v ^ (8 : Nat) = (-1 : FRC.Shell q)) ∧ (∀ {q : Nat} [FRC.Pos q], FRC.Nat.isPrime q → ∀ {v : FRC.Shell q}, FRC.Shell.Prime.HasOrder v (16 : Nat) → ∀ (k s : Nat) (lam : FRC.Shell q), FRC.Shell.sumRange (fun j => ((v ^ s * (v ^ (2 : Nat)) ^ j) ^ k + lam * (v ^ s * (v ^ (2 : Nat)) ^ j) ^ (k + (8 : Nat))) * (v ^ (2 : Nat)) ^ (((8 : Nat) - k % (8 : Nat)) * j)) (8 : Nat) = FRC.Shell.ofNat (8 : Nat) * (v ^ (s * k) * ((1 : FRC.Shell q) + lam * (v ^ (8 : Nat)) ^ s))) ∧ (641 : Nat) = (4 : Nat) * (160 : Nat) + (1 : Nat) ∧ FRC.Shell.Prime.HasOrder (3 : FRC.Shell (641 : Nat)) (640 : Nat) ∧ (3 : FRC.Shell (641 : Nat)) ^ (40 : Nat) = (601 : FRC.Shell (641 : Nat)) ∧ FRC.Shell.Prime.HasOrder (601 : FRC.Shell (641 : Nat)) (16 : Nat) ∧ (601 : FRC.Shell (641 : Nat)) ^ (8 : Nat) = (-1 : FRC.Shell (641 : Nat)) ∧ (3 : FRC.Shell (641 : Nat)) ^ (8 : Nat) = (151 : FRC.Shell (641 : Nat)) ∧ FRC.Shell.Prime.HasOrder (151 : FRC.Shell (641 : Nat)) (80 : Nat) ∧ (3 : FRC.Shell (641 : Nat)) ^ (80 : Nat) = (318 : FRC.Shell (641 : Nat)) ∧ (318 : FRC.Shell (641 : Nat)) ^ (4 : Nat) = (-1 : FRC.Shell (641 : Nat)) ∧ ((318 : FRC.Shell (641 : Nat)) + (318 : FRC.Shell (641 : Nat)) ^ (7 : Nat)) * ((318 : FRC.Shell (641 : Nat)) + (318 : FRC.Shell (641 : Nat)) ^ (7 : Nat)) = (2 : FRC.Shell (641 : Nat)) ∧ (2 : FRC.Shell (641 : Nat)) * ((318 : FRC.Shell (641 : Nat)) + (318 : FRC.Shell (641 : Nat)) ^ (7 : Nat)) * ((2 : FRC.Shell (641 : Nat)) * ((318 : FRC.Shell (641 : Nat)) + (318 : FRC.Shell (641 : Nat)) ^ (7 : Nat))) = (8 : FRC.Shell (641 : Nat)) ∧ (40 : Nat) % (8 : Nat) = (0 : Nat) ∧ (16 : Nat) % (8 : Nat) = (0 : Nat) ∧ ∀ (e : Nat), e < (41 : Nat) → (40 : Nat) % e = (0 : Nat) → (16 : Nat) % e = (0 : Nat) → (8 : Nat) % e = (0 : Nat) :=
+  @FRC.Ledger.p22032
+/-- 22:C17 (p22033) — Exact Tsirelson saturation: the singlet law $E(\Delta)=\cos(\pi\Delta/40)$ [chart], $S=2(\zeta_8+\zeta_8^{-1})$, $S^2=8$, the exhaustive $80^3$ sweep never exceeding it [chart]; no-signalling and the composite reduction commute. -/
+theorem p22033 : (∀ {p : Nat} [FRC.Pos p] {ζ : FRC.Shell p}, ζ ^ (4 : Nat) = (-1 : FRC.Shell p) → (ζ + ζ ^ (7 : Nat)) * (ζ + ζ ^ (7 : Nat)) = (2 : FRC.Shell p)) ∧ (∀ {q : Nat} [FRC.Pos q] {ζ : FRC.Shell q}, ζ ^ (4 : Nat) = (-1 : FRC.Shell q) → (2 : FRC.Shell q) * (ζ + ζ ^ (7 : Nat)) * ((2 : FRC.Shell q) * (ζ + ζ ^ (7 : Nat))) = (8 : FRC.Shell q)) ∧ (∀ {q : Nat} [FRC.Pos q] (c E : FRC.Shell q), c * ((1 : FRC.Shell q) + E) + c * ((1 : FRC.Shell q) + -E) = c * (2 : FRC.Shell q)) ∧ (∀ {q : Nat} [FRC.Pos q] {v : FRC.Shell q} {n : Nat}, (0 : Nat) < n → v ^ n = (1 : FRC.Shell q) → ∀ (c c' : Nat → Nat), FRC.Observation.shadow v (FRC.Observation.conv c c' n) n = FRC.Observation.shadow v c n * FRC.Observation.shadow v c' n) ∧ (641 : Nat) = (4 : Nat) * (160 : Nat) + (1 : Nat) ∧ FRC.Shell.Prime.HasOrder (3 : FRC.Shell (641 : Nat)) (640 : Nat) ∧ (3 : FRC.Shell (641 : Nat)) ^ (40 : Nat) = (601 : FRC.Shell (641 : Nat)) ∧ FRC.Shell.Prime.HasOrder (601 : FRC.Shell (641 : Nat)) (16 : Nat) ∧ (601 : FRC.Shell (641 : Nat)) ^ (8 : Nat) = (-1 : FRC.Shell (641 : Nat)) ∧ (3 : FRC.Shell (641 : Nat)) ^ (8 : Nat) = (151 : FRC.Shell (641 : Nat)) ∧ FRC.Shell.Prime.HasOrder (151 : FRC.Shell (641 : Nat)) (80 : Nat) ∧ (3 : FRC.Shell (641 : Nat)) ^ (80 : Nat) = (318 : FRC.Shell (641 : Nat)) ∧ (318 : FRC.Shell (641 : Nat)) ^ (4 : Nat) = (-1 : FRC.Shell (641 : Nat)) ∧ ((318 : FRC.Shell (641 : Nat)) + (318 : FRC.Shell (641 : Nat)) ^ (7 : Nat)) * ((318 : FRC.Shell (641 : Nat)) + (318 : FRC.Shell (641 : Nat)) ^ (7 : Nat)) = (2 : FRC.Shell (641 : Nat)) ∧ (2 : FRC.Shell (641 : Nat)) * ((318 : FRC.Shell (641 : Nat)) + (318 : FRC.Shell (641 : Nat)) ^ (7 : Nat)) * ((2 : FRC.Shell (641 : Nat)) * ((318 : FRC.Shell (641 : Nat)) + (318 : FRC.Shell (641 : Nat)) ^ (7 : Nat))) = (8 : FRC.Shell (641 : Nat)) ∧ (40 : Nat) % (8 : Nat) = (0 : Nat) ∧ (16 : Nat) % (8 : Nat) = (0 : Nat) ∧ ∀ (e : Nat), e < (41 : Nat) → (40 : Nat) % e = (0 : Nat) → (16 : Nat) % e = (0 : Nat) → (8 : Nat) % e = (0 : Nat) :=
+  @FRC.Ledger.p22033
+/-- 22:C18 (p22034) — The network table is the complex-quantum table, and the Bell-state measurement is the offset readout. -/
+theorem p22034 : (∀ {a b T : Nat}, (0 : Nat) < a → (0 : Nat) < b → (0 : Nat) < T → T % a = (0 : Nat) → T % b = (0 : Nat) → (∀ (t : Nat), (0 : Nat) < t → t < T → ¬(t % a = (0 : Nat) ∧ t % b = (0 : Nat))) → ∃ g, g ≤ a ∧ (0 : Nat) < g ∧ g * T = a * b ∧ a % g = (0 : Nat) ∧ b % g = (0 : Nat) ∧ (∀ (e : Nat), (0 : Nat) < e → a % e = (0 : Nat) → b % e = (0 : Nat) → g % e = (0 : Nat)) ∧ ∀ (x y x' y' : Nat), x < a → y < b → x' < a → y' < b → ((∃ t, t < T ∧ (x + t) % a = x' ∧ (y + t) % b = y') ↔ (x + y') % g = (x' + y) % g)) ∧ ∀ {N m : Nat}, (0 : Nat) < N → (0 : Nat) < m → ∀ (x y : Nat → Nat), (∀ (j : Nat), j < m → y j < N) → ((∃ t, t < N ∧ ∀ (j : Nat), j < m → (x j + t) % N = y j) ↔ ∀ (j : Nat), j < m → (x j + y (0 : Nat)) % N = (y j + x (0 : Nat)) % N) :=
+  @FRC.Ledger.p22034
+/-- 22:C19 (p22035) — The gravitational channel entangles exactly, $C^2=\sin^2(\varphi/2)$ [chart], with the pure-channel complementarity $V^2+C^2=1$. -/
+theorem p22035 : (∀ {q : Nat} [FRC.Pos q] {h x y i : FRC.Shell q}, h * (2 : FRC.Shell q) = (1 : FRC.Shell q) → x * y = (1 : FRC.Shell q) → i * i = (-1 : FRC.Shell q) → h * (x + y) * (h * (x + y)) + h * (x + -y) * -i * (h * (x + -y) * -i) = (1 : FRC.Shell q)) ∧ ∀ {q : Nat} [FRC.Pos q] (h x i : FRC.Shell q), h * (x + -x) * -i = (0 : FRC.Shell q) :=
+  @FRC.Ledger.p22035
+/-- 22:C20 (p22036) — No spontaneous collapse; the dilation floor dephases with an exact revival $V(n)=1$. -/
+theorem p22036 : (∀ {q : Nat} [FRC.Pos q] {u ub : FRC.Shell q}, u * ub = (1 : FRC.Shell q) → ∀ (a ab : FRC.Shell q), u * a * (ub * ab) = a * ab) ∧ (∀ {q : Nat} [FRC.Pos q] {ζ : FRC.Shell q} {n : Nat}, ζ ^ n = (1 : FRC.Shell q) → ∀ (p : Nat → FRC.Shell q) (M : Nat), FRC.Shell.sumRange (fun E => p E * ζ ^ (E * n)) M = FRC.Shell.sumRange p M) ∧ ∀ (n : Nat → Nat), (∀ (j : Nat), (0 : Nat) < n j) → ∀ (m L : Nat), (0 : Nat) < L → FRC.Quantum.Joint n m L → ∃ T, T ≤ L ∧ (0 : Nat) < T ∧ FRC.Quantum.Joint n m T ∧ (∀ (t : Nat), FRC.Quantum.Joint n m t ↔ t % T = (0 : Nat)) ∧ L % T = (0 : Nat) :=
+  @FRC.Ledger.p22036
+/-- 22:C21 (p22037) — The coherent-fraction channel: force by full masses, entanglement by coherent fractions; the identification reciprocal synchronisation (B8), and the fully incoherent channel is separable at generic (nondegenerate) geometry. -/
+theorem p22037 : (∀ {q : Nat} [FRC.Pos q] (ζ : FRC.Shell q) (a mc : Nat), FRC.Shell.prodRange (fun x => ζ ^ a) mc = ζ ^ (mc * a)) ∧ (∀ {q : Nat} [FRC.Pos q] (ζ : FRC.Shell q) (a m1 m2 : Nat), (ζ ^ (m1 * a)) ^ m2 = ζ ^ (m1 * m2 * a)) ∧ (∀ {q : Nat} [FRC.Pos q], FRC.Nat.isPrime q → ∀ {ζ : FRC.Shell q} {n : Nat}, FRC.Shell.Prime.HasOrder ζ n → ζ ≠ (1 : FRC.Shell q) → FRC.Shell.sumRange (fun θ => ζ ^ θ) n = (0 : FRC.Shell q)) ∧ ∀ {q : Nat} [FRC.Pos q] (ζ : FRC.Shell q) (p : Nat → FRC.Shell q) (n c : Nat), FRC.Shell.sumRange (fun θ => p θ * ζ ^ (θ + c)) n = FRC.Shell.sumRange (fun θ => p θ * ζ ^ θ) n * ζ ^ c :=
+  @FRC.Ledger.p22037
+/-- 22:C22 (p22038) — The two scaling laws and the exact equivalence-principle null: coherent $m^2$ against incoherent $m$, $\eta=0$. -/
+theorem p22038 : (∀ {q : Nat} [FRC.Pos q] (m : Nat) (u : FRC.Shell q), FRC.Shell.sumRange (fun x => u) m = FRC.Shell.ofNat m * u) ∧ (∀ {q : Nat} [FRC.Pos q] (mt w g : FRC.Shell q), mt * w = (1 : FRC.Shell q) → mt * g * w = g) ∧ (∀ {q : Nat} [FRC.Pos q] (m : Nat) {χ χbar : FRC.Shell q}, χ * χbar = (1 : FRC.Shell q) → FRC.Shell.sumRange (fun x => χ) m = FRC.Shell.ofNat m * χ ∧ FRC.Shell.sumRange (fun x => χ) m * FRC.Shell.sumRange (fun x => χbar) m = FRC.Shell.ofNat (m * m)) ∧ ∀ {q : Nat} [FRC.Pos q], FRC.Nat.isPrime q → ∀ {ζ η : FRC.Shell q} {n : Nat}, FRC.Shell.Prime.HasOrder ζ n → ζ ≠ (1 : FRC.Shell q) → FRC.Shell.Prime.HasOrder η n → η ≠ (1 : FRC.Shell q) → ζ * η = (1 : FRC.Shell q) → ∀ (m : Nat), FRC.Composite.tsum n (fun v => FRC.Shell.sumRange (fun i => ζ ^ v i) m * FRC.Shell.sumRange (fun j => η ^ v j) m) m = FRC.Shell.ofNat m * FRC.Shell.ofNat (n ^ m) :=
+  @FRC.Ledger.p22038
+/-- 22:C23 (p22039) — Inter-Subject consistency: two distinct Subjects reading one Object agree on the shared core $\Qf$ , order-independent joint refinement, the same core character by the selection rule, and order-independence on the shared cell. -/
+theorem p22039 : (∀ (α β : Nat), (0 : Nat) < α → (0 : Nat) < β → ∃ T, T ≤ α * β ∧ (0 : Nat) < T ∧ ∀ (x : Nat), x % α = (0 : Nat) ∧ x % β = (0 : Nat) ↔ x % T = (0 : Nat)) ∧ (∀ {a b e r r' k : Nat}, (0 : Nat) < e → (0 : Nat) < a → (0 : Nat) < b → a % e = (0 : Nat) → b % e = (0 : Nat) → r % a = k % a → r' % b = k % b → r % e = r' % e) ∧ ∀ {q : Nat} [FRC.Pos q], FRC.Nat.isPrime q → ∀ {ω : FRC.Shell q} {d : Nat}, FRC.Shell.Prime.HasOrder ω d → ∀ (k : Nat) {r : Nat}, r < d → FRC.Shell.sumRange (fun j => ω ^ (k * j) * ω ^ ((d - r) * j)) d = if k % d = r then FRC.Shell.ofNat d else (0 : FRC.Shell q) :=
+  @FRC.Ledger.p22039
+/-- 22:C24 (p22040) — Carrier-chart classicality: to the host of a hosted Carrier every observation is total absorption (for the physical Carrier, a limit no reader instantiates); quantumness is the subgroup index $[\PhiO:\core]>1$, and classicality is the divisibility of the observer's frame --- one outcome per fixed channel, with the channel index still carrying the winding information (absorption is not the absence of information transfer). -/
+theorem p22040 : (∀ {d k : Nat}, (0 : Nat) < d → (k = (1 : Nat) ↔ d * k = d) ∧ ((1 : Nat) < k ↔ d < d * k)) ∧ (∀ {q : Nat} [FRC.Pos q], FRC.Nat.isPrime q → ∀ {ω : FRC.Shell q} {d : Nat}, FRC.Shell.Prime.HasOrder ω d → ∀ (k : Nat) {r : Nat}, r < d → FRC.Shell.sumRange (fun j => ω ^ (k * j) * ω ^ ((d - r) * j)) d = if k % d = r then FRC.Shell.ofNat d else (0 : FRC.Shell q)) ∧ (421 : Nat) = (4 : Nat) * (105 : Nat) + (1 : Nat) ∧ FRC.Shell.Prime.HasOrder (2 : FRC.Shell (421 : Nat)) (420 : Nat) ∧ (2 : FRC.Shell (421 : Nat)) ^ (315 : Nat) = (392 : FRC.Shell (421 : Nat)) ∧ (392 : FRC.Shell (421 : Nat)) * (392 : FRC.Shell (421 : Nat)) = (-1 : FRC.Shell (421 : Nat)) ∧ ((60 : Nat) % (4 : Nat) = (0 : Nat) ∧ (28 : Nat) % (4 : Nat) = (0 : Nat) ∧ ∀ (e : Nat), e < (61 : Nat) → (60 : Nat) % e = (0 : Nat) → (28 : Nat) % e = (0 : Nat) → (4 : Nat) % e = (0 : Nat)) ∧ (28 : Nat) = (4 : Nat) * (7 : Nat) ∧ ((60 : Nat) % (12 : Nat) = (0 : Nat) ∧ (12 : Nat) % (12 : Nat) = (0 : Nat) ∧ ∀ (e : Nat), e < (61 : Nat) → (60 : Nat) % e = (0 : Nat) → (12 : Nat) % e = (0 : Nat) → (12 : Nat) % e = (0 : Nat)) ∧ (12 : Nat) = (12 : Nat) * (1 : Nat) :=
+  @FRC.Ledger.p22040
+/-- 22:C25 (p22041) — The measurement problem dissolved: Kochen--Specker poses no separate threat because values exist only as Subject-relative quotient phases, carried together with the Tsirelson strength $2\sqrt2$ [chart]. -/
+theorem p22041 : (∀ {p : Nat} [FRC.Pos p] {ζ : FRC.Shell p}, ζ ^ (4 : Nat) = (-1 : FRC.Shell p) → (ζ + ζ ^ (7 : Nat)) * (ζ + ζ ^ (7 : Nat)) = (2 : FRC.Shell p)) ∧ ∀ {q : Nat} [FRC.Pos q] {ζ : FRC.Shell q}, ζ ^ (4 : Nat) = (-1 : FRC.Shell q) → (2 : FRC.Shell q) * (ζ + ζ ^ (7 : Nat)) * ((2 : FRC.Shell q) * (ζ + ζ ^ (7 : Nat))) = (8 : FRC.Shell q) :=
+  @FRC.Ledger.p22041
+/-- 22:C26 (p22042) — The unequal-cycle composite gate: joint recurrence $T'=\operatorname{lcm}_j(n_j/\gcd(s_j,n_j))$, conserved data the quotient $A/\langle s\rangle$ (unit-winding pair: the gcd cycle, generically $\Qf$), and the counting Born rule verbatim with $T'$ as the recurrence; all orbit-nontrivial characters cancel. -/
+theorem p22042 : (∀ (n : Nat → Nat), (∀ (j : Nat), (0 : Nat) < n j) → ∀ (m L : Nat), (0 : Nat) < L → FRC.Quantum.Joint n m L → ∃ T, T ≤ L ∧ (0 : Nat) < T ∧ FRC.Quantum.Joint n m T ∧ (∀ (t : Nat), FRC.Quantum.Joint n m t ↔ t % T = (0 : Nat)) ∧ L % T = (0 : Nat)) ∧ (∀ {n : Nat → Nat} {m T : Nat}, (∀ (t : Nat), FRC.Quantum.Joint n m t ↔ t % T = (0 : Nat)) → (0 : Nat) < T → ∀ (t : Nat), (0 : Nat) < t → FRC.Quantum.Joint n m t → T ≤ t) ∧ (∀ {a b T : Nat}, (0 : Nat) < a → (0 : Nat) < b → (0 : Nat) < T → T % a = (0 : Nat) → T % b = (0 : Nat) → (∀ (t : Nat), (0 : Nat) < t → t < T → ¬(t % a = (0 : Nat) ∧ t % b = (0 : Nat))) → ∃ g, g ≤ a ∧ (0 : Nat) < g ∧ g * T = a * b ∧ a % g = (0 : Nat) ∧ b % g = (0 : Nat) ∧ (∀ (e : Nat), (0 : Nat) < e → a % e = (0 : Nat) → b % e = (0 : Nat) → g % e = (0 : Nat)) ∧ ∀ (x y x' y' : Nat), x < a → y < b → x' < a → y' < b → ((∃ t, t < T ∧ (x + t) % a = x' ∧ (y + t) % b = y') ↔ (x + y') % g = (x' + y) % g)) ∧ (∀ {q : Nat} [FRC.Pos q], FRC.Nat.isPrime q → ∀ (n : Nat → Nat), (∀ (j : Nat), (0 : Nat) < n j) → ∀ (m : Nat) (ζ : Nat → FRC.Shell q), (∀ (j : Nat), j < m → ζ j ^ n j = (1 : FRC.Shell q)) → FRC.Shell.prodRange ζ m ≠ (1 : FRC.Shell q) → ∀ (M : Nat), FRC.Quantum.Joint n m M → FRC.Shell.sumRange (fun t => FRC.Shell.prodRange (fun j => ζ j ^ t) m) M = (0 : FRC.Shell q)) ∧ ∀ {n s d n' s' u v : Nat}, (0 : Nat) < d → (0 : Nat) < n' → n = d * n' → s = d * s' → s' * u = n' * v + (1 : Nat) → ∀ (t : Nat), s * t % n = (0 : Nat) ↔ t % n' = (0 : Nat) :=
+  @FRC.Ledger.p22042
+/-- 22:C27 (p22043) — Quarter-turn transport: the ambient quarter-turn aliases onto an embedded label iff $\kap\equiv\pm\kap_n\pmod n$, the capacity residue mod~$4$ the coarsest invariant; the constants web is read per register (Remark~\ref{rem:conceptual}). -/
+theorem p22043 : (∀ {q : Nat} [FRC.Pos q], FRC.Nat.isPrime q → ∀ {ζ : FRC.Shell q} {m κ t : Nat}, FRC.Shell.Prime.HasOrder ζ ((4 : Nat) * m) → κ = m * t → (ζ ^ ((3 : Nat) * κ) = ζ ^ ((3 : Nat) * m) ↔ κ % ((4 : Nat) * m) = m) ∧ (ζ ^ ((3 : Nat) * κ) = ζ ^ m ↔ (κ + m) % ((4 : Nat) * m) = (0 : Nat)) ∧ (ζ ^ ((3 : Nat) * κ) * ζ ^ ((3 : Nat) * κ) = (1 : FRC.Shell q) ↔ κ % ((2 : Nat) * m) = (0 : Nat))) ∧ (∀ (κ : Nat), κ < (40 : Nat) → ((3 : Nat) * κ % (40 : Nat) = (3 : Nat) * (10 : Nat) % (40 : Nat) ↔ κ % (40 : Nat) = (10 : Nat) % (40 : Nat)) ∧ ((3 : Nat) * κ % (40 : Nat) = (10 : Nat) % (40 : Nat) ↔ (κ + (10 : Nat)) % (40 : Nat) = (0 : Nat)) ∧ ((3 : Nat) * κ * (2 : Nat) % (40 : Nat) = (0 : Nat) ↔ κ % (20 : Nat) = (0 : Nat))) ∧ (∀ (κ : Nat), κ < (4 : Nat) → ((3 : Nat) * κ % (4 : Nat) = (3 : Nat) % (4 : Nat) ↔ κ % (4 : Nat) = (1 : Nat)) ∧ ((3 : Nat) * κ % (4 : Nat) = (1 : Nat) % (4 : Nat) ↔ κ % (4 : Nat) = (3 : Nat)) ∧ ((3 : Nat) * κ * (2 : Nat) % (4 : Nat) = (0 : Nat) ↔ κ % (2 : Nat) = (0 : Nat))) ∧ ∀ (t : Nat), t < (4 : Nat) → ((3 : Nat) * ((3 : Nat) * t) % (12 : Nat) = (9 : Nat) % (12 : Nat) ↔ (3 : Nat) * t % (12 : Nat) = (3 : Nat)) :=
+  @FRC.Ledger.p22043
+set_option linter.defProp false in
+/-- 22:X1 (p22044) — \textbf{The Born rule} is a coincidence count, the unique window lift of its carrier shadow, not a postulated quadratic functional --- on its stationary domain, where the weights are uniform over the fibres; non-uniform statistics are read through the engineered-core readout (C11). -/
+def p22044 := @FRC.Ledger.p22044
+/-- 22:X2 (p22045) — \textbf{The complexity of amplitudes} is the arithmetic of the shared quarter-turn core, the canonical complex sector $\Z[\im]$; a shell without the internal quarter-turn gives a real-amplitude theory instead. -/
+theorem p22045 : (∀ {q : Nat} [FRC.Pos q] {κ κ' a b : Nat}, κ * a = κ' * b + (1 : Nat) → ∀ (x : FRC.Shell q), x ^ ((4 : Nat) * κ) = (1 : FRC.Shell q) → x ^ ((4 : Nat) * κ') = (1 : FRC.Shell q) → x ^ (4 : Nat) = (1 : FRC.Shell q) ∧ ∀ (y : FRC.Shell q), y ^ (4 : Nat) = (1 : FRC.Shell q) → y ^ ((4 : Nat) * κ) = (1 : FRC.Shell q) ∧ y ^ ((4 : Nat) * κ') = (1 : FRC.Shell q)) ∧ ∀ {q : Nat} [FRC.Pos q], FRC.Nat.isPrime q → q % (4 : Nat) = (3 : Nat) → ¬∃ x, x * x = (-1 : FRC.Shell q) :=
+  @FRC.Ledger.p22045
+/-- 22:X3 (p22046) — \textbf{The preferred basis} is the Subject's own phase anatomy, einselected by the algebra of the frames rather than by a model of the environment. -/
+theorem p22046 : (∀ {q : Nat} [FRC.Pos q], FRC.Nat.isPrime q → ∀ {ω : FRC.Shell q} {d : Nat}, FRC.Shell.Prime.HasOrder ω d → ∀ {r r' : Nat}, r < d → r' < d → FRC.Shell.sumRange (fun j => ω ^ (r * j) * ω ^ ((d - r') * j)) d = if r = r' then FRC.Shell.ofNat d else (0 : FRC.Shell q)) ∧ ∀ {q : Nat} [FRC.Pos q], FRC.Nat.isPrime q → ∀ {ω : FRC.Shell q} {d : Nat}, FRC.Shell.Prime.HasOrder ω d → ∀ (k : Nat) {r : Nat}, r < d → FRC.Shell.sumRange (fun j => ω ^ (k * j) * ω ^ ((d - r) * j)) d = if k % d = r then FRC.Shell.ofNat d else (0 : FRC.Shell q) :=
+  @FRC.Ledger.p22046
+/-- 22:X4 (p22047) — \textbf{The dynamical measurement problem} dissolves: collapse is the re-metrisation of a relational chart, no disturbance propagates, and distinct Subjects never disagree on what they share. -/
+theorem p22047 : (∀ (α β : Nat), (0 : Nat) < α → (0 : Nat) < β → ∃ T, T ≤ α * β ∧ (0 : Nat) < T ∧ ∀ (x : Nat), x % α = (0 : Nat) ∧ x % β = (0 : Nat) ↔ x % T = (0 : Nat)) ∧ (∀ {a b e r r' k : Nat}, (0 : Nat) < e → (0 : Nat) < a → (0 : Nat) < b → a % e = (0 : Nat) → b % e = (0 : Nat) → r % a = k % a → r' % b = k % b → r % e = r' % e) ∧ ∀ {q : Nat} [FRC.Pos q] {ω : FRC.Shell q} {d : Nat}, FRC.Shell.Prime.HasOrder ω d → ∀ {r : Nat}, r < d → ∀ (j m : Nat), FRC.Shell.sumRange (fun l => ω ^ (r * j) * ω ^ ((d - r) * l) * (ω ^ (r * l) * ω ^ ((d - r) * m))) d = FRC.Shell.ofNat d * (ω ^ (r * j) * ω ^ ((d - r) * m)) :=
+  @FRC.Ledger.p22047
+/-- 22:X5 (p22048) — \textbf{The classical limit} has a mechanism, containment, the divisibility of the observer's frame, exact arithmetic rather than an appeal to a limit. -/
+theorem p22048 : (∀ {d k : Nat}, (0 : Nat) < d → (k = (1 : Nat) ↔ d * k = d) ∧ ((1 : Nat) < k ↔ d < d * k)) ∧ (∀ {q : Nat} [FRC.Pos q], FRC.Nat.isPrime q → ∀ {ω : FRC.Shell q} {d : Nat}, FRC.Shell.Prime.HasOrder ω d → ∀ (k : Nat) {r : Nat}, r < d → FRC.Shell.sumRange (fun j => ω ^ (k * j) * ω ^ ((d - r) * j)) d = if k % d = r then FRC.Shell.ofNat d else (0 : FRC.Shell q)) ∧ (421 : Nat) = (4 : Nat) * (105 : Nat) + (1 : Nat) ∧ FRC.Shell.Prime.HasOrder (2 : FRC.Shell (421 : Nat)) (420 : Nat) ∧ (2 : FRC.Shell (421 : Nat)) ^ (315 : Nat) = (392 : FRC.Shell (421 : Nat)) ∧ (392 : FRC.Shell (421 : Nat)) * (392 : FRC.Shell (421 : Nat)) = (-1 : FRC.Shell (421 : Nat)) ∧ ((60 : Nat) % (4 : Nat) = (0 : Nat) ∧ (28 : Nat) % (4 : Nat) = (0 : Nat) ∧ ∀ (e : Nat), e < (61 : Nat) → (60 : Nat) % e = (0 : Nat) → (28 : Nat) % e = (0 : Nat) → (4 : Nat) % e = (0 : Nat)) ∧ (28 : Nat) = (4 : Nat) * (7 : Nat) ∧ ((60 : Nat) % (12 : Nat) = (0 : Nat) ∧ (12 : Nat) % (12 : Nat) = (0 : Nat) ∧ ∀ (e : Nat), e < (61 : Nat) → (60 : Nat) % e = (0 : Nat) → (12 : Nat) % e = (0 : Nat) → (12 : Nat) % e = (0 : Nat)) ∧ (12 : Nat) = (12 : Nat) * (1 : Nat) :=
+  @FRC.Ledger.p22048
+set_option linter.defProp false in
+/-- 22:X6 (p22049) — \textbf{Native probability over a finite substrate}: the unordered-field obstruction is cleared by keeping counts in the observer's ledger: a finite-relational provenance theorem for the Born calculus, in which the substrate determines the tally ring, the measurement family, and the readout (calibrated against the counting and cyclotomic precedents in Section~\ref{sec:discussion}). -/
+def p22049 := @FRC.Ledger.p22049
+/-- 22:X7 (p22050) — \textbf{The Tsirelson boundary} is attained as a ring identity, $S=2(\zeta_8+\zeta_8^{-1})=2\sqrt2$ [chart], so a relational finite substrate carries full quantum correlation strength, not merely quantum vocabulary. -/
+theorem p22050 : (∀ {p : Nat} [FRC.Pos p] {ζ : FRC.Shell p}, ζ ^ (4 : Nat) = (-1 : FRC.Shell p) → (ζ + ζ ^ (7 : Nat)) * (ζ + ζ ^ (7 : Nat)) = (2 : FRC.Shell p)) ∧ ∀ {q : Nat} [FRC.Pos q] {ζ : FRC.Shell q}, ζ ^ (4 : Nat) = (-1 : FRC.Shell q) → (2 : FRC.Shell q) * (ζ + ζ ^ (7 : Nat)) * ((2 : FRC.Shell q) * (ζ + ζ ^ (7 : Nat))) = (8 : FRC.Shell q) :=
+  @FRC.Ledger.p22050
+/-- 22:X8 (p22051) — \textbf{Higher-order interference} is forbidden exactly: the Sorkin hierarchy is zero with a forbidden neighbourhood, not a small number to be measured down. -/
+theorem p22051 : (∀ {q : Nat} [FRC.Pos q] {c : FRC.Shell q → FRC.Shell q}, FRC.Interference.Additive c → ∀ (a : Nat → FRC.Shell q) (k : Nat) (x : FRC.Shell q), FRC.Interference.mixedDiff a (FRC.Interference.weight c) (k + (3 : Nat)) x = (0 : FRC.Shell q)) ∧ ∀ {q : Nat} [FRC.Pos q] (a : Nat), FRC.Shell.ofNat a = (0 : FRC.Shell q) ↔ ∃ k, a = q * k :=
+  @FRC.Ledger.p22051
+/-- 22:P1 (p22052) — Gravitationally induced entanglement at exactly the Newtonian rate [chart], $V^2+C^2=1$ on the pure channel: equal force but unequal entanglement --- a source gravitates by its full mass while the systematic conditional phase, the calibrated discriminator, is carried by the coherent sectors alone, the fully incoherent channel separable at generic (nondegenerate) geometry. The one dated forward prediction. -/
+theorem p22052 : (∀ {q : Nat} [FRC.Pos q] {h x y i : FRC.Shell q}, h * (2 : FRC.Shell q) = (1 : FRC.Shell q) → x * y = (1 : FRC.Shell q) → i * i = (-1 : FRC.Shell q) → h * (x + y) * (h * (x + y)) + h * (x + -y) * -i * (h * (x + -y) * -i) = (1 : FRC.Shell q)) ∧ (∀ {q : Nat} [FRC.Pos q] (ζ : FRC.Shell q) (a mc : Nat), FRC.Shell.prodRange (fun x => ζ ^ a) mc = ζ ^ (mc * a)) ∧ ∀ {q : Nat} [FRC.Pos q] (ζ : FRC.Shell q) (p : Nat → FRC.Shell q) (n c : Nat), FRC.Shell.sumRange (fun θ => p θ * ζ ^ (θ + c)) n = FRC.Shell.sumRange (fun θ => p θ * ζ ^ θ) n * ζ ^ c :=
+  @FRC.Ledger.p22052
+/-- 22:P2 (p22053) — Third-order interference exactly zero at every accessible scale, any wrap quantised to a multiple of $\Omega$: a single confirmed small $I_3\neq0$ falsifies outright. -/
+theorem p22053 : (∀ {q : Nat} [FRC.Pos q] {c : FRC.Shell q → FRC.Shell q}, FRC.Interference.Additive c → ∀ (a : Nat → FRC.Shell q) (k : Nat) (x : FRC.Shell q), FRC.Interference.mixedDiff a (FRC.Interference.weight c) (k + (3 : Nat)) x = (0 : FRC.Shell q)) ∧ ∀ {q : Nat} [FRC.Pos q] (a : Nat), FRC.Shell.ofNat a = (0 : FRC.Shell q) ↔ ∃ k, a = q * k :=
+  @FRC.Ledger.p22053
+/-- 22:P3 (p22054) — The Tsirelson value $S=2\sqrt2$ exact [chart] and the network behaviour of complex (not real) quantum theory: vacuum dispersion, $S\neq2\sqrt2$, or non-quantum network behaviour each falsify. -/
+theorem p22054 : (∀ {p : Nat} [FRC.Pos p] {ζ : FRC.Shell p}, ζ ^ (4 : Nat) = (-1 : FRC.Shell p) → (ζ + ζ ^ (7 : Nat)) * (ζ + ζ ^ (7 : Nat)) = (2 : FRC.Shell p)) ∧ (∀ {q : Nat} [FRC.Pos q] {ζ : FRC.Shell q}, ζ ^ (4 : Nat) = (-1 : FRC.Shell q) → (2 : FRC.Shell q) * (ζ + ζ ^ (7 : Nat)) * ((2 : FRC.Shell q) * (ζ + ζ ^ (7 : Nat))) = (8 : FRC.Shell q)) ∧ ∀ {a b T : Nat}, (0 : Nat) < a → (0 : Nat) < b → (0 : Nat) < T → T % a = (0 : Nat) → T % b = (0 : Nat) → (∀ (t : Nat), (0 : Nat) < t → t < T → ¬(t % a = (0 : Nat) ∧ t % b = (0 : Nat))) → ∃ g, g ≤ a ∧ (0 : Nat) < g ∧ g * T = a * b ∧ a % g = (0 : Nat) ∧ b % g = (0 : Nat) ∧ (∀ (e : Nat), (0 : Nat) < e → a % e = (0 : Nat) → b % e = (0 : Nat) → g % e = (0 : Nat)) ∧ ∀ (x y x' y' : Nat), x < a → y < b → x' < a → y' < b → ((∃ t, t < T ∧ (x + t) % a = x' ∧ (y + t) % b = y') ↔ (x + y') % g = (x' + y) % g) :=
+  @FRC.Ledger.p22054
+/-- 22:P4 (p22055) — No vacuum dispersion at any sub-horizon order (the finite double cover accumulates nothing): the gamma-ray-burst time-of-flight bounds leave the framework untouched. -/
+theorem p22055 : (∀ {p : Nat} [FRC.Pos p], FRC.Nat.isPrime p → ∀ {h : FRC.Shell p}, h * h = (-1 : FRC.Shell p) → (∀ (x : FRC.Shell p), x ≠ (0 : FRC.Shell p) → (x ^ (p + (1 : Nat)) = (1 : FRC.Shell p) ↔ x = (1 : FRC.Shell p) ∨ x = (-1 : FRC.Shell p))) ∧ (∀ (x : FRC.Shell p), x ≠ (0 : FRC.Shell p) → (x ^ ((2 : Nat) * (p + (1 : Nat))) = (1 : FRC.Shell p) ↔ x = (1 : FRC.Shell p) ∨ x = (-1 : FRC.Shell p) ∨ x = h ∨ x = -h)) ∧ h ^ (p + (1 : Nat)) = (-1 : FRC.Shell p)) ∧ (∀ {p : Nat} [FRC.Pos p] {ν : FRC.Shell p}, FRC.Nat.isPrime p → ∀ {κ : Nat}, p = (4 : Nat) * κ + (1 : Nat) → (¬∃ y, y * y = ν) → ∀ (ζ : FRC.Extension.Ext p ν), ζ.norm = (1 : FRC.Shell p) → ζ ^ (p + (1 : Nat)) = (1 : FRC.Extension.Ext p ν) → (∀ (l : Nat), (0 : Nat) < l → l < p + (1 : Nat) → ζ ^ l ≠ (1 : FRC.Extension.Ext p ν)) → ζ ^ ((2 : Nat) * κ + (1 : Nat)) = (-1 : FRC.Extension.Ext p ν)) ∧ ∀ {q : Nat} [FRC.Pos q] {ν : FRC.Shell q} (z : FRC.Extension.Ext q ν), z.norm = (1 : FRC.Shell q) → z * z.conj = (1 : FRC.Extension.Ext q ν) :=
+  @FRC.Ledger.p22055
+/-- 22:P5 (p22056) — Quantum computation succeeds as standard quantum mechanics prescribes at every accessible depth; the first deviation, if any, is quantised at the unit-core ceiling $k^*=408$ ($204$ for $\sqrt\Omega$) [chart], not gradual. -/
+theorem p22056 : (∀ {k k' : Nat}, k ≤ k' → FRC.Interference.tallyNorm k ≤ FRC.Interference.tallyNorm k') ∧ ((∀ (k : Nat), FRC.Interference.tallyNorm k < (641 : Nat) ↔ k ≤ (8 : Nat)) ∧ ∀ (k : Nat), (8 : Nat) * FRC.Interference.tallyNorm k < (641 : Nat) ↔ k ≤ (6 : Nat)) ∧ ∀ {q : Nat} [FRC.Pos q] {i : FRC.Shell q}, i * i = (-1 : FRC.Shell q) → ∀ (m : Nat), ((1 : FRC.Shell q) + i) ^ ((2 : Nat) * m) = FRC.Shell.ofNat ((2 : Nat) ^ m) * i ^ m :=
+  @FRC.Ledger.p22056
+-- end ledger predicates
+
+end FRC.Qm
+
 /-! inlined: FrcCore/Keys/Carrier.lean -/
 
 /-!
@@ -22799,29 +24416,6 @@ theorem p00155 : (((List.range (16 : Nat)).all fun S => (List.range (16 : Nat)).
 /-- p27020 — 27:C8, 00:G11. \textbf{One generation} (content): $=$ the spinor $\mathbf{16}$ of the rank-five frame --- all gauge reps, hypercharges, charges, anomaly-free, $\nu_R$ --- recovered in the compact theory, where the frame is $\C^3\oplus\C^2$, via the correspondence: the imported $\mathrm{SO}(10)$ template evaluated on the realisation (27-fld B5). -/
 theorem p27020 : (List.filter (fun S => FRC.Interactions.col S == (0 : Nat) && FRC.Interactions.wk S == (0 : Nat) && FRC.Interactions.y6 S == (0 : Int)) FRC.Interactions.gen16).length = (1 : Nat) ∧ (List.filter (fun S => FRC.Interactions.col S == (2 : Nat) && FRC.Interactions.wk S == (0 : Nat) && FRC.Interactions.y6 S == (-4 : Int)) FRC.Interactions.gen16).length = (3 : Nat) ∧ (List.filter (fun S => FRC.Interactions.col S == (1 : Nat) && FRC.Interactions.wk S == (1 : Nat) && FRC.Interactions.y6 S == (1 : Int)) FRC.Interactions.gen16).length = (6 : Nat) ∧ (List.filter (fun S => FRC.Interactions.col S == (0 : Nat) && FRC.Interactions.wk S == (2 : Nat) && FRC.Interactions.y6 S == (6 : Int)) FRC.Interactions.gen16).length = (1 : Nat) ∧ (List.filter (fun S => FRC.Interactions.col S == (3 : Nat) && FRC.Interactions.wk S == (1 : Nat) && FRC.Interactions.y6 S == (-3 : Int)) FRC.Interactions.gen16).length = (2 : Nat) ∧ (List.filter (fun S => FRC.Interactions.col S == (2 : Nat) && FRC.Interactions.wk S == (2 : Nat) && FRC.Interactions.y6 S == (2 : Int)) FRC.Interactions.gen16).length = (3 : Nat) ∧ List.map FRC.Interactions.q6 FRC.Interactions.gen16 = [(0 : Int), (-4 : Int), (-4 : Int), (-4 : Int), (4 : Int), (4 : Int), (4 : Int), (0 : Int), (-2 : Int), (-2 : Int), (-2 : Int), (-6 : Int), (6 : Int), (2 : Int), (2 : Int), (2 : Int)] ∧ FRC.Interactions.isum (List.map FRC.Interactions.y6 FRC.Interactions.gen16) = (0 : Int) ∧ FRC.Interactions.isum (List.map (fun S => FRC.Interactions.y6 S ^ (3 : Nat)) FRC.Interactions.gen16) = (0 : Int) ∧ FRC.Interactions.isum (List.map FRC.Interactions.y6 (List.filter (fun S => FRC.Interactions.col S == (1 : Nat) || FRC.Interactions.col S == (2 : Nat)) FRC.Interactions.gen16)) = (0 : Int) ∧ FRC.Interactions.isum (List.map FRC.Interactions.y6 (List.filter (fun S => FRC.Interactions.wk S == (1 : Nat)) FRC.Interactions.gen16)) = (0 : Int) ∧ (List.filter (fun S => FRC.Interactions.col S == (1 : Nat)) FRC.Interactions.gen16).length = (List.filter (fun S => FRC.Interactions.col S == (2 : Nat)) FRC.Interactions.gen16).length ∧ (List.filter (fun S => FRC.Interactions.wk S == (1 : Nat)) FRC.Interactions.gen16).length % (4 : Nat) = (0 : Nat) ∧ (FRC.Interactions.gen16.contains (0 : Nat) && FRC.Interactions.y6 (0 : Nat) == (0 : Int) && FRC.Interactions.q6 (0 : Nat) == (0 : Int) && FRC.Interactions.col (0 : Nat) == (0 : Nat) && FRC.Interactions.wk (0 : Nat) == (0 : Nat)) = true :=
   @FRC.Interactions.one_generation
--- end keys
-
-end FRC.Ledger
-
-/-! inlined: FrcCore/Keys/Quantum.lean -/
-
-/-!
-# FrcCore.Keys.Quantum — the keyed theorems of the quantum theme (ledger migration, task LM19)
-
-One declaration per key, `FRC.Ledger.p<key>`, generated by `make_keys.py` from the ledgers' Lean bindings: the theorem
-that every row carrying the key asserts, proved from the themes alone. The paper's module keeps its declaration
-`FRC.<Module>.p<key>` as an alias. Every declaration has no axioms (`check_core_axioms.py`).
--/
-
-namespace FRC.Ledger
-
--- Keys of the quantum theme (generated by make_keys.py from the ledgers' Lean bindings; edit the ledgers, not this file)
-/-- p00191 — 00:F2. \textbf{Multi-body registration}: an unequal-cycle composite returning below $\Om$ (Q20) recurs jointly at the lcm of its parts' registration periods; each pair's conserved offset lives on the $\gcd$ cycle (the quotient $A/\langle v\rangle$), and dephasing over every joint recurrence below $\Om$ is exact, extending the Born-rule count (F1) verbatim to unequal cycles (37-sim: joint recurrence verified, 1400/1400 characters cancel). -/
-theorem p00191 : (∀ (n : Nat → Nat), (∀ (j : Nat), (0 : Nat) < n j) → ∀ (m L : Nat), (0 : Nat) < L → FRC.Quantum.Joint n m L → ∃ T, T ≤ L ∧ (0 : Nat) < T ∧ FRC.Quantum.Joint n m T ∧ (∀ (t : Nat), FRC.Quantum.Joint n m t ↔ t % T = (0 : Nat)) ∧ L % T = (0 : Nat)) ∧ (∀ {n : Nat → Nat} {m T : Nat}, (∀ (t : Nat), FRC.Quantum.Joint n m t ↔ t % T = (0 : Nat)) → (0 : Nat) < T → ∀ (t : Nat), (0 : Nat) < t → FRC.Quantum.Joint n m t → T ≤ t) ∧ (∀ {a b T : Nat}, (0 : Nat) < a → (0 : Nat) < b → (0 : Nat) < T → T % a = (0 : Nat) → T % b = (0 : Nat) → (∀ (t : Nat), (0 : Nat) < t → t < T → ¬(t % a = (0 : Nat) ∧ t % b = (0 : Nat))) → ∃ g, g ≤ a ∧ (0 : Nat) < g ∧ g * T = a * b ∧ a % g = (0 : Nat) ∧ b % g = (0 : Nat) ∧ (∀ (e : Nat), (0 : Nat) < e → a % e = (0 : Nat) → b % e = (0 : Nat) → g % e = (0 : Nat)) ∧ ∀ (x y x' y' : Nat), x < a → y < b → x' < a → y' < b → ((∃ t, t < T ∧ (x + t) % a = x' ∧ (y + t) % b = y') ↔ (x + y') % g = (x' + y) % g)) ∧ ∀ {q : Nat} [FRC.Pos q], FRC.Nat.isPrime q → ∀ (n : Nat → Nat), (∀ (j : Nat), (0 : Nat) < n j) → ∀ (m : Nat) (ζ : Nat → FRC.Shell q), (∀ (j : Nat), j < m → ζ j ^ n j = (1 : FRC.Shell q)) → FRC.Shell.prodRange ζ m ≠ (1 : FRC.Shell q) → ∀ (M : Nat), FRC.Quantum.Joint n m M → FRC.Shell.sumRange (fun t => FRC.Shell.prodRange (fun j => ζ j ^ t) m) M = (0 : FRC.Shell q) :=
-  And.intro @FRC.Quantum.joint_recurrence (And.intro @FRC.Quantum.joint_least (And.intro @FRC.Quantum.pair_offset (@FRC.Quantum.dephasing)))
-/-- p00194 — 00:F5. \textbf{The graded registration law}: an Object component $\ell^{a}$ registers at depth $d=\mathrm{ord}_{\ell^{a}}(\p)$ --- $1$ absorbed (register, unique image), $2$ observable (odd $\ell$: boost torus, unique home; $2^{a}>4$: off both tori), else beyond-quadratic; the sign always $\{\pm1\}$. Visible iff $\p^{d}<\Om$; the cap is $2$ at saturating and minimal towers; opacity relational --- hydrogen's interior opaque/observable/absorbed at $173/181/197$. Controls: proton whole, $(5,13)$ refused. -/
-theorem p00194 : (∀ {p : Nat} [FRC.Pos p], FRC.Nat.isPrime p → ∀ {n : Nat}, (0 : Nat) < n → n ∣ p - (1 : Nat) → ∃ x, x ≠ (0 : FRC.Shell p) ∧ FRC.Shell.Prime.HasOrder x n ∧ ∀ (y : FRC.Shell p), y ^ n = (1 : FRC.Shell p) → ∃ k, k < n ∧ y = x ^ k) ∧ (∀ {p : Nat}, (0 : Nat) < p → (∀ (e : Nat), (0 : Nat) < e → (p - (1 : Nat)) % e = (0 : Nat) → (p + (1 : Nat)) % e = (0 : Nat) → (2 : Nat) % e = (0 : Nat)) ∧ ∀ (l a : Nat), FRC.Nat.isPrime l → l ≠ (2 : Nat) → (p - (1 : Nat)) * (p + (1 : Nat)) % l ^ a = (0 : Nat) → (p - (1 : Nat)) % l ^ a ≠ (0 : Nat) → (p + (1 : Nat)) % l ^ a = (0 : Nat)) ∧ (∀ {κ : Nat}, κ % (2 : Nat) = (1 : Nat) → (4 : Nat) * κ % (4 : Nat) = (0 : Nat) ∧ (4 : Nat) * κ % (8 : Nat) ≠ (0 : Nat) ∧ ((4 : Nat) * κ + (2 : Nat)) % (2 : Nat) = (0 : Nat) ∧ ((4 : Nat) * κ + (2 : Nat)) % (4 : Nat) ≠ (0 : Nat) ∧ ∀ (a : Nat), (3 : Nat) ≤ a → (4 : Nat) * κ % (2 : Nat) ^ a ≠ (0 : Nat) ∧ ((4 : Nat) * κ + (2 : Nat)) % (2 : Nat) ^ a ≠ (0 : Nat)) ∧ (∀ {p : Nat} [FRC.Pos p], (2 : Nat) < p → p % (2 : Nat) = (1 : Nat) → (-1 : FRC.Shell p) ^ (p - (1 : Nat)) = (1 : FRC.Shell p) ∧ (-1 : FRC.Shell p) ^ (p + (1 : Nat)) = (1 : FRC.Shell p) ∧ (-1 : FRC.Shell p) * (-1 : FRC.Shell p) = (1 : FRC.Shell p) ∧ (-1 : FRC.Shell p) ≠ (1 : FRC.Shell p)) ∧ ((∀ (p Ω : Nat), (1 : Nat) < p → p * p < Ω → p < Ω) ∧ (∀ (p Ω : Nat), (3 : Nat) ≤ p → Ω ≤ (p + (1 : Nat)) * (p + (1 : Nat)) → Ω < p * p * p) ∧ ((173 : Nat) * (173 : Nat) < (30089 : Nat) ∧ (30089 : Nat) ≤ (174 : Nat) * (174 : Nat)) ∧ (1373 : Nat) * (1373 : Nat) < (2408561 : Nat) ∧ (2408561 : Nat) < (1373 : Nat) * (1373 : Nat) * (1373 : Nat)) ∧ ((173 : Nat) ^ (6 : Nat) % (7 : Nat) = (1 : Nat) ∧ ∀ (d : Nat), (0 : Nat) < d → d < (6 : Nat) → (173 : Nat) ^ d % (7 : Nat) ≠ (1 : Nat)) ∧ ((181 : Nat) ^ (2 : Nat) % (7 : Nat) = (1 : Nat) ∧ (181 : Nat) % (7 : Nat) ≠ (1 : Nat)) ∧ (197 : Nat) % (7 : Nat) = (1 : Nat) ∧ (∀ (v : Nat), v < (173 : Nat) → (FRC.Shell.ofNat v ^ (4 : Nat) = (1 : FRC.Shell (173 : Nat)) ↔ v = (1 : Nat) ∨ v = (80 : Nat) ∨ v = (93 : Nat) ∨ v = (172 : Nat))) ∧ ((172 : Nat) % (3 : Nat) ≠ (0 : Nat) ∧ (174 : Nat) % (3 : Nat) = (0 : Nat)) ∧ ((172 : Nat) % (4 : Nat) = (0 : Nat) ∧ (174 : Nat) % (6 : Nat) = (0 : Nat)) ∧ (13 : Nat) < (5 : Nat) * (5 : Nat) :=
-  And.intro @FRC.Quantum.absorbed (And.intro @FRC.Quantum.unique_home (And.intro @FRC.Quantum.two_part_homes (And.intro @FRC.Quantum.sign_both (And.intro @FRC.Quantum.visibility_cap (@FRC.Quantum.registration_instances)))))
 -- end keys
 
 end FRC.Ledger

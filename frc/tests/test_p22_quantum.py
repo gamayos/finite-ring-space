@@ -1,6 +1,7 @@
-"""22-quantum's ledger file (frc/ledgers/p22_quantum.py; task LM35): the quantum theme's ring and matrix helpers and the
-chart file frc/chart_quantum.py, each value computed two ways; the ledger file green, its markers on its deciding checks
-with the keys of the generated table, and its blocks covering every record of the package's results.json."""
+"""22-quantum's ledger file (frc/ledgers/p22_quantum.py; task LM35, the milestone of 15 October 2026): the quantum theme's
+ring and matrix helpers and the chart file frc/chart_quantum.py (the certified cosine brackets and the exact sweep), each
+value computed two ways; the ledger file green, its markers on its deciding checks with the keys of the generated table,
+every theorem row decided, and its blocks covering every exact record of the package's results.json."""
 import cmath
 import itertools
 import json
@@ -103,13 +104,25 @@ class ChartQuantumTest(unittest.TestCase):
         E = lambda d: math.cos(2 * math.pi * d / 16)
         self.assertAlmostEqual(E(arg[0]) + E(arg[1]) + E(arg[2]) - E(arg[3]), best, places=14)
 
-    def test_envelope_and_sample(self):
+    def test_envelope(self):
         tau, chi, gauss = CQ.envelope(8, 40, (0,))[0]
         self.assertAlmostEqual(chi, 1, places=14); self.assertEqual(gauss, 1)
-        self.assertLess(abs(CQ.sampled_scaling(2000, 50, 8, 1) - 1), 0.3)
 
-    def test_emulation(self):
-        self.assertTrue(all(d < 1e-12 for d in CQ.emulation().values()))
+    def test_cos_brackets(self):
+        br = CQ.cos_brackets(80)
+        for k, (lo, hi) in enumerate(br):
+            c = math.cos(2 * math.pi * k / 80)
+            self.assertLessEqual(lo, hi); self.assertLess(hi - lo, Q(1, 10 ** 18))
+            self.assertLessEqual(float(lo) - 1e-15, c); self.assertLessEqual(c, float(hi) + 1e-15)
+        self.assertEqual(br[0], (1, 1)) if br[0][0] == 1 else self.assertLess(1 - br[0][0], Q(1, 10 ** 18))
+
+    def test_chsh_bound(self):
+        below, at, over = CQ.chsh_bound(16)
+        self.assertEqual(over, [])
+        self.assertEqual(below + len(at), 16 ** 3)
+        E = lambda d: math.cos(2 * math.pi * d / 16)
+        for d1, d2, d3, d4 in at:
+            self.assertAlmostEqual(E(d1) + E(d2) + E(d3) - E(d4), 2 * math.sqrt(2), places=12)
 
 
 class LedgerTest(unittest.TestCase):
@@ -119,9 +132,12 @@ class LedgerTest(unittest.TestCase):
         marks = L.R.markers()
         for lab in L.R.predicates: self.assertIn(lab, marks)
         self.assertEqual(L.PAPER, "22-quantum")
-        self.assertEqual(L.LEAN, {})
+        for lab in L.LEAN:
+            self.assertTrue(f"22:{lab}" in L.PREDICATES or lab in L.LEAN_ONLY, lab)
         for lab, pid in L.PREDICATES.items():                               # each deciding check cites its predicate
             self.assertIn(lab, [x.strip() for x in L.LEDGER[pid].split(",")])
+        theorem_rows = [lab for lab, key in L.KEYS.items() if lab[0] in "CXP"]  # every theorem row of the paper is decided
+        for lab in theorem_rows: self.assertIn(f"22:{lab}", L.PREDICATES, lab)
 
     def test_markers_carry_the_keys(self):
         from frc.ledgers import p22_quantum as L
@@ -138,11 +154,12 @@ class LedgerTest(unittest.TestCase):
         from frc.ledgers import p22_quantum as L
         records = json.loads((ROOT / "src" / "22-quantum" / "results.json").read_text(encoding="utf-8"))
         self.assertEqual(len(records), 17)
-        self.assertEqual({r["script"] for r in records}, set(L.SUITE.values()))
+        self.assertEqual({r["script"] for r in records} - {"emulation"}, set(L.SUITE.values()))   # emulation's row V3 retired
         for r in records:
+            if r["script"] == "emulation": continue
             blocks = [b for b, s in L.SUITE.items() if s == r["script"]]
             cited = {x.strip() for pid, rows in L.LEDGER.items() if pid[0] in blocks for x in rows.split(",")}
-            self.assertEqual({x.strip() for x in r["rows"].split(",")}, cited, r["id"])
+            self.assertTrue({x.strip() for x in r["rows"].split(",")} <= cited, r["id"])
 
 
 if __name__ == "__main__":

@@ -3,7 +3,7 @@
  "tree": "22-quantum-20260625",
  "title": "Quantum Observation over Finite Substrate",
  "doi": "https://doi.org/10.20944/preprints202606.1160.v2",
- "generated": "13 October 2026",
+ "generated": "16 October 2026",
  "blocks": [
   {
    "letter": "A",
@@ -20,7 +20,7 @@
      "label": "A2",
      "predicate": "The Lorentzian split: the quadratic extension $\\F_{\\p^2}$, the Frobenius involution, the norm-one boost cycle of order $\\p+1$, and the spinor double cover (the Dirac layer).",
      "tag": "I",
-     "source": "\\citep{akhtman2026dirac,lidl1997}; \\src{qm.dispersion}",
+     "source": "\\citep{akhtman2026dirac,lidl1997}\\newline \\pywit{quantum}{p22002}{A2}, \\leanwit{FrcCore}{p22002}{A2} \\lean{FRC.Subject.channel, FRC.Subject.horizon\\_generator, FRC.Observation.torus\\_conj\\_inv}",
      "key": "p22002"
     },
     {
@@ -39,9 +39,9 @@
     },
     {
      "label": "A5",
-     "predicate": "The window discipline, committed: the coherence horizon $\\sqrt\\Omega$, the decidability horizon $\\Omega^{1/4}$, and the committed cardinality $\\Omega\\sim10^{122}$ --- declared inputs of the programme, their cost recorded in the $\\Omega$ ledger.",
+     "predicate": "The window discipline, committed: the coherence horizon $\\sqrt\\Omega$, the decidability horizon $\\Omega^{1/4}$, and the committed cardinality $\\Omega\\sim1.3\\times10^{123}$ [chart] (the corpus's scale import, master A7) --- declared inputs of the programme, their cost recorded in the $\\Omega$ ledger.",
      "tag": "Ω",
-     "source": "\\S\\ref{sec:omegaledger}, Tab.~\\ref{tab:omega}; \\src{qm.omega}",
+     "source": "\\S\\ref{sec:omegaledger}, Tab.~\\ref{tab:omega}\\newline \\pywit{quantum}{p22005}{A5}, \\leanwit{FrcLedger}{p22005}{A5} \\lean{Qm.omega\\_floors}",
      "key": "p22005"
     },
     {
@@ -137,189 +137,189 @@
      "label": "C1",
      "predicate": "Characters are power maps $\\psi_k(u)=u^k$, pairwise distinct: the wave function is the cycle read through a winding index.",
      "tag": "T",
-     "source": "Lem.~\\ref{lem:powermaps}; \\src{qm.validate}",
+     "source": "Lem.~\\ref{lem:powermaps}\\newline \\pywit{quantum}{p22017}{C1}, \\leanwit{FrcCore}{p22017}{C1} \\lean{FRC.Observation.power\\_maps, FRC.Observation.roots\\_of\\_order, FRC.Observation.character\\_is\\_power\\_map}",
      "key": "p22017"
     },
     {
      "label": "C2",
      "predicate": "Stationary states are the winding modes: the drive's eigenvalues are distinct and a winding acquires a global phase of weight $k$ per chronon.",
      "tag": "T",
-     "source": "Prop.~\\ref{prop:stationary}; \\src{qm.validate}",
+     "source": "Prop.~\\ref{prop:stationary}\\newline \\pywit{quantum}{p22018}{C2}, \\leanwit{FrcCore}{p22018}{C2} \\lean{FRC.Observation.stationary, FRC.Observation.stationary\\_modes}",
      "key": "p22018"
     },
     {
      "label": "C3",
      "predicate": "The measurement vectors are a forced orthogonal basis: orthogonality $d\\,\\delta\\delta$, resolution of identity, and Parseval are character theory, and the pointer basis is einselected by the algebra of the frames.",
      "tag": "T",
-     "source": "Prop.~\\ref{prop:basis}; \\src{qm.validate}",
+     "source": "Prop.~\\ref{prop:basis}\\newline \\pywit{quantum}{p22019}{C3}, \\leanwit{FrcCore}{p22019}{C3} \\lean{FRC.Observation.orthogonality, FRC.Observation.parseval, FRC.Extension.Tally.fourier\\_inversion, FRC.Extension.Tally.dft\\_det}",
      "key": "p22019"
     },
     {
      "label": "C4",
      "predicate": "The selection rule: a pointer channel couples to an Object mode only when their core phases agree, $r\\equiv k\\pmod d$.",
      "tag": "T",
-     "source": "Prop.~\\ref{prop:selection}; \\src{qm.validate}",
+     "source": "Prop.~\\ref{prop:selection}\\newline \\pywit{quantum}{p22020}{C4}, \\leanwit{FrcCore}{p22020}{C4} \\lean{FRC.Observation.selection}",
      "key": "p22020"
     },
     {
      "label": "C5",
      "predicate": "The L\\\"uders update is projection, $\\Pi^2=d\\,\\Pi$, so an immediately repeated measurement returns the same outcome.",
      "tag": "T",
-     "source": "Prop.~\\ref{prop:lueders}; \\src{qm.validate}",
+     "source": "Prop.~\\ref{prop:lueders}\\newline \\pywit{quantum}{p22021}{C5}, \\leanwit{FrcCore}{p22021}{C5} \\lean{FRC.Observation.lueders}",
      "key": "p22021"
     },
     {
      "label": "C6",
-     "predicate": "Conjugation is cycle inversion, forced in each setting: Frobenius on the boost cycle, exponent negation on the phase cycle, complex conjugation on the ledger --- each its setting's only candidate.",
+     "predicate": "Conjugation is cycle inversion, forced in each setting: the Frobenius on the boost cycle (the only non-trivial automorphism over $\\F_\\p$), exponent negation on the phase cycle, and on the ledger the complex conjugation, the automorphism that reduces to inversion.",
      "tag": "T",
-     "source": "Lem.~\\ref{lem:involution}, Prop.~\\ref{prop:reduction},~\\ref{prop:paircount}, \\citep{akhtman2026dirac}",
+     "source": "Lem.~\\ref{lem:involution}, Prop.~\\ref{prop:reduction},~\\ref{prop:paircount}, \\citep{akhtman2026dirac}\\newline \\pywit{quantum}{p22022}{C6}, \\leanwit{FrcCore}{p22022}{C6} \\lean{FRC.Observation.frobenius\\_unique, FRC.Observation.torus\\_conj\\_inv, FRC.Observation.exponent\\_negation}",
      "key": "p22022"
     },
     {
      "label": "C7",
      "predicate": "Squared amplitudes are coincidence counts (the pair-count identity), realized tallies on $\\Z[\\im]$ for stationary core-valued states of definite drive eigenvalue; a distinct-eigenvalue superposition registers the integral drive-frequency count; for a pure winding the weights are $d^2[r\\equiv k]$.",
      "tag": "T",
-     "source": "Prop.~\\ref{prop:paircount}, Lem.~\\ref{lem:registered}; \\src{qm.validate}, \\src{qm.decoherence}",
+     "source": "Prop.~\\ref{prop:paircount}, Lem.~\\ref{lem:registered}\\newline \\pywit{quantum}{p22023}{C7}, \\leanwit{FrcCore}{p22023}{C7}, \\leanwit{FrcLedger}{p22023}{C7} \\lean{FRC.Observation.pair\\_count, FRC.Observation.pure\\_winding\\_weight, FRC.Observation.parseval, FRC.Quantum.dephasing, Qm.pair\\_count\\_tally}",
      "key": "p22023"
     },
     {
      "label": "C8",
      "predicate": "Sorkin nullity: $I_k=0$ for every $k\\ge3$, exactly, on every channel and outcome, with $I_2$ generically nonzero.",
      "tag": "T",
-     "source": "Cor.~\\ref{cor:sorkin}; \\src{qm.sorkin}",
+     "source": "Cor.~\\ref{cor:sorkin}\\newline \\pywit{quantum}{p22024}{C8}, \\leanwit{FrcCore}{p22024}{C8}, \\leanwit{FrcLedger}{p22024}{C8} \\lean{FRC.Interference.sorkin\\_hierarchy, FRC.Interference.sorkin\\_second, FRC.Interference.sorkin\\_second\\_witness, Qm.sorkin\\_hierarchy, Qm.sorkin\\_second\\_witness}",
      "key": "p22024"
     },
     {
      "label": "C9",
      "predicate": "Reduction: the Carrier-chart amplitude is the mod-$\\Omega$ shadow of the ledger ($\\zeta\\mapsto v$), exact as algebra and silent about magnitude.",
      "tag": "T",
-     "source": "Prop.~\\ref{prop:reduction}; \\src{qm.validate}",
+     "source": "Prop.~\\ref{prop:reduction}\\newline \\pywit{quantum}{p22025}{C9}, \\leanwit{FrcCore}{p22025}{C9} \\lean{FRC.Observation.reduce\\_add, FRC.Observation.reduce\\_mul, FRC.Observation.reduce\\_wrap}",
      "key": "p22025"
     },
     {
      "label": "C10",
      "predicate": "The counting Born rule on sub-horizon states over the universal core $\\Qf$: the weight is the unique window lift of its shadow and the probability a framed-rational ratio of coincidence counts, the frequency along the drive completed in finitely many chronons; the two probability strata and their $\\Qf$ coincidence; on a single Object the theorem's weights are uniform over the fibres (Remark~\\ref{rem:borndomain}), every non-uniform statistic passing through C11.",
      "tag": "T",
-     "source": "Thm.~\\ref{thm:born}, Prop.~\\ref{prop:strata}, Def.~\\ref{def:registered}, Rem.~\\ref{rem:ergodic}; \\src{qm.stratum}",
+     "source": "Thm.~\\ref{thm:born}, Prop.~\\ref{prop:strata}, Def.~\\ref{def:registered}, Rem.~\\ref{rem:ergodic}\\newline \\pywit{quantum}{p22026}{C10}, \\leanwit{FrcCore}{p22026}{C10} \\lean{FRC.Extension.two\\_way\\_tally, FRC.Extension.core\\_weights, FRC.Extension.root\\_two\\_two\\_way, FRC.Extension.framed\\_readout, FRC.Observation.window\\_lift, FRC.Observation.pure\\_winding\\_weight, FRC.Quantum.joint\\_recurrence}",
      "key": "p22026"
     },
     {
      "label": "C11",
      "predicate": "The engineered-core readout: registered frequencies are framed rationals reading the two-way structural weight through Definition~\\ref{def:readout}; two reductions are proved (the conjugate-pair trace tally and the setting-ensemble Parseval tally, Remark~\\ref{rem:strata}), given the stratum-sampling clause, the unified sampling clause of master D10.",
      "tag": "T",
-     "source": "Prop.~\\ref{prop:strata}, Rem.~\\ref{rem:strata}; \\src{qm.stratum}; rests on B4, C10, 00:D10",
+     "source": "Prop.~\\ref{prop:strata}, Rem.~\\ref{rem:strata}; rests on B4, C10, 00:D10\\newline \\pywit{quantum}{p22027}{C11}, \\leanwit{FrcCore}{p22027}{C11} \\lean{FRC.Extension.conjugate\\_pair\\_tally, FRC.Extension.trace\\_recurrence, FRC.Extension.dial\\_shift, FRC.Extension.dial\\_tally, FRC.Extension.framed\\_readout}",
      "key": "p22027"
     },
     {
      "label": "C12",
      "predicate": "Uniqueness of the pair tally on the stationary core-valued $\\Qf$ sector: tally-valued, fibre-additive, drive-invariant, two-way registration functionals form the $d^2c$-realized character cone, the degree itself forced (Lemma~\\ref{lem:degree}); channel selectivity picks the Born ray.",
      "tag": "T",
-     "source": "Prop.~\\ref{prop:gleason}; \\src{qm.gleason}",
+     "source": "Prop.~\\ref{prop:gleason}\\newline \\pywit{quantum}{p22028}{C12}, \\leanwit{FrcCore}{p22028}{C12} \\lean{FRC.Extension.Tally.winding\\_fixing, FRC.Extension.Tally.tally\\_criterion, FRC.Extension.Tally.two\\_way, FRC.Extension.Tally.fourier\\_inversion, FRC.Extension.Tally.channel\\_selectivity, FRC.Extension.Tally.dft\\_det, FRC.Extension.Tally.cone\\_boundary, FRC.Extension.Tally.linear\\_exclusion}",
      "key": "p22028"
     },
     {
      "label": "C13",
      "predicate": "Complex amplitudes are forced: the generic shared core of two framed shells is $\\Qf$, so the minimal ledger is $\\Z[\\im]$; shells of cardinality $\\equiv3\\pmod4$ (arising from no capacity) give a real-amplitude theory.",
      "tag": "T",
-     "source": "Prop.~\\ref{prop:gaussian}",
+     "source": "Prop.~\\ref{prop:gaussian}\\newline \\pywit{quantum}{p22029}{C13}, \\leanwit{FrcCore}{p22029}{C13} \\lean{FRC.Observation.shared\\_core, FRC.Observation.no\\_quarter\\_turn}",
      "key": "p22029"
     },
     {
      "label": "C14",
      "predicate": "The granularity ceiling: the representable coherent-splitting depth is the largest $k$ with $d\\,T(k)<\\Omega$, $T(k)=2^{k+[k\\text{ odd}]}$ the minimal tally norm, and resolution finer than $1/\\Omega$ lies outside the derived Born regime.",
      "tag": "T",
-     "source": "Prop.~\\ref{prop:granularity}; \\src{qm.granularity}",
+     "source": "Prop.~\\ref{prop:granularity}\\newline \\pywit{quantum}{p22030}{C14}, \\leanwit{FrcCore}{p22030}{C14}, \\leanwit{FrcLedger}{p22030}{C14} \\lean{FRC.Interference.hadamard\\_even, FRC.Interference.hadamard\\_odd, FRC.Interference.tally\\_norm\\_mono, FRC.Interference.ceiling\\_641, Qm.gaussian\\_layers, Qm.gaussian\\_minimal, Qm.gaussian\\_norm, Qm.tally\\_norm\\_eq}",
      "key": "p22030"
     },
     {
      "label": "C15",
      "predicate": "The composite ledger and the conserved offset: synchronised orbits are the Bell states, the $m$-body locked cluster carries the offset as a conserved, drive-confined label (its ensemble diagonality a declared preparation clause).",
      "tag": "T",
-     "source": "Prop.~\\ref{prop:offset}, Lem.~\\ref{lem:mbody}; \\src{qm.composite}, \\src{qm.\\allowbreak synchronisation}",
+     "source": "Prop.~\\ref{prop:offset}, Lem.~\\ref{lem:mbody}\\newline \\pywit{quantum}{p22031}{C15}, \\leanwit{FrcCore}{p22031}{C15} \\lean{FRC.Composite.offset\\_invariant, FRC.Composite.cluster\\_offset, FRC.Composite.locked\\_norm, FRC.Composite.spread\\_average, FRC.Quantum.pair\\_offset}",
      "key": "p22031"
     },
     {
      "label": "C16",
      "predicate": "Qubits from doublets: the forced readout is $\\sigma_x$ through the relation $v^{\\,8}=-1$.",
      "tag": "T",
-     "source": "Prop.~\\ref{prop:doublet},~\\ref{prop:sigmax}; \\src{qm.composite}",
+     "source": "Prop.~\\ref{prop:doublet},~\\ref{prop:sigmax}\\newline \\pywit{quantum}{p22032}{C16}, \\leanwit{FrcCore}{p22032}{C16} \\lean{FRC.Composite.half\\_turn\\_sixteen, FRC.Composite.doublet\\_readout, FRC.Composite.carrier\\_641}",
      "key": "p22032"
     },
     {
      "label": "C17",
-     "predicate": "Exact Tsirelson saturation: the singlet law $E(\\Delta)=\\cos(\\pi\\Delta/40)$, $S=2(\\zeta_8+\\zeta_8^{-1})$, $S^2=8$, the exhaustive $80^3$ sweep never exceeding it; no-signalling and the composite reduction commute.",
+     "predicate": "Exact Tsirelson saturation: the singlet law $E(\\Delta)=\\cos(\\pi\\Delta/40)$ [chart], $S=2(\\zeta_8+\\zeta_8^{-1})$, $S^2=8$, the exhaustive $80^3$ sweep never exceeding it [chart]; no-signalling and the composite reduction commute.",
      "tag": "T",
-     "source": "Thm.~\\ref{thm:tsirelson}, Prop.~\\ref{prop:boundary}; \\src{qm.composite}",
+     "source": "Thm.~\\ref{thm:tsirelson}, Prop.~\\ref{prop:boundary}\\newline \\pywit{quantum}{p22033}{C17}, \\leanwit{FrcCore}{p22033}{C17}, \\leanwit{FrcLedger}{p22033}{C17} \\lean{FRC.Shell.Prime.tsirelson, FRC.Composite.singlet\\_square, FRC.Composite.no\\_signalling, FRC.Observation.reduce\\_mul, FRC.Composite.carrier\\_641, Qm.tsirelson\\_real, Qm.singlet\\_law}",
      "key": "p22033"
     },
     {
      "label": "C18",
      "predicate": "The network table is the complex-quantum table, and the Bell-state measurement is the offset readout.",
      "tag": "T",
-     "source": "Prop.~\\ref{prop:bsm}, Thm.~\\ref{thm:table}; \\src{qm.renou}",
+     "source": "Prop.~\\ref{prop:bsm}, Thm.~\\ref{thm:table}\\newline \\pywit{quantum}{p22034}{C18}, \\leanwit{FrcCore}{p22034}{C18} \\lean{FRC.Quantum.pair\\_offset, FRC.Composite.cluster\\_offset}",
      "key": "p22034"
     },
     {
      "label": "C19",
-     "predicate": "The gravitational channel entangles exactly, $C^2=\\sin^2(\\varphi/2)$, with the pure-channel complementarity $V^2+C^2=1$.",
+     "predicate": "The gravitational channel entangles exactly, $C^2=\\sin^2(\\varphi/2)$ [chart], with the pure-channel complementarity $V^2+C^2=1$.",
      "tag": "T",
-     "source": "Prop.~\\ref{prop:bmvmech}; \\src{qm.bmv}",
+     "source": "Prop.~\\ref{prop:bmvmech}\\newline \\pywit{quantum}{p22035}{C19}, \\leanwit{FrcCore}{p22035}{C19}, \\leanwit{FrcLedger}{p22035}{C19} \\lean{FRC.Composite.channel\\_complementarity, FRC.Composite.channel\\_product\\_at\\_zero, Qm.channel\\_chart, Qm.channel\\_entangles}",
      "key": "p22035"
     },
     {
      "label": "C20",
      "predicate": "No spontaneous collapse; the dilation floor dephases with an exact revival $V(n)=1$.",
      "tag": "T",
-     "source": "Prop.~\\ref{prop:nocollapse},~\\ref{prop:dilation}; \\src{qm.decoherence}",
+     "source": "Prop.~\\ref{prop:nocollapse},~\\ref{prop:dilation}\\newline \\pywit{quantum}{p22036}{C20}, \\leanwit{FrcCore}{p22036}{C20} \\lean{FRC.Composite.drive\\_norm, FRC.Composite.revival, FRC.Quantum.joint\\_recurrence}",
      "key": "p22036"
     },
     {
      "label": "C21",
      "predicate": "The coherent-fraction channel: force by full masses, entanglement by coherent fractions; the identification reciprocal synchronisation (B8), and the fully incoherent channel is separable at generic (nondegenerate) geometry.",
      "tag": "T",
-     "source": "Prop.~\\ref{prop:fcoh}; \\src{qm.gravfraction}; rests on A4, C19, C22",
+     "source": "Prop.~\\ref{prop:fcoh}; rests on A4, C19, C22\\newline \\pywit{quantum}{p22037}{C21}, \\leanwit{FrcCore}{p22037}{C21} \\lean{FRC.Composite.branch\\_phase, FRC.Composite.pair\\_product, FRC.Composite.spread\\_cancels, FRC.Composite.channel\\_assembly}",
      "key": "p22037"
     },
     {
      "label": "C22",
      "predicate": "The two scaling laws and the exact equivalence-principle null: coherent $m^2$ against incoherent $m$, $\\eta=0$.",
      "tag": "T",
-     "source": "Prop.~\\ref{prop:scaling}; \\src{qm.equivalence}",
+     "source": "Prop.~\\ref{prop:scaling}\\newline \\pywit{quantum}{p22038}{C22}, \\leanwit{FrcCore}{p22038}{C22} \\lean{FRC.Composite.field\\_linear, FRC.Composite.eta\\_zero, FRC.Composite.locked\\_norm, FRC.Composite.spread\\_average}",
      "key": "p22038"
     },
     {
      "label": "C23",
      "predicate": "Inter-Subject consistency: two distinct Subjects reading one Object agree on the shared core $\\Qf$ , order-independent joint refinement, the same core character by the selection rule, and order-independence on the shared cell.",
      "tag": "T",
-     "source": "Prop.~\\ref{prop:intersubject}; \\src{qm.intersubject}",
+     "source": "Prop.~\\ref{prop:intersubject}\\newline \\pywit{quantum}{p22039}{C23}, \\leanwit{FrcCore}{p22039}{C23} \\lean{FRC.Composite.joint\\_refinement, FRC.Composite.order\\_independence, FRC.Observation.selection}",
      "key": "p22039"
     },
     {
      "label": "C24",
      "predicate": "Carrier-chart classicality: to the host of a hosted Carrier every observation is total absorption (for the physical Carrier, a limit no reader instantiates); quantumness is the subgroup index $[\\PhiO:\\core]>1$, and classicality is the divisibility of the observer's frame --- one outcome per fixed channel, with the channel index still carrying the winding information (absorption is not the absence of information transfer).",
      "tag": "T",
-     "source": "Cor.~\\ref{cor:carrier}; \\src{qm.validate}",
+     "source": "Cor.~\\ref{cor:carrier}\\newline \\pywit{quantum}{p22040}{C24}, \\leanwit{FrcCore}{p22040}{C24} \\lean{FRC.Observation.classicality\\_index, FRC.Observation.selection, FRC.Composite.carrier\\_421}",
      "key": "p22040"
     },
     {
      "label": "C25",
-     "predicate": "The measurement problem dissolved: Kochen--Specker poses no separate threat because values exist only as Subject-relative quotient phases, carried together with the Tsirelson strength $2\\sqrt2$.",
+     "predicate": "The measurement problem dissolved: Kochen--Specker poses no separate threat because values exist only as Subject-relative quotient phases, carried together with the Tsirelson strength $2\\sqrt2$ [chart].",
      "tag": "T",
-     "source": "\\S\\ref{sec:dividends}; rests on A7, B3, B6, C17",
+     "source": "\\S\\ref{sec:dividends}; rests on A7, B3, B6, C17\\newline \\pywit{quantum}{p22041}{C25}, \\leanwit{FrcCore}{p22041}{C25}, \\leanwit{FrcLedger}{p22041}{C25} \\lean{FRC.Shell.Prime.tsirelson, FRC.Composite.singlet\\_square, Qm.tsirelson\\_real}",
      "key": "p22041"
     },
     {
      "label": "C26",
      "predicate": "The unequal-cycle composite gate: joint recurrence $T'=\\operatorname{lcm}_j(n_j/\\gcd(s_j,n_j))$, conserved data the quotient $A/\\langle s\\rangle$ (unit-winding pair: the gcd cycle, generically $\\Qf$), and the counting Born rule verbatim with $T'$ as the recurrence; all orbit-nontrivial characters cancel.",
      "tag": "T",
-     "source": "Prop.~\\ref{prop:unequal}; \\src{qm.composite}",
+     "source": "Prop.~\\ref{prop:unequal}\\newline \\pywit{quantum}{p22042}{C26}, \\leanwit{FrcCore}{p22042}{C26} \\lean{FRC.Quantum.joint\\_recurrence, FRC.Quantum.joint\\_least, FRC.Quantum.pair\\_offset, FRC.Quantum.dephasing, FRC.Composite.winding\\_period}",
      "key": "p22042"
     },
     {
      "label": "C27",
      "predicate": "Quarter-turn transport: the ambient quarter-turn aliases onto an embedded label iff $\\kap\\equiv\\pm\\kap_n\\pmod n$, the capacity residue mod~$4$ the coarsest invariant; the constants web is read per register (Remark~\\ref{rem:conceptual}).",
      "tag": "T",
-     "source": "Lem.~\\ref{lem:transport}, \\citep{akhtman2026gravity}; \\src{qm.transport}",
+     "source": "Lem.~\\ref{lem:transport}, \\citep{akhtman2026gravity}\\newline \\pywit{quantum}{p22043}{C27}, \\leanwit{FrcCore}{p22043}{C27} \\lean{FRC.Observation.transport\\_trichotomy, FRC.Observation.transport\\_cases}",
      "key": "p22043"
     }
    ]
@@ -332,56 +332,56 @@
      "label": "X1",
      "predicate": "\\textbf{The Born rule} is a coincidence count, the unique window lift of its carrier shadow, not a postulated quadratic functional --- on its stationary domain, where the weights are uniform over the fibres; non-uniform statistics are read through the engineered-core readout (C11).",
      "tag": "T",
-     "source": "Prop.~\\ref{prop:paircount}, Thm.~\\ref{thm:born}, Rem.~\\ref{rem:borndomain}",
+     "source": "Prop.~\\ref{prop:paircount}, Thm.~\\ref{thm:born}, Rem.~\\ref{rem:borndomain}\\newline \\pywit{quantum}{p22044}{X1}, \\leanwit{FrcCore}{p22044}{X1}, \\leanwit{FrcLedger}{p22044}{X1} \\lean{FRC.Observation.window\\_lift, FRC.Observation.pair\\_count, FRC.Observation.pure\\_winding\\_weight, FRC.Extension.two\\_way\\_tally, Qm.pair\\_count\\_tally}",
      "key": "p22044"
     },
     {
      "label": "X2",
      "predicate": "\\textbf{The complexity of amplitudes} is the arithmetic of the shared quarter-turn core, the canonical complex sector $\\Z[\\im]$; a shell without the internal quarter-turn gives a real-amplitude theory instead.",
      "tag": "T",
-     "source": "Prop.~\\ref{prop:gaussian}",
+     "source": "Prop.~\\ref{prop:gaussian}\\newline \\pywit{quantum}{p22045}{X2}, \\leanwit{FrcCore}{p22045}{X2} \\lean{FRC.Observation.shared\\_core, FRC.Observation.no\\_quarter\\_turn}",
      "key": "p22045"
     },
     {
      "label": "X3",
      "predicate": "\\textbf{The preferred basis} is the Subject's own phase anatomy, einselected by the algebra of the frames rather than by a model of the environment.",
      "tag": "T",
-     "source": "Prop.~\\ref{prop:basis}",
+     "source": "Prop.~\\ref{prop:basis}\\newline \\pywit{quantum}{p22046}{X3}, \\leanwit{FrcCore}{p22046}{X3} \\lean{FRC.Observation.orthogonality, FRC.Observation.selection}",
      "key": "p22046"
     },
     {
      "label": "X4",
      "predicate": "\\textbf{The dynamical measurement problem} dissolves: collapse is the re-metrisation of a relational chart, no disturbance propagates, and distinct Subjects never disagree on what they share.",
      "tag": "T",
-     "source": "Rem.~\\ref{rem:collapse}, Prop.~\\ref{prop:intersubject}; \\src{qm.intersubject}",
+     "source": "Rem.~\\ref{rem:collapse}, Prop.~\\ref{prop:intersubject}\\newline \\pywit{quantum}{p22047}{X4}, \\leanwit{FrcCore}{p22047}{X4} \\lean{FRC.Composite.joint\\_refinement, FRC.Composite.order\\_independence, FRC.Observation.lueders}",
      "key": "p22047"
     },
     {
      "label": "X5",
      "predicate": "\\textbf{The classical limit} has a mechanism, containment, the divisibility of the observer's frame, exact arithmetic rather than an appeal to a limit.",
      "tag": "T",
-     "source": "\\S\\ref{sec:regimes}",
+     "source": "\\S\\ref{sec:regimes}\\newline \\pywit{quantum}{p22048}{X5}, \\leanwit{FrcCore}{p22048}{X5} \\lean{FRC.Observation.classicality\\_index, FRC.Observation.selection, FRC.Composite.carrier\\_421}",
      "key": "p22048"
     },
     {
      "label": "X6",
      "predicate": "\\textbf{Native probability over a finite substrate}: the unordered-field obstruction is cleared by keeping counts in the observer's ledger: a finite-relational provenance theorem for the Born calculus, in which the substrate determines the tally ring, the measurement family, and the readout (calibrated against the counting and cyclotomic precedents in Section~\\ref{sec:discussion}).",
      "tag": "T",
-     "source": "\\S\\ref{sec:ledger}",
+     "source": "\\S\\ref{sec:ledger}\\newline \\pywit{quantum}{p22049}{X6}, \\leanwit{FrcCore}{p22049}{X6} \\lean{FRC.Observation.window\\_lift, FRC.Extension.Tally.tally\\_criterion, FRC.Extension.Tally.channel\\_selectivity, FRC.Extension.framed\\_readout}",
      "key": "p22049"
     },
     {
      "label": "X7",
-     "predicate": "\\textbf{The Tsirelson boundary} is attained as a ring identity, $S=2(\\zeta_8+\\zeta_8^{-1})=2\\sqrt2$, so a relational finite substrate carries full quantum correlation strength, not merely quantum vocabulary.",
+     "predicate": "\\textbf{The Tsirelson boundary} is attained as a ring identity, $S=2(\\zeta_8+\\zeta_8^{-1})=2\\sqrt2$ [chart], so a relational finite substrate carries full quantum correlation strength, not merely quantum vocabulary.",
      "tag": "T",
-     "source": "Thm.~\\ref{thm:tsirelson}; \\src{qm.composite}",
+     "source": "Thm.~\\ref{thm:tsirelson}\\newline \\pywit{quantum}{p22050}{X7}, \\leanwit{FrcCore}{p22050}{X7}, \\leanwit{FrcLedger}{p22050}{X7} \\lean{FRC.Shell.Prime.tsirelson, FRC.Composite.singlet\\_square, Qm.tsirelson\\_real}",
      "key": "p22050"
     },
     {
      "label": "X8",
      "predicate": "\\textbf{Higher-order interference} is forbidden exactly: the Sorkin hierarchy is zero with a forbidden neighbourhood, not a small number to be measured down.",
      "tag": "T",
-     "source": "Cor.~\\ref{cor:sorkin}, Rem.~\\ref{rem:horizon}; \\src{qm.sorkin}",
+     "source": "Cor.~\\ref{cor:sorkin}, Rem.~\\ref{rem:horizon}\\newline \\pywit{quantum}{p22051}{X8}, \\leanwit{FrcCore}{p22051}{X8}, \\leanwit{FrcLedger}{p22051}{X8} \\lean{FRC.Interference.sorkin\\_hierarchy, FRC.Observation.wrap\\_quantised, Qm.sorkin\\_hierarchy}",
      "key": "p22051"
     }
    ]
@@ -392,65 +392,38 @@
    "rows": [
     {
      "label": "P1",
-     "predicate": "Gravitationally induced entanglement at exactly the Newtonian rate, $V^2+C^2=1$ on the pure channel: equal force but unequal entanglement --- a source gravitates by its full mass while the systematic conditional phase, the calibrated discriminator, is carried by the coherent sectors alone, the fully incoherent channel separable at generic (nondegenerate) geometry. The one dated forward prediction.",
+     "predicate": "Gravitationally induced entanglement at exactly the Newtonian rate [chart], $V^2+C^2=1$ on the pure channel: equal force but unequal entanglement --- a source gravitates by its full mass while the systematic conditional phase, the calibrated discriminator, is carried by the coherent sectors alone, the fully incoherent channel separable at generic (nondegenerate) geometry. The one dated forward prediction.",
      "tag": "T",
-     "source": "Rem.~\\ref{rem:bmvpred}; \\src{qm.bmv}; rests on A4, B8, C19, C21",
+     "source": "Rem.~\\ref{rem:bmvpred}; rests on A4, B8, C19, C21\\newline \\pywit{quantum}{p22052}{P1}, \\leanwit{FrcCore}{p22052}{P1}, \\leanwit{FrcLedger}{p22052}{P1} \\lean{FRC.Composite.channel\\_complementarity, FRC.Composite.branch\\_phase, FRC.Composite.channel\\_assembly, Qm.channel\\_chart}",
      "key": "p22052"
     },
     {
      "label": "P2",
      "predicate": "Third-order interference exactly zero at every accessible scale, any wrap quantised to a multiple of $\\Omega$: a single confirmed small $I_3\\neq0$ falsifies outright.",
      "tag": "T",
-     "source": "Cor.~\\ref{cor:sorkin}, Rem.~\\ref{rem:horizon}; \\src{qm.sorkin}; rests on B1, C8",
+     "source": "Cor.~\\ref{cor:sorkin}, Rem.~\\ref{rem:horizon}; rests on B1, C8\\newline \\pywit{quantum}{p22053}{P2}, \\leanwit{FrcCore}{p22053}{P2}, \\leanwit{FrcLedger}{p22053}{P2} \\lean{FRC.Interference.sorkin\\_hierarchy, FRC.Observation.wrap\\_quantised, Qm.sorkin\\_hierarchy}",
      "key": "p22053"
     },
     {
      "label": "P3",
-     "predicate": "The Tsirelson value $S=2\\sqrt2$ exact and the network behaviour of complex (not real) quantum theory: vacuum dispersion, $S\\neq2\\sqrt2$, or non-quantum network behaviour each falsify.",
+     "predicate": "The Tsirelson value $S=2\\sqrt2$ exact [chart] and the network behaviour of complex (not real) quantum theory: vacuum dispersion, $S\\neq2\\sqrt2$, or non-quantum network behaviour each falsify.",
      "tag": "T",
-     "source": "Thm.~\\ref{thm:tsirelson},~\\ref{thm:table}; \\src{qm.composite}, \\src{qm.renou}; rests on B2, B5, C17, C18",
+     "source": "Thm.~\\ref{thm:tsirelson},~\\ref{thm:table}; rests on B2, B5, C17, C18\\newline \\pywit{quantum}{p22054}{P3}, \\leanwit{FrcCore}{p22054}{P3}, \\leanwit{FrcLedger}{p22054}{P3} \\lean{FRC.Shell.Prime.tsirelson, FRC.Composite.singlet\\_square, FRC.Quantum.pair\\_offset, Qm.tsirelson\\_real}",
      "key": "p22054"
     },
     {
      "label": "P4",
      "predicate": "No vacuum dispersion at any sub-horizon order (the finite double cover accumulates nothing): the gamma-ray-burst time-of-flight bounds leave the framework untouched.",
      "tag": "T",
-     "source": "Rem.~\\ref{rem:doublecover}; \\src{qm.dispersion}; rests on A2, B2",
+     "source": "Rem.~\\ref{rem:doublecover}; rests on A2, B2\\newline \\pywit{quantum}{p22055}{P4}, \\leanwit{FrcCore}{p22055}{P4} \\lean{FRC.Subject.channel, FRC.Subject.horizon\\_generator, FRC.Observation.torus\\_conj\\_inv}",
      "key": "p22055"
     },
     {
      "label": "P5",
-     "predicate": "Quantum computation succeeds as standard quantum mechanics prescribes at every accessible depth; the first deviation, if any, is quantised at the unit-core ceiling $k^*=404$ ($202$ for $\\sqrt\\Omega$), not gradual.",
+     "predicate": "Quantum computation succeeds as standard quantum mechanics prescribes at every accessible depth; the first deviation, if any, is quantised at the unit-core ceiling $k^*=408$ ($204$ for $\\sqrt\\Omega$) [chart], not gradual.",
      "tag": "T",
-     "source": "Prop.~\\ref{prop:granularity}; \\src{qm.granularity}; rests on A5, C14",
+     "source": "Prop.~\\ref{prop:granularity}; rests on A5, C14\\newline \\pywit{quantum}{p22056}{P5}, \\leanwit{FrcCore}{p22056}{P5}, \\leanwit{FrcLedger}{p22056}{P5} \\lean{FRC.Interference.tally\\_norm\\_mono, FRC.Interference.ceiling\\_641, FRC.Interference.hadamard\\_even, Qm.ceiling\\_bracket, Qm.gaussian\\_minimal}",
      "key": "p22056"
-    }
-   ]
-  },
-  {
-   "letter": "V",
-   "title": "Machine verification",
-   "rows": [
-    {
-     "label": "V1",
-     "predicate": "The validation package \\texttt{finite-ring-space/src/22-quantum}: the seventeen suites as written --- \\src{qm.validate}, \\src{qm.sorkin}, \\src{qm.dispersion}, \\src{qm.composite}, \\src{qm.\\allowbreak synchronisation}, \\src{qm.renou}, \\src{qm.bmv}, \\src{qm.decoherence}, \\src{qm.equivalence}, \\src{qm.granularity}, \\src{qm.stratum}, \\src{qm.gravfraction}, \\src{qm.gleason}, \\src{qm.emulation}, \\src{qm.omega}, \\src{qm.intersubject}, \\src{qm.transport} --- run through one registry, a family per suite, its micro-checks the suite's $187$ labelled checks, each family naming the rows it witnesses (Appendix~\\ref{app:map} the check-level map); the notebook \\texttt{22-quantum-main.ipynb} executes them in the browser and the driver \\texttt{run\\_all.py} writes \\texttt{results.json}.",
-     "tag": "T",
-     "source": "Reproducibility; \\src{run\\_all}",
-     "key": "p22057"
-    },
-    {
-     "label": "V2",
-     "predicate": "The discipline, recorded per family as its kind: \\textsf{EXACT} --- modular integers, Gaussian integers, cyclotomic rings ($\\Z[x]/\\Phi_n$) and exact rationals, exhaustive where the domain is finite, deterministic (fixed test states; the one random draw, the sampled $\\sqrt m$ illustration of \\src{qm.equivalence}, decides nothing); \\textsf{NUM} --- floating point as the numeric image of exact references (\\src{qm.emulation}, agreement to $10^{-12}$). Sixteen families \\textsf{EXACT}, one \\textsf{NUM}.",
-     "tag": "T",
-     "source": "Reproducibility",
-     "key": "p22058"
-    },
-    {
-     "label": "V3",
-     "predicate": "The hardware compilations and experiment cards: the $I_3\\otimes\\mathrm{QFT}_4^\\dagger$ ($12$-level) and $I_2\\otimes\\mathrm{QFT}_8^\\dagger$ ($16$-level) unitaries equal the forced bases, the selection rules, the uniform-outcome and three-outcome interference laws and the $\\sigma_x$ doublet law at $\\pi/40$ hold on them, the gate decomposition H--CS--H--SWAP; the two cards of Appendix~\\ref{app:cards} are emitted by the run.",
-     "tag": "T",
-     "source": "App.~\\ref{app:cards}; \\src{qm.emulation}",
-     "key": "p22059"
     }
    ]
   },
@@ -467,9 +440,9 @@
     },
     {
      "label": "Z2",
-     "predicate": "The committed $\\Omega$ anchor and the binding floor: the carrier scale is fixed by the verified Riemann height through $\\Omega^{1/4}$, and a single off-line zero below $\\Omega^{1/4}$ falsifies from a desk.",
+     "predicate": "The committed $\\Omega$ anchor and the binding floor: the carrier scale is fixed by the verified Riemann height through $\\Omega^{1/4}$ [chart], and a single off-line zero below $\\Omega^{1/4}$ falsifies from a desk.",
      "tag": "Ω",
-     "source": "\\S\\ref{sec:omegaledger}, Tab.~\\ref{tab:omega}; \\src{qm.omega}",
+     "source": "\\S\\ref{sec:omegaledger}, Tab.~\\ref{tab:omega}\\newline \\pywit{quantum}{p22061}{Z2}, \\leanwit{FrcLedger}{p22061}{Z2} \\lean{Qm.omega\\_floors}",
      "key": "p22061"
     }
    ]
@@ -494,7 +467,7 @@
   {
    "tag": "T",
    "name": "Theorem",
-   "text": "Derived within this paper from the rows above it; where a family identifier is named, its content is verified by the validation package in exact arithmetic."
+   "text": "Derived within this paper from the rows above it; where a \\textsf{py} token is named, its content is reproduced by the framework's ledger file; where a \\textsf{lean} token is named, proved in Lean. A continuum reading of a finite object is marked [chart]; its witness is a certified bracket or a Mathlib theorem on the reals."
   },
   {
    "tag": "Ω",
@@ -540,7 +513,1569 @@
   "C15": [
    "D15",
    "F2"
+  ],
+  "C26": [
+   "F2"
+  ],
+  "C17": [
+   "C8"
+  ],
+  "X7": [
+   "C8"
+  ],
+  "A2": [
+   "C20"
+  ],
+  "P4": [
+   "C20"
   ]
  },
- "lean": {}
+ "lean": {
+  "A2": [
+   {
+    "name": "FRC.Subject.channel",
+    "module": "FrcCore/Theme/Subject",
+    "line": 135,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "38:A3, 22:A2, 22:P4 — **C20 (p00040), the mass–energy channel**, generator-free on a prime `p` with a quarter-turn `h² = −1`: inside `𝔽_{p²}^×`, `C_{p−1} = 𝔽_p^×` meets the boost torus `C_{p+1} = {z^{p+1} = 1}` in the sign `±1` alone, and the spinor cover `C_{2(p+1)}` in exactly `Q₄ = {±1, ±h}`; the quarter is spinorial, `N(h) = h^{p+1} = h² = −1`."
+   },
+   {
+    "name": "FRC.Subject.horizon_generator",
+    "module": "FrcCore/Theme/Subject",
+    "line": 763,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "00:C25, 22:A2, 22:P4 — the horizon is `ζ^{(p+1)/2}` for every generator `ζ` of the torus: a norm-one `ζ` of order exactly `p + 1` has `ζ^{2κ+1} = −1`, the torus's one element of order two."
+   },
+   {
+    "name": "FRC.Observation.torus_conj_inv",
+    "module": "FrcCore/Theme/Observation",
+    "line": 694,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "22:C6, 22:A2, 22:P4 — on the norm-one torus the conjugation is the inversion: `z · conj z = 1`."
+   }
+  ],
+  "A5": [
+   {
+    "name": "FRC.Qm.omega_floors",
+    "module": "FrcLedger/Qm",
+    "line": 99,
+    "axioms": [
+     "Classical.choice",
+     "Quot.sound",
+     "propext"
+    ],
+    "tier": 2,
+    "ok": true,
+    "doc": "22:A5, 22:Z2 [chart] — the Ω ledger's floors below the anchor (`FRC.Chart.omega_floors`, `Theme/Chart.lean`)."
+   }
+  ],
+  "C1": [
+   {
+    "name": "FRC.Observation.power_maps",
+    "module": "FrcCore/Theme/Observation",
+    "line": 84,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "22:C1 — the characters of the Object cycle are the power maps `u ↦ u^k`: each is multiplicative, and for a cycle generated by `ζ` of order `n` the maps of distinct windings `k, k' < n` differ (at the generator)."
+   },
+   {
+    "name": "FRC.Observation.roots_of_order",
+    "module": "FrcCore/Theme/Observation",
+    "line": 98,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "22:C1 — every `n`-th root of unity is a power of a given element of order `n` (the root bound of `Xⁿ − 1`; the proof of `FRC.Quantum.absorbed` with the generator replaced by any element of order `n`)."
+   },
+   {
+    "name": "FRC.Observation.character_is_power_map",
+    "module": "FrcCore/Theme/Observation",
+    "line": 143,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "22:C1 — the characters are the power maps: a multiplicative map `χ` on the cycle `⟨ζ⟩` of order `n` (`χ(ζ^a ζ^b) = χ(ζ^a) χ(ζ^b)`, `χ 1 = 1`) is `u ↦ u^k` for one `k < n`, `χ(ζ^j) = (ζ^j)^k` for every `j`."
+   }
+  ],
+  "C2": [
+   {
+    "name": "FRC.Observation.stationary",
+    "module": "FrcCore/Theme/Observation",
+    "line": 91,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "22:C2 — the windings are the drive's eigenvectors: `ψ_k(g u) = g^k ψ_k(u)`, the eigenvalue `g^k` is the weight `k` per chronon, and the eigenvalues of the windings `k < n` are distinct for a drive `g` of order `n` on the cycle."
+   },
+   {
+    "name": "FRC.Observation.stationary_modes",
+    "module": "FrcCore/Theme/Observation",
+    "line": 162,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "22:C2 — the stationary states are the winding modes: a function `ψ` on the cycle `⟨g⟩` of order `n` that the drive scales, `ψ(g · g^j) = λ ψ(g^j)` for every `j`, is `ψ(g^j) = ψ(1) (g^j)^k` for one winding `k < n` with `λ = g^k` when `ψ 1 ≠ 0`, and vanishes on the cycle when `ψ 1 = 0`."
+   }
+  ],
+  "C3": [
+   {
+    "name": "FRC.Observation.orthogonality",
+    "module": "FrcCore/Theme/Observation",
+    "line": 237,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "22:C3, 22:X3 — orthogonality of the forced basis: for a core `C_d` generated by `ω`, the characters `η_r(j) = ω^{rj}` satisfy `Σ_{j<d} η_r(j) η_{r'}(j)⁻¹ = d δ_{rr'}` (the inverse character is `ω^{(d−r')j}`)."
+   },
+   {
+    "name": "FRC.Observation.parseval",
+    "module": "FrcCore/Theme/Observation",
+    "line": 320,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "22:C3, 22:C7 — the bilinear Parseval identity on the core: for any two coefficient vectors `f, g` on the fibre, `Σ_{r<d} (Σ_j f_j ω^{(d−r)j}) (Σ_l g_l ω^{rl}) = d Σ_j f_j g_j` (with `g = f̄` the resolution of identity and the norm identity of the forced basis)."
+   },
+   {
+    "name": "FRC.Extension.Tally.fourier_inversion",
+    "module": "FrcCore/Theme/Tally",
+    "line": 92,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "00:C11 (iii), 22:C3, 22:C12 — Fourier inversion recovers every coefficient exactly: `Σ_d K(d) i^{−rd} = 4 c_r`."
+   },
+   {
+    "name": "FRC.Extension.Tally.dft_det",
+    "module": "FrcCore/Theme/Tally",
+    "line": 101,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "00:C11 (v), 22:C3, 22:C12 — the core DFT matrix `(i^{ru})` is invertible: its determinant is `−16i`."
+   }
+  ],
+  "C4": [
+   {
+    "name": "FRC.Observation.selection",
+    "module": "FrcCore/Theme/Observation",
+    "line": 249,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "22:C4, 22:C23, 22:X3, 22:C24, 22:X5 — the selection rule: a pointer channel `r < d` couples to the Object winding `k` over a fibre of the core exactly when their core phases agree, `k ≡ r (mod d)`: `Σ_{j<d} ω^{kj} ω^{(d−r)j} = d [k ≡ r]`."
+   }
+  ],
+  "C5": [
+   {
+    "name": "FRC.Observation.lueders",
+    "module": "FrcCore/Theme/Observation",
+    "line": 258,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "22:C5, 22:X4 — the Lüders projector of the channel `r`, `Π_{jl} = ω^{rj} ω^{(d−r)l}`, is idempotent up to `d`: `Π² = d Π`, so an immediately repeated registration returns the outcome."
+   }
+  ],
+  "C6": [
+   {
+    "name": "FRC.Observation.frobenius_unique",
+    "module": "FrcCore/Theme/Observation",
+    "line": 676,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "22:C6 — the Frobenius is forced: a ring map `σ` of `𝔽_{p²}` fixing the shell (`σ(c) = c`, additive, multiplicative) is the identity or the conjugation `w ↦ −w`, since `σ(w)² = ν` leaves `σ(w) = ±w`."
+   },
+   {
+    "name": "FRC.Observation.torus_conj_inv",
+    "module": "FrcCore/Theme/Observation",
+    "line": 694,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "22:C6, 22:A2, 22:P4 — on the norm-one torus the conjugation is the inversion: `z · conj z = 1`."
+   },
+   {
+    "name": "FRC.Observation.exponent_negation",
+    "module": "FrcCore/Theme/Observation",
+    "line": 593,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "22:C6 — exponent negation inverts the phase cycle: `ζ^{n−k}` is the inverse of `ζ^k` on a cycle of order `n`."
+   }
+  ],
+  "C7": [
+   {
+    "name": "FRC.Observation.pair_count",
+    "module": "FrcCore/Theme/Observation",
+    "line": 285,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "22:C7, 22:X1 — the pair count: the squared amplitude is the double sum of phase agreements, `(Σ_j ψ_j)(Σ_l ψ̄_l) = Σ_j Σ_l ψ_j ψ̄_l`."
+   },
+   {
+    "name": "FRC.Observation.pure_winding_weight",
+    "module": "FrcCore/Theme/Observation",
+    "line": 291,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "22:C7, 22:C10, 22:X1 — on a pure winding `k` the weight of the channel `r < d` is `d² [k ≡ r (mod d)]`: the amplitude `Σ_j ω^{kj} ω^{(d−r)j}` times its conjugate `Σ_l ω^{rl} ω^{(d−k)l}` (the conjugate winding `d − k % d`)."
+   },
+   {
+    "name": "FRC.Observation.parseval",
+    "module": "FrcCore/Theme/Observation",
+    "line": 320,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "22:C3, 22:C7 — the bilinear Parseval identity on the core: for any two coefficient vectors `f, g` on the fibre, `Σ_{r<d} (Σ_j f_j ω^{(d−r)j}) (Σ_l g_l ω^{rl}) = d Σ_j f_j g_j` (with `g = f̄` the resolution of identity and the norm identity of the forced basis)."
+   },
+   {
+    "name": "FRC.Quantum.dephasing",
+    "module": "FrcCore/Theme/Quantum",
+    "line": 330,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "00:F2, 22:C26, 22:C7 — dephasing is exact: on a prime shell `q`, a character `χ(x) = Π_j ζ_j^{x_j}` of the composite (`ζ_j^{n_j} = 1`) that the drive moves (`χ(v) = Π_j ζ_j ≠ 1`) sums to zero along the drive, `Σ_{t<M} χ(t v) = 0`, over every joint recurrence `M`, the product of the periods among them."
+   },
+   {
+    "name": "FRC.Qm.pair_count_tally",
+    "module": "FrcLedger/Qm",
+    "line": 55,
+    "axioms": [
+     "Classical.choice",
+     "Quot.sound",
+     "propext"
+    ],
+    "tier": 2,
+    "ok": true,
+    "doc": "22:C7, 22:X1 — the ledger weight `z z̄ = N(z)` is a nonnegative integer, the coincidence count (`FRC.QuantumML.pair_count_tally`, `Theme/Quantum.lean`)."
+   }
+  ],
+  "C8": [
+   {
+    "name": "FRC.Interference.sorkin_hierarchy",
+    "module": "FrcCore/Theme/Interference",
+    "line": 81,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "22:C8, 22:X8, 22:P2 — **the Sorkin hierarchy**: for every additive conjugation `c`, every family of paths `a` and every base point `x`, the `k`-fold mixed difference of the weight `w(x) = x c(x)` is zero for every `k ≥ 3`; so the interference terms `I_k = Δ_{a_{k−1}} ⋯ Δ_{a_0} w (0)` vanish exactly from the third order on, on every channel and outcome (the ledger's value reduces to the shadow, and a vanishing shadow lifts to a multiple of `Ω`)."
+   },
+   {
+    "name": "FRC.Interference.sorkin_second",
+    "module": "FrcCore/Theme/Interference",
+    "line": 63,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "22:C8 — the second difference is the cross term: `Δ_b Δ_a w (x) = b c(a) + a c(b)`, independent of `x`."
+   },
+   {
+    "name": "FRC.Interference.sorkin_second_witness",
+    "module": "FrcCore/Theme/Interference",
+    "line": 92,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "22:C8 — `I₂` is generically nonzero: with `c` the identity and the paths `a = b = 1`, `I₂ = 2 ≠ 0` on every shell `q > 2`."
+   },
+   {
+    "name": "FRC.Qm.sorkin_hierarchy",
+    "module": "FrcLedger/Qm",
+    "line": 29,
+    "axioms": [
+     "propext"
+    ],
+    "tier": 1,
+    "ok": true,
+    "doc": "22:C8, 22:X8, 22:P2 — the Sorkin hierarchy on every commutative ring with an additive conjugation (`FRC.QuantumML.sorkin_hierarchy`, `Theme/Quantum.lean`)."
+   },
+   {
+    "name": "FRC.Qm.sorkin_second_witness",
+    "module": "FrcLedger/Qm",
+    "line": 60,
+    "axioms": [
+     "propext"
+    ],
+    "tier": 1,
+    "ok": true,
+    "doc": "22:C8 — `I₂` is generically nonzero on the ledger: on `ℤ[i]` with the conjugation and the paths `a = b = 1`, `I₂ = 2` (`FRC.QuantumML.sorkin_second_witness`, `Theme/Quantum.lean`)."
+   }
+  ],
+  "C9": [
+   {
+    "name": "FRC.Observation.reduce_add",
+    "module": "FrcCore/Theme/Observation",
+    "line": 370,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "22:C9 — the reduction is additive: the shadow of `c + c'` is the sum of the shadows."
+   },
+   {
+    "name": "FRC.Observation.reduce_mul",
+    "module": "FrcCore/Theme/Observation",
+    "line": 378,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "22:C9, 22:C17 — the reduction is multiplicative: with `v^n = 1`, the shadow of the convolution `c ⋆ c'` is the product of the shadows; the Carrier-chart amplitude of a product is the product of the amplitudes, exact as algebra."
+   },
+   {
+    "name": "FRC.Observation.reduce_wrap",
+    "module": "FrcCore/Theme/Observation",
+    "line": 404,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "22:C9 — the reduction is silent about magnitude: the count `q` itself reduces to `0`."
+   }
+  ],
+  "C10": [
+   {
+    "name": "FRC.Extension.two_way_tally",
+    "module": "FrcCore/Theme/Extension",
+    "line": 440,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "00:C10 (S1), 22:C10, 22:X1 — the part of the extension fixed by its conjugation is the tally line: a weight `z` is its own conjugate exactly when its `w`-component vanishes (the frame's odd prime), and the symmetrised weight `z + z̄` is the tally-line element `tr(z)`. For `ℤ[i]`, `ν = −1`, this is the paper's two-way subring."
+   },
+   {
+    "name": "FRC.Extension.core_weights",
+    "module": "FrcCore/Theme/Extension",
+    "line": 451,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "00:C10 (S2, S4), 22:C10 — the engineered-core weights reduce to the core: `W₊ + W₋ = 4` and `W₊ W₋ = 2` in every `𝔽_p[w]/(w² − 2)`, and on `Ω = 641` (`641 ≡ 1 (mod 8)`) as residues, `r = 67`, `r² = 2`, `W± = 2 ± r`, with `r` a grid point of the Subject chart of generator `3`, `r = 3⁵⁵⁵` (S4)."
+   },
+   {
+    "name": "FRC.Extension.root_two_two_way",
+    "module": "FrcCore/Theme/Extension",
+    "line": 466,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "00:C10 (S2), 22:C10 — the two-way root of two: on a frame, for `ζ` of order `8` (`ζ⁸ = 1`, `ζ⁴ ≠ 1`) and `η = ζ⁻¹`, `(ζ + η)² = 2`. So `w = ζ₈ + ζ₈⁻¹` lies in the paper's two-way subring, the part of the cyclotomic ring fixed by `ζ ↦ ζ⁻¹`, and the engineered-core weights `2 ± w` are two-way (on `641`: `ζ₈ = 318`, `ζ₈ + ζ₈⁻¹ = 574 = −67`)."
+   },
+   {
+    "name": "FRC.Extension.framed_readout",
+    "module": "FrcCore/Theme/Extension",
+    "line": 628,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "00:C10 (S5–S7), 22:C10, 22:C11, 22:X6 — a registered probability is a framed rational, decided by the kernel: the grid bound `s_n² ≤ 2 · 9ⁿ < (s_n + 1)²` at every scale `n ≤ 8` and the readouts nest, `3 s_n ≤ s_{n+1} ≤ 3 s_n + 2`; the readout `R_4((2 + √2)/8) = (2 · 3⁴ + 114)/(8 · 3⁴) = 23/54`; the `√3` instance `s_3 = 46`; the largest-remainder allocation at `B = 81` of `(23/54, 23/54, 4/54, 4/54)` is `35 + 34 + 6 + 6` (the floors `34 + 34 + 6 + 6`, the one seat left to the first of the two remainders `27/54`). A readout computation over the naturals of the laboratory host (decision Q20)."
+   },
+   {
+    "name": "FRC.Observation.window_lift",
+    "module": "FrcCore/Theme/Observation",
+    "line": 410,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "22:C10, 22:X1, 22:X6 — the unique window lift: two tallies below the window `Ω` with one shadow are equal, so a sub-horizon tally is the unique lift of its residue."
+   },
+   {
+    "name": "FRC.Observation.pure_winding_weight",
+    "module": "FrcCore/Theme/Observation",
+    "line": 291,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "22:C7, 22:C10, 22:X1 — on a pure winding `k` the weight of the channel `r < d` is `d² [k ≡ r (mod d)]`: the amplitude `Σ_j ω^{kj} ω^{(d−r)j}` times its conjugate `Σ_l ω^{rl} ω^{(d−k)l}` (the conjugate winding `d − k % d`)."
+   },
+   {
+    "name": "FRC.Quantum.joint_recurrence",
+    "module": "FrcCore/Theme/Quantum",
+    "line": 121,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "00:F2, 22:C26, 22:C10, 22:C20 — the joint recurrence of an unequal-cycle composite, found below a common multiple `L > 0` of the periods (on a shell, a joint return below `Ω`): the chronons at which all `m` parts return are exactly the multiples of one period `T`, `0 < T ≤ L`, which divides `L`. The search never passes `L` (Q20)."
+   }
+  ],
+  "C11": [
+   {
+    "name": "FRC.Extension.conjugate_pair_tally",
+    "module": "FrcCore/Theme/Extension",
+    "line": 485,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "00:C10 (S9), 22:C11 — the conjugate-pair trace tally: a flip-summed pair of conjugate string weights is core-valued, `z^k z̄^(k+m) + z̄^k z^(k+m) = N(z)^k · tr(z^m)` on the tally line, for every weight `z` of every quadratic extension."
+   },
+   {
+    "name": "FRC.Extension.trace_recurrence",
+    "module": "FrcCore/Theme/Extension",
+    "line": 493,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "00:C10 (S9), 22:C11 — the trace sequence `t_m = tr(z^m)` obeys `t_{m+2} + N(z) t_m = tr(z) t_{m+1}`; for `W₊` (`tr = 4`, `N = 2`): `t_0 = 2`, `t_1 = 4`, `t_{m+2} = 4 t_{m+1} − 2 t_m`, so `t_2 = 12`, `t_3 = 40` (on `Ω = 641`)."
+   },
+   {
+    "name": "FRC.Extension.dial_shift",
+    "module": "FrcCore/Theme/Extension",
+    "line": 527,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "00:C10 (S9), 22:C11 — the dial-shift conjugation: on a dial of `2M` settings (`ζ^(2M) = 1`, `ζ^M ≠ 1`, `η = ζ⁻¹`), the weight at the shifted setting is the conjugate weight, `w₊(M − θ) = w₋(θ)` for `θ ≤ M` (the witness: `M = 40` in `ℤ[x]/(x⁴⁰ + 1)`, `w₊(40 − D) = w₋(D)`)."
+   },
+   {
+    "name": "FRC.Extension.dial_tally",
+    "module": "FrcCore/Theme/Extension",
+    "line": 553,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "00:C10 (S10), 22:C11 — the dial-ensemble Parseval tally: over a dial of `N` settings closed under `ζ` (`ζ^N = 1`, `ζ² ≠ 1`, `η = ζ⁻¹`) on a frame, the weights `w±(θ) = 2 ± (ζ^θ + η^θ)` sum to `2N`, and so do the products `w₊(θ) w₋(θ)`: the cross terms cancel by the character sums (the frame: no zero divisors)."
+   },
+   {
+    "name": "FRC.Extension.framed_readout",
+    "module": "FrcCore/Theme/Extension",
+    "line": 628,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "00:C10 (S5–S7), 22:C10, 22:C11, 22:X6 — a registered probability is a framed rational, decided by the kernel: the grid bound `s_n² ≤ 2 · 9ⁿ < (s_n + 1)²` at every scale `n ≤ 8` and the readouts nest, `3 s_n ≤ s_{n+1} ≤ 3 s_n + 2`; the readout `R_4((2 + √2)/8) = (2 · 3⁴ + 114)/(8 · 3⁴) = 23/54`; the `√3` instance `s_3 = 46`; the largest-remainder allocation at `B = 81` of `(23/54, 23/54, 4/54, 4/54)` is `35 + 34 + 6 + 6` (the floors `34 + 34 + 6 + 6`, the one seat left to the first of the two remainders `27/54`). A readout computation over the naturals of the laboratory host (decision Q20)."
+   }
+  ],
+  "C12": [
+   {
+    "name": "FRC.Extension.Tally.winding_fixing",
+    "module": "FrcCore/Theme/Tally",
+    "line": 72,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "00:C11 (i), 22:C12 — the pure windings fix the tallies on the box `−1 ≤ c_r ≤ 3` (the naturals `a, b, c, d < 5`, cast to `ℤ` and shifted by one), which contains negative coefficients: `F(K_c, ψ_k) = 16 c_k` for every kernel of the box and every channel `k`."
+   },
+   {
+    "name": "FRC.Extension.Tally.tally_criterion",
+    "module": "FrcCore/Theme/Tally",
+    "line": 81,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "00:C11 (i′), 22:C12, 22:X6 — the tally criterion on the box: the pair tally of `K_c` on `ψ_k` is a tally (a nonnegative integer) iff `0 ≤ c_k` — the cone's two halves: every tally combination is tally-valued on the windings, and a kernel with a negative coefficient is excluded by its own winding."
+   },
+   {
+    "name": "FRC.Extension.Tally.two_way",
+    "module": "FrcCore/Theme/Tally",
+    "line": 87,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "00:C11 (ii), 22:C12 — every kernel of the cube is two-way, `K(−d) = conj K(d)`, and tally-valued on the pure windings."
+   },
+   {
+    "name": "FRC.Extension.Tally.fourier_inversion",
+    "module": "FrcCore/Theme/Tally",
+    "line": 92,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "00:C11 (iii), 22:C3, 22:C12 — Fourier inversion recovers every coefficient exactly: `Σ_d K(d) i^{−rd} = 4 c_r`."
+   },
+   {
+    "name": "FRC.Extension.Tally.channel_selectivity",
+    "module": "FrcCore/Theme/Tally",
+    "line": 97,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "00:C11 (iv), 22:C12, 22:X6 — channel-selectivity picks the ray: a kernel of the cube responds on exactly one channel iff its coefficient vector is a scaled unit vector."
+   },
+   {
+    "name": "FRC.Extension.Tally.dft_det",
+    "module": "FrcCore/Theme/Tally",
+    "line": 101,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "00:C11 (v), 22:C3, 22:C12 — the core DFT matrix `(i^{ru})` is invertible: its determinant is `−16i`."
+   },
+   {
+    "name": "FRC.Extension.Tally.cone_boundary",
+    "module": "FrcCore/Theme/Tally",
+    "line": 126,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "00:C11 (vi), 22:C12 — the witnesses of the cone's boundary (22-quantum's U3, U5, U6a): the negative coefficient `c = (1, −1, 1, 0)` is excluded by its own winding, `F(K_c, ψ₁) = −16`; the two-way kernel `5η₁ − 2η₂ + η₃` outside the box is excluded on `ψ₂` and Fourier inversion recovers `4c = (0, 20, −8, 4)`; the fibre norm `[d = 0]` is two-way, responds `(4, 4, 4, 4)` with `4c_r = 1` on every channel (no tally combination) and fails channel-selectivity; the single character `η₁` responds `16` on its channel and `0` elsewhere, so `η₁/16` reads `1` (c = 1/16, no tally)."
+   },
+   {
+    "name": "FRC.Extension.Tally.linear_exclusion",
+    "module": "FrcCore/Theme/Tally",
+    "line": 140,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "00:C11 (vii), 22:C12 — the minimal degree is forced (22-quantum Lemma degree): a linear functional constant on the orbit vanishes on every nontrivial winding (the complete character sums), and on the trivial winding `F(i ψ₀) = i F(ψ₀)` leaves the tally cone for every nonzero multiplier `c ≤ 4`; and the unconjugated bilinear form leaves the tally line on Gaussian-lattice states where the conjugated form of the same kernel stays on it: `B(fn, (1 + i)e₀) = 2i` against `F = 2`, `B([d = 1], e₀ + i e₁) = i`, and `B(K_(1,1,0,0), (1 + i)e₀) = 4i` against `F = 4`."
+   }
+  ],
+  "C13": [
+   {
+    "name": "FRC.Observation.shared_core",
+    "module": "FrcCore/Theme/Observation",
+    "line": 432,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "22:C13, 22:X2 — the shared core of two framed shells: an element of both cycles `C_{4κ}` and `C_{4κ'}` lies in `Q₄` when the capacities are coprime (`κ a = κ' b + 1` the Bezout witness), and `Q₄` lies in every such cycle."
+   },
+   {
+    "name": "FRC.Observation.no_quarter_turn",
+    "module": "FrcCore/Theme/Observation",
+    "line": 445,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "22:C13, 22:X2 — a shell `p ≡ 3 (mod 4)` has no quarter-turn: no `x` with `x² = −1`, since such an `x` has order `4`, which divides `p − 1` by Fermat."
+   }
+  ],
+  "C14": [
+   {
+    "name": "FRC.Interference.hadamard_even",
+    "module": "FrcCore/Theme/Interference",
+    "line": 116,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "22:C14, 22:P5 — `2m` balanced layers give the amplitude `(1 + i)^{2m} = 2^m i^m`."
+   },
+   {
+    "name": "FRC.Interference.hadamard_odd",
+    "module": "FrcCore/Theme/Interference",
+    "line": 120,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "22:C14 — `2m + 1` balanced layers give the amplitude `(1 + i)^{2m+1} = 2^m i^m (1 + i)`."
+   },
+   {
+    "name": "FRC.Interference.tally_norm_mono",
+    "module": "FrcCore/Theme/Interference",
+    "line": 129,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "22:C14, 22:P5 — the tally norm is monotone in the depth."
+   },
+   {
+    "name": "FRC.Interference.ceiling_641",
+    "module": "FrcCore/Theme/Interference",
+    "line": 142,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "22:C14, 22:P5 — **the ceiling on the worked carrier** `Ω = 641`: the largest depth with `T(k) < Ω` is `k* = 8` for the unit core (`T(8) = 256`, `T(9) = 1024`), and with the Bell core `d = 8` it is `6` (`8 T(6) = 512`, `8 T(7) = 2048`)."
+   },
+   {
+    "name": "FRC.Qm.gaussian_layers",
+    "module": "FrcLedger/Qm",
+    "line": 35,
+    "axioms": [
+     "propext"
+    ],
+    "tier": 1,
+    "ok": true,
+    "doc": "22:C14 — the Hadamard layers on `ℤ[i]` and the minimal denominator (`FRC.QuantumML.gaussian_layers`, `gaussian_minimal`, `Theme/Quantum.lean`)."
+   },
+   {
+    "name": "FRC.Qm.gaussian_minimal",
+    "module": "FrcLedger/Qm",
+    "line": 76,
+    "axioms": [
+     "Quot.sound",
+     "propext"
+    ],
+    "tier": 1,
+    "ok": true,
+    "doc": "22:C14, 22:P5 — `2` does not divide `i^m (1 + i)`: the minimal denominator (`FRC.QuantumML.gaussian_minimal`, `Theme/Quantum.lean`)."
+   },
+   {
+    "name": "FRC.Qm.gaussian_norm",
+    "module": "FrcLedger/Qm",
+    "line": 80,
+    "axioms": [
+     "Quot.sound",
+     "propext"
+    ],
+    "tier": 1,
+    "ok": true,
+    "doc": "22:C14 — the norm of `k` layers is `2^k` (`FRC.QuantumML.gaussian_norm`, `Theme/Quantum.lean`)."
+   },
+   {
+    "name": "FRC.Qm.tally_norm_eq",
+    "module": "FrcLedger/Qm",
+    "line": 66,
+    "axioms": [
+     "Quot.sound",
+     "propext"
+    ],
+    "tier": 1,
+    "ok": true,
+    "doc": "22:C14 — the minimal tally norm is the square of the minimal denominator, `T(k) = (2^{⌈k/2⌉})²` (`FRC.QuantumML.tally_norm_eq`, `Theme/Quantum.lean`)."
+   }
+  ],
+  "C15": [
+   {
+    "name": "FRC.Composite.offset_invariant",
+    "module": "FrcCore/Theme/Composite",
+    "line": 43,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "22:C15 — the offset vector of a cluster on `(ℤ/N)^m` is invariant under the diagonal drive by `t` chronons: in the cross form, `x_j + (x_0 + t) ≡ (x_j + t) + x_0 (mod N)`."
+   },
+   {
+    "name": "FRC.Composite.cluster_offset",
+    "module": "FrcCore/Theme/Composite",
+    "line": 51,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "22:C15, lem:mbody (i)–(ii), 22:C18 — the offset is the orbit label: two configurations `x, y` of the cluster `(ℤ/N)^m` (`0 < m`, `y` reduced) lie on one orbit of the diagonal drive exactly when their offset vectors agree, `x_j − x_0 ≡ y_j − y_0 (mod N)` for every cell `j`; the drive time `t` is a residue, `t < N`, and no drive evolution connects distinct offsets."
+   },
+   {
+    "name": "FRC.Composite.locked_norm",
+    "module": "FrcCore/Theme/Composite",
+    "line": 103,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "lem:mbody (iii), 22:C15, 22:C22 — on the synchronised orbit the amplitudes add coherently: `Σ_{i<m} χ = m χ`, and the weight `(m χ)(m χ̄) = m²` when `χ χ̄ = 1`."
+   },
+   {
+    "name": "FRC.Composite.spread_average",
+    "module": "FrcCore/Theme/Composite",
+    "line": 224,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "lem:mbody (iii), 22:C22, 22:C15 — **the offset-uniform average is `m`**: for `m` cells with independent uniform phases on a cycle of order `n` (`ζ` of order `n`, `η = ζ⁻¹`, neither `1`), the sum over all `n^m` configurations of `|Σ_i ζ^{v_i}|² = (Σ_i ζ^{v_i})(Σ_j η^{v_j})` is `m n^m`, the average `m`, against `m²` on the synchronised orbit: the `√m` lives only in amplitude-coherent observables."
+   },
+   {
+    "name": "FRC.Quantum.pair_offset",
+    "module": "FrcCore/Theme/Quantum",
+    "line": 182,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "00:F2, 22:C26, 22:C15, 22:C18, 22:P3 — two parts of periods `a`, `b` with joint period `T` (a common multiple, and no positive common multiple below it): the number `g` with `g T = a b` divides both periods, and every common divisor divides it (`g` is the gcd); the joint drive carries `(x, y)` to `(x', y')` within one joint period exactly when the offsets agree modulo `g` — the conserved offset on the gcd cycle, the orbits the quotient `A/⟨v⟩ ≅ ℤ/g`."
+   }
+  ],
+  "C16": [
+   {
+    "name": "FRC.Composite.half_turn_sixteen",
+    "module": "FrcCore/Theme/Composite",
+    "line": 256,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "22:C16 — an element of order `16` has `v⁸ = −1`: the half-turn supplies the sign."
+   },
+   {
+    "name": "FRC.Composite.doublet_readout",
+    "module": "FrcCore/Theme/Composite",
+    "line": 272,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "22:C16 — **the forced readout is `σ_x`**: on the `C_{16}` Object `⟨v⟩` read by a core-`C_8` Subject (`ω = v²` the core's generator), the doublet state `u^k + λ u^{k+8}` registers on the matched channel `r = k mod 8` over the two cosets `s ∈ {0, 1}` (the fibre `v^s ⟨ω⟩`) as `Ψ(s) = 8 v^{sk} (1 + λ (v⁸)^s)`, that is `Ψ(0) = 8(1 + λ)` and `Ψ(1) = 8 v^k (1 − λ)` by the half-turn `v⁸ = −1` (`half_turn_sixteen`)."
+   },
+   {
+    "name": "FRC.Composite.carrier_641",
+    "module": "FrcCore/Theme/Composite",
+    "line": 438,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "22:C16, 22:C17 — the worked carrier `𝔽₆₄₁` (`κ = 160`): `g = 3` is primitive; the Object generator `g_O = g⁴⁰ = 601` has order `16` and `g_O⁸ = −1` (the doublet's sign); the setting step `ζ₈₀ = g⁸ = 151` has order `80`; the octant `ζ₈ = g⁸⁰ = 318` has `ζ₈⁴ = −1`, `(ζ₈ + ζ₈⁷)² = 2` and `S² = 8`; the Bell core is `C₈` (`gcd(40, 16) = 8`)."
+   }
+  ],
+  "C17": [
+   {
+    "name": "FRC.Shell.Prime.tsirelson",
+    "module": "FrcCore/Theme/Field",
+    "line": 380,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "00:C8, 22:C17, 22:C25, 22:X7, 22:P3 — the Tsirelson square without a generator: `ζ⁴ = −1` gives `(ζ + ζ⁷)² = 2`."
+   },
+   {
+    "name": "FRC.Composite.singlet_square",
+    "module": "FrcCore/Theme/Composite",
+    "line": 297,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "22:C17, 22:X7, 22:C25, 22:P3 — the Tsirelson square: `S = 2(ζ + ζ⁷)` for `ζ⁴ = −1` has `S² = 8` on every shell, the shadow of the ring identity `S² = 8` in `ℤ[ζ₈]`."
+   },
+   {
+    "name": "FRC.Composite.no_signalling",
+    "module": "FrcCore/Theme/Composite",
+    "line": 304,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "22:C17 — no-signalling: the marginal of one wing, `c(1 + E) + c(1 − E)` over the two outcomes of the other (`c = 1/4`), is `2c`, independent of the correlator and so of the far setting."
+   },
+   {
+    "name": "FRC.Observation.reduce_mul",
+    "module": "FrcCore/Theme/Observation",
+    "line": 378,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "22:C9, 22:C17 — the reduction is multiplicative: with `v^n = 1`, the shadow of the convolution `c ⋆ c'` is the product of the shadows; the Carrier-chart amplitude of a product is the product of the amplitudes, exact as algebra."
+   },
+   {
+    "name": "FRC.Composite.carrier_641",
+    "module": "FrcCore/Theme/Composite",
+    "line": 438,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "22:C16, 22:C17 — the worked carrier `𝔽₆₄₁` (`κ = 160`): `g = 3` is primitive; the Object generator `g_O = g⁴⁰ = 601` has order `16` and `g_O⁸ = −1` (the doublet's sign); the setting step `ζ₈₀ = g⁸ = 151` has order `80`; the octant `ζ₈ = g⁸⁰ = 318` has `ζ₈⁴ = −1`, `(ζ₈ + ζ₈⁷)² = 2` and `S² = 8`; the Bell core is `C₈` (`gcd(40, 16) = 8`)."
+   },
+   {
+    "name": "FRC.Qm.tsirelson_real",
+    "module": "FrcLedger/Qm",
+    "line": 41,
+    "axioms": [
+     "Classical.choice",
+     "Quot.sound",
+     "propext"
+    ],
+    "tier": 2,
+    "ok": true,
+    "doc": "22:C17, 22:X7, 22:C25, 22:P3 [chart] — the Tsirelson value `2√2` (`FRC.Chart.tsirelson_real`, `Theme/Chart.lean`)."
+   },
+   {
+    "name": "FRC.Qm.singlet_law",
+    "module": "FrcLedger/Qm",
+    "line": 84,
+    "axioms": [
+     "Classical.choice",
+     "Quot.sound",
+     "propext"
+    ],
+    "tier": 2,
+    "ok": true,
+    "doc": "22:C17 [chart] — the singlet law `E(Δ) = cos(πΔ/40)` (`FRC.Chart.singlet_law`, `Theme/Chart.lean`)."
+   }
+  ],
+  "C18": [
+   {
+    "name": "FRC.Quantum.pair_offset",
+    "module": "FrcCore/Theme/Quantum",
+    "line": 182,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "00:F2, 22:C26, 22:C15, 22:C18, 22:P3 — two parts of periods `a`, `b` with joint period `T` (a common multiple, and no positive common multiple below it): the number `g` with `g T = a b` divides both periods, and every common divisor divides it (`g` is the gcd); the joint drive carries `(x, y)` to `(x', y')` within one joint period exactly when the offsets agree modulo `g` — the conserved offset on the gcd cycle, the orbits the quotient `A/⟨v⟩ ≅ ℤ/g`."
+   },
+   {
+    "name": "FRC.Composite.cluster_offset",
+    "module": "FrcCore/Theme/Composite",
+    "line": 51,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "22:C15, lem:mbody (i)–(ii), 22:C18 — the offset is the orbit label: two configurations `x, y` of the cluster `(ℤ/N)^m` (`0 < m`, `y` reduced) lie on one orbit of the diagonal drive exactly when their offset vectors agree, `x_j − x_0 ≡ y_j − y_0 (mod N)` for every cell `j`; the drive time `t` is a residue, `t < N`, and no drive evolution connects distinct offsets."
+   }
+  ],
+  "C19": [
+   {
+    "name": "FRC.Composite.channel_complementarity",
+    "module": "FrcCore/Theme/Composite",
+    "line": 315,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "22:C19, 22:P1 — **`V² + C² = 1`** on every shell: for a unit phase `x` with inverse `y`, the visibility `V = (x + y)/2` and the concurrence `C = (x − y)/(2i)` (`h = 1/2`, `i² = −1`, `1/i = −i`) satisfy `V² + C² = 1` exactly, the which-path complementarity of the pure gravitational channel."
+   },
+   {
+    "name": "FRC.Composite.channel_product_at_zero",
+    "module": "FrcCore/Theme/Composite",
+    "line": 324,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "22:C19 — at zero coupling the branch state is a product: the concurrence vanishes, `C = h (x − x)(−i) = 0`."
+   },
+   {
+    "name": "FRC.Qm.channel_chart",
+    "module": "FrcLedger/Qm",
+    "line": 90,
+    "axioms": [
+     "Classical.choice",
+     "Quot.sound",
+     "propext"
+    ],
+    "tier": 2,
+    "ok": true,
+    "doc": "22:C19, 22:P1 [chart] — the channel's chart: `V = cos(φ/2)`, `C = sin(φ/2)`, `V² + C² = 1` (`FRC.Chart.channel_chart`, `Theme/Chart.lean`)."
+   },
+   {
+    "name": "FRC.Qm.channel_entangles",
+    "module": "FrcLedger/Qm",
+    "line": 71,
+    "axioms": [
+     "Classical.choice",
+     "Quot.sound",
+     "propext"
+    ],
+    "tier": 2,
+    "ok": true,
+    "doc": "22:C19 [chart] — the channel entangles off the trivial phase: `sin(φ/2) ≠ 0` for `0 < φ < 2π` (`FRC.Chart.channel_entangles`, `Theme/Chart.lean`)."
+   }
+  ],
+  "C20": [
+   {
+    "name": "FRC.Composite.drive_norm",
+    "module": "FrcCore/Theme/Composite",
+    "line": 331,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "22:C20 — the drive conserves the ledger norm: a unit phase `u` (`u ū = 1`) leaves `a ā` unchanged, so an isolated superposition keeps unit fringe contrast at every drive time."
+   },
+   {
+    "name": "FRC.Composite.revival",
+    "module": "FrcCore/Theme/Composite",
+    "line": 336,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "22:C20 — the exact revival: the visibility `V(t) = Σ_E p_E ζ^{E t}` returns to `Σ_E p_E` at the recurrence `n` (`ζ^n = 1`): dephasing, never collapse."
+   },
+   {
+    "name": "FRC.Quantum.joint_recurrence",
+    "module": "FrcCore/Theme/Quantum",
+    "line": 121,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "00:F2, 22:C26, 22:C10, 22:C20 — the joint recurrence of an unequal-cycle composite, found below a common multiple `L > 0` of the periods (on a shell, a joint return below `Ω`): the chronons at which all `m` parts return are exactly the multiples of one period `T`, `0 < T ≤ L`, which divides `L`. The search never passes `L` (Q20)."
+   }
+  ],
+  "C21": [
+   {
+    "name": "FRC.Composite.branch_phase",
+    "module": "FrcCore/Theme/Composite",
+    "line": 348,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "22:C21 (ii), 22:P1 — the branch phase of `m_c` synchronised cells is the coherent product `ζ^{m_c a}`."
+   },
+   {
+    "name": "FRC.Composite.pair_product",
+    "module": "FrcCore/Theme/Composite",
+    "line": 352,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "22:C21 (ii) — the pairwise law: the phase of `m₁` against `m₂` synchronised cells is `ζ^{m₁ m₂ a}`."
+   },
+   {
+    "name": "FRC.Composite.spread_cancels",
+    "module": "FrcCore/Theme/Composite",
+    "line": 356,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "22:C21 (iii) — a complete sector sum vanishes: the offset-spread cells' phases cancel over one cycle."
+   },
+   {
+    "name": "FRC.Composite.channel_assembly",
+    "module": "FrcCore/Theme/Composite",
+    "line": 361,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "22:C21 (iii), 22:P1 — the reduced channel factorises: the offset distribution's partial sum times the coherent phase, `Σ_θ p_θ ζ^{θ + c} = (Σ_θ p_θ ζ^θ) ζ^c = χ_inc · ζ^{f φ}`."
+   }
+  ],
+  "C22": [
+   {
+    "name": "FRC.Composite.field_linear",
+    "module": "FrcCore/Theme/Composite",
+    "line": 246,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "22:C22 (i) — the stationary field is linear in its sources with coefficient exactly `m` per locked cluster of `m` cells: `Σ_{i<m} u = m u`."
+   },
+   {
+    "name": "FRC.Composite.eta_zero",
+    "module": "FrcCore/Theme/Composite",
+    "line": 250,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "22:C22 (ii) — the exact equivalence-principle null: the pull `m_t ∇u` on a locked test cluster against its inertia `m_t` gives the acceleration `∇u` for every `m_t` (`w = m_t⁻¹`), so `η = 0` identically."
+   },
+   {
+    "name": "FRC.Composite.locked_norm",
+    "module": "FrcCore/Theme/Composite",
+    "line": 103,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "lem:mbody (iii), 22:C15, 22:C22 — on the synchronised orbit the amplitudes add coherently: `Σ_{i<m} χ = m χ`, and the weight `(m χ)(m χ̄) = m²` when `χ χ̄ = 1`."
+   },
+   {
+    "name": "FRC.Composite.spread_average",
+    "module": "FrcCore/Theme/Composite",
+    "line": 224,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "lem:mbody (iii), 22:C22, 22:C15 — **the offset-uniform average is `m`**: for `m` cells with independent uniform phases on a cycle of order `n` (`ζ` of order `n`, `η = ζ⁻¹`, neither `1`), the sum over all `n^m` configurations of `|Σ_i ζ^{v_i}|² = (Σ_i ζ^{v_i})(Σ_j η^{v_j})` is `m n^m`, the average `m`, against `m²` on the synchronised orbit: the `√m` lives only in amplitude-coherent observables."
+   }
+  ],
+  "C23": [
+   {
+    "name": "FRC.Composite.joint_refinement",
+    "module": "FrcCore/Theme/Composite",
+    "line": 379,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "22:C23 (i), 22:X4 — joint refinement: the common cosets of two cores (classes modulo `α` and modulo `β` on the Object cycle) are the classes modulo one period `T`, the common core's, in either order; `T` lies below the product `αβ` (`FRC.Quantum.joint_recurrence` on the two parts, the search bounded by `αβ`)."
+   },
+   {
+    "name": "FRC.Composite.order_independence",
+    "module": "FrcCore/Theme/Composite",
+    "line": 371,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "22:C23 (ii), 22:X4 — shared-core agreement: with the common core of order `e` dividing both cores `a`, `b`, the channels `r ≡ k (mod a)` of `S` and `r' ≡ k (mod b)` of `S'` agree on the common core, `r ≡ r' (mod e)`: both induce the one character `η_{k mod e}`."
+   },
+   {
+    "name": "FRC.Observation.selection",
+    "module": "FrcCore/Theme/Observation",
+    "line": 249,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "22:C4, 22:C23, 22:X3, 22:C24, 22:X5 — the selection rule: a pointer channel `r < d` couples to the Object winding `k` over a fibre of the core exactly when their core phases agree, `k ≡ r (mod d)`: `Σ_{j<d} ω^{kj} ω^{(d−r)j} = d [k ≡ r]`."
+   }
+  ],
+  "C24": [
+   {
+    "name": "FRC.Observation.classicality_index",
+    "module": "FrcCore/Theme/Observation",
+    "line": 480,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "22:C24, 22:X5 — with the core `C_d` of index `k` in the Object cycle `C_n = C_{dk}`: the Object is absorbed (classical, one outcome per channel) exactly when `k = 1`, that is when its cycle is the core, and resolved (quantum) exactly when `1 < k`, that is when the core is a proper subgroup."
+   },
+   {
+    "name": "FRC.Observation.selection",
+    "module": "FrcCore/Theme/Observation",
+    "line": 249,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "22:C4, 22:C23, 22:X3, 22:C24, 22:X5 — the selection rule: a pointer channel `r < d` couples to the Object winding `k` over a fibre of the core exactly when their core phases agree, `k ≡ r (mod d)`: `Σ_{j<d} ω^{kj} ω^{(d−r)j} = d [k ≡ r]`."
+   },
+   {
+    "name": "FRC.Composite.carrier_421",
+    "module": "FrcCore/Theme/Composite",
+    "line": 428,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "22:C24, 22:X5 — the worked carrier `𝔽₄₂₁` (`κ = 105`): `g = 2` is primitive, `I = g^{−105} = g^{315} = 392`, `I² = −1`; the Subject `S₆₁` (`C₆₀`) resolves `O₂₉` (`C₂₈`) through the core `Q₄` (`gcd(60, 28) = 4`) in seven outcomes (`28 = 4 · 7`) and absorbs `O₁₃` (`C₁₂`, `gcd(60, 12) = 12`, one outcome): quantumness is the subgroup index."
+   }
+  ],
+  "C25": [
+   {
+    "name": "FRC.Shell.Prime.tsirelson",
+    "module": "FrcCore/Theme/Field",
+    "line": 380,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "00:C8, 22:C17, 22:C25, 22:X7, 22:P3 — the Tsirelson square without a generator: `ζ⁴ = −1` gives `(ζ + ζ⁷)² = 2`."
+   },
+   {
+    "name": "FRC.Composite.singlet_square",
+    "module": "FrcCore/Theme/Composite",
+    "line": 297,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "22:C17, 22:X7, 22:C25, 22:P3 — the Tsirelson square: `S = 2(ζ + ζ⁷)` for `ζ⁴ = −1` has `S² = 8` on every shell, the shadow of the ring identity `S² = 8` in `ℤ[ζ₈]`."
+   },
+   {
+    "name": "FRC.Qm.tsirelson_real",
+    "module": "FrcLedger/Qm",
+    "line": 41,
+    "axioms": [
+     "Classical.choice",
+     "Quot.sound",
+     "propext"
+    ],
+    "tier": 2,
+    "ok": true,
+    "doc": "22:C17, 22:X7, 22:C25, 22:P3 [chart] — the Tsirelson value `2√2` (`FRC.Chart.tsirelson_real`, `Theme/Chart.lean`)."
+   }
+  ],
+  "C26": [
+   {
+    "name": "FRC.Quantum.joint_recurrence",
+    "module": "FrcCore/Theme/Quantum",
+    "line": 121,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "00:F2, 22:C26, 22:C10, 22:C20 — the joint recurrence of an unequal-cycle composite, found below a common multiple `L > 0` of the periods (on a shell, a joint return below `Ω`): the chronons at which all `m` parts return are exactly the multiples of one period `T`, `0 < T ≤ L`, which divides `L`. The search never passes `L` (Q20)."
+   },
+   {
+    "name": "FRC.Quantum.joint_least",
+    "module": "FrcCore/Theme/Quantum",
+    "line": 150,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "22:C26 — the joint period is the least common multiple: no positive joint return comes earlier."
+   },
+   {
+    "name": "FRC.Quantum.pair_offset",
+    "module": "FrcCore/Theme/Quantum",
+    "line": 182,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "00:F2, 22:C26, 22:C15, 22:C18, 22:P3 — two parts of periods `a`, `b` with joint period `T` (a common multiple, and no positive common multiple below it): the number `g` with `g T = a b` divides both periods, and every common divisor divides it (`g` is the gcd); the joint drive carries `(x, y)` to `(x', y')` within one joint period exactly when the offsets agree modulo `g` — the conserved offset on the gcd cycle, the orbits the quotient `A/⟨v⟩ ≅ ℤ/g`."
+   },
+   {
+    "name": "FRC.Quantum.dephasing",
+    "module": "FrcCore/Theme/Quantum",
+    "line": 330,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "00:F2, 22:C26, 22:C7 — dephasing is exact: on a prime shell `q`, a character `χ(x) = Π_j ζ_j^{x_j}` of the composite (`ζ_j^{n_j} = 1`) that the drive moves (`χ(v) = Π_j ζ_j ≠ 1`) sums to zero along the drive, `Σ_{t<M} χ(t v) = 0`, over every joint recurrence `M`, the product of the periods among them."
+   },
+   {
+    "name": "FRC.Composite.winding_period",
+    "module": "FrcCore/Theme/Composite",
+    "line": 79,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "22:C26 — the winding `s` on the cycle `C_n` has period `n/gcd(s, n)`: with `n = d n'`, `s = d s'` and `d` the gcd (`s' u = n' v + 1` the Bezout witness of coprimality), the drive `x ↦ x + s` returns, `s t ≡ 0 (mod n)`, exactly when `n' ∣ t`; the joint recurrence of a composite is then the lcm of these periods (`FRC.Quantum.joint_recurrence`)."
+   }
+  ],
+  "C27": [
+   {
+    "name": "FRC.Observation.transport_trichotomy",
+    "module": "FrcCore/Theme/Observation",
+    "line": 526,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "22:C27 — the ambient quarter-turn `g^{−κ} = g^{3κ}` of a shell of capacity `κ` reduces onto an embedded label `C_n`, `n = 4m` dividing `4κ` (`κ = m t`), generated by `ζ`, as `ζ^{3κ}`: it is the label's own quarter-turn `ζ^{3m}` (faithful) exactly when `κ ≡ m (mod n)`, its conjugate `ζ^m` exactly when `κ + m ≡ 0 (mod n)`, and a sign (broken, no quarter-turn: its square is `1`) exactly when `κ ≡ 0 (mod n/2)`, the complement of the two quarter-turn cases; for `n = 4` the three cases are `κ ≡ 1`, `κ ≡ 3` and `κ` even, the residue mod `4`; on `C_{40}` the broken case is `κ ≡ 0 (mod 20)`, the `𝔽_{641}` case (`κ = 160`). Off the embedding (`m ∤ κ`) the element `ζ^{3κ}` is not the reduction of the ambient quarter-turn and the criterion does not apply."
+   },
+   {
+    "name": "FRC.Observation.transport_cases",
+    "module": "FrcCore/Theme/Observation",
+    "line": 583,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "22:C27 — the three cases read on the capacity, decided by the kernel on the worked labels `C_{40}`, `Q₄` and `C_{12}`: `3κ ≡ 3m`, `3κ ≡ m` and `6κ ≡ 0 (mod 4m)` are `κ ≡ m`, `κ + m ≡ 0` and `κ ≡ 0 (mod 2m)`, and on `C_{12}` (`m = 3`, the embedded capacities `κ = 3t`) the faithful case is `κ ≡ 3 (mod 12)`."
+   }
+  ],
+  "X1": [
+   {
+    "name": "FRC.Observation.window_lift",
+    "module": "FrcCore/Theme/Observation",
+    "line": 410,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "22:C10, 22:X1, 22:X6 — the unique window lift: two tallies below the window `Ω` with one shadow are equal, so a sub-horizon tally is the unique lift of its residue."
+   },
+   {
+    "name": "FRC.Observation.pair_count",
+    "module": "FrcCore/Theme/Observation",
+    "line": 285,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "22:C7, 22:X1 — the pair count: the squared amplitude is the double sum of phase agreements, `(Σ_j ψ_j)(Σ_l ψ̄_l) = Σ_j Σ_l ψ_j ψ̄_l`."
+   },
+   {
+    "name": "FRC.Observation.pure_winding_weight",
+    "module": "FrcCore/Theme/Observation",
+    "line": 291,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "22:C7, 22:C10, 22:X1 — on a pure winding `k` the weight of the channel `r < d` is `d² [k ≡ r (mod d)]`: the amplitude `Σ_j ω^{kj} ω^{(d−r)j}` times its conjugate `Σ_l ω^{rl} ω^{(d−k)l}` (the conjugate winding `d − k % d`)."
+   },
+   {
+    "name": "FRC.Extension.two_way_tally",
+    "module": "FrcCore/Theme/Extension",
+    "line": 440,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "00:C10 (S1), 22:C10, 22:X1 — the part of the extension fixed by its conjugation is the tally line: a weight `z` is its own conjugate exactly when its `w`-component vanishes (the frame's odd prime), and the symmetrised weight `z + z̄` is the tally-line element `tr(z)`. For `ℤ[i]`, `ν = −1`, this is the paper's two-way subring."
+   },
+   {
+    "name": "FRC.Qm.pair_count_tally",
+    "module": "FrcLedger/Qm",
+    "line": 55,
+    "axioms": [
+     "Classical.choice",
+     "Quot.sound",
+     "propext"
+    ],
+    "tier": 2,
+    "ok": true,
+    "doc": "22:C7, 22:X1 — the ledger weight `z z̄ = N(z)` is a nonnegative integer, the coincidence count (`FRC.QuantumML.pair_count_tally`, `Theme/Quantum.lean`)."
+   }
+  ],
+  "X2": [
+   {
+    "name": "FRC.Observation.shared_core",
+    "module": "FrcCore/Theme/Observation",
+    "line": 432,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "22:C13, 22:X2 — the shared core of two framed shells: an element of both cycles `C_{4κ}` and `C_{4κ'}` lies in `Q₄` when the capacities are coprime (`κ a = κ' b + 1` the Bezout witness), and `Q₄` lies in every such cycle."
+   },
+   {
+    "name": "FRC.Observation.no_quarter_turn",
+    "module": "FrcCore/Theme/Observation",
+    "line": 445,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "22:C13, 22:X2 — a shell `p ≡ 3 (mod 4)` has no quarter-turn: no `x` with `x² = −1`, since such an `x` has order `4`, which divides `p − 1` by Fermat."
+   }
+  ],
+  "X3": [
+   {
+    "name": "FRC.Observation.orthogonality",
+    "module": "FrcCore/Theme/Observation",
+    "line": 237,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "22:C3, 22:X3 — orthogonality of the forced basis: for a core `C_d` generated by `ω`, the characters `η_r(j) = ω^{rj}` satisfy `Σ_{j<d} η_r(j) η_{r'}(j)⁻¹ = d δ_{rr'}` (the inverse character is `ω^{(d−r')j}`)."
+   },
+   {
+    "name": "FRC.Observation.selection",
+    "module": "FrcCore/Theme/Observation",
+    "line": 249,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "22:C4, 22:C23, 22:X3, 22:C24, 22:X5 — the selection rule: a pointer channel `r < d` couples to the Object winding `k` over a fibre of the core exactly when their core phases agree, `k ≡ r (mod d)`: `Σ_{j<d} ω^{kj} ω^{(d−r)j} = d [k ≡ r]`."
+   }
+  ],
+  "X4": [
+   {
+    "name": "FRC.Composite.joint_refinement",
+    "module": "FrcCore/Theme/Composite",
+    "line": 379,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "22:C23 (i), 22:X4 — joint refinement: the common cosets of two cores (classes modulo `α` and modulo `β` on the Object cycle) are the classes modulo one period `T`, the common core's, in either order; `T` lies below the product `αβ` (`FRC.Quantum.joint_recurrence` on the two parts, the search bounded by `αβ`)."
+   },
+   {
+    "name": "FRC.Composite.order_independence",
+    "module": "FrcCore/Theme/Composite",
+    "line": 371,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "22:C23 (ii), 22:X4 — shared-core agreement: with the common core of order `e` dividing both cores `a`, `b`, the channels `r ≡ k (mod a)` of `S` and `r' ≡ k (mod b)` of `S'` agree on the common core, `r ≡ r' (mod e)`: both induce the one character `η_{k mod e}`."
+   },
+   {
+    "name": "FRC.Observation.lueders",
+    "module": "FrcCore/Theme/Observation",
+    "line": 258,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "22:C5, 22:X4 — the Lüders projector of the channel `r`, `Π_{jl} = ω^{rj} ω^{(d−r)l}`, is idempotent up to `d`: `Π² = d Π`, so an immediately repeated registration returns the outcome."
+   }
+  ],
+  "X5": [
+   {
+    "name": "FRC.Observation.classicality_index",
+    "module": "FrcCore/Theme/Observation",
+    "line": 480,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "22:C24, 22:X5 — with the core `C_d` of index `k` in the Object cycle `C_n = C_{dk}`: the Object is absorbed (classical, one outcome per channel) exactly when `k = 1`, that is when its cycle is the core, and resolved (quantum) exactly when `1 < k`, that is when the core is a proper subgroup."
+   },
+   {
+    "name": "FRC.Observation.selection",
+    "module": "FrcCore/Theme/Observation",
+    "line": 249,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "22:C4, 22:C23, 22:X3, 22:C24, 22:X5 — the selection rule: a pointer channel `r < d` couples to the Object winding `k` over a fibre of the core exactly when their core phases agree, `k ≡ r (mod d)`: `Σ_{j<d} ω^{kj} ω^{(d−r)j} = d [k ≡ r]`."
+   },
+   {
+    "name": "FRC.Composite.carrier_421",
+    "module": "FrcCore/Theme/Composite",
+    "line": 428,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "22:C24, 22:X5 — the worked carrier `𝔽₄₂₁` (`κ = 105`): `g = 2` is primitive, `I = g^{−105} = g^{315} = 392`, `I² = −1`; the Subject `S₆₁` (`C₆₀`) resolves `O₂₉` (`C₂₈`) through the core `Q₄` (`gcd(60, 28) = 4`) in seven outcomes (`28 = 4 · 7`) and absorbs `O₁₃` (`C₁₂`, `gcd(60, 12) = 12`, one outcome): quantumness is the subgroup index."
+   }
+  ],
+  "X6": [
+   {
+    "name": "FRC.Observation.window_lift",
+    "module": "FrcCore/Theme/Observation",
+    "line": 410,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "22:C10, 22:X1, 22:X6 — the unique window lift: two tallies below the window `Ω` with one shadow are equal, so a sub-horizon tally is the unique lift of its residue."
+   },
+   {
+    "name": "FRC.Extension.Tally.tally_criterion",
+    "module": "FrcCore/Theme/Tally",
+    "line": 81,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "00:C11 (i′), 22:C12, 22:X6 — the tally criterion on the box: the pair tally of `K_c` on `ψ_k` is a tally (a nonnegative integer) iff `0 ≤ c_k` — the cone's two halves: every tally combination is tally-valued on the windings, and a kernel with a negative coefficient is excluded by its own winding."
+   },
+   {
+    "name": "FRC.Extension.Tally.channel_selectivity",
+    "module": "FrcCore/Theme/Tally",
+    "line": 97,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "00:C11 (iv), 22:C12, 22:X6 — channel-selectivity picks the ray: a kernel of the cube responds on exactly one channel iff its coefficient vector is a scaled unit vector."
+   },
+   {
+    "name": "FRC.Extension.framed_readout",
+    "module": "FrcCore/Theme/Extension",
+    "line": 628,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "00:C10 (S5–S7), 22:C10, 22:C11, 22:X6 — a registered probability is a framed rational, decided by the kernel: the grid bound `s_n² ≤ 2 · 9ⁿ < (s_n + 1)²` at every scale `n ≤ 8` and the readouts nest, `3 s_n ≤ s_{n+1} ≤ 3 s_n + 2`; the readout `R_4((2 + √2)/8) = (2 · 3⁴ + 114)/(8 · 3⁴) = 23/54`; the `√3` instance `s_3 = 46`; the largest-remainder allocation at `B = 81` of `(23/54, 23/54, 4/54, 4/54)` is `35 + 34 + 6 + 6` (the floors `34 + 34 + 6 + 6`, the one seat left to the first of the two remainders `27/54`). A readout computation over the naturals of the laboratory host (decision Q20)."
+   }
+  ],
+  "X7": [
+   {
+    "name": "FRC.Shell.Prime.tsirelson",
+    "module": "FrcCore/Theme/Field",
+    "line": 380,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "00:C8, 22:C17, 22:C25, 22:X7, 22:P3 — the Tsirelson square without a generator: `ζ⁴ = −1` gives `(ζ + ζ⁷)² = 2`."
+   },
+   {
+    "name": "FRC.Composite.singlet_square",
+    "module": "FrcCore/Theme/Composite",
+    "line": 297,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "22:C17, 22:X7, 22:C25, 22:P3 — the Tsirelson square: `S = 2(ζ + ζ⁷)` for `ζ⁴ = −1` has `S² = 8` on every shell, the shadow of the ring identity `S² = 8` in `ℤ[ζ₈]`."
+   },
+   {
+    "name": "FRC.Qm.tsirelson_real",
+    "module": "FrcLedger/Qm",
+    "line": 41,
+    "axioms": [
+     "Classical.choice",
+     "Quot.sound",
+     "propext"
+    ],
+    "tier": 2,
+    "ok": true,
+    "doc": "22:C17, 22:X7, 22:C25, 22:P3 [chart] — the Tsirelson value `2√2` (`FRC.Chart.tsirelson_real`, `Theme/Chart.lean`)."
+   }
+  ],
+  "X8": [
+   {
+    "name": "FRC.Interference.sorkin_hierarchy",
+    "module": "FrcCore/Theme/Interference",
+    "line": 81,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "22:C8, 22:X8, 22:P2 — **the Sorkin hierarchy**: for every additive conjugation `c`, every family of paths `a` and every base point `x`, the `k`-fold mixed difference of the weight `w(x) = x c(x)` is zero for every `k ≥ 3`; so the interference terms `I_k = Δ_{a_{k−1}} ⋯ Δ_{a_0} w (0)` vanish exactly from the third order on, on every channel and outcome (the ledger's value reduces to the shadow, and a vanishing shadow lifts to a multiple of `Ω`)."
+   },
+   {
+    "name": "FRC.Observation.wrap_quantised",
+    "module": "FrcCore/Theme/Observation",
+    "line": 419,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "22:X8, 22:P2 — the wrap is quantised: a tally whose shadow vanishes is a multiple of `Ω`, so a lift of the vanishing Sorkin sum above the window is `Ω` times an integer, never a small nonzero number."
+   },
+   {
+    "name": "FRC.Qm.sorkin_hierarchy",
+    "module": "FrcLedger/Qm",
+    "line": 29,
+    "axioms": [
+     "propext"
+    ],
+    "tier": 1,
+    "ok": true,
+    "doc": "22:C8, 22:X8, 22:P2 — the Sorkin hierarchy on every commutative ring with an additive conjugation (`FRC.QuantumML.sorkin_hierarchy`, `Theme/Quantum.lean`)."
+   }
+  ],
+  "P1": [
+   {
+    "name": "FRC.Composite.channel_complementarity",
+    "module": "FrcCore/Theme/Composite",
+    "line": 315,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "22:C19, 22:P1 — **`V² + C² = 1`** on every shell: for a unit phase `x` with inverse `y`, the visibility `V = (x + y)/2` and the concurrence `C = (x − y)/(2i)` (`h = 1/2`, `i² = −1`, `1/i = −i`) satisfy `V² + C² = 1` exactly, the which-path complementarity of the pure gravitational channel."
+   },
+   {
+    "name": "FRC.Composite.branch_phase",
+    "module": "FrcCore/Theme/Composite",
+    "line": 348,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "22:C21 (ii), 22:P1 — the branch phase of `m_c` synchronised cells is the coherent product `ζ^{m_c a}`."
+   },
+   {
+    "name": "FRC.Composite.channel_assembly",
+    "module": "FrcCore/Theme/Composite",
+    "line": 361,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "22:C21 (iii), 22:P1 — the reduced channel factorises: the offset distribution's partial sum times the coherent phase, `Σ_θ p_θ ζ^{θ + c} = (Σ_θ p_θ ζ^θ) ζ^c = χ_inc · ζ^{f φ}`."
+   },
+   {
+    "name": "FRC.Qm.channel_chart",
+    "module": "FrcLedger/Qm",
+    "line": 90,
+    "axioms": [
+     "Classical.choice",
+     "Quot.sound",
+     "propext"
+    ],
+    "tier": 2,
+    "ok": true,
+    "doc": "22:C19, 22:P1 [chart] — the channel's chart: `V = cos(φ/2)`, `C = sin(φ/2)`, `V² + C² = 1` (`FRC.Chart.channel_chart`, `Theme/Chart.lean`)."
+   }
+  ],
+  "P2": [
+   {
+    "name": "FRC.Interference.sorkin_hierarchy",
+    "module": "FrcCore/Theme/Interference",
+    "line": 81,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "22:C8, 22:X8, 22:P2 — **the Sorkin hierarchy**: for every additive conjugation `c`, every family of paths `a` and every base point `x`, the `k`-fold mixed difference of the weight `w(x) = x c(x)` is zero for every `k ≥ 3`; so the interference terms `I_k = Δ_{a_{k−1}} ⋯ Δ_{a_0} w (0)` vanish exactly from the third order on, on every channel and outcome (the ledger's value reduces to the shadow, and a vanishing shadow lifts to a multiple of `Ω`)."
+   },
+   {
+    "name": "FRC.Observation.wrap_quantised",
+    "module": "FrcCore/Theme/Observation",
+    "line": 419,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "22:X8, 22:P2 — the wrap is quantised: a tally whose shadow vanishes is a multiple of `Ω`, so a lift of the vanishing Sorkin sum above the window is `Ω` times an integer, never a small nonzero number."
+   },
+   {
+    "name": "FRC.Qm.sorkin_hierarchy",
+    "module": "FrcLedger/Qm",
+    "line": 29,
+    "axioms": [
+     "propext"
+    ],
+    "tier": 1,
+    "ok": true,
+    "doc": "22:C8, 22:X8, 22:P2 — the Sorkin hierarchy on every commutative ring with an additive conjugation (`FRC.QuantumML.sorkin_hierarchy`, `Theme/Quantum.lean`)."
+   }
+  ],
+  "P3": [
+   {
+    "name": "FRC.Shell.Prime.tsirelson",
+    "module": "FrcCore/Theme/Field",
+    "line": 380,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "00:C8, 22:C17, 22:C25, 22:X7, 22:P3 — the Tsirelson square without a generator: `ζ⁴ = −1` gives `(ζ + ζ⁷)² = 2`."
+   },
+   {
+    "name": "FRC.Composite.singlet_square",
+    "module": "FrcCore/Theme/Composite",
+    "line": 297,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "22:C17, 22:X7, 22:C25, 22:P3 — the Tsirelson square: `S = 2(ζ + ζ⁷)` for `ζ⁴ = −1` has `S² = 8` on every shell, the shadow of the ring identity `S² = 8` in `ℤ[ζ₈]`."
+   },
+   {
+    "name": "FRC.Quantum.pair_offset",
+    "module": "FrcCore/Theme/Quantum",
+    "line": 182,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "00:F2, 22:C26, 22:C15, 22:C18, 22:P3 — two parts of periods `a`, `b` with joint period `T` (a common multiple, and no positive common multiple below it): the number `g` with `g T = a b` divides both periods, and every common divisor divides it (`g` is the gcd); the joint drive carries `(x, y)` to `(x', y')` within one joint period exactly when the offsets agree modulo `g` — the conserved offset on the gcd cycle, the orbits the quotient `A/⟨v⟩ ≅ ℤ/g`."
+   },
+   {
+    "name": "FRC.Qm.tsirelson_real",
+    "module": "FrcLedger/Qm",
+    "line": 41,
+    "axioms": [
+     "Classical.choice",
+     "Quot.sound",
+     "propext"
+    ],
+    "tier": 2,
+    "ok": true,
+    "doc": "22:C17, 22:X7, 22:C25, 22:P3 [chart] — the Tsirelson value `2√2` (`FRC.Chart.tsirelson_real`, `Theme/Chart.lean`)."
+   }
+  ],
+  "P4": [
+   {
+    "name": "FRC.Subject.channel",
+    "module": "FrcCore/Theme/Subject",
+    "line": 135,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "38:A3, 22:A2, 22:P4 — **C20 (p00040), the mass–energy channel**, generator-free on a prime `p` with a quarter-turn `h² = −1`: inside `𝔽_{p²}^×`, `C_{p−1} = 𝔽_p^×` meets the boost torus `C_{p+1} = {z^{p+1} = 1}` in the sign `±1` alone, and the spinor cover `C_{2(p+1)}` in exactly `Q₄ = {±1, ±h}`; the quarter is spinorial, `N(h) = h^{p+1} = h² = −1`."
+   },
+   {
+    "name": "FRC.Subject.horizon_generator",
+    "module": "FrcCore/Theme/Subject",
+    "line": 763,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "00:C25, 22:A2, 22:P4 — the horizon is `ζ^{(p+1)/2}` for every generator `ζ` of the torus: a norm-one `ζ` of order exactly `p + 1` has `ζ^{2κ+1} = −1`, the torus's one element of order two."
+   },
+   {
+    "name": "FRC.Observation.torus_conj_inv",
+    "module": "FrcCore/Theme/Observation",
+    "line": 694,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "22:C6, 22:A2, 22:P4 — on the norm-one torus the conjugation is the inversion: `z · conj z = 1`."
+   }
+  ],
+  "P5": [
+   {
+    "name": "FRC.Interference.tally_norm_mono",
+    "module": "FrcCore/Theme/Interference",
+    "line": 129,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "22:C14, 22:P5 — the tally norm is monotone in the depth."
+   },
+   {
+    "name": "FRC.Interference.ceiling_641",
+    "module": "FrcCore/Theme/Interference",
+    "line": 142,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "22:C14, 22:P5 — **the ceiling on the worked carrier** `Ω = 641`: the largest depth with `T(k) < Ω` is `k* = 8` for the unit core (`T(8) = 256`, `T(9) = 1024`), and with the Bell core `d = 8` it is `6` (`8 T(6) = 512`, `8 T(7) = 2048`)."
+   },
+   {
+    "name": "FRC.Interference.hadamard_even",
+    "module": "FrcCore/Theme/Interference",
+    "line": 116,
+    "axioms": [],
+    "tier": 0,
+    "ok": true,
+    "doc": "22:C14, 22:P5 — `2m` balanced layers give the amplitude `(1 + i)^{2m} = 2^m i^m`."
+   },
+   {
+    "name": "FRC.Qm.ceiling_bracket",
+    "module": "FrcLedger/Qm",
+    "line": 48,
+    "axioms": [
+     "Classical.choice",
+     "Quot.sound",
+     "propext"
+    ],
+    "tier": 2,
+    "ok": true,
+    "doc": "22:C14, 22:P5 [chart] — the ceiling at the anchor (`FRC.Chart.ceiling_bracket`, `Theme/Chart.lean`)."
+   },
+   {
+    "name": "FRC.Qm.gaussian_minimal",
+    "module": "FrcLedger/Qm",
+    "line": 76,
+    "axioms": [
+     "Quot.sound",
+     "propext"
+    ],
+    "tier": 1,
+    "ok": true,
+    "doc": "22:C14, 22:P5 — `2` does not divide `i^m (1 + i)`: the minimal denominator (`FRC.QuantumML.gaussian_minimal`, `Theme/Quantum.lean`)."
+   }
+  ],
+  "Z2": [
+   {
+    "name": "FRC.Qm.omega_floors",
+    "module": "FrcLedger/Qm",
+    "line": 99,
+    "axioms": [
+     "Classical.choice",
+     "Quot.sound",
+     "propext"
+    ],
+    "tier": 2,
+    "ok": true,
+    "doc": "22:A5, 22:Z2 [chart] — the Ω ledger's floors below the anchor (`FRC.Chart.omega_floors`, `Theme/Chart.lean`)."
+   }
+  ]
+ }
 }

@@ -1,4 +1,5 @@
 import FrcLedger.Theme.Gravity
+import FrcLedger.Theme.Quantum
 import FrcLedger.Theme.Horizon
 import FrcLedger.Theme.Chart
 import FrcLedger.Theme.Strong
@@ -110,6 +111,33 @@ theorem p21062 : (∀ (κ : ℕ), (4 : ℕ) * (κ * ((4 : ℕ) * κ + (2 : ℕ))
 /-- p21064 — 21:C19. The registration crossover made exact: the killed walk is the noise sector, first passage the masking event, the window attribution the framed-rational tally ratio $g_N/f$, and the orbital response now derived (Theorem~\ref{thm:twoshift} with the registered-inertia identity); it rests on the masking barrier (B9) and the corpus's unified sampling clause (master D10), shared with \citep{quantum}. -/
 theorem p21064 : (∀ (w : ℝ), (0 : ℝ) < w → w < (1 : ℝ) → w * (((1 : ℝ) - √((1 : ℝ) - w ^ (2 : ℕ))) / w) ^ (2 : ℕ) - (2 : ℝ) * (((1 : ℝ) - √((1 : ℝ) - w ^ (2 : ℕ))) / w) + w = (0 : ℝ) ∧ (0 : ℝ) < ((1 : ℝ) - √((1 : ℝ) - w ^ (2 : ℕ))) / w ∧ ((1 : ℝ) - √((1 : ℝ) - w ^ (2 : ℕ))) / w < (1 : ℝ) ∧ (1 : ℝ) < ((1 : ℝ) + √((1 : ℝ) - w ^ (2 : ℕ))) / w ∧ ∀ (x : ℝ), w * x ^ (2 : ℕ) - (2 : ℝ) * x + w = (0 : ℝ) → x = ((1 : ℝ) - √((1 : ℝ) - w ^ (2 : ℕ))) / w ∨ x = ((1 : ℝ) + √((1 : ℝ) - w ^ (2 : ℕ))) / w) ∧ (∀ (t : ℝ), (0 : ℝ) < t → (0 : ℝ) < (1 : ℝ) - Real.exp (-t) ∧ (1 : ℝ) ≤ t / ((1 : ℝ) - Real.exp (-t)) ∧ (t ≤ (1 : ℝ) → t / ((1 : ℝ) - Real.exp (-t)) ≤ (1 : ℝ) / ((1 : ℝ) - (3 : ℝ) * t / (4 : ℝ))) ∧ ∀ (G M r a₀ v : ℝ), (0 : ℝ) < r → (0 : ℝ) ≤ G * M → (0 : ℝ) ≤ a₀ → v ^ (2 : ℕ) = √(G * M / r ^ (2 : ℕ) * a₀) * r → v ^ (4 : ℕ) = G * M * a₀) ∧ Filter.Tendsto (fun t => t / ((1 : ℝ) - Real.exp (-t))) (nhdsWithin (0 : ℝ) (Set.Ioi (0 : ℝ))) (nhds (1 : ℝ)) :=
   And.intro @FRC.Strong.registration_root (And.intro @FRC.Strong.crossover_limits (@FRC.Strong.crossover_deep_limit))
+set_option linter.defProp false in
+/-- p22005 — 22:A5. The window discipline, committed: the coherence horizon $\sqrt\Omega$, the decidability horizon $\Omega^{1/4}$, and the committed cardinality $\Omega\sim1.3\times10^{123}$ (the corpus's scale import, master A7) --- declared inputs of the programme, their cost recorded in the $\Omega$ ledger. -/
+def p22005 := @FRC.Chart.omega_floors
+/-- p22033 — 22:C17. Exact Tsirelson saturation: the singlet law $E(\Delta)=\cos(\pi\Delta/40)$, $S=2(\zeta_8+\zeta_8^{-1})$, $S^2=8$, the exhaustive $80^3$ sweep never exceeding it; no-signalling and the composite reduction commute. -/
+theorem p22033 : (FRC.Chart.zeta8 + FRC.Chart.zeta8⁻¹ = ↑√(2 : ℝ) ∧ (2 : ℂ) * (FRC.Chart.zeta8 + FRC.Chart.zeta8⁻¹) = ↑((2 : ℝ) * √(2 : ℝ)) ∧ ((2 : ℂ) * (FRC.Chart.zeta8 + FRC.Chart.zeta8⁻¹)) ^ (2 : ℕ) = (8 : ℂ)) ∧ ∀ (Δ : ℕ), (Complex.exp (↑((2 : ℝ) * Real.pi * ↑Δ / (80 : ℝ)) * Complex.I)).re = Real.cos (Real.pi * ↑Δ / (40 : ℝ)) :=
+  And.intro @FRC.Chart.tsirelson_real (@FRC.Chart.singlet_law)
+/-- p22035 — 22:C19. The gravitational channel entangles exactly, $C^2=\sin^2(\varphi/2)$, with the pure-channel complementarity $V^2+C^2=1$. -/
+theorem p22035 : (∀ (φ : ℝ), (Complex.exp (↑(φ / (2 : ℝ)) * Complex.I) + Complex.exp (-(↑(φ / (2 : ℝ)) * Complex.I))) / (2 : ℂ) = ↑(Real.cos (φ / (2 : ℝ))) ∧ (Complex.exp (↑(φ / (2 : ℝ)) * Complex.I) - Complex.exp (-(↑(φ / (2 : ℝ)) * Complex.I))) / ((2 : ℂ) * Complex.I) = ↑(Real.sin (φ / (2 : ℝ))) ∧ Real.cos (φ / (2 : ℝ)) ^ (2 : ℕ) + Real.sin (φ / (2 : ℝ)) ^ (2 : ℕ) = (1 : ℝ) ∧ Real.sin (0 / 2 : ℝ) = (0 : ℝ)) ∧ ∀ (φ : ℝ), (0 : ℝ) < φ → φ < (2 : ℝ) * Real.pi → Real.sin (φ / (2 : ℝ)) ≠ (0 : ℝ) :=
+  And.intro @FRC.Chart.channel_chart (@FRC.Chart.channel_entangles)
+/-- p22041 — 22:C25. The measurement problem dissolved: Kochen--Specker poses no separate threat because values exist only as Subject-relative quotient phases, carried together with the Tsirelson strength $2\sqrt2$. -/
+theorem p22041 : FRC.Chart.zeta8 + FRC.Chart.zeta8⁻¹ = ↑√(2 : ℝ) ∧ (2 : ℂ) * (FRC.Chart.zeta8 + FRC.Chart.zeta8⁻¹) = ↑((2 : ℝ) * √(2 : ℝ)) ∧ ((2 : ℂ) * (FRC.Chart.zeta8 + FRC.Chart.zeta8⁻¹)) ^ (2 : ℕ) = (8 : ℂ) :=
+  @FRC.Chart.tsirelson_real
+/-- p22050 — 22:X7. \textbf{The Tsirelson boundary} is attained as a ring identity, $S=2(\zeta_8+\zeta_8^{-1})=2\sqrt2$, so a relational finite substrate carries full quantum correlation strength, not merely quantum vocabulary. -/
+theorem p22050 : FRC.Chart.zeta8 + FRC.Chart.zeta8⁻¹ = ↑√(2 : ℝ) ∧ (2 : ℂ) * (FRC.Chart.zeta8 + FRC.Chart.zeta8⁻¹) = ↑((2 : ℝ) * √(2 : ℝ)) ∧ ((2 : ℂ) * (FRC.Chart.zeta8 + FRC.Chart.zeta8⁻¹)) ^ (2 : ℕ) = (8 : ℂ) :=
+  @FRC.Chart.tsirelson_real
+/-- p22052 — 22:P1. Gravitationally induced entanglement at exactly the Newtonian rate, $V^2+C^2=1$ on the pure channel: equal force but unequal entanglement --- a source gravitates by its full mass while the systematic conditional phase, the calibrated discriminator, is carried by the coherent sectors alone, the fully incoherent channel separable at generic (nondegenerate) geometry. The one dated forward prediction. -/
+theorem p22052 : ∀ (φ : ℝ), (Complex.exp (↑(φ / (2 : ℝ)) * Complex.I) + Complex.exp (-(↑(φ / (2 : ℝ)) * Complex.I))) / (2 : ℂ) = ↑(Real.cos (φ / (2 : ℝ))) ∧ (Complex.exp (↑(φ / (2 : ℝ)) * Complex.I) - Complex.exp (-(↑(φ / (2 : ℝ)) * Complex.I))) / ((2 : ℂ) * Complex.I) = ↑(Real.sin (φ / (2 : ℝ))) ∧ Real.cos (φ / (2 : ℝ)) ^ (2 : ℕ) + Real.sin (φ / (2 : ℝ)) ^ (2 : ℕ) = (1 : ℝ) ∧ Real.sin (0 / 2 : ℝ) = (0 : ℝ) :=
+  @FRC.Chart.channel_chart
+/-- p22054 — 22:P3. The Tsirelson value $S=2\sqrt2$ exact and the network behaviour of complex (not real) quantum theory: vacuum dispersion, $S\neq2\sqrt2$, or non-quantum network behaviour each falsify. -/
+theorem p22054 : FRC.Chart.zeta8 + FRC.Chart.zeta8⁻¹ = ↑√(2 : ℝ) ∧ (2 : ℂ) * (FRC.Chart.zeta8 + FRC.Chart.zeta8⁻¹) = ↑((2 : ℝ) * √(2 : ℝ)) ∧ ((2 : ℂ) * (FRC.Chart.zeta8 + FRC.Chart.zeta8⁻¹)) ^ (2 : ℕ) = (8 : ℂ) :=
+  @FRC.Chart.tsirelson_real
+/-- p22056 — 22:P5. Quantum computation succeeds as standard quantum mechanics prescribes at every accessible depth; the first deviation, if any, is quantised at the unit-core ceiling $k^*=408$ ($204$ for $\sqrt\Omega$), not gradual. -/
+theorem p22056 : (∀ (Λ ℓP r S Ω : ℝ), Λ = 1088e-55 → ℓP = 1616255e-41 → r ^ (2 : ℕ) = (3 : ℝ) / Λ → S = Real.pi * (r / ℓP) ^ (2 : ℕ) → Ω = (4 : ℝ) * S + (1 : ℝ) → (2 : ℝ) ^ (408 : ℕ) < Ω ∧ Ω / (4 : ℝ) < (2 : ℝ) ^ (408 : ℕ) ∧ (2 : ℝ) ^ (204 : ℕ) < √Ω ∧ √Ω / (4 : ℝ) < (2 : ℝ) ^ (204 : ℕ)) ∧ ∀ (m : ℕ), ¬(2 : GaussianInt) ∣ FRC.QuantumML.gi ^ m * FRC.QuantumML.onePlusI :=
+  And.intro @FRC.Chart.ceiling_bracket (@FRC.QuantumML.gaussian_minimal)
+set_option linter.defProp false in
+/-- p22061 — 22:Z2. The committed $\Omega$ anchor and the binding floor: the carrier scale is fixed by the verified Riemann height through $\Omega^{1/4}$, and a single off-line zero below $\Omega^{1/4}$ falsifies from a desk. -/
+def p22061 := @FRC.Chart.omega_floors
 /-- p38010 — 38:B2. The radial ladder: shells at $R\sin(2a\pi/13)$ [chart]; capacity $4a<\p\Leftrightarrow a\le\kap$. -/
 theorem p38010 : ∀ (R : ℝ), (0 : ℝ) < R → (0 : ℝ) < R * Real.sin ((2 : ℝ) * Real.pi / (13 : ℝ)) ∧ R * Real.sin ((2 : ℝ) * Real.pi / (13 : ℝ)) < R * Real.sin ((4 : ℝ) * Real.pi / (13 : ℝ)) ∧ R * Real.sin ((4 : ℝ) * Real.pi / (13 : ℝ)) < R * Real.sin ((6 : ℝ) * Real.pi / (13 : ℝ)) ∧ R * Real.sin ((6 : ℝ) * Real.pi / (13 : ℝ)) < R :=
   @FRC.Chart.ladder_monotone

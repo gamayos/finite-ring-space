@@ -3623,7 +3623,7 @@ theorem ext_cayley_hamilton (z : Ext p ν) : z * z + Ext.ofShell (Ext.norm z) = 
       (.add (.mul (.add (.var 1) (.var 1)) (.var 2)) (.mul .zero (.var 1)))
       (by decide +kernel))
 
-/-- 00:C10 (S1) — the part of the extension fixed by its conjugation is the tally line: a weight `z` is its own
+/-- 00:C10 (S1), 22:C10, 22:X1 — the part of the extension fixed by its conjugation is the tally line: a weight `z` is its own
 conjugate exactly when its `w`-component vanishes (the frame's odd prime), and the symmetrised weight `z + z̄` is the
 tally-line element `tr(z)`. For `ℤ[i]`, `ν = −1`, this is the paper's two-way subring. -/
 theorem two_way_tally (F : Frame p κ g) (z : Ext p ν) :
@@ -3634,7 +3634,7 @@ theorem two_way_tally (F : Frame p κ g) (z : Ext p ν) :
 /-- The engineered-core weight `W₊ = 2 + w` in `𝔽_p[w]/(w² − 2)`; `W₋ = W̄₊ = 2 − w`. -/
 def Wp : Ext p 2 := ⟨2, 1⟩
 
-/-- 00:C10 (S2, S4) — the engineered-core weights reduce to the core: `W₊ + W₋ = 4` and `W₊ W₋ = 2` in every
+/-- 00:C10 (S2, S4), 22:C10 — the engineered-core weights reduce to the core: `W₊ + W₋ = 4` and `W₊ W₋ = 2` in every
 `𝔽_p[w]/(w² − 2)`, and on `Ω = 641` (`641 ≡ 1 (mod 8)`) as residues, `r = 67`, `r² = 2`, `W± = 2 ± r`, with `r` a
 grid point of the Subject chart of generator `3`, `r = 3⁵⁵⁵` (S4). -/
 theorem core_weights :
@@ -3649,7 +3649,7 @@ theorem core_weights :
   refine ⟨⟨Ext.ext (lit_add 2 2) (Shell.add_neg 1), by rw [Ext.mul_conj, hn], lit_add 2 2, hn⟩, by decide,
     by decide +kernel, by decide +kernel, by decide +kernel, by decide +kernel⟩
 
-/-- 00:C10 (S2) — the two-way root of two: on a frame, for `ζ` of order `8` (`ζ⁸ = 1`, `ζ⁴ ≠ 1`) and `η = ζ⁻¹`,
+/-- 00:C10 (S2), 22:C10 — the two-way root of two: on a frame, for `ζ` of order `8` (`ζ⁸ = 1`, `ζ⁴ ≠ 1`) and `η = ζ⁻¹`,
 `(ζ + η)² = 2`. So `w = ζ₈ + ζ₈⁻¹` lies in the paper's two-way subring, the part of the cyclotomic ring fixed by
 `ζ ↦ ζ⁻¹`, and the engineered-core weights `2 ± w` are two-way (on `641`: `ζ₈ = 318`, `ζ₈ + ζ₈⁻¹ = 574 = −67`). -/
 theorem root_two_two_way (F : Frame p κ g) {ζ η : Shell p} (h8 : ζ ^ 8 = 1) (h4 : ζ ^ 4 ≠ 1) (hζη : ζ * η = 1) :
@@ -3669,7 +3669,7 @@ theorem root_two_two_way (F : Frame p κ g) {ζ η : Shell p} (h8 : ζ ^ 8 = 1) 
     ← pow_two ζ, ← pow_two η, hzero, zero_add]
   exact two_eq.symm
 
-/-- 00:C10 (S9) — the conjugate-pair trace tally: a flip-summed pair of conjugate string weights is core-valued,
+/-- 00:C10 (S9), 22:C11 — the conjugate-pair trace tally: a flip-summed pair of conjugate string weights is core-valued,
 `z^k z̄^(k+m) + z̄^k z^(k+m) = N(z)^k · tr(z^m)` on the tally line, for every weight `z` of every quadratic extension. -/
 theorem conjugate_pair_tally (z : Ext p ν) (k m : Nat) :
     z ^ k * Ext.conj z ^ (k + m) + Ext.conj z ^ k * z ^ (k + m) = Ext.ofShell (Ext.norm z ^ k * Ext.trace (z ^ m)) := by
@@ -3677,7 +3677,7 @@ theorem conjugate_pair_tally (z : Ext p ν) (k m : Nat) :
     Ext.mul_comm (Ext.conj z) z, Ext.mul_conj, ext_ofShell_pow, ← ext_mul_add, ← ext_conj_pow, ext_add_comm,
     ext_tally_line (z ^ m), Ext.ofShell_mul]
 
-/-- 00:C10 (S9) — the trace sequence `t_m = tr(z^m)` obeys `t_{m+2} + N(z) t_m = tr(z) t_{m+1}`; for `W₊` (`tr = 4`,
+/-- 00:C10 (S9), 22:C11 — the trace sequence `t_m = tr(z^m)` obeys `t_{m+2} + N(z) t_m = tr(z) t_{m+1}`; for `W₊` (`tr = 4`,
 `N = 2`): `t_0 = 2`, `t_1 = 4`, `t_{m+2} = 4 t_{m+1} − 2 t_m`, so `t_2 = 12`, `t_3 = 40` (on `Ω = 641`). -/
 theorem trace_recurrence :
     (∀ (z : Ext p ν) (m : Nat), Ext.trace (z ^ (m + 2)) + Ext.norm z * Ext.trace (z ^ m) = Ext.trace z * Ext.trace (z ^ (m + 1))) ∧
@@ -3710,7 +3710,7 @@ theorem geom_sum_zero (F : Frame p κ g) {x : Shell p} (n : Nat) (hn : x ^ n = 1
         _ = (x + -1) + 1 := (add_assoc _ _ _).symm
         _ = 1 := by rw [h, zero_add]) hx
 
-/-- 00:C10 (S9) — the dial-shift conjugation: on a dial of `2M` settings (`ζ^(2M) = 1`, `ζ^M ≠ 1`, `η = ζ⁻¹`), the
+/-- 00:C10 (S9), 22:C11 — the dial-shift conjugation: on a dial of `2M` settings (`ζ^(2M) = 1`, `ζ^M ≠ 1`, `η = ζ⁻¹`), the
 weight at the shifted setting is the conjugate weight, `w₊(M − θ) = w₋(θ)` for `θ ≤ M` (the witness: `M = 40` in
 `ℤ[x]/(x⁴⁰ + 1)`, `w₊(40 − D) = w₋(D)`). -/
 theorem dial_shift (F : Frame p κ g) {ζ η : Shell p} (M : Nat) (h2M : ζ ^ (2 * M) = 1) (hM : ζ ^ M ≠ 1)
@@ -3736,7 +3736,7 @@ theorem dial_shift (F : Frame p κ g) {ζ η : Shell p} (M : Nat) (h2M : ζ ^ (2
       _ = -(ζ ^ θ) := by rw [hηM, neg_one_mul]
   rw [e1, e2, neg_add_rev, add_comm (-(ζ ^ θ))]
 
-/-- 00:C10 (S10) — the dial-ensemble Parseval tally: over a dial of `N` settings closed under `ζ` (`ζ^N = 1`,
+/-- 00:C10 (S10), 22:C11 — the dial-ensemble Parseval tally: over a dial of `N` settings closed under `ζ` (`ζ^N = 1`,
 `ζ² ≠ 1`, `η = ζ⁻¹`) on a frame, the weights `w±(θ) = 2 ± (ζ^θ + η^θ)` sum to `2N`, and so do the products
 `w₊(θ) w₋(θ)`: the cross terms cancel by the character sums (the frame: no zero divisors). -/
 theorem dial_tally (F : Frame p κ g) {ζ η : Shell p} (N : Nat) (hN : ζ ^ N = 1) (hζη : ζ * η = 1) (h2 : ζ * ζ ≠ 1) :
@@ -3809,7 +3809,7 @@ def largestRemainder (B den : Nat) (nums : List Nat) : List Nat :=
   let seats := B - floors.foldl (· + ·) 0
   (List.range nums.length).map (fun i => nth floors i + if remainderRank rems i < seats then 1 else 0)
 
-/-- 00:C10 (S5–S7) — a registered probability is a framed rational, decided by the kernel: the grid bound
+/-- 00:C10 (S5–S7), 22:C10, 22:C11, 22:X6 — a registered probability is a framed rational, decided by the kernel: the grid bound
 `s_n² ≤ 2 · 9ⁿ < (s_n + 1)²` at every scale `n ≤ 8` and the readouts nest, `3 s_n ≤ s_{n+1} ≤ 3 s_n + 2`; the readout
 `R_4((2 + √2)/8) = (2 · 3⁴ + 114)/(8 · 3⁴) = 23/54`; the `√3` instance `s_3 = 46`; the largest-remainder allocation at
 `B = 81` of `(23/54, 23/54, 4/54, 4/54)` is `35 + 34 + 6 + 6` (the floors `34 + 34 + 6 + 6`, the one seat left to the
@@ -4194,7 +4194,7 @@ def support (c₀ c₁ c₂ c₃ : Int) : Nat :=
   (if c₀ = 0 then 0 else 1) + (if c₁ = 0 then 0 else 1) + (if c₂ = 0 then 0 else 1) + (if c₃ = 0 then 0 else 1)
 
 set_option maxRecDepth 4000 in
-/-- 00:C11 (i) — the pure windings fix the tallies on the box `−1 ≤ c_r ≤ 3` (the naturals `a, b, c, d < 5`, cast to
+/-- 00:C11 (i), 22:C12 — the pure windings fix the tallies on the box `−1 ≤ c_r ≤ 3` (the naturals `a, b, c, d < 5`, cast to
 `ℤ` and shifted by one), which contains negative coefficients: `F(K_c, ψ_k) = 16 c_k` for every kernel of the box and
 every channel `k`. -/
 theorem winding_fixing : ∀ a : Nat, a < 5 → ∀ b : Nat, b < 5 → ∀ c : Nat, c < 5 → ∀ d : Nat, d < 5 →
@@ -4203,7 +4203,7 @@ theorem winding_fixing : ∀ a : Nat, a < 5 → ∀ b : Nat, b < 5 → ∀ c : N
       ⟨16 * coeff (Int.ofNat a - 1) (Int.ofNat b - 1) (Int.ofNat c - 1) (Int.ofNat d - 1) k, 0⟩ := by decide +kernel
 
 set_option maxRecDepth 4000 in
-/-- 00:C11 (i′) — the tally criterion on the box: the pair tally of `K_c` on `ψ_k` is a tally (a nonnegative integer)
+/-- 00:C11 (i′), 22:C12, 22:X6 — the tally criterion on the box: the pair tally of `K_c` on `ψ_k` is a tally (a nonnegative integer)
 iff `0 ≤ c_k` — the cone's two halves: every tally combination is tally-valued on the windings, and a kernel with a
 negative coefficient is excluded by its own winding. -/
 theorem tally_criterion : ∀ a : Nat, a < 5 → ∀ b : Nat, b < 5 → ∀ c : Nat, c < 5 → ∀ d : Nat, d < 5 →
@@ -4211,21 +4211,21 @@ theorem tally_criterion : ∀ a : Nat, a < 5 → ∀ b : Nat, b < 5 → ∀ c : 
     (tally (F (kernel (Int.ofNat a - 1) (Int.ofNat b - 1) (Int.ofNat c - 1) (Int.ofNat d - 1)) (psi k)) ↔
       (0 : Int) ≤ coeff (Int.ofNat a - 1) (Int.ofNat b - 1) (Int.ofNat c - 1) (Int.ofNat d - 1) k) := by decide +kernel
 
-/-- 00:C11 (ii) — every kernel of the cube is two-way, `K(−d) = conj K(d)`, and tally-valued on the pure windings. -/
+/-- 00:C11 (ii), 22:C12 — every kernel of the cube is two-way, `K(−d) = conj K(d)`, and tally-valued on the pure windings. -/
 theorem two_way : ∀ a : Nat, a < 4 → ∀ b : Nat, b < 4 → ∀ c : Nat, c < 4 → ∀ d : Nat, d < 4 →
     (∀ e, e < 4 → kernel (Int.ofNat a) (Int.ofNat b) (Int.ofNat c) (Int.ofNat d) ((4 - e) % 4) = conj (kernel (Int.ofNat a) (Int.ofNat b) (Int.ofNat c) (Int.ofNat d) e)) ∧
     (∀ k, k < 4 → tally (F (kernel (Int.ofNat a) (Int.ofNat b) (Int.ofNat c) (Int.ofNat d)) (psi k))) := by decide
 
-/-- 00:C11 (iii) — Fourier inversion recovers every coefficient exactly: `Σ_d K(d) i^{−rd} = 4 c_r`. -/
+/-- 00:C11 (iii), 22:C3, 22:C12 — Fourier inversion recovers every coefficient exactly: `Σ_d K(d) i^{−rd} = 4 c_r`. -/
 theorem fourier_inversion : ∀ a : Nat, a < 4 → ∀ b : Nat, b < 4 → ∀ c : Nat, c < 4 → ∀ d : Nat, d < 4 →
     ∀ r, r < 4 → inversion (kernel (Int.ofNat a) (Int.ofNat b) (Int.ofNat c) (Int.ofNat d)) r = ⟨4 * coeff (Int.ofNat a) (Int.ofNat b) (Int.ofNat c) (Int.ofNat d) r, 0⟩ := by decide
 
-/-- 00:C11 (iv) — channel-selectivity picks the ray: a kernel of the cube responds on exactly one channel iff its
+/-- 00:C11 (iv), 22:C12, 22:X6 — channel-selectivity picks the ray: a kernel of the cube responds on exactly one channel iff its
 coefficient vector is a scaled unit vector. -/
 theorem channel_selectivity : ∀ a : Nat, a < 4 → ∀ b : Nat, b < 4 → ∀ c : Nat, c < 4 → ∀ d : Nat, d < 4 →
     (responses (kernel (Int.ofNat a) (Int.ofNat b) (Int.ofNat c) (Int.ofNat d)) = 1 ↔ support (Int.ofNat a) (Int.ofNat b) (Int.ofNat c) (Int.ofNat d) = 1) := by decide
 
-/-- 00:C11 (v) — the core DFT matrix `(i^{ru})` is invertible: its determinant is `−16i`. -/
+/-- 00:C11 (v), 22:C3, 22:C12 — the core DFT matrix `(i^{ru})` is invertible: its determinant is `−16i`. -/
 theorem dft_det :
     let M := fun r u => ipow (r * u)
     let d2 := fun a b c d : GI => a * d + smul (-1) (b * c)
@@ -4246,7 +4246,7 @@ def psiA (u : Nat) : GI := if u = 0 then ⟨1, 1⟩ else ⟨0, 0⟩
 /-- The Gaussian-lattice state `e₀ + i e₁`. -/
 def psiB (u : Nat) : GI := if u = 0 then ⟨1, 0⟩ else if u = 1 then ⟨0, 1⟩ else ⟨0, 0⟩
 
-/-- 00:C11 (vi) — the witnesses of the cone's boundary (22-quantum's U3, U5, U6a): the negative coefficient
+/-- 00:C11 (vi), 22:C12 — the witnesses of the cone's boundary (22-quantum's U3, U5, U6a): the negative coefficient
 `c = (1, −1, 1, 0)` is excluded by its own winding, `F(K_c, ψ₁) = −16`; the two-way kernel `5η₁ − 2η₂ + η₃` outside the
 box is excluded on `ψ₂` and Fourier inversion recovers `4c = (0, 20, −8, 4)`; the fibre norm `[d = 0]` is two-way,
 responds `(4, 4, 4, 4)` with `4c_r = 1` on every channel (no tally combination) and fails channel-selectivity; the
@@ -4260,7 +4260,7 @@ theorem cone_boundary :
     responses fibreNorm = 4 ∧ (∀ r, r < 4 → inversion fibreNorm r = ⟨1, 0⟩) ∧
     F (kernel 0 1 0 0) (psi 1) = ⟨16, 0⟩ ∧ F (kernel 0 1 0 0) (psi 0) = ⟨0, 0⟩ ∧ responses (kernel 0 1 0 0) = 1 := by decide
 
-/-- 00:C11 (vii) — the minimal degree is forced (22-quantum Lemma degree): a linear functional constant on the orbit
+/-- 00:C11 (vii), 22:C12 — the minimal degree is forced (22-quantum Lemma degree): a linear functional constant on the orbit
 vanishes on every nontrivial winding (the complete character sums), and on the trivial winding `F(i ψ₀) = i F(ψ₀)`
 leaves the tally cone for every nonzero multiplier `c ≤ 4`; and the unconjugated bilinear form leaves the tally line
 on Gaussian-lattice states where the conjugated form of the same kernel stays on it: `B(fn, (1 + i)e₀) = 2i` against
@@ -4318,6 +4318,9 @@ theorem p08002 : ∀ {p : Nat} [FRC.Pos p] {ν : FRC.Shell p} (z : FRC.Extension
 /-- p08012 — 8:B6. Norm growth and parity: $N(gz)=g^{2}N(z)$ with $g^{2}$ a square, the single-chronon multiplier $g$ odd, $x^{2}=\nu$ unsolvable in $\Fp$; the flip $g\mapsto g^{-1}$ preserves the parity class. -/
 theorem p08012 : (∀ {p : Nat} [FRC.Pos p] {ν : FRC.Shell p} (c : FRC.Shell p) (z : FRC.Extension.Ext p ν), (FRC.Extension.Ext.ofShell c * z).norm = c * c * z.norm) ∧ ∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → ∀ {y : FRC.Shell p}, g * y = (1 : FRC.Shell p) → ¬∃ r, r * r = y :=
   And.intro @FRC.Extension.Ext.norm_scale (@FRC.Shell.Frame.inv_drive_nonsquare)
+/-- p22027 — 22:C11. The engineered-core readout: registered frequencies are framed rationals reading the two-way structural weight through Definition~\ref{def:readout}; two reductions are proved (the conjugate-pair trace tally and the setting-ensemble Parseval tally, Remark~\ref{rem:strata}), given the stratum-sampling clause, the unified sampling clause of master D10. -/
+theorem p22027 : (∀ {p : Nat} [FRC.Pos p] {ν : FRC.Shell p} (z : FRC.Extension.Ext p ν) (k m : Nat), z ^ k * z.conj ^ (k + m) + z.conj ^ k * z ^ (k + m) = FRC.Extension.Ext.ofShell (z.norm ^ k * (z ^ m).trace)) ∧ (∀ {p : Nat} [FRC.Pos p] {ν : FRC.Shell p}, (∀ (z : FRC.Extension.Ext p ν) (m : Nat), (z ^ (m + (2 : Nat))).trace + z.norm * (z ^ m).trace = z.trace * (z ^ (m + (1 : Nat))).trace) ∧ ((FRC.Extension.Wp ^ (0 : Nat)).trace = (2 : FRC.Shell p) ∧ (FRC.Extension.Wp ^ (1 : Nat)).trace = (4 : FRC.Shell p)) ∧ (FRC.Extension.Wp ^ (2 : Nat)).trace = (12 : FRC.Shell (641 : Nat)) ∧ (FRC.Extension.Wp ^ (3 : Nat)).trace = (40 : FRC.Shell (641 : Nat))) ∧ (∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → ∀ {ζ η : FRC.Shell p} (M : Nat), ζ ^ ((2 : Nat) * M) = (1 : FRC.Shell p) → ζ ^ M ≠ (1 : FRC.Shell p) → ζ * η = (1 : FRC.Shell p) → ∀ (θ : Nat), θ ≤ M → (2 : FRC.Shell p) + (ζ ^ (M - θ) + η ^ (M - θ)) = (2 : FRC.Shell p) + -(ζ ^ θ + η ^ θ)) ∧ (∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → ∀ {ζ η : FRC.Shell p} (N : Nat), ζ ^ N = (1 : FRC.Shell p) → ζ * η = (1 : FRC.Shell p) → ζ * ζ ≠ (1 : FRC.Shell p) → FRC.Shell.sumRange (fun θ => (2 : FRC.Shell p) + (ζ ^ θ + η ^ θ)) N = FRC.Shell.ofNat N * (2 : FRC.Shell p) ∧ FRC.Shell.sumRange (fun θ => (2 : FRC.Shell p) + -(ζ ^ θ + η ^ θ)) N = FRC.Shell.ofNat N * (2 : FRC.Shell p) ∧ FRC.Shell.sumRange (fun θ => ((2 : FRC.Shell p) + (ζ ^ θ + η ^ θ)) * ((2 : FRC.Shell p) + -(ζ ^ θ + η ^ θ))) N = FRC.Shell.ofNat N * (2 : FRC.Shell p)) ∧ (∀ (n : Nat), n < (9 : Nat) → FRC.Extension.gridPoint n * FRC.Extension.gridPoint n ≤ (2 : Nat) * (9 : Nat) ^ n ∧ (2 : Nat) * (9 : Nat) ^ n < (FRC.Extension.gridPoint n + (1 : Nat)) * (FRC.Extension.gridPoint n + (1 : Nat))) ∧ (∀ (n : Nat), n < (8 : Nat) → (3 : Nat) * FRC.Extension.gridPoint n ≤ FRC.Extension.gridPoint (n + (1 : Nat)) ∧ FRC.Extension.gridPoint (n + (1 : Nat)) ≤ (3 : Nat) * FRC.Extension.gridPoint n + (2 : Nat)) ∧ ((2 : Nat) * (3 : Nat) ^ (4 : Nat) + FRC.Extension.gridPoint (4 : Nat)) * (54 : Nat) = (23 : Nat) * ((8 : Nat) * (3 : Nat) ^ (4 : Nat)) ∧ ((46 : Nat) * (46 : Nat) ≤ (3 : Nat) * (3 : Nat) ^ (6 : Nat) ∧ (3 : Nat) * (3 : Nat) ^ (6 : Nat) < (47 : Nat) * (47 : Nat)) ∧ (23 : Nat) + (23 : Nat) + (4 : Nat) + (4 : Nat) = (54 : Nat) ∧ FRC.Extension.largestRemainder (81 : Nat) (54 : Nat) [(23 : Nat), (23 : Nat), (4 : Nat), (4 : Nat)] = [(35 : Nat), (34 : Nat), (6 : Nat), (6 : Nat)] :=
+  And.intro @FRC.Extension.conjugate_pair_tally (And.intro @FRC.Extension.trace_recurrence (And.intro @FRC.Extension.dial_shift (And.intro @FRC.Extension.dial_tally (@FRC.Extension.framed_readout))))
 /-- p22028 — 22:C12, 00:C11. \textbf{Pair-tally uniqueness} (22-qm Prop.~gleason, the uniqueness of the pair tally on the stationary $Q_4$ sector): on the stationary core-valued $Q_4$ sector, tally-valued, fibre-additive, drive-invariant, parity-even registration functionals form the character cone fixed by the pure windings; adding channel-selectivity (assumed, not derived; the sampling clause D10) picks the Born ray. The minimal degree is forced; proof shape: 22-qm. -/
 theorem p22028 : (∀ (a : Nat), a < (5 : Nat) → ∀ (b : Nat), b < (5 : Nat) → ∀ (c : Nat), c < (5 : Nat) → ∀ (d : Nat), d < (5 : Nat) → ∀ (k : Nat), k < (4 : Nat) → FRC.Extension.Tally.F (FRC.Extension.Tally.kernel (Int.ofNat a - (1 : Int)) (Int.ofNat b - (1 : Int)) (Int.ofNat c - (1 : Int)) (Int.ofNat d - (1 : Int))) (FRC.Extension.Tally.psi k) = { re := (16 : Int) * FRC.Extension.Tally.coeff (Int.ofNat a - (1 : Int)) (Int.ofNat b - (1 : Int)) (Int.ofNat c - (1 : Int)) (Int.ofNat d - (1 : Int)) k, im := (0 : Int) }) ∧ (∀ (a : Nat), a < (5 : Nat) → ∀ (b : Nat), b < (5 : Nat) → ∀ (c : Nat), c < (5 : Nat) → ∀ (d : Nat), d < (5 : Nat) → ∀ (k : Nat), k < (4 : Nat) → ((FRC.Extension.Tally.F (FRC.Extension.Tally.kernel (Int.ofNat a - (1 : Int)) (Int.ofNat b - (1 : Int)) (Int.ofNat c - (1 : Int)) (Int.ofNat d - (1 : Int))) (FRC.Extension.Tally.psi k)).tally ↔ (0 : Int) ≤ FRC.Extension.Tally.coeff (Int.ofNat a - (1 : Int)) (Int.ofNat b - (1 : Int)) (Int.ofNat c - (1 : Int)) (Int.ofNat d - (1 : Int)) k)) ∧ (∀ (a : Nat), a < (4 : Nat) → ∀ (b : Nat), b < (4 : Nat) → ∀ (c : Nat), c < (4 : Nat) → ∀ (d : Nat), d < (4 : Nat) → (∀ (e : Nat), e < (4 : Nat) → FRC.Extension.Tally.kernel (Int.ofNat a) (Int.ofNat b) (Int.ofNat c) (Int.ofNat d) (((4 : Nat) - e) % (4 : Nat)) = (FRC.Extension.Tally.kernel (Int.ofNat a) (Int.ofNat b) (Int.ofNat c) (Int.ofNat d) e).conj) ∧ ∀ (k : Nat), k < (4 : Nat) → (FRC.Extension.Tally.F (FRC.Extension.Tally.kernel (Int.ofNat a) (Int.ofNat b) (Int.ofNat c) (Int.ofNat d)) (FRC.Extension.Tally.psi k)).tally) ∧ (∀ (a : Nat), a < (4 : Nat) → ∀ (b : Nat), b < (4 : Nat) → ∀ (c : Nat), c < (4 : Nat) → ∀ (d : Nat), d < (4 : Nat) → ∀ (r : Nat), r < (4 : Nat) → FRC.Extension.Tally.inversion (FRC.Extension.Tally.kernel (Int.ofNat a) (Int.ofNat b) (Int.ofNat c) (Int.ofNat d)) r = { re := (4 : Int) * FRC.Extension.Tally.coeff (Int.ofNat a) (Int.ofNat b) (Int.ofNat c) (Int.ofNat d) r, im := (0 : Int) }) ∧ (∀ (a : Nat), a < (4 : Nat) → ∀ (b : Nat), b < (4 : Nat) → ∀ (c : Nat), c < (4 : Nat) → ∀ (d : Nat), d < (4 : Nat) → (FRC.Extension.Tally.responses (FRC.Extension.Tally.kernel (Int.ofNat a) (Int.ofNat b) (Int.ofNat c) (Int.ofNat d)) = (1 : Nat) ↔ FRC.Extension.Tally.support (Int.ofNat a) (Int.ofNat b) (Int.ofNat c) (Int.ofNat d) = (1 : Nat))) ∧ (have M := fun r u => FRC.Extension.Tally.GI.ipow (r * u); have d2 := fun a b c d => a * d + FRC.Extension.Tally.GI.smul (-1 : Int) (b * c); have e := fun r => M r; have det3 := fun f g h => f (1 : Nat) * d2 (g (2 : Nat)) (g (3 : Nat)) (h (2 : Nat)) (h (3 : Nat)) + FRC.Extension.Tally.GI.smul (-1 : Int) (f (2 : Nat) * d2 (g (1 : Nat)) (g (3 : Nat)) (h (1 : Nat)) (h (3 : Nat))) + f (3 : Nat) * d2 (g (1 : Nat)) (g (2 : Nat)) (h (1 : Nat)) (h (2 : Nat)); e (0 : Nat) (0 : Nat) * det3 (e (1 : Nat)) (e (2 : Nat)) (e (3 : Nat)) + FRC.Extension.Tally.GI.smul (-1 : Int) (e (1 : Nat) (0 : Nat) * det3 (e (0 : Nat)) (e (2 : Nat)) (e (3 : Nat))) + e (2 : Nat) (0 : Nat) * det3 (e (0 : Nat)) (e (1 : Nat)) (e (3 : Nat)) + FRC.Extension.Tally.GI.smul (-1 : Int) (e (3 : Nat) (0 : Nat) * det3 (e (0 : Nat)) (e (1 : Nat)) (e (2 : Nat))) = { re := (0 : Int), im := (-16 : Int) }) ∧ (FRC.Extension.Tally.F (FRC.Extension.Tally.kernel (1 : Int) (-1 : Int) (1 : Int) (0 : Int)) (FRC.Extension.Tally.psi (1 : Nat)) = { re := (-16 : Int), im := (0 : Int) } ∧ ¬(FRC.Extension.Tally.F (FRC.Extension.Tally.kernel (1 : Int) (-1 : Int) (1 : Int) (0 : Int)) (FRC.Extension.Tally.psi (1 : Nat))).tally ∧ (∀ (e : Nat), e < (4 : Nat) → FRC.Extension.Tally.kout (((4 : Nat) - e) % (4 : Nat)) = (FRC.Extension.Tally.kout e).conj) ∧ FRC.Extension.Tally.F FRC.Extension.Tally.kout (FRC.Extension.Tally.psi (2 : Nat)) = { re := (-32 : Int), im := (0 : Int) } ∧ ¬(FRC.Extension.Tally.F FRC.Extension.Tally.kout (FRC.Extension.Tally.psi (2 : Nat))).tally ∧ FRC.Extension.Tally.inversion FRC.Extension.Tally.kout (0 : Nat) = { re := (0 : Int), im := (0 : Int) } ∧ FRC.Extension.Tally.inversion FRC.Extension.Tally.kout (1 : Nat) = { re := (20 : Int), im := (0 : Int) } ∧ FRC.Extension.Tally.inversion FRC.Extension.Tally.kout (2 : Nat) = { re := (-8 : Int), im := (0 : Int) } ∧ FRC.Extension.Tally.inversion FRC.Extension.Tally.kout (3 : Nat) = { re := (4 : Int), im := (0 : Int) } ∧ (∀ (d : Nat), d < (4 : Nat) → FRC.Extension.Tally.GI.smul (4 : Int) (FRC.Extension.Tally.kout d) = FRC.Extension.Tally.sum4 fun r => FRC.Extension.Tally.inversion FRC.Extension.Tally.kout r * FRC.Extension.Tally.GI.ipow (r * d)) ∧ (∀ (e : Nat), e < (4 : Nat) → FRC.Extension.Tally.fibreNorm (((4 : Nat) - e) % (4 : Nat)) = (FRC.Extension.Tally.fibreNorm e).conj) ∧ (∀ (k : Nat), k < (4 : Nat) → FRC.Extension.Tally.F FRC.Extension.Tally.fibreNorm (FRC.Extension.Tally.psi k) = { re := (4 : Int), im := (0 : Int) }) ∧ FRC.Extension.Tally.responses FRC.Extension.Tally.fibreNorm = (4 : Nat) ∧ (∀ (r : Nat), r < (4 : Nat) → FRC.Extension.Tally.inversion FRC.Extension.Tally.fibreNorm r = { re := (1 : Int), im := (0 : Int) }) ∧ FRC.Extension.Tally.F (FRC.Extension.Tally.kernel (0 : Int) (1 : Int) (0 : Int) (0 : Int)) (FRC.Extension.Tally.psi (1 : Nat)) = { re := (16 : Int), im := (0 : Int) } ∧ FRC.Extension.Tally.F (FRC.Extension.Tally.kernel (0 : Int) (1 : Int) (0 : Int) (0 : Int)) (FRC.Extension.Tally.psi (0 : Nat)) = { re := (0 : Int), im := (0 : Int) } ∧ FRC.Extension.Tally.responses (FRC.Extension.Tally.kernel (0 : Int) (1 : Int) (0 : Int) (0 : Int)) = (1 : Nat)) ∧ (∀ (k : Nat), k < (4 : Nat) → (0 : Nat) < k → (FRC.Extension.Tally.sum4 fun u => FRC.Extension.Tally.GI.ipow (k * u)) = FRC.Extension.Tally.GI.zero) ∧ (∀ (c : Nat), c < (5 : Nat) → (0 : Nat) < c → ¬(FRC.Extension.Tally.GI.i * { re := (4 : Int) * Int.ofNat c, im := (0 : Int) }).tally) ∧ FRC.Extension.Tally.B FRC.Extension.Tally.fibreNorm FRC.Extension.Tally.psiA = { re := (0 : Int), im := (2 : Int) } ∧ ¬(FRC.Extension.Tally.B FRC.Extension.Tally.fibreNorm FRC.Extension.Tally.psiA).tally ∧ FRC.Extension.Tally.F FRC.Extension.Tally.fibreNorm FRC.Extension.Tally.psiA = { re := (2 : Int), im := (0 : Int) } ∧ (FRC.Extension.Tally.F FRC.Extension.Tally.fibreNorm FRC.Extension.Tally.psiA).tally ∧ FRC.Extension.Tally.B (fun d => if d % (4 : Nat) = (1 : Nat) then { re := (1 : Int), im := (0 : Int) } else { re := (0 : Int), im := (0 : Int) }) FRC.Extension.Tally.psiB = { re := (0 : Int), im := (1 : Int) } ∧ ¬(FRC.Extension.Tally.B (fun d => if d % (4 : Nat) = (1 : Nat) then { re := (1 : Int), im := (0 : Int) } else { re := (0 : Int), im := (0 : Int) }) FRC.Extension.Tally.psiB).tally ∧ FRC.Extension.Tally.B (FRC.Extension.Tally.kernel (1 : Int) (1 : Int) (0 : Int) (0 : Int)) FRC.Extension.Tally.psiA = { re := (0 : Int), im := (4 : Int) } ∧ ¬(FRC.Extension.Tally.B (FRC.Extension.Tally.kernel (1 : Int) (1 : Int) (0 : Int) (0 : Int)) FRC.Extension.Tally.psiA).tally ∧ FRC.Extension.Tally.F (FRC.Extension.Tally.kernel (1 : Int) (1 : Int) (0 : Int) (0 : Int)) FRC.Extension.Tally.psiA = { re := (4 : Int), im := (0 : Int) } :=
   And.intro @FRC.Extension.Tally.winding_fixing (And.intro @FRC.Extension.Tally.tally_criterion (And.intro @FRC.Extension.Tally.two_way (And.intro @FRC.Extension.Tally.fourier_inversion (And.intro @FRC.Extension.Tally.channel_selectivity (And.intro @FRC.Extension.Tally.dft_det (And.intro @FRC.Extension.Tally.cone_boundary (@FRC.Extension.Tally.linear_exclusion)))))))

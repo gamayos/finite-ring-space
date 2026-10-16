@@ -2,43 +2,47 @@
 
 "Quantum Observation over Finite Holographic Substrate" (Akhtman & Voether, 2026, doi 10.20944/preprints202606.1160.v2).
 The paper's predicate ledger is docs/22-quantum/22-quantum-ledger.json. This file binds its predicates to the framework:
-the table of keys (generated from the ledger by ci/make_ledgers.py) and the checks of eighteen blocks. A block is one
-suite of the paper's validation package (src/22-quantum, whose results.json holds one record per suite), and the
-composite suite is two blocks. Each check names the
+the table of keys (generated from the ledger by ci/make_ledgers.py) and the checks of seventeen blocks. A block is one
+suite of the paper's validation package (src/22-quantum, whose results.json holds one record per suite; served until the
+release pin of the paper's milestone, 15 October 2026), and the composite suite is two blocks. Each check names the
 predicate(s) it witnesses (LEDGER), under a `# 22:XN (<key>)` marker on the check that decides it (PREDICATES). The
-checks compute what the suites compute, record for record. The package stays the paper's published witness until its
-release pins the framework (tasks LM33, LM36). The paper has no Lean rows, so this ledger has no certificates.
+checks compute what the suites compute, record for record, and since 15 October 2026 decide every theorem row of the
+paper (the rows C6, C13, C25, X1–X3, X5, X6 had no suite), the Ω rows on the master's anchor (block O, G4), and the
+sweep by certified brackets (C7). The Lean side is the quantum theme's Theme/Observation.lean, Theme/Interference.lean
+and Theme/Composite.lean, the key files Keys/Quantum.lean, Keys/Extension.lean, Keys/Subject.lean and the
+certificates lean/FrcCore/Ledgers/P22Qm.lean and lean/FrcLedger/Ledgers/P22Qm.lean.
 
 The checks call the quantum theme (frc/quantum.py: the cyclotomic ring ℤ[ζ_n], the partial transpose, the
-characteristic polynomial), the extension theme (frc/extension.py: 𝔽_{p²}) and, for the floating-point readings, the
-chart file frc/chart_quantum.py. This file itself is exact (gate G09): it compares the chart's floats with Fractions.
+characteristic polynomial), the extension theme (frc/extension.py: 𝔽_{p²}), the chart theme's certified brackets
+(frc/chart.py: the Ω bracket of the scale import, π, √8) and, for the two continuum readings, the chart file
+frc/chart_quantum.py. This file itself is exact (gate G09): it compares the chart's numbers with Fractions.
 
     python3 -m frc.ledgers.p22_quantum           every block, the census; exit 1 if a check fails (≈ 5 s)
     python3 -m frc.ledgers.p22_quantum C         one block
     from frc.ledgers.p22_quantum import R; R.predicate("22:C17")    one predicate: its blocks run once per session
 
 Blocks, with the package's suite and its kind:
-    V  validate         the single-system formalism on F_157 and F_421          EXACT   (22:C1–C5, C7, C9, C24)
+    V  validate         the single-system formalism on F_157 and F_421          EXACT   (22:C1–C7, C9, C13, C24, X2, X3, X5)
     S  sorkin           Sorkin nullity, shadows and wrap quantisation           EXACT   (22:C8, P2, X8)
     D  dispersion       exact boost transport on F_13 and F_169                 EXACT   (22:A2, P4)
-    C  composite        the composite gate on F_641, CHSH and Tsirelson         EXACT, the sweep APPROX (22:C15–C17, P3, X7)
+    C  composite        the composite gate on F_641, CHSH and Tsirelson         EXACT, the sweep CHART by brackets (22:C15–C17, C25, P3, X7)
     U  composite        the unequal-cycle gate on F_421                          EXACT   (22:C26)
     M  synchronisation  the m-body conserved offset                             EXACT   (22:C15)
     R  renou            the real-versus-complex network over Q(ζ_8)             EXACT   (22:C18, P3)
     B  bmv              the gravitational channel over Q(ζ_80)                  EXACT   (22:C19, P1)
-    Q  decoherence      no collapse, dilation dephasing, the registered count   EXACT, the envelope APPROX (22:C7, C20)
-    E  equivalence      the two scaling laws and the equivalence-principle null EXACT, the sample APPROX (22:C22)
-    G  granularity      the depth ceiling                                       EXACT   (22:C14, P5)
-    T  stratum          the two probability strata and the framed readout      EXACT   (22:C10, C11)
+    Q  decoherence      no collapse, dilation dephasing, the registered count   EXACT, the envelope CHART (22:C7, C20)
+    E  equivalence      the two scaling laws and the equivalence-principle null EXACT   (22:C22)
+    G  granularity      the depth ceiling, at the anchor by bit length          EXACT   (22:C14, P5)
+    T  stratum          the two probability strata and the framed readout      EXACT   (22:C10, C11, X1, X6)
     F  gravfraction     the coherent-fraction channel over ℤ[ζ_16]              EXACT   (22:C21)
     L  gleason          uniqueness of the pair tally on the Q4 core             EXACT   (22:C12)
-    N  emulation        the hardware compilations                               APPROX  (22:V3)
     O  omega            the Ω ledger in scale arithmetic                        EXACT   (22:A5, Z2)
     I  intersubject     inter-Subject consistency on F_421                      EXACT   (22:C23, X4)
     K  transport        the quarter-turn transport trichotomy                   EXACT   (22:C27)
 
-A check is APPROX when its verdict rests on floating point (the package's kind NUM, and the float parts of three
-EXACT suites). The notebook frc/ledgers/p22_quantum.ipynb runs one predicate per cell, the cell's id its key (gate G13).
+A check is CHART when its verdict is a continuum reading: the sweep decided by certified rational brackets on the
+cosines (C7) and the Gaussian envelope at a stated tolerance (Q3). The notebook frc/ledgers/p22_quantum.ipynb runs one
+predicate per cell, the cell's id its key (gate G13).
 """
 import random
 import sys
@@ -47,6 +51,7 @@ from itertools import combinations, permutations, product
 from math import comb, gcd, isqrt, lcm
 
 from frc import arith
+from frc import chart as CH
 from frc import chart_quantum as CQ
 from frc.extension import Ext
 from frc.quantum import Cyclotomic, charpoly, nonneg_spectrum, partial_transpose
@@ -54,34 +59,34 @@ from frc.registry import Registry
 
 # ---- generated by ci/make_ledgers.py from docs/22-quantum/22-quantum-ledger.json; edit the ledger, not this table ----
 PAPER = "22-quantum"
-KEYS = {"A1": "p22001", "A2": "p22002", "A3": "p22003", "A4": "p22004", "A5": "p22005", "A6": "p22006", "A7": "p22007", "A8": "p22008", "B1": "p22009", "B2": "p22010", "B3": "p22011", "B4": "p22012", "B5": "p22013", "B6": "p22014", "B7": "p22015", "B8": "p22016", "C1": "p22017", "C2": "p22018", "C3": "p22019", "C4": "p22020", "C5": "p22021", "C6": "p22022", "C7": "p22023", "C8": "p22024", "C9": "p22025", "C10": "p22026", "C11": "p22027", "C12": "p22028", "C13": "p22029", "C14": "p22030", "C15": "p22031", "C16": "p22032", "C17": "p22033", "C18": "p22034", "C19": "p22035", "C20": "p22036", "C21": "p22037", "C22": "p22038", "C23": "p22039", "C24": "p22040", "C25": "p22041", "C26": "p22042", "C27": "p22043", "X1": "p22044", "X2": "p22045", "X3": "p22046", "X4": "p22047", "X5": "p22048", "X6": "p22049", "X7": "p22050", "X8": "p22051", "P1": "p22052", "P2": "p22053", "P3": "p22054", "P4": "p22055", "P5": "p22056", "V1": "p22057", "V2": "p22058", "V3": "p22059", "Z1": "p22060", "Z2": "p22061"}       # every row of the ledger: its label and its accession key
-LEAN = {}       # the rows with a Lean declaration: the libraries whose key files prove them
+KEYS = {"A1": "p22001", "A2": "p22002", "A3": "p22003", "A4": "p22004", "A5": "p22005", "A6": "p22006", "A7": "p22007", "A8": "p22008", "B1": "p22009", "B2": "p22010", "B3": "p22011", "B4": "p22012", "B5": "p22013", "B6": "p22014", "B7": "p22015", "B8": "p22016", "C1": "p22017", "C2": "p22018", "C3": "p22019", "C4": "p22020", "C5": "p22021", "C6": "p22022", "C7": "p22023", "C8": "p22024", "C9": "p22025", "C10": "p22026", "C11": "p22027", "C12": "p22028", "C13": "p22029", "C14": "p22030", "C15": "p22031", "C16": "p22032", "C17": "p22033", "C18": "p22034", "C19": "p22035", "C20": "p22036", "C21": "p22037", "C22": "p22038", "C23": "p22039", "C24": "p22040", "C25": "p22041", "C26": "p22042", "C27": "p22043", "X1": "p22044", "X2": "p22045", "X3": "p22046", "X4": "p22047", "X5": "p22048", "X6": "p22049", "X7": "p22050", "X8": "p22051", "P1": "p22052", "P2": "p22053", "P3": "p22054", "P4": "p22055", "P5": "p22056", "Z1": "p22060", "Z2": "p22061"}       # every row of the ledger: its label and its accession key
+LEAN = {"A2": "core", "A5": "ml", "C1": "core", "C2": "core", "C3": "core", "C4": "core", "C5": "core", "C6": "core", "C7": "core, ml", "C8": "core, ml", "C9": "core", "C10": "core", "C11": "core", "C12": "core", "C13": "core", "C14": "core, ml", "C15": "core", "C16": "core", "C17": "core, ml", "C18": "core", "C19": "core, ml", "C20": "core", "C21": "core", "C22": "core", "C23": "core", "C24": "core", "C25": "core, ml", "C26": "core", "C27": "core", "X1": "core, ml", "X2": "core", "X3": "core", "X4": "core", "X5": "core", "X6": "core", "X7": "core, ml", "X8": "core, ml", "P1": "core, ml", "P2": "core, ml", "P3": "core, ml", "P4": "core", "P5": "core, ml", "Z2": "ml"}       # the rows with a Lean declaration: the libraries whose key files prove them
 # ---- end of the generated table ----
 
 LEAN_ONLY = ()                  # the predicates with a Lean declaration and no python check (gate G12): none
 
 # The paper's predicate ledger (predicates cited as 22:XN): the predicate(s) each check witnesses.
 LEDGER = {
-    "V1": "22:C24", "V2": "22:C3", "V3": "22:C4", "V4": "22:C1, 22:C2", "V5": "22:C3", "V6": "22:C7, 22:C3",
-    "V7": "22:C9", "V8": "22:C5", "V9": "22:C4, 22:C7", "V10": "22:C9", "V11": "22:C24", "V12": "22:C4", "V13": "22:C24",
+    "V1": "22:C24", "V2": "22:C3", "V3": "22:C4", "V4": "22:C1, 22:C2", "V5": "22:C3, 22:X3", "V6": "22:C3, 22:C7",
+    "V7": "22:C9", "V8": "22:C5", "V9": "22:C4, 22:C7", "V10": "22:C9", "V11": "22:C24", "V12": "22:C4", "V13": "22:C24, 22:X5",
+    "V14": "22:C6", "V15": "22:C13, 22:X2", "V16": "22:C7, 22:X1",
     "S1": "22:C8, 22:X8", "S2": "22:P2, 22:C8", "S3": "22:P2, 22:X8",
-    "D1": "22:A2", "D2": "22:A2", "D3": "22:A2", "D4": "22:P4", "D5": "22:P4", "D6": "22:P4", "D7": "22:P4",
+    "D1": "22:A2", "D2": "22:A2", "D3": "22:A2", "D4": "22:P4", "D5": "22:P4", "D6": "22:P4", "D7": "22:P4", "D8": "22:P4",
     "C1": "22:C15", "C2": "22:C15", "C3": "22:C16", "C4": "22:C17", "C5": "22:C17", "C6": "22:C17",
-    "C7": "22:C17, 22:P3", "C8": "22:X7, 22:C17, 22:P3",
+    "C7": "22:C17, 22:P3", "C8": "22:X7, 22:C17, 22:P3, 22:C25",
     "U1": "22:C26", "U2": "22:C26", "U3": "22:C26", "U4": "22:C26", "U5": "22:C26", "U6": "22:C26",
     "M1": "22:C15", "M2": "22:C15", "M3": "22:C15", "M4": "22:C15", "M5": "22:C15",
     "R1": "22:C18", "R2": "22:C18", "R3": "22:C18", "R4": "22:P3, 22:C18", "R5": "22:C18",
     "B1": "22:C19", "B2": "22:C19", "B3": "22:C19, 22:P1", "B4": "22:C19", "B5": "22:P1, 22:C19",
     "Q1": "22:C20", "Q2": "22:C20", "Q3": "22:C20", "Q4": "22:C20", "Q5": "22:C7", "Q6": "22:C7", "Q7": "22:C7",
-    "E1": "22:C22", "E2": "22:C22", "E3": "22:C22", "E4": "22:C22", "E5": "22:C22",
+    "E1": "22:C22", "E2": "22:C22", "E3": "22:C22", "E4": "22:C22",
     "G1": "22:C14", "G2": "22:C14", "G3": "22:C14", "G4": "22:P5", "G5": "22:C14, 22:P5", "G6": "22:P5", "G7": "22:C14",
-    "T1": "22:C10", "T2": "22:C10", "T3": "22:C10", "T4": "22:C11", "T5": "22:C11", "T6": "22:C11", "T7": "22:C11",
-    "T8": "22:C11", "T9": "22:C11", "T10": "22:C11", "T11": "22:C11",
+    "T1": "22:C10, 22:X1", "T2": "22:C10", "T3": "22:C10", "T4": "22:C11", "T5": "22:C11, 22:X6", "T6": "22:C11", "T7": "22:C11",
+    "T8": "22:C11", "T9": "22:C11", "T10": "22:C11", "T11": "22:C11", "T12": "22:C10",
     "F1": "22:C21", "F2": "22:C21", "F3": "22:C21", "F4": "22:C21", "F5": "22:C21", "F6": "22:C21", "F7": "22:C21",
     "F8": "22:C21", "F9": "22:C21", "F10": "22:C21", "F11": "22:C21", "F12": "22:C21",
     "L1": "22:C12", "L2": "22:C12", "L3": "22:C12", "L4": "22:C12", "L5": "22:C12", "L6": "22:C12", "L7": "22:C12",
     "L8": "22:C12", "L9": "22:C12",
-    "N1": "22:V3", "N2": "22:V3", "N3": "22:V3", "N4": "22:V3", "N5": "22:V3",
     "O1": "22:A5", "O2": "22:A5", "O3": "22:A5", "O4": "22:Z2",
     "I1": "22:C23", "I2": "22:C23", "I3": "22:C23", "I4": "22:C23", "I5": "22:X4, 22:C23", "I6": "22:X4", "I7": "22:X4",
     "K1": "22:C27",
@@ -101,7 +106,6 @@ BLOCK = {"V": "validate: the single-system formalism on F_157 and F_421",       
          "T": "stratum: the two probability strata and the framed readout",
          "F": "gravfraction: the coherent-fraction channel",
          "L": "gleason: uniqueness of the pair tally",
-         "N": "emulation: the hardware compilations",
          "O": "omega: the Omega ledger in scale arithmetic",
          "I": "intersubject: inter-Subject consistency",
          "K": "transport: the quarter-turn transport trichotomy"}
@@ -109,15 +113,16 @@ BLOCK = {"V": "validate: the single-system formalism on F_157 and F_421",       
 # the package's suite of each block (the script its results.json record names)
 SUITE = {"V": "validate", "S": "sorkin", "D": "dispersion", "C": "composite", "U": "composite", "M": "synchronisation",
          "R": "renou", "B": "bmv", "Q": "decoherence", "E": "equivalence", "G": "granularity", "T": "stratum",
-         "F": "gravfraction", "L": "gleason", "N": "emulation", "O": "omega", "I": "intersubject", "K": "transport"}
+         "F": "gravfraction", "L": "gleason", "O": "omega", "I": "intersubject", "K": "transport"}
 
 # the deciding check of each witnessed predicate (the other checks that touch it are corroboration)
 PREDICATES = {
     "22:A2": "D3", "22:A5": "O1", "22:C1": "V4", "22:C2": "V4", "22:C3": "V5", "22:C4": "V3", "22:C5": "V8",
-    "22:C7": "V6", "22:C8": "S1", "22:C9": "V7", "22:C10": "T1", "22:C11": "T5", "22:C12": "L1", "22:C14": "G3",
-    "22:C15": "M3", "22:C16": "C3", "22:C17": "C4", "22:C18": "R3", "22:C19": "B2", "22:C20": "Q1", "22:C21": "F11",
-    "22:C22": "E3", "22:C23": "I4", "22:C24": "V13", "22:C26": "U2", "22:C27": "K1", "22:P1": "B5", "22:P2": "S3",
-    "22:P3": "R4", "22:P4": "D6", "22:P5": "G4", "22:V3": "N1", "22:X4": "I5", "22:X7": "C8", "22:X8": "S1",
+    "22:C6": "V14", "22:C7": "V16", "22:C8": "S1", "22:C9": "V7", "22:C10": "T1", "22:C11": "T5", "22:C12": "L1",
+    "22:C13": "V15", "22:C14": "G3", "22:C15": "M3", "22:C16": "C3", "22:C17": "C4", "22:C18": "R3", "22:C19": "B2",
+    "22:C20": "Q1", "22:C21": "F11", "22:C22": "E2", "22:C23": "I4", "22:C24": "V13", "22:C25": "C8", "22:C26": "U2",
+    "22:C27": "K1", "22:P1": "B5", "22:P2": "S3", "22:P3": "R4", "22:P4": "D8", "22:P5": "G4", "22:X1": "V16",
+    "22:X2": "V15", "22:X3": "V5", "22:X4": "I5", "22:X5": "V13", "22:X6": "T5", "22:X7": "C8", "22:X8": "S1",
     "22:Z2": "O4",
 }
 
@@ -169,9 +174,11 @@ def block_V():
 
     ok = all(pow(gO * u % p, s, p) == pow(gO, s, p) * pow(u, s, p) % p for u in HO for s in range(nO))
     distinct = len({tuple(pow(u, s, p) for u in HO) for s in range(nO)}) == nO == len({pow(gO, s, p) for s in range(nO)})
+    roots = sorted(x for x in range(1, p) if pow(x, nO, p) == 1)              # every 12th root of unity in F_157 ...
+    complete = roots == sorted(HO) and len(roots) == nO                       # ... is a power of g_O: the characters are the power maps, no other
     # 22:C1 (p22017), 22:C2 (p22018)
-    R.check("V4", "F_157: the windings psi_s(u) = u^s are drive eigenstates, U psi_s = g_O^s psi_s, all s; the 12 power maps and their eigenvalues pairwise distinct",
-            ok and distinct)
+    R.check("V4", "F_157: the windings psi_s(u) = u^s are drive eigenstates, U psi_s = g_O^s psi_s, all s; the 12 power maps and their eigenvalues pairwise distinct; every 12th root of unity in F_157 is a power of g_O (the characters are the power maps and no others)",
+            ok and distinct and complete)
 
     psi = {u: ((i % 13) - 6, (i % 11) - 5) for i, u in enumerate(HO)}          # the fixed state, no RNG
     red = lambda z: (z[0] + ip * z[1]) % p                                     # Z[i] -> F_p, i -> 5^39
@@ -192,12 +199,25 @@ def block_V():
         return sum(pow(pow(ip, l, p), (4 - r) % 4, p) * psip[pow(gO, a + 3 * l, p)] for l in range(4)) % p
     RA = [(r, a) for r in range(4) for a in range(3)]
     ok = all(pair(v(*x), v(*y)) == ((4, 0) if x == y else (0, 0)) for x in RA for y in RA)
-    # 22:C3 (p22019)
+    # 22:C3 (p22019), 22:X3 (p22046)
     R.check("V5", "F_157: the forced basis is orthogonal, <v_{r,a}, v_{r',a'}> = 4 delta delta (Z[i])", ok)
 
     lhs = sum(gnorm(amp(r, a)) for r, a in RA); rhs = 4 * sum(gnorm(z) for z in psi.values())
-    # 22:C7 (p22023)
-    R.check("V6", "F_157: Parseval, sum |Psi|^2 = 4 ||psi||^2 on the fixed Gaussian-integer state (the pair-count identity)", lhs == rhs, f"{lhs} = {rhs}")
+    R.check("V6", "F_157: Parseval, sum |Psi|^2 = 4 ||psi||^2 on the fixed Gaussian-integer state (resolution of the identity, 22:C3)", lhs == rhs, f"{lhs} = {rhs}")
+
+    # The pair count (eq. paircount): the weight of a channel is the double sum over ordered pairs of fibre points of
+    # the phase agreements conj(v(u)) psi(u) conj(psi(u')) v(u'), computed as that double sum in Z[i], equal to the
+    # norm N(Psi) of the amplitude, a nonnegative integer (a realised tally), on every channel of the fixed state.
+    def pair_count(r, a):
+        vv, fibre, tot = v(r, a), [pow(gO, a + 3 * l, p) for l in range(4)], (0, 0)
+        for u in fibre:
+            for u2 in fibre: tot = ga(tot, gm(gm(gc(vv[u]), psi[u]), gm(gc(psi[u2]), vv[u2])))
+        return tot
+    counts = {x: pair_count(*x) for x in RA}
+    ok = all(counts[x] == (gnorm(amp(*x)), 0) and gnorm(amp(*x)) >= 0 for x in RA) and any(gnorm(amp(*x)) > 0 for x in RA)
+    # 22:C7 (p22023), 22:X1 (p22044)
+    R.check("V16", "F_157: the pair count, the double sum of phase agreements over ordered fibre pairs, is the weight N(Psi_{r,a}) in Z, a nonnegative integer (a realised tally), on all 12 channels of the fixed state",
+            ok, f"weights {[gnorm(amp(*x)) for x in RA]}")
 
     # 22:C9 (p22025)
     R.check("V7", "F_157: the ledger reduction Z[i] -> F_157 commutes with the amplitudes on every channel", all(red(amp(r, a)) == amp_fp(r, a) for r, a in RA))
@@ -207,9 +227,12 @@ def block_V():
         for l in range(4):
             u = pow(gO, a + 3 * l, p); A = ga(A, gm(gc(vv[u]), phi[u]))
         return {u: gm(vv[u], A) for u in HO}
-    phi1 = proj(2, 1, psi); phi2 = proj(2, 1, phi1)
+    ok = True
+    for r, a in RA:
+        phi1 = proj(r, a, psi); phi2 = proj(r, a, phi1)
+        ok &= all(phi2[u] == gm((4, 0), phi1[u]) for u in HO)
     # 22:C5 (p22021)
-    R.check("V8", "F_157: Lueders idempotence Pi^2 = 4 Pi", all(phi2[u] == gm((4, 0), phi1[u]) for u in HO))
+    R.check("V8", "F_157: Lueders idempotence Pi^2 = 4 Pi on all 12 channels (r, a) of the fixed state (the projector with its conjugate; r = 1, 3 are the complex channels)", ok)
 
     Z = Cyclotomic(12)
     okL = okR = True
@@ -233,9 +256,46 @@ def block_V():
              for r in range(60) for s in range(28))
     R.check("V12", "F_421: the selection rule over all 60 x 28 channel pairs", ok)
     _, _, _, d3, HS3, HO3, core3 = shell(p2, e2, 60, 12)
-    # 22:C24 (p22040)
-    R.check("V13", "F_421: seven outcomes, C_28/Q4 = C_7 (quantum, index 7 > 1); the classical pair S_61, O_13: gcd(60, 12) = 12, total absorption, one outcome",
-            28 // d2 == 7 and d3 == 12 and set(HO3) <= HS3 and 12 // d3 == 1)
+    live = {s: [r for r in range(12) if sum(pow(e2, ((N2 // d3) * (s - r) * l) % N2, p2) for l in range(d3)) % p2 != 0] for s in range(12)}
+    live_q = {s: [r for r in range(28) if sum(pow(e2, (105 * (s - r) * l) % N2, p2) for l in range(4)) % p2 != 0] for s in range(28)}
+    # 22:C24 (p22040), 22:X5 (p22048)
+    R.check("V13", "F_421: seven outcomes, C_28/Q4 = C_7 (quantum, index 7 > 1: every winding couples to 7 of the 28 channels); the classical pair S_61, O_13: gcd(60, 12) = 12, total absorption, one outcome per winding (the selection sums vanish on the other 11 channels)",
+            28 // d2 == 7 and d3 == 12 and set(HO3) <= HS3 and 12 // d3 == 1 and all(len(live[s]) == 1 for s in range(12)) and all(len(live_q[s]) == 7 for s in range(28)))
+
+    # Conjugation is cycle inversion, forced in each setting (22:C6): on every prime p = 4k + 1 below 200, the Frobenius
+    # x -> x^p of F_{p^2} is the conjugation (a, b) -> (a, -b), it inverts the norm-one torus (z z^p = 1), and it is the
+    # only non-trivial automorphism over F_p (an automorphism sends sqrt(nu) to a root of X^2 - nu, so to +-sqrt(nu));
+    # on the phase cycle exponent negation is inversion, zeta^k zeta^(n-k) = 1; and the ledger's conjugation reduces to
+    # it: the shadow of zeta_12^(-e) is the inverse of the shadow of zeta_12^e on F_157 (zeta_12 -> 22).
+    ok = True; det = []
+    for q in [x for x in range(5, 200) if arith.is_prime(x) and x % 4 == 1]:
+        nu = next(v for v in range(2, q) if pow(v, (q - 1) // 2, q) == q - 1)
+        K = Ext(q, nu)
+        torus = K.norm_one()
+        ok &= len(torus) == q + 1 and all(K.pow(z, q) == K.conj(z) and K.mul(z, K.conj(z)) == (1, 0) for z in torus)
+        ok &= all(K.pow(z, q) == K.conj(z) for z in K.elements())
+        roots = [x for x in K.elements() if K.mul(x, x) == (nu % q, 0)]
+        ok &= sorted(roots) == sorted([(0, 1), (0, q - 1)])                  # sqrt(nu) has two images: the two automorphisms
+        det.append(str(q))
+    z12 = 22
+    ok &= all(pow(z12, (12 - k) % 12, 157) * pow(z12, k, 157) % 157 == 1 for k in range(12))
+    ok &= all(pow(pow(z12, k, 157), -1, 157) == pow(z12, (-k) % 12, 157) for k in range(12))
+    # 22:C6 (p22022)
+    R.check("V14", "conjugation is inversion in each setting: the Frobenius of F_{p^2} is (a, b) -> (a, -b), inverts the norm-one torus and is the only non-trivial automorphism over F_p (sqrt nu -> +-sqrt nu), every p = 4k+1 < 200; exponent negation inverts C_12 and the ledger's conjugation reduces to it on F_157",
+            ok, f"{len(det)} shells")
+
+    # The forced complex sector (22:C13, X2): the shared core of two framed shells of capacities kappa, kappa' is the
+    # cycle of order gcd(4 kappa, 4 kappa'), a multiple of 4, and exactly Q4 when the capacities are coprime (exhaustive
+    # below 30); a shell p = 3 (mod 4) has no square root of -1 and every p = 1 (mod 4) has one (every prime below 200).
+    ok = all(gcd(4 * a, 4 * b) % 4 == 0 for a in range(1, 30) for b in range(1, 30))
+    ok &= all(gcd(4 * a, 4 * b) == 4 for a in range(1, 30) for b in range(1, 30) if gcd(a, b) == 1)
+    ok &= any(gcd(4 * a, 4 * b) > 4 for a in range(1, 30) for b in range(1, 30))
+    for q in [x for x in range(3, 200) if arith.is_prime(x)]:
+        has = any(x * x % q == q - 1 for x in range(q))
+        ok &= has == (q % 4 == 1)
+    # 22:C13 (p22029), 22:X2 (p22045)
+    R.check("V15", "the shared core of two framed shells has order a multiple of 4 and is Q4 for coprime capacities (kappa, kappa' < 30); a square root of -1 exists on p = 1 (mod 4) and on no p = 3 (mod 4), every prime below 200: the universal ledger is Z[i], the real theory arises from no capacity",
+            ok)
 
 
 # ------------------------------------------------------------------------------------------------------------
@@ -456,7 +516,6 @@ def block_D():
     for k in range(order):
         Pw = mm(Pw, spin(xg, yg))
         if k + 1 == order // 2: half = Pw
-    # 22:P4 (p22055)
     R.check("D6", "closure of the boost cycle: transport around the generator's orbit returns S^n psi exactly, no accumulated deformation; the spinor double cover S^((p+1)/2) = -I",
             f == mvec(Pw, psi) and half == msc((p - 1, 0), Id), f"orbit of the generator {(xg, yg)}: {order} steps, S^{order // 2} = -I")
 
@@ -499,6 +558,19 @@ def block_D():
             ok &= sp_add(sp_dirac(Dm, gams, frame), sp_mvec(Id, Dm, (m, 0)), -1) == sp_add(kgf, sp_mvec(Id, psi, (m * m % p, 0)), -1)
     R.check("D7", "D4 and D5 again on point sources, which test every coefficient of both operators (the package's field depends on z alone mod 13): covariance under all 14 norm-one boosts, the factorisation in the standard and a boosted frame",
             ok, "three fields of three random point sources")
+    ok = True
+    for _ in range(3):
+        f0 = {tuple(rnd.randrange(p) for _ in range(4)): [(rnd.randrange(p), rnd.randrange(p)) for _ in range(4)] for _ in range(3)}
+        f, Pw = f0, Id
+        for k in range(1, order + 1):
+            f = sp_transport(f, xg, yg); Pw = mm(Pw, spin(xg, yg))
+            moved = f != sp_mvec(Pw, f0)                                       # Lambda^k moves the support unless Lambda^k = 1 (order 7 on the points: Lambda(z) = conj(z)^2)
+            ok &= moved == (k % (order // 2) != 0)
+            if k == order // 2: ok &= f == sp_mvec(msc((p - 1, 0), Id), f0)   # the double cover's sign on the field at the half orbit
+        ok &= f == f0 and order == p + 1
+    # 22:P4 (p22055)
+    R.check("D8", "closure of the boost cycle on point-source fields, step by step: Lambda^k moves the support exactly when 7 does not divide k (Lambda has order 7 on the points), at the half orbit T^7 psi = -psi (the double cover's sign), and T^14 psi = psi exactly; nothing short of the orbit returns",
+            ok and half == msc((p - 1, 0), Id), f"three point-source fields, {order} steps")
 
 
 def _ksum(K, xs):
@@ -516,7 +588,7 @@ def _ksum(K, xs):
 # S = 2(ζ_8 + ζ_8^{-1}), with S² = 8.
 @R.block("C", BLOCK["C"])
 def block_C():
-    """Block C — composite.py, the composite gate (EXACT; C7 APPROX): C1–C8, the package's 12 checks C1–C8."""
+    """Block C — composite.py, the composite gate (EXACT; C7 CHART, by certified brackets): C1–C8, the package's 12 checks C1–C8."""
     p, g = 641, 3
     N = p - 1
     gO = pow(g, N // 16, p)
@@ -565,15 +637,16 @@ def block_C():
     R.check("C5", "the composite reduction commutes: Z[zeta_80] -> F_641, zeta_80 -> g^8, on all weights", ok5)
     R.check("C6", "no-signalling: each marginal is 4 of 8 = 1/2 exactly, independent of the far setting", ok6)
 
-    best, worst, arg = CQ.chsh_sweep(80)
-    b, w = Fr(best), -Fr(worst)                                               # |b - 2√2| < 10^-12 iff (b - t)² < 8 < (b + t)²
-    near = lambda x: (x - TOL) ** 2 < 8 < (x + TOL) ** 2
-    R.check("C7", "the exhaustive 80^3 CHSH sweep: max S = 2 sqrt 2 and min S = -2 sqrt 2 to 10^-12, never exceeded; S > 2 strictly (native Bell violation)",
-            near(b) and near(w) and best > Fr(27, 10), f"max S = {best:.12f} at {arg}", kind="APPROX")
+    below, at, over = CQ.chsh_bound(80)                                       # every triple's S bracketed by certified cosines
+    two_root_two = Z.scale(2, Z.add(Z.zeta(10), Z.zeta(-10)))                   # 2(zeta_8 + zeta_8^-1) = 2 sqrt 2 in Z[zeta_80]
+    E_exact = lambda D: Z.scale(Fr(1, 2), Z.add(Z.zeta(D), Z.zeta(-D)))
+    saturate = all(Z.sub(Z.sum([E_exact(d1), E_exact(d2), E_exact(d3)]), E_exact(d4)) == two_root_two for d1, d2, d3, d4 in at)
+    R.check("C7", "the exhaustive 80^3 CHSH sweep never exceeds 2 sqrt 2: every triple's S lies below the bracket of 2 sqrt 2 by certified cosine brackets, except the saturating triples, where S = 2(zeta_8 + zeta_8^-1) exactly in Z[zeta_80]",
+            below + len(at) == 80 ** 3 and not over and len(at) > 0 and saturate, f"{below} triples below, {len(at)} saturating {at}", kind="CHART")
 
     Z8 = Cyclotomic(8)
     S8 = Z8.sub(Z8.scale(Fr(3, 2), Z8.add(Z8.zeta(1), Z8.zeta(-1))), Z8.scale(Fr(1, 2), Z8.add(Z8.zeta(3), Z8.zeta(-3))))
-    # 22:X7 (p22050)
+    # 22:X7 (p22050), 22:C25 (p22041)
     R.check("C8", "Tsirelson saturation as a ring identity: S = 3 cos(pi/4) - cos(3 pi/4) = 2(zeta_8 + zeta_8^-1) in Z[zeta_8], S^2 = 8",
             S8 == Z8.scale(2, Z8.add(Z8.zeta(1), Z8.zeta(-1))) and Z8.mul(S8, S8) == Z8.const(8))
 
@@ -768,8 +841,20 @@ def block_R():
                 t = Z.mul(expect2(A, C, cond), HALF)
                 okT &= t == Z.mul(expect2(A, C, ref), HALF)
                 table[(name, sgn, xi, zi)] = t
+    # The complex-quantum table in closed form, written without the operators: on (1 x sigma_b)|Phi+> the expectation
+    # <P x P'> is [P = P'] e(P) s_b(P) with e(X) = e(Z) = 1, e(Y) = -1 (Y^T = -Y) and s_b(P) = +-1 as sigma_b commutes
+    # or anticommutes with P; C_z = (P_u +- P_v)/sqrt2 gives (e(u) s_b(u) [A = P_u] +- e(v) s_b(v) [A = P_v])/sqrt2.
+    E_ = {"X": 1, "Y": -1, "Z": 1}
+    comm = lambda a, b: 1 if (a == b or a == "I" or b == "I") else -1
+    SIGB = {("Phi", 1): "I", ("Phi", -1): "Z", ("Psi", 1): "X", ("Psi", -1): "Y"}
+    CZn, AXn = [("X", "Y", 1), ("X", "Y", -1), ("Y", "Z", 1), ("Y", "Z", -1), ("X", "Z", 1), ("X", "Z", -1)], ["X", "Y", "Z"]
+    def closed(name, sgn, xi, zi):
+        u, w, sg = CZn[zi]; a_, sb = AXn[xi], SIGB[(name, sgn)]
+        return Z.scale(Fr((E_[u] * comm(sb, u) if a_ == u else 0) + sg * (E_[w] * comm(sb, w) if a_ == w else 0)), S2INV)
+    okC = all(table[k] == closed(*k) for k in table) and len(table) == 72 and Z.mul(S2, S2) == Z.const(2) and S2 != ZERO
     # 22:C18 (p22034)
-    R.check("R3", "P(b) = 1/4 for each Bell outcome; the full conditional table <A_x C_z | b> (3 x 6 x 4 entries) equals the complex-quantum table exactly", okT and okP)
+    R.check("R3", "P(b) = 1/4 for each Bell outcome; the full conditional table <A_x C_z | b> (3 x 6 x 4 entries) equals the complex-quantum table exactly, computed in closed form from the Pauli commutation signs (entries 0 and +-1/sqrt2), and the reference states",
+            okT and okP and okC)
 
     def gt_q2(x, y):                                                          # a + b√2 > c + d√2, exactly
         pp, q = x[0] - y[0], x[1] - y[1]
@@ -791,7 +876,8 @@ def block_R():
             score = Z.add(score, best[1])
     # 22:P3 (p22054)
     R.check("R4", "the canonical witness: score/4 = 6 sqrt 2 = 6(zeta - zeta^3) exactly (score 24 sqrt 2), three conditional CHSH at 2 sqrt 2; 72 > 7.6605^2, above the real-quantum bound",
-            Z.scale(Fr(1, 4), score) == Z.scale(6, S2) and score == Z.scale(24, S2) and 72 > Fr(76605, 10000) ** 2)
+            Z.scale(Fr(1, 4), score) == Z.scale(6, S2) and score == Z.scale(24, S2) and Z.is_rational(Z.norm2(Z.scale(Fr(1, 4), score)))
+            and Z.norm2(Z.scale(Fr(1, 4), score))[0] == 72 and 72 > Fr(76605, 10000) ** 2)
 
     def k_of(i, j): return ((i >> 1) << 3) | ((i & 1) << 2) | ((j >> 1) << 1) | (j & 1)
     amp = [[PSI.get(k_of(i, j), ZERO) for j in range(4)] for i in range(4)]
@@ -854,9 +940,17 @@ def block_B():
             psiU = [Z.add(Z.mul(U[b][0], psi[2 * a]), Z.mul(U[b][1], psi[2 * a + 1])) for a in (0, 1) for b in (0, 1)]
             ok_b &= rhoA(psiU) == rhoA(psi)
     R.check("B4", "the coupling commutes with the diagonal drive (offset-diagonal); Alice's reduced state is invariant under Bob's local X, Y, Z (no signalling), exact", ok_a and ok_b)
-    ok = all(Z.add(Z.add(Z.const(2), Z.add(Z.zeta(k), Z.zeta(-k))), Z.sub(Z.const(2), Z.add(Z.zeta(k), Z.zeta(-k)))) == Z.const(4) for k in range(80))
+    # The visibility from the reduced state: for the unnormalised amplitudes (1, 1, 1, zeta^k) the norm is 4 and
+    # Alice's reduced matrix has the off-diagonal rho_01 = (1 + zeta^-k)/4, so V = 2 |rho_01| gives 4 V^2 = |1 + zeta^k|^2;
+    # the concurrence from the determinant (B2): 4 C^2 = |ad - bc|^2. Their sum is computed, not asserted.
+    ok = True
+    for k in range(80):
+        rho = rhoA(amps(k))
+        v2 = Z.norm2(rho[0][1])                                               # 4 V^2 = |rho_01|^2 (the norm 4 absorbed)
+        ok &= Z.add(v2, c2[k]) == Z.const(4) and v2 == Z.add(Z.const(2), Z.add(Z.zeta(k), Z.zeta(-k)))
+    ok &= Z.norm2(rhoA(amps(0))[0][1]) == Z.const(4) and Z.norm2(rhoA(amps(40))[0][1]) == Z.zero
     # 22:P1 (p22052)
-    R.check("B5", "the complementarity V^2 + C^2 = 1 as a ring identity over the full sweep: 4V^2 = 2 + zeta^k + zeta^-k, 4C^2 = 2 - zeta^k - zeta^-k", ok)
+    R.check("B5", "the complementarity V^2 + C^2 = 1 over the full sweep, with 4V^2 = |rho_01|^2 computed from Alice's reduced state and 4C^2 = |ad - bc|^2 from the determinant: the sum is 4 at every k, V = 1 at k = 0 and V = 0 at the half turn", ok)
 
 
 # ------------------------------------------------------------------------------------------------------------
@@ -868,7 +962,7 @@ def block_B():
 # every outcome, so P = 1/7.
 @R.block("Q", BLOCK["Q"])
 def block_Q():
-    """Block Q — decoherence.py (EXACT; Q3 APPROX): Q1–Q7, the package's 7 checks."""
+    """Block Q — decoherence.py (EXACT; Q3 CHART): Q1–Q7, the package's 7 checks."""
     n = 40
     Z = Cyclotomic(n)
     ok = True
@@ -887,7 +981,7 @@ def block_Q():
             all(V2(t) == Z.conj(V2(t)) for t in range(n)) and V2(0) == Z.one)
     env = CQ.envelope(M, n, (1, 2, 3, 4))
     R.check("Q3", "the Gaussian envelope V = exp(-sigma^2 theta^2/2) of the binomial distribution (sigma^2 = M/4) within 0.02, tau = 1..4: the large-M image of the exact ring form",
-            all(abs(chi - ga_) <= Fr(2, 100) for _, chi, ga_ in env), "; ".join(f"tau={t}: {chi:.4f} vs {ga_:.4f}" for t, chi, ga_ in env), kind="APPROX")
+            all(abs(chi - ga_) <= Fr(2, 100) for _, chi, ga_ in env), "; ".join(f"tau={t}: {chi:.4f} vs {ga_:.4f}" for t, chi, ga_ in env), kind="CHART")
     R.check("Q4", "the exact revival V(n)^2 = 1 at the cycle period n = 40: dephasing, never collapse", V2(n) == Z.one)
 
     Z7 = Cyclotomic(7)
@@ -914,7 +1008,7 @@ def block_Q():
 # that decides nothing.
 @R.block("E", BLOCK["E"])
 def block_E():
-    """Block E — equivalence.py (EXACT; E5 APPROX): E1–E5, the package's 5 checks."""
+    """Block E — equivalence.py (EXACT): E1–E4, the package's exact checks (its sampled illustration, which decided nothing, is not carried)."""
     L = 4; Ncell = L ** 3
     idx = lambda x, y, z: (x % L) * L * L + (y % L) * L + (z % L)
     A = [[0] * Ncell for _ in range(Ncell)]
@@ -937,32 +1031,36 @@ def block_E():
     rho1[idx(0, 0, 0)] = 3; rho2[idx(2, 1, 3)] = 7; unit[idx(0, 0, 0)] = 1
     u1, u2, u12, uu = solve([rho1, rho2, [a + b for a, b in zip(rho1, rho2)], unit])
     R.check("E1", "exact superposition on the lattice: u(m1 + m2) = u(m1) + u(m2) in all 64 cells (rational arithmetic)", all(a + b == c for a, b, c in zip(u1, u2, u12)))
-    R.check("E2", "the source coefficient is exactly m: u(m = 3 cluster) = 3 u(unit), every cell", all(3 * a == b for a, b in zip(uu, u1)))
-    gx = u12[idx(1, 0, 0)] - u12[idx(3, 0, 0)]
     # 22:C22 (p22038)
-    R.check("E3", "the equivalence principle as an exact null: the acceleration (m_t grad u)/m_t of a locked test cluster is independent of m_t, eta = 0",
-            (3 * gx) / 3 == (7 * gx) / 7 == gx, f"grad u = {gx}")
+    R.check("E2", "the source coefficient is exactly m: u(m = 3 cluster) = 3 u(unit), every cell, and u(m = 7) = 7 u(unit) (the field linear in its sources, coefficient m)",
+            all(3 * a == b for a, b in zip(uu, u1)) and solve([[7 * r for r in unit]])[0] == [7 * a for a in uu])
+    # The pull on a locked test cluster of m_t unit cells at a probe of nonzero gradient: each cell responds to the
+    # solved field, so the pull is m_t times the gradient and the acceleration pull/m_t is the gradient, for m_t = 3
+    # and 7 — the lattice model's reading of eta = 0 (the row's exact content is E1, E2 and E4; this is their consequence).
+    probe = next(P for P in product(range(L), repeat=3) if u12[idx(P[0] + 1, P[1], P[2])] - u12[idx(P[0] - 1, P[1], P[2])] != 0)
+    gx = u12[idx(probe[0] + 1, probe[1], probe[2])] - u12[idx(probe[0] - 1, probe[1], probe[2])]
+    pull = {mt: sum(gx for _ in range(mt)) for mt in (3, 7)}
+    R.check("E3", "the equivalence principle as the model's null: at a probe of nonzero gradient the pull on a locked cluster of m_t cells is m_t times the gradient, so the acceleration pull/m_t is the gradient for m_t = 3 and 7 (eta = 0 by construction, the content being E1, E2, E4)",
+            gx != 0 and all(pull[mt] / mt == gx for mt in (3, 7)), f"probe {probe}, grad u = {gx}")
     Z8 = Cyclotomic(8)
     R.check("E4", "unlocked phases: E|sum zeta^theta|^2 = m exactly (the m^2 - m cross terms vanish, sum_k zeta_8^k = 0); a locked cluster gives m^2, |5 zeta|^2 = 25",
             Z8.sum(Z8.zeta(k) for k in range(8)) == Z8.zero and Z8.norm2(Z8.zeta(1, 5)) == Z8.const(25))
-    mean = CQ.sampled_scaling(10000, 200, 8, 5)
-    R.check("E5", "the sampled illustration: |sum|^2/m concentrates near 1 at m = 10^4 (within 0.2), so the unlocked coupling scales as sqrt m",
-            abs(mean - 1) < Fr(2, 10), f"mean |sum|^2/m = {mean:.3f} (200 draws, seed 5)", kind="APPROX")
 
 
 # ------------------------------------------------------------------------------------------------------------
 # block G: the granularity ceiling (granularity.py, 22:C14, P5)
 # The arithmetic is exact in ℚ(ζ_8), with 1/√2 = (ζ − ζ³)/2. After k Hadamard layers the minimal denominator is
 # 2^⌈k/2⌉, and the minimal tally norm is W(k) = 2^k (k even) or 2^(k+1) (k odd). The ceiling is the largest k with
-# d·W(k) < Ω. In F_641 it is k* = 8 for the unit core and 6 for the Bell core (d = 8). At the corpus windows 10^122
-# and 10^61 it is 404 and 202, by integer comparison. Past k* two valid lifts give different Born ratios, and they
-# differ by multiples of Ω. Over ℚ(i) the Gaussian Hadamard gives the same law.
+# d·W(k) < Ω. In F_641 it is k* = 8 for the unit core and 6 for the Bell core (d = 8). At the master's anchor
+# Ω ∼ 1.3 × 10^123 it is 408 and 204 at √Ω, by the bit length of the certified bracket's ends. Past k* two valid lifts
+# give different Born ratios, and they differ by multiples of Ω. Over ℚ(i) the Gaussian Hadamard gives the same law.
 @R.block("G", BLOCK["G"])
 def block_G():
     """Block G — granularity.py (EXACT): G1–G7, the package's 7 checks (and the corpus ceilings it prints)."""
     Z = Cyclotomic(8)
     S2INV = Z.scale(Fr(1, 2), Z.sub(Z.zeta(1), Z.zeta(3)))
     ok1 = ok2 = True
+    W = lambda k: 2 ** k if k % 2 == 0 else 2 ** (k + 1)
     for k in range(1, 13):
         amp = Z.const(Fr(1))
         for _ in range(k): amp = Z.mul(amp, S2INV)
@@ -972,23 +1070,32 @@ def block_G():
         ints = [int(Fr(f) * D) for f in amp]
         ok1 &= D == 2 ** ((k + 1) // 2) and gcd(*ints) == 1
         n1 = Z.norm2(tuple(ints))
-        ok2 &= Z.is_rational(n1) and 2 ** k * n1[0] == (2 ** k if k % 2 == 0 else 2 ** (k + 1))
+        ok2 &= Z.is_rational(n1) and 2 ** k * n1[0] == W(k)
     R.check("G1", "the denominator law: after k Hadamard layers the minimal denominator is 2^ceil(k/2), k = 1..12, exact in Q(zeta_8) (2 ramified)", ok1)
     R.check("G2", "the tally law: the minimal integer-tally norm is 2^k (k even) and 2^(k+1) (k odd), exactly", ok2)
     p = 641
-    W = lambda k: 2 ** k if k % 2 == 0 else 2 ** (k + 1)
     kstar, kstar8 = max(k for k in range(1, 12) if W(k) < p), max(k for k in range(1, 12) if 8 * W(k) < p)
     # 22:C14 (p22030)
     R.check("G3", "the exact ceilings in F_641: k* = max{k : W(k) < 641} = 8 (unit core, bit-length label 9); max{k : 8 W(k) < 641} = 6 (Bell core)",
             kstar == 8 and p.bit_length() - 1 == 9 and kstar8 == 6, f"k* = {kstar}, Bell core {kstar8}")
-    def kceil(window):
-        k = 1
-        while W(k + 1) < window or W(k + 2) < window: k += 1
-        return max(kk for kk in range(1, k + 3) if W(kk) < window)
-    dO, dsO = kceil(10 ** 122), kceil(10 ** 61)
+    # The ceiling at the master's anchor (00:A7, the scale import's certified bracket, frc/chart.py): T(k) < Omega iff
+    # k + [k odd] <= floor(log2 Omega), the bit length less one, so k* = b - b % 2 for b = floor(log2 Omega); no number
+    # above Omega is formed. Both ends of the bracket have bit length 410 (b = 409), and their integer square roots bit
+    # length 205 (b = 204).
+    lo, hi = CH.omega_bracket()
+    ends = (int(lo), int(hi) + 1)
+    bits = {e.bit_length() - 1 for e in ends}
+    rbits = {isqrt(e).bit_length() - 1 for e in ends}
+    kstar_of = lambda b: b - b % 2
+    dO = {kstar_of(b) for b in bits}; dsO = {kstar_of(b) for b in rbits}
+    passes = lambda k, b: k + k % 2 <= b                                      # W(k) = 2^(k + k%2) < Omega iff k + k%2 <= b, read on the exponent: no number above Omega is formed
+    ok = len(bits) == 1 and len(rbits) == 1
+    ok &= all(W(kstar_of(b)) < e and passes(kstar_of(b), b) and not passes(kstar_of(b) + 1, b) for b in bits for e in ends)
+    ok &= all(W(kstar_of(b)) < isqrt(e) and passes(kstar_of(b), b) and not passes(kstar_of(b) + 1, b) for b in rbits for e in ends)
+    ok &= all(e // 10 ** 123 == 1 for e in ends)
     # 22:P5 (p22056)
-    R.check("G4", "the corpus ceilings by integer comparison: k* = 404 at the window Omega = 10^122 and 202 at sqrt(Omega) = 10^61 (the package prints them)",
-            dO == 404 and dsO == 202, f"k* = {dO} (Omega), {dsO} (sqrt Omega)")
+    R.check("G4", "the ceilings at the master's anchor Omega ~ 1.3 x 10^123 (the certified bracket of the scale import, 00:A7), by the bit length of its ends: k* = 408 for the unit core and 204 at the coherence horizon sqrt(Omega)",
+            ok and dO == {408} and dsO == {204}, f"k* = {sorted(dO)} (Omega, bit length {sorted(b + 1 for b in bits)}), {sorted(dsO)} (sqrt Omega)")
     ok3a = ok3b = ok4 = True
     for k in range(1, 12):
         Wk = W(k); wplus = Wk // 2 + 2 ** (k // 2)
@@ -1022,8 +1129,40 @@ def block_G():
 @R.block("T", BLOCK["T"])
 def block_T():
     """Block T — stratum.py (EXACT): T1–T11, the package's 12 checks."""
+    # The counting Born rule on a fixed Gaussian-integer state over the Object cycle C_12 of F_157 (g_O = 22, the core
+    # Q4, channels (r, a)): the channel weights w = N(Psi_{r,a}) are integers below the window Omega = 641, so each is
+    # the unique lift of its shadow; the drive U psi(u) = psi(g^-1 u) presents the ensemble, and the coincidence counts
+    # registered over its completed period of 12 chronons (on one fibre, and on all) give the registered frequencies,
+    # framed rationals equal to the structural ratios sum_a w_{r,a} / W with W = 4 ||psi||^2 (Parseval): the two strata
+    # coincide on the stationary core-valued sector, and the ratios sum to 1.
+    pT, gT, Om = 157, 22, 157                                                  # the window is the carrier's count
+    HT = sorted({pow(gT, k, pT) for k in range(12)})
+    psiT = {u: ((i % 5) - 2, (i % 3) - 1) for i, u in enumerate(HT)}
+    def ampT(state, r, a):
+        s_ = (0, 0)
+        for l in range(4): s_ = ga(s_, gm(gc(I4[(r * l) % 4]), state[pow(gT, a + 3 * l, pT)]))
+        return s_
+    ginv = pow(gT, 11, pT)
+    driveT = lambda st: {u: st[(u * ginv) % pT] for u in HT}
+    RAT = [(r, a) for r in range(4) for a in range(3)]
+    wT = {x: gnorm(ampT(psiT, *x)) for x in RAT}; WT = sum(wT.values())
+    lifts_ok = all(0 <= w_ < Om and (w_ % Om) == w_ for w_ in wT.values())                  # below the window: the least lift of the shadow is the weight itself
+    st, cnt_all, cnt_one = psiT, {r: 0 for r in range(4)}, {r: 0 for r in range(4)}
+    for _ in range(12):
+        for r in range(4):
+            cnt_one[r] += gnorm(ampT(st, r, 0))
+            for a in range(3): cnt_all[r] += gnorm(ampT(st, r, a))
+        st = driveT(st)
+    freq_all = {r: Fr(cnt_all[r], sum(cnt_all.values())) for r in range(4)}
+    freq_one = {r: Fr(cnt_one[r], sum(cnt_one.values())) for r in range(4)}
+    struct = {r: Fr(sum(wT[(r, a)] for a in range(3)), WT) for r in range(4)}
+    ok = st == psiT and WT == 4 * sum(gnorm(z) for z in psiT.values()) and lifts_ok and any(w_ > 0 for w_ in wT.values())
+    ok &= freq_all == struct and freq_one == struct and sum(struct.values()) == 1 and all(f.denominator > 1 for f in struct.values())
+    ok &= all(WT % f.denominator == 0 for f in struct.values())                              # framed rationals: denominators divide the tally W
     # 22:C10 (p22026)
-    R.check("T1", "the two-way (conjugation-invariant) part of Z[i] is the tally line b = 0 (exhaustive, |a|, |b| <= 6)",
+    R.check("T1", "the counting Born rule on a fixed Z[i] state over C_12 of F_157: the channel weights N(Psi) are integers below the carrier's window 157, each the unique lift of its shadow; the coincidence counts over the drive's completed period (12 chronons, one fibre and all fibres) give registered frequencies equal to the structural ratios sum_a w / W, W = 4 ||psi||^2, framed rationals summing to 1 (the two strata coincide)",
+            ok, f"W = {WT}, ratios {[str(struct[r]) for r in range(4)]}")
+    R.check("T12", "the two-way (conjugation-invariant) part of Z[i] is the tally line b = 0 (exhaustive, |a|, |b| <= 6; the hypothesis boundary of the strata, an identity of Z[i])",
             all((b == 0) == ((a, b) == (a, -b)) for a in range(-6, 7) for b in range(-6, 7)))
     Om = 641
     r = next(x for x in range(1, Om) if x * x % Om == 2)
@@ -1039,7 +1178,7 @@ def block_T():
     R.check("T4", "r is on the Subject zoom grid, r = g^n for the chart generator g = 3 (scale-periodic)", r in dl, f"r = 3^{dl[r]}")
     s_n = lambda m, n: isqrt(m * g ** (2 * n))
     num, den = 2 * g ** 4 + s_n(2, 4), 8 * g ** 4
-    # 22:C11 (p22027)
+    # 22:C11 (p22027), 22:X6 (p22049)
     R.check("T5", "the framed readout R_4((2 + sqrt 2)/8) = (2*81 + 114)/(8*81) = 23/54, the grid bound s^2 <= 2 g^8 < (s + 1)^2 exact",
             s_n(2, 4) == 114 and s_n(2, 4) ** 2 <= 2 * g ** 8 < (s_n(2, 4) + 1) ** 2 and Fr(num, den) == Fr(23, 54), f"{num}/{den}")
     B = 81
@@ -1229,55 +1368,39 @@ def _gsum(zs):
 
 
 # ------------------------------------------------------------------------------------------------------------
-# block N: the hardware compilations (emulation.py, 22:V3)
-# The forced-basis measurement compiles to I_3 ⊗ QFT_4^† (12 levels, F_157) and to I_2 ⊗ QFT_8^† (16 levels, F_641).
-# The chart computes in floating point, and each law is compared with its exact value to 10^-12. The laws are
-# unitarity and the forced basis, the selection rule with uniform outcomes for windings, and the three-outcome
-# interference law. The gate decomposition is H–CS–H–SWAP, and the σ_x doublet law holds at the π/40 granularity. The
-# two experiment cards are emitted with the record.
-@R.block("N", BLOCK["N"])
-def block_N():
-    """Block N — emulation.py (the package's kind NUM, here APPROX): N1–N5, the package's 7 checks."""
-    dev = CQ.emulation()
-    small = lambda *ks: all(dev[k] < TOL for k in ks)
-    cards = ("card 157/53/13: prepare 12-level winding or doublet states, apply I_3 x QFT_4^dagger, read (alpha, r); "
-             "card 641/41/17: 16 levels, I_2 x QFT_8^dagger, certifies the Malus law at pi/40 and the Tsirelson configuration")
-    # 22:V3 (p22059)
-    R.check("N1", "I_3 x F_4 is unitary (12 levels) and its columns are the normalised forced-basis vectors, to 10^-12", small("M1u", "M1b"), cards, kind="APPROX")
-    R.check("N2", "winding states u^s: the channel r = s mod 4 is deterministic and the outcome uniform (1/3), all 12 windings, to 10^-12", small("M2"), kind="APPROX")
-    R.check("N3", "doublet states: the three-outcome interference law P(alpha) = |1 + lam omega^alpha|^2/6 over 12 phases and 3 windings, to 10^-12", small("M3"), kind="APPROX")
-    R.check("N4", "the two-qubit circuit H-CS-H-SWAP reproduces F_4, to 10^-12", small("M4"), kind="APPROX")
-    R.check("N5", "I_2 x F_8 is unitary (16 levels) and reproduces the sigma_x doublet law w = |1 +- lam|^2/4 over the pi/40 sweep, to 10^-12",
-            small("M5u", "M5"), f"largest deviation {max(dev.values()):.1e}", kind="APPROX")
-
-
-# ------------------------------------------------------------------------------------------------------------
 # block O: the Ω ledger (omega.py, 22:A5, Z2)
-# The anchor is Ω = 10^122, with √Ω = 10^61 and Ω^{1/4} = 10^30.5. The null channels put floors on Ω: the Riemann height
-# (3·10^12)^4, the Sorkin and Born tallies 10^22, and the granularity 2^60. Every floor lies below the anchor, and its
-# margin in orders of ten is recorded. The window [8.1·10^49, ∞) contains the anchor, and the scales are powers of one
-# Ω. The binding floor is the Riemann height. The package computes in floating point, and here the comparisons are of
-# integers.
+# The anchor is the master's A7, the certified bracket of the scale import (frc/chart.py, omega_bracket: Ω = 4S + 1
+# from the fitted Λ and the Planck length), Ω ∼ 1.3 × 10^123 as an order of magnitude, with √Ω ∼ 3.6 × 10^61 and
+# Ω^(1/4) ∼ 6.0 × 10^30. The null channels put floors on Ω: the Riemann height (3·10^12)^4, the Sorkin and Born tallies
+# 10^22, and the granularity 2^60. Every floor lies below the anchor, and its margin in orders of ten is recorded; the
+# binding floor is the Riemann height, seventy-three orders below. The scales are the integer roots of one Ω. Every
+# comparison is of integers, and no number above Ω is formed.
 @R.block("O", BLOCK["O"])
 def block_O():
-    """Block O — omega.py (EXACT): O1–O4, the package's 4 checks."""
-    ANCHOR, SQRT_A, QUAR_A2 = 10 ** 122, 10 ** 61, 10 ** 61                  # QUAR_A2 = (Ω^{1/4})² = (10^30.5)²
+    """Block O — omega.py (EXACT): O1–O4, the package's 4 checks, on the master's anchor."""
+    lo, hi = CH.omega_bracket()
+    L, H = int(lo), int(hi) + 1                                               # the bracket's ends, as integers
     floors = [("Riemann zero verification (rh paper)", (3 * 10 ** 12) ** 4), ("Sorkin third-order nullity (exp I)", 10 ** 22),
               ("Born readout window (companion Thm)", 10 ** 22), ("Granularity ceiling (exp V)", 2 ** 60)]
-    def orders(x):                                                            # the margin log10(Ω/x), rounded as the package prints it
-        q = Fr(ANCHOR, x); k = 0
+    def orders(x):                                                            # the margin floor(log10(Omega/x)) at the lower end
+        q = Fr(L, x); k = 0
         while 10 ** (k + 1) <= q: k += 1
-        return k + (1 if q * q >= 10 ** (2 * k + 1) else 0)                    # round half up on the log scale
+        return k
     # 22:A5 (p22005)
-    R.check("O1", "every floor lies below the anchor Omega = 10^122, with its margin in orders of ten", all(f < ANCHOR for _, f in floors),
+    R.check("O1", "every floor lies below the anchor Omega ~ 1.3 x 10^123 (the certified bracket's lower end), with its margin in orders of ten", all(f < L for _, f in floors),
             "margins " + ", ".join(str(orders(f)) for _, f in floors))
     omega_min = max(f for _, f in floors)
-    R.check("O2", "the joint consistency window [8.1 x 10^49, inf) is nonempty and contains the anchor", omega_min < ANCHOR and omega_min == 81 * 10 ** 48,
+    R.check("O2", "the binding floor Omega > 8.1 x 10^49 lies seventy-three orders below the anchor", omega_min < L and omega_min == 81 * 10 ** 48 and orders(omega_min) == 73,
             f"margin {orders(omega_min)} orders")
-    R.check("O3", "the scales are coherent: sqrt(Omega) = 10^61 and Omega^(1/4) = 10^30.5 are powers of one Omega = 10^122", SQRT_A ** 2 == ANCHOR and QUAR_A2 ** 2 == ANCHOR)
+    rt, qt = isqrt(L), isqrt(isqrt(L))
+    R.check("O3", "the scales are the integer roots of one Omega: sqrt(Omega) ~ 3.6 x 10^61 and Omega^(1/4) ~ 6.0 x 10^30 (36 x 10^60 < sqrt < 37 x 10^60, 6 x 10^30 < quarter root < 7 x 10^30), the Riemann height 3 x 10^12 below the quarter root",
+            rt * rt <= L < (rt + 1) ** 2 and qt ** 4 <= L < (qt + 1) ** 4 and 36 * 10 ** 60 < rt < 37 * 10 ** 60 and 6 * 10 ** 30 < qt < 7 * 10 ** 30 and 3 * 10 ** 12 < qt
+            and L // 10 ** 122 == 13 and H // 10 ** 122 == 13)
     binding = max((f, n) for n, f in floors)
     # 22:Z2 (p22061)
-    R.check("O4", "the binding floor is the Riemann height (Omega > 8.1 x 10^49): the channel next-generation experiments push first", binding[1].startswith("Riemann"), binding[1])
+    R.check("O4", "the binding floor is the Riemann height, (3 x 10^12)^4 = 8.1 x 10^49, the largest of the floors, 73 orders below the anchor's lower end and below the quarter root's fourth power (the carrier scale fixed through Omega^(1/4)): the channel next-generation experiments push first",
+            binding[1].startswith("Riemann") and binding[0] == (3 * 10 ** 12) ** 4 == 81 * 10 ** 48 and binding[0] < L and orders(binding[0]) == 73
+            and 3 * 10 ** 12 < qt and binding[0] < qt ** 4 and all(f <= binding[0] for _, f in floors), binding[1])
 
 
 # ------------------------------------------------------------------------------------------------------------

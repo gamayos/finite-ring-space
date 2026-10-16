@@ -88,8 +88,10 @@ THEMES = {
                     py=["frc/gravity.py", "frc/drift.py", "frc/lattice.py"], core=["lean/FrcCore/Theme/Shift.lean", "lean/FrcCore/Theme/Symbol.lean", "lean/FrcCore/Theme/Gravity.lean", "lean/FrcCore/Theme/Lattice.lean", "lean/FrcCore/Theme/Drift.lean"], ml=["lean/FrcLedger/Theme/Gravity.lean"],
                     content="master block E: gravity on the lattice; the count face; the register on every frame, the shift theorem on the cycle (21:C20), the difference operators on the cycle and the exact faces of frame drift (21-gravity)"),
     "quantum": dict(tier="programme", rank=24, exact=True,
-                    py=["frc/quantum.py"], core=["lean/FrcCore/Theme/Quantum.lean"], ml=[],
-                    content="master block F: the quantum rows"),
+                    py=["frc/quantum.py"],
+                    core=["lean/FrcCore/Theme/Quantum.lean", "lean/FrcCore/Theme/Observation.lean", "lean/FrcCore/Theme/Interference.lean", "lean/FrcCore/Theme/Composite.lean"],
+                    ml=["lean/FrcLedger/Theme/Quantum.lean"],
+                    content="master block F: the quantum rows; the observation formalism in the shadow, the interference hierarchy and the splitting depth, the composites, the correlations and the gravitational channel (22-quantum)"),
     "interactions": dict(tier="programme", rank=25, exact=True,
                          py=["frc/interactions.py"], core=["lean/FrcCore/Theme/Unitary.lean", "lean/FrcCore/Theme/Interactions.lean"], ml=[],
                          content="master block G: electromagnetism, the weak and strong forces, matter, flavour"),
@@ -126,6 +128,7 @@ LEGACY = {
     "lean/FrcCore/Rh.lean": ("20-rh", ["extension", "horizon"]),
     "lean/FrcCore/Gravity.lean": ("21-gravity", ["gravity"]),
     "lean/FrcCore/S13.lean": ("38-s13", ["subject", "projective", "gravity"]),
+    "lean/FrcCore/Qm.lean": ("22-quantum", ["quantum", "extension", "subject"]),
     "lean/FrcCore/Godel.lean": ("25-godel", ["logic"]),
     "lean/FrcCore/Finitism.lean": ("29-finitism", ["logic"]),
     "lean/FrcLedger/Algebra.lean": ("1-algebra", []),
@@ -141,6 +144,7 @@ LEGACY = {
     "lean/FrcLedger/Rh.lean": ("20-rh", ["extension"]),
     "lean/FrcLedger/Gravity.lean": ("21-gravity", ["chart"]),
     "lean/FrcLedger/S13.lean": ("38-s13", ["gravity", "chart"]),
+    "lean/FrcLedger/Qm.lean": ("22-quantum", ["quantum", "chart"]),
     "lean/FrcLedger/Godel.lean": ("25-godel", ["logic"]),
 }
 LEGACY_IMPORTS_ENFORCED = True          # set by LM18 (5 October 2026): the paper modules import themes only
@@ -151,7 +155,7 @@ BUDGETS = dict(python_file=1800, core_file=800, mathlib_file=1800, executable=35
 # theme at 7,000 lines, the author's decision of 9 October 2026 for 6-fourier's core proofs (6-fourier-20260716/reports/
 # blueprint-20261008.md set 5,000 on 8 October; the certificate's closure reached 6,629 at T09). A file takes the largest
 # budget among the themes in its closure; the file limits are unchanged.
-EXECUTABLE_BUDGETS = {"fourier": 7000, "gravity": 7500, "subject": 7600}   # the gravity theme 7,500 since 10 October 2026 (21-gravity; the author's confirmation of 10 October), when its core certificate imported Keys/Fourier for the shift theorem (21:C20, then the fourier theme's Theme/Shift.lean) beside Keys/Gravity, closure 7,306. Since 11 October (the author's decision of 21:45) Theme/Shift.lean is the gravity theme's first file, the key p21035 lives in Keys/Gravity.lean and the certificate no longer imports Keys/Fourier: closure about 4,100 (reports/execution-20261010.md §12); the budget stays at the confirmed 7,500. The subject theme 4,500 since 12 October 2026 (38-s13; the blueprint's D4 set 4,000 with the instances in a paper module, the execution record §2 measures the closure with them in Theme/Pair.lean, as 21-gravity's are in Theme/Gravity.lean): Theme/Pair.lean (the window, the leak rate, the joint cycle, the tick arithmetic, the covering parity theorem and the kernel-decided instances of the pair) brings Keys/Subject.lean's closure to about 4,200. The subject budget 7,600 since the G18 round of 12 October 2026 (evening; for the author, the execution record §2): 38-s13's core certificate lean/FrcCore/Ledgers/P38S13.lean rides on the gravity theme's files (A9 and the C rows cite Grav and Drift theorems) and its closure is 7,513 after the field-law generalisation of the Hopf section (Theme/Hopf.lean, the Fld structure) and the joint-return criterion; the alternative is to cut documentation from the theme files.
+EXECUTABLE_BUDGETS = {"fourier": 7000, "gravity": 7500, "subject": 7600, "quantum": 7800}   # the quantum theme 7,800 since 16 October 2026 (22-quantum; the author's decision D3 of 15 October set 7,500, the measured closures asked for more): Theme/Quantum.lean's closure of 3,355 left no room for a file importing it; the key file Keys/Quantum.lean imports Theme/Subject.lean for the master's channel (22:A2, P4), and the paper's certificate rides on the quantum and extension key files, closure 7,730 after the G18 round-1 repairs (the characters as power maps, the stationary modes, the embedded transport). The gravity theme 7,500 since 10 October 2026 (21-gravity; the author's confirmation of 10 October), when its core certificate imported Keys/Fourier for the shift theorem (21:C20, then the fourier theme's Theme/Shift.lean) beside Keys/Gravity, closure 7,306. Since 11 October (the author's decision of 21:45) Theme/Shift.lean is the gravity theme's first file, the key p21035 lives in Keys/Gravity.lean and the certificate no longer imports Keys/Fourier: closure about 4,100 (reports/execution-20261010.md §12); the budget stays at the confirmed 7,500. The subject theme 4,500 since 12 October 2026 (38-s13; the blueprint's D4 set 4,000 with the instances in a paper module, the execution record §2 measures the closure with them in Theme/Pair.lean, as 21-gravity's are in Theme/Gravity.lean): Theme/Pair.lean (the window, the leak rate, the joint cycle, the tick arithmetic, the covering parity theorem and the kernel-decided instances of the pair) brings Keys/Subject.lean's closure to about 4,200. The subject budget 7,600 since the G18 round of 12 October 2026 (evening; for the author, the execution record §2): 38-s13's core certificate lean/FrcCore/Ledgers/P38S13.lean rides on the gravity theme's files (A9 and the C rows cite Grav and Drift theorems) and its closure is 7,513 after the field-law generalisation of the Hopf section (Theme/Hopf.lean, the Fld structure) and the joint-return criterion; the alternative is to cut documentation from the theme files.
 
 # Gate G09: what an exact python file may import, and the exact functions of `math`.
 EXACT_STDLIB = {"fractions", "itertools", "functools", "collections", "math", "json", "os", "re", "sys", "dataclasses",

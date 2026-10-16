@@ -7,11 +7,13 @@ import FrcLedger.Theme.Horizon
 import FrcLedger.Theme.Chart
 import FrcLedger.Theme.Strong
 import FrcLedger.Theme.Gravity
+import FrcLedger.Theme.Quantum
 import FrcLedger.Keys.Frame
 import FrcLedger.Keys.Extension
 import FrcLedger.Keys.Fourier
 import FrcLedger.Keys.Logic
 import FrcLedger.Keys.Gravity
+import FrcLedger.Keys.Quantum
 import FrcLedger.Keys.Horizon
 import FrcLedger.Keys.Chart
 import FrcLedger.Fourier
@@ -27,4 +29,5 @@ import FrcLedger.Rh
 import FrcLedger.Entropy
 import FrcLedger.Gravity
 import FrcLedger.S13
+import FrcLedger.Qm
 import FrcLedger.Dirac

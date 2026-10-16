@@ -434,7 +434,7 @@ theorem ext_cayley_hamilton (z : Ext p ν) : z * z + Ext.ofShell (Ext.norm z) = 
       (.add (.mul (.add (.var 1) (.var 1)) (.var 2)) (.mul .zero (.var 1)))
       (by decide +kernel))
 
-/-- 00:C10 (S1) — the part of the extension fixed by its conjugation is the tally line: a weight `z` is its own
+/-- 00:C10 (S1), 22:C10, 22:X1 — the part of the extension fixed by its conjugation is the tally line: a weight `z` is its own
 conjugate exactly when its `w`-component vanishes (the frame's odd prime), and the symmetrised weight `z + z̄` is the
 tally-line element `tr(z)`. For `ℤ[i]`, `ν = −1`, this is the paper's two-way subring. -/
 theorem two_way_tally (F : Frame p κ g) (z : Ext p ν) :
@@ -445,7 +445,7 @@ theorem two_way_tally (F : Frame p κ g) (z : Ext p ν) :
 /-- The engineered-core weight `W₊ = 2 + w` in `𝔽_p[w]/(w² − 2)`; `W₋ = W̄₊ = 2 − w`. -/
 def Wp : Ext p 2 := ⟨2, 1⟩
 
-/-- 00:C10 (S2, S4) — the engineered-core weights reduce to the core: `W₊ + W₋ = 4` and `W₊ W₋ = 2` in every
+/-- 00:C10 (S2, S4), 22:C10 — the engineered-core weights reduce to the core: `W₊ + W₋ = 4` and `W₊ W₋ = 2` in every
 `𝔽_p[w]/(w² − 2)`, and on `Ω = 641` (`641 ≡ 1 (mod 8)`) as residues, `r = 67`, `r² = 2`, `W± = 2 ± r`, with `r` a
 grid point of the Subject chart of generator `3`, `r = 3⁵⁵⁵` (S4). -/
 theorem core_weights :
@@ -460,7 +460,7 @@ theorem core_weights :
   refine ⟨⟨Ext.ext (lit_add 2 2) (Shell.add_neg 1), by rw [Ext.mul_conj, hn], lit_add 2 2, hn⟩, by decide,
     by decide +kernel, by decide +kernel, by decide +kernel, by decide +kernel⟩
 
-/-- 00:C10 (S2) — the two-way root of two: on a frame, for `ζ` of order `8` (`ζ⁸ = 1`, `ζ⁴ ≠ 1`) and `η = ζ⁻¹`,
+/-- 00:C10 (S2), 22:C10 — the two-way root of two: on a frame, for `ζ` of order `8` (`ζ⁸ = 1`, `ζ⁴ ≠ 1`) and `η = ζ⁻¹`,
 `(ζ + η)² = 2`. So `w = ζ₈ + ζ₈⁻¹` lies in the paper's two-way subring, the part of the cyclotomic ring fixed by
 `ζ ↦ ζ⁻¹`, and the engineered-core weights `2 ± w` are two-way (on `641`: `ζ₈ = 318`, `ζ₈ + ζ₈⁻¹ = 574 = −67`). -/
 theorem root_two_two_way (F : Frame p κ g) {ζ η : Shell p} (h8 : ζ ^ 8 = 1) (h4 : ζ ^ 4 ≠ 1) (hζη : ζ * η = 1) :
@@ -480,7 +480,7 @@ theorem root_two_two_way (F : Frame p κ g) {ζ η : Shell p} (h8 : ζ ^ 8 = 1) 
     ← pow_two ζ, ← pow_two η, hzero, zero_add]
   exact two_eq.symm
 
-/-- 00:C10 (S9) — the conjugate-pair trace tally: a flip-summed pair of conjugate string weights is core-valued,
+/-- 00:C10 (S9), 22:C11 — the conjugate-pair trace tally: a flip-summed pair of conjugate string weights is core-valued,
 `z^k z̄^(k+m) + z̄^k z^(k+m) = N(z)^k · tr(z^m)` on the tally line, for every weight `z` of every quadratic extension. -/
 theorem conjugate_pair_tally (z : Ext p ν) (k m : Nat) :
     z ^ k * Ext.conj z ^ (k + m) + Ext.conj z ^ k * z ^ (k + m) = Ext.ofShell (Ext.norm z ^ k * Ext.trace (z ^ m)) := by
@@ -488,7 +488,7 @@ theorem conjugate_pair_tally (z : Ext p ν) (k m : Nat) :
     Ext.mul_comm (Ext.conj z) z, Ext.mul_conj, ext_ofShell_pow, ← ext_mul_add, ← ext_conj_pow, ext_add_comm,
     ext_tally_line (z ^ m), Ext.ofShell_mul]
 
-/-- 00:C10 (S9) — the trace sequence `t_m = tr(z^m)` obeys `t_{m+2} + N(z) t_m = tr(z) t_{m+1}`; for `W₊` (`tr = 4`,
+/-- 00:C10 (S9), 22:C11 — the trace sequence `t_m = tr(z^m)` obeys `t_{m+2} + N(z) t_m = tr(z) t_{m+1}`; for `W₊` (`tr = 4`,
 `N = 2`): `t_0 = 2`, `t_1 = 4`, `t_{m+2} = 4 t_{m+1} − 2 t_m`, so `t_2 = 12`, `t_3 = 40` (on `Ω = 641`). -/
 theorem trace_recurrence :
     (∀ (z : Ext p ν) (m : Nat), Ext.trace (z ^ (m + 2)) + Ext.norm z * Ext.trace (z ^ m) = Ext.trace z * Ext.trace (z ^ (m + 1))) ∧
@@ -521,7 +521,7 @@ theorem geom_sum_zero (F : Frame p κ g) {x : Shell p} (n : Nat) (hn : x ^ n = 1
         _ = (x + -1) + 1 := (add_assoc _ _ _).symm
         _ = 1 := by rw [h, zero_add]) hx
 
-/-- 00:C10 (S9) — the dial-shift conjugation: on a dial of `2M` settings (`ζ^(2M) = 1`, `ζ^M ≠ 1`, `η = ζ⁻¹`), the
+/-- 00:C10 (S9), 22:C11 — the dial-shift conjugation: on a dial of `2M` settings (`ζ^(2M) = 1`, `ζ^M ≠ 1`, `η = ζ⁻¹`), the
 weight at the shifted setting is the conjugate weight, `w₊(M − θ) = w₋(θ)` for `θ ≤ M` (the witness: `M = 40` in
 `ℤ[x]/(x⁴⁰ + 1)`, `w₊(40 − D) = w₋(D)`). -/
 theorem dial_shift (F : Frame p κ g) {ζ η : Shell p} (M : Nat) (h2M : ζ ^ (2 * M) = 1) (hM : ζ ^ M ≠ 1)
@@ -547,7 +547,7 @@ theorem dial_shift (F : Frame p κ g) {ζ η : Shell p} (M : Nat) (h2M : ζ ^ (2
       _ = -(ζ ^ θ) := by rw [hηM, neg_one_mul]
   rw [e1, e2, neg_add_rev, add_comm (-(ζ ^ θ))]
 
-/-- 00:C10 (S10) — the dial-ensemble Parseval tally: over a dial of `N` settings closed under `ζ` (`ζ^N = 1`,
+/-- 00:C10 (S10), 22:C11 — the dial-ensemble Parseval tally: over a dial of `N` settings closed under `ζ` (`ζ^N = 1`,
 `ζ² ≠ 1`, `η = ζ⁻¹`) on a frame, the weights `w±(θ) = 2 ± (ζ^θ + η^θ)` sum to `2N`, and so do the products
 `w₊(θ) w₋(θ)`: the cross terms cancel by the character sums (the frame: no zero divisors). -/
 theorem dial_tally (F : Frame p κ g) {ζ η : Shell p} (N : Nat) (hN : ζ ^ N = 1) (hζη : ζ * η = 1) (h2 : ζ * ζ ≠ 1) :
@@ -620,7 +620,7 @@ def largestRemainder (B den : Nat) (nums : List Nat) : List Nat :=
   let seats := B - floors.foldl (· + ·) 0
   (List.range nums.length).map (fun i => nth floors i + if remainderRank rems i < seats then 1 else 0)
 
-/-- 00:C10 (S5–S7) — a registered probability is a framed rational, decided by the kernel: the grid bound
+/-- 00:C10 (S5–S7), 22:C10, 22:C11, 22:X6 — a registered probability is a framed rational, decided by the kernel: the grid bound
 `s_n² ≤ 2 · 9ⁿ < (s_n + 1)²` at every scale `n ≤ 8` and the readouts nest, `3 s_n ≤ s_{n+1} ≤ 3 s_n + 2`; the readout
 `R_4((2 + √2)/8) = (2 · 3⁴ + 114)/(8 · 3⁴) = 23/54`; the `√3` instance `s_3 = 46`; the largest-remainder allocation at
 `B = 81` of `(23/54, 23/54, 4/54, 4/54)` is `35 + 34 + 6 + 6` (the floors `34 + 34 + 6 + 6`, the one seat left to the
