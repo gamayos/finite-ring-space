@@ -245,7 +245,7 @@
     },
     {
      "label": "F2",
-     "predicate": "\\textbf{The hypothesis on a hosted Carrier.} A cell that passes is certified clean by the reading shell, an embedded Subject below the largest one, the host above; on the laboratory Carriers $233$, $30\\,089$ and $2\\,408\\,561$ every cell passes, $1\\,038$, $280\\,186$ and $32\\,984\\,135$ zeros, all simple; the classical verification cleans every cell $y\\le477\\,464\\,829\\,274$ (A9). The Lean declaration states the embedding arithmetic alone.",
+     "predicate": "\\textbf{The hypothesis on a hosted Carrier.} A cell that passes is certified clean by the reading shell, a Subject below the largest one, the host above; on the laboratory Carriers $233$ and $30\\,089$ every cell passes, $1\\,038$ and $280\\,186$ zeros, all simple; the classical verification cleans every cell $y\\le477\\,464\\,829\\,274$ (A9), $2\\,408\\,561$ among them. The Lean declaration is the embedding arithmetic.",
      "tag": "T",
      "source": "Thm.~\\ref{thm:hosted}, App.~\\ref{app:cert} (the certificate with the package; the core decides the embedding arithmetic)\\newline \\pywit{rh}{p20081}{F2}, \\leanwit{FrcCore}{p20081}{F2} \\lean{FRC.Horizon.closure\\_lab}",
      "key": "p20081"
@@ -265,7 +265,7 @@
    "rows": [
     {
      "label": "Z1",
-     "predicate": "The physical Carrier: the cells from the largest embedded Subject up lie in no embedded cycle, the whole-state certificate of the hypothesis is a record no embedded reader holds, and its evaluation costs more than the totality counts; the predicate's value there is $\\Omega$-hard as a tally. Short derivations are neither claimed nor excluded; the laboratory cycles are its instances.",
+     "predicate": "The physical Carrier: the cells from the largest embedded Subject up lie in no embedded cycle, the whole-state certificate is a record no embedded reader holds, and its evaluation reads more points than the totality has members [chart]; the predicate's value there is $\\Omega$-hard as a tally. Short derivations are neither claimed nor excluded; the laboratory cycles are its instances.",
      "tag": "Ω",
      "source": "Rem.~\\ref{rem:physical}, \\S\\ref{sub:physical}, \\S\\ref{sec:closure}",
      "key": "p20059"

@@ -6,7 +6,7 @@ Dictionary and the Screen Reading"), the paper 20-rh of the FRC corpus
 a_shell, b_deframe, c_primeside, c_gue, c_chi, d_classification, e_resonance merged, the three prime-side scripts as one block C).
 ========================================================================================================================
 
-One script, six blocks, 110 checks — 66 EXACT (integer-pinned), 41 [approx] (a floating-point observation against the value
+One script, six blocks, 112 checks — 69 EXACT (integer-pinned), 40 [approx] (a floating-point observation against the value
 the paper states, to a stated tolerance), 3 [chart] (a continuum reading of a finite object; notation.tex convention 6) —
 Python with numpy, scipy, mpmath, sympy and matplotlib (the blocks redraw their diagnostic figures into figures/ and the paper's
 three numerical figures, at the page width, into figures/paper/). Each
@@ -26,8 +26,10 @@ Block D  Turing's count on the shell, the phantom, the Davenport–Heilbronn con
          the finite control, the cells by the argument principle ([approx], EXACT; 20:D5, D8, D9, F1; the Davenport–Heilbronn
          comb and the pole-corrected count illustrations since the cut)
 Block E  resonance (EXACT; illustrations since the cut: the resonance, the antipode, the horizon-scale resolution, the flatness)
-Block T  Turing's certificate over the laboratory Carriers' cycles: Ω = 233, 30089, 2408561, every cell clean ([approx] in
-         double precision with explicit bounds; 20:F2; the largest read from its embedded record, RH_CERT_FULL=1 recomputes it)
+Block T  Turing's certificate over the laboratory Carriers' cycles Ω = 233 and 30089, every cell passes ([approx] in double
+         precision with explicit bounds, the low range in ball arithmetic; 20:F2; the corpus's laboratory Carrier 2408561 is
+         clean by the classical verification, A9, and not certified here since review 20261016-2); the refinement's regression
+         checks T4–T7 (EXACT)
 
 Everything the blocks share (the former rhcommon.py):
   * the von Mangoldt comb Λ(n) (sieved) and its raised-cosine taper in log n;
@@ -106,7 +108,7 @@ LEDGER = {
     "D2f": "", "D2g": "", "D3": "", "D4": "20:F1",
     "D6a": "20:D8", "D6b": "20:D8", "D6c": "20:D9", "D7a": "20:D5", "D7b": "20:D5",
     "E1a": "", "E1b": "", "E1c": "", "E2a": "", "E2b": "", "E3": "", "E4": "",
-    "T1": "20:F2", "T2": "20:F2", "T3": "20:F2",
+    "T1": "20:F2", "T2": "20:F2",
 }
 
 BLOCK = {"A": "the shell theorem and the exact shell arithmetic (a_shell.py until 24 September 2026)",      # check-id prefix -> the block (the function block_<letter> below)
@@ -114,7 +116,7 @@ BLOCK = {"A": "the shell theorem and the exact shell arithmetic (a_shell.py unti
          "C": "the spectrum from the prime side with ζ never evaluated, the GUE statistics of the target spectrum, the χ-twisted comb (c_primeside.py, c_gue.py, c_chi.py)",
          "D": "Turing's count on the shell, the phantom, the Davenport–Heilbronn controls, the smoothed explicit formula (d_classification.py)",
          "E": "resonance, antipode, horizon-scale resolution, square-root cancellation (e_resonance.py)",
-         "T": "Turing's certificate over the laboratory Carriers' cycles: every cell clean (Thm. hosted; 15 October 2026)"}
+         "T": "Turing's certificate over the laboratory Carriers' cycles 233 and 30089: every cell passes (Thm. hosted; 16 October 2026)"}
 
 # the deciding check of each python-witnessed predicate: the first check the ledger's source column names (the other checks that
 # cite it are corroboration, listed by predicate() from the records)
@@ -1931,15 +1933,18 @@ def block_E():
 #     g_{n+h} − g_n > 2.067 + 0.059 log(g_{n+h}/2π), then S(g_n) ≤ 0; with the same on the blocks before, S(g_n) = 0, that is
 #     N(g_n) = n + 1; the certified sign changes below g_n then equal N(g_n) or fall short, and equality gives C = N: every
 #     zero below g_n simple and on the line. The rule may fail in the interior (Lehman 1970; Brent 1979: the first exception
-#     at g_13999825): a block short at the finest grid keeps its brackets, and its union with two blocks on each side is read
-#     at the finest grid, the missing zeros lying in a neighbour; the count is pinned by the two ends, not by the interior;
-#   * below the first good Gram point above 168π the count and the sign changes are the host's at twenty-five digits (mpmath).
+#     at g_13999525, above the certified cycles): a block short at the finest grid leaves the certificate open; the count is
+#     pinned by the two ends, not by the interior (Lemma turing, with the bracket positions, since review 20261016-1);
+#   * below the first good Gram point above 168π + 8 the signs are read in ball arithmetic (Arb, python-flint) from t = 0.
 # The cells: N_y is the number of certified sign-change brackets in [2πy, 2π(y+1)); a bracket straddling a cell boundary is
 # bisected with certified signs until it lies in one cell.
-#   T1  Thm. hosted  [approx]  Ω = 233: N(2πΩ) = 1038, every cell clean (≈ 1.5 min, the low range by mpmath)
-#   T2  Thm. hosted  [approx]  Ω = 30089: N(2πΩ) = 280186, every cell clean (≈ 1.5 min)
-#   T3  Thm. hosted  [approx]  Ω = 2408561: N(2πΩ) = 32984135, every cell clean — the embedded record CERT_2408561 of this
-#                              script's run of 15 October 2026 (RH_CERT_FULL=1 recomputes it, about an hour on one core)
+#   T1  Thm. hosted  [approx]  Ω = 233: N(2πΩ) = 1038, every cell passes (seconds)
+#   T2  Thm. hosted  [approx]  Ω = 30089: N(2πΩ) = 280186, every cell passes (seconds)
+#   T4–T7            EXACT     the bracket refinement: the review's counterexample (T4) and the ball fallback's three cases
+#                              (no sign, a point outside, the exact sign) keep the bracket and the zero (review 20261016-2)
+#   (Ω = 2408561, 32 984 135 zeros, certified by this script on 15–16 October 2026 with the union mechanism for the exceptions
+#   to Rosser's rule, is retired from the certified set since review 20261016-2: its hypothesis holds by the classical
+#   verification (A9), and the stress run's record is reports/review-20261016-1/records/turing_2408561_r1.json.)
 
 TWO_PI = 2 * math.pi
 EPS = 2.0 ** -52
@@ -1997,6 +2002,7 @@ def cert_Z_certified(t):
     a = np.sqrt(tau)
     N = np.floor(a).astype(np.int64)
     p = a - N
+    CERT_TALLY["points"] += int(t.size); CERT_TALLY["terms"] += int(N.sum())      # the tally of the certificate (Thm. hosted (ii))
     th = theta_cert(t)
     u = 0.5 * EPS
     main = np.zeros_like(t)
@@ -2039,9 +2045,13 @@ def ball_Z(t, dps=30):
     return (acb(th.cos(), th.sin()) * z).real
 
 
+CERT_TALLY = {"points": 0, "terms": 0, "ball_open": 0}   # the certificate's tally: points read in double precision, main-sum terms, ball reads left open
+
+
 def ball_signs(ts, shift=1e-9):
     """Certified signs of Z at the points ts by ball arithmetic; a ball that contains 0 is read again at t + shift
-    (the point moved, the moved point returned)."""
+    (the point moved, the moved point returned), four attempts at 30, 45, 60 and 75 digits. A sign of 0 is a read left
+    open: the callers treat it as no certificate (the brackets skip it, the refinement keeps its bracket), never as a sign."""
     ts = np.array(ts, float); s = np.zeros(len(ts), np.int8)
     for i, t in enumerate(ts):
         for k in range(4):
@@ -2049,6 +2059,7 @@ def ball_signs(ts, shift=1e-9):
             if z > 0: s[i] = 1; break
             if z < 0: s[i] = -1; break
             ts[i] += shift
+        if s[i] == 0: CERT_TALLY["ball_open"] += 1
     return ts, s
 
 
@@ -2091,18 +2102,26 @@ def cert_turing_criterion(gs_side, brackets, n, side, slack=1e-4):
 
 
 def cert_refine_to_cells(work, signs_fn, cell, ball_fn=None, offsets=(0.37, 0.63, 0.29, 0.71), max_it=80):
-    """Bisect the brackets work[:, 0:2] (certified signs at both ends) until each lies in one cell. An endpoint moves
-    only to a point whose sign is certified: an open midpoint is replaced by the first certified point among the
-    offsets of the bracket and, failing those, by the midpoint read by ball_fn. Returns (work, open_count, ball_count)."""
+    """Bisect the brackets work[:, 0:2] (certified signs at both ends, opposite) until each lies in one cell. An endpoint
+    moves only to a point whose sign is certified (±1) and which lies strictly inside the bracket: an open midpoint is
+    replaced by the first certified point among the offsets of the bracket and, failing those, by the midpoint read by
+    ball_fn; a read that returns no sign, or a point outside the bracket, leaves the bracket as it is and marks it
+    unresolved — the certificate is then open, never a wrong cell. Returns (work, open_count, ball_count, unresolved_count,
+    events): events the fallback reads, each (lo, hi, point, sign, accepted)."""
     need = cell(work[:, 0]) != cell(work[:, 1])
-    it = 0; n_open = 0; n_ball = 0
-    while need.any() and it < max_it:
-        w = work[need]
+    unresolved = np.zeros(len(work), bool)
+    it = 0; n_open = 0; n_ball = 0; events = []
+    while (need & ~unresolved).any() and it < max_it:
+        act = need & ~unresolved
+        w = work[act]; rows = np.nonzero(act)[0]
         sl = signs_fn(w[:, 0])
         z = sl == 0                                                # an endpoint read in ball arithmetic earlier: read it again
         if z.any():
             assert ball_fn is not None, "a bracket endpoint without a certified sign and no ball arithmetic"
-            moved, sb = ball_fn(w[z, 0]); assert np.all(moved == w[z, 0]) and (sb != 0).all(); sl[z] = sb
+            moved, sb = ball_fn(w[z, 0]); idz = np.nonzero(z)[0]
+            okz = (sb != 0) & (moved == w[z, 0])
+            sl[idz[okz]] = sb[okz]
+            for i_ in idz[~okz]: unresolved[rows[i_]] = True        # no sign, or the point moved: the bracket stays, open
         pts = 0.5 * (w[:, 0] + w[:, 1]); sp_ = signs_fn(pts)
         unc = sp_ == 0
         for f in offsets:                                          # open midpoints: the first certified offset point
@@ -2115,17 +2134,23 @@ def cert_refine_to_cells(work, signs_fn, cell, ball_fn=None, offsets=(0.37, 0.63
             assert ball_fn is not None, "an open bracket point and no ball arithmetic"
             idx = np.nonzero(unc)[0]
             moved, sb = ball_fn(0.5 * (w[idx, 0] + w[idx, 1])); n_ball += len(idx)
-            pts[idx] = moved; sp_[idx] = sb; unc[idx] = False
+            inside = (moved > w[idx, 0]) & (moved < w[idx, 1])
+            okb = (sb != 0) & inside
+            for j_, i_ in enumerate(idx):
+                events.append((float(w[i_, 0]), float(w[i_, 1]), float(moved[j_]), int(sb[j_]), bool(okb[j_])))
+                if not okb[j_]: unresolved[rows[i_]] = True        # no sign, or outside: the bracket stays, open
+            pts[idx[okb]] = moved[okb]; sp_[idx[okb]] = sb[okb]; unc[idx[okb]] = False
+        move = (sl != 0) & (sp_ != 0) & ~unresolved[rows]          # only brackets with certified signs at the end and the point move
         left = (sp_ * sl) < 0                                      # the change is in the left part
         w2 = w.copy()
-        w2[left, 1] = pts[left]; w2[~left, 0] = pts[~left]
-        work[need] = w2
+        w2[move & left, 1] = pts[move & left]; w2[move & ~left, 0] = pts[move & ~left]
+        work[act] = w2
         need = cell(work[:, 0]) != cell(work[:, 1]); it += 1
-    assert not need.any(), "a bracket could not be confined to one cell"
-    return work, n_open, n_ball
+    assert not (need & ~unresolved).any(), "a bracket could not be confined to one cell"
+    return work, n_open, n_ball, int(unresolved.sum()), events
 
 
-def certify(Om, log=print, grid=4, max_grid=4096, chunk=20000, window=2, cache=None):
+def certify(Om, log=print, grid=4, max_grid=4096, chunk=20000, cache=None):
     """Turing's certificate over the cycle of the Carrier Ω (Appendix C of the paper): the record and the per-cell counts
     (block T). Double-precision signs under the bound of cert_Z_certified; the low range, the points the bound leaves
     open and the refinement's fallback in ball arithmetic; the count at the certifying Gram point by Lemma turing."""
@@ -2133,6 +2158,7 @@ def certify(Om, log=print, grid=4, max_grid=4096, chunk=20000, window=2, cache=N
     t0 = time.time()
     assert HAVE_BALLS, "the certificate needs ball arithmetic: pip install python-flint"
     n_ball = 0
+    CERT_TALLY.update(points=0, terms=0, ball_open=0)
     # --- the first Gram point of the double-precision range: the first good Gram point above 168π + 8
     n_a = int(math.ceil((theta(168 * math.pi + 8) / math.pi)))
     g = cert_gram_points(np.arange(n_a, n_a + 40))
@@ -2205,39 +2231,12 @@ def certify(Om, log=print, grid=4, max_grid=4096, chunk=20000, window=2, cache=N
         pend = nxt; m *= 4
     viol[pend] = True
     violations = pend
-    # the exceptions to Rosser's rule: the union of the block with `window` blocks on each side at the finest grid, the
-    # points the double-precision bound leaves open read in ball arithmetic
-    unions = []
+    # a block short of Rosser's rule at the finest grid leaves the certificate open: its brackets are kept, the count below
+    # the certifying point then falls short of n + 1 or not, and the record names the blocks (the exceptions to the rule begin
+    # at Lehman's block g_13999525, above both certified cycles; the union mechanism of 15 October 2026 left with the largest cycle)
+    short_blocks = [int(ns[gi[j]]) for j in violations]
     if len(violations):
-        log(f"  blocks short of Rosser's rule at grid {max_grid}: {len(violations)}, Gram indices {[int(ns[gi[j]]) for j in violations[:10]]}")
-        spans = sorted((max(0, j - window), min(nblocks - 1, j + window)) for j in violations)
-        merged = []
-        for a_, b_ in spans:
-            if merged and a_ <= merged[-1][1] + 1: merged[-1] = (merged[-1][0], max(merged[-1][1], b_))
-            else: merged.append((a_, b_))
-        fine_parts = []
-        for (ja, jb) in merged:
-            a_ = gi[ja]; b_ = gi[jb + 1]; k = int(b_ - a_); L = k * max_grid + 1
-            ts = np.linspace(gs[a_], gs[b_], L); s_ = signs_of(ts)
-            br = cert_brackets(ts, s_)
-            resolved = len(br) >= k; ball_pts = 0
-            if not resolved and (s_ == 0).any():
-                unc = np.nonzero(s_ == 0)[0]; ball_pts = len(unc); n_ball += len(unc)
-                moved, sb = ball_signs(ts[unc]); ts[unc] = moved; s_[unc] = sb
-                br = cert_brackets(ts, s_)
-                resolved = len(br) >= k
-            short = [int(ns[gi[j]]) for j in violations if ja <= j <= jb]
-            unions.append(dict(blocks=[int(ja), int(jb)], gram=[int(ns[a_]), int(ns[b_])], short=short, intervals=k, changes=int(len(br)), ball_points=int(ball_pts), resolved=bool(resolved)))
-            fine_parts.append(br)
-            log(f"    union of blocks {ja}..{jb} (g_{ns[a_]}..g_{ns[b_]}, {k} Gram intervals): {len(br)} certified sign changes at grid {max_grid}"
-                + (f", {ball_pts} open points read in ball arithmetic" if ball_pts else "") + f" — {'resolved' if resolved else 'UNRESOLVED'}")
-        lo = np.array([gs[gi[ja]] for ja, jb in merged]); hi = np.array([gs[gi[jb + 1]] for ja, jb in merged])
-        def outside(br):
-            mid = 0.5 * (br[:, 0] + br[:, 1])
-            inside = np.zeros(len(br), bool)
-            for l_, h_ in zip(lo, hi): inside |= (mid > l_) & (mid < h_)
-            return br[~inside]
-        br_parts = [outside(br) for br in br_parts if len(br)] + fine_parts
+        log(f"  blocks short of Rosser's rule at grid {max_grid}: {len(violations)}, Gram indices {short_blocks[:10]} — the certificate is open")
     # --- the certifying Gram point: the first good Gram point at or above T at which Lemma turing closes on both sides,
     # the brackets of the two spans read on a grid of 256 points per Gram interval
     def span_brackets(a_, b_):
@@ -2266,176 +2265,51 @@ def certify(Om, log=print, grid=4, max_grid=4096, chunk=20000, window=2, cache=N
     allbr = allbr[allbr[:, 1] <= g_cert + 1e-9]
     C_cert = len(allbr)
     log(f"  certified sign changes below g_{n_cert}: {C_cert} against N = {n_cert + 1}: {'EQUAL' if C_cert == n_cert + 1 else 'DEFICIT ' + str(n_cert + 1 - C_cert)}")
-    ok_total = (C_cert == n_cert + 1) and all(u["resolved"] for u in unions)
+    ok_total = (C_cert == n_cert + 1) and len(violations) == 0
     # --- the zeros below T, and the cells: the brackets confined to one cell each on certified signs
     work = allbr[allbr[:, 0] < T]; del allbr
     def cell(x): return np.floor(x / TWO_PI).astype(np.int64)
-    work, n_open_mid, n_ball_mid = cert_refine_to_cells(work, signs_of, cell, ball_fn=ball_signs)
+    work, n_open_mid, n_ball_mid, n_unres, ball_events = cert_refine_to_cells(work, signs_of, cell, ball_fn=ball_signs)
     n_ball += n_ball_mid
+    if n_unres: log(f"  refinement: {n_unres} bracket(s) left unresolved by the ball fallback — the certificate is open")
     work = work[work[:, 1] <= T]
     N_T = len(work)
     cells = np.bincount(cell(work[:, 0]), minlength=Om)[:Om]
     rec = dict(Omega=Om, T=T, n_low=n_a, g_low=g_a, low_points=int(len(low_grid)), low_changes=int(len(low_br)),
                n_end=n_cert, g_end=g_cert, N_end=n_cert + 1, C_end=C_cert,
                gram_points=len(ns), good_fraction=float(good.mean()), uncertified=int((ss == 0).sum()), blocks=nblocks,
-               longest_block=int(blen.max()), rosser_violations=len(violations), rosser_unions=unions,
+               longest_block=int(blen.max()), blocks_short=short_blocks,
                turing_after=after, turing_before=before, ball_points=int(n_ball), refine_open_midpoints=int(n_open_mid),
-               refine_ball_midpoints=int(n_ball_mid),
+               refine_ball_midpoints=int(n_ball_mid), refine_unresolved=int(n_unres),
+               refine_ball_events=[dict(lo=e[0], hi=e[1], point=e[2], sign=e[3], accepted=e[4]) for e in ball_events],
+               ball_open=int(CERT_TALLY["ball_open"]), points_double=int(CERT_TALLY["points"]), main_sum_terms=int(CERT_TALLY["terms"]),
                N_T=N_T, cells_max=int(cells.max()), cells_empty=int((cells == 0).sum()), cells_last10=cells[-10:].tolist(),
-               cells_sum=int(cells.sum()), certified=bool(ok_total and N_T == cells.sum()), seconds=round(time.time() - t0, 1))
-    log(f"  N(2πΩ) = {N_T}, every zero simple and on the line: {rec['certified']}; cells: max {rec['cells_max']}, empty {rec['cells_empty']}, last ten {rec['cells_last10']}; {n_ball} points in ball arithmetic ({n_open_mid} open midpoints, {n_ball_mid} by balls) [{rec['seconds']} s]")
+               cells_sum=int(cells.sum()),
+               certified=bool(ok_total and N_T == cells.sum() and n_unres == 0 and CERT_TALLY["ball_open"] == 0),
+               seconds=round(time.time() - t0, 1))
+    log(f"  N(2πΩ) = {N_T}, every zero simple and on the line: {rec['certified']}; cells: max {rec['cells_max']}, empty {rec['cells_empty']}, last ten {rec['cells_last10']}; {n_ball} points in ball arithmetic ({n_open_mid} open midpoints, {n_ball_mid} by balls, {n_unres} unresolved, {CERT_TALLY['ball_open']} ball reads open); tally {CERT_TALLY['points']} points in double precision, {CERT_TALLY['terms']} main-sum terms [{rec['seconds']} s]")
     return rec, cells
 
 
-# The record of the run of certify(2408561) of 16 October 2026 (the cloud container, one core; review 20261016-1: Trudgian's bound in log t, Lemma turing with the bracket positions, the low range and the open points in ball arithmetic):
-# the sdist ships the script alone, so T3 reads this record unless RH_CERT_FULL=1 recomputes it (about an hour).
-CERT_2408561 = {
-    "Omega": 2408561,
-    "T": 15133435.08664577,
-    "n_low": 294,
-    "g_low": 536.1907141408932,
-    "low_points": 11800,
-    "low_changes": 295,
-    "n_end": 32984135,
-    "g_end": 15133435.125860486,
-    "N_end": 32984136,
-    "C_end": 32984136,
-    "gram_points": 32983901,
-    "good_fraction": 0.8464814395362149,
-    "uncertified": 232,
-    "blocks": 27920259,
-    "longest_block": 7,
-    "rosser_violations": 4,
-    "rosser_unions": [
-        {
-            "blocks": [
-                11921431,
-                11921435
-            ],
-            "gram": [
-                13999520,
-                13999529
-            ],
-            "short": [
-                13999525
-            ],
-            "intervals": 9,
-            "changes": 9,
-            "ball_points": 0,
-            "resolved": True
-        },
-        {
-            "blocks": [
-                20663425,
-                20663429
-            ],
-            "gram": [
-                24360728,
-                24360736
-            ],
-            "short": [
-                24360730
-            ],
-            "intervals": 8,
-            "changes": 8,
-            "ball_points": 22,
-            "resolved": True
-        },
-        {
-            "blocks": [
-                26069380,
-                26069384
-            ],
-            "gram": [
-                30783327,
-                30783333
-            ],
-            "short": [
-                30783329
-            ],
-            "intervals": 6,
-            "changes": 6,
-            "ball_points": 0,
-            "resolved": True
-        },
-        {
-            "blocks": [
-                26193453,
-                26193457
-            ],
-            "gram": [
-                30930925,
-                30930932
-            ],
-            "short": [
-                30930927
-            ],
-            "intervals": 7,
-            "changes": 7,
-            "ball_points": 0,
-            "resolved": True
-        }
-    ],
-    "turing_after": {
-        "h": 4,
-        "span": 1.710346,
-        "D": 0.136961,
-        "lhs": 3.557652,
-        "B": 3.042413,
-        "ok": True
-    },
-    "turing_before": {
-        "h": 4,
-        "span": 1.710346,
-        "D": 0.335722,
-        "lhs": 3.756413,
-        "B": 3.042413,
-        "ok": True
-    },
-    "ball_points": 11844,
-    "refine_open_midpoints": 399,
-    "refine_ball_midpoints": 22,
-    "N_T": 32984135,
-    "cells_max": 17,
-    "cells_empty": 2,
-    "cells_last10": [
-        15,
-        15,
-        14,
-        15,
-        14,
-        15,
-        14,
-        16,
-        14,
-        14
-    ],
-    "cells_sum": 32984135,
-    "certified": True,
-    "seconds": 3355.1
-}
-
-
 def block_T():
-    """Block T — Turing's certificate over the cycles of the laboratory Carriers 233, 30089 and 2408561 (Thm. hosted, row F2)."""
+    """Block T — Turing's certificate over the cycles of the laboratory Carriers 233 and 30089 (Thm. hosted, row F2), and the
+    regression checks of the bracket refinement (T4–T7)."""
     print("\n== block T: Turing's certificate over the laboratory cycles (Thm. hosted, row F2) ==")
     here = os.path.dirname(os.path.abspath(__file__))
-    for pid, Om in (("T1", 233), ("T2", 30089), ("T3", 2408561)):
+    for pid, Om in (("T1", 233), ("T2", 30089)):
         rec_path = os.path.join(here, f"turing_{Om}.json")
-        if Om == 2408561 and not os.environ.get("RH_CERT_FULL"):
-            rec = CERT_2408561; source = "the recorded run of 16 October 2026 (RH_CERT_FULL=1 recomputes it)"
-        else:
-            rec, cells = certify(Om, log=lambda s: print("   " + s))
-            try: json.dump(rec, open(rec_path, "w"), indent=1)
-            except OSError: pass
-            source = "computed now"
-        expected = {233: 1038, 30089: 280186, 2408561: 32984135}[Om]
-        unions = rec.get("rosser_unions", [])
-        ok = rec["certified"] and rec["N_T"] == expected and rec["C_end"] == rec["N_end"] and all(u["resolved"] for u in unions)
+        rec, cells = certify(Om, log=lambda s: print("   " + s))
+        try: json.dump(rec, open(rec_path, "w"), indent=1)
+        except OSError: pass
+        source = "computed now"
+        expected = {233: 1038, 30089: 280186}[Om]
+        ok = rec["certified"] and rec["N_T"] == expected and rec["C_end"] == rec["N_end"] and not rec["blocks_short"]
+        ok = ok and rec.get("refine_unresolved", 0) == 0 and rec.get("ball_open", 0) == 0 and all(e["accepted"] and e["sign"] in (-1, 1) and e["lo"] < e["point"] < e["hi"] for e in rec.get("refine_ball_events", []))
+        ok = ok and rec.get("points_double", 0) >= rec["N_T"] + 1          # the sample bound: a certificate of N sign changes reads at least N + 1 points
         # 20:F2 (p20081)
         ta, tb = rec.get("turing_after", {}), rec.get("turing_before", {})
         check(pid, f"Turing's certificate over the cycle of Ω = {Om}: N(g_{rec['n_end']}) = {rec['N_end']} by Lemma turing, {rec['C_end']} certified sign changes; N(2πΩ) = {rec['N_T']}, every cell passes", ok,
-              f"{source}; Gram points {rec['gram_points']}, good {100*rec['good_fraction']:.1f} %, open {rec['uncertified']}, blocks {rec['blocks']}, longest {rec['longest_block']}, exceptions to Rosser's rule {rec['rosser_violations']} ({sum(u['resolved'] for u in unions)} unions resolved at the finest grid); the criterion after {ta.get('h', '?')} Gram intervals ({ta.get('lhs', '?')} > {ta.get('B', '?')}), before {tb.get('h', '?')} ({tb.get('lhs', '?')} > {tb.get('B', '?')}); {rec.get('ball_points', '?')} points in ball arithmetic; cells max {rec['cells_max']}, empty {rec['cells_empty']}, last ten {rec['cells_last10']}; {rec['seconds']} s",
+              f"{source}; Gram points {rec['gram_points']}, good {100*rec['good_fraction']:.1f} %, open {rec['uncertified']}, blocks {rec['blocks']}, longest {rec['longest_block']}, blocks short at the finest grid {len(rec['blocks_short'])}; the criterion after {ta.get('h', '?')} Gram intervals ({ta.get('lhs', '?')} > {ta.get('B', '?')}), before {tb.get('h', '?')} ({tb.get('lhs', '?')} > {tb.get('B', '?')}); {rec.get('ball_points', '?')} points in ball arithmetic ({rec.get('refine_ball_midpoints', '?')} fallback reads, {rec.get('refine_unresolved', '?')} unresolved); tally {rec.get('points_double', '?')} points in double precision, {rec.get('main_sum_terms', '?')} main-sum terms; cells max {rec['cells_max']}, empty {rec['cells_empty']}, last ten {rec['cells_last10']}; {rec['seconds']} s",
               kind="[approx]")
     # T4 the bracket refinement moves an endpoint only to a certified point: the review's counterexample
     # f(x) = (x − 1/5)((x − 1/2)² + 1/1000) on [0, 1] under an evaluation bound of 10⁻³ (the midpoint open) keeps its zero
@@ -2447,8 +2321,8 @@ def block_T():
         x = np.asarray(x, float); return x, np.sign(f(x)).astype(np.int8)
     work = np.array([[0.0, 1.0]])
     cellf = lambda x: np.floor(x / 0.3).astype(np.int64)                  # cells of width 0.3: the zero 0.2 in cell 0
-    w, n_open, n_ball = cert_refine_to_cells(work.copy(), fake_signs, cellf, ball_fn=fake_ball)
-    kept = bool(w[0, 0] <= 0.2 <= w[0, 1]) and cellf(w[:, 0])[0] == 0 == cellf(w[:, 1])[0]
+    w, n_open, n_ball, n_unres, _ = cert_refine_to_cells(work.copy(), fake_signs, cellf, ball_fn=fake_ball)
+    kept = bool(w[0, 0] <= 0.2 <= w[0, 1]) and cellf(w[:, 0])[0] == 0 == cellf(w[:, 1])[0] and n_unres == 0
     a, b = 0.0, 1.0                                                        # the old rule
     for _ in range(6):
         mid = 0.5 * (a + b); sm = fake_signs([mid])[0]; sl = fake_signs([a])[0]
@@ -2458,6 +2332,29 @@ def block_T():
     lost = not (a <= 0.2 <= b)
     check("T4", "the bracket refinement keeps the zero of (x − 1/5)((x − 1/2)² + 1/1000) on [0, 1] under an evaluation bound of 10⁻³ (the midpoint open); the unverified move of the old rule loses it", kept and lost,
           f"new rule: bracket [{w[0,0]:.4f}, {w[0,1]:.4f}] in cell 0, {n_open} open midpoint(s), {n_ball} read by the fallback; old rule: [{a:.4f}, {b:.4f}] without the zero")
+    # T5–T7 the ball fallback (review 20261016-2): with x − 1/5 on [0, 1], the signs certified at the ends only and open everywhere
+    # inside, cells split at 1/4 (the zero in cell 0, the midpoint in cell 1; at 3/10 for T7): (T5) a fallback whose four attempts resolve no sign
+    # leaves the bracket [0, 1] as it is and the certificate open; (T6) a fallback returning a certified sign at a point moved outside
+    # the bracket does the same; (T7) a fallback returning the exact sign at the midpoint narrows the bracket to [0, 1/2], then to
+    # [0, 1/4] and keeps the zero. An unresolved event is never a completed certificate: the T checks require refine_unresolved = 0.
+    g = lambda x: np.asarray(x, float) - 0.2
+    ends_only = lambda x: np.array([-1 if v == 0.0 else (1 if v == 1.0 else 0) for v in np.asarray(x, float)], np.int8)
+    cell4 = lambda x: (np.asarray(x, float) >= 0.25).astype(np.int64)
+    def ball_none(x): x = np.asarray(x, float); return x.copy(), np.zeros(len(x), np.int8)
+    def ball_outside(x): x = np.asarray(x, float); return x + 0.6, np.sign(g(x + 0.6)).astype(np.int8)
+    def ball_exact(x): x = np.asarray(x, float); return x.copy(), np.sign(g(x)).astype(np.int8)
+    cell3 = lambda x: (np.asarray(x, float) >= 0.3).astype(np.int64)      # T7: cells split at 0.3, so that [0, 1/4] lies in one cell
+    res = {}
+    for name, bf, cf in (("T5", ball_none, cell4), ("T6", ball_outside, cell4), ("T7", ball_exact, cell3)):
+        w, n_open, n_ball, n_unres, ev = cert_refine_to_cells(np.array([[0.0, 1.0]]), ends_only, cf, ball_fn=bf)
+        res[name] = (w[0].tolist(), n_unres, ev, bool(w[0, 0] <= 0.2 <= w[0, 1]))
+    w5, u5, ev5, k5 = res["T5"]; w6, u6, ev6, k6 = res["T6"]; w7, u7, ev7, k7 = res["T7"]
+    check("T5", "the ball fallback with no sign resolved (four attempts exhausted) leaves the bracket [0, 1] of x − 1/5 unchanged and the certificate open, the zero inside", w5 == [0.0, 1.0] and u5 == 1 and k5 and ev5 and not ev5[0][4],
+          f"bracket {w5}, unresolved {u5}, event {ev5[0]}")
+    check("T6", "the ball fallback returning a certified sign at a point moved outside the bracket leaves [0, 1] unchanged and the certificate open", w6 == [0.0, 1.0] and u6 == 1 and k6 and ev6 and not ev6[0][4] and ev6[0][3] != 0,
+          f"bracket {w6}, unresolved {u6}, event {ev6[0]}")
+    check("T7", "the ball fallback returning the exact sign at the midpoint narrows [0, 1] to [0, 1/4] in cell 0 and keeps the zero", w7 == [0.0, 0.25] and u7 == 0 and k7 and all(e[4] for e in ev7) and cell3(np.array(w7)).tolist() == [0, 0],
+          f"bracket {w7}, unresolved {u7}, {len(ev7)} fallback read(s) accepted")
 
 if __name__ == "__main__":
     want = [a.upper() for a in sys.argv[1:]] or sorted(BLOCK)

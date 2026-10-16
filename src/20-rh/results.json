@@ -1066,7 +1066,7 @@
   "script": "rh",
   "label": "Turing's certificate over the cycle of \u03a9 = 233: N(g_1037) = 1038 by Lemma turing, 1038 certified sign changes; N(2\u03c0\u03a9) = 1038, every cell passes",
   "ok": true,
-  "detail": "computed now; Gram points 803, good 94.6 %, open 0, blocks 759, longest 2, exceptions to Rosser's rule 0 (0 unions resolved at the finest grid); the criterion after 2 Gram intervals (4.362425 > 2.49714), before 2 (4.426522 > 2.497048); 11800 points in ball arithmetic; cells max 6, empty 2, last ten [5, 5, 6, 5, 6, 5, 6, 5, 6, 5]; 2.5 s",
+  "detail": "computed now; Gram points 803, good 94.6 %, open 0, blocks 759, longest 2, blocks short at the finest grid 0; the criterion after 2 Gram intervals (4.362425 > 2.49714), before 2 (4.426522 > 2.497048); 11800 points in ball arithmetic (0 fallback reads, 0 unresolved); tally 3359 points in double precision, 45239 main-sum terms; cells max 6, empty 2, last ten [5, 5, 6, 5, 6, 5, 6, 5, 6, 5]; 2.3 s",
   "kind": "[approx]"
  },
  {
@@ -1076,17 +1076,7 @@
   "script": "rh",
   "label": "Turing's certificate over the cycle of \u03a9 = 30089: N(g_280187) = 280188 by Lemma turing, 280188 certified sign changes; N(2\u03c0\u03a9) = 280186, every cell passes",
   "ok": true,
-  "detail": "computed now; Gram points 279953, good 88.0 %, open 0, blocks 246497, longest 5, exceptions to Rosser's rule 0 (0 unions resolved at the finest grid); the criterion after 3 Gram intervals (3.284577 > 2.783838), before 2 (2.953741 > 2.783838); 11800 points in ball arithmetic; cells max 12, empty 2, last ten [12, 10, 10, 11, 10, 10, 10, 11, 10, 9]; 7.1 s",
-  "kind": "[approx]"
- },
- {
-  "id": "T3",
-  "rows": "20:F2",
-  "block": "T",
-  "script": "rh",
-  "label": "Turing's certificate over the cycle of \u03a9 = 2408561: N(g_32984135) = 32984136 by Lemma turing, 32984136 certified sign changes; N(2\u03c0\u03a9) = 32984135, every cell passes",
-  "ok": true,
-  "detail": "the recorded run of 16 October 2026 (RH_CERT_FULL=1 recomputes it); Gram points 32983901, good 84.6 %, open 232, blocks 27920259, longest 7, exceptions to Rosser's rule 4 (4 unions resolved at the finest grid); the criterion after 4 Gram intervals (3.557652 > 3.042413), before 4 (3.756413 > 3.042413); 11844 points in ball arithmetic; cells max 17, empty 2, last ten [15, 15, 14, 15, 14, 15, 14, 16, 14, 14]; 3355.1 s",
+  "detail": "computed now; Gram points 279953, good 88.0 %, open 0, blocks 246497, longest 5, blocks short at the finest grid 0; the criterion after 3 Gram intervals (3.284577 > 2.783838), before 2 (2.953741 > 2.783838); 11800 points in ball arithmetic (0 fallback reads, 0 unresolved); tally 700706 points in double precision, 84082697 main-sum terms; cells max 12, empty 2, last ten [12, 10, 10, 11, 10, 10, 10, 11, 10, 9]; 6.9 s",
   "kind": "[approx]"
  },
  {
@@ -1097,6 +1087,36 @@
   "label": "the bracket refinement keeps the zero of (x \u2212 1/5)((x \u2212 1/2)\u00b2 + 1/1000) on [0, 1] under an evaluation bound of 10\u207b\u00b3 (the midpoint open); the unverified move of the old rule loses it",
   "ok": true,
   "detail": "new rule: bracket [0.1850, 0.2775] in cell 0, 1 open midpoint(s), 0 read by the fallback; old rule: [0.9803, 1.0000] without the zero",
+  "kind": "EXACT"
+ },
+ {
+  "id": "T5",
+  "rows": "",
+  "block": "T",
+  "script": "rh",
+  "label": "the ball fallback with no sign resolved (four attempts exhausted) leaves the bracket [0, 1] of x \u2212 1/5 unchanged and the certificate open, the zero inside",
+  "ok": true,
+  "detail": "bracket [0.0, 1.0], unresolved 1, event (0.0, 1.0, 0.5, 0, False)",
+  "kind": "EXACT"
+ },
+ {
+  "id": "T6",
+  "rows": "",
+  "block": "T",
+  "script": "rh",
+  "label": "the ball fallback returning a certified sign at a point moved outside the bracket leaves [0, 1] unchanged and the certificate open",
+  "ok": true,
+  "detail": "bracket [0.0, 1.0], unresolved 1, event (0.0, 1.0, 1.1, 1, False)",
+  "kind": "EXACT"
+ },
+ {
+  "id": "T7",
+  "rows": "",
+  "block": "T",
+  "script": "rh",
+  "label": "the ball fallback returning the exact sign at the midpoint narrows [0, 1] to [0, 1/4] in cell 0 and keeps the zero",
+  "ok": true,
+  "detail": "bracket [0.0, 0.25], unresolved 0, 2 fallback read(s) accepted",
   "kind": "EXACT"
  }
 ]

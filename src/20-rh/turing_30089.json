@@ -14,8 +14,7 @@
  "uncertified": 0,
  "blocks": 246497,
  "longest_block": 5,
- "rosser_violations": 0,
- "rosser_unions": [],
+ "blocks_short": [],
  "turing_after": {
   "h": 3,
   "span": 1.827938,
@@ -35,6 +34,11 @@
  "ball_points": 11800,
  "refine_open_midpoints": 0,
  "refine_ball_midpoints": 0,
+ "refine_unresolved": 0,
+ "refine_ball_events": [],
+ "ball_open": 0,
+ "points_double": 700706,
+ "main_sum_terms": 84082697,
  "N_T": 280186,
  "cells_max": 12,
  "cells_empty": 2,
@@ -52,5 +56,5 @@
  ],
  "cells_sum": 280186,
  "certified": true,
- "seconds": 7.1
+ "seconds": 6.9
 }
