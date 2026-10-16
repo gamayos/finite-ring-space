@@ -41,6 +41,7 @@ import FrcCore.Theme.Interference
 import FrcCore.Theme.Composite
 import FrcCore.Theme.Unitary
 import FrcCore.Theme.Interactions
+import FrcCore.Theme.Fields
 import FrcCore.Theme.Horizon
 import FrcCore.Theme.Ladder
 import FrcCore.Keys.Frame
@@ -77,4 +78,5 @@ import FrcCore.Gravity
 import FrcCore.S13
 import FrcCore.Qm
 import FrcCore.Pnp
+import FrcCore.Fields
 import FrcCore.Dirac

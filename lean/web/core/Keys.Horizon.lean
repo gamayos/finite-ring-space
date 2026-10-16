@@ -5691,8 +5691,9 @@ theorem phase_index (F : Frame p κ g) (k : Nat) : ∀ (r m : Nat),
 /-- 26:G3, 26:G4 — the ascent is counting along the orbit: `g^{j+1} = g^j · g`, one multiplication per step. -/
 theorem ascent_step (j : Nat) : g ^ (j + 1) = g ^ j * g := pow_succ g j
 
-/-- 26:G2 — a tower exponent is read modulo `n`: `g^{(g^j)} = g^{(g^j) mod n}`; tetration is exponentiation of a
-reduced index, and the two cyclic structures host every iterate. -/
+/-- 26:G2, 27:C10, 27:X9, 27:P1 — a tower exponent is read modulo `n`: `g^{(g^j)} = g^{(g^j) mod n}`; tetration is
+exponentiation of a reduced index, and the two cyclic structures host every iterate (the ladder of the four roles closes:
+the fifth step returns to counting, 27-fields' C10). -/
 theorem tower_reduces (F : Frame p κ g) (j : Nat) : g ^ (g ^ j).val = g ^ ((g ^ j).val % (p - 1)) :=
   F.pow_mod _
 
@@ -6384,6 +6385,15 @@ theorem p26043 : (∀ {p : Nat} [FRC.Pos p] (b : FRC.Shell p) {e l : Nat}, e < (
 /-- p26044 — 26:G5. The power map $P_k$ is a bijection of $\F_P^{\times}$ iff $k$ is invertible modulo $P-1$, inverted by $x\mapsto x^{a}$ with $ak\equiv1$; otherwise its image is the cycle of $g^{d}$, $d=\gcd(k,P-1)$, of exactly $(P-1)/d$ elements. -/
 theorem p26044 : (∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → ∀ {a k : Nat}, a * k % (p - (1 : Nat)) = (1 : Nat) → ∀ (m : Nat), ((g ^ m) ^ k) ^ a = g ^ m ∧ ((g ^ m) ^ a) ^ k = g ^ m) ∧ (∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → ∀ {d e c a b k : Nat}, p - (1 : Nat) = d * e → k = d * c → a * k = b * (p - (1 : Nat)) + d → (∀ (m : Nat), (g ^ m) ^ k = (g ^ d) ^ (m * c)) ∧ (∀ (i : Nat), ((g ^ a) ^ i) ^ k = (g ^ d) ^ i) ∧ ∀ (i j : Nat), i < e → j < e → (g ^ d) ^ i = (g ^ d) ^ j → i = j) ∧ (∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → ∀ {d e c k : Nat}, p - (1 : Nat) = d * e → k = d * c → ∀ (m : Nat), ∃ i, i < e ∧ (g ^ m) ^ k = (g ^ d) ^ i) ∧ (∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → ∀ {d e : Nat}, p - (1 : Nat) = d * e → (1 : Nat) < d → e < p - (1 : Nat)) ∧ (∀ (m : Nat), m < (12 : Nat) → (((2 : FRC.Shell (13 : Nat)) ^ m) ^ (5 : Nat)) ^ (5 : Nat) = (2 : FRC.Shell (13 : Nat)) ^ m) ∧ (∀ (m : Nat), m < (12 : Nat) → ∃ i, i < (3 : Nat) ∧ ((2 : FRC.Shell (13 : Nat)) ^ m) ^ (4 : Nat) = ((2 : FRC.Shell (13 : Nat)) ^ (4 : Nat)) ^ i) ∧ ∀ (i : Nat), i < (3 : Nat) → ∃ m, m < (12 : Nat) ∧ ((2 : FRC.Shell (13 : Nat)) ^ m) ^ (4 : Nat) = ((2 : FRC.Shell (13 : Nat)) ^ (4 : Nat)) ^ i :=
   And.intro @FRC.Ladder.power_bijective_of_unit (And.intro @FRC.Ladder.power_image (And.intro @FRC.Ladder.power_image_index (And.intro @FRC.Ladder.compressive_of_gcd (@FRC.Ladder.powers13))))
+/-- p27022 — 27:C10. The closure of the four primitive roles ($5\!\to\!1$): four interactions and no fifth, three generations and no fourth, the boson/fermion split, and the generation ordering, given the role-to-matter realisation (B6). -/
+theorem p27022 : ∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → ∀ (j : Nat), g ^ (g ^ j).val = g ^ ((g ^ j).val % (p - (1 : Nat))) :=
+  @FRC.Ladder.tower_reduces
+/-- p27032 — 27:X9. \textbf{The interaction and generation counts} are the $1+3$ split of the closed primitive-role ladder, so four forces and three families are fixed and a fifth force and a fourth generation are forbidden, not left unexplained. -/
+theorem p27032 : ∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → ∀ (j : Nat), g ^ (g ^ j).val = g ^ ((g ^ j).val % (p - (1 : Nat))) :=
+  @FRC.Ladder.tower_reduces
+/-- p27035 — 27:P1. \textbf{No fourth generation and no fifth interaction} \emph{[forced]}. The role ladder closes, the fifth step returns to counting, and the Carrier is the entire substrate, so a fourth chiral family and a fifth fundamental force are forbidden, not merely absent (Tier~4). \emph{Falsifier:} any fourth-generation fermion, or any new fundamental interaction. -/
+theorem p27035 : ∀ {p : Nat} [FRC.Pos p] {κ : Nat} {g : FRC.Shell p}, FRC.Shell.Frame p κ g → ∀ (j : Nat), g ^ (g ^ j).val = g ^ ((g ^ j).val % (p - (1 : Nat))) :=
+  @FRC.Ladder.tower_reduces
 -- end keys
 
 end FRC.Ledger
@@ -6415,3 +6425,6 @@ end FRC.Ledger
 #print axioms FRC.Ledger.p26042
 #print axioms FRC.Ledger.p26043
 #print axioms FRC.Ledger.p26044
+#print axioms FRC.Ledger.p27022
+#print axioms FRC.Ledger.p27032
+#print axioms FRC.Ledger.p27035

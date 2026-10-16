@@ -17,10 +17,14 @@ first ledger to use it is the master's block file frc/ledgers/master/interaction
 Since task LM35 (7 October 2026) the theme also holds the exact algebra of 27-fields' ledger file
 frc/ledgers/p27_fields.py: polynomials and power series over Q, cyclotomic arithmetic, the Z/M gauge field and the
 uniqueness of Maxwell's action on the periodic cube, the quadratic extension with its unitary groups, the binary
-tetrahedral group and the single-plaquette coefficient c₁. Their index stands at the head of that section below.
+tetrahedral group and the single-plaquette coefficient c₁. Their index stands at the head of that section below. Since
+the 27-fields migration (16 October 2026) it also holds the exact side of the finite gauge correspondence: the M-th roots
+of unity as the embedding Z/M → U(1) with the Wilson weight, 2T as the 24 unit quaternions over Fraction with its
+traces, and the area law's rational function with its positivity beyond x = 1 (the last section below).
 """
 from fractions import Fraction
 from itertools import permutations, product
+from math import comb
 
 
 def bit(S, i):
@@ -79,6 +83,17 @@ def koide_rho2(a, p, w):
 #   binary_tetrahedral, qmul, qconj       2T = SU(2, F_3) as the 24 unit quaternions with half-integer coordinates
 #   c1_from_traces, c1_series             the single-plaquette coefficient c₁ of a finite group: closed form in x = e^{β/d}
 #   su3_moment, bessel_ratio_series       Haar moments of SU(3) by the Weyl constant term, and I_{v+1}/I_v as a series
+#
+# The finite gauge correspondence, exact (the 27-fields migration, 16 October 2026):
+#   poly_mul, cyclo_reduce, cyclo_powers  products in Z[x]; the canonical form modulo Φ_n; the powers of ζ_n in that form
+#   roots_of_unity(M), roots_embed(M)     the M-th roots ζ^j as elements of Z[ζ_M]; j ↦ ζ^j a homomorphism, injective on Z/M
+#   wilson_weight(M)                      2(1 − Re ζ^k) = (1 − ζ^k)(1 − ζ^{−k}) in Z[ζ_M], zero only at k ≡ 0
+#   gauss_mul, gauss_conj, su2_unitary    Gaussian rationals, and whether su2_matrix(x) is unitary with determinant 1
+#   sl2_order(q)                          |SL(2, F_q)| by enumeration
+#   tetrahedral_quaternions()             the 24 unit quaternions of 2T over Fraction: closure, unit norm, the trace multiset
+#   trace_class_function(G)               Re Tr is conjugation-invariant on the quaternion group G
+#   positive_beyond_one(p)                p(x) > 0 for every x > 1 by the Taylor shift to x = 1 + y
+#   area_law_rational(x=None)             c₁ of 2T as N(x)/D(x) in x = e^{β/2}, N, D and D − N positive beyond x = 1
 # ======================================================================================================================
 
 
@@ -701,3 +716,143 @@ def su3_moment(a, b):
     ct = f.get((0, 0), 0)
     assert ct % 6 == 0
     return ct // 6
+
+
+# ---- the finite gauge correspondence, exact (the 27-fields migration, 16 October 2026) -----------------------------------
+# The three claims of 27-fields' row C1 that the paper's package read in floating point, decided here in Q(ζ_M), in the
+# quaternions over Q and in Q[x]: Z/M embeds in U(1) as the M-th roots of unity with a positive Wilson weight; 2T is a
+# finite subgroup of SU(2, C) of order 24; the area law σ = −ln c₁ > 0 holds for every β > 0 because c₁ ∈ (0, 1).
+def poly_mul(a, b):
+    """The product of two integer polynomials (coefficient lists, low degree first), in Z[x]: no reduction."""
+    out = [0] * (len(a) + len(b) - 1)
+    for i, x in enumerate(a):
+        if x:
+            for j, y in enumerate(b): out[i + j] += x * y
+    return out
+
+
+def cyclo_reduce(c, n):
+    """The canonical form of Σ_j c_j ζ_n^j: the remainder of Σ c_j x^j modulo Φ_n, a list of φ(n) integers. Two elements
+    of Z[ζ_n] are equal iff their canonical forms are, and the form is linear in c."""
+    f = cyclotomic(n)
+    _, r = _pdivmod(list(c) + [0] * max(0, len(f) - len(c)), f)
+    return r
+
+
+def cyclo_powers(n, m):
+    """The canonical forms of ζ_n^0, ζ_n^1, …, ζ_n^{m−1}, each from the previous by one multiplication by x and one
+    reduction of the top coefficient (Φ_n is monic): O(φ(n)) a step."""
+    f = cyclotomic(n); d = len(f) - 1
+    out = [cyclo_reduce([1], n)]
+    for _ in range(1, m):
+        v = [0] + out[-1]
+        if v[d]:
+            c = v[d]
+            for j in range(d + 1): v[j] -= c * f[j]
+        out.append(v[:d])
+    return out
+
+
+def roots_of_unity(M):
+    """The M-th roots of unity ζ_M^j, j = 0 … M − 1, as elements of the cyclotomic arithmetic: the coefficient vector of
+    length M with a single 1 at index j (the group ring Z[C_M], read in Z[ζ_M] by cyclo_zero and cyclo_reduce)."""
+    return [[int(i == j) for i in range(M)] for j in range(M)]
+
+
+def roots_embed(M):
+    """Z/M → U(1), j ↦ ζ_M^j, tested exhaustively in Z[ζ_M]: (homomorphism, injective). Homomorphism: for every j, k < M
+    the product x^j · x^k = x^{j+k} in Z[x], reduced modulo Φ_M, is the canonical form of ζ^{(j+k) mod M} (exponents add
+    modulo M because ζ^M = 1). Injective: the M canonical forms of ζ^j are pairwise distinct, so ζ^j = 1 only at j ≡ 0."""
+    canon = [tuple(cyclo_reduce(r, M)) for r in roots_of_unity(M)]
+    pw = [tuple(v) for v in cyclo_powers(M, 2 * M)]                      # x^m mod Φ_M for 0 ≤ m < 2M
+    hom = pw[:M] == canon and all(pw[j + k] == canon[(j + k) % M] for j in range(M) for k in range(M))
+    inj = len(set(canon)) == M
+    return hom, inj
+
+
+def wilson_weight(M):
+    """The Wilson weight 1 − Re ζ^k = |1 − ζ^k|²/2 on Z/M: (identity, positive). Identity: (1 − ζ^k)(1 − ζ^{−k}) =
+    2 − ζ^k − ζ^{−k} = 2(1 − Re ζ^k) for every k, an identity of the group ring Z[C_M] (Re ζ^k = (ζ^k + ζ^{−k})/2 under
+    the conjugation ζ ↦ ζ^{−1}). Positive: 2(1 − Re ζ^k) is a norm, hence ≥ 0 in every embedding, and its canonical form
+    in Z[ζ_M] vanishes exactly at k ≡ 0 (mod M), so the weight is positive off the identity."""
+    pw = cyclo_powers(M, M)
+    identity = positive = True
+    for k in range(M):
+        a = {0: 1}; a[k] = a.get(k, 0) - 1                                 # 1 − ζ^k
+        b = {0: 1}; b[(-k) % M] = b.get((-k) % M, 0) - 1                   # 1 − ζ^{−k}
+        prod = {}
+        for i, x in a.items():
+            for j, y in b.items(): prod[(i + j) % M] = prod.get((i + j) % M, 0) + x * y
+        two = {0: 2}; two[k] = two.get(k, 0) - 1; two[(-k) % M] = two.get((-k) % M, 0) - 1
+        identity &= {e: c for e, c in prod.items() if c} == {e: c for e, c in two.items() if c}
+        w = [2 * p0 - pk - pm for p0, pk, pm in zip(pw[0], pw[k], pw[(-k) % M])]   # the canonical form of 2(1 − Re ζ^k)
+        positive &= any(w) == (k != 0)
+    return identity, positive
+
+
+def gauss_mul(z, w):
+    """The product of two Gaussian rationals (re, im)."""
+    return (z[0] * w[0] - z[1] * w[1], z[0] * w[1] + z[1] * w[0])
+
+
+def gauss_conj(z): return (z[0], -z[1])
+
+
+def su2_unitary(x):
+    """Whether su2_matrix(x) is unitary with determinant 1 over the Gaussian rationals: M M† = I and det M = 1."""
+    Mx = su2_matrix(x)
+    for i in range(2):
+        for j in range(2):
+            s = (Fraction(0), Fraction(0))
+            for k in range(2):
+                t = gauss_mul(Mx[i][k], gauss_conj(Mx[j][k])); s = (s[0] + t[0], s[1] + t[1])
+            if s != (Fraction(int(i == j)), Fraction(0)): return False
+    a, b = gauss_mul(Mx[0][0], Mx[1][1]), gauss_mul(Mx[0][1], Mx[1][0])
+    return (a[0] - b[0], a[1] - b[1]) == (1, 0)
+
+
+def sl2_order(q):
+    """|SL(2, F_q)| by enumeration of the q⁴ matrices (q prime): q(q² − 1)."""
+    return sum(1 for a, b, c, d in product(range(q), repeat=4) if (a * d - b * c) % q == 1)
+
+
+def tetrahedral_quaternions():
+    """The 24 unit quaternions of 2T = SU(2, F_3) over Fraction: (G, closed, unit, traces). closed: every product of two
+    elements is an element; unit: a² + b² + c² + d² = 1 for each; traces: the multiset of Tr U = 2a over G, the class
+    sizes {2: 1, −2: 1, 0: 6, 1: 8, −1: 8} of the binary tetrahedral group."""
+    G = binary_tetrahedral(); Gs = set(G)
+    closed = all(qmul(x, y) in Gs for x in G for y in G)
+    unit = all(sum(c * c for c in x) == 1 for x in G)
+    traces = {}
+    for x in G:
+        t = 2 * x[0]
+        assert t.denominator == 1                                           # 2a ∈ {0, ±1, ±2}
+        traces[int(t)] = traces.get(int(t), 0) + 1
+    return G, closed, unit, traces
+
+
+def trace_class_function(G):
+    """Whether Re Tr U = 2a is a class function on the quaternion group G: (g h g⁻¹)₀ = h₀ for every g, h (unit g, so
+    g⁻¹ is the conjugate)."""
+    return all(qmul(qmul(g, h), qconj(g))[0] == h[0] for g in G for h in G)
+
+
+def positive_beyond_one(p):
+    """p(x) > 0 for every x > 1, shown by the Taylor shift: p(1 + y) = Σ_j (Σ_k C(k, j) p_k) y^j has nonnegative
+    coefficients, not all zero, so it is positive for every y > 0. The coefficient list p is low degree first."""
+    t = [sum(comb(k, j) * p[k] for k in range(j, len(p))) for j in range(len(p))]
+    return all(c >= 0 for c in t) and any(t)
+
+
+def area_law_rational(x=None):
+    """The area law from positivity on 2T. c₁(β) = N(x)/D(x) in x = e^{β/2}, from the trace multiset of 2T through
+    c1_from_traces: N = x⁴ + 4x³ − 4x − 1, D = x⁴ + 8x³ + 6x² + 8x + 1 (coefficient lists, low degree first). Returns
+    (N, D, positive) with positive = N, D and D − N all positive beyond x = 1 (Taylor shift), so 0 < c₁ < 1 and
+    σ = −ln c₁ > 0 for every β > 0; with a rational x > 1 given, (N, D, positive, c₁(x)) with c₁(x) = N(x)/D(x) exact."""
+    _, _, _, traces = tetrahedral_quaternions()
+    N, D = c1_from_traces(traces, 2)
+    positive = positive_beyond_one(N) and positive_beyond_one(D) and positive_beyond_one([d - n for d, n in zip(D, N)])
+    if x is None: return N, D, positive
+    x = Fraction(x)
+    value = sum(c * x ** k for k, c in enumerate(N)) / sum(c * x ** k for k, c in enumerate(D))
+    return N, D, positive, value

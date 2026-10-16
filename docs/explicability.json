@@ -359,7 +359,7 @@
    "key": "p27024",
    "tag": "T",
    "predicate": "\\textbf{The gauge group} $\\U(1)\\times\\SU(2)\\times\\SU(3)$ is the gauging of the substrate's three frame data, the phase, spinor, and colour frames read by the one recipe, not a product of groups chosen to fit.",
-   "source": "\\S\\ref{sec:em},\\,\\ref{sec:weak},\\,\\ref{sec:strong}",
+   "source": "\\S\\ref{sec:em},\\,\\ref{sec:weak},\\,\\ref{sec:strong}\\newline \\pywit{fields}{p27024}{X1}, \\leanwit{FrcCore}{p27024}{X1}; rests on C2, C4, C7 \\lean{FRC.Interactions.gauge\\_flux\\_invariant, FRC.Interactions.drive\\_adjoint, FRC.Interactions.gluon\\_commutator}",
    "master": [],
    "restated": [],
    "witnessed": false,
@@ -372,7 +372,7 @@
    "key": "p27025",
    "tag": "T",
    "predicate": "\\textbf{Charge quantisation} is automatic: electric charge is an integer winding index, so the electron and proton charges match exactly and no fractional residue survives, with no quantisation condition imposed.",
-   "source": "Prop.~\\ref{prop:charge}; \\src{fld.\\allowbreak em1\\_\\allowbreak prototype}",
+   "source": "Prop.~\\ref{prop:charge}\\newline \\pywit{fields}{p27025}{X2}, \\leanwit{FrcCore}{p27025}{X2} \\lean{FRC.Interactions.holonomy\\_stokes, FRC.Interactions.one\\_generation}",
    "master": [],
    "restated": [],
    "witnessed": false,
@@ -385,7 +385,7 @@
    "key": "p27026",
    "tag": "T",
    "predicate": "\\textbf{The photon and its dynamics} are forced: masslessness is drive-invariance and the exact rank-one kernel of the broken vacuum, and Maxwell is the unique adjacency-local gauge-invariant quadratic operator, neither put in by hand.",
-   "source": "Prop.~\\ref{prop:coulomb},~\\ref{prop:rho}, Thm.~\\ref{thm:o1}; \\src{fld.\\allowbreak enumerate\\_\\allowbreak maxwell}, \\src{fld.\\allowbreak weak\\_\\allowbreak spectrum}",
+   "source": "Prop.~\\ref{prop:coulomb},~\\ref{prop:rho}, Thm.~\\ref{thm:o1}\\newline \\pywit{fields}{p27026}{X3}, \\leanwit{FrcCore}{p27026}{X3} \\lean{FRC.Interactions.hessian\\_neutral, FRC.Interactions.projector\\_forced, FRC.Interactions.admissible\\_two}",
    "master": [],
    "restated": [],
    "witnessed": false,
@@ -398,7 +398,7 @@
    "key": "p27027",
    "tag": "T",
    "predicate": "\\textbf{The Weinberg angle} is the exact rational $\\sin^2\\sW=3/8$ at the unification point, fixed by the charge spectrum of the realised generation (B5) with the group-theoretic step imported (A4), not a free parameter measured into the theory.",
-   "source": "Prop.~\\ref{prop:angle}, Prop.~\\ref{prop:running}; \\src{fld.ew1}",
+   "source": "Prop.~\\ref{prop:angle}, Prop.~\\ref{prop:running}\\newline \\pywit{fields}{p27027}{X4}, \\leanwit{FrcCore}{p27027}{X4} \\lean{FRC.Interactions.weinberg\\_angle}",
    "master": [],
    "restated": [],
    "witnessed": false,
@@ -411,7 +411,7 @@
    "key": "p27028",
    "tag": "T",
    "predicate": "\\textbf{The custodial relation} $\\rho=1$ is the rank-one identity $\\det\\equiv0$ forced by the spinor-doublet Higgs, not a tree-level accident.",
-   "source": "Prop.~\\ref{prop:rho}; \\src{fld.ew1}, \\src{fld.\\allowbreak weak\\_\\allowbreak spectrum}",
+   "source": "Prop.~\\ref{prop:rho}\\newline \\pywit{fields}{p27028}{X5}, \\leanwit{FrcCore}{p27028}{X5} \\lean{FRC.Interactions.hessian\\_neutral, FRC.Interactions.hessian\\_full}",
    "master": [],
    "restated": [],
    "witnessed": false,
@@ -424,8 +424,10 @@
    "key": "p27029",
    "tag": "T",
    "predicate": "\\textbf{Maximal parity violation} is the exact decoupling of the Frobenius branch from the drive, so the $V\\!-\\!A$ current is derived rather than the left-handed doublets assigned by hand.",
-   "source": "Prop.~\\ref{prop:chiral}, Cor.~\\ref{cor:fermi}; \\src{fld.\\allowbreak weak\\_\\allowbreak current}, \\src{fld.p4}",
-   "master": [],
+   "source": "Prop.~\\ref{prop:chiral}, Cor.~\\ref{cor:fermi}\\newline \\pywit{fields}{p27029}{X6}, \\leanwit{FrcCore}{p27029}{X6} \\lean{FRC.Interactions.va\\_cancel, FRC.Interactions.orientation\\_flip}",
+   "master": [
+    "G2"
+   ],
    "restated": [],
    "witnessed": false,
    "page": "27-fields/index.html"
@@ -437,8 +439,11 @@
    "key": "p27030",
    "tag": "T",
    "predicate": "\\textbf{The colour sector} is fixed: three colours is the minimal triality-carrying frame, confinement is the compact-group area law from positivity, and asymptotic freedom is the gluon self-coupling, not $N_c=3$ supplemented by an assumed confining phase.",
-   "source": "Prop.~\\ref{prop:su3},~\\ref{prop:corrarea},~\\ref{prop:af}; \\src{fld.qcd}, \\src{fld.\\allowbreak string\\_\\allowbreak tension}, \\src{fld.p6}",
-   "master": [],
+   "source": "Prop.~\\ref{prop:su3},~\\ref{prop:corrarea},~\\ref{prop:af}\\newline \\pywit{fields}{p27030}{X7}, \\leanwit{FrcCore}{p27030}{X7}, \\leanwit{FrcLedger}{p27030}{X7} \\lean{FRC.Interactions.su3\\_centre, FRC.Interactions.gluon\\_commutator, FRC.Interactions.rank\\_tower, Fields.area\\_law\\_positive}",
+   "master": [
+    "G4",
+    "G5"
+   ],
    "restated": [],
    "witnessed": false,
    "page": "27-fields/index.html"
@@ -450,7 +455,7 @@
    "key": "p27031",
    "tag": "T",
    "predicate": "\\textbf{One complete generation} is the spinor $\\mathbf{16}$ of the rank-five internal frame, so its hypercharges, charges, and anomaly freedom follow and a right-handed neutrino is present, with $\\SO(10)$ unification forced, rather than a hypercharge assignment whose anomaly cancellation is a coincidence; given B5, the anomaly cancellation is the imported $\\SO(10)$ fact (A4) evaluated on the realised content.",
-   "source": "Thm.~\\ref{thm:gen}, Prop.~\\ref{prop:unify}; \\src{fld.\\allowbreak generation}, \\src{fld.p8}, \\src{fld.p8b}",
+   "source": "Thm.~\\ref{thm:gen}, Prop.~\\ref{prop:unify}\\newline \\pywit{fields}{p27031}{X8}, \\leanwit{FrcCore}{p27031}{X8} \\lean{FRC.Interactions.one\\_generation, FRC.Interactions.offblock\\_automorphism}",
    "master": [
     "G12"
    ],
@@ -465,7 +470,7 @@
    "key": "p27032",
    "tag": "T",
    "predicate": "\\textbf{The interaction and generation counts} are the $1+3$ split of the closed primitive-role ladder, so four forces and three families are fixed and a fifth force and a fourth generation are forbidden, not left unexplained.",
-   "source": "\\S\\ref{sec:roles}, Prop.~\\ref{prop:threegen}; \\src{fld.p9b}",
+   "source": "\\S\\ref{sec:roles}, Prop.~\\ref{prop:threegen}\\newline \\pywit{fields}{p27032}{X9}, \\leanwit{FrcCore}{p27032}{X9}; rests on C10 \\lean{FRC.Ladder.tower\\_reduces}",
    "master": [],
    "restated": [],
    "witnessed": false,
@@ -478,8 +483,10 @@
    "key": "p27033",
    "tag": "T",
    "predicate": "\\textbf{The Koide ratio} is exactly $2/3$, the cube-root generation orbit at the self-dual quarter-turn $\\rho^2=2^{-1}$, an exact value rather than an unexplained numerical coincidence.",
-   "source": "Prop.~\\ref{prop:koide}; \\src{fld.koide}",
-   "master": [],
+   "source": "Prop.~\\ref{prop:koide}\\newline \\pywit{fields}{p27033}{X10}, \\leanwit{FrcCore}{p27033}{X10} \\lean{FRC.Interactions.koide\\_parseval, FRC.Interactions.koide\\_two\\_thirds, FRC.Interactions.koide\\_extension, FRC.Interactions.koide\\_half}",
+   "master": [
+    "G16"
+   ],
    "restated": [
     "28:X1"
    ],
@@ -493,7 +500,7 @@
    "key": "p27034",
    "tag": "T",
    "predicate": "\\textbf{The strong-CP angle} vanishes with no axion: no substrate-native topological term, and Hermitian quark masses with real determinant, give $\\bar\\theta=0$, so the problem does not arise rather than being tuned away.",
-   "source": "Prop.~\\ref{prop:strongcp}; \\src{fld.strongcp}",
+   "source": "Prop.~\\ref{prop:strongcp}\\newline \\pywit{fields}{p27034}{X11}, \\leanwit{FrcCore}{p27034}{X11} \\lean{FRC.Unitary.hermitian\\_det\\_real, FRC.Unitary.hermitian\\_det\\_shell, FRC.Interactions.ckm\\_free}",
    "master": [],
    "restated": [],
    "witnessed": false,

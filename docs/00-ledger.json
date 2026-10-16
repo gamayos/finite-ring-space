@@ -408,7 +408,7 @@
    "sources": [
     "27-fld"
    ],
-   "witness": "27:p11.py",
+   "witness": "27:p27_fields.py",
    "refs": [
     {
      "label": "A3",
@@ -1727,7 +1727,7 @@
     "27-fld",
     "28-flav"
    ],
-   "witness": "27:em1_prototype.py, 27:enumerate_maxwell.py, 27:o2_numbers.py, 27:audit_finitism.py",
+   "witness": "27:p27_fields.py",
    "refs": [
     {
      "label": "D2",
@@ -1761,7 +1761,7 @@
    "sources": [
     "27-fld"
    ],
-   "witness": "27:p4.py",
+   "witness": "27:p27_fields.py",
    "refs": [],
    "statement": "\\textbf{Weak} (amplitudes): the chiral $V\\!-\\!A$ current and four-fermion $G_F=1/(\\sqrt2\\,v^2)$ derived; $W,Z$ scattering unitarised (equivalence theorem)."
   },
@@ -1774,7 +1774,7 @@
    "sources": [
     "27-fld"
    ],
-   "witness": "27:v_scale.py",
+   "witness": "27:p27_fields.py",
    "refs": [
     {
      "label": "G6",
@@ -1797,7 +1797,7 @@
     "27-fld",
     "28-flav"
    ],
-   "witness": "27:p5.py",
+   "witness": "27:p27_fields.py",
    "refs": [
     {
      "label": "B5",
@@ -1815,7 +1815,7 @@
    "sources": [
     "27-fld"
    ],
-   "witness": "27:string_tension.py",
+   "witness": "27:p27_fields.py",
    "refs": [],
    "statement": "\\textbf{Strong} (tension): the string tension in finite units, $\\sigma=-\\ln c_1(\\beta)>0$, computed --- the finite-group area law gives $c_1$ as an exact character sum (no Haar, no $\\Om\\to\\infty$); closed form on $\\SU(2,\\F_3){=}2T$ (matching continuum $\\SU(2)$ through $O(\\beta^3)$), colour $c_1^{\\SU(3)}{=}\\tfrac\\beta{18}{+}\\tfrac{\\beta^2}{216}{+}\\cdots$."
   },
@@ -1854,7 +1854,7 @@
    "sources": [
     "27-fld"
    ],
-   "witness": "27:strongcp.py",
+   "witness": "27:p27_fields.py",
    "refs": [],
    "statement": "\\textbf{Strong} (CP): the vacuum angle vanishes, $\\bar\\theta=\\theta+\\arg\\det M_q=0$, with no axion --- the colour action carries no substrate-native topological term and colour is drive-invariant ($\\theta=0$), and the Hermitian quark mass matrices have real determinant ($\\arg\\det M_q=0$); the CP phase $\\delta_{\\mathrm{CP}}$ sits in the up--down misalignment."
   },
@@ -1928,7 +1928,7 @@
     "27-fld",
     "28-flav"
    ],
-   "witness": "27:generation.py",
+   "witness": "27:p27_fields.py",
    "refs": [],
    "statement": "\\textbf{One generation} (content): $=$ the spinor $\\mathbf{16}$ of the rank-five frame --- all gauge reps, hypercharges, charges, anomaly-free, $\\nu_R$ --- recovered in the compact theory, where the frame is $\\C^3\\oplus\\C^2$, via the correspondence: the imported $\\mathrm{SO}(10)$ template evaluated on the realisation (27-fld B5)."
   },
@@ -1987,7 +1987,7 @@
     "27-fld",
     "28-flav"
    ],
-   "witness": "27:p9b.py",
+   "witness": "27:p27_fields.py",
    "refs": [
     {
      "label": "Z5",
@@ -2024,7 +2024,7 @@
     "27-fld",
     "28-flav"
    ],
-   "witness": "27:koide.py",
+   "witness": "27:p27_fields.py",
    "refs": [
     {
      "label": "C7",
@@ -2398,7 +2398,7 @@
     "27-fld",
     "20-rh"
    ],
-   "witness": null,
+   "witness": "27:p27_fields.py",
    "refs": [
     {
      "label": "A4",

@@ -1,7 +1,8 @@
-"""The ledger file of 27-fields (frc/ledgers/p27_fields.py; task LM35), the interactions theme's exact algebra it uses
-(frc/interactions.py) and the chart file of its readings (frc/chart_fields.py): each helper computed two ways, and the
-ledger green, its markers on its deciding checks, its checks covering the package's 28 records row for row and class
-for class."""
+"""The ledger file of 27-fields (frc/ledgers/p27_fields.py; task LM35, the 27-fields migration of 16 October 2026), the
+interactions theme's exact algebra it uses (frc/interactions.py) and the chart file of its readings (frc/chart_fields.py):
+each helper computed two ways, and the ledger green, every check EXACT or CHART, its markers on its deciding checks, its
+checks covering the package's 28 records row for row (the ledger file witnesses the rows the package did not: 27:X1, P2,
+P6, P7, C12)."""
 import json
 import math
 import re
@@ -13,8 +14,19 @@ from pathlib import Path
 from frc import arith
 from frc import interactions as I
 from frc import chart_fields as CF
+from frc.registry import MARKER
 
 ROOT = Path(__file__).resolve().parents[2]
+
+# the checks of 16 October 2026 that are continuum readings, and the chart clauses split from an exact parent
+CHART_CHECKS = {"A3", "A4", "A11", "A12", "B1c", "B3", "B4c", "B5", "C8c", "D1", "D2", "E2", "E5c", "E7", "F3", "F6c",
+                "G2", "G3", "G4", "H2"}
+SPLIT = ("B1c", "B4c", "C8c", "E5c", "F6c")
+# the rows the ledger file decides or corroborates beyond the package's records (16 October 2026)
+ADDED_ROWS = {"27:X1", "27:P2", "27:P6", "27:P7", "27:C12"}
+
+
+def _rows(s): return [t.strip() for t in s.split(",") if t.strip()]
 
 
 class AlgebraTest(unittest.TestCase):
@@ -126,34 +138,81 @@ class LedgerTest(unittest.TestCase):
         from frc.ledgers import p27_fields as L
         self.assertTrue(L.R.verify_all())
         self.assertEqual(L.PAPER, "27-fields")
-        self.assertEqual(L.LEAN, {})
+        # the Lean side: every row with a declaration has a deciding python check (gate G12; no Lean-only row), every
+        # T row of the paper has a core declaration, and the four Mathlib readings are C1, C6, C7, X7
+        self.assertEqual(L.LEAN_ONLY, ())
+        for lab in L.LEAN: self.assertIn(f"27:{lab}", L.PREDICATES, lab)
+        for lab in L.R.predicates:                                          # "27:C1" -> C1
+            lab = lab.split(":")[1]
+            if lab[0] in "CXP" and lab not in ("C12", "P3", "P4", "P5"):      # C12 is R (python only), P3-P5 python only
+                self.assertEqual(L.LEAN[lab].split(", ")[0], "core", lab)
+        self.assertEqual({lab for lab, v in L.LEAN.items() if "ml" in v}, {"C1", "C6", "C7", "X7"})
+        self.assertEqual(sorted(L.FAMILY), sorted(L.LEDGER))
+        # the kinds: EXACT or CHART, one per check, 56 checks, the chart ones labelled [chart]
+        kinds = {r["id"]: r["kind"] for r in L.R.results}
+        self.assertEqual(len(kinds), 56)
+        self.assertEqual(sorted(kinds), sorted(L.LEDGER))
+        self.assertEqual(set(kinds.values()), {"EXACT", "CHART"})
+        self.assertEqual({pid for pid, k in kinds.items() if k == "CHART"}, CHART_CHECKS)
+        for r in L.R.results:
+            self.assertEqual(r["kind"] == "CHART", "[chart]" in r["label"], r["id"])
+            self.assertNotIn("[approx]", r["label"], r["id"])
+        for pid in SPLIT:                                            # a chart clause split from its exact parent
+            parent = pid[:-1]
+            self.assertEqual(kinds[parent], "EXACT", pid)
+            self.assertEqual(L.FAMILY[pid], L.FAMILY[parent], pid)
+            self.assertLessEqual(set(_rows(L.LEDGER[pid])), set(_rows(L.LEDGER[parent])), pid)
+        # the deciding checks of 16 October 2026
+        self.assertEqual({k: L.PREDICATES[k] for k in ("27:X1", "27:P2", "27:P6", "27:P7", "27:C12", "27:C1")},
+                         {"27:X1": "A5", "27:P2": "F6", "27:P6": "F6", "27:P7": "F6", "27:C12": "B3", "27:C1": "B2"})
+        for pid in ("B3", "B5"): self.assertNotIn("27:C1", _rows(L.LEDGER[pid]))
+        for pid in ("B1", "B2", "B4"): self.assertIn("27:C1", _rows(L.LEDGER[pid]))
+        # the markers: one marker line per decided predicate, on the line before its deciding check, with the row's key
         src = (ROOT / "frc" / "ledgers" / "p27_fields.py").read_text(encoding="utf-8").split("\n")
         marks = L.R.markers()
         for lab, pid in L.R.predicates.items():
             self.assertIn(lab, marks)
             line = next(j for j in range(marks[lab][1], len(src)) if src[j].strip())
-            self.assertIn(f'ck("{pid}"', src[line], lab)        # the marker sits on its deciding check
-            self.assertIn(f"{lab} ({L.KEYS[lab.split(':')[1]]})", src[marks[lab][1] - 1])
+            self.assertIn(f'R.check("{pid}"', src[line], lab)        # the marker sits on its deciding check
+            key = L.KEYS.get(lab.split(":")[1])
+            if key is None:                                              # 27:C12's key, p27049, until the table is regenerated
+                self.assertRegex(src[marks[lab][1] - 1], rf"{re.escape(lab)} \(p27\d{{3}}\)")
+            else:
+                self.assertIn(f"{lab} ({key})", src[marks[lab][1] - 1])
+            marker_lines = [j for j, s in enumerate(src) if MARKER.match(s) and re.search(rf"(?<![\w:]){re.escape(lab)}(?![\w])", s)]
+            self.assertEqual(len(marker_lines), 1, lab)
+        self.assertRegex(src[marks["27:C12"][1] - 1], r"27:C12 \(p27049\)")
 
     @unittest.skipUnless((ROOT / "src" / "27-fields" / "results.json").exists(), "the package src/27-fields is not in this tree")
     def test_package_records(self):
-        """Every record of the package's results.json is reproduced: its rows are the union of its checks' rows, its class
-        is theirs, and every row a check cites names the record's script in its source cell."""
+        """Every record of the package's results.json is reproduced: its rows lie in the union of its checks' rows (the
+        checks of 16 October 2026 witness five rows the package did not), a record the package classed EXACT has only
+        EXACT checks, and every row a check cites that the package also cites names the record's script in its source cell."""
         from frc.ledgers import p27_fields as L
+        L.R.verify_all()
         recs = {r["id"]: r for r in json.loads((ROOT / "src" / "27-fields" / "results.json").read_text(encoding="utf-8"))}
         self.assertEqual(sorted("fld." + f for f in set(L.FAMILY.values())), sorted(recs))
         self.assertEqual(sorted(L.FAMILY), sorted(L.LEDGER))
+        kinds = {r["id"]: r["kind"] for r in L.R.results}
         rows = {}
         for pid, fam in L.FAMILY.items():
-            rows.setdefault(fam, set()).update(t.strip() for t in L.LEDGER[pid].split(","))
-            self.assertEqual(L.KIND[fam], recs["fld." + fam]["kind"], pid)
+            rows.setdefault(fam, set()).update(_rows(L.LEDGER[pid]))
+            self.assertIn(recs["fld." + fam]["kind"], ("EXACT", "MIXED", "APPROX"))
+            if recs["fld." + fam]["kind"] == "EXACT" and pid not in ("F3", "F6c"):     # p8's estimate, p9b's masses: measured data
+                self.assertEqual(kinds[pid], "EXACT", pid)
         for fam, rs in rows.items():
-            self.assertEqual(rs, {t.strip() for t in recs["fld." + fam]["rows"].split(",")}, fam)
+            package = set(_rows(recs["fld." + fam]["rows"]))
+            self.assertLessEqual(package, rs, fam)
+            self.assertLessEqual(rs - package, ADDED_ROWS, fam)
         led = json.loads((ROOT / "docs" / "27-fields" / "27-fields-ledger.json").read_text(encoding="utf-8"))
+        keys = {r["label"]: r["key"] for b in led["blocks"] for r in b["rows"] if r["tag"] == "T"}      # the Ω and O rows carry no token
         source = {r["label"]: re.sub(r"\\allowbreak|\s|\\", "", r.get("source") or "") for b in led["blocks"] for r in b["rows"]}
-        for pid, fam in L.FAMILY.items():
-            for t in L.LEDGER[pid].split(","):
-                self.assertIn("src{fld." + fam + "}", source[t.strip().split(":")[1]], (pid, t))
+        for pid, fam in L.FAMILY.items():                                      # the migrated ledger cites the deciding check, not the family
+            package = set(_rows(recs["fld." + fam]["rows"]))
+            for t in _rows(L.LEDGER[pid]):
+                lab = t.split(":")[1]
+                if t in package and t in L.R.predicates and lab in source and keys.get(lab):
+                    self.assertIn("pywit{fields}{" + keys[lab] + "}{" + lab + "}", source[lab], (pid, t))
 
 
 if __name__ == "__main__":

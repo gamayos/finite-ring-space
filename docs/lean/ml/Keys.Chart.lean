@@ -3,6 +3,7 @@ import FrcLedger.Theme.Quantum
 import FrcLedger.Theme.Horizon
 import FrcLedger.Theme.Chart
 import FrcLedger.Theme.Strong
+import FrcLedger.Theme.Fields
 
 /-!
 # FrcLedger.Keys.Chart — the keyed theorems of the chart theme (ledger migration, task LM19)
@@ -150,6 +151,18 @@ theorem p26011 : (∀ {F : Type u_1} [Field F] [Fintype F] {R' : Type u_2} [Comm
 /-- p26013 — 26:C2. The family's size and the table beyond the horizon [chart]: at the anchor $2^{204}<\sqrt\Om<2^{205}$, so the shells of the family $P^{2}<\Om$ have at most $205$ bits; $2^{102}<\Om^{1/4}<2^{103}$, so a decision table with one entry per $204$-bit input exceeds the absolute horizon and lies below $\sqrt\Om$. -/
 theorem p26013 : ∀ (Λ ℓP r S Ω : ℝ), Λ = 1088e-55 → ℓP = 1616255e-41 → r ^ (2 : ℕ) = (3 : ℝ) / Λ → S = Real.pi * (r / ℓP) ^ (2 : ℕ) → Ω = (4 : ℝ) * S + (1 : ℝ) → (2 : ℝ) ^ (204 : ℕ) < √Ω ∧ √Ω < (2 : ℝ) ^ (205 : ℕ) ∧ (2 : ℝ) ^ (102 : ℕ) < √√Ω ∧ √√Ω < (2 : ℝ) ^ (103 : ℕ) :=
   @FRC.Chart.family_bits
+/-- p27013 — 27:C1. The finite gauge correspondence, its exact clauses: the abelian inclusion $\Z/M\hookrightarrow\U(1)$ as the $M$-th roots of unity, the positive cyclotomic action (the Wilson weight $1-\Re\zeta\ge0$), and the exact $q{=}3$ embedding $\SU(2,\F_3)\cong2T$ with the Wilson trace a class function (Theorems~\ref{thm:corrU1},~\ref{thm:corrpos},~\ref{thm:corr2T}); the resolvable-window reconstruction is C12 and the cross-scale running $\Omega$-hard (Z1). -/
+theorem p27013 : (∀ (M : ℕ), M ≠ (0 : ℕ) → IsPrimitiveRoot (Complex.exp ((2 : ℂ) * ↑Real.pi * Complex.I / ↑M)) M ∧ (∀ (j k : ℕ), Complex.exp ((2 : ℂ) * ↑Real.pi * Complex.I / ↑M) ^ (j + k) = Complex.exp ((2 : ℂ) * ↑Real.pi * Complex.I / ↑M) ^ j * Complex.exp ((2 : ℂ) * ↑Real.pi * Complex.I / ↑M) ^ k) ∧ (∀ (j k : ℕ), j < M → k < M → Complex.exp ((2 : ℂ) * ↑Real.pi * Complex.I / ↑M) ^ j = Complex.exp ((2 : ℂ) * ↑Real.pi * Complex.I / ↑M) ^ k → j = k) ∧ ∀ (k : ℕ), (Complex.exp ((2 : ℂ) * ↑Real.pi * Complex.I / ↑M) ^ k) ^ M = (1 : ℂ)) ∧ ∀ (ζ : ℂ), ‖ζ‖ = (1 : ℝ) → (0 : ℝ) ≤ (1 : ℝ) - ζ.re ∧ ((1 : ℝ) - ζ.re = (0 : ℝ) ↔ ζ = (1 : ℂ)) :=
+  And.intro @FRC.FieldsML.roots_inclusion (@FRC.FieldsML.wilson_weight_nonneg)
+/-- p27018 — 27:C6. The Weinberg trace formula $\sin^2\sW=\Tr(T_3^2)/\Tr(Q^2)=3/8$ for a complete generation, the unification-point value, and the four-fermion amplitude with $G_F=1/(\sqrt2\,v^2)$; the imported template (A4) evaluated on the realisations B3, B5. -/
+theorem p27018 : ∀ (g v G MW2 : ℝ), g ≠ (0 : ℝ) → v ≠ (0 : ℝ) → MW2 = g ^ (2 : ℕ) * v ^ (2 : ℕ) / (4 : ℝ) → G / √(2 : ℝ) = g ^ (2 : ℕ) / ((8 : ℝ) * MW2) → G = (1 : ℝ) / (√(2 : ℝ) * v ^ (2 : ℕ)) :=
+  @FRC.FieldsML.fermi_constant
+/-- p27019 — 27:C7. The strong sector: the colour $\SU(3,\Omega)$ frame forced as the minimal triality-carrying rank, the exact $\Z_3$ centre, the gluon connection, and the confinement area law $\sigma>0$ from positivity, with the string tension $\sigma(\beta)=-\ln c_1(\beta)$ computed in finite units (closed form on $2T$; $c_1^{\SU(3)}=\tfrac\beta{18}+\tfrac{\beta^2}{216}+\cdots$). -/
+theorem p27019 : ∀ (x : ℝ), (1 : ℝ) < x → (0 : ℝ) < (x ^ (4 : ℕ) + (4 : ℝ) * x ^ (3 : ℕ) - (4 : ℝ) * x - (1 : ℝ)) / (x ^ (4 : ℕ) + (8 : ℝ) * x ^ (3 : ℕ) + (6 : ℝ) * x ^ (2 : ℕ) + (8 : ℝ) * x + (1 : ℝ)) ∧ (x ^ (4 : ℕ) + (4 : ℝ) * x ^ (3 : ℕ) - (4 : ℝ) * x - (1 : ℝ)) / (x ^ (4 : ℕ) + (8 : ℝ) * x ^ (3 : ℕ) + (6 : ℝ) * x ^ (2 : ℕ) + (8 : ℝ) * x + (1 : ℝ)) < (1 : ℝ) :=
+  @FRC.FieldsML.area_law_positive
+/-- p27030 — 27:X7. \textbf{The colour sector} is fixed: three colours is the minimal triality-carrying frame, confinement is the compact-group area law from positivity, and asymptotic freedom is the gluon self-coupling, not $N_c=3$ supplemented by an assumed confining phase. -/
+theorem p27030 : ∀ (x : ℝ), (1 : ℝ) < x → (0 : ℝ) < (x ^ (4 : ℕ) + (4 : ℝ) * x ^ (3 : ℕ) - (4 : ℝ) * x - (1 : ℝ)) / (x ^ (4 : ℕ) + (8 : ℝ) * x ^ (3 : ℕ) + (6 : ℝ) * x ^ (2 : ℕ) + (8 : ℝ) * x + (1 : ℝ)) ∧ (x ^ (4 : ℕ) + (4 : ℝ) * x ^ (3 : ℕ) - (4 : ℝ) * x - (1 : ℝ)) / (x ^ (4 : ℕ) + (8 : ℝ) * x ^ (3 : ℕ) + (6 : ℝ) * x ^ (2 : ℕ) + (8 : ℝ) * x + (1 : ℝ)) < (1 : ℝ) :=
+  @FRC.FieldsML.area_law_positive
 /-- p38010 — 38:B2. The radial ladder: shells at $R\sin(2a\pi/13)$ [chart]; capacity $4a<\p\Leftrightarrow a\le\kap$. -/
 theorem p38010 : ∀ (R : ℝ), (0 : ℝ) < R → (0 : ℝ) < R * Real.sin ((2 : ℝ) * Real.pi / (13 : ℝ)) ∧ R * Real.sin ((2 : ℝ) * Real.pi / (13 : ℝ)) < R * Real.sin ((4 : ℝ) * Real.pi / (13 : ℝ)) ∧ R * Real.sin ((4 : ℝ) * Real.pi / (13 : ℝ)) < R * Real.sin ((6 : ℝ) * Real.pi / (13 : ℝ)) ∧ R * Real.sin ((6 : ℝ) * Real.pi / (13 : ℝ)) < R :=
   @FRC.Chart.ladder_monotone

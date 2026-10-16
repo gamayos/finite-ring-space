@@ -444,6 +444,62 @@
    "status": "shared theorem",
    "lean": "FRC.Shell.Prime.exists_drive",
    "note": "16 October 2026 (26-pnp, T07 of its blueprint): the same two theorems as E10's key; the reading of the descent as the inverse coordinate map is the paper's"
+  },
+  {
+   "master": "B5",
+   "paper": "27:C11",
+   "status": "bridged",
+   "lean": "FRC.Bridge.B5_27C11",
+   "note": "16 October 2026 (27-fields, T07 of its blueprint): n ≡ 5 (mod 12) iff n ≡ 1 (mod 4) and n ≡ 2 (mod 3); B5's key states the two congruences as divisibilities (4 ∣ n − 1, 3 ∣ n + 1), 27:C11's as residues, the bridge reads one as the other; C11's key adds the instances, B5's the shell clause (quarter-turn and no cube root of unity)"
+  },
+  {
+   "master": "E1",
+   "paper": "27:C2",
+   "status": "no shared clause",
+   "lean": null,
+   "note": "16 October 2026 (27-fields, T07 of its blueprint): E1's key decides the spin-1 line by the symbol method (maxwell_unique, vec_invariant); 27:C2's key is the gauge-invariant flux on the shell, the forced projector and the kernel-decided admissible actions at L = 4 (admissible_two: 2·Maxwell = B − A); two computations of the Maxwell form with no Lean clause in common, the correspondence of the symbol with the lattice enumeration is neither key's"
+  },
+  {
+   "master": "G11",
+   "paper": "27:C8",
+   "status": "shared theorem",
+   "lean": "FRC.Interactions.one_generation",
+   "note": "16 October 2026 (27-fields, T07 of its blueprint): one key (p27020): the master's G11 and the paper's C8 are the one generation's charge table, Σq = 0, Σ(6Q)² = 192, 6Q(uud) = 6Q(e⁺)"
+  },
+  {
+   "master": "G12",
+   "paper": "27:C8",
+   "status": "no shared clause",
+   "lean": null,
+   "note": "16 October 2026 (27-fields, T07 of its blueprint): G12's key is the reflection algebra of four directions and the quarter-turn as the fifth (reflection_algebra, fifth_direction); 27:C8's key is the generation's charge table (one_generation); the paper's rests-on link, no Lean clause in common; the fifth direction is shared with the master through 27:C9's key p27021 (00:Z5)"
+  },
+  {
+   "master": "G12",
+   "paper": "27:X8",
+   "status": "no shared clause",
+   "lean": null,
+   "note": "16 October 2026 (27-fields, T07 of its blueprint): 27:X8's key is the generation's table and the six colour–isospin transpositions as automorphisms of the five-direction algebra (offblock_automorphism), which acts on the structure G12's fifth_direction builds without conjoining it; no Lean clause in common, the dimension count is shared with the master through 27:C9's key p27021 (00:Z5)"
+  },
+  {
+   "master": "G16",
+   "paper": "27:X10",
+   "status": "shared theorem",
+   "lean": "FRC.Interactions.koide_parseval, FRC.Interactions.koide_two_thirds, FRC.Interactions.koide_extension, FRC.Interactions.koide_half",
+   "note": "16 October 2026 (27-fields, T07 of its blueprint): both keys conjoin the same four theorems: the form Q = 1/3 + (2/3)ρ², Q = 2/3 iff ρ² = 1/2, the extension and the half; the selection ρ² = 1/2 is the realisation 28:B5 (the G18 record §3); the pair is also counterparts.json's record 226"
+  },
+  {
+   "master": "G16",
+   "paper": "27:P8",
+   "status": "shared theorem",
+   "lean": "FRC.Interactions.koide_parseval, FRC.Interactions.koide_two_thirds, FRC.Interactions.koide_extension, FRC.Interactions.koide_half",
+   "note": "16 October 2026 (27-fields, T07 of its blueprint): both keys conjoin the same four theorems: the form Q = 1/3 + (2/3)ρ², Q = 2/3 iff ρ² = 1/2, the extension and the half; the selection ρ² = 1/2 is the realisation 28:B5 (the G18 record §3)"
+  },
+  {
+   "master": "G7",
+   "paper": "27:P9",
+   "status": "shared theorem",
+   "lean": "FRC.Unitary.hermitian_det_real, FRC.Unitary.hermitian_det_shell",
+   "note": "16 October 2026 (27-fields, T07 of its blueprint): one key (p27043): the Hermitian determinant is its own conjugate and its imaginary part is 2-torsion, so arg det M_q = 0 on every odd shell; the absence of a topological term is the realisation B4's (the G18 record §3)"
   }
  ]
 }

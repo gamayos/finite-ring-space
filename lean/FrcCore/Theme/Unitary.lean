@@ -522,4 +522,118 @@ theorem triality_frame (hdom : ∀ a b : Shell p, a * b = 0 → a = 0 ∨ b = 0)
   obtain ⟨a, b, c, d, e, f, g, k⟩ := triality_scalar hdom hno hω
   exact ⟨a, b, c, d, e, f, g, k, fun H => scal_SU H d g⟩
 
+
+/-! ## Hermitian determinants and class functions (27-fields, 16 October 2026)
+
+Frobenius conjugation is a ring map of the extension (`conj_add`, `Ext.conj_mul`, `conj_neg`), so it commutes with
+every expression of the normaliser (`conj_xeval`). The determinant of a Hermitian matrix, `A† = A`, is therefore its own
+conjugate: `conj (det A) = det (conj-entrywise A) = det (Aᵀ)† … = det A†  = det A`, the middle step the ring identity
+`det Aᵀ = det A`. A determinant equal to its conjugate lies in the shell (`im = 0`): the strong-CP angle `arg det M`
+vanishes on every shell (27:X11, P9). -/
+
+theorem conj_neg (a : Ext p ν) : Ext.conj (-a) = -Ext.conj a := Ext.ext rfl rfl
+
+/-- Conjugation commutes with the normaliser's evaluation. -/
+theorem conj_xeval (env : Nat → Ext p ν) : ∀ e : RE, Ext.conj (xeval env e) = xeval (fun i => Ext.conj (env i)) e
+  | .var _ => rfl
+  | .zero => conj_zero
+  | .one => conj_one
+  | .add a b => by
+    show Ext.conj (xeval env a + xeval env b) = xeval (fun i => Ext.conj (env i)) a + xeval (fun i => Ext.conj (env i)) b
+    rw [conj_add, conj_xeval env a, conj_xeval env b]
+  | .mul a b => by
+    show Ext.conj (xeval env a * xeval env b) = xeval (fun i => Ext.conj (env i)) a * xeval (fun i => Ext.conj (env i)) b
+    rw [Ext.conj_mul, conj_xeval env a, conj_xeval env b]
+  | .neg a => by
+    show Ext.conj (-(xeval env a)) = -(xeval (fun i => Ext.conj (env i)) a)
+    rw [conj_neg, conj_xeval env a]
+
+/-- The determinant of `M3` as an expression of the normaliser, in the nine entries of `ents`. -/
+def detRE : RE := .add (.add (.mul (.var 0) (.add (.mul (.var 4) (.var 8)) (.neg (.mul (.var 5) (.var 7))))) (.neg (.mul (.var 1) (.add (.mul (.var 3) (.var 8)) (.neg (.mul (.var 5) (.var 6))))))) (.mul (.var 2) (.add (.mul (.var 3) (.var 7)) (.neg (.mul (.var 4) (.var 6)))))
+
+/-- The same determinant on the transposed entries (`i ↦ 3 (i mod 3) + i div 3`). -/
+def detRE' : RE := .add (.add (.mul (.var 0) (.add (.mul (.var 4) (.var 8)) (.neg (.mul (.var 7) (.var 5))))) (.neg (.mul (.var 3) (.add (.mul (.var 1) (.var 8)) (.neg (.mul (.var 7) (.var 2))))))) (.mul (.var 6) (.add (.mul (.var 1) (.var 5)) (.neg (.mul (.var 4) (.var 2)))))
+
+/-- 27:X11, 27:P9, 00:G7 — the determinant of a Hermitian `3 × 3` matrix over the extension is its own conjugate:
+`A† = A` gives `conj (det A) = det A`; its imaginary part is then `2`-torsion (`hermitian_det_shell`), so on every odd
+shell `det A` lies in the shell and `arg det A = 0`. -/
+theorem hermitian_det_real (A : M3 p ν) (h : dag A = A) : Ext.conj (det A) = det A := by
+  have e1 : Ext.conj (det A) = xeval (fun i => Ext.conj (xlook (ents A) i)) detRE := by
+    rw [← conj_xeval]; rfl
+  have e2 : xeval (fun i => Ext.conj (xlook (ents A) i)) detRE = xeval (fun i => Ext.conj (xlook (ents A) i)) detRE' :=
+    xsound _ detRE detRE' (by decide +kernel)
+  have e3 : xeval (fun i => Ext.conj (xlook (ents A) i)) detRE' = det (dag A) := rfl
+  rw [e1, e2, e3, h]
+
+/-- A conjugation-fixed element of the extension has `2`-torsion imaginary part, `im + im = 0`: on every odd shell it
+lies in the shell. -/
+theorem im_of_conj_fixed {z : Ext p ν} (h : Ext.conj z = z) : z.im + z.im = 0 := by
+  have e : -z.im = z.im := Ext.im_congr h
+  have t := Shell.neg_add z.im
+  rw [e] at t
+  exact t
+
+/-- 27:X11, 27:P9, 00:G7 — the determinant of a Hermitian `3 × 3` matrix has `2`-torsion imaginary part: on every odd shell
+it lies in the shell. -/
+theorem hermitian_det_shell (A : M3 p ν) (h : dag A = A) : (det A).im + (det A).im = 0 :=
+  im_of_conj_fixed (hermitian_det_real A h)
+
+/-! ### `2 × 2` matrices over the extension: the weak doublet's frame -/
+
+/-- A `2 × 2` matrix over the extension. -/
+structure M2 (p : Nat) [Pos p] (ν : Shell p) where
+  a00 : Ext p ν
+  a01 : Ext p ν
+  a10 : Ext p ν
+  a11 : Ext p ν
+
+/-- The product. -/
+def mmul2 (A B : M2 p ν) : M2 p ν :=
+  ⟨A.a00 * B.a00 + A.a01 * B.a10, A.a00 * B.a01 + A.a01 * B.a11,
+   A.a10 * B.a00 + A.a11 * B.a10, A.a10 * B.a01 + A.a11 * B.a11⟩
+
+/-- The conjugate transpose. -/
+def dag2 (A : M2 p ν) : M2 p ν := ⟨Ext.conj A.a00, Ext.conj A.a10, Ext.conj A.a01, Ext.conj A.a11⟩
+
+/-- The determinant. -/
+def det2 (A : M2 p ν) : Ext p ν := A.a00 * A.a11 + -(A.a01 * A.a10)
+
+/-- The trace. -/
+def tr2 (A : M2 p ν) : Ext p ν := A.a00 + A.a11
+
+/-- The adjugate, `g⁻¹` when `det g = 1`. -/
+def adj2 (A : M2 p ν) : M2 p ν := ⟨A.a11, -A.a01, -A.a10, A.a00⟩
+
+/-- The four entries in reading order. -/
+def ents2 (A : M2 p ν) : List (Ext p ν) := [A.a00, A.a01, A.a10, A.a11]
+
+theorem m2ext {A B : M2 p ν} (h00 : A.a00 = B.a00) (h01 : A.a01 = B.a01) (h10 : A.a10 = B.a10) (h11 : A.a11 = B.a11) :
+    A = B := by
+  cases A; cases B; cases h00; cases h01; cases h10; cases h11; rfl
+
+/-- `g · adj g = det g · I₂`. -/
+theorem mul_adj2 (g : M2 p ν) : mmul2 g (adj2 g) = ⟨det2 g, 0, 0, det2 g⟩ :=
+  m2ext
+    (xsound (xlook (ents2 g)) (.add (.mul (.var 0) (.var 3)) (.mul (.var 1) (.neg (.var 2)))) (.add (.mul (.var 0) (.var 3)) (.neg (.mul (.var 1) (.var 2)))) (by decide +kernel))
+    (xsound (xlook (ents2 g)) (.add (.mul (.var 0) (.neg (.var 1))) (.mul (.var 1) (.var 0))) .zero (by decide +kernel))
+    (xsound (xlook (ents2 g)) (.add (.mul (.var 2) (.var 3)) (.mul (.var 3) (.neg (.var 2)))) .zero (by decide +kernel))
+    (xsound (xlook (ents2 g)) (.add (.mul (.var 2) (.neg (.var 1))) (.mul (.var 3) (.var 0))) (.add (.mul (.var 0) (.var 3)) (.neg (.mul (.var 1) (.var 2)))) (by decide +kernel))
+
+/-- 27:C1, 27:C4 — the trace is a class function: `Tr (g M g⁻¹) = Tr M` for `g` of determinant one, `g⁻¹` the adjugate;
+in general `Tr (g M adj g) = det g · Tr M`. The Wilson trace of a plaquette is gauge-invariant. -/
+theorem class_function (g M : M2 p ν) (hg : det2 g = 1) : tr2 (mmul2 (mmul2 g M) (adj2 g)) = tr2 M := by
+  have e : tr2 (mmul2 (mmul2 g M) (adj2 g)) = det2 g * tr2 M :=
+    xsound (xlook (ents2 g ++ ents2 M)) (.add (.add (.mul (.add (.mul (.var 0) (.var 4)) (.mul (.var 1) (.var 6))) (.var 3)) (.mul (.add (.mul (.var 0) (.var 5)) (.mul (.var 1) (.var 7))) (.neg (.var 2)))) (.add (.mul (.add (.mul (.var 2) (.var 4)) (.mul (.var 3) (.var 6))) (.neg (.var 1))) (.mul (.add (.mul (.var 2) (.var 5)) (.mul (.var 3) (.var 7))) (.var 0)))) (.mul (.add (.mul (.var 0) (.var 3)) (.neg (.mul (.var 1) (.var 2)))) (.add (.var 4) (.var 7))) (by decide +kernel)
+  rw [e, hg, Ext.one_mul]
+
+/-- 27:X11, 27:P9 — the determinant of a Hermitian `2 × 2` matrix over the extension is its own conjugate. -/
+theorem hermitian_det_real2 (A : M2 p ν) (h : dag2 A = A) : Ext.conj (det2 A) = det2 A := by
+  have e1 : Ext.conj (det2 A) = xeval (fun i => Ext.conj (xlook (ents2 A) i)) (.add (.mul (.var 0) (.var 3)) (.neg (.mul (.var 1) (.var 2)))) := by
+    rw [← conj_xeval]; rfl
+  have e2 : xeval (fun i => Ext.conj (xlook (ents2 A) i)) (.add (.mul (.var 0) (.var 3)) (.neg (.mul (.var 1) (.var 2)))) =
+      xeval (fun i => Ext.conj (xlook (ents2 A) i)) (.add (.mul (.var 0) (.var 3)) (.neg (.mul (.var 2) (.var 1)))) :=
+    xsound _ _ _ (by decide +kernel)
+  have e3 : xeval (fun i => Ext.conj (xlook (ents2 A) i)) (.add (.mul (.var 0) (.var 3)) (.neg (.mul (.var 2) (.var 1)))) = det2 (dag2 A) := rfl
+  rw [e1, e2, e3, h]
+
 end FRC.Unitary

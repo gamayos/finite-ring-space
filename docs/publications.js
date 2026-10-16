@@ -548,16 +548,25 @@ const PUBLICATIONS = [
     "doi": "https://doi.org/10.20944/preprints202606.1328.v1",
     "doiLabel": "pp202606.1328.v1",
     "ledger": "27-fields/index.html",
+    "schema": true,
     "links": [
       {
-        "href": "27-fields/index.html",
-        "label": "ledger",
-        "title": "the paper's predicate ledger"
+        "href": "https://colab.research.google.com/github/gamayos/finite-ring-space/blob/main/frc/ledgers/p27_fields.ipynb",
+        "label": "python",
+        "count": 34,
+        "title": "34 predicates checked, all passing: the notebook p27_fields.ipynb on Google Colab, one cell per predicate"
       },
       {
-        "href": "https://colab.research.google.com/github/gamayos/finite-ring-space/blob/main/src/27-fields/27-fields-main.ipynb",
-        "label": "notebook",
-        "title": "the validation notebook on Google Colab"
+        "href": "https://live.lean-lang.org/#project=lean-v4.34.0&url=https://finitering.space/lean/web/core/Fields.lean",
+        "label": "lean",
+        "count": 28,
+        "title": "28 predicates proved in the core (no axioms), 4 of them also on Mathlib: the core module Fields as one executable file (plain Lean, no Mathlib) in Lean Live"
+      },
+      {
+        "href": "https://live.lean-lang.org/#project=mathlib-stable&url=https://finitering.space/lean/web/ml/Fields.lean",
+        "label": "lean-mathlib",
+        "count": 4,
+        "title": "4 predicates proved on Mathlib (classical), 4 of them also in the core: the module Fields as one file on Mathlib in Lean Live"
       }
     ]
   },

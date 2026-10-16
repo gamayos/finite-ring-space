@@ -2,19 +2,19 @@
  "header": {
   "generated": "16 October 2026",
   "schema": "frc-register/2",
-  "rows": 1050,
-  "theorems": 1036,
+  "rows": 1048,
+  "theorems": 1034,
   "counts": {
-   "keys": 1036,
-   "rows": 1050,
+   "keys": 1034,
+   "rows": 1048,
    "shared": 14,
    "by_tag": {
-    "D": 160,
+    "D": 161,
     "G": 1,
-    "I": 121,
+    "I": 122,
     "O": 10,
-    "R": 82,
-    "T": 632,
+    "R": 85,
+    "T": 639,
     "Ω": 30
    }
   },
@@ -1101,10 +1101,6 @@
       "title": "Falsifiable predictions: the exposures"
      },
      {
-      "letter": "V",
-      "title": "Machine verification"
-     },
-     {
       "letter": "Z",
       "title": "Horizon: the residue beyond the bounded observer"
      },
@@ -1145,7 +1141,7 @@
       "text": "Stated ahead of derivation, carrying its exposure; a derivation re-homes the row."
      }
     ],
-    "rows": 48
+    "rows": 46
    },
    {
     "key": "28-flav",
@@ -3206,7 +3202,7 @@
    "tag": "T",
    "tier": null,
    "check": {
-    "script": "27:em1_prototype.py, 27:enumerate_maxwell.py, 27:o2_numbers.py, 27:audit_finitism.py"
+    "script": "27:p27_fields.py"
    },
    "declarations": [],
    "aliases": [],
@@ -3227,7 +3223,7 @@
    "tag": "T",
    "tier": null,
    "check": {
-    "script": "27:p4.py"
+    "script": "27:p27_fields.py"
    },
    "declarations": [],
    "aliases": [],
@@ -3244,7 +3240,7 @@
    "tag": "Ω",
    "tier": null,
    "check": {
-    "script": "27:v_scale.py"
+    "script": "27:p27_fields.py"
    },
    "declarations": [],
    "aliases": [],
@@ -3260,7 +3256,7 @@
    "tag": "T",
    "tier": null,
    "check": {
-    "script": "27:p5.py"
+    "script": "27:p27_fields.py"
    },
    "declarations": [],
    "aliases": [],
@@ -3277,7 +3273,7 @@
    "tag": "T",
    "tier": null,
    "check": {
-    "script": "27:string_tension.py"
+    "script": "27:p27_fields.py"
    },
    "declarations": [],
    "aliases": [],
@@ -3306,11 +3302,30 @@
    "statement": "\\textbf{Vanishing strong-CP angle without an axion} \\emph{[structural]}. The QCD vacuum angle vanishes on the substrate, $\\bar\\theta=0$ with no axion: the colour action carries no topological term and colour is drive-invariant, so the bare $\\theta=0$, and the Hermitian quark mass matrices have real determinant, so $\\arg\\det M_q=0$, while the Cabibbo--Kobayashi--Maskawa phase sits in the up--down misalignment. \\emph{Falsifier:} a neutron electric dipole moment above the QCD floor, or a discovered axion.",
    "origin_row": "27:P9",
    "tag": "T",
-   "tier": null,
+   "tier": 0,
    "check": {
-    "script": "27:strongcp.py"
+    "href": "frc/ledgers/p27_fields.html#p27043",
+    "script": "p27_fields.py",
+    "line": 981,
+    "verdict": "pass"
    },
-   "declarations": [],
+   "declarations": [
+    {
+     "lib": "FrcCore",
+     "module": "FrcCore/Keys/Interactions",
+     "name": "FRC.Ledger.p27043"
+    },
+    {
+     "lib": "FrcCore",
+     "module": "FrcCore/Theme/Unitary",
+     "name": "FRC.Unitary.hermitian_det_real"
+    },
+    {
+     "lib": "FrcCore",
+     "module": "FrcCore/Theme/Unitary",
+     "name": "FRC.Unitary.hermitian_det_shell"
+    }
+   ],
    "aliases": [
     "p00072"
    ],
@@ -3378,14 +3393,14 @@
   {
    "key": "p27020",
    "origin": "27",
-   "statement": "One complete Standard-Model generation as the spinor $\\mathbf{16}$ of the rank-five frame: field content, hypercharges, charges, and full anomaly freedom; the imported $\\SO(10)$ template (A4) evaluated on the realisation B5 (\\src{fld.\\allowbreak generation}).",
+   "statement": "One complete Standard-Model generation as the spinor $\\mathbf{16}$ of the rank-five frame: field content, hypercharges, charges, and full anomaly freedom; the imported $\\SO(10)$ template (A4) evaluated on the realisation B5.",
    "origin_row": "27:C8",
    "tag": "T",
    "tier": 0,
    "check": {
-    "href": "frc/ledgers/master/interactions.html#p27020",
-    "script": "frc/ledgers/master/interactions.py",
-    "line": 85,
+    "href": "frc/ledgers/p27_fields.html#p27020",
+    "script": "p27_fields.py",
+    "line": 798,
     "verdict": "pass"
    },
    "declarations": [
@@ -3393,6 +3408,11 @@
      "lib": "FrcCore",
      "module": "FrcCore/Keys/Interactions",
      "name": "FRC.Ledger.p27020"
+    },
+    {
+     "lib": "FrcCore",
+     "module": "FrcCore/Theme/Interactions",
+     "name": "FRC.Interactions.one_generation"
     }
    ],
    "aliases": [
@@ -3416,7 +3436,7 @@
    "check": {
     "href": "frc/ledgers/master/interactions.html#p00155",
     "script": "frc/ledgers/master/interactions.py",
-    "line": 61,
+    "line": 62,
     "verdict": "pass"
    },
    "declarations": [
@@ -3456,7 +3476,7 @@
    "tag": "D",
    "tier": null,
    "check": {
-    "script": "27:p9b.py"
+    "script": "27:p27_fields.py"
    },
    "declarations": [],
    "aliases": [],
@@ -3491,7 +3511,7 @@
    "check": {
     "href": "frc/ledgers/master/interactions.html#p00081",
     "script": "frc/ledgers/master/interactions.py",
-    "line": 122,
+    "line": 123,
     "verdict": "pass"
    },
    "declarations": [
@@ -3817,7 +3837,7 @@
    "tag": "T",
    "tier": null,
    "check": {
-    "script": "27:missing_rank.py"
+    "script": "27:p27_fields.py"
    },
    "declarations": [],
    "aliases": [],
@@ -3903,9 +3923,30 @@
    "statement": "Simple $\\SO(10)$ unification forced: the colour--isospin off-block reframings are gauge automorphisms, the $3+2$ torsion sitting at carrier scale above the coherence horizon $\\sqrt\\Omega$.",
    "origin_row": "27:C9",
    "tag": "T",
-   "tier": null,
-   "check": null,
-   "declarations": [],
+   "tier": 0,
+   "check": {
+    "href": "frc/ledgers/p27_fields.html#p27021",
+    "script": "p27_fields.py",
+    "line": 818,
+    "verdict": "pass"
+   },
+   "declarations": [
+    {
+     "lib": "FrcCore",
+     "module": "FrcCore/Theme/Interactions",
+     "name": "FRC.Interactions.unification_counts"
+    },
+    {
+     "lib": "FrcCore",
+     "module": "FrcCore/Theme/Interactions",
+     "name": "FRC.Interactions.fifth_direction"
+    },
+    {
+     "lib": "FrcCore",
+     "module": "FrcCore/Theme/Interactions",
+     "name": "FRC.Interactions.offblock_automorphism"
+    }
+   ],
    "aliases": [
     "p00113"
    ],
@@ -21030,7 +21071,7 @@
   {
    "key": "p27001",
    "origin": "27",
-   "statement": "The finite substrate $\\F_\\Omega$, cardinality $\\Omega\\sim10^{122}$ (Planck units) fixed by the de Sitter entropy, with the phase cycle $\\F_\\Omega^\\times=C_{\\Omega-1}$ and the quarter-turn $Q_4$ (the residue $\\Omega\\equiv5\\!\\pmod{12}$ is derived, C11).",
+   "statement": "The finite substrate $\\F_\\Omega$, the Carrier identity $\\Omega=4\\dS+1$ with $\\ln\\Omega=283.5$ ($\\Omega\\sim10^{123}$ in Planck units; master A7) fixed by the de Sitter entropy, with the phase cycle $\\F_\\Omega^\\times=C_{\\Omega-1}$ and the quarter-turn $Q_4$ (the residue $\\Omega\\equiv5\\!\\pmod{12}$ is derived, C11).",
    "origin_row": "27:A1",
    "tag": "I",
    "tier": null,
@@ -21198,17 +21239,45 @@
   {
    "key": "p27013",
    "origin": "27",
-   "statement": "The finite gauge correspondence: the abelian inclusion $\\Z/M\\hookrightarrow\\U(1)$, the positive cyclotomic action, the exact $q{=}3$ embedding $\\SU(2,\\F_3)\\cong2T$, the low-curvature Yang--Mills kinetic operator, and the uniform window expectation bound $O(H/\\Omega)$ (Theorem~\\ref{thm:corrwindow}, proof at sketch level); the cross-scale running is $\\Omega$-hard (Z1).",
+   "statement": "The finite gauge correspondence, its exact clauses: the abelian inclusion $\\Z/M\\hookrightarrow\\U(1)$ as the $M$-th roots of unity, the positive cyclotomic action (the Wilson weight $1-\\Re\\zeta\\ge0$), and the exact $q{=}3$ embedding $\\SU(2,\\F_3)\\cong2T$ with the Wilson trace a class function (Theorems~\\ref{thm:corrU1},~\\ref{thm:corrpos},~\\ref{thm:corr2T}); the resolvable-window reconstruction is C12 and the cross-scale running $\\Omega$-hard (Z1).",
    "origin_row": "27:C1",
    "tag": "T",
-   "tier": null,
-   "check": null,
-   "declarations": [],
+   "tier": 0,
+   "check": {
+    "href": "frc/ledgers/p27_fields.html#p27013",
+    "script": "p27_fields.py",
+    "line": 356,
+    "verdict": "pass"
+   },
+   "declarations": [
+    {
+     "lib": "FrcCore",
+     "module": "FrcCore/Theme/Fields",
+     "name": "FRC.Interactions.tetrahedral_group"
+    },
+    {
+     "lib": "FrcCore",
+     "module": "FrcCore/Theme/Unitary",
+     "name": "FRC.Unitary.class_function"
+    },
+    {
+     "lib": "FrcLedger",
+     "module": "FrcLedger/Fields",
+     "name": "FRC.Fields.roots_inclusion"
+    },
+    {
+     "lib": "FrcLedger",
+     "module": "FrcLedger/Fields",
+     "name": "FRC.Fields.wilson_weight_nonneg"
+    }
+   ],
    "aliases": [],
    "rows": [
     "27:C1"
    ],
-   "realisations": []
+   "realisations": [
+    "p27049"
+   ]
   },
   {
    "key": "p27014",
@@ -21216,9 +21285,30 @@
    "statement": "Electromagnetism: charge as a quantised winding index, the massless photon by drive-invariance, the repulsive sign, the unique Maxwell operator, and $\\al_{\\mathrm{bare}}=1/4\\pi$ as the phase-channel capacity normalisation.",
    "origin_row": "27:C2",
    "tag": "T",
-   "tier": null,
-   "check": null,
-   "declarations": [],
+   "tier": 0,
+   "check": {
+    "href": "frc/ledgers/p27_fields.html#p27014",
+    "script": "p27_fields.py",
+    "line": 224,
+    "verdict": "pass"
+   },
+   "declarations": [
+    {
+     "lib": "FrcCore",
+     "module": "FrcCore/Theme/Interactions",
+     "name": "FRC.Interactions.gauge_flux_invariant"
+    },
+    {
+     "lib": "FrcCore",
+     "module": "FrcCore/Theme/Interactions",
+     "name": "FRC.Interactions.projector_forced"
+    },
+    {
+     "lib": "FrcCore",
+     "module": "FrcCore/Theme/Fields",
+     "name": "FRC.Interactions.admissible_two"
+    }
+   ],
    "aliases": [],
    "rows": [
     "27:C2"
@@ -21231,9 +21321,20 @@
    "statement": "The Coulomb law and Maxwell dynamics, as corollaries of the correspondence on the resolvable window.",
    "origin_row": "27:C3",
    "tag": "T",
-   "tier": null,
-   "check": null,
-   "declarations": [],
+   "tier": 0,
+   "check": {
+    "href": "frc/ledgers/p27_fields.html#p27015",
+    "script": "p27_fields.py",
+    "line": 198,
+    "verdict": "pass"
+   },
+   "declarations": [
+    {
+     "lib": "FrcCore",
+     "module": "FrcCore/Theme/Fields",
+     "name": "FRC.Interactions.green_torus"
+    }
+   ],
    "aliases": [],
    "rows": [
     "27:C3"
@@ -21248,9 +21349,40 @@
    "statement": "The weak sector: the cell-local $\\SU(2)$ Wilson connection, electroweak breaking as drive-torus misalignment with the photon kept massless, and maximal $V\\!-\\!A$ parity violation with the Frobenius branch decoupling exactly.",
    "origin_row": "27:C4",
    "tag": "T",
-   "tier": null,
-   "check": null,
-   "declarations": [],
+   "tier": 0,
+   "check": {
+    "href": "frc/ledgers/p27_fields.html#p27016",
+    "script": "p27_fields.py",
+    "line": 473,
+    "verdict": "pass"
+   },
+   "declarations": [
+    {
+     "lib": "FrcCore",
+     "module": "FrcCore/Theme/Interactions",
+     "name": "FRC.Interactions.drive_adjoint"
+    },
+    {
+     "lib": "FrcCore",
+     "module": "FrcCore/Theme/Interactions",
+     "name": "FRC.Interactions.va_cancel"
+    },
+    {
+     "lib": "FrcCore",
+     "module": "FrcCore/Theme/Interactions",
+     "name": "FRC.Interactions.orientation_flip"
+    },
+    {
+     "lib": "FrcCore",
+     "module": "FrcCore/Theme/Fields",
+     "name": "FRC.Interactions.tetrahedral_group"
+    },
+    {
+     "lib": "FrcCore",
+     "module": "FrcCore/Theme/Unitary",
+     "name": "FRC.Unitary.class_function"
+    }
+   ],
    "aliases": [],
    "rows": [
     "27:C4"
@@ -21260,12 +21392,33 @@
   {
    "key": "p27017",
    "origin": "27",
-   "statement": "The propagating neutral spectrum and custodial $\\rho=1$: the Hessian of $S_\\rho$ at the broken vacuum gives massive $W^\\pm,Z$ against a massless photon, $\\rho=1$ as $\\det\\equiv0$, $M_W^2/M_Z^2=\\cos^2\\sW$, which is $5/8$ at the unification point (Prop.~\\ref{prop:running}); the imported electroweak template (A4) evaluated on the realisation B3 (\\src{fld.\\allowbreak weak\\_\\allowbreak spectrum}, \\src{fld.ew1}).",
+   "statement": "The propagating neutral spectrum and custodial $\\rho=1$: the Hessian of $S_\\rho$ at the broken vacuum gives massive $W^\\pm,Z$ against a massless photon, $\\rho=1$ as $\\det\\equiv0$, $M_W^2/M_Z^2=\\cos^2\\sW$, which is $5/8$ at the unification point (Prop.~\\ref{prop:running}); the imported electroweak template (A4) evaluated on the realisation B3.",
    "origin_row": "27:C5",
    "tag": "T",
-   "tier": null,
-   "check": null,
-   "declarations": [],
+   "tier": 0,
+   "check": {
+    "href": "frc/ledgers/p27_fields.html#p27017",
+    "script": "p27_fields.py",
+    "line": 521,
+    "verdict": "pass"
+   },
+   "declarations": [
+    {
+     "lib": "FrcCore",
+     "module": "FrcCore/Theme/Interactions",
+     "name": "FRC.Interactions.hessian_neutral"
+    },
+    {
+     "lib": "FrcCore",
+     "module": "FrcCore/Theme/Interactions",
+     "name": "FRC.Interactions.hessian_full"
+    },
+    {
+     "lib": "FrcCore",
+     "module": "FrcCore/Theme/Interactions",
+     "name": "FRC.Interactions.five_eighths"
+    }
+   ],
    "aliases": [],
    "rows": [
     "27:C5"
@@ -21277,12 +21430,33 @@
   {
    "key": "p27018",
    "origin": "27",
-   "statement": "The Weinberg trace formula $\\sin^2\\sW=\\Tr(T_3^2)/\\Tr(Q^2)=3/8$ for a complete generation, the unification-point value, and the four-fermion amplitude with $G_F=1/(\\sqrt2\\,v^2)$; the imported template (A4) evaluated on the realisations B3, B5 (\\src{fld.ew1}, \\src{fld.\\allowbreak weak\\_\\allowbreak current}).",
+   "statement": "The Weinberg trace formula $\\sin^2\\sW=\\Tr(T_3^2)/\\Tr(Q^2)=3/8$ for a complete generation, the unification-point value, and the four-fermion amplitude with $G_F=1/(\\sqrt2\\,v^2)$; the imported template (A4) evaluated on the realisations B3, B5.",
    "origin_row": "27:C6",
    "tag": "T",
-   "tier": null,
-   "check": null,
-   "declarations": [],
+   "tier": 0,
+   "check": {
+    "href": "frc/ledgers/p27_fields.html#p27018",
+    "script": "p27_fields.py",
+    "line": 496,
+    "verdict": "pass"
+   },
+   "declarations": [
+    {
+     "lib": "FrcCore",
+     "module": "FrcCore/Theme/Interactions",
+     "name": "FRC.Interactions.weinberg_angle"
+    },
+    {
+     "lib": "FrcCore",
+     "module": "FrcCore/Theme/Interactions",
+     "name": "FRC.Interactions.one_generation"
+    },
+    {
+     "lib": "FrcLedger",
+     "module": "FrcLedger/Fields",
+     "name": "FRC.Fields.fermi_constant"
+    }
+   ],
    "aliases": [],
    "rows": [
     "27:C6"
@@ -21298,9 +21472,35 @@
    "statement": "The strong sector: the colour $\\SU(3,\\Omega)$ frame forced as the minimal triality-carrying rank, the exact $\\Z_3$ centre, the gluon connection, and the confinement area law $\\sigma>0$ from positivity, with the string tension $\\sigma(\\beta)=-\\ln c_1(\\beta)$ computed in finite units (closed form on $2T$; $c_1^{\\SU(3)}=\\tfrac\\beta{18}+\\tfrac{\\beta^2}{216}+\\cdots$).",
    "origin_row": "27:C7",
    "tag": "T",
-   "tier": null,
-   "check": null,
-   "declarations": [],
+   "tier": 0,
+   "check": {
+    "href": "frc/ledgers/p27_fields.html#p27019",
+    "script": "p27_fields.py",
+    "line": 768,
+    "verdict": "pass"
+   },
+   "declarations": [
+    {
+     "lib": "FrcCore",
+     "module": "FrcCore/Theme/Fields",
+     "name": "FRC.Interactions.su3_centre"
+    },
+    {
+     "lib": "FrcCore",
+     "module": "FrcCore/Theme/Fields",
+     "name": "FRC.Interactions.gluon_commutator"
+    },
+    {
+     "lib": "FrcCore",
+     "module": "FrcCore/Theme/Interactions",
+     "name": "FRC.Interactions.rank_tower"
+    },
+    {
+     "lib": "FrcLedger",
+     "module": "FrcLedger/Fields",
+     "name": "FRC.Fields.area_law_positive"
+    }
+   ],
    "aliases": [],
    "rows": [
     "27:C7"
@@ -21313,9 +21513,20 @@
    "statement": "The closure of the four primitive roles ($5\\!\\to\\!1$): four interactions and no fifth, three generations and no fourth, the boson/fermion split, and the generation ordering, given the role-to-matter realisation (B6).",
    "origin_row": "27:C10",
    "tag": "T",
-   "tier": null,
-   "check": null,
-   "declarations": [],
+   "tier": 0,
+   "check": {
+    "href": "frc/ledgers/p27_fields.html#p27022",
+    "script": "p27_fields.py",
+    "line": 850,
+    "verdict": "pass"
+   },
+   "declarations": [
+    {
+     "lib": "FrcCore",
+     "module": "FrcCore/Theme/Ladder",
+     "name": "FRC.Ladder.tower_reduces"
+    }
+   ],
    "aliases": [],
    "rows": [
     "27:C10"
@@ -21330,9 +21541,25 @@
    "statement": "The admissible substrate residue $\\Omega\\equiv5\\!\\pmod{12}$ forced by self-consistency.",
    "origin_row": "27:C11",
    "tag": "T",
-   "tier": null,
-   "check": null,
-   "declarations": [],
+   "tier": 0,
+   "check": {
+    "href": "frc/ledgers/p27_fields.html#p27023",
+    "script": "p27_fields.py",
+    "line": 874,
+    "verdict": "pass"
+   },
+   "declarations": [
+    {
+     "lib": "FrcCore",
+     "module": "FrcCore/Theme/Interactions",
+     "name": "FRC.Interactions.residue_five"
+    },
+    {
+     "lib": "FrcCore",
+     "module": "FrcCore/Theme/Interactions",
+     "name": "FRC.Interactions.residue_instances"
+    }
+   ],
    "aliases": [],
    "rows": [
     "27:C11"
@@ -21345,9 +21572,20 @@
    "statement": "\\textbf{No fourth generation and no fifth interaction} \\emph{[forced]}. The role ladder closes, the fifth step returns to counting, and the Carrier is the entire substrate, so a fourth chiral family and a fifth fundamental force are forbidden, not merely absent (Tier~4). \\emph{Falsifier:} any fourth-generation fermion, or any new fundamental interaction.",
    "origin_row": "27:P1",
    "tag": "T",
-   "tier": null,
-   "check": null,
-   "declarations": [],
+   "tier": 0,
+   "check": {
+    "href": "frc/ledgers/p27_fields.html#p27035",
+    "script": "p27_fields.py",
+    "line": 850,
+    "verdict": "pass"
+   },
+   "declarations": [
+    {
+     "lib": "FrcCore",
+     "module": "FrcCore/Theme/Ladder",
+     "name": "FRC.Ladder.tower_reduces"
+    }
+   ],
    "aliases": [],
    "rows": [
     "27:P1"
@@ -21362,9 +21600,20 @@
    "statement": "\\textbf{A desert to the substrate scale} \\emph{[forced]}. The gauge group is exactly $\\SU(3)\\times\\SU(2)\\times\\U(1)$ until the substrate resolves the colour--isospin split; no new gauge boson, vector-like fermion, or extra scalar lies between the electroweak and substrate ($\\sim10^{16}$--$10^{19}\\,$GeV) scales. \\emph{Falsifier:} a $Z'$, $W'$, leptoquark, second Higgs doublet, or compositeness signature at the LHC or a future collider. This is the sharpest divergence from supersymmetry, extra dimensions, and composite-Higgs scenarios.",
    "origin_row": "27:P2",
    "tag": "T",
-   "tier": null,
-   "check": null,
-   "declarations": [],
+   "tier": 0,
+   "check": {
+    "href": "frc/ledgers/p27_fields.html#p27036",
+    "script": "p27_fields.py",
+    "line": 850,
+    "verdict": "pass"
+   },
+   "declarations": [
+    {
+     "lib": "FrcCore",
+     "module": "FrcCore/Theme/Interactions",
+     "name": "FRC.Interactions.one_generation"
+    }
+   ],
    "aliases": [],
    "rows": [
     "27:P2"
@@ -21381,7 +21630,12 @@
    "origin_row": "27:P3",
    "tag": "T",
    "tier": null,
-   "check": null,
+   "check": {
+    "href": "frc/ledgers/p27_fields.html#p27037",
+    "script": "p27_fields.py",
+    "line": 905,
+    "verdict": "pass"
+   },
    "declarations": [],
    "aliases": [],
    "rows": [
@@ -21396,7 +21650,12 @@
    "origin_row": "27:P4",
    "tag": "T",
    "tier": null,
-   "check": null,
+   "check": {
+    "href": "frc/ledgers/p27_fields.html#p27038",
+    "script": "p27_fields.py",
+    "line": 812,
+    "verdict": "pass"
+   },
    "declarations": [],
    "aliases": [],
    "rows": [
@@ -21411,7 +21670,12 @@
    "origin_row": "27:P5",
    "tag": "T",
    "tier": null,
-   "check": null,
+   "check": {
+    "href": "frc/ledgers/p27_fields.html#p27039",
+    "script": "p27_fields.py",
+    "line": 915,
+    "verdict": "pass"
+   },
    "declarations": [],
    "aliases": [],
    "rows": [
@@ -21427,9 +21691,20 @@
    "statement": "\\textbf{No new particle of dark matter} \\emph{[sector]}. The matter content is exactly one Standard-Model generation, triplicated, with heavy $\\nu^c$; the construction contains no weakly-interacting massive particle and no axion. \\emph{Falsifier:} a positive signal in a direct-detection (LZ, XENONnT) or axion (ADMX) experiment. Dark matter, if not a Standard-Model state, must then reside in the gravitational/substrate sector, a residual burden of the programme.",
    "origin_row": "27:P6",
    "tag": "T",
-   "tier": null,
-   "check": null,
-   "declarations": [],
+   "tier": 0,
+   "check": {
+    "href": "frc/ledgers/p27_fields.html#p27040",
+    "script": "p27_fields.py",
+    "line": 850,
+    "verdict": "pass"
+   },
+   "declarations": [
+    {
+     "lib": "FrcCore",
+     "module": "FrcCore/Theme/Interactions",
+     "name": "FRC.Interactions.one_generation"
+    }
+   ],
    "aliases": [],
    "rows": [
     "27:P6"
@@ -21445,9 +21720,20 @@
    "statement": "\\textbf{No new-physics contribution to the muon anomaly} \\emph{[sector]}. With no states beyond the Standard Model, $(g-2)_\\mu$ must be accounted for by Standard-Model (notably hadronic) contributions. \\emph{Falsifier:} a robustly established beyond-Standard-Model excess; the current lattice and experimental trend toward the Standard-Model value favours this prediction.",
    "origin_row": "27:P7",
    "tag": "T",
-   "tier": null,
-   "check": null,
-   "declarations": [],
+   "tier": 0,
+   "check": {
+    "href": "frc/ledgers/p27_fields.html#p27041",
+    "script": "p27_fields.py",
+    "line": 850,
+    "verdict": "pass"
+   },
+   "declarations": [
+    {
+     "lib": "FrcCore",
+     "module": "FrcCore/Theme/Interactions",
+     "name": "FRC.Interactions.one_generation"
+    }
+   ],
    "aliases": [],
    "rows": [
     "27:P7"
@@ -21460,9 +21746,35 @@
    "statement": "\\textbf{The charged-lepton Koide relation is exactly $2/3$} \\emph{[structural]}: $(m_e+m_\\mu+m_\\tau)/(\\sqrt{m_e}+\\sqrt{m_\\mu}+\\sqrt{m_\\tau})^2=2/3$, empirically to one part in $10^{5}$, is the cube-root generation orbit at the self-dual value $\\rho^2=2^{-1}$ --- $Q=\\tfrac13+\\tfrac23\\rho^2$ exact, $\\rho^2$ the quarter-turn ($4\\mid\\Omega-1$) self-dual amplitude on the cubic ($3\\mid\\Omega+1$) plane. Form and value derived; the selection of the mass vector onto that orientation is the $\\Omega$-hard flavour residual (28:Z1). \\emph{Falsifier:} a measured $Q$ displaced from $2/3$ beyond the per-mille winding-phase corrections.",
    "origin_row": "27:P8",
    "tag": "T",
-   "tier": null,
-   "check": null,
-   "declarations": [],
+   "tier": 0,
+   "check": {
+    "href": "frc/ledgers/p27_fields.html#p27042",
+    "script": "p27_fields.py",
+    "line": 963,
+    "verdict": "pass"
+   },
+   "declarations": [
+    {
+     "lib": "FrcCore",
+     "module": "FrcCore/Theme/Interactions",
+     "name": "FRC.Interactions.koide_parseval"
+    },
+    {
+     "lib": "FrcCore",
+     "module": "FrcCore/Theme/Interactions",
+     "name": "FRC.Interactions.koide_two_thirds"
+    },
+    {
+     "lib": "FrcCore",
+     "module": "FrcCore/Theme/Interactions",
+     "name": "FRC.Interactions.koide_extension"
+    },
+    {
+     "lib": "FrcCore",
+     "module": "FrcCore/Theme/Interactions",
+     "name": "FRC.Interactions.koide_half"
+    }
+   ],
    "aliases": [],
    "rows": [
     "27:P8"
@@ -21472,59 +21784,35 @@
    ]
   },
   {
-   "key": "p27044",
-   "origin": "27",
-   "statement": "The validation package \\texttt{finite-ring-space/src/27-fields}: the twenty-eight scripts as written --- \\src{fld.\\allowbreak em1\\_\\allowbreak prototype}, \\src{fld.\\allowbreak enumerate\\_\\allowbreak maxwell}, \\src{fld.\\allowbreak audit\\_\\allowbreak finitism}, \\src{fld.\\allowbreak o2\\_\\allowbreak numbers}, \\src{fld.p2}, \\src{fld.\\allowbreak correspondence}, \\src{fld.p3}, \\src{fld.ew1}, \\src{fld.\\allowbreak weak\\_\\allowbreak spectrum}, \\src{fld.\\allowbreak weak\\_\\allowbreak current}, \\src{fld.p4}, \\src{fld.p10}, \\src{fld.v\\_scale}, \\src{fld.qcd}, \\src{fld.p5}, \\src{fld.\\allowbreak string\\_\\allowbreak tension}, \\src{fld.p6}, \\src{fld.\\allowbreak missing\\_\\allowbreak rank}, \\src{fld.\\allowbreak generation}, \\src{fld.p8}, \\src{fld.p8b}, \\src{fld.p9}, \\src{fld.p9b}, \\src{fld.p11}, \\src{fld.p1}, \\src{fld.p7}, \\src{fld.koide}, \\src{fld.strongcp} --- run through one registry, one family per script, its micro-checks the script's own verdict lines together with the registry's predicates on the script's namespace and output (most scripts print their booleans and numbers without asserting them; the decision is made in \\texttt{fldcommon.py}, one labelled predicate per stated value), each family naming the rows it witnesses (Appendix~\\ref{app:repro} the per-script map); the notebook \\texttt{27-fields-main.ipynb} executes them in the browser and the driver \\texttt{run\\_all.py} writes \\texttt{results.json}.",
-   "origin_row": "27:V1",
-   "tag": "T",
-   "tier": null,
-   "check": null,
-   "declarations": [],
-   "aliases": [],
-   "rows": [
-    "27:V1"
-   ],
-   "realisations": []
-  },
-  {
-   "key": "p27045",
-   "origin": "27",
-   "statement": "The discipline, recorded per family as its class (Appendix~\\ref{app:repro}): \\textsf{EXACT} --- integer, $\\F_p$, $\\F_{p^2}$ or cyclotomic arithmetic throughout, a pass a proof on the tested instances; \\textsf{MIXED} --- an exact core with a labelled continuum-comparison layer, the exact claim never resting on the float part; \\textsf{APPROX} --- a continuum-comparison or dimensional-transmutation reading by construction. Fifteen families \\textsf{EXACT}, eleven \\textsf{MIXED}, two \\textsf{APPROX}; \\texttt{audit\\_finitism.py} cross-checks that the load-bearing electromagnetic and admissible-space claims rest on integer and cyclotomic arithmetic alone.",
-   "origin_row": "27:V2",
-   "tag": "T",
-   "tier": null,
-   "check": null,
-   "declarations": [],
-   "aliases": [],
-   "rows": [
-    "27:V2"
-   ],
-   "realisations": []
-  },
-  {
-   "key": "p27046",
-   "origin": "27",
-   "statement": "What the run does not decide: the $\\Omega$-hard scales (Z1) enter only as labelled readings ($\\Lambda_{\\mathrm{QCD}}$ by one-loop transmutation, the electroweak scale against the transmutation forms, the proton lifetime's $M_X^4$ scaling); the correspondence's high-curvature extension and the cross-scale running (Remark~\\ref{conj:corrglobal}) are not computed; the narrative scripts (\\src{fld.p7}, \\src{fld.p8}, \\src{fld.p9b}, \\src{fld.p10}, \\src{fld.\\allowbreak o2\\_\\allowbreak numbers}) are decided on their arithmetic identities and stated bands only.",
-   "origin_row": "27:V3",
-   "tag": "T",
-   "tier": null,
-   "check": null,
-   "declarations": [],
-   "aliases": [],
-   "rows": [
-    "27:V3"
-   ],
-   "realisations": []
-  },
-  {
    "key": "p27024",
    "origin": "27",
    "statement": "\\textbf{The gauge group} $\\U(1)\\times\\SU(2)\\times\\SU(3)$ is the gauging of the substrate's three frame data, the phase, spinor, and colour frames read by the one recipe, not a product of groups chosen to fit.",
    "origin_row": "27:X1",
    "tag": "T",
-   "tier": null,
-   "check": null,
-   "declarations": [],
+   "tier": 0,
+   "check": {
+    "href": "frc/ledgers/p27_fields.html#p27024",
+    "script": "p27_fields.py",
+    "line": 224,
+    "verdict": "pass"
+   },
+   "declarations": [
+    {
+     "lib": "FrcCore",
+     "module": "FrcCore/Theme/Interactions",
+     "name": "FRC.Interactions.gauge_flux_invariant"
+    },
+    {
+     "lib": "FrcCore",
+     "module": "FrcCore/Theme/Interactions",
+     "name": "FRC.Interactions.drive_adjoint"
+    },
+    {
+     "lib": "FrcCore",
+     "module": "FrcCore/Theme/Fields",
+     "name": "FRC.Interactions.gluon_commutator"
+    }
+   ],
    "aliases": [],
    "rows": [
     "27:X1"
@@ -21537,9 +21825,25 @@
    "statement": "\\textbf{Charge quantisation} is automatic: electric charge is an integer winding index, so the electron and proton charges match exactly and no fractional residue survives, with no quantisation condition imposed.",
    "origin_row": "27:X2",
    "tag": "T",
-   "tier": null,
-   "check": null,
-   "declarations": [],
+   "tier": 0,
+   "check": {
+    "href": "frc/ledgers/p27_fields.html#p27025",
+    "script": "p27_fields.py",
+    "line": 191,
+    "verdict": "pass"
+   },
+   "declarations": [
+    {
+     "lib": "FrcCore",
+     "module": "FrcCore/Theme/Interactions",
+     "name": "FRC.Interactions.holonomy_stokes"
+    },
+    {
+     "lib": "FrcCore",
+     "module": "FrcCore/Theme/Interactions",
+     "name": "FRC.Interactions.one_generation"
+    }
+   ],
    "aliases": [],
    "rows": [
     "27:X2"
@@ -21552,9 +21856,30 @@
    "statement": "\\textbf{The photon and its dynamics} are forced: masslessness is drive-invariance and the exact rank-one kernel of the broken vacuum, and Maxwell is the unique adjacency-local gauge-invariant quadratic operator, neither put in by hand.",
    "origin_row": "27:X3",
    "tag": "T",
-   "tier": null,
-   "check": null,
-   "declarations": [],
+   "tier": 0,
+   "check": {
+    "href": "frc/ledgers/p27_fields.html#p27026",
+    "script": "p27_fields.py",
+    "line": 242,
+    "verdict": "pass"
+   },
+   "declarations": [
+    {
+     "lib": "FrcCore",
+     "module": "FrcCore/Theme/Interactions",
+     "name": "FRC.Interactions.hessian_neutral"
+    },
+    {
+     "lib": "FrcCore",
+     "module": "FrcCore/Theme/Interactions",
+     "name": "FRC.Interactions.projector_forced"
+    },
+    {
+     "lib": "FrcCore",
+     "module": "FrcCore/Theme/Fields",
+     "name": "FRC.Interactions.admissible_two"
+    }
+   ],
    "aliases": [],
    "rows": [
     "27:X3"
@@ -21567,9 +21892,20 @@
    "statement": "\\textbf{The Weinberg angle} is the exact rational $\\sin^2\\sW=3/8$ at the unification point, fixed by the charge spectrum of the realised generation (B5) with the group-theoretic step imported (A4), not a free parameter measured into the theory.",
    "origin_row": "27:X4",
    "tag": "T",
-   "tier": null,
-   "check": null,
-   "declarations": [],
+   "tier": 0,
+   "check": {
+    "href": "frc/ledgers/p27_fields.html#p27027",
+    "script": "p27_fields.py",
+    "line": 496,
+    "verdict": "pass"
+   },
+   "declarations": [
+    {
+     "lib": "FrcCore",
+     "module": "FrcCore/Theme/Interactions",
+     "name": "FRC.Interactions.weinberg_angle"
+    }
+   ],
    "aliases": [],
    "rows": [
     "27:X4"
@@ -21584,9 +21920,25 @@
    "statement": "\\textbf{The custodial relation} $\\rho=1$ is the rank-one identity $\\det\\equiv0$ forced by the spinor-doublet Higgs, not a tree-level accident.",
    "origin_row": "27:X5",
    "tag": "T",
-   "tier": null,
-   "check": null,
-   "declarations": [],
+   "tier": 0,
+   "check": {
+    "href": "frc/ledgers/p27_fields.html#p27028",
+    "script": "p27_fields.py",
+    "line": 521,
+    "verdict": "pass"
+   },
+   "declarations": [
+    {
+     "lib": "FrcCore",
+     "module": "FrcCore/Theme/Interactions",
+     "name": "FRC.Interactions.hessian_neutral"
+    },
+    {
+     "lib": "FrcCore",
+     "module": "FrcCore/Theme/Interactions",
+     "name": "FRC.Interactions.hessian_full"
+    }
+   ],
    "aliases": [],
    "rows": [
     "27:X5"
@@ -21599,9 +21951,25 @@
    "statement": "\\textbf{Maximal parity violation} is the exact decoupling of the Frobenius branch from the drive, so the $V\\!-\\!A$ current is derived rather than the left-handed doublets assigned by hand.",
    "origin_row": "27:X6",
    "tag": "T",
-   "tier": null,
-   "check": null,
-   "declarations": [],
+   "tier": 0,
+   "check": {
+    "href": "frc/ledgers/p27_fields.html#p27029",
+    "script": "p27_fields.py",
+    "line": 585,
+    "verdict": "pass"
+   },
+   "declarations": [
+    {
+     "lib": "FrcCore",
+     "module": "FrcCore/Theme/Interactions",
+     "name": "FRC.Interactions.va_cancel"
+    },
+    {
+     "lib": "FrcCore",
+     "module": "FrcCore/Theme/Interactions",
+     "name": "FRC.Interactions.orientation_flip"
+    }
+   ],
    "aliases": [],
    "rows": [
     "27:X6"
@@ -21614,9 +21982,35 @@
    "statement": "\\textbf{The colour sector} is fixed: three colours is the minimal triality-carrying frame, confinement is the compact-group area law from positivity, and asymptotic freedom is the gluon self-coupling, not $N_c=3$ supplemented by an assumed confining phase.",
    "origin_row": "27:X7",
    "tag": "T",
-   "tier": null,
-   "check": null,
-   "declarations": [],
+   "tier": 0,
+   "check": {
+    "href": "frc/ledgers/p27_fields.html#p27030",
+    "script": "p27_fields.py",
+    "line": 702,
+    "verdict": "pass"
+   },
+   "declarations": [
+    {
+     "lib": "FrcCore",
+     "module": "FrcCore/Theme/Fields",
+     "name": "FRC.Interactions.su3_centre"
+    },
+    {
+     "lib": "FrcCore",
+     "module": "FrcCore/Theme/Fields",
+     "name": "FRC.Interactions.gluon_commutator"
+    },
+    {
+     "lib": "FrcCore",
+     "module": "FrcCore/Theme/Interactions",
+     "name": "FRC.Interactions.rank_tower"
+    },
+    {
+     "lib": "FrcLedger",
+     "module": "FrcLedger/Fields",
+     "name": "FRC.Fields.area_law_positive"
+    }
+   ],
    "aliases": [],
    "rows": [
     "27:X7"
@@ -21629,9 +22023,25 @@
    "statement": "\\textbf{One complete generation} is the spinor $\\mathbf{16}$ of the rank-five internal frame, so its hypercharges, charges, and anomaly freedom follow and a right-handed neutrino is present, with $\\SO(10)$ unification forced, rather than a hypercharge assignment whose anomaly cancellation is a coincidence; given B5, the anomaly cancellation is the imported $\\SO(10)$ fact (A4) evaluated on the realised content.",
    "origin_row": "27:X8",
    "tag": "T",
-   "tier": null,
-   "check": null,
-   "declarations": [],
+   "tier": 0,
+   "check": {
+    "href": "frc/ledgers/p27_fields.html#p27031",
+    "script": "p27_fields.py",
+    "line": 798,
+    "verdict": "pass"
+   },
+   "declarations": [
+    {
+     "lib": "FrcCore",
+     "module": "FrcCore/Theme/Interactions",
+     "name": "FRC.Interactions.one_generation"
+    },
+    {
+     "lib": "FrcCore",
+     "module": "FrcCore/Theme/Interactions",
+     "name": "FRC.Interactions.offblock_automorphism"
+    }
+   ],
    "aliases": [],
    "rows": [
     "27:X8"
@@ -21646,9 +22056,20 @@
    "statement": "\\textbf{The interaction and generation counts} are the $1+3$ split of the closed primitive-role ladder, so four forces and three families are fixed and a fifth force and a fourth generation are forbidden, not left unexplained.",
    "origin_row": "27:X9",
    "tag": "T",
-   "tier": null,
-   "check": null,
-   "declarations": [],
+   "tier": 0,
+   "check": {
+    "href": "frc/ledgers/p27_fields.html#p27032",
+    "script": "p27_fields.py",
+    "line": 850,
+    "verdict": "pass"
+   },
+   "declarations": [
+    {
+     "lib": "FrcCore",
+     "module": "FrcCore/Theme/Ladder",
+     "name": "FRC.Ladder.tower_reduces"
+    }
+   ],
    "aliases": [],
    "rows": [
     "27:X9"
@@ -21661,9 +22082,35 @@
    "statement": "\\textbf{The Koide ratio} is exactly $2/3$, the cube-root generation orbit at the self-dual quarter-turn $\\rho^2=2^{-1}$, an exact value rather than an unexplained numerical coincidence.",
    "origin_row": "27:X10",
    "tag": "T",
-   "tier": null,
-   "check": null,
-   "declarations": [],
+   "tier": 0,
+   "check": {
+    "href": "frc/ledgers/p27_fields.html#p27033",
+    "script": "p27_fields.py",
+    "line": 957,
+    "verdict": "pass"
+   },
+   "declarations": [
+    {
+     "lib": "FrcCore",
+     "module": "FrcCore/Theme/Interactions",
+     "name": "FRC.Interactions.koide_parseval"
+    },
+    {
+     "lib": "FrcCore",
+     "module": "FrcCore/Theme/Interactions",
+     "name": "FRC.Interactions.koide_two_thirds"
+    },
+    {
+     "lib": "FrcCore",
+     "module": "FrcCore/Theme/Interactions",
+     "name": "FRC.Interactions.koide_extension"
+    },
+    {
+     "lib": "FrcCore",
+     "module": "FrcCore/Theme/Interactions",
+     "name": "FRC.Interactions.koide_half"
+    }
+   ],
    "aliases": [],
    "rows": [
     "27:X10"
@@ -21676,9 +22123,30 @@
    "statement": "\\textbf{The strong-CP angle} vanishes with no axion: no substrate-native topological term, and Hermitian quark masses with real determinant, give $\\bar\\theta=0$, so the problem does not arise rather than being tuned away.",
    "origin_row": "27:X11",
    "tag": "T",
-   "tier": null,
-   "check": null,
-   "declarations": [],
+   "tier": 0,
+   "check": {
+    "href": "frc/ledgers/p27_fields.html#p27034",
+    "script": "p27_fields.py",
+    "line": 981,
+    "verdict": "pass"
+   },
+   "declarations": [
+    {
+     "lib": "FrcCore",
+     "module": "FrcCore/Theme/Unitary",
+     "name": "FRC.Unitary.hermitian_det_real"
+    },
+    {
+     "lib": "FrcCore",
+     "module": "FrcCore/Theme/Unitary",
+     "name": "FRC.Unitary.hermitian_det_shell"
+    },
+    {
+     "lib": "FrcCore",
+     "module": "FrcCore/Theme/Fields",
+     "name": "FRC.Interactions.ckm_free"
+    }
+   ],
    "aliases": [],
    "rows": [
     "27:X11"
@@ -21688,11 +22156,16 @@
   {
    "key": "p27048",
    "origin": "27",
-   "statement": "The electroweak scale as the minimal winding weight of the gauged spinor frame at channel unity: $v/\\sqrt2=m_P\\big(e^{-S_{+1/2}}+e^{-S_{-1/2}}\\big)$, $S_{\\pm1/2}=4\\pi^2/g^2$ the 't~Hooft half-charge action of $\\SU(2)/\\Z_2$ at $g=1$, i.e.\\ $v=2^{3/2}m_P\\,e^{-(2\\pi)^2}=247.2$~GeV against $246.2$ ($0.38\\,\\%$ high). The exponent is verified (Section~\\ref{sec:corr}, \\src{fld.v\\_scale}); the amplitude identification, the two-sector prefactor and the residual are underived. Exposure: odds about $1$ in $45$ for the landing; the strong channel obeys no such rule; the running cannot test it (Rem.~\\ref{rmk:masscons}). Falsifier: a derived amplitude identification with a residual other than $0.38\\,\\%$, or a closed form for the residual that fails.",
+   "statement": "The electroweak scale as the minimal winding weight of the gauged spinor frame at channel unity: $v/\\sqrt2=m_P\\big(e^{-S_{+1/2}}+e^{-S_{-1/2}}\\big)$, $S_{\\pm1/2}=4\\pi^2/g^2$ the 't~Hooft half-charge action of $\\SU(2)/\\Z_2$ at $g=1$, i.e.\\ $v=2^{3/2}m_P\\,e^{-(2\\pi)^2}=247.2$~GeV against $246.2$ ($0.38\\,\\%$ high). The exponent is verified (Section~\\ref{sec:corr}); the amplitude identification, the two-sector prefactor and the residual are underived. Exposure: odds about $1$ in $45$ for the landing; the strong channel obeys no such rule; the running cannot test it (Rem.~\\ref{rmk:masscons}). Falsifier: a derived amplitude identification with a residual other than $0.38\\,\\%$, or a closed form for the residual that fails.",
    "origin_row": "27:Y1",
    "tag": "O",
    "tier": null,
-   "check": null,
+   "check": {
+    "href": "frc/ledgers/p27_fields.html#p27048",
+    "script": "p27_fields.py",
+    "line": 626,
+    "verdict": "pass"
+   },
    "declarations": [],
    "aliases": [],
    "rows": [
@@ -21706,7 +22179,12 @@
    "origin_row": "27:Z1",
    "tag": "Ω",
    "tier": null,
-   "check": null,
+   "check": {
+    "href": "frc/ledgers/p27_fields.html#p27047",
+    "script": "p27_fields.py",
+    "line": 619,
+    "verdict": "pass"
+   },
    "declarations": [],
    "aliases": [],
    "rows": [
@@ -26333,6 +26811,25 @@
     "38:X4"
    ],
    "realisations": []
+  },
+  {
+   "key": "p27049",
+   "origin": "27",
+   "statement": "The resolvable-window reconstruction: the low-curvature Yang--Mills kinetic operator with the coefficient $I_\\rho/(2d_\\rho)=1/(2n)$ and the residue $O(\\epsilon^4+1/\\Omega)$ (Theorem~\\ref{thm:corrYM}), and the uniform window expectation bound $O(H/\\Omega)$ (Theorem~\\ref{thm:corrwindow}, proof at sketch level) [chart]. \\emph{Falsifier:} a window observable of the finite action that departs from the Yang--Mills operator at the matched coupling beyond the stated residue.",
+   "origin_row": "27:C12",
+   "tag": "R",
+   "tier": null,
+   "check": {
+    "href": "frc/ledgers/p27_fields.html#p27049",
+    "script": "p27_fields.py",
+    "line": 377,
+    "verdict": "pass"
+   },
+   "declarations": [],
+   "aliases": [],
+   "rows": [
+    "27:C12"
+   ]
   }
  ],
  "superseded": [
@@ -27021,6 +27518,18 @@
    "successors": []
   },
   {
+   "key": "p27044",
+   "successors": []
+  },
+  {
+   "key": "p27045",
+   "successors": []
+  },
+  {
+   "key": "p27046",
+   "successors": []
+  },
+  {
    "key": "p28023",
    "successors": [
     "p28050",
@@ -27643,7 +28152,7 @@
    "source": "27-fld",
    "page": "00-ledger.html#B5",
    "witness": {
-    "script": "27:p11.py",
+    "script": "27:p27_fields.py",
     "py": {
      "href": "frc/ledgers/master/carrier.html#p00015",
      "script": "frc/ledgers/master/carrier.py",
@@ -27672,7 +28181,7 @@
    "sources": [
     "27-fld"
    ],
-   "text": "The substrate residue: The substrate residue: the quarter-turn ($4\\mid\\Om-1$, B3) and the triality centre ($3\\mid\\Om+1$, B4) jointly hold iff $\\Om\\equiv5\\pmod{12}$. Both are relations certified by realisations, never properties of an integer: $Q_4$ by the quantum realisation (D4), the triality centre by the strong realisation (D6). The inference runs structure $\\to$ congruence (A3); a laboratory pattern instantiates the residue or does not (10:E9). 27-fld 27:p11.py"
+   "text": "The substrate residue: The substrate residue: the quarter-turn ($4\\mid\\Om-1$, B3) and the triality centre ($3\\mid\\Om+1$, B4) jointly hold iff $\\Om\\equiv5\\pmod{12}$. Both are relations certified by realisations, never properties of an integer: $Q_4$ by the quantum realisation (D4), the triality centre by the strong realisation (D6). The inference runs structure $\\to$ congruence (A3); a laboratory pattern instantiates the residue or does not (10:E9). 27-fld 27:p27_fields.py"
   },
   {
    "paper": "00",
@@ -29713,7 +30222,7 @@
    "source": "27-fld, 28-flav",
    "page": "00-ledger.html#G1",
    "witness": {
-    "script": "27:em1_prototype.py, 27:enumerate_maxwell.py, 27:o2_numbers.py, 27:audit_finitism.py",
+    "script": "27:p27_fields.py",
     "py": null,
     "lean": []
    },
@@ -29728,7 +30237,7 @@
     "27-fld",
     "28-flav"
    ],
-   "text": "Electromagnetism (exact): Electromagnetism (exact), on the force realisation D6: charge $=$ quantised winding index; the photon is massless, the observable residue $2$ of the split torus $C_{\\Om-1}$ (two helicities $=$ two $\\F_\\Om$-fixed lines $=N(1{-}\\im)$; D2, D8); Maxwell is the unique relevant action (E1). The bare coupling: Z8. 27-fld, 28-flav 27:em1_prototype.py, 27:enumerate_maxwell.py, 27:o2_numbers.py, 27:audit_finitism.py"
+   "text": "Electromagnetism (exact): Electromagnetism (exact), on the force realisation D6: charge $=$ quantised winding index; the photon is massless, the observable residue $2$ of the split torus $C_{\\Om-1}$ (two helicities $=$ two $\\F_\\Om$-fixed lines $=N(1{-}\\im)$; D2, D8); Maxwell is the unique relevant action (E1). The bare coupling: Z8. 27-fld, 28-flav 27:p27_fields.py"
   },
   {
    "paper": "00",
@@ -29743,7 +30252,7 @@
    "source": "27-fld",
    "page": "00-ledger.html#G2",
    "witness": {
-    "script": "27:p4.py",
+    "script": "27:p27_fields.py",
     "py": null,
     "lean": []
    },
@@ -29751,7 +30260,7 @@
    "sources": [
     "27-fld"
    ],
-   "text": "Weak (amplitudes): Weak (amplitudes): the chiral $V\\!-\\!A$ current and four-fermion $G_F=1/(\\sqrt2 v^2)$ derived; $W,Z$ scattering unitarised (equivalence theorem). 27-fld 27:p4.py"
+   "text": "Weak (amplitudes): Weak (amplitudes): the chiral $V\\!-\\!A$ current and four-fermion $G_F=1/(\\sqrt2 v^2)$ derived; $W,Z$ scattering unitarised (equivalence theorem). 27-fld 27:p27_fields.py"
   },
   {
    "paper": "00",
@@ -29766,7 +30275,7 @@
    "source": "27-fld",
    "page": "00-ledger.html#G3",
    "witness": {
-    "script": "27:v_scale.py",
+    "script": "27:p27_fields.py",
     "py": null,
     "lean": []
    },
@@ -29777,7 +30286,7 @@
    "sources": [
     "27-fld"
    ],
-   "text": "Weak (scale): the lone scale = the non-split saturation scale: Weak (scale): the lone scale is the non-split saturation scale, $v=m_P e^{-\\mathcal B}$, the exponent $\\mathcal B$ the cross-scale $\\beta$-function of the non-split channel, not the $\\mathrm{SU}(2)$ gauge coefficient ($b_2=19/6$ gives $10^{8}$ GeV). Value tagged: $v$, $\\Om$-hard as $\\Lambda_{\\mathrm{QCD}}$ (G6); the failing computation sums the $\\beta$-function over the $\\Om$-hard masses (Z6). Relation, $\\Om$-blind: the transmutation form. 27-fld 27:v_scale.py"
+   "text": "Weak (scale): the lone scale = the non-split saturation scale: Weak (scale): the lone scale is the non-split saturation scale, $v=m_P e^{-\\mathcal B}$, the exponent $\\mathcal B$ the cross-scale $\\beta$-function of the non-split channel, not the $\\mathrm{SU}(2)$ gauge coefficient ($b_2=19/6$ gives $10^{8}$ GeV). Value tagged: $v$, $\\Om$-hard as $\\Lambda_{\\mathrm{QCD}}$ (G6); the failing computation sums the $\\beta$-function over the $\\Om$-hard masses (Z6). Relation, $\\Om$-blind: the transmutation form. 27-fld 27:p27_fields.py"
   },
   {
    "paper": "00",
@@ -29792,7 +30301,7 @@
    "source": "27-fld, 28-flav",
    "page": "00-ledger.html#G4",
    "witness": {
-    "script": "27:p5.py",
+    "script": "27:p27_fields.py",
     "py": null,
     "lean": []
    },
@@ -29803,7 +30312,7 @@
     "27-fld",
     "28-flav"
    ],
-   "text": "Strong (structure): Strong (structure): $\\SU(3)$ $=$ the special unitary transformations of a Hermitian three-form, its rank forced as the minimal triality frame (the cubic of $\\Om\\equiv5\\pmod{12}$, B5); the confining area law derived from the positivity of $S_\\rho$, the gluon the residue $0$ of the norm-one residue pairs (no $\\F_\\Om$-fixed line). 27-fld, 28-flav 27:p5.py"
+   "text": "Strong (structure): Strong (structure): $\\SU(3)$ $=$ the special unitary transformations of a Hermitian three-form, its rank forced as the minimal triality frame (the cubic of $\\Om\\equiv5\\pmod{12}$, B5); the confining area law derived from the positivity of $S_\\rho$, the gluon the residue $0$ of the norm-one residue pairs (no $\\F_\\Om$-fixed line). 27-fld, 28-flav 27:p27_fields.py"
   },
   {
    "paper": "00",
@@ -29818,7 +30327,7 @@
    "source": "27-fld",
    "page": "00-ledger.html#G5",
    "witness": {
-    "script": "27:string_tension.py",
+    "script": "27:p27_fields.py",
     "py": null,
     "lean": []
    },
@@ -29826,7 +30335,7 @@
    "sources": [
     "27-fld"
    ],
-   "text": "Strong (tension): Strong (tension): the string tension in finite units, $\\sigma=-\\ln c_1(\\beta)>0$, computed — the finite-group area law gives $c_1$ as an exact character sum (no Haar, no $\\Om\\to\\infty$); closed form on $\\SU(2,\\F_3){=}2T$ (matching continuum $\\SU(2)$ through $O(\\beta^3)$), colour $c_1^{\\SU(3)}{=}\\tfrac\\beta{18}{+}\\tfrac{\\beta^2}{216}{+}\\cdots$. 27-fld 27:string_tension.py"
+   "text": "Strong (tension): Strong (tension): the string tension in finite units, $\\sigma=-\\ln c_1(\\beta)>0$, computed — the finite-group area law gives $c_1$ as an exact character sum (no Haar, no $\\Om\\to\\infty$); closed form on $\\SU(2,\\F_3){=}2T$ (matching continuum $\\SU(2)$ through $O(\\beta^3)$), colour $c_1^{\\SU(3)}{=}\\tfrac\\beta{18}{+}\\tfrac{\\beta^2}{216}{+}\\cdots$. 27-fld 27:p27_fields.py"
   },
   {
    "paper": "00",
@@ -29868,15 +30377,24 @@
    "source": "27-fld",
    "page": "00-ledger.html#G7",
    "witness": {
-    "script": "27:strongcp.py",
+    "script": "27:p27_fields.py",
     "py": null,
-    "lean": []
+    "lean": [
+     {
+      "lib": "FrcCore",
+      "module": "FrcCore/Keys/Interactions",
+      "name": "FRC.Ledger.p27043",
+      "tier": 0,
+      "ok": true,
+      "page": "lean/core/Keys.Interactions.html#FRC.Ledger.p27043"
+     }
+    ]
    },
    "refs": [],
    "sources": [
     "27-fld"
    ],
-   "text": "Strong (CP): the vacuum angle vanishes, θ=θ+Mq=0, with no axion: Strong (CP): the vacuum angle vanishes, $\\bar\\theta=\\theta+\\arg\\det M_q=0$, with no axion — the colour action carries no substrate-native topological term and colour is drive-invariant ($\\theta=0$), and the Hermitian quark mass matrices have real determinant ($\\arg\\det M_q=0$); the CP phase $\\delta_{\\mathrm{CP}}$ sits in the up–down misalignment. 27-fld 27:strongcp.py"
+   "text": "Strong (CP): the vacuum angle vanishes, θ=θ+Mq=0, with no axion: Strong (CP): the vacuum angle vanishes, $\\bar\\theta=\\theta+\\arg\\det M_q=0$, with no axion — the colour action carries no substrate-native topological term and colour is drive-invariant ($\\theta=0$), and the Hermitian quark mass matrices have real determinant ($\\arg\\det M_q=0$); the CP phase $\\delta_{\\mathrm{CP}}$ sits in the up–down misalignment. 27-fld 27:p27_fields.py"
   },
   {
    "paper": "00",
@@ -29969,11 +30487,11 @@
    "source": "27-fld, 28-flav",
    "page": "00-ledger.html#G11",
    "witness": {
-    "script": "27:generation.py",
+    "script": "27:p27_fields.py",
     "py": {
      "href": "frc/ledgers/master/interactions.html#p27020",
      "script": "frc/ledgers/master/interactions.py",
-     "line": 85,
+     "line": 86,
      "verdict": "pass"
     },
     "lean": [
@@ -29994,7 +30512,7 @@
     "27-fld",
     "28-flav"
    ],
-   "text": "One generation (content): One generation (content): $=$ the spinor $\\mathbf{16}$ of the rank-five frame — all gauge reps, hypercharges, charges, anomaly-free, $\\nu_R$ — recovered in the compact theory, where the frame is $\\C^3\\oplus\\C^2$, via the correspondence: the imported $\\mathrm{SO}(10)$ template evaluated on the realisation (27-fld B5). 27-fld, 28-flav 27:generation.py"
+   "text": "One generation (content): One generation (content): $=$ the spinor $\\mathbf{16}$ of the rank-five frame — all gauge reps, hypercharges, charges, anomaly-free, $\\nu_R$ — recovered in the compact theory, where the frame is $\\C^3\\oplus\\C^2$, via the correspondence: the imported $\\mathrm{SO}(10)$ template evaluated on the realisation (27-fld B5). 27-fld, 28-flav 27:p27_fields.py"
   },
   {
    "paper": "00",
@@ -30013,7 +30531,7 @@
     "py": {
      "href": "frc/ledgers/master/interactions.html#p00155",
      "script": "frc/ledgers/master/interactions.py",
-     "line": 61,
+     "line": 62,
      "verdict": "pass"
     },
     "lean": [
@@ -30078,7 +30596,7 @@
    "source": "27-fld, 28-flav",
    "page": "00-ledger.html#G14",
    "witness": {
-    "script": "27:p9b.py",
+    "script": "27:p27_fields.py",
     "py": null,
     "lean": []
    },
@@ -30090,7 +30608,7 @@
     "27-fld",
     "28-flav"
    ],
-   "text": "Count/generate split: one bosonic carrier + three fermion: Count/generate split: one bosonic carrier $+$ three fermion generations (the cubic $C_3$), chirality fixed by the drive, on the role-to-matter realisation (27:B6); $\\SO(10)$ unification forced by the relational ontology, the automorphism lemma reduced to the horizon (Z5). 27-fld, 28-flav 27:p9b.py"
+   "text": "Count/generate split: one bosonic carrier + three fermion: Count/generate split: one bosonic carrier $+$ three fermion generations (the cubic $C_3$), chirality fixed by the drive, on the role-to-matter realisation (27:B6); $\\SO(10)$ unification forced by the relational ontology, the automorphism lemma reduced to the horizon (Z5). 27-fld, 28-flav 27:p27_fields.py"
   },
   {
    "paper": "00",
@@ -30131,11 +30649,11 @@
    "source": "27-fld, 28-flav",
    "page": "00-ledger.html#G16",
    "witness": {
-    "script": "27:koide.py",
+    "script": "27:p27_fields.py",
     "py": {
      "href": "frc/ledgers/master/interactions.html#p00081",
      "script": "frc/ledgers/master/interactions.py",
-     "line": 122,
+     "line": 123,
      "verdict": "pass"
     },
     "lean": [
@@ -30157,7 +30675,7 @@
     "27-fld",
     "28-flav"
    ],
-   "text": "Flavour (Koide): Flavour (Koide): the charged-lepton ratio $Q=2/3$ is the cube-root generation orbit at the self-dual quarter-turn, $Q=\\tfrac13+\\tfrac23\\rho^2$ exact, the value $\\rho^2=2^{-1}$ the quarter-turn realisation (28-flav B5; falsifier: $Q_\\ell$ off $\\tfrac23$ beyond the $\\tau$-mass tolerance $\\pm7\\times10^{-6}$); the winding-phase selection onto that orientation is bedrock, $\\Om$-hard in magnitude, its $\\Z_2$ sign the derived drive orientation (C7); the sub-horizon reading is $\\delta_0=Q/3=2/9$ (radians). 27-fld, 28-flav 27:koide.py"
+   "text": "Flavour (Koide): Flavour (Koide): the charged-lepton ratio $Q=2/3$ is the cube-root generation orbit at the self-dual quarter-turn, $Q=\\tfrac13+\\tfrac23\\rho^2$ exact, the value $\\rho^2=2^{-1}$ the quarter-turn realisation (28-flav B5; falsifier: $Q_\\ell$ off $\\tfrac23$ beyond the $\\tau$-mass tolerance $\\pm7\\times10^{-6}$); the winding-phase selection onto that orientation is bedrock, $\\Om$-hard in magnitude, its $\\Z_2$ sign the derived drive orientation (C7); the sub-horizon reading is $\\delta_0=Q/3=2/9$ (radians). 27-fld, 28-flav 27:p27_fields.py"
   },
   {
    "paper": "00",
@@ -30645,7 +31163,7 @@
    "source": "27-fld (B6/C10), 32-dark",
    "page": "predictions.html#P4",
    "witness": {
-    "script": "27:missing_rank.py",
+    "script": "27:p27_fields.py",
     "py": null,
     "lean": []
    },
@@ -30660,7 +31178,7 @@
     "27-fld",
     "32-dark"
    ],
-   "text": "Exclusion predictions: No fourth generation, no fifth force, an empty desert, no TeV supersymmetry, no new dark-matter particle, no beyond-SM $(g{-}2)_\\mu$, and the proton effectively stable ($\\tau_p\\gtrsim10^{45}$ yr; G9). Entailed by the closed ladder of the rank-five frame ($\\dim\\Lambda^{\\mathrm{even}}=16$, D6), given the role-to-matter realisation (27:B6, 27:C10) and completeness (A3). Falsifier: any excluded object observed. Confrontation: none observed. 27-fld (B6/C10), 32-dark 27:missing_rank.py"
+   "text": "Exclusion predictions: No fourth generation, no fifth force, an empty desert, no TeV supersymmetry, no new dark-matter particle, no beyond-SM $(g{-}2)_\\mu$, and the proton effectively stable ($\\tau_p\\gtrsim10^{45}$ yr; G9). Entailed by the closed ladder of the rank-five frame ($\\dim\\Lambda^{\\mathrm{even}}=16$, D6), given the role-to-matter realisation (27:B6, 27:C10) and completeness (A3). Falsifier: any excluded object observed. Confrontation: none observed. 27-fld (B6/C10), 32-dark 27:p27_fields.py"
   },
   {
    "paper": "00",
@@ -30815,7 +31333,7 @@
    "source": "27-fld, 20-rh",
    "page": "00-ledger.html#Z5",
    "witness": {
-    "script": null,
+    "script": "27:p27_fields.py",
     "py": null,
     "lean": []
    },
@@ -30827,7 +31345,7 @@
     "27-fld",
     "20-rh"
    ],
-   "text": "The horizon forces structure, not only leaves it open: The horizon forces structure, not only leaves it open: the $3+2$ split is beyond the horizon (above $\\sqrt{\\Om}$), so the off-block reframings are gauge and unification is the simple $\\SO(10)$ (G14); the automorphism lemma reduces to Observation (A4). 27-fld, 20-rh"
+   "text": "The horizon forces structure, not only leaves it open: The horizon forces structure, not only leaves it open: the $3+2$ split is beyond the horizon (above $\\sqrt{\\Om}$), so the off-block reframings are gauge and unification is the simple $\\SO(10)$ (G14); the automorphism lemma reduces to Observation (A4). 27-fld, 20-rh 27:p27_fields.py"
   },
   {
    "paper": "00",
@@ -55329,7 +55847,7 @@
    "block": "A",
    "tag": "I",
    "name": null,
-   "statement": "The finite substrate $\\F_\\Omega$, cardinality $\\Omega\\sim10^{122}$ (Planck units) fixed by the de Sitter entropy, with the phase cycle $\\F_\\Omega^\\times=C_{\\Omega-1}$ and the quarter-turn $Q_4$ (the residue $\\Omega\\equiv5\\!\\pmod{12}$ is derived, C11).",
+   "statement": "The finite substrate $\\F_\\Omega$, the Carrier identity $\\Omega=4\\dS+1$ with $\\ln\\Omega=283.5$ ($\\Omega\\sim10^{123}$ in Planck units; master A7) fixed by the de Sitter entropy, with the phase cycle $\\F_\\Omega^\\times=C_{\\Omega-1}$ and the quarter-turn $Q_4$ (the residue $\\Omega\\equiv5\\!\\pmod{12}$ is derived, C11).",
    "source": "\\citep{akhtman2026gravity,akhtman2026quantum}",
    "page": "27-fields/index.html#A1",
    "witness": {
@@ -55339,7 +55857,7 @@
    "refs": [
     "p27023"
    ],
-   "text": "The finite substrate $\\F_\\Omega$, cardinality $\\Omega\\sim10^{122}$ (Planck units) fixed by the de Sitter entropy, with the phase cycle $\\F_\\Omega^\\times=C_{\\Omega-1}$ and the quarter-turn $Q_4$ (the residue $\\Omega\\equiv5\\!\\pmod{12}$ is derived, C11). [akhtman2026gravity,akhtman2026quantum]"
+   "text": "The finite substrate $\\F_\\Omega$, the Carrier identity $\\Omega=4\\dS+1$ with $\\ln\\Omega=283.5$ ($\\Omega\\sim10^{123}$ in Planck units; master A7) fixed by the de Sitter entropy, with the phase cycle $\\F_\\Omega^\\times=C_{\\Omega-1}$ and the quarter-turn $Q_4$ (the residue $\\Omega\\equiv5\\!\\pmod{12}$ is derived, C11). [akhtman2026gravity,akhtman2026quantum]"
   },
   {
    "paper": "27-fld",
@@ -55564,17 +56082,56 @@
    "block": "C",
    "tag": "T",
    "name": null,
-   "statement": "The finite gauge correspondence: the abelian inclusion $\\Z/M\\hookrightarrow\\U(1)$, the positive cyclotomic action, the exact $q{=}3$ embedding $\\SU(2,\\F_3)\\cong2T$, the low-curvature Yang--Mills kinetic operator, and the uniform window expectation bound $O(H/\\Omega)$ (Theorem~\\ref{thm:corrwindow}, proof at sketch level); the cross-scale running is $\\Omega$-hard (Z1).",
-   "source": "Thm.~\\ref{thm:corr}; \\src{fld.\\allowbreak correspondence}",
+   "statement": "The finite gauge correspondence, its exact clauses: the abelian inclusion $\\Z/M\\hookrightarrow\\U(1)$ as the $M$-th roots of unity, the positive cyclotomic action (the Wilson weight $1-\\Re\\zeta\\ge0$), and the exact $q{=}3$ embedding $\\SU(2,\\F_3)\\cong2T$ with the Wilson trace a class function (Theorems~\\ref{thm:corrU1},~\\ref{thm:corrpos},~\\ref{thm:corr2T}); the resolvable-window reconstruction is C12 and the cross-scale running $\\Omega$-hard (Z1).",
+   "source": "Thm.~\\ref{thm:corr}\\newline \\pywit{fields}{p27013}{C1}, \\leanwit{FrcCore}{p27013}{C1}, \\leanwit{FrcLedger}{p27013}{C1} \\lean{FRC.Interactions.tetrahedral\\_group, FRC.Unitary.class\\_function, Fields.roots\\_inclusion, Fields.wilson\\_weight\\_nonneg}",
    "page": "27-fields/index.html#C1",
    "witness": {
-    "py": null,
-    "lean": []
+    "py": {
+     "href": "frc/ledgers/p27_fields.html#p27013",
+     "script": "p27_fields.py",
+     "line": 356,
+     "verdict": "pass"
+    },
+    "lean": [
+     {
+      "lib": "FrcCore",
+      "module": "FrcCore/Theme/Fields",
+      "name": "FRC.Interactions.tetrahedral_group",
+      "tier": 0,
+      "ok": true,
+      "page": "lean/core/Theme.html#FRC.Interactions.tetrahedral_group"
+     },
+     {
+      "lib": "FrcCore",
+      "module": "FrcCore/Theme/Unitary",
+      "name": "FRC.Unitary.class_function",
+      "tier": 0,
+      "ok": true,
+      "page": "lean/core/Theme.html#FRC.Unitary.class_function"
+     },
+     {
+      "lib": "FrcLedger",
+      "module": "FrcLedger/Fields",
+      "name": "FRC.Fields.roots_inclusion",
+      "tier": 2,
+      "ok": true,
+      "page": "lean/ml/Fields.html#FRC.Fields.roots_inclusion"
+     },
+     {
+      "lib": "FrcLedger",
+      "module": "FrcLedger/Fields",
+      "name": "FRC.Fields.wilson_weight_nonneg",
+      "tier": 2,
+      "ok": true,
+      "page": "lean/ml/Fields.html#FRC.Fields.wilson_weight_nonneg"
+     }
+    ]
    },
    "refs": [
-    "p27047"
+    "p27047",
+    "p27049"
    ],
-   "text": "The finite gauge correspondence: the abelian inclusion $\\Z/M\\hookrightarrow\\U(1)$, the positive cyclotomic action, the exact $q{=}3$ embedding $\\SU(2,\\F_3)\\cong2T$, the low-curvature Yang–Mills kinetic operator, and the uniform window expectation bound $O(H/\\Omega)$ (Theorem thm:corrwindow, proof at sketch level); the cross-scale running is $\\Omega$-hard (Z1). Thm. thm:corr; fld. correspondence"
+   "text": "The finite gauge correspondence, its exact clauses: the abelian inclusion $\\Z/M\\hookrightarrow\\U(1)$ as the $M$-th roots of unity, the positive cyclotomic action (the Wilson weight $1-\\Re\\zeta\\ge0$), and the exact $q{=}3$ embedding $\\SU(2,\\F_3)\\cong2T$ with the Wilson trace a class function (Theorems thm:corrU1, thm:corrpos, thm:corr2T); the resolvable-window reconstruction is C12 and the cross-scale running $\\Omega$-hard (Z1). Thm. thm:corr p27013, FrcCore{C1}, FrcLedger{C1} FRC.Interactions.tetrahedral_group, FRC.Unitary.class_function, Fields.roots_inclusion, Fields.wilson_weight_nonneg"
   },
   {
    "paper": "27-fld",
@@ -55586,18 +56143,48 @@
    "tag": "T",
    "name": null,
    "statement": "Electromagnetism: charge as a quantised winding index, the massless photon by drive-invariance, the repulsive sign, the unique Maxwell operator, and $\\al_{\\mathrm{bare}}=1/4\\pi$ as the phase-channel capacity normalisation.",
-   "source": "Prop.~\\ref{prop:charge}, Thm.~\\ref{thm:o1}, Prop.~\\ref{prop:bare}; \\src{fld.\\allowbreak em1\\_\\allowbreak prototype}, \\src{fld.\\allowbreak enumerate\\_\\allowbreak maxwell}, \\src{fld.\\allowbreak audit\\_\\allowbreak finitism}, \\src{fld.\\allowbreak o2\\_\\allowbreak numbers}, \\src{fld.p2}",
+   "source": "Prop.~\\ref{prop:charge}, Thm.~\\ref{thm:o1}, Prop.~\\ref{prop:bare}\\newline \\pywit{fields}{p27014}{C2}, \\leanwit{FrcCore}{p27014}{C2} \\lean{FRC.Interactions.gauge\\_flux\\_invariant, FRC.Interactions.projector\\_forced, FRC.Interactions.admissible\\_two}",
    "page": "27-fields/index.html#C2",
    "witness": {
-    "py": null,
-    "lean": []
+    "py": {
+     "href": "frc/ledgers/p27_fields.html#p27014",
+     "script": "p27_fields.py",
+     "line": 224,
+     "verdict": "pass"
+    },
+    "lean": [
+     {
+      "lib": "FrcCore",
+      "module": "FrcCore/Theme/Interactions",
+      "name": "FRC.Interactions.gauge_flux_invariant",
+      "tier": 0,
+      "ok": true,
+      "page": "lean/core/Theme.html#FRC.Interactions.gauge_flux_invariant"
+     },
+     {
+      "lib": "FrcCore",
+      "module": "FrcCore/Theme/Interactions",
+      "name": "FRC.Interactions.projector_forced",
+      "tier": 0,
+      "ok": true,
+      "page": "lean/core/Theme.html#FRC.Interactions.projector_forced"
+     },
+     {
+      "lib": "FrcCore",
+      "module": "FrcCore/Theme/Fields",
+      "name": "FRC.Interactions.admissible_two",
+      "tier": 0,
+      "ok": true,
+      "page": "lean/core/Theme.html#FRC.Interactions.admissible_two"
+     }
+    ]
    },
    "refs": [
     "p00052",
     "p00116",
     "p00178"
    ],
-   "text": "Electromagnetism: charge as a quantised winding index, the massless photon by drive-invariance, the repulsive sign, the unique Maxwell operator, and $\\al_{\\mathrm{bare}}=1/4\\pi$ as the phase-channel capacity normalisation. Prop. prop:charge, Thm. thm:o1, Prop. prop:bare; fld. em1_ prototype, fld. enumerate_ maxwell, fld. audit_ finitism, fld. o2_ numbers, fld.p2"
+   "text": "Electromagnetism: charge as a quantised winding index, the massless photon by drive-invariance, the repulsive sign, the unique Maxwell operator, and $\\al_{\\mathrm{bare}}=1/4\\pi$ as the phase-channel capacity normalisation. Prop. prop:charge, Thm. thm:o1, Prop. prop:bare p27014, FrcCore{C2} FRC.Interactions.gauge_flux_invariant, FRC.Interactions.projector_forced, FRC.Interactions.admissible_two"
   },
   {
    "paper": "27-fld",
@@ -55609,11 +56196,25 @@
    "tag": "T",
    "name": null,
    "statement": "The Coulomb law and Maxwell dynamics, as corollaries of the correspondence on the resolvable window.",
-   "source": "Prop.~\\ref{prop:coulomb}; \\src{fld.\\allowbreak em1\\_\\allowbreak prototype}, \\src{fld.\\allowbreak audit\\_\\allowbreak finitism}; rests on B2, C1, C2",
+   "source": "Prop.~\\ref{prop:coulomb}\\newline \\pywit{fields}{p27015}{C3}, \\leanwit{FrcCore}{p27015}{C3}; rests on B2, C1, C2 \\lean{FRC.Interactions.green\\_torus}",
    "page": "27-fields/index.html#C3",
    "witness": {
-    "py": null,
-    "lean": []
+    "py": {
+     "href": "frc/ledgers/p27_fields.html#p27015",
+     "script": "p27_fields.py",
+     "line": 198,
+     "verdict": "pass"
+    },
+    "lean": [
+     {
+      "lib": "FrcCore",
+      "module": "FrcCore/Theme/Fields",
+      "name": "FRC.Interactions.green_torus",
+      "tier": 0,
+      "ok": true,
+      "page": "lean/core/Theme.html#FRC.Interactions.green_torus"
+     }
+    ]
    },
    "refs": [
     "p00178",
@@ -55621,7 +56222,7 @@
     "p27013",
     "p27014"
    ],
-   "text": "The Coulomb law and Maxwell dynamics, as corollaries of the correspondence on the resolvable window. Prop. prop:coulomb; fld. em1_ prototype, fld. audit_ finitism; rests on B2, C1, C2"
+   "text": "The Coulomb law and Maxwell dynamics, as corollaries of the correspondence on the resolvable window. Prop. prop:coulomb p27015, FrcCore{C3}; rests on B2, C1, C2 FRC.Interactions.green_torus"
   },
   {
    "paper": "27-fld",
@@ -55633,16 +56234,62 @@
    "tag": "T",
    "name": null,
    "statement": "The weak sector: the cell-local $\\SU(2)$ Wilson connection, electroweak breaking as drive-torus misalignment with the photon kept massless, and maximal $V\\!-\\!A$ parity violation with the Frobenius branch decoupling exactly.",
-   "source": "Prop.~\\ref{prop:weakconn}, Thm.~\\ref{thm:break}, Prop.~\\ref{prop:chiral}; \\src{fld.p3}, \\src{fld.ew1}, \\src{fld.\\allowbreak weak\\_\\allowbreak current}, \\src{fld.p4}",
+   "source": "Prop.~\\ref{prop:weakconn}, Thm.~\\ref{thm:break}, Prop.~\\ref{prop:chiral}\\newline \\pywit{fields}{p27016}{C4}, \\leanwit{FrcCore}{p27016}{C4} \\lean{FRC.Interactions.drive\\_adjoint, FRC.Interactions.va\\_cancel, FRC.Interactions.orientation\\_flip, FRC.Interactions.tetrahedral\\_group, FRC.Unitary.class\\_function}",
    "page": "27-fields/index.html#C4",
    "witness": {
-    "py": null,
-    "lean": []
+    "py": {
+     "href": "frc/ledgers/p27_fields.html#p27016",
+     "script": "p27_fields.py",
+     "line": 473,
+     "verdict": "pass"
+    },
+    "lean": [
+     {
+      "lib": "FrcCore",
+      "module": "FrcCore/Theme/Interactions",
+      "name": "FRC.Interactions.drive_adjoint",
+      "tier": 0,
+      "ok": true,
+      "page": "lean/core/Theme.html#FRC.Interactions.drive_adjoint"
+     },
+     {
+      "lib": "FrcCore",
+      "module": "FrcCore/Theme/Interactions",
+      "name": "FRC.Interactions.va_cancel",
+      "tier": 0,
+      "ok": true,
+      "page": "lean/core/Theme.html#FRC.Interactions.va_cancel"
+     },
+     {
+      "lib": "FrcCore",
+      "module": "FrcCore/Theme/Interactions",
+      "name": "FRC.Interactions.orientation_flip",
+      "tier": 0,
+      "ok": true,
+      "page": "lean/core/Theme.html#FRC.Interactions.orientation_flip"
+     },
+     {
+      "lib": "FrcCore",
+      "module": "FrcCore/Theme/Fields",
+      "name": "FRC.Interactions.tetrahedral_group",
+      "tier": 0,
+      "ok": true,
+      "page": "lean/core/Theme.html#FRC.Interactions.tetrahedral_group"
+     },
+     {
+      "lib": "FrcCore",
+      "module": "FrcCore/Theme/Unitary",
+      "name": "FRC.Unitary.class_function",
+      "tier": 0,
+      "ok": true,
+      "page": "lean/core/Theme.html#FRC.Unitary.class_function"
+     }
+    ]
    },
    "refs": [
     "p00067"
    ],
-   "text": "The weak sector: the cell-local $\\SU(2)$ Wilson connection, electroweak breaking as drive-torus misalignment with the photon kept massless, and maximal $V\\!-\\!A$ parity violation with the Frobenius branch decoupling exactly. Prop. prop:weakconn, Thm. thm:break, Prop. prop:chiral; fld.p3, fld.ew1, fld. weak_ current, fld.p4"
+   "text": "The weak sector: the cell-local $\\SU(2)$ Wilson connection, electroweak breaking as drive-torus misalignment with the photon kept massless, and maximal $V\\!-\\!A$ parity violation with the Frobenius branch decoupling exactly. Prop. prop:weakconn, Thm. thm:break, Prop. prop:chiral p27016, FrcCore{C4} FRC.Interactions.drive_adjoint, FRC.Interactions.va_cancel, FRC.Interactions.orientation_flip, FRC.Interactions.tetrahedral_group, FRC.Unitary.class_function"
   },
   {
    "paper": "27-fld",
@@ -55653,19 +56300,49 @@
    "block": "C",
    "tag": "T",
    "name": null,
-   "statement": "The propagating neutral spectrum and custodial $\\rho=1$: the Hessian of $S_\\rho$ at the broken vacuum gives massive $W^\\pm,Z$ against a massless photon, $\\rho=1$ as $\\det\\equiv0$, $M_W^2/M_Z^2=\\cos^2\\sW$, which is $5/8$ at the unification point (Prop.~\\ref{prop:running}); the imported electroweak template (A4) evaluated on the realisation B3 (\\src{fld.\\allowbreak weak\\_\\allowbreak spectrum}, \\src{fld.ew1}).",
-   "source": "Prop.~\\ref{prop:rho}; \\src{fld.ew1}, \\src{fld.\\allowbreak weak\\_\\allowbreak spectrum}; rests on C4",
+   "statement": "The propagating neutral spectrum and custodial $\\rho=1$: the Hessian of $S_\\rho$ at the broken vacuum gives massive $W^\\pm,Z$ against a massless photon, $\\rho=1$ as $\\det\\equiv0$, $M_W^2/M_Z^2=\\cos^2\\sW$, which is $5/8$ at the unification point (Prop.~\\ref{prop:running}); the imported electroweak template (A4) evaluated on the realisation B3.",
+   "source": "Prop.~\\ref{prop:rho}\\newline \\pywit{fields}{p27017}{C5}, \\leanwit{FrcCore}{p27017}{C5}; rests on C4 \\lean{FRC.Interactions.hessian\\_neutral, FRC.Interactions.hessian\\_full, FRC.Interactions.five\\_eighths}",
    "page": "27-fields/index.html#C5",
    "witness": {
-    "py": null,
-    "lean": []
+    "py": {
+     "href": "frc/ledgers/p27_fields.html#p27017",
+     "script": "p27_fields.py",
+     "line": 521,
+     "verdict": "pass"
+    },
+    "lean": [
+     {
+      "lib": "FrcCore",
+      "module": "FrcCore/Theme/Interactions",
+      "name": "FRC.Interactions.hessian_neutral",
+      "tier": 0,
+      "ok": true,
+      "page": "lean/core/Theme.html#FRC.Interactions.hessian_neutral"
+     },
+     {
+      "lib": "FrcCore",
+      "module": "FrcCore/Theme/Interactions",
+      "name": "FRC.Interactions.hessian_full",
+      "tier": 0,
+      "ok": true,
+      "page": "lean/core/Theme.html#FRC.Interactions.hessian_full"
+     },
+     {
+      "lib": "FrcCore",
+      "module": "FrcCore/Theme/Interactions",
+      "name": "FRC.Interactions.five_eighths",
+      "tier": 0,
+      "ok": true,
+      "page": "lean/core/Theme.html#FRC.Interactions.five_eighths"
+     }
+    ]
    },
    "refs": [
     "p27004",
     "p27009",
     "p27016"
    ],
-   "text": "The propagating neutral spectrum and custodial $\\rho=1$: the Hessian of $S_\\rho$ at the broken vacuum gives massive $W^\\pm,Z$ against a massless photon, $\\rho=1$ as $\\det\\equiv0$, $M_W^2/M_Z^2=\\cos^2\\sW$, which is $5/8$ at the unification point (Prop. prop:running); the imported electroweak template (A4) evaluated on the realisation B3 (fld. weak_ spectrum, fld.ew1). Prop. prop:rho; fld.ew1, fld. weak_ spectrum; rests on C4"
+   "text": "The propagating neutral spectrum and custodial $\\rho=1$: the Hessian of $S_\\rho$ at the broken vacuum gives massive $W^\\pm,Z$ against a massless photon, $\\rho=1$ as $\\det\\equiv0$, $M_W^2/M_Z^2=\\cos^2\\sW$, which is $5/8$ at the unification point (Prop. prop:running); the imported electroweak template (A4) evaluated on the realisation B3. Prop. prop:rho p27017, FrcCore{C5}; rests on C4 FRC.Interactions.hessian_neutral, FRC.Interactions.hessian_full, FRC.Interactions.five_eighths"
   },
   {
    "paper": "27-fld",
@@ -55676,12 +56353,42 @@
    "block": "C",
    "tag": "T",
    "name": null,
-   "statement": "The Weinberg trace formula $\\sin^2\\sW=\\Tr(T_3^2)/\\Tr(Q^2)=3/8$ for a complete generation, the unification-point value, and the four-fermion amplitude with $G_F=1/(\\sqrt2\\,v^2)$; the imported template (A4) evaluated on the realisations B3, B5 (\\src{fld.ew1}, \\src{fld.\\allowbreak weak\\_\\allowbreak current}).",
-   "source": "Prop.~\\ref{prop:angle}, Cor.~\\ref{cor:fermi}; \\src{fld.ew1}, \\src{fld.\\allowbreak weak\\_\\allowbreak current}, \\src{fld.\\allowbreak generation}, \\src{fld.p1}",
+   "statement": "The Weinberg trace formula $\\sin^2\\sW=\\Tr(T_3^2)/\\Tr(Q^2)=3/8$ for a complete generation, the unification-point value, and the four-fermion amplitude with $G_F=1/(\\sqrt2\\,v^2)$; the imported template (A4) evaluated on the realisations B3, B5.",
+   "source": "Prop.~\\ref{prop:angle}, Cor.~\\ref{cor:fermi}\\newline \\pywit{fields}{p27018}{C6}, \\leanwit{FrcCore}{p27018}{C6}, \\leanwit{FrcLedger}{p27018}{C6} \\lean{FRC.Interactions.weinberg\\_angle, FRC.Interactions.one\\_generation, Fields.fermi\\_constant}",
    "page": "27-fields/index.html#C6",
    "witness": {
-    "py": null,
-    "lean": []
+    "py": {
+     "href": "frc/ledgers/p27_fields.html#p27018",
+     "script": "p27_fields.py",
+     "line": 496,
+     "verdict": "pass"
+    },
+    "lean": [
+     {
+      "lib": "FrcCore",
+      "module": "FrcCore/Theme/Interactions",
+      "name": "FRC.Interactions.weinberg_angle",
+      "tier": 0,
+      "ok": true,
+      "page": "lean/core/Theme.html#FRC.Interactions.weinberg_angle"
+     },
+     {
+      "lib": "FrcCore",
+      "module": "FrcCore/Theme/Interactions",
+      "name": "FRC.Interactions.one_generation",
+      "tier": 0,
+      "ok": true,
+      "page": "lean/core/Theme.html#FRC.Interactions.one_generation"
+     },
+     {
+      "lib": "FrcLedger",
+      "module": "FrcLedger/Fields",
+      "name": "FRC.Fields.fermi_constant",
+      "tier": 2,
+      "ok": true,
+      "page": "lean/ml/Fields.html#FRC.Fields.fermi_constant"
+     }
+    ]
    },
    "refs": [
     "p00067",
@@ -55689,7 +56396,7 @@
     "p27009",
     "p27011"
    ],
-   "text": "The Weinberg trace formula $\\sin^2\\sW=\\Tr(T_3^2)/\\Tr(Q^2)=3/8$ for a complete generation, the unification-point value, and the four-fermion amplitude with $G_F=1/(\\sqrt2 v^2)$; the imported template (A4) evaluated on the realisations B3, B5 (fld.ew1, fld. weak_ current). Prop. prop:angle, Cor. cor:fermi; fld.ew1, fld. weak_ current, fld. generation, fld.p1"
+   "text": "The Weinberg trace formula $\\sin^2\\sW=\\Tr(T_3^2)/\\Tr(Q^2)=3/8$ for a complete generation, the unification-point value, and the four-fermion amplitude with $G_F=1/(\\sqrt2 v^2)$; the imported template (A4) evaluated on the realisations B3, B5. Prop. prop:angle, Cor. cor:fermi p27018, FrcCore{C6}, FrcLedger{C6} FRC.Interactions.weinberg_angle, FRC.Interactions.one_generation, Fields.fermi_constant"
   },
   {
    "paper": "27-fld",
@@ -55701,17 +56408,55 @@
    "tag": "T",
    "name": null,
    "statement": "The strong sector: the colour $\\SU(3,\\Omega)$ frame forced as the minimal triality-carrying rank, the exact $\\Z_3$ centre, the gluon connection, and the confinement area law $\\sigma>0$ from positivity, with the string tension $\\sigma(\\beta)=-\\ln c_1(\\beta)$ computed in finite units (closed form on $2T$; $c_1^{\\SU(3)}=\\tfrac\\beta{18}+\\tfrac{\\beta^2}{216}+\\cdots$).",
-   "source": "Prop.~\\ref{prop:su3}, Prop.~\\ref{prop:gluon}, Prop.~\\ref{prop:corrarea}; \\src{fld.\\allowbreak correspondence}, \\src{fld.qcd}, \\src{fld.p5}, \\src{fld.\\allowbreak string\\_\\allowbreak tension}, \\src{fld.\\allowbreak missing\\_\\allowbreak rank}",
+   "source": "Prop.~\\ref{prop:su3}, Prop.~\\ref{prop:gluon}, Prop.~\\ref{prop:corrarea}\\newline \\pywit{fields}{p27019}{C7}, \\leanwit{FrcCore}{p27019}{C7}, \\leanwit{FrcLedger}{p27019}{C7} \\lean{FRC.Interactions.su3\\_centre, FRC.Interactions.gluon\\_commutator, FRC.Interactions.rank\\_tower, Fields.area\\_law\\_positive}",
    "page": "27-fields/index.html#C7",
    "witness": {
-    "py": null,
-    "lean": []
+    "py": {
+     "href": "frc/ledgers/p27_fields.html#p27019",
+     "script": "p27_fields.py",
+     "line": 768,
+     "verdict": "pass"
+    },
+    "lean": [
+     {
+      "lib": "FrcCore",
+      "module": "FrcCore/Theme/Fields",
+      "name": "FRC.Interactions.su3_centre",
+      "tier": 0,
+      "ok": true,
+      "page": "lean/core/Theme.html#FRC.Interactions.su3_centre"
+     },
+     {
+      "lib": "FrcCore",
+      "module": "FrcCore/Theme/Fields",
+      "name": "FRC.Interactions.gluon_commutator",
+      "tier": 0,
+      "ok": true,
+      "page": "lean/core/Theme.html#FRC.Interactions.gluon_commutator"
+     },
+     {
+      "lib": "FrcCore",
+      "module": "FrcCore/Theme/Interactions",
+      "name": "FRC.Interactions.rank_tower",
+      "tier": 0,
+      "ok": true,
+      "page": "lean/core/Theme.html#FRC.Interactions.rank_tower"
+     },
+     {
+      "lib": "FrcLedger",
+      "module": "FrcLedger/Fields",
+      "name": "FRC.Fields.area_law_positive",
+      "tier": 2,
+      "ok": true,
+      "page": "lean/ml/Fields.html#FRC.Fields.area_law_positive"
+     }
+    ]
    },
    "refs": [
     "p00069",
     "p00070"
    ],
-   "text": "The strong sector: the colour $\\SU(3,\\Omega)$ frame forced as the minimal triality-carrying rank, the exact $\\Z_3$ centre, the gluon connection, and the confinement area law $\\sigma>0$ from positivity, with the string tension $\\sigma(\\beta)=-\\ln c_1(\\beta)$ computed in finite units (closed form on $2T$; $c_1^{\\SU(3)}=\\tfrac\\beta{18}+\\tfrac{\\beta^2}{216}+\\cdots$). Prop. prop:su3, Prop. prop:gluon, Prop. prop:corrarea; fld. correspondence, fld.qcd, fld.p5, fld. string_ tension, fld. missing_ rank"
+   "text": "The strong sector: the colour $\\SU(3,\\Omega)$ frame forced as the minimal triality-carrying rank, the exact $\\Z_3$ centre, the gluon connection, and the confinement area law $\\sigma>0$ from positivity, with the string tension $\\sigma(\\beta)=-\\ln c_1(\\beta)$ computed in finite units (closed form on $2T$; $c_1^{\\SU(3)}=\\tfrac\\beta{18}+\\tfrac{\\beta^2}{216}+\\cdots$). Prop. prop:su3, Prop. prop:gluon, Prop. prop:corrarea p27019, FrcCore{C7}, FrcLedger{C7} FRC.Interactions.su3_centre, FRC.Interactions.gluon_commutator, FRC.Interactions.rank_tower, Fields.area_law_positive"
   },
   {
    "paper": "27-fld",
@@ -55722,12 +56467,26 @@
    "block": "C",
    "tag": "T",
    "name": null,
-   "statement": "One complete Standard-Model generation as the spinor $\\mathbf{16}$ of the rank-five frame: field content, hypercharges, charges, and full anomaly freedom; the imported $\\SO(10)$ template (A4) evaluated on the realisation B5 (\\src{fld.\\allowbreak generation}).",
-   "source": "Thm.~\\ref{thm:gen}; \\src{fld.\\allowbreak missing\\_\\allowbreak rank}, \\src{fld.\\allowbreak generation}; rests on 00:G12",
+   "statement": "One complete Standard-Model generation as the spinor $\\mathbf{16}$ of the rank-five frame: field content, hypercharges, charges, and full anomaly freedom; the imported $\\SO(10)$ template (A4) evaluated on the realisation B5.",
+   "source": "Thm.~\\ref{thm:gen}\\newline \\pywit{fields}{p27020}{C8}, \\leanwit{FrcCore}{p27020}{C8}; rests on 00:G12 \\lean{FRC.Interactions.one\\_generation}",
    "page": "27-fields/index.html#C8",
    "witness": {
-    "py": null,
-    "lean": []
+    "py": {
+     "href": "frc/ledgers/p27_fields.html#p27020",
+     "script": "p27_fields.py",
+     "line": 798,
+     "verdict": "pass"
+    },
+    "lean": [
+     {
+      "lib": "FrcCore",
+      "module": "FrcCore/Theme/Interactions",
+      "name": "FRC.Interactions.one_generation",
+      "tier": 0,
+      "ok": true,
+      "page": "lean/core/Theme.html#FRC.Interactions.one_generation"
+     }
+    ]
    },
    "refs": [
     "p00155",
@@ -55735,7 +56494,7 @@
     "p27011",
     "p27020"
    ],
-   "text": "One complete Standard-Model generation as the spinor $\\mathbf{16}$ of the rank-five frame: field content, hypercharges, charges, and full anomaly freedom; the imported $\\SO(10)$ template (A4) evaluated on the realisation B5 (fld. generation). Thm. thm:gen; fld. missing_ rank, fld. generation; rests on 00:G12"
+   "text": "One complete Standard-Model generation as the spinor $\\mathbf{16}$ of the rank-five frame: field content, hypercharges, charges, and full anomaly freedom; the imported $\\SO(10)$ template (A4) evaluated on the realisation B5. Thm. thm:gen p27020, FrcCore{C8}; rests on 00:G12 FRC.Interactions.one_generation"
   },
   {
    "paper": "27-fld",
@@ -55747,11 +56506,41 @@
    "tag": "T",
    "name": null,
    "statement": "Simple $\\SO(10)$ unification forced: the colour--isospin off-block reframings are gauge automorphisms, the $3+2$ torsion sitting at carrier scale above the coherence horizon $\\sqrt\\Omega$.",
-   "source": "Prop.~\\ref{prop:unify}; \\src{fld.p8}, \\src{fld.p8b}; rests on B1, B5, B6, 00:D8",
+   "source": "Prop.~\\ref{prop:unify}\\newline \\pywit{fields}{p27021}{C9}, \\leanwit{FrcCore}{p27021}{C9}; rests on B1, B5, B6, 00:D8 \\lean{FRC.Interactions.unification\\_counts, FRC.Interactions.fifth\\_direction, FRC.Interactions.offblock\\_automorphism}",
    "page": "27-fields/index.html#C9",
    "witness": {
-    "py": null,
-    "lean": []
+    "py": {
+     "href": "frc/ledgers/p27_fields.html#p27021",
+     "script": "p27_fields.py",
+     "line": 818,
+     "verdict": "pass"
+    },
+    "lean": [
+     {
+      "lib": "FrcCore",
+      "module": "FrcCore/Theme/Interactions",
+      "name": "FRC.Interactions.unification_counts",
+      "tier": 0,
+      "ok": true,
+      "page": "lean/core/Theme.html#FRC.Interactions.unification_counts"
+     },
+     {
+      "lib": "FrcCore",
+      "module": "FrcCore/Theme/Interactions",
+      "name": "FRC.Interactions.fifth_direction",
+      "tier": 0,
+      "ok": true,
+      "page": "lean/core/Theme.html#FRC.Interactions.fifth_direction"
+     },
+     {
+      "lib": "FrcCore",
+      "module": "FrcCore/Theme/Interactions",
+      "name": "FRC.Interactions.offblock_automorphism",
+      "tier": 0,
+      "ok": true,
+      "page": "lean/core/Theme.html#FRC.Interactions.offblock_automorphism"
+     }
+    ]
    },
    "refs": [
     "p00049",
@@ -55760,7 +56549,7 @@
     "p27012",
     "p27021"
    ],
-   "text": "Simple $\\SO(10)$ unification forced: the colour–isospin off-block reframings are gauge automorphisms, the $3+2$ torsion sitting at carrier scale above the coherence horizon $\\sqrt\\Omega$. Prop. prop:unify; fld.p8, fld.p8b; rests on B1, B5, B6, 00:D8"
+   "text": "Simple $\\SO(10)$ unification forced: the colour–isospin off-block reframings are gauge automorphisms, the $3+2$ torsion sitting at carrier scale above the coherence horizon $\\sqrt\\Omega$. Prop. prop:unify p27021, FrcCore{C9}; rests on B1, B5, B6, 00:D8 FRC.Interactions.unification_counts, FRC.Interactions.fifth_direction, FRC.Interactions.offblock_automorphism"
   },
   {
    "paper": "27-fld",
@@ -55772,18 +56561,32 @@
    "tag": "T",
    "name": null,
    "statement": "The closure of the four primitive roles ($5\\!\\to\\!1$): four interactions and no fifth, three generations and no fourth, the boson/fermion split, and the generation ordering, given the role-to-matter realisation (B6).",
-   "source": "Prop.~\\ref{prop:threegen}, Prop.~\\ref{prop:chiralsel}; \\src{fld.p10}, \\src{fld.p9}, \\src{fld.p9b}; rests on A4",
+   "source": "Prop.~\\ref{prop:threegen}, Prop.~\\ref{prop:chiralsel}\\newline \\pywit{fields}{p27022}{C10}, \\leanwit{FrcCore}{p27022}{C10}; rests on A4 \\lean{FRC.Ladder.tower\\_reduces}",
    "page": "27-fields/index.html#C10",
    "witness": {
-    "py": null,
-    "lean": []
+    "py": {
+     "href": "frc/ledgers/p27_fields.html#p27022",
+     "script": "p27_fields.py",
+     "line": 850,
+     "verdict": "pass"
+    },
+    "lean": [
+     {
+      "lib": "FrcCore",
+      "module": "FrcCore/Theme/Ladder",
+      "name": "FRC.Ladder.tower_reduces",
+      "tier": 0,
+      "ok": true,
+      "page": "lean/core/Theme.html#FRC.Ladder.tower_reduces"
+     }
+    ]
    },
    "refs": [
     "p00079",
     "p27004",
     "p27012"
    ],
-   "text": "The closure of the four primitive roles ($5\\!\\to\\!1$): four interactions and no fifth, three generations and no fourth, the boson/fermion split, and the generation ordering, given the role-to-matter realisation (B6). Prop. prop:threegen, Prop. prop:chiralsel; fld.p10, fld.p9, fld.p9b; rests on A4"
+   "text": "The closure of the four primitive roles ($5\\!\\to\\!1$): four interactions and no fifth, three generations and no fourth, the boson/fermion split, and the generation ordering, given the role-to-matter realisation (B6). Prop. prop:threegen, Prop. prop:chiralsel p27022, FrcCore{C10}; rests on A4 FRC.Ladder.tower_reduces"
   },
   {
    "paper": "27-fld",
@@ -55795,16 +56598,65 @@
    "tag": "T",
    "name": null,
    "statement": "The admissible substrate residue $\\Omega\\equiv5\\!\\pmod{12}$ forced by self-consistency.",
-   "source": "Prop.~\\ref{prop:residue}; \\src{fld.p11}",
+   "source": "Prop.~\\ref{prop:residue}\\newline \\pywit{fields}{p27023}{C11}, \\leanwit{FrcCore}{p27023}{C11} \\lean{FRC.Interactions.residue\\_five, FRC.Interactions.residue\\_instances}",
    "page": "27-fields/index.html#C11",
    "witness": {
-    "py": null,
-    "lean": []
+    "py": {
+     "href": "frc/ledgers/p27_fields.html#p27023",
+     "script": "p27_fields.py",
+     "line": 874,
+     "verdict": "pass"
+    },
+    "lean": [
+     {
+      "lib": "FrcCore",
+      "module": "FrcCore/Theme/Interactions",
+      "name": "FRC.Interactions.residue_five",
+      "tier": 0,
+      "ok": true,
+      "page": "lean/core/Theme.html#FRC.Interactions.residue_five"
+     },
+     {
+      "lib": "FrcCore",
+      "module": "FrcCore/Theme/Interactions",
+      "name": "FRC.Interactions.residue_instances",
+      "tier": 0,
+      "ok": true,
+      "page": "lean/core/Theme.html#FRC.Interactions.residue_instances"
+     }
+    ]
    },
    "refs": [
     "p00015"
    ],
-   "text": "The admissible substrate residue $\\Omega\\equiv5\\!\\pmod{12}$ forced by self-consistency. Prop. prop:residue; fld.p11"
+   "text": "The admissible substrate residue $\\Omega\\equiv5\\!\\pmod{12}$ forced by self-consistency. Prop. prop:residue p27023, FrcCore{C11} FRC.Interactions.residue_five, FRC.Interactions.residue_instances"
+  },
+  {
+   "paper": "27-fld",
+   "no": 27,
+   "rid": "27:C12",
+   "key": "p27049",
+   "label": "C12",
+   "block": "C",
+   "tag": "R",
+   "name": null,
+   "statement": "The resolvable-window reconstruction: the low-curvature Yang--Mills kinetic operator with the coefficient $I_\\rho/(2d_\\rho)=1/(2n)$ and the residue $O(\\epsilon^4+1/\\Omega)$ (Theorem~\\ref{thm:corrYM}), and the uniform window expectation bound $O(H/\\Omega)$ (Theorem~\\ref{thm:corrwindow}, proof at sketch level) [chart]. \\emph{Falsifier:} a window observable of the finite action that departs from the Yang--Mills operator at the matched coupling beyond the stated residue.",
+   "source": "Thm.~\\ref{thm:corrYM},~\\ref{thm:corrwindow}\\newline \\pywit{fields}{p27049}{C12}; rests on B1, C1",
+   "page": "27-fields/index.html#C12",
+   "witness": {
+    "py": {
+     "href": "frc/ledgers/p27_fields.html#p27049",
+     "script": "p27_fields.py",
+     "line": 377,
+     "verdict": "pass"
+    },
+    "lean": []
+   },
+   "refs": [
+    "p27007",
+    "p27013"
+   ],
+   "text": "The resolvable-window reconstruction: the low-curvature Yang–Mills kinetic operator with the coefficient $I_\\rho/(2d_\\rho)=1/(2n)$ and the residue $O(\\epsilon^4+1/\\Omega)$ (Theorem thm:corrYM), and the uniform window expectation bound $O(H/\\Omega)$ (Theorem thm:corrwindow, proof at sketch level) [chart]. Falsifier: a window observable of the finite action that departs from the Yang–Mills operator at the matched coupling beyond the stated residue. Thm. thm:corrYM, thm:corrwindow p27049; rests on B1, C1"
   },
   {
    "paper": "27-fld",
@@ -55816,11 +56668,25 @@
    "tag": "T",
    "name": null,
    "statement": "\\textbf{No fourth generation and no fifth interaction} \\emph{[forced]}. The role ladder closes, the fifth step returns to counting, and the Carrier is the entire substrate, so a fourth chiral family and a fifth fundamental force are forbidden, not merely absent (Tier~4). \\emph{Falsifier:} any fourth-generation fermion, or any new fundamental interaction.",
-   "source": "Prop.~\\ref{prop:threegen}; \\src{fld.p9b}; rests on A1, B6, C10, 00:A3",
+   "source": "Prop.~\\ref{prop:threegen}\\newline \\pywit{fields}{p27035}{P1}, \\leanwit{FrcCore}{p27035}{P1}; rests on A1, B6, C10, 00:A3 \\lean{FRC.Ladder.tower\\_reduces}",
    "page": "27-fields/index.html#P1",
    "witness": {
-    "py": null,
-    "lean": []
+    "py": {
+     "href": "frc/ledgers/p27_fields.html#p27035",
+     "script": "p27_fields.py",
+     "line": 850,
+     "verdict": "pass"
+    },
+    "lean": [
+     {
+      "lib": "FrcCore",
+      "module": "FrcCore/Theme/Ladder",
+      "name": "FRC.Ladder.tower_reduces",
+      "tier": 0,
+      "ok": true,
+      "page": "lean/core/Theme.html#FRC.Ladder.tower_reduces"
+     }
+    ]
    },
    "refs": [
     "p00003",
@@ -55829,7 +56695,7 @@
     "p27012",
     "p27022"
    ],
-   "text": "No fourth generation and no fifth interaction [forced]. The role ladder closes, the fifth step returns to counting, and the Carrier is the entire substrate, so a fourth chiral family and a fifth fundamental force are forbidden, not merely absent (Tier 4). Falsifier: any fourth-generation fermion, or any new fundamental interaction. Prop. prop:threegen; fld.p9b; rests on A1, B6, C10, 00:A3"
+   "text": "No fourth generation and no fifth interaction [forced]. The role ladder closes, the fifth step returns to counting, and the Carrier is the entire substrate, so a fourth chiral family and a fifth fundamental force are forbidden, not merely absent (Tier 4). Falsifier: any fourth-generation fermion, or any new fundamental interaction. Prop. prop:threegen p27035, FrcCore{P1}; rests on A1, B6, C10, 00:A3 FRC.Ladder.tower_reduces"
   },
   {
    "paper": "27-fld",
@@ -55841,19 +56707,35 @@
    "tag": "T",
    "name": null,
    "statement": "\\textbf{A desert to the substrate scale} \\emph{[forced]}. The gauge group is exactly $\\SU(3)\\times\\SU(2)\\times\\U(1)$ until the substrate resolves the colour--isospin split; no new gauge boson, vector-like fermion, or extra scalar lies between the electroweak and substrate ($\\sim10^{16}$--$10^{19}\\,$GeV) scales. \\emph{Falsifier:} a $Z'$, $W'$, leptoquark, second Higgs doublet, or compositeness signature at the LHC or a future collider. This is the sharpest divergence from supersymmetry, extra dimensions, and composite-Higgs scenarios.",
-   "source": "Prop.~\\ref{prop:unify}; rests on B1, B5, C9",
+   "source": "Prop.~\\ref{prop:unify}\\newline \\pywit{fields}{p27036}{P2}, \\leanwit{FrcCore}{p27036}{P2}; rests on B1, B5, C8, C9, C10 \\lean{FRC.Interactions.one\\_generation}",
    "page": "27-fields/index.html#P2",
    "witness": {
-    "py": null,
-    "lean": []
+    "py": {
+     "href": "frc/ledgers/p27_fields.html#p27036",
+     "script": "p27_fields.py",
+     "line": 850,
+     "verdict": "pass"
+    },
+    "lean": [
+     {
+      "lib": "FrcCore",
+      "module": "FrcCore/Theme/Interactions",
+      "name": "FRC.Interactions.one_generation",
+      "tier": 0,
+      "ok": true,
+      "page": "lean/core/Theme.html#FRC.Interactions.one_generation"
+     }
+    ]
    },
    "refs": [
     "p00091",
     "p27007",
     "p27011",
-    "p27021"
+    "p27020",
+    "p27021",
+    "p27022"
    ],
-   "text": "A desert to the substrate scale [forced]. The gauge group is exactly $\\SU(3)\\times\\SU(2)\\times\\U(1)$ until the substrate resolves the colour–isospin split; no new gauge boson, vector-like fermion, or extra scalar lies between the electroweak and substrate ($\\sim10^{16}$–$10^{19} $GeV) scales. Falsifier: a $Z'$, $W'$, leptoquark, second Higgs doublet, or compositeness signature at the LHC or a future collider. This is the sharpest divergence from supersymmetry, extra dimensions, and composite-Higgs scenarios. Prop. prop:unify; rests on B1, B5, C9"
+   "text": "A desert to the substrate scale [forced]. The gauge group is exactly $\\SU(3)\\times\\SU(2)\\times\\U(1)$ until the substrate resolves the colour–isospin split; no new gauge boson, vector-like fermion, or extra scalar lies between the electroweak and substrate ($\\sim10^{16}$–$10^{19} $GeV) scales. Falsifier: a $Z'$, $W'$, leptoquark, second Higgs doublet, or compositeness signature at the LHC or a future collider. This is the sharpest divergence from supersymmetry, extra dimensions, and composite-Higgs scenarios. Prop. prop:unify p27036, FrcCore{P2}; rests on B1, B5, C8, C9, C10 FRC.Interactions.one_generation"
   },
   {
    "paper": "27-fld",
@@ -55865,10 +56747,15 @@
    "tag": "T",
    "name": null,
    "statement": "\\textbf{No TeV supersymmetry} \\emph{[forced]}. The ${\\sim}13\\%$ three-coupling near-miss is closed by the $X,Y$ completion at the substrate scale, with the running carried by purely Standard-Model content; there are no superpartners enforcing exact low-scale unification. \\emph{Falsifier:} discovery of superpartners, or evidence that unification demands TeV-scale thresholds.",
-   "source": "Prop.~\\ref{prop:running}; \\src{fld.p1}; rests on A3, A6, C9",
+   "source": "Prop.~\\ref{prop:running}\\newline \\pywit{fields}{p27037}{P3}; rests on A3, A6, C9",
    "page": "27-fields/index.html#P3",
    "witness": {
-    "py": null,
+    "py": {
+     "href": "frc/ledgers/p27_fields.html#p27037",
+     "script": "p27_fields.py",
+     "line": 905,
+     "verdict": "pass"
+    },
     "lean": []
    },
    "refs": [
@@ -55877,7 +56764,7 @@
     "p27006",
     "p27021"
    ],
-   "text": "No TeV supersymmetry [forced]. The ${\\sim}13%$ three-coupling near-miss is closed by the $X,Y$ completion at the substrate scale, with the running carried by purely Standard-Model content; there are no superpartners enforcing exact low-scale unification. Falsifier: discovery of superpartners, or evidence that unification demands TeV-scale thresholds. Prop. prop:running; fld.p1; rests on A3, A6, C9"
+   "text": "No TeV supersymmetry [forced]. The ${\\sim}13%$ three-coupling near-miss is closed by the $X,Y$ completion at the substrate scale, with the running carried by purely Standard-Model content; there are no superpartners enforcing exact low-scale unification. Falsifier: discovery of superpartners, or evidence that unification demands TeV-scale thresholds. Prop. prop:running p27037; rests on A3, A6, C9"
   },
   {
    "paper": "27-fld",
@@ -55889,10 +56776,15 @@
    "tag": "T",
    "name": null,
    "statement": "\\textbf{The proton is effectively stable, $\\tau_p\\gtrsim10^{45}\\,$yr} \\emph{[forced]}. The $X,Y$ leptoquarks acquire mass at the substrate scale, not at $\\sim10^{16}\\,$GeV, so $\\tau_p\\sim M_X^4/(\\al_{\\mathrm{GUT}}^2 m_p^5)$ reaches $10^{45}$--$10^{47}\\,$yr for $M_X$ near the Planck scale, orders beyond the $\\sim10^{36}\\,$yr of supersymmetric $\\SO(10)$ and the $\\sim10^{35}\\,$yr reach of Hyper-Kamiokande. \\emph{Falsifier:} observation of $p\\to e^+\\pi^0$ near $10^{34}$--$10^{35}\\,$yr in Hyper-Kamiokande, DUNE, or JUNO, against the current bound \\cite{superk2017}. The programme predicts these searches find nothing.",
-   "source": "Prop.~\\ref{prop:unify}; \\src{fld.p8}; rests on A3, A6, C9",
+   "source": "Prop.~\\ref{prop:unify}\\newline \\pywit{fields}{p27038}{P4}; rests on A3, A6, C9",
    "page": "27-fields/index.html#P4",
    "witness": {
-    "py": null,
+    "py": {
+     "href": "frc/ledgers/p27_fields.html#p27038",
+     "script": "p27_fields.py",
+     "line": 812,
+     "verdict": "pass"
+    },
     "lean": []
    },
    "refs": [
@@ -55901,7 +56793,7 @@
     "p27006",
     "p27021"
    ],
-   "text": "The proton is effectively stable, $\\tau_p\\gtrsim10^{45 $yr} [forced]. The $X,Y$ leptoquarks acquire mass at the substrate scale, not at $\\sim10^{16} $GeV, so $\\tau_p\\sim M_X^4/(\\al_{\\mathrm{GUT}}^2 m_p^5)$ reaches $10^{45}$–$10^{47} $yr for $M_X$ near the Planck scale, orders beyond the $\\sim10^{36} $yr of supersymmetric $\\SO(10)$ and the $\\sim10^{35} $yr reach of Hyper-Kamiokande. Falsifier: observation of $p\\to e^+\\pi^0$ near $10^{34}$–$10^{35} $yr in Hyper-Kamiokande, DUNE, or JUNO, against the current bound [superk2017]. The programme predicts these searches find nothing. Prop. prop:unify; fld.p8; rests on A3, A6, C9"
+   "text": "The proton is effectively stable, $\\tau_p\\gtrsim10^{45 $yr} [forced]. The $X,Y$ leptoquarks acquire mass at the substrate scale, not at $\\sim10^{16} $GeV, so $\\tau_p\\sim M_X^4/(\\al_{\\mathrm{GUT}}^2 m_p^5)$ reaches $10^{45}$–$10^{47} $yr for $M_X$ near the Planck scale, orders beyond the $\\sim10^{36} $yr of supersymmetric $\\SO(10)$ and the $\\sim10^{35} $yr reach of Hyper-Kamiokande. Falsifier: observation of $p\\to e^+\\pi^0$ near $10^{34}$–$10^{35} $yr in Hyper-Kamiokande, DUNE, or JUNO, against the current bound [superk2017]. The programme predicts these searches find nothing. Prop. prop:unify p27038; rests on A3, A6, C9"
   },
   {
    "paper": "27-fld",
@@ -55913,10 +56805,15 @@
    "tag": "T",
    "name": null,
    "statement": "\\textbf{Majorana neutrinos, heavy singlets, no light sterile neutrino} \\emph{[sector]}. The $\\nu^c$ is the gauge-singlet $\\Lam^0$ of the generation, so it takes a Majorana mass at unification and drives the seesaw, the three right-handed states sitting at $\\sim10^{14}$--$10^{15}\\,$GeV. \\emph{Falsifier:} a confirmed eV-scale sterile neutrino, or evidence that the light neutrinos are Dirac. This diverges from Dirac-neutrino and sterile-neutrino interpretations and is consistent with $N_{\\mathrm{eff}}=3$.",
-   "source": "Thm.~\\ref{thm:gen}, Prop.~\\ref{prop:mass}; \\src{fld.p7}; rests on A4, B5, C8",
+   "source": "Thm.~\\ref{thm:gen}, Prop.~\\ref{prop:mass}\\newline \\pywit{fields}{p27039}{P5}; rests on A4, B5, C8",
    "page": "27-fields/index.html#P5",
    "witness": {
-    "py": null,
+    "py": {
+     "href": "frc/ledgers/p27_fields.html#p27039",
+     "script": "p27_fields.py",
+     "line": 915,
+     "verdict": "pass"
+    },
     "lean": []
    },
    "refs": [
@@ -55924,7 +56821,7 @@
     "p27011",
     "p27020"
    ],
-   "text": "Majorana neutrinos, heavy singlets, no light sterile neutrino [sector]. The $\\nu^c$ is the gauge-singlet $\\Lam^0$ of the generation, so it takes a Majorana mass at unification and drives the seesaw, the three right-handed states sitting at $\\sim10^{14}$–$10^{15} $GeV. Falsifier: a confirmed eV-scale sterile neutrino, or evidence that the light neutrinos are Dirac. This diverges from Dirac-neutrino and sterile-neutrino interpretations and is consistent with $N_{\\mathrm{eff}}=3$. Thm. thm:gen, Prop. prop:mass; fld.p7; rests on A4, B5, C8"
+   "text": "Majorana neutrinos, heavy singlets, no light sterile neutrino [sector]. The $\\nu^c$ is the gauge-singlet $\\Lam^0$ of the generation, so it takes a Majorana mass at unification and drives the seesaw, the three right-handed states sitting at $\\sim10^{14}$–$10^{15} $GeV. Falsifier: a confirmed eV-scale sterile neutrino, or evidence that the light neutrinos are Dirac. This diverges from Dirac-neutrino and sterile-neutrino interpretations and is consistent with $N_{\\mathrm{eff}}=3$. Thm. thm:gen, Prop. prop:mass p27039; rests on A4, B5, C8"
   },
   {
    "paper": "27-fld",
@@ -55936,11 +56833,25 @@
    "tag": "T",
    "name": null,
    "statement": "\\textbf{No new particle of dark matter} \\emph{[sector]}. The matter content is exactly one Standard-Model generation, triplicated, with heavy $\\nu^c$; the construction contains no weakly-interacting massive particle and no axion. \\emph{Falsifier:} a positive signal in a direct-detection (LZ, XENONnT) or axion (ADMX) experiment. Dark matter, if not a Standard-Model state, must then reside in the gravitational/substrate sector, a residual burden of the programme.",
-   "source": "Thm.~\\ref{thm:gen}; rests on B5, B6, C8, C10",
+   "source": "Thm.~\\ref{thm:gen}\\newline \\pywit{fields}{p27040}{P6}, \\leanwit{FrcCore}{p27040}{P6}; rests on B5, B6, C8, C10 \\lean{FRC.Interactions.one\\_generation}",
    "page": "27-fields/index.html#P6",
    "witness": {
-    "py": null,
-    "lean": []
+    "py": {
+     "href": "frc/ledgers/p27_fields.html#p27040",
+     "script": "p27_fields.py",
+     "line": 850,
+     "verdict": "pass"
+    },
+    "lean": [
+     {
+      "lib": "FrcCore",
+      "module": "FrcCore/Theme/Interactions",
+      "name": "FRC.Interactions.one_generation",
+      "tier": 0,
+      "ok": true,
+      "page": "lean/core/Theme.html#FRC.Interactions.one_generation"
+     }
+    ]
    },
    "refs": [
     "p00091",
@@ -55949,7 +56860,7 @@
     "p27020",
     "p27022"
    ],
-   "text": "No new particle of dark matter [sector]. The matter content is exactly one Standard-Model generation, triplicated, with heavy $\\nu^c$; the construction contains no weakly-interacting massive particle and no axion. Falsifier: a positive signal in a direct-detection (LZ, XENONnT) or axion (ADMX) experiment. Dark matter, if not a Standard-Model state, must then reside in the gravitational/substrate sector, a residual burden of the programme. Thm. thm:gen; rests on B5, B6, C8, C10"
+   "text": "No new particle of dark matter [sector]. The matter content is exactly one Standard-Model generation, triplicated, with heavy $\\nu^c$; the construction contains no weakly-interacting massive particle and no axion. Falsifier: a positive signal in a direct-detection (LZ, XENONnT) or axion (ADMX) experiment. Dark matter, if not a Standard-Model state, must then reside in the gravitational/substrate sector, a residual burden of the programme. Thm. thm:gen p27040, FrcCore{P6}; rests on B5, B6, C8, C10 FRC.Interactions.one_generation"
   },
   {
    "paper": "27-fld",
@@ -55961,18 +56872,32 @@
    "tag": "T",
    "name": null,
    "statement": "\\textbf{No new-physics contribution to the muon anomaly} \\emph{[sector]}. With no states beyond the Standard Model, $(g-2)_\\mu$ must be accounted for by Standard-Model (notably hadronic) contributions. \\emph{Falsifier:} a robustly established beyond-Standard-Model excess; the current lattice and experimental trend toward the Standard-Model value favours this prediction.",
-   "source": "Thm.~\\ref{thm:gen}; rests on C8, C10",
+   "source": "Thm.~\\ref{thm:gen}\\newline \\pywit{fields}{p27041}{P7}, \\leanwit{FrcCore}{p27041}{P7}; rests on C8, C10 \\lean{FRC.Interactions.one\\_generation}",
    "page": "27-fields/index.html#P7",
    "witness": {
-    "py": null,
-    "lean": []
+    "py": {
+     "href": "frc/ledgers/p27_fields.html#p27041",
+     "script": "p27_fields.py",
+     "line": 850,
+     "verdict": "pass"
+    },
+    "lean": [
+     {
+      "lib": "FrcCore",
+      "module": "FrcCore/Theme/Interactions",
+      "name": "FRC.Interactions.one_generation",
+      "tier": 0,
+      "ok": true,
+      "page": "lean/core/Theme.html#FRC.Interactions.one_generation"
+     }
+    ]
    },
    "refs": [
     "p00091",
     "p27020",
     "p27022"
    ],
-   "text": "No new-physics contribution to the muon anomaly [sector]. With no states beyond the Standard Model, $(g-2)_\\mu$ must be accounted for by Standard-Model (notably hadronic) contributions. Falsifier: a robustly established beyond-Standard-Model excess; the current lattice and experimental trend toward the Standard-Model value favours this prediction. Thm. thm:gen; rests on C8, C10"
+   "text": "No new-physics contribution to the muon anomaly [sector]. With no states beyond the Standard Model, $(g-2)_\\mu$ must be accounted for by Standard-Model (notably hadronic) contributions. Falsifier: a robustly established beyond-Standard-Model excess; the current lattice and experimental trend toward the Standard-Model value favours this prediction. Thm. thm:gen p27041, FrcCore{P7}; rests on C8, C10 FRC.Interactions.one_generation"
   },
   {
    "paper": "27-fld",
@@ -55984,11 +56909,49 @@
    "tag": "T",
    "name": null,
    "statement": "\\textbf{The charged-lepton Koide relation is exactly $2/3$} \\emph{[structural]}: $(m_e+m_\\mu+m_\\tau)/(\\sqrt{m_e}+\\sqrt{m_\\mu}+\\sqrt{m_\\tau})^2=2/3$, empirically to one part in $10^{5}$, is the cube-root generation orbit at the self-dual value $\\rho^2=2^{-1}$ --- $Q=\\tfrac13+\\tfrac23\\rho^2$ exact, $\\rho^2$ the quarter-turn ($4\\mid\\Omega-1$) self-dual amplitude on the cubic ($3\\mid\\Omega+1$) plane. Form and value derived; the selection of the mass vector onto that orientation is the $\\Omega$-hard flavour residual (28:Z1). \\emph{Falsifier:} a measured $Q$ displaced from $2/3$ beyond the per-mille winding-phase corrections.",
-   "source": "Prop.~\\ref{prop:koide}; \\src{fld.koide}; rests on B5, C11, 00:G16",
+   "source": "Prop.~\\ref{prop:koide}\\newline \\pywit{fields}{p27042}{P8}, \\leanwit{FrcCore}{p27042}{P8}; rests on B5, C11, 00:G16 \\lean{FRC.Interactions.koide\\_parseval, FRC.Interactions.koide\\_two\\_thirds, FRC.Interactions.koide\\_extension, FRC.Interactions.koide\\_half}",
    "page": "27-fields/index.html#P8",
    "witness": {
-    "py": null,
-    "lean": []
+    "py": {
+     "href": "frc/ledgers/p27_fields.html#p27042",
+     "script": "p27_fields.py",
+     "line": 963,
+     "verdict": "pass"
+    },
+    "lean": [
+     {
+      "lib": "FrcCore",
+      "module": "FrcCore/Theme/Interactions",
+      "name": "FRC.Interactions.koide_parseval",
+      "tier": 0,
+      "ok": true,
+      "page": "lean/core/Theme.html#FRC.Interactions.koide_parseval"
+     },
+     {
+      "lib": "FrcCore",
+      "module": "FrcCore/Theme/Interactions",
+      "name": "FRC.Interactions.koide_two_thirds",
+      "tier": 0,
+      "ok": true,
+      "page": "lean/core/Theme.html#FRC.Interactions.koide_two_thirds"
+     },
+     {
+      "lib": "FrcCore",
+      "module": "FrcCore/Theme/Interactions",
+      "name": "FRC.Interactions.koide_extension",
+      "tier": 0,
+      "ok": true,
+      "page": "lean/core/Theme.html#FRC.Interactions.koide_extension"
+     },
+     {
+      "lib": "FrcCore",
+      "module": "FrcCore/Theme/Interactions",
+      "name": "FRC.Interactions.koide_half",
+      "tier": 0,
+      "ok": true,
+      "page": "lean/core/Theme.html#FRC.Interactions.koide_half"
+     }
+    ]
    },
    "refs": [
     "p00081",
@@ -55996,7 +56959,7 @@
     "p27023",
     "p28046"
    ],
-   "text": "The charged-lepton Koide relation is exactly $2/3$ [structural]: $(m_e+m_\\mu+m_\\tau)/(\\sqrt{m_e}+\\sqrt{m_\\mu}+\\sqrt{m_\\tau})^2=2/3$, empirically to one part in $10^{5}$, is the cube-root generation orbit at the self-dual value $\\rho^2=2^{-1}$ — $Q=\\tfrac13+\\tfrac23\\rho^2$ exact, $\\rho^2$ the quarter-turn ($4\\mid\\Omega-1$) self-dual amplitude on the cubic ($3\\mid\\Omega+1$) plane. Form and value derived; the selection of the mass vector onto that orientation is the $\\Omega$-hard flavour residual (28:Z1). Falsifier: a measured $Q$ displaced from $2/3$ beyond the per-mille winding-phase corrections. Prop. prop:koide; fld.koide; rests on B5, C11, 00:G16"
+   "text": "The charged-lepton Koide relation is exactly $2/3$ [structural]: $(m_e+m_\\mu+m_\\tau)/(\\sqrt{m_e}+\\sqrt{m_\\mu}+\\sqrt{m_\\tau})^2=2/3$, empirically to one part in $10^{5}$, is the cube-root generation orbit at the self-dual value $\\rho^2=2^{-1}$ — $Q=\\tfrac13+\\tfrac23\\rho^2$ exact, $\\rho^2$ the quarter-turn ($4\\mid\\Omega-1$) self-dual amplitude on the cubic ($3\\mid\\Omega+1$) plane. Form and value derived; the selection of the mass vector onto that orientation is the $\\Omega$-hard flavour residual (28:Z1). Falsifier: a measured $Q$ displaced from $2/3$ beyond the per-mille winding-phase corrections. Prop. prop:koide p27042, FrcCore{P8}; rests on B5, C11, 00:G16 FRC.Interactions.koide_parseval, FRC.Interactions.koide_two_thirds, FRC.Interactions.koide_extension, FRC.Interactions.koide_half"
   },
   {
    "paper": "27-fld",
@@ -56008,11 +56971,33 @@
    "tag": "T",
    "name": null,
    "statement": "\\textbf{Vanishing strong-CP angle without an axion} \\emph{[structural]}. The QCD vacuum angle vanishes on the substrate, $\\bar\\theta=0$ with no axion: the colour action carries no topological term and colour is drive-invariant, so the bare $\\theta=0$, and the Hermitian quark mass matrices have real determinant, so $\\arg\\det M_q=0$, while the Cabibbo--Kobayashi--Maskawa phase sits in the up--down misalignment. \\emph{Falsifier:} a neutron electric dipole moment above the QCD floor, or a discovered axion.",
-   "source": "Prop.~\\ref{prop:strongcp}; \\src{fld.strongcp}; rests on A6, B4, C7",
+   "source": "Prop.~\\ref{prop:strongcp}\\newline \\pywit{fields}{p27043}{P9}, \\leanwit{FrcCore}{p27043}{P9}; rests on A6, B4, C7 \\lean{FRC.Unitary.hermitian\\_det\\_real, FRC.Unitary.hermitian\\_det\\_shell}",
    "page": "27-fields/index.html#P9",
    "witness": {
-    "py": null,
-    "lean": []
+    "py": {
+     "href": "frc/ledgers/p27_fields.html#p27043",
+     "script": "p27_fields.py",
+     "line": 981,
+     "verdict": "pass"
+    },
+    "lean": [
+     {
+      "lib": "FrcCore",
+      "module": "FrcCore/Theme/Unitary",
+      "name": "FRC.Unitary.hermitian_det_real",
+      "tier": 0,
+      "ok": true,
+      "page": "lean/core/Theme.html#FRC.Unitary.hermitian_det_real"
+     },
+     {
+      "lib": "FrcCore",
+      "module": "FrcCore/Theme/Unitary",
+      "name": "FRC.Unitary.hermitian_det_shell",
+      "tier": 0,
+      "ok": true,
+      "page": "lean/core/Theme.html#FRC.Unitary.hermitian_det_shell"
+     }
+    ]
    },
    "refs": [
     "p27006",
@@ -56020,66 +57005,7 @@
     "p27019",
     "p27043"
    ],
-   "text": "Vanishing strong-CP angle without an axion [structural]. The QCD vacuum angle vanishes on the substrate, $\\bar\\theta=0$ with no axion: the colour action carries no topological term and colour is drive-invariant, so the bare $\\theta=0$, and the Hermitian quark mass matrices have real determinant, so $\\arg\\det M_q=0$, while the Cabibbo–Kobayashi–Maskawa phase sits in the up–down misalignment. Falsifier: a neutron electric dipole moment above the QCD floor, or a discovered axion. Prop. prop:strongcp; fld.strongcp; rests on A6, B4, C7"
-  },
-  {
-   "paper": "27-fld",
-   "no": 27,
-   "rid": "27:V1",
-   "key": "p27044",
-   "label": "V1",
-   "block": "V",
-   "tag": "T",
-   "name": null,
-   "statement": "The validation package \\texttt{finite-ring-space/src/27-fields}: the twenty-eight scripts as written --- \\src{fld.\\allowbreak em1\\_\\allowbreak prototype}, \\src{fld.\\allowbreak enumerate\\_\\allowbreak maxwell}, \\src{fld.\\allowbreak audit\\_\\allowbreak finitism}, \\src{fld.\\allowbreak o2\\_\\allowbreak numbers}, \\src{fld.p2}, \\src{fld.\\allowbreak correspondence}, \\src{fld.p3}, \\src{fld.ew1}, \\src{fld.\\allowbreak weak\\_\\allowbreak spectrum}, \\src{fld.\\allowbreak weak\\_\\allowbreak current}, \\src{fld.p4}, \\src{fld.p10}, \\src{fld.v\\_scale}, \\src{fld.qcd}, \\src{fld.p5}, \\src{fld.\\allowbreak string\\_\\allowbreak tension}, \\src{fld.p6}, \\src{fld.\\allowbreak missing\\_\\allowbreak rank}, \\src{fld.\\allowbreak generation}, \\src{fld.p8}, \\src{fld.p8b}, \\src{fld.p9}, \\src{fld.p9b}, \\src{fld.p11}, \\src{fld.p1}, \\src{fld.p7}, \\src{fld.koide}, \\src{fld.strongcp} --- run through one registry, one family per script, its micro-checks the script's own verdict lines together with the registry's predicates on the script's namespace and output (most scripts print their booleans and numbers without asserting them; the decision is made in \\texttt{fldcommon.py}, one labelled predicate per stated value), each family naming the rows it witnesses (Appendix~\\ref{app:repro} the per-script map); the notebook \\texttt{27-fields-main.ipynb} executes them in the browser and the driver \\texttt{run\\_all.py} writes \\texttt{results.json}.",
-   "source": "Sec.~\\ref{sec:repro}; \\src{run\\_all}",
-   "page": "27-fields/index.html#V1",
-   "witness": {
-    "py": null,
-    "lean": []
-   },
-   "refs": [],
-   "text": "The validation package finite-ring-space/src/27-fields: the twenty-eight scripts as written — fld. em1_ prototype, fld. enumerate_ maxwell, fld. audit_ finitism, fld. o2_ numbers, fld.p2, fld. correspondence, fld.p3, fld.ew1, fld. weak_ spectrum, fld. weak_ current, fld.p4, fld.p10, fld.v_scale, fld.qcd, fld.p5, fld. string_ tension, fld.p6, fld. missing_ rank, fld. generation, fld.p8, fld.p8b, fld.p9, fld.p9b, fld.p11, fld.p1, fld.p7, fld.koide, fld.strongcp — run through one registry, one family per script, its micro-checks the script's own verdict lines together with the registry's predicates on the script's namespace and output (most scripts print their booleans and numbers without asserting them; the decision is made in fldcommon.py, one labelled predicate per stated value), each family naming the rows it witnesses (Appendix app:repro the per-script map); the notebook 27-fields-main.ipynb executes them in the browser and the driver run_all.py writes results.json. Sec. sec:repro; run_all"
-  },
-  {
-   "paper": "27-fld",
-   "no": 27,
-   "rid": "27:V2",
-   "key": "p27045",
-   "label": "V2",
-   "block": "V",
-   "tag": "T",
-   "name": null,
-   "statement": "The discipline, recorded per family as its class (Appendix~\\ref{app:repro}): \\textsf{EXACT} --- integer, $\\F_p$, $\\F_{p^2}$ or cyclotomic arithmetic throughout, a pass a proof on the tested instances; \\textsf{MIXED} --- an exact core with a labelled continuum-comparison layer, the exact claim never resting on the float part; \\textsf{APPROX} --- a continuum-comparison or dimensional-transmutation reading by construction. Fifteen families \\textsf{EXACT}, eleven \\textsf{MIXED}, two \\textsf{APPROX}; \\texttt{audit\\_finitism.py} cross-checks that the load-bearing electromagnetic and admissible-space claims rest on integer and cyclotomic arithmetic alone.",
-   "source": "Sec.~\\ref{sec:repro}, Sec.~\\ref{sec:finitism}",
-   "page": "27-fields/index.html#V2",
-   "witness": {
-    "py": null,
-    "lean": []
-   },
-   "refs": [],
-   "text": "The discipline, recorded per family as its class (Appendix app:repro): EXACT — integer, $\\F_p$, $\\F_{p^2}$ or cyclotomic arithmetic throughout, a pass a proof on the tested instances; MIXED — an exact core with a labelled continuum-comparison layer, the exact claim never resting on the float part; APPROX — a continuum-comparison or dimensional-transmutation reading by construction. Fifteen families EXACT, eleven MIXED, two APPROX; audit_finitism.py cross-checks that the load-bearing electromagnetic and admissible-space claims rest on integer and cyclotomic arithmetic alone. Sec. sec:repro, Sec. sec:finitism"
-  },
-  {
-   "paper": "27-fld",
-   "no": 27,
-   "rid": "27:V3",
-   "key": "p27046",
-   "label": "V3",
-   "block": "V",
-   "tag": "T",
-   "name": null,
-   "statement": "What the run does not decide: the $\\Omega$-hard scales (Z1) enter only as labelled readings ($\\Lambda_{\\mathrm{QCD}}$ by one-loop transmutation, the electroweak scale against the transmutation forms, the proton lifetime's $M_X^4$ scaling); the correspondence's high-curvature extension and the cross-scale running (Remark~\\ref{conj:corrglobal}) are not computed; the narrative scripts (\\src{fld.p7}, \\src{fld.p8}, \\src{fld.p9b}, \\src{fld.p10}, \\src{fld.\\allowbreak o2\\_\\allowbreak numbers}) are decided on their arithmetic identities and stated bands only.",
-   "source": "Sec.~\\ref{sec:repro}",
-   "page": "27-fields/index.html#V3",
-   "witness": {
-    "py": null,
-    "lean": []
-   },
-   "refs": [
-    "p27047"
-   ],
-   "text": "What the run does not decide: the $\\Omega$-hard scales (Z1) enter only as labelled readings ($\\Lambda_{\\mathrm{QCD}}$ by one-loop transmutation, the electroweak scale against the transmutation forms, the proton lifetime's $M_X^4$ scaling); the correspondence's high-curvature extension and the cross-scale running (Remark conj:corrglobal) are not computed; the narrative scripts (fld.p7, fld.p8, fld.p9b, fld.p10, fld. o2_ numbers) are decided on their arithmetic identities and stated bands only. Sec. sec:repro"
+   "text": "Vanishing strong-CP angle without an axion [structural]. The QCD vacuum angle vanishes on the substrate, $\\bar\\theta=0$ with no axion: the colour action carries no topological term and colour is drive-invariant, so the bare $\\theta=0$, and the Hermitian quark mass matrices have real determinant, so $\\arg\\det M_q=0$, while the Cabibbo–Kobayashi–Maskawa phase sits in the up–down misalignment. Falsifier: a neutron electric dipole moment above the QCD floor, or a discovered axion. Prop. prop:strongcp p27043, FrcCore{P9}; rests on A6, B4, C7 FRC.Unitary.hermitian_det_real, FRC.Unitary.hermitian_det_shell"
   },
   {
    "paper": "27-fld",
@@ -56091,14 +57017,48 @@
    "tag": "T",
    "name": null,
    "statement": "\\textbf{The gauge group} $\\U(1)\\times\\SU(2)\\times\\SU(3)$ is the gauging of the substrate's three frame data, the phase, spinor, and colour frames read by the one recipe, not a product of groups chosen to fit.",
-   "source": "\\S\\ref{sec:em},\\,\\ref{sec:weak},\\,\\ref{sec:strong}",
+   "source": "\\S\\ref{sec:em},\\,\\ref{sec:weak},\\,\\ref{sec:strong}\\newline \\pywit{fields}{p27024}{X1}, \\leanwit{FrcCore}{p27024}{X1}; rests on C2, C4, C7 \\lean{FRC.Interactions.gauge\\_flux\\_invariant, FRC.Interactions.drive\\_adjoint, FRC.Interactions.gluon\\_commutator}",
    "page": "27-fields/index.html#X1",
    "witness": {
-    "py": null,
-    "lean": []
+    "py": {
+     "href": "frc/ledgers/p27_fields.html#p27024",
+     "script": "p27_fields.py",
+     "line": 224,
+     "verdict": "pass"
+    },
+    "lean": [
+     {
+      "lib": "FrcCore",
+      "module": "FrcCore/Theme/Interactions",
+      "name": "FRC.Interactions.gauge_flux_invariant",
+      "tier": 0,
+      "ok": true,
+      "page": "lean/core/Theme.html#FRC.Interactions.gauge_flux_invariant"
+     },
+     {
+      "lib": "FrcCore",
+      "module": "FrcCore/Theme/Interactions",
+      "name": "FRC.Interactions.drive_adjoint",
+      "tier": 0,
+      "ok": true,
+      "page": "lean/core/Theme.html#FRC.Interactions.drive_adjoint"
+     },
+     {
+      "lib": "FrcCore",
+      "module": "FrcCore/Theme/Fields",
+      "name": "FRC.Interactions.gluon_commutator",
+      "tier": 0,
+      "ok": true,
+      "page": "lean/core/Theme.html#FRC.Interactions.gluon_commutator"
+     }
+    ]
    },
-   "refs": [],
-   "text": "The gauge group $\\U(1)\\times\\SU(2)\\times\\SU(3)$ is the gauging of the substrate's three frame data, the phase, spinor, and colour frames read by the one recipe, not a product of groups chosen to fit. \\Ssec:em, sec:weak, sec:strong"
+   "refs": [
+    "p27014",
+    "p27016",
+    "p27019"
+   ],
+   "text": "The gauge group $\\U(1)\\times\\SU(2)\\times\\SU(3)$ is the gauging of the substrate's three frame data, the phase, spinor, and colour frames read by the one recipe, not a product of groups chosen to fit. \\Ssec:em, sec:weak, sec:strong p27024, FrcCore{X1}; rests on C2, C4, C7 FRC.Interactions.gauge_flux_invariant, FRC.Interactions.drive_adjoint, FRC.Interactions.gluon_commutator"
   },
   {
    "paper": "27-fld",
@@ -56110,14 +57070,36 @@
    "tag": "T",
    "name": null,
    "statement": "\\textbf{Charge quantisation} is automatic: electric charge is an integer winding index, so the electron and proton charges match exactly and no fractional residue survives, with no quantisation condition imposed.",
-   "source": "Prop.~\\ref{prop:charge}; \\src{fld.\\allowbreak em1\\_\\allowbreak prototype}",
+   "source": "Prop.~\\ref{prop:charge}\\newline \\pywit{fields}{p27025}{X2}, \\leanwit{FrcCore}{p27025}{X2} \\lean{FRC.Interactions.holonomy\\_stokes, FRC.Interactions.one\\_generation}",
    "page": "27-fields/index.html#X2",
    "witness": {
-    "py": null,
-    "lean": []
+    "py": {
+     "href": "frc/ledgers/p27_fields.html#p27025",
+     "script": "p27_fields.py",
+     "line": 191,
+     "verdict": "pass"
+    },
+    "lean": [
+     {
+      "lib": "FrcCore",
+      "module": "FrcCore/Theme/Interactions",
+      "name": "FRC.Interactions.holonomy_stokes",
+      "tier": 0,
+      "ok": true,
+      "page": "lean/core/Theme.html#FRC.Interactions.holonomy_stokes"
+     },
+     {
+      "lib": "FrcCore",
+      "module": "FrcCore/Theme/Interactions",
+      "name": "FRC.Interactions.one_generation",
+      "tier": 0,
+      "ok": true,
+      "page": "lean/core/Theme.html#FRC.Interactions.one_generation"
+     }
+    ]
    },
    "refs": [],
-   "text": "Charge quantisation is automatic: electric charge is an integer winding index, so the electron and proton charges match exactly and no fractional residue survives, with no quantisation condition imposed. Prop. prop:charge; fld. em1_ prototype"
+   "text": "Charge quantisation is automatic: electric charge is an integer winding index, so the electron and proton charges match exactly and no fractional residue survives, with no quantisation condition imposed. Prop. prop:charge p27025, FrcCore{X2} FRC.Interactions.holonomy_stokes, FRC.Interactions.one_generation"
   },
   {
    "paper": "27-fld",
@@ -56129,14 +57111,44 @@
    "tag": "T",
    "name": null,
    "statement": "\\textbf{The photon and its dynamics} are forced: masslessness is drive-invariance and the exact rank-one kernel of the broken vacuum, and Maxwell is the unique adjacency-local gauge-invariant quadratic operator, neither put in by hand.",
-   "source": "Prop.~\\ref{prop:coulomb},~\\ref{prop:rho}, Thm.~\\ref{thm:o1}; \\src{fld.\\allowbreak enumerate\\_\\allowbreak maxwell}, \\src{fld.\\allowbreak weak\\_\\allowbreak spectrum}",
+   "source": "Prop.~\\ref{prop:coulomb},~\\ref{prop:rho}, Thm.~\\ref{thm:o1}\\newline \\pywit{fields}{p27026}{X3}, \\leanwit{FrcCore}{p27026}{X3} \\lean{FRC.Interactions.hessian\\_neutral, FRC.Interactions.projector\\_forced, FRC.Interactions.admissible\\_two}",
    "page": "27-fields/index.html#X3",
    "witness": {
-    "py": null,
-    "lean": []
+    "py": {
+     "href": "frc/ledgers/p27_fields.html#p27026",
+     "script": "p27_fields.py",
+     "line": 242,
+     "verdict": "pass"
+    },
+    "lean": [
+     {
+      "lib": "FrcCore",
+      "module": "FrcCore/Theme/Interactions",
+      "name": "FRC.Interactions.hessian_neutral",
+      "tier": 0,
+      "ok": true,
+      "page": "lean/core/Theme.html#FRC.Interactions.hessian_neutral"
+     },
+     {
+      "lib": "FrcCore",
+      "module": "FrcCore/Theme/Interactions",
+      "name": "FRC.Interactions.projector_forced",
+      "tier": 0,
+      "ok": true,
+      "page": "lean/core/Theme.html#FRC.Interactions.projector_forced"
+     },
+     {
+      "lib": "FrcCore",
+      "module": "FrcCore/Theme/Fields",
+      "name": "FRC.Interactions.admissible_two",
+      "tier": 0,
+      "ok": true,
+      "page": "lean/core/Theme.html#FRC.Interactions.admissible_two"
+     }
+    ]
    },
    "refs": [],
-   "text": "The photon and its dynamics are forced: masslessness is drive-invariance and the exact rank-one kernel of the broken vacuum, and Maxwell is the unique adjacency-local gauge-invariant quadratic operator, neither put in by hand. Prop. prop:coulomb, prop:rho, Thm. thm:o1; fld. enumerate_ maxwell, fld. weak_ spectrum"
+   "text": "The photon and its dynamics are forced: masslessness is drive-invariance and the exact rank-one kernel of the broken vacuum, and Maxwell is the unique adjacency-local gauge-invariant quadratic operator, neither put in by hand. Prop. prop:coulomb, prop:rho, Thm. thm:o1 p27026, FrcCore{X3} FRC.Interactions.hessian_neutral, FRC.Interactions.projector_forced, FRC.Interactions.admissible_two"
   },
   {
    "paper": "27-fld",
@@ -56148,17 +57160,31 @@
    "tag": "T",
    "name": null,
    "statement": "\\textbf{The Weinberg angle} is the exact rational $\\sin^2\\sW=3/8$ at the unification point, fixed by the charge spectrum of the realised generation (B5) with the group-theoretic step imported (A4), not a free parameter measured into the theory.",
-   "source": "Prop.~\\ref{prop:angle}, Prop.~\\ref{prop:running}; \\src{fld.ew1}",
+   "source": "Prop.~\\ref{prop:angle}, Prop.~\\ref{prop:running}\\newline \\pywit{fields}{p27027}{X4}, \\leanwit{FrcCore}{p27027}{X4} \\lean{FRC.Interactions.weinberg\\_angle}",
    "page": "27-fields/index.html#X4",
    "witness": {
-    "py": null,
-    "lean": []
+    "py": {
+     "href": "frc/ledgers/p27_fields.html#p27027",
+     "script": "p27_fields.py",
+     "line": 496,
+     "verdict": "pass"
+    },
+    "lean": [
+     {
+      "lib": "FrcCore",
+      "module": "FrcCore/Theme/Interactions",
+      "name": "FRC.Interactions.weinberg_angle",
+      "tier": 0,
+      "ok": true,
+      "page": "lean/core/Theme.html#FRC.Interactions.weinberg_angle"
+     }
+    ]
    },
    "refs": [
     "p27004",
     "p27011"
    ],
-   "text": "The Weinberg angle is the exact rational $\\sin^2\\sW=3/8$ at the unification point, fixed by the charge spectrum of the realised generation (B5) with the group-theoretic step imported (A4), not a free parameter measured into the theory. Prop. prop:angle, Prop. prop:running; fld.ew1"
+   "text": "The Weinberg angle is the exact rational $\\sin^2\\sW=3/8$ at the unification point, fixed by the charge spectrum of the realised generation (B5) with the group-theoretic step imported (A4), not a free parameter measured into the theory. Prop. prop:angle, Prop. prop:running p27027, FrcCore{X4} FRC.Interactions.weinberg_angle"
   },
   {
    "paper": "27-fld",
@@ -56170,14 +57196,36 @@
    "tag": "T",
    "name": null,
    "statement": "\\textbf{The custodial relation} $\\rho=1$ is the rank-one identity $\\det\\equiv0$ forced by the spinor-doublet Higgs, not a tree-level accident.",
-   "source": "Prop.~\\ref{prop:rho}; \\src{fld.ew1}, \\src{fld.\\allowbreak weak\\_\\allowbreak spectrum}",
+   "source": "Prop.~\\ref{prop:rho}\\newline \\pywit{fields}{p27028}{X5}, \\leanwit{FrcCore}{p27028}{X5} \\lean{FRC.Interactions.hessian\\_neutral, FRC.Interactions.hessian\\_full}",
    "page": "27-fields/index.html#X5",
    "witness": {
-    "py": null,
-    "lean": []
+    "py": {
+     "href": "frc/ledgers/p27_fields.html#p27028",
+     "script": "p27_fields.py",
+     "line": 521,
+     "verdict": "pass"
+    },
+    "lean": [
+     {
+      "lib": "FrcCore",
+      "module": "FrcCore/Theme/Interactions",
+      "name": "FRC.Interactions.hessian_neutral",
+      "tier": 0,
+      "ok": true,
+      "page": "lean/core/Theme.html#FRC.Interactions.hessian_neutral"
+     },
+     {
+      "lib": "FrcCore",
+      "module": "FrcCore/Theme/Interactions",
+      "name": "FRC.Interactions.hessian_full",
+      "tier": 0,
+      "ok": true,
+      "page": "lean/core/Theme.html#FRC.Interactions.hessian_full"
+     }
+    ]
    },
    "refs": [],
-   "text": "The custodial relation $\\rho=1$ is the rank-one identity $\\det\\equiv0$ forced by the spinor-doublet Higgs, not a tree-level accident. Prop. prop:rho; fld.ew1, fld. weak_ spectrum"
+   "text": "The custodial relation $\\rho=1$ is the rank-one identity $\\det\\equiv0$ forced by the spinor-doublet Higgs, not a tree-level accident. Prop. prop:rho p27028, FrcCore{X5} FRC.Interactions.hessian_neutral, FRC.Interactions.hessian_full"
   },
   {
    "paper": "27-fld",
@@ -56189,14 +57237,38 @@
    "tag": "T",
    "name": null,
    "statement": "\\textbf{Maximal parity violation} is the exact decoupling of the Frobenius branch from the drive, so the $V\\!-\\!A$ current is derived rather than the left-handed doublets assigned by hand.",
-   "source": "Prop.~\\ref{prop:chiral}, Cor.~\\ref{cor:fermi}; \\src{fld.\\allowbreak weak\\_\\allowbreak current}, \\src{fld.p4}",
+   "source": "Prop.~\\ref{prop:chiral}, Cor.~\\ref{cor:fermi}\\newline \\pywit{fields}{p27029}{X6}, \\leanwit{FrcCore}{p27029}{X6} \\lean{FRC.Interactions.va\\_cancel, FRC.Interactions.orientation\\_flip}",
    "page": "27-fields/index.html#X6",
    "witness": {
-    "py": null,
-    "lean": []
+    "py": {
+     "href": "frc/ledgers/p27_fields.html#p27029",
+     "script": "p27_fields.py",
+     "line": 585,
+     "verdict": "pass"
+    },
+    "lean": [
+     {
+      "lib": "FrcCore",
+      "module": "FrcCore/Theme/Interactions",
+      "name": "FRC.Interactions.va_cancel",
+      "tier": 0,
+      "ok": true,
+      "page": "lean/core/Theme.html#FRC.Interactions.va_cancel"
+     },
+     {
+      "lib": "FrcCore",
+      "module": "FrcCore/Theme/Interactions",
+      "name": "FRC.Interactions.orientation_flip",
+      "tier": 0,
+      "ok": true,
+      "page": "lean/core/Theme.html#FRC.Interactions.orientation_flip"
+     }
+    ]
    },
-   "refs": [],
-   "text": "Maximal parity violation is the exact decoupling of the Frobenius branch from the drive, so the $V\\!-\\!A$ current is derived rather than the left-handed doublets assigned by hand. Prop. prop:chiral, Cor. cor:fermi; fld. weak_ current, fld.p4"
+   "refs": [
+    "p00067"
+   ],
+   "text": "Maximal parity violation is the exact decoupling of the Frobenius branch from the drive, so the $V\\!-\\!A$ current is derived rather than the left-handed doublets assigned by hand. Prop. prop:chiral, Cor. cor:fermi p27029, FrcCore{X6} FRC.Interactions.va_cancel, FRC.Interactions.orientation_flip"
   },
   {
    "paper": "27-fld",
@@ -56208,14 +57280,55 @@
    "tag": "T",
    "name": null,
    "statement": "\\textbf{The colour sector} is fixed: three colours is the minimal triality-carrying frame, confinement is the compact-group area law from positivity, and asymptotic freedom is the gluon self-coupling, not $N_c=3$ supplemented by an assumed confining phase.",
-   "source": "Prop.~\\ref{prop:su3},~\\ref{prop:corrarea},~\\ref{prop:af}; \\src{fld.qcd}, \\src{fld.\\allowbreak string\\_\\allowbreak tension}, \\src{fld.p6}",
+   "source": "Prop.~\\ref{prop:su3},~\\ref{prop:corrarea},~\\ref{prop:af}\\newline \\pywit{fields}{p27030}{X7}, \\leanwit{FrcCore}{p27030}{X7}, \\leanwit{FrcLedger}{p27030}{X7} \\lean{FRC.Interactions.su3\\_centre, FRC.Interactions.gluon\\_commutator, FRC.Interactions.rank\\_tower, Fields.area\\_law\\_positive}",
    "page": "27-fields/index.html#X7",
    "witness": {
-    "py": null,
-    "lean": []
+    "py": {
+     "href": "frc/ledgers/p27_fields.html#p27030",
+     "script": "p27_fields.py",
+     "line": 702,
+     "verdict": "pass"
+    },
+    "lean": [
+     {
+      "lib": "FrcCore",
+      "module": "FrcCore/Theme/Fields",
+      "name": "FRC.Interactions.su3_centre",
+      "tier": 0,
+      "ok": true,
+      "page": "lean/core/Theme.html#FRC.Interactions.su3_centre"
+     },
+     {
+      "lib": "FrcCore",
+      "module": "FrcCore/Theme/Fields",
+      "name": "FRC.Interactions.gluon_commutator",
+      "tier": 0,
+      "ok": true,
+      "page": "lean/core/Theme.html#FRC.Interactions.gluon_commutator"
+     },
+     {
+      "lib": "FrcCore",
+      "module": "FrcCore/Theme/Interactions",
+      "name": "FRC.Interactions.rank_tower",
+      "tier": 0,
+      "ok": true,
+      "page": "lean/core/Theme.html#FRC.Interactions.rank_tower"
+     },
+     {
+      "lib": "FrcLedger",
+      "module": "FrcLedger/Fields",
+      "name": "FRC.Fields.area_law_positive",
+      "tier": 2,
+      "ok": true,
+      "page": "lean/ml/Fields.html#FRC.Fields.area_law_positive"
+     }
+    ]
    },
-   "refs": [],
-   "text": "The colour sector is fixed: three colours is the minimal triality-carrying frame, confinement is the compact-group area law from positivity, and asymptotic freedom is the gluon self-coupling, not $N_c=3$ supplemented by an assumed confining phase. Prop. prop:su3, prop:corrarea, prop:af; fld.qcd, fld. string_ tension, fld.p6"
+   "refs": [
+    "p00069",
+    "p00070"
+   ],
+   "text": "The colour sector is fixed: three colours is the minimal triality-carrying frame, confinement is the compact-group area law from positivity, and asymptotic freedom is the gluon self-coupling, not $N_c=3$ supplemented by an assumed confining phase. Prop. prop:su3, prop:corrarea, prop:af p27030, FrcCore{X7}, FrcLedger{X7} FRC.Interactions.su3_centre, FRC.Interactions.gluon_commutator, FRC.Interactions.rank_tower, Fields.area_law_positive"
   },
   {
    "paper": "27-fld",
@@ -56227,18 +57340,40 @@
    "tag": "T",
    "name": null,
    "statement": "\\textbf{One complete generation} is the spinor $\\mathbf{16}$ of the rank-five internal frame, so its hypercharges, charges, and anomaly freedom follow and a right-handed neutrino is present, with $\\SO(10)$ unification forced, rather than a hypercharge assignment whose anomaly cancellation is a coincidence; given B5, the anomaly cancellation is the imported $\\SO(10)$ fact (A4) evaluated on the realised content.",
-   "source": "Thm.~\\ref{thm:gen}, Prop.~\\ref{prop:unify}; \\src{fld.\\allowbreak generation}, \\src{fld.p8}, \\src{fld.p8b}",
+   "source": "Thm.~\\ref{thm:gen}, Prop.~\\ref{prop:unify}\\newline \\pywit{fields}{p27031}{X8}, \\leanwit{FrcCore}{p27031}{X8} \\lean{FRC.Interactions.one\\_generation, FRC.Interactions.offblock\\_automorphism}",
    "page": "27-fields/index.html#X8",
    "witness": {
-    "py": null,
-    "lean": []
+    "py": {
+     "href": "frc/ledgers/p27_fields.html#p27031",
+     "script": "p27_fields.py",
+     "line": 798,
+     "verdict": "pass"
+    },
+    "lean": [
+     {
+      "lib": "FrcCore",
+      "module": "FrcCore/Theme/Interactions",
+      "name": "FRC.Interactions.one_generation",
+      "tier": 0,
+      "ok": true,
+      "page": "lean/core/Theme.html#FRC.Interactions.one_generation"
+     },
+     {
+      "lib": "FrcCore",
+      "module": "FrcCore/Theme/Interactions",
+      "name": "FRC.Interactions.offblock_automorphism",
+      "tier": 0,
+      "ok": true,
+      "page": "lean/core/Theme.html#FRC.Interactions.offblock_automorphism"
+     }
+    ]
    },
    "refs": [
     "p00155",
     "p27004",
     "p27011"
    ],
-   "text": "One complete generation is the spinor $\\mathbf{16}$ of the rank-five internal frame, so its hypercharges, charges, and anomaly freedom follow and a right-handed neutrino is present, with $\\SO(10)$ unification forced, rather than a hypercharge assignment whose anomaly cancellation is a coincidence; given B5, the anomaly cancellation is the imported $\\SO(10)$ fact (A4) evaluated on the realised content. Thm. thm:gen, Prop. prop:unify; fld. generation, fld.p8, fld.p8b"
+   "text": "One complete generation is the spinor $\\mathbf{16}$ of the rank-five internal frame, so its hypercharges, charges, and anomaly freedom follow and a right-handed neutrino is present, with $\\SO(10)$ unification forced, rather than a hypercharge assignment whose anomaly cancellation is a coincidence; given B5, the anomaly cancellation is the imported $\\SO(10)$ fact (A4) evaluated on the realised content. Thm. thm:gen, Prop. prop:unify p27031, FrcCore{X8} FRC.Interactions.one_generation, FRC.Interactions.offblock_automorphism"
   },
   {
    "paper": "27-fld",
@@ -56250,14 +57385,30 @@
    "tag": "T",
    "name": null,
    "statement": "\\textbf{The interaction and generation counts} are the $1+3$ split of the closed primitive-role ladder, so four forces and three families are fixed and a fifth force and a fourth generation are forbidden, not left unexplained.",
-   "source": "\\S\\ref{sec:roles}, Prop.~\\ref{prop:threegen}; \\src{fld.p9b}",
+   "source": "\\S\\ref{sec:roles}, Prop.~\\ref{prop:threegen}\\newline \\pywit{fields}{p27032}{X9}, \\leanwit{FrcCore}{p27032}{X9}; rests on C10 \\lean{FRC.Ladder.tower\\_reduces}",
    "page": "27-fields/index.html#X9",
    "witness": {
-    "py": null,
-    "lean": []
+    "py": {
+     "href": "frc/ledgers/p27_fields.html#p27032",
+     "script": "p27_fields.py",
+     "line": 850,
+     "verdict": "pass"
+    },
+    "lean": [
+     {
+      "lib": "FrcCore",
+      "module": "FrcCore/Theme/Ladder",
+      "name": "FRC.Ladder.tower_reduces",
+      "tier": 0,
+      "ok": true,
+      "page": "lean/core/Theme.html#FRC.Ladder.tower_reduces"
+     }
+    ]
    },
-   "refs": [],
-   "text": "The interaction and generation counts are the $1+3$ split of the closed primitive-role ladder, so four forces and three families are fixed and a fifth force and a fourth generation are forbidden, not left unexplained. \\Ssec:roles, Prop. prop:threegen; fld.p9b"
+   "refs": [
+    "p27022"
+   ],
+   "text": "The interaction and generation counts are the $1+3$ split of the closed primitive-role ladder, so four forces and three families are fixed and a fifth force and a fourth generation are forbidden, not left unexplained. \\Ssec:roles, Prop. prop:threegen p27032, FrcCore{X9}; rests on C10 FRC.Ladder.tower_reduces"
   },
   {
    "paper": "27-fld",
@@ -56269,14 +57420,54 @@
    "tag": "T",
    "name": null,
    "statement": "\\textbf{The Koide ratio} is exactly $2/3$, the cube-root generation orbit at the self-dual quarter-turn $\\rho^2=2^{-1}$, an exact value rather than an unexplained numerical coincidence.",
-   "source": "Prop.~\\ref{prop:koide}; \\src{fld.koide}",
+   "source": "Prop.~\\ref{prop:koide}\\newline \\pywit{fields}{p27033}{X10}, \\leanwit{FrcCore}{p27033}{X10} \\lean{FRC.Interactions.koide\\_parseval, FRC.Interactions.koide\\_two\\_thirds, FRC.Interactions.koide\\_extension, FRC.Interactions.koide\\_half}",
    "page": "27-fields/index.html#X10",
    "witness": {
-    "py": null,
-    "lean": []
+    "py": {
+     "href": "frc/ledgers/p27_fields.html#p27033",
+     "script": "p27_fields.py",
+     "line": 957,
+     "verdict": "pass"
+    },
+    "lean": [
+     {
+      "lib": "FrcCore",
+      "module": "FrcCore/Theme/Interactions",
+      "name": "FRC.Interactions.koide_parseval",
+      "tier": 0,
+      "ok": true,
+      "page": "lean/core/Theme.html#FRC.Interactions.koide_parseval"
+     },
+     {
+      "lib": "FrcCore",
+      "module": "FrcCore/Theme/Interactions",
+      "name": "FRC.Interactions.koide_two_thirds",
+      "tier": 0,
+      "ok": true,
+      "page": "lean/core/Theme.html#FRC.Interactions.koide_two_thirds"
+     },
+     {
+      "lib": "FrcCore",
+      "module": "FrcCore/Theme/Interactions",
+      "name": "FRC.Interactions.koide_extension",
+      "tier": 0,
+      "ok": true,
+      "page": "lean/core/Theme.html#FRC.Interactions.koide_extension"
+     },
+     {
+      "lib": "FrcCore",
+      "module": "FrcCore/Theme/Interactions",
+      "name": "FRC.Interactions.koide_half",
+      "tier": 0,
+      "ok": true,
+      "page": "lean/core/Theme.html#FRC.Interactions.koide_half"
+     }
+    ]
    },
-   "refs": [],
-   "text": "The Koide ratio is exactly $2/3$, the cube-root generation orbit at the self-dual quarter-turn $\\rho^2=2^{-1}$, an exact value rather than an unexplained numerical coincidence. Prop. prop:koide; fld.koide"
+   "refs": [
+    "p00081"
+   ],
+   "text": "The Koide ratio is exactly $2/3$, the cube-root generation orbit at the self-dual quarter-turn $\\rho^2=2^{-1}$, an exact value rather than an unexplained numerical coincidence. Prop. prop:koide p27033, FrcCore{X10} FRC.Interactions.koide_parseval, FRC.Interactions.koide_two_thirds, FRC.Interactions.koide_extension, FRC.Interactions.koide_half"
   },
   {
    "paper": "27-fld",
@@ -56288,14 +57479,44 @@
    "tag": "T",
    "name": null,
    "statement": "\\textbf{The strong-CP angle} vanishes with no axion: no substrate-native topological term, and Hermitian quark masses with real determinant, give $\\bar\\theta=0$, so the problem does not arise rather than being tuned away.",
-   "source": "Prop.~\\ref{prop:strongcp}; \\src{fld.strongcp}",
+   "source": "Prop.~\\ref{prop:strongcp}\\newline \\pywit{fields}{p27034}{X11}, \\leanwit{FrcCore}{p27034}{X11} \\lean{FRC.Unitary.hermitian\\_det\\_real, FRC.Unitary.hermitian\\_det\\_shell, FRC.Interactions.ckm\\_free}",
    "page": "27-fields/index.html#X11",
    "witness": {
-    "py": null,
-    "lean": []
+    "py": {
+     "href": "frc/ledgers/p27_fields.html#p27034",
+     "script": "p27_fields.py",
+     "line": 981,
+     "verdict": "pass"
+    },
+    "lean": [
+     {
+      "lib": "FrcCore",
+      "module": "FrcCore/Theme/Unitary",
+      "name": "FRC.Unitary.hermitian_det_real",
+      "tier": 0,
+      "ok": true,
+      "page": "lean/core/Theme.html#FRC.Unitary.hermitian_det_real"
+     },
+     {
+      "lib": "FrcCore",
+      "module": "FrcCore/Theme/Unitary",
+      "name": "FRC.Unitary.hermitian_det_shell",
+      "tier": 0,
+      "ok": true,
+      "page": "lean/core/Theme.html#FRC.Unitary.hermitian_det_shell"
+     },
+     {
+      "lib": "FrcCore",
+      "module": "FrcCore/Theme/Fields",
+      "name": "FRC.Interactions.ckm_free",
+      "tier": 0,
+      "ok": true,
+      "page": "lean/core/Theme.html#FRC.Interactions.ckm_free"
+     }
+    ]
    },
    "refs": [],
-   "text": "The strong-CP angle vanishes with no axion: no substrate-native topological term, and Hermitian quark masses with real determinant, give $\\bar\\theta=0$, so the problem does not arise rather than being tuned away. Prop. prop:strongcp; fld.strongcp"
+   "text": "The strong-CP angle vanishes with no axion: no substrate-native topological term, and Hermitian quark masses with real determinant, give $\\bar\\theta=0$, so the problem does not arise rather than being tuned away. Prop. prop:strongcp p27034, FrcCore{X11} FRC.Unitary.hermitian_det_real, FRC.Unitary.hermitian_det_shell, FRC.Interactions.ckm_free"
   },
   {
    "paper": "27-fld",
@@ -56306,17 +57527,22 @@
    "block": "Y",
    "tag": "O",
    "name": null,
-   "statement": "The electroweak scale as the minimal winding weight of the gauged spinor frame at channel unity: $v/\\sqrt2=m_P\\big(e^{-S_{+1/2}}+e^{-S_{-1/2}}\\big)$, $S_{\\pm1/2}=4\\pi^2/g^2$ the 't~Hooft half-charge action of $\\SU(2)/\\Z_2$ at $g=1$, i.e.\\ $v=2^{3/2}m_P\\,e^{-(2\\pi)^2}=247.2$~GeV against $246.2$ ($0.38\\,\\%$ high). The exponent is verified (Section~\\ref{sec:corr}, \\src{fld.v\\_scale}); the amplitude identification, the two-sector prefactor and the residual are underived. Exposure: odds about $1$ in $45$ for the landing; the strong channel obeys no such rule; the running cannot test it (Rem.~\\ref{rmk:masscons}). Falsifier: a derived amplitude identification with a residual other than $0.38\\,\\%$, or a closed form for the residual that fails.",
-   "source": "Rem.~\\ref{rmk:masscons}; \\src{fld.v\\_scale}",
+   "statement": "The electroweak scale as the minimal winding weight of the gauged spinor frame at channel unity: $v/\\sqrt2=m_P\\big(e^{-S_{+1/2}}+e^{-S_{-1/2}}\\big)$, $S_{\\pm1/2}=4\\pi^2/g^2$ the 't~Hooft half-charge action of $\\SU(2)/\\Z_2$ at $g=1$, i.e.\\ $v=2^{3/2}m_P\\,e^{-(2\\pi)^2}=247.2$~GeV against $246.2$ ($0.38\\,\\%$ high). The exponent is verified (Section~\\ref{sec:corr}); the amplitude identification, the two-sector prefactor and the residual are underived. Exposure: odds about $1$ in $45$ for the landing; the strong channel obeys no such rule; the running cannot test it (Rem.~\\ref{rmk:masscons}). Falsifier: a derived amplitude identification with a residual other than $0.38\\,\\%$, or a closed form for the residual that fails.",
+   "source": "Rem.~\\ref{rmk:masscons}",
    "page": "27-fields/index.html#Y1",
    "witness": {
-    "py": null,
+    "py": {
+     "href": "frc/ledgers/p27_fields.html#p27048",
+     "script": "p27_fields.py",
+     "line": 626,
+     "verdict": "pass"
+    },
     "lean": []
    },
    "refs": [
     "p00068"
    ],
-   "text": "The electroweak scale as the minimal winding weight of the gauged spinor frame at channel unity: $v/\\sqrt2=m_P\\big(e^{-S_{+1/2}}+e^{-S_{-1/2}}\\big)$, $S_{\\pm1/2}=4\\pi^2/g^2$ the 't Hooft half-charge action of $\\SU(2)/\\Z_2$ at $g=1$, i.e. $v=2^{3/2}m_P e^{-(2\\pi)^2}=247.2$ GeV against $246.2$ ($0.38 %$ high). The exponent is verified (Section sec:corr, fld.v_scale); the amplitude identification, the two-sector prefactor and the residual are underived. Exposure: odds about $1$ in $45$ for the landing; the strong channel obeys no such rule; the running cannot test it (Rem. rmk:masscons). Falsifier: a derived amplitude identification with a residual other than $0.38 %$, or a closed form for the residual that fails. Rem. rmk:masscons; fld.v_scale"
+   "text": "The electroweak scale as the minimal winding weight of the gauged spinor frame at channel unity: $v/\\sqrt2=m_P\\big(e^{-S_{+1/2}}+e^{-S_{-1/2}}\\big)$, $S_{\\pm1/2}=4\\pi^2/g^2$ the 't Hooft half-charge action of $\\SU(2)/\\Z_2$ at $g=1$, i.e. $v=2^{3/2}m_P e^{-(2\\pi)^2}=247.2$ GeV against $246.2$ ($0.38 %$ high). The exponent is verified (Section sec:corr); the amplitude identification, the two-sector prefactor and the residual are underived. Exposure: odds about $1$ in $45$ for the landing; the strong channel obeys no such rule; the running cannot test it (Rem. rmk:masscons). Falsifier: a derived amplitude identification with a residual other than $0.38 %$, or a closed form for the residual that fails. Rem. rmk:masscons"
   },
   {
    "paper": "27-fld",
@@ -56328,17 +57554,22 @@
    "tag": "Ω",
    "name": null,
    "statement": "The cross-scale beta-function running and the absolute scales --- $\\al(1/137)$, $\\Lambda_{\\mathrm{QCD}}$, the electroweak scale $v$ --- are decided by the totality but lie beyond the coherence horizon; the same residue as the number-theoretic horizon clause.",
-   "source": "Rem.~\\ref{conj:corrglobal}; \\src{fld.v\\_scale}, \\src{fld.p6}, \\src{fld.p7}",
+   "source": "Rem.~\\ref{conj:corrglobal}",
    "page": "27-fields/index.html#Z1",
    "witness": {
-    "py": null,
+    "py": {
+     "href": "frc/ledgers/p27_fields.html#p27047",
+     "script": "p27_fields.py",
+     "line": 619,
+     "verdict": "pass"
+    },
     "lean": []
    },
    "refs": [
     "p00068",
     "p00071"
    ],
-   "text": "The cross-scale beta-function running and the absolute scales — $\\al(1/137)$, $\\Lambda_{\\mathrm{QCD}}$, the electroweak scale $v$ — are decided by the totality but lie beyond the coherence horizon; the same residue as the number-theoretic horizon clause. Rem. conj:corrglobal; fld.v_scale, fld.p6, fld.p7"
+   "text": "The cross-scale beta-function running and the absolute scales — $\\al(1/137)$, $\\Lambda_{\\mathrm{QCD}}$, the electroweak scale $v$ — are decided by the totality but lie beyond the coherence horizon; the same residue as the number-theoretic horizon clause. Rem. conj:corrglobal"
   },
   {
    "paper": "28-flav",

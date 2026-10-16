@@ -575,7 +575,7 @@
    {
     "name": "FRC.Ladder.eigenvalues13",
     "module": "FrcCore/Theme/Ladder",
-    "line": 617,
+    "line": 618,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -628,7 +628,7 @@
    {
     "name": "FRC.Ladder.mul_perm",
     "module": "FrcCore/Theme/Ladder",
-    "line": 70,
+    "line": 71,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -680,7 +680,7 @@
    {
     "name": "FRC.Ladder.recentre_witness",
     "module": "FrcCore/Theme/Ladder",
-    "line": 82,
+    "line": 83,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -689,7 +689,7 @@
    {
     "name": "FRC.Ladder.recentre_inj",
     "module": "FrcCore/Theme/Ladder",
-    "line": 89,
+    "line": 90,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -698,7 +698,7 @@
    {
     "name": "FRC.Ladder.recentre_surj",
     "module": "FrcCore/Theme/Ladder",
-    "line": 99,
+    "line": 100,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -707,7 +707,7 @@
    {
     "name": "FRC.Ladder.recentre13",
     "module": "FrcCore/Theme/Ladder",
-    "line": 634,
+    "line": 635,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -745,7 +745,7 @@
    {
     "name": "FRC.Ladder.two_mul_distSum",
     "module": "FrcCore/Theme/Ladder",
-    "line": 335,
+    "line": 336,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -754,7 +754,7 @@
    {
     "name": "FRC.Ladder.dist_le",
     "module": "FrcCore/Theme/Ladder",
-    "line": 342,
+    "line": 343,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -763,7 +763,7 @@
    {
     "name": "FRC.Ladder.bits_bracket",
     "module": "FrcCore/Theme/Ladder",
-    "line": 325,
+    "line": 326,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -774,7 +774,7 @@
    {
     "name": "FRC.Ladder.sqmul_spec",
     "module": "FrcCore/Theme/Ladder",
-    "line": 390,
+    "line": 391,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -783,7 +783,7 @@
    {
     "name": "FRC.Ladder.sqmul_count",
     "module": "FrcCore/Theme/Ladder",
-    "line": 417,
+    "line": 418,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -792,7 +792,7 @@
    {
     "name": "FRC.Ladder.sqmul_count_of_lt_pow",
     "module": "FrcCore/Theme/Ladder",
-    "line": 424,
+    "line": 425,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -801,7 +801,7 @@
    {
     "name": "FRC.Ladder.sqmul13",
     "module": "FrcCore/Theme/Ladder",
-    "line": 650,
+    "line": 651,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -812,7 +812,7 @@
    {
     "name": "FRC.Ladder.bsgs_spec",
     "module": "FrcCore/Theme/Ladder",
-    "line": 573,
+    "line": 574,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -821,7 +821,7 @@
    {
     "name": "FRC.Ladder.bsgs_total",
     "module": "FrcCore/Theme/Ladder",
-    "line": 608,
+    "line": 609,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -830,7 +830,7 @@
    {
     "name": "FRC.Ladder.baby_step",
     "module": "FrcCore/Theme/Ladder",
-    "line": 491,
+    "line": 492,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -839,7 +839,7 @@
    {
     "name": "FRC.Ladder.descendsB_spec",
     "module": "FrcCore/Theme/Ladder",
-    "line": 552,
+    "line": 553,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -848,7 +848,7 @@
    {
     "name": "FRC.Ladder.descent13_101",
     "module": "FrcCore/Theme/Ladder",
-    "line": 657,
+    "line": 658,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -897,11 +897,11 @@
    {
     "name": "FRC.Ladder.tower_reduces",
     "module": "FrcCore/Theme/Ladder",
-    "line": 64,
+    "line": 65,
     "axioms": [],
     "tier": 0,
     "ok": true,
-    "doc": "26:G2 — a tower exponent is read modulo `n`: `g^{(g^j)} = g^{(g^j) mod n}`; tetration is exponentiation of a reduced index, and the two cyclic structures host every iterate."
+    "doc": "26:G2, 27:C10, 27:X9, 27:P1 — a tower exponent is read modulo `n`: `g^{(g^j)} = g^{(g^j) mod n}`; tetration is exponentiation of a reduced index, and the two cyclic structures host every iterate (the ladder of the four roles closes: the fifth step returns to counting, 27-fields' C10)."
    },
    {
     "name": "FRC.Ladder.power_index",
@@ -915,7 +915,7 @@
    {
     "name": "FRC.Ladder.tower13",
     "module": "FrcCore/Theme/Ladder",
-    "line": 629,
+    "line": 630,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -953,7 +953,7 @@
    {
     "name": "FRC.Ladder.phase13",
     "module": "FrcCore/Theme/Ladder",
-    "line": 623,
+    "line": 624,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -964,7 +964,7 @@
    {
     "name": "FRC.Ladder.sqmul_count_of_lt_pow",
     "module": "FrcCore/Theme/Ladder",
-    "line": 424,
+    "line": 425,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -973,7 +973,7 @@
    {
     "name": "FRC.Ladder.bsgs_spec",
     "module": "FrcCore/Theme/Ladder",
-    "line": 573,
+    "line": 574,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -993,7 +993,7 @@
    {
     "name": "FRC.Ladder.power_bijective_of_unit",
     "module": "FrcCore/Theme/Ladder",
-    "line": 115,
+    "line": 116,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -1002,7 +1002,7 @@
    {
     "name": "FRC.Ladder.power_image",
     "module": "FrcCore/Theme/Ladder",
-    "line": 124,
+    "line": 125,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -1011,7 +1011,7 @@
    {
     "name": "FRC.Ladder.power_image_index",
     "module": "FrcCore/Theme/Ladder",
-    "line": 148,
+    "line": 149,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -1020,7 +1020,7 @@
    {
     "name": "FRC.Ladder.compressive_of_gcd",
     "module": "FrcCore/Theme/Ladder",
-    "line": 167,
+    "line": 168,
     "axioms": [],
     "tier": 0,
     "ok": true,
@@ -1029,7 +1029,7 @@
    {
     "name": "FRC.Ladder.powers13",
     "module": "FrcCore/Theme/Ladder",
-    "line": 639,
+    "line": 640,
     "axioms": [],
     "tier": 0,
     "ok": true,

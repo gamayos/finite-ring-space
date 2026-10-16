@@ -427,6 +427,7 @@
    "20:D9": "Rh",
    "20:E1": "Rh",
    "20:E12": "Rh",
+   "20:F1": "Rh",
    "20:F2": "Rh",
    "20:F7": "Rh"
   },
@@ -440,12 +441,11 @@
    "20:B7": "Rh",
    "20:B8": "Rh",
    "20:B9": "Rh",
-   "20:C2": "Rh",
-   "20:C5": "Rh",
    "20:D8": "Rh",
    "20:E1": "Rh",
    "20:E12": "Rh",
-   "20:E13": "Rh"
+   "20:E13": "Rh",
+   "20:F1": "Rh"
   }
  },
  "25-godel": {
@@ -682,6 +682,45 @@
    "26:B4": "Pnp",
    "26:B5": "Pnp",
    "26:C2": "Pnp"
+  }
+ },
+ "27-fields": {
+  "module": "Fields",
+  "FrcCore": {
+   "27:C1": "Fields",
+   "27:C10": "Fields",
+   "27:C11": "Fields",
+   "27:C2": "Fields",
+   "27:C3": "Fields",
+   "27:C4": "Fields",
+   "27:C5": "Fields",
+   "27:C6": "Fields",
+   "27:C7": "Fields",
+   "27:C8": "Fields",
+   "27:C9": "Fields",
+   "27:P1": "Fields",
+   "27:P2": "Fields",
+   "27:P6": "Fields",
+   "27:P7": "Fields",
+   "27:P8": "Fields",
+   "27:P9": "Fields",
+   "27:X1": "Fields",
+   "27:X10": "Fields",
+   "27:X11": "Fields",
+   "27:X2": "Fields",
+   "27:X3": "Fields",
+   "27:X4": "Fields",
+   "27:X5": "Fields",
+   "27:X6": "Fields",
+   "27:X7": "Fields",
+   "27:X8": "Fields",
+   "27:X9": "Fields"
+  },
+  "FrcLedger": {
+   "27:C1": "Fields",
+   "27:C6": "Fields",
+   "27:C7": "Fields",
+   "27:X7": "Fields"
   }
  }
 }
